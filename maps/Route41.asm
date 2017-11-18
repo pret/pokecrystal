@@ -127,10 +127,6 @@ SwimmermMathewScript:
 	closetext
 	end
 
-Route41Rock:
-; unused
-	jumpstd smashrock
-
 Route41HiddenMaxEther:
 	dwb EVENT_ROUTE_41_HIDDEN_MAX_ETHER, MAX_ETHER
 

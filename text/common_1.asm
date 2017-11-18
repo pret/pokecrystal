@@ -204,56 +204,6 @@ UnknownText_0x1bc37a::
 	text ", is it?"
 	done
 
-UnknownText_0x1bc384::
-	text "There is nothing"
-	line "connected."
-	done
-
-UnknownText_0x1bc3a1::
-	text "Check cell phone"
-	line "adapter."
-	done
-
-UnknownText_0x1bc3bc::
-	text "Check CDMA"
-	line "adapter."
-	done
-
-UnknownText_0x1bc3d1::
-	text "Check DOCOMO PHS"
-	line "adapter."
-	done
-
-UnknownText_0x1bc3ec::
-	text "Check DDI PHS"
-	line "adapter."
-	done
-
-UnknownText_0x1bc404::
-	text "Check unlimited"
-	line "battle mobile"
-	cont "adapter."
-	done
-
-UnknownText_0x1bc42c::
-	text "The password is:"
-	line ""
-	done
-
-UnknownText_0x1bc43f::
-	text "Is this OK?"
-	done
-
-UnknownText_0x1bc44c::
-	text "Enter the"
-	line "ID no."
-	done
-
-UnknownText_0x1bc45e::
-	text "Enter the"
-	line "amount."
-	done
-
 UnknownText_0x1bc471::
 	text "There's nothing to"
 	line "choose."
@@ -1095,109 +1045,6 @@ Text_EnemyUsedOn::
 	text "!"
 	prompt
 
-Text_ThatCantBeUsedRightNow::
-	text "That can't be used"
-	line "right now."
-	prompt
-
-Text_ThatItemCantBePutInThePack::
-	text "That item can't be"
-	line "put in the PACK."
-	done
-
-Text_TheItemWasPutInThePack::
-	text "The @"
-	text_from_ram StringBuffer1
-	text ""
-	line "was put in the"
-	cont "PACK."
-	done
-
-Text_RemainingTime::
-	text "Remaining Time"
-	done
-
-Text_YourPkmnsHPWasHealed::
-	text "Your #MON's HP"
-	line "was healed."
-	prompt
-
-Text_Warping::
-	text "Warping…"
-	done
-
-UnknownText_0x1bd05e::
-	text "Which number"
-	line "should be changed?"
-	done
-
-UnknownText_0x1bd07f::
-	text "Will you play with"
-	line "@"
-	text_from_ram StringBuffer2
-	text "?"
-	done
-
-UnknownText_0x1bd09a::
-	text "You need two #-"
-	line "MON for breeding."
-	prompt
-
-Text_BreedingIsNotPossible::
-	text "Breeding is not"
-	line "possible."
-	prompt
-
-UnknownText_0x1bd0d8::
-	text "The compatibility"
-	line "is @"
-	deciram wd265, 1, 3
-	text "."
-	cont "Should they breed?"
-	done
-
-UnknownText_0x1bd109::
-	text "There is no EGG."
-	line ""
-	prompt
-
-UnknownText_0x1bd11c::
-	text "It's going to"
-	line "hatch!"
-	prompt
-
-UnknownText_0x1bd131::
-	text "Test event"
-	line "@"
-	deciram StringBuffer2, 1, 2
-	text "?"
-	done
-
-UnknownText_0x1bd145::
-	text "Start!"
-	done
-
-UnknownText_0x1bd14d::
-	text "End!"
-	done
-
-UnknownText_0x1bd153::
-	text "For a boy!"
-	done
-
-UnknownText_0x1bd15f::
-	text "For a girl!"
-	done
-
-UnknownText_0x1bd16c::
-	text "This doesn't"
-	line "concern a boy!"
-	done
-
-UnknownText_0x1bd188::
-	text "The BOX is full!"
-	done
-
 UnknownText_0x1bd19a::
 	text "A new CARD arrived"
 	line "from @"
@@ -1218,31 +1065,12 @@ UnknownText_0x1bd1dd::
 	text "."
 	prompt
 
-UnknownText_0x1bd201::
-	text "Starting link."
-	done
-
 UnknownText_0x1bd211::
 	text "Link terminated."
 	done
 
 UnknownText_0x1bd223::
 	text "Closing link."
-	done
-
-UnknownText_0x1bd232::
-	text "Clear the time"
-	line "limit?"
-	done
-
-UnknownText_0x1bd249::
-	text "The time limit was"
-	line "cleared."
-	done
-
-UnknownText_0x1bd266::
-	text "Pick which packet"
-	line "as an error?"
 	done
 
 UnknownText_0x1bd286::
@@ -1252,11 +1080,6 @@ UnknownText_0x1bd286::
 	line "for @"
 	text_from_ram StringBuffer1
 	text "…"
-	done
-
-UnknownText_0x1bd2a0::
-	text "Obtained the"
-	line "VOLTORBBADGE!"
 	done
 
 UnknownText_0x1bd2bc::

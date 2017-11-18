@@ -825,10 +825,6 @@ TeachWhichPKMNString: ; 0x5050e
 	db "Teach which <PK><MN>?@"
 MoveToWhereString: ; 0x5051e
 	db "Move to where?@"
-ChooseAFemalePKMNString: ; 0x5052d  ; UNUSED
-	db "Choose a ♀<PK><MN>.@"
-ChooseAMalePKMNString: ; 0x5053b    ; UNUSED
-	db "Choose a ♂<PK><MN>.@"
 ToWhichPKMNString: ; 0x50549
 	db "To which <PK><MN>?@"
 

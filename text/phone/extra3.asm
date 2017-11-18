@@ -692,22 +692,6 @@ UnknownText_0x17520a: ; 0x17520a
 	done
 ; 0x17529c
 
-UnknownText_0x17529c: ; 0x17529c
-	text "What's wrong?"
-
-	para "Don't you want"
-	line "this gift?"
-
-	para "Catch up to me on"
-	line "@"
-	text_from_ram StringBuffer5
-	text ","
-
-	para "and I'll let you"
-	line "have it."
-	done
-; 0x1752f5
-
 UnknownText_0x1752f5: ; 0x1752f5
 	text "Listen, dear…"
 

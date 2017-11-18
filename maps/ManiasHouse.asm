@@ -96,9 +96,6 @@ ManiaScript:
 	closetext
 	end
 
-UnknownScript_0x9d300:
-	jumpstd picturebookshelf
-
 ManiaText_AskLookAfterShuckle:
 	text "I, I'm in shock!"
 

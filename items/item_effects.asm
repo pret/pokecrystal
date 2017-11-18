@@ -1088,21 +1088,6 @@ LevelBallMultiplier:
 	ld b, $ff
 	ret
 
-; These two texts were carried over from gen 1.
-; They are not used in gen 2, and are dummied out.
-
-Text_RBY_CatchMarowak: ; 0xedab
-	; It dodged the thrown BALL! This #MON can't be caught!
-	text_jump UnknownText_0x1c5a5a
-	db "@"
-; 0xedb0
-
-Text_RBY_NoShake: ; 0xedb0
-	; You missed the #MON!
-	text_jump UnknownText_0x1c5a90
-	db "@"
-; 0xedb5
-
 Text_NoShake: ; 0xedb5
 	; Oh no! The #MON broke free!
 	text_jump UnknownText_0x1c5aa6
@@ -2040,22 +2025,6 @@ LoadCurHPIntoBuffer5: ; f328 (3:7328)
 	ld [Buffer5], a
 	ret
 ; f336 (3:7336)
-
-LoadHPIntoBuffer5: ; f336
-	ld a, d
-	ld [Buffer6], a
-	ld a, e
-	ld [Buffer5], a
-	ret
-; f33f
-
-LoadHPFromBuffer5: ; f33f
-	ld a, [Buffer6]
-	ld d, a
-	ld a, [Buffer5]
-	ld e, a
-	ret
-; f348
 
 LoadCurHPToBuffer3: ; f348 (3:7348)
 	ld a, MON_HP
@@ -2995,18 +2964,6 @@ IsntTheTimeMessage: ; f7ed
 
 WontHaveAnyEffectMessage: ; f7f2
 	ld hl, WontHaveAnyEffectText
-	jr CantUseItemMessage
-
-BelongsToSomeoneElseMessage: ; f7f7
-	ld hl, BelongsToSomeoneElseText
-	jr CantUseItemMessage
-
-CyclingIsntAllowedMessage: ; f7fc
-	ld hl, CyclingIsntAllowedText
-	jr CantUseItemMessage
-
-CantGetOnYourBikeMessage: ; f801
-	ld hl, CantGetOnYourBikeText
 
 CantUseItemMessage: ; f804
 ; Item couldn't be used.
@@ -3033,12 +2990,6 @@ IsntTheTimeText: ; 0xf815
 	db "@"
 ; 0xf81a
 
-BelongsToSomeoneElseText: ; 0xf81a
-	; That belongs to someone else!
-	text_jump UnknownText_0x1c5d97
-	db "@"
-; 0xf81f
-
 WontHaveAnyEffectText: ; 0xf81f
 	; It won't have any effect.
 	text_jump UnknownText_0x1c5db6
@@ -3057,18 +3008,6 @@ DontBeAThiefText: ; 0xf829
 	db "@"
 ; 0xf82e
 
-CyclingIsntAllowedText: ; 0xf82e
-	; Cycling isn't allowed here.
-	text_jump UnknownText_0x1c5e01
-	db "@"
-; 0xf833
-
-CantGetOnYourBikeText: ; 0xf833
-	; Can't get on your @  now.
-	text_jump UnknownText_0x1c5e1d
-	db "@"
-; 0xf838
-
 Ball_BoxIsFullText: ; 0xf838
 	; The #MON BOX is full. That can't be used now.
 	text_jump UnknownText_0x1c5e3a
@@ -3080,18 +3019,6 @@ UsedItemText: ; 0xf83d
 	text_jump UnknownText_0x1c5e68
 	db "@"
 ; 0xf842
-
-GotOnTheItemText: ; 0xf842
-	; got on the@ .
-	text_jump UnknownText_0x1c5e7b
-	db "@"
-; 0xf847
-
-GotOffTheItemText: ; 0xf847
-	; got off@ the @ .
-	text_jump UnknownText_0x1c5e90
-	db "@"
-; 0xf84c
 
 
 ApplyPPUp: ; f84c

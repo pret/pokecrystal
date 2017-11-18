@@ -44,64 +44,6 @@ CheckShininess:
 	and a
 	ret
 
-CheckContestMon:
-; Check a mon's DVs at hl in the bug catching contest.
-; Return carry if its DVs are good enough to place in the contest.
-
-; Attack
-	ld a, [hl]
-	cp 10 << 4
-	jr c, .Bad
-
-; Defense
-	ld a, [hli]
-	and $f
-	cp 10
-	jr c, .Bad
-
-; Speed
-	ld a, [hl]
-	cp 10 << 4
-	jr c, .Bad
-
-; Special
-	ld a, [hl]
-	and $f
-	cp 10
-	jr c, .Bad
-
-.Good:
-	scf
-	ret
-
-.Bad:
-	and a
-	ret
-
-Function8aa4:
-; XXX
-	push de
-	push bc
-	ld hl, PalPacket_9ce6
-	ld de, wSGBPals
-	ld bc, PALPACKET_LENGTH
-	call CopyBytes
-	pop bc
-	pop de
-	ld a, c
-	ld [wSGBPals + 3], a
-	ld a, b
-	ld [wSGBPals + 4], a
-	ld a, e
-	ld [wSGBPals + 5], a
-	ld a, d
-	ld [wSGBPals + 6], a
-	ld hl, wSGBPals
-	call PushSGBPals_
-	ld hl, BlkPacket_9a86
-	call PushSGBPals_
-	ret
-
 InitPartyMenuPalettes:
 	ld hl, PalPacket_9c56 + 1
 	call CopyFourPalettes
@@ -133,115 +75,6 @@ SGB_ApplyPartyMenuHPPals: ; 8ade SGB layout $fc
 	call AddNTimes
 	pop de
 	ld [hl], e
-	ret
-
-Function8b07:
-; Unreferenced
-	call CheckCGB
-	ret z
-; CGB only
-	ld hl, .BGPal
-	ld de, UnknBGPals
-	ld bc, 1 palettes
-	ld a, $5
-	call FarCopyWRAM
-
-	ld hl, .OBPal
-	ld de, UnknOBPals
-	ld bc, 1 palettes
-	ld a, $5
-	call FarCopyWRAM
-
-	call ApplyPals
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-
-.BGPal:
-	RGB 31, 31, 31
-	RGB 18, 23, 31
-	RGB 15, 20, 31
-	RGB 00, 00, 00
-
-.OBPal:
-	RGB 31, 31, 31
-	RGB 31, 31, 12
-	RGB 08, 16, 28
-	RGB 00, 00, 00
-
-Function8b3f:
-; Unreferenced
-	call CheckCGB
-	ret nz
-	ld a, [hSGB]
-	and a
-	ret z
-	ld hl, BlkPacket_9a86
-	jp PushSGBPals_
-
-Function8b4d:
-; XXX
-	call CheckCGB
-	jr nz, .cgb
-	ld a, [hSGB]
-	and a
-	ret z
-	ld hl, PalPacket_9c26
-	jp PushSGBPals_
-
-.cgb
-	ld de, UnknOBPals
-	ld a, $3b
-	call GetPredefPal
-	jp LoadHLPaletteIntoDE
-
-Function8b67:
-; XXX
-	call CheckCGB
-	jr nz, .cgb
-	ld a, [hSGB]
-	and a
-	ret z
-	ld hl, PalPacket_9c36
-	jp PushSGBPals_
-
-.cgb
-	ld de, UnknOBPals
-	ld a, $3c
-	call GetPredefPal
-	jp LoadHLPaletteIntoDE
-
-Function8b81:
-; XXX
-	call CheckCGB
-	jr nz, .cgb
-	ld a, [hSGB]
-	and a
-	ret z
-	ld a, c
-	push af
-	ld hl, PalPacket_9ce6
-	ld de, wSGBPals
-	ld bc, PALPACKET_LENGTH
-	call CopyBytes
-	pop af
-	call GetMonPalettePointer_
-	ld a, [hli]
-	ld [wSGBPals + 3], a
-	ld a, [hli]
-	ld [wSGBPals + 4], a
-	ld a, [hli]
-	ld [wSGBPals + 5], a
-	ld a, [hl]
-	ld [wSGBPals + 6], a
-	ld hl, wSGBPals
-	jp PushSGBPals_
-
-.cgb
-	ld de, UnknOBPals
-	ld a, c
-	call GetMonPalettePointer_
-	call LoadPalette_White_Col1_Col2_Black
 	ret
 
 LoadTrainerClassPaletteAsNthBGPal:
@@ -278,37 +111,6 @@ got_palette_pointer_8bd7
 	ld d, h
 	pop hl
 	call LoadPalette_White_Col1_Col2_Black
-	ret
-
-Function8bec:
-; XXX
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-	ld hl, PlayerLightScreenCount
-	jp PushSGBPals_
-
-.cgb
-	ld a, [EnemyLightScreenCount] ; col
-	ld c, a
-	ld a, [EnemyReflectCount] ; row
-	hlcoord 0, 0, AttrMap
-	ld de, SCREEN_WIDTH
-.loop
-	and a
-	jr z, .done
-	add hl, de
-	dec a
-	jr .loop
-
-.done
-	ld b, $0
-	add hl, bc
-	lb bc, 6, 4
-	ld a, [EnemySafeguardCount] ; value
-	and $3
-	call FillBoxCGB
-	call LoadEDTile
 	ret
 
 ApplyMonOrTrainerPals:
@@ -501,24 +303,6 @@ LoadMailPalettes:
 	RGB 00, 00, 00
 
 INCLUDE "predef/cgb.asm"
-
-Function95f0:
-; XXX
-	ld hl, .Palette
-	ld de, UnknBGPals
-	ld bc, 8
-	ld a, $5
-	call FarCopyWRAM
-	call ApplyPals
-	call WipeAttrMap
-	call ApplyAttrMap
-	ret
-
-.Palette:
-	RGB 31, 31, 31
-	RGB 09, 31, 31
-	RGB 10, 12, 31
-	RGB 00, 03, 19
 
 CopyFourPalettes:
 	ld de, UnknBGPals
@@ -792,25 +576,6 @@ GetMonPalettePointer_:
 	call GetMonPalettePointer
 	ret
 
-Function9779: mobile
-	call CheckCGB
-	ret z
-	ld hl, Palettes_979c
-	ld a, $90
-	ld [rOBPI], a
-	ld c, 6 palettes
-.loop
-	ld a, [hli]
-	ld [rOBPD], a
-	dec c
-	jr nz, .loop
-	ld hl, Palettes_979c
-	ld de, UnknOBPals + 8 * 2
-	ld bc, 2 palettes
-	ld a, $5
-	call FarCopyWRAM
-	ret
-
 Palettes_979c:
 	RGB 31, 31, 31
 	RGB 25, 25, 25
@@ -841,29 +606,6 @@ Palettes_979c:
 	RGB 24, 18, 07
 	RGB 20, 15, 03
 	RGB 00, 00, 00
-
-Function97cc:
-; XXX
-	call CheckCGB
-	ret z
-	ld a, $90
-	ld [rOBPI], a
-	ld a, $1c
-	call GetPredefPal
-	call .PushPalette
-	ld a, $21
-	call GetPredefPal
-	call .PushPalette
-	ret
-
-.PushPalette:
-	ld c, 1 palettes
-.loop
-	ld a, [hli]
-	ld [rOBPD], a
-	dec c
-	jr nz, .loop
-	ret
 
 GetMonPalettePointer:
 	ld l, a
@@ -1052,21 +794,6 @@ _InitSGBBorderPals:
 	dw PalPacket_9dc6
 	dw PalPacket_9dd6
 	dw PalPacket_9de6
-
-Function9911:
-; XXX
-	di
-	xor a
-	ld [rJOYP], a
-	ld hl, PalPacket_9d56
-	call PushSGBPals
-	call PushSGBBorder
-	call SGBDelayCycles
-	call SGB_ClearVRAM
-	ld hl, PalPacket_9d66
-	call PushSGBPals
-	ei
-	ret
 
 PushSGBBorder:
 	call .LoadSGBBorderPointers
@@ -1297,11 +1024,6 @@ BlkPacket_9b06:
 	db $22, $05, $03, $05, $00, $00, $13, $0b, $03, $0a, $00, $04, $13, $09, $02, $0f
 	db $00, $06, $13, $07, $03, $00, $04, $04, $0f, $09, $03, $00, $00, $0c, $13, $11
 
-BlkPacket_9b26:
-	db $23, $07, $07, $10, $00, $00, $02, $0c, $02, $00, $0c, $00, $12, $01, $02, $00
-	db $0c, $02, $12, $03, $02, $00, $0c, $04, $12, $05, $02, $00, $0c, $06, $12, $07
-	db $02, $00, $0c, $08, $12, $09, $02, $00, $0c, $0a, $12, $0b, $00, $00, $00, $00
-
 BlkPacket_9b56:
 	db $22, $03, $07, $20, $00, $00, $13, $04, $03, $0f, $00, $06, $13, $11, $03, $05
 	db $0f, $01, $12, $04, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
@@ -1318,16 +1040,13 @@ PalPacket_9bb6:	db $51, $41, $00, $42, $00, $43, $00, $44, $00, $00, $00, $00, $
 PalPacket_9bc6:	db $51, $4c, $00, $4c, $00, $4c, $00, $4c, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9bd6:	db $51, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9be6:	db $51, $36, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9bf6:	db $51, $37, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9c06:	db $51, $38, $00, $39, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9c16:	db $51, $3a, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c26:	db $51, $3b, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9c36:	db $51, $3c, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9c46:	db $51, $39, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9c56:	db $51, $2e, $00, $2f, $00, $30, $00, $31, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9c66:	db $51, $1a, $00, $1a, $00, $1a, $00, $1a, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9c76:	db $51, $32, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c86:	db $51, $3c, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9c96:	db $51, $3d, $00, $3e, $00, $3f, $00, $40, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9ca6:	db $51, $33, $00, $34, $00, $1b, $00, $1f, $00, $00, $00, $00, $00, $00, $00, $00
 PalPacket_9cb6:	db $51, $1b, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00

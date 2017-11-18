@@ -18,11 +18,6 @@ UnknownScript_0x58f69:
 	end
 
 UnknownScript_0x58f6a:
-	priorityjump UnknownScript_0x58f6e
-
-UnknownScript_0x58f6d:
-	end
-
 UnknownScript_0x58f6e:
 	opentext
 	writetext UnknownText_0x58f89

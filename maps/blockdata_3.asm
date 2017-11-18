@@ -1,6 +1,3 @@
-BetaCave2_BlockData:
-	INCBIN "maps/BetaCave2.blk"
-
 SlowpokeWellB1F_BlockData:
 	INCBIN "maps/SlowpokeWellB1F.blk"
 
@@ -42,9 +39,6 @@ FastShip1F_BlockData:
 
 FastShipB1F_BlockData:
 	INCBIN "maps/FastShipB1F.blk"
-
-BetaSsAquaInsideCutOut_BlockData:
-	INCBIN "maps/BetaSsAquaInsideCutOut.blk"
 
 FastShipCabins_NNW_NNE_NE_BlockData:
 	INCBIN "maps/FastShipCabins_NNW_NNE_NE.blk"
@@ -132,14 +126,8 @@ PewterGym_BlockData:
 CeladonGym_BlockData:
 	INCBIN "maps/CeladonGym.blk"
 
-BetaHouse2_BlockData:
-	INCBIN "maps/BetaHouse2.blk"
-
 CeladonCafe_BlockData:
 	INCBIN "maps/CeladonCafe.blk"
-
-BetaCeladonMansion_BlockData:
-	INCBIN "maps/BetaCeladonMansion.blk"
 
 RockTunnel1F_BlockData:
 	INCBIN "maps/RockTunnel1F.blk"
@@ -258,9 +246,6 @@ BattleTowerElevator_BlockData:
 
 BattleTowerOutside_BlockData:
 	INCBIN "maps/BattleTowerOutside.blk"
-
-BetaBlank_BlockData:
-	INCBIN "maps/BetaBlank.blk"
 
 GoldenrodDeptStoreRoof_BlockData:
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"

@@ -162,25 +162,6 @@ UnknownText_0x1aa1bd:
 	line "a sales clerk."
 	done
 
-; possibly unused
-UnknownText_0x1aa25b:
-	text "I love being"
-	line "surrounded by tall"
-	cont "buildings!"
-
-	para "Isn't it true that"
-	line "GOLDENROD #MON"
-
-	para "CENTER was made"
-	line "much, much bigger?"
-
-	para "That is so neat!"
-	line "I wish we had a"
-
-	para "place like that in"
-	line "KANTO…"
-	done
-
 UnknownText_0x1aa306:
 	text "Looking at the"
 	line "ground while I was"

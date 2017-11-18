@@ -2805,10 +2805,6 @@ Script_warpcheck:
 	callba EnableEvents
 	ret
 
-Script_enableevents: ; unreferenced
-	callba EnableEvents
-	ret
-
 Script_newloadmap:
 ; script command 0x8a
 ; parameters:

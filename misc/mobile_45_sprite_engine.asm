@@ -506,14 +506,6 @@ Function1161d5: ; 1161d5
 
 ; 11628c
 
-MenuDataHeader_11628c: ; 11628c
-	db $40 ; flags
-	db  6,  0 ; start coords
-	db 17, 19 ; end coords
-	dw NULL
-	db 0 ; default option
-; 116294
-
 Function116294: ; 116294
 	callba Function170d02
 	ld a, [$c319]

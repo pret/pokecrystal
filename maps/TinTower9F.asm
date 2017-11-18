@@ -11,14 +11,6 @@ TinTower9F_MapScriptHeader:
 TinTower9FHPUp:
 	itemball HP_UP
 
-UnknownText_0x185b8a:
-	text "HO-OH: Shaoooh!"
-	done
-
-UnknownText_0x185b9b:
-	text "LUGIA: Gyaaan!"
-	done
-
 TinTower9F_MapEventHeader:
 	; filler
 	db 0, 0

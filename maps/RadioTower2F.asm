@@ -18,9 +18,6 @@ RadioTower2F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x5d6fd:
-	end
-
 SuperNerdScript_0x5d6fe:
 	jumptextfaceplayer UnknownText_0x5d924
 

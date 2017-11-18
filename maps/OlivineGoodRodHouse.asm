@@ -37,10 +37,6 @@ GoodRodGuru:
 	closetext
 	end
 
-GoodRodHouseBookshelf:
-; unused
-	jumpstd picturebookshelf
-
 OfferGoodRodText:
 	text "OLIVINE is on the"
 	line "sea!"

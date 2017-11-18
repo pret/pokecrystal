@@ -608,10 +608,6 @@ ElmsLabTrashcan:
 ElmsLabPC:
 	jumptext ElmsLabPCText
 
-ElmsLabTrashcan2:
-; unused
-	jumpstd trashcan
-
 ElmsLabBookshelf:
 	jumpstd difficultbookshelf
 
@@ -1214,12 +1210,6 @@ ElmGiveTicketText2:
 
 	para "Give my regards to"
 	line "PROF.OAK in KANTO!"
-	done
-
-ElmsLabSignpostText_Egg:
-	text "It's the #MON"
-	line "EGG being studied"
-	cont "by PROF.ELM."
 	done
 
 AideText_GiveYouPotions:

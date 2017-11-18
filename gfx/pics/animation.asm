@@ -1,59 +1,6 @@
 ; Pic animation arrangement.
 
 
-AnimateMon_Slow_Normal: ; d0000
-	hlcoord 12, 0
-	ld a, [wBattleMode]
-	cp WILD_BATTLE
-	jr z, .wild
-	ld e, ANIM_MON_SLOW
-	ld d, $0
-	call AnimateFrontpic
-	ret
-
-.wild
-	ld e, ANIM_MON_NORMAL
-	ld d, $0
-	call AnimateFrontpic
-	ret
-; d001a
-
-AnimateMon_Menu: ; d001a
-	ld e, ANIM_MON_MENU
-	ld d, $0
-	call AnimateFrontpic
-	ret
-; d0022
-
-AnimateMon_Trade: ; d0022
-	ld e, ANIM_MON_TRADE
-	ld d, $0
-	call AnimateFrontpic
-	ret
-; d002a
-
-AnimateMon_Evolve: ; d002a
-	ld e, ANIM_MON_EVOLVE
-	ld d, $0
-	call AnimateFrontpic
-	ret
-; d0032
-
-AnimateMon_Hatch: ; d0032
-	ld e, ANIM_MON_HATCH
-	ld d, $0
-	call AnimateFrontpic
-	ret
-; d003a
-
-AnimateMon_Unused: ; d003a
-	ld e, ANIM_MON_UNUSED
-	ld d, $0
-	call AnimateFrontpic
-	ret
-; d0042
-
-
 POKEANIM: MACRO
 	rept _NARG
 
@@ -152,7 +99,6 @@ setup_command: macro
 \1_: dw \1
 endm
 	setup_command PokeAnim_Finish
-	setup_command PokeAnim_BasePic
 	setup_command PokeAnim_SetWait
 	setup_command PokeAnim_Wait
 	setup_command PokeAnim_Setup
@@ -237,14 +183,6 @@ PokeAnim_Play2: ; d0155
 	ld [wPokeAnimSceneIndex], a
 	ret
 ; d0166
-
-PokeAnim_BasePic: ; d0166
-	call PokeAnim_DeinitFrames
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
-	ret
-; d0171
 
 PokeAnim_Finish: ; d0171
 	call PokeAnim_DeinitFrames
@@ -1116,9 +1054,6 @@ PokeAnim_GetSpeciesOrUnown: ; d065c
 	ret
 ; d0669
 
-Predef48: ; d0669 Predef 48
-	ld a, $1
-	ld [wBoxAlignment], a
 HOF_AnimateFrontpic: ; d066e Predef 49
 	call AnimateMon_CheckIfPokemon
 	jr c, .fail

@@ -287,10 +287,6 @@ OlivineCityBattleTowerSignText:
 	line "Opening Now!"
 	done
 
-UnknownText_0x1a8cba:
-	text "BATTLE TOWER AHEAD"
-	done
-
 OlivineCity_MapEventHeader:
 	; filler
 	db 0, 0

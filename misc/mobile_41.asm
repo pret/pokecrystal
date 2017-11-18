@@ -246,17 +246,6 @@ TrainerRankings_StepCount: mobile ; 10602e (41:602e)
 	ld hl, sTrainerRankingStepCount
 	jp TrainerRankings_Increment4Byte
 
-; Unreferenced in English version.
-TrainerRankings_BattleTowerWins: mobile ; 106035
-	ld a, $5
-	call GetSRAMBank
-	ld a, [$aa8d]
-	and a
-	call CloseSRAM
-	ret nz
-	ld hl, sTrainerRankingBattleTowerWins
-	jp TrainerRankings_Increment2Byte
-
 TrainerRankings_TMsHMsTaught: mobile ; 106049
 	ld hl, sTrainerRankingTMsHMsTaught
 	jp TrainerRankings_Increment3Byte
@@ -277,10 +266,6 @@ TrainerRankings_WildBattles: mobile ; 10605d
 
 TrainerRankings_TrainerBattles: mobile ; 10606a
 	ld hl, sTrainerRankingTrainerBattles
-	jp TrainerRankings_Increment3Byte
-
-TrainerRankings_Unused1: mobile ; 106071
-	ld hl, sTrainerRankingUnused1
 	jp TrainerRankings_Increment3Byte
 
 TrainerRankings_HallOfFame:: mobile ; 0x106078
@@ -343,10 +328,6 @@ TrainerRankings_PhoneCalls: mobile ; 1060d3
 	ld hl, sTrainerRankingPhoneCalls
 	jr TrainerRankings_Increment3Byte
 
-TrainerRankings_Unused2: mobile ; 1060df
-	ld hl, sTrainerRankingUnused2
-	jr TrainerRankings_Increment3Byte
-
 TrainerRankings_LinkBattles: mobile ; 1060df
 	ld hl, sTrainerRankingLinkBattles
 	jr TrainerRankings_Increment3Byte
@@ -361,10 +342,6 @@ TrainerRankings_Splash: mobile ; 1060e5
 
 TrainerRankings_TreeEncounters: mobile ; 1060ef
 	ld hl, sTrainerRankingTreeEncounters
-	jr TrainerRankings_Increment3Byte
-
-TrainerRankings_Unused3: mobile ; 1060f5
-	ld hl, sTrainerRankingUnused3
 	jr TrainerRankings_Increment3Byte
 
 TrainerRankings_ColosseumWins: mobile ; win
@@ -406,13 +383,7 @@ TrainerRankings_Increment3Byte: ; 10611d
 TrainerRankings_Increment2Byte: ; 106123
 	push bc
 	ld bc, 1
-	jr TrainerRankings_Increment
 ; 106129
-
-; unused
-TrainerRankings_Increment1Byte: ; 106129
-	push bc
-	ld bc, 0
 
 ; Increments a big-endian value of bc + 1 bytes at hl
 TrainerRankings_Increment: ; 10612d
@@ -522,19 +493,6 @@ RestoreMobileEventIndex: ; 10619d (41:619d)
 	ret
 ; 1061b3 (41:61b3)
 
-; Unreferenced in English version.
-VerifyTrainerRankingsChecksum: ; 1061b3
-	call CalculateTrainerRankingsChecksum
-	ld hl, sTrainerRankingsChecksum
-	ld a, d
-	cp [hl]
-	ret nz
-	inc hl
-	ld a, e
-	cp [hl]
-	ret
-; 1061c0
-
 DeleteMobileEventIndex: ; 1061c0 (41:61c0)
 	ld a, BANK(sMobileEventIndex)
 	call GetSRAMBank
@@ -543,28 +501,6 @@ DeleteMobileEventIndex: ; 1061c0 (41:61c0)
 	call CloseSRAM
 	ret
 ; 1061cd (41:61cd)
-
-; Used in the Japanese version to initialize Trainer Rankings data
-; for a new save file. Unreferenced in the English version.
-InitializeTrainerRankings:
-	ld hl, sTrainerRankings
-	ld bc, sTrainerRankingsEnd - sTrainerRankings
-	xor a
-	call ByteFill
-
-	; Initialize the shortest Magikarp to 100.0 cm
-	ld hl, sTrainerRankingShortestMagikarp
-	ld a, $3
-	ld [hli], a
-	ld [hl], $e8
-
-	call UpdateTrainerRankingsChecksum
-	ld hl, sTrainerRankings
-	ld de, sTrainerRankingsBackup
-	ld bc, sTrainerRankingsEnd - sTrainerRankings
-	call CopyBytes
-	ret
-; 1061ef
 
 
 _MobilePrintNum:: ; 1061ef
@@ -783,229 +719,9 @@ Mobile_DummyReturnFalse: ; 10630f
 	ret
 ; 106314
 
-MobileFn_106314: mobile ; 106314
-	ld a, $4
-	call GetSRAMBank
-	ld a, c
-	cpl
-	ld [$b000], a
-	call CloseSRAM
-	ld a, $7
-	call GetSRAMBank
-	ld a, c
-	ld [$a800], a
-	call CloseSRAM
-	ret
-; 10632f
-
 Mobile_AlwaysReturnNotCarry: ; 10632f
 	or a
 	ret
-
-Function106331: ; 106331 - called by Mobile_DummyReturnFalse in Crystal-J
-	; check ~[4:b000] == [7:a800]
-	ld a, $4
-	call GetSRAMBank
-	ld a, [$b000]
-	cpl
-	ld b, a
-	call CloseSRAM
-	ld a, $7
-	call GetSRAMBank
-	ld a, [$a800]
-	ld c, a
-	call CloseSRAM
-	ld a, c
-	cp b
-	jr nz, .nope
-
-	; check [7:a800] != 0
-	and a
-	jr z, .nope
-
-	; check !([7:a800] & %01110000)
-	and %10001111
-	cp c
-	jr nz, .nope
-
-	ld c, a
-	scf
-	ret
-
-.nope
-	xor a
-	ld c, a
-	ret
-; 10635c
-
-Function10635c: ; 10635c
-	ld a, [wMobileCommsJumptableIndex]
-	bit 7, a
-	ret nz
-	ld a, [wMobileCommsJumptableIndex]
-	ld hl, .Jumptable
-	rst JumpTable
-	ret
-; 10636a
-
-.Jumptable: ; 10636a
-	dw .init
-	dw Function106392
-	dw Function1063cc
-	dw Function1063d8
-	dw Function1063e5
-	dw Function1063f3
-	dw Function106403
-	dw Function106442
-	dw Function106453
-; 10637c
-
-.init: ; 10637c
-	ld de, wcd30
-	ld hl, $41
-	ld bc, $41
-	ld a, $40
-	call Function3e32
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 106392
-
-Function106392: ; 106392
-	xor a
-	ld [wcf64], a
-	ld a, [wc821]
-	bit 1, a
-	jr nz, .asm_1063a2
-	bit 0, a
-	jr z, .asm_1063bf
-	ret
-
-.asm_1063a2
-	call Mobile_AlwaysReturnNotCarry
-	ld a, c
-	and a
-	jr nz, .asm_1063b4
-	ld a, $b
-	ld [wcf64], a
-	ld a, $7
-	ld [wMobileCommsJumptableIndex], a
-	ret
-
-.asm_1063b4
-	ld a, $7
-	ld [wcf64], a
-	ld a, $7
-	ld [wMobileCommsJumptableIndex], a
-	ret
-
-.asm_1063bf
-	ld a, $1
-	ld [wcf64], a
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 1063cc
-
-Function1063cc: ; 1063cc
-	ld a, $78
-	ld [wcd42], a
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-
-Function1063d8: ; 1063d8
-	ld hl, wcd42
-	dec [hl]
-	ret nz
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 1063e5
-
-Function1063e5: ; 1063e5
-	ld a, [wcf64]
-	cp $3
-	ret nz
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 1063f3
-
-Function1063f3: ; 1063f3
-	ld de, wcd31
-	ld a, $32
-	call Function3e32
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 106403
-
-Function106403: ; 106403
-	ld a, [wc821]
-	bit 1, a
-	jr nz, .asm_106426
-	bit 0, a
-	jr z, .asm_10640f
-	ret
-
-.asm_10640f
-	ld a, [wcd31]
-	and $80
-	ld c, a
-	ld a, [wcd30]
-	or c
-	inc a
-	ld c, a
-	call MobileFn_106314
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-
-.asm_106426
-	call Mobile_AlwaysReturnNotCarry
-	ld a, c
-	and a
-	jr z, .asm_106435
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-
-.asm_106435
-	ld c, $0
-	call MobileFn_106314
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 106442
-
-Function106442: ; 106442
-	ld a, $36
-	call Function3e32
-	xor a
-	ld [hMobile], a
-	ld [hMobileReceive], a
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-
-Function106453: ; 106453
-	ld a, [wMobileCommsJumptableIndex]
-	set 7, a
-	ld [wMobileCommsJumptableIndex], a
-	nop
-	ld a, $4
-	ld [wcf64], a
-	ret
-; 106462
 
 MobileFunc_106462: mobile
 	ret
@@ -1032,84 +748,6 @@ Function106464:: ; 106464
 	callba LoadFrame
 	ret
 ; 10649b
-
-Function10649b: ; 10649b
-	ld a, [TextBoxFrame]
-	and $7
-	ld bc, 3 tiles
-	ld hl, Frames
-	call AddNTimes
-	ld d, h
-	ld e, l
-	ld hl, VTiles2 tile $79
-	ld c, 6
-	ld b, BANK(Frames)
-	call Function1064c3
-	ld hl, VTiles2 tile $7f
-	ld de, TextBoxSpaceGFX
-	ld c, 1
-	ld b, BANK(TextBoxSpaceGFX)
-	call Function1064c3
-	ret
-; 1064c3
-
-Function1064c3: ; 1064c3
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	push bc
-	push hl
-	ld hl, Function3f88
-	ld a, b
-	rst FarCall
-	pop hl
-	pop bc
-	pop af
-	ld [rSVBK], a
-	jr asm_1064ed
-
-Function1064d8: ; 1064d8
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	push bc
-	push hl
-	ld hl, Function3f9f
-	ld a, b
-	rst FarCall
-	pop hl
-	pop bc
-	pop af
-	ld [rSVBK], a
-	jr asm_1064ed
-
-asm_1064ed
-	ld de, wDecompressScratch
-	ld b, $0
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	ld a, [rVBK]
-	push af
-	ld a, $1
-	ld [rVBK], a
-	call Get2bpp
-	pop af
-	ld [rVBK], a
-	pop af
-	ld [rSVBK], a
-	ret
-; 10650a
-
-Function10650a: ; 10650a
-	ld de, MobilePhoneTilesGFX + $20
-	lb bc, BANK(MobilePhoneTilesGFX), $11
-	call Get2bpp
-	ret
-; 106514
 
 GFX_106514:
 INCBIN "gfx/unknown/106514.2bpp"

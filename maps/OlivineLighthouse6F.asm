@@ -99,9 +99,6 @@ UnknownScript_0x60c25:
 	closetext
 	end
 
-UnknownScript_0x60c39:
-	end
-
 MonsterScript_0x60c3a:
 	faceplayer
 	opentext

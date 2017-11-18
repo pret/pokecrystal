@@ -14,10 +14,6 @@ FishingDude:
 FishingDudesHousePhoto:
 	jumptext FishingDudesHousePhotoText
 
-FishingDudesHouseBookshelf:
-; unused
-	jumpstd picturebookshelf
-
 FishingDudeText:
 	text "I am the FISHING"
 	line "DUDE, the elder of"

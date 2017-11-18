@@ -101,9 +101,6 @@ CeladonVendingMachine:
 CeladonDeptStore6FDirectory:
 	jumptext CeladonDeptStore6FDirectoryText
 
-UnknownScript_0x7124d:
-	jumpstd elevatorbutton
-
 CeladonVendingText:
 	text "A vending machine!"
 	line "Here's the menu."

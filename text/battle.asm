@@ -227,13 +227,6 @@ SentAllToMomText:
 	text "Sent all to MOM!"
 	prompt
 
-BattleText_0x80a4f: ; 0x80a4f
-	text "<RIVAL>: Huh? I"
-	line "should've chosen"
-	cont "your #MON!"
-	prompt
-; 0x80a75
-
 BattleText_PkmnFainted: ; 0x80a75
 	text_from_ram BattleMonNick
 	text ""
@@ -245,13 +238,6 @@ BattleText_UseNextMon: ; 0x80a83
 	text "Use next #MON?"
 	done
 ; 0x80a93
-
-BattleText_0x80a93: ; 0x80a93
-	text "<RIVAL>: Yes!"
-	line "I guess I chose a"
-	cont "good #MON!"
-	prompt
-; 0x80ab9
 
 LostAgainstText: ; 0x80ab9
 	text "Lost against"
@@ -399,22 +385,6 @@ BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 	sound_dex_fanfare_50_79
 	db "@@"
 ; 0x80cb9
-
-BattleText_WildPkmnIsEating: ; 0x80cba
-	text "Wild @"
-	text_from_ram EnemyMonNick
-	text ""
-	line "is eating!"
-	prompt
-; 0x80cd1
-
-BattleText_WildPkmnIsAngry: ; 0x80cd1
-	text "Wild @"
-	text_from_ram EnemyMonNick
-	text ""
-	line "is angry!"
-	prompt
-; 0x80ce7
 
 FastAsleepText: ; 0x80ce7
 	text "<USER>"
@@ -1283,9 +1253,3 @@ BattleText_LinkErrorBattleCanceled: ; 0x81863
 	line "been canceled…"
 	prompt
 ; 0x8188e
-
-BattleText_0x8188e: ; 0x8188e
-	text "There is no time"
-	line "left today!"
-	done
-; 0x818ac

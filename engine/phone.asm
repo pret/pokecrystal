@@ -458,16 +458,6 @@ Script_SpecialBillCall:: ; 0x90255
 	jp LoadCallerScript
 ; 90261
 
-UnknownScript_0x90261: ; 0x90261
-	callasm .LoadElmScript
-	pause 30
-	jump Script_ReceivePhoneCall
-
-.LoadElmScript:
-	ld e, PHONE_ELM
-	jp LoadCallerScript
-; 9026f
-
 RingTwice_StartCall: ; 9026f
 	call .Ring
 	call .Ring
@@ -555,12 +545,6 @@ Phone_CallEnd:
 	call HangUp_Wait20Frames
 	ret
 ; 90316
-
-Function90316: ; 90316
-	ld de, SFX_SHUT_DOWN_PC
-	call PlaySFX
-	ret
-; 9031d
 
 HangUp_Beep: ; 9031d
 	ld hl, UnknownText_0x9032a
@@ -865,14 +849,3 @@ UnknownText_0x90664: ; 0x90664
 	text_jump UnknownText_0x1c55ac
 	db "@"
 ; 0x90669
-
-UnknownScript_0x90669: ; 0x90669
-	writetext UnknownText_0x9066d
-	end
-; 0x9066d
-
-UnknownText_0x9066d: ; 0x9066d
-	; Thank you!
-	text_jump UnknownText_0x1c55ca
-	db "@"
-; 0x90672

@@ -37,22 +37,6 @@ Function8b342:: ; 8b342
 	mobile
 ; 8b35d
 
-Function8b35d: ; 8b35d
-	ld a, h
-	cp d
-	ret nz
-	ld a, l
-	cp e
-	ret
-; 8b363
-
-Function8b363: ; 8b363
-	push bc
-	callba Mobile_AlwaysReturnNotCarry
-	pop bc
-	ret
-; 8b36c
-
 Function8b36c: ; 8b36c (22:736c)
 	; [bc + (0:4)] = -1
 	push bc
@@ -754,10 +738,6 @@ Function8b75d: ; 8b75d
 	jr nz, .asm_8b780
 	jr Function8b79e
 ; 8b787
-
-Function8b787: ; 8b787
-	ret
-; 8b788
 
 Function8b788: ; 8b788
 .asm_8b788

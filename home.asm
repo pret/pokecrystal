@@ -51,17 +51,6 @@ INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
 INCLUDE "home/flag.asm"
 
-Function2ebb:: ; 2ebb
-; unreferenced
-	ld a, [wMonStatusFlags]
-	bit 1, a
-	ret z
-
-	ld a, [hJoyDown]
-	bit B_BUTTON_F, a
-	ret
-; 2ec6
-
 xor_a:: ; 2ec6
 	xor a
 	ret
@@ -72,15 +61,6 @@ xor_a_dec_a:: ; 2ec8
 	dec a
 	ret
 ; 2ecb
-
-Function2ecb:: ; 2ecb
-; unreferenced
-	push hl
-	ld hl, wMonStatusFlags
-	bit 1, [hl]
-	pop hl
-	ret
-; 2ed3
 
 DisableSpriteUpdates:: ; 0x2ed3
 ; disables overworld sprite updating?
@@ -1492,31 +1472,6 @@ FacingPlayerDistance:: ; 36ad
 	ret
 ; 36f5
 
-CheckTrainerFlag:: ; 36f5
-	push bc
-	ld hl, OBJECT_MAP_OBJECT_INDEX
-	add hl, bc
-	ld a, [hl]
-	call GetMapObject
-	ld hl, MAPOBJECT_SCRIPT_POINTER
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call GetMapScriptHeaderBank
-	call GetFarHalfword
-	ld d, h
-	ld e, l
-	push de
-	ld b, CHECK_FLAG
-	call EventFlagAction
-	pop de
-	ld a, c
-	and a
-	pop bc
-	ret
-; 3718
-
 PrintWinLossText:: ; 3718
 	ld a, [BattleType]
 	cp BATTLETYPE_CANLOSE
@@ -1685,17 +1640,6 @@ Print8BitNumRightAlign:: ; 3842
 	ld b, PRINTNUM_RIGHTALIGN | 1
 	jp PrintNum
 ; 384d
-
-Function384d:: ; 384d
-; XXX
-; GetNthMove
-	ld hl, wListMoves_MoveIndicesBuffer
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	ret
-; 3856
 
 GetBaseData:: ; 3856
 	push bc
@@ -1879,27 +1823,6 @@ GetPartyLocation:: ; 3927
 	ld bc, PARTYMON_STRUCT_LENGTH
 	jp AddNTimes
 ; 392d
-
-Function392d:: ; 392d
-; XXX
-; GetDexNumber
-; Probably used in gen 1 to convert index number to dex number
-; Not required in gen 2 because index number == dex number
-	push hl
-	ld a, b
-	dec a
-	ld b, 0
-	add hl, bc
-	ld hl, BaseData + 0
-	ld bc, BaseData1 - BaseData0
-	call AddNTimes
-	ld a, BANK(BaseData)
-	call GetFarHalfword
-	ld b, l
-	ld c, h
-	pop hl
-	ret
-; 3945
 
 INCLUDE "home/battle.asm"
 

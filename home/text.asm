@@ -159,11 +159,6 @@ SpeechTextBox:: ; 103e
 	jp TextBox
 ; 1048
 
-TestText:: ; 1048
-	text "ゲームフりーク!"
-	done
-; 1052
-
 RadioTerminator:: ; 1052
 	ld hl, .stop
 	ret
@@ -1027,20 +1022,6 @@ Text_PlaySound:: ; 1500
 	pop bc
 	ret
 ; 1522
-
-Function1522:: ; 1522
-; XXX
-; TX_CRY
-	push de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	call PlayCry
-	pop de
-	pop hl
-	pop bc
-	ret
-; 152d
 
 TextSFX:: ; 152d
 	dbw TX_SOUND_0B, SFX_DEX_FANFARE_50_79

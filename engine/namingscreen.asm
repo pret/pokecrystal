@@ -765,24 +765,6 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b56
 
-Dakutens: ; Dummied out
-	db "かが", "きぎ", "くぐ", "けげ", "こご"
-	db "さざ", "しじ", "すず", "せぜ", "そぞ"
-	db "ただ", "ちぢ", "つづ", "てで", "とど"
-	db "はば", "ひび", "ふぶ", "へべ", "ほぼ"
-	db "カガ", "キギ", "クグ", "ケゲ", "コゴ"
-	db "サザ", "シジ", "スズ", "セゼ", "ソゾ"
-	db "タダ", "チヂ", "ツヅ", "テデ", "トド"
-	db "ハバ", "ヒビ", "フブ", "へべ", "ホボ"
-	db $ff
-
-Handakutens: ; Dummied out
-	db "はぱ", "ひぴ", "ふぷ", "へぺ", "ほぽ"
-	db "ハパ", "ヒピ", "フプ", "へぺ", "ホポ"
-	db $ff
-
-; 11bbc
-
 NamingScreen_DeleteCharacter: ; 11bbc (4:5bbc)
 	ld hl, wNamingScreenCurrNameLength
 	ld a, [hl]
@@ -984,10 +966,6 @@ BoxNameInputUpper:
 	db "lower  DEL   END "
 
 ; 11e5d
-
-GFX_11e5d: ; ????
-INCBIN "gfx/unknown/011e5d.1bpp"
-; 11e6d
 
 NamingScreenGFX_MiddleLine:
 INCBIN "gfx/unknown/011e65.1bpp"

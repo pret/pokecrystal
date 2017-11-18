@@ -83,9 +83,6 @@ UnionCave1FPotion:
 UnionCave1FAwakening:
 	itemball AWAKENING
 
-UnknownScript_0x59c08:
-	jumptext UnknownText_0x59f29
-
 HikerRussellSeenText:
 	text "You're headed to"
 	line "AZALEA, are you?"
@@ -193,10 +190,6 @@ UnknownText_0x59efc:
 	text "It's my #MON's"
 	line "fire that lights"
 	cont "up this cave."
-	done
-
-UnknownText_0x59f29:
-	text "UNION CAVE"
 	done
 
 UnionCave1F_MapEventHeader:

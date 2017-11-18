@@ -242,10 +242,6 @@ INCLUDE "engine/npc_movement.asm"
 INCLUDE "event/happiness_egg.asm"
 INCLUDE "event/special.asm"
 
-Predef1: ; 747a
-; not used
-	ret
-
 SECTION "bank2", ROMX
 
 INCLUDE "engine/player_object.asm"
@@ -570,8 +566,6 @@ ApplyPokerusTick: ; 13988
 
 INCLUDE "event/bug_contest_2.asm"
 
-INCLUDE "unknown/013a47.asm"
-
 GetSquareRoot: ; 13b87
 ; Return the square root of de in b.
 
@@ -857,39 +851,6 @@ CoinString: ; 24b89
 ShowMoney_TerminatorString: ; 24b8e
 	db "@"
 
-Function24b8f: ; 24b8f
-; unreferenced, related to safari?
-	ld hl, Options
-	ld a, [hl]
-	push af
-	set NO_TEXT_SCROLL, [hl]
-	hlcoord 0, 0
-	ld b, 3
-	ld c, 7
-	call TextBox
-	hlcoord 1, 1
-	ld de, wSafariTimeRemaining
-	lb bc, 2, 3
-	call PrintNum
-	hlcoord 4, 1
-	ld de, .slash_500
-	call PlaceString
-	hlcoord 1, 3
-	ld de, .booru_ko
-	call PlaceString
-	hlcoord 5, 3
-	ld de, wSafariBallsRemaining
-	lb bc, 1, 2
-	call PrintNum
-	pop af
-	ld [Options], a
-	ret
-
-.slash_500 ; 24bcf
-	db "/500@"
-.booru_ko ; 24bd4
-	db "ボール   こ@"
-
 StartMenu_DrawBugContestStatusBox: ; 24bdc
 	hlcoord 0, 0
 	ld b, 5
@@ -1162,18 +1123,6 @@ Kurt_SelectQuantity_InterpretJoypad: ; 27a28
 SECTION "bankA", ROMX
 
 INCLUDE "engine/link.asm"
-
-Function29fe4: ; unreferenced
-	ld a, $0
-	call GetSRAMBank
-	ld d, $0
-	ld b, CHECK_FLAG
-	predef FlagPredef
-	call CloseSRAM
-	ld a, c
-	and a
-	ret
-
 INCLUDE "engine/wildmons.asm"
 INCLUDE "battle/link_result.asm"
 
@@ -1939,9 +1888,6 @@ DisplayDexEntry: ; 4424d
 	call FarString
 	ret
 
-String_44331: ; 44331
-	db "#@"
-
 INCLUDE "data/pokedex/entry_pointers.asm"
 
 INCLUDE "engine/mail.asm"
@@ -2076,17 +2022,6 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	db 17, 19 ; end coords
 
 INCLUDE "predef/crystal.asm"
-
-Unknown_4985a: ; unreferenced
-	db $ab, $03, $57, $24, $ac, $0e, $13, $32
-	db $be, $30, $5b, $4c, $47, $60, $ed, $f2
-	db $ab, $03, $55, $26, $aa, $0a, $13, $3a
-	db $be, $28, $33, $24, $6e, $71, $df, $b0
-	db $a8, $00, $e5, $e0, $9a, $fc, $f4, $2c
-	db $fe, $4c, $a3, $5e, $c6, $3a, $ab, $4d
-	db $a8, $00, $b5, $b0, $de, $e8, $fc, $1c
-	db $ba, $66, $f7, $0e, $ba, $5e, $43, $bd
-
 INCLUDE "event/celebi.asm"
 INCLUDE "engine/main_menu.asm"
 INCLUDE "misc/mobile_menu.asm"
@@ -3678,105 +3613,8 @@ GetPkmnSpecies: ; 508d5
 
 INCLUDE "text/types.asm"
 
-Function50a28: ; 50a28
-; XXX
-	ld hl, .Strings
-	ld a, [TrainerClass]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, StringBuffer1
-.copy
-	ld a, [hli]
-	ld [de], a
-	inc de
-	cp "@"
-	jr nz, .copy
-	ret
-
-.Strings: ; 50a42
-; Untranslated trainer class names from Red.
-	dw .Youngster
-	dw .BugCatcher
-	dw .Lass
-	dw OTClassName
-	dw .JrTrainerM
-	dw .JrTrainerF
-	dw .Pokemaniac
-	dw .SuperNerd
-	dw OTClassName
-	dw OTClassName
-	dw .Burglar
-	dw .Engineer
-	dw .Jack
-	dw OTClassName
-	dw .Swimmer
-	dw OTClassName
-	dw OTClassName
-	dw .Beauty
-	dw OTClassName
-	dw .Rocker
-	dw .Juggler
-	dw OTClassName
-	dw OTClassName
-	dw .Blackbelt
-	dw OTClassName
-	dw .ProfOak
-	dw .Chief
-	dw .Scientist
-	dw OTClassName
-	dw .Rocket
-	dw .CooltrainerM
-	dw .CooltrainerF
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-
-.Youngster:    db "たんパン@"
-.BugCatcher:   db "むしとり@"
-.Lass:         db "ミニスカ@"
-.JrTrainerM:   db "ボーイ@"
-.JrTrainerF:   db "ガール@"
-.Pokemaniac:   db "マニア@"
-.SuperNerd:    db "りかけい@"
-.Burglar:      db "どろぼう@"
-.Engineer:     db "ォヤジ@"
-.Jack:         db "ジャック@"
-.Swimmer:      db "かいパン@"
-.Beauty:       db "おねえさん@"
-.Rocker:       db "グループ@"
-.Juggler:      db "ジャグラー@"
-.Blackbelt:    db "からて@"
-.ProfOak:      db "ォーキド@"
-.Chief:        db "チーフ@"
-.Scientist:    db "けんきゅういん@"
-.Rocket:       db "だんいん@"
-.CooltrainerM: db "エりート♂@"
-.CooltrainerF: db "エりート♀@"
-
 DrawPlayerHP: ; 50b0a
 	ld a, $1
-	jr DrawHP
-
-DrawEnemyHP: ; 50b0e
-	ld a, $2
 
 DrawHP: ; 50b10
 	ld [wWhichHPBar], a
@@ -4095,46 +3933,6 @@ ListMovePP: ; 50c50
 	add hl, de
 	dec c
 	jr nz, .load_loop
-	ret
-
-Function50cd0: ; 50cd0
-; XXX
-.loop
-	ld [hl], $32
-	inc hl
-	ld [hl], $3e
-	dec hl
-	add hl, de
-	dec c
-	jr nz, .loop
-	ret
-
-Predef22: ; unreferenced predef
-	push hl
-	push hl
-	ld hl, PartyMonNicknames
-	ld a, [CurPartyMon]
-	call GetNick
-	pop hl
-	call PlaceString
-	call CopyPkmnToTempMon
-	pop hl
-	ld a, [CurPartySpecies]
-	cp EGG
-	jr z, .egg
-	push hl
-	ld bc, -12
-	add hl, bc
-	ld b, $0
-	call DrawEnemyHP
-	pop hl
-	ld bc, 5
-	add hl, bc
-	push de
-	call PrintLevel
-	pop de
-
-.egg
 	ret
 
 PlaceStatusString: ; 50d0a
@@ -4648,20 +4446,6 @@ INCLUDE "data/base_stats.asm"
 PokemonNames::
 INCLUDE "data/pokemon_names.asm"
 
-Unknown_53d84: ; unreferenced
-	db $1a, $15
-	db $33, $16
-	db $4b, $17
-	db $62, $18
-	db $79, $19
-	db $90, $1a
-	db $a8, $1b
-	db $c4, $1c
-	db $e0, $1d
-	db $f6, $1e
-	db $ff, $1f
-	db $ff, $20
-
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
 INCBIN "gfx/misc/unknown_egg.2bpp.lz"
@@ -4681,8 +4465,6 @@ INCLUDE "engine/variables.asm"
 BattleText::
 INCLUDE "text/battle.asm"
 
-INCLUDE "engine/debug.asm"
-
 SECTION "bank21", ROMX
 
 INCLUDE "engine/printer.asm"
@@ -4694,19 +4476,6 @@ INCLUDE "event/halloffame.asm"
 SECTION "bank22", ROMX
 
 INCLUDE "event/kurt.asm"
-
-Function88248: ; 88248
-; XXX
-	ld c, CAL
-	ld a, [PlayerGender]
-	bit 0, a
-	jr z, .okay
-	ld c, KAREN
-
-.okay
-	ld a, c
-	ld [TrainerClass], a
-	ret
 
 MovePlayerPicRight: ; 88258
 	hlcoord 6, 4
@@ -4807,18 +4576,6 @@ FemalePlayerNameArray: ; 882f9
 	db "JODI@"
 	db 2 ; displacement
 	db " NAME @" ; title
-
-GetPlayerNameArray: ; 88318 This Function is never called
-	ld hl, PlayerName
-	ld de, MalePlayerNameArray
-	ld a, [PlayerGender]
-	bit 0, a
-	jr z, .done
-	ld de, FemalePlayerNameArray
-
-.done
-	call InitName
-	ret
 
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
@@ -4971,22 +4728,8 @@ INCLUDE "misc/mobile_22_2.asm"
 
 SECTION "bank23", ROMX
 
-Predef35: ; 8c000
-Predef36:
-	ret
-
 INCLUDE "engine/timeofdaypals.asm"
 INCLUDE "engine/battle_start.asm"
-
-Function8c7c9:
-; XXX
-	ld a, $1
-	ld [hBGMapMode], a
-	call WaitBGMap
-	xor a
-	ld [hBGMapMode], a
-	ret
-
 INCLUDE "event/field_moves.asm"
 INCLUDE "event/magnet_train.asm"
 
@@ -5254,11 +4997,6 @@ DisplayAlreadyCaughtText: ; cc0c7
 	text_jump UnknownText_0x1c10dd
 	db "@"
 
-Predef2F:
-Predef38:
-Predef39: ; cc0d5
-	ret
-
 INCLUDE "battle/anim_commands.asm"
 
 INCLUDE "battle/anim_objects.asm"
@@ -5436,10 +5174,6 @@ endm
 UnownPrinter_OverworldMapRectangle: ; e008b
 	overworldmaprect 7, 7
 
-Unknown_e00ed:
-; Graphics for an unused Game Corner
-; game were meant to be here.
-
 ret_e00ed: ; e00ed (38:40ed)
 ; How many coins?
 	ret
@@ -5520,8 +5254,6 @@ INCBIN "gfx/intro/logo.2bpp.lz"
 
 SECTION "bank43", ROMX
 
-INCLUDE "misc/unused_title.asm"
-
 INCLUDE "engine/title.asm"
 
 INCLUDE "misc/mobile_45.asm"
@@ -5533,7 +5265,6 @@ INCLUDE "misc/battle_tower_47.asm"
 
 SECTION "bank5B", ROMX
 
-INCLUDE "misc/mobile_5b.asm"
 INCLUDE "engine/link_trade.asm"
 
 SECTION "bank5C", ROMX
@@ -5610,22 +5341,6 @@ SECTION "Tileset Data 7", ROMX
 INCLUDE "tilesets/data_7.asm"
 
 SECTION "bank77_2", ROMX
-
-Function1dd6a9: ; 1dd6a9
-; XXX
-	ld a, b
-	ld b, c
-	ld c, a
-	push bc
-	push de
-	ld hl, sp+$2
-	ld d, h
-	ld e, l
-	pop hl
-	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
-	call PrintNum
-	pop bc
-	ret
 
 PrintHoursMins ; 1dd6bb (77:56bb)
 ; Hours in b, minutes in c
@@ -6055,47 +5770,6 @@ INCLUDE "data/battle_tower_2.asm"
 SECTION "bank7D", ROMX
 
 	db $cc, $6b, $1e ; XXX
-
-Function1f4003: ; 1f4003
-; XXX
-	ld a, $6
-	call GetSRAMBank
-	ld hl, .unknown_data
-	ld de, $a000
-	ld bc, $1000
-	call CopyBytes
-	call CloseSRAM
-	ret
-
-.unknown_data
-INCBIN "unknown/1f4018.bin"
-
-Function1f4dbe: ; 1f4dbe
-; XXX
-	ld a, $6
-	call GetSRAMBank
-	ld hl, .unknown_data
-	ld de, $a000
-	ld bc, $1000
-	call CopyBytes
-	call CloseSRAM
-	ret
-
-.unknown_data
-INCBIN "unknown/1f4dd3.bin"
-
-Function1f5d9f: ; 1f5d9f
-	ld a, $6
-	call GetSRAMBank
-	ld hl, .unknown_data
-	ld de, $a000
-	ld bc, $1000
-	call CopyBytes
-	call CloseSRAM
-	ret
-
-.unknown_data
-INCBIN "unknown/1f5db4.bin"
 
 SECTION "bank7E", ROMX
 

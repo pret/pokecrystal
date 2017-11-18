@@ -1,16 +1,3 @@
-StopRTC: ; Unreferenced???
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
-	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
-	set 6, a ; halt
-	ld [MBC3RTC], a
-	call CloseSRAM
-	ret
-; 14019
-
 StartRTC: ; 14019
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
@@ -57,13 +44,6 @@ TimesOfDay: ; 14044
 	db 24, NITE
 	db -1, MORN
 ; 1404e
-
-Unknown_1404e: ; Unreferenced
-	db 20, 2
-	db 40, 0
-	db 60, 1
-	db -1, 0
-; 14056
 
 StageRTCTimeForSave: ; 14056
 	call UpdateTime

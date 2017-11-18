@@ -1,19 +1,6 @@
 ; Functions relating to the timer interrupt and the real-time-clock.
 
 
-AskTimer:: ; 591
-	push af
-	ld a, [hMobile]
-	and a
-	jr z, .not_mobile
-	call Timer
-
-.not_mobile
-	pop af
-	reti
-; 59c
-
-
 LatchClock:: ; 59c
 ; latch clock counter data
 	ld a, 0
@@ -279,18 +266,6 @@ SetClock:: ; 691
 	ret
 ; 6c4
 
-
-ClearRTCStatus:: ; 6c4
-; clear sRTCStatusFlags
-	xor a
-	push af
-	ld a, BANK(sRTCStatusFlags)
-	call GetSRAMBank
-	pop af
-	ld [sRTCStatusFlags], a
-	call CloseSRAM
-	ret
-; 6d3
 
 RecordRTCStatus:: ; 6d3
 ; append flags to sRTCStatusFlags

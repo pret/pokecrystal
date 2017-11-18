@@ -172,11 +172,6 @@ FarmerFText_HealedMiltank:
 	line "fer your trouble."
 	done
 
-Text_ReceivedTM13:
-	text "<PLAYER> received"
-	line "TM13."
-	done
-
 FarmerFText_SnoreSpeech:
 	text "That there's"
 	line "SNORE."

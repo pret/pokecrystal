@@ -348,24 +348,6 @@ CopyTradeName: ; fcdf4
 	ret
 ; fcdfb
 
-Functionfcdfb: ; fcdfb
-; unreferenced
-	ld bc, 4
-	call CopyBytes
-	ld a, "@"
-	ld [de], a
-	ret
-; fce05
-
-Functionfce05: ; fce05
-; unreferenced
-	ld bc, 3
-	call CopyBytes
-	ld a, "@"
-	ld [de], a
-	ret
-; fce0f
-
 Trade_CopyTwoBytes: ; fce0f
 	ld a, [hli]
 	ld [de], a

@@ -829,16 +829,6 @@ NamePlayer: ; 0x6074
 	db "KRIS@@@@@@@"
 ; 60e9
 
-Function60e9: ; Unreferenced
-	call LoadMenuDataHeader
-	call VerticalMenu
-	ld a, [wMenuCursorY]
-	dec a
-	call CopyNameFromMenu
-	call CloseWindow
-	ret
-; 60fa
-
 StorePlayerName: ; 60fa
 	ld a, "@"
 	ld bc, NAME_LENGTH
@@ -1096,18 +1086,6 @@ RunTitleScreen: ; 627b
 	ret
 ; 6292
 
-Function6292: ; 6292 ; unreferenced
-	ld a, [hVBlankCounter]
-	and $7
-	ret nz
-	ld hl, LYOverrides + $5f
-	ld a, [hl]
-	dec a
-	ld bc, 2 * SCREEN_WIDTH
-	call ByteFill
-	ret
-; 62a3
-
 TitleScreenScene: ; 62a3
 	ld e, a
 	ld d, 0
@@ -1330,49 +1308,6 @@ ResetClock: ; 6392
 	callba _ResetClock
 	jp Init
 ; 639b
-
-Function639b: ; unreferenced
-	; If bit 0 or 1 of [wcf65] is set, we don't need to be here.
-	ld a, [wcf65]
-	and $3
-	ret nz
-	ld bc, SpriteAnim10
-	ld hl, SPRITEANIMSTRUCT_FRAME
-	add hl, bc ; over-the-top compicated way to load wc3ae into hl
-	ld l, [hl]
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld de, Data63ca
-	add hl, de
-	; If bit 2 of [wcf65] is set, get the second dw; else, get the first dw
-	ld a, [wcf65]
-	and %00000100
-	srl a
-	srl a
-	ld e, a
-	ld d, 0
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	and a
-	ret z
-	ld e, a
-	ld d, [hl]
-	ld a, SPRITE_ANIM_INDEX_01
-	call _InitSpriteAnimStruct
-	ret
-; 63ca
-
-Data63ca: ; 63ca
-; frame 0 y, x; frame 1 y, x
-	db 11 * 8 + 4, 10 * 8,  0 * 8,      0 * 8
-	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 11 * 8
-	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 15 * 8
-	db 11 * 8 + 4, 17 * 8, 11 * 8 + 4, 15 * 8
-	db  0 * 8,      0 * 8, 11 * 8 + 4, 15 * 8
-	db  0 * 8,      0 * 8, 11 * 8 + 4, 11 * 8
-; 63e2
 
 Copyright: ; 63e2
 	call ClearTileMap

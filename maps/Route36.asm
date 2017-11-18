@@ -496,11 +496,6 @@ RockSmashGuyText2:
 	cont "have this."
 	done
 
-UnknownText_0x19451a:
-	text "<PLAYER> received"
-	line "TM08."
-	done
-
 RockSmashGuyText3:
 	text "That happens to be"
 	line "ROCK SMASH."
@@ -514,18 +509,6 @@ RockSmashGuyText3:
 	para "If any rocks are"
 	line "in your way, just"
 	cont "smash 'em up!"
-	done
-
-UnknownText_0x1945b8:
-	text "An odd tree is"
-	line "blocking the way"
-	cont "to GOLDENROD CITY."
-
-	para "I wanted to go see"
-	line "the huge #MON"
-
-	para "CENTER they just"
-	line "opened…"
 	done
 
 UnknownText_0x194626:

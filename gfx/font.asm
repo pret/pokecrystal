@@ -50,17 +50,9 @@ TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.2bpp.lz"
 ; f8ea4
 
-WeekdayKanjiGFX: ; unused kanji
-INCBIN "gfx/font/weekday_kanji.2bpp"
-; f8f24
-
 OverworldPhoneIconGFX: ; f8f24
 INCBIN "gfx/mobile/overworld_phone_icon.2bpp"
 ; f8f34
-
-GFX_f8f34: ; unused bold letters + unown chars
-INCBIN "gfx/unknown/0f8f34.1bpp"
-; f9204
 
 TextBoxSpaceGFX: ; f9204
 INCBIN "gfx/frames/space.1bpp"
@@ -81,26 +73,6 @@ INCBIN "gfx/unknown/0f9424.2bpp"
 Footprints: ; f9434
 INCBIN "gfx/misc/footprints.1bpp"
 ; fb434
-
-; This and the following two functions are unreferenced.
-; Debug, perhaps?
-Unknown_fb434:
-	db 0
-
-Functionfb435: ; 4b435
-	ld a, [Unknown_fb434]
-	and a
-	jp nz, Get1bpp_2
-	jp Get1bpp
-; fb43f
-
-Functionfb43f: ; fb43f
-	ld a, [Unknown_fb434]
-	and a
-	jp nz, Get2bpp_2
-	jp Get2bpp
-; End unreferenced block
-; fb449
 
 _LoadStandardFont:: ; fb449
 	ld de, Font

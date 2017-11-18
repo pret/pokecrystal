@@ -1752,9 +1752,6 @@ LoadStation_EvolutionRadio: ; 9183e (24:583e)
 
 ; 91853 (24:5853)
 
-LoadStation_Dummy: ; 91853
-	ret
-
 RadioMusicRestartDE: ; 91854 (24:5854)
 	push de
 	ld a, e

@@ -451,11 +451,6 @@ Function100320: ; 100320
 	ret
 ; 100327
 
-Function100327: ; 100327
-	callba HDMATransferTileMapToWRAMBank3
-	ret
-; 100327
-
 
 Function10032e: ; 10032e
 	call Function10034d
@@ -553,15 +548,6 @@ Function10039c: ; 10039c
 	call FarCopyWRAM
 	ret
 ; 1003ab
-
-Function1003ab: ; 1003ab
-	ld hl, w3_d000
-	ld de, wcc60
-	ld bc, $54
-	ld a, $03
-	call FarCopyWRAM
-	ret
-; 1003ba
 
 Function1003ba: ; 1003ba
 	ld hl, wccb4
@@ -2368,12 +2354,6 @@ Function100eed: ; 100eed
 Function100ef4: ; 100ef4
 	ld hl, Unknown_100ff3
 	ld c, 1
-	jr asm_100f02
-
-Function100efb: ; 100efb
-	ld hl, Unknown_10102c
-	ld c, 1
-	jr asm_100f02
 
 asm_100f02:
 	ld a, c
@@ -2545,15 +2525,6 @@ Unknown_100ff3: ; 100ff3
 	dbwww $04, $a603, 8, NULL
 	dbwww $04, $a007, PARTYMON_STRUCT_LENGTH, NULL
 	db -1
-
-Unknown_10102c: ; 10102c
-	dbwww $80, OTPlayerName, NAME_LENGTH, NULL
-	dbwww $80, OTPlayerID, 2, NULL
-	dbwww $80, OTPartyMonNicknames, PKMN_NAME_LENGTH * PARTY_LENGTH, NULL
-	dbwww $80, OTPartyMonOT, NAME_LENGTH * PARTY_LENGTH, NULL
-	dbwww $80, OTPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
-	db -1
-; 10104f
 
 Function101050: ; 101050
 	call Function10107d
@@ -3091,29 +3062,6 @@ Function1013dd: ; 1013dd
 	ret
 ; 1013e1
 
-Function1013e1: ; 1013e1 ; unreferenced
-	push de
-	inc de
-	ld b, a
-	ld c, 0
-.asm_1013e6
-	inc c
-	ld a, [hli]
-	ld [de], a
-	inc de
-	and a
-	jr z, .asm_1013f1
-	dec b
-	jr nz, .asm_1013e6
-	scf
-
-.asm_1013f1
-	pop de
-	ld a, c
-	ld [de], a
-	ret
-; 1013f5
-
 Function1013f5: ; 1013f5
 	ld a, [hli]
 	ld [de], a
@@ -3127,13 +3075,6 @@ Function1013f5: ; 1013f5
 	jr nz, .asm_1013f9
 	ret
 ; 101400
-
-Function101400: ; 101400 ; unreferenced
-	ld a, [de]
-	inc de
-	cp [hl]
-	jr nz, asm_101416
-	inc hl
 
 Function101406: ; 101406
 	ld c, a
@@ -3315,15 +3256,6 @@ Function101507: ; 101507
 	ld [wMobileCommsJumptableIndex], a
 	ret
 ; 10151d
-
-Function10151d: ; 10151d ; unreferenced
-	ld a, $34
-	call Function3e32
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 10152a
 
 Function10152a: ; 10152a
 	ld a, $36
@@ -3510,13 +3442,6 @@ Function101663: ; 101663
 	call Function10163f
 	ret
 ; 101674
-
-Function101674: ; 101674 ; unreferenced
-	ld a, $05
-	ld hl, w5_dc00
-	call Function101635
-	ret
-; 10167d
 
 Function10167d: ; 10167d
 	ld a, 0
@@ -4400,12 +4325,6 @@ Function101cbc: ; 101cbc
 	ret
 ; 101cc2
 
-Function101cc2: ; 101cc2 ; unreferenced
-	ld a, $02
-	ld [wcd2b], a
-	ret
-; 101cc8
-
 Function101cc8: ; 101cc8
 	ld a, $01
 	ld [wc314], a
@@ -4680,22 +4599,6 @@ Function101e64: ; 101e64
 	ld [wcd2b], a
 	ret
 ; 101e82
-
-Function101e82: ; 101e82 ; unreferenced
-	call Function101ecc
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 101e8d
-
-Function101e8d: ; 101e8d ; unreferenced
-	call Function101ed3
-	ld a, [wMobileCommsJumptableIndex]
-	inc a
-	ld [wMobileCommsJumptableIndex], a
-	ret
-; 101e98
 
 Function101e98: ; 101e98
 	call ClearSprites
@@ -5112,10 +5015,6 @@ Function1021e0: ; 1021e0
 	ret
 ; 1021ea
 
-UnknownText_0x1021ea: ; 1021ea
-	text_jump UnknownText_0x1bd201
-	db "@"
-
 UnknownText_0x1021ef:
 	text_jump UnknownText_0x1bd211
 	db "@"
@@ -5492,33 +5391,12 @@ Function10246a: ; 10246a
 	ret
 ; 102480
 
-Function102480: ; 102480
-	ld c, $32
-	call DelayFrames
-	ld a, [wcd49]
-	inc a
-	ld [wcd49], a
-	ret
-; 10248d
-
 Function10248d: ; 10248d
 	ld a, [wcd49]
 	set 7, a
 	ld [wcd49], a
 	ret
 ; 102496
-
-Function102496: ; 102496
-	ld hl, wcd4e
-	dec [hl]
-	ret nz
-	ld a, 0
-	ld [wcd4a], a
-	ld a, [wcd49]
-	inc a
-	ld [wcd49], a
-	ret
-; 1024a8
 
 Function1024a8: ; 1024a8
 	callba Function1009f3
@@ -6503,14 +6381,6 @@ Function102b4e: ; 102b4e
 	ld [w2DMenuNumRows], a
 	ret
 ; 102b68
-
-Function102b68: ; 102b68 ; unreferenced
-	xor a
-	ld hl, wWindowStackPointer
-	ld bc, $10
-	call ByteFill
-	ret
-; 102b73
 
 Unknown_102b73:
 	db 9, 6

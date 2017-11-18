@@ -150,22 +150,6 @@ PrintRadioLine:
 	ld [wRadioTextDelay], a
 	ret
 
-ReplacePeriodsWithSpaces:
-	push hl
-	ld b, SCREEN_WIDTH * 2
-.loop
-	ld a, [hl]
-	cp "."
-	jr nz, .next
-	ld [hl], " "
-
-.next
-	inc hl
-	dec b
-	jr nz, .loop
-	pop hl
-	ret
-
 RadioScroll:
 	ld hl, wRadioTextDelay
 	ld a, [hl]

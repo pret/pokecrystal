@@ -118,26 +118,6 @@ String_0x49fe9: ; 49fe9
 	next "ほぞんしておける フ,ルダーです@"
 ; 4a004
 
-String_0x4a004: ; 4a004
-	db   "モバイルたいせんや じぶんのめいしで"
-	next "つかう あいさつ¯つくります@"
-; 4a026
-
-String_0x4a026: ; 4a026
-	db   "あなた%じゅうしょや ねんれいの"
-	next "せ", $1e, "い¯かえられます@"
-; 4a042
-
-String_0x4a042: ; 4a042
-	db  "モバイルセンター", $1d, "せつぞくするとき"
-	next "ひつような こと¯きめます@"
-; 4a062
-
-String_0x4a062: ; 4a062
-	db   "まえ%がめん ", $1d, "もどります"
-	next "@"
-; 4a071
-
 MobileMenu_InitMenuBuffers: ; 4a071 (12:6071)
 	ld hl, w2DMenuCursorInitY
 	ld a, 2
@@ -460,11 +440,6 @@ Function4a28a: ; 4a28a (12:628a)
 	ret
 ; 4a346 (12:6346)
 
-MenuDataHeader_0x4a346: ; 0x4a346
-	db $40 ; flags
-	db 00, 12 ; start coords
-	db 06, 19 ; end coords
-
 String_4a34b: ; 4a34b
 	db   "いれなおす"
 	next "けす"
@@ -525,14 +500,6 @@ Function4a373: ; 4a373 (12:6373)
 	ld [hli], a
 	ret
 ; 4a39a (12:639a)
-
-Function4a39a: ; 4a39a
-	call Function4a485
-	call Function4a492
-	call Function4a3aa
-	call SetPalettes
-	ret
-; 4a3a7
 
 Function4a3a7: ; 4a3a7 (12:63a7)
 	call Function4a485
@@ -599,32 +566,6 @@ Function4a3aa: ; 4a3aa
 	call Function4a6d8
 	ret
 ; 4a449 (12:6449)
-
-Function4a449: ; 4a449
-	ld bc, 3 * SCREEN_WIDTH
-	ld a, $0
-	hlcoord 0, 0
-	call ByteFill
-	ld bc, 2 * SCREEN_WIDTH
-	ld a, $1
-	call ByteFill
-	ld bc, 2 * SCREEN_WIDTH
-	ld a, $0
-	call ByteFill
-	ld bc, 2 * SCREEN_WIDTH
-	ld a, $1
-	call ByteFill
-	ld bc, SCREEN_WIDTH
-	ld a, $2
-	call ByteFill
-	ld bc, SCREEN_WIDTH
-	ld a, $3
-	call ByteFill
-	ld bc, SCREEN_WIDTH
-	ld a, " "
-	call ByteFill
-	ret
-; 4a485
 
 Function4a485: ; 4a485 (12:6485)
 	ld de, GFX_49c0c

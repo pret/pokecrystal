@@ -233,25 +233,6 @@ ClearActorHud: ; cc207
 	ret
 ; cc220
 
-Functioncc220: ; cc220
-; Appears to be unused.
-	xor a
-	ld [hBGMapMode], a
-	ld a, (VBGMap0 tile $28) % $100
-	ld [hBGMapAddress], a
-	ld a, (VBGMap0 tile $28) / $100
-	ld [hBGMapAddress + 1], a
-	call WaitBGMap2
-	ld a, $60
-	ld [hWY], a
-	xor a
-	ld [hBGMapAddress], a
-	ld a, VBGMap0 / $100
-	ld [hBGMapAddress + 1], a
-	call BattleAnimDelayFrame
-	ret
-; cc23d
-
 
 BattleAnim_ClearCGB_OAMFlags: ; cc23d
 

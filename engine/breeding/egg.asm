@@ -980,14 +980,3 @@ DayCareMonCompatibilityText: ; 1746c
 	text_jump UnknownText_0x1c0ec6
 	db "@"
 ; 0x174b5
-
-DayCareMonPrintEmptyString: ; 174b5
-; unreferenced
-	ld hl, .string
-	ret
-; 174b9
-
-.string ; 174b9
-	db "@"
-; 174ba
-

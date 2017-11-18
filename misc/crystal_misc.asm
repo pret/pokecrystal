@@ -177,12 +177,6 @@ Function17a78f: ; 17a78f (5e:678f)
 	ret
 ; 17a7a6 (5e:67a6)
 
-Function17a7a6: ; 17a7a6
-	ld a, [$d087]
-	inc a
-	ld [$d087], a
-	ret
-
 Function17a7ae: ; 17a7ae (5e:67ae)
 	ld a, [$d087]
 	ld hl, Jumptable_17a7b6

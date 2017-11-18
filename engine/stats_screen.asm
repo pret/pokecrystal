@@ -447,20 +447,6 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	dw wBufferMonNick
 ; 4df7f
 
-Function4df7f: ; 4df7f
-; unreferenced
-	hlcoord 7, 0
-	ld bc, SCREEN_WIDTH
-	ld d, SCREEN_HEIGHT
-.loop
-	ld a, $31
-	ld [hl], a
-	add hl, bc
-	dec d
-	jr nz, .loop
-	ret
-; 4df8f
-
 StatsScreen_PlaceHorizontalDivider: ; 4df8f (13:5f8f)
 	hlcoord 0, 7
 	ld b, SCREEN_WIDTH
@@ -964,11 +950,6 @@ StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 	pop hl
 	ret
 ; 4e32a (13:632a)
-
-Unknown_4e32a: ; 4e32a
-; A blank tile?
-	ds 16
-; 4e33a
 
 EggStatsScreen: ; 4e33a
 	xor a

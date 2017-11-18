@@ -28,11 +28,6 @@ MenuTextBox:: ; 1d4f
 	jp PrintText
 ; 1d57
 
-ret_1d57:: ; 1d57
-; unreferenced
-	ret
-; 1d58
-
 LoadMenuTextBox:: ; 1d58
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
@@ -130,13 +125,6 @@ YesNoBox:: ; 1dcf
 	lb bc, SCREEN_WIDTH - 6, 7
 
 PlaceYesNoBox:: ; 1dd2
-	jr _YesNoBox
-
-PlaceGenericTwoOptionBox:: ; 1dd4
-	call LoadMenuDataHeader
-	jr InterpretTwoOptionMenu
-
-_YesNoBox:: ; 1dd9
 ; Return nc (yes) or c (no).
 	push bc
 	ld hl, YesNoMenuDataHeader
@@ -453,17 +441,6 @@ PlaceNthMenuStrings:: ; 1f8d
 	ret
 ; 1f9e
 
-Function1f9e:: ; 1f9e
-; unreferenced
-	call GetMenuDataPointerTableEntry
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld d, [hl]
-	ld e, a
-	ret
-; 1fa7
-
 MenuJumptable:: ; 1fa7
 	ld a, [MenuSelection]
 	call GetMenuDataPointerTableEntry
@@ -581,11 +558,3 @@ InterpretBattleMenu:: ; 2039
 	ld a, [wMenuCursorBuffer]
 	ret
 ; 2048
-
-InterpretMobileMenu:: ; 2048
-	ld a, [hROMBank]
-	ld [wMenuData2_2DMenuItemStringsBank], a
-	callba _InterpretMobileMenu
-	ld a, [wMenuCursorBuffer]
-	ret
-; 2057

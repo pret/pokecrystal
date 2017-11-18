@@ -916,9 +916,6 @@ Text_Mart_ICanPayThisMuch: ; 0x15f78
 	db "@"
 ; 0x15f7d
 
-DummyString ; 15f7d
-	db "!ダミー!@"
-
 Text_Mart_HowMayIHelpYou: ; 0x15f83
 	; Welcome! How may I help you?
 	text_jump UnknownText_0x1c4f62

@@ -33,17 +33,6 @@ Function11c075: ; 11c075
 	ret
 ; 11c082
 
-Function11c082: ; 11c082
-; XXX
-	push de
-	ld a, c
-	call Function11c254
-	pop de
-	ld bc, wcd36
-	call PrintEZChatBattleMessage
-	ret
-; 11c08f
-
 Function11c08f: ; 11c08f
 	ld l, e
 	ld h, d
@@ -1359,33 +1348,6 @@ Function11c86e: ; 11c86e (47:486e)
 	jr nz, .asm_11c8c2
 	ret
 ; 11c8c7 (47:48c7)
-
-BCD2String: ; 11c8c7
-	inc a
-	push af
-	and $f
-	ld [hDividend], a
-	pop af
-	and $f0
-	swap a
-	ld [hDividend + 1], a
-	xor a
-	ld [hDividend + 2], a
-	push hl
-	callba Function11a80c
-	pop hl
-	ld a, [wcd63]
-	add "0"
-	ld [hli], a
-	ld a, [wcd62]
-	add "0"
-	ld [hli], a
-	ret
-; 11c8ec
-
-MobileString_Page: ; 11c8ec
-	db "ぺージ@"
-; 11c8f0
 
 MobileString_Prev: ; 11c8f0
 	db "まえ@"

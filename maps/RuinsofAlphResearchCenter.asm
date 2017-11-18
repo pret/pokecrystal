@@ -174,9 +174,6 @@ UnknownScript_0x59260:
 	closetext
 	end
 
-UnknownScript_0x59269:
-	jumptext UnknownText_0x59848
-
 MapRuinsofAlphResearchCenterSignpost0Script:
 	jumptext UnknownText_0x59886
 
@@ -313,36 +310,6 @@ UnknownText_0x595cb:
 	cont "kinds of them…"
 	done
 
-; possibly unused
-UnknownText_0x59669:
-	text "We think something"
-	line "caused the cryptic"
-
-	para "patterns to appear"
-	line "in the RUINS."
-
-	para "We've focused our"
-	line "studies on that."
-	done
-
-; possibly unused
-UnknownText_0x596d3:
-	text "According to my"
-	line "research…"
-
-	para "Those mysterious"
-	line "patterns appeared"
-
-	para "when the #COM"
-	line "CENTER was built."
-
-	para "It must mean that"
-	line "radio waves have"
-
-	para "some sort of a"
-	line "link…"
-	done
-
 UnknownText_0x59769:
 	text "Why did those"
 	line "ancient patterns"
@@ -377,15 +344,6 @@ UnknownText_0x5980e:
 UnknownText_0x5982d:
 	text "UNOWN may be"
 	line "printed out."
-	done
-
-; possibly unused
-UnknownText_0x59848:
-	text "It's a photo of"
-	line "the RESEARCH"
-
-	para "CENTER'S founder,"
-	line "PROF.SILKTREE."
 	done
 
 UnknownText_0x59886:

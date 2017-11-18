@@ -541,14 +541,6 @@ Function893ef: ; 893ef
 	ret
 ; 893fe
 
-Function893fe: ; 893fe
-	call DisableLCD
-	call Function893ef
-	call EnableLCD
-	call DelayFrame
-	ret
-; 8940b
-
 GFX_8940b: ; 8940b
 INCBIN "gfx/unknown/08940b.2bpp"
 ; 8942b
@@ -841,14 +833,6 @@ Palette_895de: ; 895de
 	RGB 07, 07, 06
 	RGB 00, 00, 00
 ; 895e6
-
-Function895e6: ; 895e6
-	ld a, 7
-	hlcoord 0, 0, AttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	call ByteFill
-	ret
-; 895f2
 
 Function895f2: ; 895f2
 	push bc
@@ -1794,20 +1778,6 @@ Function89b00: ; 89b00 (22:5b00)
 	callba MG_Mobile_Layout_LoadPals
 	ret
 ; 89b07 (22:5b07)
-
-Function89b07: ; 89b07
-	call Mobile22_SetBGMapMode0
-	call DelayFrame
-	callba Function4a3a7
-	ret
-; 89b14
-
-Function89b14: ; 89b14
-	call ClearBGPalettes
-	call Function89b07
-	call Function89b00
-	ret
-; 89b1e
 
 Function89b1e: ; 89b1e (22:5b1e)
 	callba Function4a485
@@ -4427,14 +4397,6 @@ Function8adb3: ; 8adb3
 	pop af
 	ret
 ; 8adbf
-
-Function8adbf: ; 8adbf
-	call OpenSRAMBank4
-	ld hl, $a603
-	call Function89b45
-	call CloseSRAM
-	ret
-; 8adcc
 
 Function8adcc: ; 8adcc
 	call OpenSRAMBank4

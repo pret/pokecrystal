@@ -359,29 +359,6 @@ _CGB_BillsPC: ; 8fca
 	ret
 ; 9009
 
-Function9009: ; 9009
-	ld hl, Palette9036
-	call LoadHLPaletteIntoDE
-	jr .asm_901a
-
-.unused
-	ld bc, TempMonDVs
-	call GetPlayerOrMonPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-.asm_901a
-	call WipeAttrMap
-	hlcoord 1, 1, AttrMap
-	lb bc, 7, 7
-	ld a, $1
-	call FillBoxCGB
-	call InitPartyMenuOBPals
-	call ApplyAttrMap
-	call ApplyPals
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-; 9036
-
 Palette9036: ; 9036
 	RGB 31, 15, 00
 	RGB 23, 12, 00

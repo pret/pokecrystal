@@ -372,15 +372,6 @@ HandleCmdQueue:: ; 97e08
 	ret
 ; 97e25
 
-GetNthCmdQueueEntry: ; 97e25 unreferenced
-	ld hl, wCmdQueue
-	ld bc, CMDQUEUE_ENTRY_SIZE
-	call AddNTimes
-	ld b, h
-	ld c, l
-	ret
-; 97e31
-
 WriteCmdQueue:: ; 97e31
 	push bc
 	push de

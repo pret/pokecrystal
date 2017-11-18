@@ -149,16 +149,6 @@ AzaleaTownSlowpokeScript:
 	closetext
 	end
 
-WoosterScript:
-; unused
-	faceplayer
-	opentext
-	writetext WoosterText
-	cry QUAGSIRE
-	waitbutton
-	closetext
-	end
-
 AzaleaTown_CelebiEventScript:
 	applymovement PLAYER, Movement_PlayerWalksOutOfKurtsHouse
 	opentext
@@ -386,10 +376,6 @@ AzaleaTownSlowpokeText1:
 
 AzaleaTownSlowpokeText2:
 	text "<......> <......>Yawn?"
-	done
-
-WoosterText:
-	text "WOOSTER: Gugyoo…"
 	done
 
 IlexForestIsRestlessText:

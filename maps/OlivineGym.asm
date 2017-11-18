@@ -147,11 +147,6 @@ Jasmine_BadgeSpeech:
 	line "this too…"
 	done
 
-Text_ReceivedTM09:
-	text "<PLAYER> received"
-	line "TM09."
-	done
-
 Jasmine_IronTailSpeech:
 	text "…You could use"
 	line "that TM to teach"

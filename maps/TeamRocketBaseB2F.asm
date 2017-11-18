@@ -741,11 +741,6 @@ UnknownText_0x6d809:
 	cont "any need for it."
 	done
 
-UnknownText_0x6d8e6:
-	text "<PLAYER> received"
-	line "HM06."
-	done
-
 UnknownText_0x6d8f8:
 	text "That's WHIRLPOOL."
 	line "Teach it to a"

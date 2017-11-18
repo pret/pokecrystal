@@ -1672,11 +1672,6 @@ AI_Smart_Spite: ; 38cd5
 ; 38d16
 
 
-Function_0x38d16; 38d16
-	jp AIDiscourageMove
-; 38d19
-
-
 AI_Smart_DestinyBond:
 AI_Smart_Reversal:
 AI_Smart_SkullBash: ; 38d19

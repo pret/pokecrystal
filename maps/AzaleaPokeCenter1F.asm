@@ -40,18 +40,6 @@ UnknownText_0x18db34:
 	line "fainted."
 	done
 
-UnknownText_0x18db88:
-	text "This BILL guy"
-	line "created the system"
-
-	para "for storing"
-	line "#MON in a PC."
-
-	para "BILL's PC can"
-	line "store up to 20"
-	cont "#MON per BOX."
-	done
-
 UnknownText_0x18dbee:
 	text "BILL's PC can"
 	line "store up to 20"

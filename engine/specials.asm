@@ -64,8 +64,6 @@ SpecialsPointers:: ; c029
 	add_special Special_UnownPuzzle
 	add_special Special_SlotMachine
 	add_special Special_CardFlip
-	add_special Special_DummyNonfunctionalGameCornerGame
-	add_special Special_ClearBGPalettesBufferScreen
 	add_special FadeOutPalettes
 	add_special Special_BattleTowerFade
 	add_special Special_FadeBlackQuickly
@@ -74,21 +72,16 @@ SpecialsPointers:: ; c029
 	add_special Special_ReloadSpritesNoPalettes
 	add_special ClearBGPalettes
 	add_special UpdateTimePals
-	add_special ClearTileMap
 	add_special UpdateSprites
 	add_special ReplaceKrisSprite
 	add_special Special_GameCornerPrizeMonCheckDex
-	add_special SpecialSeenMon
 	add_special WaitSFX
 	add_special PlayMapMusic
 	add_special RestartMapMusic
 	add_special HealMachineAnim
 	add_special Special_SurfStartStep
-	add_special Special_FindGreaterThanThatLevel
-	add_special Special_FindAtLeastThatHappy
 	add_special Special_FindThatSpecies
 	add_special Special_FindThatSpeciesYourTrainerID
-	add_special Special_CheckUnusedTwoDayTimer ; unreferenced
 	add_special Special_DayCareMon1
 	add_special Special_DayCareMon2
 	add_special Special_SelectRandomBugContestContestants
@@ -131,21 +124,9 @@ SpecialsPointers:: ; c029
 	add_special PrintDiploma
 
 	; Crystal
-	add_special Function11ac3e
-	add_special Function11b444
-	add_special Function11b5e8
-	add_special Function11b7e5
-	add_special Function11b879
-	add_special Function11b920
-	add_special Function11b93b
 	add_special BattleTowerRoomMenu
-	add_special Function1700ba
-	add_special Function170114
 	add_special BattleTowerBattle
-	add_special Function1704e1
-	add_special EmptySpecial_17021d
 	add_special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
-	add_special Function11ba38
 	add_special SpecialCheckForBattleTowerRules
 	add_special Special_GiveOddEgg
 	add_special Reset
@@ -155,16 +136,12 @@ SpecialsPointers:: ; c029
 	add_special Function101231
 	add_special Special_MoveTutor
 	add_special SpecialOmanyteChamber
-	add_special Function11c1ab
 	add_special BattleTowerAction
 	add_special Special_DisplayUnownWords
 	add_special Special_Menu_ChallengeExplanationCancel
-	add_special Function17d2b6
-	add_special Function17d2ce
 	add_special BattleTowerMobileError
 	add_special AskMobileOrCable
 	add_special SpecialHoOhChamber
-	add_special Function102142
 	add_special Special_CelebiShrineEvent
 	add_special CheckCaughtCelebi
 	add_special SpecialPokeSeer
@@ -175,7 +152,6 @@ SpecialsPointers:: ; c029
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
 	add_special Special_SetPlayerPalette
-	add_special ret_170bd2
 	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
 	add_special Function10383c
@@ -187,15 +163,9 @@ SpecialsPointers:: ; c029
 	add_special Function10387b
 	add_special AskRememberPassword
 	add_special LoadMapPalettes
-	add_special FindItemInPCOrBag
 	add_special Special_InitialSetDSTFlag
 	add_special Special_InitialClearDSTFlag
-	add_special SpecialNone
 ; c224
-
-SpecialNone: ; c224
-	ret
-; c225
 
 Special_SetPlayerPalette: ; c225
 	ld a, [ScriptVar]
@@ -219,27 +189,6 @@ Special_GameCornerPrizeMonCheckDex: ; c230
 	call ExitAllMenus
 	ret
 ; c252
-
-SpecialSeenMon: ; c252
-	ld a, [ScriptVar]
-	dec a
-	call SetSeenMon
-	ret
-; c25a
-
-Special_FindGreaterThanThatLevel: ; c25a
-	ld a, [ScriptVar]
-	ld b, a
-	callba _FindGreaterThanThatLevel
-	jr z, FoundNone
-	jr FoundOne
-
-Special_FindAtLeastThatHappy: ; c268
-	ld a, [ScriptVar]
-	ld b, a
-	callba _FindAtLeastThatHappy
-	jr z, FoundNone
-	jr FoundOne
 
 Special_FindThatSpecies: ; c276
 	ld a, [ScriptVar]
@@ -405,15 +354,6 @@ Special_CardFlip: ; c380
 	ret
 ; c38d
 
-Special_DummyNonfunctionalGameCornerGame: ; c38d
-	call Special_CheckCoins
-	ret c
-	ld a, BANK(_DummyGame)
-	ld hl, _DummyGame
-	call Special_StartGameCornerGame
-	ret
-; c39a
-
 Special_StartGameCornerGame: ; c39a
 	call FarQueueScript
 	call FadeToMenu
@@ -467,12 +407,6 @@ Special_CheckCoins: ; c3ae
 	db "@"
 ; 0xc3db
 
-Special_ClearBGPalettesBufferScreen: ; c3db
-	call ClearBGPalettes
-	call BufferScreen
-	ret
-; c3e2
-
 ScriptReturnCarry: ; c3e2
 	jr c, .carry
 	xor a
@@ -483,13 +417,6 @@ ScriptReturnCarry: ; c3e2
 	ld [ScriptVar], a
 	ret
 ; c3ef
-
-Special_CheckUnusedTwoDayTimer: ; c3ef
-	callba CheckUnusedTwoDayTimer
-	ld a, [wUnusedTwoDayTimer]
-	ld [ScriptVar], a
-	ret
-; c3fc
 
 Special_ActivateFishingSwarm: ; c3fc
 	ld a, [ScriptVar]

@@ -56,13 +56,3 @@ ToddRematchText:
 	para "shopping to raise"
 	line "my #MON better!"
 	done
-
-UnusedText_0xa43ca:
-; This is unused; Todd says this during the department store sale,
-; but this is a duplicate of the actual string in the Route 34 scripts.
-	text "Shopping under the"
-	line "sky!"
-
-	para "It feels so nice"
-	line "up on a rooftop."
-	done

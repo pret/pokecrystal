@@ -1562,44 +1562,6 @@ TradeAnim_WaitAnim2: ; 29886
 ; 29893
 
 
-DebugTrade: ; 29893
-; This function is unreferenced.
-; It was meant for use in Japanese versions, so the
-; constant used for copy length was changed by accident.
-
-	ld hl, .DebugTradeData
-
-	ld a, [hli]
-	ld [wPlayerTrademonSpecies], a
-	ld de, wPlayerTrademonSenderName
-	ld c, 11 + 2 ; jp: 6 + 2
-.loop1
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .loop1
-
-	ld a, [hli]
-	ld [wOTTrademonSpecies], a
-	ld de, wOTTrademonSenderName
-	ld c, 11 + 2 ; jp: 6 + 2
-.loop2
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .loop2
-	ret
-
-; 298b5
-
-.DebugTradeData: ; 298b5
-	db VENUSAUR, "ゲーフり@@", $23, $01 ; GAME FREAK
-	db CHARIZARD, "クりーチャ@", $56, $04 ; Creatures Inc.
-; 298c7
-
-
 TradeGameBoyTilemap: ; 298c7
 ; 6x8
 	db $31, $32, $32, $32, $32, $33

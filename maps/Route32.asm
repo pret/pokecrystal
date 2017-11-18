@@ -688,49 +688,6 @@ FisherRalphSwarmText:
 	line "as you can, kid!"
 	done
 
-; --- start a segment of possibly unused texts
-
-Route32UnusedFisher1SeenText:
-	text "I keep catching"
-	line "the same #MON…"
-
-	para "Maybe a battle"
-	line "will turn things"
-	cont "around for me."
-	done
-
-Route32UnusedFisher1BeatenText:
-	text "Nothing ever goes"
-	line "right for me now…"
-	done
-
-Route32UnusedFisher1AfterText:
-	text "How come the guy"
-	line "next to me catches"
-	cont "good #MON?"
-	done
-
-Route32UnusedFisher2SeenText:
-	text "Heh, I'm on a roll"
-	line "today. How about a"
-	cont "battle, kid?"
-	done
-
-Route32UnusedFisher2BeatenText:
-	text "Oof. I wasn't"
-	line "lucky that time."
-	done
-
-Route32UnusedFisher2AfterText:
-	text "You have to have a"
-	line "good ROD if you"
-
-	para "want to catch good"
-	line "#MON."
-	done
-
-; --- end a segment of possibly unused texts
-
 FisherHenrySeenText:
 	text "My #MON?"
 	line "Freshly caught!"
@@ -842,13 +799,6 @@ Bird_keeperPeterAfterText:
 	text "I should train"
 	line "again at the GYM"
 	cont "in VIOLET CITY."
-	done
-
-; possibly unused
-Route32UnusedText:
-	text "The fishermen"
-	line "yelled at me for"
-	cont "bugging them…"
 	done
 
 Text_RoarIntro:

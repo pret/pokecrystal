@@ -65,14 +65,3 @@ Divide:: ; 3124
 	pop hl
 	ret
 ; 3136
-
-
-SubtractSigned:: ; 3136
-; Return a - b, sign in carry.
-	sub b
-	ret nc
-	cpl
-	add 1
-	scf
-	ret
-; 313d

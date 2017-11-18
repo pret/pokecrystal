@@ -119,17 +119,3 @@ GetFarWRAMByte:: ; 307b
 	ld a, [hBuffer]
 	ret
 ; 308d
-
-GetFarWRAMWord:: ; 308d
-	ld [hBuffer], a
-	ld a, [rSVBK]
-	push af
-	ld a, [hBuffer]
-	ld [rSVBK], a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop af
-	ld [rSVBK], a
-	ret
-; 309d

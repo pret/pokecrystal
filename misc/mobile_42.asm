@@ -1,38 +1,3 @@
-MobileTradeAnimation_SendGivemonToGTS: ; 108000
-	ld a, $80
-	ld [wcf65], a
-	ld de, .TradeAnimScript
-	jp RunMobileTradeAnim_NoFrontpics
-; 10800b
-
-.TradeAnimScript:
-	mobiletradeanim_showgtsgivemon
-	mobiletradeanim_12
-	mobiletradeanim_10
-	mobiletradeanim_sendmon
-	mobiletradeanim_06
-	mobiletradeanim_0f
-	mobiletradeanim_end
-
-MobileTradeAnimation_RetrieveGivemonFromGTS:
-	ld a, $80
-	jr asm_108018
-
-MobileTradeAnimation_ReceiveGetmonFromGTS: ; 108016
-	ld a, $0
-asm_108018:
-	ld [wcf65], a
-	ld de, .TradeAnimScript
-	jp RunMobileTradeAnim_NoFrontpics
-; 108021
-
-.TradeAnimScript:
-	mobiletradeanim_11
-	mobiletradeanim_07
-	mobiletradeanim_receivemon
-	mobiletradeanim_showgtsgetmon
-	mobiletradeanim_end
-
 Function108026: ; 108026
 	ld a, $0
 	jr asm_10802c
@@ -54,20 +19,6 @@ asm_10802c:
 	mobiletradeanim_05
 	mobiletradeanim_receivemon
 	mobiletradeanim_showgetmon
-	mobiletradeanim_end
-
-Function10803d: ; 10803d
-	ld a, $0
-	ld [wcf65], a
-	ld de, .TradeAnimScript
-	jp RunMobileTradeAnim_NoFrontpics
-; 108048
-
-.TradeAnimScript:
-	mobiletradeanim_11
-	mobiletradeanim_07
-	mobiletradeanim_receivemon
-	mobiletradeanim_showoddegg
 	mobiletradeanim_end
 
 Function10804d: ; 10804d
@@ -312,15 +263,6 @@ Function108201: ; 108201
 	predef FrontpicPredef
 	ret
 ; 108219
-
-Function108219: ; 108219
-	ld [CurPartySpecies], a
-	hlcoord 7, 2
-	ld d, $0
-	ld e, ANIM_MON_TRADE
-	predef AnimateFrontpic
-	ret
-; 108229
 
 Function108229: ; 108229
 	ld [CurPartySpecies], a
@@ -1717,84 +1659,6 @@ Function108c80: ; 108c80
 	ret
 ; 108c9b
 
-DebugMobileTrade: ; 108c9b
-; localization error: NAME_LENGTH (11) should be 6 here
-
-	ld hl, .DebugTradeData
-	ld a, [hli]
-	ld [wPlayerTrademonSpecies], a
-
-	ld de, wPlayerTrademonSenderName
-	ld c, NAME_LENGTH
-.your_name_loop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .your_name_loop
-
-	ld de, wPlayerTrademonID
-	ld c, 2
-.your_id_loop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .your_id_loop
-
-	ld de, wPlayerTrademonOTName
-	ld c, NAME_LENGTH
-.your_ot_loop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .your_ot_loop
-
-	ld a, [hli]
-	ld [wOTTrademonSpecies], a
-
-	ld de, wOTTrademonSenderName
-	ld c, NAME_LENGTH
-.their_name_loop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .their_name_loop
-
-	ld de, wOTTrademonID
-	ld c, 2
-.their_id_loop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .their_id_loop
-
-	ld de, wOTTrademonOTName
-	ld c, NAME_LENGTH
-.their_ot_loop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .their_ot_loop
-
-	ret
-; 108ce9
-
-.DebugTradeData:
-	db VENUSAUR
-	db "ゲーフり@@"
-	dw $0123
-	db "かびーん@@"
-	db CHARIZARD
-	db "クりーチャ@"
-	dw $0456
-	db "マツミヤ@@"
-; 108d07
-
 Function108d07: ; 108d07
 	ld a, [wc74e]
 	and $7f
@@ -1824,20 +1688,6 @@ INCBIN "gfx/unknown/108fe7.tilemap.lz"
 
 LZ_1090a7:
 INCBIN "gfx/unknown/1090a7.tilemap.lz"
-
-Palette_1090f7:
-; unreferenced
-	RGB 31, 31, 31
-	RGB  0,  0,  0
-
-	RGB 31,  0, 25
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB  0,  0,  0
-
-	RGB  9, 19, 31
-	RGB  0,  0,  0
 
 Palette_109107:
 	RGB 18, 31, 15

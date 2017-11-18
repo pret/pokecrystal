@@ -159,29 +159,6 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	ret
 ; 4a927
 
-FindItemInPCOrBag: ; 4a927
-	ld a, [ScriptVar]
-	ld [CurItem], a
-	ld hl, PCItems
-	call CheckItem
-	jr c, .found
-
-	ld a, [ScriptVar]
-	ld [CurItem], a
-	ld hl, NumItems
-	call CheckItem
-	jr c, .found
-
-	xor a
-	ld [ScriptVar], a
-	ret
-
-.found
-	ld a, 1
-	ld [ScriptVar], a
-	ret
-; 4a94e
-
 Function4a94e: ; 4a94e
 	call FadeToMenu
 	ld a, -1
@@ -344,14 +321,6 @@ Function4aa34: ; 4aa34
 	pop af
 	ret
 ; 4aa6e
-
-Function4aa6e: ; 4aa6e
-	pop af
-	ld de, SFX_WRONG
-	call PlaySFX
-	call WaitSFX
-	jr Function4aa34
-; 4aa7a
 
 Function4aa7a: ; 4aa7a
 	ld hl, wd002
@@ -832,10 +801,6 @@ Function4ad60: ; 4ad60
 	callba ManagePokemonMoves
 	ret
 ; 4ad67
-
-Function4ad67: ; 4ad67
-	ret
-; 4ad68
 
 Function4ad68: ; 4ad68
 	hlcoord 13, 12

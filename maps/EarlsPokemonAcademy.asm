@@ -141,10 +141,6 @@ AcademyNotebook:
 	closetext
 	end
 
-AcademyStickerMachine:
-; unused
-	jumptext AcademyStickerMachineText
-
 AcademyBookshelf:
 	jumpstd difficultbookshelf
 
@@ -274,11 +270,6 @@ AcademyBlackboardText:
 	line "battle."
 	done
 
-AcademyBlackboardText2:
-; unused
-	text "Read which topic?"
-	done
-
 AcademyPoisonText:
 	text "If poisoned, a"
 	line "#MON steadily"
@@ -403,13 +394,6 @@ AcademyNotebookText3:
 
 	para "I haven't written"
 	line "anymore…"
-	done
-
-AcademyStickerMachineText:
-	text "This super machine"
-	line "prints data out as"
-
-	para "stickers!"
 	done
 
 EarlsPokemonAcademy_MapEventHeader:

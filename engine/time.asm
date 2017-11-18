@@ -206,40 +206,6 @@ CheckPokerusTick:: ; 114e7
 	ret
 ; 114fc
 
-SetUnusedTwoDayTimer: ; 114fc
-	ld a, 2
-	ld hl, wUnusedTwoDayTimer
-	ld [hl], a
-	call UpdateTime
-	ld hl, wUnusedTwoDayTimerStartDate
-	call CopyDayToHL
-	ret
-; 1150c
-
-CheckUnusedTwoDayTimer: ; 1150c
-	ld hl, wUnusedTwoDayTimerStartDate
-	call CalcDaysSince
-	call GetDaysSince
-	ld hl, wUnusedTwoDayTimer
-	call UpdateTimeRemaining
-	ret
-; 1151c
-
-; XXX
-	ld hl, DailyFlags
-	set 2, [hl]
-	ret
-; 11522
-
-; XXX
-	and a
-	ld hl, DailyFlags
-	bit 2, [hl]
-	ret nz
-	scf
-	ret
-; 1152b
-
 RestartLuckyNumberCountdown: ; 1152b
 	call .GetDaysUntilNextFriday
 	ld hl, wLuckyNumberDayBuffer
@@ -320,19 +286,6 @@ UpdateTimeRemaining: ; 11586
 	ret
 ; 11599
 
-GetSecondsSinceIfLessThan60: ; 11599
-	ld a, [wDaysSince]
-	and a
-	jr nz, GetTimeElapsed_ExceedsUnitLimit
-	ld a, [wHoursSince]
-	and a
-	jr nz, GetTimeElapsed_ExceedsUnitLimit
-	ld a, [wMinutesSince]
-	jr nz, GetTimeElapsed_ExceedsUnitLimit
-	ld a, [wSecondsSince]
-	ret
-; 115ae
-
 GetMinutesSinceIfLessThan60: ; 115ae
 	ld a, [wDaysSince]
 	and a
@@ -343,14 +296,6 @@ GetMinutesSinceIfLessThan60: ; 115ae
 	ld a, [wMinutesSince]
 	ret
 ; 115be
-
-GetHoursSinceIfLessThan24: ; 115be
-	ld a, [wDaysSince]
-	and a
-	jr nz, GetTimeElapsed_ExceedsUnitLimit
-	ld a, [wHoursSince]
-	ret
-; 115c8
 
 GetDaysSince: ; 115c8
 	ld a, [wDaysSince]
@@ -366,12 +311,6 @@ CalcDaysSince: ; 115cf
 	xor a
 	jr _CalcDaysSince
 ; 115d2
-
-CalcHoursDaysSince: ; 115d2
-	inc hl
-	xor a
-	jr _CalcHoursDaysSince
-; 115d6
 
 CalcMinsHoursDaysSince: ; 115d6
 	inc hl
@@ -445,14 +384,6 @@ CopyDayToHL: ; 11621
 	ld [hl], a
 	ret
 ; 11626
-
-CopyDayHourToHL: ; 11626
-	ld a, [CurDay]
-	ld [hli], a
-	ld a, [hHours]
-	ld [hli], a
-	ret
-; 1162e
 
 CopyDayHourMinToHL: ; 1162e
 	ld a, [CurDay]

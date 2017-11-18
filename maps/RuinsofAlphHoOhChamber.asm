@@ -120,11 +120,6 @@ UnknownText_0x58612:
 	line "on the walls…"
 	done
 
-; possibly unused
-UnknownText_0x58633:
-	text "It's UNOWN text!"
-	done
-
 UnknownText_0x58644:
 	text "Patterns appeared"
 	line "on the walls…"

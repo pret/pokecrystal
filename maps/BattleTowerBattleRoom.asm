@@ -114,33 +114,6 @@ Script_BeatenAllTrainers2:
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers
 	jump Script_GivePlayerHisPrize
 
-UnreferencedScript_0x9f4eb:
-	writebyte BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
-	opentext
-	writetext Text_TooMuchTimeElapsedNoRegister
-	waitbutton
-	closetext
-	end
-
-UnreferencedScript_0x9f4f7:
-	writebyte BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
-	writebyte BATTLETOWERACTION_06
-	special BattleTowerAction
-	opentext
-	writetext Text_ThanksForVisiting
-	writetext Text_WeHopeToServeYouAgain
-	waitbutton
-	closetext
-	end
-
-
-Text_ReturnedAfterSave_Mobile:
-	text "You'll be returned"
-	line "after you SAVE."
-	done
-
 
 BattleTowerBattleRoom_MapEventHeader:
 	; filler

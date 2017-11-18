@@ -1388,31 +1388,6 @@ BattleAnim_RazorWind: ; c9bbd
 	anim_ret
 ; c9c00
 
-BattleAnim_Sonicboom_JP: ; c9c00
-	anim_2gfx ANIM_GFX_WHIP, ANIM_GFX_HIT
-.loop
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_43,   8, 0,  10, 0, $3
-	anim_wait 8
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_43,   8, 0,  11, 0, $2
-	anim_wait 8
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_43,   8, 0,  12, 0, $4
-	anim_wait 8
-	anim_loop 2, .loop
-	anim_wait 32
-	anim_incobj  1
-	anim_incobj  2
-	anim_incobj  3
-	anim_incobj  4
-	anim_incobj  5
-	anim_incobj  6
-	anim_obj ANIM_OBJ_01, -15, 0,   7, 0, $0
-	anim_wait 16
-	anim_ret
-; c9c36
-
 BattleAnim_Gust: ; c9c36
 BattleAnim_Sonicboom: ; c9c36
 	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_HIT

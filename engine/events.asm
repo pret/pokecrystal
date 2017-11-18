@@ -40,48 +40,6 @@ CheckBit5_ScriptFlags3: ; 966d6
 	ret
 ; 966dc
 
-DisableWarpsConnxns: ; 966dc
-	ld hl, ScriptFlags3
-	res 2, [hl]
-	ret
-; 966e2
-
-DisableCoordEvents: ; 966e2
-	ld hl, ScriptFlags3
-	res 1, [hl]
-	ret
-; 966e8
-
-DisableStepCount: ; 966e8
-	ld hl, ScriptFlags3
-	res 0, [hl]
-	ret
-; 966ee
-
-DisableWildEncounters: ; 966ee
-	ld hl, ScriptFlags3
-	res 4, [hl]
-	ret
-; 966f4
-
-EnableWarpsConnxns: ; 966f4
-	ld hl, ScriptFlags3
-	set 2, [hl]
-	ret
-; 966fa
-
-EnableCoordEvents: ; 966fa
-	ld hl, ScriptFlags3
-	set 1, [hl]
-	ret
-; 96700
-
-EnableStepCount: ; 96700
-	ld hl, ScriptFlags3
-	set 0, [hl]
-	ret
-; 96706
-
 EnableWildEncounters: ; 96706
 	ld hl, ScriptFlags3
 	set 4, [hl]
@@ -149,12 +107,6 @@ EnterMap: ; 9673e
 	ld [MapStatus], a
 	ret
 ; 9676d
-
-UnusedWait30Frames: ; 9676d
-	ld c, 30
-	call DelayFrames
-	ret
-; 96773
 
 HandleMap: ; 96773
 	call ResetOverworldDelay
@@ -420,15 +372,6 @@ SetUpFiveStepWildEncounterCooldown: ; 968d1
 ret_968d7: ; 968d7
 	ret
 ;968d8
-
-SetMinTwoStepWildEncounterCooldown: ; 968d8
-	ld a, [wWildEncounterCooldown]
-	cp 2
-	ret nc
-	ld a, 2
-	ld [wWildEncounterCooldown], a
-	ret
-; 968e4
 
 Dummy_CheckScriptFlags3Bit5: ; 968e4
 	call CheckBit5_ScriptFlags3

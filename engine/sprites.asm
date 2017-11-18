@@ -527,29 +527,6 @@ GetFrameOAMPointer: ; 8d1a2
 	ret
 ; 8d1ac
 
-BrokenGetStdGraphics: ; 8d1ac
-; dummied out
-	push hl
-	ld l, a
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld de, BrokenStdGFXPointers ; broken 2bpp pointers
-	add hl, de
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	pop hl
-	push bc
-	call Request2bpp
-	pop bc
-	ret
-; 8d1c4
-
 SpriteAnimSeqData: ; 8d1c4
 	; frameset sequence, tile
 	db SPRITE_ANIM_FRAMESET_PARTY_MON, SPRITE_ANIM_SEQ_01, $00 ; 00

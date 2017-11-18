@@ -497,12 +497,6 @@ Cry_Sentret_branch_f312b: ; f312b
 	endchannel
 ; f3134
 
-Cry_Sentret_Ch8: ; f3134
-	noise __,  9, $3b, $0
-	noise __,  9, $92, $0
-	endchannel
-; f313b
-
 Cry_Mareep_Ch5: ; f313b
 	tone $0020
 	dutycycle $0
@@ -1165,39 +1159,6 @@ Cry_Weepinbell: ; f35ca
 	musicheader 1, 6, Cry_Weepinbell_Ch6
 	musicheader 1, 8, Cry_Weepinbell_Ch8
 ; f35d3
-
-Unknown_Cry_Ch5: ; f35d3
-	sound_duty 0, 0, 3, 3
-	sound __, 16, $e0, $0780
-	sound __, 16, $f0, $0784
-	sound __, 16, $c3, $05e0
-	sound __, 16, $c4, $0600
-	sound __, 11, $6c, $0780
-	sound __,  9, $71, $0784
-	endchannel
-; f35ee
-
-Unknown_Cry_Ch6: ; f35ee
-	sound_duty 1, 1, 0, 0
-	sound __, 16, $a0, $0741
-	sound __, 16, $b0, $0743
-	sound __, 16, $93, $05b1
-	sound __, 16, $94, $05c1
-	sound __, 11, $4c, $0741
-	sound __,  9, $31, $0746
-	endchannel
-; f3609
-
-Unknown_Cry_Ch8: ; f3609
-	noise __,  3, $f2, $4c
-	noise __,  7, $e0, $3a
-	noise __, 16, $d0, $3a
-	noise __,  9, $d0, $2c
-	noise __,  7, $e6, $4c
-	noise __, 13, $7d, $4c
-	noise __, 16, $d3, $4c
-	endchannel
-; f361f
 
 Cry_Raichu_Ch5: ; f361f
 	sound_duty 0, 0, 3, 3

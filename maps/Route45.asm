@@ -287,12 +287,6 @@ UnknownScript_0x19e285:
 	closetext
 	end
 
-UnknownScript_0x19e28b:
-	writetext UnknownText_0x19e830
-	waitbutton
-	closetext
-	end
-
 Route45Sign:
 	jumptext Route45SignText
 
@@ -498,15 +492,6 @@ UnknownText_0x19e7d1:
 	para "I want to win, but"
 	line "I also don't want"
 	cont "to harm #MON."
-	done
-
-UnknownText_0x19e830:
-	text "I'm really, really"
-	line "tough!"
-
-	para "Is there anywhere"
-	line "I can prove how"
-	cont "tough I really am?"
 	done
 
 UnknownText_0x19e87f:

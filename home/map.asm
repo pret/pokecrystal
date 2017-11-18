@@ -1162,24 +1162,6 @@ ObjectEventText::
 	db "@"
 ; 0x26f7
 
-BGEvent:: ; 26f7
-	jumptext BGEventText
-; 26fa
-
-BGEventText:: ; 26fa
-	text_jump UnknownText_0x1c46fc
-	db "@"
-; 26ff
-
-CoordinatesEvent:: ; 26ff
-	jumptext CoordinatesEventText
-; 2702
-
-CoordinatesEventText:: ; 2702
-	text_jump UnknownText_0x1c4706
-	db "@"
-; 2707
-
 CheckObjectMask:: ; 2707
 	ld a, [hMapObjectIndexBuffer]
 	ld e, a
@@ -2143,11 +2125,6 @@ SwitchToAnyMapBank:: ; 2c24
 	ret
 ; 2c29
 
-GetMapBank:: ; 2c29
-	ld a, [MapGroup]
-	ld b, a
-	ld a, [MapNumber]
-	ld c, a
 GetAnyMapBank:: ; 2c31
 	push hl
 	push de

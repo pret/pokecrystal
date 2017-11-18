@@ -150,13 +150,6 @@ SwitchSometimes: ; 380c1
 ; 380ff
 
 
-CheckSubstatusCantRun: ; 380ff
-	ld a, [EnemySubStatus5]
-	bit SUBSTATUS_CANT_RUN, a
-	ret
-; 38105
-
-
 AI_TryItem: ; 38105
 	; items are not allowed in the BattleTower
 	ld a, [InBattleTowerBattle]
@@ -746,13 +739,6 @@ TextJump_EnemyWithdrew: ; 384d0
 	db "@"
 ; 384d5
 
-Function384d5: ; This appears to be unused
-	call AIUsedItemSound
-	call AI_HealStatus
-	ld a, X_SPEED
-	jp PrintText_UsedItemOn_AND_AIUpdateHUD
-; 384e0
-
 AI_HealStatus: ; 384e0
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
@@ -789,32 +775,6 @@ EnemyUsedDireHit: ; 38511
 	ld a, DIRE_HIT
 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ; 3851e
-
-Function3851e: ; This appears to be unused
-	ld [hDivisor], a
-	ld hl, EnemyMonMaxHP
-	ld a, [hli]
-	ld [hDividend], a
-	ld a, [hl]
-	ld [hDividend + 1], a
-	ld b, 2
-	call Divide
-	ld a, [hQuotient + 2]
-	ld c, a
-	ld a, [hQuotient + 1]
-	ld b, a
-	ld hl, EnemyMonHP + 1
-	ld a, [hld]
-	ld e, a
-	ld a, [hl]
-	ld d, a
-	ld a, d
-	sub b
-	ret nz
-	ld a, e
-	sub c
-	ret
-; 38541
 
 EnemyUsedXAttack: ; 38541
 	ld b, ATTACK

@@ -1687,11 +1687,6 @@ UnknownText_0xd0a9: ; 0xd0a9
 	text_jump UnknownText_0x1c0965
 	db "@"
 
-UnknownText_0xd0ae: ; unused
-	; Looks like there's nothing here.
-	text_jump UnknownText_0x1c0979
-	db "@"
-
 BikeFunction: ; d0b3
 	call .TryBike
 	and $7f

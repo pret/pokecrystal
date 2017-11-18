@@ -4146,22 +4146,6 @@ BattleAnim_Cosine_e: ; ce76b (33:676b)
 	ld e, a
 	ret
 
-; ce771 (33:6771)
-BattleAnim_AbsSinePrecise: ; ce771
-	ld a, e
-	call BattleAnim_Sine
-	ld e, l
-	ld d, h
-	ret
-
-; ce778
-BattleAnim_AbsCosinePrecise: ; ce778
-	ld a, e
-	call BattleAnim_Cosine
-	ld e, l
-	ld d, h
-	ret
-
 ; ce77f
 BattleAnimSineWave: ; ce77f
 	sine_wave $100

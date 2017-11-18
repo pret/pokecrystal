@@ -167,49 +167,6 @@ SlotsLoop: ; 927af (24:67af)
 
 ; 92811 (24:6811)
 
-Function92811: ; 92811
-; unreferenced - debug function?
-	ld a, [wSlotBias]
-	add 0
-	daa
-	ld e, a
-	and $f
-	add "0"
-	hlcoord 1, 0
-	ld [hl], a
-	ld a, e
-	swap a
-	and $f
-	add "0"
-	hlcoord 0, 0
-	ld [hl], a
-	ret
-
-; 9282c
-
-Function9282c: ; 9282c
-; unreferenced
-; animate OAM tiles?
-	ld hl, wcf66
-	ld a, [hl]
-	inc [hl]
-	and $7
-	ret nz
-	ld hl, Sprites + 16 * 4 + 2
-	ld c, 40 - 16
-.loop
-	ld a, [hl]
-	xor $20
-	ld [hli], a
-	inc hl
-	inc hl
-	inc hl
-	dec c
-	jr nz, .loop
-	ret
-
-; 92844
-
 SlotsJumptable: ; 92844 (24:6844)
 	jumptable .Jumptable, wJumptableIndex
 
@@ -765,25 +722,6 @@ UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
 	ret
 
 ; 92bbe (24:6bbe)
-
-Function92bbe: ; 92bbe
-	push hl
-	srl a
-	srl a
-	add Unknown_92bce % $100
-	ld l, a
-	ld a, 0
-	adc Unknown_92bce / $100
-	ld h, a
-	ld a, [hl]
-	pop hl
-	ret
-
-; 92bce
-
-Unknown_92bce: ; 92bce
-	db 0, 1, 2, 3, 4, 5
-; 92bd4
 
 Function92bd4: ; 92bd4 (24:6bd4)
 	ld hl, wReel1ReelAction - wReel1

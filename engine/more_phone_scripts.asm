@@ -1592,11 +1592,6 @@ UnknownScript_0xa0aa5:
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0aad:
-	farwritetext UnknownText_0x17529c
-	buttonsound
-	jump PhoneScript_HangupText_Male
-
 UnknownScript_0xa0ab5:
 	farwritetext UnknownText_0x175b6d
 	buttonsound

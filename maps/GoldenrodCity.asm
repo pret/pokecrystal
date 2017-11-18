@@ -483,12 +483,6 @@ GoldenrodCityUndergroundSignSouthText:
 	line "ENTRANCE"
 	done
 
-PokeComCenterSignText:
-; unused in the english version
-	text "For Mobile Tips!"
-	line "#COM CENTER"
-	done
-
 GoldenrodCityFlowerShopSignText:
 	text "Blooming Beautiful"
 	line "FLOWER SHOP"

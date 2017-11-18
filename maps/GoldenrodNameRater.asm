@@ -22,8 +22,6 @@ GoldenrodNameRaterBookshelf:
 GoldenrodNameRaterRadio:
 	jumpstd radio2
 
-INCLUDE "text/sweethoney.asm"
-
 GoldenrodNameRater_MapEventHeader:
 	; filler
 	db 0, 0

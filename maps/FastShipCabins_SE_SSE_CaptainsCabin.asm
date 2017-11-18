@@ -18,9 +18,6 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x75ea6:
-	end
-
 CaptainScript_0x75ea7:
 	faceplayer
 	opentext

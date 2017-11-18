@@ -817,11 +817,6 @@ Text_TradeReceptionistMobile:
 	line "mobile phone?"
 	done
 
-Text_ThisWayToMobileRoom:
-	text "This way to the"
-	line "MOBILE ROOM."
-	done
-
 Text_BattleReceptionistIntro:
 	text "Welcome to CABLE"
 	line "CLUB COLOSSEUM."
@@ -886,16 +881,6 @@ Text_PleaseComeAgain:
 	text "Please come again."
 	prompt
 
-Text_PleaseComeIn:
-	text "Please come in."
-	prompt
-
-Text_TemporaryStagingInLinkRoom:
-	text "We'll put you in"
-	line "the link room for"
-	cont "the time being."
-	done
-
 Text_CantLinkToThePast:
 	text "You can't link to"
 	line "the past here."
@@ -909,10 +894,6 @@ Text_IncompatibleRooms:
 Text_PleaseComeIn2:
 	text "Please come in."
 	done
-
-Text_PleaseEnter:
-	text "Please enter."
-	prompt
 
 Text_RejectNewMon:
 	text "Sorry--@"

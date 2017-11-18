@@ -280,17 +280,6 @@ FlyFunction_GetMonIcon: ; 8e9bc (23:69bc)
 	ret
 ; 8e9cc (23:69cc)
 
-GetMonIcon2: ; 8e9cc
-; unreferenced
-	push de
-	ld a, [wd265]
-	call ReadMonMenuIcon
-	ld [CurIcon], a
-	pop de
-	call GetIcon_de
-	ret
-; 8e9db
-
 GetMemIconGFX: ; 8e9db (23:69db)
 	ld a, [wCurIconTile]
 GetIconGFX: ; 8e9de
@@ -309,12 +298,6 @@ HeldItemIcons:
 INCBIN "gfx/icon/mail.2bpp"
 INCBIN "gfx/icon/item.2bpp"
 ; 8ea17
-
-GetIcon_de: ; 8ea17
-; Load icon graphics into VRAM starting from tile de.
-	ld l, e
-	ld h, d
-	jr GetIcon
 
 GetIcon_a: ; 8ea1b
 ; Load icon graphics into VRAM starting from tile a.

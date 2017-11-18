@@ -23,26 +23,6 @@ RockerScript_0x9f669:
 TwinScript_0x9f66c:
 	jumptextfaceplayer UnknownText_0x9f7c8
 
-UnknownText_0x9f66f:
-	text "Did you come to"
-	line "see the BATTLE"
-	cont "TOWER too?"
-
-	para "But I guess you"
-	line "can't go in yet."
-	done
-
-UnknownText_0x9f6ba:
-	text "BATTLE TOWER has"
-	line "opened."
-
-	para "I want to go, but"
-	line "I haven't thought"
-
-	para "up a cool line for"
-	line "when I win."
-	done
-
 UnknownText_0x9f716:
 	text "Are you going to"
 	line "the BATTLE TOWER?"
@@ -52,14 +32,6 @@ UnknownText_0x9f716:
 
 	para "whole lot, you can"
 	line "win special gifts."
-	done
-
-UnknownText_0x9f783:
-	text "I'm going to train"
-	line "my #MON so I'll"
-
-	para "be all ready for"
-	line "the BATTLE TOWER."
 	done
 
 UnknownText_0x9f7c8:

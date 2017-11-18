@@ -228,30 +228,13 @@ UnknownText_0x1c465f::
 	cont "will be saved. OK?"
 	done
 
-UnknownText_0x1c4693::
-	text "The window save"
-	line "area was exceeded."
-	done
-
 UnknownText_0x1c46b7::
 	text "No windows avail-"
 	line "able for popping."
 	done
 
-UnknownText_0x1c46dc::
-	text "Corrupted event!"
-	prompt
-
 _ObjectEventText::
 	text "Object event"
-	done
-
-UnknownText_0x1c46fc::
-	text "BG event"
-	done
-
-UnknownText_0x1c4706::
-	text "Coordinates event"
 	done
 
 UnknownText_0x1c4719::

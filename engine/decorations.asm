@@ -1130,22 +1130,6 @@ GetDecorationID: ; 26f0c
 	ret
 ; 26f19
 
-SetAllDecorationFlags: ; 26f19
-	ld hl, DecorationIDs
-.loop
-	ld a, [hli]
-	cp -1
-	jr z, .done
-	push hl
-	ld b, SET_FLAG
-	call DecorationFlagAction
-	pop hl
-	jr .loop
-
-.done
-	ret
-; 26f2b
-
 DecorationIDs: ; 26f2b
 	db DECO_FEATHERY_BED ; 2
 	db DECO_PINK_BED ; 3

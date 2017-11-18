@@ -197,14 +197,6 @@ UnknownText_0x1c55ac::
 	line "that person!"
 	done
 
-UnknownText_0x1c55ca::
-	text "Thank you!"
-	done
-
-UnknownText_0x1c55d6::
-	text "  :"
-	done
-
 UnknownText_0x1c55db::
 	text "Password OK."
 	line "Select CONTINUE &"
@@ -459,19 +451,6 @@ Text_YouCantTakeAnEgg::
 	para ""
 	done
 
-UnknownText_0x1c5a5a::
-	text "It dodged the"
-	line "thrown BALL!"
-
-	para "This #MON"
-	line "can't be caught!"
-	prompt
-
-UnknownText_0x1c5a90::
-	text "You missed the"
-	line "#MON!"
-	prompt
-
 UnknownText_0x1c5aa6::
 	text "Oh no! The #MON"
 	line "broke free!"
@@ -629,11 +608,6 @@ UnknownText_0x1c5d6e::
 	cont "time to use that!"
 	prompt
 
-UnknownText_0x1c5d97::
-	text "That belongs to"
-	line "someone else!"
-	prompt
-
 UnknownText_0x1c5db6::
 	text "It won't have any"
 	line "effect."
@@ -648,18 +622,6 @@ UnknownText_0x1c5def::
 	text "Don't be a thief!"
 	prompt
 
-UnknownText_0x1c5e01::
-	text "Cycling isn't"
-	line "allowed here."
-	prompt
-
-UnknownText_0x1c5e1d::
-	text "Can't get on your"
-	line "@"
-	text_from_ram StringBuffer1
-	text " now."
-	prompt
-
 UnknownText_0x1c5e3a::
 	text "The #MON BOX"
 	line "is full. That"
@@ -672,21 +634,6 @@ UnknownText_0x1c5e68::
 	text_from_ram StringBuffer2
 	text "."
 	done
-
-UnknownText_0x1c5e7b::
-	text "<PLAYER> got on the@"
-	text_low
-	text_from_ram StringBuffer2
-	text "."
-	prompt
-
-UnknownText_0x1c5e90::
-	text "<PLAYER> got off@"
-	text_low
-	text "the @"
-	text_from_ram StringBuffer2
-	text "."
-	prompt
 
 UnknownText_0x1c5ea8::
 	text_from_ram StringBuffer1

@@ -187,21 +187,6 @@ UnknownText_0x1c03c2::
 	text "."
 	prompt
 
-UnknownText_0x1c03fa::
-	text "You have no room"
-	line "for any more"
-	cont "@"
-	text_from_ram StringBuffer1
-	text "S."
-	prompt
-
-UnknownText_0x1c0421::
-	text "You received"
-	line "@"
-	text_from_ram StringBuffer1
-	text "!"
-	prompt
-
 UnknownText_0x1c0436::
 	text "The link has been"
 	line "cancelled."

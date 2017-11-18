@@ -241,11 +241,3 @@ RestartClock: ; 20021 (8:4021)
 	ld [hl], e
 	ret
 ; 2017c (8:417c)
-
-String_2017c: ; 2017c
-	db "じ@" ; HR
-; 2017e
-
-String_2017e: ; 2017e
-	db "ふん@" ; MIN
-; 20181

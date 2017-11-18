@@ -105,10 +105,6 @@ Tileset20PalMap: ; 0x4caf5
 INCLUDE "tilesets/20_palette_map.asm"
 ; 0x4cb65
 
-UnusedPalMap1:
-INCBIN "tilesets/unused_palette_map_1.bin"
-; 4cbd5
-
 Tileset29PalMap: ; 0x4cbd5
 INCLUDE "tilesets/29_palette_map.asm"
 ; 0x4cc45
@@ -128,7 +124,3 @@ INCLUDE "tilesets/22_palette_map.asm"
 Tileset04PalMap: ; 0x4cd95
 INCLUDE "tilesets/04_palette_map.asm"
 ; 0x4ce05
-
-UnusedPalMap2:
-INCBIN "tilesets/unused_palette_map_2.bin"
-; 4ce1f

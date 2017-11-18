@@ -415,30 +415,6 @@ EraseHallOfFame: ; 14d06
 	jp CloseSRAM
 ; 14d18
 
-Function14d18: ; 14d18
-; XXX
-; copy .Data to SRA4:a007
-	ld a, $4
-	call GetSRAMBank
-	ld hl, .Data
-	ld de, $a007
-	ld bc, .DataEnd - .Data
-	call CopyBytes
-	jp CloseSRAM
-; 14d2c
-
-.Data: ; 14d2c
-	db $0d, $02, $00, $05, $00, $00
-	db $22, $02, $01, $05, $00, $00
-	db $03, $04, $05, $08, $03, $05
-	db $0e, $06, $03, $02, $00, $00
-	db $39, $07, $07, $04, $00, $05
-	db $04, $07, $01, $05, $00, $00
-	db $0f, $05, $14, $07, $05, $05
-	db $11, $0c, $0c, $06, $06, $04
-; 14d5c
-.DataEnd
-
 EraseBattleTowerStatus: ; 14d5c
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
@@ -451,44 +427,6 @@ SaveData: ; 14d68
 	call _SaveData
 	ret
 ; 14d6c
-
-Function14d6c: ; 14d6c
-; XXX
-	ld a, $4
-	call GetSRAMBank
-	ld a, [$a60b]
-	ld b, $0
-	and a
-	jr z, .ok
-	ld b, $2
-
-.ok
-	ld a, b
-	ld [$a60b], a
-	call CloseSRAM
-	ret
-; 14d83
-
-Function14d83: ; 14d83
-; XXX
-	ld a, $4
-	call GetSRAMBank
-	xor a
-	ld [$a60c], a
-	ld [$a60d], a
-	call CloseSRAM
-	ret
-; 14d93
-
-Function14d93: ; 14d93
-; XXX
-	ld a, $7
-	call GetSRAMBank
-	xor a
-	ld [$a000], a
-	call CloseSRAM
-	ret
-; 14da0
 
 
 HallOfFame_InitSaveIfNeeded: ; 14da0

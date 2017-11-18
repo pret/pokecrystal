@@ -74,9 +74,6 @@ MapLavRadioTower1FSignpost0Script:
 MapLavRadioTower1FSignpost1Script:
 	jumptext UnknownText_0x7f32d
 
-UnknownScript_0x7eebc:
-	jumptext UnknownText_0x7f36b
-
 UnknownText_0x7eebf:
 	text "Welcome!"
 	line "Feel free to look"
@@ -210,15 +207,6 @@ UnknownText_0x7f32d:
 
 	para "of the # FLUTE"
 	line "on CHANNEL 20"
-	done
-
-UnknownText_0x7f36b:
-	text "Wow! A full rack"
-	line "of #MON CDs and"
-	cont "videos."
-
-	para "This must be the"
-	line "reference library."
 	done
 
 LavRadioTower1F_MapEventHeader:

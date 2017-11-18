@@ -456,35 +456,6 @@ Function483bb: ; 483bb (12:43bb)
 	ret
 ; 483e8 (12:43e8)
 
-Function483e8: ; 483e8
-	push de
-	ld hl, Prefectures
-	ld a, [MenuSelection]
-	cp $ff
-	jr nz, .asm_483f8
-	ld hl, Wakayama ; last string
-	jr .asm_48405
-
-.asm_483f8
-	ld d, a
-	and a
-	jr z, .asm_48405
-.asm_483fc
-	ld a, [hli]
-	cp "@"
-	jr nz, .asm_483fc
-	ld a, d
-	dec a
-	jr .asm_483f8
-
-.asm_48405
-	ld d, h
-	ld e, l
-	pop hl
-	call PlaceString
-	ret
-; 4840c
-
 Function4840c: ; 4840c (12:440c)
 	call Function48187
 	call Function48283
@@ -604,12 +575,6 @@ MenuDataHeader_0x48513: ; 0x48513
 MenuData2_0x4851b: ; 0x4851b
 	db $1d ; flags
 	db 6 ; items
-
-Unknown_4851d: ; 4851d
-	db $00, $01, $12, $2b, $45, $12, $e8, $43, $00, $00, $00, $00, $00, $00, $2e, $00, $01, $02, $03, $04
-	db $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f, $10, $11, $12, $13, $14, $15, $16, $17, $18
-	db $19, $1a, $1b, $1c, $1d, $1e, $1f, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $2a, $2b, $2c
-	db $2d, $ff
 
 Prefectures:
 Aichi:     db "あいちけん@"   ; Aichi
@@ -1095,24 +1060,6 @@ asm_48922: ; 48922 (12:4922)
 	call DelayFrames
 	jr asm_48972
 ; 4895a (12:495a)
-
-Function4895a: ; 4895a
-	ld a, [hJoyPressed]
-	and a
-	jr z, .asm_48965
-	pop bc
-	ld b, $1
-	push bc
-	jr asm_48972
-
-.asm_48965
-	ld a, [hJoyLast]
-	and a
-	jr z, asm_48972
-
-	pop bc
-	ld b, $1
-	push bc
 
 Function4896e: ; 4896e (12:496e)
 	pop bc
@@ -1620,63 +1567,6 @@ Function48c63: ; 48c63
 	scf
 	ret
 ; 48c8e
-
-Function48c8e: ; 48c8e
-; unreferenced
-	ld hl, $d02a
-	ld d, h
-	ld e, l
-	callba Function48c63
-	hlcoord 10, 7
-	call PlaceString
-	call WaitBGMap
-	ret
-; 48ca3
-
-Function48ca3: ; 48ca3
-	push af
-	push bc
-	push de
-	push hl
-	ld b, 0
-	ld c, 0
-	ld d, 0
-.asm_48cad
-	cp 100
-	jr c, .asm_48cb6
-	sub 100
-	inc b
-	jr .asm_48cad
-
-.asm_48cb6
-	cp 10
-	jr c, .asm_48cbf
-	sub 10
-	inc c
-	jr .asm_48cb6
-
-.asm_48cbf
-	cp 1
-	jr c, .asm_48cc7
-	dec a
-	inc d
-	jr .asm_48cbf
-
-.asm_48cc7
-	ld a, b
-	call Mobile12_Bin2Dec
-	inc hl
-	ld a, c
-	call Mobile12_Bin2Dec
-	inc hl
-	ld a, d
-	call Mobile12_Bin2Dec
-	pop hl
-	pop de
-	pop bc
-	pop af
-	ret
-; 48cda
 
 Function48cda: ; 48cda (12:4cda)
 	ld h, d

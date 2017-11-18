@@ -605,18 +605,6 @@ _GetMovementByte:: ; 1aae
 	ret
 ; 1ac6
 
-SetVramState_Bit0:: ; 1ac6
-	ld hl, VramState
-	set 0, [hl]
-	ret
-; 1acc
-
-ResetVramState_Bit0:: ; 1acc
-	ld hl, VramState
-	res 0, [hl]
-	ret
-; 1ad2
-
 UpdateSprites:: ; 1ad2
 	ld a, [VramState]
 	bit 0, a
