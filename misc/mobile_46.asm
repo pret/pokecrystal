@@ -1320,9 +1320,9 @@ Function118982:
 	ld a, [wcd38]
 	and a
 	jr nz, .asm_118a30
-	call Function119d93
+	call BattleTower_LevelCheck
 	ret c
-	call Function119dd1
+	call BattleTower_UbersCheck
 	ret c
 
 .asm_118a30
@@ -3991,7 +3991,7 @@ String_119d8c:
 	db "CANCEL@"
 ; 119d93
 
-Function119d93: ; 119d93 (46:5d93)
+BattleTower_LevelCheck: ; 119d93 (46:5d93)
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -4035,7 +4035,7 @@ Function119d93: ; 119d93 (46:5d93)
 	scf
 	ret
 
-Function119dd1: ; 119dd1 (46:5dd1)
+BattleTower_UbersCheck: ; 119dd1 (46:5dd1)
 	ld a, [rSVBK]
 	push af
 	ld a, [wcd4f]
