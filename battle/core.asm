@@ -8640,7 +8640,7 @@ ExitBattle: ; 3f69e
 	call ShowLinkBattleParticipantsAfterEnd
 	ld c, 150
 	call DelayFrames
-	call DetermineMobileBattleResult
+	call DisplayLinkBattleResult
 	ret
 
 .not_linked
@@ -8737,7 +8737,7 @@ ShowLinkBattleParticipantsAfterEnd: ; 3f759
 	ret
 ; 3f77c
 
-DetermineMobileBattleResult: ; 3f77c
+DisplayLinkBattleResult: ; 3f77c
 	callba CheckMobileBattleError
 	jp c, .Mobile_InvalidBattle
 	call IsMobileBattle2
