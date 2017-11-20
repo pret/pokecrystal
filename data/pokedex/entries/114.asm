@@ -1,6 +1,6 @@
 ; TangelaPokedexEntry: ; 0x1b948c
 	db "VINE@" ; species name
-	dw 303, 770 ; height, width
+	dw 303, 770 ; height, weight
 
 	db   "During battle, it"
 	next "constantly moves"

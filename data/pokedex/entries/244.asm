@@ -1,6 +1,6 @@
 ; EnteiPokedexEntry: ; 0x1d15dd
 	db "VOLCANO@" ; species name
-	dw 607, 4370 ; height, width
+	dw 607, 4370 ; height, weight
 
 	db   "This brawny"
 	next "#MON courses"

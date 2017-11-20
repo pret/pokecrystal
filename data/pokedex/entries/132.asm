@@ -1,6 +1,6 @@
 ; DittoPokedexEntry: ; 0x1cc13c
 	db "TRANSFORM@" ; species name
-	dw 100, 90 ; height, width
+	dw 100, 90 ; height, weight
 
 	db   "When it encount-"
 	next "ers another DITTO,"

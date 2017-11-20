@@ -1,6 +1,6 @@
 ; QuilavaPokedexEntry: ; 0x1ccb33
 	db "VOLCANO@" ; species name
-	dw 211, 420 ; height, width
+	dw 211, 420 ; height, weight
 
 	db   "Before battle, it"
 	next "turns its back on"

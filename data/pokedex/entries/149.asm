@@ -1,6 +1,6 @@
 ; DragonitePokedexEntry: ; 0x1cc843
 	db "DRAGON@" ; species name
-	dw 703, 4630 ; height, width
+	dw 703, 4630 ; height, weight
 
 	db   "It is said that"
 	next "somewhere in the"

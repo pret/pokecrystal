@@ -1,6 +1,6 @@
 ; FurretPokedexEntry: ; 0x1ccddd
 	db "LONG BODY@" ; species name
-	dw 511, 720 ; height, width
+	dw 511, 720 ; height, weight
 
 	db   "It lives in narrow"
 	next "burrows that fit"

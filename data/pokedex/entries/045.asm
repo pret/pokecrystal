@@ -1,6 +1,6 @@
 ; VileplumePokedexEntry: ; 0x182918
 	db "FLOWER@" ; species name
-	dw 311, 410 ; height, width
+	dw 311, 410 ; height, weight
 
 	db   "By shaking its big"
 	next "petals, it scat-"

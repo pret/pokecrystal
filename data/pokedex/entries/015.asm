@@ -1,6 +1,6 @@
 ; BeedrillPokedexEntry: ; 0x181c8a
 	db "POISON BEE@" ; species name
-	dw 303, 650 ; height, width
+	dw 303, 650 ; height, weight
 
 	db   "It uses sharp,"
 	next "poisonous stings"

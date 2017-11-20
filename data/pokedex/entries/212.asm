@@ -1,6 +1,6 @@
 ; ScizorPokedexEntry: ; 0x1d0821
 	db "SCISSORS@" ; species name
-	dw 511, 2600 ; height, width
+	dw 511, 2600 ; height, weight
 
 	db   "This #MON's"
 	next "pincers, which"

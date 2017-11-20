@@ -1,6 +1,6 @@
 ; MeganiumPokedexEntry: ; 0x1cca54
 	db "HERB@" ; species name
-	dw 511, 2220 ; height, width
+	dw 511, 2220 ; height, weight
 
 	db   "Anyone who stands"
 	next "beside it becomes"

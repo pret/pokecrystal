@@ -1,6 +1,6 @@
 ; MankeyPokedexEntry: ; 0x182dbd
 	db "PIG MONKEY@" ; species name
-	dw 108, 620 ; height, width
+	dw 108, 620 ; height, weight
 
 	db   "It lives in groups"
 	next "in the treetops."

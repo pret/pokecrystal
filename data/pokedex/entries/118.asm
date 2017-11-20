@@ -1,6 +1,6 @@
 ; GoldeenPokedexEntry: ; 0x1b9626
 	db "GOLDFISH@" ; species name
-	dw 200, 330 ; height, width
+	dw 200, 330 ; height, weight
 
 	db   "During spawning"
 	next "season, they swim"

@@ -1,6 +1,6 @@
 ; DugtrioPokedexEntry: ; 0x182b9d
 	db "MOLE@" ; species name
-	dw 204, 730 ; height, width
+	dw 204, 730 ; height, weight
 
 	db   "These DIGLETT"
 	next "triplets dig over"

@@ -1,6 +1,6 @@
 ; CharizardPokedexEntry: ; 0x1818b3
 	db "FLAME@" ; species name
-	dw 507, 2000 ; height, width
+	dw 507, 2000 ; height, weight
 
 	db   "It uses its wings"
 	next "to fly high. The"

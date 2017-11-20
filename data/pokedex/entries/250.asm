@@ -1,6 +1,6 @@
 ; HoOhPokedexEntry: ; 0x1d185d
 	db "RAINBOW@" ; species name
-	dw 1206, 4390 ; height, width
+	dw 1206, 4390 ; height, weight
 
 	db   "It will reveal"
 	next "itself before a"

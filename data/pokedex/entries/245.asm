@@ -1,6 +1,6 @@
 ; SuicunePokedexEntry: ; 0x1d1642
 	db "AURORA@" ; species name
-	dw 607, 4120 ; height, width
+	dw 607, 4120 ; height, weight
 
 	db   "This divine"
 	next "#MON blows"

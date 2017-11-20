@@ -1,6 +1,6 @@
 ; GravelerPokedexEntry: ; 0x1b840c
 	db "ROCK@" ; species name
-	dw 303, 2320 ; height, width
+	dw 303, 2320 ; height, weight
 
 	db   "It travels by rol-"
 	next "ling on mountain"

@@ -1,6 +1,6 @@
 ; NatuPokedexEntry: ; 0x1cd47d
 	db "LITTLE BIRD@" ; species name
-	dw 8, 40 ; height, width
+	dw 8, 40 ; height, weight
 
 	db   "It is extremely"
 	next "good at climbing"

@@ -1,6 +1,6 @@
 ; LarvitarPokedexEntry: ; 0x1d169c
 	db "ROCK SKIN@" ; species name
-	dw 200, 1590 ; height, width
+	dw 200, 1590 ; height, weight
 
 	db   "Born deep under-"
 	next "ground, this"

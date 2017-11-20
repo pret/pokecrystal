@@ -1,6 +1,6 @@
 ; NinetalesPokedexEntry: ; 0x18260c
 	db "FOX@" ; species name
-	dw 307, 440 ; height, width
+	dw 307, 440 ; height, weight
 
 	db   "It is said to live"
 	next "a thousand years,"

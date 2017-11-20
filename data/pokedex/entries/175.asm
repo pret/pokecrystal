@@ -1,6 +1,6 @@
 ; TogepiPokedexEntry: ; 0x1cd396
 	db "SPIKE BALL@" ; species name
-	dw 100, 30 ; height, width
+	dw 100, 30 ; height, weight
 
 	db   "It is considered"
 	next "to be a symbol of"

@@ -1,6 +1,6 @@
 ; NidokingPokedexEntry: ; 0x182463
 	db "DRILL@" ; species name
-	dw 407, 1370 ; height, width
+	dw 407, 1370 ; height, weight
 
 	db   "It uses its thick"
 	next "arms, legs and"

@@ -1,6 +1,6 @@
 ; YanmaPokedexEntry: ; 0x1d0000
 	db "CLEAR WING@" ; species name
-	dw 311, 840 ; height, width
+	dw 311, 840 ; height, weight
 
 	db   "It can see in all"
 	next "directions without"

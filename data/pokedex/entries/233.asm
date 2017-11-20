@@ -1,6 +1,6 @@
 ; Porygon2PokedexEntry: ; 0x1d110c
 	db "VIRTUAL@" ; species name
-	dw 200, 720 ; height, width
+	dw 200, 720 ; height, weight
 
 	db   "This manmade"
 	next "#MON evolved"

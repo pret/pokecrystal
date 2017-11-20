@@ -1,6 +1,6 @@
 ; MrMimePokedexEntry: ; 0x1b97ea
 	db "BARRIER@" ; species name
-	dw 403, 1200 ; height, width
+	dw 403, 1200 ; height, weight
 
 	db   "It uses the"
 	next "mysterious"

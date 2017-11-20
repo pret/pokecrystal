@@ -1,6 +1,6 @@
 ; ForretressPokedexEntry: ; 0x1d0524
 	db "BAGWORM@" ; species name
-	dw 311, 2770 ; height, width
+	dw 311, 2770 ; height, weight
 
 	db   "Usually found"
 	next "hanging on to a"

@@ -1,6 +1,6 @@
 ; VenusaurPokedexEntry: ; 0x181773
 	db "SEED@" ; species name
-	dw 607, 2210 ; height, width
+	dw 607, 2210 ; height, weight
 
 	db   "As it warms it-"
 	next "self and absorbs"

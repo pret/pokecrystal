@@ -1,6 +1,6 @@
 ; MagmarPokedexEntry: ; 0x1b9994
 	db "SPITFIRE@" ; species name
-	dw 403, 980 ; height, width
+	dw 403, 980 ; height, weight
 
 	db   "It moves more"
 	next "frequently in hot"

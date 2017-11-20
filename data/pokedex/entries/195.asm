@@ -1,6 +1,6 @@
 ; QuagsirePokedexEntry: ; 0x1d00dd
 	db "WATER FISH@" ; species name
-	dw 407, 1650 ; height, width
+	dw 407, 1650 ; height, weight
 
 	db   "Its body is always"
 	next "slimy. It often"

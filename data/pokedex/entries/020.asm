@@ -1,6 +1,6 @@
 ; RaticatePokedexEntry: ; 0x181ea3
 	db "RAT@" ; species name
-	dw 204, 410 ; height, width
+	dw 204, 410 ; height, weight
 
 	db   "The webs on its"
 	next "hind legs enable"

@@ -1,6 +1,6 @@
 ; HoundourPokedexEntry: ; 0x1d0eff
 	db "DARK@" ; species name
-	dw 200, 240 ; height, width
+	dw 200, 240 ; height, weight
 
 	db   "Around dawn, its"
 	next "ominous howl"

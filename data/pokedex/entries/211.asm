@@ -1,6 +1,6 @@
 ; QwilfishPokedexEntry: ; 0x1d07b1
 	db "BALLOON@" ; species name
-	dw 108, 90 ; height, width
+	dw 108, 90 ; height, weight
 
 	db   "When faced with a"
 	next "larger opponent,"

@@ -1,6 +1,6 @@
 ; SlugmaPokedexEntry: ; 0x1d0ab8
 	db "LAVA@" ; species name
-	dw 204, 770 ; height, width
+	dw 204, 770 ; height, weight
 
 	db   "These group to-"
 	next "gether in areas"

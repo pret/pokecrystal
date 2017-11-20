@@ -1,6 +1,6 @@
 ; LickitungPokedexEntry: ; 0x1b9210
 	db "LICKING@" ; species name
-	dw 311, 1440 ; height, width
+	dw 311, 1440 ; height, weight
 
 	db   "It has a tongue"
 	next "that is over 6'6''"

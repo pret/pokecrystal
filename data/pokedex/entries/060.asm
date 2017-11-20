@@ -1,6 +1,6 @@
 ; PoliwagPokedexEntry: ; 0x182f91
 	db "TADPOLE@" ; species name
-	dw 200, 270 ; height, width
+	dw 200, 270 ; height, weight
 
 	db   "The swirl on its"
 	next "belly is its"

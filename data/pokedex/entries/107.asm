@@ -1,6 +1,6 @@
 ; HitmonchanPokedexEntry: ; 0x1b91a4
 	db "PUNCHING@" ; species name
-	dw 407, 1110 ; height, width
+	dw 407, 1110 ; height, weight
 
 	db   "To increase the"
 	next "strength of all"

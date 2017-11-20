@@ -1,6 +1,6 @@
 ; IvysaurPokedexEntry: ; 0x181702
 	db "SEED@" ; species name
-	dw 303, 290 ; height, width
+	dw 303, 290 ; height, weight
 
 	db   "The bulb on its"
 	next "back grows as it"

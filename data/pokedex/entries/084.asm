@@ -1,6 +1,6 @@
 ; DoduoPokedexEntry: ; 0x1b87d7
 	db "TWIN BIRD@" ; species name
-	dw 407, 860 ; height, width
+	dw 407, 860 ; height, weight
 
 	db   "It lives on a"
 	next "grassy plain where"

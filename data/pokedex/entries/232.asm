@@ -1,6 +1,6 @@
 ; DonphanPokedexEntry: ; 0x1d10ac
 	db "ARMOR@" ; species name
-	dw 307, 2650 ; height, width
+	dw 307, 2650 ; height, weight
 
 	db   "Because this"
 	next "#MON's skin is"

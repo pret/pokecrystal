@@ -1,6 +1,6 @@
 ; SnorlaxPokedexEntry: ; 0x1cc5cf
 	db "SLEEPING@" ; species name
-	dw 611, 10140 ; height, width
+	dw 611, 10140 ; height, weight
 
 	db   "This #MON's"
 	next "stomach is so"

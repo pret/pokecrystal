@@ -1,6 +1,6 @@
 ; TentacoolPokedexEntry: ; 0x1b82d1
 	db "JELLYFISH@" ; species name
-	dw 211, 1000 ; height, width
+	dw 211, 1000 ; height, weight
 
 	db   "As it floats along"
 	next "on the waves, it"

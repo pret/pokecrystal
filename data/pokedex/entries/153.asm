@@ -1,6 +1,6 @@
 ; BayleefPokedexEntry: ; 0x1cc9e9
 	db "LEAF@" ; species name
-	dw 311, 350 ; height, width
+	dw 311, 350 ; height, weight
 
 	db   "The scent that"
 	next "wafts from the"
