@@ -4224,10 +4224,10 @@ Function119eb4: ; 119eb4 (46:5eb4)
 	ret
 
 Function119ec2: ; 119ec2 (46:5ec2)
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	xor a
-	ld [sMobileLoginPassword + LOGIN_PASSWORD_LENGTH], a
+	ld [sMobileLoginPassword + MOBILE_LOGIN_PASSWORD_LENGTH], a
 	ld de, sMobileLoginPassword + 1
 .loop
 	ld a, [de]
@@ -4395,7 +4395,7 @@ Function119f98: ; 119f98
 ; 11a00e
 
 Function11a00e: ; 11a00e
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	ld a, [sMobileLoginPassword]
 	and a
@@ -4404,7 +4404,7 @@ Function11a00e: ; 11a00e
 	call CloseSRAM
 	and a
 	ret nz
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	xor a
 	ld [sMobileLoginPassword], a

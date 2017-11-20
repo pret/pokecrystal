@@ -7249,13 +7249,13 @@ Function117942: ; 117942 (45:7942)
 	call PlaceString
 	ld a, $1e
 	ld [wcd4e], a
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	ld a, [wcd4f]
 	ld [sMobileLoginPassword], a
 	ld hl, $c708
 	ld de, sMobileLoginPassword + 1
-	ld bc, LOGIN_PASSWORD_LENGTH
+	ld bc, MOBILE_LOGIN_PASSWORD_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ld a, [wcd4f]

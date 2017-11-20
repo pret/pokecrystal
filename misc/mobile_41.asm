@@ -5,7 +5,7 @@ SECTION "bank41_2", ROMX
 
 ; Copies certain values at the time the player enters the Hall of Fame.
 TrainerRankings_HallOfFame2:: mobile ; 0x105ef6
-	ld a, $5
+	ld a, BANK(sTrainerRankingGameTimeHOF)
 	call GetSRAMBank
 
 	ld hl, GameTimeHours
@@ -36,7 +36,7 @@ TrainerRankings_HallOfFame2:: mobile ; 0x105ef6
 ; 105f33
 
 TrainerRankings_MagikarpLength: mobile ; 105f33
-	ld a, $5
+	ld a, BANK(sTrainerRankingLongestMagikarp)
 	call GetSRAMBank
 	ld de, Buffer1
 	ld hl, sTrainerRankingLongestMagikarp
@@ -104,7 +104,7 @@ TrainerRankings_MagikarpLength: mobile ; 105f33
 ; 105f79
 
 TrainerRankings_BugContestScore: mobile ; 105f79
-	ld a, $5
+	ld a, BANK(sTrainerRankingBugContestScore)
 	call GetSRAMBank
 	ld a, [hProduct]
 	ld hl, sTrainerRankingBugContestScore
@@ -133,7 +133,7 @@ TrainerRankings_BugContestScore: mobile ; 105f79
 ; 105f9f
 
 TrainerRankings_AddToSlotsWinStreak: mobile ; 105f9f
-	ld a, $5
+	ld a, BANK(sTrainerRankingCurrentSlotsStreak)
 	call GetSRAMBank
 
 	; Increment the current streak
@@ -173,7 +173,7 @@ TrainerRankings_AddToSlotsWinStreak: mobile ; 105f9f
 ; 105fd0
 
 TrainerRankings_EndSlotsWinStreak: mobile ; 105fd0
-	ld a, $5
+	ld a, BANK(sTrainerRankingCurrentSlotsStreak)
 	call GetSRAMBank
 	ld hl, sTrainerRankingCurrentSlotsStreak
 	xor a
@@ -185,7 +185,7 @@ TrainerRankings_EndSlotsWinStreak: mobile ; 105fd0
 ; 105fe3
 
 TrainerRankings_AddToSlotsPayouts: mobile ; 105fe3
-	ld a, $5
+	ld a, BANK(sTrainerRankingTotalSlotsPayouts)
 	call GetSRAMBank
 	ld hl, sTrainerRankingTotalSlotsPayouts + 3
 	ld a, e
@@ -213,7 +213,7 @@ TrainerRankings_AddToSlotsPayouts: mobile ; 105fe3
 ; 106008
 
 TrainerRankings_AddToBattlePayouts: mobile ; 106008
-	ld a, $5
+	ld a, BANK(sTrainerRankingTotalBattlePayouts)
 	call GetSRAMBank
 	ld hl, sTrainerRankingTotalBattlePayouts + 3
 	ld a, [bc]
@@ -416,7 +416,7 @@ TrainerRankings_Increment1Byte: ; 106129
 
 ; Increments a big-endian value of bc + 1 bytes at hl
 TrainerRankings_Increment: ; 10612d
-	ld a, $5
+	ld a, BANK(sTrainerRankings)
 	call GetSRAMBank
 	push hl
 	push de
@@ -453,7 +453,7 @@ TrainerRankings_Increment: ; 10612d
 
 ; Used when SRAM bank 5 isn’t already loaded — what’s the point of this?
 UpdateTrainerRankingsChecksum2: mobile ; 106155
-	ld a, $5
+	ld a, BANK(sTrainerRankings)
 	call GetSRAMBank
 	call UpdateTrainerRankingsChecksum
 	call CloseSRAM

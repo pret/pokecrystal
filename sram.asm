@@ -243,3 +243,57 @@ SECTION "Boxes 8-14", SRAM
 	box sBox12
 	box sBox13
 	box sBox14
+
+SECTION "SRAM Mobile", SRAM, BANK [5]
+ds 1 ; Former location for sMobileEventIndex, moved to 1:BE3C in English
+sTrainerRankings:: ; a001
+sTrainerRankingGameTimeHOF:: ds 4
+sTrainerRankingStepCountHOF:: ds 4
+sTrainerRankingHealingsHOF:: ds 4
+sTrainerRankingBattlesHOF:: ds 3
+sTrainerRankingStepCount:: ds 4
+sTrainerRankingBattleTowerWins:: ds 4
+sTrainerRankingTMsHMsTaught:: ds 3
+sTrainerRankingBattles:: ds 3
+sTrainerRankingWildBattles:: ds 3
+sTrainerRankingTrainerBattles:: ds 3
+sTrainerRankingUnused1:: ds 3
+sTrainerRankingHOFEntries:: ds 3
+sTrainerRankingWildMonsCaught:: ds 3
+sTrainerRankingHookedEncounters:: ds 3
+sTrainerRankingEggsHatched:: ds 3
+sTrainerRankingMonsEvolved:: ds 3
+sTrainerRankingFruitPicked:: ds 3
+sTrainerRankingHealings:: ds 3
+sTrainerRankingMysteryGift:: ds 3
+sTrainerRankingTrades:: ds 3
+sTrainerRankingFly:: ds 3
+sTrainerRankingSurf:: ds 3
+sTrainerRankingWaterfall:: ds 3
+sTrainerRankingWhiteOuts:: ds 3
+sTrainerRankingLuckyNumberShow:: ds 3
+sTrainerRankingPhoneCalls:: ds 3
+sTrainerRankingUnused2:: ds 3
+sTrainerRankingLinkBattles:: ds 3
+sTrainerRankingSplash:: ds 3
+sTrainerRankingTreeEncounters:: ds 3
+sTrainerRankingUnused3:: ds 3
+sTrainerRankingColosseumWins:: ds 3
+sTrainerRankingColosseumLosses:: ds 3
+sTrainerRankingColosseumDraws:: ds 3
+sTrainerRankingSelfdestruct:: ds 3
+sTrainerRankingCurrentSlotsStreak:: ds 2
+sTrainerRankingLongestSlotsStreak:: ds 2
+sTrainerRankingTotalSlotsPayouts:: ds 4
+sTrainerRankingTotalBattlePayouts:: ds 4
+sTrainerRankingLongestMagikarp:: ds 2
+sTrainerRankingShortestMagikarp:: ds 2
+sTrainerRankingBugContestScore:: ds 2
+sTrainerRankingsChecksum:: ds 2
+sTrainerRankingsEnd:: ; a083
+ds 1 ; Former location for sMobileEventIndexBackup, moved to 1:BE44 in English
+sTrainerRankingsBackup:: ds sTrainerRankingsEnd - sTrainerRankings
+
+ds $945
+; aa4b
+sMobileLoginPassword:: ds MOBILE_LOGIN_PASSWORD_LENGTH
