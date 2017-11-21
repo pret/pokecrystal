@@ -474,7 +474,7 @@
 	map_header_2 PewterGym, PEWTER_GYM, $0, 0
 	map_header_2 PewterMart, PEWTER_MART, $0, 0
 	map_header_2 PewterPokeCenter1F, PEWTER_POKECENTER_1F, $0, 0
-	map_header_2 PewterPokeCEnter2FBeta, PEWTER_POKECENTER_2F_BETA, $0, 0
+	map_header_2 PewterPokeCenter2FBeta, PEWTER_POKECENTER_2F_BETA, $0, 0
 	map_header_2 PewterSnoozeSpeechHouse, PEWTER_SNOOZE_SPEECH_HOUSE, $0, 0
 	map_header_2 OlivinePort, OLIVINE_PORT, $a, 0
 	map_header_2 VermilionPort, VERMILION_PORT, $a, 0
