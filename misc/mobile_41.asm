@@ -1113,21 +1113,3 @@ Function10650a: ; 10650a
 
 GFX_106514:
 INCBIN "gfx/unknown/106514.2bpp"
-
-
-LoadOverworldFont:: ; 106594
-	ld de, .font
-	ld hl, VTiles1
-	lb bc, BANK(.font), $80
-	call Get2bpp
-	ld de, .space
-	ld hl, VTiles2 tile $7f
-	lb bc, BANK(.space), 1
-	call Get2bpp
-	ret
-; 1065ad
-
-.font
-INCBIN "gfx/unknown/1065ad.2bpp"
-.space
-INCBIN "gfx/unknown/106dad.2bpp"
