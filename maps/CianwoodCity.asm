@@ -36,12 +36,12 @@ CianwoodCity_MapScriptHeader:
 	setflag ENGINE_FLYPOINT_CIANWOOD
 	setevent EVENT_EUSINE_IN_BURNED_TOWER
 	checkevent EVENT_FOUGHT_EUSINE
-	iffalse UnknownScript_0x1a001d
+	iffalse .Done
 	disappear CIANWOODCITY_EUSINE
-UnknownScript_0x1a001d:
+.Done:
 	return
 
-UnknownScript_0x1a001e:
+CianwoodCitySuicuneAndEusine:
 	spriteface PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
@@ -63,10 +63,10 @@ UnknownScript_0x1a001e:
 	appear CIANWOODCITY_EUSINE
 	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00e7
 	opentext
-	writetext UnknownText_0x1a0433
+	writetext EusineSuicuneText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x1a05a1, 0
+	winlosstext EusineBeatenText, 0
 	setlasttalked CIANWOODCITY_EUSINE
 	loadtrainer MYSTICALMAN, EUSINE
 	startbattle
@@ -74,7 +74,7 @@ UnknownScript_0x1a001e:
 	reloadmapafterbattle
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	opentext
-	writetext UnknownText_0x1a05c3
+	writetext EusineAfterText
 	waitbutton
 	closetext
 	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00ec
@@ -86,43 +86,43 @@ UnknownScript_0x1a001e:
 .Done:
 	end
 
-PokefanFScript_0x1a0084:
+CianwoodCityChucksWife:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_HM02_FLY
-	iftrue UnknownScript_0x1a00ad
-	writetext UnknownText_0x1a00f1
+	iftrue .GotFly
+	writetext ChucksWifeEasierToFlyText
 	buttonsound
 	checkevent EVENT_BEAT_CHUCK
-	iftrue UnknownScript_0x1a009c
-	writetext UnknownText_0x1a0163
+	iftrue .BeatChuck
+	writetext ChucksWifeBeatChuckText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1a009c:
-	writetext UnknownText_0x1a01e3
+.BeatChuck:
+	writetext ChucksWifeGiveHMText
 	buttonsound
 	verbosegiveitem HM_FLY
-	iffalse UnknownScript_0x1a00b1
+	iffalse .Done
 	setevent EVENT_GOT_HM02_FLY
-	writetext UnknownText_0x1a021d
+	writetext ChucksWifeFlySpeechText
 	buttonsound
-UnknownScript_0x1a00ad:
-	writetext UnknownText_0x1a0277
+.GotFly:
+	writetext ChucksWifeChubbyText
 	waitbutton
-UnknownScript_0x1a00b1:
+.Done:
 	closetext
 	end
 
-StandingYoungsterScript_0x1a00b3:
-	jumptextfaceplayer UnknownText_0x1a02df
+CianwoodCityYoungster:
+	jumptextfaceplayer CianwoodCityYoungsterText
 
-PokefanMScript_0x1a00b6:
-	jumptextfaceplayer UnknownText_0x1a0319
+CianwoodCityPokefanM:
+	jumptextfaceplayer CianwoodCityPokefanMText
 
-LassScript_0x1a00b9:
-	jumptextfaceplayer UnknownText_0x1a0394
+CianwoodCityLass:
+	jumptextfaceplayer CianwoodCityLassText
 
 UnknownScript_0x1a00bc:
 	jumptextfaceplayer UnknownText_0x1a03cc
@@ -185,7 +185,7 @@ MovementData_0x1a00ec:
 	step DOWN
 	step_end
 
-UnknownText_0x1a00f1:
+ChucksWifeEasierToFlyText:
 	text "You crossed the"
 	line "sea to get here?"
 
@@ -199,7 +199,7 @@ UnknownText_0x1a00f1:
 	line "to FLY…"
 	done
 
-UnknownText_0x1a0163:
+ChucksWifeBeatChuckText:
 	text "But you can't use"
 	line "FLY without this"
 	cont "city's GYM BADGE."
@@ -212,7 +212,7 @@ UnknownText_0x1a0163:
 	line "gift for you."
 	done
 
-UnknownText_0x1a01e3:
+ChucksWifeGiveHMText:
 	text "That's CIANWOOD's"
 	line "GYM BADGE!"
 
@@ -220,7 +220,7 @@ UnknownText_0x1a01e3:
 	line "take this HM."
 	done
 
-UnknownText_0x1a021d:
+ChucksWifeFlySpeechText:
 	text "Teach FLY to your"
 	line "#MON."
 
@@ -231,7 +231,7 @@ UnknownText_0x1a021d:
 	line "have visited."
 	done
 
-UnknownText_0x1a0277:
+ChucksWifeChubbyText:
 	text "My husband lost to"
 	line "you, so he needs"
 	cont "to train harder."
@@ -241,7 +241,7 @@ UnknownText_0x1a0277:
 	cont "little chubby."
 	done
 
-UnknownText_0x1a02df:
+CianwoodCityYoungsterText:
 	text "If you use FLY,"
 	line "you can get back"
 
@@ -249,7 +249,7 @@ UnknownText_0x1a02df:
 	line "stantly."
 	done
 
-UnknownText_0x1a0319:
+CianwoodCityPokefanMText:
 	text "Boulders to the"
 	line "north of town can"
 	cont "be crushed."
@@ -262,7 +262,7 @@ UnknownText_0x1a0319:
 	cont "break them."
 	done
 
-UnknownText_0x1a0394:
+CianwoodCityLassText:
 	text "CHUCK, the GYM"
 	line "LEADER, spars with"
 
@@ -281,7 +281,7 @@ UnknownText_0x1a03cc:
 	cont "ly lives there."
 	done
 
-UnknownText_0x1a0433:
+EusineSuicuneText:
 	text "EUSINE: Yo,"
 	line "<PLAYER>."
 
@@ -319,12 +319,12 @@ UnknownText_0x1a0433:
 	line "Let's battle now!"
 	done
 
-UnknownText_0x1a05a1:
+EusineBeatenText:
 	text "I hate to admit"
 	line "it, but you win."
 	done
 
-UnknownText_0x1a05c3:
+EusineAfterText:
 	text "You're amazing,"
 	line "<PLAYER>!"
 
@@ -400,7 +400,7 @@ CianwoodCity_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $10, $b, $0, UnknownScript_0x1a001e, $0, $0
+	xy_trigger 1, $10, $b, $0, CianwoodCitySuicuneAndEusine, $0, $0
 
 .Signposts:
 	db 8
@@ -415,15 +415,15 @@ CianwoodCity_MapEventHeader:
 
 .PersonEvents:
 	db 12
-	person_event SPRITE_STANDING_YOUNGSTER, 37, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a00b3, -1
-	person_event SPRITE_POKEFAN_M, 33, 17, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x1a00b6, -1
-	person_event SPRITE_LASS, 42, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x1a00b9, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 37, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CianwoodCityYoungster, -1
+	person_event SPRITE_POKEFAN_M, 33, 17, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityPokefanM, -1
+	person_event SPRITE_LASS, 42, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityLass, -1
 	person_event SPRITE_ROCK, 16, 8, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	person_event SPRITE_ROCK, 17, 9, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	person_event SPRITE_ROCK, 25, 4, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	person_event SPRITE_ROCK, 29, 5, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	person_event SPRITE_ROCK, 27, 10, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
 	person_event SPRITE_ROCK, 19, 4, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	person_event SPRITE_POKEFAN_F, 46, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x1a0084, -1
+	person_event SPRITE_POKEFAN_F, 46, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodCityChucksWife, -1
 	person_event SPRITE_SUPER_NERD, 21, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
 	person_event SPRITE_SUICUNE, 14, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

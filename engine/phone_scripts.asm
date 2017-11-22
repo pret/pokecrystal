@@ -22,16 +22,16 @@ MomPhoneScript: ; 0xbceaa
 	buttonsound
 	mapnametotext $0
 	checkcode VAR_ROOFPALETTE
-	if_equal $1, UnknownScript_0xbcee7
-	if_equal $2, UnknownScript_0xbcf27
+	if_equal $1, MomPhonePalette1
+	if_equal $2, MomPhonePalette2
 	jump UnknownScript_0xbcf2f
 
-UnknownScript_0xbcedf: ; 0xbcedf
-	farwritetext UnknownText_0x1b4021
+MomPhoneLandmark: ; 0xbcedf
+	farwritetext MomPhoneLandmarkText
 	buttonsound
 	jump UnknownScript_0xbcf37
 
-UnknownScript_0xbcee7: ; 0xbcee7
+MomPhonePalette1: ; 0xbcee7
 	checkcode VAR_MAPGROUP
 	if_equal GROUP_NEW_BARK_TOWN, .newbark
 	if_equal GROUP_CHERRYGROVE_CITY, .cherrygrove
@@ -54,39 +54,39 @@ UnknownScript_0xbcee7: ; 0xbcee7
 
 .violet ; 0xbcf15
 	landmarktotext SPROUT_TOWER, 1
-	jump UnknownScript_0xbcedf
+	jump MomPhoneLandmark
 .azalea ; 0xbcf1b
 	landmarktotext SLOWPOKE_WELL, 1
-	jump UnknownScript_0xbcedf
+	jump MomPhoneLandmark
 .goldenrod ; 0xbcf21
 	landmarktotext RADIO_TOWER, 1
-	jump UnknownScript_0xbcedf
+	jump MomPhoneLandmark
 
-UnknownScript_0xbcf27: ; 0xbcf27
-	farwritetext UnknownText_0x1b411c
+MomPhonePalette2: ; 0xbcf27
+	farwritetext MomOtherAreaText
 	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf2f: ; 0xbcf2f
-	farwritetext UnknownText_0x1b4150
+	farwritetext MomDeterminedText
 	buttonsound
 	jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf37: ; 0xbcf37
 	checkflag ENGINE_MOM_SAVING_MONEY
-	iffalse UnknownScript_0xbcf49
+	iffalse CheckIfMomHasMoney
 	checkmoney $1, 0
 	if_equal $0, UnknownScript_0xbcf55
 	jump UnknownScript_0xbcf63
 
-UnknownScript_0xbcf49: ; 0xbcf49
+CheckIfMomHasMoney: ; 0xbcf49
 	checkmoney $1, 0
-	if_equal $0, UnknownScript_0xbcf79
-	jump UnknownScript_0xbcf6e
+	if_equal $0, MomHasMoney
+	jump MomHasNoMoney
 
 UnknownScript_0xbcf55: ; 0xbcf55
 	readmoney $1, $0
-	farwritetext UnknownText_0x1b41a7
+	farwritetext MomCheckBalanceText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
 	jump MomPhoneWontSaveMoneyScript
@@ -97,13 +97,13 @@ UnknownScript_0xbcf63: ; 0xbcf63
 	iftrue MomPhoneSaveMoneyScript
 	jump MomPhoneWontSaveMoneyScript
 
-UnknownScript_0xbcf6e: ; 0xbcf6e
+MomHasNoMoney: ; 0xbcf6e
 	farwritetext UnknownText_0x1b420d
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
 	jump MomPhoneWontSaveMoneyScript
 
-UnknownScript_0xbcf79: ; 0xbcf79
+MomHasMoney: ; 0xbcf79
 	readmoney $1, $0
 	farwritetext UnknownText_0x1b4249
 	yesorno

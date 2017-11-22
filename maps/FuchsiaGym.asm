@@ -13,16 +13,16 @@ FuchsiaGym_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-JanineScript_0x195db9:
+FuchsiaGymJanineScript:
 	checkflag ENGINE_SOULBADGE
 	iftrue .FightDone
-	applymovement FUCHSIAGYM_JANINE, MovementData_0x195f27
+	applymovement FUCHSIAGYM_JANINE, Movement_NinjaSpin
 	faceplayer
 	opentext
-	writetext UnknownText_0x195f35
+	writetext JanineText_DisappointYou
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x195fa1, 0
+	winlosstext JanineText_ToughOne, 0
 	loadtrainer JANINE, 1
 	startbattle
 	reloadmapafterbattle
@@ -37,159 +37,159 @@ JanineScript_0x195db9:
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	opentext
-	writetext UnknownText_0x195feb
+	writetext Text_ReceivedSoulBadge
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_SOULBADGE
-	jump UnknownScript_0x195e02
+	jump .AfterBattle
 .FightDone:
 	faceplayer
 	opentext
-UnknownScript_0x195e02:
+.AfterBattle:
 	checkevent EVENT_GOT_TM06_TOXIC
-	iftrue UnknownScript_0x195e15
-	writetext UnknownText_0x196002
+	iftrue .AfterTM
+	writetext JanineText_ToxicSpeech
 	buttonsound
 	verbosegiveitem TM_TOXIC
-	iffalse UnknownScript_0x195e15
+	iffalse .AfterTM
 	setevent EVENT_GOT_TM06_TOXIC
-UnknownScript_0x195e15:
-	writetext UnknownText_0x196074
+.AfterTM:
+	writetext JanineText_ApplyMyself
 	waitbutton
 	closetext
 	end
 
-FuschiaGym1Script_0x195e1b:
+LassAliceScript:
 	checkevent EVENT_BEAT_LASS_ALICE
-	iftrue UnknownScript_0x195e2c
-	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, MovementData_0x195f27
+	iftrue .AliceUnmasked
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
 	special MapCallbackSprites_LoadUsedSpritesGFX
-UnknownScript_0x195e2c:
+.AliceUnmasked:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_LASS_ALICE
-	iftrue UnknownScript_0x195e4f
-	writetext UnknownText_0x1960e6
+	iftrue .AliceAfterScript
+	writetext LassAliceBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x196126, 0
+	winlosstext LassAliceBeatenText, 0
 	loadtrainer LASS, ALICE
 	startbattle
-	iftrue UnknownScript_0x195e4a
+	iftrue .AliceBecomesJanine
 	reloadmapafterbattle
 	setevent EVENT_BEAT_LASS_ALICE
 	end
 
-UnknownScript_0x195e4a:
+.AliceBecomesJanine:
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
 	reloadmapafterbattle
 	end
 
-UnknownScript_0x195e4f:
-	writetext UnknownText_0x196139
+.AliceAfterScript:
+	writetext LassAliceAfterText
 	waitbutton
 	closetext
 	end
 
-FuschiaGym2Script_0x195e55:
+LassLindaScript:
 	checkevent EVENT_BEAT_LASS_LINDA
-	iftrue UnknownScript_0x195e66
-	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, MovementData_0x195f27
+	iftrue .LindaUnmasked
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	special MapCallbackSprites_LoadUsedSpritesGFX
-UnknownScript_0x195e66:
+.LindaUnmasked:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_LASS_LINDA
-	iftrue UnknownScript_0x195e89
-	writetext UnknownText_0x196166
+	iftrue .LindaAfterScript
+	writetext LassLindaBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x19617b, 0
+	winlosstext LassLindaBeatenText, 0
 	loadtrainer LASS, LINDA
 	startbattle
-	iftrue UnknownScript_0x195e84
+	iftrue .LindaBecomesJanine
 	reloadmapafterbattle
 	setevent EVENT_BEAT_LASS_LINDA
 	end
 
-UnknownScript_0x195e84:
+.LindaBecomesJanine:
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
 	reloadmapafterbattle
 	end
 
-UnknownScript_0x195e89:
-	writetext UnknownText_0x196199
+.LindaAfterScript:
+	writetext LassLindaAfterText
 	waitbutton
 	closetext
 	end
 
-FuschiaGym3Script_0x195e8f:
+PicnickerCindyScript:
 	checkevent EVENT_BEAT_PICNICKER_CINDY
-	iftrue UnknownScript_0x195ea0
-	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, MovementData_0x195f27
+	iftrue .CindyUnmasked
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	special MapCallbackSprites_LoadUsedSpritesGFX
-UnknownScript_0x195ea0:
+.CindyUnmasked:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_PICNICKER_CINDY
-	iftrue UnknownScript_0x195ec3
-	writetext UnknownText_0x1961bb
+	iftrue .CindyAfterScript
+	writetext PicnickerCindyBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x1961f1, 0
+	winlosstext PicnickerCindyBeatenText, 0
 	loadtrainer PICNICKER, CINDY
 	startbattle
-	iftrue UnknownScript_0x195ebe
+	iftrue .CindyBecomesJanine
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PICNICKER_CINDY
 	end
 
-UnknownScript_0x195ebe:
+.CindyBecomesJanine:
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
 	reloadmapafterbattle
 	end
 
-UnknownScript_0x195ec3:
+.CindyAfterScript:
 	writetext UnknownText_0x19620c
 	waitbutton
 	closetext
 	end
 
-FuschiaGym4Script_0x195ec9:
+CamperBarryScript:
 	checkevent EVENT_BEAT_CAMPER_BARRY
-	iftrue UnknownScript_0x195eda
-	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, MovementData_0x195f27
+	iftrue .BarryUnmasked
+	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
 	special MapCallbackSprites_LoadUsedSpritesGFX
-UnknownScript_0x195eda:
+.BarryUnmasked:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_CAMPER_BARRY
-	iftrue UnknownScript_0x195efd
-	writetext UnknownText_0x196228
+	iftrue .BarryAfterScript
+	writetext CamperBarryBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x19624a, 0
+	winlosstext CamperBarryBeatenText, 0
 	loadtrainer CAMPER, BARRY
 	startbattle
-	iftrue UnknownScript_0x195ef8
+	iftrue .BarryBecomesJanine
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CAMPER_BARRY
 	end
 
-UnknownScript_0x195ef8:
+.BarryBecomesJanine:
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
 	reloadmapafterbattle
 	end
 
-UnknownScript_0x195efd:
+.BarryAfterScript:
 	writetext UnknownText_0x19626b
 	waitbutton
 	closetext
@@ -219,7 +219,7 @@ FuchsiaGymStatue:
 	trainertotext JANINE, 1, $1
 	jumpstd gymstatue2
 
-MovementData_0x195f27:
+Movement_NinjaSpin:
 	turn_head DOWN
 	turn_head LEFT
 	turn_head UP
@@ -235,7 +235,7 @@ MovementData_0x195f27:
 	turn_head DOWN
 	step_end
 
-UnknownText_0x195f35:
+JanineText_DisappointYou:
 	text "Fufufufu…"
 
 	para "I'm sorry to dis-"
@@ -249,7 +249,7 @@ UnknownText_0x195f35:
 	line "GYM, that's me!"
 	done
 
-UnknownText_0x195fa1:
+JanineText_ToughOne:
 	text "JANINE: You're a"
 	line "tough one. You"
 	cont "definitely won…"
@@ -258,12 +258,12 @@ UnknownText_0x195fa1:
 	line "Take it."
 	done
 
-UnknownText_0x195feb:
+Text_ReceivedSoulBadge:
 	text "<PLAYER> received"
 	line "SOULBADGE."
 	done
 
-UnknownText_0x196002:
+JanineText_ToxicSpeech:
 	text "JANINE: You're so"
 	line "tough! I have a"
 	cont "special gift!"
@@ -275,7 +275,7 @@ UnknownText_0x196002:
 	line "victim's HP."
 	done
 
-UnknownText_0x196074:
+JanineText_ApplyMyself:
 	text "JANINE: I'm going"
 	line "to really apply"
 
@@ -287,7 +287,7 @@ UnknownText_0x196074:
 	cont "Father and you!"
 	done
 
-UnknownText_0x1960e6:
+LassAliceBeforeText:
 	text "Fufufu!"
 
 	para "I'm JANINE, the"
@@ -297,32 +297,32 @@ UnknownText_0x1960e6:
 	line "Gotcha, sucker!"
 	done
 
-UnknownText_0x196126:
+LassAliceBeatenText:
 	text "I had you fooled…"
 	done
 
-UnknownText_0x196139:
+LassAliceAfterText:
 	text "How will you dis-"
 	line "tinguish our real"
 	cont "LEADER?"
 	done
 
-UnknownText_0x196166:
+LassLindaBeforeText:
 	text "Fooled you!"
 	line "Hahaha!"
 	done
 
-UnknownText_0x19617b:
+LassLindaBeatenText:
 	text "Ooh… I lost…"
 	line "You're not weak…"
 	done
 
-UnknownText_0x196199:
+LassLindaAfterText:
 	text "Well? Wasn't my"
 	line "disguise perfect?"
 	done
 
-UnknownText_0x1961bb:
+PicnickerCindyBeforeText:
 	text "I'm JANINE!"
 
 	para "How did you know I"
@@ -331,7 +331,7 @@ UnknownText_0x1961bb:
 	para "Let's battle!"
 	done
 
-UnknownText_0x1961f1:
+PicnickerCindyBeatenText:
 	text "Darn it!"
 	line "I wanted to win!"
 	done
@@ -341,14 +341,14 @@ UnknownText_0x19620c:
 	line "getting tired."
 	done
 
-UnknownText_0x196228:
+CamperBarryBeforeText:
 	text "Wahahaha!"
 
 	para "You betcha!"
 	line "I'm JANINE!"
 	done
 
-UnknownText_0x19624a:
+CamperBarryBeatenText:
 	text "My disguise was"
 	line "right on! Dang!"
 	done
@@ -399,9 +399,9 @@ FuchsiaGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_JANINE, 10, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, JanineScript_0x195db9, -1
-	person_event SPRITE_FUCHSIA_GYM_1, 7, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, FuschiaGym1Script_0x195e1b, -1
-	person_event SPRITE_FUCHSIA_GYM_2, 11, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, FuschiaGym2Script_0x195e55, -1
-	person_event SPRITE_FUCHSIA_GYM_3, 4, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, FuschiaGym3Script_0x195e8f, -1
-	person_event SPRITE_FUCHSIA_GYM_4, 2, 4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, FuschiaGym4Script_0x195ec9, -1
+	person_event SPRITE_JANINE, 10, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
+	person_event SPRITE_FUCHSIA_GYM_1, 7, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, LassAliceScript, -1
+	person_event SPRITE_FUCHSIA_GYM_2, 11, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, LassLindaScript, -1
+	person_event SPRITE_FUCHSIA_GYM_3, 4, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, PicnickerCindyScript, -1
+	person_event SPRITE_FUCHSIA_GYM_4, 2, 4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, CamperBarryScript, -1
 	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, FuchsiaGymGuyScript, -1

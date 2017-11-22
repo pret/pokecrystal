@@ -10,19 +10,19 @@ CeruleanMart_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ClerkScript_0x188ac0:
+CeruleanMart_Clerk:
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_CERULEAN
 	closetext
 	end
 
-CooltrainerMScript_0x188ac7:
-	jumptextfaceplayer UnknownText_0x188acd
+CeruleanMart_CooltrainerM:
+	jumptextfaceplayer CeruleanMart_CooltrainerMText
 
-CooltrainerFScript_0x188aca:
-	jumptextfaceplayer UnknownText_0x188b46
+CeruleanMart_CooltrainerF:
+	jumptextfaceplayer CeruleanMart_CooltrainerFText
 
-UnknownText_0x188acd:
+CeruleanMart_CooltrainerMText:
 	text "You'll run into"
 	line "many trainers on"
 
@@ -36,7 +36,7 @@ UnknownText_0x188acd:
 	line "trainers."
 	done
 
-UnknownText_0x188b46:
+CeruleanMart_CooltrainerFText:
 	text "MISTY is about the"
 	line "only person in"
 
@@ -62,6 +62,6 @@ CeruleanMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x188ac0, -1
-	person_event SPRITE_COOLTRAINER_M, 6, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x188ac7, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x188aca, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeruleanMart_Clerk, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CeruleanMart_CooltrainerM, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CeruleanMart_CooltrainerF, -1

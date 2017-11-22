@@ -1,32 +1,32 @@
 SweetScentFromMenu: ; 506bc
-	ld hl, UnknownScript_0x506c8
+	ld hl, .SweetScent
 	call QueueScript
 	ld a, $1
 	ld [wFieldMoveSucceeded], a
 	ret
 ; 506c8
 
-UnknownScript_0x506c8: ; 0x506c8
+.SweetScent: ; 0x506c8
 	reloadmappart
 	special UpdateTimePals
 	callasm GetPartyNick
 	writetext UnknownText_0x50726
 	waitbutton
 	callasm SweetScentEncounter
-	iffalse UnknownScript_0x506e9
+	iffalse SweetScentNothing
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue UnknownScript_0x506e5
+	iftrue .BugCatchingContest
 	randomwildmon
 	startbattle
 	reloadmapafterbattle
 	end
 ; 0x506e5
 
-UnknownScript_0x506e5: ; 0x506e5
+.BugCatchingContest: ; 0x506e5
 	farjump BugCatchingContestBattleScript
 ; 0x506e9
 
-UnknownScript_0x506e9: ; 0x506e9
+SweetScentNothing: ; 0x506e9
 	writetext UnknownText_0x5072b
 	waitbutton
 	closetext

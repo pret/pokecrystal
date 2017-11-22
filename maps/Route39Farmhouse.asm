@@ -9,91 +9,91 @@ Route39Farmhouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanMScript_0x9ceb4:
+PokefanM_DairyFarmer:
 	faceplayer
 	opentext
 	checkevent EVENT_HEALED_MOOMOO
-	iftrue UnknownScript_0x9cec5
-	writetext UnknownText_0x9cf38
+	iftrue FarmerMScript_SellMilk
+	writetext FarmerMText_SickCow
 	waitbutton
 	closetext
 	setevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
 	end
 
-UnknownScript_0x9cec5:
+FarmerMScript_SellMilk:
 	checkitem MOOMOO_MILK
-	iftrue UnknownScript_0x9cf08
-	writetext UnknownText_0x9cfe1
+	iftrue FarmerMScript_Milking
+	writetext FarmerMText_BuyMilk
 	special PlaceMoneyTopRight
 	yesorno
-	iffalse UnknownScript_0x9cf02
+	iffalse FarmerMScript_NoSale
 	checkmoney $0, 500
-	if_equal $2, UnknownScript_0x9cef6
+	if_equal $2, FarmerMScript_NoMoney
 	giveitem MOOMOO_MILK
-	iffalse UnknownScript_0x9cefc
+	iffalse FarmerMScript_NoRoom
 	takemoney $0, 500
 	special PlaceMoneyTopRight
 	waitsfx
 	playsound SFX_TRANSACTION
-	writetext UnknownText_0x9d05d
+	writetext FarmerMText_GotMilk
 	buttonsound
 	itemnotify
 	closetext
 	end
 
-UnknownScript_0x9cef6:
-	writetext UnknownText_0x9d07c
+FarmerMScript_NoMoney:
+	writetext FarmerMText_NoMoney
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x9cefc:
-	writetext UnknownText_0x9d09d
+FarmerMScript_NoRoom:
+	writetext FarmerMText_NoRoom
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x9cf02:
-	writetext UnknownText_0x9d0b7
+FarmerMScript_NoSale:
+	writetext FarmerMText_NoSale
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x9cf08:
-	writetext UnknownText_0x9d0dc
+FarmerMScript_Milking:
+	writetext FarmerMText_Milking
 	waitbutton
 	closetext
 	end
 
-PokefanFScript_0x9cf0e:
+PokefanF_SnoreFarmer:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
-	iftrue UnknownScript_0x9cf2f
+	iftrue FarmerFScript_GotSnore
 	checkevent EVENT_HEALED_MOOMOO
-	iftrue UnknownScript_0x9cf22
-	writetext UnknownText_0x9d0f6
+	iftrue FarmerFScript_GiveSnore
+	writetext FarmerFText_InTrouble
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x9cf22:
-	writetext UnknownText_0x9d156
+FarmerFScript_GiveSnore:
+	writetext FarmerFText_HealedMiltank
 	buttonsound
 	verbosegiveitem TM_SNORE
-	iffalse UnknownScript_0x9cf33
+	iffalse FarmerFScript_NoRoomForSnore
 	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
-UnknownScript_0x9cf2f:
-	writetext UnknownText_0x9d1c7
+FarmerFScript_GotSnore:
+	writetext FarmerFText_SnoreSpeech
 	waitbutton
-UnknownScript_0x9cf33:
+FarmerFScript_NoRoomForSnore:
 	closetext
 	end
 
 FarmhouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x9cf38:
+FarmerMText_SickCow:
 	text "My MILTANK ain't"
 	line "givin' me milk"
 	cont "n'more."
@@ -111,7 +111,7 @@ UnknownText_0x9cf38:
 	line "BERRIES, I reckon."
 	done
 
-UnknownText_0x9cfe1:
+FarmerMText_BuyMilk:
 	text "How'd you like my"
 	line "MOOMOO MILK?"
 
@@ -125,32 +125,32 @@ UnknownText_0x9cfe1:
 	line "fer just ¥500."
 	done
 
-UnknownText_0x9d05d:
+FarmerMText_GotMilk:
 	text "Here ya go!"
 	line "Drink up'n enjoy!"
 	done
 
-UnknownText_0x9d07c:
+FarmerMText_NoMoney:
 	text "Sorry, there."
 	line "No cash, no sale!"
 	done
 
-UnknownText_0x9d09d:
+FarmerMText_NoRoom:
 	text "I reckon yer"
 	line "PACK's full."
 	done
 
-UnknownText_0x9d0b7:
+FarmerMText_NoSale:
 	text "You don't want it?"
 	line "Come again, hear?"
 	done
 
-UnknownText_0x9d0dc:
+FarmerMText_Milking:
 	text "I best go do my"
 	line "milkin'."
 	done
 
-UnknownText_0x9d0f6:
+FarmerFText_InTrouble:
 	text "Our milk even goes"
 	line "out to KANTO."
 
@@ -161,7 +161,7 @@ UnknownText_0x9d0f6:
 	line "in trouble."
 	done
 
-UnknownText_0x9d156:
+FarmerFText_HealedMiltank:
 	text "You fixed our"
 	line "MILTANK, hon. Now"
 
@@ -172,12 +172,12 @@ UnknownText_0x9d156:
 	line "fer your trouble."
 	done
 
-UnknownText_0x9d1b5:
+Text_ReceivedTM13:
 	text "<PLAYER> received"
 	line "TM13."
 	done
 
-UnknownText_0x9d1c7:
+FarmerFText_SnoreSpeech:
 	text "That there's"
 	line "SNORE."
 
@@ -211,5 +211,5 @@ Route39Farmhouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x9ceb4, -1
-	person_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x9cf0e, -1
+	person_event SPRITE_POKEFAN_M, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, PokefanM_DairyFarmer, -1
+	person_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, PokefanF_SnoreFarmer, -1

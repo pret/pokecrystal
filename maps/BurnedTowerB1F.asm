@@ -14,8 +14,8 @@ BurnedTowerB1F_MapScriptHeader:
 	db 2
 
 	; triggers
-	dw UnknownScript_0x18615e, 0
-	dw UnknownScript_0x18615f, 0
+	dw .Trigger0, 0
+	dw .Trigger1, 0
 
 .MapCallbacks:
 	db 1
@@ -24,10 +24,10 @@ BurnedTowerB1F_MapScriptHeader:
 
 	dbw MAPCALLBACK_TILES, BurnedTowerB1FLadderCallback
 
-UnknownScript_0x18615e:
+.Trigger0:
 	end
 
-UnknownScript_0x18615f:
+.Trigger1:
 	end
 
 BurnedTowerB1FLadderCallback:

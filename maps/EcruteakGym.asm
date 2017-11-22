@@ -19,7 +19,7 @@ EcruteakGym_MapScriptHeader:
 	db 0
 
 UnknownScript_0x99d53:
-	priorityjump UnknownScript_0x99dc6
+	priorityjump EcruteakGymClosed
 	end
 
 UnknownScript_0x99d57:
@@ -39,7 +39,7 @@ MortyScript_0x99d58:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
 	opentext
-	writetext UnknownText_0x9a043
+	writetext Text_ReceivedFogBadge
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_FOGBADGE
@@ -50,25 +50,25 @@ MortyScript_0x99d58:
 	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone:
 	checkevent EVENT_GOT_TM30_SHADOW_BALL
-	iftrue UnknownScript_0x99db1
+	iftrue .GotShadowBall
 	setevent EVENT_BEAT_SAGE_JEFFREY
 	setevent EVENT_BEAT_SAGE_PING
 	setevent EVENT_BEAT_MEDIUM_MARTHA
 	setevent EVENT_BEAT_MEDIUM_GRACE
-	writetext UnknownText_0x9a059
+	writetext MortyText_FogBadgeSpeech
 	buttonsound
 	verbosegiveitem TM_SHADOW_BALL
-	iffalse UnknownScript_0x99db5
+	iffalse .NoRoomForShadowBall
 	setevent EVENT_GOT_TM30_SHADOW_BALL
-	writetext UnknownText_0x9a0ec
+	writetext MortyText_ShadowBallSpeech
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x99db1:
+.GotShadowBall:
 	writetext UnknownText_0x9a145
 	waitbutton
-UnknownScript_0x99db5:
+.NoRoomForShadowBall:
 	closetext
 	end
 
@@ -83,7 +83,7 @@ EcruteakGymTriggerRockets:
 .RadioTowerRockets:
 	jumpstd radiotowerrockets
 
-UnknownScript_0x99dc6:
+EcruteakGymClosed:
 	applymovement PLAYER, MovementData_0x99e5d
 	applymovement ECRUTEAKGYM_GRAMPS, MovementData_0x99e63
 	opentext
@@ -230,12 +230,12 @@ UnknownText_0x9a00a:
 	line "BADGE is yours."
 	done
 
-UnknownText_0x9a043:
+Text_ReceivedFogBadge:
 	text "<PLAYER> received"
 	line "FOGBADGE."
 	done
 
-UnknownText_0x9a059:
+MortyText_FogBadgeSpeech:
 	text "By having FOG-"
 	line "BADGE, #MON up"
 
@@ -252,7 +252,7 @@ UnknownText_0x9a059:
 	line "this too."
 	done
 
-UnknownText_0x9a0ec:
+MortyText_ShadowBallSpeech:
 	text "It's SHADOW BALL."
 	line "It causes damage"
 

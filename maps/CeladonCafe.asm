@@ -12,76 +12,76 @@ CeladonCafe_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-SuperNerdScript_0x73049:
+CeladonCafeChef:
 	faceplayer
 	opentext
-	writetext UnknownText_0x730de
+	writetext ChefText_Eatathon
 	waitbutton
 	closetext
 	end
 
-FisherScript_0x73051:
+CeladonCafeFisher1:
 	opentext
-	writetext UnknownText_0x73129
+	writetext Fisher1Text_Snarfle
 	waitbutton
 	closetext
 	faceplayer
 	opentext
-	writetext UnknownText_0x7313a
+	writetext Fisher1Text_Concentration
 	waitbutton
 	closetext
 	spriteface CELADONCAFE_FISHER1, LEFT
 	end
 
-FisherScript_0x73062:
+CeladonCafeFisher2:
 	opentext
-	writetext UnknownText_0x7316a
+	writetext Fisher2Text_GulpChew
 	waitbutton
 	closetext
 	faceplayer
 	opentext
-	writetext UnknownText_0x73178
+	writetext Fisher2Text_Quantity
 	waitbutton
 	closetext
 	spriteface CELADONCAFE_FISHER2, RIGHT
 	end
 
-FisherScript_0x73073:
+CeladonCafeFisher3:
 	opentext
-	writetext UnknownText_0x731ae
+	writetext Fisher3Text_MunchMunch
 	waitbutton
 	closetext
 	faceplayer
 	opentext
-	writetext UnknownText_0x731bd
+	writetext Fisher3Text_GoldenrodIsBest
 	waitbutton
 	closetext
 	spriteface CELADONCAFE_FISHER3, RIGHT
 	end
 
-TeacherScript_0x73084:
+CeladonCafeTeacher:
 	checkitem COIN_CASE
-	iftrue UnknownScript_0x7309a
+	iftrue .HasCoinCase
 	opentext
-	writetext UnknownText_0x73201
+	writetext TeacherText_CrunchCrunch
 	waitbutton
 	closetext
 	faceplayer
 	opentext
-	writetext UnknownText_0x73212
+	writetext TeacherText_NoCoinCase
 	waitbutton
 	closetext
 	spriteface CELADONCAFE_TEACHER, LEFT
 	end
 
-UnknownScript_0x7309a:
+.HasCoinCase:
 	opentext
-	writetext UnknownText_0x73254
+	writetext TeacherText_KeepEating
 	waitbutton
 	closetext
 	spriteface CELADONCAFE_TEACHER, RIGHT
 	opentext
-	writetext UnknownText_0x73278
+	writetext TeacherText_MoreChef
 	waitbutton
 	closetext
 	spriteface CELADONCAFE_TEACHER, LEFT
@@ -118,7 +118,7 @@ CeladonCafeTrashcan:
 .TrashEmpty:
 	jumpstd trashcan
 
-UnknownText_0x730de:
+ChefText_Eatathon:
 	text "Hi!"
 
 	para "We're holding an"
@@ -128,22 +128,22 @@ UnknownText_0x730de:
 	line "right now. Sorry."
 	done
 
-UnknownText_0x73129:
+Fisher1Text_Snarfle:
 	text "…Snarfle, chew…"
 	done
 
-UnknownText_0x7313a:
+Fisher1Text_Concentration:
 	text "Don't talk to me!"
 
 	para "You'll break my"
 	line "concentration!"
 	done
 
-UnknownText_0x7316a:
+Fisher2Text_GulpChew:
 	text "…Gulp… Chew…"
 	done
 
-UnknownText_0x73178:
+Fisher2Text_Quantity:
 	text "I take quantity"
 	line "over quality!"
 
@@ -151,22 +151,22 @@ UnknownText_0x73178:
 	line "full!"
 	done
 
-UnknownText_0x731ae:
+Fisher3Text_MunchMunch:
 	text "Munch, munch…"
 	done
 
-UnknownText_0x731bd:
+Fisher3Text_GoldenrodIsBest:
 	text "The food is good"
 	line "here, but GOLDEN-"
 	cont "ROD has the best"
 	cont "food anywhere."
 	done
 
-UnknownText_0x73201:
+TeacherText_CrunchCrunch:
 	text "Crunch… Crunch…"
 	done
 
-UnknownText_0x73212:
+TeacherText_NoCoinCase:
 	text "Nobody here will"
 	line "give you a COIN"
 
@@ -174,13 +174,13 @@ UnknownText_0x73212:
 	line "look in JOHTO."
 	done
 
-UnknownText_0x73254:
+TeacherText_KeepEating:
 	text "Crunch… Crunch…"
 
 	para "I can keep eating!"
 	done
 
-UnknownText_0x73278:
+TeacherText_MoreChef:
 	text "More, CHEF!"
 	done
 
@@ -226,8 +226,8 @@ CeladonCafe_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SUPER_NERD, 3, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x73049, -1
-	person_event SPRITE_FISHER, 6, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FisherScript_0x73051, -1
-	person_event SPRITE_FISHER, 7, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x73062, -1
-	person_event SPRITE_FISHER, 2, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FisherScript_0x73073, -1
-	person_event SPRITE_TEACHER, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x73084, -1
+	person_event SPRITE_SUPER_NERD, 3, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, CeladonCafeChef, -1
+	person_event SPRITE_FISHER, 6, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonCafeFisher1, -1
+	person_event SPRITE_FISHER, 7, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CeladonCafeFisher2, -1
+	person_event SPRITE_FISHER, 2, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonCafeFisher3, -1
+	person_event SPRITE_TEACHER, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonCafeTeacher, -1

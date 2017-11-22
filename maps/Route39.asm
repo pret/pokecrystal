@@ -33,74 +33,74 @@ PokefanmDerek1Script:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_DEREK_HAS_NUGGET
-	iftrue UnknownScript_0x1a5b4a
+	iftrue PokefanMDerekHasNugget
 	checkcellnum PHONE_POKEFANM_DEREK
-	iftrue UnknownScript_0x1a5b6e
+	iftrue PokefanMDerekAccepted
 	checkpoke PIKACHU
-	iffalse UnknownScript_0x1a5b5c
+	iffalse PokefanMDerekWantsPikachu
 	checkevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a5b33
-	writetext UnknownText_0x1a5cf8
+	iftrue PokefanMDerekWantsYourNumber
+	writetext PokefanMDerekText_NotBragging
 	buttonsound
 	setevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1a5b62
-	jump UnknownScript_0x1a5b36
+	scall PokefanMDerekAsksNumber1
+	jump PokefanMDerekAsksForPhoneNumber
 
-UnknownScript_0x1a5b33:
-	scall UnknownScript_0x1a5b66
-UnknownScript_0x1a5b36:
+PokefanMDerekWantsYourNumber:
+	scall PokefanMDerekAsksNumber2
+PokefanMDerekAsksForPhoneNumber:
 	askforphonenumber PHONE_POKEFANM_DEREK
-	if_equal $1, UnknownScript_0x1a5b76
-	if_equal $2, UnknownScript_0x1a5b72
+	if_equal $1, PokefanMDerekPhoneFull
+	if_equal $2, PokefanMDerekDeclined
 	trainertotext POKEFANM, DEREK1, $0
-	scall UnknownScript_0x1a5b6a
-	jump UnknownScript_0x1a5b6e
+	scall PokefanMDerekRegistered
+	jump PokefanMDerekAccepted
 
-UnknownScript_0x1a5b4a:
-	scall UnknownScript_0x1a5b7a
+PokefanMDerekHasNugget:
+	scall PokefanMDerekGift
 	verbosegiveitem NUGGET
-	iffalse UnknownScript_0x1a5b59
+	iffalse .PackFull
 	clearflag ENGINE_DEREK_HAS_NUGGET
-	jump UnknownScript_0x1a5b6e
+	jump PokefanMDerekAccepted
 
-UnknownScript_0x1a5b59:
-	jump UnknownScript_0x1a5b7e
+.PackFull:
+	jump PackIsFull
 
-UnknownScript_0x1a5b5c:
-	writetext UnknownText_0x1a5dec
+PokefanMDerekWantsPikachu:
+	writetext PokefanMDerekText_PikachuIsIt
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1a5b62:
+PokefanMDerekAsksNumber1:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x1a5b66:
+PokefanMDerekAsksNumber2:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x1a5b6a:
+PokefanMDerekRegistered:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x1a5b6e:
+PokefanMDerekAccepted:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x1a5b72:
+PokefanMDerekDeclined:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x1a5b76:
+PokefanMDerekPhoneFull:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x1a5b7a:
+PokefanMDerekGift:
 	jumpstd giftm
 	end
 
-UnknownScript_0x1a5b7e:
+PackIsFull:
 	jumpstd packfullm
 	end
 
@@ -220,7 +220,7 @@ PokefanmDerek1BeatenText:
 	line "show off PIKACHU…"
 	done
 
-UnknownText_0x1a5cf8:
+PokefanMDerekText_NotBragging:
 	text "I'm not listening"
 	line "to your bragging!"
 
@@ -253,7 +253,7 @@ UnknownText_0x1a5db2:
 	line "adorable!"
 	done
 
-UnknownText_0x1a5dec:
+PokefanMDerekText_PikachuIsIt:
 	text "PIKACHU is it!"
 	line "Don't you agree?"
 	done
