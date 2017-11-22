@@ -1,6 +1,6 @@
 ; GranbullPokedexEntry: ; 0x1d074a
 	db "FAIRY@" ; species name
-	dw 407, 1070 ; height, width
+	dw 407, 1070 ; height, weight
 
 	db   "It can make most"
 	next "any #MON run"

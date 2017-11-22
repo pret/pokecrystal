@@ -1,6 +1,6 @@
 ; RaikouPokedexEntry: ; 0x1d156b
 	db "THUNDER@" ; species name
-	dw 603, 3920 ; height, width
+	dw 603, 3920 ; height, weight
 
 	db   "This rough #MON"
 	next "stores energy"

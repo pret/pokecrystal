@@ -1320,9 +1320,9 @@ Function118982:
 	ld a, [wcd38]
 	and a
 	jr nz, .asm_118a30
-	call Function119d93
+	call BattleTower_LevelCheck
 	ret c
-	call Function119dd1
+	call BattleTower_UbersCheck
 	ret c
 
 .asm_118a30
@@ -3991,7 +3991,7 @@ String_119d8c:
 	db "CANCEL@"
 ; 119d93
 
-Function119d93: ; 119d93 (46:5d93)
+BattleTower_LevelCheck: ; 119d93 (46:5d93)
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -4035,7 +4035,7 @@ Function119d93: ; 119d93 (46:5d93)
 	scf
 	ret
 
-Function119dd1: ; 119dd1 (46:5dd1)
+BattleTower_UbersCheck: ; 119dd1 (46:5dd1)
 	ld a, [rSVBK]
 	push af
 	ld a, [wcd4f]
@@ -4224,10 +4224,10 @@ Function119eb4: ; 119eb4 (46:5eb4)
 	ret
 
 Function119ec2: ; 119ec2 (46:5ec2)
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	xor a
-	ld [sMobileLoginPassword + LOGIN_PASSWORD_LENGTH], a
+	ld [sMobileLoginPassword + MOBILE_LOGIN_PASSWORD_LENGTH], a
 	ld de, sMobileLoginPassword + 1
 .loop
 	ld a, [de]
@@ -4395,7 +4395,7 @@ Function119f98: ; 119f98
 ; 11a00e
 
 Function11a00e: ; 11a00e
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	ld a, [sMobileLoginPassword]
 	and a
@@ -4404,7 +4404,7 @@ Function11a00e: ; 11a00e
 	call CloseSRAM
 	and a
 	ret nz
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	xor a
 	ld [sMobileLoginPassword], a

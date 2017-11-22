@@ -1,11 +1,11 @@
-PewterPokeCEnter2FBeta_MapScriptHeader:
+PewterPokeCenter2FBeta_MapScriptHeader:
 .MapTriggers:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-PewterPokeCEnter2FBeta_MapEventHeader:
+PewterPokeCenter2FBeta_MapEventHeader:
 	; filler
 	db 0, 0
 

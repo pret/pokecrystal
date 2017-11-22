@@ -1,6 +1,6 @@
 ; KoffingPokedexEntry: ; 0x1b9276
 	db "POISON GAS@" ; species name
-	dw 200, 20 ; height, width
+	dw 200, 20 ; height, weight
 
 	db   "If one gets close"
 	next "enough to it when"

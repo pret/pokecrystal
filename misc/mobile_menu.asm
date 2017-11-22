@@ -441,11 +441,11 @@ Function4a28a: ; 4a28a (12:628a)
 	ld a, [wMenuCursorY]
 	cp $2
 	jr z, .dont_delete_password
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	ld hl, sMobileLoginPassword
 	xor a
-	ld bc, LOGIN_PASSWORD_LENGTH
+	ld bc, MOBILE_LOGIN_PASSWORD_LENGTH
 	call ByteFill
 	call CloseSRAM
 	ld hl, UnknownText_0x4a35d

@@ -1,6 +1,6 @@
 ; DratiniPokedexEntry: ; 0x1cc761
 	db "DRAGON@" ; species name
-	dw 511, 70 ; height, width
+	dw 511, 70 ; height, weight
 
 	db   "It sheds many lay-"
 	next "ers of skin as it"

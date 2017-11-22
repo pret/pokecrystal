@@ -57,7 +57,7 @@ CinnabarPokeCenter2FBeta_BlockData:
 CeruleanPokeCenter2FBeta_BlockData:
 Route10PokeCenter2FBeta_BlockData:
 VermilionPokeCenter2FBeta_BlockData:
-PewterPokeCEnter2FBeta_BlockData:
+PewterPokeCenter2FBeta_BlockData:
 FuchsiaPokeCenter2FBeta_BlockData:
 LavenderPokeCenter2FBeta_BlockData:
 CeladonPokeCenter2FBeta_BlockData:

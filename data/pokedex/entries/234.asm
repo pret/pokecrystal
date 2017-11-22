@@ -1,6 +1,6 @@
 ; StantlerPokedexEntry: ; 0x1d1174
 	db "BIG HORN@" ; species name
-	dw 407, 1570 ; height, width
+	dw 407, 1570 ; height, weight
 
 	db   "The round balls"
 	next "found on the"

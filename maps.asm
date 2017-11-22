@@ -444,7 +444,7 @@ INCLUDE "maps/PewterNidoranSpeechHouse.asm"
 INCLUDE "maps/PewterGym.asm"
 INCLUDE "maps/PewterMart.asm"
 INCLUDE "maps/PewterPokeCenter1F.asm"
-INCLUDE "maps/PewterPokeCEnter2FBeta.asm"
+INCLUDE "maps/PewterPokeCenter2FBeta.asm"
 INCLUDE "maps/PewterSnoozeSpeechHouse.asm"
 
 

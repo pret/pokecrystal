@@ -1,6 +1,6 @@
 ; OnixPokedexEntry: ; 0x1b8c98
 	db "ROCK SNAKE@" ; species name
-	dw 2810, 4630 ; height, width
+	dw 2810, 4630 ; height, weight
 
 	db   "As it digs through"
 	next "the ground, it"

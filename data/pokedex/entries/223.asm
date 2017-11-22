@@ -1,6 +1,6 @@
 ; RemoraidPokedexEntry: ; 0x1d0cd3
 	db "JET@" ; species name
-	dw 200, 260 ; height, width
+	dw 200, 260 ; height, weight
 
 	db   "To escape from an"
 	next "attacker, it may"

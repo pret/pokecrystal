@@ -2167,7 +2167,7 @@ BattleCommand_HitTargetNoSub: ; 34f60
 	jr z, .conversion
 	cp EFFECT_DOUBLE_HIT
 	jr z, .doublehit
-	cp EFFECT_TWINEEDLE
+	cp EFFECT_POISON_MULTI_HIT
 	jr z, .twineedle
 	cp EFFECT_TRIPLE_KICK
 	jr z, .triplekick
@@ -2315,7 +2315,7 @@ BattleCommand_FailureText: ; 35023
 	jr z, .multihit
 	cp EFFECT_DOUBLE_HIT
 	jr z, .multihit
-	cp EFFECT_TWINEEDLE
+	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multihit
 	jp EndMoveEffect
 
@@ -2661,7 +2661,7 @@ BattleCommand_CheckDestinyBond: ; 351c0
 	jr z, .multiple_hit_raise_sub
 	cp EFFECT_DOUBLE_HIT
 	jr z, .multiple_hit_raise_sub
-	cp EFFECT_TWINEEDLE
+	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multiple_hit_raise_sub
 	cp EFFECT_TRIPLE_KICK
 	jr z, .multiple_hit_raise_sub
@@ -3434,14 +3434,14 @@ BattleCommand_DamageCalc: ; 35612
 	call GetBattleVar
 
 ; Selfdestruct and Explosion halve defense.
-	cp EFFECT_EXPLOSION
-	jr nz, .dont_explode
+	cp EFFECT_SELFDESTRUCT
+	jr nz, .dont_selfdestruct
 
 	srl c
-	jr nz, .dont_explode
+	jr nz, .dont_selfdestruct
 	inc c
 
-.dont_explode
+.dont_selfdestruct
 
 ; Variable-hit moves and Conversion can have a power of 0.
 	cp EFFECT_MULTI_HIT
@@ -4919,7 +4919,7 @@ SelfInflictDamageToSubstitute: ; 35de0
 	jr z, .ok
 	cp EFFECT_DOUBLE_HIT
 	jr z, .ok
-	cp EFFECT_TWINEEDLE
+	cp EFFECT_POISON_MULTI_HIT
 	jr z, .ok
 	cp EFFECT_TRIPLE_KICK
 	jr z, .ok
@@ -6999,7 +6999,7 @@ BattleCommand_EndLoop: ; 369b6
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarAddr
 	ld a, [hl]
-	cp EFFECT_TWINEEDLE
+	cp EFFECT_POISON_MULTI_HIT
 	jr z, .twineedle
 	cp EFFECT_DOUBLE_HIT
 	ld a, 1
@@ -8605,8 +8605,8 @@ CheckSubstituteOpp: ; 37378
 ; 37380
 
 
-BattleCommand_SelfDestruct: ; 37380
-	callba TrainerRankings_SelfDestruct
+BattleCommand_Selfdestruct: ; 37380
+	callba TrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3

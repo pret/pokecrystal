@@ -1,6 +1,6 @@
 ; OctilleryPokedexEntry: ; 0x1d0d42
 	db "JET@" ; species name
-	dw 211, 630 ; height, width
+	dw 211, 630 ; height, weight
 
 	db   "Its instinct is to"
 	next "bury itself in"

@@ -1,6 +1,6 @@
 ; NoctowlPokedexEntry: ; 0x1cceb9
 	db "OWL@" ; species name
-	dw 503, 900 ; height, width
+	dw 503, 900 ; height, weight
 
 	db   "Its extremely soft"
 	next "feathers make no"

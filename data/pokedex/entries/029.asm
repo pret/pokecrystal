@@ -1,6 +1,6 @@
 ; NidoranFPokedexEntry: ; 0x18224b
 	db "POISON PIN@" ; species name
-	dw 104, 150 ; height, width
+	dw 104, 150 ; height, weight
 
 	db   "Small and very"
 	next "docile, it pro-"

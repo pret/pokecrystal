@@ -1,6 +1,6 @@
 ; FlareonPokedexEntry: ; 0x1cc2ec
 	db "FLAME@" ; species name
-	dw 211, 550 ; height, width
+	dw 211, 550 ; height, weight
 
 	db   "Once it has stored"
 	next "up enough heat,"

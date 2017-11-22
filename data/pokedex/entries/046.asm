@@ -1,6 +1,6 @@
 ; ParasPokedexEntry: ; 0x18297f
 	db "MUSHROOM@" ; species name
-	dw 100, 120 ; height, width
+	dw 100, 120 ; height, weight
 
 	db   "The tochukaso"
 	next "growing on this"

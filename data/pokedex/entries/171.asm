@@ -1,6 +1,6 @@
 ; LanturnPokedexEntry: ; 0x1cd1de
 	db "LIGHT@" ; species name
-	dw 311, 500 ; height, width
+	dw 311, 500 ; height, weight
 
 	db   "This #MON uses"
 	next "the bright part of"

@@ -4084,7 +4084,7 @@ StartMobileBattle: ; 101a21
 Function101a4f: ; 101a4f
 	ld a, 1
 	ld [wDisableTextAcceleration], a
-	callba DetermineMobileBattleResult
+	callba DisplayLinkBattleResult
 	xor a
 	ld [wDisableTextAcceleration], a
 	callba CleanUpBattleRAM

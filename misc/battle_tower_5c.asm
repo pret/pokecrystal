@@ -952,9 +952,9 @@ BattleTowerAction: ; 170687
 
 
 .dw ; 170696 (5c:4696)
-	dw Function17075f ; 0x00
-	dw Function170788 ; 0x01
-	dw Function170778 ; 0x02
+	dw BattleTowerAction_CheckExplanationRead ; 0x00
+	dw BattleTowerAction_SetExplanationRead ; 0x01
+	dw BattleTowerAction_GetChallengeState ; 0x02
 	dw BattleTowerAction_SetByteToQuickSaveChallenge ; 0x03
 	dw BattleTowerAction_SetByteToCancelChallenge ; 0x04
 	dw Function1707ac ; 0x05
@@ -966,7 +966,7 @@ BattleTowerAction: ; 170687
 	dw CheckMobileEventIndex ; 0x0b
 	dw Function1708c8 ; 0x0c
 	dw Function1708f0 ; 0x0d
-	dw Function17093c ; 0x0e
+	dw BattleTowerAction_EggTicket ; 0x0e
 	dw Function1709aa ; 0x0f
 	dw Function1709bb ; 0x10
 	dw Function170a9c ; 0x11
@@ -976,8 +976,8 @@ BattleTowerAction: ; 170687
 	dw Function170ad7 ; 0x15
 	dw Function170807 ; 0x16
 	dw Function17081d ; 0x17
-	dw Function170ae8 ; 0x18
-	dw Function170b16 ; 0x19
+	dw BattleTowerAction_LevelCheck ; 0x18
+	dw BattleTowerAction_UbersCheck ; 0x19
 	dw ResetBattleTowerTrainersSRAM ; 0x1a
 	dw BattleTower_GiveReward ; 0x1b
 	dw Function17071b ; 0x1c
@@ -1073,7 +1073,7 @@ BattleTower_RandomlyChooseReward: ; 17073e (5c:473e) BattleTowerAction $1e
 	call CloseSRAM
 	ret
 
-Function17075f: ; 17075f (5c:475f) BattleTowerAction $00
+BattleTowerAction_CheckExplanationRead: ; 17075f (5c:475f) BattleTowerAction $00
 	call BattleTower_CheckSaveFileExistsAndIsYours
 	ld a, [ScriptVar]
 	and a
@@ -1087,7 +1087,7 @@ Function17075f: ; 17075f (5c:475f) BattleTowerAction $00
 	call CloseSRAM
 	ret
 
-Function170778: ; 170778 (5c:4778) BattleTowerAction $02
+BattleTowerAction_GetChallengeState: ; 170778 (5c:4778) BattleTowerAction $02
 	ld hl, sBattleTowerChallengeState
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
@@ -1096,7 +1096,7 @@ Function170778: ; 170778 (5c:4778) BattleTowerAction $02
 	call CloseSRAM
 	ret
 
-Function170788: ; 170788 (5c:4788) BattleTowerAction $01
+BattleTowerAction_SetExplanationRead: ; 170788 (5c:4788) BattleTowerAction $01
 	ld a, BANK(s1_be4f)
 	call GetSRAMBank
 	ld a, [s1_be4f]
@@ -1344,7 +1344,7 @@ Function170923: ; 170923
 ; 17093c
 
 
-Function17093c: ; 17093c (5c:493c) BattleTowerAction $0e
+BattleTowerAction_EggTicket: ; 17093c (5c:493c) BattleTowerAction $0e
 	xor a
 	ld [ScriptVar], a
 	ld a, EGG_TICKET
@@ -1600,7 +1600,7 @@ Function170ad7: ; 170ad7 (5c:4ad7) BattleTowerAction $15
 	call CloseSRAM
 	ret
 
-Function170ae8: ; 170ae8 (5c:4ae8) BattleTowerAction $18
+BattleTowerAction_LevelCheck: ; 170ae8 (5c:4ae8) BattleTowerAction $18
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$b2fb]
@@ -1611,7 +1611,7 @@ Function170ae8: ; 170ae8 (5c:4ae8) BattleTowerAction $18
 	ld [wcd4f], a
 	xor a
 	ld [ScriptVar], a
-	callba Function119d93 ; level check
+	callba BattleTower_LevelCheck ; level check
 	ret nc
 	ld a, $5
 	call GetSRAMBank
@@ -1620,7 +1620,7 @@ Function170ae8: ; 170ae8 (5c:4ae8) BattleTowerAction $18
 	ld [ScriptVar], a
 	ret
 
-Function170b16: ; 170b16 (5c:4b16) BattleTowerAction $19
+BattleTowerAction_UbersCheck: ; 170b16 (5c:4b16) BattleTowerAction $19
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$b2fb]
@@ -1631,7 +1631,7 @@ Function170b16: ; 170b16 (5c:4b16) BattleTowerAction $19
 	ld [wcd4f], a
 	xor a
 	ld [ScriptVar], a
-	callba Function119dd1 ; ubers check
+	callba BattleTower_UbersCheck
 	ret nc
 	ld a, $5
 	call GetSRAMBank

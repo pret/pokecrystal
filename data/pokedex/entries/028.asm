@@ -1,6 +1,6 @@
 ; SandslashPokedexEntry: ; 0x1821e7
 	db "MOUSE@" ; species name
-	dw 303, 650 ; height, width
+	dw 303, 650 ; height, weight
 
 	db   "Adept at climbing"
 	next "trees, it rolls"

@@ -869,7 +869,7 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	predef FrontpicPredef
 	hlcoord 0, 0
 	ld d, $0
-	ld e, $2
+	ld e, ANIM_MON_MENU
 	predef LoadMonAnimation
 	ld hl, wcf64
 	set 6, [hl]

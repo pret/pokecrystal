@@ -1,6 +1,6 @@
 ; SlowpokePokedexEntry: ; 0x1b85d3
 	db "DOPEY@" ; species name
-	dw 311, 790 ; height, width
+	dw 311, 790 ; height, weight
 
 	db   "It is always so"
 	next "absent-minded that"

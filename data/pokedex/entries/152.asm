@@ -1,6 +1,6 @@
 ; ChikoritaPokedexEntry: ; 0x1cc988
 	db "LEAF@" ; species name
-	dw 211, 140 ; height, width
+	dw 211, 140 ; height, weight
 
 	db   "It loves to bask"
 	next "in the sunlight."

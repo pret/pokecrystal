@@ -1,6 +1,6 @@
 ; FlaaffyPokedexEntry: ; 0x1cd5b8
 	db "WOOL@" ; species name
-	dw 207, 290 ; height, width
+	dw 207, 290 ; height, weight
 
 	db   "Because of its"
 	next "rubbery, electric-"

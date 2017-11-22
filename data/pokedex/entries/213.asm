@@ -1,6 +1,6 @@
 ; ShucklePokedexEntry: ; 0x1d088e
 	db "MOLD@" ; species name
-	dw 200, 450 ; height, width
+	dw 200, 450 ; height, weight
 
 	db   "The fluid secreted"
 	next "by its toes carves"

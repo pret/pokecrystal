@@ -1,6 +1,6 @@
 ; HoppipPokedexEntry: ; 0x1cd8b5
 	db "COTTONWEED@" ; species name
-	dw 104, 10 ; height, width
+	dw 104, 10 ; height, weight
 
 	db   "It can be carried"
 	next "away on even the"

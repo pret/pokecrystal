@@ -1,6 +1,6 @@
 ; AzumarillPokedexEntry: ; 0x1cd771
 	db "AQUARABBIT@" ; species name
-	dw 207, 630 ; height, width
+	dw 207, 630 ; height, weight
 
 	db   "The bubble-like"
 	next "pattern on its"

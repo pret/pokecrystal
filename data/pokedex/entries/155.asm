@@ -1,6 +1,6 @@
 ; CyndaquilPokedexEntry: ; 0x1ccabd
 	db "FIRE MOUSE@" ; species name
-	dw 108, 170 ; height, width
+	dw 108, 170 ; height, weight
 
 	db   "The fire that"
 	next "spouts from its"

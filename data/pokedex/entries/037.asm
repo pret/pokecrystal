@@ -1,6 +1,6 @@
 ; VulpixPokedexEntry: ; 0x18259b
 	db "FOX@" ; species name
-	dw 200, 220 ; height, width
+	dw 200, 220 ; height, weight
 
 	db   "As its body grows"
 	next "larger, its six"

@@ -1,6 +1,6 @@
 ; MiltankPokedexEntry: ; 0x1d1482
 	db "MILK COW@" ; species name
-	dw 311, 1660 ; height, width
+	dw 311, 1660 ; height, weight
 
 	db   "In order to milk a"
 	next "MILTANK, one must"

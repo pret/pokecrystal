@@ -4688,7 +4688,7 @@ Function17f555: ; 17f555
 	ret nz
 
 .asm_17f5a1
-	ld a, $5
+	ld a, BANK(sMobileLoginPassword)
 	call GetSRAMBank
 	xor a
 	ld [sMobileLoginPassword], a

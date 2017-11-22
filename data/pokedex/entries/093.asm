@@ -1,6 +1,6 @@
 ; HaunterPokedexEntry: ; 0x1b8bbd
 	db "GAS@" ; species name
-	dw 503, 2 ; height, width
+	dw 503, 2 ; height, weight
 
 	db   "It hides in the"
 	next "dark, planning to"

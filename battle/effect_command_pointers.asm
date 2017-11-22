@@ -26,7 +26,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_BurnTarget ; 3608c
 	dw BattleCommand_FreezeTarget ; 36102
 	dw BattleCommand_ParalyzeTarget ; 36165
-	dw BattleCommand_SelfDestruct ; 37380
+	dw BattleCommand_Selfdestruct ; 37380
 	dw BattleCommand_MirrorMove ; 373c9
 	dw BattleCommand_StatUp ; 361e4
 	dw BattleCommand_StatDown ; 362e3

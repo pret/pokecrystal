@@ -5,28 +5,28 @@
 	dw BurnHit
 	dw FreezeHit
 	dw ParalyzeHit
-	dw Explosion
+	dw Selfdestruct
 	dw DreamEater
 	dw MirrorMove
 	dw AttackUp
 	dw DefenseUp
 	dw SpeedUp
-	dw Growth
+	dw SpecialAttackUp
 	dw SpecialDefenseUp
 	dw AccuracyUp
 	dw EvasionUp
 	dw NormalHit
-	dw Growl
+	dw AttackDown
 	dw DefenseDown
-	dw StringShot
+	dw SpeedDown
 	dw SpecialAttackDown
 	dw SpecialDefenseDown
 	dw AccuracyDown
-	dw SweetScent
-	dw Haze
+	dw EvasionDown
+	dw ResetStats
 	dw Bide
 	dw Rampage
-	dw Whirlwind
+	dw ForceSwitch
 	dw MultiHit
 	dw Conversion
 	dw FlinchHit
@@ -40,7 +40,7 @@
 	dw RazorWind
 	dw SuperFang
 	dw StaticDamage
-	dw Bind
+	dw TrapTarget
 	dw NormalHit
 	dw MultiHit
 	dw NormalHit
@@ -48,16 +48,16 @@
 	dw FocusEnergy
 	dw RecoilHit
 	dw DoConfuse
-	dw SwordsDance
+	dw AttackUp2
 	dw DefenseUp2
-	dw Agility
+	dw SpeedUp2
 	dw SpecialAttackUp2
-	dw Amnesia
+	dw SpecialDefenseUp2
 	dw AccuracyUp2
 	dw EvasionUp2
 	dw Transform
-	dw Charm
-	dw Screech
+	dw AttackDown2
+	dw DefenseDown2
 	dw SpeedDown2
 	dw SpecialAttackDown2
 	dw SpecialDefenseDown2
@@ -66,7 +66,7 @@
 	dw Reflect
 	dw DoPoison
 	dw DoParalyze
-	dw AuroraBeam
+	dw AttackDownHit
 	dw DefenseDownHit
 	dw SpeedDownHit
 	dw SpecialAttackDownHit
@@ -75,7 +75,7 @@
 	dw EvasionDownHit
 	dw SkyAttack
 	dw ConfuseHit
-	dw Twineedle
+	dw PoisonMultiHit
 	dw NormalHit
 	dw Substitute
 	dw HyperBeam
@@ -136,9 +136,9 @@
 	dw HiddenPower
 	dw RainDance
 	dw SunnyDay
-	dw SteelWing
-	dw MetalClaw
-	dw Ancientpower
+	dw DefenseUpHit
+	dw AttackUpHit
+	dw AllUpHit
 	dw FakeOut
 	dw BellyDrum
 	dw PsychUp

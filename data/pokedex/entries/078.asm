@@ -1,6 +1,6 @@
 ; RapidashPokedexEntry: ; 0x1b855e
 	db "FIRE HORSE@" ; species name
-	dw 507, 2090 ; height, width
+	dw 507, 2090 ; height, weight
 
 	db   "It just loves to"
 	next "gallop. The faster"

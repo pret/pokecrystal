@@ -1,6 +1,6 @@
 ; SeakingPokedexEntry: ; 0x1b9690
 	db "GOLDFISH@" ; species name
-	dw 403, 860 ; height, width
+	dw 403, 860 ; height, weight
 
 	db   "When autumn comes,"
 	next "the males patrol"

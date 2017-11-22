@@ -1,6 +1,6 @@
 ; ChanseyPokedexEntry: ; 0x1b942e
 	db "EGG@" ; species name
-	dw 307, 760 ; height, width
+	dw 307, 760 ; height, weight
 
 	db   "People try to"
 	next "catch it for its"

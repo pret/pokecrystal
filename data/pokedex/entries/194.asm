@@ -1,6 +1,6 @@
 ; WooperPokedexEntry: ; 0x1d0078
 	db "WATER FISH@" ; species name
-	dw 104, 190 ; height, width
+	dw 104, 190 ; height, weight
 
 	db   "A mucous"
 	next "membrane covers"

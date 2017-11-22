@@ -1,6 +1,6 @@
 ; DewgongPokedexEntry: ; 0x1b8934
 	db "SEA LION@" ; species name
-	dw 507, 2650 ; height, width
+	dw 507, 2650 ; height, weight
 
 	db   "It sleeps under"
 	next "shallow ocean"

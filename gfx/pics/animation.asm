@@ -123,7 +123,7 @@ LoadMonAnimation: ; d00a3
 SetUpPokeAnim: ; d00b4
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, BANK(wPokeAnimSceneIndex)
 	ld [rSVBK], a
 	ld a, [wPokeAnimSceneIndex]
 	ld c, a
@@ -313,7 +313,7 @@ AnimateMon_CheckIfPokemon: ; d01c6
 PokeAnim_InitPicAttributes: ; d01d6
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, BANK(wPokeAnimSceneIndex)
 	ld [rSVBK], a
 
 	push bc
@@ -366,7 +366,7 @@ PokeAnim_InitPicAttributes: ; d01d6
 PokeAnim_InitAnim: ; d0228
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, BANK(wPokeAnimExtraFlag)
 	ld [rSVBK], a
 	push bc
 	ld hl, wPokeAnimExtraFlag
@@ -1007,7 +1007,7 @@ GetMonAnimPointer: ; d055c
 PokeAnim_GetFrontpicDims: ; d05b4
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(CurPartySpecies)
 	ld [rSVBK], a
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a

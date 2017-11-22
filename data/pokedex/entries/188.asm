@@ -1,6 +1,6 @@
 ; SkiploomPokedexEntry: ; 0x1cd928
 	db "COTTONWEED@" ; species name
-	dw 200, 20 ; height, width
+	dw 200, 20 ; height, weight
 
 	db   "As soon as it"
 	next "rains, it closes"

@@ -1,6 +1,6 @@
 ; ClefablePokedexEntry: ; 0x182530
 	db "FAIRY@" ; species name
-	dw 403, 880 ; height, width
+	dw 403, 880 ; height, weight
 
 	db   "Said to live in"
 	next "quiet, remote"

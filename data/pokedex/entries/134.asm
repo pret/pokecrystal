@@ -1,6 +1,6 @@
 ; VaporeonPokedexEntry: ; 0x1cc224
 	db "BUBBLE JET@" ; species name
-	dw 303, 640 ; height, width
+	dw 303, 640 ; height, weight
 
 	db   "As it uses the"
 	next "fins on the tip"

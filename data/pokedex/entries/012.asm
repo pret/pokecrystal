@@ -1,6 +1,6 @@
 ; ButterfreePokedexEntry: ; 0x181b45
 	db "BUTTERFLY@" ; species name
-	dw 307, 710 ; height, width
+	dw 307, 710 ; height, weight
 
 	db   "It flits from"
 	next "flower to flower,"

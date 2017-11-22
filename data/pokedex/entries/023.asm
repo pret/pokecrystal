@@ -1,6 +1,6 @@
 ; EkansPokedexEntry: ; 0x181fd4
 	db "SNAKE@" ; species name
-	dw 607, 150 ; height, width
+	dw 607, 150 ; height, weight
 
 	db   "It flutters the"
 	next "tip of its tongue"

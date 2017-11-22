@@ -1,6 +1,6 @@
 ; EeveePokedexEntry: ; 0x1cc1b2
 	db "EVOLUTION@" ; species name
-	dw 100, 140 ; height, width
+	dw 100, 140 ; height, weight
 
 	db   "Its ability to"
 	next "evolve into many"

@@ -1,6 +1,6 @@
 ; LaprasPokedexEntry: ; 0x1cc0cd
 	db "TRANSPORT@" ; species name
-	dw 802, 4850 ; height, width
+	dw 802, 4850 ; height, weight
 
 	db   "This gentle"
 	next "#MON loves to"

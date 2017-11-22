@@ -1,6 +1,6 @@
 ; SmoochumPokedexEntry: ; 0x1d132b
 	db "KISS@" ; species name
-	dw 104, 130 ; height, width
+	dw 104, 130 ; height, weight
 
 	db   "The sensitivity of"
 	next "its lips develops"

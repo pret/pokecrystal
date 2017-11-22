@@ -1,6 +1,6 @@
 ; PupitarPokedexEntry: ; 0x1d1709
 	db "HARD SHELL@" ; species name
-	dw 311, 3350 ; height, width
+	dw 311, 3350 ; height, weight
 
 	db   "It will not stay"
 	next "still, even while"

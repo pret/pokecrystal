@@ -1,6 +1,6 @@
 ; UmbreonPokedexEntry: ; 0x1d01af
 	db "MOONLIGHT@" ; species name
-	dw 303, 600 ; height, width
+	dw 303, 600 ; height, weight
 
 	db   "On the night of a"
 	next "full moon, or when"

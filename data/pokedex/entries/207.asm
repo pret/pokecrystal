@@ -1,6 +1,6 @@
 ; GligarPokedexEntry: ; 0x1d0604
 	db "FLYSCORPIO@" ; species name
-	dw 307, 1430 ; height, width
+	dw 307, 1430 ; height, weight
 
 	db   "It builds its nest"
 	next "on a steep cliff."
