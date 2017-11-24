@@ -288,6 +288,22 @@ BattleAnim_MirrorMove: ; c929b
 	anim_ret
 ; c929c
 
+;General info anim_obj command:
+;******************************
+;anim_obj ANIM_OBJ_#	x1, x2,   y1, y2
+;X1: range (-16,31 ) +Playermon -Opponentmon. Practical range (0-15,-16-10). 
+;Notable values: 0 leftborder 6 playercenter -15 enemycenter -10 rightborder. 
+;X2: from (x1,y1) moves object right
+;Y1: range (-16,31). Practical range (2-14). Notable values: 
+;Opponentmon: 2-3 topborder 4 head 5-6 body 7-8 low 9-12 below. Playermon: 8 head 10 body 14 bottomborder
+;Y2: from (x1,y1) moves object down
+;Formulas: 
+;******************************
+;8 Y2 units make 1 Y1 unit
+;MaxX2= 255+ (-8*X1) Example: if X1= -14; MaxX2= 255+(-8*-14)= 367
+;MaxY2= 255+ (-8*y1) Example: if Y1= 10; MaxY2= 255+(-8*10)= 175
+;X1+X2=8 bit var and Y1+Y2=8 bit var
+
 BattleAnim_SweetScent2: ; c929c
 	anim_2gfx ANIM_GFX_FLOWER, ANIM_GFX_MISC
 	anim_obj ANIM_OBJ_FLOWER,   8, 0,  12, 0, $2
