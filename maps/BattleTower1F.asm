@@ -89,7 +89,7 @@ Script_ChoseChallenge: ; 0x9e40f
 	dotrigger $1
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ ; set 1, [s1_be4f]
 	special BattleTowerAction
-	special Function1700b0
+	special BattleTowerRoomMenu
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, UnknownScript_0x9e550
 	writebyte BATTLETOWERACTION_11

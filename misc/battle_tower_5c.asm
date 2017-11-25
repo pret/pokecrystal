@@ -1,7 +1,7 @@
-Function1700b0: ; 1700b0
+BattleTowerRoomMenu: ; 1700b0
 ; special
 	call InitBattleTowerChallengeRAM
-	callba Function118121
+	callba _BattleTowerRoomMenu
 	ret
 ; 1700ba
 

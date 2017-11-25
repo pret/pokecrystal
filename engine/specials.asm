@@ -138,7 +138,7 @@ SpecialsPointers:: ; c029
 	add_special Function11b879
 	add_special Function11b920
 	add_special Function11b93b
-	add_special Function1700b0
+	add_special BattleTowerRoomMenu
 	add_special Function1700ba
 	add_special Function170114
 	add_special BattleTowerBattle
