@@ -658,7 +658,7 @@ Function171c41: ; 171c41 (5c:5c41)
 	callba Function106464
 	ld a, $2
 	ld [wc303], a
-	callba Function17f555
+	callba DisplayMobileError
 asm_171c60: ; 171c60 (5c:5c60)
 	ld a, $80
 	ld [wcd49], a

@@ -161,7 +161,7 @@ SpecialsPointers:: ; c029
 	add_special Special_Menu_ChallengeExplanationCancel
 	add_special Function17d2b6
 	add_special Function17d2ce
-	add_special Function17f53d
+	add_special BattleTowerMobileError
 	add_special AskMobileOrCable
 	add_special SpecialHoOhChamber
 	add_special Function102142
