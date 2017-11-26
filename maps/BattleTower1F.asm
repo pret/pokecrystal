@@ -71,11 +71,11 @@ Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 	writetext Text_WantToGoIntoABattleRoom
 	writebyte $1
 	special Special_Menu_ChallengeExplanationCancel
-	if_equal $1, Script_ChoseChallenge
+	if_equal $1, Script_ChooseChallenge
 	if_equal $2, Script_BattleTowerExplanation
 	jump Script_BattleTowerHopeToServeYouAgain
 
-Script_ChoseChallenge: ; 0x9e40f
+Script_ChooseChallenge: ; 0x9e40f
 	writebyte BATTLETOWERACTION_RESETDATA ; ResetBattleTowerTrainerSRAM
 	special BattleTowerAction
 	special SpecialCheckForBattleTowerRules
