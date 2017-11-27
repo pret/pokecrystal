@@ -86,7 +86,7 @@ UnknownScript_0x5e5a1:
 	end
 
 TrainerGruntM7:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, 7, GruntM7SeenText, GruntM7BeatenText, 0, GruntM7Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, GRUNTM_7, GruntM7SeenText, GruntM7BeatenText, 0, GruntM7Script
 
 GruntM7Script:
 	end_if_just_battled
@@ -97,7 +97,7 @@ GruntM7Script:
 	end
 
 TrainerGruntM8:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, 8, GruntM8SeenText, GruntM8BeatenText, 0, GruntM8Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, GRUNTM_8, GruntM8SeenText, GruntM8BeatenText, 0, GruntM8Script
 
 GruntM8Script:
 	end_if_just_battled
@@ -108,7 +108,7 @@ GruntM8Script:
 	end
 
 TrainerGruntM9:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, 9, GruntM9SeenText, GruntM9BeatenText, 0, GruntM9Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, GRUNTM_9, GruntM9SeenText, GruntM9BeatenText, 0, GruntM9Script
 
 GruntM9Script:
 	end_if_just_battled
