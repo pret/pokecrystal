@@ -9,19 +9,19 @@ FightingDojo_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-BlackBeltScript_0x189b61:
-	jumptextfaceplayer UnknownText_0x189b6c
+FightingDojoBlackBelt:
+	jumptextfaceplayer FightingDojoBlackBeltText
 
 MapFightingDojoSignpost0Script:
-	jumptext UnknownText_0x189bc0
+	jumptext FightingDojoSign0Text
 
 MapFightingDojoSignpost1Script:
-	jumptext UnknownText_0x189be0
+	jumptext FightingDojoSign1Text
 
 FightingDojoFocusBand:
 	itemball FOCUS_BAND
 
-UnknownText_0x189b6c:
+FightingDojoBlackBeltText:
 	text "Hello!"
 
 	para "KARATE KING, the"
@@ -32,12 +32,12 @@ UnknownText_0x189b6c:
 	cont "training."
 	done
 
-UnknownText_0x189bc0:
+FightingDojoSign0Text:
 	text "What goes around"
 	line "comes around!"
 	done
 
-UnknownText_0x189be0:
+FightingDojoSign1Text:
 	text "Enemies on every"
 	line "side!"
 	done
@@ -61,5 +61,5 @@ FightingDojo_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_BLACK_BELT, 4, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x189b61, -1
+	person_event SPRITE_BLACK_BELT, 4, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, FightingDojoBlackBelt, -1
 	person_event SPRITE_POKE_BALL, 1, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, FightingDojoFocusBand, EVENT_PICKED_UP_FOCUS_BAND
