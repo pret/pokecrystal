@@ -39,9 +39,6 @@ DoAnimFrame: ; 8d24b
 	dw .FlyLeaf ; flying leaves
 	dw .FlyTo  ; fly to
 	dw .twentyfive
-	dw .twentysix
-	dw .twentyseven
-	dw .twentyeight
 	dw .twentynine  ; intro suicune
 	dw .thirty      ; intro pichu wooper
 	dw .thirtyone   ; celebi
@@ -744,14 +741,6 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.twentyseven ; 8d630 (23:5630)
-	callba Function108bc7
-	ret
-
-.twentyeight ; 8d637 (23:5637)
-	callba Function108be0
-	ret
-
 .twentynine ; 8d63e (23:563e)
 	ld a, [wcf65]
 	and a
@@ -839,10 +828,6 @@ DoAnimFrame: ; 8d24b
 	ld a, [hl]
 	add $10
 	ld [hl], a
-	ret
-
-.twentysix ; 8d6b7 (23:56b7)
-	callba AnimateEZChatCursor
 	ret
 
 .thirtyone ; 8d6be (23:56be)

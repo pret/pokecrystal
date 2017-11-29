@@ -156,12 +156,7 @@ _CGB_FinishBattleScreenLayout: ; 8e23
 
 
 InitPartyMenuBGPal7: ; 8e85
-	callba Function100dc0
-Mobile_InitPartyMenuBGPal7: ; 8e8b
 	ld hl, Palette_b311
-	jr nc, .not_mobile
-	ld hl, Palette_b309
-.not_mobile
 	ld de, UnknBGPals + 8 * 7
 	ld bc, 1 palettes
 	ld a, $5
@@ -170,11 +165,7 @@ Mobile_InitPartyMenuBGPal7: ; 8e8b
 ; 8e9f
 
 InitPartyMenuBGPal0: ; 8e9f
-	callba Function100dc0
 	ld hl, Palette_b311
-	jr nc, .not_mobile
-	ld hl, Palette_b309
-.not_mobile
 	ld de, UnknBGPals
 	ld bc, 1 palettes
 	ld a, $5

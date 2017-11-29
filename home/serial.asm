@@ -6,10 +6,6 @@ Serial:: ; 6ef
 	push de
 	push hl
 
-	ld a, [hMobileReceive]
-	and a
-	jr nz, .mobile
-
 	ld a, [wPrinterConnectionOpen]
 	bit 0, a
 	jr nz, .printer
@@ -33,10 +29,6 @@ Serial:: ; 6ef
 	ld a, 1 << rSC_ON
 	ld [rSC], a
 	jr .player2
-
-.mobile
-	call MobileReceive
-	jr .end
 
 .printer
 	call PrinterReceive

@@ -519,8 +519,6 @@
 	map_header_2 TradeCenter, TRADE_CENTER, $0, 0
 	map_header_2 Colosseum, COLOSSEUM, $0, 0
 	map_header_2 TimeCapsule, TIME_CAPSULE, $0, 0
-	map_header_2 MobileTradeRoomMobile, MOBILE_TRADE_ROOM_MOBILE, $0, 0
-	map_header_2 MobileBattleRoom, MOBILE_BATTLE_ROOM, $0, 0
 	map_header_2 CeladonDeptStore1F, CELADON_DEPT_STORE_1F, $0, 0
 	map_header_2 CeladonDeptStore2F, CELADON_DEPT_STORE_2F, $0, 0
 	map_header_2 CeladonDeptStore3F, CELADON_DEPT_STORE_3F, $0, 0

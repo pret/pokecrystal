@@ -1124,7 +1124,6 @@ SECTION "bankA", ROMX
 
 INCLUDE "engine/link.asm"
 INCLUDE "engine/wildmons.asm"
-INCLUDE "battle/link_result.asm"
 
 ChrisBackpic: ; 2ba1a
 INCBIN "gfx/misc/player.2bpp.lz"
@@ -2024,9 +2023,7 @@ CheckCanLearnMoveTutorMove: ; 492b9
 INCLUDE "predef/crystal.asm"
 INCLUDE "event/celebi.asm"
 INCLUDE "engine/main_menu.asm"
-INCLUDE "misc/mobile_menu.asm"
 INCLUDE "engine/search.asm"
-INCLUDE "misc/mobile_12_2.asm"
 ; mobile battle selection
 
 AskRememberPassword: ; 4ae12
@@ -2765,7 +2762,6 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	ld a, [ScriptVar]
 	and a
 	ret z ; found nothing
-	callba TrainerRankings_LuckyNumberShow
 	ld a, [wFoundMatchingIDInParty]
 	and a
 	push af
@@ -3302,165 +3298,14 @@ ResetDisplayBetweenHallOfFameMons: ; 4e906
 	ld [rSVBK], a
 	ret
 
-GetMobileOTTrainerClass: ; mobile function
-	ld h, b
-	ld l, c
-	call .GetMobileOTTrainerClass
-	ld c, a
-	ret
-
-.GetMobileOTTrainerClass: ; 4e930
-	ld a, [hli]
-	xor [hl]
-	ld c, a
-	jr z, .skip_male_trainers
-	srl c
-	srl c
-.male_trainer_loop
-	srl c
-	ld a, c
-	cp MaleTrainersEnd - MaleTrainers - 1
-	jr nc, .male_trainer_loop
-	inc c
-
-.skip_male_trainers
-	ld a, [de]
-	cp $1
-	ld hl, MaleTrainers
-	jr nz, .finished
-
-	ld hl, FemaleTrainers
-	ld a, c
-	and a
-	jr z, .finished
-
-.female_trainer_loop
-	srl c
-	ld a, c
-	cp FemaleTrainersEnd - FemaleTrainers - 1
-	jr nc, .female_trainer_loop
-	inc c
-
-.finished
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	ret
-
-MaleTrainers: ; 4e95d
-	db BURGLAR
-	db YOUNGSTER
-	db SCHOOLBOY
-	db BIRD_KEEPER
-	db POKEMANIAC
-	db GENTLEMAN
-	db BUG_CATCHER
-	db FISHER
-	db SWIMMERM
-	db SAILOR
-	db SUPER_NERD
-	db GUITARIST
-	db HIKER
-	db FIREBREATHER
-	db BLACKBELT_T
-	db PSYCHIC_T
-	db CAMPER
-	db COOLTRAINERM
-	db BOARDER
-	db JUGGLER
-	db POKEFANM
-	db OFFICER
-	db SAGE
-	db BIKER
-	db SCIENTIST
-MaleTrainersEnd:
-
-FemaleTrainers: ; 4e976
-	db MEDIUM
-	db LASS
-	db BEAUTY
-	db SKIER
-	db TEACHER
-	db SWIMMERF
-	db PICNICKER
-	db KIMONO_GIRL
-	db POKEFANF
-	db COOLTRAINERF
-FemaleTrainersEnd:
-
 INCLUDE "battle/sliding_intro.asm"
-
-Mobile_PrintOpponentBattleMessage: ; 4ea0a
-	ld a, c
-	push af
-	call SpeechTextBox
-	call MobileTextBorder
-	pop af
-	dec a
-	ld bc, $c
-	ld hl, w5_MobileOpponentBattleMessages
-	call AddNTimes
-	ld de, wMobileOpponentBattleMessage
-	ld bc, $c
-	ld a, $5 ; BANK(w5_MobileOpponentBattleMessages)
-	call FarCopyWRAM
-
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-
-	ld bc, wMobileOpponentBattleMessage
-	decoord 1, 14
-	callba PrintEZChatBattleMessage
-
-	pop af
-	ld [rSVBK], a
-
-	ld c, 180
-	call DelayFrames
-	ret
 
 CheckBattleScene: ; 4ea44
 ; Return carry if battle scene is turned off.
 
-	ld a, 0
-	ld hl, wLinkMode
-	call GetFarWRAMByte
-	cp LINK_MOBILE
-	jr z, .mobile
-
 	ld a, [Options]
 	bit BATTLE_SCENE, a
 	jr nz, .off
-
-	and a
-	ret
-
-.mobile
-	ld a, [wcd2f]
-	and a
-	jr nz, .from_wram
-
-	ld a, $4
-	call GetSRAMBank
-	ld a, [$a60c]
-	ld c, a
-	call CloseSRAM
-
-	ld a, c
-	bit 0, c
-	jr z, .off
-
-	and a
-	ret
-
-.from_wram
-	ld a, $5
-	ld hl, w5_dc00
-	call GetFarWRAMByte
-	bit 0, a
-	jr z, .off
 
 	and a
 	ret
@@ -4716,15 +4561,10 @@ GetKrisBackpic: ; 88ec9
 KrisBackpic: ; 88ed6
 INCBIN "gfx/misc/kris_back.2bpp"
 
-String_89116:
-	db "-----@"
-
-INCLUDE "misc/mobile_22.asm"
 INCLUDE "event/unown.asm"
 INCLUDE "event/buena.asm"
 INCLUDE "event/dratini.asm"
 INCLUDE "event/battle_tower.asm"
-INCLUDE "misc/mobile_22_2.asm"
 
 SECTION "bank23", ROMX
 
@@ -5241,10 +5081,6 @@ LoadOverworldFont:: ; 106594
 INCBIN "gfx/font/overworld.2bpp"
 .space
 INCBIN "gfx/font/space.2bpp"
-
-SECTION "bank42", ROMX
-
-INCLUDE "misc/mobile_42.asm"
 
 SECTION "Intro Logo", ROMX
 
@@ -5774,11 +5610,3 @@ INCLUDE "data/battle_tower.asm"
 INCLUDE "data/odd_eggs.asm"
 
 SECTION "bank7F", ROMX
-
-SECTION "stadium2", ROMX
-
-IF DEF(CRYSTAL11)
-INCBIN "misc/stadium2_2.bin"
-ELSE
-INCBIN "misc/stadium2_1.bin"
-ENDC

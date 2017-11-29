@@ -14,29 +14,6 @@ CopyBytes:: ; 0x3026
 	jr nz, .CopyByte
 	ret
 
-SwapBytes:: ; 0x3034
-; swap bc bytes between hl and de
-.Loop:
-	; stash [hl] away on the stack
-	ld a, [hl]
-	push af
-
-	; copy a byte from [de] to [hl]
-	ld a, [de]
-	ld [hli], a
-
-	; retrieve the previous value of [hl]; put it in [de]
-	pop af
-	ld [de], a
-	inc de
-
-	; handle loop stuff
-	dec bc
-	ld a, b
-	or c
-	jr nz, .Loop
-	ret
-
 ByteFill:: ; 0x3041
 ; fill bc bytes with the value of a, starting at hl
 	inc b  ; we bail the moment b hits 0, so include the last run

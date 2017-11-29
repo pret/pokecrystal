@@ -360,8 +360,6 @@ CheckForHiddenItems: ; b8172
 
 
 TreeMonEncounter: ; b81ea
-	callba TrainerRankings_TreeEncounters
-
 	xor a
 	ld [TempWildMonSpecies], a
 	ld [CurPartyLevel], a

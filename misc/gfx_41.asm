@@ -1,25 +1,3 @@
-HDMATransferAttrMapAndTileMapToWRAMBank3:: ; 104000
-	ld hl, .Function
-	jp CallInSafeGFXMode
-
-.Function:
-	decoord 0, 0, AttrMap
-	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
-	decoord 0, 0
-	ld hl, wScratchTileMap
-	call CutAndPasteTilemap
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wScratchTileMap
-	call HDMATransferToWRAMBank3
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wScratchAttrMap
-	call HDMATransferToWRAMBank3
-	ret
-; 10402d
-
 HDMATransferTileMapToWRAMBank3:: ; 10402d
 	ld hl, .Function
 	jp CallInSafeGFXMode
@@ -80,38 +58,6 @@ ReloadMapPart:: ; 104061
 
 	ret
 
-Mobile_ReloadMapPart: ; 104099
-	ld hl, ReloadMapPart ; useless
-	ld hl, .Function
-	jp CallInSafeGFXMode
-
-.Function:
-	decoord 0, 0, AttrMap
-	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
-	decoord 0, 0
-	ld hl, wScratchTileMap
-	call CutAndPasteTilemap
-	call DelayFrame
-
-	di
-	ld a, [rVBK]
-	push af
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wScratchAttrMap
-	call HDMATransfer_NoDI
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wScratchTileMap
-	call HDMATransfer_NoDI
-	pop af
-	ld [rVBK], a
-	ei
-
-	ret
-; 1040d4
-
 OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 104110
 ; OpenText
 	ld hl, .Function
@@ -145,33 +91,6 @@ OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 104110
 	ei
 	ret
 ; 104148
-
-Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap: ; 104148 (41:4148)
-	ld hl, .Function
-	jp CallInSafeGFXMode
-
-.Function:
-	; Transfer AttrMap and Tilemap to BGMap
-	; Fill vBGAttrs with $00
-	; Fill vBGTiles with $ff
-	decoord 0, 0, AttrMap
-	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
-	ld c, $ff
-	decoord 0, 0
-	ld hl, wScratchTileMap
-	call CutAndPasteMap
-
-	ld a, $1
-	ld [rVBK], a
-	ld hl, wScratchAttrMap
-	call HDMATransfer_Wait127Scanlines_toBGMap
-	ld a, $0
-	ld [rVBK], a
-	ld hl, wScratchTileMap
-	call HDMATransfer_Wait127Scanlines_toBGMap
-	ret
-; 104177
 
 CallInSafeGFXMode: ; 104177
 	ld a, [hBGMapMode]
@@ -240,68 +159,7 @@ HDMATransfer_Wait123Scanlines_toBGMap: ; 1041b7 (41:41b7)
 	ld a, [hBGMapAddress]
 	ld e, a
 	ld c, 2 * SCREEN_HEIGHT
-	jr HDMATransfer_Wait123Scanlines
 ; 1041c1 (41:41c1)
-
-HDMATransfer_NoDI: ; 1041c1
-; HDMA transfer from hl to [hBGMapAddress]
-; [hBGMapAddress] --> de
-; 2 * SCREEN_HEIGHT --> c
-	ld a, [hBGMapAddress + 1]
-	ld d, a
-	ld a, [hBGMapAddress]
-	ld e, a
-	ld c, 2 * SCREEN_HEIGHT
-
-	; [rHDMA1, rHDMA2] = hl & $fff0
-	ld a, h
-	ld [rHDMA1], a
-	ld a, l
-	and $f0
-	ld [rHDMA2], a
-	; [rHDMA3, rHDMA4] = de & $1ff0
-	ld a, d
-	and $1f
-	ld [rHDMA3], a
-	ld a, e
-	and $f0
-	ld [rHDMA4], a
-	; b = c | %10000000
-	ld a, c
-	dec c
-	or $80
-	ld b, a
-	; d = $7f - c + 1
-	ld a, $7f
-	sub c
-	ld d, a
-	; while [rLY] >= d: pass
-.loop1
-	ld a, [rLY]
-	cp d
-	jr nc, .loop1
-	; while not [rSTAT] & 3: pass
-.loop2
-	ld a, [rSTAT]
-	and $3
-	jr z, .loop2
-	; load the 5th byte of HDMA
-	ld a, b
-	ld [rHDMA5], a
-	; wait until rLY advances (c + 1) times
-	ld a, [rLY]
-	inc c
-	ld hl, rLY
-.loop3
-	cp [hl]
-	jr z, .loop3
-	ld a, [hl]
-	dec c
-	jr nz, .loop3
-	ld hl, rHDMA5
-	res 7, [hl]
-	ret
-; 104205
 
 HDMATransfer_Wait123Scanlines:
 	ld b, $7b

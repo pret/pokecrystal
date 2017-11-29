@@ -146,7 +146,6 @@ TeachTMHM: ; 2c867
 	and a
 	jr z, .nope
 
-	callba TrainerRankings_TMsHMsTaught
 	ld a, [CurItem]
 	call IsHM
 	ret c

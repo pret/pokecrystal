@@ -1245,11 +1245,3 @@ IgnoredOrders2Text: ; 0x81850
 	line "ignored orders!"
 	prompt
 ; 0x81863
-
-BattleText_LinkErrorBattleCanceled: ; 0x81863
-	text "Link error…"
-
-	para "The battle has"
-	line "been canceled…"
-	prompt
-; 0x8188e

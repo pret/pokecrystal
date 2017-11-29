@@ -17,30 +17,6 @@ _ReplaceKrisSprite:: ; 14135
 	ret
 ; 14146
 
-Function14146: ; mobile
-	ld hl, wSpriteFlags
-	ld a, [hl]
-	push af
-	res 7, [hl]
-	set 6, [hl]
-	call MapCallbackSprites_LoadUsedSpritesGFX
-	pop af
-	ld [wSpriteFlags], a
-	ret
-; 14157
-
-Function14157: ; mobile
-	ld hl, wSpriteFlags
-	ld a, [hl]
-	push af
-	set 7, [hl]
-	res 6, [hl]
-	call MapCallbackSprites_LoadUsedSpritesGFX
-	pop af
-	ld [wSpriteFlags], a
-	ret
-; 14168
-
 RefreshSprites:: ; 14168
 	call .Refresh
 	call MapCallbackSprites_LoadUsedSpritesGFX

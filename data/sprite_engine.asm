@@ -37,7 +37,6 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_23 ; 23
 	dw .Frameset_24 ; 24
 	dw .Frameset_25 ; 25 headbutt
-	dw .Frameset_26 ; 26
 	dw .Frameset_27 ; 27
 	dw .Frameset_28 ; 28
 	dw .Frameset_29 ; 29
@@ -49,8 +48,6 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_2f ; 2f
 	dw .Frameset_30 ; 30
 	dw .Frameset_31 ; 31
-	dw .Frameset_32 ; 32
-	dw .Frameset_33 ; 33
 	dw .Frameset_34 ; 34
 	dw .Frameset_35 ; 35
 	dw .Frameset_36 ; 36
@@ -298,10 +295,6 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_5B,  2, OAM_X_FLIP
 	dorestart
 
-.Frameset_26:
-	frame SPRITE_ANIM_FRAME_IDX_5C,  2
-	endanim
-
 .Frameset_27:
 	frame SPRITE_ANIM_FRAME_IDX_5D,  2
 	endanim
@@ -366,14 +359,6 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_67,  3
 	frame SPRITE_ANIM_FRAME_IDX_68,  3
 	dorestart
-
-.Frameset_32:
-	frame SPRITE_ANIM_FRAME_IDX_6C,  3
-	endanim
-
-.Frameset_33:
-	frame SPRITE_ANIM_FRAME_IDX_6D,  3
-	endanim
 
 .Frameset_34:
 	frame SPRITE_ANIM_FRAME_IDX_69,  2
@@ -548,7 +533,6 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $00, .OAMData_59 ; 59
 	dbw $00, .OAMData_5a ; 5a
 	dbw $04, .OAMData_50 ; 5b
-	dbw $00, .OAMData_5c ; 5c
 	dbw $00, .OAMData_5d ; 5d
 	dbw $00, .OAMData_5e ; 5e
 	dbw $00, .OAMData_5f ; 5f
@@ -564,8 +548,6 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $22, .OAMData_69 ; 69
 	dbw $23, .OAMData_6a ; 6a
 	dbw $27, .OAMData_6b ; 6b
-	dbw $2a, .OAMData_6c ; 6c
-	dbw $2a, .OAMData_6d ; 6d
 	dbw $00, .OAMData_6e ; 6e
 	dbw $08, .OAMData_6f ; 6f
 	dbw $60, .OAMData_70 ; 70
@@ -1151,21 +1133,6 @@ SpriteAnimOAMData: ; 8d94d
 	db 1
 	dsprite -1,  4, -1,  4, $00, $11
 
-.OAMData_5c:
-	db 12
-	dsprite  0,  0,  0,  0, $30, $00
-	dsprite  0,  0,  1,  0, $31, $00
-	dsprite  0,  0,  2,  0, $31, $00
-	dsprite  0,  0,  3,  0, $31, $00
-	dsprite  0,  0,  4,  0, $31, $00
-	dsprite  0,  0,  5,  0, $32, $00
-	dsprite  1,  0,  0,  0, $33, $00
-	dsprite  1,  0,  1,  0, $34, $00
-	dsprite  1,  0,  2,  0, $34, $00
-	dsprite  1,  0,  3,  0, $34, $00
-	dsprite  1,  0,  4,  0, $34, $00
-	dsprite  1,  0,  5,  0, $35, $00
-
 .OAMData_5d:
 	db 1
 	dsprite  0,  0,  0,  0, $ed, $00
@@ -1219,20 +1186,6 @@ SpriteAnimOAMData: ; 8d94d
 .OAMData_67:
 	db 1
 	dsprite -1,  4, -1,  4, $00, $02
-
-.OAMData_6c:
-	db 4
-	dsprite -2,  0, -1,  4, $00, $03
-	dsprite -1,  0, -1,  4, $01, $03
-	dsprite  0,  0, -1,  4, $02, $03
-	dsprite  1,  0, -1,  4, $03, $03
-
-.OAMData_6d:
-	db 4
-	dsprite -2,  0, -1,  4, $03, $44
-	dsprite -1,  0, -1,  4, $02, $44
-	dsprite  0,  0, -1,  4, $01, $44
-	dsprite  1,  0, -1,  4, $00, $44
 
 .OAMData_69:
 	db 4

@@ -16,7 +16,6 @@ _InterpretBattleMenu:: ; 24022
 	rst FarCall
 
 	call Draw2DMenu
-	callba MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
 	call Get2DMenuSelection
@@ -237,23 +236,6 @@ _ScrollingMenuJoypad:: ; 241ab
 	ld [hBGMapMode], a
 	ret
 ; 241ba
-
-MobileMenuJoypad: ; 241ba
-	ld hl, w2DMenuFlags2
-	res 7, [hl]
-	ld a, [hBGMapMode]
-	push af
-	call Move2DMenuCursor
-	call Do2DMenuRTCJoypad
-	jr nc, .skip_joypad
-	call _2DMenuInterpretJoypad
-.skip_joypad
-	pop af
-	ld [hBGMapMode], a
-	call GetMenuJoypad
-	ld c, a
-	ret
-; 241d5
 
 
 MenuJoypadLoop: ; 24216

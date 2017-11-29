@@ -2986,8 +2986,6 @@ Script_halloffame:
 
 	ld hl, GameTimerPause
 	res 0, [hl]
-	callba TrainerRankings_HallOfFame
-	callba TrainerRankings_HallOfFame2
 	callba HallOfFame
 	ld hl, GameTimerPause
 	set 0, [hl]

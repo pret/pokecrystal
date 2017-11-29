@@ -8079,7 +8079,6 @@ BattleCommand_LeechSeed: ; 36f9d
 
 BattleCommand_Splash: ; 36fe1
 	call AnimateCurrentMove
-	callba TrainerRankings_Splash
 	jp PrintNothingHappened
 
 ; 36fed
@@ -8606,7 +8605,6 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand_Selfdestruct: ; 37380
-	callba TrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3
@@ -9047,10 +9045,6 @@ BattleCommand_BatonPass: ; 379c9
 	call SetPalettes
 	call BatonPass_LinkPlayerSwitch
 
-; Mobile link battles handle entrances differently
-	callba CheckMobileBattleError
-	jp c, EndMoveEffect
-
 	ld hl, PassedBattleMonEntrance
 	call CallBattleCore
 
@@ -9071,10 +9065,6 @@ BattleCommand_BatonPass: ; 379c9
 	call UpdateEnemyMonInParty
 	call AnimateCurrentMove
 	call BatonPass_LinkEnemySwitch
-
-; Mobile link battles handle entrances differently
-	callba CheckMobileBattleError
-	jp c, EndMoveEffect
 
 ; Passed enemy PartyMon entrance
 	xor a

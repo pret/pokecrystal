@@ -103,49 +103,6 @@ UnknownText_0x1bc16e::
 	line "to its senses."
 	done
 
-UnknownText_0x1bc187::
-	text "Please enter any"
-	line "four-digit number."
-	done
-
-UnknownText_0x1bc1ac::
-	text "Enter the same"
-	line "number to confirm."
-	done
-
-UnknownText_0x1bc1cf::
-	text "That's not the"
-	line "same number."
-	done
-
-UnknownText_0x1bc1eb::
-	text "Your PASSCODE has"
-	line "been set."
-	para "Enter this number"
-	line "next time to open"
-	cont "the CARD FOLDER."
-	para ""
-	done
-
-UnknownText_0x1bc23e::
-	text "0000 is invalid!"
-	para ""
-	done
-
-UnknownText_0x1bc251::
-	text "Enter the CARD"
-	next "FOLDER PASSCODE."
-	done
-
-UnknownText_0x1bc272::
-	text "Incorrect"
-	line "PASSCODE!"
-	para ""
-	done
-
-UnknownText_0x1bc288::
-	text "CARD FOLDER open.@@"
-
 UnknownText_0x1bc29c::
 	text "<......><......><......><......><......><......>"
 	line "<......><......><......><......><......><......>"
@@ -378,50 +335,6 @@ UnknownText_0x1bc774::
 	line "@"
 	text_from_ram wPlayerTrademonSpeciesName
 	text "."
-	done
-
-UnknownText_0x1bc787::
-	text_from_ram wPlayerTrademonSenderName
-	text " will"
-	line "trade @"
-	text_from_ram wPlayerTrademonSpeciesName
-	db "@@"
-
-UnknownText_0x1bc79d::
-	text "for @"
-	text_from_ram wOTTrademonSenderName
-	text "'s"
-	line "@"
-	text_from_ram wOTTrademonSpeciesName
-	text "."
-	done
-
-UnknownText_0x1bc7c3::
-	text "Take good care of"
-	line "@"
-	text_from_ram wOTTrademonSpeciesName
-	text "."
-	done
-
-UnknownText_0x1bc7dd::
-	text_from_ram wPlayerTrademonSenderName
-	text "'s"
-	line "@"
-	text_from_ram wPlayerTrademonSpeciesName
-	text " trade…"
-	done
-
-UnknownText_0x1bc7f0::
-	text "Take good care of"
-	line "@"
-	text_from_ram wOTTrademonSpeciesName
-	text "."
-	done
-
-UnknownText_0x1bc80a::
-	text_from_ram wOTTrademonSpeciesName
-	text " came"
-	line "back!"
 	done
 
 ; Oak's Pokémon Talk
@@ -1036,43 +949,6 @@ Text_EnemyUsedOn::
 	text_from_ram EnemyMonNick
 	text "!"
 	prompt
-
-UnknownText_0x1bd19a::
-	text "A new CARD arrived"
-	line "from @"
-	text_from_ram StringBuffer2
-	text "."
-	done
-
-UnknownText_0x1bd1ba::
-	text "Put this CARD in"
-	line "the CARD FOLDER?"
-	done
-
-UnknownText_0x1bd1dd::
-	text_from_ram StringBuffer2
-	text "'s CARD was"
-	line "listed as no.@"
-	deciram StringBuffer1, 1, 2
-	text "."
-	prompt
-
-UnknownText_0x1bd211::
-	text "Link terminated."
-	done
-
-UnknownText_0x1bd223::
-	text "Closing link."
-	done
-
-UnknownText_0x1bd286::
-	text "Trading @"
-	text_from_ram StringBuffer2
-	text ""
-	line "for @"
-	text_from_ram StringBuffer1
-	text "…"
-	done
 
 UnknownText_0x1bd2bc::
 	text "Which floor?"

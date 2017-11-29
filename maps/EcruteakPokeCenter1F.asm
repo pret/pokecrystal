@@ -63,12 +63,7 @@ EcruteakPokeCenter1FNurseScript:
 	jumpstd pokecenternurse
 
 EcruteakPokeCenter1FPokefanMScript:
-	special Mobile_DummyReturnFalse
-	iftrue .mobile
 	jumptextfaceplayer EcruteakPokeCenter1FPokefanMText
-
-.mobile
-	jumptextfaceplayer EcruteakPokeCenter1FPokefanMTextMobile
 
 EcruteakPokeCenter1FCooltrainerFScript:
 	jumptextfaceplayer EcruteakPokeCenter1FCooltrainerFText
@@ -171,22 +166,6 @@ EcruteakPokeCenter1FPokefanMText:
 	para "marvelous. Just"
 	line "like the way they"
 	cont "use their #MON."
-	done
-
-EcruteakPokeCenter1FPokefanMTextMobile:
-	text "You must be hoping"
-	line "to battle more"
-
-	para "people, right?"
-	line "There's apparently"
-
-	para "some place where"
-	line "trainers gather."
-
-	para "Where, you ask?"
-
-	para "It's a little past"
-	line "OLIVINE CITY."
 	done
 
 EcruteakPokeCenter1FCooltrainerFText:

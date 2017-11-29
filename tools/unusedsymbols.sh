@@ -5,7 +5,6 @@ set -e
 rm -f unused_ignore.txt
 
 # Scrape labels from a few select files
-sed -n -e '/^Prefectures:$/,/^$/s/^\([A-z]*\):.*/\1/p' misc/mobile_12.asm | grep -xv Prefectures >> unused_ignore.txt
 sed -n -e 's/^\(BattleTowerMons[0-9][0-9]*\):$/\1/p' data/battle_tower.asm >> unused_ignore.txt
 sed -n -e 's/^\(BattleTowerTrainer[0-9][0-9]*DataTable\):$/\1/p' data/battle_tower_2.asm >> unused_ignore.txt
 sed -n -e 's/^\(IncGradGBPalTable_[0-9][0-9]\)::.*/\1/p' home/fade.asm >> unused_ignore.txt
@@ -20,7 +19,6 @@ cat >> unused_ignore.txt << EOF
 BattleTowerTrainerDataEnd
 BoxNameInputUpper
 CheckPlayerTurn
-ClearScreenArea
 Coord2Attr
 Cry_Teddiursa_branch_f3286
 Cry_Teddiursa_branch_f328e
@@ -30,17 +28,16 @@ Cry_Teddiursa_branch_f32ae
 DrawHP
 FacingsEnd
 FemalePlayerNameArray
-Function118125
 Function24f19
-Function4a3aa
-Function4aa34
 GetDamageStats
 GetIcon
+HDMATransfer_Wait123Scanlines
 InterpretTwoOptionMenu
 LeerCorreosIngleses
 LeggiPostaInglese
 LireLeCourrierAnglais
 MalePlayerNameArray
+Mobile_GetMenuSelection
 NamingScreen_AdvanceCursor_CheckEndOfString
 NamingScreen_LoadNextCharacter
 SGBBorderPalettes
@@ -58,12 +55,11 @@ Sfx_ReadText_Ch5
 Sfx_Unknown5F_Ch8
 Sfx_Unknown5F_branch_f270e
 StatsScreenPageTilesGFX_Part2
+SwitchSpeed
 TeruSama
 UnknownMoveDescription
-UnknownScript_0x58f6e
 WaitDMATransfer
 _CalcHoursDaysSince
-asm_118e3e
 EOF
 
 # Create objects with all the labels exported

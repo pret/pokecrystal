@@ -1,6 +1,5 @@
 _BugContestJudging: ; 1369d
 	call ContestScore
-	callba TrainerRankings_BugContestScore
 	call BugContest_JudgeContestants
 	ld a, [wBugContestThirdPlacePersonID]
 	call LoadContestantName

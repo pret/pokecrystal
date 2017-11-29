@@ -232,12 +232,6 @@ BattleTowerBattleRoom_BlockData:
 GoldenrodPokeComCenter2FMobile_BlockData:
 	INCBIN "maps/GoldenrodPokeComCenter2FMobile.blk"
 
-MobileTradeRoomMobile_BlockData:
-	INCBIN "maps/MobileTradeRoomMobile.blk"
-
-MobileBattleRoom_BlockData:
-	INCBIN "maps/MobileBattleRoom.blk"
-
 BattleTowerHallway_BlockData:
 	INCBIN "maps/BattleTowerHallway.blk"
 

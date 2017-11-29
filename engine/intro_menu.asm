@@ -67,7 +67,7 @@ NewGame: ; 5b6b
 	ld [wMonStatusFlags], a
 	call ResetWRAM
 	call NewGame_ClearTileMapEtc
-	call AreYouABoyOrAreYouAGirl
+	callba InitGender
 	call OakSpeech
 	call InitializeWorld
 	ld a, 1
@@ -80,18 +80,6 @@ NewGame: ; 5b6b
 	ld [hMapEntryMethod], a
 	jp FinishContinueFunction
 ; 5b8f
-
-AreYouABoyOrAreYouAGirl: ; 5b8f
-	callba Mobile_AlwaysReturnNotCarry ; some mobile stuff
-	jr c, .ok
-	callba InitGender
-	ret
-
-.ok
-	ld c, 0
-	callba InitMobileProfile ; mobile
-	ret
-; 5ba7
 
 ResetWRAM: ; 5ba7
 	xor a
@@ -375,7 +363,6 @@ Continue: ; 5d65
 	ld a, MUSIC_NONE / $100
 	ld [MusicFadeIDHi], a
 	call ClearBGPalettes
-	call Continue_MobileAdapterMenu
 	call CloseWindow
 	call ClearTileMap
 	ld c, 20
@@ -412,37 +399,6 @@ PostCreditsSpawn: ; 5de7
 	ld [hMapEntryMethod], a
 	ret
 ; 5df0
-
-Continue_MobileAdapterMenu: ; 5df0
-	callba Mobile_AlwaysReturnNotCarry ; mobile check
-	ret nc
-
-; the rest of this stuff is never reached because
-; the previous function returns with carry not set
-	ld hl, wd479
-	bit 1, [hl]
-	ret nz
-	ld a, 5
-	ld [MusicFade], a
-	ld a, MUSIC_MOBILE_ADAPTER_MENU % $100
-	ld [MusicFadeIDLo], a
-	ld a, MUSIC_MOBILE_ADAPTER_MENU / $100
-	ld [MusicFadeIDHi], a
-	ld c, 20
-	call DelayFrames
-	ld c, $1
-	callba InitMobileProfile ; mobile
-	callba _SaveData
-	ld a, 8
-	ld [MusicFade], a
-	ld a, MUSIC_NONE % $100
-	ld [MusicFadeIDLo], a
-	ld a, MUSIC_NONE / $100
-	ld [MusicFadeIDHi], a
-	ld c, 35
-	call DelayFrames
-	ret
-; 5e34
 
 ConfirmContinue: ; 5e34
 .loop

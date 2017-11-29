@@ -85,7 +85,5 @@ ENDM
 	trigger_def FAST_SHIP_1F,                           wFastShip1FTrigger
 	trigger_def FAST_SHIP_B1F,                          wFastShipB1FTrigger
 	trigger_def MOUNT_MOON_SQUARE,                      wMountMoonSquareTrigger
-	trigger_def MOBILE_TRADE_ROOM_MOBILE,               wMobileTradeRoomMobileTrigger
-	trigger_def MOBILE_BATTLE_ROOM,                     wMobileBattleRoomTrigger
 	db -1
 ; 4d15b

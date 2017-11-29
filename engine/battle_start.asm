@@ -53,20 +53,12 @@ Predef_StartBattle: ; 8c20f
 ; 8c26d
 
 .InitGFX: ; 8c26d
-	ld a, [wLinkMode]
-	cp LINK_MOBILE
-	jr z, .mobile
 	callba ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
 	call DelayFrame
 	call .NonMobile_LoadPokeballTiles
 	call BattleStart_LoadEDTile
-	jr .resume
 
-.mobile
-	call LoadTrainerBattlePokeballTiles
-
-.resume
 	ld a, SCREEN_HEIGHT_PX
 	ld [hWY], a
 	call DelayFrame

@@ -130,17 +130,11 @@ SpecialsPointers:: ; c029
 	add_special SpecialCheckForBattleTowerRules
 	add_special Special_GiveOddEgg
 	add_special Reset
-	add_special Function1011f1
-	add_special Function101220
-	add_special Function101225
-	add_special Function101231
 	add_special Special_MoveTutor
 	add_special SpecialOmanyteChamber
 	add_special BattleTowerAction
 	add_special Special_DisplayUnownWords
 	add_special Special_Menu_ChallengeExplanationCancel
-	add_special BattleTowerMobileError
-	add_special AskMobileOrCable
 	add_special SpecialHoOhChamber
 	add_special Special_CelebiShrineEvent
 	add_special CheckCaughtCelebi
@@ -152,15 +146,7 @@ SpecialsPointers:: ; c029
 	add_special SpecialBeastsCheck
 	add_special SpecialMonCheck
 	add_special Special_SetPlayerPalette
-	add_special Mobile_SelectThreeMons
-	add_special Function1037eb
-	add_special Function10383c
-	add_special TrainerRankings_Healings
 	add_special RefreshSprites
-	add_special Function1037c2
-	add_special Mobile_DummyReturnFalse
-	add_special Function103780
-	add_special Function10387b
 	add_special AskRememberPassword
 	add_special LoadMapPalettes
 	add_special Special_InitialSetDSTFlag

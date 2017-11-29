@@ -2252,7 +2252,6 @@ RADIO_TOWER_MUSIC EQU 7
 	jr z, .mahoganymart
 	bit RADIO_TOWER_MUSIC, c
 	jr nz, .radiotower
-	callba Function8b342
 	ld e, c
 	ld d, 0
 .done

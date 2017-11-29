@@ -125,16 +125,6 @@ Function140ae: ; 140ae
 .time_overflow
 	callba ClearDailyTimers
 	callba Function170923
-; mobile
-	ld a, $5
-	call GetSRAMBank
-	ld a, [$aa8c]
-	inc a
-	ld [$aa8c], a
-	ld a, [$b2fa]
-	inc a
-	ld [$b2fa], a
-	call CloseSRAM
 	ret
 
 .dont_update

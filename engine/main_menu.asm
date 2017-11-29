@@ -1,7 +1,3 @@
-GFX_49c0c: ; 49c0c
-INCBIN "gfx/unknown/049c0c.2bpp"
-; 49cdc
-
 MainMenu: ; 49cdc
 	xor a
 	ld [wDisableTextAcceleration], a
@@ -50,8 +46,6 @@ MainMenu: ; 49cdc
 	db "NEW GAME@"
 	db "OPTION@"
 	db "MYSTERY GIFT@"
-	db "MOBILE@"
-	db "MOBILE STUDIUM@"
 
 .Jumptable: ; 0x49d60
 
@@ -59,16 +53,12 @@ MainMenu: ; 49cdc
 	dw MainMenu_NewGame
 	dw MainMenu_Options
 	dw MainMenu_MysteryGift
-	dw MainMenu_Mobile
-	dw MainMenu_MobileStudium
 ; 0x49d6c
 
 CONTINUE       EQU 0
 NEW_GAME       EQU 1
 OPTION         EQU 2
 MYSTERY_GIFT   EQU 3
-MOBILE         EQU 4
-MOBILE_STUDIUM EQU 5
 
 MainMenuItems:
 
@@ -85,42 +75,6 @@ ContinueMenu: ; 0x49d70
 	db OPTION
 	db -1
 
-MobileMysteryMenu: ; 0x49d75
-	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE
-	db -1
-
-MobileMenu: ; 0x49d7c
-	db 4
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE
-	db -1
-
-MobileStudiumMenu: ; 0x49d82
-	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE
-	db MOBILE_STUDIUM
-	db -1
-
-MysteryMobileStudiumMenu: ; 0x49d89
-	db 6
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE
-	db MOBILE_STUDIUM
-	db -1
-
 MysteryMenu: ; 0x49d91
 	db 4
 	db CONTINUE
@@ -129,28 +83,8 @@ MysteryMenu: ; 0x49d91
 	db MYSTERY_GIFT
 	db -1
 
-MysteryStudiumMenu: ; 0x49d97
-	db 5
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MYSTERY_GIFT
-	db MOBILE_STUDIUM
-	db -1
-
-StudiumMenu: ; 0x49d9e
-	db 4
-	db CONTINUE
-	db NEW_GAME
-	db OPTION
-	db MOBILE_STUDIUM
-	db -1
-
 
 MainMenu_GetWhichMenu: ; 49da4
-	nop
-	nop
-	nop
 	ld a, [wSaveFileExists]
 	and a
 	jr nz, .next
@@ -175,23 +109,17 @@ MainMenu_GetWhichMenu: ; 49da4
 	jr .ok
 
 .ok
-	jr .ok2
-
-.ok2
 	ld a, $1 ; Continue
 	ret
 
 .mystery_gift
 	ld a, [StatusFlags]
 	bit 7, a
-	jr z, .ok3
-	jr .ok3
+	jr z, .ok2
+	jr .ok2
 
-.ok3
-	jr .ok4
-
-.ok4
-	ld a, $6 ; Mystery Gift
+.ok2
+	ld a, $2 ; Mystery Gift
 	ret
 ; 49de4
 

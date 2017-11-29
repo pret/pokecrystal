@@ -49,8 +49,6 @@ BattleBGMap: ; 1250a
 ; 12513
 
 HalveMoney: ; 12513
-	callba TrainerRankings_WhiteOuts
-
 ; Halve the player's money.
 	ld hl, Money
 	ld a, [hl]

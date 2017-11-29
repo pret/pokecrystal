@@ -18,7 +18,6 @@ UnknownScript_0x58f69:
 	end
 
 UnknownScript_0x58f6a:
-UnknownScript_0x58f6e:
 	opentext
 	writetext UnknownText_0x58f89
 	waitbutton

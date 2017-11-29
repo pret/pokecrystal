@@ -236,36 +236,6 @@ UnknownText_0x1c04fa::
 	text "'s home."
 	prompt
 
-UnknownText_0x1c051a::
-	text "Received"
-	line "@"
-	text_from_ram wc850
-	text "'s CARD."
-	prompt
-
-UnknownText_0x1c0531::
-	text_from_ram wc850
-	text "'s CARD was"
-	line "listed as no.@"
-	deciram wd265, 1, 2
-	text "."
-	prompt
-
-UnknownText_0x1c0555::
-	text "The CARD was not"
-	line "registered."
-	prompt
-
-UnknownText_0x1c0573::
-	text "The link has been"
-	line "cancelled."
-	prompt
-
-UnknownText_0x1c0591::
-	text "Communication"
-	line "error."
-	prompt
-
 _BadgeRequiredText::
 	text "Sorry! A new BADGE"
 	line "is required."

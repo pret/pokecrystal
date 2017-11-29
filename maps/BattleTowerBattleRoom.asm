@@ -85,8 +85,6 @@ Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	iffalse Script_ContinueAndBattleNextOpponent
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
-	writebyte BATTLETOWERACTION_06
-	special BattleTowerAction
 	closetext
 	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, $7, $7

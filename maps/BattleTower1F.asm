@@ -37,8 +37,6 @@ BattleTower1F_MapScriptHeader:
 	priorityjump BattleTower_LeftWithoutSaving
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
-	writebyte BATTLETOWERACTION_06
-	special BattleTowerAction
 .SkipEverything:
 	dotrigger $1
 .Trigger1:
@@ -69,7 +67,6 @@ ReceptionistScript_0x9e3e2:
 
 Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 	writetext Text_WantToGoIntoABattleRoom
-	writebyte $1
 	special Special_Menu_ChallengeExplanationCancel
 	if_equal $1, Script_ChooseChallenge
 	if_equal $2, Script_BattleTowerExplanation
@@ -91,9 +88,6 @@ Script_ChooseChallenge: ; 0x9e40f
 	special BattleTowerAction
 	special BattleTowerRoomMenu
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
-	if_not_equal $0, Script_MobileError
-	writebyte BATTLETOWERACTION_11
-	special BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
 	waitbutton
 	closetext
@@ -160,11 +154,6 @@ Script_BattleTowerHopeToServeYouAgain:
 
 Script_WaitButton: ; 0x9e4bb
 	waitbutton
-	closetext
-	end
-
-Script_MobileError:
-	special BattleTowerMobileError
 	closetext
 	end
 

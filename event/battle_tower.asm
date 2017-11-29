@@ -1,34 +1,3 @@
-CheckForMobileBattleRules: ; 8b1e1
-	ld de, .PointerTables
-	call BattleTower_ExecuteJumptable
-	ret z
-	call BattleTower_PleaseReturnWhenReady
-	scf
-	ret
-; 8b1ed
-
-.PointerTables: ; 8b1ed
-	db 2
-	dw .Functions
-	dw .TextPointers
-
-.Functions: ; 8b1f2
-	dw BattleTower_CheckPartyLengthIs3
-	dw BattleTower_CheckPartyHasThreeMonsThatAreNotEggs
-; 8b1f6
-
-.TextPointers: ; 8b1f6
-	dw .ExcuseMeText
-	dw JumpText_NeedAtLeastThreeMon
-	dw JumpText_EggDoesNotQualify
-; 8b1fc
-
-.ExcuseMeText: ; 0x8b1fc
-	; Excuse me!
-	text_jump UnknownText_0x1c5937
-	db "@"
-; 0x8b201
-
 CheckForBattleTowerRules: ; 8b201
 	ld hl, StringBuffer2
 	ld [hl], "3"
@@ -79,18 +48,6 @@ BattleTower_PleaseReturnWhenReady: ; 8b231
 	text_jump UnknownText_0x1c5962
 	db "@"
 ; 0x8b23d
-
-JumpText_NeedAtLeastThreeMon: ; 0x8b23d
-	; You need at least three #MON.
-	text_jump UnknownText_0x1c5983
-	db "@"
-; 0x8b242
-
-JumpText_EggDoesNotQualify: ; 0x8b242
-	; Sorry, an EGG doesn't qualify.
-	text_jump UnknownText_0x1c59a3
-	db "@"
-; 0x8b247
 
 JumpText_OnlyThreePkmnMayBeEntered: ; 0x8b247
 	; Only three #MON may be entered.
@@ -210,34 +167,6 @@ BattleTower_ExecuteJumptable: ; 8b25b
 	pop bc
 	ret
 ; 8b2bb
-
-BattleTower_CheckPartyLengthIs3: ; 8b2bb
-	ld a, [PartyCount]
-	cp 3
-	ret
-; 8b2c1
-
-BattleTower_CheckPartyHasThreeMonsThatAreNotEggs: ; 8b2c1
-	ld hl, PartyCount
-	ld a, [hli]
-	ld b, $0
-	ld c, a
-.loop
-	ld a, [hli]
-	cp EGG
-	jr z, .egg
-	inc b
-
-.egg
-	dec c
-	jr nz, .loop
-	ld a, [PartyCount]
-	cp b
-	ret z
-	ld a, b
-	cp 3
-	ret
-; 8b2da
 
 Function_PartyCountEq3: ; 8b2da
 	ld a, [PartyCount]

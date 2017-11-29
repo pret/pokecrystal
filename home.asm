@@ -370,11 +370,6 @@ PrintNum:: ; 3198
 	ret
 ; 31a4
 
-MobilePrintNum:: ; 31a4
-	homecall _MobilePrintNum
-	ret
-; 31b0
-
 FarPrintText:: ; 31b0
 	ld [hBuffer], a
 	ld a, [hROMBank]
@@ -1871,4 +1866,3 @@ ReinitSpriteAnimFrame:: ; 3b3c
 ; 3b4e
 
 INCLUDE "home/audio.asm"
-INCLUDE "home/mobile.asm"

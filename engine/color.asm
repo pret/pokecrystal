@@ -77,42 +77,6 @@ SGB_ApplyPartyMenuHPPals: ; 8ade SGB layout $fc
 	ld [hl], e
 	ret
 
-LoadTrainerClassPaletteAsNthBGPal:
-	ld a, [TrainerClass]
-	call GetTrainerPalettePointer
-	ld a, e
-	jr got_palette_pointer_8bd7
-
-LoadMonPaletteAsNthBGPal:
-	ld a, [CurPartySpecies]
-	call GetMonPalettePointer
-	ld a, e
-	bit 7, a
-	jr z, got_palette_pointer_8bd7
-	and $7f
-	inc hl
-	inc hl
-	inc hl
-	inc hl
-
-got_palette_pointer_8bd7
-	push hl
-	ld hl, UnknBGPals
-	ld de, 1 palettes
-.loop
-	and a
-	jr z, .got_addr
-	add hl, de
-	dec a
-	jr .loop
-
-.got_addr
-	ld e, l
-	ld d, h
-	pop hl
-	call LoadPalette_White_Col1_Col2_Black
-	ret
-
 ApplyMonOrTrainerPals:
 	call CheckCGB
 	ret z
@@ -1732,12 +1696,6 @@ endr
 	db $08, $09, $0a, $0b, $0c, $0d, $0e, $0f ; day
 	db $10, $11, $12, $13, $14, $15, $16, $17 ; nite
 	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f ; dark
-
-Palette_b309: ; b309 mobile
-	RGB 31, 31, 31
-	RGB 31, 19, 24
-	RGB 30, 10, 06
-	RGB 00, 00, 00
 
 Palette_b311: ; b311 not mobile
 	RGB 31, 31, 31
