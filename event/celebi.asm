@@ -214,14 +214,14 @@ UpdateCelebiPosition: ; 49aa2 (12:5aa2)
 	jr nc, .left
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
-	ld a, $41
+	ld a, SPRITE_ANIM_FRAMESET_CELEBI_RIGHT
 	call ReinitSpriteAnimFrame
 	jr .done
 
 .left
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
-	ld a, $40
+	ld a, SPRITE_ANIM_FRAMESET_CELEBI_LEFT
 	call ReinitSpriteAnimFrame
 .done
 	ret
@@ -231,7 +231,7 @@ UpdateCelebiPosition: ; 49aa2 (12:5aa2)
 	pop af
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
-	ld a, $40
+	ld a, SPRITE_ANIM_FRAMESET_CELEBI_LEFT
 	call ReinitSpriteAnimFrame
 	ret
 
