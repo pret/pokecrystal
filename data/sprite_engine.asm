@@ -60,8 +60,6 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_3d ; 3d
 	dw .Frameset_3e ; 3e
 	dw .Frameset_3f ; 3f
-	dw .Frameset_40 ; 40 celebi on the left
-	dw .Frameset_41 ; 41 celebi on the right
 ; 8d76a
 
 .Frameset_00:
@@ -427,16 +425,6 @@ SpriteAnimFrameData: ; 8d6e6
 .Frameset_3f:
 	dorepeat 0
 	endanim
-
-.Frameset_40:
-	frame SPRITE_ANIM_FRAME_IDX_7F,  8
-	frame SPRITE_ANIM_FRAME_IDX_80,  8
-	endanim
-
-.Frameset_41:
-	frame SPRITE_ANIM_FRAME_IDX_7F,  8, OAM_X_FLIP
-	frame SPRITE_ANIM_FRAME_IDX_80,  8, OAM_X_FLIP
-	endanim
 ; 8d94d
 
 SpriteAnimOAMData: ; 8d94d
@@ -565,8 +553,6 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $08, .OAMData_7c ; 7c
 	dbw $1c, .OAMData_7c ; 7d
 	dbw $80, .OAMData_7e ; 7e
-	dbw $00, .OAMData_7f ; 7f
-	dbw $04, .OAMData_7f ; 80
 	dbw $d0, .OAMData_81 ; 81
 	dbw $d3, .OAMData_81 ; 82
 	dbw $d6, .OAMData_81 ; 83
@@ -1495,13 +1481,6 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  1,  0, -14,  0, $00, $81
 	dsprite  2,  0, -13,  0, $00, $81
 	dsprite  3,  0, -12,  0, $00, $81
-
-.OAMData_7f:
-	db 4
-	dsprite -1,  0, -1,  0, $00, $02
-	dsprite -1,  0,  0,  0, $01, $02
-	dsprite  0,  0, -1,  0, $02, $02
-	dsprite  0,  0,  0,  0, $03, $02
 
 .OAMData_81:
 	db 9

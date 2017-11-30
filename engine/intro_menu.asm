@@ -210,8 +210,6 @@ ENDC
 
 	callba DeletePartyMonMail
 
-	callba DeleteMobileEventIndex
-
 	call ResetGameTime
 	ret
 ; 5ca1

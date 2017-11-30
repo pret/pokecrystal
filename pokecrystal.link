@@ -169,7 +169,6 @@ ROMX $40
 	"bank40"
 ROMX $41
 	"bank41"
-	"bank41_2"
 ROMX $42
 	"Intro Logo"
 	"Credits"

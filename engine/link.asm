@@ -1954,7 +1954,6 @@ LinkTrade: ; 28b87
 
 .save
 	callba SaveAfterLinkTrade
-	callba BackupMobileEventIndex
 	ld c, 40
 	call DelayFrames
 	hlcoord 0, 12

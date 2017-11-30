@@ -19,8 +19,6 @@ KurtsHouse_MapScriptHeader:
 UnknownScript_0x18e154:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iffalse UnknownScript_0x18e177
-	checkevent EVENT_FOREST_IS_RESTLESS
-	iftrue UnknownScript_0x18e177
 	checkflag ENGINE_KURT_MAKING_BALLS
 	iftrue UnknownScript_0x18e16f
 	disappear KURTSHOUSE_KURT2
@@ -93,9 +91,6 @@ KurtScript_0x18e178:
 	iftrue .GiveHeavyBall
 	checkevent EVENT_GAVE_KURT_PNK_APRICORN
 	iftrue .GiveLoveBall
-	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	iftrue .CanGiveGSBallToKurt
-.NoGSBall:
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue .CheckApricorns
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
@@ -264,64 +259,9 @@ KurtScript_0x18e178:
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN
 	jump ._ThatTurnedOutGreat
 
-.CanGiveGSBallToKurt:
-	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue .GaveGSBallToKurt
-	checkitem GS_BALL
-	iffalse .NoGSBall
-	writetext UnknownText_0x18e8ab
-	waitbutton
-	closetext
-	setevent EVENT_GAVE_GS_BALL_TO_KURT
-	takeitem GS_BALL
-	setflag ENGINE_KURT_MAKING_BALLS
-	end
-
-.GaveGSBallToKurt:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iffalse .NotMakingBalls
-	writetext UnknownText_0x18e934
-	waitbutton
-	writetext UnknownText_0x18e949
-	waitbutton
-	closetext
-	end
-
-.NotMakingBalls:
-	writetext UnknownText_0x18e95c
-	waitbutton
-	closetext
-	setevent EVENT_FOREST_IS_RESTLESS
-	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	clearevent EVENT_GAVE_GS_BALL_TO_KURT
-	special Special_FadeOutMusic
-	pause 20
-	showemote EMOTE_SHOCK, KURTSHOUSE_KURT1, 30
-	checkcode VAR_FACING
-	if_equal UP, .GSBallRunAround
-	spriteface PLAYER, DOWN
-	playsound SFX_FLY
-	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
-	jump .KurtHasLeftTheBuilding
-
-.GSBallRunAround:
-	spriteface PLAYER, DOWN
-	playsound SFX_FLY
-	applymovement KURTSHOUSE_KURT1, MovementData_0x18e46c
-.KurtHasLeftTheBuilding:
-	playsound SFX_EXIT_BUILDING
-	disappear KURTSHOUSE_KURT1
-	clearevent EVENT_AZALEA_TOWN_KURT
-	waitsfx
-	special RestartMapMusic
-	domaptrigger AZALEA_TOWN, $2
-	end
-
 KurtScript_0x18e3bd:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue KurtScript_ImCheckingItNow
 KurtMakingBallsScript:
 	checkevent EVENT_BUGGING_KURT_TOO_MUCH
 	iffalse Script_FirstTimeBuggingKurt
@@ -337,15 +277,6 @@ Script_FirstTimeBuggingKurt:
 	closetext
 	spriteface KURTSHOUSE_KURT2, UP
 	setevent EVENT_BUGGING_KURT_TOO_MUCH
-	end
-
-KurtScript_ImCheckingItNow:
-	writetext UnknownText_0x18e934
-	waitbutton
-	spriteface KURTSHOUSE_KURT2, UP
-	writetext UnknownText_0x18e949
-	waitbutton
-	closetext
 	end
 
 KurtsGranddaughter1:
@@ -393,16 +324,7 @@ KurtsGranddaughter2:
 	faceplayer
 KurtsGranddaughter2Subscript:
 	opentext
-	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue .GSBall
 	writetext KurtsGranddaughterHelpText
-	waitbutton
-	closetext
-	spriteface KURTSHOUSE_TWIN2, RIGHT
-	end
-
-.GSBall:
-	writetext KurtsGranddaughterGSBallText
 	waitbutton
 	closetext
 	spriteface KURTSHOUSE_TWIN2, RIGHT
@@ -573,43 +495,6 @@ UnknownText_0x18e863:
 	line "work much faster."
 	done
 
-UnknownText_0x18e8ab:
-	text "Wh-what is that?"
-
-	para "I've never seen"
-	line "one before."
-
-	para "It looks a lot"
-	line "like a # BALL,"
-
-	para "but it appears to"
-	line "be something else."
-
-	para "Let me check it"
-	line "for you."
-	done
-
-UnknownText_0x18e934:
-	text "I'm checking it"
-	line "now."
-	done
-
-UnknownText_0x18e949:
-	text "Ah-ha! I see!"
-	line "So…"
-	done
-
-UnknownText_0x18e95c:
-	text "<PLAYER>!"
-
-	para "This BALL started"
-	line "to shake while I"
-	cont "was checking it."
-
-	para "There must be"
-	line "something to this!"
-	done
-
 KurtsGranddaughterSlowpokeGoneText:
 	text "The SLOWPOKE are"
 	line "gone… Were they"
@@ -653,14 +538,6 @@ KurtsGranddaughterHelpText:
 KurtsGranddaughterFunText:
 	text "It's fun to make"
 	line "BALLS!"
-	done
-
-KurtsGranddaughterGSBallText:
-	text "Grandpa's checking"
-	line "a BALL right now."
-
-	para "So I'm waiting"
-	line "till he's done."
 	done
 
 KurtsHouseSlowpokeText:

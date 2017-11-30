@@ -41,7 +41,6 @@ DoAnimFrame: ; 8d24b
 	dw .twentyfive
 	dw .twentynine  ; intro suicune
 	dw .thirty      ; intro pichu wooper
-	dw .thirtyone   ; celebi
 	dw .thirtytwo   ; intro unown
 	dw .thirtythree ; intro unown F with suicune leaping up
 	dw .thirtyfour  ; intro suicune facing away from us
@@ -828,10 +827,6 @@ DoAnimFrame: ; 8d24b
 	ld a, [hl]
 	add $10
 	ld [hl], a
-	ret
-
-.thirtyone ; 8d6be (23:56be)
-	callba UpdateCelebiPosition
 	ret
 
 .AnonymousJumptable: ; 8d6c5 (23:56c5)

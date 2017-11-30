@@ -149,34 +149,6 @@ AzaleaTownSlowpokeScript:
 	closetext
 	end
 
-AzaleaTown_CelebiEventScript:
-	applymovement PLAYER, Movement_PlayerWalksOutOfKurtsHouse
-	opentext
-	writetext IlexForestIsRestlessText
-	buttonsound
-	spriteface AZALEATOWN_KURT_OUTSIDE, RIGHT
-	writetext HeresTheGSBallBackText
-	buttonsound
-	writetext PleaseInvestigateIlexForestText
-	waitbutton
-	verbosegiveitem GS_BALL
-	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT
-	setflag ENGINE_HAVE_EXAMINED_GS_BALL
-	clearevent EVENT_ILEX_FOREST_LASS
-	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	dotrigger $0
-	closetext
-	end
-
-AzaleaTownKurtScript:
-	faceplayer
-	opentext
-	writetext PleaseInvestigateIlexForestText
-	waitbutton
-	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT
-	closetext
-	end
-
 AzaleaTownSign:
 	jumptext AzaleaTownSignText
 
@@ -232,13 +204,6 @@ AzaleaTownRivalBattleExitMovement:
 	step LEFT
 	step LEFT
 	step LEFT
-	step_end
-
-Movement_PlayerWalksOutOfKurtsHouse:
-	step LEFT
-	step LEFT
-	step UP
-	turn_head LEFT
 	step_end
 
 AzaleaTownRivalBeforeText:
@@ -378,24 +343,6 @@ AzaleaTownSlowpokeText2:
 	text "<......> <......>Yawn?"
 	done
 
-IlexForestIsRestlessText:
-	text "ILEX FOREST is"
-	line "restless!"
-
-	para "What is going on?"
-	done
-
-HeresTheGSBallBackText:
-	text "<PLAYER>, here's"
-	line "your GS BALL back!"
-	done
-
-PleaseInvestigateIlexForestText:
-	text "Could you go see"
-	line "why ILEX FOREST is"
-	cont "so restless?"
-	done
-
 AzaleaTownSignText:
 	text "AZALEA TOWN"
 	line "Where People and"
@@ -462,10 +409,9 @@ AzaleaTown_MapEventHeader:
 	warp_def $b, $2, 4, ILEX_FOREST_AZALEA_GATE
 
 .XYTriggers:
-	db 3
+	db 2
 	xy_trigger 1, $a, $5, $0, AzaleaTownRivalBattleTrigger1, $0, $0
 	xy_trigger 1, $b, $5, $0, AzaleaTownRivalBattleTrigger2, $0, $0
-	xy_trigger 2, $6, $9, $0, AzaleaTown_CelebiEventScript, $0, $0
 
 .Signposts:
 	db 9
@@ -480,7 +426,7 @@ AzaleaTown_MapEventHeader:
 	signpost 6, 31, SIGNPOST_ITEM, AzaleaTownHiddenFullHeal
 
 .PersonEvents:
-	db 12
+	db 11
 	person_event SPRITE_AZALEA_ROCKET, 9, 31, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaTownRocket1Script, EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	person_event SPRITE_GRAMPS, 9, 21, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaTownGrampsScript, -1
 	person_event SPRITE_TEACHER, 13, 15, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, AzaleaTownTeacherScript, -1
@@ -492,4 +438,3 @@ AzaleaTown_MapEventHeader:
 	person_event SPRITE_FRUIT_TREE, 2, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, WhiteApricornTree, -1
 	person_event SPRITE_AZALEA_ROCKET, 10, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_AZALEA_TOWN
 	person_event SPRITE_AZALEA_ROCKET, 16, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaTownRocket2Script, EVENT_SLOWPOKE_WELL_ROCKETS
-	person_event SPRITE_KURT_OUTSIDE, 5, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaTownKurtScript, EVENT_AZALEA_TOWN_KURT

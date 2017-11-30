@@ -136,8 +136,6 @@ SpecialsPointers:: ; c029
 	add_special Special_DisplayUnownWords
 	add_special Special_Menu_ChallengeExplanationCancel
 	add_special SpecialHoOhChamber
-	add_special Special_CelebiShrineEvent
-	add_special CheckCaughtCelebi
 	add_special SpecialPokeSeer
 	add_special SpecialBuenasPassword
 	add_special SpecialBuenaPrize

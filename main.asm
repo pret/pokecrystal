@@ -2021,7 +2021,6 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	db 17, 19 ; end coords
 
 INCLUDE "predef/crystal.asm"
-INCLUDE "event/celebi.asm"
 INCLUDE "engine/main_menu.asm"
 INCLUDE "engine/search.asm"
 ; mobile battle selection
@@ -5062,8 +5061,6 @@ INCLUDE "engine/warp_connection.asm"
 INCLUDE "engine/mysterygift.asm"
 
 INCLUDE "battle/used_move_text.asm"
-
-INCLUDE "misc/mobile_41.asm"
 
 LoadOverworldFont:: ; 106594
 	ld de, .font

@@ -15,70 +15,6 @@ GoldenrodPokeCenter1F_MapScriptHeader:
 NurseScript_0x60f91:
 	jumpstd pokecenternurse
 
-GoldenrodPokeCenter1F_GSBallTriggerLeft:
-	writebyte BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
-	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
-	end
-
-.gsball
-	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	iftrue .cancel
-	playsound SFX_EXIT_BUILDING
-	moveperson GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
-	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
-	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
-	playmusic MUSIC_SHOW_ME_AROUND
-	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x6105a
-	spriteface PLAYER, UP
-	opentext
-	writetext UnknownText_0x622f0
-	waitbutton
-	verbosegiveitem GS_BALL
-	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	writetext UnknownText_0x62359
-	waitbutton
-	closetext
-	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x61060
-	special RestartMapMusic
-	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
-	playsound SFX_EXIT_BUILDING
-.cancel
-	end
-
-GoldenrodPokeCenter1F_GSBallTriggerRight:
-	writebyte BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
-	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
-	end
-
-.gsball
-	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	iftrue .cancel
-	playsound SFX_EXIT_BUILDING
-	moveperson GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
-	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
-	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
-	playmusic MUSIC_SHOW_ME_AROUND
-	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x61065
-	spriteface PLAYER, UP
-	opentext
-	writetext UnknownText_0x622f0
-	waitbutton
-	verbosegiveitem GS_BALL
-	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	writetext UnknownText_0x62359
-	waitbutton
-	closetext
-	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x6106c
-	special RestartMapMusic
-	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
-	playsound SFX_EXIT_BUILDING
-.cancel
-	end
-
 GameboyKidScript_0x6101e:
 	jumptextfaceplayer UnknownText_0x62105
 
@@ -119,38 +55,6 @@ UnknownScript_0x61051:
 	closetext
 	end
 
-MovementData_0x6105a:
-	step UP
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	turn_head DOWN
-	step_end
-
-MovementData_0x61060:
-	step LEFT
-	step LEFT
-	step LEFT
-	step DOWN
-	step_end
-
-MovementData_0x61065:
-	step UP
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	step RIGHT
-	turn_head DOWN
-	step_end
-
-MovementData_0x6106c:
-	step LEFT
-	step LEFT
-	step LEFT
-	step LEFT
-	step DOWN
-	step_end
-
 UnknownText_0x62105:
 	text "The COLOSSEUM"
 	line "upstairs is for"
@@ -177,23 +81,6 @@ UnknownText_0x62260:
 
 	para "#MON that is"
 	line "the toughest."
-	done
-
-UnknownText_0x622f0:
-	text "<PLAYER>, isn't it?"
-
-	para "Congratulations!"
-
-	para "As a special deal,"
-	line "a GS BALL has been"
-	cont "sent just for you!"
-
-	para "Please accept it!"
-	done
-
-UnknownText_0x62359:
-	text "Please do come"
-	line "again!"
 	done
 
 UnknownText_0x623fb:
@@ -255,9 +142,7 @@ GoldenrodPokeCenter1F_MapEventHeader:
 	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:
-	db 2
-	xy_trigger 0, $7, $3, $0, GoldenrodPokeCenter1F_GSBallTriggerLeft, $0, $0
-	xy_trigger 0, $7, $4, $0, GoldenrodPokeCenter1F_GSBallTriggerRight, $0, $0
+	db 0
 
 .Signposts:
 	db 0

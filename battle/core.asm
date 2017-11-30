@@ -8400,7 +8400,6 @@ CheckPayDay: ; 3f71d
 ; 3f759
 
 ShowLinkBattleParticipantsAfterEnd: ; 3f759
-	callba BackupMobileEventIndex
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
 	call GetPartyLocation
@@ -8431,7 +8430,6 @@ DisplayLinkBattleResult: ; 3f77c
 .store_result
 	hlcoord 6, 8
 	call PlaceString
-	callba BackupMobileEventIndex
 	ld c, 200
 	call DelayFrames
 
