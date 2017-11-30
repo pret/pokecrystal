@@ -324,7 +324,7 @@ Function1719c8: ; 1719c8 (5c:59c8)
 	ret
 
 Function1719d6: ; 1719d6 (5c:59d6)
-	callba Function1183cb
+	callba BattleTowerRoomMenu_InitRAM
 	call Function1719ed
 	ld a, [rSVBK]
 	push af
@@ -412,7 +412,7 @@ Function171a5d: ; 171a5d (5c:5a5d)
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function118452
+	callba BattleTowerRoomMenu_Cleanup
 	pop af
 	ld [rSVBK], a
 	ld a, $a
@@ -457,7 +457,7 @@ Function171aec: ; 171aec (5c:5aec)
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba Function118452
+	callba BattleTowerRoomMenu_Cleanup
 	pop af
 	ld [rSVBK], a
 	hlcoord 2, 6
@@ -658,7 +658,7 @@ Function171c41: ; 171c41 (5c:5c41)
 	callba Function106464
 	ld a, $2
 	ld [wc303], a
-	callba Function17f555
+	callba DisplayMobileError
 asm_171c60: ; 171c60 (5c:5c60)
 	ld a, $80
 	ld [wcd49], a

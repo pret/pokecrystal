@@ -326,7 +326,7 @@ Function10020b: ; 10020b
 	ld a, $01
 	ld [rSVBK], a
 
-	callba Function17f555
+	callba DisplayMobileError
 
 	pop af
 	ld [rSVBK], a

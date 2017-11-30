@@ -10,7 +10,7 @@ Function118007: ; 118007
 	ld [wcd38], a
 
 asm_11800b
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $18
 	ld [wcd33], a
 	ld a, $19
@@ -32,7 +32,7 @@ asm_11800b
 
 .skip
 	call Function1184a5
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -42,16 +42,16 @@ asm_11800b
 	jr nz, .loop
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	call ReturnToMapFromSubmenu
-Function11805e: ; 11805e (46:405e)
+BattleTowerRoomMenu_DoNothing: ; 11805e (46:405e)
 	ret
 ; 11805f
 
 Function11805f: ; 11805f
 	ld a, $1
 	ld [wcd38], a
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $18
 	ld [wcd33], a
 	ld a, $19
@@ -73,7 +73,7 @@ Function11805f: ; 11805f
 
 .asm_118090
 	call Function11857c
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -83,13 +83,13 @@ Function11805f: ; 11805f
 	jr nz, .asm_11807d
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	call ReturnToMapFromSubmenu
 	ret
 ; 1180b8
 
 Function1180b8: ; 1180b8
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $22
 	ld [wcd33], a
 	ld a, $23
@@ -119,7 +119,7 @@ Function1180b8: ; 1180b8
 
 .asm_1180f2
 	call Function1184ec
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -129,7 +129,7 @@ Function1180b8: ; 1180b8
 	jr nz, .asm_1180d1
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	call ReturnToMapFromSubmenu
 	ret
 ; 11811a
@@ -139,11 +139,11 @@ Function11811a: ; 11811a
 	ld [wcd38], a
 	jr Function118125
 
-Function118121: ; 118121
+_BattleTowerRoomMenu: ; 118121
 	xor a
 	ld [wcd38], a
 Function118125: ; 118125
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $3
 	ld [wcd33], a
 	ld a, $d
@@ -163,8 +163,8 @@ Function118125: ; 118125
 	ld a, [wcd34]
 	ld [wcf66], a
 .skip
-	call Function11854d
-	call Function11a8fa
+	call BattleTowerRoomMenu_Jumptable
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -176,7 +176,7 @@ Function118125: ; 118125
 	ld [w3_d000], a
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	call Function118180
 	call ReturnToMapFromSubmenu
 	ret
@@ -229,7 +229,7 @@ Function118180: ; 118180
 ; 1181da
 
 Function1181da: ; 1181da
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $2
 	ld [wcd38], a
 	ld a, $21
@@ -253,7 +253,7 @@ Function1181da: ; 1181da
 
 .asm_11820b
 	call Function1185c3
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -263,13 +263,13 @@ Function1181da: ; 1181da
 	jr nz, .asm_1181f8
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	call ReturnToMapFromSubmenu
 	ret
 ; 118233
 
 Function118233: ; 118233
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $1b
 	ld [wcd33], a
 	ld a, $1c
@@ -291,7 +291,7 @@ Function118233: ; 118233
 
 .asm_11825f
 	call Function118624
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -301,12 +301,12 @@ Function118233: ; 118233
 	jr nz, .asm_11824c
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	ret
 ; 118284
 
 Function118284: ; 118284
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $19
 	ld [wcd33], a
 	ld a, $1e
@@ -327,7 +327,7 @@ Function118284: ; 118284
 	ld [wcf66], a
 .asm_1182b0
 	call Function1186f5
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -337,13 +337,13 @@ Function118284: ; 118284
 	jr nz, .asm_11829d
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	ret
 ; 1182d5 (46:42d5)
 
 
 Function1182d5: ; 1182d5
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $18
 	ld [wcd33], a
 	ld a, $19
@@ -365,7 +365,7 @@ Function1182d5: ; 1182d5
 
 .asm_118301
 	call Function118746
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -375,13 +375,13 @@ Function1182d5: ; 1182d5
 	jr nz, .asm_1182ee
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	call ReturnToMapFromSubmenu
 	ret
 ; 118329
 
 Function118329: ; 118329
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $15
 	ld [wcd33], a
 	ld a, $16
@@ -403,7 +403,7 @@ Function118329: ; 118329
 
 .asm_118355
 	call Function118671
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -413,12 +413,12 @@ Function118329: ; 118329
 	jr nz, .asm_118342
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	ret
 ; 11837a
 
 Function11837a: ; 11837a
-	call Function1183cb
+	call BattleTowerRoomMenu_InitRAM
 	ld a, $16
 	ld [wcd33], a
 	ld a, $17
@@ -440,7 +440,7 @@ Function11837a: ; 11837a
 
 .asm_1183a6
 	call Function1186b2
-	call Function11a8fa
+	call BattleTowerRoomMenu_WriteMessage
 	callba Function115dd3
 	callba Function11619d
 	call DelayFrame
@@ -450,11 +450,11 @@ Function11837a: ; 11837a
 	jr nz, .asm_118393
 	pop af
 	ld [rSVBK], a
-	call Function118452
+	call BattleTowerRoomMenu_Cleanup
 	ret
 ; 1183cb
 
-Function1183cb: ; 1183cb
+BattleTowerRoomMenu_InitRAM: ; 1183cb
 	di
 	ld a, [rIE]
 	ld [wcd32], a
@@ -511,7 +511,7 @@ Function118440: ; 118440
 	ret
 ; 118452
 
-Function118452: ; 118452
+BattleTowerRoomMenu_Cleanup: ; 118452
 	di
 	xor a
 	ld [hMobileReceive], a
@@ -590,9 +590,9 @@ Function1184a5: ; 1184a5
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function118e76
-	dw Function118e87
+	dw BattleTowerRoomMenu_CallRoomMenu2
 	dw Function118e76
 ; 1184ec
 
@@ -635,36 +635,36 @@ Function1184ec: ; 1184ec
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function118e76
-	dw Function118e87
+	dw BattleTowerRoomMenu_CallRoomMenu2
 	dw Function119b45
 	dw Function11878d
 	dw Function119ac9
 	dw Function118e76
 ; 11854d
 
-Function11854d: ; 11854d
+BattleTowerRoomMenu_Jumptable: ; 11854d
 	jumptable .Jumptable, wcf66
 ; 11855c
 
 .Jumptable: ; 11855c
-	dw Function118922
-	dw Function118936
-	dw Function118982
-	dw Function11805e
-	dw Function119ca2
-	dw Function119cab
-	dw Function119cb8
-	dw Function119cc3
-	dw Function119cdf
-	dw Function119cec
-	dw Function119c97
-	dw Function119cab
-	dw Function119cb8
-	dw Function118e76
-	dw Function118e87
-	dw Function118e76
+	dw BattleTowerRoomMenu_PickLevelMessage
+	dw BattleTowerRoomMenu_PlacePickLevelMenu
+	dw BattleTowerRoomMenu_UpdatePickLevelMenu
+	dw BattleTowerRoomMenu_DoNothing
+	dw BattleTowerRoomMenu_PartyMonTopsThisLevelMessage
+	dw BattleTowerRoomMenu_WaitForMessage
+	dw BattleTowerRoomMenu_DelayRestartMenu
+	dw BattleTowerRoomMenu_QuitMessage
+	dw BattleTowerRoomMenu_PlaceYesNoMenu
+	dw BattleTowerRoomMenu_UpdateYesNoMenu
+	dw BattleTowerRoomMenu_UberRestrictionMessage
+	dw BattleTowerRoomMenu_WaitForMessage
+	dw BattleTowerRoomMenu_DelayRestartMenu
+	dw Function118e76 ; mobile
+	dw BattleTowerRoomMenu_CallRoomMenu2 ; mobile
+	dw Function118e76 ; mobile
 ; 11857c
 
 Function11857c: ; 11857c
@@ -696,9 +696,9 @@ Function11857c: ; 11857c
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function118e76
-	dw Function118e87
+	dw BattleTowerRoomMenu_CallRoomMenu2
 	dw Function118e76
 ; 1185c3
 
@@ -740,12 +740,12 @@ Function1185c3: ; 1185c3
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function118e76
-	dw Function118e87
-	dw Function119cc3
-	dw Function119cdf
-	dw Function119cec
+	dw BattleTowerRoomMenu_CallRoomMenu2
+	dw BattleTowerRoomMenu_QuitMessage
+	dw BattleTowerRoomMenu_PlaceYesNoMenu
+	dw BattleTowerRoomMenu_UpdateYesNoMenu
 	dw Function11914e
 	dw Function118e76
 ; 118624
@@ -782,9 +782,9 @@ Function118624: ; 118624
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function118e76
-	dw Function118e87
+	dw BattleTowerRoomMenu_CallRoomMenu2
 	dw Function118e76
 ; 118671
 
@@ -814,9 +814,9 @@ Function118671: ; 118671
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function118e76
-	dw Function118e87
+	dw BattleTowerRoomMenu_CallRoomMenu2
 	dw Function118e76
 ; 1186b2
 
@@ -847,9 +847,9 @@ Function1186b2: ; 1186b2
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function118e76
-	dw Function118e87
+	dw BattleTowerRoomMenu_CallRoomMenu2
 	dw Function118e76
 ; 1186f5
 
@@ -883,13 +883,13 @@ Function1186f5: ; 1186f5 (46:46f5)
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function11967d
 	dw Function119685
 	dw Function119665
 	dw Function11966d
 	dw Function118e76
-	dw Function118e87
+	dw BattleTowerRoomMenu_CallRoomMenu2
 	dw Function118e76
 ; 118746 (46:4746)
 
@@ -922,9 +922,9 @@ Function118746: ; 118746
 	dw Function118e76
 	dw Function118e7e
 	dw Function11878d
-	dw Function11805e
+	dw BattleTowerRoomMenu_DoNothing
 	dw Function118e76
-	dw Function118e87
+	dw BattleTowerRoomMenu_CallRoomMenu2
 	dw Function118e76
 ; 11878d
 
@@ -942,7 +942,7 @@ Function11878d: ; 11878d (46:478d)
 	ld a, $3
 	ld [rSVBK], a
 .asm_1187a7
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 .asm_1187aa
 	call Function118821
 	ret c
@@ -1065,12 +1065,12 @@ asm_11886f
 	ld [BGMapPalBuffer], a
 	ld a, $0
 	ld [wcd3c], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 	ld a, [wcd33]
 	ld [wMobileInactivityTimerSeconds], a
 
 Function118880: ; 118880 (46:4880)
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	xor a
 	ld [wcf64], a
@@ -1095,8 +1095,8 @@ Function118896: ; 118896
 	jp Function119e2b
 
 .asm_1188aa
-	call Function119e2e
-	jp Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 1188b0
 
 Function1188b0: ; 1188b0 (46:48b0)
@@ -1157,16 +1157,16 @@ Function118903: ; 118903 (46:4903)
 	callba Function115e18
 	ld a, $8
 	ld [wcd3c], a
-	call Function119ed8
-	jp Function119e2e
+	call BattleTowerRoomMenu2
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 
 Function11891c: ; 11891c
 	call Function118b42
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 
-Function118922: ; 118922
+BattleTowerRoomMenu_PickLevelMessage: ; 118922
 	ld a, [wcd38]
 	and a
 	jr nz, .asm_11892d
@@ -1177,10 +1177,10 @@ Function118922: ; 118922
 	ld hl, Text_CheckBattleRoomListByMaxLevel
 
 .asm_118930
-	call Function11a9c0
-	call Function119e2e
+	call BattleTowerRoomMenu_SetMessage
+	call BattleTowerRoomMenu_IncrementJumptable
 
-Function118936:
+BattleTowerRoomMenu_PlacePickLevelMenu:
 	ld a, [$c31a]
 	and a
 	ret nz
@@ -1217,9 +1217,9 @@ Function118936:
 	ld [wcd4c], a
 	ld a, $3
 	ld [rSVBK], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
-Function118982:
+BattleTowerRoomMenu_UpdatePickLevelMenu:
 	hlcoord 13, 8
 	ld de, String_119d07
 	call PlaceString
@@ -1268,21 +1268,21 @@ Function118982:
 	call PlaceString
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and $2
-	jr nz, .asm_118a39
+	and B_BUTTON
+	jr nz, .b_button
 	ld a, [hl]
-	and $1
-	jr nz, .asm_118a01
+	and A_BUTTON
+	jr nz, .a_button
 	ld a, [hl]
-	and $80
-	jr nz, .asm_1189e6
+	and D_DOWN
+	jr nz, .d_down
 	ld a, [hl]
-	and $40
-	jr nz, .asm_1189f2
+	and D_UP
+	jr nz, .d_up
 .asm_1189e5
 	ret
 
-.asm_1189e6
+.d_down
 	ld hl, wcd4f
 	dec [hl]
 	jr nz, .asm_1189e5
@@ -1290,7 +1290,7 @@ Function118982:
 	ld [hl], a
 	jr .asm_1189e5
 
-.asm_1189f2
+.d_up
 	ld a, [wcd4a]
 	ld hl, wcd4f
 	inc [hl]
@@ -1300,7 +1300,7 @@ Function118982:
 	ld [hl], a
 	jr .asm_1189e5
 
-.asm_118a01
+.a_button
 	call PlayClickSFX
 	ld a, [wcd4f]
 	ld hl, wcd4a
@@ -1328,9 +1328,9 @@ Function118982:
 .asm_118a30
 	ld a, [wcd4f]
 	ld [w3_d800], a
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 
-.asm_118a39
+.b_button
 	call PlayClickSFX
 
 .asm_118a3c
@@ -1426,7 +1426,7 @@ Function118ae4:
 	push hl
 	ld a, $8
 	ld [wcd3c], a
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	pop hl
 	ld c, $0
 	ld de, wcc60
@@ -1456,7 +1456,7 @@ Function118b10:
 	push bc
 	ld a, $8
 	ld [wcd3c], a
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	call Function118b24
 	pop bc
 	pop de
@@ -1596,7 +1596,7 @@ Function118d35: ; 118d35
 	jr nz, .asm_118d7b
 
 .asm_118d78
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 .asm_118d7b
 	ld a, $d3
@@ -1608,7 +1608,7 @@ Function118d80: ; 118d80
 	ld a, [wcd38]
 	and a
 	jr z, .asm_118d8e
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 	jr asm_118d9f
 
 .asm_118d8e
@@ -1616,10 +1616,10 @@ Function118d80: ; 118d80
 	ld [wcd3c], a
 	ld a, $12
 	ld [wMobileInactivityTimerSeconds], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
 Function118d9b:
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 
 asm_118d9f
@@ -1678,7 +1678,7 @@ Function118ded: ; 118ded
 	ld [rSVBK], a
 
 .asm_118e03
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 118e06
 
 Function118e06: ; 118e06
@@ -1763,18 +1763,19 @@ Function118e6d: ; 118e6d (46:4e6d)
 	jp Function119e2b
 
 Function118e76: ; 118e76 (46:4e76)
+	; Call $c in BattleTowerRoomMenu2
 	ld a, $c
 	ld [wcd3c], a
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 Function118e7e: ; 118e7e (46:4e7e)
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	ld a, $36
 	jp Function119e2b
 
-Function118e87: ; 118e87 (46:4e87)
-	call Function119ed8
+BattleTowerRoomMenu_CallRoomMenu2: ; 118e87 (46:4e87)
+	call BattleTowerRoomMenu2
 	ret c
 	ld a, [wcd33]
 	ld [wcf66], a
@@ -1804,7 +1805,7 @@ Function118eb0: ; 118eb0
 	call CopyBytes
 	call Function1192cc
 	ret c
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 118ec6
 
 Function118ec6: ; 118ec6
@@ -1835,11 +1836,11 @@ Function118ec6: ; 118ec6
 	ld [wMobileInactivityTimerFrames], a
 	ld a, $1c
 	ld [wcd47], a
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 118f0d
 
 Function118f0d: ; 118f0d
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	call Function118440
 
@@ -1856,7 +1857,7 @@ Function118f14:
 	and a
 	jr z, .DontSendSaveFile
 	ld hl, Text_SaveFileWillBeSent
-	call Function11a9c0
+	call BattleTowerRoomMenu_SetMessage
 
 .DontSendSaveFile:
 	ld a, [wcd57]
@@ -1876,11 +1877,11 @@ Function118f14:
 	ld [wMobileInactivityTimerFrames], a
 	ld a, $1c
 	ld [wcd47], a
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 118f5e
 
 Function118f5e: ; 118f5e
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	call Function118440
 	call DelayFrame
@@ -1927,8 +1928,8 @@ Function118f68:
 	jp Function119e2b
 
 .asm_118fba
-	call Function119e2e
-	jp Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 118fc0
 
 Function118fc0: ; 118fc0
@@ -1960,15 +1961,15 @@ Function118fc0: ; 118fc0
 	ld hl, Text_ReadingNews
 
 .asm_118ff5
-	call Function11a9c0
+	call BattleTowerRoomMenu_SetMessage
 	jr Function119009
 
 .asm_118ffa
 	ld hl, Text_ReadingNews
-	call Function11a9c0
-	call Function119e2e
-	call Function119e2e
-	jp Function119e2e
+	call BattleTowerRoomMenu_SetMessage
+	call BattleTowerRoomMenu_IncrementJumptable
+	call BattleTowerRoomMenu_IncrementJumptable
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 Function119009:
 	call Function118440
@@ -2062,7 +2063,7 @@ Function119054: ; 119054
 	pop af
 	ld [rSVBK], a
 	call CloseSRAM
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 1190d0
 
 Function1190d0: ; 1190d0
@@ -2121,12 +2122,12 @@ Function1190ec: ; 1190ec
 	ld [rSVBK], a
 	call CloseSRAM
 	ld hl, Text_ReceivedNews
-	call Function11a9c0
-	jp Function119e2e
+	call BattleTowerRoomMenu_SetMessage
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 11914e
 
 Function11914e: ; 11914e
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	ld a, $1c
 	ld [wcf66], a
@@ -2153,7 +2154,7 @@ Function11915d: ; 11915d
 	inc hl
 	dec c
 	jr nz, .asm_119176
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 	jr .asm_11918e
 
 .asm_119184
@@ -2506,7 +2507,7 @@ Function119300: ; 119300
 Function119380: ; 119380
 	ld a, $80
 	ld [wcd49], a
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 119388
 
 Function119388: ; 119388
@@ -2519,15 +2520,15 @@ Function119388: ; 119388
 	ld [wcd3c], a
 	ld a, $10
 	ld [wMobileInactivityTimerSeconds], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
 Function1193a0:
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	call DelayFrame
 	ld a, $8
 	ld [wcd3c], a
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ld hl, $c346
 	ld a, wd000 % $100
 	ld [hli], a
@@ -2566,15 +2567,15 @@ Function1193e3: ; 1193e3
 	ld [wcd3c], a
 	ld a, $11
 	ld [wMobileInactivityTimerSeconds], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
 Function1193fb:
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	call DelayFrame
 	ld a, $8
 	ld [wcd3c], a
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ld de, w3_d000
 	ld bc, $1000
 	jp Function118b10
@@ -2613,7 +2614,7 @@ Function119413: ; 119413
 	ld a, $3
 	ld [rSVBK], a
 	call CloseSRAM
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 119451
 
 Function119451: ; 119451 (46:5451)
@@ -2900,8 +2901,8 @@ Function1195f8: ; 1195f8 (46:55f8)
 	ld [wMobileInactivityTimerFrames], a
 	ld a, $14
 	ld [wcd47], a
-	call Function119e2e
-	jp Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 Function119612: ; 119612 (46:5612)
 	ld a, $14
@@ -2912,10 +2913,10 @@ Function119612: ; 119612 (46:5612)
 	ld [wMobileInactivityTimerFrames], a
 	ld a, $14
 	ld [wcd47], a
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 Function119629: ; 119629 (46:5629)
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	ld a, $60
 	ld l, a
@@ -2928,15 +2929,15 @@ Function119629: ; 119629 (46:5629)
 	ld [wMobileInactivityTimerSeconds], a
 	ld a, $14
 	ld [wcd47], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
 Function119648: ; 119648 (46:5648)
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	call DelayFrame
 	ld a, $8
 	ld [wcd3c], a
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	call Function118b24
 	ld de, w3_d000
 	ld bc, $1000
@@ -2946,10 +2947,10 @@ Function119648: ; 119648 (46:5648)
 Function119665: ; 119665 (46:5665)
 	ld a, $1a
 	ld [wcd3c], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
 Function11966d: ; 11966d (46:566d)
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	ld a, [wcd47]
 	ld [wcf66], a
@@ -2960,10 +2961,10 @@ Function11966d: ; 11966d (46:566d)
 Function11967d: ; 11967d (46:567d)
 	ld a, $18
 	ld [wcd3c], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
 Function119685: ; 119685 (46:5685)
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	ld a, $14
 	ld [wcf66], a
@@ -3167,7 +3168,7 @@ Function1196f2: ; 1196f2
 	and $f
 	call Function1197bf
 	ld [hli], a
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 119798
 
 Function119798: ; 119798
@@ -3220,10 +3221,10 @@ Function1197c9: ; 1197c9
 	ld [wcd3c], a
 	ld a, $12
 	ld [wMobileInactivityTimerSeconds], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
 Function1197dc:
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ret c
 	call DelayFrame
 	ld hl, wd002
@@ -3271,7 +3272,7 @@ Function119800: ; 119800
 	pop af
 	ld [wJumptableIndex], a
 	callba Function115dc3
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 11984e
 
 Function11984e: ; 11984e
@@ -3307,12 +3308,12 @@ Function11984e: ; 11984e
 	pop af
 	ld [wJumptableIndex], a
 	callba Function115dc3
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 .asm_1198a0
 	ld a, $a
 	ld [wc300], a
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 .asm_1198a8
 	callba Function17005a
@@ -3341,13 +3342,13 @@ Function11984e: ; 11984e
 	pop af
 	ld [wJumptableIndex], a
 	callba Function115dc3
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 1198ee
 
 Function1198ee: ; 1198ee
 	ld hl, Text_RegisteringRecord
-	call Function11a9c0
-	call Function119e2e
+	call BattleTowerRoomMenu_SetMessage
+	call BattleTowerRoomMenu_IncrementJumptable
 
 Function1198f7:
 	ld a, [$c31a]
@@ -3385,7 +3386,7 @@ Function1198f7:
 
 Function119937: ; 119937
 	callba Function1707f4
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 119940
 
 Function119940: ; 119940
@@ -3412,7 +3413,7 @@ Function119940: ; 119940
 Function119954: ; 119954
 	ld a, $1c
 	ld [wcd3c], a
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ld hl, $c608
 	ld de, wc3cd
 .asm_119962
@@ -3472,7 +3473,7 @@ Function1199b4: ; 1199b4
 	ld a, [wd000 + 129]
 	cp $7
 	jr nc, .asm_1199c7
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 	jp Function1199ca
 
 .asm_1199c7
@@ -3634,7 +3635,7 @@ INCBIN "data/mobile/x-game-result.txt"
 Function119b0d: ; 119b0d
 	ld a, $8
 	ld [wcd3c], a
-	call Function119ed8
+	call BattleTowerRoomMenu2
 	ld a, [w3_d090]
 	cp $1
 	jr z, .asm_119b23
@@ -3691,7 +3692,7 @@ Function119b6b: ; 119b6b
 	ld a, [w3_d090]
 	cp $1
 	jr z, .asm_119b75
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 
 .asm_119b75
 	ld a, [w3_d100]
@@ -3814,7 +3815,7 @@ Function119b6b: ; 119b6b
 	ld de, $c608
 	ld bc, $0069
 	call CopyBytes
-	jp Function119e2e
+	jp BattleTowerRoomMenu_IncrementJumptable
 ; 119c3e
 
 Function119c3e: ; 119c3e
@@ -3884,26 +3885,29 @@ Function119c3e: ; 119c3e
 	ret
 ; 119c97
 
-Function119c97: ; 119c97
+BattleTowerRoomMenu_UberRestrictionMessage: ; 119c97
 	ld hl, Text_UberRestriction
-	call Function11a9c0
-	call Function119e2e
-	jr Function119cab
+	call BattleTowerRoomMenu_SetMessage
+	call BattleTowerRoomMenu_IncrementJumptable
+	jr BattleTowerRoomMenu_WaitForMessage
 
-Function119ca2:
+BattleTowerRoomMenu_PartyMonTopsThisLevelMessage:
 	ld hl, Text_PartyMonTopsThisLevel
-	call Function11a9c0
-	call Function119e2e
+	call BattleTowerRoomMenu_SetMessage
+	call BattleTowerRoomMenu_IncrementJumptable
 
-Function119cab:
+BattleTowerRoomMenu_WaitForMessage:
 	ld a, [$c31a]
 	and a
 	ret nz
 	ld a, $80
 	ld [wcd50], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
-Function119cb8:
+BattleTowerRoomMenu_DelayRestartMenu:
+    ; Loops while (--[wcd50] != 0),
+    ;   to create some sort of "delay" after the message is written on the screen,
+    ;   before starting the menu again.
 	ld hl, wcd50
 	dec [hl]
 	ret nz
@@ -3912,7 +3916,7 @@ Function119cb8:
 	ret
 ; 119cc3
 
-Function119cc3: ; 119cc3
+BattleTowerRoomMenu_QuitMessage: ; 119cc3
 	ld a, [wcd38]
 	and a
 	jr z, .asm_119cd1
@@ -3929,19 +3933,20 @@ Function119cc3: ; 119cc3
 	ld hl, Text_ExitGymLeaderHonorRoll
 
 .asm_119cd9
-	call Function11a9c0
-	call Function119e2e
+	call BattleTowerRoomMenu_SetMessage
+	call BattleTowerRoomMenu_IncrementJumptable
 
-Function119cdf:
+BattleTowerRoomMenu_PlaceYesNoMenu:
 	ld a, [$c31a]
 	and a
 	ret nz
 	ld a, $f
 	ld [wcd3c], a
-	call Function119e2e
+	call BattleTowerRoomMenu_IncrementJumptable
 
-Function119cec:
-	call Function119ed8
+BattleTowerRoomMenu_UpdateYesNoMenu:
+	; Only ever called when [wcd3c] is $10
+	call BattleTowerRoomMenu2
 	ret c
 	ld a, [wMobileInactivityTimerFrames]
 	ld [wcf66], a
@@ -4094,7 +4099,7 @@ BattleTower_UbersCheck: ; 119dd1 (46:5dd1)
 Function119e2b: ; 119e2b (46:5e2b)
 	call Function3e32
 
-Function119e2e: ; 119e2e (46:5e2e)
+BattleTowerRoomMenu_IncrementJumptable: ; 119e2e (46:5e2e)
 	ld hl, wcf66
 	inc [hl]
 	ret
@@ -4238,7 +4243,7 @@ Function119ec2: ; 119ec2 (46:5ec2)
 	call CloseSRAM
 	ret
 
-Function119ed8: ; 119ed8 (46:5ed8)
+BattleTowerRoomMenu2: ; 119ed8 (46:5ed8)
 	ld a, [rSVBK]
 	ld [wcd8c], a
 	ld a, $1
@@ -4271,8 +4276,8 @@ Function119ed8: ; 119ed8 (46:5ed8)
 	dw Function11a2e6
 	dw Function11a302
 	dw Function11a33a
-	dw Function11a207
-	dw Function11a235
+	dw BattleTowerRoomMenu2_PlaceYesNoMenu
+	dw BattleTowerRoomMenu2_UpdateYesNoMenu
 	dw Function11a357
 	dw Function11a36b
 	dw Function11a38d
@@ -4293,7 +4298,7 @@ Function119ed8: ; 119ed8 (46:5ed8)
 
 Function119f3f: ; 119f3f
 	call Function11a5b9
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 119f45
 
 Function119f45: ; 119f45
@@ -4302,7 +4307,7 @@ Function119f45: ; 119f45
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 119f56
 
 Function119f56: ; 119f56
@@ -4321,7 +4326,7 @@ Function119f56: ; 119f56
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 119f76
 
 Function119f76: ; 119f76
@@ -4341,7 +4346,7 @@ Function119f76: ; 119f76
 	call Function11a5f5
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 119f98
 
 Function119f98: ; 119f98
@@ -4505,7 +4510,7 @@ Function11a113: ; 11a113
 Function11a129: ; 11a129
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a131
 
 Function11a131: ; 11a131
@@ -4542,7 +4547,7 @@ Function11a14b: ; 11a14b
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a16d
 
 Function11a16d: ; 11a16d
@@ -4563,7 +4568,7 @@ Function11a16d: ; 11a16d
 	call Function11a5f5
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a192
 
 Function11a192: ; 11a192
@@ -4633,7 +4638,7 @@ Function11a1ff: ; 11a1ff
 	jr .asm_11a1ff
 ; 11a207
 
-Function11a207: ; 11a207
+BattleTowerRoomMenu2_PlaceYesNoMenu: ; 11a207
 	ld hl, MenuDataHeader_11a2de
 	call LoadMenuDataHeader
 	call MenuBox
@@ -4650,29 +4655,29 @@ Function11a207: ; 11a207
 	ld [hl], a
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a235
 
-Function11a235: ; 11a235
+BattleTowerRoomMenu2_UpdateYesNoMenu: ; 11a235
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON
-	jr nz, .asm_11a28f
+	jr nz, .a_button
 	ld a, [hl]
 	and B_BUTTON
-	jr nz, .asm_11a2c1
+	jr nz, .b_button
 	ld a, [hl]
 	and D_UP
-	jr nz, .asm_11a251
+	jr nz, .d_up
 	ld a, [hl]
 	and D_DOWN
-	jr nz, .asm_11a270
+	jr nz, .d_down
 .asm_11a24c
 	call Function11a9f0
 	scf
 	ret
 
-.asm_11a251
+.d_up
 	xor a
 	ld [wcd8a], a
 	ld [wcd8b], a
@@ -4689,7 +4694,7 @@ Function11a235: ; 11a235
 	ld [hl], a
 	jr .asm_11a24c
 
-.asm_11a270
+.d_down
 	xor a
 	ld [wcd8a], a
 	ld [wcd8b], a
@@ -4706,36 +4711,36 @@ Function11a235: ; 11a235
 	ld [hl], a
 	jr .asm_11a24c
 
-.asm_11a28f
+.a_button
 	xor a
 	ld [wcd8a], a
 	ld [wcd8b], a
 	call PlayClickSFX
 	ld a, [wMobileInactivityTimerMinutes]
 	and a
-	jr nz, .asm_11a2c4
+	jr nz, .exit_no_carry
 	call ExitMenu
 	callba ReloadMapPart
 	ld a, [wMobileInactivityTimerFrames]
 	cp $0
 	jr z, .asm_11a2b4
 	ld a, [wcd47]
-	jr .asm_11a2b7
+	jr .exit_carry
 
 .asm_11a2b4
 	ld a, [wcd33]
 
-.asm_11a2b7
+.exit_carry
 	ld [wcf66], a
 	ld a, $a
 	ld [wc300], a
 	scf
 	ret
 
-.asm_11a2c1
+.b_button
 	call PlayClickSFX
 
-.asm_11a2c4
+.exit_no_carry
 	call ExitMenu
 	callba ReloadMapPart
 	and a
@@ -4775,7 +4780,7 @@ Function11a2e6: ; 11a2e6
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a302
 
 Function11a302: ; 11a302
@@ -4802,7 +4807,7 @@ Function11a302: ; 11a302
 	call PrintNum
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a33a
 
 Function11a33a: ; 11a33a
@@ -4829,7 +4834,7 @@ Function11a357: ; 11a357
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a36b
 
 Function11a36b: ; 11a36b
@@ -4849,7 +4854,7 @@ Function11a36b: ; 11a36b
 	call Function11a5f5
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a38d
 
 Function11a38d: ; 11a38d
@@ -4885,7 +4890,7 @@ Function11a3c5: ; 11a3c5
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a3d9
 
 Function11a3d9: ; 11a3d9
@@ -4904,7 +4909,7 @@ Function11a3d9: ; 11a3d9
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a3f9
 
 Function11a3f9: ; 11a3f9
@@ -4924,7 +4929,7 @@ Function11a3f9: ; 11a3f9
 	call Function11a5f5
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a41b
 
 Function11a41b: ; 11a41b
@@ -4960,7 +4965,7 @@ Function11a452: ; 11a452
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a466
 
 Function11a466: ; 11a466
@@ -4970,7 +4975,7 @@ Function11a466: ; 11a466
 	call PlaceString
 	ld a, $80
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a47a
 
 Function11a47a: ; 11a47a
@@ -4995,7 +5000,7 @@ Function11a488: ; 11a488
 	call Function11a5f5
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a49e
 
 Function11a49e: ; 11a49e
@@ -5042,7 +5047,7 @@ Function11a4e8: ; 11a4e8
 	call Function11a5f5
 	xor a
 	ld [wMobileInactivityTimerMinutes], a
-	jp Function11a5b0
+	jp BattleTowerRoomMenu2_IncrementJumptable
 ; 11a4fe
 
 Function11a4fe: ; 11a4fe
@@ -5144,7 +5149,7 @@ Function11a536: ; 11a536
 	ret
 ; 11a5b0
 
-Function11a5b0: ; 11a5b0
+BattleTowerRoomMenu2_IncrementJumptable: ; 11a5b0
 	ld a, [wcd3c]
 	inc a
 	ld [wcd3c], a
@@ -5437,12 +5442,12 @@ x = x + 256
 endr
 ; 11a8fa
 
-Function11a8fa: ; 11a8fa
+BattleTowerRoomMenu_WriteMessage: ; 11a8fa
 	jumptable .Jumptable, $c31a
 ; 11a909
 
 .Jumptable: ; 11a909
-	dw Function11a970
+	dw BattleTowerRoomMenu_WriteMessage_DoNothing
 	dw Function11a90f
 	dw Function11a971
 ; 11a90f
@@ -5505,7 +5510,7 @@ Function11a90f: ; 11a90f
 	ld a, $3
 	ld [rSVBK], a
 
-Function11a970:
+BattleTowerRoomMenu_WriteMessage_DoNothing:
 	ret
 ; 11a971
 
@@ -5558,7 +5563,7 @@ Function11a971: ; 11a971
 	ret
 ; 11a9c0
 
-Function11a9c0: ; 11a9c0
+BattleTowerRoomMenu_SetMessage: ; 11a9c0
 	ld a, l
 	ld [$c31b], a
 	ld a, h

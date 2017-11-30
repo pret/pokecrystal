@@ -7533,7 +7533,7 @@ Function117bb6:
 .asm_117bd0
 	ld a, $2
 	ld [wc303], a
-	callba Function17f555
+	callba DisplayMobileError
 	ld a, $80
 	ld [wJumptableIndex], a
 	ret
