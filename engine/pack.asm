@@ -573,7 +573,7 @@ GiveItem: ; 103fd
 	push af
 	res NO_TEXT_SCROLL, a
 	ld [Options], a
-	ld a, $8
+	ld a, $7
 	ld [PartyMenuActionText], a
 	call ClearBGPalettes
 	callba LoadPartyMenuGFX

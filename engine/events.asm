@@ -34,12 +34,6 @@ EnableEvents:: ; 966d0
 	ret
 ; 966d6
 
-CheckBit5_ScriptFlags3: ; 966d6
-	ld hl, ScriptFlags3
-	bit 5, [hl]
-	ret
-; 966dc
-
 EnableWildEncounters: ; 96706
 	ld hl, ScriptFlags3
 	set 4, [hl]
@@ -227,8 +221,6 @@ PlayerEvents: ; 9681f
 	and a
 	ret nz
 
-	call Dummy_CheckScriptFlags3Bit5 ; This is a waste of time
-
 	call CheckTrainerBattle3
 	jr c, .ok
 
@@ -368,13 +360,6 @@ SetUpFiveStepWildEncounterCooldown: ; 968d1
 	ld [wWildEncounterCooldown], a
 	ret
 ; 968d7
-
-Dummy_CheckScriptFlags3Bit5: ; 968e4
-	call CheckBit5_ScriptFlags3
-	ret z
-	call ret_2f3e
-	ret
-; 968ec
 
 DoMapTrigger: ; 968ec
 	ld a, [wCurrMapTriggerCount]

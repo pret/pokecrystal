@@ -11,7 +11,7 @@ _HandlePlayerStep:: ; d497 (3:5497)
 	ret
 
 .update_overworld_map
-	ld a, 4
+	ld a, 2
 	ld [wHandlePlayerStep], a
 	call UpdateOverworldMap
 	jr .finish
@@ -62,25 +62,6 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 
 	dw GetMovementPermissions
 	dw BufferScreen
-	dw .mobile
-	dw .fail2
-; The rest are never used.  Ever.
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-
-.fail1 ; d508 (3:5508)
-	ret
-
-.mobile ; d509 (3:5509)
-	ret
-
-.fail2 ; d510 (3:5510)
-	ret
 
 UpdatePlayerCoords: ; d511 (3:5511)
 	ld a, [wPlayerStepDirection]

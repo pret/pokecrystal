@@ -58,10 +58,6 @@ TextBoxSpaceGFX: ; f9204
 INCBIN "gfx/frames/space.1bpp"
 ; f9214
 
-MobilePhoneTilesGFX: ; f9214
-INCBIN "gfx/mobile/phone_tiles.2bpp"
-; f9344
-
 MapEntryFrameGFX: ; f9344
 INCBIN "gfx/frames/map_entry_sign.2bpp"
 ; f9424
@@ -102,10 +98,6 @@ _LoadStandardFont:: ; fb449
 ; fb48a
 
 _LoadFontsExtra1:: ; fb48a
-	ld de, MobilePhoneTilesGFX
-	ld hl, VTiles2 tile $60
-	lb bc, BANK(MobilePhoneTilesGFX), 1
-	call Get1bpp_2
 	ld de, OverworldPhoneIconGFX
 	ld hl, VTiles2 tile $62
 	lb bc, BANK(OverworldPhoneIconGFX), 1
@@ -175,10 +167,6 @@ LoadHPBar: ; fb50d
 	ld de, ExpBarGFX
 	ld hl, VTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 9
-	call Get2bpp_2
-	ld de, MobilePhoneTilesGFX + 9 * LEN_2BPP_TILE
-	ld hl, VTiles2 tile $5e
-	lb bc, BANK(MobilePhoneTilesGFX), 2
 	call Get2bpp_2
 	ret
 ; fb53e

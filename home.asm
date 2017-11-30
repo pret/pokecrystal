@@ -36,16 +36,6 @@ INCLUDE "home/menu.asm"
 INCLUDE "home/handshake.asm"
 INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
-
-InexplicablyEmptyFunction:: ; 2d43
-; Inexplicably empty.
-; Seen in PredefPointers.
-	rept 16
-	nop
-	endr
-	ret
-; 2d54
-
 INCLUDE "home/farcall.asm"
 INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
