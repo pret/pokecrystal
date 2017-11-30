@@ -25,7 +25,6 @@ const_value SET 1
 	const TILESET_OLIVINE_GYM          ; 12
 	const TILESET_LIGHTHOUSE           ; 13
 	const TILESET_KRISS_HOUSE_2F       ; 14
-	const TILESET_POKECOM_CENTER       ; 15
 	const TILESET_BATTLE_TOWER         ; 16
 	const TILESET_SPROUT_TOWER         ; 17
 	const TILESET_CAVE                 ; 18

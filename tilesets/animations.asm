@@ -201,7 +201,6 @@ Tileset17Anim: ; 0xfc2e7
 Tileset18Anim: ; 0xfc2e7
 Tileset19Anim: ; 0xfc2e7
 Tileset20Anim: ; 0xfc2e7
-Tileset21Anim: ; 0xfc2e7
 Tileset22Anim: ; 0xfc2e7
 Tileset26Anim: ; 0xfc2e7
 Tileset27Anim: ; 0xfc2e7

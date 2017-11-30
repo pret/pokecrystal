@@ -249,10 +249,9 @@ GoldenrodPokeCenter1F_MapEventHeader:
 	db 0, 0
 
 .Warps:
-	db 4
+	db 3
 	warp_def $7, $3, 15, GOLDENROD_CITY
 	warp_def $7, $4, 15, GOLDENROD_CITY
-	warp_def $6, $0, 1, GOLDENROD_POKECOM_CENTER_2F_MOBILE
 	warp_def $7, $0, 1, POKECENTER_2F
 
 .XYTriggers:

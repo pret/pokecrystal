@@ -53,8 +53,6 @@ StdScripts::
 	dba HappinessCheckScript
 
 PokeCenterNurseScript:
-; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
-
 	opentext
 	checkmorn
 	iftrue .morn
@@ -65,42 +63,21 @@ PokeCenterNurseScript:
 	jump .ok
 
 .morn
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .morn_comcenter
 	farwritetext NurseMornText
-	buttonsound
-	jump .ok
-.morn_comcenter
-	farwritetext PokeComNurseMornText
 	buttonsound
 	jump .ok
 
 .day
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .day_comcenter
 	farwritetext NurseDayText
-	buttonsound
-	jump .ok
-.day_comcenter
-	farwritetext PokeComNurseDayText
 	buttonsound
 	jump .ok
 
 .nite
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .nite_comcenter
 	farwritetext NurseNiteText
-	buttonsound
-	jump .ok
-.nite_comcenter
-	farwritetext PokeComNurseNiteText
 	buttonsound
 	jump .ok
 
 .ok
-	; only do this once
-	clearevent EVENT_WELCOMED_TO_POKECOM_CENTER
-
 	farwritetext NurseAskHealText
 	yesorno
 	iffalse .done
@@ -142,20 +119,10 @@ PokeCenterNurseScript:
 	end
 
 .pokerus
-	; already cleared earlier in the script
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .pokerus_comcenter
 	farwritetext NursePokerusText
 	waitbutton
 	closetext
-	jump .pokerus_done
 
-.pokerus_comcenter
-	farwritetext PokeComNursePokerusText
-	waitbutton
-	closetext
-
-.pokerus_done
 	setflag ENGINE_POKERUS
 	specialphonecall SPECIALCALL_POKERUS
 	end

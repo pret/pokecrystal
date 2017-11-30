@@ -1,15 +1,3 @@
-Tileset21GFX: ; 0xb4000
-INCBIN "gfx/tilesets/21.2bpp.lz"
-; 0xb48a0
-
-Tileset21Meta: ; 0xb48a0
-INCBIN "tilesets/21_metatiles.bin"
-; 0xb4ca0
-
-Tileset21Coll: ; 0xb4ca0
-INCBIN "tilesets/21_collision.bin"
-; 0xb4da0
-
 Tileset22GFX: ; 0xb4da0
 INCBIN "gfx/tilesets/22.2bpp.lz"
 ; 0xb50e0
