@@ -157,9 +157,6 @@ VermilionPortPassage_BlockData:
 FuchsiaGym_BlockData:
 	INCBIN "maps/FuchsiaGym.blk"
 
-SafariZoneBeta_BlockData:
-	INCBIN "maps/SafariZoneBeta.blk"
-
 Underground_BlockData:
 	INCBIN "maps/Underground.blk"
 

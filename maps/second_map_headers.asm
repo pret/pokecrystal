@@ -363,7 +363,6 @@
 	map_header_2 OlivinePokeCenter1F, OLIVINE_POKECENTER_1F, $0, 0
 	map_header_2 OlivineGym, OLIVINE_GYM, $0, 0
 	map_header_2 OlivineTimsHouse, OLIVINE_TIMS_HOUSE, $0, 0
-	map_header_2 OlivineHouseBeta, OLIVINE_HOUSE_BETA, $0, 0
 	map_header_2 OlivinePunishmentSpeechHouse, OLIVINE_PUNISHMENT_SPEECH_HOUSE, $0, 0
 	map_header_2 OlivineGoodRodHouse, OLIVINE_GOOD_ROD_HOUSE, $0, 0
 	map_header_2 OlivineCafe, OLIVINE_CAFE, $0, 0
@@ -380,8 +379,6 @@
 	map_header_2 Underground, UNDERGROUND, $0, 0
 	map_header_2 RockTunnel1F, ROCK_TUNNEL_1F, $9, 0
 	map_header_2 RockTunnelB1F, ROCK_TUNNEL_B1F, $9, 0
-	map_header_2 SafariZoneFuchsiaGateBeta, SAFARI_ZONE_FUCHSIA_GATE_BETA, $0, 0
-	map_header_2 SafariZoneBeta, SAFARI_ZONE_BETA, $13, 0
 	map_header_2 VictoryRoad, VICTORY_ROAD, $1d, 0
 	map_header_2 EcruteakHouse, ECRUTEAK_HOUSE, $0, 0
 	map_header_2 WiseTriosRoom, WISE_TRIOS_ROOM, $0, 0
@@ -399,18 +396,15 @@
 	map_header_2 BlackthornPokeCenter1F, BLACKTHORN_POKECENTER_1F, $0, 0
 	map_header_2 MoveDeletersHouse, MOVE_DELETERS_HOUSE, $0, 0
 	map_header_2 CinnabarPokeCenter1F, CINNABAR_POKECENTER_1F, $0, 0
-	map_header_2 CinnabarPokeCenter2FBeta, CINNABAR_POKECENTER_2F_BETA, $0, 0
 	map_header_2 Route19FuchsiaGate, ROUTE_19___FUCHSIA_GATE, $0, 0
 	map_header_2 SeafoamGym, SEAFOAM_GYM, $9, 0
 	map_header_2 CeruleanGymBadgeSpeechHouse, CERULEAN_GYM_BADGE_SPEECH_HOUSE, $0, 0
 	map_header_2 CeruleanPoliceStation, CERULEAN_POLICE_STATION, $0, 0
 	map_header_2 CeruleanTradeSpeechHouse, CERULEAN_TRADE_SPEECH_HOUSE, $0, 0
 	map_header_2 CeruleanPokeCenter1F, CERULEAN_POKECENTER_1F, $0, 0
-	map_header_2 CeruleanPokeCenter2FBeta, CERULEAN_POKECENTER_2F_BETA, $0, 0
 	map_header_2 CeruleanGym, CERULEAN_GYM, $0, 0
 	map_header_2 CeruleanMart, CERULEAN_MART, $0, 0
 	map_header_2 Route10PokeCenter1F, ROUTE_10_POKECENTER_1F, $0, 0
-	map_header_2 Route10PokeCenter2FBeta, ROUTE_10_POKECENTER_2F_BETA, $0, 0
 	map_header_2 PowerPlant, POWER_PLANT, $0, 0
 	map_header_2 BillsHouse, BILLS_HOUSE, $0, 0
 	map_header_2 AzaleaPokeCenter1F, AZALEA_POKECENTER_1F, $0, 0
@@ -457,7 +451,6 @@
 	map_header_2 DayCare, DAYCARE, $0, 0
 	map_header_2 VermilionHouseFishingSpeechHouse, VERMILION_HOUSE_FISHING_SPEECH_HOUSE, $0, 0
 	map_header_2 VermilionPokeCenter1F, VERMILION_POKECENTER_1F, $0, 0
-	map_header_2 VermilionPokeCenter2FBeta, VERMILION_POKECENTER_2F_BETA, $0, 0
 	map_header_2 PokemonFanClub, POKEMON_FAN_CLUB, $0, 0
 	map_header_2 VermilionMagnetTrainSpeechHouse, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE, $0, 0
 	map_header_2 VermilionMart, VERMILION_MART, $0, 0
@@ -473,7 +466,6 @@
 	map_header_2 PewterGym, PEWTER_GYM, $0, 0
 	map_header_2 PewterMart, PEWTER_MART, $0, 0
 	map_header_2 PewterPokeCenter1F, PEWTER_POKECENTER_1F, $0, 0
-	map_header_2 PewterPokeCenter2FBeta, PEWTER_POKECENTER_2F_BETA, $0, 0
 	map_header_2 PewterSnoozeSpeechHouse, PEWTER_SNOOZE_SPEECH_HOUSE, $0, 0
 	map_header_2 OlivinePort, OLIVINE_PORT, $a, 0
 	map_header_2 VermilionPort, VERMILION_PORT, $a, 0
@@ -499,11 +491,9 @@
 	map_header_2 FuchsiaGym, FUCHSIA_GYM, $0, 0
 	map_header_2 FuchsiaBillSpeechHouse, FUCHSIA_BILL_SPEECH_HOUSE, $0, 0
 	map_header_2 FuchsiaPokeCenter1F, FUCHSIA_POKECENTER_1F, $0, 0
-	map_header_2 FuchsiaPokeCenter2FBeta, FUCHSIA_POKECENTER_2F_BETA, $0, 0
 	map_header_2 SafariZoneWardensHome, SAFARI_ZONE_WARDENS_HOME, $0, 0
 	map_header_2 Route15FuchsiaGate, ROUTE_15_FUCHSIA_GATE, $0, 0
 	map_header_2 LavenderPokeCenter1F, LAVENDER_POKECENTER_1F, $0, 0
-	map_header_2 LavenderPokeCenter2FBeta, LAVENDER_POKECENTER_2F_BETA, $0, 0
 	map_header_2 MrFujisHouse, MR_FUJIS_HOUSE, $0, 0
 	map_header_2 LavenderTownSpeechHouse, LAVENDER_TOWN_SPEECH_HOUSE, $0, 0
 	map_header_2 LavenderNameRater, LAVENDER_NAME_RATER, $0, 0
@@ -531,7 +521,6 @@
 	map_header_2 CeladonMansionRoof, CELADON_MANSION_ROOF, $1, 0
 	map_header_2 CeladonMansionRoofHouse, CELADON_MANSION_ROOF_HOUSE, $0, 0
 	map_header_2 CeladonPokeCenter1F, CELADON_POKECENTER_1F, $0, 0
-	map_header_2 CeladonPokeCenter2FBeta, CELADON_POKECENTER_2F_BETA, $0, 0
 	map_header_2 CeladonGameCorner, CELADON_GAME_CORNER, $0, 0
 	map_header_2 CeladonGameCornerPrizeRoom, CELADON_GAME_CORNER_PRIZE_ROOM, $0, 0
 	map_header_2 CeladonGym, CELADON_GYM, $0, 0
@@ -559,7 +548,6 @@
 	map_header_2 TrainerHouseB1F, TRAINER_HOUSE_B1F, $0, 0
 	map_header_2 ViridianMart, VIRIDIAN_MART, $0, 0
 	map_header_2 ViridianPokeCenter1F, VIRIDIAN_POKECENTER_1F, $0, 0
-	map_header_2 ViridianPokeCenter2FBeta, VIRIDIAN_POKECENTER_2F_BETA, $0, 0
 	map_header_2 Route2NuggetSpeechHouse, ROUTE_2_NUGGET_SPEECH_HOUSE, $0, 0
 	map_header_2 Route2Gate, ROUTE_2_GATE, $0, 0
 	map_header_2 VictoryRoadGate, VICTORY_ROAD_GATE, $0, 0
@@ -576,7 +564,6 @@
 	map_header_2 SaffronGym, SAFFRON_GYM, $0, 0
 	map_header_2 SaffronMart, SAFFRON_MART, $0, 0
 	map_header_2 SaffronPokeCenter1F, SAFFRON_POKECENTER_1F, $0, 0
-	map_header_2 SaffronPokeCenter2FBeta, SAFFRON_POKECENTER_2F_BETA, $0, 0
 	map_header_2 MrPsychicsHouse, MR_PSYCHICS_HOUSE, $0, 0
 	map_header_2 SaffronTrainStation, SAFFRON_TRAIN_STATION, $0, 0
 	map_header_2 SilphCo1F, SILPH_CO_1F, $0, 0

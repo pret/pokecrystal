@@ -38,16 +38,6 @@ Route10South_BlockData:
 	INCBIN "maps/Route10South.blk"
 
 PokeCenter2F_BlockData:
-CinnabarPokeCenter2FBeta_BlockData:
-CeruleanPokeCenter2FBeta_BlockData:
-Route10PokeCenter2FBeta_BlockData:
-VermilionPokeCenter2FBeta_BlockData:
-PewterPokeCenter2FBeta_BlockData:
-FuchsiaPokeCenter2FBeta_BlockData:
-LavenderPokeCenter2FBeta_BlockData:
-CeladonPokeCenter2FBeta_BlockData:
-ViridianPokeCenter2FBeta_BlockData:
-SaffronPokeCenter2FBeta_BlockData:
 	INCBIN "maps/PokeCenter2F.blk"
 
 Route41_BlockData:
@@ -111,7 +101,6 @@ Route38_BlockData:
 	INCBIN "maps/Route38.blk"
 
 OlivineTimsHouse_BlockData:
-OlivineHouseBeta_BlockData:
 OlivinePunishmentSpeechHouse_BlockData:
 OlivineGoodRodHouse_BlockData:
 Route39Farmhouse_BlockData:
@@ -162,7 +151,6 @@ CherrygroveEvolutionSpeechHouse_BlockData:
 Route30BerrySpeechHouse_BlockData:
 	INCBIN "maps/House1.blk"
 
-SafariZoneFuchsiaGateBeta_BlockData:
 Route19FuchsiaGate_BlockData:
 Route43MahoganyGate_BlockData:
 Route43Gate_BlockData:

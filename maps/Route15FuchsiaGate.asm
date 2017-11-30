@@ -25,8 +25,8 @@ Route15FuchsiaGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 8, FUCHSIA_CITY
-	warp_def $5, $0, 9, FUCHSIA_CITY
+	warp_def $4, $0, 7, FUCHSIA_CITY
+	warp_def $5, $0, 8, FUCHSIA_CITY
 	warp_def $4, $9, 1, ROUTE_15
 	warp_def $5, $9, 2, ROUTE_15
 

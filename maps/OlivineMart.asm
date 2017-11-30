@@ -51,8 +51,8 @@ OlivineMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 8, OLIVINE_CITY
-	warp_def $7, $3, 8, OLIVINE_CITY
+	warp_def $7, $2, 7, OLIVINE_CITY
+	warp_def $7, $3, 7, OLIVINE_CITY
 
 .XYTriggers:
 	db 0

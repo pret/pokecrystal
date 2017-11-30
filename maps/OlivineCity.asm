@@ -292,11 +292,10 @@ OlivineCity_MapEventHeader:
 	db 0, 0
 
 .Warps:
-	db 11
+	db 10
 	warp_def $15, $d, 1, OLIVINE_POKECENTER_1F
 	warp_def $b, $a, 1, OLIVINE_GYM
 	warp_def $b, $19, 1, OLIVINE_TIMS_HOUSE
-	warp_def $0, $0, 1, OLIVINE_HOUSE_BETA
 	warp_def $b, $1d, 1, OLIVINE_PUNISHMENT_SPEECH_HOUSE
 	warp_def $f, $d, 1, OLIVINE_GOOD_ROD_HOUSE
 	warp_def $15, $7, 1, OLIVINE_CAFE

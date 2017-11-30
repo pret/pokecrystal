@@ -1346,7 +1346,7 @@ PeoplePlaces6: ; Places
 	map ROUTE_11
 	map ROUTE_16
 	map ROUTE_14
-	map CINNABAR_POKECENTER_2F_BETA
+	map CINNABAR_POKECENTER_1F
 
 PnP_Text5:
 	; @ @

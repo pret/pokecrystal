@@ -45,8 +45,8 @@ OlivinePunishmentSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, OLIVINE_CITY
-	warp_def $7, $3, 5, OLIVINE_CITY
+	warp_def $7, $2, 4, OLIVINE_CITY
+	warp_def $7, $3, 4, OLIVINE_CITY
 
 .XYTriggers:
 	db 0
