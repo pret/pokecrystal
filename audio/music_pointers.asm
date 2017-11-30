@@ -91,8 +91,6 @@
 	dba Music_VictoryRoad ; 0xf6c72
 	dba Music_PokemonLullaby ; 0xf6d79
 	dba Music_PokemonMarch ; 0xf6e23
-	dba Music_GoldSilverOpening ; 0xf7055
-	dba Music_GoldSilverOpening2 ; 0xf7308
 	dba Music_MainMenu ; 0xf78fd
 	dba Music_RuinsOfAlphInterior ; 0xebd9e
 	dba Music_RocketTheme ; 0xf766d
@@ -106,13 +104,10 @@
 ; Crystal adds the following songs:
 
 	dba Music_Clair ; 0x1fa8d
-	dba Music_MobileAdapterMenu ; 0x17801f
-	dba Music_MobileAdapter ; 0x1fc87
 	dba Music_BuenasPassword ; 0x178153
 	dba Music_LookMysticalMan ; 0x17843b
 	dba Music_CrystalOpening ; 0x1786e8
 	dba Music_BattleTowerTheme ; 0x178889
 	dba Music_SuicuneBattle ; 0x178b81
 	dba Music_BattleTowerLobby ; 0x17948b
-	dba Music_MobileCenter ; 0x17961d
 ; e91a3
