@@ -28,28 +28,17 @@ SECTION "Credits", ROMX
 	const KAZUHITO_SEKINE
 	const TETSUJI_OOTA
 	const NCL_SUPER_MARIO_CLUB
-	const SARUGAKUCHO
 	const AKITO_MORI
-	const TAKAHIRO_HARADA
-	const TOHRU_HASHIMOTO
-	const NOBORU_MATSUMOTO
-	const TAKEHIRO_IZUSHI
-	const TAKASHI_KAWAGUCHI
 	const TSUNEKAZU_ISHIHARA
 	const HIROSHI_YAMAUCHI
 	const KENJI_SAIKI
 	const ATSUSHI_TADA
-	const NAOKO_KAWAKAMI
 	const HIROYUKI_ZINNAI
 	const KUNIMI_KAWAMURA
 	const HISASHI_SOGABE
 	const KEITA_KAGAYA
 	const YOSHINORI_MATSUDA
 	const HITOMI_SATO
-	const TORU_OSAWA
-	const TAKAO_OHARA
-	const YUICHIRO_ITO
-	const TAKAO_SHIMIZU
 	const PLANNING
 	const KEITA_NAKAMURA
 	const HIROTAKA_UEMURA
@@ -73,8 +62,6 @@ SECTION "Credits", ROMX
 	const TERUKI_MURAKAWA
 	const KAZUYOSHI_OSAWA
 	const KIMIKO_NAKAMICHI
-	const CREDIT_END
-	const CREDIT_UNKNOWN
 	const STAFF
 	const DIRECTOR
 	const CODIRECTOR
@@ -97,9 +84,6 @@ SECTION "Credits", ROMX
 	const EXECUTIVE_PRODUCER
 	const POKEMON_ANIMATION
 	const POKEDEX_TEXT
-	const MOBILE_PRJ_LEADER
-	const MOBILE_SYSTEM_AD
-	const MOBILE_STADIUM_DIR
 	const COORDINATION
 	const COPYRIGHT
 	const US_VERSION_STAFF
@@ -1115,28 +1099,17 @@ CreditsStrings:
 	dw .KazuhitoSekine
 	dw .TetsujiOota
 	dw .NclSuperMarioClub
-	dw .Sarugakucho
 	dw .AkitoMori
-	dw .TakahiroHarada
-	dw .TohruHashimoto
-	dw .NoboruMatsumoto
-	dw .TakehiroIzushi
-	dw .TakashiKawaguchi
 	dw .TsunekazuIshihara
 	dw .HiroshiYamauchi
 	dw .KenjiSaiki
 	dw .AtsushiTada
-	dw .NaokoKawakami
 	dw .HiroyukiZinnai
 	dw .KunimiKawamura
 	dw .HisashiSogabe
 	dw .KeitaKagaya
 	dw .YoshinoriMatsuda
 	dw .HitomiSato
-	dw .ToruOsawa
-	dw .TakaoOhara
-	dw .YuichiroIto
-	dw .TakaoShimizu
 	dw .Planning
 	dw .KeitaNakamura
 	dw .HirotakaUemura
@@ -1160,8 +1133,6 @@ CreditsStrings:
 	dw .TerukiMurakawa
 	dw .KazuyoshiOsawa
 	dw .KimikoNakamichi
-	dw .End
-	dw .Unknown
 	dw .Staff
 	dw .Director
 	dw .CoDirector
@@ -1184,9 +1155,6 @@ CreditsStrings:
 	dw .ExecutiveProducer
 	dw .PokemonAnimation
 	dw .PokedexText
-	dw .MobilePrjLeader
-	dw .MobileSystemAd
-	dw .MobileStadiumDir
 	dw .Coordination
 	dw .Copyright
 	dw .UsVersionStaff
@@ -1219,28 +1187,17 @@ CreditsStrings:
 .KazuhitoSekine:      db "  KAZUHITO SEKINE@"         ; "せきね かずひと@"
 .TetsujiOota:         db "    TETSUJI OOTA@"          ; "おおた てつじ@"
 .NclSuperMarioClub:   db "NCL SUPER MARIO CLUB@"      ; "スーパーマりォクラブ@"
-.Sarugakucho:         db "    SARUGAKUCHO@"           ; "さるがくちょう@"
 .AkitoMori:           db "     AKITO MORI@"           ; "もり あきと@"
-.TakahiroHarada:      db "  TAKAHIRO HARADA@"         ; "はらだ たかひろ@"
-.TohruHashimoto:      db "  TOHRU HASHIMOTO@"         ; "はしもと とおる@"
-.NoboruMatsumoto:     db "  NOBORU MATSUMOTO@"        ; "まつもと のぼる@"
-.TakehiroIzushi:      db "  TAKEHIRO IZUSHI@"         ; "いずし たけひろ@"
-.TakashiKawaguchi:    db " TAKASHI KAWAGUCHI@"        ; "かわぐち たかし@"
 .TsunekazuIshihara:   db " TSUNEKAZU ISHIHARA@"       ; "いしはら つねかず@"
 .HiroshiYamauchi:     db "  HIROSHI YAMAUCHI@"        ; "やまうち ひろし@"
 .KenjiSaiki:          db "    KENJI SAIKI@"           ; "さいき けんじ@"
 .AtsushiTada:         db "    ATSUSHI TADA@"          ; "ただ あつし@"
-.NaokoKawakami:       db "   NAOKO KAWAKAMI@"         ; "かわかみ なおこ@"
 .HiroyukiZinnai:      db "  HIROYUKI ZINNAI@"         ; "じんない ひろゆき@"
 .KunimiKawamura:      db "  KUNIMI KAWAMURA@"         ; "かわむら くにみ@"
 .HisashiSogabe:       db "   HISASHI SOGABE@"         ; "そがべ ひさし@"
 .KeitaKagaya:         db "    KEITA KAGAYA@"          ; "かがや けいた@"
 .YoshinoriMatsuda:    db " YOSHINORI MATSUDA@"        ; "まつだ よしのり@"
 .HitomiSato:          db "    HITOMI SATO@"           ; "さとう ひとみ@"
-.ToruOsawa:           db "     TORU OSAWA@"           ; "おおさわ とおる@"
-.TakaoOhara:          db "    TAKAO OHARA@"           ; "おおはら たかお@"
-.YuichiroIto:         db "    YUICHIRO ITO@"          ; "いとう ゆういちろう@"
-.TakaoShimizu:        db "   TAKAO SHIMIZU@"          ; "しみず たかお@"
 .Planning:            db " SPECIAL PRODUCTION"
                     next "      PLANNING"             ; "きかくかいはつぶ@"
                     next " & DEVELOPMENT DEPT.@"
@@ -1255,8 +1212,6 @@ CreditsStrings:
 .HideyukiHashimoto:   db " HIDEYUKI HASHIMOTO@"       ; "はしもと ひでゆき@"
 .SatoshiYamato:       db "   SATOSHI YAMATO@"         ; "やまと さとし@"
 .ShigeruMiyamoto:     db "  SHIGERU MIYAMOTO@"        ; "みやもと しげる@"
-.End:                 db "        END@"               ; "おしまい@"
-.Unknown:             db "      ????????@"            ; "????????@"
 .GailTilden:          db "    GAIL TILDEN@"
 .NobOgasawara:        db "   NOB OGASAWARA@"
 .SethMcMahill:        db "   SETH McMAHILL@"
@@ -1292,9 +1247,6 @@ CreditsStrings:
 .ExecutiveProducer:   db " EXECUTIVE PRODUCER@"       ; "エグゼクティブ プロデューサー@"
 .PokemonAnimation:    db " #MON ANIMATION@"           ; "# アニメーション@"
 .PokedexText:         db "    #DEX TEXT@"             ; "ずかん テキスト@"
-.MobilePrjLeader:     db " MOBILE PRJ. LEADER@"       ; "モバイルプロジ→クト りーダー@"
-.MobileSystemAd:      db " MOBILE SYSTEM AD.@"        ; "モバイル システムアドバイザー@"
-.MobileStadiumDir:    db "MOBILE STADIUM DIR.@"       ; "モバイルスタジアム ディレクター@"
 .Coordination:        db "    COORDINATION@"          ; "コーディネーター@"
 .UsVersionStaff:      db "  US VERSION STAFF@"
 .UsCoordination:      db "  US COORDINATION@"
