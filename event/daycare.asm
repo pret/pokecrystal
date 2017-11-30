@@ -123,7 +123,7 @@ DayCareAskDepositPokemon: ; 16798
 	jr c, .OnlyOneMon
 	ld a, DAYCARETEXT_WHICH_ONE
 	call PrintDayCareText
-	ld b, 6
+	ld b, PARTYMENUACTION_GIVE_MON
 	callba SelectTradeOrDaycareMon
 	jr c, .Declined
 	ld a, [CurPartySpecies]
