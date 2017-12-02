@@ -6,10 +6,6 @@ Serial:: ; 6ef
 	push de
 	push hl
 
-	ld a, [wPrinterConnectionOpen]
-	bit 0, a
-	jr nz, .printer
-
 	ld a, [hLinkPlayerNumber]
 	inc a ; is it equal to -1?
 	jr z, .init_player_number
@@ -29,10 +25,6 @@ Serial:: ; 6ef
 	ld a, 1 << rSC_ON
 	ld [rSC], a
 	jr .player2
-
-.printer
-	call PrinterReceive
-	jr .end
 
 .init_player_number
 	ld a, [rSB]

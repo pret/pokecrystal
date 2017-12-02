@@ -50,20 +50,9 @@ ReadAnyMail: ; b9237
 .loop
 	call GetJoypad
 	ld a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON | START
+	and A_BUTTON | B_BUTTON
 	jr z, .loop
-	and START
-	jr nz, .pressed_start
 	ret
-
-.pressed_start
-	ld a, [wJumptableIndex]
-	push af
-	callab PrintMail ; printer
-	pop af
-	ld [wJumptableIndex], a
-	jr .loop
-; b92b8
 
 .LoadGFX: ; b92b8
 	ld h, d

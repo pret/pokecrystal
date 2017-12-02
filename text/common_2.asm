@@ -1,13 +1,3 @@
-UnknownText_0x1c0000::
-	text "Oh, no picture?"
-	line "Come again, OK?"
-	done
-
-UnknownText_0x1c0021::
-	text "An EGG? My talent"
-	line "is worth more…"
-	done
-
 UnknownText_0x1c0043::
 	text "Hello, hello! I'm"
 	line "the NAME RATER."

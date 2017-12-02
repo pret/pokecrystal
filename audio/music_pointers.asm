@@ -98,7 +98,6 @@
 	dba Music_ContestResults ; 0xefb3e
 	dba Music_BugCatchingContest ; 0xf7c16
 	dba Music_LakeOfRageRocketRadio ; 0xef5b1
-	dba Music_Printer ; 0xf07fd
 	dba Music_PostCredits ; 0xcfd9e
 
 ; Crystal adds the following songs:

@@ -1,9 +1,3 @@
-PrinterReceive:: ; 2057
-	homecall _PrinterReceive
-
-	ret
-; 2063
-
 AskSerial:: ; 2063
 ; send out a handshake while serial int is off
 	ld a, [wPrinterConnectionOpen]

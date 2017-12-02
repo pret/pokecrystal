@@ -611,7 +611,6 @@ INCLUDE "engine/money.asm"
 INCLUDE "items/marts.asm"
 INCLUDE "event/mom.asm"
 INCLUDE "event/daycare.asm"
-INCLUDE "event/photo.asm"
 INCLUDE "engine/breeding/egg.asm"
 
 SECTION "Tileset Data 1", ROMX
@@ -4311,8 +4310,6 @@ INCLUDE "text/battle.asm"
 
 SECTION "bank21", ROMX
 
-INCLUDE "engine/printer.asm"
-
 INCLUDE "battle/anim_gfx.asm"
 
 INCLUDE "event/halloffame.asm"
@@ -5159,8 +5156,6 @@ SECTION "bank77", ROMX
 
 UnownFont: ; 1dc000
 INCBIN "gfx/misc/unown_font.2bpp"
-
-INCLUDE "misc/printer_77.asm"
 
 MobileHPIcon: ; 1dc591
 INCBIN "gfx/mobile/hp.1bpp"
