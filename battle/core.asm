@@ -2536,12 +2536,6 @@ AddBattleMoneyToAccount: ; 3d0be
 	ld c, $3
 	and a
 	push de
-	push hl
-	push bc
-	ld b, h
-	ld c, l
-	pop bc
-	pop hl
 .loop
 	ld a, [de]
 	adc [hl]

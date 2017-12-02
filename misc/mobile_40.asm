@@ -2,7 +2,7 @@ _LinkBattleSendReceiveAction: ; 100a09
 	call .StageForSend
 	ld [wd431], a
 	callba PlaceWaitingText
-	ret
+	jp .LinkBattle_SendReceiveAction
 ; 100a2e
 
 .StageForSend: ; 100a2e
