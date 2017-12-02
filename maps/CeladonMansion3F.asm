@@ -29,32 +29,13 @@ UnknownScript_0x7167e:
 	writetext UnknownText_0x71760
 	buttonsound
 	special Diploma
-	writetext UnknownText_0x71763
-	waitbutton
 	closetext
-	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	end
 
 GymGuyScript_0x71696:
 	faceplayer
 	opentext
-	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue UnknownScript_0x716a4
 	writetext UnknownText_0x717b4
-	waitbutton
-	closetext
-	end
-
-UnknownScript_0x716a4:
-	writetext UnknownText_0x717d8
-	yesorno
-	iffalse UnknownScript_0x716b0
-	special PrintDiploma
-	closetext
-	end
-
-UnknownScript_0x716b0:
-	writetext UnknownText_0x71830
 	waitbutton
 	closetext
 	end
@@ -100,37 +81,11 @@ UnknownText_0x71760:
 	text "…"
 	done
 
-UnknownText_0x71763:
-	text "The GRAPHIC ARTIST"
-	line "will print out a"
-	cont "DIPLOMA for you."
-
-	para "You should go show"
-	line "it off."
-	done
-
 UnknownText_0x717b4:
 	text "I'm the GRAPHIC"
 	line "ARTIST."
 
 	para "I drew you!"
-	done
-
-UnknownText_0x717d8:
-	text "I'm the GRAPHIC"
-	line "ARTIST."
-
-	para "Oh, you completed"
-	line "your #DEX?"
-
-	para "Want me to print"
-	line "out your DIPLOMA?"
-	done
-
-UnknownText_0x71830:
-	text "Give me a shout if"
-	line "you want your"
-	cont "DIPLOMA printed."
 	done
 
 UnknownText_0x71895:

@@ -155,25 +155,6 @@ UnknownScript_0x59247:
 	closetext
 	end
 
-MapRuinsofAlphResearchCenterSignpost2Script:
-	opentext
-	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
-	iftrue UnknownScript_0x5925a
-	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x59260
-UnknownScript_0x5925a:
-	writetext UnknownText_0x5980e
-	waitbutton
-	closetext
-	end
-
-UnknownScript_0x59260:
-	writetext UnknownText_0x5982d
-	waitbutton
-	special Special_UnownPrinter
-	closetext
-	end
-
 MapRuinsofAlphResearchCenterSignpost0Script:
 	jumptext UnknownText_0x59886
 
@@ -229,13 +210,6 @@ UnknownText_0x5935f:
 
 	para "That's a great"
 	line "achievement!"
-
-	para "I've set up the"
-	line "printer here for"
-	cont "handling UNOWN."
-
-	para "Feel free to use"
-	line "it anytime."
 	done
 
 UnknownText_0x593ed:
@@ -336,16 +310,6 @@ UnknownText_0x597d9:
 	line "kinds found."
 	done
 
-UnknownText_0x5980e:
-	text "This doesn't seem"
-	line "to work yet."
-	done
-
-UnknownText_0x5982d:
-	text "UNOWN may be"
-	line "printed out."
-	done
-
 UnknownText_0x59886:
 	text "There are many"
 	line "academic books."
@@ -368,10 +332,9 @@ RuinsofAlphResearchCenter_MapEventHeader:
 	db 0
 
 .Signposts:
-	db 3
+	db 2
 	signpost 5, 6, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost0Script
 	signpost 4, 3, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost1Script
-	signpost 1, 7, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost2Script
 
 .PersonEvents:
 	db 3

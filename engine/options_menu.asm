@@ -13,7 +13,7 @@ _OptionsMenu: ; e41d0
 	call PlaceString
 	xor a
 	ld [wJumptableIndex], a
-	ld c, $6 ; number of items on the menu minus 1 (for cancel)
+	ld c, $5 ; number of items on the menu minus 1 (for cancel)
 
 .print_text_loop ; this next will display the settings of each option when the menu is opened
 	push bc
@@ -70,8 +70,6 @@ StringOptions: ; e4241
 	db "        :<LNBRK>"
 	db "SOUND<LNBRK>"
 	db "        :<LNBRK>"
-	db "PRINT<LNBRK>"
-	db "        :<LNBRK>"
 	db "MENU ACCOUNT<LNBRK>"
 	db "        :<LNBRK>"
 	db "FRAME<LNBRK>"
@@ -98,7 +96,6 @@ GetOptionPointer: ; e42d6
 	dw Options_BattleScene
 	dw Options_BattleStyle
 	dw Options_Sound
-	dw Options_Print
 	dw Options_MenuAccount
 	dw Options_Frame
 	dw Options_Cancel
@@ -327,106 +324,6 @@ Options_Sound: ; e43dd
 ; e4424
 
 
-Options_Print: ; e4424
-	call GetPrinterSetting
-	ld a, [hJoyPressed]
-	bit D_LEFT_F, a
-	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
-	jr z, .NonePressed
-	ld a, c
-	cp 4
-	jr c, .Increase
-	ld c, -1
-
-.Increase:
-	inc c
-	ld a, e
-	jr .Save
-
-.LeftPressed:
-	ld a, c
-	and a
-	jr nz, .Decrease
-	ld c, 5
-
-.Decrease:
-	dec c
-	ld a, d
-
-.Save:
-	ld b, a
-	ld [GBPrinter], a
-
-.NonePressed:
-	ld b, $0
-	ld hl, .Strings
-	add hl, bc
-	add hl, bc
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	hlcoord 11, 11
-	call PlaceString
-	and a
-	ret
-; e445a
-
-.Strings:
-	dw .Lightest
-	dw .Lighter
-	dw .Normal
-	dw .Darker
-	dw .Darkest
-
-.Lightest:
-	db "LIGHTEST@"
-.Lighter:
-	db "LIGHTER @"
-.Normal:
-	db "NORMAL  @"
-.Darker:
-	db "DARKER  @"
-.Darkest:
-	db "DARKEST @"
-; e4491
-
-
-GetPrinterSetting: ; e4491
-	ld a, [GBPrinter] ; converts from the stored printer setting to 0,1,2,3,4
-	and a
-	jr z, .IsLightest
-	cp PRINT_LIGHTER
-	jr z, .IsLight
-	cp PRINT_DARKER
-	jr z, .IsDark
-	cp PRINT_DARKEST
-	jr z, .IsDarkest
-	ld c, 2 ; normal if none of the above
-	lb de, PRINT_LIGHTER, PRINT_DARKER ; the 2 values next to this setting
-	ret
-
-.IsLightest:
-	ld c, 0
-	lb de, PRINT_DARKEST, PRINT_LIGHTER ; the 2 values next to this setting
-	ret
-
-.IsLight:
-	ld c, 1
-	lb de, PRINT_LIGHTEST, PRINT_NORMAL ; the 2 values next to this setting
-	ret
-
-.IsDark:
-	ld c, 3
-	lb de, PRINT_NORMAL, PRINT_DARKEST ; the 2 values next to this setting
-	ret
-
-.IsDarkest:
-	ld c, 4
-	lb de, PRINT_DARKER, PRINT_LIGHTEST ; the 2 values next to this setting
-	ret
-; e44c1
-
 Options_MenuAccount: ; e44c1
 	ld hl, Options2
 	ld a, [hJoyPressed]
@@ -457,7 +354,7 @@ Options_MenuAccount: ; e44c1
 	ld de, .On
 
 .Display:
-	hlcoord 11, 13
+	hlcoord 11, 11
 	call PlaceString
 	and a
 	ret
@@ -494,7 +391,7 @@ Options_Frame: ; e44fa
 	ld [hl], a
 UpdateFrame: ; e4512
 	ld a, [TextBoxFrame]
-	hlcoord 16, 15 ; where on the screen the number is drawn
+	hlcoord 16, 13 ; where on the screen the number is drawn
 	add "1"
 	ld [hl], a
 	call LoadFontsExtra
@@ -526,7 +423,7 @@ OptionsControl: ; e452a
 
 .DownPressed:
 	ld a, [hl] ; load the cursor position to a
-	cp $7 ; maximum number of items in option menu
+	cp $6 ; maximum number of items in option menu
 	jr nz, .CheckFive
 	ld [hl], $0
 	scf
@@ -553,7 +450,7 @@ OptionsControl: ; e452a
 .NotSix:
 	and a
 	jr nz, .Decrease
-	ld [hl], $8 ; number of option items +1
+	ld [hl], $7 ; number of option items +1
 
 .Decrease:
 	dec [hl]

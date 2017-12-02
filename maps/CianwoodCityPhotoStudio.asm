@@ -16,8 +16,6 @@ FishingGuruScript_0x9e0e0:
 	iffalse UnknownScript_0x9e0f3
 	writetext UnknownText_0x9e142
 	waitbutton
-	special PhotoStudio
-	waitbutton
 	closetext
 	end
 
