@@ -496,23 +496,7 @@ PlayCurMonCry: ; c472
 
 
 SpecialGameboyCheck: ; c478
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-
-	ld a, [hSGB]
-	and a
-	jr nz, .sgb
-
-.gb
-	xor a
-	jr .done
-.sgb
-	ld a, 1
-	jr .done
-.cgb
 	ld a, 2
-.done
 	ld [ScriptVar], a
 	ret
 

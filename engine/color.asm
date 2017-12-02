@@ -78,8 +78,6 @@ SGB_ApplyPartyMenuHPPals: ; 8ade SGB layout $fc
 	ret
 
 ApplyMonOrTrainerPals:
-	call CheckCGB
-	ret z
 	ld a, e
 	and a
 	jr z, .get_trainer
@@ -150,8 +148,6 @@ ApplyHPBarPals:
 	ret
 
 LoadStatsScreenPals:
-	call CheckCGB
-	ret z
 	ld hl, StatsScreenPals
 	ld b, 0
 	dec c
@@ -181,31 +177,6 @@ LoadMailPalettes:
 	add hl, hl
 	ld de, .MailPals
 	add hl, de
-	call CheckCGB
-	jr nz, .cgb
-	push hl
-	ld hl, PalPacket_9ce6
-	ld de, wSGBPals
-	ld bc, PALPACKET_LENGTH
-	call CopyBytes
-	pop hl
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld [wSGBPals + 3], a
-	ld a, [hli]
-	ld [wSGBPals + 4], a
-	ld a, [hli]
-	ld [wSGBPals + 5], a
-	ld a, [hli]
-	ld [wSGBPals + 6], a
-	ld hl, wSGBPals
-	call PushSGBPals_
-	ld hl, BlkPacket_9a86
-	call PushSGBPals_
-	ret
-
-.cgb
 	ld de, UnknBGPals
 	ld bc, 1 palettes
 	ld a, $5
@@ -645,41 +616,9 @@ PushSGBPals:
 	ret
 
 InitSGBBorder:
-	call CheckCGB
-	ret nz
-; SGB/DMG only
-	di
-	ld a, [wcfbe]
-	push af
-	set 7, a
-	ld [wcfbe], a
-	xor a
-	ld [rJOYP], a
-	ld [hSGB], a
-	call PushSGBBorderPalsAndWait
-	jr nc, .skip
-	ld a, $1
-	ld [hSGB], a
-	call _InitSGBBorderPals
-	call SGBBorder_PushBGPals
-	call SGBDelayCycles
-	call SGB_ClearVRAM
-	call PushSGBBorder
-	call SGBDelayCycles
-	call SGB_ClearVRAM
-	ld hl, PalPacket_9d66
-	call PushSGBPals
-
-.skip
-	pop af
-	ld [wcfbe], a
-	ei
 	ret
 
 InitCGBPals::
-	call CheckCGB
-	ret z
-; CGB only
 	ld a, $1
 	ld [rVBK], a
 	ld hl, VTiles0

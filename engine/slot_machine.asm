@@ -99,11 +99,6 @@ Slots_GetPals: ; 9279b (24:679b)
 	ld a, %11100100
 	call DmgToCgbBGPals
 	lb de, %11100100, %11100100
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-	lb de, %11000000, %11100100
-.cgb
 	call DmgToCgbObjPals
 	ret
 

@@ -620,16 +620,6 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	dec b
 	jr nz, .loop2
 
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-	ld a, $1
-	ld [hBGMapMode], a
-	call DelayFrame
-	call DelayFrame
-	jr .nextscene
-
-.cgb
 	ld hl, .daypals
 	ld a, [TimeOfDayPal]
 	and (1 << 2) - 1

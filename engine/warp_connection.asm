@@ -260,10 +260,6 @@ LoadMapTimeOfDay: ; 104750
 .PushAttrMap: ; 1047a3 (41:47a3)
 	decoord 0, 0
 	call .copy
-	ld a, [hCGB]
-	and a
-	ret z
-
 	decoord 0, 0, AttrMap
 	ld a, $1
 	ld [rVBK], a

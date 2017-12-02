@@ -144,9 +144,6 @@ RunTradeAnimScript: ; 28fa1
 	call DisableLCD
 	call LoadFontsBattleExtra
 	callab ClearSpriteAnims
-	ld a, [hCGB]
-	and a
-	jr z, .NotCGB
 	ld a, $1
 	ld [rVBK], a
 	ld hl, VTiles0
@@ -155,8 +152,6 @@ RunTradeAnimScript: ; 28fa1
 	call ByteFill
 	ld a, $0
 	ld [rVBK], a
-
-.NotCGB:
 	hlbgcoord 0, 0
 	ld bc, sScratch - VBGMap0
 	ld a, " "

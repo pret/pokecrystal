@@ -569,8 +569,7 @@ AnimateFlowerTile: ; fc56d
 	ld e, a
 
 ; CGB has different color mappings for flowers.
-	ld a, [hCGB]
-	and 1
+	ld a, 1
 
 	add e
 	swap a ; << 4 (16 bytes)
@@ -807,11 +806,6 @@ endr
 TileAnimationPalette: ; fc6d7
 ; Transition between color values 0-2 for color 0 in palette 3.
 
-; No palette changes on DMG.
-	ld a, [hCGB]
-	and a
-	ret z
-
 ; We don't want to mess with non-standard palettes.
 	ld a, [rBGP] ; BGP
 	cp %11100100
@@ -873,10 +867,6 @@ TileAnimationPalette: ; fc6d7
 
 
 FlickeringCaveEntrancePalette: ; fc71e
-; No palette changes on DMG.
-	ld a, [hCGB]
-	and a
-	ret z
 ; We don't want to mess with non-standard palettes.
 	ld a, [rBGP]
 	cp %11100100

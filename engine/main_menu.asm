@@ -92,10 +92,6 @@ MainMenu_GetWhichMenu: ; 49da4
 	ret
 
 .next
-	ld a, [hCGB]
-	cp $1
-	ld a, $1
-	ret nz
 	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
 	call GetSRAMBank
 	ld a, [sNumDailyMysteryGiftPartnerIDs]

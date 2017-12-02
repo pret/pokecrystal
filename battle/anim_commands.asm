@@ -185,10 +185,6 @@ BattleAnimRestoreHuds: ; cc1bb
 
 BattleAnimRequestPals: ; cc1e2
 
-	ld a, [hCGB]
-	and a
-	ret z
-
 	ld a, [rBGP]
 	ld b, a
 	ld a, [wBGP]
@@ -1335,23 +1331,6 @@ PlayHitSound: ; cc881
 ; cc8a4
 
 BattleAnimAssignPals: ; cc8a4
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-	ld a, [hSGB]
-	and a
-	ld a, %11100000
-	jr z, .sgb
-	ld a, %11110000
-
-.sgb
-	ld [wOBP0], a
-	ld a, %11100100
-	ld [wBGP], a
-	ld [wOBP1], a
-	ret
-
-.cgb
 	ld a, %11100100
 	ld [wBGP], a
 	ld [wOBP0], a
@@ -1407,9 +1386,6 @@ BattleAnim_RevertPals: ; cc8f6
 
 BattleAnim_SetBGPals: ; cc91a
 	ld [rBGP], a
-	ld a, [hCGB]
-	and a
-	ret z
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -1435,9 +1411,6 @@ BattleAnim_SetBGPals: ; cc91a
 
 BattleAnim_SetOBPals: ; cc94b
 	ld [rOBP0], a
-	ld a, [hCGB]
-	and a
-	ret z
 	ld a, [rSVBK]
 	push af
 	ld a, $5
