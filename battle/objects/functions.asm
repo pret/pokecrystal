@@ -3267,14 +3267,9 @@ Functionce29f: ; ce29f (33:629f)
 	srl a
 	ld e, a
 	ld d, $0
-	ld a, [hSGB]
-	and a
-	jr nz, .asm_ce2b6
 	ld hl, Unknown_ce2c4
 	jr .asm_ce2b9
 
-.asm_ce2b6
-	ld hl, Unknown_ce2c8
 .asm_ce2b9
 	add hl, de
 	ld a, [hl]

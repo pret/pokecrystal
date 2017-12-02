@@ -638,12 +638,7 @@ BattleAnimCmd_OBP1: ; cc465 (33:4465)
 	ret
 
 BattleAnimCmd_ResetObp0: ; cc46c (33:446c)
-	ld a, [hSGB]
-	and a
 	ld a, $e0
-	jr z, .not_sgb
-	ld a, $f0
-.not_sgb
 	ld [wOBP0], a
 	ret
 

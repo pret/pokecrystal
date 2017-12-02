@@ -286,14 +286,7 @@ BattleBGEffect_AlternateHues: ; c8155 (32:4155)
 ; c8171
 
 BattleBGEffect_06: ; c8171 (32:4171)
-	call BattleBGEffects_CheckSGB
-	jr nz, .sgb
 	ld de, .PalsCGB
-	jr .okay
-
-.sgb
-	ld de, .PalsSGB
-.okay
 	call BattleBGEffect_GetNthDMGPal
 	ld [wOBP0], a
 	ret
@@ -303,21 +296,8 @@ BattleBGEffect_06: ; c8171 (32:4171)
 	db %10010000
 	db -2
 
-.PalsSGB:
-	db %11110000
-	db %11000000
-	db -2
-; c818b
-
 BattleBGEffect_07: ; c818b (32:418b)
-	call BattleBGEffects_CheckSGB
-	jr nz, .sgb
 	ld de, .PalsCGB
-	jr .okay
-
-.sgb
-	ld de, .PalsSGB
-.okay
 	call BattleBGEffect_GetNthDMGPal
 	ld [wOBP0], a
 	ret
@@ -326,12 +306,6 @@ BattleBGEffect_07: ; c818b (32:418b)
 	db %11100100
 	db %11011000
 	db -2
-
-.PalsSGB:
-	db %11110000
-	db %11001100
-	db -2
-; c81a5
 
 BattleBGEffect_08: ; c81a5 (32:41a5)
 	ld de, .Pals
