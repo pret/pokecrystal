@@ -3003,7 +3003,7 @@ Function17e309: ; 17e309
 	call ClearScreen
 	call Function17e349
 	call Function17d5f6
-	callba Function17f555
+	callba DisplayMobileError
 	call Function17e349
 	call Function17dcaf
 	xor a
@@ -4623,7 +4623,7 @@ Function17f524: ; 17f524
 	jr .asm_17f536
 ; 17f53d
 
-Function17f53d: ; 17f53d
+BattleTowerMobileError: ; 17f53d
 	call FadeToMenu
 	xor a
 	ld [wc303], a
@@ -4632,7 +4632,7 @@ Function17f53d: ; 17f53d
 	ld a, $1
 	ld [rSVBK], a
 
-	call Function17f555
+	call DisplayMobileError
 
 	pop af
 	ld [rSVBK], a
@@ -4640,7 +4640,7 @@ Function17f53d: ; 17f53d
 	ret
 ; 17f555
 
-Function17f555: ; 17f555
+DisplayMobileError: ; 17f555
 .loop
 	call JoyTextDelay
 	call .RunJumptable

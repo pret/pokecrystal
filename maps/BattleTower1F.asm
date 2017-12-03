@@ -71,11 +71,11 @@ Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 	writetext Text_WantToGoIntoABattleRoom
 	writebyte $1
 	special Special_Menu_ChallengeExplanationCancel
-	if_equal $1, Script_ChoseChallenge
+	if_equal $1, Script_ChooseChallenge
 	if_equal $2, Script_BattleTowerExplanation
 	jump Script_BattleTowerHopeToServeYouAgain
 
-Script_ChoseChallenge: ; 0x9e40f
+Script_ChooseChallenge: ; 0x9e40f
 	writebyte BATTLETOWERACTION_RESETDATA ; ResetBattleTowerTrainerSRAM
 	special BattleTowerAction
 	special SpecialCheckForBattleTowerRules
@@ -89,9 +89,9 @@ Script_ChoseChallenge: ; 0x9e40f
 	dotrigger $1
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ ; set 1, [s1_be4f]
 	special BattleTowerAction
-	special Function1700b0
+	special BattleTowerRoomMenu
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
-	if_not_equal $0, UnknownScript_0x9e550
+	if_not_equal $0, Script_MobileError
 	writebyte BATTLETOWERACTION_11
 	special BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
@@ -159,7 +159,7 @@ Script_BattleTowerHopeToServeYouAgain:
 	end
 
 UnreferencedScript_0x9e4b6:
-	special Function17f53d
+	special BattleTowerMobileError
 	closetext
 	end
 
@@ -178,7 +178,7 @@ UnreferencedScript_0x9e4be:
 	special BattleTowerAction
 	special Function1700ba
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
-	if_not_equal $0, UnknownScript_0x9e550
+	if_not_equal $0, Script_MobileError
 	writetext Text_ReceivedAListOfLeadersOnTheHonorRoll
 	spriteface BATTLETOWER1F_RECEPTIONIST, LEFT
 	writetext Text_PleaseConfirmOnThisMonitor
@@ -237,8 +237,8 @@ Script_MayNotEnterABattleRoomUnderL70: ; 0x9e549
 	waitbutton
 	jump Script_Menu_ChallengeExplanationCancel
 
-UnknownScript_0x9e550:
-	special Function17f53d
+Script_MobileError:
+	special BattleTowerMobileError
 	closetext
 	end
 
