@@ -41,11 +41,6 @@ all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 
-# Build tools when building the rom
-ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
-Makefile: tools ;
-endif
-
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
 	$(MAKE) clean -C tools/
@@ -56,13 +51,36 @@ compare: $(roms)
 tools:
 	$(MAKE) -C tools/
 
-%11.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
-%11.o: %.asm $$(dep)
+
+# Prevents $(shell) from filtering out newlines.
+define shell2 =
+$(foreach line,\
+$(shell $1 | sed "s/ /{space}/g"),\
+$(info $(shell echo $(line) | sed "s/{space}/ /g")))
+endef
+
+# Build tools when building the rom.
+# This has to happen before the rules are processed, since that's when scan_includes is run.
+ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
+$(call shell2, $(MAKE) -C tools/)
+endif
+
+
+# The dep rules have to be explicit or else missing files won't be reported.
+# As a side effect, they're evaluated immediately instead of when the rule is invoked.
+# It doesn't look like $(shell) can be deferred so there might not be a better way.
+define DEP =
+$1: $$(shell tools/scan_includes $2)
+endef
+$(foreach obj, $(crystal11_obj), $(eval $(call DEP,$(obj),$(obj:11.o=.asm))))
+$(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
+
+%11.o: %.asm
 	$(RGBASM) -D CRYSTAL11 -o $@ $<
 
-%.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
-%.o: %.asm $$(dep)
+%.o: %.asm
 	$(RGBASM) -o $@ $<
+
 
 pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
