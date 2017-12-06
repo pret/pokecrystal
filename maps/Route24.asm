@@ -16,7 +16,7 @@ RocketScript_0x1adbfa:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1add67, -1
-	loadtrainer GRUNTM, 31
+	loadtrainer GRUNTM, GRUNTM_31
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
