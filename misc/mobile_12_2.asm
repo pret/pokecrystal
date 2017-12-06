@@ -316,7 +316,7 @@ Function4aa25: ; 4aa25
 	call Function4aad3
 
 Function4aa34: ; 4aa34
-	ld a, $9
+	ld a, PARTYMENUACTION_MOBILE
 	ld [PartyMenuActionText], a
 	callba WritePartyMenuTilemap
 	xor a
