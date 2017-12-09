@@ -2668,7 +2668,7 @@ Script_warp:
 	call GetScriptByte
 	ld [YCoord], a
 	ld a, -1
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 	ld a, MAPSETUP_WARP
 	ld [hMapEntryMethod], a
 	ld a, 1
@@ -2681,7 +2681,7 @@ Script_warp:
 	call GetScriptByte
 	call GetScriptByte
 	ld a, -1
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 	ld a, MAPSETUP_BADWARP
 	ld [hMapEntryMethod], a
 	ld a, 1

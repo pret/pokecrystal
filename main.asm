@@ -3332,7 +3332,7 @@ InitDisplayForRedCredits: ; 4e8c2
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
-	ld hl, wd000 ; UnknBGPals
+	ld hl, UnknBGPals
 	ld c, 4 tiles
 .load_white_palettes
 	ld a, (palred 31 + palgreen 31 + palblue 31) % $100

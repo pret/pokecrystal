@@ -42,10 +42,10 @@ ENDM
 
 
 LoadSpawnPoint: ; 1531f
-	; loads the spawn point in wd001
+	; loads the spawn point in DefaultSpawnpoint
 	push hl
 	push de
-	ld a, [wd001]
+	ld a, [DefaultSpawnpoint]
 	cp SPAWN_N_A
 	jr z, .spawn_n_a
 	ld l, a

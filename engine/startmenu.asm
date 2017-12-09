@@ -614,7 +614,7 @@ TossItemFromPC: ; 129f4
 	pop af
 	jr c, .quit
 	pop hl
-	ld a, [wd107]
+	ld a, [CurItemQuantity]
 	call TossItem
 	call PartyMonItemName
 	ld hl, .TossedThisMany

@@ -5,7 +5,7 @@ INCLUDE "vram.asm"
 
 SECTION "Stack", WRAM0
 
-wc000::
+wRAM0Start::
 StackBottom::
 	ds $100 - 1
 Stack::
@@ -1484,20 +1484,18 @@ wMinutesSince:: ds 1
 wHoursSince:: ds 1
 wDaysSince:: ds 1
 
-wRAM0End:: ; cfd8
-
 
 SECTION "WRAM 1", WRAMX
 
+wRAM1Start::
 wd000:: ds 1
-DefaultSpawnpoint::
-wd001:: ds 1
 
-; d002
-UNION
+DefaultSpawnpoint:: db
+
+UNION ; d002
 wTempMail:: mailmsg wTempMail
 
-NEXTU
+NEXTU ; d002
 wSeerAction:: ds 1
 wSeerNickname:: ds PKMN_NAME_LENGTH
 wSeerCaughtLocation:: ds 17
@@ -1509,14 +1507,14 @@ wSeerCaughtLevel:: ds 1
 wSeerCaughtData:: ds 1
 wSeerCaughtGender:: ds 1
 
-NEXTU
+NEXTU ; d002
 wBufferMonNick:: ds PKMN_NAME_LENGTH ; d002
 wBufferMonOT:: ds NAME_LENGTH ; d00d
 wBufferMon:: party_struct wBufferMon ; d018
 	ds 8
 wMonOrItemNameBuffer::
 
-NEXTU
+NEXTU ; d002
 wBugContestResults::
 	bugcontestwinner wBugContestFirstPlace
 	bugcontestwinner wBugContestSecondPlace
@@ -1526,7 +1524,7 @@ wBugContestWinnersEnd::
 	ds 4
 wBugContestWinnerName:: ds NAME_LENGTH
 
-NEXTU
+NEXTU ; d002
 wd002::
 wTempDayOfWeek::
 wApricorns::
@@ -1577,11 +1575,11 @@ wd00a:: ds 1
 wMartItem4BCD::
 wd00b:: ds 1
 
-UNION
+UNION ; d00c
 wRadioText:: ds 2 * SCREEN_WIDTH
 wRadioTextEnd::
 
-NEXTU
+NEXTU ; d00c
 wMobileParticipant2Nickname::
 wd00c:: ds 1
 wd00d:: ds 1
@@ -1692,45 +1690,35 @@ wTempTrainerHeaderEnd::
 wPlayerTurningDirection:: ; d04e
 	ds 24
 ENDU
+
 wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH ; d066
 
-StringBuffer1:: ; d073
-	ds 19
-
-StringBuffer2:: ; d086
-	ds 19
-
-StringBuffer3:: ; d099
-	ds 19
-
-StringBuffer4:: ; d0ac
-	ds 19
-
-StringBuffer5:: ; d0bf
-	ds 19
+StringBuffer1:: ds 19 ; d073
+StringBuffer2:: ds 19 ; d086
+StringBuffer3:: ds 19 ; d099
+StringBuffer4:: ds 19 ; d0ac
+StringBuffer5:: ds 19 ; d0bf
 
 wd0d2:: ds 2
 
-CurBattleMon:: ; d0d4
-	ds 1
-CurMoveNum:: ; d0d5
-	ds 1
+CurBattleMon:: db ; d0d4
+CurMoveNum:: db ; d0d5
 
-wLastPocket:: ds 1
+wLastPocket:: db
 
-wPCItemsCursor:: ds 1
-wPartyMenuCursor:: ds 1
-wItemsPocketCursor:: ds 1
-wKeyItemsPocketCursor:: ds 1
-wBallsPocketCursor:: ds 1
-wTMHMPocketCursor:: ds 1
+wPCItemsCursor::        db
+wPartyMenuCursor::      db
+wItemsPocketCursor::    db
+wKeyItemsPocketCursor:: db
+wBallsPocketCursor::    db
+wTMHMPocketCursor::     db
 
-wPCItemsScrollPosition:: ds 1
-wPartyMenuScrollPosition:: ds 1 ; unused
-wItemsPocketScrollPosition:: ds 1
-wKeyItemsPocketScrollPosition:: ds 1
-wBallsPocketScrollPosition:: ds 1
-wTMHMPocketScrollPosition:: ds 1
+wPCItemsScrollPosition::        db
+wPartyMenuScrollPosition::      db ; unused
+wItemsPocketScrollPosition::    db
+wKeyItemsPocketScrollPosition:: db
+wBallsPocketScrollPosition::    db
+wTMHMPocketScrollPosition::     db
 
 wMoveSwapBuffer::
 wSwitchMon::
@@ -1755,255 +1743,190 @@ VramState:: ; d0ed
 ; bit 6: something to do with text
 ; bit 7: on when surf initiates
 ;        flickers when climbing waterfall
-	ds 1
+	db
 
-wBattleResult:: ds 1 ; d0ee
-wUsingItemWithSelect:: ds 1 ; d0ef
+wBattleResult:: db ; d0ee
+wUsingItemWithSelect:: db ; d0ef
 
-UNION
-CurMart:: ds 16 ; d0f0
+UNION ; d0f0
+; mart data
+CurMart:: ds 16
 CurMartEnd::
 
-NEXTU
-CurElevator:: ds 1
-wd0f1::
-CurElevatorFloors::
-wCurMessageIndex:: ds 1
-wd0f2::
-wMailboxCount:: ds 1
+NEXTU ; d0f0
+; elevator data
+CurElevator:: db
+CurElevatorFloors:: db
+
+NEXTU ; d0f0
+; mailbox data
+	ds 1
+wCurMessageIndex:: db
+wMailboxCount:: db
 wMailboxItems:: ds MAILBOX_CAPACITY
 wMailboxEnd:: ds 1 ; d0fe
-
 ENDU
+
 wListPointer:: dw ; d100
 wUnusedD102:: dw ; d102
 wItemAttributesPtr:: dw ; d104
 
-CurItem:: ds 1 ; d106
+CurItem:: db ; d106
 CurItemQuantity:: ; d107
 wMartItemID::
-wd107:: ds 1
+	db
 
-CurPartySpecies:: ; d108
-	ds 1
+CurPartySpecies:: db ; d108
 
 CurPartyMon:: ; d109
 ; contains which monster in a party
 ; is being dealt with at the moment
 ; 0-5
-	ds 1
+	db
 
 wWhichHPBar::
 ; 0: Enemy
 ; 1: Player
 ; 2: Party Menu
-	ds 1
+	db
 wPokemonWithdrawDepositParameter::
 ; 0: Take from PC
 ; 1: Put into PC
 ; 2: Take from Daycare
 ; 3: Put into Daycare
-wd10b:: ds 1
-wItemQuantityChangeBuffer:: ds 1
-wItemQuantityBuffer:: ds 1
+	db
 
-TempMon:: ; d10e
-	party_struct TempMon
+wItemQuantityChangeBuffer:: db
+wItemQuantityBuffer:: db
 
-wSpriteFlags:: ds 1 ; d13e
+TempMon:: party_struct TempMon ; d10e
 
-wHandlePlayerStep:: ds 2 ; d13f
+wSpriteFlags:: db ; d13e
 
-PartyMenuActionText:: ; d141
-	ds 1
+wHandlePlayerStep:: dw ; d13f
 
-wItemAttributeParamBuffer:: ; d142
-	ds 1
+PartyMenuActionText:: db ; d141
 
-CurPartyLevel:: ; d143
-	ds 1
+wItemAttributeParamBuffer:: db ; d142
 
-wScrollingMenuListSize:: ds 2
+CurPartyLevel:: db ; d143
+
+wScrollingMenuListSize:: dw
 
 ; used when following a map warp
 ; d146
-wNextWarp:: ds 1
-wNextMapGroup:: ds 1
-wNextMapNumber:: ds 1
-wPrevWarp:: ds 1
-wPrevMapGroup:: ds 1
-wPrevMapNumber:: ds 1
+wNextWarp:: db
+wNextMapGroup:: db
+wNextMapNumber:: db
+wPrevWarp:: db
+wPrevMapGroup:: db
+wPrevMapNumber:: db
 ; d14c
 
-wPlayerBGMapOffsetX:: ds 1 ; used in FollowNotExact; unit is pixels
-wPlayerBGMapOffsetY:: ds 1 ; used in FollowNotExact; unit is pixels
+wPlayerBGMapOffsetX:: db ; used in FollowNotExact; unit is pixels
+wPlayerBGMapOffsetY:: db ; used in FollowNotExact; unit is pixels
 
 ; Player movement
-wPlayerStepVectorX:: ds 1   ; d14e
-wPlayerStepVectorY:: ds 1   ; d14f
-wPlayerStepFlags:: ds 1     ; d150
+wPlayerStepVectorX:: db ; d14e
+wPlayerStepVectorY:: db ; d14f
+wPlayerStepFlags::   db ; d150
+wPlayerStepDirection::  ; d151
 ; bit 7: Start step
 ; bit 6: Stop step
 ; bit 5: Doing step
 ; bit 4: In midair
 ; bits 0-3: unused
-wPlayerStepDirection:: ds 1 ; d151
+	db
 
-wBGMapAnchor:: ds 2 ; d152
+wBGMapAnchor:: dw ; d152
 
-UNION
-UsedSprites:: ds 64 ; d154
+UNION ; d154
+UsedSprites:: ds 64
 UsedSpritesEnd::
 
-NEXTU
-wd154:: ; d154
-	ds 31 ; 64
-
+NEXTU ; d154
+	ds 31
 wd173:: ds 1 ; related to command queue type 3
-	ds 13
-wd181:: ds 1
-wd182:: ds 1
-	ds 14
-
-wd191:: ds 1
-wd192:: ds 1
-wd193:: ds 1
 ENDU
 
 wOverworldMapAnchor:: dw ; d194
-wMetatileStandingY:: ds 1 ; d196
-wMetatileStandingX:: ds 1 ; d197
-wSecondMapHeaderBank:: ds 1 ; d198
-wTileset:: ds 1 ; d199
-wPermission:: ds 1 ; d19a
+wMetatileStandingY:: db ; d196
+wMetatileStandingX:: db ; d197
+
+wSecondMapHeaderBank:: db ; d198
+wTileset:: db ; d199
+wPermission:: db ; d19a
 wSecondMapHeaderAddr:: dw ; d19b
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeader:: ; d19d
-MapBorderBlock:: ; d19d
-	ds 1
-MapHeight:: ; d19e
-	ds 1
-MapWidth:: ; d19f
-	ds 1
-MapBlockDataBank:: ; d1a0
-	ds 1
-MapBlockDataPointer:: ; d1a1
-	ds 2
-MapScriptHeaderBank:: ; d1a3
-	ds 1
-MapScriptHeaderPointer:: ; d1a4
-	ds 2
-MapEventHeaderPointer:: ; d1a6
-	ds 2
+MapBorderBlock:: db ; d19d
+MapHeight:: db ; d19e
+MapWidth:: db ; d19f
+MapBlockDataBank:: db; d1a0
+MapBlockDataPointer:: dw ; d1a1
+MapScriptHeaderBank:: db ; d1a3
+MapScriptHeaderPointer:: dw ; d1a4
+MapEventHeaderPointer:: dw ; d1a6
 ; bit set
-MapConnections:: ; d1a8
-	ds 1
+MapConnections:: db ; d1a8
+
 NorthMapConnection:: ; d1a9
-NorthConnectedMapGroup:: ; d1a9
-	ds 1
-NorthConnectedMapNumber:: ; d1aa
-	ds 1
-NorthConnectionStripPointer:: ; d1ab
-	ds 2
-NorthConnectionStripLocation:: ; d1ad
-	ds 2
-NorthConnectionStripLength:: ; d1af
-	ds 1
-NorthConnectedMapWidth:: ; d1b0
-	ds 1
-NorthConnectionStripYOffset:: ; d1b1
-	ds 1
-NorthConnectionStripXOffset:: ; d1b2
-	ds 1
-NorthConnectionWindow:: ; d1b3
-	ds 2
+NorthConnectedMapGroup:: db ; d1a9
+NorthConnectedMapNumber:: db ; d1aa
+NorthConnectionStripPointer:: dw ; d1ab
+NorthConnectionStripLocation:: dw ; d1ad
+NorthConnectionStripLength:: db ; d1af
+NorthConnectedMapWidth:: db ; d1b0
+NorthConnectionStripYOffset:: db ; d1b1
+NorthConnectionStripXOffset:: db ; d1b2
+NorthConnectionWindow:: dw ; d1b3
 
 SouthMapConnection:: ; d1b5
-SouthConnectedMapGroup:: ; d1b5
-	ds 1
-SouthConnectedMapNumber:: ; d1b6
-	ds 1
-SouthConnectionStripPointer:: ; d1b7
-	ds 2
-SouthConnectionStripLocation:: ; d1b9
-	ds 2
-SouthConnectionStripLength:: ; d1bb
-	ds 1
-SouthConnectedMapWidth:: ; d1bc
-	ds 1
-SouthConnectionStripYOffset:: ; d1bd
-	ds 1
-SouthConnectionStripXOffset:: ; d1be
-	ds 1
-SouthConnectionWindow:: ; d1bf
-	ds 2
+SouthConnectedMapGroup:: db ; d1b5
+SouthConnectedMapNumber:: db ; d1b6
+SouthConnectionStripPointer:: dw ; d1b7
+SouthConnectionStripLocation:: dw ; d1b9
+SouthConnectionStripLength:: db ; d1bb
+SouthConnectedMapWidth:: db ; d1bc
+SouthConnectionStripYOffset:: db ; d1bd
+SouthConnectionStripXOffset:: db ; d1be
+SouthConnectionWindow:: dw ; d1bf
 
 WestMapConnection:: ; d1c1
-WestConnectedMapGroup:: ; d1c1
-	ds 1
-WestConnectedMapNumber:: ; d1c2
-	ds 1
-WestConnectionStripPointer:: ; d1c3
-	ds 2
-WestConnectionStripLocation:: ; d1c5
-	ds 2
-WestConnectionStripLength:: ; d1c7
-	ds 1
-WestConnectedMapWidth:: ; d1c8
-	ds 1
-WestConnectionStripYOffset:: ; d1c9
-	ds 1
-WestConnectionStripXOffset:: ; d1ca
-	ds 1
-WestConnectionWindow:: ; d1cb
-	ds 2
+WestConnectedMapGroup:: db ; d1c1
+WestConnectedMapNumber:: db ; d1c2
+WestConnectionStripPointer:: dw ; d1c3
+WestConnectionStripLocation:: dw ; d1c5
+WestConnectionStripLength:: db ; d1c7
+WestConnectedMapWidth:: db ; d1c8
+WestConnectionStripYOffset:: db ; d1c9
+WestConnectionStripXOffset:: db ; d1ca
+WestConnectionWindow:: dw ; d1cb
 
 EastMapConnection:: ; d1cd
-EastConnectedMapGroup:: ; d1cd
-	ds 1
-EastConnectedMapNumber:: ; d1ce
-	ds 1
-EastConnectionStripPointer:: ; d1cf
-	ds 2
-EastConnectionStripLocation:: ; d1d1
-	ds 2
-EastConnectionStripLength:: ; d1d3
-	ds 1
-EastConnectedMapWidth:: ; d1d4
-	ds 1
-EastConnectionStripYOffset:: ; d1d5
-	ds 1
-EastConnectionStripXOffset:: ; d1d6
-	ds 1
-EastConnectionWindow:: ; d1d7
-	ds 2
-
+EastConnectedMapGroup:: db ; d1cd
+EastConnectedMapNumber:: db ; d1ce
+EastConnectionStripPointer:: dw ; d1cf
+EastConnectionStripLocation:: dw ; d1d1
+EastConnectionStripLength:: db ; d1d3
+EastConnectedMapWidth:: db ; d1d4
+EastConnectionStripYOffset:: db ; d1d5
+EastConnectionStripXOffset:: db ; d1d6
+EastConnectionWindow:: dw ; d1d7
 
 TilesetHeader::
-TilesetBank:: ; d1d9
-	ds 1
-TilesetAddress:: ; d1da
-	ds 2
-TilesetBlocksBank:: ; d1dc
-	ds 1
-TilesetBlocksAddress:: ; d1dd
-	ds 2
-TilesetCollisionBank:: ; d1df
-	ds 1
-TilesetCollisionAddress:: ; d1e0
-	ds 2
-TilesetAnim:: ; d1e2
-; bank 3f
-	ds 2
-; unused ; d1e4
-	ds 2
-TilesetPalettes:: ; d1e6
-; bank 3f
-	ds 2
+TilesetBank:: db ; d1d9
+TilesetAddress:: dw ; d1da
+TilesetBlocksBank:: db ; d1dc
+TilesetBlocksAddress:: dw ; d1dd
+TilesetCollisionBank:: db ; d1df
+TilesetCollisionAddress:: dw ; d1e0
+TilesetAnim:: dw ; bank 3f ; d1e2
+	ds 2  ; unused ; d1e4
+TilesetPalettes:: dw ; bank 3f ; d1e6
 
-EvolvableFlags:: ; d1e8
-	flag_array PARTY_LENGTH
+EvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
 
 wForceEvolution:: db ; d1e9
 
@@ -2066,115 +1989,80 @@ wBattleMode:: ; d22d
 ; 0: overworld
 ; 1: wild battle
 ; 2: trainer battle
-	ds 1
+	db
 
-TempWildMonSpecies:: ds 1
+TempWildMonSpecies:: db
+
 OtherTrainerClass:: ; d22f
 ; class (Youngster, Bug Catcher, etc.) of opposing trainer
 ; 0 if opponent is a wild Pokémon, not a trainer
-	ds 1
+	db
 
-BattleType:: ; d230
-; $00 normal
-; $01 can lose
-; $02 debug
-; $03 dude/tutorial
-; $04 fishing
-; $05 roaming
-; $06 contest
-; $07 shiny
-; $08 headbutt/rock smash
-; $09 trap
-; $0a force Item1
-; $0b celebi
-; $0c suicune
-	ds 1
+; BATTLETYPE_* values
+BattleType:: db ; d230
 
 OtherTrainerID:: ; d231
 ; which trainer of the class that you're fighting
 ; (Joey, Mikey, Albert, etc.)
-	ds 1
+	db
 
-wForcedSwitch:: ds 1
+wForcedSwitch:: db
 
-TrainerClass:: ; d233
-	ds 1
+TrainerClass:: db ; d233
 
-UnownLetter:: ; d234
-	ds 1
+UnownLetter:: db ; d234
 
-wMoveSelectionMenuType:: ds 1
+wMoveSelectionMenuType:: db
 
+; corresponds to the data/base_stats/*.asm contents
 CurBaseData:: ; d236
-BaseDexNo:: ; d236
-	ds 1
+BaseDexNo:: db ; d236
 BaseStats:: ; d237
-BaseHP:: ; d237
-	ds 1
-BaseAttack:: ; d238
-	ds 1
-BaseDefense:: ; d239
-	ds 1
-BaseSpeed:: ; d23a
-	ds 1
-BaseSpecialAttack:: ; d23b
-	ds 1
-BaseSpecialDefense:: ; d23c
-	ds 1
+BaseHP:: db ; d237
+BaseAttack:: db ; d238
+BaseDefense:: db ; d239
+BaseSpeed:: db ; d23a
+BaseSpecialAttack:: db ; d23b
+BaseSpecialDefense:: db ; d23c
 BaseType:: ; d23d
-BaseType1:: ; d23d
-	ds 1
-BaseType2:: ; d23e
-	ds 1
-BaseCatchRate:: ; d23f
-	ds 1
-BaseExp:: ; d240
-	ds 1
-BaseItems:: ; d241
-	ds 2
-BaseGender:: ; d243
-	ds 1
-BaseUnknown1:: ; d244
-	ds 1
-BaseEggSteps:: ; d245
-	ds 1
-BaseUnknown2:: ; d246
-	ds 1
-BasePicSize:: ; d247
-	ds 1
-BasePadding:: ; d248
-	ds 4
-BaseGrowthRate:: ; d24c
-	ds 1
-BaseEggGroups:: ; d24d
-	ds 1
-BaseTMHM:: ; d24e
-	flag_array NUM_TM_HM_TUTOR
+BaseType1:: db ; d23d
+BaseType2:: db ; d23e
+BaseCatchRate:: db ; d23f
+BaseExp:: db ; d240
+BaseItems:: dw ; d241
+BaseGender:: db ; d243
+BaseUnknown1:: db ; d244
+BaseEggSteps:: db ; d245
+BaseUnknown2:: db ; d246
+BasePicSize:: db ; d247
+BasePadding:: ds 4 ; d248
+BaseGrowthRate:: db ; d24c
+BaseEggGroups:: db ; d24d
+BaseTMHM:: flag_array NUM_TM_HM_TUTOR ; d24e
 
-
-CurDamage:: ; d256
+CurDamage:: dw ; d256
 	ds 2
 
-	ds 2
-wMornEncounterRate::  ds 1 ; d25a
-wDayEncounterRate::   ds 1 ; d25b
-wNiteEncounterRate::  ds 1 ; d25c
-wWaterEncounterRate:: ds 1 ; d25d
+wMornEncounterRate::  db ; d25a
+wDayEncounterRate::   db ; d25b
+wNiteEncounterRate::  db ; d25c
+wWaterEncounterRate:: db ; d25d
 wListMoves_MoveIndicesBuffer:: ds NUM_MOVES
-wPutativeTMHMMove:: ds 1
-wInitListType:: ds 1
-wBattleHasJustStarted:: ds 1
+wPutativeTMHMMove:: db
+wInitListType:: db
+wBattleHasJustStarted:: db
+
 wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::
 wCurTMHM::
 wTypeMatchup::
-wd265:: ds 1
-wFailedToFlee:: ds 1
-wNumFleeAttempts:: ds 1
-wMonTriedToEvolve:: ds 1
+wd265:: db
 
-TimeOfDay:: ; d269
-	ds 1
+wFailedToFlee:: db
+wNumFleeAttempts:: db
+wMonTriedToEvolve:: db
+
+TimeOfDay:: db ; d269
 
 	ds 1
 

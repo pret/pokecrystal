@@ -5410,7 +5410,7 @@ Function1023c6: ; 1023c6
 	dec a
 	ld [CurPartyMon], a
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callba RemoveMonFromPartyOrBox
 	ld hl, PartyCount
 	inc [hl]
