@@ -348,9 +348,9 @@ FadeToMapMusic:: ; 3cbc
 	ld a, 8
 	ld [MusicFade], a
 	ld a, e
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, d
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld a, e
 	ld [wMapMusic], a
 

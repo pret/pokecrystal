@@ -10,9 +10,9 @@ InitClock: ; 90672 (24:4672)
 	ld a, $10
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_NONE / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld c, 8
 	call DelayFrames
 	call RotateFourPalettesLeft

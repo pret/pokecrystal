@@ -60,15 +60,15 @@ _MapSetup_Sound_Off:: ; e8000
 
 MusicFadeRestart: ; e803d
 ; restart but keep the music id to fade in to
-	ld a, [MusicFadeIDHi]
+	ld a, [MusicFadeID + 1]
 	push af
-	ld a, [MusicFadeIDLo]
+	ld a, [MusicFadeID]
 	push af
 	call _MapSetup_Sound_Off
 	pop af
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	pop af
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ret
 
 ; e8051
@@ -654,11 +654,11 @@ FadeMusic: ; e8358
 	; restart sound
 	call MusicFadeRestart
 	; get new song id
-	ld a, [MusicFadeIDLo]
+	ld a, [MusicFadeID]
 	and a
 	jr z, .quit ; this assumes there are fewer than 256 songs!
 	ld e, a
-	ld a, [MusicFadeIDHi]
+	ld a, [MusicFadeID + 1]
 	ld d, a
 	; load new song
 	call _PlayMusic
@@ -679,9 +679,9 @@ FadeMusic: ; e8358
 	xor a
 	ld [Volume], a
 	; get new song id
-	ld a, [MusicFadeIDLo]
+	ld a, [MusicFadeID]
 	ld e, a
-	ld a, [MusicFadeIDHi]
+	ld a, [MusicFadeID + 1]
 	ld d, a
 	; load new song
 	call _PlayMusic
@@ -1364,9 +1364,9 @@ GetNoiseSample: ; e86c5
 	add hl, de
 	; load sample pointer into NoiseSampleAddress
 	ld a, [hli]
-	ld [NoiseSampleAddressLo], a
+	ld [NoiseSampleAddress], a
 	ld a, [hl]
-	ld [NoiseSampleAddressHi], a
+	ld [NoiseSampleAddress + 1], a
 	; clear ????
 	xor a
 	ld [wNoiseSampleDelay], a
@@ -2160,9 +2160,9 @@ Music_RestartChannel: ; e8a08
 	ld hl, Channel1MusicID - Channel1
 	add hl, bc
 	ld a, [hli]
-	ld [MusicIDLo], a
+	ld [MusicID], a
 	ld a, [hl]
-	ld [MusicIDHi], a
+	ld [MusicID + 1], a
 	; update music bank
 	ld hl, Channel1MusicBank - Channel1
 	add hl, bc
@@ -2437,7 +2437,7 @@ _PlayMusic:: ; e8b30
 	ld hl, MusicID
 	ld [hl], e ; song number
 	inc hl
-	ld [hl], d ; MusicIDHi (always $)
+	ld [hl], d ; (always 0)
 	ld hl, Music
 	add hl, de ; three
 	add hl, de ; byte
@@ -2466,8 +2466,8 @@ _PlayMusic:: ; e8b30
 	ld [Channel2JumpCondition], a
 	ld [Channel3JumpCondition], a
 	ld [Channel4JumpCondition], a
-	ld [NoiseSampleAddressLo], a
-	ld [NoiseSampleAddressHi], a
+	ld [NoiseSampleAddress], a
+	ld [NoiseSampleAddress + 1], a
 	ld [wNoiseSampleDelay], a
 	ld [MusicNoiseSampleSet], a
 	call MusicOn
@@ -2647,8 +2647,8 @@ _PlaySFX:: ; e8c04
 	ld a, $80
 	ld [rNR44], a ; restart sound (freq hi = 0)
 	xor a
-	ld [NoiseSampleAddressLo], a
-	ld [NoiseSampleAddressHi], a
+	ld [NoiseSampleAddress], a
+	ld [NoiseSampleAddress + 1], a
 .chscleared
 ; start reading sfx header for # chs
 	ld hl, MusicID
@@ -2825,9 +2825,9 @@ LoadChannel: ; e8d1b
 	; load music id
 	ld hl, Channel1MusicID - Channel1
 	add hl, bc
-	ld a, [MusicIDLo]
+	ld a, [MusicID]
 	ld [hli], a
-	ld a, [MusicIDHi]
+	ld a, [MusicID + 1]
 	ld [hl], a
 	; load music bank
 	ld hl, Channel1MusicBank - Channel1

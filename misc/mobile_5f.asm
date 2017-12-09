@@ -559,9 +559,9 @@ Function17d2ce: ; 17d2ce
 	ld de, MUSIC_MOBILE_CENTER
 	ld a, e
 	ld [wMapMusic], a
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, d
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	call PlayMusic
 	call ReturnToMapFromSubmenu
 	call CloseSubmenu
@@ -4728,9 +4728,9 @@ Function17f5e4: ; 17f5e4
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, d
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld a, " "
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -5274,9 +5274,9 @@ Function17ff23: ; 17ff23
 	ld a, $8
 	ld [MusicFade], a
 	ld a, [wMapMusic]
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	xor a
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld hl, wc303
 	set 7, [hl]
 	ret

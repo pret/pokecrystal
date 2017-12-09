@@ -2,7 +2,9 @@ INCLUDE "includes.asm"
 INCLUDE "macros/wram.asm"
 INCLUDE "vram.asm"
 
+
 SECTION "Stack", WRAM0
+
 wc000::
 StackBottom::
 	ds $100 - 1
@@ -12,10 +14,11 @@ StackTop::
 
 
 SECTION "Audio RAM", WRAM0
+
 wMusic::
-MusicPlaying:: ; c100
+
 ; nonzero if playing
-	ds 1
+MusicPlaying:: db ; c100
 
 Channels::
 Channel1:: channel_struct Channel1 ; c101
@@ -30,16 +33,15 @@ Channel7:: channel_struct Channel7 ; c22d
 Channel8:: channel_struct Channel8 ; c25f
 
 	ds 1 ; c291
-wCurTrackDuty:: ds 1
-wCurTrackIntensity:: ds 1
-wCurTrackFrequency:: dw
-wc296:: ds 1 ; BCD value, dummied out
-wCurNoteDuration:: ds 1 ; used in MusicE0 and LoadNote
 
-CurMusicByte:: ; c298
-	ds 1
-CurChannel:: ; c299
-	ds 1
+wCurTrackDuty:: db
+wCurTrackIntensity:: db
+wCurTrackFrequency:: dw
+wc296:: db ; BCD value, dummied out
+wCurNoteDuration:: db ; used in MusicE0 and LoadNote
+
+CurMusicByte:: db ; c298
+CurChannel:: db ; c299
 Volume:: ; c29a
 ; corresponds to $ff24
 ; Channel control / ON-OFF / Volume (R/W)
@@ -47,12 +49,12 @@ Volume:: ; c29a
 ;   bit 6-4 - SO2 output level (volume) (# 0-7)
 ;   bit 3 - Vin->SO1 ON/OFF
 ;   bit 2-0 - SO1 output level (volume) (# 0-7)
-	ds 1
+	db
 SoundOutput:: ; c29b
 ; corresponds to $ff25
 ; bit 4-7: ch1-4 so2 on/off
 ; bit 0-3: ch1-4 so1 on/off
-	ds 1
+	db
 SoundInput:: ; c29c
 ; corresponds to $ff26
 ; bit 7: global on/off
@@ -60,79 +62,68 @@ SoundInput:: ; c29c
 ; bit 1: ch2 on/off
 ; bit 2: ch3 on/off
 ; bit 3: ch4 on/off
-	ds 1
+	db
 
-MusicID::
-MusicIDLo:: ; c29d
-	ds 1
-MusicIDHi:: ; c29e
-	ds 1
-MusicBank:: ; c29f
-	ds 1
-NoiseSampleAddress::
-NoiseSampleAddressLo:: ; c2a0
-	ds 1
-NoiseSampleAddressHi:: ; c2a1
-	ds 1
-wNoiseSampleDelay:: ; noise delay? ; c2a2
-	ds 1
-; c2a3
-	ds 1
-MusicNoiseSampleSet:: ; c2a4
-	ds 1
-SFXNoiseSampleSet:: ; c2a5
-	ds 1
+MusicID:: dw ; c29d
+MusicBank:: db ; c29f
+NoiseSampleAddress:: dw ; c2a0
+wNoiseSampleDelay:: db ; c2a2
+	ds 1 ; c2a3
+MusicNoiseSampleSet:: db ; c2a4
+SFXNoiseSampleSet:: db ; c2a5
+
 Danger:: ; c2a6
 ; bit 7: on/off
 ; bit 4: pitch
 ; bit 0-3: counter
-	ds 1
+	db
+
 MusicFade:: ; c2a7
 ; fades volume over x frames
 ; bit 7: fade in/out
 ; bit 0-5: number of frames for each volume level
 ; $00 = none (default)
-	ds 1
-MusicFadeCount:: ; c2a8
-	ds 1
-MusicFadeID::
-wc2a9::
-MusicFadeIDLo:: ; c2a9
-	ds 1
-wc2aa::
-MusicFadeIDHi:: ; c2aa
-	ds 1
+	db
+MusicFadeCount:: db ; c2a8
+MusicFadeID:: dw ; c2a9
+
 	ds 5
-CryPitch:: ; c2b0
-	ds 2
-CryLength:: ; c2b2
-	ds 2
-LastVolume:: ; c2b4
-	ds 1
-wc2b5:: ds 1
+
+CryPitch:: dw ; c2b0
+CryLength:: dw ; c2b2
+
+LastVolume:: db ; c2b4
+wc2b5:: db ; c2b5
+
 SFXPriority:: ; c2b6
 ; if nonzero, turn off music when playing sfx
+	db
+
 	ds 1
-	ds 1
-Channel1JumpCondition:: ds 1
-Channel2JumpCondition:: ds 1
-Channel3JumpCondition:: ds 1
-Channel4JumpCondition:: ds 1
-wStereoPanningMask:: ds 1 ; c2bc
+
+Channel1JumpCondition:: db
+Channel2JumpCondition:: db
+Channel3JumpCondition:: db
+Channel4JumpCondition:: db
+
+wStereoPanningMask:: db ; c2bc
+
 CryTracks:: ; c2bd
 ; plays only in left or right track depending on what side the monster is on
 ; both tracks active outside of battle
-	ds 1
-wSFXDuration:: ds 1
+	db
+
+wSFXDuration:: db
 CurSFX:: ; c2bf
 ; id of sfx currently playing
-	ds 1
+	db
 ChannelsEnd::
-wMapMusic:: ; c2c0
-	ds 1
 
-wDontPlayMapMusicOnReload:: ds 1
+wMapMusic:: db ; c2c0
+
+wDontPlayMapMusicOnReload:: db
 wMusicEnd::
+
 
 SECTION "WRAM", WRAM0
 
@@ -141,69 +132,62 @@ wLZBank::    db ; c2c4
 
 	ds 1
 
-wBoxAlignment:: ds 1
-InputType:: ; c2c7
-	ds 1
-AutoInputAddress:: ; c2c8
-	ds 2
-AutoInputBank:: ; c2ca
-	ds 1
-AutoInputLength:: ; c2cb
-	ds 1
+wBoxAlignment:: db
 
-wMonStatusFlags:: ds 1
-wGameLogicPaused:: ds 1 ; c2cd
-wSpriteUpdatesEnabled:: ds 1
-wc2cf:: ds 1
-wMapTimeOfDay:: ds 1
+InputType::        db ; c2c7
+AutoInputAddress:: dw ; c2c8
+AutoInputBank::    db ; c2ca
+AutoInputLength::  db ; c2cb
+
+wMonStatusFlags:: db
+wGameLogicPaused:: db ; c2cd
+wSpriteUpdatesEnabled:: db
+wc2cf:: db
+wMapTimeOfDay:: db
 	ds 3
-wPrinterConnectionOpen:: ds 1
-wPrinterOpcode:: ds 1
-wLastDexEntry:: ds 1
-wDisableTextAcceleration:: ds 1
-wPreviousLandmark:: ds 1
-wCurrentLandmark:: ds 1
-wLandmarkSignTimer:: ds 2
+wPrinterConnectionOpen:: db
+wPrinterOpcode:: db
+wLastDexEntry:: db
+wDisableTextAcceleration:: db
+wPreviousLandmark:: db
+wCurrentLandmark:: db
+wLandmarkSignTimer:: dw
 wLinkMode:: ; c2dc
 ; 0 not in link battle
 ; 1 link battle
 ; 4 mobile battle
-	ds 1
+	db
 
-ScriptVar:: ; c2dd
-	ds 1
+ScriptVar:: db ; c2dd
 
-wPlayerNextMovement:: ds 1
-wPlayerMovement:: ds 1
+wPlayerNextMovement:: db
+wPlayerMovement:: db
 	ds 2
 wc2e2::
-wMovementPerson:: ds 1
+wMovementPerson:: db
 wMovementDataPointer:: ds 3 ; dba
 wc2e6:: ds 4
-wMovementByteWasControlSwitch:: ds 1
-wMovementPointer:: ds 2 ; c2eb
+wMovementByteWasControlSwitch:: db
+wMovementPointer:: dw ; c2eb
+
 	ds 3
 
-wTempObjectCopyMapObjectIndex:: ds 1 ; c2f0
-wTempObjectCopySprite:: ds 1 ; c2f1
-wTempObjectCopySpriteVTile:: ds 1 ; c2f2
-wTempObjectCopyPalette:: ds 1 ; c2f3
-wTempObjectCopyMovement:: ds 1 ; c2f4
-wTempObjectCopyRange:: ds 1 ; c2f5
-wTempObjectCopyX:: ds 1 ; c2f6
-wTempObjectCopyY:: ds 1 ; c2f7
-wTempObjectCopyRadius:: ds 1 ; c2f8
+wTempObjectCopyMapObjectIndex:: db ; c2f0
+wTempObjectCopySprite:: db ; c2f1
+wTempObjectCopySpriteVTile:: db ; c2f2
+wTempObjectCopyPalette:: db ; c2f3
+wTempObjectCopyMovement:: db ; c2f4
+wTempObjectCopyRange:: db ; c2f5
+wTempObjectCopyX:: db ; c2f6
+wTempObjectCopyY:: db ; c2f7
+wTempObjectCopyRadius:: db ; c2f8
 
 	ds 1
 
-TileDown:: ; c2fa
-	ds 1
-TileUp:: ; c2fb
-	ds 1
-TileLeft:: ; c2fc
-	ds 1
-TileRight:: ; c2fd
-	ds 1
+TileDown::  db ; c2fa
+TileUp::    db ; c2fb
+TileLeft::  db ; c2fc
+TileRight:: db ; c2fd
 
 TilePermissions:: ; c2fe
 ; set if tile behavior prevents
@@ -212,19 +196,36 @@ TilePermissions:: ; c2fe
 ; bit 2: up
 ; bit 1: left
 ; bit 0: right
-	ds 1
+	db
 
 	ds 1
+
 
 SECTION "wSpriteAnims", WRAM0
-; wc300 - wc313 is a 10x2 dictionary.
-; keys: taken from third column of SpriteAnimSeqData
-; values: VTiles
 
 UNION
+; wSpriteAnimDict is a 10x2 dictionary
+; keys: taken from third column of SpriteAnimSeqData
+; values: VTiles
 wSpriteAnimDict:: ds 10 * 2
 
+wSpriteAnimationStructs::
+; field  0:   index
+; fields 1-3: loaded from SpriteAnimSeqData
+SpriteAnim1::  sprite_anim_struct SpriteAnim1
+SpriteAnim2::  sprite_anim_struct SpriteAnim2
+SpriteAnim3::  sprite_anim_struct SpriteAnim3
+SpriteAnim4::  sprite_anim_struct SpriteAnim4
+SpriteAnim5::  sprite_anim_struct SpriteAnim5
+SpriteAnim6::  sprite_anim_struct SpriteAnim6
+SpriteAnim7::  sprite_anim_struct SpriteAnim7
+SpriteAnim8::  sprite_anim_struct SpriteAnim8
+SpriteAnim9::  sprite_anim_struct SpriteAnim9
+SpriteAnim10:: sprite_anim_struct SpriteAnim10
+wSpriteAnimationStructsEnd::
+
 NEXTU
+; mobile data
 wc300:: ds 1
 wc301:: ds 1
 wc302:: ds 1
@@ -244,62 +245,32 @@ wc310:: ds 1
 wc311:: ds 1
 wc312:: ds 1
 wc313:: ds 1
+wc314:: ds 152
+wc3ac:: ds 8
 ENDU
 
-wSpriteAnimationStructs::
-; Field  0: Index
-; Fields 1-3: Loaded from SpriteAnimSeqData
-wc314::
-SpriteAnim1:: sprite_anim_struct SpriteAnim1
-wc324::
-SpriteAnim2:: sprite_anim_struct SpriteAnim2
-wc334::
-SpriteAnim3:: sprite_anim_struct SpriteAnim3
-wc344::
-SpriteAnim4:: sprite_anim_struct SpriteAnim4
-wc354::
-SpriteAnim5:: sprite_anim_struct SpriteAnim5
-wc364::
-SpriteAnim6:: sprite_anim_struct SpriteAnim6
-wc374::
-SpriteAnim7:: sprite_anim_struct SpriteAnim7
-wc384::
-SpriteAnim8:: sprite_anim_struct SpriteAnim8
-wc394::
-SpriteAnim9:: sprite_anim_struct SpriteAnim9
-wc3a4::
+wSpriteAnimCount:: db
+wCurrSpriteOAMAddr:: db
 
-UNION
-SpriteAnim10:: sprite_anim_struct SpriteAnim10
-wSpriteAnimationStructsEnd::
-NEXTU
-	ds 8
-wc3ac:: ds 8 ; c3ac
-ENDU
+CurIcon:: db ; c3b6
 
-wSpriteAnimCount:: ds 1
-wCurrSpriteOAMAddr:: ds 1
-
-CurIcon:: ; c3b6
-	ds 1
-
-
-wCurIconTile:: ds 1
+wCurIconTile:: db
 wSpriteAnimAddrBackup::
 wSpriteAnimIDBuffer::
 wCurrSpriteAddSubFlags::
-	ds 2
-wCurrAnimVTile:: ds 1
-wCurrAnimXCoord:: ds 1
-wCurrAnimYCoord:: ds 1
-wCurrAnimXOffset:: ds 1
-wCurrAnimYOffset:: ds 1
-wGlobalAnimYOffset:: ds 1
-wGlobalAnimXOffset:: ds 1
+	dw
+wCurrAnimVTile:: db
+wCurrAnimXCoord:: db
+wCurrAnimYCoord:: db
+wCurrAnimXOffset:: db
+wCurrAnimYOffset:: db
+wGlobalAnimYOffset:: db
+wGlobalAnimXOffset:: db
 wSpriteAnimsEnd::
 
 	ds 11
 
+; mobile data
 wc3cc:: ds 1
 wc3cd:: ds 31
 wc3ec:: ds 1
@@ -352,6 +323,7 @@ TileMapEnd::
 
 
 SECTION "Battle", WRAM0
+
 UNION
 wc608::
 wOddEgg:: party_struct OddEgg

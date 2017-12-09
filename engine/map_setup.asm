@@ -414,9 +414,9 @@ RetainOldPalettes: ; 1556d
 
 RotatePalettesRightMapAndMusic: ; 15574
 	ld e, 0
-	ld a, [MusicFadeIDLo]
+	ld a, [MusicFadeID]
 	ld d, 0
-	ld a, [MusicFadeIDHi]
+	ld a, [MusicFadeID + 1]
 	ld a, $4
 	ld [MusicFade], a
 	call RotateThreePalettesRight

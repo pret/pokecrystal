@@ -375,9 +375,9 @@ Continue: ; 5d65
 	ld a, $8
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_NONE / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	call ClearBGPalettes
 	call Continue_MobileAdapterMenu
 	call CloseWindow
@@ -429,9 +429,9 @@ Continue_MobileAdapterMenu: ; 5df0
 	ld a, 5
 	ld [MusicFade], a
 	ld a, MUSIC_MOBILE_ADAPTER_MENU % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_MOBILE_ADAPTER_MENU / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames
 	ld c, $1
@@ -440,9 +440,9 @@ Continue_MobileAdapterMenu: ; 5df0
 	ld a, 8
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_NONE / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld c, 35
 	call DelayFrames
 	ret
@@ -859,9 +859,9 @@ ShrinkPlayer: ; 610f
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, d
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 
 	ld de, SFX_ESCAPE_ROPE
 	call PlaySFX
@@ -1282,8 +1282,8 @@ TitleScreenMain: ; 6304
 
 ; Fade out the title screen music
 	xor a
-	ld [MusicFadeIDLo], a
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID], a
+	ld [MusicFadeID + 1], a
 	ld hl, MusicFade
 	ld [hl], 8 ; 1 second
 

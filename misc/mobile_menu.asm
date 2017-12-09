@@ -856,9 +856,9 @@ Function4a6c5: ; 4a6c5 (12:66c5)
 	ld a, $5
 	ld [MusicFade], a
 	ld a, e
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, d
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld c, 22
 	call DelayFrames
 	ret

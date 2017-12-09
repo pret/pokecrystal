@@ -491,7 +491,7 @@ ParseCredits: ; 1099aa
 	ld a, MUSIC_POST_CREDITS % $100
 	ld [MusicFadeID], a
 	ld a, MUSIC_POST_CREDITS / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ret
 
 .get
