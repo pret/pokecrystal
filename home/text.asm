@@ -230,41 +230,41 @@ dict2: macro
 ._\@:
 endm
 
-	dict "<DAY>", Char15
-	dict "<LINE>", LineChar
-	dict "<NEXT>", NextLineChar
-	dict TX_FAR, TextFar
-	dict $00, NullChar
-	dict $4c, Char4C
-	dict $4b, Char4B
-	dict "<PARA>", Paragraph
-	dict "<MOM>", PrintMomsName
+	dict "<DAY>",    Char15
+	dict "<LINE>",   LineChar
+	dict "<NEXT>",   NextLineChar
+	dict TX_FAR,     TextFar
+	dict $00,        NullChar
+	dict $4c,        Char4C
+	dict $4b,        Char4B
+	dict "<PARA>",   Paragraph
+	dict "<MOM>",    PrintMomsName
 	dict "<PLAYER>", PrintPlayerName
-	dict "<RIVAL>", PrintRivalName
-	dict $35, Char35
-	dict $36, Char36
-	dict $37, Char37
-	dict "<RED>", PrintRedsName
-	dict "<GREEN>", PrintGreensName
-	dict "#", PlacePOKe
-	dict "<PC>", PCChar
+	dict "<RIVAL>",  PrintRivalName
+	dict $35,        Char35
+	dict $36,        Char36
+	dict $37,        Char37
+	dict "<RED>",    PrintRedsName
+	dict "<GREEN>",  PrintGreensName
+	dict "#",        PlacePOKe
+	dict "<PC>",     PCChar
 	dict "<ROCKET>", RocketChar
-	dict "<TM>", TMChar
-	dict "<TRNER>", TrainerChar
-	dict $23, PlaceKougeki
-	dict "<LNBRK>", Char22
-	dict "<CONT>", ContText
+	dict "<TM>",     TMChar
+	dict "<TRNER>",  TrainerChar
+	dict $23,        PlaceKougeki
+	dict "<LNBRK>",  Char22
+	dict "<CONT>",   ContText
 	dict "<......>", SixDotsChar
-	dict "<DONE>", DoneText
+	dict "<DONE>",   DoneText
 	dict "<PROMPT>", PromptText
-	dict "<PKMN>", PlacePKMN
-	dict "<POKE>", PlacePOKE
-	dict $25, NextChar
-	dict2 $1f, " "
+	dict "<PKMN>",   PlacePKMN
+	dict "<POKE>",   PlacePOKE
+	dict $25,        NextChar
+	dict2 $1f,       " "
 	dict "<DEXEND>", PlaceDexEnd
 	dict "<TARGET>", PlaceMoveTargetsName
-	dict "<USER>", PlaceMoveUsersName
-	dict "<ENEMY>", PlaceEnemysName
+	dict "<USER>",   PlaceMoveUsersName
+	dict "<ENEMY>",  PlaceEnemysName
 	dict "<PLAY_G>", PlaceGenderedPlayerName
 
 	cp "ﾟ"

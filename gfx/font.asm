@@ -131,11 +131,11 @@ _LoadStandardFont:: ; fb449
 
 _LoadFontsExtra1:: ; fb48a
 	ld de, MobilePhoneTilesGFX
-	ld hl, VTiles2 tile $60
+	ld hl, VTiles2 tile "<BLACK>" ; $60
 	lb bc, BANK(MobilePhoneTilesGFX), 1
 	call Get1bpp_2
 	ld de, OverworldPhoneIconGFX
-	ld hl, VTiles2 tile $62
+	ld hl, VTiles2 tile "<PHONE>" ; $62
 	lb bc, BANK(OverworldPhoneIconGFX), 1
 	call Get2bpp_2
 	ld de, FontExtra + 3 * LEN_2BPP_TILE
@@ -147,7 +147,7 @@ _LoadFontsExtra1:: ; fb48a
 
 _LoadFontsExtra2:: ; fb4b0
 	ld de, FontsExtra2_UpArrowGFX
-	ld hl, VTiles2 tile $61
+	ld hl, VTiles2 tile "▲" ; $61
 	ld b, BANK(FontsExtra2_UpArrowGFX)
 	ld c, 1
 	call Get2bpp_2
@@ -170,10 +170,10 @@ LoadFrame: ; fb4cc
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, VTiles2 tile $79
+	ld hl, VTiles2 tile "┌" ; $79
 	lb bc, BANK(Frames), TILES_PER_FRAME
 	call Get1bpp_2
-	ld hl, VTiles2 tile $7f
+	ld hl, VTiles2 tile " " ; $7f
 	ld de, TextBoxSpaceGFX
 	lb bc, BANK(TextBoxSpaceGFX), 1
 	call Get1bpp_2
@@ -186,7 +186,7 @@ LoadBattleFontsHPBar: ; fb4f2
 	lb bc, BANK(FontBattleExtra), $c
 	call Get2bpp_2
 	ld hl, VTiles2 tile $70
-	ld de, FontBattleExtra + $10 * LEN_2BPP_TILE
+	ld de, FontBattleExtra tile $10
 	lb bc, BANK(FontBattleExtra), 3
 	call Get2bpp_2
 	call LoadFrame

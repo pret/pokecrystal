@@ -92,7 +92,7 @@ ReanchorBGMap_NoOAMUpdate:: ; 6454
 	xor a
 	ld [hBGMapMode], a
 	ld [hWY], a
-	callba HDMATransfer_FillBGMap0WithTile60 ; no need to farcall
+	callba HDMATransfer_FillBGMap0WithBlack ; no need to farcall
 	ld a, VBGMap0 / $100
 	call .LoadBGMapAddrIntoHRAM
 	xor a
@@ -131,13 +131,13 @@ LoadFonts_NoOAMUpdate:: ; 64bf
 	call LoadStandardFont
 	ret
 
-HDMATransfer_FillBGMap0WithTile60: ; 64db
+HDMATransfer_FillBGMap0WithBlack: ; 64db
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
 
-	ld a, $60
+	ld a, "<BLACK>" ; $60
 	ld hl, wDecompressScratch
 	ld bc, wScratchAttrMap - wDecompressScratch
 	call ByteFill

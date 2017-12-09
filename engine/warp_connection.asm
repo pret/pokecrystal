@@ -254,7 +254,7 @@ LoadMapTimeOfDay: ; 104750
 	pop af
 	ld [rVBK], a
 
-	ld a, $60
+	ld a, "<BLACK>"
 	ld bc, VBGMap1 - VBGMap0
 	hlbgcoord 0, 0
 	call ByteFill

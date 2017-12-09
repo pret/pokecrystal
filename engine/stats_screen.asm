@@ -453,7 +453,7 @@ Function4df7f: ; 4df7f
 	ld bc, SCREEN_WIDTH
 	ld d, SCREEN_HEIGHT
 .loop
-	ld a, $31
+	ld a, "|"
 	ld [hl], a
 	add hl, bc
 	dec d
@@ -583,7 +583,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 9, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
-	ld a, $31
+	ld a, "|"
 .vertical_divider
 	ld [hl], a
 	add hl, de
@@ -743,7 +743,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 10, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
-	ld a, $31
+	ld a, "|"
 .BluePageVerticalDivider:
 	ld [hl], a
 	add hl, de

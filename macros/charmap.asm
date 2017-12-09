@@ -1,53 +1,63 @@
 ; Control characters
 	charmap "<START>",  $00
-	charmap "<PLAY_G>", $14 ; <PLAYER> + gender
+	charmap "<PLAY_G>", $14 ; gendered PlayerName; same as "<PLAYER>" in English
 	charmap "<DAY>",    $15
-	charmap "¯",        $1f
+	charmap "¯",        $1f ; soft linebreak
 	charmap "<LNBRK>",  $22
-	charmap "<POKE>",   $24
+	charmap "<POKE>",   $24 ; "<PO><KE>"
 	charmap "%",        $25
-	charmap "<RED>",    $38
-	charmap "<GREEN>",  $39
+	charmap "<RED>",    $38 ; RedsName
+	charmap "<GREEN>",  $39 ; GreensName
 	charmap "<ENEMY>",  $3f
-	charmap "<SHINY>",  $3f
-	charmap "<MOM>",    $49
-	charmap "<PKMN>",   $4a
+	charmap "<MOM>",    $49 ; MomsName
+	charmap "<PKMN>",   $4a ; "<PK><MN>"
 	charmap "<NEXT>",   $4e
 	charmap "<LINE>",   $4f
 
 	charmap "@",        $50
 	charmap "<PARA>",   $51
-	charmap "<PLAYER>", $52
+	charmap "<PLAYER>", $52 ; PlayerName
 	charmap "<RIVAL>",  $53
 	charmap "#",        $54
 	charmap "<CONT>",   $55
-	charmap "<......>", $56
+	charmap "<......>", $56 ; "……"
 	charmap "<DONE>",   $57
 	charmap "<PROMPT>", $58
 	charmap "<TARGET>", $59
 	charmap "<USER>",   $5a
-	charmap "<PC>",     $5b
-	charmap "<TM>",     $5c
-	charmap "<TRNER>",  $5d
-	charmap "<ROCKET>", $5e
+	charmap "<PC>",     $5b ; "PC"
+	charmap "<TM>",     $5c ; "TM"
+	charmap "<TRNER>",  $5d ; "TRAINER"
+	charmap "<ROCKET>", $5e ; "ROCKET"
 	charmap "<DEXEND>", $5f
 
-; Actual characters
-	charmap "▲",        $61
-	charmap "_",        $62
-	charmap "<COLON>",  $6d ; necessary because ":" is already used
-	charmap "′",        $6e
-	charmap "<LV>",     $6e
-	charmap "″",        $6f
+; Actual characters (from gfx/misc/font_extra.png)
 
+	charmap "<BOLD_A>", $60 ; unused
+	charmap "<BOLD_B>", $61 ; unused
+	charmap "<BOLD_C>", $62 ; unused
+	charmap "<BOLD_D>", $63 ; unused
+	charmap "<BOLD_E>", $64 ; unused
+	charmap "<BOLD_F>", $65 ; unused
+	charmap "<BOLD_G>", $66 ; unused
+	charmap "<BOLD_H>", $67 ; unused
+	charmap "<BOLD_I>", $68 ; unused
+	charmap "<BOLD_V>", $69
+	charmap "<BOLD_S>", $6a
+	charmap "<BOLD_L>", $6b ; unused
+	charmap "<BOLD_M>", $6c ; unused
+	charmap "<COLON>",  $6d ; colon with tinier dots than ":"
+	charmap "ぃ",        $6e ; hiragana small i, unused
+	charmap "ぅ",        $6f ; hiragana small u, unused
 	charmap "<PO>",     $70
 	charmap "<KE>",     $71
-	charmap "◀",        $71
-	charmap "<``>",     $72
-	charmap "<''>",     $73
-	charmap "<ID>",     $73
-	charmap "№",        $74
-	charmap "…",        $75
+	charmap "<``>",     $72 ; opening quote
+	charmap "<''>",     $73 ; closing quote
+	charmap "·",        $74 ; middle dot, unused
+	charmap "…",        $75 ; ellipsis
+	charmap "ぁ",        $76 ; hiragana small a, unused
+	charmap "ぇ",        $77 ; hiragana small e, unused
+	charmap "ぉ",        $78 ; hiragana small o, unused
 
 	charmap "┌",        $79
 	charmap "─",        $7a
@@ -56,6 +66,32 @@
 	charmap "└",        $7d
 	charmap "┘",        $7e
 	charmap " ",        $7f
+
+; Actual characters (from gfx/misc/font_battle_extra.png)
+
+	charmap "<LV>",     $6e
+
+	charmap "<ど>",      $70 ; hiragana small do, unused
+	charmap "◀",        $71
+	charmap "『",        $72 ; Japanese opening quote, unused
+	charmap "<ID>",     $73
+	charmap "№",        $74
+
+; Actual characters (from other graphics files)
+
+	charmap "|",        $31 ; StatsScreenPageTilesGFX
+
+	charmap "<SHINY>",  $3f ; ShinyIcon
+
+	charmap "<BLACK>",  $60 ; MobilePhoneTilesGFX
+	charmap "▲",        $61 ; FontsExtra2_UpArrowGFX
+	charmap "<PHONE>",  $62 ; OverworldPhoneIconGFX
+	charmap "_",        $62 ; HPExpBarBorderGFX
+
+	charmap "′",        $6e ; Magikarp_LoadFeetInchesChars.feetinchchars
+	charmap "″",        $6f ; Magikarp_LoadFeetInchesChars.feetinchchars
+
+; Actual characters (from gfx/misc/font.png)
 
 	charmap "A",        $80
 	charmap "B",        $81
@@ -152,7 +188,7 @@
 	charmap "♂",        $ef
 	charmap "¥",        $f0
 	charmap "×",        $f1
-	charmap "·",        $f2
+	charmap "<PERIOD>", $f2 ; same as "." in English
 	charmap "/",        $f3
 	charmap ",",        $f4
 	charmap "♀",        $f5
@@ -168,8 +204,7 @@
 	charmap "8",        $fe
 	charmap "9",        $ff
 
-; Japanese, for those bits of text that
-; were not translated to English.
+; Japanese kana, for those bits of text that were not translated to English
 
 	charmap "ガ", $5
 	charmap "ギ", $6

@@ -1,3 +1,5 @@
+HALLOFFAME_COLON EQU $63
+
 HallOfFame:: ; 0x8640e
 	call HallOfFame_FadeOutMusic
 	ld a, [StatusFlags]
@@ -487,7 +489,7 @@ DisplayHOFMon: ; 86748
 	hlcoord 1, 13
 	ld a, "№"
 	ld [hli], a
-	ld [hl], "·"
+	ld [hl], "<PERIOD>"
 	hlcoord 3, 13
 	ld de, wd265
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
@@ -531,8 +533,8 @@ DisplayHOFMon: ; 86748
 
 HOF_AnimatePlayerPic: ; 86810
 	call ClearBGPalettes
-	ld hl, VTiles2 tile $63
-	ld de, FontExtra + 13 tiles
+	ld hl, VTiles2 tile HALLOFFAME_COLON
+	ld de, FontExtra + 13 tiles ; "<COLON>"
 	lb bc, BANK(FontExtra), 1
 	call Request2bpp
 	hlcoord 0, 0
@@ -604,7 +606,7 @@ HOF_AnimatePlayerPic: ; 86810
 	ld de, GameTimeHours
 	lb bc, 2, 3
 	call PrintNum
-	ld [hl], 99
+	ld [hl], HALLOFFAME_COLON
 	inc hl
 	ld de, GameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
