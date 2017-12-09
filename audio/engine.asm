@@ -22,7 +22,7 @@ _MapSetup_Sound_Off:: ; e8000
 	ld [hli], a ; ff26 ; music channels
 
 	ld hl, rNR10 ; sound channel registers
-	ld e, $4 ; number of channels
+	ld e, NUM_MUSIC_CHANS
 .clearsound
 ;   sound channel   1      2      3      4
 	xor a
@@ -47,7 +47,7 @@ _MapSetup_Sound_Off:: ; e8000
 	ld a, e
 	or d
 	jr nz, .clearchannels
-	ld a, $77 ; max
+	ld a, MAX_VOLUME
 	ld [Volume], a
 	call MusicOn
 	pop af
@@ -151,7 +151,7 @@ _UpdateSound:: ; e805c
 	jr z, .next
 	; are we in a sfx channel right now?
 	ld a, [CurChannel]
-	cp $4
+	cp CHAN5
 	jr nc, .next
 	; are any sfx channels active?
 	; if so, mute
@@ -174,7 +174,7 @@ _UpdateSound:: ; e805c
 .next
 	; are we in a sfx channel right now?
 	ld a, [CurChannel]
-	cp $4 ; sfx
+	cp CHAN5
 	jr nc, .sfx_channel
 	ld hl, Channel5Flags - Channel1
 	add hl, bc
@@ -1223,7 +1223,7 @@ ParseMusic: ; e85e1
 	bit SOUND_SUBROUTINE, [hl] ; in a subroutine?
 	jr nz, .readcommand ; execute
 	ld a, [CurChannel]
-	cp $4 ; channels 0-3?
+	cp CHAN5
 	jr nc, .chan_5to8
 	; ????
 	ld hl, Channel5Flags - Channel1
@@ -1237,7 +1237,7 @@ ParseMusic: ; e85e1
 	call nz, RestoreVolume
 	; end music
 	ld a, [CurChannel]
-	cp $4 ; channel 5?
+	cp CHAN5
 	jr nz, .ok
 	; ????
 	xor a
@@ -1266,7 +1266,7 @@ ParseMusic: ; e85e1
 RestoreVolume: ; e8679
 	; ch5 only
 	ld a, [CurChannel]
-	cp $4
+	cp CHAN5
 	ret nz
 	xor a
 	ld hl, Channel6CryPitch
@@ -1968,7 +1968,7 @@ Music_NoteType: ; e8963
 	ld [hl], a
 	ld a, [CurChannel]
 	and $3
-	cp CHAN4 ; CHAN8 & $3
+	cp CHAN8 & $3
 	ret z
 	; intensity
 	call Music_Intensity
@@ -2063,7 +2063,7 @@ Music_StereoPanning: ; e89ba
 ; params: 1
 	; stereo on?
 	ld a, [Options]
-	bit 5, a ; stereo
+	bit STEREO, a
 	jr nz, Music_Panning
 	; skip param
 	call GetMusicByte
@@ -2552,7 +2552,7 @@ _PlayCryHeader:: ; e8b79
 ; This only applies in-battle.
 
 	ld a, [Options]
-	bit 5, a ; stereo
+	bit STEREO, a
 	jr z, .next
 
 ; [Tracks] &= [CryTracks]
@@ -2577,7 +2577,7 @@ _PlayCryHeader:: ; e8b79
 
 	ld a, [Volume]
 	ld [LastVolume], a
-	ld a, $77
+	ld a, MAX_VOLUME
 	ld [Volume], a
 
 .end
@@ -2696,7 +2696,7 @@ PlayStereoSFX:: ; e8ca6
 
 ; standard procedure if stereo's off
 	ld a, [Options]
-	bit 5, a
+	bit STEREO, a
 	jp z, _PlaySFX
 
 ; else, let's go ahead with this
@@ -3231,7 +3231,7 @@ GetLRTracks: ; e8fc2
 ; gets the default sound l/r channels
 ; stores mono/stereo table in hl
 	ld a, [Options]
-	bit 5, a ; stereo
+	bit STEREO, a
 	; made redundant, could have had a purpose in gold
 	jr nz, .stereo
 	ld hl, MonoTracks
@@ -3279,7 +3279,7 @@ ClearChannels:: ; e8fe9
 	ld a, $80
 	ld [hli], a
 	ld hl, rNR10
-	ld e, $4
+	ld e, NUM_MUSIC_CHANS
 .loop
 	call ClearChannel
 	dec e

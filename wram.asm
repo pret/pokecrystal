@@ -2212,7 +2212,7 @@ BaseGrowthRate:: ; d24c
 BaseEggGroups:: ; d24d
 	ds 1
 BaseTMHM:: ; d24e
-	ds 8
+	flag_array NUM_TM_HM_TUTOR
 
 
 CurDamage:: ; d256

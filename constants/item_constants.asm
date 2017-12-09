@@ -264,6 +264,7 @@ NUM_HMS = const_value - HM01
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
+NUM_TM_HM_TUTOR = __enum__ +- 1
 
 ITEM_FROM_MEM EQU $FF
 

@@ -295,7 +295,7 @@ IsSFXPlaying:: ; 3c74
 ; 3c97
 
 MaxVolume:: ; 3c97
-	ld a, $77 ; max
+	ld a, MAX_VOLUME
 	ld [Volume], a
 	ret
 ; 3c9d
