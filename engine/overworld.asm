@@ -181,7 +181,7 @@ MapCallbackSprites_LoadUsedSpritesGFX: ; 14209
 	callba LoadEmote
 	call GetMapPermission
 	call CheckOutdoorMap
-	ld c, EMOTE_0B
+	ld c, EMOTE_GRASS_RUSTLE
 	jr z, .outdoor
 	ld c, EMOTE_BOULDER_DUST
 .outdoor
@@ -723,10 +723,7 @@ emote_header: MACRO
 ENDM
 
 EmotesPointers: ; 144d
-; dw source address
-; db length, bank
-; dw dest address
-
+; graphics address, length, starting tile
 	emote_header ShockEmote,     4, $78
 	emote_header QuestionEmote,  4, $78
 	emote_header HappyEmote,     4, $78

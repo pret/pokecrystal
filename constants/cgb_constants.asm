@@ -1,3 +1,4 @@
+; GetSGBLayout arguments (see predef/cgb.asm and predef/sgb.asm)
 	const_def
 	const SCGB_BATTLE_GRAYSCALE
 	const SCGB_BATTLE_COLORS

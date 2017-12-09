@@ -2284,8 +2284,6 @@ GetWorldMapLocation:: ; 0x2caf
 ; 0x2cbd
 
 GetMapHeaderMusic:: ; 2cbd
-RADIO_TOWER_MUSIC EQU 7
-
 	push hl
 	push bc
 	ld de, 6 ; music

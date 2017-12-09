@@ -1,4 +1,5 @@
 Facings: ; 4049
+; entries correspond to FACING_* constants
 	dw FacingStepDown0
 	dw FacingStepDown1
 	dw FacingStepDown2
@@ -31,7 +32,8 @@ Facings: ; 4049
 	dw FacingBoulderDust2
 	dw FacingGrass1
 	dw FacingGrass2
-FacingsEnd: dw 0
+FacingsEnd:
+	dw 0
 
 NUM_FACINGS EQU (FacingsEnd - Facings) / 2
 
@@ -40,12 +42,6 @@ NUM_FACINGS EQU (FacingsEnd - Facings) / 2
 
 ; Format:
 ;	db y, x, attributes, tile index
-
-; Attributes:
-X_FLIP    EQU 1 << OAM_X_FLIP
-Y_FLIP    EQU 1 << OAM_Y_FLIP
-BEHIND_BG EQU 1 << OAM_PRIORITY
-
 
 FacingStepDown0:
 FacingStepDown2:

@@ -979,7 +979,7 @@ Script_cry:
 	ret
 
 GetScriptPerson:
-	and a
+	and a ; PLAYER?
 	ret z
 	cp LAST_TALKED
 	ret z
@@ -2170,7 +2170,7 @@ Script_givepokeitem:
 	ld b, a
 	push bc
 	inc hl
-	ld bc, MAIL_MAX_LENGTH
+	ld bc, MAIL_MSG_LENGTH
 	ld de, wd002
 	ld a, [ScriptBank]
 	call FarCopyBytes
@@ -2955,9 +2955,9 @@ ExitScriptSubroutine:
 	ld e, [hl]
 	ld d, $0
 	ld hl, wScriptStack
-	add hl,de
-	add hl,de
-	add hl,de
+	add hl, de
+	add hl, de
+	add hl, de
 	ld a, [hli]
 	ld b, a
 	and " "

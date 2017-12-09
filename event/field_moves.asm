@@ -30,7 +30,7 @@ ShakeHeadbuttTree: ; 8c80a
 	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
 	call Cut_Headbutt_GetPixelFacing
-	ld a, SPRITE_ANIM_INDEX_1B
+	ld a, SPRITE_ANIM_INDEX_HEADBUTT
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc

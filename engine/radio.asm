@@ -234,7 +234,7 @@ OaksPkmnTalk4:
 	jr z, .done
 .next
 	dec hl
-	ld de, WILDMON_GRASS_STRUCTURE_LENGTH
+	ld de, GRASS_WILDDATA_LENGTH
 	add hl, de
 	jr .loop
 
@@ -249,12 +249,12 @@ endr
 	cp 3
 	jr z, .loop2
 
-	ld bc, 2 * NUM_WILDMONS_PER_AREA_TIME_OF_DAY
+	ld bc, 2 * NUM_GRASSMON
 	call AddNTimes
 .loop3
 	; Choose one of the middle three Pokemon.
 	call Random
-	and NUM_WILDMONS_PER_AREA_TIME_OF_DAY
+	and NUM_GRASSMON
 	cp 2
 	jr c, .loop3
 	cp 5

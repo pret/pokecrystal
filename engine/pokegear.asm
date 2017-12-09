@@ -751,7 +751,7 @@ TownMap_GetKantoLandmarkLimits: ; 910e8
 PokegearRadio_Init: ; 910f9 (24:50f9)
 	call InitPokegearTilemap
 	depixel 4, 10, 4, 4
-	ld a, SPRITE_ANIM_INDEX_14
+	ld a, SPRITE_ANIM_INDEX_RADIO_TUNING_KNOB
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -2910,7 +2910,7 @@ TownMapMon: ; 91f7b
 	callba GetSpeciesIcon
 ; Animation/palette
 	depixel 0, 0
-	ld a, SPRITE_ANIM_INDEX_00
+	ld a, SPRITE_ANIM_INDEX_PARTY_MON
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc

@@ -1,3 +1,5 @@
+; song ids
+; Music indexes (see audio/music_pointers.asm)
 	const_def
 
 	const MUSIC_NONE                         ; 00
@@ -93,6 +95,8 @@
 	const MUSIC_LAKE_OF_RAGE_ROCKET_RADIO    ; 5a
 	const MUSIC_PRINTER                      ; 5b
 	const MUSIC_POST_CREDITS                 ; 5c
+
+; new to Crystal
 	const MUSIC_CLAIR                        ; 5d
 	const MUSIC_MOBILE_ADAPTER_MENU          ; 5e
 	const MUSIC_MOBILE_ADAPTER               ; 5f
@@ -104,4 +108,7 @@
 	const MUSIC_BATTLE_TOWER_LOBBY           ; 65
 	const MUSIC_MOBILE_CENTER                ; 66
 
-MUSIC_MAHOGANY_MART EQU $64 ; leftover from gold
+; GetMapHeaderMusic picks music for this value (see home/map.asm)
+MUSIC_MAHOGANY_MART EQU $64
+; GetMapHeaderMusic picks music for this bit flag
+RADIO_TOWER_MUSIC EQU 7

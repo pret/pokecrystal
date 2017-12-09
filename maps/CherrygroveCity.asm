@@ -125,7 +125,7 @@ CherrygroveSilverTriggerNorth:
 	iftrue .Chikorita
 	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_SILVER
-	loadtrainer RIVAL1, RIVAL1_3
+	loadtrainer RIVAL1, RIVAL1_1_TOTODILE
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
@@ -136,7 +136,7 @@ CherrygroveSilverTriggerNorth:
 .Totodile:
 	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_SILVER
-	loadtrainer RIVAL1, RIVAL1_1
+	loadtrainer RIVAL1, RIVAL1_1_CHIKORITA
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
@@ -147,7 +147,7 @@ CherrygroveSilverTriggerNorth:
 .Chikorita:
 	winlosstext SilverCherrygroveWinText, SilverCherrygroveLossText
 	setlasttalked CHERRYGROVECITY_SILVER
-	loadtrainer RIVAL1, RIVAL1_2
+	loadtrainer RIVAL1, RIVAL1_1_CYNDAQUIL
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic

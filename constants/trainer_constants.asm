@@ -1,4 +1,11 @@
-; trainer groups
+; trainer class ids
+; `trainerclass` indexes are for:
+; - TrainerClassAttributes (see trainers/attributes.asm)
+; - TrainerClassDVs (see trainers/dvs.asm)
+; - TrainerGroups (see trainers/trainer_pointers.asm)
+; - TrainerEncounterMusic (see audio/trainer_encounters.asm)
+; - BTTrainerClassGenders (see misc/battle_tower_47.asm)
+; trainer constants are Trainers indexes, for the sub-tables of TrainerGroups (see trainers/trainers.asm)
 	enum_start
 CHRIS EQU __enum__
 	trainerclass TRAINER_NONE ; 0
@@ -26,21 +33,21 @@ KRIS EQU __enum__
 	trainerclass CLAIR ; 8
 
 	trainerclass RIVAL1 ; 9
-	const RIVAL1_1
-	const RIVAL1_2
-	const RIVAL1_3
-	const RIVAL1_4
-	const RIVAL1_5
-	const RIVAL1_6
-	const RIVAL1_7
-	const RIVAL1_8
-	const RIVAL1_9
-	const RIVAL1_10
-	const RIVAL1_11
-	const RIVAL1_12
-	const RIVAL1_13
-	const RIVAL1_14
-	const RIVAL1_15
+	const RIVAL1_1_CHIKORITA
+	const RIVAL1_1_CYNDAQUIL
+	const RIVAL1_1_TOTODILE
+	const RIVAL1_2_CHIKORITA
+	const RIVAL1_2_CYNDAQUIL
+	const RIVAL1_2_TOTODILE
+	const RIVAL1_3_CHIKORITA
+	const RIVAL1_3_CYNDAQUIL
+	const RIVAL1_3_TOTODILE
+	const RIVAL1_4_CHIKORITA
+	const RIVAL1_4_CYNDAQUIL
+	const RIVAL1_4_TOTODILE
+	const RIVAL1_5_CHIKORITA
+	const RIVAL1_5_CYNDAQUIL
+	const RIVAL1_5_TOTODILE
 
 	trainerclass POKEMON_PROF ; a
 
@@ -415,6 +422,12 @@ KRIS EQU __enum__
 	const MARKUS
 
 	trainerclass RIVAL2 ; 2a
+	const RIVAL2_1_CHIKORITA
+	const RIVAL2_1_CYNDAQUIL
+	const RIVAL2_1_TOTODILE
+	const RIVAL2_2_CHIKORITA
+	const RIVAL2_2_CYNDAQUIL
+	const RIVAL2_2_TOTODILE
 
 	trainerclass GUITARIST ; 2b
 	const CLYDE
@@ -492,6 +505,10 @@ KRIS EQU __enum__
 	const WAI
 
 	trainerclass EXECUTIVEM ; 33
+	const EXECUTIVEM_1
+	const EXECUTIVEM_2
+	const EXECUTIVEM_3
+	const EXECUTIVEM_4
 
 	trainerclass PSYCHIC_T ; 34
 	const NATHAN
@@ -560,6 +577,8 @@ KRIS EQU __enum__
 	const QUENTIN
 
 	trainerclass EXECUTIVEF ; 37
+	const EXECUTIVEF_1
+	const EXECUTIVEF_2
 
 	trainerclass SAGE ; 38
 	const CHOW
@@ -648,12 +667,23 @@ KRIS EQU __enum__
 	const GRUNTF_4
 	const GRUNTF_5
 
-
 	trainerclass MYSTICALMAN ; 43
 	const EUSINE
 
 NUM_TRAINER_CLASSES EQU __enum__
 
+; TrainerClassAttributes fields (see trainers/attributes.asm)
+	const_def
+	const TRNATTR_ITEM1
+	const TRNATTR_ITEM2
+	const TRNATTR_BASEMONEY
+	const TRNATTR_AI_MOVE_WEIGHTS
+	const TRNATTR_AI2
+	const TRNATTR_AI_ITEM_SWITCH
+	const TRNATTR_AI4
+NUM_TRAINER_ATTRIBUTES EQU const_value
+
+; TRNATTR_AI_MOVE_WEIGHTS bit flags (wEnemyTrainerAIFlags)
 	const_def
 	const       NO_AI
 const_value = 0
@@ -674,12 +704,24 @@ const_value = 0
 	shift_const AI_14
 	shift_const AI_15
 
+; TRNATTR_AI_ITEM_SWITCH bit flags
+CONTEXT_USE_F      EQU 6
+UNKNOWN_USE_F      EQU 5
+ALWAYS_USE_F       EQU 4
+SWITCH_SOMETIMES_F EQU 2
+SWITCH_RARELY_F    EQU 1
+SWITCH_OFTEN_F     EQU 0
+
+CONTEXT_USE        EQU 1 << CONTEXT_USE_F
+UNKNOWN_USE        EQU 1 << UNKNOWN_USE_F
+ALWAYS_USE         EQU 1 << ALWAYS_USE_F
+SWITCH_SOMETIMES   EQU 1 << SWITCH_SOMETIMES_F
+SWITCH_RARELY      EQU 1 << SWITCH_RARELY_F
+SWITCH_OFTEN       EQU 1 << SWITCH_OFTEN_F
+
+; TrainerTypes indexes (see trainers/read_party.asm)
 	const_def
-	const TRNATTR_ITEM1
-	const TRNATTR_ITEM2
-	const TRNATTR_BASEMONEY
-	const TRNATTR_AI_MOVE_WEIGHTS
-	const TRNATTR_AI2
-	const TRNATTR_AI_ITEM_SWITCH
-	const TRNATTR_AI4
-NUM_TRAINER_ATTRIBUTES EQU const_value
+	const TRAINERTYPE_NORMAL
+	const TRAINERTYPE_MOVES
+	const TRAINERTYPE_ITEM
+	const TRAINERTYPE_ITEM_MOVES

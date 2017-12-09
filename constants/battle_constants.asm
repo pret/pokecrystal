@@ -1,12 +1,20 @@
+; significant level values
 MAX_LEVEL EQU 100
 MIN_LEVEL EQU 2
 EGG_LEVEL EQU 5
+
+; maximum moves known per mon
 NUM_MOVES EQU 4
 
-REST_TURNS EQU 2
-MAX_STAT_LEVEL EQU 13
+; significant stat values
 BASE_STAT_LEVEL EQU 7
+MAX_STAT_LEVEL EQU 13
 
+; turns that Rest sleep lasts
+REST_TURNS EQU 2
+
+; PlayerStatLevels and EnemyStatLevels indexes
+; used for GetStatName
 	const_def
 	const ATTACK
 	const DEFENSE
@@ -15,10 +23,10 @@ BASE_STAT_LEVEL EQU 7
 	const SP_DEFENSE
 	const ACCURACY
 	const EVASION
-	const ABILITY
+	const ABILITY ; used for BattleCommand_Curse
 NUM_LEVEL_STATS EQU const_value
 
-; move struct
+; move struct members (see battle/moves/moves.asm)
 	const_def
 	const MOVE_ANIM
 	const MOVE_EFFECT
@@ -30,6 +38,9 @@ NUM_LEVEL_STATS EQU const_value
 	const MOVE_LENGTH
 
 ; stat constants
+; indexes for:
+; - PlayerStats and EnemyStats (see wram.asm)
+; - party_struct and battle_struct members (see macros/wram.asm)
 const_value SET 1
 	const STAT_HP
 	const STAT_ATK
@@ -38,6 +49,8 @@ const_value SET 1
 	const STAT_SATK
 	const STAT_SDEF
 NUM_STATS EQU const_value
+
+; stat formula constants
 STAT_MIN_NORMAL EQU 5
 STAT_MIN_HP EQU 10
 
@@ -45,12 +58,12 @@ STAT_MIN_HP EQU 10
 ATKDEFDV_SHINY EQU $EA
 SPDSPCDV_SHINY EQU $AA
 
-; battle classes
+; battle classes (wBattleMode values)
 const_value SET 1
 	const WILD_BATTLE
 	const TRAINER_BATTLE
 
-; battle types
+; battle types (BattleType values)
 	const_def
 	const BATTLETYPE_NORMAL
 	const BATTLETYPE_CANLOSE
@@ -66,7 +79,7 @@ const_value SET 1
 	const BATTLETYPE_CELEBI
 	const BATTLETYPE_SUICUNE
 
-; battle variables
+; GetBattleVar and GetBattleVarAddr arguments (see home/battle.asm)
 	const_def
 	const BATTLE_VARS_SUBSTATUS1
 	const BATTLE_VARS_SUBSTATUS2
@@ -90,8 +103,37 @@ const_value SET 1
 	const BATTLE_VARS_LAST_MOVE
 	const BATTLE_VARS_LAST_MOVE_OPP
 
-; status
-SLP EQU 7 ; 0-7 turns
+; GetBattleVar and GetBattleVarAddr internal indexes (see home/battle.asm)
+	const_def
+	const PLAYER_SUBSTATUS_1
+	const ENEMY_SUBSTATUS_1
+	const PLAYER_SUBSTATUS_2
+	const ENEMY_SUBSTATUS_2
+	const PLAYER_SUBSTATUS_3
+	const ENEMY_SUBSTATUS_3
+	const PLAYER_SUBSTATUS_4
+	const ENEMY_SUBSTATUS_4
+	const PLAYER_SUBSTATUS_5
+	const ENEMY_SUBSTATUS_5
+	const PLAYER_STATUS
+	const ENEMY_STATUS
+	const PLAYER_MOVE_ANIMATION
+	const ENEMY_MOVE_ANIMATION
+	const PLAYER_MOVE_EFFECT
+	const ENEMY_MOVE_EFFECT
+	const PLAYER_MOVE_POWER
+	const ENEMY_MOVE_POWER
+	const PLAYER_MOVE_TYPE
+	const ENEMY_MOVE_TYPE
+	const PLAYER_CUR_MOVE
+	const ENEMY_CUR_MOVE
+	const PLAYER_COUNTER_MOVE
+	const ENEMY_COUNTER_MOVE
+	const PLAYER_LAST_MOVE
+	const ENEMY_LAST_MOVE
+
+; status condition bit flags
+SLP EQU %111 ; 0-7 turns
 const_value SET 3
 	const PSN
 	const BRN
@@ -100,7 +142,7 @@ const_value SET 3
 
 ALL_STATUS EQU (1 << PSN) + (1 << BRN) + (1 << FRZ) + (1 << PAR) + SLP
 
-; substatus
+; PlayerSubStatus1 or EnemySubStatus1 bit flags
 	enum_start 7, -1
 	enum SUBSTATUS_IN_LOVE
 	enum SUBSTATUS_ROLLOUT
@@ -111,8 +153,10 @@ ALL_STATUS EQU (1 << PSN) + (1 << BRN) + (1 << FRZ) + (1 << PAR) + SLP
 	enum SUBSTATUS_CURSE
 	enum SUBSTATUS_NIGHTMARE
 
-SUBSTATUS_CURLED       EQU 0
+; PlayerSubStatus2 or EnemySubStatus2 bit flags
+SUBSTATUS_CURLED EQU 0
 
+; PlayerSubStatus3 or EnemySubStatus3 bit flags
 	enum_start 7, -1
 	enum SUBSTATUS_CONFUSED
 	enum SUBSTATUS_FLYING
@@ -123,6 +167,7 @@ SUBSTATUS_CURLED       EQU 0
 	enum SUBSTATUS_RAMPAGE
 	enum SUBSTATUS_BIDE
 
+; PlayerSubStatus4 or EnemySubStatus4 bit flags
 	enum_start 7, -1
 	enum SUBSTATUS_LEECH_SEED
 	enum SUBSTATUS_RAGE
@@ -133,6 +178,7 @@ SUBSTATUS_CURLED       EQU 0
 	enum SUBSTATUS_MIST
 	enum SUBSTATUS_X_ACCURACY
 
+; PlayerSubStatus5 or EnemySubStatus5 bit flags
 	enum_start 7, -1
 	enum SUBSTATUS_CANT_RUN
 	enum SUBSTATUS_DESTINY_BOND
@@ -143,7 +189,7 @@ SUBSTATUS_CURLED       EQU 0
 	enum SUBSTATUS_UNKNOWN_3
 	enum SUBSTATUS_TOXIC
 
-; environmental
+; PlayerScreens or EnemyScreens bit flags
 	enum_start 4, -1
 	enum SCREENS_REFLECT
 	enum SCREENS_LIGHT_SCREEN
@@ -151,7 +197,7 @@ SUBSTATUS_CURLED       EQU 0
 	enum SCREENS_UNUSED
 	enum SCREENS_SPIKES
 
-; weather
+; Weather values
 	const_def
 	const WEATHER_NONE
 	const WEATHER_RAIN
@@ -161,8 +207,7 @@ SUBSTATUS_CURLED       EQU 0
 	const WEATHER_SUN_END
 	const WEATHER_SANDSTORM_END
 
-
-; move effects
+; MoveEffectsPointers indexes (see battle/moves/move_effects_pointers.asm)
 	const_def
 	const EFFECT_NORMAL_HIT
 	const EFFECT_SLEEP
@@ -322,35 +367,6 @@ SUBSTATUS_CURLED       EQU 0
 	const EFFECT_FLY
 	const EFFECT_DEFENSE_CURL
 
-; Battle vars used in home/battle.asm
-	const_def
-	const PLAYER_SUBSTATUS_1
-	const ENEMY_SUBSTATUS_1
-	const PLAYER_SUBSTATUS_2
-	const ENEMY_SUBSTATUS_2
-	const PLAYER_SUBSTATUS_3
-	const ENEMY_SUBSTATUS_3
-	const PLAYER_SUBSTATUS_4
-	const ENEMY_SUBSTATUS_4
-	const PLAYER_SUBSTATUS_5
-	const ENEMY_SUBSTATUS_5
-	const PLAYER_STATUS
-	const ENEMY_STATUS
-	const PLAYER_MOVE_ANIMATION
-	const ENEMY_MOVE_ANIMATION
-	const PLAYER_MOVE_EFFECT
-	const ENEMY_MOVE_EFFECT
-	const PLAYER_MOVE_POWER
-	const ENEMY_MOVE_POWER
-	const PLAYER_MOVE_TYPE
-	const ENEMY_MOVE_TYPE
-	const PLAYER_CUR_MOVE
-	const ENEMY_CUR_MOVE
-	const PLAYER_COUNTER_MOVE
-	const ENEMY_COUNTER_MOVE
-	const PLAYER_LAST_MOVE
-	const ENEMY_LAST_MOVE
-
 ; wBattleAction
 	const_def
 	const BATTLEACTION_MOVE1
@@ -370,6 +386,7 @@ SUBSTATUS_CURLED       EQU 0
 	const BATTLEACTION_E
 	const BATTLEACTION_FORFEIT
 
+; wBattleResult
 	const_def
 	const WIN
 	const LOSE

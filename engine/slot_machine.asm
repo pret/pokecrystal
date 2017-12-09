@@ -1067,7 +1067,7 @@ ReelAction_InitGolem: ; 92d20
 	push bc
 	push af
 	depixel 12, 13
-	ld a, SPRITE_ANIM_INDEX_SLOT_GOLEM
+	ld a, SPRITE_ANIM_INDEX_SLOTS_GOLEM
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc

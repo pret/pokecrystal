@@ -803,7 +803,7 @@ EggHatch_CrackShell: ; 1736d (5:736d)
 	add 9 * 8 + 4
 	ld d, a
 	ld e, 11 * 8
-	ld a, SPRITE_ANIM_INDEX_19
+	ld a, SPRITE_ANIM_INDEX_EGG_CRACK
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -833,7 +833,7 @@ Hatch_InitShellFragments: ; 173b3 (5:73b3)
 	push hl
 	push bc
 
-	ld a, SPRITE_ANIM_INDEX_1C
+	ld a, SPRITE_ANIM_INDEX_EGG_HATCH
 	call _InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_TILE_ID

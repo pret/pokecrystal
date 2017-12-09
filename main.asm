@@ -1481,7 +1481,7 @@ PlayBattleMusic: ; 2ee6c
 	jr nz, .othertrainer
 
 	ld a, [OtherTrainerID]
-	cp 4 ; Rival in Indigo Plateau
+	cp RIVAL2_2_CHIKORITA ; Rival in Indigo Plateau
 	jr c, .done
 	ld de, MUSIC_CHAMPION_BATTLE
 	jr .done

@@ -155,8 +155,8 @@ Function437b: ; 437b
 	jr nz, SetFacingStanding
 	bit 5, [hl]
 	jr nz, asm_4448
-	ld de, Pointers445f ; use first column
-	jr asm_444d
+	ld de, PersonActionPairPointers ; use first column
+	jr _HandleObjectAction
 ; 4440
 
 Function4440: ; 4440
@@ -164,13 +164,28 @@ Function4440: ; 4440
 	add hl, bc
 	bit INVISIBLE, [hl]
 	jr nz, SetFacingStanding
-asm_4448 ; use second column
-	ld de, Pointers445f + 2
-	jr asm_444d
+asm_4448
+	ld de, PersonActionPairPointers + 2 ; use second column
+	jr _HandleObjectAction
 ; 444d
 
-asm_444d
+_HandleObjectAction
 ; call [4 * ObjectStructs[ObjInd, OBJECT_ACTION] + de]
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld a, [hl]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call _hl_
+	ret
+; 445f
+
 INCLUDE "engine/map_object_action.asm"
 
 CopyNextCoordsTileToStandingCoordsTile: ; 4600
@@ -535,6 +550,7 @@ MapObjectMovementPattern: ; 47dd
 	ret
 
 .Pointers: ; 47e9
+; entries correspond to SPRITEMOVEFN_* constants
 	dw .Null_00 ; 00
 	dw .RandomWalkY ; 01
 	dw .RandomWalkX ; 02
@@ -1085,7 +1101,7 @@ SetRandomStepDuration: ; 4b2d
 ; 4b45
 
 StepTypesJumptable: ; 4b45
-; These pointers use OBJECT_STEP_TYPE.  See constants/sprite_constants.asm
+; entries correspond to STEP_TYPE_* constants
 	dw ObjectMovementReset ; 00
 	dw MapObjectMovementPattern ; unused
 	dw NPCStep ; 02 npc walk

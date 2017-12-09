@@ -773,7 +773,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	call Intro_ResetLYOverrides
 	callba ClearSpriteAnims
 	depixel 13, 27, 4, 0
-	ld a, SPRITE_ANIM_INDEX_26
+	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE
 	call _InitSpriteAnimStruct
 	ld a, $f0
 	ld [wGlobalAnimXOffset], a
@@ -866,7 +866,7 @@ IntroScene10: ; e4c4f (39:4c4f)
 
 .pichu
 	depixel 21, 16, 1, 0
-	ld a, SPRITE_ANIM_INDEX_27
+	ld a, SPRITE_ANIM_INDEX_INTRO_PICHU
 	call _InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
 	call PlaySFX
@@ -874,7 +874,7 @@ IntroScene10: ; e4c4f (39:4c4f)
 
 .wooper
 	depixel 22, 6
-	ld a, SPRITE_ANIM_INDEX_28
+	ld a, SPRITE_ANIM_INDEX_INTRO_WOOPER
 	call _InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
 	call PlaySFX
@@ -1054,7 +1054,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld [hWY], a
 	callba ClearSpriteAnims
 	depixel 13, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_26
+	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE
 	call _InitSpriteAnimStruct
 	ld de, MUSIC_CRYSTAL_OPENING
 	call PlayMusic
@@ -1165,10 +1165,10 @@ IntroScene15: ; e4e40 (39:4e40)
 	callba ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	depixel 8, 5
-	ld a, SPRITE_ANIM_INDEX_2A
+	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN_F
 	call _InitSpriteAnimStruct
 	depixel 12, 0
-	ld a, SPRITE_ANIM_INDEX_2B
+	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY
 	call _InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -1317,7 +1317,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld [hl], $7f
 	call Intro_SetCGBPalUpdate
 	depixel 12, 0
-	ld a, SPRITE_ANIM_INDEX_2B
+	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY
 	call _InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -1617,7 +1617,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 
 CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	push de
-	ld a, SPRITE_ANIM_INDEX_29
+	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -1627,7 +1627,7 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	pop de
 
 	push de
-	ld a, SPRITE_ANIM_INDEX_29
+	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -1637,7 +1637,7 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	pop de
 
 	push de
-	ld a, SPRITE_ANIM_INDEX_29
+	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -1646,7 +1646,7 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	call ReinitSpriteAnimFrame
 	pop de
 
-	ld a, SPRITE_ANIM_INDEX_29
+	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc

@@ -72,7 +72,7 @@ AzaleaTownRivalBattleScript:
 	iftrue .Chikorita
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
 	setlasttalked AZALEATOWN_SILVER
-	loadtrainer RIVAL1, RIVAL1_6
+	loadtrainer RIVAL1, RIVAL1_2_TOTODILE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -81,7 +81,7 @@ AzaleaTownRivalBattleScript:
 .Totodile:
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
 	setlasttalked AZALEATOWN_SILVER
-	loadtrainer RIVAL1, RIVAL1_4
+	loadtrainer RIVAL1, RIVAL1_2_CHIKORITA
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -90,7 +90,7 @@ AzaleaTownRivalBattleScript:
 .Chikorita:
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
 	setlasttalked AZALEATOWN_SILVER
-	loadtrainer RIVAL1, RIVAL1_5
+	loadtrainer RIVAL1, RIVAL1_2_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle

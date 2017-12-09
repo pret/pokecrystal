@@ -1,4 +1,5 @@
-; growth rate
+; BaseGrowthRate values
+; GrowthRates indexes (see main.asm)
 	const_def
 	const MEDIUM_FAST
 	const SLIGHTLY_FAST
@@ -7,7 +8,7 @@
 	const FAST
 	const SLOW
 
-; egg group constants
+; BaseEggGroups values
 const_value SET 1
 	const MONSTER      ; 1
 	const AMPHIBIAN    ; 2
@@ -26,7 +27,7 @@ const_value SET 1
 	const NO_EGGS      ; f
 
 
-; menu sprites
+; IconPointers indexes (see menu/mon_icons.asm)
 const_value SET 1
 	const ICON_POLIWAG
 	const ICON_JIGGLYPUFF
@@ -68,7 +69,7 @@ const_value SET 1
 	const ICON_BIGMON
 
 
-; evolution types
+; evolution types (used in data/evos_attacks.asm)
 const_value SET 1
 	const EVOLVE_LEVEL
 	const EVOLVE_ITEM
@@ -76,26 +77,36 @@ const_value SET 1
 	const EVOLVE_HAPPINESS
 	const EVOLVE_STAT
 
-
-BASE_HAPPINESS        EQU 70
-FRIEND_BALL_HAPPINESS EQU 200
-
-; happiness evolution triggers
-HAPPINESS_TO_EVOLVE EQU 220
+; EVOLVE_HAPPINESS triggers
 const_value SET 1
 	const TR_ANYTIME
 	const TR_MORNDAY
 	const TR_NITE
 
-
-; stat evolution triggers
+; EVOLVE_STAT triggers
 const_value SET 1
 	const ATK_GT_DEF
 	const ATK_LT_DEF
 	const ATK_EQ_DEF
 
-NUM_GRASSMON EQU 7
-NUM_WATERMON EQU 3
+
+; significant happiness values
+BASE_HAPPINESS        EQU 70
+FRIEND_BALL_HAPPINESS EQU 200
+HAPPINESS_TO_EVOLVE   EQU 220
+
+
+NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
+NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
 
 GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2 + 1) * 3 + 2
 WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
+
+
+; swarms
+
+SWARM_DUNSPARCE EQU 0
+SWARM_YANMA     EQU 1
+
+FISHSWARM_QWILFISH EQU 1
+FISHSWARM_REMORAID EQU 2

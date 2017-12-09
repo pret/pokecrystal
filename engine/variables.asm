@@ -35,9 +35,9 @@ _GetVarAction:: ; 80648 (20:4648)
 ; 80671 (20:4671)
 
 .VarActionTable: ; 80671
-; $00: copy [de] to StringBuffer2
-; $40: return address in de
-; $80: call function
+; RETVAR_STRBUF2: copy [de] to StringBuffer2
+; RETVAR_ADDR_DE: return address in de
+; RETVAR_EXECUTE: call function
 	dwb StringBuffer2,                  RETVAR_STRBUF2
 	dwb PartyCount,                     RETVAR_STRBUF2
 	dwb .BattleResult,                  RETVAR_EXECUTE

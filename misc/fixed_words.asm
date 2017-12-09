@@ -3416,6 +3416,7 @@ MobileEZChatCategoryNames: ; 11da52
 ; 11daac
 
 MobileEZChatCategoryPointers: ; 11daac
+; entries correspond to EZCHAT_* constants
 	dw .Types          ; 01
 	dw .Greetings      ; 02
 	dw .People         ; 03

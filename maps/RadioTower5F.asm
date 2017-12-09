@@ -41,7 +41,7 @@ FakeDirectorScript:
 	closetext
 	winlosstext FakeDirectorWinText, 0
 	setlasttalked RADIOTOWER5F_DIRECTOR
-	loadtrainer EXECUTIVEM, 3
+	loadtrainer EXECUTIVEM, EXECUTIVEM_3
 	startbattle
 	reloadmapafterbattle
 	opentext
@@ -70,7 +70,7 @@ Director:
 	end
 
 TrainerExecutivef1:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, 1, Executivef1SeenText, Executivef1BeatenText, 0, Executivef1Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, EXECUTIVEF_1, Executivef1SeenText, Executivef1BeatenText, 0, Executivef1Script
 
 Executivef1Script:
 	end_if_just_battled
@@ -90,7 +90,7 @@ RadioTower5FRocketBossTrigger:
 	closetext
 	winlosstext RadioTower5FRocketBossWinText, 0
 	setlasttalked RADIOTOWER5F_ROCKET
-	loadtrainer EXECUTIVEM, 1
+	loadtrainer EXECUTIVEM, EXECUTIVEM_1
 	startbattle
 	reloadmapafterbattle
 	opentext

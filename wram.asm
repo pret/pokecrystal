@@ -425,7 +425,7 @@ AttackMissed:: ; c667
 
 PlayerSubStatus1:: ; c668
 ; bit
-; 7 attract
+; 7 in love
 ; 6 rollout
 ; 5 endure
 ; 4 perish song
@@ -451,9 +451,9 @@ PlayerSubStatus3:: ; c66a
 ; 6 flying
 ; 5 underground
 ; 4 charged
-; 3 flinch
-; 2
-; 1 rollout
+; 3 flinched
+; 2 in loop
+; 1 rampage
 ; 0 bide
 	ds 1
 PlayerSubStatus4:: ; c66b
@@ -469,10 +469,10 @@ PlayerSubStatus4:: ; c66b
 	ds 1
 PlayerSubStatus5:: ; c66c
 ; bit
-; 7 cant run
+; 7 can't run
 ; 6 destiny bond
 ; 5 lock-on
-; 4 encore
+; 4 encored
 ; 3 transformed
 ; 2
 ; 1
@@ -663,9 +663,13 @@ wDanger:: ds 1 ; c6fd
 wPlayerMinimized:: ds 1 ; c6fe
 PlayerScreens:: ; c6ff
 ; bit
+; 7
+; 6
+; 5
 ; 4 reflect
 ; 3 light screen
 ; 2 safeguard
+; 1
 ; 0 spikes
 	ds 1
 

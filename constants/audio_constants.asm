@@ -1,5 +1,3 @@
-
-
 ; pitch
 	const_def
 	const __
@@ -40,7 +38,6 @@ SOUND_NOISE EQU 4
 SOUND_REST EQU 5
 
 ; Flags2
-
 SOUND_VIBRATO EQU 0
 SOUND_PITCH_WHEEL EQU 1
 SOUND_DUTY EQU 2
