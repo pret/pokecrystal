@@ -142,9 +142,13 @@ AutoInputLength::  db ; c2cb
 wMonStatusFlags:: db
 wGameLogicPaused:: db ; c2cd
 wSpriteUpdatesEnabled:: db
-wc2cf:: db
+
+wc2cf:: db ; ????
+
 wMapTimeOfDay:: db
+
 	ds 3
+
 wPrinterConnectionOpen:: db
 wPrinterOpcode:: db
 wLastDexEntry:: db
@@ -324,8 +328,8 @@ TileMapEnd::
 
 SECTION "Battle", WRAM0
 
-UNION
-; unidentified mobile/debug
+UNION ; c608
+; unidentified uses
 wc608::
 
 NEXTU ; c608
@@ -534,6 +538,7 @@ PlayerSpdLevel:: db ; c6ce
 PlayerSAtkLevel:: db ; c6cf
 
 UNION ; c6d0
+; finish battle RAM
 PlayerSDefLevel:: db ; c6d0
 PlayerAccLevel:: db ; c6d1
 PlayerEvaLevel:: db ; c6d2
@@ -787,16 +792,14 @@ wDummyGameEnd::
 NEXTU ; c6d0
 ; unown puzzle
 wUnownPuzzle::
-wPuzzlePieces::
-	ds 6 * 6
+wPuzzlePieces:: ds 6 * 6
 wUnownPuzzleEnd::
 
 NEXTU ; c6d0
 ; pokedex
 wPokedexDataStart::
-wPokedexOrder:: ds NUM_POKEMON +- 1
+wPokedexOrder:: ds $100 ; NUM_POKEMON + 5
 wPokedexOrderEnd::
-	ds 6
 wPokedexMetadata::
 wDexListingScrollOffset:: db ; offset of the first displayed entry from the start
 wDexListingCursor:: db ; Dex cursor
@@ -820,7 +823,7 @@ wBackupDexListingCursor:: db
 wBackupDexListingPage:: db
 wDexCurrentLocation:: db
 IF DEF(CRYSTAL11)
-wPokedexStatus:: ds 1
+wPokedexStatus:: db
 wPokedexDataEnd::
 ELSE
 wPokedexDataEnd:: ds 1
@@ -849,8 +852,7 @@ wc7e8:: ds 24 ; ????
 SECTION "Overworld Map", WRAM0
 
 UNION ; c800
-OverworldMap:: ; c800
-	ds 1300
+OverworldMap:: ds 1300 ; c800
 OverworldMapEnd::
 
 NEXTU ; c800
@@ -863,14 +865,11 @@ NEXTU ; c800
 ; GB Printer data
 wGameboyPrinter2bppSource:: ds 40 tiles
 wGameboyPrinter2bppSourceEnd::
-wca80:: ds 1
+wca80:: db
 wPrinterRowIndex:: db
 
 ; Printer data header
-wca82:: ds 1
-wca83:: ds 1
-wca84:: ds 1
-wca85:: ds 1
+wPrinterData:: ds 4
 wPrinterChecksum:: dw ; ca86
 wPrinterHandshake:: db
 wPrinterStatusFlags::
