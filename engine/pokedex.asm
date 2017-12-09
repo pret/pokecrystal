@@ -512,7 +512,7 @@ Pokedex_InitOptionScreen: ; 4039d (10:439d)
 	call ClearSprites
 	call Pokedex_DrawOptionScreenBG
 	call Pokedex_InitArrowCursor
-	ld a, [wCurrentDexMode]
+	ld a, [wCurrentDexMode] ; Index of the topmost visible item in a scrolling menu ???
 	ld [wDexArrowCursorPosIndex], a
 	call Pokedex_DisplayModeDescription
 	call WaitBGMap

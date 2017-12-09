@@ -83,14 +83,14 @@ _GetFrontpic: ; 510a5
 	ld b, a
 	push bc
 	call GetFrontpicPointer
-	ld a, BANK(wDecompressScratch)
+	ld a, BANK(wDecompressEnemyFrontpic)
 	ld [rSVBK], a
 	ld a, b
-	ld de, wDecompressScratch + $800
+	ld de, wDecompressEnemyFrontpic
 	call FarDecompress
 	pop bc
 	ld hl, wDecompressScratch
-	ld de, wDecompressScratch + $800
+	ld de, wDecompressEnemyFrontpic
 	call PadFrontpic
 	pop hl
 	push hl
@@ -149,15 +149,15 @@ GetAnimatedFrontpic: ; 51103
 	call GetFarWRAMByte
 	pop hl
 	and $f
-	ld de, w6_d800 + 5 * 5 tiles
+	ld de, wDecompressEnemyFrontpic + 5 * 5 tiles
 	ld c, 5 * 5
 	cp 5
 	jr z, .got_dims
-	ld de, w6_d800 + 6 * 6 tiles
+	ld de, wDecompressEnemyFrontpic + 6 * 6 tiles
 	ld c, 6 * 6
 	cp 6
 	jr z, .got_dims
-	ld de, w6_d800 + 7 * 7 tiles
+	ld de, wDecompressEnemyFrontpic + 7 * 7 tiles
 	ld c, 7 * 7
 .got_dims
 

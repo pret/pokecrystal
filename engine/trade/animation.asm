@@ -100,7 +100,7 @@ TradeAnimationPlayer2: ; 28f63
 	tradeanim_end
 
 RunTradeAnimScript: ; 28fa1
-	ld hl, wTradeAnimPointer
+	ld hl, wTradeAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -294,7 +294,7 @@ TradeAnim_IncrementJumptableIndex: ; 2910f
 ; 29114
 
 TradeAnim_AdvanceScriptPointer: ; 29114
-	ld hl, wTradeAnimPointer
+	ld hl, wTradeAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

@@ -83,7 +83,7 @@ Function10804d: ; 10804d
 	mobiletradeanim_end
 
 RunMobileTradeAnim_Frontpics: ; 10805b
-	ld hl, wTradeAnimPointer
+	ld hl, wTradeAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -113,7 +113,7 @@ RunMobileTradeAnim_Frontpics: ; 10805b
 ; 108089
 
 RunMobileTradeAnim_NoFrontpics: ; 108089
-	ld hl, wTradeAnimPointer
+	ld hl, wTradeAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -411,7 +411,7 @@ MobileTradeAnim_Next: ; 1082b2
 ; 1082b7
 
 GetMobileTradeAnimByte: ; 1082b7
-	ld hl, wTradeAnimPointer
+	ld hl, wTradeAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

@@ -1415,7 +1415,7 @@ LoadTileset:: ; 2821
 	ld a, $1
 	ld [rVBK], a
 
-	ld hl, w6_d600
+	ld hl, wDecompressScratch + $60 tiles
 	ld de, VTiles2
 	ld bc, $60 tiles
 	call CopyBytes

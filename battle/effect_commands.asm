@@ -70,25 +70,25 @@ DoMove: ; 3402c
 ; Start at the first command.
 	ld hl, BattleScriptBuffer
 	ld a, l
-	ld [BattleScriptBufferLoc], a
+	ld [BattleScriptBufferAddress], a
 	ld a, h
-	ld [BattleScriptBufferLoc + 1], a
+	ld [BattleScriptBufferAddress + 1], a
 
 .ReadMoveEffectCommand:
 
-; ld a, [BattleScriptBufferLoc++]
-	ld a, [BattleScriptBufferLoc]
+; ld a, [BattleScriptBufferAddress++]
+	ld a, [BattleScriptBufferAddress]
 	ld l, a
-	ld a, [BattleScriptBufferLoc + 1]
+	ld a, [BattleScriptBufferAddress + 1]
 	ld h, a
 
 	ld a, [hli]
 
 	push af
 	ld a, l
-	ld [BattleScriptBufferLoc], a
+	ld [BattleScriptBufferAddress], a
 	ld a, h
-	ld [BattleScriptBufferLoc + 1], a
+	ld [BattleScriptBufferAddress + 1], a
 	pop af
 
 ; endturn_command (-2) is used to terminate branches without ending the read cycle.
@@ -2743,9 +2743,9 @@ BattleCommand_RageDamage: ; 3527b
 
 
 EndMoveEffect: ; 352a3
-	ld a, [BattleScriptBufferLoc]
+	ld a, [BattleScriptBufferAddress]
 	ld l, a
-	ld a, [BattleScriptBufferLoc + 1]
+	ld a, [BattleScriptBufferAddress + 1]
 	ld h, a
 	ld a, $ff
 	ld [hli], a
@@ -7097,9 +7097,9 @@ BattleCommand_EndLoop: ; 369b6
 
 ; Loop back to the command before 'critical'.
 .loop_back_to_critical
-	ld a, [BattleScriptBufferLoc + 1]
+	ld a, [BattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [BattleScriptBufferLoc]
+	ld a, [BattleScriptBufferAddress]
 	ld l, a
 .not_critical
 	ld a, [hld]
@@ -7107,9 +7107,9 @@ BattleCommand_EndLoop: ; 369b6
 	jr nz, .not_critical
 	inc hl
 	ld a, h
-	ld [BattleScriptBufferLoc + 1], a
+	ld [BattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [BattleScriptBufferLoc], a
+	ld [BattleScriptBufferAddress], a
 	ret
 
 ; 36a82
@@ -9983,9 +9983,9 @@ BattleCommand_ClearText: ; 37e85
 
 SkipToBattleCommand: ; 37e8c
 ; Skip over commands until reaching command b.
-	ld a, [BattleScriptBufferLoc + 1]
+	ld a, [BattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [BattleScriptBufferLoc]
+	ld a, [BattleScriptBufferAddress]
 	ld l, a
 .loop
 	ld a, [hli]
@@ -9993,9 +9993,9 @@ SkipToBattleCommand: ; 37e8c
 	jr nz, .loop
 
 	ld a, h
-	ld [BattleScriptBufferLoc + 1], a
+	ld [BattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [BattleScriptBufferLoc], a
+	ld [BattleScriptBufferAddress], a
 	ret
 
 ; 37ea1
