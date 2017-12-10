@@ -4501,13 +4501,13 @@ _SwitchPartyMons:
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a
-	ld [Buffer2], a ; wd1eb (aliases: MovementType)
+	ld [Buffer2], a
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
 	ld a, [Buffer3]
 	call .ClearSprite
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	call .ClearSprite
 .skip
 	ret
@@ -4540,7 +4540,7 @@ _SwitchPartyMons:
 	push de
 	push bc
 	ld bc, PartySpecies
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	ld l, a
 	ld h, $0
 	add hl, bc
@@ -4556,8 +4556,8 @@ _SwitchPartyMons:
 	ld [hl], a
 	pop af
 	ld [de], a
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld a, [Buffer2]
+	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -4576,7 +4576,7 @@ _SwitchPartyMons:
 	ld hl, wd002
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	ld hl, PartyMonOT
 	call SkipNames
 	push hl
@@ -4591,7 +4591,7 @@ _SwitchPartyMons:
 	ld hl, wd002
 	call .CopyName
 	ld hl, PartyMonNicknames
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	call SkipNames
 	push hl
 	call .CopyNameTowd002
@@ -4605,7 +4605,7 @@ _SwitchPartyMons:
 	ld hl, wd002
 	call .CopyName
 	ld hl, sPartyMail
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl

@@ -33,14 +33,14 @@ Special_CheckMagikarpLength: ; fbb32
 	call PrintText
 
 	; Did we beat the record?
-	ld hl, Buffer1
+	ld hl, wMagikarpLength
 	ld de, wBestMagikarpLengthFeet
 	ld c, 2
 	call StringCmp
 	jr nc, .not_long_enough
 
 	; NEW RECORD!!! Let's save that.
-	ld hl, Buffer1
+	ld hl, wMagikarpLength
 	ld de, wBestMagikarpLengthFeet
 	ld a, [hli]
 	ld [de], a
@@ -93,12 +93,12 @@ INCBIN "gfx/unknown/0fbbbb.2bpp"
 PrintMagikarpLength: ; fbbdb
 	call Magikarp_LoadFeetInchesChars
 	ld hl, StringBuffer1
-	ld de, Buffer1
+	ld de, wMagikarpLength
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	ld [hl], "′"
 	inc hl
-	ld de, Buffer2
+	ld de, wMagikarpLength + 1
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	ld [hl], "″"
@@ -108,7 +108,7 @@ PrintMagikarpLength: ; fbbdb
 ; fbbfc
 
 CalcMagikarpLength: ; fbbfc
-; Return Magikarp's length (in mm) at MagikarpLength (big endian).
+; Return Magikarp's length (in mm) at wMagikarpLength (big endian).
 ;
 ; input:
 ;   de: EnemyMonDVs
@@ -125,9 +125,9 @@ CalcMagikarpLength: ; fbbfc
 
 ; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
-; if bc < 10:    [MagikarpLength] = c + 190
-; if bc ≥ $ff00: [MagikarpLength] = c + 1370
-; else:          [MagikarpLength] = z × 100 + (bc − x) / y
+; if bc < 10:    [wMagikarpLength] = c + 190
+; if bc ≥ $ff00: [wMagikarpLength] = c + 1370
+; else:          [wMagikarpLength] = z × 100 + (bc − x) / y
 
 ; X, Y, and Z depend on the value of b as follows:
 
@@ -274,7 +274,7 @@ CalcMagikarpLength: ; fbbfc
 .ok
 	ld e, a
 
-	ld hl, MagikarpLength
+	ld hl, wMagikarpLength
 	ld [hl], d
 	inc hl
 	ld [hl], e
@@ -326,9 +326,9 @@ CalcMagikarpLength: ; fbbfc
 
 Special_MagikarpHouseSign: ; fbcd2
 	ld a, [wBestMagikarpLengthFeet]
-	ld [Buffer1], a
+	ld [wMagikarpLength], a
 	ld a, [wBestMagikarpLengthInches]
-	ld [Buffer2], a
+	ld [wMagikarpLength + 1], a
 	call PrintMagikarpLength
 	ld hl, .CurrentRecordtext
 	call PrintText

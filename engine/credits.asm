@@ -196,7 +196,7 @@ Credits:: ; 109847
 	xor a
 	ld [hBGMapMode], a
 	ld [CreditsPos], a
-	ld [wcd21], a
+	ld [CreditsUnusedCD21], a
 	ld [CreditsTimer], a
 
 .execution_loop

@@ -390,7 +390,7 @@ Gen2ToGen2LinkComms: ; 28177
 	ld [de], a
 
 .skip_mail
-	ld hl, wLinkData
+	ld hl, wLinkPlayerName
 	ld de, OTPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes

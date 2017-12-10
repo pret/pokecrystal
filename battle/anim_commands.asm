@@ -57,7 +57,7 @@ _PlayBattleAnim: ; cc0e4
 
 BattleAnimRunScript: ; cc11c
 
-	ld a, [FXAnimIDHi]
+	ld a, [FXAnimID + 1]
 	and a
 	jr nz, .hi_byte
 
@@ -86,9 +86,9 @@ BattleAnimRunScript: ; cc11c
 	ld de, ANIM_MISS
 	add hl, de
 	ld a, l
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, h
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 
 .hi_byte
 	call WaitSFX
@@ -112,11 +112,11 @@ RunBattleAnimScript: ; cc163
 	call BattleAnimRequestPals
 
 ; Speed up Rollout's animation.
-	ld a, [FXAnimIDHi]
+	ld a, [FXAnimID + 1]
 	or a
 	jr nz, .not_rollout
 
-	ld a, [FXAnimIDLo]
+	ld a, [FXAnimID]
 	cp ROLLOUT
 	jr nz, .not_rollout
 
@@ -1393,7 +1393,7 @@ ClearBattleAnims: ; cc8d3
 	or b
 	jr nz, .loop
 
-	ld hl, FXAnimIDLo
+	ld hl, FXAnimID
 	ld e, [hl]
 	inc hl
 	ld d, [hl]

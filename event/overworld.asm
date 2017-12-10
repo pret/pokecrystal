@@ -432,7 +432,7 @@ SurfFunction: ; c909
 
 .DoSurf: ; c95f (3:495f)
 	call GetSurfType
-	ld [Buffer2], a ; wd1eb (aliases: MovementType)
+	ld [Buffer2], a
 	call GetPartyNick
 	ld hl, SurfFromMenuScript
 	call QueueScript
@@ -569,7 +569,7 @@ TrySurfOW:: ; c9e7
 	jr nz, .quit
 
 	call GetSurfType
-	ld [MovementType], a
+	ld [Buffer2], a
 	call GetPartyNick
 
 	ld a, BANK(AskSurfScript)
@@ -837,7 +837,7 @@ dig_incave
 	ret
 
 .incave
-	ld hl, wDigWarp
+	ld hl, wDigWarpNumber
 	ld a, [hli]
 	and a
 	jr z, .fail
@@ -851,7 +851,7 @@ dig_incave
 	ret
 
 .DoDig: ; cbd8
-	ld hl, wDigWarp
+	ld hl, wDigWarpNumber
 	ld de, wNextWarp
 	ld bc, 3
 	call CopyBytes

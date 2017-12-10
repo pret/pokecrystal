@@ -16,7 +16,7 @@ StartMenu:: ; 125cd
 
 	call LoadMenuDataHeader
 	call .SetUpMenuItems
-	ld a, [wd0d2]
+	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call .DrawMenuAccount_
 	call DrawVariableLengthMenuBox
@@ -32,7 +32,7 @@ StartMenu:: ; 125cd
 	call UpdateSprites
 	call UpdateTimePals
 	call .SetUpMenuItems
-	ld a, [wd0d2]
+	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 
 .Select:
@@ -40,7 +40,7 @@ StartMenu:: ; 125cd
 	jr c, .Exit
 	call .DrawMenuAccount
 	ld a, [wMenuCursorBuffer]
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	call PlayClickSFX
 	call PlaceHollowCursor
 	call .OpenMenu

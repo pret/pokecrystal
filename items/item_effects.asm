@@ -407,9 +407,9 @@ ParkBall: ; e8a2
 
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, d
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	xor a
 	ld [hBattleTurn], a
 	ld [Buffer2], a
@@ -2945,9 +2945,9 @@ UseBallInTrainerBattle: ; f7a0
 	call ReturnToBattle_UseBall
 	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, d
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	xor a
 	ld [wBattleAnimParam], a
 	ld [hBattleTurn], a

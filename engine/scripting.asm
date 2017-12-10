@@ -1355,19 +1355,19 @@ Script_earthquake:
 ;     param (DecimalParam)
 
 	ld hl, EarthquakeMovement
-	ld de, wd002
+	ld de, wEarthquakeMovementDataBuffer
 	ld bc, EarthquakeMovementEnd - EarthquakeMovement
 	call CopyBytes
 	call GetScriptByte
-	ld [wd003], a
-	and (1 << 6) - 1
-	ld [wd005], a
+	ld [wEarthquakeMovementDataBuffer + 1], a
+	and %00111111
+	ld [wEarthquakeMovementDataBuffer + 3], a
 	ld b, BANK(.script)
 	ld de, .script
 	jp ScriptCall
 
 .script
-	applymovement PLAYER, wd002
+	applymovement PLAYER, wEarthquakeMovementDataBuffer
 	end
 
 EarthquakeMovement:

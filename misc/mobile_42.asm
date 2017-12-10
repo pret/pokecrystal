@@ -1313,7 +1313,7 @@ MobileTradeAnim_DisplayEggData
 .EggTemplate: ; 108a1d
 	db   "タマゴ"
 	next "おや/?????"
-	next "<ID>№<PERIOD>?????"
+	next "<ID>№<DOT>?????"
 	db   "@"
 ; 108a33
 
@@ -1353,10 +1353,10 @@ MobileTradeAnim_LoadMonTemplate: ; 108a5b
 ; 108a79
 
 .MonTemplate: ; 108a79
-	db   "─ №<PERIOD>"
+	db   "─ №<DOT>"
 	next ""
 	next "おや/"
-	next "<ID>№<PERIOD>"
+	next "<ID>№<DOT>"
 	db   "@"
 ; 108a87
 

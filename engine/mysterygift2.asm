@@ -9,7 +9,7 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 	ld a, [hli]
 	ld [de], a
 	ld b, a
-	inc de
+	inc de ; wc802
 	ld a, [hl]
 	ld [de], a
 	ld c, a

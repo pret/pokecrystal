@@ -188,7 +188,7 @@
 	charmap "♂",        $ef
 	charmap "¥",        $f0
 	charmap "×",        $f1
-	charmap "<PERIOD>", $f2 ; same as "." in English
+	charmap "<DOT>",    $f2 ; same as "." in English
 	charmap "/",        $f3
 	charmap ",",        $f4
 	charmap "♀",        $f5

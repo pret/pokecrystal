@@ -1538,10 +1538,10 @@ Tackle_BGEffect25_2d_two:
 
 Functionc88a5: ; c88a5 (32:48a5)
 	push af
-	ld a, [FXAnimIDHi] ; FXAnimIDHi
+	ld a, [FXAnimID + 1] ; FXAnimID + 1
 	or a
 	jr nz, .not_rollout
-	ld a, [FXAnimIDLo] ; FXAnimID
+	ld a, [FXAnimID] ; FXAnimID
 	cp ROLLOUT
 	jr z, .rollout
 .not_rollout

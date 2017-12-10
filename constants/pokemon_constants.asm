@@ -342,3 +342,6 @@ NUM_MONMENU_ITEMS EQU 8
 
 ; maximum number of party pokemon
 PARTY_LENGTH EQU 6
+
+; number of Unown forms
+NUM_UNOWN EQU 26

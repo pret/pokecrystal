@@ -275,7 +275,7 @@ _PrintNum:: ; c4c7
 	dec e
 	ret nz
 	inc hl
-	ld [hl], "<PERIOD>"
+	ld [hl], "<DOT>"
 	ret
 
 .PrintLeadingZero: ; c644

@@ -370,9 +370,9 @@ BuyMenu: ; 15c62
 	call FadeToMenu
 	callba BlankScreen
 	xor a
-	ld [wd045 + 1], a
+	ld [wMenuScrollPositionBackup], a
 	ld a, 1
-	ld [wd045], a
+	ld [wMenuCursorBufferBackup], a
 .loop
 	call BuyMenuLoop ; menu loop
 	jr nc, .loop
@@ -471,15 +471,15 @@ BuyMenuLoop: ; 15cef
 	call UpdateSprites
 	ld hl, MenuDataHeader_Buy
 	call CopyMenuDataHeader
-	ld a, [wd045]
+	ld a, [wMenuCursorBufferBackup]
 	ld [wMenuCursorBuffer], a
-	ld a, [wd045 + 1]
+	ld a, [wMenuScrollPositionBackup]
 	ld [wMenuScrollPosition], a
 	call ScrollingMenu
 	ld a, [wMenuScrollPosition]
-	ld [wd045 + 1], a
+	ld [wMenuScrollPositionBackup], a
 	ld a, [wMenuCursorY]
-	ld [wd045], a
+	ld [wMenuCursorBufferBackup], a
 	call SpeechTextBox
 	ld a, [wMenuJoypad]
 	cp B_BUTTON

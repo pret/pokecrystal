@@ -2103,7 +2103,7 @@ BattleCommand_LowerSub: ; 34eee
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	inc a
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
@@ -2280,7 +2280,7 @@ BattleCommand_RaiseSub: ; 35004
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	ld a, $2
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
@@ -2645,7 +2645,7 @@ BattleCommand_CheckDestinyBond: ; 351c0
 	call BattleCommand_SwitchTurn
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	inc a
 	ld [wKickCounter], a
 	ld a, DESTINY_BOND
@@ -4738,9 +4738,9 @@ FarPlayBattleAnimation: ; 35d00
 
 PlayFXAnimID: ; 35d08
 	ld a, e
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, d
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 
 	ld c, 3
 	call DelayFrames
@@ -7882,7 +7882,7 @@ BattleCommand_Substitute: ; 36e7c
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
 	call LoadAnim
@@ -9862,14 +9862,14 @@ AnimateCurrentMove: ; 37e01
 
 PlayDamageAnim: ; 37e19
 	xor a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	and a
 	ret z
 
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 
 	ld a, [hBattleTurn]
 	and a
@@ -9888,7 +9888,7 @@ PlayDamageAnim: ; 37e19
 LoadMoveAnim: ; 37e36
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -9901,7 +9901,7 @@ LoadMoveAnim: ; 37e36
 
 LoadAnim: ; 37e44
 
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 
 	; fallthrough
 ; 37e47
@@ -9922,9 +9922,9 @@ PlayUserBattleAnim: ; 37e47
 
 PlayOpponentBattleAnim: ; 37e54
 	ld a, e
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, d
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	xor a
 	ld [wNumHits], a
 

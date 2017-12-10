@@ -184,7 +184,7 @@ LoadWarpData: ; 1046c6
 	ret z
 .not_mt_moon_or_tin_tower
 	ld a, [wPrevWarp]
-	ld [wDigWarp], a
+	ld [wDigWarpNumber], a
 	ld a, [wPrevMapGroup]
 	ld [wDigMapGroup], a
 	ld a, [wPrevMapNumber]

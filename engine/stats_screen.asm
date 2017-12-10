@@ -420,7 +420,7 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	ld d, a
 	ld e, [hl]
 	callba ComputeHPBarPixels
-	ld hl, wcda1
+	ld hl, wCurHPPal
 	call SetHPPal
 	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
@@ -601,7 +601,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	call .CalcExpToNextLevel
 	hlcoord 13, 13
 	lb bc, 3, 7
-	ld de, Buffer1 ; wd1ea (aliases: MagikarpLength)
+	ld de, Buffer1
 	call PrintNum
 	ld de, .LevelUpStr
 	hlcoord 10, 12
@@ -649,14 +649,14 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld a, [hQuotient + 1]
 	sbc [hl]
 	dec hl
-	ld [Buffer2], a ; wd1eb (aliases: MovementType)
+	ld [Buffer2], a
 	ld a, [hQuotient]
 	sbc [hl]
-	ld [Buffer1], a ; wd1ea (aliases: MagikarpLength)
+	ld [Buffer1], a
 	ret
 
 .AlreadyAtMaxLevel:
-	ld hl, Buffer1 ; wd1ea (aliases: MagikarpLength)
+	ld hl, Buffer1
 	xor a
 	ld [hli], a
 	ld [hli], a
@@ -973,7 +973,7 @@ Unknown_4e32a: ; 4e32a
 EggStatsScreen: ; 4e33a
 	xor a
 	ld [hBGMapMode], a
-	ld hl, wcda1
+	ld hl, wCurHPPal
 	call SetHPPal
 	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout

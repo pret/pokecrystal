@@ -633,7 +633,7 @@ ParsePlayerAction: ; 3c434
 	xor a
 	ld [wMoveSelectionMenuType], a
 	inc a ; POUND
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	call MoveSelectionScreen
 	push af
 	call Call_LoadTempTileMapToTileMap
@@ -1305,7 +1305,7 @@ HandleWrap: ; 3c874
 
 	ld a, [de]
 	ld [wd265], a
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	call GetMoveName
 	dec [hl]
 	jr z, .release_from_bounds
@@ -1318,7 +1318,7 @@ HandleWrap: ; 3c874
 	call SwitchTurnCore
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	predef PlayBattleAnim
 	call SwitchTurnCore
 
@@ -4213,7 +4213,7 @@ SendOutPlayerMon: ; 3db5f
 	call GetMonBackpic
 	xor a
 	ld [hGraphicStartTile], a
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	ld [CurMoveNum], a
 	ld [TypeModifier], a
 	ld [wPlayerMoveStruct + MOVE_ANIM], a
@@ -4551,11 +4551,11 @@ ItemRecoveryAnim: ; 3ddc8
 	push bc
 	call EmptyBattleTextBox
 	ld a, RECOVER
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	call SwitchTurnCore
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	predef PlayBattleAnim
 	call SwitchTurnCore
 	pop bc
@@ -5130,7 +5130,7 @@ BattleMenu: ; 3e139
 .next
 	ld a, $1
 	ld [hBGMapMode], a
-	ld a, [wd0d2]
+	ld a, [wBattleMenuCursorBuffer]
 	cp $1
 	jp z, BattleMenu_Fight
 	cp $3
@@ -6415,7 +6415,7 @@ LoadEnemyMon: ; 3e8eb
 	callab CalcMagikarpLength
 
 ; We're clear if the length is < 1536
-	ld a, [MagikarpLength]
+	ld a, [wMagikarpLength]
 	cp a, $06 ; $600 = 1536
 	jr nz, .CheckMagikarpArea
 
@@ -6424,7 +6424,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $0c ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1614
-	ld a, [MagikarpLength + 1]
+	ld a, [wMagikarpLength + 1]
 	cp a, $50
 	jr nc, .GenerateDVs
 
@@ -6433,7 +6433,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $32 ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1598
-	ld a, [MagikarpLength + 1]
+	ld a, [wMagikarpLength + 1]
 	cp a, $40
 	jr nc, .GenerateDVs
 
@@ -6458,7 +6458,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $64 ; / $100
 	jr c, .Happiness
 ; Floor at length 1024
-	ld a, [MagikarpLength]
+	ld a, [wMagikarpLength]
 	cp a, 1024 >> 8
 	jr c, .GenerateDVs ; try again
 
@@ -6588,7 +6588,7 @@ LoadEnemyMon: ; 3e8eb
 	ld [hli], a
 	ld [hl], a
 ; Make sure the predef knows this isn't a partymon
-	ld [MagikarpLength], a
+	ld [wEvolutionOldSpecies], a
 ; Fill moves based on level
 	predef FillMoves
 
@@ -7285,9 +7285,9 @@ Call_PlayBattleAnim_OnlyIfVisible: ; 3ee0f
 
 Call_PlayBattleAnim: ; 3ee17
 	ld a, e
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, d
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	call WaitBGMap
 	predef_jump PlayBattleAnim
 ; 3ee27
@@ -8405,7 +8405,7 @@ BattleIntro: ; 3f4dd
 	call LoadTrainerOrWildMonPic
 	xor a
 	ld [TempBattleMonSpecies], a
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	xor a
 	ld [hMapAnims], a
 	callba PlayBattleMusic
@@ -8670,7 +8670,7 @@ CleanUpBattleRAM: ; 3f6d0
 	ld [wPartyMenuCursor], a
 	ld [wKeyItemsPocketCursor], a
 	ld [wItemsPocketCursor], a
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	ld [CurMoveNum], a
 	ld [wBallsPocketCursor], a
 	ld [wLastPocket], a
