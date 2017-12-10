@@ -7,21 +7,7 @@ INCLUDE "maps/map_headers.asm"
 INCLUDE "maps/second_map_headers.asm"
 
 
-
-SECTION "Map Blockdata 1", ROMX
-
-INCLUDE "maps/blockdata_1.asm"
-
-
-SECTION "Map Blockdata 2", ROMX
-
-INCLUDE "maps/blockdata_2.asm"
-
-
-SECTION "Map Blockdata 3", ROMX
-
-INCLUDE "maps/blockdata_3.asm"
-
+INCLUDE "maps/blockdata.asm"
 
 
 SECTION "Map Scripts 1", ROMX

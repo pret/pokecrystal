@@ -620,25 +620,13 @@ INCLUDE "event/daycare.asm"
 INCLUDE "event/photo.asm"
 INCLUDE "engine/breeding/egg.asm"
 
-SECTION "Tileset Data 1", ROMX
 
-INCLUDE "tilesets/data_1.asm"
+INCLUDE "tilesets/data.asm"
 
-SECTION "Roofs", ROMX
-
-INCLUDE "tilesets/roofs.asm"
-
-SECTION "Tileset Data 2", ROMX
-
-INCLUDE "tilesets/data_2.asm"
 
 SECTION "bank8", ROMX
 
 INCLUDE "engine/clock_reset.asm"
-
-SECTION "Tileset Data 3", ROMX
-
-INCLUDE "tilesets/data_3.asm"
 
 SECTION "bank9", ROMX
 
@@ -1617,10 +1605,6 @@ PlaceGraphic: ; 2ef6e
 	dec b
 	jr nz, .x2
 	ret
-
-SECTION "Tileset Data 4", ROMX
-
-INCLUDE "tilesets/data_4.asm"
 
 SECTION "Effect Commands", ROMX
 
@@ -5032,10 +5016,6 @@ INCLUDE "text/phone/kenji_overworld.asm"
 INCLUDE "text/phone/parry_overworld.asm"
 INCLUDE "text/phone/erin_overworld.asm"
 
-SECTION "Tileset Data 5", ROMX
-
-INCLUDE "tilesets/data_5.asm"
-
 SECTION "bank2E", ROMX
 
 INCLUDE "engine/events_3.asm"
@@ -5317,10 +5297,6 @@ SECTION "Pic Animations 3", ROMX
 INCLUDE "gfx/pics/johto_frames.asm"
 INCLUDE "gfx/pics/unown_frame_pointers.asm"
 INCLUDE "gfx/pics/unown_frames.asm"
-
-SECTION "Tileset Data 6", ROMX
-
-INCLUDE "tilesets/data_6.asm"
 
 SECTION "bank38", ROMX
 
@@ -5604,10 +5580,6 @@ INCBIN "gfx/mobile/hp.1bpp"
 
 MobileLvIcon: ; 1dc599
 INCBIN "gfx/mobile/lv.1bpp"
-
-SECTION "Tileset Data 7", ROMX
-
-INCLUDE "tilesets/data_7.asm"
 
 SECTION "bank77_2", ROMX
 
@@ -6039,10 +6011,6 @@ LeggiPostaInglese:
 	dec b
 	jr nz, .loop
 	ret
-
-SECTION "Tileset Data 8", ROMX
-
-INCLUDE "tilesets/data_8.asm"
 
 SECTION "bank7B", ROMX
 
