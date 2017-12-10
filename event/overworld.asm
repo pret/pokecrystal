@@ -77,9 +77,9 @@ CheckPartyMove: ; c742
 	ld a, [hl]
 	and a
 	jr z, .no
-	cp a, -1
+	cp -1
 	jr z, .no
-	cp a, EGG
+	cp EGG
 	jr z, .next
 
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -510,7 +510,7 @@ CheckDirection: ; c9cb
 
 ; Get player direction
 	ld a, [PlayerDirection]
-	and a, %00001100 ; bits 2 and 3 contain direction
+	and %00001100 ; bits 2 and 3 contain direction
 	rrca
 	rrca
 	ld e, a

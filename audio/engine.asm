@@ -744,7 +744,7 @@ LoadNote: ; e83d1
 	sub [hl]
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
@@ -766,7 +766,7 @@ LoadNote: ; e83d1
 	sub e
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	; ????
 	ld hl, Channel1PitchWheelTarget + 1 - Channel1
@@ -793,7 +793,7 @@ LoadNote: ; e83d1
 	sub [hl]
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
@@ -1021,7 +1021,7 @@ ApplyPitchWheel: ; e84f9
 	sub e
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	; [Channel*Field0x25] *= 2
 	; if rollover: Frequency -= 1
@@ -1031,10 +1031,10 @@ ApplyPitchWheel: ; e84f9
 	add a
 	ld [hl], a
 	ld a, e
-	sbc a, 0
+	sbc 0
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	; Compare the dw at [Channel*PitchWheelTarget] to de.
 	; If frequency is lower, we're finished.
@@ -1378,7 +1378,7 @@ ParseMusicCommand: ; e870f
 	; reload command
 	ld a, [CurMusicByte]
 	; get command #
-	sub a, $d0 ; first command
+	sub $d0 ; first command
 	ld e, a
 	ld d, 0
 	; seek command pointer

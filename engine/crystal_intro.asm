@@ -183,7 +183,7 @@ PlaceGameFreakPresents_2: ; e46ba
 .place_presents
 	ld [hl], 0
 	ld hl, .presents
-	decoord 7,11
+	decoord 7, 11
 	ld bc, .end - .presents
 	call CopyBytes
 	call PlaceGameFreakPresents_AdvanceIndex

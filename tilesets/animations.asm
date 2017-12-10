@@ -304,7 +304,7 @@ WaitTileAnimation: ; fc2fe
 StandingTileFrame8: ; fc2ff
 	ld a, [TileAnimationTimer]
 	inc a
-	and a, 7
+	and 7
 	ld [TileAnimationTimer], a
 	ret
 ; fc309

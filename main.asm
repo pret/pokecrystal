@@ -183,7 +183,7 @@ CheckNickErrors:: ; 669f
 	inc hl
 ; reached end of commands table?
 	ld a, [hl]
-	cp a, -1
+	cp -1
 	jr z, .done
 
 ; is the current char between this value (inclusive)...

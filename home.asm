@@ -1830,7 +1830,7 @@ PrintBCDNumber:: ; 38bb
 ; 0x38f2
 
 PrintBCDDigit:: ; 38f2
-	and a, %00001111
+	and %00001111
 	and a
 	jr z, .zeroDigit
 .nonzeroDigit
@@ -1845,7 +1845,7 @@ PrintBCDDigit:: ; 38f2
 .skipCurrencySymbol
 	res 7, b ; unset 7 to indicate that a nonzero digit has been reached
 .outputDigit
-	add a, "0"
+	add "0"
 	ld [hli], a
 	jp PrintLetterDelay
 

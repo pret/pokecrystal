@@ -130,7 +130,7 @@ GetJoypad:: ; 984
 ; The player input can be automated using an input stream.
 ; See more below.
 	ld a, [InputType]
-	cp a, AUTO_INPUT
+	cp AUTO_INPUT
 	jr z, .auto
 
 ; To get deltas, take this and last frame's input.
@@ -197,14 +197,14 @@ GetJoypad:: ; 984
 .updateauto
 ; An input of $ff will end the stream.
 	ld a, [hli]
-	cp a, -1
+	cp -1
 	jr z, .stopauto
 	ld b, a
 
 ; A duration of $ff will end the stream indefinitely.
 	ld a, [hli]
 	ld [AutoInputLength], a
-	cp a, -1
+	cp -1
 	jr nz, .next
 
 ; The current input is overwritten.
