@@ -823,3 +823,14 @@ const_value SET 1
 	const BG_EFFECT_STRUCT_JT_INDEX
 	const BG_EFFECT_STRUCT_BATTLE_TURN
 	const BG_EFFECT_STRUCT_03
+
+; animation object palettes
+	const_def
+	const PAL_BATTLE_ENEMY  ; 0
+	const PAL_BATTLE_PLAYER ; 1
+	const PAL_BATTLE_GRAY   ; 2
+	const PAL_BATTLE_YELLOW ; 3
+	const PAL_BATTLE_RED    ; 4
+	const PAL_BATTLE_GREEN  ; 5
+	const PAL_BATTLE_BLUE   ; 6
+	const PAL_BATTLE_BROWN  ; 7
