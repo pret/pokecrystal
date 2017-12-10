@@ -167,6 +167,8 @@ gfx/trade/game_boy_n64.2bpp: tools/gfx += --trim-whitespace
 gfx/slots/slots_2.2bpp: tools/gfx += --interleave --png=$<
 gfx/slots/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
 
+gfx/card_flip/card_flip_2.2bpp: tools/gfx += --remove-whitespace
+
 gfx/fx/angels.2bpp: tools/gfx += --trim-whitespace
 gfx/fx/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
 gfx/fx/bubble.2bpp: tools/gfx += --trim-whitespace
@@ -200,7 +202,6 @@ gfx/misc/unknown_egg.2bpp: rgbgfx += -h
 gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
 gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
 
-gfx/unknown/0e0ea8.2bpp: tools/gfx += --remove-whitespace
 gfx/unknown/0f8f34.1bpp: tools/gfx += --trim-whitespace
 gfx/unknown/16c173.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/unknown/170d16.2bpp: tools/gfx += --trim-whitespace

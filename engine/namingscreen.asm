@@ -946,11 +946,11 @@ LoadNamingScreenGFX: ; 11c51
 ; 11cb7
 
 NamingScreenGFX_Border: ; 11cb7
-INCBIN "gfx/unknown/011cb7.2bpp"
+INCBIN "gfx/namingscreen/border.2bpp"
 ; 11cc7
 
 NamingScreenGFX_Cursor: ; 11cc7
-INCBIN "gfx/unknown/011cc7.2bpp"
+INCBIN "gfx/namingscreen/cursor.2bpp"
 ; 11ce7
 
 NameInputLower:
@@ -985,16 +985,16 @@ BoxNameInputUpper:
 
 ; 11e5d
 
-GFX_11e5d: ; ????
-INCBIN "gfx/unknown/011e5d.1bpp"
+NamingScreenGFX_End: ; unused
+INCBIN "gfx/namingscreen/end.1bpp"
 ; 11e6d
 
 NamingScreenGFX_MiddleLine:
-INCBIN "gfx/unknown/011e65.1bpp"
+INCBIN "gfx/namingscreen/middle_line.1bpp"
 ; 11e6d
 
 NamingScreenGFX_UnderLine: ; 11e6d
-INCBIN "gfx/unknown/011e6d.1bpp"
+INCBIN "gfx/namingscreen/underline.1bpp"
 ; 11e75
 
 _ComposeMailMessage: ; 11e75 (mail?)

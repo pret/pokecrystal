@@ -79,17 +79,17 @@
 
 ; Actual characters (from other graphics files)
 
-	charmap "|",        $31 ; StatsScreenPageTilesGFX
+	charmap "|",        $31 ; from gfx/stats/stats_tiles
 
-	charmap "<SHINY>",  $3f ; ShinyIcon
+	charmap "<SHINY>",  $3f ; gfx/stats/shiny
 
-	charmap "<BLACK>",  $60 ; MobilePhoneTilesGFX
-	charmap "▲",        $61 ; FontsExtra2_UpArrowGFX
-	charmap "<PHONE>",  $62 ; OverworldPhoneIconGFX
-	charmap "_",        $62 ; HPExpBarBorderGFX
+	charmap "<BLACK>",  $60 ; from gfx/mobile/phone_tiles.2bpp
+	charmap "▲",        $61 ; gfx/font/up_arrow.png
+	charmap "<PHONE>",  $62 ; gfx/mobile/overworld_phone_icon.2bpp
+	charmap "_",        $62 ; from gfx/battle/hp_exp_bar_border.1bpp
 
-	charmap "′",        $6e ; Magikarp_LoadFeetInchesChars.feetinchchars
-	charmap "″",        $6f ; Magikarp_LoadFeetInchesChars.feetinchchars
+	charmap "′",        $6e ; gfx/font/feet_inches.png
+	charmap "″",        $6f ; gfx/font/feet_inches.png
 
 ; Actual characters (from gfx/misc/font.png)
 

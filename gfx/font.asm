@@ -19,19 +19,19 @@ INCBIN "gfx/frames/8.1bpp"
 INCBIN "gfx/frames/9.1bpp"
 ; f89b0
 
-; TODO: Various misc graphics here.
+; Various misc graphics here.
 
 StatsScreenPageTilesGFX: ; f89b0
-INCBIN "gfx/unknown/0f89b0.2bpp"
+INCBIN "gfx/stats/stats_tiles.2bpp"
 ; f8a90
 
-ShinyIcon: ; f8a90
+ShinyIconGFX: ; f8a90
 ; also part of StatsScreenPageTilesGFX
 INCBIN "gfx/stats/shiny.2bpp"
 
-StatsScreenPageTilesGFX_Part2: ; f8aa0
+ExpBarEndsGFX: ; f8aa0
 ; not referenced on its own, but part of StatsScreenPageTilesGFX
-INCBIN "gfx/unknown/0f8aa0.2bpp"
+INCBIN "gfx/stats/exp_bar_ends.2bpp"
 ; f8ac0
 
 EnemyHPBarBorderGFX: ; f8ac0
@@ -75,7 +75,7 @@ INCBIN "gfx/frames/map_entry_sign.2bpp"
 ; f9424
 
 FontsExtra2_UpArrowGFX: ; f9424
-INCBIN "gfx/unknown/0f9424.2bpp"
+INCBIN "gfx/font/up_arrow.2bpp"
 ; f9434
 
 Footprints: ; f9434

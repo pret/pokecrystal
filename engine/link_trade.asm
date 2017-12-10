@@ -1,5 +1,5 @@
 LinkCommsBorderGFX:
-INCBIN "gfx/unknown/16cfc1.2bpp"
+INCBIN "gfx/trade/border_tiles.2bpp"
 ; 16d421
 
 __LoadTradeScreenBorder: ; 16d421
@@ -35,13 +35,13 @@ Function16d43b: ; 16d43b
 ; 16d465
 
 Tilemap_16d465:
-INCBIN "gfx/unknown/16d465.tilemap"
+INCBIN "gfx/trade/border_mobile_fullscreen.tilemap"
 
 Tilemap_16d5cd:
-INCBIN "gfx/unknown/16d5cd.tilemap"
+INCBIN "gfx/trade/border_cable_top.tilemap"
 
 Tilemap_16d5f5:
-INCBIN "gfx/unknown/16d5f5.tilemap"
+INCBIN "gfx/trade/border_cable_bottom.tilemap"
 
 _LinkTextbox: ; 16d61d
 	ld h, d

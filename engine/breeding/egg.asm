@@ -813,7 +813,7 @@ EggHatch_CrackShell: ; 1736d (5:736d)
 ; 17393 (5:7393)
 
 EggHatchGFX: ; 17393
-INCBIN "gfx/unknown/017393.2bpp"
+INCBIN "gfx/evo/egg_hatch.2bpp"
 ; 173b3
 
 Hatch_InitShellFragments: ; 173b3 (5:73b3)
