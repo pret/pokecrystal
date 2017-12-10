@@ -745,7 +745,7 @@ SwitchPartyMons: ; 12aec
 	callba HoldSwitchmonIcon
 	callba InitPartyMenuNoCancel
 
-	ld a, 4
+	ld a, PARTYMENUACTION_MOVE
 	ld [PartyMenuActionText], a
 	callba WritePartyMenuTilemap
 	callba PrintPartyMenuText

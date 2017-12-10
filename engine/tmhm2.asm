@@ -80,7 +80,7 @@ ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
 	callba LoadPartyMenuGFX
 	callba InitPartyMenuWithCancel
 	callba InitPartyMenuGFX
-	ld a, $3 ; TeachWhichPKMNString
+	ld a, PARTYMENUACTION_TEACH_TMHM
 	ld [PartyMenuActionText], a
 .loopback
 	callba WritePartyMenuTilemap

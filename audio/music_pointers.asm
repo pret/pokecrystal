@@ -1,12 +1,4 @@
-; See song sections in main.asm:
-; 	Songs i
-; 	Songs ii
-; 	Songs iii
-; 	Songs I
-; 	Songs II
-; 	Songs III
-; 	Songs IV
-; 	Songs V
+; See song sections in audio.asm.
 
 ; e906e
 	dba Music_Nothing ; 0xe91a3
