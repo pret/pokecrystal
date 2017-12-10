@@ -2,7 +2,7 @@ const_value set 2
 	const RUINSOFALPHKABUTOCHAMBER_RECEPTIONIST
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
-RuinsofAlphKabutoChamber_MapScriptHeader:
+RuinsOfAlphKabutoChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
 
@@ -61,7 +61,7 @@ UnknownScript_0x58751:
 ReceptionistScript_0x58769:
 	jumptextfaceplayer UnknownText_0x58800
 
-MapRuinsofAlphKabutoChamberSignpost2Script:
+MapRuinsOfAlphKabutoChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $0
 	special Special_UnownPuzzle
@@ -119,13 +119,13 @@ UnknownScript_0x587cf:
 	closetext
 	end
 
-MapRuinsofAlphKabutoChamberSignpost1Script:
+MapRuinsOfAlphKabutoChamberSignpost1Script:
 	jumptext UnknownText_0x58b1a
 
-MapRuinsofAlphKabutoChamberSignpost3Script:
+MapRuinsOfAlphKabutoChamberSignpost3Script:
 	jumptext UnknownText_0x58b3f
 
-MapRuinsofAlphKabutoChamberSignpost4Script:
+MapRuinsOfAlphKabutoChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58aa7
 	writebyte $0
@@ -133,7 +133,7 @@ MapRuinsofAlphKabutoChamberSignpost4Script:
 	closetext
 	end
 
-MapRuinsofAlphKabutoChamberSignpost5Script:
+MapRuinsOfAlphKabutoChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587f7
 	opentext
@@ -262,7 +262,7 @@ UnknownText_0x58b3f:
 	line "scanned the area."
 	done
 
-RuinsofAlphKabutoChamber_MapEventHeader:
+RuinsOfAlphKabutoChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -279,12 +279,12 @@ RuinsofAlphKabutoChamber_MapEventHeader:
 
 .Signposts:
 	db 6
-	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphKabutoChamberSignpost1Script
-	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphKabutoChamberSignpost1Script
-	signpost 2, 3, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost2Script
-	signpost 2, 4, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost3Script
-	signpost 0, 3, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost4Script
-	signpost 0, 4, SIGNPOST_UP, MapRuinsofAlphKabutoChamberSignpost5Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
+	signpost 2, 3, SIGNPOST_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
+	signpost 2, 4, SIGNPOST_UP, MapRuinsOfAlphKabutoChamberSignpost3Script
+	signpost 0, 3, SIGNPOST_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
+	signpost 0, 4, SIGNPOST_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
 
 .PersonEvents:
 	db 2

@@ -97,13 +97,13 @@ ENDM
 	engine_flag wPokegearFlags, 3 ; expn card
 	engine_flag wPokegearFlags, 7 ; on/off
 
-	;   wDaycareMan, 7 ; daycare 1 on
-	engine_flag wDaycareMan, 6 ; egg is ready
-	;   wDaycareMan, 5 ; monster 1 and 2 are compatible
-	engine_flag wDaycareMan, 0 ; monster 1 in daycare
+	;   wDayCareMan, 7 ; day-care 1 on
+	engine_flag wDayCareMan, 6 ; egg is ready
+	;   wDayCareMan, 5 ; monster 1 and 2 are compatible
+	engine_flag wDayCareMan, 0 ; monster 1 in day-care
 
-	;   wDaycareLady, 7 = daycare 2 on
-	engine_flag wDaycareLady, 0 ; monster 2 in daycare
+	;   wDayCareLady, 7 = day-care 2 on
+	engine_flag wDayCareLady, 0 ; monster 2 in day-care
 
 	engine_flag wMomSavingMoney, 0 ; mom saving money ; $8
 	engine_flag wMomSavingMoney, 7 ; dst

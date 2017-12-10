@@ -3,7 +3,7 @@ const_value set 2
 	const RUINSOFALPHINNERCHAMBER_TEACHER
 	const RUINSOFALPHINNERCHAMBER_GRAMPS
 
-RuinsofAlphInnerChamber_MapScriptHeader:
+RuinsOfAlphInnerChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
 
@@ -42,7 +42,7 @@ TeacherScript_0x58f80:
 GrampsScript_0x58f83:
 	jumptextfaceplayer UnknownText_0x59024
 
-MapRuinsofAlphInnerChamberSignpost25Script:
+RuinsOfAlphInnerChamberStatueScript:
 	jumptext UnknownText_0x59072
 
 UnknownText_0x58f89:
@@ -80,7 +80,7 @@ UnknownText_0x59072:
 	cont "MON."
 	done
 
-RuinsofAlphInnerChamber_MapEventHeader:
+RuinsOfAlphInnerChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -101,32 +101,32 @@ RuinsofAlphInnerChamber_MapEventHeader:
 
 .Signposts:
 	db 26
-	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 8, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 11, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 14, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 3, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 5, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 8, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 11, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 14, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 8, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 13, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 13, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 5, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 8, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 11, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 14, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 18, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 2, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 5, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 8, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 11, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 14, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
-	signpost 24, 17, SIGNPOST_READ, MapRuinsofAlphInnerChamberSignpost25Script
+	signpost 3, 2, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 3, 5, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 3, 8, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 3, 11, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 3, 14, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 3, 17, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 8, 2, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 8, 5, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 8, 8, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 8, 11, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 8, 14, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 8, 17, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 13, 2, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 13, 17, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 18, 2, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 18, 5, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 18, 8, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 18, 11, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 18, 14, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 18, 17, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 24, 2, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 24, 5, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 24, 8, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 24, 11, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 24, 14, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
+	signpost 24, 17, SIGNPOST_READ, RuinsOfAlphInnerChamberStatueScript
 
 .PersonEvents:
 	db 3

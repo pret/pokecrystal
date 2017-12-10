@@ -1,4 +1,4 @@
-RuinsofAlphAerodactylChamber_MapScriptHeader:
+RuinsOfAlphAerodactylChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
 
@@ -52,7 +52,7 @@ UnknownScript_0x58dd3:
 	closetext
 	end
 
-MapRuinsofAlphAerodactylChamberSignpost2Script:
+MapRuinsOfAlphAerodactylChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $2
 	special Special_UnownPuzzle
@@ -79,13 +79,13 @@ UnknownScript_0x58df7:
 	warpcheck
 	end
 
-MapRuinsofAlphAerodactylChamberSignpost1Script:
+MapRuinsOfAlphAerodactylChamberSignpost1Script:
 	jumptext UnknownText_0x58ec2
 
-MapRuinsofAlphAerodactylChamberSignpost3Script:
+MapRuinsOfAlphAerodactylChamberSignpost3Script:
 	jumptext UnknownText_0x58ee7
 
-MapRuinsofAlphAerodactylChamberSignpost4Script:
+MapRuinsOfAlphAerodactylChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58e4f
 	writebyte $1
@@ -93,7 +93,7 @@ MapRuinsofAlphAerodactylChamberSignpost4Script:
 	closetext
 	end
 
-MapRuinsofAlphAerodactylChamberSignpost5Script:
+MapRuinsOfAlphAerodactylChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58e46
 	opentext
@@ -148,7 +148,7 @@ UnknownText_0x58ee7:
 	line "fangs."
 	done
 
-RuinsofAlphAerodactylChamber_MapEventHeader:
+RuinsOfAlphAerodactylChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -165,12 +165,12 @@ RuinsofAlphAerodactylChamber_MapEventHeader:
 
 .Signposts:
 	db 6
-	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphAerodactylChamberSignpost1Script
-	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphAerodactylChamberSignpost1Script
-	signpost 2, 3, SIGNPOST_UP, MapRuinsofAlphAerodactylChamberSignpost2Script
-	signpost 2, 4, SIGNPOST_UP, MapRuinsofAlphAerodactylChamberSignpost3Script
-	signpost 0, 3, SIGNPOST_UP, MapRuinsofAlphAerodactylChamberSignpost4Script
-	signpost 0, 4, SIGNPOST_UP, MapRuinsofAlphAerodactylChamberSignpost5Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
+	signpost 2, 3, SIGNPOST_UP, MapRuinsOfAlphAerodactylChamberSignpost2Script
+	signpost 2, 4, SIGNPOST_UP, MapRuinsOfAlphAerodactylChamberSignpost3Script
+	signpost 0, 3, SIGNPOST_UP, MapRuinsOfAlphAerodactylChamberSignpost4Script
+	signpost 0, 4, SIGNPOST_UP, MapRuinsOfAlphAerodactylChamberSignpost5Script
 
 .PersonEvents:
 	db 0

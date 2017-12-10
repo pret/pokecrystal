@@ -1,7 +1,7 @@
 const_value set 2
 	const LAKEOFRAGEMAGIKARPHOUSE_FISHING_GURU
 
-LakeofRageMagikarpHouse_MapScriptHeader:
+LakeOfRageMagikarpHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
 
@@ -205,7 +205,7 @@ UnknownText_0x19aabc:
 	text_from_ram StringBuffer4
 	db "@@"
 
-LakeofRageMagikarpHouse_MapEventHeader:
+LakeOfRageMagikarpHouse_MapEventHeader:
 	; filler
 	db 0, 0
 

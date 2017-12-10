@@ -3,7 +3,7 @@ const_value set 2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 
-RuinsofAlphResearchCenter_MapScriptHeader:
+RuinsOfAlphResearchCenter_MapScriptHeader:
 .MapTriggers:
 	db 2
 
@@ -137,7 +137,7 @@ UnknownScript_0x5922e:
 	closetext
 	end
 
-MapRuinsofAlphResearchCenterSignpost1Script:
+MapRuinsOfAlphResearchCenterSignpost1Script:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x59241
@@ -155,7 +155,7 @@ UnknownScript_0x59247:
 	closetext
 	end
 
-MapRuinsofAlphResearchCenterSignpost2Script:
+MapRuinsOfAlphResearchCenterSignpost2Script:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x5925a
@@ -177,7 +177,7 @@ UnknownScript_0x59260:
 UnknownScript_0x59269:
 	jumptext UnknownText_0x59848
 
-MapRuinsofAlphResearchCenterSignpost0Script:
+MapRuinsOfAlphResearchCenterSignpost0Script:
 	jumptext UnknownText_0x59886
 
 MovementData_0x5926f:
@@ -397,7 +397,7 @@ UnknownText_0x59886:
 	cont "Ancients…"
 	done
 
-RuinsofAlphResearchCenter_MapEventHeader:
+RuinsOfAlphResearchCenter_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -411,9 +411,9 @@ RuinsofAlphResearchCenter_MapEventHeader:
 
 .Signposts:
 	db 3
-	signpost 5, 6, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost0Script
-	signpost 4, 3, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost1Script
-	signpost 1, 7, SIGNPOST_READ, MapRuinsofAlphResearchCenterSignpost2Script
+	signpost 5, 6, SIGNPOST_READ, MapRuinsOfAlphResearchCenterSignpost0Script
+	signpost 4, 3, SIGNPOST_READ, MapRuinsOfAlphResearchCenterSignpost1Script
+	signpost 1, 7, SIGNPOST_READ, MapRuinsOfAlphResearchCenterSignpost2Script
 
 .PersonEvents:
 	db 3

@@ -36,7 +36,7 @@
 	connection west, ROUTE_42, Route42, 0, 0, 9, MAHOGANY_TOWN
 	connection east, ROUTE_44, Route44, 0, 0, 9, MAHOGANY_TOWN
 
-	map_header_2 LakeofRage, LAKE_OF_RAGE, $5, SOUTH
+	map_header_2 LakeOfRage, LAKE_OF_RAGE, $5, SOUTH
 	connection south, ROUTE_43, Route43, 5, 0, 10, LAKE_OF_RAGE
 
 	map_header_2 BlackthornCity, BLACKTHORN_CITY, $71, SOUTH | WEST
@@ -115,7 +115,7 @@
 	connection east, MAHOGANY_TOWN, MahoganyTown, 0, 0, 9, ROUTE_42
 
 	map_header_2 Route43, ROUTE_43, $5, NORTH | SOUTH
-	connection north, LAKE_OF_RAGE, LakeofRage, -3, 2, 16, ROUTE_43
+	connection north, LAKE_OF_RAGE, LakeOfRage, -3, 2, 16, ROUTE_43
 	connection south, MAHOGANY_TOWN, MahoganyTown, 0, 0, 10, ROUTE_43
 
 	map_header_2 Route44, ROUTE_44, $71, WEST | EAST
@@ -298,21 +298,21 @@
 	map_header_2 RadioTower3F, RADIO_TOWER_3F, $0, 0
 	map_header_2 RadioTower4F, RADIO_TOWER_4F, $0, 0
 	map_header_2 RadioTower5F, RADIO_TOWER_5F, $0, 0
-	map_header_2 RuinsofAlphOutside, RUINS_OF_ALPH_OUTSIDE, $5, 0
-	map_header_2 RuinsofAlphHoOhChamber, RUINS_OF_ALPH_HO_OH_CHAMBER, $0, 0
-	map_header_2 RuinsofAlphKabutoChamber, RUINS_OF_ALPH_KABUTO_CHAMBER, $0, 0
-	map_header_2 RuinsofAlphOmanyteChamber, RUINS_OF_ALPH_OMANYTE_CHAMBER, $0, 0
-	map_header_2 RuinsofAlphAerodactylChamber, RUINS_OF_ALPH_AERODACTYL_CHAMBER, $0, 0
-	map_header_2 RuinsofAlphInnerChamber, RUINS_OF_ALPH_INNER_CHAMBER, $0, 0
-	map_header_2 RuinsofAlphResearchCenter, RUINS_OF_ALPH_RESEARCH_CENTER, $0, 0
-	map_header_2 RuinsofAlphHoOhItemRoom, RUINS_OF_ALPH_HO_OH_ITEM_ROOM, $0, 0
-	map_header_2 RuinsofAlphKabutoItemRoom, RUINS_OF_ALPH_KABUTO_ITEM_ROOM, $0, 0
-	map_header_2 RuinsofAlphOmanyteItemRoom, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM, $0, 0
-	map_header_2 RuinsofAlphAerodactylItemRoom, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM, $0, 0
-	map_header_2 RuinsofAlphHoOhWordRoom, RUINS_OF_ALPH_HO_OH_WORD_ROOM, $0, 0
-	map_header_2 RuinsofAlphKabutoWordRoom, RUINS_OF_ALPH_KABUTO_WORD_ROOM, $0, 0
-	map_header_2 RuinsofAlphOmanyteWordRoom, RUINS_OF_ALPH_OMANYTE_WORD_ROOM, $0, 0
-	map_header_2 RuinsofAlphAerodactylWordRoom, RUINS_OF_ALPH_AERODACTYL_WORD_ROOM, $0, 0
+	map_header_2 RuinsOfAlphOutside, RUINS_OF_ALPH_OUTSIDE, $5, 0
+	map_header_2 RuinsOfAlphHoOhChamber, RUINS_OF_ALPH_HO_OH_CHAMBER, $0, 0
+	map_header_2 RuinsOfAlphKabutoChamber, RUINS_OF_ALPH_KABUTO_CHAMBER, $0, 0
+	map_header_2 RuinsOfAlphOmanyteChamber, RUINS_OF_ALPH_OMANYTE_CHAMBER, $0, 0
+	map_header_2 RuinsOfAlphAerodactylChamber, RUINS_OF_ALPH_AERODACTYL_CHAMBER, $0, 0
+	map_header_2 RuinsOfAlphInnerChamber, RUINS_OF_ALPH_INNER_CHAMBER, $0, 0
+	map_header_2 RuinsOfAlphResearchCenter, RUINS_OF_ALPH_RESEARCH_CENTER, $0, 0
+	map_header_2 RuinsOfAlphHoOhItemRoom, RUINS_OF_ALPH_HO_OH_ITEM_ROOM, $0, 0
+	map_header_2 RuinsOfAlphKabutoItemRoom, RUINS_OF_ALPH_KABUTO_ITEM_ROOM, $0, 0
+	map_header_2 RuinsOfAlphOmanyteItemRoom, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM, $0, 0
+	map_header_2 RuinsOfAlphAerodactylItemRoom, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM, $0, 0
+	map_header_2 RuinsOfAlphHoOhWordRoom, RUINS_OF_ALPH_HO_OH_WORD_ROOM, $0, 0
+	map_header_2 RuinsOfAlphKabutoWordRoom, RUINS_OF_ALPH_KABUTO_WORD_ROOM, $0, 0
+	map_header_2 RuinsOfAlphOmanyteWordRoom, RUINS_OF_ALPH_OMANYTE_WORD_ROOM, $0, 0
+	map_header_2 RuinsOfAlphAerodactylWordRoom, RUINS_OF_ALPH_AERODACTYL_WORD_ROOM, $0, 0
 	map_header_2 UnionCave1F, UNION_CAVE_1F, $9, 0
 	map_header_2 UnionCaveB1F, UNION_CAVE_B1F, $9, 0
 	map_header_2 UnionCaveB2F, UNION_CAVE_B2F, $9, 0
@@ -418,8 +418,8 @@
 	map_header_2 AzaleaMart, AZALEA_MART, $0, 0
 	map_header_2 KurtsHouse, KURTS_HOUSE, $0, 0
 	map_header_2 AzaleaGym, AZALEA_GYM, $0, 0
-	map_header_2 LakeofRageHiddenPowerHouse, LAKE_OF_RAGE_HIDDEN_POWER_HOUSE, $0, 0
-	map_header_2 LakeofRageMagikarpHouse, LAKE_OF_RAGE_MAGIKARP_HOUSE, $0, 0
+	map_header_2 LakeOfRageHiddenPowerHouse, LAKE_OF_RAGE_HIDDEN_POWER_HOUSE, $0, 0
+	map_header_2 LakeOfRageMagikarpHouse, LAKE_OF_RAGE_MAGIKARP_HOUSE, $0, 0
 	map_header_2 Route43MahoganyGate, ROUTE_43_MAHOGANY_GATE, $0, 0
 	map_header_2 Route43Gate, ROUTE_43_GATE, $0, 0
 	map_header_2 VioletMart, VIOLET_MART, $0, 0
@@ -428,12 +428,12 @@
 	map_header_2 VioletNicknameSpeechHouse, VIOLET_NICKNAME_SPEECH_HOUSE, $0, 0
 	map_header_2 VioletPokeCenter1F, VIOLET_POKECENTER_1F, $0, 0
 	map_header_2 VioletOnixTradeHouse, VIOLET_ONIX_TRADE_HOUSE, $0, 0
-	map_header_2 Route32RuinsofAlphGate, ROUTE_32_RUINS_OF_ALPH_GATE, $0, 0
+	map_header_2 Route32RuinsOfAlphGate, ROUTE_32_RUINS_OF_ALPH_GATE, $0, 0
 	map_header_2 Route32PokeCenter1F, ROUTE_32_POKECENTER_1F, $0, 0
-	map_header_2 Route35Goldenrodgate, ROUTE_35_GOLDENROD_GATE, $0, 0
-	map_header_2 Route35NationalParkgate, ROUTE_35_NATIONAL_PARK_GATE, $0, 0
-	map_header_2 Route36RuinsofAlphgate, ROUTE_36_RUINS_OF_ALPH_GATE, $0, 0
-	map_header_2 Route36NationalParkgate, ROUTE_36_NATIONAL_PARK_GATE, $0, 0
+	map_header_2 Route35GoldenrodGate, ROUTE_35_GOLDENROD_GATE, $0, 0
+	map_header_2 Route35NationalParkGate, ROUTE_35_NATIONAL_PARK_GATE, $0, 0
+	map_header_2 Route36RuinsOfAlphGate, ROUTE_36_RUINS_OF_ALPH_GATE, $0, 0
+	map_header_2 Route36NationalParkGate, ROUTE_36_NATIONAL_PARK_GATE, $0, 0
 	map_header_2 GoldenrodGym, GOLDENROD_GYM, $0, 0
 	map_header_2 GoldenrodBikeShop, GOLDENROD_BIKE_SHOP, $0, 0
 	map_header_2 GoldenrodHappinessRater, GOLDENROD_HAPPINESS_RATER, $0, 0
@@ -455,7 +455,7 @@
 	map_header_2 GoldenrodPokeComCenter2FMobile, GOLDENROD_POKECOM_CENTER_2F_MOBILE, $0, 0
 	map_header_2 IlexForestAzaleaGate, ILEX_FOREST_AZALEA_GATE, $0, 0
 	map_header_2 Route34IlexForestGate, ROUTE_34_ILEX_FOREST_GATE, $0, 0
-	map_header_2 DayCare, DAYCARE, $0, 0
+	map_header_2 DayCare, DAY_CARE, $0, 0
 	map_header_2 VermilionHouseFishingSpeechHouse, VERMILION_HOUSE_FISHING_SPEECH_HOUSE, $0, 0
 	map_header_2 VermilionPokeCenter1F, VERMILION_POKECENTER_1F, $0, 0
 	map_header_2 VermilionPokeCenter2FBeta, VERMILION_POKECENTER_2F_BETA, $0, 0

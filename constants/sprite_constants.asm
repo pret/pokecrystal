@@ -146,8 +146,8 @@ SPRITE_POKEMON EQU const_value
 
 ; special GetMonSprite values (see engine/overworld.asm)
 const_value SET $e0
-	const SPRITE_DAYCARE_MON_1 ; e0
-	const SPRITE_DAYCARE_MON_2 ; e1
+	const SPRITE_DAY_CARE_MON_1 ; e0
+	const SPRITE_DAY_CARE_MON_2 ; e1
 
 ; VariableSprites indexes (see wram.asm)
 const_value SET $f0

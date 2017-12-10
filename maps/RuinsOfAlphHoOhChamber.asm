@@ -1,4 +1,4 @@
-RuinsofAlphHoOhChamber_MapScriptHeader:
+RuinsOfAlphHoOhChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
 
@@ -53,7 +53,7 @@ UnknownScript_0x58596:
 	closetext
 	end
 
-MapRuinsofAlphHoOhChamberSignpost2Script:
+MapRuinsOfAlphHoOhChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $3
 	special Special_UnownPuzzle
@@ -80,13 +80,13 @@ UnknownScript_0x585ba:
 	warpcheck
 	end
 
-MapRuinsofAlphHoOhChamberSignpost1Script:
+MapRuinsOfAlphHoOhChamberSignpost1Script:
 	jumptext UnknownText_0x58685
 
-MapRuinsofAlphHoOhChamberSignpost3Script:
+MapRuinsOfAlphHoOhChamberSignpost3Script:
 	jumptext UnknownText_0x586aa
 
-MapRuinsofAlphHoOhChamberSignpost4Script:
+MapRuinsOfAlphHoOhChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58612
 	writebyte $3
@@ -94,7 +94,7 @@ MapRuinsofAlphHoOhChamberSignpost4Script:
 	closetext
 	end
 
-MapRuinsofAlphHoOhChamberSignpost5Script:
+MapRuinsOfAlphHoOhChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue UnknownScript_0x58609
 	opentext
@@ -149,7 +149,7 @@ UnknownText_0x586aa:
 	line "wings."
 	done
 
-RuinsofAlphHoOhChamber_MapEventHeader:
+RuinsOfAlphHoOhChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -166,12 +166,12 @@ RuinsofAlphHoOhChamber_MapEventHeader:
 
 .Signposts:
 	db 6
-	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphHoOhChamberSignpost1Script
-	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphHoOhChamberSignpost1Script
-	signpost 2, 3, SIGNPOST_UP, MapRuinsofAlphHoOhChamberSignpost2Script
-	signpost 2, 4, SIGNPOST_UP, MapRuinsofAlphHoOhChamberSignpost3Script
-	signpost 0, 3, SIGNPOST_UP, MapRuinsofAlphHoOhChamberSignpost4Script
-	signpost 0, 4, SIGNPOST_UP, MapRuinsofAlphHoOhChamberSignpost5Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
+	signpost 2, 3, SIGNPOST_UP, MapRuinsOfAlphHoOhChamberSignpost2Script
+	signpost 2, 4, SIGNPOST_UP, MapRuinsOfAlphHoOhChamberSignpost3Script
+	signpost 0, 3, SIGNPOST_UP, MapRuinsOfAlphHoOhChamberSignpost4Script
+	signpost 0, 4, SIGNPOST_UP, MapRuinsOfAlphHoOhChamberSignpost5Script
 
 .PersonEvents:
 	db 0

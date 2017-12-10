@@ -12,7 +12,7 @@ const_value set 2
 	const ROUTE36NATIONALPARKGATE_YOUNGSTER7
 	const ROUTE36NATIONALPARKGATE_OFFICER2
 
-Route36NationalParkgate_MapScriptHeader:
+Route36NationalParkGate_MapScriptHeader:
 .MapTriggers:
 	db 3
 
@@ -156,7 +156,7 @@ Route36OfficerScriptContest:
 	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue Route36Officer_ContestHasConcluded
-	scall Route36Parkgate_DayToText
+	scall Route36ParkGate_DayToText
 	writetext UnknownText_0x6add5
 	yesorno
 	iffalse .DecidedNotToJoinContest
@@ -307,7 +307,7 @@ OfficerScript_0x6acf4:
 	closetext
 	end
 
-Route36Parkgate_DayToText:
+Route36ParkGate_DayToText:
 	jumpstd daytotext
 	end
 
@@ -856,7 +856,7 @@ UnknownText_0x6b97f:
 	cont "for you."
 	done
 
-Route36NationalParkgate_MapEventHeader:
+Route36NationalParkGate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -872,7 +872,7 @@ Route36NationalParkgate_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 0, 6, SIGNPOST_READ, MapRoute36NationalParkgateSignpost0Script
+	signpost 0, 6, SIGNPOST_READ, MapRoute36NationalParkGateSignpost0Script
 
 .PersonEvents:
 	db 12

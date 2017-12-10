@@ -1862,8 +1862,8 @@ wWhichHPBar::
 wPokemonWithdrawDepositParameter::
 ; 0: Take from PC
 ; 1: Put into PC
-; 2: Take from Daycare
-; 3: Put into Daycare
+; 2: Take from Day-Care
+; 3: Put into Day-Care
 	db
 
 wItemQuantityChangeBuffer:: db
@@ -2749,11 +2749,11 @@ UnownDex:: ds NUM_UNOWN ; ded9
 UnlockedUnowns:: db ; def3
 wFirstUnownSeen:: db
 
-wDaycareMan:: ; def5
+wDayCareMan:: ; def5
 ; bit 7: active
 ; bit 6: monsters are compatible
 ; bit 5: egg ready
-; bit 0: monster 1 in daycare
+; bit 0: monster 1 in day-care
 	db
 
 wBreedMon1::
@@ -2761,9 +2761,9 @@ wBreedMon1Nick::  ds PKMN_NAME_LENGTH ; def6
 wBreedMon1OT::    ds NAME_LENGTH ; df01
 wBreedMon1Stats:: box_struct wBreedMon1 ; df0c
 
-wDaycareLady:: ; df2c
+wDayCareLady:: ; df2c
 ; bit 7: active
-; bit 0: monster 2 in daycare
+; bit 0: monster 2 in day-care
 	db
 
 wStepsToEgg:: ; df2d

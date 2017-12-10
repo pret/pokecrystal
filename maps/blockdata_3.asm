@@ -16,8 +16,8 @@ DarkCaveVioletEntrance_BlockData:
 DarkCaveBlackthornEntrance_BlockData:
 	INCBIN "maps/DarkCaveBlackthornEntrance.blk"
 
-RuinsofAlphResearchCenter_BlockData:
-	INCBIN "maps/RuinsofAlphResearchCenter.blk"
+RuinsOfAlphResearchCenter_BlockData:
+	INCBIN "maps/RuinsOfAlphResearchCenter.blk"
 
 GoldenrodBikeShop_BlockData:
 	INCBIN "maps/GoldenrodBikeShop.blk"
@@ -31,11 +31,11 @@ EcruteakHouse_BlockData:
 GoldenrodGameCorner_BlockData:
 	INCBIN "maps/GoldenrodGameCorner.blk"
 
-Route35NationalParkgate_BlockData:
-	INCBIN "maps/Route35NationalParkgate.blk"
+Route35NationalParkGate_BlockData:
+	INCBIN "maps/Route35NationalParkGate.blk"
 
-Route36NationalParkgate_BlockData:
-	INCBIN "maps/Route36NationalParkgate.blk"
+Route36NationalParkGate_BlockData:
+	INCBIN "maps/Route36NationalParkGate.blk"
 
 FastShip1F_BlockData:
 	INCBIN "maps/FastShip1F.blk"
@@ -43,8 +43,8 @@ FastShip1F_BlockData:
 FastShipB1F_BlockData:
 	INCBIN "maps/FastShipB1F.blk"
 
-BetaSsAquaInsideCutOut_BlockData:
-	INCBIN "maps/BetaSsAquaInsideCutOut.blk"
+BetaSSAquaInsideCutOut_BlockData:
+	INCBIN "maps/BetaSSAquaInsideCutOut.blk"
 
 FastShipCabins_NNW_NNE_NE_BlockData:
 	INCBIN "maps/FastShipCabins_NNW_NNE_NE.blk"
@@ -214,23 +214,23 @@ DragonsDenB1F_BlockData:
 TohjoFalls_BlockData:
 	INCBIN "maps/TohjoFalls.blk"
 
-RuinsofAlphHoOhItemRoom_BlockData:
-RuinsofAlphKabutoItemRoom_BlockData:
-RuinsofAlphOmanyteItemRoom_BlockData:
-RuinsofAlphAerodactylItemRoom_BlockData:
-	INCBIN "maps/RuinsofAlphItemRoom.blk"
+RuinsOfAlphHoOhItemRoom_BlockData:
+RuinsOfAlphKabutoItemRoom_BlockData:
+RuinsOfAlphOmanyteItemRoom_BlockData:
+RuinsOfAlphAerodactylItemRoom_BlockData:
+	INCBIN "maps/RuinsOfAlphItemRoom.blk"
 
-RuinsofAlphHoOhWordRoom_BlockData:
-	INCBIN "maps/RuinsofAlphHoOhWordRoom.blk"
+RuinsOfAlphHoOhWordRoom_BlockData:
+	INCBIN "maps/RuinsOfAlphHoOhWordRoom.blk"
 
-RuinsofAlphKabutoWordRoom_BlockData:
-	INCBIN "maps/RuinsofAlphKabutoWordRoom.blk"
+RuinsOfAlphKabutoWordRoom_BlockData:
+	INCBIN "maps/RuinsOfAlphKabutoWordRoom.blk"
 
-RuinsofAlphOmanyteWordRoom_BlockData:
-	INCBIN "maps/RuinsofAlphOmanyteWordRoom.blk"
+RuinsOfAlphOmanyteWordRoom_BlockData:
+	INCBIN "maps/RuinsOfAlphOmanyteWordRoom.blk"
 
-RuinsofAlphAerodactylWordRoom_BlockData:
-	INCBIN "maps/RuinsofAlphAerodactylWordRoom.blk"
+RuinsOfAlphAerodactylWordRoom_BlockData:
+	INCBIN "maps/RuinsOfAlphAerodactylWordRoom.blk"
 
 DragonShrine_BlockData:
 	INCBIN "maps/DragonShrine.blk"

@@ -158,31 +158,31 @@ StepHappiness:: ; 725a
 	jr nz, .loop
 	ret
 
-DaycareStep:: ; 7282
+DayCareStep:: ; 7282
 
-	ld a, [wDaycareMan]
+	ld a, [wDayCareMan]
 	bit 0, a
-	jr z, .daycare_lady
+	jr z, .day_care_lady
 
 	ld a, [wBreedMon1Level] ; level
 	cp 100
-	jr nc, .daycare_lady
+	jr nc, .day_care_lady
 	ld hl, wBreedMon1Exp + 2 ; exp
 	inc [hl]
-	jr nz, .daycare_lady
+	jr nz, .day_care_lady
 	dec hl
 	inc [hl]
-	jr nz, .daycare_lady
+	jr nz, .day_care_lady
 	dec hl
 	inc [hl]
 	ld a, [hl]
 	cp 5242880 / $10000
-	jr c, .daycare_lady
+	jr c, .day_care_lady
 	ld a, 5242880 / $10000
 	ld [hl], a
 
-.daycare_lady
-	ld a, [wDaycareLady]
+.day_care_lady
+	ld a, [wDayCareLady]
 	bit 0, a
 	jr z, .check_egg
 
@@ -204,7 +204,7 @@ DaycareStep:: ; 7282
 	ld [hl], a
 
 .check_egg
-	ld hl, wDaycareMan
+	ld hl, wDayCareMan
 	bit 5, [hl] ; egg
 	ret z
 	ld hl, wStepsToEgg
@@ -232,7 +232,7 @@ DaycareStep:: ; 7282
 	call Random
 	cp b
 	ret nc
-	ld hl, wDaycareMan
+	ld hl, wDayCareMan
 	res 5, [hl]
 	set 6, [hl]
 	ret

@@ -119,8 +119,8 @@ Route20_BlockData:
 BetaSproutTower6_BlockData:
 	INCBIN "maps/BetaSproutTower6.blk"
 
-BetaPokecenterMainHouse_BlockData:
-	INCBIN "maps/BetaPokecenterMainHouse.blk"
+BetaPokeCenterMainHouse_BlockData:
+	INCBIN "maps/BetaPokeCenterMainHouse.blk"
 
 Route30_BlockData:
 	INCBIN "maps/Route30.blk"
@@ -160,8 +160,8 @@ CeruleanPoliceStation_BlockData:
 CeruleanTradeSpeechHouse_BlockData:
 BillsHouse_BlockData:
 CharcoalKiln_BlockData:
-LakeofRageHiddenPowerHouse_BlockData:
-LakeofRageMagikarpHouse_BlockData:
+LakeOfRageHiddenPowerHouse_BlockData:
+LakeOfRageMagikarpHouse_BlockData:
 GoldenrodHappinessRater_BlockData:
 GoldenrodBillsHouse_BlockData:
 GoldenrodPPSpeechHouse_BlockData:
@@ -202,8 +202,8 @@ SafariZoneFuchsiaGateBeta_BlockData:
 Route19FuchsiaGate_BlockData:
 Route43MahoganyGate_BlockData:
 Route43Gate_BlockData:
-Route35Goldenrodgate_BlockData:
-Route36RuinsofAlphgate_BlockData:
+Route35GoldenrodGate_BlockData:
+Route36RuinsOfAlphGate_BlockData:
 Route34IlexForestGate_BlockData:
 Route6SaffronGate_BlockData:
 Route40BattleTowerGate_BlockData:
@@ -268,7 +268,7 @@ KrissHouse1F_BlockData:
 
 Route38EcruteakGate_BlockData:
 Route42EcruteakGate_BlockData:
-Route32RuinsofAlphGate_BlockData:
+Route32RuinsOfAlphGate_BlockData:
 IlexForestAzaleaGate_BlockData:
 Route15FuchsiaGate_BlockData:
 Route8SaffronGate_BlockData:

@@ -253,7 +253,7 @@ MAP_NONE   EQU 0
 	mapgroup GOLDENROD_POKECOM_CENTER_2F_MOBILE,         16, 16 ; 21
 	mapgroup ILEX_FOREST_AZALEA_GATE,                     4,  5 ; 22
 	mapgroup ROUTE_34_ILEX_FOREST_GATE,                   4,  5 ; 23
-	mapgroup DAYCARE,                                     4,  5 ; 24
+	mapgroup DAY_CARE,                                    4,  5 ; 24
 
 	newgroup                                                    ; 12
 

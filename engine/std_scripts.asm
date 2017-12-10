@@ -1786,7 +1786,7 @@ ReceiveItemScript: ; 0xbcdb9
 ReceiveTogepiEggScript: ; 0xbcdc3
 	waitsfx
 	farwritetext ReceivedItemText
-	playsound SFX_GET_EGG_FROM_DAYCARE_LADY
+	playsound SFX_GET_EGG_FROM_DAY_CARE_LADY
 	waitsfx
 	end
 ; 0xbcdcd

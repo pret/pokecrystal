@@ -1,4 +1,4 @@
-RuinsofAlphOmanyteChamber_MapScriptHeader:
+RuinsOfAlphOmanyteChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
 
@@ -53,7 +53,7 @@ UnknownScript_0x58c12:
 	closetext
 	end
 
-MapRuinsofAlphOmanyteChamberSignpost2Script:
+MapRuinsOfAlphOmanyteChamberSignpost2Script:
 	refreshscreen $0
 	writebyte $1
 	special Special_UnownPuzzle
@@ -80,13 +80,13 @@ UnknownScript_0x58c36:
 	warpcheck
 	end
 
-MapRuinsofAlphOmanyteChamberSignpost1Script:
+MapRuinsOfAlphOmanyteChamberSignpost1Script:
 	jumptext UnknownText_0x58d01
 
-MapRuinsofAlphOmanyteChamberSignpost3Script:
+MapRuinsOfAlphOmanyteChamberSignpost3Script:
 	jumptext UnknownText_0x58d26
 
-MapRuinsofAlphOmanyteChamberSignpost4Script:
+MapRuinsOfAlphOmanyteChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58c8e
 	writebyte $2
@@ -94,7 +94,7 @@ MapRuinsofAlphOmanyteChamberSignpost4Script:
 	closetext
 	end
 
-MapRuinsofAlphOmanyteChamberSignpost5Script:
+MapRuinsOfAlphOmanyteChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58c85
 	opentext
@@ -149,7 +149,7 @@ UnknownText_0x58d26:
 	line "its ten tentacles."
 	done
 
-RuinsofAlphOmanyteChamber_MapEventHeader:
+RuinsOfAlphOmanyteChamber_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -166,12 +166,12 @@ RuinsofAlphOmanyteChamber_MapEventHeader:
 
 .Signposts:
 	db 6
-	signpost 3, 2, SIGNPOST_READ, MapRuinsofAlphOmanyteChamberSignpost1Script
-	signpost 3, 5, SIGNPOST_READ, MapRuinsofAlphOmanyteChamberSignpost1Script
-	signpost 2, 3, SIGNPOST_UP, MapRuinsofAlphOmanyteChamberSignpost2Script
-	signpost 2, 4, SIGNPOST_UP, MapRuinsofAlphOmanyteChamberSignpost3Script
-	signpost 0, 3, SIGNPOST_UP, MapRuinsofAlphOmanyteChamberSignpost4Script
-	signpost 0, 4, SIGNPOST_UP, MapRuinsofAlphOmanyteChamberSignpost5Script
+	signpost 3, 2, SIGNPOST_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
+	signpost 3, 5, SIGNPOST_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
+	signpost 2, 3, SIGNPOST_UP, MapRuinsOfAlphOmanyteChamberSignpost2Script
+	signpost 2, 4, SIGNPOST_UP, MapRuinsOfAlphOmanyteChamberSignpost3Script
+	signpost 0, 3, SIGNPOST_UP, MapRuinsOfAlphOmanyteChamberSignpost4Script
+	signpost 0, 4, SIGNPOST_UP, MapRuinsOfAlphOmanyteChamberSignpost5Script
 
 .PersonEvents:
 	db 0

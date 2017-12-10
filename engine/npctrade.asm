@@ -40,7 +40,7 @@ NPCTrade:: ; fcba8
 
 ; Select givemon from party
 	ld b, PARTYMENUACTION_GIVE_MON
-	callba SelectTradeOrDaycareMon
+	callba SelectTradeOrDayCareMon
 	ld a, TRADE_CANCEL
 	jr c, .done
 

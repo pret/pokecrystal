@@ -5,7 +5,7 @@ const_value set 2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
-RuinsofAlphOutside_MapScriptHeader:
+RuinsOfAlphOutside_MapScriptHeader:
 .MapTriggers:
 	db 2
 
@@ -130,13 +130,13 @@ UnknownScript_0x580a9:
 	end
 
 
-MapRuinsofAlphOutsideSignpost0Script:
+MapRuinsOfAlphOutsideSignpost0Script:
 	jumptext UnknownText_0x58325
 
-MapRuinsofAlphOutsideSignpost1Script:
+MapRuinsOfAlphOutsideSignpost1Script:
 	jumptext UnknownText_0x58342
 
-MapRuinsofAlphOutsideSignpost2Script:
+MapRuinsOfAlphOutsideSignpost2Script:
 	jumptext UnknownText_0x58362
 
 MovementData_0x580ba:
@@ -287,7 +287,7 @@ UnknownText_0x5848e:
 	line "message!"
 	done
 
-RuinsofAlphOutside_MapEventHeader:
+RuinsOfAlphOutside_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -312,9 +312,9 @@ RuinsofAlphOutside_MapEventHeader:
 
 .Signposts:
 	db 3
-	signpost 8, 16, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost0Script
-	signpost 16, 12, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost1Script
-	signpost 12, 18, SIGNPOST_READ, MapRuinsofAlphOutsideSignpost2Script
+	signpost 8, 16, SIGNPOST_READ, MapRuinsOfAlphOutsideSignpost0Script
+	signpost 16, 12, SIGNPOST_READ, MapRuinsOfAlphOutsideSignpost1Script
+	signpost 12, 18, SIGNPOST_READ, MapRuinsOfAlphOutsideSignpost2Script
 
 .PersonEvents:
 	db 5

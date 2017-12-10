@@ -14,15 +14,15 @@ DayCare_MapScriptHeader:
 	dbw MAPCALLBACK_OBJECTS, .EggCheckCallback
 
 .EggCheckCallback:
-	checkflag ENGINE_DAYCARE_MAN_HAS_EGG
-	iftrue .PutDaycareManOutside
-	clearevent EVENT_DAYCARE_MAN_IN_DAYCARE
-	setevent EVENT_DAYCARE_MAN_ON_ROUTE_34
+	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
+	iftrue .PutDayCareManOutside
+	clearevent EVENT_DAY_CARE_MAN_IN_DAY_CARE
+	setevent EVENT_DAY_CARE_MAN_ON_ROUTE_34
 	return
 
-.PutDaycareManOutside:
-	setevent EVENT_DAYCARE_MAN_IN_DAYCARE
-	clearevent EVENT_DAYCARE_MAN_ON_ROUTE_34
+.PutDayCareManOutside:
+	setevent EVENT_DAY_CARE_MAN_IN_DAY_CARE
+	clearevent EVENT_DAY_CARE_MAN_ON_ROUTE_34
 	return
 
 DayCareManScript_Inside:
@@ -62,7 +62,7 @@ DayCareManScript_Inside:
 DayCareLadyScript:
 	faceplayer
 	opentext
-	checkflag ENGINE_DAYCARE_MAN_HAS_EGG
+	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
 	iftrue .HusbandWasLookingForYou
 	special Special_DayCareLady
 	waitbutton
@@ -179,5 +179,5 @@ DayCare_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAYCARE_MAN_IN_DAYCARE
+	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	person_event SPRITE_GRANNY, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, DayCareLadyScript, -1

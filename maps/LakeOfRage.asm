@@ -12,7 +12,7 @@ const_value set 2
 	const LAKEOFRAGE_POKE_BALL1
 	const LAKEOFRAGE_POKE_BALL2
 
-LakeofRage_MapScriptHeader:
+LakeOfRage_MapScriptHeader:
 .MapTriggers:
 	db 2
 
@@ -132,10 +132,10 @@ SuperNerdScript_0x700a2:
 CooltrainerFScript_0x700a5:
 	jumptextfaceplayer UnknownText_0x704bb
 
-MapLakeofRageSignpost0Script:
+MapLakeOfRageSignpost0Script:
 	jumptext UnknownText_0x708d7
 
-MapLakeofRageSignpost1Script:
+MapLakeOfRageSignpost1Script:
 	opentext
 	writetext UnknownText_0x70903
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
@@ -230,21 +230,21 @@ WesleyNotWednesdayScript:
 	closetext
 	end
 
-LakeofRageElixer:
+LakeOfRageElixer:
 	itemball ELIXER
 
-LakeofRageTMDetect:
+LakeOfRageTMDetect:
 	itemball TM_DETECT
 
-LakeofRageHiddenFullRestore:
+LakeOfRageHiddenFullRestore:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
 
-LakeofRageHiddenRareCandy:
+LakeOfRageHiddenRareCandy:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_RARE_CANDY, RARE_CANDY
 
 
-LakeofRageHiddenMaxPotion:
+LakeOfRageHiddenMaxPotion:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION, MAX_POTION
 
 
@@ -501,7 +501,7 @@ UnknownText_0x70903:
 	line "HOUSE"
 	done
 
-LakeofRage_MapEventHeader:
+LakeOfRage_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -515,11 +515,11 @@ LakeofRage_MapEventHeader:
 
 .Signposts:
 	db 5
-	signpost 27, 21, SIGNPOST_READ, MapLakeofRageSignpost0Script
-	signpost 31, 25, SIGNPOST_READ, MapLakeofRageSignpost1Script
-	signpost 28, 11, SIGNPOST_ITEM, LakeofRageHiddenFullRestore
-	signpost 4, 4, SIGNPOST_ITEM, LakeofRageHiddenRareCandy
-	signpost 5, 35, SIGNPOST_ITEM, LakeofRageHiddenMaxPotion
+	signpost 27, 21, SIGNPOST_READ, MapLakeOfRageSignpost0Script
+	signpost 31, 25, SIGNPOST_READ, MapLakeOfRageSignpost1Script
+	signpost 28, 11, SIGNPOST_ITEM, LakeOfRageHiddenFullRestore
+	signpost 4, 4, SIGNPOST_ITEM, LakeOfRageHiddenRareCandy
+	signpost 5, 35, SIGNPOST_ITEM, LakeOfRageHiddenMaxPotion
 
 .PersonEvents:
 	db 12
@@ -533,5 +533,5 @@ LakeofRage_MapEventHeader:
 	person_event SPRITE_COOLTRAINER_F, 7, 36, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
 	person_event SPRITE_GYARADOS, 22, 18, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, GyaradosScript_0x70063, EVENT_LAKE_OF_RAGE_RED_GYARADOS
 	person_event SPRITE_SUPER_NERD, 4, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
-	person_event SPRITE_POKE_BALL, 10, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, LakeofRageElixer, EVENT_LAKE_OF_RAGE_ELIXER
-	person_event SPRITE_POKE_BALL, 2, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, LakeofRageTMDetect, EVENT_LAKE_OF_RAGE_TM_DETECT
+	person_event SPRITE_POKE_BALL, 10, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, LakeOfRageElixer, EVENT_LAKE_OF_RAGE_ELIXER
+	person_event SPRITE_POKE_BALL, 2, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, LakeOfRageTMDetect, EVENT_LAKE_OF_RAGE_TM_DETECT

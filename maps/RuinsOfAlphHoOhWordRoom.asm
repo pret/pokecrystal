@@ -1,11 +1,11 @@
-RuinsofAlphHoOhWordRoom_MapScriptHeader:
+RuinsOfAlphHoOhWordRoom_MapScriptHeader:
 .MapTriggers:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-RuinsofAlphHoOhWordRoom_MapEventHeader:
+RuinsOfAlphHoOhWordRoom_MapEventHeader:
 	; filler
 	db 0, 0
 

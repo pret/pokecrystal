@@ -151,8 +151,8 @@ Route6UndergroundEntrance_BlockData:
 Route5UndergroundEntrance_BlockData:
 	INCBIN "maps/UndergroundPathEntrance.blk"
 
-BetaPokecenterTradeStation_BlockData:
-	INCBIN "maps/BetaPokecenterTradeStation.blk"
+BetaPokeCenterTradeStation_BlockData:
+	INCBIN "maps/BetaPokeCenterTradeStation.blk"
 
 KurtsHouse_BlockData:
 	INCBIN "maps/KurtsHouse.blk"
@@ -160,20 +160,20 @@ KurtsHouse_BlockData:
 GoldenrodMagnetTrainStation_BlockData:
 	INCBIN "maps/GoldenrodMagnetTrainStation.blk"
 
-RuinsofAlphOutside_BlockData:
-	INCBIN "maps/RuinsofAlphOutside.blk"
+RuinsOfAlphOutside_BlockData:
+	INCBIN "maps/RuinsOfAlphOutside.blk"
 
-BetaAlphRuinUnsolvedPuzzleRoom_BlockData:
-	INCBIN "maps/BetaAlphRuinUnsolvedPuzzleRoom.blk"
+BetaRuinsOfAlphUnsolvedPuzzleRoom_BlockData:
+	INCBIN "maps/BetaRuinsOfAlphUnsolvedPuzzleRoom.blk"
 
-RuinsofAlphInnerChamber_BlockData:
-	INCBIN "maps/RuinsofAlphInnerChamber.blk"
+RuinsOfAlphInnerChamber_BlockData:
+	INCBIN "maps/RuinsOfAlphInnerChamber.blk"
 
-RuinsofAlphHoOhChamber_BlockData:
-RuinsofAlphKabutoChamber_BlockData:
-RuinsofAlphOmanyteChamber_BlockData:
-RuinsofAlphAerodactylChamber_BlockData:
-	INCBIN "maps/RuinsofAlphPuzzleChamber.blk"
+RuinsOfAlphHoOhChamber_BlockData:
+RuinsOfAlphKabutoChamber_BlockData:
+RuinsOfAlphOmanyteChamber_BlockData:
+RuinsOfAlphAerodactylChamber_BlockData:
+	INCBIN "maps/RuinsOfAlphPuzzleChamber.blk"
 
 SproutTower1F_BlockData:
 	INCBIN "maps/SproutTower1F.blk"
@@ -235,8 +235,8 @@ EcruteakCity_BlockData:
 MahoganyTown_BlockData:
 	INCBIN "maps/MahoganyTown.blk"
 
-LakeofRage_BlockData:
-	INCBIN "maps/LakeofRage.blk"
+LakeOfRage_BlockData:
+	INCBIN "maps/LakeOfRage.blk"
 
 BlackthornCity_BlockData:
 	INCBIN "maps/BlackthornCity.blk"

@@ -3,57 +3,57 @@ const_value set 2
 	const ROUTE35NATIONALPARKGATE_YOUNGSTER
 	const ROUTE35NATIONALPARKGATE_OFFICER2
 
-Route35NationalParkgate_MapScriptHeader:
+Route35NationalParkGate_MapScriptHeader:
 .MapTriggers:
 	db 3
 
 	; triggers
-	dw Route35NationalParkgate_Trigger1, 0
-	dw Route35NationalParkgate_Trigger2, 0
-	dw Route35NationalParkgate_Trigger3, 0
+	dw Route35NationalParkGate_Trigger1, 0
+	dw Route35NationalParkGate_Trigger2, 0
+	dw Route35NationalParkGate_Trigger3, 0
 
 .MapCallbacks:
 	db 2
 
 	; callbacks
 
-	dbw MAPCALLBACK_NEWMAP, Route35NationalParkgate_CheckIfStillInContest
+	dbw MAPCALLBACK_NEWMAP, Route35NationalParkGate_CheckIfStillInContest
 
-	dbw MAPCALLBACK_OBJECTS, Route35NationalParkgate_CheckIfContestDay
+	dbw MAPCALLBACK_OBJECTS, Route35NationalParkGate_CheckIfContestDay
 
-Route35NationalParkgate_Trigger1:
+Route35NationalParkGate_Trigger1:
 	end
 
-Route35NationalParkgate_Trigger2:
+Route35NationalParkGate_Trigger2:
 	end
 
-Route35NationalParkgate_Trigger3:
+Route35NationalParkGate_Trigger3:
 	priorityjump Route35NationalParkGate_LeavingContestEarly
 	end
 
-Route35NationalParkgate_CheckIfStillInContest:
+Route35NationalParkGate_CheckIfStillInContest:
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue Route35NationalParkgate_Yes
+	iftrue Route35NationalParkGate_Yes
 	dotrigger $0
 	return
 
-Route35NationalParkgate_Yes:
+Route35NationalParkGate_Yes:
 	dotrigger $2
 	return
 
-Route35NationalParkgate_CheckIfContestDay:
+Route35NationalParkGate_CheckIfContestDay:
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, Route35NationalParkgate_IsContestDay
-	if_equal THURSDAY, Route35NationalParkgate_IsContestDay
-	if_equal SATURDAY, Route35NationalParkgate_IsContestDay
+	if_equal TUESDAY, Route35NationalParkGate_IsContestDay
+	if_equal THURSDAY, Route35NationalParkGate_IsContestDay
+	if_equal SATURDAY, Route35NationalParkGate_IsContestDay
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue Route35NationalParkgate_Yes
+	iftrue Route35NationalParkGate_Yes
 	disappear ROUTE35NATIONALPARKGATE_OFFICER1
 	appear ROUTE35NATIONALPARKGATE_YOUNGSTER
 	appear ROUTE35NATIONALPARKGATE_OFFICER2
 	return
 
-Route35NationalParkgate_IsContestDay:
+Route35NationalParkGate_IsContestDay:
 	appear ROUTE35NATIONALPARKGATE_OFFICER1
 	disappear ROUTE35NATIONALPARKGATE_YOUNGSTER
 	disappear ROUTE35NATIONALPARKGATE_OFFICER2
@@ -68,17 +68,17 @@ Route35NationalParkGate_LeavingContestEarly:
 	RAM2MEM $0
 	writetext UnknownText_0x6a79a
 	yesorno
-	iffalse Route35NationalParkgate_GoBackIn
+	iffalse Route35NationalParkGate_GoBackIn
 	writetext UnknownText_0x6a7db
 	waitbutton
 	closetext
 	jumpstd bugcontestresultswarp
 
-Route35NationalParkgate_GoBackIn:
+Route35NationalParkGate_GoBackIn:
 	writetext UnknownText_0x6a823
 	waitbutton
 	closetext
-	scall Route35NationalParkgate_EnterContest
+	scall Route35NationalParkGate_EnterContest
 	playsound SFX_ENTER_DOOR
 	special FadeOutPalettes
 	waitsfx
@@ -87,23 +87,23 @@ Route35NationalParkgate_GoBackIn:
 
 OfficerScript_0x6a204:
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, Route35NationalParkgate_NoContestToday
-	if_equal MONDAY, Route35NationalParkgate_NoContestToday
-	if_equal WEDNESDAY, Route35NationalParkgate_NoContestToday
-	if_equal FRIDAY, Route35NationalParkgate_NoContestToday
+	if_equal SUNDAY, Route35NationalParkGate_NoContestToday
+	if_equal MONDAY, Route35NationalParkGate_NoContestToday
+	if_equal WEDNESDAY, Route35NationalParkGate_NoContestToday
+	if_equal FRIDAY, Route35NationalParkGate_NoContestToday
 	faceplayer
 	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
-	iftrue Route35NationalParkgate_ContestIsOver
-	scall Route35NationalParkgate_GetDayOfWeek
+	iftrue Route35NationalParkGate_ContestIsOver
+	scall Route35NationalParkGate_GetDayOfWeek
 	writetext UnknownText_0x6a2eb
 	yesorno
-	iffalse Route35NationalParkgate_DeclinedToParticipate
+	iffalse Route35NationalParkGate_DeclinedToParticipate
 	checkcode VAR_PARTYCOUNT
-	if_greater_than $1, Route35NationalParkgate_LeaveTheRestBehind
+	if_greater_than $1, Route35NationalParkGate_LeaveTheRestBehind
 	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
-Route35NationalParkgate_OkayToProceed:
+Route35NationalParkGate_OkayToProceed:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
 	writetext UnknownText_0x6a39d
@@ -115,7 +115,7 @@ Route35NationalParkgate_OkayToProceed:
 	waitbutton
 	closetext
 	special Special_GiveParkBalls
-	scall Route35NationalParkgate_EnterContest
+	scall Route35NationalParkGate_EnterContest
 	playsound SFX_ENTER_DOOR
 	special FadeOutPalettes
 	waitsfx
@@ -123,30 +123,30 @@ Route35NationalParkgate_OkayToProceed:
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
 	end
 
-Route35NationalParkgate_EnterContest:
+Route35NationalParkGate_EnterContest:
 	checkcode VAR_FACING
-	if_equal LEFT, Route35NationalParkgate_FacingLeft
+	if_equal LEFT, Route35NationalParkGate_FacingLeft
 	applymovement PLAYER, MovementData_0x6a2e5
 	end
 
-Route35NationalParkgate_FacingLeft:
+Route35NationalParkGate_FacingLeft:
 	applymovement PLAYER, MovementData_0x6a2e9
 	end
 
-Route35NationalParkgate_LeaveTheRestBehind:
+Route35NationalParkGate_LeaveTheRestBehind:
 	checkcode VAR_PARTYCOUNT
-	if_less_than 6, Route35NationalParkgate_LessThanFullParty
+	if_less_than 6, Route35NationalParkGate_LessThanFullParty
 	checkcode VAR_BOXSPACE
-	if_equal 0, Route35NationalParkgate_NoRoomInBox
+	if_equal 0, Route35NationalParkGate_NoRoomInBox
 
-Route35NationalParkgate_LessThanFullParty: ; 6a27d
+Route35NationalParkGate_LessThanFullParty: ; 6a27d
 	special CheckFirstMonIsEgg
-	if_equal $1, Route35NationalParkgate_FirstMonIsEgg
+	if_equal $1, Route35NationalParkGate_FirstMonIsEgg
 	writetext UnknownText_0x6a4c6
 	yesorno
-	iffalse Route35NationalParkgate_DeclinedToLeaveMonsBehind
+	iffalse Route35NationalParkGate_DeclinedToLeaveMonsBehind
 	special ContestDropOffMons
-	iftrue Route35NationalParkgate_FirstMonIsFainted
+	iftrue Route35NationalParkGate_FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6a537
 	buttonsound
@@ -154,52 +154,52 @@ Route35NationalParkgate_LessThanFullParty: ; 6a27d
 	playsound SFX_GOT_SAFARI_BALLS
 	waitsfx
 	buttonsound
-	jump Route35NationalParkgate_OkayToProceed
+	jump Route35NationalParkGate_OkayToProceed
 
-Route35NationalParkgate_DeclinedToParticipate:
+Route35NationalParkGate_DeclinedToParticipate:
 	writetext UnknownText_0x6a5dc
 	waitbutton
 	closetext
 	end
 
-Route35NationalParkgate_DeclinedToLeaveMonsBehind:
+Route35NationalParkGate_DeclinedToLeaveMonsBehind:
 	writetext UnknownText_0x6a597
 	waitbutton
 	closetext
 	end
 
-Route35NationalParkgate_FirstMonIsFainted:
+Route35NationalParkGate_FirstMonIsFainted:
 	writetext UnknownText_0x6a608
 	waitbutton
 	closetext
 	end
 
-Route35NationalParkgate_NoRoomInBox:
+Route35NationalParkGate_NoRoomInBox:
 	writetext UnknownText_0x6a67c
 	waitbutton
 	closetext
 	end
 
-Route35NationalParkgate_FirstMonIsEgg:
+Route35NationalParkGate_FirstMonIsEgg:
 	writetext UnknownText_0x6a71f
 	waitbutton
 	closetext
 	end
 
-Route35NationalParkgate_ContestIsOver:
+Route35NationalParkGate_ContestIsOver:
 	writetext UnknownText_0x6a84f
 	waitbutton
 	closetext
 	end
 
-Route35NationalParkgate_NoContestToday:
+Route35NationalParkGate_NoContestToday:
 	jumptextfaceplayer UnknownText_0x6a894
 
 OfficerScript_0x6a2ca:
 	faceplayer
 	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
-	iftrue Route35NationalParkgate_ContestIsOver
+	iftrue Route35NationalParkGate_ContestIsOver
 	writetext UnknownText_0x6a894
 	waitbutton
 	closetext
@@ -208,10 +208,10 @@ OfficerScript_0x6a2ca:
 YoungsterScript_0x6a2d8:
 	jumptextfaceplayer UnknownText_0x6a8d8
 
-MapRoute36NationalParkgateSignpost0Script:
+MapRoute36NationalParkGateSignpost0Script:
 	jumptext UnknownText_0x6a90e
 
-Route35NationalParkgate_GetDayOfWeek:
+Route35NationalParkGate_GetDayOfWeek:
 	jumpstd daytotext
 	end
 
@@ -443,7 +443,7 @@ UnknownText_0x6a90e:
 	line "the contest."
 	done
 
-Route35NationalParkgate_MapEventHeader:
+Route35NationalParkGate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -459,7 +459,7 @@ Route35NationalParkgate_MapEventHeader:
 
 .Signposts:
 	db 1
-	signpost 0, 5, SIGNPOST_READ, MapRoute36NationalParkgateSignpost0Script
+	signpost 0, 5, SIGNPOST_READ, MapRoute36NationalParkGateSignpost0Script
 
 .PersonEvents:
 	db 3

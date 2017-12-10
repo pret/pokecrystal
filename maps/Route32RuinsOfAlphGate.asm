@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE32RUINSOFALPHGATE_POKEFAN_M
 	const ROUTE32RUINSOFALPHGATE_YOUNGSTER
 
-Route32RuinsofAlphGate_MapScriptHeader:
+Route32RuinsOfAlphGate_MapScriptHeader:
 .MapTriggers:
 	db 0
 
@@ -46,7 +46,7 @@ UnknownText_0x69abd:
 	cont "what they are."
 	done
 
-Route32RuinsofAlphGate_MapEventHeader:
+Route32RuinsOfAlphGate_MapEventHeader:
 	; filler
 	db 0, 0
 
