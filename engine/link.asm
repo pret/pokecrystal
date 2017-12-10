@@ -737,7 +737,7 @@ Link_PrepPartyData_Gen1: ; 28499
 .skip_steel
 	push bc
 	dec a
-	ld hl, BaseData + 7 ; type
+	ld hl, BaseData + BaseType - CurBaseData
 	ld bc, BaseData1 - BaseData0
 	call AddNTimes
 	ld bc, 2

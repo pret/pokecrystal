@@ -3484,7 +3484,7 @@ IsThePlayerPkmnTypesEffectiveAgainstOTPkmn: ; 3d618
 	add hl, bc
 	ld a, [hl]
 	dec a
-	ld hl, BaseData + 7 ; type
+	ld hl, BaseData + BaseType - CurBaseData
 	ld bc, BaseData1 - BaseData0
 	call AddNTimes
 	ld de, EnemyMonType

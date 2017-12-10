@@ -1888,7 +1888,7 @@ Function392d:: ; 392d
 	dec a
 	ld b, 0
 	add hl, bc
-	ld hl, BaseData + 0
+	ld hl, BaseData + BaseDexNo - CurBaseData
 	ld bc, BaseData1 - BaseData0
 	call AddNTimes
 	ld a, BANK(BaseData)
