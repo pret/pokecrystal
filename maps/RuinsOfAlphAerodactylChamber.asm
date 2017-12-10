@@ -1,45 +1,40 @@
 RuinsOfAlphAerodactylChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x58dad, 0
-	dw UnknownScript_0x58db8, 0
+	maptrigger .CheckWall
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .HiddenDoors
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, UnknownScript_0x58db9
-
-UnknownScript_0x58dad:
+.CheckWall:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
-	iftrue UnknownScript_0x58db4
+	iftrue .OpenWall
 	end
 
-UnknownScript_0x58db4:
-	priorityjump UnknownScript_0x58dd3
+.OpenWall:
+	priorityjump .WallOpenScript
 	end
 
-UnknownScript_0x58db8:
+.DummyTrigger:
 	end
 
-UnknownScript_0x58db9:
+.HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
-	iftrue UnknownScript_0x58dc3
+	iftrue .WallOpen
 	changeblock $4, $0, $2e
-UnknownScript_0x58dc3:
+.WallOpen:
 	checkevent EVENT_SOLVED_AERODACTYL_PUZZLE
-	iffalse UnknownScript_0x58dca
+	iffalse .FloorClosed
 	return
 
-UnknownScript_0x58dca:
+.FloorClosed:
 	changeblock $2, $2, $1
 	changeblock $4, $2, $2
 	return
 
-UnknownScript_0x58dd3:
+.WallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20

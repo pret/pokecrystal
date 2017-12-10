@@ -6,37 +6,32 @@ const_value set 2
 LancesRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	maptrigger .LockDoor
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .LancesRoomDoors
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, .CheckDoor
-
-.Trigger0:
-	priorityjump LancesRoom_PlayerWalksIn_DoorsCloseBehind
+.LockDoor:
+	priorityjump .LancesDoorLocksBehindYou
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-.CheckDoor:
+.LancesRoomDoors:
 	checkevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	iffalse .LanceEntranceOpen
+	iffalse .KeepDoorsClosed
 	changeblock $4, $16, $34
-.LanceEntranceOpen:
+.KeepDoorsClosed:
 	checkevent EVENT_LANCES_ROOM_EXIT_OPEN
-	iffalse .LanceExitClosed
+	iffalse .OpenDoors
 	changeblock $4, $0, $b
-.LanceExitClosed:
+.OpenDoors:
 	return
 
-LancesRoom_PlayerWalksIn_DoorsCloseBehind:
+.LancesDoorLocksBehindYou:
 	applymovement PLAYER, LancesRoom_PlayerWalksInMovementData
 	refreshscreen $86
 	playsound SFX_STRENGTH

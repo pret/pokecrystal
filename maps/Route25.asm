@@ -14,18 +14,16 @@ const_value set 2
 Route25_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x19ee9e, 0
-	dw UnknownScript_0x19ee9f, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x19ee9e:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x19ee9f:
+.DummyTrigger1:
 	end
 
 UnknownScript_0x19eea0:

@@ -53,10 +53,10 @@ MenuDataHeader_0x62602:
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 08, 15 ; end coords
-	dw MenuData2_0x6260a
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x6260a:
+.MenuData2:
 	db $80 ; flags
 	db 3 ; items
 	db "# つうしん クラブ@" ; # COM CLUB
@@ -98,10 +98,10 @@ MenuDataHeader_0x6264c:
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 08, 15 ; end coords
-	dw MenuData2_0x62654
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x62654:
+.MenuData2:
 	db $80 ; flags
 	db 3 ; items
 	db "でんわ", $1f,"つかうとき@" ; Use phone

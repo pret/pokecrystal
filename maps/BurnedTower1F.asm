@@ -8,27 +8,22 @@ const_value set 2
 BurnedTower1F_MapScriptHeader:
 .MapTriggers:
 	db 3
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
+	maptrigger .EusineTrigger
+	maptrigger .DummyTrigger1
+	maptrigger .DummyTrigger2
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .HoleAndLadder
 
-.Trigger0:
-	priorityjump .EusineTrigger
+.EusineTrigger:
+	priorityjump .MeetEusine
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
-.Trigger2:
+.DummyTrigger2:
 	end
 
 .HoleAndLadder:
@@ -42,7 +37,7 @@ BurnedTower1F_MapScriptHeader:
 .Done:
 	return
 
-.EusineTrigger:
+.MeetEusine:
 	spriteface BURNEDTOWER1F_EUSINE, DOWN
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_EUSINE, 15
 	applymovement BURNEDTOWER1F_EUSINE, BurnedTower1FEusineMovement

@@ -6,36 +6,31 @@ const_value set 2
 Route43Gate_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	maptrigger .RocketShakedown
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
 
-	; callbacks
-
-	dbw MAPCALLBACK_NEWMAP, GateScript_CheckIfRockets
-
-.Trigger0:
-	priorityjump GateScript_RocketTakeover
+.RocketShakedown:
+	priorityjump .RocketTakeover
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-GateScript_CheckIfRockets:
+.CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue GateScript_NoRockets
+	iftrue .NoRockets
 	domaptrigger ROUTE_43, $0
 	return
 
-GateScript_NoRockets:
+.NoRockets:
 	domaptrigger ROUTE_43, $1
 	return
 
-GateScript_RocketTakeover:
+.RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	checkcode VAR_FACING
 	if_equal DOWN, RocketScript_Southbound

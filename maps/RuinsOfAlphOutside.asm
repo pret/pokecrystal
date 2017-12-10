@@ -8,52 +8,47 @@ const_value set 2
 RuinsOfAlphOutside_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x5800d, 0
-	dw UnknownScript_0x5800e, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .ScientistCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x5800f
-
-UnknownScript_0x5800d:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x5800e:
+.DummyTrigger1:
 	end
 
-UnknownScript_0x5800f:
+.ScientistCallback:
 	checkflag ENGINE_UNOWN_DEX
-	iftrue UnknownScript_0x5802c
+	iftrue .NoScientist
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
-	iftrue UnknownScript_0x5801e
-	jump UnknownScript_0x5802c
+	iftrue .MaybeScientist
+	jump .NoScientist
 
-UnknownScript_0x5801e:
+.MaybeScientist:
 	checkcode VAR_UNOWNCOUNT
-	if_greater_than $2, UnknownScript_0x58027
-	jump UnknownScript_0x5802c
+	if_greater_than $2, .YesScientist
+	jump .NoScientist
 
-UnknownScript_0x58027:
+.YesScientist:
 	appear RUINSOFALPHOUTSIDE_SCIENTIST
 	dotrigger $1
 	return
 
-UnknownScript_0x5802c:
+.NoScientist:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	dotrigger $0
 	return
 
-UnknownScript_0x58031:
+RuinsOfAlphOutsideScientistTrigger1:
 	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, UP
 	spriteface PLAYER, DOWN
 	jump UnknownScript_0x58044
 
-UnknownScript_0x5803a:
+RuinsOfAlphOutsideScientistTrigger2:
 	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, LEFT
 	spriteface PLAYER, RIGHT
 	jump UnknownScript_0x58044
@@ -130,13 +125,13 @@ UnknownScript_0x580a9:
 	end
 
 
-MapRuinsOfAlphOutsideSignpost0Script:
+RuinsOfAlphOutsideSignpost0Script:
 	jumptext UnknownText_0x58325
 
-MapRuinsOfAlphOutsideSignpost1Script:
+RuinsOfAlphOutsideSignpost1Script:
 	jumptext UnknownText_0x58342
 
-MapRuinsOfAlphOutsideSignpost2Script:
+RuinsOfAlphOutsideSignpost2Script:
 	jumptext UnknownText_0x58362
 
 MovementData_0x580ba:
@@ -307,14 +302,14 @@ RuinsOfAlphOutside_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, $e, $b, $0, UnknownScript_0x58031, $0, $0
-	xy_trigger 1, $f, $a, $0, UnknownScript_0x5803a, $0, $0
+	xy_trigger 1, $e, $b, $0, RuinsOfAlphOutsideScientistTrigger1, $0, $0
+	xy_trigger 1, $f, $a, $0, RuinsOfAlphOutsideScientistTrigger2, $0, $0
 
 .Signposts:
 	db 3
-	signpost 8, 16, SIGNPOST_READ, MapRuinsOfAlphOutsideSignpost0Script
-	signpost 16, 12, SIGNPOST_READ, MapRuinsOfAlphOutsideSignpost1Script
-	signpost 12, 18, SIGNPOST_READ, MapRuinsOfAlphOutsideSignpost2Script
+	signpost 8, 16, SIGNPOST_READ, RuinsOfAlphOutsideSignpost0Script
+	signpost 16, 12, SIGNPOST_READ, RuinsOfAlphOutsideSignpost1Script
+	signpost 12, 18, SIGNPOST_READ, RuinsOfAlphOutsideSignpost2Script
 
 .PersonEvents:
 	db 5

@@ -10,19 +10,16 @@ Route34IlexForestGate_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .IsForestRestless
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x62d2d
-
-UnknownScript_0x62d2d:
+.IsForestRestless:
 	checkevent EVENT_FOREST_IS_RESTLESS
-	iffalse UnknownScript_0x62d38
+	iffalse .Normal
 	disappear ROUTE34ILEXFORESTGATE_TEACHER1
 	appear ROUTE34ILEXFORESTGATE_TEACHER2
 	return
 
-UnknownScript_0x62d38:
+.Normal:
 	disappear ROUTE34ILEXFORESTGATE_TEACHER2
 	appear ROUTE34ILEXFORESTGATE_TEACHER1
 	return

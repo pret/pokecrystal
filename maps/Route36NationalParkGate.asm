@@ -15,29 +15,23 @@ const_value set 2
 Route36NationalParkGate_MapScriptHeader:
 .MapTriggers:
 	db 3
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
+	maptrigger .LeaveContestEarly
 
 .MapCallbacks:
 	db 2
-
-	; callbacks
-
 	dbw MAPCALLBACK_NEWMAP, .CheckIfContestRunning
-
 	dbw MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
 
-.Trigger0:
+.DummyTrigger0:
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
-.Trigger2:
-	priorityjump .LeftTheContestEarly
+.LeaveContestEarly:
+	priorityjump .LeavingContestEarly
 	end
 
 .CheckIfContestRunning:
@@ -69,7 +63,7 @@ Route36NationalParkGate_MapScriptHeader:
 .Return:
 	return
 
-.LeftTheContestEarly:
+.LeavingContestEarly:
 	spriteface PLAYER, UP
 	opentext
 	checkcode VAR_CONTESTMINUTES

@@ -9,21 +9,16 @@ const_value set 2
 TeamRocketBaseB1F_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	maptrigger .Trigger0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .HideSecurityGrunt
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, .Callback1
-
-.Trigger0:
+.DummyTrigger:
 	end
 
-.Callback1:
+.HideSecurityGrunt:
 	disappear TEAMROCKETBASEB1F_ROCKET1
 	return
 

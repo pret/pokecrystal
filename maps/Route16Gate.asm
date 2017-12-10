@@ -4,14 +4,12 @@ const_value set 2
 Route16Gate_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw UnknownScript_0x733e9, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x733e9:
+.DummyTrigger:
 	end
 
 OfficerScript_0x733ea:

@@ -1,46 +1,41 @@
 RuinsOfAlphOmanyteChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x58be9, 0
-	dw UnknownScript_0x58bf7, 0
+	maptrigger .CheckWall
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .HiddenDoors
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, UnknownScript_0x58bf8
-
-UnknownScript_0x58be9:
+.CheckWall:
 	special SpecialOmanyteChamber
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
-	iftrue UnknownScript_0x58bf3
+	iftrue .OpenWall
 	end
 
-UnknownScript_0x58bf3:
-	priorityjump UnknownScript_0x58c12
+.OpenWall:
+	priorityjump .WallOpenScript
 	end
 
-UnknownScript_0x58bf7:
+.DummyTrigger:
 	end
 
-UnknownScript_0x58bf8:
+.HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
-	iftrue UnknownScript_0x58c02
+	iftrue .WallOpen
 	changeblock $4, $0, $2e
-UnknownScript_0x58c02:
+.WallOpen:
 	checkevent EVENT_SOLVED_OMANYTE_PUZZLE
-	iffalse UnknownScript_0x58c09
+	iffalse .FloorClosed
 	return
 
-UnknownScript_0x58c09:
+.FloorClosed:
 	changeblock $2, $2, $1
 	changeblock $4, $2, $2
 	return
 
-UnknownScript_0x58c12:
+.WallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20

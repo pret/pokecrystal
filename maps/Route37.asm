@@ -13,12 +13,9 @@ Route37_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .Sunny
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, SunnyCallback
-
-SunnyCallback:
+.Sunny:
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .SunnyAppears
 	disappear ROUTE37_SUNNY

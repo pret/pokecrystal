@@ -8,19 +8,17 @@ const_value set 2
 EcruteakPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .MeetBill
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
+.MeetBill:
 	priorityjump .BillActivatesTimeCapsule
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
 .BillActivatesTimeCapsule:

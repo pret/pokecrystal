@@ -1,46 +1,41 @@
 RuinsOfAlphHoOhChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x5856d, 0
-	dw UnknownScript_0x5857b, 0
+	maptrigger .CheckWall
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .HiddenDoors
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, UnknownScript_0x5857c
-
-UnknownScript_0x5856d:
+.CheckWall:
 	special SpecialHoOhChamber
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
-	iftrue UnknownScript_0x58577
+	iftrue .OpenWall
 	end
 
-UnknownScript_0x58577:
-	priorityjump UnknownScript_0x58596
+.OpenWall:
+	priorityjump .WallOpenScript
 	end
 
-UnknownScript_0x5857b:
+.DummyTrigger:
 	end
 
-UnknownScript_0x5857c:
+.HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
-	iftrue UnknownScript_0x58586
+	iftrue .WallOpen
 	changeblock $4, $0, $2e
-UnknownScript_0x58586:
+.WallOpen:
 	checkevent EVENT_SOLVED_HO_OH_PUZZLE
-	iffalse UnknownScript_0x5858d
+	iffalse .FloorClosed
 	return
 
-UnknownScript_0x5858d:
+.FloorClosed:
 	changeblock $2, $2, $1
 	changeblock $4, $2, $2
 	return
 
-UnknownScript_0x58596:
+.WallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20

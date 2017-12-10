@@ -8,31 +8,26 @@ const_value set 2
 MahoganyMart1F_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x6c356, 0
-	dw UnknownScript_0x6c357, 0
+	maptrigger .DummyTrigger0
+	maptrigger .LanceUncoversStaircase
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .MahoganyMart1FStaircase
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, UnknownScript_0x6c35b
-
-UnknownScript_0x6c356:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x6c357:
+.LanceUncoversStaircase:
 	priorityjump UnknownScript_0x6c38f
 	end
 
-UnknownScript_0x6c35b:
+.MahoganyMart1FStaircase:
 	checkevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
-	iftrue UnknownScript_0x6c362
+	iftrue .ShowStairs
 	return
 
-UnknownScript_0x6c362:
+.ShowStairs:
 	changeblock $6, $2, $1e
 	return
 

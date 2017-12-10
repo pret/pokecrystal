@@ -7,9 +7,6 @@ WhirlIslandLugiaChamber_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_OBJECTS, .Lugia
 
 .Lugia:

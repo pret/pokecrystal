@@ -17,31 +17,26 @@ const_value set 2
 TeamRocketBaseB3F_MapScriptHeader:
 .MapTriggers:
 	db 4
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
-	maptrigger .Trigger3
+	maptrigger .LanceGetsPassword
+	maptrigger .DummyTrigger1
+	maptrigger .DummyTrigger2
+	maptrigger .DummyTrigger3
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .CheckGiovanniDoor
 
-.Trigger0:
+.LanceGetsPassword:
 	priorityjump LanceGetPasswordScript
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
-.Trigger2:
+.DummyTrigger2:
 	end
 
-.Trigger3:
+.DummyTrigger3:
 	end
 
 .CheckGiovanniDoor:
@@ -178,9 +173,8 @@ ScientistMitchScript:
 	closetext
 	end
 
-BossDoor:
-	dw EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
-	dw .Script
+TeamRocketBaseB3FLockedDoor:
+	dw EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE, .Script
 
 .Script:
 	opentext
@@ -207,7 +201,7 @@ BossDoor:
 	waitsfx
 	end
 
-MapTeamRocketBaseB3FSignpost9Script:
+TeamRocketBaseB3FOathScript:
 	jumpstd teamrocketoath
 
 TeamRocketBaseB3FProtein:
@@ -590,16 +584,16 @@ TeamRocketBaseB3F_MapEventHeader:
 
 .Signposts:
 	db 10
-	signpost 9, 10, SIGNPOST_IFNOTSET, BossDoor
-	signpost 9, 11, SIGNPOST_IFNOTSET, BossDoor
-	signpost 1, 10, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 11, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 12, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 13, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 4, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 5, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 6, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 7, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 9, 10, SIGNPOST_IFNOTSET, TeamRocketBaseB3FLockedDoor
+	signpost 9, 11, SIGNPOST_IFNOTSET, TeamRocketBaseB3FLockedDoor
+	signpost 1, 10, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 1, 11, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 1, 12, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 1, 13, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 13, 4, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 13, 5, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 13, 6, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 13, 7, SIGNPOST_READ, TeamRocketBaseB3FOathScript
 
 .PersonEvents:
 	db 14

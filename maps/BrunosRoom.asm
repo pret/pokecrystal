@@ -4,23 +4,18 @@ const_value set 2
 BrunosRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	maptrigger .LockDoor
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .BrunosRoomDoors
 
-.Trigger0:
+.LockDoor:
 	priorityjump .BrunosDoorLocksBehindYou
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
 .BrunosRoomDoors:

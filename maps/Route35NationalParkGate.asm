@@ -6,60 +6,54 @@ const_value set 2
 Route35NationalParkGate_MapScriptHeader:
 .MapTriggers:
 	db 3
-
-	; triggers
-	dw Route35NationalParkGate_Trigger1, 0
-	dw Route35NationalParkGate_Trigger2, 0
-	dw Route35NationalParkGate_Trigger3, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
+	maptrigger .LeaveContestEarly
 
 .MapCallbacks:
 	db 2
+	dbw MAPCALLBACK_NEWMAP, .CheckIfContestRunning
+	dbw MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
 
-	; callbacks
-
-	dbw MAPCALLBACK_NEWMAP, Route35NationalParkGate_CheckIfStillInContest
-
-	dbw MAPCALLBACK_OBJECTS, Route35NationalParkGate_CheckIfContestDay
-
-Route35NationalParkGate_Trigger1:
+.DummyTrigger0:
 	end
 
-Route35NationalParkGate_Trigger2:
+.DummyTrigger1:
 	end
 
-Route35NationalParkGate_Trigger3:
-	priorityjump Route35NationalParkGate_LeavingContestEarly
+.LeaveContestEarly:
+	priorityjump .LeavingContestEarly
 	end
 
-Route35NationalParkGate_CheckIfStillInContest:
+.CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue Route35NationalParkGate_Yes
+	iftrue .BugContestIsRunning
 	dotrigger $0
 	return
 
-Route35NationalParkGate_Yes:
+.BugContestIsRunning:
 	dotrigger $2
 	return
 
-Route35NationalParkGate_CheckIfContestDay:
+.CheckIfContestAvailable:
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, Route35NationalParkGate_IsContestDay
-	if_equal THURSDAY, Route35NationalParkGate_IsContestDay
-	if_equal SATURDAY, Route35NationalParkGate_IsContestDay
+	if_equal TUESDAY, .SetContestOfficer
+	if_equal THURSDAY, .SetContestOfficer
+	if_equal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue Route35NationalParkGate_Yes
+	iftrue .BugContestIsRunning
 	disappear ROUTE35NATIONALPARKGATE_OFFICER1
 	appear ROUTE35NATIONALPARKGATE_YOUNGSTER
 	appear ROUTE35NATIONALPARKGATE_OFFICER2
 	return
 
-Route35NationalParkGate_IsContestDay:
+.SetContestOfficer:
 	appear ROUTE35NATIONALPARKGATE_OFFICER1
 	disappear ROUTE35NATIONALPARKGATE_YOUNGSTER
 	disappear ROUTE35NATIONALPARKGATE_OFFICER2
 	return
 
-Route35NationalParkGate_LeavingContestEarly:
+.LeavingContestEarly:
 	applymovement PLAYER, MovementData_0x6a2e2
 	spriteface ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
 	opentext
@@ -68,13 +62,13 @@ Route35NationalParkGate_LeavingContestEarly:
 	RAM2MEM $0
 	writetext UnknownText_0x6a79a
 	yesorno
-	iffalse Route35NationalParkGate_GoBackIn
+	iffalse .GoBackToContest
 	writetext UnknownText_0x6a7db
 	waitbutton
 	closetext
 	jumpstd bugcontestresultswarp
 
-Route35NationalParkGate_GoBackIn:
+.GoBackToContest:
 	writetext UnknownText_0x6a823
 	waitbutton
 	closetext

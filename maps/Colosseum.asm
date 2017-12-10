@@ -5,32 +5,26 @@ const_value set 2
 Colosseum_MapScriptHeader:
 .MapTriggers:
 	db 3
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
+	maptrigger .InitializeColosseum
+	maptrigger .DummyTrigger1
+	maptrigger .DummyTrigger2
 
 .MapCallbacks:
 	db 2
+	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
+	dbw MAPCALLBACK_NEWMAP, .PreparePokeCenter2F
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, ColosseumScript_SetWhichChris
-
-	dbw MAPCALLBACK_NEWMAP, ColosseumScript_InitializeCB
-
-.Trigger0:
-	priorityjump ColosseumScript_Initialize
+.InitializeColosseum:
+	priorityjump .InitializeAndPreparePokeCenter2F
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
-.Trigger2:
+.DummyTrigger2:
 	end
 
-ColosseumScript_SetWhichChris:
+.SetWhichChris:
 	special Special_CableClubCheckWhichChris
 	iffalse .Chris2
 	disappear COLOSSEUM_CHRIS2
@@ -42,11 +36,11 @@ ColosseumScript_SetWhichChris:
 	appear COLOSSEUM_CHRIS2
 	return
 
-ColosseumScript_InitializeCB:
+.PreparePokeCenter2F:
 	domaptrigger POKECENTER_2F, $2
 	return
 
-ColosseumScript_Initialize:
+.InitializeAndPreparePokeCenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $2
 	end

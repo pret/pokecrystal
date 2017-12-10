@@ -9,61 +9,56 @@ const_value set 2
 ElmsLab_MapScriptHeader:
 .MapTriggers:
 	db 6
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
-	maptrigger .Trigger3
-	maptrigger .Trigger4
-	maptrigger .Trigger5
+	maptrigger .MeetElm
+	maptrigger .DummyTrigger1
+	maptrigger .DummyTrigger2
+	maptrigger .DummyTrigger3
+	maptrigger .DummyTrigger4
+	maptrigger .DummyTrigger5
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .MoveElmCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, .Callback_MoveElm
-
-.Trigger0:
-	priorityjump ElmsLab_AutowalkUpToElm
+.MeetElm:
+	priorityjump .WalkUpToElm
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
-.Trigger2:
+.DummyTrigger2:
 	end
 
-.Trigger3:
+.DummyTrigger3:
 	end
 
-.Trigger4:
+.DummyTrigger4:
 	end
 
-.Trigger5:
+.DummyTrigger5:
 	end
 
-.Callback_MoveElm:
+.MoveElmCallback:
 	checktriggers
 	iftrue .Skip
 	moveperson ELMSLAB_ELM, $3, $4
 .Skip:
 	return
 
-ElmsLab_AutowalkUpToElm:
+.WalkUpToElm:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
 	spriteface ELMSLAB_ELM, RIGHT
 	opentext
 	writetext ElmText_Intro
-ElmsLab_RefuseLoop:
+.MustSayYes:
 	yesorno
-	iftrue ElmsLab_ElmGetsEmail
+	iftrue .ElmGetsEmail
 	writetext ElmText_Refused
-	jump ElmsLab_RefuseLoop
+	jump .MustSayYes
 
-ElmsLab_ElmGetsEmail:
+.ElmGetsEmail:
 	writetext ElmText_Accepted
 	buttonsound
 	writetext ElmText_ResearchAmbitions

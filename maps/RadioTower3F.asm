@@ -13,12 +13,9 @@ RadioTower3F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .CardKeyShutterCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, CardKeyShutterCallback
-
-CardKeyShutterCallback:
+.CardKeyShutterCallback:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .Change
 	return

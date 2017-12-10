@@ -9,22 +9,20 @@ const_value set 2
 CeruleanGym_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x1883d9, 0
-	dw UnknownScript_0x1883da, 0
+	maptrigger .DummyTrigger0
+	maptrigger .GruntRunsOut
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x1883d9:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x1883da:
-	priorityjump UnknownScript_0x1883de
+.GruntRunsOut:
+	priorityjump .GruntRunsOutScript
 	end
 
-UnknownScript_0x1883de:
+.GruntRunsOutScript:
 	applymovement CERULEANGYM_ROCKET, MovementData_0x1884e3
 	playsound SFX_TACKLE
 	applymovement CERULEANGYM_ROCKET, MovementData_0x1884eb

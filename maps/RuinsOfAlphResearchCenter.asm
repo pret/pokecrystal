@@ -6,36 +6,31 @@ const_value set 2
 RuinsOfAlphResearchCenter_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x59180, 0
-	dw UnknownScript_0x59181, 0
+	maptrigger .DummyTrigger0
+	maptrigger .GetUnownDex
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .ScientistCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x59185
-
-UnknownScript_0x59180:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x59181:
-	priorityjump UnknownScript_0x59192
+.GetUnownDex:
+	priorityjump .GetUnownDexScript
 	end
 
-UnknownScript_0x59185:
+.ScientistCallback:
 	checktriggers
-	if_equal $1, UnknownScript_0x5918b
+	if_equal $1, .ShowScientist
 	return
 
-UnknownScript_0x5918b:
+.ShowScientist:
 	moveperson RUINSOFALPHRESEARCHCENTER_SCIENTIST3, $3, $7
 	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 	return
 
-UnknownScript_0x59192:
+.GetUnownDexScript:
 	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x5926f
 	playsound SFX_BOOT_PC
 	pause 60

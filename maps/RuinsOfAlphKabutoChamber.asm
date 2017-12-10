@@ -5,47 +5,40 @@ const_value set 2
 RuinsOfAlphKabutoChamber_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x5872b, 0
-	dw UnknownScript_0x58736, 0
+	maptrigger .CheckWall
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .HiddenDoors
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, UnknownScript_0x58737
-
-UnknownScript_0x5872b:
+.CheckWall:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
-	iftrue UnknownScript_0x58732
+	iftrue .OpenWall
 	end
 
-UnknownScript_0x58732:
-	priorityjump UnknownScript_0x58751
-
-UnknownScript_0x58735:
+.OpenWall:
+	priorityjump .WallOpenScript
 	end
 
-UnknownScript_0x58736:
+.DummyTrigger:
 	end
 
-UnknownScript_0x58737:
+.HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
-	iftrue UnknownScript_0x58741
+	iftrue .WallOpen
 	changeblock $4, $0, $2e
-UnknownScript_0x58741:
+.WallOpen:
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
-	iffalse UnknownScript_0x58748
+	iffalse .FloorClosed
 	return
 
-UnknownScript_0x58748:
+.FloorClosed:
 	changeblock $2, $2, $1
 	changeblock $4, $2, $2
 	return
 
-UnknownScript_0x58751:
+.WallOpenScript:
 	pause 30
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 20

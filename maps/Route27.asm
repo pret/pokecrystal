@@ -12,18 +12,16 @@ const_value set 2
 Route27_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x1a0871, 0
-	dw UnknownScript_0x1a0872, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x1a0871:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x1a0872:
+.DummyTrigger1:
 	end
 
 UnknownScript_0x1a0873:

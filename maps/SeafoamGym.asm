@@ -5,14 +5,12 @@ const_value set 2
 SeafoamGym_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw UnknownScript_0x1ab4fa, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x1ab4fa:
+.DummyTrigger:
 	end
 
 BlaineScript_0x1ab4fb:

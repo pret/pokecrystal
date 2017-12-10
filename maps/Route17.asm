@@ -10,12 +10,9 @@ Route17_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_NEWMAP, .AlwaysOnBike
 
-	; callbacks
-
-	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x1ad0ab
-
-UnknownScript_0x1ad0ab:
+.AlwaysOnBike:
 	setflag ENGINE_ALWAYS_ON_BIKE
 	setflag ENGINE_DOWNHILL
 	return

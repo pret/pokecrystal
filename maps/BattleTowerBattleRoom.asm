@@ -5,10 +5,8 @@ const_value set 2
 BattleTowerBattleRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw .EnterBattleRoom, 0
-	dw .DummyTrigger, 0
+	maptrigger .EnterBattleRoom
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0

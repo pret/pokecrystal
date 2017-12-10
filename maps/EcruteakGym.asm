@@ -10,19 +10,17 @@ const_value set 2
 EcruteakGym_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x99d53, 0
-	dw UnknownScript_0x99d57, 0
+	maptrigger .ForcedToLeave
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x99d53:
+.ForcedToLeave:
 	priorityjump EcruteakGymClosed
 	end
 
-UnknownScript_0x99d57:
+.DummyTrigger:
 	end
 
 MortyScript_0x99d58:

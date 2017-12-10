@@ -7,8 +7,6 @@ const_value set 2
 PokeCenter2F_MapScriptHeader:
 .MapTriggers:
 	db 6
-
-	; triggers
 	maptrigger .Trigger0
 	maptrigger .Trigger1
 	maptrigger .Trigger2

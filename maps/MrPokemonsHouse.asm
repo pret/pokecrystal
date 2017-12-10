@@ -5,19 +5,17 @@ const_value set 2
 MrPokemonsHouse_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .MeetMrPokemon
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
+.MeetMrPokemon:
 	priorityjump .MrPokemonEvent
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
 .MrPokemonEvent:

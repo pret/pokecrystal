@@ -7,14 +7,12 @@ const_value set 2
 AzaleaPokeCenter1F_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	maptrigger .Trigger0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
+.DummyTrigger:
 	end
 
 AzaleaPokeCenter1FNurseScript:

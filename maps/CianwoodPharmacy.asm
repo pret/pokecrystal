@@ -4,14 +4,12 @@ const_value set 2
 CianwoodPharmacy_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw CianwoodPharmacyTrigger, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-CianwoodPharmacyTrigger:
+.DummyTrigger:
 	end
 
 CianwoodPharmacist:

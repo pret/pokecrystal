@@ -10,22 +10,20 @@ const_value set 2
 OlivinePort_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x748ac, 0
-	dw UnknownScript_0x748ad, 0
+	maptrigger .DummyTrigger0
+	maptrigger .LeaveFastShip
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x748ac:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x748ad:
-	priorityjump UnknownScript_0x748b1
+.LeaveFastShip:
+	priorityjump .LeaveFastShipScript
 	end
 
-UnknownScript_0x748b1:
+.LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74a32
 	appear OLIVINEPORT_SAILOR1
 	dotrigger $0

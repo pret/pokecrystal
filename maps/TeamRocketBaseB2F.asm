@@ -17,33 +17,28 @@ const_value set 2
 TeamRocketBaseB2F_MapScriptHeader:
 .MapTriggers:
 	db 4
-
-	; triggers
-	dw UnknownScript_0x6cf85, 0
-	dw UnknownScript_0x6cf86, 0
-	dw UnknownScript_0x6cf87, 0
-	dw UnknownScript_0x6cf88, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
+	maptrigger .DummyTrigger2
+	maptrigger .DummyTrigger3
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .TransmitterDoorCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, TransmitterDoorCallback
-
-UnknownScript_0x6cf85:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x6cf86:
+.DummyTrigger1:
 	end
 
-UnknownScript_0x6cf87:
+.DummyTrigger2:
 	end
 
-UnknownScript_0x6cf88:
+.DummyTrigger3:
 	end
 
-TransmitterDoorCallback:
+.TransmitterDoorCallback:
 	checkevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	iftrue .Change
 	return
@@ -319,12 +314,10 @@ UnknownScript_0x6d184:
 	setevent EVENT_SECURITY_CAMERA_5
 	end
 
-MapTeamRocketBaseB2FSignpostPtr1:
-	dw EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
-	dw MapTeamRocketBaseB2FSignpost1Script
+TeamRocketBaseB2FLockedDoor:
+	dw EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER, .Script
 
-
-MapTeamRocketBaseB2FSignpost1Script:
+.Script:
 	opentext
 	checkevent EVENT_LEARNED_HAIL_GIOVANNI
 	iftrue UnknownScript_0x6d1e8
@@ -344,16 +337,16 @@ UnknownScript_0x6d1e8:
 	waitsfx
 	end
 
-MapTeamRocketBaseB2FSignpost21Script:
+TeamRocketBaseB2FTransmitterScript:
 	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x6d207
+	iftrue .Deactivated
 	writetext UnknownText_0x6dda7
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6d207:
+.Deactivated:
 	writetext UnknownText_0x6de03
 	waitbutton
 	closetext
@@ -942,28 +935,28 @@ TeamRocketBaseB2F_MapEventHeader:
 
 .Signposts:
 	db 23
-	signpost 12, 14, SIGNPOST_IFNOTSET, MapTeamRocketBaseB2FSignpostPtr1
-	signpost 12, 15, SIGNPOST_IFNOTSET, MapTeamRocketBaseB2FSignpostPtr1
-	signpost 9, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 16, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 15, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 14, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 13, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 9, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 8, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 6, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 5, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 12, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 13, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 14, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 15, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 16, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 4, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 5, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 6, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 7, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
-	signpost 8, 17, SIGNPOST_READ, MapTeamRocketBaseB2FSignpost21Script
+	signpost 12, 14, SIGNPOST_IFNOTSET, TeamRocketBaseB2FLockedDoor
+	signpost 12, 15, SIGNPOST_IFNOTSET, TeamRocketBaseB2FLockedDoor
+	signpost 9, 17, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 9, 16, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 9, 15, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 9, 14, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 9, 13, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 9, 12, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 8, 12, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 7, 12, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 6, 12, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 5, 12, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 4, 12, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 4, 13, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 4, 14, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 4, 15, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 4, 16, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 4, 17, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 5, 17, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 6, 17, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 7, 17, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
+	signpost 8, 17, SIGNPOST_READ, TeamRocketBaseB2FTransmitterScript
 	signpost 7, 26, SIGNPOST_ITEM, TeamRocketBaseB2FHiddenFullHeal
 
 .PersonEvents:

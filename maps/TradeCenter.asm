@@ -5,26 +5,21 @@ const_value set 2
 TradeCenter_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .InitializeTradeCenter
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, TradeCenter_SetWhichChris
-
-.Trigger0:
-	priorityjump TradeCenter_Initialize
+.InitializeTradeCenter:
+	priorityjump .InitializeAndPreparePokeCenter2F
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-TradeCenter_SetWhichChris:
+.SetWhichChris:
 	special Special_CableClubCheckWhichChris
 	iffalse .Chris2
 	disappear TRADECENTER_CHRIS2
@@ -36,7 +31,7 @@ TradeCenter_SetWhichChris:
 	appear TRADECENTER_CHRIS2
 	return
 
-TradeCenter_Initialize:
+.InitializeAndPreparePokeCenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $1
 	end

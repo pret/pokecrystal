@@ -18,12 +18,9 @@ Route40_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .MonicaCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, MonicaCallback
-
-MonicaCallback:
+.MonicaCallback:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .MonicaAppears

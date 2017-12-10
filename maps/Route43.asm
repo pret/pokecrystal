@@ -14,18 +14,15 @@ Route43_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
 
-	; callbacks
-
-	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x19d051
-
-UnknownScript_0x19d051:
+.CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x19d05c
+	iftrue .NoRockets
 	domaptrigger ROUTE_43_GATE, $0
 	return
 
-UnknownScript_0x19d05c:
+.NoRockets:
 	domaptrigger ROUTE_43_GATE, $1
 	return
 

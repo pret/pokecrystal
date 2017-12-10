@@ -8,18 +8,16 @@ const_value set 2
 KrissHouse1F_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x7a4d6, 0
-	dw UnknownScript_0x7a4d7, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x7a4d6:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x7a4d7:
+.DummyTrigger1:
 	end
 
 UnknownScript_0x7a4d8:

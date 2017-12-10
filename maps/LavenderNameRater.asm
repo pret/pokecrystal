@@ -4,14 +4,12 @@ const_value set 2
 LavenderNameRater_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw UnknownScript_0x7eaf1, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x7eaf1:
+.DummyTrigger:
 	end
 
 LavenderNameRater:
@@ -22,8 +20,7 @@ LavenderNameRater:
 	closetext
 	end
 
-LavenderNameRaterBookshelf:
-; unused
+LavenderNameRaterUnusedBookshelf:
 	jumpstd difficultbookshelf
 
 LavenderNameRater_MapEventHeader:
