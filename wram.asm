@@ -1565,8 +1565,7 @@ ENDU
 NEXTU ; d002
 ; phone call data
 PhoneScriptBank:: db
-PhoneCallerLo:: db
-PhoneCallerHi:: db
+PhoneCaller:: dw
 
 NEXTU ; d002
 ; radio data
@@ -1685,8 +1684,7 @@ CurFruit:: db
 NEXTU ; d03e
 ; elevator data
 wElevatorPointerBank:: db
-wElevatorPointerLo:: db
-wElevatorPointerHi:: db
+wElevatorPointer:: dw
 wElevatorOriginFloor:: db
 
 NEXTU ; d03e
@@ -1716,8 +1714,7 @@ NEXTU ; d03e
 ; trainer data
 	ds 3
 wTempTrainerHeader::
-wTempTrainerEventFlagLo:: db
-wTempTrainerEventFlagHi:: db
+wTempTrainerEventFlag:: dw
 wTempTrainerClass:: db
 wTempTrainerID:: db
 wSeenTextPointer:: dw

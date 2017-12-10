@@ -381,11 +381,11 @@ Function90199: ; 90199 (24:4199)
 
 .DoPhoneCall:
 	ld a, b
-	ld [wd002], a
+	ld [PhoneScriptBank], a
 	ld a, l
-	ld [wd003], a
+	ld [PhoneCaller], a
 	ld a, h
-	ld [wd004], a
+	ld [PhoneCaller + 1], a
 	ld b, BANK(UnknownScript_0x90205)
 	ld de, UnknownScript_0x90205
 	call ExecuteCallbackScript
@@ -495,9 +495,9 @@ PhoneCall:: ; 9029a
 	ld a, b
 	ld [PhoneScriptBank], a
 	ld a, e
-	ld [PhoneCallerLo], a
+	ld [PhoneCaller], a
 	ld a, d
-	ld [PhoneCallerHi], a
+	ld [PhoneCaller + 1], a
 	call Phone_FirstOfTwoRings
 	call Phone_FirstOfTwoRings
 	callba TrainerRankings_PhoneCalls
@@ -523,9 +523,9 @@ Phone_CallerTextboxWithName2: ; 902c9
 	inc hl
 	ld a, [PhoneScriptBank]
 	ld b, a
-	ld a, [PhoneCallerLo]
+	ld a, [PhoneCaller]
 	ld e, a
-	ld a, [PhoneCallerHi]
+	ld a, [PhoneCaller + 1]
 	ld d, a
 	call FarPlaceString
 	ret
