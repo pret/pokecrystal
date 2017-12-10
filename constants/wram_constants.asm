@@ -1,23 +1,26 @@
-
 ; MonType: ; cf5f
-PARTYMON   EQU 0
-OTPARTYMON EQU 1
-BOXMON     EQU 2
-TEMPMON   EQU 3
-WILDMON    EQU 4
+	const_def
+	const PARTYMON   ; 0
+	const OTPARTYMON ; 1
+	const BOXMON     ; 2
+	const TEMPMON    ; 3
+	const WILDMON    ; 4
 
-; Options: ; cfcc
+; Options: (bits) ; cfcc
+const_value SET 5
+	const STEREO       ; 5
+	const BATTLE_SHIFT ; 6
+	const BATTLE_SCENE ; 7
+
+; Options: (bits 0-2 values) ; cfcc
 FAST_TEXT      EQU 0
 MED_TEXT       EQU 1
 SLOW_TEXT      EQU 2
 NO_TEXT_SCROLL EQU 4
-; bits
-STEREO         EQU 5
-BATTLE_SHIFT   EQU 6
-BATTLE_SCENE   EQU 7
 
 ; Options2:
-MENU_ACCOUNT EQU 0
+	const_def
+	const MENU_ACCOUNT ; 0
 
 ; GBPrinter:
 PRINT_LIGHTEST EQU $00
@@ -27,11 +30,12 @@ PRINT_DARKER   EQU $60
 PRINT_DARKEST  EQU $7f
 
 ; WalkingDirection: ; d043
-STANDING EQU -1
-DOWN     EQU 0
-UP       EQU 1
-LEFT     EQU 2
-RIGHT    EQU 3
+const_value SET -1
+	const STANDING ; -1
+	const DOWN     ; 0
+	const UP       ; 1
+	const LEFT     ; 2
+	const RIGHT    ; 3
 
 ; FacingDirection: ; d044
 FACE_CURRENT EQU 0
@@ -41,10 +45,11 @@ FACE_LEFT  EQU 2
 FACE_RIGHT EQU 1
 
 ; TimeOfDay: ; d269
-MORN     EQU 0
-DAY      EQU 1
-NITE     EQU 2
-DARKNESS EQU 3
+	const_def
+	const MORN     ; 0
+	const DAY      ; 1
+	const NITE     ; 2
+	const DARKNESS ; 3
 
 ; ScriptFlags: ; d434
 SCRIPT_RUNNING EQU 2
@@ -56,13 +61,14 @@ SCRIPT_WAIT_MOVEMENT EQU 2
 SCRIPT_WAIT EQU 3
 
 ; CurDay: ; d4cb
-SUNDAY    EQU 0
-MONDAY    EQU 1
-TUESDAY   EQU 2
-WEDNESDAY EQU 3
-THURSDAY  EQU 4
-FRIDAY    EQU 5
-SATURDAY  EQU 6
+	const_def
+	const SUNDAY    ; 0
+	const MONDAY    ; 1
+	const TUESDAY   ; 2
+	const WEDNESDAY ; 3
+	const THURSDAY  ; 4
+	const FRIDAY    ; 5
+	const SATURDAY  ; 6
 
 ; MapObjects: ; d71e
 
@@ -103,3 +109,35 @@ DAYCARE_DEPOSIT EQU 3
 	const DEXMODE_OLD
 	const DEXMODE_ABC
 	const DEXMODE_UNOWN
+
+; JohtoBadges:
+	const_def
+	const ZEPHYRBADGE
+	const HIVEBADGE
+	const PLAINBADGE
+	const FOGBADGE
+	const MINERALBADGE
+	const STORMBADGE
+	const GLACIERBADGE
+	const RISINGBADGE
+NUM_JOHTO_BADGES EQU const_value
+
+; KantoBadges:
+	const_def
+	const BOULDERBADGE
+	const CASCADEBADGE
+	const THUNDERBADGE
+	const RAINBOWBADGE
+	const SOULBADGE
+	const MARSHBADGE
+	const VOLCANOBADGE
+	const EARTHBADGE
+NUM_KANTO_BADGES EQU const_value
+NUM_BADGES EQU NUM_JOHTO_BADGES + NUM_KANTO_BADGES
+
+; wInitListType:
+INIT_ENEMYOT_LIST    EQU 1
+INIT_BAG_ITEM_LIST   EQU 2
+INIT_OTHER_ITEM_LIST EQU 3
+INIT_PLAYEROT_LIST   EQU 4
+INIT_MON_LIST        EQU 5

@@ -68,9 +68,9 @@ InitGenderScreen: ; 48e14 (12:4e14)
 	ld a, $10
 	ld [MusicFade], a
 	ld a, MUSIC_NONE
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, $0
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld c, 8
 	call DelayFrames
 	call ClearBGPalettes

@@ -117,7 +117,7 @@ Pokedex_CheckUnlockedUnownMode: ; 400a2
 	ret
 
 Pokedex_InitCursorPosition: ; 400b4
-	ld hl, wPokedexDataStart
+	ld hl, wPokedexOrder
 	ld a, [wLastDexEntry]
 	and a
 	jr z, .done
@@ -512,7 +512,7 @@ Pokedex_InitOptionScreen: ; 4039d (10:439d)
 	call ClearSprites
 	call Pokedex_DrawOptionScreenBG
 	call Pokedex_InitArrowCursor
-	ld a, [wCurrentDexMode]
+	ld a, [wCurrentDexMode] ; Index of the topmost visible item in a scrolling menu ???
 	ld [wDexArrowCursorPosIndex], a
 	call Pokedex_DisplayModeDescription
 	call WaitBGMap
@@ -1479,11 +1479,11 @@ Pokedex_PrintListing: ; 40b0f (10:4b0f)
 	ld a, " "
 	call Pokedex_FillBox
 
-; Load de with wPokedexDataStart + [wDexListingScrollOffset]
+; Load de with wPokedexOrder + [wDexListingScrollOffset]
 	ld a, [wDexListingScrollOffset]
 	ld e, a
 	ld d, $0
-	ld hl, wPokedexDataStart
+	ld hl, wPokedexOrder
 	add hl, de
 	ld e, l
 	ld d, h
@@ -1583,7 +1583,7 @@ Pokedex_GetSelectedMon: ; 40bb1
 	add [hl]
 	ld e, a
 	ld d, $0
-	ld hl, wPokedexDataStart
+	ld hl, wPokedexOrder
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
@@ -1614,8 +1614,8 @@ Pokedex_CheckSeen: ; 40bd0
 
 
 Pokedex_OrderMonsByMode: ; 40bdc
-	ld hl, wPokedexDataStart
-	ld bc, wPokedexMetadata - wPokedexDataStart
+	ld hl, wPokedexOrder
+	ld bc, wPokedexOrderEnd - wPokedexOrder
 	xor a
 	call ByteFill
 	ld a, [wCurrentDexMode]
@@ -1632,7 +1632,7 @@ Pokedex_OrderMonsByMode: ; 40bdc
 
 .NewMode: ; 40bf6 (10:4bf6)
 	ld de, NewPokedexOrder
-	ld hl, wPokedexDataStart
+	ld hl, wPokedexOrder
 	ld c, NUM_POKEMON
 .loopnew
 	ld a, [de]
@@ -1644,7 +1644,7 @@ Pokedex_OrderMonsByMode: ; 40bdc
 	ret
 
 .OldMode: ; 40c08 (10:4c08)
-	ld hl, wPokedexDataStart
+	ld hl, wPokedexOrder
 	ld a, $1
 	ld c, NUM_POKEMON
 .loopold
@@ -1656,7 +1656,7 @@ Pokedex_OrderMonsByMode: ; 40bdc
 	ret
 
 .FindLastSeen: ; 40c18 (10:4c18)
-	ld hl, wPokedexDataStart + NUM_POKEMON - 1
+	ld hl, wPokedexOrder + NUM_POKEMON - 1
 	ld d, NUM_POKEMON
 	ld e, d
 .loopfindend
@@ -1675,7 +1675,7 @@ Pokedex_OrderMonsByMode: ; 40bdc
 Pokedex_ABCMode: ; 40c30
 	xor a
 	ld [wDexListingEnd], a
-	ld hl, wPokedexDataStart
+	ld hl, wPokedexOrder
 	ld de, AlphabeticalPokedexOrder
 	ld c, NUM_POKEMON
 .loop1abc
@@ -1915,8 +1915,8 @@ Pokedex_SearchForMons: ; 41086
 	add hl, de
 	ld a, [hl]
 	ld [wDexConvertedMonType], a
-	ld hl, wPokedexDataStart
-	ld de, wPokedexDataStart
+	ld hl, wPokedexOrder
+	ld de, wPokedexOrder
 	ld c, NUM_POKEMON
 	xor a
 	ld [wDexSearchResultCount], a

@@ -633,7 +633,7 @@ ParsePlayerAction: ; 3c434
 	xor a
 	ld [wMoveSelectionMenuType], a
 	inc a ; POUND
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	call MoveSelectionScreen
 	push af
 	call Call_LoadTempTileMapToTileMap
@@ -1305,7 +1305,7 @@ HandleWrap: ; 3c874
 
 	ld a, [de]
 	ld [wd265], a
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	call GetMoveName
 	dec [hl]
 	jr z, .release_from_bounds
@@ -1318,7 +1318,7 @@ HandleWrap: ; 3c874
 	call SwitchTurnCore
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	predef PlayBattleAnim
 	call SwitchTurnCore
 
@@ -4213,7 +4213,7 @@ SendOutPlayerMon: ; 3db5f
 	call GetMonBackpic
 	xor a
 	ld [hGraphicStartTile], a
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	ld [CurMoveNum], a
 	ld [TypeModifier], a
 	ld [wPlayerMoveStruct + MOVE_ANIM], a
@@ -4551,11 +4551,11 @@ ItemRecoveryAnim: ; 3ddc8
 	push bc
 	call EmptyBattleTextBox
 	ld a, RECOVER
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	call SwitchTurnCore
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	predef PlayBattleAnim
 	call SwitchTurnCore
 	pop bc
@@ -5130,7 +5130,7 @@ BattleMenu: ; 3e139
 .next
 	ld a, $1
 	ld [hBGMapMode], a
-	ld a, [wd0d2]
+	ld a, [wBattleMenuCursorBuffer]
 	cp $1
 	jp z, BattleMenu_Fight
 	cp $3
@@ -6267,13 +6267,13 @@ LoadEnemyMon: ; 3e8eb
 
 ; 25% chance of getting an item
 	call BattleRandom
-	cp a, 1 + (75 percent)
+	cp 1 + (75 percent)
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 
 ; From there, an 8% chance for Item2
 	call BattleRandom
-	cp a, 8 percent ; 8% of 25% = 2% Item2
+	cp 8 percent ; 8% of 25% = 2% Item2
 	ld a, [BaseItems]
 	jr nc, .UpdateItem
 	ld a, [BaseItems+1]
@@ -6320,7 +6320,7 @@ LoadEnemyMon: ; 3e8eb
 ; Roaming monsters (Entei, Raikou) work differently
 ; They have their own structs, which are shorter than normal
 	ld a, [BattleType]
-	cp a, BATTLETYPE_ROAMING
+	cp BATTLETYPE_ROAMING
 	jr nz, .NotRoaming
 
 ; Grab HP
@@ -6361,7 +6361,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; Forced shiny battle type
 ; Used by Red Gyarados at Lake of Rage
-	cp a, BATTLETYPE_SHINY
+	cp BATTLETYPE_SHINY
 	jr nz, .GenerateDVs
 
 	ld b, ATKDEFDV_SHINY ; $ea
@@ -6391,7 +6391,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; Unown
 	ld a, [TempEnemyMonSpecies]
-	cp a, UNOWN
+	cp UNOWN
 	jr nz, .Magikarp
 
 ; Get letter based on DVs
@@ -6406,7 +6406,7 @@ LoadEnemyMon: ; 3e8eb
 ; Skimming this part recommended
 
 	ld a, [TempEnemyMonSpecies]
-	cp a, MAGIKARP
+	cp MAGIKARP
 	jr nz, .Happiness
 
 ; Get Magikarp's length
@@ -6415,26 +6415,26 @@ LoadEnemyMon: ; 3e8eb
 	callab CalcMagikarpLength
 
 ; We're clear if the length is < 1536
-	ld a, [MagikarpLength]
-	cp a, $06 ; $600 = 1536
+	ld a, [wMagikarpLength]
+	cp $06 ; $600 = 1536
 	jr nz, .CheckMagikarpArea
 
 ; 5% chance of skipping size checks
 	call Random
-	cp a, $0c ; / $100
+	cp $0c ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1614
-	ld a, [MagikarpLength + 1]
-	cp a, $50
+	ld a, [wMagikarpLength + 1]
+	cp $50
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
 	call Random
-	cp a, $32 ; / $100
+	cp $32 ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1598
-	ld a, [MagikarpLength + 1]
-	cp a, $40
+	ld a, [wMagikarpLength + 1]
+	cp $40
 	jr nc, .GenerateDVs
 
 .CheckMagikarpArea:
@@ -6448,18 +6448,18 @@ LoadEnemyMon: ; 3e8eb
 ; Intended behavior enforces a minimum size at Lake of Rage
 ; The real behavior prevents size flooring in the Lake of Rage area
 	ld a, [MapGroup]
-	cp a, GROUP_LAKE_OF_RAGE
+	cp GROUP_LAKE_OF_RAGE
 	jr z, .Happiness
 	ld a, [MapNumber]
-	cp a, MAP_LAKE_OF_RAGE
+	cp MAP_LAKE_OF_RAGE
 	jr z, .Happiness
 ; 40% chance of not flooring
 	call Random
-	cp a, $64 ; / $100
+	cp $64 ; / $100
 	jr c, .Happiness
 ; Floor at length 1024
-	ld a, [MagikarpLength]
-	cp a, 1024 >> 8
+	ld a, [wMagikarpLength]
+	cp 1024 >> 8
 	jr c, .GenerateDVs ; try again
 
 ; Finally done with DVs
@@ -6480,7 +6480,7 @@ LoadEnemyMon: ; 3e8eb
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
 	ld a, [wBattleMode]
-	cp a, TRAINER_BATTLE
+	cp TRAINER_BATTLE
 	jr z, .OpponentParty
 
 ; If we're in a wild battle, check wild-specific stuff
@@ -6515,7 +6515,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; ..unless it's a RoamMon
 	ld a, [BattleType]
-	cp a, BATTLETYPE_ROAMING
+	cp BATTLETYPE_ROAMING
 	jr nz, .Moves
 
 ; Grab HP
@@ -6568,7 +6568,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, EnemyMonMoves
 ; Are we in a trainer battle?
 	ld a, [wBattleMode]
-	cp a, TRAINER_BATTLE
+	cp TRAINER_BATTLE
 	jr nz, .WildMoves
 ; Then copy moves from the party struct
 	ld hl, OTPartyMon1Moves
@@ -6588,14 +6588,14 @@ LoadEnemyMon: ; 3e8eb
 	ld [hli], a
 	ld [hl], a
 ; Make sure the predef knows this isn't a partymon
-	ld [MagikarpLength], a
+	ld [wEvolutionOldSpecies], a
 ; Fill moves based on level
 	predef FillMoves
 
 .PP:
 ; Trainer battle?
 	ld a, [wBattleMode]
-	cp a, TRAINER_BATTLE
+	cp TRAINER_BATTLE
 	jr z, .TrainerPP
 
 ; Fill wild PP
@@ -6670,13 +6670,13 @@ CheckSleepingTreeMon: ; 3eb38
 
 ; Don't do anything if this isn't a tree encounter
 	ld a, [BattleType]
-	cp a, BATTLETYPE_TREE
+	cp BATTLETYPE_TREE
 	jr nz, .NotSleeping
 
 ; Get list for the time of day
 	ld hl, .Morn
 	ld a, [TimeOfDay]
-	cp a, DAY
+	cp DAY
 	jr c, .Check
 	ld hl, .Day
 	jr z, .Check
@@ -6759,7 +6759,7 @@ CheckUnownLetter: ; 3eb75
 	inc e
 	inc e
 	ld a, e
-	cp a, .Set1 - .LetterSets
+	cp .Set1 - .LetterSets
 	jr c, .loop
 
 ; Hasn't been unlocked, or the letter is invalid
@@ -7285,9 +7285,9 @@ Call_PlayBattleAnim_OnlyIfVisible: ; 3ee0f
 
 Call_PlayBattleAnim: ; 3ee17
 	ld a, e
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, d
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	call WaitBGMap
 	predef_jump PlayBattleAnim
 ; 3ee27
@@ -8405,7 +8405,7 @@ BattleIntro: ; 3f4dd
 	call LoadTrainerOrWildMonPic
 	xor a
 	ld [TempBattleMonSpecies], a
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	xor a
 	ld [hMapAnims], a
 	callba PlayBattleMusic
@@ -8670,7 +8670,7 @@ CleanUpBattleRAM: ; 3f6d0
 	ld [wPartyMenuCursor], a
 	ld [wKeyItemsPocketCursor], a
 	ld [wItemsPocketCursor], a
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	ld [CurMoveNum], a
 	ld [wBallsPocketCursor], a
 	ld [wLastPocket], a

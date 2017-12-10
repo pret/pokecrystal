@@ -979,7 +979,7 @@ Script_cry:
 	ret
 
 GetScriptPerson:
-	and a
+	and a ; PLAYER?
 	ret z
 	cp LAST_TALKED
 	ret z
@@ -1355,19 +1355,19 @@ Script_earthquake:
 ;     param (DecimalParam)
 
 	ld hl, EarthquakeMovement
-	ld de, wd002
+	ld de, wEarthquakeMovementDataBuffer
 	ld bc, EarthquakeMovementEnd - EarthquakeMovement
 	call CopyBytes
 	call GetScriptByte
-	ld [wd003], a
-	and (1 << 6) - 1
-	ld [wd005], a
+	ld [wEarthquakeMovementDataBuffer + 1], a
+	and %00111111
+	ld [wEarthquakeMovementDataBuffer + 3], a
 	ld b, BANK(.script)
 	ld de, .script
 	jp ScriptCall
 
 .script
-	applymovement PLAYER, wd002
+	applymovement PLAYER, wEarthquakeMovementDataBuffer
 	end
 
 EarthquakeMovement:
@@ -2170,7 +2170,7 @@ Script_givepokeitem:
 	ld b, a
 	push bc
 	inc hl
-	ld bc, MAIL_MAX_LENGTH
+	ld bc, MAIL_MSG_LENGTH
 	ld de, wd002
 	ld a, [ScriptBank]
 	call FarCopyBytes
@@ -2668,7 +2668,7 @@ Script_warp:
 	call GetScriptByte
 	ld [YCoord], a
 	ld a, -1
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 	ld a, MAPSETUP_WARP
 	ld [hMapEntryMethod], a
 	ld a, 1
@@ -2681,7 +2681,7 @@ Script_warp:
 	call GetScriptByte
 	call GetScriptByte
 	ld a, -1
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 	ld a, MAPSETUP_BADWARP
 	ld [hMapEntryMethod], a
 	ld a, 1
@@ -2955,9 +2955,9 @@ ExitScriptSubroutine:
 	ld e, [hl]
 	ld d, $0
 	ld hl, wScriptStack
-	add hl,de
-	add hl,de
-	add hl,de
+	add hl, de
+	add hl, de
+	add hl, de
 	ld a, [hli]
 	ld b, a
 	and " "

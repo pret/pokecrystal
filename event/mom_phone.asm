@@ -1,3 +1,7 @@
+const_value = 1
+	const MOM_ITEM
+	const MOM_DOLL
+
 MomTriesToBuySomething:: ; fcfec
 	ld a, [wMapReentryScriptQueueFlag]
 	and a
@@ -214,7 +218,6 @@ momitem: macro
 	dt \2
 	db \3, \4
 ENDM
-
 
 MomItems_1: ; fd136
 	momitem      0,   600, MOM_ITEM, SUPER_POTION

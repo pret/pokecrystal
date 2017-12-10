@@ -1,3 +1,5 @@
+; hMapEntryMethod values
+; MapSetupScripts indexes (see engine/map_setup.asm)
 const_value SET $f1
 	const MAPSETUP_WARP
 	const MAPSETUP_CONTINUE
@@ -12,6 +14,7 @@ const_value SET $f1
 	const MAPSETUP_BADWARP
 	const MAPSETUP_FLY
 
+; callback types
 const_value SET 1
 	const MAPCALLBACK_TILES
 	const MAPCALLBACK_OBJECTS
@@ -19,9 +22,10 @@ const_value SET 1
 	const MAPCALLBACK_SPRITES
 	const MAPCALLBACK_NEWMAP
 
-; Command descriptions from Condensation water's scripting compendium.
+; MapSetupCommands indexes (see engine/map_setup.asm)
+; Names taken from Condensation water's scripting compendium
+; https://hax.iimarck.us/files/scriptingcodes_eng.htm
 	const_def
-
 	const map_lcd_on              ; 00
 	const map_lcd_off             ; 01
 	const map_sound_off           ; 02

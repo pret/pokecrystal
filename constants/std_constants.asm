@@ -1,3 +1,5 @@
+; StdScripts indexes (see engine/std_scripts.asm)
+; also used in CheckFacingTileForStd (see main.asm)
 	enum_start
 	enum pokecenternurse
 	enum difficultbookshelf

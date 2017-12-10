@@ -1,11 +1,11 @@
 LoadBattleMenu: ; 24ef2
 	ld hl, BattleMenuDataHeader
 	call LoadMenuDataHeader
-	ld a, [wd0d2]
+	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call InterpretBattleMenu
 	ld a, [wMenuCursorBuffer]
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	call ExitMenu
 	ret
 ; 24f0b
@@ -23,11 +23,11 @@ ContestBattleMenu: ; 24f13
 ; 24f19
 
 Function24f19: ; 24f19
-	ld a, [wd0d2]
+	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call _2DMenu
 	ld a, [wMenuCursorBuffer]
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	call ExitMenu
 	ret
 ; 24f2c

@@ -499,12 +499,12 @@ CardFlip_DisplayCardFaceUp: ; e03ec
 
 .Deck: ; e0459
 	; level, pic anchor (3x3)
-	db "1",$4e, "1",$57, "1",$69, "1",$60
-	db "2",$4e, "2",$57, "2",$69, "2",$60
-	db "3",$4e, "3",$57, "3",$69, "3",$60
-	db "4",$4e, "4",$57, "4",$69, "4",$60
-	db "5",$4e, "5",$57, "5",$69, "5",$60
-	db "6",$4e, "6",$57, "6",$69, "6",$60
+	db "1", $4e, "1", $57, "1", $69, "1", $60
+	db "2", $4e, "2", $57, "2", $69, "2", $60
+	db "3", $4e, "3", $57, "3", $69, "3", $60
+	db "4", $4e, "4", $57, "4", $69, "4", $60
+	db "5", $4e, "5", $57, "5", $69, "5", $60
+	db "6", $4e, "6", $57, "6", $69, "6", $60
 ; e0489
 
 CardFlip_UpdateCoinBalanceDisplay: ; e0489
@@ -1712,19 +1712,19 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 ; e0cdb
 
 CardFlipLZ03: ; e0cdb
-INCBIN "gfx/unknown/0e0cdb.2bpp.lz"
+INCBIN "gfx/card_flip/card_flip_3.2bpp.lz"
 
 CardFlipOffButtonGFX: ; e0cf6
-INCBIN "gfx/unknown/0e0cf6.2bpp"
+INCBIN "gfx/card_flip/off.2bpp"
 
 CardFlipOnButtonGFX: ; e0d06
-INCBIN "gfx/unknown/0e0d06.2bpp"
+INCBIN "gfx/card_flip/on.2bpp"
 
 CardFlipLZ01: ; e0d16
-INCBIN "gfx/unknown/0e0d16.2bpp.lz"
+INCBIN "gfx/card_flip/card_flip_1.2bpp.lz"
 
 CardFlipLZ02: ; e0ea8
-INCBIN "gfx/unknown/0e0ea8.2bpp.lz"
+INCBIN "gfx/card_flip/card_flip_2.2bpp.lz"
 
 CardFlipTilemap: ; e110c
 	db $ef, $15, $27, $2a, $2a, $06, $27, $2a, $2a, $06, $27

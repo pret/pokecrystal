@@ -1,36 +1,22 @@
-	ld hl, OBJECT_ACTION
-	add hl, bc
-	ld a, [hl]
-	ld l, a
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call _hl_
-	ret
-; 445f
-
-Pointers445f: ; 445f
-	dw SetFacingStanding,              SetFacingStanding ; 00
-	dw SetFacingStandAction,           SetFacingCurrent ; 01 standing?
-	dw SetFacingStepAction,            SetFacingCurrent ; 02 walking?
-	dw SetFacingBumpAction,            SetFacingCurrent ; 03 bumping?
-	dw SetFacingCounterclockwiseSpin,  SetFacingCurrent ; 04
-	dw SetFacingCounterclockwiseSpin2, SetFacingStanding ; 05
-	dw SetFacingFish,                  SetFacingFish ; 06
-	dw SetFacingShadow,                SetFacingStanding ; 07
-	dw SetFacingEmote,                 SetFacingEmote ; 08
-	dw SetFacingBigDollSym,            SetFacingBigDollSym ; 09
-	dw SetFacingBounce,                SetFacingFreezeBounce ; 0a
-	dw SetFacingWeirdTree,             SetFacingCurrent ; 0b
-	dw SetFacingBigDollAsym,           SetFacingBigDollAsym ; 0c
-	dw SetFacingBigDoll,               SetFacingBigDoll ; 0d
-	dw SetFacingBoulderDust,           SetFacingStanding ; 0e
-	dw SetFacingGrassShake,            SetFacingStanding ; 0f
-	dw SetFacingSkyfall,               SetFacingCurrent ; 10
+PersonActionPairPointers: ; 445f
+; entries correspond to PERSON_ACTION_* constants
+	dw SetFacingStanding,              SetFacingStanding
+	dw SetFacingStandAction,           SetFacingCurrent
+	dw SetFacingStepAction,            SetFacingCurrent
+	dw SetFacingBumpAction,            SetFacingCurrent
+	dw SetFacingCounterclockwiseSpin,  SetFacingCurrent
+	dw SetFacingCounterclockwiseSpin2, SetFacingStanding
+	dw SetFacingFish,                  SetFacingFish
+	dw SetFacingShadow,                SetFacingStanding
+	dw SetFacingEmote,                 SetFacingEmote
+	dw SetFacingBigDollSym,            SetFacingBigDollSym
+	dw SetFacingBounce,                SetFacingFreezeBounce
+	dw SetFacingWeirdTree,             SetFacingCurrent
+	dw SetFacingBigDollAsym,           SetFacingBigDollAsym
+	dw SetFacingBigDoll,               SetFacingBigDoll
+	dw SetFacingBoulderDust,           SetFacingStanding
+	dw SetFacingGrassShake,            SetFacingStanding
+	dw SetFacingSkyfall,               SetFacingCurrent
 ; 44a3
 
 SetFacingStanding: ; 44a3

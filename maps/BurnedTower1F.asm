@@ -73,7 +73,7 @@ BurnedTowerRivalBattleScript:
 	iftrue .chikorita
 	winlosstext BurnedTowerSilver_WinText, BurnedTowerSilver_LossText
 	setlasttalked BURNEDTOWER1F_SILVER
-	loadtrainer RIVAL1, RIVAL1_9
+	loadtrainer RIVAL1, RIVAL1_3_TOTODILE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -82,7 +82,7 @@ BurnedTowerRivalBattleScript:
 .totodile
 	winlosstext BurnedTowerSilver_WinText, BurnedTowerSilver_LossText
 	setlasttalked BURNEDTOWER1F_SILVER
-	loadtrainer RIVAL1, RIVAL1_7
+	loadtrainer RIVAL1, RIVAL1_3_CHIKORITA
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -91,7 +91,7 @@ BurnedTowerRivalBattleScript:
 .chikorita
 	winlosstext BurnedTowerSilver_WinText, BurnedTowerSilver_LossText
 	setlasttalked BURNEDTOWER1F_SILVER
-	loadtrainer RIVAL1, RIVAL1_8
+	loadtrainer RIVAL1, RIVAL1_3_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle

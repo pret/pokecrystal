@@ -3,11 +3,11 @@ InitMovementBuffer:: ; 1b1e
 	xor a
 	ld [wMovementBufferCount], a
 	ld a, $0 ; useless
-	ld [wd004], a
+	ld [wUnusedMovementBufferBank], a
 	ld a, MovementBuffer % $100
-	ld [wd005], a
+	ld [wUnusedMovementBufferPointer], a
 	ld a, MovementBuffer / $100
-	ld [wd006], a
+	ld [wUnusedMovementBufferPointer + 1], a
 	ret
 ; 1b35
 

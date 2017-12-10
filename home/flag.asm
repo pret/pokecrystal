@@ -38,9 +38,9 @@ FlagAction:: ; 0x2e76
 
 ; inputs:
 ; b: function
-;    0 clear bit
-;    1 set bit
-;    2 check bit
+;    0  RESET_FLAG  clear bit
+;    1  SET_FLAG    set bit
+;    2  CHECK_FLAG  check bit
 ; de: bit number
 ; hl: index within bit table
 
@@ -75,9 +75,9 @@ FlagAction:: ; 0x2e76
 
 	; check b's value: 0, 1, 2
 	ld a, b
-	cp 1
-	jr c, .clearbit ; 0
-	jr z, .setbit ; 1
+	cp SET_FLAG
+	jr c, .clearbit ; RESET_FLAG
+	jr z, .setbit ; SET_FLAG
 
 	; check bit
 	ld a, [hl]

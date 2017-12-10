@@ -868,7 +868,7 @@ BattleBGEffect_RunPicResizeScript: ; c83ed (32:43ed)
 
 .BGSquares:
 bgsquare: MACRO
-	dn \1,\2
+	dn \1, \2
 	dw \3
 endm
 
@@ -1538,10 +1538,10 @@ Tackle_BGEffect25_2d_two:
 
 Functionc88a5: ; c88a5 (32:48a5)
 	push af
-	ld a, [FXAnimIDHi] ; FXAnimIDHi
+	ld a, [FXAnimID + 1] ; FXAnimID + 1
 	or a
 	jr nz, .not_rollout
-	ld a, [FXAnimIDLo] ; FXAnimID
+	ld a, [FXAnimID] ; FXAnimID
 	cp ROLLOUT
 	jr z, .rollout
 .not_rollout
@@ -2581,8 +2581,8 @@ BGEffects_LoadBGPal0_OBPal1: ; c8e52 (32:4e52)
 	ld a, h
 	push bc
 	push af
-	ld hl, BGPals ; BGPals
-	ld de, UnknBGPals ; wd000
+	ld hl, BGPals
+	ld de, UnknBGPals
 	ld b, a
 	ld c, $1
 	call CopyPals

@@ -9,8 +9,7 @@ MonMenuOptionStrings: ; 24caf
 ; 24cd9
 
 MonMenuOptions: ; 24cd9
-
-; Moves
+; moves
 	db MONMENU_FIELD_MOVE, MONMENU_CUT,        CUT
 	db MONMENU_FIELD_MOVE, MONMENU_FLY,        FLY
 	db MONMENU_FIELD_MOVE, MONMENU_SURF,       SURF
@@ -25,8 +24,7 @@ MonMenuOptions: ; 24cd9
 	db MONMENU_FIELD_MOVE, MONMENU_ROCKSMASH,  ROCK_SMASH
 	db MONMENU_FIELD_MOVE, MONMENU_MILKDRINK,  MILK_DRINK
 	db MONMENU_FIELD_MOVE, MONMENU_SWEETSCENT, SWEET_SCENT
-
-; Options
+; options
 	db MONMENU_MENUOPTION, MONMENU_STATS,      1 ; STATS
 	db MONMENU_MENUOPTION, MONMENU_SWITCH,     2 ; SWITCH
 	db MONMENU_MENUOPTION, MONMENU_ITEM,       3 ; ITEM
@@ -34,7 +32,6 @@ MonMenuOptions: ; 24cd9
 	db MONMENU_MENUOPTION, MONMENU_MOVE,       5 ; MOVE
 	db MONMENU_MENUOPTION, MONMENU_MAIL,       6 ; MAIL
 	db MONMENU_MENUOPTION, MONMENU_ERROR,      7 ; ERROR!
-
 	db -1
 ; 24d19
 
@@ -216,7 +213,7 @@ GetMonSubmenuItems: ; 24dd4
 
 .skip2
 	ld a, [Buffer1]
-	cp NUM_MON_SUBMENU_ITEMS
+	cp NUM_MONMENU_ITEMS
 	jr z, .ok2
 	ld a, MONMENU_CANCEL
 	call AddMonMenuItem
@@ -261,7 +258,7 @@ ResetMonSubmenu: ; 24e68
 	xor a
 	ld [Buffer1], a
 	ld hl, Buffer2
-	ld bc, NUM_MON_SUBMENU_ITEMS + 1
+	ld bc, NUM_MONMENU_ITEMS + 1
 	call ByteFill
 	ret
 ; 24e76

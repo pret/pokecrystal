@@ -1804,14 +1804,14 @@ Function100b12: ; 100b12
 	call FarCall_de
 	ld a, BANK(BattleMenuDataHeader)
 	ld [wMenuData2_2DMenuItemStringsBank], a
-	ld a, [wd0d2]
+	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call Function100e72
 	call Function100b45
 	callba InitPartyMenuBGPal7
 	call Function100ed4
 	ld a, [wMenuCursorBuffer]
-	ld [wd0d2], a
+	ld [wBattleMenuCursorBuffer], a
 	call ExitMenu
 	ret
 ; 100b45
@@ -5410,7 +5410,7 @@ Function1023c6: ; 1023c6
 	dec a
 	ld [CurPartyMon], a
 	xor a
-	ld [wd10b], a
+	ld [wPokemonWithdrawDepositParameter], a
 	callba RemoveMonFromPartyOrBox
 	ld hl, PartyCount
 	inc [hl]

@@ -85,10 +85,10 @@ PrintDiplomaPage2: ; 1dd7ae
 ; 1dd805
 
 DiplomaGFX: ; 1dd805
-INCBIN "gfx/unknown/1dd805.2bpp.lz"
+INCBIN "gfx/diploma/diploma.2bpp.lz"
 
 DiplomaPage1Tilemap: ; 1ddc4b
-INCBIN "gfx/unknown/1ddc4b.tilemap"
+INCBIN "gfx/diploma/page1.tilemap"
 
 DiplomaPage2Tilemap: ; 1dddb3
-INCBIN "gfx/unknown/1dddb3.tilemap"
+INCBIN "gfx/diploma/page2.tilemap"

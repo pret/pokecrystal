@@ -27,7 +27,7 @@ AI_SwitchOrTryItem: ; 38000
 
 	ld a, [TrainerClass]
 	dec a
-	ld bc, 7
+	ld bc, NUM_TRAINER_ATTRIBUTES
 	call AddNTimes
 .ok
 	bit SWITCH_OFTEN_F, [hl]
@@ -174,8 +174,8 @@ AI_TryItem: ; 38105
 
 	ld a, [TrainerClass]
 	dec a
-	ld hl, TrainerClassAttributes + 5
-	ld bc, 7
+	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
+	ld bc, NUM_TRAINER_ATTRIBUTES
 	call AddNTimes
 	ld b, h
 	ld c, l

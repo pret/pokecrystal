@@ -102,7 +102,7 @@ UnknownScript_0x6cfac:
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d248
 	winlosstext UnknownText_0x6d45c, 0
 	setlasttalked TEAMROCKETBASEB2F_ROCKET_GIRL
-	loadtrainer EXECUTIVEF, 2
+	loadtrainer EXECUTIVEF, EXECUTIVEF_2
 	startbattle
 	disappear TEAMROCKETBASEB2F_DRAGON
 	setevent EVENT_TEAM_ROCKET_BASE_B2F_EXECUTIVE

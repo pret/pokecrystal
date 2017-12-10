@@ -295,7 +295,7 @@ IsSFXPlaying:: ; 3c74
 ; 3c97
 
 MaxVolume:: ; 3c97
-	ld a, $77 ; max
+	ld a, MAX_VOLUME
 	ld [Volume], a
 	ret
 ; 3c9d
@@ -348,9 +348,9 @@ FadeToMapMusic:: ; 3cbc
 	ld a, 8
 	ld [MusicFade], a
 	ld a, e
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, d
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld a, e
 	ld [wMapMusic], a
 

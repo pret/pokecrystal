@@ -204,7 +204,7 @@ _CGB_PokegearPals: ; 8eb9
 
 _CGB_StatsScreenHPPals: ; 8edb
 	ld de, UnknBGPals
-	ld a, [wcda1]
+	ld a, [wCurHPPal]
 	ld l, a
 	ld h, $0
 	add hl, hl

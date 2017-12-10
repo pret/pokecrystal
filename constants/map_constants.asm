@@ -5,7 +5,13 @@ GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
 ; map group ids
+; `newgroup` indexes are for:
+; - MapGroupPointers (see maps/map_headers.asm)
+; - OutdoorSprites (see engine/overworld.asm)
+; - MapGroupRoofs (see tilesets/roofs.asm)
+; `mapgroup` indexes are for the sub-tables of MapGroupPointers (see maps/map_headers.asm)
 	const_def
+
 	newgroup                                                    ;  1
 
 	mapgroup OLIVINE_POKECENTER_1F,                       4,  5 ;  1
@@ -473,40 +479,7 @@ MAP_NONE   EQU 0
 	mapgroup ROUTE_31_VIOLET_GATE,                        4,  5 ; 11
 
 
-; elevator floors
-
-	const_def
-	const _B4F
-	const _B3F
-	const _B2F
-	const _B1F
-	const _1F
-	const _2F
-	const _3F
-	const _4F
-	const _5F
-	const _6F
-	const _7F
-	const _8F
-	const _9F
-	const _10F
-	const _11F
-	const _ROOF
-
-; connection directions
-	const_def
-	const EAST_F
-	const WEST_F
-	const SOUTH_F
-	const NORTH_F
-
-	const_def
-	shift_const EAST
-	shift_const WEST
-	shift_const SOUTH
-	shift_const NORTH
-
-; permissions
+; map permissions (wPermission)
 const_value SET 1
 	const TOWN
 	const ROUTE
@@ -516,7 +489,48 @@ const_value SET 1
 	const GATE
 	const DUNGEON
 
-; object struct
+; map palettes (wPermission)
+	const_def
+	const PALETTE_AUTO
+	const PALETTE_DAY
+	const PALETTE_NITE
+	const PALETTE_MORN
+	const PALETTE_DARK
+
+; fish groups 
+	const_def
+	const FISHGROUP_NONE
+	const FISHGROUP_SHORE
+	const FISHGROUP_OCEAN
+	const FISHGROUP_LAKE
+	const FISHGROUP_POND
+	const FISHGROUP_DRATINI
+	const FISHGROUP_QWILFISH_SWARM
+	const FISHGROUP_REMORAID_SWARM
+	const FISHGROUP_GYARADOS
+	const FISHGROUP_DRATINI_2
+	const FISHGROUP_WHIRL_ISLANDS
+	const FISHGROUP_QWILFISH
+	const FISHGROUP_REMORAID
+	const FISHGROUP_QWILFISH_NO_SWARM
+
+
+; connection directions
+	const_def
+	const EAST_F
+	const WEST_F
+	const SOUTH_F
+	const NORTH_F
+
+; MapConnections
+	const_def
+	shift_const EAST
+	shift_const WEST
+	shift_const SOUTH
+	shift_const NORTH
+
+
+; object_struct members (see macros/wram.asm)
 	const_def
 	const OBJECT_SPRITE              ; 00
 	const OBJECT_MAP_OBJECT_INDEX    ; 01
@@ -553,7 +567,7 @@ const_value SET 1
 	const OBJECT_RANGE               ; 20
 ; 33-39 are not used
 
-; map object struct
+; map_object struct members (see macros/wram.asm)
 	const_def
 	const MAPOBJECT_OBJECT_STRUCT_ID ; 0
 	const MAPOBJECT_SPRITE ; 1
@@ -576,46 +590,25 @@ OBJECT_LENGTH EQU const_value
 MAPOBJECT_SCREEN_HEIGHT EQU 11
 MAPOBJECT_SCREEN_WIDTH EQU 12
 
+; object_struct OBJECT_FACING values
 OW_DOWN  EQU DOWN  << 2
 OW_UP    EQU UP    << 2
 OW_LEFT  EQU LEFT  << 2
 OW_RIGHT EQU RIGHT << 2
 
-	const_def
-	const EMOTE_SHOCK ; 0
-	const EMOTE_QUESTION ; 1
-	const EMOTE_HAPPY ; 2
-	const EMOTE_SAD ; 3
-	const EMOTE_HEART ; 4
-	const EMOTE_BOLT ; 5
-	const EMOTE_SLEEP ; 6
-	const EMOTE_FISH ; 7
-	const EMOTE_SHADOW ; 8
-	const EMOTE_ROD ; 9
-	const EMOTE_BOULDER_DUST ; 10
-	const EMOTE_0B ; 11
-EMOTE_MEM EQU -1
-
-	const_def
-	const SIGNPOST_READ
-	const SIGNPOST_UP
-	const SIGNPOST_DOWN
-	const SIGNPOST_RIGHT
-	const SIGNPOST_LEFT
-	const SIGNPOST_IFSET
-	const SIGNPOST_IFNOTSET
-	const SIGNPOST_ITEM
-	const SIGNPOST_COPY
-
-; I'm relocating spawn constants here, so that they can be used anywhere in the disassembly.
+; object_struct OBJECT_FLAGS1 bit flags
+INVISIBLE    EQU 0
+FIXED_FACING EQU 2
+SLIDING      EQU 3
+EMOTE_OBJECT EQU 7
 
 
+; SpawnPoints indexes (see engine/spawn_points.asm)
 const_value = -1
 	const SPAWN_N_A
-
 	const SPAWN_HOME
 	const SPAWN_DEBUG
-
+; kanto
 	const SPAWN_PALLET
 	const SPAWN_VIRIDIAN
 	const SPAWN_PEWTER
@@ -628,7 +621,7 @@ const_value = -1
 	const SPAWN_FUCHSIA
 	const SPAWN_CINNABAR
 	const SPAWN_INDIGO
-
+; johto
 	const SPAWN_NEW_BARK
 	const SPAWN_CHERRYGROVE
 	const SPAWN_VIOLET
@@ -645,18 +638,21 @@ const_value = -1
 	const SPAWN_FAST_SHIP
 NUM_SPAWNS EQU const_value
 
+
+; TryReadSign arguments (see engine/events.asm)
 	const_def
-	const PALETTE_AUTO
-	const PALETTE_DAY
-	const PALETTE_NITE
-	const PALETTE_MORN
-	const PALETTE_DARK
+	const SIGNPOST_READ
+	const SIGNPOST_UP
+	const SIGNPOST_DOWN
+	const SIGNPOST_RIGHT
+	const SIGNPOST_LEFT
+	const SIGNPOST_IFSET
+	const SIGNPOST_IFNOTSET
+	const SIGNPOST_ITEM
+	const SIGNPOST_COPY
 
-INVISIBLE    EQU 0
-FIXED_FACING EQU 2
-SLIDING      EQU 3
-EMOTE_OBJECT EQU 7
-
+; person_event types
+; TryObjectEvent arguments (see engine/events.asm)
 	const_def
 	const PERSONTYPE_SCRIPT
 	const PERSONTYPE_ITEMBALL
@@ -666,7 +662,24 @@ EMOTE_OBJECT EQU 7
 	const PERSONTYPE_5
 	const PERSONTYPE_6
 
-; fruit trees
+
+; EmotesPointers indexes (see engine/overworld.asm)
+	const_def
+	const EMOTE_SHOCK ; 0
+	const EMOTE_QUESTION ; 1
+	const EMOTE_HAPPY ; 2
+	const EMOTE_SAD ; 3
+	const EMOTE_HEART ; 4
+	const EMOTE_BOLT ; 5
+	const EMOTE_SLEEP ; 6
+	const EMOTE_FISH ; 7
+	const EMOTE_SHADOW ; 8
+	const EMOTE_ROD ; 9
+	const EMOTE_BOULDER_DUST ; 10
+	const EMOTE_GRASS_RUSTLE ; 11
+EMOTE_MEM EQU -1
+
+; FruitTreeItems indexes (see engine/fruit_trees.asm)
 const_value SET 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02
@@ -700,6 +713,27 @@ const_value SET 1
 	const FRUITTREE_FUCHSIA_CITY  ; 1e
 NUM_FRUIT_TREES EQU const_value +- 1
 
+; elevator floors
+; used by `elevfloor`
+	const_def
+	const _B4F
+	const _B3F
+	const _B2F
+	const _B1F
+	const _1F
+	const _2F
+	const _3F
+	const _4F
+	const _5F
+	const _6F
+	const _7F
+	const _8F
+	const _9F
+	const _10F
+	const _11F
+	const _ROOF
+
+; command queue members
 CMDQUEUE_TYPE  EQU 0
 CMDQUEUE_ADDR  EQU 1
 CMDQUEUE_03    EQU 3
@@ -708,4 +742,9 @@ CMDQUEUE_05    EQU 5
 CMDQUEUE_ENTRY_SIZE EQU 6
 CMDQUEUE_CAPACITY EQU 4
 
+; command queue types
 CMDQUEUE_STONETABLE EQU 2
+
+; see engine/overworld.asm
+MAX_OUTDOOR_SPRITES EQU 23
+SPRITE_GFX_LIST_CAPACITY EQU $20

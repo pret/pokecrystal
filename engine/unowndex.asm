@@ -1,7 +1,7 @@
 UpdateUnownDex: ; fba18
 	ld a, [UnownLetter]
 	ld c, a
-	ld b, 26
+	ld b, NUM_UNOWN
 	ld hl, UnownDex
 .loop
 	ld a, [hli]

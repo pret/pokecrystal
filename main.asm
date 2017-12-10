@@ -92,7 +92,7 @@ ReanchorBGMap_NoOAMUpdate:: ; 6454
 	xor a
 	ld [hBGMapMode], a
 	ld [hWY], a
-	callba HDMATransfer_FillBGMap0WithTile60 ; no need to farcall
+	callba HDMATransfer_FillBGMap0WithBlack ; no need to farcall
 	ld a, VBGMap0 / $100
 	call .LoadBGMapAddrIntoHRAM
 	xor a
@@ -131,13 +131,13 @@ LoadFonts_NoOAMUpdate:: ; 64bf
 	call LoadStandardFont
 	ret
 
-HDMATransfer_FillBGMap0WithTile60: ; 64db
+HDMATransfer_FillBGMap0WithBlack: ; 64db
 	ld a, [rSVBK]
 	push af
 	ld a, $6
 	ld [rSVBK], a
 
-	ld a, $60
+	ld a, "<BLACK>" ; $60
 	ld hl, wDecompressScratch
 	ld bc, wScratchAttrMap - wDecompressScratch
 	call ByteFill
@@ -183,7 +183,7 @@ CheckNickErrors:: ; 669f
 	inc hl
 ; reached end of commands table?
 	ld a, [hl]
-	cp a, -1
+	cp -1
 	jr z, .done
 
 ; is the current char between this value (inclusive)...
@@ -492,7 +492,7 @@ HiddenItemScript:: ; 0x13625
 	db "@"
 
 SetMemEvent: ; 1364f
-	ld hl, EngineBuffer1 ; wd03e (aliases: MenuItemsList, CurFruitTree, CurInput)
+	ld hl, EngineBuffer1
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -1178,10 +1178,10 @@ INCLUDE "engine/wildmons.asm"
 INCLUDE "battle/link_result.asm"
 
 ChrisBackpic: ; 2ba1a
-INCBIN "gfx/misc/player.2bpp.lz"
+INCBIN "gfx/player/chris_back.2bpp.lz"
 
 DudeBackpic: ; 2bbaa
-INCBIN "gfx/misc/dude.2bpp.lz"
+INCBIN "gfx/battle/dude.2bpp.lz"
 
 SECTION "bankB", ROMX
 
@@ -1481,7 +1481,7 @@ PlayBattleMusic: ; 2ee6c
 	jr nz, .othertrainer
 
 	ld a, [OtherTrainerID]
-	cp 4 ; Rival in Indigo Plateau
+	cp RIVAL2_2_CHIKORITA ; Rival in Indigo Plateau
 	jr c, .done
 	ld de, MUSIC_CHAMPION_BATTLE
 	jr .done
@@ -1969,7 +1969,7 @@ PackFGFXPointers: ; 48e93
 	dw PackFGFX + (15 tiles) * 2
 
 PackFGFX: ; 48e9b
-INCBIN "gfx/misc/pack_f.2bpp"
+INCBIN "gfx/pack/pack_f.2bpp"
 
 Special_MoveTutor: ; 4925b
 	call FadeToMenu
@@ -2487,10 +2487,10 @@ endr
 	ret
 
 Shrink1Pic: ; 4d249
-INCBIN "gfx/shrink1.2bpp.lz"
+INCBIN "gfx/shrink/shrink1.2bpp.lz"
 
 Shrink2Pic: ; 4d2d9
-INCBIN "gfx/shrink2.2bpp.lz"
+INCBIN "gfx/shrink/shrink2.2bpp.lz"
 
 LinkMonStatsScreen: ; 4d319
 	ld a, [wMenuCursorY]
@@ -3332,7 +3332,7 @@ InitDisplayForRedCredits: ; 4e8c2
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
-	ld hl, wd000 ; UnknBGPals
+	ld hl, UnknBGPals
 	ld c, 4 tiles
 .load_white_palettes
 	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
@@ -4501,13 +4501,13 @@ _SwitchPartyMons:
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a
-	ld [Buffer2], a ; wd1eb (aliases: MovementType)
+	ld [Buffer2], a
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
 	ld a, [Buffer3]
 	call .ClearSprite
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	call .ClearSprite
 .skip
 	ret
@@ -4540,7 +4540,7 @@ _SwitchPartyMons:
 	push de
 	push bc
 	ld bc, PartySpecies
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	ld l, a
 	ld h, $0
 	add hl, bc
@@ -4556,8 +4556,8 @@ _SwitchPartyMons:
 	ld [hl], a
 	pop af
 	ld [de], a
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld a, [Buffer2]
+	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -4565,7 +4565,7 @@ _SwitchPartyMons:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [Buffer3]
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld hl, PartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop de
@@ -4576,7 +4576,7 @@ _SwitchPartyMons:
 	ld hl, wd002
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	ld hl, PartyMonOT
 	call SkipNames
 	push hl
@@ -4591,7 +4591,7 @@ _SwitchPartyMons:
 	ld hl, wd002
 	call .CopyName
 	ld hl, PartyMonNicknames
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	call SkipNames
 	push hl
 	call .CopyNameTowd002
@@ -4605,7 +4605,7 @@ _SwitchPartyMons:
 	ld hl, wd002
 	call .CopyName
 	ld hl, sPartyMail
-	ld a, [Buffer2] ; wd1eb (aliases: MovementType)
+	ld a, [Buffer2]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -4857,13 +4857,13 @@ GetCardPic: ; 8833e
 	ret
 
 ChrisCardPic: ; 88365
-INCBIN "gfx/misc/chris_card.2bpp"
+INCBIN "gfx/trainer_card/chris_card.2bpp"
 
 KrisCardPic: ; 88595
-INCBIN "gfx/misc/kris_card.2bpp"
+INCBIN "gfx/trainer_card/kris_card.2bpp"
 
 CardGFX: ; 887c5
-INCBIN "gfx/misc/trainer_card.2bpp"
+INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 GetPlayerBackpic: ; 88825
 	ld a, [PlayerGender]
@@ -4943,10 +4943,10 @@ DrawIntroPlayerPic: ; 88874
 	ret
 
 ChrisPic: ; 888a9
-INCBIN "gfx/misc/chris.2bpp"
+INCBIN "gfx/player/chris.2bpp"
 
 KrisPic: ; 88bb9
-INCBIN "gfx/misc/kris.2bpp"
+INCBIN "gfx/player/kris.2bpp"
 
 GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
@@ -4957,7 +4957,7 @@ GetKrisBackpic: ; 88ec9
 	ret
 
 KrisBackpic: ; 88ed6
-INCBIN "gfx/misc/kris_back.2bpp"
+INCBIN "gfx/player/kris_back.2bpp"
 
 String_89116:
 	db "-----@"
@@ -5310,7 +5310,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 SECTION "bank36", ROMX
 
-FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
+FontInversed: INCBIN "gfx/font/font_inversed.1bpp"
 
 SECTION "Pic Animations 3", ROMX
 
@@ -5452,7 +5452,7 @@ INCLUDE "engine/billspc.asm"
 SECTION "bank39", ROMX
 
 CopyrightGFX:: ; e4000
-INCBIN "gfx/misc/copyright.2bpp"
+INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/options_menu.asm"
 INCLUDE "engine/crystal_intro.asm"
@@ -5595,7 +5595,7 @@ INCLUDE "engine/landmarks.asm"
 SECTION "bank77", ROMX
 
 UnownFont: ; 1dc000
-INCBIN "gfx/misc/unown_font.2bpp"
+INCBIN "gfx/font/unown_font.2bpp"
 
 INCLUDE "misc/printer_77.asm"
 
@@ -5908,7 +5908,7 @@ TownMap_ConvertLineBreakCharacters: ; 1de2c5
 	ret
 
 PokegearGFX: ; 1de2e4
-INCBIN "gfx/misc/pokegear.2bpp.lz"
+INCBIN "gfx/pokegear/pokegear.2bpp.lz"
 
 IsMailEuropean: ; 1de5c8
 ; return 1 if French

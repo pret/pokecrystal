@@ -718,22 +718,20 @@ SetHPPal:: ; 334e
 
 GetHPPal:: ; 3353
 ; Get palette for hp bar pixel length e in d.
-
 	ld d, HP_GREEN
 	ld a, e
 	cp (50 * 48 / 100)
 	ret nc
-	inc d ; yellow
+	inc d ; HP_YELLOW
 	cp (21 * 48 / 100)
 	ret nc
-	inc d ; red
+	inc d ; HP_RED
 	ret
 ; 335f
 
 CountSetBits:: ; 0x335f
 ; Count the number of set bits in b bytes starting from hl.
 ; Return in a, c and [wd265].
-
 	ld c, 0
 .next
 	ld a, [hli]
@@ -1832,7 +1830,7 @@ PrintBCDNumber:: ; 38bb
 ; 0x38f2
 
 PrintBCDDigit:: ; 38f2
-	and a, %00001111
+	and %00001111
 	and a
 	jr z, .zeroDigit
 .nonzeroDigit
@@ -1847,7 +1845,7 @@ PrintBCDDigit:: ; 38f2
 .skipCurrencySymbol
 	res 7, b ; unset 7 to indicate that a nonzero digit has been reached
 .outputDigit
-	add a, "0"
+	add "0"
 	ld [hli], a
 	jp PrintLetterDelay
 

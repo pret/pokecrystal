@@ -67,7 +67,7 @@ GruntM10Script:
 	end
 
 TrainerExecutivem2:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, 2, Executivem2SeenText, Executivem2BeatenText, 0, Executivem2Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, EXECUTIVEM_2, Executivem2SeenText, Executivem2BeatenText, 0, Executivem2Script
 
 Executivem2Script:
 	end_if_just_battled

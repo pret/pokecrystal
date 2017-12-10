@@ -1783,7 +1783,7 @@ BillsPC_CopyMon: ; e2fd6 (38:6fd6)
 	call CopyNicknameToTemp
 	ld hl, PartyMonOT
 	call CopyOTNameToTemp
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld hl, PartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
@@ -2280,8 +2280,8 @@ BillsPC_InitGFX: ; e33e8 (38:73e8)
 	ret
 ; e3419 (38:7419)
 
-PCSelectLZ: INCBIN "gfx/pc.2bpp.lz"
-PCMailGFX:  INCBIN "gfx/pc_mail.2bpp"
+PCSelectLZ: INCBIN "gfx/pc/pc.2bpp.lz"
+PCMailGFX:  INCBIN "gfx/pc/pc_mail.2bpp"
 ; e34dd
 
 PCString_ChooseaPKMN: db "Choose a <PK><MN>.@"

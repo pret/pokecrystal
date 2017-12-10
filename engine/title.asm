@@ -10,10 +10,10 @@ _TitleScreen: ; 10ed67
 
 ; Reset timing variables
 	ld hl, wJumptableIndex
-	ld [hli], a ; cf63 ; Scene?
-	ld [hli], a ; cf64
-	ld [hli], a ; cf65 ; Timer lo
-	ld [hl], a  ; cf66 ; Timer hi
+	ld [hli], a ; wJumptableIndex
+	ld [hli], a ; wIntroSceneFrameCounter
+	ld [hli], a ; wTitleScreenTimer
+	ld [hl], a  ; wTitleScreenTimer + 1
 
 ; Turn LCD off
 	call DisableLCD
@@ -145,12 +145,12 @@ _TitleScreen: ; 10ed67
 ; Update palette colors
 	ld hl, TitleScreenPalettes
 	ld de, UnknBGPals
-	ld bc, 4 * 32
+	ld bc, 16 palettes
 	call CopyBytes
 
 	ld hl, TitleScreenPalettes
 	ld de, BGPals
-	ld bc, 4 * 32
+	ld bc, 16 palettes
 	call CopyBytes
 
 ; Restore WRAM bank

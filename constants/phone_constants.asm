@@ -1,4 +1,4 @@
-
+; PhoneContacts indexes (see engine/phone.asm)
 	const_def
 	const PHONE_00
 	const PHONE_MOM
@@ -39,6 +39,7 @@
 	const PHONE_PICNICKER_ERIN
 	const PHONE_BUENA
 
+; SpecialPhoneCallList indexes (see engine/phone.asm)
 	const_def
 	const SPECIALCALL_NONE
 	const SPECIALCALL_POKERUS
@@ -50,6 +51,7 @@
 	const SPECIALCALL_WORRIED
 	const SPECIALCALL_MASTERBALL
 
+; phone struct members
 	const_def
 	const PHONE_CONTACT_TRAINER_CLASS
 	const PHONE_CONTACT_TRAINER_NUMBER
@@ -64,4 +66,6 @@
 	const PHONE_CONTACT_SCRIPT2_ADDR_LO
 	const PHONE_CONTACT_SCRIPT2_ADDR_HI
 PHONE_TABLE_WIDTH EQU const_value
+
+; maximum number of pokegear contacts
 CONTACT_LIST_SIZE EQU 10

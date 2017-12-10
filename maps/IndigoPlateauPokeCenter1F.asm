@@ -102,7 +102,7 @@ PlateauRivalBattleCommon:
 	; Cyndaquil
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
-	loadtrainer RIVAL2, 6
+	loadtrainer RIVAL2, RIVAL2_2_TOTODILE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -111,7 +111,7 @@ PlateauRivalBattleCommon:
 .Totodile:
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
-	loadtrainer RIVAL2, 4
+	loadtrainer RIVAL2, RIVAL2_2_CHIKORITA
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -120,7 +120,7 @@ PlateauRivalBattleCommon:
 .Chikorita:
 	winlosstext PlateauRivalWinText, PlateauRivalLoseText
 	setlasttalked INDIGOPLATEAUPOKECENTER1F_SILVER
-	loadtrainer RIVAL2, 5
+	loadtrainer RIVAL2, RIVAL2_2_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle

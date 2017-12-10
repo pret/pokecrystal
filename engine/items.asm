@@ -331,7 +331,7 @@ ReceiveKeyItem: ; d35a
 	ret
 
 TossKeyItem: ; d374
-	ld a, [wd107]
+	ld a, [CurItemQuantity]
 	ld e, a
 	ld d, 0
 	ld hl, NumKeyItems

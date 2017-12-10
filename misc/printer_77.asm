@@ -150,9 +150,9 @@ PrintPartyMonPage1: ; 1dc381
 	lb bc, BANK(MobileLvIcon), 1
 	call Request1bpp
 
-	ld de, ShinyIcon
+	ld de, ShinyIconGFX
 	ld hl, VTiles2 tile $3f
-	lb bc, BANK(ShinyIcon), 1
+	lb bc, BANK(ShinyIconGFX), 1
 	call Get2bpp
 
 	xor a

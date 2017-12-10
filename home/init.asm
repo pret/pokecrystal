@@ -69,8 +69,8 @@ Init:: ; 17d
 	ld [rLCDC], a
 
 ; Clear WRAM bank 0
-	ld hl, wc000
-	ld bc, wd000 - wc000
+	ld hl, wRAM0Start
+	ld bc, wRAM1Start - wRAM0Start
 .ByteFill:
 	ld [hl], 0
 	inc hl

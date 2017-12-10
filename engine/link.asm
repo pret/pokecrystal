@@ -390,7 +390,7 @@ Gen2ToGen2LinkComms: ; 28177
 	ld [de], a
 
 .skip_mail
-	ld hl, wLinkData
+	ld hl, wLinkPlayerName
 	ld de, OTPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -1143,7 +1143,7 @@ TimeCapsule_ReplaceTeruSama: ; 28771
 	db ITEM_BE, BERRY
 	db ITEM_C3, BERRY
 	db ITEM_DC, BERRY
-	db HM_08,   BERRY
+	db ITEM_FA, BERRY
 	db -1,      BERRY
 	db  0
 ; 2879e

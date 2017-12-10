@@ -141,7 +141,7 @@ ConvertTrainerBattlePokeballTilesTo2bpp: ; 8c2cf
 ; 8c2f4
 
 TrainerBattlePokeballTiles: ; 8c2f4
-INCBIN "gfx/overworld/trainer_battle_pokeball_tiles.2bpp"
+INCBIN "gfx/ow_fx/trainer_battle_pokeball_tiles.2bpp"
 
 
 FlashyTransitionToBattle: ; 8c314

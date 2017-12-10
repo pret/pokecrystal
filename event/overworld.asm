@@ -77,9 +77,9 @@ CheckPartyMove: ; c742
 	ld a, [hl]
 	and a
 	jr z, .no
-	cp a, -1
+	cp -1
 	jr z, .no
-	cp a, EGG
+	cp EGG
 	jr z, .next
 
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -432,7 +432,7 @@ SurfFunction: ; c909
 
 .DoSurf: ; c95f (3:495f)
 	call GetSurfType
-	ld [Buffer2], a ; wd1eb (aliases: MovementType)
+	ld [Buffer2], a
 	call GetPartyNick
 	ld hl, SurfFromMenuScript
 	call QueueScript
@@ -510,7 +510,7 @@ CheckDirection: ; c9cb
 
 ; Get player direction
 	ld a, [PlayerDirection]
-	and a, %00001100 ; bits 2 and 3 contain direction
+	and %00001100 ; bits 2 and 3 contain direction
 	rrca
 	rrca
 	ld e, a
@@ -569,7 +569,7 @@ TrySurfOW:: ; c9e7
 	jr nz, .quit
 
 	call GetSurfType
-	ld [MovementType], a
+	ld [Buffer2], a
 	call GetPartyNick
 
 	ld a, BANK(AskSurfScript)
@@ -632,7 +632,7 @@ FlyFunction: ; ca3b
 	cp NUM_SPAWNS
 	jr nc, .illegal
 
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 	call CloseWindow
 	ld a, $1
 	ret
@@ -837,7 +837,7 @@ dig_incave
 	ret
 
 .incave
-	ld hl, wDigWarp
+	ld hl, wDigWarpNumber
 	ld a, [hli]
 	and a
 	jr z, .fail
@@ -851,7 +851,7 @@ dig_incave
 	ret
 
 .DoDig: ; cbd8
-	ld hl, wDigWarp
+	ld hl, wDigWarpNumber
 	ld de, wNextWarp
 	ld bc, 3
 	call CopyBytes
@@ -962,7 +962,7 @@ TeleportFunction: ; cc61
 	callba IsSpawnPoint
 	jr nc, .nope
 	ld a, c
-	ld [wd001], a
+	ld [DefaultSpawnpoint], a
 	ld a, $1
 	ret
 

@@ -1,11 +1,11 @@
 FontExtra:
-INCBIN "gfx/misc/font_extra.2bpp"
+INCBIN "gfx/font/font_extra.2bpp"
 
 Font:
-INCBIN "gfx/misc/font.1bpp"
+INCBIN "gfx/font/font.1bpp"
 
 FontBattleExtra:
-INCBIN "gfx/misc/font_battle_extra.2bpp"
+INCBIN "gfx/font/font_battle_extra.2bpp"
 
 Frames: ; f8800
 INCBIN "gfx/frames/1.1bpp"
@@ -19,19 +19,19 @@ INCBIN "gfx/frames/8.1bpp"
 INCBIN "gfx/frames/9.1bpp"
 ; f89b0
 
-; TODO: Various misc graphics here.
+; Various misc graphics here.
 
 StatsScreenPageTilesGFX: ; f89b0
-INCBIN "gfx/unknown/0f89b0.2bpp"
+INCBIN "gfx/stats/stats_tiles.2bpp"
 ; f8a90
 
-ShinyIcon: ; f8a90
+ShinyIconGFX: ; f8a90
 ; also part of StatsScreenPageTilesGFX
 INCBIN "gfx/stats/shiny.2bpp"
 
-StatsScreenPageTilesGFX_Part2: ; f8aa0
+ExpBarEndsGFX: ; f8aa0
 ; not referenced on its own, but part of StatsScreenPageTilesGFX
-INCBIN "gfx/unknown/0f8aa0.2bpp"
+INCBIN "gfx/stats/exp_bar_ends.2bpp"
 ; f8ac0
 
 EnemyHPBarBorderGFX: ; f8ac0
@@ -47,7 +47,7 @@ INCBIN "gfx/battle/expbar.2bpp"
 ; f8ba0
 
 TownMapGFX: ; f8ba0
-INCBIN "gfx/misc/town_map.2bpp.lz"
+INCBIN "gfx/pokegear/town_map.2bpp.lz"
 ; f8ea4
 
 WeekdayKanjiGFX: ; unused kanji
@@ -75,11 +75,11 @@ INCBIN "gfx/frames/map_entry_sign.2bpp"
 ; f9424
 
 FontsExtra2_UpArrowGFX: ; f9424
-INCBIN "gfx/unknown/0f9424.2bpp"
+INCBIN "gfx/font/up_arrow.2bpp"
 ; f9434
 
 Footprints: ; f9434
-INCBIN "gfx/misc/footprints.1bpp"
+INCBIN "gfx/pokedex/footprints.1bpp"
 ; fb434
 
 ; This and the following two functions are unreferenced.
@@ -131,11 +131,11 @@ _LoadStandardFont:: ; fb449
 
 _LoadFontsExtra1:: ; fb48a
 	ld de, MobilePhoneTilesGFX
-	ld hl, VTiles2 tile $60
+	ld hl, VTiles2 tile "<BLACK>" ; $60
 	lb bc, BANK(MobilePhoneTilesGFX), 1
 	call Get1bpp_2
 	ld de, OverworldPhoneIconGFX
-	ld hl, VTiles2 tile $62
+	ld hl, VTiles2 tile "<PHONE>" ; $62
 	lb bc, BANK(OverworldPhoneIconGFX), 1
 	call Get2bpp_2
 	ld de, FontExtra + 3 * LEN_2BPP_TILE
@@ -147,7 +147,7 @@ _LoadFontsExtra1:: ; fb48a
 
 _LoadFontsExtra2:: ; fb4b0
 	ld de, FontsExtra2_UpArrowGFX
-	ld hl, VTiles2 tile $61
+	ld hl, VTiles2 tile "▲" ; $61
 	ld b, BANK(FontsExtra2_UpArrowGFX)
 	ld c, 1
 	call Get2bpp_2
@@ -170,10 +170,10 @@ LoadFrame: ; fb4cc
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, VTiles2 tile $79
+	ld hl, VTiles2 tile "┌" ; $79
 	lb bc, BANK(Frames), TILES_PER_FRAME
 	call Get1bpp_2
-	ld hl, VTiles2 tile $7f
+	ld hl, VTiles2 tile " " ; $7f
 	ld de, TextBoxSpaceGFX
 	lb bc, BANK(TextBoxSpaceGFX), 1
 	call Get1bpp_2
@@ -186,7 +186,7 @@ LoadBattleFontsHPBar: ; fb4f2
 	lb bc, BANK(FontBattleExtra), $c
 	call Get2bpp_2
 	ld hl, VTiles2 tile $70
-	ld de, FontBattleExtra + $10 * LEN_2BPP_TILE
+	ld de, FontBattleExtra tile $10
 	lb bc, BANK(FontBattleExtra), 3
 	call Get2bpp_2
 	call LoadFrame

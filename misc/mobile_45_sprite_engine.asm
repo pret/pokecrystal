@@ -496,9 +496,9 @@ Function1161d5: ; 1161d5
 	ld [MusicFade], a
 	ld de, MUSIC_MOBILE_ADAPTER
 	ld a, e
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, d
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld a, [$c319]
 	inc a
 	ld [$c319], a
@@ -680,9 +680,9 @@ Function11636e: ; 11636e
 	ld a, $8
 	ld [MusicFade], a
 	ld a, [wMapMusic]
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	xor a
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	xor a
 	ld [$c319], a
 	ld [wc30d], a
@@ -728,18 +728,18 @@ Function1163c0: ; 1163c0
 	ld a, $8
 	ld [MusicFade], a
 	ld a, [wMapMusic]
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	xor a
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	jr .asm_116439
 
 .asm_11642a
 	ld a, $8
 	ld [MusicFade], a
 	ld a, $0
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, $0
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 
 .asm_116439
 	xor a
@@ -757,9 +757,9 @@ Function116441: ; 116441
 	ld a, $8
 	ld [MusicFade], a
 	ld a, [wMapMusic]
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	xor a
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	xor a
 	ld [$c319], a
 	ld [wc30d], a
