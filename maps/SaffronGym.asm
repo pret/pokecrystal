@@ -52,7 +52,7 @@ TrainerMediumRebecca:
 MediumRebeccaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18a034
+	writetext MediumRebeccaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ TrainerPsychicFranklin:
 PsychicFranklinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18a0a6
+	writetext PsychicFranklinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -74,7 +74,7 @@ TrainerMediumDoris:
 MediumDorisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18a136
+	writetext MediumDorisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -85,7 +85,7 @@ TrainerPsychicJared:
 PsychicJaredScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18a1b3
+	writetext PsychicJaredAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -206,7 +206,7 @@ MediumRebeccaBeatenText:
 	line "Far too strong…"
 	done
 
-UnknownText_0x18a034:
+MediumRebeccaAfterBattleText:
 	text "What is the source"
 	line "of your power?"
 	done
@@ -222,7 +222,7 @@ PsychicFranklinBeatenText:
 	line "power than mine!"
 	done
 
-UnknownText_0x18a0a6:
+PsychicFranklinAfterBattleText:
 	text "You made your soul"
 	line "stronger, not just"
 	cont "your abilities."
@@ -241,7 +241,7 @@ MediumDorisBeatenText:
 	line "I still lost…"
 	done
 
-UnknownText_0x18a136:
+MediumDorisAfterBattleText:
 	text "Darn! I forgot"
 	line "that I predicted I"
 	cont "would lose to you."
@@ -257,7 +257,7 @@ PsychicJaredBeatenText:
 	text "I was no match…"
 	done
 
-UnknownText_0x18a1b3:
+PsychicJaredAfterBattleText:
 	text "KARATE KING, the"
 	line "master of the"
 

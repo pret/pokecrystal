@@ -17,7 +17,7 @@ TrainerFirebreatherLyle:
 FirebreatherLyleScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x75b52
+	writetext FirebreatherLyleAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -28,7 +28,7 @@ TrainerBug_catcherKen:
 Bug_catcherKenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x75bd5
+	writetext Bug_catcherKenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -39,7 +39,7 @@ TrainerBeautyCassie:
 BeautyCassieScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x75c43
+	writetext BeautyCassieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -124,7 +124,7 @@ FirebreatherLyleBeatenText:
 	line "flame's tiny…"
 	done
 
-UnknownText_0x75b52:
+FirebreatherLyleAfterBattleText:
 	text "I guess fire is"
 	line "weak on the sea."
 
@@ -143,7 +143,7 @@ Bug_catcherKenBeatenText:
 	line "You're tough!"
 	done
 
-UnknownText_0x75bd5:
+Bug_catcherKenAfterBattleText:
 	text "You can find lots"
 	line "of #MON in the"
 	cont "trees of JOHTO!"
@@ -159,7 +159,7 @@ BeautyCassieBeatenText:
 	text "My heart weeps…"
 	done
 
-UnknownText_0x75c43:
+BeautyCassieAfterBattleText:
 	text "A voyage is best"
 	line "for getting over"
 	cont "a broken heart."

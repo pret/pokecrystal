@@ -34,7 +34,7 @@ TrainerTwinsAnnandanne1:
 TwinsAnnandanne1Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a8e62
+	writetext TwinsAnnandanne1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -45,7 +45,7 @@ TrainerTwinsAnnandanne2:
 TwinsAnnandanne2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a8eec
+	writetext TwinsAnnandanne2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -56,7 +56,7 @@ TrainerPsychicGreg:
 PsychicGregScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a8f80
+	writetext PsychicGregAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -131,7 +131,7 @@ TwinsAnnandanne1BeatenText:
 	line "little too strong."
 	done
 
-UnknownText_0x1a8e62:
+TwinsAnnandanne1AfterBattleText:
 	text "ANN: I can tell"
 	line "what my sister and"
 
@@ -150,7 +150,7 @@ TwinsAnnandanne2BeatenText:
 	line "little too strong."
 	done
 
-UnknownText_0x1a8eec:
+TwinsAnnandanne2AfterBattleText:
 	text "ANNE: We share the"
 	line "same feelings as"
 	cont "our #MON."
@@ -170,7 +170,7 @@ PsychicGregBeatenText:
 	line "pretty sad…"
 	done
 
-UnknownText_0x1a8f80:
+PsychicGregAfterBattleText:
 	text "Putting #MON to"
 	line "sleep or paralyz-"
 	cont "ing them are good"

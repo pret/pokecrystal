@@ -491,7 +491,7 @@ TrainerScientistJed:
 ScientistJedScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6cc16
+	writetext ScientistJedAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -502,7 +502,7 @@ TrainerGruntM16:
 GruntM16Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6cd1b
+	writetext GruntM16AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -673,7 +673,7 @@ ScientistJedBeatenText:
 	text "I get it…"
 	done
 
-UnknownText_0x6cc16:
+ScientistJedAfterBattleText:
 	text "All right. I'll"
 	line "divulge a secret"
 	cont "about our hideout."
@@ -704,7 +704,7 @@ GruntM16BeatenText:
 	text "Kaboom!"
 	done
 
-UnknownText_0x6cd1b:
+GruntM16AfterBattleText:
 	text "I don't even know"
 	line "where the traps"
 	cont "are planted."

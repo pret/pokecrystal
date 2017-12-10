@@ -216,7 +216,7 @@ TrainerGruntM11:
 GruntM11Script:
 	end_if_just_battled
 	opentext
-	writetext GruntM11AfterText
+	writetext GruntM11AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -227,7 +227,7 @@ TrainerGruntM25:
 GruntM25Script:
 	end_if_just_battled
 	opentext
-	writetext GruntM25AfterText
+	writetext GruntM25AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -238,7 +238,7 @@ TrainerBurglarDuncan:
 BurglarDuncanScript:
 	end_if_just_battled
 	opentext
-	writetext BurglarDuncanAfterText
+	writetext BurglarDuncanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -249,7 +249,7 @@ TrainerBurglarEddie:
 BurglarEddieScript:
 	end_if_just_battled
 	opentext
-	writetext BurglarEddieAfterText
+	writetext BurglarEddieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -260,7 +260,7 @@ TrainerGruntM13:
 GruntM13Script:
 	end_if_just_battled
 	opentext
-	writetext GruntM13AfterText
+	writetext GruntM13AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -271,7 +271,7 @@ TrainerGruntF3:
 GruntF3Script:
 	end_if_just_battled
 	opentext
-	writetext GruntF3AfterText
+	writetext GruntF3AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -790,7 +790,7 @@ GruntM11BeatenText:
 	line "by indecision!"
 	done
 
-GruntM11AfterText:
+GruntM11AfterBattleText:
 	text "I'm confused too…"
 	line "The switch on the"
 
@@ -814,7 +814,7 @@ GruntM25BeatenText:
 	line "I blew it."
 	done
 
-GruntM25AfterText:
+GruntM25AfterBattleText:
 	text "All right. A hint!"
 
 	para "Change the order"
@@ -834,7 +834,7 @@ BurglarDuncanBeatenText:
 	text "Mercy!"
 	done
 
-BurglarDuncanAfterText:
+BurglarDuncanAfterBattleText:
 	text "Steal and sell!"
 	line "That's basic in"
 	cont "crime, kid!"
@@ -853,7 +853,7 @@ BurglarEddieBeatenText:
 	text "Over the top!"
 	done
 
-BurglarEddieAfterText:
+BurglarEddieAfterBattleText:
 	text "UNDERGROUND WARE-"
 	line "HOUSE?"
 
@@ -878,7 +878,7 @@ GruntM13BeatenText:
 	line "you're cool, huh?"
 	done
 
-GruntM13AfterText:
+GruntM13AfterBattleText:
 	text "You must have ice"
 	line "in your veins to"
 	cont "dis TEAM ROCKET."
@@ -905,7 +905,7 @@ GruntF3BeatenText:
 	text "How could you?"
 	done
 
-GruntF3AfterText:
+GruntF3AfterBattleText:
 	text "Go wherever you'd"
 	line "like! Get lost!"
 	cont "See if I care!"

@@ -20,7 +20,7 @@ TrainerPokemaniacAndrew:
 PokemaniacAndrewScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a181
+	writetext PokemaniacAndrewAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -31,7 +31,7 @@ TrainerPokemaniacCalvin:
 PokemaniacCalvinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a230
+	writetext PokemaniacCalvinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -42,7 +42,7 @@ TrainerHikerPhillip:
 HikerPhillipScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a073
+	writetext HikerPhillipAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -53,7 +53,7 @@ TrainerHikerLeonard:
 HikerLeonardScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a0fb
+	writetext HikerLeonardAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -80,7 +80,7 @@ HikerPhillipBeatenText:
 	text "Uurggh…"
 	done
 
-UnknownText_0x5a073:
+HikerPhillipAfterBattleText:
 	text "I've been lost for"
 	line "a long time…"
 
@@ -99,7 +99,7 @@ HikerLeonardBeatenText:
 	line "feisty one!"
 	done
 
-UnknownText_0x5a0fb:
+HikerLeonardAfterBattleText:
 	text "I live down here."
 
 	para "You can, too, if"
@@ -121,7 +121,7 @@ PokemaniacAndrewBeatenText:
 	line "Go away!"
 	done
 
-UnknownText_0x5a181:
+PokemaniacAndrewAfterBattleText:
 	text "Just me and my"
 	line "#MON. I'm de-"
 	cont "lirious with joy."
@@ -142,7 +142,7 @@ PokemaniacCalvinBeatenText:
 	line "on me!"
 	done
 
-UnknownText_0x5a230:
+PokemaniacCalvinAfterBattleText:
 	text "I should compile"
 	line "and announce my"
 	cont "study findings."

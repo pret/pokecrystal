@@ -105,7 +105,7 @@ TrainerSageJeffrey:
 SageJeffreyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9a263
+	writetext SageJeffreyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -116,7 +116,7 @@ TrainerSagePing:
 SagePingScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9a2b7
+	writetext SagePingAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -127,7 +127,7 @@ TrainerMediumMartha:
 MediumMarthaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9a318
+	writetext MediumMarthaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -138,7 +138,7 @@ TrainerMediumGrace:
 MediumGraceScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9a38a
+	writetext MediumGraceAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -297,7 +297,7 @@ SageJeffreyBeatenText:
 	line "experienced both."
 	done
 
-UnknownText_0x9a263:
+SageJeffreyAfterBattleText:
 	text "Where did #MON"
 	line "come from?"
 	done
@@ -312,7 +312,7 @@ SagePingBeatenText:
 	text "Ah! Well done!"
 	done
 
-UnknownText_0x9a2b7:
+SagePingAfterBattleText:
 	text "We use only ghost-"
 	line "type #MON."
 
@@ -329,7 +329,7 @@ MediumMarthaBeatenText:
 	text "I, I, I lost!"
 	done
 
-UnknownText_0x9a318:
+MediumMarthaAfterBattleText:
 	text "The one who wants"
 	line "to win most--will!"
 	done
@@ -346,7 +346,7 @@ MediumGraceBeatenText:
 	text "Wha-what?"
 	done
 
-UnknownText_0x9a38a:
+MediumGraceAfterBattleText:
 	text "Fine. I shall tell"
 	line "you the secret of"
 

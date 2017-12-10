@@ -75,7 +75,7 @@ TrainerExecutivef1:
 Executivef1Script:
 	end_if_just_battled
 	opentext
-	writetext Executivef1AfterText
+	writetext Executivef1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -258,7 +258,7 @@ Executivef1BeatenText:
 	line "I still lost…"
 	done
 
-Executivef1AfterText:
+Executivef1AfterBattleText:
 	text "<PLAYER>, isn't it?"
 
 	para "A brat like you"

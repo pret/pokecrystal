@@ -68,7 +68,7 @@ TrainerCooltrainermCody:
 CooltrainermCodyScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainermCodyAfterText
+	writetext CooltrainermCodyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -79,7 +79,7 @@ TrainerCooltrainerfFran:
 CooltrainerfFranScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainerfFranAfterText
+	writetext CooltrainerfFranAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -95,7 +95,7 @@ CooltrainermCodyBeatenText:
 	line "had a dragon!"
 	done
 
-CooltrainermCodyAfterText:
+CooltrainermCodyAfterBattleText:
 	text "Members of our"
 	line "dragon-user clan"
 
@@ -119,7 +119,7 @@ CooltrainerfFranBeatenText:
 	text "Awww… I lost…"
 	done
 
-CooltrainerfFranAfterText:
+CooltrainerfFranAfterBattleText:
 	text "Uh-oh… CLAIR is"
 	line "going to be mad…"
 	done

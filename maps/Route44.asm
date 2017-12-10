@@ -155,7 +155,7 @@ TrainerPsychicPhil:
 PsychicPhilScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19dcfc
+	writetext PsychicPhilAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -261,7 +261,7 @@ TrainerFisherEdgar:
 FisherEdgarScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19db6f
+	writetext FisherEdgarAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -272,7 +272,7 @@ TrainerCooltrainerfCybil:
 CooltrainerfCybilScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19df4d
+	writetext CooltrainerfCybilAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -283,7 +283,7 @@ TrainerPokemaniacZach:
 PokemaniacZachScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19dd7e
+	writetext PokemaniacZachAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -294,7 +294,7 @@ TrainerCooltrainermAllen:
 CooltrainermAllenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19de66
+	writetext CooltrainermAllenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -360,7 +360,7 @@ FisherEdgarBeatenText:
 	line "This isn't right."
 	done
 
-UnknownText_0x19db6f:
+FisherEdgarAfterBattleText:
 	text "That's 100 wins"
 	line "to 101 losses."
 
@@ -412,7 +412,7 @@ PsychicPhilBeatenText:
 	line "shocking loss…"
 	done
 
-UnknownText_0x19dcfc:
+PsychicPhilAfterBattleText:
 	text "It's important to"
 	line "have conviction"
 	cont "on your side."
@@ -429,7 +429,7 @@ PokemaniacZachBeatenText:
 	line "are so appealing."
 	done
 
-UnknownText_0x19dd7e:
+PokemaniacZachAfterBattleText:
 	text "If a #MON has"
 	line "different colors"
 
@@ -455,7 +455,7 @@ CooltrainermAllenBeatenText:
 	line "loss on my part."
 	done
 
-UnknownText_0x19de66:
+CooltrainermAllenAfterBattleText:
 	text "Wow. You have a"
 	line "lot of BADGES."
 
@@ -485,7 +485,7 @@ CooltrainerfCybilBeatenText:
 	line "do at all."
 	done
 
-UnknownText_0x19df4d:
+CooltrainerfCybilAfterBattleText:
 	text "We all get better"
 	line "by experiencing"
 	cont "many battles."

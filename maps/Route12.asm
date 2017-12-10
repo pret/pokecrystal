@@ -19,7 +19,7 @@ TrainerFisherKyle:
 FisherKyleScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a7238
+	writetext FisherKyleAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -30,7 +30,7 @@ TrainerFisherMartin:
 FisherMartinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a704c
+	writetext FisherMartinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -41,7 +41,7 @@ TrainerFisherStephen:
 FisherStephenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a70d4
+	writetext FisherStephenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -52,7 +52,7 @@ TrainerFisherBarney:
 FisherBarneyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a716d
+	writetext FisherBarneyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -83,7 +83,7 @@ FisherMartinBeatenText:
 	text "Gwaaah!"
 	done
 
-UnknownText_0x1a704c:
+FisherMartinAfterBattleText:
 	text "I'm too impatient"
 	line "for fishing…"
 	done
@@ -100,7 +100,7 @@ FisherStephenBeatenText:
 	line "distracted me!"
 	done
 
-UnknownText_0x1a70d4:
+FisherStephenAfterBattleText:
 	text "Have you checked"
 	line "out KANTO's radio"
 
@@ -119,7 +119,7 @@ FisherBarneyBeatenText:
 	line "coming up next!"
 	done
 
-UnknownText_0x1a716d:
+FisherBarneyAfterBattleText:
 	text "I think electric-"
 	line "ity is the most"
 
@@ -144,7 +144,7 @@ FisherKyleBeatenText:
 	text "You do remember?"
 	done
 
-UnknownText_0x1a7238:
+FisherKyleAfterBattleText:
 	text "The tug you feel"
 	line "on the ROD when"
 

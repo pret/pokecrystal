@@ -86,7 +86,7 @@ TrainerSchoolboyDudley:
 SchoolboyDudleyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f1b5
+	writetext SchoolboyDudleyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -97,7 +97,7 @@ TrainerLassEllen:
 LassEllenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f208
+	writetext LassEllenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -108,7 +108,7 @@ TrainerSchoolboyJoe:
 SchoolboyJoeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f25c
+	writetext SchoolboyJoeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -119,7 +119,7 @@ TrainerLassLaura:
 LassLauraScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f2a6
+	writetext LassLauraAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -130,7 +130,7 @@ TrainerCamperLloyd:
 CamperLloydScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f2f8
+	writetext CamperLloydAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -141,7 +141,7 @@ TrainerLassShannon:
 LassShannonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f35b
+	writetext LassShannonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -152,7 +152,7 @@ TrainerSupernerdPat:
 SupernerdPatScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f41a
+	writetext SupernerdPatAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -287,7 +287,7 @@ SchoolboyDudleyBeatenText:
 	text "Whoo! Good stuff."
 	done
 
-UnknownText_0x19f1b5:
+SchoolboyDudleyAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -301,7 +301,7 @@ LassEllenBeatenText:
 	text "How could I lose?"
 	done
 
-UnknownText_0x19f208:
+LassEllenAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -315,7 +315,7 @@ SchoolboyJoeBeatenText:
 	text "Ow! Stomped flat!"
 	done
 
-UnknownText_0x19f25c:
+SchoolboyJoeAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -329,7 +329,7 @@ LassLauraBeatenText:
 	text "I lost too…"
 	done
 
-UnknownText_0x19f2a6:
+LassLauraAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -343,7 +343,7 @@ CamperLloydBeatenText:
 	text "Whoa! Too much."
 	done
 
-UnknownText_0x19f2f8:
+CamperLloydAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -358,7 +358,7 @@ LassShannonBeatenText:
 	text "You're kidding."
 	done
 
-UnknownText_0x19f35b:
+LassShannonAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -382,7 +382,7 @@ SupernerdPatBeatenText:
 	line "at all?"
 	done
 
-UnknownText_0x19f41a:
+SupernerdPatAfterBattleText:
 	text "I'm sorry… I won't"
 	line "cheat anymore…"
 	done

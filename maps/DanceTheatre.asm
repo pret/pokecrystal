@@ -22,7 +22,7 @@ TrainerKimono_girlNaoko2:
 Kimono_girlNaoko2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x99579
+	writetext Kimono_girlNaoko2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -33,7 +33,7 @@ TrainerKimono_girlSayo:
 Kimono_girlSayoScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9960b
+	writetext Kimono_girlSayoAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -44,7 +44,7 @@ TrainerKimono_girlZuki:
 Kimono_girlZukiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x99688
+	writetext Kimono_girlZukiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -55,7 +55,7 @@ TrainerKimono_girlKuni:
 Kimono_girlKuniScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x99714
+	writetext Kimono_girlKuniAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -66,7 +66,7 @@ TrainerKimono_girlMiki:
 Kimono_girlMikiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x997a8
+	writetext Kimono_girlMikiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -148,7 +148,7 @@ Kimono_girlNaoko2BeatenText:
 	line "strong."
 	done
 
-UnknownText_0x99579:
+Kimono_girlNaoko2AfterBattleText:
 	text "I enjoyed that"
 	line "bout. I would like"
 	cont "to see you again."
@@ -167,7 +167,7 @@ Kimono_girlSayoBeatenText:
 	line "I almost had you."
 	done
 
-UnknownText_0x9960b:
+Kimono_girlSayoAfterBattleText:
 	text "Rhythm is impor-"
 	line "tant for both"
 
@@ -188,7 +188,7 @@ Kimono_girlZukiBeatenText:
 	line "#MON left…"
 	done
 
-UnknownText_0x99688:
+Kimono_girlZukiAfterBattleText:
 	text "I put a different"
 	line "flower in my bar-"
 	cont "rette every month."
@@ -205,7 +205,7 @@ Kimono_girlKuniBeatenText:
 	line "than you look."
 	done
 
-UnknownText_0x99714:
+Kimono_girlKuniAfterBattleText:
 	text "I trained a lot,"
 	line "so I thought I was"
 
@@ -224,7 +224,7 @@ Kimono_girlMikiBeatenText:
 	line "at #MON too."
 	done
 
-UnknownText_0x997a8:
+Kimono_girlMikiAfterBattleText:
 	text "I can keep dancing"
 	line "because there are"
 

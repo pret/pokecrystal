@@ -25,7 +25,7 @@ TrainerPokefanmCarter:
 PokefanmCarterScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad508
+	writetext PokefanmCarterAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -36,7 +36,7 @@ TrainerBird_keeperRoy:
 Bird_keeperRoyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad5a4
+	writetext Bird_keeperRoyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -47,7 +47,7 @@ TrainerPokefanmTrevor:
 PokefanmTrevorScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad660
+	writetext PokefanmTrevorAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -64,7 +64,7 @@ PokefanmCarterBeatenText:
 	text "Awaaah!"
 	done
 
-UnknownText_0x1ad508:
+PokefanmCarterAfterBattleText:
 	text "SQUIRTLE, CHARMAN-"
 	line "DER and BULBASAUR…"
 
@@ -83,7 +83,7 @@ Bird_keeperRoyBeatenText:
 	line "can't ever fly…"
 	done
 
-UnknownText_0x1ad5a4:
+Bird_keeperRoyAfterBattleText:
 	text "You have #MON"
 	line "that know the HM"
 
@@ -107,7 +107,7 @@ PokefanmTrevorBeatenText:
 	line "this PSYDUCK?"
 	done
 
-UnknownText_0x1ad660:
+PokefanmTrevorAfterBattleText:
 	text "If only there were"
 	line "an easy way to"
 

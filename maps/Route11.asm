@@ -18,7 +18,7 @@ TrainerYoungsterOwen:
 YoungsterOwenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x680b2
+	writetext YoungsterOwenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -29,7 +29,7 @@ TrainerYoungsterJason:
 YoungsterJasonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6814a
+	writetext YoungsterJasonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -40,7 +40,7 @@ TrainerPsychicHerman:
 PsychicHermanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6817b
+	writetext PsychicHermanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -51,7 +51,7 @@ TrainerPsychicFidel:
 PsychicFidelScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x681ec
+	writetext PsychicFidelAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -79,7 +79,7 @@ YoungsterOwenBeatenText:
 	line "happen?"
 	done
 
-UnknownText_0x680b2:
+YoungsterOwenAfterBattleText:
 	text "I fought fair and"
 	line "square with honor."
 
@@ -100,7 +100,7 @@ YoungsterJasonBeatenText:
 	line "I got stomped!"
 	done
 
-UnknownText_0x6814a:
+YoungsterJasonAfterBattleText:
 	text "I'm going to catch"
 	line "more #MON in"
 	cont "the grass."
@@ -114,7 +114,7 @@ PsychicHermanBeatenText:
 	text "…"
 	done
 
-UnknownText_0x6817b:
+PsychicHermanAfterBattleText:
 	text "…"
 
 	para "I lost while I had"
@@ -133,7 +133,7 @@ PsychicFidelBeatenText:
 	line "your power…"
 	done
 
-UnknownText_0x681ec:
+PsychicFidelAfterBattleText:
 	text "Strength in con-"
 	line "viction…"
 

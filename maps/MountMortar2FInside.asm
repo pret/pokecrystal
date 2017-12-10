@@ -20,7 +20,7 @@ TrainerSupernerdHugh:
 SupernerdHughScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7e10e
+	writetext SupernerdHughAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -55,7 +55,7 @@ SupernerdHughBeatenText:
 	text "Sorry, my mistake."
 	done
 
-UnknownText_0x7e10e:
+SupernerdHughAfterBattleText:
 	text "I'm investigating"
 	line "MT.MORTAR, but my"
 	cont "pal's gone AWOL."

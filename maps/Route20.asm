@@ -24,7 +24,7 @@ TrainerSwimmerfNicole:
 SwimmerfNicoleScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1acd93
+	writetext SwimmerfNicoleAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -35,7 +35,7 @@ TrainerSwimmerfLori:
 SwimmerfLoriScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ace15
+	writetext SwimmerfLoriAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,7 +46,7 @@ TrainerSwimmermCameron:
 SwimmermCameronScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ace8b
+	writetext SwimmermCameronAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ SwimmerfNicoleBeatenText:
 	text "Oh, no!"
 	done
 
-UnknownText_0x1acd93:
+SwimmerfNicoleAfterBattleText:
 	text "Swimming exercises"
 	line "your full body."
 
@@ -83,7 +83,7 @@ SwimmerfLoriBeatenText:
 	text "No!"
 	done
 
-UnknownText_0x1ace15:
+SwimmerfLoriAfterBattleText:
 	text "SURF is no longer"
 	line "the only HM move"
 	cont "you use in water."
@@ -101,7 +101,7 @@ SwimmermCameronBeatenText:
 	text "Aiyah!"
 	done
 
-UnknownText_0x1ace8b:
+SwimmermCameronAfterBattleText:
 	text "Besides the sea, I"
 	line "can also swim in"
 	cont "ponds and rivers."

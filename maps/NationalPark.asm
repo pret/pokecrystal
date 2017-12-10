@@ -194,7 +194,7 @@ TrainerPokefanmWilliam:
 PokefanmWilliamScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5c645
+	writetext PokefanmWilliamAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -284,7 +284,7 @@ TrainerLassKrise:
 LassKriseScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5c71d
+	writetext LassKriseAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -454,7 +454,7 @@ PokefanmWilliamBeatenText:
 	text "M-my #MON!"
 	done
 
-UnknownText_0x5c645:
+PokefanmWilliamAfterBattleText:
 	text "I lost the battle,"
 	line "but my #MON win"
 
@@ -484,7 +484,7 @@ LassKriseBeatenText:
 	text "…Hmmm…"
 	done
 
-UnknownText_0x5c71d:
+LassKriseAfterBattleText:
 	text "I thought you were"
 	line "staring at me"
 	cont "because I'm cute!"

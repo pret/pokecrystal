@@ -46,7 +46,7 @@ TrainerCooltrainermNick:
 CooltrainermNickScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a3f0
+	writetext CooltrainermNickAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -57,7 +57,7 @@ TrainerCooltrainerfGwen:
 CooltrainerfGwenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a488
+	writetext CooltrainerfGwenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -68,7 +68,7 @@ TrainerCooltrainerfEmma:
 CooltrainerfEmmaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a52b
+	writetext CooltrainerfEmmaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -96,7 +96,7 @@ CooltrainermNickBeatenText:
 	line "dazzling style!"
 	done
 
-UnknownText_0x5a3f0:
+CooltrainermNickAfterBattleText:
 	text "Your #MON style"
 	line "is stunning and"
 	cont "colorful, I admit."
@@ -115,7 +115,7 @@ CooltrainerfGwenBeatenText:
 	line "too good for me."
 	done
 
-UnknownText_0x5a488:
+CooltrainerfGwenAfterBattleText:
 	text "I'm going to train"
 	line "by myself until I"
 	cont "improve."
@@ -135,7 +135,7 @@ CooltrainerfEmmaBeatenText:
 	line "babies than this!"
 	done
 
-UnknownText_0x5a52b:
+CooltrainerfEmmaAfterBattleText:
 	text "Just once a week,"
 	line "a #MON comes to"
 	cont "the water's edge."

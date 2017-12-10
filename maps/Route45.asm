@@ -130,7 +130,7 @@ TrainerHikerErik:
 HikerErikScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e301
+	writetext HikerErikAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -141,7 +141,7 @@ TrainerHikerMichael:
 HikerMichaelScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e3b1
+	writetext HikerMichaelAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -238,7 +238,7 @@ TrainerHikerTimothy:
 HikerTimothyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e4f1
+	writetext HikerTimothyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -249,7 +249,7 @@ TrainerCooltrainermRyan:
 CooltrainermRyanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e70d
+	writetext CooltrainermRyanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -260,7 +260,7 @@ TrainerCooltrainerfKelly:
 CooltrainerfKellyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e7d1
+	writetext CooltrainerfKellyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -328,7 +328,7 @@ HikerErikBeatenText:
 	text "Oh, I lost that!"
 	done
 
-UnknownText_0x19e301:
+HikerErikAfterBattleText:
 	text "I'll head back to"
 	line "BLACKTHORN's ICE"
 
@@ -350,7 +350,7 @@ HikerMichaelBeatenText:
 	line "spunky enough!"
 	done
 
-UnknownText_0x19e3b1:
+HikerMichaelAfterBattleText:
 	text "Boy, do I love"
 	line "HP UP! Mmmm, yum!"
 
@@ -397,7 +397,7 @@ HikerTimothyBeatenText:
 	line "They're there too!"
 	done
 
-UnknownText_0x19e4f1:
+HikerTimothyAfterBattleText:
 	text "The best thing to"
 	line "ever happen to me"
 
@@ -467,7 +467,7 @@ CooltrainermRyanBeatenText:
 	line "respect."
 	done
 
-UnknownText_0x19e70d:
+CooltrainermRyanAfterBattleText:
 	text "I see you're rais-"
 	line "ing your #MON"
 	cont "with care."
@@ -490,7 +490,7 @@ CooltrainerfKellyBeatenText:
 	text "Fine. I lost."
 	done
 
-UnknownText_0x19e7d1:
+CooltrainerfKellyAfterBattleText:
 	text "I'm not in favor"
 	line "of overly power-"
 	cont "ful moves."

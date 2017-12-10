@@ -50,7 +50,7 @@ TrainerGentlemanGregory:
 GentlemanGregoryScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1923b0
+	writetext GentlemanGregoryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -61,7 +61,7 @@ TrainerGuitaristVincent:
 GuitaristVincentScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19244b
+	writetext GuitaristVincentAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -72,7 +72,7 @@ TrainerJugglerHorton:
 JugglerHortonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1924d6
+	writetext JugglerHortonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -175,7 +175,7 @@ GentlemanGregoryBeatenText:
 	cont "sir!"
 	done
 
-UnknownText_0x1923b0:
+GentlemanGregoryAfterBattleText:
 	text "When I was still"
 	line "in the army, LT."
 
@@ -198,7 +198,7 @@ GuitaristVincentBeatenText:
 	text "Ooh, how shocking!"
 	done
 
-UnknownText_0x19244b:
+GuitaristVincentAfterBattleText:
 	text "If the GYM's traps"
 	line "were working, you"
 
@@ -217,7 +217,7 @@ JugglerHortonBeatenText:
 	line "I was overpowered…"
 	done
 
-UnknownText_0x1924d6:
+JugglerHortonAfterBattleText:
 	text "Don't get too com-"
 	line "fortable about"
 

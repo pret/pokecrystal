@@ -21,7 +21,7 @@ TrainerBug_catcherRob:
 Bug_catcherRobScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac34d
+	writetext Bug_catcherRobAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -32,7 +32,7 @@ TrainerBug_catcherEd:
 Bug_catcherEdScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac3cf
+	writetext Bug_catcherEdAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -43,7 +43,7 @@ TrainerBug_catcherDoug:
 Bug_catcherDougScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac423
+	writetext Bug_catcherDougAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -91,7 +91,7 @@ Bug_catcherRobBeatenText:
 	text "I was whipped…"
 	done
 
-UnknownText_0x1ac34d:
+Bug_catcherRobAfterBattleText:
 	text "I'm going to look"
 	line "for stronger bug"
 	cont "#MON."
@@ -109,7 +109,7 @@ Bug_catcherEdBeatenText:
 	text "Ouch, ouch, ouch!"
 	done
 
-UnknownText_0x1ac3cf:
+Bug_catcherEdAfterBattleText:
 	text "They'll really"
 	line "sting when you"
 	cont "take a bath."
@@ -124,7 +124,7 @@ Bug_catcherDougBeatenText:
 	text "No good!"
 	done
 
-UnknownText_0x1ac423:
+Bug_catcherDougAfterBattleText:
 	text "Bug #MON squish"
 	line "like plush toys"
 

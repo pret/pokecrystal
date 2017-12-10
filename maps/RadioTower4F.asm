@@ -61,7 +61,7 @@ TrainerGruntM10:
 GruntM10Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5ede2
+	writetext GruntM10AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -72,7 +72,7 @@ TrainerExecutivem2:
 Executivem2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5ee69
+	writetext Executivem2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -83,7 +83,7 @@ TrainerGruntF4:
 GruntF4Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5ef31
+	writetext GruntF4AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -94,7 +94,7 @@ TrainerScientistRich:
 ScientistRichScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5efcb
+	writetext ScientistRichAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -163,7 +163,7 @@ GruntM10BeatenText:
 	text "No! Unbelievable!"
 	done
 
-UnknownText_0x5ede2:
+GruntM10AfterBattleText:
 	text "I don't believe"
 	line "it! I was beaten!"
 	done
@@ -182,7 +182,7 @@ Executivem2BeatenText:
 	line "down!"
 	done
 
-UnknownText_0x5ee69:
+Executivem2AfterBattleText:
 	text "You've earned my"
 	line "respect, so here's"
 	cont "some advice."
@@ -208,7 +208,7 @@ GruntF4BeatenText:
 	line "useless!"
 	done
 
-UnknownText_0x5ef31:
+GruntF4AfterBattleText:
 	text "I love my"
 	line "beautiful self!"
 
@@ -231,7 +231,7 @@ ScientistRichBeatenText:
 	line "come with snags."
 	done
 
-UnknownText_0x5efcb:
+ScientistRichAfterBattleText:
 	text "Do you honestly"
 	line "believe you can"
 	cont "stop TEAM ROCKET?"

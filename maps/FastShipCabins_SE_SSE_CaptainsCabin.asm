@@ -146,7 +146,7 @@ TrainerPokefanmColin:
 PokefanmColinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7635b
+	writetext PokefanmColinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -157,7 +157,7 @@ TrainerTwinsMegandpeg1:
 TwinsMegandpeg1Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x763c2
+	writetext TwinsMegandpeg1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -168,7 +168,7 @@ TrainerTwinsMegandpeg2:
 TwinsMegandpeg2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76428
+	writetext TwinsMegandpeg2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -179,7 +179,7 @@ TrainerPsychicRodney:
 PsychicRodneyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76497
+	writetext PsychicRodneyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -190,7 +190,7 @@ TrainerPokefanmJeremy:
 PokefanmJeremyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7651c
+	writetext PokefanmJeremyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -201,7 +201,7 @@ TrainerPokefanfGeorgia:
 PokefanfGeorgiaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76596
+	writetext PokefanfGeorgiaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -212,7 +212,7 @@ TrainerSupernerdShawn:
 SupernerdShawnScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7660f
+	writetext SupernerdShawnAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -347,7 +347,7 @@ PokefanmColinBeatenText:
 	text "You're strong!"
 	done
 
-UnknownText_0x7635b:
+PokefanmColinAfterBattleText:
 	text "You're traveling"
 	line "all alone?"
 
@@ -365,7 +365,7 @@ TwinsMegandpeg1BeatenText:
 	text "Oh! We lost!"
 	done
 
-UnknownText_0x763c2:
+TwinsMegandpeg1AfterBattleText:
 	text "Baby is a rude"
 	line "name to call us"
 	cont "girls!"
@@ -382,7 +382,7 @@ TwinsMegandpeg2BeatenText:
 	text "Oh! We lost!"
 	done
 
-UnknownText_0x76428:
+TwinsMegandpeg2AfterBattleText:
 	text "Sometimes, kids"
 	line "are smarter than"
 	cont "grown-ups!"
@@ -399,7 +399,7 @@ PsychicRodneyBeatenText:
 	line "thing!"
 	done
 
-UnknownText_0x76497:
+PsychicRodneyAfterBattleText:
 	text "I get it. You can"
 	line "hear JOHTO's radio"
 	cont "on the FAST SHIP."
@@ -416,7 +416,7 @@ PokefanmJeremyBeatenText:
 	line "ful #MON!"
 	done
 
-UnknownText_0x7651c:
+PokefanmJeremyAfterBattleText:
 	text "I must go to the"
 	line "#MON SALON and"
 	cont "fix them up nice!"
@@ -433,7 +433,7 @@ PokefanfGeorgiaBeatenText:
 	line "to do?"
 	done
 
-UnknownText_0x76596:
+PokefanfGeorgiaAfterBattleText:
 	text "Oh, yes! I have to"
 	line "get my #MON out"
 	cont "of DAY-CARE!"
@@ -450,7 +450,7 @@ SupernerdShawnBeatenText:
 	line "Please!"
 	done
 
-UnknownText_0x7660f:
+SupernerdShawnAfterBattleText:
 	text "You should use the"
 	line "right BALLS to fit"
 	cont "the situation."

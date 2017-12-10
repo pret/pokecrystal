@@ -94,7 +94,7 @@ TrainerCooltrainermDarin:
 CooltrainermDarinScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainermDarinAfterText
+	writetext CooltrainermDarinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -105,7 +105,7 @@ TrainerCooltrainerfCara:
 CooltrainerfCaraScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainerfCaraAfterText
+	writetext CooltrainerfCaraAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -116,7 +116,7 @@ TrainerTwinsLeaandpia1:
 TwinsLeaandpia1Script:
 	end_if_just_battled
 	opentext
-	writetext TrinsLeaandpia1AfterText
+	writetext TwinsLeaandpia1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -127,7 +127,7 @@ TrainerTwinsLeaandpia2:
 TwinsLeaandpia2Script:
 	end_if_just_battled
 	opentext
-	writetext TrinsLeaandpia2AfterText
+	writetext TwinsLeaandpia2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -332,7 +332,7 @@ CooltrainermDarinBeatenText:
 	text "S-strong!"
 	done
 
-CooltrainermDarinAfterText:
+CooltrainermDarinAfterBattleText:
 	text "The SHRINE ahead"
 	line "is home to the"
 
@@ -352,7 +352,7 @@ CooltrainerfCaraBeatenText:
 	text "Oh yikes, I lost!"
 	done
 
-CooltrainerfCaraAfterText:
+CooltrainerfCaraAfterBattleText:
 	text "Soon I'm going to"
 	line "get permission"
 
@@ -378,7 +378,7 @@ TwinsLeaandpia1BeatenText:
 	text "Ouchies."
 	done
 
-TrinsLeaandpia1AfterText:
+TwinsLeaandpia1AfterBattleText:
 	text "It was like having"
 	line "to battle LANCE."
 	done
@@ -391,7 +391,7 @@ TwinsLeaandpia2BeatenText:
 	text "Meanie."
 	done
 
-TrinsLeaandpia2AfterText:
+TwinsLeaandpia2AfterBattleText:
 	text "We'll tell on you."
 
 	para "MASTER will be"

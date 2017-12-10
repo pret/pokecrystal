@@ -23,7 +23,7 @@ TrainerPokemaniacMiller:
 PokemaniacMillerScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7debd
+	writetext PokemaniacMillerAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -34,7 +34,7 @@ TrainerSupernerdMarkus:
 SupernerdMarkusScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7df97
+	writetext SupernerdMarkusAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -77,7 +77,7 @@ PokemaniacMillerBeatenText:
 	line "kid…?"
 	done
 
-UnknownText_0x7debd:
+PokemaniacMillerAfterBattleText:
 	text "A while back, this"
 	line "karate dude wanted"
 
@@ -103,7 +103,7 @@ SupernerdMarkusBeatenText:
 	line "someone else…"
 	done
 
-UnknownText_0x7df97:
+SupernerdMarkusAfterBattleText:
 	text "I came to explore"
 	line "MT.MORTAR, but I"
 

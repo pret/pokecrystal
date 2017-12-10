@@ -121,7 +121,7 @@ TrainerSupernerdEric:
 SupernerdEricScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7c36c
+	writetext SupernerdEricAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -132,7 +132,7 @@ TrainerSupernerdTeru:
 SupernerdTeruScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7c410
+	writetext SupernerdTeruAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -143,7 +143,7 @@ TrainerPokemaniacIssac:
 PokemaniacIssacScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7c498
+	writetext PokemaniacIssacAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -154,7 +154,7 @@ TrainerPokemaniacDonald:
 PokemaniacDonaldScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7c52f
+	writetext PokemaniacDonaldAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -439,7 +439,7 @@ SupernerdEricBeatenText:
 	text "…Grumble…"
 	done
 
-UnknownText_0x7c36c:
+SupernerdEricAfterBattleText:
 	text "I guess I have to"
 	line "do things fair and"
 	cont "square…"
@@ -461,7 +461,7 @@ SupernerdTeruBeatenText:
 	text "Ow, ow, ow!"
 	done
 
-UnknownText_0x7c410:
+SupernerdTeruAfterBattleText:
 	text "I know my #MON"
 	line "type alignments."
 
@@ -481,7 +481,7 @@ PokemaniacIssacBeatenText:
 	text "Aiyeeee!"
 	done
 
-UnknownText_0x7c498:
+PokemaniacIssacAfterBattleText:
 	text "Your #MON will"
 	line "like you more if"
 
@@ -502,7 +502,7 @@ PokemaniacDonaldBeatenText:
 	line "That makes me mad!"
 	done
 
-UnknownText_0x7c52f:
+PokemaniacDonaldAfterBattleText:
 	text "Are you making a"
 	line "#DEX? Here's a"
 	cont "hot tip."

@@ -9,27 +9,27 @@ AzaleaPokeCenter1F_MapScriptHeader:
 	db 1
 
 	; triggers
-	dw UnknownScript_0x18db27, 0
+	maptrigger .Trigger0
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x18db27:
+.Trigger0:
 	end
 
-NurseScript_0x18db28:
+AzaleaPokeCenter1FNurseScript:
 	jumpstd pokecenternurse
 
-GentlemanScript_0x18db2b:
-	jumptextfaceplayer UnknownText_0x18db34
+AzaleaPokeCenter1FGentlemanScript:
+	jumptextfaceplayer AzaleaPokeCenter1FGentlemanText
 
-FishingGuruScript_0x18db2e:
-	jumptextfaceplayer UnknownText_0x18dbee
+AzaleaPokeCenter1FFishingGuruScript:
+	jumptextfaceplayer AzaleaPokeCenter1FFishingGuruText
 
-PokefanFScript_0x18db31:
-	jumptextfaceplayer UnknownText_0x18dc19
+AzaleaPokeCenter1FPokefanFScript:
+	jumptextfaceplayer AzaleaPokeCenter1FPokefanFText
 
-UnknownText_0x18db34:
+AzaleaPokeCenter1FGentlemanText:
 	text "Do your #MON"
 	line "know HM moves?"
 
@@ -40,7 +40,7 @@ UnknownText_0x18db34:
 	line "fainted."
 	done
 
-UnknownText_0x18db88:
+AzaleaPokeCenter1FUnusedText:
 	text "This BILL guy"
 	line "created the system"
 
@@ -52,13 +52,13 @@ UnknownText_0x18db88:
 	cont "#MON per BOX."
 	done
 
-UnknownText_0x18dbee:
+AzaleaPokeCenter1FFishingGuruText:
 	text "BILL's PC can"
 	line "store up to 20"
 	cont "#MON per BOX."
 	done
 
-UnknownText_0x18dc19:
+AzaleaPokeCenter1FPokefanFText:
 	text "Do you know about"
 	line "APRICORNS?"
 
@@ -96,7 +96,7 @@ AzaleaPokeCenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x18db28, -1
-	person_event SPRITE_GENTLEMAN, 6, 9, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x18db2b, -1
-	person_event SPRITE_FISHING_GURU, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FishingGuruScript_0x18db2e, -1
-	person_event SPRITE_POKEFAN_F, 4, 1, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x18db31, -1
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaPokeCenter1FNurseScript, -1
+	person_event SPRITE_GENTLEMAN, 6, 9, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaPokeCenter1FGentlemanScript, -1
+	person_event SPRITE_FISHING_GURU, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaPokeCenter1FFishingGuruScript, -1
+	person_event SPRITE_POKEFAN_F, 4, 1, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaPokeCenter1FPokefanFScript, -1

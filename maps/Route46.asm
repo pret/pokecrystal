@@ -19,7 +19,7 @@ TrainerCamperTed:
 CamperTedScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a9851
+	writetext CamperTedAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -153,7 +153,7 @@ TrainerHikerBailey:
 HikerBaileyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a97e8
+	writetext HikerBaileyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -181,7 +181,7 @@ HikerBaileyBeatenText:
 	line "me your power!"
 	done
 
-UnknownText_0x1a97e8:
+HikerBaileyAfterBattleText:
 	text "It's over. I don't"
 	line "mind. We HIKERS"
 	cont "are like that."
@@ -199,7 +199,7 @@ CamperTedBeatenText:
 	text "Wha…?"
 	done
 
-UnknownText_0x1a9851:
+CamperTedAfterBattleText:
 	text "I did my best but"
 	line "came up short."
 

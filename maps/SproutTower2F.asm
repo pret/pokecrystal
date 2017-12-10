@@ -16,7 +16,7 @@ TrainerSageNico:
 SageNicoScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1847ff
+	writetext SageNicoAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -27,7 +27,7 @@ TrainerSageEdmond:
 SageEdmondScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18486f
+	writetext SageEdmondAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -49,7 +49,7 @@ SageNicoBeatenText:
 	line "I'm too weak."
 	done
 
-UnknownText_0x1847ff:
+SageNicoAfterBattleText:
 	text "The flexible pil-"
 	line "lar protects the"
 
@@ -66,7 +66,7 @@ SageEdmondBeatenText:
 	text "Oh, I'm weak!"
 	done
 
-UnknownText_0x18486f:
+SageEdmondAfterBattleText:
 	text "I tried to copy"
 	line "BELLSPROUT's"
 

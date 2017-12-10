@@ -156,7 +156,7 @@ TrainerFisherAndre:
 FisherAndreScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7058f
+	writetext FisherAndreAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -167,7 +167,7 @@ TrainerFisherRaymond:
 FisherRaymondScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x70611
+	writetext FisherRaymondAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -178,7 +178,7 @@ TrainerCooltrainermAaron:
 CooltrainermAaronScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7069c
+	writetext CooltrainermAaronAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -189,7 +189,7 @@ TrainerCooltrainerfLois:
 CooltrainerfLoisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x70752
+	writetext CooltrainerfLoisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -379,7 +379,7 @@ FisherAndreBeatenText:
 	line "MON trainer…"
 	done
 
-UnknownText_0x7058f:
+FisherAndreAfterBattleText:
 	text "I won't lose as an"
 	line "angler! I catch"
 	cont "#MON all day."
@@ -398,7 +398,7 @@ FisherRaymondBeatenText:
 	line "tangled up…"
 	done
 
-UnknownText_0x70611:
+FisherRaymondAfterBattleText:
 	text "Why can't I catch"
 	line "any good #MON?"
 	done
@@ -419,7 +419,7 @@ CooltrainermAaronBeatenText:
 	line "Good battle."
 	done
 
-UnknownText_0x7069c:
+CooltrainermAaronAfterBattleText:
 	text "#MON and their"
 	line "trainer become"
 
@@ -444,7 +444,7 @@ CooltrainerfLoisBeatenText:
 	text "Good going!"
 	done
 
-UnknownText_0x70752:
+CooltrainerfLoisAfterBattleText:
 	text "Come to think of"
 	line "it, I've seen a"
 	cont "pink BUTTERFREE."

@@ -16,7 +16,7 @@ TrainerSchoolboyDanny:
 SchoolboyDannyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac5d7
+	writetext SchoolboyDannyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -27,7 +27,7 @@ TrainerCooltrainerfQuinn:
 CooltrainerfQuinnScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac640
+	writetext CooltrainerfQuinnAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -49,7 +49,7 @@ SchoolboyDannyBeatenText:
 	line "losing record…"
 	done
 
-UnknownText_0x1ac5d7:
+SchoolboyDannyAfterBattleText:
 	text "For trainers, it's"
 	line "a given that we'll"
 
@@ -66,7 +66,7 @@ CooltrainerfQuinnBeatenText:
 	text "Down and out…"
 	done
 
-UnknownText_0x1ac640:
+CooltrainerfQuinnAfterBattleText:
 	text "You're strong."
 
 	para "You obviously must"

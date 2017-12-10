@@ -170,7 +170,7 @@ TrainerPokemaniacShane:
 PokemaniacShaneScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a94d6
+	writetext PokemaniacShaneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -181,7 +181,7 @@ TrainerHikerBenjamin:
 HikerBenjaminScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a943f
+	writetext HikerBenjaminAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -260,7 +260,7 @@ HikerBenjaminBeatenText:
 	text "Gahahah!"
 	done
 
-UnknownText_0x1a943f:
+HikerBenjaminAfterBattleText:
 	text "Losing feels in-"
 	line "significant if you"
 
@@ -281,7 +281,7 @@ PokemaniacShaneBeatenText:
 	line "my MOON STONE…"
 	done
 
-UnknownText_0x1a94d6:
+PokemaniacShaneAfterBattleText:
 	text "You're working on"
 	line "a #DEX?"
 

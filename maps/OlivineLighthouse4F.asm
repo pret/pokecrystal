@@ -15,7 +15,7 @@ TrainerLassConnie:
 LassConnie1Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b63c
+	writetext LassConnie1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -26,7 +26,7 @@ TrainerSailorKent:
 SailorKentScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b584
+	writetext SailorKentAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -45,7 +45,7 @@ SailorKentBeatenText:
 	line "smile either…"
 	done
 
-UnknownText_0x5b584:
+SailorKentAfterBattleText:
 	text "Speaking of sick,"
 	line "I've heard there's"
 
@@ -68,7 +68,7 @@ LassConnie1BeatenText:
 	text "Aaack! My #MON!"
 	done
 
-UnknownText_0x5b63c:
+LassConnie1AfterBattleText:
 	text "Right. Anybody"
 	line "would be worried"
 	cont "if his or her own"

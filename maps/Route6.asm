@@ -16,7 +16,7 @@ TrainerPokefanmRex:
 PokefanmRexScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad9ff
+	writetext PokefanmRexAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -27,7 +27,7 @@ TrainerPokefanmAllan:
 PokefanmAllanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ada88
+	writetext PokefanmAllanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ PokefanmRexBeatenText:
 	text "My PHANPY!"
 	done
 
-UnknownText_0x1ad9ff:
+PokefanmRexAfterBattleText:
 	text "Look how adorable"
 	line "my PHANPY acts!"
 
@@ -82,7 +82,7 @@ PokefanmAllanBeatenText:
 	text "My TEDDIURSA!"
 	done
 
-UnknownText_0x1ada88:
+PokefanmAllanAfterBattleText:
 	text "Look how adorable"
 	line "my TEDDIURSA acts!"
 

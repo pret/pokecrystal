@@ -100,7 +100,7 @@ TrainerLassCarrie:
 LassCarrieScript:
 	end_if_just_battled
 	opentext
-	writetext LassCarrieOWText
+	writetext LassCarrieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -124,7 +124,7 @@ TrainerLassBridget:
 LassBridgetScript:
 	end_if_just_battled
 	opentext
-	writetext LassBridgetOWText
+	writetext LassBridgetAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -135,7 +135,7 @@ TrainerBeautyVictoria:
 BeautyVictoriaScript:
 	end_if_just_battled
 	opentext
-	writetext BeautyVictoriaOWText
+	writetext BeautyVictoriaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -146,7 +146,7 @@ TrainerBeautySamantha:
 BeautySamanthaScript:
 	end_if_just_battled
 	opentext
-	writetext BeautySamanthaOWText
+	writetext BeautySamanthaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -285,7 +285,7 @@ LassCarrieBeatenText:
 	line "you were weak…"
 	done
 
-LassCarrieOWText:
+LassCarrieAfterBattleText:
 	text "Do my #MON"
 	line "think I'm cute?"
 	done
@@ -303,7 +303,7 @@ LassBridgetBeatenText:
 	text "Oh, no, no, no!"
 	done
 
-LassBridgetOWText:
+LassBridgetAfterBattleText:
 	text "I'm trying to beat"
 	line "WHITNEY, but…"
 	cont "It's depressing."
@@ -339,7 +339,7 @@ BeautyVictoriaBeatenText:
 	line "it's over?"
 	done
 
-BeautyVictoriaOWText:
+BeautyVictoriaAfterBattleText:
 	text "Wow, you must be"
 	line "good to beat me!"
 	cont "Keep it up!"
@@ -356,7 +356,7 @@ BeautySamanthaBeatenText:
 	line "I'm so sorry!"
 	done
 
-BeautySamanthaOWText:
+BeautySamanthaAfterBattleText:
 	text "I taught MEOWTH"
 	line "moves for taking"
 	cont "on any type…"

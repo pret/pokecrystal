@@ -31,7 +31,7 @@ TrainerSageChow:
 SageChowScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x184583
+	writetext SageChowAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -55,7 +55,7 @@ SageChowBeatenText:
 	text "Th-Thank you!"
 	done
 
-UnknownText_0x184583:
+SageChowAfterBattleText:
 	text "All living beings"
 	line "coexist through"
 	cont "cooperation."

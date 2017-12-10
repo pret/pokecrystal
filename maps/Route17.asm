@@ -26,7 +26,7 @@ TrainerBikerCharles:
 BikerCharlesScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad293
+	writetext BikerCharlesAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -37,7 +37,7 @@ TrainerBikerRiley:
 BikerRileyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad13b
+	writetext BikerRileyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -48,7 +48,7 @@ TrainerBikerJoel:
 BikerJoelScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad196
+	writetext BikerJoelAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -59,7 +59,7 @@ TrainerBikerGlenn:
 BikerGlennScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad225
+	writetext BikerGlennAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -81,7 +81,7 @@ BikerRileyBeatenText:
 	text "Whoa, you kick!"
 	done
 
-UnknownText_0x1ad13b:
+BikerRileyAfterBattleText:
 	text "Don't get cocky,"
 	line "you JOHTO punk!"
 	done
@@ -96,7 +96,7 @@ BikerJoelBeatenText:
 	line "look cool…"
 	done
 
-UnknownText_0x1ad196:
+BikerJoelAfterBattleText:
 	text "I look cool, but"
 	line "I'm weak, so I'm"
 	cont "not really cool."
@@ -115,7 +115,7 @@ BikerGlennBeatenText:
 	line "awesome torque!"
 	done
 
-UnknownText_0x1ad225:
+BikerGlennAfterBattleText:
 	text "Hands-free riding"
 	line "is considered cool"
 	cont "on CYCLING ROAD."
@@ -131,7 +131,7 @@ BikerCharlesBeatenText:
 	line "burn!"
 	done
 
-UnknownText_0x1ad293:
+BikerCharlesAfterBattleText:
 	text "Reckless driving"
 	line "causes accidents!"
 	cont "Take it easy!"

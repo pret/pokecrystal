@@ -35,7 +35,7 @@ TrainerSwimmerfDawn:
 SwimmerfDawnScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19ebad
+	writetext SwimmerfDawnAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,7 +46,7 @@ TrainerSwimmermHarold:
 SwimmermHaroldScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19eab4
+	writetext SwimmermHaroldAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -57,7 +57,7 @@ TrainerSwimmermJerome:
 SwimmermJeromeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19ec7e
+	writetext SwimmermJeromeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -68,7 +68,7 @@ TrainerSwimmermTucker:
 SwimmermTuckerScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19eb3b
+	writetext SwimmermTuckerAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -121,7 +121,7 @@ SwimmermHaroldBeatenText:
 	text "Glub…"
 	done
 
-UnknownText_0x19eab4:
+SwimmermHaroldAfterBattleText:
 	text "At night, the sea"
 	line "turns black. It"
 
@@ -141,7 +141,7 @@ SwimmermTuckerBeatenText:
 	text "I'm drowning!"
 	done
 
-UnknownText_0x19eb3b:
+SwimmermTuckerAfterBattleText:
 	text "I… asked my girl-"
 	line "friend to swim to"
 	cont "FUCHSIA… Gasp…"
@@ -157,7 +157,7 @@ SwimmerfDawnBeatenText:
 	line "at swimming…"
 	done
 
-UnknownText_0x19ebad:
+SwimmerfDawnAfterBattleText:
 	text "It's a quick swim"
 	line "between FUCHSIA"
 
@@ -184,7 +184,7 @@ SwimmermJeromeBeatenText:
 	line "win."
 	done
 
-UnknownText_0x19ec7e:
+SwimmermJeromeAfterBattleText:
 	text "I might be bad at"
 	line "swimming, but I"
 	cont "love the sea."

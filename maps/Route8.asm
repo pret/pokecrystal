@@ -19,7 +19,7 @@ TrainerBikerDwayne:
 BikerDwayneScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c0c8
+	writetext BikerDwayneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -30,7 +30,7 @@ TrainerBikerHarris:
 BikerHarrisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c143
+	writetext BikerHarrisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -41,7 +41,7 @@ TrainerBikerZeke:
 BikerZekeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c1a3
+	writetext BikerZekeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -52,7 +52,7 @@ TrainerSupernerdSam:
 SupernerdSamScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c219
+	writetext SupernerdSamAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ TrainerSupernerdTom:
 SupernerdTomScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c27e
+	writetext SupernerdTomAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -90,7 +90,7 @@ BikerDwayneBeatenText:
 	text "S-sorry!"
 	done
 
-UnknownText_0x6c0c8:
+BikerDwayneAfterBattleText:
 	text "The KANTO #MON"
 	line "FEDERATION will"
 	cont "never fall!"
@@ -108,7 +108,7 @@ BikerHarrisBeatenText:
 	text "F-forgive me!"
 	done
 
-UnknownText_0x6c143:
+BikerHarrisAfterBattleText:
 	text "Wiped out by some"
 	line "punk from JOHTO…"
 	done
@@ -124,7 +124,7 @@ BikerZekeBeatenText:
 	text "Yikes! Sorry!"
 	done
 
-UnknownText_0x6c1a3:
+BikerZekeAfterBattleText:
 	text "We'll try not to"
 	line "disturb anyone"
 	cont "from now on…"
@@ -140,7 +140,7 @@ SupernerdSamBeatenText:
 	line "the MAGNET TRAIN…"
 	done
 
-UnknownText_0x6c219:
+SupernerdSamAfterBattleText:
 	text "The power of mag-"
 	line "nets is awesome!"
 	done
@@ -155,7 +155,7 @@ SupernerdTomBeatenText:
 	line "You're tough!"
 	done
 
-UnknownText_0x6c27e:
+SupernerdTomAfterBattleText:
 	text "GYM BADGES give"
 	line "you advantages in"
 	cont "battles."

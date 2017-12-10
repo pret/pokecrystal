@@ -17,7 +17,7 @@ TrainerBird_keeperHank:
 Bird_keeperHankScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ae258
+	writetext Bird_keeperHankAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -28,7 +28,7 @@ TrainerPicnickerHope:
 PicnickerHopeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ae320
+	writetext PicnickerHopeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -39,7 +39,7 @@ TrainerPicnickerSharon:
 PicnickerSharonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ae369
+	writetext PicnickerSharonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -65,7 +65,7 @@ Bird_keeperHankBeatenText:
 	line "one…"
 	done
 
-UnknownText_0x1ae258:
+Bird_keeperHankAfterBattleText:
 	text "If you have a"
 	line "specific #MON"
 
@@ -92,7 +92,7 @@ PicnickerHopeBeatenText:
 	line "strong."
 	done
 
-UnknownText_0x1ae320:
+PicnickerHopeAfterBattleText:
 	text "I heard CLEFAIRY"
 	line "appear at MT.MOON."
 
@@ -109,7 +109,7 @@ PicnickerSharonBeatenText:
 	text "…"
 	done
 
-UnknownText_0x1ae369:
+PicnickerSharonAfterBattleText:
 	text "……I'll go train"
 	line "some more…"
 	done

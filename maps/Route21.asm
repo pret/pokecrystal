@@ -16,7 +16,7 @@ TrainerSwimmermSeth:
 SwimmermSethScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac873
+	writetext SwimmermSethAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -27,7 +27,7 @@ TrainerSwimmerfNikki:
 SwimmerfNikkiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac8f1
+	writetext SwimmerfNikkiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -38,7 +38,7 @@ TrainerFisherArnold:
 FisherArnoldScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac95c
+	writetext FisherArnoldAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -52,7 +52,7 @@ SwimmermSethBeatenText:
 	text "Glug…"
 	done
 
-UnknownText_0x1ac873:
+SwimmermSethAfterBattleText:
 	text "This arrogant guy"
 	line "was at CINNABAR's"
 	cont "volcano."
@@ -69,7 +69,7 @@ SwimmerfNikkiBeatenText:
 	line "sunburn…"
 	done
 
-UnknownText_0x1ac8f1:
+SwimmerfNikkiAfterBattleText:
 	text "I have to watch"
 	line "out for blemishes"
 	cont "caused by the sun."
@@ -84,7 +84,7 @@ FisherArnoldBeatenText:
 	text "Utter failure…"
 	done
 
-UnknownText_0x1ac95c:
+FisherArnoldAfterBattleText:
 	text "I'll just go back"
 	line "to fishing…"
 	done

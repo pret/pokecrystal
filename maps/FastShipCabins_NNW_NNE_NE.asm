@@ -20,7 +20,7 @@ TrainerCooltrainermSean:
 CooltrainermSeanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7567b
+	writetext CooltrainermSeanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -31,7 +31,7 @@ TrainerCooltrainerfCarol:
 CooltrainerfCarolScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x756f7
+	writetext CooltrainerfCarolAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -42,7 +42,7 @@ TrainerPokemaniacEthan:
 PokemaniacEthanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7574b
+	writetext PokemaniacEthanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -53,7 +53,7 @@ TrainerHikerNoland:
 HikerNolandScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x757d4
+	writetext HikerNolandAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -64,7 +64,7 @@ TrainerGentlemanEdward:
 GentlemanEdwardScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x75937
+	writetext GentlemanEdwardAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -75,7 +75,7 @@ TrainerBurglarCorey:
 BurglarCoreyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x75996
+	writetext BurglarCoreyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -142,7 +142,7 @@ CooltrainermSeanBeatenText:
 	text "I wanted to win!"
 	done
 
-UnknownText_0x7567b:
+CooltrainermSeanAfterBattleText:
 	text "Trainers from"
 	line "JOHTO can battle"
 
@@ -160,7 +160,7 @@ CooltrainerfCarolBeatenText:
 	line "ent between us?"
 	done
 
-UnknownText_0x756f7:
+CooltrainerfCarolAfterBattleText:
 	text "I'm going to beat"
 	line "you someday!"
 	done
@@ -175,7 +175,7 @@ PokemaniacEthanBeatenText:
 	text "Gyaaaah!"
 	done
 
-UnknownText_0x7574b:
+PokemaniacEthanAfterBattleText:
 	text "LILY's nice, but"
 	line "MARY's the best!"
 
@@ -194,7 +194,7 @@ HikerNolandBeatenText:
 	line "handle!"
 	done
 
-UnknownText_0x757d4:
+HikerNolandAfterBattleText:
 	text "I wonder if there"
 	line "are any mountains"
 
@@ -240,7 +240,7 @@ GentlemanEdwardBeatenText:
 	line "it…"
 	done
 
-UnknownText_0x75937:
+GentlemanEdwardAfterBattleText:
 	text "I give up."
 	line "You don't have to"
 
@@ -258,7 +258,7 @@ BurglarCoreyBeatenText:
 	line "I lost!"
 	done
 
-UnknownText_0x75996:
+BurglarCoreyAfterBattleText:
 	text "I found a pretty"
 	line "coin here."
 

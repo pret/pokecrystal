@@ -25,7 +25,7 @@ TrainerGruntM29:
 GruntM29Script:
 	end_if_just_battled
 	opentext
-	writetext TrainerGruntM29SlowpokeProfitText
+	writetext GruntM29AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -79,7 +79,7 @@ TrainerGruntM2:
 GruntM2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5aaf2
+	writetext GruntM2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -90,7 +90,7 @@ TrainerGruntF1:
 GruntF1Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5ab8d
+	writetext GruntF1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -207,7 +207,7 @@ GruntM29BeatenText:
 	line "my day!"
 	done
 
-TrainerGruntM29SlowpokeProfitText:
+GruntM29AfterBattleText:
 	text "Sure, we've been"
 	line "hacking the tails"
 
@@ -266,7 +266,7 @@ GruntM2BeatenText:
 	line "Too strong…"
 	done
 
-UnknownText_0x5aaf2:
+GruntM2AfterBattleText:
 	text "We need the money,"
 	line "but selling SLOW-"
 	cont "POKETAILS?"
@@ -286,7 +286,7 @@ GruntF1BeatenText:
 	text "You rotten brat!"
 	done
 
-UnknownText_0x5ab8d:
+GruntF1AfterBattleText:
 	text "SLOWPOKETAILS"
 	line "grow back fast!"
 

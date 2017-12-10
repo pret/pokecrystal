@@ -44,7 +44,7 @@ TrainerGruntM24:
 GruntM24Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7da48
+	writetext GruntM24AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -55,7 +55,7 @@ TrainerGruntM14:
 GruntM14Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7db01
+	writetext GruntM14AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -66,7 +66,7 @@ TrainerGruntM15:
 GruntM15Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7db8e
+	writetext GruntM15AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -113,7 +113,7 @@ GruntM24BeatenText:
 	text "I got disposed of…"
 	done
 
-UnknownText_0x7da48:
+GruntM24AfterBattleText:
 	text "TEAM ROCKET will"
 	line "keep going, wait-"
 	cont "ing for the return"
@@ -136,7 +136,7 @@ GruntM14BeatenText:
 	text "Blast it!"
 	done
 
-UnknownText_0x7db01:
+GruntM14AfterBattleText:
 	text "I lost…"
 
 	para "Please forgive me,"
@@ -156,7 +156,7 @@ GruntM15BeatenText:
 	line "So, that's how?"
 	done
 
-UnknownText_0x7db8e:
+GruntM15AfterBattleText:
 	text "Hyuck-hyuck-hyuck!"
 	line "That was a blast!"
 	cont "I'll remember you!"

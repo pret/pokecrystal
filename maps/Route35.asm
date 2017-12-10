@@ -24,7 +24,7 @@ TrainerBird_keeperBryan:
 Bird_keeperBryanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19cc87
+	writetext Bird_keeperBryanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -90,7 +90,7 @@ TrainerCamperIvan:
 CamperIvanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19cac4
+	writetext CamperIvanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -101,7 +101,7 @@ TrainerCamperElliot:
 CamperElliotScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19cb47
+	writetext CamperElliotAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -112,7 +112,7 @@ TrainerPicnickerBrooke:
 PicnickerBrookeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19cbba
+	writetext PicnickerBrookeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -123,7 +123,7 @@ TrainerPicnickerKim:
 PicnickerKimScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19cc21
+	writetext PicnickerKimAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -231,7 +231,7 @@ TrainerFirebreatherWalt:
 FirebreatherWaltScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19cebc
+	writetext FirebreatherWaltAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -288,7 +288,7 @@ CamperIvanBeatenText:
 	text "I give!"
 	done
 
-UnknownText_0x19cac4:
+CamperIvanAfterBattleText:
 	text "Music on the radio"
 	line "changes the moods"
 	cont "of wild #MON."
@@ -305,7 +305,7 @@ CamperElliotBeatenText:
 	line "have lost for me…"
 	done
 
-UnknownText_0x19cb47:
+CamperElliotAfterBattleText:
 	text "I was humiliated"
 	line "in front of my"
 	cont "girlfriend…"
@@ -322,7 +322,7 @@ PicnickerBrookeBeatenText:
 	line "strong!"
 	done
 
-UnknownText_0x19cbba:
+PicnickerBrookeAfterBattleText:
 	text "I can count on my"
 	line "#MON more than"
 	cont "my boyfriend."
@@ -338,7 +338,7 @@ PicnickerKimBeatenText:
 	line "win…"
 	done
 
-UnknownText_0x19cc21:
+PicnickerKimAfterBattleText:
 	text "The GYM BADGES are"
 	line "pretty. I collect"
 	cont "them."
@@ -354,7 +354,7 @@ Bird_keeperBryanBeatenText:
 	line "enough!"
 	done
 
-UnknownText_0x19cc87:
+Bird_keeperBryanAfterBattleText:
 	text "Some #MON flee"
 	line "right away."
 
@@ -426,7 +426,7 @@ FirebreatherWaltBeatenText:
 	line "tip of my nose!"
 	done
 
-UnknownText_0x19cebc:
+FirebreatherWaltAfterBattleText:
 	text "The #MON March"
 	line "on the radio lures"
 	cont "wild #MON."

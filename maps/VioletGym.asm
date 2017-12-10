@@ -72,7 +72,7 @@ TrainerBird_keeperRod:
 Bird_keeperRodScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x68837
+	writetext Bird_keeperRodAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -83,7 +83,7 @@ TrainerBird_keeperAbe:
 Bird_keeperAbeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x688c7
+	writetext Bird_keeperAbeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -226,7 +226,7 @@ Bird_keeperRodBeatenText:
 	text "Gaaah!"
 	done
 
-UnknownText_0x68837:
+Bird_keeperRodAfterBattleText:
 	text "FALKNER's skills"
 	line "are for real!"
 
@@ -246,7 +246,7 @@ Bird_keeperAbeBeatenText:
 	line "true!"
 	done
 
-UnknownText_0x688c7:
+Bird_keeperAbeAfterBattleText:
 	text "This is pathetic,"
 	line "losing to some"
 	cont "rookie trainer…"

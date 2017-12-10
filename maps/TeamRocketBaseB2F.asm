@@ -199,7 +199,7 @@ TrainerGruntM17:
 GruntM17Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6db88
+	writetext GruntM17AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -210,7 +210,7 @@ TrainerGruntM18:
 GruntM18Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6dc1a
+	writetext GruntM18AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -221,7 +221,7 @@ TrainerGruntM19:
 GruntM19Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6dcd1
+	writetext GruntM19AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -826,7 +826,7 @@ GruntM17BeatenText:
 	text "What? I lost?"
 	done
 
-UnknownText_0x6db88:
+GruntM17AfterBattleText:
 	text "Heh, I'm just a"
 	line "GRUNT."
 
@@ -847,7 +847,7 @@ GruntM18BeatenText:
 	text "I knew I'd lose…"
 	done
 
-UnknownText_0x6dc1a:
+GruntM18AfterBattleText:
 	text "I got wiped out on"
 	line "the last mission"
 	cont "by a kid too."
@@ -871,7 +871,7 @@ GruntM19BeatenText:
 	text "Grrrr…"
 	done
 
-UnknownText_0x6dcd1:
+GruntM19AfterBattleText:
 	text "Heh, only the boss"
 	line "knows the password"
 	cont "for that door."

@@ -191,7 +191,7 @@ TrainerGruntM3:
 GruntM3Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5d5a2
+	writetext GruntM3AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -442,7 +442,7 @@ GruntM3BeatenText:
 	line "must watch you…"
 	done
 
-UnknownText_0x5d5a2:
+GruntM3AfterBattleText:
 	text "You're too strong."
 
 	para "Our plan could be"

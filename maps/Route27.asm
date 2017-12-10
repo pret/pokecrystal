@@ -56,7 +56,7 @@ TrainerPsychicGilbert:
 PsychicGilbertScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a0dd2
+	writetext PsychicGilbertAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -180,7 +180,7 @@ TrainerCooltrainermBlake:
 CooltrainermBlakeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a0b0b
+	writetext CooltrainermBlakeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -191,7 +191,7 @@ TrainerCooltrainermBrian:
 CooltrainermBrianScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a0bac
+	writetext CooltrainermBrianAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -295,7 +295,7 @@ TrainerCooltrainerfMegan:
 CooltrainerfMeganScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a0cce
+	writetext CooltrainerfMeganAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -344,7 +344,7 @@ CooltrainermBlakeBeatenText:
 	text "Yow!"
 	done
 
-UnknownText_0x1a0b0b:
+CooltrainermBlakeAfterBattleText:
 	text "If you prevail on"
 	line "this harsh trek,"
 
@@ -365,7 +365,7 @@ CooltrainermBrianBeatenText:
 	text "Just as I thought!"
 	done
 
-UnknownText_0x1a0bac:
+CooltrainermBrianAfterBattleText:
 	text "A good trainer can"
 	line "recognize other"
 	cont "good trainers."
@@ -405,7 +405,7 @@ CooltrainerfMeganBeatenText:
 	line "strong!"
 	done
 
-UnknownText_0x1a0cce:
+CooltrainerfMeganAfterBattleText:
 	text "I'm checking out"
 	line "pre- and post-"
 	cont "evolution #MON."
@@ -436,7 +436,7 @@ PsychicGilbertBeatenText:
 	text "You're too much!"
 	done
 
-UnknownText_0x1a0dd2:
+PsychicGilbertAfterBattleText:
 	text "With your skills,"
 	line "you'll do well at"
 	cont "the LEAGUE."

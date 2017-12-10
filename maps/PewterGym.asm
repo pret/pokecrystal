@@ -46,7 +46,7 @@ TrainerCamperJerry:
 CamperJerryScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a2c0f
+	writetext CamperJerryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -166,7 +166,7 @@ CamperJerryBeatenText:
 	line "these battles…"
 	done
 
-UnknownText_0x1a2c0f:
+CamperJerryAfterBattleText:
 	text "Hey, you! Trainer"
 	line "from JOHTO! BROCK"
 

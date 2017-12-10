@@ -35,7 +35,7 @@ TrainerCamperSpencer:
 CamperSpencerScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19d57e
+	writetext CamperSpencerAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,7 +46,7 @@ TrainerPokemaniacBen:
 PokemaniacBenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19d2d2
+	writetext PokemaniacBenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -162,7 +162,7 @@ TrainerPokemaniacRon:
 PokemaniacRonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19d3f8
+	writetext PokemaniacRonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -173,7 +173,7 @@ TrainerFisherMarvin:
 FisherMarvinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19d4d3
+	writetext FisherMarvinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -342,7 +342,7 @@ PokemaniacBenBeatenText:
 	line "this to me?"
 	done
 
-UnknownText_0x19d2d2:
+PokemaniacBenAfterBattleText:
 	text "What else do I"
 	line "like besides"
 	cont "#MON?"
@@ -384,7 +384,7 @@ PokemaniacRonBeatenText:
 	line "pretty right on!"
 	done
 
-UnknownText_0x19d3f8:
+PokemaniacRonAfterBattleText:
 	text "It's okay for"
 	line "people to like"
 
@@ -411,7 +411,7 @@ FisherMarvinBeatenText:
 	line "better anyway."
 	done
 
-UnknownText_0x19d4d3:
+FisherMarvinAfterBattleText:
 	text "KURT's LURE BALL"
 	line "is the best for"
 
@@ -434,7 +434,7 @@ CamperSpencerBeatenText:
 	line "at all…"
 	done
 
-UnknownText_0x19d57e:
+CamperSpencerAfterBattleText:
 	text "What is going on"
 	line "at LAKE OF RAGE?"
 

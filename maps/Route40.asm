@@ -40,7 +40,7 @@ TrainerSwimmerfElaine:
 SwimmerfElaineScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a637b
+	writetext SwimmerfElaineAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -51,7 +51,7 @@ TrainerSwimmerfPaula:
 SwimmerfPaulaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a63f5
+	writetext SwimmerfPaulaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -62,7 +62,7 @@ TrainerSwimmermSimon:
 SwimmermSimonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6282
+	writetext SwimmermSimonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -73,7 +73,7 @@ TrainerSwimmermRandall:
 SwimmermRandallScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a62fa
+	writetext SwimmermRandallAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -177,7 +177,7 @@ SwimmermSimonBeatenText:
 	text "OK! Uncle! I give!"
 	done
 
-UnknownText_0x1a6282:
+SwimmermSimonAfterBattleText:
 	text "CIANWOOD CITY is"
 	line "a good distance"
 	cont "away from here."
@@ -195,7 +195,7 @@ SwimmermRandallBeatenText:
 	text "Uh-oh. I lost…"
 	done
 
-UnknownText_0x1a62fa:
+SwimmermRandallAfterBattleText:
 	text "Swimming exercises"
 	line "your entire body."
 	cont "It's healthy."
@@ -213,7 +213,7 @@ SwimmerfElaineBeatenText:
 	text "I lost that one!"
 	done
 
-UnknownText_0x1a637b:
+SwimmerfElaineAfterBattleText:
 	text "I'd say I'm a bet-"
 	line "ter swimmer than"
 	cont "you. Yeah!"
@@ -232,7 +232,7 @@ SwimmerfPaulaBeatenText:
 	line "dizzy!"
 	done
 
-UnknownText_0x1a63f5:
+SwimmerfPaulaAfterBattleText:
 	text "While I float like"
 	line "this, the waves"
 	cont "carry me along."

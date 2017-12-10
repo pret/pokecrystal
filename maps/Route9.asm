@@ -19,7 +19,7 @@ TrainerCamperDean:
 CamperDeanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1aafd9
+	writetext CamperDeanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -30,7 +30,7 @@ TrainerPicnickerHeidi:
 PicnickerHeidiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab07c
+	writetext PicnickerHeidiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -41,7 +41,7 @@ TrainerCamperSid:
 CamperSidScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab0f6
+	writetext CamperSidAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -52,7 +52,7 @@ TrainerPicnickerEdna:
 PicnickerEdnaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab15f
+	writetext PicnickerEdnaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ TrainerHikerTim:
 HikerTimScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab210
+	writetext HikerTimAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -74,7 +74,7 @@ TrainerHikerSidney:
 HikerSidneyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab278
+	writetext HikerSidneyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -95,7 +95,7 @@ CamperDeanBeatenText:
 	text "Whoa! Danger, man."
 	done
 
-UnknownText_0x1aafd9:
+CamperDeanAfterBattleText:
 	text "My #MON were"
 	line "hurt before even"
 
@@ -119,7 +119,7 @@ PicnickerHeidiBeatenText:
 	text "Ohhhh!"
 	done
 
-UnknownText_0x1ab07c:
+PicnickerHeidiAfterBattleText:
 	text "We bake lots of"
 	line "goodies and share"
 
@@ -137,7 +137,7 @@ CamperSidBeatenText:
 	line "ing out…"
 	done
 
-UnknownText_0x1ab0f6:
+CamperSidAfterBattleText:
 	text "Sorry. You weren't"
 	line "littering. It was"
 	cont "my mistake."
@@ -153,7 +153,7 @@ PicnickerEdnaBeatenText:
 	text "Ohh… I lost…"
 	done
 
-UnknownText_0x1ab15f:
+PicnickerEdnaAfterBattleText:
 	text "Conserving energy"
 	line "is important, but"
 
@@ -175,7 +175,7 @@ HikerTimBeatenText:
 	line "singing…"
 	done
 
-UnknownText_0x1ab210:
+HikerTimAfterBattleText:
 	text "Battles are about"
 	line "concentration."
 	done
@@ -193,7 +193,7 @@ HikerSidneyBeatenText:
 	line "I lost that…"
 	done
 
-UnknownText_0x1ab278:
+HikerSidneyAfterBattleText:
 	text "The POWER PLANT is"
 	line "across a small"
 	cont "river."

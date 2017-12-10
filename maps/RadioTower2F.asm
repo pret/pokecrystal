@@ -60,7 +60,7 @@ TrainerGruntM4:
 GruntM4Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5db07
+	writetext GruntM4AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -71,7 +71,7 @@ TrainerGruntM5:
 GruntM5Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5db99
+	writetext GruntM5AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -82,7 +82,7 @@ TrainerGruntM6:
 GruntM6Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5dc00
+	writetext GruntM6AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -93,7 +93,7 @@ TrainerGruntF2:
 GruntF2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5dcd0
+	writetext GruntF2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -402,7 +402,7 @@ GruntM4BeatenText:
 	line "cute!"
 	done
 
-UnknownText_0x5db07:
+GruntM4AfterBattleText:
 	text "We won't let you"
 	line "ruin our plans"
 	cont "for our comeback!"
@@ -422,7 +422,7 @@ GruntM5BeatenText:
 	line "hero?"
 	done
 
-UnknownText_0x5db99:
+GruntM5AfterBattleText:
 	text "We're not always"
 	line "evil. We just do"
 	cont "whatever we like."
@@ -437,7 +437,7 @@ GruntM6BeatenText:
 	text "Arggh. I give up."
 	done
 
-UnknownText_0x5dc00:
+GruntM6AfterBattleText:
 	text "Our EXECUTIVES are"
 	line "trying to take"
 	cont "this place over."
@@ -464,7 +464,7 @@ GruntF2BeatenText:
 	text "Wh-who are you?"
 	done
 
-UnknownText_0x5dcd0:
+GruntF2AfterBattleText:
 	text "You beat me, and"
 	line "I won't forget it!"
 	done

@@ -15,7 +15,7 @@ TrainerGentlemanAlfred:
 GentlemanAlfredScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b13e
+	writetext GentlemanAlfredAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -183,7 +183,7 @@ GentlemanAlfredBeatenText:
 	line "you're serious."
 	done
 
-UnknownText_0x5b13e:
+GentlemanAlfredAfterBattleText:
 	text "Up top is a #-"
 	line "MON that keeps the"
 	cont "LIGHTHOUSE lit."

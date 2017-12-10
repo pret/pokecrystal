@@ -18,7 +18,7 @@ TrainerBird_keeperDenis:
 Bird_keeperDenisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x60ac3
+	writetext Bird_keeperDenisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -29,7 +29,7 @@ TrainerSailorErnest:
 SailorErnestScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x60a1f
+	writetext SailorErnestAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -60,7 +60,7 @@ SailorErnestBeatenText:
 	line "overwhelming!"
 	done
 
-UnknownText_0x60a1f:
+SailorErnestAfterBattleText:
 	text "A GYM LEADER isn't"
 	line "just about being"
 
@@ -81,7 +81,7 @@ Bird_keeperDenisBeatenText:
 	text "Oops…They crashed…"
 	done
 
-UnknownText_0x60ac3:
+Bird_keeperDenisAfterBattleText:
 	text "My #MON learned"
 	line "how to use FLY in"
 	cont "CIANWOOD."

@@ -17,7 +17,7 @@ TrainerBird_keeperTheo:
 Bird_keeperTheoScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b2df
+	writetext Bird_keeperTheoAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -28,7 +28,7 @@ TrainerGentlemanPreston:
 GentlemanPrestonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b457
+	writetext GentlemanPrestonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -39,7 +39,7 @@ TrainerSailorTerrell:
 SailorTerrellScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b384
+	writetext SailorTerrellAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -60,7 +60,7 @@ Bird_keeperTheoBeatenText:
 	line "concerned…"
 	done
 
-UnknownText_0x5b2df:
+Bird_keeperTheoAfterBattleText:
 	text "How the heck do"
 	line "you go up?"
 
@@ -82,7 +82,7 @@ SailorTerrellBeatenText:
 	line "and strong…"
 	done
 
-UnknownText_0x5b384:
+SailorTerrellAfterBattleText:
 	text "Every time I come"
 	line "back to OLIVINE, I"
 	cont "visit the GYM."
@@ -106,7 +106,7 @@ GentlemanPrestonBeatenText:
 	line "train some more…"
 	done
 
-UnknownText_0x5b457:
+GentlemanPrestonAfterBattleText:
 	text "JASMINE used to"
 	line "use rock #MON"
 	cont "like ONIX."

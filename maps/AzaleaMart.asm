@@ -10,19 +10,19 @@ AzaleaMart_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ClerkScript_0x18e040:
+AzaleaMartClerkScript:
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_AZALEA
 	closetext
 	end
 
-CooltrainerMScript_0x18e047:
-	jumptextfaceplayer UnknownText_0x18e04d
+AzaleaMartCooltrainerMScript:
+	jumptextfaceplayer AzaleaMartCooltrainerMText
 
-BugCatcherScript_0x18e04a:
-	jumptextfaceplayer UnknownText_0x18e0b6
+AzaleaMartBugCatcherScript:
+	jumptextfaceplayer AzaleaMartBugCatcherText
 
-UnknownText_0x18e04d:
+AzaleaMartCooltrainerMText:
 	text "There's no GREAT"
 	line "BALL here. #"
 
@@ -34,7 +34,7 @@ UnknownText_0x18e04d:
 	cont "his custom BALLS."
 	done
 
-UnknownText_0x18e0b6:
+AzaleaMartBugCatcherText:
 	text "A GREAT BALL is"
 	line "better for catch-"
 	cont "ing #MON than a"
@@ -62,6 +62,6 @@ AzaleaMart_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x18e040, -1
-	person_event SPRITE_COOLTRAINER_M, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x18e047, -1
-	person_event SPRITE_BUG_CATCHER, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x18e04a, -1
+	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaMartClerkScript, -1
+	person_event SPRITE_COOLTRAINER_M, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaMartCooltrainerMScript, -1
+	person_event SPRITE_BUG_CATCHER, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, AzaleaMartBugCatcherScript, -1

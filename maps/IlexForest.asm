@@ -396,7 +396,7 @@ TrainerBug_catcherWayne:
 Bug_catcherWayneScript:
 	end_if_just_battled
 	opentext
-	writetext Bug_catcherWayneAfterText
+	writetext Bug_catcherWayneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -929,7 +929,7 @@ Bug_catcherWayneBeatenText:
 	line "#MON before…"
 	done
 
-Bug_catcherWayneAfterText:
+Bug_catcherWayneAfterBattleText:
 	text "A #MON I've"
 	line "never seen before"
 

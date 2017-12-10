@@ -22,7 +22,7 @@ TrainerPokemaniacLarry:
 PokemaniacLarryScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59d31
+	writetext PokemaniacLarryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -33,7 +33,7 @@ TrainerHikerRussell:
 HikerRussellScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59c6c
+	writetext HikerRussellAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -44,7 +44,7 @@ TrainerHikerDaniel:
 HikerDanielScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59dc9
+	writetext HikerDanielAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -55,7 +55,7 @@ TrainerFirebreatherBill:
 FirebreatherBillScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59e6f
+	writetext FirebreatherBillAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -66,7 +66,7 @@ TrainerFirebreatherRay:
 FirebreatherRayScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59efc
+	writetext FirebreatherRayAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -99,7 +99,7 @@ HikerRussellBeatenText:
 	text "Oh, oh, oh!"
 	done
 
-UnknownText_0x59c6c:
+HikerRussellAfterBattleText:
 	text "All right, then!"
 	line "I've decided."
 
@@ -125,7 +125,7 @@ PokemaniacLarryBeatenText:
 	line "MON…"
 	done
 
-UnknownText_0x59d31:
+PokemaniacLarryAfterBattleText:
 	text "Every Friday, you"
 	line "can hear #MON"
 
@@ -146,7 +146,7 @@ HikerDanielBeatenText:
 	line "big time!"
 	done
 
-UnknownText_0x59dc9:
+HikerDanielAfterBattleText:
 	text "I was conned into"
 	line "buying a SLOWPOKE-"
 	cont "TAIL."
@@ -168,7 +168,7 @@ FirebreatherBillBeatenText:
 	text "I flamed out!"
 	done
 
-UnknownText_0x59e6f:
+FirebreatherBillAfterBattleText:
 	text "On weekends, you"
 	line "can hear strange"
 
@@ -189,7 +189,7 @@ FirebreatherRayBeatenText:
 	text "FLASH!"
 	done
 
-UnknownText_0x59efc:
+FirebreatherRayAfterBattleText:
 	text "It's my #MON's"
 	line "fire that lights"
 	cont "up this cave."

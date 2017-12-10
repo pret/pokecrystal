@@ -112,7 +112,7 @@ TrainerPsychicNathan:
 PsychicNathanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5830e
+	writetext PsychicNathanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -225,7 +225,7 @@ PsychicNathanBeatenText:
 	text "…"
 	done
 
-UnknownText_0x5830e:
+PsychicNathanAfterBattleText:
 	text "I like thinking"
 	line "here."
 	done

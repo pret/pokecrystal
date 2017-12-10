@@ -20,7 +20,7 @@ TrainerTeacherColette:
 TeacherColetteScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1aa60d
+	writetext TeacherColetteAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -31,7 +31,7 @@ TrainerTeacherHillary:
 TeacherHillaryScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1aa6ca
+	writetext TeacherHillaryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -42,7 +42,7 @@ TrainerSchoolboyKipp:
 SchoolboyKippScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1aa740
+	writetext SchoolboyKippAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -53,7 +53,7 @@ TrainerSchoolboyTommy:
 SchoolboyTommyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1aa7bc
+	writetext SchoolboyTommyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -64,7 +64,7 @@ TrainerSchoolboyJohnny:
 SchoolboyJohnnyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1aa84a
+	writetext SchoolboyJohnnyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -75,7 +75,7 @@ TrainerSchoolboyBilly:
 SchoolboyBillyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1aa8b0
+	writetext SchoolboyBillyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -95,7 +95,7 @@ TeacherColetteBeatenText:
 	text "Kyaaah!"
 	done
 
-UnknownText_0x1aa60d:
+TeacherColetteAfterBattleText:
 	text "Before I became a"
 	line "teacher, I used to"
 
@@ -119,7 +119,7 @@ TeacherHillaryBeatenText:
 	line "lose…"
 	done
 
-UnknownText_0x1aa6ca:
+TeacherHillaryAfterBattleText:
 	text "Studying is impor-"
 	line "tant, but exercise"
 	cont "is just as vital."
@@ -135,7 +135,7 @@ SchoolboyKippBeatenText:
 	line "I was beaten!"
 	done
 
-UnknownText_0x1aa740:
+SchoolboyKippAfterBattleText:
 	text "My mom worries so"
 	line "much about me, I"
 
@@ -153,7 +153,7 @@ SchoolboyTommyBeatenText:
 	line "homework!"
 	done
 
-UnknownText_0x1aa7bc:
+SchoolboyTommyAfterBattleText:
 	text "Sayonara! I just"
 	line "learned that in my"
 	cont "Japanese class."
@@ -172,7 +172,7 @@ SchoolboyJohnnyBeatenText:
 	line "tough!"
 	done
 
-UnknownText_0x1aa84a:
+SchoolboyJohnnyAfterBattleText:
 	text "I'm tired of walk-"
 	line "ing. I need to"
 	cont "take a break."
@@ -188,7 +188,7 @@ SchoolboyBillyBeatenText:
 	line "How could I lose?"
 	done
 
-UnknownText_0x1aa8b0:
+SchoolboyBillyAfterBattleText:
 	text "If #MON were a"
 	line "subject at school,"
 	cont "I'd be the best!"

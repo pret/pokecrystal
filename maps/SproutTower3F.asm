@@ -100,7 +100,7 @@ TrainerSageJin:
 SageJinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x184dfa
+	writetext SageJinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -111,7 +111,7 @@ TrainerSageTroy:
 SageTroyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x184ea4
+	writetext SageTroyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -122,7 +122,7 @@ TrainerSageNeal:
 SageNealScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x184f12
+	writetext SageNealAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -274,7 +274,7 @@ SageJinBeatenText:
 	line "incomplete…"
 	done
 
-UnknownText_0x184dfa:
+SageJinAfterBattleText:
 	text "As #MON grow"
 	line "stronger, so does"
 	cont "the trainer."
@@ -297,7 +297,7 @@ SageTroyBeatenText:
 	line "real!"
 	done
 
-UnknownText_0x184ea4:
+SageTroyAfterBattleText:
 	text "It is not far to"
 	line "the ELDER."
 	done
@@ -313,7 +313,7 @@ SageNealBeatenText:
 	line "is bright!"
 	done
 
-UnknownText_0x184f12:
+SageNealAfterBattleText:
 	text "Let there be light"
 	line "on your journey."
 	done

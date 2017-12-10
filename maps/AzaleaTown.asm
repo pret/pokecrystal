@@ -112,10 +112,10 @@ AzaleaTownRivalBattleScript:
 	end
 
 AzaleaTownRocket1Script:
-	jumptextfaceplayer GoodSamaritanRocketText
+	jumptextfaceplayer AzaleaTownRocket1Text
 
 AzaleaTownRocket2Script:
-	jumptextfaceplayer TastySlowpokeTailRocketText
+	jumptextfaceplayer AzaleaTownRocket2Text
 
 AzaleaTownGrampsScript:
 	faceplayer
@@ -159,15 +159,15 @@ WoosterScript:
 	closetext
 	end
 
-AzaleaTown_CelebiEventScript:
-	applymovement PLAYER, Movement_PlayerWalksOutOfKurtsHouse
+AzaleaTownCelebiTrigger:
+	applymovement PLAYER, AzaleaTownPlayerLeavesKurtsHouseMovement
 	opentext
-	writetext IlexForestIsRestlessText
+	writetext AzaleaTownKurtText1
 	buttonsound
 	spriteface AZALEATOWN_KURT_OUTSIDE, RIGHT
-	writetext HeresTheGSBallBackText
+	writetext AzaleaTownKurtText2
 	buttonsound
-	writetext PleaseInvestigateIlexForestText
+	writetext AzaleaTownKurtText3
 	waitbutton
 	verbosegiveitem GS_BALL
 	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT
@@ -181,7 +181,7 @@ AzaleaTown_CelebiEventScript:
 AzaleaTownKurtScript:
 	faceplayer
 	opentext
-	writetext PleaseInvestigateIlexForestText
+	writetext AzaleaTownKurtText3
 	waitbutton
 	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT
 	closetext
@@ -217,7 +217,6 @@ WhiteApricornTree:
 AzaleaTownHiddenFullHeal:
 	dwb EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL
 
-
 AzaleaTownRivalBattleApproachMovement1:
 	step LEFT
 	step LEFT
@@ -244,7 +243,7 @@ AzaleaTownRivalBattleExitMovement:
 	step LEFT
 	step_end
 
-Movement_PlayerWalksOutOfKurtsHouse:
+AzaleaTownPlayerLeavesKurtsHouseMovement:
 	step LEFT
 	step LEFT
 	step UP
@@ -314,7 +313,7 @@ AzaleaTownRivalLossText:
 	line "you were lying."
 	done
 
-GoodSamaritanRocketText:
+AzaleaTownRocket1Text:
 	text "It's unsafe to go"
 	line "in there, so I'm"
 	cont "standing guard."
@@ -323,7 +322,7 @@ GoodSamaritanRocketText:
 	line "Samaritan?"
 	done
 
-TastySlowpokeTailRocketText:
+AzaleaTownRocket2Text:
 	text "Do you know about"
 	line "SLOWPOKETAIL? I"
 	cont "heard it's tasty!"
@@ -392,19 +391,19 @@ WoosterText:
 	text "WOOSTER: Gugyoo…"
 	done
 
-IlexForestIsRestlessText:
+AzaleaTownKurtText1:
 	text "ILEX FOREST is"
 	line "restless!"
 
 	para "What is going on?"
 	done
 
-HeresTheGSBallBackText:
+AzaleaTownKurtText2:
 	text "<PLAYER>, here's"
 	line "your GS BALL back!"
 	done
 
-PleaseInvestigateIlexForestText:
+AzaleaTownKurtText3:
 	text "Could you go see"
 	line "why ILEX FOREST is"
 	cont "so restless?"
@@ -479,7 +478,7 @@ AzaleaTown_MapEventHeader:
 	db 3
 	xy_trigger 1, $a, $5, $0, AzaleaTownRivalBattleTrigger1, $0, $0
 	xy_trigger 1, $b, $5, $0, AzaleaTownRivalBattleTrigger2, $0, $0
-	xy_trigger 2, $6, $9, $0, AzaleaTown_CelebiEventScript, $0, $0
+	xy_trigger 2, $6, $9, $0, AzaleaTownCelebiTrigger, $0, $0
 
 .Signposts:
 	db 9

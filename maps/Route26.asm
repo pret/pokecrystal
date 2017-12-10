@@ -21,7 +21,7 @@ TrainerCooltrainermJake:
 CooltrainermJakeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a4f08
+	writetext CooltrainermJakeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -125,7 +125,7 @@ TrainerCooltrainerfJoyce:
 CooltrainerfJoyceScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a50d7
+	writetext CooltrainerfJoyceAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -229,7 +229,7 @@ TrainerPsychicRichard:
 PsychicRichardScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a5278
+	writetext PsychicRichardAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -240,7 +240,7 @@ TrainerFisherScott:
 FisherScottScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a5326
+	writetext FisherScottAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -266,7 +266,7 @@ CooltrainermJakeBeatenText:
 	text "I blew it!"
 	done
 
-UnknownText_0x1a4f08:
+CooltrainermJakeAfterBattleText:
 	text "It's going to be"
 	line "tough to win at"
 	cont "the LEAGUE."
@@ -321,7 +321,7 @@ CooltrainerfJoyceBeatenText:
 	line "believe this!"
 	done
 
-UnknownText_0x1a50d7:
+CooltrainerfJoyceAfterBattleText:
 	text "I've defeated"
 	line "eight GYM LEADERS,"
 
@@ -374,7 +374,7 @@ PsychicRichardBeatenText:
 	text "Good battle!"
 	done
 
-UnknownText_0x1a5278:
+PsychicRichardAfterBattleText:
 	text "People and #MON"
 	line "grow from their"
 	cont "experiences."
@@ -397,7 +397,7 @@ FisherScottBeatenText:
 	line "battle!"
 	done
 
-UnknownText_0x1a5326:
+FisherScottAfterBattleText:
 	text "Just like in fish-"
 	line "ing, it's all over"
 

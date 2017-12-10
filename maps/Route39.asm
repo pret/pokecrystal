@@ -110,7 +110,7 @@ TrainerPokefanfRuth:
 PokefanfRuthScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a5db2
+	writetext PokefanfRuthAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -121,7 +121,7 @@ TrainerSailorEugene:
 SailorEugeneScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a5c4d
+	writetext SailorEugeneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -132,7 +132,7 @@ TrainerPsychicNorman:
 PsychicNormanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a5e57
+	writetext PsychicNormanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -199,7 +199,7 @@ SailorEugeneBeatenText:
 	text "Awaaargh!"
 	done
 
-UnknownText_0x1a5c4d:
+SailorEugeneAfterBattleText:
 	text "My #MON were"
 	line "caught and raised"
 	cont "overseas."
@@ -245,7 +245,7 @@ PokefanfRuthBeatenText:
 	line "losing."
 	done
 
-UnknownText_0x1a5db2:
+PokefanfRuthAfterBattleText:
 	text "Do you know about"
 	line "baby #MON?"
 
@@ -269,7 +269,7 @@ PsychicNormanBeatenText:
 	line "have potential."
 	done
 
-UnknownText_0x1a5e57:
+PsychicNormanAfterBattleText:
 	text "You know how #-"
 	line "MON have different"
 	cont "abilities?"

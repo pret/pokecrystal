@@ -18,7 +18,7 @@ TrainerPokefanmAlex:
 PokefanmAlexScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a24e3
+	writetext PokefanmAlexAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -29,7 +29,7 @@ TrainerPokefanmJoshua:
 PokefanmJoshuaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a254f
+	writetext PokefanmJoshuaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -40,7 +40,7 @@ TrainerBird_keeperPerry:
 Bird_keeperPerryScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a25db
+	writetext Bird_keeperPerryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -51,7 +51,7 @@ TrainerBird_keeperBret:
 Bird_keeperBretScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a2662
+	writetext Bird_keeperBretAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -62,7 +62,7 @@ TrainerHikerKenny:
 HikerKennyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a26c2
+	writetext HikerKennyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -90,7 +90,7 @@ PokefanmAlexBeatenText:
 	line "mock royalty!"
 	done
 
-UnknownText_0x1a24e3:
+PokefanmAlexAfterBattleText:
 	text "Doesn't everyone"
 	line "wish to someday be"
 	cont "a king?"
@@ -106,7 +106,7 @@ PokefanmJoshuaBeatenText:
 	text "PI-PIKACHU!"
 	done
 
-UnknownText_0x1a254f:
+PokefanmJoshuaAfterBattleText:
 	text "You look like you"
 	line "have many #MON,"
 
@@ -125,7 +125,7 @@ Bird_keeperPerryBeatenText:
 	line "your speed…"
 	done
 
-UnknownText_0x1a25db:
+Bird_keeperPerryAfterBattleText:
 	text "Your #MON are"
 	line "remarkably well-"
 	cont "trained."
@@ -144,7 +144,7 @@ Bird_keeperBretBeatenText:
 	line "Not good enough!"
 	done
 
-UnknownText_0x1a2662:
+Bird_keeperBretAfterBattleText:
 	text "If you groom them,"
 	line "#MON get happy."
 	done
@@ -159,7 +159,7 @@ HikerKennyBeatenText:
 	text "I lost…"
 	done
 
-UnknownText_0x1a26c2:
+HikerKennyAfterBattleText:
 	text "Geological fea-"
 	line "tures don't appear"
 	cont "to change."

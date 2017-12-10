@@ -101,7 +101,7 @@ TrainerSailorJeff:
 SailorJeffScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76a38
+	writetext SailorJeffAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -112,7 +112,7 @@ TrainerPicnickerDebra:
 PicnickerDebraScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76a99
+	writetext PicnickerDebraAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -123,7 +123,7 @@ TrainerJugglerFritz:
 JugglerFritzScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76b02
+	writetext JugglerFritzAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -134,7 +134,7 @@ TrainerSailorGarrett:
 SailorGarrettScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76b7a
+	writetext SailorGarrettAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -145,7 +145,7 @@ TrainerFisherJonah:
 FisherJonahScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76c22
+	writetext FisherJonahAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -156,7 +156,7 @@ TrainerBlackbeltWai:
 BlackbeltWaiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76c9e
+	writetext BlackbeltWaiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -167,7 +167,7 @@ TrainerSailorKenneth:
 SailorKennethScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76d5f
+	writetext SailorKennethAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -178,7 +178,7 @@ TrainerTeacherShirley:
 TeacherShirleyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76de1
+	writetext TeacherShirleyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -189,7 +189,7 @@ TrainerSchoolboyNate:
 SchoolboyNateScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76e3d
+	writetext SchoolboyNateAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -200,7 +200,7 @@ TrainerSchoolboyRicky:
 SchoolboyRickyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76eb6
+	writetext SchoolboyRickyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -278,7 +278,7 @@ SailorJeffBeatenText:
 	line "break's over!"
 	done
 
-UnknownText_0x76a38:
+SailorJeffAfterBattleText:
 	text "I guess I can't"
 	line "win if I don't get"
 	cont "serious."
@@ -294,7 +294,7 @@ PicnickerDebraBeatenText:
 	line "strong!"
 	done
 
-UnknownText_0x76a99:
+PicnickerDebraAfterBattleText:
 	text "SAFFRON, CELADON…"
 	line "I hear there are"
 
@@ -312,7 +312,7 @@ JugglerFritzBeatenText:
 	line "more…"
 	done
 
-UnknownText_0x76b02:
+JugglerFritzAfterBattleText:
 	text "No more ships for"
 	line "me. Next time,"
 
@@ -330,7 +330,7 @@ SailorGarrettBeatenText:
 	line "field…"
 	done
 
-UnknownText_0x76b7a:
+SailorGarrettAfterBattleText:
 	text "We get different"
 	line "passengers from"
 
@@ -352,7 +352,7 @@ FisherJonahBeatenText:
 	line "anymore…"
 	done
 
-UnknownText_0x76c22:
+FisherJonahAfterBattleText:
 	text "I plan to fish off"
 	line "VERMILION's pier."
 	done
@@ -370,7 +370,7 @@ BlackbeltWaiBeatenText:
 	line "over!"
 	done
 
-UnknownText_0x76c9e:
+BlackbeltWaiAfterBattleText:
 	text "I couldn't find"
 	line "the KARATE KING in"
 	cont "JOHTO."
@@ -393,7 +393,7 @@ SailorKennethBeatenText:
 	line "ing is obvious…"
 	done
 
-UnknownText_0x76d5f:
+SailorKennethAfterBattleText:
 	text "Eight BADGES!"
 	line "They must prove"
 
@@ -413,7 +413,7 @@ TeacherShirleyBeatenText:
 	text "Aaack!"
 	done
 
-UnknownText_0x76de1:
+TeacherShirleyAfterBattleText:
 	text "We're on a field"
 	line "trip to the RUINS"
 	cont "outside VIOLET."
@@ -428,7 +428,7 @@ SchoolboyNateBeatenText:
 	text "Yaargh!"
 	done
 
-UnknownText_0x76e3d:
+SchoolboyNateAfterBattleText:
 	text "Radios pick up"
 	line "strange signals"
 	cont "inside the RUINS."
@@ -444,7 +444,7 @@ SchoolboyRickyBeatenText:
 	text "I was done in!"
 	done
 
-UnknownText_0x76eb6:
+SchoolboyRickyAfterBattleText:
 	text "I read that there"
 	line "are four of those"
 	cont "stone panels."

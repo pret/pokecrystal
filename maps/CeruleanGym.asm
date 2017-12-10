@@ -93,7 +93,7 @@ TrainerSwimmerfDiana:
 SwimmerfDianaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x188856
+	writetext SwimmerfDianaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -104,7 +104,7 @@ TrainerSwimmerfBriana:
 SwimmerfBrianaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1888c0
+	writetext SwimmerfBrianaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -115,7 +115,7 @@ TrainerSwimmermParker:
 SwimmermParkerScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x188943
+	writetext SwimmermParkerAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -299,7 +299,7 @@ SwimmerfDianaBeatenText:
 	line "the winner!"
 	done
 
-UnknownText_0x188856:
+SwimmerfDianaAfterBattleText:
 	text "I'll be swimming"
 	line "quietly."
 	done
@@ -315,7 +315,7 @@ SwimmerfBrianaBeatenText:
 	line "disposed of me…"
 	done
 
-UnknownText_0x1888c0:
+SwimmerfBrianaAfterBattleText:
 	text "Don't be too smug"
 	line "about beating me."
 
@@ -335,7 +335,7 @@ SwimmermParkerBeatenText:
 	text "This can't be…"
 	done
 
-UnknownText_0x188943:
+SwimmermParkerAfterBattleText:
 	text "MISTY has gotten"
 	line "much better in the"
 	cont "past few years."

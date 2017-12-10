@@ -100,7 +100,7 @@ TrainerCooltrainermPaul:
 CooltrainermPaulScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainermPaulAfterText
+	writetext CooltrainermPaulAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -111,7 +111,7 @@ TrainerCooltrainermMike:
 CooltrainermMikeScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainermMikeAfterText
+	writetext CooltrainermMikeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -122,7 +122,7 @@ TrainerCooltrainerfLola:
 CooltrainerfLolaScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainerfLolaAfterText
+	writetext CooltrainerfLolaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -300,7 +300,7 @@ CooltrainermPaulBeatenText:
 	line "lost?"
 	done
 
-CooltrainermPaulAfterText:
+CooltrainermPaulAfterBattleText:
 	text "LANCE told you"
 	line "that he'd like to"
 
@@ -318,7 +318,7 @@ CooltrainermMikeBeatenText:
 	text "That's odd."
 	done
 
-CooltrainermMikeAfterText:
+CooltrainermMikeAfterBattleText:
 	text "I know my short-"
 	line "comings now."
 
@@ -344,7 +344,7 @@ CooltrainerfLolaBeatenText:
 	text "Way to go!"
 	done
 
-CooltrainerfLolaAfterText:
+CooltrainerfLolaAfterBattleText:
 	text "Dragons are weak"
 	line "against dragon-"
 	cont "type moves."

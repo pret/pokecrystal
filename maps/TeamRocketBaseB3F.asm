@@ -138,7 +138,7 @@ SlowpokeTailGrunt:
 GruntF5Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6e611
+	writetext GruntF5AfterBattleText
 	waitbutton
 	closetext
 	setevent EVENT_LEARNED_SLOWPOKETAIL
@@ -150,7 +150,7 @@ RaticateTailGrunt:
 GruntM28Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6e737
+	writetext GruntM28AfterBattleText
 	waitbutton
 	closetext
 	setevent EVENT_LEARNED_RATICATE_TAIL
@@ -162,7 +162,7 @@ TrainerScientistRoss:
 ScientistRossScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6e822
+	writetext ScientistRossAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -173,7 +173,7 @@ TrainerScientistMitch:
 ScientistMitchScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6e90a
+	writetext ScientistMitchAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -456,7 +456,7 @@ GruntF5BeatenText:
 	line "I'll tell you."
 	done
 
-UnknownText_0x6e611:
+GruntF5AfterBattleText:
 	text "The password to"
 	line "the boss's room is"
 
@@ -490,7 +490,7 @@ GruntM28BeatenText:
 	line "You're good!"
 	done
 
-UnknownText_0x6e737:
+GruntM28AfterBattleText:
 	text "Hyuck-hyuck-hyuck!"
 
 	para "The password to"
@@ -517,7 +517,7 @@ ScientistRossBeatenText:
 	line "error cost me…"
 	done
 
-UnknownText_0x6e822:
+ScientistRossAfterBattleText:
 	text "A radio signal"
 	line "that drives #-"
 	cont "MON mad…"
@@ -544,7 +544,7 @@ ScientistMitchBeatenText:
 	cont "battling."
 	done
 
-UnknownText_0x6e90a:
+ScientistMitchAfterBattleText:
 	text "If we turn up the"
 	line "power of our radio"
 
