@@ -1,11 +1,11 @@
 FontExtra:
-INCBIN "gfx/misc/font_extra.2bpp"
+INCBIN "gfx/font/font_extra.2bpp"
 
 Font:
-INCBIN "gfx/misc/font.1bpp"
+INCBIN "gfx/font/font.1bpp"
 
 FontBattleExtra:
-INCBIN "gfx/misc/font_battle_extra.2bpp"
+INCBIN "gfx/font/font_battle_extra.2bpp"
 
 Frames: ; f8800
 INCBIN "gfx/frames/1.1bpp"
@@ -47,7 +47,7 @@ INCBIN "gfx/battle/expbar.2bpp"
 ; f8ba0
 
 TownMapGFX: ; f8ba0
-INCBIN "gfx/misc/town_map.2bpp.lz"
+INCBIN "gfx/pokegear/town_map.2bpp.lz"
 ; f8ea4
 
 WeekdayKanjiGFX: ; unused kanji
@@ -79,7 +79,7 @@ INCBIN "gfx/unknown/0f9424.2bpp"
 ; f9434
 
 Footprints: ; f9434
-INCBIN "gfx/misc/footprints.1bpp"
+INCBIN "gfx/pokedex/footprints.1bpp"
 ; fb434
 
 ; This and the following two functions are unreferenced.

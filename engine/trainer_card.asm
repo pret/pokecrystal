@@ -606,11 +606,11 @@ TrainerCard_JohtoBadgesOAM: ; 254c9
 	db $1c | $80, $20, $24, $20 | $80
 ; 25523
 
-CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
+CardStatusGFX: INCBIN "gfx/trainer_card/card_status.2bpp"
 
-LeaderGFX:  INCBIN "gfx/misc/leaders.2bpp"
-LeaderGFX2: INCBIN "gfx/misc/leaders.2bpp"
-BadgeGFX:   INCBIN "gfx/misc/badges.2bpp"
-BadgeGFX2:  INCBIN "gfx/misc/badges.2bpp"
+LeaderGFX:  INCBIN "gfx/trainer_card/leaders.2bpp"
+LeaderGFX2: INCBIN "gfx/trainer_card/leaders.2bpp"
+BadgeGFX:   INCBIN "gfx/trainer_card/badges.2bpp"
+BadgeGFX2:  INCBIN "gfx/trainer_card/badges.2bpp"
 
-CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
+CardRightCornerGFX: INCBIN "gfx/trainer_card/card_right_corner.2bpp"

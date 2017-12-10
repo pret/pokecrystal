@@ -1716,6 +1716,6 @@ TextJump_YouCantUseItInABattle: ; 0x10b11
 ; 0x10b16
 
 PackMenuGFX:
-INCBIN "gfx/misc/pack_menu.2bpp"
+INCBIN "gfx/pack/pack_menu.2bpp"
 PackGFX:
-INCBIN "gfx/misc/pack.2bpp"
+INCBIN "gfx/pack/pack.2bpp"

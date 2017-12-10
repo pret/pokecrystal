@@ -136,7 +136,7 @@ Pokegear_LoadGFX: ; 90c4e
 ; 90cb2
 
 FastShipGFX: ; 90cb2
-INCBIN "gfx/misc/fast_ship.2bpp"
+INCBIN "gfx/pokegear/fast_ship.2bpp"
 ; 90d32
 
 InitPokegearModeIndicatorArrow: ; 90d32 (24:4d32)
@@ -1407,7 +1407,7 @@ PokegearText_DeleteStoredNumber: ; 0x914d8
 ; 0x914dd
 
 PokegearSpritesGFX: ; 914dd
-INCBIN "gfx/misc/pokegear_sprites.2bpp.lz"
+INCBIN "gfx/pokegear/pokegear_sprites.2bpp.lz"
 ; 9150d
 
 RadioTilemapRLE: ; 9150d
@@ -2970,11 +2970,11 @@ LoadTownMapGFX: ; 91ff2
 ; 91fff
 
 JohtoMap: ; 91fff
-INCBIN "gfx/misc/johto.bin"
+INCBIN "gfx/pokegear/johto.bin"
 ; 92168
 
 KantoMap: ; 92168
-INCBIN "gfx/misc/kanto.bin"
+INCBIN "gfx/pokegear/kanto.bin"
 ; 922d1
 
 PokedexNestIconGFX: ; 922d1

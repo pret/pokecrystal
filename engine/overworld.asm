@@ -723,6 +723,7 @@ emote_header: MACRO
 ENDM
 
 EmotesPointers: ; 144d
+; entries correspond to EMOTE_* constants
 ; graphics address, length, starting tile
 	emote_header ShockEmote,     4, $78
 	emote_header QuestionEmote,  4, $78
@@ -733,9 +734,9 @@ EmotesPointers: ; 144d
 	emote_header SleepEmote,     4, $78
 	emote_header FishEmote,      4, $78
 	emote_header JumpShadowGFX,  1, $7c
-	emote_header FishingRodGFX2, 2, $7c
+	emote_header FishingRodGFX,  2, $7c
 	emote_header BoulderDustGFX, 2, $7e
-	emote_header FishingRodGFX4, 1, $7e
+	emote_header GrassRustleGFX, 1, $7e
 ; 14495
 
 

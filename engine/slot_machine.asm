@@ -2211,17 +2211,17 @@ Reel3Tilemap: ; 9334b
 ; 9335d
 
 SlotsTilemap: ; 9335d
-INCBIN "gfx/slots.tilemap"
+INCBIN "gfx/slots/slots.tilemap"
 ; 9344d
 
 Slots1LZ: ; 9344d
-INCBIN "gfx/slots_1.2bpp.lz"
+INCBIN "gfx/slots/slots_1.2bpp.lz"
 ; 935cd
 
 Slots2LZ: ; 935cd
-INCBIN "gfx/slots_2.2bpp.lz"
+INCBIN "gfx/slots/slots_2.2bpp.lz"
 ; 9382d
 
 Slots3LZ: ; 9382d
-INCBIN "gfx/slots_3.2bpp.lz"
+INCBIN "gfx/slots/slots_3.2bpp.lz"
 ; 93a3d

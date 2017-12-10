@@ -1178,10 +1178,10 @@ INCLUDE "engine/wildmons.asm"
 INCLUDE "battle/link_result.asm"
 
 ChrisBackpic: ; 2ba1a
-INCBIN "gfx/misc/player.2bpp.lz"
+INCBIN "gfx/player/chris_back.2bpp.lz"
 
 DudeBackpic: ; 2bbaa
-INCBIN "gfx/misc/dude.2bpp.lz"
+INCBIN "gfx/battle/dude.2bpp.lz"
 
 SECTION "bankB", ROMX
 
@@ -1969,7 +1969,7 @@ PackFGFXPointers: ; 48e93
 	dw PackFGFX + (15 tiles) * 2
 
 PackFGFX: ; 48e9b
-INCBIN "gfx/misc/pack_f.2bpp"
+INCBIN "gfx/pack/pack_f.2bpp"
 
 Special_MoveTutor: ; 4925b
 	call FadeToMenu
@@ -2487,10 +2487,10 @@ endr
 	ret
 
 Shrink1Pic: ; 4d249
-INCBIN "gfx/shrink1.2bpp.lz"
+INCBIN "gfx/shrink/shrink1.2bpp.lz"
 
 Shrink2Pic: ; 4d2d9
-INCBIN "gfx/shrink2.2bpp.lz"
+INCBIN "gfx/shrink/shrink2.2bpp.lz"
 
 LinkMonStatsScreen: ; 4d319
 	ld a, [wMenuCursorY]
@@ -4857,13 +4857,13 @@ GetCardPic: ; 8833e
 	ret
 
 ChrisCardPic: ; 88365
-INCBIN "gfx/misc/chris_card.2bpp"
+INCBIN "gfx/trainer_card/chris_card.2bpp"
 
 KrisCardPic: ; 88595
-INCBIN "gfx/misc/kris_card.2bpp"
+INCBIN "gfx/trainer_card/kris_card.2bpp"
 
 CardGFX: ; 887c5
-INCBIN "gfx/misc/trainer_card.2bpp"
+INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 GetPlayerBackpic: ; 88825
 	ld a, [PlayerGender]
@@ -4943,10 +4943,10 @@ DrawIntroPlayerPic: ; 88874
 	ret
 
 ChrisPic: ; 888a9
-INCBIN "gfx/misc/chris.2bpp"
+INCBIN "gfx/player/chris.2bpp"
 
 KrisPic: ; 88bb9
-INCBIN "gfx/misc/kris.2bpp"
+INCBIN "gfx/player/kris.2bpp"
 
 GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
@@ -4957,7 +4957,7 @@ GetKrisBackpic: ; 88ec9
 	ret
 
 KrisBackpic: ; 88ed6
-INCBIN "gfx/misc/kris_back.2bpp"
+INCBIN "gfx/player/kris_back.2bpp"
 
 String_89116:
 	db "-----@"
@@ -5310,7 +5310,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 SECTION "bank36", ROMX
 
-FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
+FontInversed: INCBIN "gfx/font/font_inversed.1bpp"
 
 SECTION "Pic Animations 3", ROMX
 
@@ -5452,7 +5452,7 @@ INCLUDE "engine/billspc.asm"
 SECTION "bank39", ROMX
 
 CopyrightGFX:: ; e4000
-INCBIN "gfx/misc/copyright.2bpp"
+INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/options_menu.asm"
 INCLUDE "engine/crystal_intro.asm"
@@ -5595,7 +5595,7 @@ INCLUDE "engine/landmarks.asm"
 SECTION "bank77", ROMX
 
 UnownFont: ; 1dc000
-INCBIN "gfx/misc/unown_font.2bpp"
+INCBIN "gfx/font/unown_font.2bpp"
 
 INCLUDE "misc/printer_77.asm"
 
@@ -5908,7 +5908,7 @@ TownMap_ConvertLineBreakCharacters: ; 1de2c5
 	ret
 
 PokegearGFX: ; 1de2e4
-INCBIN "gfx/misc/pokegear.2bpp.lz"
+INCBIN "gfx/pokegear/pokegear.2bpp.lz"
 
 IsMailEuropean: ; 1de5c8
 ; return 1 if French
