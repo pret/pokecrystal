@@ -203,7 +203,7 @@ ChooseRandomCaller: ; 900bf (24:40bf)
 GetAvailableCallers: ; 900de (24:40de)
 	callba CheckTime
 	ld a, c
-	ld [EngineBuffer1], a ; wd03e (aliases: MenuItemsList, CurFruitTree, CurInput)
+	ld [EngineBuffer1], a
 	ld hl, EngineBuffer3
 	ld bc, 11
 	xor a
@@ -219,7 +219,7 @@ GetAvailableCallers: ; 900de (24:40de)
 	ld hl, PhoneContacts + PHONE_CONTACT_SCRIPT2_TIME
 	ld bc, PHONE_TABLE_WIDTH
 	call AddNTimes
-	ld a, [EngineBuffer1] ; wd03e (aliases: MenuItemsList, CurFruitTree, CurInput)
+	ld a, [EngineBuffer1]
 	and [hl]
 	jr z, .not_good_for_call
 	ld bc, PHONE_CONTACT_MAP_GROUP - PHONE_CONTACT_SCRIPT2_TIME

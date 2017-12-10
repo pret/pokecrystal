@@ -3,7 +3,7 @@ BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	cp LINK_MOBILE
 	jr nz, StatsScreenInit
 
-	ld a, [wBattleMode] ; wd22d (aliases: EnemyMonEnd)
+	ld a, [wBattleMode]
 	and a
 	jr z, StatsScreenInit
 	jr _MobileStatsScreenInit
@@ -377,7 +377,7 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	call .PlaceHPBar
 	xor a
 	ld [hBGMapMode], a
-	ld a, [CurBaseData] ; wd236 (aliases: BaseDexNo)
+	ld a, [CurBaseData]
 	ld [wd265], a
 	ld [CurSpecies], a
 	hlcoord 8, 0
@@ -401,7 +401,7 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	hlcoord 9, 4
 	ld a, "/"
 	ld [hli], a
-	ld a, [CurBaseData] ; wd236 (aliases: BaseDexNo)
+	ld a, [CurBaseData]
 	ld [wd265], a
 	call GetPokemonName
 	call PlaceString
@@ -487,7 +487,7 @@ StatsScreen_PlaceShinyIcon: ; 4dfa6 (13:5fa6)
 	ret
 
 StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
-	ld a, [BaseDexNo] ; wd236 (aliases: BaseDexNo)
+	ld a, [BaseDexNo]
 	ld [wd265], a
 	ld [CurSpecies], a
 	xor a
@@ -891,7 +891,7 @@ StatsScreen_GetAnimationParam: ; 4e2ad (13:62ad)
 
 .PartyMon: ; 4e2bf (13:62bf)
 	ld a, [CurPartyMon]
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld hl, PartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld b, h
@@ -918,7 +918,7 @@ StatsScreen_GetAnimationParam: ; 4e2ad (13:62ad)
 	ret
 
 .Tempmon: ; 4e2ed (13:62ed)
-	ld bc, TempMonSpecies ; wd10e (aliases: TempMon)
+	ld bc, TempMonSpecies
 	jr .CheckEggFaintedFrzSlp ; utterly pointless
 
 .CheckEggFaintedFrzSlp: ; 4e2f2 (13:62f2)

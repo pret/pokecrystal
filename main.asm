@@ -492,7 +492,7 @@ HiddenItemScript:: ; 0x13625
 	db "@"
 
 SetMemEvent: ; 1364f
-	ld hl, EngineBuffer1 ; wd03e (aliases: MenuItemsList, CurFruitTree, CurInput)
+	ld hl, EngineBuffer1
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -4565,7 +4565,7 @@ _SwitchPartyMons:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [Buffer3]
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld hl, PartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop de

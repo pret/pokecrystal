@@ -240,7 +240,7 @@ MoveList_InitAnimatedMonIcon: ; 8e97d (23:697d)
 	ld [CurIcon], a
 	xor a
 	call GetIconGFX
-	ld d, 3 * 8 + 2
+	ld d, 3 * 8 + 2 ; depixel 3, 4, 2, 4
 	ld e, 4 * 8 + 4
 	ld a, SPRITE_ANIM_INDEX_PARTY_MON
 	call InitSpriteAnimStruct

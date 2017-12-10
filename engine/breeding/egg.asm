@@ -234,7 +234,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	callba SetEggMonCaughtData
 	callba TrainerRankings_EggsHatched
 	ld a, [CurPartyMon]
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
@@ -263,7 +263,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld [wd26b], a
 	call GetBaseData
 	ld a, [CurPartyMon]
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld hl, PartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -309,7 +309,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld a, [PlayerID + 1]
 	ld [hl], a
 	ld a, [CurPartyMon]
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
 	call AddNTimes
 	ld d, h
