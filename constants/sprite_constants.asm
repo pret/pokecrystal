@@ -193,6 +193,17 @@ const_value SET 1
 	const PAL_OW_TREE   ; 6
 	const PAL_OW_ROCK   ; 7
 
+; person_events set bit 3 so as not to use the sprite's default palette
+const_value set (1 << 3)
+	const PAL_NPC_RED    ; 8
+	const PAL_NPC_BLUE   ; 9
+	const PAL_NPC_GREEN  ; a
+	const PAL_NPC_BROWN  ; b
+	const PAL_NPC_PINK   ; c
+	const PAL_NPC_SILVER ; d
+	const PAL_NPC_TREE   ; e
+	const PAL_NPC_ROCK   ; f
+
 ; SpriteMovementData indexes (see data/map_objects.asm)
 	const_def
 	const SPRITEMOVEDATA_00                   ; 00
