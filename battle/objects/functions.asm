@@ -424,7 +424,7 @@ BattleAnimFunction_PokeBallBlocked: ; cd212 (33:5212)
 	ret
 
 GetBallAnimPal: ; cd249 (33:5249)
-	ld hl, .balls
+	ld hl, BallColors
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -448,22 +448,12 @@ GetBallAnimPal: ; cd249 (33:5249)
 	add hl, bc
 	ld [hl], a
 	ret
-
 ; cd26c (33:526c)
-.balls
-	db MASTER_BALL, PAL_BATTLE_OB_GREEN
-	db ULTRA_BALL,  PAL_BATTLE_OB_YELLOW
-	db GREAT_BALL,  PAL_BATTLE_OB_BLUE
-	db POKE_BALL,   PAL_BATTLE_OB_RED
-	db HEAVY_BALL,  PAL_BATTLE_OB_GRAY
-	db LEVEL_BALL,  PAL_BATTLE_OB_BROWN
-	db LURE_BALL,   PAL_BATTLE_OB_BLUE
-	db FAST_BALL,   PAL_BATTLE_OB_BLUE
-	db FRIEND_BALL, PAL_BATTLE_OB_YELLOW
-	db MOON_BALL,   PAL_BATTLE_OB_GRAY
-	db LOVE_BALL,   PAL_BATTLE_OB_RED
-	db -1,          PAL_BATTLE_OB_GRAY
+
+BallColors:
+INCLUDE "data/ball_colors.asm"
 ; cd284
+
 BattleAnimFunction_10: ; cd284 (33:5284)
 	call BattleAnim_AnonJumptable
 .anon_dw
