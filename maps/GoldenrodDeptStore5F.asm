@@ -126,7 +126,7 @@ LassScript_0x56130:
 Mike:
 	faceplayer
 	opentext
-	trade $0
+	trade NPCTRADE_MIKE
 	waitbutton
 	closetext
 	end

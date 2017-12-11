@@ -212,15 +212,3 @@ stonetable: macro
 	db \1, \2
 	dw \3
 endm
-
-
-roam_map: macro
-; A map and an arbitrary number of some more maps.
-	map \1
-	db  \2
-rept \2
-	map \3
-	shift
-endr
-	db 0
-endm

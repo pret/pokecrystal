@@ -15,7 +15,7 @@ PokefanMScript_0x6998d:
 Kyle:
 	faceplayer
 	opentext
-	trade $1
+	trade NPCTRADE_KYLE
 	waitbutton
 	closetext
 	end

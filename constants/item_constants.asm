@@ -197,6 +197,7 @@
 	const MIRAGE_MAIL  ; $BD
 	const ITEM_BE      ; $BE
 
+; see data/tmhm_moves.asm for moves
 	add_tm DYNAMICPUNCH ; $BF
 	add_tm HEADBUTT     ; $C0
 	add_tm CURSE        ; $C1

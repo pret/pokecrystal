@@ -14,7 +14,7 @@ Route14_MapScriptHeader:
 Kim:
 	faceplayer
 	opentext
-	trade $5
+	trade NPCTRADE_KIM
 	waitbutton
 	closetext
 	end

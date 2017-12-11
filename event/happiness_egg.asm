@@ -55,11 +55,11 @@ ChangeHappiness: ; 71c2
 
 	push de
 	ld a, [de]
-	cp 100
+	cp HAPPINESS_THRESHOLD_1
 	ld e, 0
 	jr c, .ok
 	inc e
-	cp 200
+	cp HAPPINESS_THRESHOLD_2
 	jr c, .ok
 	inc e
 
@@ -73,7 +73,7 @@ ChangeHappiness: ; 71c2
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-	cp 100
+	cp $64 ; $80?
 	pop de
 
 	ld a, [de]
@@ -103,25 +103,7 @@ ChangeHappiness: ; 71c2
 	ret
 
 .Actions:
-	db  +5,  +3,  +2 ; Gained a level
-	db  +5,  +3,  +2 ; Vitamin
-	db  +1,  +1,  +0 ; X Item
-	db  +3,  +2,  +1 ; Battled a Gym Leader
-	db  +1,  +1,  +0 ; Learned a move
-	db  -1,  -1,  -1 ; Lost to an enemy
-	db  -5,  -5, -10 ; Fainted due to poison
-	db  -5,  -5, -10 ; Lost to a much stronger enemy
-	db  +1,  +1,  +1 ; Haircut (Y1)
-	db  +3,  +3,  +1 ; Haircut (Y2)
-	db  +5,  +5,  +2 ; Haircut (Y3)
-	db  +1,  +1,  +1 ; Haircut (O1)
-	db  +3,  +3,  +1 ; Haircut (O2)
-	db +10, +10,  +4 ; Haircut (O3)
-	db  -5,  -5, -10 ; Used Heal Powder or Energypowder (bitter)
-	db -10, -10, -15 ; Used Energy Root (bitter)
-	db -15, -15, -20 ; Used Revival Herb (bitter)
-	db  +3,  +3,  +1 ; Grooming
-	db +10,  +6,  +4 ; Gained a level in the place where it was caught
+INCLUDE "data/happiness_changes.asm"
 
 StepHappiness:: ; 725a
 ; Raise the party's happiness by 1 point every other step cycle.
@@ -165,7 +147,7 @@ DayCareStep:: ; 7282
 	jr z, .day_care_lady
 
 	ld a, [wBreedMon1Level] ; level
-	cp 100
+	cp MAX_LEVEL
 	jr nc, .day_care_lady
 	ld hl, wBreedMon1Exp + 2 ; exp
 	inc [hl]
@@ -187,7 +169,7 @@ DayCareStep:: ; 7282
 	jr z, .check_egg
 
 	ld a, [wBreedMon2Level] ; level
-	cp 100
+	cp MAX_LEVEL
 	jr nc, .check_egg
 	ld hl, wBreedMon2Exp + 2 ; exp
 	inc [hl]

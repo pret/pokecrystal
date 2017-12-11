@@ -2350,7 +2350,9 @@ CheckSave:: ; 4cffe
 	ld c, $0
 	ret
 
-INCLUDE "engine/map_triggers.asm"
+MapTriggers:: ; 4d01e
+INCLUDE "data/map_triggers.asm"
+; 4d15b
 
 _LoadMapPart:: ; 4d15b
 	ld hl, wMisc
@@ -6063,8 +6065,8 @@ INCBIN "unknown/1f5db4.bin"
 
 SECTION "bank7E", ROMX
 
-INCLUDE "data/battle_tower.asm"
-INCLUDE "data/odd_eggs.asm"
+INCLUDE "engine/battle_tower.asm"
+INCLUDE "engine/odd_eggs.asm"
 
 SECTION "bank7F", ROMX
 

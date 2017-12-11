@@ -105,6 +105,11 @@ GetOptionPointer: ; e42d6
 ; e42f5
 
 
+	const_def
+	const TEXT_SPEED_FAST ; 0
+	const TEXT_SPEED_MED  ; 1
+	const TEXT_SPEED_SLOW ; 2
+
 Options_TextSpeed: ; e42f5
 	call GetTextSpeed
 	ld a, [hJoyPressed]
@@ -113,9 +118,9 @@ Options_TextSpeed: ; e42f5
 	bit D_RIGHT_F, a
 	jr z, .NonePressed
 	ld a, c ; right pressed
-	cp SLOW_TEXT
+	cp TEXT_SPEED_SLOW
 	jr c, .Increase
-	ld c, FAST_TEXT +- 1
+	ld c, TEXT_SPEED_FAST +- 1
 
 .Increase:
 	inc c
@@ -126,7 +131,7 @@ Options_TextSpeed: ; e42f5
 	ld a, c
 	and a
 	jr nz, .Decrease
-	ld c, SLOW_TEXT + 1
+	ld c, TEXT_SPEED_SLOW + 1
 
 .Decrease:
 	dec c
@@ -154,38 +159,39 @@ Options_TextSpeed: ; e42f5
 ; e4331
 
 .Strings:
+; entries correspond to TEXT_SPEED_* constants
 	dw .Fast
 	dw .Mid
 	dw .Slow
 
-.Fast:
-	db "FAST@"
-.Mid:
-	db "MID @"
-.Slow:
-	db "SLOW@"
+.Fast: db "FAST@"
+.Mid:  db "MID @"
+.Slow: db "SLOW@"
 ; e4346
 
 
 GetTextSpeed: ; e4346
-	ld a, [Options] ; This converts the number of frames, to 0, 1, 2 representing speed
-	and 7
-	cp 5 ; 5 frames of delay is slow
+; converts TEXT_DELAY_* value in a to TEXT_SPEED_* value in c,
+; with previous/next TEXT_DELAY_* values in d/e
+	ld a, [Options]
+	and $7
+	cp TEXT_DELAY_SLOW
 	jr z, .slow
-	cp 1 ; 1 frame of delay is fast
+	cp TEXT_DELAY_FAST
 	jr z, .fast
-	ld c, MED_TEXT ; set it to mid if not one of the above
-	lb de, 1, 5
+	; none of the above
+	ld c, TEXT_SPEED_MED
+	lb de, TEXT_DELAY_FAST, TEXT_DELAY_SLOW
 	ret
 
 .slow
-	ld c, SLOW_TEXT
-	lb de, 3, 1
+	ld c, TEXT_SPEED_SLOW
+	lb de, TEXT_DELAY_MED, TEXT_DELAY_FAST
 	ret
 
 .fast
-	ld c, FAST_TEXT
-	lb de, 5, 3
+	ld c, TEXT_SPEED_FAST
+	lb de, TEXT_DELAY_SLOW, TEXT_DELAY_MED
 	ret
 ; e4365
 
@@ -227,10 +233,8 @@ Options_BattleScene: ; e4365
 	ret
 ; e4398
 
-.On:
-	db "ON @"
-.Off:
-	db "OFF@"
+.On:  db "ON @"
+.Off: db "OFF@"
 ; e43a0
 
 
@@ -270,10 +274,8 @@ Options_BattleStyle: ; e43a0
 	ret
 ; e43d1
 
-.Shift:
-	db "SHIFT@"
-.Set:
-	db "SET  @"
+.Shift: db "SHIFT@"
+.Set:   db "SET  @"
 ; e43dd
 
 
@@ -320,12 +322,17 @@ Options_Sound: ; e43dd
 	ret
 ; e4416
 
-.Mono:
-	db "MONO  @"
-.Stereo:
-	db "STEREO@"
+.Mono:   db "MONO  @"
+.Stereo: db "STEREO@"
 ; e4424
 
+
+	const_def
+	const PRINT_LIGHTEST ; 0
+	const PRINT_LIGHTER  ; 1
+	const PRINT_NORMAL   ; 2
+	const PRINT_DARKER   ; 3
+	const PRINT_DARKEST  ; 4
 
 Options_Print: ; e4424
 	call GetPrinterSetting
@@ -335,9 +342,9 @@ Options_Print: ; e4424
 	bit D_RIGHT_F, a
 	jr z, .NonePressed
 	ld a, c
-	cp 4
+	cp PRINT_DARKEST
 	jr c, .Increase
-	ld c, -1
+	ld c, PRINT_LIGHTEST - 1
 
 .Increase:
 	inc c
@@ -348,7 +355,7 @@ Options_Print: ; e4424
 	ld a, c
 	and a
 	jr nz, .Decrease
-	ld c, 5
+	ld c, PRINT_DARKEST + 1
 
 .Decrease:
 	dec c
@@ -373,57 +380,56 @@ Options_Print: ; e4424
 ; e445a
 
 .Strings:
+; entries correspond to PRINT_* constants
 	dw .Lightest
 	dw .Lighter
 	dw .Normal
 	dw .Darker
 	dw .Darkest
 
-.Lightest:
-	db "LIGHTEST@"
-.Lighter:
-	db "LIGHTER @"
-.Normal:
-	db "NORMAL  @"
-.Darker:
-	db "DARKER  @"
-.Darkest:
-	db "DARKEST @"
+.Lightest: db "LIGHTEST@"
+.Lighter:  db "LIGHTER @"
+.Normal:   db "NORMAL  @"
+.Darker:   db "DARKER  @"
+.Darkest:  db "DARKEST @"
 ; e4491
 
 
 GetPrinterSetting: ; e4491
-	ld a, [GBPrinter] ; converts from the stored printer setting to 0,1,2,3,4
+; converts GBPRINTER_* value in a to PRINT_* value in c,
+; with previous/next GBPRINTER_* values in d/e
+	ld a, [GBPrinter]
 	and a
 	jr z, .IsLightest
-	cp PRINT_LIGHTER
+	cp GBPRINTER_LIGHTER
 	jr z, .IsLight
-	cp PRINT_DARKER
+	cp GBPRINTER_DARKER
 	jr z, .IsDark
-	cp PRINT_DARKEST
+	cp GBPRINTER_DARKEST
 	jr z, .IsDarkest
-	ld c, 2 ; normal if none of the above
-	lb de, PRINT_LIGHTER, PRINT_DARKER ; the 2 values next to this setting
+	; none of the above
+	ld c, PRINT_NORMAL
+	lb de, GBPRINTER_LIGHTER, GBPRINTER_DARKER
 	ret
 
 .IsLightest:
-	ld c, 0
-	lb de, PRINT_DARKEST, PRINT_LIGHTER ; the 2 values next to this setting
+	ld c, PRINT_LIGHTEST
+	lb de, GBPRINTER_DARKEST, GBPRINTER_LIGHTER
 	ret
 
 .IsLight:
-	ld c, 1
-	lb de, PRINT_LIGHTEST, PRINT_NORMAL ; the 2 values next to this setting
+	ld c, PRINT_LIGHTER
+	lb de, GBPRINTER_LIGHTEST, GBPRINTER_NORMAL
 	ret
 
 .IsDark:
-	ld c, 3
-	lb de, PRINT_NORMAL, PRINT_DARKEST ; the 2 values next to this setting
+	ld c, PRINT_DARKER
+	lb de, GBPRINTER_NORMAL, GBPRINTER_DARKEST
 	ret
 
 .IsDarkest:
-	ld c, 4
-	lb de, PRINT_DARKER, PRINT_LIGHTEST ; the 2 values next to this setting
+	ld c, PRINT_DARKEST
+	lb de, GBPRINTER_DARKER, GBPRINTER_LIGHTEST
 	ret
 ; e44c1
 
@@ -463,10 +469,8 @@ Options_MenuAccount: ; e44c1
 	ret
 ; e44f2
 
-.Off:
-	db "OFF@"
-.On:
-	db "ON @"
+.Off: db "OFF@"
+.On:  db "ON @"
 ; e44fa
 
 

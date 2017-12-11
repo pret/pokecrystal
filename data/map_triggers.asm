@@ -1,6 +1,3 @@
-MapTriggers:: ; 4d01e
-; Map triggers
-
 trigger_def: MACRO
 ; db group, map
 ; dw address
@@ -88,4 +85,3 @@ ENDM
 	trigger_def MOBILE_TRADE_ROOM_MOBILE,               wMobileTradeRoomMobileTrigger
 	trigger_def MOBILE_BATTLE_ROOM,                     wMobileBattleRoomTrigger
 	db -1
-; 4d15b

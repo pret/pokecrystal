@@ -105,7 +105,7 @@
 	const SPRITE_RAIKOU ; 65
 	const SPRITE_STANDING_YOUNGSTER ; 66
 
-; SpriteMons indexes (see engine/overworld.asm)
+; SpriteMons indexes (see data/sprite_mons.asm)
 const_value SET $80
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
@@ -326,7 +326,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const PERSON_ACTION_GRASS_SHAKE
 	const PERSON_ACTION_SKYFALL
 
-; Facings indexes (see engine/facings.asm)
+; Facings indexes (see data/facings.asm)
 	const_def
 	const FACING_STEP_DOWN_0
 	const FACING_STEP_DOWN_1
@@ -487,7 +487,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const SPRITE_ANIM_SEQ_INTRO_UNOWN_F
 	const SPRITE_ANIM_SEQ_INTRO_SUICUNE_AWAY
 
-; SpriteAnimSeqData indexes (see engine/sprites.asm)
+; SpriteAnimSeqData indexes (see data/sprite_anim_seqs.asm)
 	const_def
 	const SPRITE_ANIM_INDEX_PARTY_MON
 	const SPRITE_ANIM_INDEX_01

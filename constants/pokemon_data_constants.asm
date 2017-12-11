@@ -27,8 +27,9 @@ const_value SET 1
 	const NO_EGGS      ; f
 
 
-; IconPointers indexes (see menu/mon_icons.asm)
-const_value SET 1
+; IconPointers indexes (see gfx/icon_pointers.asm)
+	const_def
+	const ICON_NULL
 	const ICON_POLIWAG
 	const ICON_JIGGLYPUFF
 	const ICON_DIGLETT
@@ -94,6 +95,8 @@ const_value SET 1
 BASE_HAPPINESS        EQU 70
 FRIEND_BALL_HAPPINESS EQU 200
 HAPPINESS_TO_EVOLVE   EQU 220
+HAPPINESS_THRESHOLD_1 EQU 100
+HAPPINESS_THRESHOLD_2 EQU 200
 
 
 NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size

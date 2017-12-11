@@ -603,7 +603,7 @@ SLIDING      EQU 3
 EMOTE_OBJECT EQU 7
 
 
-; SpawnPoints indexes (see engine/spawn_points.asm)
+; SpawnPoints indexes (see data/spawn_points.asm)
 const_value = -1
 	const SPAWN_N_A
 	const SPAWN_HOME
@@ -679,7 +679,7 @@ NUM_SPAWNS EQU const_value
 	const EMOTE_GRASS_RUSTLE ; 11
 EMOTE_MEM EQU -1
 
-; FruitTreeItems indexes (see engine/fruit_trees.asm)
+; FruitTreeItems indexes (see data/fruit_tree_items.asm)
 const_value SET 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02

@@ -11,7 +11,7 @@ OlivineTimsHouse_MapScriptHeader:
 Tim:
 	faceplayer
 	opentext
-	trade $2
+	trade NPCTRADE_TIM
 	waitbutton
 	closetext
 	end

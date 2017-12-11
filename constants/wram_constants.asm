@@ -7,27 +7,38 @@
 	const WILDMON    ; 4
 
 ; Options: (bits) ; cfcc
-const_value SET 5
-	const STEREO       ; 5
-	const BATTLE_SHIFT ; 6
-	const BATTLE_SCENE ; 7
+const_value SET 4
+	const NO_TEXT_SCROLL ; 4
+	const STEREO         ; 5
+	const BATTLE_SHIFT   ; 6
+	const BATTLE_SCENE   ; 7
 
-; Options: (bits 0-2 values) ; cfcc
-FAST_TEXT      EQU 0
-MED_TEXT       EQU 1
-SLOW_TEXT      EQU 2
-NO_TEXT_SCROLL EQU 4
+; Options: (bits 0-2)
+TEXT_DELAY_FAST EQU 1
+TEXT_DELAY_MED  EQU 3
+TEXT_DELAY_SLOW EQU 5
+
+; TextBoxFrame: ; cfce
+	const_def
+	const FRAME_1 ; 0
+	const FRAME_2 ; 1
+	const FRAME_3 ; 2
+	const FRAME_4 ; 3
+	const FRAME_5 ; 4
+	const FRAME_6 ; 5
+	const FRAME_7 ; 6
+	const FRAME_8 ; 7
 
 ; Options2:
 	const_def
 	const MENU_ACCOUNT ; 0
 
 ; GBPrinter:
-PRINT_LIGHTEST EQU $00
-PRINT_LIGHTER  EQU $20
-PRINT_NORMAL   EQU $40
-PRINT_DARKER   EQU $60
-PRINT_DARKEST  EQU $7f
+GBPRINTER_LIGHTEST EQU $00
+GBPRINTER_LIGHTER  EQU $20
+GBPRINTER_NORMAL   EQU $40
+GBPRINTER_DARKER   EQU $60
+GBPRINTER_DARKEST  EQU $7f
 
 ; WalkingDirection: ; d043
 const_value SET -1

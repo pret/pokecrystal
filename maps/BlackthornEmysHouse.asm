@@ -11,7 +11,7 @@ BlackthornEmysHouse_MapScriptHeader:
 Emy:
 	faceplayer
 	opentext
-	trade $3
+	trade NPCTRADE_EMY
 	waitbutton
 	closetext
 	end

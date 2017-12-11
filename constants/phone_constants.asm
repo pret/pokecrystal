@@ -1,4 +1,4 @@
-; PhoneContacts indexes (see engine/phone.asm)
+; PhoneContacts indexes (see data/phone_contacts.asm)
 	const_def
 	const PHONE_00
 	const PHONE_MOM
@@ -39,7 +39,7 @@
 	const PHONE_PICNICKER_ERIN
 	const PHONE_BUENA
 
-; SpecialPhoneCallList indexes (see engine/phone.asm)
+; SpecialPhoneCallList indexes (see data/phone_special.asm)
 	const_def
 	const SPECIALCALL_NONE
 	const SPECIALCALL_POKERUS

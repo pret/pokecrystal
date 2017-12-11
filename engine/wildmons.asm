@@ -271,14 +271,14 @@ ChooseWildEncounter: ; 2a14f
 	inc hl
 	inc hl
 	call CheckOnWater
-	ld de, .WaterMonTable
+	ld de, WaterMonProbTable
 	jr z, .watermon
 	inc hl
 	inc hl
 	ld a, [TimeOfDay]
 	ld bc, $e
 	call AddNTimes
-	ld de, .GrassMonTable
+	ld de, GrassMonProbTable
 
 .watermon
 ; hl contains the pointer to the wild mon data, let's save that to the stack
@@ -357,21 +357,7 @@ ChooseWildEncounter: ; 2a14f
 	ret
 ; 2a1cb
 
-.GrassMonTable: ; 2a1cb
-	db 30,  $0 ; 30% chance
-	db 60,  $2 ; 30% chance
-	db 80,  $4 ; 20% chance
-	db 90,  $6 ; 10% chance
-	db 95,  $8 ;  5% chance
-	db 99,  $a ;  4% chance
-	db 100, $c ;  1% chance
-; 2a1d9
-
-.WaterMonTable: ; 2a1d9
-	db 60,  $0 ; 60% chance
-	db 90,  $2 ; 30% chance
-	db 100, $4 ; 10% chance
-; 2a1df
+INCLUDE "data/wild/probabilities.asm"
 
 CheckRepelEffect:: ; 2a1df
 ; If there is no active Repel, there's no need to be here.
@@ -799,27 +785,7 @@ _BackUpMapIndices: ; 2a3f6
 ; 2a40f
 
 RoamMaps: ; 2a40f
-; Maps that roaming monsters can be on,
-; and possible maps they can jump to.
-; Notably missing are Route 40 and
-; Route 41, which are water routes.
-	roam_map ROUTE_29, 2, ROUTE_30, ROUTE_46
-	roam_map ROUTE_30, 2, ROUTE_29, ROUTE_31
-	roam_map ROUTE_31, 3, ROUTE_30, ROUTE_32, ROUTE_36
-	roam_map ROUTE_32, 3, ROUTE_36, ROUTE_31, ROUTE_33
-	roam_map ROUTE_33, 2, ROUTE_32, ROUTE_34
-	roam_map ROUTE_34, 2, ROUTE_33, ROUTE_35
-	roam_map ROUTE_35, 2, ROUTE_34, ROUTE_36
-	roam_map ROUTE_36, 4, ROUTE_35, ROUTE_31, ROUTE_32, ROUTE_37
-	roam_map ROUTE_37, 3, ROUTE_36, ROUTE_38, ROUTE_42
-	roam_map ROUTE_38, 3, ROUTE_37, ROUTE_39, ROUTE_42
-	roam_map ROUTE_39, 1, ROUTE_38
-	roam_map ROUTE_42, 4, ROUTE_43, ROUTE_44, ROUTE_37, ROUTE_38
-	roam_map ROUTE_43, 2, ROUTE_42, ROUTE_44
-	roam_map ROUTE_44, 3, ROUTE_42, ROUTE_43, ROUTE_45
-	roam_map ROUTE_45, 2, ROUTE_44, ROUTE_46
-	roam_map ROUTE_46, 2, ROUTE_45, ROUTE_29
-	db -1
+INCLUDE "data/wild/roammon_maps.asm"
 ; 2a4a0
 
 ValidateTempWildMonSpecies: ; 2a4a0

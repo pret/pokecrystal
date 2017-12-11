@@ -14,7 +14,7 @@
 ; - PicPointers (see gfx/pics/pic_pointers.asm)
 ; - AlphabeticalPokedexOrder (see data/pokedex/order_alpha.asm)
 ; - NewPokedexOrder (see data/pokedex/order_new.asm)
-; - MonMenuIcons (see menu/mon_icons.asm)
+; - MonMenuIcons (see data/mon_menu_icons.asm)
 ; - Pokered_MonIndices (see engine/time_capsule/conversion.asm)
 ; - SortedPokemon (see misc/fixed_words.asm)
 const_value set 1

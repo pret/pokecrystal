@@ -25,6 +25,7 @@ PKMN_NAME_LENGTH   EQU 11
 MOVE_NAME_LENGTH   EQU 13
 ITEM_NAME_LENGTH   EQU 13
 TRAINER_CLASS_NAME_LENGTH EQU 13
+NAME_LENGTH_JAPANESE EQU 6
 
 ; GetName types (see home.asm)
 PKMN_NAME     EQU 1
@@ -82,7 +83,12 @@ HOF_LENGTH = 1 + HOF_MON_LENGTH * PARTY_LENGTH + 1 ; win count, party, terminato
 NUM_HOF_TEAMS = 30
 
 
-; ChangeHappiness arguments (see event/happiness_egg.asm)
+; significant money values
+START_MONEY EQU 3000
+MOM_MONEY   EQU 2300
+
+
+; ChangeHappiness arguments (see data/happiness_changes.asm)
 const_value = 1
 	const HAPPINESS_GAINLEVEL         ; 01
 	const HAPPINESS_USEDITEM          ; 02

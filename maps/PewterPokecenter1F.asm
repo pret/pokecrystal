@@ -32,7 +32,7 @@ BugCatcherScript_0x1a2ef7:
 Chris:
 	faceplayer
 	opentext
-	trade $4
+	trade NPCTRADE_CHRIS
 	waitbutton
 	closetext
 	end

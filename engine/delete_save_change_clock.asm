@@ -127,7 +127,7 @@ ClockResetPassword: ; 4d41e
 	ld e, a
 	ld d, $0
 	add hl, de
-	ld [hl], $61
+	ld [hl], "▲"
 	ret
 
 .dpadinput ; 4d490
@@ -227,7 +227,7 @@ ClockResetPassword: ; 4d41e
 	ld c, $2
 	call .ComponentFromNumber
 	ld hl, sPlayerData + (PlayerName - wPlayerData)
-	ld c, $5 ; PLAYER_NAME_LENGTH_J
+	ld c, NAME_LENGTH_JAPANESE - 1
 	call .ComponentFromString
 	ld hl, sPlayerData + (Money - wPlayerData)
 	ld c, $3

@@ -450,4 +450,27 @@ HoldSwitchmonIcon: ; 8ea8c
 	jr nz, .loop
 	ret
 
-INCLUDE "menu/mon_icons.asm"
+ReadMonMenuIcon: ; 8eab3
+	cp EGG
+	jr z, .egg
+	dec a
+	ld hl, MonMenuIcons
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl]
+	ret
+.egg
+	ld a, ICON_EGG
+	ret
+; 8eac4
+
+MonMenuIcons: ; 8eac4
+INCLUDE "data/mon_menu_icons.asm"
+
+
+INCLUDE "gfx/icon_pointers.asm"
+
+Icons:
+INCLUDE "gfx/icons.asm"
+

@@ -1,5 +1,5 @@
 
-INCLUDE "engine/facings.asm"
+INCLUDE "data/facings.asm"
 
 SpriteMovementData:: ; 4273
 INCLUDE "data/map_objects.asm"
