@@ -203,7 +203,7 @@ ChooseRandomCaller: ; 900bf (24:40bf)
 GetAvailableCallers: ; 900de (24:40de)
 	callba CheckTime
 	ld a, c
-	ld [EngineBuffer1], a ; wd03e (aliases: MenuItemsList, CurFruitTree, CurInput)
+	ld [EngineBuffer1], a
 	ld hl, EngineBuffer3
 	ld bc, 11
 	xor a
@@ -219,7 +219,7 @@ GetAvailableCallers: ; 900de (24:40de)
 	ld hl, PhoneContacts + PHONE_CONTACT_SCRIPT2_TIME
 	ld bc, PHONE_TABLE_WIDTH
 	call AddNTimes
-	ld a, [EngineBuffer1] ; wd03e (aliases: MenuItemsList, CurFruitTree, CurInput)
+	ld a, [EngineBuffer1]
 	and [hl]
 	jr z, .not_good_for_call
 	ld bc, PHONE_CONTACT_MAP_GROUP - PHONE_CONTACT_SCRIPT2_TIME
@@ -381,11 +381,11 @@ Function90199: ; 90199 (24:4199)
 
 .DoPhoneCall:
 	ld a, b
-	ld [wd002], a
+	ld [PhoneScriptBank], a
 	ld a, l
-	ld [wd003], a
+	ld [PhoneCaller], a
 	ld a, h
-	ld [wd004], a
+	ld [PhoneCaller + 1], a
 	ld b, BANK(UnknownScript_0x90205)
 	ld de, UnknownScript_0x90205
 	call ExecuteCallbackScript
@@ -495,9 +495,9 @@ PhoneCall:: ; 9029a
 	ld a, b
 	ld [PhoneScriptBank], a
 	ld a, e
-	ld [PhoneCallerLo], a
+	ld [PhoneCaller], a
 	ld a, d
-	ld [PhoneCallerHi], a
+	ld [PhoneCaller + 1], a
 	call Phone_FirstOfTwoRings
 	call Phone_FirstOfTwoRings
 	callba TrainerRankings_PhoneCalls
@@ -518,14 +518,14 @@ Phone_FirstOfTwoRings: ; 902b3
 Phone_CallerTextboxWithName2: ; 902c9
 	call Phone_CallerTextbox
 	hlcoord 1, 2
-	ld [hl], $62
+	ld [hl], "<PHONE>"
 	inc hl
 	inc hl
 	ld a, [PhoneScriptBank]
 	ld b, a
-	ld a, [PhoneCallerLo]
+	ld a, [PhoneCaller]
 	ld e, a
-	ld a, [PhoneCallerHi]
+	ld a, [PhoneCaller + 1]
 	ld d, a
 	call FarPlaceString
 	ret
@@ -618,7 +618,7 @@ Function90363: ; 90363 (24:4363)
 	push bc
 	call Phone_CallerTextbox
 	hlcoord 1, 1
-	ld [hl], $62
+	ld [hl], "<PHONE>"
 	inc hl
 	inc hl
 	ld d, h
@@ -769,7 +769,7 @@ phone: MACRO
 	db  \6
 	dba \7 ; script 2
 ENDM
-
+; entries correspond to PHONE_* constants
 	phone TRAINER_NONE, PHONE_00,              N_A,                       0, UnusedPhoneScript,   0, UnusedPhoneScript
 	phone TRAINER_NONE, PHONECONTACT_MOM,      KRISS_HOUSE_1F,            7, MomPhoneScript,      0, UnusedPhoneScript
 	phone TRAINER_NONE, PHONECONTACT_BIKESHOP, OAKS_LAB,                  0, UnusedPhoneScript,   0, UnusedPhoneScript

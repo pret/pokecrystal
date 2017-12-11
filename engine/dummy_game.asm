@@ -109,7 +109,7 @@ endr
 
 .spawn_object
 	depixel 6, 3, 4, 4
-	ld a, SPRITE_ANIM_INDEX_COMPOSE_MAIL_CURSOR
+	ld a, SPRITE_ANIM_INDEX_DUMMY_GAME
 	call _InitSpriteAnimStruct
 	ld a, 5
 	ld [wDummyGameNumberTriesRemaining], a
@@ -609,4 +609,4 @@ DummyGame_InterpretJoypad_AnimateCursor: ; e21a1 (38:61a1)
 ; e2221 (38:6221)
 
 LZ_e2221: ; e2221
-INCBIN "gfx/unknown/0e2221.2bpp.lz"
+INCBIN "gfx/dummy_game/dummy_game.2bpp.lz"

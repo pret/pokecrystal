@@ -1,6 +1,7 @@
-
+; Landmarks indexes (see engine/landmarks.asm)
 	const_def
 
+; Johto landmarks
 	const SPECIAL_MAP       ; 00
 	const NEW_BARK_TOWN     ; 01
 	const ROUTE_29          ; 02
@@ -50,7 +51,6 @@
 	const SILVER_CAVE       ; 2e
 
 KANTO_LANDMARK EQU const_value
-
 	const PALLET_TOWN       ; 2f
 	const ROUTE_1           ; 30
 	const VIRIDIAN_CITY     ; 31

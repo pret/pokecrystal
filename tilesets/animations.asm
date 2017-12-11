@@ -304,7 +304,7 @@ WaitTileAnimation: ; fc2fe
 StandingTileFrame8: ; fc2ff
 	ld a, [TileAnimationTimer]
 	inc a
-	and a, 7
+	and 7
 	ld [TileAnimationTimer], a
 	ret
 ; fc309
@@ -492,7 +492,7 @@ AnimateWaterTile: ; fc402
 ; fc41c
 
 WaterTileFrames: ; fc41c
-	INCBIN "gfx/tilesets/water.2bpp"
+	INCBIN "gfx/tilesets/water/water.2bpp"
 ; fc45c
 
 

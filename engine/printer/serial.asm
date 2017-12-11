@@ -292,13 +292,13 @@ Printer_WaitHandshake: ; 841c3 (21:41c3)
 
 Printer_CopyPacket: ; 841e2 (21:41e2)
 	ld a, [hli]
-	ld [wca82], a
+	ld [wPrinterData], a
 	ld a, [hli]
-	ld [wca83], a
+	ld [wPrinterData + 1], a
 	ld a, [hli]
-	ld [wca84], a
+	ld [wPrinterData + 2], a
 	ld a, [hli]
-	ld [wca85], a
+	ld [wPrinterData + 3], a
 	ld a, [hli]
 	ld [wPrinterChecksum], a
 	ld a, [hl]
@@ -307,7 +307,7 @@ Printer_CopyPacket: ; 841e2 (21:41e2)
 
 Printer_ResetData: ; 841fb (21:41fb)
 	xor a
-	ld hl, wca82
+	ld hl, wPrinterData
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -326,7 +326,7 @@ Printer_ResetData: ; 841fb (21:41fb)
 Printer_ComputeChecksum: ; 84219 (21:4219)
 	ld hl, 0
 	ld bc, 4
-	ld de, wca82
+	ld de, wPrinterData
 	call .ComputeChecksum
 	ld a, [wPrinterSendByteCounter]
 	ld c, a
@@ -476,10 +476,10 @@ _PrinterReceive:: ; 842db
 	dw Printer_DoNothing ; 00
 
 	dw Printer_Send0x33 ; 01
-	dw Printer_Sendwca82 ; 02
-	dw Printer_Sendwca83 ; 03
-	dw Printer_Sendwca84 ; 04
-	dw Printer_Sendwca85 ; 05
+	dw Printer_SendPrinterData1 ; 02
+	dw Printer_SendPrinterData2 ; 03
+	dw Printer_SendPrinterData3 ; 04
+	dw Printer_SendPrinterData4 ; 05
 	dw Printer_SendNextByte ; 06
 	dw Printer_SendwPrinterChecksumLo ; 07
 	dw Printer_SendwPrinterChecksumHi ; 08
@@ -524,26 +524,26 @@ Printer_Send0x33: ; 84330 (21:4330)
 	call Printer_NextInstruction
 	ret
 
-Printer_Sendwca82: ; 84339 (21:4339)
-	ld a, [wca82]
+Printer_SendPrinterData1: ; 84339 (21:4339)
+	ld a, [wPrinterData]
 	call Printer_SerialSend
 	call Printer_NextInstruction
 	ret
 
-Printer_Sendwca83: ; 84343 (21:4343)
-	ld a, [wca83]
+Printer_SendPrinterData2: ; 84343 (21:4343)
+	ld a, [wPrinterData + 1]
 	call Printer_SerialSend
 	call Printer_NextInstruction
 	ret
 
-Printer_Sendwca84: ; 8434d (21:434d)
-	ld a, [wca84]
+Printer_SendPrinterData3: ; 8434d (21:434d)
+	ld a, [wPrinterData + 2]
 	call Printer_SerialSend
 	call Printer_NextInstruction
 	ret
 
-Printer_Sendwca85: ; 84357 (21:4357)
-	ld a, [wca85]
+Printer_SendPrinterData4: ; 84357 (21:4357)
+	ld a, [wPrinterData + 3]
 	call Printer_SerialSend
 	call Printer_NextInstruction
 	ret

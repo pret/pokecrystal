@@ -249,10 +249,10 @@ InitBattleAnimBuffer: ; ccaaa
 .check_kinesis_softboiled_milkdrink
 	sub d
 	push af
-	ld a, [FXAnimIDHi]
+	ld a, [FXAnimID + 1]
 	or a
 	jr nz, .no_sub
-	ld a, [FXAnimIDLo]
+	ld a, [FXAnimID]
 	cp KINESIS
 	jr z, .kinesis
 	cp SOFTBOILED

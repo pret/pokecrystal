@@ -1,9 +1,3 @@
-
-; 00 land
-; 01 water
-; 0f wall
-; 11 talkable water
-; 1f talkable wall
 NONTALKABLE EQUS "db"
 TALKABLE EQUS "db TALK +"
 	NONTALKABLE  LANDTILE ; 00

@@ -1,3 +1,4 @@
+; SFX indexes (see audio/sfx_pointers.asm)
 	const_def
 
 	const SFX_DEX_FANFARE_50_79           ; 00
@@ -191,6 +192,7 @@
 	const SFX_GLASS_TING                  ; bc
 	const SFX_GLASS_TING_2                ; bd
 
+; new to Crystal
 	const SFX_INTRO_UNOWN_1               ; be
 	const SFX_INTRO_UNOWN_2               ; bf
 	const SFX_INTRO_UNOWN_3               ; c0

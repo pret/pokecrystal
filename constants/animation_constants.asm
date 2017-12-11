@@ -1,3 +1,4 @@
+; battle_anim_struct members (see macros/wram.asm)
 	const_def
 	const BATTLEANIMSTRUCT_INDEX
 	const BATTLEANIMSTRUCT_01
@@ -25,6 +26,7 @@
 	const BATTLEANIMSTRUCT_17
 BATTLEANIMSTRUCT_LENGTH EQU const_value
 
+; BattleAnimObjects indexes (see battle/objects/data.asm)
 	const_def
 	const ANIM_OBJ_00
 	const ANIM_OBJ_01
@@ -215,6 +217,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const ANIM_OBJ_BA
 	const ANIM_OBJ_BB
 
+; DoBattleAnimFrame arguments (see battle/objects/functions.asm)
 	const_def
 	const BATTLEANIMFUNC_00
 	const BATTLEANIMFUNC_01
@@ -297,6 +300,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const BATTLEANIMFUNC_4E
 	const BATTLEANIMFUNC_4F
 
+; BattleAnimFrameData indexes (see battle/objects/framesets.asm)
 	const_def
 	const BATTLEANIMFRAMESET_00
 	const BATTLEANIMFRAMESET_01
@@ -484,6 +488,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const BATTLEANIMFRAMESET_B7
 	const BATTLEANIMFRAMESET_B8
 
+; BattleAnimOAMData indexes (see battle/objects/oam.asm)
 	const_def
 	const BATTLEANIMOAMSET_00
 	const BATTLEANIMOAMSET_01
@@ -702,6 +707,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const BATTLEANIMOAMSET_D6
 	const BATTLEANIMOAMSET_D7
 
+; BattleBGEffects indexes (see battle/bg_effects.asm)
 const_value SET 1
 	const ANIM_BG_FLASH_INVERTED
 	const ANIM_BG_FLASH_WHITE
@@ -757,17 +763,19 @@ const_value SET 1
 	const ANIM_BG_WOBBLE_MON
 	const ANIM_BG_35
 
+; PokeAnims indexes (see gfx/pics/animation.asm)
 	const_def
-	const ANIM_MON_SLOW    ; 0
-	const ANIM_MON_NORMAL  ; 1
-	const ANIM_MON_MENU    ; 2
-	const ANIM_MON_TRADE   ; 3
-	const ANIM_MON_EVOLVE  ; 4
-	const ANIM_MON_HATCH   ; 5
-	const ANIM_MON_UNUSED  ; 6
-	const ANIM_MON_EGG1    ; 7
-	const ANIM_MON_EGG2    ; 8
+	const ANIM_MON_SLOW
+	const ANIM_MON_NORMAL
+	const ANIM_MON_MENU
+	const ANIM_MON_TRADE
+	const ANIM_MON_EVOLVE
+	const ANIM_MON_HATCH
+	const ANIM_MON_UNUSED
+	const ANIM_MON_EGG1
+	const ANIM_MON_EGG2
 
+; AnimObjGFX indexes (see battle/objects/gfx_headers.asm)
 const_value SET 1
 	const ANIM_GFX_HIT
 	const ANIM_GFX_CUT
@@ -809,8 +817,20 @@ const_value SET 1
 	const ANIM_GFX_WAVE
 	const ANIM_GFX_AEROBLAST
 
+; battle_bg_effect struct members (see macros/wram.asm)
 	const_def
 	const BG_EFFECT_STRUCT_FUNCTION
 	const BG_EFFECT_STRUCT_JT_INDEX
 	const BG_EFFECT_STRUCT_BATTLE_TURN
 	const BG_EFFECT_STRUCT_03
+
+; animation object palettes
+	const_def
+	const PAL_BATTLE_ENEMY  ; 0
+	const PAL_BATTLE_PLAYER ; 1
+	const PAL_BATTLE_GRAY   ; 2
+	const PAL_BATTLE_YELLOW ; 3
+	const PAL_BATTLE_RED    ; 4
+	const PAL_BATTLE_GREEN  ; 5
+	const PAL_BATTLE_BLUE   ; 6
+	const PAL_BATTLE_BROWN  ; 7

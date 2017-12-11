@@ -94,7 +94,7 @@ CheckRegisteredItem: ; 13345
 	dec a
 	cp [hl]
 	jr nc, .NotEnoughItems
-	ld [wd107], a
+	ld [CurItemQuantity], a
 	and a
 	ret
 

@@ -419,7 +419,7 @@ NamingScreenJoypadLoop: ; 11915
 	jr nz, .got_cursor_position
 	ld d, 8 * 8
 .got_cursor_position
-	ld a, SPRITE_ANIM_INDEX_02
+	ld a, SPRITE_ANIM_INDEX_NAMING_SCREEN_CURSOR
 	call _InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
@@ -946,11 +946,11 @@ LoadNamingScreenGFX: ; 11c51
 ; 11cb7
 
 NamingScreenGFX_Border: ; 11cb7
-INCBIN "gfx/unknown/011cb7.2bpp"
+INCBIN "gfx/namingscreen/border.2bpp"
 ; 11cc7
 
 NamingScreenGFX_Cursor: ; 11cc7
-INCBIN "gfx/unknown/011cc7.2bpp"
+INCBIN "gfx/namingscreen/cursor.2bpp"
 ; 11ce7
 
 NameInputLower:
@@ -985,16 +985,16 @@ BoxNameInputUpper:
 
 ; 11e5d
 
-GFX_11e5d: ; ????
-INCBIN "gfx/unknown/011e5d.1bpp"
+NamingScreenGFX_End: ; unused
+INCBIN "gfx/namingscreen/end.1bpp"
 ; 11e6d
 
 NamingScreenGFX_MiddleLine:
-INCBIN "gfx/unknown/011e65.1bpp"
+INCBIN "gfx/namingscreen/middle_line.1bpp"
 ; 11e6d
 
 NamingScreenGFX_UnderLine: ; 11e6d
-INCBIN "gfx/unknown/011e6d.1bpp"
+INCBIN "gfx/namingscreen/underline.1bpp"
 ; 11e75
 
 _ComposeMailMessage: ; 11e75 (mail?)
@@ -1039,7 +1039,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 
 	; init mail icon
 	depixel 3, 2
-	ld a, SPRITE_ANIM_INDEX_00
+	ld a, SPRITE_ANIM_INDEX_PARTY_MON
 	call _InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
@@ -1174,7 +1174,7 @@ INCBIN "gfx/icon/mail2.2bpp"
 
 .init_blinking_cursor ; 1201b (4:601b)
 	depixel 9, 2
-	ld a, SPRITE_ANIM_INDEX_09
+	ld a, SPRITE_ANIM_INDEX_COMPOSE_MAIL_CURSOR
 	call _InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a

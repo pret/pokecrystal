@@ -137,7 +137,7 @@ HealMachineAnim: ; 12324
 ; 123fc
 
 .HealMachineGFX: ; 123fc
-INCBIN "gfx/unknown/0123fc.2bpp"
+INCBIN "gfx/ow_fx/heal_machine.2bpp"
 ; 1241c
 
 .HOF_OAM: ; 1241c

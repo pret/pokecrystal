@@ -1,77 +1,78 @@
 SpriteAnimFrameData: ; 8d6e6
-	dw .Frameset_00 ; 00
-	dw .Frameset_01 ; 01
-	dw .Frameset_02 ; 02
-	dw .Frameset_03 ; 03
-	dw .Frameset_04 ; 04
-	dw .Frameset_05 ; 05
-	dw .Frameset_06 ; 06
-	dw .Frameset_07 ; 07
-	dw .Frameset_08 ; 08
-	dw .Frameset_09 ; 09
-	dw .Frameset_0a ; 0a
-	dw .Frameset_0b ; 0b
-	dw .Frameset_0c ; 0c
-	dw .Frameset_0d ; 0d
-	dw .Frameset_0e ; 0e
-	dw .Frameset_0f ; 0f
-	dw .Frameset_10 ; 10
-	dw .Frameset_11 ; 11
-	dw .Frameset_12 ; 12
-	dw .Frameset_13 ; 13
-	dw .Frameset_14 ; 14
-	dw .Frameset_15 ; 15
-	dw .Frameset_16 ; 16
-	dw .Frameset_17 ; 17
-	dw .Frameset_18 ; 18
-	dw .Frameset_19 ; 19
-	dw .Frameset_1a ; 1a
-	dw .Frameset_1b ; 1b
-	dw .Frameset_1c ; 1c
-	dw .Frameset_1d ; 1d
-	dw .Frameset_1e ; 1e
-	dw .Frameset_1f ; 1f
-	dw .Frameset_20 ; 20
-	dw .Frameset_21 ; 21
-	dw .Frameset_22 ; 22
-	dw .Frameset_23 ; 23
-	dw .Frameset_24 ; 24
-	dw .Frameset_25 ; 25 headbutt
-	dw .Frameset_26 ; 26
-	dw .Frameset_27 ; 27
-	dw .Frameset_28 ; 28
-	dw .Frameset_29 ; 29
-	dw .Frameset_2a ; 2a
-	dw .Frameset_2b ; 2b
-	dw .Frameset_2c ; 2c
-	dw .Frameset_2d ; 2d
-	dw .Frameset_2e ; 2e
-	dw .Frameset_2f ; 2f
-	dw .Frameset_30 ; 30
-	dw .Frameset_31 ; 31
-	dw .Frameset_32 ; 32
-	dw .Frameset_33 ; 33
-	dw .Frameset_34 ; 34
-	dw .Frameset_35 ; 35
-	dw .Frameset_36 ; 36
-	dw .Frameset_37 ; 37
-	dw .Frameset_38 ; 38
-	dw .Frameset_39 ; 39 unown in intro
-	dw .Frameset_3a ; 3a unown in intro
-	dw .Frameset_3b ; 3b unown in intro
-	dw .Frameset_3c ; 3c unown in intro
-	dw .Frameset_3d ; 3d
-	dw .Frameset_3e ; 3e
-	dw .Frameset_3f ; 3f
-	dw .Frameset_40 ; 40 celebi on the left
-	dw .Frameset_41 ; 41 celebi on the right
+; entries correspond to SPRITE_ANIM_FRAMESET_* constants
+	dw .Frameset_00
+	dw .Frameset_PartyMon
+	dw .Frameset_02
+	dw .Frameset_03
+	dw .Frameset_04
+	dw .Frameset_05
+	dw .Frameset_06
+	dw .Frameset_07
+	dw .Frameset_TextEntryCursor
+	dw .Frameset_09
+	dw .Frameset_GameFreakLogo
+	dw .Frameset_GSIntroStar
+	dw .Frameset_GSIntroSparkle
+	dw .Frameset_SlotsGolem
+	dw .Frameset_SlotsChansey
+	dw .Frameset_SlotsChansey2
+	dw .Frameset_SlotsEgg
+	dw .Frameset_RedWalk
+	dw .Frameset_StillCursor
+	dw .Frameset_TradePokeBall
+	dw .Frameset_TradePokeBall0
+	dw .Frameset_TradePoof
+	dw .Frameset_TradeTubeBulge
+	dw .Frameset_TrademonIcon
+	dw .Frameset_TrademonBubble
+	dw .Frameset_EvolutionBallOfLight
+	dw .Frameset_RadioTuningKnob
+	dw .Frameset_MagnetTrainRed
+	dw .Frameset_1c
+	dw .Frameset_Leaf
+	dw .Frameset_CutTree
+	dw .Frameset_EggCrack
+	dw .Frameset_EggHatch
+	dw .Frameset_21
+	dw .Frameset_22
+	dw .Frameset_23
+	dw .Frameset_24
+	dw .Frameset_HeadbuttTree
+	dw .Frameset_26
+	dw .Frameset_27
+	dw .Frameset_28
+	dw .Frameset_29
+	dw .Frameset_2a
+	dw .Frameset_2b
+	dw .Frameset_2c
+	dw .Frameset_BlueWalk
+	dw .Frameset_MagnetTrainBlue
+	dw .Frameset_2f
+	dw .Frameset_30
+	dw .Frameset_31
+	dw .Frameset_32
+	dw .Frameset_33
+	dw .Frameset_34
+	dw .Frameset_IntroSuicune
+	dw .Frameset_IntroSuicune2
+	dw .Frameset_IntroPichu
+	dw .Frameset_IntroWooper
+	dw .Frameset_IntroUnown1
+	dw .Frameset_IntroUnown2
+	dw .Frameset_IntroUnown3
+	dw .Frameset_IntroUnown4
+	dw .Frameset_IntroUnownF2
+	dw .Frameset_IntroSuicuneAway
+	dw .Frameset_IntroUnownF
+	dw .Frameset_CelebiLeft
+	dw .Frameset_CelebiRight
 ; 8d76a
 
 .Frameset_00:
 	frame SPRITE_ANIM_FRAME_IDX_00, 32
 	endanim
 
-.Frameset_01:
+.Frameset_PartyMon:
 	frame SPRITE_ANIM_FRAME_IDX_00,  8
 	frame SPRITE_ANIM_FRAME_IDX_01,  8
 	dorestart
@@ -101,21 +102,21 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_40,  4
 	dorestart
 
-.Frameset_11:
+.Frameset_RedWalk:
 	frame SPRITE_ANIM_FRAME_IDX_00,  8
 	frame SPRITE_ANIM_FRAME_IDX_01,  8
 	frame SPRITE_ANIM_FRAME_IDX_00,  8
 	frame SPRITE_ANIM_FRAME_IDX_01,  8, OAM_X_FLIP
 	dorestart
 
-.Frameset_2d:
+.Frameset_BlueWalk:
 	frame SPRITE_ANIM_FRAME_IDX_63,  8
 	frame SPRITE_ANIM_FRAME_IDX_64,  8
 	frame SPRITE_ANIM_FRAME_IDX_63,  8
 	frame SPRITE_ANIM_FRAME_IDX_64,  8, OAM_X_FLIP
 	dorestart
 
-.Frameset_2e:
+.Frameset_MagnetTrainBlue:
 	frame SPRITE_ANIM_FRAME_IDX_65,  8
 	frame SPRITE_ANIM_FRAME_IDX_66,  8
 	frame SPRITE_ANIM_FRAME_IDX_65,  8
@@ -127,7 +128,7 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_1F,  1
 	dorestart
 
-.Frameset_08:
+.Frameset_TextEntryCursor:
 	frame SPRITE_ANIM_FRAME_IDX_20,  1
 	dorepeat  1
 	dorestart
@@ -137,7 +138,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dorepeat  1
 	dorestart
 
-.Frameset_0a:
+.Frameset_GameFreakLogo:
 	frame SPRITE_ANIM_FRAME_IDX_81, 12
 	frame SPRITE_ANIM_FRAME_IDX_82,  1
 	frame SPRITE_ANIM_FRAME_IDX_83,  1
@@ -155,33 +156,33 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_8B,  7
 	endanim
 
-.Frameset_0b:
+.Frameset_GSIntroStar:
 	frame SPRITE_ANIM_FRAME_IDX_23,  3
 	frame SPRITE_ANIM_FRAME_IDX_23,  3, OAM_Y_FLIP
 	dorestart
 
-.Frameset_0c:
+.Frameset_GSIntroSparkle:
 	frame SPRITE_ANIM_FRAME_IDX_24,  2
 	frame SPRITE_ANIM_FRAME_IDX_25,  2
 	frame SPRITE_ANIM_FRAME_IDX_26,  2
 	frame SPRITE_ANIM_FRAME_IDX_25,  2
 	dorestart
 
-.Frameset_0d:
+.Frameset_SlotsGolem:
 	frame SPRITE_ANIM_FRAME_IDX_27,  7
 	frame SPRITE_ANIM_FRAME_IDX_28,  7
 	frame SPRITE_ANIM_FRAME_IDX_27,  7, OAM_Y_FLIP
 	frame SPRITE_ANIM_FRAME_IDX_28,  7, OAM_X_FLIP
 	dorestart
 
-.Frameset_0e:
+.Frameset_SlotsChansey:
 	frame SPRITE_ANIM_FRAME_IDX_29,  7
 	frame SPRITE_ANIM_FRAME_IDX_2A,  7
 	frame SPRITE_ANIM_FRAME_IDX_29,  7
 	frame SPRITE_ANIM_FRAME_IDX_2B,  7
 	dorestart
 
-.Frameset_0f:
+.Frameset_SlotsChansey2:
 	frame SPRITE_ANIM_FRAME_IDX_29,  7
 	frame SPRITE_ANIM_FRAME_IDX_2C,  7
 	frame SPRITE_ANIM_FRAME_IDX_2D,  7
@@ -189,56 +190,56 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_29,  7
 	endanim
 
-.Frameset_10:
+.Frameset_SlotsEgg:
 	frame SPRITE_ANIM_FRAME_IDX_2E, 20
 	endanim
 
-.Frameset_12:
+.Frameset_StillCursor:
 	frame SPRITE_ANIM_FRAME_IDX_2F, 32
 	endanim
 
-.Frameset_13:
+.Frameset_TradePokeBall:
 	frame SPRITE_ANIM_FRAME_IDX_30, 32
 	endanim
 
-.Frameset_14:
+.Frameset_TradePokeBall0:
 	frame SPRITE_ANIM_FRAME_IDX_30,  3
 	frame SPRITE_ANIM_FRAME_IDX_31,  3
 	frame SPRITE_ANIM_FRAME_IDX_30,  3
 	frame SPRITE_ANIM_FRAME_IDX_31,  3, OAM_X_FLIP
 	dorestart
 
-.Frameset_15:
+.Frameset_TradePoof:
 	frame SPRITE_ANIM_FRAME_IDX_32,  4
 	frame SPRITE_ANIM_FRAME_IDX_33,  4
 	frame SPRITE_ANIM_FRAME_IDX_34,  4
 	delanim
 
-.Frameset_16:
+.Frameset_TradeTubeBulge:
 	frame SPRITE_ANIM_FRAME_IDX_35,  3
 	frame SPRITE_ANIM_FRAME_IDX_36,  3
 	dorestart
 
-.Frameset_17:
+.Frameset_TrademonIcon:
 	frame SPRITE_ANIM_FRAME_IDX_37,  7
 	frame SPRITE_ANIM_FRAME_IDX_38,  7
 	dorestart
 
-.Frameset_18:
+.Frameset_TrademonBubble:
 	frame SPRITE_ANIM_FRAME_IDX_39, 32
 	endanim
 
-.Frameset_19:
+.Frameset_EvolutionBallOfLight:
 	frame SPRITE_ANIM_FRAME_IDX_3B,  2
 	frame SPRITE_ANIM_FRAME_IDX_3A,  2
 	frame SPRITE_ANIM_FRAME_IDX_3B,  2
 	endanim
 
-.Frameset_1a:
+.Frameset_RadioTuningKnob:
 	frame SPRITE_ANIM_FRAME_IDX_3C, 32
 	endanim
 
-.Frameset_1b:
+.Frameset_MagnetTrainRed:
 	frame SPRITE_ANIM_FRAME_IDX_41,  8
 	frame SPRITE_ANIM_FRAME_IDX_42,  8
 	frame SPRITE_ANIM_FRAME_IDX_41,  8
@@ -292,11 +293,11 @@ SpriteAnimFrameData: ; 8d6e6
 	dorepeat 32
 	endanim
 
-.Frameset_1d:
+.Frameset_Leaf:
 	frame SPRITE_ANIM_FRAME_IDX_4F, 32
 	endanim
 
-.Frameset_1e:
+.Frameset_CutTree:
 	frame SPRITE_ANIM_FRAME_IDX_50,  2
 	frame SPRITE_ANIM_FRAME_IDX_51, 16
 	dorepeat  1
@@ -305,11 +306,11 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_53,  1
 	delanim
 
-.Frameset_1f:
+.Frameset_EggCrack:
 	frame SPRITE_ANIM_FRAME_IDX_54, 32
 	endanim
 
-.Frameset_20:
+.Frameset_EggHatch:
 	frame SPRITE_ANIM_FRAME_IDX_55, 32
 	endanim
 
@@ -334,7 +335,7 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_5A, 10
 	dorestart
 
-.Frameset_25:
+.Frameset_HeadbuttTree:
 	frame SPRITE_ANIM_FRAME_IDX_50,  2
 	frame SPRITE_ANIM_FRAME_IDX_5B,  2
 	frame SPRITE_ANIM_FRAME_IDX_50,  2
@@ -424,53 +425,53 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_6B,  2
 	delanim
 
-.Frameset_35:
+.Frameset_IntroSuicune:
 	frame SPRITE_ANIM_FRAME_IDX_6E,  3
 	frame SPRITE_ANIM_FRAME_IDX_6F,  3
 	frame SPRITE_ANIM_FRAME_IDX_70,  3
 	frame SPRITE_ANIM_FRAME_IDX_71,  3
 	dorestart
 
-.Frameset_36:
+.Frameset_IntroSuicune2:
 	frame SPRITE_ANIM_FRAME_IDX_71,  3
 	frame SPRITE_ANIM_FRAME_IDX_6E,  7
 	endanim
 
-.Frameset_37:
+.Frameset_IntroPichu:
 	frame SPRITE_ANIM_FRAME_IDX_72, 32
 	frame SPRITE_ANIM_FRAME_IDX_73,  7
 	frame SPRITE_ANIM_FRAME_IDX_74,  7
 	endanim
 
-.Frameset_38:
+.Frameset_IntroWooper:
 	frame SPRITE_ANIM_FRAME_IDX_75,  3
 	endanim
 
-.Frameset_39:
+.Frameset_IntroUnown1:
 	frame SPRITE_ANIM_FRAME_IDX_76,  3
 	frame SPRITE_ANIM_FRAME_IDX_77,  3
 	frame SPRITE_ANIM_FRAME_IDX_78,  7
 	delanim
 
-.Frameset_3a:
+.Frameset_IntroUnown2:
 	frame SPRITE_ANIM_FRAME_IDX_76,  3, OAM_X_FLIP
 	frame SPRITE_ANIM_FRAME_IDX_77,  3, OAM_X_FLIP
 	frame SPRITE_ANIM_FRAME_IDX_78,  7, OAM_X_FLIP
 	delanim
 
-.Frameset_3b:
+.Frameset_IntroUnown3:
 	frame SPRITE_ANIM_FRAME_IDX_76,  3, OAM_Y_FLIP
 	frame SPRITE_ANIM_FRAME_IDX_77,  3, OAM_Y_FLIP
 	frame SPRITE_ANIM_FRAME_IDX_78,  7, OAM_Y_FLIP
 	delanim
 
-.Frameset_3c:
+.Frameset_IntroUnown4:
 	frame SPRITE_ANIM_FRAME_IDX_76,  3, OAM_X_FLIP, OAM_Y_FLIP
 	frame SPRITE_ANIM_FRAME_IDX_77,  3, OAM_X_FLIP, OAM_Y_FLIP
 	frame SPRITE_ANIM_FRAME_IDX_78,  7, OAM_X_FLIP, OAM_Y_FLIP
 	delanim
 
-.Frameset_3d:
+.Frameset_IntroUnownF2:
 	frame SPRITE_ANIM_FRAME_IDX_79,  3
 	frame SPRITE_ANIM_FRAME_IDX_7A,  3
 	frame SPRITE_ANIM_FRAME_IDX_7B,  3
@@ -478,26 +479,27 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_7D,  7
 	endanim
 
-.Frameset_3e:
+.Frameset_IntroSuicuneAway:
 	frame SPRITE_ANIM_FRAME_IDX_7E,  3
 	endanim
 
-.Frameset_3f:
+.Frameset_IntroUnownF:
 	dorepeat 0
 	endanim
 
-.Frameset_40:
+.Frameset_CelebiLeft:
 	frame SPRITE_ANIM_FRAME_IDX_7F,  8
 	frame SPRITE_ANIM_FRAME_IDX_80,  8
 	endanim
 
-.Frameset_41:
+.Frameset_CelebiRight:
 	frame SPRITE_ANIM_FRAME_IDX_7F,  8, OAM_X_FLIP
 	frame SPRITE_ANIM_FRAME_IDX_80,  8, OAM_X_FLIP
 	endanim
 ; 8d94d
 
 SpriteAnimOAMData: ; 8d94d
+; entries correspond to SPRITE_ANIM_FRAME_IDX_* constants
 	; vtile offset, pointer
 	dbw $00, .OAMData_00 ; 00
 	dbw $04, .OAMData_00 ; 01
@@ -1632,6 +1634,7 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0,  0,  4, $52, $01
 	dsprite  0,  0,  1,  4, $53, $01
 ; 8e706
+
 BrokenStdGFXPointers: ; Broken 2bpp pointers
 	dbbw $80, $01, .deleted ; 128-tile 2bpp at 1:672a (inside Multiply)
 	dbbw $80, $01, .deleted

@@ -627,7 +627,7 @@ CmdQueue_StoneTable: ; 97f42
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, de
 	ld a, [hl]
-	cp STEP_TYPE_SKYFALL_TOP
+	cp SPRITEMOVEDATA_STRENGTH_BOULDER
 	jr nz, .next
 
 	ld hl, OBJECT_NEXT_TILE

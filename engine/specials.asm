@@ -2,9 +2,9 @@
 Special:: ; c01b
 ; Run script special de.
 	ld hl, SpecialsPointers
-	add hl,de
-	add hl,de
-	add hl,de
+	add hl, de
+	add hl, de
+	add hl, de
 	ld b, [hl]
 	inc hl
 	ld a, [hli]
@@ -618,9 +618,9 @@ SpecialGameboyCheck: ; c478
 
 Special_FadeOutMusic: ; c48f
 	ld a, MUSIC_NONE % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_NONE / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld a, $2
 	ld [MusicFade], a
 	ret

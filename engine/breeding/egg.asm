@@ -234,7 +234,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	callba SetEggMonCaughtData
 	callba TrainerRankings_EggsHatched
 	ld a, [CurPartyMon]
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
@@ -263,7 +263,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld [wd26b], a
 	call GetBaseData
 	ld a, [CurPartyMon]
-	ld hl, PartyMons ; wdcdf (aliases: PartyMon1, PartyMon1Species)
+	ld hl, PartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -309,7 +309,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld a, [PlayerID + 1]
 	ld [hl], a
 	ld a, [CurPartyMon]
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	ld bc, NAME_LENGTH
 	call AddNTimes
 	ld d, h
@@ -803,7 +803,7 @@ EggHatch_CrackShell: ; 1736d (5:736d)
 	add 9 * 8 + 4
 	ld d, a
 	ld e, 11 * 8
-	ld a, SPRITE_ANIM_INDEX_19
+	ld a, SPRITE_ANIM_INDEX_EGG_CRACK
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -813,7 +813,7 @@ EggHatch_CrackShell: ; 1736d (5:736d)
 ; 17393 (5:7393)
 
 EggHatchGFX: ; 17393
-INCBIN "gfx/unknown/017393.2bpp"
+INCBIN "gfx/evo/egg_hatch.2bpp"
 ; 173b3
 
 Hatch_InitShellFragments: ; 173b3 (5:73b3)
@@ -833,7 +833,7 @@ Hatch_InitShellFragments: ; 173b3 (5:73b3)
 	push hl
 	push bc
 
-	ld a, SPRITE_ANIM_INDEX_1C
+	ld a, SPRITE_ANIM_INDEX_EGG_HATCH
 	call _InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_TILE_ID

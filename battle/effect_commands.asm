@@ -70,25 +70,25 @@ DoMove: ; 3402c
 ; Start at the first command.
 	ld hl, BattleScriptBuffer
 	ld a, l
-	ld [BattleScriptBufferLoc], a
+	ld [BattleScriptBufferAddress], a
 	ld a, h
-	ld [BattleScriptBufferLoc + 1], a
+	ld [BattleScriptBufferAddress + 1], a
 
 .ReadMoveEffectCommand:
 
-; ld a, [BattleScriptBufferLoc++]
-	ld a, [BattleScriptBufferLoc]
+; ld a, [BattleScriptBufferAddress++]
+	ld a, [BattleScriptBufferAddress]
 	ld l, a
-	ld a, [BattleScriptBufferLoc + 1]
+	ld a, [BattleScriptBufferAddress + 1]
 	ld h, a
 
 	ld a, [hli]
 
 	push af
 	ld a, l
-	ld [BattleScriptBufferLoc], a
+	ld [BattleScriptBufferAddress], a
 	ld a, h
-	ld [BattleScriptBufferLoc + 1], a
+	ld [BattleScriptBufferAddress + 1], a
 	pop af
 
 ; endturn_command (-2) is used to terminate branches without ending the read cycle.
@@ -2103,7 +2103,7 @@ BattleCommand_LowerSub: ; 34eee
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	inc a
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
@@ -2280,7 +2280,7 @@ BattleCommand_RaiseSub: ; 35004
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	ld a, $2
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
@@ -2645,7 +2645,7 @@ BattleCommand_CheckDestinyBond: ; 351c0
 	call BattleCommand_SwitchTurn
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	inc a
 	ld [wKickCounter], a
 	ld a, DESTINY_BOND
@@ -2743,9 +2743,9 @@ BattleCommand_RageDamage: ; 3527b
 
 
 EndMoveEffect: ; 352a3
-	ld a, [BattleScriptBufferLoc]
+	ld a, [BattleScriptBufferAddress]
 	ld l, a
-	ld a, [BattleScriptBufferLoc + 1]
+	ld a, [BattleScriptBufferAddress + 1]
 	ld h, a
 	ld a, $ff
 	ld [hli], a
@@ -4738,9 +4738,9 @@ FarPlayBattleAnimation: ; 35d00
 
 PlayFXAnimID: ; 35d08
 	ld a, e
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, d
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 
 	ld c, 3
 	call DelayFrames
@@ -7097,9 +7097,9 @@ BattleCommand_EndLoop: ; 369b6
 
 ; Loop back to the command before 'critical'.
 .loop_back_to_critical
-	ld a, [BattleScriptBufferLoc + 1]
+	ld a, [BattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [BattleScriptBufferLoc]
+	ld a, [BattleScriptBufferAddress]
 	ld l, a
 .not_critical
 	ld a, [hld]
@@ -7107,9 +7107,9 @@ BattleCommand_EndLoop: ; 369b6
 	jr nz, .not_critical
 	inc hl
 	ld a, h
-	ld [BattleScriptBufferLoc + 1], a
+	ld [BattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [BattleScriptBufferLoc], a
+	ld [BattleScriptBufferAddress], a
 	ret
 
 ; 36a82
@@ -7882,7 +7882,7 @@ BattleCommand_Substitute: ; 36e7c
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
 	call LoadAnim
@@ -9862,14 +9862,14 @@ AnimateCurrentMove: ; 37e01
 
 PlayDamageAnim: ; 37e19
 	xor a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	and a
 	ret z
 
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 
 	ld a, [hBattleTurn]
 	and a
@@ -9888,7 +9888,7 @@ PlayDamageAnim: ; 37e19
 LoadMoveAnim: ; 37e36
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -9901,7 +9901,7 @@ LoadMoveAnim: ; 37e36
 
 LoadAnim: ; 37e44
 
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 
 	; fallthrough
 ; 37e47
@@ -9922,9 +9922,9 @@ PlayUserBattleAnim: ; 37e47
 
 PlayOpponentBattleAnim: ; 37e54
 	ld a, e
-	ld [FXAnimIDLo], a
+	ld [FXAnimID], a
 	ld a, d
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	xor a
 	ld [wNumHits], a
 
@@ -9983,9 +9983,9 @@ BattleCommand_ClearText: ; 37e85
 
 SkipToBattleCommand: ; 37e8c
 ; Skip over commands until reaching command b.
-	ld a, [BattleScriptBufferLoc + 1]
+	ld a, [BattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [BattleScriptBufferLoc]
+	ld a, [BattleScriptBufferAddress]
 	ld l, a
 .loop
 	ld a, [hli]
@@ -9993,9 +9993,9 @@ SkipToBattleCommand: ; 37e8c
 	jr nz, .loop
 
 	ld a, h
-	ld [BattleScriptBufferLoc + 1], a
+	ld [BattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [BattleScriptBufferLoc], a
+	ld [BattleScriptBufferAddress], a
 	ret
 
 ; 37ea1

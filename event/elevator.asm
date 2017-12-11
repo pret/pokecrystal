@@ -21,9 +21,9 @@ Elevator:: ; 1342d
 	ld a, b
 	ld [wElevatorPointerBank], a
 	ld a, e
-	ld [wElevatorPointerLo], a
+	ld [wElevatorPointer], a
 	ld a, d
-	ld [wElevatorPointerHi], a
+	ld [wElevatorPointer + 1], a
 	call .LoadFloors
 	ret
 ; 1345a
@@ -31,7 +31,7 @@ Elevator:: ; 1342d
 .LoadFloors: ; 1345a
 	ld de, CurElevator
 	ld bc, 4
-	ld hl, wElevatorPointerLo
+	ld hl, wElevatorPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -52,7 +52,7 @@ Elevator:: ; 1342d
 ; 1347d
 
 .FindCurrentFloor: ; 1347d
-	ld hl, wElevatorPointerLo
+	ld hl, wElevatorPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -102,7 +102,7 @@ Elevator:: ; 1342d
 
 Elevator_GoToFloor: ; 134c0
 	push af
-	ld hl, wElevatorPointerLo
+	ld hl, wElevatorPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

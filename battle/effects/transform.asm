@@ -11,7 +11,7 @@ BattleCommand_Transform: ; 371cd
 	jp nz, BattleEffect_ButItFailed
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	ld a, $1
 	ld [wKickCounter], a
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -129,7 +129,7 @@ BattleCommand_Transform: ; 371cd
 .after_anim
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimIDHi], a
+	ld [FXAnimID + 1], a
 	ld a, $2
 	ld [wKickCounter], a
 	pop af

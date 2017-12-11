@@ -245,10 +245,10 @@ ClearPCItemScreen: ; e58b
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	ld a, " "
 	call ByteFill
-	hlcoord 0,0
+	hlcoord 0, 0
 	lb bc, 10, 18
 	call TextBox
-	hlcoord 0,12
+	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
 	call WaitBGMap2

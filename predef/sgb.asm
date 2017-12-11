@@ -168,7 +168,7 @@ Predef_LoadSGBLayout: ; 864c
 	ld de, wSGBPals
 	ld bc, $10
 	call CopyBytes
-	ld a, [wcda1]
+	ld a, [wCurHPPal]
 	ld l, a
 	ld h, 0
 	add hl, hl

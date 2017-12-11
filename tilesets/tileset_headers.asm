@@ -1,3 +1,5 @@
+; entries correspond to TILESET_* constants
+
 tileset: macro
 	dba \1GFX, \1Meta, \1Coll
 	dw \1Anim

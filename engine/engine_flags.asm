@@ -208,7 +208,7 @@ ENDM
 	engine_flag WeeklyFlags, 6 ; move tutor
 	engine_flag WeeklyFlags, 7 ; buenas password
 
-	engine_flag SwarmFlags, 0 ; $60
+	engine_flag SwarmFlags, 0 ; buenas password 2
 	engine_flag SwarmFlags, 1 ; goldenrod dept store sale is on
 
 	engine_flag GameTimerPause, 7 ; $62

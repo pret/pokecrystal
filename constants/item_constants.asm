@@ -1,3 +1,9 @@
+; item ids
+; indexes for:
+; - ItemAttributes (see items/item_attributes.asm)
+; - ItemDescriptions (see items/item_descriptions.asm)
+; - ItemEffects (see items/item_effects.asm)
+; - ItemNames (see items/item_names.asm)
 	const_def
 	const NO_ITEM      ; $00
 	const MASTER_BALL  ; $01
@@ -243,7 +249,7 @@
 	add_tm FIRE_PUNCH   ; $F0
 	add_tm FURY_CUTTER  ; $F1
 	add_tm NIGHTMARE    ; $F2
-NUM_TMS = const_value - TM01 - 2
+NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 
 	add_hm CUT          ; $F3
 	add_hm FLY          ; $F4
@@ -253,26 +259,36 @@ NUM_TMS = const_value - TM01 - 2
 	add_hm WHIRLPOOL    ; $F8
 	add_hm WATERFALL    ; $F9
 NUM_HMS = const_value - HM01
-	const HM_08         ; $FA
+	const ITEM_FA       ; $FA
 
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
+NUM_TM_HM_TUTOR = __enum__ +- 1
 
-ITEM_FROM_MEM EQU $ff
-
+ITEM_FROM_MEM EQU $FF
 
 ; leftovers from red
-SAFARI_BALL    EQU  8 ; MOON_STONE
-MOON_STONE_RED EQU 10 ; BURN_HEAL
-FULL_HEAL_RED  EQU 52 ; X_SPEED
-MAIL_MAX_LENGTH EQU $20
+SAFARI_BALL    EQU $08 ; MOON_STONE
+MOON_STONE_RED EQU $0A ; BURN_HEAL
+FULL_HEAL_RED  EQU $34 ; X_SPEED
 
-; pockets
+; mail
+MAIL_MSG_LENGTH    EQU $20
+MAILBOX_CAPACITY   EQU 10
+MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
+
+; pack pockets
 ITEM     EQU 1
 KEY_ITEM EQU 2
 BALL     EQU 3
 TM_HM    EQU 4
+
+; pack pocket sizes
+MAX_ITEMS     EQU 20
+MAX_KEY_ITEMS EQU 25
+MAX_BALLS     EQU 12
+MAX_PC_ITEMS  EQU 50
 
 ; item actions
 CANT_SELECT EQU 1 << 6
@@ -356,6 +372,7 @@ const_value SET 70
 	const HELD_78
 	const HELD_FOCUS_BAND
 
+; item_attribute struct members (see items/item_attributes.asm)
 	const_def
 	const ITEMATTR_PRICE
 	const ITEMATTR_PRICE_HI
@@ -366,11 +383,13 @@ const_value SET 70
 	const ITEMATTR_HELP
 NUM_ITEMATTRS EQU const_value
 
-ITEMMENU_NOUSE              EQU 0
-ITEMMENU_CURRENT            EQU 4
-ITEMMENU_PARTY              EQU 5
-ITEMMENU_CLOSE              EQU 6
+; item menu types
+ITEMMENU_NOUSE   EQU 0
+ITEMMENU_CURRENT EQU 4
+ITEMMENU_PARTY   EQU 5
+ITEMMENU_CLOSE   EQU 6
 
+; mart types (see engine/mart.asm)
 	const_def
 	const MARTTYPE_STANDARD
 	const MARTTYPE_BITTER
@@ -378,6 +397,7 @@ ITEMMENU_CLOSE              EQU 6
 	const MARTTYPE_PHARMACY
 	const MARTTYPE_ROOFTOP
 
+; Marts indexes (see items/marts.asm)
 	const_def
 	const MART_CHERRYGROVE
 	const MART_CHERRYGROVE_DEX
@@ -414,7 +434,8 @@ ITEMMENU_CLOSE              EQU 6
 	const MART_INDIGO_PLATEAU
 	const MART_UNDERGROUND
 
-; PartyMenuActionText
+; PartyMenuActionText values
+; GetPartyMenuTilemapPointers arguments (see engine/party_menu.asm)
 	const_def
 	const PARTYMENUACTION_CHOOSE_POKEMON
 	const PARTYMENUACTION_HEALING_ITEM
@@ -426,7 +447,7 @@ ITEMMENU_CLOSE              EQU 6
 	const PARTYMENUACTION_GIVE_MON_FEMALE ; unused
 	const PARTYMENUACTION_GIVE_ITEM
 	const PARTYMENUACTION_MOBILE ; mobile
-
+; PrintPartyMenuActionText arguments (see engine/party_menu.asm)
 const_value set $f0
 	const PARTYMENUTEXT_HEAL_PSN
 	const PARTYMENUTEXT_HEAL_BRN

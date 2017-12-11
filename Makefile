@@ -140,8 +140,8 @@ gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimens
 
 ### Misc file-specific graphics rules
 
-gfx/shrink1.2bpp: rgbgfx += -h
-gfx/shrink2.2bpp: rgbgfx += -h
+gfx/shrink/shrink1.2bpp: rgbgfx += -h
+gfx/shrink/shrink2.2bpp: rgbgfx += -h
 
 gfx/trainers/%.2bpp: rgbgfx += -h
 gfx/trainers/%.pal: gfx/trainers/%.gbcpal
@@ -153,7 +153,9 @@ gfx/mail/0b9d86.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/0b9dc6.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
 
-gfx/pokedex/%.2bpp: tools/gfx += --trim-whitespace
+gfx/pokedex/pokedex.2bpp: tools/gfx += --trim-whitespace
+gfx/pokedex/sgb.2bpp: tools/gfx += --trim-whitespace
+gfx/pokedex/slowpoke.2bpp: tools/gfx += --trim-whitespace
 
 gfx/title/crystal.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/old_fg.2bpp: tools/gfx += --interleave --png=$<
@@ -162,10 +164,10 @@ gfx/title/logo.2bpp: rgbgfx += -x 4
 gfx/trade/ball.2bpp: tools/gfx += --remove-whitespace
 gfx/trade/game_boy_n64.2bpp: tools/gfx += --trim-whitespace
 
-gfx/slots_2.2bpp: tools/gfx += --interleave --png=$<
-gfx/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
-gfx/slots_3a.2bpp: tools/gfx += --interleave --png=$<
-gfx/slots_3b.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
+gfx/slots/slots_2.2bpp: tools/gfx += --interleave --png=$<
+gfx/slots/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates --keep-whitespace --remove-xflip
+
+gfx/card_flip/card_flip_2.2bpp: tools/gfx += --remove-whitespace
 
 gfx/fx/angels.2bpp: tools/gfx += --trim-whitespace
 gfx/fx/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
@@ -185,18 +187,21 @@ gfx/fx/rocks.2bpp: tools/gfx += --remove-whitespace
 gfx/fx/skyattack.2bpp: tools/gfx += --remove-whitespace
 gfx/fx/status.2bpp: tools/gfx += --remove-whitespace
 
-gfx/misc/chris.2bpp: rgbgfx += -h
-gfx/misc/chris_card.2bpp: rgbgfx += -h
-gfx/misc/kris.2bpp: rgbgfx += -h
-gfx/misc/kris_card.2bpp: rgbgfx += -h
-gfx/misc/kris_back.2bpp: rgbgfx += -h
-gfx/misc/dude.2bpp: rgbgfx += -h
-gfx/misc/unknown_egg.2bpp: rgbgfx += -h
-gfx/misc/player.2bpp: rgbgfx += -h
-gfx/misc/pokegear.2bpp: rgbgfx += -x2
-gfx/misc/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+gfx/player/chris.2bpp: rgbgfx += -h
+gfx/player/chris_back.2bpp: rgbgfx += -h
+gfx/player/kris.2bpp: rgbgfx += -h
+gfx/player/kris_back.2bpp: rgbgfx += -h
 
-gfx/unknown/0e0ea8.2bpp: tools/gfx += --remove-whitespace
+gfx/trainer_card/chris_card.2bpp: rgbgfx += -h
+gfx/trainer_card/kris_card.2bpp: rgbgfx += -h
+
+gfx/battle/dude.2bpp: rgbgfx += -h
+
+gfx/misc/unknown_egg.2bpp: rgbgfx += -h
+
+gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
+gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+
 gfx/unknown/0f8f34.1bpp: tools/gfx += --trim-whitespace
 gfx/unknown/16c173.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/unknown/170d16.2bpp: tools/gfx += --trim-whitespace

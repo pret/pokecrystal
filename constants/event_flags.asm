@@ -1,7 +1,6 @@
-
+; EventFlags bit flags
 	const_def
-
-; These first eight flags are reset upon reloading the map.
+; The first eight flags are reset upon reloading the map
 	const EVENT_GAVE_KURT_APRICORNS ; 000
 	const EVENT_RECEIVED_BALLS_FROM_KURT
 	const EVENT_DRAGON_SHRINE_QUESTION_2
@@ -10,7 +9,7 @@
 	const EVENT_DRAGON_SHRINE_QUESTION_5
 	const EVENT_JUST_RECEIVED_DRATINI
 	const EVENT_IN_YOUR_ROOM
-; Johto story events
+; Johto Gym Leader TM gifts
 	const EVENT_GOT_TM31_MUD_SLAP
 	const EVENT_GOT_TM49_FURY_CUTTER
 	const EVENT_GOT_TM01_DYNAMICPUNCH
@@ -19,6 +18,7 @@
 	const EVENT_GOT_TM23_IRON_TAIL
 	const EVENT_GOT_TM16_ICY_WIND
 	const EVENT_GOT_TM24_DRAGONBREATH
+; HMs (EVENT_GOT_HM07_WATERFALL is with the Johto itemballs)
 	const EVENT_GOT_HM01_CUT
 	const EVENT_GOT_HM02_FLY
 	const EVENT_GOT_HM03_SURF
@@ -26,9 +26,11 @@
 	const EVENT_GOT_HM05_FLASH
 	const EVENT_GOT_HM06_WHIRLPOOL
 	const EVENT_016
+; Rods
 	const EVENT_GOT_OLD_ROD
 	const EVENT_GOT_GOOD_ROD
 	const EVENT_GOT_SUPER_ROD
+; Johto story events
 	const EVENT_GOT_A_POKEMON_FROM_ELM
 	const EVENT_GOT_CYNDAQUIL_FROM_ELM
 	const EVENT_GOT_TOTODILE_FROM_ELM
@@ -128,7 +130,7 @@
 	const EVENT_GOT_TM12_SWEET_SCENT
 	const EVENT_RELEASED_THE_BEASTS
 	const EVENT_GOT_MASTER_BALL_FROM_ELM
-; Johto Signpost Items
+; Johto signpost items
 	const EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION
 	const EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE
 	const EVENT_TIN_TOWER_5F_HIDDEN_CARBOS
@@ -234,7 +236,7 @@
 	const EVENT_TALKED_TO_OAK_IN_KANTO
 	const EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	const EVENT_GOT_TM29_PSYCHIC
-; Kanto Signpost Items
+; Kanto signpost items
 	const EVENT_DIGLETTS_CAVE_HIDDEN_MAX_REVIVE
 	const EVENT_UNDERGROUND_HIDDEN_FULL_RESTORE
 	const EVENT_UNDERGROUND_HIDDEN_X_SPECIAL
@@ -608,7 +610,7 @@
 	const EVENT_255
 	const EVENT_256
 	const EVENT_257
-; Kurt events
+; Kurt Apricorn events
 	const EVENT_GAVE_KURT_RED_APRICORN
 	const EVENT_GAVE_KURT_BLU_APRICORN
 	const EVENT_GAVE_KURT_YLW_APRICORN
@@ -682,7 +684,7 @@
 	const EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	const EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	const EVENT_29F
-; Ruins Of Alph puzzles
+; Ruins of Alph puzzles
 	const EVENT_SOLVED_HO_OH_PUZZLE ; 2a0
 	const EVENT_SOLVED_KABUTO_PUZZLE
 	const EVENT_SOLVED_OMANYTE_PUZZLE
@@ -734,7 +736,7 @@
 	const EVENT_DECO_BIG_SNORLAX_DOLL
 	const EVENT_DECO_BIG_ONIX_DOLL ; 2d0
 	const EVENT_DECO_BIG_LAPRAS_DOLL
-; More Johto events
+; More Johto story events
 	const EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	const EVENT_SWITCH_1
 	const EVENT_SWITCH_2
@@ -818,7 +820,7 @@
 	const EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
 	const EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
 	const EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
-; More Crystal-specific events
+; More Crystal-exclusive events in Johto
 	const EVENT_LISTENED_TO_INITIAL_RADIO
 	const EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	const EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
@@ -1015,7 +1017,7 @@
 	const EVENT_3E5
 	const EVENT_3E6
 	const EVENT_3E7
-; Trainer Flags
+; Trainer flags
 ; Swimmer F
 	const EVENT_BEAT_SWIMMERF_ELAINE
 	const EVENT_BEAT_SWIMMERF_PAULA
@@ -1530,7 +1532,7 @@
 	const EVENT_BEAT_ELITE_4_BRUNO
 	const EVENT_BEAT_ELITE_4_KAREN
 	const EVENT_BEAT_CHAMPION_LANCE
-; New to Crystal
+; Crystal-exclusive trainer flags
 	const EVENT_BEAT_COOLTRAINERM_DARIN
 	const EVENT_BEAT_COOLTRAINERF_CARA
 	const EVENT_BEAT_TWINS_LEA_AND_PIA
@@ -1663,10 +1665,11 @@
 	const EVENT_63D
 	const EVENT_63E
 	const EVENT_63F
-; Sprite visibility: When these events are cleared, the sprite becomes visible; when set, the sprite is hidden.
+; Sprite visibility flags
+; When these events are cleared, the sprite becomes visible; when set, the sprite is hidden.
 ; The map script command macros `disappear` and `appear` set/clear these flags and immediately apply the effect on visibility.
 ; The map script command macros `setevent` and `clearevent` set/clear these flags, and their effects will be seen when the map is reloaded.
-; Johto items: 0x640
+; Johto itemballs
 	const EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	const EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
 	const EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
@@ -1986,6 +1989,7 @@
 	const EVENT_MT_MOON_RIVAL
 	const EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	const EVENT_TELEPORT_GUY
+; Kanto itemballs
 	const EVENT_PICKED_UP_FOCUS_BAND
 	const EVENT_ROCK_TUNNEL_1F_ELIXER
 	const EVENT_ROCK_TUNNEL_1F_TM_STEEL_WING

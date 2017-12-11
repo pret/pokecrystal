@@ -178,7 +178,7 @@ UndergroundSilverBattleScript:
 	iftrue .Chikorita
 	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
 	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
-	loadtrainer RIVAL1, RIVAL1_12
+	loadtrainer RIVAL1, RIVAL1_4_TOTODILE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -187,7 +187,7 @@ UndergroundSilverBattleScript:
 .Totodile:
 	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
 	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
-	loadtrainer RIVAL1, RIVAL1_10
+	loadtrainer RIVAL1, RIVAL1_4_CHIKORITA
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -196,7 +196,7 @@ UndergroundSilverBattleScript:
 .Chikorita:
 	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
 	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
-	loadtrainer RIVAL1, RIVAL1_11
+	loadtrainer RIVAL1, RIVAL1_4_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle

@@ -1,3 +1,4 @@
+; PlayRadioShow arguments, RadioJumptable indexes (see engine/radio.asm)
 	const_def
 	const OAKS_POKEMON_TALK      ; $00
 	const POKEDEX_SHOW           ; $01
@@ -88,6 +89,7 @@
 	const POKEDEX_SHOW_7         ; $56
 	const POKEDEX_SHOW_8         ; $57
 
+; PlayRadio arguments (see engine/pokegear.asm)
 	const_def
 	const MAPRADIO_POKEMON_CHANNEL
 	const MAPRADIO_OAKS_MON_TALK
@@ -99,12 +101,7 @@
 	const MAPRADIO_LETS_ALL_SING
 	const MAPRADIO_ROCKET
 
-	const_def
-	const BUENA_MON
-	const BUENA_ITEM
-	const BUENA_MOVE
-	const BUENA_STRING
-
+; PasswordTable indexes (see engine/radio.asm)
 	const_def
 	const BUENA_STARTERS
 	const BUENA_DRINKS
@@ -119,3 +116,10 @@
 	const BUENA_STATIONS
 NUM_PASSWORD_CATEGORIES EQU const_value
 NUM_PASSWORDS_PER_CATEGORY EQU 3
+
+; PasswordTable string types (see engine/radio.asm)
+	const_def
+	const BUENA_MON
+	const BUENA_ITEM
+	const BUENA_MOVE
+	const BUENA_STRING

@@ -36,6 +36,9 @@ OAM_X_FLIP    EQU 5
 OAM_Y_FLIP    EQU 6
 OAM_PRIORITY  EQU 7 ; 0: OBJ above BG, 1: OBJ behind BG (colors 1-3)
 
+X_FLIP    EQU 1 << OAM_X_FLIP
+Y_FLIP    EQU 1 << OAM_Y_FLIP
+BEHIND_BG EQU 1 << OAM_PRIORITY
 
 ; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)

@@ -22,7 +22,7 @@ _MapSetup_Sound_Off:: ; e8000
 	ld [hli], a ; ff26 ; music channels
 
 	ld hl, rNR10 ; sound channel registers
-	ld e, $4 ; number of channels
+	ld e, NUM_MUSIC_CHANS
 .clearsound
 ;   sound channel   1      2      3      4
 	xor a
@@ -47,7 +47,7 @@ _MapSetup_Sound_Off:: ; e8000
 	ld a, e
 	or d
 	jr nz, .clearchannels
-	ld a, $77 ; max
+	ld a, MAX_VOLUME
 	ld [Volume], a
 	call MusicOn
 	pop af
@@ -60,15 +60,15 @@ _MapSetup_Sound_Off:: ; e8000
 
 MusicFadeRestart: ; e803d
 ; restart but keep the music id to fade in to
-	ld a, [MusicFadeIDHi]
+	ld a, [MusicFadeID + 1]
 	push af
-	ld a, [MusicFadeIDLo]
+	ld a, [MusicFadeID]
 	push af
 	call _MapSetup_Sound_Off
 	pop af
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	pop af
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ret
 
 ; e8051
@@ -151,7 +151,7 @@ _UpdateSound:: ; e805c
 	jr z, .next
 	; are we in a sfx channel right now?
 	ld a, [CurChannel]
-	cp $4
+	cp CHAN5
 	jr nc, .next
 	; are any sfx channels active?
 	; if so, mute
@@ -174,7 +174,7 @@ _UpdateSound:: ; e805c
 .next
 	; are we in a sfx channel right now?
 	ld a, [CurChannel]
-	cp $4 ; sfx
+	cp CHAN5
 	jr nc, .sfx_channel
 	ld hl, Channel5Flags - Channel1
 	add hl, bc
@@ -654,11 +654,11 @@ FadeMusic: ; e8358
 	; restart sound
 	call MusicFadeRestart
 	; get new song id
-	ld a, [MusicFadeIDLo]
+	ld a, [MusicFadeID]
 	and a
 	jr z, .quit ; this assumes there are fewer than 256 songs!
 	ld e, a
-	ld a, [MusicFadeIDHi]
+	ld a, [MusicFadeID + 1]
 	ld d, a
 	; load new song
 	call _PlayMusic
@@ -679,9 +679,9 @@ FadeMusic: ; e8358
 	xor a
 	ld [Volume], a
 	; get new song id
-	ld a, [MusicFadeIDLo]
+	ld a, [MusicFadeID]
 	ld e, a
-	ld a, [MusicFadeIDHi]
+	ld a, [MusicFadeID + 1]
 	ld d, a
 	; load new song
 	call _PlayMusic
@@ -744,7 +744,7 @@ LoadNote: ; e83d1
 	sub [hl]
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
@@ -766,7 +766,7 @@ LoadNote: ; e83d1
 	sub e
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	; ????
 	ld hl, Channel1PitchWheelTarget + 1 - Channel1
@@ -793,7 +793,7 @@ LoadNote: ; e83d1
 	sub [hl]
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	ld hl, Channel1PitchWheelTarget + 1 - Channel1
 	add hl, bc
@@ -1021,7 +1021,7 @@ ApplyPitchWheel: ; e84f9
 	sub e
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	; [Channel*Field0x25] *= 2
 	; if rollover: Frequency -= 1
@@ -1031,10 +1031,10 @@ ApplyPitchWheel: ; e84f9
 	add a
 	ld [hl], a
 	ld a, e
-	sbc a, 0
+	sbc 0
 	ld e, a
 	ld a, d
-	sbc a, 0
+	sbc 0
 	ld d, a
 	; Compare the dw at [Channel*PitchWheelTarget] to de.
 	; If frequency is lower, we're finished.
@@ -1223,7 +1223,7 @@ ParseMusic: ; e85e1
 	bit SOUND_SUBROUTINE, [hl] ; in a subroutine?
 	jr nz, .readcommand ; execute
 	ld a, [CurChannel]
-	cp $4 ; channels 0-3?
+	cp CHAN5
 	jr nc, .chan_5to8
 	; ????
 	ld hl, Channel5Flags - Channel1
@@ -1237,7 +1237,7 @@ ParseMusic: ; e85e1
 	call nz, RestoreVolume
 	; end music
 	ld a, [CurChannel]
-	cp $4 ; channel 5?
+	cp CHAN5
 	jr nz, .ok
 	; ????
 	xor a
@@ -1266,7 +1266,7 @@ ParseMusic: ; e85e1
 RestoreVolume: ; e8679
 	; ch5 only
 	ld a, [CurChannel]
-	cp $4
+	cp CHAN5
 	ret nz
 	xor a
 	ld hl, Channel6CryPitch
@@ -1364,9 +1364,9 @@ GetNoiseSample: ; e86c5
 	add hl, de
 	; load sample pointer into NoiseSampleAddress
 	ld a, [hli]
-	ld [NoiseSampleAddressLo], a
+	ld [NoiseSampleAddress], a
 	ld a, [hl]
-	ld [NoiseSampleAddressHi], a
+	ld [NoiseSampleAddress + 1], a
 	; clear ????
 	xor a
 	ld [wNoiseSampleDelay], a
@@ -1378,7 +1378,7 @@ ParseMusicCommand: ; e870f
 	; reload command
 	ld a, [CurMusicByte]
 	; get command #
-	sub a, $d0 ; first command
+	sub $d0 ; first command
 	ld e, a
 	ld d, 0
 	; seek command pointer
@@ -1968,7 +1968,7 @@ Music_NoteType: ; e8963
 	ld [hl], a
 	ld a, [CurChannel]
 	and $3
-	cp CHAN4 ; CHAN8 & $3
+	cp CHAN8 & $3
 	ret z
 	; intensity
 	call Music_Intensity
@@ -2063,7 +2063,7 @@ Music_StereoPanning: ; e89ba
 ; params: 1
 	; stereo on?
 	ld a, [Options]
-	bit 5, a ; stereo
+	bit STEREO, a
 	jr nz, Music_Panning
 	; skip param
 	call GetMusicByte
@@ -2160,9 +2160,9 @@ Music_RestartChannel: ; e8a08
 	ld hl, Channel1MusicID - Channel1
 	add hl, bc
 	ld a, [hli]
-	ld [MusicIDLo], a
+	ld [MusicID], a
 	ld a, [hl]
-	ld [MusicIDHi], a
+	ld [MusicID + 1], a
 	; update music bank
 	ld hl, Channel1MusicBank - Channel1
 	add hl, bc
@@ -2437,7 +2437,7 @@ _PlayMusic:: ; e8b30
 	ld hl, MusicID
 	ld [hl], e ; song number
 	inc hl
-	ld [hl], d ; MusicIDHi (always $)
+	ld [hl], d ; (always 0)
 	ld hl, Music
 	add hl, de ; three
 	add hl, de ; byte
@@ -2466,8 +2466,8 @@ _PlayMusic:: ; e8b30
 	ld [Channel2JumpCondition], a
 	ld [Channel3JumpCondition], a
 	ld [Channel4JumpCondition], a
-	ld [NoiseSampleAddressLo], a
-	ld [NoiseSampleAddressHi], a
+	ld [NoiseSampleAddress], a
+	ld [NoiseSampleAddress + 1], a
 	ld [wNoiseSampleDelay], a
 	ld [MusicNoiseSampleSet], a
 	call MusicOn
@@ -2552,7 +2552,7 @@ _PlayCryHeader:: ; e8b79
 ; This only applies in-battle.
 
 	ld a, [Options]
-	bit 5, a ; stereo
+	bit STEREO, a
 	jr z, .next
 
 ; [Tracks] &= [CryTracks]
@@ -2577,7 +2577,7 @@ _PlayCryHeader:: ; e8b79
 
 	ld a, [Volume]
 	ld [LastVolume], a
-	ld a, $77
+	ld a, MAX_VOLUME
 	ld [Volume], a
 
 .end
@@ -2647,8 +2647,8 @@ _PlaySFX:: ; e8c04
 	ld a, $80
 	ld [rNR44], a ; restart sound (freq hi = 0)
 	xor a
-	ld [NoiseSampleAddressLo], a
-	ld [NoiseSampleAddressHi], a
+	ld [NoiseSampleAddress], a
+	ld [NoiseSampleAddress + 1], a
 .chscleared
 ; start reading sfx header for # chs
 	ld hl, MusicID
@@ -2696,7 +2696,7 @@ PlayStereoSFX:: ; e8ca6
 
 ; standard procedure if stereo's off
 	ld a, [Options]
-	bit 5, a
+	bit STEREO, a
 	jp z, _PlaySFX
 
 ; else, let's go ahead with this
@@ -2825,9 +2825,9 @@ LoadChannel: ; e8d1b
 	; load music id
 	ld hl, Channel1MusicID - Channel1
 	add hl, bc
-	ld a, [MusicIDLo]
+	ld a, [MusicID]
 	ld [hli], a
-	ld a, [MusicIDHi]
+	ld a, [MusicID + 1]
 	ld [hl], a
 	; load music bank
 	ld hl, Channel1MusicBank - Channel1
@@ -3231,7 +3231,7 @@ GetLRTracks: ; e8fc2
 ; gets the default sound l/r channels
 ; stores mono/stereo table in hl
 	ld a, [Options]
-	bit 5, a ; stereo
+	bit STEREO, a
 	; made redundant, could have had a purpose in gold
 	jr nz, .stereo
 	ld hl, MonoTracks
@@ -3279,7 +3279,7 @@ ClearChannels:: ; e8fe9
 	ld a, $80
 	ld [hli], a
 	ld hl, rNR10
-	ld e, $4
+	ld e, NUM_MUSIC_CHANS
 .loop
 	call ClearChannel
 	dec e

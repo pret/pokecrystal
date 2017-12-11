@@ -58,7 +58,7 @@ In the installer, select the following packages:
 - `gcc-core`
 
 Then download [**rgbds**](https://github.com/rednex/rgbds/releases/).
-Extract the archive and put all the `exe` and `dll` files individually in `C:\cygwin64\usr\local\bin`.
+Extract rgbds-0.3.3-win64.tar.gz and put all the `exe` and `dll` files individually in **C:\Cygwin64\usr\local\bin**. If you are using 32-bit Windows and Cygwin, extract **rgbds-0.3.3-win32.tar.gz** to **C:\Cygwin\usr\local\bin**.
 
 **Note: If you have an older rgbds, you will need to update to 0.3.3 or newer.** Ignore this if you have never installed rgbds before.
 

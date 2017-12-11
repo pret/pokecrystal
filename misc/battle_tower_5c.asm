@@ -1361,7 +1361,7 @@ BattleTowerAction_EggTicket: ; 17093c (5c:493c) BattleTowerAction $0e
 	cp EGG
 	jr nz, .not_egg
 	push hl
-	ld hl, PartyMonOT ; wddff (aliases: PartyMonOT)
+	ld hl, PartyMonOT
 	ld de, $6 ; NAME_LENGTH
 	ld a, b
 	and a

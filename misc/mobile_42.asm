@@ -83,7 +83,7 @@ Function10804d: ; 10804d
 	mobiletradeanim_end
 
 RunMobileTradeAnim_Frontpics: ; 10805b
-	ld hl, wTradeAnimPointer
+	ld hl, wTradeAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -113,7 +113,7 @@ RunMobileTradeAnim_Frontpics: ; 10805b
 ; 108089
 
 RunMobileTradeAnim_NoFrontpics: ; 108089
-	ld hl, wTradeAnimPointer
+	ld hl, wTradeAnimAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -411,7 +411,7 @@ MobileTradeAnim_Next: ; 1082b2
 ; 1082b7
 
 GetMobileTradeAnimByte: ; 1082b7
-	ld hl, wTradeAnimPointer
+	ld hl, wTradeAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1313,7 +1313,7 @@ MobileTradeAnim_DisplayEggData
 .EggTemplate: ; 108a1d
 	db   "タマゴ"
 	next "おや/?????"
-	next "<ID>№·?????"
+	next "<ID>№<DOT>?????"
 	db   "@"
 ; 108a33
 
@@ -1353,10 +1353,10 @@ MobileTradeAnim_LoadMonTemplate: ; 108a5b
 ; 108a79
 
 .MonTemplate: ; 108a79
-	db   "─ №·"
+	db   "─ №<DOT>"
 	next ""
 	next "おや/"
-	next "<ID>№·"
+	next "<ID>№<DOT>"
 	db   "@"
 ; 108a87
 

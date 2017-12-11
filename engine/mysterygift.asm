@@ -815,7 +815,7 @@ Function104e93: ; 104e93 (41:4e93)
 	ld c, rRP % $100
 	ld d, $3d
 	call Function104dd1
-	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2
 	ld a, $5a
 	ld [hli], a
 	ld [hl], b
@@ -830,7 +830,7 @@ Function104e93: ; 104e93 (41:4e93)
 	ld a, [hPrintNum6]
 	ld [hPrintNum3], a
 	push hl
-	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2
 	ld b, $2
 	call Function104ed6
 	ld hl, hMGStatusFlags
@@ -934,7 +934,7 @@ Function104f57: ; 104f57 (41:4f57)
 	ld [hPrintNum6], a
 	push bc
 	push hl
-	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2
 	ld b, $2
 	call Function104faf
 	ld a, [hPrintNum3]
@@ -954,11 +954,11 @@ Function104f57: ; 104f57 (41:4f57)
 	ld e, a
 	push hl
 	push de
-	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2
 	ld b, $2
 	call Function104faf
 	pop de
-	ld hl, hPrintNum2 ; $ffb4 (aliases: hMultiplicand)
+	ld hl, hPrintNum2
 	ld a, [hli]
 	xor d
 	ld b, a

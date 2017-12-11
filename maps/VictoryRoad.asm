@@ -66,7 +66,7 @@ UnknownScript_0x744d4:
 	iftrue UnknownScript_0x7450f
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked VICTORYROAD_SILVER
-	loadtrainer RIVAL1, RIVAL1_15
+	loadtrainer RIVAL1, RIVAL1_5_TOTODILE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -75,7 +75,7 @@ UnknownScript_0x744d4:
 UnknownScript_0x744ff:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked VICTORYROAD_SILVER
-	loadtrainer RIVAL1, RIVAL1_13
+	loadtrainer RIVAL1, RIVAL1_5_CHIKORITA
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -84,7 +84,7 @@ UnknownScript_0x744ff:
 UnknownScript_0x7450f:
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked VICTORYROAD_SILVER
-	loadtrainer RIVAL1, RIVAL1_14
+	loadtrainer RIVAL1, RIVAL1_5_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle

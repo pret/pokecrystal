@@ -29,38 +29,37 @@ add_mt: MACRO
 	enum \1_TMNUM
 ENDM
 
+; N TMs/HMs need (N+7)/8 bytes for their bit flags.
+; The rgbasm integers tms1, tms2, tms3 each hold 3 bytes, or 24 bits.
 tmhm: MACRO
-x = 0
-y = 0
-w = 0
-	rept _NARG
+tms1 = 0
+tms2 = 0
+tms3 = 0
+rept _NARG
 	if def(\1_TMNUM)
-	if \1_TMNUM < 25
-x = x | (1 << ((\1_TMNUM) - 1))
+	if \1_TMNUM < 24 + 1
+tms1 = tms1 | (1 << ((\1_TMNUM) - 1))
+	elif \1_TMNUM < 48 + 1
+tms2 = tms2 | (1 << ((\1_TMNUM) - 1 - 24))
 	else
-	if \1_TMNUM < 49
-y = y | (1 << ((\1_TMNUM) - 1 - 24))
-	else
-w = w | (1 << ((\1_TMNUM) - 1 - 48))
-	endc
+tms3 = tms3 | (1 << ((\1_TMNUM) - 1 - 48))
 	endc
 	else
 		fail "\1 is not a TM, HM, or move tutor move"
 	endc
-
 	shift
-	endr
+endr
 
-	rept 3
-	db x & $ff
-x = x >> 8
-	endr
-	rept 3
-	db y & $ff
-y = y >> 8
-	endr
-	rept 2
-	db w & $ff
-w = w >> 8
-	endr
+rept 3
+	db tms1 & $ff
+tms1 = tms1 >> 8
+endr
+rept 3
+	db tms2 & $ff
+tms2 = tms2 >> 8
+endr
+rept 2
+	db tms3 & $ff
+tms3 = tms3 >> 8
+endr
 ENDM

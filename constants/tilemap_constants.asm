@@ -1,9 +1,10 @@
-LANDTILE  EQU  0
+; collision values (see tilesets/collision.asm)
+LANDTILE  EQU $0
+WATERTILE EQU $1
 WALLTILE  EQU $f
-WATERTILE EQU  1
+TALK      EQU $10
 
-TALK     EQU  1 << 4
-
+; Tilesets indexes (see tilesets/tileset_headers.asm)
 const_value SET 1
 	const TILESET_JOHTO_1              ; 01
 	const TILESET_JOHTO_2              ; 02
@@ -42,12 +43,13 @@ const_value SET 1
 	const TILESET_OMANYTE_WORD_ROOM    ; 23
 	const TILESET_AERODACTYL_WORD_ROOM ; 24
 
+; bg palette values (see tilesets/*_palette_map.asm)
 	const_def
-	const PAL_BG_GRAY
-	const PAL_BG_RED
-	const PAL_BG_GREEN
-	const PAL_BG_WATER
-	const PAL_BG_YELLOW
-	const PAL_BG_BROWN
-	const PAL_BG_ROOF
-	const PAL_BG_TEXT
+	const PAL_BG_GRAY   ; 0
+	const PAL_BG_RED    ; 1
+	const PAL_BG_GREEN  ; 2
+	const PAL_BG_WATER  ; 3
+	const PAL_BG_YELLOW ; 4
+	const PAL_BG_BROWN  ; 5
+	const PAL_BG_ROOF   ; 6
+	const PAL_BG_TEXT   ; 7

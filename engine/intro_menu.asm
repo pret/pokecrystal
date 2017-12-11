@@ -111,8 +111,8 @@ _ResetWRAM: ; 5bae
 	xor a
 	call ByteFill
 
-	ld hl, wd000
-	ld bc, wGameData - wd000
+	ld hl, wRAM1Start
+	ld bc, wGameData - wRAM1Start
 	xor a
 	call ByteFill
 
@@ -375,9 +375,9 @@ Continue: ; 5d65
 	ld a, $8
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_NONE / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	call ClearBGPalettes
 	call Continue_MobileAdapterMenu
 	call CloseWindow
@@ -429,9 +429,9 @@ Continue_MobileAdapterMenu: ; 5df0
 	ld a, 5
 	ld [MusicFade], a
 	ld a, MUSIC_MOBILE_ADAPTER_MENU % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_MOBILE_ADAPTER_MENU / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames
 	ld c, $1
@@ -440,9 +440,9 @@ Continue_MobileAdapterMenu: ; 5df0
 	ld a, 8
 	ld [MusicFade], a
 	ld a, MUSIC_NONE % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_NONE / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld c, 35
 	call DelayFrames
 	ret
@@ -859,9 +859,9 @@ ShrinkPlayer: ; 610f
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, d
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 
 	ld de, SFX_ESCAPE_ROPE
 	call PlaySFX
@@ -1051,7 +1051,7 @@ StartTitleScreen: ; 6219
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call UpdateTimePals
-	ld a, [wcf64]
+	ld a, [wIntroSceneFrameCounter]
 	cp $5
 	jr c, .ok
 	xor a
@@ -1191,7 +1191,7 @@ TitleScreenTimer: ; 62f6
 	inc [hl]
 
 ; Start a timer
-	ld hl, wcf65
+	ld hl, wTitleScreenTimer
 	ld de, 73 * 60 + 36
 	ld [hl], e
 	inc hl
@@ -1202,7 +1202,7 @@ TitleScreenTimer: ; 62f6
 TitleScreenMain: ; 6304
 
 ; Run the timer down.
-	ld hl, wcf65
+	ld hl, wTitleScreenTimer
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1268,7 +1268,7 @@ TitleScreenMain: ; 6304
 	ld a, 1
 
 .done
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 
 ; Return to the intro sequence.
 	ld hl, wJumptableIndex
@@ -1282,18 +1282,18 @@ TitleScreenMain: ; 6304
 
 ; Fade out the title screen music
 	xor a
-	ld [MusicFadeIDLo], a
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID], a
+	ld [MusicFadeID + 1], a
 	ld hl, MusicFade
 	ld [hl], 8 ; 1 second
 
-	ld hl, wcf65
+	ld hl, wTitleScreenTimer
 	inc [hl]
 	ret
 
 .clock_reset
 	ld a, 4
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 
 ; Return to the intro sequence.
 	ld hl, wJumptableIndex
@@ -1305,7 +1305,7 @@ TitleScreenEnd: ; 6375
 
 ; Wait until the music is done fading.
 
-	ld hl, wcf65
+	ld hl, wTitleScreenTimer
 	inc [hl]
 
 	ld a, [MusicFade]
@@ -1313,7 +1313,7 @@ TitleScreenEnd: ; 6375
 	ret nz
 
 	ld a, 2
-	ld [wcf64], a
+	ld [wIntroSceneFrameCounter], a
 
 ; Back to the intro.
 	ld hl, wJumptableIndex
@@ -1332,8 +1332,8 @@ ResetClock: ; 6392
 ; 639b
 
 Function639b: ; unreferenced
-	; If bit 0 or 1 of [wcf65] is set, we don't need to be here.
-	ld a, [wcf65]
+	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
+	ld a, [wTitleScreenTimer]
 	and $3
 	ret nz
 	ld bc, SpriteAnim10
@@ -1345,8 +1345,8 @@ Function639b: ; unreferenced
 	add hl, hl
 	ld de, Data63ca
 	add hl, de
-	; If bit 2 of [wcf65] is set, get the second dw; else, get the first dw
-	ld a, [wcf65]
+	; If bit 2 of [wTitleScreenTimer] is set, get the second dw; else, get the first dw
+	ld a, [wTitleScreenTimer]
 	and %00000100
 	srl a
 	srl a

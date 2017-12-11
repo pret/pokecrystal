@@ -40,9 +40,9 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld a, $5
 	ld [MusicFade], a
 	ld a, MUSIC_MOBILE_ADAPTER_MENU % $100
-	ld [MusicFadeIDLo], a
+	ld [MusicFadeID], a
 	ld a, MUSIC_MOBILE_ADAPTER_MENU / $100
-	ld [MusicFadeIDHi], a
+	ld [MusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames
 	ld b, $1

@@ -1,3 +1,4 @@
+; Cries indexes (see audio/cry_pointers.asm)
 	const_def
 
 ; gen 1
