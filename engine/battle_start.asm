@@ -651,11 +651,11 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ld [rSVBK], a
 	call .copypals
 	push hl
-	ld de, UnknBGPals + 7 palettes
+	ld de, UnknBGPals palette PAL_BG_TEXT
 	ld bc, 1 palettes
 	call CopyBytes
 	pop hl
-	ld de, BGPals + 7 palettes
+	ld de, BGPals palette PAL_BG_TEXT
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
@@ -670,17 +670,17 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ret
 
 .copypals ; 8c677 (23:4677)
-	ld de, UnknBGPals + 7 palettes
+	ld de, UnknBGPals palette PAL_BG_TEXT
 	call .copy
-	ld de, BGPals + 7 palettes
+	ld de, BGPals palette PAL_BG_TEXT
 	call .copy
-	ld de, UnknOBPals + 6 palettes
+	ld de, UnknOBPals palette PAL_OW_TREE
 	call .copy
-	ld de, OBPals + 6 palettes
+	ld de, OBPals palette PAL_OW_TREE
 	call .copy
-	ld de, UnknOBPals + 7 palettes
+	ld de, UnknOBPals palette PAL_OW_ROCK
 	call .copy
-	ld de, OBPals + 7 palettes
+	ld de, OBPals palette PAL_OW_ROCK
 
 .copy ; 8c698 (23:4698)
 	push hl

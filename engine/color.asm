@@ -2267,7 +2267,7 @@ Palettes_b789:
 	RGB 18, 18, 18
 	RGB 00, 00, 00
 
-Palettes_b7a9:
+SlotMachinePals:
 	RGB 31, 31, 31
 	RGB 24, 25, 28
 	RGB 24, 24, 09

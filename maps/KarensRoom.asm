@@ -151,4 +151,4 @@ KarensRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_KAREN, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, KarenScript_Battle, -1
+	person_event SPRITE_KAREN, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, KarenScript_Battle, -1

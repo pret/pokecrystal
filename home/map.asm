@@ -2291,7 +2291,7 @@ GetMapHeaderMusic:: ; 2cbd
 	ld a, c
 	cp MUSIC_MAHOGANY_MART
 	jr z, .mahoganymart
-	bit RADIO_TOWER_MUSIC, c
+	bit RADIO_TOWER_MUSIC_F, c
 	jr nz, .radiotower
 	callba Function8b342
 	ld e, c
@@ -2311,7 +2311,7 @@ GetMapHeaderMusic:: ; 2cbd
 .clearedradiotower
 	; the rest of the byte
 	ld a, c
-	and 1 << RADIO_TOWER_MUSIC - 1
+	and RADIO_TOWER_MUSIC - 1
 	ld e, a
 	ld d, 0
 	jr .done

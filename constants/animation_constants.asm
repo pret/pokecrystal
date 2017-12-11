@@ -828,8 +828,8 @@ const_value SET 1
 	const_def
 	const PAL_BATTLE_BG_PLAYER    ; 0
 	const PAL_BATTLE_BG_ENEMY     ; 1
-	const PAL_BATTLE_BG_PLAYER_HP ; 2
-	const PAL_BATTLE_BG_ENEMY_HP  ; 3
+	const PAL_BATTLE_BG_ENEMY_HP  ; 2
+	const PAL_BATTLE_BG_PLAYER_HP ; 3
 	const PAL_BATTLE_BG_EXP       ; 4
 	const PAL_BATTLE_BG_5         ; 5
 	const PAL_BATTLE_BG_6         ; 6

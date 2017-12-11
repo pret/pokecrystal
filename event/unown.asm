@@ -222,7 +222,7 @@ endm
 	cp $ff
 	ret z
 	cp $60
-	ld a, (1 << 3) | PAL_BG_BROWN
+	ld a, VRAM_BANK_1 | PAL_BG_BROWN
 	jr c, .got_pal
 	ld a, PAL_BG_BROWN
 

@@ -224,6 +224,7 @@ endr
 ENDM
 
 palettes EQUS "* 8"
+palette EQUS "+ 8 *"
 
 ldpixel: MACRO
 if _NARG >= 5
