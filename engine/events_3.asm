@@ -850,9 +850,9 @@ LoadFishingGFX: ; b84b3
 ; b84f2
 
 FishingGFX: ; b84f2
-INCBIN "gfx/ow_fx/chris_fish.2bpp"
+INCBIN "gfx/overworld/chris_fish.2bpp"
 ; b8582
 
 KrisFishingGFX: ; b8582
-INCBIN "gfx/ow_fx/kris_fish.2bpp"
+INCBIN "gfx/overworld/kris_fish.2bpp"
 ; b8612

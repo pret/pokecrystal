@@ -1477,5 +1477,5 @@ Group20Sprites: ; 1472b
 
 
 SpriteHeaders: ; 14736
-INCLUDE "gfx/overworld/sprite_headers.asm"
+INCLUDE "gfx/sprite_headers.asm"
 ; 1499a

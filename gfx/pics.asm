@@ -1,18 +1,21 @@
 INCLUDE "includes.asm"
 
 
-; Unown pic pointers are assumed to start at the same address in a different bank.
-
 SECTION "Pic Pointers", ROMX
+
 PicPointers:: INCLUDE "gfx/pics/pic_pointers.asm"
 
+
 SECTION "Unown Pic Pointers", ROMX
+
+; Unown pic pointers are assumed to start at the same address as PicPointers,
+; but in a different bank.
 UnownPicPointers:: INCLUDE "gfx/pics/unown_pic_pointers.asm"
 
 
 SECTION "Trainer Pic Pointers", ROMX
-TrainerPicPointers:: INCLUDE "gfx/pics/trainer_pic_pointers.asm"
 
+TrainerPicPointers:: INCLUDE "gfx/trainer_pic_pointers.asm"
 
 
 SECTION "Pics 1", ROMX

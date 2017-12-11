@@ -5062,13 +5062,9 @@ StartBattleWithMapTrainerScript: ; 0xbe68a
 AlreadyBeatenTrainerScript:
 	scripttalkafter
 
-SECTION "bank30", ROMX
 
-INCLUDE "gfx/overworld/sprites_1.asm"
+INCLUDE "gfx/sprites.asm"
 
-SECTION "bank31", ROMX
-
-INCLUDE "gfx/overworld/sprites_2.asm"
 
 SECTION "bank32", ROMX
 

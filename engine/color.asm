@@ -1877,7 +1877,7 @@ Palettes_a8ca:
 
 INCLUDE "gfx/pics/palette_pointers.asm"
 
-INCLUDE "gfx/trainers/palette_pointers.asm"
+INCLUDE "gfx/trainer_palettes.asm"
 
 LoadMapPals:
 	callba LoadSpecialMapPalette

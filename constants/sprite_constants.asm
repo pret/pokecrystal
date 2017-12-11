@@ -1,5 +1,5 @@
 ; sprite ids
-; SpriteHeaders indexes (see gfx/overworld/sprite_headers.asm)
+; SpriteHeaders indexes (see gfx/sprite_headers.asm)
 	const_def
 	const SPRITE_NONE ; 00
 	const SPRITE_CHRIS ; 01
@@ -166,7 +166,7 @@ SPRITE_VARS EQU const_value
 	const SPRITE_COPYCAT ; fb
 	const SPRITE_JANINE_IMPERSONATOR ; fc
 
-; sprite_header struct members (see gfx/overworld/sprite_headers.asm)
+; sprite_header struct members (see gfx/sprite_headers.asm)
 	const_def
 	const SPRITEHEADER_ADDR_LO
 	const SPRITEHEADER_ADDR_HI

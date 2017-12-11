@@ -129,9 +129,9 @@ ROMX $2e
 ROMX $2f
 	"bank2F"
 ROMX $30
-	"bank30"
+	"Sprites 1"
 ROMX $31
-	"bank31"
+	"Sprites 2"
 ROMX $32
 	"bank32"
 ROMX $33
