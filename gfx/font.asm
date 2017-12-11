@@ -165,13 +165,13 @@ _LoadFontsBattleExtra:: ; fb4be
 LoadFrame: ; fb4cc
 	ld a, [TextBoxFrame]
 	and 7
-	ld bc, TILES_PER_FRAME * LEN_1BPP_TILE
+	ld bc, LEN_1BPP_TILE * 6
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, VTiles2 tile "┌" ; $79
-	lb bc, BANK(Frames), TILES_PER_FRAME
+	lb bc, BANK(Frames), 6
 	call Get1bpp_2
 	ld hl, VTiles2 tile " " ; $7f
 	ld de, TextBoxSpaceGFX

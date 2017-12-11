@@ -355,6 +355,8 @@ NEXTU ; c608
 ; timeset temp storage
 	ds 20
 wInitHourBuffer:: db ; c61c
+	ds 9
+wInitMinuteBuffer:: db ; c626
 
 NEXTU ; c608
 ; link engine data

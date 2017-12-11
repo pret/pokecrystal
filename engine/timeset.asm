@@ -44,7 +44,7 @@ InitClock: ; 90672 (24:4672)
 	ld bc, 50
 	xor a
 	call ByteFill
-	ld a, $a
+	ld a, 10 ; default hour = 10 AM
 	ld [wInitHourBuffer], a
 
 .loop
@@ -98,7 +98,7 @@ InitClock: ; 90672 (24:4672)
 	call SetMinutes
 	jr nc, .SetMinutesLoop
 
-	ld a, [BattleMonNick + 5]
+	ld a, [wInitMinuteBuffer]
 	ld [StringBuffer2 + 2], a
 	call .ClearScreen
 	ld hl, Text_WhoaMins
@@ -237,7 +237,7 @@ SetMinutes: ; 90810 (24:4810)
 	ret
 
 .d_down
-	ld hl, BattleMonNick + 5
+	ld hl, wInitMinuteBuffer
 	ld a, [hl]
 	and a
 	jr nz, .decrease
@@ -248,7 +248,7 @@ SetMinutes: ; 90810 (24:4810)
 	jr .finish_dpad
 
 .d_up
-	ld hl, BattleMonNick + 5
+	ld hl, wInitMinuteBuffer
 	ld a, [hl]
 	cp 59
 	jr c, .increase
@@ -271,7 +271,7 @@ SetMinutes: ; 90810 (24:4810)
 	ret
 
 DisplayMinutesWithMinString: ; 90859 (24:4859)
-	ld de, BattleMonNick + 5
+	ld de, wInitMinuteBuffer
 	call PrintTwoDigitNumberRightAlign
 	inc hl
 	ld de, String_min
@@ -355,17 +355,17 @@ OakText_ResponseToSetTime: ; 0x908b8
 	call PrintHour
 	ld [hl], ":"
 	inc hl
-	ld de, BattleMonNick + 5
+	ld de, wInitMinuteBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld b, h
 	ld c, l
 	ld a, [wInitHourBuffer]
-	cp 4
+	cp MORN_HOUR
 	jr c, .nite
-	cp 11
+	cp DAY_HOUR + 1
 	jr c, .morn
-	cp 18
+	cp NITE_HOUR
 	jr c, .day
 .nite:
 	ld hl, .sodark
@@ -482,7 +482,7 @@ Special_SetDayOfWeek: ; 90913
 	ld a, [hl]
 	and a
 	jr nz, .decrease
-	ld a, 6 + 1
+	ld a, SATURDAY + 1
 
 .decrease
 	dec a
@@ -494,7 +494,7 @@ Special_SetDayOfWeek: ; 90913
 	ld a, [hl]
 	cp 6
 	jr c, .increase
-	ld a, 0 - 1
+	ld a, SUNDAY - 1
 
 .increase
 	inc a
@@ -531,6 +531,7 @@ Special_SetDayOfWeek: ; 90913
 ; 909f2
 
 .WeekdayStrings: ; 909f2
+; entries correspond to CurDay constants (see constants/wram_constants.asm)
 	dw .Sunday
 	dw .Monday
 	dw .Tuesday
@@ -731,11 +732,11 @@ PrintHour: ; 90b3e (24:4b3e)
 
 GetTimeOfDayString: ; 90b58 (24:4b58)
 	ld a, c
-	cp 4
+	cp MORN_HOUR
 	jr c, .nite
-	cp 10
+	cp DAY_HOUR
 	jr c, .morn
-	cp 18
+	cp NITE_HOUR
 	jr c, .day
 .nite
 	ld de, .nite_string
@@ -758,12 +759,12 @@ AdjustHourForAMorPM:
 	ld a, c
 	or a
 	jr z, .midnight
-	cp 12
+	cp NOON_HOUR
 	ret c
 	ret z
-	sub 12
+	sub NOON_HOUR
 	ret
 
 .midnight
-	ld a, 12
+	ld a, NOON_HOUR
 	ret
