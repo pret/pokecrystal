@@ -269,10 +269,10 @@ CheckTime:: ; c000
 	ret
 
 TimeOfDayTable: ; c012
-	db MORN, 1 << MORN
-	db DAY,  1 << DAY
-	db NITE, 1 << NITE
-	db NITE, 1 << NITE
+	db MORN_F, MORN
+	db DAY_F,  DAY
+	db NITE_F, NITE
+	db NITE_F, NITE
 	db -1
 
 INCLUDE "engine/specials.asm"
@@ -1430,7 +1430,7 @@ PlayBattleMusic: ; 2ee6c
 
 	ld de, MUSIC_JOHTO_WILD_BATTLE
 	ld a, [TimeOfDay]
-	cp NITE
+	cp NITE_F
 	jr nz, .done
 	ld de, MUSIC_JOHTO_WILD_BATTLE_NIGHT
 	jr .done

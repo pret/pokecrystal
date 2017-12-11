@@ -6676,7 +6676,7 @@ CheckSleepingTreeMon: ; 3eb38
 ; Get list for the time of day
 	ld hl, .Morn
 	ld a, [TimeOfDay]
-	cp DAY
+	cp DAY_F
 	jr c, .Check
 	ld hl, .Day
 	jr z, .Check

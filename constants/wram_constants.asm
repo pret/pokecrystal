@@ -46,10 +46,15 @@ FACE_RIGHT EQU 1
 
 ; TimeOfDay: ; d269
 	const_def
-	const MORN     ; 0
-	const DAY      ; 1
-	const NITE     ; 2
-	const DARKNESS ; 3
+	const MORN_F     ; 0
+	const DAY_F      ; 1
+	const NITE_F     ; 2
+	const DARKNESS_F ; 3
+
+MORN     EQU 1 << MORN_F
+DAY      EQU 1 << DAY_F
+NITE     EQU 1 << NITE_F
+DARKNESS EQU 1 << DARKNESS_F
 
 ; ScriptFlags: ; d434
 SCRIPT_RUNNING EQU 2

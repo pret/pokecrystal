@@ -133,13 +133,13 @@ EvolveAfterBattle_MasterLoop
 
 ; TR_NITE
 	ld a, [TimeOfDay]
-	cp NITE
+	cp NITE_F
 	jp nz, .dont_evolve_3
 	jr .proceed
 
 .happiness_daylight
 	ld a, [TimeOfDay]
-	cp NITE
+	cp NITE_F
 	jp z, .dont_evolve_3
 	jr .proceed
 

@@ -716,22 +716,22 @@ NUM_FRUIT_TREES EQU const_value +- 1
 ; elevator floors
 ; used by `elevfloor`
 	const_def
-	const _B4F
-	const _B3F
-	const _B2F
-	const _B1F
-	const _1F
-	const _2F
-	const _3F
-	const _4F
-	const _5F
-	const _6F
-	const _7F
-	const _8F
-	const _9F
-	const _10F
-	const _11F
-	const _ROOF
+	const FLOOR_B4F
+	const FLOOR_B3F
+	const FLOOR_B2F
+	const FLOOR_B1F
+	const FLOOR_1F
+	const FLOOR_2F
+	const FLOOR_3F
+	const FLOOR_4F
+	const FLOOR_5F
+	const FLOOR_6F
+	const FLOOR_7F
+	const FLOOR_8F
+	const FLOOR_9F
+	const FLOOR_10F
+	const FLOOR_11F
+	const FLOOR_ROOF
 
 ; command queue members
 CMDQUEUE_TYPE  EQU 0

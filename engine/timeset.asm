@@ -362,18 +362,18 @@ OakText_ResponseToSetTime: ; 0x908b8
 	ld c, l
 	ld a, [wInitHourBuffer]
 	cp 4
-	jr c, .NITE
+	jr c, .nite
 	cp 11
-	jr c, .MORN
+	jr c, .morn
 	cp 18
-	jr c, .DAY
-.NITE:
+	jr c, .day
+.nite:
 	ld hl, .sodark
 	ret
-.MORN:
+.morn:
 	ld hl, .overslept
 	ret
-.DAY:
+.day:
 	ld hl, .yikes
 	ret
 ; 908ec (24:48ec)
@@ -738,19 +738,19 @@ GetTimeOfDayString: ; 90b58 (24:4b58)
 	cp 18
 	jr c, .day
 .nite
-	ld de, .NITE
+	ld de, .nite_string
 	ret
 .morn
-	ld de, .MORN
+	ld de, .morn_string
 	ret
 .day
-	ld de, .DAY
+	ld de, .day_string
 	ret
 ; 90b71 (24:4b71)
 
-.NITE: db "NITE@"
-.MORN: db "MORN@"
-.DAY: db "DAY@"
+.nite_string: db "NITE@"
+.morn_string: db "MORN@"
+.day_string:  db "DAY@"
 ; 90b7f
 
 AdjustHourForAMorPM:

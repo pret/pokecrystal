@@ -51,11 +51,11 @@ GetTimeOfDay:: ; 14032
 TimesOfDay: ; 14044
 ; hours for the time of day
 ; 04-09 morn | 10-17 day | 18-03 nite
-	db 04, NITE
-	db 10, MORN
-	db 18, DAY
-	db 24, NITE
-	db -1, MORN
+	db 04, NITE_F
+	db 10, MORN_F
+	db 18, DAY_F
+	db 24, NITE_F
+	db -1, MORN_F
 ; 1404e
 
 Unknown_1404e: ; Unreferenced

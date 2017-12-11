@@ -1948,7 +1948,7 @@ LoadMapPals:
 	call AddNTimes
 	ld de, UnknOBPals
 	ld bc, 8 palettes
-	ld a, $5 ; BANK(UnknOBPals)
+	ld a, BANK(UnknOBPals)
 	call FarCopyWRAM
 
 	ld a, [wPermission]
@@ -1967,13 +1967,13 @@ LoadMapPals:
 	add hl, de
 	ld a, [TimeOfDayPal]
 	and 3
-	cp NITE
+	cp NITE_F
 	jr c, .morn_day
 rept 4
 	inc hl
 endr
 .morn_day
-	ld de, UnknBGPals + 6 palettes + 2
+	ld de, UnknBGPals palette PAL_BG_ROOF + 2
 	ld bc, 4
 	ld a, $5
 	call FarCopyWRAM
@@ -1983,10 +1983,10 @@ endr
 	dw .OutdoorColors ; unused
 	dw .OutdoorColors ; TOWN
 	dw .OutdoorColors ; ROUTE
-	dw .IndoorColors ; INDOOR
+	dw .IndoorColors  ; INDOOR
 	dw .DungeonColors ; CAVE
-	dw .Perm5Colors ; PERM_5
-	dw .IndoorColors ; GATE
+	dw .Perm5Colors   ; PERM_5
+	dw .IndoorColors  ; GATE
 	dw .DungeonColors ; DUNGEON
 
 ; Valid indices: $00 - $29

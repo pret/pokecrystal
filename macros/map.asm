@@ -1,77 +1,110 @@
-map: MACRO
+map: macro
+;\1: map id
 	db GROUP_\1, MAP_\1
-ENDM
+endm
 
-roam_map: MACRO
-; A map and an arbitrary number of some more maps.
-
-	map \1
-	db  \2
-
-	rept \2
-	map \3
-	shift
-	endr
-
-	db 0
-ENDM
-
-person_event: macro
-	db \1 ; sprite
-	db \2 + 4 ; y
-	db \3 + 4 ; x
-	db \4 ; movement function
-	dn \5, \6 ; radius: y, x
-	db \7 ; clock_hour
-	db \8 ; clock_daytime
-	shift
-	dn \8, \9 ; color_function
-	shift
-	db \9 ; sight_range
-	shift
-	dw \9 ; pointer
-	shift
-	dw \9 ; event flag
-	endm
-
-signpost: macro
-	db \1 ; y
-	db \2 ; x
-	db \3 ; function
-	dw \4 ; pointer
-	endm
-
-xy_trigger: macro
-	db \1 ; number
-	db \2 ; y
-	db \3 ; x
-	db \4 ; unknown1
-	dw \5 ; script
-	db \6 ; unknown2
-	db \7 ; unknown3
-	endm
+maptrigger: macro
+;\1: script pointer
+	dw \1, 0
+endm
 
 warp_def: macro
-	db \1 ; y
-	db \2 ; x
-	db \3 ; warp_to
-	map \4 ; map
-	endm
+;\1: y: top to bottom, starts at 0
+;\2: x: left to right, starts at 0
+;\3: warp destination: starts at 1
+;\4: map id: from constants/map_constants.asm
+	db \1, \2, \3
+	map \4
+endm
+
+xy_trigger: macro
+;\1: number: controlled by dotrigger/domaptrigger
+;\2: y: top to bottom, starts at 0
+;\3: x: left to right, starts at 0
+;\4: unknown1: $0
+;\5: script pointer
+;\6: unknown2: $0
+;\7: unknown3: $0
+	db \1, \2, \3, \4
+	dw \5
+	db \6, \7
+endm
+
+signpost: macro
+;\1: y: top to bottom, starts at 0
+;\2: x: left to right, starts at 0
+;\3: function: a SIGNPOST_* constant
+;\4: script pointer
+	db \1, \2, \3
+	dw \4
+endm
+
+person_event: macro
+;\1: sprite: a SPRITE_* constant
+;\2: y: top to bottom, starts at 0
+;\3: x: left to right, starts at 0
+;\4: movement function: a SPRITEMOVEDATA_* constant
+;\5, \6: movement radius: y, x
+;\7: clock hour: ???
+;\8: clock daytime: sum of MORN, DAY, and/or NITE, or 0 for always
+;\9: color: a PAL_NPC_* constant, or 0 for sprite default
+;\10: function: a PERSONTYPE_* constant
+;\11: sight range: applies to PERSONTYPE_TRAINER
+;\12: script pointer
+;\13: event flag: an EVENT_* constant, or 0 for always
+	db \1, \2 + 4, \3 + 4, \4
+	dn \5, \6
+	db \7, \8
+	shift
+	dn \8, \9
+	shift
+	db \9
+	shift
+	dw \9
+	shift
+	dw \9
+endm
 
 
-map_header: MACRO
-	; label, tileset, permission, location, music, phone service flag, time of day, fishing group
+newgroup: macro
+const_value = const_value + 1
+	enum_start 1
+endm
+
+mapgroup: macro
+;\1: map id
+;\2: height: in blocks
+;\3: width: in blocks
+GROUP_\1 EQU const_value
+	enum MAP_\1
+\1_HEIGHT EQU \2
+\1_WIDTH EQU \3
+endm
+
+
+map_header: macro
+;\1: map label
+;\2: tileset: a TILESET_* constant
+;\3: permission: TOWN, ROUTE, INDOOR, CAVE, PERM_5, GATE, or DUNGEON
+;\4: location: from constants/landmark_constants.asm
+;\5: music: a MUSIC_* constant
+;\6: phone service flag: 1 to prevent phone calls
+;\7: time of day: a PALETTE_* constant
+;\8: fishing group: a FISHGROUP_* constant
 \1_MapHeader:
 	db BANK(\1_SecondMapHeader), \2, \3
 	dw \1_SecondMapHeader
 	db \4, \5
 	dn \6, \7
 	db \8
-ENDM
+endm
 
 
-map_header_2: MACRO
-; label, map, border block, connections
+map_header_2: macro
+;\1: map label
+;\2: map id
+;\3: border block
+;\4: connections: sum of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
 \1_SecondMapHeader::
 	db \3
 	db \2_HEIGHT, \2_WIDTH
@@ -81,9 +114,9 @@ map_header_2: MACRO
 	dw \1_MapScriptHeader
 	dw \1_MapEventHeader
 	db \4
-ENDM
+endm
 
-connection: MACRO
+connection: macro
 if "\1" == "north"
 ;\2: map id
 ;\3: map label (eventually will be rolled into map id)
@@ -151,27 +184,12 @@ if "\1" == "east"
 	db 0
 	dw OverworldMap + \2_WIDTH + 7
 endc
+endm
 
-ENDM
 
-mapgroup: MACRO
-GROUP_\1 EQU const_value
-	enum MAP_\1
-\1_HEIGHT EQU \2
-\1_WIDTH EQU \3
-ENDM
-
-newgroup: MACRO
-const_value = const_value + 1
-	enum_start 1
-ENDM
-
-elevfloor: MACRO
-	db \1, \2
-	map \3
-ENDM
-
-itemball: MACRO
+itemball: macro
+;\1: item: from constants/item_constants.asm
+;\2: quantity: default 1
 if _NARG == 2
 	db \1, \2
 else
@@ -179,11 +197,30 @@ else
 endc
 endm
 
-stonetable: MACRO
+elevfloor: macro
+;\1: floor: a FLOOR_* constant
+;\2: warp destination: starts at 1
+;\3: map id
+	db \1, \2
+	map \3
+ENDM
+
+stonetable: macro
+;\1: warp id
+;\2: person_event id
+;\3: script pointer
 	db \1, \2
 	dw \3
 endm
 
-maptrigger: MACRO
-	dw \1, 0
+
+roam_map: macro
+; A map and an arbitrary number of some more maps.
+	map \1
+	db  \2
+rept \2
+	map \3
+	shift
+endr
+	db 0
 endm
