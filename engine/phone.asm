@@ -165,7 +165,7 @@ CheckPhoneContactTimeOfDay: ; 900ad (24:40ad)
 
 	callba CheckTime
 	pop af
-	and MORN + DAY + NITE
+	and MORN | DAY | NITE
 	and c
 
 	pop de

@@ -1,20 +1,17 @@
 INCLUDE "includes.asm"
 
 
-SECTION "Pic Pointers", ROMX
+; PicPointers and UnownPicPointers are assumed to start at the same address,
+; but in different banks. This is enforced in pokecrystal.link.
 
+SECTION "Pic Pointers", ROMX
 PicPointers:: INCLUDE "gfx/pics/pic_pointers.asm"
 
-
 SECTION "Unown Pic Pointers", ROMX
-
-; Unown pic pointers are assumed to start at the same address as PicPointers,
-; but in a different bank.
 UnownPicPointers:: INCLUDE "gfx/pics/unown_pic_pointers.asm"
 
 
 SECTION "Trainer Pic Pointers", ROMX
-
 TrainerPicPointers:: INCLUDE "gfx/trainer_pic_pointers.asm"
 
 
