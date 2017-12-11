@@ -1,6 +1,7 @@
 	dw 0 ; padding
 
 BattleCommandPointers: ; 3fd28
+; entries correspond to constants/effect_command_constants.asm
 	dw BattleCommand_CheckTurn ; 34084
 	dw BattleCommand_CheckObedience ; 343db
 	dw BattleCommand_UsedMoveText ; 34541
