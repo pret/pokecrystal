@@ -5,8 +5,8 @@ SECTION "Audio", ROMX
 
 INCLUDE "audio/engine.asm"
 
-; What music plays when a trainer notices you
-INCLUDE "audio/trainer_encounters.asm"
+TrainerEncounterMusic::
+INCLUDE "trainers/encounter_music.asm"
 
 Music:
 INCLUDE "audio/music_pointers.asm"

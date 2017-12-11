@@ -48,6 +48,11 @@ const_value SET -1
 	const LEFT     ; 2
 	const RIGHT    ; 3
 
+DOWN_MASK  EQU 1 << DOWN
+UP_MASK    EQU 1 << UP
+LEFT_MASK  EQU 1 << LEFT
+RIGHT_MASK EQU 1 << RIGHT
+
 ; FacingDirection: ; d044
 FACE_CURRENT EQU 0
 FACE_DOWN  EQU 8

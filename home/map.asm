@@ -1593,14 +1593,14 @@ GetMovementPermissions:: ; 2914
 ; 2945
 
 .MovementPermissionsData: ; 2945
-	db 1 << DOWN
-	db 1 << UP
-	db 1 << LEFT
-	db 1 << RIGHT
-	db (1 << DOWN) | (1 << RIGHT)
-	db (1 << UP) | (1 << RIGHT)
-	db (1 << DOWN) | (1 << LEFT)
-	db (1 << UP) | (1 << LEFT)
+	db DOWN_MASK
+	db UP_MASK
+	db LEFT_MASK
+	db RIGHT_MASK
+	db DOWN_MASK | RIGHT_MASK
+	db UP_MASK | RIGHT_MASK
+	db DOWN_MASK | LEFT_MASK
+	db UP_MASK | LEFT_MASK
 ; 294d
 
 .UpDown:

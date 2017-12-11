@@ -7,8 +7,8 @@ MAP_NONE   EQU 0
 ; map group ids
 ; `newgroup` indexes are for:
 ; - MapGroupPointers (see maps/map_headers.asm)
-; - OutdoorSprites (see engine/overworld.asm)
-; - MapGroupRoofs (see tilesets/roofs.asm)
+; - OutdoorSprites (see data/outdoor_sprites.asm)
+; - MapGroupRoofs (see data/mapgroup_roofs.asm)
 ; `mapgroup` indexes are for the sub-tables of MapGroupPointers (see maps/map_headers.asm)
 	const_def
 

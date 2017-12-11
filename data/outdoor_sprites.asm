@@ -1,5 +1,7 @@
-OutdoorSprites: ; 144b8
 ; Valid sprite IDs for each map group.
+; Maps with permission ROUTE or TOWN can only use these sprites.
+
+OutdoorSprites: ; 144b8
 	dw Group1Sprites
 	dw Group2Sprites
 	dw Group3Sprites

@@ -1041,14 +1041,7 @@ IsHMMove:: ; 34e7
 	jp IsInArray
 
 .HMMoves:
-	db CUT
-	db FLY
-	db SURF
-	db STRENGTH
-	db FLASH
-	db WATERFALL
-	db WHIRLPOOL
-	db -1
+INCLUDE "data/hm_moves.asm"
 ; 34f8
 
 GetMoveName:: ; 34f8

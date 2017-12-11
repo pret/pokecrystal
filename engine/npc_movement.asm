@@ -118,7 +118,7 @@ Function6f3e: ; 6f3e
 ; 6f5b
 
 .data_6f5b
-	db 1 << DOWN, 1 << UP, 1 << RIGHT, 1 << LEFT
+	db DOWN_MASK, UP_MASK, RIGHT_MASK, LEFT_MASK
 ; 6f5f
 
 Function6f5f: ; 6f5f
@@ -143,7 +143,7 @@ Function6f5f: ; 6f5f
 ; 6f7b
 
 .data_6f7b
-	db 1 << UP, 1 << DOWN, 1 << LEFT, 1 << RIGHT
+	db UP_MASK, DOWN_MASK, LEFT_MASK, RIGHT_MASK
 ; 6f7f
 
 Function6f7f: ; 6f7f
