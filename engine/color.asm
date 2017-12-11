@@ -1859,7 +1859,7 @@ SGBBorderPalettes:
 	RGB 31, 31, 25
 
 SGBBorder:
-INCBIN "gfx/misc/sgb_border.2bpp"
+INCBIN "gfx/sgb/sgb_border.2bpp"
 
 Palettes_a8be:
 	RGB 30, 26, 15

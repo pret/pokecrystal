@@ -4,7 +4,7 @@ INCLUDE "includes.asm"
 SECTION "Misc Crystal", ROMX
 
 MobileAdapterGFX::
-INCBIN "gfx/misc/mobile_adapter.2bpp"
+INCBIN "gfx/mobile/mobile_adapter.2bpp"
 
 
 Function17a68f:: ; 17a68f (5e:668f)

@@ -4611,7 +4611,7 @@ Unknown_53d84: ; unreferenced
 
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
-INCBIN "gfx/misc/unknown_egg.2bpp.lz"
+INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
 
 SECTION "bank19", ROMX
 
