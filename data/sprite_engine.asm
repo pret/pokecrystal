@@ -1640,7 +1640,7 @@ BrokenStdGFXPointers: ; Broken 2bpp pointers
 	dbbw $80, $01, .deleted
 	dbbw $80, $01, .deleted
 	dbbw $80, $01, .deleted
-	dbbw $10, $37, .deleted ; 16-tile 2bpp at 37:672a (within Tileset11GFX)
+	dbbw $10, $37, .deleted ; 16-tile 2bpp at 37:672a (within TilesetTrainStationGFX)
 	dbbw $10, $11, .deleted ; 16-tile 2bpp at 11:672a (empty data)
 	dbbw $10, $39, .deleted ; 16-tile 2bpp at 39:672a (empty data)
 	dbbw $10, $24, .deleted ; 16-tile 2bpp at 24:672a (inside Function926f7)
