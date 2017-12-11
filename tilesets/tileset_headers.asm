@@ -7,9 +7,7 @@ tileset: macro
 	dw \1PalMap
 endm
 
-Tileset0::
 	tileset Tileset0
-Tileset1::
 	tileset TilesetJohto1
 	tileset TilesetJohto2
 	tileset TilesetKanto

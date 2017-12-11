@@ -1997,6 +1997,7 @@ TilesetCollisionAddress:: dw ; d1e0
 TilesetAnim:: dw ; bank 3f ; d1e2
 	ds 2  ; unused ; d1e4
 TilesetPalettes:: dw ; bank 3f ; d1e6
+TilesetHeaderEnd::
 
 EvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
 
@@ -2109,7 +2110,9 @@ BaseType1:: db ; d23d
 BaseType2:: db ; d23e
 BaseCatchRate:: db ; d23f
 BaseExp:: db ; d240
-BaseItems:: dw ; d241
+BaseItems:: ; d241
+BaseItem1:: db ; d241
+BaseItem2:: db ; d242
 BaseGender:: db ; d243
 BaseUnknown1:: db ; d244
 BaseEggSteps:: db ; d245
@@ -2119,6 +2122,7 @@ BasePadding:: ds 4 ; d248
 BaseGrowthRate:: db ; d24c
 BaseEggGroups:: db ; d24d
 BaseTMHM:: flag_array NUM_TM_HM_TUTOR ; d24e
+CurBaseDataEnd::
 
 CurDamage:: dw ; d256
 

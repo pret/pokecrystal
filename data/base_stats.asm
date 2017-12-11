@@ -1,6 +1,4 @@
-BaseData0::
 INCLUDE "data/base_stats/bulbasaur.asm"
-BaseData1::
 INCLUDE "data/base_stats/ivysaur.asm"
 INCLUDE "data/base_stats/venusaur.asm"
 INCLUDE "data/base_stats/charmander.asm"

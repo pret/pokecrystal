@@ -1704,11 +1704,11 @@ GetBaseData:: ; 3856
 
 ; Get BaseData
 	dec a
-	ld bc, BaseData1 - BaseData0
+	ld bc, BASE_DATA_SIZE
 	ld hl, BaseData
 	call AddNTimes
 	ld de, CurBaseData
-	ld bc, BaseData1 - BaseData0
+	ld bc, BASE_DATA_SIZE
 	call CopyBytes
 	jr .end
 
@@ -1881,8 +1881,8 @@ Function392d:: ; 392d
 	dec a
 	ld b, 0
 	add hl, bc
-	ld hl, BaseData + 0
-	ld bc, BaseData1 - BaseData0
+	ld hl, BaseData + BASE_DEX_NO
+	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 	ld a, BANK(BaseData)
 	call GetFarHalfword

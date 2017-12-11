@@ -2374,12 +2374,12 @@ LoadTilesetHeader:: ; 2d27
 	push bc
 
 	ld hl, Tilesets
-	ld bc, Tileset1 - Tileset0
+	ld bc, TilesetHeaderEnd - TilesetHeader
 	ld a, [wTileset]
 	call AddNTimes
 
 	ld de, TilesetBank
-	ld bc, Tileset1 - Tileset0
+	ld bc, TilesetHeaderEnd - TilesetHeader
 
 	ld a, BANK(Tilesets)
 	call FarCopyBytes

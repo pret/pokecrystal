@@ -3919,8 +3919,8 @@ GetGender: ; 50bdd
 	push bc
 	ld a, [CurPartySpecies]
 	dec a
-	ld hl, BaseData + BaseGender - CurBaseData
-	ld bc, BaseData1 - BaseData
+	ld hl, BaseData + BASE_GENDER
+	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 	pop bc
 
