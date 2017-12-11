@@ -278,7 +278,7 @@ CheckOverworldTileArrays: ; c840
 	ret
 
 
-INCLUDE "data/hm_blocks.asm"
+INCLUDE "data/field_move_blocks.asm"
 
 
 OWFlash: ; c8ac
