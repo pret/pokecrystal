@@ -10,7 +10,7 @@ SilverCaveOutside_MapScriptHeader:
 	setflag ENGINE_FLYPOINT_SILVER_CAVE
 	return
 
-MtSilverPokeCenterSign:
+MtSilverPokecenterSign:
 	jumpstd pokecentersign
 
 MtSilverSign:
@@ -37,7 +37,7 @@ SilverCaveOutside_MapEventHeader:
 
 .Signposts:
 	db 3
-	signpost 19, 24, SIGNPOST_READ, MtSilverPokeCenterSign
+	signpost 19, 24, SIGNPOST_READ, MtSilverPokecenterSign
 	signpost 13, 17, SIGNPOST_READ, MtSilverSign
 	signpost 25, 9, SIGNPOST_ITEM, SilverCaveOutsideHiddenFullRestore
 

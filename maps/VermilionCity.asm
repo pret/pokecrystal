@@ -116,7 +116,7 @@ VermilionCityDiglettsCaveSign:
 VermilionCityPortSign:
 	jumptext VermilionCityPortSignText
 
-VermilionCityPokeCenterSign:
+VermilionCityPokecenterSign:
 	jumpstd pokecentersign
 
 VermilionCityMartSign:
@@ -294,7 +294,7 @@ VermilionCity_MapEventHeader:
 	signpost 13, 5, SIGNPOST_READ, PokemonFanClubSign
 	signpost 9, 33, SIGNPOST_READ, VermilionCityDiglettsCaveSign
 	signpost 15, 27, SIGNPOST_READ, VermilionCityPortSign
-	signpost 5, 10, SIGNPOST_READ, VermilionCityPokeCenterSign
+	signpost 5, 10, SIGNPOST_READ, VermilionCityPokecenterSign
 	signpost 13, 22, SIGNPOST_READ, VermilionCityMartSign
 	signpost 19, 12, SIGNPOST_ITEM, VermilionCityHiddenFullHeal
 

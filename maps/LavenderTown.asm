@@ -40,7 +40,7 @@ VolunteerPokemonHouseSign:
 SoulHouseSign:
 	jumptext SoulHouseSignText
 
-LavenderPokeCenterSignText:
+LavenderPokecenterSignText:
 	jumpstd pokecentersign
 
 LavenderMartSignText:
@@ -128,7 +128,7 @@ LavenderTown_MapEventHeader:
 	signpost 7, 15, SIGNPOST_READ, KantoRadioStationSign
 	signpost 9, 3, SIGNPOST_READ, VolunteerPokemonHouseSign
 	signpost 13, 15, SIGNPOST_READ, SoulHouseSign
-	signpost 5, 6, SIGNPOST_READ, LavenderPokeCenterSignText
+	signpost 5, 6, SIGNPOST_READ, LavenderPokecenterSignText
 	signpost 5, 2, SIGNPOST_READ, LavenderMartSignText
 
 .PersonEvents:

@@ -3118,17 +3118,17 @@ SetBoxmonOrEggmonCaughtData: ; 4db53
 	ld a, [MapNumber]
 	ld c, a
 	cp MAP_POKECENTER_2F
-	jr nz, .NotPokeCenter2F
+	jr nz, .NotPokecenter2F
 	ld a, b
 	cp GROUP_POKECENTER_2F
-	jr nz, .NotPokeCenter2F
+	jr nz, .NotPokecenter2F
 
 	ld a, [BackupMapGroup]
 	ld b, a
 	ld a, [BackupMapNumber]
 	ld c, a
 
-.NotPokeCenter2F:
+.NotPokecenter2F:
 	call GetWorldMapLocation
 	ld b, a
 	ld a, [PlayerGender]

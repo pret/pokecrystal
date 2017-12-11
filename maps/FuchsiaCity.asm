@@ -43,7 +43,7 @@ SafariZoneClosedSign:
 NoLitteringSign:
 	jumptext NoLitteringSignText
 
-FuchsiaCityPokeCenterSign:
+FuchsiaCityPokecenterSign:
 	jumpstd pokecentersign
 
 FuchsiaCityMartSign:
@@ -153,7 +153,7 @@ FuchsiaCity_MapEventHeader:
 	signpost 29, 27, SIGNPOST_READ, WardensHomeSign
 	signpost 5, 17, SIGNPOST_READ, SafariZoneClosedSign
 	signpost 15, 13, SIGNPOST_READ, NoLitteringSign
-	signpost 27, 20, SIGNPOST_READ, FuchsiaCityPokeCenterSign
+	signpost 27, 20, SIGNPOST_READ, FuchsiaCityPokecenterSign
 	signpost 13, 6, SIGNPOST_READ, FuchsiaCityMartSign
 
 .PersonEvents:

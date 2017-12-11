@@ -2,9 +2,9 @@ PokemonCenterPC: ; 1559a
 	call PC_CheckPartyForPokemon
 	ret c
 	call PC_PlayBootSound
-	ld hl, PokeCenterPCText_BootedUpPC
+	ld hl, PokecenterPCText_BootedUpPC
 	call PC_DisplayText
-	ld hl, PokeCenterPCText_AccessWhosePC
+	ld hl, PokecenterPCText_AccessWhosePC
 	call PC_DisplayTextWaitMenu
 	ld hl, .TopMenu
 	call LoadMenuDataHeader
@@ -103,7 +103,7 @@ PC_CheckPartyForPokemon: ; 15650
 
 BillsPC: ; 15668
 	call PC_PlayChoosePCSound
-	ld hl, PokeCenterPCText_AccessedBillsPC
+	ld hl, PokecenterPCText_AccessedBillsPC
 	call PC_DisplayText
 	callba _BillsPC
 	and a
@@ -112,7 +112,7 @@ BillsPC: ; 15668
 
 PlayersPC: ; 15679
 	call PC_PlayChoosePCSound
-	ld hl, PokeCenterPCText_AccessedOwnPC
+	ld hl, PokecenterPCText_AccessedOwnPC
 	call PC_DisplayText
 	ld b, $0
 	call _PlayersPC
@@ -122,7 +122,7 @@ PlayersPC: ; 15679
 
 OaksPC: ; 15689
 	call PC_PlayChoosePCSound
-	ld hl, PokeCenterPCText_AccessedOaksPC
+	ld hl, PokecenterPCText_AccessedOaksPC
 	call PC_DisplayText
 	callba ProfOaksPC
 	and a
@@ -139,7 +139,7 @@ HallOfFamePC: ; 1569a
 ; 156ab
 
 TurnOffPC: ; 156ab
-	ld hl, PokeCenterPCText_LinkClosed
+	ld hl, PokecenterPCText_LinkClosed
 	call PrintText
 	scf
 	ret
@@ -641,37 +641,37 @@ PC_DisplayText: ; 15a20
 	ret
 ; 15a27
 
-PokeCenterPCText_BootedUpPC: ; 0x15a27
+PokecenterPCText_BootedUpPC: ; 0x15a27
 	; turned on the PC.
 	text_jump UnknownText_0x1c144d
 	db "@"
 ; 0x15a2c
 
-PokeCenterPCText_AccessWhosePC: ; 0x15a2c
+PokecenterPCText_AccessWhosePC: ; 0x15a2c
 	; Access whose PC?
 	text_jump UnknownText_0x1c1462
 	db "@"
 ; 0x15a31
 
-PokeCenterPCText_AccessedBillsPC: ; 0x15a31
+PokecenterPCText_AccessedBillsPC: ; 0x15a31
 	; BILL's PC accessed. #MON Storage System opened.
 	text_jump UnknownText_0x1c1474
 	db "@"
 ; 0x15a36
 
-PokeCenterPCText_AccessedOwnPC: ; 0x15a36
+PokecenterPCText_AccessedOwnPC: ; 0x15a36
 	; Accessed own PC. Item Storage System opened.
 	text_jump UnknownText_0x1c14a4
 	db "@"
 ; 0x15a3b
 
-PokeCenterPCText_AccessedOaksPC: ; 0x15a3b
+PokecenterPCText_AccessedOaksPC: ; 0x15a3b
 	; PROF.OAK's PC accessed. #DEX Rating System opened.
 	text_jump UnknownText_0x1c14d2
 	db "@"
 ; 0x15a40
 
-PokeCenterPCText_LinkClosed: ; 0x15a40
+PokecenterPCText_LinkClosed: ; 0x15a40
 	; … Link closed…
 	text_jump UnknownText_0x1c1505
 	db "@"

@@ -40,7 +40,7 @@ CherrygroveCityGuideGent:
 	follow CHERRYGROVECITY_GRAMPS, PLAYER
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement1
 	opentext
-	writetext GuideGentPokeCenterText
+	writetext GuideGentPokecenterText
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
@@ -231,7 +231,7 @@ CherrygroveCitySign:
 GuideGentsHouseSign:
 	jumptext GuideGentsHouseSignText
 
-CherrygroveCityPokeCenterSign:
+CherrygroveCityPokecenterSign:
 	jumpstd pokecentersign
 
 CherrygroveCityMartSign:
@@ -354,7 +354,7 @@ GuideGentTourText1:
 	line "Follow me!"
 	done
 
-GuideGentPokeCenterText:
+GuideGentPokecenterText:
 	text "This is a #MON"
 	line "CENTER. They heal"
 
@@ -568,7 +568,7 @@ CherrygroveCity_MapEventHeader:
 	signpost 8, 30, SIGNPOST_READ, CherrygroveCitySign
 	signpost 9, 23, SIGNPOST_READ, GuideGentsHouseSign
 	signpost 3, 24, SIGNPOST_READ, CherrygroveCityMartSign
-	signpost 3, 30, SIGNPOST_READ, CherrygroveCityPokeCenterSign
+	signpost 3, 30, SIGNPOST_READ, CherrygroveCityPokecenterSign
 
 .PersonEvents:
 	db 5

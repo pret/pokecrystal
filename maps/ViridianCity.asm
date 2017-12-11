@@ -81,7 +81,7 @@ ViridianCityWelcomeSign:
 TrainerHouseSign:
 	jumptext TrainerHouseSignText
 
-ViridianCityPokeCenterSign:
+ViridianCityPokecenterSign:
 	jumpstd pokecentersign
 
 ViridianCityMartSign:
@@ -236,7 +236,7 @@ ViridianCity_MapEventHeader:
 	signpost 7, 27, SIGNPOST_READ, ViridianGymSign
 	signpost 1, 19, SIGNPOST_READ, ViridianCityWelcomeSign
 	signpost 15, 21, SIGNPOST_READ, TrainerHouseSign
-	signpost 25, 24, SIGNPOST_READ, ViridianCityPokeCenterSign
+	signpost 25, 24, SIGNPOST_READ, ViridianCityPokecenterSign
 	signpost 19, 30, SIGNPOST_READ, ViridianCityMartSign
 
 .PersonEvents:

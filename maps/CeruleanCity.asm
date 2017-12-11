@@ -140,7 +140,7 @@ CeruleanCapeSign:
 CeruleanLockedDoor:
 	jumptext CeruleanLockedDoorText
 
-CeruleanCityPokeCenterSign:
+CeruleanCityPokecenterSign:
 	jumpstd pokecentersign
 
 CeruleanCityMartSign:
@@ -299,7 +299,7 @@ CeruleanCity_MapEventHeader:
 	signpost 17, 25, SIGNPOST_READ, CeruleanPoliceSign
 	signpost 7, 23, SIGNPOST_READ, CeruleanCapeSign
 	signpost 29, 14, SIGNPOST_READ, CeruleanLockedDoor
-	signpost 21, 20, SIGNPOST_READ, CeruleanCityPokeCenterSign
+	signpost 21, 20, SIGNPOST_READ, CeruleanCityPokecenterSign
 	signpost 29, 26, SIGNPOST_READ, CeruleanCityMartSign
 	signpost 12, 2, SIGNPOST_ITEM, CeruleanCityHiddenBerserkGene
 

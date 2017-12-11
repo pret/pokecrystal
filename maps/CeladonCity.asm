@@ -71,7 +71,7 @@ CeladonCityGameCornerSign:
 CeladonCityTrainerTips:
 	jumptext CeladonCityTrainerTipsText
 
-CeladonCityPokeCenterSign:
+CeladonCityPokecenterSign:
 	jumpstd pokecentersign
 
 CeladonCityHiddenPpUp:
@@ -261,7 +261,7 @@ CeladonCity_MapEventHeader:
 	signpost 9, 13, SIGNPOST_READ, CeladonCityMansionSign
 	signpost 21, 19, SIGNPOST_READ, CeladonCityGameCornerSign
 	signpost 21, 29, SIGNPOST_READ, CeladonCityTrainerTips
-	signpost 9, 30, SIGNPOST_READ, CeladonCityPokeCenterSign
+	signpost 9, 30, SIGNPOST_READ, CeladonCityPokecenterSign
 	signpost 21, 37, SIGNPOST_ITEM, CeladonCityHiddenPpUp
 
 .PersonEvents:

@@ -1,5 +1,5 @@
 StdScripts::
-	dba PokeCenterNurseScript
+	dba PokecenterNurseScript
 	dba DifficultBookshelfScript
 	dba PictureBookshelfScript
 	dba MagazineBookshelfScript
@@ -15,7 +15,7 @@ StdScripts::
 	dba TrashCanScript
 	dba StrengthBoulderScript
 	dba SmashRockScript
-	dba PokeCenterSignScript
+	dba PokecenterSignScript
 	dba MartSignScript
 	dba GoldenrodRocketsScript
 	dba RadioTowerRocketsScript
@@ -52,7 +52,7 @@ StdScripts::
 	dba GameCornerCoinVendorScript
 	dba HappinessCheckScript
 
-PokeCenterNurseScript:
+PokecenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
 
 	opentext
@@ -236,8 +236,8 @@ StrengthBoulderScript:
 SmashRockScript:
 	farjump AskRockSmashScript
 
-PokeCenterSignScript:
-	farjumptext PokeCenterSignText
+PokecenterSignScript:
+	farjumptext PokecenterSignText
 
 MartSignScript
 	farjumptext MartSignText

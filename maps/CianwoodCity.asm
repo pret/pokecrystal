@@ -138,7 +138,7 @@ CianwoodPhotoStudioSign:
 CianwoodPokeSeerSign:
 	jumptext CianwoodPokeSeerSignText
 
-CianwoodPokeCenterSign:
+CianwoodPokecenterSign:
 	jumpstd pokecentersign
 
 CianwoodCityRock:
@@ -402,7 +402,7 @@ CianwoodCity_MapEventHeader:
 	db 8
 	signpost 34, 20, SIGNPOST_READ, CianwoodCitySign
 	signpost 45, 7, SIGNPOST_READ, CianwoodGymSign
-	signpost 43, 24, SIGNPOST_READ, CianwoodPokeCenterSign
+	signpost 43, 24, SIGNPOST_READ, CianwoodPokecenterSign
 	signpost 47, 19, SIGNPOST_READ, CianwoodPharmacySign
 	signpost 32, 8, SIGNPOST_READ, CianwoodPhotoStudioSign
 	signpost 24, 8, SIGNPOST_READ, CianwoodPokeSeerSign

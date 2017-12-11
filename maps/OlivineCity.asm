@@ -109,7 +109,7 @@ OlivineLighthouseSign:
 OlivineCityBattleTowerSign:
 	jumptext OlivineCityBattleTowerSignText
 
-OlivineCityPokeCenterSign:
+OlivineCityPokecenterSign:
 	jumpstd pokecentersign
 
 OlivineCityMartSign:
@@ -317,7 +317,7 @@ OlivineCity_MapEventHeader:
 	signpost 11, 7, SIGNPOST_READ, OlivineGymSign
 	signpost 28, 30, SIGNPOST_READ, OlivineLighthouseSign
 	signpost 23, 3, SIGNPOST_READ, OlivineCityBattleTowerSign
-	signpost 21, 14, SIGNPOST_READ, OlivineCityPokeCenterSign
+	signpost 21, 14, SIGNPOST_READ, OlivineCityPokecenterSign
 	signpost 17, 20, SIGNPOST_READ, OlivineCityMartSign
 
 .PersonEvents:

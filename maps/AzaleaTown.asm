@@ -201,7 +201,7 @@ CharcoalKilnSign:
 AzaleaTownIlextForestSign:
 	jumptext AzaleaTownIlexForestSignText
 
-AzaleaTownPokeCenterSign:
+AzaleaTownPokecenterSign:
 	jumpstd pokecentersign
 
 AzaleaTownMartSign:
@@ -483,7 +483,7 @@ AzaleaTown_MapEventHeader:
 	signpost 15, 14, SIGNPOST_READ, AzaleaGymSign
 	signpost 7, 29, SIGNPOST_READ, SlowpokeWellSign
 	signpost 13, 19, SIGNPOST_READ, CharcoalKilnSign
-	signpost 9, 16, SIGNPOST_READ, AzaleaTownPokeCenterSign
+	signpost 9, 16, SIGNPOST_READ, AzaleaTownPokecenterSign
 	signpost 5, 22, SIGNPOST_READ, AzaleaTownMartSign
 	signpost 9, 3, SIGNPOST_READ, AzaleaTownIlextForestSign
 	signpost 6, 31, SIGNPOST_ITEM, AzaleaTownHiddenFullHeal

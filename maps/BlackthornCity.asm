@@ -138,7 +138,7 @@ DragonDensSign:
 BlackthornCityTrainerTips:
 	jumptext BlackthornCityTrainerTipsText
 
-BlackthornCityPokeCenterSign:
+BlackthornCityPokecenterSign:
 	jumpstd pokecentersign
 
 BlackthornCityMartSign:
@@ -338,7 +338,7 @@ BlackthornCity_MapEventHeader:
 	signpost 3, 21, SIGNPOST_READ, DragonDensSign
 	signpost 25, 5, SIGNPOST_READ, BlackthornCityTrainerTips
 	signpost 29, 16, SIGNPOST_READ, BlackthornCityMartSign
-	signpost 29, 22, SIGNPOST_READ, BlackthornCityPokeCenterSign
+	signpost 29, 22, SIGNPOST_READ, BlackthornCityPokecenterSign
 
 .PersonEvents:
 	db 9

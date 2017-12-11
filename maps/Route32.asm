@@ -502,7 +502,7 @@ Route32RuinsSign:
 Route32UnionCaveSign:
 	jumptext Route32UnionCaveSignText
 
-Route32PokeCenterSign:
+Route32PokecenterSign:
 	jumpstd pokecentersign
 
 Route32HiddenGreatBall:
@@ -951,7 +951,7 @@ Route32_MapEventHeader:
 	signpost  5, 13, SIGNPOST_READ, Route32Sign
 	signpost  1,  9, SIGNPOST_READ, Route32RuinsSign
 	signpost 84, 10, SIGNPOST_READ, Route32UnionCaveSign
-	signpost 73, 12, SIGNPOST_READ, Route32PokeCenterSign
+	signpost 73, 12, SIGNPOST_READ, Route32PokecenterSign
 	signpost 67, 12, SIGNPOST_ITEM, Route32HiddenGreatBall
 	signpost 40, 11, SIGNPOST_ITEM, Route32HiddenSuperPotion
 

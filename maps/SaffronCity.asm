@@ -101,7 +101,7 @@ MrPsychicsHouseSign:
 SaffronCityMagnetTrainStationSign:
 	jumptext SaffronCityMagnetTrainStationSignText
 
-SaffronCityPokeCenterSign:
+SaffronCityPokecenterSign:
 	jumpstd pokecentersign
 
 SaffronCityMartSign:
@@ -298,7 +298,7 @@ SaffronCity_MapEventHeader:
 	signpost 21, 15, SIGNPOST_READ, SilphCoSign
 	signpost 29, 25, SIGNPOST_READ, MrPsychicsHouseSign
 	signpost 5, 11, SIGNPOST_READ, SaffronCityMagnetTrainStationSign
-	signpost 29, 10, SIGNPOST_READ, SaffronCityPokeCenterSign
+	signpost 29, 10, SIGNPOST_READ, SaffronCityPokecenterSign
 	signpost 11, 26, SIGNPOST_READ, SaffronCityMartSign
 
 .PersonEvents:

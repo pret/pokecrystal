@@ -54,18 +54,18 @@ BetaBlackthornCity_BlockData:
 Route10South_BlockData:
 	INCBIN "maps/Route10South.blk"
 
-PokeCenter2F_BlockData:
-CinnabarPokeCenter2FBeta_BlockData:
-CeruleanPokeCenter2FBeta_BlockData:
-Route10PokeCenter2FBeta_BlockData:
-VermilionPokeCenter2FBeta_BlockData:
-PewterPokeCenter2FBeta_BlockData:
-FuchsiaPokeCenter2FBeta_BlockData:
-LavenderPokeCenter2FBeta_BlockData:
-CeladonPokeCenter2FBeta_BlockData:
-ViridianPokeCenter2FBeta_BlockData:
-SaffronPokeCenter2FBeta_BlockData:
-	INCBIN "maps/PokeCenter2F.blk"
+Pokecenter2F_BlockData:
+CinnabarPokecenter2FBeta_BlockData:
+CeruleanPokecenter2FBeta_BlockData:
+Route10Pokecenter2FBeta_BlockData:
+VermilionPokecenter2FBeta_BlockData:
+PewterPokecenter2FBeta_BlockData:
+FuchsiaPokecenter2FBeta_BlockData:
+LavenderPokecenter2FBeta_BlockData:
+CeladonPokecenter2FBeta_BlockData:
+ViridianPokecenter2FBeta_BlockData:
+SaffronPokecenter2FBeta_BlockData:
+	INCBIN "maps/Pokecenter2F.blk"
 
 Route41_BlockData:
 	INCBIN "maps/Route41.blk"
@@ -121,8 +121,8 @@ Route20_BlockData:
 BetaSproutTower6_BlockData:
 	INCBIN "maps/BetaSproutTower6.blk"
 
-BetaPokeCenterMainHouse_BlockData:
-	INCBIN "maps/BetaPokeCenterMainHouse.blk"
+BetaPokecenterMainHouse_BlockData:
+	INCBIN "maps/BetaPokecenterMainHouse.blk"
 
 Route30_BlockData:
 	INCBIN "maps/Route30.blk"
@@ -340,28 +340,28 @@ Route10North_BlockData:
 BetaLakeOfRage_BlockData:
 	INCBIN "maps/BetaLakeOfRage.blk"
 
-OlivinePokeCenter1F_BlockData:
-MahoganyPokeCenter1F_BlockData:
-EcruteakPokeCenter1F_BlockData:
-BlackthornPokeCenter1F_BlockData:
-CinnabarPokeCenter1F_BlockData:
-CeruleanPokeCenter1F_BlockData:
-Route10PokeCenter1F_BlockData:
-AzaleaPokeCenter1F_BlockData:
-VioletPokeCenter1F_BlockData:
-Route32PokeCenter1F_BlockData:
-GoldenrodPokeCenter1F_BlockData:
-VermilionPokeCenter1F_BlockData:
-PewterPokeCenter1F_BlockData:
-FuchsiaPokeCenter1F_BlockData:
-LavenderPokeCenter1F_BlockData:
-SilverCavePokeCenter1F_BlockData:
-CeladonPokeCenter1F_BlockData:
-CianwoodPokeCenter1F_BlockData:
-ViridianPokeCenter1F_BlockData:
-SaffronPokeCenter1F_BlockData:
-CherrygrovePokeCenter1F_BlockData:
-	INCBIN "maps/PokeCenter1F.blk"
+OlivinePokecenter1F_BlockData:
+MahoganyPokecenter1F_BlockData:
+EcruteakPokecenter1F_BlockData:
+BlackthornPokecenter1F_BlockData:
+CinnabarPokecenter1F_BlockData:
+CeruleanPokecenter1F_BlockData:
+Route10Pokecenter1F_BlockData:
+AzaleaPokecenter1F_BlockData:
+VioletPokecenter1F_BlockData:
+Route32Pokecenter1F_BlockData:
+GoldenrodPokecenter1F_BlockData:
+VermilionPokecenter1F_BlockData:
+PewterPokecenter1F_BlockData:
+FuchsiaPokecenter1F_BlockData:
+LavenderPokecenter1F_BlockData:
+SilverCavePokecenter1F_BlockData:
+CeladonPokecenter1F_BlockData:
+CianwoodPokecenter1F_BlockData:
+ViridianPokecenter1F_BlockData:
+SaffronPokecenter1F_BlockData:
+CherrygrovePokecenter1F_BlockData:
+	INCBIN "maps/Pokecenter1F.blk"
 
 BetaPewterMuseumOfScience1F_BlockData:
 	INCBIN "maps/BetaPewterMuseumOfScience1F.blk"
@@ -466,8 +466,8 @@ Route6UndergroundEntrance_BlockData:
 Route5UndergroundEntrance_BlockData:
 	INCBIN "maps/UndergroundPathEntrance.blk"
 
-BetaPokeCenterTradeStation_BlockData:
-	INCBIN "maps/BetaPokeCenterTradeStation.blk"
+BetaPokecenterTradeStation_BlockData:
+	INCBIN "maps/BetaPokecenterTradeStation.blk"
 
 KurtsHouse_BlockData:
 	INCBIN "maps/KurtsHouse.blk"
@@ -713,8 +713,8 @@ TeamRocketBaseB3F_BlockData:
 BetaRoute23EarlyVersion_BlockData:
 	INCBIN "maps/BetaRoute23EarlyVersion.blk"
 
-IndigoPlateauPokeCenter1F_BlockData:
-	INCBIN "maps/IndigoPlateauPokeCenter1F.blk"
+IndigoPlateauPokecenter1F_BlockData:
+	INCBIN "maps/IndigoPlateauPokecenter1F.blk"
 
 WillsRoom_BlockData:
 	INCBIN "maps/WillsRoom.blk"

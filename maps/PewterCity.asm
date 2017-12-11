@@ -56,7 +56,7 @@ PewterCityMtMoonGiftShopSign:
 PewterCityWelcomeSign:
 	jumptext PewterCityWelcomeSignText
 
-PewterCityPokeCenterSign:
+PewterCityPokecenterSign:
 	jumpstd pokecentersign
 
 PewterCityMartSign:
@@ -174,7 +174,7 @@ PewterCity_MapEventHeader:
 	signpost 9, 15, SIGNPOST_READ, PewterMuseumSign
 	signpost 19, 33, SIGNPOST_READ, PewterCityMtMoonGiftShopSign
 	signpost 29, 19, SIGNPOST_READ, PewterCityWelcomeSign
-	signpost 25, 14, SIGNPOST_READ, PewterCityPokeCenterSign
+	signpost 25, 14, SIGNPOST_READ, PewterCityPokecenterSign
 	signpost 17, 24, SIGNPOST_READ, PewterCityMartSign
 
 .PersonEvents:

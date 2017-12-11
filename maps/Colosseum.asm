@@ -12,10 +12,10 @@ Colosseum_MapScriptHeader:
 .MapCallbacks:
 	db 2
 	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
-	dbw MAPCALLBACK_NEWMAP, .PreparePokeCenter2F
+	dbw MAPCALLBACK_NEWMAP, .PreparePokecenter2F
 
 .InitializeColosseum:
-	priorityjump .InitializeAndPreparePokeCenter2F
+	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
 .DummyTrigger1:
@@ -36,11 +36,11 @@ Colosseum_MapScriptHeader:
 	appear COLOSSEUM_CHRIS2
 	return
 
-.PreparePokeCenter2F:
+.PreparePokecenter2F:
 	domaptrigger POKECENTER_2F, $2
 	return
 
-.InitializeAndPreparePokeCenter2F:
+.InitializeAndPreparePokecenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $2
 	end

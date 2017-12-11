@@ -8,13 +8,13 @@ MobileTradeRoomMobile_MapScriptHeader:
 	db 0
 
 .InitializeMobileTradeRoomMobile:
-	priorityjump .InitializeAndPreparePokeCenter2F
+	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
 .DummyTrigger:
 	end
 
-.InitializeAndPreparePokeCenter2F:
+.InitializeAndPreparePokecenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $4
 	end

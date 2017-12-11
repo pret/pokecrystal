@@ -81,7 +81,7 @@ EcruteakDanceTheaterSign:
 BurnedTowerSign:
 	jumptext BurnedTowerSignText
 
-EcruteakCityPokeCenterSign:
+EcruteakCityPokecenterSign:
 	jumpstd pokecentersign
 
 EcruteakCityMartSign:
@@ -291,7 +291,7 @@ EcruteakCity_MapEventHeader:
 	signpost 28, 8, SIGNPOST_READ, EcruteakGymSign
 	signpost 21, 21, SIGNPOST_READ, EcruteakDanceTheaterSign
 	signpost 10, 2, SIGNPOST_READ, BurnedTowerSign
-	signpost 27, 24, SIGNPOST_READ, EcruteakCityPokeCenterSign
+	signpost 27, 24, SIGNPOST_READ, EcruteakCityPokecenterSign
 	signpost 21, 30, SIGNPOST_READ, EcruteakCityMartSign
 	signpost 14, 23, SIGNPOST_ITEM, EcruteakCityHiddenHyperPotion
 

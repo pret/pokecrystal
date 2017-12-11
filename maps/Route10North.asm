@@ -8,7 +8,7 @@ Route10North_MapScriptHeader:
 PowerPlantSign:
 	jumptext PowerPlantSignText
 
-Route10PokeCenterSign:
+Route10PokecenterSign:
 	jumpstd pokecentersign
 
 PowerPlantSignText:
@@ -30,7 +30,7 @@ Route10North_MapEventHeader:
 .Signposts:
 	db 2
 	signpost 11, 5, SIGNPOST_READ, PowerPlantSign
-	signpost 1, 12, SIGNPOST_READ, Route10PokeCenterSign
+	signpost 1, 12, SIGNPOST_READ, Route10PokecenterSign
 
 .PersonEvents:
 	db 0

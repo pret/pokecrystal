@@ -13,7 +13,7 @@ TimeCapsule_MapScriptHeader:
 	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
 
 .InitializeTimeCapsule:
-	priorityjump .InitializeAndPreparePokeCenter2F
+	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
 .DummyTrigger:
@@ -31,7 +31,7 @@ TimeCapsule_MapScriptHeader:
 	appear TIMECAPSULE_CHRIS2
 	return
 
-.InitializeAndPreparePokeCenter2F:
+.InitializeAndPreparePokecenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $3
 	end

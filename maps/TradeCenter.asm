@@ -13,7 +13,7 @@ TradeCenter_MapScriptHeader:
 	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
 
 .InitializeTradeCenter:
-	priorityjump .InitializeAndPreparePokeCenter2F
+	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
 .DummyTrigger:
@@ -31,7 +31,7 @@ TradeCenter_MapScriptHeader:
 	appear TRADECENTER_CHRIS2
 	return
 
-.InitializeAndPreparePokeCenter2F:
+.InitializeAndPreparePokecenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $1
 	end

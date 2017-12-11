@@ -266,7 +266,7 @@ GoldenrodCityUndergroundSignNorth:
 GoldenrodCityUndergroundSignSouth:
 	jumptext GoldenrodCityUndergroundSignSouthText
 
-GoldenrodCityPokeCenterSign:
+GoldenrodCityPokecenterSign:
 	jumpstd pokecentersign
 
 GoldenrodCityFlowerShopSign:
@@ -591,7 +591,7 @@ GoldenrodCity_MapEventHeader:
 	signpost 7, 12, SIGNPOST_READ, GoldenrodCityNameRaterSign
 	signpost 6, 8, SIGNPOST_READ, GoldenrodCityUndergroundSignNorth
 	signpost 30, 12, SIGNPOST_READ, GoldenrodCityUndergroundSignSouth
-	signpost 27, 16, SIGNPOST_UP, GoldenrodCityPokeCenterSign
+	signpost 27, 16, SIGNPOST_UP, GoldenrodCityPokecenterSign
 	signpost 6, 30, SIGNPOST_READ, GoldenrodCityFlowerShopSign
 
 .PersonEvents:
