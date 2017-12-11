@@ -305,10 +305,10 @@ Function170d02: ; 170d02
 ; 170d16
 
 LZ_170d16:
-INCBIN "gfx/unknown/170d16.2bpp.lz"
+INCBIN "gfx/unknown/pichu_animated.2bpp.lz"
 
 LZ_1715a4:
-INCBIN "gfx/unknown/1715a4.2bpp.lz"
+INCBIN "gfx/unknown/egg_animated.2bpp.lz"
 
 GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
@@ -817,8 +817,9 @@ Palette_171d71:
 	RGB 21, 21, 20
 	RGB 11, 11, 10
 	RGB  0,  0,  0
+
 GFX_171db1:
-INCBIN "gfx/unknown/171db1.2bpp"
+INCBIN "gfx/unknown/ascii_font.2bpp"
 Tilemap_172491:
 INCBIN "gfx/unknown/172491.tilemap"
 Tilemap_17251d:

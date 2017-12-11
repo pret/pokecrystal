@@ -2579,5 +2579,5 @@ Special_CableClubCheckWhichChris: ; 29f47
 
 GFX_29f54: ; 29f54
 ; unreferenced
-INCBIN "gfx/unknown/029f54.2bpp"
+INCBIN "gfx/unknown/unused_border.2bpp"
 ; 29fe4

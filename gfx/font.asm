@@ -59,7 +59,7 @@ INCBIN "gfx/mobile/overworld_phone_icon.2bpp"
 ; f8f34
 
 GFX_f8f34: ; unused bold letters + unown chars
-INCBIN "gfx/unknown/0f8f34.1bpp"
+INCBIN "gfx/unknown/bold_font.1bpp"
 ; f9204
 
 TextBoxSpaceGFX: ; f9204
