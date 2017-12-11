@@ -1,158 +1,170 @@
+; morn
+
+; red
 	RGB 28, 31, 16
 	RGB 31, 19, 10
 	RGB 31, 07, 01
 	RGB 00, 00, 00
-
+; blue
 	RGB 28, 31, 16
 	RGB 31, 19, 10
 	RGB 10, 09, 31
 	RGB 00, 00, 00
-
+; green
 	RGB 28, 31, 16
 	RGB 31, 19, 10
 	RGB 07, 23, 03
 	RGB 00, 00, 00
-
+; brown
 	RGB 28, 31, 16
 	RGB 31, 19, 10
 	RGB 15, 10, 03
 	RGB 00, 00, 00
-
+; pink
 	RGB 28, 31, 16
 	RGB 31, 19, 10
 	RGB 30, 10, 06
 	RGB 00, 00, 00
-
+; silver
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 13, 13, 13
 	RGB 00, 00, 00
-
+; tree
 	RGB 22, 31, 10
 	RGB 12, 25, 01
 	RGB 05, 14, 00
 	RGB 07, 07, 07
-
+; rock
 	RGB 28, 31, 16
 	RGB 24, 18, 07
 	RGB 20, 15, 03
 	RGB 07, 07, 07
 
+; day
+
+; red
 	RGB 27, 31, 27
 	RGB 31, 19, 10
 	RGB 31, 07, 01
 	RGB 00, 00, 00
-
+; blue
 	RGB 27, 31, 27
 	RGB 31, 19, 10
 	RGB 10, 09, 31
 	RGB 00, 00, 00
-
+; green
 	RGB 27, 31, 27
 	RGB 31, 19, 10
 	RGB 07, 23, 03
 	RGB 00, 00, 00
-
+; brown
 	RGB 27, 31, 27
 	RGB 31, 19, 10
 	RGB 15, 10, 03
 	RGB 00, 00, 00
-
+; pink
 	RGB 27, 31, 27
 	RGB 31, 19, 10
 	RGB 30, 10, 06
 	RGB 00, 00, 00
-
+; silver
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 13, 13, 13
 	RGB 00, 00, 00
-
+; tree
 	RGB 22, 31, 10
 	RGB 12, 25, 01
 	RGB 05, 14, 00
 	RGB 07, 07, 07
-
+; rock
 	RGB 27, 31, 27
 	RGB 24, 18, 07
 	RGB 20, 15, 03
 	RGB 07, 07, 07
 
+; nite
+
+; red
 	RGB 15, 14, 24
 	RGB 31, 19, 10
 	RGB 31, 07, 01
 	RGB 00, 00, 00
-
+; blue
 	RGB 15, 14, 24
 	RGB 31, 19, 10
 	RGB 10, 09, 31
 	RGB 00, 00, 00
-
+; green
 	RGB 15, 14, 24
 	RGB 31, 19, 10
 	RGB 07, 23, 03
 	RGB 00, 00, 00
-
+; brown
 	RGB 15, 14, 24
 	RGB 31, 19, 10
 	RGB 15, 10, 03
 	RGB 00, 00, 00
-
+; pink
 	RGB 15, 14, 24
 	RGB 31, 19, 10
 	RGB 30, 10, 06
 	RGB 00, 00, 00
-
+; silver
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 13, 13, 13
 	RGB 00, 00, 00
-
+; tree
 	RGB 15, 14, 24
 	RGB 08, 13, 19
 	RGB 00, 11, 13
 	RGB 00, 00, 00
-
+; rock
 	RGB 15, 14, 24
 	RGB 12, 09, 15
 	RGB 08, 04, 05
 	RGB 00, 00, 00
 
+; dark
+
+; red
 	RGB 01, 01, 02
 	RGB 31, 19, 10
 	RGB 31, 07, 01
 	RGB 00, 00, 00
-
+; blue
 	RGB 01, 01, 02
 	RGB 31, 19, 10
 	RGB 10, 09, 31
 	RGB 00, 00, 00
-
+; green
 	RGB 01, 01, 02
 	RGB 31, 19, 10
 	RGB 07, 23, 03
 	RGB 00, 00, 00
-
+; brown
 	RGB 01, 01, 02
 	RGB 31, 19, 10
 	RGB 15, 10, 03
 	RGB 00, 00, 00
-
+; pink
 	RGB 01, 01, 02
 	RGB 31, 19, 10
 	RGB 30, 10, 06
 	RGB 00, 00, 00
-
+; silver
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 13, 13, 13
 	RGB 00, 00, 00
-
+; tree
 	RGB 01, 01, 02
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-
+; rock
 	RGB 01, 01, 02
 	RGB 00, 00, 00
 	RGB 00, 00, 00
