@@ -2,12 +2,12 @@ SpriteAnimFrameData: ; 8d6e6
 ; entries correspond to SPRITE_ANIM_FRAMESET_* constants
 	dw .Frameset_00
 	dw .Frameset_PartyMon
-	dw .Frameset_02
-	dw .Frameset_03
-	dw .Frameset_04
-	dw .Frameset_05
-	dw .Frameset_06
-	dw .Frameset_07
+	dw .Frameset_PartyMonWithMail
+	dw .Frameset_PartyMonWithItem
+	dw .Frameset_PartyMonFast
+	dw .Frameset_PartyMonWithMailFast
+	dw .Frameset_PartyMonWithItemFast
+	dw .Frameset_GSTitleTrail
 	dw .Frameset_TextEntryCursor
 	dw .Frameset_09
 	dw .Frameset_GameFreakLogo
@@ -69,51 +69,51 @@ SpriteAnimFrameData: ; 8d6e6
 ; 8d76a
 
 .Frameset_00:
-	frame SPRITE_ANIM_FRAME_IDX_00, 32
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_1, 32
 	endanim
 
 .Frameset_PartyMon:
-	frame SPRITE_ANIM_FRAME_IDX_00,  8
-	frame SPRITE_ANIM_FRAME_IDX_01,  8
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_1,  8
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_2,  8
 	dorestart
 
-.Frameset_02:
-	frame SPRITE_ANIM_FRAME_IDX_3D,  8
-	frame SPRITE_ANIM_FRAME_IDX_3E,  8
+.Frameset_PartyMonWithMail:
+	frame SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_MAIL_1,  8
+	frame SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_MAIL_2,  8
 	dorestart
 
-.Frameset_03:
-	frame SPRITE_ANIM_FRAME_IDX_3F,  8
-	frame SPRITE_ANIM_FRAME_IDX_40,  8
+.Frameset_PartyMonWithItem:
+	frame SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_ITEM_1,  8
+	frame SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_ITEM_2,  8
 	dorestart
 
-.Frameset_04:
-	frame SPRITE_ANIM_FRAME_IDX_00,  4
-	frame SPRITE_ANIM_FRAME_IDX_01,  4
+.Frameset_PartyMonFast:
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_1,  4
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_2,  4
 	dorestart
 
-.Frameset_05:
-	frame SPRITE_ANIM_FRAME_IDX_3D,  4
-	frame SPRITE_ANIM_FRAME_IDX_3E,  4
+.Frameset_PartyMonWithMailFast:
+	frame SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_MAIL_1,  4
+	frame SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_MAIL_2,  4
 	dorestart
 
-.Frameset_06:
-	frame SPRITE_ANIM_FRAME_IDX_3F,  4
-	frame SPRITE_ANIM_FRAME_IDX_40,  4
+.Frameset_PartyMonWithItemFast:
+	frame SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_ITEM_1,  4
+	frame SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_ITEM_2,  4
 	dorestart
 
 .Frameset_RedWalk:
-	frame SPRITE_ANIM_FRAME_IDX_00,  8
-	frame SPRITE_ANIM_FRAME_IDX_01,  8
-	frame SPRITE_ANIM_FRAME_IDX_00,  8
-	frame SPRITE_ANIM_FRAME_IDX_01,  8, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_1,  8
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_2,  8
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_1,  8
+	frame SPRITE_ANIM_FRAME_IDX_RED_WALK_2,  8, OAM_X_FLIP
 	dorestart
 
 .Frameset_BlueWalk:
-	frame SPRITE_ANIM_FRAME_IDX_63,  8
-	frame SPRITE_ANIM_FRAME_IDX_64,  8
-	frame SPRITE_ANIM_FRAME_IDX_63,  8
-	frame SPRITE_ANIM_FRAME_IDX_64,  8, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_BLUE_WALK_1,  8
+	frame SPRITE_ANIM_FRAME_IDX_BLUE_WALK_2,  8
+	frame SPRITE_ANIM_FRAME_IDX_BLUE_WALK_1,  8
+	frame SPRITE_ANIM_FRAME_IDX_BLUE_WALK_2,  8, OAM_X_FLIP
 	dorestart
 
 .Frameset_MagnetTrainBlue:
@@ -123,9 +123,9 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_FRAME_IDX_66,  8, OAM_X_FLIP
 	dorestart
 
-.Frameset_07:
-	frame SPRITE_ANIM_FRAME_IDX_1E,  1
-	frame SPRITE_ANIM_FRAME_IDX_1F,  1
+.Frameset_GSTitleTrail:
+	frame SPRITE_ANIM_FRAME_IDX_GS_TITLE_TRAIL_1,  1
+	frame SPRITE_ANIM_FRAME_IDX_GS_TITLE_TRAIL_2,  1
 	dorestart
 
 .Frameset_TextEntryCursor:
@@ -134,7 +134,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dorestart
 
 .Frameset_09:
-	frame SPRITE_ANIM_FRAME_IDX_21,  1
+	frame SPRITE_ANIM_FRAME_IDX_FOR_FRAMESET_09,  1
 	dorepeat  1
 	dorestart
 
@@ -195,7 +195,7 @@ SpriteAnimFrameData: ; 8d6e6
 	endanim
 
 .Frameset_StillCursor:
-	frame SPRITE_ANIM_FRAME_IDX_2F, 32
+	frame SPRITE_ANIM_FRAME_IDX_STILL_CURSOR, 32
 	endanim
 
 .Frameset_TradePokeBall:
@@ -221,8 +221,8 @@ SpriteAnimFrameData: ; 8d6e6
 	dorestart
 
 .Frameset_TrademonIcon:
-	frame SPRITE_ANIM_FRAME_IDX_37,  7
-	frame SPRITE_ANIM_FRAME_IDX_38,  7
+	frame SPRITE_ANIM_FRAME_IDX_TRADEMON_ICON_1,  7
+	frame SPRITE_ANIM_FRAME_IDX_TRADEMON_ICON_2,  7
 	dorestart
 
 .Frameset_TrademonBubble:
@@ -236,7 +236,7 @@ SpriteAnimFrameData: ; 8d6e6
 	endanim
 
 .Frameset_RadioTuningKnob:
-	frame SPRITE_ANIM_FRAME_IDX_3C, 32
+	frame SPRITE_ANIM_FRAME_IDX_RADIO_TUNING_KNOB, 32
 	endanim
 
 .Frameset_MagnetTrainRed:
@@ -294,20 +294,20 @@ SpriteAnimFrameData: ; 8d6e6
 	endanim
 
 .Frameset_Leaf:
-	frame SPRITE_ANIM_FRAME_IDX_4F, 32
+	frame SPRITE_ANIM_FRAME_IDX_LEAF, 32
 	endanim
 
 .Frameset_CutTree:
-	frame SPRITE_ANIM_FRAME_IDX_50,  2
-	frame SPRITE_ANIM_FRAME_IDX_51, 16
+	frame SPRITE_ANIM_FRAME_IDX_TREE_1,      2
+	frame SPRITE_ANIM_FRAME_IDX_CUT_TREE_2, 16
 	dorepeat  1
-	frame SPRITE_ANIM_FRAME_IDX_52,  1
+	frame SPRITE_ANIM_FRAME_IDX_CUT_TREE_3,  1
 	dorepeat  1
-	frame SPRITE_ANIM_FRAME_IDX_53,  1
+	frame SPRITE_ANIM_FRAME_IDX_CUT_TREE_4,  1
 	delanim
 
 .Frameset_EggCrack:
-	frame SPRITE_ANIM_FRAME_IDX_54, 32
+	frame SPRITE_ANIM_FRAME_IDX_EGG_CRACK, 32
 	endanim
 
 .Frameset_EggHatch:
@@ -336,10 +336,10 @@ SpriteAnimFrameData: ; 8d6e6
 	dorestart
 
 .Frameset_HeadbuttTree:
-	frame SPRITE_ANIM_FRAME_IDX_50,  2
-	frame SPRITE_ANIM_FRAME_IDX_5B,  2
-	frame SPRITE_ANIM_FRAME_IDX_50,  2
-	frame SPRITE_ANIM_FRAME_IDX_5B,  2, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_TREE_1,           2
+	frame SPRITE_ANIM_FRAME_IDX_HEADBUTT_TREE_2,  2
+	frame SPRITE_ANIM_FRAME_IDX_TREE_1,           2
+	frame SPRITE_ANIM_FRAME_IDX_HEADBUTT_TREE_2,  2, OAM_X_FLIP
 	dorestart
 
 .Frameset_26:
@@ -480,7 +480,7 @@ SpriteAnimFrameData: ; 8d6e6
 	endanim
 
 .Frameset_IntroSuicuneAway:
-	frame SPRITE_ANIM_FRAME_IDX_7E,  3
+	frame SPRITE_ANIM_FRAME_IDX_INTRO_SUICUNE_AWAY,  3
 	endanim
 
 .Frameset_IntroUnownF:
@@ -488,12 +488,12 @@ SpriteAnimFrameData: ; 8d6e6
 	endanim
 
 .Frameset_CelebiLeft:
-	frame SPRITE_ANIM_FRAME_IDX_7F,  8
-	frame SPRITE_ANIM_FRAME_IDX_80,  8
+	frame SPRITE_ANIM_FRAME_IDX_CELEBI_1,  8
+	frame SPRITE_ANIM_FRAME_IDX_CELEBI_2,  8
 	endanim
 
 .Frameset_CelebiRight:
-	frame SPRITE_ANIM_FRAME_IDX_7F,  8, OAM_X_FLIP
-	frame SPRITE_ANIM_FRAME_IDX_80,  8, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_CELEBI_1,  8, OAM_X_FLIP
+	frame SPRITE_ANIM_FRAME_IDX_CELEBI_2,  8, OAM_X_FLIP
 	endanim
 ; 8d94d

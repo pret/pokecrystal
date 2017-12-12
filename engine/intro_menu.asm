@@ -1341,7 +1341,7 @@ Function639b: ; unreferenced
 	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, Data63ca
+	ld de, .Data63ca
 	add hl, de
 	; If bit 2 of [wTitleScreenTimer] is set, get the second dw; else, get the first dw
 	ld a, [wTitleScreenTimer]
@@ -1357,12 +1357,12 @@ Function639b: ; unreferenced
 	ret z
 	ld e, a
 	ld d, [hl]
-	ld a, SPRITE_ANIM_INDEX_01
+	ld a, SPRITE_ANIM_INDEX_GS_TITLE_TRAIL
 	call _InitSpriteAnimStruct
 	ret
 ; 63ca
 
-Data63ca: ; 63ca
+.Data63ca: ; 63ca
 ; frame 0 y, x; frame 1 y, x
 	db 11 * 8 + 4, 10 * 8,  0 * 8,      0 * 8
 	db 11 * 8 + 4, 13 * 8, 11 * 8 + 4, 11 * 8
