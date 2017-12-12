@@ -6,26 +6,26 @@
 
 ## `.MapTriggers:`
 
-**`maptrigger `**___`script`___
+### `maptrigger `*`script`*
 
 ## `.MapCallbacks:`
 
-**`dbw `**___`type`___**`, `**___`script`___
+### `dbw `*`type`*`, `*`script`*
 
 ## *`MapName`*`_MapScriptHeader:`
 
 ## `.Warps:`
 
-**`warp_def `**___`y`___**`, `**___`x`___**`, `**___`id`___**`, `**___`map`___
+### `warp_def `*`y`*`, `*`x`*`, `*`id`*`, `*`map`*
 
 ## `.XYTriggers:`
 
-**`xy_trigger `**___`id`___**`, `**___`y`___**`, `**___`x`___**`, $0, `**___`script`___**`, $0, $0`**
+### `xy_trigger `*`id`*`, `*`y`*`, `*`x`*`, $0, `*`script`*`, $0, $0`
 
 ## `.Signposts:`
 
-**`signpost `**___`y`___**`, `**___`x`___**`, `**___`type`___**`, `**___`script``___
+### `signpost `*`y`*`, `*`x`*`, `*`type`*`, `*`script`*
 
 ## `.PersonEvents:`
 
-**`person_event `**___`sprite`___**`, `**___`y`___**`, `**___`x`___**`, `**___`movement`___**`, `**___`ry`___**`, `**___`rx`___**`, `**___`hour`___**`, `**___`day`___**`, `**___`palette`___**`, `**___`type`___**`, `**___`range`___**`, `**___`script`___**`, `**___`flag`___
+### `person_event `*`sprite`*`, `*`y`*`, `*`x`*`, `*`movement`*`, `*`ry`*`, `*`rx`*`, `*`hour`*`, `*`day`*`, `*`palette`*`, `*`type`*`, `*`range`*`, `*`script`*`, `*`flag`*
