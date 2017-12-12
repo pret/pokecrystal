@@ -526,7 +526,7 @@ MobileTradeAnim_ShowPlayerMonToBeSent: ; 10830e
 	call DelayFrames
 	call Function108bec
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_20
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_BALL
 	call _InitSpriteAnimStruct
 	ld de, SFX_BALL_POOF
 	call PlaySFX
@@ -561,7 +561,7 @@ MobileTradeAnim_ShowOTMonFromTrade: ; 10839b
 	ld a, $90
 	ld [hWY], a
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_21
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
 	call _InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1
@@ -661,7 +661,7 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	call DelayFrames
 	call Function108c2b
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_20
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_BALL
 	call _InitSpriteAnimStruct
 	ld de, SFX_BALL_POOF
 	call PlaySFX
@@ -705,7 +705,7 @@ MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	ld a, $90
 	ld [hWY], a
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_21
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
 	call _InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1
@@ -774,7 +774,7 @@ MobileTradeAnim_GetOddEgg: ; 108589
 	ld a, $90
 	ld [hWY], a
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_21
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
 	call _InitSpriteAnimStruct
 	call Function108b45
 	ld a, $1

@@ -27,7 +27,7 @@ DoAnimFrame: ; 8d24b
 	dw .SlotsChansey
 	dw .SlotsChanseyEgg
 	dw .MailCursor
-	dw .sprite_anim_seq_0D
+	dw .ForUnusedCursor
 	dw .DummyGameCursor
 	dw .PokegearArrow
 	dw .TradePokeBall
@@ -404,7 +404,7 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.sprite_anim_seq_0D ; 8d46e (23:546e)
+.ForUnusedCursor ; 8d46e (23:546e)
 	callab ret_e00ed
 	ret
 

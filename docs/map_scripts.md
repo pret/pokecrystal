@@ -3,7 +3,7 @@
 
 ## `const_value set 2`
 
-### `const` *`MAPNAME_PERSONNAME`*
+- **`const` *`MAPNAME_PERSONNAME`***
 
 
 ## `MapName_MapScriptHeader:`
@@ -11,15 +11,17 @@
 
 ## `.MapTriggers: db` *N*
 
-### `maptrigger` *script*
+- **`maptrigger` *script***
 
 
 ## `.MapCallbacks: db` *N*
 
-### `dbw` *type*, *script*
+- **`dbw` *type*, *script***
 
 
 ## Scripts
+
+[Scripting commands](docs/scripting_commands.md)
 
 
 ## Text
@@ -39,19 +41,19 @@
 
 ## `.Warps: db` *N*
 
-### `warp_def` *y*, *x*, *warp_id*, *map*
+- **`warp_def` *y*, *x*, *warp_id*, *map***
 
 
 ## `.XYTriggers: db` *N*
 
-### `xy_trigger` *id*, *y*, *x*, `$0`, *script*, `$0`, `$0`
+- **`xy_trigger` *id*, *y*, *x*, `$0`, *script*, `$0`, `$0`**
 
 
 ## `.Signposts: db` *N*
 
-### `signpost` *y*, *x*, *type*, *script*
+- `signpost` *y*, *x*, *type*, *script***
 
-#### Signpost types:
+Signpost types:
 
 - **`SIGNPOST_READ`**
 
@@ -69,9 +71,9 @@
 
 ## `.PersonEvents: db` *N*
 
-### `person_event` *sprite*, *y*, *x*, *movement*, *ry*, *rx*, *hour*, *daytime*, *palette*, *type*, *range*, *script*, *event_flag*
+- **`person_event` *sprite*, *y*, *x*, *movement*, *ry*, *rx*, *hour*, *daytime*, *palette*, *type*, *range*, *script*, *event_flag***
 
-#### Movement types:
+Movement types:
 
 - **`SPRITEMOVEDATA_ITEM_TREE`**
 
@@ -105,7 +107,7 @@
 
 - **`SPRITEMOVEDATA_LAPRAS`**
 
-#### Person types:
+Person types:
 
 - **`PERSONTYPE_SCRIPT`**
 
