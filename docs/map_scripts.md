@@ -18,6 +18,24 @@
 
 - **`dbw` *type*, *script***
 
+Callback types:
+
+- **`MAPCALLBACK_NEWMAP`**
+
+- **`MAPCALLBACK_TILES`**
+
+- **`MAPCALLBACK_OBJECTS`**
+
+- **`MAPCALLBACK_SPRITES`**
+
+- **`MAPCALLBACK_CMDQUEUE`**
+
+  **`dbw CMDQUEUE_STONETABLE,` *table_pointer***
+  
+  **`stonetable` *warp_id*, *person*, *script***
+  
+  **`db -1 ; end`**
+
 
 ## Event scripts
 
