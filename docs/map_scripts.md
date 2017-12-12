@@ -70,7 +70,7 @@ Callback types:
 
 ## `.Signposts: db` *N*
 
-- `signpost` *y*, *x*, *type*, *script***
+- **`signpost` *y*, *x*, *type*, *script***
 
 Signpost types:
 
