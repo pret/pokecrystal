@@ -726,9 +726,9 @@ TryLoadSaveData: ; 14f1c
 	ret
 ; 14f7c
 
-DefaultOptions: ; 14f7c
+
 INCLUDE "data/default_options.asm"
-; 14f84
+
 
 CheckPrimarySaveFile: ; 14f84
 	ld a, BANK(s1_a008)

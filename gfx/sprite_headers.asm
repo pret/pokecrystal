@@ -1,14 +1,12 @@
-; Format:
-;	Address
-;	Length, Bank
-;	Type, Palette
-
 sprite_header: MACRO
 ; pointer, length, type, palette
 	dw \1
 	db \2 * 4 tiles, BANK(\1)
 	db \3, \4
 ENDM
+
+SpriteHeaders: ; 14736
+; entries correspond to SPRITE_* constants
 
 ChrisSprite: ; 14736
 	sprite_header ChrisSpriteGFX, 3, WALKING_SPRITE, PAL_OW_RED

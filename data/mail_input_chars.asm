@@ -7,7 +7,6 @@ MailEntry_Uppercase: ; 122dd
 	db "1 2 3 4 5 6 7 8 9 0"
 	db "<PK> <MN> <PO> <KE> é ♂ ♀ ¥ … ×"
 	db "lower  DEL   END   "
-
 ; 1224f
 
 MailEntry_Lowercase: ; 1224f
@@ -17,3 +16,4 @@ MailEntry_Lowercase: ; 1224f
 	db "'d 'l 'm 'r 's 't 'v & ( )"
 	db "<``> <''> [ ] ' : ;      "
 	db "UPPER  DEL   END   "
+; 122c1

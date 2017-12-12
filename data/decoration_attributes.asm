@@ -5,6 +5,8 @@ decoration: MACRO
 	db \5
 ENDM
 
+DecorationAttributes: ; 26a4f
+; entries correspond to deco constants
 	decoration DECO_PLANT,   $00,            $0,                EVENT_GAVE_KURT_APRICORNS,       $00
 	decoration DECO_PLANT,   PUT_IT_AWAY,    PUT_AWAY_BED,      EVENT_GAVE_KURT_APRICORNS,       $00
 	decoration DECO_BED,     FEATHERY_BED,   SET_UP_BED,        EVENT_DECO_BED_1,                $1b
@@ -58,3 +60,4 @@ ENDM
 	decoration DECO_DOLL,    TENTACOOL,      SET_UP_DOLL,       EVENT_DECO_TENTACOOL_DOLL,       SPRITE_TENTACOOL
 	decoration DECO_PLANT,   GOLD_TROPHY,    SET_UP_DOLL,       EVENT_DECO_GOLD_TROPHY,          SPRITE_GOLD_TROPHY
 	decoration DECO_PLANT,   SILVER_TROPHY,  SET_UP_DOLL,       EVENT_DECO_SILVER_TROPHY,        SPRITE_SILVER_TROPHY
+; 26b8d

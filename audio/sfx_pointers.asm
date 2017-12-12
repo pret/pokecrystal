@@ -1,4 +1,6 @@
-; e927c
+SFX: ; e927c
+; entries correspond to SFX_* constants
+
 	dba Sfx_DexFanfare5079
 	dba Sfx_Item
 	dba Sfx_CaughtMon

@@ -1,5 +1,5 @@
+FruitTreeItems: ; 44097
 ; entries correspond to FRUITTREE_* constants
-
 	db BERRY        ; ROUTE_29
 	db BERRY        ; ROUTE_30_1
 	db BERRY        ; ROUTE_38
@@ -30,3 +30,4 @@
 	db ICE_BERRY    ; PEWTER_CITY_1
 	db MINT_BERRY   ; PEWTER_CITY_2
 	db BURNT_BERRY  ; FUCHSIA_CITY
+; 440b5

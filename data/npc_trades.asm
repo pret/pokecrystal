@@ -1,3 +1,7 @@
+TRADE_EITHER_GENDER EQU 0
+TRADE_MALE_ONLY     EQU 1
+TRADE_FEMALE_ONLY   EQU 2
+
 npctrade: MACRO
 ; dialog set, requested mon, offered mon, nickname, dvs, item, OT ID, OT name, gender requested
 	db \1, \2, \3, \4, \5, \6, \7
@@ -6,10 +10,7 @@ npctrade: MACRO
 	db \8, \9, 0
 ENDM
 
-TRADE_EITHER_GENDER EQU 0
-TRADE_MALE_ONLY     EQU 1
-TRADE_FEMALE_ONLY   EQU 2
-
+NPCTrades: ; fce58
 ; entries correspond to NPCTRADE_* constants
 	npctrade 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   37460, "MIKE@@@@@@@", TRADE_EITHER_GENDER
 	npctrade 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, 48926, "KYLE@@@@@@@", TRADE_EITHER_GENDER
@@ -18,3 +19,4 @@ TRADE_FEMALE_ONLY   EQU 2
 	npctrade 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $96, $86, MYSTERYBERRY, 15616, "CHRIS@@@@@@", TRADE_EITHER_GENDER
 	npctrade 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   26491, "KIM@@@@@@@@", TRADE_EITHER_GENDER
 	npctrade 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   50082, "FOREST@@@@@", TRADE_EITHER_GENDER
+; fcf38

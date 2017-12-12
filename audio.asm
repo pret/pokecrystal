@@ -4,19 +4,10 @@ INCLUDE "includes.asm"
 SECTION "Audio", ROMX
 
 INCLUDE "audio/engine.asm"
-
-TrainerEncounterMusic::
 INCLUDE "trainers/encounter_music.asm"
-
-Music:
 INCLUDE "audio/music_pointers.asm"
-
 INCLUDE "audio/music/nothing.asm"
-
-Cries:
 INCLUDE "audio/cry_pointers.asm"
-
-SFX:
 INCLUDE "audio/sfx_pointers.asm"
 
 

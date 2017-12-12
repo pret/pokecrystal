@@ -450,9 +450,7 @@ GetBallAnimPal: ; cd249 (33:5249)
 	ret
 ; cd26c (33:526c)
 
-BallColors:
 INCLUDE "data/ball_colors.asm"
-; cd284
 
 BattleAnimFunction_10: ; cd284 (33:5284)
 	call BattleAnim_AnonJumptable

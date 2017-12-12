@@ -5,14 +5,18 @@ INCLUDE "includes.asm"
 ; but in different banks. This is enforced in pokecrystal.link.
 
 SECTION "Pic Pointers", ROMX
-PicPointers:: INCLUDE "gfx/pics/pic_pointers.asm"
+
+INCLUDE "gfx/pics/pic_pointers.asm"
+
 
 SECTION "Unown Pic Pointers", ROMX
-UnownPicPointers:: INCLUDE "gfx/pics/unown_pic_pointers.asm"
+
+INCLUDE "gfx/pics/unown_pic_pointers.asm"
 
 
 SECTION "Trainer Pic Pointers", ROMX
-TrainerPicPointers:: INCLUDE "gfx/trainer_pic_pointers.asm"
+
+INCLUDE "gfx/trainer_pic_pointers.asm"
 
 
 SECTION "Pics 1", ROMX

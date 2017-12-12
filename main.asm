@@ -2350,9 +2350,9 @@ CheckSave:: ; 4cffe
 	ld c, $0
 	ret
 
-MapTriggers:: ; 4d01e
+
 INCLUDE "data/map_triggers.asm"
-; 4d15b
+
 
 _LoadMapPart:: ; 4d15b
 	ld hl, wMisc
@@ -2572,8 +2572,9 @@ LinkTextbox2: ; 4d35b
 
 INCLUDE "engine/delete_save_change_clock.asm"
 
-Tilesets::
+
 INCLUDE "tilesets/tileset_headers.asm"
+
 
 FlagPredef: ; 4d7c1
 ; Perform action b on flag c in flag array hl.
@@ -4589,10 +4590,9 @@ _SwitchPartyMons:
 
 INCLUDE "gfx/load_pics.asm"
 INCLUDE "engine/move_mon_wo_mail.asm"
-BaseData::
+
 INCLUDE "data/base_stats.asm"
 
-PokemonNames::
 INCLUDE "data/pokemon_names.asm"
 
 Unknown_53d84: ; unreferenced
@@ -4625,7 +4625,6 @@ INCLUDE "engine/engine_flags.asm"
 
 INCLUDE "engine/variables.asm"
 
-BattleText::
 INCLUDE "text/battle.asm"
 
 INCLUDE "engine/debug.asm"
@@ -5517,12 +5516,10 @@ INCLUDE "text/phone/trainers1.asm"
 
 SECTION "bank72", ROMX
 
-ItemNames::
 INCLUDE "items/item_names.asm"
 
 INCLUDE "items/item_descriptions.asm"
 
-MoveNames::
 INCLUDE "battle/move_names.asm"
 
 INCLUDE "engine/landmarks.asm"

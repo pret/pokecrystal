@@ -2,6 +2,7 @@ engine_flag: MACRO
 	dwb \1, 1 << \2
 ENDM
 
+EngineFlags: ; 80462
 	; location, bit
 	; (all locations are in WRAM bank 1)
 
@@ -201,3 +202,5 @@ ENDM
 
 	engine_flag SwarmFlags, 2 ; dunsparce swarm   ; $a0
 	engine_flag SwarmFlags, 3 ; yanma swarm
+
+; 80648

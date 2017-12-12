@@ -541,9 +541,7 @@ GetDecorationSprite: ; 26a44
 	ret
 ; 26a4f
 
-DecorationAttributes: ; 26a4f
 INCLUDE "data/decoration_attributes.asm"
-; 26b8d
 
 DecorationNames: ; 26b8d
 	db "CANCEL@"

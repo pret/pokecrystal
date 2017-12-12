@@ -550,15 +550,30 @@ BrokenGetStdGraphics: ; 8d1ac
 	ret
 ; 8d1c4
 
-SpriteAnimSeqData: ; 8d1c4
+
 INCLUDE "data/sprite_anim_seqs.asm"
-; 8d24b
 
-INCLUDE "engine/sprite_anims.asm" ; DoAnimFrame
+INCLUDE "engine/sprite_anims.asm"
 
-INCLUDE "data/sprite_engine.asm"
-; SpriteAnimFrameData
-; SpriteAnimOAMData
+INCLUDE "data/sprite_anim_frames.asm"
+
+INCLUDE "data/sprite_anim_oam.asm"
+
+
+BrokenStdGFXPointers: ; Broken 2bpp pointers
+	dbbw $80, $01, .deleted ; 128-tile 2bpp at 1:672a (inside Multiply)
+	dbbw $80, $01, .deleted
+	dbbw $80, $01, .deleted
+	dbbw $80, $01, .deleted
+	dbbw $10, $37, .deleted ; 16-tile 2bpp at 37:672a (within TilesetTrainStationGFX)
+	dbbw $10, $11, .deleted ; 16-tile 2bpp at 11:672a (empty data)
+	dbbw $10, $39, .deleted ; 16-tile 2bpp at 39:672a (empty data)
+	dbbw $10, $24, .deleted ; 16-tile 2bpp at 24:672a (inside Function926f7)
+	dbbw $10, $21, .deleted ; 16-tile 2bpp at 21:672a (inside Function8671c)
+
+.deleted
+; 8e72a (23:672a)
+
 
 Sprites_Cosine: ; 8e72a
 	add $10

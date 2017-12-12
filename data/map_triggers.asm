@@ -5,6 +5,7 @@ trigger_def: MACRO
 	dw \2
 ENDM
 
+MapTriggers:: ; 4d01e
 	trigger_def POKECENTER_2F,                          wPokecenter2FTrigger
 	trigger_def TRADE_CENTER,                           wTradeCenterTrigger
 	trigger_def COLOSSEUM,                              wColosseumTrigger
@@ -85,3 +86,4 @@ ENDM
 	trigger_def MOBILE_TRADE_ROOM_MOBILE,               wMobileTradeRoomMobileTrigger
 	trigger_def MOBILE_BATTLE_ROOM,                     wMobileBattleRoomTrigger
 	db -1
+; 4d15b

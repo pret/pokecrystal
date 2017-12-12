@@ -83,5 +83,4 @@ EngineFlagAction:: ; 80430
 ; 80462
 
 
-EngineFlags: ; 80462
 INCLUDE "data/engine_flags.asm"

@@ -411,9 +411,7 @@ GetTradeMonNames: ; fce1b
 ; fce58
 
 
-NPCTrades: ; fce58
 INCLUDE "data/npc_trades.asm"
-; fcf38
 
 
 PrintTradeText: ; fcf38

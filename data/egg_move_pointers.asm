@@ -1,3 +1,4 @@
+EggMovePointers:: ; 0x23b11
 	dw BulbasaurEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
@@ -253,3 +254,4 @@ endc
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+; 0x23d07

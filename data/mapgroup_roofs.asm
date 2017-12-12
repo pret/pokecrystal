@@ -1,4 +1,6 @@
-; valid roofs: 0, 1, 2, 3, 4; -1 for none
+; valid roofs: 0, 1, 2, 3, 4, or -1 for none
+
+MapGroupRoofs: ; 1c021i
 	db -1 ; group 0 (unused)
 	db  3 ; group 1 (Olivine)
 	db  2 ; group 2 (Mahogany)
@@ -26,3 +28,4 @@
 	db  0 ; group 24 (New Bark)
 	db -1 ; group 25
 	db  0 ; group 26 (Cherrygrove)
+; 1c03c

@@ -1,4 +1,4 @@
-; e91b0
+Cries: ; e91b0
 	dba Cry_Nidoran_M
 	dba Cry_Nidoran_F
 	dba Cry_Slowpoke

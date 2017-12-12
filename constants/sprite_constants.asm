@@ -380,7 +380,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const SPRITEANIMSTRUCT_0E              ; e
 	const SPRITEANIMSTRUCT_0F              ; f
 
-; SpriteAnimFrameData indexes (see data/sprite_engine.asm)
+; SpriteAnimFrameData indexes (see data/sprite_anim_frames.asm)
 	const_def
 	const SPRITE_ANIM_FRAMESET_00
 	const SPRITE_ANIM_FRAMESET_PARTY_MON
@@ -535,7 +535,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY
 	const SPRITE_ANIM_INDEX_CELEBI
 
-; SpriteAnimOAMData indexes (see data/sprite_engine.asm)
+; SpriteAnimOAMData indexes (see data/sprite_anim_oam.asm)
 	const_def
 	const SPRITE_ANIM_FRAME_IDX_00
 	const SPRITE_ANIM_FRAME_IDX_01

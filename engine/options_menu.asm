@@ -106,9 +106,9 @@ GetOptionPointer: ; e42d6
 
 
 	const_def
-	const TEXT_SPEED_FAST ; 0
-	const TEXT_SPEED_MED  ; 1
-	const TEXT_SPEED_SLOW ; 2
+	const OPT_TEXT_SPEED_FAST ; 0
+	const OPT_TEXT_SPEED_MED  ; 1
+	const OPT_TEXT_SPEED_SLOW ; 2
 
 Options_TextSpeed: ; e42f5
 	call GetTextSpeed
@@ -118,9 +118,9 @@ Options_TextSpeed: ; e42f5
 	bit D_RIGHT_F, a
 	jr z, .NonePressed
 	ld a, c ; right pressed
-	cp TEXT_SPEED_SLOW
+	cp OPT_TEXT_SPEED_SLOW
 	jr c, .Increase
-	ld c, TEXT_SPEED_FAST +- 1
+	ld c, OPT_TEXT_SPEED_FAST +- 1
 
 .Increase:
 	inc c
@@ -131,7 +131,7 @@ Options_TextSpeed: ; e42f5
 	ld a, c
 	and a
 	jr nz, .Decrease
-	ld c, TEXT_SPEED_SLOW + 1
+	ld c, OPT_TEXT_SPEED_SLOW + 1
 
 .Decrease:
 	dec c
@@ -159,7 +159,7 @@ Options_TextSpeed: ; e42f5
 ; e4331
 
 .Strings:
-; entries correspond to TEXT_SPEED_* constants
+; entries correspond to OPT_TEXT_SPEED_* constants
 	dw .Fast
 	dw .Mid
 	dw .Slow
@@ -171,7 +171,7 @@ Options_TextSpeed: ; e42f5
 
 
 GetTextSpeed: ; e4346
-; converts TEXT_DELAY_* value in a to TEXT_SPEED_* value in c,
+; converts TEXT_DELAY_* value in a to OPT_TEXT_SPEED_* value in c,
 ; with previous/next TEXT_DELAY_* values in d/e
 	ld a, [Options]
 	and $7
@@ -180,17 +180,17 @@ GetTextSpeed: ; e4346
 	cp TEXT_DELAY_FAST
 	jr z, .fast
 	; none of the above
-	ld c, TEXT_SPEED_MED
+	ld c, OPT_TEXT_SPEED_MED
 	lb de, TEXT_DELAY_FAST, TEXT_DELAY_SLOW
 	ret
 
 .slow
-	ld c, TEXT_SPEED_SLOW
+	ld c, OPT_TEXT_SPEED_SLOW
 	lb de, TEXT_DELAY_MED, TEXT_DELAY_FAST
 	ret
 
 .fast
-	ld c, TEXT_SPEED_FAST
+	ld c, OPT_TEXT_SPEED_FAST
 	lb de, TEXT_DELAY_SLOW, TEXT_DELAY_MED
 	ret
 ; e4365
@@ -328,11 +328,11 @@ Options_Sound: ; e43dd
 
 
 	const_def
-	const PRINT_LIGHTEST ; 0
-	const PRINT_LIGHTER  ; 1
-	const PRINT_NORMAL   ; 2
-	const PRINT_DARKER   ; 3
-	const PRINT_DARKEST  ; 4
+	const OPT_PRINT_LIGHTEST ; 0
+	const OPT_PRINT_LIGHTER  ; 1
+	const OPT_PRINT_NORMAL   ; 2
+	const OPT_PRINT_DARKER   ; 3
+	const OPT_PRINT_DARKEST  ; 4
 
 Options_Print: ; e4424
 	call GetPrinterSetting
@@ -342,9 +342,9 @@ Options_Print: ; e4424
 	bit D_RIGHT_F, a
 	jr z, .NonePressed
 	ld a, c
-	cp PRINT_DARKEST
+	cp OPT_PRINT_DARKEST
 	jr c, .Increase
-	ld c, PRINT_LIGHTEST - 1
+	ld c, OPT_PRINT_LIGHTEST - 1
 
 .Increase:
 	inc c
@@ -355,7 +355,7 @@ Options_Print: ; e4424
 	ld a, c
 	and a
 	jr nz, .Decrease
-	ld c, PRINT_DARKEST + 1
+	ld c, OPT_PRINT_DARKEST + 1
 
 .Decrease:
 	dec c
@@ -380,7 +380,7 @@ Options_Print: ; e4424
 ; e445a
 
 .Strings:
-; entries correspond to PRINT_* constants
+; entries correspond to OPT_PRINT_* constants
 	dw .Lightest
 	dw .Lighter
 	dw .Normal
@@ -396,7 +396,7 @@ Options_Print: ; e4424
 
 
 GetPrinterSetting: ; e4491
-; converts GBPRINTER_* value in a to PRINT_* value in c,
+; converts GBPRINTER_* value in a to OPT_PRINT_* value in c,
 ; with previous/next GBPRINTER_* values in d/e
 	ld a, [GBPrinter]
 	and a
@@ -408,27 +408,27 @@ GetPrinterSetting: ; e4491
 	cp GBPRINTER_DARKEST
 	jr z, .IsDarkest
 	; none of the above
-	ld c, PRINT_NORMAL
+	ld c, OPT_PRINT_NORMAL
 	lb de, GBPRINTER_LIGHTER, GBPRINTER_DARKER
 	ret
 
 .IsLightest:
-	ld c, PRINT_LIGHTEST
+	ld c, OPT_PRINT_LIGHTEST
 	lb de, GBPRINTER_DARKEST, GBPRINTER_LIGHTER
 	ret
 
 .IsLight:
-	ld c, PRINT_LIGHTER
+	ld c, OPT_PRINT_LIGHTER
 	lb de, GBPRINTER_LIGHTEST, GBPRINTER_NORMAL
 	ret
 
 .IsDark:
-	ld c, PRINT_DARKER
+	ld c, OPT_PRINT_DARKER
 	lb de, GBPRINTER_NORMAL, GBPRINTER_DARKEST
 	ret
 
 .IsDarkest:
-	ld c, PRINT_DARKEST
+	ld c, OPT_PRINT_DARKEST
 	lb de, GBPRINTER_DARKER, GBPRINTER_LIGHTEST
 	ret
 ; e44c1

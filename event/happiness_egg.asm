@@ -66,7 +66,7 @@ ChangeHappiness: ; 71c2
 .ok
 	dec c
 	ld b, 0
-	ld hl, .Actions
+	ld hl, HappinessChanges
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -102,8 +102,9 @@ ChangeHappiness: ; 71c2
 	ld [BattleMonHappiness], a
 	ret
 
-.Actions:
+
 INCLUDE "data/happiness_changes.asm"
+
 
 StepHappiness:: ; 725a
 ; Raise the party's happiness by 1 point every other step cycle.

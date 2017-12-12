@@ -1,5 +1,4 @@
 
-SpawnPoints: ; 0x152ab
 INCLUDE "data/spawn_points.asm"
 
 

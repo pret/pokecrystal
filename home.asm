@@ -1036,13 +1036,13 @@ IsHM:: ; 34df
 ; 34e7
 
 IsHMMove:: ; 34e7
-	ld hl, .HMMoves
+	ld hl, HMMoves
 	ld de, 1
 	jp IsInArray
 
-.HMMoves:
+
 INCLUDE "data/hm_moves.asm"
-; 34f8
+
 
 GetMoveName:: ; 34f8
 	push hl

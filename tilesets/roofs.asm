@@ -1,4 +1,3 @@
-
 LoadMapGroupRoof:: ; 1c000
 	ld a, [MapGroup]
 	ld e, a
@@ -17,9 +16,9 @@ LoadMapGroupRoof:: ; 1c000
 	ret
 ; 1c021
 
-MapGroupRoofs: ; 1c021i
+
 INCLUDE "data/mapgroup_roofs.asm"
-; 1c03c
+
 
 Roofs: ; 1c03c
 INCBIN "gfx/tilesets/roofs/0.2bpp"

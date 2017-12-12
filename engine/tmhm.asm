@@ -45,6 +45,5 @@ GetTMHMMove: ; 1166a
 	ret
 ; 1167a
 
-TMHMMoves: ; 1167a
+
 INCLUDE "data/tmhm_moves.asm"
-; 116b7

@@ -47,7 +47,6 @@ GetLandmarkName:: ; 0x1ca8a5
 ; 0x1ca8c3
 
 
-Landmarks: ; 0x1ca8c3
 INCLUDE "data/landmarks.asm"
 
 

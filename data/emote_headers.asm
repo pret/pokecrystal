@@ -5,6 +5,7 @@ emote_header: MACRO
 	dw VTiles1 tile \3
 ENDM
 
+EmotesPointers: ; 144d
 ; entries correspond to EMOTE_* constants
 	emote_header ShockEmote,     4, $78
 	emote_header QuestionEmote,  4, $78
@@ -18,3 +19,4 @@ ENDM
 	emote_header FishingRodGFX,  2, $7c
 	emote_header BoulderDustGFX, 2, $7e
 	emote_header GrassRustleGFX, 1, $7e
+; 14495

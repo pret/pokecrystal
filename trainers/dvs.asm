@@ -20,6 +20,7 @@ GetTrainerDVs: ; 270c4
 ; 270d6
 
 TrainerClassDVs: ; 270d6
+; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	;  Atk  Spd
 	;  Def  Spc
 	db $9A, $77 ; falkner

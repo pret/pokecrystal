@@ -1,4 +1,3 @@
-
 TrainerPalettes: ; b0ce
 
 PlayerPalette: ; b0ce

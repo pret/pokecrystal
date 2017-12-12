@@ -1,3 +1,4 @@
+DefaultOptions: ; 14f7c
 ; Options: med text speed
 	db TEXT_DELAY_MED
 ; wSaveFileExists: no
@@ -14,3 +15,4 @@
 	db $00
 ; $cfd3: ??
 	db $00
+; 14f84

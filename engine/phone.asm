@@ -760,13 +760,11 @@ GetCallerLocation: ; 90439
 	ret
 ; 9045f
 
-PhoneContacts: ; 9045f
-INCLUDE "data/phone_contacts.asm"
-; 90627
 
-SpecialPhoneCallList: ; 90627
+INCLUDE "data/phone_contacts.asm"
+
 INCLUDE "data/phone_special.asm"
-; 90657
+
 
 UnknownScript_0x90657: ; 0x90657
 	writetext UnknownText_0x9065b

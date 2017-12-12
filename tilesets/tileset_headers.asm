@@ -1,5 +1,3 @@
-; entries correspond to TILESET_* constants
-
 tileset: macro
 	dba \1GFX, \1Meta, \1Coll
 	dw \1Anim
@@ -7,6 +5,8 @@ tileset: macro
 	dw \1PalMap
 endm
 
+Tilesets:: ; 4d596
+; entries correspond to TILESET_* constants
 	tileset Tileset0
 	tileset TilesetJohto1
 	tileset TilesetJohto2
@@ -44,3 +44,4 @@ endm
 	tileset TilesetKabutoWordRoom
 	tileset TilesetOmanyteWordRoom
 	tileset TilesetAerodactylWordRoom
+; 4d7c1

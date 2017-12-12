@@ -4,7 +4,6 @@ INCLUDE "includes.asm"
 SECTION "Evolutions and Attacks", ROMX
 
 
-EvosAttacksPointers:: ; 0x425b1
 INCLUDE "data/evos_attacks_pointers.asm"
 
 

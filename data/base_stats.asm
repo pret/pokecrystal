@@ -1,3 +1,4 @@
+BaseData::
 INCLUDE "data/base_stats/bulbasaur.asm"
 INCLUDE "data/base_stats/ivysaur.asm"
 INCLUDE "data/base_stats/venusaur.asm"

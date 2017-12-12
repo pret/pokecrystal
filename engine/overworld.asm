@@ -717,19 +717,10 @@ LoadEmote:: ; 1442f
 ; 1444d
 
 
-EmotesPointers: ; 144d
 INCLUDE "data/emote_headers.asm"
-; 14495
 
-
-SpriteMons: ; 14495
 INCLUDE "data/sprite_mons.asm"
-; 144b8
-
 
 INCLUDE "data/outdoor_sprites.asm"
 
-
-SpriteHeaders: ; 14736
 INCLUDE "gfx/sprite_headers.asm"
-; 1499a

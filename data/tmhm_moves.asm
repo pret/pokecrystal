@@ -1,3 +1,4 @@
+TMHMMoves: ; 1167a
 ; TMs
 	db DYNAMICPUNCH
 	db HEADBUTT
@@ -65,3 +66,4 @@
 	db ICE_BEAM
 
 	db 0 ; end
+; 116b7

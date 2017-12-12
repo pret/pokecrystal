@@ -1,10 +1,10 @@
-; entries correspond to SPRITEMOVEDATA_* constants
-
 sprite_movement_data: macro
 	db \1, \2, \3, \4, \5
 	dn \6, 0
 endm
 
+SpriteMovementData:: ; 4273
+; entries correspond to SPRITEMOVEDATA_* constants
 	; function,                                              facing, action,                  flags1, flags2, palette flags
 	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   PERSON_ACTION_STAND,        $02,    $00,    %0000 ; 00
 	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   PERSON_ACTION_STAND,        $0c,    $00,    %0000 ; 01
@@ -44,3 +44,4 @@ endm
 	sprite_movement_data SPRITEMOVEFN_GRASS,                 DOWN,   PERSON_ACTION_GRASS_SHAKE,  $8e,    $02,    %0000 ; 23
 	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   PERSON_ACTION_STAND,        $00,    $00,    %0010 ; 24
 	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   PERSON_ACTION_STAND,        $00,    $00,    %0000 ; 25
+; 4357

@@ -1,4 +1,5 @@
-
+TrainerPicPointers::
+; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	add_pic FalknerPic
 	add_pic WhitneyPic
 	add_pic BugsyPic

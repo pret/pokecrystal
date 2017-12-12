@@ -1,10 +1,9 @@
-OddEggProbabilities:
-
-prob: MACRO
+prob: macro
 prob_total = prob_total + (\1)
 	dw prob_total * $ffff / 100
-ENDM
+endm
 
+OddEggProbabilities:
 prob_total = 0
 ; Pichu
 	prob 8

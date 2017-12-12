@@ -465,7 +465,7 @@ ReadMonMenuIcon: ; 8eab3
 	ret
 ; 8eac4
 
-MonMenuIcons: ; 8eac4
+
 INCLUDE "data/mon_menu_icons.asm"
 
 
