@@ -1,9 +1,3 @@
-; collision values (see tilesets/collision.asm)
-LANDTILE  EQU $0
-WATERTILE EQU $1
-WALLTILE  EQU $f
-TALK      EQU $10
-
 ; Tilesets indexes (see tilesets/tileset_headers.asm)
 const_value SET 1
 	const TILESET_JOHTO_1              ; 01
