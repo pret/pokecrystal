@@ -38,8 +38,9 @@ Write text from a RAM address.
 
 ## `$02`: `text_bcd` *address*, *flags*
 
-Write [BCD](https://en.wikipedia.org/wiki/Binary-coded_decimal) from an address,
-typically RAM.
+Write [BCD](bcd) from an address, typically RAM.
+
+[bcd]: https://en.wikipedia.org/wiki/Binary-coded_decimal
 
 ## `$03`: `text_move` *address*
 

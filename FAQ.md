@@ -1,0 +1,32 @@
+# FAQ
+
+## What is pokecrystal11.gbc?
+
+Version 1.1 of Pokémon Crystal, which fixed some issues with the initial international release. `make crystal11` defines `CRYSTAL11` so the assembly builds the changed version.
+
+## Can't build ROM; "ERROR: `UNION` already defined"
+
+Download [**rgbds 0.3.3**](rgbds). Earlier versions will not work.
+
+## Can't build ROM; "Segmentation fault" from `rgbgfx`
+
+If you are using 64-bit Windows, download [**64-bit Cygwin**](cygwin) and [**64-bit rgbds**](rgbds).
+
+## Can't build ROM; "Section is too big" or "Unable to place section in bank"
+
+If you have not changed any of the asm, make sure you have the latest version of pokecrystal and the correct version of rgbds (see [INSTALL.md](INSTALL.md)).
+
+If you added or changed any code, it has to fit in the **memory banks**. The 2MB ROM is divided into 128 banks of 4KB each, numbered $00 to $7F. The linkerscript **pokecrystal.link** lists which **`SECTION`**s go in which banks. Try moving some code into a new section.
+
+## How do I edit maps?
+
+For `asm` scripts, read [docs/map_scripts.md](docs/map_scripts.md). For `blk` layouts, try [crowdmap](crowdmap) or [Polished Map](polished-map).
+
+## I need more help!
+
+Try asking on IRC or Discord (see [README.md](README.md)).
+
+[cygwin]: https://cygwin.com/install.html
+[rgbds]: https://github.com/rednex/rgbds/releases
+[crowdmap]: https://github.com/yenatch/crowdmap/
+[polished-map]: https://github.com/roukaour/polished-map
