@@ -629,7 +629,7 @@ INCLUDE "engine/breeding/egg.asm"
 INCLUDE "tilesets/data.asm"
 
 
-SECTION "bank8", ROMX
+SECTION "Clock Reset", ROMX
 
 INCLUDE "engine/clock_reset.asm"
 
@@ -1623,110 +1623,33 @@ INCLUDE "battle/effect_commands.asm"
 SECTION "Enemy Trainers", ROMX
 
 INCLUDE "battle/ai/items.asm"
-
-AIScoring: ; 38591
 INCLUDE "battle/ai/scoring.asm"
-
-GetTrainerClassName: ; 3952d
-	ld hl, RivalName
-	ld a, c
-	cp RIVAL1
-	jr z, .rival
-
-	ld [CurSpecies], a
-	ld a, TRAINER_NAME
-	ld [wNamedObjectTypeBuffer], a
-	call GetName
-	ld de, StringBuffer1
-	ret
-
-.rival
-	ld de, StringBuffer1
-	push de
-	ld bc, NAME_LENGTH
-	call CopyBytes
-	pop de
-	ret
-
-GetOTName: ; 39550
-	ld hl, OTPlayerName
-	ld a, [wLinkMode]
-	and a
-	jr nz, .ok
-
-	ld hl, RivalName
-	ld a, c
-	cp RIVAL1
-	jr z, .ok
-
-	ld [CurSpecies], a
-	ld a, TRAINER_NAME
-	ld [wNamedObjectTypeBuffer], a
-	call GetName
-	ld hl, StringBuffer1
-
-.ok
-	ld bc, TRAINER_CLASS_NAME_LENGTH
-	ld de, OTClassName
-	push de
-	call CopyBytes
-	pop de
-	ret
-
-GetTrainerAttributes: ; 3957b
-	ld a, [TrainerClass]
-	ld c, a
-	call GetOTName
-	ld a, [TrainerClass]
-	dec a
-	ld hl, TrainerClassAttributes + TRNATTR_ITEM1
-	ld bc, NUM_TRAINER_ATTRIBUTES
-	call AddNTimes
-	ld de, wEnemyTrainerItem1
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	ld a, [hl]
-	ld [wEnemyTrainerBaseReward], a
-	ret
-
+INCLUDE "trainers/read_attributes.asm"
 INCLUDE "trainers/attributes.asm"
-
 INCLUDE "trainers/read_party.asm"
-
 INCLUDE "trainers/trainer_pointers.asm"
-
 INCLUDE "trainers/trainers.asm"
 
 
 SECTION "Battle Core", ROMX
 
 INCLUDE "battle/core.asm"
-
 INCLUDE "battle/effect_command_pointers.asm"
 
 
 SECTION "bank10", ROMX
 
 INCLUDE "engine/pokedex.asm"
-
 INCLUDE "battle/moves/moves.asm"
-
 INCLUDE "engine/evolve.asm"
 
 
 SECTION "bank11", ROMX
 
 INCLUDE "engine/fruit_trees.asm"
-
 INCLUDE "battle/ai/move.asm"
-
 INCLUDE "engine/pokedex_2.asm"
-
 INCLUDE "data/pokedex/entry_pointers.asm"
-
 INCLUDE "engine/mail.asm"
 
 
@@ -2029,7 +1952,6 @@ ScrollBGMapPalettes:: ; 4c03f
 
 INCLUDE "tilesets/palette_maps.asm"
 
-TileCollisionTable:: ; 4ce1f
 INCLUDE "tilesets/collision.asm"
 
 EmptyAllSRAMBanks: ; 4cf1f
@@ -2151,9 +2073,7 @@ CheckSave:: ; 4cffe
 	ld c, $0
 	ret
 
-
 INCLUDE "data/map_triggers.asm"
-
 
 _LoadMapPart:: ; 4d15b
 	ld hl, wMisc
@@ -2373,9 +2293,7 @@ LinkTextbox2: ; 4d35b
 
 INCLUDE "engine/delete_save_change_clock.asm"
 
-
 INCLUDE "tilesets/tileset_headers.asm"
-
 
 FlagPredef: ; 4d7c1
 ; Perform action b on flag c in flag array hl.
@@ -2989,6 +2907,7 @@ SetEggMonCaughtData: ; 4dbb8 (13:5bb8)
 	ret
 
 INCLUDE "engine/search2.asm"
+
 INCLUDE "engine/stats_screen.asm"
 
 CatchTutorial:: ; 4e554
@@ -4224,25 +4143,7 @@ CalcExpAtLevel: ; 50e47
 	ld [hMultiplier], a
 	jp Multiply
 
-GrowthRates: ; 50efa
-
-growth_rate: MACRO
-; [1]/[2]*n**3 + [3]*n**2 + [4]*n - [5]
-	dn \1, \2
-	if \3 & $80 ; signed
-		db -\3 | $80
-	else
-		db \3
-	endc
-	db \4, \5
-ENDM
-
-	growth_rate 1, 1,   0,   0,   0 ; Medium Fast
-	growth_rate 3, 4,  10,   0,  30 ; Slightly Fast
-	growth_rate 3, 4,  20,   0,  70 ; Slightly Slow
-	growth_rate 6, 5, -15, 100, 140 ; Medium Slow
-	growth_rate 4, 5,   0,   0,   0 ; Fast
-	growth_rate 5, 4,   0,   0,   0 ; Slow
+INCLUDE "data/growth_rates.asm"
 
 _SwitchPartyMons:
 	ld a, [wd0e3]
@@ -4391,6 +4292,7 @@ _SwitchPartyMons:
 	ret
 
 INCLUDE "gfx/load_pics.asm"
+
 INCLUDE "engine/move_mon_wo_mail.asm"
 
 INCLUDE "data/base_stats.asm"
@@ -4416,7 +4318,7 @@ UnknownEggPic:: ; 53d9c
 INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
 
 
-SECTION "bank19", ROMX
+SECTION "Crystal Phone Text", ROMX
 
 INCLUDE "text/phone/extra.asm"
 
@@ -4424,22 +4326,16 @@ INCLUDE "text/phone/extra.asm"
 SECTION "bank20", ROMX
 
 INCLUDE "engine/player_movement.asm"
-
 INCLUDE "engine/engine_flags.asm"
-
 INCLUDE "engine/variables.asm"
-
 INCLUDE "text/battle.asm"
-
 INCLUDE "engine/debug.asm"
 
 
 SECTION "bank21", ROMX
 
 INCLUDE "engine/printer.asm"
-
 INCLUDE "battle/anim_gfx.asm"
-
 INCLUDE "event/halloffame.asm"
 
 
@@ -4748,7 +4644,6 @@ BattleStart_LoadEDTile: ; 8cf4f
 	ret
 
 INCLUDE "engine/sprites.asm"
-
 INCLUDE "engine/mon_icons.asm"
 
 
@@ -4757,7 +4652,6 @@ SECTION "bank24", ROMX
 INCLUDE "engine/phone.asm"
 INCLUDE "engine/timeset.asm"
 INCLUDE "engine/pokegear.asm"
-
 INCLUDE "engine/fish.asm"
 INCLUDE "engine/slot_machine.asm"
 
@@ -4792,16 +4686,13 @@ INCLUDE "text/phone/erin_overworld.asm"
 SECTION "bank2E", ROMX
 
 INCLUDE "engine/events_3.asm"
-
 INCLUDE "engine/radio.asm"
-
 INCLUDE "gfx/mail.asm"
 
 
 SECTION "bank2F", ROMX
 
 INCLUDE "engine/std_scripts.asm"
-
 INCLUDE "engine/phone_scripts.asm"
 
 TalkToTrainerScript:: ; 0xbe66a
@@ -4836,14 +4727,12 @@ StartBattleWithMapTrainerScript: ; 0xbe68a
 AlreadyBeatenTrainerScript:
 	scripttalkafter
 
-
 INCLUDE "gfx/sprites.asm"
 
 
 SECTION "bank32", ROMX
 
 INCLUDE "battle/bg_effects.asm"
-
 INCLUDE "battle/anims.asm"
 
 LoadPoisonBGPals: ; cbcdd
@@ -4902,7 +4791,6 @@ INCBIN "gfx/credits/theend.2bpp"
 SECTION "bank33", ROMX
 
 DisplayCaughtContestMonStats: ; cc000
-
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -5011,45 +4899,20 @@ Predef39: ; cc0d5
 	ret
 
 INCLUDE "battle/anim_commands.asm"
-
 INCLUDE "battle/anim_objects.asm"
 
 
 SECTION "Pic Animations 1", ROMX
 
 INCLUDE "gfx/pics/animation.asm"
-
-; Pic animations are assembled in 3 parts:
-
-; Top-level animations:
-; 	frame #, duration: Frame 0 is the original pic (no change)
-;	setrepeat #:       Sets the number of times to repeat
-; 	dorepeat #:        Repeats from command # (starting from 0)
-; 	end
-
-; Bitmasks:
-;	Layered over the pic to designate affected tiles
-
-; Frame definitions:
-;	first byte is the bitmask used for this frame
-;	following bytes are tile ids mapped to each bit in the mask
-
-; Main animations (played everywhere)
 INCLUDE "gfx/pics/anim_pointers.asm"
 INCLUDE "gfx/pics/anims.asm"
-
-; Extra animations, appended to the main animation
-; Used in the status screen (blinking, tail wags etc.)
 INCLUDE "gfx/pics/extra_pointers.asm"
 INCLUDE "gfx/pics/extras.asm"
-
-; Unown has its own animation data despite having an entry in the main tables
 INCLUDE "gfx/pics/unown_anim_pointers.asm"
 INCLUDE "gfx/pics/unown_anims.asm"
 INCLUDE "gfx/pics/unown_extra_pointers.asm"
 INCLUDE "gfx/pics/unown_extras.asm"
-
-; Bitmasks
 INCLUDE "gfx/pics/bitmask_pointers.asm"
 INCLUDE "gfx/pics/bitmasks.asm"
 INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
@@ -5062,9 +4925,10 @@ INCLUDE "gfx/pics/frame_pointers.asm"
 INCLUDE "gfx/pics/kanto_frames.asm"
 
 
-SECTION "bank36", ROMX
+SECTION "Font Inversed", ROMX
 
-FontInversed: INCBIN "gfx/font/font_inversed.1bpp"
+FontInversed:
+INCBIN "gfx/font/font_inversed.1bpp"
 
 
 SECTION "Pic Animations 3", ROMX
@@ -5217,22 +5081,18 @@ INCLUDE "gfx/font.asm"
 INCLUDE "engine/time_capsule/conversion.asm"
 INCLUDE "engine/unowndex.asm"
 INCLUDE "event/magikarp.asm"
-
 INCLUDE "battle/hidden_power.asm"
-
 INCLUDE "battle/misc.asm"
 
 
 SECTION "bank3F", ROMX
 
 INCLUDE "tilesets/animations.asm"
-
 INCLUDE "engine/npctrade.asm"
-
 INCLUDE "event/mom_phone.asm"
 
 
-SECTION "bank40", ROMX
+SECTION "mobile_40", ROMX
 
 INCLUDE "misc/mobile_40.asm"
 
@@ -5242,11 +5102,8 @@ SECTION "bank41", ROMX
 INCLUDE "misc/gfx_41.asm"
 
 INCLUDE "engine/warp_connection.asm"
-
 INCLUDE "engine/mysterygift.asm"
-
 INCLUDE "battle/used_move_text.asm"
-
 INCLUDE "misc/mobile_41.asm"
 
 LoadOverworldFont:: ; 106594
@@ -5267,7 +5124,7 @@ INCBIN "gfx/font/overworld.2bpp"
 INCBIN "gfx/font/space.2bpp"
 
 
-SECTION "bank42", ROMX
+SECTION "mobile_42", ROMX
 
 INCLUDE "misc/mobile_42.asm"
 
@@ -5281,14 +5138,12 @@ INCBIN "gfx/intro/logo.2bpp.lz"
 SECTION "bank43", ROMX
 
 INCLUDE "misc/unused_title.asm"
-
 INCLUDE "engine/title.asm"
-
 INCLUDE "misc/mobile_45.asm"
 INCLUDE "misc/mobile_46.asm"
 
 
-SECTION "bank47", ROMX
+SECTION "battle_tower_47", ROMX
 
 INCLUDE "misc/battle_tower_47.asm"
 
@@ -5299,14 +5154,14 @@ INCLUDE "misc/mobile_5b.asm"
 INCLUDE "engine/link_trade.asm"
 
 
-SECTION "bank5C", ROMX
+SECTION "mobile_5c", ROMX
 
 INCLUDE "misc/mobile_5c.asm"
 
 
-SECTION "bank5D", ROMX
+SECTION "Crystal Phone Text 2", ROMX
 
-INCLUDE "text/phone/extra3.asm"
+INCLUDE "text/phone/extra2.asm"
 
 
 SECTION "bank5E", ROMX
@@ -5340,7 +5195,7 @@ INCLUDE "text/phone/ralph_overworld.asm"
 INCLUDE "text/phone/liz_overworld.asm"
 
 
-SECTION "bank6D", ROMX
+SECTION "Special Phone Text", ROMX
 
 INCLUDE "text/phone/mom.asm"
 INCLUDE "text/phone/bill.asm"
@@ -5351,11 +5206,8 @@ INCLUDE "text/phone/trainers1.asm"
 SECTION "bank72", ROMX
 
 INCLUDE "items/item_names.asm"
-
 INCLUDE "items/item_descriptions.asm"
-
 INCLUDE "battle/move_names.asm"
-
 INCLUDE "engine/landmarks.asm"
 
 
@@ -5805,12 +5657,12 @@ LeggiPostaInglese:
 	ret
 
 
-SECTION "bank7B", ROMX
+SECTION "Battle Tower Text", ROMX
 
 INCLUDE "text/battle_tower.asm"
 
 
-SECTION "bank7C", ROMX
+SECTION "Battle Tower Trainer Data", ROMX
 
 INCLUDE "data/battle_tower_2.asm"
 

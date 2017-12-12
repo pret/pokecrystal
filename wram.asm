@@ -2995,7 +2995,7 @@ wBattleAnimEnd::
 ENDU ; d462
 
 
-SECTION "WRAM 5 MOBILE", WRAMX
+SECTION "Mobile RAM", WRAMX
 
 w5_d800:: ds $200
 w5_da00:: ds $200
@@ -3008,7 +3008,7 @@ w5_MobileOpponentBattleWinMessage:: ds $c ; dc32
 w5_MobileOpponentBattleLossMessage:: ds $c ; dc3e
 
 
-SECTION "WRAM 6", WRAMX
+SECTION "Scratch RAM", WRAMX
 
 UNION ; d000
 wScratchTileMap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
@@ -3020,7 +3020,7 @@ wDecompressEnemyFrontpic:: ds $80 tiles
 ENDU ; e000
 
 
-SECTION "WRAM 7", WRAMX
+SECTION "Stack RAM", WRAMX
 
 wWindowStack:: ds $1000 - 1
 wWindowStackBottom:: ds 1

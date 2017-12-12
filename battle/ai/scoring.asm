@@ -1,3 +1,5 @@
+AIScoring: ; 38591
+
 AI_Basic: ; 38591
 ; Don't do anything redundant:
 ;  -Using status-only moves if the player can't be statused
