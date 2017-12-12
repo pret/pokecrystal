@@ -21,17 +21,17 @@
 
 ## Event scripts
 
-[Event commands](docs/event_commands.md)
+[Event commands](event_commands.md)
 
 
 ## Text
 
-[Text commands](docs/text_commands.md)
+[Text commands](text_commands.md)
 
 
 ## Movement data
 
-[Movement commands](docs/movement_commands.md)
+[Movement commands](movement_commands.md)
 
 
 ## `MapName_MapEventHeader:`
