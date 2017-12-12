@@ -1,31 +1,118 @@
 # Map Scripts
 
+
 ## `const_value set 2`
 
-## *`MapName`*`_MapScriptHeader:`
+### `const <MAPNAME>_<PERSONNAME>`
 
-## `.MapTriggers:`
 
-### `maptrigger `*`script`*
+## `MapName_MapScriptHeader:`
 
-## `.MapCallbacks:`
 
-### `dbw `*`type`*`, `*`script`*
+## `.MapTriggers: db <N>`
 
-## *`MapName`*`_MapScriptHeader:`
+### `maptrigger <script>`
 
-## `.Warps:`
 
-### `warp_def `*`y`*`, `*`x`*`, `*`id`*`, `*`map`*
+## `.MapCallbacks: db <N>`
 
-## `.XYTriggers:`
+### `dbw <type>, <script>`
 
-### `xy_trigger `*`id`*`, `*`y`*`, `*`x`*`, $0, `*`script`*`, $0, $0`
 
-## `.Signposts:`
+## Scripts
 
-### `signpost `*`y`*`, `*`x`*`, `*`type`*`, `*`script`*
 
-## `.PersonEvents:`
+## Text
 
-### `person_event `*`sprite`*`, `*`y`*`, `*`x`*`, `*`movement`*`, `*`ry`*`, `*`rx`*`, `*`hour`*`, `*`day`*`, `*`palette`*`, `*`type`*`, `*`range`*`, `*`script`*`, `*`flag`*
+- **`text`**
+- **`line`**
+- **`cont`**
+- **`para`**
+- **`done`**
+
+
+## `MapName_MapEventHeader:`
+
+	; filler
+	db 0, 0
+
+
+## `.Warps: db <N>`
+
+### `warp_def <y>, <x>, <id>, <map>`
+
+
+## `.XYTriggers: db <N>`
+
+### `xy_trigger <id>, <y>, <x>, $0, <script>, $0, $0`
+
+
+## `.Signposts: db <N>`
+
+### `signpost <y>, <x>, <type>, <script>`
+
+#### Signpost types:
+
+- **`SIGNPOST_READ`**
+
+- **`SIGNPOST_UP/DOWN/LEFT/RIGHT`**
+
+- **`SIGNPOST_IFSET/IFNOTSET`**
+
+  `dw <event_flag>, <script>`
+
+- **`SIGNPOST_ITEM`**
+
+  `dwb <event_flag>, <item_id>`
+
+- **`SIGNPOST_COPY`**
+
+## `.PersonEvents: db <N>`
+
+### `person_event <sprite>, <y>, <x>, <movement>, <ry>, <rx>, <hour>, <day>, <palette>, <type>, <range>, <script>, <flag>`
+
+#### Movement types:
+
+- **`SPRITEMOVEDATA_ITEM_TREE`**
+
+- **`SPRITEMOVEDATA_WANDER`**
+
+- **`SPRITEMOVEDATA_SPINRANDOM_SLOW`**
+
+- **`SPRITEMOVEDATA_WALK_UP_DOWN`**
+
+- **`SPRITEMOVEDATA_WALK_LEFT_RIGHT`**
+
+- **`SPRITEMOVEDATA_STANDING_UP/DOWN/LEFT/RIGHT`**
+
+- **`SPRITEMOVEDATA_SPINRANDOM_FAST`**
+
+- **`SPRITEMOVEDATA_SNORLAX`**
+
+- **`SPRITEMOVEDATA_POKEMON`**
+
+- **`SPRITEMOVEDATA_SUDOWOODO`**
+
+- **`SPRITEMOVEDATA_SMASHABLE_ROCK`**
+
+- **`SPRITEMOVEDATA_STRENGTH_BOULDER`**
+
+- **`SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE`**
+
+- **`SPRITEMOVEDATA_SPINCLOCKWISE`**
+
+- **`SPRITEMOVEDATA_BIGDOLL`**
+
+- **`SPRITEMOVEDATA_LAPRAS`**
+
+#### Person types:
+
+- **`PERSONTYPE_SCRIPT`**
+
+- **`PERSONTYPE_ITEMBALL`**
+
+  **`itemball <item_id>`**
+
+- **`PERSONTYPE_TRAINER`**
+
+  **`trainer <event_flag>, <group_id>, <trainer_id>, <seen_text>, <beaten_text>, <loss_text>, <script>`**
