@@ -748,6 +748,7 @@ DoTextUntilTerminator:: ; 13f6
 ; 1410
 
 TextCommands:: ; 1410
+; entries correspond to macros/text.asm enumeration
 	dw Text_TX
 	dw Text_TX_RAM
 	dw Text_TX_BCD

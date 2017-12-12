@@ -36,11 +36,11 @@ OAM_Y_FLIP    EQU 6
 OAM_PRIORITY  EQU 7 ; 0: OBJ above BG, 1: OBJ behind BG (colors 1-3)
 
 PALETTE_MASK EQU %111
-VRAM_BANK_1  EQU 1 << OAM_TILE_BANK
-OBP_NUM      EQU 1 << OAM_OBP_NUM
-X_FLIP       EQU 1 << OAM_X_FLIP
-Y_FLIP       EQU 1 << OAM_Y_FLIP
-BEHIND_BG    EQU 1 << OAM_PRIORITY
+VRAM_BANK_1  EQU 1 << OAM_TILE_BANK ; $08
+OBP_NUM      EQU 1 << OAM_OBP_NUM   ; $10
+X_FLIP       EQU 1 << OAM_X_FLIP    ; $20
+Y_FLIP       EQU 1 << OAM_Y_FLIP    ; $40
+BEHIND_BG    EQU 1 << OAM_PRIORITY  ; $80
 
 ; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)

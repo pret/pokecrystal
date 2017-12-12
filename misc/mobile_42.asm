@@ -960,7 +960,7 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 	cp $f8
 	jr nz, .next
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_22
+	ld a, SPRITE_ANIM_INDEX_MOBILE_22
 	call _InitSpriteAnimStruct
 
 .next
@@ -985,7 +985,7 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 
 .init
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_22
+	ld a, SPRITE_ANIM_INDEX_MOBILE_22
 	call _InitSpriteAnimStruct
 	xor a
 	call Function108ad4
@@ -1016,7 +1016,7 @@ MobileTradeAnim_GiveTrademon2: ; 1087cf
 	call Function108af4
 	call Function108b5a
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_25
+	ld a, SPRITE_ANIM_INDEX_MOBILE_25
 	call _InitSpriteAnimStruct
 	ld de, SFX_FORESIGHT
 	call PlaySFX
@@ -1025,7 +1025,7 @@ MobileTradeAnim_GiveTrademon2: ; 1087cf
 	xor a
 	ld [wcf64], a
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_23
+	ld a, SPRITE_ANIM_INDEX_MOBILE_23
 	call _InitSpriteAnimStruct
 .loop
 	ld a, [hSCY]
@@ -1052,7 +1052,7 @@ MobileTradeAnim_05: ; 108811
 	ld c, 60
 	call WaitMobileTradeSpriteAnims
 	depixel 30, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_24
+	ld a, SPRITE_ANIM_INDEX_MOBILE_24
 	call _InitSpriteAnimStruct
 	call GetMobileTradeAnimByte
 	ld de, SFX_THROW_BALL
@@ -1075,7 +1075,7 @@ MobileTradeAnim_07: ; 10884c
 	ld c, 80
 	call DelayFrames
 	depixel 30, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_24
+	ld a, SPRITE_ANIM_INDEX_MOBILE_24
 	call _InitSpriteAnimStruct
 	call GetMobileTradeAnimByte
 	ld de, SFX_THROW_BALL
@@ -1099,7 +1099,7 @@ MobileTradeAnim_GetTrademon1: ; 108863
 .done
 	callba DeinitializeAllSprites
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_25
+	ld a, SPRITE_ANIM_INDEX_MOBILE_25
 	call _InitSpriteAnimStruct
 	ld de, SFX_GLASS_TING_2
 	call PlaySFX
@@ -1135,13 +1135,13 @@ MobileTradeAnim_GetTrademon2: ; 108894
 
 .asm_1088c5
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_22
+	ld a, SPRITE_ANIM_INDEX_MOBILE_22
 	call _InitSpriteAnimStruct
 	jr .asm_1088e7
 
 .asm_1088cf
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_22
+	ld a, SPRITE_ANIM_INDEX_MOBILE_22
 	call _InitSpriteAnimStruct
 	xor a
 	call Function108ad4
