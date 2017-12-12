@@ -14,7 +14,7 @@ INCBIN "tilesets/kanto_metatiles.bin"
 ; 0x18e06
 
 TilesetKantoColl: ; 0x18e06
-INCBIN "tilesets/kanto_collision.bin"
+INCLUDE "tilesets/kanto_collision.asm"
 ; 0x19006
 
 Tileset0GFX: ; 0x19006
@@ -29,7 +29,7 @@ INCBIN "tilesets/johto_1_metatiles.bin"
 
 Tileset0Coll: ; 0x1a40e
 TilesetJohto1Coll: ; 0x1a40e
-INCBIN "tilesets/johto_1_collision.bin"
+INCLUDE "tilesets/johto_1_collision.asm"
 ; 0x1a60e
 
 TilesetIcePathGFX: ; 0x1a60e
@@ -41,7 +41,7 @@ INCBIN "tilesets/ice_path_metatiles.bin"
 ; 0x1b33e
 
 TilesetIcePathColl: ; 0x1b33e
-INCBIN "tilesets/ice_path_collision.bin"
+INCLUDE "tilesets/ice_path_collision.asm"
 ; 0x1b43e
 
 TilesetPlayersHouse2FGFX: ; 0x1b43e
@@ -53,7 +53,7 @@ INCBIN "tilesets/players_house_2f_metatiles.bin"
 ; 0x1bcfe
 
 TilesetPlayersHouse2FColl: ; 0x1bcfe
-INCBIN "tilesets/players_house_2f_collision.bin"
+INCLUDE "tilesets/players_house_2f_collision.asm"
 ; 0x1bdfe
 
 
@@ -68,7 +68,7 @@ INCBIN "tilesets/pokecenter_metatiles.bin"
 ; 0x1cb3c
 
 TilesetPokecenterColl: ; 0x1cb3c
-INCBIN "tilesets/pokecenter_collision.bin"
+INCLUDE "tilesets/pokecenter_collision.asm"
 ; 0x1cc3c
 
 TilesetPortGFX: ; 0x1cc3c
@@ -80,7 +80,7 @@ INCBIN "tilesets/port_metatiles.bin"
 ; 0x1d44c
 
 TilesetPortColl: ; 0x1d44c
-INCBIN "tilesets/port_collision.bin"
+INCLUDE "tilesets/port_collision.asm"
 ; 0x1d54c
 
 TilesetPlayersHouseGFX: ; 0x1d54c
@@ -92,7 +92,7 @@ INCBIN "tilesets/players_house_metatiles.bin"
 ; 0x1dd2c
 
 TilesetPlayersHouseColl: ; 0x1dd2c
-INCBIN "tilesets/players_house_collision.bin"
+INCLUDE "tilesets/players_house_collision.asm"
 ; 0x1de2c
 
 TilesetCeladonMansionGFX: ; 0x1de2c
@@ -104,7 +104,7 @@ INCBIN "tilesets/celadon_mansion_metatiles.bin"
 ; 0x1e98c
 
 TilesetCeladonMansionColl: ; 0x1e98c
-INCBIN "tilesets/celadon_mansion_collision.bin"
+INCLUDE "tilesets/celadon_mansion_collision.asm"
 ; 0x1ea8c
 
 TilesetCaveGFX: ; 0x1ea8c
@@ -118,7 +118,7 @@ INCBIN "tilesets/cave_metatiles.bin"
 
 TilesetCaveColl: ; 0x1f21c
 TilesetWhirlIslandsColl: ; 0x1f21c
-INCBIN "tilesets/cave_collision.bin"
+INCLUDE "tilesets/cave_collision.asm"
 ; 0x1f31c
 
 
@@ -133,7 +133,7 @@ INCBIN "tilesets/sprout_tower_metatiles.bin"
 ; 0x20ae1
 
 TilesetSproutTowerColl: ; 0x20ae1
-INCBIN "tilesets/sprout_tower_collision.bin"
+INCLUDE "tilesets/sprout_tower_collision.asm"
 ; 0x20be1
 
 TilesetLabGFX: ; 0x20be1
@@ -145,7 +145,7 @@ INCBIN "tilesets/lab_metatiles.bin"
 ; 0x217e1
 
 TilesetLabColl: ; 0x217e1
-INCBIN "tilesets/lab_collision.bin"
+INCLUDE "tilesets/lab_collision.asm"
 ; 0x218e1
 
 TilesetMartGFX: ; 0x218e1
@@ -157,7 +157,7 @@ INCBIN "tilesets/mart_metatiles.bin"
 ; 0x22431
 
 TilesetMartColl: ; 0x22431
-INCBIN "tilesets/mart_collision.bin"
+INCLUDE "tilesets/mart_collision.asm"
 ; 0x22531
 
 TilesetGameCornerGFX: ; 0x22531
@@ -169,7 +169,7 @@ INCBIN "tilesets/game_corner_metatiles.bin"
 ; 0x22ef1
 
 TilesetGameCornerColl: ; 0x22ef1
-INCBIN "tilesets/game_corner_collision.bin"
+INCLUDE "tilesets/game_corner_collision.asm"
 ; 0x22ff1
 
 TilesetTrainStationGFX: ; 0x22ff1
@@ -181,7 +181,7 @@ INCBIN "tilesets/train_station_metatiles.bin"
 ; 0x23791
 
 TilesetTrainStationColl: ; 0x23791
-INCBIN "tilesets/train_station_collision.bin"
+INCLUDE "tilesets/train_station_collision.asm"
 ; 0x23891
 
 TilesetIlexForestMeta: ; 0x23891
@@ -200,7 +200,7 @@ INCBIN "tilesets/gym_1_metatiles.bin"
 ; 0x308e0
 
 TilesetGym1Coll: ; 0x308e0
-INCBIN "tilesets/gym_1_collision.bin"
+INCLUDE "tilesets/gym_1_collision.asm"
 ; 0x309e0
 
 TilesetParkGFX: ; 0x309e0
@@ -212,7 +212,7 @@ INCBIN "tilesets/park_metatiles.bin"
 ; 0x31280
 
 TilesetParkColl: ; 0x31280
-INCBIN "tilesets/park_collision.bin"
+INCLUDE "tilesets/park_collision.asm"
 ; 0x31380
 
 TilesetRadioTowerGFX: ; 0x31380
@@ -224,7 +224,7 @@ INCBIN "tilesets/radio_tower_metatiles.bin"
 ; 0x31ce0
 
 TilesetRadioTowerColl: ; 0x31ce0
-INCBIN "tilesets/radio_tower_collision.bin"
+INCLUDE "tilesets/radio_tower_collision.asm"
 ; 0x31de0
 
 TilesetUndergroundGFX: ; 0x31de0
@@ -236,7 +236,7 @@ INCBIN "tilesets/underground_metatiles.bin"
 ; 0x325b0
 
 TilesetUndergroundColl: ; 0x325b0
-INCBIN "tilesets/underground_collision.bin"
+INCLUDE "tilesets/underground_collision.asm"
 ; 0x326b0
 
 TilesetWhirlIslandsGFX: ; 0x326b0
@@ -248,7 +248,7 @@ INCBIN "tilesets/unused_whirl_islands_metatiles.bin"
 ; 0x331f0
 
 UnusedTilesetWhirlIslandsColl: ; 0x331f0
-INCBIN "tilesets/unused_whirl_islands_collision.bin"
+INCLUDE "tilesets/unused_whirl_islands_collision.asm"
 ; 0x333f0
 
 
@@ -263,7 +263,7 @@ INCBIN "tilesets/pokecom_center_metatiles.bin"
 ; 0xb4ca0
 
 TilesetPokeComCenterColl: ; 0xb4ca0
-INCBIN "tilesets/pokecom_center_collision.bin"
+INCLUDE "tilesets/pokecom_center_collision.asm"
 ; 0xb4da0
 
 TilesetBattleTowerGFX: ; 0xb4da0
@@ -275,7 +275,7 @@ INCBIN "tilesets/battle_tower_metatiles.bin"
 ; 0xb54e0
 
 TilesetBattleTowerColl: ; 0xb54e0
-INCBIN "tilesets/battle_tower_collision.bin"
+INCLUDE "tilesets/battle_tower_collision.asm"
 ; 0xb55e0
 
 TilesetGateGFX: ; 0xb55e0
@@ -287,7 +287,7 @@ INCBIN "tilesets/gate_metatiles.bin"
 ; 0xb5de0
 
 TilesetGateColl: ; 0xb5de0
-INCBIN "tilesets/gate_collision.bin"
+INCLUDE "tilesets/gate_collision.asm"
 ; 0xb5ee0
 
 TilesetJohto2GFX: ; 0xb5ee0
@@ -300,7 +300,7 @@ INCBIN "tilesets/johto_2_metatiles.bin"
 ; 0xb72e8
 
 TilesetJohto2Coll: ; 0xb72e8
-INCBIN "tilesets/johto_2_collision.bin"
+INCLUDE "tilesets/johto_2_collision.asm"
 ; 0xb74e8
 
 TilesetKurtsHouseGFX: ; 0xb74e8
@@ -312,7 +312,7 @@ INCBIN "tilesets/kurts_house_metatiles.bin"
 ; 0xb7da8
 
 TilesetKurtsHouseColl: ; 0xb7da8
-INCBIN "tilesets/kurts_house_collision.bin"
+INCLUDE "tilesets/kurts_house_collision.asm"
 ; 0xb7ea8
 
 
@@ -331,7 +331,7 @@ INCBIN "tilesets/olivine_gym_metatiles.bin"
 ; 0xdd050
 
 TilesetOlivineGymColl: ; 0xdd050
-INCBIN "tilesets/olivine_gym_collision.bin"
+INCLUDE "tilesets/olivine_gym_collision.asm"
 ; 0xdd150
 
 TilesetHouse1GFX: ; 0xdd150
@@ -343,7 +343,7 @@ INCBIN "tilesets/house_1_metatiles.bin"
 ; 0xdda00
 
 TilesetHouse1Coll: ; 0xdda00
-INCBIN "tilesets/house_1_collision.bin"
+INCLUDE "tilesets/house_1_collision.asm"
 ; 0xddb00
 
 TilesetLighthouseGFX: ; 0xddb00
@@ -355,11 +355,11 @@ INCBIN "tilesets/lighthouse_metatiles.bin"
 ; 0xde370
 
 TilesetLighthouseColl: ; 0xde370
-INCBIN "tilesets/lighthouse_collision.bin"
+INCLUDE "tilesets/lighthouse_collision.asm"
 ; 0xde470
 
 TilesetIlexForestColl: ; 0xde470
-INCBIN "tilesets/ilex_forest_collision.bin"
+INCLUDE "tilesets/ilex_forest_collision.asm"
 ; 0xde570
 
 TilesetPowerPlantGFX: ; 0xde570
@@ -371,7 +371,7 @@ INCBIN "tilesets/power_plant_metatiles.bin"
 ; 0xded90
 
 TilesetPowerPlantColl: ; 0xded90
-INCBIN "tilesets/power_plant_collision.bin"
+INCLUDE "tilesets/power_plant_collision.asm"
 ; 0xdee90
 
 TilesetBattleTowerOutsideMeta: ; 0xdee90
@@ -379,7 +379,7 @@ INCBIN "tilesets/battle_tower_outside_metatiles.bin"
 ; 0xdf690
 
 TilesetBattleTowerOutsideColl: ; 0xdf690
-INCBIN "tilesets/battle_tower_outside_collision.bin"
+INCLUDE "tilesets/battle_tower_outside_collision.asm"
 ; 0xdf890
 
 TilesetBetaWordRoomMeta: ; 0xdf890
@@ -391,7 +391,7 @@ TilesetHoOhWordRoomColl: ; 0xdfc90
 TilesetKabutoWordRoomColl: ; 0xdfc90
 TilesetOmanyteWordRoomColl: ; 0xdfc90
 TilesetAerodactylWordRoomColl: ; 0xdfc90
-INCBIN "tilesets/beta_word_room_collision.bin"
+INCLUDE "tilesets/beta_word_room_collision.asm"
 ; 0xdfd90
 
 
@@ -411,7 +411,7 @@ INCBIN "tilesets/ruins_of_alph_metatiles.bin"
 ; 0x1dd5a9
 
 TilesetRuinsOfAlphColl: ; 0x1dd5a9
-INCBIN "tilesets/ruins_of_alph_collision.bin"
+INCLUDE "tilesets/ruins_of_alph_collision.asm"
 ; 0x1dd6a9
 
 
