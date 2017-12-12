@@ -7,22 +7,20 @@ const_value set 2
 DragonShrine_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .DragonShrineTest
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
-	priorityjump DragonShrineTestScript
+.DragonShrineTest:
+	priorityjump .DragonShrineTestScript
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-DragonShrineTestScript:
+.DragonShrineTestScript:
 	applymovement PLAYER, MovementData_0x18d2bf
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c7
 	opentext
@@ -272,10 +270,10 @@ MenuDataHeader_0x18d215:
 	db $40 ; flags
 	db 04, 08 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x18d21d
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x18d21d:
+.MenuData2:
 	db $81 ; flags
 	db 3 ; items
 	db "Pal@"
@@ -287,10 +285,10 @@ MenuDataHeader_0x18d234:
 	db $40 ; flags
 	db 04, 09 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x18d23c
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x18d23c:
+.MenuData2:
 	db $81 ; flags
 	db 3 ; items
 	db "Strategy@"
@@ -302,10 +300,10 @@ MenuDataHeader_0x18d258:
 	db $40 ; flags
 	db 04, 05 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x18d260
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x18d260:
+.MenuData2:
 	db $81 ; flags
 	db 3 ; items
 	db "Weak person@"
@@ -317,10 +315,10 @@ MenuDataHeader_0x18d283:
 	db $40 ; flags
 	db 04, 08 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x18d28b
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x18d28b:
+.MenuData2:
 	db $81 ; flags
 	db 3 ; items
 	db "Love@"
@@ -332,10 +330,10 @@ MenuDataHeader_0x18d2a5:
 	db $40 ; flags
 	db 04, 12 ; start coords
 	db 11, 19 ; end coords
-	dw MenuData2_0x18d2ad
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x18d2ad:
+.MenuData2:
 	db $81 ; flags
 	db 3 ; items
 	db "Tough@"
@@ -690,4 +688,4 @@ DragonShrine_MapEventHeader:
 	person_event SPRITE_ELDER, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
 	person_event SPRITE_ELDER, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
 	person_event SPRITE_ELDER, 4, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CLAIR, 8, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
+	person_event SPRITE_CLAIR, 8, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

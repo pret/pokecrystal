@@ -5,14 +5,12 @@ const_value set 2
 Route28FamousSpeechHouse_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw .Trigger, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger:
+.DummyTrigger:
 	end
 
 Celebrity:
@@ -91,5 +89,5 @@ Route28FamousSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, Celebrity, -1
-	person_event SPRITE_MOLTRES, 5, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, CelebritysFearow, -1
+	person_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Celebrity, -1
+	person_event SPRITE_MOLTRES, 5, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, CelebritysFearow, -1

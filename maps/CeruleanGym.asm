@@ -9,22 +9,20 @@ const_value set 2
 CeruleanGym_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x1883d9, 0
-	dw UnknownScript_0x1883da, 0
+	maptrigger .DummyTrigger0
+	maptrigger .GruntRunsOut
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x1883d9:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x1883da:
-	priorityjump UnknownScript_0x1883de
+.GruntRunsOut:
+	priorityjump .GruntRunsOutScript
 	end
 
-UnknownScript_0x1883de:
+.GruntRunsOutScript:
 	applymovement CERULEANGYM_ROCKET, MovementData_0x1884e3
 	playsound SFX_TACKLE
 	applymovement CERULEANGYM_ROCKET, MovementData_0x1884eb
@@ -93,7 +91,7 @@ TrainerSwimmerfDiana:
 SwimmerfDianaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x188856
+	writetext SwimmerfDianaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -104,7 +102,7 @@ TrainerSwimmerfBriana:
 SwimmerfBrianaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1888c0
+	writetext SwimmerfBrianaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -115,7 +113,7 @@ TrainerSwimmermParker:
 SwimmermParkerScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x188943
+	writetext SwimmermParkerAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -299,7 +297,7 @@ SwimmerfDianaBeatenText:
 	line "the winner!"
 	done
 
-UnknownText_0x188856:
+SwimmerfDianaAfterBattleText:
 	text "I'll be swimming"
 	line "quietly."
 	done
@@ -315,7 +313,7 @@ SwimmerfBrianaBeatenText:
 	line "disposed of me…"
 	done
 
-UnknownText_0x1888c0:
+SwimmerfBrianaAfterBattleText:
 	text "Don't be too smug"
 	line "about beating me."
 
@@ -335,7 +333,7 @@ SwimmermParkerBeatenText:
 	text "This can't be…"
 	done
 
-UnknownText_0x188943:
+SwimmermParkerAfterBattleText:
 	text "MISTY has gotten"
 	line "much better in the"
 	cont "past few years."
@@ -386,8 +384,8 @@ CeruleanGym_MapEventHeader:
 .PersonEvents:
 	db 6
 	person_event SPRITE_ROCKET, 10, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
-	person_event SPRITE_MISTY, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 6, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GIRL, 9, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_SWIMMER_GUY, 9, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
-	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_MISTY, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 6, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GIRL, 9, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_SWIMMER_GUY, 9, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM
+	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM

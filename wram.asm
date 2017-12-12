@@ -355,6 +355,8 @@ NEXTU ; c608
 ; timeset temp storage
 	ds 20
 wInitHourBuffer:: db ; c61c
+	ds 9
+wInitMinuteBuffer:: db ; c626
 
 NEXTU ; c608
 ; link engine data
@@ -1611,9 +1613,9 @@ wTrainerHUDTiles:: db
 NEXTU ; d002
 ; mobile participant nicknames
 	ds 4
-wMobileParticipant1Nickname:: ds 6
-wMobileParticipant2Nickname:: ds 6
-wMobileParticipant3Nickname:: ds 6
+wMobileParticipant1Nickname:: ds NAME_LENGTH_JAPANESE
+wMobileParticipant2Nickname:: ds NAME_LENGTH_JAPANESE
+wMobileParticipant3Nickname:: ds NAME_LENGTH_JAPANESE
 
 NEXTU ; d002
 ; earthquake data buffer
@@ -1862,8 +1864,8 @@ wWhichHPBar::
 wPokemonWithdrawDepositParameter::
 ; 0: Take from PC
 ; 1: Put into PC
-; 2: Take from Daycare
-; 3: Put into Daycare
+; 2: Take from Day-Care
+; 3: Put into Day-Care
 	db
 
 wItemQuantityChangeBuffer:: db
@@ -1995,6 +1997,7 @@ TilesetCollisionAddress:: dw ; d1e0
 TilesetAnim:: dw ; bank 3f ; d1e2
 	ds 2  ; unused ; d1e4
 TilesetPalettes:: dw ; bank 3f ; d1e6
+TilesetHeaderEnd::
 
 EvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
 
@@ -2107,7 +2110,9 @@ BaseType1:: db ; d23d
 BaseType2:: db ; d23e
 BaseCatchRate:: db ; d23f
 BaseExp:: db ; d240
-BaseItems:: dw ; d241
+BaseItems:: ; d241
+BaseItem1:: db ; d241
+BaseItem2:: db ; d242
 BaseGender:: db ; d243
 BaseUnknown1:: db ; d244
 BaseEggSteps:: db ; d245
@@ -2117,6 +2122,7 @@ BasePadding:: ds 4 ; d248
 BaseGrowthRate:: db ; d24c
 BaseEggGroups:: db ; d24d
 BaseTMHM:: flag_array NUM_TM_HM_TUTOR ; d24e
+CurBaseDataEnd::
 
 CurDamage:: dw ; d256
 
@@ -2749,11 +2755,11 @@ UnownDex:: ds NUM_UNOWN ; ded9
 UnlockedUnowns:: db ; def3
 wFirstUnownSeen:: db
 
-wDaycareMan:: ; def5
+wDayCareMan:: ; def5
 ; bit 7: active
 ; bit 6: monsters are compatible
 ; bit 5: egg ready
-; bit 0: monster 1 in daycare
+; bit 0: monster 1 in day-care
 	db
 
 wBreedMon1::
@@ -2761,9 +2767,9 @@ wBreedMon1Nick::  ds PKMN_NAME_LENGTH ; def6
 wBreedMon1OT::    ds NAME_LENGTH ; df01
 wBreedMon1Stats:: box_struct wBreedMon1 ; df0c
 
-wDaycareLady:: ; df2c
+wDayCareLady:: ; df2c
 ; bit 7: active
-; bit 0: monster 2 in daycare
+; bit 0: monster 2 in day-care
 	db
 
 wStepsToEgg:: ; df2d
@@ -2989,7 +2995,7 @@ wBattleAnimEnd::
 ENDU ; d462
 
 
-SECTION "WRAM 5 MOBILE", WRAMX
+SECTION "Mobile RAM", WRAMX
 
 w5_d800:: ds $200
 w5_da00:: ds $200
@@ -3002,7 +3008,7 @@ w5_MobileOpponentBattleWinMessage:: ds $c ; dc32
 w5_MobileOpponentBattleLossMessage:: ds $c ; dc3e
 
 
-SECTION "WRAM 6", WRAMX
+SECTION "Scratch RAM", WRAMX
 
 UNION ; d000
 wScratchTileMap:: ds BG_MAP_WIDTH * BG_MAP_HEIGHT
@@ -3014,7 +3020,7 @@ wDecompressEnemyFrontpic:: ds $80 tiles
 ENDU ; e000
 
 
-SECTION "WRAM 7", WRAMX
+SECTION "Stack RAM", WRAMX
 
 wWindowStack:: ds $1000 - 1
 wWindowStackBottom:: ds 1

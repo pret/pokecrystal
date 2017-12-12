@@ -964,7 +964,7 @@ CountStep: ; 96b79
 
 .skip_egg
 	; Increase the EXP of (both) DayCare Pokemon by 1.
-	callba DaycareStep
+	callba DayCareStep
 
 	; Every four steps, deal damage to all Poisoned Pokemon
 	ld hl, PoisonStepCount

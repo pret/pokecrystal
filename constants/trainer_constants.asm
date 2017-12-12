@@ -2,8 +2,8 @@
 ; `trainerclass` indexes are for:
 ; - TrainerClassAttributes (see trainers/attributes.asm)
 ; - TrainerClassDVs (see trainers/dvs.asm)
+; - TrainerEncounterMusic (see trainers/encounter_music.asm)
 ; - TrainerGroups (see trainers/trainer_pointers.asm)
-; - TrainerEncounterMusic (see audio/trainer_encounters.asm)
 ; - BTTrainerClassGenders (see misc/battle_tower_47.asm)
 ; trainer constants are Trainers indexes, for the sub-tables of TrainerGroups (see trainers/trainers.asm)
 	enum_start

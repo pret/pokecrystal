@@ -7,26 +7,24 @@ const_value set 2
 FastShip1F_MapScriptHeader:
 .MapTriggers:
 	db 3
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
+	maptrigger .DummyTrigger0
+	maptrigger .EnterFastShip
+	maptrigger .DummyTrigger2
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
+.DummyTrigger0:
 	end
 
-.Trigger1:
-	priorityjump .PriorityJump2
+.EnterFastShip:
+	priorityjump .EnterFastShipScript
 	end
 
-.Trigger2:
+.DummyTrigger2:
 	end
 
-.PriorityJump2:
+.EnterFastShipScript:
 	applymovement FASTSHIP1F_SAILOR1, MovementData_0x7520e
 	applymovement PLAYER, MovementData_0x75217
 	applymovement FASTSHIP1F_SAILOR1, MovementData_0x75211

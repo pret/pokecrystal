@@ -23,7 +23,7 @@ TrainerPokemaniacMiller:
 PokemaniacMillerScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7debd
+	writetext PokemaniacMillerAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -34,7 +34,7 @@ TrainerSupernerdMarkus:
 SupernerdMarkusScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7df97
+	writetext SupernerdMarkusAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -77,7 +77,7 @@ PokemaniacMillerBeatenText:
 	line "kid…?"
 	done
 
-UnknownText_0x7debd:
+PokemaniacMillerAfterBattleText:
 	text "A while back, this"
 	line "karate dude wanted"
 
@@ -103,7 +103,7 @@ SupernerdMarkusBeatenText:
 	line "someone else…"
 	done
 
-UnknownText_0x7df97:
+SupernerdMarkusAfterBattleText:
 	text "I came to explore"
 	line "MT.MORTAR, but I"
 
@@ -145,7 +145,7 @@ MountMortar1FInside_MapEventHeader:
 	person_event SPRITE_POKE_BALL, 27, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FInsideHyperPotion, EVENT_MOUNT_MORTAR_1F_INSIDE_HYPER_POTION
 	person_event SPRITE_POKE_BALL, 20, 22, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FInsideMaxPotion, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_POTION
 	person_event SPRITE_POKE_BALL, 19, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FInsideNugget, EVENT_MOUNT_MORTAR_1F_INSIDE_NUGGET
-	person_event SPRITE_SUPER_NERD, 43, 33, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacMiller, -1
-	person_event SPRITE_SUPER_NERD, 28, 24, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerSupernerdMarkus, -1
+	person_event SPRITE_SUPER_NERD, 43, 33, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacMiller, -1
+	person_event SPRITE_SUPER_NERD, 28, 24, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerSupernerdMarkus, -1
 	person_event SPRITE_POKE_BALL, 16, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FInsideIron, EVENT_MOUNT_MORTAR_1F_INSIDE_IRON
 	person_event SPRITE_POKE_BALL, 17, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FInsideUltraBall, EVENT_MOUNT_MORTAR_1F_INSIDE_ULTRA_BALL

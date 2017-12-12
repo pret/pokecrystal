@@ -155,7 +155,7 @@ TrainerPsychicPhil:
 PsychicPhilScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19dcfc
+	writetext PsychicPhilAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -261,7 +261,7 @@ TrainerFisherEdgar:
 FisherEdgarScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19db6f
+	writetext FisherEdgarAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -272,7 +272,7 @@ TrainerCooltrainerfCybil:
 CooltrainerfCybilScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19df4d
+	writetext CooltrainerfCybilAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -283,7 +283,7 @@ TrainerPokemaniacZach:
 PokemaniacZachScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19dd7e
+	writetext PokemaniacZachAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -294,7 +294,7 @@ TrainerCooltrainermAllen:
 CooltrainermAllenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19de66
+	writetext CooltrainermAllenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -360,7 +360,7 @@ FisherEdgarBeatenText:
 	line "This isn't right."
 	done
 
-UnknownText_0x19db6f:
+FisherEdgarAfterBattleText:
 	text "That's 100 wins"
 	line "to 101 losses."
 
@@ -412,7 +412,7 @@ PsychicPhilBeatenText:
 	line "shocking loss…"
 	done
 
-UnknownText_0x19dcfc:
+PsychicPhilAfterBattleText:
 	text "It's important to"
 	line "have conviction"
 	cont "on your side."
@@ -429,7 +429,7 @@ PokemaniacZachBeatenText:
 	line "are so appealing."
 	done
 
-UnknownText_0x19dd7e:
+PokemaniacZachAfterBattleText:
 	text "If a #MON has"
 	line "different colors"
 
@@ -455,7 +455,7 @@ CooltrainermAllenBeatenText:
 	line "loss on my part."
 	done
 
-UnknownText_0x19de66:
+CooltrainermAllenAfterBattleText:
 	text "Wow. You have a"
 	line "lot of BADGES."
 
@@ -485,7 +485,7 @@ CooltrainerfCybilBeatenText:
 	line "do at all."
 	done
 
-UnknownText_0x19df4d:
+CooltrainerfCybilAfterBattleText:
 	text "We all get better"
 	line "by experiencing"
 	cont "many battles."
@@ -526,13 +526,13 @@ Route44_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_FISHER, 3, 35, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherWilton1, -1
-	person_event SPRITE_FISHER, 13, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherEdgar, -1
-	person_event SPRITE_YOUNGSTER, 9, 10, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicPhil, -1
-	person_event SPRITE_SUPER_NERD, 2, 43, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerPokemaniacZach, -1
-	person_event SPRITE_YOUNGSTER, 5, 51, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerBird_keeperVance1, -1
-	person_event SPRITE_COOLTRAINER_M, 15, 41, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 5, TrainerCooltrainermAllen, -1
-	person_event SPRITE_COOLTRAINER_F, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 5, TrainerCooltrainerfCybil, -1
+	person_event SPRITE_FISHER, 3, 35, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherWilton1, -1
+	person_event SPRITE_FISHER, 13, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherEdgar, -1
+	person_event SPRITE_YOUNGSTER, 9, 10, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicPhil, -1
+	person_event SPRITE_SUPER_NERD, 2, 43, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerPokemaniacZach, -1
+	person_event SPRITE_YOUNGSTER, 5, 51, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerBird_keeperVance1, -1
+	person_event SPRITE_COOLTRAINER_M, 15, 41, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 5, TrainerCooltrainermAllen, -1
+	person_event SPRITE_COOLTRAINER_F, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 5, TrainerCooltrainerfCybil, -1
 	person_event SPRITE_FRUIT_TREE, 5, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x19da40, -1
 	person_event SPRITE_POKE_BALL, 8, 30, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route44MaxRevive, EVENT_ROUTE_44_MAX_REVIVE
 	person_event SPRITE_POKE_BALL, 4, 45, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route44UltraBall, EVENT_ROUTE_44_ULTRA_BALL

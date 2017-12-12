@@ -1,6 +1,8 @@
 ; See song sections in audio.asm.
 
-; e906e
+Music: ; e906e
+; entries correspond to MUSIC_* constants
+
 	dba Music_Nothing ; 0xe91a3
 	dba Music_TitleScreen ; 0xeb808
 	dba Music_Route1 ; 0xec000

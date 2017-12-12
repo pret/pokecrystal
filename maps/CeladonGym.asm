@@ -55,7 +55,7 @@ TrainerLassMichelle:
 LassMichelleScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x72e30
+	writetext LassMichelleAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -66,7 +66,7 @@ TrainerPicnickerTanya:
 PicnickerTanyaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x72e8e
+	writetext PicnickerTanyaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -77,7 +77,7 @@ TrainerBeautyJulia:
 BeautyJuliaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x72f01
+	writetext BeautyJuliaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -88,7 +88,7 @@ TrainerTwinsJoandzoe1:
 TwinsJoandzoe1Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x72f70
+	writetext TwinsJoandzoe1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -99,7 +99,7 @@ TrainerTwinsJoandzoe2:
 TwinsJoandzoe2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x72fc0
+	writetext TwinsJoandzoe2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -199,7 +199,7 @@ LassMichelleBeatenText:
 	text "Oh, bleah!"
 	done
 
-UnknownText_0x72e30:
+LassMichelleAfterBattleText:
 	text "I just got care-"
 	line "less, that's all!"
 	done
@@ -214,7 +214,7 @@ PicnickerTanyaBeatenText:
 	text "Oh, that's it?"
 	done
 
-UnknownText_0x72e8e:
+PicnickerTanyaAfterBattleText:
 	text "Oh, look at all"
 	line "your BADGES. No"
 
@@ -232,7 +232,7 @@ BeautyJuliaBeatenText:
 	text "How annoying!"
 	done
 
-UnknownText_0x72f01:
+BeautyJuliaAfterBattleText:
 	text "How do I go about"
 	line "becoming ladylike"
 	cont "like ERIKA?"
@@ -248,7 +248,7 @@ TwinsJoandzoe1BeatenText:
 	text "Oh… We lost…"
 	done
 
-UnknownText_0x72f70:
+TwinsJoandzoe1AfterBattleText:
 	text "ERIKA will get you"
 	line "back for us!"
 	done
@@ -262,7 +262,7 @@ TwinsJoandzoe2BeatenText:
 	text "We couldn't win…"
 	done
 
-UnknownText_0x72fc0:
+TwinsJoandzoe2AfterBattleText:
 	text "ERIKA is much,"
 	line "much stronger!"
 	done
@@ -286,9 +286,9 @@ CeladonGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ERIKA, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ErikaScript_0x72a6a, -1
-	person_event SPRITE_LASS, 8, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerLassMichelle, -1
-	person_event SPRITE_LASS, 8, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerPicnickerTanya, -1
-	person_event SPRITE_BUENA, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerBeautyJulia, -1
-	person_event SPRITE_TWIN, 10, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsJoandzoe1, -1
-	person_event SPRITE_TWIN, 10, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsJoandzoe2, -1
+	person_event SPRITE_ERIKA, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ErikaScript_0x72a6a, -1
+	person_event SPRITE_LASS, 8, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 2, TrainerLassMichelle, -1
+	person_event SPRITE_LASS, 8, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerPicnickerTanya, -1
+	person_event SPRITE_BUENA, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 2, TrainerBeautyJulia, -1
+	person_event SPRITE_TWIN, 10, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsJoandzoe1, -1
+	person_event SPRITE_TWIN, 10, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsJoandzoe2, -1

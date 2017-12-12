@@ -130,7 +130,7 @@ TrainerHikerErik:
 HikerErikScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e301
+	writetext HikerErikAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -141,7 +141,7 @@ TrainerHikerMichael:
 HikerMichaelScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e3b1
+	writetext HikerMichaelAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -238,7 +238,7 @@ TrainerHikerTimothy:
 HikerTimothyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e4f1
+	writetext HikerTimothyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -249,7 +249,7 @@ TrainerCooltrainermRyan:
 CooltrainermRyanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e70d
+	writetext CooltrainermRyanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -260,7 +260,7 @@ TrainerCooltrainerfKelly:
 CooltrainerfKellyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19e7d1
+	writetext CooltrainerfKellyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -328,7 +328,7 @@ HikerErikBeatenText:
 	text "Oh, I lost that!"
 	done
 
-UnknownText_0x19e301:
+HikerErikAfterBattleText:
 	text "I'll head back to"
 	line "BLACKTHORN's ICE"
 
@@ -350,7 +350,7 @@ HikerMichaelBeatenText:
 	line "spunky enough!"
 	done
 
-UnknownText_0x19e3b1:
+HikerMichaelAfterBattleText:
 	text "Boy, do I love"
 	line "HP UP! Mmmm, yum!"
 
@@ -397,7 +397,7 @@ HikerTimothyBeatenText:
 	line "They're there too!"
 	done
 
-UnknownText_0x19e4f1:
+HikerTimothyAfterBattleText:
 	text "The best thing to"
 	line "ever happen to me"
 
@@ -467,7 +467,7 @@ CooltrainermRyanBeatenText:
 	line "respect."
 	done
 
-UnknownText_0x19e70d:
+CooltrainermRyanAfterBattleText:
 	text "I see you're rais-"
 	line "ing your #MON"
 	cont "with care."
@@ -490,7 +490,7 @@ CooltrainerfKellyBeatenText:
 	text "Fine. I lost."
 	done
 
-UnknownText_0x19e7d1:
+CooltrainerfKellyAfterBattleText:
 	text "I'm not in favor"
 	line "of overly power-"
 	cont "ful moves."
@@ -550,16 +550,16 @@ Route45_MapEventHeader:
 
 .PersonEvents:
 	db 13
-	person_event SPRITE_POKEFAN_M, 16, 10, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 1, TrainerHikerErik, -1
-	person_event SPRITE_POKEFAN_M, 65, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerMichael, -1
-	person_event SPRITE_POKEFAN_M, 28, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerParry, -1
-	person_event SPRITE_POKEFAN_M, 65, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 1, TrainerHikerTimothy, -1
-	person_event SPRITE_BLACK_BELT, 50, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerBlackbeltKenji, -1
-	person_event SPRITE_COOLTRAINER_M, 18, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainermRyan, -1
-	person_event SPRITE_COOLTRAINER_F, 36, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainerfKelly, -1
+	person_event SPRITE_POKEFAN_M, 16, 10, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 1, TrainerHikerErik, -1
+	person_event SPRITE_POKEFAN_M, 65, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerMichael, -1
+	person_event SPRITE_POKEFAN_M, 28, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerParry, -1
+	person_event SPRITE_POKEFAN_M, 65, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 1, TrainerHikerTimothy, -1
+	person_event SPRITE_BLACK_BELT, 50, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerBlackbeltKenji, -1
+	person_event SPRITE_COOLTRAINER_M, 18, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainermRyan, -1
+	person_event SPRITE_COOLTRAINER_F, 36, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainerfKelly, -1
 	person_event SPRITE_FRUIT_TREE, 82, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x19e294, -1
 	person_event SPRITE_POKE_BALL, 51, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route45Nugget, EVENT_ROUTE_45_NUGGET
 	person_event SPRITE_POKE_BALL, 66, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route45Revive, EVENT_ROUTE_45_REVIVE
 	person_event SPRITE_POKE_BALL, 20, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route45Elixer, EVENT_ROUTE_45_ELIXER
 	person_event SPRITE_POKE_BALL, 33, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route45MaxPotion, EVENT_ROUTE_45_MAX_POTION
-	person_event SPRITE_YOUNGSTER, 70, 4, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x19e269, -1
+	person_event SPRITE_YOUNGSTER, 70, 4, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x19e269, -1

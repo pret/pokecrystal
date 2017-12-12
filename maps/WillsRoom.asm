@@ -4,34 +4,29 @@ const_value set 2
 WillsRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	maptrigger .LockDoor
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .WillsRoomDoors
 
-.Trigger0:
+.LockDoor:
 	priorityjump .WillsDoorLocksBehindYou
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
 .WillsRoomDoors:
 	checkevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	iffalse .KeepDoorClosed
+	iffalse .KeepDoorsClosed
 	changeblock $4, $e, $2a
-.KeepDoorClosed:
+.KeepDoorsClosed:
 	checkevent EVENT_WILLS_ROOM_EXIT_OPEN
-	iffalse .OpenDoor
+	iffalse .OpenDoors
 	changeblock $4, $2, $16
-.OpenDoor:
+.OpenDoors:
 	return
 
 .WillsDoorLocksBehindYou:
@@ -151,4 +146,4 @@ WillsRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_WILL, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, WillScript_Battle, -1
+	person_event SPRITE_WILL, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, WillScript_Battle, -1

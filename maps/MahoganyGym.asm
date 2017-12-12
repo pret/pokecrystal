@@ -76,7 +76,7 @@ TrainerSkierRoxanne:
 SkierRoxanneScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19a116
+	writetext SkierRoxanneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -87,7 +87,7 @@ TrainerSkierClarissa:
 SkierClarissaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19a18f
+	writetext SkierClarissaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -98,7 +98,7 @@ TrainerBoarderRonald:
 BoarderRonaldScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x199f2d
+	writetext BoarderRonaldAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -109,7 +109,7 @@ TrainerBoarderBrad:
 BoarderBradScript:
 	end_if_just_battled
 	opentext
-	writetext BorderBradTalkText
+	writetext BoarderBradAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -120,7 +120,7 @@ TrainerBoarderDouglas:
 BoarderDouglasScript:
 	end_if_just_battled
 	opentext
-	writetext BorderDouglasTalkText
+	writetext BoarderDouglasAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -251,7 +251,7 @@ BoarderRonaldBeatenText:
 	line "do a thing."
 	done
 
-UnknownText_0x199f2d:
+BoarderRonaldAfterBattleText:
 	text "I think there's a"
 	line "move a #MON"
 
@@ -276,7 +276,7 @@ BoarderBradBeatenText:
 	line "serious we are?"
 	done
 
-BorderBradTalkText:
+BoarderBradAfterBattleText:
 	text "This GYM is great."
 	line "I love boarding"
 	cont "with my #MON!"
@@ -292,7 +292,7 @@ BoarderDouglasBeatenText:
 	line "PRYCE's secret."
 	done
 
-BorderDouglasTalkText:
+BoarderDouglasAfterBattleText:
 	text "The secret behind"
 	line "PRYCE's power…"
 
@@ -316,7 +316,7 @@ SkierRoxanneBeatenText:
 	line "you in skiing!"
 	done
 
-UnknownText_0x19a116:
+SkierRoxanneAfterBattleText:
 	text "If you don't skate"
 	line "with precision,"
 
@@ -334,7 +334,7 @@ SkierClarissaBeatenText:
 	line "wipe out!"
 	done
 
-UnknownText_0x19a18f:
+SkierClarissaAfterBattleText:
 	text "I shouldn't have"
 	line "been bragging"
 	cont "about my skiing…"
@@ -391,10 +391,10 @@ MahoganyGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_PRYCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, PryceScript_0x199a9e, -1
-	person_event SPRITE_BUENA, 6, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerSkierRoxanne, -1
-	person_event SPRITE_ROCKER, 17, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderRonald, -1
-	person_event SPRITE_BUENA, 17, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerSkierClarissa, -1
-	person_event SPRITE_ROCKER, 9, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderBrad, -1
-	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderDouglas, -1
-	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, MahoganyGymGuyScript, -1
+	person_event SPRITE_PRYCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, PryceScript_0x199a9e, -1
+	person_event SPRITE_BUENA, 6, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerSkierRoxanne, -1
+	person_event SPRITE_ROCKER, 17, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderRonald, -1
+	person_event SPRITE_BUENA, 17, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerSkierClarissa, -1
+	person_event SPRITE_ROCKER, 9, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderBrad, -1
+	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderDouglas, -1
+	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, MahoganyGymGuyScript, -1

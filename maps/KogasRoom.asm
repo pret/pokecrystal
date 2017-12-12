@@ -4,23 +4,18 @@ const_value set 2
 KogasRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	maptrigger .LockDoor
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .KogasRoomDoors
 
-.Trigger0:
+.LockDoor:
 	priorityjump .KogasDoorLocksBehindYou
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
 .KogasRoomDoors:
@@ -153,4 +148,4 @@ KogasRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_KOGA, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, KogaScript_Battle, -1
+	person_event SPRITE_KOGA, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, KogaScript_Battle, -1

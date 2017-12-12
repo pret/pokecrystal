@@ -15,7 +15,7 @@ TrainerHikerJim:
 HikerJimScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ae43b
+	writetext HikerJimAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -26,7 +26,7 @@ TrainerPokefanmRobert:
 PokefanmRobertScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ae4a9
+	writetext PokefanmRobertAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -42,7 +42,7 @@ HikerJimBeatenText:
 	text "Hahaha-hachoo!"
 	done
 
-UnknownText_0x1ae43b:
+HikerJimAfterBattleText:
 	text "Hay fever is"
 	line "making me sneeze!"
 	cont "Ahahah-CHOO!"
@@ -60,7 +60,7 @@ PokefanmRobertBeatenText:
 	line "that's my loss."
 	done
 
-UnknownText_0x1ae4a9:
+PokefanmRobertAfterBattleText:
 	text "Look what you did"
 	line "to my #MON…"
 
@@ -92,5 +92,5 @@ Route10South_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 3, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerHikerJim, -1
-	person_event SPRITE_POKEFAN_M, 10, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerPokefanmRobert, -1
+	person_event SPRITE_POKEFAN_M, 3, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerHikerJim, -1
+	person_event SPRITE_POKEFAN_M, 10, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerPokefanmRobert, -1

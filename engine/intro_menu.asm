@@ -199,8 +199,6 @@ _ResetWRAM: ; 5bae
 	ld [Coins], a
 	ld [Coins + 1], a
 
-START_MONEY EQU 3000
-
 IF START_MONEY / $10000
 	ld a, START_MONEY / $10000
 ENDC
@@ -214,11 +212,11 @@ ENDC
 	ld [wWhichMomItem], a
 
 	ld hl, MomItemTriggerBalance
-	ld [hl], 2300 / $10000
+	ld [hl], MOM_MONEY / $10000
 	inc hl
-	ld [hl], 2300 / $100 % $100
+	ld [hl], MOM_MONEY / $100 % $100
 	inc hl
-	ld [hl], 2300 % $100
+	ld [hl], MOM_MONEY % $100
 
 	call InitializeNPCNames
 

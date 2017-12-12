@@ -1,4 +1,5 @@
-
+UnownPicPointers::
+; entries correspond to Unown letters, two apiece
 	add_pic UnownAFrontpic
 	add_pic UnownABackpic
 	add_pic UnownBFrontpic

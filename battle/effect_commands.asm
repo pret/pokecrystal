@@ -9323,21 +9323,21 @@ BattleCommand_ClearHazards: ; 37b39
 
 BattleCommand_HealMorn: ; 37b74
 ; healmorn
-	ld b, MORN
+	ld b, MORN_F
 	jr BattleCommand_TimeBasedHealContinue
 
 ; 37b78
 
 BattleCommand_HealDay: ; 37b78
 ; healday
-	ld b, DAY
+	ld b, DAY_F
 	jr BattleCommand_TimeBasedHealContinue
 
 ; 37b7c
 
 BattleCommand_HealNite: ; 37b7c
 ; healnite
-	ld b, NITE
+	ld b, NITE_F
 	; fallthrough
 ; 37b7e
 

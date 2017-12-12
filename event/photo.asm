@@ -214,9 +214,9 @@ UnownDexVacantString:
 ; 16d9c
 
 UnownDexATile: ; 16d9c
-INCBIN "gfx/unknown/016d9c.1bpp"
+INCBIN "gfx/unknown/bold_a.1bpp"
 UnownDexBTile: ; 16da4
-INCBIN "gfx/unknown/016da4.1bpp"
+INCBIN "gfx/unknown/bold_b.1bpp"
 ; 16dac
 
 PlaceUnownPrinterFrontpic: ; 16dac

@@ -19,7 +19,7 @@ TrainerBikerDwayne:
 BikerDwayneScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c0c8
+	writetext BikerDwayneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -30,7 +30,7 @@ TrainerBikerHarris:
 BikerHarrisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c143
+	writetext BikerHarrisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -41,7 +41,7 @@ TrainerBikerZeke:
 BikerZekeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c1a3
+	writetext BikerZekeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -52,7 +52,7 @@ TrainerSupernerdSam:
 SupernerdSamScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c219
+	writetext SupernerdSamAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ TrainerSupernerdTom:
 SupernerdTomScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6c27e
+	writetext SupernerdTomAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -90,7 +90,7 @@ BikerDwayneBeatenText:
 	text "S-sorry!"
 	done
 
-UnknownText_0x6c0c8:
+BikerDwayneAfterBattleText:
 	text "The KANTO #MON"
 	line "FEDERATION will"
 	cont "never fall!"
@@ -108,7 +108,7 @@ BikerHarrisBeatenText:
 	text "F-forgive me!"
 	done
 
-UnknownText_0x6c143:
+BikerHarrisAfterBattleText:
 	text "Wiped out by some"
 	line "punk from JOHTO…"
 	done
@@ -124,7 +124,7 @@ BikerZekeBeatenText:
 	text "Yikes! Sorry!"
 	done
 
-UnknownText_0x6c1a3:
+BikerZekeAfterBattleText:
 	text "We'll try not to"
 	line "disturb anyone"
 	cont "from now on…"
@@ -140,7 +140,7 @@ SupernerdSamBeatenText:
 	line "the MAGNET TRAIN…"
 	done
 
-UnknownText_0x6c219:
+SupernerdSamAfterBattleText:
 	text "The power of mag-"
 	line "nets is awesome!"
 	done
@@ -155,7 +155,7 @@ SupernerdTomBeatenText:
 	line "You're tough!"
 	done
 
-UnknownText_0x6c27e:
+SupernerdTomAfterBattleText:
 	text "GYM BADGES give"
 	line "you advantages in"
 	cont "battles."
@@ -191,9 +191,9 @@ Route8_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_BIKER, 8, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 5, TrainerBikerDwayne, -1
-	person_event SPRITE_BIKER, 9, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 5, TrainerBikerHarris, -1
-	person_event SPRITE_BIKER, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 5, TrainerBikerZeke, -1
-	person_event SPRITE_SUPER_NERD, 2, 23, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerSupernerdSam, -1
-	person_event SPRITE_SUPER_NERD, 12, 31, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 4, TrainerSupernerdTom, -1
+	person_event SPRITE_BIKER, 8, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 5, TrainerBikerDwayne, -1
+	person_event SPRITE_BIKER, 9, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 5, TrainerBikerHarris, -1
+	person_event SPRITE_BIKER, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 5, TrainerBikerZeke, -1
+	person_event SPRITE_SUPER_NERD, 2, 23, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerSupernerdSam, -1
+	person_event SPRITE_SUPER_NERD, 12, 31, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 4, TrainerSupernerdTom, -1
 	person_event SPRITE_FRUIT_TREE, 5, 33, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x6c06c, -1

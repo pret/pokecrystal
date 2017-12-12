@@ -72,7 +72,7 @@ TrainerBird_keeperRod:
 Bird_keeperRodScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x68837
+	writetext Bird_keeperRodAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -83,7 +83,7 @@ TrainerBird_keeperAbe:
 Bird_keeperAbeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x688c7
+	writetext Bird_keeperAbeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -226,7 +226,7 @@ Bird_keeperRodBeatenText:
 	text "Gaaah!"
 	done
 
-UnknownText_0x68837:
+Bird_keeperRodAfterBattleText:
 	text "FALKNER's skills"
 	line "are for real!"
 
@@ -246,7 +246,7 @@ Bird_keeperAbeBeatenText:
 	line "true!"
 	done
 
-UnknownText_0x688c7:
+Bird_keeperAbeAfterBattleText:
 	text "This is pathetic,"
 	line "losing to some"
 	cont "rookie trainer…"
@@ -300,7 +300,7 @@ VioletGym_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FALKNER, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, FalknerScript_0x683c2, -1
-	person_event SPRITE_YOUNGSTER, 6, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperRod, -1
-	person_event SPRITE_YOUNGSTER, 10, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperAbe, -1
-	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, VioletGymGuyScript, -1
+	person_event SPRITE_FALKNER, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, FalknerScript_0x683c2, -1
+	person_event SPRITE_YOUNGSTER, 6, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperRod, -1
+	person_event SPRITE_YOUNGSTER, 10, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperAbe, -1
+	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, VioletGymGuyScript, -1

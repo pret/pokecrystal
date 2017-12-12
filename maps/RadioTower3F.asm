@@ -13,12 +13,9 @@ RadioTower3F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_TILES, .CardKeyShutterCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_TILES, CardKeyShutterCallback
-
-CardKeyShutterCallback:
+.CardKeyShutterCallback:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .Change
 	return
@@ -91,7 +88,7 @@ TrainerGruntM7:
 GruntM7Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5e8d0
+	writetext GruntM7AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -102,7 +99,7 @@ TrainerGruntM8:
 GruntM8Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5e944
+	writetext GruntM8AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -113,7 +110,7 @@ TrainerGruntM9:
 GruntM9Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5e9d0
+	writetext GruntM9AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -124,7 +121,7 @@ TrainerScientistMarc:
 ScientistMarcScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5ea61
+	writetext ScientistMarcAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -246,7 +243,7 @@ GruntM7BeatenText:
 	text "What?!"
 	done
 
-UnknownText_0x5e8d0:
+GruntM7AfterBattleText:
 	text "I failed in my"
 	line "duties…"
 
@@ -264,7 +261,7 @@ GruntM8BeatenText:
 	text "You're kidding!"
 	done
 
-UnknownText_0x5e944:
+GruntM8AfterBattleText:
 	text "I feel lousy over"
 	line "losing!"
 
@@ -284,7 +281,7 @@ GruntM9BeatenText:
 	text "I'm done for!"
 	done
 
-UnknownText_0x5e9d0:
+GruntM9AfterBattleText:
 	text "What?! You made it"
 	line "past our men in"
 	cont "the UNDERGROUND?"
@@ -304,7 +301,7 @@ ScientistMarcBeatenText:
 	line "too lightly!"
 	done
 
-UnknownText_0x5ea61:
+ScientistMarcAfterBattleText:
 	text "Bwahahaha…"
 
 	para "I can transmit as"
@@ -352,10 +349,10 @@ RadioTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SUPER_NERD, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_GYM_GUY, 4, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x5e556, -1
-	person_event SPRITE_COOLTRAINER_F, 3, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x5e56a, -1
+	person_event SPRITE_SUPER_NERD, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_GYM_GUY, 4, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x5e556, -1
+	person_event SPRITE_COOLTRAINER_F, 3, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x5e56a, -1
 	person_event SPRITE_ROCKET, 1, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET, 6, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_SCIENTIST, 6, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_SCIENTIST, 6, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 5, TrainerScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

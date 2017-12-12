@@ -14,18 +14,15 @@ Route43_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
 
-	; callbacks
-
-	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x19d051
-
-UnknownScript_0x19d051:
+.CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x19d05c
+	iftrue .NoRockets
 	domaptrigger ROUTE_43_GATE, $0
 	return
 
-UnknownScript_0x19d05c:
+.NoRockets:
 	domaptrigger ROUTE_43_GATE, $1
 	return
 
@@ -35,7 +32,7 @@ TrainerCamperSpencer:
 CamperSpencerScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19d57e
+	writetext CamperSpencerAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,7 +43,7 @@ TrainerPokemaniacBen:
 PokemaniacBenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19d2d2
+	writetext PokemaniacBenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -162,7 +159,7 @@ TrainerPokemaniacRon:
 PokemaniacRonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19d3f8
+	writetext PokemaniacRonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -173,7 +170,7 @@ TrainerFisherMarvin:
 FisherMarvinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19d4d3
+	writetext FisherMarvinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -342,7 +339,7 @@ PokemaniacBenBeatenText:
 	line "this to me?"
 	done
 
-UnknownText_0x19d2d2:
+PokemaniacBenAfterBattleText:
 	text "What else do I"
 	line "like besides"
 	cont "#MON?"
@@ -384,7 +381,7 @@ PokemaniacRonBeatenText:
 	line "pretty right on!"
 	done
 
-UnknownText_0x19d3f8:
+PokemaniacRonAfterBattleText:
 	text "It's okay for"
 	line "people to like"
 
@@ -411,7 +408,7 @@ FisherMarvinBeatenText:
 	line "better anyway."
 	done
 
-UnknownText_0x19d4d3:
+FisherMarvinAfterBattleText:
 	text "KURT's LURE BALL"
 	line "is the best for"
 
@@ -434,7 +431,7 @@ CamperSpencerBeatenText:
 	line "at all…"
 	done
 
-UnknownText_0x19d57e:
+CamperSpencerAfterBattleText:
 	text "What is going on"
 	line "at LAKE OF RAGE?"
 
@@ -526,11 +523,11 @@ Route43_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_SUPER_NERD, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerPokemaniacBen, -1
-	person_event SPRITE_SUPER_NERD, 20, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacBrent1, -1
-	person_event SPRITE_SUPER_NERD, 7, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerPokemaniacRon, -1
-	person_event SPRITE_FISHER, 16, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 4, TrainerFisherMarvin, -1
-	person_event SPRITE_LASS, 25, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerPicnickerTiffany3, -1
-	person_event SPRITE_YOUNGSTER, 40, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerCamperSpencer, -1
+	person_event SPRITE_SUPER_NERD, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 2, TrainerPokemaniacBen, -1
+	person_event SPRITE_SUPER_NERD, 20, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacBrent1, -1
+	person_event SPRITE_SUPER_NERD, 7, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 2, TrainerPokemaniacRon, -1
+	person_event SPRITE_FISHER, 16, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 4, TrainerFisherMarvin, -1
+	person_event SPRITE_LASS, 25, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerPicnickerTiffany3, -1
+	person_event SPRITE_YOUNGSTER, 40, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerCamperSpencer, -1
 	person_event SPRITE_FRUIT_TREE, 26, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x19d266, -1
 	person_event SPRITE_POKE_BALL, 32, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route43MaxEther, EVENT_ROUTE_43_MAX_ETHER

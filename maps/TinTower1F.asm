@@ -13,68 +13,62 @@ const_value set 2
 TinTower1F_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x18502a, 0
-	dw UnknownScript_0x18502e, 0
+	maptrigger .FaceSuicune
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 2
+	dbw MAPCALLBACK_OBJECTS, .NPCsCallback
+	dbw MAPCALLBACK_TILES, .StairsCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x18502f
-
-	dbw MAPCALLBACK_TILES, TinTowerStairsCallback
-
-UnknownScript_0x18502a:
-	priorityjump SuicuneBattle
+.FaceSuicune:
+	priorityjump .SuicuneBattle
 	end
 
-UnknownScript_0x18502e:
+.DummyTrigger:
 	end
 
-UnknownScript_0x18502f:
+.NPCsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
-	iftrue UnknownScript_0x185047
+	iftrue .GotRainbowWing
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iffalse UnknownScript_0x185050
+	iffalse .FaceBeasts
 	special SpecialBeastsCheck
-	iffalse UnknownScript_0x185050
+	iffalse .FaceBeasts
 	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
-UnknownScript_0x185047:
+.GotRainbowWing:
 	checkevent EVENT_FOUGHT_HO_OH
 	iffalse .Done
 	appear TINTOWER1F_EUSINE
 .Done:
 	return
 
-UnknownScript_0x185050:
+.FaceBeasts:
 	checkevent EVENT_FOUGHT_SUICUNE
-	iftrue UnknownScript_0x185077
+	iftrue .FoughtSuicune
 	appear TINTOWER1F_SUICUNE
 	writebyte RAIKOU
 	special SpecialMonCheck
-	iftrue UnknownScript_0x185065
+	iftrue .NoRaikou
 	appear TINTOWER1F_RAIKOU
-	jump UnknownScript_0x185067
+	jump .CheckEntei
 
-UnknownScript_0x185065:
+.NoRaikou:
 	disappear TINTOWER1F_RAIKOU
-UnknownScript_0x185067:
+.CheckEntei:
 	writebyte ENTEI
 	special SpecialMonCheck
-	iftrue UnknownScript_0x185074
+	iftrue .NoEntei
 	appear TINTOWER1F_ENTEI
-	jump UnknownScript_0x185076
+	jump .BeastsDone
 
-UnknownScript_0x185074:
+.NoEntei:
 	disappear TINTOWER1F_ENTEI
-UnknownScript_0x185076:
+.BeastsDone:
 	return
 
-UnknownScript_0x185077:
+.FoughtSuicune:
 	disappear TINTOWER1F_SUICUNE
 	disappear TINTOWER1F_RAIKOU
 	disappear TINTOWER1F_ENTEI
@@ -82,14 +76,14 @@ UnknownScript_0x185077:
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	return
 
-TinTowerStairsCallback:
+.StairsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
-	iftrue .NoChange
+	iftrue .DontHideStairs
 	changeblock $a, $2, $9
-.NoChange:
+.DontHideStairs:
 	return
 
-SuicuneBattle:
+.SuicuneBattle:
 	applymovement PLAYER, TinTowerPlayerMovement1
 	pause 15
 	writebyte RAIKOU
@@ -546,10 +540,10 @@ TinTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_SUICUNE, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
-	person_event SPRITE_RAIKOU, 9, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
-	person_event SPRITE_ENTEI, 9, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
-	person_event SPRITE_SUPER_NERD, 3, 8, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TinTowerEusine, EVENT_TIN_TOWER_1F_EUSINE
+	person_event SPRITE_SUICUNE, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_SUICUNE
+	person_event SPRITE_RAIKOU, 9, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_RAIKOU
+	person_event SPRITE_ENTEI, 9, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TIN_TOWER_1F_ENTEI
+	person_event SPRITE_SUPER_NERD, 3, 8, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, TinTowerEusine, EVENT_TIN_TOWER_1F_EUSINE
 	person_event SPRITE_SAGE, 9, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x185173, EVENT_TIN_TOWER_1F_WISE_TRIO_1
 	person_event SPRITE_SAGE, 11, 11, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x185176, EVENT_TIN_TOWER_1F_WISE_TRIO_1
 	person_event SPRITE_SAGE, 6, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x185179, EVENT_TIN_TOWER_1F_WISE_TRIO_1

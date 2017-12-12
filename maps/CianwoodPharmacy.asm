@@ -4,14 +4,12 @@ const_value set 2
 CianwoodPharmacy_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw CianwoodPharmacyTrigger, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-CianwoodPharmacyTrigger:
+.DummyTrigger:
 	end
 
 CianwoodPharmacist:
@@ -93,4 +91,4 @@ CianwoodPharmacy_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_PHARMACIST, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CianwoodPharmacist, -1
+	person_event SPRITE_PHARMACIST, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CianwoodPharmacist, -1

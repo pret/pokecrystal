@@ -14,8 +14,6 @@ BlackthornGym2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_CMDQUEUE, .Boulders
 
 .Boulders:
@@ -68,7 +66,7 @@ TrainerCooltrainermCody:
 CooltrainermCodyScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainermCodyAfterText
+	writetext CooltrainermCodyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -79,7 +77,7 @@ TrainerCooltrainerfFran:
 CooltrainerfFranScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainerfFranAfterText
+	writetext CooltrainerfFranAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -95,7 +93,7 @@ CooltrainermCodyBeatenText:
 	line "had a dragon!"
 	done
 
-CooltrainermCodyAfterText:
+CooltrainermCodyAfterBattleText:
 	text "Members of our"
 	line "dragon-user clan"
 
@@ -119,7 +117,7 @@ CooltrainerfFranBeatenText:
 	text "Awww… I lost…"
 	done
 
-CooltrainerfFranAfterText:
+CooltrainerfFranAfterBattleText:
 	text "Uh-oh… CLAIR is"
 	line "going to be mad…"
 	done
@@ -149,8 +147,8 @@ BlackthornGym2F_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 1, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainermCody, -1
-	person_event SPRITE_COOLTRAINER_F, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainerfFran, -1
+	person_event SPRITE_COOLTRAINER_M, 1, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainermCody, -1
+	person_event SPRITE_COOLTRAINER_F, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainerfFran, -1
 	person_event SPRITE_BOULDER, 2, 8, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1
 	person_event SPRITE_BOULDER, 3, 2, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_2
 	person_event SPRITE_BOULDER, 16, 6, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_3

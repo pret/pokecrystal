@@ -1,5 +1,6 @@
-; Every Pokemon sorted in New Pokedex Order.
+; Every Pokémon sorted in New Pokédex Order.
 
+NewPokedexOrder: ; 0x40d60
 	db CHIKORITA
 	db BAYLEEF
 	db MEGANIUM
@@ -251,3 +252,4 @@
 	db MEWTWO
 	db MEW
 	db CELEBI
+; 0x40e5b

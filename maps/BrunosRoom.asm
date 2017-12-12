@@ -4,23 +4,18 @@ const_value set 2
 BrunosRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	maptrigger .LockDoor
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .BrunosRoomDoors
 
-.Trigger0:
+.LockDoor:
 	priorityjump .BrunosDoorLocksBehindYou
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
 .BrunosRoomDoors:
@@ -148,4 +143,4 @@ BrunosRoom_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_BRUNO, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, BrunoScript_Battle, -1
+	person_event SPRITE_BRUNO, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, BrunoScript_Battle, -1

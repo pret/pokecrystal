@@ -10,19 +10,17 @@ const_value set 2
 EcruteakGym_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x99d53, 0
-	dw UnknownScript_0x99d57, 0
+	maptrigger .ForcedToLeave
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x99d53:
+.ForcedToLeave:
 	priorityjump EcruteakGymClosed
 	end
 
-UnknownScript_0x99d57:
+.DummyTrigger:
 	end
 
 MortyScript_0x99d58:
@@ -105,7 +103,7 @@ TrainerSageJeffrey:
 SageJeffreyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9a263
+	writetext SageJeffreyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -116,7 +114,7 @@ TrainerSagePing:
 SagePingScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9a2b7
+	writetext SagePingAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -127,7 +125,7 @@ TrainerMediumMartha:
 MediumMarthaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9a318
+	writetext MediumMarthaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -138,7 +136,7 @@ TrainerMediumGrace:
 MediumGraceScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9a38a
+	writetext MediumGraceAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -297,7 +295,7 @@ SageJeffreyBeatenText:
 	line "experienced both."
 	done
 
-UnknownText_0x9a263:
+SageJeffreyAfterBattleText:
 	text "Where did #MON"
 	line "come from?"
 	done
@@ -312,7 +310,7 @@ SagePingBeatenText:
 	text "Ah! Well done!"
 	done
 
-UnknownText_0x9a2b7:
+SagePingAfterBattleText:
 	text "We use only ghost-"
 	line "type #MON."
 
@@ -329,7 +327,7 @@ MediumMarthaBeatenText:
 	text "I, I, I lost!"
 	done
 
-UnknownText_0x9a318:
+MediumMarthaAfterBattleText:
 	text "The one who wants"
 	line "to win most--will!"
 	done
@@ -346,7 +344,7 @@ MediumGraceBeatenText:
 	text "Wha-what?"
 	done
 
-UnknownText_0x9a38a:
+MediumGraceAfterBattleText:
 	text "Fine. I shall tell"
 	line "you the secret of"
 
@@ -438,10 +436,10 @@ EcruteakGym_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_MORTY, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, MortyScript_0x99d58, -1
-	person_event SPRITE_SAGE, 7, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerSageJeffrey, -1
-	person_event SPRITE_SAGE, 13, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerSagePing, -1
-	person_event SPRITE_GRANNY, 5, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 1, TrainerMediumMartha, -1
-	person_event SPRITE_GRANNY, 9, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 1, TrainerMediumGrace, -1
-	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, EcruteakGymGuyScript, -1
-	person_event SPRITE_GRAMPS, 14, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS
+	person_event SPRITE_MORTY, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, MortyScript_0x99d58, -1
+	person_event SPRITE_SAGE, 7, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerSageJeffrey, -1
+	person_event SPRITE_SAGE, 13, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerSagePing, -1
+	person_event SPRITE_GRANNY, 5, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 1, TrainerMediumMartha, -1
+	person_event SPRITE_GRANNY, 9, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 1, TrainerMediumGrace, -1
+	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EcruteakGymGuyScript, -1
+	person_event SPRITE_GRAMPS, 14, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS

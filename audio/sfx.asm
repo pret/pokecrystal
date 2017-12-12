@@ -1211,16 +1211,16 @@ Sfx_3RdPlace_Ch7: ; f0e56
 
 	togglesfx
 
-Sfx_GetEggFromDaycareLady: ; f0e66
-Sfx_GetEggFromDaycareMan: ; f0e66
-	musicheader 4, 5, Sfx_GetEggFromDaycareLady_Ch5
-	musicheader 1, 6, Sfx_GetEggFromDaycareLady_Ch6
-	musicheader 1, 7, Sfx_GetEggFromDaycareLady_Ch7
-	musicheader 1, 8, Sfx_GetEggFromDaycareLady_Ch8
+Sfx_GetEggFromDayCareLady: ; f0e66
+Sfx_GetEggFromDayCareMan: ; f0e66
+	musicheader 4, 5, Sfx_GetEggFromDayCareLady_Ch5
+	musicheader 1, 6, Sfx_GetEggFromDayCareLady_Ch6
+	musicheader 1, 7, Sfx_GetEggFromDayCareLady_Ch7
+	musicheader 1, 8, Sfx_GetEggFromDayCareLady_Ch8
 ; f0e72
 
-Sfx_GetEggFromDaycareLady_Ch5: ; f0e72
-Sfx_GetEggFromDaycareMan_Ch5: ; f0e72
+Sfx_GetEggFromDayCareLady_Ch5: ; f0e72
+Sfx_GetEggFromDayCareMan_Ch5: ; f0e72
 	togglesfx
 	tempo 120
 	volume $77
@@ -1253,8 +1253,8 @@ Sfx_GetEggFromDaycareMan_Ch5: ; f0e72
 
 	togglesfx
 
-Sfx_GetEggFromDaycareLady_Ch6: ; f0e9b
-Sfx_GetEggFromDaycareMan_Ch6: ; f0e9b
+Sfx_GetEggFromDayCareLady_Ch6: ; f0e9b
+Sfx_GetEggFromDayCareMan_Ch6: ; f0e9b
 	togglesfx
 	vibrato $12, $34
 	dutycycle $3
@@ -1284,8 +1284,8 @@ Sfx_GetEggFromDaycareMan_Ch6: ; f0e9b
 
 	togglesfx
 
-Sfx_GetEggFromDaycareLady_Ch7: ; f0ebe
-Sfx_GetEggFromDaycareMan_Ch7: ; f0ebe
+Sfx_GetEggFromDayCareLady_Ch7: ; f0ebe
+Sfx_GetEggFromDayCareMan_Ch7: ; f0ebe
 	togglesfx
 	notetype $8, $25
 	note __, 2
@@ -1305,8 +1305,8 @@ Sfx_GetEggFromDaycareMan_Ch7: ; f0ebe
 
 	togglesfx
 
-Sfx_GetEggFromDaycareLady_Ch8: ; f0ed0
-Sfx_GetEggFromDaycareMan_Ch8: ; f0ed0
+Sfx_GetEggFromDayCareLady_Ch8: ; f0ed0
+Sfx_GetEggFromDayCareMan_Ch8: ; f0ed0
 	togglesfx
 	sfxtogglenoise $4
 	notetype $8

@@ -1,3 +1,4 @@
+PokemonNames::
 	db "BULBASAUR@"
 	db "IVYSAUR@@@"
 	db "VENUSAUR@@"

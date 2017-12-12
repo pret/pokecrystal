@@ -5,26 +5,21 @@ const_value set 2
 TimeCapsule_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .InitializeTimeCapsule
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, TimeCapsule_SetWhichChris
-
-.Trigger0:
-	priorityjump TimeCapsule_Initialize
+.InitializeTimeCapsule:
+	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-TimeCapsule_SetWhichChris:
+.SetWhichChris:
 	special Special_CableClubCheckWhichChris
 	iffalse .Chris2
 	disappear TIMECAPSULE_CHRIS2
@@ -36,7 +31,7 @@ TimeCapsule_SetWhichChris:
 	appear TIMECAPSULE_CHRIS2
 	return
 
-TimeCapsule_Initialize:
+.InitializeAndPreparePokecenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $3
 	end

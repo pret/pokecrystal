@@ -455,55 +455,7 @@ GetTreeMonSet: ; b823f
 	ret
 ; b825e
 
-TreeMonMaps: ; b825e
-treemon_map: macro
-	map \1
-	db  \2 ; treemon set
-endm
-	treemon_map ROUTE_26, 4
-	treemon_map ROUTE_27, 4
-	treemon_map ROUTE_28, 0
-	treemon_map ROUTE_29, 3
-	treemon_map ROUTE_30, 3
-	treemon_map ROUTE_31, 3
-	treemon_map ROUTE_32, 4
-	treemon_map ROUTE_33, 2
-	treemon_map ROUTE_34, 3
-	treemon_map ROUTE_35, 3
-	treemon_map ROUTE_36, 3
-	treemon_map ROUTE_37, 3
-	treemon_map ROUTE_38, 3
-	treemon_map ROUTE_39, 3
-	treemon_map ROUTE_40, 0
-	treemon_map ROUTE_41, 0
-	treemon_map ROUTE_42, 2
-	treemon_map ROUTE_43, 5
-	treemon_map ROUTE_44, 1
-	treemon_map ROUTE_45, 1
-	treemon_map ROUTE_46, 1
-	treemon_map NEW_BARK_TOWN, 0
-	treemon_map CHERRYGROVE_CITY, 0
-	treemon_map VIOLET_CITY, 0
-	treemon_map AZALEA_TOWN, 2
-	treemon_map CIANWOOD_CITY, 0
-	treemon_map GOLDENROD_CITY, 0
-	treemon_map OLIVINE_CITY, 0
-	treemon_map ECRUTEAK_CITY, 0
-	treemon_map MAHOGANY_TOWN, 0
-	treemon_map LAKE_OF_RAGE, 5
-	treemon_map BLACKTHORN_CITY, 0
-	treemon_map SILVER_CAVE_OUTSIDE, 0
-	treemon_map ILEX_FOREST, 6
-	db -1
-; b82c5
-
-RockMonMaps: ; b82c5
-	treemon_map CIANWOOD_CITY, 7
-	treemon_map ROUTE_40, 7
-	treemon_map DARK_CAVE_VIOLET_ENTRANCE, 7
-	treemon_map SLOWPOKE_WELL_B1F, 7
-	db -1
-; b82d2
+INCLUDE "data/wild/treemon_maps.asm"
 
 GetTreeMons: ; b82d2
 ; Return the address of TreeMon table a in hl.
@@ -533,128 +485,7 @@ GetTreeMons: ; b82d2
 	ret
 ; b82e8
 
-TreeMons: ; b82e8
-	dw TreeMons1
-	dw TreeMons1
-	dw TreeMons2
-	dw TreeMons3
-	dw TreeMons4
-	dw TreeMons5
-	dw TreeMons6
-	dw RockMons
-	dw TreeMons1
-
-; Two tables each (normal, rare).
-; Structure:
-;	db  %, species, level
-
-TreeMons1: ; b82fa
-	db 50, SPEAROW,    10
-	db 15, SPEAROW,    10
-	db 15, SPEAROW,    10
-	db 10, AIPOM,      10
-	db  5, AIPOM,      10
-	db  5, AIPOM,      10
-	db -1
-
-	db 50, SPEAROW,    10
-	db 15, HERACROSS,  10
-	db 15, HERACROSS,  10
-	db 10, AIPOM,      10
-	db  5, AIPOM,      10
-	db  5, AIPOM,      10
-	db -1
-
-TreeMons2: ; b8320
-	db 50, SPEAROW,    10
-	db 15, EKANS,      10
-	db 15, SPEAROW,    10
-	db 10, AIPOM,      10
-	db  5, AIPOM,      10
-	db  5, AIPOM,      10
-	db -1
-
-	db 50, SPEAROW,    10
-	db 15, HERACROSS,  10
-	db 15, HERACROSS,  10
-	db 10, AIPOM,      10
-	db  5, AIPOM,      10
-	db  5, AIPOM,      10
-	db -1
-
-TreeMons3: ; b8346
-	db 50, HOOTHOOT,   10
-	db 15, SPINARAK,   10
-	db 15, LEDYBA,     10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db -1
-
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db -1
-
-TreeMons4: ; b836c
-	db 50, HOOTHOOT,   10
-	db 15, EKANS,      10
-	db 15, HOOTHOOT,   10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db -1
-
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db -1
-
-TreeMons5: ; b8392
-	db 50, HOOTHOOT,   10
-	db 15, VENONAT,    10
-	db 15, HOOTHOOT,   10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db -1
-
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db  5, EXEGGCUTE,  10
-	db -1
-
-TreeMons6: ; b83b8
-	db 50, HOOTHOOT,   10
-	db 15, PINECO,     10
-	db 15, PINECO,     10
-	db 10, NOCTOWL,    10
-	db  5, BUTTERFREE, 10
-	db  5, BEEDRILL,   10
-	db -1
-
-	db 50, HOOTHOOT,   10
-	db 15, CATERPIE,   10
-	db 15, WEEDLE,     10
-	db 10, HOOTHOOT,   10
-	db  5, METAPOD,    10
-	db  5, KAKUNA,     10
-	db -1
-
-RockMons: ; b83de
-	db 90, KRABBY,     15
-	db 10, SHUCKLE,    15
-	db -1
-; b83e5
+INCLUDE "data/wild/treemons.asm"
 
 GetTreeMon: ; b83e5
 	push hl
@@ -850,9 +681,9 @@ LoadFishingGFX: ; b84b3
 ; b84f2
 
 FishingGFX: ; b84f2
-INCBIN "gfx/ow_fx/chris_fish.2bpp"
+INCBIN "gfx/overworld/chris_fish.2bpp"
 ; b8582
 
 KrisFishingGFX: ; b8582
-INCBIN "gfx/ow_fx/kris_fish.2bpp"
+INCBIN "gfx/overworld/kris_fish.2bpp"
 ; b8612

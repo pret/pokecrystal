@@ -11,7 +11,7 @@ BlackthornEmysHouse_MapScriptHeader:
 Emy:
 	faceplayer
 	opentext
-	trade $3
+	trade NPCTRADE_EMY
 	waitbutton
 	closetext
 	end
@@ -38,4 +38,4 @@ BlackthornEmysHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LASS, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, Emy, -1
+	person_event SPRITE_LASS, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Emy, -1

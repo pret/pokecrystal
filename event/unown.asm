@@ -61,10 +61,10 @@ SpecialAerodactylChamber: ; 8ae30
 
 	call GetSecondaryMapHeaderPointer
 	ld a, h
-	cp RuinsofAlphAerodactylChamber_SecondMapHeader / $100
+	cp RuinsOfAlphAerodactylChamber_SecondMapHeader / $100
 	jr nz, .nope
 	ld a, l
-	cp RuinsofAlphAerodactylChamber_SecondMapHeader % $100
+	cp RuinsOfAlphAerodactylChamber_SecondMapHeader % $100
 	jr nz, .nope
 
 	ld de, EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
@@ -89,10 +89,10 @@ SpecialKabutoChamber: ; 8ae4e
 
 	call GetSecondaryMapHeaderPointer
 	ld a, h
-	cp RuinsofAlphKabutoChamber_SecondMapHeader / $100
+	cp RuinsOfAlphKabutoChamber_SecondMapHeader / $100
 	jr nz, .done
 	ld a, l
-	cp RuinsofAlphKabutoChamber_SecondMapHeader % $100
+	cp RuinsOfAlphKabutoChamber_SecondMapHeader % $100
 	jr nz, .done
 
 	ld de, EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
@@ -222,7 +222,7 @@ endm
 	cp $ff
 	ret z
 	cp $60
-	ld a, (1 << 3) | PAL_BG_BROWN
+	ld a, VRAM_BANK_1 | PAL_BG_BROWN
 	jr c, .got_pal
 	ld a, PAL_BG_BROWN
 

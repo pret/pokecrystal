@@ -10,11 +10,7 @@ KrissHouse2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-
-	; callbacks
-
 	dbw MAPCALLBACK_NEWMAP, .InitializeRoom
-
 	dbw MAPCALLBACK_TILES, .SetSpawn
 
 .Null:
@@ -53,6 +49,7 @@ GameConsole:
 
 KrissHousePoster:
 	dw EVENT_KRISS_ROOM_POSTER, .Script
+
 .Script:
 	describedecoration 0
 

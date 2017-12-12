@@ -1,3 +1,4 @@
+; entries correspond to EFFECT_* constants
 	dw NormalHit
 	dw DoSleep
 	dw PoisonHit

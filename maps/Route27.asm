@@ -12,18 +12,16 @@ const_value set 2
 Route27_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x1a0871, 0
-	dw UnknownScript_0x1a0872, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x1a0871:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x1a0872:
+.DummyTrigger1:
 	end
 
 UnknownScript_0x1a0873:
@@ -56,7 +54,7 @@ TrainerPsychicGilbert:
 PsychicGilbertScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a0dd2
+	writetext PsychicGilbertAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -180,7 +178,7 @@ TrainerCooltrainermBlake:
 CooltrainermBlakeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a0b0b
+	writetext CooltrainermBlakeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -191,7 +189,7 @@ TrainerCooltrainermBrian:
 CooltrainermBrianScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a0bac
+	writetext CooltrainermBrianAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -295,7 +293,7 @@ TrainerCooltrainerfMegan:
 CooltrainerfMeganScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a0cce
+	writetext CooltrainerfMeganAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -344,7 +342,7 @@ CooltrainermBlakeBeatenText:
 	text "Yow!"
 	done
 
-UnknownText_0x1a0b0b:
+CooltrainermBlakeAfterBattleText:
 	text "If you prevail on"
 	line "this harsh trek,"
 
@@ -365,7 +363,7 @@ CooltrainermBrianBeatenText:
 	text "Just as I thought!"
 	done
 
-UnknownText_0x1a0bac:
+CooltrainermBrianAfterBattleText:
 	text "A good trainer can"
 	line "recognize other"
 	cont "good trainers."
@@ -405,7 +403,7 @@ CooltrainerfMeganBeatenText:
 	line "strong!"
 	done
 
-UnknownText_0x1a0cce:
+CooltrainerfMeganAfterBattleText:
 	text "I'm checking out"
 	line "pre- and post-"
 	cont "evolution #MON."
@@ -436,7 +434,7 @@ PsychicGilbertBeatenText:
 	text "You're too much!"
 	done
 
-UnknownText_0x1a0dd2:
+PsychicGilbertAfterBattleText:
 	text "With your skills,"
 	line "you'll do well at"
 	cont "the LEAGUE."
@@ -490,12 +488,12 @@ Route27_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_COOLTRAINER_M, 7, 48, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermBlake, -1
-	person_event SPRITE_COOLTRAINER_M, 6, 58, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerCooltrainermBrian, -1
-	person_event SPRITE_COOLTRAINER_F, 10, 72, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerCooltrainerfReena, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 37, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerCooltrainerfMegan, -1
-	person_event SPRITE_YOUNGSTER, 7, 65, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicGilbert, -1
-	person_event SPRITE_YOUNGSTER, 13, 58, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperJose2, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 48, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermBlake, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 58, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerCooltrainermBrian, -1
+	person_event SPRITE_COOLTRAINER_F, 10, 72, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerCooltrainerfReena, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 37, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 2, TrainerCooltrainerfMegan, -1
+	person_event SPRITE_YOUNGSTER, 7, 65, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicGilbert, -1
+	person_event SPRITE_YOUNGSTER, 13, 58, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperJose2, -1
 	person_event SPRITE_POKE_BALL, 12, 60, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route27TMSolarbeam, EVENT_ROUTE_27_TM_SOLARBEAM
 	person_event SPRITE_POKE_BALL, 12, 53, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route27RareCandy, EVENT_ROUTE_27_RARE_CANDY
 	person_event SPRITE_FISHER, 10, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 3, FisherScript_0x1a089c, -1

@@ -17,7 +17,7 @@ TrainerFirebreatherLyle:
 FirebreatherLyleScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x75b52
+	writetext FirebreatherLyleAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -28,7 +28,7 @@ TrainerBug_catcherKen:
 Bug_catcherKenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x75bd5
+	writetext Bug_catcherKenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -39,7 +39,7 @@ TrainerBeautyCassie:
 BeautyCassieScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x75c43
+	writetext BeautyCassieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -124,7 +124,7 @@ FirebreatherLyleBeatenText:
 	line "flame's tiny…"
 	done
 
-UnknownText_0x75b52:
+FirebreatherLyleAfterBattleText:
 	text "I guess fire is"
 	line "weak on the sea."
 
@@ -143,7 +143,7 @@ Bug_catcherKenBeatenText:
 	line "You're tough!"
 	done
 
-UnknownText_0x75bd5:
+Bug_catcherKenAfterBattleText:
 	text "You can find lots"
 	line "of #MON in the"
 	cont "trees of JOHTO!"
@@ -159,7 +159,7 @@ BeautyCassieBeatenText:
 	text "My heart weeps…"
 	done
 
-UnknownText_0x75c43:
+BeautyCassieAfterBattleText:
 	text "A voyage is best"
 	line "for getting over"
 	cont "a broken heart."
@@ -245,7 +245,7 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 15, 1, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_BUG_CATCHER, 15, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_BUENA, 26, 1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_ROCKER, 28, 3, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_FISHER, 15, 1, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_BUG_CATCHER, 15, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_BUENA, 26, 1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_ROCKER, 28, 3, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND

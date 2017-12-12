@@ -15,13 +15,8 @@ WarehouseEntrance_MapScriptHeader:
 
 .MapCallbacks:
 	db 3
-
-	; callbacks
-
 	dbw MAPCALLBACK_NEWMAP, .ResetSwitches
-
 	dbw MAPCALLBACK_TILES, .CheckBasementKey
-
 	dbw MAPCALLBACK_OBJECTS, .CheckDayOfWeek
 
 .ResetSwitches:
@@ -121,7 +116,7 @@ TrainerSupernerdEric:
 SupernerdEricScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7c36c
+	writetext SupernerdEricAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -132,7 +127,7 @@ TrainerSupernerdTeru:
 SupernerdTeruScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7c410
+	writetext SupernerdTeruAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -143,7 +138,7 @@ TrainerPokemaniacIssac:
 PokemaniacIssacScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7c498
+	writetext PokemaniacIssacAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -154,7 +149,7 @@ TrainerPokemaniacDonald:
 PokemaniacDonaldScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7c52f
+	writetext PokemaniacDonaldAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -439,7 +434,7 @@ SupernerdEricBeatenText:
 	text "…Grumble…"
 	done
 
-UnknownText_0x7c36c:
+SupernerdEricAfterBattleText:
 	text "I guess I have to"
 	line "do things fair and"
 	cont "square…"
@@ -461,7 +456,7 @@ SupernerdTeruBeatenText:
 	text "Ow, ow, ow!"
 	done
 
-UnknownText_0x7c410:
+SupernerdTeruAfterBattleText:
 	text "I know my #MON"
 	line "type alignments."
 
@@ -481,7 +476,7 @@ PokemaniacIssacBeatenText:
 	text "Aiyeeee!"
 	done
 
-UnknownText_0x7c498:
+PokemaniacIssacAfterBattleText:
 	text "Your #MON will"
 	line "like you more if"
 
@@ -502,7 +497,7 @@ PokemaniacDonaldBeatenText:
 	line "That makes me mad!"
 	done
 
-UnknownText_0x7c52f:
+PokemaniacDonaldAfterBattleText:
 	text "Are you making a"
 	line "#DEX? Here's a"
 	cont "hot tip."
@@ -680,12 +675,12 @@ WarehouseEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_SUPER_NERD, 31, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerSupernerdEric, -1
-	person_event SPRITE_SUPER_NERD, 9, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
-	person_event SPRITE_SUPER_NERD, 27, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
-	person_event SPRITE_SUPER_NERD, 6, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacDonald, -1
+	person_event SPRITE_SUPER_NERD, 31, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerSupernerdEric, -1
+	person_event SPRITE_SUPER_NERD, 9, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
+	person_event SPRITE_SUPER_NERD, 27, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
+	person_event SPRITE_SUPER_NERD, 6, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacDonald, -1
 	person_event SPRITE_POKE_BALL, 25, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, WarehouseEntranceCoinCase, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
-	person_event SPRITE_GRAMPS, 11, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
-	person_event SPRITE_SUPER_NERD, 14, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
-	person_event SPRITE_SUPER_NERD, 15, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
-	person_event SPRITE_GRANNY, 21, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY
+	person_event SPRITE_GRAMPS, 11, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
+	person_event SPRITE_SUPER_NERD, 14, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
+	person_event SPRITE_SUPER_NERD, 15, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
+	person_event SPRITE_GRANNY, 21, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY

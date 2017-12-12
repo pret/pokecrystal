@@ -1593,14 +1593,14 @@ GetMovementPermissions:: ; 2914
 ; 2945
 
 .MovementPermissionsData: ; 2945
-	db 1 << DOWN
-	db 1 << UP
-	db 1 << LEFT
-	db 1 << RIGHT
-	db (1 << DOWN) | (1 << RIGHT)
-	db (1 << UP) | (1 << RIGHT)
-	db (1 << DOWN) | (1 << LEFT)
-	db (1 << UP) | (1 << LEFT)
+	db DOWN_MASK
+	db UP_MASK
+	db LEFT_MASK
+	db RIGHT_MASK
+	db DOWN_MASK | RIGHT_MASK
+	db UP_MASK | RIGHT_MASK
+	db DOWN_MASK | LEFT_MASK
+	db UP_MASK | LEFT_MASK
 ; 294d
 
 .UpDown:
@@ -2291,7 +2291,7 @@ GetMapHeaderMusic:: ; 2cbd
 	ld a, c
 	cp MUSIC_MAHOGANY_MART
 	jr z, .mahoganymart
-	bit RADIO_TOWER_MUSIC, c
+	bit RADIO_TOWER_MUSIC_F, c
 	jr nz, .radiotower
 	callba Function8b342
 	ld e, c
@@ -2311,7 +2311,7 @@ GetMapHeaderMusic:: ; 2cbd
 .clearedradiotower
 	; the rest of the byte
 	ld a, c
-	and 1 << RADIO_TOWER_MUSIC - 1
+	and RADIO_TOWER_MUSIC - 1
 	ld e, a
 	ld d, 0
 	jr .done
@@ -2374,12 +2374,12 @@ LoadTilesetHeader:: ; 2d27
 	push bc
 
 	ld hl, Tilesets
-	ld bc, Tileset01 - Tileset00
+	ld bc, TilesetHeaderEnd - TilesetHeader
 	ld a, [wTileset]
 	call AddNTimes
 
 	ld de, TilesetBank
-	ld bc, Tileset01 - Tileset00
+	ld bc, TilesetHeaderEnd - TilesetHeader
 
 	ld a, BANK(Tilesets)
 	call FarCopyBytes

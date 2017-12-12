@@ -15,7 +15,7 @@ TrainerBird_keeperBoris:
 Bird_keeperBorisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1acfa5
+	writetext Bird_keeperBorisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -26,7 +26,7 @@ TrainerBird_keeperBob:
 Bird_keeperBobScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad00d
+	writetext Bird_keeperBobAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,7 +46,7 @@ Bird_keeperBorisBeatenText:
 	text "Ayieee!"
 	done
 
-UnknownText_0x1acfa5:
+Bird_keeperBorisAfterBattleText:
 	text "Since you're so"
 	line "strong, it must be"
 	cont "fun to battle."
@@ -62,7 +62,7 @@ Bird_keeperBobBeatenText:
 	text "…Whew!"
 	done
 
-UnknownText_0x1ad00d:
+Bird_keeperBobAfterBattleText:
 	text "If you don't have"
 	line "a BICYCLE, you're"
 
@@ -95,5 +95,5 @@ Route18_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperBoris, -1
-	person_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperBob, -1
+	person_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperBoris, -1
+	person_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperBob, -1

@@ -45,7 +45,7 @@ ROMX $07
 	"Tileset Data 2"
 	"Extra Songs 1"
 ROMX $08
-	"bank8"
+	"Clock Reset"
 	"Tileset Data 3"
 	"Egg Moves"
 ROMX $09
@@ -82,7 +82,7 @@ ROMX $17
 ROMX $18
 	"Map Scripts 4"
 ROMX $19
-	"bank19"
+	"Crystal Phone Text"
 ROMX $1a
 	"Map Scripts 5"
 ROMX $1b
@@ -129,9 +129,9 @@ ROMX $2e
 ROMX $2f
 	"bank2F"
 ROMX $30
-	"bank30"
+	"Sprites 1"
 ROMX $31
-	"bank31"
+	"Sprites 2"
 ROMX $32
 	"bank32"
 ROMX $33
@@ -142,7 +142,7 @@ ROMX $34
 ROMX $35
 	"Pic Animations 2"
 ROMX $36
-	"bank36"
+	"Font Inversed"
 	"Pic Animations 3"
 ROMX $37
 	"Tileset Data 6"
@@ -166,7 +166,7 @@ ROMX $3e
 ROMX $3f
 	"bank3F"
 ROMX $40
-	"bank40"
+	"mobile_40"
 	"tetsuji"
 	"bank40_2"
 	"ascii 10186f"
@@ -175,7 +175,7 @@ ROMX $41
 	"bank41"
 	"bank41_2"
 ROMX $42
-	"bank42"
+	"mobile_42"
 	"Intro Logo"
 	"Credits"
 ROMX $43
@@ -189,11 +189,13 @@ ROMX $46
 	"bank46"
 	"bank46_2"
 ROMX $47
-	"bank47"
+	"battle_tower_47"
 ROMX $48
+	org $4000
 	"Pic Pointers"
 	"Pics 1"
 ROMX $49
+	org $4000
 	"Unown Pic Pointers"
 	"Pics 2"
 ROMX $4a
@@ -234,9 +236,9 @@ ROMX $5a
 ROMX $5b
 	"bank5B"
 ROMX $5c
-	"bank5C"
+	"mobile_5c"
 ROMX $5d
-	"bank5D"
+	"Crystal Phone Text 2"
 ROMX $5e
 	"bank5E"
 	"Songs 5"
@@ -273,7 +275,7 @@ ROMX $6c
 	"Common Text 1"
 	"Map Scripts 25"
 ROMX $6d
-	"bank6D"
+	"Special Phone Text"
 ROMX $6e
 	"Pokedex Entries 065-128"
 ROMX $6f
@@ -295,9 +297,9 @@ ROMX $77
 ROMX $78
 	"Tileset Data 8"
 ROMX $7b
-	"bank7B"
+	"Battle Tower Text"
 ROMX $7c
-	"bank7C"
+	"Battle Tower Trainer Data"
 ROMX $7d
 	"bank7D"
 ROMX $7e
@@ -330,11 +332,11 @@ WRAMX 5
 	org $d300
 	"Battle Animations"
 	org $d800
-	"WRAM 5 MOBILE"
+	"Mobile RAM"
 WRAMX 6
-	"WRAM 6"
+	"Scratch RAM"
 WRAMX 7
-	"WRAM 7"
+	"Stack RAM"
 VRAM $00
 	"VRAM0"
 VRAM $01

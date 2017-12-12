@@ -4,22 +4,20 @@ const_value set 2
 HallOfFame_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .EnterHallOfFame
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
-	priorityjump HallOfFameScript
+.EnterHallOfFame:
+	priorityjump .EnterHallOfFameScript
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-HallOfFameScript:
+.EnterHallOfFameScript:
 	follow HALLOFFAME_LANCE, PLAYER
 	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow

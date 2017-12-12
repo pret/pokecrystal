@@ -6,19 +6,14 @@ const_value set 2
 MountMoonSquare_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw .Trigger0, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 2
-
-	; callbacks
-
 	dbw MAPCALLBACK_NEWMAP, .DisappearMoonStone
 	dbw MAPCALLBACK_OBJECTS, .DisappearRock
 
-.Trigger0:
+.DummyTrigger:
 	end
 
 .DisappearMoonStone:

@@ -81,7 +81,7 @@ endr
 
 	ld a, [TimeOfDay]
 	and 3
-	cp NITE
+	cp NITE_F
 	jr c, .time_species
 	inc hl
 	inc hl

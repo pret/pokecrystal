@@ -6,29 +6,25 @@ const_value set 2
 VermilionPort_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .DummyTrigger0
+	maptrigger .LeaveFastShip
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.Trigger0:
+.DummyTrigger0:
 	end
 
-.Trigger1:
-	priorityjump UnknownScript_0x74da6
+.LeaveFastShip:
+	priorityjump .LeaveFastShipScript
 	end
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VERMILION
 	return
 
-UnknownScript_0x74da6:
+.LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74ef3
 	appear VERMILIONPORT_SAILOR1
 	dotrigger $0

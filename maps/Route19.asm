@@ -12,9 +12,6 @@ Route19_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .ClearRocks
 
 .ClearRocks:
@@ -35,7 +32,7 @@ TrainerSwimmerfDawn:
 SwimmerfDawnScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19ebad
+	writetext SwimmerfDawnAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,7 +43,7 @@ TrainerSwimmermHarold:
 SwimmermHaroldScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19eab4
+	writetext SwimmermHaroldAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -57,7 +54,7 @@ TrainerSwimmermJerome:
 SwimmermJeromeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19ec7e
+	writetext SwimmermJeromeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -68,7 +65,7 @@ TrainerSwimmermTucker:
 SwimmermTuckerScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19eb3b
+	writetext SwimmermTuckerAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -121,7 +118,7 @@ SwimmermHaroldBeatenText:
 	text "Glub…"
 	done
 
-UnknownText_0x19eab4:
+SwimmermHaroldAfterBattleText:
 	text "At night, the sea"
 	line "turns black. It"
 
@@ -141,7 +138,7 @@ SwimmermTuckerBeatenText:
 	text "I'm drowning!"
 	done
 
-UnknownText_0x19eb3b:
+SwimmermTuckerAfterBattleText:
 	text "I… asked my girl-"
 	line "friend to swim to"
 	cont "FUCHSIA… Gasp…"
@@ -157,7 +154,7 @@ SwimmerfDawnBeatenText:
 	line "at swimming…"
 	done
 
-UnknownText_0x19ebad:
+SwimmerfDawnAfterBattleText:
 	text "It's a quick swim"
 	line "between FUCHSIA"
 
@@ -184,7 +181,7 @@ SwimmermJeromeBeatenText:
 	line "win."
 	done
 
-UnknownText_0x19ec7e:
+SwimmermJeromeAfterBattleText:
 	text "I might be bad at"
 	line "swimming, but I"
 	cont "love the sea."
@@ -255,9 +252,9 @@ Route19_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SWIMMER_GIRL, 23, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 0, TrainerSwimmerfDawn, -1
-	person_event SPRITE_SWIMMER_GUY, 28, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
-	person_event SPRITE_SWIMMER_GUY, 17, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermJerome, -1
-	person_event SPRITE_SWIMMER_GUY, 23, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, TrainerSwimmermTucker, -1
-	person_event SPRITE_FISHER, 5, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 1, FisherScript_0x19ea4d, -1
-	person_event SPRITE_FISHER, 5, 11, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 1, FisherScript_0x19ea61, -1
+	person_event SPRITE_SWIMMER_GIRL, 23, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 0, TrainerSwimmerfDawn, -1
+	person_event SPRITE_SWIMMER_GUY, 28, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
+	person_event SPRITE_SWIMMER_GUY, 17, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermJerome, -1
+	person_event SPRITE_SWIMMER_GUY, 23, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, TrainerSwimmermTucker, -1
+	person_event SPRITE_FISHER, 5, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 1, FisherScript_0x19ea4d, -1
+	person_event SPRITE_FISHER, 5, 11, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 1, FisherScript_0x19ea61, -1

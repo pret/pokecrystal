@@ -12,18 +12,16 @@ const_value set 2
 Route42_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x1a9216, 0
-	dw UnknownScript_0x1a9217, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x1a9216:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x1a9217:
+.DummyTrigger1:
 	end
 
 Route42SuicuneScript:
@@ -170,7 +168,7 @@ TrainerPokemaniacShane:
 PokemaniacShaneScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a94d6
+	writetext PokemaniacShaneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -181,7 +179,7 @@ TrainerHikerBenjamin:
 HikerBenjaminScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a943f
+	writetext HikerBenjaminAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -260,7 +258,7 @@ HikerBenjaminBeatenText:
 	text "Gahahah!"
 	done
 
-UnknownText_0x1a943f:
+HikerBenjaminAfterBattleText:
 	text "Losing feels in-"
 	line "significant if you"
 
@@ -281,7 +279,7 @@ PokemaniacShaneBeatenText:
 	line "my MOON STONE…"
 	done
 
-UnknownText_0x1a94d6:
+PokemaniacShaneAfterBattleText:
 	text "You're working on"
 	line "a #DEX?"
 
@@ -347,12 +345,12 @@ Route42_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_FISHER, 10, 40, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherTully1, -1
-	person_event SPRITE_POKEFAN_M, 9, 51, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
-	person_event SPRITE_SUPER_NERD, 8, 47, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
+	person_event SPRITE_FISHER, 10, 40, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherTully1, -1
+	person_event SPRITE_POKEFAN_M, 9, 51, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
+	person_event SPRITE_SUPER_NERD, 8, 47, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
 	person_event SPRITE_FRUIT_TREE, 16, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a934d, -1
 	person_event SPRITE_FRUIT_TREE, 16, 28, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a934f, -1
 	person_event SPRITE_FRUIT_TREE, 16, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a9351, -1
 	person_event SPRITE_POKE_BALL, 4, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
 	person_event SPRITE_POKE_BALL, 8, 33, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
-	person_event SPRITE_SUICUNE, 16, 26, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	person_event SPRITE_SUICUNE, 16, 26, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

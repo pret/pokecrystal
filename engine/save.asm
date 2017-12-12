@@ -726,16 +726,9 @@ TryLoadSaveData: ; 14f1c
 	ret
 ; 14f7c
 
-DefaultOptions: ; 14f7c
-	db $03 ; mid text speed
-	db $00 ; wSaveFileExists
-	db $00 ; frame 0
-	db $01 ; TextBoxFlags
-	db $40 ; gb printer: normal brightness
-	db $01 ; menu account on
-	db $00 ; ??
-	db $00 ; ??
-; 14f84
+
+INCLUDE "data/default_options.asm"
+
 
 CheckPrimarySaveFile: ; 14f84
 	ld a, BANK(s1_a008)

@@ -1,3 +1,5 @@
+BattleText::
+
 BattleText_PlayerPickedUpPayDayMoney: ; 0x80730
 	text "<PLAYER> picked up"
 	line "¥@"

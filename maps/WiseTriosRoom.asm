@@ -9,41 +9,36 @@ const_value set 2
 WiseTriosRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x98572, 0
-	dw UnknownScript_0x98573, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .WiseTrioCallback
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, UnknownScript_0x98574
-
-UnknownScript_0x98572:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x98573:
+.DummyTrigger1:
 	end
 
-UnknownScript_0x98574:
+.WiseTrioCallback:
 	checkevent EVENT_FOUGHT_SUICUNE
-	iftrue UnknownScript_0x98593
+	iftrue .NoWiseTrio
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	iftrue UnknownScript_0x9858c
+	iftrue .WiseTrio2
 	checkitem CLEAR_BELL
-	iftrue UnknownScript_0x9858c
+	iftrue .WiseTrio2
 	clearevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
-UnknownScript_0x9858c:
+.WiseTrio2:
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	clearevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
-UnknownScript_0x98593:
+.NoWiseTrio:
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return

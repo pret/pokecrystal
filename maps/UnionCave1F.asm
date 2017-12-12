@@ -22,7 +22,7 @@ TrainerPokemaniacLarry:
 PokemaniacLarryScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59d31
+	writetext PokemaniacLarryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -33,7 +33,7 @@ TrainerHikerRussell:
 HikerRussellScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59c6c
+	writetext HikerRussellAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -44,7 +44,7 @@ TrainerHikerDaniel:
 HikerDanielScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59dc9
+	writetext HikerDanielAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -55,7 +55,7 @@ TrainerFirebreatherBill:
 FirebreatherBillScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59e6f
+	writetext FirebreatherBillAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -66,7 +66,7 @@ TrainerFirebreatherRay:
 FirebreatherRayScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x59efc
+	writetext FirebreatherRayAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -99,7 +99,7 @@ HikerRussellBeatenText:
 	text "Oh, oh, oh!"
 	done
 
-UnknownText_0x59c6c:
+HikerRussellAfterBattleText:
 	text "All right, then!"
 	line "I've decided."
 
@@ -125,7 +125,7 @@ PokemaniacLarryBeatenText:
 	line "MON…"
 	done
 
-UnknownText_0x59d31:
+PokemaniacLarryAfterBattleText:
 	text "Every Friday, you"
 	line "can hear #MON"
 
@@ -146,7 +146,7 @@ HikerDanielBeatenText:
 	line "big time!"
 	done
 
-UnknownText_0x59dc9:
+HikerDanielAfterBattleText:
 	text "I was conned into"
 	line "buying a SLOWPOKE-"
 	cont "TAIL."
@@ -168,7 +168,7 @@ FirebreatherBillBeatenText:
 	text "I flamed out!"
 	done
 
-UnknownText_0x59e6f:
+FirebreatherBillAfterBattleText:
 	text "On weekends, you"
 	line "can hear strange"
 
@@ -189,7 +189,7 @@ FirebreatherRayBeatenText:
 	text "FLASH!"
 	done
 
-UnknownText_0x59efc:
+FirebreatherRayAfterBattleText:
 	text "It's my #MON's"
 	line "fire that lights"
 	cont "up this cave."
@@ -218,11 +218,11 @@ UnionCave1F_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_POKEFAN_M, 6, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerDaniel, -1
-	person_event SPRITE_SUPER_NERD, 21, 4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacLarry, -1
-	person_event SPRITE_POKEFAN_M, 8, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 1, TrainerHikerRussell, -1
-	person_event SPRITE_FISHER, 27, 15, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerFirebreatherRay, -1
-	person_event SPRITE_FISHER, 19, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerFirebreatherBill, -1
+	person_event SPRITE_POKEFAN_M, 6, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerDaniel, -1
+	person_event SPRITE_SUPER_NERD, 21, 4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacLarry, -1
+	person_event SPRITE_POKEFAN_M, 8, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 1, TrainerHikerRussell, -1
+	person_event SPRITE_FISHER, 27, 15, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerFirebreatherRay, -1
+	person_event SPRITE_FISHER, 19, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerFirebreatherBill, -1
 	person_event SPRITE_POKE_BALL, 21, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCave1FGreatBall, EVENT_UNION_CAVE_1F_GREAT_BALL
 	person_event SPRITE_POKE_BALL, 2, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCave1FXAttack, EVENT_UNION_CAVE_1F_X_ATTACK
 	person_event SPRITE_POKE_BALL, 17, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCave1FPotion, EVENT_UNION_CAVE_1F_POTION
