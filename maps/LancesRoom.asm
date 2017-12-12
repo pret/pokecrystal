@@ -350,8 +350,8 @@ LancesRoom_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, $5, $4, $0, Script_ApproachLanceFromLeft, $0, $0
-	xy_trigger 1, $5, $5, $0, Script_ApproachLanceFromRight, $0, $0
+	xy_trigger 1, $5, $4, Script_ApproachLanceFromLeft
+	xy_trigger 1, $5, $5, Script_ApproachLanceFromRight
 
 .Signposts:
 	db 0

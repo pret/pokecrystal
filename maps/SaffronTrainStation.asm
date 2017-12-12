@@ -228,7 +228,7 @@ SaffronTrainStation_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $6, $b, $0, Script_ArriveFromGoldenrod, $0, $0
+	xy_trigger 0, $6, $b, Script_ArriveFromGoldenrod
 
 .Signposts:
 	db 0

@@ -425,8 +425,8 @@ Route29_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, $8, $35, $0, Route29Tutorial1, $0, $0
-	xy_trigger 1, $9, $35, $0, Route29Tutorial2, $0, $0
+	xy_trigger 1, $8, $35, Route29Tutorial1
+	xy_trigger 1, $9, $35, Route29Tutorial2
 
 .Signposts:
 	db 2

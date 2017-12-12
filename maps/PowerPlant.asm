@@ -399,7 +399,7 @@ PowerPlant_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $c, $5, $0, PowerPlantGuardPhoneScript, $0, $0
+	xy_trigger 1, $c, $5, PowerPlantGuardPhoneScript
 
 .Signposts:
 	db 2

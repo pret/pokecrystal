@@ -417,7 +417,7 @@ DragonsDenB1F_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $1e, $13, $0, DragonsDenB1F_ClairTrigger, $0, $0
+	xy_trigger 1, $1e, $13, DragonsDenB1F_ClairTrigger
 
 .Signposts:
 	db 4

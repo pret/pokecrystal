@@ -148,7 +148,7 @@ Route34IlexForestGate_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $7, $4, $0, UnknownScript_0x62d3d, $0, $0
+	xy_trigger 0, $7, $4, UnknownScript_0x62d3d
 
 .Signposts:
 	db 0

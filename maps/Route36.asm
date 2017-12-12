@@ -672,8 +672,8 @@ Route36_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, $7, $14, $0, Route36SuicuneScript, $0, $0
-	xy_trigger 1, $7, $16, $0, Route36SuicuneScript, $0, $0
+	xy_trigger 1, $7, $14, Route36SuicuneScript
+	xy_trigger 1, $7, $16, Route36SuicuneScript
 
 .Signposts:
 	db 4

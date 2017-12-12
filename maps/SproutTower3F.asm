@@ -339,7 +339,7 @@ SproutTower3F_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $9, $b, $0, UnknownScript_0x184947, $0, $0
+	xy_trigger 0, $9, $b, UnknownScript_0x184947
 
 .Signposts:
 	db 6

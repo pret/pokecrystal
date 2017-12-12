@@ -315,8 +315,8 @@ IndigoPlateauPokecenter1F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $4, $10, $0, PlateauRivalBattle1, $0, $0
-	xy_trigger 0, $4, $11, $0, PlateauRivalBattle2, $0, $0
+	xy_trigger 0, $4, $10, PlateauRivalBattle1
+	xy_trigger 0, $4, $11, PlateauRivalBattle2
 
 .Signposts:
 	db 0

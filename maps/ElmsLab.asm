@@ -1381,14 +1381,14 @@ ElmsLab_MapEventHeader:
 
 .XYTriggers:
 	db 8
-	xy_trigger 1, $6, $4, $0, LabTryToLeaveScript, $0, $0
-	xy_trigger 1, $6, $5, $0, LabTryToLeaveScript, $0, $0
-	xy_trigger 3, $5, $4, $0, MeetCopScript, $0, $0
-	xy_trigger 3, $5, $5, $0, MeetCopScript2, $0, $0
-	xy_trigger 5, $8, $4, $0, AideScript_WalkPotions1, $0, $0
-	xy_trigger 5, $8, $5, $0, AideScript_WalkPotions2, $0, $0
-	xy_trigger 6, $8, $4, $0, AideScript_WalkBalls1, $0, $0
-	xy_trigger 6, $8, $5, $0, AideScript_WalkBalls2, $0, $0
+	xy_trigger 1, $6, $4, LabTryToLeaveScript
+	xy_trigger 1, $6, $5, LabTryToLeaveScript
+	xy_trigger 3, $5, $4, MeetCopScript
+	xy_trigger 3, $5, $5, MeetCopScript2
+	xy_trigger 5, $8, $4, AideScript_WalkPotions1
+	xy_trigger 5, $8, $5, AideScript_WalkPotions2
+	xy_trigger 6, $8, $4, AideScript_WalkBalls1
+	xy_trigger 6, $8, $5, AideScript_WalkBalls2
 
 .Signposts:
 	db 16

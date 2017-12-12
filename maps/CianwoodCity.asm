@@ -396,7 +396,7 @@ CianwoodCity_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $10, $b, $0, CianwoodCitySuicuneAndEusine, $0, $0
+	xy_trigger 1, $10, $b, CianwoodCitySuicuneAndEusine
 
 .Signposts:
 	db 8

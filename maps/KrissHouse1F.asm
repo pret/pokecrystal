@@ -397,8 +397,8 @@ KrissHouse1F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $4, $8, $0, UnknownScript_0x7a4d8, $0, $0
-	xy_trigger 0, $4, $9, $0, UnknownScript_0x7a4db, $0, $0
+	xy_trigger 0, $4, $8, UnknownScript_0x7a4d8
+	xy_trigger 0, $4, $9, UnknownScript_0x7a4db
 
 .Signposts:
 	db 4

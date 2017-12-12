@@ -396,7 +396,7 @@ OlivinePort_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $f, $7, $0, UnknownScript_0x7491f, $0, $0
+	xy_trigger 0, $f, $7, UnknownScript_0x7491f
 
 .Signposts:
 	db 1

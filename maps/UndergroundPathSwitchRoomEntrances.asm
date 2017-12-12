@@ -949,8 +949,8 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $4, $13, $0, UndergroundSilverTrigger1, $0, 0
-	xy_trigger 0, $5, $13, $0, UndergroundSilverTrigger2, $0, 0
+	xy_trigger 0, $4, $13, UndergroundSilverTrigger1
+	xy_trigger 0, $5, $13, UndergroundSilverTrigger2
 
 .Signposts:
 	db 6

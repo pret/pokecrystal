@@ -431,8 +431,8 @@ RadioTower5F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $3, $0, $0, FakeDirectorScript, $0, $0
-	xy_trigger 1, $5, $10, $0, RadioTower5FRocketBossTrigger, $0, $0
+	xy_trigger 0, $3, $0, FakeDirectorScript
+	xy_trigger 1, $5, $10, RadioTower5FRocketBossTrigger
 
 .Signposts:
 	db 5

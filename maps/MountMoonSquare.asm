@@ -145,7 +145,7 @@ MountMoonSquare_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $b, $7, $0, ClefairyDance, $0, $0
+	xy_trigger 0, $b, $7, ClefairyDance
 
 .Signposts:
 	db 2

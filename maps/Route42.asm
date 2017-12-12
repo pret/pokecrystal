@@ -333,7 +333,7 @@ Route42_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $e, $18, $0, Route42SuicuneScript, $0, $0
+	xy_trigger 1, $e, $18, Route42SuicuneScript
 
 .Signposts:
 	db 5

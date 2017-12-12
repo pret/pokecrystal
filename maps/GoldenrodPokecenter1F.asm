@@ -817,8 +817,8 @@ GoldenrodPokecenter1F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $7, $3, $0, GoldenrodPokecenter1F_GSBallTriggerLeft, $0, $0
-	xy_trigger 0, $7, $4, $0, GoldenrodPokecenter1F_GSBallTriggerRight, $0, $0
+	xy_trigger 0, $7, $3, GoldenrodPokecenter1F_GSBallTriggerLeft
+	xy_trigger 0, $7, $4, GoldenrodPokecenter1F_GSBallTriggerRight
 
 .Signposts:
 	db 0

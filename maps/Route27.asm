@@ -479,8 +479,8 @@ Route27_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $a, $12, $0, UnknownScript_0x1a0873, $0, $0
-	xy_trigger 0, $a, $13, $0, UnknownScript_0x1a0881, $0, $0
+	xy_trigger 0, $a, $12, UnknownScript_0x1a0873
+	xy_trigger 0, $a, $13, UnknownScript_0x1a0881
 
 .Signposts:
 	db 1
