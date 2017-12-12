@@ -197,17 +197,16 @@ gfx/trainer_card/kris_card.2bpp: rgbgfx += -h
 
 gfx/battle/dude.2bpp: rgbgfx += -h
 
-gfx/misc/unknown_egg.2bpp: rgbgfx += -h
-
 gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
 gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
 
-gfx/unknown/0f8f34.1bpp: tools/gfx += --trim-whitespace
-gfx/unknown/16c173.2bpp: tools/gfx += --remove-duplicates --remove-xflip
-gfx/unknown/170d16.2bpp: tools/gfx += --trim-whitespace
-gfx/unknown/1715a4.2bpp: tools/gfx += --trim-whitespace
-gfx/unknown/1715a4_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
-gfx/unknown/171db1.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/ascii_font.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/bold_font.1bpp: tools/gfx += --trim-whitespace
+gfx/unknown/egg_animated.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/egg_animated_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/unknown/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/unknown/pichu_animated.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 
 
 %.bin: ;

@@ -4,20 +4,17 @@ Route16_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_NEWMAP, .AlwaysOnBike
 
-	; callbacks
-
-	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x1ad318
-
-UnknownScript_0x1ad318:
+.AlwaysOnBike:
 	checkcode VAR_YCOORD
-	if_less_than $5, UnknownScript_0x1ad328
+	if_less_than $5, .CanWalk
 	checkcode VAR_XCOORD
-	if_greater_than $d, UnknownScript_0x1ad328
+	if_greater_than $d, .CanWalk
 	setflag ENGINE_ALWAYS_ON_BIKE
 	return
 
-UnknownScript_0x1ad328:
+.CanWalk:
 	clearflag ENGINE_ALWAYS_ON_BIKE
 	return
 

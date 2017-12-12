@@ -287,9 +287,9 @@ checktime: macro
 	db \1 ; time
 	endm
 
-checkmorn EQUS "checktime 1 << MORN"
-checkday  EQUS "checktime 1 << DAY"
-checknite EQUS "checktime 1 << NITE"
+checkmorn EQUS "checktime MORN"
+checkday  EQUS "checktime DAY"
+checknite EQUS "checktime NITE"
 
 	enum checkpoke_command
 checkpoke: macro

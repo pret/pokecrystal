@@ -3484,8 +3484,8 @@ IsThePlayerPkmnTypesEffectiveAgainstOTPkmn: ; 3d618
 	add hl, bc
 	ld a, [hl]
 	dec a
-	ld hl, BaseData + 7 ; type
-	ld bc, BaseData1 - BaseData0
+	ld hl, BaseData + BASE_TYPES
+	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 	ld de, EnemyMonType
 	ld bc, 2
@@ -6676,7 +6676,7 @@ CheckSleepingTreeMon: ; 3eb38
 ; Get list for the time of day
 	ld hl, .Morn
 	ld a, [TimeOfDay]
-	cp DAY
+	cp DAY_F
 	jr c, .Check
 	ld hl, .Day
 	jr z, .Check

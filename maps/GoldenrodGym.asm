@@ -9,18 +9,16 @@ const_value set 2
 GoldenrodGym_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x5400a, 0
-	dw UnknownScript_0x5400b, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x5400a:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x5400b:
+.DummyTrigger1:
 	end
 
 WhitneyScript_0x5400c:
@@ -100,7 +98,7 @@ TrainerLassCarrie:
 LassCarrieScript:
 	end_if_just_battled
 	opentext
-	writetext LassCarrieOWText
+	writetext LassCarrieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -124,7 +122,7 @@ TrainerLassBridget:
 LassBridgetScript:
 	end_if_just_battled
 	opentext
-	writetext LassBridgetOWText
+	writetext LassBridgetAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -135,7 +133,7 @@ TrainerBeautyVictoria:
 BeautyVictoriaScript:
 	end_if_just_battled
 	opentext
-	writetext BeautyVictoriaOWText
+	writetext BeautyVictoriaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -146,7 +144,7 @@ TrainerBeautySamantha:
 BeautySamanthaScript:
 	end_if_just_battled
 	opentext
-	writetext BeautySamanthaOWText
+	writetext BeautySamanthaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -285,7 +283,7 @@ LassCarrieBeatenText:
 	line "you were weak…"
 	done
 
-LassCarrieOWText:
+LassCarrieAfterBattleText:
 	text "Do my #MON"
 	line "think I'm cute?"
 	done
@@ -303,7 +301,7 @@ LassBridgetBeatenText:
 	text "Oh, no, no, no!"
 	done
 
-LassBridgetOWText:
+LassBridgetAfterBattleText:
 	text "I'm trying to beat"
 	line "WHITNEY, but…"
 	cont "It's depressing."
@@ -339,7 +337,7 @@ BeautyVictoriaBeatenText:
 	line "it's over?"
 	done
 
-BeautyVictoriaOWText:
+BeautyVictoriaAfterBattleText:
 	text "Wow, you must be"
 	line "good to beat me!"
 	cont "Keep it up!"
@@ -356,7 +354,7 @@ BeautySamanthaBeatenText:
 	line "I'm so sorry!"
 	done
 
-BeautySamanthaOWText:
+BeautySamanthaAfterBattleText:
 	text "I taught MEOWTH"
 	line "moves for taking"
 	cont "on any type…"
@@ -401,9 +399,9 @@ GoldenrodGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_WHITNEY, 3, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, WhitneyScript_0x5400c, -1
-	person_event SPRITE_LASS, 13, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerLassCarrie, -1
-	person_event SPRITE_LASS, 6, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerLassBridget, -1
-	person_event SPRITE_BUENA, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBeautyVictoria, -1
-	person_event SPRITE_BUENA, 5, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBeautySamantha, -1
-	person_event SPRITE_GYM_GUY, 15, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, GoldenrodGymGuyScript, -1
+	person_event SPRITE_WHITNEY, 3, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, WhitneyScript_0x5400c, -1
+	person_event SPRITE_LASS, 13, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 4, TrainerLassCarrie, -1
+	person_event SPRITE_LASS, 6, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerLassBridget, -1
+	person_event SPRITE_BUENA, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBeautyVictoria, -1
+	person_event SPRITE_BUENA, 5, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBeautySamantha, -1
+	person_event SPRITE_GYM_GUY, 15, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodGymGuyScript, -1

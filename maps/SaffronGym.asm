@@ -52,7 +52,7 @@ TrainerMediumRebecca:
 MediumRebeccaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18a034
+	writetext MediumRebeccaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ TrainerPsychicFranklin:
 PsychicFranklinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18a0a6
+	writetext PsychicFranklinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -74,7 +74,7 @@ TrainerMediumDoris:
 MediumDorisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18a136
+	writetext MediumDorisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -85,7 +85,7 @@ TrainerPsychicJared:
 PsychicJaredScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18a1b3
+	writetext PsychicJaredAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -206,7 +206,7 @@ MediumRebeccaBeatenText:
 	line "Far too strong…"
 	done
 
-UnknownText_0x18a034:
+MediumRebeccaAfterBattleText:
 	text "What is the source"
 	line "of your power?"
 	done
@@ -222,7 +222,7 @@ PsychicFranklinBeatenText:
 	line "power than mine!"
 	done
 
-UnknownText_0x18a0a6:
+PsychicFranklinAfterBattleText:
 	text "You made your soul"
 	line "stronger, not just"
 	cont "your abilities."
@@ -241,7 +241,7 @@ MediumDorisBeatenText:
 	line "I still lost…"
 	done
 
-UnknownText_0x18a136:
+MediumDorisAfterBattleText:
 	text "Darn! I forgot"
 	line "that I predicted I"
 	cont "would lose to you."
@@ -257,7 +257,7 @@ PsychicJaredBeatenText:
 	text "I was no match…"
 	done
 
-UnknownText_0x18a1b3:
+PsychicJaredAfterBattleText:
 	text "KARATE KING, the"
 	line "master of the"
 
@@ -338,9 +338,9 @@ SaffronGym_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SABRINA, 8, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, SabrinaScript_0x189c2e, -1
-	person_event SPRITE_GRANNY, 16, 17, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerMediumRebecca, -1
-	person_event SPRITE_YOUNGSTER, 16, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
-	person_event SPRITE_GRANNY, 4, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerMediumDoris, -1
-	person_event SPRITE_YOUNGSTER, 4, 17, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 2, TrainerPsychicJared, -1
-	person_event SPRITE_GYM_GUY, 14, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SaffronGymGuyScript, -1
+	person_event SPRITE_SABRINA, 8, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, SabrinaScript_0x189c2e, -1
+	person_event SPRITE_GRANNY, 16, 17, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerMediumRebecca, -1
+	person_event SPRITE_YOUNGSTER, 16, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
+	person_event SPRITE_GRANNY, 4, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerMediumDoris, -1
+	person_event SPRITE_YOUNGSTER, 4, 17, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 2, TrainerPsychicJared, -1
+	person_event SPRITE_GYM_GUY, 14, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SaffronGymGuyScript, -1

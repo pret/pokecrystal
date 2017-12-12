@@ -11,8 +11,6 @@ BlackthornGym1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_TILES, .Boulders
 
 .Boulders:
@@ -100,7 +98,7 @@ TrainerCooltrainermPaul:
 CooltrainermPaulScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainermPaulAfterText
+	writetext CooltrainermPaulAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -111,7 +109,7 @@ TrainerCooltrainermMike:
 CooltrainermMikeScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainermMikeAfterText
+	writetext CooltrainermMikeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -122,7 +120,7 @@ TrainerCooltrainerfLola:
 CooltrainerfLolaScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainerfLolaAfterText
+	writetext CooltrainerfLolaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -300,7 +298,7 @@ CooltrainermPaulBeatenText:
 	line "lost?"
 	done
 
-CooltrainermPaulAfterText:
+CooltrainermPaulAfterBattleText:
 	text "LANCE told you"
 	line "that he'd like to"
 
@@ -318,7 +316,7 @@ CooltrainermMikeBeatenText:
 	text "That's odd."
 	done
 
-CooltrainermMikeAfterText:
+CooltrainermMikeAfterBattleText:
 	text "I know my short-"
 	line "comings now."
 
@@ -344,7 +342,7 @@ CooltrainerfLolaBeatenText:
 	text "Way to go!"
 	done
 
-CooltrainerfLolaAfterText:
+CooltrainerfLolaAfterBattleText:
 	text "Dragons are weak"
 	line "against dragon-"
 	cont "type moves."
@@ -412,8 +410,8 @@ BlackthornGym1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_CLAIR, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
-	person_event SPRITE_COOLTRAINER_M, 6, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
-	person_event SPRITE_COOLTRAINER_M, 14, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1
-	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, BlackthornGymGuyScript, -1
+	person_event SPRITE_CLAIR, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
+	person_event SPRITE_COOLTRAINER_M, 14, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1
+	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, BlackthornGymGuyScript, -1

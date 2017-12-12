@@ -1021,10 +1021,10 @@ Function488b9: ; 488b9 (12:48b9)
 ; 488c3 (12:48c3)
 
 GFX_488c3: ; 488c3
-INCBIN "gfx/unknown/0488c3.2bpp"
+INCBIN "gfx/unknown/up_arrow.2bpp"
 
 GFX_488cb: ; 488cb
-INCBIN "gfx/unknown/0488cb.2bpp"
+INCBIN "gfx/unknown/down_arrow.2bpp"
 
 Function488d3: ; 488d3 (12:48d3)
 	call Function48283

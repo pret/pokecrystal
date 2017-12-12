@@ -46,7 +46,7 @@ TrainerCamperJerry:
 CamperJerryScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a2c0f
+	writetext CamperJerryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -166,7 +166,7 @@ CamperJerryBeatenText:
 	line "these battles…"
 	done
 
-UnknownText_0x1a2c0f:
+CamperJerryAfterBattleText:
 	text "Hey, you! Trainer"
 	line "from JOHTO! BROCK"
 
@@ -227,6 +227,6 @@ PewterGym_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_BROCK, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, BrockScript_0x1a2864, -1
-	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerCamperJerry, -1
-	person_event SPRITE_GYM_GUY, 11, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 1, PewterGymGuyScript, -1
+	person_event SPRITE_BROCK, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, BrockScript_0x1a2864, -1
+	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerCamperJerry, -1
+	person_event SPRITE_GYM_GUY, 11, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 1, PewterGymGuyScript, -1

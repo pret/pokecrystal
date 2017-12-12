@@ -17,7 +17,7 @@ TrainerBird_keeperTheo:
 Bird_keeperTheoScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b2df
+	writetext Bird_keeperTheoAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -28,7 +28,7 @@ TrainerGentlemanPreston:
 GentlemanPrestonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b457
+	writetext GentlemanPrestonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -39,7 +39,7 @@ TrainerSailorTerrell:
 SailorTerrellScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5b384
+	writetext SailorTerrellAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -60,7 +60,7 @@ Bird_keeperTheoBeatenText:
 	line "concerned…"
 	done
 
-UnknownText_0x5b2df:
+Bird_keeperTheoAfterBattleText:
 	text "How the heck do"
 	line "you go up?"
 
@@ -82,7 +82,7 @@ SailorTerrellBeatenText:
 	line "and strong…"
 	done
 
-UnknownText_0x5b384:
+SailorTerrellAfterBattleText:
 	text "Every time I come"
 	line "back to OLIVINE, I"
 	cont "visit the GYM."
@@ -106,7 +106,7 @@ GentlemanPrestonBeatenText:
 	line "train some more…"
 	done
 
-UnknownText_0x5b457:
+GentlemanPrestonAfterBattleText:
 	text "JASMINE used to"
 	line "use rock #MON"
 	cont "like ONIX."
@@ -136,7 +136,7 @@ OlivineLighthouse3F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerSailorTerrell, -1
-	person_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerGentlemanPreston, -1
-	person_event SPRITE_YOUNGSTER, 9, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperTheo, -1
+	person_event SPRITE_SAILOR, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerSailorTerrell, -1
+	person_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 4, TrainerGentlemanPreston, -1
+	person_event SPRITE_YOUNGSTER, 9, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperTheo, -1
 	person_event SPRITE_POKE_BALL, 2, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse3FEther, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER

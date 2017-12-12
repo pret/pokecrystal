@@ -7,9 +7,6 @@ WhirlIslandLugiaChamber_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_OBJECTS, .Lugia
 
 .Lugia:
@@ -62,4 +59,4 @@ WhirlIslandLugiaChamber_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_LUGIA, 5, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, Lugia, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
+	person_event SPRITE_LUGIA, 5, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Lugia, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA

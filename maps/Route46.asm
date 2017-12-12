@@ -19,7 +19,7 @@ TrainerCamperTed:
 CamperTedScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a9851
+	writetext CamperTedAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -153,7 +153,7 @@ TrainerHikerBailey:
 HikerBaileyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a97e8
+	writetext HikerBaileyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -181,7 +181,7 @@ HikerBaileyBeatenText:
 	line "me your power!"
 	done
 
-UnknownText_0x1a97e8:
+HikerBaileyAfterBattleText:
 	text "It's over. I don't"
 	line "mind. We HIKERS"
 	cont "are like that."
@@ -199,7 +199,7 @@ CamperTedBeatenText:
 	text "Wha…?"
 	done
 
-UnknownText_0x1a9851:
+CamperTedAfterBattleText:
 	text "I did my best but"
 	line "came up short."
 
@@ -269,9 +269,9 @@ Route46_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_POKEFAN_M, 19, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerBailey, -1
-	person_event SPRITE_YOUNGSTER, 14, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerCamperTed, -1
-	person_event SPRITE_LASS, 13, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerPicnickerErin1, -1
+	person_event SPRITE_POKEFAN_M, 19, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerBailey, -1
+	person_event SPRITE_YOUNGSTER, 14, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerCamperTed, -1
+	person_event SPRITE_LASS, 13, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerPicnickerErin1, -1
 	person_event SPRITE_FRUIT_TREE, 5, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a978f, -1
 	person_event SPRITE_FRUIT_TREE, 6, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a9791, -1
 	person_event SPRITE_POKE_BALL, 15, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route46XSpeed, EVENT_ROUTE_46_X_SPEED

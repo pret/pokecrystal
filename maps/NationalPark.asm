@@ -194,7 +194,7 @@ TrainerPokefanmWilliam:
 PokefanmWilliamScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5c645
+	writetext PokefanmWilliamAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -284,7 +284,7 @@ TrainerLassKrise:
 LassKriseScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5c71d
+	writetext LassKriseAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -454,7 +454,7 @@ PokefanmWilliamBeatenText:
 	text "M-my #MON!"
 	done
 
-UnknownText_0x5c645:
+PokefanmWilliamAfterBattleText:
 	text "I lost the battle,"
 	line "but my #MON win"
 
@@ -484,7 +484,7 @@ LassKriseBeatenText:
 	text "…Hmmm…"
 	done
 
-UnknownText_0x5c71d:
+LassKriseAfterBattleText:
 	text "I thought you were"
 	line "staring at me"
 	cont "because I'm cute!"
@@ -537,17 +537,17 @@ NationalPark_MapEventHeader:
 
 .PersonEvents:
 	db 14
-	person_event SPRITE_LASS, 24, 15, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x5c002, -1
+	person_event SPRITE_LASS, 24, 15, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x5c002, -1
 	person_event SPRITE_POKEFAN_F, 4, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x5c005, -1
-	person_event SPRITE_TEACHER, 40, 27, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x5c008, -1
+	person_event SPRITE_TEACHER, 40, 27, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x5c008, -1
 	person_event SPRITE_YOUNGSTER, 41, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5c023, -1
-	person_event SPRITE_YOUNGSTER, 41, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5c026, -1
+	person_event SPRITE_YOUNGSTER, 41, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5c026, -1
 	person_event SPRITE_TEACHER, 41, 17, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x5c029, -1
 	person_event SPRITE_GROWLITHE, 40, 26, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NationalParkPersian, -1
-	person_event SPRITE_YOUNGSTER, 23, 27, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
-	person_event SPRITE_POKEFAN_F, 29, 18, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
-	person_event SPRITE_POKEFAN_M, 9, 16, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
-	person_event SPRITE_LASS, 14, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerLassKrise, -1
+	person_event SPRITE_YOUNGSTER, 23, 27, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
+	person_event SPRITE_POKEFAN_F, 29, 18, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
+	person_event SPRITE_POKEFAN_M, 9, 16, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
+	person_event SPRITE_LASS, 14, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerLassKrise, -1
 	person_event SPRITE_POKE_BALL, 12, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, NationalParkParlyzHeal, EVENT_NATIONAL_PARK_PARLYZ_HEAL
 	person_event SPRITE_GAMEBOY_KID, 6, 26, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x5c037, -1
 	person_event SPRITE_POKE_BALL, 43, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, NationalParkTMDig, EVENT_NATIONAL_PARK_TM_DIG

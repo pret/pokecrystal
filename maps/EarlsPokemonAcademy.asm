@@ -66,7 +66,7 @@ AcademyBlackboard:
 	opentext
 	writetext AcademyBlackboardText
 .Loop:
-	loadmenudata .MenuHeader
+	loadmenudata .BlackboardMenuData
 	_2dmenu
 	closewindow
 	if_equal $1, .Poison
@@ -102,14 +102,14 @@ AcademyBlackboard:
 	waitbutton
 	jump .Loop
 
-.MenuHeader:
+.BlackboardMenuData:
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 08, 11 ; end coords
-	dw .Data
+	dw .MenuData2
 	db 1 ; default option
 
-.Data:
+.MenuData2:
 	db $80 ; flags
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
@@ -433,9 +433,9 @@ EarlsPokemonAcademy_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_FISHER, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
-	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x68a83, -1
+	person_event SPRITE_FISHER, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
+	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x68a83, -1
 	person_event SPRITE_GAMEBOY_KID, 11, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x68a86, -1
-	person_event SPRITE_GAMEBOY_KID, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x68a91, -1
+	person_event SPRITE_GAMEBOY_KID, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x68a91, -1
 	person_event SPRITE_YOUNGSTER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x68a9c, -1
 	person_event SPRITE_POKEDEX, 4, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AcademyNotebook, -1

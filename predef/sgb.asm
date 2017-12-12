@@ -556,7 +556,7 @@ endr
 
 .GetMapPalsIndex: ; 8a0c
 	ld a, [TimeOfDayPal]
-	cp NITE
+	cp NITE_F
 	jr c, .morn_day
 	ld a, $19
 	ret

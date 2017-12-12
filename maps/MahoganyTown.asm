@@ -7,21 +7,17 @@ const_value set 2
 MahoganyTown_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.Trigger0:
+.DummyTrigger0:
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
 .FlyPoint:
@@ -122,7 +118,7 @@ MahoganyTownRagecandybarSign:
 MahoganyGymSign:
 	jumptext MahoganyGymSignText
 
-MahoganyTownPokeCenterSign:
+MahoganyTownPokecenterSign:
 	jumpstd pokecentersign
 
 MovementData_0x1900a4:
@@ -270,11 +266,11 @@ MahoganyTown_MapEventHeader:
 	signpost 5, 1, SIGNPOST_READ, MahoganyTownSign
 	signpost 7, 9, SIGNPOST_READ, MahoganyTownRagecandybarSign
 	signpost 13, 3, SIGNPOST_READ, MahoganyGymSign
-	signpost 13, 16, SIGNPOST_READ, MahoganyTownPokeCenterSign
+	signpost 13, 16, SIGNPOST_READ, MahoganyTownPokecenterSign
 
 .PersonEvents:
 	db 4
 	person_event SPRITE_POKEFAN_M, 8, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
 	person_event SPRITE_GRAMPS, 9, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x19007e, -1
-	person_event SPRITE_FISHER, 14, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	person_event SPRITE_FISHER, 14, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
 	person_event SPRITE_LASS, 8, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS

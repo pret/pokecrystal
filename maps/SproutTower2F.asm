@@ -16,7 +16,7 @@ TrainerSageNico:
 SageNicoScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1847ff
+	writetext SageNicoAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -27,7 +27,7 @@ TrainerSageEdmond:
 SageEdmondScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x18486f
+	writetext SageEdmondAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -49,7 +49,7 @@ SageNicoBeatenText:
 	line "I'm too weak."
 	done
 
-UnknownText_0x1847ff:
+SageNicoAfterBattleText:
 	text "The flexible pil-"
 	line "lar protects the"
 
@@ -66,7 +66,7 @@ SageEdmondBeatenText:
 	text "Oh, I'm weak!"
 	done
 
-UnknownText_0x18486f:
+SageEdmondAfterBattleText:
 	text "I tried to copy"
 	line "BELLSPROUT's"
 
@@ -104,6 +104,6 @@ SproutTower2F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SAGE, 3, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerSageNico, -1
-	person_event SPRITE_SAGE, 14, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 5, TrainerSageEdmond, -1
+	person_event SPRITE_SAGE, 3, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 4, TrainerSageNico, -1
+	person_event SPRITE_SAGE, 14, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 5, TrainerSageEdmond, -1
 	person_event SPRITE_POKE_BALL, 1, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SproutTower2FXAccuracy, EVENT_SPROUT_TOWER2F_X_ACCURACY

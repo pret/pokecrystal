@@ -888,7 +888,7 @@ Special_DayCareMon1: ; 17421
 	call PrintText
 	ld a, [wBreedMon1Species]
 	call PlayCry
-	ld a, [wDaycareLady]
+	ld a, [wDayCareLady]
 	bit 0, a
 	jr z, DayCareMonCursor
 	call ButtonSound
@@ -901,7 +901,7 @@ Special_DayCareMon2: ; 17440
 	call PrintText
 	ld a, [wBreedMon2Species]
 	call PlayCry
-	ld a, [wDaycareMan]
+	ld a, [wDayCareMan]
 	bit 0, a
 	jr z, DayCareMonCursor
 	call ButtonSound

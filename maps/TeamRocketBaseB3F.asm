@@ -17,31 +17,26 @@ const_value set 2
 TeamRocketBaseB3F_MapScriptHeader:
 .MapTriggers:
 	db 4
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
-	maptrigger .Trigger3
+	maptrigger .LanceGetsPassword
+	maptrigger .DummyTrigger1
+	maptrigger .DummyTrigger2
+	maptrigger .DummyTrigger3
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .CheckGiovanniDoor
 
-.Trigger0:
+.LanceGetsPassword:
 	priorityjump LanceGetPasswordScript
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
-.Trigger2:
+.DummyTrigger2:
 	end
 
-.Trigger3:
+.DummyTrigger3:
 	end
 
 .CheckGiovanniDoor:
@@ -138,7 +133,7 @@ SlowpokeTailGrunt:
 GruntF5Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6e611
+	writetext GruntF5AfterBattleText
 	waitbutton
 	closetext
 	setevent EVENT_LEARNED_SLOWPOKETAIL
@@ -150,7 +145,7 @@ RaticateTailGrunt:
 GruntM28Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6e737
+	writetext GruntM28AfterBattleText
 	waitbutton
 	closetext
 	setevent EVENT_LEARNED_RATICATE_TAIL
@@ -162,7 +157,7 @@ TrainerScientistRoss:
 ScientistRossScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6e822
+	writetext ScientistRossAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -173,14 +168,13 @@ TrainerScientistMitch:
 ScientistMitchScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6e90a
+	writetext ScientistMitchAfterBattleText
 	waitbutton
 	closetext
 	end
 
-BossDoor:
-	dw EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
-	dw .Script
+TeamRocketBaseB3FLockedDoor:
+	dw EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE, .Script
 
 .Script:
 	opentext
@@ -207,7 +201,7 @@ BossDoor:
 	waitsfx
 	end
 
-MapTeamRocketBaseB3FSignpost9Script:
+TeamRocketBaseB3FOathScript:
 	jumpstd teamrocketoath
 
 TeamRocketBaseB3FProtein:
@@ -456,7 +450,7 @@ GruntF5BeatenText:
 	line "I'll tell you."
 	done
 
-UnknownText_0x6e611:
+GruntF5AfterBattleText:
 	text "The password to"
 	line "the boss's room is"
 
@@ -490,7 +484,7 @@ GruntM28BeatenText:
 	line "You're good!"
 	done
 
-UnknownText_0x6e737:
+GruntM28AfterBattleText:
 	text "Hyuck-hyuck-hyuck!"
 
 	para "The password to"
@@ -517,7 +511,7 @@ ScientistRossBeatenText:
 	line "error cost me…"
 	done
 
-UnknownText_0x6e822:
+ScientistRossAfterBattleText:
 	text "A radio signal"
 	line "that drives #-"
 	cont "MON mad…"
@@ -544,7 +538,7 @@ ScientistMitchBeatenText:
 	cont "battling."
 	done
 
-UnknownText_0x6e90a:
+ScientistMitchAfterBattleText:
 	text "If we turn up the"
 	line "power of our radio"
 
@@ -590,26 +584,26 @@ TeamRocketBaseB3F_MapEventHeader:
 
 .Signposts:
 	db 10
-	signpost 9, 10, SIGNPOST_IFNOTSET, BossDoor
-	signpost 9, 11, SIGNPOST_IFNOTSET, BossDoor
-	signpost 1, 10, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 11, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 12, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 1, 13, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 4, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 5, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 6, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
-	signpost 13, 7, SIGNPOST_READ, MapTeamRocketBaseB3FSignpost9Script
+	signpost 9, 10, SIGNPOST_IFNOTSET, TeamRocketBaseB3FLockedDoor
+	signpost 9, 11, SIGNPOST_IFNOTSET, TeamRocketBaseB3FLockedDoor
+	signpost 1, 10, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 1, 11, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 1, 12, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 1, 13, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 13, 4, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 13, 5, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 13, 6, SIGNPOST_READ, TeamRocketBaseB3FOathScript
+	signpost 13, 7, SIGNPOST_READ, TeamRocketBaseB3FOathScript
 
 .PersonEvents:
 	db 14
 	person_event SPRITE_LANCE, 14, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
 	person_event SPRITE_ROCKET, 3, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
-	person_event SPRITE_MOLTRES, 2, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, RocketBaseMurkrow, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET_GIRL, 7, 21, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, SlowpokeTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_MOLTRES, 2, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, RocketBaseMurkrow, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET_GIRL, 7, 21, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, SlowpokeTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_ROCKET, 14, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, RaticateTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 11, 23, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 15, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 11, 23, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 15, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_ROCKET, 14, 24, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_0x6e048, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_SILVER, 5, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_TEAM_ROCKET_BASE
 	person_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TeamRocketBaseB3FProtein, EVENT_TEAM_ROCKET_BASE_B3F_PROTEIN

@@ -8,27 +8,22 @@ const_value set 2
 BurnedTower1F_MapScriptHeader:
 .MapTriggers:
 	db 3
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
+	maptrigger .EusineTrigger
+	maptrigger .DummyTrigger1
+	maptrigger .DummyTrigger2
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .HoleAndLadder
 
-.Trigger0:
-	priorityjump .EusineTrigger
+.EusineTrigger:
+	priorityjump .MeetEusine
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
-.Trigger2:
+.DummyTrigger2:
 	end
 
 .HoleAndLadder:
@@ -42,7 +37,7 @@ BurnedTower1F_MapScriptHeader:
 .Done:
 	return
 
-.EusineTrigger:
+.MeetEusine:
 	spriteface BURNEDTOWER1F_EUSINE, DOWN
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_EUSINE, 15
 	applymovement BURNEDTOWER1F_EUSINE, BurnedTower1FEusineMovement
@@ -317,7 +312,7 @@ BurnedTower1F_MapEventHeader:
 .PersonEvents:
 	db 5
 	person_event SPRITE_ROCK, 4, 15, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BurnedTower1FRock, -1
-	person_event SPRITE_SUPER_NERD, 12, 12, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, BurnedTower1FEusineScript, EVENT_BURNED_TOWER_1F_EUSINE
+	person_event SPRITE_SUPER_NERD, 12, 12, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, BurnedTower1FEusineScript, EVENT_BURNED_TOWER_1F_EUSINE
 	person_event SPRITE_SILVER, 9, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
-	person_event SPRITE_MORTY, 14, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, BurnedTower1FMortyScript, EVENT_BURNED_TOWER_MORTY
+	person_event SPRITE_MORTY, 14, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, BurnedTower1FMortyScript, EVENT_BURNED_TOWER_MORTY
 	person_event SPRITE_POKE_BALL, 2, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, BurnedTower1FHPUp, EVENT_BURNED_TOWER_1F_HP_UP

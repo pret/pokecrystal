@@ -110,7 +110,7 @@ TrainerPokefanfRuth:
 PokefanfRuthScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a5db2
+	writetext PokefanfRuthAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -121,7 +121,7 @@ TrainerSailorEugene:
 SailorEugeneScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a5c4d
+	writetext SailorEugeneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -132,7 +132,7 @@ TrainerPsychicNorman:
 PsychicNormanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a5e57
+	writetext PsychicNormanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -199,7 +199,7 @@ SailorEugeneBeatenText:
 	text "Awaaargh!"
 	done
 
-UnknownText_0x1a5c4d:
+SailorEugeneAfterBattleText:
 	text "My #MON were"
 	line "caught and raised"
 	cont "overseas."
@@ -245,7 +245,7 @@ PokefanfRuthBeatenText:
 	line "losing."
 	done
 
-UnknownText_0x1a5db2:
+PokefanfRuthAfterBattleText:
 	text "Do you know about"
 	line "baby #MON?"
 
@@ -269,7 +269,7 @@ PsychicNormanBeatenText:
 	line "have potential."
 	done
 
-UnknownText_0x1a5e57:
+PsychicNormanAfterBattleText:
 	text "You know how #-"
 	line "MON have different"
 	cont "abilities?"
@@ -365,13 +365,13 @@ Route39_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_SAILOR, 29, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 5, TrainerSailorEugene, -1
-	person_event SPRITE_POKEFAN_M, 22, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerPokefanmDerek1, -1
-	person_event SPRITE_POKEFAN_F, 19, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerPokefanfRuth, -1
+	person_event SPRITE_SAILOR, 29, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 5, TrainerSailorEugene, -1
+	person_event SPRITE_POKEFAN_M, 22, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerPokefanmDerek1, -1
+	person_event SPRITE_POKEFAN_F, 19, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerPokefanfRuth, -1
 	person_event SPRITE_TAUROS, 12, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route39Miltank, -1
 	person_event SPRITE_TAUROS, 11, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route39Miltank, -1
 	person_event SPRITE_TAUROS, 15, 4, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route39Miltank, -1
 	person_event SPRITE_TAUROS, 13, 8, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route39Miltank, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 7, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerPsychicNorman, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 7, 13, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerPsychicNorman, -1
 	person_event SPRITE_FRUIT_TREE, 3, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a5bf4, -1
-	person_event SPRITE_POKEFAN_F, 22, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x1a5bbe, -1
+	person_event SPRITE_POKEFAN_F, 22, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x1a5bbe, -1

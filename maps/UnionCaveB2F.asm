@@ -12,9 +12,6 @@ UnionCaveB2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_OBJECTS, .Lapras
 
 .Lapras:
@@ -46,7 +43,7 @@ TrainerCooltrainermNick:
 CooltrainermNickScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a3f0
+	writetext CooltrainermNickAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -57,7 +54,7 @@ TrainerCooltrainerfGwen:
 CooltrainerfGwenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a488
+	writetext CooltrainerfGwenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -68,7 +65,7 @@ TrainerCooltrainerfEmma:
 CooltrainerfEmmaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x5a52b
+	writetext CooltrainerfEmmaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -96,7 +93,7 @@ CooltrainermNickBeatenText:
 	line "dazzling style!"
 	done
 
-UnknownText_0x5a3f0:
+CooltrainermNickAfterBattleText:
 	text "Your #MON style"
 	line "is stunning and"
 	cont "colorful, I admit."
@@ -115,7 +112,7 @@ CooltrainerfGwenBeatenText:
 	line "too good for me."
 	done
 
-UnknownText_0x5a488:
+CooltrainerfGwenAfterBattleText:
 	text "I'm going to train"
 	line "by myself until I"
 	cont "improve."
@@ -135,7 +132,7 @@ CooltrainerfEmmaBeatenText:
 	line "babies than this!"
 	done
 
-UnknownText_0x5a52b:
+CooltrainerfEmmaAfterBattleText:
 	text "Just once a week,"
 	line "a #MON comes to"
 	cont "the water's edge."
@@ -160,9 +157,9 @@ UnionCaveB2F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_ROCKER, 19, 15, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermNick, -1
-	person_event SPRITE_COOLTRAINER_F, 13, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainerfGwen, -1
-	person_event SPRITE_COOLTRAINER_F, 30, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainerfEmma, -1
+	person_event SPRITE_ROCKER, 19, 15, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainermNick, -1
+	person_event SPRITE_COOLTRAINER_F, 13, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainerfGwen, -1
+	person_event SPRITE_COOLTRAINER_F, 30, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainerfEmma, -1
 	person_event SPRITE_POKE_BALL, 2, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCaveB2FElixer, EVENT_UNION_CAVE_B2F_ELIXER
 	person_event SPRITE_POKE_BALL, 19, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UnionCaveB2FHyperPotion, EVENT_UNION_CAVE_B2F_HYPER_POTION
-	person_event SPRITE_SURF, 31, 11, SPRITEMOVEDATA_LAPRAS, 1, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, UnionCaveLapras, EVENT_UNION_CAVE_B2F_LAPRAS
+	person_event SPRITE_SURF, 31, 11, SPRITEMOVEDATA_LAPRAS, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, UnionCaveLapras, EVENT_UNION_CAVE_B2F_LAPRAS

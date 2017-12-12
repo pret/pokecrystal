@@ -22,7 +22,7 @@ TrainerKimono_girlNaoko2:
 Kimono_girlNaoko2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x99579
+	writetext Kimono_girlNaoko2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -33,7 +33,7 @@ TrainerKimono_girlSayo:
 Kimono_girlSayoScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x9960b
+	writetext Kimono_girlSayoAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -44,7 +44,7 @@ TrainerKimono_girlZuki:
 Kimono_girlZukiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x99688
+	writetext Kimono_girlZukiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -55,7 +55,7 @@ TrainerKimono_girlKuni:
 Kimono_girlKuniScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x99714
+	writetext Kimono_girlKuniAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -66,7 +66,7 @@ TrainerKimono_girlMiki:
 Kimono_girlMikiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x997a8
+	writetext Kimono_girlMikiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -148,7 +148,7 @@ Kimono_girlNaoko2BeatenText:
 	line "strong."
 	done
 
-UnknownText_0x99579:
+Kimono_girlNaoko2AfterBattleText:
 	text "I enjoyed that"
 	line "bout. I would like"
 	cont "to see you again."
@@ -167,7 +167,7 @@ Kimono_girlSayoBeatenText:
 	line "I almost had you."
 	done
 
-UnknownText_0x9960b:
+Kimono_girlSayoAfterBattleText:
 	text "Rhythm is impor-"
 	line "tant for both"
 
@@ -188,7 +188,7 @@ Kimono_girlZukiBeatenText:
 	line "#MON left…"
 	done
 
-UnknownText_0x99688:
+Kimono_girlZukiAfterBattleText:
 	text "I put a different"
 	line "flower in my bar-"
 	cont "rette every month."
@@ -205,7 +205,7 @@ Kimono_girlKuniBeatenText:
 	line "than you look."
 	done
 
-UnknownText_0x99714:
+Kimono_girlKuniAfterBattleText:
 	text "I trained a lot,"
 	line "so I thought I was"
 
@@ -224,7 +224,7 @@ Kimono_girlMikiBeatenText:
 	line "at #MON too."
 	done
 
-UnknownText_0x997a8:
+Kimono_girlMikiAfterBattleText:
 	text "I can keep dancing"
 	line "because there are"
 
@@ -356,12 +356,12 @@ DanceTheatre_MapEventHeader:
 
 .PersonEvents:
 	db 9
-	person_event SPRITE_KIMONO_GIRL, 2, 0, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 0, TrainerKimono_girlNaoko2, -1
-	person_event SPRITE_KIMONO_GIRL, 1, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 0, TrainerKimono_girlSayo, -1
-	person_event SPRITE_KIMONO_GIRL, 2, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, TrainerKimono_girlZuki, -1
-	person_event SPRITE_KIMONO_GIRL, 1, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 0, TrainerKimono_girlKuni, -1
-	person_event SPRITE_KIMONO_GIRL, 2, 11, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 0, TrainerKimono_girlMiki, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 0, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 0, TrainerKimono_girlNaoko2, -1
+	person_event SPRITE_KIMONO_GIRL, 1, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 0, TrainerKimono_girlSayo, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, TrainerKimono_girlZuki, -1
+	person_event SPRITE_KIMONO_GIRL, 1, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 0, TrainerKimono_girlKuni, -1
+	person_event SPRITE_KIMONO_GIRL, 2, 11, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 0, TrainerKimono_girlMiki, -1
 	person_event SPRITE_GENTLEMAN, 10, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x994c6, -1
-	person_event SPRITE_RHYDON, 8, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, RhydonScript_0x9951b, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x99525, -1
+	person_event SPRITE_RHYDON, 8, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, RhydonScript_0x9951b, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x99525, -1
 	person_event SPRITE_GRANNY, 6, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrannyScript_0x99528, -1

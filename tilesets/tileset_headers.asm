@@ -1,5 +1,3 @@
-; entries correspond to TILESET_* constants
-
 tileset: macro
 	dba \1GFX, \1Meta, \1Coll
 	dw \1Anim
@@ -7,42 +5,43 @@ tileset: macro
 	dw \1PalMap
 endm
 
-Tileset00::
-	tileset Tileset00
-Tileset01::
-	tileset Tileset01
-	tileset Tileset02
-	tileset Tileset03
-	tileset Tileset04
-	tileset Tileset05
-	tileset Tileset06
-	tileset Tileset07
-	tileset Tileset08
-	tileset Tileset09
-	tileset Tileset10
-	tileset Tileset11
-	tileset Tileset12
-	tileset Tileset13
-	tileset Tileset14
-	tileset Tileset15
-	tileset Tileset16
-	tileset Tileset17
-	tileset Tileset18
-	tileset Tileset19
-	tileset Tileset20
-	tileset Tileset21
-	tileset Tileset22
-	tileset Tileset23
-	tileset Tileset24
-	tileset Tileset25
-	tileset Tileset26
-	tileset Tileset27
-	tileset Tileset28
-	tileset Tileset29
-	tileset Tileset30
-	tileset Tileset31
-	tileset Tileset32
-	tileset Tileset33
-	tileset Tileset34
-	tileset Tileset35
-	tileset Tileset36
+Tilesets:: ; 4d596
+; entries correspond to TILESET_* constants
+	tileset Tileset0
+	tileset TilesetJohto1
+	tileset TilesetJohto2
+	tileset TilesetKanto
+	tileset TilesetBattleTowerOutside
+	tileset TilesetHouse1
+	tileset TilesetPlayersHouse
+	tileset TilesetPokecenter
+	tileset TilesetGate
+	tileset TilesetPort
+	tileset TilesetLab
+	tileset TilesetPowerPlant
+	tileset TilesetMart
+	tileset TilesetCeladonMansion
+	tileset TilesetGameCorner
+	tileset TilesetGym1
+	tileset TilesetKurtsHouse
+	tileset TilesetTrainStation
+	tileset TilesetOlivineGym
+	tileset TilesetLighthouse
+	tileset TilesetPlayersHouse2F
+	tileset TilesetPokeComCenter
+	tileset TilesetBattleTower
+	tileset TilesetSproutTower
+	tileset TilesetCave
+	tileset TilesetPark
+	tileset TilesetRuinsOfAlph
+	tileset TilesetRadioTower
+	tileset TilesetUnderground
+	tileset TilesetIcePath
+	tileset TilesetWhirlIslands
+	tileset TilesetIlexForest
+	tileset TilesetBetaWordRoom
+	tileset TilesetHoOhWordRoom
+	tileset TilesetKabutoWordRoom
+	tileset TilesetOmanyteWordRoom
+	tileset TilesetAerodactylWordRoom
+; 4d7c1

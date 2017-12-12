@@ -14,7 +14,7 @@
 ; - PicPointers (see gfx/pics/pic_pointers.asm)
 ; - AlphabeticalPokedexOrder (see data/pokedex/order_alpha.asm)
 ; - NewPokedexOrder (see data/pokedex/order_new.asm)
-; - MonMenuIcons (see menu/mon_icons.asm)
+; - MonMenuIcons (see data/mon_menu_icons.asm)
 ; - Pokered_MonIndices (see engine/time_capsule/conversion.asm)
 ; - SortedPokemon (see misc/fixed_words.asm)
 const_value set 1
@@ -273,75 +273,6 @@ NUM_POKEMON EQU const_value +- 1
 	const MON_FC     ; fc
 	const EGG        ; fd
 	const MON_FE     ; fe
-
-; party_struct members (see macros/wram.asm)
-MON_SPECIES              EQUS "(PartyMon1Species - PartyMon1)"
-MON_ITEM                 EQUS "(PartyMon1Item - PartyMon1)"
-MON_MOVES                EQUS "(PartyMon1Moves - PartyMon1)"
-MON_ID                   EQUS "(PartyMon1ID - PartyMon1)"
-MON_EXP                  EQUS "(PartyMon1Exp - PartyMon1)"
-MON_STAT_EXP             EQUS "(PartyMon1StatExp - PartyMon1)"
-MON_HP_EXP               EQUS "(PartyMon1HPExp - PartyMon1)"
-MON_ATK_EXP              EQUS "(PartyMon1AtkExp - PartyMon1)"
-MON_DEF_EXP              EQUS "(PartyMon1DefExp - PartyMon1)"
-MON_SPD_EXP              EQUS "(PartyMon1SpdExp - PartyMon1)"
-MON_SPC_EXP              EQUS "(PartyMon1SpcExp - PartyMon1)"
-MON_DVS                  EQUS "(PartyMon1DVs - PartyMon1)"
-MON_PP                   EQUS "(PartyMon1PP - PartyMon1)"
-MON_HAPPINESS            EQUS "(PartyMon1Happiness - PartyMon1)"
-MON_PKRUS                EQUS "(PartyMon1PokerusStatus - PartyMon1)"
-MON_CAUGHTDATA           EQUS "(PartyMon1CaughtData - PartyMon1)"
-MON_CAUGHTLEVEL          EQUS "(PartyMon1CaughtLevel - PartyMon1)"
-MON_CAUGHTTIME           EQUS "(PartyMon1CaughtTime - PartyMon1)"
-MON_CAUGHTGENDER         EQUS "(PartyMon1CaughtGender - PartyMon1)"
-MON_CAUGHTLOCATION       EQUS "(PartyMon1CaughtLocation - PartyMon1)"
-MON_LEVEL                EQUS "(PartyMon1Level - PartyMon1)"
-MON_STATUS               EQUS "(PartyMon1Status - PartyMon1)"
-MON_HP                   EQUS "(PartyMon1HP - PartyMon1)"
-MON_MAXHP                EQUS "(PartyMon1MaxHP - PartyMon1)"
-MON_ATK                  EQUS "(PartyMon1Attack - PartyMon1)"
-MON_DEF                  EQUS "(PartyMon1Defense - PartyMon1)"
-MON_SPD                  EQUS "(PartyMon1Speed - PartyMon1)"
-MON_SAT                  EQUS "(PartyMon1SpclAtk - PartyMon1)"
-MON_SDF                  EQUS "(PartyMon1SpclDef - PartyMon1)"
-BOXMON_STRUCT_LENGTH     EQUS "(PartyMon1End - PartyMon1)"
-PARTYMON_STRUCT_LENGTH   EQUS "(PartyMon1StatsEnd - PartyMon1)"
-REDMON_STRUCT_LENGTH EQU 44
-
-; MonMenuOptions indexes (see engine/mon_menu.asm)
-const_value SET 1
-; moves
-	const MONMENU_CUT        ; 1
-	const MONMENU_FLY        ; 2
-	const MONMENU_SURF       ; 3
-	const MONMENU_STRENGTH   ; 4
-	const MONMENU_WATERFALL  ; 5
-	const MONMENU_FLASH      ; 6
-	const MONMENU_WHIRLPOOL  ; 7
-	const MONMENU_DIG        ; 8
-	const MONMENU_TELEPORT   ; 9
-	const MONMENU_SOFTBOILED ; 10
-	const MONMENU_HEADBUTT   ; 11
-	const MONMENU_ROCKSMASH  ; 12
-	const MONMENU_MILKDRINK  ; 13
-	const MONMENU_SWEETSCENT ; 14
-; options
-	const MONMENU_STATS      ; 15
-	const MONMENU_SWITCH     ; 16
-	const MONMENU_ITEM       ; 17
-	const MONMENU_CANCEL     ; 18
-	const MONMENU_MOVE       ; 19
-	const MONMENU_MAIL       ; 20
-	const MONMENU_ERROR      ; 21
-
-; MonMenuOptions types
-MONMENU_FIELD_MOVE EQU 0
-MONMENU_MENUOPTION EQU 1
-
-NUM_MONMENU_ITEMS EQU 8
-
-; maximum number of party pokemon
-PARTY_LENGTH EQU 6
 
 ; number of Unown forms
 NUM_UNOWN EQU 26

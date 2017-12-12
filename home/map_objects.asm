@@ -276,9 +276,7 @@ CheckObjectTime:: ; 18f5
 	ret
 
 .TimeOfDayValues_191e:
-	db 1 << MORN ; 1
-	db 1 << DAY  ; 2
-	db 1 << NITE ; 4
+	db MORN, DAY, NITE
 
 .check_hour
 	ld hl, MAPOBJECT_HOUR

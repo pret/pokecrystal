@@ -7,27 +7,38 @@
 	const WILDMON    ; 4
 
 ; Options: (bits) ; cfcc
-const_value SET 5
-	const STEREO       ; 5
-	const BATTLE_SHIFT ; 6
-	const BATTLE_SCENE ; 7
+const_value SET 4
+	const NO_TEXT_SCROLL ; 4
+	const STEREO         ; 5
+	const BATTLE_SHIFT   ; 6
+	const BATTLE_SCENE   ; 7
 
-; Options: (bits 0-2 values) ; cfcc
-FAST_TEXT      EQU 0
-MED_TEXT       EQU 1
-SLOW_TEXT      EQU 2
-NO_TEXT_SCROLL EQU 4
+; Options: (bits 0-2)
+TEXT_DELAY_FAST EQU 1
+TEXT_DELAY_MED  EQU 3
+TEXT_DELAY_SLOW EQU 5
+
+; TextBoxFrame: ; cfce
+	const_def
+	const FRAME_1 ; 0
+	const FRAME_2 ; 1
+	const FRAME_3 ; 2
+	const FRAME_4 ; 3
+	const FRAME_5 ; 4
+	const FRAME_6 ; 5
+	const FRAME_7 ; 6
+	const FRAME_8 ; 7
 
 ; Options2:
 	const_def
 	const MENU_ACCOUNT ; 0
 
 ; GBPrinter:
-PRINT_LIGHTEST EQU $00
-PRINT_LIGHTER  EQU $20
-PRINT_NORMAL   EQU $40
-PRINT_DARKER   EQU $60
-PRINT_DARKEST  EQU $7f
+GBPRINTER_LIGHTEST EQU $00
+GBPRINTER_LIGHTER  EQU $20
+GBPRINTER_NORMAL   EQU $40
+GBPRINTER_DARKER   EQU $60
+GBPRINTER_DARKEST  EQU $7f
 
 ; WalkingDirection: ; d043
 const_value SET -1
@@ -36,6 +47,11 @@ const_value SET -1
 	const UP       ; 1
 	const LEFT     ; 2
 	const RIGHT    ; 3
+
+DOWN_MASK  EQU 1 << DOWN
+UP_MASK    EQU 1 << UP
+LEFT_MASK  EQU 1 << LEFT
+RIGHT_MASK EQU 1 << RIGHT
 
 ; FacingDirection: ; d044
 FACE_CURRENT EQU 0
@@ -46,10 +62,15 @@ FACE_RIGHT EQU 1
 
 ; TimeOfDay: ; d269
 	const_def
-	const MORN     ; 0
-	const DAY      ; 1
-	const NITE     ; 2
-	const DARKNESS ; 3
+	const MORN_F     ; 0
+	const DAY_F      ; 1
+	const NITE_F     ; 2
+	const DARKNESS_F ; 3
+
+MORN     EQU 1 << MORN_F
+DAY      EQU 1 << DAY_F
+NITE     EQU 1 << NITE_F
+DARKNESS EQU 1 << DARKNESS_F
 
 ; ScriptFlags: ; d434
 SCRIPT_RUNNING EQU 2
@@ -95,13 +116,13 @@ NUM_OBJECT_STRUCTS EQU 13
 
 ; After-Champion Spawn
 SPAWN_LANCE EQU 1
-SPAWN_RED EQU 2
+SPAWN_RED   EQU 2
 
 ; wPokemonWithdrawDepositParameter
-PC_WITHDRAW EQU 0
-PC_DEPOSIT EQU 1
-DAYCARE_WITHDRAW EQU 2
-DAYCARE_DEPOSIT EQU 3
+PC_WITHDRAW       EQU 0
+PC_DEPOSIT        EQU 1
+DAY_CARE_WITHDRAW EQU 2
+DAY_CARE_DEPOSIT  EQU 3
 
 ; wCurrentDexMode
 	const_def

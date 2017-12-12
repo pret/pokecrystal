@@ -16,7 +16,7 @@ TrainerPokefanmRex:
 PokefanmRexScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ad9ff
+	writetext PokefanmRexAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -27,7 +27,7 @@ TrainerPokefanmAllan:
 PokefanmAllanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ada88
+	writetext PokefanmAllanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ PokefanmRexBeatenText:
 	text "My PHANPY!"
 	done
 
-UnknownText_0x1ad9ff:
+PokefanmRexAfterBattleText:
 	text "Look how adorable"
 	line "my PHANPY acts!"
 
@@ -82,7 +82,7 @@ PokefanmAllanBeatenText:
 	text "My TEDDIURSA!"
 	done
 
-UnknownText_0x1ada88:
+PokefanmAllanAfterBattleText:
 	text "Look how adorable"
 	line "my TEDDIURSA acts!"
 
@@ -109,6 +109,6 @@ Route6_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 4, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 2, PokefanMScript_0x1ad951, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
-	person_event SPRITE_POKEFAN_M, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, TrainerPokefanmRex, -1
-	person_event SPRITE_POKEFAN_M, 12, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 0, TrainerPokefanmAllan, -1
+	person_event SPRITE_POKEFAN_M, 4, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 2, PokefanMScript_0x1ad951, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	person_event SPRITE_POKEFAN_M, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, TrainerPokefanmRex, -1
+	person_event SPRITE_POKEFAN_M, 12, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, TrainerPokefanmAllan, -1

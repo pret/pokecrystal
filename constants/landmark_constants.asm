@@ -1,4 +1,4 @@
-; Landmarks indexes (see engine/landmarks.asm)
+; Landmarks indexes (see data/landmarks.asm)
 	const_def
 
 ; Johto landmarks

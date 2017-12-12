@@ -15,7 +15,7 @@ PokefanMScript_0x6998d:
 Kyle:
 	faceplayer
 	opentext
-	trade $1
+	trade NPCTRADE_KYLE
 	waitbutton
 	closetext
 	end
@@ -50,4 +50,4 @@ VioletOnixTradeHouse_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x6998d, -1
-	person_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, Kyle, -1
+	person_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Kyle, -1

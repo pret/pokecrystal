@@ -9,21 +9,16 @@ const_value set 2
 TeamRocketBaseB1F_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	maptrigger .Trigger0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .HideSecurityGrunt
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, .Callback1
-
-.Trigger0:
+.DummyTrigger:
 	end
 
-.Callback1:
+.HideSecurityGrunt:
 	disappear TEAMROCKETBASEB1F_ROCKET1
 	return
 
@@ -491,7 +486,7 @@ TrainerScientistJed:
 ScientistJedScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6cc16
+	writetext ScientistJedAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -502,7 +497,7 @@ TrainerGruntM16:
 GruntM16Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x6cd1b
+	writetext GruntM16AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -673,7 +668,7 @@ ScientistJedBeatenText:
 	text "I get it…"
 	done
 
-UnknownText_0x6cc16:
+ScientistJedAfterBattleText:
 	text "All right. I'll"
 	line "divulge a secret"
 	cont "about our hideout."
@@ -704,7 +699,7 @@ GruntM16BeatenText:
 	text "Kaboom!"
 	done
 
-UnknownText_0x6cd1b:
+GruntM16AfterBattleText:
 	text "I don't even know"
 	line "where the traps"
 	cont "are planted."
@@ -796,7 +791,7 @@ TeamRocketBaseB1F_MapEventHeader:
 	db 6
 	person_event SPRITE_ROCKET, 0, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
 	person_event SPRITE_ROCKET, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_SCIENTIST, 12, 18, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_SCIENTIST, 12, 18, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_POKE_BALL, 6, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TeamRocketBaseB1FHyperPotion, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
 	person_event SPRITE_POKE_BALL, 15, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TeamRocketBaseB1FNugget, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
 	person_event SPRITE_POKE_BALL, 12, 21, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TeamRocketBaseB1FGuardSpec, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC

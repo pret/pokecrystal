@@ -4,14 +4,12 @@ const_value set 2
 Route1718Gate_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw UnknownScript_0x7360d, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x7360d:
+.DummyTrigger:
 	end
 
 OfficerScript_0x7360e:
@@ -74,4 +72,4 @@ Route1718Gate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, OfficerScript_0x7360e, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, OfficerScript_0x7360e, -1

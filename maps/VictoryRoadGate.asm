@@ -6,62 +6,60 @@ const_value set 2
 VictoryRoadGate_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x9b9fb, 0
-	dw UnknownScript_0x9b9fc, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x9b9fb:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x9b9fc:
+.DummyTrigger1:
 	end
 
-UnknownScript_0x9b9fd:
+VictoryRoadGateBadgeCheckTrigger:
 	spriteface PLAYER, LEFT
-	jump UnknownScript_0x9ba04
+	jump VictoryRoadGateBadgeCheckScript
 
-OfficerScript_0x9ba03:
+VictoryRoadGateOfficerScript:
 	faceplayer
-UnknownScript_0x9ba04:
+VictoryRoadGateBadgeCheckScript:
 	opentext
-	writetext UnknownText_0x9ba29
+	writetext VictoryRoadGateOfficerText
 	buttonsound
 	checkcode VAR_BADGES
-	if_greater_than 7, UnknownScript_0x9ba19
-	writetext UnknownText_0x9ba5f
+	if_greater_than 7, .AllEightBadges
+	writetext VictoryRoadGateNotEnoughBadgesText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x9ba27
+	applymovement PLAYER, VictoryRoadGateStepDownMovement
 	end
 
-UnknownScript_0x9ba19:
-	writetext UnknownText_0x9bab4
+.AllEightBadges:
+	writetext VictoryRoadGateEightBadgesText
 	waitbutton
 	closetext
 	dotrigger $1
 	end
 
-BlackBeltScript_0x9ba21:
-	jumptextfaceplayer UnknownText_0x9baf1
+VictoryRoadGateLeftBlackBeltScript:
+	jumptextfaceplayer VictoryRoadGateLeftBlackBeltText
 
-BlackBeltScript_0x9ba24:
-	jumptextfaceplayer UnknownText_0x9bb37
+VictoryRoadGateRightBlackBeltScript:
+	jumptextfaceplayer VictoryRoadGateRightBlackBeltText
 
-MovementData_0x9ba27:
+VictoryRoadGateStepDownMovement:
 	step DOWN
 	step_end
 
-UnknownText_0x9ba29:
+VictoryRoadGateOfficerText:
 	text "Only trainers who"
 	line "have proven them-"
 	cont "selves may pass."
 	done
 
-UnknownText_0x9ba5f:
+VictoryRoadGateNotEnoughBadgesText:
 	text "You don't have all"
 	line "the GYM BADGES of"
 	cont "JOHTO."
@@ -71,7 +69,7 @@ UnknownText_0x9ba5f:
 	cont "through."
 	done
 
-UnknownText_0x9bab4:
+VictoryRoadGateEightBadgesText:
 	text "Oh! The eight"
 	line "BADGES of JOHTO!"
 
@@ -79,7 +77,7 @@ UnknownText_0x9bab4:
 	line "on through!"
 	done
 
-UnknownText_0x9baf1:
+VictoryRoadGateLeftBlackBeltText:
 	text "This way leads to"
 	line "MT.SILVER."
 
@@ -88,7 +86,7 @@ UnknownText_0x9baf1:
 	cont "there."
 	done
 
-UnknownText_0x9bb37:
+VictoryRoadGateRightBlackBeltText:
 	text "Off to the #MON"
 	line "LEAGUE, are you?"
 
@@ -116,13 +114,13 @@ VictoryRoadGate_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $b, $a, $0, UnknownScript_0x9b9fd, $0, $0
+	xy_trigger 0, $b, $a, $0, VictoryRoadGateBadgeCheckTrigger, $0, $0
 
 .Signposts:
 	db 0
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 11, 8, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OfficerScript_0x9ba03, -1
-	person_event SPRITE_BLACK_BELT, 5, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x9ba21, EVENT_OPENED_MT_SILVER
-	person_event SPRITE_BLACK_BELT, 5, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackBeltScript_0x9ba24, EVENT_FOUGHT_SNORLAX
+	person_event SPRITE_OFFICER, 11, 8, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
+	person_event SPRITE_BLACK_BELT, 5, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
+	person_event SPRITE_BLACK_BELT, 5, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX

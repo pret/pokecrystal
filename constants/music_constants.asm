@@ -110,5 +110,7 @@
 
 ; GetMapHeaderMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64
+
 ; GetMapHeaderMusic picks music for this bit flag
-RADIO_TOWER_MUSIC EQU 7
+RADIO_TOWER_MUSIC_F EQU 7
+RADIO_TOWER_MUSIC EQU 1 << RADIO_TOWER_MUSIC_F

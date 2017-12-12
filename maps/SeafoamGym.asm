@@ -5,14 +5,12 @@ const_value set 2
 SeafoamGym_MapScriptHeader:
 .MapTriggers:
 	db 1
-
-	; triggers
-	dw UnknownScript_0x1ab4fa, 0
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x1ab4fa:
+.DummyTrigger:
 	end
 
 BlaineScript_0x1ab4fb:
@@ -175,5 +173,5 @@ SeafoamGym_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_BLAINE, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, BlaineScript_0x1ab4fb, -1
-	person_event SPRITE_GYM_GUY, 5, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY
+	person_event SPRITE_BLAINE, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, BlaineScript_0x1ab4fb, -1
+	person_event SPRITE_GYM_GUY, 5, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY

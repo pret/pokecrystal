@@ -17,7 +17,7 @@ TrainerFirebreatherOtis:
 FirebreatherOtisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1adff7
+	writetext FirebreatherOtisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -28,7 +28,7 @@ TrainerYoungsterWarren:
 YoungsterWarrenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ae051
+	writetext YoungsterWarrenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -39,7 +39,7 @@ TrainerYoungsterJimmy:
 YoungsterJimmyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ae0a9
+	writetext YoungsterJimmyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -50,7 +50,7 @@ TrainerFirebreatherBurt:
 FirebreatherBurtScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ae118
+	writetext FirebreatherBurtAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -68,7 +68,7 @@ FirebreatherOtisBeatenText:
 	line "I'm all wet…"
 	done
 
-UnknownText_0x1adff7:
+FirebreatherOtisAfterBattleText:
 	text "When it rains,"
 	line "it's hard to get"
 	cont "ignition…"
@@ -83,7 +83,7 @@ YoungsterWarrenBeatenText:
 	text "I knew I'd lose…"
 	done
 
-UnknownText_0x1ae051:
+YoungsterWarrenAfterBattleText:
 	text "You looked strong."
 
 	para "I was afraid to"
@@ -99,7 +99,7 @@ YoungsterJimmyBeatenText:
 	text "Blown away!"
 	done
 
-UnknownText_0x1ae0a9:
+YoungsterJimmyAfterBattleText:
 	text "I wear shorts the"
 	line "whole year round."
 
@@ -116,7 +116,7 @@ FirebreatherBurtBeatenText:
 	text "Yow! That's hot!"
 	done
 
-UnknownText_0x1ae118:
+FirebreatherBurtAfterBattleText:
 	text "The greatest fire-"
 	line "breather in KANTO,"
 	cont "that's me."
@@ -149,7 +149,7 @@ Route3_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_FISHER, 12, 26, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 2, TrainerFirebreatherOtis, -1
-	person_event SPRITE_YOUNGSTER, 7, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerYoungsterWarren, -1
-	person_event SPRITE_YOUNGSTER, 3, 16, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerYoungsterJimmy, -1
-	person_event SPRITE_FISHER, 5, 49, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerFirebreatherBurt, -1
+	person_event SPRITE_FISHER, 12, 26, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 2, TrainerFirebreatherOtis, -1
+	person_event SPRITE_YOUNGSTER, 7, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerYoungsterWarren, -1
+	person_event SPRITE_YOUNGSTER, 3, 16, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerYoungsterJimmy, -1
+	person_event SPRITE_FISHER, 5, 49, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerFirebreatherBurt, -1

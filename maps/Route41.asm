@@ -23,7 +23,7 @@ TrainerSwimmerfKaylee:
 SwimmerfKayleeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6c7f
+	writetext SwimmerfKayleeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -34,7 +34,7 @@ TrainerSwimmerfSusie:
 SwimmerfSusieScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6d11
+	writetext SwimmerfSusieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -45,7 +45,7 @@ TrainerSwimmerfDenise:
 SwimmerfDeniseScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6d79
+	writetext SwimmerfDeniseAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -56,7 +56,7 @@ TrainerSwimmerfKara:
 SwimmerfKaraScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6e58
+	writetext SwimmerfKaraAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -67,7 +67,7 @@ TrainerSwimmerfWendy:
 SwimmerfWendyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6ec2
+	writetext SwimmerfWendyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -78,7 +78,7 @@ TrainerSwimmermCharlie:
 SwimmermCharlieScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a696e
+	writetext SwimmermCharlieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -89,7 +89,7 @@ TrainerSwimmermGeorge:
 SwimmermGeorgeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a69d4
+	writetext SwimmermGeorgeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -100,7 +100,7 @@ TrainerSwimmermBerke:
 SwimmermBerkeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6aa4
+	writetext SwimmermBerkeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -111,7 +111,7 @@ TrainerSwimmermKirk:
 SwimmermKirkScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6b6c
+	writetext SwimmermKirkAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -122,7 +122,7 @@ TrainerSwimmermMathew:
 SwimmermMathewScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a6bed
+	writetext SwimmermMathewAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -148,7 +148,7 @@ SwimmermCharlieBeatenText:
 	line "prune skin!"
 	done
 
-UnknownText_0x1a696e:
+SwimmermCharlieAfterBattleText:
 	text "Isn't it relaxing"
 	line "just floating like"
 	cont "this?"
@@ -164,7 +164,7 @@ SwimmermGeorgeBeatenText:
 	text "Pant, pant…"
 	done
 
-UnknownText_0x1a69d4:
+SwimmermGeorgeAfterBattleText:
 	text "It's so far to"
 	line "CIANWOOD."
 
@@ -189,7 +189,7 @@ SwimmermBerkeBeatenText:
 	line "to your strength?"
 	done
 
-UnknownText_0x1a6aa4:
+SwimmermBerkeAfterBattleText:
 	text "It was a dark and"
 	line "stormy night…"
 
@@ -214,7 +214,7 @@ SwimmermKirkBeatenText:
 	text "I'm beat!"
 	done
 
-UnknownText_0x1a6b6c:
+SwimmermKirkAfterBattleText:
 	text "The currents keep"
 	line "me from reaching"
 	cont "that island."
@@ -231,7 +231,7 @@ SwimmermMathewBeatenText:
 	line "great endurance!"
 	done
 
-UnknownText_0x1a6bed:
+SwimmermMathewAfterBattleText:
 	text "A secret about"
 	line "WHIRL ISLANDS…"
 
@@ -252,7 +252,7 @@ SwimmerfKayleeBeatenText:
 	line "it?"
 	done
 
-UnknownText_0x1a6c7f:
+SwimmerfKayleeAfterBattleText:
 	text "There's supposed"
 	line "to be a big #-"
 	cont "MON deep beneath"
@@ -272,7 +272,7 @@ SwimmerfSusieBeatenText:
 	text "I'm crushed…"
 	done
 
-UnknownText_0x1a6d11:
+SwimmerfSusieAfterBattleText:
 	text "Wasn't there a hit"
 	line "song about a boy"
 	cont "riding a LAPRAS?"
@@ -288,7 +288,7 @@ SwimmerfDeniseBeatenText:
 	text "Ohhh!"
 	done
 
-UnknownText_0x1a6d79:
+SwimmerfDeniseAfterBattleText:
 	text "A sunburn is the"
 	line "worst for skin."
 
@@ -316,7 +316,7 @@ SwimmerfKaraBeatenText:
 	line "energy than I do."
 	done
 
-UnknownText_0x1a6e58:
+SwimmerfKaraAfterBattleText:
 	text "I heard roars from"
 	line "deep inside the"
 	cont "ISLANDS."
@@ -332,7 +332,7 @@ SwimmerfWendyBeatenText:
 	text "Oh, dear…"
 	done
 
-UnknownText_0x1a6ec2:
+SwimmerfWendyAfterBattleText:
 	text "The clusters of"
 	line "STARYU light up"
 	cont "at the same time."
@@ -361,13 +361,13 @@ Route41_MapEventHeader:
 
 .PersonEvents:
 	db 10
-	person_event SPRITE_OLIVINE_RIVAL, 6, 32, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermCharlie, -1
-	person_event SPRITE_OLIVINE_RIVAL, 8, 46, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermGeorge, -1
-	person_event SPRITE_OLIVINE_RIVAL, 26, 20, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermBerke, -1
-	person_event SPRITE_OLIVINE_RIVAL, 30, 32, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermKirk, -1
-	person_event SPRITE_OLIVINE_RIVAL, 46, 19, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermMathew, -1
-	person_event SPRITE_SWIMMER_GIRL, 4, 17, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfKaylee, -1
-	person_event SPRITE_SWIMMER_GIRL, 19, 23, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfSusie, -1
-	person_event SPRITE_SWIMMER_GIRL, 34, 27, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfDenise, -1
-	person_event SPRITE_SWIMMER_GIRL, 28, 44, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 4, TrainerSwimmerfKara, -1
-	person_event SPRITE_SWIMMER_GIRL, 50, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerSwimmerfWendy, -1
+	person_event SPRITE_OLIVINE_RIVAL, 6, 32, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermCharlie, -1
+	person_event SPRITE_OLIVINE_RIVAL, 8, 46, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermGeorge, -1
+	person_event SPRITE_OLIVINE_RIVAL, 26, 20, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermBerke, -1
+	person_event SPRITE_OLIVINE_RIVAL, 30, 32, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermKirk, -1
+	person_event SPRITE_OLIVINE_RIVAL, 46, 19, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermMathew, -1
+	person_event SPRITE_SWIMMER_GIRL, 4, 17, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfKaylee, -1
+	person_event SPRITE_SWIMMER_GIRL, 19, 23, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfSusie, -1
+	person_event SPRITE_SWIMMER_GIRL, 34, 27, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfDenise, -1
+	person_event SPRITE_SWIMMER_GIRL, 28, 44, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 4, TrainerSwimmerfKara, -1
+	person_event SPRITE_SWIMMER_GIRL, 50, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerSwimmerfWendy, -1

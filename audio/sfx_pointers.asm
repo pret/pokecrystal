@@ -1,4 +1,6 @@
-; e927c
+SFX: ; e927c
+; entries correspond to SFX_* constants
+
 	dba Sfx_DexFanfare5079
 	dba Sfx_Item
 	dba Sfx_CaughtMon
@@ -148,8 +150,8 @@
 	dba Sfx_Fanfare2
 	dba Sfx_RegisterPhoneNumber
 	dba Sfx_3RdPlace
-	dba Sfx_GetEggFromDaycareMan
-	dba Sfx_GetEggFromDaycareLady
+	dba Sfx_GetEggFromDayCareMan
+	dba Sfx_GetEggFromDayCareLady
 	dba Sfx_MoveDeleted
 	dba Sfx_2ndPlace
 	dba Sfx_1stPlace

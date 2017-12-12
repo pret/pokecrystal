@@ -1859,7 +1859,7 @@ SGBBorderPalettes:
 	RGB 31, 31, 25
 
 SGBBorder:
-INCBIN "gfx/misc/sgb_border.2bpp"
+INCBIN "gfx/sgb/sgb_border.2bpp"
 
 Palettes_a8be:
 	RGB 30, 26, 15
@@ -1877,7 +1877,7 @@ Palettes_a8ca:
 
 INCLUDE "gfx/pics/palette_pointers.asm"
 
-INCLUDE "gfx/trainers/palette_pointers.asm"
+INCLUDE "gfx/trainer_palettes.asm"
 
 LoadMapPals:
 	callba LoadSpecialMapPalette
@@ -1948,7 +1948,7 @@ LoadMapPals:
 	call AddNTimes
 	ld de, UnknOBPals
 	ld bc, 8 palettes
-	ld a, $5 ; BANK(UnknOBPals)
+	ld a, BANK(UnknOBPals)
 	call FarCopyWRAM
 
 	ld a, [wPermission]
@@ -1967,13 +1967,13 @@ LoadMapPals:
 	add hl, de
 	ld a, [TimeOfDayPal]
 	and 3
-	cp NITE
+	cp NITE_F
 	jr c, .morn_day
 rept 4
 	inc hl
 endr
 .morn_day
-	ld de, UnknBGPals + 6 palettes + 2
+	ld de, UnknBGPals palette PAL_BG_ROOF + 2
 	ld bc, 4
 	ld a, $5
 	call FarCopyWRAM
@@ -1983,10 +1983,10 @@ endr
 	dw .OutdoorColors ; unused
 	dw .OutdoorColors ; TOWN
 	dw .OutdoorColors ; ROUTE
-	dw .IndoorColors ; INDOOR
+	dw .IndoorColors  ; INDOOR
 	dw .DungeonColors ; CAVE
-	dw .Perm5Colors ; PERM_5
-	dw .IndoorColors ; GATE
+	dw .Perm5Colors   ; PERM_5
+	dw .IndoorColors  ; GATE
 	dw .DungeonColors ; DUNGEON
 
 ; Valid indices: $00 - $29
@@ -2267,7 +2267,7 @@ Palettes_b789:
 	RGB 18, 18, 18
 	RGB 00, 00, 00
 
-Palettes_b7a9:
+SlotMachinePals:
 	RGB 31, 31, 31
 	RGB 24, 25, 28
 	RGB 24, 24, 09

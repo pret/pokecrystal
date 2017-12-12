@@ -46,13 +46,13 @@ MapGoldenrodDeptStoreElevatorSignpost0Script:
 
 Elevator_0x566e0:
 	db 7 ; floors
-	elevfloor _B1F, 2, GOLDENROD_DEPT_STORE_B1F
-	elevfloor _1F,  4, GOLDENROD_DEPT_STORE_1F
-	elevfloor _2F,  3, GOLDENROD_DEPT_STORE_2F
-	elevfloor _3F,  3, GOLDENROD_DEPT_STORE_3F
-	elevfloor _4F,  3, GOLDENROD_DEPT_STORE_4F
-	elevfloor _5F,  3, GOLDENROD_DEPT_STORE_5F
-	elevfloor _6F,  2, GOLDENROD_DEPT_STORE_6F
+	elevfloor FLOOR_B1F, 2, GOLDENROD_DEPT_STORE_B1F
+	elevfloor FLOOR_1F,  4, GOLDENROD_DEPT_STORE_1F
+	elevfloor FLOOR_2F,  3, GOLDENROD_DEPT_STORE_2F
+	elevfloor FLOOR_3F,  3, GOLDENROD_DEPT_STORE_3F
+	elevfloor FLOOR_4F,  3, GOLDENROD_DEPT_STORE_4F
+	elevfloor FLOOR_5F,  3, GOLDENROD_DEPT_STORE_5F
+	elevfloor FLOOR_6F,  2, GOLDENROD_DEPT_STORE_6F
 	db -1 ; end
 
 

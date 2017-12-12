@@ -50,7 +50,7 @@ TrainerGentlemanGregory:
 GentlemanGregoryScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1923b0
+	writetext GentlemanGregoryAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -61,7 +61,7 @@ TrainerGuitaristVincent:
 GuitaristVincentScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19244b
+	writetext GuitaristVincentAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -72,7 +72,7 @@ TrainerJugglerHorton:
 JugglerHortonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1924d6
+	writetext JugglerHortonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -175,7 +175,7 @@ GentlemanGregoryBeatenText:
 	cont "sir!"
 	done
 
-UnknownText_0x1923b0:
+GentlemanGregoryAfterBattleText:
 	text "When I was still"
 	line "in the army, LT."
 
@@ -198,7 +198,7 @@ GuitaristVincentBeatenText:
 	text "Ooh, how shocking!"
 	done
 
-UnknownText_0x19244b:
+GuitaristVincentAfterBattleText:
 	text "If the GYM's traps"
 	line "were working, you"
 
@@ -217,7 +217,7 @@ JugglerHortonBeatenText:
 	line "I was overpowered…"
 	done
 
-UnknownText_0x1924d6:
+JugglerHortonAfterBattleText:
 	text "Don't get too com-"
 	line "fortable about"
 
@@ -294,8 +294,8 @@ VermilionGym_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SURGE, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, SurgeScript_0x1920a5, -1
-	person_event SPRITE_GENTLEMAN, 8, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerGentlemanGregory, -1
-	person_event SPRITE_ROCKER, 7, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 3, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerGuitaristVincent, -1
-	person_event SPRITE_SUPER_NERD, 10, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerJugglerHorton, -1
-	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 1, VermilionGymGuyScript, -1
+	person_event SPRITE_SURGE, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, SurgeScript_0x1920a5, -1
+	person_event SPRITE_GENTLEMAN, 8, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 4, TrainerGentlemanGregory, -1
+	person_event SPRITE_ROCKER, 7, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 3, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerGuitaristVincent, -1
+	person_event SPRITE_SUPER_NERD, 10, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 4, TrainerJugglerHorton, -1
+	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 1, VermilionGymGuyScript, -1

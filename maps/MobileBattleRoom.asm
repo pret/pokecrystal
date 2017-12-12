@@ -1,22 +1,20 @@
 MobileBattleRoom_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .InitializeMobileBattleRoom
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
-	priorityjump MobileBattleRoom_Initialize
+.InitializeMobileBattleRoom:
+	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-MobileBattleRoom_Initialize:
+.InitializeAndPreparePokecenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $5
 	end

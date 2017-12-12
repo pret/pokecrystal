@@ -18,7 +18,7 @@ TrainerBird_keeperDenis:
 Bird_keeperDenisScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x60ac3
+	writetext Bird_keeperDenisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -29,7 +29,7 @@ TrainerSailorErnest:
 SailorErnestScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x60a1f
+	writetext SailorErnestAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -60,7 +60,7 @@ SailorErnestBeatenText:
 	line "overwhelming!"
 	done
 
-UnknownText_0x60a1f:
+SailorErnestAfterBattleText:
 	text "A GYM LEADER isn't"
 	line "just about being"
 
@@ -81,7 +81,7 @@ Bird_keeperDenisBeatenText:
 	text "Oops…They crashed…"
 	done
 
-UnknownText_0x60ac3:
+Bird_keeperDenisAfterBattleText:
 	text "My #MON learned"
 	line "how to use FLY in"
 	cont "CIANWOOD."
@@ -114,8 +114,8 @@ OlivineLighthouse5F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SAILOR, 11, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerSailorErnest, -1
-	person_event SPRITE_YOUNGSTER, 3, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 4, TrainerBird_keeperDenis, -1
+	person_event SPRITE_SAILOR, 11, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerSailorErnest, -1
+	person_event SPRITE_YOUNGSTER, 3, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 4, TrainerBird_keeperDenis, -1
 	person_event SPRITE_POKE_BALL, 12, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse5FRareCandy, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
 	person_event SPRITE_POKE_BALL, 15, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse5FSuperRepel, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
 	person_event SPRITE_POKE_BALL, 13, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, OlivineLighthouse5FTMSwagger, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER

@@ -1,3 +1,4 @@
+MoveNames::
 	db "POUND@"
 	db "KARATE CHOP@"
 	db "DOUBLESLAP@"

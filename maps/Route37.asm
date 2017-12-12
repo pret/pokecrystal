@@ -13,12 +13,9 @@ Route37_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_OBJECTS, .Sunny
 
-	; callbacks
-
-	dbw MAPCALLBACK_OBJECTS, SunnyCallback
-
-SunnyCallback:
+.Sunny:
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .SunnyAppears
 	disappear ROUTE37_SUNNY
@@ -34,7 +31,7 @@ TrainerTwinsAnnandanne1:
 TwinsAnnandanne1Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a8e62
+	writetext TwinsAnnandanne1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -45,7 +42,7 @@ TrainerTwinsAnnandanne2:
 TwinsAnnandanne2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a8eec
+	writetext TwinsAnnandanne2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -56,7 +53,7 @@ TrainerPsychicGreg:
 PsychicGregScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a8f80
+	writetext PsychicGregAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -131,7 +128,7 @@ TwinsAnnandanne1BeatenText:
 	line "little too strong."
 	done
 
-UnknownText_0x1a8e62:
+TwinsAnnandanne1AfterBattleText:
 	text "ANN: I can tell"
 	line "what my sister and"
 
@@ -150,7 +147,7 @@ TwinsAnnandanne2BeatenText:
 	line "little too strong."
 	done
 
-UnknownText_0x1a8eec:
+TwinsAnnandanne2AfterBattleText:
 	text "ANNE: We share the"
 	line "same feelings as"
 	cont "our #MON."
@@ -170,7 +167,7 @@ PsychicGregBeatenText:
 	line "pretty sad…"
 	done
 
-UnknownText_0x1a8f80:
+PsychicGregAfterBattleText:
 	text "Putting #MON to"
 	line "sleep or paralyz-"
 	cont "ing them are good"
@@ -258,9 +255,9 @@ Route37_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_WEIRD_TREE, 12, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsAnnandanne1, -1
-	person_event SPRITE_WEIRD_TREE, 12, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsAnnandanne2, -1
-	person_event SPRITE_YOUNGSTER, 6, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerPsychicGreg, -1
+	person_event SPRITE_WEIRD_TREE, 12, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsAnnandanne1, -1
+	person_event SPRITE_WEIRD_TREE, 12, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsAnnandanne2, -1
+	person_event SPRITE_YOUNGSTER, 6, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerPsychicGreg, -1
 	person_event SPRITE_FRUIT_TREE, 5, 13, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a8e09, -1
 	person_event SPRITE_BUG_CATCHER, 8, 16, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SunnyScript, EVENT_ROUTE_37_SUNNY_OF_SUNDAY
 	person_event SPRITE_FRUIT_TREE, 5, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a8e0b, -1

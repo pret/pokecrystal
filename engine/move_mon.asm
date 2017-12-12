@@ -446,9 +446,9 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, [wPokemonWithdrawDepositParameter]
 	and a
 	jr z, .check_IfPartyIsFull
-	cp DAYCARE_WITHDRAW
+	cp DAY_CARE_WITHDRAW
 	jr z, .check_IfPartyIsFull
-	cp DAYCARE_DEPOSIT
+	cp DAY_CARE_DEPOSIT
 	ld hl, wBreedMon1Species
 	jr z, .breedmon
 
@@ -473,7 +473,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld b, 0
 	add hl, bc
 	ld a, [wPokemonWithdrawDepositParameter]
-	cp DAYCARE_WITHDRAW
+	cp DAY_CARE_WITHDRAW
 	ld a, [wBreedMon1Species]
 	jr z, .okay1
 	ld a, [CurPartySpecies]
@@ -504,7 +504,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld hl, sBoxMon1Species
 	ld bc, BOXMON_STRUCT_LENGTH
 	jr z, .okay3
-	cp DAYCARE_WITHDRAW
+	cp DAY_CARE_WITHDRAW
 	ld hl, wBreedMon1Species
 	jr z, .okay4
 	ld hl, PartyMon1Species
@@ -518,7 +518,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [wPokemonWithdrawDepositParameter]
-	cp DAYCARE_DEPOSIT
+	cp DAY_CARE_DEPOSIT
 	ld de, wBreedMon1OT
 	jr z, .okay5
 	dec a
@@ -540,7 +540,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	and a
 	jr z, .okay7
 	ld hl, wBreedMon1OT
-	cp DAYCARE_WITHDRAW
+	cp DAY_CARE_WITHDRAW
 	jr z, .okay8
 	ld hl, PartyMonOT
 
@@ -552,7 +552,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wPokemonWithdrawDepositParameter]
-	cp DAYCARE_DEPOSIT
+	cp DAY_CARE_DEPOSIT
 	ld de, wBreedMon1Nick
 	jr z, .okay9
 	dec a
@@ -574,7 +574,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	and a
 	jr z, .okay11
 	ld hl, wBreedMon1Nick
-	cp DAYCARE_WITHDRAW
+	cp DAY_CARE_WITHDRAW
 	jr z, .okay12
 	ld hl, PartyMonNicknames
 
@@ -590,7 +590,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	ld a, [wPokemonWithdrawDepositParameter]
 	cp PC_DEPOSIT
 	jr z, .took_out_of_box
-	cp DAYCARE_DEPOSIT
+	cp DAY_CARE_DEPOSIT
 	jp z, .CloseSRAM_And_ClearCarryFlag
 
 	push hl
@@ -732,7 +732,7 @@ RestorePPofDepositedPokemon: ; dcb6
 	ret
 ; dd21
 
-RetrievePokemonFromDaycareMan: ; dd21
+RetrievePokemonFromDayCareMan: ; dd21
 	ld a, [wBreedMon1Species]
 	ld [CurPartySpecies], a
 	ld de, SFX_TRANSACTION
@@ -748,7 +748,7 @@ RetrievePokemonFromDaycareMan: ; dd21
 	jp Functiondd64
 ; dd42
 
-RetrievePokemonFromDaycareLady: ; dd42
+RetrievePokemonFromDayCareLady: ; dd42
 	ld a, [wBreedMon2Species]
 	ld [CurPartySpecies], a
 	ld de, SFX_TRANSACTION
@@ -872,7 +872,7 @@ Functionde1a: ; de1a
 	ret
 ; de2a
 
-DepositMonWithDaycareMan: ; de2a
+DepositMonWithDayCareMan: ; de2a
 	ld de, wBreedMon1Nick
 	call DepositBreedmon
 	xor a
@@ -880,7 +880,7 @@ DepositMonWithDaycareMan: ; de2a
 	jp RemoveMonFromPartyOrBox
 ; de37
 
-DepositMonWithDaycareLady: ; de37
+DepositMonWithDayCareLady: ; de37
 	ld de, wBreedMon2Nick
 	call DepositBreedmon
 	xor a

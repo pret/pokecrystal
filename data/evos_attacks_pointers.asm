@@ -1,6 +1,4 @@
-; Pointer table for evolutions and attacks.
-
-; These are grouped together since they're both checked at level-up.
+; Evolutions and attacks are grouped together since they're both checked at level-up.
 
 EvosAttacksPointers:: ; 0x425b1
 	dw BulbasaurEvosAttacks
@@ -254,3 +252,4 @@ EvosAttacksPointers:: ; 0x425b1
 	dw LugiaEvosAttacks
 	dw HoOhEvosAttacks
 	dw CelebiEvosAttacks
+; 0x427a7

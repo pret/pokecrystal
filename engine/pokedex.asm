@@ -1708,11 +1708,11 @@ Pokedex_ABCMode: ; 40c30
 .doneabc
 	ret
 
-AlphabeticalPokedexOrder: ; 0x40c65
+
 INCLUDE "data/pokedex/order_alpha.asm"
 
-NewPokedexOrder: ; 0x40d60
 INCLUDE "data/pokedex/order_new.asm"
+
 
 Pokedex_DisplayModeDescription: ; 40e5b
 	xor a

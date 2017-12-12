@@ -6,36 +6,31 @@ const_value set 2
 Route43Gate_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw .Trigger0, 0
-	dw .Trigger1, 0
+	maptrigger .RocketShakedown
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 1
+	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
 
-	; callbacks
-
-	dbw MAPCALLBACK_NEWMAP, GateScript_CheckIfRockets
-
-.Trigger0:
-	priorityjump GateScript_RocketTakeover
+.RocketShakedown:
+	priorityjump .RocketTakeover
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-GateScript_CheckIfRockets:
+.CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue GateScript_NoRockets
+	iftrue .NoRockets
 	domaptrigger ROUTE_43, $0
 	return
 
-GateScript_NoRockets:
+.NoRockets:
 	domaptrigger ROUTE_43, $1
 	return
 
-GateScript_RocketTakeover:
+.RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	checkcode VAR_FACING
 	if_equal DOWN, RocketScript_Southbound
@@ -269,6 +264,6 @@ Route43Gate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
 	person_event SPRITE_ROCKET, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
 	person_event SPRITE_ROCKET, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS

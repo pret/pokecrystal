@@ -254,3 +254,4 @@ endc
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+; 0x23d07

@@ -8,21 +8,17 @@ const_value set 2
 CherrygroveCity_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.Trigger0:
+.DummyTrigger0:
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
 .FlyPoint:
@@ -44,7 +40,7 @@ CherrygroveCityGuideGent:
 	follow CHERRYGROVECITY_GRAMPS, PLAYER
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement1
 	opentext
-	writetext GuideGentPokeCenterText
+	writetext GuideGentPokecenterText
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
@@ -235,7 +231,7 @@ CherrygroveCitySign:
 GuideGentsHouseSign:
 	jumptext GuideGentsHouseSignText
 
-CherrygroveCityPokeCenterSign:
+CherrygroveCityPokecenterSign:
 	jumpstd pokecentersign
 
 CherrygroveCityMartSign:
@@ -358,7 +354,7 @@ GuideGentTourText1:
 	line "Follow me!"
 	done
 
-GuideGentPokeCenterText:
+GuideGentPokecenterText:
 	text "This is a #MON"
 	line "CENTER. They heal"
 
@@ -572,12 +568,12 @@ CherrygroveCity_MapEventHeader:
 	signpost 8, 30, SIGNPOST_READ, CherrygroveCitySign
 	signpost 9, 23, SIGNPOST_READ, GuideGentsHouseSign
 	signpost 3, 24, SIGNPOST_READ, CherrygroveCityMartSign
-	signpost 3, 30, SIGNPOST_READ, CherrygroveCityPokeCenterSign
+	signpost 3, 30, SIGNPOST_READ, CherrygroveCityPokecenterSign
 
 .PersonEvents:
 	db 5
 	person_event SPRITE_GRAMPS, 6, 32, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
 	person_event SPRITE_SILVER, 6, 39, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
-	person_event SPRITE_TEACHER, 12, 27, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1
-	person_event SPRITE_YOUNGSTER, 7, 23, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CherrygroveYoungsterScript, -1
-	person_event SPRITE_FISHER, 12, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, MysticWaterGuy, -1
+	person_event SPRITE_TEACHER, 12, 27, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1
+	person_event SPRITE_YOUNGSTER, 7, 23, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CherrygroveYoungsterScript, -1
+	person_event SPRITE_FISHER, 12, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, MysticWaterGuy, -1

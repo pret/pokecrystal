@@ -21,7 +21,7 @@ TrainerBug_catcherRob:
 Bug_catcherRobScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac34d
+	writetext Bug_catcherRobAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -32,7 +32,7 @@ TrainerBug_catcherEd:
 Bug_catcherEdScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac3cf
+	writetext Bug_catcherEdAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -43,7 +43,7 @@ TrainerBug_catcherDoug:
 Bug_catcherDougScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac423
+	writetext Bug_catcherDougAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -91,7 +91,7 @@ Bug_catcherRobBeatenText:
 	text "I was whipped…"
 	done
 
-UnknownText_0x1ac34d:
+Bug_catcherRobAfterBattleText:
 	text "I'm going to look"
 	line "for stronger bug"
 	cont "#MON."
@@ -109,7 +109,7 @@ Bug_catcherEdBeatenText:
 	text "Ouch, ouch, ouch!"
 	done
 
-UnknownText_0x1ac3cf:
+Bug_catcherEdAfterBattleText:
 	text "They'll really"
 	line "sting when you"
 	cont "take a bath."
@@ -124,7 +124,7 @@ Bug_catcherDougBeatenText:
 	text "No good!"
 	done
 
-UnknownText_0x1ac423:
+Bug_catcherDougAfterBattleText:
 	text "Bug #MON squish"
 	line "like plush toys"
 
@@ -172,9 +172,9 @@ Route2_MapEventHeader:
 
 .PersonEvents:
 	db 8
-	person_event SPRITE_BUG_CATCHER, 45, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 5, TrainerBug_catcherRob, -1
-	person_event SPRITE_BUG_CATCHER, 4, 6, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerBug_catcherEd, -1
-	person_event SPRITE_BUG_CATCHER, 40, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 3, TrainerBug_catcherDoug, -1
+	person_event SPRITE_BUG_CATCHER, 45, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 5, TrainerBug_catcherRob, -1
+	person_event SPRITE_BUG_CATCHER, 4, 6, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerBug_catcherEd, -1
+	person_event SPRITE_BUG_CATCHER, 40, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerBug_catcherDoug, -1
 	person_event SPRITE_POKE_BALL, 29, 0, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route2DireHit, EVENT_ROUTE_2_DIRE_HIT
 	person_event SPRITE_POKE_BALL, 23, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route2MaxPotion, EVENT_ROUTE_2_MAX_POTION
 	person_event SPRITE_POKE_BALL, 2, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route2Carbos, EVENT_ROUTE_2_CARBOS

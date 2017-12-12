@@ -35,9 +35,9 @@ _AnimateTileset:: ; fc000
 	jp hl
 ; fc01b
 
-Tileset00Anim: ; 0xfc01b
-Tileset02Anim: ; 0xfc01b
-Tileset03Anim: ; 0xfc01b
+Tileset0Anim: ; 0xfc01b
+TilesetJohto2Anim: ; 0xfc01b
+TilesetKantoAnim: ; 0xfc01b
 	dw VTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -51,7 +51,7 @@ Tileset03Anim: ; 0xfc01b
 	dw NULL,  DoneTileAnimation
 ; 0xfc047
 
-Tileset25Anim: ; 0xfc047
+TilesetParkAnim: ; 0xfc047
 	dw VTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw VTiles2 tile $5f, AnimateFountain
@@ -65,7 +65,7 @@ Tileset25Anim: ; 0xfc047
 	dw NULL,  DoneTileAnimation
 ; 0xfc073
 
-Tileset31Anim: ; 0xfc073
+TilesetIlexForestAnim: ; 0xfc073
 	dw NULL,  ForestTreeLeftAnimation
 	dw NULL,  ForestTreeRightAnimation
 	dw NULL,  WaitTileAnimation
@@ -80,7 +80,7 @@ Tileset31Anim: ; 0xfc073
 	dw NULL,  DoneTileAnimation
 ; 0xfc0a3
 
-Tileset01Anim: ; 0xfc0a3
+TilesetJohto1Anim: ; 0xfc0a3
 	dw VTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -124,7 +124,7 @@ TilesetAnimfc103: ; 0xfc103
 	dw NULL,  DoneTileAnimation
 ; 0xfc12f
 
-Tileset09Anim: ; 0xfc12f
+TilesetPortAnim: ; 0xfc12f
 	dw VTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -139,7 +139,7 @@ Tileset09Anim: ; 0xfc12f
 	dw NULL,  DoneTileAnimation
 ; 0xfc15f
 
-Tileset15Anim: ; 0xfc15f
+TilesetGym1Anim: ; 0xfc15f
 	dw NULL,  SafariFountainAnim2
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -182,8 +182,8 @@ TilesetAnimfc1af: ; 0xfc1af
 	dw NULL,  DoneTileAnimation
 ; 0xfc1e7
 
-Tileset24Anim: ; 0xfc1e7
-Tileset30Anim: ; 0xfc1e7
+TilesetCaveAnim: ; 0xfc1e7
+TilesetWhirlIslandsAnim: ; 0xfc1e7
 	dw VTiles2 tile $14, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileRightLeft
@@ -205,7 +205,7 @@ Tileset30Anim: ; 0xfc1e7
 	dw NULL,  DoneTileAnimation
 ; 0xfc233
 
-Tileset29Anim: ; 0xfc233
+TilesetIcePathAnim: ; 0xfc233
 	dw VTiles2 tile $35, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileRightLeft
@@ -227,7 +227,7 @@ Tileset29Anim: ; 0xfc233
 	dw NULL,  DoneTileAnimation
 ; 0xfc27f
 
-Tileset23Anim: ; 0xfc27f
+TilesetSproutTowerAnim: ; 0xfc27f
 	dw SproutPillarTilePointer9,  AnimateSproutPillarTile
 	dw SproutPillarTilePointer10, AnimateSproutPillarTile
 	dw SproutPillarTilePointer7,  AnimateSproutPillarTile
@@ -259,31 +259,31 @@ TilesetAnimfc2bf: ; 0xfc2bf
 	dw NULL,  DoneTileAnimation
 ; 0xfc2e7
 
-Tileset04Anim: ; 0xfc2e7
-Tileset05Anim: ; 0xfc2e7
-Tileset06Anim: ; 0xfc2e7
-Tileset07Anim: ; 0xfc2e7
-Tileset08Anim: ; 0xfc2e7
-Tileset10Anim: ; 0xfc2e7
-Tileset11Anim: ; 0xfc2e7
-Tileset12Anim: ; 0xfc2e7
-Tileset13Anim: ; 0xfc2e7
-Tileset14Anim: ; 0xfc2e7
-Tileset16Anim: ; 0xfc2e7
-Tileset17Anim: ; 0xfc2e7
-Tileset18Anim: ; 0xfc2e7
-Tileset19Anim: ; 0xfc2e7
-Tileset20Anim: ; 0xfc2e7
-Tileset21Anim: ; 0xfc2e7
-Tileset22Anim: ; 0xfc2e7
-Tileset26Anim: ; 0xfc2e7
-Tileset27Anim: ; 0xfc2e7
-Tileset28Anim: ; 0xfc2e7
-Tileset32Anim: ; 0xfc2e7
-Tileset33Anim: ; 0xfc2e7
-Tileset34Anim: ; 0xfc2e7
-Tileset35Anim: ; 0xfc2e7
-Tileset36Anim: ; 0xfc2e7
+TilesetBattleTowerOutsideAnim: ; 0xfc2e7
+TilesetHouse1Anim: ; 0xfc2e7
+TilesetPlayersHouseAnim: ; 0xfc2e7
+TilesetPokecenterAnim: ; 0xfc2e7
+TilesetGateAnim: ; 0xfc2e7
+TilesetLabAnim: ; 0xfc2e7
+TilesetPowerPlantAnim: ; 0xfc2e7
+TilesetMartAnim: ; 0xfc2e7
+TilesetCeladonMansionAnim: ; 0xfc2e7
+TilesetGameCornerAnim: ; 0xfc2e7
+TilesetKurtsHouseAnim: ; 0xfc2e7
+TilesetTrainStationAnim: ; 0xfc2e7
+TilesetOlivineGymAnim: ; 0xfc2e7
+TilesetLighthouseAnim: ; 0xfc2e7
+TilesetPlayersHouse2FAnim: ; 0xfc2e7
+TilesetPokeComCenterAnim: ; 0xfc2e7
+TilesetBattleTowerAnim: ; 0xfc2e7
+TilesetRuinsOfAlphAnim: ; 0xfc2e7
+TilesetRadioTowerAnim: ; 0xfc2e7
+TilesetUndergroundAnim: ; 0xfc2e7
+TilesetBetaWordRoomAnim: ; 0xfc2e7
+TilesetHoOhWordRoomAnim: ; 0xfc2e7
+TilesetKabutoWordRoomAnim: ; 0xfc2e7
+TilesetOmanyteWordRoomAnim: ; 0xfc2e7
+TilesetAerodactylWordRoomAnim: ; 0xfc2e7
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation

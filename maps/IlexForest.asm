@@ -17,9 +17,6 @@ IlexForest_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_OBJECTS, .FarfetchdCallback
 
 .FarfetchdCallback:
@@ -396,7 +393,7 @@ TrainerBug_catcherWayne:
 Bug_catcherWayneScript:
 	end_if_just_battled
 	opentext
-	writetext Bug_catcherWayneAfterText
+	writetext Bug_catcherWayneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -929,7 +926,7 @@ Bug_catcherWayneBeatenText:
 	line "#MON before…"
 	done
 
-Bug_catcherWayneAfterText:
+Bug_catcherWayneAfterBattleText:
 	text "A #MON I've"
 	line "never seen before"
 
@@ -965,14 +962,14 @@ IlexForest_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_BIRD, 31, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
-	person_event SPRITE_YOUNGSTER, 28, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, IlexForestCharcoalApprenticeScript, EVENT_ILEX_FOREST_APPRENTICE
+	person_event SPRITE_BIRD, 31, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
+	person_event SPRITE_YOUNGSTER, 28, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, IlexForestCharcoalApprenticeScript, EVENT_ILEX_FOREST_APPRENTICE
 	person_event SPRITE_BLACK_BELT, 28, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IlexForestCharcoalMasterScript, EVENT_ILEX_FOREST_CHARCOAL_MASTER
 	person_event SPRITE_ROCKER, 14, 15, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IlexForestHeadbuttGuyScript, -1
 	person_event SPRITE_POKE_BALL, 32, 20, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IlexForestRevive, EVENT_ILEX_FOREST_REVIVE
 	person_event SPRITE_KURT, 29, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
-	person_event SPRITE_LASS, 24, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, IlexForestLassScript, EVENT_ILEX_FOREST_LASS
-	person_event SPRITE_YOUNGSTER, 1, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 0, TrainerBug_catcherWayne, -1
+	person_event SPRITE_LASS, 24, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, IlexForestLassScript, EVENT_ILEX_FOREST_LASS
+	person_event SPRITE_YOUNGSTER, 1, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 0, TrainerBug_catcherWayne, -1
 	person_event SPRITE_POKE_BALL, 17, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IlexForestXAttack, EVENT_ILEX_FOREST_X_ATTACK
 	person_event SPRITE_POKE_BALL, 7, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IlexForestAntidote, EVENT_ILEX_FOREST_ANTIDOTE
 	person_event SPRITE_POKE_BALL, 1, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IlexForestEther, EVENT_ILEX_FOREST_ETHER

@@ -145,5 +145,5 @@ GBCOnlyString: ; 4eb38
 
 
 GBCOnlyGFX: ; 4eb76
-INCBIN "gfx/misc/gbc_only.2bpp.lz"
+INCBIN "gfx/sgb/gbc_only.2bpp.lz"
 ; 4f0bc

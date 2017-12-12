@@ -8,18 +8,16 @@ const_value set 2
 KrissHouse1F_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x7a4d6, 0
-	dw UnknownScript_0x7a4d7, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x7a4d6:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x7a4d7:
+.DummyTrigger1:
 	end
 
 UnknownScript_0x7a4d8:
@@ -412,7 +410,7 @@ KrissHouse1F_MapEventHeader:
 .PersonEvents:
 	db 5
 	person_event SPRITE_MOM, 4, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
-	person_event SPRITE_MOM, 2, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 1, 0, PERSONTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_MOM, 4, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 2, 0, PERSONTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_MOM, 2, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 4, 0, PERSONTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	person_event SPRITE_POKEFAN_F, 4, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR
+	person_event SPRITE_MOM, 2, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, MORN, 0, PERSONTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 4, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, 0, PERSONTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_MOM, 2, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, PERSONTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
+	person_event SPRITE_POKEFAN_F, 4, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR

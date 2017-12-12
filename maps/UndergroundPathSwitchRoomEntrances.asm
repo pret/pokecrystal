@@ -46,22 +46,17 @@ const_value set 2
 UndergroundPathSwitchRoomEntrances_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_TILES, .UpdateDoorPositions
 
-.Trigger0:
+.DummyTrigger0:
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
 .UpdateDoorPositions:
@@ -216,7 +211,7 @@ TrainerGruntM11:
 GruntM11Script:
 	end_if_just_battled
 	opentext
-	writetext GruntM11AfterText
+	writetext GruntM11AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -227,7 +222,7 @@ TrainerGruntM25:
 GruntM25Script:
 	end_if_just_battled
 	opentext
-	writetext GruntM25AfterText
+	writetext GruntM25AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -238,7 +233,7 @@ TrainerBurglarDuncan:
 BurglarDuncanScript:
 	end_if_just_battled
 	opentext
-	writetext BurglarDuncanAfterText
+	writetext BurglarDuncanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -249,7 +244,7 @@ TrainerBurglarEddie:
 BurglarEddieScript:
 	end_if_just_battled
 	opentext
-	writetext BurglarEddieAfterText
+	writetext BurglarEddieAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -260,7 +255,7 @@ TrainerGruntM13:
 GruntM13Script:
 	end_if_just_battled
 	opentext
-	writetext GruntM13AfterText
+	writetext GruntM13AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -271,7 +266,7 @@ TrainerGruntF3:
 GruntF3Script:
 	end_if_just_battled
 	opentext
-	writetext GruntF3AfterText
+	writetext GruntF3AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -790,7 +785,7 @@ GruntM11BeatenText:
 	line "by indecision!"
 	done
 
-GruntM11AfterText:
+GruntM11AfterBattleText:
 	text "I'm confused too…"
 	line "The switch on the"
 
@@ -814,7 +809,7 @@ GruntM25BeatenText:
 	line "I blew it."
 	done
 
-GruntM25AfterText:
+GruntM25AfterBattleText:
 	text "All right. A hint!"
 
 	para "Change the order"
@@ -834,7 +829,7 @@ BurglarDuncanBeatenText:
 	text "Mercy!"
 	done
 
-BurglarDuncanAfterText:
+BurglarDuncanAfterBattleText:
 	text "Steal and sell!"
 	line "That's basic in"
 	cont "crime, kid!"
@@ -853,7 +848,7 @@ BurglarEddieBeatenText:
 	text "Over the top!"
 	done
 
-BurglarEddieAfterText:
+BurglarEddieAfterBattleText:
 	text "UNDERGROUND WARE-"
 	line "HOUSE?"
 
@@ -878,7 +873,7 @@ GruntM13BeatenText:
 	line "you're cool, huh?"
 	done
 
-GruntM13AfterText:
+GruntM13AfterBattleText:
 	text "You must have ice"
 	line "in your veins to"
 	cont "dis TEAM ROCKET."
@@ -905,7 +900,7 @@ GruntF3BeatenText:
 	text "How could you?"
 	done
 
-GruntF3AfterText:
+GruntF3AfterBattleText:
 	text "Go wherever you'd"
 	line "like! Get lost!"
 	cont "See if I care!"
@@ -968,12 +963,12 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_PHARMACIST, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_PHARMACIST, 8, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_PHARMACIST, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_PHARMACIST, 8, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET, 2, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET, 2, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_ROCKET, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 12, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	person_event SPRITE_ROCKET_GIRL, 12, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	person_event SPRITE_TEACHER, 27, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x7ca7d, -1
 	person_event SPRITE_SUPER_NERD, 27, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x7ca7a, -1
 	person_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesSmokeBall, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL

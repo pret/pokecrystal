@@ -16,7 +16,7 @@ TrainerSwimmermSeth:
 SwimmermSethScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac873
+	writetext SwimmermSethAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -27,7 +27,7 @@ TrainerSwimmerfNikki:
 SwimmerfNikkiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac8f1
+	writetext SwimmerfNikkiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -38,7 +38,7 @@ TrainerFisherArnold:
 FisherArnoldScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ac95c
+	writetext FisherArnoldAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -52,7 +52,7 @@ SwimmermSethBeatenText:
 	text "Glug…"
 	done
 
-UnknownText_0x1ac873:
+SwimmermSethAfterBattleText:
 	text "This arrogant guy"
 	line "was at CINNABAR's"
 	cont "volcano."
@@ -69,7 +69,7 @@ SwimmerfNikkiBeatenText:
 	line "sunburn…"
 	done
 
-UnknownText_0x1ac8f1:
+SwimmerfNikkiAfterBattleText:
 	text "I have to watch"
 	line "out for blemishes"
 	cont "caused by the sun."
@@ -84,7 +84,7 @@ FisherArnoldBeatenText:
 	text "Utter failure…"
 	done
 
-UnknownText_0x1ac95c:
+FisherArnoldAfterBattleText:
 	text "I'll just go back"
 	line "to fishing…"
 	done
@@ -104,6 +104,6 @@ Route21_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 16, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfNikki, -1
-	person_event SPRITE_SWIMMER_GUY, 30, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerSwimmermSeth, -1
-	person_event SPRITE_FISHER, 22, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherArnold, -1
+	person_event SPRITE_SWIMMER_GIRL, 16, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfNikki, -1
+	person_event SPRITE_SWIMMER_GUY, 30, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerSwimmermSeth, -1
+	person_event SPRITE_FISHER, 22, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherArnold, -1

@@ -10,18 +10,16 @@ const_value set 2
 PowerPlant_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x188dc3, 0
-	dw UnknownScript_0x188dc4, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x188dc3:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x188dc4:
+.DummyTrigger1:
 	end
 
 PowerPlantGuardPhoneScript:
@@ -193,7 +191,7 @@ UnknownScript_0x188ec5:
 Forest:
 	faceplayer
 	opentext
-	trade $6
+	trade NPCTRADE_FOREST
 	waitbutton
 	closetext
 	end
@@ -410,10 +408,10 @@ PowerPlant_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_OFFICER, 14, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, OfficerScript_0x188df5, -1
-	person_event SPRITE_GYM_GUY, 9, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x188e15, -1
-	person_event SPRITE_GYM_GUY, 11, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x188e29, -1
-	person_event SPRITE_OFFICER, 3, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, OfficerScript_0x188e3d, -1
-	person_event SPRITE_GYM_GUY, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x188e51, -1
-	person_event SPRITE_FISHER, 10, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, PowerPlantManager, -1
-	person_event SPRITE_GYM_GUY, 5, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, Forest, -1
+	person_event SPRITE_OFFICER, 14, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, OfficerScript_0x188df5, -1
+	person_event SPRITE_GYM_GUY, 9, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x188e15, -1
+	person_event SPRITE_GYM_GUY, 11, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x188e29, -1
+	person_event SPRITE_OFFICER, 3, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, OfficerScript_0x188e3d, -1
+	person_event SPRITE_GYM_GUY, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x188e51, -1
+	person_event SPRITE_FISHER, 10, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PowerPlantManager, -1
+	person_event SPRITE_GYM_GUY, 5, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Forest, -1

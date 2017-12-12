@@ -7,21 +7,17 @@ const_value set 2
 OlivineCity_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.Trigger0:
+.DummyTrigger0:
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
 .FlyPoint:
@@ -113,7 +109,7 @@ OlivineLighthouseSign:
 OlivineCityBattleTowerSign:
 	jumptext OlivineCityBattleTowerSignText
 
-OlivineCityPokeCenterSign:
+OlivineCityPokecenterSign:
 	jumpstd pokecentersign
 
 OlivineCityMartSign:
@@ -321,12 +317,12 @@ OlivineCity_MapEventHeader:
 	signpost 11, 7, SIGNPOST_READ, OlivineGymSign
 	signpost 28, 30, SIGNPOST_READ, OlivineLighthouseSign
 	signpost 23, 3, SIGNPOST_READ, OlivineCityBattleTowerSign
-	signpost 21, 14, SIGNPOST_READ, OlivineCityPokeCenterSign
+	signpost 21, 14, SIGNPOST_READ, OlivineCityPokecenterSign
 	signpost 17, 20, SIGNPOST_READ, OlivineCityMartSign
 
 .PersonEvents:
 	db 4
 	person_event SPRITE_SAILOR, 27, 26, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x1a88a3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a88a6, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a88a6, -1
 	person_event SPRITE_SAILOR, 21, 17, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x1a88ba, -1
 	person_event SPRITE_OLIVINE_RIVAL, 11, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY

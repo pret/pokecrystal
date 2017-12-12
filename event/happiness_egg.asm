@@ -55,25 +55,25 @@ ChangeHappiness: ; 71c2
 
 	push de
 	ld a, [de]
-	cp 100
+	cp HAPPINESS_THRESHOLD_1
 	ld e, 0
 	jr c, .ok
 	inc e
-	cp 200
+	cp HAPPINESS_THRESHOLD_2
 	jr c, .ok
 	inc e
 
 .ok
 	dec c
 	ld b, 0
-	ld hl, .Actions
+	ld hl, HappinessChanges
 	add hl, bc
 	add hl, bc
 	add hl, bc
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-	cp 100
+	cp $64 ; $80?
 	pop de
 
 	ld a, [de]
@@ -102,26 +102,9 @@ ChangeHappiness: ; 71c2
 	ld [BattleMonHappiness], a
 	ret
 
-.Actions:
-	db  +5,  +3,  +2 ; Gained a level
-	db  +5,  +3,  +2 ; Vitamin
-	db  +1,  +1,  +0 ; X Item
-	db  +3,  +2,  +1 ; Battled a Gym Leader
-	db  +1,  +1,  +0 ; Learned a move
-	db  -1,  -1,  -1 ; Lost to an enemy
-	db  -5,  -5, -10 ; Fainted due to poison
-	db  -5,  -5, -10 ; Lost to a much stronger enemy
-	db  +1,  +1,  +1 ; Haircut (Y1)
-	db  +3,  +3,  +1 ; Haircut (Y2)
-	db  +5,  +5,  +2 ; Haircut (Y3)
-	db  +1,  +1,  +1 ; Haircut (O1)
-	db  +3,  +3,  +1 ; Haircut (O2)
-	db +10, +10,  +4 ; Haircut (O3)
-	db  -5,  -5, -10 ; Used Heal Powder or Energypowder (bitter)
-	db -10, -10, -15 ; Used Energy Root (bitter)
-	db -15, -15, -20 ; Used Revival Herb (bitter)
-	db  +3,  +3,  +1 ; Grooming
-	db +10,  +6,  +4 ; Gained a level in the place where it was caught
+
+INCLUDE "data/happiness_changes.asm"
+
 
 StepHappiness:: ; 725a
 ; Raise the party's happiness by 1 point every other step cycle.
@@ -158,36 +141,36 @@ StepHappiness:: ; 725a
 	jr nz, .loop
 	ret
 
-DaycareStep:: ; 7282
+DayCareStep:: ; 7282
 
-	ld a, [wDaycareMan]
+	ld a, [wDayCareMan]
 	bit 0, a
-	jr z, .daycare_lady
+	jr z, .day_care_lady
 
 	ld a, [wBreedMon1Level] ; level
-	cp 100
-	jr nc, .daycare_lady
+	cp MAX_LEVEL
+	jr nc, .day_care_lady
 	ld hl, wBreedMon1Exp + 2 ; exp
 	inc [hl]
-	jr nz, .daycare_lady
+	jr nz, .day_care_lady
 	dec hl
 	inc [hl]
-	jr nz, .daycare_lady
+	jr nz, .day_care_lady
 	dec hl
 	inc [hl]
 	ld a, [hl]
 	cp 5242880 / $10000
-	jr c, .daycare_lady
+	jr c, .day_care_lady
 	ld a, 5242880 / $10000
 	ld [hl], a
 
-.daycare_lady
-	ld a, [wDaycareLady]
+.day_care_lady
+	ld a, [wDayCareLady]
 	bit 0, a
 	jr z, .check_egg
 
 	ld a, [wBreedMon2Level] ; level
-	cp 100
+	cp MAX_LEVEL
 	jr nc, .check_egg
 	ld hl, wBreedMon2Exp + 2 ; exp
 	inc [hl]
@@ -204,7 +187,7 @@ DaycareStep:: ; 7282
 	ld [hl], a
 
 .check_egg
-	ld hl, wDaycareMan
+	ld hl, wDayCareMan
 	bit 5, [hl] ; egg
 	ret z
 	ld hl, wStepsToEgg
@@ -232,7 +215,7 @@ DaycareStep:: ; 7282
 	call Random
 	cp b
 	ret nc
-	ld hl, wDaycareMan
+	ld hl, wDayCareMan
 	res 5, [hl]
 	set 6, [hl]
 	ret

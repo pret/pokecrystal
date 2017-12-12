@@ -53,10 +53,10 @@ MenuDataHeader_0x62602:
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 08, 15 ; end coords
-	dw MenuData2_0x6260a
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x6260a:
+.MenuData2:
 	db $80 ; flags
 	db 3 ; items
 	db "# つうしん クラブ@" ; # COM CLUB
@@ -98,10 +98,10 @@ MenuDataHeader_0x6264c:
 	db $40 ; flags
 	db 00, 00 ; start coords
 	db 08, 15 ; end coords
-	dw MenuData2_0x62654
+	dw .MenuData2
 	db 1 ; default option
 
-MenuData2_0x62654:
+.MenuData2:
 	db $80 ; flags
 	db 3 ; items
 	db "でんわ", $1f,"つかうとき@" ; Use phone
@@ -288,6 +288,6 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 28, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d1, -1
-	person_event SPRITE_SCIENTIST, 27, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d4, -1
-	person_event SPRITE_SCIENTIST, 29, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d7, -1
+	person_event SPRITE_SCIENTIST, 28, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d1, -1
+	person_event SPRITE_SCIENTIST, 27, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d4, -1
+	person_event SPRITE_SCIENTIST, 29, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d7, -1

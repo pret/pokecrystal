@@ -1411,7 +1411,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	ret
 
 MysteryGiftGFX: ; 105258
-INCBIN "gfx/misc/mystery_gift.2bpp"
+INCBIN "gfx/mystery_gift/mystery_gift.2bpp"
 MysteryGiftGFXEnd:
 
 Function105688: ; 105688 (41:5688)
@@ -1732,4 +1732,4 @@ Function1057d7: ; 1057d7 (41:57d7)
 
 ; japanese mystery gift gfx
 MysteryGiftJP_GFX: ; 105930
-INCBIN "gfx/misc/mystery_gift_jp.2bpp"
+INCBIN "gfx/mystery_gift/mystery_gift_jp.2bpp"

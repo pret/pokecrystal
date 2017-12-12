@@ -12,22 +12,17 @@ const_value set 2
 DragonsDenB1F_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_NEWMAP, .CheckSilver
 
-.Trigger0:
+.DummyTrigger0:
 	end
 
-.Trigger1:
+.DummyTrigger1:
 	end
 
 .CheckSilver:
@@ -94,7 +89,7 @@ TrainerCooltrainermDarin:
 CooltrainermDarinScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainermDarinAfterText
+	writetext CooltrainermDarinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -105,7 +100,7 @@ TrainerCooltrainerfCara:
 CooltrainerfCaraScript:
 	end_if_just_battled
 	opentext
-	writetext CooltrainerfCaraAfterText
+	writetext CooltrainerfCaraAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -116,7 +111,7 @@ TrainerTwinsLeaandpia1:
 TwinsLeaandpia1Script:
 	end_if_just_battled
 	opentext
-	writetext TrinsLeaandpia1AfterText
+	writetext TwinsLeaandpia1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -127,7 +122,7 @@ TrainerTwinsLeaandpia2:
 TwinsLeaandpia2Script:
 	end_if_just_battled
 	opentext
-	writetext TrinsLeaandpia2AfterText
+	writetext TwinsLeaandpia2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -332,7 +327,7 @@ CooltrainermDarinBeatenText:
 	text "S-strong!"
 	done
 
-CooltrainermDarinAfterText:
+CooltrainermDarinAfterBattleText:
 	text "The SHRINE ahead"
 	line "is home to the"
 
@@ -352,7 +347,7 @@ CooltrainerfCaraBeatenText:
 	text "Oh yikes, I lost!"
 	done
 
-CooltrainerfCaraAfterText:
+CooltrainerfCaraAfterBattleText:
 	text "Soon I'm going to"
 	line "get permission"
 
@@ -378,7 +373,7 @@ TwinsLeaandpia1BeatenText:
 	text "Ouchies."
 	done
 
-TrinsLeaandpia1AfterText:
+TwinsLeaandpia1AfterBattleText:
 	text "It was like having"
 	line "to battle LANCE."
 	done
@@ -391,7 +386,7 @@ TwinsLeaandpia2BeatenText:
 	text "Meanie."
 	done
 
-TrinsLeaandpia2AfterText:
+TwinsLeaandpia2AfterBattleText:
 	text "We'll tell on you."
 
 	para "MASTER will be"
@@ -434,11 +429,11 @@ DragonsDenB1F_MapEventHeader:
 .PersonEvents:
 	db 9
 	person_event SPRITE_POKE_BALL, 16, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
-	person_event SPRITE_CLAIR, 30, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
+	person_event SPRITE_CLAIR, 30, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
 	person_event SPRITE_SILVER, 23, 20, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN
-	person_event SPRITE_COOLTRAINER_M, 8, 20, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 4, TrainerCooltrainermDarin, -1
-	person_event SPRITE_COOLTRAINER_F, 8, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainerfCara, -1
-	person_event SPRITE_TWIN, 17, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsLeaandpia1, -1
-	person_event SPRITE_TWIN, 18, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsLeaandpia2, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 20, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerCooltrainermDarin, -1
+	person_event SPRITE_COOLTRAINER_F, 8, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerCooltrainerfCara, -1
+	person_event SPRITE_TWIN, 17, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsLeaandpia1, -1
+	person_event SPRITE_TWIN, 18, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsLeaandpia2, -1
 	person_event SPRITE_POKE_BALL, 4, 30, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, DragonsDenB1FCalcium, EVENT_DRAGONS_DEN_B1F_CALCIUM
 	person_event SPRITE_POKE_BALL, 20, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, DragonsDenB1FMaxElixer, EVENT_DRAGONS_DEN_B1F_MAX_ELIXER

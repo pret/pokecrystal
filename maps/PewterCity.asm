@@ -11,8 +11,6 @@ PewterCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -58,7 +56,7 @@ PewterCityMtMoonGiftShopSign:
 PewterCityWelcomeSign:
 	jumptext PewterCityWelcomeSignText
 
-PewterCityPokeCenterSign:
+PewterCityPokecenterSign:
 	jumpstd pokecentersign
 
 PewterCityMartSign:
@@ -176,13 +174,13 @@ PewterCity_MapEventHeader:
 	signpost 9, 15, SIGNPOST_READ, PewterMuseumSign
 	signpost 19, 33, SIGNPOST_READ, PewterCityMtMoonGiftShopSign
 	signpost 29, 19, SIGNPOST_READ, PewterCityWelcomeSign
-	signpost 25, 14, SIGNPOST_READ, PewterCityPokeCenterSign
+	signpost 25, 14, SIGNPOST_READ, PewterCityPokecenterSign
 	signpost 17, 24, SIGNPOST_READ, PewterCityMartSign
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_COOLTRAINER_F, 11, 19, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x18c009, -1
-	person_event SPRITE_BUG_CATCHER, 29, 14, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x18c00c, -1
-	person_event SPRITE_GRAMPS, 17, 29, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GrampsScript_0x18c00f, -1
+	person_event SPRITE_COOLTRAINER_F, 11, 19, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x18c009, -1
+	person_event SPRITE_BUG_CATCHER, 29, 14, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x18c00c, -1
+	person_event SPRITE_GRAMPS, 17, 29, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GrampsScript_0x18c00f, -1
 	person_event SPRITE_FRUIT_TREE, 3, 32, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x18c03e, -1
 	person_event SPRITE_FRUIT_TREE, 3, 30, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x18c040, -1

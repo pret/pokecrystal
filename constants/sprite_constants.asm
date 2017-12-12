@@ -1,5 +1,5 @@
 ; sprite ids
-; SpriteHeaders indexes (see gfx/overworld/sprite_headers.asm)
+; SpriteHeaders indexes (see gfx/sprite_headers.asm)
 	const_def
 	const SPRITE_NONE ; 00
 	const SPRITE_CHRIS ; 01
@@ -105,7 +105,7 @@
 	const SPRITE_RAIKOU ; 65
 	const SPRITE_STANDING_YOUNGSTER ; 66
 
-; SpriteMons indexes (see engine/overworld.asm)
+; SpriteMons indexes (see data/sprite_mons.asm)
 const_value SET $80
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80
@@ -146,8 +146,8 @@ SPRITE_POKEMON EQU const_value
 
 ; special GetMonSprite values (see engine/overworld.asm)
 const_value SET $e0
-	const SPRITE_DAYCARE_MON_1 ; e0
-	const SPRITE_DAYCARE_MON_2 ; e1
+	const SPRITE_DAY_CARE_MON_1 ; e0
+	const SPRITE_DAY_CARE_MON_2 ; e1
 
 ; VariableSprites indexes (see wram.asm)
 const_value SET $f0
@@ -166,7 +166,7 @@ SPRITE_VARS EQU const_value
 	const SPRITE_COPYCAT ; fb
 	const SPRITE_JANINE_IMPERSONATOR ; fc
 
-; sprite_header struct members (see gfx/overworld/sprite_headers.asm)
+; sprite_header struct members (see gfx/sprite_headers.asm)
 	const_def
 	const SPRITEHEADER_ADDR_LO
 	const SPRITEHEADER_ADDR_HI
@@ -192,6 +192,17 @@ const_value SET 1
 	const PAL_OW_SILVER ; 5
 	const PAL_OW_TREE   ; 6
 	const PAL_OW_ROCK   ; 7
+
+; person_events set bit 3 so as not to use the sprite's default palette
+const_value set (1 << 3)
+	const PAL_NPC_RED    ; 8
+	const PAL_NPC_BLUE   ; 9
+	const PAL_NPC_GREEN  ; a
+	const PAL_NPC_BROWN  ; b
+	const PAL_NPC_PINK   ; c
+	const PAL_NPC_SILVER ; d
+	const PAL_NPC_TREE   ; e
+	const PAL_NPC_ROCK   ; f
 
 ; SpriteMovementData indexes (see data/map_objects.asm)
 	const_def
@@ -315,7 +326,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const PERSON_ACTION_GRASS_SHAKE
 	const PERSON_ACTION_SKYFALL
 
-; Facings indexes (see engine/facings.asm)
+; Facings indexes (see data/facings.asm)
 	const_def
 	const FACING_STEP_DOWN_0
 	const FACING_STEP_DOWN_1
@@ -369,7 +380,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const SPRITEANIMSTRUCT_0E              ; e
 	const SPRITEANIMSTRUCT_0F              ; f
 
-; SpriteAnimFrameData indexes (see data/sprite_engine.asm)
+; SpriteAnimFrameData indexes (see data/sprite_anim_frames.asm)
 	const_def
 	const SPRITE_ANIM_FRAMESET_00
 	const SPRITE_ANIM_FRAMESET_PARTY_MON
@@ -476,7 +487,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const SPRITE_ANIM_SEQ_INTRO_UNOWN_F
 	const SPRITE_ANIM_SEQ_INTRO_SUICUNE_AWAY
 
-; SpriteAnimSeqData indexes (see engine/sprites.asm)
+; SpriteAnimSeqData indexes (see data/sprite_anim_seqs.asm)
 	const_def
 	const SPRITE_ANIM_INDEX_PARTY_MON
 	const SPRITE_ANIM_INDEX_01
@@ -524,7 +535,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY
 	const SPRITE_ANIM_INDEX_CELEBI
 
-; SpriteAnimOAMData indexes (see data/sprite_engine.asm)
+; SpriteAnimOAMData indexes (see data/sprite_anim_oam.asm)
 	const_def
 	const SPRITE_ANIM_FRAME_IDX_00
 	const SPRITE_ANIM_FRAME_IDX_01

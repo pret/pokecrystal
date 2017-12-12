@@ -1,22 +1,20 @@
 MobileTradeRoomMobile_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .InitializeMobileTradeRoomMobile
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
-	priorityjump MobileTradeRoomMobile_Initialize
+.InitializeMobileTradeRoomMobile:
+	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
-MobileTradeRoomMobile_Initialize:
+.InitializeAndPreparePokecenter2F:
 	dotrigger $1
 	domaptrigger POKECENTER_2F, $4
 	end

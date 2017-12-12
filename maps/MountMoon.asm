@@ -4,19 +4,17 @@ const_value set 2
 MountMoon_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	maptrigger .RivalEncounter
+	maptrigger .DummyTrigger
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
+.RivalEncounter:
 	priorityjump .RivalBattle
 	end
 
-.Trigger1:
+.DummyTrigger:
 	end
 
 .RivalBattle:

@@ -14,18 +14,16 @@ const_value set 2
 Route25_MapScriptHeader:
 .MapTriggers:
 	db 2
-
-	; triggers
-	dw UnknownScript_0x19ee9e, 0
-	dw UnknownScript_0x19ee9f, 0
+	maptrigger .DummyTrigger0
+	maptrigger .DummyTrigger1
 
 .MapCallbacks:
 	db 0
 
-UnknownScript_0x19ee9e:
+.DummyTrigger0:
 	end
 
-UnknownScript_0x19ee9f:
+.DummyTrigger1:
 	end
 
 UnknownScript_0x19eea0:
@@ -86,7 +84,7 @@ TrainerSchoolboyDudley:
 SchoolboyDudleyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f1b5
+	writetext SchoolboyDudleyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -97,7 +95,7 @@ TrainerLassEllen:
 LassEllenScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f208
+	writetext LassEllenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -108,7 +106,7 @@ TrainerSchoolboyJoe:
 SchoolboyJoeScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f25c
+	writetext SchoolboyJoeAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -119,7 +117,7 @@ TrainerLassLaura:
 LassLauraScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f2a6
+	writetext LassLauraAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -130,7 +128,7 @@ TrainerCamperLloyd:
 CamperLloydScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f2f8
+	writetext CamperLloydAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -141,7 +139,7 @@ TrainerLassShannon:
 LassShannonScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f35b
+	writetext LassShannonAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -152,7 +150,7 @@ TrainerSupernerdPat:
 SupernerdPatScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19f41a
+	writetext SupernerdPatAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -287,7 +285,7 @@ SchoolboyDudleyBeatenText:
 	text "Whoo! Good stuff."
 	done
 
-UnknownText_0x19f1b5:
+SchoolboyDudleyAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -301,7 +299,7 @@ LassEllenBeatenText:
 	text "How could I lose?"
 	done
 
-UnknownText_0x19f208:
+LassEllenAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -315,7 +313,7 @@ SchoolboyJoeBeatenText:
 	text "Ow! Stomped flat!"
 	done
 
-UnknownText_0x19f25c:
+SchoolboyJoeAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -329,7 +327,7 @@ LassLauraBeatenText:
 	text "I lost too…"
 	done
 
-UnknownText_0x19f2a6:
+LassLauraAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -343,7 +341,7 @@ CamperLloydBeatenText:
 	text "Whoa! Too much."
 	done
 
-UnknownText_0x19f2f8:
+CamperLloydAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -358,7 +356,7 @@ LassShannonBeatenText:
 	text "You're kidding."
 	done
 
-UnknownText_0x19f35b:
+LassShannonAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -382,7 +380,7 @@ SupernerdPatBeatenText:
 	line "at all?"
 	done
 
-UnknownText_0x19f41a:
+SupernerdPatAfterBattleText:
 	text "I'm sorry… I won't"
 	line "cheat anymore…"
 	done
@@ -452,14 +450,14 @@ Route25_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_MISTY, 9, 46, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_COOLTRAINER_M, 10, 46, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
-	person_event SPRITE_YOUNGSTER, 8, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerSchoolboyDudley, -1
-	person_event SPRITE_LASS, 11, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerLassEllen, -1
-	person_event SPRITE_YOUNGSTER, 8, 21, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerSchoolboyJoe, -1
-	person_event SPRITE_LASS, 6, 22, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 3, TrainerLassLaura, -1
-	person_event SPRITE_YOUNGSTER, 4, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 2, TrainerCamperLloyd, -1
-	person_event SPRITE_LASS, 11, 28, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 1, TrainerLassShannon, -1
-	person_event SPRITE_SUPER_NERD, 7, 31, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 1, TrainerSupernerdPat, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 37, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x19efac, -1
+	person_event SPRITE_MISTY, 9, 46, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_COOLTRAINER_M, 10, 46, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
+	person_event SPRITE_YOUNGSTER, 8, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerSchoolboyDudley, -1
+	person_event SPRITE_LASS, 11, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerLassEllen, -1
+	person_event SPRITE_YOUNGSTER, 8, 21, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerSchoolboyJoe, -1
+	person_event SPRITE_LASS, 6, 22, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerLassLaura, -1
+	person_event SPRITE_YOUNGSTER, 4, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerCamperLloyd, -1
+	person_event SPRITE_LASS, 11, 28, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerLassShannon, -1
+	person_event SPRITE_SUPER_NERD, 7, 31, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 1, TrainerSupernerdPat, -1
+	person_event SPRITE_COOLTRAINER_M, 8, 37, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x19efac, -1
 	person_event SPRITE_POKE_BALL, 4, 32, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route25Protein, EVENT_ROUTE_25_PROTEIN

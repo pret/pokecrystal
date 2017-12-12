@@ -737,8 +737,8 @@ Link_PrepPartyData_Gen1: ; 28499
 .skip_steel
 	push bc
 	dec a
-	ld hl, BaseData + 7 ; type
-	ld bc, BaseData1 - BaseData0
+	ld hl, BaseData + BASE_TYPES
+	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 	ld bc, 2
 	ld a, BANK(BaseData)
@@ -1112,7 +1112,7 @@ TimeCapsule_ReplaceTeruSama: ; 28771
 	and a
 	ret z
 	push hl
-	ld hl, .TimeCapsuleAlt
+	ld hl, TimeCapsule_CatchRateItems
 .loop
 	ld a, [hli]
 	and a
@@ -1129,24 +1129,9 @@ TimeCapsule_ReplaceTeruSama: ; 28771
 	pop hl
 	ret
 
-.TimeCapsuleAlt: ; 28785
-; Pokémon traded from RBY do not have held items, so GSC usually interprets the
-; catch rate as an item. However, if the catch rate appears in this table, the
-; item associated with the table entry is used instead.
-	db ITEM_19, LEFTOVERS
-	db ITEM_2D, BITTER_BERRY
-	db ITEM_32, GOLD_BERRY
-	db ITEM_5A, BERRY
-	db ITEM_64, BERRY
-	db ITEM_78, BERRY
-	db ITEM_87, BERRY
-	db ITEM_BE, BERRY
-	db ITEM_C3, BERRY
-	db ITEM_DC, BERRY
-	db ITEM_FA, BERRY
-	db -1,      BERRY
-	db  0
-; 2879e
+
+INCLUDE "data/time_capsule/catch_rate_items.asm"
+
 
 Link_CopyOTData: ; 2879e
 .loop
@@ -2594,5 +2579,5 @@ Special_CableClubCheckWhichChris: ; 29f47
 
 GFX_29f54: ; 29f54
 ; unreferenced
-INCBIN "gfx/unknown/029f54.2bpp"
+INCBIN "gfx/unknown/unused_border.2bpp"
 ; 29fe4

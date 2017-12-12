@@ -146,7 +146,7 @@ TrainerPokefanmColin:
 PokefanmColinScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7635b
+	writetext PokefanmColinAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -157,7 +157,7 @@ TrainerTwinsMegandpeg1:
 TwinsMegandpeg1Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x763c2
+	writetext TwinsMegandpeg1AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -168,7 +168,7 @@ TrainerTwinsMegandpeg2:
 TwinsMegandpeg2Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76428
+	writetext TwinsMegandpeg2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -179,7 +179,7 @@ TrainerPsychicRodney:
 PsychicRodneyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76497
+	writetext PsychicRodneyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -190,7 +190,7 @@ TrainerPokefanmJeremy:
 PokefanmJeremyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7651c
+	writetext PokefanmJeremyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -201,7 +201,7 @@ TrainerPokefanfGeorgia:
 PokefanfGeorgiaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x76596
+	writetext PokefanfGeorgiaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -212,7 +212,7 @@ TrainerSupernerdShawn:
 SupernerdShawnScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x7660f
+	writetext SupernerdShawnAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -347,7 +347,7 @@ PokefanmColinBeatenText:
 	text "You're strong!"
 	done
 
-UnknownText_0x7635b:
+PokefanmColinAfterBattleText:
 	text "You're traveling"
 	line "all alone?"
 
@@ -365,7 +365,7 @@ TwinsMegandpeg1BeatenText:
 	text "Oh! We lost!"
 	done
 
-UnknownText_0x763c2:
+TwinsMegandpeg1AfterBattleText:
 	text "Baby is a rude"
 	line "name to call us"
 	cont "girls!"
@@ -382,7 +382,7 @@ TwinsMegandpeg2BeatenText:
 	text "Oh! We lost!"
 	done
 
-UnknownText_0x76428:
+TwinsMegandpeg2AfterBattleText:
 	text "Sometimes, kids"
 	line "are smarter than"
 	cont "grown-ups!"
@@ -399,7 +399,7 @@ PsychicRodneyBeatenText:
 	line "thing!"
 	done
 
-UnknownText_0x76497:
+PsychicRodneyAfterBattleText:
 	text "I get it. You can"
 	line "hear JOHTO's radio"
 	cont "on the FAST SHIP."
@@ -416,7 +416,7 @@ PokefanmJeremyBeatenText:
 	line "ful #MON!"
 	done
 
-UnknownText_0x7651c:
+PokefanmJeremyAfterBattleText:
 	text "I must go to the"
 	line "#MON SALON and"
 	cont "fix them up nice!"
@@ -433,7 +433,7 @@ PokefanfGeorgiaBeatenText:
 	line "to do?"
 	done
 
-UnknownText_0x76596:
+PokefanfGeorgiaAfterBattleText:
 	text "Oh, yes! I have to"
 	line "get my #MON out"
 	cont "of DAY-CARE!"
@@ -450,7 +450,7 @@ SupernerdShawnBeatenText:
 	line "Please!"
 	done
 
-UnknownText_0x7660f:
+SupernerdShawnAfterBattleText:
 	text "You should use the"
 	line "right BALLS to fit"
 	cont "the situation."
@@ -484,14 +484,14 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 
 .PersonEvents:
 	db 11
-	person_event SPRITE_CAPTAIN, 25, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, CaptainScript_0x75ea7, -1
-	person_event SPRITE_GENTLEMAN, 17, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x75f1f, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	person_event SPRITE_CAPTAIN, 25, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CaptainScript_0x75ea7, -1
+	person_event SPRITE_GENTLEMAN, 17, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x75f1f, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
 	person_event SPRITE_TWIN, 17, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TwinScript_0x75f6d, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
 	person_event SPRITE_TWIN, 25, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TwinScript_0x75ebb, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
-	person_event SPRITE_POKEFAN_M, 6, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_TWIN, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_TWIN, 4, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	person_event SPRITE_SUPER_NERD, 5, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_TRAINER, 5, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_POKEFAN_F, 5, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 1, TrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	person_event SPRITE_SUPER_NERD, 15, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_POKEFAN_M, 6, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_TWIN, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_TWIN, 4, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	person_event SPRITE_SUPER_NERD, 5, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 5, TrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_POKEFAN_F, 5, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	person_event SPRITE_SUPER_NERD, 15, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND

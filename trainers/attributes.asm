@@ -1,4 +1,5 @@
 TrainerClassAttributes: ; 3959c
+; entries correspond to trainer classes (see constants/trainer_constants.asm)
 
 ; Falkner
 	db 0, 0 ; items

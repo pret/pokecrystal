@@ -59,7 +59,7 @@ deco: MACRO
 	enum DECOFLAG_\1
 endm
 
-; decorations
+; decorations (see data/decoration_attribute.asm)
 const_value = 1
 __enum__ = 0
 	const BEDS

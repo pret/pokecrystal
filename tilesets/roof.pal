@@ -4,13 +4,13 @@
 	RGB 21, 21, 21
 	RGB 11, 11, 11
 
-; group 1
+; group 1 (Olivine)
 	RGB 14, 17, 31
 	RGB 07, 11, 15
 	RGB 09, 09, 17
 	RGB 05, 07, 13
 
-; group 2
+; group 2 (Mahogany)
 	RGB 12, 19, 00
 	RGB 06, 10, 00
 	RGB 06, 09, 07
@@ -22,97 +22,97 @@
 	RGB 21, 21, 21
 	RGB 17, 08, 07
 
-; group 4
+; group 4 (Ecruteak)
 	RGB 31, 19, 00
 	RGB 27, 10, 05
 	RGB 15, 07, 02
 	RGB 11, 04, 02
 
-; group 5
+; group 5 (Blackthorn)
 	RGB 11, 10, 16
 	RGB 05, 06, 07
 	RGB 03, 04, 08
 	RGB 00, 00, 00
 
-; group 6
+; group 6 (Cinnabar)
 	RGB 31, 10, 00
 	RGB 18, 06, 00
 	RGB 18, 05, 09
 	RGB 17, 08, 07
 
-; group 7
+; group 7 (Cerulean)
 	RGB 17, 27, 31
 	RGB 05, 15, 31
 	RGB 07, 08, 22
 	RGB 07, 07, 16
 
-; group 8
+; group 8 (Azalea)
 	RGB 22, 20, 10
 	RGB 17, 14, 03
 	RGB 11, 11, 05
 	RGB 10, 09, 07
 
-; group 9
+; group 9 (Lake of Rage)
 	RGB 31, 08, 04
 	RGB 09, 09, 08
 	RGB 18, 05, 09
 	RGB 09, 09, 08
 
-; group 10
+; group 10 (Violet)
 	RGB 24, 14, 31
 	RGB 13, 07, 21
 	RGB 12, 03, 18
 	RGB 09, 03, 15
 
-; group 11
+; group 11 (Goldenrod)
 	RGB 25, 25, 00
 	RGB 20, 17, 08
 	RGB 12, 12, 00
 	RGB 10, 09, 05
 
-; group 12
+; group 12 (Vermilion)
 	RGB 27, 23, 01
 	RGB 23, 11, 00
 	RGB 15, 11, 01
 	RGB 11, 10, 01
 
-; group 13
+; group 13 (Pallet)
 	RGB 27, 28, 31
 	RGB 17, 19, 22
 	RGB 14, 14, 18
 	RGB 10, 09, 13
 
-; group 14
+; group 14 (Pewter)
 	RGB 19, 19, 16
 	RGB 10, 12, 15
 	RGB 09, 09, 11
 	RGB 04, 05, 07
 
-; group 15
+; group 15 (Mount Moon Square)
 	RGB 14, 17, 31
 	RGB 07, 11, 15
 	RGB 09, 13, 19
 	RGB 07, 07, 16
 
-; group 16
+; group 16 (Route 23)
 	RGB 21, 21, 21
 	RGB 13, 13, 13
 	RGB 11, 11, 19
 	RGB 07, 07, 12
 
-; group 17
+; group 17 (Fuchsia)
 	RGB 31, 18, 29
 	RGB 17, 13, 20
 	RGB 14, 06, 12
 	RGB 11, 03, 10
 
-; group 18
+; group 18 (Lavender)
 	RGB 23, 15, 31
 	RGB 16, 05, 31
 	RGB 12, 07, 17
 	RGB 08, 06, 10
 
-; group 19
+; group 19 (Route 28)
 	RGB 21, 21, 25
 	RGB 16, 16, 16
 	RGB 13, 13, 13
@@ -124,37 +124,37 @@
 	RGB 21, 21, 21
 	RGB 11, 11, 11
 
-; group 21
+; group 21 (Celadon)
 	RGB 19, 31, 15
 	RGB 31, 22, 02
 	RGB 12, 13, 09
 	RGB 09, 12, 03
 
-; group 22
+; group 22 (Cianwood)
 	RGB 15, 10, 31
 	RGB 07, 05, 15
 	RGB 06, 05, 17
 	RGB 02, 02, 08
 
-; group 23
+; group 23 (Viridian)
 	RGB 21, 31, 07
 	RGB 13, 25, 04
 	RGB 09, 14, 08
 	RGB 06, 10, 04
 
-; group 24
+; group 24 (New Bark)
 	RGB 20, 31, 14
 	RGB 11, 23, 05
 	RGB 09, 13, 08
 	RGB 06, 09, 04
 
-; group 25
+; group 25 (Saffron)
 	RGB 31, 26, 00
 	RGB 31, 15, 00
 	RGB 13, 13, 01
 	RGB 08, 08, 01
 
-; group 26
+; group 26 (Cherrygrove)
 	RGB 31, 14, 28
 	RGB 31, 05, 21
 	RGB 14, 07, 17

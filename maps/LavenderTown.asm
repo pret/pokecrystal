@@ -10,8 +10,6 @@ LavenderTown_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -42,7 +40,7 @@ VolunteerPokemonHouseSign:
 SoulHouseSign:
 	jumptext SoulHouseSignText
 
-LavenderPokeCenterSignText:
+LavenderPokecenterSignText:
 	jumpstd pokecentersign
 
 LavenderMartSignText:
@@ -130,12 +128,12 @@ LavenderTown_MapEventHeader:
 	signpost 7, 15, SIGNPOST_READ, KantoRadioStationSign
 	signpost 9, 3, SIGNPOST_READ, VolunteerPokemonHouseSign
 	signpost 13, 15, SIGNPOST_READ, SoulHouseSign
-	signpost 5, 6, SIGNPOST_READ, LavenderPokeCenterSignText
+	signpost 5, 6, SIGNPOST_READ, LavenderPokecenterSignText
 	signpost 5, 2, SIGNPOST_READ, LavenderMartSignText
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 7, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x1ad6e4, -1
-	person_event SPRITE_TEACHER, 15, 2, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_BLUE, PERSONTYPE_SCRIPT, 0, TeacherScript_0x1ad6e7, -1
+	person_event SPRITE_POKEFAN_M, 7, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x1ad6e4, -1
+	person_event SPRITE_TEACHER, 15, 2, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, TeacherScript_0x1ad6e7, -1
 	person_event SPRITE_GRAMPS, 12, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1ad6ea, -1
-	person_event SPRITE_YOUNGSTER, 11, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_SCRIPT, 1, YoungsterScript_0x1ad6ed, -1
+	person_event SPRITE_YOUNGSTER, 11, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 1, YoungsterScript_0x1ad6ed, -1

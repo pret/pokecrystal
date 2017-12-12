@@ -824,13 +824,24 @@ const_value SET 1
 	const BG_EFFECT_STRUCT_BATTLE_TURN
 	const BG_EFFECT_STRUCT_03
 
+; battle palettes
+	const_def
+	const PAL_BATTLE_BG_PLAYER    ; 0
+	const PAL_BATTLE_BG_ENEMY     ; 1
+	const PAL_BATTLE_BG_ENEMY_HP  ; 2
+	const PAL_BATTLE_BG_PLAYER_HP ; 3
+	const PAL_BATTLE_BG_EXP       ; 4
+	const PAL_BATTLE_BG_5         ; 5
+	const PAL_BATTLE_BG_6         ; 6
+	const PAL_BATTLE_BG_TEXT      ; 7
+
 ; animation object palettes
 	const_def
-	const PAL_BATTLE_ENEMY  ; 0
-	const PAL_BATTLE_PLAYER ; 1
-	const PAL_BATTLE_GRAY   ; 2
-	const PAL_BATTLE_YELLOW ; 3
-	const PAL_BATTLE_RED    ; 4
-	const PAL_BATTLE_GREEN  ; 5
-	const PAL_BATTLE_BLUE   ; 6
-	const PAL_BATTLE_BROWN  ; 7
+	const PAL_BATTLE_OB_ENEMY  ; 0
+	const PAL_BATTLE_OB_PLAYER ; 1
+	const PAL_BATTLE_OB_GRAY   ; 2
+	const PAL_BATTLE_OB_YELLOW ; 3
+	const PAL_BATTLE_OB_RED    ; 4
+	const PAL_BATTLE_OB_GREEN  ; 5
+	const PAL_BATTLE_OB_BLUE   ; 6
+	const PAL_BATTLE_OB_BROWN  ; 7

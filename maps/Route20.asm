@@ -9,9 +9,6 @@ Route20_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
-
 	dbw MAPCALLBACK_NEWMAP, .ClearRocks
 
 .ClearRocks:
@@ -24,7 +21,7 @@ TrainerSwimmerfNicole:
 SwimmerfNicoleScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1acd93
+	writetext SwimmerfNicoleAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -35,7 +32,7 @@ TrainerSwimmerfLori:
 SwimmerfLoriScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ace15
+	writetext SwimmerfLoriAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -46,7 +43,7 @@ TrainerSwimmermCameron:
 SwimmermCameronScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ace8b
+	writetext SwimmermCameronAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +60,7 @@ SwimmerfNicoleBeatenText:
 	text "Oh, no!"
 	done
 
-UnknownText_0x1acd93:
+SwimmerfNicoleAfterBattleText:
 	text "Swimming exercises"
 	line "your full body."
 
@@ -83,7 +80,7 @@ SwimmerfLoriBeatenText:
 	text "No!"
 	done
 
-UnknownText_0x1ace15:
+SwimmerfLoriAfterBattleText:
 	text "SURF is no longer"
 	line "the only HM move"
 	cont "you use in water."
@@ -101,7 +98,7 @@ SwimmermCameronBeatenText:
 	text "Aiyah!"
 	done
 
-UnknownText_0x1ace8b:
+SwimmermCameronAfterBattleText:
 	text "Besides the sea, I"
 	line "can also swim in"
 	cont "ponds and rivers."
@@ -132,6 +129,6 @@ Route20_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SWIMMER_GIRL, 8, 52, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
-	person_event SPRITE_SWIMMER_GIRL, 13, 45, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
-	person_event SPRITE_SWIMMER_GUY, 13, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermCameron, -1
+	person_event SPRITE_SWIMMER_GIRL, 8, 52, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
+	person_event SPRITE_SWIMMER_GIRL, 13, 45, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
+	person_event SPRITE_SWIMMER_GUY, 13, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerSwimmermCameron, -1

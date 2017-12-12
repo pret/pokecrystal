@@ -1,4 +1,5 @@
-
+PicPointers::
+; entries correspond to constants/pokemon_constants.asm, two apiece
 	add_pic BulbasaurFrontpic
 	add_pic BulbasaurBackpic
 	add_pic IvysaurFrontpic

@@ -202,7 +202,7 @@ TrashCanText:
 	line "can break this."
 	done
 
-PokeCenterSignText:
+PokecenterSignText:
 	text "Heal Your #MON!"
 	line "#MON CENTER"
 	done

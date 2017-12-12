@@ -19,7 +19,7 @@ TrainerCamperDean:
 CamperDeanScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1aafd9
+	writetext CamperDeanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -30,7 +30,7 @@ TrainerPicnickerHeidi:
 PicnickerHeidiScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab07c
+	writetext PicnickerHeidiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -41,7 +41,7 @@ TrainerCamperSid:
 CamperSidScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab0f6
+	writetext CamperSidAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -52,7 +52,7 @@ TrainerPicnickerEdna:
 PicnickerEdnaScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab15f
+	writetext PicnickerEdnaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -63,7 +63,7 @@ TrainerHikerTim:
 HikerTimScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab210
+	writetext HikerTimAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -74,7 +74,7 @@ TrainerHikerSidney:
 HikerSidneyScript:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1ab278
+	writetext HikerSidneyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -95,7 +95,7 @@ CamperDeanBeatenText:
 	text "Whoa! Danger, man."
 	done
 
-UnknownText_0x1aafd9:
+CamperDeanAfterBattleText:
 	text "My #MON were"
 	line "hurt before even"
 
@@ -119,7 +119,7 @@ PicnickerHeidiBeatenText:
 	text "Ohhhh!"
 	done
 
-UnknownText_0x1ab07c:
+PicnickerHeidiAfterBattleText:
 	text "We bake lots of"
 	line "goodies and share"
 
@@ -137,7 +137,7 @@ CamperSidBeatenText:
 	line "ing out…"
 	done
 
-UnknownText_0x1ab0f6:
+CamperSidAfterBattleText:
 	text "Sorry. You weren't"
 	line "littering. It was"
 	cont "my mistake."
@@ -153,7 +153,7 @@ PicnickerEdnaBeatenText:
 	text "Ohh… I lost…"
 	done
 
-UnknownText_0x1ab15f:
+PicnickerEdnaAfterBattleText:
 	text "Conserving energy"
 	line "is important, but"
 
@@ -175,7 +175,7 @@ HikerTimBeatenText:
 	line "singing…"
 	done
 
-UnknownText_0x1ab210:
+HikerTimAfterBattleText:
 	text "Battles are about"
 	line "concentration."
 	done
@@ -193,7 +193,7 @@ HikerSidneyBeatenText:
 	line "I lost that…"
 	done
 
-UnknownText_0x1ab278:
+HikerSidneyAfterBattleText:
 	text "The POWER PLANT is"
 	line "across a small"
 	cont "river."
@@ -224,9 +224,9 @@ Route9_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_YOUNGSTER, 11, 23, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerCamperDean, -1
-	person_event SPRITE_LASS, 8, 39, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 3, TrainerPicnickerHeidi, -1
-	person_event SPRITE_YOUNGSTER, 4, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 5, TrainerCamperSid, -1
-	person_event SPRITE_LASS, 15, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, (1 << 3) | PAL_OW_GREEN, PERSONTYPE_TRAINER, 1, TrainerPicnickerEdna, -1
-	person_event SPRITE_POKEFAN_M, 3, 28, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerTim, -1
-	person_event SPRITE_POKEFAN_M, 15, 36, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, (1 << 3) | PAL_OW_BROWN, PERSONTYPE_TRAINER, 4, TrainerHikerSidney, -1
+	person_event SPRITE_YOUNGSTER, 11, 23, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerCamperDean, -1
+	person_event SPRITE_LASS, 8, 39, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerPicnickerHeidi, -1
+	person_event SPRITE_YOUNGSTER, 4, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 5, TrainerCamperSid, -1
+	person_event SPRITE_LASS, 15, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 1, TrainerPicnickerEdna, -1
+	person_event SPRITE_POKEFAN_M, 3, 28, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerTim, -1
+	person_event SPRITE_POKEFAN_M, 15, 36, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 4, TrainerHikerSidney, -1

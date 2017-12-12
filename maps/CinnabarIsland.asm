@@ -7,8 +7,6 @@ CinnabarIsland_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-
-	; callbacks
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -33,7 +31,7 @@ CinnabarIslandGymSign:
 CinnabarIslandSign:
 	jumptext CinnabarIslandSignText
 
-CinnabarIslandPokeCenterSign:
+CinnabarIslandPokecenterSign:
 	jumpstd pokecentersign
 
 CinnabarIslandHiddenRareCandy:
@@ -142,7 +140,7 @@ CinnabarIsland_MapEventHeader:
 
 .Signposts:
 	db 4
-	signpost 11, 12, SIGNPOST_READ, CinnabarIslandPokeCenterSign
+	signpost 11, 12, SIGNPOST_READ, CinnabarIslandPokecenterSign
 	signpost 11, 9, SIGNPOST_READ, CinnabarIslandGymSign
 	signpost 7, 7, SIGNPOST_READ, CinnabarIslandSign
 	signpost 1, 9, SIGNPOST_ITEM, CinnabarIslandHiddenRareCandy

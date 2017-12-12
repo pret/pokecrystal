@@ -1,5 +1,7 @@
 ; Kanto Pokémon in water
 
+KantoWaterWildMons: ; 0x2b7f7
+
 	map TOHJO_FALLS
 	db 4 percent ; encounter rate
 	db 20, GOLDEEN
