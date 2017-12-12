@@ -1,7 +1,7 @@
 text   EQUS "db $00," ; Start writing text.
 next   EQUS "db $4e," ; Move a line down.
 line   EQUS "db $4f," ; Start writing at the bottom line.
-page   EQUS "db $50," ; Start a new Pokedex page.
+page   EQUS "db $50," ; Start a new Pokédex page.
 para   EQUS "db $51," ; Start a new paragraph.
 cont   EQUS "db $55," ; Scroll to the next line.
 done   EQUS "db $57"  ; End a text box.

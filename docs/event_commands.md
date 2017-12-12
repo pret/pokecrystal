@@ -1,4 +1,4 @@
-# Scripting Commands
+# Event Commands
 
 ## `$00`: `scall` *script*
 

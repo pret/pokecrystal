@@ -19,18 +19,19 @@
 - **`dbw` *type*, *script***
 
 
-## Scripts
+## Event scripts
 
-[Scripting commands](docs/scripting_commands.md)
+[Event commands](docs/event_commands.md)
 
 
 ## Text
 
-- **`text`**
-- **`line`**
-- **`cont`**
-- **`para`**
-- **`done`**
+[Text commands](docs/text_commands.md)
+
+
+## Movement data
+
+[Movement commands](docs/movement_commands.md)
 
 
 ## `MapName_MapEventHeader:`
