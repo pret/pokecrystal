@@ -3,20 +3,20 @@
 
 ## `const_value set 2`
 
-### `const <MAPNAME>_<PERSONNAME>`
+### `const` *`MAPNAME_PERSONNAME`*
 
 
 ## `MapName_MapScriptHeader:`
 
 
-## `.MapTriggers: db <N>`
+## `.MapTriggers: db` *N*
 
-### `maptrigger <script>`
+### `maptrigger` *script*
 
 
-## `.MapCallbacks: db <N>`
+## `.MapCallbacks: db` *N*
 
-### `dbw <type>, <script>`
+### `dbw` *type*, *script*
 
 
 ## Scripts
@@ -37,19 +37,19 @@
 	db 0, 0
 
 
-## `.Warps: db <N>`
+## `.Warps: db` *N*
 
-### `warp_def <y>, <x>, <id>, <map>`
-
-
-## `.XYTriggers: db <N>`
-
-### `xy_trigger <id>, <y>, <x>, $0, <script>, $0, $0`
+### `warp_def` *y*, *x*, *warp_id*, *map*
 
 
-## `.Signposts: db <N>`
+## `.XYTriggers: db` *N*
 
-### `signpost <y>, <x>, <type>, <script>`
+### `xy_trigger` *id*, *y*, *x*, `$0`, *script*, `$0`, `$0`
+
+
+## `.Signposts: db` *N*
+
+### `signpost` *y*, *x*, *type*, *script*
 
 #### Signpost types:
 
@@ -59,17 +59,17 @@
 
 - **`SIGNPOST_IFSET/IFNOTSET`**
 
-  `dw <event_flag>, <script>`
+  **`dw` *event_flag*, *script***
 
 - **`SIGNPOST_ITEM`**
 
-  `dwb <event_flag>, <item_id>`
+  **`dwb` *event_flag*, *item_id***
 
 - **`SIGNPOST_COPY`**
 
-## `.PersonEvents: db <N>`
+## `.PersonEvents: db` *N*
 
-### `person_event <sprite>, <y>, <x>, <movement>, <ry>, <rx>, <hour>, <day>, <palette>, <type>, <range>, <script>, <flag>`
+### `person_event` *sprite*, *y*, *x*, *movement*, *ry*, *rx*, *hour*, *daytime*, *palette*, *type*, *range*, *script*, *event_flag*
 
 #### Movement types:
 
@@ -111,8 +111,8 @@
 
 - **`PERSONTYPE_ITEMBALL`**
 
-  **`itemball <item_id>`**
+  **`itemball` *item_id***
 
 - **`PERSONTYPE_TRAINER`**
 
-  **`trainer <event_flag>, <group_id>, <trainer_id>, <seen_text>, <beaten_text>, <loss_text>, <script>`**
+  **`trainer` *event_flag*, *group_id*, *trainer_id*, *seen_text*, *beaten_text*, *loss_text*, *script***
