@@ -1,4 +1,6 @@
 ; The original base Special stat for each Pokémon from Red/Blue
+
+KantoMonSpecials: ; fb656
 	db  65 ; BULBASAUR
 	db  80 ; IVYSAUR
 	db 100 ; VENUSAUR
@@ -150,3 +152,4 @@
 	db 100 ; DRAGONITE
 	db 154 ; MEWTWO
 	db 100 ; MEW
+; fb6ed

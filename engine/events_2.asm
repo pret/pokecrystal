@@ -253,9 +253,9 @@ TryWildEncounter_BugContest: ; 97d64
 	ret
 ; 97d87
 
-ContestMons: ; 97d87
+
 INCLUDE "data/wild/bug_contest_mons.asm"
-; 97db3
+
 
 DoBikeStep:: ; 97db3
 	nop

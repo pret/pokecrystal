@@ -12,6 +12,7 @@ endr
 	db 0
 endm
 
+RoamMaps: ; 2a40f
 	roam_map ROUTE_29, 2, ROUTE_30, ROUTE_46
 	roam_map ROUTE_30, 2, ROUTE_29, ROUTE_31
 	roam_map ROUTE_31, 3, ROUTE_30, ROUTE_32, ROUTE_36
@@ -29,3 +30,4 @@ endm
 	roam_map ROUTE_45, 2, ROUTE_44, ROUTE_46
 	roam_map ROUTE_46, 2, ROUTE_45, ROUTE_29
 	db -1 ; end
+; 2a4a0

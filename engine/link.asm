@@ -1112,7 +1112,7 @@ TimeCapsule_ReplaceTeruSama: ; 28771
 	and a
 	ret z
 	push hl
-	ld hl, .TimeCapsuleAlt
+	ld hl, TimeCapsule_CatchRateItems
 .loop
 	ld a, [hli]
 	and a
@@ -1129,9 +1129,9 @@ TimeCapsule_ReplaceTeruSama: ; 28771
 	pop hl
 	ret
 
-.TimeCapsuleAlt: ; 28785
+
 INCLUDE "data/time_capsule/catch_rate_items.asm"
-; 2879e
+
 
 Link_CopyOTData: ; 2879e
 .loop

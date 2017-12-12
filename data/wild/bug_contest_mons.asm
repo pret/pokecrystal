@@ -1,3 +1,4 @@
+ContestMons: ; 97d87
 	;   %, species,   min, max
 	db 20, CATERPIE,    7, 18
 	db 20, WEEDLE,      7, 18
@@ -10,3 +11,4 @@
 	db  5, SCYTHER,    13, 14
 	db  5, PINSIR,     13, 14
 	db -1, VENOMOTH,   30, 40
+; 97db3

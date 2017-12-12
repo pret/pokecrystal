@@ -146,12 +146,7 @@ MysteryGiftFallbackItem: ; 2c722 (b:4722)
 	ret
 ; 2c725 (b:4725)
 
-MysteryGiftItems: ; 2c725
-INCLUDE "data/mystery_gift/items.asm"
-MysteryGiftItemsEnd
-; 2c74a
 
-MysteryGiftDecos: ; 2c74a
+INCLUDE "data/mystery_gift/items.asm"
+
 INCLUDE "data/mystery_gift/decos.asm"
-MysteryGiftDecosEnd
-; 2c76f

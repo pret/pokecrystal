@@ -1,5 +1,7 @@
 ; Johto Pokémon in grass
 
+JohtoGrassWildMons: ; 0x2a5e9
+
 	map SPROUT_TOWER_2F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn

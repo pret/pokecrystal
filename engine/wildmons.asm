@@ -784,9 +784,9 @@ _BackUpMapIndices: ; 2a3f6
 	ret
 ; 2a40f
 
-RoamMaps: ; 2a40f
+
 INCLUDE "data/wild/roammon_maps.asm"
-; 2a4a0
+
 
 ValidateTempWildMonSpecies: ; 2a4a0
 ; Due to a development oversight, this function is called with the wild Pokemon's level, not its species, in a.
@@ -1000,20 +1000,9 @@ RandomPhoneMon: ; 2a567
 ; 2a5e9
 
 
-JohtoGrassWildMons: ; 0x2a5e9
 INCLUDE "data/wild/johto_grass.asm"
-
-JohtoWaterWildMons: ; 0x2b11d
 INCLUDE "data/wild/johto_water.asm"
-
-KantoGrassWildMons: ; 0x2b274
 INCLUDE "data/wild/kanto_grass.asm"
-
-KantoWaterWildMons: ; 0x2b7f7
 INCLUDE "data/wild/kanto_water.asm"
-
-SwarmGrassWildMons: ; 0x2b8d0
 INCLUDE "data/wild/swarm_grass.asm"
-
-SwarmWaterWildMons: ; 0x2b92f
 INCLUDE "data/wild/swarm_water.asm"

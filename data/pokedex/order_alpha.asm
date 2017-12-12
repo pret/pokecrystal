@@ -1,5 +1,6 @@
-; Every Pokemon sorted alphabetically by name.
+; Every Pokémon sorted alphabetically by name.
 
+AlphabeticalPokedexOrder: ; 0x40c65
 	db ABRA
 	db AERODACTYL
 	db AIPOM
@@ -251,3 +252,4 @@
 	db YANMA
 	db ZAPDOS
 	db ZUBAT
+; 0x40d60

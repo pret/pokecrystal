@@ -2882,15 +2882,13 @@ LoadMusicByte:: ; e8d76
 
 ; e8d80
 
-FrequencyTable: ; e8d80
-INCLUDE "data/audio/notes.asm"
-; e8db2
 
-WaveSamples: ; e8db2
+INCLUDE "data/audio/notes.asm"
+
 INCLUDE "data/audio/wave_samples.asm"
-; e8e52
 
 INCLUDE "audio/drumkits.asm"
+
 
 GetLRTracks: ; e8fc2
 ; gets the default sound l/r channels

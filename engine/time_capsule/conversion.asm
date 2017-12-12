@@ -144,9 +144,8 @@ PlaceTradePartnerNamesAndParty: ; fb60d
 	jr .loop
 ; fb656
 
-KantoMonSpecials: ; fb656
+
 INCLUDE "data/time_capsule/special_stats.asm"
-; fb6ed
 
 
 INCLUDE "event/name_rater.asm"
@@ -274,6 +273,5 @@ ConvertMon_1to2: ; fb908
 	ret
 ; fb91c
 
-Pokered_MonIndices: ; fb91c
+
 INCLUDE "data/time_capsule/mon_order.asm"
-; fba18

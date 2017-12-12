@@ -1,5 +1,6 @@
 INCLUDE "includes.asm"
 
+
 SECTION "bank1", ROMX
 
 PlaceWaitingText:: ; 4000
@@ -246,12 +247,14 @@ Predef1: ; 747a
 ; not used
 	ret
 
+
 SECTION "bank2", ROMX
 
 INCLUDE "engine/player_object.asm"
 INCLUDE "engine/sine.asm"
 INCLUDE "engine/predef.asm"
 INCLUDE "engine/color.asm"
+
 
 SECTION "bank3", ROMX
 
@@ -379,6 +382,7 @@ KnowsMove: ; f9ea
 	; knows @ .
 	text_jump UnknownText_0x1c5ea8
 	db "@"
+
 
 SECTION "bank4", ROMX
 
@@ -603,6 +607,7 @@ root	set 1
 root	set root+1
 	endr
 
+
 SECTION "bank5", ROMX
 
 INCLUDE "engine/rtc.asm"
@@ -627,6 +632,7 @@ INCLUDE "tilesets/data.asm"
 SECTION "bank8", ROMX
 
 INCLUDE "engine/clock_reset.asm"
+
 
 SECTION "bank9", ROMX
 
@@ -1147,6 +1153,7 @@ Kurt_SelectQuantity_InterpretJoypad: ; 27a28
 	ld b, a
 	ret
 
+
 SECTION "bankA", ROMX
 
 INCLUDE "engine/link.asm"
@@ -1170,6 +1177,7 @@ INCBIN "gfx/player/chris_back.2bpp.lz"
 
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/battle/dude.2bpp.lz"
+
 
 SECTION "bankB", ROMX
 
@@ -1606,9 +1614,11 @@ PlaceGraphic: ; 2ef6e
 	jr nz, .x2
 	ret
 
+
 SECTION "Effect Commands", ROMX
 
 INCLUDE "battle/effect_commands.asm"
+
 
 SECTION "Enemy Trainers", ROMX
 
@@ -1690,11 +1700,13 @@ INCLUDE "trainers/trainer_pointers.asm"
 
 INCLUDE "trainers/trainers.asm"
 
+
 SECTION "Battle Core", ROMX
 
 INCLUDE "battle/core.asm"
 
 INCLUDE "battle/effect_command_pointers.asm"
+
 
 SECTION "bank10", ROMX
 
@@ -1704,231 +1716,19 @@ INCLUDE "battle/moves/moves.asm"
 
 INCLUDE "engine/evolve.asm"
 
+
 SECTION "bank11", ROMX
 
 INCLUDE "engine/fruit_trees.asm"
 
 INCLUDE "battle/ai/move.asm"
 
-AnimateDexSearchSlowpoke: ; 441cf
-	ld hl, .FrameIDs
-	ld b, 25
-.loop
-	ld a, [hli]
-
-	; Wrap around
-	cp $fe
-	jr nz, .ok
-	ld hl, .FrameIDs
-	ld a, [hli]
-.ok
-
-	ld [wDexSearchSlowpokeFrame], a
-	ld a, [hli]
-	ld c, a
-	push bc
-	push hl
-	call DoDexSearchSlowpokeFrame
-	pop hl
-	pop bc
-	call DelayFrames
-	dec b
-	jr nz, .loop
-	xor a
-	ld [wDexSearchSlowpokeFrame], a
-	call DoDexSearchSlowpokeFrame
-	ld c, 32
-	call DelayFrames
-	ret
-
-.FrameIDs: ; 441fc
-	; frame ID, duration
-	db 0, 7
-	db 1, 7
-	db 2, 7
-	db 3, 7
-	db 4, 7
-	db -2
-
-DoDexSearchSlowpokeFrame: ; 44207
-	ld a, [wDexSearchSlowpokeFrame]
-	ld hl, .SpriteData
-	ld de, Sprites
-.loop
-	ld a, [hli]
-	cp -1
-	ret z
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [wDexSearchSlowpokeFrame]
-	ld b, a
-	add a
-	add b
-	add [hl]
-	inc hl
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	jr .loop
-
-.SpriteData: ; 44228
-	dsprite 11, 0,  9, 0, $00, $00
-	dsprite 11, 0, 10, 0, $01, $00
-	dsprite 11, 0, 11, 0, $02, $00
-	dsprite 12, 0,  9, 0, $10, $00
-	dsprite 12, 0, 10, 0, $11, $00
-	dsprite 12, 0, 11, 0, $12, $00
-	dsprite 13, 0,  9, 0, $20, $00
-	dsprite 13, 0, 10, 0, $21, $00
-	dsprite 13, 0, 11, 0, $22, $00
-	db -1
-
-DisplayDexEntry: ; 4424d
-	call GetPokemonName
-	hlcoord 9, 3
-	call PlaceString ; mon species
-	ld a, [wd265]
-	ld b, a
-	call GetDexEntryPointer
-	ld a, b
-	push af
-	hlcoord 9, 5
-	call FarString ; dex species
-	ld h, b
-	ld l, c
-	push de
-; Print dex number
-	hlcoord 2, 8
-	ld a, $5c ; No
-	ld [hli], a
-	ld a, $5d ; .
-	ld [hli], a
-	ld de, wd265
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
-	call PrintNum
-; Check to see if we caught it.  Get out of here if we haven't.
-	ld a, [wd265]
-	dec a
-	call CheckCaughtMon
-	pop hl
-	pop bc
-	ret z
-; Get the height of the Pokemon.
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
-	inc hl
-	ld a, b
-	push af
-	push hl
-	call GetFarHalfword
-	ld d, l
-	ld e, h
-	pop hl
-	inc hl
-	inc hl
-	ld a, d
-	or e
-	jr z, .skip_height
-	push hl
-	push de
-	ld hl, sp+$0
-	ld d, h
-	ld e, l
-	hlcoord 12, 7
-	lb bc, 2, PRINTNUM_MONEY | 4
-	call PrintNum
-	hlcoord 14, 7
-	ld [hl], $5e ; ft symbol
-	pop af
-	pop hl
-
-.skip_height
-	pop af
-	push af
-	inc hl
-	push hl
-	dec hl
-	call GetFarHalfword
-	ld d, l
-	ld e, h
-	ld a, e
-	or d
-	jr z, .skip_weight
-	push de
-	ld hl, sp+$0
-	ld d, h
-	ld e, l
-	hlcoord 11, 9
-	lb bc, 2, PRINTNUM_RIGHTALIGN | 5
-	call PrintNum
-	pop de
-
-.skip_weight
-; Page 1
-	lb bc, 5, SCREEN_WIDTH - 2
-	hlcoord 2, 11
-	call ClearBox
-	hlcoord 1, 10
-	ld bc, SCREEN_WIDTH - 1
-	ld a, $61 ; horizontal divider
-	call ByteFill
-	; page number
-	hlcoord 1, 9
-	ld [hl], $55
-	inc hl
-	ld [hl], $55
-	hlcoord 1, 10
-	ld [hl], $56 ; P.
-	inc hl
-	ld [hl], $57 ; 1
-	pop de
-	inc de
-	pop af
-	hlcoord 2, 11
-	push af
-	call FarString
-	pop bc
-	ld a, [wPokedexStatus]
-	or a
-	ret z
-
-; Page 2
-	push bc
-	push de
-	lb bc, 5, SCREEN_WIDTH - 2
-	hlcoord 2, 11
-	call ClearBox
-	hlcoord 1, 10
-	ld bc, SCREEN_WIDTH - 1
-	ld a, $61
-	call ByteFill
-	; page number
-	hlcoord 1, 9
-	ld [hl], $55
-	inc hl
-	ld [hl], $55
-	hlcoord 1, 10
-	ld [hl], $56 ; P.
-	inc hl
-	ld [hl], $58 ; 2
-	pop de
-	inc de
-	pop af
-	hlcoord 2, 11
-	call FarString
-	ret
-
-String_44331: ; 44331
-	db "#@"
+INCLUDE "engine/pokedex_2.asm"
 
 INCLUDE "data/pokedex/entry_pointers.asm"
 
 INCLUDE "engine/mail.asm"
+
 
 SECTION "Crystal Unique", ROMX
 
@@ -2136,6 +1936,7 @@ Buena_ExitMenu: ; 4ae5e
 	pop af
 	ld [hOAMUpdate], a
 	ret
+
 
 SECTION "bank13", ROMX
 
@@ -3486,6 +3287,7 @@ INCLUDE "misc/gbc_only.asm"
 
 INCLUDE "event/poke_seer.asm"
 
+
 SECTION "bank14", ROMX
 
 INCLUDE "engine/party_menu.asm"
@@ -4613,9 +4415,11 @@ UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
 INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
 
+
 SECTION "bank19", ROMX
 
 INCLUDE "text/phone/extra.asm"
+
 
 SECTION "bank20", ROMX
 
@@ -4629,6 +4433,7 @@ INCLUDE "text/battle.asm"
 
 INCLUDE "engine/debug.asm"
 
+
 SECTION "bank21", ROMX
 
 INCLUDE "engine/printer.asm"
@@ -4636,6 +4441,7 @@ INCLUDE "engine/printer.asm"
 INCLUDE "battle/anim_gfx.asm"
 
 INCLUDE "event/halloffame.asm"
+
 
 SECTION "bank22", ROMX
 
@@ -4915,6 +4721,7 @@ INCLUDE "event/dratini.asm"
 INCLUDE "event/battle_tower.asm"
 INCLUDE "misc/mobile_22_2.asm"
 
+
 SECTION "bank23", ROMX
 
 Predef35: ; 8c000
@@ -4944,6 +4751,7 @@ INCLUDE "engine/sprites.asm"
 
 INCLUDE "engine/mon_icons.asm"
 
+
 SECTION "bank24", ROMX
 
 INCLUDE "engine/phone.asm"
@@ -4953,10 +4761,12 @@ INCLUDE "engine/pokegear.asm"
 INCLUDE "engine/fish.asm"
 INCLUDE "engine/slot_machine.asm"
 
+
 SECTION "Phone Engine", ROMX
 
 INCLUDE "engine/more_phone_scripts.asm"
 INCLUDE "engine/buena_phone_scripts.asm"
+
 
 SECTION "Phone Text", ROMX
 
@@ -4978,6 +4788,7 @@ INCLUDE "text/phone/kenji_overworld.asm"
 INCLUDE "text/phone/parry_overworld.asm"
 INCLUDE "text/phone/erin_overworld.asm"
 
+
 SECTION "bank2E", ROMX
 
 INCLUDE "engine/events_3.asm"
@@ -4985,6 +4796,7 @@ INCLUDE "engine/events_3.asm"
 INCLUDE "engine/radio.asm"
 
 INCLUDE "gfx/mail.asm"
+
 
 SECTION "bank2F", ROMX
 
@@ -5085,6 +4897,7 @@ LoadPoisonBGPals: ; cbcdd
 
 TheEndGFX:: ; cbd2e
 INCBIN "gfx/credits/theend.2bpp"
+
 
 SECTION "bank33", ROMX
 
@@ -5201,6 +5014,7 @@ INCLUDE "battle/anim_commands.asm"
 
 INCLUDE "battle/anim_objects.asm"
 
+
 SECTION "Pic Animations 1", ROMX
 
 INCLUDE "gfx/pics/animation.asm"
@@ -5241,20 +5055,24 @@ INCLUDE "gfx/pics/bitmasks.asm"
 INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
 INCLUDE "gfx/pics/unown_bitmasks.asm"
 
+
 SECTION "Pic Animations 2", ROMX
 
 INCLUDE "gfx/pics/frame_pointers.asm"
 INCLUDE "gfx/pics/kanto_frames.asm"
 
+
 SECTION "bank36", ROMX
 
 FontInversed: INCBIN "gfx/font/font_inversed.1bpp"
+
 
 SECTION "Pic Animations 3", ROMX
 
 INCLUDE "gfx/pics/johto_frames.asm"
 INCLUDE "gfx/pics/unown_frame_pointers.asm"
 INCLUDE "gfx/pics/unown_frames.asm"
+
 
 SECTION "bank38", ROMX
 
@@ -5383,6 +5201,7 @@ INCLUDE "engine/unown_puzzle.asm"
 INCLUDE "engine/dummy_game.asm"
 INCLUDE "engine/billspc.asm"
 
+
 SECTION "bank39", ROMX
 
 CopyrightGFX:: ; e4000
@@ -5390,6 +5209,7 @@ INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/options_menu.asm"
 INCLUDE "engine/crystal_intro.asm"
+
 
 SECTION "bank3E", ROMX
 
@@ -5402,6 +5222,7 @@ INCLUDE "battle/hidden_power.asm"
 
 INCLUDE "battle/misc.asm"
 
+
 SECTION "bank3F", ROMX
 
 INCLUDE "tilesets/animations.asm"
@@ -5410,9 +5231,11 @@ INCLUDE "engine/npctrade.asm"
 
 INCLUDE "event/mom_phone.asm"
 
+
 SECTION "bank40", ROMX
 
 INCLUDE "misc/mobile_40.asm"
+
 
 SECTION "bank41", ROMX
 
@@ -5443,14 +5266,17 @@ INCBIN "gfx/font/overworld.2bpp"
 .space
 INCBIN "gfx/font/space.2bpp"
 
+
 SECTION "bank42", ROMX
 
 INCLUDE "misc/mobile_42.asm"
+
 
 SECTION "Intro Logo", ROMX
 
 IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.2bpp.lz"
+
 
 SECTION "bank43", ROMX
 
@@ -5461,22 +5287,27 @@ INCLUDE "engine/title.asm"
 INCLUDE "misc/mobile_45.asm"
 INCLUDE "misc/mobile_46.asm"
 
+
 SECTION "bank47", ROMX
 
 INCLUDE "misc/battle_tower_47.asm"
+
 
 SECTION "bank5B", ROMX
 
 INCLUDE "misc/mobile_5b.asm"
 INCLUDE "engine/link_trade.asm"
 
+
 SECTION "bank5C", ROMX
 
 INCLUDE "misc/mobile_5c.asm"
 
+
 SECTION "bank5D", ROMX
 
 INCLUDE "text/phone/extra3.asm"
+
 
 SECTION "bank5E", ROMX
 
@@ -5491,6 +5322,7 @@ _UpdateBattleHUDs:
 	ret
 
 INCLUDE "misc/mobile_5f.asm"
+
 
 SECTION "Common Text 1", ROMX
 
@@ -5507,12 +5339,14 @@ INCLUDE "text/phone/wade_overworld.asm"
 INCLUDE "text/phone/ralph_overworld.asm"
 INCLUDE "text/phone/liz_overworld.asm"
 
+
 SECTION "bank6D", ROMX
 
 INCLUDE "text/phone/mom.asm"
 INCLUDE "text/phone/bill.asm"
 INCLUDE "text/phone/elm.asm"
 INCLUDE "text/phone/trainers1.asm"
+
 
 SECTION "bank72", ROMX
 
@@ -5523,6 +5357,7 @@ INCLUDE "items/item_descriptions.asm"
 INCLUDE "battle/move_names.asm"
 
 INCLUDE "engine/landmarks.asm"
+
 
 SECTION "bank77", ROMX
 
@@ -5536,6 +5371,7 @@ INCBIN "gfx/mobile/hp.1bpp"
 
 MobileLvIcon: ; 1dc599
 INCBIN "gfx/mobile/lv.1bpp"
+
 
 SECTION "bank77_2", ROMX
 
@@ -5968,13 +5804,16 @@ LeggiPostaInglese:
 	jr nz, .loop
 	ret
 
+
 SECTION "bank7B", ROMX
 
 INCLUDE "text/battle_tower.asm"
 
+
 SECTION "bank7C", ROMX
 
 INCLUDE "data/battle_tower_2.asm"
+
 
 SECTION "bank7D", ROMX
 
@@ -6021,12 +5860,15 @@ Function1f5d9f: ; 1f5d9f
 .unknown_data
 INCBIN "unknown/1f5db4.bin"
 
+
 SECTION "bank7E", ROMX
 
 INCLUDE "engine/battle_tower.asm"
 INCLUDE "engine/odd_eggs.asm"
 
+
 SECTION "bank7F", ROMX
+
 
 SECTION "stadium2", ROMX
 
