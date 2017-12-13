@@ -219,7 +219,7 @@ CheckOwnMon: ; 0x4a7ba
 
 	ld hl, PlayerName
 
-	rept 4
+rept PLAYER_NAME_LENGTH_JAPANESE - 1 ; should be PLAYER_NAME_LENGTH - 1
 	ld a, [de]
 	cp [hl]
 	jr nz, .notfound
@@ -227,7 +227,7 @@ CheckOwnMon: ; 0x4a7ba
 	jr z, .found ; reached end of string
 	inc hl
 	inc de
-	endr
+endr
 
 	ld a, [de]
 	cp [hl]

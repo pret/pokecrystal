@@ -236,8 +236,6 @@ CheckNickErrors:: ; 669f
 	db -1 ; end
 
 INCLUDE "engine/math.asm"
-
-ItemAttributes: ; 67c1
 INCLUDE "items/item_attributes.asm"
 INCLUDE "engine/npc_movement.asm"
 INCLUDE "event/happiness_egg.asm"
