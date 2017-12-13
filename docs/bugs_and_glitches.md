@@ -993,7 +993,7 @@ LoadSpriteGFX: ; 14306
 ; 1431e
 ```
 
-`GetSprite` modifies `b`. Surround it with `push bc`/`pop bc` to fix.
+**Fix:** Surround `call GetSprite` with `push bc`/`pop bc`.
 
 
 ## `ChooseWildEncounter` doesn't really validate the wild Pokémon species
