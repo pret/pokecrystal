@@ -14,6 +14,7 @@
 - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
 - [A Disabled, PP Up–enhanced move may not trigger automatic Struggling](#a-disabled-pp-upenhanced-move-may-not-trigger-automatic-struggling)
 - [Counter and Mirror Coat still work if the opponent uses an item](#counter-and-mirror-coat-still-work-if-the-opponent-uses-an-item)
+- [A Pokémon that fainted from Pursuit will have its old status condition when revived](#a-pokémon-that-fainted-from-pursuit-will-have-its-old-status-condition-when-revived)
 - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
 - [BRN/PSN/PAR do not affect catch rate](#brnpsnpar-do-not-affect-catch-rate)
 - [Moon Ball does not boost catch rate](#moon-ball-does-not-boost-catch-rate)
@@ -25,10 +26,15 @@
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
-- [`LoadMetatiles` wrap around past 128 blocks](#loadmetatiles-wrap-around-past-128-blocks)
+- [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
+- [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
+- [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
 - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
+- [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
+- [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
 - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
+- [Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evosattacks-evolution-entries-can-have-stone-compatibility-reported-correctly)
 - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
 - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
@@ -367,6 +373,13 @@ This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](battle/core.
 ## Counter and Mirror Coat still work if the opponent uses an item
 
 ([Video](https://www.youtube.com/watch?v=uRYyzKRatFk))
+
+*To do:* Identify specific code causing this bug and fix it.
+
+
+## A Pokémon that fainted from Pursuit will have its old status condition when revived
+
+([Video](https://www.youtube.com/watch?v=tiRvw-Nb2ME))
 
 *To do:* Identify specific code causing this bug and fix it.
 
@@ -720,7 +733,43 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](
 ```
 
 
-## `LoadMetatiles` wrap around past 128 blocks
+## Playing Entei's Pokédex cry can distort Raikou's and Suicune's
+
+([Video](https://www.youtube.com/watch?v=z305e4sIO24))
+
+The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex.asm](engine/pokedex.asm):
+
+```asm
+.Cry: ; 40340
+	call Pokedex_GetSelectedMon
+	ld a, [wd265]
+	call GetCryIndex
+	ld e, c
+	ld d, b
+	call PlayCryHeader
+	ret
+```
+
+**Workaround:**
+
+```asm
+.Cry: ; 40340
+	ld a, [CurPartySpecies]
+	call PlayCry
+	ret
+```
+
+
+## Lock-On and Mind Reader don't always bypass Fly and Dig
+
+This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider Web, Transform, and stat-lowering effects of moves like String Shot or Bubble during the semi-invulnerable turn of Fly or Dig.
+
+*To do:* Identify specific code causing this bug and fix it.
+
+
+## `LoadMetatiles` wraps around past 128 blocks
+
+This bug prevents you from using blocksets with more than 128 blocks.
 
 [home/map.asm](home/map.asm):
 
@@ -793,6 +842,40 @@ endr
 **Fix:** Change `rept NAME_LENGTH_JAPANESE +- 2` to `rept PLAYER_NAME_LENGTH +- 2`.
 
 
+## Catching a Transformed Pokémon always catches a Ditto
+
+This bug can affect Mew or Pokémon other than Ditto that used Transform via Mirror Move or Sketch.
+
+*To do:* Identify specific code causing this bug and fix it.
+
+
+## Using a Park Ball in normal battles has a corrupt animation
+
+([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
+
+This is a bug with `ParkBall` in [items/item_effects.asm](items/item_effects.asm):
+
+```asm
+.room_in_party
+	xor a
+	ld [wWildMon], a
+	ld a, [CurItem]
+	cp PARK_BALL
+	call nz, ReturnToBattle_UseBall
+```
+
+**Fix:**
+
+```asm
+.room_in_party
+	xor a
+	ld [wWildMon], a
+	ld a, [BattleType]
+	cp BATTLETYPE_CONTEST
+	call nz, ReturnToBattle_UseBall
+```
+
+
 ## `HELD_CATCH_CHANCE` has no effect
 
 This is a bug with `PokeBall` in [items/item_effects.asm](items/item_effects.asm):
@@ -815,6 +898,29 @@ This is a bug with `PokeBall` in [items/item_effects.asm](items/item_effects.asm
 ```
 
 **Fix:** Uncomment `ld b, a`.
+
+
+## Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly
+
+This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/party_menu.asm](engine/party_menu.asm):
+
+```asm
+.DetermineCompatibility: ; 50268
+	ld de, StringBuffer1
+	ld a, BANK(EvosAttacksPointers)
+	ld bc, 2
+	call FarCopyBytes
+	ld hl, StringBuffer1
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, StringBuffer1
+	ld a, BANK(EvosAttacks)
+	ld bc, $a
+	call FarCopyBytes
+```
+
+**Fix:** Change `ld bc, $a` to `ld bc, $10` to support up to five Stone entries.
 
 
 ## `ScriptCall` can overflow `wScriptStack` and crash
