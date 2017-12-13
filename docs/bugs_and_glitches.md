@@ -598,7 +598,7 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [battle/core.asm](battle/
 
 This is a bug with `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle_start.asm](engine/battle_start.asm):
 
-```
+```asm
 StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 ; The screen flashes a different number of times depending on the level of
 ; your lead Pokemon relative to the opponent's.
@@ -681,6 +681,32 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](
 	ld [wd041], a
 	ld a, [WalkingDirection]
 ```
+
+
+## `LoadMetatiles` wrap around past 128 blocks
+
+[home/map.asm](home/map.asm):
+
+```asm
+	; Set hl to the address of the current metatile data ([TilesetBlocksAddress] + (a) tiles).
+	; This is buggy; it wraps around past 128 blocks.
+	; To fix, uncomment the line below.
+	add a ; Comment or delete this line to fix the above bug.
+	ld l, a
+	ld h, 0
+	; add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld a, [TilesetBlocksAddress]
+	add l
+	ld l, a
+	ld a, [TilesetBlocksAddress + 1]
+	adc h
+	ld h, a
+```
+
+**Fix:** Delete `add a` and uncomment `add hl, hl`.
 
 
 ## Surfing directly across a map connection does not load the new map
