@@ -749,7 +749,7 @@ TextJump_EnemyWithdrew: ; 384d0
 Function384d5: ; This appears to be unused
 	call AIUsedItemSound
 	call AI_HealStatus
-	ld a, X_SPEED
+	ld a, FULL_HEAL_RED ; X_SPEED
 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 ; 384e0
 
@@ -761,6 +761,10 @@ AI_HealStatus: ; 384e0
 	xor a
 	ld [hl], a
 	ld [EnemyMonStatus], a
+	; Bug: this should reset SUBSTATUS_NIGHTMARE too
+	; Uncomment the lines below to fix
+	; ld hl, EnemySubStatus1
+	; res SUBSTATUS_NIGHTMARE, [hl]
 	ld hl, EnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
 	ret

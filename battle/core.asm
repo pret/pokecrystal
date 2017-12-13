@@ -5998,7 +5998,7 @@ CheckPlayerHasUsableMoves: ; 3e786
 	swap a
 	and $f
 	ld b, a
-	ld d, $5
+	ld d, NUM_MOVES + 1
 	xor a
 .loop
 	dec d
@@ -6011,7 +6011,9 @@ CheckPlayerHasUsableMoves: ; 3e786
 	jr .loop
 
 .done
-	and a ; This is probably a bug, and will result in a move with PP Up confusing the game.
+	; Bug: this will result in a move with PP Up confusing the game.
+	; Replace with "and $3f" to fix.
+	and a
 	ret nz
 
 .force_struggle
