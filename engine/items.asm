@@ -554,7 +554,7 @@ GetItemAttr: ; d460
 	ld a, [CurItem]
 	dec a
 	ld c, a
-	ld a, NUM_ITEMATTRS
+	ld a, ITEMATTR_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(ItemAttributes)
 	call GetFarByte

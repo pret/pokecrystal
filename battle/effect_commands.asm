@@ -9810,7 +9810,7 @@ GetItemHeldEffect: ; 37dd0
 	dec a
 	ld c, a
 	ld b, 0
-	ld a, Item2Attributes - Item1Attributes
+	ld a, ITEMATTR_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(ItemAttributes)
 	call GetFarHalfword

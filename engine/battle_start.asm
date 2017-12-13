@@ -196,9 +196,10 @@ FlashyTransitionToBattle: ; 8c314
 
 
 StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
-; The screen flashes a different number of
-; times depending on the level of your lead
-; Pokemon relative to the opponent's.
+; The screen flashes a different number of times depending on the level of
+; your lead Pokemon relative to the opponent's.
+; BUG: BattleMonLevel and EnemyMonLevel are not set at this point, so whatever
+; values happen to be there will determine the animation.
 	ld de, 0
 	ld a, [BattleMonLevel]
 	add 3
