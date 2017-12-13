@@ -506,7 +506,7 @@ CheckFacingTileForStd:: ; 1365b
 ; Checks to see if the tile you're facing has a std script associated with it.  If so, executes the script and returns carry.
 	ld a, c
 	ld de, 3
-	ld hl, .table1
+	ld hl, TileCollisionStdScripts
 	call IsInArray
 	jr nc, .notintable
 
@@ -527,16 +527,7 @@ CheckFacingTileForStd:: ; 1365b
 	xor a
 	ret
 
-.table1
-	dbw $91, magazinebookshelf
-	dbw $93, pcscript
-	dbw $94, radio1
-	dbw $95, townmap
-	dbw $96, merchandiseshelf
-	dbw $97, tv
-	dbw $9d, window
-	dbw $9f, incenseburner
-	db   -1 ; end
+INCLUDE "data/collision_stdscripts.asm"
 
 Script_JumpStdFromRAM: ; 0x1369a
 	jump wJumpStdScriptBuffer
@@ -1950,7 +1941,7 @@ ScrollBGMapPalettes:: ; 4c03f
 
 INCLUDE "tilesets/palette_maps.asm"
 
-INCLUDE "tilesets/collision.asm"
+INCLUDE "data/collision_permissions.asm"
 
 EmptyAllSRAMBanks: ; 4cf1f
 	ld a, $0
