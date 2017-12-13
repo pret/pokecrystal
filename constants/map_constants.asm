@@ -3,7 +3,7 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
-; map constants (wEnvironment)
+; map environment (wEnvironment)
 const_value SET 1
 	const TOWN
 	const ROUTE
