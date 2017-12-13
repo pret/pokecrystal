@@ -1,4 +1,4 @@
-# Bugs
+# Bugs and Glitches
 
 
 ## Belly Drum sharply boosts Attack even with under 50% HP
