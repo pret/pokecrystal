@@ -7184,7 +7184,7 @@ CheckOpponentWentFirst: ; 36abf
 ; 36ac9
 
 
-BattleCommand_KingsRock: ; 36ac9
+BattleCommand_HeldFlinch: ; 36ac9
 ; kingsrock
 
 	ld a, [AttackMissed]
@@ -7193,7 +7193,7 @@ BattleCommand_KingsRock: ; 36ac9
 
 	call GetUserItem
 	ld a, b
-	cp HELD_TRADE_EVOLVE ; Only King's Rock has this effect
+	cp HELD_FLINCH
 	ret nz
 
 	call CheckSubstituteOpp
