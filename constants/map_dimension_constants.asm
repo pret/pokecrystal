@@ -214,7 +214,7 @@
 	mapgroup EARLS_POKEMON_ACADEMY,                       8,  4 ;  8
 	mapgroup VIOLET_NICKNAME_SPEECH_HOUSE,                4,  4 ;  9
 	mapgroup VIOLET_POKECENTER_1F,                        4,  5 ; 10
-	mapgroup VIOLET_ONIX_TRADE_HOUSE,                     4,  4 ; 11
+	mapgroup VIOLET_KYLES_HOUSE,                          4,  4 ; 11
 	mapgroup ROUTE_32_RUINS_OF_ALPH_GATE,                 4,  5 ; 12
 	mapgroup ROUTE_32_POKECENTER_1F,                      4,  5 ; 13
 	mapgroup ROUTE_35_GOLDENROD_GATE,                     4,  5 ; 14

@@ -427,7 +427,7 @@
 	map_header_2 EarlsPokemonAcademy, EARLS_POKEMON_ACADEMY, $0, 0
 	map_header_2 VioletNicknameSpeechHouse, VIOLET_NICKNAME_SPEECH_HOUSE, $0, 0
 	map_header_2 VioletPokecenter1F, VIOLET_POKECENTER_1F, $0, 0
-	map_header_2 VioletOnixTradeHouse, VIOLET_ONIX_TRADE_HOUSE, $0, 0
+	map_header_2 VioletKylesHouse, VIOLET_KYLES_HOUSE, $0, 0
 	map_header_2 Route32RuinsOfAlphGate, ROUTE_32_RUINS_OF_ALPH_GATE, $0, 0
 	map_header_2 Route32Pokecenter1F, ROUTE_32_POKECENTER_1F, $0, 0
 	map_header_2 Route35GoldenrodGate, ROUTE_35_GOLDENROD_GATE, $0, 0

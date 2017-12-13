@@ -1,8 +1,8 @@
 const_value set 2
-	const VIOLETONIXTRADEHOUSE_POKEFAN_M
-	const VIOLETONIXTRADEHOUSE_KYLE
+	const VIOLETKYLESHOUSE_POKEFAN_M
+	const VIOLETKYLESHOUSE_KYLE
 
-VioletOnixTradeHouse_MapScriptHeader:
+VioletKylesHouse_MapScriptHeader:
 .MapTriggers:
 	db 0
 
@@ -32,7 +32,7 @@ UnknownText_0x69997:
 	line "disobey you."
 	done
 
-VioletOnixTradeHouse_MapEventHeader:
+VioletKylesHouse_MapEventHeader:
 	; filler
 	db 0, 0
 
