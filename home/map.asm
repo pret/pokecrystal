@@ -2160,7 +2160,7 @@ GetAnyMapBank:: ; 2c31
 ; 2c3d
 
 PartiallyCopyMapHeader:: ; 2c3d
-; Copy second map header bank, tileset, permission, and second map header address
+; Copy second map header bank, tileset, environment, and second map header address
 ; from the current map's map header.
 	ld a, [hROMBank]
 	push af
@@ -2231,11 +2231,11 @@ GetSecondaryMapHeaderPointer:: ; 0x2c7d
 	ret
 ; 2c8a
 
-GetMapPermission:: ; 2c8a
+GetMapEnvironment:: ; 2c8a
 	push hl
 	push de
 	push bc
-	ld de, 2 ; permission
+	ld de, 2 ; environment
 	call GetMapHeaderMember
 	ld a, c
 	pop bc
@@ -2247,11 +2247,11 @@ GetMapPermission:: ; 2c8a
 	ret ; XXX
 ; 2c99
 
-GetAnyMapPermission:: ; 2c99
+GetAnyMapEnvironment:: ; 2c99
 	push hl
 	push de
 	push bc
-	ld de, 2 ; permission
+	ld de, 2 ; environment
 	call GetAnyMapHeaderMember
 	ld a, c
 	pop bc

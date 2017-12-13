@@ -1927,7 +1927,7 @@ wMetatileStandingX:: db ; d197
 
 wSecondMapHeaderBank:: db ; d198
 wTileset:: db ; d199
-wPermission:: db ; d19a
+wEnvironment:: db ; d19a
 wSecondMapHeaderAddr:: dw ; d19b
 
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)

@@ -82,7 +82,7 @@ endm
 map_header: macro
 ;\1: map label
 ;\2: tileset: a TILESET_* constant
-;\3: permission: TOWN, ROUTE, INDOOR, CAVE, PERM_5, GATE, or DUNGEON
+;\3: environment: TOWN, ROUTE, INDOOR, CAVE, PERM_5, GATE, or DUNGEON
 ;\4: location: from constants/landmark_constants.asm
 ;\5: music: a MUSIC_* constant
 ;\6: phone service flag: 1 to prevent phone calls

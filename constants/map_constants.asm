@@ -3,7 +3,7 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
-; map permissions (wPermission)
+; map constants (wEnvironment)
 const_value SET 1
 	const TOWN
 	const ROUTE
@@ -13,7 +13,7 @@ const_value SET 1
 	const GATE
 	const DUNGEON
 
-; map palettes (wPermission)
+; map palettes (wEnvironment)
 	const_def
 	const PALETTE_AUTO
 	const PALETTE_DAY

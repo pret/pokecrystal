@@ -562,7 +562,7 @@ endr
 	ret
 
 .morn_day
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp ROUTE
 	jr z, .route
 	cp CAVE
