@@ -8,7 +8,7 @@
 	db 180 ; base exp
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
-	db 255 ; gender
+	db GENDERLESS ; gender
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown

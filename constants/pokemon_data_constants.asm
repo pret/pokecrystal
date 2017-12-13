@@ -25,6 +25,15 @@ BASE_EGG_GROUPS  EQUS "(BaseEggGroups - CurBaseData)"
 BASE_TMHM        EQUS "(BaseTMHM - CurBaseData)"
 BASE_DATA_SIZE   EQUS "(CurBaseDataEnd - CurBaseData)"
 
+; gender ratio constants
+GENDER_F0    EQU 0 percent
+GENDER_F12_5 EQU 31 ; 12.5 percent
+GENDER_F25   EQU 25 percent
+GENDER_F50   EQU 50 percent
+GENDER_F75   EQU 75 percent
+GENDER_F100  EQU 254 ; 100 percent
+GENDERLESS   EQU 255
+
 ; BaseGrowthRate values
 ; GrowthRates indexes (see main.asm)
 	const_def

@@ -8,7 +8,7 @@
 	db 154 ; base exp
 	db LEFTOVERS ; item 1
 	db LEFTOVERS ; item 2
-	db 31 ; gender
+	db GENDER_F12_5 ; gender
 	db 100 ; unknown
 	db 40 ; step cycles to hatch
 	db 5 ; unknown

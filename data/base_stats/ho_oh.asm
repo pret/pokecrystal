@@ -8,7 +8,7 @@
 	db 220 ; base exp
 	db SACRED_ASH ; item 1
 	db SACRED_ASH ; item 2
-	db 255 ; gender
+	db GENDERLESS ; gender
 	db 100 ; unknown
 	db 120 ; step cycles to hatch
 	db 5 ; unknown

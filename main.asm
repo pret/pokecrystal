@@ -3640,13 +3640,13 @@ GetGender: ; 50bdd
 
 ; The higher the ratio, the more likely the monster is to be female.
 
-	cp $ff
+	cp GENDERLESS
 	jr z, .Genderless
 
-	and a
+	and a ; GENDER_F0?
 	jr z, .Male
 
-	cp $fe
+	cp GENDER_F100
 	jr z, .Female
 
 ; Values below the ratio are male, and vice versa.

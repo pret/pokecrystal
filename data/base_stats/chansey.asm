@@ -8,7 +8,7 @@
 	db 255 ; base exp
 	db NO_ITEM ; item 1
 	db LUCKY_EGG ; item 2
-	db 254 ; gender
+	db GENDER_F100 ; gender
 	db 100 ; unknown
 	db 40 ; step cycles to hatch
 	db 5 ; unknown

@@ -8,7 +8,7 @@
 	db 64 ; base exp
 	db NO_ITEM ; item 1
 	db MIRACLEBERRY ; item 2
-	db 255 ; gender
+	db GENDERLESS ; gender
 	db 100 ; unknown
 	db 120 ; step cycles to hatch
 	db 5 ; unknown

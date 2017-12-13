@@ -8,7 +8,7 @@
 	db 200 ; base exp
 	db MOOMOO_MILK ; item 1
 	db MOOMOO_MILK ; item 2
-	db 254 ; gender
+	db GENDER_F100 ; gender
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown
