@@ -1,3 +1,4 @@
+Icons:
 NullIcon:
 PoliwagIcon:      INCBIN "gfx/icon/poliwag.2bpp" ; 0x8ec0d
 JigglypuffIcon:   INCBIN "gfx/icon/jigglypuff.2bpp" ; 0x8ec8d

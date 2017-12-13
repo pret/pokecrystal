@@ -294,8 +294,8 @@ NewBarkTown_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $8, $1, $0, NewBarkTown_TeacherStopsYouTrigger1, $0, $0
-	xy_trigger 0, $9, $1, $0, NewBarkTown_TeacherStopsYouTrigger2, $0, $0
+	xy_trigger 0, $8, $1, NewBarkTown_TeacherStopsYouTrigger1
+	xy_trigger 0, $9, $1, NewBarkTown_TeacherStopsYouTrigger2
 
 .Signposts:
 	db 4

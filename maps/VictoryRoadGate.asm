@@ -114,7 +114,7 @@ VictoryRoadGate_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $b, $a, $0, VictoryRoadGateBadgeCheckTrigger, $0, $0
+	xy_trigger 0, $b, $a, VictoryRoadGateBadgeCheckTrigger
 
 .Signposts:
 	db 0

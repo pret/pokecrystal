@@ -291,8 +291,8 @@ EcruteakHouse_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $7, $4, $0, EcruteakHouse_XYTrigger1, $0, $0
-	xy_trigger 0, $7, $5, $0, EcruteakHouse_XYTrigger2, $0, $0
+	xy_trigger 0, $7, $4, EcruteakHouse_XYTrigger1
+	xy_trigger 0, $7, $5, EcruteakHouse_XYTrigger2
 
 .Signposts:
 	db 0

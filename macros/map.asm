@@ -21,13 +21,10 @@ xy_trigger: macro
 ;\1: number: controlled by dotrigger/domaptrigger
 ;\2: y: top to bottom, starts at 0
 ;\3: x: left to right, starts at 0
-;\4: unknown1: $0
-;\5: script pointer
-;\6: unknown2: $0
-;\7: unknown3: $0
-	db \1, \2, \3, \4
-	dw \5
-	db \6, \7
+;\4: script pointer
+	db \1, \2, \3, $0
+	dw \4
+	db $0, $0
 endm
 
 signpost: macro

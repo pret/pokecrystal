@@ -1,148 +1,148 @@
 SpriteAnimOAMData: ; 8d94d
 ; entries correspond to SPRITE_ANIM_FRAME_IDX_* constants
 	; vtile offset, pointer
-	dbw $00, .OAMData_00 ; 00
-	dbw $04, .OAMData_00 ; 01
-	dbw $4c, .OAMData_02 ; 02
-	dbw $5c, .OAMData_02 ; 03
-	dbw $6c, .OAMData_04 ; 04
-	dbw $6e, .OAMData_04 ; 05
-	dbw $2d, .OAMData_06 ; 06
-	dbw $4d, .OAMData_06 ; 07
-	dbw $60, .OAMData_08 ; 08
-	dbw $00, .OAMData_08 ; 09
-	dbw $00, .OAMData_08 ; 0a
-	dbw $06, .OAMData_08 ; 0b
-	dbw $0c, .OAMData_0c ; 0c
-	dbw $0d, .OAMData_02 ; 0d
-	dbw $00, .OAMData_0e ; 0e
-	dbw $04, .OAMData_0e ; 0f
-	dbw $08, .OAMData_0e ; 10
-	dbw $40, .OAMData_0e ; 11
-	dbw $44, .OAMData_0e ; 12
-	dbw $48, .OAMData_0e ; 13
-	dbw $4c, .OAMData_0e ; 14
-	dbw $80, .OAMData_15 ; 15
-	dbw $85, .OAMData_15 ; 16
-	dbw $8a, .OAMData_15 ; 17
-	dbw $00, .OAMData_18 ; 18
-	dbw $01, .OAMData_19 ; 19
-	dbw $09, .OAMData_1a ; 1a
-	dbw $10, .OAMData_1b ; 1b
-	dbw $29, .OAMData_1b ; 1c
-	dbw $42, .OAMData_1b ; 1d
-	dbw $f8, .OAMData_1e ; 1e
-	dbw $fa, .OAMData_1e ; 1f
-	dbw $00, .OAMData_20 ; 20
-	dbw $00, .OAMData_21 ; 21
-	dbw $00, .OAMData_22 ; 22
-	dbw $0f, .OAMData_23 ; 23
-	dbw $11, .OAMData_02 ; 24
-	dbw $12, .OAMData_02 ; 25
-	dbw $13, .OAMData_02 ; 26
-	dbw $00, .OAMData_27 ; 27
-	dbw $08, .OAMData_27 ; 28
-	dbw $10, .OAMData_29 ; 29
-	dbw $10, .OAMData_2a ; 2a
-	dbw $10, .OAMData_2b ; 2b
-	dbw $10, .OAMData_2c ; 2c
-	dbw $10, .OAMData_2d ; 2d
-	dbw $3a, .OAMData_02 ; 2e
-	dbw $00, .OAMData_00 ; 2f
-	dbw $00, .OAMData_30 ; 30
-	dbw $02, .OAMData_31 ; 31
-	dbw $06, .OAMData_19 ; 32
-	dbw $0a, .OAMData_19 ; 33
-	dbw $0e, .OAMData_19 ; 34
-	dbw $12, .OAMData_35 ; 35
-	dbw $13, .OAMData_35 ; 36
-	dbw $00, .OAMData_00 ; 37
-	dbw $04, .OAMData_00 ; 38
-	dbw $10, .OAMData_19 ; 39
-	dbw $00, .OAMData_31 ; 3a
-	dbw $04, .OAMData_02 ; 3b
-	dbw $00, .OAMData_3c ; 3c
-	dbw $00, .OAMData_3d ; 3d
-	dbw $00, .OAMData_3e ; 3e
-	dbw $00, .OAMData_3f ; 3f
-	dbw $00, .OAMData_40 ; 40
-	dbw $00, .OAMData_31 ; 41
-	dbw $04, .OAMData_31 ; 42
-	dbw $00, .OAMData_43 ; 43
-	dbw $30, .OAMData_43 ; 44
-	dbw $03, .OAMData_43 ; 45
-	dbw $33, .OAMData_43 ; 46
-	dbw $06, .OAMData_43 ; 47
-	dbw $36, .OAMData_43 ; 48
-	dbw $09, .OAMData_43 ; 49
-	dbw $39, .OAMData_43 ; 4a
-	dbw $0c, .OAMData_4b ; 4b
-	dbw $0c, .OAMData_4c ; 4c
-	dbw $3c, .OAMData_02 ; 4d
-	dbw $3e, .OAMData_02 ; 4e
-	dbw $00, .OAMData_4f ; 4f
-	dbw $00, .OAMData_50 ; 50
-	dbw $00, .OAMData_51 ; 51
-	dbw $00, .OAMData_52 ; 52
-	dbw $00, .OAMData_53 ; 53
-	dbw $00, .OAMData_02 ; 54
-	dbw $01, .OAMData_02 ; 55
-	dbw $00, .OAMData_56 ; 56
-	dbw $00, .OAMData_57 ; 57
-	dbw $00, .OAMData_58 ; 58
-	dbw $00, .OAMData_59 ; 59
-	dbw $00, .OAMData_5a ; 5a
-	dbw $04, .OAMData_50 ; 5b
-	dbw $00, .OAMData_5c ; 5c
-	dbw $00, .OAMData_5d ; 5d
-	dbw $00, .OAMData_5e ; 5e
-	dbw $00, .OAMData_5f ; 5f
-	dbw $00, .OAMData_60 ; 60
-	dbw $00, .OAMData_61 ; 61
-	dbw $00, .OAMData_62 ; 62
-	dbw $00, .OAMData_63 ; 63
-	dbw $04, .OAMData_63 ; 64
-	dbw $00, .OAMData_65 ; 65
-	dbw $04, .OAMData_65 ; 66
-	dbw $20, .OAMData_67 ; 67
-	dbw $21, .OAMData_67 ; 68
-	dbw $22, .OAMData_69 ; 69
-	dbw $23, .OAMData_6a ; 6a
-	dbw $27, .OAMData_6b ; 6b
-	dbw $2a, .OAMData_6c ; 6c
-	dbw $2a, .OAMData_6d ; 6d
-	dbw $00, .OAMData_6e ; 6e
-	dbw $08, .OAMData_6f ; 6f
-	dbw $60, .OAMData_70 ; 70
-	dbw $68, .OAMData_71 ; 71
-	dbw $00, .OAMData_72 ; 72
-	dbw $05, .OAMData_72 ; 73
-	dbw $0a, .OAMData_72 ; 74
-	dbw $50, .OAMData_75 ; 75
-	dbw $00, .OAMData_76 ; 76
-	dbw $01, .OAMData_77 ; 77
-	dbw $04, .OAMData_78 ; 78
-	dbw $00, .OAMData_18 ; 79
-	dbw $01, .OAMData_7a ; 7a
-	dbw $03, .OAMData_7b ; 7b
-	dbw $08, .OAMData_7c ; 7c
-	dbw $1c, .OAMData_7c ; 7d
-	dbw $80, .OAMData_7e ; 7e
-	dbw $00, .OAMData_7f ; 7f
-	dbw $04, .OAMData_7f ; 80
-	dbw $d0, .OAMData_81 ; 81
-	dbw $d3, .OAMData_81 ; 82
-	dbw $d6, .OAMData_81 ; 83
-	dbw $6c, .OAMData_84 ; 84
-	dbw $68, .OAMData_84 ; 85
-	dbw $64, .OAMData_84 ; 86
-	dbw $60, .OAMData_84 ; 87
-	dbw $0c, .OAMData_84 ; 88
-	dbw $08, .OAMData_84 ; 89
-	dbw $04, .OAMData_84 ; 8a
-	dbw $00, .OAMData_84 ; 8b
+	dbw $00, .OAMData_RedWalk ; SPRITE_ANIM_FRAME_IDX_RED_WALK_1
+	dbw $04, .OAMData_RedWalk ; SPRITE_ANIM_FRAME_IDX_RED_WALK_2
+	dbw $4c, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_02
+	dbw $5c, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_03
+	dbw $6c, .OAMData_04 ; SPRITE_ANIM_FRAME_IDX_04
+	dbw $6e, .OAMData_04 ; SPRITE_ANIM_FRAME_IDX_05
+	dbw $2d, .OAMData_06 ; SPRITE_ANIM_FRAME_IDX_06
+	dbw $4d, .OAMData_06 ; SPRITE_ANIM_FRAME_IDX_07
+	dbw $60, .OAMData_08 ; SPRITE_ANIM_FRAME_IDX_08
+	dbw $00, .OAMData_08 ; SPRITE_ANIM_FRAME_IDX_09
+	dbw $00, .OAMData_08 ; SPRITE_ANIM_FRAME_IDX_0A
+	dbw $06, .OAMData_08 ; SPRITE_ANIM_FRAME_IDX_0B
+	dbw $0c, .OAMData_0c ; SPRITE_ANIM_FRAME_IDX_0C
+	dbw $0d, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_0D
+	dbw $00, .OAMData_0e ; SPRITE_ANIM_FRAME_IDX_0E
+	dbw $04, .OAMData_0e ; SPRITE_ANIM_FRAME_IDX_0F
+	dbw $08, .OAMData_0e ; SPRITE_ANIM_FRAME_IDX_10
+	dbw $40, .OAMData_0e ; SPRITE_ANIM_FRAME_IDX_11
+	dbw $44, .OAMData_0e ; SPRITE_ANIM_FRAME_IDX_12
+	dbw $48, .OAMData_0e ; SPRITE_ANIM_FRAME_IDX_13
+	dbw $4c, .OAMData_0e ; SPRITE_ANIM_FRAME_IDX_14
+	dbw $80, .OAMData_15 ; SPRITE_ANIM_FRAME_IDX_15
+	dbw $85, .OAMData_15 ; SPRITE_ANIM_FRAME_IDX_16
+	dbw $8a, .OAMData_15 ; SPRITE_ANIM_FRAME_IDX_17
+	dbw $00, .OAMData_18 ; SPRITE_ANIM_FRAME_IDX_18
+	dbw $01, .OAMData_TradePoofBubble ; SPRITE_ANIM_FRAME_IDX_19
+	dbw $09, .OAMData_1a ; SPRITE_ANIM_FRAME_IDX_1A
+	dbw $10, .OAMData_1b ; SPRITE_ANIM_FRAME_IDX_1B
+	dbw $29, .OAMData_1b ; SPRITE_ANIM_FRAME_IDX_1C
+	dbw $42, .OAMData_1b ; SPRITE_ANIM_FRAME_IDX_1D
+	dbw $f8, .OAMData_GSTitleTrail ; SPRITE_ANIM_FRAME_IDX_GS_TITLE_TRAIL_1
+	dbw $fa, .OAMData_GSTitleTrail ; SPRITE_ANIM_FRAME_IDX_GS_TITLE_TRAIL_2
+	dbw $00, .OAMData_TextEntryCursor ; SPRITE_ANIM_FRAME_IDX_TEXT_ENTRY_CURSOR
+	dbw $00, .OAMData_ForFrameset09 ; SPRITE_ANIM_FRAME_IDX_FOR_FRAMESET_09
+	dbw $00, .OAMData_22 ; SPRITE_ANIM_FRAME_IDX_22
+	dbw $0f, .OAMData_GSIntroStar ; SPRITE_ANIM_FRAME_IDX_GS_INTRO_STAR
+	dbw $11, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_GS_INTRO_SPARKLE_1
+	dbw $12, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_GS_INTRO_SPARKLE_2
+	dbw $13, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_GS_INTRO_SPARKLE_3
+	dbw $00, .OAMData_SlotsGolem ; SPRITE_ANIM_FRAME_IDX_SLOTS_GOLEM_1
+	dbw $08, .OAMData_SlotsGolem ; SPRITE_ANIM_FRAME_IDX_SLOTS_GOLEM_2
+	dbw $10, .OAMData_SlotsChansey1 ; SPRITE_ANIM_FRAME_IDX_SLOTS_CHANSEY_1
+	dbw $10, .OAMData_SlotsChansey2 ; SPRITE_ANIM_FRAME_IDX_SLOTS_CHANSEY_2
+	dbw $10, .OAMData_SlotsChansey3 ; SPRITE_ANIM_FRAME_IDX_SLOTS_CHANSEY_3
+	dbw $10, .OAMData_SlotsChansey4 ; SPRITE_ANIM_FRAME_IDX_SLOTS_CHANSEY_4
+	dbw $10, .OAMData_SlotsChansey5 ; SPRITE_ANIM_FRAME_IDX_SLOTS_CHANSEY_5
+	dbw $3a, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_SLOTS_EGG
+	dbw $00, .OAMData_RedWalk ; SPRITE_ANIM_FRAME_IDX_STILL_CURSOR
+	dbw $00, .OAMData_TradePokeBall1 ; SPRITE_ANIM_FRAME_IDX_TRADE_POKE_BALL_1
+	dbw $02, .OAMData_MagnetTrainRed ; SPRITE_ANIM_FRAME_IDX_TRADE_POKE_BALL_2
+	dbw $06, .OAMData_TradePoofBubble ; SPRITE_ANIM_FRAME_IDX_TRADE_POOF_1
+	dbw $0a, .OAMData_TradePoofBubble ; SPRITE_ANIM_FRAME_IDX_TRADE_POOF_2
+	dbw $0e, .OAMData_TradePoofBubble ; SPRITE_ANIM_FRAME_IDX_TRADE_POOF_3
+	dbw $12, .OAMData_35 ; SPRITE_ANIM_FRAME_IDX_35
+	dbw $13, .OAMData_35 ; SPRITE_ANIM_FRAME_IDX_36
+	dbw $00, .OAMData_RedWalk ; SPRITE_ANIM_FRAME_IDX_TRADEMON_ICON_1
+	dbw $04, .OAMData_RedWalk ; SPRITE_ANIM_FRAME_IDX_TRADEMON_ICON_2
+	dbw $10, .OAMData_TradePoofBubble ; SPRITE_ANIM_FRAME_IDX_TRADEMON_BUBBLE
+	dbw $00, .OAMData_MagnetTrainRed ; SPRITE_ANIM_FRAME_IDX_EVOLUTION_BALL_OF_LIGHT_1
+	dbw $04, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_EVOLUTION_BALL_OF_LIGHT_2
+	dbw $00, .OAMData_RadioTuningKnob ; SPRITE_ANIM_FRAME_IDX_RADIO_TUNING_KNOB
+	dbw $00, .OAMData_PartyMonWithMail1 ; SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_MAIL_1
+	dbw $00, .OAMData_PartyMonWithMail2 ; SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_MAIL_2
+	dbw $00, .OAMData_PartyMonWithItem1 ; SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_ITEM_1
+	dbw $00, .OAMData_PartyMonWithItem2 ; SPRITE_ANIM_FRAME_IDX_PARTY_MON_WITH_ITEM_2
+	dbw $00, .OAMData_MagnetTrainRed ; SPRITE_ANIM_FRAME_IDX_MAGNET_TRAIN_RED_1
+	dbw $04, .OAMData_MagnetTrainRed ; SPRITE_ANIM_FRAME_IDX_MAGNET_TRAIN_RED_2
+	dbw $00, .OAMData_43 ; SPRITE_ANIM_FRAME_IDX_43
+	dbw $30, .OAMData_43 ; SPRITE_ANIM_FRAME_IDX_44
+	dbw $03, .OAMData_43 ; SPRITE_ANIM_FRAME_IDX_45
+	dbw $33, .OAMData_43 ; SPRITE_ANIM_FRAME_IDX_46
+	dbw $06, .OAMData_43 ; SPRITE_ANIM_FRAME_IDX_47
+	dbw $36, .OAMData_43 ; SPRITE_ANIM_FRAME_IDX_48
+	dbw $09, .OAMData_43 ; SPRITE_ANIM_FRAME_IDX_49
+	dbw $39, .OAMData_43 ; SPRITE_ANIM_FRAME_IDX_4A
+	dbw $0c, .OAMData_4b ; SPRITE_ANIM_FRAME_IDX_4B
+	dbw $0c, .OAMData_4c ; SPRITE_ANIM_FRAME_IDX_4C
+	dbw $3c, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_4D
+	dbw $3e, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_4E
+	dbw $00, .OAMData_Leaf ; SPRITE_ANIM_FRAME_IDX_LEAF
+	dbw $00, .OAMData_Tree ; SPRITE_ANIM_FRAME_IDX_TREE_1
+	dbw $00, .OAMData_CutTree2 ; SPRITE_ANIM_FRAME_IDX_CUT_TREE_2
+	dbw $00, .OAMData_CutTree3 ; SPRITE_ANIM_FRAME_IDX_CUT_TREE_3
+	dbw $00, .OAMData_CutTree4 ; SPRITE_ANIM_FRAME_IDX_CUT_TREE_4
+	dbw $00, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_EGG_CRACK
+	dbw $01, .OAMData_1x1_Palette0 ; SPRITE_ANIM_FRAME_IDX_55
+	dbw $00, .OAMData_56 ; SPRITE_ANIM_FRAME_IDX_56
+	dbw $00, .OAMData_57 ; SPRITE_ANIM_FRAME_IDX_57
+	dbw $00, .OAMData_58 ; SPRITE_ANIM_FRAME_IDX_58
+	dbw $00, .OAMData_59 ; SPRITE_ANIM_FRAME_IDX_59
+	dbw $00, .OAMData_5a ; SPRITE_ANIM_FRAME_IDX_5A
+	dbw $04, .OAMData_Tree ; SPRITE_ANIM_FRAME_IDX_HEADBUTT_TREE_2
+	dbw $00, .OAMData_5c ; SPRITE_ANIM_FRAME_IDX_5C
+	dbw $00, .OAMData_5d ; SPRITE_ANIM_FRAME_IDX_5D
+	dbw $00, .OAMData_5e ; SPRITE_ANIM_FRAME_IDX_5E
+	dbw $00, .OAMData_5f ; SPRITE_ANIM_FRAME_IDX_5F
+	dbw $00, .OAMData_60 ; SPRITE_ANIM_FRAME_IDX_60
+	dbw $00, .OAMData_61 ; SPRITE_ANIM_FRAME_IDX_61
+	dbw $00, .OAMData_62 ; SPRITE_ANIM_FRAME_IDX_62
+	dbw $00, .OAMData_BlueWalk ; SPRITE_ANIM_FRAME_IDX_BLUE_WALK_1
+	dbw $04, .OAMData_BlueWalk ; SPRITE_ANIM_FRAME_IDX_BLUE_WALK_2
+	dbw $00, .OAMData_MagnetTrainBlue ; SPRITE_ANIM_FRAME_IDX_MAGNET_TRAIN_BLUE_1
+	dbw $04, .OAMData_MagnetTrainBlue ; SPRITE_ANIM_FRAME_IDX_MAGNET_TRAIN_BLUE_2
+	dbw $20, .OAMData_ForMobile22 ; SPRITE_ANIM_FRAME_IDX_FOR_MOBILE_22_1
+	dbw $21, .OAMData_ForMobile22 ; SPRITE_ANIM_FRAME_IDX_FOR_MOBILE_22_2
+	dbw $22, .OAMData_ForMobile25_1 ; SPRITE_ANIM_FRAME_IDX_FOR_MOBILE_25_1
+	dbw $23, .OAMData_ForMobile25_2 ; SPRITE_ANIM_FRAME_IDX_FOR_MOBILE_25_2
+	dbw $27, .OAMData_ForMobile25_3 ; SPRITE_ANIM_FRAME_IDX_FOR_MOBILE_25_3
+	dbw $2a, .OAMData_ForMobile23 ; SPRITE_ANIM_FRAME_IDX_FOR_MOBILE_23
+	dbw $2a, .OAMData_ForMobile24 ; SPRITE_ANIM_FRAME_IDX_FOR_MOBILE_24
+	dbw $00, .OAMData_IntroSuicune1 ; SPRITE_ANIM_FRAME_IDX_INTRO_SUICUNE_1
+	dbw $08, .OAMData_IntroSuicune2 ; SPRITE_ANIM_FRAME_IDX_INTRO_SUICUNE_2
+	dbw $60, .OAMData_IntroSuicune3 ; SPRITE_ANIM_FRAME_IDX_INTRO_SUICUNE_3
+	dbw $68, .OAMData_IntroSuicune4 ; SPRITE_ANIM_FRAME_IDX_INTRO_SUICUNE_4
+	dbw $00, .OAMData_IntroPichu ; SPRITE_ANIM_FRAME_IDX_INTRO_PICHU_1
+	dbw $05, .OAMData_IntroPichu ; SPRITE_ANIM_FRAME_IDX_INTRO_PICHU_2
+	dbw $0a, .OAMData_IntroPichu ; SPRITE_ANIM_FRAME_IDX_INTRO_PICHU_3
+	dbw $50, .OAMData_IntroWooper ; SPRITE_ANIM_FRAME_IDX_INTRO_WOOPER
+	dbw $00, .OAMData_IntroUnown1 ; SPRITE_ANIM_FRAME_IDX_INTRO_UNOWN_1
+	dbw $01, .OAMData_IntroUnown2 ; SPRITE_ANIM_FRAME_IDX_INTRO_UNOWN_2
+	dbw $04, .OAMData_IntroUnown3 ; SPRITE_ANIM_FRAME_IDX_INTRO_UNOWN_3
+	dbw $00, .OAMData_18 ; SPRITE_ANIM_FRAME_IDX_INTRO_UNOWN_F_2_1
+	dbw $01, .OAMData_IntroUnownF2_2 ; SPRITE_ANIM_FRAME_IDX_INTRO_UNOWN_F_2_2
+	dbw $03, .OAMData_IntroUnownF2_3 ; SPRITE_ANIM_FRAME_IDX_INTRO_UNOWN_F_2_3
+	dbw $08, .OAMData_IntroUnownF2_4_5 ; SPRITE_ANIM_FRAME_IDX_INTRO_UNOWN_F_2_4
+	dbw $1c, .OAMData_IntroUnownF2_4_5 ; SPRITE_ANIM_FRAME_IDX_INTRO_UNOWN_F_2_5
+	dbw $80, .OAMData_IntroSuicuneAway ; SPRITE_ANIM_FRAME_IDX_INTRO_SUICUNE_AWAY
+	dbw $00, .OAMData_Celebi ; SPRITE_ANIM_FRAME_IDX_CELEBI_1
+	dbw $04, .OAMData_Celebi ; SPRITE_ANIM_FRAME_IDX_CELEBI_2
+	dbw $d0, .OAMData_GameFreakLogo1_3 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_1
+	dbw $d3, .OAMData_GameFreakLogo1_3 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_2
+	dbw $d6, .OAMData_GameFreakLogo1_3 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_3
+	dbw $6c, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_4
+	dbw $68, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_5
+	dbw $64, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_6
+	dbw $60, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_7
+	dbw $0c, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_8
+	dbw $08, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_9
+	dbw $04, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_10
+	dbw $00, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_FRAME_IDX_GAMEFREAK_LOGO_11
 
-.OAMData_02:
+.OAMData_1x1_Palette0:
 	db 1
 	dsprite -1,  4, -1,  4, $00, $00
 
@@ -153,14 +153,14 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0, -1,  0, $10, $00
 	dsprite  0,  0,  0,  0, $11, $00
 
-.OAMData_23:
+.OAMData_GSIntroStar:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $00
-	dsprite -1,  0,  0,  0, $00, $20
-	dsprite  0,  0, -1,  0, $01, $00
-	dsprite  0,  0,  0,  0, $01, $20
+	dsprite -1,  0, -1,  0, $00, 0
+	dsprite -1,  0,  0,  0, $00, 0 | X_FLIP
+	dsprite  0,  0, -1,  0, $01, 0
+	dsprite  0,  0,  0,  0, $01, 0 | X_FLIP
 
-.OAMData_30:
+.OAMData_TradePokeBall1:
 	db 4
 	dsprite -1,  0, -1,  0, $00, $80
 	dsprite -1,  0,  0,  0, $00, $a0
@@ -189,24 +189,24 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0, -1,  0, $00, $c0
 	dsprite  0,  0,  0,  0, $00, $e0
 
-.OAMData_19:
+.OAMData_TradePoofBubble:
 	db 16
-	dsprite -2,  0, -2,  0, $00, $00
-	dsprite -2,  0, -1,  0, $01, $00
-	dsprite -1,  0, -2,  0, $02, $00
-	dsprite -1,  0, -1,  0, $03, $00
-	dsprite -2,  0,  0,  0, $01, $20
-	dsprite -2,  0,  1,  0, $00, $20
-	dsprite -1,  0,  0,  0, $03, $20
-	dsprite -1,  0,  1,  0, $02, $20
-	dsprite  0,  0, -2,  0, $02, $40
-	dsprite  0,  0, -1,  0, $03, $40
-	dsprite  1,  0, -2,  0, $00, $40
-	dsprite  1,  0, -1,  0, $01, $40
-	dsprite  0,  0,  0,  0, $03, $60
-	dsprite  0,  0,  1,  0, $02, $60
-	dsprite  1,  0,  0,  0, $01, $60
-	dsprite  1,  0,  1,  0, $00, $60
+	dsprite -2,  0, -2,  0, $00, 0
+	dsprite -2,  0, -1,  0, $01, 0
+	dsprite -1,  0, -2,  0, $02, 0
+	dsprite -1,  0, -1,  0, $03, 0
+	dsprite -2,  0,  0,  0, $01, 0 | X_FLIP
+	dsprite -2,  0,  1,  0, $00, 0 | X_FLIP
+	dsprite -1,  0,  0,  0, $03, 0 | X_FLIP
+	dsprite -1,  0,  1,  0, $02, 0 | X_FLIP
+	dsprite  0,  0, -2,  0, $02, 0 | Y_FLIP
+	dsprite  0,  0, -1,  0, $03, 0 | Y_FLIP
+	dsprite  1,  0, -2,  0, $00, 0 | Y_FLIP
+	dsprite  1,  0, -1,  0, $01, 0 | Y_FLIP
+	dsprite  0,  0,  0,  0, $03, 0 | X_FLIP | Y_FLIP
+	dsprite  0,  0,  1,  0, $02, 0 | X_FLIP | Y_FLIP
+	dsprite  1,  0,  0,  0, $01, 0 | X_FLIP | Y_FLIP
+	dsprite  1,  0,  1,  0, $00, 0 | X_FLIP | Y_FLIP
 
 .OAMData_1a:
 	db 36
@@ -346,52 +346,47 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  2,  0,  1,  0, $22, $00
 	dsprite  2,  0,  2,  0, $23, $00
 
-.OAMData_00:
-; party menu icons
+.OAMData_RedWalk:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $00
-	dsprite -1,  0,  0,  0, $01, $00
-	dsprite  0,  0, -1,  0, $02, $00
-	dsprite  0,  0,  0,  0, $03, $00
+	dsprite -1,  0, -1,  0, $00, PAL_OW_RED
+	dsprite -1,  0,  0,  0, $01, PAL_OW_RED
+	dsprite  0,  0, -1,  0, $02, PAL_OW_RED
+	dsprite  0,  0,  0,  0, $03, PAL_OW_RED
 
-.OAMData_31:
+.OAMData_MagnetTrainRed:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $80
-	dsprite -1,  0,  0,  0, $01, $80
-	dsprite  0,  0, -1,  0, $02, $80
-	dsprite  0,  0,  0,  0, $03, $80
+	dsprite -1,  0, -1,  0, $00, PAL_OW_RED | BEHIND_BG
+	dsprite -1,  0,  0,  0, $01, PAL_OW_RED | BEHIND_BG
+	dsprite  0,  0, -1,  0, $02, PAL_OW_RED | BEHIND_BG
+	dsprite  0,  0,  0,  0, $03, PAL_OW_RED | BEHIND_BG
 
-.OAMData_3d:
-; party menu icon with mail, frame 1
+.OAMData_PartyMonWithMail1:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $00
-	dsprite -1,  0,  0,  0, $01, $00
-	dsprite  0,  0, -1,  0, $08, $00
-	dsprite  0,  0,  0,  0, $03, $00
+	dsprite -1,  0, -1,  0, $00, PAL_OW_RED
+	dsprite -1,  0,  0,  0, $01, PAL_OW_RED
+	dsprite  0,  0, -1,  0, $08, PAL_OW_RED
+	dsprite  0,  0,  0,  0, $03, PAL_OW_RED
 
-.OAMData_3e:
-; party menu icon with mail, frame 2
+.OAMData_PartyMonWithMail2:
 	db 4
-	dsprite -1,  0, -1,  0, $04, $00
-	dsprite -1,  0,  0,  0, $05, $00
-	dsprite  0,  0, -1,  0, $08, $00
-	dsprite  0,  0,  0,  0, $07, $00
+	dsprite -1,  0, -1,  0, $04, PAL_OW_RED
+	dsprite -1,  0,  0,  0, $05, PAL_OW_RED
+	dsprite  0,  0, -1,  0, $08, PAL_OW_RED
+	dsprite  0,  0,  0,  0, $07, PAL_OW_RED
 
-.OAMData_3f:
-; party menu icon with item, frame 1
+.OAMData_PartyMonWithItem1:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $00
-	dsprite -1,  0,  0,  0, $01, $00
-	dsprite  0,  0, -1,  0, $09, $00
-	dsprite  0,  0,  0,  0, $03, $00
+	dsprite -1,  0, -1,  0, $00, PAL_OW_RED
+	dsprite -1,  0,  0,  0, $01, PAL_OW_RED
+	dsprite  0,  0, -1,  0, $09, PAL_OW_RED
+	dsprite  0,  0,  0,  0, $03, PAL_OW_RED
 
-.OAMData_40:
-; party menu icon with item, frame 2
+.OAMData_PartyMonWithItem2:
 	db 4
-	dsprite -1,  0, -1,  0, $04, $00
-	dsprite -1,  0,  0,  0, $05, $00
-	dsprite  0,  0, -1,  0, $09, $00
-	dsprite  0,  0,  0,  0, $07, $00
+	dsprite -1,  0, -1,  0, $04, PAL_OW_RED
+	dsprite -1,  0,  0,  0, $05, PAL_OW_RED
+	dsprite  0,  0, -1,  0, $09, PAL_OW_RED
+	dsprite  0,  0,  0,  0, $07, PAL_OW_RED
 
 .OAMData_06:
 	db 6
@@ -447,36 +442,36 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite -1,  0,  3,  0, $03, $00
 	dsprite  0,  0,  2,  0, $04, $00
 
-.OAMData_4f:
+.OAMData_Leaf:
 	db 1
-	dsprite -1,  4, -1,  4, $00, $06
+	dsprite -1,  4, -1,  4, $00, PAL_OW_TREE
 
-.OAMData_50:
+.OAMData_Tree:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $06
-	dsprite -1,  0,  0,  0, $01, $06
-	dsprite  0,  0, -1,  0, $02, $06
-	dsprite  0,  0,  0,  0, $03, $06
+	dsprite -1,  0, -1,  0, $00, PAL_OW_TREE
+	dsprite -1,  0,  0,  0, $01, PAL_OW_TREE
+	dsprite  0,  0, -1,  0, $02, PAL_OW_TREE
+	dsprite  0,  0,  0,  0, $03, PAL_OW_TREE
 
-.OAMData_20:
+.OAMData_TextEntryCursor:
 	db 4
-	dsprite -1,  7, -1,  7, $00, $00
-	dsprite -1,  7,  0,  0, $00, $20
-	dsprite  0,  0, -1,  7, $00, $40
-	dsprite  0,  0,  0,  0, $00, $60
+	dsprite -1,  7, -1,  7, $00, 0
+	dsprite -1,  7,  0,  0, $00, 0 | X_FLIP
+	dsprite  0,  0, -1,  7, $00, 0 | Y_FLIP
+	dsprite  0,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
 
-.OAMData_21:
+.OAMData_ForFrameset09:
 	db 10
-	dsprite -1,  7,  0,  0, $00, $00
-	dsprite -1,  7,  1,  0, $01, $00
-	dsprite -1,  7,  2,  0, $01, $00
-	dsprite -1,  7,  3,  0, $01, $00
-	dsprite -1,  7,  4,  0, $00, $20
-	dsprite  0,  0,  0,  0, $00, $40
-	dsprite  0,  0,  1,  0, $01, $40
-	dsprite  0,  0,  2,  0, $01, $40
-	dsprite  0,  0,  3,  0, $01, $40
-	dsprite  0,  0,  4,  0, $00, $60
+	dsprite -1,  7,  0,  0, $00, 0
+	dsprite -1,  7,  1,  0, $01, 0
+	dsprite -1,  7,  2,  0, $01, 0
+	dsprite -1,  7,  3,  0, $01, 0
+	dsprite -1,  7,  4,  0, $00, 0 | X_FLIP
+	dsprite  0,  0,  0,  0, $00, 0 | Y_FLIP
+	dsprite  0,  0,  1,  0, $01, 0 | Y_FLIP
+	dsprite  0,  0,  2,  0, $01, 0 | Y_FLIP
+	dsprite  0,  0,  3,  0, $01, 0 | Y_FLIP
+	dsprite  0,  0,  4,  0, $00, 0 | X_FLIP | Y_FLIP
 
 .OAMData_22:
 	db 15
@@ -496,65 +491,65 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  1,  4, -1,  4, $0d, $11
 	dsprite  1,  4,  0,  4, $0e, $11
 
-.OAMData_27:
+.OAMData_SlotsGolem:
 	db 6
-	dsprite -2,  4, -2,  4, $00, $15
-	dsprite -2,  4, -1,  4, $02, $15
-	dsprite -2,  4,  0,  4, $00, $35
-	dsprite  0,  4, -2,  4, $04, $15
-	dsprite  0,  4, -1,  4, $06, $15
-	dsprite  0,  4,  0,  4, $04, $35
+	dsprite -2,  4, -2,  4, $00, 5 | OBP_NUM
+	dsprite -2,  4, -1,  4, $02, 5 | OBP_NUM
+	dsprite -2,  4,  0,  4, $00, 5 | OBP_NUM | X_FLIP
+	dsprite  0,  4, -2,  4, $04, 5 | OBP_NUM
+	dsprite  0,  4, -1,  4, $06, 5 | OBP_NUM
+	dsprite  0,  4,  0,  4, $04, 5 | OBP_NUM | X_FLIP
 
-.OAMData_29:
+.OAMData_SlotsChansey1:
 	db 6
-	dsprite -2,  4, -2,  4, $00, $16
-	dsprite -2,  4, -1,  4, $02, $16
-	dsprite -2,  4,  0,  4, $04, $16
-	dsprite  0,  4, -2,  4, $06, $16
-	dsprite  0,  4, -1,  4, $08, $16
-	dsprite  0,  4,  0,  4, $0a, $16
+	dsprite -2,  4, -2,  4, $00, 6 | OBP_NUM
+	dsprite -2,  4, -1,  4, $02, 6 | OBP_NUM
+	dsprite -2,  4,  0,  4, $04, 6 | OBP_NUM
+	dsprite  0,  4, -2,  4, $06, 6 | OBP_NUM
+	dsprite  0,  4, -1,  4, $08, 6 | OBP_NUM
+	dsprite  0,  4,  0,  4, $0a, 6 | OBP_NUM
 
-.OAMData_2a:
+.OAMData_SlotsChansey2:
 	db 6
-	dsprite -2,  4, -2,  4, $00, $16
-	dsprite -2,  4, -1,  4, $02, $16
-	dsprite -2,  4,  0,  4, $04, $16
-	dsprite  0,  4, -2,  4, $0c, $16
-	dsprite  0,  4, -1,  4, $0e, $16
-	dsprite  0,  4,  0,  4, $10, $16
+	dsprite -2,  4, -2,  4, $00, 6 | OBP_NUM
+	dsprite -2,  4, -1,  4, $02, 6 | OBP_NUM
+	dsprite -2,  4,  0,  4, $04, 6 | OBP_NUM
+	dsprite  0,  4, -2,  4, $0c, 6 | OBP_NUM
+	dsprite  0,  4, -1,  4, $0e, 6 | OBP_NUM
+	dsprite  0,  4,  0,  4, $10, 6 | OBP_NUM
 
-.OAMData_2b:
+.OAMData_SlotsChansey3:
 	db 6
-	dsprite -2,  4, -2,  4, $00, $16
-	dsprite -2,  4, -1,  4, $02, $16
-	dsprite -2,  4,  0,  4, $04, $16
-	dsprite  0,  4, -2,  4, $12, $16
-	dsprite  0,  4, -1,  4, $14, $16
-	dsprite  0,  4,  0,  4, $16, $16
+	dsprite -2,  4, -2,  4, $00, 6 | OBP_NUM
+	dsprite -2,  4, -1,  4, $02, 6 | OBP_NUM
+	dsprite -2,  4,  0,  4, $04, 6 | OBP_NUM
+	dsprite  0,  4, -2,  4, $12, 6 | OBP_NUM
+	dsprite  0,  4, -1,  4, $14, 6 | OBP_NUM
+	dsprite  0,  4,  0,  4, $16, 6 | OBP_NUM
 
-.OAMData_2c:
+.OAMData_SlotsChansey4:
 	db 6
-	dsprite -2,  4, -2,  4, $00, $16
-	dsprite -2,  4, -1,  4, $02, $16
-	dsprite -2,  4,  0,  4, $04, $16
-	dsprite  0,  4, -2,  4, $18, $16
-	dsprite  0,  4, -1,  4, $1a, $16
-	dsprite  0,  4,  0,  4, $1c, $16
+	dsprite -2,  4, -2,  4, $00, 6 | OBP_NUM
+	dsprite -2,  4, -1,  4, $02, 6 | OBP_NUM
+	dsprite -2,  4,  0,  4, $04, 6 | OBP_NUM
+	dsprite  0,  4, -2,  4, $18, 6 | OBP_NUM
+	dsprite  0,  4, -1,  4, $1a, 6 | OBP_NUM
+	dsprite  0,  4,  0,  4, $1c, 6 | OBP_NUM
 
-.OAMData_2d:
+.OAMData_SlotsChansey5:
 	db 6
-	dsprite -2,  4, -2,  4, $1e, $16
-	dsprite -2,  4, -1,  4, $20, $16
-	dsprite -2,  4,  0,  4, $22, $16
-	dsprite  0,  4, -2,  4, $24, $16
-	dsprite  0,  4, -1,  4, $26, $16
-	dsprite  0,  4,  0,  4, $28, $16
+	dsprite -2,  4, -2,  4, $1e, 6 | OBP_NUM
+	dsprite -2,  4, -1,  4, $20, 6 | OBP_NUM
+	dsprite -2,  4,  0,  4, $22, 6 | OBP_NUM
+	dsprite  0,  4, -2,  4, $24, 6 | OBP_NUM
+	dsprite  0,  4, -1,  4, $26, 6 | OBP_NUM
+	dsprite  0,  4,  0,  4, $28, 6 | OBP_NUM
 
-.OAMData_3c:
+.OAMData_RadioTuningKnob:
 	db 3
-	dsprite -2,  4, -1,  4, $00, $10
-	dsprite -1,  4, -1,  4, $00, $10
-	dsprite  0,  4, -1,  4, $00, $10
+	dsprite -2,  4, -1,  4, $00, 0 | OBP_NUM
+	dsprite -1,  4, -1,  4, $00, 0 | OBP_NUM
+	dsprite  0,  4, -1,  4, $00, 0 | OBP_NUM
 
 .OAMData_4b:
 	db 6
@@ -572,26 +567,26 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0,  2,  0, $02, $00
 	dsprite  0,  0,  3,  0, $03, $00
 
-.OAMData_51:
+.OAMData_CutTree2:
 	db 4
-	dsprite -1,  0, -2,  6, $00, $06
-	dsprite -1,  0,  0,  2, $01, $06
-	dsprite  0,  0, -2,  6, $02, $06
-	dsprite  0,  0,  0,  2, $03, $06
+	dsprite -1,  0, -2,  6, $00, PAL_OW_TREE
+	dsprite -1,  0,  0,  2, $01, PAL_OW_TREE
+	dsprite  0,  0, -2,  6, $02, PAL_OW_TREE
+	dsprite  0,  0,  0,  2, $03, PAL_OW_TREE
 
-.OAMData_52:
+.OAMData_CutTree3:
 	db 4
-	dsprite -1,  0, -2,  4, $00, $06
-	dsprite -1,  0,  0,  4, $01, $06
-	dsprite  0,  0, -2,  4, $02, $06
-	dsprite  0,  0,  0,  4, $03, $06
+	dsprite -1,  0, -2,  4, $00, PAL_OW_TREE
+	dsprite -1,  0,  0,  4, $01, PAL_OW_TREE
+	dsprite  0,  0, -2,  4, $02, PAL_OW_TREE
+	dsprite  0,  0,  0,  4, $03, PAL_OW_TREE
 
-.OAMData_53:
+.OAMData_CutTree4:
 	db 4
-	dsprite -1,  0, -2,  0, $00, $06
-	dsprite -1,  0,  1,  0, $01, $06
-	dsprite  0,  0, -2,  0, $02, $06
-	dsprite  0,  0,  1,  0, $03, $06
+	dsprite -1,  0, -2,  0, $00, PAL_OW_TREE
+	dsprite -1,  0,  1,  0, $01, PAL_OW_TREE
+	dsprite  0,  0, -2,  0, $02, PAL_OW_TREE
+	dsprite  0,  0,  1,  0, $03, PAL_OW_TREE
 
 .OAMData_56:
 	db 19
@@ -692,9 +687,9 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite -2,  0,  3,  0, $22, $00
 	dsprite  0,  0,  3,  0, $24, $00
 
-.OAMData_1e:
+.OAMData_GSTitleTrail:
 	db 1
-	dsprite -1,  4, -1,  4, $00, $11
+	dsprite -1,  4, -1,  4, $00, 1 | OBP_NUM
 
 .OAMData_5c:
 	db 12
@@ -747,266 +742,266 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0,  0,  0, $32, $00
 	dsprite  1,  0,  0,  0, $35, $00
 
-.OAMData_63:
+.OAMData_BlueWalk:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $01
-	dsprite -1,  0,  0,  0, $01, $01
-	dsprite  0,  0, -1,  0, $02, $01
-	dsprite  0,  0,  0,  0, $03, $01
+	dsprite -1,  0, -1,  0, $00, PAL_OW_BLUE
+	dsprite -1,  0,  0,  0, $01, PAL_OW_BLUE
+	dsprite  0,  0, -1,  0, $02, PAL_OW_BLUE
+	dsprite  0,  0,  0,  0, $03, PAL_OW_BLUE
 
-.OAMData_65:
+.OAMData_MagnetTrainBlue:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $81
-	dsprite -1,  0,  0,  0, $01, $81
-	dsprite  0,  0, -1,  0, $02, $81
-	dsprite  0,  0,  0,  0, $03, $81
+	dsprite -1,  0, -1,  0, $00, PAL_OW_BLUE | BEHIND_BG
+	dsprite -1,  0,  0,  0, $01, PAL_OW_BLUE | BEHIND_BG
+	dsprite  0,  0, -1,  0, $02, PAL_OW_BLUE | BEHIND_BG
+	dsprite  0,  0,  0,  0, $03, PAL_OW_BLUE | BEHIND_BG
 
-.OAMData_67:
+.OAMData_ForMobile22:
 	db 1
-	dsprite -1,  4, -1,  4, $00, $02
+	dsprite -1,  4, -1,  4, $00, 2
 
-.OAMData_6c:
+.OAMData_ForMobile23:
 	db 4
-	dsprite -2,  0, -1,  4, $00, $03
-	dsprite -1,  0, -1,  4, $01, $03
-	dsprite  0,  0, -1,  4, $02, $03
-	dsprite  1,  0, -1,  4, $03, $03
+	dsprite -2,  0, -1,  4, $00, 3
+	dsprite -1,  0, -1,  4, $01, 3
+	dsprite  0,  0, -1,  4, $02, 3
+	dsprite  1,  0, -1,  4, $03, 3
 
-.OAMData_6d:
+.OAMData_ForMobile24:
 	db 4
-	dsprite -2,  0, -1,  4, $03, $44
-	dsprite -1,  0, -1,  4, $02, $44
-	dsprite  0,  0, -1,  4, $01, $44
-	dsprite  1,  0, -1,  4, $00, $44
+	dsprite -2,  0, -1,  4, $03, 4 | Y_FLIP
+	dsprite -1,  0, -1,  4, $02, 4 | Y_FLIP
+	dsprite  0,  0, -1,  4, $01, 4 | Y_FLIP
+	dsprite  1,  0, -1,  4, $00, 4 | Y_FLIP
 
-.OAMData_69:
+.OAMData_ForMobile25_1:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $01
-	dsprite -1,  0,  0,  0, $00, $21
-	dsprite  0,  0, -1,  0, $00, $41
-	dsprite  0,  0,  0,  0, $00, $61
+	dsprite -1,  0, -1,  0, $00, 1
+	dsprite -1,  0,  0,  0, $00, 1 | X_FLIP
+	dsprite  0,  0, -1,  0, $00, 1 | Y_FLIP
+	dsprite  0,  0,  0,  0, $00, 1 | X_FLIP | Y_FLIP
 
-.OAMData_6a:
+.OAMData_ForMobile25_2:
 	db 8
-	dsprite -2,  4, -2,  4, $00, $01
-	dsprite -2,  4, -1,  4, $01, $01
-	dsprite -2,  4,  0,  4, $00, $21
-	dsprite -1,  4, -2,  4, $02, $01
-	dsprite -1,  4,  0,  4, $02, $21
-	dsprite  0,  4, -2,  4, $00, $41
-	dsprite  0,  4, -1,  4, $01, $41
-	dsprite  0,  4,  0,  4, $00, $61
+	dsprite -2,  4, -2,  4, $00, 1
+	dsprite -2,  4, -1,  4, $01, 1
+	dsprite -2,  4,  0,  4, $00, 1 | X_FLIP
+	dsprite -1,  4, -2,  4, $02, 1
+	dsprite -1,  4,  0,  4, $02, 1 | X_FLIP
+	dsprite  0,  4, -2,  4, $00, 1 | Y_FLIP
+	dsprite  0,  4, -1,  4, $01, 1 | Y_FLIP
+	dsprite  0,  4,  0,  4, $00, 1 | X_FLIP | Y_FLIP
 
-.OAMData_6b:
+.OAMData_ForMobile25_3:
 	db 12
-	dsprite -2,  0, -2,  0, $00, $01
-	dsprite -2,  0, -1,  0, $01, $01
-	dsprite -1,  0, -2,  0, $02, $01
-	dsprite -2,  0,  0,  0, $01, $21
-	dsprite -2,  0,  1,  0, $00, $21
-	dsprite -1,  0,  1,  0, $02, $21
-	dsprite  0,  0, -2,  0, $02, $41
-	dsprite  1,  0, -2,  0, $00, $41
-	dsprite  1,  0, -1,  0, $01, $41
-	dsprite  0,  0,  1,  0, $02, $61
-	dsprite  1,  0,  0,  0, $01, $61
-	dsprite  1,  0,  1,  0, $00, $61
+	dsprite -2,  0, -2,  0, $00, 1
+	dsprite -2,  0, -1,  0, $01, 1
+	dsprite -1,  0, -2,  0, $02, 1
+	dsprite -2,  0,  0,  0, $01, 1 | X_FLIP
+	dsprite -2,  0,  1,  0, $00, 1 | X_FLIP
+	dsprite -1,  0,  1,  0, $02, 1 | X_FLIP
+	dsprite  0,  0, -2,  0, $02, 1 | Y_FLIP
+	dsprite  1,  0, -2,  0, $00, 1 | Y_FLIP
+	dsprite  1,  0, -1,  0, $01, 1 | Y_FLIP
+	dsprite  0,  0,  1,  0, $02, 1 | X_FLIP | Y_FLIP
+	dsprite  1,  0,  0,  0, $01, 1 | X_FLIP | Y_FLIP
+	dsprite  1,  0,  1,  0, $00, 1 | X_FLIP | Y_FLIP
 
-.OAMData_6e:
+.OAMData_IntroSuicune1:
 	db 36
-	dsprite -3,  0,  1,  0, $05, $00
-	dsprite -3,  0,  2,  0, $06, $00
-	dsprite -3,  0,  3,  0, $07, $00
-	dsprite -2,  0, -3,  0, $11, $00
-	dsprite -2,  0, -2,  0, $12, $00
-	dsprite -2,  0, -1,  0, $13, $00
-	dsprite -2,  0,  0,  0, $14, $00
-	dsprite -2,  0,  1,  0, $15, $00
-	dsprite -2,  0,  2,  0, $16, $00
-	dsprite -2,  0,  3,  0, $17, $00
-	dsprite -1,  0, -4,  0, $20, $00
-	dsprite -1,  0, -3,  0, $21, $00
-	dsprite -1,  0, -2,  0, $22, $00
-	dsprite -1,  0, -1,  0, $23, $00
-	dsprite -1,  0,  0,  0, $24, $00
-	dsprite -1,  0,  1,  0, $25, $00
-	dsprite -1,  0,  2,  0, $26, $00
-	dsprite -1,  0,  3,  0, $27, $00
-	dsprite  0,  0, -4,  0, $30, $00
-	dsprite  0,  0, -3,  0, $31, $00
-	dsprite  0,  0, -2,  0, $32, $00
-	dsprite  0,  0, -1,  0, $33, $00
-	dsprite  0,  0,  0,  0, $34, $00
-	dsprite  0,  0,  1,  0, $35, $00
-	dsprite  0,  0,  2,  0, $36, $00
-	dsprite  1,  0, -4,  0, $40, $00
-	dsprite  1,  0, -3,  0, $41, $00
-	dsprite  1,  0, -2,  0, $42, $00
-	dsprite  1,  0, -1,  0, $43, $00
-	dsprite  1,  0,  0,  0, $44, $00
-	dsprite  1,  0,  1,  0, $45, $00
-	dsprite  1,  0,  2,  0, $46, $00
-	dsprite  1,  0,  3,  0, $47, $00
-	dsprite  2,  0, -4,  0, $50, $00
-	dsprite  2,  0, -3,  0, $51, $00
-	dsprite  2,  0,  3,  0, $57, $00
+	dsprite -3,  0,  1,  0, $05, 0
+	dsprite -3,  0,  2,  0, $06, 0
+	dsprite -3,  0,  3,  0, $07, 0
+	dsprite -2,  0, -3,  0, $11, 0
+	dsprite -2,  0, -2,  0, $12, 0
+	dsprite -2,  0, -1,  0, $13, 0
+	dsprite -2,  0,  0,  0, $14, 0
+	dsprite -2,  0,  1,  0, $15, 0
+	dsprite -2,  0,  2,  0, $16, 0
+	dsprite -2,  0,  3,  0, $17, 0
+	dsprite -1,  0, -4,  0, $20, 0
+	dsprite -1,  0, -3,  0, $21, 0
+	dsprite -1,  0, -2,  0, $22, 0
+	dsprite -1,  0, -1,  0, $23, 0
+	dsprite -1,  0,  0,  0, $24, 0
+	dsprite -1,  0,  1,  0, $25, 0
+	dsprite -1,  0,  2,  0, $26, 0
+	dsprite -1,  0,  3,  0, $27, 0
+	dsprite  0,  0, -4,  0, $30, 0
+	dsprite  0,  0, -3,  0, $31, 0
+	dsprite  0,  0, -2,  0, $32, 0
+	dsprite  0,  0, -1,  0, $33, 0
+	dsprite  0,  0,  0,  0, $34, 0
+	dsprite  0,  0,  1,  0, $35, 0
+	dsprite  0,  0,  2,  0, $36, 0
+	dsprite  1,  0, -4,  0, $40, 0
+	dsprite  1,  0, -3,  0, $41, 0
+	dsprite  1,  0, -2,  0, $42, 0
+	dsprite  1,  0, -1,  0, $43, 0
+	dsprite  1,  0,  0,  0, $44, 0
+	dsprite  1,  0,  1,  0, $45, 0
+	dsprite  1,  0,  2,  0, $46, 0
+	dsprite  1,  0,  3,  0, $47, 0
+	dsprite  2,  0, -4,  0, $50, 0
+	dsprite  2,  0, -3,  0, $51, 0
+	dsprite  2,  0,  3,  0, $57, 0
 
-.OAMData_6f:
+.OAMData_IntroSuicune2:
 	db 28
-	dsprite -3,  0,  0,  0, $04, $00
-	dsprite -3,  0,  1,  0, $05, $00
-	dsprite -3,  0,  2,  0, $06, $00
-	dsprite -2,  0, -3,  0, $11, $00
-	dsprite -2,  0, -2,  0, $12, $00
-	dsprite -2,  0, -1,  0, $13, $00
-	dsprite -2,  0,  0,  0, $14, $00
-	dsprite -2,  0,  1,  0, $15, $00
-	dsprite -2,  0,  2,  0, $16, $00
-	dsprite -1,  0, -3,  0, $21, $00
-	dsprite -1,  0, -2,  0, $22, $00
-	dsprite -1,  0, -1,  0, $23, $00
-	dsprite -1,  0,  0,  0, $24, $00
-	dsprite -1,  0,  1,  0, $25, $00
-	dsprite -1,  0,  2,  0, $26, $00
-	dsprite  0,  0, -4,  0, $30, $00
-	dsprite  0,  0, -3,  0, $31, $00
-	dsprite  0,  0, -2,  0, $32, $00
-	dsprite  0,  0, -1,  0, $33, $00
-	dsprite  0,  0,  0,  0, $34, $00
-	dsprite  0,  0,  1,  0, $35, $00
-	dsprite  1,  0, -2,  0, $42, $00
-	dsprite  1,  0, -1,  0, $43, $00
-	dsprite  1,  0,  0,  0, $44, $00
-	dsprite  1,  0,  1,  0, $45, $00
-	dsprite  2,  0, -1,  0, $53, $00
-	dsprite  2,  0,  0,  0, $54, $00
-	dsprite  2,  0,  1,  0, $55, $00
+	dsprite -3,  0,  0,  0, $04, 0
+	dsprite -3,  0,  1,  0, $05, 0
+	dsprite -3,  0,  2,  0, $06, 0
+	dsprite -2,  0, -3,  0, $11, 0
+	dsprite -2,  0, -2,  0, $12, 0
+	dsprite -2,  0, -1,  0, $13, 0
+	dsprite -2,  0,  0,  0, $14, 0
+	dsprite -2,  0,  1,  0, $15, 0
+	dsprite -2,  0,  2,  0, $16, 0
+	dsprite -1,  0, -3,  0, $21, 0
+	dsprite -1,  0, -2,  0, $22, 0
+	dsprite -1,  0, -1,  0, $23, 0
+	dsprite -1,  0,  0,  0, $24, 0
+	dsprite -1,  0,  1,  0, $25, 0
+	dsprite -1,  0,  2,  0, $26, 0
+	dsprite  0,  0, -4,  0, $30, 0
+	dsprite  0,  0, -3,  0, $31, 0
+	dsprite  0,  0, -2,  0, $32, 0
+	dsprite  0,  0, -1,  0, $33, 0
+	dsprite  0,  0,  0,  0, $34, 0
+	dsprite  0,  0,  1,  0, $35, 0
+	dsprite  1,  0, -2,  0, $42, 0
+	dsprite  1,  0, -1,  0, $43, 0
+	dsprite  1,  0,  0,  0, $44, 0
+	dsprite  1,  0,  1,  0, $45, 0
+	dsprite  2,  0, -1,  0, $53, 0
+	dsprite  2,  0,  0,  0, $54, 0
+	dsprite  2,  0,  1,  0, $55, 0
 
-.OAMData_70:
+.OAMData_IntroSuicune3:
 	db 30
-	dsprite -3,  0,  0,  0, $04, $00
-	dsprite -3,  0,  1,  0, $05, $00
-	dsprite -2,  0, -3,  0, $11, $00
-	dsprite -2,  0, -2,  0, $12, $00
-	dsprite -2,  0, -1,  0, $13, $00
-	dsprite -2,  0,  0,  0, $14, $00
-	dsprite -2,  0,  1,  0, $15, $00
-	dsprite -2,  0,  2,  0, $16, $00
-	dsprite -2,  0,  3,  0, $17, $00
-	dsprite -1,  0, -4,  0, $20, $00
-	dsprite -1,  0, -3,  0, $21, $00
-	dsprite -1,  0, -2,  0, $22, $00
-	dsprite -1,  0, -1,  0, $23, $00
-	dsprite -1,  0,  0,  0, $24, $00
-	dsprite -1,  0,  1,  0, $25, $00
-	dsprite -1,  0,  2,  0, $26, $00
-	dsprite  0,  0, -4,  0, $30, $00
-	dsprite  0,  0, -3,  0, $31, $00
-	dsprite  0,  0, -2,  0, $32, $00
-	dsprite  0,  0, -1,  0, $33, $00
-	dsprite  0,  0,  0,  0, $34, $00
-	dsprite  0,  0,  1,  0, $35, $00
-	dsprite  1,  0, -2,  0, $42, $00
-	dsprite  1,  0, -1,  0, $43, $00
-	dsprite  1,  0,  0,  0, $44, $00
-	dsprite  1,  0,  1,  0, $45, $00
-	dsprite  2,  0, -2,  0, $52, $00
-	dsprite  2,  0, -1,  0, $53, $00
-	dsprite  2,  0,  0,  0, $54, $00
-	dsprite  2,  0,  1,  0, $55, $00
+	dsprite -3,  0,  0,  0, $04, 0
+	dsprite -3,  0,  1,  0, $05, 0
+	dsprite -2,  0, -3,  0, $11, 0
+	dsprite -2,  0, -2,  0, $12, 0
+	dsprite -2,  0, -1,  0, $13, 0
+	dsprite -2,  0,  0,  0, $14, 0
+	dsprite -2,  0,  1,  0, $15, 0
+	dsprite -2,  0,  2,  0, $16, 0
+	dsprite -2,  0,  3,  0, $17, 0
+	dsprite -1,  0, -4,  0, $20, 0
+	dsprite -1,  0, -3,  0, $21, 0
+	dsprite -1,  0, -2,  0, $22, 0
+	dsprite -1,  0, -1,  0, $23, 0
+	dsprite -1,  0,  0,  0, $24, 0
+	dsprite -1,  0,  1,  0, $25, 0
+	dsprite -1,  0,  2,  0, $26, 0
+	dsprite  0,  0, -4,  0, $30, 0
+	dsprite  0,  0, -3,  0, $31, 0
+	dsprite  0,  0, -2,  0, $32, 0
+	dsprite  0,  0, -1,  0, $33, 0
+	dsprite  0,  0,  0,  0, $34, 0
+	dsprite  0,  0,  1,  0, $35, 0
+	dsprite  1,  0, -2,  0, $42, 0
+	dsprite  1,  0, -1,  0, $43, 0
+	dsprite  1,  0,  0,  0, $44, 0
+	dsprite  1,  0,  1,  0, $45, 0
+	dsprite  2,  0, -2,  0, $52, 0
+	dsprite  2,  0, -1,  0, $53, 0
+	dsprite  2,  0,  0,  0, $54, 0
+	dsprite  2,  0,  1,  0, $55, 0
 
-.OAMData_71:
+.OAMData_IntroSuicune4:
 	db 31
-	dsprite -2,  0, -3,  0, $11, $00
-	dsprite -2,  0, -2,  0, $12, $00
-	dsprite -2,  0, -1,  0, $13, $00
-	dsprite -2,  0,  0,  0, $14, $00
-	dsprite -2,  0,  1,  0, $15, $00
-	dsprite -2,  0,  2,  0, $16, $00
-	dsprite -2,  0,  3,  0, $17, $00
-	dsprite -1,  0, -4,  0, $20, $00
-	dsprite -1,  0, -3,  0, $21, $00
-	dsprite -1,  0, -2,  0, $22, $00
-	dsprite -1,  0, -1,  0, $23, $00
-	dsprite -1,  0,  0,  0, $24, $00
-	dsprite -1,  0,  1,  0, $25, $00
-	dsprite -1,  0,  2,  0, $26, $00
-	dsprite -1,  0,  3,  0, $27, $00
-	dsprite  0,  0, -4,  0, $30, $00
-	dsprite  0,  0, -3,  0, $31, $00
-	dsprite  0,  0, -2,  0, $32, $00
-	dsprite  0,  0, -1,  0, $33, $00
-	dsprite  0,  0,  0,  0, $34, $00
-	dsprite  0,  0,  1,  0, $35, $00
-	dsprite  0,  0,  2,  0, $36, $00
-	dsprite  1,  0, -3,  0, $41, $00
-	dsprite  1,  0, -2,  0, $42, $00
-	dsprite  1,  0, -1,  0, $43, $00
-	dsprite  1,  0,  0,  0, $44, $00
-	dsprite  1,  0,  1,  0, $45, $00
-	dsprite  2,  0, -3,  0, $51, $00
-	dsprite  2,  0, -2,  0, $52, $00
-	dsprite  2,  0,  0,  0, $54, $00
-	dsprite  2,  0,  1,  0, $55, $00
+	dsprite -2,  0, -3,  0, $11, 0
+	dsprite -2,  0, -2,  0, $12, 0
+	dsprite -2,  0, -1,  0, $13, 0
+	dsprite -2,  0,  0,  0, $14, 0
+	dsprite -2,  0,  1,  0, $15, 0
+	dsprite -2,  0,  2,  0, $16, 0
+	dsprite -2,  0,  3,  0, $17, 0
+	dsprite -1,  0, -4,  0, $20, 0
+	dsprite -1,  0, -3,  0, $21, 0
+	dsprite -1,  0, -2,  0, $22, 0
+	dsprite -1,  0, -1,  0, $23, 0
+	dsprite -1,  0,  0,  0, $24, 0
+	dsprite -1,  0,  1,  0, $25, 0
+	dsprite -1,  0,  2,  0, $26, 0
+	dsprite -1,  0,  3,  0, $27, 0
+	dsprite  0,  0, -4,  0, $30, 0
+	dsprite  0,  0, -3,  0, $31, 0
+	dsprite  0,  0, -2,  0, $32, 0
+	dsprite  0,  0, -1,  0, $33, 0
+	dsprite  0,  0,  0,  0, $34, 0
+	dsprite  0,  0,  1,  0, $35, 0
+	dsprite  0,  0,  2,  0, $36, 0
+	dsprite  1,  0, -3,  0, $41, 0
+	dsprite  1,  0, -2,  0, $42, 0
+	dsprite  1,  0, -1,  0, $43, 0
+	dsprite  1,  0,  0,  0, $44, 0
+	dsprite  1,  0,  1,  0, $45, 0
+	dsprite  2,  0, -3,  0, $51, 0
+	dsprite  2,  0, -2,  0, $52, 0
+	dsprite  2,  0,  0,  0, $54, 0
+	dsprite  2,  0,  1,  0, $55, 0
 
-.OAMData_72:
+.OAMData_IntroPichu:
 	db 25
-	dsprite -3,  4, -3,  4, $00, $09
-	dsprite -3,  4, -2,  4, $01, $09
-	dsprite -3,  4, -1,  4, $02, $09
-	dsprite -3,  4,  0,  4, $03, $09
-	dsprite -3,  4,  1,  4, $04, $09
-	dsprite -2,  4, -3,  4, $10, $09
-	dsprite -2,  4, -2,  4, $11, $09
-	dsprite -2,  4, -1,  4, $12, $09
-	dsprite -2,  4,  0,  4, $13, $09
-	dsprite -2,  4,  1,  4, $14, $09
-	dsprite -1,  4, -3,  4, $20, $09
-	dsprite -1,  4, -2,  4, $21, $09
-	dsprite -1,  4, -1,  4, $22, $09
-	dsprite -1,  4,  0,  4, $23, $09
-	dsprite -1,  4,  1,  4, $24, $09
-	dsprite  0,  4, -3,  4, $30, $09
-	dsprite  0,  4, -2,  4, $31, $09
-	dsprite  0,  4, -1,  4, $32, $09
-	dsprite  0,  4,  0,  4, $33, $09
-	dsprite  0,  4,  1,  4, $34, $09
-	dsprite  1,  4, -3,  4, $40, $09
-	dsprite  1,  4, -2,  4, $41, $09
-	dsprite  1,  4, -1,  4, $42, $09
-	dsprite  1,  4,  0,  4, $43, $09
-	dsprite  1,  4,  1,  4, $44, $09
+	dsprite -3,  4, -3,  4, $00, 1 | VRAM_BANK_1
+	dsprite -3,  4, -2,  4, $01, 1 | VRAM_BANK_1
+	dsprite -3,  4, -1,  4, $02, 1 | VRAM_BANK_1
+	dsprite -3,  4,  0,  4, $03, 1 | VRAM_BANK_1
+	dsprite -3,  4,  1,  4, $04, 1 | VRAM_BANK_1
+	dsprite -2,  4, -3,  4, $10, 1 | VRAM_BANK_1
+	dsprite -2,  4, -2,  4, $11, 1 | VRAM_BANK_1
+	dsprite -2,  4, -1,  4, $12, 1 | VRAM_BANK_1
+	dsprite -2,  4,  0,  4, $13, 1 | VRAM_BANK_1
+	dsprite -2,  4,  1,  4, $14, 1 | VRAM_BANK_1
+	dsprite -1,  4, -3,  4, $20, 1 | VRAM_BANK_1
+	dsprite -1,  4, -2,  4, $21, 1 | VRAM_BANK_1
+	dsprite -1,  4, -1,  4, $22, 1 | VRAM_BANK_1
+	dsprite -1,  4,  0,  4, $23, 1 | VRAM_BANK_1
+	dsprite -1,  4,  1,  4, $24, 1 | VRAM_BANK_1
+	dsprite  0,  4, -3,  4, $30, 1 | VRAM_BANK_1
+	dsprite  0,  4, -2,  4, $31, 1 | VRAM_BANK_1
+	dsprite  0,  4, -1,  4, $32, 1 | VRAM_BANK_1
+	dsprite  0,  4,  0,  4, $33, 1 | VRAM_BANK_1
+	dsprite  0,  4,  1,  4, $34, 1 | VRAM_BANK_1
+	dsprite  1,  4, -3,  4, $40, 1 | VRAM_BANK_1
+	dsprite  1,  4, -2,  4, $41, 1 | VRAM_BANK_1
+	dsprite  1,  4, -1,  4, $42, 1 | VRAM_BANK_1
+	dsprite  1,  4,  0,  4, $43, 1 | VRAM_BANK_1
+	dsprite  1,  4,  1,  4, $44, 1 | VRAM_BANK_1
 
-.OAMData_75:
+.OAMData_IntroWooper:
 	db 16
-	dsprite -2,  0, -3,  4, $00, $0a
-	dsprite -2,  0, -2,  4, $01, $0a
-	dsprite -2,  0, -1,  4, $02, $0a
-	dsprite -2,  0,  0,  4, $03, $0a
-	dsprite -1,  0, -3,  4, $04, $0a
-	dsprite -1,  0, -2,  4, $05, $0a
-	dsprite -1,  0, -1,  4, $06, $0a
-	dsprite -1,  0,  0,  4, $07, $0a
-	dsprite  0,  0, -3,  4, $08, $0a
-	dsprite  0,  0, -2,  4, $09, $0a
-	dsprite  0,  0, -1,  4, $0a, $0a
-	dsprite  0,  0,  0,  4, $0b, $0a
-	dsprite  1,  0, -3,  4, $0c, $0a
-	dsprite  1,  0, -2,  4, $0d, $0a
-	dsprite  1,  0, -1,  4, $0e, $0a
-	dsprite  1,  0,  0,  4, $0f, $0a
+	dsprite -2,  0, -3,  4, $00, 2 | VRAM_BANK_1
+	dsprite -2,  0, -2,  4, $01, 2 | VRAM_BANK_1
+	dsprite -2,  0, -1,  4, $02, 2 | VRAM_BANK_1
+	dsprite -2,  0,  0,  4, $03, 2 | VRAM_BANK_1
+	dsprite -1,  0, -3,  4, $04, 2 | VRAM_BANK_1
+	dsprite -1,  0, -2,  4, $05, 2 | VRAM_BANK_1
+	dsprite -1,  0, -1,  4, $06, 2 | VRAM_BANK_1
+	dsprite -1,  0,  0,  4, $07, 2 | VRAM_BANK_1
+	dsprite  0,  0, -3,  4, $08, 2 | VRAM_BANK_1
+	dsprite  0,  0, -2,  4, $09, 2 | VRAM_BANK_1
+	dsprite  0,  0, -1,  4, $0a, 2 | VRAM_BANK_1
+	dsprite  0,  0,  0,  4, $0b, 2 | VRAM_BANK_1
+	dsprite  1,  0, -3,  4, $0c, 2 | VRAM_BANK_1
+	dsprite  1,  0, -2,  4, $0d, 2 | VRAM_BANK_1
+	dsprite  1,  0, -1,  4, $0e, 2 | VRAM_BANK_1
+	dsprite  1,  0,  0,  4, $0f, 2 | VRAM_BANK_1
 
-.OAMData_76:
+.OAMData_IntroUnown1:
 	db 1
 	dsprite -1,  4, -1,  4, $00, $00
 
-.OAMData_77:
+.OAMData_IntroUnown2:
 	db 3
 	dsprite  0,  0, -1,  0, $00, $00
 	dsprite -1,  0, -1,  0, $01, $00
 	dsprite -1,  0,  0,  0, $02, $00
 
-.OAMData_78:
+.OAMData_IntroUnown3:
 	db 7
 	dsprite  1,  0, -2,  0, $00, $00
 	dsprite  0,  0, -2,  0, $01, $00
@@ -1016,121 +1011,121 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite -2,  0,  0,  0, $05, $00
 	dsprite -2,  0,  1,  0, $06, $00
 
-.OAMData_7a:
+.OAMData_IntroUnownF2_2:
 	db 8
-	dsprite -1,  0, -2,  0, $00, $00
-	dsprite -1,  0, -1,  0, $01, $00
-	dsprite -1,  0,  0,  0, $01, $20
-	dsprite -1,  0,  1,  0, $00, $20
-	dsprite  0,  0, -2,  0, $00, $40
-	dsprite  0,  0, -1,  0, $01, $40
-	dsprite  0,  0,  0,  0, $01, $60
-	dsprite  0,  0,  1,  0, $00, $60
+	dsprite -1,  0, -2,  0, $00, 0
+	dsprite -1,  0, -1,  0, $01, 0
+	dsprite -1,  0,  0,  0, $01, 0 | X_FLIP
+	dsprite -1,  0,  1,  0, $00, 0 | X_FLIP
+	dsprite  0,  0, -2,  0, $00, 0 | Y_FLIP
+	dsprite  0,  0, -1,  0, $01, 0 | Y_FLIP
+	dsprite  0,  0,  0,  0, $01, 0 | X_FLIP | Y_FLIP
+	dsprite  0,  0,  1,  0, $00, 0 | X_FLIP | Y_FLIP
 
-.OAMData_7b:
+.OAMData_IntroUnownF2_3:
 	db 12
-	dsprite -3,  0, -1,  0, $00, $00
-	dsprite -2,  0, -1,  0, $01, $00
-	dsprite -1,  0, -1,  0, $02, $00
-	dsprite -3,  0,  0,  0, $00, $20
-	dsprite -2,  0,  0,  0, $01, $20
-	dsprite -1,  0,  0,  0, $02, $20
-	dsprite  0,  0, -1,  0, $02, $40
-	dsprite  1,  0, -1,  0, $01, $40
-	dsprite  2,  0, -1,  0, $00, $40
-	dsprite  0,  0,  0,  0, $02, $60
-	dsprite  1,  0,  0,  0, $01, $60
-	dsprite  2,  0,  0,  0, $00, $60
+	dsprite -3,  0, -1,  0, $00, 0
+	dsprite -2,  0, -1,  0, $01, 0
+	dsprite -1,  0, -1,  0, $02, 0
+	dsprite -3,  0,  0,  0, $00, 0 | X_FLIP
+	dsprite -2,  0,  0,  0, $01, 0 | X_FLIP
+	dsprite -1,  0,  0,  0, $02, 0 | X_FLIP
+	dsprite  0,  0, -1,  0, $02, 0 | Y_FLIP
+	dsprite  1,  0, -1,  0, $01, 0 | Y_FLIP
+	dsprite  2,  0, -1,  0, $00, 0 | Y_FLIP
+	dsprite  0,  0,  0,  0, $02, 0 | X_FLIP | Y_FLIP
+	dsprite  1,  0,  0,  0, $01, 0 | X_FLIP | Y_FLIP
+	dsprite  2,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
 
-.OAMData_7c:
+.OAMData_IntroUnownF2_4_5:
 	db 20
-	dsprite -3,  4, -2,  0, $00, $00
-	dsprite -3,  4, -1,  0, $01, $00
-	dsprite -3,  4,  0,  0, $02, $00
-	dsprite -3,  4,  1,  0, $03, $00
-	dsprite -2,  4, -2,  0, $04, $00
-	dsprite -2,  4, -1,  0, $05, $00
-	dsprite -2,  4,  0,  0, $06, $00
-	dsprite -2,  4,  1,  0, $07, $00
-	dsprite -1,  4, -2,  0, $08, $00
-	dsprite -1,  4, -1,  0, $09, $00
-	dsprite -1,  4,  0,  0, $0a, $00
-	dsprite -1,  4,  1,  0, $0b, $00
-	dsprite  0,  4, -2,  0, $0c, $00
-	dsprite  0,  4, -1,  0, $0d, $00
-	dsprite  0,  4,  0,  0, $0e, $00
-	dsprite  0,  4,  1,  0, $0f, $00
-	dsprite  1,  4, -2,  0, $10, $00
-	dsprite  1,  4, -1,  0, $11, $00
-	dsprite  1,  4,  0,  0, $12, $00
-	dsprite  1,  4,  1,  0, $13, $00
+	dsprite -3,  4, -2,  0, $00, 0
+	dsprite -3,  4, -1,  0, $01, 0
+	dsprite -3,  4,  0,  0, $02, 0
+	dsprite -3,  4,  1,  0, $03, 0
+	dsprite -2,  4, -2,  0, $04, 0
+	dsprite -2,  4, -1,  0, $05, 0
+	dsprite -2,  4,  0,  0, $06, 0
+	dsprite -2,  4,  1,  0, $07, 0
+	dsprite -1,  4, -2,  0, $08, 0
+	dsprite -1,  4, -1,  0, $09, 0
+	dsprite -1,  4,  0,  0, $0a, 0
+	dsprite -1,  4,  1,  0, $0b, 0
+	dsprite  0,  4, -2,  0, $0c, 0
+	dsprite  0,  4, -1,  0, $0d, 0
+	dsprite  0,  4,  0,  0, $0e, 0
+	dsprite  0,  4,  1,  0, $0f, 0
+	dsprite  1,  4, -2,  0, $10, 0
+	dsprite  1,  4, -1,  0, $11, 0
+	dsprite  1,  4,  0,  0, $12, 0
+	dsprite  1,  4,  1,  0, $13, 0
 
-.OAMData_7e:
+.OAMData_IntroSuicuneAway:
 	db 20
-	dsprite  0,  0,   1,  0, $00, $81
-	dsprite  1,  0,   2,  0, $00, $81
-	dsprite  2,  0,   3,  0, $00, $81
-	dsprite  3,  0,   4,  0, $00, $81
-	dsprite  4,  0,   5,  0, $00, $81
-	dsprite  3,  0,   6,  0, $00, $81
-	dsprite  2,  0,   7,  0, $00, $81
-	dsprite  1,  0,   8,  0, $00, $81
-	dsprite  0,  0,   9,  0, $00, $81
-	dsprite  1,  0,  10,  0, $00, $81
-	dsprite  2,  0,  11,  0, $00, $81
-	dsprite  3,  0,  12,  0, $00, $81
-	dsprite  4,  0,  13,  0, $00, $81
-	dsprite  3,  0,  14,  0, $00, $81
-	dsprite  2,  0,  15,  0, $00, $81
-	dsprite  1,  0,  16,  0, $00, $81
-	dsprite  0,  0, -15,  0, $00, $81
-	dsprite  1,  0, -14,  0, $00, $81
-	dsprite  2,  0, -13,  0, $00, $81
-	dsprite  3,  0, -12,  0, $00, $81
+	dsprite  0,  0,   1,  0, $00, 1 | BEHIND_BG
+	dsprite  1,  0,   2,  0, $00, 1 | BEHIND_BG
+	dsprite  2,  0,   3,  0, $00, 1 | BEHIND_BG
+	dsprite  3,  0,   4,  0, $00, 1 | BEHIND_BG
+	dsprite  4,  0,   5,  0, $00, 1 | BEHIND_BG
+	dsprite  3,  0,   6,  0, $00, 1 | BEHIND_BG
+	dsprite  2,  0,   7,  0, $00, 1 | BEHIND_BG
+	dsprite  1,  0,   8,  0, $00, 1 | BEHIND_BG
+	dsprite  0,  0,   9,  0, $00, 1 | BEHIND_BG
+	dsprite  1,  0,  10,  0, $00, 1 | BEHIND_BG
+	dsprite  2,  0,  11,  0, $00, 1 | BEHIND_BG
+	dsprite  3,  0,  12,  0, $00, 1 | BEHIND_BG
+	dsprite  4,  0,  13,  0, $00, 1 | BEHIND_BG
+	dsprite  3,  0,  14,  0, $00, 1 | BEHIND_BG
+	dsprite  2,  0,  15,  0, $00, 1 | BEHIND_BG
+	dsprite  1,  0,  16,  0, $00, 1 | BEHIND_BG
+	dsprite  0,  0, -15,  0, $00, 1 | BEHIND_BG
+	dsprite  1,  0, -14,  0, $00, 1 | BEHIND_BG
+	dsprite  2,  0, -13,  0, $00, 1 | BEHIND_BG
+	dsprite  3,  0, -12,  0, $00, 1 | BEHIND_BG
 
-.OAMData_7f:
+.OAMData_Celebi:
 	db 4
-	dsprite -1,  0, -1,  0, $00, $02
-	dsprite -1,  0,  0,  0, $01, $02
-	dsprite  0,  0, -1,  0, $02, $02
-	dsprite  0,  0,  0,  0, $03, $02
+	dsprite -1,  0, -1,  0, $00, PAL_OW_GREEN
+	dsprite -1,  0,  0,  0, $01, PAL_OW_GREEN
+	dsprite  0,  0, -1,  0, $02, PAL_OW_GREEN
+	dsprite  0,  0,  0,  0, $03, PAL_OW_GREEN
 
-.OAMData_81:
+.OAMData_GameFreakLogo1_3:
 	db 9
-	dsprite -2,  0, -2,  4, $00, $01
-	dsprite -2,  0, -1,  4, $01, $01
-	dsprite -2,  0,  0,  4, $02, $01
-	dsprite -1,  0, -2,  4, $10, $01
-	dsprite -1,  0, -1,  4, $11, $01
-	dsprite -1,  0,  0,  4, $12, $01
-	dsprite  0,  0, -2,  4, $20, $01
-	dsprite  0,  0, -1,  4, $21, $01
-	dsprite  0,  0,  0,  4, $22, $01
+	dsprite -2,  0, -2,  4, $00, 1
+	dsprite -2,  0, -1,  4, $01, 1
+	dsprite -2,  0,  0,  4, $02, 1
+	dsprite -1,  0, -2,  4, $10, 1
+	dsprite -1,  0, -1,  4, $11, 1
+	dsprite -1,  0,  0,  4, $12, 1
+	dsprite  0,  0, -2,  4, $20, 1
+	dsprite  0,  0, -1,  4, $21, 1
+	dsprite  0,  0,  0,  4, $22, 1
 
-.OAMData_84:
+.OAMData_GameFreakLogo4_11:
 	db 24
-	dsprite -5,  0, -2,  4, $00, $01
-	dsprite -5,  0, -1,  4, $01, $01
-	dsprite -5,  0,  0,  4, $02, $01
-	dsprite -5,  0,  1,  4, $03, $01
-	dsprite -4,  0, -2,  4, $10, $01
-	dsprite -4,  0, -1,  4, $11, $01
-	dsprite -4,  0,  0,  4, $12, $01
-	dsprite -4,  0,  1,  4, $13, $01
-	dsprite -3,  0, -2,  4, $20, $01
-	dsprite -3,  0, -1,  4, $21, $01
-	dsprite -3,  0,  0,  4, $22, $01
-	dsprite -3,  0,  1,  4, $23, $01
-	dsprite -2,  0, -2,  4, $30, $01
-	dsprite -2,  0, -1,  4, $31, $01
-	dsprite -2,  0,  0,  4, $32, $01
-	dsprite -2,  0,  1,  4, $33, $01
-	dsprite -1,  0, -2,  4, $40, $01
-	dsprite -1,  0, -1,  4, $41, $01
-	dsprite -1,  0,  0,  4, $42, $01
-	dsprite -1,  0,  1,  4, $43, $01
-	dsprite  0,  0, -2,  4, $50, $01
-	dsprite  0,  0, -1,  4, $51, $01
-	dsprite  0,  0,  0,  4, $52, $01
-	dsprite  0,  0,  1,  4, $53, $01
+	dsprite -5,  0, -2,  4, $00, 1
+	dsprite -5,  0, -1,  4, $01, 1
+	dsprite -5,  0,  0,  4, $02, 1
+	dsprite -5,  0,  1,  4, $03, 1
+	dsprite -4,  0, -2,  4, $10, 1
+	dsprite -4,  0, -1,  4, $11, 1
+	dsprite -4,  0,  0,  4, $12, 1
+	dsprite -4,  0,  1,  4, $13, 1
+	dsprite -3,  0, -2,  4, $20, 1
+	dsprite -3,  0, -1,  4, $21, 1
+	dsprite -3,  0,  0,  4, $22, 1
+	dsprite -3,  0,  1,  4, $23, 1
+	dsprite -2,  0, -2,  4, $30, 1
+	dsprite -2,  0, -1,  4, $31, 1
+	dsprite -2,  0,  0,  4, $32, 1
+	dsprite -2,  0,  1,  4, $33, 1
+	dsprite -1,  0, -2,  4, $40, 1
+	dsprite -1,  0, -1,  4, $41, 1
+	dsprite -1,  0,  0,  4, $42, 1
+	dsprite -1,  0,  1,  4, $43, 1
+	dsprite  0,  0, -2,  4, $50, 1
+	dsprite  0,  0, -1,  4, $51, 1
+	dsprite  0,  0,  0,  4, $52, 1
+	dsprite  0,  0,  1,  4, $53, 1
 ; 8e706

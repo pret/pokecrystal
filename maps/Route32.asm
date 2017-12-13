@@ -943,8 +943,8 @@ Route32_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $8, $12, $0, Route32CooltrainerMStopsYou, $0, $0
-	xy_trigger 1, $47, $7, $0, Route32WannaBuyASlowpokeTailScript, $0, $0
+	xy_trigger 0, $8, $12, Route32CooltrainerMStopsYou
+	xy_trigger 1, $47, $7, Route32WannaBuyASlowpokeTailScript
 
 .Signposts:
 	db 6

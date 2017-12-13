@@ -258,8 +258,8 @@ MahoganyTown_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $8, $13, $0, UnknownScript_0x190013, $0, $0
-	xy_trigger 0, $9, $13, $0, UnknownScript_0x190013, $0, $0
+	xy_trigger 0, $8, $13, UnknownScript_0x190013
+	xy_trigger 0, $9, $13, UnknownScript_0x190013
 
 .Signposts:
 	db 4

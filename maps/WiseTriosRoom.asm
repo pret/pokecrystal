@@ -356,7 +356,7 @@ WiseTriosRoom_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $4, $7, $0, UnknownScript_0x985a3, $0, $0
+	xy_trigger 0, $4, $7, UnknownScript_0x985a3
 
 .Signposts:
 	db 0

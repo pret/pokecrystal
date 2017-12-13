@@ -18,8 +18,8 @@ DoAnimFrame: ; 8d24b
 	dw .PartyMon
 	dw .PartyMonSwitch
 	dw .PartyMonSelected
-	dw .sprite_anim_seq_04
-	dw .namingscreencursor
+	dw .GSTitleTrail
+	dw .NamingScreenCursor
 	dw .GameFreakLogo
 	dw .GSIntroStar
 	dw .GSIntroSparkle
@@ -27,9 +27,9 @@ DoAnimFrame: ; 8d24b
 	dw .SlotsChansey
 	dw .SlotsChanseyEgg
 	dw .MailCursor
-	dw .sprite_anim_seq_0D
-	dw .sprite_anim_seq_0E
-	dw .sprite_anim_seq_0F
+	dw .ForUnusedCursor
+	dw .DummyGameCursor
+	dw .PokegearArrow
 	dw .TradePokeBall
 	dw .TradeTubeBulge
 	dw .TrademonInTube
@@ -132,7 +132,7 @@ DoAnimFrame: ; 8d24b
 	ld [hl], 8 * 3
 	ret
 
-.sprite_anim_seq_04 ; 8d302 (23:5302)
+.GSTitleTrail ; 8d302 (23:5302)
 	call .AnonymousJumptable
 	jp hl
 ; 8d306 (23:5306)
@@ -217,7 +217,7 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.namingscreencursor ; 8d36c (23:536c)
+.NamingScreenCursor ; 8d36c (23:536c)
 	callab NamingScreen_AnimateCursor
 	ret
 
@@ -404,15 +404,15 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.sprite_anim_seq_0D ; 8d46e (23:546e)
+.ForUnusedCursor ; 8d46e (23:546e)
 	callab ret_e00ed
 	ret
 
-.sprite_anim_seq_0F ; 8d475 (23:5475)
+.PokegearArrow ; 8d475 (23:5475)
 	callab AnimatePokegearModeIndicatorArrow
 	ret
 
-.sprite_anim_seq_0E ; 8d47c (23:547c)
+.DummyGameCursor ; 8d47c (23:547c)
 	callab DummyGame_InterpretJoypad_AnimateCursor
 	ret
 

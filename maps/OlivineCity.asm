@@ -307,8 +307,8 @@ OlivineCity_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $c, $d, $0, UnknownScript_0x1a8833, $0, $0
-	xy_trigger 0, $d, $d, $0, UnknownScript_0x1a886b, $0, $0
+	xy_trigger 0, $c, $d, UnknownScript_0x1a8833
+	xy_trigger 0, $d, $d, UnknownScript_0x1a886b
 
 .Signposts:
 	db 7

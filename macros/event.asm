@@ -1,3 +1,4 @@
+; ScriptCommandTable indexes (see engine/scripting.asm)
 	enum_start
 
 	enum scall_command
