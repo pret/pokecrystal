@@ -1,6 +1,43 @@
 # Bugs and Glitches
 
 
+## Contents
+
+- [Thick Club and Light Ball can decrease damage done with boosted (Special) Attack](#thick-club-and-light-ball-can-decrease-damage-done-with-boosted-special-attack)
+- [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
+- [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
+- [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
+- [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
+- [Experience underflow for level 1 Pokémon with Medium-Slow growth rate](#experience-underflow-for-level-1-pokémon-with-medium-slow-growth-rate)
+- [Five-digit experience gain is printed incorrectly](#five-digit-experience-gain-is-printed-incorrectly)
+- [NPC use of Full Heal or Full Restore does not cure Nightmare status](#npc-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
+- ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
+- [A Disabled, PP Up–enhanced move may not trigger automatic Struggling](#a-disabled-pp-upenhanced-move-may-not-trigger-automatic-struggling)
+- [Counter and Mirror Coat still work if the opponent uses an item](#counter-and-mirror-coat-still-work-if-the-opponent-uses-an-item)
+- [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
+- [BRN/PSN/PAR do not affect catch rate](#brnpsnpar-do-not-affect-catch-rate)
+- [Moon Ball does not boost catch rate](#moon-ball-does-not-boost-catch-rate)
+- [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
+- [Fast Ball only boosts catch rate for three Pokémon](#fast-ball-only-boosts-catch-rate-for-three-pokémon)
+- [Friend Ball catches sent to the PC overwrite the wrong Pokémon's happiness](#friend-ball-catches-sent-to-the-pc-overwrite-the-wrong-pokémons-happiness)
+- [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
+- [Daisy's massages don't always increase happiness](#daisys-massages-dont-always-increase-happiness)
+- [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
+- [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
+- [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
+- [`LoadMetatiles` wrap around past 128 blocks](#loadmetatiles-wrap-around-past-128-blocks)
+- [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
+- [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
+- [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
+- [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
+- [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
+- [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
+- [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
+- [`Special_CheckBugContestContestantFlag` can read beyond its data table](#special_checkbugcontestcontestantflag-can-read-beyond-its-data-table)
+- [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
+- [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
+
+
 ## Thick Club and Light Ball can decrease damage done with boosted (Special) Attack
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
