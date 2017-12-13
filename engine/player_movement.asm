@@ -128,13 +128,13 @@ DoPlayerMovement:: ; 80000
 
 .not_whirlpool
 	and $f0
-	cp $30 ; moving water
+	cp HI_NYBBLE_CURRENT
 	jr z, .water
-	cp $40 ; moving land 1
+	cp HI_NYBBLE_WALK
 	jr z, .land1
-	cp $50 ; moving land 2
+	cp HI_NYBBLE_WALK_ALT
 	jr z, .land2
-	cp $70 ; warps
+	cp HI_NYBBLE_WARPS
 	jr z, .warps
 	jr .no_walk
 
@@ -150,10 +150,10 @@ DoPlayerMovement:: ; 80000
 	jr .continue_walk
 
 .water_table
-	db RIGHT
-	db LEFT
-	db UP
-	db DOWN
+	db RIGHT ; COLL_WATERFALL_RIGHT
+	db LEFT  ; COLL_WATERFALL_LEFT
+	db UP    ; COLL_WATERFALL_UP
+	db DOWN  ; COLL_WATERFALL
 
 .land1
 	ld a, c
@@ -169,14 +169,14 @@ DoPlayerMovement:: ; 80000
 	jr .continue_walk
 
 .land1_table
-	db STANDING
-	db RIGHT
-	db LEFT
-	db UP
-	db DOWN
-	db STANDING
-	db STANDING
-	db STANDING
+	db STANDING ; COLL_BRAKE
+	db RIGHT    ; COLL_WALK_RIGHT
+	db LEFT     ; COLL_WALK_LEFT
+	db UP       ; COLL_WALK_UP
+	db DOWN     ; COLL_WALK_DOWN
+	db STANDING ; COLL_BRAKE_45
+	db STANDING ; COLL_BRAKE_46
+	db STANDING ; COLL_BRAKE_47
 
 .land2
 	ld a, c
@@ -192,24 +192,24 @@ DoPlayerMovement:: ; 80000
 	jr .continue_walk
 
 .land2_table
-	db RIGHT
-	db LEFT
-	db UP
-	db DOWN
-	db STANDING
-	db STANDING
-	db STANDING
-	db STANDING
+	db RIGHT    ; COLL_WALK_RIGHT_ALT
+	db LEFT     ; COLL_WALK_LEFT_ALT
+	db UP       ; COLL_WALK_UP_ALT
+	db DOWN     ; COLL_WALK_DOWN_ALT
+	db STANDING ; COLL_BRAKE_ALT
+	db STANDING ; COLL_BRAKE_55
+	db STANDING ; COLL_BRAKE_56
+	db STANDING ; COLL_BRAKE_57
 
 .warps
 	ld a, c
-	cp $71 ; door
+	cp COLL_DOOR
 	jr z, .down
-	cp $79
+	cp COLL_DOOR_79
 	jr z, .down
-	cp $7a ; stairs
+	cp COLL_STAIRCASE
 	jr z, .down
-	cp $7b ; cave
+	cp COLL_CAVE
 	jr nz, .no_walk
 
 .down
@@ -365,7 +365,7 @@ DoPlayerMovement:: ; 80000
 	ld a, [PlayerStandingTile]
 	ld e, a
 	and $f0
-	cp $a0 ; ledge
+	cp HI_NYBBLE_LEDGES
 	jr nz, .DontJump
 
 	ld a, e
@@ -391,14 +391,14 @@ DoPlayerMovement:: ; 80000
 	ret
 
 .data_8021e
-	db FACE_RIGHT
-	db FACE_LEFT
-	db FACE_UP
-	db FACE_DOWN
-	db FACE_RIGHT | FACE_DOWN
-	db FACE_DOWN | FACE_LEFT
-	db FACE_UP | FACE_RIGHT
-	db FACE_UP | FACE_LEFT
+	db FACE_RIGHT             ; COLL_HOP_RIGHT
+	db FACE_LEFT              ; COLL_HOP_LEFT
+	db FACE_UP                ; COLL_HOP_UP
+	db FACE_DOWN              ; COLL_HOP_DOWN
+	db FACE_RIGHT | FACE_DOWN ; COLL_HOP_DOWN_RIGHT
+	db FACE_DOWN | FACE_LEFT  ; COLL_HOP_DOWN_LEFT
+	db FACE_UP | FACE_RIGHT   ; COLL_HOP_UP_RIGHT
+	db FACE_UP | FACE_LEFT    ; COLL_HOP_UP_LEFT
 ; 80226
 
 .CheckWarp: ; 80226
@@ -443,7 +443,10 @@ DoPlayerMovement:: ; 80000
 	ret
 
 .EdgeWarps:
-	db $70, $78, $76, $7e
+	db COLL_WARP_CARPET_DOWN
+	db COLL_WARP_CARPET_UP
+	db COLL_WARP_CARPET_LEFT
+	db COLL_WARP_CARPET_RIGHT
 ; 8025f
 
 .DoStep:
@@ -759,7 +762,7 @@ DoPlayerMovement:: ; 80000
 ; Return 0 if tile a is land. Otherwise, return carry.
 
 	call GetTileCollision
-	and a ; land
+	and a ; LANDTILE?
 	ret z
 	scf
 	ret
@@ -774,7 +777,7 @@ DoPlayerMovement:: ; 80000
 	jr z, .Water
 
 ; Can walk back onto land from water.
-	and a
+	and a ; LANDTILE?
 	jr z, .Land
 
 	jr .Neither
