@@ -307,7 +307,7 @@ This is a bug with `PokeBall` in [items/item_effects.asm](items/item_effects.asm
 `sBoxMon1Happiness` is written *before* the Friend Ball Pokémon is deposited.
 
 
-## Dragon Scale. not Dragon Fang, boosts Dragon-type moves
+## Dragon Scale, not Dragon Fang, boosts Dragon-type moves
 
 This is a bug with `ItemAttributes` in [items/item_attributes.asm](items/item_attributes.asm):
 
