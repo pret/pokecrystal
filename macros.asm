@@ -16,7 +16,12 @@ INCLUDE "macros/trade_anim.asm"
 INCLUDE "macros/tilesets.asm"
 
 RGB: MACRO
+rept _NARG / 3
 	dw ((\3) << 10) + ((\2) << 5) + (\1)
+	shift
+	shift
+	shift
+endr
 	ENDM
 
 
