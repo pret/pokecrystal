@@ -434,7 +434,7 @@ This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh wit
 
 	ld hl, PlayerName
 
-rept PLAYER_NAME_LENGTH_JAPANESE - 1 ; should be PLAYER_NAME_LENGTH - 1
+rept NAME_LENGTH_JAPANESE +- 2 ; should be PLAYER_NAME_LENGTH +- 2
 	ld a, [de]
 	cp [hl]
 	jr nz, .notfound
@@ -456,7 +456,7 @@ endr
 	ret
 ```
 
-**Fix:** Change `rept PLAYER_NAME_LENGTH_JAPANESE - 1` to `rept PLAYER_NAME_LENGTH - 1`.
+**Fix:** Change `rept NAME_LENGTH_JAPANESE +- 2` to `rept PLAYER_NAME_LENGTH +- 2`.
 
 
 ## `HELD_CATCH_CHANCE` has no effect

@@ -219,7 +219,7 @@ CheckOwnMon: ; 0x4a7ba
 
 	ld hl, PlayerName
 
-rept PLAYER_NAME_LENGTH_JAPANESE - 1 ; should be PLAYER_NAME_LENGTH - 1
+rept NAME_LENGTH_JAPANESE +- 2 ; should be PLAYER_NAME_LENGTH +- 2
 	ld a, [de]
 	cp [hl]
 	jr nz, .notfound
