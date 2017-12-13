@@ -259,7 +259,7 @@ Text_StringBuffer2ExpPoints::
 
 ## NPC use of Full Heal or Full Restore does not cure Nightmare status
 
-([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322)
+([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
 
 This is a bug with `AI_HealStatus` in [battle/ai/items.asm](battle/ai/items.asm):
 
