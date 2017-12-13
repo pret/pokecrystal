@@ -5,7 +5,6 @@
 Usage: python3 toc.py [-n] files.md...
 Replace a "## TOC" heading in a Markdown file with a table of contents,
 generated from the other headings in the file. Supports multiple files.
-Use "-n" for numbered list items.
 Headings must start with "##" signs to be detected.
 """
 
@@ -46,7 +45,7 @@ def get_toc_items(lines, toc_index):
 			anchor = name_to_anchor(name)
 			yield TocItem(name, anchor, level)
 
-def toc_string(toc_items, numeric):
+def toc_string(toc_items):
 	lines = ['## %s' % toc_name, '']
 	for name, anchor, level in toc_items:
 		padding = '  ' * level
@@ -54,7 +53,7 @@ def toc_string(toc_items, numeric):
 		lines.append(line)
 	return '\n'.join(lines) + '\n'
 
-def add_toc(filename, numeric):
+def add_toc(filename):
 	with open(filename, 'r', encoding='utf-8') as f:
 		lines = f.readlines()
 	toc_index = get_toc_index(lines)
@@ -66,27 +65,19 @@ def add_toc(filename, numeric):
 	with open(filename, 'w', encoding='utf-8') as f:
 		for i, line in enumerate(lines):
 			if i == toc_index:
-				f.write(toc_string(toc_items, numeric))
+				f.write(toc_string(toc_items))
 			else:
 				f.write(line)
 	return True # OK
 
 def main():
 	if len(sys.argv) < 2:
-		print('*** ERROR: Not enough arguments')
+		print('*** ERROR: No filenames specified')
 		print(__doc__)
 		exit(1)
-	del sys.argv[0]
-	numeric = False
-	if sys.argv[0] == '-n':
-		numeric = True
-		del sys.argv[0]
-	if not sys.argv:
-		print('*** ERROR: No filenames specified')
-		exit(1)
-	for filename in sys.argv:
+	for filename in sys.argv[1:]:
 		print(filename)
-		result = add_toc(filename, numeric)
+		result = add_toc(filename)
 		if result is None:
 			print('*** WARNING: No "## TOC" heading found')
 		elif result is False:
