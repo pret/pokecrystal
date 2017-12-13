@@ -571,7 +571,7 @@ FlyFunction: ; ca3b
 	ld de, ENGINE_STORMBADGE
 	call CheckBadge
 	jr c, .nostormbadge
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	jr z, .outdoors
 	jr .indoors
@@ -783,7 +783,7 @@ dig_incave
 	dw .FailDig
 
 .CheckCanDig: ; cbb8
-	call GetMapPermission
+	call GetMapEnvironment
 	cp CAVE
 	jr z, .incave
 	cp DUNGEON
@@ -905,7 +905,7 @@ TeleportFunction: ; cc61
 	dw .FailTeleport
 
 .TryTeleport: ; cc78
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	jr z, .CheckIfSpawnPoint
 	jr .nope
@@ -1714,7 +1714,7 @@ BikeFunction: ; d0b3
 	ret
 
 .CheckEnvironment: ; d121
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	jr z, .ok
 	cp CAVE

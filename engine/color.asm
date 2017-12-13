@@ -1884,7 +1884,7 @@ LoadMapPals:
 	jr c, .got_pals
 
 	; Which palette group is based on whether we're outside or inside
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	and 7
 	ld e, a
 	ld d, 0
@@ -1951,7 +1951,7 @@ LoadMapPals:
 	ld a, BANK(UnknOBPals)
 	call FarCopyWRAM
 
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp TOWN
 	jr z, .outside
 	cp ROUTE

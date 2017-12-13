@@ -208,7 +208,7 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	jr nc, .okay
 	set 0, e
 .okay
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp CAVE
 	jr z, .okay2
 	cp PERM_5

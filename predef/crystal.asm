@@ -257,7 +257,7 @@ LoadSpecialMapPalette: ; 494ac
 	ret
 
 .ice_path
-	ld a, [wPermission] ; permission
+	ld a, [wEnvironment] ; map environment
 	and 7
 	cp 3 ; Hall of Fame
 	jr z, .do_nothing

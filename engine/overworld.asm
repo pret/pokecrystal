@@ -112,7 +112,7 @@ GetPlayerSprite: ; 14183
 
 
 AddMapSprites: ; 141c9
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	jr z, .outdoor
 	call AddIndoorSprites
@@ -179,7 +179,7 @@ MapCallbackSprites_LoadUsedSpritesGFX: ; 14209
 
 	ld c, EMOTE_SHADOW
 	callba LoadEmote
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	ld c, EMOTE_GRASS_RUSTLE
 	jr z, .outdoor

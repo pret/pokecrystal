@@ -164,14 +164,14 @@ LoadWarpData: ; 1046c6
 	ret
 
 .SaveDigWarp: ; 1046df (41:46df)
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	ret nz
 	ld a, [wNextMapGroup]
 	ld b, a
 	ld a, [wNextMapNumber]
 	ld c, a
-	call GetAnyMapPermission
+	call GetAnyMapEnvironment
 	call CheckIndoorMap
 	ret nz
 	ld a, [wPrevMapGroup]
@@ -192,14 +192,14 @@ LoadWarpData: ; 1046c6
 	ret
 
 .SetSpawn: ; 104718 (41:4718)
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	ret nz
 	ld a, [wNextMapGroup]
 	ld b, a
 	ld a, [wNextMapNumber]
 	ld c, a
-	call GetAnyMapPermission
+	call GetAnyMapEnvironment
 	call CheckIndoorMap
 	ret nz
 	ld a, [wNextMapGroup]
