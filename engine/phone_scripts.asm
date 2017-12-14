@@ -24,12 +24,12 @@ MomPhoneScript: ; 0xbceaa
 	checkcode VAR_ROOFPALETTE
 	if_equal $1, MomPhonePalette1
 	if_equal $2, MomPhonePalette2
-	jump UnknownScript_0xbcf2f
+	jump MomPhoneOther
 
 MomPhoneLandmark: ; 0xbcedf
 	farwritetext MomPhoneLandmarkText
 	buttonsound
-	jump UnknownScript_0xbcf37
+	jump MomSavingMoney
 
 MomPhonePalette1: ; 0xbcee7
 	checkcode VAR_MAPGROUP
@@ -40,17 +40,17 @@ MomPhonePalette1: ; 0xbcee7
 	if_equal GROUP_GOLDENROD_CITY, .goldenrod
 	farwritetext MomPhoneGenericAreaText
 	buttonsound
-	jump UnknownScript_0xbcf37
+	jump MomSavingMoney
 
 .newbark ; 0xbcf05
 	farwritetext MomPhoneNewBarkText
 	buttonsound
-	jump UnknownScript_0xbcf37
+	jump MomSavingMoney
 
 .cherrygrove ; 0xbcf0d
 	farwritetext MomPhoneCherrygroveText
 	buttonsound
-	jump UnknownScript_0xbcf37
+	jump MomSavingMoney
 
 .violet ; 0xbcf15
 	landmarktotext SPROUT_TOWER, 1
@@ -65,33 +65,33 @@ MomPhonePalette1: ; 0xbcee7
 MomPhonePalette2: ; 0xbcf27
 	farwritetext MomOtherAreaText
 	buttonsound
-	jump UnknownScript_0xbcf37
+	jump MomSavingMoney
 
-UnknownScript_0xbcf2f: ; 0xbcf2f
+MomPhoneOther: ; 0xbcf2f
 	farwritetext MomDeterminedText
 	buttonsound
-	jump UnknownScript_0xbcf37
+	jump MomSavingMoney
 
-UnknownScript_0xbcf37: ; 0xbcf37
+MomSavingMoney: ; 0xbcf37
 	checkflag ENGINE_MOM_SAVING_MONEY
-	iffalse CheckIfMomHasMoney
+	iffalse MomIsNotSaving
 	checkmoney $1, 0
-	if_equal $0, UnknownScript_0xbcf55
-	jump UnknownScript_0xbcf63
+	if_equal $0, MomSavingHasMoney
+	jump MomSavingButBroke
 
-CheckIfMomHasMoney: ; 0xbcf49
+MomIsNotSaving: ; 0xbcf49
 	checkmoney $1, 0
 	if_equal $0, MomHasMoney
 	jump MomHasNoMoney
 
-UnknownScript_0xbcf55: ; 0xbcf55
+MomSavingHasMoney: ; 0xbcf55
 	readmoney $1, $0
 	farwritetext MomCheckBalanceText
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
 	jump MomPhoneWontSaveMoneyScript
 
-UnknownScript_0xbcf63: ; 0xbcf63
+MomSavingButBroke: ; 0xbcf63
 	farwritetext UnknownText_0x1b41ea
 	yesorno
 	iftrue MomPhoneSaveMoneyScript
@@ -497,7 +497,7 @@ BethPhoneScript2:
 	checkflag ENGINE_BETH_FRIDAY_AFTERNOON
 	iftrue .Generic
 	farscall PhoneScript_Random2
-	if_equal $0, UnknownScript_0xbd28a
+	if_equal $0, BethWantsBattle
 
 .Generic:
 	farjump Phone_GenericCall_Female
@@ -505,7 +505,7 @@ BethPhoneScript2:
 BethFridayAfternoon:
 	setflag ENGINE_BETH_FRIDAY_AFTERNOON
 
-UnknownScript_0xbd28a:
+BethWantsBattle:
 	landmarktotext ROUTE_26, $2
 	setflag ENGINE_BETH
 	farjump PhoneScript_WantsToBattle_Female
@@ -520,7 +520,7 @@ JosePhoneScript1:
 	checkflag ENGINE_JOSE_SATURDAY_NIGHT
 	iftrue .NotSaturday
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
-	iftrue UnknownScript_0xbd2c4
+	iftrue .HasItem
 	checkcode VAR_WEEKDAY
 	if_not_equal SATURDAY, .NotSaturday
 	checknite
@@ -533,7 +533,7 @@ JosePhoneScript1:
 	landmarktotext ROUTE_27, $2
 	farjump UnknownScript_0xa0a41
 
-UnknownScript_0xbd2c4:
+.HasItem:
 	landmarktotext ROUTE_27, $2
 	farjump UnknownScript_0xa0a41
 
@@ -547,27 +547,27 @@ JosePhoneScript2:
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
 	iftrue .Generic
 	farscall PhoneScript_Random3
-	if_equal $0, UnknownScript_0xbd304
+	if_equal $0, JoseWantsBattle
 	farscall PhoneScript_Random3
-	if_equal $0, UnknownScript_0xbd312
+	if_equal $0, JoseHasStarPiece
 
 .Generic:
 	farscall PhoneScript_Random3
-	if_equal $0, UnknownScript_0xbd30e
+	if_equal $0, JoseFoundRare
 	farjump Phone_GenericCall_Male
 
 JoseSaturdayNight:
 	setflag ENGINE_JOSE_SATURDAY_NIGHT
 
-UnknownScript_0xbd304:
+JoseWantsBattle:
 	landmarktotext ROUTE_27, $2
 	setflag ENGINE_JOSE
 	farjump PhoneScript_WantsToBattle_Male
 
-UnknownScript_0xbd30e:
+JoseFoundRare:
 	farjump Phone_CheckIfUnseenRare_Male
 
-UnknownScript_0xbd312:
+JoseHasStarPiece:
 	setflag ENGINE_JOSE_HAS_STAR_PIECE
 	landmarktotext ROUTE_27, $2
 	farjump PhoneScript_FoundItem_Male
@@ -751,27 +751,27 @@ UnknownScript_0xbd495:
 	clearevent EVENT_WADE_HAS_PRZCUREBERRY
 	clearevent EVENT_WADE_HAS_BITTER_BERRY
 	random $4
-	if_equal $0, UnknownScript_0xbd4b9
-	if_equal $1, UnknownScript_0xbd4bf
-	if_equal $2, UnknownScript_0xbd4c5
-	if_equal $3, UnknownScript_0xbd4cb
+	if_equal $0, .Berry
+	if_equal $1, .PsnCureBerry
+	if_equal $2, .PrzCureBerry
+	if_equal $3, .Bitterberry
 
-UnknownScript_0xbd4b9:
+.Berry:
 	setevent EVENT_WADE_HAS_BERRY
-	jump UnknownScript_0xbd4ce
+	jump .FoundBerry
 
-UnknownScript_0xbd4bf:
+.PsnCureBerry:
 	setevent EVENT_WADE_HAS_PSNCUREBERRY
-	jump UnknownScript_0xbd4ce
+	jump .FoundBerry
 
-UnknownScript_0xbd4c5:
+.PrzCureBerry:
 	setevent EVENT_WADE_HAS_PRZCUREBERRY
-	jump UnknownScript_0xbd4ce
+	jump .FoundBerry
 
-UnknownScript_0xbd4cb:
+.Bitterberry:
 	setevent EVENT_WADE_HAS_BITTER_BERRY
 
-UnknownScript_0xbd4ce:
+.FoundBerry:
 	farjump PhoneScript_FoundItem_Male
 
 ; Ralph
@@ -825,7 +825,7 @@ Ralph_FightMe:
 
 Ralph_SetUpSwarm:
 	checkflag ENGINE_SPECIAL_WILDDATA
-	iftrue UnknownScript_0xbd55c
+	iftrue .Generic
 	setflag ENGINE_SPECIAL_WILDDATA
 	pokenamemem QWILFISH, $1
 	landmarktotext ROUTE_32, $2
@@ -833,7 +833,7 @@ Ralph_SetUpSwarm:
 	special Special_ActivateFishingSwarm
 	farjump UnknownScript_0xa05d6
 
-UnknownScript_0xbd55c:
+.Generic:
 	farjump Phone_GenericCall_Male
 
 ; Liz
@@ -841,7 +841,7 @@ UnknownScript_0xbd55c:
 LizPhoneScript1:
 	trainertotext PICNICKER, LIZ1, $0
 	checkflag ENGINE_LIZ
-	iftrue UnknownScript_0xbd586
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_LIZ_THURSDAY_AFTERNOON
 	iftrue .NotThursday
@@ -854,7 +854,7 @@ LizPhoneScript1:
 	special RandomPhoneMon
 	farjump UnknownScript_0xa0948
 
-UnknownScript_0xbd586:
+.WantsBattle:
 	landmarktotext ROUTE_32, $2
 	farjump UnknownScript_0xa0a5a
 
@@ -872,11 +872,11 @@ UnknownScript_0xbd5a9:
 	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd5d4
 	checkflag ENGINE_FLYPOINT_GOLDENROD
-	iffalse UnknownScript_0xbd5bf
+	iffalse .Generic
 	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd5c6
 
-UnknownScript_0xbd5bf:
+.Generic:
 	farjump Phone_GenericCall_Female
 
 LizThursdayAfternoon:
