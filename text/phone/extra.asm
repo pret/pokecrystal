@@ -307,7 +307,7 @@ UnknownText_0x648dc: ; 0x648dc
 	done
 ; 0x649dc
 
-UnknownText_0x649dc: ; 0x649dc
+ArnieLovesTheCuteText: ; 0x649dc
 	text "I'm always with my"
 	line "@"
 	text_from_ram StringBuffer4
@@ -423,7 +423,7 @@ UnknownText_0x64c5a: ; 0x64c5a
 	done
 ; 0x64cbd
 
-UnknownText_0x64cbd: ; 0x64cbd
+AlanGettingStrongerText: ; 0x64cbd
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -651,7 +651,7 @@ UnknownText_0x6520f: ; 0x6520f
 	done
 ; 0x65271
 
-UnknownText_0x65271: ; 0x65271
+ChadObservingWildText: ; 0x65271
 	text "I recently began"
 	line "observing wild"
 	cont "@"
@@ -914,7 +914,7 @@ UnknownText_0x65a63: ; 0x65a63
 	done
 ; 0x65ab2
 
-UnknownText_0x65ab2: ; 0x65ab2
+DerekCheekPincherText: ; 0x65ab2
 	text "Listen to this."
 	line "My @"
 	text_from_ram StringBuffer4
@@ -1028,7 +1028,7 @@ UnknownText_0x65da6: ; 0x65da6
 	done
 ; 0x65de4
 
-UnknownText_0x65de4: ; 0x65de4
+TullyGrownText: ; 0x65de4
 	text "My @"
 	text_from_ram StringBuffer4
 	text " has"
@@ -1142,7 +1142,7 @@ UnknownText_0x66087: ; 0x66087
 	done
 ; 0x660be
 
-UnknownText_0x660be: ; 0x660be
+BrentRareTradeText: ; 0x660be
 	text "Oh yeah, I got an"
 	line "extremely rare"
 
@@ -1471,7 +1471,7 @@ UnknownText_0x6691d: ; 0x6691d
 	done
 ; 0x66980
 
-UnknownText_0x66980: ; 0x66980
+VanceLiftoffText: ; 0x66980
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -1543,7 +1543,7 @@ UnknownText_0x66ad1: ; 0x66ad1
 	done
 ; 0x66afc
 
-UnknownText_0x66afc: ; 0x66afc
+WiltonGrownText: ; 0x66afc
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -1727,7 +1727,7 @@ UnknownText_0x66f52: ; 0x66f52
 	done
 ; 0x66f9f
 
-UnknownText_0x66f9f: ; 0x66f9f
+ParryNoMatchText: ; 0x66f9f
 	text "Nothing can match"
 	line "my @"
 	text_from_ram StringBuffer4

@@ -19,7 +19,7 @@ UnknownText_0x174000: ; 0x174000
 	done
 ; 0x1740c0
 
-UnknownText_0x1740c0: ; 0x1740c0
+JackIntelligenceText: ; 0x1740c0
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -369,7 +369,7 @@ UnknownText_0x1749c7: ; 0x1749c7
 	done
 ; 0x174a24
 
-UnknownText_0x174a24: ; 0x174a24
+GavenGreaterText: ; 0x174a24
 	text "My @"
 	text_from_ram StringBuffer4
 	text ""
@@ -568,7 +568,7 @@ UnknownText_0x174ee2: ; 0x174ee2
 	done
 ; 0x174f2f
 
-UnknownText_0x174f2f: ; 0x174f2f
+JoseAromaText: ; 0x174f2f
 	text "Hey listen, my"
 	line "@"
 	text_from_ram StringBuffer4
@@ -804,7 +804,7 @@ UnknownText_0x1754e5: ; 0x1754e5
 	done
 ; 0x175530
 
-UnknownText_0x175530: ; 0x175530
+JoeySharperText: ; 0x175530
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -903,7 +903,7 @@ UnknownText_0x175786: ; 0x175786
 	done
 ; 0x1757d4
 
-UnknownText_0x1757d4: ; 0x1757d4
+WadeAreYouGrowingText: ; 0x1757d4
 	text "Are your #MON"
 	line "growing?"
 
@@ -1050,7 +1050,7 @@ UnknownText_0x175b6d: ; 0x175b6d
 	done
 ; 0x175bc4
 
-UnknownText_0x175bc4: ; 0x175bc4
+RalphNeglectingKidsText: ; 0x175bc4
 	text "I've been spending"
 	line "more time with my"
 
@@ -1520,7 +1520,7 @@ UnknownText_0x1769da: ; 0x1769da
 	done
 ; 0x176a2f
 
-UnknownText_0x176a2f: ; 0x176a2f
+AnthonyAteBerriesText: ; 0x176a2f
 	text "The other day, I"
 	line "was watching my"
 
@@ -1669,7 +1669,7 @@ UnknownText_0x176dd1: ; 0x176dd1
 	done
 ; 0x176e5d
 
-UnknownText_0x176e5d: ; 0x176e5d
+ToddLooksCuteLikeMeText: ; 0x176e5d
 	text "My @"
 	text_from_ram StringBuffer4
 	text " is"

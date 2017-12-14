@@ -1,12 +1,12 @@
 UnknownScript_0xa0000:
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
-	if_equal 0, UnknownScript_0xa0013
+	if_equal 0, .Bragging
 	farscall PhoneScript_Generic_Male
 	farjump UnknownScript_0xa003e
 
-UnknownScript_0xa0013:
-	farjump UnknownScript_0xa002e
+.Bragging:
+	farjump PhoneScript_BraggingCall
 
 UnknownScript_0xa0017:
 	special RandomPhoneMon
@@ -18,8 +18,8 @@ UnknownScript_0xa0017:
 UnknownScript_0xa002a:
 	farjump UnknownScript_0xa0036
 
-UnknownScript_0xa002e:
-	farscall UnknownScript_0xa007c
+PhoneScript_BraggingCall:
+	farscall Phone_WhosBragging
 	farjump UnknownScript_0xa003e
 
 UnknownScript_0xa0036:
@@ -54,7 +54,7 @@ UnknownScript_0xa0074:
 	farscall UnknownScript_0xa0324
 	farjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa007c:
+Phone_WhosBragging:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -75,87 +75,87 @@ UnknownScript_0xa007c:
 	if_equal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x1740c0
+	farwritetext JackIntelligenceText
 	buttonsound
 	end
 
 .Gaven:
-	farwritetext UnknownText_0x174a24
+	farwritetext GavenGreaterText
 	buttonsound
 	end
 
 .Jose:
-	farwritetext UnknownText_0x174f2f
+	farwritetext JoseAromaText
 	buttonsound
 	end
 
 .Joey:
-	farwritetext UnknownText_0x175530
+	farwritetext JoeySharperText
 	buttonsound
 	end
 
 .Wade:
-	farwritetext UnknownText_0x1757d4
+	farwritetext WadeAreYouGrowingText
 	buttonsound
 	end
 
 .Ralph:
-	farwritetext UnknownText_0x175bc4
+	farwritetext RalphNeglectingKidsText
 	buttonsound
 	end
 
 .Anthony:
-	farwritetext UnknownText_0x176a2f
+	farwritetext AnthonyAteBerriesText
 	buttonsound
 	end
 
 .Todd:
-	farwritetext UnknownText_0x176e5d
+	farwritetext ToddLooksCuteLikeMeText
 	buttonsound
 	end
 
 .Arnie:
-	farwritetext UnknownText_0x649dc
+	farwritetext ArnieLovesTheCuteText
 	buttonsound
 	end
 
 .Alan:
-	farwritetext UnknownText_0x64cbd
+	farwritetext AlanGettingStrongerText
 	buttonsound
 	end
 
 .Chad:
-	farwritetext UnknownText_0x65271
+	farwritetext ChadObservingWildText
 	buttonsound
 	end
 
 .Derek:
-	farwritetext UnknownText_0x65ab2
+	farwritetext DerekCheekPincherText
 	buttonsound
 	end
 
 .Tully:
-	farwritetext UnknownText_0x65de4
+	farwritetext TullyGrownText
 	buttonsound
 	end
 
 .Brent:
-	farwritetext UnknownText_0x660be
+	farwritetext BrentRareTradeText
 	buttonsound
 	end
 
 .Vance:
-	farwritetext UnknownText_0x66980
+	farwritetext VanceLiftoffText
 	buttonsound
 	end
 
 .Wilton:
-	farwritetext UnknownText_0x66afc
+	farwritetext WiltonGrownText
 	buttonsound
 	end
 
 .Parry:
-	farwritetext UnknownText_0x66f9f
+	farwritetext ParryNoMatchText
 	buttonsound
 	end
 
