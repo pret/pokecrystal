@@ -69,126 +69,126 @@ JackTriviaScript:
 
 UnknownScript_0xa06da:
 	random 10
-	if_equal 0, UnknownScript_0xa0704
-	if_equal 1, UnknownScript_0xa070c
-	if_equal 2, UnknownScript_0xa0714
-	if_equal 3, UnknownScript_0xa071c
-	if_equal 4, UnknownScript_0xa0724
-	if_equal 5, UnknownScript_0xa072c
-	if_equal 6, UnknownScript_0xa0734
-	if_equal 7, UnknownScript_0xa073c
-	if_equal 8, UnknownScript_0xa0744
-	if_equal 9, UnknownScript_0xa074c
+	if_equal 0, .RuinsOfAlph
+	if_equal 1, .Falkner
+	if_equal 2, .Earl
+	if_equal 3, .SurfPikachu
+	if_equal 4, .MooMooMilk
+	if_equal 5, .Salon
+	if_equal 6, .Whitney
+	if_equal 7, .BugCatchingContest
+	if_equal 8, .BeautifulMon
+	if_equal 9, .Forgot
 
-UnknownScript_0xa0704:
+.RuinsOfAlph:
 	farwritetext UnknownText_0x176223
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa070c:
+.Falkner:
 	farwritetext UnknownText_0x1762c3
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0714:
+.Earl:
 	farwritetext UnknownText_0x17638a
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa071c:
+.SurfPikachu:
 	farwritetext UnknownText_0x176424
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0724:
+.MooMooMilk:
 	farwritetext UnknownText_0x1764eb
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa072c:
+.Salon:
 	farwritetext UnknownText_0x176599
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0734:
+.Whitney:
 	farwritetext UnknownText_0x1766ac
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa073c:
+.BugCatchingContest:
 	farwritetext UnknownText_0x17674f
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0744:
+.BeautifulMon:
 	farwritetext UnknownText_0x176816
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa074c:
+.Forgot:
 	farwritetext UnknownText_0x17686d
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0754:
+ChadOakGossip:
 	random 10
-	if_equal 0, UnknownScript_0xa077e
-	if_equal 1, UnknownScript_0xa0786
-	if_equal 2, UnknownScript_0xa078e
-	if_equal 3, UnknownScript_0xa0796
-	if_equal 4, UnknownScript_0xa079e
-	if_equal 5, UnknownScript_0xa07a6
-	if_equal 6, UnknownScript_0xa07ae
-	if_equal 7, UnknownScript_0xa07b6
-	if_equal 8, UnknownScript_0xa07be
-	if_equal 9, UnknownScript_0xa07c6
+	if_equal 0, .Blue
+	if_equal 1, .Daisy
+	if_equal 2, .ProfElm
+	if_equal 3, .Dream
+	if_equal 4, .Kurt
+	if_equal 5, .League
+	if_equal 6, .RadioShow
+	if_equal 7, .Battling
+	if_equal 8, .DaisyTea
+	if_equal 9, .Traveled
 
-UnknownScript_0xa077e:
+.Blue:
 	farwritetext UnknownText_0x65481
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0786:
+.Daisy:
 	farwritetext UnknownText_0x654ea
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa078e:
+.ProfElm:
 	farwritetext UnknownText_0x65555
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0796:
+.Dream:
 	farwritetext UnknownText_0x655c7
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa079e:
+.Kurt:
 	farwritetext UnknownText_0x65628
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa07a6:
+.League:
 	farwritetext UnknownText_0x6569b
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa07ae:
+.RadioShow:
 	farwritetext UnknownText_0x6574a
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa07b6:
+.Battling:
 	farwritetext UnknownText_0x65810
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa07be:
+.DaisyTea:
 	farwritetext UnknownText_0x658c6
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa07c6:
+.Traveled:
 	farwritetext UnknownText_0x65969
 	buttonsound
 	jump PhoneScript_HangupText_Male

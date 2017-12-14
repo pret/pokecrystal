@@ -1412,7 +1412,7 @@ UnknownScript_0xbda2d:
 	farjump UnknownScript_0xa0584
 
 UnknownScript_0xbda31:
-	farjump UnknownScript_0xa0754
+	farjump ChadOakGossip
 
 DerekPhoneScript1:
 	trainertotext POKEFANM, DEREK1, $0
