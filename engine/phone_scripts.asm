@@ -454,7 +454,7 @@ GavenPhoneScript2:
 
 .WaitingForBattle:
 	farscall PhoneScript_Random3
-	if_equal $0, UnknownScript_0xbd239
+	if_equal $0, GavenFoundRare
 	farjump Phone_GenericCall_Male
 
 GavenThursdayMorning:
@@ -465,7 +465,7 @@ GavenWantsRematch:
 	setflag ENGINE_GAVEN
 	farjump PhoneScript_WantsToBattle_Male
 
-UnknownScript_0xbd239:
+GavenFoundRare:
 	farjump Phone_CheckIfUnseenRare_Male
 
 ; Beth
@@ -473,19 +473,19 @@ UnknownScript_0xbd239:
 BethPhoneScript1:
 	trainertotext COOLTRAINERF, BETH1, $0
 	checkflag ENGINE_BETH
-	iftrue UnknownScript_0xbd260
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_BETH_FRIDAY_AFTERNOON
-	iftrue UnknownScript_0xbd25c
+	iftrue .NotFriday
 	checkcode VAR_WEEKDAY
-	if_not_equal FRIDAY, UnknownScript_0xbd25c
+	if_not_equal FRIDAY, .NotFriday
 	checkday
-	iftrue UnknownScript_0xbd287
+	iftrue BethFridayAfternoon
 
-UnknownScript_0xbd25c:
+.NotFriday:
 	farjump UnknownScript_0xa0918
 
-UnknownScript_0xbd260:
+.WantsBattle:
 	landmarktotext ROUTE_26, $2
 	farjump UnknownScript_0xa0a3c
 
@@ -493,16 +493,16 @@ BethPhoneScript2:
 	trainertotext COOLTRAINERF, BETH1, $0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BETH
-	iftrue UnknownScript_0xbd283
+	iftrue .Generic
 	checkflag ENGINE_BETH_FRIDAY_AFTERNOON
-	iftrue UnknownScript_0xbd283
+	iftrue .Generic
 	farscall PhoneScript_Random2
 	if_equal $0, UnknownScript_0xbd28a
 
-UnknownScript_0xbd283:
+.Generic:
 	farjump Phone_GenericCall_Female
 
-UnknownScript_0xbd287:
+BethFridayAfternoon:
 	setflag ENGINE_BETH_FRIDAY_AFTERNOON
 
 UnknownScript_0xbd28a:
@@ -541,17 +541,17 @@ JosePhoneScript2:
 	trainertotext BIRD_KEEPER, JOSE2, $0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOSE
-	iftrue UnknownScript_0xbd2f5
+	iftrue .Generic
 	checkflag ENGINE_JOSE_SATURDAY_NIGHT
-	iftrue UnknownScript_0xbd2f5
+	iftrue .Generic
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
-	iftrue UnknownScript_0xbd2f5
+	iftrue .Generic
 	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd304
 	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd312
 
-UnknownScript_0xbd2f5:
+.Generic:
 	farscall PhoneScript_Random3
 	if_equal $0, UnknownScript_0xbd30e
 	farjump Phone_GenericCall_Male
@@ -577,19 +577,19 @@ UnknownScript_0xbd312:
 ReenaPhoneScript1:
 	trainertotext COOLTRAINERF, REENA1, $0
 	checkflag ENGINE_REENA
-	iftrue UnknownScript_0xbd33f
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_REENA_SUNDAY_MORNING
-	iftrue UnknownScript_0xbd33b
+	iftrue .NotSunday
 	checkcode VAR_WEEKDAY
-	if_not_equal SUNDAY, UnknownScript_0xbd33b
+	if_not_equal SUNDAY, .NotSunday
 	checkmorn
-	iftrue UnknownScript_0xbd366
+	iftrue ReenaSundayMorning
 
-UnknownScript_0xbd33b:
+.NotSunday:
 	farjump UnknownScript_0xa0928
 
-UnknownScript_0xbd33f:
+.WantsBattle:
 	landmarktotext ROUTE_27, $2
 	farjump UnknownScript_0xa0a46
 
@@ -597,19 +597,19 @@ ReenaPhoneScript2:
 	trainertotext COOLTRAINERF, REENA1, $0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_REENA
-	iftrue UnknownScript_0xbd362
+	iftrue .Generic
 	checkflag ENGINE_REENA_SUNDAY_MORNING
-	iftrue UnknownScript_0xbd362
+	iftrue .Generic
 	farscall PhoneScript_Random2
-	if_equal $0, UnknownScript_0xbd369
+	if_equal $0, ReenaWantsBattle
 
-UnknownScript_0xbd362:
+.Generic:
 	farjump Phone_GenericCall_Female
 
-UnknownScript_0xbd366:
+ReenaSundayMorning:
 	setflag ENGINE_REENA_SUNDAY_MORNING
 
-UnknownScript_0xbd369:
+ReenaWantsBattle:
 	landmarktotext ROUTE_27, $2
 	setflag ENGINE_REENA
 	farjump PhoneScript_WantsToBattle_Female
@@ -619,20 +619,20 @@ UnknownScript_0xbd369:
 JoeyPhoneScript1:
 	trainertotext YOUNGSTER, JOEY1, $0
 	checkflag ENGINE_JOEY
-	iftrue UnknownScript_0xbd399
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_JOEY_MONDAY_AFTERNOON
-	iftrue UnknownScript_0xbd392
+	iftrue .NotMonday
 	checkcode VAR_WEEKDAY
-	if_not_equal MONDAY, UnknownScript_0xbd392
+	if_not_equal MONDAY, .NotMonday
 	checkday
-	iftrue UnknownScript_0xbd3c4
+	iftrue JoeyMondayAfternoon
 
-UnknownScript_0xbd392:
+.NotMonday:
 	special RandomPhoneMon
 	farjump UnknownScript_0xa0930
 
-UnknownScript_0xbd399:
+.WantsBattle:
 	landmarktotext ROUTE_30, $2
 	farjump UnknownScript_0xa0a4b
 
@@ -640,20 +640,20 @@ JoeyPhoneScript2:
 	trainertotext YOUNGSTER, JOEY1, $0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOEY
-	iftrue UnknownScript_0xbd3c0
+	iftrue .Generic
 	checkflag ENGINE_JOEY_MONDAY_AFTERNOON
-	iftrue UnknownScript_0xbd3c0
+	iftrue .Generic
 	farscall PhoneScript_Random3
-	if_equal $0, UnknownScript_0xbd3c7
-	if_equal $1, UnknownScript_0xbd3c7
+	if_equal $0, JoeyWantsBattle
+	if_equal $1, JoeyWantsBattle
 
-UnknownScript_0xbd3c0:
+.Generic:
 	farjump Phone_GenericCall_Male
 
-UnknownScript_0xbd3c4:
+JoeyMondayAfternoon:
 	setflag ENGINE_JOEY_MONDAY_AFTERNOON
 
-UnknownScript_0xbd3c7:
+JoeyWantsBattle:
 	landmarktotext ROUTE_30, $2
 	setflag ENGINE_JOEY
 	farjump PhoneScript_WantsToBattle_Male
@@ -663,38 +663,38 @@ UnknownScript_0xbd3c7:
 WadePhoneScript1:
 	trainertotext BUG_CATCHER, WADE1, $0
 	checkflag ENGINE_WADE
-	iftrue UnknownScript_0xbd41a
+	iftrue WadeWantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_WADE_TUESDAY_NIGHT
-	iftrue UnknownScript_0xbd3f6
+	iftrue .NotTuesday
 	checkflag ENGINE_WADE_HAS_ITEM
-	iftrue UnknownScript_0xbd421
+	iftrue WadeHasItem
 	checkcode VAR_WEEKDAY
-	if_not_equal TUESDAY, UnknownScript_0xbd3f6
+	if_not_equal TUESDAY, .NotTuesday
 	checknite
-	iftrue UnknownScript_0xbd484
+	iftrue WadeTuesdayNight
 
-UnknownScript_0xbd3f6:
+.NotTuesday:
 	farscall PhoneScript_Random2
-	if_equal $0, UnknownScript_0xbd412
+	if_equal $0, .NoContest
 	checkflag ENGINE_DAILY_BUG_CONTEST
-	iftrue UnknownScript_0xbd412
+	iftrue .NoContest
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, UnknownScript_0xbd416
-	if_equal THURSDAY, UnknownScript_0xbd416
-	if_equal SATURDAY, UnknownScript_0xbd416
+	if_equal TUESDAY, WadeContestToday
+	if_equal THURSDAY, WadeContestToday
+	if_equal SATURDAY, WadeContestToday
 
-UnknownScript_0xbd412:
+.NoContest:
 	farjump UnknownScript_0xa0938
 
-UnknownScript_0xbd416:
+WadeContestToday:
 	farjump PhoneScript_BugCatchingContest
 
-UnknownScript_0xbd41a:
+WadeWantsBattle:
 	landmarktotext ROUTE_31, $2
 	farjump UnknownScript_0xa0a50
 
-UnknownScript_0xbd421:
+WadeHasItem:
 	landmarktotext ROUTE_31, $2
 	farjump UnknownScript_0xa0ab5
 
@@ -732,7 +732,7 @@ UnknownScript_0xbd474:
 Wade_ContestToday:
 	farjump PhoneScript_BugCatchingContest
 
-UnknownScript_0xbd484:
+WadeTuesdayNight:
 	setflag ENGINE_WADE_TUESDAY_NIGHT
 
 UnknownScript_0xbd487:
@@ -1446,16 +1446,16 @@ DerekPhoneScript2:
 	checkflag ENGINE_DAILY_BUG_CONTEST
 	iftrue .NoContest
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, .BugCatchingContest
-	if_equal THURSDAY, .BugCatchingContest
-	if_equal SATURDAY, .BugCatchingContest
+	if_equal TUESDAY, .ContestToday
+	if_equal THURSDAY, .ContestToday
+	if_equal SATURDAY, .ContestToday
 
 .NoContest:
 	farscall PhoneScript_Random4
 	if_equal $0, .Nugget
 	farjump Phone_GenericCall_Male
 
-.BugCatchingContest:
+.ContestToday:
 	farjump PhoneScript_BugCatchingContest
 
 .Nugget:
@@ -1466,7 +1466,7 @@ DerekPhoneScript2:
 TullyPhoneScript1:
 	trainertotext FISHER, TULLY1, $0
 	checkflag ENGINE_TULLY
-	iftrue UnknownScript_0xbdad5
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_TULLY_SUNDAY_NIGHT
 	iftrue .NotSunday
@@ -1480,7 +1480,7 @@ TullyPhoneScript1:
 .NotSunday:
 	farjump UnknownScript_0xa0990
 
-UnknownScript_0xbdad5:
+.WantsBattle:
 	landmarktotext ROUTE_42, $2
 	farjump UnknownScript_0xa0a82
 
@@ -1492,13 +1492,13 @@ TullyPhoneScript2:
 	trainertotext FISHER, TULLY1, $0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_TULLY
-	iftrue UnknownScript_0xbdb1b
+	iftrue .Generic
 	checkflag ENGINE_TULLY_SUNDAY_NIGHT
-	iftrue UnknownScript_0xbdb1b
+	iftrue .Generic
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
-	iftrue UnknownScript_0xbdb1b
+	iftrue .Generic
 	farscall PhoneScript_Random3
-	if_equal $0, UnknownScript_0xbdb22
+	if_equal $0, TullyWantsBattle
 	checkevent EVENT_TULLY_GAVE_WATER_STONE
 	iftrue .WaterStone
 	farscall PhoneScript_Random2
@@ -1508,13 +1508,13 @@ TullyPhoneScript2:
 	farscall PhoneScript_Random11
 	if_equal $0, TullyFoundWaterStone
 
-UnknownScript_0xbdb1b:
+.Generic:
 	farjump Phone_GenericCall_Male
 
 TullySundayNight:
 	setflag ENGINE_TULLY_SUNDAY_NIGHT
 
-UnknownScript_0xbdb22:
+TullyWantsBattle:
 	landmarktotext ROUTE_42, $2
 	setflag ENGINE_TULLY
 	farjump PhoneScript_WantsToBattle_Male
@@ -1527,19 +1527,19 @@ TullyFoundWaterStone:
 BrentPhoneScript1:
 	trainertotext POKEMANIAC, BRENT1, $0
 	checkflag ENGINE_BRENT
-	iftrue UnknownScript_0xbdb59
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_BRENT_MONDAY_MORNING
-	iftrue UnknownScript_0xbdb55
+	iftrue .NotMonday
 	checkcode VAR_WEEKDAY
-	if_not_equal MONDAY, UnknownScript_0xbdb55
+	if_not_equal MONDAY, .NotMonday
 	checkmorn
-	iftrue UnknownScript_0xbdb88
+	iftrue BrentMondayMorning
 
-UnknownScript_0xbdb55:
+.NotMonday:
 	farjump UnknownScript_0xa0998
 
-UnknownScript_0xbdb59:
+.WantsBattle:
 	landmarktotext ROUTE_43, $2
 	farjump UnknownScript_0xa0a87
 
@@ -1549,19 +1549,19 @@ BrentPhoneScript2:
 	farscall PhoneScript_Random2
 	if_equal $0, BrentBillTrivia
 	checkflag ENGINE_BRENT
-	iftrue UnknownScript_0xbdb84
+	iftrue .Generic
 	checkflag ENGINE_BRENT_MONDAY_MORNING
-	iftrue UnknownScript_0xbdb84
+	iftrue .Generic
 	farscall PhoneScript_Random2
-	if_equal $0, UnknownScript_0xbdb8b
+	if_equal $0, BrentWantsBattle
 
-UnknownScript_0xbdb84:
+.Generic:
 	farjump Phone_GenericCall_Male
 
-UnknownScript_0xbdb88:
+BrentMondayMorning:
 	setflag ENGINE_BRENT_MONDAY_MORNING
 
-UnknownScript_0xbdb8b:
+BrentWantsBattle:
 	landmarktotext ROUTE_43, $2
 	setflag ENGINE_BRENT
 	farjump PhoneScript_WantsToBattle_Male
@@ -1572,98 +1572,98 @@ BrentBillTrivia:
 TiffanyPhoneScript1:
 	trainertotext PICNICKER, TIFFANY3, $0
 	checkflag ENGINE_TIFFANY
-	iftrue UnknownScript_0xbdbc2
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
-	iftrue UnknownScript_0xbdbbe
+	iftrue .NotTuesday
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
-	iftrue UnknownScript_0xbdbc9
+	iftrue .HasItem
 	checkcode VAR_WEEKDAY
-	if_not_equal TUESDAY, UnknownScript_0xbdbbe
+	if_not_equal TUESDAY, .NotTuesday
 	checkday
-	iftrue UnknownScript_0xbdc14
+	iftrue TiffanyTuesdayAfternoon
 
-UnknownScript_0xbdbbe:
+.NotTuesday:
 	farjump UnknownScript_0xa09a0
 
-UnknownScript_0xbdbc2:
+.WantsBattle:
 	landmarktotext ROUTE_43, $2
 	farjump UnknownScript_0xa0a8c
 
-UnknownScript_0xbdbc9:
+.HasItem:
 	landmarktotext ROUTE_43, $2
 	farjump UnknownScript_0xa0ae5
 
 TiffanyPhoneScript2:
 	trainertotext PICNICKER, TIFFANY3, $0
 	farscall PhoneScript_Random4
-	if_equal $0, UnknownScript_0xbdc21
+	if_equal $0, TiffanyTalksAboutFamily
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_TIFFANY
-	iftrue UnknownScript_0xbdc10
+	iftrue TiffanyGenericCall
 	checkflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
-	iftrue UnknownScript_0xbdc10
+	iftrue TiffanyGenericCall
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
-	iftrue UnknownScript_0xbdc10
+	iftrue TiffanyGenericCall
 	farscall PhoneScript_Random3
-	if_equal $0, UnknownScript_0xbdc17
+	if_equal $0, TiffanyWantsBattle
 	checkevent EVENT_TIFFANY_GAVE_PINK_BOW
-	iftrue UnknownScript_0xbdc08
+	iftrue .PinkBow
 	farscall PhoneScript_Random2
-	if_equal $0, UnknownScript_0xbdc69
+	if_equal $0, TiffanyHasPinkBow
 
-UnknownScript_0xbdc08:
+.PinkBow:
 	farscall PhoneScript_Random11
-	if_equal $0, UnknownScript_0xbdc69
+	if_equal $0, TiffanyHasPinkBow
 
-UnknownScript_0xbdc10:
+TiffanyGenericCall:
 	farjump Phone_GenericCall_Female
 
-UnknownScript_0xbdc14:
+TiffanyTuesdayAfternoon:
 	setflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
 
-UnknownScript_0xbdc17:
+TiffanyWantsBattle:
 	landmarktotext ROUTE_43, $2
 	setflag ENGINE_TIFFANY
 	farjump PhoneScript_WantsToBattle_Female
 
-UnknownScript_0xbdc21:
+TiffanyTalksAboutFamily:
 	random $6
-	if_equal $0, UnknownScript_0xbdc3b
-	if_equal $1, UnknownScript_0xbdc42
-	if_equal $2, UnknownScript_0xbdc49
-	if_equal $3, UnknownScript_0xbdc50
-	if_equal $4, UnknownScript_0xbdc57
-	if_equal $5, UnknownScript_0xbdc5e
+	if_equal $0, .Grandma
+	if_equal $1, .Grandpa
+	if_equal $2, .Mom
+	if_equal $3, .Dad
+	if_equal $4, .Sister
+	if_equal $5, .Brother
 
-UnknownScript_0xbdc3b:
-	stringtotext String_be643, $1
-	jump UnknownScript_0xbdc65
+.Grandma:
+	stringtotext GrandmaString, $1
+	jump TiffanyFamily
 
-UnknownScript_0xbdc42:
-	stringtotext String_be64b, $1
-	jump UnknownScript_0xbdc65
+.Grandpa:
+	stringtotext GrandpaString, $1
+	jump TiffanyFamily
 
-UnknownScript_0xbdc49:
-	stringtotext String_be653, $1
-	jump UnknownScript_0xbdc65
+.Mom:
+	stringtotext MomString, $1
+	jump TiffanyFamily
 
-UnknownScript_0xbdc50:
-	stringtotext String_be657, $1
-	jump UnknownScript_0xbdc65
+.Dad:
+	stringtotext DadString, $1
+	jump TiffanyFamily
 
-UnknownScript_0xbdc57:
-	stringtotext String_be65b, $1
-	jump UnknownScript_0xbdc65
+.Sister:
+	stringtotext SisterString, $1
+	jump TiffanyFamily
 
-UnknownScript_0xbdc5e:
-	stringtotext String_be662, $1
-	jump UnknownScript_0xbdc65
+.Brother:
+	stringtotext BrotherString, $1
+	jump TiffanyFamily
 
-UnknownScript_0xbdc65:
+TiffanyFamily:
 	farjump UnknownScript_0xa047f
 
-UnknownScript_0xbdc69:
+TiffanyHasPinkBow:
 	setflag ENGINE_TIFFANY_HAS_PINK_BOW
 	landmarktotext ROUTE_43, $2
 	farjump PhoneScript_FoundItem_Female
@@ -1673,19 +1673,19 @@ UnknownScript_0xbdc69:
 VancePhoneScript1:
 	trainertotext BIRD_KEEPER, VANCE1, $0
 	checkflag ENGINE_VANCE
-	iftrue UnknownScript_0xbdc96
+	iftrue VanceWantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_VANCE_WEDNESDAY_NIGHT
-	iftrue UnknownScript_0xbdc92
+	iftrue .NotWednesday
 	checkcode VAR_WEEKDAY
-	if_not_equal WEDNESDAY, UnknownScript_0xbdc92
+	if_not_equal WEDNESDAY, .NotWednesday
 	checknite
 	iftrue VanceWednesdayNight
 
-UnknownScript_0xbdc92:
+.NotWednesday:
 	farjump UnknownScript_0xa09a8
 
-UnknownScript_0xbdc96:
+VanceWantsBattle:
 	landmarktotext ROUTE_44, $2
 	farjump UnknownScript_0xa0a91
 

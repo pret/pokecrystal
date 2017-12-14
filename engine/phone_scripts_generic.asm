@@ -1257,10 +1257,10 @@ PhoneScript_MonFlavorText:
 ; be643
 
 
-String_be643: db "Grandma@"
-String_be64b: db "Grandpa@"
-String_be653: db "Mom@"
-String_be657: db "Dad@"
-String_be65b: db "Sister@"
-String_be662: db "Brother@"
+GrandmaString: db "Grandma@"
+GrandpaString: db "Grandpa@"
+MomString: db "Mom@"
+DadString: db "Dad@"
+SisterString: db "Sister@"
+BrotherString: db "Brother@"
 
