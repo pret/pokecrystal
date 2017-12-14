@@ -1,15 +1,15 @@
 text   EQUS "db $00," ; Start writing text.
 next   EQUS "db $4e," ; Move a line down.
 line   EQUS "db $4f," ; Start writing at the bottom line.
-page   EQUS "db $50," ; Start a new Pokedex page.
+page   EQUS "db $50," ; Start a new Pokédex page.
 para   EQUS "db $51," ; Start a new paragraph.
 cont   EQUS "db $55," ; Scroll to the next line.
 done   EQUS "db $57"  ; End a text box.
 prompt EQUS "db $58"  ; Prompt the player to end a text box (initiating some other event).
 
-; TX_RAM EQU $01
-; TX_FAR EQU $16
-	enum_start 1
+; TextCommands indexes (see home/text.asm)
+	enum_start $01
+
 	enum TX_RAM
 text_from_ram: MACRO
 	db TX_RAM

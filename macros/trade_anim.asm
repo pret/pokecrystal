@@ -1,4 +1,6 @@
+; DoTradeAnimation.JumpTable indexes (see engine/trade/animation.asm)
 	enum_start
+
 	enum tradeanim_next_command
 tradeanim_next: macro
 	db tradeanim_next_command ; 00

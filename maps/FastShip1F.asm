@@ -306,8 +306,8 @@ FastShip1F_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 2, $6, $18, $0, WorriedGrandpaTriggerLeft, $0, $0
-	xy_trigger 2, $6, $19, $0, WorriedGrandpaTriggerRight, $0, $0
+	xy_trigger 2, $6, $18, WorriedGrandpaTriggerLeft
+	xy_trigger 2, $6, $19, WorriedGrandpaTriggerRight
 
 .Signposts:
 	db 0

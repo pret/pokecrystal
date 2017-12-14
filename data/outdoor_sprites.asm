@@ -2,36 +2,36 @@
 ; Maps with permission ROUTE or TOWN can only use these sprites.
 
 OutdoorSprites: ; 144b8
-	dw Group1Sprites
-	dw Group2Sprites
-	dw Group3Sprites
-	dw Group4Sprites
-	dw Group5Sprites
-	dw Group6Sprites
-	dw Group7Sprites
-	dw Group8Sprites
-	dw Group9Sprites
-	dw Group10Sprites
-	dw Group11Sprites
-	dw Group12Sprites
-	dw Group13Sprites
-	dw Group14Sprites
-	dw Group15Sprites
-	dw Group16Sprites
-	dw Group17Sprites
-	dw Group18Sprites
-	dw Group19Sprites
-	dw Group20Sprites
-	dw Group21Sprites
-	dw Group22Sprites
-	dw Group23Sprites
-	dw Group24Sprites
-	dw Group25Sprites
-	dw Group26Sprites
+	dw OlivineGroupSprites
+	dw MahoganyGroupSprites
+	dw DungeonsGroupSprites
+	dw EcruteakGroupSprites
+	dw BlackthornGroupSprites
+	dw CinnabarGroupSprites
+	dw CeruleanGroupSprites
+	dw AzaleaGroupSprites
+	dw LakeOfRageGroupSprites
+	dw VioletGroupSprites
+	dw GoldenrodGroupSprites
+	dw VermilionGroupSprites
+	dw PalletGroupSprites
+	dw PewterGroupSprites
+	dw FastShipGroupSprites
+	dw IndigoGroupSprites
+	dw FuchsiaGroupSprites
+	dw LavenderGroupSprites
+	dw SilverGroupSprites
+	dw CableClubGroupSprites
+	dw CeladonGroupSprites
+	dw CianwoodGroupSprites
+	dw ViridianGroupSprites
+	dw NewBarkGroupSprites
+	dw SaffronGroupSprites
+	dw CherrygroveGroupSprites
 ; 144ec
 
 
-Group13Sprites: ; 144ec
+PalletGroupSprites: ; 144ec
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -57,7 +57,7 @@ Group13Sprites: ; 144ec
 	db SPRITE_FRUIT_TREE
 ; 14503
 
-Group23Sprites: ; 14503
+ViridianGroupSprites: ; 14503
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -83,7 +83,7 @@ Group23Sprites: ; 14503
 	db SPRITE_FRUIT_TREE
 ; 1451a
 
-Group14Sprites: ; 1451a
+PewterGroupSprites: ; 1451a
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -109,7 +109,7 @@ Group14Sprites: ; 1451a
 	db SPRITE_FRUIT_TREE
 ; 14531
 
-Group6Sprites: ; 14531
+CinnabarGroupSprites: ; 14531
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -135,7 +135,7 @@ Group6Sprites: ; 14531
 	db SPRITE_FRUIT_TREE
 ; 14548
 
-Group7Sprites: ; 14548
+CeruleanGroupSprites: ; 14548
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -161,7 +161,7 @@ Group7Sprites: ; 14548
 	db SPRITE_SLOWPOKE
 ; 1455f
 
-Group25Sprites: ; 1455f
+SaffronGroupSprites: ; 1455f
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -187,7 +187,7 @@ Group25Sprites: ; 1455f
 	db SPRITE_SLOWPOKE
 ; 14576
 
-Group21Sprites: ; 14576
+CeladonGroupSprites: ; 14576
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -213,7 +213,7 @@ Group21Sprites: ; 14576
 	db SPRITE_FRUIT_TREE
 ; 1458d
 
-Group18Sprites: ; 1458d
+LavenderGroupSprites: ; 1458d
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -239,7 +239,7 @@ Group18Sprites: ; 1458d
 	db SPRITE_FRUIT_TREE
 ; 145a4
 
-Group12Sprites: ; 145a4
+VermilionGroupSprites: ; 145a4
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -265,7 +265,7 @@ Group12Sprites: ; 145a4
 	db SPRITE_FRUIT_TREE
 ; 145bb
 
-Group17Sprites: ; 145bb
+FuchsiaGroupSprites: ; 145bb
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -291,7 +291,7 @@ Group17Sprites: ; 145bb
 	db SPRITE_FRUIT_TREE
 ; 145d2
 
-Group16Sprites: ; 145d2
+IndigoGroupSprites: ; 145d2
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -317,7 +317,7 @@ Group16Sprites: ; 145d2
 	db SPRITE_BOULDER
 ; 145e9
 
-Group24Sprites: ; 145e9
+NewBarkGroupSprites: ; 145e9
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -343,7 +343,7 @@ Group24Sprites: ; 145e9
 	db SPRITE_FRUIT_TREE
 ; 14600
 
-Group26Sprites: ; 14600
+CherrygroveGroupSprites: ; 14600
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -369,7 +369,7 @@ Group26Sprites: ; 14600
 	db SPRITE_FRUIT_TREE
 ; 14617
 
-Group19Sprites: ; 14617
+SilverGroupSprites: ; 14617
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -395,7 +395,7 @@ Group19Sprites: ; 14617
 	db SPRITE_FRUIT_TREE
 ; 1462e
 
-Group10Sprites: ; 1462e
+VioletGroupSprites: ; 1462e
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -421,7 +421,7 @@ Group10Sprites: ; 1462e
 	db SPRITE_FRUIT_TREE
 ; 14645
 
-Group4Sprites: ; 14645
+EcruteakGroupSprites: ; 14645
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -447,7 +447,7 @@ Group4Sprites: ; 14645
 	db SPRITE_FRUIT_TREE
 ; 1465c
 
-Group8Sprites: ; 1465c
+AzaleaGroupSprites: ; 1465c
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -473,7 +473,7 @@ Group8Sprites: ; 1465c
 	db SPRITE_SLOWPOKE
 ; 14673
 
-Group11Sprites: ; 14673
+GoldenrodGroupSprites: ; 14673
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_POKE_BALL
@@ -499,7 +499,7 @@ Group11Sprites: ; 14673
 	db SPRITE_SLOWPOKE
 ; 1468a
 
-Group22Sprites: ; 1468a
+CianwoodGroupSprites: ; 1468a
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -525,7 +525,7 @@ Group22Sprites: ; 1468a
 	db SPRITE_ROCK
 ; 146a1
 
-Group1Sprites: ; 146a1
+OlivineGroupSprites: ; 146a1
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -551,7 +551,7 @@ Group1Sprites: ; 146a1
 	db SPRITE_ROCK
 ; 146b8
 
-Group9Sprites: ; 146b8
+LakeOfRageGroupSprites: ; 146b8
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -577,7 +577,7 @@ Group9Sprites: ; 146b8
 	db SPRITE_POKE_BALL
 ; 146cf
 
-Group2Sprites: ; 146cf
+MahoganyGroupSprites: ; 146cf
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -603,7 +603,7 @@ Group2Sprites: ; 146cf
 	db SPRITE_POKE_BALL
 ; 146e6
 
-Group5Sprites: ; 146e6
+BlackthornGroupSprites: ; 146e6
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -629,7 +629,7 @@ Group5Sprites: ; 146e6
 	db SPRITE_POKE_BALL
 ; 146fd
 
-Group3Sprites: ; 146fd
+DungeonsGroupSprites: ; 146fd
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -655,7 +655,7 @@ Group3Sprites: ; 146fd
 	db SPRITE_BOULDER
 ; 14714
 
-Group15Sprites: ; 14714
+FastShipGroupSprites: ; 14714
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY
 	db SPRITE_FAMICOM
@@ -681,7 +681,7 @@ Group15Sprites: ; 14714
 	db SPRITE_ROCK
 ; 1472b
 
-Group20Sprites: ; 1472b
+CableClubGroupSprites: ; 1472b
 	db SPRITE_OAK
 	db SPRITE_FISHER
 	db SPRITE_TEACHER

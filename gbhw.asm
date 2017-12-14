@@ -29,25 +29,26 @@ SERIAL   EQU 3
 JOYPAD   EQU 4
 
 ; OAM attribute flags
-OAM_PALETTE   EQU %111
 OAM_TILE_BANK EQU 3
-OAM_OBP_NUM   EQU 4 ; Non CGB Mode Only
+OAM_OBP_NUM   EQU 4 ; non CGB Mode Only
 OAM_X_FLIP    EQU 5
 OAM_Y_FLIP    EQU 6
 OAM_PRIORITY  EQU 7 ; 0: OBJ above BG, 1: OBJ behind BG (colors 1-3)
 
-VRAM_BANK_1 EQU 1 << OAM_TILE_BANK
-X_FLIP      EQU 1 << OAM_X_FLIP
-Y_FLIP      EQU 1 << OAM_Y_FLIP
-BEHIND_BG   EQU 1 << OAM_PRIORITY
+PALETTE_MASK EQU %111
+VRAM_BANK_1  EQU 1 << OAM_TILE_BANK ; $08
+OBP_NUM      EQU 1 << OAM_OBP_NUM   ; $10
+X_FLIP       EQU 1 << OAM_X_FLIP    ; $20
+Y_FLIP       EQU 1 << OAM_Y_FLIP    ; $40
+BEHIND_BG    EQU 1 << OAM_PRIORITY  ; $80
 
 ; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)
 rSB         EQU $ff01 ; Serial transfer data (R/W)
 rSC         EQU $ff02 ; Serial Transfer Control (R/W)
-rSC_ON    EQU 7
-rSC_CGB   EQU 1
-rSC_CLOCK EQU 0
+rSC_ON      EQU 7
+rSC_CGB     EQU 1
+rSC_CLOCK   EQU 0
 rDIV        EQU $ff04 ; Divider Register (R/W)
 rTIMA       EQU $ff05 ; Timer counter (R/W)
 rTMA        EQU $ff06 ; Timer Modulo (R/W)

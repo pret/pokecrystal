@@ -302,8 +302,8 @@ RuinsOfAlphOutside_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, $e, $b, $0, RuinsOfAlphOutsideScientistTrigger1, $0, $0
-	xy_trigger 1, $f, $a, $0, RuinsOfAlphOutsideScientistTrigger2, $0, $0
+	xy_trigger 1, $e, $b, RuinsOfAlphOutsideScientistTrigger1
+	xy_trigger 1, $f, $a, RuinsOfAlphOutsideScientistTrigger2
 
 .Signposts:
 	db 3

@@ -64,6 +64,7 @@ RunScriptCommand:
 
 
 ScriptCommandTable:
+; entries correspond to macros/event.asm enumeration
 	dw Script_scall                      ; 00
 	dw Script_farscall                   ; 01
 	dw Script_ptcall                     ; 02

@@ -390,7 +390,7 @@ GoldenrodGym_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 1, $5, $8, $0, WhitneyCriesScript, $0, $0
+	xy_trigger 1, $5, $8, WhitneyCriesScript
 
 .Signposts:
 	db 2

@@ -310,7 +310,7 @@ VermilionPort_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $b, $7, $0, UnknownScript_0x74e20, $0, $0
+	xy_trigger 0, $b, $7, UnknownScript_0x74e20
 
 .Signposts:
 	db 1

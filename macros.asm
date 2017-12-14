@@ -13,10 +13,15 @@ INCLUDE "macros/rst.asm"
 INCLUDE "macros/mobile.asm"
 INCLUDE "macros/trainer.asm"
 INCLUDE "macros/trade_anim.asm"
-INCLUDE "macros/pals.asm"
+INCLUDE "macros/tilesets.asm"
 
 RGB: MACRO
+rept _NARG / 3
 	dw ((\3) << 10) + ((\2) << 5) + (\1)
+	shift
+	shift
+	shift
+endr
 	ENDM
 
 

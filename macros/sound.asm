@@ -23,7 +23,9 @@ cry_header: macro
 	dw \1, \2, \3
 	endm
 
+; MusicCommands indexes (see audio/engine.asm)
 	enum_start $d8
+
 	enum notetype_cmd
 octave: macro
 	db notetype_cmd - (\1)

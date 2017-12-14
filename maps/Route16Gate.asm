@@ -73,8 +73,8 @@ Route16Gate_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 0, $4, $5, $0, UnknownScript_0x733ed, $0, $0
-	xy_trigger 0, $5, $5, $0, UnknownScript_0x733ed, $0, $0
+	xy_trigger 0, $4, $5, UnknownScript_0x733ed
+	xy_trigger 0, $5, $5, UnknownScript_0x733ed
 
 .Signposts:
 	db 0

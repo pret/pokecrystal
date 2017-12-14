@@ -250,7 +250,7 @@ BurnedTowerB1F_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $6, $a, $0, ReleaseTheBeasts, $0, $0
+	xy_trigger 0, $6, $a, ReleaseTheBeasts
 
 .Signposts:
 	db 0

@@ -298,7 +298,6 @@ CANT_TOSS   EQU 1 << 7
 
 ; held item effects
 	const_def
-
 	const HELD_NONE
 	const HELD_BERRY
 	const HELD_2
@@ -382,7 +381,7 @@ const_value SET 70
 	const ITEMATTR_PERMISSIONS
 	const ITEMATTR_POCKET
 	const ITEMATTR_HELP
-NUM_ITEMATTRS EQU const_value
+ITEMATTR_STRUCT_LENGTH EQU const_value
 
 ; item menu types
 ITEMMENU_NOUSE   EQU 0

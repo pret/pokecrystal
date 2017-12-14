@@ -440,8 +440,8 @@ Route25_MapEventHeader:
 
 .XYTriggers:
 	db 2
-	xy_trigger 1, $6, $2a, $0, UnknownScript_0x19eea0, $0, $0
-	xy_trigger 1, $7, $2a, $0, UnknownScript_0x19eee0, $0, $0
+	xy_trigger 1, $6, $2a, UnknownScript_0x19eea0
+	xy_trigger 1, $7, $2a, UnknownScript_0x19eee0
 
 .Signposts:
 	db 2

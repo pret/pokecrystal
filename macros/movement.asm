@@ -1,3 +1,4 @@
+; MovementPointers indexes (see engine/movement.asm)
 	enum_start
 
 ; Directional movements

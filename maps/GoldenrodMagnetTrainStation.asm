@@ -177,7 +177,7 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $6, $b, $0, Script_ArriveFromSaffron, $0, $0
+	xy_trigger 0, $6, $b, Script_ArriveFromSaffron
 
 .Signposts:
 	db 0

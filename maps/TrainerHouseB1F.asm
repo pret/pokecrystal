@@ -179,7 +179,7 @@ TrainerHouseB1F_MapEventHeader:
 
 .XYTriggers:
 	db 1
-	xy_trigger 0, $3, $7, $0, TrainerHouseReceptionistScript, $0, $0
+	xy_trigger 0, $3, $7, TrainerHouseReceptionistScript
 
 .Signposts:
 	db 0

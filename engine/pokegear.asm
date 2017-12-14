@@ -141,7 +141,7 @@ INCBIN "gfx/pokegear/fast_ship.2bpp"
 
 InitPokegearModeIndicatorArrow: ; 90d32 (24:4d32)
 	depixel 4, 2, 4, 0
-	ld a, SPRITE_ANIM_INDEX_0D
+	ld a, SPRITE_ANIM_INDEX_POKEGEAR_ARROW
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -685,7 +685,7 @@ PokegearMap_InitPlayerIcon: ; 9106a
 PokegearMap_InitCursor: ; 91098
 	push af
 	depixel 0, 0
-	ld a, SPRITE_ANIM_INDEX_0D
+	ld a, SPRITE_ANIM_INDEX_POKEGEAR_ARROW
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
