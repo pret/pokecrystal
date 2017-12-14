@@ -1716,7 +1716,7 @@ WiltonPhoneScript1:
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0xbdcf7
 	farscall PhoneScript_AnswerPhone_Male
-	checkflag ENGINE_WILTON_THRUSDAY_MORNING
+	checkflag ENGINE_WILTON_THURSDAY_MORNING
 	iftrue UnknownScript_0xbdcf3
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue UnknownScript_0xbdcfe
@@ -1741,7 +1741,7 @@ WiltonPhoneScript2:
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_WILTON
 	iftrue UnknownScript_0xbdd2f
-	checkflag ENGINE_WILTON_THRUSDAY_MORNING
+	checkflag ENGINE_WILTON_THURSDAY_MORNING
 	iftrue UnknownScript_0xbdd2f
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue UnknownScript_0xbdd2f
@@ -1754,7 +1754,7 @@ UnknownScript_0xbdd2f:
 	farjump UnknownScript_0xa0000
 
 UnknownScript_0xbdd33:
-	setflag ENGINE_WILTON_THRUSDAY_MORNING
+	setflag ENGINE_WILTON_THURSDAY_MORNING
 
 UnknownScript_0xbdd36:
 	landmarktotext ROUTE_44, $2
