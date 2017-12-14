@@ -680,8 +680,8 @@ PhoneScript_RematchText_Female:
 	buttonsound
 	end
 
-UnknownScript_0xa047a:
-	farwritetext UnknownText_0x1761a7
+LizWrongNumber:
+	farwritetext LizHiTaniaText
 	end
 
 UnknownScript_0xa047f:
@@ -835,7 +835,7 @@ PhoneScript_HangupText_Female:
 	end
 
 UnknownScript_0xa0584:
-	scall UnknownScript_0xa05a0
+	scall PhoneScriptRareWildMon
 	iffalse UnknownScript_0xa058e
 	farjump UnknownScript_0xa0000
 
@@ -843,29 +843,29 @@ UnknownScript_0xa058e:
 	farjump PhoneScript_HangupText_Male
 
 UnknownScript_0xa0592:
-	scall UnknownScript_0xa05a0
-	iffalse UnknownScript_0xa059c
+	scall PhoneScriptRareWildMon
+	iffalse .HangUp
 	farjump UnknownScript_0xa0017
 
-UnknownScript_0xa059c:
+.HangUp:
 	farjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa05a0:
+PhoneScriptRareWildMon:
 	special RandomPhoneRareWildMon
 	end
 
-UnknownScript_0xa05a4:
+PhoneScript_BugCatchingContest:
 	checkcode VAR_CALLERID
 	if_equal PHONE_BUG_CATCHER_WADE, .Wade
 	if_equal PHONE_POKEFANM_DEREK, .Derek
 
 .Wade:
-	farwritetext UnknownText_0x1759f7
+	farwritetext WadeBugCatchingContestText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Derek:
-	farwritetext UnknownText_0x65c66
+	farwritetext DerekBugCatchingContestText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 

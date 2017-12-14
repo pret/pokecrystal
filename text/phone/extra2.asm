@@ -981,7 +981,7 @@ UnknownText_0x1759e7: ; 0x1759e7
 	done
 ; 0x1759f7
 
-UnknownText_0x1759f7: ; 0x1759f7
+WadeBugCatchingContestText: ; 0x1759f7
 	text "The Bug-Catching"
 	line "Contest is at the"
 
@@ -1260,7 +1260,7 @@ UnknownText_0x17610a: ; 0x17610a
 	done
 ; 0x1761a7
 
-UnknownText_0x1761a7: ; 0x1761a7
+LizHiTaniaText: ; 0x1761a7
 	text "Hi, TANIA. How are"
 	line "you? This is LIZ."
 

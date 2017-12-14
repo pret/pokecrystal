@@ -976,7 +976,7 @@ UnknownText_0x65c4e: ; 0x65c4e
 	done
 ; 0x65c66
 
-UnknownText_0x65c66: ; 0x65c66
+DerekBugCatchingContestText: ; 0x65c66
 	text "Did you remember?"
 	line "The Bug-Catching"
 	cont "Contest is today."
