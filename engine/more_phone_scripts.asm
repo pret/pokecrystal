@@ -522,11 +522,11 @@ UnknownScript_0xa0324:
 	buttonsound
 	end
 
-UnknownScript_0xa0376:
+PhoneScript_WantsToBattle_Male:
 	farscall PhoneScript_RematchText_Male
 	farjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa037e:
+PhoneScript_WantsToBattle_Female:
 	farscall PhoneScript_RematchText_Female
 	farjump PhoneScript_HangupText_Female
 
@@ -1155,154 +1155,154 @@ UnknownScript_0xa07c6:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa07ce:
+BrentBillTriviaScript:
 	random 10
-	if_equal 0, UnknownScript_0xa07f8
-	if_equal 1, UnknownScript_0xa0800
-	if_equal 2, UnknownScript_0xa0808
-	if_equal 3, UnknownScript_0xa0810
-	if_equal 4, UnknownScript_0xa0818
-	if_equal 5, UnknownScript_0xa0820
-	if_equal 6, UnknownScript_0xa0828
-	if_equal 7, UnknownScript_0xa0830
-	if_equal 8, UnknownScript_0xa0838
-	if_equal 9, UnknownScript_0xa0840
+	if_equal 0, .Father
+	if_equal 1, .Grandpa
+	if_equal 2, .Goldenrod
+	if_equal 3, .Route25
+	if_equal 4, .Abra
+	if_equal 5, .Sister
+	if_equal 6, .Milk
+	if_equal 7, .Battling
+	if_equal 8, .FlowerShop
+	if_equal 9, .KimonoGirl
 
-UnknownScript_0xa07f8:
+.Father:
 	farwritetext UnknownText_0x662bc
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0800:
+.Grandpa:
 	farwritetext UnknownText_0x662fc
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0808:
+.Goldenrod:
 	farwritetext UnknownText_0x66335
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0810:
+.Route25:
 	farwritetext UnknownText_0x66366
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0818:
+.Abra:
 	farwritetext UnknownText_0x663a1
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0820:
+.Sister:
 	farwritetext UnknownText_0x663e6
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0828:
+.Milk:
 	farwritetext UnknownText_0x66421
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0830:
+.Battling:
 	farwritetext UnknownText_0x6645f
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0838:
+.FlowerShop:
 	farwritetext UnknownText_0x6649b
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0840:
+.KimonoGirl:
 	farwritetext UnknownText_0x664dd
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0848:
+IrwinRumorScript:
 	checkevent EVENT_OPENED_MT_SILVER
-	iftrue UnknownScript_0xa08e0
+	iftrue IrwinMtSilver
 	checkevent EVENT_FOUGHT_SNORLAX
-	iftrue UnknownScript_0xa08d8
+	iftrue IrwinSnorlax
 	checkevent EVENT_GOT_PASS_FROM_COPYCAT
-	iftrue UnknownScript_0xa08d0
+	iftrue IrwinTrainPass
 	checkflag ENGINE_MARSHBADGE
-	iftrue UnknownScript_0xa08f0
+	iftrue IrwinMarshBadge
 	checkflag ENGINE_FLYPOINT_VERMILION
-	iftrue UnknownScript_0xa08c8
+	iftrue IrwinVermilionCity
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue UnknownScript_0xa08c0
+	iftrue IrwinEliteFour
 	checkflag ENGINE_RISINGBADGE
-	iftrue UnknownScript_0xa08b8
+	iftrue IrwinRisingBadge
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0xa08b0
+	iftrue IrwinRadioTower
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0xa08a8
+	iftrue IrwinRocketHideout
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
-	iftrue UnknownScript_0xa08a0
+	iftrue IrwinJasmineReturned
 	checkflag ENGINE_FOGBADGE
-	iftrue UnknownScript_0xa08e8
+	iftrue IrwinFogBadge
 	checkflag ENGINE_PLAINBADGE
-	iftrue UnknownScript_0xa0898
+	iftrue IrwinPlainBadge
 	farwritetext UnknownText_0x646a3
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0898:
+IrwinPlainBadge:
 	farwritetext UnknownText_0x64099
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08a0:
+IrwinJasmineReturned:
 	farwritetext UnknownText_0x640e6
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08a8:
+IrwinRocketHideout:
 	farwritetext UnknownText_0x6416d
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08b0:
+IrwinRadioTower:
 	farwritetext UnknownText_0x641e8
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08b8:
+IrwinRisingBadge:
 	farwritetext UnknownText_0x64247
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08c0:
+IrwinEliteFour:
 	farwritetext UnknownText_0x642bb
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08c8:
+IrwinVermilionCity:
 	farwritetext UnknownText_0x643d4
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08d0:
+IrwinTrainPass:
 	farwritetext UnknownText_0x64448
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08d8:
+IrwinSnorlax:
 	farwritetext UnknownText_0x6455b
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08e0:
+IrwinMtSilver:
 	farwritetext UnknownText_0x645ff
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08e8:
+IrwinFogBadge:
 	farwritetext UnknownText_0x646df
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08f0:
+IrwinMarshBadge:
 	farwritetext UnknownText_0x647d8
 	buttonsound
 	jump PhoneScript_HangupText_Male
