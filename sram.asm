@@ -130,13 +130,7 @@ sLinkBattleStats:: ; b260
 sLinkBattleWins::   ds 2
 sLinkBattleLosses:: ds 2 ; b262
 sLinkBattleDraws::  ds 2 ; b264
-link_battle_record: MACRO
-\1Name:: ds NAME_LENGTH +- 1
-\1ID:: ds 2
-\1Wins:: ds 2
-\1Losses:: ds 2
-\1Draws:: ds 2
-endm
+
 sLinkBattleRecord::
 sLinkBattleRecord1:: link_battle_record sLinkBattleRecord1
 sLinkBattleRecord2:: link_battle_record sLinkBattleRecord2

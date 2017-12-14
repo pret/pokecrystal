@@ -1,3 +1,18 @@
+newgroup: macro
+const_value = const_value + 1
+	enum_start 1
+endm
+
+mapgroup: macro
+;\1: map id
+;\2: height: in blocks
+;\3: width: in blocks
+GROUP_\1 EQU const_value
+	enum MAP_\1
+\1_HEIGHT EQU \2
+\1_WIDTH EQU \3
+endm
+
 ; map group ids
 ; `newgroup` indexes are for:
 ; - MapGroupPointers (see maps/map_headers.asm)

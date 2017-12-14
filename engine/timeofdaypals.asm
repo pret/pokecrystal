@@ -196,10 +196,6 @@ endr
 	ret
 ; 8c0e5
 
-brightlevel: MACRO
-	db (\1 << 6) | (\2 << 4) | (\3 << 2) | \4
-ENDM
-
 ReplaceTimeOfDayPals: ; 8c0e5
 	ld hl, .BrightnessLevels
 	ld a, [wMapTimeOfDay]
@@ -230,14 +226,14 @@ ReplaceTimeOfDayPals: ; 8c0e5
 ; 8c10f (23:410f)
 
 .BrightnessLevels: ; 8c10f
-	brightlevel 3, 2, 1, 0
-	brightlevel 1, 1, 1, 1
-	brightlevel 2, 2, 2, 2
-	brightlevel 0, 0, 0, 0
-	brightlevel 3, 3, 3, 3
-	brightlevel 3, 2, 1, 0
-	brightlevel 3, 2, 1, 0
-	brightlevel 3, 2, 1, 0
+	dc 3, 2, 1, 0
+	dc 1, 1, 1, 1
+	dc 2, 2, 2, 2
+	dc 0, 0, 0, 0
+	dc 3, 3, 3, 3
+	dc 3, 2, 1, 0
+	dc 3, 2, 1, 0
+	dc 3, 2, 1, 0
 ; 8c117
 
 GetTimePalette: ; 8c117

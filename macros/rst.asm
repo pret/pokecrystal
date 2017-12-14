@@ -15,3 +15,15 @@ callab: MACRO ; address, bank
 	ld a, BANK(\1)
 	rst FarCall
 	ENDM
+
+homecall: MACRO
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(\1)
+	rst Bankswitch
+
+	call \1
+
+	pop af
+	rst Bankswitch
+ENDM

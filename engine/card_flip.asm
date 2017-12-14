@@ -1415,7 +1415,6 @@ else
 endc
 endm
 
-
 	cardflip_cursor 11,  2,       .Impossible
 	cardflip_cursor 12,  2,       .Impossible
 	cardflip_cursor 13,  2,       .PokeGroupPair

@@ -1,12 +1,11 @@
-
-AnimObjGFX: ; cfcf6
-
 object_gfx: MACRO
 ; # tiles, label
 	db  \1
 	dba \2
 ENDM
 
+AnimObjGFX: ; cfcf6
+; entries correspond to ANIM_GFX_* constants
 	object_gfx  0, AnimObj00GFX
 	object_gfx 21, AnimObjHitGFX
 	object_gfx  6, AnimObjCutGFX

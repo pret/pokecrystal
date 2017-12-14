@@ -363,19 +363,6 @@ StartTrainerBattle_SetUpForSpinOutro: ; 8c43d (23:443d)
 	ld [wcf64], a
 	ret
 
-spintable_entry: MACRO
-	db \1
-	dw .wedge\2
-	dwcoord \3, \4
-ENDM
-
-; quadrants
-	const_def
-	const UPPER_LEFT
-	const UPPER_RIGHT
-	const LOWER_LEFT
-	const LOWER_RIGHT
-
 StartTrainerBattle_SpinToBlack: ; 8c44f (23:444f)
 	xor a
 	ld [hBGMapMode], a
@@ -412,7 +399,19 @@ endr
 	ret
 ; 8c490 (23:4490)
 
+; quadrants
+	const_def
+	const UPPER_LEFT
+	const UPPER_RIGHT
+	const LOWER_LEFT
+	const LOWER_RIGHT
+
 .spintable ; 8c490
+spintable_entry: MACRO
+	db \1
+	dw .wedge\2
+	dwcoord \3, \4
+ENDM
 	spintable_entry UPPER_LEFT,  1,  1,  6
 	spintable_entry UPPER_LEFT,  2,  0,  3
 	spintable_entry UPPER_LEFT,  3,  1,  0
@@ -797,12 +796,6 @@ StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
 	sine_wave $100
 ; 8c768
 
-zoombox: macro
-; width, height, start y, start x
-	db \1, \2
-	dwcoord \3, \4
-endm
-
 StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 	callba Function5602
 	ld de, .boxes
@@ -835,6 +828,11 @@ StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 ; 8c792 (23:4792)
 
 .boxes ; 8c792
+zoombox: macro
+; width, height, start y, start x
+	db \1, \2
+	dwcoord \3, \4
+endm
 	zoombox  4,  2,  8, 8
 	zoombox  6,  4,  7, 7
 	zoombox  8,  6,  6, 6

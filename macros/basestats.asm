@@ -1,3 +1,5 @@
+; Used in data/base_stats/*.asm
+
 define: macro
 if !def(\1)
 \1 equs \2

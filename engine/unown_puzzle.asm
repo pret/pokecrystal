@@ -1,6 +1,7 @@
-puzcoord EQUS "* 6 +"
 PUZZLE_BORDER EQU $ee
 PUZZLE_VOID   EQU $ef
+
+puzcoord EQUS "* 6 +"
 
 UnownPuzzle: ; e1190
 	ld a, [hInMenu]

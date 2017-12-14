@@ -1,10 +1,9 @@
-; BattleCommandPointers indexes (see battle/effect_commands.asm)
-
 command: macro
 	enum \1_command
 \1 equs "db \1_command"
 endm
 
+; BattleCommandPointers indexes (see battle/effect_commands.asm)
 	enum_start 1
 	command checkturn               ; 01
 	command checkobedience          ; 02

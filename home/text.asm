@@ -8,9 +8,6 @@ TEXTBOX_INNERX EQU TEXTBOX_X + 1
 TEXTBOX_Y      EQU SCREEN_HEIGHT - TEXTBOX_HEIGHT
 TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 
-TEXTBOX_PAL EQU 7
-
-
 ClearBox:: ; fb6
 ; Fill a c*b box at hl with blank tiles.
 
@@ -51,7 +48,7 @@ ClearTileMap:: ; fc8
 
 
 ClearScreen:: ; fdb
-	ld a, TEXTBOX_PAL
+	ld a, PAL_BG_TEXT
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
@@ -133,7 +130,7 @@ TextBoxPalette:: ; 1024
 	inc b
 	inc c
 	inc c
-	ld a, TEXTBOX_PAL
+	ld a, PAL_BG_TEXT
 .col
 	push bc
 	push hl

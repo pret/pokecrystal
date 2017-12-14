@@ -2340,11 +2340,11 @@ HasVisitedSpawn: ; 91c50
 
 Flypoints: ; 91c5e
 ; landmark, spawn point
-	const_def
 flypoint: MACRO
 	const FLY_\1
 	db \2, SPAWN_\1
 ENDM
+	const_def
 ; Johto
 	flypoint NEW_BARK,    NEW_BARK_TOWN
 	flypoint CHERRYGROVE, CHERRYGROVE_CITY

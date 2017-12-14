@@ -1,3 +1,8 @@
+trainerclass: MACRO
+	enum \1
+const_value = 1
+ENDM
+
 ; trainer class ids
 ; `trainerclass` indexes are for:
 ; - TrainerClassAttributes (see trainers/attributes.asm)

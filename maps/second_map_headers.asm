@@ -1,3 +1,90 @@
+map_header_2: macro
+;\1: map label
+;\2: map id
+;\3: border block
+;\4: connections: sum of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
+\1_SecondMapHeader::
+	db \3
+	db \2_HEIGHT, \2_WIDTH
+	db BANK(\1_BlockData)
+	dw \1_BlockData
+	db BANK(\1_MapScriptHeader)
+	dw \1_MapScriptHeader
+	dw \1_MapEventHeader
+	db \4
+endm
+
+connection: macro
+if "\1" == "north"
+;\2: map id
+;\3: map label (eventually will be rolled into map id)
+;\4: x
+;\5: offset?
+;\6: strip length
+;\7: this map id
+	map \2
+	dw \3_BlockData + \2_WIDTH * (\2_HEIGHT - 3) + \5
+	dw OverworldMap + \4 + 3
+	db \6
+	db \2_WIDTH
+	db \2_HEIGHT * 2 - 1
+	db (\4 - \5) * -2
+	dw OverworldMap + \2_HEIGHT * (\2_WIDTH + 6) + 1
+endc
+
+if "\1" == "south"
+;\2: map id
+;\3: map label (eventually will be rolled into map id)
+;\4: x
+;\5: offset?
+;\6: strip length
+;\7: this map id
+	map \2
+	dw \3_BlockData + \5
+	dw OverworldMap + (\7_HEIGHT + 3) * (\7_WIDTH + 6) + \4 + 3
+	db \6
+	db \2_WIDTH
+	db 0
+	db (\4 - \5) * -2
+	dw OverworldMap + \2_WIDTH + 7
+endc
+
+if "\1" == "west"
+;\2: map id
+;\3: map label (eventually will be rolled into map id)
+;\4: y
+;\5: offset?
+;\6: strip length
+;\7: this map id
+	map \2
+	dw \3_BlockData + (\2_WIDTH * \5) + \2_WIDTH - 3
+	dw OverworldMap + (\7_WIDTH + 6) * (\4 + 3)
+	db \6
+	db \2_WIDTH
+	db (\4 - \5) * -2
+	db \2_WIDTH * 2 - 1
+	dw OverworldMap + \2_WIDTH * 2 + 6
+endc
+
+if "\1" == "east"
+;\2: map id
+;\3: map label (eventually will be rolled into map id)
+;\4: y
+;\5: offset?
+;\6: strip length
+;\7: this map id
+	map \2
+	dw \3_BlockData + (\2_WIDTH * \5)
+	dw OverworldMap + (\7_WIDTH + 6) * (\4 + 3 + 1) - 3
+	db \6
+	db \2_WIDTH
+	db (\4 - \5) * -2
+	db 0
+	dw OverworldMap + \2_WIDTH + 7
+endc
+endm
+
+
 	map_header_2 NewBarkTown, NEW_BARK_TOWN, $5, WEST | EAST
 	connection west, ROUTE_29, Route29, 0, 0, 9, NEW_BARK_TOWN
 	connection east, ROUTE_27, Route27, 0, 0, 9, NEW_BARK_TOWN
