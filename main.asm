@@ -4647,7 +4647,8 @@ INCLUDE "engine/slot_machine.asm"
 
 SECTION "Phone Engine", ROMX
 
-INCLUDE "engine/more_phone_scripts.asm"
+INCLUDE "engine/phone_callers.asm"
+INCLUDE "engine/phone_gossip.asm"
 INCLUDE "engine/buena_phone_scripts.asm"
 
 
@@ -4683,6 +4684,7 @@ SECTION "bank2F", ROMX
 
 INCLUDE "engine/std_scripts.asm"
 INCLUDE "engine/phone_scripts.asm"
+INCLUDE "engine/phone_scripts_generic.asm"
 
 TalkToTrainerScript:: ; 0xbe66a
 	faceplayer
