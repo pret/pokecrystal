@@ -1768,23 +1768,23 @@ UnknownScript_0xbdd40:
 	clearevent EVENT_WILTON_HAS_GREAT_BALL
 	clearevent EVENT_WILTON_HAS_POKE_BALL
 	random $5
-	if_equal $0, UnknownScript_0xbdd5e
+	if_equal $0, .UltraBall
 	random $3
-	if_equal $0, UnknownScript_0xbdd64
-	jump UnknownScript_0xbdd6a
+	if_equal $0, .GreatBall
+	jump .PokeBall
 
-UnknownScript_0xbdd5e:
+.UltraBall:
 	setevent EVENT_WILTON_HAS_ULTRA_BALL
-	jump UnknownScript_0xbdd6d
+	jump .FoundItem
 
-UnknownScript_0xbdd64:
+.GreatBall:
 	setevent EVENT_WILTON_HAS_GREAT_BALL
-	jump UnknownScript_0xbdd6d
+	jump .FoundItem
 
-UnknownScript_0xbdd6a:
+.PokeBall:
 	setevent EVENT_WILTON_HAS_POKE_BALL
 
-UnknownScript_0xbdd6d:
+.FoundItem:
 	farjump PhoneScript_FoundItem_Male
 
 ; Kenji
@@ -1847,19 +1847,19 @@ UnknownScript_0xbddda:
 ErinPhoneScript1:
 	trainertotext PICNICKER, ERIN1, $0
 	checkflag ENGINE_ERIN
-	iftrue UnknownScript_0xbde07
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_ERIN_SATURDAY_NIGHT
-	iftrue UnknownScript_0xbde03
+	iftrue .NotSaturday
 	checkcode VAR_WEEKDAY
-	if_not_equal SATURDAY, UnknownScript_0xbde03
+	if_not_equal SATURDAY, .NotSaturday
 	checknite
-	iftrue UnknownScript_0xbde32
+	iftrue ErinSaturdayNight
 
-UnknownScript_0xbde03:
+.NotSaturday:
 	farjump UnknownScript_0xa09c0
 
-UnknownScript_0xbde07:
+.WantsBattle:
 	landmarktotext ROUTE_46, $2
 	farjump UnknownScript_0xa0aa0
 
@@ -1877,7 +1877,7 @@ ErinPhoneScript2:
 UnknownScript_0xbde2e:
 	farjump UnknownScript_0xa0017
 
-UnknownScript_0xbde32:
+ErinSaturdayNight:
 	setflag ENGINE_ERIN_SATURDAY_NIGHT
 
 UnknownScript_0xbde35:
