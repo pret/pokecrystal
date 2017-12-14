@@ -20,7 +20,6 @@
 - [Moon Ball does not boost catch rate](#moon-ball-does-not-boost-catch-rate)
 - [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
 - [Fast Ball only boosts catch rate for three Pokémon](#fast-ball-only-boosts-catch-rate-for-three-pokémon)
-- [Friend Ball catches sent to the PC overwrite the wrong Pokémon's happiness](#friend-ball-catches-sent-to-the-pc-overwrite-the-wrong-pokémons-happiness)
 - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
 - [Daisy's massages don't always increase happiness](#daisys-massages-dont-always-increase-happiness)
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
@@ -531,23 +530,6 @@ FastBallMultiplier:
 ```
 
 **Fix:** Change `jr nz, .next` to `jr nz, .loop`.
-
-
-## Friend Ball catches sent to the PC overwrite the wrong Pokémon's happiness
-
-This is a bug with `PokeBall` in [items/item_effects.asm](items/item_effects.asm):
-
-```asm
-	ld a, [CurItem]
-	cp FRIEND_BALL
-	jr nz, .SkipBoxMonFriendBall
-	; Bug: overwrites the happiness of the first mon in the box!
-	ld a, FRIEND_BALL_HAPPINESS
-	ld [sBoxMon1Happiness], a
-.SkipBoxMonFriendBall:
-```
-
-`sBoxMon1Happiness` is written *before* the Friend Ball Pokémon is deposited.
 
 
 ## Dragon Scale, not Dragon Fang, boosts Dragon-type moves

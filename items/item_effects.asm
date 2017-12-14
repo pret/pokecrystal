@@ -634,7 +634,7 @@ ParkBall: ; e8a2
 	ld a, [CurItem]
 	cp FRIEND_BALL
 	jr nz, .SkipBoxMonFriendBall
-	; Bug: overwrites the happiness of the first mon in the box!
+	; The captured mon is now first in the box
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [sBoxMon1Happiness], a
 .SkipBoxMonFriendBall:
