@@ -278,7 +278,7 @@ UnknownText_0x1747ac: ; 0x1747ac
 	done
 ; 0x1747cc
 
-UnknownText_0x1747cc: ; 0x1747cc
+BeverlyFoundNuggetText: ; 0x1747cc
 	text "My husband got"
 	line "some NUGGETS."
 
@@ -639,7 +639,7 @@ UnknownText_0x175106: ; 0x175106
 	done
 ; 0x175116
 
-UnknownText_0x175116: ; 0x175116
+JoseFoundSomethingText: ; 0x175116
 	text "My FARFETCH'D had"
 	line "something pretty"
 	cont "in its beak."
@@ -996,7 +996,7 @@ WadeBugCatchingContestText: ; 0x1759f7
 	done
 ; 0x175a60
 
-UnknownText_0x175a60: ; 0x175a60
+WadeFoundBerryText: ; 0x175a60
 	text "I found all kinds"
 	line "of BERRIES. If you"
 

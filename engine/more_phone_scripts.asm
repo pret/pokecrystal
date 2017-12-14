@@ -894,7 +894,7 @@ UnknownScript_0xa05de:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa05e6:
+PhoneScript_FoundItem_Male:
 	checkcode VAR_CALLERID
 	if_equal PHONE_BIRDKEEPER_JOSE, .Jose
 	if_equal PHONE_BUG_CATCHER_WADE, .Wade
@@ -904,11 +904,11 @@ UnknownScript_0xa05e6:
 	if_equal PHONE_FISHER_WILTON, .Wilton
 
 .Jose:
-	farwritetext UnknownText_0x175116
+	farwritetext JoseFoundSomethingText
 	end
 
 .Wade:
-	farwritetext UnknownText_0x175a60
+	farwritetext WadeFoundBerryText
 	end
 
 .Alan:
@@ -927,7 +927,7 @@ UnknownScript_0xa05e6:
 	farwritetext UnknownText_0x66c6b
 	end
 
-UnknownScript_0xa061e:
+PhoneScript_FoundItem_Female:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_PICNICKER_GINA, .Gina
@@ -935,7 +935,7 @@ UnknownScript_0xa061e:
 	if_equal PHONE_PICNICKER_TIFFANY, .Tiffany
 
 .Beverly:
-	farwritetext UnknownText_0x1747cc
+	farwritetext BeverlyFoundNuggetText
 	end
 
 .Gina:
@@ -960,71 +960,71 @@ UnknownScript_0xa064c:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0654:
+JackTriviaScript:
 	random 11
-	if_equal  0, UnknownScript_0xa0682
-	if_equal  1, UnknownScript_0xa068a
-	if_equal  2, UnknownScript_0xa0692
-	if_equal  3, UnknownScript_0xa069a
-	if_equal  4, UnknownScript_0xa06a2
-	if_equal  5, UnknownScript_0xa06aa
-	if_equal  6, UnknownScript_0xa06b2
-	if_equal  7, UnknownScript_0xa06ba
-	if_equal  8, UnknownScript_0xa06c2
-	if_equal  9, UnknownScript_0xa06ca
-	if_equal 10, UnknownScript_0xa06d2
+	if_equal  0, .Thunder
+	if_equal  1, .Rollout
+	if_equal  2, .Solarbeam
+	if_equal  3, .Stomp
+	if_equal  4, .Gust
+	if_equal  5, .Twister
+	if_equal  6, .Earthquake
+	if_equal  7, .Magnitude
+	if_equal  8, .Sandstorm
+	if_equal  9, .SunnyDay
+	if_equal 10, .RainDance
 
-UnknownScript_0xa0682:
+.Thunder:
 	farwritetext UnknownText_0x174261
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa068a:
+.Rollout:
 	farwritetext UnknownText_0x17429d
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0692:
+.Solarbeam:
 	farwritetext UnknownText_0x1742ee
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa069a:
+.Stomp:
 	farwritetext UnknownText_0x174340
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa06a2:
+.Gust:
 	farwritetext UnknownText_0x174391
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa06aa:
+.Twister:
 	farwritetext UnknownText_0x1743e3
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa06b2:
+.Earthquake:
 	farwritetext UnknownText_0x174433
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa06ba:
+.Magnitude:
 	farwritetext UnknownText_0x174485
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa06c2:
+.Sandstorm:
 	farwritetext UnknownText_0x1744d6
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa06ca:
+.SunnyDay:
 	farwritetext UnknownText_0x174522
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa06d2:
+.RainDance:
 	farwritetext UnknownText_0x174571
 	buttonsound
 	jump PhoneScript_HangupText_Male

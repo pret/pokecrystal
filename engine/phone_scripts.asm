@@ -346,7 +346,7 @@ UnknownScript_0xbd137:
 	farjump UnknownScript_0xa0584
 
 UnknownScript_0xbd13b:
-	farjump UnknownScript_0xa0654
+	farjump JackTriviaScript
 
 ; Beverly
 
@@ -375,7 +375,7 @@ UnknownScript_0xbd16e:
 UnknownScript_0xbd172:
 	setflag ENGINE_BEVERLY_HAS_NUGGET
 	landmarktotext NATIONAL_PARK, $2
-	farjump UnknownScript_0xa061e
+	farjump PhoneScript_FoundItem_Female
 
 ; Huey
 
@@ -570,7 +570,7 @@ UnknownScript_0xbd30e:
 UnknownScript_0xbd312:
 	setflag ENGINE_JOSE_HAS_STAR_PIECE
 	landmarktotext ROUTE_27, $2
-	farjump UnknownScript_0xa05e6
+	farjump PhoneScript_FoundItem_Male
 
 ; Reena
 
@@ -772,7 +772,7 @@ UnknownScript_0xbd4cb:
 	setevent EVENT_WADE_HAS_BITTER_BERRY
 
 UnknownScript_0xbd4ce:
-	farjump UnknownScript_0xa05e6
+	farjump PhoneScript_FoundItem_Male
 
 ; Ralph
 
@@ -1140,7 +1140,7 @@ UnknownScript_0xbd7d9:
 UnknownScript_0xbd7dd:
 	setflag ENGINE_GINA_HAS_LEAF_STONE
 	landmarktotext ROUTE_34, $2
-	farjump UnknownScript_0xa061e
+	farjump PhoneScript_FoundItem_Female
 
 ; Irwin
 
@@ -1292,7 +1292,7 @@ UnknownScript_0xbd91c:
 UnknownScript_0xbd926:
 	setflag ENGINE_ALAN_HAS_FIRE_STONE
 	landmarktotext ROUTE_36, $2
-	farjump UnknownScript_0xa05e6
+	farjump PhoneScript_FoundItem_Male
 
 ; Dana
 
@@ -1360,7 +1360,7 @@ UnknownScript_0xbd9b8:
 UnknownScript_0xbd9bc:
 	setflag ENGINE_DANA_HAS_THUNDERSTONE
 	landmarktotext ROUTE_38, $2
-	farjump UnknownScript_0xa061e
+	farjump PhoneScript_FoundItem_Female
 
 ; Chad
 
@@ -1461,7 +1461,7 @@ DerekPhoneScript2:
 .Nugget:
 	setflag ENGINE_DEREK_HAS_NUGGET
 	landmarktotext ROUTE_39, $2
-	farjump UnknownScript_0xa05e6
+	farjump PhoneScript_FoundItem_Male
 
 TullyPhoneScript1:
 	trainertotext FISHER, TULLY1, $0
@@ -1522,7 +1522,7 @@ UnknownScript_0xbdb22:
 TullyFoundWaterStone:
 	setflag ENGINE_TULLY_HAS_WATER_STONE
 	landmarktotext ROUTE_42, $2
-	farjump UnknownScript_0xa05e6
+	farjump PhoneScript_FoundItem_Male
 
 BrentPhoneScript1:
 	trainertotext POKEMANIAC, BRENT1, $0
@@ -1666,7 +1666,7 @@ UnknownScript_0xbdc65:
 UnknownScript_0xbdc69:
 	setflag ENGINE_TIFFANY_HAS_PINK_BOW
 	landmarktotext ROUTE_43, $2
-	farjump UnknownScript_0xa061e
+	farjump PhoneScript_FoundItem_Female
 
 ; Vance
 
@@ -1785,7 +1785,7 @@ UnknownScript_0xbdd6a:
 	setevent EVENT_WILTON_HAS_POKE_BALL
 
 UnknownScript_0xbdd6d:
-	farjump UnknownScript_0xa05e6
+	farjump PhoneScript_FoundItem_Male
 
 ; Kenji
 
