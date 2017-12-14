@@ -1,4 +1,4 @@
-UnknownScript_0xa0000:
+Phone_GenericCall_Male:
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
 	if_equal 0, .Bragging
@@ -8,7 +8,7 @@ UnknownScript_0xa0000:
 .Bragging:
 	farjump Phone_BraggingCall_Male
 
-UnknownScript_0xa0017:
+Phone_GenericCall_Female:
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
 	if_equal 0, .Bragging
@@ -837,15 +837,15 @@ PhoneScript_HangupText_Female:
 Phone_CheckIfUnseenRare_Male:
 	scall PhoneScriptRareWildMon
 	iffalse .HangUp
-	farjump UnknownScript_0xa0000
+	farjump Phone_GenericCall_Male
 
-UnknownScript_0xa058e:
+.HangUp:
 	farjump PhoneScript_HangupText_Male
 
 Phone_CheckIfUnseenRare_Female:
 	scall PhoneScriptRareWildMon
 	iffalse .HangUp
-	farjump UnknownScript_0xa0017
+	farjump Phone_GenericCall_Female
 
 .HangUp:
 	farjump PhoneScript_HangupText_Female
@@ -955,7 +955,7 @@ UnknownScript_0xa0644:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa064c:
+KenjiCallingPhoneScript:
 	farwritetext UnknownText_0x66dc5
 	buttonsound
 	jump PhoneScript_HangupText_Male

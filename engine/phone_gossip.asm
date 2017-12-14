@@ -465,13 +465,13 @@ UnknownScript_0xa09b0:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa09b8:
-	farwritetext UnknownText_0x67106
+ParryBattleWithMe:
+	farwritetext ParryBattleWithMeText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa09c0:
-	farwritetext UnknownText_0x67294
+ErinWorkingHardScript:
+	farwritetext ErinWorkingHardText
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
@@ -496,26 +496,26 @@ UnknownScript_0xa09e6:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa09ee:
+KenjiAnswerPhoneScript:
 	checkcode VAR_KENJI_BREAK
-	if_equal 2, UnknownScript_0xa0a00
-	if_equal 1, UnknownScript_0xa0a08
+	if_equal 2, .Training
+	if_equal 1, .OnBreak
 	farwritetext UnknownText_0x66e17
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0a00:
+.Training:
 	farwritetext UnknownText_0x66e67
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0a08:
+.OnBreak:
 	checkmorn
 	iftrue .Morning
 	checknite
 	iftrue .Night
 	setevent EVENT_KENJI_ON_BREAK
-	farwritetext UnknownText_0x66f11
+	farwritetext KenjiBreakText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
@@ -529,11 +529,11 @@ UnknownScript_0xa0a08:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-JackWantsBattle:
+JackWantsBattleScript:
 	farwritetext UnknownText_0x174638
 	end
 
-UnknownScript_0xa0a32:
+HueyWantsBattleScript:
 	farwritetext UnknownText_0x1749c7
 	end
 
@@ -621,8 +621,8 @@ UnknownScript_0xa0a9b:
 	farwritetext UnknownText_0x6712a
 	end
 
-UnknownScript_0xa0aa0:
-	farwritetext UnknownText_0x672d5
+ErinComeBattleScript:
+	farwritetext ErinComeBattleText
 	end
 
 UnknownScript_0xa0aa5:

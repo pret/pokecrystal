@@ -1707,7 +1707,7 @@ UnknownText_0x66ed3: ; 0x66ed3
 	done
 ; 0x66f11
 
-UnknownText_0x66f11: ; 0x66f11
+KenjiBreakText: ; 0x66f11
 	text "I'm taking a break"
 	line "on ROUTE 45!"
 
@@ -1786,7 +1786,7 @@ UnknownText_0x670eb: ; 0x670eb
 	done
 ; 0x67106
 
-UnknownText_0x67106: ; 0x67106
+ParryBattleWithMeText: ; 0x67106
 	text "You'll battle with"
 	line "me again, right?"
 	done
@@ -1858,7 +1858,7 @@ UnknownText_0x67281: ; 0x67281
 	done
 ; 0x67294
 
-UnknownText_0x67294: ; 0x67294
+ErinWorkingHardText: ; 0x67294
 	text "I'm working hard"
 	line "to raise my"
 	cont "#MON!"
@@ -1868,7 +1868,7 @@ UnknownText_0x67294: ; 0x67294
 	done
 ; 0x672d5
 
-UnknownText_0x672d5: ; 0x672d5
+ErinComeBattleText: ; 0x672d5
 	text "Oh, <PLAY_G>!"
 	line "Come battle ERIN!"
 
