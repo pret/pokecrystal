@@ -1,4 +1,4 @@
-; pic+sprite animations
+; pic + oam animations
 
 frame: macro
 	db \1
@@ -14,9 +14,8 @@ endc
 
 	enum_start $fc
 
-; used for sprites
 	enum delanim_command ; fc
-delanim: macro
+delanim: macro ; used for oam
 	db delanim_command
 	endm
 
@@ -39,8 +38,7 @@ endanim: macro
 
 __enum__ = $fe
 
-; used for sprites
 	enum dorestart_command ; fe
-dorestart: macro
+dorestart: macro ; used for oam
 	db dorestart_command
 	endm
