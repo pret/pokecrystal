@@ -31,7 +31,7 @@ JackIntelligenceText: ; 0x1740c0
 	done
 ; 0x174106
 
-UnknownText_0x174106: ; 0x174106
+JackDefeatedMonText: ; 0x174106
 	text "The other day, I"
 	line "easily defeated a"
 	cont "@"

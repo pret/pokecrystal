@@ -343,7 +343,7 @@ UnknownScript_0xbd12d:
 	farjump PhoneScript_WantsToBattle_Male
 
 UnknownScript_0xbd137:
-	farjump UnknownScript_0xa0584
+	farjump Phone_CheckIfUnseenRare_Male
 
 JackBattleTrivia:
 	farjump JackTriviaScript
@@ -466,7 +466,7 @@ GavenWantsRematch:
 	farjump PhoneScript_WantsToBattle_Male
 
 UnknownScript_0xbd239:
-	farjump UnknownScript_0xa0584
+	farjump Phone_CheckIfUnseenRare_Male
 
 ; Beth
 
@@ -565,7 +565,7 @@ UnknownScript_0xbd304:
 	farjump PhoneScript_WantsToBattle_Male
 
 UnknownScript_0xbd30e:
-	farjump UnknownScript_0xa0584
+	farjump Phone_CheckIfUnseenRare_Male
 
 UnknownScript_0xbd312:
 	setflag ENGINE_JOSE_HAS_STAR_PIECE
@@ -741,7 +741,7 @@ UnknownScript_0xbd487:
 	farjump PhoneScript_WantsToBattle_Male
 
 UnknownScript_0xbd491:
-	farjump UnknownScript_0xa0584
+	farjump Phone_CheckIfUnseenRare_Male
 
 UnknownScript_0xbd495:
 	setflag ENGINE_WADE_HAS_ITEM
@@ -1061,7 +1061,7 @@ UnknownScript_0xbd72e:
 	farjump PhoneScript_WantsToBattle_Male
 
 UnknownScript_0xbd738:
-	farjump UnknownScript_0xa0584
+	farjump Phone_CheckIfUnseenRare_Male
 
 UnknownScript_0xbd73c:
 	setflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
@@ -1226,7 +1226,7 @@ ArnieYanmaSwarm: ; start swarm
 	farjump UnknownScript_0xa05ce
 
 UnknownScript_0xbd89e:
-	farjump UnknownScript_0xa0584
+	farjump Phone_CheckIfUnseenRare_Male
 
 ArnieYanmaAlreadySwarming:
 	farjump UnknownScript_0xa0000
@@ -1355,7 +1355,7 @@ UnknownScript_0xbd9ae:
 	farjump PhoneScript_WantsToBattle_Female
 
 UnknownScript_0xbd9b8:
-	farjump Phone_CheckIfUnseenRare
+	farjump Phone_CheckIfUnseenRare_Female
 
 UnknownScript_0xbd9bc:
 	setflag ENGINE_DANA_HAS_THUNDERSTONE
@@ -1409,7 +1409,7 @@ UnknownScript_0xbda23:
 	farjump PhoneScript_WantsToBattle_Male
 
 UnknownScript_0xbda2d:
-	farjump UnknownScript_0xa0584
+	farjump Phone_CheckIfUnseenRare_Male
 
 UnknownScript_0xbda31:
 	farjump ChadOakGossip

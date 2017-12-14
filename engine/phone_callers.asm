@@ -3,58 +3,58 @@ UnknownScript_0xa0000:
 	farscall PhoneScript_Random2
 	if_equal 0, .Bragging
 	farscall PhoneScript_Generic_Male
-	farjump UnknownScript_0xa003e
+	farjump Phone_FoundAMon_Male
 
 .Bragging:
-	farjump PhoneScript_BraggingCall
+	farjump Phone_BraggingCall_Male
 
 UnknownScript_0xa0017:
 	special RandomPhoneMon
 	farscall PhoneScript_Random2
-	if_equal 0, UnknownScript_0xa002a
+	if_equal 0, .Bragging
 	farscall PhoneScript_Generic_Female
-	farjump UnknownScript_0xa0055
+	farjump Phone_FoundAMon_Female
 
-UnknownScript_0xa002a:
-	farjump UnknownScript_0xa0036
+.Bragging:
+	farjump Phone_BraggingCall_Female
 
-PhoneScript_BraggingCall:
-	farscall Phone_WhosBragging
-	farjump UnknownScript_0xa003e
+Phone_BraggingCall_Male:
+	farscall Phone_WhosBragging_Male
+	farjump Phone_FoundAMon_Male
 
-UnknownScript_0xa0036:
-	farscall UnknownScript_0xa0128
-	farjump UnknownScript_0xa0055
+Phone_BraggingCall_Female:
+	farscall Phone_WhosBragging_Female
+	farjump Phone_FoundAMon_Female
 
-UnknownScript_0xa003e:
+Phone_FoundAMon_Male:
 	special RandomPhoneWildMon
 	farscall PhoneScript_Random2
-	if_equal 0, UnknownScript_0xa0051
-	farscall UnknownScript_0xa017a
+	if_equal 0, .GotAway
+	farscall Phone_WhoDefeatedMon_Male
 	farjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0051:
-	farjump UnknownScript_0xa006c
+.GotAway:
+	farjump Phone_GotAwayCall_Male
 
-UnknownScript_0xa0055:
+Phone_FoundAMon_Female:
 	special RandomPhoneWildMon
 	farscall PhoneScript_Random2
-	if_equal 0, UnknownScript_0xa0068
-	farscall UnknownScript_0xa0226
+	if_equal 0, .GotAway
+	farscall Phone_WhoDefeatedMon_Female
 	farjump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0068:
-	farjump UnknownScript_0xa0074
+.GotAway:
+	farjump Phone_GotAwayCall_Female
 
-UnknownScript_0xa006c:
-	farscall UnknownScript_0xa0278
+Phone_GotAwayCall_Male:
+	farscall Phone_WhoLostAMon_Male
 	farjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0074:
-	farscall UnknownScript_0xa0324
+Phone_GotAwayCall_Female:
+	farscall Phone_WhoLostAMon_Female
 	farjump PhoneScript_HangupText_Female
 
-Phone_WhosBragging:
+Phone_WhosBragging_Male:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -159,7 +159,7 @@ Phone_WhosBragging:
 	buttonsound
 	end
 
-UnknownScript_0xa0128:
+Phone_WhosBragging_Female:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -210,7 +210,7 @@ UnknownScript_0xa0128:
 	buttonsound
 	end
 
-UnknownScript_0xa017a:
+Phone_WhoDefeatedMon_Male:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -231,7 +231,7 @@ UnknownScript_0xa017a:
 	if_equal PHONE_HIKER_PARRY, .Parry
 
 .Jack:
-	farwritetext UnknownText_0x174106
+	farwritetext JackDefeatedMonText
 	buttonsound
 	end
 
@@ -315,7 +315,7 @@ UnknownScript_0xa017a:
 	buttonsound
 	end
 
-UnknownScript_0xa0226:
+Phone_WhoDefeatedMon_Female:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -366,7 +366,7 @@ UnknownScript_0xa0226:
 	buttonsound
 	end
 
-UnknownScript_0xa0278:
+Phone_WhoLostAMon_Male:
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_COOLTRAINERM_GAVEN, .Gaven
@@ -471,7 +471,7 @@ UnknownScript_0xa0278:
 	buttonsound
 	end
 
-UnknownScript_0xa0324:
+Phone_WhoLostAMon_Female:
 	checkcode VAR_CALLERID
 	if_equal PHONE_POKEFAN_BEVERLY, .Beverly
 	if_equal PHONE_COOLTRAINERF_BETH, .Beth
@@ -834,15 +834,15 @@ PhoneScript_HangupText_Female:
 	farwritetext UnknownText_0x67281
 	end
 
-UnknownScript_0xa0584:
+Phone_CheckIfUnseenRare_Male:
 	scall PhoneScriptRareWildMon
-	iffalse UnknownScript_0xa058e
+	iffalse .HangUp
 	farjump UnknownScript_0xa0000
 
 UnknownScript_0xa058e:
 	farjump PhoneScript_HangupText_Male
 
-Phone_CheckIfUnseenRare:
+Phone_CheckIfUnseenRare_Female:
 	scall PhoneScriptRareWildMon
 	iffalse .HangUp
 	farjump UnknownScript_0xa0017
