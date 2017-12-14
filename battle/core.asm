@@ -4454,7 +4454,7 @@ HandleHealingItems: ; 3dcf9
 HandleHPHealingItem: ; 3dd2f
 	callab GetOpponentItem
 	ld a, b
-	cp $1
+	cp HELD_BERRY
 	ret nz
 	ld de, EnemyMonHP + 1
 	ld hl, EnemyMonMaxHP

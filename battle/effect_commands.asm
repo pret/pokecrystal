@@ -9806,7 +9806,7 @@ GetItemHeldEffect: ; 37dd0
 	ret z
 
 	push hl
-	ld hl, ItemAttributes + 2
+	ld hl, ItemAttributes + ITEMATTR_EFFECT
 	dec a
 	ld c, a
 	ld b, 0
