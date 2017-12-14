@@ -6,16 +6,18 @@
 - [Thick Club and Light Ball can decrease damage done with boosted (Special) Attack](#thick-club-and-light-ball-can-decrease-damage-done-with-boosted-special-attack)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
+- [Moves that lower Defense can do so after breaking a Substitute](#moves-that-lower-defense-can-do-so-after-breaking-a-substitute)
+- [Counter and Mirror Coat still work if the opponent uses an item](#counter-and-mirror-coat-still-work-if-the-opponent-uses-an-item)
+- [A Disabled but PP Up–enhanced move may not trigger Struggle](#a-disabled-but-pp-upenhanced-move-may-not-trigger-struggle)
+- [A Pokémon that fainted from Pursuit will have its old status condition when revived](#a-pokémon-that-fainted-from-pursuit-will-have-its-old-status-condition-when-revived)
+- [Beat Up can desynchronize link battles](#beat-up-can-desynchronize-link-battles)
+- [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
+- ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
+- [NPC use of Full Heal or Full Restore does not cure Nightmare status](#npc-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
 - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
 - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
 - [Experience underflow for level 1 Pokémon with Medium-Slow growth rate](#experience-underflow-for-level-1-pokémon-with-medium-slow-growth-rate)
 - [Five-digit experience gain is printed incorrectly](#five-digit-experience-gain-is-printed-incorrectly)
-- [NPC use of Full Heal or Full Restore does not cure Nightmare status](#npc-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
-- ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
-- [A Disabled, PP Up–enhanced move may not trigger automatic Struggling](#a-disabled-pp-upenhanced-move-may-not-trigger-automatic-struggling)
-- [Counter and Mirror Coat still work if the opponent uses an item](#counter-and-mirror-coat-still-work-if-the-opponent-uses-an-item)
-- [A Pokémon that fainted from Pursuit will have its old status condition when revived](#a-pokémon-that-fainted-from-pursuit-will-have-its-old-status-condition-when-revived)
-- [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
 - [BRN/PSN/PAR do not affect catch rate](#brnpsnpar-do-not-affect-catch-rate)
 - [Moon Ball does not boost catch rate](#moon-ball-does-not-boost-catch-rate)
 - [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
@@ -171,6 +173,204 @@ BattleCommand_BellyDrum: ; 37c1a
 ```
 
 
+## Moves that lower Defense can do so after breaking a Substitute
+
+([Video](https://www.youtube.com/watch?v=OGwKPRJLaaI))
+
+This bug affects Acid, Iron Tail, and Rock Smash.
+
+This is a bug with `DefenseDownHit` in [battle/moves/move_effects.asm](battle/moves/move_effects.asm):
+
+```asm
+DefenseDownHit:
+	checkobedience
+	usedmovetext
+	doturn
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	checkhit
+	effectchance
+	hittarget
+	failuretext
+	checkfaint
+	criticaltext
+	supereffectivetext
+	checkdestinybond
+	buildopponentrage
+	effectchance ; bug: duplicate effectchance shouldn't be here
+	defensedown
+	statdownmessage
+	endmove
+```
+
+**Fix:** Delete the second `effectchance`.
+
+
+## Counter and Mirror Coat still work if the opponent uses an item
+
+([Video](https://www.youtube.com/watch?v=uRYyzKRatFk))
+
+*To do:* Identify specific code causing this bug and fix it.
+
+
+## A Disabled but PP Up–enhanced move may not trigger Struggle
+
+([Video](https://www.youtube.com/watch?v=1v9x4SgMggs))
+
+This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](battle/core.asm):
+
+```asm
+.done
+	; Bug: this will result in a move with PP Up confusing the game.
+	; Replace with "and $3f" to fix.
+	and a
+	ret nz
+
+.force_struggle
+	ld hl, BattleText_PkmnHasNoMovesLeft
+	call StdBattleTextBox
+	ld c, 60
+	call DelayFrames
+	xor a
+	ret
+```
+
+**Fix:** Change `and a` to `and $3f`.
+
+
+## A Pokémon that fainted from Pursuit will have its old status condition when revived
+
+([Video](https://www.youtube.com/watch?v=tiRvw-Nb2ME))
+
+*To do:* Identify specific code causing this bug and fix it.
+
+
+## Beat Up can desynchronize link battles
+
+([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
+
+This is a bug with `BattleCommand_BeatUp` in [battle/effect_commands.asm](battle/effect_commands.asm):
+
+```asm
+.got_mon
+	ld a, [wd002]
+	ld hl, PartyMonNicknames
+	call GetNick
+	ld a, MON_HP
+	call GetBeatupMonLocation
+	ld a, [hli]
+	or [hl]
+	jp z, .beatup_fail ; fainted
+	ld a, [wd002]
+	ld c, a
+	ld a, [CurBattleMon]
+	; BUG: this can desynchronize link battles
+	; Change "cp [hl]" to "cp c" to fix
+	cp [hl]
+	ld hl, BattleMonStatus
+	jr z, .active_mon
+	ld a, MON_STATUS
+	call GetBeatupMonLocation
+.active_mon
+	ld a, [hl]
+	and a
+	jp nz, .beatup_fail
+```
+
+**Fix:** Change `cp [hl]` to `cp c`.
+
+
+## Present damage is incorrect in link battles
+
+([Video](https://www.youtube.com/watch?v=XJaQoKtrEuw))
+
+This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
+
+This is a bug with `BattleCommand_Present` in [battle/effects/present.asm](battle/effects/present.asm):
+
+```asm
+BattleCommand_Present: ; 37874
+; present
+
+	ld a, [wLinkMode]
+	cp LINK_COLOSSEUM
+	jr z, .colosseum_skippush
+	push bc
+	push de
+.colosseum_skippush
+
+	call BattleCommand_Stab
+
+	ld a, [wLinkMode]
+	cp LINK_COLOSSEUM
+	jr z, .colosseum_skippop
+	pop de
+	pop bc
+.colosseum_skippop
+```
+
+**Fix:**
+
+```asm
+BattleCommand_Present: ; 37874
+; present
+
+	push bc
+	push de
+	call BattleCommand_Stab
+	pop de
+	pop bc
+```
+
+
+## "Smart" AI encourages Mean Look if its own Pokémon is badly poisoned
+
+([Video](https://www.youtube.com/watch?v=cygMO-zHTls))
+
+This is a bug with `AI_Smart_MeanLook` in [battle/ai/scoring.asm](battle/ai/scoring.asm):
+
+```asm
+; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
+; Should check PlayerSubStatus5 instead.
+	ld a, [EnemySubStatus5]
+	bit SUBSTATUS_TOXIC, a
+	jr nz, .asm_38e26
+```
+
+**Fix:** Change `EnemySubStatus5` to `PlayerSubStatus5`.
+
+
+## NPC use of Full Heal or Full Restore does not cure Nightmare status
+
+([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
+
+This is a bug with `AI_HealStatus` in [battle/ai/items.asm](battle/ai/items.asm):
+
+```asm
+AI_HealStatus: ; 384e0
+	ld a, [CurOTMon]
+	ld hl, OTPartyMon1Status
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	xor a
+	ld [hl], a
+	ld [EnemyMonStatus], a
+	; Bug: this should reset SUBSTATUS_NIGHTMARE too
+	; Uncomment the lines below to fix
+	; ld hl, EnemySubStatus1
+	; res SUBSTATUS_NIGHTMARE, [hl]
+	ld hl, EnemySubStatus5
+	res SUBSTATUS_TOXIC, [hl]
+	ret
+; 384f7
+```
+
+**Fix:** Uncomment `ld hl, EnemySubStatus1` and `res SUBSTATUS_NIGHTMARE, [hl]`.
+
+
 ## HP bar animation is slow for high HP
 
 ([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
@@ -297,133 +497,6 @@ Text_StringBuffer2ExpPoints::
 ```
 
 **Fix:** Change both `deciram StringBuffer2, 2, 4` to `deciram StringBuffer2, 2, 5`.
-
-
-## NPC use of Full Heal or Full Restore does not cure Nightmare status
-
-([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
-
-This is a bug with `AI_HealStatus` in [battle/ai/items.asm](battle/ai/items.asm):
-
-```asm
-AI_HealStatus: ; 384e0
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Status
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	xor a
-	ld [hl], a
-	ld [EnemyMonStatus], a
-	; Bug: this should reset SUBSTATUS_NIGHTMARE too
-	; Uncomment the lines below to fix
-	; ld hl, EnemySubStatus1
-	; res SUBSTATUS_NIGHTMARE, [hl]
-	ld hl, EnemySubStatus5
-	res SUBSTATUS_TOXIC, [hl]
-	ret
-; 384f7
-```
-
-**Fix:** Uncomment `ld hl, EnemySubStatus1` and `res SUBSTATUS_NIGHTMARE, [hl]`.
-
-
-## "Smart" AI encourages Mean Look if its own Pokémon is badly poisoned
-
-([Video](https://www.youtube.com/watch?v=cygMO-zHTls))
-
-This is a bug with `AI_Smart_MeanLook` in [battle/ai/scoring.asm](battle/ai/scoring.asm):
-
-```asm
-; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
-; Should check PlayerSubStatus5 instead.
-	ld a, [EnemySubStatus5]
-	bit SUBSTATUS_TOXIC, a
-	jr nz, .asm_38e26
-```
-
-**Fix:** Change `EnemySubStatus5` to `PlayerSubStatus5`.
-
-
-## A Disabled, PP Up–enhanced move may not trigger automatic Struggling
-
-([Video](https://www.youtube.com/watch?v=1v9x4SgMggs))
-
-This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](battle/core.asm):
-
-```asm
-.done
-	; Bug: this will result in a move with PP Up confusing the game.
-	; Replace with "and $3f" to fix.
-	and a
-	ret nz
-
-.force_struggle
-	ld hl, BattleText_PkmnHasNoMovesLeft
-	call StdBattleTextBox
-	ld c, 60
-	call DelayFrames
-	xor a
-	ret
-```
-
-**Fix:** Change `and a` to `and $3f`.
-
-
-## Counter and Mirror Coat still work if the opponent uses an item
-
-([Video](https://www.youtube.com/watch?v=uRYyzKRatFk))
-
-*To do:* Identify specific code causing this bug and fix it.
-
-
-## A Pokémon that fainted from Pursuit will have its old status condition when revived
-
-([Video](https://www.youtube.com/watch?v=tiRvw-Nb2ME))
-
-*To do:* Identify specific code causing this bug and fix it.
-
-
-## Present damage is incorrect in link battles
-
-([Video](https://www.youtube.com/watch?v=XJaQoKtrEuw))
-
-This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
-
-This is a bug with `BattleCommand_Present` in [battle/effects/present.asm](battle/effects/present.asm):
-
-```asm
-BattleCommand_Present: ; 37874
-; present
-
-	ld a, [wLinkMode]
-	cp LINK_COLOSSEUM
-	jr z, .colosseum_skippush
-	push bc
-	push de
-.colosseum_skippush
-
-	call BattleCommand_Stab
-
-	ld a, [wLinkMode]
-	cp LINK_COLOSSEUM
-	jr z, .colosseum_skippop
-	pop de
-	pop bc
-.colosseum_skippop
-```
-
-**Fix:**
-
-```asm
-BattleCommand_Present: ; 37874
-; present
-
-	push bc
-	push de
-	call BattleCommand_Stab
-	pop de
-	pop bc
-```
 
 
 ## BRN/PSN/PAR do not affect catch rate
