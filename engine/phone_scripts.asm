@@ -301,27 +301,27 @@ ElmPhoneScript2: ; 0xbd081
 JackPhoneScript1:
 	trainertotext SCHOOLBOY, JACK1, $0
 	checkflag ENGINE_JACK
-	iftrue UnknownScript_0xbd0f3
+	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_JACK_MONDAY_MORNING
-	iftrue UnknownScript_0xbd0ef
+	iftrue .NotMonday
 	checkcode VAR_WEEKDAY
-	if_not_equal MONDAY, UnknownScript_0xbd0ef
+	if_not_equal MONDAY, .NotMonday
 	checkmorn
-	iftrue UnknownScript_0xbd12a
+	iftrue JackMondayMorning
 
-UnknownScript_0xbd0ef:
-	farjump UnknownScript_0xa08f8
+.NotMonday:
+	farjump JackPhoneTips
 
-UnknownScript_0xbd0f3:
+.WantsBattle:
 	landmarktotext NATIONAL_PARK, $2
-	farjump UnknownScript_0xa0a2d
+	farjump JackWantsBattle
 
 JackPhoneScript2:
 	trainertotext SCHOOLBOY, JACK1, $0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2
-	if_equal $0, UnknownScript_0xbd13b
+	if_equal $0, JackBattleTrivia
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0xbd11e
 	checkflag ENGINE_JACK_MONDAY_MORNING
@@ -334,7 +334,7 @@ UnknownScript_0xbd11e:
 	if_equal $0, UnknownScript_0xbd137
 	farjump UnknownScript_0xa0000
 
-UnknownScript_0xbd12a:
+JackMondayMorning:
 	setflag ENGINE_JACK_MONDAY_MORNING
 
 UnknownScript_0xbd12d:
@@ -345,7 +345,7 @@ UnknownScript_0xbd12d:
 UnknownScript_0xbd137:
 	farjump UnknownScript_0xa0584
 
-UnknownScript_0xbd13b:
+JackBattleTrivia:
 	farjump JackTriviaScript
 
 ; Beverly
@@ -1355,7 +1355,7 @@ UnknownScript_0xbd9ae:
 	farjump PhoneScript_WantsToBattle_Female
 
 UnknownScript_0xbd9b8:
-	farjump UnknownScript_0xa0592
+	farjump Phone_CheckIfUnseenRare
 
 UnknownScript_0xbd9bc:
 	setflag ENGINE_DANA_HAS_THUNDERSTONE

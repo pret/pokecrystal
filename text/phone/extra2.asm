@@ -83,7 +83,7 @@ UnknownText_0x174251: ; 0x174251
 	done
 ; 0x174261
 
-UnknownText_0x174261: ; 0x174261
+JackThunderTriviaText: ; 0x174261
 	text "Did you know?"
 
 	para "When it's raining,"
@@ -92,7 +92,7 @@ UnknownText_0x174261: ; 0x174261
 	done
 ; 0x17429d
 
-UnknownText_0x17429d: ; 0x17429d
+JackRolloutTriviaText: ; 0x17429d
 	text "Did you know…?"
 
 	para "If you use DEFENSE"
@@ -103,7 +103,7 @@ UnknownText_0x17429d: ; 0x17429d
 	done
 ; 0x1742ee
 
-UnknownText_0x1742ee: ; 0x1742ee
+JackSolarbeamTriviaText: ; 0x1742ee
 	text "Did you know…?"
 
 	para "If the sunlight is"
@@ -114,7 +114,7 @@ UnknownText_0x1742ee: ; 0x1742ee
 	done
 ; 0x174340
 
-UnknownText_0x174340: ; 0x174340
+JackStompTriviaText: ; 0x174340
 	text "Did you know…?"
 
 	para "If the opponent"
@@ -125,7 +125,7 @@ UnknownText_0x174340: ; 0x174340
 	done
 ; 0x174391
 
-UnknownText_0x174391: ; 0x174391
+JackGustTriviaText: ; 0x174391
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -136,7 +136,7 @@ UnknownText_0x174391: ; 0x174391
 	done
 ; 0x1743e3
 
-UnknownText_0x1743e3: ; 0x1743e3
+JackTwisterTriviaText: ; 0x1743e3
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -147,7 +147,7 @@ UnknownText_0x1743e3: ; 0x1743e3
 	done
 ; 0x174433
 
-UnknownText_0x174433: ; 0x174433
+JackEarthquakeTriviaText: ; 0x174433
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -158,7 +158,7 @@ UnknownText_0x174433: ; 0x174433
 	done
 ; 0x174485
 
-UnknownText_0x174485: ; 0x174485
+JackMagnitudeTriviaText: ; 0x174485
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -169,7 +169,7 @@ UnknownText_0x174485: ; 0x174485
 	done
 ; 0x1744d6
 
-UnknownText_0x1744d6: ; 0x1744d6
+JackSandstormTriviaText: ; 0x1744d6
 	text "Did you know…?"
 
 	para "The rock, ground"
@@ -180,7 +180,7 @@ UnknownText_0x1744d6: ; 0x1744d6
 	done
 ; 0x174522
 
-UnknownText_0x174522: ; 0x174522
+JackSunnyDayTriviaText: ; 0x174522
 	text "Did you know…?"
 
 	para "If the sunlight is"
@@ -191,7 +191,7 @@ UnknownText_0x174522: ; 0x174522
 	done
 ; 0x174571
 
-UnknownText_0x174571: ; 0x174571
+JackRainDanceTriviaText: ; 0x174571
 	text "Did you know…?"
 
 	para "When it's raining,"

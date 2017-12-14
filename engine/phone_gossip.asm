@@ -13,57 +13,57 @@ JackTriviaScript:
 	if_equal 10, .RainDance
 
 .Thunder:
-	farwritetext UnknownText_0x174261
+	farwritetext JackThunderTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Rollout:
-	farwritetext UnknownText_0x17429d
+	farwritetext JackRolloutTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Solarbeam:
-	farwritetext UnknownText_0x1742ee
+	farwritetext JackSolarbeamTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Stomp:
-	farwritetext UnknownText_0x174340
+	farwritetext JackStompTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Gust:
-	farwritetext UnknownText_0x174391
+	farwritetext JackGustTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Twister:
-	farwritetext UnknownText_0x1743e3
+	farwritetext JackTwisterTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Earthquake:
-	farwritetext UnknownText_0x174433
+	farwritetext JackEarthquakeTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Magnitude:
-	farwritetext UnknownText_0x174485
+	farwritetext JackMagnitudeTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Sandstorm:
-	farwritetext UnknownText_0x1744d6
+	farwritetext JackSandstormTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .SunnyDay:
-	farwritetext UnknownText_0x174522
+	farwritetext JackSunnyDayTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .RainDance:
-	farwritetext UnknownText_0x174571
+	farwritetext JackRainDanceTriviaText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
@@ -144,52 +144,52 @@ ChadOakGossip:
 	if_equal 9, .Traveled
 
 .Blue:
-	farwritetext UnknownText_0x65481
+	farwritetext ChadBlueGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Daisy:
-	farwritetext UnknownText_0x654ea
+	farwritetext ChadDaisyGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .ProfElm:
-	farwritetext UnknownText_0x65555
+	farwritetext ChadProfElmGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Dream:
-	farwritetext UnknownText_0x655c7
+	farwritetext ChadDreamGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Kurt:
-	farwritetext UnknownText_0x65628
+	farwritetext ChadKurtGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .League:
-	farwritetext UnknownText_0x6569b
+	farwritetext ChadLeagueGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .RadioShow:
-	farwritetext UnknownText_0x6574a
+	farwritetext ChadRadioShowGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Battling:
-	farwritetext UnknownText_0x65810
+	farwritetext ChadBattlingGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .DaisyTea:
-	farwritetext UnknownText_0x658c6
+	farwritetext ChadDaisyTeaGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
 .Traveled:
-	farwritetext UnknownText_0x65969
+	farwritetext ChadTravelGossipText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
@@ -281,7 +281,7 @@ IrwinRumorScript:
 	iftrue IrwinFogBadge
 	checkflag ENGINE_PLAINBADGE
 	iftrue IrwinPlainBadge
-	farwritetext UnknownText_0x646a3
+	farwritetext IrwinCalledRightAwayText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
@@ -345,7 +345,7 @@ IrwinMarshBadge:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa08f8:
+JackPhoneTips:
 	farwritetext UnknownText_0x1745c2
 	buttonsound
 	jump PhoneScript_HangupText_Male
@@ -511,25 +511,25 @@ UnknownScript_0xa0a00:
 
 UnknownScript_0xa0a08:
 	checkmorn
-	iftrue UnknownScript_0xa0a1d
+	iftrue .Morning
 	checknite
-	iftrue UnknownScript_0xa0a25
+	iftrue .Night
 	setevent EVENT_KENJI_ON_BREAK
 	farwritetext UnknownText_0x66f11
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0a1d:
+.Morning:
 	farwritetext UnknownText_0x66ed3
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0a25:
+.Night:
 	farwritetext UnknownText_0x66f52
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0a2d:
+JackWantsBattle:
 	farwritetext UnknownText_0x174638
 	end
 

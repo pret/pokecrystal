@@ -205,7 +205,7 @@ UnknownText_0x645ff: ; 0x645ff
 	done
 ; 0x646a3
 
-UnknownText_0x646a3: ; 0x646a3
+IrwinCalledRightAwayText: ; 0x646a3
 	text "Hehe, I called"
 	line "right away!"
 
@@ -727,7 +727,7 @@ UnknownText_0x65471: ; 0x65471
 	done
 ; 0x65481
 
-UnknownText_0x65481: ; 0x65481
+ChadBlueGossipText: ; 0x65481
 	text "Do you know BLUE?"
 
 	para "He's PROF.OAK's"
@@ -741,7 +741,7 @@ UnknownText_0x65481: ; 0x65481
 	done
 ; 0x654ea
 
-UnknownText_0x654ea: ; 0x654ea
+ChadDaisyGossipText: ; 0x654ea
 	text "PROF.OAK has a"
 	line "granddaughter"
 	cont "named DAISY."
@@ -754,7 +754,7 @@ UnknownText_0x654ea: ; 0x654ea
 	done
 ; 0x65555
 
-UnknownText_0x65555: ; 0x65555
+ChadProfElmGossipText: ; 0x65555
 	text "Everyone's talking"
 	line "about PROF.ELM."
 
@@ -767,7 +767,7 @@ UnknownText_0x65555: ; 0x65555
 	done
 ; 0x655c7
 
-UnknownText_0x655c7: ; 0x655c7
+ChadDreamGossipText: ; 0x655c7
 	text "PROF.OAK's dream"
 	line "is to compile a"
 
@@ -780,7 +780,7 @@ UnknownText_0x655c7: ; 0x655c7
 	done
 ; 0x65628
 
-UnknownText_0x65628: ; 0x65628
+ChadKurtGossipText: ; 0x65628
 	text "Do you know KURT,"
 	line "the BALL creator?"
 
@@ -793,7 +793,7 @@ UnknownText_0x65628: ; 0x65628
 	done
 ; 0x6569b
 
-UnknownText_0x6569b: ; 0x6569b
+ChadLeagueGossipText: ; 0x6569b
 	text "#MON LEAGUE is"
 	line "the great gather-"
 	cont "ing place for all"
@@ -812,7 +812,7 @@ UnknownText_0x6569b: ; 0x6569b
 	done
 ; 0x6574a
 
-UnknownText_0x6574a: ; 0x6574a
+ChadRadioShowGossipText: ; 0x6574a
 	text "PROF.OAK'S #MON"
 	line "TALK is a popular"
 	cont "radio show, right?"
@@ -832,7 +832,7 @@ UnknownText_0x6574a: ; 0x6574a
 	done
 ; 0x65810
 
-UnknownText_0x65810: ; 0x65810
+ChadBattlingGossipText: ; 0x65810
 	text "PROF.OAK used to"
 	line "be a trainer a"
 	cont "long time ago."
@@ -851,7 +851,7 @@ UnknownText_0x65810: ; 0x65810
 	done
 ; 0x658c6
 
-UnknownText_0x658c6: ; 0x658c6
+ChadDaisyTeaGossipText: ; 0x658c6
 	text "PROF.OAK has a"
 	line "granddaughter"
 	cont "named DAISY."
@@ -870,7 +870,7 @@ UnknownText_0x658c6: ; 0x658c6
 	done
 ; 0x65969
 
-UnknownText_0x65969: ; 0x65969
+ChadTravelGossipText: ; 0x65969
 	text "Did you know?"
 	line "PROF.OAK traveled"
 

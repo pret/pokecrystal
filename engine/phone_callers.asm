@@ -842,7 +842,7 @@ UnknownScript_0xa0584:
 UnknownScript_0xa058e:
 	farjump PhoneScript_HangupText_Male
 
-UnknownScript_0xa0592:
+Phone_CheckIfUnseenRare:
 	scall PhoneScriptRareWildMon
 	iffalse .HangUp
 	farjump UnknownScript_0xa0017
