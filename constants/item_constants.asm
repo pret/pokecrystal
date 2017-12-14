@@ -228,7 +228,7 @@
 	add_tm RETURN       ; $DA
 	add_tm DIG          ; $DB
 	const ITEM_DC       ; $DC
-	add_tm PSYCHIC      ; $DD
+	add_tm PSYCHIC_M    ; $DD
 	add_tm SHADOW_BALL  ; $DE
 	add_tm MUD_SLAP     ; $DF
 	add_tm DOUBLE_TEAM  ; $E0
