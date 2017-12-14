@@ -804,7 +804,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ; Finds a rare wild Pokemon in the route of the trainer calling, then checks if it's been Seen already.
 ; The trainer will then tell you about the Pokemon if you haven't seen it.
-RandomPhoneRareWildMon: ; 2a4ab
+RandomUnseenWildMon: ; 2a4ab
 	callba GetCallerLocation
 	ld d, b
 	ld e, c
