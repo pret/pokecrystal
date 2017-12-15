@@ -105,8 +105,8 @@ TilesetPlayersHouse2FPalMap: ; 0x4caf5
 INCLUDE "tilesets/players_house_2f_palette_map.asm"
 ; 0x4cb65
 
-UnusedPalMap1:
-INCBIN "tilesets/unused_palette_map_1.bin"
+UnusedMuseumPalMap: ; 0x4cb65
+INCLUDE "tilesets/unused_museum_palette_map.asm"
 ; 4cbd5
 
 TilesetIcePathPalMap: ; 0x4cbd5
@@ -128,7 +128,3 @@ INCLUDE "tilesets/battle_tower_palette_map.asm"
 TilesetBattleTowerOutsidePalMap: ; 0x4cd95
 INCLUDE "tilesets/battle_tower_outside_palette_map.asm"
 ; 0x4ce05
-
-UnusedPalMap2:
-INCBIN "tilesets/unused_palette_map_2.bin"
-; 4ce1f

@@ -1941,6 +1941,12 @@ ScrollBGMapPalettes:: ; 4c03f
 
 INCLUDE "tilesets/palette_maps.asm"
 
+Unknown_4ce05: ; unreferenced
+rept 26
+	db $06
+endr
+; 0x4ce1f
+
 INCLUDE "data/collision_permissions.asm"
 
 EmptyAllSRAMBanks: ; 4cf1f
