@@ -289,8 +289,12 @@ Buena_PrizeMenu: ; 8b0e2
 ; 8b129
 
 .indices ; 8b129
-	db 9
-	db 1, 2, 3, 4, 5, 6, 7, 8, 9
+	db NUM_BUENA_PRIZES
+x = 1
+rept NUM_BUENA_PRIZES
+	db x
+x = x + 1
+endr
 	db -1
 ; 8b134
 
@@ -319,7 +323,7 @@ Buena_PrizeMenu: ; 8b0e2
 
 Buena_getprize: ; 8b154
 	dec a
-	ld hl, .prizes
+	ld hl, BuenaPrizeItems
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -327,14 +331,4 @@ Buena_getprize: ; 8b154
 	ret
 ; 8b15e
 
-.prizes ; 8b15e
-	db ULTRA_BALL,   2
-	db FULL_RESTORE, 2
-	db NUGGET,       3
-	db RARE_CANDY,   3
-	db PROTEIN,      5
-	db IRON,         5
-	db CARBOS,       5
-	db CALCIUM,      5
-	db HP_UP,        5
-; 8b170
+INCLUDE "data/items/buena_prizes.asm"

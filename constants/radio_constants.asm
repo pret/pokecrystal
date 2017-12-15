@@ -123,3 +123,6 @@ NUM_PASSWORDS_PER_CATEGORY EQU 3
 	const BUENA_ITEM
 	const BUENA_MOVE
 	const BUENA_STRING
+
+; BuenaPrizeItems table length (see data/items/buena_prizes.asm)
+NUM_BUENA_PRIZES EQU 9

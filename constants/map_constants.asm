@@ -203,7 +203,7 @@ NUM_SPAWNS EQU const_value
 	const EMOTE_GRASS_RUSTLE ; 11
 EMOTE_MEM EQU -1
 
-; FruitTreeItems indexes (see data/fruit_tree_items.asm)
+; FruitTreeItems indexes (see data/items/fruit_trees.asm)
 const_value SET 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02

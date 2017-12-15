@@ -212,7 +212,7 @@ endr
 	ret
 ; fd136
 
-INCLUDE "data/mom_phone_items.asm"
+INCLUDE "data/items/mom_phone.asm"
 
 	db 0, 0, 0 ; XXX
 

@@ -5301,7 +5301,11 @@ SECTION "bank3E", ROMX
 
 INCLUDE "gfx/font.asm"
 INCLUDE "engine/time_capsule.asm"
-INCLUDE "engine/unowndex.asm"
+INCLUDE "event/name_rater.asm"
+INCLUDE "engine/play_slow_cry.asm"
+INCLUDE "engine/new_pokedex_entry.asm"
+INCLUDE "engine/time_capsule_2.asm"
+INCLUDE "engine/unown_dex.asm"
 INCLUDE "event/magikarp.asm"
 INCLUDE "battle/hidden_power.asm"
 INCLUDE "battle/misc.asm"

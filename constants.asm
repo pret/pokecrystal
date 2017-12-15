@@ -1,8 +1,8 @@
 INCLUDE "macros.asm"
 
-INCLUDE "gbhw.asm"
 INCLUDE "hram.asm"
 
+INCLUDE "constants/hardware_constants.asm"
 INCLUDE "constants/wram_constants.asm"
 INCLUDE "constants/pokemon_constants.asm"
 INCLUDE "constants/type_constants.asm"
@@ -21,6 +21,7 @@ INCLUDE "constants/music_constants.asm"
 INCLUDE "constants/sfx_constants.asm"
 INCLUDE "constants/animation_constants.asm"
 INCLUDE "constants/phone_constants.asm"
+INCLUDE "constants/credits_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
 INCLUDE "constants/input_constants.asm"
 INCLUDE "constants/pokemon_data_constants.asm"
