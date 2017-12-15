@@ -1,5 +1,8 @@
 # Move Animation Commands
 
+Defined in [macros/scripts/move_anim.asm](/macros/scripts/move_anim.asm) and [battle/anims.asm:BattleAnimations](/battle/anims.asm).
+
+
 ## `$00`−`$EF`: `anim_wait` *length*
 
 ## `$D0`: `anim_obj` *object*, *x*, *y*, *param*

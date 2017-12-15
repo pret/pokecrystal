@@ -49,7 +49,7 @@
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-This is a bug with `SpeciesItemBoost` in [battle/effect_commands.asm](battle/effect_commands.asm):
+This is a bug with `SpeciesItemBoost` in [battle/effect_commands.asm](/battle/effect_commands.asm):
 
 ```asm
 ; Double the stat
@@ -83,7 +83,7 @@ This is a bug with `SpeciesItemBoost` in [battle/effect_commands.asm](battle/eff
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-This is a bug with `DittoMetalPowder` in [battle/effect_commands.asm](battle/effect_commands.asm):
+This is a bug with `DittoMetalPowder` in [battle/effect_commands.asm](/battle/effect_commands.asm):
 
 ```asm
 	ld a, c
@@ -139,7 +139,7 @@ This is a bug with `DittoMetalPowder` in [battle/effect_commands.asm](battle/eff
 
 ([Video](https://www.youtube.com/watch?v=zuCLMikWo4Y))
 
-This is a bug with `BattleCommand_BellyDrum` in [battle/effect_commands.asm](battle/effect_commands.asm):
+This is a bug with `BattleCommand_BellyDrum` in [battle/effect_commands.asm](/battle/effect_commands.asm):
 
 ```asm
 BattleCommand_BellyDrum: ; 37c1a
@@ -179,7 +179,7 @@ BattleCommand_BellyDrum: ; 37c1a
 
 This bug affects Acid, Iron Tail, and Rock Smash.
 
-This is a bug with `DefenseDownHit` in [battle/moves/move_effects.asm](battle/moves/move_effects.asm):
+This is a bug with `DefenseDownHit` in [battle/moves/move_effects.asm](/battle/moves/move_effects.asm):
 
 ```asm
 DefenseDownHit:
@@ -220,7 +220,7 @@ DefenseDownHit:
 
 ([Video](https://www.youtube.com/watch?v=1v9x4SgMggs))
 
-This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](battle/core.asm):
+This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](/battle/core.asm):
 
 ```asm
 .done
@@ -252,7 +252,7 @@ This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](battle/core.
 
 ([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
 
-This is a bug with `BattleCommand_BeatUp` in [battle/effect_commands.asm](battle/effect_commands.asm):
+This is a bug with `BattleCommand_BeatUp` in [battle/effect_commands.asm](/battle/effect_commands.asm):
 
 ```asm
 .got_mon
@@ -289,7 +289,7 @@ This is a bug with `BattleCommand_BeatUp` in [battle/effect_commands.asm](battle
 
 This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
 
-This is a bug with `BattleCommand_Present` in [battle/effects/present.asm](battle/effects/present.asm):
+This is a bug with `BattleCommand_Present` in [battle/effects/present.asm](/battle/effects/present.asm):
 
 ```asm
 BattleCommand_Present: ; 37874
@@ -330,7 +330,7 @@ BattleCommand_Present: ; 37874
 
 ([Video](https://www.youtube.com/watch?v=cygMO-zHTls))
 
-This is a bug with `AI_Smart_MeanLook` in [battle/ai/scoring.asm](battle/ai/scoring.asm):
+This is a bug with `AI_Smart_MeanLook` in [battle/ai/scoring.asm](/battle/ai/scoring.asm):
 
 ```asm
 ; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
@@ -347,7 +347,7 @@ This is a bug with `AI_Smart_MeanLook` in [battle/ai/scoring.asm](battle/ai/scor
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
 
-This is a bug with `AI_HealStatus` in [battle/ai/items.asm](battle/ai/items.asm):
+This is a bug with `AI_HealStatus` in [battle/ai/items.asm](/battle/ai/items.asm):
 
 ```asm
 AI_HealStatus: ; 384e0
@@ -375,7 +375,7 @@ AI_HealStatus: ; 384e0
 
 ([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
 
-This is a bug with `LongAnim_UpdateVariables` in [engine/anim_hp_bar.asm](engine/anim_hp_bar.asm):
+This is a bug with `LongAnim_UpdateVariables` in [engine/anim_hp_bar.asm](/engine/anim_hp_bar.asm):
 
 ```asm
 	; This routine is buggy. The result from ComputeHPBarPixels is stored
@@ -403,7 +403,7 @@ This is a bug with `LongAnim_UpdateVariables` in [engine/anim_hp_bar.asm](engine
 
 ([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
 
-This is a bug with `ShortHPBar_CalcPixelFrame` in [engine/anim_hp_bar.asm](engine/anim_hp_bar.asm):
+This is a bug with `ShortHPBar_CalcPixelFrame` in [engine/anim_hp_bar.asm](/engine/anim_hp_bar.asm):
 
 ```asm
 	ld b, 0
@@ -431,7 +431,7 @@ This is a bug with `ShortHPBar_CalcPixelFrame` in [engine/anim_hp_bar.asm](engin
 
 This can bring Pokémon straight from level 1 to 100 by gaining just a few experience points.
 
-This is a bug with `CalcExpAtLevel` in [main.asm](main.asm):
+This is a bug with `CalcExpAtLevel` in [main.asm](/main.asm):
 
 ```asm
 CalcExpAtLevel: ; 50e47
@@ -477,7 +477,7 @@ CalcExpAtLevel: ; 50e47
 
 ([Video](https://www.youtube.com/watch?v=o54VjpAEoO8))
 
-This is a bug with `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2ExpPoints` in [text/common_2.asm](text/common_2.asm):
+This is a bug with `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2ExpPoints` in [text/common_2.asm](/text/common_2.asm):
 
 ```asm
 Text_ABoostedStringBuffer2ExpPoints::
@@ -501,7 +501,7 @@ Text_StringBuffer2ExpPoints::
 
 ## BRN/PSN/PAR do not affect catch rate
 
-This is a bug with `PokeBall` in [items/item_effects.asm](items/item_effects.asm):
+This is a bug with `PokeBall` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```asm
 .statuscheck
@@ -533,7 +533,7 @@ This is a bug with `PokeBall` in [items/item_effects.asm](items/item_effects.asm
 
 ## Moon Ball does not boost catch rate
 
-This is a bug with `MoonBallMultiplier` in [items/item_effects.asm](items/item_effects.asm):
+This is a bug with `MoonBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```asm
 MoonBallMultiplier:
@@ -559,7 +559,7 @@ MoonBallMultiplier:
 
 ## Love Ball boosts catch rate for the wrong gender
 
-This is a bug with `LoveBallMultiplier` in [items/item_effects.asm](items/item_effects.asm):
+This is a bug with `LoveBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```asm
 LoveBallMultiplier:
@@ -581,7 +581,7 @@ LoveBallMultiplier:
 
 ## Fast Ball only boosts catch rate for three Pokémon
 
-This is a bug with `FastBallMultiplier` in [items/item_effects.asm](items/item_effects.asm):
+This is a bug with `FastBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```asm
 FastBallMultiplier:
@@ -607,7 +607,7 @@ FastBallMultiplier:
 
 ## Dragon Scale, not Dragon Fang, boosts Dragon-type moves
 
-This is a bug with `ItemAttributes` in [items/item_attributes.asm](items/item_attributes.asm):
+This is a bug with `ItemAttributes` in [items/item_attributes.asm](/items/item_attributes.asm):
 
 ```asm
 ; DRAGON FANG
@@ -624,7 +624,7 @@ This is a bug with `ItemAttributes` in [items/item_attributes.asm](items/item_at
 
 ## Daisy's massages don't always increase happiness
 
-This is a bug with `MassageOrHaircut` in [event/special.asm](event/special.asm):
+This is a bug with `MassageOrHaircut` in [event/special.asm](/event/special.asm):
 
 ```asm
 ; Bug: Subtracting $ff from $ff fails to set c.
@@ -673,7 +673,7 @@ Data_DaisyMassage: ; 746b
 
 ## Magikarp in Lake of Rage are shorter, not longer
 
-This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [battle/core.asm](battle/core.asm):
+This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [battle/core.asm](/battle/core.asm):
 
 ```asm
 .CheckMagikarpArea:
@@ -701,7 +701,7 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [battle/core.asm](battle/
 
 ([Video](https://www.youtube.com/watch?v=eij_1060SMc))
 
-This is a bug with `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle_start.asm](engine/battle_start.asm):
+This is a bug with `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle_start.asm](/engine/battle_start.asm):
 
 ```asm
 StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
@@ -744,7 +744,7 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 
 ## No bump noise if standing on tile `$3E`
 
-This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](engine/player_movement.asm):
+This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](/engine/player_movement.asm):
 
 ```asm
 ; Bug: Since no case is made for STANDING here, it will check
@@ -792,7 +792,7 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](
 
 ([Video](https://www.youtube.com/watch?v=z305e4sIO24))
 
-The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex.asm](engine/pokedex.asm):
+The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex.asm](/engine/pokedex.asm):
 
 ```asm
 .Cry: ; 40340
@@ -826,7 +826,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 
 This bug prevents you from using blocksets with more than 128 blocks.
 
-[home/map.asm](home/map.asm):
+[home/map.asm](/home/map.asm):
 
 ```asm
 	; Set hl to the address of the current metatile data ([TilesetBlocksAddress] + (a) tiles).
@@ -863,7 +863,7 @@ This bug prevents you from using blocksets with more than 128 blocks.
 
 This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh with only traded legendary beasts.
 
-[engine/search.asm](engine/search.asm):
+[engine/search.asm](/engine/search.asm):
 
 ```asm
 ; check OT
@@ -908,7 +908,7 @@ This bug can affect Mew or Pokémon other than Ditto that used Transform via Mir
 
 ([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
 
-This is a bug with `ParkBall` in [items/item_effects.asm](items/item_effects.asm):
+This is a bug with `ParkBall` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```asm
 .room_in_party
@@ -933,7 +933,7 @@ This is a bug with `ParkBall` in [items/item_effects.asm](items/item_effects.asm
 
 ## `HELD_CATCH_CHANCE` has no effect
 
-This is a bug with `PokeBall` in [items/item_effects.asm](items/item_effects.asm):
+This is a bug with `PokeBall` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```asm
 	; BUG: callba overwrites a,
@@ -957,7 +957,7 @@ This is a bug with `PokeBall` in [items/item_effects.asm](items/item_effects.asm
 
 ## Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly
 
-This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/party_menu.asm](engine/party_menu.asm):
+This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/party_menu.asm](/engine/party_menu.asm):
 
 ```asm
 .DetermineCompatibility: ; 50268
@@ -980,7 +980,7 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 
 ## `ScriptCall` can overflow `wScriptStack` and crash
 
-[engine/scripting.asm](engine/scripting.asm):
+[engine/scripting.asm](/engine/scripting.asm):
 
 ```asm
 ScriptCall:
@@ -1018,7 +1018,7 @@ ScriptCall:
 
 ## `LoadSpriteGFX` does not limit the capacity of `UsedSprites`
 
-[engine/overworld.asm](engine/overworld.asm):
+[engine/overworld.asm](/engine/overworld.asm):
 
 ```asm
 LoadSpriteGFX: ; 14306
@@ -1053,7 +1053,7 @@ LoadSpriteGFX: ; 14306
 
 ## `ChooseWildEncounter` doesn't really validate the wild Pokémon species
 
-[engine/wildmons.asm](engine/wildmons.asm):
+[engine/wildmons.asm](/engine/wildmons.asm):
 
 ```asm
 ChooseWildEncounter: ; 2a14f
@@ -1092,7 +1092,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ## `TryObjectEvent` arbitrary code execution
 
-[engine/events.asm](engine/events.asm):
+[engine/events.asm](/engine/events.asm):
 
 ```asm
 ; Bug: If IsInArray returns nc, data at bc will be executed as code.
@@ -1120,7 +1120,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ## `Special_CheckBugContestContestantFlag` can read beyond its data table
 
-[event/bug_contest_2.asm](event/bug_contest_2.asm):
+[event/bug_contest_2.asm](/event/bug_contest_2.asm):
 
 ```asm
 Special_CheckBugContestContestantFlag: ; 139ed
@@ -1158,7 +1158,7 @@ BugCatchingContestantEventFlagTable: ; 139fe
 
 ## `ClearWRAM` only clears WRAM bank 1
 
-[home/init.asm](home/init.asm):
+[home/init.asm](/home/init.asm):
 
 ```asm
 ClearWRAM:: ; 25a
@@ -1186,7 +1186,7 @@ ClearWRAM:: ; 25a
 
 ## `GetForestTreeFrame` works, but it's still bad
 
-[tilesets/animations.asm](tilesets/animations.asm):
+[tilesets/animations.asm](/tilesets/animations.asm):
 
 ```asm
 GetForestTreeFrame: ; fc54c
