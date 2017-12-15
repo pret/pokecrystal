@@ -29,6 +29,7 @@
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
 - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
+- [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
@@ -800,6 +801,36 @@ This is a bug with `Slots_PayoutAnim` in [engine/slot_machine.asm](/engine/slot_
 ```
 
 **Fix:** Change `ret z` to `ret nz`.
+
+
+## Team Rocket battle music is not used for Executives or Scientists
+
+This is a bug with `PlayBattleMusic` in [main.asm](/main.asm):
+
+```asm
+	; really, they should have included admins and scientists here too...
+	ld de, MUSIC_ROCKET_BATTLE
+	cp GRUNTM
+	jr z, .done
+	cp GRUNTF
+	jr z, .done
+```
+
+**Fix:**
+
+```asm
+	ld de, MUSIC_ROCKET_BATTLE
+	cp GRUNTM
+	jr z, .done
+	cp GRUNTF
+	jr z, .done
+	cp EXECUTIVEM
+	jr z, .done
+	cp EXECUTIVEF
+	jr z, .done
+	cp SCIENTIST
+	jr z, .done
+```
 
 
 ## No bump noise if standing on tile `$3E`
