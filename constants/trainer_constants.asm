@@ -7,6 +7,7 @@ ENDM
 ; `trainerclass` indexes are for:
 ; - TrainerClassAttributes (see data/trainers/trainer_attributes.asm)
 ; - TrainerClassDVs (see data/trainers/trainer_dvs.asm)
+; - TrainerClassNames (see data/trainers/trainer_class_names.asm)
 ; - TrainerEncounterMusic (see data/trainers/encounter_music.asm)
 ; - TrainerGroups (see data/trainers/party_pointers.asm)
 ; - BTTrainerClassGenders (see data/trainers/gendered_trainers.asm)

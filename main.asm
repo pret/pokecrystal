@@ -1172,8 +1172,7 @@ SECTION "bankB", ROMX
 
 INCLUDE "battle/trainer_huds.asm"
 
-TrainerClassNames:: ; 2c1ef
-INCLUDE "text/trainer_class_names.asm"
+INCLUDE "data/trainers/trainer_class_names.asm"
 
 INCLUDE "battle/ai/redundant.asm"
 

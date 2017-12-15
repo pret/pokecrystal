@@ -1,5 +1,5 @@
 ; pitch
-; FrequencyTable indexes (see data/audio/notes.asm)
+; FrequencyTable indexes (see audio/notes.asm)
 	const_def
 	const __ ; 0
 	const C_ ; 1

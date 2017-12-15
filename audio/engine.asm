@@ -2882,9 +2882,9 @@ LoadMusicByte:: ; e8d76
 ; e8d80
 
 
-INCLUDE "data/audio/notes.asm"
+INCLUDE "audio/notes.asm"
 
-INCLUDE "data/audio/wave_samples.asm"
+INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/drumkits.asm"
 
