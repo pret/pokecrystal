@@ -27,6 +27,7 @@
 - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
 - [Daisy's massages don't always increase happiness](#daisys-massages-dont-always-increase-happiness)
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
+- [Magikarp lengths can be miscalculated](#magikarp-lengths-can-be-miscalculated)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
 - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
 - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
@@ -734,6 +735,27 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [battle/core.asm](/battle
 ```
 
 **Fix:** Change both `jr z, .Happiness` to `jr nz, .Happiness`.
+
+
+## Magikarp lengths can be miscalculated
+
+This is a bug with `CalcMagikarpLength.BCLessThanDE` in [event/magikarp.asm](/event/magikarp.asm):
+
+```asm
+.BCLessThanDE: ; fbc9a
+; Intention: Return bc < de.
+; Reality: Return b < d.
+	ld a, b
+	cp d
+	ret c
+	ret nc ; whoops
+	ld a, c
+	cp e
+	ret
+; fbca1
+```
+
+**Fix:** Delete `ret nc`.
 
 
 ## Battle transitions fail to account for the enemy's level
