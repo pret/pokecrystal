@@ -684,8 +684,8 @@ LizWrongNumberScript:
 	farwritetext LizHiTaniaText
 	end
 
-UnknownScript_0xa047f:
-	farwritetext UnknownText_0x66796
+TiffanyItsAwful:
+	farwritetext TiffanyItsAwfulText
 	end
 
 PhoneScript_HangupText_Male:

@@ -1597,7 +1597,7 @@ TiffanyPhoneScript1:
 TiffanyPhoneScript2:
 	trainertotext PICNICKER, TIFFANY3, $0
 	farscall PhoneScript_Random4
-	if_equal $0, TiffanyTalksAboutFamily
+	if_equal $0, TiffanysFamilyMembers
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_TIFFANY
 	iftrue TiffanyGenericCall
@@ -1627,7 +1627,7 @@ TiffanyWantsBattle:
 	setflag ENGINE_TIFFANY
 	farjump PhoneScript_WantsToBattle_Female
 
-TiffanyTalksAboutFamily:
+TiffanysFamilyMembers:
 	random $6
 	if_equal $0, .Grandma
 	if_equal $1, .Grandpa
@@ -1638,30 +1638,30 @@ TiffanyTalksAboutFamily:
 
 .Grandma:
 	stringtotext GrandmaString, $1
-	jump TiffanyFamily
+	jump TiffanysPoorClefairy
 
 .Grandpa:
 	stringtotext GrandpaString, $1
-	jump TiffanyFamily
+	jump TiffanysPoorClefairy
 
 .Mom:
 	stringtotext MomString, $1
-	jump TiffanyFamily
+	jump TiffanysPoorClefairy
 
 .Dad:
 	stringtotext DadString, $1
-	jump TiffanyFamily
+	jump TiffanysPoorClefairy
 
 .Sister:
 	stringtotext SisterString, $1
-	jump TiffanyFamily
+	jump TiffanysPoorClefairy
 
 .Brother:
 	stringtotext BrotherString, $1
-	jump TiffanyFamily
+	jump TiffanysPoorClefairy
 
-TiffanyFamily:
-	farjump UnknownScript_0xa047f
+TiffanysPoorClefairy:
+	farjump TiffanyItsAwful
 
 TiffanyHasPinkBow:
 	setflag ENGINE_TIFFANY_HAS_PINK_BOW
@@ -1683,11 +1683,11 @@ VancePhoneScript1:
 	iftrue VanceWednesdayNight
 
 .NotWednesday:
-	farjump UnknownScript_0xa09a8
+	farjump VanceLookingForward
 
 VanceWantsBattle:
 	landmarktotext ROUTE_44, $2
-	farjump UnknownScript_0xa0a91
+	farjump VanceHurryHurry
 
 VancePhoneScript2:
 	trainertotext BIRD_KEEPER, VANCE1, $0
@@ -1730,7 +1730,7 @@ WiltonPhoneScript1:
 
 .WantsBattle:
 	landmarktotext ROUTE_44, $2
-	farjump UnknownScript_0xa0a96
+	farjump WiltonNotBiting
 
 .HasItem:
 	landmarktotext ROUTE_44, $2

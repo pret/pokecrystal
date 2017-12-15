@@ -455,8 +455,8 @@ UnknownScript_0xa09a0:
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa09a8:
-	farwritetext UnknownText_0x66aa5
+VanceLookingForward:
+	farwritetext VanceLookingForwardText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
@@ -609,12 +609,12 @@ UnknownScript_0xa0a8c:
 	farwritetext UnknownText_0x668a3
 	end
 
-UnknownScript_0xa0a91:
-	farwritetext UnknownText_0x66ad1
+VanceHurryHurry:
+	farwritetext VanceHurryHurryText
 	end
 
-UnknownScript_0xa0a96:
-	farwritetext UnknownText_0x66cf7
+WiltonNotBiting:
+	farwritetext WiltonNotBitingText
 	end
 
 ParryHaventYouGottenTo:

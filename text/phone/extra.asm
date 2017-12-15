@@ -1394,7 +1394,7 @@ UnknownText_0x66730: ; 0x66730
 	done
 ; 0x66796
 
-UnknownText_0x66796: ; 0x66796
+TiffanyItsAwfulText: ; 0x66796
 	text_from_ram StringBuffer4
 	text "!"
 
@@ -1525,14 +1525,14 @@ UnknownText_0x66a93: ; 0x66a93
 	done
 ; 0x66aa5
 
-UnknownText_0x66aa5: ; 0x66aa5
+VanceLookingForwardText: ; 0x66aa5
 	text "I'll be looking"
 	line "forward to our"
 	cont "next battle!"
 	done
 ; 0x66ad1
 
-UnknownText_0x66ad1: ; 0x66ad1
+VanceHurryHurryText: ; 0x66ad1
 	text "Oh, <PLAY_G>!"
 	line "Hurry, hurry!"
 
@@ -1625,7 +1625,7 @@ WiltonHaventFoundAnythingText: ; 0x66ca7
 	done
 ; 0x66cf7
 
-UnknownText_0x66cf7: ; 0x66cf7
+WiltonNotBitingText: ; 0x66cf7
 	text "Sigh…"
 	line "They're not biting"
 
