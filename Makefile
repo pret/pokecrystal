@@ -28,7 +28,6 @@ engine/credits.o \
 data/pokemon/egg_moves.o \
 data/pokemon/evos_attacks.o \
 data/pokemon/dex_entries.o \
-misc/crystal_misc.o \
 text/common_text.o \
 gfx/pics.o
 
@@ -202,8 +201,8 @@ gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
 
 gfx/unknown/ascii_font.2bpp: tools/gfx += --trim-whitespace
 gfx/unknown/bold_font.1bpp: tools/gfx += --trim-whitespace
-gfx/unknown/egg_animated.2bpp: tools/gfx += --trim-whitespace
-gfx/unknown/egg_animated_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/unknown/electro_ball.2bpp: tools/gfx += --trim-whitespace
+gfx/unknown/electro_ball_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/unknown/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/unknown/pichu_animated.2bpp: tools/gfx += --trim-whitespace
 gfx/unknown/unknown_egg.2bpp: rgbgfx += -h

@@ -32,7 +32,7 @@
 	charmap "<ROCKET>",  $5e ; "ROCKET"
 	charmap "<DEXEND>",  $5f
 
-; Actual characters (from gfx/misc/font_extra.png)
+; Actual characters (from gfx/font/font_extra.png)
 
 	charmap "<BOLD_A>",  $60 ; unused
 	charmap "<BOLD_B>",  $61 ; unused
@@ -68,7 +68,7 @@
 	charmap "┘",         $7e
 	charmap " ",         $7f
 
-; Actual characters (from gfx/misc/font_battle_extra.png)
+; Actual characters (from gfx/font/font_battle_extra.png)
 
 	charmap "<LV>",      $6e
 
@@ -86,13 +86,13 @@
 
 	charmap "<BLACK>",   $60 ; from gfx/mobile/phone_tiles.2bpp
 	charmap "▲",         $61 ; gfx/font/up_arrow.png
-	charmap "<PHONE>",   $62 ; gfx/mobile/overworld_phone_icon.2bpp
+	charmap "<PHONE>",   $62 ; gfx/font/overworld_phone_icon.2bpp
 	charmap "_",         $62 ; from gfx/battle/hp_exp_bar_border.1bpp
 
 	charmap "′",         $6e ; gfx/font/feet_inches.png
 	charmap "″",         $6f ; gfx/font/feet_inches.png
 
-; Actual characters (from gfx/misc/font.png)
+; Actual characters (from gfx/font/font.png)
 
 	charmap "A",         $80
 	charmap "B",         $81

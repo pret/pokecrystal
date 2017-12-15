@@ -55,7 +55,7 @@ INCBIN "gfx/font/weekday_kanji.2bpp"
 ; f8f24
 
 OverworldPhoneIconGFX: ; f8f24
-INCBIN "gfx/mobile/overworld_phone_icon.2bpp"
+INCBIN "gfx/font/overworld_phone_icon.2bpp"
 ; f8f34
 
 GFX_f8f34: ; unused bold letters + unown chars

@@ -1,5 +1,3 @@
-INCLUDE "includes.asm"
-
 
 SECTION "Misc Crystal", ROMX
 

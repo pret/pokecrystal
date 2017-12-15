@@ -301,13 +301,13 @@ ROMX $7b
 ROMX $7c
 	"Battle Tower Trainer Data"
 ROMX $7d
-	"bank7D"
+	"Mobile News Data"
 ROMX $7e
 	"bank7E"
 ROMX $7f
 	"bank7F"
 	org $7de0
-	"stadium2"
+	"Mobile Stadium 2"
 WRAM0
 	"Stack"
 	"Audio RAM"

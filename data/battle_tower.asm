@@ -1,7 +1,7 @@
 BattleTowerTrainers: ; 1f814e
 ; The trainer class is not used in Crystal 1.0 due to a bug.
 ; Instead, the sixth character in the trainer's name is used.
-; See misc/battle_tower_47.asm
+; See mobile/battle_tower_47.asm
 	db "HANSON@@@@", FISHER
 	db "SAWYER@@@@", POKEMANIAC
 	db "MASUDA@@@@", GUITARIST

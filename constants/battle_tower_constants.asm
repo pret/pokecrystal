@@ -1,4 +1,4 @@
-; BattleTowerAction arguments (see misc/battle_tower_5c.asm)
+; BattleTowerAction arguments (see mobile/battle_tower_5c.asm)
 	const_def
 	const BATTLETOWERACTION_CHECK_EXPLANATION_READ
 	const BATTLETOWERACTION_SET_EXPLANATION_READ
