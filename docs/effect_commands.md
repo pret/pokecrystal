@@ -353,6 +353,6 @@ Defined in [macros/scripts/effect_commands.asm](/macros/scripts/effect_commands.
 
 ## `$AF`: `curl`
 
-## `$FF`: `endmove`
+## `$FE`: `endturn`
 
-## `$00`: `endturn`
+## `$FF`: `endmove`
