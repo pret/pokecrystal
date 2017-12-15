@@ -22,5 +22,5 @@ INCLUDE "macros/scripts/gfx_anim.asm"
 
 percent EQUS "* $ff / 100"
 
-tiles EQUS "* $10"
-tile  EQUS "+ $10 *"
+tiles EQUS "* LEN_2BPP_TILE"
+tile  EQUS "+ LEN_2BPP_TILE *"

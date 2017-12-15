@@ -2034,7 +2034,7 @@ Function28f09: ; 28f09
 	ret
 ; 28f24
 
-INCLUDE "engine/trade/animation.asm"
+INCLUDE "engine/trade_animation.asm"
 
 Special_CheckTimeCapsuleCompatibility: ; 29bfb
 ; Checks to see if your Party is compatible with the generation 1 games.  Returns the following in ScriptVar:

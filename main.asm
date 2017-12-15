@@ -612,7 +612,7 @@ INCLUDE "data/items/marts.asm"
 INCLUDE "event/mom.asm"
 INCLUDE "event/daycare.asm"
 INCLUDE "event/photo.asm"
-INCLUDE "engine/breeding/egg.asm"
+INCLUDE "engine/breeding.asm"
 
 
 INCLUDE "tilesets/data.asm"
@@ -1771,7 +1771,7 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	db 12, 00 ; start coords
 	db 17, 19 ; end coords
 
-INCLUDE "predef/crystal.asm"
+INCLUDE "engine/crystal_colors.asm"
 
 Unknown_4985a: ; unreferenced
 	db $ab, $03, $57, $24, $ac, $0e, $13, $32
@@ -5073,7 +5073,7 @@ INCLUDE "engine/crystal_intro.asm"
 SECTION "bank3E", ROMX
 
 INCLUDE "gfx/font.asm"
-INCLUDE "engine/time_capsule/conversion.asm"
+INCLUDE "engine/time_capsule.asm"
 INCLUDE "engine/unowndex.asm"
 INCLUDE "event/magikarp.asm"
 INCLUDE "battle/hidden_power.asm"

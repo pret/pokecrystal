@@ -295,7 +295,7 @@ LoadPokeComPalette: ; 494f2
 ; 49501
 
 PokeComPalette: ; 49501
-INCLUDE "tilesets/pokecom.pal"
+INCLUDE "tilesets/pokecom_center.pal"
 ; 49541
 
 LoadBattleTowerPalette: ; 49541
@@ -334,7 +334,7 @@ LoadHousePalette: ; 495df
 ; 495ee
 
 HousePalette: ; 495ee
-INCLUDE "tilesets/house.pal"
+INCLUDE "tilesets/house_1.pal"
 ; 4962e
 
 LoadRadioTowerPalette: ; 4962e

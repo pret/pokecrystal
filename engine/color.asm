@@ -1,5 +1,4 @@
-PALPACKET_LENGTH EQU $10
-INCLUDE "predef/sgb.asm"
+INCLUDE "engine/sgb_layouts.asm"
 
 SHINY_ATK_BIT EQU 5
 SHINY_DEF_VAL EQU 10
@@ -500,7 +499,7 @@ LoadMailPalettes:
 	RGB 00, 21, 00
 	RGB 00, 00, 00
 
-INCLUDE "predef/cgb.asm"
+INCLUDE "engine/cgb_layouts.asm"
 
 Function95f0:
 ; XXX
@@ -2027,13 +2026,13 @@ Palette_b311: ; b311 not mobile
 	RGB 00, 00, 00
 
 TilesetBGPalette:
-INCLUDE "tilesets/bg.pal"
+INCLUDE "data/palettes/bg.pal"
 
 MapObjectPals::
-INCLUDE "tilesets/ob.pal"
+INCLUDE "data/palettes/ob.pal"
 
 RoofPals:
-INCLUDE "tilesets/roof.pal"
+INCLUDE "data/palettes/roof.pal"
 
 DiplomaPalettes:
 	RGB 27, 31, 27
