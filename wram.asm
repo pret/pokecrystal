@@ -1943,49 +1943,10 @@ MapEventHeaderPointer:: dw ; d1a6
 ; bit set
 MapConnections:: db ; d1a8
 
-NorthMapConnection:: ; d1a9
-NorthConnectedMapGroup:: db ; d1a9
-NorthConnectedMapNumber:: db ; d1aa
-NorthConnectionStripPointer:: dw ; d1ab
-NorthConnectionStripLocation:: dw ; d1ad
-NorthConnectionStripLength:: db ; d1af
-NorthConnectedMapWidth:: db ; d1b0
-NorthConnectionStripYOffset:: db ; d1b1
-NorthConnectionStripXOffset:: db ; d1b2
-NorthConnectionWindow:: dw ; d1b3
-
-SouthMapConnection:: ; d1b5
-SouthConnectedMapGroup:: db ; d1b5
-SouthConnectedMapNumber:: db ; d1b6
-SouthConnectionStripPointer:: dw ; d1b7
-SouthConnectionStripLocation:: dw ; d1b9
-SouthConnectionStripLength:: db ; d1bb
-SouthConnectedMapWidth:: db ; d1bc
-SouthConnectionStripYOffset:: db ; d1bd
-SouthConnectionStripXOffset:: db ; d1be
-SouthConnectionWindow:: dw ; d1bf
-
-WestMapConnection:: ; d1c1
-WestConnectedMapGroup:: db ; d1c1
-WestConnectedMapNumber:: db ; d1c2
-WestConnectionStripPointer:: dw ; d1c3
-WestConnectionStripLocation:: dw ; d1c5
-WestConnectionStripLength:: db ; d1c7
-WestConnectedMapWidth:: db ; d1c8
-WestConnectionStripYOffset:: db ; d1c9
-WestConnectionStripXOffset:: db ; d1ca
-WestConnectionWindow:: dw ; d1cb
-
-EastMapConnection:: ; d1cd
-EastConnectedMapGroup:: db ; d1cd
-EastConnectedMapNumber:: db ; d1ce
-EastConnectionStripPointer:: dw ; d1cf
-EastConnectionStripLocation:: dw ; d1d1
-EastConnectionStripLength:: db ; d1d3
-EastConnectedMapWidth:: db ; d1d4
-EastConnectionStripYOffset:: db ; d1d5
-EastConnectionStripXOffset:: db ; d1d6
-EastConnectionWindow:: dw ; d1d7
+NorthMapConnection:: map_connection_struct North ; d1a9
+SouthMapConnection:: map_connection_struct South ; d1b5
+WestMapConnection::  map_connection_struct West ; d1c1
+EastMapConnection::  map_connection_struct East ; d1cd
 
 TilesetHeader::
 TilesetBank:: db ; d1d9
