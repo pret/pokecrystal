@@ -1613,7 +1613,7 @@ UnknownText_0x66c6b: ; 0x66c6b
 	done
 ; 0x66ca7
 
-UnknownText_0x66ca7: ; 0x66ca7
+WiltonHaventFoundAnythingText: ; 0x66ca7
 	text "Nah, I haven't"
 	line "found anything"
 
@@ -1639,7 +1639,7 @@ UnknownText_0x66cf7: ; 0x66cf7
 	done
 ; 0x66d45
 
-UnknownText_0x66d45: ; 0x66d45
+WiltonWantThisText: ; 0x66d45
 	text "Don't you want"
 	line "this item?"
 
@@ -1792,7 +1792,7 @@ ParryBattleWithMeText: ; 0x67106
 	done
 ; 0x6712a
 
-UnknownText_0x6712a: ; 0x6712a
+ParryHaventYouGottenToText: ; 0x6712a
 	text "Haven't you gotten"
 	line "to @"
 	text_from_ram StringBuffer5

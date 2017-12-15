@@ -552,7 +552,7 @@ UnknownText_0x174ec5: ; 0x174ec5
 	done
 ; 0x174ee2
 
-UnknownText_0x174ee2: ; 0x174ee2
+BethForgetDealText: ; 0x174ee2
 	text "Um… <PLAY_G>?"
 	line "What's wrong?"
 

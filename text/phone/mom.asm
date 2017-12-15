@@ -81,12 +81,12 @@ MomCheckBalanceText: ; 0x1b41a7
 	line "keep on saving?"
 	done
 
-UnknownText_0x1b41ea: ; 0x1b41ea
+MomImportantToSaveText: ; 0x1b41ea
 	text "It's important to"
 	line "save your money."
 	done
 
-UnknownText_0x1b420d: ; 0x1b420d
+MomYoureNotSavingText: ; 0x1b420d
 	text "Oh, <PLAYER>,"
 	line "you're not saving"
 
@@ -94,7 +94,7 @@ UnknownText_0x1b420d: ; 0x1b420d
 	line "you like to save?"
 	done
 
-UnknownText_0x1b4249: ; 0x1b4249
+MomYouveSavedText: ; 0x1b4249
 	text "By the way, you've"
 	line "saved up ¥@"
 	text_from_ram StringBuffer3
@@ -104,7 +104,7 @@ UnknownText_0x1b4249: ; 0x1b4249
 	line "saving again?"
 	done
 
-UnknownText_0x1b4289: ; 0x1b4289
+MomOKIllSaveText: ; 0x1b4289
 	text "OK. I'll save your"
 	line "money."
 	done

@@ -130,7 +130,7 @@ UnknownScript_0xa06da:
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-ChadOakGossip:
+ChadOakGossipScript:
 	random 10
 	if_equal 0, .Blue
 	if_equal 1, .Daisy
@@ -460,8 +460,8 @@ UnknownScript_0xa09a8:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa09b0:
-	farwritetext UnknownText_0x66ca7
+WiltonHaventFoundAnything:
+	farwritetext WiltonHaventFoundAnythingText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
@@ -541,8 +541,8 @@ UnknownScript_0xa0a37:
 	farwritetext UnknownText_0x174c49
 	end
 
-UnknownScript_0xa0a3c:
-	farwritetext UnknownText_0x174ee2
+BethBattleReminderScript:
+	farwritetext BethForgetDealText
 	end
 
 UnknownScript_0xa0a41:
@@ -617,8 +617,8 @@ UnknownScript_0xa0a96:
 	farwritetext UnknownText_0x66cf7
 	end
 
-UnknownScript_0xa0a9b:
-	farwritetext UnknownText_0x6712a
+ParryHaventYouGottenTo:
+	farwritetext ParryHaventYouGottenToText
 	end
 
 ErinComeBattleScript:
@@ -670,8 +670,8 @@ UnknownScript_0xa0ae5:
 	buttonsound
 	jump PhoneScript_HangupText_Female
 
-UnknownScript_0xa0aed:
-	farwritetext UnknownText_0x66d45
+WiltonWantThis:
+	farwritetext WiltonWantThisText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 

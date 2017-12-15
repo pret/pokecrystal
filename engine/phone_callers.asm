@@ -680,7 +680,7 @@ PhoneScript_RematchText_Female:
 	buttonsound
 	end
 
-LizWrongNumber:
+LizWrongNumberScript:
 	farwritetext LizHiTaniaText
 	end
 
@@ -869,7 +869,7 @@ PhoneScript_BugCatchingContest:
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-UnknownScript_0xa05be:
+IrwinRocketRumor:
 	farwritetext UnknownText_0x64032
 	buttonsound
 	jump PhoneScript_HangupText_Male
