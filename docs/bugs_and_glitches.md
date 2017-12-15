@@ -10,9 +10,11 @@
 - [Counter and Mirror Coat still work if the opponent uses an item](#counter-and-mirror-coat-still-work-if-the-opponent-uses-an-item)
 - [A Disabled but PP Up–enhanced move may not trigger Struggle](#a-disabled-but-pp-upenhanced-move-may-not-trigger-struggle)
 - [A Pokémon that fainted from Pursuit will have its old status condition when revived](#a-pokémon-that-fainted-from-pursuit-will-have-its-old-status-condition-when-revived)
+- [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
 - [Beat Up can desynchronize link battles](#beat-up-can-desynchronize-link-battles)
 - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
 - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
+- [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
 - [NPC use of Full Heal or Full Restore does not cure Nightmare status](#npc-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
 - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
 - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
@@ -26,9 +28,9 @@
 - [Daisy's massages don't always increase happiness](#daisys-massages-dont-always-increase-happiness)
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
+- [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
-- [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
 - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
@@ -248,6 +250,13 @@ This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](/battle/core
 *To do:* Identify specific code causing this bug and fix it.
 
 
+## Lock-On and Mind Reader don't always bypass Fly and Dig
+
+This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider Web, Transform, and stat-lowering effects of moves like String Shot or Bubble during the semi-invulnerable turn of Fly or Dig.
+
+*To do:* Identify specific code causing this bug and fix it.
+
+
 ## Beat Up can desynchronize link battles
 
 ([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
@@ -341,6 +350,35 @@ This is a bug with `AI_Smart_MeanLook` in [battle/ai/scoring.asm](/battle/ai/sco
 ```
 
 **Fix:** Change `EnemySubStatus5` to `PlayerSubStatus5`.
+
+
+## AI makes a false assumption about `CheckTypeMatchup`
+
+In [battle/effect_commands.asm](/battle/effect_commands.asm):
+
+```asm
+BattleCheckTypeMatchup: ; 347c8
+	ld hl, EnemyMonType1
+	ld a, [hBattleTurn]
+	and a
+	jr z, CheckTypeMatchup
+	ld hl, BattleMonType1
+CheckTypeMatchup: ; 347d3
+; There is an incorrect assumption about this function made in the AI related code: when
+; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
+; offensive type in a will make this function do the right thing. Since a is overwritten,
+; this assumption is incorrect. A simple fix would be to load the move type for the
+; current move into a in BattleCheckTypeMatchup, before falling through, which is
+; consistent with how the rest of the code assumes this code works like.
+	push hl
+	push de
+	push bc
+	ld a, BATTLE_VARS_MOVE_TYPE
+	call GetBattleVar
+	ld d, a
+```
+
+*To do:* Fix this bug.
 
 
 ## NPC use of Full Heal or Full Restore does not cure Nightmare status
@@ -742,6 +780,28 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 *To do:* Fix this bug.
 
 
+## Slot machine payout sound effects cut each other off
+
+([Video](https://www.youtube.com/watch?v=ojq3xqfRF6I))
+
+This is a bug with `Slots_PayoutAnim` in [engine/slot_machine.asm](/engine/slot_machine.asm):
+
+```asm
+.okay
+	ld [hl], e
+	dec hl
+	ld [hl], d
+	ld a, [wcf64]
+	and $7
+	ret z ; ret nz would be more appropriate
+	ld de, SFX_GET_COIN_FROM_SLOTS
+	call PlaySFX
+	ret
+```
+
+**Fix:** Change `ret z` to `ret nz`.
+
+
 ## No bump noise if standing on tile `$3E`
 
 This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](/engine/player_movement.asm):
@@ -813,13 +873,6 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 	call PlayCry
 	ret
 ```
-
-
-## Lock-On and Mind Reader don't always bypass Fly and Dig
-
-This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider Web, Transform, and stat-lowering effects of moves like String Shot or Bubble during the semi-invulnerable turn of Fly or Dig.
-
-*To do:* Identify specific code causing this bug and fix it.
 
 
 ## `LoadMetatiles` wraps around past 128 blocks
