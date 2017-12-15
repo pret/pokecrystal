@@ -10,7 +10,7 @@ SECTION "Egg Moves", ROMX
 ; and can only breed with Ditto.
 
 
-INCLUDE "data/egg_move_pointers.asm"
+INCLUDE "data/pokemon/egg_move_pointers.asm"
 
 
 EggMoves::

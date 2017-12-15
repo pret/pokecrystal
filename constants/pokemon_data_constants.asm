@@ -1,4 +1,4 @@
-; base data struct members (see data/base_stats/*.asm)
+; base data struct members (see data/pokemon/base_stats/*.asm)
 BASE_DEX_NO      EQUS "(BaseDexNo - CurBaseData)"
 BASE_STATS       EQUS "(BaseStats - CurBaseData)"
 BASE_HP          EQUS "(BaseHP - CurBaseData)"
@@ -145,7 +145,7 @@ PARTY_LENGTH EQU 6
 	const ICON_BIGMON
 
 
-; evolution types (used in data/evos_attacks.asm)
+; evolution types (used in data/pokemon/evos_attacks.asm)
 const_value SET 1
 	const EVOLVE_LEVEL
 	const EVOLVE_ITEM

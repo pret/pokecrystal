@@ -1,4 +1,5 @@
-; f2787
+CryHeaders:: ; f2787
+; entries correspond to constants/pokemon_constants.asm
 ;                               index,          pitch, length
 BulbasaurCryHeader:   cry_header CRY_BULBASAUR,   $080,  $081
 IvysaurCryHeader:     cry_header CRY_BULBASAUR,   $020,  $100

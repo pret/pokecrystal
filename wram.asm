@@ -2095,7 +2095,7 @@ UnownLetter:: db ; d234
 
 wMoveSelectionMenuType:: db
 
-; corresponds to the data/base_stats/*.asm contents
+; corresponds to the data/pokemon/base_stats/*.asm contents
 CurBaseData:: ; d236
 BaseDexNo:: db ; d236
 BaseStats:: ; d237

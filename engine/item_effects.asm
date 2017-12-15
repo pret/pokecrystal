@@ -3310,4 +3310,4 @@ GetMthMoveOfCurrentMon: ; f969
 	ret
 ; f971
 
-INCLUDE "items/pokeball_wobble.asm"
+INCLUDE "engine/pokeball_wobble.asm"

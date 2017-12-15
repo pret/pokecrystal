@@ -25,9 +25,9 @@ audio.o \
 maps.o \
 engine/events.o \
 engine/credits.o \
-data/egg_moves.o \
-data/evos_attacks.o \
-data/pokedex/entries.o \
+data/pokemon/egg_moves.o \
+data/pokemon/evos_attacks.o \
+data/pokemon/dex_entries.o \
 misc/crystal_misc.o \
 text/common_text.o \
 gfx/pics.o

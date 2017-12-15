@@ -721,6 +721,6 @@ INCLUDE "data/emote_headers.asm"
 
 INCLUDE "data/sprite_mons.asm"
 
-INCLUDE "data/outdoor_sprites.asm"
+INCLUDE "data/maps/outdoor_sprites.asm"
 
 INCLUDE "gfx/sprite_headers.asm"

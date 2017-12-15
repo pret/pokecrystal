@@ -16,8 +16,8 @@ endm
 ; map group ids
 ; `newgroup` indexes are for:
 ; - MapGroupPointers (see maps/map_headers.asm)
-; - OutdoorSprites (see data/outdoor_sprites.asm)
-; - MapGroupRoofs (see data/mapgroup_roofs.asm)
+; - OutdoorSprites (see data/maps/outdoor_sprites.asm)
+; - MapGroupRoofs (see data/maps/mapgroup_roofs.asm)
 ; `mapgroup` indexes are for the sub-tables of MapGroupPointers (see maps/map_headers.asm)
 	const_def
 

@@ -236,7 +236,7 @@ CheckNickErrors:: ; 669f
 	db -1 ; end
 
 INCLUDE "engine/math.asm"
-INCLUDE "items/item_attributes.asm"
+INCLUDE "data/items/item_attributes.asm"
 INCLUDE "engine/npc_movement.asm"
 INCLUDE "event/happiness_egg.asm"
 INCLUDE "event/special.asm"
@@ -353,7 +353,7 @@ BugContest_SetCaughtContestMon: ; e6ce
 	text_jump UnknownText_0x1c10c0
 	db "@"
 
-INCLUDE "items/item_effects.asm"
+INCLUDE "engine/item_effects.asm"
 
 KnowsMove: ; f9ea
 	ld a, MON_MOVES
@@ -608,7 +608,7 @@ INCLUDE "engine/map_setup.asm"
 INCLUDE "engine/pokecenter_pc.asm"
 INCLUDE "engine/mart.asm"
 INCLUDE "engine/money.asm"
-INCLUDE "items/marts.asm"
+INCLUDE "data/items/marts.asm"
 INCLUDE "event/mom.asm"
 INCLUDE "event/daycare.asm"
 INCLUDE "event/photo.asm"
@@ -1028,7 +1028,7 @@ LevelUpHappinessMod: ; 2709e
 	callab ChangeHappiness
 	ret
 
-INCLUDE "trainers/dvs.asm"
+INCLUDE "data/trainers/trainer_dvs.asm"
 
 _ReturnToBattle_UseBall: ; 2715c
 	call ClearBGPalettes
@@ -1613,11 +1613,11 @@ SECTION "Enemy Trainers", ROMX
 
 INCLUDE "battle/ai/items.asm"
 INCLUDE "battle/ai/scoring.asm"
-INCLUDE "trainers/read_attributes.asm"
-INCLUDE "trainers/attributes.asm"
-INCLUDE "trainers/read_party.asm"
-INCLUDE "trainers/trainer_pointers.asm"
-INCLUDE "trainers/trainers.asm"
+INCLUDE "engine/read_trainer_attributes.asm"
+INCLUDE "data/trainers/trainer_attributes.asm"
+INCLUDE "engine/read_trainer_party.asm"
+INCLUDE "data/trainers/party_pointers.asm"
+INCLUDE "data/trainers/parties.asm"
 
 
 SECTION "Battle Core", ROMX
@@ -1638,7 +1638,7 @@ SECTION "bank11", ROMX
 INCLUDE "engine/fruit_trees.asm"
 INCLUDE "battle/ai/move.asm"
 INCLUDE "engine/pokedex_2.asm"
-INCLUDE "data/pokedex/entry_pointers.asm"
+INCLUDE "data/pokemon/dex_entry_pointers.asm"
 INCLUDE "engine/mail.asm"
 
 
@@ -2062,7 +2062,7 @@ CheckSave:: ; 4cffe
 	ld c, $0
 	ret
 
-INCLUDE "data/map_triggers.asm"
+INCLUDE "data/maps/map_triggers.asm"
 
 _LoadMapPart:: ; 4d15b
 	ld hl, wMisc
@@ -3108,7 +3108,7 @@ GetMobileOTTrainerClass: ; mobile function
 	ld a, [hl]
 	ret
 
-INCLUDE "trainers/gendered_trainers.asm"
+INCLUDE "data/trainers/gendered_trainers.asm"
 
 INCLUDE "battle/sliding_intro.asm"
 
@@ -4284,9 +4284,9 @@ INCLUDE "gfx/load_pics.asm"
 
 INCLUDE "engine/move_mon_wo_mail.asm"
 
-INCLUDE "data/base_stats.asm"
+INCLUDE "data/pokemon/base_stats.asm"
 
-INCLUDE "data/pokemon_names.asm"
+INCLUDE "data/pokemon/pokemon_names.asm"
 
 Unknown_53d84: ; unreferenced
 	db $1a, $15
@@ -5194,8 +5194,8 @@ INCLUDE "text/phone/trainers1.asm"
 
 SECTION "bank72", ROMX
 
-INCLUDE "items/item_names.asm"
-INCLUDE "items/item_descriptions.asm"
+INCLUDE "data/items/item_names.asm"
+INCLUDE "data/items/item_descriptions.asm"
 INCLUDE "battle/move_names.asm"
 INCLUDE "engine/landmarks.asm"
 

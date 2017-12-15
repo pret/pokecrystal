@@ -1,4 +1,4 @@
-; Used in data/base_stats/*.asm
+; Used in data/pokemon/base_stats/*.asm
 
 define: macro
 if !def(\1)

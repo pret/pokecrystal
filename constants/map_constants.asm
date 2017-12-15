@@ -127,7 +127,7 @@ SLIDING      EQU 3
 EMOTE_OBJECT EQU 7
 
 
-; SpawnPoints indexes (see data/spawn_points.asm)
+; SpawnPoints indexes (see data/maps/spawn_points.asm)
 const_value = -1
 	const SPAWN_N_A
 	const SPAWN_HOME

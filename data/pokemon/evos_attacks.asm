@@ -4,7 +4,7 @@ INCLUDE "includes.asm"
 SECTION "Evolutions and Attacks", ROMX
 
 
-INCLUDE "data/evos_attacks_pointers.asm"
+INCLUDE "data/pokemon/evos_attacks_pointers.asm"
 
 
 EvosAttacks::
