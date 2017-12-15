@@ -21,13 +21,13 @@ InitMobileProfile: ; 4802f (12:402f)
 .not_yet_initialized
 	call Function486bf
 	call LoadFontsExtra
-	ld de, GFX_488c3
+	ld de, MobileUpArrowGFX
 	ld hl, VTiles2 tile $10
-	lb bc, BANK(GFX_488c3), 1
+	lb bc, BANK(MobileUpArrowGFX), 1
 	call Request1bpp
-	ld de, GFX_488cb
+	ld de, MobileDownArrowGFX
 	ld hl, VTiles2 tile $11
-	lb bc, BANK(GFX_488cb), 1
+	lb bc, BANK(MobileDownArrowGFX), 1
 	call Request1bpp
 	call Function4a3a7
 	call ClearBGPalettes
@@ -1020,11 +1020,11 @@ Function488b9: ; 488b9 (12:48b9)
 	ret
 ; 488c3 (12:48c3)
 
-GFX_488c3: ; 488c3
-INCBIN "gfx/unknown/up_arrow.2bpp"
+MobileUpArrowGFX: ; 488c3
+INCBIN "gfx/mobile/up_arrow.2bpp"
 
-GFX_488cb: ; 488cb
-INCBIN "gfx/unknown/down_arrow.2bpp"
+MobileDownArrowGFX: ; 488cb
+INCBIN "gfx/mobile/down_arrow.2bpp"
 
 Function488d3: ; 488d3 (12:48d3)
 	call Function48283

@@ -2577,7 +2577,7 @@ Special_CableClubCheckWhichChris: ; 29f47
 	ret
 ; 29f54
 
-GFX_29f54: ; 29f54
+UnusedGen1LinkCommsBorderGFX: ; 29f54
 ; unreferenced
-INCBIN "gfx/unknown/unused_border.2bpp"
+INCBIN "gfx/trade/unused_gen_1_border_tiles.2bpp"
 ; 29fe4

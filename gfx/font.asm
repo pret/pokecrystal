@@ -50,16 +50,16 @@ TownMapGFX: ; f8ba0
 INCBIN "gfx/pokegear/town_map.2bpp.lz"
 ; f8ea4
 
-WeekdayKanjiGFX: ; unused kanji
-INCBIN "gfx/font/weekday_kanji.2bpp"
+UnusedWeekdayKanjiGFX: ; unused kanji
+INCBIN "gfx/font/unused_weekday_kanji.2bpp"
 ; f8f24
 
 OverworldPhoneIconGFX: ; f8f24
 INCBIN "gfx/font/overworld_phone_icon.2bpp"
 ; f8f34
 
-GFX_f8f34: ; unused bold letters + unown chars
-INCBIN "gfx/unknown/bold_font.1bpp"
+UnusedBoldFontGFX: ; unused bold letters + unown chars
+INCBIN "gfx/font/unused_bold_font.1bpp"
 ; f9204
 
 TextBoxSpaceGFX: ; f9204

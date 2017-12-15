@@ -221,13 +221,13 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 ; 16c173
 
 .Tiles:
-INCBIN "gfx/unknown/mobile_splash.2bpp"
+INCBIN "gfx/mobile/mobile_splash.2bpp"
 
 .TileMap:
-INCBIN "gfx/unknown/mobile_splash.tilemap"
+INCBIN "gfx/mobile/mobile_splash.tilemap"
 
 .AttrMap:
-INCBIN "gfx/unknown/mobile_splash.attrmap"
+INCBIN "gfx/mobile/mobile_splash.attrmap"
 
 UnknownMobilePalettes_16c903: ; 16c903
 INCLUDE "gfx/unknown/16c903.pal"
