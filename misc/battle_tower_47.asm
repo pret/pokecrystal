@@ -85,7 +85,7 @@ ENDC
 	ret
 ; 11c05d
 
-INCLUDE "misc/fixed_words.asm"
+INCLUDE "mobile/fixed_words.asm"
 
 BTTrainerClassGenders: ; 11f2f0
 	db MALE   ; FALKNER

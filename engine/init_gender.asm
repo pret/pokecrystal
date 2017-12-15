@@ -20,7 +20,7 @@ InitCrystalData: ; 48000
 	ret
 ; 4802f
 
-INCLUDE "misc/mobile_12.asm"
+INCLUDE "mobile/mobile_12.asm"
 
 InitGender: ; 48dcb (12:4dcb)
 	call InitGenderScreen

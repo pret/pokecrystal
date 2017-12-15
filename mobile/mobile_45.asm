@@ -5342,7 +5342,7 @@ Function115d80: ; 115d80
 
 ; 115d99
 
-INCLUDE "misc/mobile_45_sprite_engine.asm"
+INCLUDE "mobile/mobile_45_sprite_engine.asm"
 
 ; 116567
 

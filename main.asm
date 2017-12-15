@@ -1784,9 +1784,9 @@ Unknown_4985a: ; unreferenced
 
 INCLUDE "event/celebi.asm"
 INCLUDE "engine/main_menu.asm"
-INCLUDE "misc/mobile_menu.asm"
+INCLUDE "mobile/mobile_menu.asm"
 INCLUDE "engine/search.asm"
-INCLUDE "misc/mobile_12_2.asm"
+INCLUDE "mobile/mobile_12_2.asm"
 ; mobile battle selection
 
 AskRememberPassword: ; 4ae12
@@ -3196,7 +3196,7 @@ CheckBattleScene: ; 4ea44
 	scf
 	ret
 
-INCLUDE "misc/gbc_only.asm"
+INCLUDE "engine/gbc_only.asm"
 
 INCLUDE "event/poke_seer.asm"
 
@@ -4604,12 +4604,12 @@ INCBIN "gfx/player/kris_back.2bpp"
 String_89116:
 	db "-----@"
 
-INCLUDE "misc/mobile_22.asm"
+INCLUDE "mobile/mobile_22.asm"
 INCLUDE "event/unown.asm"
 INCLUDE "event/buena.asm"
 INCLUDE "event/dratini.asm"
 INCLUDE "event/battle_tower.asm"
-INCLUDE "misc/mobile_22_2.asm"
+INCLUDE "mobile/mobile_22_2.asm"
 
 
 SECTION "bank23", ROMX
@@ -5088,17 +5088,17 @@ INCLUDE "event/mom_phone.asm"
 
 SECTION "mobile_40", ROMX
 
-INCLUDE "misc/mobile_40.asm"
+INCLUDE "mobile/mobile_40.asm"
 
 
 SECTION "bank41", ROMX
 
-INCLUDE "misc/gfx_41.asm"
-
+INCLUDE "engine/dma_transfer.asm"
+INCLUDE "gfx/emotes.asm"
 INCLUDE "engine/warp_connection.asm"
 INCLUDE "engine/mysterygift.asm"
 INCLUDE "battle/used_move_text.asm"
-INCLUDE "misc/mobile_41.asm"
+INCLUDE "mobile/mobile_41.asm"
 
 LoadOverworldFont:: ; 106594
 	ld de, .font
@@ -5120,7 +5120,7 @@ INCBIN "gfx/font/space.2bpp"
 
 SECTION "mobile_42", ROMX
 
-INCLUDE "misc/mobile_42.asm"
+INCLUDE "mobile/mobile_42.asm"
 
 
 SECTION "Intro Logo", ROMX
@@ -5131,10 +5131,10 @@ INCBIN "gfx/intro/logo.2bpp.lz"
 
 SECTION "bank43", ROMX
 
-INCLUDE "misc/unused_title.asm"
+INCLUDE "engine/unused_title.asm"
 INCLUDE "engine/title.asm"
-INCLUDE "misc/mobile_45.asm"
-INCLUDE "misc/mobile_46.asm"
+INCLUDE "mobile/mobile_45.asm"
+INCLUDE "mobile/mobile_46.asm"
 
 
 SECTION "battle_tower_47", ROMX
@@ -5144,13 +5144,13 @@ INCLUDE "misc/battle_tower_47.asm"
 
 SECTION "bank5B", ROMX
 
-INCLUDE "misc/mobile_5b.asm"
+INCLUDE "mobile/mobile_5b.asm"
 INCLUDE "engine/link_trade.asm"
 
 
 SECTION "mobile_5c", ROMX
 
-INCLUDE "misc/mobile_5c.asm"
+INCLUDE "mobile/mobile_5c.asm"
 
 
 SECTION "Crystal Phone Text 2", ROMX
@@ -5170,7 +5170,7 @@ _UpdateBattleHUDs:
 	callba FinishBattleAnim
 	ret
 
-INCLUDE "misc/mobile_5f.asm"
+INCLUDE "mobile/mobile_5f.asm"
 
 
 SECTION "Common Text 1", ROMX
@@ -5210,13 +5210,7 @@ SECTION "bank77", ROMX
 UnownFont: ; 1dc000
 INCBIN "gfx/font/unown_font.2bpp"
 
-INCLUDE "misc/printer_77.asm"
-
-MobileHPIcon: ; 1dc591
-INCBIN "gfx/mobile/hp.1bpp"
-
-MobileLvIcon: ; 1dc599
-INCBIN "gfx/mobile/lv.1bpp"
+INCLUDE "engine/print_party.asm"
 
 
 SECTION "bank77_2", ROMX

@@ -16,7 +16,7 @@
 ; - NewPokedexOrder (see data/pokemon/dex_order_new.asm)
 ; - MonMenuIcons (see data/pokemon/menu_icons.asm)
 ; - Pokered_MonIndices (see data/time_capsule/mon_order.asm)
-; - SortedPokemon (see misc/fixed_words.asm)
+; - SortedPokemon (see mobile/fixed_words.asm)
 const_value set 1
 	const BULBASAUR  ; 01
 	const IVYSAUR    ; 02

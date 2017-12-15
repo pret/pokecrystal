@@ -140,14 +140,14 @@ PrintPartyMonPage1: ; 1dc381
 	ld [hBGMapMode], a
 	call LoadFontsBattleExtra
 
-	ld de, MobileHPIcon
+	ld de, GBPrinterHPIcon
 	ld hl, VTiles2 tile $71
-	lb bc, BANK(MobileHPIcon), 1
+	lb bc, BANK(GBPrinterHPIcon), 1
 	call Request1bpp
 
-	ld de, MobileLvIcon
+	ld de, GBPrinterLvIcon
 	ld hl, VTiles2 tile $6e
-	lb bc, BANK(MobileLvIcon), 1
+	lb bc, BANK(GBPrinterLvIcon), 1
 	call Request1bpp
 
 	ld de, ShinyIconGFX
@@ -354,3 +354,9 @@ String1dc55d: ; 1dc55d
 String1dc584: ; 1dc584
 	db "------------@"
 ; 1dc591
+
+GBPrinterHPIcon: ; 1dc591
+INCBIN "gfx/printer/hp.1bpp"
+
+GBPrinterLvIcon: ; 1dc599
+INCBIN "gfx/printer/lv.1bpp"
