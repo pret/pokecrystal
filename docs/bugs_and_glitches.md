@@ -826,7 +826,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 
 This bug prevents you from using blocksets with more than 128 blocks.
 
-[home/map.asm](/home/map.asm):
+In [home/map.asm](/home/map.asm):
 
 ```asm
 	; Set hl to the address of the current metatile data ([TilesetBlocksAddress] + (a) tiles).
@@ -863,7 +863,7 @@ This bug prevents you from using blocksets with more than 128 blocks.
 
 This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh with only traded legendary beasts.
 
-[engine/search.asm](/engine/search.asm):
+In [engine/search.asm](/engine/search.asm):
 
 ```asm
 ; check OT
@@ -980,7 +980,7 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 
 ## `ScriptCall` can overflow `wScriptStack` and crash
 
-[engine/scripting.asm](/engine/scripting.asm):
+In [engine/scripting.asm](/engine/scripting.asm):
 
 ```asm
 ScriptCall:
@@ -1018,7 +1018,7 @@ ScriptCall:
 
 ## `LoadSpriteGFX` does not limit the capacity of `UsedSprites`
 
-[engine/overworld.asm](/engine/overworld.asm):
+In [engine/overworld.asm](/engine/overworld.asm):
 
 ```asm
 LoadSpriteGFX: ; 14306
@@ -1053,7 +1053,7 @@ LoadSpriteGFX: ; 14306
 
 ## `ChooseWildEncounter` doesn't really validate the wild Pokémon species
 
-[engine/wildmons.asm](/engine/wildmons.asm):
+In [engine/wildmons.asm](/engine/wildmons.asm):
 
 ```asm
 ChooseWildEncounter: ; 2a14f
@@ -1092,7 +1092,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ## `TryObjectEvent` arbitrary code execution
 
-[engine/events.asm](/engine/events.asm):
+In [engine/events.asm](/engine/events.asm):
 
 ```asm
 ; Bug: If IsInArray returns nc, data at bc will be executed as code.
@@ -1120,7 +1120,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ## `Special_CheckBugContestContestantFlag` can read beyond its data table
 
-[event/bug_contest_2.asm](/event/bug_contest_2.asm):
+In [event/bug_contest_2.asm](/event/bug_contest_2.asm):
 
 ```asm
 Special_CheckBugContestContestantFlag: ; 139ed
@@ -1158,7 +1158,7 @@ BugCatchingContestantEventFlagTable: ; 139fe
 
 ## `ClearWRAM` only clears WRAM bank 1
 
-[home/init.asm](/home/init.asm):
+In [home/init.asm](/home/init.asm):
 
 ```asm
 ClearWRAM:: ; 25a
@@ -1186,7 +1186,7 @@ ClearWRAM:: ; 25a
 
 ## `GetForestTreeFrame` works, but it's still bad
 
-[tilesets/animations.asm](/tilesets/animations.asm):
+In [tilesets/animations.asm](/tilesets/animations.asm):
 
 ```asm
 GetForestTreeFrame: ; fc54c
