@@ -226,12 +226,12 @@ CheckNickErrors:: ; 669f
 ; table defining which characters are actually text commands
 ; format:
 	;      ≥           <
-	db "<START>",  $04       + 1
+	db "<START>",  TX_BOX    + 1
 	db "<PLAY_G>", $18       + 1
 	db $1d,        "%"       + 1
 	db $35,        "<GREEN>" + 1
 	db "<ENEMY>",  "<ENEMY>" + 1
-	db $49,        "<TM>"    + 1
+	db "<MOM>",    "<TM>"    + 1
 	db "<ROCKET>", "┘"       + 1
 	db -1 ; end
 

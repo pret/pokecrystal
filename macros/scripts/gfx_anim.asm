@@ -14,31 +14,31 @@ endc
 
 	enum_start $fc
 
-	enum delanim_command ; fc
+	enum delanim_command ; $fc
 delanim: macro ; used for oam
 	db delanim_command
 	endm
 
-	enum dorepeat_command ; fd
+	enum dorepeat_command ; $fd
 dorepeat: macro
 	db dorepeat_command
 	db \1 ; #
 	endm
 
-	enum setrepeat_command ; fe
+	enum setrepeat_command ; $fe
 setrepeat: macro
 	db setrepeat_command
 	db \1 ; #
 	endm
 
-	enum endanim_command ; ff
+	enum endanim_command ; $ff
 endanim: macro
 	db endanim_command
 	endm
 
 __enum__ = $fe
 
-	enum dorestart_command ; fe
+	enum dorestart_command ; $fe
 dorestart: macro ; used for oam
 	db dorestart_command
 	endm
