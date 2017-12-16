@@ -238,16 +238,6 @@ INCLUDE "engine/trainer_card.asm"
 INCLUDE "engine/prof_oaks_pc.asm"
 INCLUDE "engine/decorations.asm"
 
-PadCoords_de: ; 27092
-	ld a, d
-	add 4
-	ld d, a
-	ld a, e
-	add 4
-	ld e, a
-	call GetBlockLocation
-	ret
-
 LevelUpHappinessMod: ; 2709e
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1CaughtLocation
