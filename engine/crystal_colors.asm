@@ -612,3 +612,13 @@ InitMG_Mobile_LinkTradePalMap: ; 49856
 	call _InitMG_Mobile_LinkTradePalMap
 	ret
 ; 4985a
+
+Unknown_4985a: ; unreferenced
+	db $ab, $03, $57, $24, $ac, $0e, $13, $32
+	db $be, $30, $5b, $4c, $47, $60, $ed, $f2
+	db $ab, $03, $55, $26, $aa, $0a, $13, $3a
+	db $be, $28, $33, $24, $6e, $71, $df, $b0
+	db $a8, $00, $e5, $e0, $9a, $fc, $f4, $2c
+	db $fe, $4c, $a3, $5e, $c6, $3a, $ab, $4d
+	db $a8, $00, $b5, $b0, $de, $e8, $fc, $1c
+	db $ba, $66, $f7, $0e, $ba, $5e, $43, $bd

@@ -1,4 +1,5 @@
-; MoveDescriptions: ; 2cb52
+MoveDescriptions:: ; 2cb52
+; entries correspond to move ids (see constants/move_constants.asm)
 	dw PoundDescription
 	dw KarateChopDescription
 	dw DoubleslapDescription

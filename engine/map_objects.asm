@@ -1,6 +1,4 @@
-
 INCLUDE "data/facings.asm"
-
 
 INCLUDE "data/map_objects.asm"
 

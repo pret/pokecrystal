@@ -1,3 +1,7 @@
+Predef35: ; 8c000
+Predef36:
+	ret
+
 UpdateTimeOfDayPal:: ; 8c001
 	call UpdateTime
 	ld a, [TimeOfDay]

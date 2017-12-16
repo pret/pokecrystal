@@ -1,3 +1,5 @@
+String_89116:
+	db "-----@"
 
 String_8911c: ; 8911c
 	db   "でんわばんごうが ただしく"   ; Phone number is not

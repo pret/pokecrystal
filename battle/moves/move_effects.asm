@@ -1,3 +1,5 @@
+MoveEffects: ; 2732e
+
 NormalHit:
 	checkobedience
 	usedmovetext
