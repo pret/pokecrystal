@@ -4822,12 +4822,12 @@ CheckDanger: ; 3df9e
 
 .no_danger
 	ld hl, Danger
-	res 7, [hl]
+	res DANGER_ON_F, [hl]
 	jr .done
 
 .danger
 	ld hl, Danger
-	set 7, [hl]
+	set DANGER_ON_F, [hl]
 
 .done
 	ret

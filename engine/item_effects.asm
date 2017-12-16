@@ -2398,7 +2398,7 @@ PokeFlute: ; f50c
 	call PrintText
 
 	ld a, [Danger]
-	and $80
+	and 1 << DANGER_ON_F
 	jr nz, .dummy2
 .dummy2
 	ld hl, .AllSleepingMonWokeUp
