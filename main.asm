@@ -703,77 +703,7 @@ LinkTextbox2: ; 4d35b
 
 INCLUDE "engine/delete_save_change_clock.asm"
 INCLUDE "tilesets/tileset_headers.asm"
-
-FlagPredef: ; 4d7c1
-; Perform action b on flag c in flag array hl.
-; If checking a flag, check flag array d:hl unless d is 0.
-
-; For longer flag arrays, see FlagAction.
-
-	push hl
-	push bc
-
-; Divide by 8 to get the byte we want.
-	push bc
-	srl c
-	srl c
-	srl c
-	ld b, 0
-	add hl, bc
-	pop bc
-
-; Which bit we want from the byte
-	ld a, c
-	and 7
-	ld c, a
-
-; Shift left until we can mask the bit
-	ld a, 1
-	jr z, .shifted
-.shift
-	add a
-	dec c
-	jr nz, .shift
-.shifted
-	ld c, a
-
-; What are we doing to this flag?
-	dec b
-	jr z, .set ; 1
-	dec b
-	jr z, .check ; 2
-
-.reset
-	ld a, c
-	cpl
-	and [hl]
-	ld [hl], a
-	jr .done
-
-.set
-	ld a, [hl]
-	or c
-	ld [hl], a
-	jr .done
-
-.check
-	ld a, d
-	cp 0
-	jr nz, .farcheck
-
-	ld a, [hl]
-	and c
-	jr .done
-
-.farcheck
-	call GetFarByte
-	and c
-
-.done
-	pop bc
-	pop hl
-	ld c, a
-	ret
+INCLUDE "engine/flag_predef.asm"
 
 GetTrademonFrontpic: ; 4d7fd
 	ld a, [wOTTrademonSpecies]
@@ -849,37 +779,7 @@ INCLUDE "engine/evolution_animation.asm"
 INCLUDE "engine/init_hof_credits.asm"
 INCLUDE "mobile/get_trainer_class.asm"
 INCLUDE "battle/sliding_intro.asm"
-
-Mobile_PrintOpponentBattleMessage: ; 4ea0a
-	ld a, c
-	push af
-	call SpeechTextBox
-	call MobileTextBorder
-	pop af
-	dec a
-	ld bc, $c
-	ld hl, w5_MobileOpponentBattleMessages
-	call AddNTimes
-	ld de, wMobileOpponentBattleMessage
-	ld bc, $c
-	ld a, $5 ; BANK(w5_MobileOpponentBattleMessages)
-	call FarCopyWRAM
-
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-
-	ld bc, wMobileOpponentBattleMessage
-	decoord 1, 14
-	callba PrintEZChatBattleMessage
-
-	pop af
-	ld [rSVBK], a
-
-	ld c, 180
-	call DelayFrames
-	ret
+INCLUDE "mobile/print_opp_message.asm"
 
 CheckBattleScene: ; 4ea44
 ; Return carry if battle scene is turned off.
@@ -1204,7 +1104,11 @@ SECTION "bank43", ROMX
 
 INCLUDE "engine/unused_title.asm"
 INCLUDE "engine/title.asm"
+
+
 INCLUDE "mobile/mobile_45.asm"
+
+
 INCLUDE "mobile/mobile_46.asm"
 
 
@@ -1241,7 +1145,10 @@ _UpdateBattleHUDs:
 	callba FinishBattleAnim
 	ret
 
+
 INCLUDE "mobile/mobile_5e.asm"
+
+
 INCLUDE "mobile/mobile_5f.asm"
 
 

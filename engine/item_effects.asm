@@ -14,6 +14,7 @@ _DoItemEffect:: ; e722
 
 
 ItemEffects: ; e73c
+; entries correspond to item ids (see constants/item_constants.asm)
 	dw MasterBall
 	dw UltraBall
 	dw Brightpowder
