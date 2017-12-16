@@ -42,7 +42,7 @@ DoPlayerMovement:: ; 80000
 	jr z, .Surf
 	cp PLAYER_BIKE
 	jr z, .Normal
-	cp PLAYER_SLIP
+	cp PLAYER_SKATE
 	jr z, .Ice
 
 .Normal:
@@ -750,11 +750,10 @@ DoPlayerMovement:: ; 80000
 ; 803ca
 
 .BikeCheck: ; 803ca
-
 	ld a, [PlayerState]
 	cp PLAYER_BIKE
 	ret z
-	cp PLAYER_SLIP
+	cp PLAYER_SKATE
 	ret
 ; 803d3
 
@@ -824,7 +823,7 @@ CheckStandingOnIce:: ; 80404
 	call CheckIceTile
 	jr nc, .yep
 	ld a, [PlayerState]
-	cp PLAYER_SLIP
+	cp PLAYER_SKATE
 	jr nz, .not_ice
 
 .yep
