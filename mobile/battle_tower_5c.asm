@@ -1079,9 +1079,9 @@ BattleTowerAction_CheckExplanationRead: ; 17075f (5c:475f) BattleTowerAction $00
 	and a
 	ret z
 
-	ld a, BANK(s1_be4f)
+	ld a, BANK(sBattleTowerSaveFileFlags)
 	call GetSRAMBank
-	ld a, [s1_be4f]
+	ld a, [sBattleTowerSaveFileFlags]
 	and $2
 	ld [ScriptVar], a
 	call CloseSRAM
@@ -1097,11 +1097,11 @@ BattleTowerAction_GetChallengeState: ; 170778 (5c:4778) BattleTowerAction $02
 	ret
 
 BattleTowerAction_SetExplanationRead: ; 170788 (5c:4788) BattleTowerAction $01
-	ld a, BANK(s1_be4f)
+	ld a, BANK(sBattleTowerSaveFileFlags)
 	call GetSRAMBank
-	ld a, [s1_be4f]
+	ld a, [sBattleTowerSaveFileFlags]
 	or $2
-	ld [s1_be4f], a
+	ld [sBattleTowerSaveFileFlags], a
 	call CloseSRAM
 	ret
 
@@ -1583,20 +1583,20 @@ Function170abe: ; 170abe (5c:4abe) BattleTowerAction $14
 	and a
 	ret z
 
-	ld a, BANK(s1_be4f)
+	ld a, BANK(sBattleTowerSaveFileFlags)
 	call GetSRAMBank
-	ld a, [s1_be4f]
+	ld a, [sBattleTowerSaveFileFlags]
 	and $1
 	ld [ScriptVar], a
 	call CloseSRAM
 	ret
 
 Function170ad7: ; 170ad7 (5c:4ad7) BattleTowerAction $15
-	ld a, BANK(s1_be4f)
+	ld a, BANK(sBattleTowerSaveFileFlags)
 	call GetSRAMBank
-	ld a, [s1_be4f]
+	ld a, [sBattleTowerSaveFileFlags]
 	or $1
-	ld [s1_be4f], a
+	ld [sBattleTowerSaveFileFlags], a
 	call CloseSRAM
 	ret
 

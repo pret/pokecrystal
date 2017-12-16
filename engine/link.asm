@@ -2581,3 +2581,14 @@ UnusedGen1LinkCommsBorderGFX: ; 29f54
 ; unreferenced
 INCBIN "gfx/trade/unused_gen_1_border_tiles.2bpp"
 ; 29fe4
+
+Function29fe4: ; unreferenced
+	ld a, BANK(sPartyMail)
+	call GetSRAMBank
+	ld d, $0
+	ld b, CHECK_FLAG
+	predef FlagPredef
+	call CloseSRAM
+	ld a, c
+	and a
+	ret

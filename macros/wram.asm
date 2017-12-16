@@ -227,7 +227,6 @@ hof_mon: MACRO
 endm
 
 hall_of_fame: MACRO
-\1::
 \1WinCount:: db
 \1Mon1:: hof_mon \1Mon1
 \1Mon2:: hof_mon \1Mon2

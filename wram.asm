@@ -349,7 +349,7 @@ wBT_OTTemp:: battle_tower_struct wBT_OTTemp
 
 NEXTU ; c608
 ; hall of fame temp struct
-	hall_of_fame wHallOfFameTemp
+wHallOfFameTemp:: hall_of_fame wHallOfFameTemp
 
 NEXTU ; c608
 ; timeset temp storage
@@ -2838,14 +2838,13 @@ w3_d662:: battle_tower_struct w3_d662
 UNION ; d742
 w3_d742:: battle_tower_struct w3_d742
 ; d822
-
 NEXTU ; d742
 	ds $be
-
 wBTChoiceOfLvlGroup::
 w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
 	ds $69
 ENDU ; d869
+
 w3_d869:: ds $17
 w3_d880:: ds 1
 w3_d881:: ds 1
@@ -2860,7 +2859,6 @@ w3_d8a1:: ds 1
 w3_d8a2:: ds 1
 w3_d8a3:: ds $19d
 w3_da40:: ds $1c0
-
 w3_dc00:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 	ds $11c
