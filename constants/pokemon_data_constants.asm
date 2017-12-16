@@ -35,7 +35,7 @@ GENDER_F100  EQU 254 ; 100 percent
 GENDERLESS   EQU 255
 
 ; BaseGrowthRate values
-; GrowthRates indexes (see main.asm)
+; GrowthRates indexes (see data/growth_rates.asm)
 	const_def
 	const MEDIUM_FAST
 	const SLIGHTLY_FAST

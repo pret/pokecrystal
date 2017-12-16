@@ -1,16 +1,19 @@
 INCLUDE "includes.asm"
 
+
 SECTION "NULL", ROM0
 NULL::
 
 INCLUDE "rst.asm"
 INCLUDE "interrupts.asm"
 
+
 SECTION "Header", ROM0
 
 Start::
 	nop
 	jp _Start
+
 
 SECTION "Home", ROM0
 
