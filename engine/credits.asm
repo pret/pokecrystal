@@ -521,7 +521,6 @@ GetCreditsPalette: ; 109b2c
 
 .UpdatePals:
 ; Update the first three colors in both palette buffers.
-
 	push af
 	push hl
 	add UnknBGPals % $100
@@ -543,72 +542,8 @@ GetCreditsPalette: ; 109b2c
 	call CopyBytes
 	ret
 
-
 CreditsPalettes:
-
-; Pichu
-	RGB 31, 00, 31
-	RGB 31, 25, 00
-	RGB 11, 14, 31
-	RGB 07, 07, 07
-
-	RGB 31, 05, 05
-	RGB 11, 14, 31
-	RGB 11, 14, 31
-	RGB 31, 31, 31
-
-	RGB 31, 05, 05
-	RGB 00, 00, 00
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-; Smoochum
-	RGB 31, 31, 31
-	RGB 31, 27, 00
-	RGB 26, 06, 31
-	RGB 07, 07, 07
-
-	RGB 03, 13, 31
-	RGB 20, 00, 24
-	RGB 26, 06, 31
-	RGB 31, 31, 31
-
-	RGB 03, 13, 31
-	RGB 00, 00, 00
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-; Ditto
-	RGB 31, 31, 31
-	RGB 23, 12, 28
-	RGB 31, 22, 00
-	RGB 07, 07, 07
-
-	RGB 03, 20, 00
-	RGB 31, 22, 00
-	RGB 31, 22, 00
-	RGB 31, 31, 31
-
-	RGB 03, 20, 00
-	RGB 00, 00, 00
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-; Igglybuff
-	RGB 31, 31, 31
-	RGB 31, 10, 31
-	RGB 31, 00, 09
-	RGB 07, 07, 07
-
-	RGB 31, 14, 00
-	RGB 31, 00, 09
-	RGB 31, 00, 09
-	RGB 31, 31, 31
-
-	RGB 31, 14, 00
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
+INCLUDE "data/palettes/credits.pal"
 ; 109bca
 
 Credits_LoadBorderGFX: ; 109bca (42:5bca)
@@ -678,7 +613,5 @@ Credits_TheEnd: ; 109c11 (42:5c11)
 
 
 INCLUDE "gfx/credits.asm"
-
 INCLUDE "data/credits_script.asm"
-
 INCLUDE "data/credits_strings.asm"

@@ -341,29 +341,7 @@ GameFreakLogoScene5: ; e47ab (39:47ab)
 ; e47ac (39:47ac)
 
 GameFreakLogoPalettes: ; e47ac
-; Ditto's color as it turns into the Game Freak logo.
-; Fade from pink to orange.
-; One color per step.
-	RGB 23, 12, 28
-	RGB 23, 12, 27
-	RGB 23, 13, 26
-	RGB 23, 13, 24
-
-	RGB 24, 14, 22
-	RGB 24, 14, 20
-	RGB 24, 15, 18
-	RGB 24, 15, 16
-
-	RGB 25, 16, 14
-	RGB 25, 16, 12
-	RGB 25, 17, 10
-	RGB 25, 17, 08
-
-	RGB 26, 18, 06
-	RGB 26, 18, 04
-	RGB 26, 19, 02
-	RGB 26, 19, 00
-
+INCLUDE "data/palettes/crystal_intro/gamefreak_logo.pal"
 ; e47cc
 
 GameFreakLogo: ; e47cc
@@ -506,11 +484,11 @@ IntroScene1: ; e495b (39:495b)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_365ad
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -579,11 +557,11 @@ IntroScene3: ; e49fd (39:49fd)
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e5edd
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -645,11 +623,11 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_365ad
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -752,12 +730,12 @@ IntroScene7: ; e4b3f (39:4b3f)
 
 	ld hl, Palette_e5edd
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 
 	ld hl, Palette_e5edd
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 
 	pop af
@@ -910,11 +888,11 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_365ad
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -1037,11 +1015,11 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e5edd
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -1146,11 +1124,11 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e77dd
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -1220,11 +1198,11 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld [rSVBK], a
 	ld hl, Palette_e6d6d
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e6d6d
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -1294,11 +1272,11 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e77dd
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -1464,11 +1442,11 @@ IntroScene26: ; e50bb (39:50bb)
 	ld [rSVBK], a
 	ld hl, Palette_e679d
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e679d
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -1572,47 +1550,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 ; e519c (39:519c)
 
 .FadePals: ; e519c
-; Fade to white.
-	RGB 24, 12, 09
-	RGB 31, 31, 31
-	RGB 12, 00, 31
-	RGB 00, 00, 00
-
-	RGB 31, 19, 05
-	RGB 31, 31, 31
-	RGB 15, 05, 31
-	RGB 07, 07, 07
-
-	RGB 31, 21, 09
-	RGB 31, 31, 31
-	RGB 18, 09, 31
-	RGB 11, 11, 11
-
-	RGB 31, 23, 13
-	RGB 31, 31, 31
-	RGB 21, 13, 31
-	RGB 15, 15, 15
-
-	RGB 31, 25, 17
-	RGB 31, 31, 31
-	RGB 25, 17, 31
-	RGB 19, 19, 19
-
-	RGB 31, 27, 21
-	RGB 31, 31, 31
-	RGB 27, 21, 31
-	RGB 23, 23, 23
-
-	RGB 31, 29, 25
-	RGB 31, 31, 31
-	RGB 29, 26, 31
-	RGB 27, 27, 27
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
+INCLUDE "data/palettes/crystal_intro/fade.pal"
 ; e51dc
 
 CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
@@ -1685,7 +1623,7 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	push hl
 	push bc
 	ld hl, BGPals
-	ld bc, 4 * 16
+	ld bc, 8 palettes
 	xor a
 	call ByteFill
 	pop bc
@@ -2150,85 +2088,8 @@ INCBIN "gfx/intro/003.tilemap.lz"
 ; e5edd
 
 Palette_e5edd: ; e5edd
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB  0,  4,  5
-	RGB  1,  8,  5
-	RGB  4, 12,  9
-	RGB 24, 12,  9
-
-	RGB  0,  4,  5
-	RGB  9,  6,  8
-	RGB  8, 16,  5
-	RGB  5, 10,  4
-
-	RGB 31, 31, 31
-	RGB  9,  6,  8
-	RGB 18,  9,  9
-	RGB 13,  8,  9
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB  2,  5, 22
-	RGB  1,  5, 12
-
-	RGB 31, 31, 31
-	RGB 31, 10, 25
-	RGB 31, 21,  0
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 21, 31
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
+INCLUDE "data/palettes/crystal_intro/intro_1.pal"
+; e5f5d
 
 IntroUnownsGFX: ; e5f5d
 INCBIN "gfx/intro/unowns.2bpp.lz"
@@ -2263,85 +2124,8 @@ INCBIN "gfx/intro/007.tilemap.lz"
 ; e65ad
 
 Palette_365ad: ; e65ad
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 10,  0, 10
-	RGB 19,  0, 19
-	RGB 31,  0, 31
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
+INCLUDE "data/palettes/crystal_intro/intro_2.pal"
+; e662d
 
 IntroCrystalUnownsGFX: ; e662d
 INCBIN "gfx/intro/crystal_unowns.2bpp.lz"
@@ -2356,85 +2140,8 @@ INCBIN "gfx/intro/015.tilemap.lz"
 ; e679d
 
 Palette_e679d: ; e679d
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
+INCLUDE "data/palettes/crystal_intro/intro_3.pal"
+; e681d
 
 IntroSuicuneCloseGFX: ; e681d
 INCBIN "gfx/intro/suicune_close.2bpp.lz"
@@ -2449,85 +2156,8 @@ INCBIN "gfx/intro/011.tilemap.lz"
 ; e6d6d
 
 Palette_e6d6d: ; e6d6d
-	RGB 24, 12,  9
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 24, 12,  9
-	RGB 31, 31, 31
-	RGB  8,  9, 31
-	RGB  0,  0,  0
-
-	RGB 24, 12,  9
-	RGB 12, 20, 31
-	RGB 19,  8, 31
-	RGB  0,  0,  0
-
-	RGB 12, 20, 31
-	RGB  8,  9, 31
-	RGB 19,  8, 31
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 12, 20, 31
-	RGB  8,  9, 31
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
+INCLUDE "data/palettes/crystal_intro/intro_4.pal"
+; e6ded
 
 IntroSuicuneJumpGFX: ; e6ded
 INCBIN "gfx/intro/suicune_jump.2bpp.lz"
@@ -2554,85 +2184,7 @@ INCBIN "gfx/intro/013.tilemap.lz"
 ; e77dd
 
 Palette_e77dd: ; e77dd
-	RGB 24, 12,  9
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 24, 12,  9
-	RGB 31, 31, 31
-	RGB  8,  9, 31
-	RGB  0,  0,  0
-
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-	RGB 24, 12,  9
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 12,  0, 31
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 21,  9,  0
-	RGB 21,  9,  0
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
-
-	RGB 31, 31, 31
-	RGB 20, 20, 20
-	RGB 11, 11, 11
-	RGB  0,  0,  0
+INCLUDE "data/palettes/crystal_intro/intro_5.pal"
 
 IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.2bpp.lz"
@@ -2646,4 +2198,3 @@ IntroGrass3GFX: ; e7a1d
 INCBIN "gfx/intro/grass3.2bpp"
 IntroGrass4GFX: ; e7a5d
 INCBIN "gfx/intro/grass4.2bpp"
-

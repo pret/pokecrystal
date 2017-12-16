@@ -57,12 +57,12 @@ MG_Mobile_Layout_LoadPals: ; 49351 (12:5351)
 	ld de, UnknBGPals
 	ld hl, Palette_493e1
 	ld bc, 5 palettes
-	ld a, $5 ; BANK(UnknBGPals)
+	ld a, BANK(UnknBGPals)
 	call FarCopyWRAM
-	ld de, UnknBGPals + 7 palettes
+	ld de, UnknBGPals palette PAL_BG_TEXT
 	ld hl, Palette_TextBG7
 	ld bc, 1 palettes
-	ld a, $5 ; BANK(UnknBGPals)
+	ld a, BANK(UnknBGPals)
 	call FarCopyWRAM
 	ret
 
@@ -113,37 +113,14 @@ MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
 ; 493e1 (12:53e1)
 
 Palette_493e1: ; 493e1
-	RGB 03, 07, 09
-	RGB 26, 31, 00
-	RGB 20, 16, 03
-	RGB 31, 31, 31
-
-	RGB 13, 24, 29
-	RGB 11, 16, 30
-	RGB 07, 11, 22
-	RGB 05, 06, 18
-
-	RGB 31, 31, 31
-	RGB 20, 26, 31
-	RGB 13, 24, 29
-	RGB 11, 16, 30
-
-	RGB 31, 31, 31
-	RGB 20, 26, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 20, 16, 08
-	RGB 31, 00, 00
-	RGB 00, 00, 00
+INCLUDE "data/palettes/mg_mobile.pal"
 ; 49409
 
 LoadOW_BGPal7:: ; 49409
 	ld hl, Palette_TextBG7
-	ld de, UnknBGPals + 8 * 7
-	ld bc, 8
-	ld a, $5
+	ld de, UnknBGPals palette PAL_BG_TEXT
+	ld bc, 1 palettes
+	ld a, BANK(UnknBGPals)
 	call FarCopyWRAM
 	ret
 ; 49418
@@ -157,19 +134,19 @@ Palette_TextBG7: ; 49418
 
 Function49420:: ; 49420 (12:5420)
 	ld hl, MansionPalette4
-	ld de, UnknBGPals + $30
-	ld bc, $8
-	ld a, $5 ; BANK(UnknBGPals)
+	ld de, UnknBGPals palette PAL_BG_ROOF
+	ld bc, 1 palettes
+	ld a, BANK(UnknBGPals)
 	call FarCopyWRAM
 	ret
 ; 4942f (12:542f)
 
 MG_Mobile_Layout01: ; 4942f
 	call MG_Mobile_Layout_LoadPals
-	ld de, UnknBGPals + $38
+	ld de, UnknBGPals palette PAL_BG_TEXT
 	ld hl, Palette_49478
-	ld bc, $8
-	ld a, $5 ; BANK(UnknBGPals)
+	ld bc, 1 palettes
+	ld a, BANK(UnknBGPals)
 	call FarCopyWRAM
 	call MG_Mobile_Layout_WipeAttrMap
 	hlcoord 0, 0, AttrMap
@@ -258,8 +235,8 @@ LoadSpecialMapPalette: ; 494ac
 
 .ice_path
 	ld a, [wPermission] ; permission
-	and 7
-	cp 3 ; Hall of Fame
+	and $7
+	cp INDOOR ; Hall of Fame
 	jr z, .do_nothing
 	call LoadIcePathPalette
 	scf
@@ -286,7 +263,7 @@ LoadSpecialMapPalette: ; 494ac
 ; 494f2
 
 LoadPokeComPalette: ; 494f2
-	ld a, $5
+	ld a, BANK(UnknBGPals)
 	ld de, UnknBGPals
 	ld hl, PokeComPalette
 	ld bc, 8 palettes
@@ -299,7 +276,7 @@ INCLUDE "tilesets/pokecom_center.pal"
 ; 49541
 
 LoadBattleTowerPalette: ; 49541
-	ld a, $5
+	ld a, BANK(UnknBGPals)
 	ld de, UnknBGPals
 	ld hl, BattleTowerPalette
 	ld bc, 8 palettes
@@ -312,7 +289,7 @@ INCLUDE "tilesets/battle_tower.pal"
 ; 49590
 
 LoadIcePathPalette: ; 49590
-	ld a, $5
+	ld a, BANK(UnknBGPals)
 	ld de, UnknBGPals
 	ld hl, IcePathPalette
 	ld bc, 8 palettes
@@ -325,7 +302,7 @@ INCLUDE "tilesets/ice_path.pal"
 ; 495df
 
 LoadHousePalette: ; 495df
-	ld a, $5
+	ld a, BANK(UnknBGPals)
 	ld de, UnknBGPals
 	ld hl, HousePalette
 	ld bc, 8 palettes
@@ -338,7 +315,7 @@ INCLUDE "tilesets/house_1.pal"
 ; 4962e
 
 LoadRadioTowerPalette: ; 4962e
-	ld a, $5
+	ld a, BANK(UnknBGPals)
 	ld de, UnknBGPals
 	ld hl, RadioTowerPalette
 	ld bc, 8 palettes
@@ -401,23 +378,23 @@ MansionPalette4: ; 496bd
 ; 496c5
 
 LoadMansionPalette: ; 496c5
-	ld a, $5
+	ld a, BANK(UnknBGPals)
 	ld de, UnknBGPals
 	ld hl, MansionPalette1
 	ld bc, 8 palettes
 	call FarCopyWRAM
-	ld a, $5
-	ld de, UnknBGPals + 4 palettes
+	ld a, BANK(UnknBGPals)
+	ld de, UnknBGPals palette PAL_BG_YELLOW
 	ld hl, MansionPalette2
 	ld bc, 1 palettes
 	call FarCopyWRAM
-	ld a, $5
-	ld de, UnknBGPals + 3 palettes
+	ld a, BANK(UnknBGPals)
+	ld de, UnknBGPals palette PAL_BG_WATER
 	ld hl, MansionPalette3
 	ld bc, 1 palettes
 	call FarCopyWRAM
-	ld a, $5
-	ld de, UnknBGPals + 6 palettes
+	ld a, BANK(UnknBGPals)
+	ld de, UnknBGPals palette PAL_BG_ROOF
 	ld hl, MansionPalette4
 	ld bc, 1 palettes
 	call FarCopyWRAM
@@ -435,7 +412,7 @@ MG_Mobile_Layout02: ; 49706
 	ld hl, Palette_49732
 	ld de, UnknBGPals
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(UnknBGPals)
 	call FarCopyWRAM
 	callba ApplyPals
 	call MG_Mobile_Layout_WipeAttrMap
@@ -443,7 +420,7 @@ MG_Mobile_Layout02: ; 49706
 	ld hl, Palette_4973a
 	ld de, UnknOBPals
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(UnknOBPals)
 	call FarCopyWRAM
 	ret
 ; 49732
@@ -473,45 +450,7 @@ Function49742: ; 49742
 ; 49757
 
 Palette_49757: ; 49757
-	RGB 31, 31, 63
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-
-	RGB 31, 31, 63
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-
-	RGB 04, 02, 15
-	RGB 21, 00, 21
-	RGB 31, 00, 00
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 21, 00, 21
-	RGB 30, 16, 26
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 21, 00, 21
-	RGB 16, 16, 16
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 21, 00, 21
-	RGB 31, 12, 12
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 21, 00, 21
-	RGB 07, 08, 31
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 21, 00, 21
-	RGB 29, 28, 09
-	RGB 31, 31, 31
+INCLUDE "data/palettes/49757.pal"
 ; 49797
 
 _InitMG_Mobile_LinkTradePalMap: ; 49797
@@ -567,45 +506,17 @@ _InitMG_Mobile_LinkTradePalMap: ; 49797
 ; 49811
 
 LoadTradeRoomBGPals: ; 49811
-	ld hl, Palette_49826
-	ld de, UnknBGPals + $10
-	ld bc, $30
-	ld a, $5
+	ld hl, TradeRoomPalette
+	ld de, UnknBGPals palette PAL_BG_GREEN
+	ld bc, 6 palettes
+	ld a, BANK(UnknBGPals)
 	call FarCopyWRAM
 	callba ApplyPals
 	ret
 ; 49826
 
-Palette_49826: ; 49826
-	RGB 04, 02, 15
-	RGB 07, 09, 31
-	RGB 31, 00, 00
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 07, 09, 31
-	RGB 15, 23, 30
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 07, 09, 31
-	RGB 16, 16, 16
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 07, 09, 31
-	RGB 25, 07, 04
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 07, 09, 31
-	RGB 03, 22, 08
-	RGB 31, 31, 31
-
-	RGB 04, 02, 15
-	RGB 07, 09, 31
-	RGB 29, 28, 09
-	RGB 31, 31, 31
+TradeRoomPalette: ; 49826
+INCLUDE "data/palettes/trade_room.pal"
 ; 49856
 
 InitMG_Mobile_LinkTradePalMap: ; 49856

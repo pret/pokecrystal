@@ -159,7 +159,7 @@ Function819a7: ; 819a7
 	ld [rSVBK], a
 	ld hl, Palette_819f4
 	ld de, BGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 	ld a, $80
 	ld [rBGPI], a
@@ -193,93 +193,10 @@ Function819a7: ; 819a7
 ; 819f4
 
 Palette_819f4: ; 819f4
-	; white
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	; red
-	RGB 31, 00, 00
-	RGB 31, 00, 00
-	RGB 31, 00, 00
-	RGB 00, 00, 00
-
-	; green
-	RGB 00, 31, 00
-	RGB 00, 31, 00
-	RGB 00, 31, 00
-	RGB 00, 00, 00
-
-	; blue
-	RGB 00, 00, 31
-	RGB 00, 00, 31
-	RGB 00, 00, 31
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
+INCLUDE "data/palettes/debug/bg.pal"
 
 Palette_81a34: ; 81a34
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-
-	; red
-	RGB 31, 31, 31
-	RGB 31, 00, 00
-	RGB 31, 00, 00
-	RGB 00, 00, 00
-
-	; green
-	RGB 31, 31, 31
-	RGB 00, 31, 00
-	RGB 00, 31, 00
-	RGB 00, 00, 00
-
-	; blue
-	RGB 31, 31, 31
-	RGB 00, 00, 31
-	RGB 00, 00, 31
-	RGB 00, 00, 00
+INCLUDE "data/palettes/debug/ob.pal"
 ; 81a74
 
 Function81a74: ; 81a74

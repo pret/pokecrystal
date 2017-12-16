@@ -77,7 +77,7 @@ Predef_LoadSGBLayout: ; 864c
 	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, Palettes_a8be
+	ld de, HPBarPals
 	add hl, de
 
 	ld a, [hli]
@@ -95,7 +95,7 @@ Predef_LoadSGBLayout: ; 864c
 	add hl, hl
 	add hl, hl
 
-	ld de, Palettes_a8be
+	ld de, HPBarPals
 	add hl, de
 	ld a, [hli]
 	ld [wSGBPals + 9], a
@@ -173,7 +173,7 @@ Predef_LoadSGBLayout: ; 864c
 	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, Palettes_a8be
+	ld de, HPBarPals
 	add hl, de
 	ld a, [hli]
 	ld [wSGBPals + 3], a
