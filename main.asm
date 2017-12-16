@@ -4638,7 +4638,7 @@ INCLUDE "engine/mon_icons.asm"
 
 SECTION "bank24", ROMX
 
-INCLUDE "engine/phone.asm"
+INCLUDE "engine/phone/phone.asm"
 INCLUDE "engine/timeset.asm"
 INCLUDE "engine/pokegear.asm"
 INCLUDE "engine/fish.asm"
@@ -4647,9 +4647,9 @@ INCLUDE "engine/slot_machine.asm"
 
 SECTION "Phone Engine", ROMX
 
-INCLUDE "engine/phone_callers.asm"
-INCLUDE "engine/phone_gossip.asm"
-INCLUDE "engine/buena_phone_scripts.asm"
+INCLUDE "engine/phone/phone_callers.asm"
+INCLUDE "engine/phone/phone_gossip.asm"
+INCLUDE "engine/phone/buenas_password.asm"
 
 
 SECTION "Phone Text", ROMX
@@ -4683,8 +4683,8 @@ INCLUDE "gfx/mail.asm"
 SECTION "bank2F", ROMX
 
 INCLUDE "engine/std_scripts.asm"
-INCLUDE "engine/phone_scripts.asm"
-INCLUDE "engine/phone_scripts_generic.asm"
+INCLUDE "engine/phone/phone_scripts.asm"
+INCLUDE "engine/phone/generic_calls.asm"
 
 TalkToTrainerScript:: ; 0xbe66a
 	faceplayer
