@@ -3015,6 +3015,7 @@ Unknown_1196b8: ; 1196b8
 	db "Sun"
 ; 1196cd
 
+
 SECTION "bank46_2", ROMX
 ; A hack to use ascii above.
 

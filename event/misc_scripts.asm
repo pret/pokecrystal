@@ -1,3 +1,11 @@
+Script_AbortBugContest: ; 0x122c1
+	checkflag ENGINE_BUG_CONTEST_TIMER
+	iffalse .finish
+	setflag ENGINE_DAILY_BUG_CONTEST
+	special ContestReturnMons
+.finish
+	end
+
 FindItemInBallScript:: ; 0x122ce
 	callasm .TryReceiveItem
 	iffalse .no_room

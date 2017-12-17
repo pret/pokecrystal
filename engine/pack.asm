@@ -1315,10 +1315,10 @@ DrawPackGFX: ; 1089d
 ; 108cc
 
 PackGFXPointers: ; 108cc
-	dw PackGFX + $f0 * 1
-	dw PackGFX + $f0 * 3
-	dw PackGFX + $f0 * 0
-	dw PackGFX + $f0 * 2
+	dw PackGFX + (15 tiles) * 1
+	dw PackGFX + (15 tiles) * 3
+	dw PackGFX + (15 tiles) * 0
+	dw PackGFX + (15 tiles) * 2
 ; 108d4
 
 Pack_InterpretJoypad: ; 108d4 (4:48d4)

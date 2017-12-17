@@ -17,19 +17,20 @@ RGBLINK := rgblink
 
 
 crystal_obj := \
-wram.o \
-main.o \
-lib/mobile/main.o \
-home.o \
 audio.o \
+home.o \
+main.o \
 maps.o \
-engine/events.o \
-engine/credits.o \
+wram.o \
+data/pokemon/dex_entries.o \
 data/pokemon/egg_moves.o \
 data/pokemon/evos_attacks.o \
-data/pokemon/dex_entries.o \
-text/common_text.o \
-gfx/pics.o
+engine/credits.o \
+engine/events.o \
+gfx/pics.o \
+gfx/sprites.o \
+lib/mobile/main.o \
+text/common_text.o
 
 crystal11_obj := $(crystal_obj:.o=11.o)
 

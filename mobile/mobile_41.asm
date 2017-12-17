@@ -1,5 +1,3 @@
-SECTION "bank41_2", ROMX
-
 ; These functions deal with miscellaneous statistics
 ; which were used for Trainer Rankings in Pokémon News.
 

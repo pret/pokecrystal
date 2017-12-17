@@ -82,63 +82,10 @@ INCLUDE "engine/player_step.asm"
 INCLUDE "engine/anim_hp_bar.asm"
 INCLUDE "engine/move_mon.asm"
 INCLUDE "engine/billspctop.asm"
-
-GetBreedMon1LevelGrowth: ; e698
-	ld hl, wBreedMon1Stats
-	ld de, TempMon
-	ld bc, BOXMON_STRUCT_LENGTH
-	call CopyBytes
-	callab CalcLevel
-	ld a, [wBreedMon1Level]
-	ld b, a
-	ld a, d
-	ld e, a
-	sub b
-	ld d, a
-	ret
-
-GetBreedMon2LevelGrowth: ; e6b3
-	ld hl, wBreedMon2Stats
-	ld de, TempMon
-	ld bc, BOXMON_STRUCT_LENGTH
-	call CopyBytes
-	callab CalcLevel
-	ld a, [wBreedMon2Level]
-	ld b, a
-	ld a, d
-	ld e, a
-	sub b
-	ld d, a
-	ret
-
+INCLUDE "engine/get_breedmon_growth.asm"
 INCLUDE "event/bug_contest/caught_mon.asm"
 INCLUDE "engine/item_effects.asm"
-
-KnowsMove: ; f9ea
-	ld a, MON_MOVES
-	call GetPartyParamLocation
-	ld a, [wPutativeTMHMMove]
-	ld b, a
-	ld c, NUM_MOVES
-.loop
-	ld a, [hli]
-	cp b
-	jr z, .knows_move
-	dec c
-	jr nz, .loop
-	and a
-	ret
-
-.knows_move
-	ld hl, .Text_knows
-	call PrintText
-	scf
-	ret
-
-.Text_knows: ; 0xfa06
-	; knows @ .
-	text_jump UnknownText_0x1c5ea8
-	db "@"
+INCLUDE "engine/knows_move.asm"
 
 
 SECTION "bank4", ROMX
@@ -147,16 +94,7 @@ INCLUDE "engine/pack.asm"
 INCLUDE "engine/time.asm"
 INCLUDE "engine/tmhm.asm"
 INCLUDE "engine/namingscreen.asm"
-
-Script_AbortBugContest: ; 0x122c1
-	checkflag ENGINE_BUG_CONTEST_TIMER
-	iffalse .finish
-	setflag ENGINE_DAILY_BUG_CONTEST
-	special ContestReturnMons
-.finish
-	end
-
-INCLUDE "event/itemball.asm"
+INCLUDE "event/misc_scripts.asm"
 INCLUDE "event/heal_machine_anim.asm"
 INCLUDE "event/whiteout.asm"
 INCLUDE "event/forced_movement.asm"
@@ -165,8 +103,8 @@ INCLUDE "engine/start_menu.asm"
 INCLUDE "engine/select_menu.asm"
 INCLUDE "event/elevator.asm"
 INCLUDE "event/bug_contest/contest.asm"
-INCLUDE "event/hidden_items.asm"
-INCLUDE "engine/collision_stdscripts.asm"
+INCLUDE "event/misc_scripts_2.asm"
+INCLUDE "event/std_collision.asm"
 INCLUDE "event/bug_contest/judging.asm"
 INCLUDE "engine/pokerus_tick.asm"
 INCLUDE "event/bug_contest/contest_2.asm"
@@ -201,15 +139,7 @@ INCLUDE "engine/clock_reset.asm"
 
 SECTION "bank9", ROMX
 
-StringBufferPointers:: ; 24000
-	dw StringBuffer3
-	dw StringBuffer4
-	dw StringBuffer5
-	dw StringBuffer2
-	dw StringBuffer1
-	dw EnemyMonNick
-	dw BattleMonNick
-
+INCLUDE "data/text_buffers.asm"
 INCLUDE "engine/menu.asm"
 
 UpdateItemDescription: ; 0x244c3
@@ -296,12 +226,7 @@ SECTION "bankA", ROMX
 INCLUDE "engine/link.asm"
 INCLUDE "engine/wildmons.asm"
 INCLUDE "battle/link_result.asm"
-
-ChrisBackpic: ; 2ba1a
-INCBIN "gfx/player/chris_back.2bpp.lz"
-
-DudeBackpic: ; 2bbaa
-INCBIN "gfx/battle/dude.2bpp.lz"
+INCLUDE "engine/player_gfx_2.asm"
 
 
 SECTION "bankB", ROMX
@@ -704,45 +629,7 @@ LinkTextbox2: ; 4d35b
 INCLUDE "engine/delete_save_change_clock.asm"
 INCLUDE "tilesets/tileset_headers.asm"
 INCLUDE "engine/flag_predef.asm"
-
-GetTrademonFrontpic: ; 4d7fd
-	ld a, [wOTTrademonSpecies]
-	ld hl, wOTTrademonDVs
-	ld de, VTiles2
-	push de
-	push af
-	predef GetUnownLetter
-	pop af
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
-	call GetBaseData
-	pop de
-	predef FrontpicPredef
-	ret
-
-AnimateTrademonFrontpic: ; 4d81e
-	ld a, [wOTTrademonSpecies]
-	call IsAPokemon
-	ret c
-	callba ShowOTTrademonStats
-	ld a, [wOTTrademonSpecies]
-	ld [CurPartySpecies], a
-	ld a, [wOTTrademonDVs]
-	ld [TempMonDVs], a
-	ld a, [wOTTrademonDVs + 1]
-	ld [TempMonDVs + 1], a
-	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
-	call GetSGBLayout
-	ld a, %11100100 ; 3,2,1,0
-	call DmgToCgbBGPals
-	callba TradeAnim_ShowGetmonFrontpic
-	ld a, [wOTTrademonSpecies]
-	ld [CurPartySpecies], a
-	hlcoord 7, 2
-	ld d, $0
-	ld e, ANIM_MON_TRADE
-	predef AnimateFrontpic
-	ret
+INCLUDE "engine/trademon_frontpic.asm"
 
 CheckPokerus: ; 4d860
 ; Return carry if a monster in your party has Pokerus
@@ -780,55 +667,7 @@ INCLUDE "engine/init_hof_credits.asm"
 INCLUDE "mobile/get_trainer_class.asm"
 INCLUDE "battle/sliding_intro.asm"
 INCLUDE "mobile/print_opp_message.asm"
-
-CheckBattleScene: ; 4ea44
-; Return carry if battle scene is turned off.
-
-	ld a, 0
-	ld hl, wLinkMode
-	call GetFarWRAMByte
-	cp LINK_MOBILE
-	jr z, .mobile
-
-	ld a, [Options]
-	bit BATTLE_SCENE, a
-	jr nz, .off
-
-	and a
-	ret
-
-.mobile
-	ld a, [wcd2f]
-	and a
-	jr nz, .from_wram
-
-	ld a, $4
-	call GetSRAMBank
-	ld a, [$a60c]
-	ld c, a
-	call CloseSRAM
-
-	ld a, c
-	bit 0, c
-	jr z, .off
-
-	and a
-	ret
-
-.from_wram
-	ld a, $5
-	ld hl, w5_dc00
-	call GetFarWRAMByte
-	bit 0, a
-	jr z, .off
-
-	and a
-	ret
-
-.off
-	scf
-	ret
-
+INCLUDE "engine/check_battle_scene.asm"
 INCLUDE "engine/gbc_only.asm"
 INCLUDE "event/poke_seer.asm"
 
@@ -969,7 +808,6 @@ SECTION "bank2F", ROMX
 INCLUDE "engine/std_scripts.asm"
 INCLUDE "engine/phone_scripts.asm"
 INCLUDE "engine/trainer_scripts.asm"
-INCLUDE "gfx/sprites.asm"
 
 
 SECTION "bank32", ROMX
@@ -1073,8 +911,6 @@ INCLUDE "engine/npctrade.asm"
 INCLUDE "event/mom_phone.asm"
 
 
-SECTION "mobile_40", ROMX
-
 INCLUDE "mobile/mobile_40.asm"
 
 
@@ -1146,8 +982,12 @@ _UpdateBattleHUDs:
 	ret
 
 
+SECTION "mobile_5e", ROMX
+
 INCLUDE "mobile/mobile_5e.asm"
 
+
+SECTION "bank5F", ROMX
 
 INCLUDE "mobile/mobile_5f.asm"
 

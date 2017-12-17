@@ -1,8 +1,4 @@
-
-SECTION "bank5F", ROMX
-
 Function17c000: ; 17c000
-
 	call DisableLCD
 
 	ld hl, VTiles2

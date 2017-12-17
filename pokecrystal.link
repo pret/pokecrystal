@@ -173,7 +173,6 @@ ROMX $40
 	"bank40_3"
 ROMX $41
 	"bank41"
-	"bank41_2"
 ROMX $42
 	"mobile_42"
 	"Intro Logo"
@@ -243,7 +242,7 @@ ROMX $5e
 	"bank5E"
 	"Songs 5"
 	"Crystal Sound Effects"
-	"Misc Crystal"
+	"mobile_5e"
 ROMX $5f
 	"bank5F"
 ROMX $60

@@ -4,7 +4,10 @@ INCLUDE "includes.asm"
 SECTION "NULL", ROM0
 NULL::
 
+
 INCLUDE "rst.asm"
+
+
 INCLUDE "interrupts.asm"
 
 
