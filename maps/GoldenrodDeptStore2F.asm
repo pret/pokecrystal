@@ -26,14 +26,14 @@ ClerkScript_0x55b65:
 	closetext
 	end
 
-YoungsterScript_0x55b6d:
-	jumptextfaceplayer UnknownText_0x55c25
+GoldenrodDeptStore2FYoungsterScript:
+	jumptextfaceplayer GoldenrodDeptStore2FYoungsterText
 
-CooltrainerFScript_0x55b70:
-	jumptextfaceplayer UnknownText_0x55c7b
+GoldenrodDeptStore2FCooltrainerFScript:
+	jumptextfaceplayer GoldenrodDeptStore2FCooltrainerFText
 
-GentlemanScript_0x55b73:
-	jumptextfaceplayer UnknownText_0x55cb7
+GoldenrodDeptStore2FGentlemanScript:
+	jumptextfaceplayer GoldenrodDeptStore2FGentlemanText
 
 GoldenrodDeptStore2FDirectory:
 	jumptext GoldenrodDeptStore2FDirectoryText
@@ -62,7 +62,7 @@ UnknownText_0x55bd3:
 	cont "techniques."
 	done
 
-UnknownText_0x55c25:
+GoldenrodDeptStore2FYoungsterText:
 	text "#GEAR can store"
 	line "up to ten phone"
 	cont "numbers."
@@ -72,7 +72,7 @@ UnknownText_0x55c25:
 	cont "to keep."
 	done
 
-UnknownText_0x55c7b:
+GoldenrodDeptStore2FCooltrainerFText:
 	text "I got my ABRA at"
 	line "the GAME CORNER."
 
@@ -80,7 +80,7 @@ UnknownText_0x55c7b:
 	line "partner."
 	done
 
-UnknownText_0x55cb7:
+GoldenrodDeptStore2FGentlemanText:
 	text "This DEPT.STORE"
 	line "makes me realize"
 
@@ -122,6 +122,6 @@ GoldenrodDeptStore2F_MapEventHeader:
 	db 5
 	person_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x55b5d, -1
 	person_event SPRITE_CLERK, 6, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x55b65, -1
-	person_event SPRITE_YOUNGSTER, 6, 9, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x55b6d, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x55b70, -1
-	person_event SPRITE_GENTLEMAN, 6, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x55b73, -1
+	person_event SPRITE_YOUNGSTER, 6, 9, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore2FYoungsterScript, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore2FCooltrainerFScript, -1
+	person_event SPRITE_GENTLEMAN, 6, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore2FGentlemanScript, -1

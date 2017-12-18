@@ -75,8 +75,8 @@ SwimmermRandallScript:
 	closetext
 	end
 
-LassScript_0x1a61c4:
-	jumptextfaceplayer UnknownText_0x1a6429
+Route40Lass1Script:
+	jumptextfaceplayer Route40Lass1Text
 
 PokefanMScript_0x1a61c7:
 	special Mobile_DummyReturnFalse
@@ -86,11 +86,11 @@ PokefanMScript_0x1a61c7:
 .mobile
 	jumptextfaceplayer UnknownText_0x1a649b
 
-LassScript_0x1a61d3:
-	jumptextfaceplayer UnknownText_0x1a64e6
+Route40Lass2Script:
+	jumptextfaceplayer Route40Lass2Text
 
-StandingYoungsterScript_0x1a61d6:
-	jumptextfaceplayer UnknownText_0x1a6564
+Route40StandingYoungsterScript:
+	jumptextfaceplayer Route40StandingYoungsterText
 
 MonicaScript:
 	faceplayer
@@ -235,7 +235,7 @@ SwimmerfPaulaAfterBattleText:
 	cont "carry me along."
 	done
 
-UnknownText_0x1a6429:
+Route40Lass1Text:
 	text "Although you can't"
 	line "see it from here,"
 
@@ -259,7 +259,7 @@ UnknownText_0x1a649b:
 	para "What? What?"
 	done
 
-UnknownText_0x1a64e6:
+Route40Lass2Text:
 	text "I came to OLIVINE"
 	line "by ship to see the"
 
@@ -271,7 +271,7 @@ UnknownText_0x1a64e6:
 	cont "from a big city."
 	done
 
-UnknownText_0x1a6564:
+Route40StandingYoungsterText:
 	text "Have you gone to"
 	line "the BATTLE TOWER?"
 
@@ -362,8 +362,8 @@ Route40_MapEventHeader:
 	person_event SPRITE_ROCK, 11, 7, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route40Rock, -1
 	person_event SPRITE_ROCK, 9, 6, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route40Rock, -1
 	person_event SPRITE_ROCK, 8, 7, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route40Rock, -1
-	person_event SPRITE_LASS, 13, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x1a61c4, -1
+	person_event SPRITE_LASS, 13, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route40Lass1Script, -1
 	person_event SPRITE_BUENA, 10, 8, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
 	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x1a61c7, -1
-	person_event SPRITE_LASS, 4, 13, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x1a61d3, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 9, 16, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a61d6, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_LASS, 4, 13, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route40Lass2Script, -1
+	person_event SPRITE_STANDING_YOUNGSTER, 9, 16, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Route40StandingYoungsterScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

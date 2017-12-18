@@ -8,10 +8,10 @@ Route2Gate_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ScientistScript_0x9b952:
-	jumptextfaceplayer UnknownText_0x9b955
+Route2GateScientistScript:
+	jumptextfaceplayer Route2GateScientistText
 
-UnknownText_0x9b955:
+Route2GateScientistText:
 	text "Are you <PLAY_G>?"
 
 	para "I work as PROF."
@@ -44,4 +44,4 @@ Route2Gate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SCIENTIST, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x9b952, -1
+	person_event SPRITE_SCIENTIST, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Route2GateScientistScript, -1

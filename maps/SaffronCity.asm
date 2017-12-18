@@ -52,11 +52,11 @@ UnknownScript_0x19934c:
 	closetext
 	end
 
-CooltrainerMScript_0x199352:
-	jumptextfaceplayer UnknownText_0x1994fe
+SaffronCityCooltrainerMScript:
+	jumptextfaceplayer SaffronCityCooltrainerMText
 
-CooltrainerFScript_0x199355:
-	jumptextfaceplayer UnknownText_0x19958e
+SaffronCityCooltrainerFScript:
+	jumptextfaceplayer SaffronCityCooltrainerFText
 
 FisherScript_0x199358:
 	faceplayer
@@ -74,14 +74,14 @@ UnknownScript_0x199366:
 	closetext
 	end
 
-YoungsterScript_0x19936c:
-	jumptextfaceplayer UnknownText_0x1996a5
+SaffronCityYoungster1Script:
+	jumptextfaceplayer SaffronCityYoungster1Text
 
-YoungsterScript_0x19936f:
-	jumptextfaceplayer UnknownText_0x1996e5
+SaffronCityYoungster2Script:
+	jumptextfaceplayer SaffronCityYoungster2Text
 
-LassScript_0x199372:
-	jumptextfaceplayer UnknownText_0x199745
+SaffronCityLassScript:
+	jumptextfaceplayer SaffronCityLassText
 
 SaffronCitySign:
 	jumptext SaffronCitySignText
@@ -148,7 +148,7 @@ UnknownText_0x1994ae:
 	cont "the MAGNET TRAIN."
 	done
 
-UnknownText_0x1994fe:
+SaffronCityCooltrainerMText:
 	text "I went to the GYM,"
 	line "raring for battles"
 	cont "against trainers…"
@@ -163,7 +163,7 @@ UnknownText_0x1994fe:
 	line "embarrassed."
 	done
 
-UnknownText_0x19958e:
+SaffronCityCooltrainerFText:
 	text "This is SILPH CO.,"
 	line "famous for #MON"
 	cont "merchandise."
@@ -196,7 +196,7 @@ UnknownText_0x19964b:
 	line "Haaah, I'm full!"
 	done
 
-UnknownText_0x1996a5:
+SaffronCityYoungster1Text:
 	text "Going into an"
 	line "alley for the"
 
@@ -204,7 +204,7 @@ UnknownText_0x1996a5:
 	line "me sorta anxious."
 	done
 
-UnknownText_0x1996e5:
+SaffronCityYoungster2Text:
 	text "There's a place"
 	line "called TRAINER"
 
@@ -215,7 +215,7 @@ UnknownText_0x1996e5:
 	line "over the place."
 	done
 
-UnknownText_0x199745:
+SaffronCityLassText:
 	text "Our city was"
 	line "featured on a"
 	cont "radio program."
@@ -305,9 +305,9 @@ SaffronCity_MapEventHeader:
 	db 8
 	person_event SPRITE_LASS, 14, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, LassScript_0x19932a, -1
 	person_event SPRITE_POKEFAN_M, 30, 19, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x19933e, -1
-	person_event SPRITE_COOLTRAINER_M, 7, 32, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x199352, -1
-	person_event SPRITE_COOLTRAINER_F, 24, 20, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x199355, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 32, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SaffronCityCooltrainerMScript, -1
+	person_event SPRITE_COOLTRAINER_F, 24, 20, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, SaffronCityCooltrainerFScript, -1
 	person_event SPRITE_FISHER, 12, 27, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x199358, -1
-	person_event SPRITE_YOUNGSTER, 19, 15, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x19936c, -1
-	person_event SPRITE_YOUNGSTER, 22, 35, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x19936f, -1
-	person_event SPRITE_LASS, 8, 19, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x199372, -1
+	person_event SPRITE_YOUNGSTER, 19, 15, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SaffronCityYoungster1Script, -1
+	person_event SPRITE_YOUNGSTER, 22, 35, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, SaffronCityYoungster2Script, -1
+	person_event SPRITE_LASS, 8, 19, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SaffronCityLassScript, -1

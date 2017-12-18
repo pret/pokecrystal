@@ -128,11 +128,11 @@ RhydonScript_0x9951b:
 	closetext
 	end
 
-CooltrainerMScript_0x99525:
-	jumptextfaceplayer UnknownText_0x99a24
+DanceTheatreCooltrainerMScript:
+	jumptextfaceplayer DanceTheatreCooltrainerMText
 
-GrannyScript_0x99528:
-	jumptextfaceplayer UnknownText_0x99aaa
+DanceTheatreGrannyScript:
+	jumptextfaceplayer DanceTheatreGrannyText
 
 MapDanceTheatreSignpost1Script:
 	jumptext UnknownText_0x99b79
@@ -298,7 +298,7 @@ UnknownText_0x99a0a:
 	line "gugogooh!"
 	done
 
-UnknownText_0x99a24:
+DanceTheatreCooltrainerMText:
 	text "That man's always"
 	line "with his RHYDON."
 
@@ -312,7 +312,7 @@ UnknownText_0x99a24:
 	cont "#MON?"
 	done
 
-UnknownText_0x99aaa:
+DanceTheatreGrannyText:
 	text "The KIMONO GIRLS"
 	line "are so beautiful…"
 
@@ -363,5 +363,5 @@ DanceTheatre_MapEventHeader:
 	person_event SPRITE_KIMONO_GIRL, 2, 11, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 0, TrainerKimono_girlMiki, -1
 	person_event SPRITE_GENTLEMAN, 10, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x994c6, -1
 	person_event SPRITE_RHYDON, 8, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, RhydonScript_0x9951b, -1
-	person_event SPRITE_COOLTRAINER_M, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x99525, -1
-	person_event SPRITE_GRANNY, 6, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrannyScript_0x99528, -1
+	person_event SPRITE_COOLTRAINER_M, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, DanceTheatreCooltrainerMScript, -1
+	person_event SPRITE_GRANNY, 6, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DanceTheatreGrannyScript, -1

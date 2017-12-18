@@ -134,8 +134,8 @@ SageScript_0x980b0:
 	closetext
 	end
 
-GrampsScript_0x980c4:
-	jumptextfaceplayer UnknownText_0x984ab
+EcruteakHouseGrampsScript:
+	jumptextfaceplayer EcruteakHouseGrampsText
 
 MovementData_0x980c7:
 	fix_facing
@@ -266,7 +266,7 @@ UnknownText_0x9846f:
 	line "to the top!"
 	done
 
-UnknownText_0x984ab:
+EcruteakHouseGrampsText:
 	text "Two towers…"
 	line "Two #MON…"
 
@@ -302,4 +302,4 @@ EcruteakHouse_MapEventHeader:
 	person_event SPRITE_SAGE, 6, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
 	person_event SPRITE_SAGE, 6, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
 	person_event SPRITE_SAGE, 9, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
-	person_event SPRITE_GRAMPS, 11, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x980c4, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	person_event SPRITE_GRAMPS, 11, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakHouseGrampsScript, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE

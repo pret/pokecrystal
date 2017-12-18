@@ -8,10 +8,10 @@ Route42EcruteakGate_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-OfficerScript_0x19a4b5:
-	jumptextfaceplayer UnknownText_0x19a4b8
+Route42EcruteakGateOfficerScript:
+	jumptextfaceplayer Route42EcruteakGateOfficerText
 
-UnknownText_0x19a4b8:
+Route42EcruteakGateOfficerText:
 	text "MT.MORTAR is like"
 	line "a maze inside."
 
@@ -38,4 +38,4 @@ Route42EcruteakGate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_0x19a4b5, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route42EcruteakGateOfficerScript, -1

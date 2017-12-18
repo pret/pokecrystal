@@ -14,11 +14,11 @@ CeladonDeptStore6F_MapScriptHeader:
 	changeblock $c, $0, $3
 	return
 
-SuperNerdScript_0x7117a:
-	jumptextfaceplayer UnknownText_0x712c7
+CeladonDeptStore6FSuperNerdScript:
+	jumptextfaceplayer CeladonDeptStore6FSuperNerdText
 
-YoungsterScript_0x7117d:
-	jumptextfaceplayer UnknownText_0x71310
+CeladonDeptStore6FYoungsterScript:
+	jumptextfaceplayer CeladonDeptStore6FYoungsterText
 
 CeladonVendingMachine:
 	opentext
@@ -125,7 +125,7 @@ CeladonVendingNoSpaceText:
 	line "room for stuff…"
 	done
 
-UnknownText_0x712c7:
+CeladonDeptStore6FSuperNerdText:
 	text "A vending machine"
 	line "with a prize rou-"
 	cont "lette…"
@@ -134,7 +134,7 @@ UnknownText_0x712c7:
 	line "those anymore."
 	done
 
-UnknownText_0x71310:
+CeladonDeptStore6FYoungsterText:
 	text "Aww! There's no"
 	line "games here!"
 
@@ -169,5 +169,5 @@ CeladonDeptStore6F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SUPER_NERD, 2, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x7117a, -1
-	person_event SPRITE_YOUNGSTER, 5, 12, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x7117d, -1
+	person_event SPRITE_SUPER_NERD, 2, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonDeptStore6FSuperNerdScript, -1
+	person_event SPRITE_YOUNGSTER, 5, 12, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonDeptStore6FYoungsterScript, -1

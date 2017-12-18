@@ -9,8 +9,8 @@ OlivineHouseBeta_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TeacherScript_0x9c58f:
-	jumptextfaceplayer UnknownText_0x9c5a2
+OlivineHouseBetaTeacherScript:
+	jumptextfaceplayer OlivineHouseBetaTeacherText
 
 RhydonScript_0x9c592:
 	opentext
@@ -26,7 +26,7 @@ OlivineHouseBetaBookshelf1:
 OlivineHouseBetaBookshelf2:
 	jumpstd magazinebookshelf
 
-UnknownText_0x9c5a2:
+OlivineHouseBetaTeacherText:
 	text "When my #MON"
 	line "got sick, the"
 
@@ -58,5 +58,5 @@ OlivineHouseBeta_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x9c58f, -1
+	person_event SPRITE_TEACHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
 	person_event SPRITE_RHYDON, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RhydonScript_0x9c592, -1

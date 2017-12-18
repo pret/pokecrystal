@@ -25,7 +25,7 @@
 - [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
 - [Fast Ball only boosts catch rate for three Pokémon](#fast-ball-only-boosts-catch-rate-for-three-pokémon)
 - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
-- [Daisy's massages don't always increase happiness](#daisys-massages-dont-always-increase-happiness)
+- [Daisy's grooming doesn't always increase happiness](#daisys-grooming-doesnt-always-increase-happiness)
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
 - [Magikarp lengths can be miscalculated](#magikarp-lengths-can-be-miscalculated)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
@@ -662,7 +662,7 @@ This is a bug with `ItemAttributes` in [items/item_attributes.asm](/items/item_a
 **Fix:** Move `HELD_DRAGON_BOOST` to the `DRAGON FANG` attributes and `0` to `DRAGON SCALE`.
 
 
-## Daisy's massages don't always increase happiness
+## Daisy's grooming doesn't always increase happiness
 
 This is a bug with `MassageOrHaircut` in [event/special.asm](/event/special.asm):
 

@@ -121,11 +121,11 @@ UnknownScript_0x7009c:
 	closetext
 	end
 
-SuperNerdScript_0x700a2:
-	jumptextfaceplayer UnknownText_0x70444
+LakeOfRageSuperNerdScript:
+	jumptextfaceplayer LakeOfRageSuperNerdText
 
-CooltrainerFScript_0x700a5:
-	jumptextfaceplayer UnknownText_0x704bb
+LakeOfRageCooltrainerFScript:
+	jumptextfaceplayer LakeOfRageCooltrainerFText
 
 MapLakeOfRageSignpost0Script:
 	jumptext UnknownText_0x708d7
@@ -336,7 +336,7 @@ UnknownText_0x70421:
 	line "KARP are biting!"
 	done
 
-UnknownText_0x70444:
+LakeOfRageSuperNerdText:
 	text "I heard this lake"
 	line "was made by ram-"
 	cont "paging GYARADOS."
@@ -348,7 +348,7 @@ UnknownText_0x70444:
 	line "break now?"
 	done
 
-UnknownText_0x704bb:
+LakeOfRageCooltrainerFText:
 	text "Did my eyes de-"
 	line "ceive me? I saw a"
 
@@ -520,8 +520,8 @@ LakeOfRage_MapEventHeader:
 	db 12
 	person_event SPRITE_LANCE, 28, 21, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
 	person_event SPRITE_GRAMPS, 26, 20, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x7008e, -1
-	person_event SPRITE_SUPER_NERD, 13, 36, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x700a2, -1
-	person_event SPRITE_COOLTRAINER_F, 29, 25, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x700a5, -1
+	person_event SPRITE_SUPER_NERD, 13, 36, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LakeOfRageSuperNerdScript, -1
+	person_event SPRITE_COOLTRAINER_F, 29, 25, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LakeOfRageCooltrainerFScript, -1
 	person_event SPRITE_FISHER, 23, 30, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_CIVILIANS
 	person_event SPRITE_FISHER, 26, 24, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_CIVILIANS
 	person_event SPRITE_COOLTRAINER_M, 15, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_CIVILIANS

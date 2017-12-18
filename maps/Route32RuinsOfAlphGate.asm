@@ -10,16 +10,16 @@ Route32RuinsOfAlphGate_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-OfficerScript_0x69a2d:
-	jumptextfaceplayer UnknownText_0x69a36
+Route32RuinsOfAlphGateOfficerScript:
+	jumptextfaceplayer Route32RuinsOfAlphGateOfficerText
 
-PokefanMScript_0x69a30:
-	jumptextfaceplayer UnknownText_0x69a81
+Route32RuinsOfAlphGatePokefanMScript:
+	jumptextfaceplayer Route32RuinsOfAlphGatePokefanMText
 
-YoungsterScript_0x69a33:
-	jumptextfaceplayer UnknownText_0x69abd
+Route32RuinsOfAlphGateYoungsterScript:
+	jumptextfaceplayer Route32RuinsOfAlphGateYoungsterText
 
-UnknownText_0x69a36:
+Route32RuinsOfAlphGateOfficerText:
 	text "RUINS OF ALPH"
 
 	para "A Look-and-Touch"
@@ -29,7 +29,7 @@ UnknownText_0x69a36:
 	line "stone panels!"
 	done
 
-UnknownText_0x69a81:
+Route32RuinsOfAlphGatePokefanMText:
 	text "You're studying"
 	line "the RUINS?"
 
@@ -37,7 +37,7 @@ UnknownText_0x69a81:
 	line "in the making."
 	done
 
-UnknownText_0x69abd:
+Route32RuinsOfAlphGateYoungsterText:
 	text "There are drawings"
 	line "on stone panels."
 
@@ -65,6 +65,6 @@ Route32RuinsOfAlphGate_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_0x69a2d, -1
-	person_event SPRITE_POKEFAN_M, 2, 8, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x69a30, -1
-	person_event SPRITE_YOUNGSTER, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x69a33, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route32RuinsOfAlphGateOfficerScript, -1
+	person_event SPRITE_POKEFAN_M, 2, 8, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, Route32RuinsOfAlphGatePokefanMScript, -1
+	person_event SPRITE_YOUNGSTER, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route32RuinsOfAlphGateYoungsterScript, -1

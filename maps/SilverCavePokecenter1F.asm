@@ -12,10 +12,10 @@ SilverCavePokecenter1F_MapScriptHeader:
 NurseScript_0x1ae59a:
 	jumpstd pokecenternurse
 
-GrannyScript_0x1ae59d:
-	jumptextfaceplayer UnknownText_0x1ae5a0
+SilverCavePokecenter1FGrannyScript:
+	jumptextfaceplayer SilverCavePokecenter1FGrannyText
 
-UnknownText_0x1ae5a0:
+SilverCavePokecenter1FGrannyText:
 	text "Trainers who seek"
 	line "power climb MT."
 
@@ -48,4 +48,4 @@ SilverCavePokecenter1F_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x1ae59a, -1
-	person_event SPRITE_GRANNY, 5, 1, SPRITEMOVEDATA_STANDING_LEFT, 1, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrannyScript_0x1ae59d, -1
+	person_event SPRITE_GRANNY, 5, 1, SPRITEMOVEDATA_STANDING_LEFT, 1, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SilverCavePokecenter1FGrannyScript, -1

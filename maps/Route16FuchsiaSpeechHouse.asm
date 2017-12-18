@@ -8,13 +8,13 @@ Route16FuchsiaSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-SuperNerdScript_0x73373:
-	jumptextfaceplayer UnknownText_0x73379
+Route16FuchsiaSpeechHouseSuperNerdScript:
+	jumptextfaceplayer Route16FuchsiaSpeechHouseSuperNerdText
 
 Route16FuchsiaSpeechHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x73379:
+Route16FuchsiaSpeechHouseSuperNerdText:
 	text "If you cruise down"
 	line "CYCLING ROAD, you"
 
@@ -41,4 +41,4 @@ Route16FuchsiaSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_SUPER_NERD, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x73373, -1
+	person_event SPRITE_SUPER_NERD, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route16FuchsiaSpeechHouseSuperNerdScript, -1

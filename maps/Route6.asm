@@ -32,13 +32,13 @@ PokefanmAllanScript:
 	closetext
 	end
 
-PokefanMScript_0x1ad951:
-	jumptextfaceplayer UnknownText_0x1ad957
+Route6PokefanMScript:
+	jumptextfaceplayer Route6PokefanMText
 
 Route6UndergroundPathSign:
 	jumptext Route6UndergroundPathSignText
 
-UnknownText_0x1ad957:
+Route6PokefanMText:
 	text "The road is closed"
 	line "until the problem"
 
@@ -109,6 +109,6 @@ Route6_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 4, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 2, PokefanMScript_0x1ad951, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	person_event SPRITE_POKEFAN_M, 4, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 2, Route6PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
 	person_event SPRITE_POKEFAN_M, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, TrainerPokefanmRex, -1
 	person_event SPRITE_POKEFAN_M, 12, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, TrainerPokefanmAllan, -1

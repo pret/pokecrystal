@@ -19,8 +19,8 @@ ClerkScript_0x70d29:
 	closetext
 	end
 
-YoungsterScript_0x70d31:
-	jumptextfaceplayer UnknownText_0x70d53
+CeladonDeptStore3FYoungsterScript:
+	jumptextfaceplayer CeladonDeptStore3FYoungsterText
 
 GameboyKidScript_0x70d34:
 	faceplayer
@@ -40,8 +40,8 @@ GameboyKidScript_0x70d3f:
 	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID2, DOWN
 	end
 
-SuperNerdScript_0x70d4a:
-	jumptextfaceplayer UnknownText_0x70e61
+CeladonDeptStore3FSuperNerdScript:
+	jumptextfaceplayer CeladonDeptStore3FSuperNerdText
 
 CeladonDeptStore3FElevatorButton:
 	jumpstd elevatorbutton
@@ -49,7 +49,7 @@ CeladonDeptStore3FElevatorButton:
 CeladonDeptStore3FDirectory:
 	jumptext CeladonDeptStore3FDirectoryText
 
-UnknownText_0x70d53:
+CeladonDeptStore3FYoungsterText:
 	text "I can't decide"
 	line "which #MON I"
 
@@ -82,7 +82,7 @@ UnknownText_0x70dc7:
 	cont "ferent #MON!"
 	done
 
-UnknownText_0x70e61:
+CeladonDeptStore3FSuperNerdText:
 	text "The TM SHOP sells"
 	line "some rare moves."
 	done
@@ -115,7 +115,7 @@ CeladonDeptStore3F_MapEventHeader:
 .PersonEvents:
 	db 5
 	person_event SPRITE_CLERK, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x70d29, -1
-	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x70d31, -1
+	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonDeptStore3FYoungsterScript, -1
 	person_event SPRITE_GAMEBOY_KID, 1, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x70d34, -1
 	person_event SPRITE_GAMEBOY_KID, 1, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x70d3f, -1
-	person_event SPRITE_SUPER_NERD, 4, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x70d4a, -1
+	person_event SPRITE_SUPER_NERD, 4, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonDeptStore3FSuperNerdScript, -1

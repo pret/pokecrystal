@@ -14,8 +14,8 @@ RadioTower4F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-FisherScript_0x5eb82:
-	jumptextfaceplayer UnknownText_0x5ec12
+RadioTower4FFisherScript:
+	jumptextfaceplayer RadioTower4FFisherText
 
 TeacherScript_0x5eb85:
 	faceplayer
@@ -105,7 +105,7 @@ MapRadioTower4FSignpost0Script:
 MapRadioTower4FSignpost1Script:
 	jumptext UnknownText_0x5f00d
 
-UnknownText_0x5ec12:
+RadioTower4FFisherText:
 	text "I listened to the"
 	line "radio while I was"
 	cont "at the RUINS."
@@ -266,7 +266,7 @@ RadioTower4F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_FISHER, 4, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FisherScript_0x5eb82, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_FISHER, 4, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, RadioTower4FFisherScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	person_event SPRITE_TEACHER, 6, 14, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x5eb85, -1
 	person_event SPRITE_GROWLITHE, 7, 12, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, RadioTowerMeowth, -1
 	person_event SPRITE_ROCKET, 6, 5, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

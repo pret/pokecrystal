@@ -13,17 +13,17 @@ SproutTower1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-SageScript_0x1844fe:
-	jumptextfaceplayer UnknownText_0x1845d8
+SproutTower1FSage1Script:
+	jumptextfaceplayer SproutTower1FSage1Text
 
-SageScript_0x184501:
-	jumptextfaceplayer UnknownText_0x18460a
+SproutTower1FSage2Script:
+	jumptextfaceplayer SproutTower1FSage2Text
 
-GrannyScript_0x184504:
-	jumptextfaceplayer UnknownText_0x184649
+SproutTower1FGrannyScript:
+	jumptextfaceplayer SproutTower1FGrannyText
 
-TeacherScript_0x184507:
-	jumptextfaceplayer UnknownText_0x18469d
+SproutTower1FTeacherScript:
+	jumptextfaceplayer SproutTower1FTeacherText
 
 TrainerSageChow:
 	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, 0, SageChowScript
@@ -64,13 +64,13 @@ SageChowAfterBattleText:
 	line "thankful for this."
 	done
 
-UnknownText_0x1845d8:
+SproutTower1FSage1Text:
 	text "Only if you reach"
 	line "the top will you"
 	cont "obtain an HM."
 	done
 
-UnknownText_0x18460a:
+SproutTower1FSage2Text:
 	text "SPROUT TOWER was"
 	line "built long ago"
 
@@ -78,7 +78,7 @@ UnknownText_0x18460a:
 	line "#MON training."
 	done
 
-UnknownText_0x184649:
+SproutTower1FGrannyText:
 	text "A BELLSPROUT over"
 	line "100 feet tall…"
 
@@ -87,7 +87,7 @@ UnknownText_0x184649:
 	cont "pillar here."
 	done
 
-UnknownText_0x18469d:
+SproutTower1FTeacherText:
 	text "See the pillar"
 	line "shaking?"
 
@@ -124,9 +124,9 @@ SproutTower1F_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SAGE, 4, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SageScript_0x1844fe, -1
-	person_event SPRITE_SAGE, 7, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SageScript_0x184501, -1
-	person_event SPRITE_GRANNY, 12, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrannyScript_0x184504, -1
-	person_event SPRITE_TEACHER, 9, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x184507, -1
+	person_event SPRITE_SAGE, 4, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SproutTower1FSage1Script, -1
+	person_event SPRITE_SAGE, 7, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SproutTower1FSage2Script, -1
+	person_event SPRITE_GRANNY, 12, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SproutTower1FGrannyScript, -1
+	person_event SPRITE_TEACHER, 9, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SproutTower1FTeacherScript, -1
 	person_event SPRITE_SAGE, 5, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 4, TrainerSageChow, -1
 	person_event SPRITE_POKE_BALL, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SproutTower1FParlyzHeal, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL

@@ -18,8 +18,8 @@ VermilionCity_MapScriptHeader:
 	setflag ENGINE_FLYPOINT_VERMILION
 	return
 
-TeacherScript_0x1aa983:
-	jumptextfaceplayer UnknownText_0x1aaa15
+VermilionCityTeacherScript:
+	jumptextfaceplayer VermilionCityTeacherText
 
 VermilionMachopOwner:
 	jumptextfaceplayer VermilionMachopOwnerText
@@ -37,8 +37,8 @@ VermilionMachop:
 	closetext
 	end
 
-SuperNerdScript_0x1aa99b:
-	jumptextfaceplayer UnknownText_0x1aab1a
+VermilionCitySuperNerdScript:
+	jumptextfaceplayer VermilionCitySuperNerdText
 
 VermilionSnorlax:
 	opentext
@@ -125,7 +125,7 @@ VermilionCityMartSign:
 VermilionCityHiddenFullHeal:
 	dwb EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
 
-UnknownText_0x1aaa15:
+VermilionCityTeacherText:
 	text "VERMILION PORT is"
 	line "KANTO's seaside"
 	cont "gateway."
@@ -156,7 +156,7 @@ VermilionMachopText2:
 	cont "the ground flat."
 	done
 
-UnknownText_0x1aab1a:
+VermilionCitySuperNerdText:
 	text "There are eight"
 	line "GYMS in KANTO."
 
@@ -300,9 +300,9 @@ VermilionCity_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_TEACHER, 9, 18, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x1aa983, -1
+	person_event SPRITE_TEACHER, 9, 18, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VermilionCityTeacherScript, -1
 	person_event SPRITE_GRAMPS, 6, 23, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VermilionMachopOwner, -1
 	person_event SPRITE_MACHOP, 7, 26, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, VermilionMachop, -1
-	person_event SPRITE_SUPER_NERD, 16, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x1aa99b, -1
+	person_event SPRITE_SUPER_NERD, 16, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, VermilionCitySuperNerdScript, -1
 	person_event SPRITE_BIG_SNORLAX, 8, 34, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
 	person_event SPRITE_POKEFAN_M, 12, 31, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, VermilionGymBadgeGuy, -1

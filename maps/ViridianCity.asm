@@ -66,8 +66,8 @@ FisherScript_0x1a9a75:
 	closetext
 	end
 
-YoungsterScript_0x1a9a90:
-	jumptextfaceplayer UnknownText_0x1a9daa
+ViridianCityYoungsterScript:
+	jumptextfaceplayer ViridianCityYoungsterText
 
 ViridianCitySign:
 	jumptext ViridianCitySignText
@@ -176,7 +176,7 @@ UnknownText_0x1a9d86:
 	para "…Zzzzz…"
 	done
 
-UnknownText_0x1a9daa:
+ViridianCityYoungsterText:
 	text "I heard that there"
 	line "are many items on"
 
@@ -244,4 +244,4 @@ ViridianCity_MapEventHeader:
 	person_event SPRITE_GRAMPS, 5, 18, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a9a4c, -1
 	person_event SPRITE_GRAMPS, 8, 30, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a9a61, -1
 	person_event SPRITE_FISHER, 23, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FisherScript_0x1a9a75, -1
-	person_event SPRITE_YOUNGSTER, 21, 17, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1a9a90, -1
+	person_event SPRITE_YOUNGSTER, 21, 17, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ViridianCityYoungsterScript, -1

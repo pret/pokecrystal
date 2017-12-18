@@ -34,8 +34,8 @@ UnknownScript_0x184017:
 	closetext
 	end
 
-SuperNerdScript_0x18401d:
-	jumptextfaceplayer UnknownText_0x1841a8
+CeruleanCitySuperNerdScript:
+	jumptextfaceplayer CeruleanCitySuperNerdText
 
 CeruleanCitySlowbro:
 	opentext
@@ -174,7 +174,7 @@ UnknownText_0x184144:
 	cont "it sounds fun too."
 	done
 
-UnknownText_0x1841a8:
+CeruleanCitySuperNerdText:
 	text "The CAPE in the"
 	line "north is a good"
 
@@ -306,7 +306,7 @@ CeruleanCity_MapEventHeader:
 .PersonEvents:
 	db 6
 	person_event SPRITE_COOLTRAINER_M, 23, 15, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x184009, -1
-	person_event SPRITE_SUPER_NERD, 15, 23, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x18401d, -1
+	person_event SPRITE_SUPER_NERD, 15, 23, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeruleanCitySuperNerdScript, -1
 	person_event SPRITE_SLOWPOKE, 24, 20, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeruleanCitySlowbro, -1
 	person_event SPRITE_COOLTRAINER_F, 24, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x18402a, -1
 	person_event SPRITE_FISHER, 26, 30, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FisherScript_0x18404a, -1

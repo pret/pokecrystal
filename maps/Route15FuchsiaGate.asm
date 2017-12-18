@@ -8,10 +8,10 @@ Route15FuchsiaGate_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-OfficerScript_0x19679e:
-	jumptextfaceplayer UnknownText_0x1967a1
+Route15FuchsiaGateOfficerScript:
+	jumptextfaceplayer Route15FuchsiaGateOfficerText
 
-UnknownText_0x1967a1:
+Route15FuchsiaGateOfficerText:
 	text "You're working on"
 	line "a #DEX? That's"
 
@@ -38,4 +38,4 @@ Route15FuchsiaGate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, OfficerScript_0x19679e, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Route15FuchsiaGateOfficerScript, -1

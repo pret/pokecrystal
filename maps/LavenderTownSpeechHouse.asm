@@ -8,13 +8,13 @@ LavenderTownSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanFScript_0x7ea47:
-	jumptextfaceplayer UnknownText_0x7ea4d
+LavenderTownSpeechHousePokefanFScript:
+	jumptextfaceplayer LavenderTownSpeechHousePokefanFText
 
 LavenderTownSpeechHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x7ea4d:
+LavenderTownSpeechHousePokefanFText:
 	text "LAVENDER is a"
 	line "tiny, quiet town"
 
@@ -47,4 +47,4 @@ LavenderTownSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x7ea47, -1
+	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, LavenderTownSpeechHousePokefanFScript, -1

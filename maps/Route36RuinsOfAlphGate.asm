@@ -9,20 +9,20 @@ Route36RuinsOfAlphGate_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-OfficerScript_0x6aa1a:
-	jumptextfaceplayer UnknownText_0x6aa20
+Route36RuinsOfAlphGateOfficerScript:
+	jumptextfaceplayer Route36RuinsOfAlphGateOfficerText
 
-GrampsScript_0x6aa1d:
-	jumptextfaceplayer UnknownText_0x6aa5b
+Route36RuinsOfAlphGateGrampsScript:
+	jumptextfaceplayer Route36RuinsOfAlphGateGrampsText
 
-UnknownText_0x6aa20:
+Route36RuinsOfAlphGateOfficerText:
 	text "Don't you wonder"
 	line "who'd make some-"
 	cont "thing like this?"
 	cont "And why?"
 	done
 
-UnknownText_0x6aa5b:
+Route36RuinsOfAlphGateGrampsText:
 	text "Did you see that"
 	line "strange tree in"
 	cont "the road?"
@@ -53,5 +53,5 @@ Route36RuinsOfAlphGate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_0x6aa1a, -1
-	person_event SPRITE_GRAMPS, 5, 7, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, GrampsScript_0x6aa1d, -1
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route36RuinsOfAlphGateOfficerScript, -1
+	person_event SPRITE_GRAMPS, 5, 7, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, Route36RuinsOfAlphGateGrampsScript, -1

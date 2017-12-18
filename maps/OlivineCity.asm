@@ -72,8 +72,8 @@ UnknownScript_0x1a886b:
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	end
 
-SailorScript_0x1a88a3:
-	jumptextfaceplayer UnknownText_0x1a8a58
+OlivineCitySailor1Script:
+	jumptextfaceplayer OlivineCitySailor1Text
 
 StandingYoungsterScript_0x1a88a6:
 	faceplayer
@@ -91,8 +91,8 @@ UnknownScript_0x1a88b4:
 	closetext
 	end
 
-SailorScript_0x1a88ba:
-	jumptextfaceplayer UnknownText_0x1a8b71
+OlivineCitySailor2Script:
+	jumptextfaceplayer OlivineCitySailor2Text
 
 OlivineCitySign:
 	jumptext OlivineCitySignText
@@ -207,7 +207,7 @@ UnknownText_0x1a88fa:
 	cont "less weak!"
 	done
 
-UnknownText_0x1a8a58:
+OlivineCitySailor1Text:
 	text "Dark roads are"
 	line "dangerous at"
 	cont "night."
@@ -240,7 +240,7 @@ UnknownText_0x1a8b41:
 	line "awesome."
 	done
 
-UnknownText_0x1a8b71:
+OlivineCitySailor2Text:
 	text "The sea is sweet!"
 
 	para "Sunsets on the sea"
@@ -322,7 +322,7 @@ OlivineCity_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_SAILOR, 27, 26, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x1a88a3, -1
+	person_event SPRITE_SAILOR, 27, 26, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivineCitySailor1Script, -1
 	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a88a6, -1
-	person_event SPRITE_SAILOR, 21, 17, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x1a88ba, -1
+	person_event SPRITE_SAILOR, 21, 17, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivineCitySailor2Script, -1
 	person_event SPRITE_OLIVINE_RIVAL, 11, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY

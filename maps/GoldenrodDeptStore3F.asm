@@ -17,11 +17,11 @@ ClerkScript_0x55db8:
 	closetext
 	end
 
-SuperNerdScript_0x55dc0:
-	jumptextfaceplayer UnknownText_0x55dcc
+GoldenrodDeptStore3FSuperNerdScript:
+	jumptextfaceplayer GoldenrodDeptStore3FSuperNerdText
 
-RockerScript_0x55dc3:
-	jumptextfaceplayer UnknownText_0x55e15
+GoldenrodDeptStore3FRockerScript:
+	jumptextfaceplayer GoldenrodDeptStore3FRockerText
 
 GoldenrodDeptStore3FDirectory:
 	jumptext GoldenrodDeptStore3FDirectoryText
@@ -29,7 +29,7 @@ GoldenrodDeptStore3FDirectory:
 GoldenrodDeptStore3FElevatorButton:
 	jumpstd elevatorbutton
 
-UnknownText_0x55dcc:
+GoldenrodDeptStore3FSuperNerdText:
 	text "I, I, I'm really"
 	line "impatient!"
 
@@ -38,7 +38,7 @@ UnknownText_0x55dcc:
 	cont "my #MON."
 	done
 
-UnknownText_0x55e15:
+GoldenrodDeptStore3FRockerText:
 	text "Hey! When you bat-"
 	line "tle, do you use X"
 	cont "SPECIAL?"
@@ -77,5 +77,5 @@ GoldenrodDeptStore3F_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_CLERK, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x55db8, -1
-	person_event SPRITE_SUPER_NERD, 5, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x55dc0, -1
-	person_event SPRITE_ROCKER, 5, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RockerScript_0x55dc3, -1
+	person_event SPRITE_SUPER_NERD, 5, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore3FSuperNerdScript, -1
+	person_event SPRITE_ROCKER, 5, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore3FRockerScript, -1

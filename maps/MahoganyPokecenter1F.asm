@@ -14,16 +14,16 @@ MahoganyPokecenter1F_MapScriptHeader:
 NurseScript_0x19a356:
 	jumpstd pokecenternurse
 
-PokefanMScript_0x19a359:
-	jumptextfaceplayer UnknownText_0x19a362
+MahoganyPokecenter1FPokefanMScript:
+	jumptextfaceplayer MahoganyPokecenter1FPokefanMText
 
-YoungsterScript_0x19a35c:
-	jumptextfaceplayer UnknownText_0x19a3b3
+MahoganyPokecenter1FYoungsterScript:
+	jumptextfaceplayer MahoganyPokecenter1FYoungsterText
 
-CooltrainerFScript_0x19a35f:
-	jumptextfaceplayer UnknownText_0x19a418
+MahoganyPokecenter1FCooltrainerFScript:
+	jumptextfaceplayer MahoganyPokecenter1FCooltrainerFText
 
-UnknownText_0x19a362:
+MahoganyPokecenter1FPokefanMText:
 	text "What's this? TEAM"
 	line "ROCKET has come"
 	cont "back?"
@@ -33,7 +33,7 @@ UnknownText_0x19a362:
 	cont "RAGE…"
 	done
 
-UnknownText_0x19a3b3:
+MahoganyPokecenter1FYoungsterText:
 	text "I stop my #MON"
 	line "from evolving too"
 	cont "early."
@@ -44,7 +44,7 @@ UnknownText_0x19a3b3:
 	cont "evolve."
 	done
 
-UnknownText_0x19a418:
+MahoganyPokecenter1FCooltrainerFText:
 	text "#MON do become"
 	line "stronger when they"
 
@@ -72,6 +72,6 @@ MahoganyPokecenter1F_MapEventHeader:
 .PersonEvents:
 	db 4
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x19a356, -1
-	person_event SPRITE_POKEFAN_M, 2, 7, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x19a359, -1
-	person_event SPRITE_YOUNGSTER, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x19a35c, -1
-	person_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x19a35f, -1
+	person_event SPRITE_POKEFAN_M, 2, 7, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, MahoganyPokecenter1FPokefanMScript, -1
+	person_event SPRITE_YOUNGSTER, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, MahoganyPokecenter1FYoungsterScript, -1
+	person_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MahoganyPokecenter1FCooltrainerFScript, -1

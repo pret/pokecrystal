@@ -116,8 +116,8 @@ SailorScript_0x751d0:
 	closetext
 	end
 
-SailorScript_0x751e4:
-	jumptextfaceplayer UnknownText_0x753c0
+FastShip1FSailorScript:
+	jumptextfaceplayer FastShip1FSailorText
 
 WorriedGrandpaTriggerRight:
 	moveperson FASTSHIP1F_GENTLEMAN, $14, $6
@@ -250,7 +250,7 @@ UnknownText_0x7534f:
 	cont "you're sleeping."
 	done
 
-UnknownText_0x753c0:
+FastShip1FSailorText:
 	text "The passengers are"
 	line "all trainers."
 
@@ -316,5 +316,5 @@ FastShip1F_MapEventHeader:
 	db 4
 	person_event SPRITE_SAILOR, 2, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x75160, -1
 	person_event SPRITE_SAILOR, 7, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
-	person_event SPRITE_SAILOR, 17, 22, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x751e4, -1
+	person_event SPRITE_SAILOR, 17, 22, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FastShip1FSailorScript, -1
 	person_event SPRITE_GENTLEMAN, 6, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

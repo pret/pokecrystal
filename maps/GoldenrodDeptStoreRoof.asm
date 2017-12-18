@@ -45,8 +45,8 @@ ClerkScript_0x5673f:
 	closetext
 	end
 
-PokefanFScript_0x56746:
-	jumptextfaceplayer UnknownText_0x5677f
+GoldenrodDeptStoreRoofPokefanFScript:
+	jumptextfaceplayer GoldenrodDeptStoreRoofPokefanFText
 
 FisherScript_0x56749:
 	faceplayer
@@ -57,8 +57,8 @@ FisherScript_0x56749:
 	spriteface GOLDENRODDEPTSTOREROOF_FISHER, UP
 	end
 
-TwinScript_0x56754:
-	jumptextfaceplayer UnknownText_0x56839
+GoldenrodDeptStoreRoofTwinScript:
+	jumptextfaceplayer GoldenrodDeptStoreRoofTwinText
 
 SuperNerdScript_0x56757:
 	opentext
@@ -73,14 +73,14 @@ SuperNerdScript_0x56757:
 	spriteface GOLDENRODDEPTSTOREROOF_SUPER_NERD, RIGHT
 	end
 
-PokefanMScript_0x5676a:
-	jumptextfaceplayer UnknownText_0x5688e
+GoldenrodDeptStoreRoofPokefanMScript:
+	jumptextfaceplayer GoldenrodDeptStoreRoofPokefanMText
 
-TeacherScript_0x5676d:
-	jumptextfaceplayer UnknownText_0x56901
+GoldenrodDeptStoreRoofTeacherScript:
+	jumptextfaceplayer GoldenrodDeptStoreRoofTeacherText
 
-BugCatcherScript_0x56770:
-	jumptextfaceplayer UnknownText_0x56942
+GoldenrodDeptStoreRoofBugCatcherScript:
+	jumptextfaceplayer GoldenrodDeptStoreRoofBugCatcherText
 
 Binoculars1:
 	jumptext Binoculars1Text
@@ -94,7 +94,7 @@ Binoculars3:
 PokeDollVendingMachine:
 	jumptext PokeDollVendingMachineText
 
-UnknownText_0x5677f:
+GoldenrodDeptStoreRoofPokefanFText:
 	text "Whew, I'm tired."
 
 	para "I sometimes come"
@@ -116,7 +116,7 @@ UnknownText_0x567d2:
 	line "dolls!"
 	done
 
-UnknownText_0x56839:
+GoldenrodDeptStoreRoofTwinText:
 	text "They have bargain"
 	line "sales here every"
 	cont "so often."
@@ -131,7 +131,7 @@ UnknownText_0x56871:
 	line "bothering me?"
 	done
 
-UnknownText_0x5688e:
+GoldenrodDeptStoreRoofPokefanMText:
 	text "There's something"
 	line "I really want, but"
 
@@ -143,7 +143,7 @@ UnknownText_0x5688e:
 	cont "I've collected…"
 	done
 
-UnknownText_0x56901:
+GoldenrodDeptStoreRoofTeacherText:
 	text "Oh, everything is"
 	line "so cheap!"
 
@@ -151,7 +151,7 @@ UnknownText_0x56901:
 	line "my PACK's crammed!"
 	done
 
-UnknownText_0x56942:
+GoldenrodDeptStoreRoofBugCatcherText:
 	text "My #MON always"
 	line "get paralyzed or"
 
@@ -232,10 +232,10 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 .PersonEvents:
 	db 8
 	person_event SPRITE_CLERK, 4, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_POKEFAN_F, 3, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x56746, -1
+	person_event SPRITE_POKEFAN_F, 3, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanFScript, -1
 	person_event SPRITE_FISHER, 1, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, FisherScript_0x56749, -1
-	person_event SPRITE_TWIN, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TwinScript_0x56754, EVENT_GOLDENROD_SALE_ON
+	person_event SPRITE_TWIN, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTwinScript, EVENT_GOLDENROD_SALE_ON
 	person_event SPRITE_SUPER_NERD, 6, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x56757, EVENT_GOLDENROD_SALE_ON
-	person_event SPRITE_POKEFAN_M, 0, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x5676a, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x5676d, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_BUG_CATCHER, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x56770, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_POKEFAN_M, 0, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanMScript, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTeacherScript, EVENT_GOLDENROD_SALE_OFF
+	person_event SPRITE_BUG_CATCHER, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofBugCatcherScript, EVENT_GOLDENROD_SALE_OFF

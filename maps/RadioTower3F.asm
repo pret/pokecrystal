@@ -25,8 +25,8 @@ RadioTower3F_MapScriptHeader:
 	changeblock $e, $4, $1
 	return
 
-SuperNerdScript_0x5e553:
-	jumptextfaceplayer UnknownText_0x5e621
+RadioTower3FSuperNerdScript:
+	jumptextfaceplayer RadioTower3FSuperNerdText
 
 GymGuyScript_0x5e556:
 	faceplayer
@@ -156,7 +156,7 @@ MapRadioTower3FSignpost0Script:
 MapRadioTower3FSignpost1Script:
 	jumptext UnknownText_0x5eae4
 
-UnknownText_0x5e621:
+RadioTower3FSuperNerdText:
 	text "We have recordings"
 	line "of the cries of"
 
@@ -349,7 +349,7 @@ RadioTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SUPER_NERD, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_SUPER_NERD, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, RadioTower3FSuperNerdScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	person_event SPRITE_GYM_GUY, 4, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x5e556, -1
 	person_event SPRITE_COOLTRAINER_F, 3, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x5e56a, -1
 	person_event SPRITE_ROCKET, 1, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

@@ -91,8 +91,8 @@ PokefanFScript_0x69dc6:
 	closetext
 	end
 
-FisherScript_0x69dda:
-	jumptextfaceplayer UnknownText_0x6a0cb
+Route35GoldenrodGateFisherScript:
+	jumptextfaceplayer Route35GoldenrodGateFisherText
 
 UnknownText_0x69ddd:
 	text "Excuse me, kid!"
@@ -181,7 +181,7 @@ UnknownText_0x6a09a:
 	cont "on the radio."
 	done
 
-UnknownText_0x6a0cb:
+Route35GoldenrodGateFisherText:
 	text "I wonder how many"
 	line "kinds of #MON"
 
@@ -216,4 +216,4 @@ Route35GoldenrodGate_MapEventHeader:
 	db 3
 	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_0x69d37, -1
 	person_event SPRITE_POKEFAN_F, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x69dc6, -1
-	person_event SPRITE_FISHER, 2, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x69dda, -1
+	person_event SPRITE_FISHER, 2, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route35GoldenrodGateFisherScript, -1

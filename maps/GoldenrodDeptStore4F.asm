@@ -18,11 +18,11 @@ ClerkScript_0x55ee9:
 	closetext
 	end
 
-CooltrainerMScript_0x55ef1:
-	jumptextfaceplayer UnknownText_0x55f08
+GoldenrodDeptStore4FCooltrainerMScript:
+	jumptextfaceplayer GoldenrodDeptStore4FCooltrainerMText
 
-BugCatcherScript_0x55ef4:
-	jumptextfaceplayer UnknownText_0x55f52
+GoldenrodDeptStore4FBugCatcherScript:
+	jumptextfaceplayer GoldenrodDeptStore4FBugCatcherText
 
 GameboyKidScript_0x55ef7:
 	faceplayer
@@ -39,7 +39,7 @@ GoldenrodDeptStore4FDirectory:
 GoldenrodDeptStore4FElevatorButton:
 	jumpstd elevatorbutton
 
-UnknownText_0x55f08:
+GoldenrodDeptStore4FCooltrainerMText:
 	text "Hey. I love strong"
 	line "#MON."
 
@@ -48,7 +48,7 @@ UnknownText_0x55f08:
 	cont "their ATTACK."
 	done
 
-UnknownText_0x55f52:
+GoldenrodDeptStore4FBugCatcherText:
 	text "IRON adds to your"
 	line "#MON's DEFENSE."
 	done
@@ -98,6 +98,6 @@ GoldenrodDeptStore4F_MapEventHeader:
 .PersonEvents:
 	db 4
 	person_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x55ee9, -1
-	person_event SPRITE_COOLTRAINER_M, 7, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x55ef1, -1
-	person_event SPRITE_BUG_CATCHER, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x55ef4, -1
+	person_event SPRITE_COOLTRAINER_M, 7, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore4FCooltrainerMScript, -1
+	person_event SPRITE_BUG_CATCHER, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore4FBugCatcherScript, -1
 	person_event SPRITE_GAMEBOY_KID, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x55ef7, -1

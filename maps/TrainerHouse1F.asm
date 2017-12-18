@@ -12,20 +12,20 @@ TrainerHouse1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ReceptionistScript_0x9af67:
-	jumptextfaceplayer UnknownText_0x9af7f
+TrainerHouse1FReceptionistScript:
+	jumptextfaceplayer TrainerHouse1FReceptionistText
 
-CooltrainerMScript_0x9af6a:
-	jumptextfaceplayer UnknownText_0x9b025
+TrainerHouse1FCooltrainerMScript:
+	jumptextfaceplayer TrainerHouse1FCooltrainerMText
 
-CooltrainerFScript_0x9af6d:
-	jumptextfaceplayer UnknownText_0x9b0b5
+TrainerHouse1FCooltrainerFScript:
+	jumptextfaceplayer TrainerHouse1FCooltrainerFText
 
-YoungsterScript_0x9af70:
-	jumptextfaceplayer UnknownText_0x9b11d
+TrainerHouse1FYoungsterScript:
+	jumptextfaceplayer TrainerHouse1FYoungsterText
 
-GentlemanScript_0x9af73:
-	jumptextfaceplayer UnknownText_0x9b1c9
+TrainerHouse1FGentlemanScript:
+	jumptextfaceplayer TrainerHouse1FGentlemanText
 
 MapTrainerHouse1FSignpost0Script:
 	jumptext UnknownText_0x9b1f4
@@ -36,7 +36,7 @@ MapTrainerHouse1FSignpost1Script:
 MapTrainerHouse1FSignpost2Script:
 	jumptext UnknownText_0x9b2c1
 
-UnknownText_0x9af7f:
+TrainerHouse1FReceptionistText:
 	text "Welcome to TRAINER"
 	line "HOUSE, the newest"
 
@@ -53,7 +53,7 @@ UnknownText_0x9af7f:
 	line "downstairs."
 	done
 
-UnknownText_0x9b025:
+TrainerHouse1FCooltrainerMText:
 	text "VIRIDIAN is the"
 	line "town closest to"
 	cont "INDIGO PLATEAU."
@@ -68,7 +68,7 @@ UnknownText_0x9b025:
 	line "PLATEAU."
 	done
 
-UnknownText_0x9b0b5:
+TrainerHouse1FCooltrainerFText:
 	text "They hold practice"
 	line "battles downstairs"
 	cont "here."
@@ -80,7 +80,7 @@ UnknownText_0x9b0b5:
 	line "battles."
 	done
 
-UnknownText_0x9b11d:
+TrainerHouse1FYoungsterText:
 	text "I guess you can't"
 	line "become the CHAMP"
 
@@ -97,7 +97,7 @@ UnknownText_0x9b11d:
 	line "towns in KANTO."
 	done
 
-UnknownText_0x9b1c9:
+TrainerHouse1FGentlemanText:
 	text "Whew… I'm taking a"
 	line "rest from #MON"
 	cont "battles."
@@ -158,8 +158,8 @@ TrainerHouse1F_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 11, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x9af67, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x9af6a, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x9af6d, -1
-	person_event SPRITE_YOUNGSTER, 8, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x9af70, -1
-	person_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x9af73, -1
+	person_event SPRITE_RECEPTIONIST, 11, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TrainerHouse1FReceptionistScript, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerMScript, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerFScript, -1
+	person_event SPRITE_YOUNGSTER, 8, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, TrainerHouse1FYoungsterScript, -1
+	person_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TrainerHouse1FGentlemanScript, -1

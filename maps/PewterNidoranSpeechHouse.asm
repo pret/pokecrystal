@@ -9,8 +9,8 @@ PewterNidoranSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-SuperNerdScript_0x1a2807:
-	jumptextfaceplayer UnknownText_0x1a2814
+PewterNidoranSpeechHouseSuperNerdScript:
+	jumptextfaceplayer PewterNidoranSpeechHouseSuperNerdText
 
 PewterNidoran:
 	opentext
@@ -20,7 +20,7 @@ PewterNidoran:
 	closetext
 	end
 
-UnknownText_0x1a2814:
+PewterNidoranSpeechHouseSuperNerdText:
 	text "NIDORAN, shake!"
 	done
 
@@ -45,5 +45,5 @@ PewterNidoranSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_SUPER_NERD, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x1a2807, -1
+	person_event SPRITE_SUPER_NERD, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, PewterNidoranSpeechHouseSuperNerdScript, -1
 	person_event SPRITE_GROWLITHE, 5, 4, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, PewterNidoran, -1

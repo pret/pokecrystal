@@ -19,8 +19,8 @@ CeladonGameCorner_MapScriptHeader:
 ClerkScript_0x7211d:
 	jumpstd gamecornercoinvendor
 
-ReceptionistScript_0x72120:
-	jumptextfaceplayer UnknownText_0x721d0
+CeladonGameCornerReceptionistScript:
+	jumptextfaceplayer CeladonGameCornerReceptionistText
 
 PokefanMScript_0x72123:
 	faceplayer
@@ -149,7 +149,7 @@ MovementData_0x721cd:
 	turn_head LEFT
 	step_end
 
-UnknownText_0x721d0:
+CeladonGameCornerReceptionistText:
 	text "Welcome!"
 
 	para "You may exchange"
@@ -337,7 +337,7 @@ CeladonGameCorner_MapEventHeader:
 .PersonEvents:
 	db 9
 	person_event SPRITE_CLERK, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ClerkScript_0x7211d, -1
-	person_event SPRITE_RECEPTIONIST, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x72120, -1
+	person_event SPRITE_RECEPTIONIST, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonGameCornerReceptionistScript, -1
 	person_event SPRITE_POKEFAN_M, 10, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x72123, -1
 	person_event SPRITE_TEACHER, 7, 17, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, TeacherScript_0x7212e, -1
 	person_event SPRITE_FISHING_GURU, 7, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FishingGuruScript_0x72139, -1

@@ -18,11 +18,11 @@ FuchsiaPokecenter1F_MapScriptHeader:
 NurseScript_0x196459:
 	jumpstd pokecenternurse
 
-CooltrainerMScript_0x19645c:
-	jumptextfaceplayer UnknownText_0x196494
+FuchsiaPokecenter1FCooltrainerMScript:
+	jumptextfaceplayer FuchsiaPokecenter1FCooltrainerMText
 
-CooltrainerFScript_0x19645f:
-	jumptextfaceplayer UnknownText_0x1964dc
+FuchsiaPokecenter1FCooltrainerFScript:
+	jumptextfaceplayer FuchsiaPokecenter1FCooltrainerFText
 
 JanineImpersonatorScript_0x196462:
 	faceplayer
@@ -60,7 +60,7 @@ MovementData_0x196486:
 	turn_head DOWN
 	step_end
 
-UnknownText_0x196494:
+FuchsiaPokecenter1FCooltrainerMText:
 	text "Hey! You have a"
 	line "brand new kind of"
 	cont "#DEX."
@@ -69,7 +69,7 @@ UnknownText_0x196494:
 	line "that to you?"
 	done
 
-UnknownText_0x1964dc:
+FuchsiaPokecenter1FCooltrainerFText:
 	text "I got quite a"
 	line "shock at the GYM."
 
@@ -107,6 +107,6 @@ FuchsiaPokecenter1F_MapEventHeader:
 .PersonEvents:
 	db 4
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, NurseScript_0x196459, -1
-	person_event SPRITE_COOLTRAINER_M, 4, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x19645c, -1
-	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x19645f, -1
+	person_event SPRITE_COOLTRAINER_M, 4, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FuchsiaPokecenter1FCooltrainerMScript, -1
+	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FuchsiaPokecenter1FCooltrainerFScript, -1
 	person_event SPRITE_JANINE_IMPERSONATOR, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, JanineImpersonatorScript_0x196462, -1

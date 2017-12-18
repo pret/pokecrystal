@@ -8,10 +8,10 @@ OlivinePortPassage_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanMScript_0x76fac:
-	jumptextfaceplayer UnknownText_0x76faf
+OlivinePortPassagePokefanMScript:
+	jumptextfaceplayer OlivinePortPassagePokefanMText
 
-UnknownText_0x76faf:
+OlivinePortPassagePokefanMText:
 	text "FAST SHIP S.S.AQUA"
 	line "sails to KANTO on"
 
@@ -39,4 +39,4 @@ OlivinePortPassage_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 1, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x76fac, EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
+	person_event SPRITE_POKEFAN_M, 1, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivinePortPassagePokefanMScript, EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M

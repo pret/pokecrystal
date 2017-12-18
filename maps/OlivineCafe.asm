@@ -25,11 +25,11 @@ UnknownScript_0x9c8d3:
 	closetext
 	end
 
-FishingGuruScript_0x9c8d9:
-	jumptextfaceplayer UnknownText_0x9c9c5
+OlivineCafeFishingGuruScript:
+	jumptextfaceplayer OlivineCafeFishingGuruText
 
-SailorScript_0x9c8dc:
-	jumptextfaceplayer UnknownText_0x9ca09
+OlivineCafeSailorScript:
+	jumptextfaceplayer OlivineCafeSailorText
 
 UnknownText_0x9c8df:
 	text "Hah! Your #MON"
@@ -56,7 +56,7 @@ UnknownText_0x9c965:
 	line "buff bod!"
 	done
 
-UnknownText_0x9c9c5:
+OlivineCafeFishingGuruText:
 	text "OLIVINE CAFE's"
 	line "menu is chock full"
 
@@ -64,7 +64,7 @@ UnknownText_0x9c9c5:
 	line "beefy SAILORS!"
 	done
 
-UnknownText_0x9ca09:
+OlivineCafeSailorText:
 	text "Whenever I roll"
 	line "into this town, I"
 
@@ -96,5 +96,5 @@ OlivineCafe_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_SAILOR, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x9c8c1, -1
-	person_event SPRITE_FISHING_GURU, 3, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FishingGuruScript_0x9c8d9, -1
-	person_event SPRITE_SAILOR, 6, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x9c8dc, -1
+	person_event SPRITE_FISHING_GURU, 3, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivineCafeFishingGuruScript, -1
+	person_event SPRITE_SAILOR, 6, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivineCafeSailorScript, -1

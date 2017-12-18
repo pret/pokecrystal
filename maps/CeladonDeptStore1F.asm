@@ -10,14 +10,14 @@ CeladonDeptStore1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ReceptionistScript_0x709e0:
-	jumptextfaceplayer UnknownText_0x709ef
+CeladonDeptStore1FReceptionistScript:
+	jumptextfaceplayer CeladonDeptStore1FReceptionistText
 
-GentlemanScript_0x709e3:
-	jumptextfaceplayer UnknownText_0x70a35
+CeladonDeptStore1FGentlemanScript:
+	jumptextfaceplayer CeladonDeptStore1FGentlemanText
 
-TeacherScript_0x709e6:
-	jumptextfaceplayer UnknownText_0x70aa9
+CeladonDeptStore1FTeacherScript:
+	jumptextfaceplayer CeladonDeptStore1FTeacherText
 
 CeladonDeptStore1FDirectory:
 	jumptext CeladonDeptStore1FDirectoryText
@@ -25,7 +25,7 @@ CeladonDeptStore1FDirectory:
 CeladonDeptStore1FElevatorButton:
 	jumpstd elevatorbutton
 
-UnknownText_0x709ef:
+CeladonDeptStore1FReceptionistText:
 	text "Hello! Welcome to"
 	line "CELADON DEPT."
 	cont "STORE!"
@@ -34,7 +34,7 @@ UnknownText_0x709ef:
 	line "on the wall."
 	done
 
-UnknownText_0x70a35:
+CeladonDeptStore1FGentlemanText:
 	text "This DEPT.STORE is"
 	line "part of the same"
 
@@ -46,7 +46,7 @@ UnknownText_0x70a35:
 	cont "same time."
 	done
 
-UnknownText_0x70aa9:
+CeladonDeptStore1FTeacherText:
 	text "This is my first"
 	line "time here."
 
@@ -94,6 +94,6 @@ CeladonDeptStore1F_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_RECEPTIONIST, 1, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x709e0, -1
-	person_event SPRITE_GENTLEMAN, 4, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x709e3, -1
-	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x709e6, -1
+	person_event SPRITE_RECEPTIONIST, 1, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonDeptStore1FReceptionistScript, -1
+	person_event SPRITE_GENTLEMAN, 4, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonDeptStore1FGentlemanScript, -1
+	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonDeptStore1FTeacherScript, -1
