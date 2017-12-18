@@ -71,9 +71,9 @@ MahoganyGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerSkierRoxanne:
-	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, SkierRoxanneScript
+	trainer EVENT_BEAT_SKIER_ROXANNE, SKIER, ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, .Script
 
-SkierRoxanneScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SkierRoxanneAfterBattleText
@@ -82,9 +82,9 @@ SkierRoxanneScript:
 	end
 
 TrainerSkierClarissa:
-	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, SkierClarissaScript
+	trainer EVENT_BEAT_SKIER_CLARISSA, SKIER, CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, .Script
 
-SkierClarissaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SkierClarissaAfterBattleText
@@ -93,9 +93,9 @@ SkierClarissaScript:
 	end
 
 TrainerBoarderRonald:
-	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, BoarderRonaldScript
+	trainer EVENT_BEAT_BOARDER_RONALD, BOARDER, RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, .Script
 
-BoarderRonaldScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BoarderRonaldAfterBattleText
@@ -104,9 +104,9 @@ BoarderRonaldScript:
 	end
 
 TrainerBoarderBrad:
-	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, BoarderBradScript
+	trainer EVENT_BEAT_BOARDER_BRAD, BOARDER, BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, .Script
 
-BoarderBradScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BoarderBradAfterBattleText
@@ -115,9 +115,9 @@ BoarderBradScript:
 	end
 
 TrainerBoarderDouglas:
-	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, BoarderDouglasScript
+	trainer EVENT_BEAT_BOARDER_DOUGLAS, BOARDER, DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, .Script
 
-BoarderDouglasScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BoarderDouglasAfterBattleText

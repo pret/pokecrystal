@@ -310,7 +310,7 @@ TrainerPsychicMark:
 .Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x19471e
+	writetext PsychicMarkAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -553,7 +553,7 @@ PsychicMarkBeatenText:
 	text "I misread you!"
 	done
 
-UnknownText_0x19471e:
+PsychicMarkAfterBattleText:
 	text "I'd be strong if"
 	line "only I could tell"
 

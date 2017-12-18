@@ -146,9 +146,9 @@ UnknownScript_0x700b8:
 	end
 
 TrainerFisherAndre:
-	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, 0, FisherAndreScript
+	trainer EVENT_BEAT_FISHER_ANDRE, FISHER, ANDRE, FisherAndreSeenText, FisherAndreBeatenText, 0, .Script
 
-FisherAndreScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherAndreAfterBattleText
@@ -157,9 +157,9 @@ FisherAndreScript:
 	end
 
 TrainerFisherRaymond:
-	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, 0, FisherRaymondScript
+	trainer EVENT_BEAT_FISHER_RAYMOND, FISHER, RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, 0, .Script
 
-FisherRaymondScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherRaymondAfterBattleText
@@ -168,9 +168,9 @@ FisherRaymondScript:
 	end
 
 TrainerCooltrainermAaron:
-	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, 0, CooltrainermAaronScript
+	trainer EVENT_BEAT_COOLTRAINERM_AARON, COOLTRAINERM, AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, 0, .Script
 
-CooltrainermAaronScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermAaronAfterBattleText
@@ -179,9 +179,9 @@ CooltrainermAaronScript:
 	end
 
 TrainerCooltrainerfLois:
-	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, 0, CooltrainerfLoisScript
+	trainer EVENT_BEAT_COOLTRAINERF_LOIS, COOLTRAINERF, LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, 0, .Script
 
-CooltrainerfLoisScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfLoisAfterBattleText

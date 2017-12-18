@@ -98,9 +98,9 @@ EcruteakGymClosed:
 	end
 
 TrainerSageJeffrey:
-	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, 0, SageJeffreyScript
+	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, 0, .Script
 
-SageJeffreyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SageJeffreyAfterBattleText
@@ -109,9 +109,9 @@ SageJeffreyScript:
 	end
 
 TrainerSagePing:
-	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, 0, SagePingScript
+	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, 0, .Script
 
-SagePingScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SagePingAfterBattleText
@@ -120,9 +120,9 @@ SagePingScript:
 	end
 
 TrainerMediumMartha:
-	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, 0, MediumMarthaScript
+	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, 0, .Script
 
-MediumMarthaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext MediumMarthaAfterBattleText
@@ -131,9 +131,9 @@ MediumMarthaScript:
 	end
 
 TrainerMediumGrace:
-	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, 0, MediumGraceScript
+	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, 0, .Script
 
-MediumGraceScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext MediumGraceAfterBattleText

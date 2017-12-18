@@ -111,9 +111,9 @@ WarehouseEntrance_MapScriptHeader:
 	return
 
 TrainerSupernerdEric:
-	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, SupernerdEricScript
+	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, .Script
 
-SupernerdEricScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SupernerdEricAfterBattleText
@@ -122,9 +122,9 @@ SupernerdEricScript:
 	end
 
 TrainerSupernerdTeru:
-	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, 0, SupernerdTeruScript
+	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, 0, .Script
 
-SupernerdTeruScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SupernerdTeruAfterBattleText
@@ -133,9 +133,9 @@ SupernerdTeruScript:
 	end
 
 TrainerPokemaniacIssac:
-	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, 0, PokemaniacIssacScript
+	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, 0, .Script
 
-PokemaniacIssacScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacIssacAfterBattleText
@@ -144,9 +144,9 @@ PokemaniacIssacScript:
 	end
 
 TrainerPokemaniacDonald:
-	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, 0, PokemaniacDonaldScript
+	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, 0, .Script
 
-PokemaniacDonaldScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacDonaldAfterBattleText

@@ -55,9 +55,9 @@ RadioTower2FBlackBelt2Script:
 	jumptextfaceplayer RadioTower2FBlackBelt2Text
 
 TrainerGruntM4:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_4, GRUNTM, GRUNTM_4, GruntM4SeenText, GruntM4BeatenText, 0, GruntM4Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_4, GRUNTM, GRUNTM_4, GruntM4SeenText, GruntM4BeatenText, 0, .Script
 
-GruntM4Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM4AfterBattleText
@@ -66,9 +66,9 @@ GruntM4Script:
 	end
 
 TrainerGruntM5:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_5, GRUNTM, GRUNTM_5, GruntM5SeenText, GruntM5BeatenText, 0, GruntM5Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_5, GRUNTM, GRUNTM_5, GruntM5SeenText, GruntM5BeatenText, 0, .Script
 
-GruntM5Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM5AfterBattleText
@@ -77,9 +77,9 @@ GruntM5Script:
 	end
 
 TrainerGruntM6:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_6, GRUNTM, GRUNTM_6, GruntM6SeenText, GruntM6BeatenText, 0, GruntM6Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_6, GRUNTM, GRUNTM_6, GruntM6SeenText, GruntM6BeatenText, 0, .Script
 
-GruntM6Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM6AfterBattleText
@@ -88,9 +88,9 @@ GruntM6Script:
 	end
 
 TrainerGruntF2:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_2, GRUNTF, GRUNTF_2, GruntF2SeenText, GruntF2BeatenText, 0, GruntF2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_2, GRUNTF, GRUNTF_2, GruntF2SeenText, GruntF2BeatenText, 0, .Script
 
-GruntF2Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntF2AfterBattleText

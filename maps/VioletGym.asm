@@ -67,9 +67,9 @@ VioletGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerBird_keeperRod:
-	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, 0, Bird_keeperRodScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ROD, BIRD_KEEPER, ROD, Bird_keeperRodSeenText, Bird_keeperRodBeatenText, 0, .Script
 
-Bird_keeperRodScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Bird_keeperRodAfterBattleText
@@ -78,9 +78,9 @@ Bird_keeperRodScript:
 	end
 
 TrainerBird_keeperAbe:
-	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, 0, Bird_keeperAbeScript
+	trainer EVENT_BEAT_BIRD_KEEPER_ABE, BIRD_KEEPER, ABE, Bird_keeperAbeSeenText, Bird_keeperAbeBeatenText, 0, .Script
 
-Bird_keeperAbeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Bird_keeperAbeAfterBattleText

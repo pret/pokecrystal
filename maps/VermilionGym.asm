@@ -45,9 +45,9 @@ SurgeScript_0x1920a5:
 	end
 
 TrainerGentlemanGregory:
-	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, 0, GentlemanGregoryScript
+	trainer EVENT_BEAT_GENTLEMAN_GREGORY, GENTLEMAN, GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText, 0, .Script
 
-GentlemanGregoryScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GentlemanGregoryAfterBattleText
@@ -56,9 +56,9 @@ GentlemanGregoryScript:
 	end
 
 TrainerGuitaristVincent:
-	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, 0, GuitaristVincentScript
+	trainer EVENT_BEAT_GUITARIST_VINCENT, GUITARIST, VINCENT, GuitaristVincentSeenText, GuitaristVincentBeatenText, 0, .Script
 
-GuitaristVincentScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GuitaristVincentAfterBattleText
@@ -67,9 +67,9 @@ GuitaristVincentScript:
 	end
 
 TrainerJugglerHorton:
-	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, 0, JugglerHortonScript
+	trainer EVENT_BEAT_JUGGLER_HORTON, JUGGLER, HORTON, JugglerHortonSeenText, JugglerHortonBeatenText, 0, .Script
 
-JugglerHortonScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext JugglerHortonAfterBattleText

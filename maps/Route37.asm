@@ -26,9 +26,9 @@ Route37_MapScriptHeader:
 	return
 
 TrainerTwinsAnnandanne1:
-	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE1, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, 0, TwinsAnnandanne1Script
+	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE1, TwinsAnnandanne1SeenText, TwinsAnnandanne1BeatenText, 0, .Script
 
-TwinsAnnandanne1Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TwinsAnnandanne1AfterBattleText
@@ -37,9 +37,9 @@ TwinsAnnandanne1Script:
 	end
 
 TrainerTwinsAnnandanne2:
-	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE2, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, 0, TwinsAnnandanne2Script
+	trainer EVENT_BEAT_TWINS_ANN_AND_ANNE, TWINS, ANNANDANNE2, TwinsAnnandanne2SeenText, TwinsAnnandanne2BeatenText, 0, .Script
 
-TwinsAnnandanne2Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TwinsAnnandanne2AfterBattleText
@@ -48,9 +48,9 @@ TwinsAnnandanne2Script:
 	end
 
 TrainerPsychicGreg:
-	trainer EVENT_BEAT_PSYCHIC_GREG, PSYCHIC_T, GREG, PsychicGregSeenText, PsychicGregBeatenText, 0, PsychicGregScript
+	trainer EVENT_BEAT_PSYCHIC_GREG, PSYCHIC_T, GREG, PsychicGregSeenText, PsychicGregBeatenText, 0, .Script
 
-PsychicGregScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicGregAfterBattleText

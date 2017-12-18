@@ -13,9 +13,9 @@ Route13_MapScriptHeader:
 	db 0
 
 TrainerPokefanmAlex:
-	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, 0, PokefanmAlexScript
+	trainer EVENT_BEAT_POKEFANM_ALEX, POKEFANM, ALEX, PokefanmAlexSeenText, PokefanmAlexBeatenText, 0, .Script
 
-PokefanmAlexScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokefanmAlexAfterBattleText
@@ -24,9 +24,9 @@ PokefanmAlexScript:
 	end
 
 TrainerPokefanmJoshua:
-	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, 0, PokefanmJoshuaScript
+	trainer EVENT_BEAT_POKEFANM_JOSHUA, POKEFANM, JOSHUA, PokefanmJoshuaSeenText, PokefanmJoshuaBeatenText, 0, .Script
 
-PokefanmJoshuaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokefanmJoshuaAfterBattleText
@@ -35,9 +35,9 @@ PokefanmJoshuaScript:
 	end
 
 TrainerBird_keeperPerry:
-	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, 0, Bird_keeperPerryScript
+	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, 0, .Script
 
-Bird_keeperPerryScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Bird_keeperPerryAfterBattleText
@@ -46,9 +46,9 @@ Bird_keeperPerryScript:
 	end
 
 TrainerBird_keeperBret:
-	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, 0, Bird_keeperBretScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, 0, .Script
 
-Bird_keeperBretScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Bird_keeperBretAfterBattleText
@@ -57,9 +57,9 @@ Bird_keeperBretScript:
 	end
 
 TrainerHikerKenny:
-	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, 0, HikerKennyScript
+	trainer EVENT_BEAT_HIKER_KENNY, HIKER, KENNY, HikerKennySeenText, HikerKennyBeatenText, 0, .Script
 
-HikerKennyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerKennyAfterBattleText

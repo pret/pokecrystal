@@ -13,9 +13,9 @@ OlivineLighthouse5F_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperDenis:
-	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, 0, Bird_keeperDenisScript
+	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, 0, .Script
 
-Bird_keeperDenisScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Bird_keeperDenisAfterBattleText
@@ -24,9 +24,9 @@ Bird_keeperDenisScript:
 	end
 
 TrainerSailorErnest:
-	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, 0, SailorErnestScript
+	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, 0, .Script
 
-SailorErnestScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SailorErnestAfterBattleText

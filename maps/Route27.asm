@@ -49,9 +49,9 @@ Route27FisherScript:
 	jumptextfaceplayer Route27FisherText
 
 TrainerPsychicGilbert:
-	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, PsychicGilbertScript
+	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, .Script
 
-PsychicGilbertScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicGilbertAfterBattleText
@@ -60,9 +60,9 @@ PsychicGilbertScript:
 	end
 
 TrainerBird_keeperJose2:
-	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, Bird_keeperJose2SeenText, Bird_keeperJose2BeatenText, 0, Bird_keeperJose2Script
+	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, Bird_keeperJose2SeenText, Bird_keeperJose2BeatenText, 0, .Script
 
-Bird_keeperJose2Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
 	end_if_just_battled
 	opentext
@@ -173,9 +173,9 @@ UnknownScript_0x1a0977:
 	end
 
 TrainerCooltrainermBlake:
-	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, CooltrainermBlakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, .Script
 
-CooltrainermBlakeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermBlakeAfterBattleText
@@ -184,9 +184,9 @@ CooltrainermBlakeScript:
 	end
 
 TrainerCooltrainermBrian:
-	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, CooltrainermBrianScript
+	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, .Script
 
-CooltrainermBrianScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermBrianAfterBattleText
@@ -195,9 +195,9 @@ CooltrainermBrianScript:
 	end
 
 TrainerCooltrainerfReena:
-	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, 0, CooltrainerfReena1Script
+	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, 0, .Script
 
-CooltrainerfReena1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
 	end_if_just_battled
 	opentext
@@ -288,9 +288,9 @@ UnknownScript_0x1a0a47:
 	end
 
 TrainerCooltrainerfMegan:
-	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, CooltrainerfMeganScript
+	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, .Script
 
-CooltrainerfMeganScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfMeganAfterBattleText

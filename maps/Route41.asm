@@ -18,9 +18,9 @@ Route41_MapScriptHeader:
 	db 0
 
 TrainerSwimmerfKaylee:
-	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, SwimmerfKayleeScript
+	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, .Script
 
-SwimmerfKayleeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfKayleeAfterBattleText
@@ -29,9 +29,9 @@ SwimmerfKayleeScript:
 	end
 
 TrainerSwimmerfSusie:
-	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, 0, SwimmerfSusieScript
+	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, 0, .Script
 
-SwimmerfSusieScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfSusieAfterBattleText
@@ -40,9 +40,9 @@ SwimmerfSusieScript:
 	end
 
 TrainerSwimmerfDenise:
-	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, 0, SwimmerfDeniseScript
+	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, 0, .Script
 
-SwimmerfDeniseScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfDeniseAfterBattleText
@@ -51,9 +51,9 @@ SwimmerfDeniseScript:
 	end
 
 TrainerSwimmerfKara:
-	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, 0, SwimmerfKaraScript
+	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, 0, .Script
 
-SwimmerfKaraScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfKaraAfterBattleText
@@ -62,9 +62,9 @@ SwimmerfKaraScript:
 	end
 
 TrainerSwimmerfWendy:
-	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, 0, SwimmerfWendyScript
+	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, 0, .Script
 
-SwimmerfWendyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfWendyAfterBattleText
@@ -73,9 +73,9 @@ SwimmerfWendyScript:
 	end
 
 TrainerSwimmermCharlie:
-	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, 0, SwimmermCharlieScript
+	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, 0, .Script
 
-SwimmermCharlieScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermCharlieAfterBattleText
@@ -84,9 +84,9 @@ SwimmermCharlieScript:
 	end
 
 TrainerSwimmermGeorge:
-	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, 0, SwimmermGeorgeScript
+	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, 0, .Script
 
-SwimmermGeorgeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermGeorgeAfterBattleText
@@ -95,9 +95,9 @@ SwimmermGeorgeScript:
 	end
 
 TrainerSwimmermBerke:
-	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, 0, SwimmermBerkeScript
+	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, 0, .Script
 
-SwimmermBerkeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermBerkeAfterBattleText
@@ -106,9 +106,9 @@ SwimmermBerkeScript:
 	end
 
 TrainerSwimmermKirk:
-	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, 0, SwimmermKirkScript
+	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, 0, .Script
 
-SwimmermKirkScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermKirkAfterBattleText
@@ -117,9 +117,9 @@ SwimmermKirkScript:
 	end
 
 TrainerSwimmermMathew:
-	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, 0, SwimmermMathewScript
+	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, 0, .Script
 
-SwimmermMathewScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermMathewAfterBattleText

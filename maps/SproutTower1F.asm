@@ -26,9 +26,9 @@ SproutTower1FTeacherScript:
 	jumptextfaceplayer SproutTower1FTeacherText
 
 TrainerSageChow:
-	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, 0, SageChowScript
+	trainer EVENT_BEAT_SAGE_CHOW, SAGE, CHOW, SageChowSeenText, SageChowBeatenText, 0, .Script
 
-SageChowScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SageChowAfterBattleText

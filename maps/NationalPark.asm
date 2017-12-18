@@ -72,9 +72,9 @@ GameboyKidScript_0x5c037:
 	end
 
 TrainerSchoolboyJack1:
-	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, SchoolboyJack1Script
+	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, .Script
 
-SchoolboyJack1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
 	end_if_just_battled
 	opentext
@@ -189,9 +189,9 @@ UnknownScript_0x5c114:
 	end
 
 TrainerPokefanmWilliam:
-	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, 0, PokefanmWilliamScript
+	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, 0, .Script
 
-PokefanmWilliamScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokefanmWilliamAfterBattleText
@@ -200,9 +200,9 @@ PokefanmWilliamScript:
 	end
 
 TrainerPokefanfBeverly1:
-	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, PokefanfBeverly1Script
+	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, .Script
 
-PokefanfBeverly1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
 	end_if_just_battled
 	opentext
@@ -279,9 +279,9 @@ UnknownScript_0x5c1ab:
 	end
 
 TrainerLassKrise:
-	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, 0, LassKriseScript
+	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, 0, .Script
 
-LassKriseScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext LassKriseAfterBattleText

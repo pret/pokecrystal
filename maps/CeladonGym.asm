@@ -50,9 +50,9 @@ UnknownScript_0x72aae:
 	end
 
 TrainerLassMichelle:
-	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, 0, LassMichelleScript
+	trainer EVENT_BEAT_LASS_MICHELLE, LASS, MICHELLE, LassMichelleSeenText, LassMichelleBeatenText, 0, .Script
 
-LassMichelleScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext LassMichelleAfterBattleText
@@ -61,9 +61,9 @@ LassMichelleScript:
 	end
 
 TrainerPicnickerTanya:
-	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, 0, PicnickerTanyaScript
+	trainer EVENT_BEAT_PICNICKER_TANYA, PICNICKER, TANYA, PicnickerTanyaSeenText, PicnickerTanyaBeatenText, 0, .Script
 
-PicnickerTanyaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PicnickerTanyaAfterBattleText
@@ -72,9 +72,9 @@ PicnickerTanyaScript:
 	end
 
 TrainerBeautyJulia:
-	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, 0, BeautyJuliaScript
+	trainer EVENT_BEAT_BEAUTY_JULIA, BEAUTY, JULIA, BeautyJuliaSeenText, BeautyJuliaBeatenText, 0, .Script
 
-BeautyJuliaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BeautyJuliaAfterBattleText
@@ -83,9 +83,9 @@ BeautyJuliaScript:
 	end
 
 TrainerTwinsJoandzoe1:
-	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, 0, TwinsJoandzoe1Script
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE1, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, 0, .Script
 
-TwinsJoandzoe1Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TwinsJoandzoe1AfterBattleText
@@ -94,9 +94,9 @@ TwinsJoandzoe1Script:
 	end
 
 TrainerTwinsJoandzoe2:
-	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, 0, TwinsJoandzoe2Script
+	trainer EVENT_BEAT_TWINS_JO_AND_ZOE, TWINS, JOANDZOE2, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, 0, .Script
 
-TwinsJoandzoe2Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TwinsJoandzoe2AfterBattleText

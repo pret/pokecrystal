@@ -14,9 +14,9 @@ Route9_MapScriptHeader:
 	db 0
 
 TrainerCamperDean:
-	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, 0, CamperDeanScript
+	trainer EVENT_BEAT_CAMPER_DEAN, CAMPER, DEAN, CamperDeanSeenText, CamperDeanBeatenText, 0, .Script
 
-CamperDeanScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CamperDeanAfterBattleText
@@ -25,9 +25,9 @@ CamperDeanScript:
 	end
 
 TrainerPicnickerHeidi:
-	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, 0, PicnickerHeidiScript
+	trainer EVENT_BEAT_PICNICKER_HEIDI, PICNICKER, HEIDI, PicnickerHeidiSeenText, PicnickerHeidiBeatenText, 0, .Script
 
-PicnickerHeidiScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PicnickerHeidiAfterBattleText
@@ -36,9 +36,9 @@ PicnickerHeidiScript:
 	end
 
 TrainerCamperSid:
-	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, 0, CamperSidScript
+	trainer EVENT_BEAT_CAMPER_SID, CAMPER, SID, CamperSidSeenText, CamperSidBeatenText, 0, .Script
 
-CamperSidScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CamperSidAfterBattleText
@@ -47,9 +47,9 @@ CamperSidScript:
 	end
 
 TrainerPicnickerEdna:
-	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, 0, PicnickerEdnaScript
+	trainer EVENT_BEAT_PICNICKER_EDNA, PICNICKER, EDNA, PicnickerEdnaSeenText, PicnickerEdnaBeatenText, 0, .Script
 
-PicnickerEdnaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PicnickerEdnaAfterBattleText
@@ -58,9 +58,9 @@ PicnickerEdnaScript:
 	end
 
 TrainerHikerTim:
-	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, 0, HikerTimScript
+	trainer EVENT_BEAT_HIKER_TIM, HIKER, TIM, HikerTimSeenText, HikerTimBeatenText, 0, .Script
 
-HikerTimScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerTimAfterBattleText
@@ -69,9 +69,9 @@ HikerTimScript:
 	end
 
 TrainerHikerSidney:
-	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, 0, HikerSidneyScript
+	trainer EVENT_BEAT_HIKER_SIDNEY, HIKER, SIDNEY, HikerSidneySeenText, HikerSidneyBeatenText, 0, .Script
 
-HikerSidneyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerSidneyAfterBattleText

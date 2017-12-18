@@ -27,9 +27,9 @@ Route43_MapScriptHeader:
 	return
 
 TrainerCamperSpencer:
-	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, CamperSpencerScript
+	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, .Script
 
-CamperSpencerScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CamperSpencerAfterBattleText
@@ -38,9 +38,9 @@ CamperSpencerScript:
 	end
 
 TrainerPokemaniacBen:
-	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, PokemaniacBenScript
+	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, .Script
 
-PokemaniacBenScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacBenAfterBattleText
@@ -49,9 +49,9 @@ PokemaniacBenScript:
 	end
 
 TrainerPokemaniacBrent1:
-	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrent1SeenText, PokemaniacBrent1BeatenText, 0, PokemaniacBrent1Script
+	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrent1SeenText, PokemaniacBrent1BeatenText, 0, .Script
 
-PokemaniacBrent1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
 	end_if_just_battled
 	opentext
@@ -154,9 +154,9 @@ UnknownScript_0x19d144:
 	end
 
 TrainerPokemaniacRon:
-	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, PokemaniacRonScript
+	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, .Script
 
-PokemaniacRonScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacRonAfterBattleText
@@ -165,9 +165,9 @@ PokemaniacRonScript:
 	end
 
 TrainerFisherMarvin:
-	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, FisherMarvinScript
+	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, .Script
 
-FisherMarvinScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherMarvinAfterBattleText
@@ -176,9 +176,9 @@ FisherMarvinScript:
 	end
 
 TrainerPicnickerTiffany3:
-	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffany3SeenText, PicnickerTiffany3BeatenText, 0, PicnickerTiffany3Script
+	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffany3SeenText, PicnickerTiffany3BeatenText, 0, .Script
 
-PicnickerTiffany3Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
 	end_if_just_battled
 	opentext

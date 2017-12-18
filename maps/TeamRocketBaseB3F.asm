@@ -152,9 +152,9 @@ GruntM28Script:
 	end
 
 TrainerScientistRoss:
-	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, 0, ScientistRossScript
+	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, 0, .Script
 
-ScientistRossScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext ScientistRossAfterBattleText
@@ -163,9 +163,9 @@ ScientistRossScript:
 	end
 
 TrainerScientistMitch:
-	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, 0, ScientistMitchScript
+	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, 0, .Script
 
-ScientistMitchScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext ScientistMitchAfterBattleText

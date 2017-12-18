@@ -20,9 +20,9 @@ SlowpokeWellB1FKurtScript:
 	jumptextfaceplayer SlowpokeWellB1FKurtText
 
 TrainerGruntM29:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, GRUNTM_29, GruntM29SeenText, GruntM29BeatenText, 0, GruntM29Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_29, GRUNTM, GRUNTM_29, GruntM29SeenText, GruntM29BeatenText, 0, .Script
 
-GruntM29Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM29AfterBattleText
@@ -31,9 +31,9 @@ GruntM29Script:
 	end
 
 TrainerGruntM1:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, GRUNTM_1, GruntM1SeenText, GruntM1BeatenText, 0, GruntM1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_1, GRUNTM, GRUNTM_1, GruntM1SeenText, GruntM1BeatenText, 0, .Script
 
-GruntM1Script:
+.Script:
 	opentext
 	writetext TrainerGruntM1WhenTalkText
 	waitbutton
@@ -74,9 +74,9 @@ GruntM1Script:
 	end
 
 TrainerGruntM2:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, GRUNTM_2, GruntM2SeenText, GruntM2BeatenText, 0, GruntM2Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_2, GRUNTM, GRUNTM_2, GruntM2SeenText, GruntM2BeatenText, 0, .Script
 
-GruntM2Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM2AfterBattleText
@@ -85,9 +85,9 @@ GruntM2Script:
 	end
 
 TrainerGruntF1:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, GRUNTF_1, GruntF1SeenText, GruntF1BeatenText, 0, GruntF1Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_1, GRUNTF, GRUNTF_1, GruntF1SeenText, GruntF1BeatenText, 0, .Script
 
-GruntF1Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntF1AfterBattleText

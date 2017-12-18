@@ -83,9 +83,9 @@ UnknownScript_0x5e5a1:
 	end
 
 TrainerGruntM7:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, GRUNTM_7, GruntM7SeenText, GruntM7BeatenText, 0, GruntM7Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, GRUNTM_7, GruntM7SeenText, GruntM7BeatenText, 0, .Script
 
-GruntM7Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM7AfterBattleText
@@ -94,9 +94,9 @@ GruntM7Script:
 	end
 
 TrainerGruntM8:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, GRUNTM_8, GruntM8SeenText, GruntM8BeatenText, 0, GruntM8Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, GRUNTM_8, GruntM8SeenText, GruntM8BeatenText, 0, .Script
 
-GruntM8Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM8AfterBattleText
@@ -105,9 +105,9 @@ GruntM8Script:
 	end
 
 TrainerGruntM9:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, GRUNTM_9, GruntM9SeenText, GruntM9BeatenText, 0, GruntM9Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, GRUNTM_9, GruntM9SeenText, GruntM9BeatenText, 0, .Script
 
-GruntM9Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM9AfterBattleText
@@ -116,9 +116,9 @@ GruntM9Script:
 	end
 
 TrainerScientistMarc:
-	trainer EVENT_BEAT_SCIENTIST_MARC, SCIENTIST, MARC, ScientistMarcSeenText, ScientistMarcBeatenText, 0, ScientistMarcScript
+	trainer EVENT_BEAT_SCIENTIST_MARC, SCIENTIST, MARC, ScientistMarcSeenText, ScientistMarcBeatenText, 0, .Script
 
-ScientistMarcScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext ScientistMarcAfterBattleText

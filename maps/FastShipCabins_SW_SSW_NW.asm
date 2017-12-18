@@ -12,9 +12,9 @@ FastShipCabins_SW_SSW_NW_MapScriptHeader:
 	db 0
 
 TrainerFirebreatherLyle:
-	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, 0, FirebreatherLyleScript
+	trainer EVENT_BEAT_FIREBREATHER_LYLE, FIREBREATHER, LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, 0, .Script
 
-FirebreatherLyleScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FirebreatherLyleAfterBattleText
@@ -23,9 +23,9 @@ FirebreatherLyleScript:
 	end
 
 TrainerBug_catcherKen:
-	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, 0, Bug_catcherKenScript
+	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, 0, .Script
 
-Bug_catcherKenScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Bug_catcherKenAfterBattleText
@@ -34,9 +34,9 @@ Bug_catcherKenScript:
 	end
 
 TrainerBeautyCassie:
-	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, 0, BeautyCassieScript
+	trainer EVENT_BEAT_BEAUTY_CASSIE, BEAUTY, CASSIE, BeautyCassieSeenText, BeautyCassieBeatenText, 0, .Script
 
-BeautyCassieScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BeautyCassieAfterBattleText
@@ -45,9 +45,9 @@ BeautyCassieScript:
 	end
 
 TrainerGuitaristClyde:
-	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, 0, GuitaristClydeScript
+	trainer EVENT_BEAT_GUITARIST_CLYDE, GUITARIST, CLYDE, GuitaristClydeSeenText, GuitaristClydeBeatenText, 0, .Script
 
-GuitaristClydeScript:
+.Script:
 	end_if_just_battled
 	special Mobile_DummyReturnFalse
 	iftrue .mobile

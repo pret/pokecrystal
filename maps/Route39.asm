@@ -26,9 +26,9 @@ Route39Miltank:
 	end
 
 TrainerPokefanmDerek1:
-	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, 0, PokefanmDerek1Script
+	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, 0, .Script
 
-PokefanmDerek1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
 	end_if_just_battled
 	opentext
@@ -105,9 +105,9 @@ PackIsFull:
 	end
 
 TrainerPokefanfRuth:
-	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, 0, PokefanfRuthScript
+	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, 0, .Script
 
-PokefanfRuthScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokefanfRuthAfterBattleText
@@ -116,9 +116,9 @@ PokefanfRuthScript:
 	end
 
 TrainerSailorEugene:
-	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, 0, SailorEugeneScript
+	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, 0, .Script
 
-SailorEugeneScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SailorEugeneAfterBattleText
@@ -127,9 +127,9 @@ SailorEugeneScript:
 	end
 
 TrainerPsychicNorman:
-	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, 0, PsychicNormanScript
+	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, 0, .Script
 
-PsychicNormanScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicNormanAfterBattleText

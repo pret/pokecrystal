@@ -56,9 +56,9 @@ RadioTowerMeowth:
 	end
 
 TrainerGruntM10:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_10, GRUNTM, GRUNTM_10, GruntM10SeenText, GruntM10BeatenText, 0, GruntM10Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_10, GRUNTM, GRUNTM_10, GruntM10SeenText, GruntM10BeatenText, 0, .Script
 
-GruntM10Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM10AfterBattleText
@@ -67,9 +67,9 @@ GruntM10Script:
 	end
 
 TrainerExecutivem2:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, EXECUTIVEM_2, Executivem2SeenText, Executivem2BeatenText, 0, Executivem2Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, EXECUTIVEM_2, Executivem2SeenText, Executivem2BeatenText, 0, .Script
 
-Executivem2Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Executivem2AfterBattleText
@@ -78,9 +78,9 @@ Executivem2Script:
 	end
 
 TrainerGruntF4:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_4, GRUNTF, GRUNTF_4, GruntF4SeenText, GruntF4BeatenText, 0, GruntF4Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_4, GRUNTF, GRUNTF_4, GruntF4SeenText, GruntF4BeatenText, 0, .Script
 
-GruntF4Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntF4AfterBattleText
@@ -89,9 +89,9 @@ GruntF4Script:
 	end
 
 TrainerScientistRich:
-	trainer EVENT_BEAT_SCIENTIST_RICH, SCIENTIST, RICH, ScientistRichSeenText, ScientistRichBeatenText, 0, ScientistRichScript
+	trainer EVENT_BEAT_SCIENTIST_RICH, SCIENTIST, RICH, ScientistRichSeenText, ScientistRichBeatenText, 0, .Script
 
-ScientistRichScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext ScientistRichAfterBattleText

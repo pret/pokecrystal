@@ -69,9 +69,9 @@ UnknownScript_0x985a3:
 	end
 
 TrainerSageGaku:
-	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, 0, SageGakuScript
+	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, 0, .Script
 
-SageGakuScript:
+.Script:
 	opentext
 	writetext UnknownText_0x98938
 	waitbutton
@@ -79,9 +79,9 @@ SageGakuScript:
 	end
 
 TrainerSageMasa:
-	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, 0, SageMasaScript
+	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, 0, .Script
 
-SageMasaScript:
+.Script:
 	opentext
 	writetext UnknownText_0x98a35
 	waitbutton
@@ -89,9 +89,9 @@ SageMasaScript:
 	end
 
 TrainerSageKoji:
-	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, 0, SageKojiScript
+	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, 0, .Script
 
-SageKojiScript:
+.Script:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9861b
 	pause 10

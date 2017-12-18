@@ -102,9 +102,9 @@ YoungsterScript_0x5807e:
 	end
 
 TrainerPsychicNathan:
-	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, PsychicNathanScript
+	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, .Script
 
-PsychicNathanScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicNathanAfterBattleText
@@ -114,12 +114,12 @@ PsychicNathanScript:
 
 
 TrainerSuperNerdStan:
-	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, UnknownScript_0x580a9
+	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, .Script
 
-UnknownScript_0x580a9:
+.Script:
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x58250
+	writetext SuperNerdStanAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -194,7 +194,7 @@ UnknownText_0x58217:
 	line "understanding…"
 	done
 
-UnknownText_0x58250:
+SuperNerdStanAfterBattleText:
 	text "The RUINS are from"
 	line "about 1500 years"
 	cont "ago."

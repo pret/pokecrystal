@@ -17,9 +17,9 @@ DanceTheatre_MapScriptHeader:
 	db 0
 
 TrainerKimono_girlNaoko2:
-	trainer EVENT_BEAT_KIMONO_GIRL_NAOKO, KIMONO_GIRL, NAOKO2, Kimono_girlNaoko2SeenText, Kimono_girlNaoko2BeatenText, 0, Kimono_girlNaoko2Script
+	trainer EVENT_BEAT_KIMONO_GIRL_NAOKO, KIMONO_GIRL, NAOKO2, Kimono_girlNaoko2SeenText, Kimono_girlNaoko2BeatenText, 0, .Script
 
-Kimono_girlNaoko2Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Kimono_girlNaoko2AfterBattleText
@@ -28,9 +28,9 @@ Kimono_girlNaoko2Script:
 	end
 
 TrainerKimono_girlSayo:
-	trainer EVENT_BEAT_KIMONO_GIRL_SAYO, KIMONO_GIRL, SAYO, Kimono_girlSayoSeenText, Kimono_girlSayoBeatenText, 0, Kimono_girlSayoScript
+	trainer EVENT_BEAT_KIMONO_GIRL_SAYO, KIMONO_GIRL, SAYO, Kimono_girlSayoSeenText, Kimono_girlSayoBeatenText, 0, .Script
 
-Kimono_girlSayoScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Kimono_girlSayoAfterBattleText
@@ -39,9 +39,9 @@ Kimono_girlSayoScript:
 	end
 
 TrainerKimono_girlZuki:
-	trainer EVENT_BEAT_KIMONO_GIRL_ZUKI, KIMONO_GIRL, ZUKI, Kimono_girlZukiSeenText, Kimono_girlZukiBeatenText, 0, Kimono_girlZukiScript
+	trainer EVENT_BEAT_KIMONO_GIRL_ZUKI, KIMONO_GIRL, ZUKI, Kimono_girlZukiSeenText, Kimono_girlZukiBeatenText, 0, .Script
 
-Kimono_girlZukiScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Kimono_girlZukiAfterBattleText
@@ -50,9 +50,9 @@ Kimono_girlZukiScript:
 	end
 
 TrainerKimono_girlKuni:
-	trainer EVENT_BEAT_KIMONO_GIRL_KUNI, KIMONO_GIRL, KUNI, Kimono_girlKuniSeenText, Kimono_girlKuniBeatenText, 0, Kimono_girlKuniScript
+	trainer EVENT_BEAT_KIMONO_GIRL_KUNI, KIMONO_GIRL, KUNI, Kimono_girlKuniSeenText, Kimono_girlKuniBeatenText, 0, .Script
 
-Kimono_girlKuniScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Kimono_girlKuniAfterBattleText
@@ -61,9 +61,9 @@ Kimono_girlKuniScript:
 	end
 
 TrainerKimono_girlMiki:
-	trainer EVENT_BEAT_KIMONO_GIRL_MIKI, KIMONO_GIRL, MIKI, Kimono_girlMikiSeenText, Kimono_girlMikiBeatenText, 0, Kimono_girlMikiScript
+	trainer EVENT_BEAT_KIMONO_GIRL_MIKI, KIMONO_GIRL, MIKI, Kimono_girlMikiSeenText, Kimono_girlMikiBeatenText, 0, .Script
 
-Kimono_girlMikiScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Kimono_girlMikiAfterBattleText

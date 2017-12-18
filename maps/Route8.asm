@@ -14,9 +14,9 @@ Route8_MapScriptHeader:
 	db 0
 
 TrainerBikerDwayne:
-	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, 0, BikerDwayneScript
+	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, 0, .Script
 
-BikerDwayneScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BikerDwayneAfterBattleText
@@ -25,9 +25,9 @@ BikerDwayneScript:
 	end
 
 TrainerBikerHarris:
-	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, 0, BikerHarrisScript
+	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, 0, .Script
 
-BikerHarrisScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BikerHarrisAfterBattleText
@@ -36,9 +36,9 @@ BikerHarrisScript:
 	end
 
 TrainerBikerZeke:
-	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, 0, BikerZekeScript
+	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, 0, .Script
 
-BikerZekeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BikerZekeAfterBattleText
@@ -47,9 +47,9 @@ BikerZekeScript:
 	end
 
 TrainerSupernerdSam:
-	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, 0, SupernerdSamScript
+	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, 0, .Script
 
-SupernerdSamScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SupernerdSamAfterBattleText
@@ -58,9 +58,9 @@ SupernerdSamScript:
 	end
 
 TrainerSupernerdTom:
-	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, 0, SupernerdTomScript
+	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, 0, .Script
 
-SupernerdTomScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SupernerdTomAfterBattleText

@@ -160,8 +160,8 @@ CeladonCityTeacher2Text:
 	line "a sales clerk."
 	done
 
-; possibly unused
-UnknownText_0x1aa25b:
+; unused
+CeladonCityUnusedPokeComCenterText:
 	text "I love being"
 	line "surrounded by tall"
 	cont "buildings!"

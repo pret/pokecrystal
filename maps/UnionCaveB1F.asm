@@ -15,9 +15,9 @@ UnionCaveB1F_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacAndrew:
-	trainer EVENT_BEAT_POKEMANIAC_ANDREW, POKEMANIAC, ANDREW, PokemaniacAndrewSeenText, PokemaniacAndrewBeatenText, 0, PokemaniacAndrewScript
+	trainer EVENT_BEAT_POKEMANIAC_ANDREW, POKEMANIAC, ANDREW, PokemaniacAndrewSeenText, PokemaniacAndrewBeatenText, 0, .Script
 
-PokemaniacAndrewScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacAndrewAfterBattleText
@@ -26,9 +26,9 @@ PokemaniacAndrewScript:
 	end
 
 TrainerPokemaniacCalvin:
-	trainer EVENT_BEAT_POKEMANIAC_CALVIN, POKEMANIAC, CALVIN, PokemaniacCalvinSeenText, PokemaniacCalvinBeatenText, 0, PokemaniacCalvinScript
+	trainer EVENT_BEAT_POKEMANIAC_CALVIN, POKEMANIAC, CALVIN, PokemaniacCalvinSeenText, PokemaniacCalvinBeatenText, 0, .Script
 
-PokemaniacCalvinScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacCalvinAfterBattleText
@@ -37,9 +37,9 @@ PokemaniacCalvinScript:
 	end
 
 TrainerHikerPhillip:
-	trainer EVENT_BEAT_HIKER_PHILLIP, HIKER, PHILLIP, HikerPhillipSeenText, HikerPhillipBeatenText, 0, HikerPhillipScript
+	trainer EVENT_BEAT_HIKER_PHILLIP, HIKER, PHILLIP, HikerPhillipSeenText, HikerPhillipBeatenText, 0, .Script
 
-HikerPhillipScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerPhillipAfterBattleText
@@ -48,9 +48,9 @@ HikerPhillipScript:
 	end
 
 TrainerHikerLeonard:
-	trainer EVENT_BEAT_HIKER_LEONARD, HIKER, LEONARD, HikerLeonardSeenText, HikerLeonardBeatenText, 0, HikerLeonardScript
+	trainer EVENT_BEAT_HIKER_LEONARD, HIKER, LEONARD, HikerLeonardSeenText, HikerLeonardBeatenText, 0, .Script
 
-HikerLeonardScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerLeonardAfterBattleText

@@ -68,9 +68,9 @@ Director:
 	end
 
 TrainerExecutivef1:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, EXECUTIVEF_1, Executivef1SeenText, Executivef1BeatenText, 0, Executivef1Script
+	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, EXECUTIVEF_1, Executivef1SeenText, Executivef1BeatenText, 0, .Script
 
-Executivef1Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Executivef1AfterBattleText

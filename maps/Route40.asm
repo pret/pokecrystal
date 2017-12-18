@@ -32,9 +32,9 @@ Route40_MapScriptHeader:
 	return
 
 TrainerSwimmerfElaine:
-	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, 0, SwimmerfElaineScript
+	trainer EVENT_BEAT_SWIMMERF_ELAINE, SWIMMERF, ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText, 0, .Script
 
-SwimmerfElaineScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfElaineAfterBattleText
@@ -43,9 +43,9 @@ SwimmerfElaineScript:
 	end
 
 TrainerSwimmerfPaula:
-	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, 0, SwimmerfPaulaScript
+	trainer EVENT_BEAT_SWIMMERF_PAULA, SWIMMERF, PAULA, SwimmerfPaulaSeenText, SwimmerfPaulaBeatenText, 0, .Script
 
-SwimmerfPaulaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfPaulaAfterBattleText
@@ -54,9 +54,9 @@ SwimmerfPaulaScript:
 	end
 
 TrainerSwimmermSimon:
-	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, 0, SwimmermSimonScript
+	trainer EVENT_BEAT_SWIMMERM_SIMON, SWIMMERM, SIMON, SwimmermSimonSeenText, SwimmermSimonBeatenText, 0, .Script
 
-SwimmermSimonScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermSimonAfterBattleText
@@ -65,9 +65,9 @@ SwimmermSimonScript:
 	end
 
 TrainerSwimmermRandall:
-	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, 0, SwimmermRandallScript
+	trainer EVENT_BEAT_SWIMMERM_RANDALL, SWIMMERM, RANDALL, SwimmermRandallSeenText, SwimmermRandallBeatenText, 0, .Script
 
-SwimmermRandallScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermRandallAfterBattleText
