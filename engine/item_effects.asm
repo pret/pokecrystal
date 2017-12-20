@@ -452,6 +452,10 @@ ParkBall: ; e8a2
 	ld a, [hl]
 	push af
 	set SUBSTATUS_TRANSFORMED, [hl]
+
+; This code is buggy. Any wild Pokémon that has Transformed will be
+; caught as a Ditto, even if it was something else like Mew.
+; To fix, do not set [TempEnemyMonSpecies] to DITTO.
 	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .ditto
 	jr .not_ditto

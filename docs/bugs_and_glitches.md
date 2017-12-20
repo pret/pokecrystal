@@ -256,7 +256,18 @@ This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](/battle/core
 
 This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider Web, Transform, and stat-lowering effects of moves like String Shot or Bubble during the semi-invulnerable turn of Fly or Dig.
 
-*To do:* Identify specific code causing this bug and fix it.
+This is a bug with `CheckHiddenOpponent` in [battle/effect_commands.asm](/battle/effect_commands.asm):
+
+```asm
+CheckHiddenOpponent: ; 37daa
+; BUG: This routine should account for Lock-On and Mind Reader.
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVar
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	ret
+```
+
+*To do:* Fix this bug.
 
 
 ## Beat Up can desynchronize link battles
@@ -1007,7 +1018,72 @@ endr
 
 This bug can affect Mew or Pokémon other than Ditto that used Transform via Mirror Move or Sketch.
 
-*To do:* Identify specific code causing this bug and fix it.
+This is a bug with `PokeBall` in [items/item_effects.asm](/items/item_effects.asm):
+
+```asm
+	ld hl, EnemySubStatus5
+	ld a, [hl]
+	push af
+	set SUBSTATUS_TRANSFORMED, [hl]
+
+; This code is buggy. Any wild Pokémon that has Transformed will be
+; caught as a Ditto, even if it was something else like Mew.
+; To fix, do not set [TempEnemyMonSpecies] to DITTO.
+	bit SUBSTATUS_TRANSFORMED, a
+	jr nz, .ditto
+	jr .not_ditto
+
+.ditto
+	ld a, DITTO
+	ld [TempEnemyMonSpecies], a
+	jr .load_data
+
+.not_ditto
+	set SUBSTATUS_TRANSFORMED, [hl]
+	ld hl, wEnemyBackupDVs
+	ld a, [EnemyMonDVs]
+	ld [hli], a
+	ld a, [EnemyMonDVs + 1]
+	ld [hl], a
+
+.load_data
+	ld a, [TempEnemyMonSpecies]
+	ld [CurPartySpecies], a
+	ld a, [EnemyMonLevel]
+	ld [CurPartyLevel], a
+	callba LoadEnemyMon
+
+	pop af
+	ld [EnemySubStatus5], a
+```
+
+**Fix:** 
+
+```asm
+	ld hl, EnemySubStatus5
+	ld a, [hl]
+	push af
+	set SUBSTATUS_TRANSFORMED, [hl]
+
+	bit SUBSTATUS_TRANSFORMED, a
+	jr nz, .load_data
+
+	ld hl, wEnemyBackupDVs
+	ld a, [EnemyMonDVs]
+	ld [hli], a
+	ld a, [EnemyMonDVs + 1]
+	ld [hl], a
+
+.load_data
+	ld a, [TempEnemyMonSpecies]
+	ld [CurPartySpecies], a
+	ld a, [EnemyMonLevel]
+	ld [CurPartyLevel], a
+	callba LoadEnemyMon
+
+	pop af
+	ld [EnemySubStatus5], a
+```
 
 
 ## Using a Park Ball in normal battles has a corrupt animation
