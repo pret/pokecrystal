@@ -44,13 +44,13 @@ Function17005a: ; 17005a
 	ld [wOTTrademonSpecies], a
 	ld hl, $a827
 	ld de, wOTTrademonSenderName
-	ld bc, 5 ; Japanese Name Length
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
 	ld hl, $a85c
 	ld de, wOTTrademonOTName
-	ld bc, 5 ; Japanese Name Length
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a

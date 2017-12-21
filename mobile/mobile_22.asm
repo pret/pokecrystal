@@ -381,7 +381,7 @@ Function89331: ; 89331
 ; Sets carry if it does not find a nonspace character.
 ; Returns the location of the following character in hl.
 	push bc
-	ld c, 5
+	ld c, NAME_LENGTH_JAPANESE - 1
 .loop
 	ld a, [hli]
 	cp "@"
@@ -410,12 +410,12 @@ Function89346: ; 89346 (22:5346)
 	jr _incave
 
 Function8934a: ; 8934a
-	ld hl, 6
+	ld hl, NAME_LENGTH_JAPANESE
 	add hl, bc
 _incave:
 ; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.  Sets carry if it does not find a nonspace character.  Returns the location of the following character in hl.
 	push bc
-	ld c, 5
+	ld c, NAME_LENGTH_JAPANESE - 1
 .loop
 	ld a, [hli]
 	cp "@"
@@ -448,7 +448,7 @@ Function89363: ; 89363
 
 ._incave
 	push de
-	ld e, 6
+	ld e, NAME_LENGTH_JAPANESE
 .loop
 	ld a, [hli]
 	cp -1
@@ -2394,7 +2394,7 @@ Function89e9a: ; 89e9a (22:5e9a)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_89eb1
-	ld de, UnknBGPals + 5 palettes
+	ld de, UnknBGPals palette 5
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af

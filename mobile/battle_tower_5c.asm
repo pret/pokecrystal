@@ -107,7 +107,7 @@ Function170139: ; 170139
 	ld e, l
 	ld d, h
 	ld hl, PlayerName
-	ld bc, 5 ; Japanese name length
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld bc, PlayerID
 	ld de, PlayerGender
@@ -159,7 +159,7 @@ Function170139: ; 170139
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a894
-	ld bc, 6
+	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
 	ld hl, wMisc
 	ld de, $a948
@@ -879,7 +879,7 @@ Function1704e1: ; 1704e1
 	ld de, wcd49
 	push bc
 	call PlaceString
-	ld de, 6
+	ld de, NAME_LENGTH_JAPANESE
 	add hl, de
 	pop bc
 	pop af
@@ -1362,7 +1362,7 @@ BattleTowerAction_EggTicket: ; 17093c (5c:493c) BattleTowerAction $0e
 	jr nz, .not_egg
 	push hl
 	ld hl, PartyMonOT
-	ld de, $6 ; NAME_LENGTH
+	ld de, NAME_LENGTH_JAPANESE
 	ld a, b
 	and a
 	jr z, .skip
@@ -1372,7 +1372,7 @@ BattleTowerAction_EggTicket: ; 17093c (5c:493c) BattleTowerAction $0e
 	jr nz, .loop2
 .skip
 	ld de, String_1709a4
-	ld a, $6 ; NAME_LENGTH
+	ld a, NAME_LENGTH_JAPANESE
 .compare_loop
 	push af
 	ld a, [de]

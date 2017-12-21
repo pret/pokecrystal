@@ -257,7 +257,7 @@ CopyMobileEZChatToC608: ; 11c156
 	sla c
 	rl b
 	add hl, bc
-	ld bc, 5 ; length of a string
+	ld bc, NAME_LENGTH_JAPANESE - 1
 .copy_string
 	ld de, $c608
 	call CopyBytes
@@ -3236,7 +3236,7 @@ EZChat_GetCategoryWordsByKana: ; 11d4aa
 	push hl
 
 	; skip to the attributes
-	ld hl, 5 ; length of a string
+	ld hl, NAME_LENGTH_JAPANESE - 1
 	add hl, de
 
 	; get the number of words in the category

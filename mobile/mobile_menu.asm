@@ -192,7 +192,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	call GetSRAMBank
 	ld hl, sPlayerData + PlayerName - wPlayerData
 	ld de, PlayerName
-	ld bc, 6 ; japanese name length
+	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
 	call CloseSRAM
 	callba _LoadData

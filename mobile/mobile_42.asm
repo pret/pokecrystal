@@ -947,7 +947,7 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 	ld de, SFX_GIVE_TRADEMON
 	call PlaySFX
 	ld c, 40
-	ld hl, BGPals + 6 palettes
+	ld hl, BGPals palette 6
 	call Function1082f0
 	call Function108af4
 .loop
@@ -1179,7 +1179,7 @@ MobileTradeAnim_GetTrademon2: ; 108894
 
 MobileTradeAnim_GetTrademon3: ; 10890a
 	ld c, 40
-	ld hl, BGPals + 6 palettes
+	ld hl, BGPals palette 6
 	call Function1082f0
 	call Function108af4
 	call GetMobileTradeAnimByte
@@ -1718,7 +1718,7 @@ Function108c80: ; 108c80
 ; 108c9b
 
 DebugMobileTrade: ; 108c9b
-; localization error: NAME_LENGTH (11) should be 6 here
+; localization error: NAME_LENGTH (11) should be NAME_LENGTH_JAPANESE (6) here
 
 	ld hl, .DebugTradeData
 	ld a, [hli]

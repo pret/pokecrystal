@@ -7103,7 +7103,7 @@ Mobile46_RunJumptable: ; 11b45c
 Function11b483: ; 11b483
 	call .InitRAM
 	ld hl, PlayerName
-	ld a, $5 ; Japanese Name Length
+	ld a, NAME_LENGTH_JAPANESE - 1
 .loop1
 	push af
 	ld a, [hli]

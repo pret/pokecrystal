@@ -1895,7 +1895,7 @@ Function114b55: ; 114b55
 .asm_114b8c
 	pop hl
 	xor a
-rept 6
+rept NAME_LENGTH_JAPANESE
 	ld [hli], a
 endr
 	jr .asm_114b82

@@ -2679,7 +2679,7 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 .CopyThreeSpecies: ; 101145
 ; Load the 3 choices to the buffer
 	push de
-	ld bc, StringBuffer2 + 6
+	ld bc, StringBuffer2 + NAME_LENGTH_JAPANESE
 	xor a
 .party_loop
 	push af
@@ -2695,7 +2695,7 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 	ld a, 3
 	ld [de], a
 	inc de
-	ld hl, StringBuffer2 + 6
+	ld hl, StringBuffer2 + NAME_LENGTH_JAPANESE
 	ld bc, 3
 	call CopyBytes
 	ld a, $ff
