@@ -878,6 +878,8 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](
 ; making bumps silent.
 
 	ld a, [WalkingDirection]
+	; cp STANDING
+	; jr z, .not_warp
 	ld e, a
 	ld d, 0
 	ld hl, .EdgeWarps
@@ -889,6 +891,7 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](
 	ld a, 1
 	ld [wd041], a
 	ld a, [WalkingDirection]
+	; This is in the wrong place.
 	cp STANDING
 	jr z, .not_warp
 ```
@@ -1221,8 +1224,8 @@ In [engine/overworld.asm](/engine/overworld.asm):
 
 ```asm
 LoadSpriteGFX: ; 14306
-; Bug: b is not preserved, so
-; it's useless as a next count.
+; Bug: b is not preserved, so it's useless as a next count.
+; Uncomment the lines below to fix.
 
 	ld hl, UsedSprites
 	ld b, SPRITE_GFX_LIST_CAPACITY
@@ -1241,13 +1244,15 @@ LoadSpriteGFX: ; 14306
 	ret
 
 .LoadSprite:
+	; push bc
 	call GetSprite
+	; pop bc
 	ld a, l
 	ret
 ; 1431e
 ```
 
-**Fix:** Surround `call GetSprite` with `push bc`/`pop bc`.
+**Fix:** Uncomment `push bc` and `pop bc`.
 
 
 ## `ChooseWildEncounter` doesn't really validate the wild Pokémon species

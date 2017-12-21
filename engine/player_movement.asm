@@ -409,6 +409,8 @@ DoPlayerMovement:: ; 80000
 ; making bumps silent.
 
 	ld a, [WalkingDirection]
+	; cp STANDING
+	; jr z, .not_warp
 	ld e, a
 	ld d, 0
 	ld hl, .EdgeWarps
@@ -420,6 +422,7 @@ DoPlayerMovement:: ; 80000
 	ld a, 1
 	ld [wd041], a
 	ld a, [WalkingDirection]
+	; This is in the wrong place.
 	cp STANDING
 	jr z, .not_warp
 
