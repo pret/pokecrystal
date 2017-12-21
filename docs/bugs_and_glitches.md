@@ -35,6 +35,7 @@
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
+- [`Function6ec1` does not correctly limit object movement](#function6ec1-does-not-correctly-limit-object-movement)
 - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
 - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
@@ -972,6 +973,22 @@ In [home/map.asm](/home/map.asm):
 ([Video](https://www.youtube.com/watch?v=XFOWvMNG-zw))
 
 *To do:* Identify specific code causing this bug and fix it.
+
+
+## `Function6ec1` does not correctly limit object movement
+
+This bug is why the Lapras in Union Cave, which uses `SPRITEMOVEDATA_LAPRAS`, is not restricted by its `1, 1` movement radius.
+
+In [engine/npc_movement.asm](/engine/npc_movement.asm):
+
+```asm
+	ld hl, OBJECT_FLAGS1
+	add hl, bc
+	bit 4, [hl] ; lost, uncomment next line to fix
+;	jr nz, .resume
+```
+
+**Fix:** Uncomment `jr nz, .resume`.
 
 
 ## `CheckOwnMon` only checks the first five letters of OT names
