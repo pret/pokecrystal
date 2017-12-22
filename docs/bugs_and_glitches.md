@@ -34,6 +34,7 @@
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
 - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
+- [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
 - [`Function6ec1` does not correctly limit object movement](#function6ec1-does-not-correctly-limit-object-movement)
@@ -953,6 +954,17 @@ This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png
 **Fix:** Lower the ellipsis by two pixels:
 
 ![image](https://i.imgur.com/qfMvhlG.png)
+
+
+## Two tiles in the `port` tileset are drawn incorrectly
+
+This is a mistake with the top-left and top-right warp carpet tiles in [gfx/tilesets/port.png](/gfx/tilesets/port.png):
+
+![image](https://i.imgur.com/6SJuORN.png)
+
+**Fix:** Adjust them to match the right-hand corner tiles:
+
+![image](https://i.imgur.com/PD3Fjdu.png)
 
 
 ## `LoadMetatiles` wraps around past 128 blocks
