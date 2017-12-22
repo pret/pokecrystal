@@ -958,7 +958,7 @@ This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png
 
 ## Two tiles in the `port` tileset are drawn incorrectly
 
-This is a mistake with the top-left and top-right warp carpet tiles in [gfx/tilesets/port.png](/gfx/tilesets/port.png):
+This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/port.png](/gfx/tilesets/port.png):
 
 ![image](https://i.imgur.com/6SJuORN.png)
 
