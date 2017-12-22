@@ -33,6 +33,7 @@
 - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
 - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pokédex-cry-can-distort-raikous-and-suicunes)
+- [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
 - [`Function6ec1` does not correctly limit object movement](#function6ec1-does-not-correctly-limit-object-movement)
@@ -941,6 +942,17 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 	call PlayCry
 	ret
 ```
+
+
+## In-battle “`…`” ellipsis is too high
+
+This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png](/gfx/battle/hp_exp_bar_border.png):
+
+![image](https://i.imgur.com/hVK5ofi.png)
+
+**Fix:** Lower the ellipsis by two pixels:
+
+![image](https://i.imgur.com/qfMvhlG.png)
 
 
 ## `LoadMetatiles` wraps around past 128 blocks
