@@ -612,11 +612,11 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp: ; 1704a2
 ; copy the BattleTower-Trainer data that lies at 'BT_OTTrainer' to 'wBT_OTTemp'
 	ld a, [rSVBK]
 	push af
-	ld a, $3 ; BANK(BT_OTTrainer)
+	ld a, BANK(BT_OTTrainer)
 	ld [rSVBK], a
 
-	ld hl, BT_OTTrainer ; $d100
-	ld de, wBT_OTTemp ; wMisc
+	ld hl, BT_OTTrainer
+	ld de, wBT_OTTemp
 	ld bc, BATTLE_TOWER_STRUCT_LENGTH
 	call CopyBytes
 

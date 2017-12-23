@@ -168,7 +168,8 @@ wPlayerNextMovement:: db
 wPlayerMovement:: db
 	ds 2
 wc2e2::
-wMovementPerson:: db
+wMovementPerson::
+	db
 wMovementDataPointer:: ds 3 ; dba
 wc2e6:: ds 4
 wMovementByteWasControlSwitch:: db
@@ -330,11 +331,11 @@ SECTION "Battle", WRAM0
 
 UNION ; c608
 ; unidentified uses
-wc608::
+wc608:: ds 480
 
 NEXTU ; c608
 ; miscellaneous
-wMisc:: ds (SCREEN_WIDTH + 4) * (SCREEN_HEIGHT + 2)
+wMisc:: ds WMISC_WIDTH * WMISC_HEIGHT
 wMiscEnd::
 
 NEXTU ; c608
@@ -353,6 +354,7 @@ wHallOfFameTemp:: hall_of_fame wHallOfFameTemp
 
 NEXTU ; c608
 ; timeset temp storage
+wTimeSetBuffer::
 	ds 20
 wInitHourBuffer:: db ; c61c
 	ds 9
@@ -507,7 +509,8 @@ EnemyDamageTaken:: dw ; c684
 wBattleReward:: ds 3 ; c686
 wBattleAnimParam::
 wKickCounter::
-wPresentPower:: db ; c689
+wPresentPower::
+	db ; c689
 BattleScriptBuffer:: ds 40 ; c68a
 
 BattleScriptBufferAddress:: dw ; c6b2
@@ -800,7 +803,7 @@ wUnownPuzzleEnd::
 NEXTU ; c6d0
 ; pokedex
 wPokedexDataStart::
-wPokedexOrder:: ds $100 ; NUM_POKEMON + 5
+wPokedexOrder:: ds $100 ; >= NUM_POKEMON
 wPokedexOrderEnd::
 wPokedexMetadata::
 wDexListingScrollOffset:: db ; offset of the first displayed entry from the start
@@ -1266,14 +1269,16 @@ wcf5d:: dw
 MonType:: db ; cf5f
 
 CurSpecies::
-CurMove:: db ; cf60
+CurMove::
+	db ; cf60
 
 wNamedObjectTypeBuffer:: db
 
 	ds 1
 
 wBattleTowerBattleEnded::
-wJumptableIndex:: db
+wJumptableIndex::
+	db
 
 UNION ; cf64
 ; unidentified
@@ -1624,7 +1629,9 @@ wEarthquakeMovementDataBuffer:: ds 5
 NEXTU ; d002
 ; miscellaneous
 wTempDayOfWeek::
-wApricorns:: db
+wApricorns::
+	db
+
 	ds 2
 
 StartFlypoint:: db
@@ -1792,7 +1799,8 @@ wTMHMPocketScrollPosition::     db
 wSwitchMon::
 wSwitchItem::
 wMoveSwapBuffer::
-wd0e3:: ds 1
+wd0e3::
+	db
 
 wMenuScrollPosition:: ds 4
 
@@ -2098,11 +2106,12 @@ wPutativeTMHMMove:: db
 wInitListType:: db
 wBattleHasJustStarted:: db
 
-wFoundMatchingIDInParty::
 wNamedObjectIndexBuffer::
 wCurTMHM::
 wTypeMatchup::
-wd265:: db
+wFoundMatchingIDInParty::
+wd265::
+	db
 
 wFailedToFlee:: db
 wNumFleeAttempts:: db
@@ -2116,11 +2125,9 @@ TimeOfDay:: db ; d269
 SECTION "Enemy Party", WRAMX
 
 UNION ; d26b
-wPokedexShowPointerAddr::
-wd26b:: ds 1
-wd26c:: ds 1
-wPokedexShowPointerBank::
-wd26d:: ds 1
+wd26b::
+wPokedexShowPointerAddr:: dw
+wPokedexShowPointerBank:: db
 	ds 3
 wd271:: ds 5
 
@@ -2136,22 +2143,6 @@ OTPartySpecies:: ds PARTY_LENGTH ; d281
 OTPartyEnd::     ds 1 ; legacy scripts don't check PartyCount
 
 UNION ; d288
-; catch tutorial dude pack
-wDudeBag::
-wDudeNumItems:: db
-wDudeItems:: ds 2 * 4
-wDudeItemsEnd:: db
-
-wDudeNumKeyItems:: db ; d292
-wDudeKeyItems:: ds 18
-wDudeKeyItemsEnd:: db
-
-wDudeNumBalls:: db ; d2a6
-wDudeBalls:: ds 2 * 4 ; d2a7
-wDudeBallsEnd:: db ; d2af
-wDudeBagEnd::
-
-NEXTU ; d288
 ; ot party mons
 OTPartyMons::
 OTPartyMon1:: party_struct OTPartyMon1 ; d288
@@ -2166,6 +2157,22 @@ OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
 OTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH ; d3ea
 OTPartyDataEnd::
 	ds 4
+
+NEXTU ; d288
+; catch tutorial dude pack
+wDudeBag::
+wDudeNumItems:: db
+wDudeItems:: ds 2 * 4
+wDudeItemsEnd:: db
+
+wDudeNumKeyItems:: db ; d292
+wDudeKeyItems:: ds 18
+wDudeKeyItemsEnd:: db
+
+wDudeNumBalls:: db ; d2a6
+wDudeBalls:: ds 2 * 4 ; d2a7
+wDudeBallsEnd:: db ; d2af
+wDudeBagEnd::
 ENDU ; d430
 
 wd430::
@@ -2202,9 +2209,11 @@ wScriptStack:: ds 3 * 5
 ScriptDelay:: db ; d44d
 
 wPriorityScriptBank::
-wScriptTextBank:: db ; d44e
+wScriptTextBank::
+	db ; d44e
 wPriorityScriptAddr::
-wScriptTextAddr:: dw ; d44f
+wScriptTextAddr::
+	dw ; d44f
 	ds 1
 wWildEncounterCooldown:: db ; d452
 wXYComparePointer:: dw ; d453
@@ -2816,40 +2825,37 @@ SECTION "Battle Tower", WRAMX
 
 w3_d000:: ds 1 ; d000
 w3_d001:: ds 1
-w3_d002::
-	ds $7e
-w3_d080::
-	ds $10
-w3_d090::
-	ds $70
+w3_d002:: ds $7e
+w3_d080:: ds $10
+w3_d090:: ds $70
 
-w3_d100:: ; BattleTower OpponentTrainer-Data (length = 0xe0 = $a + $1 + 3*$3b + $24)
+w3_d100::
 BT_OTTrainer:: battle_tower_struct BT_OT
-; d1e0
 	ds $20
-; d200
-BT_TrainerTextIndex:: ds 2
+BT_TrainerTextIndex:: db ; d200
+	ds 1
 w3_d202:: battle_tower_struct w3_d202
 w3_d2e2:: battle_tower_struct w3_d2e2
 w3_d3c2:: battle_tower_struct w3_d3c2
 w3_d4a2:: battle_tower_struct w3_d4a2
 w3_d582:: battle_tower_struct w3_d582
 w3_d662:: battle_tower_struct w3_d662
+
 UNION ; d742
 w3_d742:: battle_tower_struct w3_d742
 ; d822
+
 NEXTU ; d742
 	ds $be
-wBTChoiceOfLvlGroup::
-w3_d800:: ; ds BG_MAP_WIDTH * SCREEN_HEIGHT ($240)
-	ds $69
-ENDU ; d869
+w3_d800:: ds BG_MAP_WIDTH * SCREEN_HEIGHT
 
+NEXTU ; d742
+	ds $be
+wBTChoiceOfLvlGroup:: db
+	ds $68
 w3_d869:: ds $17
 w3_d880:: ds 1
-w3_d881:: ds 1
-w3_d882:: ds 1
-w3_d883:: ds 7
+w3_d881:: ds 9
 w3_d88a:: ds 5
 w3_d88f:: ds 5
 w3_d894:: ds 1
@@ -2857,11 +2863,16 @@ w3_d895:: ds 11
 w3_d8a0:: ds 1
 w3_d8a1:: ds 1
 w3_d8a2:: ds 1
-w3_d8a3:: ds $19d
-w3_da40:: ds $1c0
+w3_d8a3:: ds 1
+ENDU ; d869
+
+	ds $1c0
+
 w3_dc00:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT
+
 	ds $11c
+
 w3_dfec:: ds $10
 w3_dffc:: ds 4
 

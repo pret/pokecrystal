@@ -14,7 +14,7 @@ UnownPuzzle: ; e1190
 	xor a
 	ld [hBGMapMode], a
 	call DisableLCD
-	ld hl, wMisc
+	ld hl, wMisc ; includes wPuzzlePieces
 	ld bc, wMiscEnd - wMisc
 	xor a
 	call ByteFill
