@@ -2,7 +2,7 @@ map_header_2: macro
 ;\1: map label
 ;\2: map id
 ;\3: border block
-;\4: connections: sum of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
+;\4: connections: combo of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
 \1_SecondMapHeader::
 	db \3
 	db \2_HEIGHT, \2_WIDTH

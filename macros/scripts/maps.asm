@@ -43,8 +43,12 @@ person_event: macro
 ;\3: x: left to right, starts at 0
 ;\4: movement function: a SPRITEMOVEDATA_* constant
 ;\5, \6: movement radius: y, x
-;\7: clock hour: ???
-;\8: clock daytime: sum of MORN, DAY, and/or NITE, or 0 for always
+;\7, \8: hour1 and hour2: control the hours a person_event is visible (0-23)
+;  * if hour1 < hour2, the person_event will only appear from hour1 to hour2
+;  * if hour1 > hour2, the person_event will not appear from hour2 to hour1
+;  * if hour1 == hour2, the person_event will always appear
+;  * if hour1 == -1, hour2 is treated as a time-of-day value:
+;    a combo of MORN, DAY, and/or NITE, or -1 to always appear
 ;\9: color: a PAL_NPC_* constant, or 0 for sprite default
 ;\10: function: a PERSONTYPE_* constant
 ;\11: sight range: applies to PERSONTYPE_TRAINER
