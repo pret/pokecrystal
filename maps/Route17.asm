@@ -18,9 +18,9 @@ Route17_MapScriptHeader:
 	return
 
 TrainerBikerCharles:
-	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, BikerCharlesScript
+	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, .Script
 
-BikerCharlesScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BikerCharlesAfterBattleText
@@ -29,9 +29,9 @@ BikerCharlesScript:
 	end
 
 TrainerBikerRiley:
-	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, 0, BikerRileyScript
+	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, 0, .Script
 
-BikerRileyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BikerRileyAfterBattleText
@@ -40,9 +40,9 @@ BikerRileyScript:
 	end
 
 TrainerBikerJoel:
-	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, 0, BikerJoelScript
+	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, 0, .Script
 
-BikerJoelScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BikerJoelAfterBattleText
@@ -51,9 +51,9 @@ BikerJoelScript:
 	end
 
 TrainerBikerGlenn:
-	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, 0, BikerGlennScript
+	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, 0, .Script
 
-BikerGlennScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BikerGlennAfterBattleText

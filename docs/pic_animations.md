@@ -1,5 +1,8 @@
 # Pic Animations
 
+Defined in [macros/scripts/gfx_anim.asm](/macros/scripts/gfx_anim.asm) and [battle/anim_commands.asm:BattleAnimCommands](/battle/anim_commands.asm).
+
+
 Pic animations are assembled in 3 parts:
 
 - Top-level animations:

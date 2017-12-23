@@ -12,11 +12,11 @@ MrFujisHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-SuperNerdScript_0x7e8ca:
-	jumptextfaceplayer UnknownText_0x7e8f1
+MrFujisHouseSuperNerdScript:
+	jumptextfaceplayer MrFujisHouseSuperNerdText
 
-LassScript_0x7e8cd:
-	jumptextfaceplayer UnknownText_0x7e940
+MrFujisHouseLassScript:
+	jumptextfaceplayer MrFujisHouseLassText
 
 MrFujisPsyduck:
 	opentext
@@ -45,7 +45,7 @@ MrFujisPidgey:
 MrFujisHouseBookshelf:
 	jumpstd difficultbookshelf
 
-UnknownText_0x7e8f1:
+MrFujisHouseSuperNerdText:
 	text "MR.FUJI does live"
 	line "here, but he's not"
 
@@ -55,7 +55,7 @@ UnknownText_0x7e8f1:
 	line "the SOUL HOUSE."
 	done
 
-UnknownText_0x7e940:
+MrFujisHouseLassText:
 	text "Some cold-hearted"
 	line "people stop caring"
 	cont "for their #MON."
@@ -98,8 +98,8 @@ MrFujisHouse_MapEventHeader:
 
 .PersonEvents:
 	db 5
-	person_event SPRITE_SUPER_NERD, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x7e8ca, -1
-	person_event SPRITE_LASS, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x7e8cd, -1
+	person_event SPRITE_SUPER_NERD, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, MrFujisHouseSuperNerdScript, -1
+	person_event SPRITE_LASS, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MrFujisHouseLassScript, -1
 	person_event SPRITE_RHYDON, 4, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MrFujisPsyduck, -1
 	person_event SPRITE_GROWLITHE, 5, 5, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, MrFujisNidorino, -1
 	person_event SPRITE_MOLTRES, 3, 1, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, MrFujisPidgey, -1

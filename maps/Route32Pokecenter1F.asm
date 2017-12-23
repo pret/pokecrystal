@@ -42,8 +42,8 @@ UnknownScript_0x69b7a:
 	closetext
 	end
 
-CooltrainerFScript_0x69b80:
-	jumptextfaceplayer UnknownText_0x69cac
+Route32Pokecenter1FCooltrainerFScript:
+	jumptextfaceplayer Route32Pokecenter1FCooltrainerFText
 
 UnknownText_0x69b83:
 	text "This is a great"
@@ -85,7 +85,7 @@ UnknownText_0x69c8d:
 	line "they biting?"
 	done
 
-UnknownText_0x69cac:
+Route32Pokecenter1FCooltrainerFText:
 	text "What should I make"
 	line "my #MON hold?"
 
@@ -114,4 +114,4 @@ Route32Pokecenter1F_MapEventHeader:
 	db 3
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x69b52, -1
 	person_event SPRITE_FISHING_GURU, 4, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FishingGuruScript_0x69b55, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x69b80, -1
+	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route32Pokecenter1FCooltrainerFScript, -1

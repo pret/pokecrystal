@@ -99,23 +99,7 @@ RooftopSale: ; 15ac4
 	ret
 ; 15aee
 
-RooftopSaleData1: ; 15aee
-	db 5
-	dbw POKE_BALL,     150
-	dbw GREAT_BALL,    500
-	dbw SUPER_POTION,  500
-	dbw FULL_HEAL,     500
-	dbw REVIVE,       1200
-	db -1
-RooftopSaleData2: ; 15aff
-	db 5
-	dbw HYPER_POTION, 1000
-	dbw FULL_RESTORE, 2000
-	dbw FULL_HEAL,     500
-	dbw ULTRA_BALL,   1000
-	dbw PROTEIN,      7800
-	db -1
-; 15b10
+INCLUDE "data/items/rooftop_sale.asm"
 
 LoadMartPointer: ; 15b10
 	ld a, b
@@ -355,15 +339,7 @@ ReadMart: ; 15c25
 	ret
 ; 15c51
 
-BargainShopData: ; 15c51
-	db 5
-	dbw NUGGET,     4500
-	dbw PEARL,       650
-	dbw BIG_PEARL,  3500
-	dbw STARDUST,    900
-	dbw STAR_PIECE, 4600
-	db -1
-; 15c62
+INCLUDE "data/items/bargain_shop.asm"
 
 
 BuyMenu: ; 15c62

@@ -79,9 +79,9 @@ UnknownScript_0x19eee0:
 	end
 
 TrainerSchoolboyDudley:
-	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, 0, SchoolboyDudleyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, 0, .Script
 
-SchoolboyDudleyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyDudleyAfterBattleText
@@ -90,9 +90,9 @@ SchoolboyDudleyScript:
 	end
 
 TrainerLassEllen:
-	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, 0, LassEllenScript
+	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, 0, .Script
 
-LassEllenScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext LassEllenAfterBattleText
@@ -101,9 +101,9 @@ LassEllenScript:
 	end
 
 TrainerSchoolboyJoe:
-	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, 0, SchoolboyJoeScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, 0, .Script
 
-SchoolboyJoeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyJoeAfterBattleText
@@ -112,9 +112,9 @@ SchoolboyJoeScript:
 	end
 
 TrainerLassLaura:
-	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, 0, LassLauraScript
+	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, 0, .Script
 
-LassLauraScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext LassLauraAfterBattleText
@@ -123,9 +123,9 @@ LassLauraScript:
 	end
 
 TrainerCamperLloyd:
-	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, 0, CamperLloydScript
+	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, 0, .Script
 
-CamperLloydScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CamperLloydAfterBattleText
@@ -134,9 +134,9 @@ CamperLloydScript:
 	end
 
 TrainerLassShannon:
-	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, 0, LassShannonScript
+	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, 0, .Script
 
-LassShannonScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext LassShannonAfterBattleText
@@ -145,9 +145,9 @@ LassShannonScript:
 	end
 
 TrainerSupernerdPat:
-	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, 0, SupernerdPatScript
+	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, 0, .Script
 
-SupernerdPatScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SupernerdPatAfterBattleText

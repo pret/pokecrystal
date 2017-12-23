@@ -39,19 +39,19 @@ UnknownScript_0x1a088c:
 	opentext
 	writetext UnknownText_0x1a0a6b
 	buttonsound
-	writetext UnknownText_0x1a0a71
+	writetext Route27FisherText
 	waitbutton
 	closetext
 	dotrigger $1
 	end
 
-FisherScript_0x1a089c:
-	jumptextfaceplayer UnknownText_0x1a0a71
+Route27FisherScript:
+	jumptextfaceplayer Route27FisherText
 
 TrainerPsychicGilbert:
-	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, PsychicGilbertScript
+	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, .Script
 
-PsychicGilbertScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicGilbertAfterBattleText
@@ -60,9 +60,9 @@ PsychicGilbertScript:
 	end
 
 TrainerBird_keeperJose2:
-	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, Bird_keeperJose2SeenText, Bird_keeperJose2BeatenText, 0, Bird_keeperJose2Script
+	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, Bird_keeperJose2SeenText, Bird_keeperJose2BeatenText, 0, .Script
 
-Bird_keeperJose2Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
 	end_if_just_battled
 	opentext
@@ -173,9 +173,9 @@ UnknownScript_0x1a0977:
 	end
 
 TrainerCooltrainermBlake:
-	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, CooltrainermBlakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, .Script
 
-CooltrainermBlakeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermBlakeAfterBattleText
@@ -184,9 +184,9 @@ CooltrainermBlakeScript:
 	end
 
 TrainerCooltrainermBrian:
-	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, CooltrainermBrianScript
+	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, .Script
 
-CooltrainermBrianScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermBrianAfterBattleText
@@ -195,9 +195,9 @@ CooltrainermBrianScript:
 	end
 
 TrainerCooltrainerfReena:
-	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, 0, CooltrainerfReena1Script
+	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, 0, .Script
 
-CooltrainerfReena1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
 	end_if_just_battled
 	opentext
@@ -288,9 +288,9 @@ UnknownScript_0x1a0a47:
 	end
 
 TrainerCooltrainerfMegan:
-	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, CooltrainerfMeganScript
+	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, .Script
 
-CooltrainerfMeganScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfMeganAfterBattleText
@@ -320,7 +320,7 @@ UnknownText_0x1a0a6b:
 	text "Hey!"
 	done
 
-UnknownText_0x1a0a71:
+Route27FisherText:
 	text "Do you know what"
 	line "you just did?"
 
@@ -496,4 +496,4 @@ Route27_MapEventHeader:
 	person_event SPRITE_YOUNGSTER, 13, 58, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperJose2, -1
 	person_event SPRITE_POKE_BALL, 12, 60, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route27TMSolarbeam, EVENT_ROUTE_27_TM_SOLARBEAM
 	person_event SPRITE_POKE_BALL, 12, 53, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route27RareCandy, EVENT_ROUTE_27_RARE_CANDY
-	person_event SPRITE_FISHER, 10, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 3, FisherScript_0x1a089c, -1
+	person_event SPRITE_FISHER, 10, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 3, Route27FisherScript, -1

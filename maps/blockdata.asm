@@ -443,7 +443,7 @@ TimeCapsule_BlockData:
 EcruteakLugiaSpeechHouse_BlockData:
 EcruteakItemfinderHouse_BlockData:
 VioletNicknameSpeechHouse_BlockData:
-VioletOnixTradeHouse_BlockData:
+VioletKylesHouse_BlockData:
 	INCBIN "maps/House2.blk"
 
 BetaCave_BlockData:

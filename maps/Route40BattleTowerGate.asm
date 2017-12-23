@@ -14,11 +14,11 @@ Route40BattleTowerGate_MapScriptHeader:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
 	return
 
-RockerScript_0x9f669:
-	jumptextfaceplayer UnknownText_0x9f716
+Route40BattleTowerGateRockerScript:
+	jumptextfaceplayer Route40BattleTowerGateRockerText
 
-TwinScript_0x9f66c:
-	jumptextfaceplayer UnknownText_0x9f7c8
+Route40BattleTowerGateTwinScript:
+	jumptextfaceplayer Route40BattleTowerGateTwinText
 
 UnknownText_0x9f66f:
 	text "Did you come to"
@@ -40,7 +40,7 @@ UnknownText_0x9f6ba:
 	line "when I win."
 	done
 
-UnknownText_0x9f716:
+Route40BattleTowerGateRockerText:
 	text "Are you going to"
 	line "the BATTLE TOWER?"
 
@@ -59,7 +59,7 @@ UnknownText_0x9f783:
 	line "the BATTLE TOWER."
 	done
 
-UnknownText_0x9f7c8:
+Route40BattleTowerGateTwinText:
 	text "The levels of the"
 	line "#MON I want to"
 
@@ -89,5 +89,5 @@ Route40BattleTowerGate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_ROCKER, 3, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, RockerScript_0x9f669, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
-	person_event SPRITE_TWIN, 5, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, TwinScript_0x9f66c, -1
+	person_event SPRITE_ROCKER, 3, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route40BattleTowerGateRockerScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	person_event SPRITE_TWIN, 5, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route40BattleTowerGateTwinScript, -1

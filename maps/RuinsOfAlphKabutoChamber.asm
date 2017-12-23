@@ -51,8 +51,8 @@ RuinsOfAlphKabutoChamber_MapScriptHeader:
 	closetext
 	end
 
-ReceptionistScript_0x58769:
-	jumptextfaceplayer UnknownText_0x58800
+RuinsOfAlphKabutoChamberReceptionistScript:
+	jumptextfaceplayer RuinsOfAlphKabutoChamberReceptionistText
 
 MapRuinsOfAlphKabutoChamberSignpost2Script:
 	refreshscreen $0
@@ -147,7 +147,7 @@ MovementData_0x587fe:
 	db $59 ; movement
 	step_end
 
-UnknownText_0x58800:
+RuinsOfAlphKabutoChamberReceptionistText:
 	text "Welcome to this"
 	line "chamber."
 
@@ -281,5 +281,5 @@ RuinsOfAlphKabutoChamber_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 5, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x58769, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
+	person_event SPRITE_RECEPTIONIST, 5, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	person_event SPRITE_SCIENTIST, 1, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1

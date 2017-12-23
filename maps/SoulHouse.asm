@@ -14,14 +14,14 @@ SoulHouse_MapScriptHeader:
 MrFuji:
 	jumptextfaceplayer MrFujiText
 
-TeacherScript_0x7ec4a:
-	jumptextfaceplayer UnknownText_0x7ed4d
+SoulHouseTeacherScript:
+	jumptextfaceplayer SoulHouseTeacherText
 
-LassScript_0x7ec4d:
-	jumptextfaceplayer UnknownText_0x7edb1
+SoulHouseLassScript:
+	jumptextfaceplayer SoulHouseLassText
 
-GrannyScript_0x7ec50:
-	jumptextfaceplayer UnknownText_0x7eddb
+SoulHouseGrannyScript:
+	jumptextfaceplayer SoulHouseGrannyText
 
 MrFujiText:
 	text "MR.FUJI: Welcome."
@@ -48,7 +48,7 @@ MrFujiText:
 	line "make them happy."
 	done
 
-UnknownText_0x7ed4d:
+SoulHouseTeacherText:
 	text "There are other"
 	line "graves of #MON"
 	cont "here, I think."
@@ -58,13 +58,13 @@ UnknownText_0x7ed4d:
 	cont "MR.FUJI may enter."
 	done
 
-UnknownText_0x7edb1:
+SoulHouseLassText:
 	text "I came with my mom"
 	line "to visit #MON"
 	cont "graves…"
 	done
 
-UnknownText_0x7eddb:
+SoulHouseGrannyText:
 	text "The #MON that"
 	line "lived with me…"
 
@@ -90,6 +90,6 @@ SoulHouse_MapEventHeader:
 .PersonEvents:
 	db 4
 	person_event SPRITE_GRAMPS, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, MrFuji, -1
-	person_event SPRITE_TEACHER, 3, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, TeacherScript_0x7ec4a, -1
-	person_event SPRITE_LASS, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, LassScript_0x7ec4d, -1
-	person_event SPRITE_GRANNY, 3, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GrannyScript_0x7ec50, -1
+	person_event SPRITE_TEACHER, 3, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SoulHouseTeacherScript, -1
+	person_event SPRITE_LASS, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SoulHouseLassScript, -1
+	person_event SPRITE_GRANNY, 3, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SoulHouseGrannyScript, -1

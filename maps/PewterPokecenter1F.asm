@@ -15,8 +15,8 @@ PewterPokecenter1F_MapScriptHeader:
 NurseScript_0x1a2ee7:
 	jumpstd pokecenternurse
 
-TeacherScript_0x1a2eea:
-	jumptextfaceplayer UnknownText_0x1a2f01
+PewterPokecenter1FTeacherScript:
+	jumptextfaceplayer PewterPokecenter1FTeacherText
 
 PewterJigglypuff:
 	opentext
@@ -26,8 +26,8 @@ PewterJigglypuff:
 	closetext
 	end
 
-BugCatcherScript_0x1a2ef7:
-	jumptextfaceplayer UnknownText_0x1a2f75
+PewterPokecenter1FBugCatcherScript:
+	jumptextfaceplayer PewterPokecenter1FBugCatcherText
 
 Chris:
 	faceplayer
@@ -37,7 +37,7 @@ Chris:
 	closetext
 	end
 
-UnknownText_0x1a2f01:
+PewterPokecenter1FTeacherText:
 	text "…Yeah, and the"
 	line "GYM in CINNABAR's"
 
@@ -53,7 +53,7 @@ PewterJigglypuffText:
 	line "pupuu."
 	done
 
-UnknownText_0x1a2f75:
+PewterPokecenter1FBugCatcherText:
 	text "Most #MON get"
 	line "drowsy if they"
 
@@ -86,7 +86,7 @@ PewterPokecenter1F_MapEventHeader:
 .PersonEvents:
 	db 5
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x1a2ee7, -1
-	person_event SPRITE_TEACHER, 6, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x1a2eea, -1
+	person_event SPRITE_TEACHER, 6, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, PewterPokecenter1FTeacherScript, -1
 	person_event SPRITE_JIGGLYPUFF, 3, 1, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PewterJigglypuff, -1
-	person_event SPRITE_BUG_CATCHER, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x1a2ef7, -1
+	person_event SPRITE_BUG_CATCHER, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, PewterPokecenter1FBugCatcherScript, -1
 	person_event SPRITE_POKEFAN_M, 2, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Chris, -1

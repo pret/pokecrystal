@@ -30,11 +30,11 @@ UnknownScript_0x191614:
 	closetext
 	end
 
-SailorScript_0x19161a:
-	jumptextfaceplayer UnknownText_0x1916fe
+VermilionPokecenter1FSailorScript:
+	jumptextfaceplayer VermilionPokecenter1FSailorText
 
-BugCatcherScript_0x19161d:
-	jumptextfaceplayer UnknownText_0x19173b
+VermilionPokecenter1FBugCatcherScript:
+	jumptextfaceplayer VermilionPokecenter1FBugCatcherText
 
 UnknownText_0x191620:
 	text "A sleeping #MON"
@@ -59,7 +59,7 @@ UnknownText_0x191698:
 	line "have disappeared."
 	done
 
-UnknownText_0x1916fe:
+VermilionPokecenter1FSailorText:
 	text "The FAST SHIP is a"
 	line "great place to"
 
@@ -67,7 +67,7 @@ UnknownText_0x1916fe:
 	line "trainers."
 	done
 
-UnknownText_0x19173b:
+VermilionPokecenter1FBugCatcherText:
 	text "Oh? You have some"
 	line "BADGES I've never"
 	cont "seen before."
@@ -96,5 +96,5 @@ VermilionPokecenter1F_MapEventHeader:
 	db 4
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x191603, -1
 	person_event SPRITE_FISHING_GURU, 2, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FishingGuruScript_0x191606, -1
-	person_event SPRITE_SAILOR, 5, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SailorScript_0x19161a, -1
-	person_event SPRITE_BUG_CATCHER, 5, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x19161d, -1
+	person_event SPRITE_SAILOR, 5, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, VermilionPokecenter1FSailorScript, -1
+	person_event SPRITE_BUG_CATCHER, 5, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, VermilionPokecenter1FBugCatcherScript, -1

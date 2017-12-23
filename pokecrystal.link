@@ -173,7 +173,6 @@ ROMX $40
 	"bank40_3"
 ROMX $41
 	"bank41"
-	"bank41_2"
 ROMX $42
 	"mobile_42"
 	"Intro Logo"
@@ -243,7 +242,7 @@ ROMX $5e
 	"bank5E"
 	"Songs 5"
 	"Crystal Sound Effects"
-	"Misc Crystal"
+	"mobile_5e"
 ROMX $5f
 	"bank5F"
 ROMX $60
@@ -301,13 +300,13 @@ ROMX $7b
 ROMX $7c
 	"Battle Tower Trainer Data"
 ROMX $7d
-	"bank7D"
+	"Mobile News Data"
 ROMX $7e
 	"bank7E"
 ROMX $7f
 	"bank7F"
 	org $7de0
-	"stadium2"
+	"Mobile Stadium 2"
 WRAM0
 	"Stack"
 	"Audio RAM"

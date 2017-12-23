@@ -10,20 +10,20 @@ DarkCaveBlackthornEntrance_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PharmacistScript_0x18c720:
+DarkCaveBlackthornEntrancePharmacistScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
-	iftrue UnknownScript_0x18c735
-	writetext UnknownText_0x18c73f
+	iftrue .GotBlackglasses
+	writetext DarkCaveBlackthornEntrancePharmacistText1
 	buttonsound
 	verbosegiveitem BLACKGLASSES
-	iffalse UnknownScript_0x18c739
+	iffalse .PackFull
 	setevent EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
-UnknownScript_0x18c735:
-	writetext UnknownText_0x18c80c
+.GotBlackglasses:
+	writetext DarkCaveBlackthornEntrancePharmacistText2
 	waitbutton
-UnknownScript_0x18c739:
+.PackFull:
 	closetext
 	end
 
@@ -33,7 +33,7 @@ DarkCaveBlackthornEntranceRevive:
 DarkCaveBlackthornEntranceTMSnore:
 	itemball TM_SNORE
 
-UnknownText_0x18c73f:
+DarkCaveBlackthornEntrancePharmacistText1:
 	text "Whoa! You startled"
 	line "me there!"
 
@@ -55,7 +55,7 @@ UnknownText_0x18c73f:
 	cont "you saw me, OK?"
 	done
 
-UnknownText_0x18c80c:
+DarkCaveBlackthornEntrancePharmacistText2:
 	text "BLACKGLASSES ups"
 	line "the power of dark-"
 	cont "type moves."
@@ -78,6 +78,6 @@ DarkCaveBlackthornEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_PHARMACIST, 3, 7, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PharmacistScript_0x18c720, -1
+	person_event SPRITE_PHARMACIST, 3, 7, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DarkCaveBlackthornEntrancePharmacistScript, -1
 	person_event SPRITE_POKE_BALL, 24, 21, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, DarkCaveBlackthornEntranceRevive, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_REVIVE
 	person_event SPRITE_POKE_BALL, 22, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, DarkCaveBlackthornEntranceTMSnore, EVENT_DARK_CAVE_BLACKTHORN_ENTRANCE_TM_SNORE

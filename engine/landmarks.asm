@@ -47,7 +47,7 @@ GetLandmarkName:: ; 0x1ca8a5
 ; 0x1ca8c3
 
 
-INCLUDE "data/landmarks.asm"
+INCLUDE "data/maps/landmarks.asm"
 
 
 RegionCheck: ; 0x1caea1

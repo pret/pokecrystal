@@ -3191,6 +3191,8 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [wd002]
 	ld c, a
 	ld a, [CurBattleMon]
+	; BUG: this can desynchronize link battles
+	; Change "cp [hl]" to "cp c" to fix
 	cp [hl]
 	ld hl, BattleMonStatus
 	jr z, .active_mon
@@ -9763,6 +9765,7 @@ BattleCommand_ThunderAccuracy: ; 37d94
 
 
 CheckHiddenOpponent: ; 37daa
+; BUG: This routine should account for Lock-On and Mind Reader.
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
@@ -9806,7 +9809,7 @@ GetItemHeldEffect: ; 37dd0
 	ret z
 
 	push hl
-	ld hl, ItemAttributes + 2
+	ld hl, ItemAttributes + ITEMATTR_EFFECT
 	dec a
 	ld c, a
 	ld b, 0

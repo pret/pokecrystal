@@ -36,9 +36,9 @@ UndergroundWarehouse_MapScriptHeader:
 	return
 
 TrainerGruntM24:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_24, GRUNTM, GRUNTM_24, GruntM24SeenText, GruntM24BeatenText, 0, GruntM24Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_24, GRUNTM, GRUNTM_24, GruntM24SeenText, GruntM24BeatenText, 0, .Script
 
-GruntM24Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM24AfterBattleText
@@ -47,9 +47,9 @@ GruntM24Script:
 	end
 
 TrainerGruntM14:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_14, GRUNTM, GRUNTM_14, GruntM14SeenText, GruntM14BeatenText, 0, GruntM14Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_14, GRUNTM, GRUNTM_14, GruntM14SeenText, GruntM14BeatenText, 0, .Script
 
-GruntM14Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM14AfterBattleText
@@ -58,9 +58,9 @@ GruntM14Script:
 	end
 
 TrainerGruntM15:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_15, GRUNTM, GRUNTM_15, GruntM15SeenText, GruntM15BeatenText, 0, GruntM15Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_15, GRUNTM, GRUNTM_15, GruntM15SeenText, GruntM15BeatenText, 0, .Script
 
-GruntM15Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM15AfterBattleText

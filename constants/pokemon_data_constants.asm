@@ -1,4 +1,4 @@
-; base data struct members (see data/base_stats/*.asm)
+; base data struct members (see data/pokemon/base_stats/*.asm)
 BASE_DEX_NO      EQUS "(BaseDexNo - CurBaseData)"
 BASE_STATS       EQUS "(BaseStats - CurBaseData)"
 BASE_HP          EQUS "(BaseHP - CurBaseData)"
@@ -25,8 +25,17 @@ BASE_EGG_GROUPS  EQUS "(BaseEggGroups - CurBaseData)"
 BASE_TMHM        EQUS "(BaseTMHM - CurBaseData)"
 BASE_DATA_SIZE   EQUS "(CurBaseDataEnd - CurBaseData)"
 
+; gender ratio constants
+GENDER_F0    EQU 0 percent
+GENDER_F12_5 EQU 31 ; 12.5 percent
+GENDER_F25   EQU 25 percent
+GENDER_F50   EQU 50 percent
+GENDER_F75   EQU 75 percent
+GENDER_F100  EQU 254 ; 100 percent
+GENDERLESS   EQU 255
+
 ; BaseGrowthRate values
-; GrowthRates indexes (see main.asm)
+; GrowthRates indexes (see data/growth_rates.asm)
 	const_def
 	const MEDIUM_FAST
 	const SLIGHTLY_FAST
@@ -136,7 +145,7 @@ PARTY_LENGTH EQU 6
 	const ICON_BIGMON
 
 
-; evolution types (used in data/evos_attacks.asm)
+; evolution types (used in data/pokemon/evos_attacks.asm)
 const_value SET 1
 	const EVOLVE_LEVEL
 	const EVOLVE_ITEM

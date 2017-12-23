@@ -38,9 +38,9 @@ UnionCaveLapras:
 	end
 
 TrainerCooltrainermNick:
-	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, 0, CooltrainermNickScript
+	trainer EVENT_BEAT_COOLTRAINERM_NICK, COOLTRAINERM, NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, 0, .Script
 
-CooltrainermNickScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermNickAfterBattleText
@@ -49,9 +49,9 @@ CooltrainermNickScript:
 	end
 
 TrainerCooltrainerfGwen:
-	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, 0, CooltrainerfGwenScript
+	trainer EVENT_BEAT_COOLTRAINERF_GWEN, COOLTRAINERF, GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, 0, .Script
 
-CooltrainerfGwenScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfGwenAfterBattleText
@@ -60,9 +60,9 @@ CooltrainerfGwenScript:
 	end
 
 TrainerCooltrainerfEmma:
-	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, 0, CooltrainerfEmmaScript
+	trainer EVENT_BEAT_COOLTRAINERF_EMMA, COOLTRAINERF, EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, 0, .Script
 
-CooltrainerfEmmaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfEmmaAfterBattleText

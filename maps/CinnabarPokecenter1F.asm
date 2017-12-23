@@ -13,13 +13,13 @@ CinnabarPokecenter1F_MapScriptHeader:
 NurseScript_0x1ab32c:
 	jumpstd pokecenternurse
 
-CooltrainerFScript_0x1ab32f:
-	jumptextfaceplayer UnknownText_0x1ab335
+CinnabarPokecenter1FCooltrainerFScript:
+	jumptextfaceplayer CinnabarPokecenter1FCooltrainerFText
 
-FisherScript_0x1ab332:
-	jumptextfaceplayer UnknownText_0x1ab37f
+CinnabarPokecenter1FFisherScript:
+	jumptextfaceplayer CinnabarPokecenter1FFisherText
 
-UnknownText_0x1ab335:
+CinnabarPokecenter1FCooltrainerFText:
 	text "CINNABAR GYM's"
 	line "BLAINE apparently"
 
@@ -28,7 +28,7 @@ UnknownText_0x1ab335:
 	cont "cave…"
 	done
 
-UnknownText_0x1ab37f:
+CinnabarPokecenter1FFisherText:
 	text "It's been a year"
 	line "since the volcano"
 	cont "erupted."
@@ -53,5 +53,5 @@ CinnabarPokecenter1F_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x1ab32c, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x1ab32f, -1
-	person_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x1ab332, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CinnabarPokecenter1FCooltrainerFScript, -1
+	person_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CinnabarPokecenter1FFisherScript, -1

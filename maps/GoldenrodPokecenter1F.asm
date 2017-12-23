@@ -79,11 +79,11 @@ GoldenrodPokecenter1F_GSBallTriggerRight:
 .cancel
 	end
 
-GameboyKidScript_0x6101e:
-	jumptextfaceplayer UnknownText_0x62105
+GoldenrodPokecenter1FGameboyKidScript:
+	jumptextfaceplayer GoldenrodPokecenter1FGameboyKidText
 
-LassScript_0x61021:
-	jumptextfaceplayer UnknownText_0x62260
+GoldenrodPokecenter1FLassScript:
+	jumptextfaceplayer GoldenrodPokecenter1FLassText
 
 PokefanFScript_0x61024:
 	faceplayer
@@ -663,7 +663,7 @@ UnknownText_0x620a1:
 	cont "NEWS?"
 	done
 
-UnknownText_0x62105:
+GoldenrodPokecenter1FGameboyKidText:
 	text "The COLOSSEUM"
 	line "upstairs is for"
 	cont "link battles."
@@ -701,7 +701,7 @@ UnknownText_0x62222:
 	line "younger!"
 	done
 
-UnknownText_0x62260:
+GoldenrodPokecenter1FLassText:
 	text "A higher level"
 	line "#MON doesn't"
 	cont "always win."
@@ -827,6 +827,6 @@ GoldenrodPokecenter1F_MapEventHeader:
 	db 5
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x60f91, -1
 	person_event SPRITE_LINK_RECEPTIONIST, 8, 16, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, -1
-	person_event SPRITE_GAMEBOY_KID, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x6101e, -1
-	person_event SPRITE_LASS, 4, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x61021, -1
+	person_event SPRITE_GAMEBOY_KID, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
+	person_event SPRITE_LASS, 4, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
 	person_event SPRITE_POKEFAN_F, 5, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x61024, -1

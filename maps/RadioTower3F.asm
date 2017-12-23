@@ -25,8 +25,8 @@ RadioTower3F_MapScriptHeader:
 	changeblock $e, $4, $1
 	return
 
-SuperNerdScript_0x5e553:
-	jumptextfaceplayer UnknownText_0x5e621
+RadioTower3FSuperNerdScript:
+	jumptextfaceplayer RadioTower3FSuperNerdText
 
 GymGuyScript_0x5e556:
 	faceplayer
@@ -83,9 +83,9 @@ UnknownScript_0x5e5a1:
 	end
 
 TrainerGruntM7:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, GRUNTM_7, GruntM7SeenText, GruntM7BeatenText, 0, GruntM7Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_7, GRUNTM, GRUNTM_7, GruntM7SeenText, GruntM7BeatenText, 0, .Script
 
-GruntM7Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM7AfterBattleText
@@ -94,9 +94,9 @@ GruntM7Script:
 	end
 
 TrainerGruntM8:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, GRUNTM_8, GruntM8SeenText, GruntM8BeatenText, 0, GruntM8Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_8, GRUNTM, GRUNTM_8, GruntM8SeenText, GruntM8BeatenText, 0, .Script
 
-GruntM8Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM8AfterBattleText
@@ -105,9 +105,9 @@ GruntM8Script:
 	end
 
 TrainerGruntM9:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, GRUNTM_9, GruntM9SeenText, GruntM9BeatenText, 0, GruntM9Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_9, GRUNTM, GRUNTM_9, GruntM9SeenText, GruntM9BeatenText, 0, .Script
 
-GruntM9Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM9AfterBattleText
@@ -116,9 +116,9 @@ GruntM9Script:
 	end
 
 TrainerScientistMarc:
-	trainer EVENT_BEAT_SCIENTIST_MARC, SCIENTIST, MARC, ScientistMarcSeenText, ScientistMarcBeatenText, 0, ScientistMarcScript
+	trainer EVENT_BEAT_SCIENTIST_MARC, SCIENTIST, MARC, ScientistMarcSeenText, ScientistMarcBeatenText, 0, .Script
 
-ScientistMarcScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext ScientistMarcAfterBattleText
@@ -156,7 +156,7 @@ MapRadioTower3FSignpost0Script:
 MapRadioTower3FSignpost1Script:
 	jumptext UnknownText_0x5eae4
 
-UnknownText_0x5e621:
+RadioTower3FSuperNerdText:
 	text "We have recordings"
 	line "of the cries of"
 
@@ -349,7 +349,7 @@ RadioTower3F_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_SUPER_NERD, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x5e553, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	person_event SPRITE_SUPER_NERD, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, RadioTower3FSuperNerdScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	person_event SPRITE_GYM_GUY, 4, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x5e556, -1
 	person_event SPRITE_COOLTRAINER_F, 3, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x5e56a, -1
 	person_event SPRITE_ROCKET, 1, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

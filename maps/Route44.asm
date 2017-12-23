@@ -19,9 +19,9 @@ Route44_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperVance1:
-	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, Bird_keeperVance1SeenText, Bird_keeperVance1BeatenText, 0, Bird_keeperVance1Script
+	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, Bird_keeperVance1SeenText, Bird_keeperVance1BeatenText, 0, .Script
 
-Bird_keeperVance1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
 	end_if_just_battled
 	opentext
@@ -150,9 +150,9 @@ UnknownScript_0x19d90a:
 	end
 
 TrainerPsychicPhil:
-	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, 0, PsychicPhilScript
+	trainer EVENT_BEAT_PSYCHIC_PHIL, PSYCHIC_T, PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, 0, .Script
 
-PsychicPhilScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicPhilAfterBattleText
@@ -161,9 +161,9 @@ PsychicPhilScript:
 	end
 
 TrainerFisherWilton1:
-	trainer EVENT_BEAT_FISHER_WILTON, FISHER, WILTON1, FisherWilton1SeenText, FisherWilton1BeatenText, 0, FisherWilton1Script
+	trainer EVENT_BEAT_FISHER_WILTON, FISHER, WILTON1, FisherWilton1SeenText, FisherWilton1BeatenText, 0, .Script
 
-FisherWilton1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_FISHER_WILTON
 	end_if_just_battled
 	opentext
@@ -256,9 +256,9 @@ UnknownScript_0x19d9e7:
 	jump UnknownScript_0x19d8ff
 
 TrainerFisherEdgar:
-	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, FisherEdgarScript
+	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, .Script
 
-FisherEdgarScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherEdgarAfterBattleText
@@ -267,9 +267,9 @@ FisherEdgarScript:
 	end
 
 TrainerCooltrainerfCybil:
-	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, 0, CooltrainerfCybilScript
+	trainer EVENT_BEAT_COOLTRAINERF_CYBIL, COOLTRAINERF, CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, 0, .Script
 
-CooltrainerfCybilScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfCybilAfterBattleText
@@ -278,9 +278,9 @@ CooltrainerfCybilScript:
 	end
 
 TrainerPokemaniacZach:
-	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, 0, PokemaniacZachScript
+	trainer EVENT_BEAT_POKEMANIAC_ZACH, POKEMANIAC, ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, 0, .Script
 
-PokemaniacZachScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacZachAfterBattleText
@@ -289,9 +289,9 @@ PokemaniacZachScript:
 	end
 
 TrainerCooltrainermAllen:
-	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, 0, CooltrainermAllenScript
+	trainer EVENT_BEAT_COOLTRAINERM_ALLEN, COOLTRAINERM, ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, 0, .Script
 
-CooltrainermAllenScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermAllenAfterBattleText

@@ -47,9 +47,9 @@ SabrinaScript_0x189c2e:
 	end
 
 TrainerMediumRebecca:
-	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, 0, MediumRebeccaScript
+	trainer EVENT_BEAT_MEDIUM_REBECCA, MEDIUM, REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText, 0, .Script
 
-MediumRebeccaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext MediumRebeccaAfterBattleText
@@ -58,9 +58,9 @@ MediumRebeccaScript:
 	end
 
 TrainerPsychicFranklin:
-	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, 0, PsychicFranklinScript
+	trainer EVENT_BEAT_PSYCHIC_FRANKLIN, PSYCHIC_T, FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText, 0, .Script
 
-PsychicFranklinScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicFranklinAfterBattleText
@@ -69,9 +69,9 @@ PsychicFranklinScript:
 	end
 
 TrainerMediumDoris:
-	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, 0, MediumDorisScript
+	trainer EVENT_BEAT_MEDIUM_DORIS, MEDIUM, DORIS, MediumDorisSeenText, MediumDorisBeatenText, 0, .Script
 
-MediumDorisScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext MediumDorisAfterBattleText
@@ -80,9 +80,9 @@ MediumDorisScript:
 	end
 
 TrainerPsychicJared:
-	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, 0, PsychicJaredScript
+	trainer EVENT_BEAT_PSYCHIC_JARED, PSYCHIC_T, JARED, PsychicJaredSeenText, PsychicJaredBeatenText, 0, .Script
 
-PsychicJaredScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicJaredAfterBattleText

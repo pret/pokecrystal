@@ -4,7 +4,7 @@ INCLUDE "includes.asm"
 SECTION "Audio", ROMX
 
 INCLUDE "audio/engine.asm"
-INCLUDE "trainers/encounter_music.asm"
+INCLUDE "data/trainers/encounter_music.asm"
 INCLUDE "audio/music_pointers.asm"
 INCLUDE "audio/music/nothing.asm"
 INCLUDE "audio/cry_pointers.asm"
@@ -157,6 +157,6 @@ INCLUDE "audio/sfx_crystal.asm"
 
 SECTION "Cries", ROMX
 
-CryHeaders:: INCLUDE "audio/cry_headers.asm"
+INCLUDE "data/pokemon/cry_headers.asm"
 
 INCLUDE "audio/cries.asm"

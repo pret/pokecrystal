@@ -86,9 +86,9 @@ MistyScript_0x188432:
 	end
 
 TrainerSwimmerfDiana:
-	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, 0, SwimmerfDianaScript
+	trainer EVENT_BEAT_SWIMMERF_DIANA, SWIMMERF, DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText, 0, .Script
 
-SwimmerfDianaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfDianaAfterBattleText
@@ -97,9 +97,9 @@ SwimmerfDianaScript:
 	end
 
 TrainerSwimmerfBriana:
-	trainer EVENT_BEAT_SWIMMERF_BRIANA, SWIMMERF, BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, 0, SwimmerfBrianaScript
+	trainer EVENT_BEAT_SWIMMERF_BRIANA, SWIMMERF, BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText, 0, .Script
 
-SwimmerfBrianaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfBrianaAfterBattleText
@@ -108,9 +108,9 @@ SwimmerfBrianaScript:
 	end
 
 TrainerSwimmermParker:
-	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, 0, SwimmermParkerScript
+	trainer EVENT_BEAT_SWIMMERM_PARKER, SWIMMERM, PARKER, SwimmermParkerSeenText, SwimmermParkerBeatenText, 0, .Script
 
-SwimmermParkerScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermParkerAfterBattleText

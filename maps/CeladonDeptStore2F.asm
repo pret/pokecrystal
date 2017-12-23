@@ -25,11 +25,11 @@ ClerkScript_0x70bb5:
 	closetext
 	end
 
-PokefanMScript_0x70bbd:
-	jumptextfaceplayer UnknownText_0x70bc9
+CeladonDeptStore2FPokefanMScript:
+	jumptextfaceplayer CeladonDeptStore2FPokefanMText
 
-YoungsterScript_0x70bc0:
-	jumptextfaceplayer UnknownText_0x70c3e
+CeladonDeptStore2FYoungsterScript:
+	jumptextfaceplayer CeladonDeptStore2FYoungsterText
 
 CeladonDeptStore2FDirectory:
 	jumptext CeladonDeptStore2FDirectoryText
@@ -37,7 +37,7 @@ CeladonDeptStore2FDirectory:
 CeladonDeptStore2FElevatorButton:
 	jumpstd elevatorbutton
 
-UnknownText_0x70bc9:
+CeladonDeptStore2FPokefanMText:
 	text "I just recently"
 	line "became a trainer."
 
@@ -49,7 +49,7 @@ UnknownText_0x70bc9:
 	cont "convenient items."
 	done
 
-UnknownText_0x70c3e:
+CeladonDeptStore2FYoungsterText:
 	text "My dad's having a"
 	line "hard time learning"
 
@@ -90,5 +90,5 @@ CeladonDeptStore2F_MapEventHeader:
 	db 4
 	person_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x70bad, -1
 	person_event SPRITE_CLERK, 5, 14, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x70bb5, -1
-	person_event SPRITE_POKEFAN_M, 2, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x70bbd, -1
-	person_event SPRITE_YOUNGSTER, 2, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x70bc0, -1
+	person_event SPRITE_POKEFAN_M, 2, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonDeptStore2FPokefanMScript, -1
+	person_event SPRITE_YOUNGSTER, 2, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonDeptStore2FYoungsterScript, -1

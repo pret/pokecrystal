@@ -9,11 +9,11 @@ GoldenrodPPSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-FisherScript_0x5564a:
-	jumptextfaceplayer UnknownText_0x55659
+GoldenrodPPSpeechHouseFisherScript:
+	jumptextfaceplayer GoldenrodPPSpeechHouseFisherText
 
-LassScript_0x5564d:
-	jumptextfaceplayer UnknownText_0x556ca
+GoldenrodPPSpeechHouseLassScript:
+	jumptextfaceplayer GoldenrodPPSpeechHouseLassText
 
 GoldenrodPPSpeechHouseBookshelf2:
 	jumpstd difficultbookshelf
@@ -24,7 +24,7 @@ GoldenrodPPSpeechHouseBookshelf1:
 GoldenrodPPSpeechHouseRadio:
 	jumpstd radio2
 
-UnknownText_0x55659:
+GoldenrodPPSpeechHouseFisherText:
 	text "Once while I was"
 	line "battling, my"
 
@@ -38,7 +38,7 @@ UnknownText_0x55659:
 	line "gone."
 	done
 
-UnknownText_0x556ca:
+GoldenrodPPSpeechHouseLassText:
 	text "Sometimes, a"
 	line "healthy #MON"
 
@@ -71,5 +71,5 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x5564a, -1
-	person_event SPRITE_LASS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x5564d, -1
+	person_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
+	person_event SPRITE_LASS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1

@@ -1415,7 +1415,6 @@ else
 endc
 endm
 
-
 	cardflip_cursor 11,  2,       .Impossible
 	cardflip_cursor 12,  2,       .Impossible
 	cardflip_cursor 13,  2,       .PokeGroupPair
@@ -1665,50 +1664,7 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 ; e0c93 (38:4c93)
 
 .palettes ; e0c93
-	RGB 31, 31, 31
-	RGB 17, 07, 31
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 29, 25, 00
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 13, 30
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 08, 17, 30
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 08, 31, 08
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 17, 07, 31
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 17, 07, 31
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 17, 07, 31
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 00, 00
-	RGB 31, 00, 00
+INCLUDE "data/palettes/card_flip.pal"
 ; e0cdb
 
 CardFlipLZ03: ; e0cdb
@@ -1727,16 +1683,5 @@ CardFlipLZ02: ; e0ea8
 INCBIN "gfx/card_flip/card_flip_2.2bpp.lz"
 
 CardFlipTilemap: ; e110c
-	db $ef, $15, $27, $2a, $2a, $06, $27, $2a, $2a, $06, $27
-	db $ef, $07, $27, $3e, $3f, $42, $43, $46, $47, $4a, $4b
-	db $ef, $17, $26, $40, $41, $44, $45, $48, $49, $4c, $4d
-	db $ef, $25, $04, $00, $01, $00, $01, $00, $01, $00, $01
-	db $ef, $05, $14, $10, $11, $10, $11, $10, $11, $10, $11
-	db $ef, $16, $24, $20, $21, $20, $21, $20, $21, $20, $21
-	db $ef, $25, $04, $00, $02, $00, $02, $00, $02, $00, $02
-	db $ef, $05, $14, $10, $12, $10, $12, $10, $12, $10, $12
-	db $ef, $16, $24, $20, $22, $20, $22, $20, $22, $20, $22
-	db $ef, $25, $04, $00, $03, $00, $03, $00, $03, $00, $03
-	db $ef, $05, $14, $10, $13, $10, $13, $10, $13, $10, $13
-	db $ef, $16, $24, $20, $23, $20, $23, $20, $23, $20, $23
+INCBIN "gfx/card_flip/card_flip.tilemap"
 ; e1190

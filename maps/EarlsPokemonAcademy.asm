@@ -38,29 +38,29 @@ AcademyEarl:
 	closetext
 	end
 
-YoungsterScript_0x68a83:
-	jumptextfaceplayer UnknownText_0x68d80
+EarlsPokemonAcademyYoungster1Script:
+	jumptextfaceplayer EarlsPokemonAcademyYoungster1Text
 
-GameboyKidScript_0x68a86:
+EarlsPokemonAcademyGameboyKid1Script:
 	faceplayer
 	opentext
-	writetext UnknownText_0x68dda
+	writetext EarlsPokemonAcademyGameboyKid1Text
 	waitbutton
 	closetext
 	spriteface EARLSPOKEMONACADEMY_GAMEBOY_KID1, DOWN
 	end
 
-GameboyKidScript_0x68a91:
+EarlsPokemonAcademyGameboyKid2Script:
 	faceplayer
 	opentext
-	writetext UnknownText_0x68e07
+	writetext EarlsPokemonAcademyGameboyKid2Text
 	waitbutton
 	closetext
 	spriteface EARLSPOKEMONACADEMY_GAMEBOY_KID2, DOWN
 	end
 
-YoungsterScript_0x68a9c:
-	jumptextfaceplayer UnknownText_0x68e39
+EarlsPokemonAcademyYoungster2Script:
+	jumptextfaceplayer EarlsPokemonAcademyYoungster2Text
 
 AcademyBlackboard:
 	opentext
@@ -231,7 +231,7 @@ UnknownText_0x68d31:
 	line "you must be!"
 	done
 
-UnknownText_0x68d80:
+EarlsPokemonAcademyYoungster1Text:
 	text "I'm taking notes"
 	line "of the teacher's"
 	cont "lecture."
@@ -241,19 +241,19 @@ UnknownText_0x68d80:
 	cont "blackboard too."
 	done
 
-UnknownText_0x68dda:
+EarlsPokemonAcademyGameboyKid1Text:
 	text "I traded my best"
 	line "#MON to the"
 	cont "guy beside me."
 	done
 
-UnknownText_0x68e07:
+EarlsPokemonAcademyGameboyKid2Text:
 	text "Huh? The #MON I"
 	line "just got is hold-"
 	cont "ing something!"
 	done
 
-UnknownText_0x68e39:
+EarlsPokemonAcademyYoungster2Text:
 	text "A #MON holding"
 	line "a BERRY will heal"
 	cont "itself in battle."
@@ -434,8 +434,8 @@ EarlsPokemonAcademy_MapEventHeader:
 .PersonEvents:
 	db 6
 	person_event SPRITE_FISHER, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
-	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x68a83, -1
-	person_event SPRITE_GAMEBOY_KID, 11, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x68a86, -1
-	person_event SPRITE_GAMEBOY_KID, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x68a91, -1
-	person_event SPRITE_YOUNGSTER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x68a9c, -1
+	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EarlsPokemonAcademyYoungster1Script, -1
+	person_event SPRITE_GAMEBOY_KID, 11, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid1Script, -1
+	person_event SPRITE_GAMEBOY_KID, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid2Script, -1
+	person_event SPRITE_YOUNGSTER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EarlsPokemonAcademyYoungster2Script, -1
 	person_event SPRITE_POKEDEX, 4, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AcademyNotebook, -1

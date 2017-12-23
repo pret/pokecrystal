@@ -11,17 +11,17 @@ GoldenrodDeptStore1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ReceptionistScript_0x55981:
-	jumptextfaceplayer UnknownText_0x55993
+GoldenrodDeptStore1FReceptionistScript:
+	jumptextfaceplayer GoldenrodDeptStore1FReceptionistText
 
-GentlemanScript_0x55984:
-	jumptextfaceplayer UnknownText_0x559b7
+GoldenrodDeptStore1FGentlemanScript:
+	jumptextfaceplayer GoldenrodDeptStore1FGentlemanText
 
-PokefanFScript_0x55987:
-	jumptextfaceplayer UnknownText_0x55a1a
+GoldenrodDeptStore1FPokefanFScript:
+	jumptextfaceplayer GoldenrodDeptStore1FPokefanFText
 
-BugCatcherScript_0x5598a:
-	jumptextfaceplayer UnknownText_0x55a3a
+GoldenrodDeptStore1FBugCatcherScript:
+	jumptextfaceplayer GoldenrodDeptStore1FBugCatcherText
 
 GoldenrodDeptStore1FDirectory:
 	jumptext GoldenrodDeptStore1FDirectoryText
@@ -29,12 +29,12 @@ GoldenrodDeptStore1FDirectory:
 GoldenrodDeptStore1FElevatorButton:
 	jumpstd elevatorbutton
 
-UnknownText_0x55993:
+GoldenrodDeptStore1FReceptionistText:
 	text "Welcome to GOLDEN-"
 	line "ROD DEPT.STORE."
 	done
 
-UnknownText_0x559b7:
+GoldenrodDeptStore1FGentlemanText:
 	text "The DEPT.STORE"
 	line "has a decent se-"
 	cont "lection."
@@ -46,12 +46,12 @@ UnknownText_0x559b7:
 	line "prizes."
 	done
 
-UnknownText_0x55a1a:
+GoldenrodDeptStore1FPokefanFText:
 	text "I'm raring to shop"
 	line "again today!"
 	done
 
-UnknownText_0x55a3a:
+GoldenrodDeptStore1FBugCatcherText:
 	text "Mom's good at"
 	line "bargain hunting."
 
@@ -99,7 +99,7 @@ GoldenrodDeptStore1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_RECEPTIONIST, 1, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x55981, -1
-	person_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x55987, -1
-	person_event SPRITE_BUG_CATCHER, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x5598a, -1
-	person_event SPRITE_GENTLEMAN, 5, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x55984, -1
+	person_event SPRITE_RECEPTIONIST, 1, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore1FReceptionistScript, -1
+	person_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore1FPokefanFScript, -1
+	person_event SPRITE_BUG_CATCHER, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore1FBugCatcherScript, -1
+	person_event SPRITE_GENTLEMAN, 5, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore1FGentlemanScript, -1

@@ -12,8 +12,8 @@ Route1718Gate_MapScriptHeader:
 .DummyTrigger:
 	end
 
-OfficerScript_0x7360e:
-	jumptextfaceplayer UnknownText_0x7362c
+Route1718GateOfficerScript:
+	jumptextfaceplayer Route1718GateOfficerText
 
 UnknownScript_0x73611:
 	checkitem BICYCLE
@@ -35,7 +35,7 @@ MovementData_0x73629:
 	turn_head LEFT
 	step_end
 
-UnknownText_0x7362c:
+Route1718GateOfficerText:
 	text "CYCLING ROAD"
 	line "Uphill Starts Here"
 	done
@@ -72,4 +72,4 @@ Route1718Gate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, OfficerScript_0x7360e, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Route1718GateOfficerScript, -1

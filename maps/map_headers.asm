@@ -1,3 +1,20 @@
+map_header: macro
+;\1: map label
+;\2: tileset: a TILESET_* constant
+;\3: permission: TOWN, ROUTE, INDOOR, CAVE, PERM_5, GATE, or DUNGEON
+;\4: location: from constants/landmark_constants.asm
+;\5: music: a MUSIC_* constant
+;\6: phone service flag: 1 to prevent phone calls
+;\7: time of day: a PALETTE_* constant
+;\8: fishing group: a FISHGROUP_* constant
+\1_MapHeader:
+	db BANK(\1_SecondMapHeader), \2, \3
+	dw \1_SecondMapHeader
+	db \4, \5
+	dn \6, \7
+	db \8
+endm
+
 MapGroupPointers::
 ; pointers to the first map header of each map group
 	dw MapGroup_Olivine     ;  1
@@ -26,7 +43,6 @@ MapGroupPointers::
 	dw MapGroup_NewBark     ; 24
 	dw MapGroup_Saffron     ; 25
 	dw MapGroup_Cherrygrove ; 26
-
 
 MapGroup_Olivine:
 	map_header OlivinePokecenter1F, TILESET_POKECENTER, INDOOR, OLIVINE_CITY, MUSIC_POKEMON_CENTER, 0, PALETTE_DAY, FISHGROUP_SHORE
@@ -235,7 +251,7 @@ MapGroup_Violet:
 	map_header EarlsPokemonAcademy, TILESET_LAB, INDOOR, VIOLET_CITY, MUSIC_VIOLET_CITY, 0, PALETTE_DAY, FISHGROUP_SHORE
 	map_header VioletNicknameSpeechHouse, TILESET_KURTS_HOUSE, INDOOR, VIOLET_CITY, MUSIC_VIOLET_CITY, 0, PALETTE_DAY, FISHGROUP_SHORE
 	map_header VioletPokecenter1F, TILESET_POKECENTER, INDOOR, VIOLET_CITY, MUSIC_POKEMON_CENTER, 0, PALETTE_DAY, FISHGROUP_SHORE
-	map_header VioletOnixTradeHouse, TILESET_KURTS_HOUSE, INDOOR, VIOLET_CITY, MUSIC_VIOLET_CITY, 0, PALETTE_DAY, FISHGROUP_SHORE
+	map_header VioletKylesHouse, TILESET_KURTS_HOUSE, INDOOR, VIOLET_CITY, MUSIC_VIOLET_CITY, 0, PALETTE_DAY, FISHGROUP_SHORE
 	map_header Route32RuinsOfAlphGate, TILESET_GATE, GATE, ROUTE_32, MUSIC_ROUTE_30, 0, PALETTE_DAY, FISHGROUP_SHORE
 	map_header Route32Pokecenter1F, TILESET_POKECENTER, INDOOR, ROUTE_32, MUSIC_POKEMON_CENTER, 0, PALETTE_DAY, FISHGROUP_SHORE
 	map_header Route35GoldenrodGate, TILESET_GATE, GATE, ROUTE_35, MUSIC_ROUTE_36, 0, PALETTE_DAY, FISHGROUP_SHORE

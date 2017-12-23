@@ -1,8 +1,23 @@
+newgroup: macro
+const_value = const_value + 1
+	enum_start 1
+endm
+
+mapgroup: macro
+;\1: map id
+;\2: height: in blocks
+;\3: width: in blocks
+GROUP_\1 EQU const_value
+	enum MAP_\1
+\1_HEIGHT EQU \2
+\1_WIDTH EQU \3
+endm
+
 ; map group ids
 ; `newgroup` indexes are for:
 ; - MapGroupPointers (see maps/map_headers.asm)
-; - OutdoorSprites (see data/outdoor_sprites.asm)
-; - MapGroupRoofs (see data/mapgroup_roofs.asm)
+; - OutdoorSprites (see data/maps/outdoor_sprites.asm)
+; - MapGroupRoofs (see data/maps/mapgroup_roofs.asm)
 ; `mapgroup` indexes are for the sub-tables of MapGroupPointers (see maps/map_headers.asm)
 	const_def
 
@@ -214,7 +229,7 @@
 	mapgroup EARLS_POKEMON_ACADEMY,                       8,  4 ;  8
 	mapgroup VIOLET_NICKNAME_SPEECH_HOUSE,                4,  4 ;  9
 	mapgroup VIOLET_POKECENTER_1F,                        4,  5 ; 10
-	mapgroup VIOLET_ONIX_TRADE_HOUSE,                     4,  4 ; 11
+	mapgroup VIOLET_KYLES_HOUSE,                          4,  4 ; 11
 	mapgroup ROUTE_32_RUINS_OF_ALPH_GATE,                 4,  5 ; 12
 	mapgroup ROUTE_32_POKECENTER_1F,                      4,  5 ; 13
 	mapgroup ROUTE_35_GOLDENROD_GATE,                     4,  5 ; 14

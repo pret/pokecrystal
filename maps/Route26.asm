@@ -16,9 +16,9 @@ Route26_MapScriptHeader:
 	db 0
 
 TrainerCooltrainermJake:
-	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, 0, CooltrainermJakeScript
+	trainer EVENT_BEAT_COOLTRAINERM_JAKE, COOLTRAINERM, JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, 0, .Script
 
-CooltrainermJakeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermJakeAfterBattleText
@@ -27,9 +27,9 @@ CooltrainermJakeScript:
 	end
 
 TrainerCooltrainermGaven3:
-	trainer EVENT_BEAT_COOLTRAINERM_GAVEN, COOLTRAINERM, GAVEN3, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, 0, CooltrainermGaven3Script
+	trainer EVENT_BEAT_COOLTRAINERM_GAVEN, COOLTRAINERM, GAVEN3, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, 0, .Script
 
-CooltrainermGaven3Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
 	end_if_just_battled
 	opentext
@@ -120,9 +120,9 @@ UnknownScript_0x1a4dd7:
 	end
 
 TrainerCooltrainerfJoyce:
-	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, 0, CooltrainerfJoyceScript
+	trainer EVENT_BEAT_COOLTRAINERF_JOYCE, COOLTRAINERF, JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, 0, .Script
 
-CooltrainerfJoyceScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfJoyceAfterBattleText
@@ -131,9 +131,9 @@ CooltrainerfJoyceScript:
 	end
 
 TrainerCooltrainerfBeth1:
-	trainer EVENT_BEAT_COOLTRAINERF_BETH, COOLTRAINERF, BETH1, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, 0, CooltrainerfBeth1Script
+	trainer EVENT_BEAT_COOLTRAINERF_BETH, COOLTRAINERF, BETH1, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, 0, .Script
 
-CooltrainerfBeth1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
 	end_if_just_battled
 	opentext
@@ -224,9 +224,9 @@ UnknownScript_0x1a4e93:
 	end
 
 TrainerPsychicRichard:
-	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, 0, PsychicRichardScript
+	trainer EVENT_BEAT_PSYCHIC_RICHARD, PSYCHIC_T, RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, 0, .Script
 
-PsychicRichardScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PsychicRichardAfterBattleText
@@ -235,9 +235,9 @@ PsychicRichardScript:
 	end
 
 TrainerFisherScott:
-	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, 0, FisherScottScript
+	trainer EVENT_BEAT_FISHER_SCOTT, FISHER, SCOTT, FisherScottSeenText, FisherScottBeatenText, 0, .Script
 
-FisherScottScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherScottAfterBattleText

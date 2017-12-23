@@ -15,31 +15,31 @@ Route38_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperToby:
-	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, .script
+	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, .Script
 
-.script
+.Script
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a1f86
+	writetext Bird_keeperTobyAfterBattleText
 	waitbutton
 	closetext
 	end
 
 TrainerSailorHarry:
-	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .script
+	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .Script
 
-.script
+.Script
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a220c
+	writetext SailorHarryAfterBattleText
 	waitbutton
 	closetext
 	end
 
 TrainerLassDana1:
-	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, 0, .script
+	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, 0, .Script
 
-.script
+.Script
 	writecode VAR_CALLERID, PHONE_LASS_DANA
 	end_if_just_battled
 	opentext
@@ -175,9 +175,9 @@ TrainerLassDana1:
 	end
 
 TrainerSchoolboyChad1:
-	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .script
+	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .Script
 
-.script
+.Script
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
 	end_if_just_battled
 	opentext
@@ -292,23 +292,23 @@ TrainerSchoolboyChad1:
 	end
 
 TrainerBeautyValerie:
-	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .script
+	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .Script
 
-.script
+.Script
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a2185
+	writetext BeautyValerieAfterBattleText
 	waitbutton
 	closetext
 	end
 
 TrainerBeautyOlivia:
-	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .script
+	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .Script
 
-.script
+.Script
 	end_if_just_battled
 	opentext
-	writetext UnknownText_0x1a229a
+	writetext BeautyOliviaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -333,7 +333,7 @@ Bird_keeperTobyBeatenText:
 	line "flying away now."
 	done
 
-UnknownText_0x1a1f86:
+Bird_keeperTobyAfterBattleText:
 	text "I plan to train in"
 	line "CIANWOOD CITY to"
 
@@ -400,7 +400,7 @@ BeautyValerieBeatenText:
 	line "see your #MON!"
 	done
 
-UnknownText_0x1a2185:
+BeautyValerieAfterBattleText:
 	text "When I see #-"
 	line "MON, it seems to"
 	cont "soothe my nerves."
@@ -419,7 +419,7 @@ SailorHarryBeatenText:
 	line "world class!"
 	done
 
-UnknownText_0x1a220c:
+SailorHarryAfterBattleText:
 	text "All kinds of peo-"
 	line "ple around the"
 
@@ -438,7 +438,7 @@ BeautyOliviaBeatenText:
 	line "MILK every day."
 	done
 
-UnknownText_0x1a229a:
+BeautyOliviaAfterBattleText:
 	text "MOOMOO MILK is"
 	line "good for beauty"
 

@@ -38,8 +38,8 @@ FisherScript_0x18a48c:
 	closetext
 	end
 
-YoungsterScript_0x18a4a0:
-	jumptextfaceplayer UnknownText_0x18a6c5
+SaffronPokecenter1FYoungsterScript:
+	jumptextfaceplayer SaffronPokecenter1FYoungsterText
 
 UnknownText_0x18a4a3:
 	text "What are JOHTO's"
@@ -100,7 +100,7 @@ UnknownText_0x18a62e:
 	cont "knowledge."
 	done
 
-UnknownText_0x18a6c5:
+SaffronPokecenter1FYoungsterText:
 	text "SILPH CO.'s HEAD"
 	line "OFFICE and the"
 
@@ -132,4 +132,4 @@ SaffronPokecenter1F_MapEventHeader:
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x18a47d, -1
 	person_event SPRITE_TEACHER, 2, 7, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x18a480, -1
 	person_event SPRITE_FISHER, 6, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FisherScript_0x18a48c, -1
-	person_event SPRITE_YOUNGSTER, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x18a4a0, -1
+	person_event SPRITE_YOUNGSTER, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SaffronPokecenter1FYoungsterScript, -1

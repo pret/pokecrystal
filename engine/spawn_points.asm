@@ -1,5 +1,5 @@
 
-INCLUDE "data/spawn_points.asm"
+INCLUDE "data/maps/spawn_points.asm"
 
 
 LoadSpawnPoint: ; 1531f

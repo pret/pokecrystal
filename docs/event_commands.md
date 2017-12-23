@@ -1,5 +1,8 @@
 # Event Commands
 
+Defined in [macros/scripts/event.asm](/macros/scripts/event.asm) and [engine/scripting.asm:ScriptCommandTable](/engine/scripting.asm).
+
+
 ## `$00`: `scall` *script*
 
 ## `$01`: `farscall` *script*

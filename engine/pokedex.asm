@@ -1709,9 +1709,9 @@ Pokedex_ABCMode: ; 40c30
 	ret
 
 
-INCLUDE "data/pokedex/order_alpha.asm"
+INCLUDE "data/pokemon/dex_order_alpha.asm"
 
-INCLUDE "data/pokedex/order_new.asm"
+INCLUDE "data/pokemon/dex_order_new.asm"
 
 
 Pokedex_DisplayModeDescription: ; 40e5b

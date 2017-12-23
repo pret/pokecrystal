@@ -9,16 +9,16 @@ EcruteakLugiaSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-GrampsScript_0x99334:
-	jumptextfaceplayer UnknownText_0x9933d
+EcruteakLugiaSpeechHouseGrampsScript:
+	jumptextfaceplayer EcruteakLugiaSpeechHouseGrampsText
 
-YoungsterScript_0x99337:
-	jumptextfaceplayer UnknownText_0x993ec
+EcruteakLugiaSpeechHouseYoungsterScript:
+	jumptextfaceplayer EcruteakLugiaSpeechHouseYoungsterText
 
 LugiaSpeechHouseRadio:
 	jumpstd radio2
 
-UnknownText_0x9933d:
+EcruteakLugiaSpeechHouseGrampsText:
 	text "This happened when"
 	line "I was young."
 
@@ -36,7 +36,7 @@ UnknownText_0x9933d:
 	line "and a dragon."
 	done
 
-UnknownText_0x993ec:
+EcruteakLugiaSpeechHouseYoungsterText:
 	text "Is there really a"
 	line "#MON that big?"
 
@@ -62,5 +62,5 @@ EcruteakLugiaSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x99334, -1
-	person_event SPRITE_YOUNGSTER, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x99337, -1
+	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseGrampsScript, -1
+	person_event SPRITE_YOUNGSTER, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseYoungsterScript, -1

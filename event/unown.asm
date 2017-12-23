@@ -1,5 +1,3 @@
-
-
 SpecialHoOhChamber: ; 0x8addb
 	ld hl, PartySpecies
 	ld a, [hl]

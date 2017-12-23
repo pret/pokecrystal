@@ -8,13 +8,13 @@ PewterSnoozeSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-GrampsScript_0x1a3059:
-	jumptextfaceplayer UnknownText_0x1a305f
+PewterSnoozeSpeechHouseGrampsScript:
+	jumptextfaceplayer PewterSnoozeSpeechHouseGrampsText
 
 PewterSnoozeSpeechHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x1a305f:
+PewterSnoozeSpeechHouseGrampsText:
 	text "I like snoozing"
 	line "with the radio on…"
 	cont "…Zzzz…"
@@ -39,4 +39,4 @@ PewterSnoozeSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a3059, -1
+	person_event SPRITE_GRAMPS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, PewterSnoozeSpeechHouseGrampsScript, -1

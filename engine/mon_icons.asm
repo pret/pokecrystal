@@ -466,7 +466,7 @@ ReadMonMenuIcon: ; 8eab3
 ; 8eac4
 
 
-INCLUDE "data/mon_menu_icons.asm"
+INCLUDE "data/pokemon/menu_icons.asm"
 
 INCLUDE "gfx/icon_pointers.asm"
 

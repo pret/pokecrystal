@@ -17,9 +17,9 @@ UnionCave1F_MapScriptHeader:
 	db 0
 
 TrainerPokemaniacLarry:
-	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, 0, PokemaniacLarryScript
+	trainer EVENT_BEAT_POKEMANIAC_LARRY, POKEMANIAC, LARRY, PokemaniacLarrySeenText, PokemaniacLarryBeatenText, 0, .Script
 
-PokemaniacLarryScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacLarryAfterBattleText
@@ -28,9 +28,9 @@ PokemaniacLarryScript:
 	end
 
 TrainerHikerRussell:
-	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, 0, HikerRussellScript
+	trainer EVENT_BEAT_HIKER_RUSSELL, HIKER, RUSSELL, HikerRussellSeenText, HikerRussellBeatenText, 0, .Script
 
-HikerRussellScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerRussellAfterBattleText
@@ -39,9 +39,9 @@ HikerRussellScript:
 	end
 
 TrainerHikerDaniel:
-	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, 0, HikerDanielScript
+	trainer EVENT_BEAT_HIKER_DANIEL, HIKER, DANIEL, HikerDanielSeenText, HikerDanielBeatenText, 0, .Script
 
-HikerDanielScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerDanielAfterBattleText
@@ -50,9 +50,9 @@ HikerDanielScript:
 	end
 
 TrainerFirebreatherBill:
-	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, 0, FirebreatherBillScript
+	trainer EVENT_BEAT_FIREBREATHER_BILL, FIREBREATHER, BILL, FirebreatherBillSeenText, FirebreatherBillBeatenText, 0, .Script
 
-FirebreatherBillScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FirebreatherBillAfterBattleText
@@ -61,9 +61,9 @@ FirebreatherBillScript:
 	end
 
 TrainerFirebreatherRay:
-	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, 0, FirebreatherRayScript
+	trainer EVENT_BEAT_FIREBREATHER_RAY, FIREBREATHER, RAY, FirebreatherRaySeenText, FirebreatherRayBeatenText, 0, .Script
 
-FirebreatherRayScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FirebreatherRayAfterBattleText

@@ -16,19 +16,19 @@ ClerkScript_0x9b5e7:
 	closetext
 	end
 
-LassScript_0x9b5ee:
-	jumptextfaceplayer UnknownText_0x9b5f4
+ViridianMartLassScript:
+	jumptextfaceplayer ViridianMartLassText
 
-CooltrainerMScript_0x9b5f1:
-	jumptextfaceplayer UnknownText_0x9b61a
+ViridianMartCooltrainerMScript:
+	jumptextfaceplayer ViridianMartCooltrainerMText
 
-UnknownText_0x9b5f4:
+ViridianMartLassText:
 	text "The GYM LEADER"
 	line "here is totally"
 	cont "cool."
 	done
 
-UnknownText_0x9b61a:
+ViridianMartCooltrainerMText:
 	text "Have you been to"
 	line "CINNABAR?"
 
@@ -54,5 +54,5 @@ ViridianMart_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x9b5e7, -1
-	person_event SPRITE_LASS, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x9b5ee, -1
-	person_event SPRITE_COOLTRAINER_M, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x9b5f1, -1
+	person_event SPRITE_LASS, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ViridianMartLassScript, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ViridianMartCooltrainerMScript, -1

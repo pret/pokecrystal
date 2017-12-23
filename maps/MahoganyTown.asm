@@ -103,11 +103,11 @@ UnknownScript_0x19008c:
 	closetext
 	end
 
-FisherScript_0x190092:
-	jumptextfaceplayer UnknownText_0x190276
+MahoganyTownFisherScript:
+	jumptextfaceplayer MahoganyTownFisherText
 
-LassScript_0x190095:
-	jumptextfaceplayer UnknownText_0x1902f2
+MahoganyTownLassScript:
+	jumptextfaceplayer MahoganyTownLassText
 
 MahoganyTownSign:
 	jumptext MahoganyTownSignText
@@ -200,7 +200,7 @@ UnknownText_0x19021d:
 	cont "anglers there."
 	done
 
-UnknownText_0x190276:
+MahoganyTownFisherText:
 	text "Since you came"
 	line "this far, take the"
 
@@ -214,7 +214,7 @@ UnknownText_0x190276:
 	line "right now."
 	done
 
-UnknownText_0x1902f2:
+MahoganyTownLassText:
 	text "Visit Grandma's"
 	line "shop. She sells"
 
@@ -272,5 +272,5 @@ MahoganyTown_MapEventHeader:
 	db 4
 	person_event SPRITE_POKEFAN_M, 8, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
 	person_event SPRITE_GRAMPS, 9, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x19007e, -1
-	person_event SPRITE_FISHER, 14, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x190092, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	person_event SPRITE_LASS, 8, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x190095, EVENT_MAHOGANY_MART_OWNERS
+	person_event SPRITE_FISHER, 14, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, MahoganyTownFisherScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	person_event SPRITE_LASS, 8, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MahoganyTownLassScript, EVENT_MAHOGANY_MART_OWNERS

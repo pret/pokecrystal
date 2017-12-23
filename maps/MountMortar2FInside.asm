@@ -15,9 +15,9 @@ MountMortar2FInside_MapScriptHeader:
 	db 0
 
 TrainerSupernerdHugh:
-	trainer EVENT_BEAT_SUPER_NERD_HUGH, SUPER_NERD, HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, 0, SupernerdHughScript
+	trainer EVENT_BEAT_SUPER_NERD_HUGH, SUPER_NERD, HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, 0, .Script
 
-SupernerdHughScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SupernerdHughAfterBattleText

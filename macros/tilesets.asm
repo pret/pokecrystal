@@ -1,3 +1,5 @@
+; Used in tilesets/*.asm
+
 tilepal: MACRO
 ; vram bank, pals
 x = \1 << OAM_TILE_BANK

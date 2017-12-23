@@ -26,8 +26,8 @@ UnknownScript_0x18b64d:
 	closetext
 	end
 
-TeacherScript_0x18b64f:
-	jumptextfaceplayer UnknownText_0x18b6de
+Route5CleanseTagSpeechHouseTeacherScript:
+	jumptextfaceplayer Route5CleanseTagSpeechHouseTeacherText
 
 HouseForSaleBookshelf:
 	jumpstd difficultbookshelf
@@ -49,7 +49,7 @@ UnknownText_0x18b6a7:
 	cont "are protected now."
 	done
 
-UnknownText_0x18b6de:
+Route5CleanseTagSpeechHouseTeacherText:
 	text "My grandma is into"
 	line "warding off what"
 
@@ -80,4 +80,4 @@ Route5CleanseTagSpeechHouse_MapEventHeader:
 .PersonEvents:
 	db 2
 	person_event SPRITE_GRANNY, 5, 2, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, GrannyScript_0x18b634, -1
-	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, TeacherScript_0x18b64f, -1
+	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route5CleanseTagSpeechHouseTeacherScript, -1

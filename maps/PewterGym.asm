@@ -41,9 +41,9 @@ BrockScript_0x1a2864:
 	end
 
 TrainerCamperJerry:
-	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, 0, CamperJerryScript
+	trainer EVENT_BEAT_CAMPER_JERRY, CAMPER, JERRY, CamperJerrySeenText, CamperJerryBeatenText, 0, .Script
 
-CamperJerryScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CamperJerryAfterBattleText

@@ -18,11 +18,11 @@ NurseScript_0x71e22:
 GentlemanScript_0x71e25:
 	jumpstd happinesschecknpc
 
-CooltrainerFScript_0x71e28:
-	jumptextfaceplayer UnknownText_0x71e70
+CeladonPokecenter1FCooltrainerFScript:
+	jumptextfaceplayer CeladonPokecenter1FCooltrainerFText
 
-PharmacistScript_0x71e2b:
-	jumptextfaceplayer UnknownText_0x71ec1
+CeladonPokecenter1FPharmacistScript:
+	jumptextfaceplayer CeladonPokecenter1FPharmacistText
 
 CeladonEusine:
 	faceplayer
@@ -72,7 +72,7 @@ CeladonEusine:
 	step DOWN
 	step_end
 
-UnknownText_0x71e70:
+CeladonPokecenter1FCooltrainerFText:
 	text "ERIKA is a master"
 	line "of grass #MON."
 
@@ -81,7 +81,7 @@ UnknownText_0x71e70:
 	cont "watch yourself."
 	done
 
-UnknownText_0x71ec1:
+CeladonPokecenter1FPharmacistText:
 	text "TEAM ROCKET's"
 	line "hideout is in the"
 
@@ -165,6 +165,6 @@ CeladonPokecenter1F_MapEventHeader:
 	db 5
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x71e22, -1
 	person_event SPRITE_GENTLEMAN, 5, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x71e25, -1
-	person_event SPRITE_PHARMACIST, 3, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PharmacistScript_0x71e2b, -1
-	person_event SPRITE_COOLTRAINER_F, 6, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x71e28, -1
+	person_event SPRITE_PHARMACIST, 3, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonPokecenter1FPharmacistScript, -1
+	person_event SPRITE_COOLTRAINER_F, 6, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonPokecenter1FCooltrainerFScript, -1
 	person_event SPRITE_SUPER_NERD, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeladonEusine, EVENT_SET_WHEN_FOUGHT_HO_OH

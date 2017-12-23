@@ -84,9 +84,9 @@ DragonsDenB1F_ClairTrigger:
 	end
 
 TrainerCooltrainermDarin:
-	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, 0, CooltrainermDarinScript
+	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, 0, .Script
 
-CooltrainermDarinScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermDarinAfterBattleText
@@ -95,9 +95,9 @@ CooltrainermDarinScript:
 	end
 
 TrainerCooltrainerfCara:
-	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, 0, CooltrainerfCaraScript
+	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, 0, .Script
 
-CooltrainerfCaraScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfCaraAfterBattleText
@@ -106,9 +106,9 @@ CooltrainerfCaraScript:
 	end
 
 TrainerTwinsLeaandpia1:
-	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, 0, TwinsLeaandpia1Script
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, 0, .Script
 
-TwinsLeaandpia1Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TwinsLeaandpia1AfterBattleText
@@ -117,9 +117,9 @@ TwinsLeaandpia1Script:
 	end
 
 TrainerTwinsLeaandpia2:
-	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, 0, TwinsLeaandpia2Script
+	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, 0, .Script
 
-TwinsLeaandpia2Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TwinsLeaandpia2AfterBattleText

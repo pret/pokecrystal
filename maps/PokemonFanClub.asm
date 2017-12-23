@@ -49,8 +49,8 @@ UnknownScript_0x19181f:
 	closetext
 	end
 
-ReceptionistScript_0x191821:
-	jumptextfaceplayer UnknownText_0x191b6d
+PokemonFanClubReceptionistScript:
+	jumptextfaceplayer PokemonFanClubReceptionistText
 
 FisherScript_0x191824:
 	faceplayer
@@ -100,8 +100,8 @@ UnknownScript_0x191865:
 	closetext
 	end
 
-TeacherScript_0x19186b:
-	jumptextfaceplayer UnknownText_0x191d73
+PokemonFanClubTeacherScript:
+	jumptextfaceplayer PokemonFanClubTeacherText
 
 ClefairyDoll:
 	jumptext ClefairyDollText
@@ -199,7 +199,7 @@ UnknownText_0x191b38:
 	line "want to listen."
 	done
 
-UnknownText_0x191b6d:
+PokemonFanClubReceptionistText:
 	text "Our CHAIRMAN is"
 	line "very vocal when it"
 	cont "comes to #MON…"
@@ -264,7 +264,7 @@ UnknownText_0x191d58:
 	line "jammed full."
 	done
 
-UnknownText_0x191d73:
+PokemonFanClubTeacherText:
 	text "Look at my darling"
 	line "BAYLEEF!"
 
@@ -316,8 +316,8 @@ PokemonFanClub_MapEventHeader:
 .PersonEvents:
 	db 6
 	person_event SPRITE_GENTLEMAN, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x1917e9, -1
-	person_event SPRITE_RECEPTIONIST, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x191821, -1
+	person_event SPRITE_RECEPTIONIST, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, PokemonFanClubReceptionistScript, -1
 	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FisherScript_0x191824, -1
-	person_event SPRITE_TEACHER, 2, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x19186b, -1
+	person_event SPRITE_TEACHER, 2, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokemonFanClubTeacherScript, -1
 	person_event SPRITE_FAIRY, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClefairyDoll, EVENT_VERMILION_FAN_CLUB_DOLL
 	person_event SPRITE_ODDISH, 3, 7, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FanClubBayleef, -1

@@ -1,5 +1,8 @@
 # Movement Commands
 
+Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engine/movement.asm:MovementPointers](/engine/movement.asm).
+
+
 ## `$00`−`$03`: `turn_head` *direction*
 
 ## `$04`−`$07`: `turn_step` *direction*

@@ -5,13 +5,13 @@ RedsHouse2F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-MapRedsHouse2FSignpost0Script:
-	jumptext UnknownText_0x19b050
+RedsHouse2FN64Script:
+	jumptext RedsHouse2FN64Text
 
-MapRedsHouse2FSignpost1Script:
-	jumptext UnknownText_0x19b087
+RedsHouse2FPCScript:
+	jumptext RedsHouse2FPCText
 
-UnknownText_0x19b050:
+RedsHouse2FN64Text:
 	text "<PLAYER> played the"
 	line "N64."
 
@@ -19,7 +19,7 @@ UnknownText_0x19b050:
 	line "no time to lose!"
 	done
 
-UnknownText_0x19b087:
+RedsHouse2FPCText:
 	text "It looks like it"
 	line "hasn't been used"
 	cont "in a long time…"
@@ -38,8 +38,8 @@ RedsHouse2F_MapEventHeader:
 
 .Signposts:
 	db 2
-	signpost 5, 3, SIGNPOST_READ, MapRedsHouse2FSignpost0Script
-	signpost 1, 0, SIGNPOST_READ, MapRedsHouse2FSignpost1Script
+	signpost 5, 3, SIGNPOST_READ, RedsHouse2FN64Script
+	signpost 1, 0, SIGNPOST_READ, RedsHouse2FPCScript
 
 .PersonEvents:
 	db 0

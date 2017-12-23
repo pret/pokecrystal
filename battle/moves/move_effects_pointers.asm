@@ -1,3 +1,4 @@
+MoveEffectsPointers: ; 271f4
 ; entries correspond to EFFECT_* constants
 	dw NormalHit
 	dw DoSleep

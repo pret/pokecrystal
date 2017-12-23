@@ -16,9 +16,9 @@ Route20_MapScriptHeader:
 	return
 
 TrainerSwimmerfNicole:
-	trainer EVENT_BEAT_SWIMMERF_NICOLE, SWIMMERF, NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, SwimmerfNicoleScript
+	trainer EVENT_BEAT_SWIMMERF_NICOLE, SWIMMERF, NICOLE, SwimmerfNicoleSeenText, SwimmerfNicoleBeatenText, 0, .Script
 
-SwimmerfNicoleScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfNicoleAfterBattleText
@@ -27,9 +27,9 @@ SwimmerfNicoleScript:
 	end
 
 TrainerSwimmerfLori:
-	trainer EVENT_BEAT_SWIMMERF_LORI, SWIMMERF, LORI, SwimmerfLoriSeenText, SwimmerfLoriBeatenText, 0, SwimmerfLoriScript
+	trainer EVENT_BEAT_SWIMMERF_LORI, SWIMMERF, LORI, SwimmerfLoriSeenText, SwimmerfLoriBeatenText, 0, .Script
 
-SwimmerfLoriScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfLoriAfterBattleText
@@ -38,9 +38,9 @@ SwimmerfLoriScript:
 	end
 
 TrainerSwimmermCameron:
-	trainer EVENT_BEAT_SWIMMERM_CAMERON, SWIMMERM, CAMERON, SwimmermCameronSeenText, SwimmermCameronBeatenText, 0, SwimmermCameronScript
+	trainer EVENT_BEAT_SWIMMERM_CAMERON, SWIMMERM, CAMERON, SwimmermCameronSeenText, SwimmermCameronBeatenText, 0, .Script
 
-SwimmermCameronScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermCameronAfterBattleText

@@ -65,11 +65,11 @@ UnknownScript_0x716b6:
 	closetext
 	end
 
-SuperNerdScript_0x716bc:
-	jumptextfaceplayer UnknownText_0x71895
+CeladonMansion3FSuperNerdScript:
+	jumptextfaceplayer CeladonMansion3FSuperNerdText
 
-FisherScript_0x716bf:
-	jumptextfaceplayer UnknownText_0x718ca
+CeladonMansion3FFisherScript:
+	jumptextfaceplayer CeladonMansion3FFisherText
 
 MapCeladonMansion3FSignpost0Script:
 	jumptext UnknownText_0x7190b
@@ -145,7 +145,7 @@ UnknownText_0x71863:
 	cont "cel printing."
 	done
 
-UnknownText_0x71895:
+CeladonMansion3FSuperNerdText:
 	text "Who, me? I'm the"
 	line "PROGRAMMER."
 
@@ -153,7 +153,7 @@ UnknownText_0x71895:
 	line "machines!"
 	done
 
-UnknownText_0x718ca:
+CeladonMansion3FFisherText:
 	text "Aren't the TWINS"
 	line "adorable?"
 
@@ -214,5 +214,5 @@ CeladonMansion3F_MapEventHeader:
 	db 4
 	person_event SPRITE_COOLTRAINER_M, 6, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x71670, -1
 	person_event SPRITE_GYM_GUY, 4, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x71696, -1
-	person_event SPRITE_SUPER_NERD, 7, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x716bc, -1
-	person_event SPRITE_FISHER, 4, 0, SPRITEMOVEDATA_STANDING_UP, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FisherScript_0x716bf, -1
+	person_event SPRITE_SUPER_NERD, 7, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeladonMansion3FSuperNerdScript, -1
+	person_event SPRITE_FISHER, 4, 0, SPRITEMOVEDATA_STANDING_UP, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonMansion3FFisherScript, -1

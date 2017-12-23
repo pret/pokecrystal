@@ -1,4 +1,4 @@
-; MobileEZChatCategoryPointers indexes (see misc/fixed_words.asm)
+; MobileEZChatCategoryPointers indexes (see mobile/fixed_words.asm)
 	const_def
 	const EZCHAT_POKEMON
 	const EZCHAT_TYPES
@@ -16,6 +16,6 @@
 	const EZCHAT_FAREWELLS
 	const EZCHAT_THISANDTHAT
 
-NUM_KANA EQU 45 ; length of SortedPokemon table (see misc/fixed_words.asm)
+NUM_KANA EQU 45 ; length of SortedPokemon table (see mobile/fixed_words.asm)
 
 MOBILE_LOGIN_PASSWORD_LENGTH EQU 17

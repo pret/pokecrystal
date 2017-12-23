@@ -145,8 +145,8 @@ ClerkScript_0x18012f:
 	closetext
 	end
 
-CooltrainerMScript_0x180136:
-	jumptextfaceplayer UnknownText_0x180178
+IndigoPlateauPokecenter1FCooltrainerMScript:
+	jumptextfaceplayer IndigoPlateauPokecenter1FCooltrainerMText
 
 TeleportGuyScript:
 	faceplayer
@@ -203,7 +203,7 @@ PlateauRivalLeavesMovement:
 	step DOWN
 	step_end
 
-UnknownText_0x180178:
+IndigoPlateauPokecenter1FCooltrainerMText:
 	text "At the #MON"
 	line "LEAGUE, you'll get"
 
@@ -325,7 +325,7 @@ IndigoPlateauPokecenter1F_MapEventHeader:
 	db 6
 	person_event SPRITE_NURSE, 7, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x18012c, -1
 	person_event SPRITE_CLERK, 7, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x18012f, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 11, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x180136, -1
+	person_event SPRITE_COOLTRAINER_M, 11, 11, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FCooltrainerMScript, -1
 	person_event SPRITE_SILVER, 9, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	person_event SPRITE_GRAMPS, 9, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
 	person_event SPRITE_JYNX, 9, 0, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, AbraScript, EVENT_TELEPORT_GUY

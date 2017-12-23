@@ -8,10 +8,10 @@ Route5UndergroundEntrance_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TeacherScript_0x18b555:
-	jumptextfaceplayer UnknownText_0x18b558
+Route5UndergroundEntranceTeacherScript:
+	jumptextfaceplayer Route5UndergroundEntranceTeacherText
 
-UnknownText_0x18b558:
+Route5UndergroundEntranceTeacherText:
 	text "Many cities in"
 	line "JOHTO have long"
 
@@ -37,4 +37,4 @@ Route5UndergroundEntrance_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_TEACHER, 2, 2, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x18b555, -1
+	person_event SPRITE_TEACHER, 2, 2, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route5UndergroundEntranceTeacherScript, -1

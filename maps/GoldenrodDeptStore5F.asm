@@ -120,8 +120,8 @@ Carrie:
 	closetext
 	end
 
-LassScript_0x56130:
-	jumptextfaceplayer UnknownText_0x562ad
+GoldenrodDeptStore5FLassScript:
+	jumptextfaceplayer GoldenrodDeptStore5FLassText
 
 Mike:
 	faceplayer
@@ -131,8 +131,8 @@ Mike:
 	closetext
 	end
 
-PokefanMScript_0x5613a:
-	jumptextfaceplayer UnknownText_0x562f3
+GoldenrodDeptStore5FPokefanMScript:
+	jumptextfaceplayer GoldenrodDeptStore5FPokefanMText
 
 GoldenrodDeptStore5FDirectory:
 	jumptext GoldenrodDeptStore5FDirectoryText
@@ -189,7 +189,7 @@ UnknownText_0x56279:
 	cont "Game Boy Color."
 	done
 
-UnknownText_0x562ad:
+GoldenrodDeptStore5FLassText:
 	text "On Sundays, a lady"
 	line "comes to check out"
 	cont "#MON."
@@ -198,7 +198,7 @@ UnknownText_0x562ad:
 	line "away TMs!"
 	done
 
-UnknownText_0x562f3:
+GoldenrodDeptStore5FPokefanMText:
 	text "You can't rename a"
 	line "#MON you get in"
 	cont "a trade."
@@ -238,8 +238,8 @@ GoldenrodDeptStore5F_MapEventHeader:
 .PersonEvents:
 	db 6
 	person_event SPRITE_CLERK, 5, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x5609c, -1
-	person_event SPRITE_LASS, 6, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x56130, -1
+	person_event SPRITE_LASS, 6, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore5FLassScript, -1
 	person_event SPRITE_COOLTRAINER_M, 3, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Mike, -1
-	person_event SPRITE_POKEFAN_M, 5, 13, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x5613a, -1
+	person_event SPRITE_POKEFAN_M, 5, 13, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore5FPokefanMScript, -1
 	person_event SPRITE_TWIN, 1, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Carrie, -1
 	person_event SPRITE_RECEPTIONIST, 5, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY

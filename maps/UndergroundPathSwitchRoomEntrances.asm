@@ -206,9 +206,9 @@ UndergroundSilverBattleScript:
 	end
 
 TrainerGruntM11:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, GRUNTM_11, GruntM11SeenText, GruntM11BeatenText, 0, GruntM11Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, GRUNTM_11, GruntM11SeenText, GruntM11BeatenText, 0, .Script
 
-GruntM11Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM11AfterBattleText
@@ -217,9 +217,9 @@ GruntM11Script:
 	end
 
 TrainerGruntM25:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, GRUNTM_25, GruntM25SeenText, GruntM25BeatenText, 0, GruntM25Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, GRUNTM_25, GruntM25SeenText, GruntM25BeatenText, 0, .Script
 
-GruntM25Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM25AfterBattleText
@@ -228,9 +228,9 @@ GruntM25Script:
 	end
 
 TrainerBurglarDuncan:
-	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, 0, BurglarDuncanScript
+	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, 0, .Script
 
-BurglarDuncanScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BurglarDuncanAfterBattleText
@@ -239,9 +239,9 @@ BurglarDuncanScript:
 	end
 
 TrainerBurglarEddie:
-	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, 0, BurglarEddieScript
+	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, 0, .Script
 
-BurglarEddieScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BurglarEddieAfterBattleText
@@ -250,9 +250,9 @@ BurglarEddieScript:
 	end
 
 TrainerGruntM13:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, GRUNTM_13, GruntM13SeenText, GruntM13BeatenText, 0, GruntM13Script
+	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, GRUNTM_13, GruntM13SeenText, GruntM13BeatenText, 0, .Script
 
-GruntM13Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntM13AfterBattleText
@@ -261,9 +261,9 @@ GruntM13Script:
 	end
 
 TrainerGruntF3:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, GRUNTF_3, GruntF3SeenText, GruntF3BeatenText, 0, GruntF3Script
+	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, GRUNTF_3, GruntF3SeenText, GruntF3BeatenText, 0, .Script
 
-GruntF3Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GruntF3AfterBattleText
