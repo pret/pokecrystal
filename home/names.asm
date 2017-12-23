@@ -1,4 +1,5 @@
 NamesPointers:: ; 33ab
+; entries correspond to GetName constants (see constants/misc_constants.asm)
 	dba PokemonNames
 	dba MoveNames
 	dbw 0, 0
