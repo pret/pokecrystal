@@ -17,11 +17,11 @@ ClerkScript_0x70f0d:
 	closetext
 	end
 
-SuperNerdScript_0x70f15:
-	jumptextfaceplayer UnknownText_0x70f21
+CeladonDeptStore4FSuperNerdScript:
+	jumptextfaceplayer CeladonDeptStore4FSuperNerdText
 
-YoungsterScript_0x70f18:
-	jumptextfaceplayer UnknownText_0x70f55
+CeladonDeptStore4FYoungsterScript:
+	jumptextfaceplayer CeladonDeptStore4FYoungsterText
 
 CeladonDeptStore4FDirectory:
 	jumptext CeladonDeptStore4FDirectoryText
@@ -29,13 +29,13 @@ CeladonDeptStore4FDirectory:
 CeladonDeptStore4FElevatorButton:
 	jumpstd elevatorbutton
 
-UnknownText_0x70f21:
+CeladonDeptStore4FSuperNerdText:
 	text "I'm here to buy"
 	line "SURF MAIL to send"
 	cont "to my girlfriend."
 	done
 
-UnknownText_0x70f55:
+CeladonDeptStore4FYoungsterText:
 	text "This is the only"
 	line "place where you"
 
@@ -71,5 +71,5 @@ CeladonDeptStore4F_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x70f0d, -1
-	person_event SPRITE_SUPER_NERD, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x70f15, -1
-	person_event SPRITE_YOUNGSTER, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x70f18, -1
+	person_event SPRITE_SUPER_NERD, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonDeptStore4FSuperNerdScript, -1
+	person_event SPRITE_YOUNGSTER, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonDeptStore4FYoungsterScript, -1

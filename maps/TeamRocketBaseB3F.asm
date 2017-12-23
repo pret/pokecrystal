@@ -83,8 +83,8 @@ RocketBaseRival:
 	special RestartMapMusic
 	end
 
-RocketScript_0x6e048:
-	jumptextfaceplayer UnknownText_0x6e235
+TeamRocketBaseB3FRocketScript:
+	jumptextfaceplayer TeamRocketBaseB3FRocketText
 
 UnknownScript_0x6e04b:
 	applymovement PLAYER, MovementData_0x6e133
@@ -152,9 +152,9 @@ GruntM28Script:
 	end
 
 TrainerScientistRoss:
-	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, 0, ScientistRossScript
+	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, 0, .Script
 
-ScientistRossScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext ScientistRossAfterBattleText
@@ -163,9 +163,9 @@ ScientistRossScript:
 	end
 
 TrainerScientistMitch:
-	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, 0, ScientistMitchScript
+	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, 0, .Script
 
-ScientistMitchScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext ScientistMitchAfterBattleText
@@ -337,7 +337,7 @@ LanceGetPasswordText:
 	line "get the passwords."
 	done
 
-UnknownText_0x6e235:
+TeamRocketBaseB3FRocketText:
 	text "Urrggh… The guy"
 	line "in the cape is"
 	cont "incredibly tough…"
@@ -604,7 +604,7 @@ TeamRocketBaseB3F_MapEventHeader:
 	person_event SPRITE_ROCKET, 14, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, RaticateTailGrunt, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_SCIENTIST, 11, 23, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 0, TrainerScientistRoss, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_SCIENTIST, 15, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerScientistMitch, EVENT_TEAM_ROCKET_BASE_POPULATION
-	person_event SPRITE_ROCKET, 14, 24, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_0x6e048, EVENT_TEAM_ROCKET_BASE_POPULATION
+	person_event SPRITE_ROCKET, 14, 24, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeamRocketBaseB3FRocketScript, EVENT_TEAM_ROCKET_BASE_POPULATION
 	person_event SPRITE_SILVER, 5, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_TEAM_ROCKET_BASE
 	person_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TeamRocketBaseB3FProtein, EVENT_TEAM_ROCKET_BASE_B3F_PROTEIN
 	person_event SPRITE_POKE_BALL, 12, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TeamRocketBaseB3FXSpecial, EVENT_TEAM_ROCKET_BASE_B3F_X_SPECIAL

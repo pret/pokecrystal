@@ -9,16 +9,16 @@ CherrygroveGymSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanMScript_0x196ae1:
-	jumptextfaceplayer UnknownText_0x196aea
+CherrygroveGymSpeechHousePokefanMScript:
+	jumptextfaceplayer CherrygroveGymSpeechHousePokefanMText
 
-BugCatcherScript_0x196ae4:
-	jumptextfaceplayer UnknownText_0x196b65
+CherrygroveGymSpeechHouseBugCatcherScript:
+	jumptextfaceplayer CherrygroveGymSpeechHouseBugCatcherText
 
 CherrygroveGymSpeechHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x196aea:
+CherrygroveGymSpeechHousePokefanMText:
 	text "You're trying to"
 	line "see how good you"
 
@@ -32,7 +32,7 @@ UnknownText_0x196aea:
 	line "collect BADGES."
 	done
 
-UnknownText_0x196b65:
+CherrygroveGymSpeechHouseBugCatcherText:
 	text "When I get older,"
 	line "I'm going to be a"
 	cont "GYM LEADER!"
@@ -63,5 +63,5 @@ CherrygroveGymSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x196ae1, -1
-	person_event SPRITE_BUG_CATCHER, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x196ae4, -1
+	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CherrygroveGymSpeechHousePokefanMScript, -1
+	person_event SPRITE_BUG_CATCHER, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CherrygroveGymSpeechHouseBugCatcherScript, -1

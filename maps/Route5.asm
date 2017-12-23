@@ -8,8 +8,8 @@ Route5_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanMScript_0x1adb19:
-	jumptextfaceplayer UnknownText_0x1adb22
+Route5PokefanMScript:
+	jumptextfaceplayer Route5PokefanMText
 
 Route5UndergroundPathSign:
 	jumptext Route5UndergroundPathSignText
@@ -17,7 +17,7 @@ Route5UndergroundPathSign:
 HouseForSaleSign:
 	jumptext HouseForSaleSignText
 
-UnknownText_0x1adb22:
+Route5PokefanMText:
 	text "The road is closed"
 	line "until the problem"
 
@@ -60,4 +60,4 @@ Route5_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 16, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x1adb19, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	person_event SPRITE_POKEFAN_M, 16, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH

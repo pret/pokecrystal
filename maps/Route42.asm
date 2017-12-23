@@ -37,9 +37,9 @@ Route42SuicuneScript:
 	end
 
 TrainerFisherTully1:
-	trainer EVENT_BEAT_FISHER_TULLY, FISHER, TULLY1, FisherTully1SeenText, FisherTully1BeatenText, 0, FisherTully1Script
+	trainer EVENT_BEAT_FISHER_TULLY, FISHER, TULLY1, FisherTully1SeenText, FisherTully1BeatenText, 0, .Script
 
-FisherTully1Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_FISHER_TULLY
 	end_if_just_battled
 	opentext
@@ -163,9 +163,9 @@ UnknownScript_0x1a9311:
 	end
 
 TrainerPokemaniacShane:
-	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, 0, PokemaniacShaneScript
+	trainer EVENT_BEAT_POKEMANIAC_SHANE, POKEMANIAC, SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, 0, .Script
 
-PokemaniacShaneScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacShaneAfterBattleText
@@ -174,9 +174,9 @@ PokemaniacShaneScript:
 	end
 
 TrainerHikerBenjamin:
-	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, 0, HikerBenjaminScript
+	trainer EVENT_BEAT_HIKER_BENJAMIN, HIKER, BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, 0, .Script
 
-HikerBenjaminScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerBenjaminAfterBattleText

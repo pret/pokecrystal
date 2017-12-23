@@ -194,8 +194,8 @@ UnknownScript_0x749f8:
 	closetext
 	end
 
-SailorScript_0x749fe:
-	jumptextfaceplayer UnknownText_0x74cd7
+OlivinePortSailorScript:
+	jumptextfaceplayer OlivinePortSailorText
 
 FishingGuruScript_0x74a01:
 	faceplayer
@@ -377,7 +377,7 @@ UnknownText_0x74ca2:
 	para "I wish I could go…"
 	done
 
-UnknownText_0x74cd7:
+OlivinePortSailorText:
 	text "We don't want you"
 	line "to fall into the"
 
@@ -405,7 +405,7 @@ OlivinePort_MapEventHeader:
 .PersonEvents:
 	db 7
 	person_event SPRITE_SAILOR, 23, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x748c0, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	person_event SPRITE_SAILOR, 15, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x749fe, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
+	person_event SPRITE_SAILOR, 15, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivinePortSailorScript, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	person_event SPRITE_SAILOR, 15, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x7499c, EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
 	person_event SPRITE_FISHING_GURU, 14, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FishingGuruScript_0x74a01, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	person_event SPRITE_FISHING_GURU, 14, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FishingGuruScript_0x74a0c, EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME

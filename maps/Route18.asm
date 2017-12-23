@@ -10,9 +10,9 @@ Route18_MapScriptHeader:
 	db 0
 
 TrainerBird_keeperBoris:
-	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, Bird_keeperBorisSeenText, Bird_keeperBorisBeatenText, 0, Bird_keeperBorisScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, Bird_keeperBorisSeenText, Bird_keeperBorisBeatenText, 0, .Script
 
-Bird_keeperBorisScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Bird_keeperBorisAfterBattleText
@@ -21,9 +21,9 @@ Bird_keeperBorisScript:
 	end
 
 TrainerBird_keeperBob:
-	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, Bird_keeperBobSeenText, Bird_keeperBobBeatenText, 0, Bird_keeperBobScript
+	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, Bird_keeperBobSeenText, Bird_keeperBobBeatenText, 0, .Script
 
-Bird_keeperBobScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext Bird_keeperBobAfterBattleText

@@ -9,16 +9,16 @@ VermilionMagnetTrainSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanFScript_0x191eb7:
-	jumptextfaceplayer UnknownText_0x191ec0
+VermilionMagnetTrainSpeechHousePokefanFScript:
+	jumptextfaceplayer VermilionMagnetTrainSpeechHousePokefanFText
 
-YoungsterScript_0x191eba:
-	jumptextfaceplayer UnknownText_0x191f16
+VermilionMagnetTrainSpeechHouseYoungsterScript:
+	jumptextfaceplayer VermilionMagnetTrainSpeechHouseYoungsterText
 
 VermilionMagnetTrainSpeechHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x191ec0:
+VermilionMagnetTrainSpeechHousePokefanFText:
 	text "Do you know about"
 	line "the MAGNET TRAIN?"
 
@@ -27,7 +27,7 @@ UnknownText_0x191ec0:
 	cont "DENROD in JOHTO."
 	done
 
-UnknownText_0x191f16:
+VermilionMagnetTrainSpeechHouseYoungsterText:
 	text "I want to go to"
 	line "SAFFRON to see"
 	cont "the MAGNET TRAIN."
@@ -52,5 +52,5 @@ VermilionMagnetTrainSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x191eb7, -1
-	person_event SPRITE_YOUNGSTER, 3, 0, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x191eba, -1
+	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VermilionMagnetTrainSpeechHousePokefanFScript, -1
+	person_event SPRITE_YOUNGSTER, 3, 0, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, VermilionMagnetTrainSpeechHouseYoungsterScript, -1

@@ -11,19 +11,19 @@ BlackthornPokecenter1F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-NurseScript_0x195b79:
+BlackthornPokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
-GentlemanScript_0x195b7c:
-	jumptextfaceplayer UnknownText_0x195b85
+BlackthornPokecenter1FGentlemanScript:
+	jumptextfaceplayer BlackthornPokecenter1FGentlemanText
 
-TwinScript_0x195b7f:
-	jumptextfaceplayer UnknownText_0x195bfd
+BlackthornPokecenter1FTwinScript:
+	jumptextfaceplayer BlackthornPokecenter1FTwinText
 
-CooltrainerMScript_0x195b82:
+BlackthornPokecenter1FCooltrainerMScript:
 	jumpstd happinesschecknpc
 
-UnknownText_0x195b85:
+BlackthornPokecenter1FGentlemanText:
 	text "Deep inside far-"
 	line "off INDIGO PLATEAU"
 
@@ -37,7 +37,7 @@ UnknownText_0x195b85:
 	line "the country."
 	done
 
-UnknownText_0x195bfd:
+BlackthornPokecenter1FTwinText:
 	text "There was this"
 	line "move I just had"
 
@@ -67,7 +67,7 @@ BlackthornPokecenter1F_MapEventHeader:
 
 .PersonEvents:
 	db 4
-	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x195b79, -1
-	person_event SPRITE_GENTLEMAN, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x195b7c, -1
-	person_event SPRITE_TWIN, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TwinScript_0x195b7f, -1
-	person_event SPRITE_COOLTRAINER_M, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x195b82, -1
+	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackthornPokecenter1FNurseScript, -1
+	person_event SPRITE_GENTLEMAN, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlackthornPokecenter1FGentlemanScript, -1
+	person_event SPRITE_TWIN, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, BlackthornPokecenter1FTwinScript, -1
+	person_event SPRITE_COOLTRAINER_M, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, BlackthornPokecenter1FCooltrainerMScript, -1

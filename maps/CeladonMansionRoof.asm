@@ -8,13 +8,13 @@ CeladonMansionRoof_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-FisherScript_0x71a39:
-	jumptextfaceplayer UnknownText_0x71a3f
+CeladonMansionRoofFisherScript:
+	jumptextfaceplayer CeladonMansionRoofFisherText
 
 MapCeladonMansionRoofSignpost0Script:
 	jumptext UnknownText_0x71aa1
 
-UnknownText_0x71a3f:
+CeladonMansionRoofFisherText:
 	text "High places--I do"
 	line "love them so!"
 
@@ -52,4 +52,4 @@ CeladonMansionRoof_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_FISHER, 5, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, FisherScript_0x71a39, -1
+	person_event SPRITE_FISHER, 5, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeladonMansionRoofFisherScript, -1

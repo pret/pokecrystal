@@ -75,8 +75,8 @@ IlexGateButterfree:
 	closetext
 	end
 
-LassScript_0x62d94:
-	jumptextfaceplayer UnknownText_0x62e97
+Route34IlexForestGateLassScript:
+	jumptextfaceplayer Route34IlexForestGateLassText
 
 MovementData_0x62d97:
 	step UP
@@ -121,7 +121,7 @@ UnknownText_0x62e83:
 	text "BUTTERFREE: Freeh!"
 	done
 
-UnknownText_0x62e97:
+Route34IlexForestGateLassText:
 	text "Did you see the"
 	line "shrine honoring"
 	cont "the protector?"
@@ -157,5 +157,5 @@ Route34IlexForestGate_MapEventHeader:
 	db 4
 	person_event SPRITE_TEACHER, 3, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
 	person_event SPRITE_BUTTERFREE, 4, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, IlexGateButterfree, -1
-	person_event SPRITE_LASS, 4, 3, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x62d94, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
+	person_event SPRITE_LASS, 4, 3, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route34IlexForestGateLassScript, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
 	person_event SPRITE_TEACHER, 7, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY

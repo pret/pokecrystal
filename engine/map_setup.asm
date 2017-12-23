@@ -356,7 +356,7 @@ CheckReplaceKrisSprite: ; 154f7
 	ld a, [PlayerState]
 	cp PLAYER_NORMAL
 	jr z, .nope
-	cp PLAYER_SLIP
+	cp PLAYER_SKATE
 	jr z, .nope
 	cp PLAYER_SURF
 	jr z, .surfing

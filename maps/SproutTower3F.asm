@@ -93,9 +93,9 @@ UnknownScript_0x1849d1:
 	end
 
 TrainerSageJin:
-	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, 0, SageJinScript
+	trainer EVENT_BEAT_SAGE_JIN, SAGE, JIN, SageJinSeenText, SageJinBeatenText, 0, .Script
 
-SageJinScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SageJinAfterBattleText
@@ -104,9 +104,9 @@ SageJinScript:
 	end
 
 TrainerSageTroy:
-	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, 0, SageTroyScript
+	trainer EVENT_BEAT_SAGE_TROY, SAGE, TROY, SageTroySeenText, SageTroyBeatenText, 0, .Script
 
-SageTroyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SageTroyAfterBattleText
@@ -115,9 +115,9 @@ SageTroyScript:
 	end
 
 TrainerSageNeal:
-	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, 0, SageNealScript
+	trainer EVENT_BEAT_SAGE_NEAL, SAGE, NEAL, SageNealSeenText, SageNealBeatenText, 0, .Script
 
-SageNealScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SageNealAfterBattleText

@@ -21,9 +21,9 @@ Route45_MapScriptHeader:
 	db 0
 
 TrainerBlackbeltKenji:
-	trainer EVENT_BEAT_BLACKBELT_KENJI, BLACKBELT_T, KENJI3, BlackbeltKenji3SeenText, BlackbeltKenji3BeatenText, 0, BlackbeltKenji3Script
+	trainer EVENT_BEAT_BLACKBELT_KENJI, BLACKBELT_T, KENJI3, BlackbeltKenji3SeenText, BlackbeltKenji3BeatenText, 0, .Script
 
-BlackbeltKenji3Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_BLACKBELT_KENJI
 	end_if_just_battled
 	opentext
@@ -125,9 +125,9 @@ UnknownScript_0x19e146:
 	end
 
 TrainerHikerErik:
-	trainer EVENT_BEAT_HIKER_ERIK, HIKER, ERIK, HikerErikSeenText, HikerErikBeatenText, 0, HikerErikScript
+	trainer EVENT_BEAT_HIKER_ERIK, HIKER, ERIK, HikerErikSeenText, HikerErikBeatenText, 0, .Script
 
-HikerErikScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerErikAfterBattleText
@@ -136,9 +136,9 @@ HikerErikScript:
 	end
 
 TrainerHikerMichael:
-	trainer EVENT_BEAT_HIKER_MICHAEL, HIKER, MICHAEL, HikerMichaelSeenText, HikerMichaelBeatenText, 0, HikerMichaelScript
+	trainer EVENT_BEAT_HIKER_MICHAEL, HIKER, MICHAEL, HikerMichaelSeenText, HikerMichaelBeatenText, 0, .Script
 
-HikerMichaelScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerMichaelAfterBattleText
@@ -147,9 +147,9 @@ HikerMichaelScript:
 	end
 
 TrainerHikerParry:
-	trainer EVENT_BEAT_HIKER_PARRY, HIKER, PARRY3, HikerParry3SeenText, HikerParry3BeatenText, 0, HikerParry3Script
+	trainer EVENT_BEAT_HIKER_PARRY, HIKER, PARRY3, HikerParry3SeenText, HikerParry3BeatenText, 0, .Script
 
-HikerParry3Script:
+.Script:
 	writecode VAR_CALLERID, PHONE_HIKER_PARRY
 	end_if_just_battled
 	opentext
@@ -233,9 +233,9 @@ UnknownScript_0x19e219:
 	jump UnknownScript_0x19e127
 
 TrainerHikerTimothy:
-	trainer EVENT_BEAT_HIKER_TIMOTHY, HIKER, TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, 0, HikerTimothyScript
+	trainer EVENT_BEAT_HIKER_TIMOTHY, HIKER, TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, 0, .Script
 
-HikerTimothyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerTimothyAfterBattleText
@@ -244,9 +244,9 @@ HikerTimothyScript:
 	end
 
 TrainerCooltrainermRyan:
-	trainer EVENT_BEAT_COOLTRAINERM_RYAN, COOLTRAINERM, RYAN, CooltrainermRyanSeenText, CooltrainermRyanBeatenText, 0, CooltrainermRyanScript
+	trainer EVENT_BEAT_COOLTRAINERM_RYAN, COOLTRAINERM, RYAN, CooltrainermRyanSeenText, CooltrainermRyanBeatenText, 0, .Script
 
-CooltrainermRyanScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermRyanAfterBattleText
@@ -255,9 +255,9 @@ CooltrainermRyanScript:
 	end
 
 TrainerCooltrainerfKelly:
-	trainer EVENT_BEAT_COOLTRAINERF_KELLY, COOLTRAINERF, KELLY, CooltrainerfKellySeenText, CooltrainerfKellyBeatenText, 0, CooltrainerfKellyScript
+	trainer EVENT_BEAT_COOLTRAINERF_KELLY, COOLTRAINERF, KELLY, CooltrainerfKellySeenText, CooltrainerfKellyBeatenText, 0, .Script
 
-CooltrainerfKellyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfKellyAfterBattleText

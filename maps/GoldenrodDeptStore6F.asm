@@ -84,11 +84,11 @@ GoldenrodVendingMachine:
 	db "CANCEL@"
 
 
-LassScript_0x564bf:
-	jumptextfaceplayer UnknownText_0x5654b
+GoldenrodDeptStore6FLassScript:
+	jumptextfaceplayer GoldenrodDeptStore6FLassText
 
-SuperNerdScript_0x564c2:
-	jumptextfaceplayer UnknownText_0x565ca
+GoldenrodDeptStore6FSuperNerdScript:
+	jumptextfaceplayer GoldenrodDeptStore6FSuperNerdText
 
 GoldenrodDeptStore6FDirectory:
 	jumptext GoldenrodDeptStore6FDirectoryText
@@ -119,7 +119,7 @@ GoldenrodVendingNoSpaceText:
 	line "room for stuff."
 	done
 
-UnknownText_0x5654b:
+GoldenrodDeptStore6FLassText:
 	text "Do you listen to"
 	line "LUCKY CHANNEL?"
 
@@ -133,7 +133,7 @@ UnknownText_0x5654b:
 	line "numbers."
 	done
 
-UnknownText_0x565ca:
+GoldenrodDeptStore6FSuperNerdText:
 	text "If you're tired,"
 	line "try the vending"
 	cont "machine's drinks."
@@ -173,5 +173,5 @@ GoldenrodDeptStore6F_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_LASS, 2, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x564bf, -1
-	person_event SPRITE_SUPER_NERD, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x564c2, -1
+	person_event SPRITE_LASS, 2, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore6FLassScript, -1
+	person_event SPRITE_SUPER_NERD, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore6FSuperNerdScript, -1

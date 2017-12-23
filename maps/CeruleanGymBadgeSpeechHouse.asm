@@ -8,10 +8,10 @@ CeruleanGymBadgeSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanMScript_0x188002:
-	jumptextfaceplayer UnknownText_0x188005
+CeruleanGymBadgeSpeechHousePokefanMScript:
+	jumptextfaceplayer CeruleanGymBadgeSpeechHousePokefanMText
 
-UnknownText_0x188005:
+CeruleanGymBadgeSpeechHousePokefanMText:
 	text "Are you collecting"
 	line "KANTO GYM BADGES?"
 	done
@@ -33,4 +33,4 @@ CeruleanGymBadgeSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x188002, -1
+	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeruleanGymBadgeSpeechHousePokefanMScript, -1

@@ -11,9 +11,9 @@ Route1_MapScriptHeader:
 	db 0
 
 TrainerSchoolboyDanny:
-	trainer EVENT_BEAT_SCHOOLBOY_DANNY, SCHOOLBOY, DANNY, SchoolboyDannySeenText, SchoolboyDannyBeatenText, 0, SchoolboyDannyScript
+	trainer EVENT_BEAT_SCHOOLBOY_DANNY, SCHOOLBOY, DANNY, SchoolboyDannySeenText, SchoolboyDannyBeatenText, 0, .Script
 
-SchoolboyDannyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyDannyAfterBattleText
@@ -22,9 +22,9 @@ SchoolboyDannyScript:
 	end
 
 TrainerCooltrainerfQuinn:
-	trainer EVENT_BEAT_COOLTRAINERF_QUINN, COOLTRAINERF, QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, 0, CooltrainerfQuinnScript
+	trainer EVENT_BEAT_COOLTRAINERF_QUINN, COOLTRAINERF, QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText, 0, .Script
 
-CooltrainerfQuinnScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfQuinnAfterBattleText

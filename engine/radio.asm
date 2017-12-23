@@ -1578,7 +1578,6 @@ BuenasPassword4:
 .greater_than_11
 	call Random
 	maskbits NUM_PASSWORD_CATEGORIES
-	and x
 	cp NUM_PASSWORD_CATEGORIES
 	jr nc, .greater_than_11
 ; Store it in the high nybble of e.

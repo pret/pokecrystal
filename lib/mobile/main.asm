@@ -2,7 +2,7 @@
 
 charmap "<CR>", $d
 
-INCLUDE "gbhw.asm"
+INCLUDE "constants/hardware_constants.asm"
 
 SECTION "Main", ROMX
 

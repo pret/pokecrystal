@@ -289,7 +289,7 @@ VioletCity_MapEventHeader:
 	warp_def $11, $1e, 1, EARLS_POKEMON_ACADEMY
 	warp_def $f, $3, 1, VIOLET_NICKNAME_SPEECH_HOUSE
 	warp_def $19, $1f, 1, VIOLET_POKECENTER_1F
-	warp_def $1d, $15, 1, VIOLET_ONIX_TRADE_HOUSE
+	warp_def $1d, $15, 1, VIOLET_KYLES_HOUSE
 	warp_def $5, $17, 1, SPROUT_TOWER_1F
 	warp_def $18, $27, 1, ROUTE_31_VIOLET_GATE
 	warp_def $19, $27, 2, ROUTE_31_VIOLET_GATE

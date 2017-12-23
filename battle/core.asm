@@ -820,41 +820,7 @@ TryEnemyFlee: ; 3c543
 	ret
 ; 3c59a
 
-FleeMons:
-
-SometimesFleeMons: ; 3c59a
-	db MAGNEMITE
-	db GRIMER
-	db TANGELA
-	db MR__MIME
-	db EEVEE
-	db PORYGON
-	db DRATINI
-	db DRAGONAIR
-	db TOGETIC
-	db UMBREON
-	db UNOWN
-	db SNUBBULL
-	db HERACROSS
-	db -1
-
-OftenFleeMons: ; 3c5a8
-	db CUBONE
-	db ARTICUNO
-	db ZAPDOS
-	db MOLTRES
-	db QUAGSIRE
-	db DELIBIRD
-	db PHANPY
-	db TEDDIURSA
-	db -1
-
-AlwaysFleeMons: ; 3c5b1
-	db RAIKOU
-	db ENTEI
-;	db SUICUNE
-	db -1
-; 3c5b4
+INCLUDE "data/battle/flee_mons.asm"
 
 CompareMovePriority: ; 3c5b4
 ; Compare the priority of the player and enemy's moves.
@@ -876,7 +842,7 @@ GetMovePriority: ; 3c5c5
 
 	ld b, a
 
-	; Vital throw goes last.
+	; Vital Throw goes last.
 	cp VITAL_THROW
 	ld a, 0
 	ret z
@@ -4454,7 +4420,7 @@ HandleHealingItems: ; 3dcf9
 HandleHPHealingItem: ; 3dd2f
 	callab GetOpponentItem
 	ld a, b
-	cp $1
+	cp HELD_BERRY
 	ret nz
 	ld de, EnemyMonHP + 1
 	ld hl, EnemyMonMaxHP
@@ -4856,12 +4822,12 @@ CheckDanger: ; 3df9e
 
 .no_danger
 	ld hl, Danger
-	res 7, [hl]
+	res DANGER_ON_F, [hl]
 	jr .done
 
 .danger
 	ld hl, Danger
-	set 7, [hl]
+	set DANGER_ON_F, [hl]
 
 .done
 	ret

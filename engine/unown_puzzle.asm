@@ -1,6 +1,7 @@
-puzcoord EQUS "* 6 +"
 PUZZLE_BORDER EQU $ee
 PUZZLE_VOID   EQU $ef
+
+puzcoord EQUS "* 6 +"
 
 UnownPuzzle: ; e1190
 	ld a, [hInMenu]
@@ -13,7 +14,7 @@ UnownPuzzle: ; e1190
 	xor a
 	ld [hBGMapMode], a
 	call DisableLCD
-	ld hl, wMisc
+	ld hl, wMisc ; includes wPuzzlePieces
 	ld bc, wMiscEnd - wMisc
 	xor a
 	call ByteFill

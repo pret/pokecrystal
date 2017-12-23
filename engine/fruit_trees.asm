@@ -103,7 +103,7 @@ GetFruitTreeItem: ; 4408a
 ; 44097
 
 
-INCLUDE "data/fruit_tree_items.asm"
+INCLUDE "data/items/fruit_trees.asm"
 
 
 FruitBearingTreeText: ; 440b5

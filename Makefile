@@ -17,20 +17,20 @@ RGBLINK := rgblink
 
 
 crystal_obj := \
-wram.o \
-main.o \
-lib/mobile/main.o \
-home.o \
 audio.o \
+home.o \
+main.o \
 maps.o \
-engine/events.o \
+wram.o \
+data/pokemon/dex_entries.o \
+data/pokemon/egg_moves.o \
+data/pokemon/evos_attacks.o \
 engine/credits.o \
-data/egg_moves.o \
-data/evos_attacks.o \
-data/pokedex/entries.o \
-misc/crystal_misc.o \
-text/common_text.o \
-gfx/pics.o
+engine/events.o \
+gfx/pics.o \
+gfx/sprites.o \
+lib/mobile/main.o \
+text/common_text.o
 
 crystal11_obj := $(crystal_obj:.o=11.o)
 
@@ -197,15 +197,17 @@ gfx/trainer_card/kris_card.2bpp: rgbgfx += -h
 
 gfx/battle/dude.2bpp: rgbgfx += -h
 
+gfx/font/unused_bold_font.1bpp: tools/gfx += --trim-whitespace
+
 gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
 gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
 
-gfx/unknown/ascii_font.2bpp: tools/gfx += --trim-whitespace
-gfx/unknown/bold_font.1bpp: tools/gfx += --trim-whitespace
-gfx/unknown/egg_animated.2bpp: tools/gfx += --trim-whitespace
-gfx/unknown/egg_animated_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
-gfx/unknown/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
-gfx/unknown/pichu_animated.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/ascii_font.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/electro_ball.2bpp: tools/gfx += --trim-whitespace
+gfx/mobile/electro_ball_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/mobile/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
+
 gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 
 

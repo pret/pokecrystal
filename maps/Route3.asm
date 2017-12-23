@@ -12,9 +12,9 @@ Route3_MapScriptHeader:
 	db 0
 
 TrainerFirebreatherOtis:
-	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, FirebreatherOtisScript
+	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, .Script
 
-FirebreatherOtisScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FirebreatherOtisAfterBattleText
@@ -23,9 +23,9 @@ FirebreatherOtisScript:
 	end
 
 TrainerYoungsterWarren:
-	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, YoungsterWarrenScript
+	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, .Script
 
-YoungsterWarrenScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext YoungsterWarrenAfterBattleText
@@ -34,9 +34,9 @@ YoungsterWarrenScript:
 	end
 
 TrainerYoungsterJimmy:
-	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, YoungsterJimmyScript
+	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, .Script
 
-YoungsterJimmyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext YoungsterJimmyAfterBattleText
@@ -45,9 +45,9 @@ YoungsterJimmyScript:
 	end
 
 TrainerFirebreatherBurt:
-	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, FirebreatherBurtScript
+	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, .Script
 
-FirebreatherBurtScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FirebreatherBurtAfterBattleText

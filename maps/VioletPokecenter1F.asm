@@ -78,14 +78,14 @@ VioletPokecenter1F_ElmsAideScript:
 	writetext UnknownText_0x69712
 	jump .AskTakeEgg
 
-GameboyKidScript_0x69540:
-	jumptextfaceplayer UnknownText_0x69809
+VioletPokecenter1FGameboyKidScript:
+	jumptextfaceplayer VioletPokecenter1FGameboyKidText
 
-GentlemanScript_0x69543:
-	jumptextfaceplayer UnknownText_0x6983c
+VioletPokecenter1FGentlemanScript:
+	jumptextfaceplayer VioletPokecenter1FGentlemanText
 
-YoungsterScript_0x69546:
-	jumptextfaceplayer UnknownText_0x698b8
+VioletPokecenter1FYoungsterScript:
+	jumptextfaceplayer VioletPokecenter1FYoungsterText
 
 MovementData_AideWalksStraightOutOfPokecenter:
 	step DOWN
@@ -182,13 +182,13 @@ UnknownText_0x69791:
 	line "a friend far away."
 	done
 
-UnknownText_0x69809:
+VioletPokecenter1FGameboyKidText:
 	text "A guy named BILL"
 	line "made the #MON"
 	cont "PC storage system."
 	done
 
-UnknownText_0x6983c:
+VioletPokecenter1FGentlemanText:
 	text "It was around"
 	line "three years ago."
 
@@ -201,7 +201,7 @@ UnknownText_0x6983c:
 	cont "kid broke 'em up."
 	done
 
-UnknownText_0x698b8:
+VioletPokecenter1FYoungsterText:
 	text "#MON are smart."
 	line "They won't obey a"
 
@@ -234,7 +234,7 @@ VioletPokecenter1F_MapEventHeader:
 .PersonEvents:
 	db 5
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VioletPokecenterNurse, -1
-	person_event SPRITE_GAMEBOY_KID, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x69540, -1
-	person_event SPRITE_GENTLEMAN, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x69543, -1
-	person_event SPRITE_YOUNGSTER, 1, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x69546, -1
+	person_event SPRITE_GAMEBOY_KID, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, VioletPokecenter1FGameboyKidScript, -1
+	person_event SPRITE_GENTLEMAN, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VioletPokecenter1FGentlemanScript, -1
+	person_event SPRITE_YOUNGSTER, 1, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, VioletPokecenter1FYoungsterScript, -1
 	person_event SPRITE_SCIENTIST, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, VioletPokecenter1F_ElmsAideScript, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER

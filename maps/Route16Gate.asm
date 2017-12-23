@@ -12,8 +12,8 @@ Route16Gate_MapScriptHeader:
 .DummyTrigger:
 	end
 
-OfficerScript_0x733ea:
-	jumptextfaceplayer UnknownText_0x73408
+Route16GateOfficerScript:
+	jumptextfaceplayer Route16GateOfficerText
 
 UnknownScript_0x733ed:
 	checkitem BICYCLE
@@ -35,7 +35,7 @@ MovementData_0x73405:
 	turn_head LEFT
 	step_end
 
-UnknownText_0x73408:
+Route16GateOfficerText:
 	text "CYCLING ROAD"
 	line "starts here."
 
@@ -81,4 +81,4 @@ Route16Gate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, OfficerScript_0x733ea, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Route16GateOfficerScript, -1

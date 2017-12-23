@@ -27,9 +27,9 @@ Route19_MapScriptHeader:
 	return
 
 TrainerSwimmerfDawn:
-	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, 0, SwimmerfDawnScript
+	trainer EVENT_BEAT_SWIMMERF_DAWN, SWIMMERF, DAWN, SwimmerfDawnSeenText, SwimmerfDawnBeatenText, 0, .Script
 
-SwimmerfDawnScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmerfDawnAfterBattleText
@@ -38,9 +38,9 @@ SwimmerfDawnScript:
 	end
 
 TrainerSwimmermHarold:
-	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, 0, SwimmermHaroldScript
+	trainer EVENT_BEAT_SWIMMERM_HAROLD, SWIMMERM, HAROLD, SwimmermHaroldSeenText, SwimmermHaroldBeatenText, 0, .Script
 
-SwimmermHaroldScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermHaroldAfterBattleText
@@ -49,9 +49,9 @@ SwimmermHaroldScript:
 	end
 
 TrainerSwimmermJerome:
-	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, 0, SwimmermJeromeScript
+	trainer EVENT_BEAT_SWIMMERM_JEROME, SWIMMERM, JEROME, SwimmermJeromeSeenText, SwimmermJeromeBeatenText, 0, .Script
 
-SwimmermJeromeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermJeromeAfterBattleText
@@ -60,9 +60,9 @@ SwimmermJeromeScript:
 	end
 
 TrainerSwimmermTucker:
-	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, 0, SwimmermTuckerScript
+	trainer EVENT_BEAT_SWIMMERM_TUCKER, SWIMMERM, TUCKER, SwimmermTuckerSeenText, SwimmermTuckerBeatenText, 0, .Script
 
-SwimmermTuckerScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SwimmermTuckerAfterBattleText

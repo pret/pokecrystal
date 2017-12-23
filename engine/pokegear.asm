@@ -2338,44 +2338,7 @@ HasVisitedSpawn: ; 91c50
 
 ; 91c5e
 
-Flypoints: ; 91c5e
-; landmark, spawn point
-	const_def
-flypoint: MACRO
-	const FLY_\1
-	db \2, SPAWN_\1
-ENDM
-; Johto
-	flypoint NEW_BARK,    NEW_BARK_TOWN
-	flypoint CHERRYGROVE, CHERRYGROVE_CITY
-	flypoint VIOLET,      VIOLET_CITY
-	flypoint AZALEA,      AZALEA_TOWN
-	flypoint GOLDENROD,   GOLDENROD_CITY
-	flypoint ECRUTEAK,    ECRUTEAK_CITY
-	flypoint OLIVINE,     OLIVINE_CITY
-	flypoint CIANWOOD,    CIANWOOD_CITY
-	flypoint MAHOGANY,    MAHOGANY_TOWN
-	flypoint LAKE,        LAKE_OF_RAGE
-	flypoint BLACKTHORN,  BLACKTHORN_CITY
-	flypoint MT_SILVER,   SILVER_CAVE
-; Kanto
-
-KANTO_FLYPOINT EQU const_value
-	flypoint PALLET,      PALLET_TOWN
-	flypoint VIRIDIAN,    VIRIDIAN_CITY
-	flypoint PEWTER,      PEWTER_CITY
-	flypoint CERULEAN,    CERULEAN_CITY
-	flypoint VERMILION,   VERMILION_CITY
-	flypoint ROCK_TUNNEL, ROCK_TUNNEL
-	flypoint LAVENDER,    LAVENDER_TOWN
-	flypoint CELADON,     CELADON_CITY
-	flypoint SAFFRON,     SAFFRON_CITY
-	flypoint FUCHSIA,     FUCHSIA_CITY
-	flypoint CINNABAR,    CINNABAR_ISLAND
-	flypoint INDIGO,      INDIGO_PLATEAU
-	db -1
-
-; 91c8f
+INCLUDE "data/flypoints.asm"
 
 ret_91c8f: ; 91c8f
 	ret
@@ -2872,19 +2835,7 @@ TownMapPals: ; 91f13
 	ret
 
 .PalMap:
-townmappals: MACRO
-rept _NARG / 2
-	dn \2, \1
-	shift
-	shift
-endr
-endm
-	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 1, 1, 3, 1, 4, 5, 4, 5
-	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0
-	townmappals 1, 1, 1, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	townmappals 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	townmappals 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0
-	townmappals 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0
+INCLUDE "data/palettes/town_map.asm"
 ; 91f7b
 
 TownMapMon: ; 91f7b

@@ -1,5 +1,5 @@
 ; pitch
-; FrequencyTable indexes (see data/audio/notes.asm)
+; FrequencyTable indexes (see audio/notes.asm)
 	const_def
 	const __ ; 0
 	const C_ ; 1
@@ -67,4 +67,22 @@ NUM_CHANNELS EQU const_value
 	const NOTE_VIBRATO_OVERRIDE ; 6
 
 ; Volume:
+VOLUME_SO1_F EQU 3
+VOLUME_SO2_F EQU 7
+VOLUME_SO1_LEVEL EQU %00000111
+VOLUME_SO2_LEVEL EQU %01110000
 MAX_VOLUME EQU $77
+
+; SoundInput:
+SOUND_INPUT_CH1_F    EQU 0
+SOUND_INPUT_CH2_F    EQU 1
+SOUND_INPUT_CH3_F    EQU 2
+SOUND_INPUT_CH4_F    EQU 3
+SOUND_INPUT_GLOBAL_F EQU 7
+
+; Danger:
+DANGER_PITCH_F EQU 4
+DANGER_ON_F    EQU 7
+
+; MusicFade:
+MUSIC_FADE_IN_F EQU 7

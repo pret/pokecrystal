@@ -43,14 +43,14 @@ WiseTriosRoom_MapScriptHeader:
 	setevent EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	return
 
-SageScript_0x9859a:
-	jumptextfaceplayer UnknownText_0x9862b
+WiseTriosRoomSage1Script:
+	jumptextfaceplayer WiseTriosRoomSage1Text
 
-SageScript_0x9859d:
-	jumptextfaceplayer UnknownText_0x9868b
+WiseTriosRoomSage2Script:
+	jumptextfaceplayer WiseTriosRoomSage2Text
 
-SageScript_0x985a0:
-	jumptextfaceplayer UnknownText_0x987af
+WiseTriosRoomSage3Script:
+	jumptextfaceplayer WiseTriosRoomSage3Text
 
 UnknownScript_0x985a3:
 	spriteface WISETRIOSROOM_SAGE3, UP
@@ -69,9 +69,9 @@ UnknownScript_0x985a3:
 	end
 
 TrainerSageGaku:
-	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, 0, SageGakuScript
+	trainer EVENT_BEAT_SAGE_GAKU, SAGE, GAKU, SageGakuSeenText, SageGakuBeatenText, 0, .Script
 
-SageGakuScript:
+.Script:
 	opentext
 	writetext UnknownText_0x98938
 	waitbutton
@@ -79,9 +79,9 @@ SageGakuScript:
 	end
 
 TrainerSageMasa:
-	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, 0, SageMasaScript
+	trainer EVENT_BEAT_SAGE_MASA, SAGE, MASA, SageMasaSeenText, SageMasaBeatenText, 0, .Script
 
-SageMasaScript:
+.Script:
 	opentext
 	writetext UnknownText_0x98a35
 	waitbutton
@@ -89,9 +89,9 @@ SageMasaScript:
 	end
 
 TrainerSageKoji:
-	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, 0, SageKojiScript
+	trainer EVENT_BEAT_SAGE_KOJI, SAGE, KOJI, SageKojiSeenText, SageKojiBeatenText, 0, .Script
 
-SageKojiScript:
+.Script:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9861b
 	pause 10
@@ -130,7 +130,7 @@ MovementData_0x98628:
 	step DOWN
 	step_end
 
-UnknownText_0x9862b:
+WiseTriosRoomSage1Text:
 	text "Astounding…"
 
 	para "SUICUNE, ENTEI and"
@@ -141,7 +141,7 @@ UnknownText_0x9862b:
 	line "coming true?"
 	done
 
-UnknownText_0x9868b:
+WiseTriosRoomSage2Text:
 	text "We train at the"
 	line "BURNED TOWER, but"
 
@@ -172,7 +172,7 @@ UnknownText_0x98712:
 	line "entering!"
 	done
 
-UnknownText_0x987af:
+WiseTriosRoomSage3Text:
 	text "We, the WISE TRIO,"
 	line "are the protectors"
 
@@ -363,9 +363,9 @@ WiseTriosRoom_MapEventHeader:
 
 .PersonEvents:
 	db 6
-	person_event SPRITE_SAGE, 2, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x9859a, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 7, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x9859d, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
-	person_event SPRITE_SAGE, 5, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x985a0, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 2, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, WiseTriosRoomSage1Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 7, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, WiseTriosRoomSage2Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
+	person_event SPRITE_SAGE, 5, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, WiseTriosRoomSage3Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	person_event SPRITE_SAGE, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 2, TrainerSageGaku, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	person_event SPRITE_SAGE, 6, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 2, TrainerSageMasa, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2
 	person_event SPRITE_SAGE, 4, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 2, TrainerSageKoji, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_2

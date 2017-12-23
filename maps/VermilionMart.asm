@@ -16,13 +16,13 @@ ClerkScript_0x191f7e:
 	closetext
 	end
 
-SuperNerdScript_0x191f85:
-	jumptextfaceplayer UnknownText_0x191f8b
+VermilionMartSuperNerdScript:
+	jumptextfaceplayer VermilionMartSuperNerdText
 
-BuenaScript_0x191f88:
-	jumptextfaceplayer UnknownText_0x191fca
+VermilionMartBuenaScript:
+	jumptextfaceplayer VermilionMartBuenaText
 
-UnknownText_0x191f8b:
+VermilionMartSuperNerdText:
 	text "TEAM ROCKET is no"
 	line "longer in KANTO."
 
@@ -30,7 +30,7 @@ UnknownText_0x191f8b:
 	line "me happy."
 	done
 
-UnknownText_0x191fca:
+VermilionMartBuenaText:
 	text "I'm thinking about"
 	line "going shopping in"
 	cont "SAFFRON."
@@ -54,5 +54,5 @@ VermilionMart_MapEventHeader:
 .PersonEvents:
 	db 3
 	person_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x191f7e, -1
-	person_event SPRITE_SUPER_NERD, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x191f85, -1
-	person_event SPRITE_BUENA, 6, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, BuenaScript_0x191f88, -1
+	person_event SPRITE_SUPER_NERD, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, VermilionMartSuperNerdScript, -1
+	person_event SPRITE_BUENA, 6, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, VermilionMartBuenaScript, -1

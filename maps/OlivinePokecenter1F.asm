@@ -17,13 +17,13 @@ NurseScript_0x9c002:
 FishingGuruScript_0x9c005:
 	jumpstd happinesschecknpc
 
-FisherScript_0x9c008:
-	jumptextfaceplayer UnknownText_0x9c00e
+OlivinePokecenter1FFisherScript:
+	jumptextfaceplayer OlivinePokecenter1FFisherText
 
-TeacherScript_0x9c00b:
-	jumptextfaceplayer UnknownText_0x9c086
+OlivinePokecenter1FTeacherScript:
+	jumptextfaceplayer OlivinePokecenter1FTeacherText
 
-UnknownText_0x9c00e:
+OlivinePokecenter1FFisherText:
 	text "The SAILOR in the"
 	line "OLIVINE CAFE next"
 
@@ -37,7 +37,7 @@ UnknownText_0x9c00e:
 	line "big boulders."
 	done
 
-UnknownText_0x9c086:
+OlivinePokecenter1FTeacherText:
 	text "There's a person"
 	line "in CIANWOOD CITY"
 	cont "across the sea."
@@ -67,5 +67,5 @@ OlivinePokecenter1F_MapEventHeader:
 	db 4
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x9c002, -1
 	person_event SPRITE_FISHING_GURU, 4, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FishingGuruScript_0x9c005, -1
-	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x9c008, -1
-	person_event SPRITE_TEACHER, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x9c00b, -1
+	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, OlivinePokecenter1FFisherScript, -1
+	person_event SPRITE_TEACHER, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivinePokecenter1FTeacherScript, -1

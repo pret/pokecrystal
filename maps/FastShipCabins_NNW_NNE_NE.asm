@@ -15,9 +15,9 @@ FastShipCabins_NNW_NNE_NE_MapScriptHeader:
 	db 0
 
 TrainerCooltrainermSean:
-	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, 0, CooltrainermSeanScript
+	trainer EVENT_BEAT_COOLTRAINERM_SEAN, COOLTRAINERM, SEAN, CooltrainermSeanSeenText, CooltrainermSeanBeatenText, 0, .Script
 
-CooltrainermSeanScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermSeanAfterBattleText
@@ -26,9 +26,9 @@ CooltrainermSeanScript:
 	end
 
 TrainerCooltrainerfCarol:
-	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, 0, CooltrainerfCarolScript
+	trainer EVENT_BEAT_COOLTRAINERF_CAROL, COOLTRAINERF, CAROL, CooltrainerfCarolSeenText, CooltrainerfCarolBeatenText, 0, .Script
 
-CooltrainerfCarolScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfCarolAfterBattleText
@@ -37,9 +37,9 @@ CooltrainerfCarolScript:
 	end
 
 TrainerPokemaniacEthan:
-	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, 0, PokemaniacEthanScript
+	trainer EVENT_BEAT_POKEMANIAC_ETHAN, POKEMANIAC, ETHAN, PokemaniacEthanSeenText, PokemaniacEthanBeatenText, 0, .Script
 
-PokemaniacEthanScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PokemaniacEthanAfterBattleText
@@ -48,9 +48,9 @@ PokemaniacEthanScript:
 	end
 
 TrainerHikerNoland:
-	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, 0, HikerNolandScript
+	trainer EVENT_BEAT_HIKER_NOLAND, HIKER, NOLAND, HikerNolandSeenText, HikerNolandBeatenText, 0, .Script
 
-HikerNolandScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext HikerNolandAfterBattleText
@@ -59,9 +59,9 @@ HikerNolandScript:
 	end
 
 TrainerGentlemanEdward:
-	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, 0, GentlemanEdwardScript
+	trainer EVENT_BEAT_GENTLEMAN_EDWARD, GENTLEMAN, EDWARD, GentlemanEdwardSeenText, GentlemanEdwardBeatenText, 0, .Script
 
-GentlemanEdwardScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext GentlemanEdwardAfterBattleText
@@ -70,9 +70,9 @@ GentlemanEdwardScript:
 	end
 
 TrainerBurglarCorey:
-	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, 0, BurglarCoreyScript
+	trainer EVENT_BEAT_BURGLAR_COREY, BURGLAR, COREY, BurglarCoreySeenText, BurglarCoreyBeatenText, 0, .Script
 
-BurglarCoreyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BurglarCoreyAfterBattleText

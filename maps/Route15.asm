@@ -15,9 +15,9 @@ Route15_MapScriptHeader:
 	db 0
 
 TrainerTeacherColette:
-	trainer EVENT_BEAT_TEACHER_COLETTE, TEACHER, COLETTE, TeacherColetteSeenText, TeacherColetteBeatenText, 0, TeacherColetteScript
+	trainer EVENT_BEAT_TEACHER_COLETTE, TEACHER, COLETTE, TeacherColetteSeenText, TeacherColetteBeatenText, 0, .Script
 
-TeacherColetteScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TeacherColetteAfterBattleText
@@ -26,9 +26,9 @@ TeacherColetteScript:
 	end
 
 TrainerTeacherHillary:
-	trainer EVENT_BEAT_TEACHER_HILLARY, TEACHER, HILLARY, TeacherHillarySeenText, TeacherHillaryBeatenText, 0, TeacherHillaryScript
+	trainer EVENT_BEAT_TEACHER_HILLARY, TEACHER, HILLARY, TeacherHillarySeenText, TeacherHillaryBeatenText, 0, .Script
 
-TeacherHillaryScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TeacherHillaryAfterBattleText
@@ -37,9 +37,9 @@ TeacherHillaryScript:
 	end
 
 TrainerSchoolboyKipp:
-	trainer EVENT_BEAT_SCHOOLBOY_KIP, SCHOOLBOY, KIPP, SchoolboyKippSeenText, SchoolboyKippBeatenText, 0, SchoolboyKippScript
+	trainer EVENT_BEAT_SCHOOLBOY_KIP, SCHOOLBOY, KIPP, SchoolboyKippSeenText, SchoolboyKippBeatenText, 0, .Script
 
-SchoolboyKippScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyKippAfterBattleText
@@ -48,9 +48,9 @@ SchoolboyKippScript:
 	end
 
 TrainerSchoolboyTommy:
-	trainer EVENT_BEAT_SCHOOLBOY_TOMMY, SCHOOLBOY, TOMMY, SchoolboyTommySeenText, SchoolboyTommyBeatenText, 0, SchoolboyTommyScript
+	trainer EVENT_BEAT_SCHOOLBOY_TOMMY, SCHOOLBOY, TOMMY, SchoolboyTommySeenText, SchoolboyTommyBeatenText, 0, .Script
 
-SchoolboyTommyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyTommyAfterBattleText
@@ -59,9 +59,9 @@ SchoolboyTommyScript:
 	end
 
 TrainerSchoolboyJohnny:
-	trainer EVENT_BEAT_SCHOOLBOY_JOHNNY, SCHOOLBOY, JOHNNY, SchoolboyJohnnySeenText, SchoolboyJohnnyBeatenText, 0, SchoolboyJohnnyScript
+	trainer EVENT_BEAT_SCHOOLBOY_JOHNNY, SCHOOLBOY, JOHNNY, SchoolboyJohnnySeenText, SchoolboyJohnnyBeatenText, 0, .Script
 
-SchoolboyJohnnyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyJohnnyAfterBattleText
@@ -70,9 +70,9 @@ SchoolboyJohnnyScript:
 	end
 
 TrainerSchoolboyBilly:
-	trainer EVENT_BEAT_SCHOOLBOY_BILLY, SCHOOLBOY, BILLY, SchoolboyBillySeenText, SchoolboyBillyBeatenText, 0, SchoolboyBillyScript
+	trainer EVENT_BEAT_SCHOOLBOY_BILLY, SCHOOLBOY, BILLY, SchoolboyBillySeenText, SchoolboyBillyBeatenText, 0, .Script
 
-SchoolboyBillyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyBillyAfterBattleText

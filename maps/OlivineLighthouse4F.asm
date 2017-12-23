@@ -10,9 +10,9 @@ OlivineLighthouse4F_MapScriptHeader:
 	db 0
 
 TrainerLassConnie:
-	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, 0, LassConnie1Script
+	trainer EVENT_BEAT_LASS_CONNIE, LASS, CONNIE1, LassConnie1SeenText, LassConnie1BeatenText, 0, .Script
 
-LassConnie1Script:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext LassConnie1AfterBattleText
@@ -21,9 +21,9 @@ LassConnie1Script:
 	end
 
 TrainerSailorKent:
-	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, 0, SailorKentScript
+	trainer EVENT_BEAT_SAILOR_KENT, SAILOR, KENT, SailorKentSeenText, SailorKentBeatenText, 0, .Script
 
-SailorKentScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SailorKentAfterBattleText

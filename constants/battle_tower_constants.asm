@@ -1,4 +1,4 @@
-; BattleTowerAction arguments (see misc/battle_tower_5c.asm)
+; BattleTowerAction arguments (see mobile/battle_tower_5c.asm)
 	const_def
 	const BATTLETOWERACTION_CHECK_EXPLANATION_READ
 	const BATTLETOWERACTION_SET_EXPLANATION_READ
@@ -20,8 +20,8 @@
 	const BATTLETOWERACTION_11 ; store 0 in 5:aa8d
 	const BATTLETOWERACTION_12 ; store 1 in 5:aa8d
 	const BATTLETOWERACTION_13 ; check 5:aa8d
-	const BATTLETOWERACTION_14 ; if save file is yours: bit 0, [s1_be4f]
-	const BATTLETOWERACTION_15 ; set 0, [s1_be4f]
+	const BATTLETOWERACTION_14 ; if save file is yours: bit 0, [sBattleTowerSaveFileFlags]
+	const BATTLETOWERACTION_15 ; set 0, [sBattleTowerSaveFileFlags]
 	const BATTLETOWERACTION_16 ; update time in SRAM bank 5
 	const BATTLETOWERACTION_17 ; check time in SRAM bank 5
 	const BATTLETOWERACTION_LEVEL_CHECK

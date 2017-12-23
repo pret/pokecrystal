@@ -8,10 +8,10 @@ VermilionHouseDiglettsCaveSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-GentlemanScript_0x192031:
-	jumptextfaceplayer UnknownText_0x192034
+VermilionHouseDiglettsCaveSpeechHouseGentlemanScript:
+	jumptextfaceplayer VermilionHouseDiglettsCaveSpeechHouseGentlemanText
 
-UnknownText_0x192034:
+VermilionHouseDiglettsCaveSpeechHouseGentlemanText:
 	text "Over many years,"
 	line "DIGLETT dug a"
 	cont "large tunnel."
@@ -37,4 +37,4 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_GENTLEMAN, 3, 1, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x192031, -1
+	person_event SPRITE_GENTLEMAN, 3, 1, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, VermilionHouseDiglettsCaveSpeechHouseGentlemanScript, -1

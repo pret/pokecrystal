@@ -8,14 +8,14 @@ DiglettsCave_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanMScript_0x74002:
-	jumptextfaceplayer UnknownText_0x74008
+DiglettsCavePokefanMScript:
+	jumptextfaceplayer DiglettsCavePokefanMText
 
 DiglettsCaveHiddenMaxRevive:
 	dwb EVENT_DIGLETTS_CAVE_HIDDEN_MAX_REVIVE, MAX_REVIVE
 
 
-UnknownText_0x74008:
+DiglettsCavePokefanMText:
 	text "A bunch of DIGLETT"
 	line "popped out of the"
 
@@ -45,4 +45,4 @@ DiglettsCave_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 31, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x74002, -1
+	person_event SPRITE_POKEFAN_M, 31, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DiglettsCavePokefanMScript, -1

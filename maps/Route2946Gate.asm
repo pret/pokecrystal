@@ -9,13 +9,13 @@ Route2946Gate_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-OfficerScript_0x7b5bb:
-	jumptextfaceplayer UnknownText_0x7b5c1
+Route2946GateOfficerScript:
+	jumptextfaceplayer Route2946GateOfficerText
 
-YoungsterScript_0x7b5be:
-	jumptextfaceplayer UnknownText_0x7b60d
+Route2946GateYoungsterScript:
+	jumptextfaceplayer Route2946GateYoungsterText
 
-UnknownText_0x7b5c1:
+Route2946GateOfficerText:
 	text "You can't climb"
 	line "ledges."
 
@@ -24,7 +24,7 @@ UnknownText_0x7b5c1:
 	cont "take a shortcut."
 	done
 
-UnknownText_0x7b60d:
+Route2946GateYoungsterText:
 	text "Different kinds of"
 	line "#MON appear"
 	cont "past here."
@@ -55,5 +55,5 @@ Route2946Gate_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_0x7b5bb, -1
-	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x7b5be, -1
+	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route2946GateOfficerScript, -1
+	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route2946GateYoungsterScript, -1

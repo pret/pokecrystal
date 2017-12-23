@@ -10,14 +10,14 @@ GoldenrodPokeComCenter2FMobile_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-ScientistScript_0x625d1:
-	jumptextfaceplayer UnknownText_0x62674
+GoldenrodPokeComCenter2FMobileScientist1Script:
+	jumptextfaceplayer GoldenrodPokeComCenter2FMobileScientist1Text
 
-ScientistScript_0x625d4:
-	jumptextfaceplayer UnknownText_0x626f9
+GoldenrodPokeComCenter2FMobileScientist2Script:
+	jumptextfaceplayer GoldenrodPokeComCenter2FMobileScientist2Text
 
-ScientistScript_0x625d7:
-	jumptextfaceplayer UnknownText_0x62795
+GoldenrodPokeComCenter2FMobileScientist3Script:
+	jumptextfaceplayer GoldenrodPokeComCenter2FMobileScientist3Text
 
 MapGoldenrodPokeComCenter2FMobileSignpost0Script:
 	opentext
@@ -112,7 +112,7 @@ MenuDataHeader_0x6264c:
 MapGoldenrodPokeComCenter2FMobileSignpost2Script:
 	jumptext UnknownText_0x62b26
 
-UnknownText_0x62674:
+GoldenrodPokeComCenter2FMobileScientist1Text:
 	text "#COM CENTER and"
 	line "MOBILE CENTER were"
 
@@ -126,7 +126,7 @@ UnknownText_0x62674:
 	line "strangers."
 	done
 
-UnknownText_0x626f9:
+GoldenrodPokeComCenter2FMobileScientist2Text:
 	text "When you linked"
 	line "with someone by"
 
@@ -143,7 +143,7 @@ UnknownText_0x626f9:
 	line "got the shakes!"
 	done
 
-UnknownText_0x62795:
+GoldenrodPokeComCenter2FMobileScientist3Text:
 	text "They were able to"
 	line "build this huge"
 
@@ -288,6 +288,6 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 .PersonEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 28, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d1, -1
-	person_event SPRITE_SCIENTIST, 27, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d4, -1
-	person_event SPRITE_SCIENTIST, 29, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ScientistScript_0x625d7, -1
+	person_event SPRITE_SCIENTIST, 28, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist1Script, -1
+	person_event SPRITE_SCIENTIST, 27, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist2Script, -1
+	person_event SPRITE_SCIENTIST, 29, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist3Script, -1

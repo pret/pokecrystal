@@ -8,10 +8,10 @@ Route38EcruteakGate_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-OfficerScript_0x9cbd7:
-	jumptextfaceplayer UnknownText_0x9cbda
+Route38EcruteakGateOfficerScript:
+	jumptextfaceplayer Route38EcruteakGateOfficerText
 
-UnknownText_0x9cbda:
+Route38EcruteakGateOfficerText:
 	text "Where did you say"
 	line "you're from?"
 
@@ -43,4 +43,4 @@ Route38EcruteakGate_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_0x9cbd7, -1
+	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route38EcruteakGateOfficerScript, -1

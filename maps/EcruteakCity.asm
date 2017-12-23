@@ -19,17 +19,17 @@ EcruteakCity_MapScriptHeader:
 	setflag ENGINE_FLYPOINT_ECRUTEAK
 	return
 
-GrampsScript_0x1a4009:
-	jumptextfaceplayer UnknownText_0x1a4105
+EcruteakCityGramps1Script:
+	jumptextfaceplayer EcruteakCityGramps1Text
 
-GrampsScript_0x1a400c:
-	jumptextfaceplayer UnknownText_0x1a4147
+EcruteakCityGramps2Script:
+	jumptextfaceplayer EcruteakCityGramps2Text
 
-GrampsScript_0x1a400f:
-	jumptextfaceplayer UnknownText_0x1a43cb
+EcruteakCityGramps3Script:
+	jumptextfaceplayer EcruteakCityGramps3Text
 
-LassScript_0x1a4012:
-	jumptextfaceplayer UnknownText_0x1a41db
+EcruteakCityLassScript:
+	jumptextfaceplayer EcruteakCityLassText
 
 LassScript_0x1a4015:
 	faceplayer
@@ -63,8 +63,8 @@ UnknownScript_0x1a4037:
 	closetext
 	end
 
-YoungsterScript_0x1a403d:
-	jumptextfaceplayer UnknownText_0x1a4386
+EcruteakCityYoungsterScript:
+	jumptextfaceplayer EcruteakCityYoungsterText
 
 EcruteakCitySign:
 	jumptext EcruteakCitySignText
@@ -111,7 +111,7 @@ UnusedMissingDaughterText:
 	line "do…?"
 	done
 
-UnknownText_0x1a4105:
+EcruteakCityGramps1Text:
 	text "ECRUTEAK used to"
 	line "have two towers:"
 
@@ -119,7 +119,7 @@ UnknownText_0x1a4105:
 	line "east and west."
 	done
 
-UnknownText_0x1a4147:
+EcruteakCityGramps2Text:
 	text "Ah, child."
 	line "Have you learned"
 
@@ -134,7 +134,7 @@ UnknownText_0x1a4147:
 	cont "nice, I hear."
 	done
 
-UnknownText_0x1a41db:
+EcruteakCityLassText:
 	text "I'm going to prac-"
 	line "tice at the DANCE"
 
@@ -181,7 +181,7 @@ UnknownText_0x1a4325:
 	cont "night again."
 	done
 
-UnknownText_0x1a4386:
+EcruteakCityYoungsterText:
 	text "I hear #MON are"
 	line "rampaging at the"
 
@@ -189,7 +189,7 @@ UnknownText_0x1a4386:
 	line "like to see that."
 	done
 
-UnknownText_0x1a43cb:
+EcruteakCityGramps3Text:
 	text "In the distant"
 	line "past…"
 
@@ -297,10 +297,10 @@ EcruteakCity_MapEventHeader:
 
 .PersonEvents:
 	db 7
-	person_event SPRITE_GRAMPS, 15, 18, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a4009, -1
-	person_event SPRITE_GRAMPS, 21, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a400c, -1
-	person_event SPRITE_LASS, 29, 21, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, LassScript_0x1a4012, -1
+	person_event SPRITE_GRAMPS, 15, 18, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1
+	person_event SPRITE_GRAMPS, 21, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakCityGramps2Script, -1
+	person_event SPRITE_LASS, 29, 21, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, EcruteakCityLassScript, -1
 	person_event SPRITE_LASS, 9, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x1a4015, -1
 	person_event SPRITE_FISHER, 22, 9, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x1a4029, -1
-	person_event SPRITE_YOUNGSTER, 14, 10, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1a403d, -1
-	person_event SPRITE_GRAMPS, 7, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GrampsScript_0x1a400f, EVENT_ECRUTEAK_CITY_GRAMPS
+	person_event SPRITE_YOUNGSTER, 14, 10, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
+	person_event SPRITE_GRAMPS, 7, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS

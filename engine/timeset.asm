@@ -40,7 +40,7 @@ InitClock: ; 90672 (24:4672)
 	call RotateFourPalettesRight
 	ld hl, Text_WokeUpOak
 	call PrintText
-	ld hl, wc608
+	ld hl, wTimeSetBuffer
 	ld bc, 50
 	xor a
 	call ByteFill

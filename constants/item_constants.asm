@@ -1,9 +1,9 @@
 ; item ids
 ; indexes for:
-; - ItemAttributes (see items/item_attributes.asm)
-; - ItemDescriptions (see items/item_descriptions.asm)
-; - ItemEffects (see items/item_effects.asm)
-; - ItemNames (see items/item_names.asm)
+; - ItemAttributes (see data/items/item_attributes.asm)
+; - ItemDescriptions (see data/items/item_descriptions.asm)
+; - ItemEffects (see engine/item_effects.asm)
+; - ItemNames (see data/items/item_names.asm)
 	const_def
 	const NO_ITEM      ; $00
 	const MASTER_BALL  ; $01
@@ -372,7 +372,7 @@ const_value SET 70
 	const HELD_78
 	const HELD_FOCUS_BAND
 
-; item_attribute struct members (see items/item_attributes.asm)
+; item_attribute struct members (see data/items/item_attributes.asm)
 	const_def
 	const ITEMATTR_PRICE
 	const ITEMATTR_PRICE_HI
@@ -397,7 +397,7 @@ ITEMMENU_CLOSE   EQU 6
 	const MARTTYPE_PHARMACY
 	const MARTTYPE_ROOFTOP
 
-; Marts indexes (see items/marts.asm)
+; Marts indexes (see data/items/marts.asm)
 	const_def
 	const MART_CHERRYGROVE
 	const MART_CHERRYGROVE_DEX

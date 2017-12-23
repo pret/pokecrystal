@@ -14,11 +14,11 @@ PalletTown_MapScriptHeader:
 	setflag ENGINE_FLYPOINT_PALLET
 	return
 
-TeacherScript_0x1ac6d5:
-	jumptextfaceplayer UnknownText_0x1ac6e7
+PalletTownTeacherScript:
+	jumptextfaceplayer PalletTownTeacherText
 
-FisherScript_0x1ac6d8:
-	jumptextfaceplayer UnknownText_0x1ac720
+PalletTownFisherScript:
+	jumptextfaceplayer PalletTownFisherText
 
 PalletTownSign:
 	jumptext PalletTownSignText
@@ -32,7 +32,7 @@ OaksLabSign:
 BluesHouseSign:
 	jumptext BluesHouseSignText
 
-UnknownText_0x1ac6e7:
+PalletTownTeacherText:
 	text "I'm raising #-"
 	line "MON too."
 
@@ -40,7 +40,7 @@ UnknownText_0x1ac6e7:
 	line "private guards."
 	done
 
-UnknownText_0x1ac720:
+PalletTownFisherText:
 	text "Technology is"
 	line "incredible!"
 
@@ -91,5 +91,5 @@ PalletTown_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_TEACHER, 8, 3, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x1ac6d5, -1
-	person_event SPRITE_FISHER, 14, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x1ac6d8, -1
+	person_event SPRITE_TEACHER, 8, 3, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PalletTownTeacherScript, -1
+	person_event SPRITE_FISHER, 14, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, PalletTownFisherScript, -1

@@ -26,14 +26,14 @@ ClerkScript_0x7100c:
 	closetext
 	end
 
-GentlemanScript_0x71014:
-	jumptextfaceplayer UnknownText_0x71023
+CeladonDeptStore5FGentlemanScript:
+	jumptextfaceplayer CeladonDeptStore5FGentlemanText
 
-SailorScript_0x71017:
-	jumptextfaceplayer UnknownText_0x71072
+CeladonDeptStore5FSailorScript:
+	jumptextfaceplayer CeladonDeptStore5FSailorText
 
-TeacherScript_0x7101a:
-	jumptextfaceplayer UnknownText_0x710b6
+CeladonDeptStore5FTeacherScript:
+	jumptextfaceplayer CeladonDeptStore5FTeacherText
 
 CeladonDeptStore5FDirectory:
 	jumptext CeladonDeptStore5FDirectoryText
@@ -41,7 +41,7 @@ CeladonDeptStore5FDirectory:
 CeladonDeptStore5FElevatorButton:
 	jumpstd elevatorbutton
 
-UnknownText_0x71023:
+CeladonDeptStore5FGentlemanText:
 	text "I want to buy some"
 	line "items that raise"
 
@@ -50,7 +50,7 @@ UnknownText_0x71023:
 	cont "enough money…"
 	done
 
-UnknownText_0x71072:
+CeladonDeptStore5FSailorText:
 	text "I want PP UP, so I"
 	line "can raise the PP"
 
@@ -58,7 +58,7 @@ UnknownText_0x71072:
 	line "can't buy it…"
 	done
 
-UnknownText_0x710b6:
+CeladonDeptStore5FTeacherText:
 	text "Using items on"
 	line "them makes #-"
 	cont "MON happy."
@@ -93,6 +93,6 @@ CeladonDeptStore5F_MapEventHeader:
 	db 5
 	person_event SPRITE_CLERK, 5, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x71004, -1
 	person_event SPRITE_CLERK, 5, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x7100c, -1
-	person_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x71014, -1
-	person_event SPRITE_SAILOR, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SailorScript_0x71017, -1
-	person_event SPRITE_TEACHER, 7, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x7101a, -1
+	person_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonDeptStore5FGentlemanScript, -1
+	person_event SPRITE_SAILOR, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeladonDeptStore5FSailorScript, -1
+	person_event SPRITE_TEACHER, 7, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonDeptStore5FTeacherScript, -1

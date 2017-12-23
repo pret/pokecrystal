@@ -14,11 +14,11 @@ CherrygrovePokecenter1F_MapScriptHeader:
 NurseScript_0x19696d:
 	jumpstd pokecenternurse
 
-FisherScript_0x196970:
-	jumptextfaceplayer UnknownText_0x19698a
+CherrygrovePokecenter1FFisherScript:
+	jumptextfaceplayer CherrygrovePokecenter1FFisherText
 
-GentlemanScript_0x196973:
-	jumptextfaceplayer UnknownText_0x1969c8
+CherrygrovePokecenter1FGentlemanScript:
+	jumptextfaceplayer CherrygrovePokecenter1FGentlemanText
 
 TeacherScript_0x196976:
 	faceplayer
@@ -36,7 +36,7 @@ UnknownScript_0x196984:
 	closetext
 	end
 
-UnknownText_0x19698a:
+CherrygrovePokecenter1FFisherText:
 	text "It's great. I can"
 	line "store any number"
 
@@ -44,7 +44,7 @@ UnknownText_0x19698a:
 	line "it's all free."
 	done
 
-UnknownText_0x1969c8:
+CherrygrovePokecenter1FGentlemanText:
 	text "That PC is free"
 	line "for any trainer"
 	cont "to use."
@@ -87,6 +87,6 @@ CherrygrovePokecenter1F_MapEventHeader:
 .PersonEvents:
 	db 4
 	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x19696d, -1
-	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FisherScript_0x196970, -1
-	person_event SPRITE_GENTLEMAN, 6, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GentlemanScript_0x196973, -1
+	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CherrygrovePokecenter1FFisherScript, -1
+	person_event SPRITE_GENTLEMAN, 6, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CherrygrovePokecenter1FGentlemanScript, -1
 	person_event SPRITE_TEACHER, 6, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x196976, -1

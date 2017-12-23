@@ -7,7 +7,8 @@ Function6ec1: ; 6ec1
 
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit 4, [hl] ; lost
+	bit 4, [hl] ; lost, uncomment next line to fix
+;	jr nz, .resume
 	push hl
 	push bc
 	call Function6f2c

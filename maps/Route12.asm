@@ -14,9 +14,9 @@ Route12_MapScriptHeader:
 	db 0
 
 TrainerFisherKyle:
-	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, 0, FisherKyleScript
+	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, 0, .Script
 
-FisherKyleScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherKyleAfterBattleText
@@ -25,9 +25,9 @@ FisherKyleScript:
 	end
 
 TrainerFisherMartin:
-	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, 0, FisherMartinScript
+	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, 0, .Script
 
-FisherMartinScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherMartinAfterBattleText
@@ -36,9 +36,9 @@ FisherMartinScript:
 	end
 
 TrainerFisherStephen:
-	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, 0, FisherStephenScript
+	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, 0, .Script
 
-FisherStephenScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherStephenAfterBattleText
@@ -47,9 +47,9 @@ FisherStephenScript:
 	end
 
 TrainerFisherBarney:
-	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, 0, FisherBarneyScript
+	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, 0, .Script
 
-FisherBarneyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherBarneyAfterBattleText

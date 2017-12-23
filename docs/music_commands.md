@@ -1,5 +1,8 @@
 # Music Commands
 
+Defined in [macros/scripts/audio.asm](/macros/scripts/audio.asm) and [audio/engine.asm:MusicCommands](/audio/engine.asm).
+
+
 ## `musicheader` *n*, *index*, *address*
 
 ## `cry_header` *n*, *index*, *address*

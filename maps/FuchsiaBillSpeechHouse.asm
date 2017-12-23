@@ -9,19 +9,19 @@ FuchsiaBillSpeechHouse_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-PokefanFScript_0x1963bd:
-	jumptextfaceplayer UnknownText_0x1963c3
+FuchsiaBillSpeechHousePokefanFScript:
+	jumptextfaceplayer FuchsiaBillSpeechHousePokefanFText
 
-YoungsterScript_0x1963c0:
-	jumptextfaceplayer UnknownText_0x1963f9
+FuchsiaBillSpeechHouseYoungsterScript:
+	jumptextfaceplayer FuchsiaBillSpeechHouseYoungsterText
 
-UnknownText_0x1963c3:
+FuchsiaBillSpeechHousePokefanFText:
 	text "My grandpa is at "
 	line "my brother BILL's"
 	cont "on CERULEAN CAPE."
 	done
 
-UnknownText_0x1963f9:
+FuchsiaBillSpeechHouseYoungsterText:
 	text "I saw these weird,"
 	line "slow #MON on"
 	cont "CYCLING ROAD."
@@ -44,5 +44,5 @@ FuchsiaBillSpeechHouse_MapEventHeader:
 
 .PersonEvents:
 	db 2
-	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x1963bd, -1
-	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x1963c0, -1
+	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FuchsiaBillSpeechHousePokefanFScript, -1
+	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FuchsiaBillSpeechHouseYoungsterScript, -1

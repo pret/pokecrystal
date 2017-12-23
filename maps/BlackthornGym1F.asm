@@ -93,9 +93,9 @@ BlackthornGymClairScript:
 	end
 
 TrainerCooltrainermPaul:
-	trainer EVENT_BEAT_COOLTRAINERM_PAUL, COOLTRAINERM, PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, 0, CooltrainermPaulScript
+	trainer EVENT_BEAT_COOLTRAINERM_PAUL, COOLTRAINERM, PAUL, CooltrainermPaulSeenText, CooltrainermPaulBeatenText, 0, .Script
 
-CooltrainermPaulScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermPaulAfterBattleText
@@ -104,9 +104,9 @@ CooltrainermPaulScript:
 	end
 
 TrainerCooltrainermMike:
-	trainer EVENT_BEAT_COOLTRAINERM_MIKE, COOLTRAINERM, MIKE, CooltrainermMikeSeenText, CooltrainermMikeBeatenText, 0, CooltrainermMikeScript
+	trainer EVENT_BEAT_COOLTRAINERM_MIKE, COOLTRAINERM, MIKE, CooltrainermMikeSeenText, CooltrainermMikeBeatenText, 0, .Script
 
-CooltrainermMikeScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainermMikeAfterBattleText
@@ -115,9 +115,9 @@ CooltrainermMikeScript:
 	end
 
 TrainerCooltrainerfLola:
-	trainer EVENT_BEAT_COOLTRAINERF_LOLA, COOLTRAINERF, LOLA, CooltrainerfLolaSeenText, CooltrainerfLolaBeatenText, 0, CooltrainerfLolaScript
+	trainer EVENT_BEAT_COOLTRAINERF_LOLA, COOLTRAINERF, LOLA, CooltrainerfLolaSeenText, CooltrainerfLolaBeatenText, 0, .Script
 
-CooltrainerfLolaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext CooltrainerfLolaAfterBattleText

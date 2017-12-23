@@ -8,9 +8,6 @@ TEXTBOX_INNERX EQU TEXTBOX_X + 1
 TEXTBOX_Y      EQU SCREEN_HEIGHT - TEXTBOX_HEIGHT
 TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 
-TEXTBOX_PAL EQU 7
-
-
 ClearBox:: ; fb6
 ; Fill a c*b box at hl with blank tiles.
 
@@ -51,7 +48,7 @@ ClearTileMap:: ; fc8
 
 
 ClearScreen:: ; fdb
-	ld a, TEXTBOX_PAL
+	ld a, PAL_BG_TEXT
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
@@ -133,7 +130,7 @@ TextBoxPalette:: ; 1024
 	inc b
 	inc c
 	inc c
-	ld a, TEXTBOX_PAL
+	ld a, PAL_BG_TEXT
 .col
 	push bc
 	push hl
@@ -230,42 +227,42 @@ dict2: macro
 ._\@:
 endm
 
-	dict "<DAY>",    Char15
-	dict "<LINE>",   LineChar
-	dict "<NEXT>",   NextLineChar
-	dict TX_FAR,     TextFar
-	dict $00,        NullChar
-	dict $4c,        Char4C
-	dict $4b,        Char4B
-	dict "<PARA>",   Paragraph
-	dict "<MOM>",    PrintMomsName
-	dict "<PLAYER>", PrintPlayerName
-	dict "<RIVAL>",  PrintRivalName
-	dict $35,        Char35
-	dict $36,        Char36
-	dict $37,        Char37
-	dict "<RED>",    PrintRedsName
-	dict "<GREEN>",  PrintGreensName
-	dict "#",        PlacePOKe
-	dict "<PC>",     PCChar
-	dict "<ROCKET>", RocketChar
-	dict "<TM>",     TMChar
-	dict "<TRNER>",  TrainerChar
-	dict $23,        PlaceKougeki
-	dict "<LNBRK>",  Char22
-	dict "<CONT>",   ContText
-	dict "<......>", SixDotsChar
-	dict "<DONE>",   DoneText
-	dict "<PROMPT>", PromptText
-	dict "<PKMN>",   PlacePKMN
-	dict "<POKE>",   PlacePOKE
-	dict $25,        NextChar
-	dict2 $1f,       " "
-	dict "<DEXEND>", PlaceDexEnd
-	dict "<TARGET>", PlaceMoveTargetsName
-	dict "<USER>",   PlaceMoveUsersName
-	dict "<ENEMY>",  PlaceEnemysName
-	dict "<PLAY_G>", PlaceGenderedPlayerName
+	dict "<DAY>",     Char15
+	dict "<LINE>",    LineChar
+	dict "<NEXT>",    NextLineChar
+	dict TX_FAR,      TextFar
+	dict $00,         NullChar
+	dict $4c,         Char4C
+	dict $4b,         Char4B
+	dict "<PARA>",    Paragraph
+	dict "<MOM>",     PrintMomsName
+	dict "<PLAYER>",  PrintPlayerName
+	dict "<RIVAL>",   PrintRivalName
+	dict $35,         Char35
+	dict $36,         Char36
+	dict $37,         Char37
+	dict "<RED>",     PrintRedsName
+	dict "<GREEN>",   PrintGreensName
+	dict "#",         PlacePOKe
+	dict "<PC>",      PCChar
+	dict "<ROCKET>",  RocketChar
+	dict "<TM>",      TMChar
+	dict "<TRNER>",   TrainerChar
+	dict "<KOUGEKI>", PlaceKougeki
+	dict "<LNBRK>",   Char22
+	dict "<CONT>",    ContText
+	dict "<......>",  SixDotsChar
+	dict "<DONE>",    DoneText
+	dict "<PROMPT>",  PromptText
+	dict "<PKMN>",    PlacePKMN
+	dict "<POKE>",    PlacePOKE
+	dict "%",         NextChar
+	dict2 "¯",        " "
+	dict "<DEXEND>",  PlaceDexEnd
+	dict "<TARGET>",  PlaceMoveTargetsName
+	dict "<USER>",    PlaceMoveUsersName
+	dict "<ENEMY>",   PlaceEnemysName
+	dict "<PLAY_G>",  PlaceGenderedPlayerName
 
 	cp "ﾟ"
 	jr z, .place ; should be .diacritic

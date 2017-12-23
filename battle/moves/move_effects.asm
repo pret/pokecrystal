@@ -1,3 +1,5 @@
+MoveEffects: ; 2732e
+
 NormalHit:
 	checkobedience
 	usedmovetext
@@ -571,7 +573,7 @@ DefenseDownHit:
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
-	effectchance
+	effectchance ; bug: duplicate effectchance shouldn't be here
 	defensedown
 	statdownmessage
 	endmove

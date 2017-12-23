@@ -1,3 +1,6 @@
+NUM_MOM_ITEMS_1 EQUS "((MomItems_1End - MomItems_1) / 8)"
+NUM_MOM_ITEMS_2 EQUS "((MomItems_2End - MomItems_2) / 8)"
+
 const_value = 1
 	const MOM_ITEM
 	const MOM_DOLL
@@ -57,7 +60,7 @@ MomTriesToBuySomething:: ; fcfec
 
 CheckBalance_MomItem2: ; fd044
 	ld a, [wWhichMomItem]
-	cp 10
+	cp NUM_MOM_ITEMS_2
 	jr nc, .nope
 	call GetItemFromMom
 	ld a, [hli]
@@ -100,7 +103,7 @@ CheckBalance_MomItem2: ; fd044
 
 .exact
 	call .AddMoney
-	ld a, 5
+	ld a, NUM_MOM_ITEMS_1
 	call RandomRange
 	inc a
 	ld [wWhichMomItemSet], a
@@ -195,7 +198,7 @@ GetItemFromMom: ; fd117
 
 .zero
 	ld a, [wWhichMomItem]
-	cp 10 ; length of MomItems_2
+	cp NUM_MOM_ITEMS_2
 	jr c, .ok
 	xor a
 
@@ -212,7 +215,7 @@ endr
 	ret
 ; fd136
 
-INCLUDE "data/mom_phone_items.asm"
+INCLUDE "data/items/mom_phone.asm"
 
 	db 0, 0, 0 ; XXX
 

@@ -27,7 +27,7 @@ ITEM_NAME_LENGTH   EQU 13
 TRAINER_CLASS_NAME_LENGTH EQU 13
 NAME_LENGTH_JAPANESE EQU 6
 
-; GetName types (see home.asm)
+; GetName types (see home/names.asm)
 PKMN_NAME     EQU 1
 MOVE_NAME     EQU 2
 ; dummied out EQU 3
@@ -44,12 +44,13 @@ const_value set 5
 	const PRINTNUM_RIGHTALIGN_F   ; 6
 	const PRINTNUM_LEADINGZEROS_F ; 7
 
+; PrintNum arguments (see engine/printnum.asm)
 PRINTNUM_MONEY          EQU 1 << PRINTNUM_MONEY_F
 PRINTNUM_RIGHTALIGN     EQU 1 << PRINTNUM_RIGHTALIGN_F
 PRINTNUM_LEADINGZEROS   EQU 1 << PRINTNUM_LEADINGZEROS_F
 
 
-; movement
+; DoPlayerMovement.DoStep arguments (see engine/player_movement.asm)
 	const_def
 	const STEP_SLOW          ; 0
 	const STEP_WALK          ; 1
@@ -61,8 +62,14 @@ PRINTNUM_LEADINGZEROS   EQU 1 << PRINTNUM_LEADINGZEROS_F
 	const STEP_WALK_IN_PLACE ; 7
 
 
+; hMenuReturn
 HMENURETURN_SCRIPT EQU %10000000
 HMENURETURN_ASM    EQU %11111111
+
+
+; save file corruption check values
+SAVE_CHECK_VALUE_1 EQU 99
+SAVE_CHECK_VALUE_2 EQU 127
 
 
 ; time of day boundaries

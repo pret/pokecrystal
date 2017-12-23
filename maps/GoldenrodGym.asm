@@ -93,9 +93,9 @@ GoldenrodGymTriggerRockets:
 	jumpstd radiotowerrockets
 
 TrainerLassCarrie:
-	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, 0, LassCarrieScript
+	trainer EVENT_BEAT_LASS_CARRIE, LASS, CARRIE, LassCarrieSeenText, LassCarrieBeatenText, 0, .Script
 
-LassCarrieScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext LassCarrieAfterBattleText
@@ -117,9 +117,9 @@ WhitneyCriesScript:
 	end
 
 TrainerLassBridget:
-	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, 0, LassBridgetScript
+	trainer EVENT_BEAT_LASS_BRIDGET, LASS, BRIDGET, LassBridgetSeenText, LassBridgetBeatenText, 0, .Script
 
-LassBridgetScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext LassBridgetAfterBattleText
@@ -128,9 +128,9 @@ LassBridgetScript:
 	end
 
 TrainerBeautyVictoria:
-	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, 0, BeautyVictoriaScript
+	trainer EVENT_BEAT_BEAUTY_VICTORIA, BEAUTY, VICTORIA, BeautyVictoriaSeenText, BeautyVictoriaBeatenText, 0, .Script
 
-BeautyVictoriaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BeautyVictoriaAfterBattleText
@@ -139,9 +139,9 @@ BeautyVictoriaScript:
 	end
 
 TrainerBeautySamantha:
-	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, 0, BeautySamanthaScript
+	trainer EVENT_BEAT_BEAUTY_SAMANTHA, BEAUTY, SAMANTHA, BeautySamanthaSeenText, BeautySamanthaBeatenText, 0, .Script
 
-BeautySamanthaScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BeautySamanthaAfterBattleText

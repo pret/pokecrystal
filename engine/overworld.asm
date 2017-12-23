@@ -389,8 +389,8 @@ AddSpriteGFX: ; 142e5
 
 
 LoadSpriteGFX: ; 14306
-; Bug: b is not preserved, so
-; it's useless as a next count.
+; Bug: b is not preserved, so it's useless as a next count.
+; Uncomment the lines below to fix.
 
 	ld hl, UsedSprites
 	ld b, SPRITE_GFX_LIST_CAPACITY
@@ -409,7 +409,9 @@ LoadSpriteGFX: ; 14306
 	ret
 
 .LoadSprite:
+	; push bc
 	call GetSprite
+	; pop bc
 	ld a, l
 	ret
 ; 1431e
@@ -721,6 +723,6 @@ INCLUDE "data/emote_headers.asm"
 
 INCLUDE "data/sprite_mons.asm"
 
-INCLUDE "data/outdoor_sprites.asm"
+INCLUDE "data/maps/outdoor_sprites.asm"
 
 INCLUDE "gfx/sprite_headers.asm"

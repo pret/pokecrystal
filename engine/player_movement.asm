@@ -42,7 +42,7 @@ DoPlayerMovement:: ; 80000
 	jr z, .Surf
 	cp PLAYER_BIKE
 	jr z, .Normal
-	cp PLAYER_SLIP
+	cp PLAYER_SKATE
 	jr z, .Ice
 
 .Normal:
@@ -409,6 +409,8 @@ DoPlayerMovement:: ; 80000
 ; making bumps silent.
 
 	ld a, [WalkingDirection]
+	; cp STANDING
+	; jr z, .not_warp
 	ld e, a
 	ld d, 0
 	ld hl, .EdgeWarps
@@ -420,6 +422,7 @@ DoPlayerMovement:: ; 80000
 	ld a, 1
 	ld [wd041], a
 	ld a, [WalkingDirection]
+	; This is in the wrong place.
 	cp STANDING
 	jr z, .not_warp
 
@@ -750,11 +753,10 @@ DoPlayerMovement:: ; 80000
 ; 803ca
 
 .BikeCheck: ; 803ca
-
 	ld a, [PlayerState]
 	cp PLAYER_BIKE
 	ret z
-	cp PLAYER_SLIP
+	cp PLAYER_SKATE
 	ret
 ; 803d3
 
@@ -824,7 +826,7 @@ CheckStandingOnIce:: ; 80404
 	call CheckIceTile
 	jr nc, .yep
 	ld a, [PlayerState]
-	cp PLAYER_SLIP
+	cp PLAYER_SKATE
 	jr nz, .not_ice
 
 .yep

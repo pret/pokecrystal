@@ -1,4 +1,3 @@
-Moves: ; 41afb
 ; Characteristics of each move.
 
 move: MACRO
@@ -11,6 +10,8 @@ move: MACRO
 	db \7 percent ; effect chance
 ENDM
 
+Moves: ; 41afb
+; entries correspond to constants/move_constants.asm
 	move POUND,        EFFECT_NORMAL_HIT,         40, NORMAL,   100, 35,   0
 	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         50, FIGHTING, 100, 25,   0
 	move DOUBLESLAP,   EFFECT_MULTI_HIT,          15, NORMAL,    85, 10,   0

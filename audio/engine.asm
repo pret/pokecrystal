@@ -245,7 +245,7 @@ UpdateChannels: ; e8125
 
 .Channel1:
 	ld a, [Danger]
-	bit 7, a
+	bit DANGER_ON_F, a
 	ret nz
 .Channel5:
 	ld hl, Channel1NoteFlags - Channel1
@@ -537,9 +537,9 @@ _CheckSFX: ; e82e7
 
 PlayDanger: ; e8307
 	ld a, [Danger]
-	bit 7, a
+	bit DANGER_ON_F, a
 	ret z
-	and $7f
+	and $ff - (1 << DANGER_ON_F)
 	ld d, a
 	call _CheckSFX
 	jr c, .asm_e8335
@@ -573,7 +573,7 @@ PlayDanger: ; e8307
 	jr c, .asm_e833c
 	xor a
 .asm_e833c
-	or $80
+	or 1 << DANGER_ON_F
 	ld [Danger], a
 	; is hw ch1 on?
 	ld a, [SoundOutput]
@@ -632,9 +632,9 @@ FadeMusic: ; e8358
 	ld [MusicFadeCount], a
 	; get SO1 volume
 	ld a, [Volume]
-	and $7
+	and VOLUME_SO1_LEVEL
 	; which way are we fading?
-	bit 7, d
+	bit MUSIC_FADE_IN_F, d
 	jr nz, .fadein
 	; fading out
 	and a
@@ -648,7 +648,7 @@ FadeMusic: ; e8358
 	ld [Volume], a
 	; did we just get on a bike?
 	ld a, [PlayerState]
-	cp $1 ; bicycle
+	cp PLAYER_BIKE
 	jr z, .bicycle
 	push bc
 	; restart sound
@@ -688,7 +688,7 @@ FadeMusic: ; e8358
 	pop bc
 	; fade in
 	ld hl, MusicFade
-	set 7, [hl]
+	set MUSIC_FADE_IN_F, [hl]
 	ret
 
 .fadein
@@ -2882,9 +2882,9 @@ LoadMusicByte:: ; e8d76
 ; e8d80
 
 
-INCLUDE "data/audio/notes.asm"
+INCLUDE "audio/notes.asm"
 
-INCLUDE "data/audio/wave_samples.asm"
+INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/drumkits.asm"
 
@@ -2976,7 +2976,7 @@ PlayTrainerEncounterMusic:: ; e900a
 	ld [MusicFade], a
 	; play nothing for one frame
 	push de
-	ld de, 0 ; id: Music_Nothing
+	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	; play new song

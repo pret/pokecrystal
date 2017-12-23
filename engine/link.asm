@@ -2034,7 +2034,7 @@ Function28f09: ; 28f09
 	ret
 ; 28f24
 
-INCLUDE "engine/trade/animation.asm"
+INCLUDE "engine/trade_animation.asm"
 
 Special_CheckTimeCapsuleCompatibility: ; 29bfb
 ; Checks to see if your Party is compatible with the generation 1 games.  Returns the following in ScriptVar:
@@ -2577,7 +2577,18 @@ Special_CableClubCheckWhichChris: ; 29f47
 	ret
 ; 29f54
 
-GFX_29f54: ; 29f54
+UnusedGen1LinkCommsBorderGFX: ; 29f54
 ; unreferenced
-INCBIN "gfx/unknown/unused_border.2bpp"
+INCBIN "gfx/trade/unused_gen_1_border_tiles.2bpp"
 ; 29fe4
+
+Function29fe4: ; unreferenced
+	ld a, BANK(sPartyMail)
+	call GetSRAMBank
+	ld d, $0
+	ld b, CHECK_FLAG
+	predef FlagPredef
+	call CloseSRAM
+	ld a, c
+	and a
+	ret

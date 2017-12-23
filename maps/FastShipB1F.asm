@@ -94,9 +94,9 @@ UnknownScript_0x767a0:
 	end
 
 TrainerSailorJeff:
-	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, 0, SailorJeffScript
+	trainer EVENT_BEAT_SAILOR_JEFF, SAILOR, JEFF, SailorJeffSeenText, SailorJeffBeatenText, 0, .Script
 
-SailorJeffScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SailorJeffAfterBattleText
@@ -105,9 +105,9 @@ SailorJeffScript:
 	end
 
 TrainerPicnickerDebra:
-	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, 0, PicnickerDebraScript
+	trainer EVENT_BEAT_PICNICKER_DEBRA, PICNICKER, DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, 0, .Script
 
-PicnickerDebraScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext PicnickerDebraAfterBattleText
@@ -116,9 +116,9 @@ PicnickerDebraScript:
 	end
 
 TrainerJugglerFritz:
-	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, 0, JugglerFritzScript
+	trainer EVENT_BEAT_JUGGLER_FRITZ, JUGGLER, FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, 0, .Script
 
-JugglerFritzScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext JugglerFritzAfterBattleText
@@ -127,9 +127,9 @@ JugglerFritzScript:
 	end
 
 TrainerSailorGarrett:
-	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, 0, SailorGarrettScript
+	trainer EVENT_BEAT_SAILOR_GARRETT, SAILOR, GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, 0, .Script
 
-SailorGarrettScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SailorGarrettAfterBattleText
@@ -138,9 +138,9 @@ SailorGarrettScript:
 	end
 
 TrainerFisherJonah:
-	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, 0, FisherJonahScript
+	trainer EVENT_BEAT_FISHER_JONAH, FISHER, JONAH, FisherJonahSeenText, FisherJonahBeatenText, 0, .Script
 
-FisherJonahScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext FisherJonahAfterBattleText
@@ -149,9 +149,9 @@ FisherJonahScript:
 	end
 
 TrainerBlackbeltWai:
-	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, 0, BlackbeltWaiScript
+	trainer EVENT_BEAT_BLACKBELT_WAI, BLACKBELT_T, WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, 0, .Script
 
-BlackbeltWaiScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext BlackbeltWaiAfterBattleText
@@ -160,9 +160,9 @@ BlackbeltWaiScript:
 	end
 
 TrainerSailorKenneth:
-	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, 0, SailorKennethScript
+	trainer EVENT_BEAT_SAILOR_KENNETH, SAILOR, KENNETH, SailorKennethSeenText, SailorKennethBeatenText, 0, .Script
 
-SailorKennethScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SailorKennethAfterBattleText
@@ -171,9 +171,9 @@ SailorKennethScript:
 	end
 
 TrainerTeacherShirley:
-	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, 0, TeacherShirleyScript
+	trainer EVENT_BEAT_TEACHER_SHIRLEY, TEACHER, SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, 0, .Script
 
-TeacherShirleyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext TeacherShirleyAfterBattleText
@@ -182,9 +182,9 @@ TeacherShirleyScript:
 	end
 
 TrainerSchoolboyNate:
-	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, 0, SchoolboyNateScript
+	trainer EVENT_BEAT_SCHOOLBOY_NATE, SCHOOLBOY, NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, 0, .Script
 
-SchoolboyNateScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyNateAfterBattleText
@@ -193,9 +193,9 @@ SchoolboyNateScript:
 	end
 
 TrainerSchoolboyRicky:
-	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, 0, SchoolboyRickyScript
+	trainer EVENT_BEAT_SCHOOLBOY_RICKY, SCHOOLBOY, RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, 0, .Script
 
-SchoolboyRickyScript:
+.Script:
 	end_if_just_battled
 	opentext
 	writetext SchoolboyRickyAfterBattleText

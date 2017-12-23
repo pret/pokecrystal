@@ -8,10 +8,10 @@ VermilionPortPassage_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TeacherScript_0x7701a:
-	jumptextfaceplayer UnknownText_0x7701d
+VermilionPortPassageTeacherScript:
+	jumptextfaceplayer VermilionPortPassageTeacherText
 
-UnknownText_0x7701d:
+VermilionPortPassageTeacherText:
 	text "The FAST SHIP"
 	line "sails on Wednes-"
 	cont "days and Sundays"
@@ -38,4 +38,4 @@ VermilionPortPassage_MapEventHeader:
 
 .PersonEvents:
 	db 1
-	person_event SPRITE_TEACHER, 1, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x7701a, -1
+	person_event SPRITE_TEACHER, 1, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VermilionPortPassageTeacherScript, -1
