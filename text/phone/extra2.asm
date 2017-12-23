@@ -19,7 +19,7 @@ UnknownText_0x174000: ; 0x174000
 	done
 ; 0x1740c0
 
-UnknownText_0x1740c0: ; 0x1740c0
+JackIntelligenceText: ; 0x1740c0
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -31,7 +31,7 @@ UnknownText_0x1740c0: ; 0x1740c0
 	done
 ; 0x174106
 
-UnknownText_0x174106: ; 0x174106
+JackDefeatedMonText: ; 0x174106
 	text "The other day, I"
 	line "easily defeated a"
 	cont "@"
@@ -83,7 +83,7 @@ UnknownText_0x174251: ; 0x174251
 	done
 ; 0x174261
 
-UnknownText_0x174261: ; 0x174261
+JackThunderTriviaText: ; 0x174261
 	text "Did you know?"
 
 	para "When it's raining,"
@@ -92,7 +92,7 @@ UnknownText_0x174261: ; 0x174261
 	done
 ; 0x17429d
 
-UnknownText_0x17429d: ; 0x17429d
+JackRolloutTriviaText: ; 0x17429d
 	text "Did you know…?"
 
 	para "If you use DEFENSE"
@@ -103,7 +103,7 @@ UnknownText_0x17429d: ; 0x17429d
 	done
 ; 0x1742ee
 
-UnknownText_0x1742ee: ; 0x1742ee
+JackSolarbeamTriviaText: ; 0x1742ee
 	text "Did you know…?"
 
 	para "If the sunlight is"
@@ -114,7 +114,7 @@ UnknownText_0x1742ee: ; 0x1742ee
 	done
 ; 0x174340
 
-UnknownText_0x174340: ; 0x174340
+JackStompTriviaText: ; 0x174340
 	text "Did you know…?"
 
 	para "If the opponent"
@@ -125,7 +125,7 @@ UnknownText_0x174340: ; 0x174340
 	done
 ; 0x174391
 
-UnknownText_0x174391: ; 0x174391
+JackGustTriviaText: ; 0x174391
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -136,7 +136,7 @@ UnknownText_0x174391: ; 0x174391
 	done
 ; 0x1743e3
 
-UnknownText_0x1743e3: ; 0x1743e3
+JackTwisterTriviaText: ; 0x1743e3
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -147,7 +147,7 @@ UnknownText_0x1743e3: ; 0x1743e3
 	done
 ; 0x174433
 
-UnknownText_0x174433: ; 0x174433
+JackEarthquakeTriviaText: ; 0x174433
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -158,7 +158,7 @@ UnknownText_0x174433: ; 0x174433
 	done
 ; 0x174485
 
-UnknownText_0x174485: ; 0x174485
+JackMagnitudeTriviaText: ; 0x174485
 	text "Did you know…?"
 
 	para "If your opponent"
@@ -169,7 +169,7 @@ UnknownText_0x174485: ; 0x174485
 	done
 ; 0x1744d6
 
-UnknownText_0x1744d6: ; 0x1744d6
+JackSandstormTriviaText: ; 0x1744d6
 	text "Did you know…?"
 
 	para "The rock, ground"
@@ -180,7 +180,7 @@ UnknownText_0x1744d6: ; 0x1744d6
 	done
 ; 0x174522
 
-UnknownText_0x174522: ; 0x174522
+JackSunnyDayTriviaText: ; 0x174522
 	text "Did you know…?"
 
 	para "If the sunlight is"
@@ -191,7 +191,7 @@ UnknownText_0x174522: ; 0x174522
 	done
 ; 0x174571
 
-UnknownText_0x174571: ; 0x174571
+JackRainDanceTriviaText: ; 0x174571
 	text "Did you know…?"
 
 	para "When it's raining,"
@@ -278,7 +278,7 @@ UnknownText_0x1747ac: ; 0x1747ac
 	done
 ; 0x1747cc
 
-UnknownText_0x1747cc: ; 0x1747cc
+BeverlyFoundNuggetText: ; 0x1747cc
 	text "My husband got"
 	line "some NUGGETS."
 
@@ -369,7 +369,7 @@ UnknownText_0x1749c7: ; 0x1749c7
 	done
 ; 0x174a24
 
-UnknownText_0x174a24: ; 0x174a24
+GavenGreaterText: ; 0x174a24
 	text "My @"
 	text_from_ram StringBuffer4
 	text ""
@@ -552,7 +552,7 @@ UnknownText_0x174ec5: ; 0x174ec5
 	done
 ; 0x174ee2
 
-UnknownText_0x174ee2: ; 0x174ee2
+BethForgetDealText: ; 0x174ee2
 	text "Um… <PLAY_G>?"
 	line "What's wrong?"
 
@@ -568,7 +568,7 @@ UnknownText_0x174ee2: ; 0x174ee2
 	done
 ; 0x174f2f
 
-UnknownText_0x174f2f: ; 0x174f2f
+JoseAromaText: ; 0x174f2f
 	text "Hey listen, my"
 	line "@"
 	text_from_ram StringBuffer4
@@ -639,7 +639,7 @@ UnknownText_0x175106: ; 0x175106
 	done
 ; 0x175116
 
-UnknownText_0x175116: ; 0x175116
+JoseFoundSomethingText: ; 0x175116
 	text "My FARFETCH'D had"
 	line "something pretty"
 	cont "in its beak."
@@ -804,7 +804,7 @@ UnknownText_0x1754e5: ; 0x1754e5
 	done
 ; 0x175530
 
-UnknownText_0x175530: ; 0x175530
+JoeySharperText: ; 0x175530
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -903,7 +903,7 @@ UnknownText_0x175786: ; 0x175786
 	done
 ; 0x1757d4
 
-UnknownText_0x1757d4: ; 0x1757d4
+WadeAreYouGrowingText: ; 0x1757d4
 	text "Are your #MON"
 	line "growing?"
 
@@ -981,7 +981,7 @@ UnknownText_0x1759e7: ; 0x1759e7
 	done
 ; 0x1759f7
 
-UnknownText_0x1759f7: ; 0x1759f7
+WadeBugCatchingContestText: ; 0x1759f7
 	text "The Bug-Catching"
 	line "Contest is at the"
 
@@ -996,7 +996,7 @@ UnknownText_0x1759f7: ; 0x1759f7
 	done
 ; 0x175a60
 
-UnknownText_0x175a60: ; 0x175a60
+WadeFoundBerryText: ; 0x175a60
 	text "I found all kinds"
 	line "of BERRIES. If you"
 
@@ -1050,7 +1050,7 @@ UnknownText_0x175b6d: ; 0x175b6d
 	done
 ; 0x175bc4
 
-UnknownText_0x175bc4: ; 0x175bc4
+RalphNeglectingKidsText: ; 0x175bc4
 	text "I've been spending"
 	line "more time with my"
 
@@ -1260,7 +1260,7 @@ UnknownText_0x17610a: ; 0x17610a
 	done
 ; 0x1761a7
 
-UnknownText_0x1761a7: ; 0x1761a7
+LizHiTaniaText: ; 0x1761a7
 	text "Hi, TANIA. How are"
 	line "you? This is LIZ."
 
@@ -1520,7 +1520,7 @@ UnknownText_0x1769da: ; 0x1769da
 	done
 ; 0x176a2f
 
-UnknownText_0x176a2f: ; 0x176a2f
+AnthonyAteBerriesText: ; 0x176a2f
 	text "The other day, I"
 	line "was watching my"
 
@@ -1669,7 +1669,7 @@ UnknownText_0x176dd1: ; 0x176dd1
 	done
 ; 0x176e5d
 
-UnknownText_0x176e5d: ; 0x176e5d
+ToddLooksCuteLikeMeText: ; 0x176e5d
 	text "My @"
 	text_from_ram StringBuffer4
 	text " is"

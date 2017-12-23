@@ -205,7 +205,7 @@ UnknownText_0x645ff: ; 0x645ff
 	done
 ; 0x646a3
 
-UnknownText_0x646a3: ; 0x646a3
+IrwinCalledRightAwayText: ; 0x646a3
 	text "Hehe, I called"
 	line "right away!"
 
@@ -307,7 +307,7 @@ UnknownText_0x648dc: ; 0x648dc
 	done
 ; 0x649dc
 
-UnknownText_0x649dc: ; 0x649dc
+ArnieLovesTheCuteText: ; 0x649dc
 	text "I'm always with my"
 	line "@"
 	text_from_ram StringBuffer4
@@ -423,7 +423,7 @@ UnknownText_0x64c5a: ; 0x64c5a
 	done
 ; 0x64cbd
 
-UnknownText_0x64cbd: ; 0x64cbd
+AlanGettingStrongerText: ; 0x64cbd
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -651,7 +651,7 @@ UnknownText_0x6520f: ; 0x6520f
 	done
 ; 0x65271
 
-UnknownText_0x65271: ; 0x65271
+ChadObservingWildText: ; 0x65271
 	text "I recently began"
 	line "observing wild"
 	cont "@"
@@ -727,7 +727,7 @@ UnknownText_0x65471: ; 0x65471
 	done
 ; 0x65481
 
-UnknownText_0x65481: ; 0x65481
+ChadBlueGossipText: ; 0x65481
 	text "Do you know BLUE?"
 
 	para "He's PROF.OAK's"
@@ -741,7 +741,7 @@ UnknownText_0x65481: ; 0x65481
 	done
 ; 0x654ea
 
-UnknownText_0x654ea: ; 0x654ea
+ChadDaisyGossipText: ; 0x654ea
 	text "PROF.OAK has a"
 	line "granddaughter"
 	cont "named DAISY."
@@ -754,7 +754,7 @@ UnknownText_0x654ea: ; 0x654ea
 	done
 ; 0x65555
 
-UnknownText_0x65555: ; 0x65555
+ChadProfElmGossipText: ; 0x65555
 	text "Everyone's talking"
 	line "about PROF.ELM."
 
@@ -767,7 +767,7 @@ UnknownText_0x65555: ; 0x65555
 	done
 ; 0x655c7
 
-UnknownText_0x655c7: ; 0x655c7
+ChadDreamGossipText: ; 0x655c7
 	text "PROF.OAK's dream"
 	line "is to compile a"
 
@@ -780,7 +780,7 @@ UnknownText_0x655c7: ; 0x655c7
 	done
 ; 0x65628
 
-UnknownText_0x65628: ; 0x65628
+ChadKurtGossipText: ; 0x65628
 	text "Do you know KURT,"
 	line "the BALL creator?"
 
@@ -793,7 +793,7 @@ UnknownText_0x65628: ; 0x65628
 	done
 ; 0x6569b
 
-UnknownText_0x6569b: ; 0x6569b
+ChadLeagueGossipText: ; 0x6569b
 	text "#MON LEAGUE is"
 	line "the great gather-"
 	cont "ing place for all"
@@ -812,7 +812,7 @@ UnknownText_0x6569b: ; 0x6569b
 	done
 ; 0x6574a
 
-UnknownText_0x6574a: ; 0x6574a
+ChadRadioShowGossipText: ; 0x6574a
 	text "PROF.OAK'S #MON"
 	line "TALK is a popular"
 	cont "radio show, right?"
@@ -832,7 +832,7 @@ UnknownText_0x6574a: ; 0x6574a
 	done
 ; 0x65810
 
-UnknownText_0x65810: ; 0x65810
+ChadBattlingGossipText: ; 0x65810
 	text "PROF.OAK used to"
 	line "be a trainer a"
 	cont "long time ago."
@@ -851,7 +851,7 @@ UnknownText_0x65810: ; 0x65810
 	done
 ; 0x658c6
 
-UnknownText_0x658c6: ; 0x658c6
+ChadDaisyTeaGossipText: ; 0x658c6
 	text "PROF.OAK has a"
 	line "granddaughter"
 	cont "named DAISY."
@@ -870,7 +870,7 @@ UnknownText_0x658c6: ; 0x658c6
 	done
 ; 0x65969
 
-UnknownText_0x65969: ; 0x65969
+ChadTravelGossipText: ; 0x65969
 	text "Did you know?"
 	line "PROF.OAK traveled"
 
@@ -914,7 +914,7 @@ UnknownText_0x65a63: ; 0x65a63
 	done
 ; 0x65ab2
 
-UnknownText_0x65ab2: ; 0x65ab2
+DerekCheekPincherText: ; 0x65ab2
 	text "Listen to this."
 	line "My @"
 	text_from_ram StringBuffer4
@@ -976,7 +976,7 @@ UnknownText_0x65c4e: ; 0x65c4e
 	done
 ; 0x65c66
 
-UnknownText_0x65c66: ; 0x65c66
+DerekBugCatchingContestText: ; 0x65c66
 	text "Did you remember?"
 	line "The Bug-Catching"
 	cont "Contest is today."
@@ -1028,7 +1028,7 @@ UnknownText_0x65da6: ; 0x65da6
 	done
 ; 0x65de4
 
-UnknownText_0x65de4: ; 0x65de4
+TullyGrownText: ; 0x65de4
 	text "My @"
 	text_from_ram StringBuffer4
 	text " has"
@@ -1142,7 +1142,7 @@ UnknownText_0x66087: ; 0x66087
 	done
 ; 0x660be
 
-UnknownText_0x660be: ; 0x660be
+BrentRareTradeText: ; 0x660be
 	text "Oh yeah, I got an"
 	line "extremely rare"
 
@@ -1394,7 +1394,7 @@ UnknownText_0x66730: ; 0x66730
 	done
 ; 0x66796
 
-UnknownText_0x66796: ; 0x66796
+TiffanyItsAwfulText: ; 0x66796
 	text_from_ram StringBuffer4
 	text "!"
 
@@ -1471,7 +1471,7 @@ UnknownText_0x6691d: ; 0x6691d
 	done
 ; 0x66980
 
-UnknownText_0x66980: ; 0x66980
+VanceLiftoffText: ; 0x66980
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -1525,14 +1525,14 @@ UnknownText_0x66a93: ; 0x66a93
 	done
 ; 0x66aa5
 
-UnknownText_0x66aa5: ; 0x66aa5
+VanceLookingForwardText: ; 0x66aa5
 	text "I'll be looking"
 	line "forward to our"
 	cont "next battle!"
 	done
 ; 0x66ad1
 
-UnknownText_0x66ad1: ; 0x66ad1
+VanceHurryHurryText: ; 0x66ad1
 	text "Oh, <PLAY_G>!"
 	line "Hurry, hurry!"
 
@@ -1543,7 +1543,7 @@ UnknownText_0x66ad1: ; 0x66ad1
 	done
 ; 0x66afc
 
-UnknownText_0x66afc: ; 0x66afc
+WiltonGrownText: ; 0x66afc
 	text "My @"
 	text_from_ram StringBuffer4
 	text "'s"
@@ -1613,7 +1613,7 @@ UnknownText_0x66c6b: ; 0x66c6b
 	done
 ; 0x66ca7
 
-UnknownText_0x66ca7: ; 0x66ca7
+WiltonHaventFoundAnythingText: ; 0x66ca7
 	text "Nah, I haven't"
 	line "found anything"
 
@@ -1625,7 +1625,7 @@ UnknownText_0x66ca7: ; 0x66ca7
 	done
 ; 0x66cf7
 
-UnknownText_0x66cf7: ; 0x66cf7
+WiltonNotBitingText: ; 0x66cf7
 	text "Sigh…"
 	line "They're not biting"
 
@@ -1639,7 +1639,7 @@ UnknownText_0x66cf7: ; 0x66cf7
 	done
 ; 0x66d45
 
-UnknownText_0x66d45: ; 0x66d45
+WiltonWantThisText: ; 0x66d45
 	text "Don't you want"
 	line "this item?"
 
@@ -1707,7 +1707,7 @@ UnknownText_0x66ed3: ; 0x66ed3
 	done
 ; 0x66f11
 
-UnknownText_0x66f11: ; 0x66f11
+KenjiBreakText: ; 0x66f11
 	text "I'm taking a break"
 	line "on ROUTE 45!"
 
@@ -1727,7 +1727,7 @@ UnknownText_0x66f52: ; 0x66f52
 	done
 ; 0x66f9f
 
-UnknownText_0x66f9f: ; 0x66f9f
+ParryNoMatchText: ; 0x66f9f
 	text "Nothing can match"
 	line "my @"
 	text_from_ram StringBuffer4
@@ -1786,13 +1786,13 @@ UnknownText_0x670eb: ; 0x670eb
 	done
 ; 0x67106
 
-UnknownText_0x67106: ; 0x67106
+ParryBattleWithMeText: ; 0x67106
 	text "You'll battle with"
 	line "me again, right?"
 	done
 ; 0x6712a
 
-UnknownText_0x6712a: ; 0x6712a
+ParryHaventYouGottenToText: ; 0x6712a
 	text "Haven't you gotten"
 	line "to @"
 	text_from_ram StringBuffer5
@@ -1858,7 +1858,7 @@ UnknownText_0x67281: ; 0x67281
 	done
 ; 0x67294
 
-UnknownText_0x67294: ; 0x67294
+ErinWorkingHardText: ; 0x67294
 	text "I'm working hard"
 	line "to raise my"
 	cont "#MON!"
@@ -1868,7 +1868,7 @@ UnknownText_0x67294: ; 0x67294
 	done
 ; 0x672d5
 
-UnknownText_0x672d5: ; 0x672d5
+ErinComeBattleText: ; 0x672d5
 	text "Oh, <PLAY_G>!"
 	line "Come battle ERIN!"
 
