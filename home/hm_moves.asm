@@ -1,4 +1,14 @@
-;  HM moves can't be forgotten
+; HM moves can't be forgotten
+
+IsHM:: ; 34df
+	cp HM01
+	jr c, .NotHM
+	scf
+	ret
+.NotHM:
+	and a
+	ret
+; 34e7
 
 IsHMMove:: ; 34e7
 	ld hl, .HMMoves

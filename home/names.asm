@@ -258,16 +258,6 @@ GetTMHMName:: ; 3487
 	db "@"
 ; 34df
 
-IsHM:: ; 34df
-	cp HM01
-	jr c, .NotHM
-	scf
-	ret
-.NotHM:
-	and a
-	ret
-; 34e7
-
 INCLUDE "home/hm_moves.asm"
 
 GetMoveName:: ; 34f8
