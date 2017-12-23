@@ -2132,7 +2132,7 @@ wPokedexShowPointerBank:: db
 wd271:: ds 5
 
 NEXTU ; d26b
-; SECTION "Enemy Party", WRAMX
+; enemy party
 OTPlayerName:: ds NAME_LENGTH ; d26b
 ENDU ; d276
 
@@ -2426,9 +2426,7 @@ FarfetchdPosition:: db ; d964
 
 	ds 13
 
-
-;SECTION "Map Triggers", WRAMX
-
+; map triggers
 wPokecenter2FTrigger::                       db ; d972
 wTradeCenterTrigger::                        db ; d973
 wColosseumTrigger::                          db ; d974
@@ -2511,9 +2509,7 @@ wMobileBattleRoomTrigger::                   db ; d9c0
 
 	ds 49
 
-
-;SECTION "Events", WRAMX
-
+; fight counts
 wJackFightCount::    db ; d9f2
 wBeverlyFightCount:: db ; unused
 wHueyFightCount::    db
@@ -2543,6 +2539,7 @@ wKenjiFightCount::   db ; unused
 wParryFightCount::   db
 wErinFightCount::    db
 ; da0e
+
 	ds 100
 
 EventFlags:: flag_array NUM_EVENTS ; da72
@@ -2714,7 +2711,6 @@ PartyMonNicknamesEnd::
 
 	ds 22
 
-
 PokedexCaught:: flag_array NUM_POKEMON ; de99
 EndPokedexCaught::
 
@@ -2773,12 +2769,14 @@ wRoamMons_CurrentMapNumber:: db
 wRoamMons_CurrentMapGroup:: db
 wRoamMons_LastMapNumber:: db
 wRoamMons_LastMapGroup:: db
+
 wBestMagikarpLengthFeet:: db
 wBestMagikarpLengthInches:: db
 wMagikarpRecordHoldersName:: ds NAME_LENGTH
-; dff5
+
 wPokemonDataEnd::
 wGameDataEnd::
+; dff5
 
 
 SECTION "Pic Animations", WRAMX
@@ -2937,31 +2935,38 @@ BattleAnimLoops:: db ; d415
 BattleAnimVar:: db ; d416
 BattleAnimByte:: db ; d417
 wBattleAnimOAMPointerLo:: db ; d418
-BattleAnimTemps:: ; d419
-wBattleAnimTempOAMFlags::
+
+UNION ; d419
+; unidentified
 wBattleAnimTemp0:: db
 wBattleAnimTemp1:: db
-wBattleAnimTempTileID::
 wBattleAnimTemp2:: db
-wBattleAnimTempXCoord::
 wBattleAnimTemp3:: db
-wBattleAnimTempYCoord::
 wBattleAnimTemp4:: db
-wBattleAnimTempXOffset::
 wBattleAnimTemp5:: db
-wBattleAnimTempYOffset::
 wBattleAnimTemp6:: db
 wBattleAnimTemp7:: db
-wBattleAnimTempPalette::
 wBattleAnimTemp8:: db
 
-UNION ; d422
-wSurfWaveBGEffect:: ds $40
-wSurfWaveBGEffectEnd::
+NEXTU ; d419
+wBattleAnimTempOAMFlags:: db
+	ds 1
+wBattleAnimTempTileID:: db
+wBattleAnimTempXCoord:: db
+wBattleAnimTempYCoord:: db
+wBattleAnimTempXOffset:: db
+wBattleAnimTempYOffset:: db
+	ds 1
+wBattleAnimTempPalette:: db
+ENDU ; d422
 
-NEXTU ; d422
+UNION ; d422
 	ds $32
 wBattleAnimEnd::
+
+NEXTU ; d422
+wSurfWaveBGEffect:: ds $40
+wSurfWaveBGEffectEnd::
 ENDU ; d462
 
 
