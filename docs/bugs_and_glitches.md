@@ -949,22 +949,22 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 
 This is a mistake with the “`…`” tile in [gfx/battle/hp_exp_bar_border.png](/gfx/battle/hp_exp_bar_border.png):
 
-![image](https://i.imgur.com/hVK5ofi.png)
+![image](/docs/images/hp_exp_bar_border.png)
 
 **Fix:** Lower the ellipsis by two pixels:
 
-![image](https://i.imgur.com/qfMvhlG.png)
+![image](/docs/images/hp_exp_bar_border_fix.png)
 
 
 ## Two tiles in the `port` tileset are drawn incorrectly
 
 This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/port.png](/gfx/tilesets/port.png):
 
-![image](https://i.imgur.com/6SJuORN.png)
+![image](/docs/images/port.png)
 
 **Fix:** Adjust them to match the right-hand corner tiles:
 
-![image](https://i.imgur.com/PD3Fjdu.png)
+![image](/docs/images/port_fix.png)
 
 
 ## `LoadMetatiles` wraps around past 128 blocks
