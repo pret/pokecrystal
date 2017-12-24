@@ -532,7 +532,7 @@ ApplyTilemap:: ; 321c
 
 	ld a, 1
 	ld [hBGMapMode], a
-	jr LoadEDTile
+	jr CopyTilemapAtOnce
 
 .dmg
 ; WaitBGMap
@@ -543,13 +543,13 @@ ApplyTilemap:: ; 321c
 	ret
 ; 3238
 
-CGBOnly_LoadEDTile:: ; 3238
+CGBOnly_CopyTilemapAtOnce:: ; 3238
 	ld a, [hCGB]
 	and a
 	jr z, WaitBGMap
 
-LoadEDTile:: ; 323d
-	jr .LoadEDTile
+CopyTilemapAtOnce:: ; 323d
+	jr .CopyTilemapAtOnce
 ; 323f
 
 ; XXX
@@ -557,7 +557,7 @@ LoadEDTile:: ; 323d
 	ret
 ; 3246
 
-.LoadEDTile: ; 3246
+.CopyTilemapAtOnce: ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -574,11 +574,11 @@ LoadEDTile:: ; 323d
 	jr c, .wait
 
 	di
-	ld a, 1 ; BANK(VTiles3)
+	ld a, BANK(VTiles3)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
 	call .StackPointerMagic
-	ld a, 0 ; BANK(VTiles0)
+	ld a, BANK(VTiles0)
 	ld [rVBK], a
 	hlcoord 0, 0
 	call .StackPointerMagic
@@ -623,7 +623,7 @@ rept SCREEN_WIDTH / 2
 	inc l
 endr
 
-	ld de, $20 - SCREEN_WIDTH
+	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	add hl, de
 	ld a, [hTilesPerCycle]
 	dec a

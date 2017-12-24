@@ -309,12 +309,12 @@ endr
 INCLUDE "data/collision_permissions.asm"
 INCLUDE "engine/empty_sram.asm"
 
-SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
+SaveMenu_CopyTilemapAtOnce: ; 4cf45 (13:4f45)
 	ld a, [hCGB]
 	and a
 	jp z, WaitBGMap
 
-; The following is a modified version of LoadEDTile.
+; The following is a modified version of CopyTilemapAtOnce.
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -329,14 +329,14 @@ SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
 	jr c, .WaitLY
 
 	di
-	ld a, 1 ; BANK(VBGMap2)
+	ld a, BANK(VBGMap2)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
-	call .LoadEDTile
-	ld a, 0 ; BANK(VBGMap0)
+	call .CopyTilemapAtOnce
+	ld a, BANK(VBGMap0)
 	ld [rVBK], a
 	hlcoord 0, 0
-	call .LoadEDTile
+	call .CopyTilemapAtOnce
 .WaitLY2:
 	ld a, [rLY]
 	cp $60
@@ -349,7 +349,7 @@ SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
 	ld [hBGMapMode], a
 	ret
 
-.LoadEDTile: ; 4cf80 (13:4f80)
+.CopyTilemapAtOnce: ; 4cf80 (13:4f80)
 	ld [hSPBuffer], sp ; $ffd9
 	ld sp, hl
 	ld a, [hBGMapAddress + 1]
@@ -373,7 +373,7 @@ rept SCREEN_WIDTH / 2
 	inc l
 endr
 
-	ld de, $20 - SCREEN_WIDTH
+	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	add hl, de
 	ld a, [hTilesPerCycle]
 	dec a
@@ -447,7 +447,7 @@ _LoadMapPart:: ; 4d15b
 	jr nz, .loop
 	ret
 
-PhoneRing_LoadEDTile: ; 4d188
+PhoneRing_CopyTilemapAtOnce: ; 4d188
 	ld a, [hCGB]
 	and a
 	jp z, WaitBGMap
@@ -455,7 +455,7 @@ PhoneRing_LoadEDTile: ; 4d188
 	cp $0
 	jp z, WaitBGMap
 
-; What follows is a modified version of LoadEDTile.
+; What follows is a modified version of CopyTilemapAtOnce.
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -470,14 +470,14 @@ PhoneRing_LoadEDTile: ; 4d188
 	jr c, .wait
 
 	di
-	ld a, 1 ; BANK(VBGMap2)
+	ld a, BANK(VBGMap2)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
-	call .LoadEDTile
-	ld a, 0 ; BANK(VBGMap0)
+	call .CopyTilemapAtOnce
+	ld a, BANK(VBGMap0)
 	ld [rVBK], a
 	hlcoord 0, 0
-	call .LoadEDTile
+	call .CopyTilemapAtOnce
 .wait2
 	ld a, [rLY]
 	cp $8f
@@ -490,7 +490,7 @@ PhoneRing_LoadEDTile: ; 4d188
 	ld [hBGMapMode], a
 	ret
 
-.LoadEDTile: ; 4d1cb
+.CopyTilemapAtOnce: ; 4d1cb
 	ld [hSPBuffer], sp
 	ld sp, hl
 	ld a, [hBGMapAddress + 1]
@@ -514,7 +514,7 @@ rept SCREEN_WIDTH / 2
 	inc l
 endr
 
-	ld de, $20 - SCREEN_WIDTH
+	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	add hl, de
 	ld a, [hTilesPerCycle]
 	dec a
@@ -752,8 +752,8 @@ INCLUDE "engine/battle_transition.asm"
 INCLUDE "event/field_moves.asm"
 INCLUDE "event/magnet_train.asm"
 
-BattleStart_LoadEDTile: ; 8cf4f
-	call CGBOnly_LoadEDTile
+BattleStart_CopyTilemapAtOnce: ; 8cf4f
+	call CGBOnly_CopyTilemapAtOnce
 	ret
 
 INCLUDE "engine/sprites.asm"
