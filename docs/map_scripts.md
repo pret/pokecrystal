@@ -65,7 +65,7 @@ Callback types:
 
 ## `.CoordEvents: db` *N*
 
-- **`coord_event` *id*, *y*, *x*, `$0`, *script*, `$0`, `$0`**
+- **`coord_event` *scene id*, *y*, *x*, *script***
 
 
 ## `.BGEvents: db` *N*
@@ -90,7 +90,7 @@ BG event types:
 
 ## `.ObjectEvents: db` *N*
 
-- **`object_event` *sprite*, *y*, *x*, *movement*, *ry*, *rx*, *hour*, *daytime*, *palette*, *type*, *range*, *script*, *event_flag***
+- **`object_event` *sprite*, *y*, *x*, *movement*, *ry*, *rx*, *h1*, *h2*, *palette*, *type*, *range*, *script*, *event_flag***
 
 Movement types:
 

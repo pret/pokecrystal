@@ -19,7 +19,7 @@ warp_def: macro
 endm
 
 coord_event: macro
-;\1: number: controlled by setscene/setmapscene
+;\1: scene id: controlled by setscene/setmapscene
 ;\2: y: top to bottom, starts at 0
 ;\3: x: left to right, starts at 0
 ;\4: script pointer
@@ -43,17 +43,17 @@ object_event: macro
 ;\3: x: left to right, starts at 0
 ;\4: movement function: a SPRITEMOVEDATA_* constant
 ;\5, \6: movement radius: y, x
-;\7, \8: hour1 and hour2: control the hours an object_event is visible (0-23)
-;  * if hour1 < hour2, the object_event will only appear from hour1 to hour2
-;  * if hour1 > hour2, the object_event will not appear from hour2 to hour1
-;  * if hour1 == hour2, the object_event will always appear
-;  * if hour1 == -1, hour2 is treated as a time-of-day value:
+;\7, \8: hour limits: h1, h2 (0-23)
+;  * if h1 < h2, the object_event will only appear from h1 to h2
+;  * if h1 > h2, the object_event will not appear from h2 to h1
+;  * if h1 == h2, the object_event will always appear
+;  * if h1 == -1, h2 is treated as a time-of-day value:
 ;    a combo of MORN, DAY, and/or NITE, or -1 to always appear
 ;\9: color: a PAL_NPC_* constant, or 0 for sprite default
 ;\10: function: a OBJECTTYPE_* constant
 ;\11: sight range: applies to OBJECTTYPE_TRAINER
 ;\12: script pointer
-;\13: event flag: an EVENT_* constant, or 0 to always appear
+;\13: event flag: an EVENT_* constant, or -1 to always appear
 	db \1, \2 + 4, \3 + 4, \4
 	dn \5, \6
 	db \7, \8
