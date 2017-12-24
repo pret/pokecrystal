@@ -1,11 +1,11 @@
-Route6UndergroundEntrance_MapScriptHeader:
+Route6UndergroundPathEntrance_MapScriptHeader:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-Route6UndergroundEntrance_MapEventHeader:
+Route6UndergroundPathEntrance_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -13,7 +13,7 @@ Route6UndergroundEntrance_MapEventHeader:
 	db 3
 	warp_def $7, $3, 1, ROUTE_6
 	warp_def $7, $4, 1, ROUTE_6
-	warp_def $3, $4, 2, UNDERGROUND
+	warp_def $3, $4, 2, UNDERGROUND_PATH
 
 .CoordEvents:
 	db 0

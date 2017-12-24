@@ -1,11 +1,11 @@
 _BasementKey: ; 507b4
 ; Are we even in the right map to use this?
 	ld a, [MapGroup]
-	cp GROUP_WAREHOUSE_ENTRANCE
+	cp GROUP_GOLDENROD_UNDERGROUND
 	jr nz, .nope
 
 	ld a, [MapNumber]
-	cp MAP_WAREHOUSE_ENTRANCE
+	cp MAP_GOLDENROD_UNDERGROUND
 	jr nz, .nope
 ; Are we on the tile in front of the door?
 	call GetFacingTileCoord

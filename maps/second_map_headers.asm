@@ -416,10 +416,10 @@ endm
 	map_header_2 TeamRocketBaseB2F, TEAM_ROCKET_BASE_B2F, $0, 0
 	map_header_2 TeamRocketBaseB3F, TEAM_ROCKET_BASE_B3F, $0, 0
 	map_header_2 IlexForest, ILEX_FOREST, $5, 0
-	map_header_2 WarehouseEntrance, WAREHOUSE_ENTRANCE, $0, 0
-	map_header_2 UndergroundPathSwitchRoomEntrances, UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, $0, 0
+	map_header_2 GoldenrodUnderground, GOLDENROD_UNDERGROUND, $0, 0
+	map_header_2 GoldenrodUndergroundSwitchRoomEntrances, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, $0, 0
 	map_header_2 GoldenrodDeptStoreB1F, GOLDENROD_DEPT_STORE_B1F, $0, 0
-	map_header_2 UndergroundWarehouse, UNDERGROUND_WAREHOUSE, $0, 0
+	map_header_2 GoldenrodUndergroundWarehouse, GOLDENROD_UNDERGROUND_WAREHOUSE, $0, 0
 	map_header_2 MountMortar1FOutside, MOUNT_MORTAR_1F_OUTSIDE, $9, 0
 	map_header_2 MountMortar1FInside, MOUNT_MORTAR_1F_INSIDE, $9, 0
 	map_header_2 MountMortar2FInside, MOUNT_MORTAR_2F_INSIDE, $9, 0
@@ -464,7 +464,7 @@ endm
 	map_header_2 Route42EcruteakGate, ROUTE_42_ECRUTEAK_GATE, $0, 0
 	map_header_2 DiglettsCave, DIGLETTS_CAVE, $9, 0
 	map_header_2 MountMoon, MOUNT_MOON, $9, 0
-	map_header_2 Underground, UNDERGROUND, $0, 0
+	map_header_2 UndergroundPath, UNDERGROUND_PATH, $0, 0
 	map_header_2 RockTunnel1F, ROCK_TUNNEL_1F, $9, 0
 	map_header_2 RockTunnelB1F, ROCK_TUNNEL_B1F, $9, 0
 	map_header_2 SafariZoneFuchsiaGateBeta, SAFARI_ZONE_FUCHSIA_GATE_BETA, $0, 0
@@ -552,7 +552,7 @@ endm
 	map_header_2 VermilionHouseDiglettsCaveSpeechHouse, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE, $0, 0
 	map_header_2 VermilionGym, VERMILION_GYM, $0, 0
 	map_header_2 Route6SaffronGate, ROUTE_6_SAFFRON_GATE, $0, 0
-	map_header_2 Route6UndergroundEntrance, ROUTE_6_UNDERGROUND_ENTRANCE, $0, 0
+	map_header_2 Route6UndergroundPathEntrance, ROUTE_6_UNDERGROUND_PATH_ENTRANCE, $0, 0
 	map_header_2 RedsHouse1F, REDS_HOUSE_1F, $0, 0
 	map_header_2 RedsHouse2F, REDS_HOUSE_2F, $0, 0
 	map_header_2 BluesHouse, BLUES_HOUSE, $0, 0
@@ -672,7 +672,7 @@ endm
 	map_header_2 SilphCo1F, SILPH_CO_1F, $0, 0
 	map_header_2 CopycatsHouse1F, COPYCATS_HOUSE_1F, $0, 0
 	map_header_2 CopycatsHouse2F, COPYCATS_HOUSE_2F, $0, 0
-	map_header_2 Route5UndergroundEntrance, ROUTE_5_UNDERGROUND_ENTRANCE, $0, 0
+	map_header_2 Route5UndergroundPathEntrance, ROUTE_5_UNDERGROUND_PATH_ENTRANCE, $0, 0
 	map_header_2 Route5SaffronCityGate, ROUTE_5_SAFFRON_CITY_GATE, $0, 0
 	map_header_2 Route5CleanseTagSpeechHouse, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE, $0, 0
 	map_header_2 CherrygroveMart, CHERRYGROVE_MART, $0, 0
