@@ -8,6 +8,7 @@
 - [Can't build ROM; "Segmentation fault" from `rgbgfx`](#cant-build-rom-segmentation-fault-from-rgbgfx)
 - [Can't build ROM; "Section is too big" or "Unable to place section in bank"](#cant-build-rom-section-is-too-big-or-unable-to-place-section-in-bank)
 - [How do I edit maps?](#how-do-i-edit-maps)
+- [How do I write new features?](#how-do-i-write-new-features)
 - [I need more help!](#i-need-more-help)
 
 
@@ -36,6 +37,11 @@ If you added or changed any code, it has to fit in the **memory banks**. The 2MB
 ## How do I edit maps?
 
 For `asm` scripts, read [docs/map_scripts.md](docs/map_scripts.md). For `blk` layouts, try [crowdmap](crowdmap) or [Polished Map](polished-map).
+
+
+## How do I write new features?
+
+There are a number of special-purpose scripting languages used for different purposes, as described in [docs](docs/). For more general features, you'll need to code directly in assembly language. See [docs/assembly_language.md](docs/assembly_language.md).
 
 
 ## I need more help!
