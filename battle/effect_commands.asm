@@ -6299,11 +6299,11 @@ BattleCommand_Curl: ; 365a7
 
 
 BattleCommand_RaiseSubNoAnim: ; 365af
-	ld hl, GetMonBackpic
+	ld hl, GetBattleMonBackpic
 	ld a, [hBattleTurn]
 	and a
 	jr z, .PlayerTurn
-	ld hl, GetMonFrontpic
+	ld hl, GetEnemyMonFrontpic
 .PlayerTurn:
 	xor a
 	ld [hBGMapMode], a

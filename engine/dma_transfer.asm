@@ -5,10 +5,10 @@ HDMATransferAttrMapAndTileMapToWRAMBank3:: ; 104000
 .Function:
 	decoord 0, 0, AttrMap
 	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
+	call PadAttrMapForHDMATransfer
 	decoord 0, 0
 	ld hl, wScratchTileMap
-	call CutAndPasteTilemap
+	call PadTilemapForHDMATransfer
 	ld a, $0
 	ld [rVBK], a
 	ld hl, wScratchTileMap
@@ -27,7 +27,7 @@ HDMATransferTileMapToWRAMBank3:: ; 10402d
 .Function:
 	decoord 0, 0
 	ld hl, wScratchTileMap
-	call CutAndPasteTilemap
+	call PadTilemapForHDMATransfer
 	ld a, $0
 	ld [rVBK], a
 	ld hl, wScratchTileMap
@@ -42,7 +42,7 @@ HDMATransferAttrMapToWRAMBank3: ; 104047
 .Function:
 	decoord 0, 0, AttrMap
 	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
+	call PadAttrMapForHDMATransfer
 	ld a, $1
 	ld [rVBK], a
 	ld hl, wScratchAttrMap
@@ -57,10 +57,10 @@ ReloadMapPart:: ; 104061
 .Function:
 	decoord 0, 0, AttrMap
 	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
+	call PadAttrMapForHDMATransfer
 	decoord 0, 0
 	ld hl, wScratchTileMap
-	call CutAndPasteTilemap
+	call PadTilemapForHDMATransfer
 	call DelayFrame
 
 	di
@@ -88,10 +88,10 @@ Mobile_ReloadMapPart: ; 104099
 .Function:
 	decoord 0, 0, AttrMap
 	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
+	call PadAttrMapForHDMATransfer
 	decoord 0, 0
 	ld hl, wScratchTileMap
-	call CutAndPasteTilemap
+	call PadTilemapForHDMATransfer
 	call DelayFrame
 
 	di
@@ -161,10 +161,10 @@ OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 104110
 	; Fill vBGTiles with " "
 	decoord 0, 0, AttrMap
 	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
+	call PadAttrMapForHDMATransfer
 	decoord 0, 0
 	ld hl, wScratchTileMap
-	call CutAndPasteTilemap
+	call PadTilemapForHDMATransfer
 	call DelayFrame
 
 	di
@@ -194,11 +194,11 @@ Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap: ; 104148 (41:4148)
 	; Fill vBGTiles with $ff
 	decoord 0, 0, AttrMap
 	ld hl, wScratchAttrMap
-	call CutAndPasteAttrMap
+	call PadAttrMapForHDMATransfer
 	ld c, $ff
 	decoord 0, 0
 	ld hl, wScratchTileMap
-	call CutAndPasteMap
+	call PadMapForHDMATransfer
 
 	ld a, $1
 	ld [rVBK], a
@@ -422,15 +422,16 @@ _LoadHDMAParameters: ; 10424e (41:424e)
 	ld [rHDMA4], a
 	ret
 
-CutAndPasteTilemap: ; 10425f (41:425f)
+PadTilemapForHDMATransfer: ; 10425f (41:425f)
 	ld c, " "
-	jr CutAndPasteMap
+	jr PadMapForHDMATransfer
 
-CutAndPasteAttrMap: ; 104263 (41:4263)
+PadAttrMapForHDMATransfer: ; 104263 (41:4263)
 	ld c, $0
 
-CutAndPasteMap: ; 104265 (41:4265)
-; back up the value of c to hMapObjectIndexBuffer
+PadMapForHDMATransfer: ; 104265 (41:4265)
+; pad a 20x18 map to 32x18 for HDMA transfer
+; back up the padding value in c to hMapObjectIndexBuffer
 	ld a, [hMapObjectIndexBuffer]
 	push af
 	ld a, c
@@ -449,7 +450,7 @@ CutAndPasteMap: ; 104265 (41:4265)
 	dec b
 	jr nz, .loop2
 
-; load the original value of c into hl 12 times
+; load the original padding value of c into hl for 32 - 20 = 12 rows
 	ld a, [hMapObjectIndexBuffer]
 	ld b, BG_MAP_WIDTH - SCREEN_WIDTH
 .loop3

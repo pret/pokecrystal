@@ -168,7 +168,7 @@ EvolutionAnimation: ; 4e5e1
 	ld a, $1
 	ld [wBoxAlignment], a
 	ld de, VTiles2
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	xor a
 	ld [wBoxAlignment], a
 	ret

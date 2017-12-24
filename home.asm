@@ -1075,7 +1075,7 @@ _PrepMonFrontpic:: ; 378b
 
 	push hl
 	ld de, VTiles2
-	predef GetFrontpic
+	predef GetMonFrontpic
 	pop hl
 	xor a
 	ld [hGraphicStartTile], a

@@ -3689,7 +3689,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	ld a, OTPARTYMON
 	ld [MonType], a
 	predef CopyPkmnToTempMon
-	call GetMonFrontpic
+	call GetEnemyMonFrontpic
 
 	xor a
 	ld [wNumHits], a
@@ -4176,7 +4176,7 @@ SendOutPlayerMon: ; 3db5f
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	call GetMonBackpic
+	call GetBattleMonBackpic
 	xor a
 	ld [hGraphicStartTile], a
 	ld [wBattleMenuCursorBuffer], a
@@ -5185,8 +5185,8 @@ BattleMenu_Pack: ; 3e1c7
 	call ClearPalettes
 	call DelayFrame
 	call _LoadBattleFontsHPBar
-	call GetMonBackpic
-	call GetMonFrontpic
+	call GetBattleMonBackpic
+	call GetEnemyMonFrontpic
 	call ExitMenu
 	call WaitBGMap
 	call FinishBattleAnim
@@ -5218,10 +5218,10 @@ BattleMenu_Pack: ; 3e1c7
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .tutorial2
-	call GetMonBackpic
+	call GetBattleMonBackpic
 
 .tutorial2
-	call GetMonFrontpic
+	call GetEnemyMonFrontpic
 	ld a, $1
 	ld [wMenuCursorY], a
 	call ExitMenu
@@ -8269,17 +8269,17 @@ PlaceExpBar: ; 3f41c
 	ret
 ; 3f43d
 
-GetMonBackpic: ; 3f43d
+GetBattleMonBackpic: ; 3f43d
 	ld a, [PlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_RaiseSub
-	jr nz, GetBackpic_DoAnim ; substitute
+	jr nz, GetBattleMonBackpic_DoAnim ; substitute
 
 DropPlayerSub: ; 3f447
 	ld a, [wPlayerMinimized]
 	and a
 	ld hl, BattleAnimCmd_MinimizeOpp
-	jr nz, GetBackpic_DoAnim
+	jr nz, GetBattleMonBackpic_DoAnim
 	ld a, [CurPartySpecies]
 	push af
 	ld a, [BattleMonSpecies]
@@ -8287,13 +8287,13 @@ DropPlayerSub: ; 3f447
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	ld de, VTiles2 tile $31
-	predef GetBackpic
+	predef GetMonBackpic
 	pop af
 	ld [CurPartySpecies], a
 	ret
 ; 3f46f
 
-GetBackpic_DoAnim: ; 3f46f
+GetBattleMonBackpic_DoAnim: ; 3f46f
 	ld a, [hBattleTurn]
 	push af
 	xor a
@@ -8305,17 +8305,17 @@ GetBackpic_DoAnim: ; 3f46f
 	ret
 ; 3f47c
 
-GetMonFrontpic: ; 3f47c
+GetEnemyMonFrontpic: ; 3f47c
 	ld a, [EnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_RaiseSub
-	jr nz, GetFrontpic_DoAnim
+	jr nz, GetEnemyMonFrontpic_DoAnim
 
 DropEnemySub: ; 3f486
 	ld a, [wEnemyMinimized]
 	and a
 	ld hl, BattleAnimCmd_MinimizeOpp
-	jr nz, GetFrontpic_DoAnim
+	jr nz, GetEnemyMonFrontpic_DoAnim
 
 	ld a, [CurPartySpecies]
 	push af
@@ -8326,13 +8326,13 @@ DropEnemySub: ; 3f486
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
 	ld de, VTiles2
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	pop af
 	ld [CurPartySpecies], a
 	ret
 ; 3f4b4
 
-GetFrontpic_DoAnim: ; 3f4b4
+GetEnemyMonFrontpic_DoAnim: ; 3f4b4
 	ld a, [hBattleTurn]
 	push af
 	call SetEnemyTurn
@@ -8532,7 +8532,7 @@ InitEnemyWildmon: ; 3f607
 	ld [wFirstUnownSeen], a
 .skip_unown
 	ld de, VTiles2
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	xor a
 	ld [TrainerClass], a
 	ld [hGraphicStartTile], a

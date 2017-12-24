@@ -2403,7 +2403,7 @@ Pokedex_LoadSelectedMonTiles: ; 4143b
 	ld [CurPartySpecies], a
 	call GetBaseData
 	ld de, VTiles2
-	predef GetFrontpic
+	predef GetMonFrontpic
 	ret
 
 .QuestionMark:
@@ -2556,7 +2556,7 @@ Pokedex_LoadUnownFrontpicTiles: ; 41a58 (10:5a58)
 	ld [CurPartySpecies], a
 	call GetBaseData
 	ld de, VTiles2 tile $00
-	predef GetFrontpic
+	predef GetMonFrontpic
 	pop af
 	ld [UnownLetter], a
 	ret
@@ -2586,7 +2586,7 @@ _NewPokedexEntry: ; 41a7f
 	call WaitBGMap
 	call GetBaseData
 	ld de, VTiles2
-	predef GetFrontpic
+	predef GetMonFrontpic
 	ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout
 	ld a, [CurPartySpecies]

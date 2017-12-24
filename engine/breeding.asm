@@ -649,7 +649,7 @@ GetEggFrontpic: ; 17224 (5:7224)
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	pop de
-	predef_jump GetFrontpic
+	predef_jump GetMonFrontpic
 
 GetHatchlingFrontpic: ; 1723c (5:723c)
 	push de
@@ -659,7 +659,7 @@ GetHatchlingFrontpic: ; 1723c (5:723c)
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	pop de
-	predef_jump FrontpicPredef
+	predef_jump GetAnimatedFrontpicPredef
 
 Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
 	push af

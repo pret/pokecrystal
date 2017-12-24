@@ -315,7 +315,7 @@ Function81adb: ; 81adb
 	hlcoord 12, 3
 	call _PrepMonFrontpic
 	ld de, VTiles2 tile $31
-	predef GetBackpic
+	predef GetMonBackpic
 	ld a, $31
 	ld [hGraphicStartTile], a
 	hlcoord 2, 4

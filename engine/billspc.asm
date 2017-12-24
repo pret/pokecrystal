@@ -1108,7 +1108,7 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 	predef GetUnownLetter
 	call GetBaseData
 	ld de, VTiles2 tile $00
-	predef GetFrontpic
+	predef GetMonFrontpic
 	xor a
 	ld [wBillsPC_MonHasMail], a
 	ld a, [CurPartySpecies]

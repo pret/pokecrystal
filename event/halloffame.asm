@@ -250,7 +250,7 @@ AnimateHOFMonEntrance: ; 865b5
 	ld a, " "
 	call ByteFill
 	ld de, VTiles2 tile $31
-	predef GetBackpic
+	predef GetMonBackpic
 	ld a, $31
 	ld [hGraphicStartTile], a
 	hlcoord 6, 6

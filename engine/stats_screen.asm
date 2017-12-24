@@ -866,7 +866,7 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	ret c
 	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, VTiles2 tile $00
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	hlcoord 0, 0
 	ld d, $0
 	ld e, ANIM_MON_MENU
@@ -1071,7 +1071,7 @@ StatsScreen_AnimateEgg: ; 4e497 (13:6497)
 	ld [wBoxAlignment], a
 	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, VTiles2 tile $00
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	pop de
 	hlcoord 0, 0
 	ld d, $0

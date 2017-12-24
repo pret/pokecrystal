@@ -932,7 +932,7 @@ BattleAnimCmd_Transform: ; cc5dc (33:45dc)
 	ld hl, BattleMonDVs ; BattleMonDVs
 	predef GetUnownLetter
 	ld de, VTiles0 tile $00
-	predef GetFrontpic
+	predef GetMonFrontpic
 	jr .done
 
 .player
@@ -941,7 +941,7 @@ BattleAnimCmd_Transform: ; cc5dc (33:45dc)
 	ld hl, EnemyMonDVs ; EnemyMonDVs
 	predef GetUnownLetter
 	ld de, VTiles0 tile $00
-	predef GetBackpic
+	predef GetMonBackpic
 
 .done
 	pop af
@@ -1159,14 +1159,14 @@ BattleAnimCmd_BeatUp: ; cc776 (33:4776)
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	ld de, VTiles2 tile $00
-	predef GetFrontpic
+	predef GetMonFrontpic
 	jr .done
 
 .player
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
 	ld de, VTiles2 tile $31
-	predef GetBackpic
+	predef GetMonBackpic
 
 .done
 	pop af

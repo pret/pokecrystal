@@ -140,7 +140,7 @@ UnownPrinter: ; 16be4
 	xor a
 	ld [wBoxAlignment], a
 	ld de, VTiles2
-	predef GetFrontpic
+	predef GetMonFrontpic
 	call .Load2bppToSRAM
 	hlcoord 1, 6
 	xor a

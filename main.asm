@@ -197,13 +197,13 @@ _ReturnToBattle_UseBall: ; 2715c
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .gettutorialbackpic
-	farcall GetMonBackpic
+	farcall GetBattleMonBackpic
 	jr .continue
 
 .gettutorialbackpic
 	farcall GetTrainerBackpic
 .continue
-	farcall GetMonFrontpic
+	farcall GetEnemyMonFrontpic
 	farcall _LoadBattleFontsHPBar
 	call GetMemSGBLayout
 	call CloseWindow

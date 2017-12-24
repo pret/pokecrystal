@@ -296,7 +296,7 @@ MobileTradeAnim_GetFrontpic: ; 1081e9
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef GetFrontpic
+	predef GetMonFrontpic
 	ret
 ; 108201
 
@@ -309,7 +309,7 @@ Function108201: ; 108201
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	ret
 ; 108219
 
