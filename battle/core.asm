@@ -3454,7 +3454,7 @@ IsThePlayerPkmnTypesEffectiveAgainstOTPkmn: ; 3d618
 	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 	ld de, EnemyMonType
-	ld bc, 2
+	ld bc, BASE_CATCH_RATE - BASE_TYPES
 	ld a, BANK(BaseData)
 	call FarCopyBytes
 	ld a, [BattleMonType1]

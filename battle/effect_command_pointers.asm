@@ -78,7 +78,7 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_Spite ; 35c0f
 	dw BattleCommand_FalseSwipe ; 35c94
 	dw BattleCommand_HealBell ; 35cc9
-	dw BattleCommand_KingsRock ; 36ac9
+	dw BattleCommand_HeldFlinch ; 36ac9
 	dw BattleCommand_TripleKick ; 346b2
 	dw BattleCommand_KickCounter ; 346cd
 	dw BattleCommand_Thief ; 37492
