@@ -152,7 +152,7 @@ CanUseSweetScent:: ; 97cfd
 	ld hl, StatusFlags
 	bit 5, [hl]
 	jr nz, .no
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp CAVE
 	jr z, .ice_check
 	cp DUNGEON

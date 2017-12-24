@@ -680,13 +680,13 @@ NUM_TRAINER_CLASSES EQU __enum__
 
 ; TrainerClassAttributes fields (see data/trainers/trainer_attributes.asm)
 	const_def
-	const TRNATTR_ITEM1
-	const TRNATTR_ITEM2
-	const TRNATTR_BASEMONEY
-	const TRNATTR_AI_MOVE_WEIGHTS
-	const TRNATTR_AI2
-	const TRNATTR_AI_ITEM_SWITCH
-	const TRNATTR_AI4
+	const TRNATTR_ITEM1           ; 0
+	const TRNATTR_ITEM2           ; 1
+	const TRNATTR_BASEMONEY       ; 2
+	const TRNATTR_AI_MOVE_WEIGHTS ; 3
+	const TRNATTR_AI2             ; 4
+	const TRNATTR_AI_ITEM_SWITCH  ; 5
+	const TRNATTR_AI4             ; 6
 NUM_TRAINER_ATTRIBUTES EQU const_value
 
 ; TRNATTR_AI_MOVE_WEIGHTS bit flags (wEnemyTrainerAIFlags)

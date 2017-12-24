@@ -18,7 +18,7 @@ ReturnFromMapSetupScript:: ; b8000
 	call .CheckNationalParkGate
 	jr z, .nationalparkgate
 
-	call GetMapPermission
+	call GetMapEnvironment
 	cp GATE
 	jr nz, .not_gate
 

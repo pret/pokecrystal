@@ -362,10 +362,10 @@ CheckReplaceKrisSprite: ; 154f7
 	jr z, .surfing
 	cp PLAYER_SURF_PIKA
 	jr z, .surfing
-	call GetMapPermission
+	call GetMapEnvironment
 	cp INDOOR
 	jr z, .checkbiking
-	cp PERM_5
+	cp ENVIRONMENT_5
 	jr z, .checkbiking
 	cp DUNGEON
 	jr z, .checkbiking

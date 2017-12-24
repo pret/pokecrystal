@@ -308,7 +308,7 @@ CheckSpecialPhoneCall:: ; 90136 (24:4136)
 	ret
 
 SpecialCallOnlyWhenOutside: ; 90188
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp TOWN
 	jr z, .outside
 	cp ROUTE

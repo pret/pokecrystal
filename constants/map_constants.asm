@@ -3,17 +3,30 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
-; map permissions (wPermission)
+; map header fields (see maps/map_headers.asm)
+	const_def
+	const MAPHEADER_MAPHEADER2_BANK ; 0
+	const MAPHEADER_TILESET         ; 1
+	const MAPHEADER_ENVIRONMENT     ; 2
+	const MAPHEADER_MAPHEADER2      ; 3
+	const MAPHEADER_MAPHEADER2_HI   ; 4
+	const MAPHEADER_LOCATION        ; 5
+	const MAPHEADER_MUSIC           ; 6
+	const MAPHEADER_PALETTE         ; 7
+	const MAPHEADER_FISHGROUP       ; 8
+NUM_MAPHEADER_ATTRIBUTES EQU const_value
+
+; map environments (wEnvironment)
 const_value SET 1
 	const TOWN
 	const ROUTE
 	const INDOOR
 	const CAVE
-	const PERM_5
+	const ENVIRONMENT_5
 	const GATE
 	const DUNGEON
 
-; map palettes (wPermission)
+; map palettes (wEnvironment)
 	const_def
 	const PALETTE_AUTO
 	const PALETTE_DAY

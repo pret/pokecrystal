@@ -389,7 +389,7 @@ CheckIndoorMap:: ; 22f4
 	ret z
 	cp GATE
 	ret z
-	cp PERM_5
+	cp ENVIRONMENT_5
 	ret
 ; 2309
 
@@ -2154,7 +2154,7 @@ GetMapBank:: ; 2c29
 GetAnyMapBank:: ; 2c31
 	push hl
 	push de
-	ld de, 0
+	ld de, MAPHEADER_MAPHEADER2_BANK
 	call GetAnyMapHeaderMember
 	ld a, c
 	pop de
@@ -2163,7 +2163,7 @@ GetAnyMapBank:: ; 2c31
 ; 2c3d
 
 PartiallyCopyMapHeader:: ; 2c3d
-; Copy second map header bank, tileset, permission, and second map header address
+; Copy second map header bank, tileset, environment, and second map header address
 ; from the current map's map header.
 	ld a, [hROMBank]
 	push af
@@ -2198,18 +2198,18 @@ GetAnyMapBlockdataBank:: ; 2c5b
 	push bc
 
 	push bc
-	ld de, 3 ; second map header pointer
+	ld de, MAPHEADER_MAPHEADER2
 	call GetAnyMapHeaderMember
 	ld l, c
 	ld h, b
 	pop bc
 
 	push hl
-	ld de, 0 ; second map header bank
+	ld de, MAPHEADER_MAPHEADER2_BANK
 	call GetAnyMapHeaderMember
 	pop hl
 
-	ld de, 3 ; blockdata bank
+	ld de, MAPHEADER_MAPHEADER2 ; blockdata bank
 	add hl, de
 	ld a, c
 	call GetFarByte
@@ -2225,7 +2225,7 @@ GetSecondaryMapHeaderPointer:: ; 0x2c7d
 ; returns the current map's secondary map header pointer in hl.
 	push bc
 	push de
-	ld de, 3 ; secondary map header pointer (offset within header)
+	ld de, MAPHEADER_MAPHEADER2
 	call GetMapHeaderMember
 	ld l, c
 	ld h, b
@@ -2234,11 +2234,11 @@ GetSecondaryMapHeaderPointer:: ; 0x2c7d
 	ret
 ; 2c8a
 
-GetMapPermission:: ; 2c8a
+GetMapEnvironment:: ; 2c8a
 	push hl
 	push de
 	push bc
-	ld de, 2 ; permission
+	ld de, MAPHEADER_ENVIRONMENT
 	call GetMapHeaderMember
 	ld a, c
 	pop bc
@@ -2250,11 +2250,11 @@ GetMapPermission:: ; 2c8a
 	ret ; XXX
 ; 2c99
 
-GetAnyMapPermission:: ; 2c99
+GetAnyMapEnvironment:: ; 2c99
 	push hl
 	push de
 	push bc
-	ld de, 2 ; permission
+	ld de, MAPHEADER_ENVIRONMENT
 	call GetAnyMapHeaderMember
 	ld a, c
 	pop bc
@@ -2264,7 +2264,7 @@ GetAnyMapPermission:: ; 2c99
 ; 2ca7
 
 GetAnyMapTileset:: ; 2ca7
-	ld de, 1 ; tileset
+	ld de, MAPHEADER_TILESET
 	call GetAnyMapHeaderMember
 	ld a, c
 	ret
@@ -2276,7 +2276,7 @@ GetWorldMapLocation:: ; 0x2caf
 	push de
 	push bc
 
-	ld de, 5 ; landmark
+	ld de, MAPHEADER_LOCATION
 	call GetAnyMapHeaderMember
 	ld a, c
 
@@ -2289,7 +2289,7 @@ GetWorldMapLocation:: ; 0x2caf
 GetMapHeaderMusic:: ; 2cbd
 	push hl
 	push bc
-	ld de, 6 ; music
+	ld de, MAPHEADER_MUSIC
 	call GetMapHeaderMember
 	ld a, c
 	cp MUSIC_MAHOGANY_MART
@@ -2348,7 +2348,7 @@ GetPhoneServiceTimeOfDayByte:: ; 2d0d
 	push hl
 	push bc
 
-	ld de, 7 ; phone service and time of day
+	ld de, MAPHEADER_PALETTE
 	call GetMapHeaderMember
 	ld a, c
 
@@ -2362,7 +2362,7 @@ GetFishingGroup:: ; 2d19
 	push hl
 	push bc
 
-	ld de, 8 ; fishing group
+	ld de, MAPHEADER_FISHGROUP
 	call GetMapHeaderMember
 	ld a, c
 
