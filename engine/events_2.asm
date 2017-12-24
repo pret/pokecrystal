@@ -50,42 +50,42 @@ LoadScriptBDE:: ; 97c4f
 	ret
 ; 97c5f
 
-CheckFacingTileEvent:: ; 97c5f
+TryTileCollisionEvent:: ; 97c5f
 	call GetFacingTileCoord
 	ld [EngineBuffer1], a
 	ld c, a
-	callba CheckFacingTileForStd
+	farcall CheckFacingTileForStdScript
 	jr c, .done
 
 	call CheckCutTreeTile
 	jr nz, .whirlpool
-	callba TryCutOW
+	farcall TryCutOW
 	jr .done
 
 .whirlpool
 	ld a, [EngineBuffer1]
 	call CheckWhirlpoolTile
 	jr nz, .waterfall
-	callba TryWhirlpoolOW
+	farcall TryWhirlpoolOW
 	jr .done
 
 .waterfall
 	ld a, [EngineBuffer1]
 	call CheckWaterfallTile
 	jr nz, .headbutt
-	callba TryWaterfallOW
+	farcall TryWaterfallOW
 	jr .done
 
 .headbutt
 	ld a, [EngineBuffer1]
 	call CheckHeadbuttTreeTile
 	jr nz, .surf
-	callba TryHeadbuttOW
+	farcall TryHeadbuttOW
 	jr c, .done
 	jr .noevent
 
 .surf
-	callba TrySurfOW
+	farcall TrySurfOW
 	jr nc, .noevent
 	jr .done
 
@@ -111,7 +111,7 @@ RandomEncounter:: ; 97cc0
 	ld hl, StatusFlags2
 	bit 2, [hl] ; bug contest
 	jr nz, .bug_contest
-	callba TryWildEncounter
+	farcall TryWildEncounter
 	jr nz, .nope
 	jr .ok
 
@@ -152,12 +152,12 @@ CanUseSweetScent:: ; 97cfd
 	ld hl, StatusFlags
 	bit 5, [hl]
 	jr nz, .no
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp CAVE
 	jr z, .ice_check
 	cp DUNGEON
 	jr z, .ice_check
-	callba CheckGrassCollision
+	farcall CheckGrassCollision
 	jr nc, .no
 
 .ice_check
@@ -176,7 +176,7 @@ _TryWildEncounter_BugContest: ; 97d23
 	call TryWildEncounter_BugContest
 	ret nc
 	call ChooseWildEncounter_BugContest
-	callba CheckRepelEffect
+	farcall CheckRepelEffect
 	ret
 ; 97d31
 
@@ -242,8 +242,8 @@ TryWildEncounter_BugContest: ; 97d64
 	ld b, 20 percent
 
 .ok
-	callba ApplyMusicEffectOnEncounterRate
-	callba ApplyCleanseTagEffectOnEncounterRate
+	farcall ApplyMusicEffectOnEncounterRate
+	farcall ApplyCleanseTagEffectOnEncounterRate
 	call Random
 	ld a, [hRandomAdd]
 	cp b

@@ -3,7 +3,7 @@ const_value set 2
 	const OLIVINEHOUSEBETA_RHYDON
 
 OlivineHouseBeta_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -48,15 +48,15 @@ OlivineHouseBeta_MapEventHeader:
 	warp_def $7, $2, 4, OLIVINE_CITY
 	warp_def $7, $3, 4, OLIVINE_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, OlivineHouseBetaBookshelf1
-	signpost 1, 1, SIGNPOST_READ, OlivineHouseBetaBookshelf2
+	bg_event 1, 0, BGEVENT_READ, OlivineHouseBetaBookshelf1
+	bg_event 1, 1, BGEVENT_READ, OlivineHouseBetaBookshelf2
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_TEACHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
-	person_event SPRITE_RHYDON, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RhydonScript_0x9c592, -1
+	object_event SPRITE_TEACHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
+	object_event SPRITE_RHYDON, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RhydonScript_0x9c592, -1

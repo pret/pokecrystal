@@ -691,7 +691,7 @@ InitPartyMenuOBPals:
 
 GetBattlemonBackpicPalettePointer:
 	push de
-	callba GetPartyMonDVs
+	farcall GetPartyMonDVs
 	ld c, l
 	ld b, h
 	ld a, [TempBattleMonSpecies]
@@ -701,7 +701,7 @@ GetBattlemonBackpicPalettePointer:
 
 GetEnemyFrontpicPalettePointer:
 	push de
-	callba GetEnemyMonDVs
+	farcall GetEnemyMonDVs
 	ld c, l
 	ld b, h
 	ld a, [TempEnemyMonSpecies]
@@ -1306,11 +1306,11 @@ INCLUDE "gfx/pics/palette_pointers.asm"
 INCLUDE "gfx/trainer_palettes.asm"
 
 LoadMapPals:
-	callba LoadSpecialMapPalette
+	farcall LoadSpecialMapPalette
 	jr c, .got_pals
 
 	; Which palette group is based on whether we're outside or inside
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	and 7
 	ld e, a
 	ld d, 0
@@ -1377,7 +1377,7 @@ LoadMapPals:
 	ld a, BANK(UnknOBPals)
 	call FarCopyWRAM
 
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp TOWN
 	jr z, .outside
 	cp ROUTE
@@ -1411,7 +1411,7 @@ endr
 	dw .OutdoorColors ; ROUTE
 	dw .IndoorColors  ; INDOOR
 	dw .DungeonColors ; CAVE
-	dw .Perm5Colors   ; PERM_5
+	dw .Perm5Colors   ; ENVIRONMENT_5
 	dw .IndoorColors  ; GATE
 	dw .DungeonColors ; DUNGEON
 

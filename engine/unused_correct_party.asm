@@ -107,7 +107,7 @@ CorrectErrorsInPlayerParty: ; unreferenced
 	push bc
 	call .GetLengthOfStringWith6CharCap
 	push de
-	callba CheckStringForErrors
+	farcall CheckStringForErrors
 	pop hl
 	pop bc
 	jr nc, .valid_nickname
@@ -145,7 +145,7 @@ CorrectErrorsInPlayerParty: ; unreferenced
 	push bc
 	call .GetLengthOfStringWith6CharCap
 	push de
-	callba CheckStringForErrors
+	farcall CheckStringForErrors
 	pop hl
 	jr nc, .valid_ot_name
 	ld d, h

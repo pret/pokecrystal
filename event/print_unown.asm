@@ -81,7 +81,7 @@ UnownPrinter: ; 16be4
 .pressed_a
 	ld a, [wJumptableIndex]
 	push af
-	callba PrintUnownStamp
+	farcall PrintUnownStamp
 	call RestartMapMusic
 	pop af
 	ld [wJumptableIndex], a
@@ -140,7 +140,7 @@ UnownPrinter: ; 16be4
 	xor a
 	ld [wBoxAlignment], a
 	ld de, VTiles2
-	predef GetFrontpic
+	predef GetMonFrontpic
 	call .Load2bppToSRAM
 	hlcoord 1, 6
 	xor a
@@ -148,7 +148,7 @@ UnownPrinter: ; 16be4
 	lb bc, 7, 7
 	predef PlaceGraphic
 	ld de, VTiles2 tile $31
-	callba RotateUnownFrontpic
+	farcall RotateUnownFrontpic
 	ret
 
 .Load2bppToSRAM: ; 16cff

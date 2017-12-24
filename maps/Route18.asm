@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE18_YOUNGSTER2
 
 Route18_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -86,14 +86,14 @@ Route18_MapEventHeader:
 	warp_def $6, $2, 3, ROUTE_17_18_GATE
 	warp_def $7, $2, 4, ROUTE_17_18_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 5, 9, SIGNPOST_READ, Route18Sign
+	bg_event 5, 9, BGEVENT_READ, Route18Sign
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperBoris, -1
-	person_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerBird_keeperBob, -1
+	object_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBird_keeperBoris, -1
+	object_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBird_keeperBob, -1

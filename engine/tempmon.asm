@@ -19,7 +19,7 @@ CopyPkmnToTempMon: ; 5084a
 	cp OTPARTYMON
 	jr z, .copywholestruct
 	ld bc, BOXMON_STRUCT_LENGTH
-	callab CopyBoxmonToTempMon
+	callfar CopyBoxmonToTempMon
 	jr .done
 
 .copywholestruct

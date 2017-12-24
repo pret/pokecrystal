@@ -202,13 +202,13 @@ RestartClock: ; 20021 (8:4021)
 	decoord 1, 8
 	ld a, [Buffer4]
 	ld b, a
-	callba PrintDayOfWeek
+	farcall PrintDayOfWeek
 	ld a, [Buffer5]
 	ld b, a
 	ld a, [Buffer6]
 	ld c, a
 	decoord 11, 8
-	callba PrintHoursMins
+	farcall PrintHoursMins
 	ld a, [Buffer2]
 	lb de, " ", " "
 	call .PlaceChars

@@ -2,7 +2,7 @@ const_value set 2
 	const PEWTERSNOOZESPEECHHOUSE_GRAMPS
 
 PewterSnoozeSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -29,14 +29,14 @@ PewterSnoozeSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 5, PEWTER_CITY
 	warp_def $7, $3, 5, PEWTER_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, PewterSnoozeSpeechHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, PewterSnoozeSpeechHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, PewterSnoozeSpeechHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, PewterSnoozeSpeechHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, PewterSnoozeSpeechHouseGrampsScript, -1
+	object_event SPRITE_GRAMPS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterSnoozeSpeechHouseGrampsScript, -1

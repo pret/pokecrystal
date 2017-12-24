@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODPPSPEECHHOUSE_LASS
 
 GoldenrodPPSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -60,16 +60,16 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 7, GOLDENROD_CITY
 	warp_def $7, $3, 7, GOLDENROD_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 1, 0, SIGNPOST_READ, GoldenrodPPSpeechHouseBookshelf1
-	signpost 1, 1, SIGNPOST_READ, GoldenrodPPSpeechHouseBookshelf2
-	signpost 1, 7, SIGNPOST_READ, GoldenrodPPSpeechHouseRadio
+	bg_event 1, 0, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf1
+	bg_event 1, 1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf2
+	bg_event 1, 7, BGEVENT_READ, GoldenrodPPSpeechHouseRadio
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
-	person_event SPRITE_LASS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1
+	object_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
+	object_event SPRITE_LASS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1

@@ -553,7 +553,7 @@ LoadEDTile:: ; 323d
 ; 323f
 
 ; XXX
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 3246
 
@@ -861,7 +861,7 @@ HandleStoneQueue:: ; 3567
 
 	ld l, a
 	push hl
-	call .IsPersonOnWarp
+	call .IsObjectOnWarp
 	pop hl
 	jr nc, .nope
 	ld d, a
@@ -869,7 +869,7 @@ HandleStoneQueue:: ; 3567
 	call .IsObjectInStoneTable
 	jr nc, .nope
 	call CallMapScript
-	callba EnableScriptMode
+	farcall EnableScriptMode
 	scf
 	ret
 
@@ -878,7 +878,7 @@ HandleStoneQueue:: ; 3567
 	ret
 ; 3599
 
-.IsPersonOnWarp: ; 3599
+.IsObjectOnWarp: ; 3599
 	push de
 
 	ld hl, OBJECT_NEXT_MAP_X
@@ -1075,7 +1075,7 @@ _PrepMonFrontpic:: ; 378b
 
 	push hl
 	ld de, VTiles2
-	predef GetFrontpic
+	predef GetMonFrontpic
 	pop hl
 	xor a
 	ld [hGraphicStartTile], a
@@ -1213,7 +1213,7 @@ GetNick:: ; 38a2
 	call CopyBytes
 	pop de
 
-	callab CheckNickErrors
+	callfar CheckNickErrors
 
 	pop bc
 	pop hl

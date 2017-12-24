@@ -153,7 +153,7 @@ UpdateItemDescription: ; 0x244c3
 	cp -1
 	ret z
 	decoord 1, 14
-	callba PrintItemDescription
+	farcall PrintItemDescription
 	ret
 
 INCLUDE "engine/pokepic.asm"
@@ -186,7 +186,7 @@ LevelUpHappinessMod: ; 2709e
 	ld c, HAPPINESS_GAINLEVELATHOME
 
 .ok
-	callab ChangeHappiness
+	callfar ChangeHappiness
 	ret
 
 INCLUDE "data/trainers/trainer_dvs.asm"
@@ -197,14 +197,14 @@ _ReturnToBattle_UseBall: ; 2715c
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .gettutorialbackpic
-	callba GetMonBackpic
+	farcall GetBattleMonBackpic
 	jr .continue
 
 .gettutorialbackpic
-	callba GetTrainerBackpic
+	farcall GetTrainerBackpic
 .continue
-	callba GetMonFrontpic
-	callba _LoadBattleFontsHPBar
+	farcall GetEnemyMonFrontpic
+	farcall _LoadBattleFontsHPBar
 	call GetMemSGBLayout
 	call CloseWindow
 	call LoadStandardMenuDataHeader
@@ -408,7 +408,7 @@ CheckSave:: ; 4cffe
 	ld c, $0
 	ret
 
-INCLUDE "data/maps/map_triggers.asm"
+INCLUDE "data/maps/map_scenes.asm"
 
 _LoadMapPart:: ; 4d15b
 	ld hl, wMisc
@@ -546,10 +546,10 @@ LinkMonStatsScreen: ; 4d319
 	call ClearScreen
 	call ClearBGPalettes
 	call MaxVolume
-	callba LoadTradeScreenBorder
-	callba Link_WaitBGMap
-	callba InitTradeSpeciesList
-	callba SetTradeRoomBGPals
+	farcall LoadTradeScreenBorder
+	farcall Link_WaitBGMap
+	farcall InitTradeSpeciesList
+	farcall SetTradeRoomBGPals
 	call WaitBGMap2
 	ret
 
@@ -974,13 +974,13 @@ INCLUDE "text/phone/extra2.asm"
 SECTION "bank5E", ROMX
 
 _UpdateBattleHUDs:
-	callba DrawPlayerHUD
+	farcall DrawPlayerHUD
 	ld hl, PlayerHPPal
 	call SetHPPal
-	callba DrawEnemyHUD
+	farcall DrawEnemyHUD
 	ld hl, EnemyHPPal
 	call SetHPPal
-	callba FinishBattleAnim
+	farcall FinishBattleAnim
 	ret
 
 

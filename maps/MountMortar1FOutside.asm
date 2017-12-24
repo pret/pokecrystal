@@ -3,7 +3,7 @@ const_value set 2
 	const MOUNTMORTAR1FOUTSIDE_POKE_BALL2
 
 MountMortar1FOutside_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -35,14 +35,14 @@ MountMortar1FOutside_MapEventHeader:
 	warp_def $d, $7, 3, MOUNT_MORTAR_1F_INSIDE
 	warp_def $d, $21, 4, MOUNT_MORTAR_1F_INSIDE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 22, 25, SIGNPOST_ITEM, MountMortar1FOutsideHiddenHyperPotion
+	bg_event 22, 25, BGEVENT_ITEM, MountMortar1FOutsideHiddenHyperPotion
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_POKE_BALL, 15, 13, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FOutsideEther, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
-	person_event SPRITE_POKE_BALL, 18, 31, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, MountMortar1FOutsideRevive, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE
+	object_event SPRITE_POKE_BALL, 15, 13, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FOutsideEther, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
+	object_event SPRITE_POKE_BALL, 18, 31, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FOutsideRevive, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE

@@ -154,7 +154,7 @@ CheckPhoneCall:: ; 90074 (24:4074)
 	ret
 
 .timecheck ; 900a6 (24:40a6)
-	callba CheckReceiveCallTimer
+	farcall CheckReceiveCallTimer
 	ret
 
 CheckPhoneContactTimeOfDay: ; 900ad (24:40ad)
@@ -163,7 +163,7 @@ CheckPhoneContactTimeOfDay: ; 900ad (24:40ad)
 	push de
 	push af
 
-	callba CheckTime
+	farcall CheckTime
 	pop af
 	and MORN | DAY | NITE
 	and c
@@ -201,7 +201,7 @@ ChooseRandomCaller: ; 900bf (24:40bf)
 	ret
 
 GetAvailableCallers: ; 900de (24:40de)
-	callba CheckTime
+	farcall CheckTime
 	ld a, c
 	ld [EngineBuffer1], a
 	ld hl, EngineBuffer3
@@ -308,7 +308,7 @@ CheckSpecialPhoneCall:: ; 90136 (24:4136)
 	ret
 
 SpecialCallOnlyWhenOutside: ; 90188
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp TOWN
 	jr z, .outside
 	cp ROUTE
@@ -471,7 +471,7 @@ UnknownScript_0x90261: ; 0x90261
 RingTwice_StartCall: ; 9026f
 	call .Ring
 	call .Ring
-	callba TrainerRankings_PhoneCalls
+	farcall TrainerRankings_PhoneCalls
 	ret
 ; 9027c
 
@@ -500,7 +500,7 @@ PhoneCall:: ; 9029a
 	ld [PhoneCaller + 1], a
 	call Phone_FirstOfTwoRings
 	call Phone_FirstOfTwoRings
-	callba TrainerRankings_PhoneCalls
+	farcall TrainerRankings_PhoneCalls
 	ret
 ; 902b3
 
@@ -599,7 +599,7 @@ Phone_StartRinging: ; 9033f
 	call PlaySFX
 	call Phone_CallerTextbox
 	call UpdateSprites
-	callba PhoneRing_LoadEDTile
+	farcall PhoneRing_LoadEDTile
 	ret
 ; 90355
 
@@ -609,7 +609,7 @@ HangUp_Wait20Frames: ; 90355
 Phone_Wait20Frames
 	ld c, 20
 	call DelayFrames
-	callba PhoneRing_LoadEDTile
+	farcall PhoneRing_LoadEDTile
 	ret
 ; 90363
 
@@ -725,7 +725,7 @@ NonTrainerCallerNames: ; 903d6
 Phone_GetTrainerName: ; 90423 (24:4423)
 	push hl
 	push bc
-	callba GetTrainerName
+	farcall GetTrainerName
 	pop bc
 	pop hl
 	ret
@@ -733,7 +733,7 @@ Phone_GetTrainerName: ; 90423 (24:4423)
 Phone_GetTrainerClassName: ; 9042e (24:442e)
 	push hl
 	push bc
-	callba GetTrainerClassName
+	farcall GetTrainerClassName
 	pop bc
 	pop hl
 	ret
@@ -754,7 +754,7 @@ GetCallerLocation: ; 90439
 	push bc
 	call GetWorldMapLocation
 	ld e, a
-	callba GetLandmarkName
+	farcall GetLandmarkName
 	pop bc
 	pop de
 	ret

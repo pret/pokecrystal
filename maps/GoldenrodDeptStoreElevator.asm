@@ -1,5 +1,5 @@
 GoldenrodDeptStoreElevator_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -65,12 +65,12 @@ GoldenrodDeptStoreElevator_MapEventHeader:
 	warp_def $3, $1, -1, GOLDENROD_DEPT_STORE_1F
 	warp_def $3, $2, -1, GOLDENROD_DEPT_STORE_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 0, 3, SIGNPOST_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
+	bg_event 0, 3, BGEVENT_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

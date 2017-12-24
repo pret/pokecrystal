@@ -1,8 +1,8 @@
 MobileBattleRoom_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .InitializeMobileBattleRoom
-	maptrigger .DummyTrigger
+	scene_script .InitializeMobileBattleRoom
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
@@ -11,12 +11,12 @@ MobileBattleRoom_MapScriptHeader:
 	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	dotrigger $1
-	domaptrigger POKECENTER_2F, $5
+	setscene $1
+	setmapscene POKECENTER_2F, $5
 	end
 
 MapMobileBattleRoomSignpost0Script:
@@ -75,12 +75,12 @@ MobileBattleRoom_MapEventHeader:
 	warp_def $7, $4, 6, POKECENTER_2F
 	warp_def $7, $5, 6, POKECENTER_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 2, 4, SIGNPOST_UP, MapMobileBattleRoomSignpost0Script
+	bg_event 2, 4, BGEVENT_UP, MapMobileBattleRoomSignpost0Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

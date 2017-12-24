@@ -1,14 +1,14 @@
 ReturnFromMapSetupScript:: ; b8000
 	xor a
 	ld [hBGMapMode], a
-	; For some reson, GameFreak chose to use a callba here instead of just falling through.
+	; For some reson, GameFreak chose to use a farcall here instead of just falling through.
 	; No other function in the game references the function at 2E:400A, here labeled
-	; ReturnFromMapSetupScript.inefficientcallba.
-	callba .inefficientcallba ; this is a waste of 6 ROM bytes and 6 stack bytes
+	; ReturnFromMapSetupScript.inefficient_farcall.
+	farcall .inefficient_farcall ; this is a waste of 6 ROM bytes and 6 stack bytes
 	ret
 ; b800a
 
-.inefficientcallba ; b800a
+.inefficient_farcall ; b800a
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
@@ -18,7 +18,7 @@ ReturnFromMapSetupScript:: ; b8000
 	call .CheckNationalParkGate
 	jr z, .nationalparkgate
 
-	call GetMapPermission
+	call GetMapEnvironment
 	cp GATE
 	jr nz, .not_gate
 
@@ -45,7 +45,7 @@ ReturnFromMapSetupScript:: ; b8000
 	ld [wLandmarkSignTimer], a
 	call LoadMapNameSignGFX
 	call InitMapNameFrame
-	callba HDMATransfer_OnlyTopFourRows
+	farcall HDMATransfer_OnlyTopFourRows
 	ret
 
 .dont_do_map_sign
@@ -113,7 +113,7 @@ PlaceMapNameSign:: ; b8098 (2e:4098)
 	jr nz, .skip2
 	call InitMapNameFrame
 	call PlaceMapNameCenterAlign
-	callba HDMATransfer_OnlyTopFourRows
+	farcall HDMATransfer_OnlyTopFourRows
 .skip2
 	ld a, $80
 	ld a, $70
@@ -151,7 +151,7 @@ InitMapNameFrame: ; b80d3
 PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
 	ld a, [wCurrentLandmark]
 	ld e, a
-	callba GetLandmarkName
+	farcall GetLandmarkName
 	call .GetNameLength
 	ld a, SCREEN_WIDTH
 	sub c
@@ -283,30 +283,30 @@ CheckForHiddenItems: ; b8172
 	ld a, [YCoord]
 	add SCREEN_HEIGHT / 4
 	ld [Buffer3], a
-; Get the pointer for the first signpost header in the map...
-	ld hl, wCurrentMapSignpostHeaderPointer
+; Get the pointer for the first BG event header in the map...
+	ld hl, wCurrMapBGEventHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-; ... before even checking to see if there are any signposts on this map.
-	ld a, [wCurrentMapSignpostCount]
+; ... before even checking to see if there are any BG events on this map.
+	ld a, [wCurrMapBGEventCount]
 	and a
-	jr z, .nosignpostitems
-; For i = 1:wCurrentMapSignpostCount...
+	jr z, .nobgeventitems
+; For i = 1:wCurrMapBGEventCount...
 .loop
-; Store the counter in Buffer2, and store the signpost header pointer in the stack.
+; Store the counter in Buffer2, and store the BG event header pointer in the stack.
 	ld [Buffer2], a
 	push hl
-; Get the Y coordinate of the signpost.
+; Get the Y coordinate of the BG event.
 	call .GetFarByte
 	ld e, a
-; Is the Y coordinate of the signpost on the screen?  If not, go to the next signpost.
+; Is the Y coordinate of the BG event on the screen?  If not, go to the next BG event.
 	ld a, [Buffer3]
 	sub e
 	jr c, .next
 	cp SCREEN_HEIGHT / 2
 	jr nc, .next
-; Is the X coordinate of the signpost on the screen?  If not, go to the next signpost.
+; Is the X coordinate of the BG event on the screen?  If not, go to the next BG event.
 	call .GetFarByte
 	ld d, a
 	ld a, [Buffer4]
@@ -314,9 +314,9 @@ CheckForHiddenItems: ; b8172
 	jr c, .next
 	cp SCREEN_WIDTH / 2
 	jr nc, .next
-; Is this signpost a hidden item?  If not, go to the next signpost.
+; Is this BG event a hidden item?  If not, go to the next BG event.
 	call .GetFarByte
-	cp SIGNPOST_ITEM
+	cp BGEVENT_ITEM
 	jr nz, .next
 ; Has this item already been found?  If not, set off the Itemfinder.
 	ld a, [Buffer1]
@@ -332,16 +332,16 @@ CheckForHiddenItems: ; b8172
 	jr z, .itemnearby
 
 .next
-; Restore the signpost header pointer and increment it by the length of a signpost header.
+; Restore the BG event header pointer and increment it by the length of a BG event header.
 	pop hl
 	ld bc, 5
 	add hl, bc
-; Restore the signpost counter and decrement it.  If it hits zero, there are no hidden items in range.
+; Restore the BG event counter and decrement it.  If it hits zero, there are no hidden items in range.
 	ld a, [Buffer2]
 	dec a
 	jr nz, .loop
 
-.nosignpostitems
+.nobgeventitems
 	xor a
 	ret
 
@@ -360,7 +360,7 @@ CheckForHiddenItems: ; b8172
 
 
 TreeMonEncounter: ; b81ea
-	callba TrainerRankings_TreeEncounters
+	farcall TrainerRankings_TreeEncounters
 
 	xor a
 	ld [TempWildMonSpecies], a

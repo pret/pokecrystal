@@ -2,7 +2,7 @@ const_value set 2
 	const DIGLETTSCAVE_POKEFAN_M
 
 DiglettsCave_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -36,13 +36,13 @@ DiglettsCave_MapEventHeader:
 	warp_def $21, $11, 2, DIGLETTS_CAVE
 	warp_def $3, $3, 4, DIGLETTS_CAVE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 11, 6, SIGNPOST_ITEM, DiglettsCaveHiddenMaxRevive
+	bg_event 11, 6, BGEVENT_ITEM, DiglettsCaveHiddenMaxRevive
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 31, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DiglettsCavePokefanMScript, -1
+	object_event SPRITE_POKEFAN_M, 31, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DiglettsCavePokefanMScript, -1

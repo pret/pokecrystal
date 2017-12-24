@@ -15,10 +15,10 @@ Function16c000: ; 16c000
 	ld [wcfbe], a
 	; Do stuff
 	call MobileSystemSplashScreen_InitGFX ; Load GFX
-	callba SetRAMStateForMobile
-	callba EnableMobile
+	farcall SetRAMStateForMobile
+	farcall EnableMobile
 	call .RunJumptable
-	callba DisableMobile
+	farcall DisableMobile
 	; Prevent this routine from running again
 	; until the next time the syatem is turned on
 	xor a
@@ -37,7 +37,7 @@ Function16c000: ; 16c000
 	ld [wd003], a
 .loop
 	call DelayFrame
-	callba Function10635c
+	farcall Function10635c
 	ld a, [wd002]
 	ld hl, .Jumptable
 	rst JumpTable
@@ -192,7 +192,7 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	ld bc, 8
 	ld a, $5
 	call FarCopyWRAM
-	callba ApplyPals
+	farcall ApplyPals
 	ret
 ; 16c145
 
@@ -331,7 +331,7 @@ Function16c943: ; 16c943
 	ld a, e
 	cp $8
 	jr nz, .asm_16c969
-	callba ApplyPals
+	farcall ApplyPals
 	call SetPalettes
 	ld a, [rSVBK]
 	push af
@@ -361,7 +361,7 @@ Function16ca11: ; 16ca11
 	ld a, [wd003]
 	and a
 	jr nz, .asm_16ca1d
-	callba ApplyPals
+	farcall ApplyPals
 
 .asm_16ca1d
 	ld a, [rSVBK]
@@ -433,7 +433,7 @@ Function16ca11: ; 16ca11
 	ld a, e
 	cp $8
 	jr nz, .asm_16ca28
-	callba ApplyPals
+	farcall ApplyPals
 	call SetPalettes
 	ld a, [rSVBK]
 	push af
@@ -686,7 +686,7 @@ Function16cbd1: ; 16cbd1
 	ld bc, 2
 	ld a, $5
 	call FarCopyWRAM
-	callba ApplyPals
+	farcall ApplyPals
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret

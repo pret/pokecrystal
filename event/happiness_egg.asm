@@ -196,7 +196,7 @@ DayCareStep:: ; 7282
 
 	call Random
 	ld [hl], a
-	callab CheckBreedmonCompatibility
+	callfar CheckBreedmonCompatibility
 	ld a, [wd265]
 	cp 230
 	ld b, -1 + 32 percent

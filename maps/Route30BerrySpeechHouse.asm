@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE30BERRYSPEECHHOUSE_POKEFAN_M
 
 Route30BerrySpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -55,14 +55,14 @@ Route30BerrySpeechHouse_MapEventHeader:
 	warp_def $7, $2, 1, ROUTE_30
 	warp_def $7, $3, 1, ROUTE_30
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, Route30BerrySpeechHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, Route30BerrySpeechHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, Route30BerrySpeechHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, Route30BerrySpeechHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, PokefanMScript_0x196d64, -1
+	object_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x196d64, -1

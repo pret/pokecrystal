@@ -15,7 +15,7 @@ const_value set 2
 	const NATIONALPARK_POKE_BALL2
 
 NationalPark_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -525,29 +525,29 @@ NationalPark_MapEventHeader:
 	warp_def $2f, $a, 1, ROUTE_35_NATIONAL_PARK_GATE
 	warp_def $2f, $b, 2, ROUTE_35_NATIONAL_PARK_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 44, 14, SIGNPOST_READ, MapNationalParkSignpost0Script
-	signpost 31, 27, SIGNPOST_READ, MapNationalParkSignpost1Script
-	signpost 47, 6, SIGNPOST_ITEM, NationalParkHiddenFullHeal
-	signpost 4, 12, SIGNPOST_READ, MapNationalParkSignpost3Script
+	bg_event 44, 14, BGEVENT_READ, MapNationalParkSignpost0Script
+	bg_event 31, 27, BGEVENT_READ, MapNationalParkSignpost1Script
+	bg_event 47, 6, BGEVENT_ITEM, NationalParkHiddenFullHeal
+	bg_event 4, 12, BGEVENT_READ, MapNationalParkSignpost3Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 14
-	person_event SPRITE_LASS, 24, 15, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, NationalParkLassScript, -1
-	person_event SPRITE_POKEFAN_F, 4, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NationalParkPokefanFScript, -1
-	person_event SPRITE_TEACHER, 40, 27, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TeacherScript_0x5c008, -1
-	person_event SPRITE_YOUNGSTER, 41, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NationalParkYoungster1Script, -1
-	person_event SPRITE_YOUNGSTER, 41, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, NationalParkYoungster2Script, -1
-	person_event SPRITE_TEACHER, 41, 17, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NationalParkTeacherScript, -1
-	person_event SPRITE_GROWLITHE, 40, 26, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NationalParkPersian, -1
-	person_event SPRITE_YOUNGSTER, 23, 27, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
-	person_event SPRITE_POKEFAN_F, 29, 18, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
-	person_event SPRITE_POKEFAN_M, 9, 16, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
-	person_event SPRITE_LASS, 14, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerLassKrise, -1
-	person_event SPRITE_POKE_BALL, 12, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, NationalParkParlyzHeal, EVENT_NATIONAL_PARK_PARLYZ_HEAL
-	person_event SPRITE_GAMEBOY_KID, 6, 26, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x5c037, -1
-	person_event SPRITE_POKE_BALL, 43, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, NationalParkTMDig, EVENT_NATIONAL_PARK_TM_DIG
+	object_event SPRITE_LASS, 24, 15, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NationalParkLassScript, -1
+	object_event SPRITE_POKEFAN_F, 4, 14, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPokefanFScript, -1
+	object_event SPRITE_TEACHER, 40, 27, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5c008, -1
+	object_event SPRITE_YOUNGSTER, 41, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster1Script, -1
+	object_event SPRITE_YOUNGSTER, 41, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster2Script, -1
+	object_event SPRITE_TEACHER, 41, 17, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkTeacherScript, -1
+	object_event SPRITE_GROWLITHE, 40, 26, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPersian, -1
+	object_event SPRITE_YOUNGSTER, 23, 27, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
+	object_event SPRITE_POKEFAN_F, 29, 18, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
+	object_event SPRITE_POKEFAN_M, 9, 16, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
+	object_event SPRITE_LASS, 14, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassKrise, -1
+	object_event SPRITE_POKE_BALL, 12, 35, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkParlyzHeal, EVENT_NATIONAL_PARK_PARLYZ_HEAL
+	object_event SPRITE_GAMEBOY_KID, 6, 26, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameboyKidScript_0x5c037, -1
+	object_event SPRITE_POKE_BALL, 43, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkTMDig, EVENT_NATIONAL_PARK_TM_DIG

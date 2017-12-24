@@ -5,19 +5,19 @@ const_value set 2
 	const ECRUTEAKHOUSE_GRAMPS
 
 EcruteakHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_OBJECTS, .InitializeSages
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
 .InitializeSages:
@@ -35,7 +35,7 @@ EcruteakHouse_MapScriptHeader:
 	setevent EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
 	checkitem CLEAR_BELL
 	iftrue .NoClearBell
-	dotrigger $0
+	setscene $0
 .NoClearBell:
 	return
 
@@ -43,27 +43,27 @@ EcruteakHouse_MapScriptHeader:
 	clearevent EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
 	return
 
-EcruteakHouse_XYTrigger1:
+EcruteakHouse_CoordEvent1:
 	checkevent EVENT_RANG_CLEAR_BELL_2
-	iftrue EcruteakHouse_XYTrigger_DontMove
+	iftrue EcruteakHouse_CoordEvent_DontMove
 	applymovement ECRUTEAKHOUSE_SAGE2, MovementData_0x980c7
-	moveperson ECRUTEAKHOUSE_SAGE1, $4, $6
+	moveobject ECRUTEAKHOUSE_SAGE1, $4, $6
 	appear ECRUTEAKHOUSE_SAGE1
 	pause 5
 	disappear ECRUTEAKHOUSE_SAGE2
 	end
 
-EcruteakHouse_XYTrigger2:
+EcruteakHouse_CoordEvent2:
 	checkevent EVENT_RANG_CLEAR_BELL_1
-	iftrue EcruteakHouse_XYTrigger_DontMove
+	iftrue EcruteakHouse_CoordEvent_DontMove
 	applymovement ECRUTEAKHOUSE_SAGE1, MovementData_0x980cc
-	moveperson ECRUTEAKHOUSE_SAGE2, $5, $6
+	moveobject ECRUTEAKHOUSE_SAGE2, $5, $6
 	appear ECRUTEAKHOUSE_SAGE2
 	pause 5
 	disappear ECRUTEAKHOUSE_SAGE1
 	end
 
-EcruteakHouse_XYTrigger_DontMove:
+EcruteakHouse_CoordEvent_DontMove:
 	end
 
 SageScript_0x98062:
@@ -100,7 +100,7 @@ SageScript_0x98062:
 	writetext UnknownText_0x98250
 	waitbutton
 	closetext
-	dotrigger $1
+	setscene $1
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_GAVE_KURT_APRICORNS
@@ -289,17 +289,17 @@ EcruteakHouse_MapEventHeader:
 	warp_def $f, $11, 3, ECRUTEAK_HOUSE
 	warp_def $3, $11, 3, WISE_TRIOS_ROOM
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 0, $7, $4, EcruteakHouse_XYTrigger1
-	xy_trigger 0, $7, $5, EcruteakHouse_XYTrigger2
+	coord_event 0, $7, $4, EcruteakHouse_CoordEvent1
+	coord_event 0, $7, $5, EcruteakHouse_CoordEvent2
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_SAGE, 6, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
-	person_event SPRITE_SAGE, 6, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
-	person_event SPRITE_SAGE, 9, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
-	person_event SPRITE_GRAMPS, 11, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakHouseGrampsScript, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	object_event SPRITE_SAGE, 6, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
+	object_event SPRITE_SAGE, 6, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
+	object_event SPRITE_SAGE, 9, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	object_event SPRITE_GRAMPS, 11, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHouseGrampsScript, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE

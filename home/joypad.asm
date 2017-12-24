@@ -414,7 +414,7 @@ ButtonSound:: ; aaf
 	ld a, [InputType]
 	or a
 	jr z, .input_wait_loop
-	callba _DudeAutoInput_A
+	farcall _DudeAutoInput_A
 
 .input_wait_loop
 	call .blink_cursor

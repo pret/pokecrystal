@@ -14,7 +14,7 @@ ResetBikeFlags:: ; 2e56
 ; 2e5d
 
 ResetFlashIfOutOfCave:: ; 2e5d
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp $2
 	jr z, .asm_2e69
 	cp $1
@@ -105,7 +105,7 @@ FlagAction:: ; 0x2e76
 CheckReceivedDex:: ; 2ead
 	ld de, ENGINE_POKEDEX
 	ld b, CHECK_FLAG
-	callba EngineFlagAction
+	farcall EngineFlagAction
 	ld a, c
 	and a
 	ret

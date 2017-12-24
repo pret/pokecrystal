@@ -200,7 +200,7 @@ CheckPokerusTick:: ; 114e7
 	and a
 	jr z, .done ; not even a day has passed since game start
 	ld b, a
-	callba ApplyPokerusTick
+	farcall ApplyPokerusTick
 .done
 	xor a
 	ret
@@ -282,7 +282,7 @@ DoMysteryGiftIfDayHasPassed: ; 11548
 	ld hl, Buffer1
 	call InitOneDayCountdown
 	call CloseSRAM
-	callba Function1050c8
+	farcall Function1050c8
 
 .not_timed_out
 	ld a, BANK(sMysteryGiftTimer)

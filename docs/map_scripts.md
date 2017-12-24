@@ -3,15 +3,15 @@
 
 ## `const_value set 2`
 
-- **`const` *`MAPNAME_PERSONNAME`***
+- **`const` *`MAPNAME_OBJECTNAME`***
 
 
 ## `MapName_MapScriptHeader:`
 
 
-## `.MapTriggers: db` *N*
+## `.SceneScripts: db` *N*
 
-- **`maptrigger` *script***
+- **`scene_script` *script***
 
 
 ## `.MapCallbacks: db` *N*
@@ -63,34 +63,34 @@ Callback types:
 - **`warp_def` *y*, *x*, *warp_id*, *map***
 
 
-## `.XYTriggers: db` *N*
+## `.CoordEvents: db` *N*
 
-- **`xy_trigger` *id*, *y*, *x*, `$0`, *script*, `$0`, `$0`**
+- **`coord_event` *scene id*, *y*, *x*, *script***
 
 
-## `.Signposts: db` *N*
+## `.BGEvents: db` *N*
 
-- **`signpost` *y*, *x*, *type*, *script***
+- **`bg_event` *y*, *x*, *type*, *script***
 
-Signpost types:
+BG event types:
 
-- **`SIGNPOST_READ`**
+- **`BGEVENT_READ`**
 
-- **`SIGNPOST_UP/DOWN/LEFT/RIGHT`**
+- **`BGEVENT_UP/DOWN/LEFT/RIGHT`**
 
-- **`SIGNPOST_IFSET/IFNOTSET`**
+- **`BGEVENT_IFSET/IFNOTSET`**
 
   **`dw` *event_flag*, *script***
 
-- **`SIGNPOST_ITEM`**
+- **`BGEVENT_ITEM`**
 
   **`dwb` *event_flag*, *item_id***
 
-- **`SIGNPOST_COPY`**
+- **`BGEVENT_COPY`**
 
-## `.PersonEvents: db` *N*
+## `.ObjectEvents: db` *N*
 
-- **`person_event` *sprite*, *y*, *x*, *movement*, *ry*, *rx*, *hour*, *daytime*, *palette*, *type*, *range*, *script*, *event_flag***
+- **`object_event` *sprite*, *y*, *x*, *movement*, *ry*, *rx*, *h1*, *h2*, *palette*, *type*, *range*, *script*, *event_flag***
 
 Movement types:
 
@@ -126,14 +126,14 @@ Movement types:
 
 - **`SPRITEMOVEDATA_LAPRAS`**
 
-Person types:
+Object types:
 
-- **`PERSONTYPE_SCRIPT`**
+- **`OBJECTTYPE_SCRIPT`**
 
-- **`PERSONTYPE_ITEMBALL`**
+- **`OBJECTTYPE_ITEMBALL`**
 
   **`itemball` *item_id***
 
-- **`PERSONTYPE_TRAINER`**
+- **`OBJECTTYPE_TRAINER`**
 
   **`trainer` *event_flag*, *group_id*, *trainer_id*, *seen_text*, *beaten_text*, *loss_text*, *script***

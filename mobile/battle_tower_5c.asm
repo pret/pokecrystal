@@ -1,13 +1,13 @@
 BattleTowerRoomMenu: ; 1700b0
 ; special
 	call InitBattleTowerChallengeRAM
-	callba _BattleTowerRoomMenu
+	farcall _BattleTowerRoomMenu
 	ret
 ; 1700ba
 
 Function1700ba: ; 1700ba
 	call InitBattleTowerChallengeRAM
-	callba Function11811a
+	farcall Function11811a
 	ret
 ; 1700c4
 
@@ -56,7 +56,7 @@ Function1700c4: ; 1700c4
 Function170114: ; 170114
 	call InitBattleTowerChallengeRAM
 	call .Function170121
-	callba Function11805f
+	farcall Function11805f
 	ret
 ; 170121
 
@@ -111,7 +111,7 @@ Function170139: ; 170139
 	call CopyBytes
 	ld bc, PlayerID
 	ld de, PlayerGender
-	callba GetMobileOTTrainerClass
+	farcall GetMobileOTTrainerClass
 	ld de, wBT_OTTempPkmn1CaughtGender
 	ld a, c
 	ld [de], a
@@ -243,15 +243,15 @@ RunBattleTowerTrainer: ; 17024d
 
 	xor a
 	ld [wLinkMode], a
-	callba TrainerRankings_Healings
-	callba HealParty
+	farcall TrainerRankings_Healings
+	farcall HealParty
 	call ReadBTTrainerParty
 	call Clears5_a89a
 
 	predef StartBattle
 
-	callba LoadPokemonData
-	callba HealParty
+	farcall LoadPokemonData
+	farcall HealParty
 	ld a, [wBattleResult]
 	ld [ScriptVar], a
 	and a
@@ -286,7 +286,7 @@ ReadBTTrainerParty: ; 1702b7
 ; with their species names.
 	ld de, wBT_OTTempPkmn1Name ; $c643
 	ld c, PKMN_NAME_LENGTH
-	callba CheckStringForErrors
+	farcall CheckStringForErrors
 	jr nc, .skip_mon_1
 
 	ld a, [wBT_OTTempPkmn1]
@@ -301,7 +301,7 @@ ReadBTTrainerParty: ; 1702b7
 .skip_mon_1
 	ld de, wBT_OTTempPkmn2Name ; $c67e
 	ld c, PKMN_NAME_LENGTH
-	callba CheckStringForErrors
+	farcall CheckStringForErrors
 	jr nc, .skip_mon_2
 	ld a, [wBT_OTTempPkmn2] ; [$c64e]
 	ld [wNamedObjectIndexBuffer], a
@@ -315,7 +315,7 @@ ReadBTTrainerParty: ; 1702b7
 .skip_mon_2
 	ld de, wBT_OTTempPkmn3Name ; $c686 + 51 = $c6b9
 	ld c, PKMN_NAME_LENGTH
-	callba CheckStringForErrors
+	farcall CheckStringForErrors
 	jr nc, .skip_mon_3
 	ld a, [wBT_OTTempPkmn3] ; [$c689]
 	ld [wNamedObjectIndexBuffer], a
@@ -337,7 +337,7 @@ ReadBTTrainerParty: ; 1702b7
 ; Repair the trainer name if needed, then copy it to OTPlayerName
 	ld de, wBT_OTTempName
 	ld c, NAME_LENGTH - 1
-	callba CheckStringForErrors
+	farcall CheckStringForErrors
 	jr nc, .trainer_name_okay
 	ld hl, BT_ChrisName
 	jr .done_trainer_name
@@ -675,7 +675,7 @@ Function1704e1: ; 1704e1
 	bit 7, a
 	jr nz, .done
 	call .DoJumptable
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	jr .loop
 
 .done
@@ -1049,7 +1049,7 @@ Function170729: ; 170729 (5c:4729) BattleTowerAction $1d
 	ret
 
 BattleTower_SaveOptions: ; 170737 (5c:4737) BattleTowerAction $1f
-	callba SaveOptions
+	farcall SaveOptions
 	ret
 
 BattleTower_RandomlyChooseReward: ; 17073e (5c:473e) BattleTowerAction $1e
@@ -1256,7 +1256,7 @@ BattleTower_CheckSaveFileExistsAndIsYours: ; 17089a BattleTowerAction $09
 	ld a, [wSaveFileExists]
 	and a
 	jr z, .nope
-	callba CompareLoadedAndSavedPlayerID
+	farcall CompareLoadedAndSavedPlayerID
 	jr z, .yes
 	xor a
 	jr .nope
@@ -1486,8 +1486,8 @@ Jumptable_1709e7: ; 1709e7
 	ld a, [$a826]
 	ld [wcd31], a
 	call CloseSRAM
-	callba Function11b6b4
-	callba Function17d0f3
+	farcall Function11b6b4
+	farcall Function17d0f3
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -1519,15 +1519,15 @@ Jumptable_1709e7: ; 1709e7
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call GetMapTrigger
+	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_trigger
+	jr z, .no_scene
 	ld a, [de]
 	and a
 	ret nz
 
-.no_trigger
+.no_scene
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -1544,14 +1544,14 @@ Jumptable_1709e7: ; 1709e7
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call GetMapTrigger
+	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_trigger_2
+	jr z, .no_scene_2
 	xor a
 	ld [de], a
 
-.no_trigger_2
+.no_scene_2
 	ret
 ; 170a9c
 
@@ -1611,7 +1611,7 @@ BattleTowerAction_LevelCheck: ; 170ae8 (5c:4ae8) BattleTowerAction $18
 	ld [wcd4f], a
 	xor a
 	ld [ScriptVar], a
-	callba BattleTower_LevelCheck ; level check
+	farcall BattleTower_LevelCheck ; level check
 	ret nc
 	ld a, $5
 	call GetSRAMBank
@@ -1631,7 +1631,7 @@ BattleTowerAction_UbersCheck: ; 170b16 (5c:4b16) BattleTowerAction $19
 	ld [wcd4f], a
 	xor a
 	ld [ScriptVar], a
-	callba BattleTower_UbersCheck
+	farcall BattleTower_UbersCheck
 	ret nc
 	ld a, $5
 	call GetSRAMBank
@@ -1641,7 +1641,7 @@ BattleTowerAction_UbersCheck: ; 170b16 (5c:4b16) BattleTowerAction $19
 	ret
 
 Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
-	callba Function_LoadOpponentTrainerAndPokemons
+	farcall Function_LoadOpponentTrainerAndPokemons
 	ld a, [rSVBK]
 	push af
 	ld a, $3
@@ -1681,7 +1681,7 @@ Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
 	ld [hUsedSpriteIndex], a
 	ld a, [hl]
 	ld [hUsedSpriteTile], a
-	callba GetUsedSprite
+	farcall GetUsedSprite
 	ret
 ; 170b90
 
@@ -1758,7 +1758,7 @@ ret_170bd2: ; 170bd2
 ; 170bd3
 
 SpecialCheckForBattleTowerRules: ; 170bd3
-	callba CheckForBattleTowerRules
+	farcall CheckForBattleTowerRules
 	jr c, .asm_170bde
 	xor a
 	jr .asm_170be0

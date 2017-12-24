@@ -35,7 +35,7 @@ WaitScript:
 	dec [hl]
 	ret nz
 
-	callba Function58b9
+	farcall Function58b9
 
 	ld a, SCRIPT_READ
 	ld [ScriptMode], a
@@ -49,7 +49,7 @@ WaitScriptMovement:
 	bit 7, [hl]
 	ret nz
 
-	callba Function58b9
+	farcall Function58b9
 
 	ld a, SCRIPT_READ
 	ld [ScriptMode], a
@@ -82,10 +82,10 @@ ScriptCommandTable:
 	dw Script_callasm                    ; 0e
 	dw Script_special                    ; 0f
 	dw Script_ptcallasm                  ; 10
-	dw Script_checkmaptriggers           ; 11
-	dw Script_domaptrigger               ; 12
-	dw Script_checktriggers              ; 13
-	dw Script_dotrigger                  ; 14
+	dw Script_checkmapscene              ; 11
+	dw Script_setmapscene                ; 12
+	dw Script_checkscene                 ; 13
+	dw Script_setscene                   ; 14
 	dw Script_writebyte                  ; 15
 	dw Script_addvar                     ; 16
 	dw Script_random                     ; 17
@@ -175,14 +175,14 @@ ENDC
 	dw Script_applymovement              ; 69
 	dw Script_applymovement2             ; 6a
 	dw Script_faceplayer                 ; 6b
-	dw Script_faceperson                 ; 6c
+	dw Script_faceobject                 ; 6c
 	dw Script_variablesprite             ; 6d
 	dw Script_disappear                  ; 6e
 	dw Script_appear                     ; 6f
 	dw Script_follow                     ; 70
 	dw Script_stopfollow                 ; 71
-	dw Script_moveperson                 ; 72
-	dw Script_writepersonxy              ; 73
+	dw Script_moveobject                 ; 72
+	dw Script_writeobjectxy              ; 73
 	dw Script_loademote                  ; 74
 	dw Script_showemote                  ; 75
 	dw Script_spriteface                 ; 76
@@ -277,7 +277,7 @@ Script_special:
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	callba Special
+	farcall Special
 	ret
 
 Script_ptcallasm:
@@ -475,13 +475,13 @@ Script_pokepic:
 	ld a, [ScriptVar]
 .ok
 	ld [CurPartySpecies], a
-	callba Pokepic
+	farcall Pokepic
 	ret
 
 Script_closepokepic:
 ; script command 0x57
 
-	callba ClosePokepic
+	farcall ClosePokepic
 	ret
 
 Script_verticalmenu:
@@ -519,7 +519,7 @@ Script_battletowertext:
 	call SetUpTextBox
 	call GetScriptByte
 	ld c, a
-	callba BattleTowerText
+	farcall BattleTowerText
 	ret
 
 Script_verbosegiveitem:
@@ -615,7 +615,7 @@ Script_pocketisfull:
 Script_specialsound:
 ; script command 0x88
 
-	callba CheckItemPocket
+	farcall CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	cp TM_HM
 	ld de, SFX_GET_TM
@@ -628,7 +628,7 @@ Script_specialsound:
 
 
 GetPocketName:
-	callba CheckItemPocket
+	farcall CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets
@@ -689,7 +689,7 @@ Script_pokemart:
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba OpenMartDialog
+	farcall OpenMartDialog
 	ret
 
 Script_elevator:
@@ -705,7 +705,7 @@ Script_elevator:
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba Elevator
+	farcall Elevator
 	ret c
 	ld a, TRUE
 	ld [ScriptVar], a
@@ -718,7 +718,7 @@ Script_trade:
 
 	call GetScriptByte
 	ld e, a
-	callba NPCTrade
+	farcall NPCTrade
 	ret
 
 Script_phonecall:
@@ -732,13 +732,13 @@ Script_phonecall:
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba PhoneCall
+	farcall PhoneCall
 	ret
 
 Script_hangup:
 ; script command 0x99
 
-	callba HangUp
+	farcall HangUp
 	ret
 
 Script_askforphonenumber:
@@ -750,7 +750,7 @@ Script_askforphonenumber:
 	jr c, .refused
 	call GetScriptByte
 	ld c, a
-	callba AddPhoneNumber
+	farcall AddPhoneNumber
 	jr c, .phonefull
 	xor a
 	jr .done
@@ -771,7 +771,7 @@ Script_describedecoration:
 
 	call GetScriptByte
 	ld b, a
-	callba DescribeDecoration
+	farcall DescribeDecoration
 	ld h, d
 	ld l, e
 	jp ScriptJump
@@ -800,7 +800,7 @@ Script_swarm:
 	ld d, a
 	call GetScriptByte
 	ld e, a
-	callba StoreSwarmMapIndices
+	farcall StoreSwarmMapIndices
 	ret
 
 Script_trainertext:
@@ -897,7 +897,7 @@ Script_encountermusic:
 
 	ld a, [OtherTrainerClass]
 	ld e, a
-	callba PlayTrainerEncounterMusic
+	farcall PlayTrainerEncounterMusic
 	ret
 
 Script_playmapmusic:
@@ -959,7 +959,7 @@ Script_waitsfx:
 Script_warpsound:
 ; script command 0x87
 
-	callba GetWarpSFX
+	farcall GetWarpSFX
 	call PlaySFX
 	ret
 
@@ -979,7 +979,7 @@ Script_cry:
 	call PlayCry
 	ret
 
-GetScriptPerson:
+GetScriptObject:
 	and a ; PLAYER?
 	ret z
 	cp LAST_TALKED
@@ -990,27 +990,27 @@ GetScriptPerson:
 Script_setlasttalked:
 ; script command 0x68
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld [hLastTalked], a
 	ret
 
 Script_applymovement:
 ; script command 0x69
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 ;     data (MovementPointerLabelParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld c, a
 
 ApplyMovement:
 	push bc
 	ld a, c
-	callba SetFlagsForMovement_1
+	farcall SetFlagsForMovement_1
 	pop bc
 
 	push bc
@@ -1032,7 +1032,7 @@ ApplyMovement:
 	ret
 
 SetFlagsForMovement_2:
-	callba _SetFlagsForMovement_2
+	farcall _SetFlagsForMovement_2
 	ret
 
 Script_applymovement2:
@@ -1054,38 +1054,38 @@ Script_faceplayer:
 	ld d, $0
 	ld a, [hLastTalked]
 	ld e, a
-	callba GetRelativeFacing
+	farcall GetRelativeFacing
 	ld a, d
 	add a
 	add a
 	ld e, a
 	ld a, [hLastTalked]
 	ld d, a
-	call ApplyPersonFacing
+	call ApplyObjectFacing
 	ret
 
-Script_faceperson:
+Script_faceobject:
 ; script command 0x6c
 ; parameters:
-;     person1 (SingleByteParam)
-;     person2 (SingleByteParam)
+;     object1 (SingleByteParam)
+;     object2 (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr c, .ok
 	ld a, [hLastTalked]
 .ok
 	ld e, a
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok2
 	ld a, [hLastTalked]
 .ok2
 	ld d, a
 	push de
-	callba GetRelativeFacing
+	farcall GetRelativeFacing
 	pop bc
 	ret c
 	ld a, d
@@ -1093,17 +1093,17 @@ Script_faceperson:
 	add a
 	ld e, a
 	ld d, c
-	call ApplyPersonFacing
+	call ApplyObjectFacing
 	ret
 
 Script_spriteface:
 ; script command 0x76
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 ;     facing (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
 	ld a, [hLastTalked]
@@ -1113,10 +1113,10 @@ Script_spriteface:
 	add a
 	add a
 	ld e, a
-	call ApplyPersonFacing
+	call ApplyObjectFacing
 	ret
 
-ApplyPersonFacing:
+ApplyObjectFacing:
 	ld a, d
 	push de
 	call CheckObjectVisibility
@@ -1179,10 +1179,10 @@ Script_variablesprite:
 Script_appear:
 ; script command 0x6f
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	call _CopyObjectStruct
 	ld a, [hMapObjectIndexBuffer]
 	ld b, 0 ; clear
@@ -1192,10 +1192,10 @@ Script_appear:
 Script_disappear:
 ; script command 0x6e
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
 	ld a, [hLastTalked]
@@ -1204,7 +1204,7 @@ Script_disappear:
 	ld a, [hMapObjectIndexBuffer]
 	ld b, 1 ; set
 	call ApplyEventActionAppearDisappear
-	callba _UpdateSprites
+	farcall _UpdateSprites
 	ret
 
 ApplyEventActionAppearDisappear:
@@ -1230,33 +1230,33 @@ ApplyEventActionAppearDisappear:
 Script_follow:
 ; script command 0x70
 ; parameters:
-;     person2 (SingleByteParam)
-;     person1 (SingleByteParam)
+;     object2 (SingleByteParam)
+;     object1 (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld b, a
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld c, a
-	callba StartFollow
+	farcall StartFollow
 	ret
 
 Script_stopfollow:
 ; script command 0x71
 
-	callba StopFollow
+	farcall StopFollow
 	ret
 
-Script_moveperson:
+Script_moveobject:
 ; script command 0x72
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 ;     x (SingleByteParam)
 ;     y (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld b, a
 	call GetScriptByte
 	add 4
@@ -1264,37 +1264,37 @@ Script_moveperson:
 	call GetScriptByte
 	add 4
 	ld e, a
-	callba CopyDECoordsToMapObject
+	farcall CopyDECoordsToMapObject
 	ret
 
-Script_writepersonxy:
+Script_writeobjectxy:
 ; script command 0x73
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
 	ld a, [hLastTalked]
 .ok
 	ld b, a
-	callba WritePersonXY
+	farcall WriteObjectXY
 	ret
 
 Script_follownotexact:
 ; script command 0x77
 ; parameters:
-;     person2 (SingleByteParam)
-;     person1 (SingleByteParam)
+;     object2 (SingleByteParam)
+;     object1 (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld b, a
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld c, a
-	callba FollowNotExact
+	farcall FollowNotExact
 	ret
 
 Script_loademote:
@@ -1308,20 +1308,20 @@ Script_loademote:
 	ld a, [ScriptVar]
 .not_var_emote
 	ld c, a
-	callba LoadEmote
+	farcall LoadEmote
 	ret
 
 Script_showemote:
 ; script command 0x75
 ; parameters:
 ;     bubble (SingleByteParam)
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 ;     time (DecimalParam)
 
 	call GetScriptByte
 	ld [ScriptVar], a
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr z, .ok
 	ld [hLastTalked], a
@@ -1451,7 +1451,7 @@ Script_catchtutorial:
 	call GetScriptByte
 	ld [BattleType], a
 	call BufferScreen
-	callba CatchTutorial
+	farcall CatchTutorial
 	jp Script_reloadmap
 
 Script_reloadmapafterbattle:
@@ -1471,7 +1471,7 @@ Script_reloadmapafterbattle:
 .notblackedout
 	bit 0, d
 	jr z, .was_wild
-	callba MomTriesToBuySomething
+	farcall MomTriesToBuySomething
 	jr .done
 
 .was_wild
@@ -1480,7 +1480,7 @@ Script_reloadmapafterbattle:
 	jr z, .done
 	ld b, BANK(Script_SpecialBillCall)
 	ld de, Script_SpecialBillCall
-	callba LoadScriptBDE
+	farcall LoadScriptBDE
 .done
 	jp Script_reloadmap
 
@@ -1751,20 +1751,20 @@ Script_priorityjump:
 	set 3, [hl]
 	ret
 
-Script_checktriggers:
+Script_checkscene:
 ; script command 0x13
 
-	call CheckTriggers
-	jr z, .no_triggers
+	call CheckScenes
+	jr z, .no_scene
 	ld [ScriptVar], a
 	ret
 
-.no_triggers
+.no_scene
 	ld a, $ff
 	ld [ScriptVar], a
 	ret
 
-Script_checkmaptriggers:
+Script_checkmapscene:
 ; script command 0x11
 ; parameters:
 ;     map_group (SingleByteParam)
@@ -1774,49 +1774,49 @@ Script_checkmaptriggers:
 	ld b, a
 	call GetScriptByte
 	ld c, a
-	call GetMapTrigger
+	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_triggers
+	jr z, .no_scene
 	ld a, [de]
 	ld [ScriptVar], a
 	ret
 
-.no_triggers
+.no_scene
 	ld a, $ff
 	ld [ScriptVar], a
 	ret
 
-Script_dotrigger:
+Script_setscene:
 ; script command 0x14
 ; parameters:
-;     trigger_id (SingleByteParam)
+;     scene_id (SingleByteParam)
 
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	jr DoTrigger
+	jr DoScene
 
-Script_domaptrigger:
+Script_setmapscene:
 ; script command 0x12
 ; parameters:
 ;     map_group (MapGroupParam)
 ;     map_id (MapIdParam)
-;     trigger_id (SingleByteParam)
+;     scene_id (SingleByteParam)
 
 	call GetScriptByte
 	ld b, a
 	call GetScriptByte
 	ld c, a
-DoTrigger:
-	call GetMapTrigger
+DoScene:
+	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_trigger
+	jr z, .no_scene
 	call GetScriptByte
 	ld [de], a
-.no_trigger
+.no_scene
 	ret
 
 Script_copybytetovar:
@@ -1969,7 +1969,7 @@ Script_writecode:
 
 GetVarAction:
 	ld c, a
-	callba _GetVarAction
+	farcall _GetVarAction
 	ret
 
 Script_checkver:
@@ -2040,7 +2040,7 @@ Script_mapnametotext:
 
 ConvertLandmarkToText:
 	ld e, a
-	callba GetLandmarkName
+	farcall GetLandmarkName
 	ld de, StringBuffer1
 	jp ConvertMemToText
 
@@ -2064,7 +2064,7 @@ Script_trainertotext:
 	ld c, a
 	call GetScriptByte
 	ld b, a
-	callba GetTrainerName
+	farcall GetTrainerName
 	jr ConvertMemToText
 
 Script_name:
@@ -2176,7 +2176,7 @@ Script_givepokeitem:
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop bc
-	callba GivePokeItem
+	farcall GivePokeItem
 	ret
 
 Script_checkpokeitem:
@@ -2190,7 +2190,7 @@ Script_checkpokeitem:
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba CheckPokeItem
+	farcall CheckPokeItem
 	ret
 
 Script_giveitem:
@@ -2263,7 +2263,7 @@ Script_givemoney:
 
 	call GetMoneyAccount
 	call LoadMoneyAmountToMem
-	callba GiveMoney
+	farcall GiveMoney
 	ret
 
 Script_takemoney:
@@ -2274,7 +2274,7 @@ Script_takemoney:
 
 	call GetMoneyAccount
 	call LoadMoneyAmountToMem
-	callba TakeMoney
+	farcall TakeMoney
 	ret
 
 Script_checkmoney:
@@ -2285,7 +2285,7 @@ Script_checkmoney:
 
 	call GetMoneyAccount
 	call LoadMoneyAmountToMem
-	callba CompareMoney
+	farcall CompareMoney
 
 CompareMoneyAction:
 	jr c, .two
@@ -2329,7 +2329,7 @@ Script_givecoins:
 ;     coins (CoinByteParam)
 
 	call LoadCoinAmountToMem
-	callba GiveCoins
+	farcall GiveCoins
 	ret
 
 Script_takecoins:
@@ -2338,7 +2338,7 @@ Script_takecoins:
 ;     coins (CoinByteParam)
 
 	call LoadCoinAmountToMem
-	callba TakeCoins
+	farcall TakeCoins
 	ret
 
 Script_checkcoins:
@@ -2347,7 +2347,7 @@ Script_checkcoins:
 ;     coins (CoinByteParam)
 
 	call LoadCoinAmountToMem
-	callba CheckCoins
+	farcall CheckCoins
 	jr CompareMoneyAction
 
 LoadCoinAmountToMem:
@@ -2365,7 +2365,7 @@ Script_checktime:
 
 	xor a
 	ld [ScriptVar], a
-	callba CheckTime
+	farcall CheckTime
 	call GetScriptByte
 	and c
 	ret z
@@ -2398,7 +2398,7 @@ Script_addcellnum:
 	ld [ScriptVar], a
 	call GetScriptByte
 	ld c, a
-	callba AddPhoneNumber
+	farcall AddPhoneNumber
 	ret nc
 	ld a, TRUE
 	ld [ScriptVar], a
@@ -2413,7 +2413,7 @@ Script_delcellnum:
 	ld [ScriptVar], a
 	call GetScriptByte
 	ld c, a
-	callba DelCellNum
+	farcall DelCellNum
 	ret nc
 	ld a, TRUE
 	ld [ScriptVar], a
@@ -2429,7 +2429,7 @@ Script_checkcellnum:
 	ld [ScriptVar], a
 	call GetScriptByte
 	ld c, a
-	callba CheckCellNum
+	farcall CheckCellNum
 	ret nc
 	ld a, TRUE
 	ld [ScriptVar], a
@@ -2487,7 +2487,7 @@ Script_givepoke:
 	call GetScriptByte
 	call GetScriptByte
 .ok
-	callba GivePoke
+	farcall GivePoke
 	ld a, b
 	ld [ScriptVar], a
 	ret
@@ -2506,7 +2506,7 @@ Script_giveegg:
 	ld [CurPartySpecies], a
 	call GetScriptByte
 	ld [CurPartyLevel], a
-	callba GiveEgg
+	farcall GiveEgg
 	ret nc
 	ld a, 2
 	ld [ScriptVar], a
@@ -2603,7 +2603,7 @@ Script_checkflag:
 	ret
 
 _EngineFlagAction:
-	callba EngineFlagAction
+	farcall EngineFlagAction
 	ret
 
 Script_wildoff:
@@ -2735,7 +2735,7 @@ Script_writecmdqueue:
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	callba WriteCmdQueue ; no need to farcall
+	farcall WriteCmdQueue ; no need to farcall
 	ret
 
 Script_delcmdqueue:
@@ -2747,7 +2747,7 @@ Script_delcmdqueue:
 	ld [ScriptVar], a
 	call GetScriptByte
 	ld b, a
-	callba DelCmdQueue ; no need to farcall
+	farcall DelCmdQueue ; no need to farcall
 	ret c
 	ld a, 1
 	ld [ScriptVar], a
@@ -2794,7 +2794,7 @@ Script_reloadmappart::
 	ld [hBGMapMode], a
 	call OverworldTextModeSwitch
 	call GetMovementPermissions
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	call UpdateSprites
 	ret
 
@@ -2803,11 +2803,11 @@ Script_warpcheck:
 
 	call WarpCheck
 	ret nc
-	callba EnableEvents
+	farcall EnableEvents
 	ret
 
 Script_enableevents: ; unreferenced
-	callba EnableEvents
+	farcall EnableEvents
 	ret
 
 Script_newloadmap:
@@ -2993,9 +2993,9 @@ Script_halloffame:
 
 	ld hl, GameTimerPause
 	res 0, [hl]
-	callba TrainerRankings_HallOfFame
-	callba TrainerRankings_HallOfFame2
-	callba HallOfFame
+	farcall TrainerRankings_HallOfFame
+	farcall TrainerRankings_HallOfFame2
+	farcall HallOfFame
 	ld hl, GameTimerPause
 	set 0, [hl]
 	jr ReturnFromCredits
@@ -3003,7 +3003,7 @@ Script_halloffame:
 Script_credits:
 ; script command 0xa2
 
-	callba RedCredits
+	farcall RedCredits
 ReturnFromCredits:
 	call Script_end_all
 	ld a, $3
@@ -3031,7 +3031,7 @@ Script_wait:
 Script_check_save:
 ; script command 0xa9
 
-	callba CheckSave
+	farcall CheckSave
 	ld a, c
 	ld [ScriptVar], a
 	ret

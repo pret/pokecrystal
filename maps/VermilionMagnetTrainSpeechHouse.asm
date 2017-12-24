@@ -3,7 +3,7 @@ const_value set 2
 	const VERMILIONMAGNETTRAINSPEECHHOUSE_YOUNGSTER
 
 VermilionMagnetTrainSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -42,15 +42,15 @@ VermilionMagnetTrainSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 4, VERMILION_CITY
 	warp_def $7, $3, 4, VERMILION_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, VermilionMagnetTrainSpeechHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, VermilionMagnetTrainSpeechHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, VermilionMagnetTrainSpeechHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, VermilionMagnetTrainSpeechHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VermilionMagnetTrainSpeechHousePokefanFScript, -1
-	person_event SPRITE_YOUNGSTER, 3, 0, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, VermilionMagnetTrainSpeechHouseYoungsterScript, -1
+	object_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionMagnetTrainSpeechHousePokefanFScript, -1
+	object_event SPRITE_YOUNGSTER, 3, 0, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionMagnetTrainSpeechHouseYoungsterScript, -1

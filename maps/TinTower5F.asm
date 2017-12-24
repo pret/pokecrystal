@@ -2,7 +2,7 @@ const_value set 2
 	const TINTOWER5F_POKE_BALL
 
 TinTower5F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -30,14 +30,14 @@ TinTower5F_MapEventHeader:
 	warp_def $e, $2, 3, TIN_TOWER_4F
 	warp_def $f, $11, 4, TIN_TOWER_4F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 14, 16, SIGNPOST_ITEM, TinTower5FHiddenFullRestore
-	signpost 15, 3, SIGNPOST_ITEM, TinTower5FHiddenCarbos
+	bg_event 14, 16, BGEVENT_ITEM, TinTower5FHiddenFullRestore
+	bg_event 15, 3, BGEVENT_ITEM, TinTower5FHiddenCarbos
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower5FRareCandy, EVENT_TIN_TOWER_5F_RARE_CANDY
+	object_event SPRITE_POKE_BALL, 9, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower5FRareCandy, EVENT_TIN_TOWER_5F_RARE_CANDY

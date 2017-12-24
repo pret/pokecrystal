@@ -10,18 +10,18 @@ const_value set 2
 	const ROUTE42_SUICUNE
 
 Route42_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
 Route42SuicuneScript:
@@ -31,9 +31,9 @@ Route42SuicuneScript:
 	applymovement ROUTE42_SUICUNE, MovementData_0x1a9356
 	disappear ROUTE42_SUICUNE
 	pause 10
-	dotrigger $0
+	setscene $0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	domaptrigger ROUTE_36, $1
+	setmapscene ROUTE_36, $1
 	end
 
 TrainerFisherTully1:
@@ -331,26 +331,26 @@ Route42_MapEventHeader:
 	warp_def $9, $1c, 2, MOUNT_MORTAR_1F_OUTSIDE
 	warp_def $7, $2e, 3, MOUNT_MORTAR_1F_OUTSIDE
 
-.XYTriggers:
+.CoordEvents:
 	db 1
-	xy_trigger 1, $e, $18, Route42SuicuneScript
+	coord_event 1, $e, $18, Route42SuicuneScript
 
-.Signposts:
+.BGEvents:
 	db 5
-	signpost 10, 4, SIGNPOST_READ, Route42Sign1
-	signpost 5, 7, SIGNPOST_READ, MtMortarSign1
-	signpost 9, 45, SIGNPOST_READ, MtMortarSign2
-	signpost 8, 54, SIGNPOST_READ, Route42Sign2
-	signpost 11, 16, SIGNPOST_ITEM, Route42HiddenMaxPotion
+	bg_event 10, 4, BGEVENT_READ, Route42Sign1
+	bg_event 5, 7, BGEVENT_READ, MtMortarSign1
+	bg_event 9, 45, BGEVENT_READ, MtMortarSign2
+	bg_event 8, 54, BGEVENT_READ, Route42Sign2
+	bg_event 11, 16, BGEVENT_ITEM, Route42HiddenMaxPotion
 
-.PersonEvents:
+.ObjectEvents:
 	db 9
-	person_event SPRITE_FISHER, 10, 40, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 1, TrainerFisherTully1, -1
-	person_event SPRITE_POKEFAN_M, 9, 51, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
-	person_event SPRITE_SUPER_NERD, 8, 47, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
-	person_event SPRITE_FRUIT_TREE, 16, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a934d, -1
-	person_event SPRITE_FRUIT_TREE, 16, 28, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a934f, -1
-	person_event SPRITE_FRUIT_TREE, 16, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x1a9351, -1
-	person_event SPRITE_POKE_BALL, 4, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
-	person_event SPRITE_POKE_BALL, 8, 33, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
-	person_event SPRITE_SUICUNE, 16, 26, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42
+	object_event SPRITE_FISHER, 10, 40, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherTully1, -1
+	object_event SPRITE_POKEFAN_M, 9, 51, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
+	object_event SPRITE_SUPER_NERD, 8, 47, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
+	object_event SPRITE_FRUIT_TREE, 16, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a934d, -1
+	object_event SPRITE_FRUIT_TREE, 16, 28, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a934f, -1
+	object_event SPRITE_FRUIT_TREE, 16, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a9351, -1
+	object_event SPRITE_POKE_BALL, 4, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
+	object_event SPRITE_POKE_BALL, 8, 33, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
+	object_event SPRITE_SUICUNE, 16, 26, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

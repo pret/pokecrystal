@@ -6,22 +6,22 @@ const_value set 2
 	const RADIOTOWER5F_POKE_BALL
 
 RadioTower5F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 3
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
-	maptrigger .DummyTrigger2
+	scene_script .DummyScene0
+	scene_script .DummyScene1
+	scene_script .DummyScene2
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
-.DummyTrigger2:
+.DummyScene2:
 	end
 
 FakeDirectorScript:
@@ -47,7 +47,7 @@ FakeDirectorScript:
 	buttonsound
 	verbosegiveitem BASEMENT_KEY
 	closetext
-	dotrigger $1
+	setscene $1
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
 	end
 
@@ -78,7 +78,7 @@ TrainerExecutivef1:
 	closetext
 	end
 
-RadioTower5FRocketBossTrigger:
+RadioTower5FRocketBossScene:
 	applymovement PLAYER, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	spriteface RADIOTOWER5F_ROCKET, RIGHT
@@ -115,7 +115,7 @@ RadioTower5FRocketBossTrigger:
 	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
 	disappear RADIOTOWER5F_DIRECTOR
-	moveperson RADIOTOWER5F_DIRECTOR, $c, $0
+	moveobject RADIOTOWER5F_DIRECTOR, $c, $0
 	appear RADIOTOWER5F_DIRECTOR
 	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksIn
 	spriteface PLAYER, RIGHT
@@ -126,8 +126,8 @@ RadioTower5FRocketBossTrigger:
 	writetext RadioTower5FDirectorDescribeClearBellText
 	waitbutton
 	closetext
-	dotrigger $2
-	domaptrigger ECRUTEAK_HOUSE, $0
+	setscene $2
+	setmapscene ECRUTEAK_HOUSE, $0
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump .UselessJump
@@ -429,23 +429,23 @@ RadioTower5F_MapEventHeader:
 	warp_def $0, $0, 1, RADIO_TOWER_4F
 	warp_def $0, $c, 3, RADIO_TOWER_4F
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 0, $3, $0, FakeDirectorScript
-	xy_trigger 1, $5, $10, RadioTower5FRocketBossTrigger
+	coord_event 0, $3, $0, FakeDirectorScript
+	coord_event 1, $5, $10, RadioTower5FRocketBossScene
 
-.Signposts:
+.BGEvents:
 	db 5
-	signpost 0, 3, SIGNPOST_READ, MapRadioTower5FSignpost0Script
-	signpost 0, 11, SIGNPOST_READ, MapRadioTower5FSignpost2Script
-	signpost 0, 15, SIGNPOST_READ, MapRadioTower5FSignpost2Script
-	signpost 1, 16, SIGNPOST_READ, RadioTower5FBookshelf
-	signpost 1, 17, SIGNPOST_READ, RadioTower5FBookshelf
+	bg_event 0, 3, BGEVENT_READ, MapRadioTower5FSignpost0Script
+	bg_event 0, 11, BGEVENT_READ, MapRadioTower5FSignpost2Script
+	bg_event 0, 15, BGEVENT_READ, MapRadioTower5FSignpost2Script
+	bg_event 1, 16, BGEVENT_READ, RadioTower5FBookshelf
+	bg_event 1, 17, BGEVENT_READ, RadioTower5FBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_GENTLEMAN, 6, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Director, -1
-	person_event SPRITE_ROCKET, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 2, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKER, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	person_event SPRITE_POKE_BALL, 5, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL
+	object_event SPRITE_GENTLEMAN, 6, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
+	object_event SPRITE_ROCKET, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event SPRITE_ROCKET_GIRL, 2, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event SPRITE_ROCKER, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	object_event SPRITE_POKE_BALL, 5, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL

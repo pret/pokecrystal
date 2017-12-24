@@ -6,15 +6,15 @@ const_value set 2
 	const BATTLETOWER1F_GRANNY
 
 BattleTower1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .Trigger0
-	maptrigger .Trigger1
+	scene_script .Scene0
+	scene_script .Scene1
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
+.Scene0:
 	writebyte BATTLETOWERACTION_CHECKSAVEFILEISYOURS
 	special BattleTowerAction
 	iffalse .SkipEverything
@@ -38,8 +38,8 @@ BattleTower1F_MapScriptHeader:
 	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
 .SkipEverything:
-	dotrigger $1
-.Trigger1:
+	setscene $1
+.Scene1:
 	end
 
 MapBattleTower1FSignpost0Script:
@@ -81,10 +81,10 @@ Script_ChooseChallenge: ; 0x9e40f
 	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
-	dotrigger $0
+	setscene $0
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	dotrigger $1
+	setscene $1
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ ; set 1, [sBattleTowerSaveFileFlags]
 	special BattleTowerAction
 	special BattleTowerRoomMenu
@@ -105,9 +105,9 @@ Script_ResumeBattleTowerChallenge:
 	special BattleTowerAction
 Script_WalkToBattleTowerElevator:
 	musicfadeout MUSIC_NONE, 8
-	domaptrigger BATTLE_TOWER_BATTLE_ROOM, $0
-	domaptrigger BATTLE_TOWER_ELEVATOR, $0
-	domaptrigger BATTLE_TOWER_HALLWAY, $0
+	setmapscene BATTLE_TOWER_BATTLE_ROOM, $0
+	setmapscene BATTLE_TOWER_ELEVATOR, $0
+	setmapscene BATTLE_TOWER_HALLWAY, $0
 	follow BATTLETOWER1F_RECEPTIONIST, PLAYER
 	applymovement BATTLETOWER1F_RECEPTIONIST, MovementData_BattleTower1FWalkToElevator
 	writebyte BATTLETOWERACTION_0A
@@ -208,10 +208,10 @@ continue:
 	writetext Text_SaveBeforeReentry
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
-	dotrigger $0
+	setscene $0
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	dotrigger $1
+	setscene $1
 	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
 	writebyte BATTLETOWERACTION_12
@@ -803,17 +803,17 @@ BattleTower1F_MapEventHeader:
 	warp_def $9, $8, 4, BATTLE_TOWER_OUTSIDE
 	warp_def $0, $7, 1, BATTLE_TOWER_ELEVATOR
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 6, 6, SIGNPOST_READ, MapBattleTower1FSignpost0Script
+	bg_event 6, 6, BGEVENT_READ, MapBattleTower1FSignpost0Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ReceptionistScript_0x9e3e2, -1
-	person_event SPRITE_YOUNGSTER, 9, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x9e55d, -1
-	person_event SPRITE_COOLTRAINER_F, 9, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerFScript_0x9e568, -1
-	person_event SPRITE_BUG_CATCHER, 3, 1, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, BugCatcherScript_0x9e56b, -1
-	person_event SPRITE_GRANNY, 3, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GrannyScript_0x9e56e, -1
+	object_event SPRITE_RECEPTIONIST, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x9e3e2, -1
+	object_event SPRITE_YOUNGSTER, 9, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x9e55d, -1
+	object_event SPRITE_COOLTRAINER_F, 9, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerFScript_0x9e568, -1
+	object_event SPRITE_BUG_CATCHER, 3, 1, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BugCatcherScript_0x9e56b, -1
+	object_event SPRITE_GRANNY, 3, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x9e56e, -1

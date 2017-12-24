@@ -54,8 +54,8 @@ PredefPointers:: ; 856b
 	add_predef UpdateEnemyHUD
 	add_predef StartBattle
 	add_predef FillInExpBar
-	add_predef GetMonBackpic ; $18
-	add_predef GetMonFrontpic
+	add_predef GetBattleMonBackpic ; $18
+	add_predef GetEnemyMonFrontpic
 	add_predef LearnLevelMoves
 	add_predef FillMoves
 	add_predef EvolveAfterBattle
@@ -90,9 +90,9 @@ PredefPointers:: ; 856b
 	add_predef Predef39
 	add_predef Predef3A
 	add_predef PartyMonItemName
-	add_predef GetFrontpic
-	add_predef GetBackpic
-	add_predef FrontpicPredef
+	add_predef GetMonFrontpic
+	add_predef GetMonBackpic
+	add_predef GetAnimatedFrontpicPredef
 	add_predef GetTrainerPic
 	add_predef DecompressPredef ; $40
 	add_predef CheckTypeMatchup

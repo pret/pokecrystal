@@ -15,7 +15,7 @@ SpecialGiveShuckle: ; 7305
 
 ; Caught data.
 	ld b, 0
-	callba SetGiftPartyMonCaughtData
+	farcall SetGiftPartyMonCaughtData
 
 ; Holding a Berry.
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -71,7 +71,7 @@ SpecialShuckleNick:
 	db "SHUCKIE@"
 
 SpecialReturnShuckle: ; 737e
-	callba SelectMonFromParty
+	farcall SelectMonFromParty
 	jr c, .refused
 
 	ld a, [CurPartySpecies]
@@ -107,7 +107,7 @@ SpecialReturnShuckle: ; 737e
 	jr .CheckOT
 
 .done
-	callba CheckCurPartyMonFainted
+	farcall CheckCurPartyMonFainted
 	jr c, .fainted
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Happiness
@@ -119,7 +119,7 @@ SpecialReturnShuckle: ; 737e
 	jr nc, .HappyToStayWithYou
 	xor a ; take from pc
 	ld [wPokemonWithdrawDepositParameter], a
-	callab RemoveMonFromPartyOrBox
+	callfar RemoveMonFromPartyOrBox
 	ld a, $2
 .HappyToStayWithYou:
 	ld [ScriptVar], a
@@ -141,7 +141,7 @@ SpecialReturnShuckle: ; 737e
 	ret
 
 Special_BillsGrandfather: ; 73f7
-	callba SelectMonFromParty
+	farcall SelectMonFromParty
 	jr c, .cancel
 	ld a, [CurPartySpecies]
 	ld [ScriptVar], a
@@ -167,7 +167,7 @@ Special_DaisyMassage: ; 741d
 
 MassageOrHaircut: ; 7420
 	push hl
-	callba SelectMonFromParty
+	farcall SelectMonFromParty
 	pop hl
 	jr c, .nope
 	ld a, [CurPartySpecies]

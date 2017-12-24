@@ -9,19 +9,19 @@ const_value set 2
 	const ROUTE29_POKE_BALL
 
 Route29_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_OBJECTS, .Tuscany
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
 .Tuscany:
@@ -59,7 +59,7 @@ Route29Tutorial1:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	dotrigger $0
+	setscene $0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -84,7 +84,7 @@ Route29Tutorial2:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	dotrigger $0
+	setscene $0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -93,7 +93,7 @@ Script_RefusedTutorial1:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1b
-	dotrigger $0
+	setscene $0
 	end
 
 Script_RefusedTutorial2:
@@ -101,7 +101,7 @@ Script_RefusedTutorial2:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2b
-	dotrigger $0
+	setscene $0
 	end
 
 CatchingTutorialDudeScript:
@@ -423,23 +423,23 @@ Route29_MapEventHeader:
 	db 1
 	warp_def $1, $1b, 3, ROUTE_29_46_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 1, $8, $35, Route29Tutorial1
-	xy_trigger 1, $9, $35, Route29Tutorial2
+	coord_event 1, $8, $35, Route29Tutorial1
+	coord_event 1, $9, $35, Route29Tutorial2
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 7, 51, SIGNPOST_READ, Route29Sign1
-	signpost 5, 3, SIGNPOST_READ, Route29Sign2
+	bg_event 7, 51, BGEVENT_READ, Route29Sign1
+	bg_event 5, 3, BGEVENT_READ, Route29Sign2
 
-.PersonEvents:
+.ObjectEvents:
 	db 8
-	person_event SPRITE_COOLTRAINER_M, 12, 50, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CatchingTutorialDudeScript, -1
-	person_event SPRITE_YOUNGSTER, 16, 27, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route29YoungsterScript, -1
-	person_event SPRITE_TEACHER, 11, 15, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route29TeacherScript, -1
-	person_event SPRITE_FRUIT_TREE, 2, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route29FruitTree, -1
-	person_event SPRITE_FISHER, 3, 25, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Route29FisherScript, -1
-	person_event SPRITE_COOLTRAINER_M, 4, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x1a1031, -1
-	person_event SPRITE_TEACHER, 12, 29, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
-	person_event SPRITE_POKE_BALL, 2, 48, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route29Potion, EVENT_ROUTE_29_POTION
+	object_event SPRITE_COOLTRAINER_M, 12, 50, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CatchingTutorialDudeScript, -1
+	object_event SPRITE_YOUNGSTER, 16, 27, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route29YoungsterScript, -1
+	object_event SPRITE_TEACHER, 11, 15, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route29TeacherScript, -1
+	object_event SPRITE_FRUIT_TREE, 2, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route29FruitTree, -1
+	object_event SPRITE_FISHER, 3, 25, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route29FisherScript, -1
+	object_event SPRITE_COOLTRAINER_M, 4, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x1a1031, -1
+	object_event SPRITE_TEACHER, 12, 29, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
+	object_event SPRITE_POKE_BALL, 2, 48, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route29Potion, EVENT_ROUTE_29_POTION

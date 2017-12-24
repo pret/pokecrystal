@@ -1,5 +1,5 @@
 RedsHouse2F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -33,13 +33,13 @@ RedsHouse2F_MapEventHeader:
 	db 1
 	warp_def $0, $7, 3, REDS_HOUSE_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 5, 3, SIGNPOST_READ, RedsHouse2FN64Script
-	signpost 1, 0, SIGNPOST_READ, RedsHouse2FPCScript
+	bg_event 5, 3, BGEVENT_READ, RedsHouse2FN64Script
+	bg_event 1, 0, BGEVENT_READ, RedsHouse2FPCScript
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

@@ -25,7 +25,7 @@ LoadSpecialMapPalette: ; 494ac
 	ret
 
 .ice_path
-	ld a, [wPermission] ; permission
+	ld a, [wEnvironment]
 	and $7
 	cp INDOOR ; Hall of Fame
 	jr z, .do_nothing

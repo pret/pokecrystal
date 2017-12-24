@@ -3,7 +3,7 @@ const_value set 2
 	const OLIVINEPUNISHMENTSPEECHHOUSE_LASS
 
 OlivinePunishmentSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -48,15 +48,15 @@ OlivinePunishmentSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 5, OLIVINE_CITY
 	warp_def $7, $3, 5, OLIVINE_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, OlivinePunishmentSpeechHouseBookshelf1
-	signpost 1, 1, SIGNPOST_READ, OlivinePunishmentSpeechHouseBookshelf2
+	bg_event 1, 0, BGEVENT_READ, OlivinePunishmentSpeechHouseBookshelf1
+	bg_event 1, 1, BGEVENT_READ, OlivinePunishmentSpeechHouseBookshelf2
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 2, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDad, -1
-	person_event SPRITE_LASS, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDaughter, -1
+	object_event SPRITE_POKEFAN_M, 2, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDad, -1
+	object_event SPRITE_LASS, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDaughter, -1

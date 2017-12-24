@@ -2,10 +2,10 @@ const_value set 2
 	const MOUNTMOON_SILVER
 
 MountMoon_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .RivalEncounter
-	maptrigger .DummyTrigger
+	scene_script .RivalEncounter
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
@@ -14,7 +14,7 @@ MountMoon_MapScriptHeader:
 	priorityjump .RivalBattle
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .RivalBattle:
@@ -66,7 +66,7 @@ MountMoon_MapScriptHeader:
 	closetext
 	applymovement MOUNTMOON_SILVER, MountMoonSilverMovementAfter
 	disappear MOUNTMOON_SILVER
-	dotrigger $1
+	setscene $1
 	setevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	playmapmusic
 	end
@@ -175,12 +175,12 @@ MountMoon_MapEventHeader:
 	warp_def $3, $19, 3, MOUNT_MOON
 	warp_def $d, $19, 4, MOUNT_MOON
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_SILVER, 3, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	object_event SPRITE_SILVER, 3, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

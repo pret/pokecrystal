@@ -48,7 +48,7 @@ Function8b35d: ; 8b35d
 
 Function8b363: ; 8b363
 	push bc
-	callba Mobile_AlwaysReturnNotCarry
+	farcall Mobile_AlwaysReturnNotCarry
 	pop bc
 	ret
 ; 8b36c

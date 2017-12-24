@@ -25,7 +25,7 @@ const_value SET 1
 	const PAL_OW_TREE   ; 6
 	const PAL_OW_ROCK   ; 7
 
-; person_events set bit 3 so as not to use the sprite's default palette
+; object_events set bit 3 so as not to use the sprite's default palette
 const_value set (1 << 3)
 	const PAL_NPC_RED    ; 8
 	const PAL_NPC_BLUE   ; 9
@@ -138,25 +138,25 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const STEP_TYPE_18              ; 18
 	const STEP_TYPE_SKYFALL_TOP     ; 19
 
-; PersonActionPairPointers indexes (see engine/map_object_action.asm)
+; ObjectActionPairPointers indexes (see engine/map_object_action.asm)
 	const_def
-	const PERSON_ACTION_00           ; 00
-	const PERSON_ACTION_STAND        ; 01
-	const PERSON_ACTION_STEP         ; 02
-	const PERSON_ACTION_BUMP         ; 03
-	const PERSON_ACTION_SPIN         ; 04
-	const PERSON_ACTION_SPIN_FLICKER ; 05
-	const PERSON_ACTION_FISHING      ; 06
-	const PERSON_ACTION_SHADOW       ; 07
-	const PERSON_ACTION_EMOTE        ; 08
-	const PERSON_ACTION_BIG_SNORLAX  ; 09
-	const PERSON_ACTION_BOUNCE       ; 0a
-	const PERSON_ACTION_WEIRD_TREE   ; 0b
-	const PERSON_ACTION_BIG_LAPRAS   ; 0c
-	const PERSON_ACTION_BIG_DOLL     ; 0d
-	const PERSON_ACTION_BOULDER_DUST ; 0e
-	const PERSON_ACTION_GRASS_SHAKE  ; 0f
-	const PERSON_ACTION_SKYFALL      ; 10
+	const OBJECT_ACTION_00           ; 00
+	const OBJECT_ACTION_STAND        ; 01
+	const OBJECT_ACTION_STEP         ; 02
+	const OBJECT_ACTION_BUMP         ; 03
+	const OBJECT_ACTION_SPIN         ; 04
+	const OBJECT_ACTION_SPIN_FLICKER ; 05
+	const OBJECT_ACTION_FISHING      ; 06
+	const OBJECT_ACTION_SHADOW       ; 07
+	const OBJECT_ACTION_EMOTE        ; 08
+	const OBJECT_ACTION_BIG_SNORLAX  ; 09
+	const OBJECT_ACTION_BOUNCE       ; 0a
+	const OBJECT_ACTION_WEIRD_TREE   ; 0b
+	const OBJECT_ACTION_BIG_LAPRAS   ; 0c
+	const OBJECT_ACTION_BIG_DOLL     ; 0d
+	const OBJECT_ACTION_BOULDER_DUST ; 0e
+	const OBJECT_ACTION_GRASS_SHAKE  ; 0f
+	const OBJECT_ACTION_SKYFALL      ; 10
 
 ; Facings indexes (see data/facings.asm)
 	const_def

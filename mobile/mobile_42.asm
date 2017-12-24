@@ -175,7 +175,7 @@ Function1080b7: ; 1080b7
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 
 	call DelayFrame
 
@@ -237,7 +237,7 @@ Function108157: ; 108157
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	xor a
 	ld hl, wSpriteAnimDict
 	ld [hli], a
@@ -296,7 +296,7 @@ MobileTradeAnim_GetFrontpic: ; 1081e9
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef GetFrontpic
+	predef GetMonFrontpic
 	ret
 ; 108201
 
@@ -309,7 +309,7 @@ Function108201: ; 108201
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	ret
 ; 108219
 
@@ -361,8 +361,8 @@ MobileTradeAnim_JumptableLoop: ; 10824b
 	ld [hWY], a
 	call LoadStandardFont
 	call LoadFontsBattleExtra
-	callba MobileFunc_106462
-	callba Function106464
+	farcall MobileFunc_106462
+	farcall Function106464
 	scf
 	ret
 ; 10827b
@@ -433,7 +433,7 @@ EndMobileTradeAnim: ; 1082c6
 WaitMobileTradeSpriteAnims: ; 1082cc
 .loop
 	push bc
-	callba PlaySpriteAnimations
+	farcall PlaySpriteAnimations
 	pop bc
 	call DelayFrame
 	dec c
@@ -443,9 +443,9 @@ WaitMobileTradeSpriteAnims: ; 1082cc
 
 Function1082db: ; 1082db
 .loop
-	callba PlaySpriteAnimations
-	callba SetUpPokeAnim
-	callba HDMATransferTileMapToWRAMBank3
+	farcall PlaySpriteAnimations
+	farcall SetUpPokeAnim
+	farcall HDMATransferTileMapToWRAMBank3
 	jr nc, .loop
 	ret
 ; 1082f0
@@ -464,7 +464,7 @@ Function1082fa: ; 1082fa
 	call Function108b78
 	push hl
 	push bc
-	callba PlaySpriteAnimations
+	farcall PlaySpriteAnimations
 	pop bc
 	pop hl
 	call DelayFrame
@@ -552,7 +552,7 @@ MobileTradeAnim_ShowOTMonFromTrade: ; 10839b
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -687,7 +687,7 @@ MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, VTiles0
@@ -756,7 +756,7 @@ MobileTradeAnim_GetOddEgg: ; 108589
 	ld de, VTiles2
 	call Function108201
 	call EnableLCD
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, VTiles0
@@ -813,7 +813,7 @@ MobileTradeAnim_GetOddEgg: ; 108589
 ; 108638
 
 MobileTradeAnim_02: ; 108638
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -849,7 +849,7 @@ MobileTradeAnim_02: ; 108638
 ; 108689
 
 MobileTradeAnim_10: ; 108689
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -1097,7 +1097,7 @@ MobileTradeAnim_GetTrademon1: ; 108863
 	jr .loop
 
 .done
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	depixel 9, 10, 2, 0
 	ld a, SPRITE_ANIM_INDEX_MOBILE_25
 	call _InitSpriteAnimStruct
@@ -1189,7 +1189,7 @@ MobileTradeAnim_GetTrademon3: ; 10890a
 MobileTradeAnim_0f: ; 108919
 	ld c, 40
 	call WaitMobileTradeSpriteAnims
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -1571,7 +1571,7 @@ Function108b98: ; 108b98
 ; 108bbd
 
 MobileTradeAnim_DeleteSprites: ; 108bbd
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	call ClearSprites
 	ret
 ; 108bc7
@@ -1590,7 +1590,7 @@ Function108bc7: ; 108bc7 (42:4bc7)
 	ret
 
 .delete
-	callba DeinitializeSprite
+	farcall DeinitializeSprite
 	ret
 
 Function108be0: ; 108be0 (42:4be0)

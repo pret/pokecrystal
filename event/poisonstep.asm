@@ -132,8 +132,8 @@ DoPoisonStep:: ; 505da
 	and %10
 	jr z, .mon_not_fainted
 	ld c, HAPPINESS_POISONFAINT
-	callba ChangeHappiness
-	callba GetPartyNick
+	farcall ChangeHappiness
+	farcall GetPartyNick
 	ld hl, .PoisonFaintText
 	call PrintText
 

@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE6F_SUPER_NERD
 
 GoldenrodDeptStore6F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -159,19 +159,19 @@ GoldenrodDeptStore6F_MapEventHeader:
 	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 	warp_def $0, $d, 1, GOLDENROD_DEPT_STORE_ROOF
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 6
-	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore6FDirectory
-	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore6FElevatorButton
-	signpost 1, 8, SIGNPOST_UP, GoldenrodVendingMachine
-	signpost 1, 9, SIGNPOST_UP, GoldenrodVendingMachine
-	signpost 1, 10, SIGNPOST_UP, GoldenrodVendingMachine
-	signpost 1, 11, SIGNPOST_UP, GoldenrodVendingMachine
+	bg_event 0, 14, BGEVENT_READ, GoldenrodDeptStore6FDirectory
+	bg_event 0, 3, BGEVENT_READ, GoldenrodDeptStore6FElevatorButton
+	bg_event 1, 8, BGEVENT_UP, GoldenrodVendingMachine
+	bg_event 1, 9, BGEVENT_UP, GoldenrodVendingMachine
+	bg_event 1, 10, BGEVENT_UP, GoldenrodVendingMachine
+	bg_event 1, 11, BGEVENT_UP, GoldenrodVendingMachine
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_LASS, 2, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore6FLassScript, -1
-	person_event SPRITE_SUPER_NERD, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore6FSuperNerdScript, -1
+	object_event SPRITE_LASS, 2, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore6FLassScript, -1
+	object_event SPRITE_SUPER_NERD, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore6FSuperNerdScript, -1

@@ -432,7 +432,7 @@ Function1143b7: ; 1143b7
 	pop hl
 	push af
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -682,7 +682,7 @@ Function1144d1: ; 1144d1
 .asm_11451c
 	pop hl
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -699,7 +699,7 @@ Function1144d1: ; 1144d1
 .asm_114537
 	ld hl, $dc06
 	ld a, [hl]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, $dc09
@@ -710,7 +710,7 @@ Function1144d1: ; 1144d1
 	ld a, d
 	or e
 	jr z, .asm_114559
-	ld hl, wCurrMapTriggerCount
+	ld hl, wCurrMapSceneScriptCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1275,7 +1275,7 @@ Function114843: ; 114843
 Function114867: ; 114867
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1303,7 +1303,7 @@ Function114867: ; 114867
 	inc e
 	call z, Function1148b9
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1334,7 +1334,7 @@ Function114867: ; 114867
 
 Function1148b9: ; 1148b9
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -1344,7 +1344,7 @@ Function1148b9: ; 1148b9
 Function1148c2: ; 1148c2
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1397,7 +1397,7 @@ Function1148c2: ; 1148c2
 	inc e
 	call z, Function114944
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1436,7 +1436,7 @@ Function1148c2: ; 1148c2
 
 Function114944: ; 114944
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -1446,7 +1446,7 @@ Function114944: ; 114944
 Function11494d: ; 11494d
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1491,7 +1491,7 @@ Function11494d: ; 11494d
 	inc e
 	call z, Function1149c3
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1530,7 +1530,7 @@ Function11494d: ; 11494d
 
 Function1149c3: ; 1149c3
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -1540,7 +1540,7 @@ Function1149c3: ; 1149c3
 Function1149cc: ; 1149cc
 	ld hl, $dc06
 	ld a, [hl]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	push de
@@ -1559,7 +1559,7 @@ Function1149cc: ; 1149cc
 	ld [hl], d
 	dec hl
 	ld [hl], e
-	ld hl, wCurrMapTriggerCount
+	ld hl, wCurrMapSceneScriptCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1572,7 +1572,7 @@ Function1149cc: ; 1149cc
 	inc e
 	call z, Function114a0f
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -1590,7 +1590,7 @@ Function1149cc: ; 1149cc
 
 Function114a0f: ; 114a0f
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -1903,7 +1903,7 @@ endr
 .asm_114b96
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -1954,7 +1954,7 @@ Function114bbc: ; 114bbc
 	jr z, .asm_114bff
 	pop hl
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2187,7 +2187,7 @@ endr
 .asm_114d11
 	pop hl
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2497,7 +2497,7 @@ Function114e62: ; 114e62
 Function114ea0: ; 114ea0
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2522,7 +2522,7 @@ Function114ea0: ; 114ea0
 	inc e
 	call z, Function114ee0
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2544,7 +2544,7 @@ Function114ea0: ; 114ea0
 
 Function114ee0: ; 114ee0
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -2787,7 +2787,7 @@ Function115020: ; 115020
 	push hl
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -2814,7 +2814,7 @@ Function115020: ; 115020
 
 .asm_115046
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -2834,7 +2834,7 @@ Function115020: ; 115020
 
 Function115059: ; 115059
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -3003,7 +3003,7 @@ Function1150b3: ; 1150b3
 Function115136: ; 115136
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -3030,7 +3030,7 @@ Function115136: ; 115136
 
 .asm_11515d
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3050,7 +3050,7 @@ Function115136: ; 115136
 
 Function115170: ; 115170
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -3060,7 +3060,7 @@ Function115170: ; 115170
 Function115179: ; 115179
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -3155,7 +3155,7 @@ Function115179: ; 115179
 	inc e
 	call z, Function11520e
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3171,7 +3171,7 @@ Function115179: ; 115179
 
 Function11520e: ; 11520e
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -3182,7 +3182,7 @@ Function115217: ; 115217
 	push hl
 	ld hl, $dc06
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
@@ -3221,7 +3221,7 @@ Function115217: ; 115217
 
 .asm_115252
 	ld hl, $dc06
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -3267,7 +3267,7 @@ Function115217: ; 115217
 
 Function115286: ; 115286
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -3672,7 +3672,7 @@ Function1153d2: ; 1153d2
 	ld [de], a
 	ld hl, RightOrnament
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -3681,7 +3681,7 @@ Function1153d2: ; 1153d2
 	ld hl, $ddc8
 	call Function115d6a
 	ld hl, RightOrnament
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
@@ -3911,7 +3911,7 @@ Function1155d1: ; 1155d1
 
 Function11560a: ; 11560a
 	ld a, [$dc06]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld a, [$dc17]
 	ld [$dc00], a
 	ld [hFF8C], a
@@ -3986,16 +3986,16 @@ Function11560a: ; 11560a
 	inc hl
 	ld [hl], d
 	pop bc
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
-	ld hl, wCurrMapTriggerCount
+	ld hl, wCurrMapSceneScriptCount
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld hl, $dc24
 	call Function115d6a
-	ld hl, wCurrMapTriggerCount
+	ld hl, wCurrMapSceneScriptCount
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -4008,7 +4008,7 @@ Function11560a: ; 11560a
 	jr nz, .asm_11564d
 
 .asm_1156a9
-	ld a, [wCurrentMapSignpostCount]
+	ld a, [wCurrMapBGEventCount]
 	ld [$dc06], a
 	xor a
 	ret
@@ -4354,9 +4354,9 @@ Function11581e: ; 11581e
 	ld [wCurrMapCallbackHeaderPointer], a
 	pop bc
 	pop hl
-	ld hl, wCurrMapTriggerCount
+	ld hl, wCurrMapSceneScriptCount
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -4364,8 +4364,8 @@ Function11581e: ; 11581e
 	ld d, [hl]
 	ld hl, PartyMon5Speed
 	call Function115d6a
-	ld hl, wCurrMapTriggerCount
-	ld a, [wCurrentMapSignpostCount]
+	ld hl, wCurrMapSceneScriptCount
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -4921,9 +4921,9 @@ Function115b00: ; 115b00
 	ld [wCurrMapCallbackHeaderPointer], a
 	pop bc
 	pop hl
-	ld hl, wCurrMapTriggerCount
+	ld hl, wCurrMapSceneScriptCount
 	ld a, [hli]
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
@@ -4931,8 +4931,8 @@ Function115b00: ; 115b00
 	ld d, [hl]
 	ld hl, $dc26
 	call Function115d6a
-	ld hl, wCurrMapTriggerCount
-	ld a, [wCurrentMapSignpostCount]
+	ld hl, wCurrMapSceneScriptCount
+	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld a, e
 	ld [hli], a
@@ -5312,7 +5312,7 @@ Function115d6a: ; 115d6a
 
 Function115d77: ; 115d77
 	push bc
-	ld bc, wCurrentMapSignpostCount
+	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
@@ -6838,7 +6838,7 @@ Unknown_117356: ; 117356
 SECTION "Mobile Stadium", ROMX
 
 Special_GiveOddEgg: ; 117656
-	callba GiveOddEgg
+	farcall GiveOddEgg
 	ret
 
 ; 11765d
@@ -6898,9 +6898,9 @@ Function117699: ; 117699 (45:7699)
 	call ByteFill
 	call ClearBGPalettes
 	call ClearSprites
-	callba Function171c87
-	callba ReloadMapPart
-	callba ClearSpriteAnims
+	farcall Function171c87
+	farcall ReloadMapPart
+	farcall ClearSpriteAnims
 	ret
 
 Function1176ee: ; 1176ee (45:76ee)
@@ -6910,12 +6910,12 @@ Function1176ee: ; 1176ee (45:76ee)
 	bit 7, a
 	jr nz, .quit
 	call Function117719
-	callba PlaySpriteAnimations
-	callba ReloadMapPart
+	farcall PlaySpriteAnimations
+	farcall ReloadMapPart
 	jr .loop
 
 .quit
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call ClearBGPalettes
 	call ClearScreen
 	call ClearSprites
@@ -6945,7 +6945,7 @@ Jumptable_117728: ; 117728 (45:7728)
 
 
 Function117738: ; 117738 (45:7738)
-	callba Function171ccd
+	farcall Function171ccd
 	depixel 6, 3
 	ld a, $1d
 	call _InitSpriteAnimStruct
@@ -7004,7 +7004,7 @@ Function117764: ; 117764 (45:7764)
 	ret
 
 Function117764_select: ; 1177a5 (45:77a5)
-	callba Function171cf0
+	farcall Function171cf0
 	ret
 
 Function117764_start: ; 1177ac (45:77ac)
@@ -7176,7 +7176,7 @@ Function1178aa: ; 1178aa (45:78aa)
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	hlcoord 16, 8
 	ld de, YessNoString_1179c5
 	call PlaceString
@@ -7278,7 +7278,7 @@ Function117984: ; 117984 (45:7984)
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	hlcoord 1, 14
 	ld de, NotAPokemonPasswordString
 	call PlaceString
@@ -7379,8 +7379,8 @@ Function117a94: ; 0x117a94
 	ld [wcf66], a
 	call ClearBGPalettes
 	call ClearSprites
-	callba Function172e78
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall Function172e78
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 
 ; 0x117ab4
@@ -7388,9 +7388,9 @@ Function117a94: ; 0x117a94
 Function117ab4: ; 0x117ab4
 	call ClearBGPalettes
 	call ClearSprites
-	callba Function172e78
-	callba Function172eb9
-	callba ReloadMapPart
+	farcall Function172e78
+	farcall Function172eb9
+	farcall ReloadMapPart
 	ret
 
 ; 0x117acd
@@ -7401,7 +7401,7 @@ Function117acd: ; 0x117acd
 	bit 7, a
 	jr nz, .asm_117ae2
 	call Function117ae9
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	jr Function117acd
 
 .asm_117ae2
@@ -7431,7 +7431,7 @@ Function117ae9: ; 0x117ae9
 	dw Function117c4a
 
 Function117b06:
-	callba Function172eb9
+	farcall Function172eb9
 	ld a, $10
 	ld [wcf64], a
 	jp MobileStudium_JumptableIncrement
@@ -7508,13 +7508,13 @@ Function117b4f:
 	jr nz, .b_button
 	call ExitMenu
 	call ExitMenu
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	jp MobileStudium_JumptableIncrement
 
 .b_button
 	call ExitMenu
 	call ExitMenu
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld a, $80
 	ld [wJumptableIndex], a
 	ret
@@ -7523,7 +7523,7 @@ Function117bb6:
 	call Function117c89
 	ld a, $1
 	ld [hBGMapMode], a
-	callba Function118284
+	farcall Function118284
 	call ClearSprites
 	ld a, [wc300]
 	and a
@@ -7533,7 +7533,7 @@ Function117bb6:
 .asm_117bd0
 	ld a, $2
 	ld [wc303], a
-	callba DisplayMobileError
+	farcall DisplayMobileError
 	ld a, $80
 	ld [wJumptableIndex], a
 	ret
@@ -7580,7 +7580,7 @@ Function117bb6:
 .asm_117c20
 	pop af
 	ld [rSVBK], a
-	callba Function172eb9
+	farcall Function172eb9
 	ld a, [rSVBK]
 	push af
 	ld a, $3
@@ -7601,7 +7601,7 @@ Function117c4a:
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld hl, MobileStadiumSuccessText
 	call PrintText
 	ld a, [rSVBK]

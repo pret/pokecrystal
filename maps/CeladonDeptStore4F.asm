@@ -4,7 +4,7 @@ const_value set 2
 	const CELADONDEPTSTORE4F_YOUNGSTER
 
 CeladonDeptStore4F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -60,16 +60,16 @@ CeladonDeptStore4F_MapEventHeader:
 	warp_def $0, $f, 2, CELADON_DEPT_STORE_3F
 	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore4FDirectory
-	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore4FElevatorButton
+	bg_event 0, 14, BGEVENT_READ, CeladonDeptStore4FDirectory
+	bg_event 0, 3, BGEVENT_READ, CeladonDeptStore4FElevatorButton
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x70f0d, -1
-	person_event SPRITE_SUPER_NERD, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonDeptStore4FSuperNerdScript, -1
-	person_event SPRITE_YOUNGSTER, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonDeptStore4FYoungsterScript, -1
+	object_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70f0d, -1
+	object_event SPRITE_SUPER_NERD, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore4FSuperNerdScript, -1
+	object_event SPRITE_YOUNGSTER, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore4FYoungsterScript, -1

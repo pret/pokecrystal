@@ -3,11 +3,11 @@ const_value set 2
 	const COLOSSEUM_CHRIS2
 
 Colosseum_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 3
-	maptrigger .InitializeColosseum
-	maptrigger .DummyTrigger1
-	maptrigger .DummyTrigger2
+	scene_script .InitializeColosseum
+	scene_script .DummyScene1
+	scene_script .DummyScene2
 
 .MapCallbacks:
 	db 2
@@ -18,10 +18,10 @@ Colosseum_MapScriptHeader:
 	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
-.DummyTrigger2:
+.DummyScene2:
 	end
 
 .SetWhichChris:
@@ -37,12 +37,12 @@ Colosseum_MapScriptHeader:
 	return
 
 .PreparePokecenter2F:
-	domaptrigger POKECENTER_2F, $2
+	setmapscene POKECENTER_2F, $2
 	return
 
 .InitializeAndPreparePokecenter2F:
-	dotrigger $1
-	domaptrigger POKECENTER_2F, $2
+	setscene $1
+	setmapscene POKECENTER_2F, $2
 	end
 
 MapColosseumSignpost1Script:
@@ -71,15 +71,15 @@ Colosseum_MapEventHeader:
 	warp_def $7, $4, 3, POKECENTER_2F
 	warp_def $7, $5, 3, POKECENTER_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 4, 4, SIGNPOST_RIGHT, MapColosseumSignpost1Script
-	signpost 4, 5, SIGNPOST_LEFT, MapColosseumSignpost1Script
+	bg_event 4, 4, BGEVENT_RIGHT, MapColosseumSignpost1Script
+	bg_event 4, 5, BGEVENT_LEFT, MapColosseumSignpost1Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_CHRIS, 4, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CHRIS, 4, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT
+	object_event SPRITE_CHRIS, 4, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
+	object_event SPRITE_CHRIS, 4, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT

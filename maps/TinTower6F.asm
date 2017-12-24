@@ -2,7 +2,7 @@ const_value set 2
 	const TINTOWER6F_POKE_BALL
 
 TinTower6F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -20,12 +20,12 @@ TinTower6F_MapEventHeader:
 	warp_def $9, $3, 1, TIN_TOWER_7F
 	warp_def $f, $b, 1, TIN_TOWER_5F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 8, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower6FMaxPotion, EVENT_TIN_TOWER_6F_MAX_POTION
+	object_event SPRITE_POKE_BALL, 8, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower6FMaxPotion, EVENT_TIN_TOWER_6F_MAX_POTION

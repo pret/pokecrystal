@@ -4,10 +4,10 @@ const_value set 2
 	const ROUTE43GATE_ROCKET2
 
 Route43Gate_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .RocketShakedown
-	maptrigger .DummyTrigger
+	scene_script .RocketShakedown
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
@@ -17,17 +17,17 @@ Route43Gate_MapScriptHeader:
 	priorityjump .RocketTakeover
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	domaptrigger ROUTE_43, $0
+	setmapscene ROUTE_43, $0
 	return
 
 .NoRockets:
-	domaptrigger ROUTE_43, $1
+	setmapscene ROUTE_43, $1
 	return
 
 .RocketTakeover:
@@ -35,7 +35,7 @@ Route43Gate_MapScriptHeader:
 	checkcode VAR_FACING
 	if_equal DOWN, RocketScript_Southbound
 	if_equal UP, RocketScript_Northbound
-	dotrigger $1
+	setscene $1
 	end
 
 RocketScript_Southbound:
@@ -67,7 +67,7 @@ RocketScript_ShakeDownSouth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
-	dotrigger $1
+	setscene $1
 	special RestartMapMusic
 	end
 
@@ -99,7 +99,7 @@ RocketScript_ShakeDownNorth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
-	dotrigger $1
+	setscene $1
 	special RestartMapMusic
 	end
 
@@ -256,14 +256,14 @@ Route43Gate_MapEventHeader:
 	warp_def $7, $4, 3, ROUTE_43
 	warp_def $7, $5, 3, ROUTE_43
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
-	person_event SPRITE_ROCKET, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
-	person_event SPRITE_ROCKET, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
+	object_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
+	object_event SPRITE_ROCKET, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
+	object_event SPRITE_ROCKET, 4, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS

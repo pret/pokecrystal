@@ -49,7 +49,7 @@ HealPartyMon: ; c677
 	ld a, [hl]
 	ld [bc], a
 
-	callba RestoreAllPP
+	farcall RestoreAllPP
 	ret
 
 ComputeHPBarPixels: ; c699

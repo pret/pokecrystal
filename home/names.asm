@@ -206,7 +206,7 @@ GetTMHMName:: ; 3487
 	push de
 	ld a, [wd265]
 	ld c, a
-	callab GetTMHMNumber
+	callfar GetTMHMNumber
 	pop de
 
 ; HM numbers start from 51, not 1

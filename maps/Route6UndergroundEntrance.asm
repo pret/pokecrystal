@@ -1,5 +1,5 @@
 Route6UndergroundEntrance_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -15,11 +15,11 @@ Route6UndergroundEntrance_MapEventHeader:
 	warp_def $7, $4, 1, ROUTE_6
 	warp_def $3, $4, 2, UNDERGROUND
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

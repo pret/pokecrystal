@@ -10,14 +10,14 @@ GetTrademonFrontpic: ; 4d7fd
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	ret
 
 AnimateTrademonFrontpic: ; 4d81e
 	ld a, [wOTTrademonSpecies]
 	call IsAPokemon
 	ret c
-	callba ShowOTTrademonStats
+	farcall ShowOTTrademonStats
 	ld a, [wOTTrademonSpecies]
 	ld [CurPartySpecies], a
 	ld a, [wOTTrademonDVs]
@@ -28,7 +28,7 @@ AnimateTrademonFrontpic: ; 4d81e
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbBGPals
-	callba TradeAnim_ShowGetmonFrontpic
+	farcall TradeAnim_ShowGetmonFrontpic
 	ld a, [wOTTrademonSpecies]
 	ld [CurPartySpecies], a
 	hlcoord 7, 2

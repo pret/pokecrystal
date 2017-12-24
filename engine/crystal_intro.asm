@@ -18,12 +18,12 @@ Copyright_GFPresents: ; e4579
 	call SetPalettes
 	ld c, 10
 	call DelayFrames
-	callab Copyright
+	callfar Copyright
 	call WaitBGMap
 	ld c, 100
 	call DelayFrames
 	call ClearTileMap
-	callba GBCOnlyScreen
+	farcall GBCOnlyScreen
 	call .GetGFLogoGFX
 .joy_loop
 	call JoyTextDelay
@@ -34,7 +34,7 @@ Copyright_GFPresents: ; e4579
 	bit 7, a
 	jr nz, .finish
 	call PlaceGameFreakPresents
-	callba PlaySpriteAnimations
+	farcall PlaySpriteAnimations
 	call DelayFrame
 	jr .joy_loop
 
@@ -78,7 +78,7 @@ Copyright_GFPresents: ; e4579
 	pop af
 	ld [rSVBK], a
 
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
 	call _InitSpriteAnimStruct
@@ -107,7 +107,7 @@ Copyright_GFPresents: ; e4579
 ; e465e
 
 .StopGamefreakAnim: ; e465e
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call ClearTileMap
 	call ClearSprites
 	ld c, 16
@@ -253,7 +253,7 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	add $20
 .asm_e4723
 	ld e, a
-	callba BattleAnim_Sine_e
+	farcall BattleAnim_Sine_e
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], e
@@ -368,7 +368,7 @@ CrystalIntro: ; e48ac
 	bit 7, a
 	jr nz, .done
 	call IntroSceneJumper
-	callba PlaySpriteAnimations
+	farcall PlaySpriteAnimations
 	call DelayFrame
 	jp .loop
 
@@ -499,7 +499,7 @@ IntroScene1: ; e495b (39:495b)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -638,7 +638,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -749,7 +749,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld a, $90
 	ld [hWY], a
 	call Intro_ResetLYOverrides
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	depixel 13, 27, 4, 0
 	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE
 	call _InitSpriteAnimStruct
@@ -787,7 +787,7 @@ IntroScene8: ; e4bd3 (39:4bd3)
 .finish
 	ld de, SFX_INTRO_SUICUNE_2
 	call PlaySFX
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	call NextIntroScene
 	ret
 
@@ -903,7 +903,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -1030,7 +1030,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	depixel 13, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE
 	call _InitSpriteAnimStruct
@@ -1077,7 +1077,7 @@ IntroScene14: ; e4dfa (39:4dfa)
 	ret
 
 .asm_e4e2c
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	ret
 
 .asm_e4e33
@@ -1140,7 +1140,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	depixel 8, 5
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN_F
@@ -1213,7 +1213,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -1288,7 +1288,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	ld hl, wSpriteAnimDict
 	xor a
 	ld [hli], a
@@ -1370,7 +1370,7 @@ IntroScene22: ; e5072 (39:5072)
 	jr nc, .done
 	ret
 .done
-	callba DeinitializeAllSprites
+	farcall DeinitializeAllSprites
 	call NextIntroScene
 	ret
 
@@ -1457,7 +1457,7 @@ IntroScene26: ; e50bb (39:50bb)
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a

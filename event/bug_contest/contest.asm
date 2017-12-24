@@ -3,7 +3,7 @@ Special_GiveParkBalls: ; 135db
 	ld [wContestMon], a
 	ld a, 20
 	ld [wParkBallsRemaining], a
-	callba StartBugContestTimer
+	farcall StartBugContestTimer
 	ret
 
 BugCatchingContestBattleScript:: ; 0x135eb

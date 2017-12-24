@@ -3,17 +3,30 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
-; map permissions (wPermission)
+; map header fields (see maps/map_headers.asm)
+	const_def
+	const MAPHEADER_MAPHEADER2_BANK ; 0
+	const MAPHEADER_TILESET         ; 1
+	const MAPHEADER_ENVIRONMENT     ; 2
+	const MAPHEADER_MAPHEADER2      ; 3
+	const MAPHEADER_MAPHEADER2_HI   ; 4
+	const MAPHEADER_LOCATION        ; 5
+	const MAPHEADER_MUSIC           ; 6
+	const MAPHEADER_PALETTE         ; 7
+	const MAPHEADER_FISHGROUP       ; 8
+NUM_MAPHEADER_ATTRIBUTES EQU const_value
+
+; map environments (wEnvironment)
 const_value SET 1
 	const TOWN
 	const ROUTE
 	const INDOOR
 	const CAVE
-	const PERM_5
+	const ENVIRONMENT_5
 	const GATE
 	const DUNGEON
 
-; map palettes (wPermission)
+; map palettes (wEnvironment)
 	const_def
 	const PALETTE_AUTO
 	const PALETTE_DAY
@@ -163,28 +176,28 @@ const_value = -1
 NUM_SPAWNS EQU const_value
 
 
-; TryReadSign arguments (see engine/events.asm)
+; TryBGEvent arguments (see engine/events.asm)
 	const_def
-	const SIGNPOST_READ
-	const SIGNPOST_UP
-	const SIGNPOST_DOWN
-	const SIGNPOST_RIGHT
-	const SIGNPOST_LEFT
-	const SIGNPOST_IFSET
-	const SIGNPOST_IFNOTSET
-	const SIGNPOST_ITEM
-	const SIGNPOST_COPY
+	const BGEVENT_READ
+	const BGEVENT_UP
+	const BGEVENT_DOWN
+	const BGEVENT_RIGHT
+	const BGEVENT_LEFT
+	const BGEVENT_IFSET
+	const BGEVENT_IFNOTSET
+	const BGEVENT_ITEM
+	const BGEVENT_COPY
 
-; person_event types
+; object_event types
 ; TryObjectEvent arguments (see engine/events.asm)
 	const_def
-	const PERSONTYPE_SCRIPT
-	const PERSONTYPE_ITEMBALL
-	const PERSONTYPE_TRAINER
-	const PERSONTYPE_3
-	const PERSONTYPE_4
-	const PERSONTYPE_5
-	const PERSONTYPE_6
+	const OBJECTTYPE_SCRIPT
+	const OBJECTTYPE_ITEMBALL
+	const OBJECTTYPE_TRAINER
+	const OBJECTTYPE_3
+	const OBJECTTYPE_4
+	const OBJECTTYPE_5
+	const OBJECTTYPE_6
 
 
 ; EmotesPointers indexes (see engine/overworld.asm)

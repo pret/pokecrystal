@@ -2,10 +2,10 @@ const_value set 2
 	const KARENSROOM_KAREN
 
 KarensRoom_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .LockDoor
-	maptrigger .DummyTrigger
+	scene_script .LockDoor
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
@@ -15,7 +15,7 @@ KarensRoom_MapScriptHeader:
 	priorityjump .KarensDoorLocksBehindYou
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .KarensRoomDoors:
@@ -37,7 +37,7 @@ KarensRoom_MapScriptHeader:
 	changeblock $4, $e, $2a
 	reloadmappart
 	closetext
-	dotrigger $1
+	setscene $1
 	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -143,12 +143,12 @@ KarensRoom_MapEventHeader:
 	warp_def $2, $4, 1, LANCES_ROOM
 	warp_def $2, $5, 2, LANCES_ROOM
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_KAREN, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, KarenScript_Battle, -1
+	object_event SPRITE_KAREN, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KarenScript_Battle, -1

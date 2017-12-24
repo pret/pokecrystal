@@ -172,7 +172,7 @@ Function4a098: ; 4a098 (12:6098)
 	call PlaceHollowCursor
 	call WaitBGMap
 	call LoadStandardMenuDataHeader
-	callba Function89de0
+	farcall Function89de0
 	call Call_ExitMenu
 	call MG_Mobile_Layout_LoadPals
 	call Function4a485
@@ -195,7 +195,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
 	call CloseSRAM
-	callba _LoadData
+	farcall _LoadData
 	ld c, 2
 	call DelayFrames
 	ld c, $1
@@ -205,7 +205,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	pop af
 	and a
 	jr nz, .skip_save
-	callba _SaveData
+	farcall _SaveData
 .skip_save
 	ld c, 5
 	call DelayFrames
@@ -280,7 +280,7 @@ Function4a149: ; 4a149 (12:6149)
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
-	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	call SetPalettes
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
@@ -347,7 +347,7 @@ String_4a1ef: ; 4a1ef
 Function4a20e: ; 4a20e (12:620e)
 	ld a, $1
 	call MenuClickSound
-	callba Function1719c8
+	farcall Function1719c8
 	call ClearBGPalettes
 	call DelayFrame
 	jr Function4a239
@@ -403,7 +403,7 @@ Function4a28a: ; 4a28a (12:628a)
 	hlcoord 14, 1
 	ld de, String_4a34b
 	call PlaceString
-	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	call Function4a118
 	call ScrollingMenuJoypad
 	push af
@@ -417,7 +417,7 @@ Function4a28a: ; 4a28a (12:628a)
 	cp $3
 	jr z, .quit
 .asm_4a2df
-	callba Function11765d
+	farcall Function11765d
 	call ClearBGPalettes
 	call Call_ExitMenu
 	call LoadFontsExtra
@@ -432,7 +432,7 @@ Function4a28a: ; 4a28a (12:628a)
 	ld b, 3
 	ld c, 4
 	call TextBox
-	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	ld hl, DeletePassword_YesNo_MenuDataHeader
 	call LoadMenuDataHeader
 	call VerticalMenu
@@ -455,7 +455,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call ExitMenu
 .quit
 	call Call_ExitMenu
-	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	xor a
 	ret
 ; 4a346 (12:6346)
@@ -649,7 +649,7 @@ MainMenu_MobileStudium: ; 4a496
 	ld e, a
 	push bc
 	push de
-	callba MobileStudium
+	farcall MobileStudium
 	call ClearBGPalettes
 	pop de
 	pop bc
@@ -847,7 +847,7 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	call ClearBGPalettes
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	callba Function11c1ab
+	farcall Function11c1ab
 	pop bc
 	call LoadFontsExtra
 	jp Function4a4c4

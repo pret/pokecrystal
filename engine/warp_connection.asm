@@ -3,12 +3,12 @@ HandleNewMap: ; 1045b0
 	call Clearwc7e8
 	call ResetMapBufferEventFlags
 	call ResetFlashIfOutOfCave
-	call GetCurrentMapTrigger
+	call GetCurrentMapSceneID
 	call ResetBikeFlags
 	ld a, MAPCALLBACK_NEWMAP
 	call RunMapCallback
 InitCommandQueue: ; 1045c4
-	callba ClearCmdQueue
+	farcall ClearCmdQueue
 	ld a, MAPCALLBACK_CMDQUEUE
 	call RunMapCallback
 	call GetMapHeaderTimeOfDayNybble
@@ -164,14 +164,14 @@ LoadWarpData: ; 1046c6
 	ret
 
 .SaveDigWarp: ; 1046df (41:46df)
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	ret nz
 	ld a, [wNextMapGroup]
 	ld b, a
 	ld a, [wNextMapNumber]
 	ld c, a
-	call GetAnyMapPermission
+	call GetAnyMapEnvironment
 	call CheckIndoorMap
 	ret nz
 	ld a, [wPrevMapGroup]
@@ -192,14 +192,14 @@ LoadWarpData: ; 1046c6
 	ret
 
 .SetSpawn: ; 104718 (41:4718)
-	call GetMapPermission
+	call GetMapEnvironment
 	call CheckOutdoorMap
 	ret nz
 	ld a, [wNextMapGroup]
 	ld b, a
 	ld a, [wNextMapNumber]
 	ld c, a
-	call GetAnyMapPermission
+	call GetAnyMapEnvironment
 	call CheckIndoorMap
 	ret nz
 	ld a, [wNextMapGroup]
@@ -225,8 +225,8 @@ LoadMapTimeOfDay: ; 104750
 	res 6, [hl]
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	callba ReplaceTimeOfDayPals
-	callba UpdateTimeOfDayPal
+	farcall ReplaceTimeOfDayPals
+	farcall UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
 	call .ClearBGMap
 	call .PushAttrMap
@@ -239,7 +239,7 @@ LoadMapTimeOfDay: ; 104750
 	ld [wBGMapAnchor], a
 	ld [hSCY], a
 	ld [hSCX], a
-	callba ApplyBGMapAnchorToObjects
+	farcall ApplyBGMapAnchorToObjects
 
 	ld a, [rVBK]
 	push af
@@ -298,9 +298,9 @@ LoadGraphics: ; 1047cf
 	ld [hMapAnims], a
 	xor a
 	ld [hTileAnimFrame], a
-	callba RefreshSprites
+	farcall RefreshSprites
 	call LoadFontsExtra
-	callba LoadOverworldFont
+	farcall LoadOverworldFont
 	ret
 
 LoadMapPalettes: ; 1047eb
@@ -310,10 +310,10 @@ LoadMapPalettes: ; 1047eb
 
 RefreshMapSprites: ; 1047f0
 	call ClearSprites
-	callba ReturnFromMapSetupScript
+	farcall ReturnFromMapSetupScript
 	call GetMovementPermissions
-	callba RefreshPlayerSprite
-	callba CheckReplaceKrisSprite
+	farcall RefreshPlayerSprite
+	farcall CheckReplaceKrisSprite
 	ld hl, wPlayerSpriteSetupFlags
 	bit 6, [hl]
 	jr nz, .skip

@@ -1,5 +1,5 @@
 SafariZoneBeta_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -14,11 +14,11 @@ SafariZoneBeta_MapEventHeader:
 	warp_def $17, $9, 1, SAFARI_ZONE_FUCHSIA_GATE_BETA
 	warp_def $17, $a, 2, SAFARI_ZONE_FUCHSIA_GATE_BETA
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

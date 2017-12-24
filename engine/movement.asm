@@ -60,8 +60,8 @@ MovementPointers: ; 5075
 	dw Movement_set_sliding           ; 39
 	dw Movement_remove_fixed_facing   ; 3a
 	dw Movement_fix_facing            ; 3b
-	dw Movement_show_person           ; 3c
-	dw Movement_hide_person           ; 3d
+	dw Movement_show_object           ; 3c
+	dw Movement_hide_object           ; 3d
 	dw Movement_step_sleep_1          ; 3e
 	dw Movement_step_sleep_2          ; 3f
 	dw Movement_step_sleep_3          ; 40
@@ -73,7 +73,7 @@ MovementPointers: ; 5075
 	dw Movement_step_sleep            ; 46
 	dw Movement_step_end              ; 47
 	dw Movement_48                    ; 48
-	dw Movement_remove_person         ; 49
+	dw Movement_remove_object         ; 49
 	dw Movement_step_loop             ; 4a
 	dw Movement_4b                    ; 4b
 	dw Movement_teleport_from         ; 4c
@@ -130,7 +130,7 @@ Movement_step_dig: ; 5145
 	ld [hl], a
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_SPIN
+	ld [hl], OBJECT_ACTION_SPIN
 	call JumpMovementPointer
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -167,7 +167,7 @@ Movement_return_dig: ; 516a
 Movement_fish_got_bite: ; 5189
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_FISHING
+	ld [hl], OBJECT_ACTION_FISHING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_GOT_BITE
@@ -181,7 +181,7 @@ Movement_rock_smash: ; 5196
 	ld [hl], a
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_STAND
+	ld [hl], OBJECT_ACTION_STAND
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_ROCK_SMASH
@@ -191,7 +191,7 @@ Movement_rock_smash: ; 5196
 Movement_fish_cast_rod: ; 51ab
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_FISHING
+	ld [hl], OBJECT_ACTION_FISHING
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_SLEEP
@@ -248,7 +248,7 @@ Movement_48: ; 51db
 	ret
 ; 51fd
 
-Movement_remove_person: ; 51fd
+Movement_remove_object: ; 51fd
 	call DeleteMapObject
 	ld hl, wObjectFollow_Leader
 	ld a, [hMapObjectIndexBuffer]
@@ -265,7 +265,7 @@ Movement_remove_person: ; 51fd
 Movement_4b: ; 5210
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_STAND
+	ld [hl], OBJECT_ACTION_STAND
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
@@ -326,7 +326,7 @@ Movement_step_sleep_common: ; 5247
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_STAND
+	ld [hl], OBJECT_ACTION_STAND
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -346,7 +346,7 @@ Movement_step_bump: ; 525f
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_BUMP
+	ld [hl], OBJECT_ACTION_BUMP
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -366,7 +366,7 @@ Movement_tree_shake: ; 5279
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_WEIRD_TREE
+	ld [hl], OBJECT_ACTION_WEIRD_TREE
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -402,14 +402,14 @@ Movement_fix_facing: ; 52ae
 	jp ContinueReadingMovement
 ; 52b7
 
-Movement_show_person: ; 52b7
+Movement_show_object: ; 52b7
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	res INVISIBLE, [hl]
 	jp ContinueReadingMovement
 ; 52c0
 
-Movement_hide_person: ; 52c0
+Movement_hide_object: ; 52c0
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	set INVISIBLE, [hl]
@@ -458,7 +458,7 @@ TurnHead: ; 52ee
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_STAND
+	ld [hl], OBJECT_ACTION_STAND
 
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -733,7 +733,7 @@ TurnStep: ; 5400
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_STEP
+	ld [hl], OBJECT_ACTION_STEP
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
@@ -746,7 +746,7 @@ NormalStep: ; 5412
 	call UpdateTallGrassFlags
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_STEP
+	ld [hl], OBJECT_ACTION_STEP
 
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
@@ -784,7 +784,7 @@ TurningStep: ; 5446
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_SPIN
+	ld [hl], OBJECT_ACTION_SPIN
 
 	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
@@ -810,7 +810,7 @@ SlideStep: ; 5468
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_STAND
+	ld [hl], OBJECT_ACTION_STAND
 
 	ld hl, wCenteredObject
 	ld a, [hMapObjectIndexBuffer]
@@ -842,7 +842,7 @@ JumpStep: ; 548a
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], PERSON_ACTION_STEP
+	ld [hl], OBJECT_ACTION_STEP
 
 	call SpawnShadow
 

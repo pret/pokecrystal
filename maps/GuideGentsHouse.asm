@@ -2,7 +2,7 @@ const_value set 2
 	const GUIDEGENTSHOUSE_GRAMPS
 
 GuideGentsHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -36,14 +36,14 @@ GuideGentsHouse_MapEventHeader:
 	warp_def $7, $2, 4, CHERRYGROVE_CITY
 	warp_def $7, $3, 4, CHERRYGROVE_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, GuideGentsHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, GuideGentsHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, GuideGentsHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, GuideGentsHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	object_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE

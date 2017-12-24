@@ -12,7 +12,7 @@ Pokepic:: ; 244e3
 	ld [CurSpecies], a
 	call GetBaseData
 	ld de, VTiles1
-	predef GetFrontpic
+	predef GetMonFrontpic
 	ld a, [wMenuBorderTopCoord]
 	inc a
 	ld b, a

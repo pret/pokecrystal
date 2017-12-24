@@ -1,8 +1,8 @@
 MobileTradeRoomMobile_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .InitializeMobileTradeRoomMobile
-	maptrigger .DummyTrigger
+	scene_script .InitializeMobileTradeRoomMobile
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
@@ -11,12 +11,12 @@ MobileTradeRoomMobile_MapScriptHeader:
 	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	dotrigger $1
-	domaptrigger POKECENTER_2F, $4
+	setscene $1
+	setmapscene POKECENTER_2F, $4
 	end
 
 MapMobileTradeRoomMobileSignpost0Script:
@@ -43,12 +43,12 @@ MobileTradeRoomMobile_MapEventHeader:
 	warp_def $7, $4, 5, POKECENTER_2F
 	warp_def $7, $5, 5, POKECENTER_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 2, 4, SIGNPOST_UP, MapMobileTradeRoomMobileSignpost0Script
+	bg_event 2, 4, BGEVENT_UP, MapMobileTradeRoomMobileSignpost0Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

@@ -5,7 +5,7 @@ const_value set 2
 	const FUCHSIACITY_FRUIT_TREE
 
 FuchsiaCity_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -142,23 +142,23 @@ FuchsiaCity_MapEventHeader:
 	warp_def $23, $7, 1, ROUTE_19___FUCHSIA_GATE
 	warp_def $23, $8, 2, ROUTE_19___FUCHSIA_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 8
-	signpost 15, 21, SIGNPOST_READ, FuchsiaCitySign
-	signpost 29, 5, SIGNPOST_READ, FuchsiaGymSign
-	signpost 15, 25, SIGNPOST_READ, SafariZoneOfficeSign
-	signpost 29, 27, SIGNPOST_READ, WardensHomeSign
-	signpost 5, 17, SIGNPOST_READ, SafariZoneClosedSign
-	signpost 15, 13, SIGNPOST_READ, NoLitteringSign
-	signpost 27, 20, SIGNPOST_READ, FuchsiaCityPokecenterSign
-	signpost 13, 6, SIGNPOST_READ, FuchsiaCityMartSign
+	bg_event 15, 21, BGEVENT_READ, FuchsiaCitySign
+	bg_event 29, 5, BGEVENT_READ, FuchsiaGymSign
+	bg_event 15, 25, BGEVENT_READ, SafariZoneOfficeSign
+	bg_event 29, 27, BGEVENT_READ, WardensHomeSign
+	bg_event 5, 17, BGEVENT_READ, SafariZoneClosedSign
+	bg_event 15, 13, BGEVENT_READ, NoLitteringSign
+	bg_event 27, 20, BGEVENT_READ, FuchsiaCityPokecenterSign
+	bg_event 13, 6, BGEVENT_READ, FuchsiaCityMartSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_YOUNGSTER, 18, 23, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
-	person_event SPRITE_POKEFAN_M, 8, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
-	person_event SPRITE_TEACHER, 14, 16, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1
-	person_event SPRITE_FRUIT_TREE, 1, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FuchsiaCityFruitTree, -1
+	object_event SPRITE_YOUNGSTER, 18, 23, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
+	object_event SPRITE_POKEFAN_M, 8, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
+	object_event SPRITE_TEACHER, 14, 16, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1
+	object_event SPRITE_FRUIT_TREE, 1, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaCityFruitTree, -1

@@ -23,7 +23,7 @@ PlaySlowCry: ; fb841
 	ld [CryLength], a
 	ld a, h
 	ld [CryLength + 1], a
-	callba _PlayCryHeader
+	farcall _PlayCryHeader
 	call WaitSFX
 
 .done

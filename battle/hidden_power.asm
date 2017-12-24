@@ -104,7 +104,7 @@ HiddenPowerDamage: ; fbced
 ; based on the new type, but keep base power.
 	ld a, d
 	push af
-	callba BattleCommand_DamageStats ; damagestats
+	farcall BattleCommand_DamageStats ; damagestats
 	pop af
 	ld d, a
 	ret

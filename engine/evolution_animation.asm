@@ -36,7 +36,7 @@ EvolutionAnimation: ; 4e5e1
 	ld de, MUSIC_NONE
 	call PlayMusic
 
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 
 	ld de, .GFX
 	ld hl, VTiles0
@@ -106,7 +106,7 @@ EvolutionAnimation: ; 4e5e1
 	ld c, $0
 	call .GetSGBLayout
 	call .PlayEvolvedSFX
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call .check_statused
 	jr c, .no_anim
 
@@ -143,7 +143,7 @@ EvolutionAnimation: ; 4e5e1
 	ld c, $0
 	call .GetSGBLayout
 	call .PlayEvolvedSFX
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call .check_statused
 	ret c
 
@@ -168,7 +168,7 @@ EvolutionAnimation: ; 4e5e1
 	ld a, $1
 	ld [wBoxAlignment], a
 	ld de, VTiles2
-	predef FrontpicPredef
+	predef GetAnimatedFrontpicPredef
 	xor a
 	ld [wBoxAlignment], a
 	ret
@@ -263,7 +263,7 @@ EvolutionAnimation: ; 4e5e1
 	call GetPartyLocation
 	ld b, h
 	ld c, l
-	callba CheckFaintedFrzSlp
+	farcall CheckFaintedFrzSlp
 	ret
 ; 4e7a6
 
@@ -337,7 +337,7 @@ EvolutionAnimation: ; 4e5e1
 
 .AnimateBallsOfLight: ; 4e80c
 	push bc
-	callab PlaySpriteAnimations
+	callfar PlaySpriteAnimations
 	; a = (([hVBlankCounter] + 4) / 2) % NUM_PALETTES
 	ld a, [hVBlankCounter]
 	and %1110

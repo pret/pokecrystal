@@ -111,16 +111,16 @@ BillsPC_SeeYa: ; e4cb
 
 BillsPC_MovePKMNMenu: ; e4cd
 	call LoadStandardMenuDataHeader
-	callba IsAnyMonHoldingMail
+	farcall IsAnyMonHoldingMail
 	jr nc, .no_mail
 	ld hl, .Text_MonHoldingMail
 	call PrintText
 	jr .quit
 
 .no_mail
-	callba StartMovePkmnWOMail_SaveGame
+	farcall StartMovePkmnWOMail_SaveGame
 	jr c, .quit
-	callba _MovePKMNWithoutMail
+	farcall _MovePKMNWithoutMail
 	call ReturnToMapFromSubmenu
 	call ClearPCItemScreen
 
@@ -136,7 +136,7 @@ BillsPC_MovePKMNMenu: ; e4cd
 
 BillsPC_DepositMenu: ; e4fe (3:64fe)
 	call LoadStandardMenuDataHeader
-	callba _DepositPKMN
+	farcall _DepositPKMN
 	call ReturnToMapFromSubmenu
 	call ClearPCItemScreen
 	call CloseWindow
@@ -205,7 +205,7 @@ CheckCurPartyMonFainted: ; e538
 
 BillsPC_WithdrawMenu: ; e559 (3:6559)
 	call LoadStandardMenuDataHeader
-	callba _WithdrawPKMN
+	farcall _WithdrawPKMN
 	call ReturnToMapFromSubmenu
 	call ClearPCItemScreen
 	call CloseWindow
@@ -231,7 +231,7 @@ UnknownText_0xe57e: ; 0xe57e
 	db "@"
 
 BillsPC_ChangeBoxMenu: ; e583 (3:6583)
-	callba _ChangeBox
+	farcall _ChangeBox
 	and a
 	ret
 

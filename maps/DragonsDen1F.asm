@@ -1,5 +1,5 @@
 DragonsDen1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -16,11 +16,11 @@ DragonsDen1F_MapEventHeader:
 	warp_def $f, $5, 1, DRAGONS_DEN_B1F
 	warp_def $d, $5, 2, DRAGONS_DEN_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

@@ -34,7 +34,7 @@ TrainerCard: ; 25105
 	call ClearTileMap
 	call DisableLCD
 
-	callba GetCardPic
+	farcall GetCardPic
 
 	ld hl, CardRightCornerGFX
 	ld de, VTiles2 tile $1c

@@ -24,7 +24,7 @@ Function170000: ; 170000
 	ld a, [hl]
 	ld [wPlayerTrademonID + 1], a
 	ld bc, $c633
-	callba GetCaughtGender
+	farcall GetCaughtGender
 	ld a, c
 	ld [wPlayerTrademonCaughtData], a
 	ld a, [wcd81]
@@ -65,7 +65,7 @@ Function17005a: ; 17005a
 	ld a, [hl]
 	ld [wOTTrademonID + 1], a
 	ld bc, $a82c
-	callba GetCaughtGender
+	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
 	ld a, [wcd81]
@@ -324,7 +324,7 @@ Function1719c8: ; 1719c8 (5c:59c8)
 	ret
 
 Function1719d6: ; 1719d6 (5c:59d6)
-	callba BattleTowerRoomMenu_InitRAM
+	farcall BattleTowerRoomMenu_InitRAM
 	call Function1719ed
 	ld a, [rSVBK]
 	push af
@@ -343,9 +343,9 @@ Function1719ed: ; 1719ed (5c:59ed)
 	ld [wcd4b], a
 	call ClearBGPalettes
 	call ClearSprites
-	callba Function171d2b
-	callba ReloadMapPart
-	callba ClearSpriteAnims
+	farcall Function171d2b
+	farcall ReloadMapPart
+	farcall ClearSpriteAnims
 	ret
 
 Function171a11: ; 171a11 (5c:5a11)
@@ -355,11 +355,11 @@ Function171a11: ; 171a11 (5c:5a11)
 	bit 7, a
 	jr nz, .done
 	call Function171a36
-	callba PlaySpriteAnimations
-	callba ReloadMapPart
+	farcall PlaySpriteAnimations
+	farcall ReloadMapPart
 	jr .loop
 .done
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call ClearSprites
 	ret
 
@@ -412,7 +412,7 @@ Function171a5d: ; 171a5d (5c:5a5d)
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba BattleTowerRoomMenu_Cleanup
+	farcall BattleTowerRoomMenu_Cleanup
 	pop af
 	ld [rSVBK], a
 	ld a, $a
@@ -420,7 +420,7 @@ Function171a5d: ; 171a5d (5c:5a5d)
 	ret
 
 Function171a95: ; 171a95 (5c:5a95)
-	callba Function171ccd
+	farcall Function171ccd
 	hlcoord 2, 8
 	ld de, String_171aa7
 	call PlaceString
@@ -457,7 +457,7 @@ Function171aec: ; 171aec (5c:5aec)
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba BattleTowerRoomMenu_Cleanup
+	farcall BattleTowerRoomMenu_Cleanup
 	pop af
 	ld [rSVBK], a
 	hlcoord 2, 6
@@ -619,7 +619,7 @@ Function171beb: ; 171beb (5c:5beb)
 	call LoadMenuDataHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	hlcoord 1, 14
 	ld de, String_171c73
 	call PlaceString
@@ -654,11 +654,11 @@ Function171c41: ; 171c41 (5c:5c41)
 	dec [hl]
 	ret nz
 	call ClearBGPalettes
-	callba MobileFunc_106462
-	callba Function106464
+	farcall MobileFunc_106462
+	farcall Function106464
 	ld a, $2
 	ld [wc303], a
-	callba DisplayMobileError
+	farcall DisplayMobileError
 asm_171c60: ; 171c60 (5c:5c60)
 	ld a, $80
 	ld [wcd49], a

@@ -1,5 +1,5 @@
 SilverCaveOutside_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -32,14 +32,14 @@ SilverCaveOutside_MapEventHeader:
 	warp_def $13, $17, 1, SILVER_CAVE_POKECENTER_1F
 	warp_def $b, $12, 1, SILVER_CAVE_ROOM_1
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 19, 24, SIGNPOST_READ, MtSilverPokecenterSign
-	signpost 13, 17, SIGNPOST_READ, MtSilverSign
-	signpost 25, 9, SIGNPOST_ITEM, SilverCaveOutsideHiddenFullRestore
+	bg_event 19, 24, BGEVENT_READ, MtSilverPokecenterSign
+	bg_event 13, 17, BGEVENT_READ, MtSilverSign
+	bg_event 25, 9, BGEVENT_ITEM, SilverCaveOutsideHiddenFullRestore
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

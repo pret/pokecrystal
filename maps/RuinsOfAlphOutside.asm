@@ -6,19 +6,19 @@ const_value set 2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
 RuinsOfAlphOutside_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_OBJECTS, .ScientistCallback
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
 .ScientistCallback:
@@ -35,20 +35,20 @@ RuinsOfAlphOutside_MapScriptHeader:
 
 .YesScientist:
 	appear RUINSOFALPHOUTSIDE_SCIENTIST
-	dotrigger $1
+	setscene $1
 	return
 
 .NoScientist:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
-	dotrigger $0
+	setscene $0
 	return
 
-RuinsOfAlphOutsideScientistTrigger1:
+RuinsOfAlphOutsideScientistScene1:
 	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, UP
 	spriteface PLAYER, DOWN
 	jump UnknownScript_0x58044
 
-RuinsOfAlphOutsideScientistTrigger2:
+RuinsOfAlphOutsideScientistScene2:
 	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, LEFT
 	spriteface PLAYER, RIGHT
 	jump UnknownScript_0x58044
@@ -66,7 +66,7 @@ UnknownScript_0x58044:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	stopfollow
 	applymovement PLAYER, MovementData_0x580c5
-	domaptrigger RUINS_OF_ALPH_RESEARCH_CENTER, $1
+	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, $1
 	warpcheck
 	end
 
@@ -300,21 +300,21 @@ RuinsOfAlphOutside_MapEventHeader:
 	warp_def $14, $d, 1, ROUTE_32_RUINS_OF_ALPH_GATE
 	warp_def $15, $d, 2, ROUTE_32_RUINS_OF_ALPH_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 1, $e, $b, RuinsOfAlphOutsideScientistTrigger1
-	xy_trigger 1, $f, $a, RuinsOfAlphOutsideScientistTrigger2
+	coord_event 1, $e, $b, RuinsOfAlphOutsideScientistScene1
+	coord_event 1, $f, $a, RuinsOfAlphOutsideScientistScene2
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 8, 16, SIGNPOST_READ, RuinsOfAlphOutsideSignpost0Script
-	signpost 16, 12, SIGNPOST_READ, RuinsOfAlphOutsideSignpost1Script
-	signpost 12, 18, SIGNPOST_READ, RuinsOfAlphOutsideSignpost2Script
+	bg_event 8, 16, BGEVENT_READ, RuinsOfAlphOutsideSignpost0Script
+	bg_event 16, 12, BGEVENT_READ, RuinsOfAlphOutsideSignpost1Script
+	bg_event 12, 18, BGEVENT_READ, RuinsOfAlphOutsideSignpost2Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 20, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 1, TrainerPsychicNathan, -1
-	person_event SPRITE_SCIENTIST, 15, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
-	person_event SPRITE_FISHER, 17, 13, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
-	person_event SPRITE_YOUNGSTER, 11, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x58076, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
-	person_event SPRITE_YOUNGSTER, 8, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	object_event SPRITE_YOUNGSTER, 20, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerPsychicNathan, -1
+	object_event SPRITE_SCIENTIST, 15, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
+	object_event SPRITE_FISHER, 17, 13, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
+	object_event SPRITE_YOUNGSTER, 11, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x58076, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	object_event SPRITE_YOUNGSTER, 8, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS

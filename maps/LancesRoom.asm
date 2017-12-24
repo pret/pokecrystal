@@ -4,10 +4,10 @@ const_value set 2
 	const LANCESROOM_OAK
 
 LancesRoom_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .LockDoor
-	maptrigger .DummyTrigger
+	scene_script .LockDoor
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
@@ -17,7 +17,7 @@ LancesRoom_MapScriptHeader:
 	priorityjump .LancesDoorLocksBehindYou
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .LancesRoomDoors:
@@ -39,7 +39,7 @@ LancesRoom_MapScriptHeader:
 	changeblock $4, $16, $34
 	reloadmappart
 	closetext
-	dotrigger $1
+	setscene $1
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	end
 
@@ -348,16 +348,16 @@ LancesRoom_MapEventHeader:
 	warp_def $1, $4, 1, HALL_OF_FAME
 	warp_def $1, $5, 2, HALL_OF_FAME
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 1, $5, $4, Script_ApproachLanceFromLeft
-	xy_trigger 1, $5, $5, Script_ApproachLanceFromRight
+	coord_event 1, $5, $4, Script_ApproachLanceFromLeft
+	coord_event 1, $5, $5, Script_ApproachLanceFromRight
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_LANCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LanceScript_0x180e7b, -1
-	person_event SPRITE_TEACHER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
-	person_event SPRITE_OAK, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	object_event SPRITE_LANCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceScript_0x180e7b, -1
+	object_event SPRITE_TEACHER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	object_event SPRITE_OAK, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

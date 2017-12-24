@@ -1,5 +1,5 @@
 ItemFinder: ; 12580
-	callba CheckForHiddenItems
+	farcall CheckForHiddenItems
 	jr c, .found_something
 	ld hl, .Script_FoundNothing
 	jr .resume

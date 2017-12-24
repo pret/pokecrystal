@@ -1,5 +1,5 @@
 InitMovementBuffer:: ; 1b1e
-	ld [wMovementBufferPerson], a
+	ld [wMovementBufferObject], a
 	xor a
 	ld [wMovementBufferCount], a
 	ld a, $0 ; useless
@@ -159,13 +159,13 @@ SetMenuAttributes:: ; 1bb1
 ; 1bc9
 
 StaticMenuJoypad:: ; 1bc9
-	callab _StaticMenuJoypad
+	callfar _StaticMenuJoypad
 	call GetMenuJoypad
 	ret
 ; 1bd3
 
 ScrollingMenuJoypad:: ; 1bd3
-	callab _ScrollingMenuJoypad
+	callfar _ScrollingMenuJoypad
 	call GetMenuJoypad
 	ret
 ; 1bdd

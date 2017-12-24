@@ -491,7 +491,7 @@ Function1161d5: ; 1161d5
 	pop af
 	ld [rSVBK], a
 
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
 	ld de, MUSIC_MOBILE_ADAPTER
@@ -515,7 +515,7 @@ MenuDataHeader_11628c: ; 11628c
 ; 116294
 
 Function116294: ; 116294
-	callba Function170d02
+	farcall Function170d02
 	ld a, [$c319]
 	inc a
 	ld [$c319], a
@@ -541,7 +541,7 @@ Function116294: ; 116294
 ; 1162cb
 
 Function1162cb: ; 1162cb
-	callba Function170cc6
+	farcall Function170cc6
 	ld a, [$c319]
 	inc a
 	ld [$c319], a
@@ -676,7 +676,7 @@ Function11636e: ; 11636e
 	call UpdateSprites
 	pop af
 	ld [rSVBK], a
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
 	ld a, [wMapMusic]
@@ -700,7 +700,7 @@ Function1163c0: ; 1163c0
 	ld bc, 16 * 4
 	call ByteFill
 	call DelayFrame
-	callba Function14146
+	farcall Function14146
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	ld a, [rSVBK]
@@ -718,10 +718,10 @@ Function1163c0: ; 1163c0
 	ld a, $90
 	ld [hWY], a
 	call UpdateSprites
-	callba Function14157
+	farcall Function14157
 	pop af
 	ld [rSVBK], a
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld a, [wLinkMode]
 	cp $4
 	jr z, .asm_11642a
@@ -750,10 +750,10 @@ Function1163c0: ; 1163c0
 ; 116441
 
 Function116441: ; 116441
-	callba Function17d405
+	farcall Function17d405
 	ld a, $90
 	ld [hWY], a
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld a, $8
 	ld [MusicFade], a
 	ld a, [wMapMusic]

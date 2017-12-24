@@ -13,7 +13,7 @@ const_value set 2
 	const GOLDENRODGAMECORNER_POKEFAN_M3
 
 GoldenrodGameCorner_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -451,54 +451,54 @@ GoldenrodGameCorner_MapEventHeader:
 	warp_def $d, $2, 10, GOLDENROD_CITY
 	warp_def $d, $3, 10, GOLDENROD_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 31
-	signpost 6, 6, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 7, 6, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 8, 6, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 9, 6, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 10, 6, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 11, 6, SIGNPOST_RIGHT, GoldenrodGameCornerSlotsMachineScript
-	signpost 6, 7, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 7, 7, SIGNPOST_READ, GoldenrodGameCornerLuckySlotsMachineScript
-	signpost 8, 7, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 9, 7, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 10, 7, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 11, 7, SIGNPOST_LEFT, GoldenrodGameCornerSlotsMachineScript
-	signpost 6, 12, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 7, 12, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 8, 12, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 9, 12, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 10, 12, SIGNPOST_READ, GoldenrodGameCornerSlotsMachineScript
-	signpost 11, 12, SIGNPOST_RIGHT, GoldenrodGameCornerSlotsMachineScript
-	signpost 6, 13, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 7, 13, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 8, 13, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 9, 13, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 10, 13, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 11, 13, SIGNPOST_LEFT, GoldenrodGameCornerCardFlipMachineScript
-	signpost 6, 18, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 7, 18, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 8, 18, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 9, 18, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 10, 18, SIGNPOST_READ, GoldenrodGameCornerCardFlipMachineScript
-	signpost 11, 18, SIGNPOST_RIGHT, GoldenrodGameCornerCardFlipMachineScript
-	signpost 1, 12, SIGNPOST_LEFT, GoldenrodGameCornerLeftTheirDrinkScript
+	bg_event 6, 6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 7, 6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 8, 6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 9, 6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 10, 6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 11, 6, BGEVENT_RIGHT, GoldenrodGameCornerSlotsMachineScript
+	bg_event 6, 7, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 7, 7, BGEVENT_READ, GoldenrodGameCornerLuckySlotsMachineScript
+	bg_event 8, 7, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 9, 7, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 10, 7, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 11, 7, BGEVENT_LEFT, GoldenrodGameCornerSlotsMachineScript
+	bg_event 6, 12, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 7, 12, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 8, 12, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 9, 12, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 10, 12, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
+	bg_event 11, 12, BGEVENT_RIGHT, GoldenrodGameCornerSlotsMachineScript
+	bg_event 6, 13, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 7, 13, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 8, 13, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 9, 13, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 10, 13, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 11, 13, BGEVENT_LEFT, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 6, 18, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 7, 18, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 8, 18, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 9, 18, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 10, 18, BGEVENT_READ, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 11, 18, BGEVENT_RIGHT, GoldenrodGameCornerCardFlipMachineScript
+	bg_event 1, 12, BGEVENT_LEFT, GoldenrodGameCornerLeftTheirDrinkScript
 
-.PersonEvents:
+.ObjectEvents:
 	db 12
-	person_event SPRITE_CLERK, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodGmeCornerCoinVendorScript, -1
-	person_event SPRITE_RECEPTIONIST, 2, 16, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodGmeCornerTMVendorScript, -1
-	person_event SPRITE_RECEPTIONIST, 2, 18, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerPrizeMonVendorScript, -1
-	person_event SPRITE_PHARMACIST, 7, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerPharmacistScript, -1
-	person_event SPRITE_PHARMACIST, 7, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, NITE, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerPharmacistScript, -1
-	person_event SPRITE_POKEFAN_M, 10, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM1Script, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerCooltrainerMScript, -1
-	person_event SPRITE_POKEFAN_F, 6, 17, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanFScript, -1
-	person_event SPRITE_COOLTRAINER_F, 3, 10, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerCooltrainerFScript, -1
-	person_event SPRITE_GENTLEMAN, 10, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerGentlemanScript, -1
-	person_event SPRITE_POKEFAN_M, 9, 2, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM2Script, -1
-	person_event SPRITE_POKEFAN_M, 10, 17, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM3Script, EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
+	object_event SPRITE_CLERK, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGmeCornerCoinVendorScript, -1
+	object_event SPRITE_RECEPTIONIST, 2, 16, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGmeCornerTMVendorScript, -1
+	object_event SPRITE_RECEPTIONIST, 2, 18, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPrizeMonVendorScript, -1
+	object_event SPRITE_PHARMACIST, 7, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPharmacistScript, -1
+	object_event SPRITE_PHARMACIST, 7, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, NITE, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPharmacistScript, -1
+	object_event SPRITE_POKEFAN_M, 10, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM1Script, -1
+	object_event SPRITE_COOLTRAINER_M, 8, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerCooltrainerMScript, -1
+	object_event SPRITE_POKEFAN_F, 6, 17, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanFScript, -1
+	object_event SPRITE_COOLTRAINER_F, 3, 10, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerCooltrainerFScript, -1
+	object_event SPRITE_GENTLEMAN, 10, 5, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerGentlemanScript, -1
+	object_event SPRITE_POKEFAN_M, 9, 2, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM2Script, -1
+	object_event SPRITE_POKEFAN_M, 10, 17, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM3Script, EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR

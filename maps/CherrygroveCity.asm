@@ -6,19 +6,19 @@ const_value set 2
 	const CHERRYGROVECITY_FISHER
 
 CherrygroveCity_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
 .FlyPoint:
@@ -100,9 +100,9 @@ CherrygroveCityGuideGent:
 	closetext
 	end
 
-CherrygroveSilverTriggerSouth:
-	moveperson CHERRYGROVECITY_SILVER, $27, $7
-CherrygroveSilverTriggerNorth:
+CherrygroveSilverSceneSouth:
+	moveobject CHERRYGROVECITY_SILVER, $27, $7
+CherrygroveSilverSceneNorth:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
@@ -171,7 +171,7 @@ CherrygroveSilverTriggerNorth:
 	spriteface PLAYER, LEFT
 	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_SILVER
-	dotrigger $0
+	setscene $0
 	special HealParty
 	playmapmusic
 	end
@@ -558,22 +558,22 @@ CherrygroveCity_MapEventHeader:
 	warp_def $9, $19, 1, GUIDE_GENTS_HOUSE
 	warp_def $b, $1f, 1, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 1, $6, $21, CherrygroveSilverTriggerNorth
-	xy_trigger 1, $7, $21, CherrygroveSilverTriggerSouth
+	coord_event 1, $6, $21, CherrygroveSilverSceneNorth
+	coord_event 1, $7, $21, CherrygroveSilverSceneSouth
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 8, 30, SIGNPOST_READ, CherrygroveCitySign
-	signpost 9, 23, SIGNPOST_READ, GuideGentsHouseSign
-	signpost 3, 24, SIGNPOST_READ, CherrygroveCityMartSign
-	signpost 3, 30, SIGNPOST_READ, CherrygroveCityPokecenterSign
+	bg_event 8, 30, BGEVENT_READ, CherrygroveCitySign
+	bg_event 9, 23, BGEVENT_READ, GuideGentsHouseSign
+	bg_event 3, 24, BGEVENT_READ, CherrygroveCityMartSign
+	bg_event 3, 30, BGEVENT_READ, CherrygroveCityPokecenterSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_GRAMPS, 6, 32, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
-	person_event SPRITE_SILVER, 6, 39, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
-	person_event SPRITE_TEACHER, 12, 27, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1
-	person_event SPRITE_YOUNGSTER, 7, 23, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CherrygroveYoungsterScript, -1
-	person_event SPRITE_FISHER, 12, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, MysticWaterGuy, -1
+	object_event SPRITE_GRAMPS, 6, 32, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
+	object_event SPRITE_SILVER, 6, 39, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
+	object_event SPRITE_TEACHER, 12, 27, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1
+	object_event SPRITE_YOUNGSTER, 7, 23, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveYoungsterScript, -1
+	object_event SPRITE_FISHER, 12, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MysticWaterGuy, -1

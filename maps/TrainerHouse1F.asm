@@ -6,7 +6,7 @@ const_value set 2
 	const TRAINERHOUSE1F_GENTLEMAN
 
 TrainerHouse1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -147,19 +147,19 @@ TrainerHouse1F_MapEventHeader:
 	warp_def $d, $3, 3, VIRIDIAN_CITY
 	warp_def $2, $8, 1, TRAINER_HOUSE_B1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 0, 5, SIGNPOST_READ, MapTrainerHouse1FSignpost0Script
-	signpost 0, 7, SIGNPOST_READ, MapTrainerHouse1FSignpost1Script
-	signpost 10, 7, SIGNPOST_READ, MapTrainerHouse1FSignpost2Script
+	bg_event 0, 5, BGEVENT_READ, MapTrainerHouse1FSignpost0Script
+	bg_event 0, 7, BGEVENT_READ, MapTrainerHouse1FSignpost1Script
+	bg_event 10, 7, BGEVENT_READ, MapTrainerHouse1FSignpost2Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_RECEPTIONIST, 11, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, TrainerHouse1FReceptionistScript, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerMScript, -1
-	person_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerFScript, -1
-	person_event SPRITE_YOUNGSTER, 8, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, TrainerHouse1FYoungsterScript, -1
-	person_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TrainerHouse1FGentlemanScript, -1
+	object_event SPRITE_RECEPTIONIST, 11, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FReceptionistScript, -1
+	object_event SPRITE_COOLTRAINER_M, 11, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerMScript, -1
+	object_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerFScript, -1
+	object_event SPRITE_YOUNGSTER, 8, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FYoungsterScript, -1
+	object_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FGentlemanScript, -1

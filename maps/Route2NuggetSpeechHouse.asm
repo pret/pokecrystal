@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE2NUGGETSPEECHHOUSE_FISHER
 
 Route2NuggetSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -61,12 +61,12 @@ Route2NuggetSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 1, ROUTE_2
 	warp_def $7, $3, 1, ROUTE_2
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, FisherScript_0x9b847, -1
+	object_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FisherScript_0x9b847, -1

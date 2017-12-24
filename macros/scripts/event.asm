@@ -112,28 +112,28 @@ ptcallasm: macro
 	dw \1 ; asm
 	endm
 
-	enum checkmaptriggers_command ; $11
-checkmaptriggers: macro
-	db checkmaptriggers_command
+	enum checkmapscene_command ; $11
+checkmapscene: macro
+	db checkmapscene_command
 	map \1 ; map
 	endm
 
-	enum domaptrigger_command ; $12
-domaptrigger: macro
-	db domaptrigger_command
+	enum setmapscene_command ; $12
+setmapscene: macro
+	db setmapscene_command
 	map \1 ; map
-	db \2 ; trigger_id
+	db \2 ; scene_id
 	endm
 
-	enum checktriggers_command ; $13
-checktriggers: macro
-	db checktriggers_command
+	enum checkscene_command ; $13
+checkscene: macro
+	db checkscene_command
 	endm
 
-	enum dotrigger_command ; $14
-dotrigger: macro
-	db dotrigger_command
-	db \1 ; trigger_id
+	enum setscene_command ; $14
+setscene: macro
+	db setscene_command
+	db \1 ; scene_id
 	endm
 
 	enum writebyte_command ; $15
@@ -665,13 +665,13 @@ check_just_battled: macro
 	enum setlasttalked_command ; $68
 setlasttalked: macro
 	db setlasttalked_command
-	db \1 ; person
+	db \1 ; object id
 	endm
 
 	enum applymovement_command ; $69
 applymovement: macro
 	db applymovement_command
-	db \1 ; person
+	db \1 ; object id
 	dw \2 ; data
 	endm
 
@@ -686,11 +686,11 @@ faceplayer: macro
 	db faceplayer_command
 	endm
 
-	enum faceperson_command ; $6c
-faceperson: macro
-	db faceperson_command
-	db \1 ; person1
-	db \2 ; person2
+	enum faceobject_command ; $6c
+faceobject: macro
+	db faceobject_command
+	db \1 ; object1
+	db \2 ; object2
 	endm
 
 	enum variablesprite_command ; $6d
@@ -703,20 +703,20 @@ variablesprite: macro
 	enum disappear_command ; $6e
 disappear: macro
 	db disappear_command
-	db \1 ; person
+	db \1 ; object id
 	endm
 
 	enum appear_command ; $6f
 appear: macro
 	db appear_command
-	db \1 ; person
+	db \1 ; object id
 	endm
 
 	enum follow_command ; $70
 follow: macro
 	db follow_command
-	db \1 ; person2
-	db \2 ; person1
+	db \1 ; object2
+	db \2 ; object1
 	endm
 
 	enum stopfollow_command ; $71
@@ -724,18 +724,18 @@ stopfollow: macro
 	db stopfollow_command
 	endm
 
-	enum moveperson_command ; $72
-moveperson: macro
-	db moveperson_command
-	db \1 ; person
+	enum moveobject_command ; $72
+moveobject: macro
+	db moveobject_command
+	db \1 ; object id
 	db \2 ; x
 	db \3 ; y
 	endm
 
-	enum writepersonxy_command ; $73
-writepersonxy: macro
-	db writepersonxy_command
-	db \1 ; person
+	enum writeobjectxy_command ; $73
+writeobjectxy: macro
+	db writeobjectxy_command
+	db \1 ; object id
 	endm
 
 	enum loademote_command ; $74
@@ -748,22 +748,22 @@ loademote: macro
 showemote: macro
 	db showemote_command
 	db \1 ; bubble
-	db \2 ; person
+	db \2 ; object id
 	db \3 ; time
 	endm
 
 	enum spriteface_command ; $76
 spriteface: macro
 	db spriteface_command
-	db \1 ; person
+	db \1 ; object id
 	db \2 ; facing
 	endm
 
 	enum follownotexact_command ; $77
 follownotexact: macro
 	db follownotexact_command
-	db \1 ; person2
-	db \2 ; person1
+	db \1 ; object2
+	db \2 ; object1
 	endm
 
 	enum earthquake_command ; $78

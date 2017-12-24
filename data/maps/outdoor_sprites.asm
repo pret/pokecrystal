@@ -1,5 +1,5 @@
 ; Valid sprite IDs for each map group.
-; Maps with permission ROUTE or TOWN can only use these sprites.
+; Maps with environment ROUTE or TOWN can only use these sprites.
 
 OutdoorSprites: ; 144b8
 	dw OlivineGroupSprites

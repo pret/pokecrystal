@@ -3,7 +3,7 @@ const_value set 2
 	const CHERRYGROVEGYMSPEECHHOUSE_BUG_CATCHER
 
 CherrygroveGymSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -53,15 +53,15 @@ CherrygroveGymSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 3, CHERRYGROVE_CITY
 	warp_def $7, $3, 3, CHERRYGROVE_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, CherrygroveGymSpeechHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, CherrygroveGymSpeechHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, CherrygroveGymSpeechHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, CherrygroveGymSpeechHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CherrygroveGymSpeechHousePokefanMScript, -1
-	person_event SPRITE_BUG_CATCHER, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CherrygroveGymSpeechHouseBugCatcherScript, -1
+	object_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveGymSpeechHousePokefanMScript, -1
+	object_event SPRITE_BUG_CATCHER, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveGymSpeechHouseBugCatcherScript, -1

@@ -1,7 +1,7 @@
 PhotoStudio: ; 16dc7
 	ld hl, .Text_AskWhichMon
 	call PrintText
-	callba SelectMonFromParty
+	farcall SelectMonFromParty
 	jr c, .cancel
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -10,7 +10,7 @@ PhotoStudio: ; 16dc7
 	ld hl, .Text_HoldStill
 	call PrintText
 	call DisableSpriteUpdates
-	callba PrintPartymon
+	farcall PrintPartymon
 	call ReturnToMapWithSpeechTextbox
 	ld a, [hPrinter]
 	and a

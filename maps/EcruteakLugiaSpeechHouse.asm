@@ -3,7 +3,7 @@ const_value set 2
 	const ECRUTEAKLUGIASPEECHHOUSE_YOUNGSTER
 
 EcruteakLugiaSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -53,14 +53,14 @@ EcruteakLugiaSpeechHouse_MapEventHeader:
 	warp_def $7, $3, 7, ECRUTEAK_CITY
 	warp_def $7, $4, 7, ECRUTEAK_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 1, 2, SIGNPOST_READ, LugiaSpeechHouseRadio
+	bg_event 1, 2, BGEVENT_READ, LugiaSpeechHouseRadio
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseGrampsScript, -1
-	person_event SPRITE_YOUNGSTER, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseYoungsterScript, -1
+	object_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseGrampsScript, -1
+	object_event SPRITE_YOUNGSTER, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseYoungsterScript, -1

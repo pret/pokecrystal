@@ -7,7 +7,7 @@ NameRater: ; fb6ed
 ; Select a Pokemon from your party
 	ld hl, NameRaterWhichMonText
 	call PrintText
-	callba SelectMonFromParty
+	farcall SelectMonFromParty
 	jr c, .cancel
 ; He can't rename an egg...
 	ld a, [CurPartySpecies]
@@ -34,7 +34,7 @@ NameRater: ; fb6ed
 	call GetBaseData
 	ld b, 0
 	ld de, StringBuffer2
-	callba _NamingScreen
+	farcall _NamingScreen
 ; If the new name is empty, treat it as unchanged.
 	call IsNewNameEmpty
 	ld hl, NameRaterSameAsBeforeText

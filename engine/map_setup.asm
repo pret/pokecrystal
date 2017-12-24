@@ -308,8 +308,8 @@ SuspendMapAnims: ; 154d3
 LoadObjectsRunCallback_02: ; 154d7
 	ld a, MAPCALLBACK_OBJECTS
 	call RunMapCallback
-	callba LoadObjectMasks
-	callba InitializeVisibleSprites
+	farcall LoadObjectMasks
+	farcall InitializeVisibleSprites
 	ret
 ; 154ea (5:54ea)
 
@@ -362,10 +362,10 @@ CheckReplaceKrisSprite: ; 154f7
 	jr z, .surfing
 	cp PLAYER_SURF_PIKA
 	jr z, .surfing
-	call GetMapPermission
+	call GetMapEnvironment
 	cp INDOOR
 	jr z, .checkbiking
-	cp PERM_5
+	cp ENVIRONMENT_5
 	jr z, .checkbiking
 	cp DUNGEON
 	jr z, .checkbiking
@@ -409,7 +409,7 @@ FadeOldMapMusic: ; 15567
 ; 1556d
 
 RetainOldPalettes: ; 1556d
-	callba _UpdateTimePals
+	farcall _UpdateTimePals
 	ret
 
 RotatePalettesRightMapAndMusic: ; 15574

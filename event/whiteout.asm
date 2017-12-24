@@ -49,7 +49,7 @@ BattleBGMap: ; 1250a
 ; 12513
 
 HalveMoney: ; 12513
-	callba TrainerRankings_WhiteOuts
+	farcall TrainerRankings_WhiteOuts
 
 ; Halve the player's money.
 	ld hl, Money
@@ -71,7 +71,7 @@ GetWhiteoutSpawn: ; 12527
 	ld d, a
 	ld a, [wLastSpawnMapNumber]
 	ld e, a
-	callba IsSpawnPoint
+	farcall IsSpawnPoint
 	ld a, c
 	jr c, .yes
 	xor a ; SPAWN_HOME

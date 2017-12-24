@@ -56,7 +56,7 @@ Predef_StartBattle: ; 8c20f
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr z, .mobile
-	callba ReanchorBGMap_NoOAMUpdate
+	farcall ReanchorBGMap_NoOAMUpdate
 	call UpdateSprites
 	call DelayFrame
 	call .NonMobile_LoadPokeballTiles
@@ -208,10 +208,10 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	jr nc, .okay
 	set 0, e
 .okay
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp CAVE
 	jr z, .okay2
-	cp PERM_5
+	cp ENVIRONMENT_5
 	jr z, .okay2
 	cp DUNGEON
 	jr z, .okay2
@@ -297,7 +297,7 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 ; 8c3e8
 
 StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
-	callba Function5602
+	farcall Function5602
 	ld a, $5 ; BANK(LYOverrides)
 	ld [rSVBK], a
 
@@ -355,7 +355,7 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 	ret
 
 StartTrainerBattle_SetUpForSpinOutro: ; 8c43d (23:443d)
-	callba Function5602
+	farcall Function5602
 	ld a, $5 ; BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
@@ -497,7 +497,7 @@ ENDM
 ; 8c578
 
 StartTrainerBattle_SetUpForRandomScatterOutro: ; 8c578 (23:4578)
-	callba Function5602
+	farcall Function5602
 	ld a, $5 ; BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
@@ -797,7 +797,7 @@ StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
 ; 8c768
 
 StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
-	callba Function5602
+	farcall Function5602
 	ld de, .boxes
 
 .loop

@@ -4,7 +4,7 @@ const_value set 2
 	const GOLDENRODBILLSHOUSE_TWIN
 
 GoldenrodBillsHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -251,17 +251,17 @@ GoldenrodBillsHouse_MapEventHeader:
 	warp_def $7, $2, 4, GOLDENROD_CITY
 	warp_def $7, $3, 4, GOLDENROD_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 1, 0, SIGNPOST_READ, BillsHouseBookshelf2
-	signpost 1, 1, SIGNPOST_READ, BillsHouseBookshelf1
-	signpost 1, 7, SIGNPOST_READ, BillsHouseRadio
+	bg_event 1, 0, BGEVENT_READ, BillsHouseBookshelf2
+	bg_event 1, 1, BGEVENT_READ, BillsHouseBookshelf1
+	bg_event 1, 7, BGEVENT_READ, BillsHouseRadio
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_BILL, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BillsHouseBill, EVENT_MET_BILL
-	person_event SPRITE_POKEFAN_F, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BillsMom, -1
-	person_event SPRITE_TWIN, 4, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, BillsSister, -1
+	object_event SPRITE_BILL, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsHouseBill, EVENT_MET_BILL
+	object_event SPRITE_POKEFAN_F, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsMom, -1
+	object_event SPRITE_TWIN, 4, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSister, -1

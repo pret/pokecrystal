@@ -39,10 +39,10 @@ Function100022: ; 100022
 	ld [wcd23], a
 	ld a, b
 	ld [wcd24], a
-	callba Function10127e
-	callba MobileFunc_106462
-	callba Function106464 ; load broken gfx
-	callba Function11615a ; init RAM
+	farcall Function10127e
+	farcall MobileFunc_106462
+	farcall Function106464 ; load broken gfx
+	farcall Function11615a ; init RAM
 	ld hl, VramState
 	set 1, [hl]
 	ret
@@ -144,7 +144,7 @@ Function1000e8: ; 1000e8
 	ld hl, wcd29
 	bit 7, [hl]
 	ret z
-	callba Function115dd3
+	farcall Function115dd3
 	ld hl, wcd29
 	set 6, [hl]
 	ret
@@ -160,7 +160,7 @@ Function1000fa: ; 1000fa
 	ld a, [wcd2b]
 	and a
 	jr nz, .asm_100117
-	callba Function11619d
+	farcall Function11619d
 	ld hl, wcd29
 	set 6, [hl]
 	ret
@@ -183,7 +183,7 @@ Function1000fa: ; 1000fa
 	ld [wLinkMode], a
 	ld a, $04
 	ld [wc314 + 5], a
-	callba Function11619d
+	farcall Function11619d
 	ld hl, wcd29
 	set 6, [hl]
 	pop af
@@ -206,7 +206,7 @@ Function100144: ; 100144
 	ret z
 	res 2, [hl]
 	res 6, [hl]
-	callba HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTileMapToWRAMBank3
 	ret
 ; 100163
 
@@ -318,8 +318,8 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	callba FadeOutPalettes
-	callba Function106464
+	farcall FadeOutPalettes
+	farcall Function106464
 	call HideSprites
 	call DelayFrame
 
@@ -328,7 +328,7 @@ Function10020b: ; 10020b
 	ld a, $01
 	ld [rSVBK], a
 
-	callba DisplayMobileError
+	farcall DisplayMobileError
 
 	pop af
 	ld [rSVBK], a
@@ -337,7 +337,7 @@ Function10020b: ; 10020b
 
 Function100232: ; 100232
 	push de
-	callba Function106464
+	farcall Function106464
 	call Function3f20
 	call UpdateSprites
 	hlcoord 1, 2
@@ -378,7 +378,7 @@ Function100276: ; 100276
 	ret
 
 .asm_100296
-	callba Script_reloadmappart
+	farcall Script_reloadmappart
 	ld c, $04
 	ret
 
@@ -388,7 +388,7 @@ Function100276: ; 100276
 	ret
 
 .asm_1002a5
-	callba Script_reloadmappart
+	farcall Script_reloadmappart
 	call Function1002ed
 	ld c, $03
 	ret
@@ -412,15 +412,15 @@ Function1002c9: ; 1002c9
 	ld hl, wcd2a
 	bit 0, [hl]
 	ret z
-	callba CleanUpBattleRAM
-	callba LoadPokemonData
+	farcall CleanUpBattleRAM
+	farcall LoadPokemonData
 	ret
 ; 1002dc
 
 Function1002dc: ; 1002dc
 	ld a, MAPSETUP_LINKRETURN
 	ld [hMapEntryMethod], a
-	callba RunMapSetupScript
+	farcall RunMapSetupScript
 	xor a
 	ld [hMapEntryMethod], a
 	call LoadStandardFont
@@ -428,8 +428,8 @@ Function1002dc: ; 1002dc
 ; 1002ed
 
 Function1002ed: ; 1002ed
-	callba LoadOW_BGPal7
-	callba ApplyPals
+	farcall LoadOW_BGPal7
+	farcall ApplyPals
 	ld a, $01
 	ld [hCGBPalUpdate], a
 	call DelayFrame
@@ -440,21 +440,21 @@ Function100301: ; 100301
 	ld hl, wcd2a
 	bit 1, [hl]
 	ret z
-	callba Function106464
-	callba Function10202c
-	callba Function115dd3
+	farcall Function106464
+	farcall Function10202c
+	farcall Function115dd3
 	call Function100320
 	call JoyWaitAorB
 	ret
 ; 100320
 
 Function100320: ; 100320
-	callba Mobile_ReloadMapPart
+	farcall Mobile_ReloadMapPart
 	ret
 ; 100327
 
 Function100327: ; 100327
-	callba HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTileMapToWRAMBank3
 	ret
 ; 100327
 
@@ -858,7 +858,7 @@ Function100545: ; 100545
 ; 10054d
 
 Function10054d: ; 10054d
-	callba MobileMenuJoypad
+	farcall MobileMenuJoypad
 	ld a, c
 	ld hl, wMenuJoypadFilter
 	and [hl]
@@ -1500,7 +1500,7 @@ Function100902: ; 100902
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
 	call PlaySFX
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld c, $3c
 	call DelayFrames
 	ret
@@ -1511,7 +1511,7 @@ Function100902: ; 100902
 	call PlaceString
 	ld de, SFX_4_NOTE_DITTY
 	call PlaySFX
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld c, 120
 	call DelayFrames
 	ret
@@ -1541,7 +1541,7 @@ Function100989: ; 100989
 	decoord 0, 0
 	call Function1009a5
 	call Function1009ae
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ld hl, w3_dd68
 	decoord 0, 0, AttrMap
 	call Function1009a5
@@ -1628,14 +1628,14 @@ Function1009f3: ; 1009f3
 _LinkBattleSendReceiveAction: ; 100a09
 	call .StageForSend
 	ld [wd431], a
-	callba PlaceWaitingText
+	farcall PlaceWaitingText
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .not_mobile
 
 	call .MobileBattle_SendReceiveAction
 	call Function100da5
-	callba FinishBattleAnim
+	farcall FinishBattleAnim
 	jr .done
 
 .not_mobile
@@ -1711,7 +1711,7 @@ _LinkBattleSendReceiveAction: ; 100a09
 .asm_100a92
 	call DelayFrame
 	call GetJoypad
-	callba Function100382
+	farcall Function100382
 	ld c, $01
 	ld b, $03
 	push bc
@@ -1810,7 +1810,7 @@ Function100b12: ; 100b12
 	ld [wMenuCursorBuffer], a
 	call Function100e72
 	call Function100b45
-	callba InitPartyMenuBGPal7
+	farcall InitPartyMenuBGPal7
 	call Function100ed4
 	ld a, [wMenuCursorBuffer]
 	ld [wBattleMenuCursorBuffer], a
@@ -1822,16 +1822,16 @@ Function100b45: ; 100b45
 	call Function100b7a
 .loop
 	call Mobile_SetOverworldDelay
-	callba MobileMenuJoypad
+	farcall MobileMenuJoypad
 	push bc
-	callba HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTileMapToWRAMBank3
 	call Function100e2d
 	pop bc
 	jr c, .asm_100b6b
 	ld a, [wMenuJoypadFilter]
 	and c
 	jr z, .loop
-	callba Mobile_GetMenuSelection
+	farcall Mobile_GetMenuSelection
 	ret
 
 .asm_100b6b
@@ -1848,11 +1848,11 @@ Function100b7a: ; 100b7a
 	ld hl, CopyMenuData2
 	ld a, [wMenuData2_2DMenuItemStringsBank]
 	rst FarCall
-	callba Draw2DMenu
-	callba MobileTextBorder
+	farcall Draw2DMenu
+	farcall MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
-	callba Init2DMenuCursorPosition
+	farcall Init2DMenuCursorPosition
 	ld hl, w2DMenuFlags1
 	set 7, [hl]
 	ret
@@ -1861,14 +1861,14 @@ Function100b7a: ; 100b7a
 MobileMoveSelectionScreen: ; 100b9f
 	xor a
 	ld [wMoveSwapBuffer], a
-	callba CheckPlayerHasUsableMoves
+	farcall CheckPlayerHasUsableMoves
 	ret z
 	call Function100dd8
 	jp c, xor_a_dec_a
 	call Function100e72
 	call .GetMoveSelection
 	push af
-	callba InitPartyMenuBGPal7
+	farcall InitPartyMenuBGPal7
 	call Function100ed4
 	pop af
 	ret
@@ -1880,12 +1880,12 @@ MobileMoveSelectionScreen: ; 100b9f
 	call Function100c74
 	call Function100c98
 .master_loop
-	callba MoveInfoBox
+	farcall MoveInfoBox
 .loop
 	call Mobile_SetOverworldDelay
-	callba MobileMenuJoypad
+	farcall MobileMenuJoypad
 	push bc
-	callba HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTileMapToWRAMBank3
 	call Function100e2d
 	pop bc
 	jr c, .b_button
@@ -2016,10 +2016,10 @@ Mobile_PartyMenuSelect: ; 100cb5
 	res 6, [hl]
 .loop
 	call Mobile_SetOverworldDelay
-	callba MobileMenuJoypad
+	farcall MobileMenuJoypad
 	push bc
-	callba PlaySpriteAnimations
-	callba HDMATransferTileMapToWRAMBank3
+	farcall PlaySpriteAnimations
+	farcall HDMATransferTileMapToWRAMBank3
 	call MobileComms_CheckInactivityTimer
 	pop bc
 	jr c, .done
@@ -2070,10 +2070,10 @@ MobileBattleMonMenu: ; 100d22
 	res 6, [hl]
 .asm_100d30
 	call Mobile_SetOverworldDelay
-	callba MobileMenuJoypad
+	farcall MobileMenuJoypad
 	push bc
-	callba PlaySpriteAnimations
-	callba HDMATransferTileMapToWRAMBank3
+	farcall PlaySpriteAnimations
+	farcall HDMATransferTileMapToWRAMBank3
 	call MobileComms_CheckInactivityTimer
 	pop bc
 	jr c, .asm_100d54
@@ -2181,13 +2181,13 @@ Mobile_SetOverworldDelay: ; 100dd2
 Function100dd8: ; 100dd8
 	ld c, $01
 	ld b, $03
-	callba AdvanceMobileInactivityTimerAndCheckExpired
+	farcall AdvanceMobileInactivityTimerAndCheckExpired
 	jr c, .asm_100dfb
 	ld c, $3c
 	ld b, $01
 	call Function10079c
 	jr c, .asm_100dfb
-	callba Function10032e
+	farcall Function10032e
 	ld a, [wcd2b]
 	and a
 	jr nz, .asm_100dfb
@@ -2207,7 +2207,7 @@ MobileComms_CheckInactivityTimer: ; 100dfd
 	ld c, a
 	ld b, 3
 	push bc
-	callba AdvanceMobileInactivityTimerAndCheckExpired ; useless to farcall
+	farcall AdvanceMobileInactivityTimerAndCheckExpired ; useless to farcall
 	pop bc
 	jr c, .quit
 	ld b, 1
@@ -2215,7 +2215,7 @@ MobileComms_CheckInactivityTimer: ; 100dfd
 	jr c, .quit
 	call Function1009f3
 	jr c, .quit
-	callba Function10032e ; useless to farcall
+	farcall Function10032e ; useless to farcall
 	ld a, [wcd2b]
 	and a
 	jr nz, .quit
@@ -2235,7 +2235,7 @@ Function100e2d: ; 100e2d
 	ld c, a
 	ld b, 3
 	push bc
-	callba AdvanceMobileInactivityTimerAndCheckExpired
+	farcall AdvanceMobileInactivityTimerAndCheckExpired
 	pop bc
 	jr c, .asm_100e61
 	ld b, 1
@@ -2243,7 +2243,7 @@ Function100e2d: ; 100e2d
 	jr c, .asm_100e61
 	call Function1009f3
 	jr c, .asm_100e61
-	callba Function10032e
+	farcall Function10032e
 	ld a, [wcd2b]
 	and a
 	jr nz, .asm_100e61
@@ -2340,13 +2340,13 @@ Function100ec5
 ; 100eca
 
 Function100eca: ; 100eca
-	callba Mobile_InitPartyMenuBGPal7
+	farcall Mobile_InitPartyMenuBGPal7
 	call Function100ed4
 	ret
 ; 100ed4
 
 Function100ed4: ; 100ed4
-	callba ApplyPals
+	farcall ApplyPals
 	ld a, $01
 	ld [hCGBPalUpdate], a
 	ret
@@ -2884,7 +2884,7 @@ Function101265: ; 101265
 
 Function10126c: ; 10126c
 	call UpdateSprites
-	callba Script_reloadmappart
+	farcall Script_reloadmappart
 	ld hl, UnknownText_0x1021f4
 	call Function1021e0
 	ret
@@ -3042,7 +3042,7 @@ Jumptable_101297: ; 101297
 ; 10138b
 
 Function10138b: ; 10138b
-	callba Function8adcc
+	farcall Function8adcc
 	ld c, 0
 	jr c, .asm_101396
 	inc c
@@ -3069,22 +3069,22 @@ Function1013aa: ; 1013aa
 	call ClearBGPalettes
 	call Call_ExitMenu
 	call ReloadTilesetAndPalettes
-	callba Function106464
+	farcall Function106464
 	call UpdateSprites
 	call FinishExitMenu
 	ret
 ; 1013c0
 
 Function1013c0: ; 1013c0
-	callba BlankScreen
-	callba MobileFunc_106462
-	callba Function106464
+	farcall BlankScreen
+	farcall MobileFunc_106462
+	farcall Function106464
 	call FinishExitMenu
 	ret
 ; 1013d6
 
 Function1013d6: ; 1013d6
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 1013dd
 
@@ -3177,7 +3177,7 @@ Function101418: ; 101418
 Function10142c: ; 10142c
 	ld a, $01
 	ld [wc305], a
-	callba Function115e18
+	farcall Function115e18
 	ret
 ; 101438
 
@@ -3277,8 +3277,8 @@ Function1014b7: ; 1014b7
 ; 1014ce
 
 Function1014ce: ; 1014ce
-	callba Function100720
-	callba StartMobileInactivityTimer
+	farcall Function100720
+	farcall StartMobileInactivityTimer
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -3297,7 +3297,7 @@ Function1014e2: ; 1014e2
 ; 1014f4
 
 Function1014f4: ; 1014f4
-	callba EnableMobile
+	farcall EnableMobile
 	ld hl, wcd29
 	set 6, [hl]
 	ld a, [wMobileCommsJumptableIndex]
@@ -3346,7 +3346,7 @@ Function101537: ; 101537
 ; 101544
 
 Function101544: ; 101544
-	callba StartMobileInactivityTimer
+	farcall StartMobileInactivityTimer
 	ld a, $12
 	call Function3e32
 	ld a, [wMobileCommsJumptableIndex]
@@ -3356,7 +3356,7 @@ Function101544: ; 101544
 ; 101557
 
 Function101557: ; 101557
-	callba StartMobileInactivityTimer
+	farcall StartMobileInactivityTimer
 	ld hl, wcd53
 	ld a, $08
 	call Function3e32
@@ -3371,7 +3371,7 @@ Function10156d: ; 10156d
 	ret c
 
 Function101571: ; 101571
-	callba Function10032e
+	farcall Function10032e
 	ret c
 	ret z
 	ld a, e
@@ -3388,7 +3388,7 @@ Function101571: ; 101571
 ; 10158a
 
 Function10158a: ; 10158a
-	callba IncrementMobileInactivityTimerBy1Frame
+	farcall IncrementMobileInactivityTimerBy1Frame
 	ld a, [wMobileInactivityTimerMinutes]
 	cp $0a
 	jr c, Function10156d
@@ -3399,7 +3399,7 @@ Function10158a: ; 10158a
 
 Function10159d: ; 10159d
 	ld de, wc608
-	callba Function100edf
+	farcall Function100edf
 	ld de, wc608
 	ld a, $05
 	ld hl, w5_d800
@@ -3414,7 +3414,7 @@ Function10159d: ; 10159d
 
 Function1015be: ; 1015be
 	ld de, wc608
-	callba Function100eed
+	farcall Function100eed
 	ld de, wc608
 	ld a, $05
 	ld hl, w5_d800
@@ -3429,7 +3429,7 @@ Function1015be: ; 1015be
 
 Function1015df: ; 1015df
 	ld de, wc608
-	callba Function100ef4
+	farcall Function100ef4
 	ld de, wc608
 	ld a, $05
 	ld hl, w5_d800
@@ -3449,7 +3449,7 @@ Function101600: ; 101600
 	ld a, $05
 	call FarCopyWRAM
 	ld de, wc608
-	callba Function100ee6
+	farcall Function100ee6
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -3536,11 +3536,11 @@ Function10168a: ; 10168a
 Function10168e: ; 10168e
 	ld b, 0
 	ld c, $01
-	callba Function10079c
+	farcall Function10079c
 	ret c
 	ld c, $01
 	ld b, $03
-	callba AdvanceMobileInactivityTimerAndCheckExpired
+	farcall AdvanceMobileInactivityTimerAndCheckExpired
 	ret c
 	ld a, [wcd26]
 	ld hl, Jumptable_1016c3
@@ -3604,7 +3604,7 @@ Function1016f8: ; 1016f8
 ; 101705
 
 Function101705: ; 101705
-	callba Function100382
+	farcall Function100382
 	ld a, [wcd27]
 	bit 7, a
 	ret z
@@ -3769,13 +3769,13 @@ Function1017f1: ; 1017f1
 Function1017f5: ; 1017f5
 	ld b, 0
 	ld c, $01
-	callba Function10079c
+	farcall Function10079c
 	ret c
 	ld c, $01
 	ld b, $03
-	callba AdvanceMobileInactivityTimerAndCheckExpired
+	farcall AdvanceMobileInactivityTimerAndCheckExpired
 	ret c
-	callba Function100382
+	farcall Function100382
 	ld a, [wcd27]
 	bit 7, a
 	jr nz, .next
@@ -3808,7 +3808,7 @@ Function101826: ; 101826
 	ret
 
 .asm_101844
-	callba Function103654
+	farcall Function103654
 	ld a, c
 	ld hl, Unknown_101882
 	cp $01
@@ -3965,7 +3965,7 @@ Function101913: ; 101913
 Function10194b: ; 10194b
 	call DisableSpriteUpdates
 	call ClearSprites
-	callba Function1021f9
+	farcall Function1021f9
 	ld hl, wcd29
 	bit 3, [hl]
 	jr nz, .asm_101967
@@ -3981,8 +3981,8 @@ Function10194b: ; 10194b
 ; 10196d
 
 _SelectMonsForMobileBattle: ; 10196d
-	callba BlankScreen
-	callba Mobile_CommunicationStandby
+	farcall BlankScreen
+	farcall Mobile_CommunicationStandby
 	ld hl, wcd29
 	set 5, [hl]
 	ld hl, wcd2a
@@ -4008,16 +4008,16 @@ _SelectMonsForMobileBattle: ; 10196d
 
 _StartMobileBattle: ; 1019ab
 	call CopyOtherPlayersBattleMonSelection
-	callba Function100754
+	farcall Function100754
 	xor a
 	ld [wdc5f], a
 	ld [wdc60], a
-	callba BlankScreen
+	farcall BlankScreen
 	call SpeechTextBox
-	callba Function100846
+	farcall Function100846
 	ld c, 120
 	call DelayFrames
-	callba ClearTileMap
+	farcall ClearTileMap
 	call .CopyOTDetails
 	call StartMobileBattle
 	ld a, [wcd2b]
@@ -4040,7 +4040,7 @@ _StartMobileBattle: ; 1019ab
 
 	ld bc, w5_dc0d
 	ld de, w5_dc11
-	callba GetMobileOTTrainerClass
+	farcall GetMobileOTTrainerClass
 
 	pop af
 	ld [rSVBK], a
@@ -4071,9 +4071,9 @@ StartMobileBattle: ; 101a21
 	ld [hl], a
 	ld a, 1
 	ld [wDisableTextAcceleration], a
-	callba BattleIntro
-	callba DoBattle
-	callba ShowLinkBattleParticipantsAfterEnd
+	farcall BattleIntro
+	farcall DoBattle
+	farcall ShowLinkBattleParticipantsAfterEnd
 	xor a
 	ld [wDisableTextAcceleration], a
 	ld a, $ff
@@ -4086,11 +4086,11 @@ StartMobileBattle: ; 101a21
 Function101a4f: ; 101a4f
 	ld a, 1
 	ld [wDisableTextAcceleration], a
-	callba DisplayLinkBattleResult
+	farcall DisplayLinkBattleResult
 	xor a
 	ld [wDisableTextAcceleration], a
-	callba CleanUpBattleRAM
-	callba LoadPokemonData
+	farcall CleanUpBattleRAM
+	farcall LoadPokemonData
 	call Function1013c0
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
@@ -4104,14 +4104,14 @@ CopyOtherPlayersBattleMonSelection: ; 101a75
 	ld bc, 3
 	call CopyBytes
 	ld de, wcc64
-	callba Function100772
-	callba Function101050
-	callba LoadSelectedPartiesForColosseum
+	farcall Function100772
+	farcall Function101050
+	farcall LoadSelectedPartiesForColosseum
 	ret
 ; 101a97
 
 Function101a97: ; 101a97
-	callba Function115d99
+	farcall Function115d99
 	ld hl, wcd29
 	set 7, [hl]
 	ld c, $02
@@ -4136,7 +4136,7 @@ Function101ab4: ; 101ab4
 ; 101ac6
 
 Function101ac6: ; 101ac6
-	callba Function115d99
+	farcall Function115d99
 	ld hl, wcd29
 	set 7, [hl]
 	ld c, $02
@@ -4154,7 +4154,7 @@ Function101ac6: ; 101ac6
 ; 101aed
 
 Function101aed: ; 101aed
-	callba Function115d99
+	farcall Function115d99
 	ld hl, wcd29
 	set 7, [hl]
 	ld c, $02
@@ -4185,7 +4185,7 @@ Function101b0f: ; 101b0f
 ; 101b2b
 
 Function101b2b: ; 101b2b
-	callba Function100579
+	farcall Function100579
 	ld hl, wcd29
 	set 2, [hl]
 	ld a, [wcd26]
@@ -4238,7 +4238,7 @@ Function101b70: ; 101b70
 ; 101b8f
 
 Function101b8f: ; 101b8f
-	callba Function1005c3
+	farcall Function1005c3
 	ld hl, wcd29
 	set 2, [hl]
 	ld a, [wcd26]
@@ -4282,7 +4282,7 @@ Function101bc8: ; 101bc8
 ; 101be5
 
 Function101be5: ; 101be5
-	callba Function100579
+	farcall Function100579
 	ld hl, wcd29
 	set 2, [hl]
 	ld a, [wcd26]
@@ -4352,7 +4352,7 @@ Function101c50: ; 101c50
 ; 101c62
 
 Function101c62: ; 101c62
-	callba Function115d99
+	farcall Function115d99
 	ld hl, wcd29
 	set 7, [hl]
 	ld c, $01
@@ -4374,7 +4374,7 @@ Function101c62: ; 101c62
 ; 101c92
 
 Function101c92: ; 101c92
-	callba Function100675
+	farcall Function100675
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -4520,7 +4520,7 @@ Function101d6b: ; 101d6b
 ; 101d7b
 
 Function101d7b: ; 101d7b
-	callba Function10138b
+	farcall Function10138b
 	ld b, 0
 	ld hl, Unknown_101d8d
 	add hl, bc
@@ -4550,7 +4550,7 @@ Function101d95: ; 101d95
 ; 101db2
 
 Function101db2: ; 101db2
-	callba Function103302
+	farcall Function103302
 	call ExitMenu
 	ld hl, wcd29
 	set 5, [hl]
@@ -4701,7 +4701,7 @@ Function101e8d: ; 101e8d ; unreferenced
 
 Function101e98: ; 101e98
 	call ClearSprites
-	callba Function8adb3
+	farcall Function8adb3
 	ret c
 	ld hl, GameTimerPause
 	set 7, [hl]
@@ -4741,7 +4741,7 @@ Function101ecc: ; 101ecc
 
 Function101ed3: ; 101ed3
 	call Function1013aa
-	callba Function115d99
+	farcall Function115d99
 	ld hl, wcd29
 	set 7, [hl]
 	ret
@@ -4758,7 +4758,7 @@ Function101ee4: ; 101ee4
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-	callba Function100504
+	farcall Function100504
 	ret
 ; 101ef5
 
@@ -4835,7 +4835,7 @@ String_102014: ; 102014
 ; 10202c
 
 Function10202c: ; 10202c
-	callba Function115d99
+	farcall Function115d99
 	ld hl, wcd29
 	set 7, [hl]
 	ld c, $02
@@ -4930,7 +4930,7 @@ Function1020a8: ; 1020a8
 	call Function10209c
 	ld c, $01
 	ld de, wdc42
-	callba Function17a68f
+	farcall Function17a68f
 	ret c
 	call Function10208e
 	call Function102068
@@ -4940,7 +4940,7 @@ Function1020a8: ; 1020a8
 
 Function1020bf: ; 1020bf
 	call ClearSprites
-	callba Function8aba9
+	farcall Function8aba9
 	ld a, c
 	and a
 	jr z, .asm_1020e8
@@ -5074,7 +5074,7 @@ Function10219f: ; 10219f
 	call FadeToMenu
 	call Function10218d
 	ld de, wc608 + 1
-	callba Function8ac4e
+	farcall Function8ac4e
 	call JoyWaitAorB
 	call PlayClickSFX
 	call Function1013aa
@@ -5085,7 +5085,7 @@ Function1021b8: ; 1021b8
 	call FadeToMenu
 	call Function10218d
 	ld de, wPlayerMoveStruct
-	callba Function8ac70
+	farcall Function8ac70
 	ld a, c
 	ld [StringBuffer1], a
 	push af
@@ -5191,7 +5191,7 @@ Function10224b: ; 10224b
 .asm_10225e
 	res 1, [hl]
 	res 2, [hl]
-	callba Mobile_ReloadMapPart
+	farcall Mobile_ReloadMapPart
 	scf
 	ret
 ; 10226a
@@ -5267,7 +5267,7 @@ Function1022ca: ; 1022ca
 ; 1022d0
 
 Function1022d0: ; 1022d0
-	callba Function10032e
+	farcall Function10032e
 	ld a, [wcd2b]
 	and a
 	jr nz, .asm_1022f3
@@ -5278,7 +5278,7 @@ Function1022d0: ; 1022d0
 	sub c
 	ld c, a
 	ld b, $03
-	callba AdvanceMobileInactivityTimerAndCheckExpired
+	farcall AdvanceMobileInactivityTimerAndCheckExpired
 	jr c, .asm_1022f3
 	xor a
 	ret
@@ -5413,7 +5413,7 @@ Function1023c6: ; 1023c6
 	ld [CurPartyMon], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	callba RemoveMonFromPartyOrBox
+	farcall RemoveMonFromPartyOrBox
 	ld hl, PartyCount
 	inc [hl]
 	ld a, [hli]
@@ -5453,9 +5453,9 @@ Function102416: ; 102416
 Function102423: ; 102423
 	call Function102921
 	ret nc
-	callba SaveAfterLinkTrade
-	callba TrainerRankings_Trades
-	callba BackupMobileEventIndex
+	farcall SaveAfterLinkTrade
+	farcall TrainerRankings_Trades
+	farcall BackupMobileEventIndex
 	ld hl, wcd4b
 	set 1, [hl]
 	ld a, 0
@@ -5523,7 +5523,7 @@ Function102496: ; 102496
 ; 1024a8
 
 Function1024a8: ; 1024a8
-	callba Function1009f3
+	farcall Function1009f3
 	ret c
 
 Function1024af: ; 1024af
@@ -5608,7 +5608,7 @@ Function10250c: ; 10250c
 	call Function102b9c
 	call Function102bdc
 	jr c, .asm_10256d
-	callba Functionfb5dd
+	farcall Functionfb5dd
 	jr c, .asm_102568
 	ld hl, wcd4b
 	set 1, [hl]
@@ -5726,9 +5726,9 @@ Function1025e9: ; 1025e9
 Function1025ff: ; 1025ff
 	ld hl, wcd4b
 	set 2, [hl]
-	callba Function1009f3
+	farcall Function1009f3
 	ret c
-	callba MobileMenuJoypad
+	farcall MobileMenuJoypad
 	ld a, [wMenuJoypadFilter]
 	and c
 	ret z
@@ -5788,9 +5788,9 @@ Function102652: ; 102652
 Function10266b: ; 10266b
 	ld hl, wcd4b
 	set 2, [hl]
-	callba Function1009f3
+	farcall Function1009f3
 	ret c
-	callba MobileMenuJoypad
+	farcall MobileMenuJoypad
 	ld a, [wMenuJoypadFilter]
 	and c
 	ret z
@@ -5840,7 +5840,7 @@ Function1026b7: ; 1026b7
 
 Function1026c8: ; 1026c8
 	call GetJoypad
-	callba Function1009f3
+	farcall Function1009f3
 	ret c
 	ld a, [wcd4a]
 	ld hl, Jumptable_1026da
@@ -5920,7 +5920,7 @@ Function102738: ; 102738
 
 Function102754: ; 102754
 	call GetJoypad
-	callba Function1009f3
+	farcall Function1009f3
 	ret c
 	ld a, [wcd4a]
 	ld hl, Jumptable_102766
@@ -6017,7 +6017,7 @@ Function1027eb: ; 1027eb
 	ld c, 18
 	ld d, h
 	ld e, l
-	callba _LinkTextbox
+	farcall _LinkTextbox
 	ld de, .Stats_Trade
 	hlcoord 2, 16
 	call PlaceString
@@ -6154,7 +6154,7 @@ Function1028e8: ; 1028e8
 	ld hl, wcd4b
 	res 6, [hl]
 	ld [wcd50], a
-	callba StartMobileInactivityTimer
+	farcall StartMobileInactivityTimer
 	ld a, 0
 	ld [wcd4a], a
 	ret
@@ -6162,7 +6162,7 @@ Function1028e8: ; 1028e8
 
 Function1028fc: ; 1028fc
 	call GetJoypad
-	callba Function1009f3
+	farcall Function1009f3
 	jr nc, .asm_102909
 	and a
 	ret
@@ -6238,7 +6238,7 @@ Function10295d: ; 10295d
 ; 10296e
 
 Function10296e: ; 10296e
-	callba Function100382
+	farcall Function100382
 	and a
 	ld a, [wcd27]
 	bit 7, a
@@ -6251,7 +6251,7 @@ Function10296e: ; 10296e
 ; 102984
 
 Function102984: ; 102984
-	callba Function100382
+	farcall Function100382
 	and a
 	ld a, [wcd27]
 	bit 7, a
@@ -6313,7 +6313,7 @@ Function1029cf: ; 1029cf
 	ld c, 8
 	ld d, h
 	ld e, l
-	callba _LinkTextbox
+	farcall _LinkTextbox
 	ld de, String_102a26
 	hlcoord 12, 8
 	call PlaceString
@@ -6329,9 +6329,9 @@ Function1029cf: ; 1029cf
 ; 1029fe
 
 Function1029fe: ; 1029fe
-	callba Function1009f3
+	farcall Function1009f3
 	ret c
-	callba MobileMenuJoypad
+	farcall MobileMenuJoypad
 	ld a, c
 	ld hl, wMenuJoypadFilter
 	and [hl]
@@ -6410,7 +6410,7 @@ Function102a3b: ; 102a3b
 	call GetPartyLocation
 	ld b, h
 	ld c, l
-	callba GetCaughtGender
+	farcall GetCaughtGender
 	ld a, c
 	ld [wPlayerTrademonCaughtData], a
 	ld hl, OTPlayerName
@@ -6455,7 +6455,7 @@ Function102a3b: ; 102a3b
 	call GetPartyLocation
 	ld b, h
 	ld c, l
-	callba GetCaughtGender
+	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
 	ret
@@ -6469,11 +6469,11 @@ Function102b12: ; 102b12
 	ld a, [wcd2f]
 	and a
 	jr nz, .asm_102b2b
-	callba Function108026
+	farcall Function108026
 	jr .asm_102b31
 
 .asm_102b2b
-	callba Function10802a
+	farcall Function10802a
 
 .asm_102b31
 	ret
@@ -6485,7 +6485,7 @@ Function102b32: ; 102b32
 	ld [CurPartyMon], a
 	ld a, $01
 	ld [wForceEvolution], a
-	callba EvolvePokemon
+	farcall EvolvePokemon
 	call Function102d9a
 	call Function102dd3
 	call Function102dec
@@ -6558,7 +6558,7 @@ Function102bac: ; 102bac
 	ld [CurPartyMon], a
 	call LowVolume
 	call ClearSprites
-	callba _MobileStatsScreenInit
+	farcall _MobileStatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
 	ld [wMenuCursorY], a
@@ -6645,7 +6645,7 @@ Function102c3b: ; 102c3b
 ; 102c48
 
 Function102c48: ; 102c48
-	callba Function10165a
+	farcall Function10165a
 	ld a, 0
 	call GetSRAMBank
 	ld hl, $a600
@@ -6797,7 +6797,7 @@ Function102d48: ; 102d48
 	ld hl, PartyMon1DVs
 	call AddNTimes
 	predef GetUnownLetter
-	callba UpdateUnownDex
+	farcall UpdateUnownDex
 	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .asm_102d98
@@ -6818,7 +6818,7 @@ Function102d9a: ; 102d9a
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 102db7
 
@@ -6836,7 +6836,7 @@ Function102dc3: ; 102dc3
 	ld c, 18
 	ld d, h
 	ld e, l
-	callba _LinkTextbox
+	farcall _LinkTextbox
 	ret
 ; 102dd3
 
@@ -6846,7 +6846,7 @@ Function102dd3: ; 102dd3
 	ld hl, VTiles0
 	lb bc, BANK(GFX_1032a2), 4
 	call Get2bpp
-	callba __LoadTradeScreenBorder
+	farcall __LoadTradeScreenBorder
 	call EnableLCD
 	ret
 ; 102dec
@@ -6857,7 +6857,7 @@ Function102dec: ; 102dec
 	ld bc, 4 palettes
 	ld a, $05
 	call FarCopyWRAM
-	callba Function49742
+	farcall Function49742
 	call SetPalettes
 	call DelayFrame
 	ret
@@ -6880,7 +6880,7 @@ Function102e07: ; 102e07
 	ld c, 11
 	ld d, h
 	ld e, l
-	callba _LinkTextbox
+	farcall _LinkTextbox
 
 .okay
 	ld de, .waiting
@@ -6905,8 +6905,8 @@ Function102e3e: ; 102e3e
 ; 102e4f
 
 Function102e4f: ; 102e4f
-	callba Function16d42e
-	callba _InitMG_Mobile_LinkTradePalMap
+	farcall Function16d42e
+	farcall _InitMG_Mobile_LinkTradePalMap
 	ld de, PlayerName
 	hlcoord 4, 0
 	call PlaceString
@@ -7399,7 +7399,7 @@ Function103309: ; 103309
 	ld [wd1ee], a
 	call Function1034be
 	call UpdateSprites
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ld a, $01
 	ld [wd1f0], a
 	call Function10339a
@@ -7413,7 +7413,7 @@ Function103362: ; 103362
 	call Function1033af
 	call Function10339a
 	call Function10342c
-	callba HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTileMapToWRAMBank3
 	ld a, [Buffer2]
 	bit 7, a
 	jr z, .asm_103362
@@ -7707,7 +7707,7 @@ String_1035c1: db "けってい@"
 ; 1035c6
 
 Function1035c6: ; 1035c6
-	callba Function10138b
+	farcall Function10138b
 	ld b, 0
 	ld hl, Unknown_1035d7
 	add hl, bc
@@ -7799,7 +7799,7 @@ MenuData2_103648: ; 103648
 ; 103654
 
 Function103654: ; 103654
-	callba Mobile_AlwaysReturnNotCarry
+	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr nz, .asm_103666
 	ld hl, wcd2a
@@ -7815,14 +7815,14 @@ Function103654: ; 103654
 ; 10366e
 
 Mobile_SelectThreeMons: ; 10366e
-	callba Mobile_AlwaysReturnNotCarry
+	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr z, .asm_10369b
 	ld hl, UnknownText_0x10375d
 	call PrintText
 	call YesNoBox
 	jr c, .asm_103696
-	callba CheckForMobileBattleRules
+	farcall CheckForMobileBattleRules
 	jr nc, .asm_103690
 	call JoyWaitAorB
 	jr .asm_103696
@@ -7867,7 +7867,7 @@ Mobile_SelectThreeMons: ; 10366e
 	jr .asm_1036b5
 
 .asm_1036d9
-	callba CheckForMobileBattleRules
+	farcall CheckForMobileBattleRules
 	jr nc, .asm_1036e6
 	call JoyWaitAorB
 	jr .asm_1036f4
@@ -7899,7 +7899,7 @@ Function103700: ; 103700
 	ld hl, SwarmFlags
 	bit 4, [hl]
 	jr z, .asm_10370f
-	callba Function1008a6
+	farcall Function1008a6
 
 .asm_10370f
 	ld a, c
@@ -8003,7 +8003,7 @@ Function10378c: ; 10378c
 
 .already_set
 	push bc
-	callba Link_SaveGame
+	farcall Link_SaveGame
 	pop bc
 	jr c, .failed_to_save
 	ld a, $01
@@ -8011,7 +8011,7 @@ Function10378c: ; 10378c
 	ld a, c
 	and a
 	ret z
-	callba Function1006fd
+	farcall Function1006fd
 	ret
 
 .failed_to_save
@@ -8089,10 +8089,10 @@ UnknownText_0x10381e: ; 0x10381e
 ; 0x103823
 
 Function103823: ; 103823
-	callba Mobile_AlwaysReturnNotCarry
+	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr nz, .asm_103838
-	callba Function1008a6
+	farcall Function1008a6
 	ld a, c
 	cp $01
 	jr c, .asm_10383a
@@ -8117,8 +8117,8 @@ Function10383c: ; 10383c
 	ld hl, UnknownText_0x103876
 	call PrintText
 	call JoyWaitAorB
-	callba Script_reloadmappart
-	callba Function4a94e
+	farcall Script_reloadmappart
+	farcall Function4a94e
 	jr c, .asm_103870
 	ld hl, wd002
 	ld de, wPlayerMonSelection
@@ -8140,10 +8140,10 @@ UnknownText_0x103876: ; 0x103876
 ; 0x10387b
 
 Function10387b: ; 10387b
-	callba Mobile_AlwaysReturnNotCarry
+	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	ret nz
-	callba Function1008a6
+	farcall Function1008a6
 	ld a, c
 	ld [StringBuffer2], a
 	ld hl, UnknownText_0x103898

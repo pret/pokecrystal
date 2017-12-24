@@ -7,14 +7,14 @@ const_value set 2
 	const ELMSLAB_OFFICER
 
 ElmsLab_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 6
-	maptrigger .MeetElm
-	maptrigger .DummyTrigger1
-	maptrigger .DummyTrigger2
-	maptrigger .DummyTrigger3
-	maptrigger .DummyTrigger4
-	maptrigger .DummyTrigger5
+	scene_script .MeetElm
+	scene_script .DummyScene1
+	scene_script .DummyScene2
+	scene_script .DummyScene3
+	scene_script .DummyScene4
+	scene_script .DummyScene5
 
 .MapCallbacks:
 	db 1
@@ -24,25 +24,25 @@ ElmsLab_MapScriptHeader:
 	priorityjump .WalkUpToElm
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
-.DummyTrigger2:
+.DummyScene2:
 	end
 
-.DummyTrigger3:
+.DummyScene3:
 	end
 
-.DummyTrigger4:
+.DummyScene4:
 	end
 
-.DummyTrigger5:
+.DummyScene5:
 	end
 
 .MoveElmCallback:
-	checktriggers
+	checkscene
 	iftrue .Skip
-	moveperson ELMSLAB_ELM, $3, $4
+	moveobject ELMSLAB_ELM, $3, $4
 .Skip:
 	return
 
@@ -84,7 +84,7 @@ ElmsLab_MapScriptHeader:
 	opentext
 	writetext ElmText_ChooseAPokemon
 	waitbutton
-	dotrigger $1
+	setscene $1
 	closetext
 	end
 
@@ -274,8 +274,8 @@ ElmDirectionsScript:
 	closetext
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
-	dotrigger $5
-	domaptrigger NEW_BARK_TOWN, $1
+	setscene $5
+	setmapscene NEW_BARK_TOWN, $1
 	end
 
 ElmDescribesMrPokemonScript:
@@ -341,13 +341,13 @@ ElmAfterTheftScript:
 	buttonsound
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
-	domaptrigger ROUTE_29, $1
+	setmapscene ROUTE_29, $1
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
 	waitbutton
 	closetext
-	dotrigger $6
+	setscene $6
 	end
 
 ElmStudyingEggScript:
@@ -479,7 +479,7 @@ AideScript_GivePotions:
 	writetext AideText_AlwaysBusy
 	waitbutton
 	closetext
-	dotrigger $2
+	setscene $2
 	end
 
 AideScript_WalkBalls1:
@@ -507,7 +507,7 @@ AideScript_GiveYouBalls:
 	buttonsound
 	itemnotify
 	closetext
-	dotrigger $2
+	setscene $2
 	end
 
 AideScript_ReceiveTheBalls:
@@ -562,7 +562,7 @@ CopScript:
 	closetext
 	applymovement ELMSLAB_OFFICER, OfficerLeavesMovement
 	disappear ELMSLAB_OFFICER
-	dotrigger $2
+	setscene $2
 	end
 
 ElmsLabWindow:
@@ -1379,41 +1379,41 @@ ElmsLab_MapEventHeader:
 	warp_def $b, $4, 1, NEW_BARK_TOWN
 	warp_def $b, $5, 1, NEW_BARK_TOWN
 
-.XYTriggers:
+.CoordEvents:
 	db 8
-	xy_trigger 1, $6, $4, LabTryToLeaveScript
-	xy_trigger 1, $6, $5, LabTryToLeaveScript
-	xy_trigger 3, $5, $4, MeetCopScript
-	xy_trigger 3, $5, $5, MeetCopScript2
-	xy_trigger 5, $8, $4, AideScript_WalkPotions1
-	xy_trigger 5, $8, $5, AideScript_WalkPotions2
-	xy_trigger 6, $8, $4, AideScript_WalkBalls1
-	xy_trigger 6, $8, $5, AideScript_WalkBalls2
+	coord_event 1, $6, $4, LabTryToLeaveScript
+	coord_event 1, $6, $5, LabTryToLeaveScript
+	coord_event 3, $5, $4, MeetCopScript
+	coord_event 3, $5, $5, MeetCopScript2
+	coord_event 5, $8, $4, AideScript_WalkPotions1
+	coord_event 5, $8, $5, AideScript_WalkPotions2
+	coord_event 6, $8, $4, AideScript_WalkBalls1
+	coord_event 6, $8, $5, AideScript_WalkBalls2
 
-.Signposts:
+.BGEvents:
 	db 16
-	signpost 1, 2, SIGNPOST_READ, ElmsLabHealingMachine
-	signpost 1, 6, SIGNPOST_READ, ElmsLabBookshelf
-	signpost 1, 7, SIGNPOST_READ, ElmsLabBookshelf
-	signpost 1, 8, SIGNPOST_READ, ElmsLabBookshelf
-	signpost 1, 9, SIGNPOST_READ, ElmsLabBookshelf
-	signpost 7, 0, SIGNPOST_READ, ElmsLabTravelTip1
-	signpost 7, 1, SIGNPOST_READ, ElmsLabTravelTip2
-	signpost 7, 2, SIGNPOST_READ, ElmsLabTravelTip3
-	signpost 7, 3, SIGNPOST_READ, ElmsLabTravelTip4
-	signpost 7, 6, SIGNPOST_READ, ElmsLabBookshelf
-	signpost 7, 7, SIGNPOST_READ, ElmsLabBookshelf
-	signpost 7, 8, SIGNPOST_READ, ElmsLabBookshelf
-	signpost 7, 9, SIGNPOST_READ, ElmsLabBookshelf
-	signpost 3, 9, SIGNPOST_READ, ElmsLabTrashcan
-	signpost 0, 5, SIGNPOST_READ, ElmsLabWindow
-	signpost 5, 3, SIGNPOST_DOWN, ElmsLabPC
+	bg_event 1, 2, BGEVENT_READ, ElmsLabHealingMachine
+	bg_event 1, 6, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 1, 7, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 1, 8, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 1, 9, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 7, 0, BGEVENT_READ, ElmsLabTravelTip1
+	bg_event 7, 1, BGEVENT_READ, ElmsLabTravelTip2
+	bg_event 7, 2, BGEVENT_READ, ElmsLabTravelTip3
+	bg_event 7, 3, BGEVENT_READ, ElmsLabTravelTip4
+	bg_event 7, 6, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 7, 7, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 7, 8, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 7, 9, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 3, 9, BGEVENT_READ, ElmsLabTrashcan
+	bg_event 0, 5, BGEVENT_READ, ElmsLabWindow
+	bg_event 5, 3, BGEVENT_DOWN, ElmsLabPC
 
-.PersonEvents:
+.ObjectEvents:
 	db 6
-	person_event SPRITE_ELM, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ProfElmScript, -1
-	person_event SPRITE_SCIENTIST, 9, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	person_event SPRITE_POKE_BALL, 3, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_POKE_BALL, 3, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_POKE_BALL, 3, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
-	person_event SPRITE_OFFICER, 3, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB
+	object_event SPRITE_ELM, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
+	object_event SPRITE_SCIENTIST, 9, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	object_event SPRITE_POKE_BALL, 3, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	object_event SPRITE_POKE_BALL, 3, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	object_event SPRITE_POKE_BALL, 3, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	object_event SPRITE_OFFICER, 3, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB

@@ -1,5 +1,5 @@
 Route22_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -23,12 +23,12 @@ Route22_MapEventHeader:
 	db 1
 	warp_def $5, $d, 1, VICTORY_ROAD_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 7, 15, SIGNPOST_READ, VictoryRoadEntranceSign
+	bg_event 7, 15, BGEVENT_READ, VictoryRoadEntranceSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

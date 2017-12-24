@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE26DAYOFWEEKSIBLINGSHOUSE_POKEDEX
 
 Route26DayofWeekSiblingsHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -79,12 +79,12 @@ Route26DayofWeekSiblingsHouse_MapEventHeader:
 	warp_def $7, $2, 3, ROUTE_26
 	warp_def $7, $3, 3, ROUTE_26
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKEDEX, 3, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokedexScript_0x7b1e4, -1
+	object_event SPRITE_POKEDEX, 3, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokedexScript_0x7b1e4, -1

@@ -52,7 +52,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	xor a
 	ld [MonType], a
 	ld de, wMonOrItemNameBuffer
-	callab InitNickname
+	callfar InitNickname
 
 .Party_SkipNickname:
 	ld a, [PartyCount]
@@ -103,7 +103,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld de, wBufferMonOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	callab InsertPokemonIntoBox
+	callfar InsertPokemonIntoBox
 	ld a, [CurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
@@ -113,7 +113,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld a, BOXMON
 	ld [MonType], a
 	ld de, wMonOrItemNameBuffer
-	callab InitNickname
+	callfar InitNickname
 	ld hl, wMonOrItemNameBuffer
 
 .Box_SkipNickname:

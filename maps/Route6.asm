@@ -4,7 +4,7 @@ const_value set 2
 	const ROUTE6_POKEFAN_M3
 
 Route6_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -100,15 +100,15 @@ Route6_MapEventHeader:
 	warp_def $3, $11, 1, ROUTE_6_UNDERGROUND_ENTRANCE
 	warp_def $1, $6, 3, ROUTE_6_SAFFRON_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 5, 19, SIGNPOST_READ, Route6UndergroundPathSign
+	bg_event 5, 19, BGEVENT_READ, Route6UndergroundPathSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_POKEFAN_M, 4, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 2, Route6PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
-	person_event SPRITE_POKEFAN_M, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, TrainerPokefanmRex, -1
-	person_event SPRITE_POKEFAN_M, 12, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 0, TrainerPokefanmAllan, -1
+	object_event SPRITE_POKEFAN_M, 4, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 2, Route6PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	object_event SPRITE_POKEFAN_M, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerPokefanmRex, -1
+	object_event SPRITE_POKEFAN_M, 12, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerPokefanmAllan, -1

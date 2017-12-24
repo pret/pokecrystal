@@ -37,13 +37,13 @@ Defined in [macros/scripts/event.asm](/macros/scripts/event.asm) and [engine/scr
 
 ## `$10`: `ptcallasm` *asm*
 
-## `$11`: `checkmaptriggers` *map*
+## `$11`: `checkmapscene` *map*
 
-## `$12`: `domaptrigger` *map*, *trigger_id*
+## `$12`: `setmapscene` *map*, *scene_id*
 
-## `$13`: `checktriggers`
+## `$13`: `checkscene`
 
-## `$14`: `dotrigger` *trigger_id*
+## `$14`: `setscene` *scene_id*
 
 ## `$15`: `writebyte` *value*
 
@@ -215,37 +215,37 @@ Defined in [macros/scripts/event.asm](/macros/scripts/event.asm) and [engine/scr
 
 ## `$67`: `check_just_battled`
 
-## `$68`: `setlasttalked` *person*
+## `$68`: `setlasttalked` *object_id*
 
-## `$69`: `applymovement` *person*, *data_pointer*
+## `$69`: `applymovement` *object_id*, *data_pointer*
 
 ## `$6A`: `applymovement2` *data_pointer*
 
 ## `$6B`: `faceplayer`
 
-## `$6C`: `faceperson` *person1*, *person2*
+## `$6C`: `faceobject` *object1*, *object2*
 
 ## `$6D`: `variablesprite` *variable_sprite_id*, *sprite_id*
 
-## `$6E`: `disappear` *person*
+## `$6E`: `disappear` *object_id*
 
-## `$6F`: `appear` *person*
+## `$6F`: `appear` *object_id*
 
-## `$70`: `follow` *person2*, *person1*
+## `$70`: `follow` *object2*, *object1*
 
 ## `$71`: `stopfollow`
 
-## `$72`: `moveperson` *person*, *x*, *y*
+## `$72`: `moveobject` *object_id*, *x*, *y*
 
-## `$73`: `writepersonxy` *person*
+## `$73`: `writeobjectxy` *object_id*
 
 ## `$74`: `loademote` *emote_id*
 
-## `$75`: `showemote` *emote_id*, *person*, *length*
+## `$75`: `showemote` *emote_id*, *object_id*, *length*
 
-## `$76`: `spriteface` *person*, *facing*
+## `$76`: `spriteface` *object_id*, *facing*
 
-## `$77`: `follownotexact` *person2*, *person1*
+## `$77`: `follownotexact` *object2*, *object1*
 
 ## `$78`: `earthquake` *param*
 

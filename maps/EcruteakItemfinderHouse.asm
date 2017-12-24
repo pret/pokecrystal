@@ -3,7 +3,7 @@ const_value set 2
 	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
 
 EcruteakItemfinderHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -171,14 +171,14 @@ EcruteakItemfinderHouse_MapEventHeader:
 	warp_def $7, $3, 11, ECRUTEAK_CITY
 	warp_def $7, $4, 11, ECRUTEAK_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 1, 2, SIGNPOST_READ, ItemFinderHouseRadio
+	bg_event 1, 2, BGEVENT_READ, ItemFinderHouseRadio
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_COOLTRAINER_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CooltrainerMScript_0x9a5fb, -1
-	person_event SPRITE_POKEDEX, 3, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PokedexScript_0x9a620, -1
+	object_event SPRITE_COOLTRAINER_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x9a5fb, -1
+	object_event SPRITE_POKEDEX, 3, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokedexScript_0x9a620, -1

@@ -39,9 +39,9 @@ Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engi
 
 ## `$3B`: `fix_facing`
 
-## `$3C`: `show_person`
+## `$3C`: `show_object`
 
-## `$3D`: `hide_person`
+## `$3D`: `hide_object`
 
 ## `$3E`−`$46`: `step_sleep` *length*
 
@@ -49,7 +49,7 @@ Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engi
 
 ## `$48`: `step_48` *param*
 
-## `$49`: `remove_person`
+## `$49`: `remove_object`
 
 ## `$4A`: `step_loop`
 

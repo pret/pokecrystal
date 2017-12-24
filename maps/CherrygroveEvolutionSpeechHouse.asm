@@ -3,7 +3,7 @@ const_value set 2
 	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_YOUNGSTER
 
 CherrygroveEvolutionSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -50,15 +50,15 @@ CherrygroveEvolutionSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 5, CHERRYGROVE_CITY
 	warp_def $7, $3, 5, CHERRYGROVE_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, CherrygroveEvolutionSpeechHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, CherrygroveEvolutionSpeechHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, CherrygroveEvolutionSpeechHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, CherrygroveEvolutionSpeechHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_LASS, 5, 3, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LassScript_0x196cb9, -1
-	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, YoungsterScript_0x196cb2, -1
+	object_event SPRITE_LASS, 5, 3, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LassScript_0x196cb9, -1
+	object_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x196cb2, -1

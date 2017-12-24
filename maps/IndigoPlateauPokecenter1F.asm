@@ -7,24 +7,24 @@ const_value set 2
 	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
 IndigoPlateauPokecenter1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 1
-	maptrigger .DummyTrigger
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_NEWMAP, .PrepareElite4
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .PrepareElite4:
-	domaptrigger WILLS_ROOM, $0
-	domaptrigger KOGAS_ROOM, $0
-	domaptrigger BRUNOS_ROOM, $0
-	domaptrigger KARENS_ROOM, $0
-	domaptrigger LANCES_ROOM, $0
-	domaptrigger HALL_OF_FAME, $0
+	setmapscene WILLS_ROOM, $0
+	setmapscene KOGAS_ROOM, $0
+	setmapscene BRUNOS_ROOM, $0
+	setmapscene KARENS_ROOM, $0
+	setmapscene LANCES_ROOM, $0
+	setmapscene HALL_OF_FAME, $0
 	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
@@ -54,7 +54,7 @@ PlateauRivalBattle1:
 	if_equal THURSDAY, PlateauRivalScriptDone
 	if_equal FRIDAY, PlateauRivalScriptDone
 	if_equal SATURDAY, PlateauRivalScriptDone
-	moveperson INDIGOPLATEAUPOKECENTER1F_SILVER, $11, $9
+	moveobject INDIGOPLATEAUPOKECENTER1F_SILVER, $11, $9
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -130,7 +130,7 @@ PlateauRivalPostBattle:
 	spriteface PLAYER, DOWN
 	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, PlateauRivalLeavesMovement
 	disappear INDIGOPLATEAUPOKECENTER1F_SILVER
-	dotrigger $0
+	setscene $0
 	playmapmusic
 	setflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 PlateauRivalScriptDone:
@@ -313,19 +313,19 @@ IndigoPlateauPokecenter1F_MapEventHeader:
 	warp_def $d, $0, 1, POKECENTER_2F
 	warp_def $3, $e, 1, WILLS_ROOM
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 0, $4, $10, PlateauRivalBattle1
-	xy_trigger 0, $4, $11, PlateauRivalBattle2
+	coord_event 0, $4, $10, PlateauRivalBattle1
+	coord_event 0, $4, $11, PlateauRivalBattle2
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 6
-	person_event SPRITE_NURSE, 7, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x18012c, -1
-	person_event SPRITE_CLERK, 7, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x18012f, -1
-	person_event SPRITE_COOLTRAINER_M, 11, 11, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FCooltrainerMScript, -1
-	person_event SPRITE_SILVER, 9, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
-	person_event SPRITE_GRAMPS, 9, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
-	person_event SPRITE_JYNX, 9, 0, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, AbraScript, EVENT_TELEPORT_GUY
+	object_event SPRITE_NURSE, 7, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x18012c, -1
+	object_event SPRITE_CLERK, 7, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x18012f, -1
+	object_event SPRITE_COOLTRAINER_M, 11, 11, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FCooltrainerMScript, -1
+	object_event SPRITE_SILVER, 9, 16, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
+	object_event SPRITE_GRAMPS, 9, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
+	object_event SPRITE_JYNX, 9, 0, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, AbraScript, EVENT_TELEPORT_GUY

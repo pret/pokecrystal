@@ -14,7 +14,7 @@ if _NARG >= 5
 else
 	lb \1, \2 * 8, \3 * 8
 endc
-endm
+	ENDM
 
 depixel EQUS "ldpixel de,"
 bcpixel EQUS "ldpixel bc,"
@@ -33,7 +33,7 @@ jumptable: MACRO
 	ld h, [hl]
 	ld l, a
 	jp hl
-endm
+	ENDM
 
 ; Many mobile functions were dummied out in localization.
 mobile EQUS "ret"
@@ -47,9 +47,9 @@ maskbits: macro
 ; 	jr nc, .loop
 x = 1
 rept 8
-IF \1 > x
+if \1 > x
 x = (x + 1) * 2 +- 1
-ENDC
+endc
 endr
 	and x
-endm
+	ENDM

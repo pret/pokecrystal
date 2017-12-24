@@ -3,10 +3,10 @@ const_value set 2
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
 RuinsOfAlphKabutoChamber_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .CheckWall
-	maptrigger .DummyTrigger
+	scene_script .CheckWall
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
@@ -21,7 +21,7 @@ RuinsOfAlphKabutoChamber_MapScriptHeader:
 	priorityjump .WallOpenScript
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .HiddenDoors:
@@ -47,7 +47,7 @@ RuinsOfAlphKabutoChamber_MapScriptHeader:
 	changeblock $4, $0, $30
 	reloadmappart
 	earthquake 50
-	dotrigger $1
+	setscene $1
 	closetext
 	end
 
@@ -67,7 +67,7 @@ UnknownScript_0x58778:
 	setevent EVENT_SOLVED_KABUTO_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_1
 	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	domaptrigger RUINS_OF_ALPH_INNER_CHAMBER, $1
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock $2, $2, $18
@@ -267,19 +267,19 @@ RuinsOfAlphKabutoChamber_MapEventHeader:
 	warp_def $3, $4, 5, RUINS_OF_ALPH_INNER_CHAMBER
 	warp_def $0, $4, 1, RUINS_OF_ALPH_KABUTO_ITEM_ROOM
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 6
-	signpost 3, 2, SIGNPOST_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
-	signpost 3, 5, SIGNPOST_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
-	signpost 2, 3, SIGNPOST_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
-	signpost 2, 4, SIGNPOST_UP, MapRuinsOfAlphKabutoChamberSignpost3Script
-	signpost 0, 3, SIGNPOST_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
-	signpost 0, 4, SIGNPOST_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
+	bg_event 3, 2, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
+	bg_event 3, 5, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
+	bg_event 2, 3, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
+	bg_event 2, 4, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost3Script
+	bg_event 0, 3, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
+	bg_event 0, 4, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_RECEPTIONIST, 5, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	person_event SPRITE_SCIENTIST, 1, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1
+	object_event SPRITE_RECEPTIONIST, 5, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
+	object_event SPRITE_SCIENTIST, 1, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1

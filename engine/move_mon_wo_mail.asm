@@ -34,7 +34,7 @@ InsertPokemonIntoBox: ; 51322
 	call CopyBytes
 	ld a, [CurPartyMon]
 	ld b, a
-	callba RestorePPofDepositedPokemon
+	farcall RestorePPofDepositedPokemon
 	jp CloseSRAM
 
 InsertPokemonIntoParty: ; 5138b

@@ -2,7 +2,7 @@ const_value set 2
 	const LAVENDERTOWNSPEECHHOUSE_POKEFAN_F
 
 LavenderTownSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -37,14 +37,14 @@ LavenderTownSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 3, LAVENDER_TOWN
 	warp_def $7, $3, 3, LAVENDER_TOWN
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, LavenderTownSpeechHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, LavenderTownSpeechHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, LavenderTownSpeechHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, LavenderTownSpeechHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, LavenderTownSpeechHousePokefanFScript, -1
+	object_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LavenderTownSpeechHousePokefanFScript, -1

@@ -48,7 +48,7 @@ GetUnownLetter: ; 51040
 	ld [UnownLetter], a
 	ret
 
-GetFrontpic: ; 51077
+GetMonFrontpic: ; 51077
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call IsAPokemon
@@ -60,7 +60,7 @@ GetFrontpic: ; 51077
 	ld [rSVBK], a
 	ret
 
-FrontpicPredef: ; 5108b
+GetAnimatedFrontpicPredef: ; 5108b
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call IsAPokemon
@@ -195,7 +195,7 @@ LoadFrontpicTiles: ; 5114f
 	jr nz, .loop
 	ret
 
-GetBackpic: ; 5116c
+GetMonBackpic: ; 5116c
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	ret c
