@@ -57,7 +57,7 @@ Special_SelectApricornForKurt: ; 88018
 ; 88055
 
 Kurt_SelectApricorn: ; 88055
-	callba FindApricornsInBag
+	farcall FindApricornsInBag
 	jr c, .nope
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
@@ -106,7 +106,7 @@ Kurt_SelectApricorn: ; 88055
 	ld a, [MenuSelection]
 	and a
 	ret z
-	callba PlaceMenuItemName
+	farcall PlaceMenuItemName
 	ret
 ; 880ab
 
@@ -117,7 +117,7 @@ Kurt_SelectApricorn: ; 88055
 	ret z
 	ld a, [wItemQuantityChangeBuffer]
 	ld [MenuSelectionQuantity], a
-	callba PlaceMenuItemQuantity
+	farcall PlaceMenuItemQuantity
 	ret
 ; 880c2
 
@@ -140,7 +140,7 @@ Kurt_SelectQuantity: ; 880c2
 	call .PlaceApricornName
 	call PlaceApricornQuantity
 	call ApplyTilemap
-	callba Kurt_SelectQuantity_InterpretJoypad
+	farcall Kurt_SelectQuantity_InterpretJoypad
 	jr nc, .loop
 
 	push bc
@@ -171,7 +171,7 @@ Kurt_SelectQuantity: ; 880c2
 	add hl, de
 	ld d, h
 	ld e, l
-	callba PlaceMenuItemName
+	farcall PlaceMenuItemName
 	ret
 ; 88126
 

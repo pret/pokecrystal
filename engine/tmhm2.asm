@@ -23,7 +23,7 @@ TMHMPocket: ; 2c76f (b:476f)
 .ConvertItemToTMHMNumber: ; 2c798 (b:4798)
 	ld a, [CurItem]
 	ld c, a
-	callab GetNumberedTMHM
+	callfar GetNumberedTMHM
 	ld a, c
 	ld [CurItem], a
 	ret
@@ -31,7 +31,7 @@ TMHMPocket: ; 2c76f (b:476f)
 ConvertCurItemIntoCurTMHM: ; 2c7a7 (b:47a7)
 	ld a, [CurItem]
 	ld c, a
-	callab GetTMHMNumber
+	callfar GetTMHMNumber
 	ld a, c
 	ld [wCurTMHM], a
 	ret
@@ -77,18 +77,18 @@ ChooseMonToLearnTMHM: ; 2c7fb
 	call CopyBytes
 	call ClearBGPalettes
 ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
-	callba LoadPartyMenuGFX
-	callba InitPartyMenuWithCancel
-	callba InitPartyMenuGFX
+	farcall LoadPartyMenuGFX
+	farcall InitPartyMenuWithCancel
+	farcall InitPartyMenuGFX
 	ld a, PARTYMENUACTION_TEACH_TMHM
 	ld [PartyMenuActionText], a
 .loopback
-	callba WritePartyMenuTilemap
-	callba PrintPartyMenuText
+	farcall WritePartyMenuTilemap
+	farcall PrintPartyMenuText
 	call WaitBGMap
 	call SetPalettes
 	call DelayFrame
-	callba PartyMenuSelect
+	farcall PartyMenuSelect
 	push af
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -138,7 +138,7 @@ TeachTMHM: ; 2c867
 	jr .nope
 
 .compatible
-	callab KnowsMove
+	callfar KnowsMove
 	jr c, .nope
 
 	predef LearnMove
@@ -146,13 +146,13 @@ TeachTMHM: ; 2c867
 	and a
 	jr z, .nope
 
-	callba TrainerRankings_TMsHMsTaught
+	farcall TrainerRankings_TMsHMsTaught
 	ld a, [CurItem]
 	call IsHM
 	ret c
 
 	ld c, HAPPINESS_LEARNMOVE
-	callab ChangeHappiness
+	callfar ChangeHappiness
 	call ConsumeTM
 	jr .learned_move
 

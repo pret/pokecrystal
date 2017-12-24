@@ -43,8 +43,8 @@ CloseText:: ; 2dcf
 	ld a, $90
 	ld [hWY], a
 	call ReplaceKrisSprite
-	callba ReturnFromMapSetupScript
-	callba LoadOverworldFont
+	farcall ReturnFromMapSetupScript
+	farcall LoadOverworldFont
 	ret
 ; 2e08
 
@@ -71,7 +71,7 @@ _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 2e20
 	ld a, $1
 	ld [hOAMUpdate], a
 
-	callba OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 
 	pop af
 	ld [hOAMUpdate], a

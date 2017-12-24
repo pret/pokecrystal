@@ -359,7 +359,7 @@ Function48304: ; 48304 (12:4304)
 	ld a, $29
 .asm_4833f
 	ld [wMenuScrollPosition], a
-	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 .asm_48348
 	call ScrollingMenu
 	ld de, $629
@@ -385,7 +385,7 @@ Function48304: ; 48304 (12:4304)
 	ld [wd003], a
 .asm_48377
 	call Function48187
-	callba Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
+	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	jp Function4840c
 
 Function48383: ; 48383 (12:4383)
@@ -1626,7 +1626,7 @@ Function48c8e: ; 48c8e
 	ld hl, $d02a
 	ld d, h
 	ld e, l
-	callba Function48c63
+	farcall Function48c63
 	hlcoord 10, 7
 	call PlaceString
 	call WaitBGMap

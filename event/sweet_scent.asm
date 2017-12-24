@@ -34,21 +34,21 @@ SweetScentNothing: ; 0x506e9
 ; 0x506ef
 
 SweetScentEncounter: ; 506ef
-	callba CanUseSweetScent
+	farcall CanUseSweetScent
 	jr nc, .no_battle
 	ld hl, StatusFlags2
 	bit 2, [hl]
 	jr nz, .not_in_bug_contest
-	callba GetMapEncounterRate
+	farcall GetMapEncounterRate
 	ld a, b
 	and a
 	jr z, .no_battle
-	callba ChooseWildEncounter
+	farcall ChooseWildEncounter
 	jr nz, .no_battle
 	jr .start_battle
 
 .not_in_bug_contest
-	callba ChooseWildEncounter_BugContest
+	farcall ChooseWildEncounter_BugContest
 
 .start_battle
 	ld a, $1

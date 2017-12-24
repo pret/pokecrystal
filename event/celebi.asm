@@ -31,7 +31,7 @@ Special_CelebiShrineEvent: ; 4989a
 	push de
 	ld a, $90
 	ld [wCurrSpriteOAMAddr], a
-	callba DoNextFrameForAllSprites
+	farcall DoNextFrameForAllSprites
 	call CelebiEvent_CountDown
 	ld c, 2
 	call DelayFrames
@@ -70,7 +70,7 @@ Special_CelebiShrineEvent: ; 4989a
 ; 49912
 
 LoadCelebiGFX: ; 49912
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	ld de, SpecialCelebiLeafGFX
 	ld hl, VTiles1
 	lb bc, BANK(SpecialCelebiLeafGFX), 4

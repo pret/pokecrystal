@@ -5,7 +5,7 @@ Special_CheckMagikarpLength: ; fbb32
 	; Returns 0 if the Pokemon you select is not a Magikarp.
 
 	; Let's start by selecting a Magikarp.
-	callba SelectMonFromParty
+	farcall SelectMonFromParty
 	jr c, .declined
 	ld a, [CurPartySpecies]
 	cp MAGIKARP
@@ -28,7 +28,7 @@ Special_CheckMagikarpLength: ; fbb32
 	ld c, l
 	call CalcMagikarpLength
 	call PrintMagikarpLength
-	callba TrainerRankings_MagikarpLength
+	farcall TrainerRankings_MagikarpLength
 	ld hl, .MeasureItText
 	call PrintText
 

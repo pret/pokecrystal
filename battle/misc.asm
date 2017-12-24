@@ -13,11 +13,11 @@ _DisappearUser: ; fbd54
 	jr FinishAppearDisappearUser
 
 _AppearUserRaiseSub: ; fbd69 (3e:7d69)
-	callba BattleCommand_RaiseSubNoAnim
+	farcall BattleCommand_RaiseSubNoAnim
 	jr AppearUser
 
 _AppearUserLowerSub: ; fbd71 (3e:7d71)
-	callba BattleCommand_LowerSubNoAnim
+	farcall BattleCommand_LowerSubNoAnim
 
 AppearUser: ; fbd77 (3e:7d77)
 	xor a

@@ -61,7 +61,7 @@ BattleAnimRunScript: ; cc11c
 	and a
 	jr nz, .hi_byte
 
-	callba CheckBattleScene
+	farcall CheckBattleScene
 	jr c, .disabled
 
 	call BattleAnimClearHud
@@ -169,7 +169,7 @@ BattleAnimRestoreHuds: ; cc1bb
 
 	ld hl, UpdateBattleHuds
 	ld a, BANK(UpdatePlayerHUD)
-	rst FarCall ; Why the heck is this a callab?
+	rst FarCall ; Why not "call UpdateBattleHuds"?
 
 	pop af
 	ld [rSVBK], a
@@ -907,7 +907,7 @@ BattleAnimCmd_PlayerHeadObj: ; cc57e (33:457e)
 	ret
 
 BattleAnimCmd_CheckPokeball: ; cc5d0 (33:45d0)
-	callab GetPokeBallWobble
+	callfar GetPokeBallWobble
 	ld a, c
 	ld [BattleAnimVar], a
 	ret
@@ -1128,11 +1128,11 @@ BattleAnimCmd_DropSub: ; cc750 (33:4750)
 	and a
 	jr z, .player
 
-	callab DropEnemySub
+	callfar DropEnemySub
 	jr .done
 
 .player
-	callab DropPlayerSub
+	callfar DropPlayerSub
 
 .done
 	pop af
@@ -1221,7 +1221,7 @@ BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 	call GetBattleAnimByte
 	ld e, a
 	ld d, 0
-	callab PlayStereoSFX
+	callfar PlayStereoSFX
 
 	ret
 ; cc7f8 (33:47f8)
@@ -1311,7 +1311,7 @@ endr
 	ld a, 1
 	ld [wStereoPanningMask], a
 
-	callab _PlayCryHeader
+	callfar _PlayCryHeader
 
 .done
 	pop af

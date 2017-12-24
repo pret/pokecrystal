@@ -31,7 +31,7 @@ PrintPage1: ; 1dc1b0
 	ld a, [wd265]
 	ld b, a
 	ld c, 1 ; get page 1
-	callba GetDexEntryPagePointer
+	farcall GetDexEntryPagePointer
 	pop af
 	ld a, b
 	hlcoord 1, 11, wPrinterTileMapBuffer
@@ -81,7 +81,7 @@ PrintPage2: ; 1dc213
 	ld a, [wd265]
 	ld b, a
 	ld c, 2 ; get page 2
-	callba GetDexEntryPagePointer
+	farcall GetDexEntryPagePointer
 	pop af
 	hlcoord 1, 1, wPrinterTileMapBuffer
 	ld a, b
@@ -157,7 +157,7 @@ PrintPartyMonPage1: ; 1dc381
 
 	xor a
 	ld [MonType], a
-	callba CopyPkmnToTempMon
+	farcall CopyPkmnToTempMon
 	hlcoord 0, 7
 	ld b, 9
 	ld c, 18
@@ -241,7 +241,7 @@ PrintPartyMonPage2: ; 1dc47b
 	call LoadFontsBattleExtra
 	xor a
 	ld [MonType], a
-	callba CopyPkmnToTempMon
+	farcall CopyPkmnToTempMon
 	hlcoord 0, 0
 	ld b, 15
 	ld c, 18
@@ -316,7 +316,7 @@ Function1dc51a: ; 1dc51a
 ; 1dc52c
 
 Function1dc52c: ; 1dc52c
-	callba GetGender
+	farcall GetGender
 	ld a, " "
 	jr c, .got_gender
 	ld a, "♂"
@@ -327,7 +327,7 @@ Function1dc52c: ; 1dc52c
 	hlcoord 17, 2
 	ld [hl], a
 	ld bc, TempMonDVs
-	callba CheckShininess
+	farcall CheckShininess
 	ret nc
 	hlcoord 18, 2
 	ld [hl], "<SHINY>"

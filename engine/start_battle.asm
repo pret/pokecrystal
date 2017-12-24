@@ -5,7 +5,7 @@ ShowLinkBattleParticipants: ; 2ee18
 	and a
 	ret z
 
-	callba _ShowLinkBattleParticipants
+	farcall _ShowLinkBattleParticipants
 	ld c, 150
 	call DelayFrames
 	call ClearTileMap
@@ -34,7 +34,7 @@ FindFirstAliveMonAndStartBattle: ; 2ee2f
 	ld a, [hl]
 	ld [BattleMonLevel], a
 	predef Predef_StartBattle
-	callba _LoadBattleFontsHPBar
+	farcall _LoadBattleFontsHPBar
 	ld a, 1
 	ld [hBGMapMode], a
 	call ClearSprites
@@ -70,7 +70,7 @@ PlayBattleMusic: ; 2ee6c
 	and a
 	jr nz, .trainermusic
 
-	callba RegionCheck
+	farcall RegionCheck
 	ld a, e
 	and a
 	jr nz, .kantowild
@@ -101,11 +101,11 @@ PlayBattleMusic: ; 2ee6c
 	jr z, .done
 
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
-	callba IsKantoGymLeader
+	farcall IsKantoGymLeader
 	jr c, .done
 
 	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
-	callba IsJohtoGymLeader
+	farcall IsJohtoGymLeader
 	jr c, .done
 
 	ld de, MUSIC_RIVAL_BATTLE
@@ -126,7 +126,7 @@ PlayBattleMusic: ; 2ee6c
 	and a
 	jr nz, .johtotrainer
 
-	callba RegionCheck
+	farcall RegionCheck
 	ld a, e
 	and a
 	jr nz, .kantotrainer
@@ -186,7 +186,7 @@ ClearBattleRAM: ; 2ef18
 	xor a
 	call ByteFill
 
-	callab ResetEnemyStatLevels
+	callfar ResetEnemyStatLevels
 
 	call ClearWindowData
 

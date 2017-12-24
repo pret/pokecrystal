@@ -293,7 +293,7 @@ HPBarAnim_PaletteUpdate: ; d7b4
 	call SetHPPal
 	ld a, [wCurHPAnimPal]
 	ld c, a
-	callba ApplyHPBarPals
+	farcall ApplyHPBarPals
 	ret
 ; d7c9
 

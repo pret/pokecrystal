@@ -7,7 +7,7 @@ PrintItemDescription: ; 0x1c8955
 
 	ld [CurItem], a
 	push de
-	callba GetTMHMItemMove
+	farcall GetTMHMItemMove
 	pop hl
 	ld a, [wd265]
 	ld [CurSpecies], a

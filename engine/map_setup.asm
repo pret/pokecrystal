@@ -308,8 +308,8 @@ SuspendMapAnims: ; 154d3
 LoadObjectsRunCallback_02: ; 154d7
 	ld a, MAPCALLBACK_OBJECTS
 	call RunMapCallback
-	callba LoadObjectMasks
-	callba InitializeVisibleSprites
+	farcall LoadObjectMasks
+	farcall InitializeVisibleSprites
 	ret
 ; 154ea (5:54ea)
 
@@ -409,7 +409,7 @@ FadeOldMapMusic: ; 15567
 ; 1556d
 
 RetainOldPalettes: ; 1556d
-	callba _UpdateTimePals
+	farcall _UpdateTimePals
 	ret
 
 RotatePalettesRightMapAndMusic: ; 15574

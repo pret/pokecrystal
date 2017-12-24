@@ -39,12 +39,12 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	pop de
 	call Function17a6f5
 	call Function17aba0
-	callba Function106464
+	farcall Function106464
 	call Function17ac0c
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	call Function17abcf
-	callba LoadOW_BGPal7
-	callba Function49420
+	farcall LoadOW_BGPal7
+	farcall Function49420
 	call SetPalettes
 	call DelayFrame
 	ret
@@ -163,11 +163,11 @@ Function17a78f: ; 17a78f (5e:678f)
 	bit 7, [hl]
 	res 7, [hl]
 	jr nz, .asm_17a79f
-	callba HDMATransferTileMapToWRAMBank3
+	farcall HDMATransferTileMapToWRAMBank3
 	ret
 
 .asm_17a79f
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ret
 ; 17a7a6 (5e:67a6)
 

@@ -130,8 +130,8 @@ RefreshBattleHuds:: ; 39c9
 ; 39d4
 
 UpdateBattleHuds:: ; 39d4
-	callba UpdatePlayerHUD
-	callba UpdateEnemyHUD
+	farcall UpdatePlayerHUD
+	farcall UpdateEnemyHUD
 	ret
 ; 39e1
 

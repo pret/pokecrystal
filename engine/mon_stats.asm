@@ -276,7 +276,7 @@ ListMovePP: ; 50c50
 	push af
 	ld [hl], b
 	push hl
-	callab GetMaxPPOfMove
+	callfar GetMaxPPOfMove
 	pop hl
 	pop af
 	ld [hl], a

@@ -329,10 +329,10 @@ Function11c1b9: ; 11c1b9
 	ld de, VTiles0
 	call Decompress
 	call EnableLCD
-	callba ReloadMapPart
-	callba ClearSpriteAnims
-	callba LoadPokemonData
-	callba Pokedex_ABCMode
+	farcall ReloadMapPart
+	farcall ClearSpriteAnims
+	farcall LoadPokemonData
+	farcall Pokedex_ABCMode
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -385,12 +385,12 @@ EZChat_MasterLoop: ; 11c283
 	bit 7, a
 	jr nz, .exit
 	call .DoJumptableFunction
-	callba PlaySpriteAnimations
-	callba ReloadMapPart
+	farcall PlaySpriteAnimations
+	farcall ReloadMapPart
 	jr .loop
 
 .exit
-	callba ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call ClearSprites
 	ret
 ; 11c2ac
@@ -719,7 +719,7 @@ Function11c4be: ; 11c4be (47:44be)
 	hlcoord 0, 14, AttrMap
 	ld bc, $28
 	call ByteFill
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ret
 ; 11c4db (47:44db)
 
@@ -918,7 +918,7 @@ Function11c618: ; 11c618 (47:4618)
 	hlcoord 0, 6, AttrMap
 	ld bc, $c8
 	call ByteFill
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ret
 ; 11c62a (47:462a)
 
@@ -1372,7 +1372,7 @@ BCD2String: ; 11c8c7
 	xor a
 	ld [hDividend + 2], a
 	push hl
-	callba Function11a80c
+	farcall Function11a80c
 	pop hl
 	ld a, [wcd63]
 	add "0"
@@ -1530,7 +1530,7 @@ Function11c9ab: ; 11c9ab (47:49ab)
 	hlcoord 0, 6, AttrMap
 	ld bc, $c8
 	call ByteFill
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ret
 
 Function11c9bd: ; 11c9bd (47:49bd)
@@ -1620,7 +1620,7 @@ Function11ca19: ; 11ca19 (47:4a19)
 	add hl, de
 	dec c
 	jr nz, .asm_11ca22
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ret
 ; 11ca38 (47:4a38)
 
@@ -2043,7 +2043,7 @@ Function11cdaa: ; 11cdaa (47:4daa)
 	hlcoord 0, 12, AttrMap
 	ld bc, 4 * SCREEN_WIDTH
 	call ByteFill
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ret
 ; 11cdc7 (47:4dc7)
 

@@ -120,14 +120,14 @@ StartMap: ; 96724
 	ld hl, MapStatus
 	ld bc, wMapStatusEnd - MapStatus
 	call ByteFill
-	callba InitCallReceiveDelay
+	farcall InitCallReceiveDelay
 	call ClearJoypad
 EnterMap: ; 9673e
 	xor a
 	ld [wXYComparePointer], a
 	ld [wXYComparePointer + 1], a
 	call SetUpFiveStepWildEncounterCooldown
-	callba RunMapSetupScript
+	farcall RunMapSetupScript
 	call DisableEvents
 
 	ld a, [hMapEntryMethod]
@@ -159,7 +159,7 @@ UnusedWait30Frames: ; 9676d
 HandleMap: ; 96773
 	call ResetOverworldDelay
 	call HandleMapTimeAndJoypad
-	callba HandleCmdQueue ; no need to farcall
+	farcall HandleCmdQueue ; no need to farcall
 	call MapEvents
 
 ; Not immediately entering a connected map will cause problems.
@@ -188,7 +188,7 @@ MapEvents: ; 96795
 .events ; 967a1
 	call PlayerEvents
 	call DisableEvents
-	callba ScriptEvents
+	farcall ScriptEvents
 	ret
 ; 967ae
 
@@ -227,16 +227,16 @@ HandleMapTimeAndJoypad: ; 967c1
 ; 967d1
 
 HandleMapObjects: ; 967d1
-	callba HandleNPCStep ; engine/map_objects.asm
-	callba _HandlePlayerStep
+	farcall HandleNPCStep ; engine/map_objects.asm
+	farcall _HandlePlayerStep
 	call _CheckObjectEnteringVisibleRange
 	ret
 ; 967e1
 
 HandleMapBackground: ; 967e1
-	callba _UpdateSprites
-	callba ScrollScreen
-	callba PlaceMapNameSign
+	farcall _UpdateSprites
+	farcall ScrollScreen
+	farcall PlaceMapNameSign
 	ret
 ; 967f4
 
@@ -264,7 +264,7 @@ _CheckObjectEnteringVisibleRange: ; 96812
 	ld hl, wPlayerStepFlags
 	bit 6, [hl]
 	ret z
-	callba CheckObjectEnteringVisibleRange
+	farcall CheckObjectEnteringVisibleRange
 	ret
 ; 9681f
 
@@ -300,7 +300,7 @@ PlayerEvents: ; 9681f
 
 .ok
 	push af
-	callba EnableScriptMode
+	farcall EnableScriptMode
 	pop af
 
 	ld [ScriptRunning], a
@@ -340,7 +340,7 @@ CheckTileEvent: ; 96874
 	call CheckWarpConnxnScriptFlag
 	jr z, .connections_disabled
 
-	callba CheckMovingOffEdgeOfMap
+	farcall CheckMovingOffEdgeOfMap
 	jr c, .map_connection
 
 	call CheckWarpTile
@@ -465,8 +465,8 @@ endr
 	ld hl, ScriptFlags
 	res 3, [hl]
 
-	callba EnableScriptMode
-	callba ScriptEvents
+	farcall EnableScriptMode
+	farcall ScriptEvents
 
 	ld hl, ScriptFlags
 	bit 3, [hl]
@@ -495,15 +495,15 @@ CheckTimeEvents: ; 9693a
 	bit 2, [hl] ; bug contest
 	jr z, .do_daily
 
-	callba CheckBugContestTimer
+	farcall CheckBugContestTimer
 	jr c, .end_bug_contest
 	xor a
 	ret
 
 .do_daily
-	callba CheckDailyResetTimer
-	callba CheckPokerusTick
-	callba CheckPhoneCall
+	farcall CheckDailyResetTimer
+	farcall CheckPokerusTick
+	farcall CheckPhoneCall
 	ret c
 
 .nothing
@@ -532,7 +532,7 @@ OWPlayerInput: ; 96974
 	jr nz, .NoAction
 
 ; Can't perform button actions while sliding on ice.
-	callba CheckStandingOnIce
+	farcall CheckStandingOnIce
 	jr c, .NoAction
 
 	call CheckAPressOW
@@ -547,7 +547,7 @@ OWPlayerInput: ; 96974
 
 .Action:
 	push af
-	callba StopPlayerForEvent
+	farcall StopPlayerForEvent
 	pop af
 	scf
 	ret
@@ -576,7 +576,7 @@ PlayTalkObject: ; 969ac
 ; 969b5
 
 TryObjectEvent: ; 969b5
-	callba CheckFacingObject
+	farcall CheckFacingObject
 	jr c, .IsObject
 	xor a
 	ret
@@ -804,7 +804,7 @@ CheckSignFlag: ; 96ad8
 ; 96af0
 
 PlayerMovement: ; 96af0
-	callba DoPlayerMovement
+	farcall DoPlayerMovement
 	ld a, c
 	ld hl, .pointers
 	rst JumpTable
@@ -934,7 +934,7 @@ CountStep: ; 96b79
 	jr nz, .done
 
 	; If there is a special phone call, don't count the step.
-	callba CheckSpecialPhoneCall
+	farcall CheckSpecialPhoneCall
 	jr c, .doscript
 
 	; If Repel wore off, don't count the step.
@@ -949,7 +949,7 @@ CountStep: ; 96b79
 	; Every 256 steps, increase the happiness of all your Pokemon.
 	jr nz, .skip_happiness
 
-	callba StepHappiness
+	farcall StepHappiness
 
 .skip_happiness
 	; Every 256 steps, offset from the happiness incrementor by 128 steps,
@@ -959,12 +959,12 @@ CountStep: ; 96b79
 	cp $80
 	jr nz, .skip_egg
 
-	callba DoEggStep
+	farcall DoEggStep
 	jr nz, .hatch
 
 .skip_egg
 	; Increase the EXP of (both) DayCare Pokemon by 1.
-	callba DayCareStep
+	farcall DayCareStep
 
 	; Every four steps, deal damage to all Poisoned Pokemon
 	ld hl, PoisonStepCount
@@ -973,11 +973,11 @@ CountStep: ; 96b79
 	jr c, .skip_poison
 	ld [hl], 0
 
-	callba DoPoisonStep
+	farcall DoPoisonStep
 	jr c, .doscript
 
 .skip_poison
-	callba DoBikeStep
+	farcall DoBikeStep
 
 .done
 	xor a

@@ -178,14 +178,14 @@ MapCallbackSprites_LoadUsedSpritesGFX: ; 14209
 	ret nz
 
 	ld c, EMOTE_SHADOW
-	callba LoadEmote
+	farcall LoadEmote
 	call GetMapPermission
 	call CheckOutdoorMap
 	ld c, EMOTE_GRASS_RUSTLE
 	jr z, .outdoor
 	ld c, EMOTE_BOULDER_DUST
 .outdoor
-	callba LoadEmote
+	farcall LoadEmote
 	ret
 ; 14236
 
@@ -265,7 +265,7 @@ GetMonSprite: ; 14259
 	and a
 	jr z, .NoBreedmon
 
-	callba LoadOverworldMonIcon
+	farcall LoadOverworldMonIcon
 
 	ld l, 1
 	ld h, 0

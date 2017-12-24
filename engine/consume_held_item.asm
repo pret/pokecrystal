@@ -17,7 +17,7 @@ ConsumeHeldItem: ; 27192
 	push af
 	ld a, [de]
 	ld b, a
-	callba GetItemHeldEffect
+	farcall GetItemHeldEffect
 	ld hl, .ConsumableEffects
 .loop
 	ld a, [hli]

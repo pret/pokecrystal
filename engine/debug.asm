@@ -341,12 +341,12 @@ Function81adb: ; 81adb
 .asm_81b7a
 	ld a, [wd265]
 	ld [TrainerClass], a
-	callab GetTrainerAttributes
+	callfar GetTrainerAttributes
 	ld de, StringBuffer1
 	hlcoord 4, 1
 	call PlaceString
 	ld de, VTiles2
-	callab GetTrainerPic
+	callfar GetTrainerPic
 	xor a
 	ld [TempEnemyMonSpecies], a
 	ld [hGraphicStartTile], a

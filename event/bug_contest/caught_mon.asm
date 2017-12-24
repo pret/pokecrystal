@@ -3,8 +3,8 @@ BugContest_SetCaughtContestMon: ; e6ce
 	and a
 	jr z, .firstcatch
 	ld [wd265], a
-	callba DisplayAlreadyCaughtText
-	callba DisplayCaughtContestMonStats
+	farcall DisplayAlreadyCaughtText
+	farcall DisplayCaughtContestMonStats
 	lb bc, 14, 7
 	call PlaceYesNoBox
 	ret c

@@ -16,7 +16,7 @@ _InterpretBattleMenu:: ; 24022
 	rst FarCall
 
 	call Draw2DMenu
-	callba MobileTextBorder
+	farcall MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
 	call Get2DMenuSelection
@@ -29,7 +29,7 @@ _InterpretMobileMenu:: ; 2403c
 	rst FarCall
 
 	call Draw2DMenu
-	callba MobileTextBorder
+	farcall MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
 	call Init2DMenuCursorPosition
@@ -37,7 +37,7 @@ _InterpretMobileMenu:: ; 2403c
 	set 7, [hl]
 .loop
 	call DelayFrame
-	callba Function10032e
+	farcall Function10032e
 	ld a, [wcd2b]
 	and a
 	jr nz, .quit
@@ -322,7 +322,7 @@ Function241d5: ; 241d5
 	call AdvanceMobileInactivityTimerAndCheckExpired ; BUG: This function is in another bank.
 	                    ; Pointer in current bank (9) is bogus.
 	ret c
-	callba Function100337
+	farcall Function100337
 	ret c
 	ld a, [w2DMenuFlags1]
 	bit 7, a
@@ -382,7 +382,7 @@ Menu_WasButtonPressed: ; 24259
 	ld a, [w2DMenuFlags1]
 	bit 6, a
 	jr z, .skip_to_joypad
-	callab PlaySpriteAnimationsAndDelayFrame
+	callfar PlaySpriteAnimationsAndDelayFrame
 
 .skip_to_joypad
 	call JoyTextDelay

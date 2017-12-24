@@ -1368,7 +1368,7 @@ _GetDecorationSprite: ; 27085
 	ld c, a
 	push de
 	push hl
-	callba GetDecorationSprite
+	farcall GetDecorationSprite
 	pop hl
 	pop de
 	ld a, c

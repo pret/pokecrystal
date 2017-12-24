@@ -20,7 +20,7 @@ Mobile_PrintOpponentBattleMessage: ; 4ea0a
 
 	ld bc, wMobileOpponentBattleMessage
 	decoord 1, 14
-	callba PrintEZChatBattleMessage
+	farcall PrintEZChatBattleMessage
 
 	pop af
 	ld [rSVBK], a

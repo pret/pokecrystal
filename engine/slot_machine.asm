@@ -20,7 +20,7 @@ _SlotMachine:
 	call PlaySFX
 	call WaitSFX
 	call ClearBGPalettes
-	callba TrainerRankings_EndSlotsWinStreak
+	farcall TrainerRankings_EndSlotsWinStreak
 	ld hl, Options
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC ; $ff40
@@ -41,7 +41,7 @@ _SlotMachine:
 	call ByteFill
 	ld b, SCGB_SLOT_MACHINE
 	call GetSGBLayout
-	callab ClearSpriteAnims
+	callfar ClearSpriteAnims
 	ld hl, wSlots
 	ld bc, wSlotsDataEnd - wSlots
 	xor a
@@ -116,7 +116,7 @@ SlotsLoop: ; 927af (24:67af)
 	call Slots_SpinReels
 	xor a
 	ld [wCurrSpriteOAMAddr], a
-	callab DoNextFrameForFirst16Sprites
+	callfar DoNextFrameForFirst16Sprites
 	call .PrintCoinsAndPayout
 	call .DummyFunc
 	call DelayFrame
@@ -1812,7 +1812,7 @@ SlotGetPayout: ; 93124 (24:7124)
 	ld a, [hl]
 	ld [wPayout], a
 	ld d, a
-	callba TrainerRankings_AddToSlotsPayouts
+	farcall TrainerRankings_AddToSlotsPayouts
 	ret
 
 .PayoutTable:
@@ -1836,7 +1836,7 @@ SlotPayoutText: ; 93158 (24:7158)
 	jr nz, .MatchedSomething
 	ld hl, .Text_Darn
 	call PrintText
-	callba TrainerRankings_EndSlotsWinStreak
+	farcall TrainerRankings_EndSlotsWinStreak
 	ret
 
 .MatchedSomething:
@@ -1860,7 +1860,7 @@ SlotPayoutText: ; 93158 (24:7158)
 .return
 	ld hl, .Text_PrintPayout
 	call PrintText
-	callba TrainerRankings_AddToSlotsWinStreak
+	farcall TrainerRankings_AddToSlotsWinStreak
 	ret
 
 ; 93195 (24:7195)
@@ -2001,7 +2001,7 @@ SlotMachine_AnimateGolem: ; 9321d (24:721d)
 	dec [hl]
 	ld e, a
 	ld d, 14 * 8
-	callba BattleAnim_Sine_e
+	farcall BattleAnim_Sine_e
 	ld a, e
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc

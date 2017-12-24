@@ -315,7 +315,7 @@ endm
 Char15:: ; 117b
 	ld c, l
 	ld b, h
-	callba Function17f036
+	farcall Function17f036
 	jp PlaceNextChar
 ; 1186
 
@@ -391,7 +391,7 @@ PlaceEnemysName:: ; 121b
 	ld de, String12a2
 	call PlaceString
 	push bc
-	callab Battle_GetTrainerName
+	callfar Battle_GetTrainerName
 	pop hl
 	ld de, StringBuffer1
 	jr PlaceCommandCharacter

@@ -1,6 +1,6 @@
 _BugContestJudging: ; 1369d
 	call ContestScore
-	callba TrainerRankings_BugContestScore
+	farcall TrainerRankings_BugContestScore
 	call BugContest_JudgeContestants
 	ld a, [wBugContestThirdPlacePersonID]
 	call LoadContestantName
@@ -97,7 +97,7 @@ LoadContestantName: ; 13730
 	push hl
 	push bc
 ; Get the Trainer Class name and copy it into wBugContestWinnerName.
-	callab GetTrainerClassName
+	callfar GetTrainerClassName
 	ld hl, StringBuffer1
 	ld de, wBugContestWinnerName
 	ld bc, TRAINER_CLASS_NAME_LENGTH
@@ -120,7 +120,7 @@ LoadContestantName: ; 13730
 ; Get the name of the trainer with class c and ID b.
 	ld a, [hl]
 	ld b, a
-	callab GetTrainerName
+	callfar GetTrainerName
 ; Append the name to wBugContestWinnerName.
 	ld hl, StringBuffer1
 	pop de

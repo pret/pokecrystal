@@ -32,7 +32,7 @@ UsedMoveText: ; 105db9
 	ld [wd265], a
 
 	push hl
-	callba CheckUserIsCharging
+	farcall CheckUserIsCharging
 	pop hl
 	jr nz, .grammar
 

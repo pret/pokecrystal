@@ -12,12 +12,12 @@ Special_MoveTutor: ; 4925b
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	call CopyName1
-	callba ChooseMonToLearnTMHM
+	farcall ChooseMonToLearnTMHM
 	jr c, .cancel
 	jr .enter_loop
 
 .loop
-	callba ChooseMonToLearnTMHM_NoRefresh
+	farcall ChooseMonToLearnTMHM_NoRefresh
 	jr c, .cancel
 .enter_loop
 	call CheckCanLearnMoveTutorMove
@@ -75,7 +75,7 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	jr .didnt_learn
 
 .can_learn
-	callab KnowsMove
+	callfar KnowsMove
 	jr c, .didnt_learn
 
 	predef LearnMove
@@ -84,7 +84,7 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	jr z, .didnt_learn
 
 	ld c, HAPPINESS_LEARNMOVE
-	callab ChangeHappiness
+	callfar ChangeHappiness
 	jr .learned
 
 .didnt_learn

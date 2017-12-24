@@ -77,7 +77,7 @@ Function17c000: ; 17c000
 	ld [rVBK], a
 
 	call EnableLCD
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	ret
 ; 17c083
 
@@ -290,21 +290,21 @@ Function17d0f3: ; 17d0f3
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
 	ld bc, $c608 + 5
-	callba GetCaughtGender
+	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
 	call SpeechTextBox
 	call FadeToMenu
-	callba Function10804d
-	callba Function17d1f1
+	farcall Function10804d
+	farcall Function17d1f1
 	ld a, $1
 	ld [wForceEvolution], a
 	ld a, $2
 	ld [wLinkMode], a
-	callba EvolvePokemon
+	farcall EvolvePokemon
 	xor a
 	ld [wLinkMode], a
-	callba SaveAfterLinkTrade
+	farcall SaveAfterLinkTrade
 	ld a, $5
 	call GetSRAMBank
 	ld a, $5
@@ -413,7 +413,7 @@ Function17d1f1: ; 17d1f1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	predef GetUnownLetter
-	callab UpdateUnownDex
+	callfar UpdateUnownDex
 	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .asm_17d223
@@ -515,7 +515,7 @@ MenuData2_ChallengeExplanationCancel: ; 17d297
 
 Function17d2b6: ; 17d2b6
 	call Function17d2c0
-	callba Function1181da
+	farcall Function1181da
 	ret
 ; 17d2c0
 
@@ -627,7 +627,7 @@ Function17d370: ; 17d370
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	call DisableLCD
 	ld hl, VTiles1 tile $6e
 	ld de, $c608
@@ -673,7 +673,7 @@ Function17d3f6: ; 17d3f6
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearScreen
-	callba ReloadMapPart
+	farcall ReloadMapPart
 
 Function17d405:
 	call DisableLCD
@@ -719,7 +719,7 @@ Function17d45a: ; 17d45a
 	bit 7, a
 	jr nz, .asm_17d46f
 	call Function17d474
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	jr .asm_17d45a
 
 .asm_17d46f
@@ -921,7 +921,7 @@ Function17d48d: ; 17d48d
 	call Function17e451
 	call Function17e55b
 	call Function17e5af
-	callba ReloadMapPart
+	farcall ReloadMapPart
 	jp Function17e438
 ; 17d5be
 
@@ -1330,7 +1330,7 @@ Function17d833: ; 17d833
 	add hl, de
 	ld e, l
 	ld d, h
-	callba Function11c08f
+	farcall Function11c08f
 	call Function17e349
 	ret
 ; 17d85d
@@ -1422,7 +1422,7 @@ Function17d85d: ; 17d85d
 	ld [wcd3b], a
 	xor a
 	ld [wcf66], a
-	callba Function118329
+	farcall Function118329
 	ld a, [wc300]
 	and a
 	jr z, .asm_17d8fe
@@ -1457,7 +1457,7 @@ Function17d902: ; 17d902
 	jr nz, .asm_17d918
 	xor a
 	ld [wcf66], a
-	callba Function11837a
+	farcall Function11837a
 	ld a, [wc300]
 	and a
 	jr z, .asm_17d936
@@ -1488,7 +1488,7 @@ Function17d93a: ; 17d93a
 	ld [CurPartySpecies], a
 	ld a, [$c70c]
 	ld e, a
-	callba LoadMonPaletteAsNthBGPal
+	farcall LoadMonPaletteAsNthBGPal
 	call SetPalettes
 	ld a, [$c708]
 	ld l, a
@@ -1500,7 +1500,7 @@ Function17d93a: ; 17d93a
 	add hl, de
 	ld e, l
 	ld d, h
-	callba HOF_AnimateFrontpic
+	farcall HOF_AnimateFrontpic
 	pop af
 	ld [rSVBK], a
 	call Function17e349
@@ -1524,7 +1524,7 @@ Function17d98b: ; 17d98b
 	ld [TrainerClass], a
 	ld a, [$c70b]
 	ld e, a
-	callba LoadTrainerClassPaletteAsNthBGPal
+	farcall LoadTrainerClassPaletteAsNthBGPal
 	call SetPalettes
 	ld a, [$c708]
 	ld e, a
@@ -1532,7 +1532,7 @@ Function17d98b: ; 17d98b
 	ld d, a
 	push de
 	ld de, VTiles2
-	callba GetTrainerPic
+	farcall GetTrainerPic
 	pop hl
 	decoord 0, 0
 	add hl, de
@@ -2340,7 +2340,7 @@ Function17ded9: ; 17ded9
 	push hl
 	push bc
 	predef TryAddMonToParty
-	callba SetCaughtData
+	farcall SetCaughtData
 	pop bc
 	pop hl
 	bit 1, b
@@ -2378,7 +2378,7 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld b, a
 	push hl
-	callba SetGiftPartyMonCaughtData
+	farcall SetGiftPartyMonCaughtData
 	pop hl
 	pop bc
 	jr .asm_17df5e
@@ -2444,7 +2444,7 @@ Function17ded9: ; 17ded9
 	ld e, l
 	push hl
 	ld b, $0
-	callba CalcPkmnStats
+	farcall CalcPkmnStats
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1HP
@@ -2532,9 +2532,9 @@ Function17e026: ; 17e026
 	jp z, .asm_17e0ea
 	push bc
 	push hl
-	callba LoadEnemyMon
-	callba SentPkmnIntoBox
-	callba SetBoxMonCaughtData
+	farcall LoadEnemyMon
+	farcall SentPkmnIntoBox
+	farcall SetBoxMonCaughtData
 	pop hl
 	pop bc
 	ld a, BANK(sBoxMonNicknames)
@@ -2563,7 +2563,7 @@ Function17e026: ; 17e026
 	ld b, a
 	push hl
 	call CloseSRAM
-	callba SetGiftBoxMonCaughtData
+	farcall SetGiftBoxMonCaughtData
 	ld a, $1
 	call GetSRAMBank
 	pop hl
@@ -2702,7 +2702,7 @@ Function17e133: ; 17e133
 	ld a, [hli]
 	ld [ScriptVar], a
 	push hl
-	callba MobileCheckOwnMonAnywhere
+	farcall MobileCheckOwnMonAnywhere
 	pop hl
 	jr c, .asm_17e159
 	inc hl
@@ -2950,7 +2950,7 @@ Function17e2a7: ; 17e2a7
 	call Function17e32b
 	xor a
 	ld [wcf66], a
-	callba Function118233
+	farcall Function118233
 	ld de, GFX_17eb7e
 	ld hl, VTiles2 tile $60
 	lb bc, BANK(GFX_17eb7e), 1
@@ -2999,7 +2999,7 @@ Function17e309: ; 17e309
 	call ClearScreen
 	call Function17e349
 	call Function17d5f6
-	callba DisplayMobileError
+	farcall DisplayMobileError
 	call Function17e349
 	call Function17dcaf
 	xor a
@@ -3042,7 +3042,7 @@ Function17e367: ; 17e367
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba SaveGameData_
+	farcall SaveGameData_
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3055,7 +3055,7 @@ Function17e37e: ; 17e37e
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba SaveAfterLinkTrade
+	farcall SaveAfterLinkTrade
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3068,7 +3068,7 @@ Function17e395: ; 17e395
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba SaveBox
+	farcall SaveBox
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3081,7 +3081,7 @@ Function17e3ac: ; 17e3ac
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba SaveChecksum
+	farcall SaveChecksum
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3094,8 +3094,8 @@ Function17e3c3: ; 17e3c3
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	callba UpdateTrainerRankingsChecksum2
-	callba BackupMobileEventIndex
+	farcall UpdateTrainerRankingsChecksum2
+	farcall BackupMobileEventIndex
 	pop af
 	ld [rSVBK], a
 	ret
@@ -3947,7 +3947,7 @@ Function17f154: ; 17f154
 	ld c, l
 	ld b, h
 	pop de
-	callba Function11c08f
+	farcall Function11c08f
 	ld c, l
 	ld b, h
 	pop de
@@ -3995,7 +3995,7 @@ Function17f181: ; 17f181
 	ld a, [hl]
 	ld c, a
 	ld de, $c608
-	callba Function48c63
+	farcall Function48c63
 	pop hl
 	ld de, $c608
 	call PlaceString
@@ -4279,7 +4279,7 @@ Function17f334: ; 17f334
 	ld c, a
 	call CloseSRAM
 	ld de, $c608
-	callba Function48c63
+	farcall Function48c63
 	pop hl
 	ld de, $c608
 	call PlaceString
@@ -4346,7 +4346,7 @@ Function17f3c9: ; 17f3c9
 	call CopyBytes
 	pop de
 	ld c, $0
-	callba Function11c075
+	farcall Function11c075
 	push hl
 	ld hl, $c708
 	ld de, wcd36
@@ -4643,7 +4643,7 @@ DisplayMobileError: ; 17f555
 	ld a, [wc303]
 	bit 7, a
 	jr nz, .quit
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	jr .loop
 
 .quit
@@ -4704,7 +4704,7 @@ DisplayMobileError: ; 17f555
 
 Function17f5c3: ; 17f5c3
 	call Function17f5e4
-	callba FinishExitMenu
+	farcall FinishExitMenu
 	ld a, $1
 	ld [wc303], a
 	ret
@@ -4712,7 +4712,7 @@ Function17f5c3: ; 17f5c3
 
 Function17f5d2: ; 17f5d2
 	call Function17f5e4
-	callba HDMATransferAttrMapAndTileMapToWRAMBank3
+	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	call SetPalettes
 	ld a, $1
 	ld [wc303], a
