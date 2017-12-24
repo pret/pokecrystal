@@ -41,7 +41,7 @@ For `asm` scripts, read [docs/map_scripts.md](docs/map_scripts.md). For `blk` la
 
 ## How do I write new features?
 
-There are a number of special-purpose scripting languages used for different purposes, as described in [docs](docs/). For more general features, you'll need to code directly in assembly language. See [docs/assembly_language.md](docs/assembly_language.md).
+There are a number of special-purpose scripting languages used for different purposes, as described in [docs](docs/). For more general features, you'll need to code directly in assembly language. See [docs/assembly_programming.md](docs/assembly_programming.md).
 
 
 ## I need more help!
