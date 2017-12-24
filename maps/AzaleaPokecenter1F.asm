@@ -5,14 +5,14 @@ const_value set 2
 	const AZALEAPOKECENTER1F_POKEFAN_F
 
 AzaleaPokecenter1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 1
-	maptrigger .DummyTrigger
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 AzaleaPokecenter1FNurseScript:
@@ -86,15 +86,15 @@ AzaleaPokecenter1F_MapEventHeader:
 	warp_def $7, $4, 1, AZALEA_TOWN
 	warp_def $7, $0, 1, POKECENTER_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaPokecenter1FNurseScript, -1
-	person_event SPRITE_GENTLEMAN, 6, 9, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaPokecenter1FGentlemanScript, -1
-	person_event SPRITE_FISHING_GURU, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaPokecenter1FFishingGuruScript, -1
-	person_event SPRITE_POKEFAN_F, 4, 1, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AzaleaPokecenter1FPokefanFScript, -1
+	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FNurseScript, -1
+	object_event SPRITE_GENTLEMAN, 6, 9, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FGentlemanScript, -1
+	object_event SPRITE_FISHING_GURU, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FFishingGuruScript, -1
+	object_event SPRITE_POKEFAN_F, 4, 1, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FPokefanFScript, -1

@@ -6,10 +6,10 @@ const_value set 2
 	const ECRUTEAKPOKECENTER1F_BILL
 
 EcruteakPokecenter1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .MeetBill
-	maptrigger .DummyTrigger
+	scene_script .MeetBill
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
@@ -18,7 +18,7 @@ EcruteakPokecenter1F_MapScriptHeader:
 	priorityjump .BillActivatesTimeCapsule
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .BillActivatesTimeCapsule:
@@ -53,7 +53,7 @@ EcruteakPokecenter1F_MapScriptHeader:
 	disappear ECRUTEAKPOKECENTER1F_BILL
 	clearevent EVENT_MET_BILL
 	setflag ENGINE_TIME_CAPSULE
-	dotrigger $1
+	setscene $1
 	waitsfx
 	end
 
@@ -216,16 +216,16 @@ EcruteakPokecenter1F_MapEventHeader:
 	warp_def $7, $4, 6, ECRUTEAK_CITY
 	warp_def $7, $0, 1, POKECENTER_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakPokecenter1FNurseScript, -1
-	person_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakPokecenter1FPokefanMScript, -1
-	person_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakPokecenter1FCooltrainerFScript, -1
-	person_event SPRITE_GYM_GUY, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, EcruteakPokecenter1FGymGuyScript, -1
-	person_event SPRITE_BILL, 7, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL
+	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FNurseScript, -1
+	object_event SPRITE_POKEFAN_M, 6, 7, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FPokefanMScript, -1
+	object_event SPRITE_COOLTRAINER_F, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FCooltrainerFScript, -1
+	object_event SPRITE_GYM_GUY, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FGymGuyScript, -1
+	object_event SPRITE_BILL, 7, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL

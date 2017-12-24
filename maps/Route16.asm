@@ -1,5 +1,5 @@
 Route16_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -40,12 +40,12 @@ Route16_MapEventHeader:
 	warp_def $6, $9, 1, ROUTE_16_GATE
 	warp_def $7, $9, 2, ROUTE_16_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 5, 5, SIGNPOST_READ, CyclingRoadSign
+	bg_event 5, 5, BGEVENT_READ, CyclingRoadSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

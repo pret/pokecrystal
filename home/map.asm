@@ -8,61 +8,61 @@ Clearwc7e8:: ; 210f
 	ret
 ; 211b
 
-CheckTriggers:: ; 211b
-; Checks wCurrentMapTriggerPointer.  If it's empty, returns -1 in a.  Otherwise, returns the active trigger ID in a.
+CheckScenes:: ; 211b
+; Checks wCurrMapSceneScriptPointer.  If it's empty, returns -1 in a.  Otherwise, returns the active scene ID in a.
 	push hl
-	ld hl, wCurrentMapTriggerPointer
+	ld hl, wCurrMapSceneScriptPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
 	ld a, [hl]
-	jr nz, .triggerexists
+	jr nz, .scene_exists
 	ld a, -1
 
-.triggerexists
+.scene_exists
 	pop hl
 	ret
 ; 212a
 
-GetCurrentMapTrigger:: ; 212a
-; Grabs the wram map trigger pointer for the current map and loads it into wCurrentMapTriggerPointer.
-; If there are no triggers, both bytes of wCurrentMapTriggerPointer are wiped clean.
-; Copy the current map group and number into bc.  This is needed for GetMapTrigger.
+GetCurrentMapSceneID:: ; 212a
+; Grabs the wram map scene script pointer for the current map and loads it into wCurrMapSceneScriptPointer.
+; If there is no scene, both bytes of wCurrMapSceneScriptPointer are wiped clean.
+; Copy the current map group and number into bc.  This is needed for GetMapSceneID.
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-; Blank out wCurrentMapTriggerPointer; this is the default scenario.
+; Blank out wCurrMapSceneScriptPointer; this is the default scenario.
 	xor a
-	ld [wCurrentMapTriggerPointer], a
-	ld [wCurrentMapTriggerPointer + 1], a
-	call GetMapTrigger
-	ret c ; The map is not in the trigger table
-; Load the trigger table pointer from de into wCurrentMapTriggerPointer
+	ld [wCurrMapSceneScriptPointer], a
+	ld [wCurrMapSceneScriptPointer + 1], a
+	call GetMapSceneID
+	ret c ; The map is not in the scene script table
+; Load the scene script pointer from de into wCurrMapSceneScriptPointer
 	ld a, e
-	ld [wCurrentMapTriggerPointer], a
+	ld [wCurrMapSceneScriptPointer], a
 	ld a, d
-	ld [wCurrentMapTriggerPointer + 1], a
+	ld [wCurrMapSceneScriptPointer + 1], a
 	xor a
 	ret
 ; 2147
 
-GetMapTrigger:: ; 2147
-; Searches the trigger table for the map group and number loaded in bc, and returns the wram pointer in de.
-; If the map is not in the trigger table, returns carry.
+GetMapSceneID:: ; 2147
+; Searches the scene script table for the map group and number loaded in bc, and returns the wram pointer in de.
+; If the map is not in the scene script table, returns carry.
 	push bc
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(MapTriggers)
+	ld a, BANK(MapScenes)
 	rst Bankswitch
 
-	ld hl, MapTriggers
+	ld hl, MapScenes
 .loop
 	push hl
 	ld a, [hli] ; map group, or terminator
 	cp -1
-	jr z, .end ; the current map is not in the trigger table
+	jr z, .end ; the current map is not in the scene script table
 	cp b
 	jr nz, .next ; map group did not match
 	ld a, [hli] ; map number
@@ -72,7 +72,7 @@ GetMapTrigger:: ; 2147
 
 .next
 	pop hl
-	ld de, 4 ; size of an entry in the trigger table
+	ld de, 4 ; size of an entry in the scene script table
 	add hl, de
 	jr .loop
 
@@ -430,7 +430,7 @@ ReadMapEventHeader:: ; 2336
 	inc hl
 	call ReadWarps
 	call ReadCoordEvents
-	call ReadSignposts
+	call ReadBGEvents
 
 	pop af
 	and a
@@ -445,7 +445,7 @@ ReadMapScripts:: ; 234f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call ReadMapTriggers
+	call ReadMapSceneScripts
 	call ReadMapCallbacks
 	ret
 ; 235c
@@ -511,19 +511,19 @@ GetMapConnection:: ; 23a3
 	ret
 ; 23ac
 
-ReadMapTriggers:: ; 23ac
-	ld a, [hli] ; trigger count
+ReadMapSceneScripts:: ; 23ac
+	ld a, [hli] ; scene script count
 	ld c, a
-	ld [wCurrMapTriggerCount], a ; current map trigger count
+	ld [wCurrMapSceneScriptCount], a ; current map scene script count
 	ld a, l
-	ld [wCurrMapTriggerHeaderPointer], a ; map trigger pointer
+	ld [wCurrMapSceneScriptHeaderPointer], a ; map scene script pointer
 	ld a, h
-	ld [wCurrMapTriggerHeaderPointer + 1], a
+	ld [wCurrMapSceneScriptHeaderPointer + 1], a
 	ld a, c
 	and a
 	ret z
 
-	ld bc, 4 ; size of a map trigger header entry
+	ld bc, 4 ; size of a map scene script header entry
 	call AddNTimes
 	ret
 ; 23c3
@@ -564,11 +564,11 @@ ReadWarps:: ; 23da
 ReadCoordEvents:: ; 23f1
 	ld a, [hli]
 	ld c, a
-	ld [wCurrentMapXYTriggerCount], a
+	ld [wCurrMapCoordEventCount], a
 	ld a, l
-	ld [wCurrentMapXYTriggerHeaderPointer], a
+	ld [wCurrMapCoordEventHeaderPointer], a
 	ld a, h
-	ld [wCurrentMapXYTriggerHeaderPointer + 1], a
+	ld [wCurrMapCoordEventHeaderPointer + 1], a
 
 	ld a, c
 	and a
@@ -579,14 +579,14 @@ ReadCoordEvents:: ; 23f1
 	ret
 ; 2408
 
-ReadSignposts:: ; 2408
+ReadBGEvents:: ; 2408
 	ld a, [hli]
 	ld c, a
-	ld [wCurrentMapSignpostCount], a
+	ld [wCurrMapBGEventCount], a
 	ld a, l
-	ld [wCurrentMapSignpostHeaderPointer], a
+	ld [wCurrMapBGEventHeaderPointer], a
 	ld a, h
-	ld [wCurrentMapSignpostHeaderPointer + 1], a
+	ld [wCurrMapBGEventHeaderPointer + 1], a
 
 	ld a, c
 	and a
@@ -604,17 +604,17 @@ ReadObjectEvents:: ; 241f
 	ld hl, Map1Object
 	ld a, [de]
 	inc de
-	ld [wCurrentMapPersonEventCount], a
+	ld [wCurrMapObjectEventCount], a
 	ld a, e
-	ld [wCurrentMapPersonEventHeaderPointer], a
+	ld [wCurrMapObjectEventHeaderPointer], a
 	ld a, d
-	ld [wCurrentMapPersonEventHeaderPointer + 1], a
+	ld [wCurrMapObjectEventHeaderPointer + 1], a
 
-	ld a, [wCurrentMapPersonEventCount]
+	ld a, [wCurrMapObjectEventCount]
 	call CopyMapObjectHeaders
 
-; get NUM_OBJECTS - [wCurrentMapPersonEventCount]
-	ld a, [wCurrentMapPersonEventCount]
+; get NUM_OBJECTS - [wCurrMapObjectEventCount]
+	ld a, [wCurrMapObjectEventCount]
 	ld c, a
 	ld a, NUM_OBJECTS ; - 1
 	sub c
@@ -1110,7 +1110,7 @@ Call_a_de:: ; 26b7
 ; 26c7
 
 GetMovementData:: ; 26c7
-; Initialize the movement data for person c at b:hl
+; Initialize the movement data for object c at b:hl
 	ld a, [hROMBank]
 	push af
 	ld a, b
@@ -1840,7 +1840,7 @@ GetBlockLocation:: ; 2a66
 	ret
 ; 2a8b
 
-CheckFacingSign:: ; 2a8b
+CheckFacingBGEvent:: ; 2a8b
 	call GetFacingTileCoord
 ; Load facing into b.
 	ld b, a
@@ -1851,8 +1851,8 @@ CheckFacingSign:: ; 2a8b
 	ld a, e
 	sub 4
 	ld e, a
-; If there are no signposts, we don't need to be here.
-	ld a, [wCurrentMapSignpostCount]
+; If there are no BG events, we don't need to be here.
+	ld a, [wCurrMapBGEventCount]
 	and a
 	ret z
 
@@ -1860,16 +1860,16 @@ CheckFacingSign:: ; 2a8b
 	ld a, [hROMBank]
 	push af
 	call SwitchToMapScriptHeaderBank
-	call CheckIfFacingTileCoordIsSign
+	call CheckIfFacingTileCoordIsBGEvent
 	pop hl
 	ld a, h
 	rst Bankswitch
 	ret
 ; 2aaa
 
-CheckIfFacingTileCoordIsSign:: ; 2aaa
-; Checks to see if you are facing a signpost.  If so, copies it into EngineBuffer1 and sets carry.
-	ld hl, wCurrentMapSignpostHeaderPointer
+CheckIfFacingTileCoordIsBGEvent:: ; 2aaa
+; Checks to see if you are facing a BG event.  If so, copies it into EngineBuffer1 and sets carry.
+	ld hl, wCurrMapBGEventHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1885,7 +1885,7 @@ CheckIfFacingTileCoordIsSign:: ; 2aaa
 
 .next
 	pop hl
-	ld a, 5 ; signpost event length
+	ld a, 5 ; BG event event length
 	add l
 	ld l, a
 	jr nc, .nocarry
@@ -1899,39 +1899,39 @@ CheckIfFacingTileCoordIsSign:: ; 2aaa
 
 .copysign
 	pop hl
-	ld de, wCurSignpostYCoord
-	ld bc, 5 ; signpost event length
+	ld de, wCurBGEventYCoord
+	ld bc, 5 ; BG event event length
 	call CopyBytes
 	scf
 	ret
 ; 2ad4
 
-CheckCurrentMapXYTriggers:: ; 2ad4
-; If there are no xy triggers, we don't need to be here.
-	ld a, [wCurrentMapXYTriggerCount]
+CheckCurrentMapCoordEvents:: ; 2ad4
+; If there are no coord events, we don't need to be here.
+	ld a, [wCurrMapCoordEventCount]
 	and a
 	ret z
-; Copy the trigger count into c.
+; Copy the coord event count into c.
 	ld c, a
 	ld a, [hROMBank]
 	push af
 	call SwitchToMapScriptHeaderBank
-	call .TriggerCheck
+	call .CoordEventCheck
 	pop hl
 	ld a, h
 	rst Bankswitch
 	ret
 
-.TriggerCheck:
-; Checks to see if you are standing on an xy-trigger.  If yes, copies the trigger to EngineBuffer1 and sets carry.
-	ld hl, wCurrentMapXYTriggerHeaderPointer
+.CoordEventCheck:
+; Checks to see if you are standing on a coord event.  If yes, copies the event to EngineBuffer1 and sets carry.
+	ld hl, wCurrMapCoordEventHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-; Load the active trigger ID into b
-	call CheckTriggers
+; Load the active scene ID into b
+	call CheckScenes
 	ld b, a
-; Load your current coordinates into de.  This will be used to check if your position is in the xy-trigger table for the current map.
+; Load your current coordinates into de.  This will be used to check if your position is in the coord event table for the current map.
 	ld a, [PlayerStandingMapX]
 	sub 4
 	ld d, a
@@ -1954,11 +1954,11 @@ CheckCurrentMapXYTriggers:: ; 2ad4
 	ld a, [hli]
 	cp d
 	jr nz, .next
-	jr .copytrigger
+	jr .copy_coord_event
 
 .next
 	pop hl
-	ld a, $8 ; xy-trigger size
+	ld a, $8 ; coord event size
 	add l
 	ld l, a
 	jr nc, .nocarry
@@ -1970,10 +1970,10 @@ CheckCurrentMapXYTriggers:: ; 2ad4
 	xor a
 	ret
 
-.copytrigger
+.copy_coord_event
 	pop hl
-	ld de, wCurCoordEventTriggerID
-	ld bc, 8 ; xy-trigger size
+	ld de, wCurCoordEventSceneID
+	ld bc, 8 ; coord event size
 	call CopyBytes
 	scf
 	ret

@@ -118,7 +118,7 @@ EngineFlags: ; 80462
 	engine_flag WeeklyFlags, 0 ; mt moon square clefairy  ; $58
 	engine_flag WeeklyFlags, 1 ; union cave lapras
 	engine_flag WeeklyFlags, 2 ; goldenrod underground haircut used
-	engine_flag WeeklyFlags, 3 ; goldenrod mall happiness event floor05 person07
+	engine_flag WeeklyFlags, 3 ; goldenrod mall happiness event floor05 object07
 	engine_flag WeeklyFlags, 4 ; tea in blues house
 	engine_flag WeeklyFlags, 5 ; indigo plateau rival fight
 	engine_flag WeeklyFlags, 6 ; move tutor

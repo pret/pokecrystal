@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE5CLEANSETAGSPEECHHOUSE_TEACHER
 
 Route5CleanseTagSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -69,15 +69,15 @@ Route5CleanseTagSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 4, ROUTE_5
 	warp_def $7, $3, 4, ROUTE_5
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, HouseForSaleBookshelf
-	signpost 1, 1, SIGNPOST_READ, HouseForSaleBookshelf
+	bg_event 1, 0, BGEVENT_READ, HouseForSaleBookshelf
+	bg_event 1, 1, BGEVENT_READ, HouseForSaleBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_GRANNY, 5, 2, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, GrannyScript_0x18b634, -1
-	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route5CleanseTagSpeechHouseTeacherScript, -1
+	object_event SPRITE_GRANNY, 5, 2, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x18b634, -1
+	object_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5CleanseTagSpeechHouseTeacherScript, -1

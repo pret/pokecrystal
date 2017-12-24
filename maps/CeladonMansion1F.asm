@@ -5,7 +5,7 @@ const_value set 2
 	const CELADONMANSION1F_GROWLITHE2
 
 CeladonMansion1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -86,18 +86,18 @@ CeladonMansion1F_MapEventHeader:
 	warp_def $0, $0, 1, CELADON_MANSION_2F
 	warp_def $0, $7, 4, CELADON_MANSION_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 8, 5, SIGNPOST_UP, CeladonMansionManagersSuiteSign
-	signpost 3, 0, SIGNPOST_READ, CeladonMansion1fBookshelf
-	signpost 3, 2, SIGNPOST_READ, CeladonMansion1fBookshelf
+	bg_event 8, 5, BGEVENT_UP, CeladonMansionManagersSuiteSign
+	bg_event 3, 0, BGEVENT_READ, CeladonMansion1fBookshelf
+	bg_event 3, 2, BGEVENT_READ, CeladonMansion1fBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_GRANNY, 5, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonMansionManager, -1
-	person_event SPRITE_GROWLITHE, 6, 2, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonMansion1FMeowth, -1
-	person_event SPRITE_CLEFAIRY, 4, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CeladonMansion1FClefairy, -1
-	person_event SPRITE_GROWLITHE, 4, 4, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeladonMansion1FNidoranF, -1
+	object_event SPRITE_GRANNY, 5, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonMansionManager, -1
+	object_event SPRITE_GROWLITHE, 6, 2, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonMansion1FMeowth, -1
+	object_event SPRITE_CLEFAIRY, 4, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonMansion1FClefairy, -1
+	object_event SPRITE_GROWLITHE, 4, 4, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion1FNidoranF, -1

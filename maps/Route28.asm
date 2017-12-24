@@ -1,5 +1,5 @@
 Route28_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -25,13 +25,13 @@ Route28_MapEventHeader:
 	warp_def $3, $7, 1, ROUTE_28_FAMOUS_SPEECH_HOUSE
 	warp_def $5, $21, 7, VICTORY_ROAD_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 5, 31, SIGNPOST_READ, Route28Sign
-	signpost 2, 25, SIGNPOST_ITEM, Route28HiddenRareCandy
+	bg_event 5, 31, BGEVENT_READ, Route28Sign
+	bg_event 2, 25, BGEVENT_ITEM, Route28HiddenRareCandy
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

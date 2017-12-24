@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE39FARMHOUSE_POKEFAN_F
 
 Route39Farmhouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -201,15 +201,15 @@ Route39Farmhouse_MapEventHeader:
 	warp_def $7, $2, 2, ROUTE_39
 	warp_def $7, $3, 2, ROUTE_39
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, FarmhouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, FarmhouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, FarmhouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, FarmhouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_POKEFAN_M, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, PokefanM_DairyFarmer, -1
-	person_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, PokefanF_SnoreFarmer, -1
+	object_event SPRITE_POKEFAN_M, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokefanM_DairyFarmer, -1
+	object_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanF_SnoreFarmer, -1

@@ -297,7 +297,7 @@ RadioTowerRocketsScript:
 	clearevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
 	specialphonecall SPECIALCALL_WEIRDBROADCAST
-	domaptrigger MAHOGANY_TOWN, $1
+	setmapscene MAHOGANY_TOWN, $1
 	end
 
 BugContestResultsWarpScript:
@@ -354,8 +354,8 @@ BugContestResults_DidNotLeaveMons
 	waitbutton
 BugContestResults_CleanUp
 	closetext
-	dotrigger $0
-	domaptrigger ROUTE_35_NATIONAL_PARK_GATE, $0
+	setscene $0
+	setmapscene ROUTE_35_NATIONAL_PARK_GATE, $0
 	setevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_2A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_3A

@@ -2,7 +2,7 @@ const_value set 2
 	const ICEPATHB2FBLACKTHORNSIDE_POKE_BALL
 
 IcePathB2FBlackthornSide_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -24,13 +24,13 @@ IcePathB2FBlackthornSide_MapEventHeader:
 	warp_def $f, $3, 8, ICE_PATH_B1F
 	warp_def $3, $3, 2, ICE_PATH_B3F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 10, 2, SIGNPOST_ITEM, IcePathB2FBlackthornSideHiddenIceHeal
+	bg_event 10, 2, BGEVENT_ITEM, IcePathB2FBlackthornSideHiddenIceHeal
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 16, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, IcePathB2FBlackthornSideTMRest, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST
+	object_event SPRITE_POKE_BALL, 16, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FBlackthornSideTMRest, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST

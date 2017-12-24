@@ -2,7 +2,7 @@ const_value set 2
 	const BLUESHOUSE_DAISY
 
 BluesHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -153,12 +153,12 @@ BluesHouse_MapEventHeader:
 	warp_def $7, $2, 2, PALLET_TOWN
 	warp_def $7, $3, 2, PALLET_TOWN
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_DAISY, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DaisyScript, -1
+	object_event SPRITE_DAISY, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DaisyScript, -1

@@ -5,14 +5,14 @@ const_value set 2
 	const SAFFRONTRAINSTATION_LASS
 
 SaffronTrainStation_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 1
-	maptrigger .DummyTrigger
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 OfficerScript_0x18a81e:
@@ -226,16 +226,16 @@ SaffronTrainStation_MapEventHeader:
 	warp_def $5, $6, 4, GOLDENROD_MAGNET_TRAIN_STATION
 	warp_def $5, $b, 3, GOLDENROD_MAGNET_TRAIN_STATION
 
-.XYTriggers:
+.CoordEvents:
 	db 1
-	xy_trigger 0, $6, $b, Script_ArriveFromGoldenrod
+	coord_event 0, $6, $b, Script_ArriveFromGoldenrod
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_OFFICER, 9, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
-	person_event SPRITE_GYM_GUY, 14, 10, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GymGuyScript_0x18a875, -1
-	person_event SPRITE_TEACHER, 11, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SaffronTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
-	person_event SPRITE_LASS, 10, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SaffronTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event SPRITE_OFFICER, 9, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
+	object_event SPRITE_GYM_GUY, 14, 10, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x18a875, -1
+	object_event SPRITE_TEACHER, 11, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event SPRITE_LASS, 10, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION

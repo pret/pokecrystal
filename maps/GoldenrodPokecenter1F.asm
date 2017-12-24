@@ -6,7 +6,7 @@ const_value set 2
 	const GOLDENRODPOKECENTER1F_POKEFAN_F
 
 GoldenrodPokecenter1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -15,7 +15,7 @@ GoldenrodPokecenter1F_MapScriptHeader:
 NurseScript_0x60f91:
 	jumpstd pokecenternurse
 
-GoldenrodPokecenter1F_GSBallTriggerLeft:
+GoldenrodPokecenter1F_GSBallSceneLeft:
 	writebyte BATTLETOWERACTION_CHECKMOBILEEVENT
 	special BattleTowerAction
 	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
@@ -25,7 +25,7 @@ GoldenrodPokecenter1F_GSBallTriggerLeft:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveperson GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
+	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
 	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -47,7 +47,7 @@ GoldenrodPokecenter1F_GSBallTriggerLeft:
 .cancel
 	end
 
-GoldenrodPokecenter1F_GSBallTriggerRight:
+GoldenrodPokecenter1F_GSBallSceneRight:
 	writebyte BATTLETOWERACTION_CHECKMOBILEEVENT
 	special BattleTowerAction
 	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
@@ -57,7 +57,7 @@ GoldenrodPokecenter1F_GSBallTriggerRight:
 	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue .cancel
 	playsound SFX_EXIT_BUILDING
-	moveperson GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
+	moveobject GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, $0, $7
 	disappear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
@@ -815,18 +815,18 @@ GoldenrodPokecenter1F_MapEventHeader:
 	warp_def $6, $0, 1, GOLDENROD_POKECOM_CENTER_2F_MOBILE
 	warp_def $7, $0, 1, POKECENTER_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 0, $7, $3, GoldenrodPokecenter1F_GSBallTriggerLeft
-	xy_trigger 0, $7, $4, GoldenrodPokecenter1F_GSBallTriggerRight
+	coord_event 0, $7, $3, GoldenrodPokecenter1F_GSBallSceneLeft
+	coord_event 0, $7, $4, GoldenrodPokecenter1F_GSBallSceneRight
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, NurseScript_0x60f91, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 8, 16, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, -1
-	person_event SPRITE_GAMEBOY_KID, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
-	person_event SPRITE_LASS, 4, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
-	person_event SPRITE_POKEFAN_F, 5, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, PokefanFScript_0x61024, -1
+	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x60f91, -1
+	object_event SPRITE_LINK_RECEPTIONIST, 8, 16, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event SPRITE_GAMEBOY_KID, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
+	object_event SPRITE_LASS, 4, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
+	object_event SPRITE_POKEFAN_F, 5, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x61024, -1

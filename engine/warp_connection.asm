@@ -3,7 +3,7 @@ HandleNewMap: ; 1045b0
 	call Clearwc7e8
 	call ResetMapBufferEventFlags
 	call ResetFlashIfOutOfCave
-	call GetCurrentMapTrigger
+	call GetCurrentMapSceneID
 	call ResetBikeFlags
 	ld a, MAPCALLBACK_NEWMAP
 	call RunMapCallback

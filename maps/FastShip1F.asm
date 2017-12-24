@@ -5,23 +5,23 @@ const_value set 2
 	const FASTSHIP1F_GENTLEMAN
 
 FastShip1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 3
-	maptrigger .DummyTrigger0
-	maptrigger .EnterFastShip
-	maptrigger .DummyTrigger2
+	scene_script .DummyScene0
+	scene_script .EnterFastShip
+	scene_script .DummyScene2
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
 .EnterFastShip:
 	priorityjump .EnterFastShipScript
 	end
 
-.DummyTrigger2:
+.DummyScene2:
 	end
 
 .EnterFastShipScript:
@@ -35,11 +35,11 @@ FastShip1F_MapScriptHeader:
 	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .SkipGrandpa
-	dotrigger $2
+	setscene $2
 	end
 
 .SkipGrandpa:
-	dotrigger $0
+	setscene $0
 	end
 
 SailorScript_0x75160:
@@ -71,7 +71,7 @@ SailorScript_0x75160:
 	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	domaptrigger VERMILION_PORT, $1
+	setmapscene VERMILION_PORT, $1
 	warp VERMILION_PORT, $7, $11
 	end
 
@@ -84,7 +84,7 @@ SailorScript_0x75160:
 	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	domaptrigger OLIVINE_PORT, $1
+	setmapscene OLIVINE_PORT, $1
 	warp OLIVINE_PORT, $7, $17
 	end
 
@@ -119,10 +119,10 @@ SailorScript_0x751d0:
 FastShip1FSailorScript:
 	jumptextfaceplayer FastShip1FSailorText
 
-WorriedGrandpaTriggerRight:
-	moveperson FASTSHIP1F_GENTLEMAN, $14, $6
+WorriedGrandpaSceneRight:
+	moveobject FASTSHIP1F_GENTLEMAN, $14, $6
 
-WorriedGrandpaTriggerLeft:
+WorriedGrandpaSceneLeft:
 	appear FASTSHIP1F_GENTLEMAN
 	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x7521b
 	playsound SFX_TACKLE
@@ -135,7 +135,7 @@ WorriedGrandpaTriggerLeft:
 	spriteface PLAYER, RIGHT
 	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75222
 	disappear FASTSHIP1F_GENTLEMAN
-	dotrigger $0
+	setscene $0
 	end
 
 MovementData_0x7520e:
@@ -304,17 +304,17 @@ FastShip1F_MapEventHeader:
 	warp_def $c, $6, 1, FAST_SHIP_B1F
 	warp_def $e, $1e, 2, FAST_SHIP_B1F
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 2, $6, $18, WorriedGrandpaTriggerLeft
-	xy_trigger 2, $6, $19, WorriedGrandpaTriggerRight
+	coord_event 2, $6, $18, WorriedGrandpaSceneLeft
+	coord_event 2, $6, $19, WorriedGrandpaSceneRight
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_SAILOR, 2, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x75160, -1
-	person_event SPRITE_SAILOR, 7, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
-	person_event SPRITE_SAILOR, 17, 22, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FastShip1FSailorScript, -1
-	person_event SPRITE_GENTLEMAN, 6, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
+	object_event SPRITE_SAILOR, 2, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x75160, -1
+	object_event SPRITE_SAILOR, 7, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
+	object_event SPRITE_SAILOR, 17, 22, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailorScript, -1
+	object_event SPRITE_GENTLEMAN, 6, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

@@ -8,7 +8,7 @@ const_value set 2
 	const ECRUTEAKCITY_GRAMPS3
 
 EcruteakCity_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -281,26 +281,26 @@ EcruteakCity_MapEventHeader:
 	warp_def $12, $0, 3, ROUTE_38_ECRUTEAK_GATE
 	warp_def $13, $0, 4, ROUTE_38_ECRUTEAK_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 8
-	signpost 21, 15, SIGNPOST_READ, EcruteakCitySign
-	signpost 10, 38, SIGNPOST_READ, TinTowerSign
-	signpost 28, 8, SIGNPOST_READ, EcruteakGymSign
-	signpost 21, 21, SIGNPOST_READ, EcruteakDanceTheaterSign
-	signpost 10, 2, SIGNPOST_READ, BurnedTowerSign
-	signpost 27, 24, SIGNPOST_READ, EcruteakCityPokecenterSign
-	signpost 21, 30, SIGNPOST_READ, EcruteakCityMartSign
-	signpost 14, 23, SIGNPOST_ITEM, EcruteakCityHiddenHyperPotion
+	bg_event 21, 15, BGEVENT_READ, EcruteakCitySign
+	bg_event 10, 38, BGEVENT_READ, TinTowerSign
+	bg_event 28, 8, BGEVENT_READ, EcruteakGymSign
+	bg_event 21, 21, BGEVENT_READ, EcruteakDanceTheaterSign
+	bg_event 10, 2, BGEVENT_READ, BurnedTowerSign
+	bg_event 27, 24, BGEVENT_READ, EcruteakCityPokecenterSign
+	bg_event 21, 30, BGEVENT_READ, EcruteakCityMartSign
+	bg_event 14, 23, BGEVENT_ITEM, EcruteakCityHiddenHyperPotion
 
-.PersonEvents:
+.ObjectEvents:
 	db 7
-	person_event SPRITE_GRAMPS, 15, 18, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1
-	person_event SPRITE_GRAMPS, 21, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EcruteakCityGramps2Script, -1
-	person_event SPRITE_LASS, 29, 21, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, EcruteakCityLassScript, -1
-	person_event SPRITE_LASS, 9, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LassScript_0x1a4015, -1
-	person_event SPRITE_FISHER, 22, 9, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x1a4029, -1
-	person_event SPRITE_YOUNGSTER, 14, 10, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
-	person_event SPRITE_GRAMPS, 7, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS
+	object_event SPRITE_GRAMPS, 15, 18, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1
+	object_event SPRITE_GRAMPS, 21, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps2Script, -1
+	object_event SPRITE_LASS, 29, 21, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakCityLassScript, -1
+	object_event SPRITE_LASS, 9, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LassScript_0x1a4015, -1
+	object_event SPRITE_FISHER, 22, 9, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FisherScript_0x1a4029, -1
+	object_event SPRITE_YOUNGSTER, 14, 10, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
+	object_event SPRITE_GRAMPS, 7, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS

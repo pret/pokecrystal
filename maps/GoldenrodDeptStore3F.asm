@@ -4,7 +4,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE3F_ROCKER
 
 GoldenrodDeptStore3F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -66,16 +66,16 @@ GoldenrodDeptStore3F_MapEventHeader:
 	warp_def $0, $f, 2, GOLDENROD_DEPT_STORE_4F
 	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore3FDirectory
-	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore3FElevatorButton
+	bg_event 0, 14, BGEVENT_READ, GoldenrodDeptStore3FDirectory
+	bg_event 0, 3, BGEVENT_READ, GoldenrodDeptStore3FElevatorButton
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_CLERK, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x55db8, -1
-	person_event SPRITE_SUPER_NERD, 5, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 1, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore3FSuperNerdScript, -1
-	person_event SPRITE_ROCKER, 5, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore3FRockerScript, -1
+	object_event SPRITE_CLERK, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x55db8, -1
+	object_event SPRITE_SUPER_NERD, 5, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FSuperNerdScript, -1
+	object_event SPRITE_ROCKER, 5, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FRockerScript, -1

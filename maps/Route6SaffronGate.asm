@@ -2,14 +2,14 @@ const_value set 2
 	const ROUTE6SAFFRONGATE_OFFICER
 
 Route6SaffronGate_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 1
-	maptrigger .DummyTrigger
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 OfficerScript_0x1926ea:
@@ -68,12 +68,12 @@ Route6SaffronGate_MapEventHeader:
 	warp_def $7, $4, 2, ROUTE_6
 	warp_def $7, $5, 2, ROUTE_6
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, OfficerScript_0x1926ea, -1
+	object_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x1926ea, -1

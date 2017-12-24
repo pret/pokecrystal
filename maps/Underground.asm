@@ -1,5 +1,5 @@
 Underground_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -22,13 +22,13 @@ Underground_MapEventHeader:
 	warp_def $2, $3, 3, ROUTE_5_UNDERGROUND_ENTRANCE
 	warp_def $18, $3, 3, ROUTE_6_UNDERGROUND_ENTRANCE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 9, 3, SIGNPOST_ITEM, UndergroundHiddenFullRestore
-	signpost 19, 1, SIGNPOST_ITEM, UndergroundHiddenXSpecial
+	bg_event 9, 3, BGEVENT_ITEM, UndergroundHiddenFullRestore
+	bg_event 19, 1, BGEVENT_ITEM, UndergroundHiddenXSpecial
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

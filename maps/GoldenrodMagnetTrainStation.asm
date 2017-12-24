@@ -3,14 +3,14 @@ const_value set 2
 	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN
 
 GoldenrodMagnetTrainStation_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 1
-	maptrigger .DummyTrigger
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 OfficerScript_0x550ec:
@@ -175,14 +175,14 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 	warp_def $5, $6, 4, SAFFRON_TRAIN_STATION
 	warp_def $5, $b, 3, SAFFRON_TRAIN_STATION
 
-.XYTriggers:
+.CoordEvents:
 	db 1
-	xy_trigger 0, $6, $b, Script_ArriveFromSaffron
+	coord_event 0, $6, $b, Script_ArriveFromSaffron
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_OFFICER, 9, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OfficerScript_0x550ec, -1
-	person_event SPRITE_GENTLEMAN, 14, 11, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationGentlemanScript, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
+	object_event SPRITE_OFFICER, 9, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x550ec, -1
+	object_event SPRITE_GENTLEMAN, 14, 11, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationGentlemanScript, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN

@@ -414,15 +414,15 @@ CopyPlayerObjectTemplate:: ; 19a6
 ; 19e9
 
 LoadMovementDataPointer:: ; 19e9
-; Load the movement data pointer for person a.
-	ld [wMovementPerson], a
+; Load the movement data pointer for object a.
+	ld [wMovementObject], a
 	ld a, [hROMBank]
 	ld [wMovementDataPointer], a
 	ld a, l
 	ld [wMovementDataPointer + 1], a
 	ld a, h
 	ld [wMovementDataPointer + 2], a
-	ld a, [wMovementPerson]
+	ld a, [wMovementObject]
 	call CheckObjectVisibility
 	ret c
 

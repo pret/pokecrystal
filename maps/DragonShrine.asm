@@ -5,10 +5,10 @@ const_value set 2
 	const DRAGONSHRINE_CLAIR
 
 DragonShrine_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DragonShrineTest
-	maptrigger .DummyTrigger
+	scene_script .DragonShrineTest
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
@@ -17,7 +17,7 @@ DragonShrine_MapScriptHeader:
 	priorityjump .DragonShrineTestScript
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .DragonShrineTestScript:
@@ -165,8 +165,8 @@ DragonShrine_MapScriptHeader:
 	waitsfx
 	special RestartMapMusic
 	specialphonecall SPECIALCALL_MASTERBALL
-	dotrigger $1
-	domaptrigger DRAGONS_DEN_B1F, $1
+	setscene $1
+	setmapscene DRAGONS_DEN_B1F, $1
 	writetext UnknownText_0x18d9f2
 	buttonsound
 	writetext UnknownText_0x18da0b
@@ -677,15 +677,15 @@ DragonShrine_MapEventHeader:
 	warp_def $9, $4, 2, DRAGONS_DEN_B1F
 	warp_def $9, $5, 2, DRAGONS_DEN_B1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_ELDER, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_ELDER, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_ELDER, 4, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CLAIR, 8, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
+	object_event SPRITE_ELDER, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
+	object_event SPRITE_ELDER, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
+	object_event SPRITE_ELDER, 4, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
+	object_event SPRITE_CLAIR, 8, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

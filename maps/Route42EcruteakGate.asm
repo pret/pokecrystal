@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE42ECRUTEAKGATE_OFFICER
 
 Route42EcruteakGate_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -30,12 +30,12 @@ Route42EcruteakGate_MapEventHeader:
 	warp_def $4, $9, 1, ROUTE_42
 	warp_def $5, $9, 2, ROUTE_42
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route42EcruteakGateOfficerScript, -1
+	object_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route42EcruteakGateOfficerScript, -1

@@ -4,16 +4,16 @@ const_value set 2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 
 RuinsOfAlphResearchCenter_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .GetUnownDex
+	scene_script .DummyScene0
+	scene_script .GetUnownDex
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_OBJECTS, .ScientistCallback
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
 .GetUnownDex:
@@ -21,12 +21,12 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 	end
 
 .ScientistCallback:
-	checktriggers
+	checkscene
 	if_equal $1, .ShowScientist
 	return
 
 .ShowScientist:
-	moveperson RUINSOFALPHRESEARCHCENTER_SCIENTIST3, $3, $7
+	moveobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, $3, $7
 	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 	return
 
@@ -55,7 +55,7 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 	waitbutton
 	closetext
 	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59276
-	dotrigger $0
+	setscene $0
 	special RestartMapMusic
 	end
 
@@ -401,17 +401,17 @@ RuinsOfAlphResearchCenter_MapEventHeader:
 	warp_def $7, $2, 6, RUINS_OF_ALPH_OUTSIDE
 	warp_def $7, $3, 6, RUINS_OF_ALPH_OUTSIDE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 5, 6, SIGNPOST_READ, MapRuinsOfAlphResearchCenterSignpost0Script
-	signpost 4, 3, SIGNPOST_READ, MapRuinsOfAlphResearchCenterSignpost1Script
-	signpost 1, 7, SIGNPOST_READ, MapRuinsOfAlphResearchCenterSignpost2Script
+	bg_event 5, 6, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost0Script
+	bg_event 4, 3, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost1Script
+	bg_event 1, 7, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost2Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_SCIENTIST, 5, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x591e5, -1
-	person_event SPRITE_SCIENTIST, 2, 5, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x59214, -1
-	person_event SPRITE_SCIENTIST, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
+	object_event SPRITE_SCIENTIST, 5, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591e5, -1
+	object_event SPRITE_SCIENTIST, 2, 5, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x59214, -1
+	object_event SPRITE_SCIENTIST, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST

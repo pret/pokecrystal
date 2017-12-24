@@ -3,7 +3,7 @@ const_value set 2
 	const OLIVINEGYM_GYM_GUY
 
 OlivineGym_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -28,7 +28,7 @@ JasmineScript_0x9c12f:
 	waitsfx
 	setflag ENGINE_MINERALBADGE
 	checkcode VAR_BADGES
-	scall OlivineGymTriggerRockets
+	scall OlivineGymActivateRockets
 .FightDone:
 	checkevent EVENT_GOT_TM23_IRON_TAIL
 	iftrue .GotIronTail
@@ -49,7 +49,7 @@ JasmineScript_0x9c12f:
 	closetext
 	end
 
-OlivineGymTriggerRockets:
+OlivineGymActivateRockets:
 	if_equal 7, .RadioTowerRockets
 	if_equal 6, .GoldenrodRockets
 	end
@@ -206,15 +206,15 @@ OlivineGym_MapEventHeader:
 	warp_def $f, $4, 2, OLIVINE_CITY
 	warp_def $f, $5, 2, OLIVINE_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 13, 3, SIGNPOST_READ, OlivineGymStatue
-	signpost 13, 6, SIGNPOST_READ, OlivineGymStatue
+	bg_event 13, 3, BGEVENT_READ, OlivineGymStatue
+	bg_event 13, 6, BGEVENT_READ, OlivineGymStatue
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_JASMINE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
-	person_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OlivineGymGuyScript, -1
+	object_event SPRITE_JASMINE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
+	object_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1

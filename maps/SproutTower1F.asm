@@ -7,7 +7,7 @@ const_value set 2
 	const SPROUTTOWER1F_POKE_BALL
 
 SproutTower1F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -114,19 +114,19 @@ SproutTower1F_MapEventHeader:
 	warp_def $6, $2, 2, SPROUT_TOWER_2F
 	warp_def $3, $11, 3, SPROUT_TOWER_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 15, 7, SIGNPOST_READ, MapSproutTower1FSignpost1Script
-	signpost 15, 12, SIGNPOST_READ, MapSproutTower1FSignpost1Script
+	bg_event 15, 7, BGEVENT_READ, MapSproutTower1FSignpost1Script
+	bg_event 15, 12, BGEVENT_READ, MapSproutTower1FSignpost1Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 6
-	person_event SPRITE_SAGE, 4, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SproutTower1FSage1Script, -1
-	person_event SPRITE_SAGE, 7, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, SproutTower1FSage2Script, -1
-	person_event SPRITE_GRANNY, 12, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SproutTower1FGrannyScript, -1
-	person_event SPRITE_TEACHER, 9, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SproutTower1FTeacherScript, -1
-	person_event SPRITE_SAGE, 5, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 4, TrainerSageChow, -1
-	person_event SPRITE_POKE_BALL, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, SproutTower1FParlyzHeal, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL
+	object_event SPRITE_SAGE, 4, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage1Script, -1
+	object_event SPRITE_SAGE, 7, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage2Script, -1
+	object_event SPRITE_GRANNY, 12, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SproutTower1FGrannyScript, -1
+	object_event SPRITE_TEACHER, 9, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SproutTower1FTeacherScript, -1
+	object_event SPRITE_SAGE, 5, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageChow, -1
+	object_event SPRITE_POKE_BALL, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower1FParlyzHeal, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL

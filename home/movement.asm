@@ -1,5 +1,5 @@
 InitMovementBuffer:: ; 1b1e
-	ld [wMovementBufferPerson], a
+	ld [wMovementBufferObject], a
 	xor a
 	ld [wMovementBufferCount], a
 	ld a, $0 ; useless

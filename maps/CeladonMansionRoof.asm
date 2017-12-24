@@ -2,7 +2,7 @@ const_value set 2
 	const CELADONMANSIONROOF_FISHER
 
 CeladonMansionRoof_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -43,13 +43,13 @@ CeladonMansionRoof_MapEventHeader:
 	warp_def $1, $6, 4, CELADON_MANSION_3F
 	warp_def $5, $2, 1, CELADON_MANSION_ROOF_HOUSE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 1, 6, SIGNPOST_LEFT, MapCeladonMansionRoofSignpost0Script
+	bg_event 1, 6, BGEVENT_LEFT, MapCeladonMansionRoofSignpost0Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_FISHER, 5, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeladonMansionRoofFisherScript, -1
+	object_event SPRITE_FISHER, 5, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofFisherScript, -1

@@ -4,16 +4,16 @@ const_value set 2
 	const VERMILIONPORT_SUPER_NERD
 
 VermilionPort_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .LeaveFastShip
+	scene_script .DummyScene0
+	scene_script .LeaveFastShip
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
 .LeaveFastShip:
@@ -27,7 +27,7 @@ VermilionPort_MapScriptHeader:
 .LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74ef3
 	appear VERMILIONPORT_SAILOR1
-	dotrigger $0
+	setscene $0
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
 	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
@@ -68,7 +68,7 @@ SailorScript_0x74dc4:
 	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
 	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear VERMILIONPORT_SAILOR1
-	domaptrigger FAST_SHIP_1F, $1
+	setmapscene FAST_SHIP_1F, $1
 	warp FAST_SHIP_1F, $19, $1
 	end
 
@@ -308,16 +308,16 @@ VermilionPort_MapEventHeader:
 	warp_def $5, $9, 5, VERMILION_PORT_PASSAGE
 	warp_def $11, $7, 1, FAST_SHIP_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 1
-	xy_trigger 0, $b, $7, UnknownScript_0x74e20
+	coord_event 0, $b, $7, UnknownScript_0x74e20
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 13, 16, SIGNPOST_ITEM, VermilionPortHiddenIron
+	bg_event 13, 16, BGEVENT_ITEM, VermilionPortHiddenIron
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_SAILOR, 17, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	person_event SPRITE_SAILOR, 11, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SailorScript_0x74e97, -1
-	person_event SPRITE_SUPER_NERD, 11, 11, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x74ee6, -1
+	object_event SPRITE_SAILOR, 17, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
+	object_event SPRITE_SAILOR, 11, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x74e97, -1
+	object_event SPRITE_SUPER_NERD, 11, 11, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x74ee6, -1

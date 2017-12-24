@@ -5,7 +5,7 @@ const_value set 2
 	const KRISSHOUSE2F_BIG_DOLL
 
 KrissHouse2F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -124,19 +124,19 @@ KrissHouse2F_MapEventHeader:
 	db 1
 	warp_def $0, $7, 3, KRISS_HOUSE_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 1, 2, SIGNPOST_UP, KrissHousePC
-	signpost 1, 3, SIGNPOST_READ, KrissHouseRadio
-	signpost 1, 5, SIGNPOST_READ, KrissHouseBookshelf
-	signpost 0, 6, SIGNPOST_IFSET, KrissHousePoster
+	bg_event 1, 2, BGEVENT_UP, KrissHousePC
+	bg_event 1, 3, BGEVENT_READ, KrissHouseRadio
+	bg_event 1, 5, BGEVENT_READ, KrissHouseBookshelf
+	bg_event 0, 6, BGEVENT_IFSET, KrissHousePoster
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_CONSOLE, 2, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
-	person_event SPRITE_DOLL_1, 4, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
-	person_event SPRITE_DOLL_2, 4, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
-	person_event SPRITE_BIG_DOLL, 1, 0, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL
+	object_event SPRITE_CONSOLE, 2, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
+	object_event SPRITE_DOLL_1, 4, 4, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
+	object_event SPRITE_DOLL_2, 4, 5, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
+	object_event SPRITE_BIG_DOLL, 1, 0, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL

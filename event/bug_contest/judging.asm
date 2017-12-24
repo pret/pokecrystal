@@ -2,21 +2,21 @@ _BugContestJudging: ; 1369d
 	call ContestScore
 	farcall TrainerRankings_BugContestScore
 	call BugContest_JudgeContestants
-	ld a, [wBugContestThirdPlacePersonID]
+	ld a, [wBugContestThirdPlaceWinnerID]
 	call LoadContestantName
 	ld a, [wBugContestThirdPlaceMon]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, BugContest_ThirdPlaceText
 	call PrintText
-	ld a, [wBugContestSecondPlacePersonID]
+	ld a, [wBugContestSecondPlaceWinnerID]
 	call LoadContestantName
 	ld a, [wBugContestSecondPlaceMon]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, BugContest_SecondPlaceText
 	call PrintText
-	ld a, [wBugContestFirstPlacePersonID]
+	ld a, [wBugContestFirstPlaceWinnerID]
 	call LoadContestantName
 	ld a, [wBugContestFirstPlaceMon]
 	ld [wNamedObjectIndexBuffer], a
@@ -140,7 +140,7 @@ INCLUDE "data/bug_contest_winners.asm"
 
 
 BugContest_GetPlayersResult: ; 13807
-	ld hl, wBugContestThirdPlacePersonID
+	ld hl, wBugContestThirdPlaceWinnerID
 	ld de, -4
 	ld b, 3
 .loop
@@ -158,7 +158,7 @@ BugContest_GetPlayersResult: ; 13807
 BugContest_JudgeContestants: ; 13819
 	call ClearContestResults
 	call ComputeAIContestantScores
-	ld hl, wBugContestTempPersonID
+	ld hl, wBugContestTempWinnerID
 	ld a, 1 ; Player
 	ld [hli], a
 	ld a, [wContestMon]
@@ -188,15 +188,15 @@ DetermineContestWinners: ; 1383e
 	ld c, 2
 	call StringCmp
 	jr c, .not_first_place
-	ld hl, wBugContestSecondPlacePersonID
-	ld de, wBugContestThirdPlacePersonID
+	ld hl, wBugContestSecondPlaceWinnerID
+	ld de, wBugContestThirdPlaceWinnerID
 	ld bc, 4
 	call CopyBytes
-	ld hl, wBugContestFirstPlacePersonID
-	ld de, wBugContestSecondPlacePersonID
+	ld hl, wBugContestFirstPlaceWinnerID
+	ld de, wBugContestSecondPlaceWinnerID
 	ld bc, 4
 	call CopyBytes
-	ld hl, wBugContestFirstPlacePersonID
+	ld hl, wBugContestFirstPlaceWinnerID
 	call CopyTempContestant
 	jr .done
 
@@ -206,11 +206,11 @@ DetermineContestWinners: ; 1383e
 	ld c, 2
 	call StringCmp
 	jr c, .not_second_place
-	ld hl, wBugContestSecondPlacePersonID
-	ld de, wBugContestThirdPlacePersonID
+	ld hl, wBugContestSecondPlaceWinnerID
+	ld de, wBugContestThirdPlaceWinnerID
 	ld bc, 4
 	call CopyBytes
-	ld hl, wBugContestSecondPlacePersonID
+	ld hl, wBugContestSecondPlaceWinnerID
 	call CopyTempContestant
 	jr .done
 
@@ -220,7 +220,7 @@ DetermineContestWinners: ; 1383e
 	ld c, 2
 	call StringCmp
 	jr c, .done
-	ld hl, wBugContestThirdPlacePersonID
+	ld hl, wBugContestThirdPlaceWinnerID
 	call CopyTempContestant
 
 .done
@@ -229,7 +229,7 @@ DetermineContestWinners: ; 1383e
 
 CopyTempContestant: ; 138a0
 ; Could've just called CopyBytes.
-	ld de, wBugContestTempPersonID
+	ld de, wBugContestTempWinnerID
 rept 3
 	ld a, [de]
 	inc de
@@ -251,7 +251,7 @@ ComputeAIContestantScores: ; 138b0
 	ld a, e
 	inc a
 	inc a
-	ld [wBugContestTempPersonID], a
+	ld [wBugContestTempWinnerID], a
 	dec a
 	ld c, a
 	ld b, 0

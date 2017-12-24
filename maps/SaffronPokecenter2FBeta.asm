@@ -1,5 +1,5 @@
 SaffronPokecenter2FBeta_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -13,11 +13,11 @@ SaffronPokecenter2FBeta_MapEventHeader:
 	db 1
 	warp_def $7, $0, 3, SAFFRON_POKECENTER_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

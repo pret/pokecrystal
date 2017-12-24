@@ -286,7 +286,7 @@ PlayerEvents: ; 9681f
 	call RunMemScript
 	jr c, .ok
 
-	call DoMapTrigger
+	call RunSceneScript
 	jr c, .ok
 
 	call CheckTimeEvents
@@ -335,7 +335,7 @@ CheckTrainerBattle3: ; 96867
 ; 96874
 
 CheckTileEvent: ; 96874
-; Check for warps, tile triggers or wild battles.
+; Check for warps, coord events, or wild battles.
 
 	call CheckWarpConnxnScriptFlag
 	jr z, .connections_disabled
@@ -350,7 +350,7 @@ CheckTileEvent: ; 96874
 	call CheckCoordEventScriptFlag
 	jr z, .coord_events_disabled
 
-	call CheckCurrentMapXYTriggers
+	call CheckCurrentMapCoordEvents
 	jr c, .coord_event
 
 .coord_events_disabled
@@ -437,19 +437,19 @@ Dummy_CheckScriptFlags3Bit5: ; 968e4
 	ret
 ; 968ec
 
-DoMapTrigger: ; 968ec
-	ld a, [wCurrMapTriggerCount]
+RunSceneScript: ; 968ec
+	ld a, [wCurrMapSceneScriptCount]
 	and a
 	jr z, .nope
 
 	ld c, a
-	call CheckTriggers
+	call CheckScenes
 	cp c
 	jr nc, .nope
 
 	ld e, a
 	ld d, 0
-	ld hl, wCurrMapTriggerHeaderPointer
+	ld hl, wCurrMapSceneScriptHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -559,9 +559,9 @@ CheckAPressOW: ; 96999
 	ret z
 	call TryObjectEvent
 	ret c
-	call TryReadSign
+	call TryBGEvent
 	ret c
-	call CheckFacingTileEvent
+	call TryTileCollisionEvent
 	ret c
 	xor a
 	ret
@@ -617,14 +617,14 @@ TryObjectEvent: ; 969b5
 	ret
 
 .pointers
-	dbw PERSONTYPE_SCRIPT, .script
-	dbw PERSONTYPE_ITEMBALL, .itemball
-	dbw PERSONTYPE_TRAINER, .trainer
+	dbw OBJECTTYPE_SCRIPT, .script
+	dbw OBJECTTYPE_ITEMBALL, .itemball
+	dbw OBJECTTYPE_TRAINER, .trainer
 	; the remaining four are dummy events
-	dbw PERSONTYPE_3, .three
-	dbw PERSONTYPE_4, .four
-	dbw PERSONTYPE_5, .five
-	dbw PERSONTYPE_6, .six
+	dbw OBJECTTYPE_3, .three
+	dbw OBJECTTYPE_4, .four
+	dbw OBJECTTYPE_5, .five
+	dbw OBJECTTYPE_6, .six
 	db -1
 ; 96a04
 
@@ -681,19 +681,19 @@ TryObjectEvent: ; 969b5
 	ret
 ; 96a38
 
-TryReadSign: ; 96a38
-	call CheckFacingSign
-	jr c, .IsSign
+TryBGEvent: ; 96a38
+	call CheckFacingBGEvent
+	jr c, .is_bg_event
 	xor a
 	ret
 
-.IsSign:
+.is_bg_event:
 	ld a, [EngineBuffer3]
-	ld hl, .signs
+	ld hl, .bg_events
 	rst JumpTable
 	ret
 
-.signs
+.bg_events
 	dw .read
 	dw .up
 	dw .down
@@ -736,7 +736,7 @@ TryReadSign: ; 96a38
 	ret
 
 .itemifset
-	call CheckSignFlag
+	call CheckBGEventFlag
 	jp nz, .dontread
 	call PlayTalkObject
 	call GetMapScriptHeaderBank
@@ -750,7 +750,7 @@ TryReadSign: ; 96a38
 	ret
 
 .copy
-	call CheckSignFlag
+	call CheckBGEventFlag
 	jr nz, .dontread
 	call GetMapScriptHeaderBank
 	ld de, EngineBuffer1
@@ -759,12 +759,12 @@ TryReadSign: ; 96a38
 	jr .dontread
 
 .ifset
-	call CheckSignFlag
+	call CheckBGEventFlag
 	jr z, .dontread
 	jr .thenread
 
 .ifnotset
-	call CheckSignFlag
+	call CheckBGEventFlag
 	jr nz, .dontread
 
 .thenread
@@ -785,7 +785,7 @@ TryReadSign: ; 96a38
 	ret
 ; 96ad8
 
-CheckSignFlag: ; 96ad8
+CheckBGEventFlag: ; 96ad8
 	ld hl, EngineBuffer4
 	ld a, [hli]
 	ld h, [hl]

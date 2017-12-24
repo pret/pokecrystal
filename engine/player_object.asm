@@ -29,14 +29,14 @@ SpawnPlayer: ; 8029
 	call GetMapObject
 	ld hl, MAPOBJECT_COLOR
 	add hl, bc
-	ln e, PAL_NPC_RED, PERSONTYPE_SCRIPT
+	ln e, PAL_NPC_RED, OBJECTTYPE_SCRIPT
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
 	jr nz, .ok
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .ok
-	ln e, PAL_NPC_BLUE, PERSONTYPE_SCRIPT
+	ln e, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT
 
 .ok
 	ld [hl], e
@@ -55,7 +55,7 @@ PlayerObjectTemplate: ; 8071
 ; A dummy map object used to initialize the player object.
 ; Shorter than the actual amount copied by two bytes.
 ; Said bytes seem to be unused.
-	person_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_PLAYER, 15, 15, -1, -1, 0, PERSONTYPE_SCRIPT, 0, 0, -1
+	object_event SPRITE_CHRIS, -4, -4, SPRITEMOVEDATA_PLAYER, 15, 15, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, 0, -1
 
 CopyDECoordsToMapObject:: ; 807e
 	push de
@@ -82,7 +82,7 @@ PlayerSpawn_ConvertCoords: ; 808f
 	call CopyDECoordsToMapObject
 	ret
 
-WritePersonXY:: ; 80a1
+WriteObjectXY:: ; 80a1
 	ld a, b
 	call CheckObjectVisibility
 	ret c
@@ -616,7 +616,7 @@ FollowNotExact:: ; 839e
 	call CheckObjectVisibility
 	ret c
 
-; Person 2 is now in bc, person 1 is now in de
+; object 2 is now in bc, object 1 is now in de
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]

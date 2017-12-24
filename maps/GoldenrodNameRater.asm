@@ -2,7 +2,7 @@ const_value set 2
 	const GOLDENRODNAMERATER_NAME_RATER
 
 GoldenrodNameRater_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -33,15 +33,15 @@ GoldenrodNameRater_MapEventHeader:
 	warp_def $7, $2, 8, GOLDENROD_CITY
 	warp_def $7, $3, 8, GOLDENROD_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 1, 0, SIGNPOST_READ, GoldenrodNameRaterBookshelf
-	signpost 1, 1, SIGNPOST_READ, GoldenrodNameRaterBookshelf
-	signpost 1, 7, SIGNPOST_READ, GoldenrodNameRaterRadio
+	bg_event 1, 0, BGEVENT_READ, GoldenrodNameRaterBookshelf
+	bg_event 1, 1, BGEVENT_READ, GoldenrodNameRaterBookshelf
+	bg_event 1, 7, BGEVENT_READ, GoldenrodNameRaterRadio
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodNameRater, -1
+	object_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodNameRater, -1

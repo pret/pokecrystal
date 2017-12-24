@@ -3,7 +3,7 @@ const_value set 2
 	const KRISSNEIGHBORSHOUSE_POKEFAN_F
 
 KrissNeighborsHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -107,16 +107,16 @@ KrissNeighborsHouse_MapEventHeader:
 	warp_def $7, $2, 3, NEW_BARK_TOWN
 	warp_def $7, $3, 3, NEW_BARK_TOWN
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 1, 0, SIGNPOST_READ, KrissNeighborsHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, KrissNeighborsHouseBookshelf
-	signpost 1, 7, SIGNPOST_READ, KrissNeighborsHouseRadio
+	bg_event 1, 0, BGEVENT_READ, KrissNeighborsHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, KrissNeighborsHouseBookshelf
+	bg_event 1, 7, BGEVENT_READ, KrissNeighborsHouseRadio
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, KrissNeighborsDaughter, -1
-	person_event SPRITE_POKEFAN_F, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
+	object_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KrissNeighborsDaughter, -1
+	object_event SPRITE_POKEFAN_F, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR

@@ -10,7 +10,7 @@ const_value set 2
 	const CIANWOODGYM_BOULDER4
 
 CianwoodGym_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -50,7 +50,7 @@ ChuckScript_0x9d60f:
 	waitsfx
 	setflag ENGINE_STORMBADGE
 	checkcode VAR_BADGES
-	scall CianwoodGymTriggerRockets
+	scall CianwoodGymActivateRockets
 .FightDone:
 	checkevent EVENT_GOT_TM01_DYNAMICPUNCH
 	iftrue .AlreadyGotTM
@@ -75,7 +75,7 @@ ChuckScript_0x9d60f:
 	closetext
 	end
 
-CianwoodGymTriggerRockets:
+CianwoodGymActivateRockets:
 	if_equal 7, .RadioTowerRockets
 	if_equal 6, .GoldenrodRockets
 	end
@@ -314,22 +314,22 @@ CianwoodGym_MapEventHeader:
 	warp_def $11, $4, 2, CIANWOOD_CITY
 	warp_def $11, $5, 2, CIANWOOD_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 15, 3, SIGNPOST_READ, CianwoodGymStatue
-	signpost 15, 6, SIGNPOST_READ, CianwoodGymStatue
+	bg_event 15, 3, BGEVENT_READ, CianwoodGymStatue
+	bg_event 15, 6, BGEVENT_READ, CianwoodGymStatue
 
-.PersonEvents:
+.ObjectEvents:
 	db 9
-	person_event SPRITE_CHUCK, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, ChuckScript_0x9d60f, -1
-	person_event SPRITE_BLACK_BELT, 12, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerBlackbeltYoshi, -1
-	person_event SPRITE_BLACK_BELT, 12, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 3, TrainerBlackbeltLao, -1
-	person_event SPRITE_BLACK_BELT, 9, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerBlackbeltNob, -1
-	person_event SPRITE_BLACK_BELT, 5, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 1, TrainerBlackbeltLung, -1
-	person_event SPRITE_BOULDER, 1, 5, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 3, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 4, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
-	person_event SPRITE_BOULDER, 7, 5, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
+	object_event SPRITE_CHUCK, 1, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ChuckScript_0x9d60f, -1
+	object_event SPRITE_BLACK_BELT, 12, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBlackbeltYoshi, -1
+	object_event SPRITE_BLACK_BELT, 12, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBlackbeltLao, -1
+	object_event SPRITE_BLACK_BELT, 9, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBlackbeltNob, -1
+	object_event SPRITE_BLACK_BELT, 5, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerBlackbeltLung, -1
+	object_event SPRITE_BOULDER, 1, 5, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
+	object_event SPRITE_BOULDER, 7, 3, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
+	object_event SPRITE_BOULDER, 7, 4, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodGymBoulder, -1
+	object_event SPRITE_BOULDER, 7, 5, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodGymBoulder, -1

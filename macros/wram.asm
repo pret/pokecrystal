@@ -212,7 +212,7 @@ roam_struct: MACRO
 ENDM
 
 bugcontestwinner: macro
-\1PersonID:: db
+\1WinnerID:: db
 \1Mon::      db
 \1Score::    dw
 endm

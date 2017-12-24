@@ -1,8 +1,8 @@
 RuinsOfAlphOmanyteChamber_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .CheckWall
-	maptrigger .DummyTrigger
+	scene_script .CheckWall
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
@@ -18,7 +18,7 @@ RuinsOfAlphOmanyteChamber_MapScriptHeader:
 	priorityjump .WallOpenScript
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .HiddenDoors:
@@ -44,7 +44,7 @@ RuinsOfAlphOmanyteChamber_MapScriptHeader:
 	changeblock $4, $0, $30
 	reloadmappart
 	earthquake 50
-	dotrigger $1
+	setscene $1
 	closetext
 	end
 
@@ -60,7 +60,7 @@ UnknownScript_0x58c36:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_OMANYTE_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_2
-	domaptrigger RUINS_OF_ALPH_INNER_CHAMBER, $1
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock $2, $2, $18
@@ -156,17 +156,17 @@ RuinsOfAlphOmanyteChamber_MapEventHeader:
 	warp_def $3, $4, 7, RUINS_OF_ALPH_INNER_CHAMBER
 	warp_def $0, $4, 1, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 6
-	signpost 3, 2, SIGNPOST_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
-	signpost 3, 5, SIGNPOST_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
-	signpost 2, 3, SIGNPOST_UP, MapRuinsOfAlphOmanyteChamberSignpost2Script
-	signpost 2, 4, SIGNPOST_UP, MapRuinsOfAlphOmanyteChamberSignpost3Script
-	signpost 0, 3, SIGNPOST_UP, MapRuinsOfAlphOmanyteChamberSignpost4Script
-	signpost 0, 4, SIGNPOST_UP, MapRuinsOfAlphOmanyteChamberSignpost5Script
+	bg_event 3, 2, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
+	bg_event 3, 5, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
+	bg_event 2, 3, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost2Script
+	bg_event 2, 4, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost3Script
+	bg_event 0, 3, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost4Script
+	bg_event 0, 4, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost5Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

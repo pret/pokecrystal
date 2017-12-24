@@ -168,7 +168,7 @@ wPlayerNextMovement:: db
 wPlayerMovement:: db
 	ds 2
 wc2e2::
-wMovementPerson::
+wMovementObject::
 	db
 wMovementDataPointer:: ds 3 ; dba
 wc2e6:: ds 4
@@ -1596,7 +1596,7 @@ LuckyNumberDigit5Buffer:: db
 NEXTU ; d002
 ; movement buffer data
 wMovementBufferCount:: db
-wMovementBufferPerson:: db
+wMovementBufferObject:: db
 wUnusedMovementBufferBank:: db
 wUnusedMovementBufferPointer:: dw
 MovementBuffer:: ds 55
@@ -1698,18 +1698,18 @@ wElevatorOriginFloor:: db
 
 NEXTU ; d03e
 ; coord event data
-wCurCoordEventTriggerID:: db
+wCurCoordEventSceneID:: db
 wCurCoordEventMapY:: db
 wCurCoordEventMapX:: db
 	ds 1
 wCurCoordEventScriptAddr:: dw
 
 NEXTU ; d03e
-; signpost data
-wCurSignpostYCoord:: db
-wCurSignpostXCoord:: db
-wCurSignpostType:: db
-wCurSignpostScriptAddr:: dw
+; BG event data
+wCurBGEventYCoord:: db
+wCurBGEventXCoord:: db
+wCurBGEventType:: db
+wCurBGEventScriptAddr:: dw
 
 NEXTU ; d03e
 ; mart data
@@ -2192,7 +2192,7 @@ ScriptFlags2:: ; d435
 	db
 ScriptFlags3:: ; d436
 ; bit 0: count steps
-; bit 1: xy triggers
+; bit 1: coord events
 ; bit 2: warps and connections
 ; bit 4: wild encounters
 ; bit 5: unknown
@@ -2426,86 +2426,86 @@ FarfetchdPosition:: db ; d964
 
 	ds 13
 
-; map triggers
-wPokecenter2FTrigger::                       db ; d972
-wTradeCenterTrigger::                        db ; d973
-wColosseumTrigger::                          db ; d974
-wTimeCapsuleTrigger::                        db ; d975
-wPowerPlantTrigger::                         db ; d976
-wCeruleanGymTrigger::                        db ; d977
-wRoute25Trigger::                            db ; d978
-wTrainerHouseB1FTrigger::                    db ; d979
-wVictoryRoadGateTrigger::                    db ; d97a
-wSaffronTrainStationTrigger::                db ; d97b
-wRoute16GateTrigger::                        db ; d97c
-wRoute1718GateTrigger::                      db ; d97d
-wIndigoPlateauPokecenter1FTrigger::          db ; d97e
-wWillsRoomTrigger::                          db ; d97f
-wKogasRoomTrigger::                          db ; d980
-wBrunosRoomTrigger::                         db ; d981
-wKarensRoomTrigger::                         db ; d982
-wLancesRoomTrigger::                         db ; d983
-wHallOfFameTrigger::                         db ; d984
-wRoute27Trigger::                            db ; d985
-wNewBarkTownTrigger::                        db ; d986
-wElmsLabTrigger::                            db ; d987
-wKrissHouse1FTrigger::                       db ; d988
-wRoute29Trigger::                            db ; d989
-wCherrygroveCityTrigger::                    db ; d98a
-wMrPokemonsHouseTrigger::                    db ; d98b
-wRoute32Trigger::                            db ; d98c
-wRoute35NationalParkGateTrigger::            db ; d98d
-wRoute36Trigger::                            db ; d98e
-wRoute36NationalParkGateTrigger::            db ; d98f
-wAzaleaTownTrigger::                         db ; d990
-wGoldenrodGymTrigger::                       db ; d991
-wGoldenrodMagnetTrainStationTrigger::        db ; d992
-wGoldenrodPokecenter1FTrigger::              db ; d993
-wOlivineCityTrigger::                        db ; d994
-wRoute34Trigger::                            db ; d995
-wRoute34IlexForestGateTrigger::              db ; d996
-wEcruteakHouseTrigger::                      db ; d997
-wWiseTriosRoomTrigger::                      db ; d998
-wEcruteakPokecenter1FTrigger::               db ; d999
-wEcruteakGymTrigger::                        db ; d99a
-wMahoganyTownTrigger::                       db ; d99b
-wRoute42Trigger::                            db ; d99c
-wCianwoodCityTrigger::                       db ; d99d
-wBattleTower1FTrigger::                      db ; d99e
-wBattleTowerBattleRoomTrigger::              db ; d99f
-wBattleTowerElevatorTrigger::                db ; d9a0
-wBattleTowerHallwayTrigger::                 db ; d9a1
-wBattleTowerOutsideTrigger::                 db ; d9a2
-wRoute43GateTrigger::                        db ; d9a3
-wMountMoonTrigger::                          db ; d9a4
-wSproutTower3FTrigger::                      db ; d9a5
-wTinTower1FTrigger::                         db ; d9a6
-wBurnedTower1FTrigger::                      db ; d9a7
-wBurnedTowerB1FTrigger::                     db ; d9a8
-wRadioTower5FTrigger::                       db ; d9a9
-wRuinsOfAlphOutsideTrigger::                 db ; d9aa
-wRuinsOfAlphResearchCenterTrigger::          db ; d9ab
-wRuinsOfAlphHoOhChamberTrigger::             db ; d9ac
-wRuinsOfAlphKabutoChamberTrigger::           db ; d9ad
-wRuinsOfAlphOmanyteChamberTrigger::          db ; d9ae
-wRuinsOfAlphAerodactylChamberTrigger::       db ; d9af
-wRuinsOfAlphInnerChamberTrigger::            db ; d9b0
-wMahoganyMart1FTrigger::                     db ; d9b1
-wTeamRocketBaseB1FTrigger::                  db ; d9b2
-wTeamRocketBaseB2FTrigger::                  db ; d9b3
-wTeamRocketBaseB3FTrigger::                  db ; d9b4
-wUndergroundPathSwitchRoomEntrancesTrigger:: db ; d9b5
-wSilverCaveRoom3Trigger::                    db ; d9b6
-wVictoryRoadTrigger::                        db ; d9b7
-wDragonsDenB1FTrigger::                      db ; d9b8
-wDragonShrineTrigger::                       db ; d9b9
-wOlivinePortTrigger::                        db ; d9ba
-wVermilionPortTrigger::                      db ; d9bb
-wFastShip1FTrigger::                         db ; d9bc
-wFastShipB1FTrigger::                        db ; d9bd
-wMountMoonSquareTrigger::                    db ; d9be
-wMobileTradeRoomMobileTrigger::              db ; d9bf
-wMobileBattleRoomTrigger::                   db ; d9c0
+; map scene ids
+wPokecenter2FSceneID::                       db ; d972
+wTradeCenterSceneID::                        db ; d973
+wColosseumSceneID::                          db ; d974
+wTimeCapsuleSceneID::                        db ; d975
+wPowerPlantSceneID::                         db ; d976
+wCeruleanGymSceneID::                        db ; d977
+wRoute25SceneID::                            db ; d978
+wTrainerHouseB1FSceneID::                    db ; d979
+wVictoryRoadGateSceneID::                    db ; d97a
+wSaffronTrainStationSceneID::                db ; d97b
+wRoute16GateSceneID::                        db ; d97c
+wRoute1718GateSceneID::                      db ; d97d
+wIndigoPlateauPokecenter1FSceneID::          db ; d97e
+wWillsRoomSceneID::                          db ; d97f
+wKogasRoomSceneID::                          db ; d980
+wBrunosRoomSceneID::                         db ; d981
+wKarensRoomSceneID::                         db ; d982
+wLancesRoomSceneID::                         db ; d983
+wHallOfFameSceneID::                         db ; d984
+wRoute27SceneID::                            db ; d985
+wNewBarkTownSceneID::                        db ; d986
+wElmsLabSceneID::                            db ; d987
+wKrissHouse1FSceneID::                       db ; d988
+wRoute29SceneID::                            db ; d989
+wCherrygroveCitySceneID::                    db ; d98a
+wMrPokemonsHouseSceneID::                    db ; d98b
+wRoute32SceneID::                            db ; d98c
+wRoute35NationalParkGateSceneID::            db ; d98d
+wRoute36SceneID::                            db ; d98e
+wRoute36NationalParkGateSceneID::            db ; d98f
+wAzaleaTownSceneID::                         db ; d990
+wGoldenrodGymSceneID::                       db ; d991
+wGoldenrodMagnetTrainStationSceneID::        db ; d992
+wGoldenrodPokecenter1FSceneID::              db ; d993
+wOlivineCitySceneID::                        db ; d994
+wRoute34SceneID::                            db ; d995
+wRoute34IlexForestGateSceneID::              db ; d996
+wEcruteakHouseSceneID::                      db ; d997
+wWiseTriosRoomSceneID::                      db ; d998
+wEcruteakPokecenter1FSceneID::               db ; d999
+wEcruteakGymSceneID::                        db ; d99a
+wMahoganyTownSceneID::                       db ; d99b
+wRoute42SceneID::                            db ; d99c
+wCianwoodCitySceneID::                       db ; d99d
+wBattleTower1FSceneID::                      db ; d99e
+wBattleTowerBattleRoomSceneID::              db ; d99f
+wBattleTowerElevatorSceneID::                db ; d9a0
+wBattleTowerHallwaySceneID::                 db ; d9a1
+wBattleTowerOutsideSceneID::                 db ; d9a2
+wRoute43GateSceneID::                        db ; d9a3
+wMountMoonSceneID::                          db ; d9a4
+wSproutTower3FSceneID::                      db ; d9a5
+wTinTower1FSceneID::                         db ; d9a6
+wBurnedTower1FSceneID::                      db ; d9a7
+wBurnedTowerB1FSceneID::                     db ; d9a8
+wRadioTower5FSceneID::                       db ; d9a9
+wRuinsOfAlphOutsideSceneID::                 db ; d9aa
+wRuinsOfAlphResearchCenterSceneID::          db ; d9ab
+wRuinsOfAlphHoOhChamberSceneID::             db ; d9ac
+wRuinsOfAlphKabutoChamberSceneID::           db ; d9ad
+wRuinsOfAlphOmanyteChamberSceneID::          db ; d9ae
+wRuinsOfAlphAerodactylChamberSceneID::       db ; d9af
+wRuinsOfAlphInnerChamberSceneID::            db ; d9b0
+wMahoganyMart1FSceneID::                     db ; d9b1
+wTeamRocketBaseB1FSceneID::                  db ; d9b2
+wTeamRocketBaseB2FSceneID::                  db ; d9b3
+wTeamRocketBaseB3FSceneID::                  db ; d9b4
+wUndergroundPathSwitchRoomEntrancesSceneID:: db ; d9b5
+wSilverCaveRoom3SceneID::                    db ; d9b6
+wVictoryRoadSceneID::                        db ; d9b7
+wDragonsDenB1FSceneID::                      db ; d9b8
+wDragonShrineSceneID::                       db ; d9b9
+wOlivinePortSceneID::                        db ; d9ba
+wVermilionPortSceneID::                      db ; d9bb
+wFastShip1FSceneID::                         db ; d9bc
+wFastShipB1FSceneID::                        db ; d9bd
+wMountMoonSquareSceneID::                    db ; d9be
+wMobileTradeRoomMobileSceneID::              db ; d9bf
+wMobileBattleRoomSceneID::                   db ; d9c0
 
 	ds 49
 
@@ -2566,19 +2566,19 @@ BikeFlags:: ; dbf5
 
 	ds 1
 
-wCurrentMapTriggerPointer:: dw ; dbf7
+wCurrMapSceneScriptPointer:: dw ; dbf7
 
 wCurrentCaller:: dw ; dbf9
 wCurrMapWarpCount:: db ; dbfb
 wCurrMapWarpHeaderPointer:: dw ; dbfc
-wCurrentMapXYTriggerCount:: db ; dbfe
-wCurrentMapXYTriggerHeaderPointer:: dw ; dbff
-wCurrentMapSignpostCount:: db ; dc01
-wCurrentMapSignpostHeaderPointer:: dw ; dc02
-wCurrentMapPersonEventCount:: db ; dc04
-wCurrentMapPersonEventHeaderPointer:: dw ; dc05
-wCurrMapTriggerCount:: db ; dc07
-wCurrMapTriggerHeaderPointer:: dw ; dc08
+wCurrMapCoordEventCount:: db ; dbfe
+wCurrMapCoordEventHeaderPointer:: dw ; dbff
+wCurrMapBGEventCount:: db ; dc01
+wCurrMapBGEventHeaderPointer:: dw ; dc02
+wCurrMapObjectEventCount:: db ; dc04
+wCurrMapObjectEventHeaderPointer:: dw ; dc05
+wCurrMapSceneScriptCount:: db ; dc07
+wCurrMapSceneScriptHeaderPointer:: dw ; dc08
 wCurrMapCallbackCount:: db ; dc0a
 wCurrMapCallbackHeaderPointer:: dw ; dc0b
 

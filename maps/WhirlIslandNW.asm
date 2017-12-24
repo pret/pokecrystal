@@ -1,5 +1,5 @@
 WhirlIslandNW_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -16,11 +16,11 @@ WhirlIslandNW_MapEventHeader:
 	warp_def $f, $3, 4, WHIRL_ISLAND_SW
 	warp_def $f, $7, 2, WHIRL_ISLAND_CAVE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

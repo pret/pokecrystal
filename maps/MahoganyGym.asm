@@ -8,7 +8,7 @@ const_value set 2
 	const MAHOGANYGYM_GYM_GUY
 
 MahoganyGym_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -33,7 +33,7 @@ PryceScript_0x199a9e:
 	waitsfx
 	setflag ENGINE_GLACIERBADGE
 	checkcode VAR_BADGES
-	scall MahoganyGymTriggerRockets
+	scall MahoganyGymActivateRockets
 .FightDone:
 	checkevent EVENT_GOT_TM16_ICY_WIND
 	iftrue PryceScript_Defeat
@@ -59,7 +59,7 @@ MahoganyGym_NoRoomForIcyWind:
 	closetext
 	end
 
-MahoganyGymTriggerRockets:
+MahoganyGymActivateRockets:
 	if_equal 7, .RadioTowerRockets
 	if_equal 6, .GoldenrodRockets
 	end
@@ -381,20 +381,20 @@ MahoganyGym_MapEventHeader:
 	warp_def $11, $4, 3, MAHOGANY_TOWN
 	warp_def $11, $5, 3, MAHOGANY_TOWN
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 15, 3, SIGNPOST_READ, MahoganyGymStatue
-	signpost 15, 6, SIGNPOST_READ, MahoganyGymStatue
+	bg_event 15, 3, BGEVENT_READ, MahoganyGymStatue
+	bg_event 15, 6, BGEVENT_READ, MahoganyGymStatue
 
-.PersonEvents:
+.ObjectEvents:
 	db 7
-	person_event SPRITE_PRYCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, PryceScript_0x199a9e, -1
-	person_event SPRITE_BUENA, 6, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerSkierRoxanne, -1
-	person_event SPRITE_ROCKER, 17, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderRonald, -1
-	person_event SPRITE_BUENA, 17, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerSkierClarissa, -1
-	person_event SPRITE_ROCKER, 9, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderBrad, -1
-	person_event SPRITE_ROCKER, 4, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerBoarderDouglas, -1
-	person_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, MahoganyGymGuyScript, -1
+	object_event SPRITE_PRYCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PryceScript_0x199a9e, -1
+	object_event SPRITE_BUENA, 6, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerSkierRoxanne, -1
+	object_event SPRITE_ROCKER, 17, 0, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderRonald, -1
+	object_event SPRITE_BUENA, 17, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerSkierClarissa, -1
+	object_event SPRITE_ROCKER, 9, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderBrad, -1
+	object_event SPRITE_ROCKER, 4, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderDouglas, -1
+	object_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MahoganyGymGuyScript, -1

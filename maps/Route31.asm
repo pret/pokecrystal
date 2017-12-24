@@ -8,7 +8,7 @@ const_value set 2
 	const ROUTE31_POKE_BALL2
 
 Route31_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -426,20 +426,20 @@ Route31_MapEventHeader:
 	warp_def $7, $4, 4, ROUTE_31_VIOLET_GATE
 	warp_def $5, $22, 1, DARK_CAVE_VIOLET_ENTRANCE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 5, 7, SIGNPOST_READ, Route31Sign
-	signpost 5, 31, SIGNPOST_READ, DarkCaveSign
+	bg_event 5, 7, BGEVENT_READ, Route31Sign
+	bg_event 5, 31, BGEVENT_READ, DarkCaveSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 7
-	person_event SPRITE_FISHER, 7, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
-	person_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route31YoungsterScript, -1
-	person_event SPRITE_BUG_CATCHER, 13, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 5, TrainerBug_catcherWade1, -1
-	person_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
-	person_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route31FruitTree, -1
-	person_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION
-	person_event SPRITE_POKE_BALL, 15, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, Route31PokeBall, EVENT_ROUTE_31_POKE_BALL
+	object_event SPRITE_FISHER, 7, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
+	object_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31YoungsterScript, -1
+	object_event SPRITE_BUG_CATCHER, 13, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBug_catcherWade1, -1
+	object_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
+	object_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31FruitTree, -1
+	object_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION
+	object_event SPRITE_POKE_BALL, 15, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31PokeBall, EVENT_ROUTE_31_POKE_BALL

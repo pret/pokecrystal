@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE11_FRUIT_TREE
 
 Route11_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -153,18 +153,18 @@ Route11_MapEventHeader:
 .Warps:
 	db 0
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 7, 3, SIGNPOST_READ, Route11Sign
-	signpost 5, 32, SIGNPOST_ITEM, Route11HiddenRevive
+	bg_event 7, 3, BGEVENT_READ, Route11Sign
+	bg_event 5, 32, BGEVENT_ITEM, Route11HiddenRevive
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 14, 22, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerYoungsterOwen, -1
-	person_event SPRITE_YOUNGSTER, 4, 20, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerYoungsterJason, -1
-	person_event SPRITE_YOUNGSTER, 7, 28, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 1, TrainerPsychicHerman, -1
-	person_event SPRITE_YOUNGSTER, 6, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 3, TrainerPsychicFidel, -1
-	person_event SPRITE_FRUIT_TREE, 2, 32, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FruitTreeScript_0x68055, -1
+	object_event SPRITE_YOUNGSTER, 14, 22, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterOwen, -1
+	object_event SPRITE_YOUNGSTER, 4, 20, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterJason, -1
+	object_event SPRITE_YOUNGSTER, 7, 28, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicHerman, -1
+	object_event SPRITE_YOUNGSTER, 6, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFidel, -1
+	object_event SPRITE_FRUIT_TREE, 2, 32, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x68055, -1

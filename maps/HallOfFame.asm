@@ -2,10 +2,10 @@ const_value set 2
 	const HALLOFFAME_LANCE
 
 HallOfFame_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .EnterHallOfFame
-	maptrigger .DummyTrigger
+	scene_script .EnterHallOfFame
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
@@ -14,7 +14,7 @@ HallOfFame_MapScriptHeader:
 	priorityjump .EnterHallOfFameScript
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .EnterHallOfFameScript:
@@ -28,7 +28,7 @@ HallOfFame_MapScriptHeader:
 	closetext
 	spriteface HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
-	dotrigger $1
+	setscene $1
 	pause 15
 	writebyte 2 ; Machine is in the Hall of Fame
 	special HealMachineAnim
@@ -38,7 +38,7 @@ HallOfFame_MapScriptHeader:
 	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	domaptrigger SPROUT_TOWER_3F, $1
+	setmapscene SPROUT_TOWER_3F, $1
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue .SkipPhoneCall
@@ -119,12 +119,12 @@ HallOfFame_MapEventHeader:
 	warp_def $d, $4, 3, LANCES_ROOM
 	warp_def $d, $5, 4, LANCES_ROOM
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_LANCE, 12, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event SPRITE_LANCE, 12, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

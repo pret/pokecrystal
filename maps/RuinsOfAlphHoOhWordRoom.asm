@@ -1,5 +1,5 @@
 RuinsOfAlphHoOhWordRoom_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -15,11 +15,11 @@ RuinsOfAlphHoOhWordRoom_MapEventHeader:
 	warp_def $9, $a, 4, RUINS_OF_ALPH_HO_OH_ITEM_ROOM
 	warp_def $15, $11, 2, RUINS_OF_ALPH_INNER_CHAMBER
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

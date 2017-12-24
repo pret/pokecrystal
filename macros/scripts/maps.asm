@@ -4,7 +4,7 @@ map: macro
 endm
 
 
-maptrigger: macro
+scene_script: macro
 ;\1: script pointer
 	dw \1, 0
 endm
@@ -18,8 +18,8 @@ warp_def: macro
 	map \4
 endm
 
-xy_trigger: macro
-;\1: number: controlled by dotrigger/domaptrigger
+coord_event: macro
+;\1: number: controlled by setscene/setmapscene
 ;\2: y: top to bottom, starts at 0
 ;\3: x: left to right, starts at 0
 ;\4: script pointer
@@ -28,32 +28,32 @@ xy_trigger: macro
 	db $0, $0
 endm
 
-signpost: macro
+bg_event: macro
 ;\1: y: top to bottom, starts at 0
 ;\2: x: left to right, starts at 0
-;\3: function: a SIGNPOST_* constant
+;\3: function: a BGEVENT_* constant
 ;\4: script pointer
 	db \1, \2, \3
 	dw \4
 endm
 
-person_event: macro
+object_event: macro
 ;\1: sprite: a SPRITE_* constant
 ;\2: y: top to bottom, starts at 0
 ;\3: x: left to right, starts at 0
 ;\4: movement function: a SPRITEMOVEDATA_* constant
 ;\5, \6: movement radius: y, x
-;\7, \8: hour1 and hour2: control the hours a person_event is visible (0-23)
-;  * if hour1 < hour2, the person_event will only appear from hour1 to hour2
-;  * if hour1 > hour2, the person_event will not appear from hour2 to hour1
-;  * if hour1 == hour2, the person_event will always appear
+;\7, \8: hour1 and hour2: control the hours an object_event is visible (0-23)
+;  * if hour1 < hour2, the object_event will only appear from hour1 to hour2
+;  * if hour1 > hour2, the object_event will not appear from hour2 to hour1
+;  * if hour1 == hour2, the object_event will always appear
 ;  * if hour1 == -1, hour2 is treated as a time-of-day value:
 ;    a combo of MORN, DAY, and/or NITE, or -1 to always appear
 ;\9: color: a PAL_NPC_* constant, or 0 for sprite default
-;\10: function: a PERSONTYPE_* constant
-;\11: sight range: applies to PERSONTYPE_TRAINER
+;\10: function: a OBJECTTYPE_* constant
+;\11: sight range: applies to OBJECTTYPE_TRAINER
 ;\12: script pointer
-;\13: event flag: an EVENT_* constant, or 0 for always
+;\13: event flag: an EVENT_* constant, or 0 to always appear
 	db \1, \2 + 4, \3 + 4, \4
 	dn \5, \6
 	db \7, \8
@@ -101,7 +101,7 @@ ENDM
 
 stonetable: macro
 ;\1: warp id
-;\2: person_event id
+;\2: object_event id
 ;\3: script pointer
 	db \1, \2
 	dw \3

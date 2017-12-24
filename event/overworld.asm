@@ -881,11 +881,11 @@ dig_incave
 
 .DigOut: ; 0xcc59
 	step_dig 32
-	hide_person
+	hide_object
 	step_end
 
 .DigReturn: ; 0xcc5d
-	show_person
+	show_object
 	return_dig 32
 	step_end
 

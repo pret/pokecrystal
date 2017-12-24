@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE43MAHOGANYGATE_OFFICER
 
 Route43MahoganyGate_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -49,12 +49,12 @@ Route43MahoganyGate_MapEventHeader:
 	warp_def $7, $4, 5, MAHOGANY_TOWN
 	warp_def $7, $5, 5, MAHOGANY_TOWN
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, OfficerScript_0x19ab0b, -1
+	object_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x19ab0b, -1

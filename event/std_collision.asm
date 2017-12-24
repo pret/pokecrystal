@@ -1,4 +1,4 @@
-CheckFacingTileForStd:: ; 1365b
+CheckFacingTileForStdScript:: ; 1365b
 ; Checks to see if the tile you're facing has a std script associated with it.  If so, executes the script and returns carry.
 	ld a, c
 	ld de, 3

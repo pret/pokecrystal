@@ -3,7 +3,7 @@ const_value set 2
 	const FUCHSIABILLSPEECHHOUSE_YOUNGSTER
 
 FuchsiaBillSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -36,13 +36,13 @@ FuchsiaBillSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 4, FUCHSIA_CITY
 	warp_def $7, $3, 4, FUCHSIA_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, FuchsiaBillSpeechHousePokefanFScript, -1
-	person_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, FuchsiaBillSpeechHouseYoungsterScript, -1
+	object_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaBillSpeechHousePokefanFScript, -1
+	object_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaBillSpeechHouseYoungsterScript, -1

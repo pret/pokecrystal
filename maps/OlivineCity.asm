@@ -5,19 +5,19 @@ const_value set 2
 	const OLIVINECITY_OLIVINE_RIVAL
 
 OlivineCity_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_NEWMAP, .FlyPoint
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
 .FlyPoint:
@@ -41,7 +41,7 @@ UnknownScript_0x1a8833:
 	applymovement PLAYER, MovementData_0x1a88f4
 	spriteface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88db
-	dotrigger $1
+	setscene $1
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
@@ -66,7 +66,7 @@ UnknownScript_0x1a886b:
 	spriteface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88e8
 	disappear OLIVINECITY_OLIVINE_RIVAL
-	dotrigger $1
+	setscene $1
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
 	special MapCallbackSprites_LoadUsedSpritesGFX
@@ -305,24 +305,24 @@ OlivineCity_MapEventHeader:
 	warp_def $1b, $13, 1, OLIVINE_PORT_PASSAGE
 	warp_def $1b, $14, 2, OLIVINE_PORT_PASSAGE
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 0, $c, $d, UnknownScript_0x1a8833
-	xy_trigger 0, $d, $d, UnknownScript_0x1a886b
+	coord_event 0, $c, $d, UnknownScript_0x1a8833
+	coord_event 0, $d, $d, UnknownScript_0x1a886b
 
-.Signposts:
+.BGEvents:
 	db 7
-	signpost 11, 17, SIGNPOST_READ, OlivineCitySign
-	signpost 24, 20, SIGNPOST_READ, OlivineCityPortSign
-	signpost 11, 7, SIGNPOST_READ, OlivineGymSign
-	signpost 28, 30, SIGNPOST_READ, OlivineLighthouseSign
-	signpost 23, 3, SIGNPOST_READ, OlivineCityBattleTowerSign
-	signpost 21, 14, SIGNPOST_READ, OlivineCityPokecenterSign
-	signpost 17, 20, SIGNPOST_READ, OlivineCityMartSign
+	bg_event 11, 17, BGEVENT_READ, OlivineCitySign
+	bg_event 24, 20, BGEVENT_READ, OlivineCityPortSign
+	bg_event 11, 7, BGEVENT_READ, OlivineGymSign
+	bg_event 28, 30, BGEVENT_READ, OlivineLighthouseSign
+	bg_event 23, 3, BGEVENT_READ, OlivineCityBattleTowerSign
+	bg_event 21, 14, BGEVENT_READ, OlivineCityPokecenterSign
+	bg_event 17, 20, BGEVENT_READ, OlivineCityMartSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_SAILOR, 27, 26, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivineCitySailor1Script, -1
-	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a88a6, -1
-	person_event SPRITE_SAILOR, 21, 17, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OlivineCitySailor2Script, -1
-	person_event SPRITE_OLIVINE_RIVAL, 11, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY
+	object_event SPRITE_SAILOR, 27, 26, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor1Script, -1
+	object_event SPRITE_STANDING_YOUNGSTER, 13, 20, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a88a6, -1
+	object_event SPRITE_SAILOR, 21, 17, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor2Script, -1
+	object_event SPRITE_OLIVINE_RIVAL, 11, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY

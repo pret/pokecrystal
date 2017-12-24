@@ -82,10 +82,10 @@ ScriptCommandTable:
 	dw Script_callasm                    ; 0e
 	dw Script_special                    ; 0f
 	dw Script_ptcallasm                  ; 10
-	dw Script_checkmaptriggers           ; 11
-	dw Script_domaptrigger               ; 12
-	dw Script_checktriggers              ; 13
-	dw Script_dotrigger                  ; 14
+	dw Script_checkmapscene              ; 11
+	dw Script_setmapscene                ; 12
+	dw Script_checkscene                 ; 13
+	dw Script_setscene                   ; 14
 	dw Script_writebyte                  ; 15
 	dw Script_addvar                     ; 16
 	dw Script_random                     ; 17
@@ -175,14 +175,14 @@ ENDC
 	dw Script_applymovement              ; 69
 	dw Script_applymovement2             ; 6a
 	dw Script_faceplayer                 ; 6b
-	dw Script_faceperson                 ; 6c
+	dw Script_faceobject                 ; 6c
 	dw Script_variablesprite             ; 6d
 	dw Script_disappear                  ; 6e
 	dw Script_appear                     ; 6f
 	dw Script_follow                     ; 70
 	dw Script_stopfollow                 ; 71
-	dw Script_moveperson                 ; 72
-	dw Script_writepersonxy              ; 73
+	dw Script_moveobject                 ; 72
+	dw Script_writeobjectxy              ; 73
 	dw Script_loademote                  ; 74
 	dw Script_showemote                  ; 75
 	dw Script_spriteface                 ; 76
@@ -979,7 +979,7 @@ Script_cry:
 	call PlayCry
 	ret
 
-GetScriptPerson:
+GetScriptObject:
 	and a ; PLAYER?
 	ret z
 	cp LAST_TALKED
@@ -990,21 +990,21 @@ GetScriptPerson:
 Script_setlasttalked:
 ; script command 0x68
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld [hLastTalked], a
 	ret
 
 Script_applymovement:
 ; script command 0x69
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 ;     data (MovementPointerLabelParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld c, a
 
 ApplyMovement:
@@ -1061,24 +1061,24 @@ Script_faceplayer:
 	ld e, a
 	ld a, [hLastTalked]
 	ld d, a
-	call ApplyPersonFacing
+	call ApplyObjectFacing
 	ret
 
-Script_faceperson:
+Script_faceobject:
 ; script command 0x6c
 ; parameters:
-;     person1 (SingleByteParam)
-;     person2 (SingleByteParam)
+;     object1 (SingleByteParam)
+;     object2 (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr c, .ok
 	ld a, [hLastTalked]
 .ok
 	ld e, a
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok2
 	ld a, [hLastTalked]
@@ -1093,17 +1093,17 @@ Script_faceperson:
 	add a
 	ld e, a
 	ld d, c
-	call ApplyPersonFacing
+	call ApplyObjectFacing
 	ret
 
 Script_spriteface:
 ; script command 0x76
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 ;     facing (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
 	ld a, [hLastTalked]
@@ -1113,10 +1113,10 @@ Script_spriteface:
 	add a
 	add a
 	ld e, a
-	call ApplyPersonFacing
+	call ApplyObjectFacing
 	ret
 
-ApplyPersonFacing:
+ApplyObjectFacing:
 	ld a, d
 	push de
 	call CheckObjectVisibility
@@ -1179,10 +1179,10 @@ Script_variablesprite:
 Script_appear:
 ; script command 0x6f
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	call _CopyObjectStruct
 	ld a, [hMapObjectIndexBuffer]
 	ld b, 0 ; clear
@@ -1192,10 +1192,10 @@ Script_appear:
 Script_disappear:
 ; script command 0x6e
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
 	ld a, [hLastTalked]
@@ -1230,14 +1230,14 @@ ApplyEventActionAppearDisappear:
 Script_follow:
 ; script command 0x70
 ; parameters:
-;     person2 (SingleByteParam)
-;     person1 (SingleByteParam)
+;     object2 (SingleByteParam)
+;     object1 (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld b, a
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld c, a
 	farcall StartFollow
 	ret
@@ -1248,15 +1248,15 @@ Script_stopfollow:
 	farcall StopFollow
 	ret
 
-Script_moveperson:
+Script_moveobject:
 ; script command 0x72
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 ;     x (SingleByteParam)
 ;     y (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld b, a
 	call GetScriptByte
 	add 4
@@ -1267,32 +1267,32 @@ Script_moveperson:
 	farcall CopyDECoordsToMapObject
 	ret
 
-Script_writepersonxy:
+Script_writeobjectxy:
 ; script command 0x73
 ; parameters:
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
 	ld a, [hLastTalked]
 .ok
 	ld b, a
-	farcall WritePersonXY
+	farcall WriteObjectXY
 	ret
 
 Script_follownotexact:
 ; script command 0x77
 ; parameters:
-;     person2 (SingleByteParam)
-;     person1 (SingleByteParam)
+;     object2 (SingleByteParam)
+;     object1 (SingleByteParam)
 
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld b, a
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	ld c, a
 	farcall FollowNotExact
 	ret
@@ -1315,13 +1315,13 @@ Script_showemote:
 ; script command 0x75
 ; parameters:
 ;     bubble (SingleByteParam)
-;     person (SingleByteParam)
+;     object id (SingleByteParam)
 ;     time (DecimalParam)
 
 	call GetScriptByte
 	ld [ScriptVar], a
 	call GetScriptByte
-	call GetScriptPerson
+	call GetScriptObject
 	cp LAST_TALKED
 	jr z, .ok
 	ld [hLastTalked], a
@@ -1751,20 +1751,20 @@ Script_priorityjump:
 	set 3, [hl]
 	ret
 
-Script_checktriggers:
+Script_checkscene:
 ; script command 0x13
 
-	call CheckTriggers
-	jr z, .no_triggers
+	call CheckScenes
+	jr z, .no_scene
 	ld [ScriptVar], a
 	ret
 
-.no_triggers
+.no_scene
 	ld a, $ff
 	ld [ScriptVar], a
 	ret
 
-Script_checkmaptriggers:
+Script_checkmapscene:
 ; script command 0x11
 ; parameters:
 ;     map_group (SingleByteParam)
@@ -1774,49 +1774,49 @@ Script_checkmaptriggers:
 	ld b, a
 	call GetScriptByte
 	ld c, a
-	call GetMapTrigger
+	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_triggers
+	jr z, .no_scene
 	ld a, [de]
 	ld [ScriptVar], a
 	ret
 
-.no_triggers
+.no_scene
 	ld a, $ff
 	ld [ScriptVar], a
 	ret
 
-Script_dotrigger:
+Script_setscene:
 ; script command 0x14
 ; parameters:
-;     trigger_id (SingleByteParam)
+;     scene_id (SingleByteParam)
 
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	jr DoTrigger
+	jr DoScene
 
-Script_domaptrigger:
+Script_setmapscene:
 ; script command 0x12
 ; parameters:
 ;     map_group (MapGroupParam)
 ;     map_id (MapIdParam)
-;     trigger_id (SingleByteParam)
+;     scene_id (SingleByteParam)
 
 	call GetScriptByte
 	ld b, a
 	call GetScriptByte
 	ld c, a
-DoTrigger:
-	call GetMapTrigger
+DoScene:
+	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_trigger
+	jr z, .no_scene
 	call GetScriptByte
 	ld [de], a
-.no_trigger
+.no_scene
 	ret
 
 Script_copybytetovar:

@@ -1,5 +1,5 @@
 SafariZoneFuchsiaGateBeta_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -16,11 +16,11 @@ SafariZoneFuchsiaGateBeta_MapEventHeader:
 	warp_def $7, $4, 7, FUCHSIA_CITY
 	warp_def $7, $5, 7, FUCHSIA_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

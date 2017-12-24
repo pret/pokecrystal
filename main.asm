@@ -408,7 +408,7 @@ CheckSave:: ; 4cffe
 	ld c, $0
 	ret
 
-INCLUDE "data/maps/map_triggers.asm"
+INCLUDE "data/maps/map_scenes.asm"
 
 _LoadMapPart:: ; 4d15b
 	ld hl, wMisc

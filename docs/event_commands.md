@@ -39,11 +39,11 @@ Defined in [macros/scripts/event.asm](/macros/scripts/event.asm) and [engine/scr
 
 ## `$11`: `checkmaptriggers` *map*
 
-## `$12`: `domaptrigger` *map*, *trigger_id*
+## `$12`: `setmapscene` *map*, *scene_id*
 
 ## `$13`: `checktriggers`
 
-## `$14`: `dotrigger` *trigger_id*
+## `$14`: `setscene` *scene_id*
 
 ## `$15`: `writebyte` *value*
 

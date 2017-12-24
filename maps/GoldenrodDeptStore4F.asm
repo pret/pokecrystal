@@ -5,7 +5,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE4F_GAMEBOY_KID
 
 GoldenrodDeptStore4F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -87,17 +87,17 @@ GoldenrodDeptStore4F_MapEventHeader:
 	warp_def $0, $f, 2, GOLDENROD_DEPT_STORE_3F
 	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 0, 14, SIGNPOST_READ, GoldenrodDeptStore4FDirectory
-	signpost 0, 3, SIGNPOST_READ, GoldenrodDeptStore4FElevatorButton
+	bg_event 0, 14, BGEVENT_READ, GoldenrodDeptStore4FDirectory
+	bg_event 0, 3, BGEVENT_READ, GoldenrodDeptStore4FElevatorButton
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x55ee9, -1
-	person_event SPRITE_COOLTRAINER_M, 7, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore4FCooltrainerMScript, -1
-	person_event SPRITE_BUG_CATCHER, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStore4FBugCatcherScript, -1
-	person_event SPRITE_GAMEBOY_KID, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GameboyKidScript_0x55ef7, -1
+	object_event SPRITE_CLERK, 5, 13, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x55ee9, -1
+	object_event SPRITE_COOLTRAINER_M, 7, 11, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore4FCooltrainerMScript, -1
+	object_event SPRITE_BUG_CATCHER, 2, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore4FBugCatcherScript, -1
+	object_event SPRITE_GAMEBOY_KID, 1, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameboyKidScript_0x55ef7, -1

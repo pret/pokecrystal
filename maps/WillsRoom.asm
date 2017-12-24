@@ -2,10 +2,10 @@ const_value set 2
 	const WILLSROOM_WILL
 
 WillsRoom_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .LockDoor
-	maptrigger .DummyTrigger
+	scene_script .LockDoor
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
@@ -15,7 +15,7 @@ WillsRoom_MapScriptHeader:
 	priorityjump .WillsDoorLocksBehindYou
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .WillsRoomDoors:
@@ -37,7 +37,7 @@ WillsRoom_MapScriptHeader:
 	changeblock $4, $e, $2a
 	reloadmappart
 	closetext
-	dotrigger $1
+	setscene $1
 	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -138,12 +138,12 @@ WillsRoom_MapEventHeader:
 	warp_def $2, $4, 1, KOGAS_ROOM
 	warp_def $2, $5, 2, KOGAS_ROOM
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_WILL, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, WillScript_Battle, -1
+	object_event SPRITE_WILL, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WillScript_Battle, -1

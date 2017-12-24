@@ -2,7 +2,7 @@ const_value set 2
 	const CINNABARISLAND_BLUE
 
 CinnabarIsland_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -135,16 +135,16 @@ CinnabarIsland_MapEventHeader:
 	db 1
 	warp_def $b, $b, 1, CINNABAR_POKECENTER_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 11, 12, SIGNPOST_READ, CinnabarIslandPokecenterSign
-	signpost 11, 9, SIGNPOST_READ, CinnabarIslandGymSign
-	signpost 7, 7, SIGNPOST_READ, CinnabarIslandSign
-	signpost 1, 9, SIGNPOST_ITEM, CinnabarIslandHiddenRareCandy
+	bg_event 11, 12, BGEVENT_READ, CinnabarIslandPokecenterSign
+	bg_event 11, 9, BGEVENT_READ, CinnabarIslandGymSign
+	bg_event 7, 7, BGEVENT_READ, CinnabarIslandSign
+	bg_event 1, 9, BGEVENT_ITEM, CinnabarIslandHiddenRareCandy
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_BLUE, 6, 9, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	object_event SPRITE_BLUE, 6, 9, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

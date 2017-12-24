@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE24_ROCKET
 
 Route24_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -125,12 +125,12 @@ Route24_MapEventHeader:
 .Warps:
 	db 0
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_ROCKET, 7, 8, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET
+	object_event SPRITE_ROCKET, 7, 8, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET

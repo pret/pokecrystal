@@ -4,21 +4,21 @@ const_value set 2
 	const VICTORYROADGATE_BLACK_BELT2
 
 VictoryRoadGate_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
-VictoryRoadGateBadgeCheckTrigger:
+VictoryRoadGateBadgeCheckScene:
 	spriteface PLAYER, LEFT
 	jump VictoryRoadGateBadgeCheckScript
 
@@ -40,7 +40,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateEightBadgesText
 	waitbutton
 	closetext
-	dotrigger $1
+	setscene $1
 	end
 
 VictoryRoadGateLeftBlackBeltScript:
@@ -112,15 +112,15 @@ VictoryRoadGate_MapEventHeader:
 	warp_def $7, $1, 2, ROUTE_28
 	warp_def $7, $2, 2, ROUTE_28
 
-.XYTriggers:
+.CoordEvents:
 	db 1
-	xy_trigger 0, $b, $a, VictoryRoadGateBadgeCheckTrigger
+	coord_event 0, $b, $a, VictoryRoadGateBadgeCheckScene
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_OFFICER, 11, 8, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
-	person_event SPRITE_BLACK_BELT, 5, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
-	person_event SPRITE_BLACK_BELT, 5, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX
+	object_event SPRITE_OFFICER, 11, 8, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
+	object_event SPRITE_BLACK_BELT, 5, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
+	object_event SPRITE_BLACK_BELT, 5, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX

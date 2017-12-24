@@ -1,5 +1,5 @@
 TinTower2F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -14,11 +14,11 @@ TinTower2F_MapEventHeader:
 	warp_def $e, $a, 1, TIN_TOWER_3F
 	warp_def $2, $a, 3, TIN_TOWER_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

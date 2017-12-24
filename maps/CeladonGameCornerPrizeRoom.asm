@@ -3,7 +3,7 @@ const_value set 2
 	const CELADONGAMECORNERPRIZEROOM_PHARMACIST
 
 CeladonGameCornerPrizeRoom_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -278,15 +278,15 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 	warp_def $5, $2, 7, CELADON_CITY
 	warp_def $5, $3, 7, CELADON_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 2, SIGNPOST_READ, GoldenrodGameCornerTMVendor
-	signpost 1, 4, SIGNPOST_READ, GoldenrodGameCornerPokemonVendor
+	bg_event 1, 2, BGEVENT_READ, GoldenrodGameCornerTMVendor
+	bg_event 1, 4, BGEVENT_READ, GoldenrodGameCornerPokemonVendor
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_GENTLEMAN, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomGentlemanScript, -1
-	person_event SPRITE_PHARMACIST, 4, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomPharmacistScript, -1
+	object_event SPRITE_GENTLEMAN, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomGentlemanScript, -1
+	object_event SPRITE_PHARMACIST, 4, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomPharmacistScript, -1

@@ -4,7 +4,7 @@ const_value set 2
 	const CHARCOALKILN_MOLTRES
 
 CharcoalKiln_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -157,17 +157,17 @@ CharcoalKiln_MapEventHeader:
 	warp_def $7, $2, 2, AZALEA_TOWN
 	warp_def $7, $3, 2, AZALEA_TOWN
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 3
-	signpost 1, 0, SIGNPOST_READ, CharcoalKilnBookshelf
-	signpost 1, 1, SIGNPOST_READ, CharcoalKilnBookshelf
-	signpost 1, 7, SIGNPOST_READ, CharcoalKilnRadio
+	bg_event 1, 0, BGEVENT_READ, CharcoalKilnBookshelf
+	bg_event 1, 1, BGEVENT_READ, CharcoalKilnBookshelf
+	bg_event 1, 7, BGEVENT_READ, CharcoalKilnRadio
 
-.PersonEvents:
+.ObjectEvents:
 	db 3
-	person_event SPRITE_BLACK_BELT, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CharcoalKilnBoss, EVENT_CHARCOAL_KILN_BOSS
-	person_event SPRITE_YOUNGSTER, 3, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, CharcoalKilnApprentice, EVENT_CHARCOAL_KILN_APPRENTICE
-	person_event SPRITE_MOLTRES, 6, 5, SPRITEMOVEDATA_POKEMON, 2, 2, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, CharcoalKilnFarfetchd, EVENT_CHARCOAL_KILN_FARFETCH_D
+	object_event SPRITE_BLACK_BELT, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CharcoalKilnBoss, EVENT_CHARCOAL_KILN_BOSS
+	object_event SPRITE_YOUNGSTER, 3, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CharcoalKilnApprentice, EVENT_CHARCOAL_KILN_APPRENTICE
+	object_event SPRITE_MOLTRES, 6, 5, SPRITEMOVEDATA_POKEMON, 2, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CharcoalKilnFarfetchd, EVENT_CHARCOAL_KILN_FARFETCH_D

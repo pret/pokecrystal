@@ -3,7 +3,7 @@ const_value set 2
 	const PALLETTOWN_FISHER
 
 PalletTown_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -79,17 +79,17 @@ PalletTown_MapEventHeader:
 	warp_def $5, $d, 1, BLUES_HOUSE
 	warp_def $b, $c, 1, OAKS_LAB
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 9, 7, SIGNPOST_READ, PalletTownSign
-	signpost 5, 3, SIGNPOST_READ, RedsHouseSign
-	signpost 13, 13, SIGNPOST_READ, OaksLabSign
-	signpost 5, 11, SIGNPOST_READ, BluesHouseSign
+	bg_event 9, 7, BGEVENT_READ, PalletTownSign
+	bg_event 5, 3, BGEVENT_READ, RedsHouseSign
+	bg_event 13, 13, BGEVENT_READ, OaksLabSign
+	bg_event 5, 11, BGEVENT_READ, BluesHouseSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_TEACHER, 8, 3, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_SCRIPT, 0, PalletTownTeacherScript, -1
-	person_event SPRITE_FISHER, 14, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, PalletTownFisherScript, -1
+	object_event SPRITE_TEACHER, 8, 3, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PalletTownTeacherScript, -1
+	object_event SPRITE_FISHER, 14, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PalletTownFisherScript, -1

@@ -3,10 +3,10 @@ const_value set 2
 	const TIMECAPSULE_CHRIS2
 
 TimeCapsule_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .InitializeTimeCapsule
-	maptrigger .DummyTrigger
+	scene_script .InitializeTimeCapsule
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
@@ -16,7 +16,7 @@ TimeCapsule_MapScriptHeader:
 	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 .SetWhichChris:
@@ -32,8 +32,8 @@ TimeCapsule_MapScriptHeader:
 	return
 
 .InitializeAndPreparePokecenter2F:
-	dotrigger $1
-	domaptrigger POKECENTER_2F, $3
+	setscene $1
+	setmapscene POKECENTER_2F, $3
 	end
 
 MapTimeCapsuleSignpost1Script:
@@ -62,15 +62,15 @@ TimeCapsule_MapEventHeader:
 	warp_def $7, $4, 4, POKECENTER_2F
 	warp_def $7, $5, 4, POKECENTER_2F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 4, 4, SIGNPOST_RIGHT, MapTimeCapsuleSignpost1Script
-	signpost 4, 5, SIGNPOST_LEFT, MapTimeCapsuleSignpost1Script
+	bg_event 4, 4, BGEVENT_RIGHT, MapTimeCapsuleSignpost1Script
+	bg_event 4, 5, BGEVENT_LEFT, MapTimeCapsuleSignpost1Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_CHRIS, 4, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ChrisScript_0x19351a, EVENT_GAVE_KURT_APRICORNS
-	person_event SPRITE_CHRIS, 4, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ChrisScript_0x19351a, EVENT_RECEIVED_BALLS_FROM_KURT
+	object_event SPRITE_CHRIS, 4, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x19351a, EVENT_GAVE_KURT_APRICORNS
+	object_event SPRITE_CHRIS, 4, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x19351a, EVENT_RECEIVED_BALLS_FROM_KURT

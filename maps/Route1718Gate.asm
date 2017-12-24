@@ -2,14 +2,14 @@ const_value set 2
 	const ROUTE1718GATE_OFFICER
 
 Route1718Gate_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 1
-	maptrigger .DummyTrigger
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger:
+.DummyScene:
 	end
 
 Route1718GateOfficerScript:
@@ -62,14 +62,14 @@ Route1718Gate_MapEventHeader:
 	warp_def $4, $9, 1, ROUTE_18
 	warp_def $5, $9, 2, ROUTE_18
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 0, $4, $5, UnknownScript_0x73611
-	xy_trigger 0, $5, $5, UnknownScript_0x73611
+	coord_event 0, $4, $5, UnknownScript_0x73611
+	coord_event 0, $5, $5, UnknownScript_0x73611
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Route1718GateOfficerScript, -1
+	object_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route1718GateOfficerScript, -1

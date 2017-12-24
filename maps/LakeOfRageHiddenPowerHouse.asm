@@ -2,7 +2,7 @@ const_value set 2
 	const LAKEOFRAGEHIDDENPOWERHOUSE_FISHER
 
 LakeOfRageHiddenPowerHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -76,14 +76,14 @@ LakeOfRageHiddenPowerHouse_MapEventHeader:
 	warp_def $7, $2, 1, LAKE_OF_RAGE
 	warp_def $7, $3, 1, LAKE_OF_RAGE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, HiddenPowerHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, HiddenPowerHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, HiddenPowerHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, HiddenPowerHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, HiddenPowerGuy, -1
+	object_event SPRITE_FISHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, HiddenPowerGuy, -1

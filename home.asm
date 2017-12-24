@@ -861,7 +861,7 @@ HandleStoneQueue:: ; 3567
 
 	ld l, a
 	push hl
-	call .IsPersonOnWarp
+	call .IsObjectOnWarp
 	pop hl
 	jr nc, .nope
 	ld d, a
@@ -878,7 +878,7 @@ HandleStoneQueue:: ; 3567
 	ret
 ; 3599
 
-.IsPersonOnWarp: ; 3599
+.IsObjectOnWarp: ; 3599
 	push de
 
 	ld hl, OBJECT_NEXT_MAP_X

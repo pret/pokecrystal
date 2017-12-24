@@ -1,5 +1,5 @@
-PersonActionPairPointers: ; 445f
-; entries correspond to PERSON_ACTION_* constants
+ObjectActionPairPointers: ; 445f
+; entries correspond to OBJECT_ACTION_* constants
 	dw SetFacingStanding,              SetFacingStanding
 	dw SetFacingStandAction,           SetFacingCurrent
 	dw SetFacingStepAction,            SetFacingCurrent

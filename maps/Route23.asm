@@ -1,5 +1,5 @@
 Route23_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -33,12 +33,12 @@ Route23_MapEventHeader:
 	warp_def $d, $9, 10, VICTORY_ROAD
 	warp_def $d, $a, 10, VICTORY_ROAD
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 7, 11, SIGNPOST_READ, IndigoPlateauSign
+	bg_event 7, 11, BGEVENT_READ, IndigoPlateauSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

@@ -2,7 +2,7 @@ const_value set 2
 	const TINTOWER7F_POKE_BALL
 
 TinTower7F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -23,12 +23,12 @@ TinTower7F_MapEventHeader:
 	warp_def $3, $8, 3, TIN_TOWER_7F
 	warp_def $9, $6, 5, TIN_TOWER_9F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKE_BALL, 1, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, TinTower7FMaxRevive, EVENT_TIN_TOWER_7F_MAX_REVIVE
+	object_event SPRITE_POKE_BALL, 1, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower7FMaxRevive, EVENT_TIN_TOWER_7F_MAX_REVIVE

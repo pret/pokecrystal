@@ -176,28 +176,28 @@ const_value = -1
 NUM_SPAWNS EQU const_value
 
 
-; TryReadSign arguments (see engine/events.asm)
+; TryBGEvent arguments (see engine/events.asm)
 	const_def
-	const SIGNPOST_READ
-	const SIGNPOST_UP
-	const SIGNPOST_DOWN
-	const SIGNPOST_RIGHT
-	const SIGNPOST_LEFT
-	const SIGNPOST_IFSET
-	const SIGNPOST_IFNOTSET
-	const SIGNPOST_ITEM
-	const SIGNPOST_COPY
+	const BGEVENT_READ
+	const BGEVENT_UP
+	const BGEVENT_DOWN
+	const BGEVENT_RIGHT
+	const BGEVENT_LEFT
+	const BGEVENT_IFSET
+	const BGEVENT_IFNOTSET
+	const BGEVENT_ITEM
+	const BGEVENT_COPY
 
-; person_event types
+; object_event types
 ; TryObjectEvent arguments (see engine/events.asm)
 	const_def
-	const PERSONTYPE_SCRIPT
-	const PERSONTYPE_ITEMBALL
-	const PERSONTYPE_TRAINER
-	const PERSONTYPE_3
-	const PERSONTYPE_4
-	const PERSONTYPE_5
-	const PERSONTYPE_6
+	const OBJECTTYPE_SCRIPT
+	const OBJECTTYPE_ITEMBALL
+	const OBJECTTYPE_TRAINER
+	const OBJECTTYPE_3
+	const OBJECTTYPE_4
+	const OBJECTTYPE_5
+	const OBJECTTYPE_6
 
 
 ; EmotesPointers indexes (see engine/overworld.asm)

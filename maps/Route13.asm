@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE13_POKEFAN_M3
 
 Route13_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -199,20 +199,20 @@ Route13_MapEventHeader:
 .Warps:
 	db 0
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 13, 29, SIGNPOST_READ, Route13TrainerTips
-	signpost 11, 41, SIGNPOST_READ, Route13Sign
-	signpost 13, 17, SIGNPOST_READ, Route13DirectionsSign
-	signpost 13, 30, SIGNPOST_ITEM, Route13HiddenCalcium
+	bg_event 13, 29, BGEVENT_READ, Route13TrainerTips
+	bg_event 11, 41, BGEVENT_READ, Route13Sign
+	bg_event 13, 17, BGEVENT_READ, Route13DirectionsSign
+	bg_event 13, 30, BGEVENT_ITEM, Route13HiddenCalcium
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_YOUNGSTER, 6, 42, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 2, TrainerBird_keeperPerry, -1
-	person_event SPRITE_YOUNGSTER, 6, 43, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_TRAINER, 2, TrainerBird_keeperBret, -1
-	person_event SPRITE_POKEFAN_M, 8, 32, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 3, TrainerPokefanmJoshua, -1
-	person_event SPRITE_POKEFAN_M, 10, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerHikerKenny, -1
-	person_event SPRITE_POKEFAN_M, 6, 25, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 4, TrainerPokefanmAlex, -1
+	object_event SPRITE_YOUNGSTER, 6, 42, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBird_keeperPerry, -1
+	object_event SPRITE_YOUNGSTER, 6, 43, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBird_keeperBret, -1
+	object_event SPRITE_POKEFAN_M, 8, 32, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerPokefanmJoshua, -1
+	object_event SPRITE_POKEFAN_M, 10, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerHikerKenny, -1
+	object_event SPRITE_POKEFAN_M, 6, 25, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanmAlex, -1

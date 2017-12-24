@@ -2,7 +2,7 @@ const_value set 2
 	const SAFARIZONEWARDENSHOME_LASS
 
 SafariZoneWardensHome_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -85,16 +85,16 @@ SafariZoneWardensHome_MapEventHeader:
 	warp_def $7, $2, 6, FUCHSIA_CITY
 	warp_def $7, $3, 6, FUCHSIA_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 1, 0, SIGNPOST_READ, WardensHomeBookshelf
-	signpost 1, 1, SIGNPOST_READ, WardensHomeBookshelf
-	signpost 0, 7, SIGNPOST_READ, WardenPhoto
-	signpost 0, 9, SIGNPOST_READ, SafariZonePhoto
+	bg_event 1, 0, BGEVENT_READ, WardensHomeBookshelf
+	bg_event 1, 1, BGEVENT_READ, WardensHomeBookshelf
+	bg_event 0, 7, BGEVENT_READ, WardenPhoto
+	bg_event 0, 9, BGEVENT_READ, SafariZonePhoto
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_LASS, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, WardensGranddaughter, -1
+	object_event SPRITE_LASS, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, WardensGranddaughter, -1

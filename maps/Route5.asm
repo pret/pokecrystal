@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE5_POKEFAN_M
 
 Route5_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -50,14 +50,14 @@ Route5_MapEventHeader:
 	warp_def $11, $9, 2, ROUTE_5_SAFFRON_CITY_GATE
 	warp_def $b, $a, 1, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 17, 17, SIGNPOST_READ, Route5UndergroundPathSign
-	signpost 11, 10, SIGNPOST_READ, HouseForSaleSign
+	bg_event 17, 17, BGEVENT_READ, Route5UndergroundPathSign
+	bg_event 11, 10, BGEVENT_READ, HouseForSaleSign
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_POKEFAN_M, 16, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	object_event SPRITE_POKEFAN_M, 16, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH

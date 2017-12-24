@@ -44,19 +44,19 @@ const_value set 2
 	const UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
 
 UndergroundPathSwitchRoomEntrances_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 1
 	dbw MAPCALLBACK_TILES, .UpdateDoorPositions
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
 .UpdateDoorPositions:
@@ -117,7 +117,7 @@ SuperNerdScript_0x7ca7a:
 TeacherScript_0x7ca7d:
 	jumptextfaceplayer UndergroundPathSwitchRoomEntrances_TeacherText
 
-UndergroundSilverTrigger1:
+UndergroundSilverScene1:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
@@ -131,12 +131,12 @@ UndergroundSilverTrigger1:
 	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
 	playsound SFX_EXIT_BUILDING
 	disappear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
-	dotrigger 1
+	setscene 1
 	waitsfx
 	playmapmusic
 	end
 
-UndergroundSilverTrigger2:
+UndergroundSilverScene2:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
@@ -150,7 +150,7 @@ UndergroundSilverTrigger2:
 	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
 	playsound SFX_EXIT_BUILDING
 	disappear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
-	dotrigger 1
+	setscene 1
 	waitsfx
 	playmapmusic
 	end
@@ -159,7 +159,7 @@ UndergroundSilverBattleScript:
 	checkevent EVENT_RIVAL_BURNED_TOWER
 	iftrue .Continue
 	setevent EVENT_RIVAL_BURNED_TOWER
-	domaptrigger BURNED_TOWER_1F, 1
+	setmapscene BURNED_TOWER_1F, 1
 .Continue:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
@@ -947,30 +947,30 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	warp_def $1d, $14, 13, GOLDENROD_CITY
 	warp_def $1d, $15, 13, GOLDENROD_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 0, $4, $13, UndergroundSilverTrigger1
-	xy_trigger 0, $5, $13, UndergroundSilverTrigger2
+	coord_event 0, $4, $13, UndergroundSilverScene1
+	coord_event 0, $5, $13, UndergroundSilverScene2
 
-.Signposts:
+.BGEvents:
 	db 6
-	signpost 1, 16, SIGNPOST_READ, Switch1Script
-	signpost 1, 10, SIGNPOST_READ, Switch2Script
-	signpost 1, 2, SIGNPOST_READ, Switch3Script
-	signpost 11, 20, SIGNPOST_READ, EmergencySwitchScript
-	signpost 9, 8, SIGNPOST_ITEM, UndergroundPathSwitchRoomEntrancesHiddenMaxPotion
-	signpost 8, 1, SIGNPOST_ITEM, UndergroundPathSwitchRoomEntrancesHiddenRevive
+	bg_event 1, 16, BGEVENT_READ, Switch1Script
+	bg_event 1, 10, BGEVENT_READ, Switch2Script
+	bg_event 1, 2, BGEVENT_READ, Switch3Script
+	bg_event 11, 20, BGEVENT_READ, EmergencySwitchScript
+	bg_event 9, 8, BGEVENT_ITEM, UndergroundPathSwitchRoomEntrancesHiddenMaxPotion
+	bg_event 8, 1, BGEVENT_ITEM, UndergroundPathSwitchRoomEntrancesHiddenRevive
 
-.PersonEvents:
+.ObjectEvents:
 	db 11
-	person_event SPRITE_PHARMACIST, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_PHARMACIST, 8, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 2, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 2, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_TRAINER, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_ROCKET_GIRL, 12, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_TRAINER, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	person_event SPRITE_TEACHER, 27, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, TeacherScript_0x7ca7d, -1
-	person_event SPRITE_SUPER_NERD, 27, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x7ca7a, -1
-	person_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesSmokeBall, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
-	person_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesFullHeal, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
-	person_event SPRITE_SILVER, 3, 23, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH
+	object_event SPRITE_PHARMACIST, 12, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event SPRITE_PHARMACIST, 8, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event SPRITE_ROCKET, 2, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event SPRITE_ROCKET, 2, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event SPRITE_ROCKET, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event SPRITE_ROCKET_GIRL, 12, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event SPRITE_TEACHER, 27, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x7ca7d, -1
+	object_event SPRITE_SUPER_NERD, 27, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x7ca7a, -1
+	object_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesSmokeBall, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
+	object_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesFullHeal, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
+	object_event SPRITE_SILVER, 3, 23, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH

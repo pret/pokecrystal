@@ -5,46 +5,46 @@ const_value set 2
 	const POKECENTER2F_OFFICER
 
 Pokecenter2F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 6
-	maptrigger .Trigger0
-	maptrigger .Trigger1
-	maptrigger .Trigger2
-	maptrigger .Trigger3
-	maptrigger .Trigger4
-	maptrigger .Trigger5
+	scene_script .Scene0
+	scene_script .Scene1
+	scene_script .Scene2
+	scene_script .Scene3
+	scene_script .Scene4
+	scene_script .Scene5
 
 .MapCallbacks:
 	db 0
 
-.Trigger0:
+.Scene0:
 	special Special_CheckMysteryGift
-	if_equal $0, .Trigger0Done
+	if_equal $0, .Scene0Done
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
-	iftrue .Trigger0Done
+	iftrue .Scene0Done
 	priorityjump Pokecenter2F_AppearMysteryGiftDeliveryGuy
 
-.Trigger0Done:
+.Scene0Done:
 	end
 
-.Trigger1:
+.Scene1:
 	priorityjump Script_LeftCableTradeCenter
 	end
 
-.Trigger2:
+.Scene2:
 	priorityjump Script_LeftCableColosseum
 	end
 
-.Trigger3:
+.Scene3:
 	priorityjump Script_LeftTimeCapsule
 	end
 
-.Trigger4:
+.Scene4:
 	priorityjump Script_LeftMobileTradeRoom
 	end
 
-.Trigger5:
+.Scene5:
 	priorityjump Script_LeftMobileBattleRoom
 	end
 
@@ -376,15 +376,15 @@ LinkReceptionistScript_TimeCapsule:
 Script_LeftCableTradeCenter:
 	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkTradeRoom
-	dotrigger $0
-	domaptrigger TRADE_CENTER, $0
+	setscene $0
+	setmapscene TRADE_CENTER, $0
 	end
 
 Script_LeftMobileTradeRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileTradeRoom
-	dotrigger $0
-	domaptrigger MOBILE_TRADE_ROOM_MOBILE, $0
+	setscene $0
+	setmapscene MOBILE_TRADE_ROOM_MOBILE, $0
 	end
 
 Script_WalkOutOfMobileTradeRoom:
@@ -396,15 +396,15 @@ Script_WalkOutOfMobileTradeRoom:
 Script_LeftCableColosseum:
 	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkBattleRoom
-	dotrigger $0
-	domaptrigger COLOSSEUM, $0
+	setscene $0
+	setmapscene COLOSSEUM, $0
 	end
 
 Script_LeftMobileBattleRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileBattleRoom
-	dotrigger $0
-	domaptrigger MOBILE_BATTLE_ROOM, $0
+	setscene $0
+	setmapscene MOBILE_BATTLE_ROOM, $0
 	end
 
 Script_WalkOutOfMobileBattleRoom:
@@ -546,7 +546,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	writebyte (PAL_NPC_RED << 4)
 	special Special_SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown
-	faceperson PLAYER, POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
+	faceobject PLAYER, POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
 	opentext
@@ -579,8 +579,8 @@ Script_LeftTimeCapsule:
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
 .Done:
-	dotrigger $0
-	domaptrigger TIME_CAPSULE, $0
+	setscene $0
+	setmapscene TIME_CAPSULE, $0
 	end
 
 MapPokecenter2FSignpost0Script:
@@ -1035,16 +1035,16 @@ Pokecenter2F_MapEventHeader:
 	warp_def $0, $6, 1, MOBILE_TRADE_ROOM_MOBILE
 	warp_def $0, $a, 1, MOBILE_BATTLE_ROOM
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 1
-	signpost 3, 7, SIGNPOST_READ, MapPokecenter2FSignpost0Script
+	bg_event 3, 7, BGEVENT_READ, MapPokecenter2FSignpost0Script
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_LINK_RECEPTIONIST, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LinkReceptionistScript_Trade, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LinkReceptionistScript_Battle, -1
-	person_event SPRITE_LINK_RECEPTIONIST, 3, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, LinkReceptionistScript_TimeCapsule, -1
-	person_event SPRITE_OFFICER, 1, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY
+	object_event SPRITE_LINK_RECEPTIONIST, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_Trade, -1
+	object_event SPRITE_LINK_RECEPTIONIST, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_Battle, -1
+	object_event SPRITE_LINK_RECEPTIONIST, 3, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_TimeCapsule, -1
+	object_event SPRITE_OFFICER, 1, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY

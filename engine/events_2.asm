@@ -50,11 +50,11 @@ LoadScriptBDE:: ; 97c4f
 	ret
 ; 97c5f
 
-CheckFacingTileEvent:: ; 97c5f
+TryTileCollisionEvent:: ; 97c5f
 	call GetFacingTileCoord
 	ld [EngineBuffer1], a
 	ld c, a
-	farcall CheckFacingTileForStd
+	farcall CheckFacingTileForStdScript
 	jr c, .done
 
 	call CheckCutTreeTile

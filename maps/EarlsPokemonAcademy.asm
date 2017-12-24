@@ -7,7 +7,7 @@ const_value set 2
 	const EARLSPOKEMONACADEMY_POKEDEX
 
 EarlsPokemonAcademy_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -421,21 +421,21 @@ EarlsPokemonAcademy_MapEventHeader:
 	warp_def $f, $3, 3, VIOLET_CITY
 	warp_def $f, $4, 3, VIOLET_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 1, 0, SIGNPOST_READ, AcademyBookshelf
-	signpost 1, 1, SIGNPOST_READ, AcademyBookshelf
-	signpost 0, 3, SIGNPOST_READ, AcademyBlackboard
-	signpost 0, 4, SIGNPOST_READ, AcademyBlackboard
+	bg_event 1, 0, BGEVENT_READ, AcademyBookshelf
+	bg_event 1, 1, BGEVENT_READ, AcademyBookshelf
+	bg_event 0, 3, BGEVENT_READ, AcademyBlackboard
+	bg_event 0, 4, BGEVENT_READ, AcademyBlackboard
 
-.PersonEvents:
+.ObjectEvents:
 	db 6
-	person_event SPRITE_FISHER, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
-	person_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EarlsPokemonAcademyYoungster1Script, -1
-	person_event SPRITE_GAMEBOY_KID, 11, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid1Script, -1
-	person_event SPRITE_GAMEBOY_KID, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid2Script, -1
-	person_event SPRITE_YOUNGSTER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, EarlsPokemonAcademyYoungster2Script, -1
-	person_event SPRITE_POKEDEX, 4, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, AcademyNotebook, -1
+	object_event SPRITE_FISHER, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
+	object_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyYoungster1Script, -1
+	object_event SPRITE_GAMEBOY_KID, 11, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid1Script, -1
+	object_event SPRITE_GAMEBOY_KID, 11, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid2Script, -1
+	object_event SPRITE_YOUNGSTER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyYoungster2Script, -1
+	object_event SPRITE_POKEDEX, 4, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AcademyNotebook, -1

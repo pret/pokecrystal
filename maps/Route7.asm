@@ -1,5 +1,5 @@
 Route7_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -43,13 +43,13 @@ Route7_MapEventHeader:
 	warp_def $6, $f, 1, ROUTE_7_SAFFRON_GATE
 	warp_def $7, $f, 2, ROUTE_7_SAFFRON_GATE
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 11, 5, SIGNPOST_READ, Route7UndergroundPathSign
-	signpost 9, 6, SIGNPOST_READ, Route7LockedDoor
+	bg_event 11, 5, BGEVENT_READ, Route7UndergroundPathSign
+	bg_event 9, 6, BGEVENT_READ, Route7LockedDoor
 
-.PersonEvents:
+.ObjectEvents:
 	db 0

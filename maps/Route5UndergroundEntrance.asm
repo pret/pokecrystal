@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE5UNDERGROUNDENTRANCE_TEACHER
 
 Route5UndergroundEntrance_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -29,12 +29,12 @@ Route5UndergroundEntrance_MapEventHeader:
 	warp_def $7, $4, 1, ROUTE_5
 	warp_def $3, $4, 1, UNDERGROUND
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_TEACHER, 2, 2, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route5UndergroundEntranceTeacherScript, -1
+	object_event SPRITE_TEACHER, 2, 2, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route5UndergroundEntranceTeacherScript, -1

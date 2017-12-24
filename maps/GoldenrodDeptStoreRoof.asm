@@ -9,7 +9,7 @@ const_value set 2
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
 
 GoldenrodDeptStoreRoof_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -219,23 +219,23 @@ GoldenrodDeptStoreRoof_MapEventHeader:
 	db 1
 	warp_def $1, $d, 3, GOLDENROD_DEPT_STORE_6F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 4
-	signpost 3, 15, SIGNPOST_RIGHT, Binoculars1
-	signpost 5, 15, SIGNPOST_RIGHT, Binoculars2
-	signpost 6, 15, SIGNPOST_RIGHT, Binoculars3
-	signpost 0, 3, SIGNPOST_UP, PokeDollVendingMachine
+	bg_event 3, 15, BGEVENT_RIGHT, Binoculars1
+	bg_event 5, 15, BGEVENT_RIGHT, Binoculars2
+	bg_event 6, 15, BGEVENT_RIGHT, Binoculars3
+	bg_event 0, 3, BGEVENT_UP, PokeDollVendingMachine
 
-.PersonEvents:
+.ObjectEvents:
 	db 8
-	person_event SPRITE_CLERK, 4, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_POKEFAN_F, 3, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanFScript, -1
-	person_event SPRITE_FISHER, 1, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, FisherScript_0x56749, -1
-	person_event SPRITE_TWIN, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTwinScript, EVENT_GOLDENROD_SALE_ON
-	person_event SPRITE_SUPER_NERD, 6, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, SuperNerdScript_0x56757, EVENT_GOLDENROD_SALE_ON
-	person_event SPRITE_POKEFAN_M, 0, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanMScript, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTeacherScript, EVENT_GOLDENROD_SALE_OFF
-	person_event SPRITE_BUG_CATCHER, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofBugCatcherScript, EVENT_GOLDENROD_SALE_OFF
+	object_event SPRITE_CLERK, 4, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
+	object_event SPRITE_POKEFAN_F, 3, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanFScript, -1
+	object_event SPRITE_FISHER, 1, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FisherScript_0x56749, -1
+	object_event SPRITE_TWIN, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTwinScript, EVENT_GOLDENROD_SALE_ON
+	object_event SPRITE_SUPER_NERD, 6, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x56757, EVENT_GOLDENROD_SALE_ON
+	object_event SPRITE_POKEFAN_M, 0, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanMScript, EVENT_GOLDENROD_SALE_OFF
+	object_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTeacherScript, EVENT_GOLDENROD_SALE_OFF
+	object_event SPRITE_BUG_CATCHER, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofBugCatcherScript, EVENT_GOLDENROD_SALE_OFF

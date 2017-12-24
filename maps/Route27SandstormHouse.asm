@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE27SANDSTORMHOUSE_GRANNY
 
 Route27SandstormHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -102,14 +102,14 @@ Route27SandstormHouse_MapEventHeader:
 	warp_def $7, $2, 1, ROUTE_27
 	warp_def $7, $3, 1, ROUTE_27
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 1, 0, SIGNPOST_READ, SandstormHouseBookshelf
-	signpost 1, 1, SIGNPOST_READ, SandstormHouseBookshelf
+	bg_event 1, 0, BGEVENT_READ, SandstormHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, SandstormHouseBookshelf
 
-.PersonEvents:
+.ObjectEvents:
 	db 1
-	person_event SPRITE_GRANNY, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, SandstormHouseWoman, -1
+	object_event SPRITE_GRANNY, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SandstormHouseWoman, -1

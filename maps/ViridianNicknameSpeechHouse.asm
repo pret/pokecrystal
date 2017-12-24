@@ -5,7 +5,7 @@ const_value set 2
 	const VIRIDIANNICKNAMESPEECHHOUSE_RATTEY
 
 ViridianNicknameSpeechHouse_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -70,15 +70,15 @@ ViridianNicknameSpeechHouse_MapEventHeader:
 	warp_def $7, $2, 2, VIRIDIAN_CITY
 	warp_def $7, $3, 2, VIRIDIAN_CITY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 4
-	person_event SPRITE_POKEFAN_M, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, ViridianNicknameSpeechHousePokefanMScript, -1
-	person_event SPRITE_LASS, 4, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, ViridianNicknameSpeechHouseLassScript, -1
-	person_event SPRITE_MOLTRES, 2, 5, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, Speary, -1
-	person_event SPRITE_GROWLITHE, 3, 6, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, Rattey, -1
+	object_event SPRITE_POKEFAN_M, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianNicknameSpeechHousePokefanMScript, -1
+	object_event SPRITE_LASS, 4, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianNicknameSpeechHouseLassScript, -1
+	object_event SPRITE_MOLTRES, 2, 5, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Speary, -1
+	object_event SPRITE_GROWLITHE, 3, 6, SPRITEMOVEDATA_POKEMON, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Rattey, -1

@@ -6,7 +6,7 @@ const_value set 2
 	const CELADONDEPTSTORE5F_TEACHER
 
 CeladonDeptStore5F_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -81,18 +81,18 @@ CeladonDeptStore5F_MapEventHeader:
 	warp_def $0, $f, 1, CELADON_DEPT_STORE_6F
 	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 0, 14, SIGNPOST_READ, CeladonDeptStore5FDirectory
-	signpost 0, 3, SIGNPOST_READ, CeladonDeptStore5FElevatorButton
+	bg_event 0, 14, BGEVENT_READ, CeladonDeptStore5FDirectory
+	bg_event 0, 3, BGEVENT_READ, CeladonDeptStore5FElevatorButton
 
-.PersonEvents:
+.ObjectEvents:
 	db 5
-	person_event SPRITE_CLERK, 5, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x71004, -1
-	person_event SPRITE_CLERK, 5, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ClerkScript_0x7100c, -1
-	person_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, CeladonDeptStore5FGentlemanScript, -1
-	person_event SPRITE_SAILOR, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeladonDeptStore5FSailorScript, -1
-	person_event SPRITE_TEACHER, 7, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonDeptStore5FTeacherScript, -1
+	object_event SPRITE_CLERK, 5, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x71004, -1
+	object_event SPRITE_CLERK, 5, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x7100c, -1
+	object_event SPRITE_GENTLEMAN, 5, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FGentlemanScript, -1
+	object_event SPRITE_SAILOR, 4, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FSailorScript, -1
+	object_event SPRITE_TEACHER, 7, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FTeacherScript, -1

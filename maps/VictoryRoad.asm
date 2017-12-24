@@ -7,22 +7,22 @@ const_value set 2
 	const VICTORYROAD_POKE_BALL5
 
 VictoryRoad_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .DummyTrigger0
-	maptrigger .DummyTrigger1
+	scene_script .DummyScene0
+	scene_script .DummyScene1
 
 .MapCallbacks:
 	db 0
 
-.DummyTrigger0:
+.DummyScene0:
 	end
 
-.DummyTrigger1:
+.DummyScene1:
 	end
 
 UnknownScript_0x74492:
-	moveperson VICTORYROAD_SILVER, $12, $b
+	moveobject VICTORYROAD_SILVER, $12, $b
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
@@ -32,7 +32,7 @@ UnknownScript_0x74492:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x7454c
 	disappear VICTORYROAD_SILVER
-	dotrigger $1
+	setscene $1
 	playmapmusic
 	end
 
@@ -46,7 +46,7 @@ UnknownScript_0x744b5:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x74555
 	disappear VICTORYROAD_SILVER
-	dotrigger $1
+	setscene $1
 	playmapmusic
 	end
 
@@ -257,21 +257,21 @@ VictoryRoad_MapEventHeader:
 	warp_def $1b, $0, 8, VICTORY_ROAD
 	warp_def $5, $d, 3, ROUTE_23
 
-.XYTriggers:
+.CoordEvents:
 	db 2
-	xy_trigger 0, $8, $c, UnknownScript_0x74492
-	xy_trigger 0, $8, $d, UnknownScript_0x744b5
+	coord_event 0, $8, $c, UnknownScript_0x74492
+	coord_event 0, $8, $d, UnknownScript_0x744b5
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 29, 3, SIGNPOST_ITEM, VictoryRoadHiddenMaxPotion
-	signpost 65, 3, SIGNPOST_ITEM, VictoryRoadHiddenFullHeal
+	bg_event 29, 3, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion
+	bg_event 65, 3, BGEVENT_ITEM, VictoryRoadHiddenFullHeal
 
-.PersonEvents:
+.ObjectEvents:
 	db 6
-	person_event SPRITE_SILVER, 13, 18, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
-	person_event SPRITE_POKE_BALL, 28, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VictoryRoadTMEarthquake, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
-	person_event SPRITE_POKE_BALL, 48, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VictoryRoadMaxRevive, EVENT_VICTORY_ROAD_MAX_REVIVE
-	person_event SPRITE_POKE_BALL, 29, 18, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
-	person_event SPRITE_POKE_BALL, 48, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VictoryRoadFullHeal, EVENT_VICTORY_ROAD_FULL_HEAL
-	person_event SPRITE_POKE_BALL, 38, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, PERSONTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP
+	object_event SPRITE_SILVER, 13, 18, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
+	object_event SPRITE_POKE_BALL, 28, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadTMEarthquake, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
+	object_event SPRITE_POKE_BALL, 48, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadMaxRevive, EVENT_VICTORY_ROAD_MAX_REVIVE
+	object_event SPRITE_POKE_BALL, 29, 18, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
+	object_event SPRITE_POKE_BALL, 48, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullHeal, EVENT_VICTORY_ROAD_FULL_HEAL
+	object_event SPRITE_POKE_BALL, 38, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP

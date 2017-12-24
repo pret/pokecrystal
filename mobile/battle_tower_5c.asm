@@ -1519,15 +1519,15 @@ Jumptable_1709e7: ; 1709e7
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call GetMapTrigger
+	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_trigger
+	jr z, .no_scene
 	ld a, [de]
 	and a
 	ret nz
 
-.no_trigger
+.no_scene
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -1544,14 +1544,14 @@ Jumptable_1709e7: ; 1709e7
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call GetMapTrigger
+	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_trigger_2
+	jr z, .no_scene_2
 	xor a
 	ld [de], a
 
-.no_trigger_2
+.no_scene_2
 	ret
 ; 170a9c
 

@@ -7632,7 +7632,7 @@ Function11b7e5: ; 11b7e5
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call GetMapTrigger
+	call GetMapSceneID
 	ld a, d
 	or e
 	jr z, .asm_11b872

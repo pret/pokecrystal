@@ -7,7 +7,7 @@ const_value set 2
 	const ROUTE9_POKEFAN_M2
 
 Route9_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 0
 
 .MapCallbacks:
@@ -214,19 +214,19 @@ Route9_MapEventHeader:
 	db 1
 	warp_def $f, $30, 1, ROCK_TUNNEL_1F
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 2
-	signpost 7, 15, SIGNPOST_READ, Route9Sign
-	signpost 15, 41, SIGNPOST_ITEM, Route9HiddenEther
+	bg_event 7, 15, BGEVENT_READ, Route9Sign
+	bg_event 15, 41, BGEVENT_ITEM, Route9HiddenEther
 
-.PersonEvents:
+.ObjectEvents:
 	db 6
-	person_event SPRITE_YOUNGSTER, 11, 23, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerCamperDean, -1
-	person_event SPRITE_LASS, 8, 39, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 3, TrainerPicnickerHeidi, -1
-	person_event SPRITE_YOUNGSTER, 4, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 5, TrainerCamperSid, -1
-	person_event SPRITE_LASS, 15, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_TRAINER, 1, TrainerPicnickerEdna, -1
-	person_event SPRITE_POKEFAN_M, 3, 28, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 2, TrainerHikerTim, -1
-	person_event SPRITE_POKEFAN_M, 15, 36, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_TRAINER, 4, TrainerHikerSidney, -1
+	object_event SPRITE_YOUNGSTER, 11, 23, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperDean, -1
+	object_event SPRITE_LASS, 8, 39, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerHeidi, -1
+	object_event SPRITE_YOUNGSTER, 4, 11, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperSid, -1
+	object_event SPRITE_LASS, 15, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerEdna, -1
+	object_event SPRITE_POKEFAN_M, 3, 28, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerTim, -1
+	object_event SPRITE_POKEFAN_M, 15, 36, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerHikerSidney, -1

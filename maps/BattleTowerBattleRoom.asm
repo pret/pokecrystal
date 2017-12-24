@@ -3,10 +3,10 @@ const_value set 2
 	const BATTLETOWERBATTLEROOM_RECEPTIONIST
 
 BattleTowerBattleRoom_MapScriptHeader:
-.MapTriggers:
+.SceneScripts:
 	db 2
-	maptrigger .EnterBattleRoom
-	maptrigger .DummyTrigger
+	scene_script .EnterBattleRoom
+	scene_script .DummyScene
 
 .MapCallbacks:
 	db 0
@@ -14,8 +14,8 @@ BattleTowerBattleRoom_MapScriptHeader:
 .EnterBattleRoom: ; 0x9f419
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
 	priorityjump Script_BattleRoom
-	dotrigger $1
-.DummyTrigger:
+	setscene $1
+.DummyScene:
 	end
 
 Script_BattleRoom: ; 0x9f421
@@ -149,13 +149,13 @@ BattleTowerBattleRoom_MapEventHeader:
 	warp_def $7, $3, 4, BATTLE_TOWER_HALLWAY
 	warp_def $7, $4, 4, BATTLE_TOWER_HALLWAY
 
-.XYTriggers:
+.CoordEvents:
 	db 0
 
-.Signposts:
+.BGEvents:
 	db 0
 
-.PersonEvents:
+.ObjectEvents:
 	db 2
-	person_event SPRITE_YOUNGSTER, 0, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	person_event SPRITE_RECEPTIONIST, 6, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event SPRITE_YOUNGSTER, 0, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	object_event SPRITE_RECEPTIONIST, 6, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

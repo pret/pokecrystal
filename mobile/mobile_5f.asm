@@ -314,7 +314,7 @@ Function17d0f3: ; 17d0f3
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call GetMapTrigger
+	call GetMapSceneID
 	ld a, d
 	or e
 	jr z, .asm_17d180

@@ -35,7 +35,7 @@ Function6ec1: ; 6ec1
 
 	push hl
 	push bc
-	call WillPersonBumpIntoSomeoneElse
+	call WillObjectBumpIntoSomeoneElse
 	pop bc
 	pop hl
 	ret c
@@ -44,12 +44,12 @@ Function6ec1: ; 6ec1
 	bit 5, [hl]
 	jr nz, .bit_5
 	push hl
-	call HasPersonReachedMovementLimit
+	call HasObjectReachedMovementLimit
 	pop hl
 	ret c
 
 	push hl
-	call IsPersonMovingOffEdgeOfScreen
+	call IsObjectMovingOffEdgeOfScreen
 	pop hl
 	ret c
 
@@ -269,7 +269,7 @@ CheckFacingObject:: ; 6fd9
 ; 7009
 
 
-WillPersonBumpIntoSomeoneElse: ; 7009
+WillObjectBumpIntoSomeoneElse: ; 7009
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld d, [hl]
@@ -391,7 +391,7 @@ IsNPCAtCoord: ; 7041
 	ret
 ; 70a4
 
-HasPersonReachedMovementLimit: ; 70a4
+HasObjectReachedMovementLimit: ; 70a4
 	ld hl, OBJECT_RADIUS
 	add hl, bc
 	ld a, [hl]
@@ -451,7 +451,7 @@ HasPersonReachedMovementLimit: ; 70a4
 	ret
 ; 70ed
 
-IsPersonMovingOffEdgeOfScreen: ; 70ed
+IsObjectMovingOffEdgeOfScreen: ; 70ed
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [XCoord]
