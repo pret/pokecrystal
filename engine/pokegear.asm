@@ -1688,7 +1688,7 @@ LoadStation_UnownRadio: ; 917d5 (24:57d5)
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Radio_BackUpFarCallParams
-	ld de, UnknownStationName
+	ld de, UnownStationName
 	ret
 
 LoadStation_PlacesAndPeople: ; 917ea (24:57ea)
@@ -1747,7 +1747,7 @@ LoadStation_EvolutionRadio: ; 9183e (24:583e)
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Radio_BackUpFarCallParams
-	ld de, UnknownStationName
+	ld de, UnownStationName
 	ret
 
 ; 91853 (24:5853)
@@ -1821,7 +1821,7 @@ OaksPkmnTalkName:     db "OAK's <PK><MN> Talk@"
 PokedexShowName:      db "#DEX Show@"
 PokemonMusicName:     db "#MON Music@"
 LuckyChannelName:     db "Lucky Channel@"
-UnknownStationName:   db "?????@"
+UnownStationName:     db "?????@"
 
 PlacesAndPeopleName:  db "Places & People@"
 LetsAllSingName:      db "Let's All Sing!@"

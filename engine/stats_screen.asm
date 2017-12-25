@@ -965,6 +965,7 @@ StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 	ret
 ; 4e32a (13:632a)
 
+; unreferenced
 Unknown_4e32a: ; 4e32a
 ; A blank tile?
 	ds 16
