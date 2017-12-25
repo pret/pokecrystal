@@ -1,8 +1,8 @@
 const_value set 2
-	const MOUNTMOONGIFTSHOP_GRAMPS1
-	const MOUNTMOONGIFTSHOP_GRAMPS2
-	const MOUNTMOONGIFTSHOP_LASS1
-	const MOUNTMOONGIFTSHOP_LASS2
+	const MOUNTMOONGIFTSHOP_GRAMPS1 ; morning only
+	const MOUNTMOONGIFTSHOP_GRAMPS2 ; day only
+	const MOUNTMOONGIFTSHOP_LASS1 ; morning only
+	const MOUNTMOONGIFTSHOP_LASS2 ; day only
 
 MountMoonGiftShop_MapScriptHeader:
 .SceneScripts:
@@ -11,7 +11,7 @@ MountMoonGiftShop_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-GrampsScript_0x771a8:
+MountMoonGiftShopClerkScript:
 	faceplayer
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_MT_MOON
@@ -44,7 +44,7 @@ MountMoonGiftShop_MapEventHeader:
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_GRAMPS, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x771a8, -1
-	object_event SPRITE_GRAMPS, 2, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x771a8, -1
+	object_event SPRITE_GRAMPS, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MountMoonGiftShopClerkScript, -1
+	object_event SPRITE_GRAMPS, 2, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MountMoonGiftShopClerkScript, -1
 	object_event SPRITE_LASS, 6, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MountMoonGiftShopLassScript, -1
 	object_event SPRITE_LASS, 4, 5, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MountMoonGiftShopLassScript, -1
