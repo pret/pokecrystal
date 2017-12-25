@@ -308,17 +308,17 @@ SSAquaGranddaughterHasToFindGrandpaText:
 
 	para "…Oh!"
 
-	para "SSAquaGrandpa's worried"
+	para "Grandpa's worried"
 	line "about me?"
 
 	para "I have to go!"
 
 	para "I have to go find"
-	line "SSAquaGrandpa!"
+	line "Grandpa!"
 	done
 
 SSAquaGranddaughterWasPlayingMText:
-	text "SSAquaGrandpa, here I"
+	text "Grandpa, here I"
 	line "am! I was playing"
 
 	para "with the CAPTAIN"
@@ -326,7 +326,7 @@ SSAquaGranddaughterWasPlayingMText:
 	done
 
 SSAquaGranddaughterWasPlayingFText:
-	text "SSAquaGrandpa, here I"
+	text "Grandpa, here I"
 	line "am! I was playing"
 
 	para "with the CAPTAIN"
