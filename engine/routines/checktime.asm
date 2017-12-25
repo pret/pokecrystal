@@ -1,6 +1,6 @@
 CheckTime:: ; c000
 	ld a, [TimeOfDay]
-	ld hl, TimeOfDayTable
+	ld hl, .TimeOfDayTable
 	ld de, 2
 	call IsInArray
 	inc hl
@@ -11,7 +11,7 @@ CheckTime:: ; c000
 	ld c, a
 	ret
 
-TimeOfDayTable: ; c012
+.TimeOfDayTable: ; c012
 	db MORN_F, MORN
 	db DAY_F,  DAY
 	db NITE_F, NITE

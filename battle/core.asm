@@ -2573,11 +2573,11 @@ WinTrainerBattle: ; 3cfa4
 .CheckMaxedOutMomMoney: ; 3d0b1
 	ld hl, wMomsMoney + 2
 	ld a, [hld]
-	cp 999999 % $100
+	cp MAX_MONEY % $100
 	ld a, [hld]
-	sbc 999999 / $100 % $100
+	sbc MAX_MONEY / $100 % $100
 	ld a, [hl]
-	sbc 999999 / $10000 % $100
+	sbc MAX_MONEY / $10000 % $100
 	ret
 ; 3d0be
 
@@ -2602,17 +2602,17 @@ AddBattleMoneyToAccount: ; 3d0be
 	jr nz, .loop
 	pop hl
 	ld a, [hld]
-	cp 999999 % $100
+	cp MAX_MONEY % $100
 	ld a, [hld]
-	sbc 999999 / $100 % $100
+	sbc MAX_MONEY / $100 % $100
 	ld a, [hl]
-	sbc 999999 / $10000 % $100
+	sbc MAX_MONEY / $10000 % $100
 	ret c
-	ld [hl], 999999 / $10000 % $100
+	ld [hl], MAX_MONEY / $10000 % $100
 	inc hl
-	ld [hl], 999999 / $100 % $100
+	ld [hl], MAX_MONEY / $100 % $100
 	inc hl
-	ld [hl], 999999 % $100
+	ld [hl], MAX_MONEY % $100
 	ret
 ; 3d0ea
 

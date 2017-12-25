@@ -1,4 +1,3 @@
-
 INCLUDE "data/maps/spawn_points.asm"
 
 

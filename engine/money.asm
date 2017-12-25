@@ -24,7 +24,7 @@ GiveMoney:: ; 15fd7
 ; 15ff7
 
 MaxMoney: ; 15ff7
-	dt 999999
+	dt MAX_MONEY
 ; 15ffa
 
 
@@ -192,7 +192,7 @@ GiveCoins:: ; 1606f
 ; 1608d
 
 .maxcoins ; 1608d
-	bigdw 9999
+	bigdw MAX_COINS
 ; 1608f
 
 

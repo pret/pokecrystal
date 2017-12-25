@@ -93,6 +93,8 @@ NUM_HOF_TEAMS = 30
 ; significant money values
 START_MONEY EQU 3000
 MOM_MONEY   EQU 2300
+MAX_MONEY   EQU 999999
+MAX_COINS   EQU 9999
 
 
 ; ChangeHappiness arguments (see data/happiness_changes.asm)

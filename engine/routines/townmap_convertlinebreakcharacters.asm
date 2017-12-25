@@ -19,7 +19,3 @@ TownMap_ConvertLineBreakCharacters: ; 1de2c5
 	hlcoord 9, 0
 	call PlaceString
 	ret
-
-
-PokegearGFX: ; 1de2e4
-INCBIN "gfx/pokegear/pokegear.2bpp.lz"
