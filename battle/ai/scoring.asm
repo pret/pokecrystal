@@ -141,7 +141,7 @@ AI_Setup: ; 385e0
 
 .discourage
 	call Random
-	cp 30
+	cp 12 percent
 	jr c, .checkmove
 	inc [hl]
 	inc [hl]
@@ -453,7 +453,7 @@ AI_Smart_LeechHit: ; 387f7
 
 .asm_38815
 	call Random
-	cp 100
+	cp 39 percent + 1
 	ret c
 
 	inc [hl]
@@ -594,7 +594,7 @@ AI_Smart_Selfdestruct: ; 388a6
 ; If enemy's HP is between 25% and 50%,
 ; over 90% chance to greatly discourage this move.
 	call Random
-	cp 20
+	cp 9 percent - 2
 	ret c
 
 .asm_388c6
@@ -610,7 +610,7 @@ AI_Smart_DreamEater: ; 388ca
 ; The AI_Basic layer will make sure that
 ; Dream Eater is only used against sleeping targets.
 	call Random
-	cp 25
+	cp 10 percent
 	ret c
 	dec [hl]
 	dec [hl]
@@ -637,7 +637,7 @@ AI_Smart_EvasionUp: ; 388d4
 
 ; ...70% chance to greatly encourage this move if player is not badly poisoned.
 	call Random
-	cp $b2
+	cp 70 percent
 	jr nc, .asm_38911
 
 .asm_388ef
@@ -653,7 +653,7 @@ AI_Smart_EvasionUp: ; 388d4
 
 ; If enemy's HP is above 25% but not full, 4% chance to greatly encourage this move.
 	call Random
-	cp $a
+	cp 4 percent
 	jr c, .asm_388ef
 
 ; If enemy's HP is between 25% and 50%,...
@@ -710,11 +710,11 @@ AI_Smart_EvasionUp: ; 388d4
 	ret
 
 ; Player is badly poisoned.
-; 80% chance to greatly encourage this move.
+; 70% chance to greatly encourage this move.
 ; This would counter any previous discouragement.
 .asm_38938
 	call Random
-	cp $50
+	cp 31 percent + 1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -791,7 +791,7 @@ AI_Smart_MirrorMove: ; 3895b
 	ret nc
 
 	call Random
-	cp $19
+	cp 10 percent
 	ret c
 
 	dec [hl]
@@ -816,7 +816,7 @@ AI_Smart_AccuracyDown: ; 38985
 
 ; ...70% chance to greatly encourage this move if player is not badly poisoned.
 	call Random
-	cp $b2
+	cp 70 percent
 	jr nc, .asm_389bf
 
 .asm_3899d
@@ -832,7 +832,7 @@ AI_Smart_AccuracyDown: ; 38985
 
 ; If player's HP is above 25% but not full, 4% chance to greatly encourage this move.
 	call Random
-	cp $a
+	cp 4 percent
 	jr c, .asm_3899d
 
 ; If player's HP is between 25% and 50%,...
@@ -884,11 +884,11 @@ AI_Smart_AccuracyDown: ; 38985
 	ret
 
 ; Player is badly poisoned.
-; 80% chance to greatly encourage this move.
+; 70% chance to greatly encourage this move.
 ; This would counter any previous discouragement.
 .asm_389e6
 	call Random
-	cp $50
+	cp 31 percent + 1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -934,7 +934,7 @@ AI_Smart_ResetStats: ; 389f5
 .asm_38a12
 	pop hl
 	call Random
-	cp $28
+	cp 16 percent
 	ret c
 	dec [hl]
 	ret
@@ -955,7 +955,7 @@ AI_Smart_Bide: ; 38a1e
 	call AICheckEnemyMaxHP
 	ret c
 	call Random
-	cp $19
+	cp 10 percent
 	ret c
 	inc [hl]
 	ret
@@ -997,7 +997,7 @@ AI_Smart_Moonlight: ; 38a3a
 
 .asm_38a45
 	call Random
-	cp $19
+	cp 10 percent
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1023,7 +1023,7 @@ AI_Smart_Reflect: ; 38a54
 	call AICheckEnemyMaxHP
 	ret c
 	call Random
-	cp $14
+	cp 8 percent
 	ret c
 	inc [hl]
 	ret
@@ -1126,7 +1126,7 @@ AI_Smart_Unused2B: ; 38a9c
 
 .asm_38acd
 	call Random
-	cp $c8
+	cp 79 percent - 1
 	ret c
 
 .asm_38ad3
@@ -1148,7 +1148,7 @@ AI_Smart_Confuse: ; 38adb
 	call AICheckPlayerHalfHP
 	ret c
 	call Random
-	cp $19
+	cp 10 percent
 	jr c, .asm_38ae7
 	inc [hl]
 
@@ -1272,7 +1272,7 @@ AI_Smart_SpeedDownHit: ; 38b40
 	call AICompareSpeed
 	ret c
 	call Random
-	cp 30
+	cp 12 percent
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1304,7 +1304,7 @@ AI_Smart_HyperBeam: ; 38b63
 .asm_38b72
 ; If enemy's HP is above 50%, discourage this move at random
 	call Random
-	cp 40
+	cp 16 percent
 	ret c
 	inc [hl]
 	call AI_50_50
@@ -1457,7 +1457,7 @@ AI_Smart_Counter: ; 38bf1
 
 .asm_38c30
 	call Random
-	cp $64
+	cp 39 percent + 1
 	jr c, .asm_38c38
 
 	dec [hl]
@@ -1510,7 +1510,7 @@ AI_Smart_Encore: ; 38c3b
 
 .asm_38c78
 	call Random
-	cp $46
+	cp 28 percent - 1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1657,7 +1657,7 @@ AI_Smart_Spite: ; 38cd5
 	jr nc, .asm_38d0b
 
 	call Random
-	cp $64
+	cp 39 percent + 1
 	ret nc
 
 .asm_38d0b
@@ -1666,7 +1666,7 @@ AI_Smart_Spite: ; 38cd5
 
 .asm_38d0d
 	call Random
-	cp $64
+	cp 39 percent + 1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1827,7 +1827,7 @@ AI_Smart_Conversion2: ; 38d98
 
 .asm_38dc9
 	call Random
-	cp 25
+	cp 10 percent
 	ret c
 	inc [hl]
 	ret
@@ -1848,7 +1848,7 @@ AI_Smart_Disable: ; 38dd1
 	jr nc, .asm_38dee
 
 	call Random
-	cp 100
+	cp 39 percent + 1
 	ret c
 	dec [hl]
 	ret
@@ -1860,7 +1860,7 @@ AI_Smart_Disable: ; 38dd1
 
 .asm_38df3
 	call Random
-	cp 20
+	cp 8 percent
 	ret c
 	inc [hl]
 	ret
@@ -2096,7 +2096,7 @@ AI_Smart_Protect: ; 38ed2
 
 .asm_38f14
 	call Random
-	cp 20
+	cp 8 percent
 	ret c
 	inc [hl]
 	inc [hl]
@@ -2120,14 +2120,14 @@ AI_Smart_Foresight: ; 38f1d
 	jr z, .asm_38f41
 
 	call Random
-	cp 20
+	cp 8 percent
 	ret c
 	inc [hl]
 	ret
 
 .asm_38f41
 	call Random
-	cp 100
+	cp 39 percent + 1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -2317,7 +2317,7 @@ AI_Smart_Rollout: ; 38fef
 
 ; Otherwise, 80% chance to greatly encourage this move.
 	call Random
-	cp 200
+	cp 79 percent - 1
 	ret nc
 	dec [hl]
 	dec [hl]
@@ -2347,7 +2347,7 @@ AI_Smart_Attract: ; 39026
 
 .first_turn
 	call Random
-	cp 200
+	cp 79 percent - 1
 	ret nc
 	dec [hl]
 	ret
@@ -2850,7 +2850,7 @@ AI_Smart_Solarbeam: ; 3920b
 	ret nz
 
 	call Random
-	cp 25 ; 1/10
+	cp 10 percent
 	ret c
 
 	inc [hl]
@@ -2875,7 +2875,7 @@ AI_Smart_Thunder: ; 39225
 	ret nz
 
 	call Random
-	cp 25 ; 1/10
+	cp 10 percent
 	ret c
 
 	inc [hl]
@@ -3387,7 +3387,7 @@ AI_Cautious: ; 39418
 	jr nc, .asm_39425
 
 	call Random
-	cp 230
+	cp 90 percent + 1
 	ret nc
 
 	inc [hl]
@@ -3513,7 +3513,7 @@ AI_Risky: ; 394a9
 
 ; Else, 80% chance to exclude them.
 	call Random
-	cp 200 ; 1/5
+	cp 79 percent - 1
 	jr c, .nextmove
 
 .checkko
@@ -3586,13 +3586,13 @@ AIGetEnemyMove: ; 39508
 
 AI_80_20: ; 39521
 	call Random
-	cp 50 ; 1/5
+	cp 20 percent - 1
 	ret
 ; 39527
 
 
 AI_50_50: ; 39527
 	call Random
-	cp $80 ; 1/2
+	cp 50 percent + 1
 	ret
 ; 3952d
