@@ -19,12 +19,12 @@ Version 1.1 of Pokémon Crystal, which fixed some issues with the initial intern
 
 ## Can't build ROM; "ERROR: `UNION` already defined"
 
-Download [**rgbds 0.3.3**](rgbds). Earlier versions will not work.
+Download [**rgbds 0.3.3**][rgbds]. Earlier versions will not work.
 
 
 ## Can't build ROM; "Segmentation fault" from `rgbgfx`
 
-If you are using 64-bit Windows, download [**64-bit Cygwin**](cygwin) and [**64-bit rgbds**](rgbds).
+If you are using 64-bit Windows, download [**64-bit Cygwin**][cygwin] and [**64-bit rgbds**][rgbds].
 
 
 ## Can't build ROM; "Section is too big" or "Unable to place section in bank"
@@ -36,7 +36,7 @@ If you added or changed any code, it has to fit in the **memory banks**. The 2MB
 
 ## How do I edit maps?
 
-For `asm` scripts, read [docs/map_scripts.md](docs/map_scripts.md). For `blk` layouts, try [crowdmap](crowdmap) or [Polished Map](polished-map).
+For `asm` scripts, read [docs/map_scripts.md](docs/map_scripts.md). For `blk` layouts, try [crowdmap][crowdmap] or [Polished Map][polished-map].
 
 
 ## How do I write new features?

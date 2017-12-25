@@ -50,7 +50,7 @@ Write text from a RAM address.
 
 ## `$02`: `text_bcd` *address*, *flags*
 
-Write [BCD](bcd) from an address, typically RAM.
+Write [BCD][bcd] from an address, typically RAM.
 
 [bcd]: https://en.wikipedia.org/wiki/Binary-coded_decimal
 
