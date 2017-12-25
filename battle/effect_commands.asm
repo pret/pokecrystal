@@ -730,7 +730,7 @@ BattleCommand_CheckObedience: ; 343db
 
 	; risingbadge
 	bit RISINGBADGE, [hl]
-	ld a, MAX_LEVEL + 1
+	ld a, LOW(MAX_LEVEL + 1)
 	jr nz, .getlevel
 
 	; stormbadge
