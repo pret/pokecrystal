@@ -71,58 +71,58 @@ TrainerKimono_girlMiki:
 	closetext
 	end
 
-GentlemanScript_0x994c6:
+DanceTheaterSurfGuy:
 	faceplayer
 	opentext
-	writetext UnknownText_0x9980a
+	writetext SurfGuyNeverLeftAScratchText
 	buttonsound
 	checkevent EVENT_GOT_HM03_SURF
-	iftrue UnknownScript_0x99515
+	iftrue SurfGuyAlreadyGaveSurf
 	checkevent EVENT_BEAT_KIMONO_GIRL_NAOKO
-	iffalse UnknownScript_0x994f3
+	iffalse .KimonoGirlsUndefeated
 	checkevent EVENT_BEAT_KIMONO_GIRL_SAYO
-	iffalse UnknownScript_0x994f3
+	iffalse .KimonoGirlsUndefeated
 	checkevent EVENT_BEAT_KIMONO_GIRL_ZUKI
-	iffalse UnknownScript_0x994f3
+	iffalse .KimonoGirlsUndefeated
 	checkevent EVENT_BEAT_KIMONO_GIRL_KUNI
-	iffalse UnknownScript_0x994f3
+	iffalse .KimonoGirlsUndefeated
 	checkevent EVENT_BEAT_KIMONO_GIRL_MIKI
-	iffalse UnknownScript_0x994f3
-	jump UnknownScript_0x99505
+	iffalse .KimonoGirlsUndefeated
+	jump .GetSurf
 
-UnknownScript_0x994f3:
+.KimonoGirlsUndefeated:
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x994ff
-	writetext UnknownText_0x99891
+	iftrue .PlayerIsFemale
+	writetext SurfGuyLadGiftText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x994ff:
-	writetext UnknownText_0x998d4
+.PlayerIsFemale:
+	writetext SurfGuyLassieGiftText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x99505:
-	writetext UnknownText_0x9991a
+.GetSurf:
+	writetext SurfGuyLikeADanceText
 	buttonsound
 	verbosegiveitem HM_SURF
 	setevent EVENT_GOT_HM03_SURF
-	writetext UnknownText_0x9999b
+	writetext SurfGuySurfExplanationText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x99515:
-	writetext UnknownText_0x999d5
+SurfGuyAlreadyGaveSurf:
+	writetext SurfGuyElegantKimonoGirlsText
 	waitbutton
 	closetext
 	end
 
-RhydonScript_0x9951b:
+DanceTheaterRhydon:
 	opentext
-	writetext UnknownText_0x99a0a
+	writetext RhydonText
 	cry RHYDON
 	waitbutton
 	closetext
@@ -135,7 +135,7 @@ DanceTheatreGrannyScript:
 	jumptextfaceplayer DanceTheatreGrannyText
 
 MapDanceTheatreSignpost1Script:
-	jumptext UnknownText_0x99b79
+	jumptext FancyPanelText
 
 Kimono_girlNaoko2SeenText:
 	text "You have lovely"
@@ -235,7 +235,7 @@ Kimono_girlMikiAfterBattleText:
 	line "spirits up too."
 	done
 
-UnknownText_0x9980a:
+SurfGuyNeverLeftAScratchText:
 	text "Not only are the"
 	line "KIMONO GIRLS great"
 
@@ -250,7 +250,7 @@ UnknownText_0x9980a:
 	line "scratch…"
 	done
 
-UnknownText_0x99891:
+SurfGuyLadGiftText:
 	text "Lad! If you can"
 	line "defeat all the"
 
@@ -258,7 +258,7 @@ UnknownText_0x99891:
 	line "give you a gift."
 	done
 
-UnknownText_0x998d4:
+SurfGuyLassieGiftText:
 	text "Lassie, if you can"
 	line "defeat all the"
 
@@ -266,7 +266,7 @@ UnknownText_0x998d4:
 	line "give you a gift."
 	done
 
-UnknownText_0x9991a:
+SurfGuyLikeADanceText:
 	text "The way you bat-"
 	line "tled, it was like"
 	cont "watching a dance."
@@ -279,7 +279,7 @@ UnknownText_0x9991a:
 	cont "--take it!"
 	done
 
-UnknownText_0x9999b:
+SurfGuySurfExplanationText:
 	text "That's SURF."
 
 	para "It's a move that"
@@ -287,13 +287,13 @@ UnknownText_0x9999b:
 	cont "across water."
 	done
 
-UnknownText_0x999d5:
+SurfGuyElegantKimonoGirlsText:
 	text "I wish my #MON"
 	line "were as elegant as"
 	cont "the KIMONO GIRLS…"
 	done
 
-UnknownText_0x99a0a:
+RhydonText:
 	text "RHYDON: Gugooh"
 	line "gugogooh!"
 	done
@@ -331,7 +331,7 @@ DanceTheatreGrannyText:
 	cont "thing is possible."
 	done
 
-UnknownText_0x99b79:
+FancyPanelText:
 	text "It's a fancy panel"
 	line "that's decorated"
 	cont "with flowers."
@@ -361,7 +361,7 @@ DanceTheatre_MapEventHeader:
 	object_event SPRITE_KIMONO_GIRL, 2, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerKimono_girlZuki, -1
 	object_event SPRITE_KIMONO_GIRL, 1, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimono_girlKuni, -1
 	object_event SPRITE_KIMONO_GIRL, 2, 11, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimono_girlMiki, -1
-	object_event SPRITE_GENTLEMAN, 10, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x994c6, -1
-	object_event SPRITE_RHYDON, 8, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RhydonScript_0x9951b, -1
+	object_event SPRITE_GENTLEMAN, 10, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheaterSurfGuy, -1
+	object_event SPRITE_RHYDON, 8, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, DanceTheaterRhydon, -1
 	object_event SPRITE_COOLTRAINER_M, 10, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DanceTheatreCooltrainerMScript, -1
 	object_event SPRITE_GRANNY, 6, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DanceTheatreGrannyScript, -1
