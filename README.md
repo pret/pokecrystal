@@ -11,9 +11,8 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 ## See also
 
-* [FAQ.md](FAQ.md)
-* [docs/](docs/)
-
+* [FAQ](FAQ.md)
+* [Documentation](docs/)
 * Disassembly of [**Pokémon Red/Blue**][pokered]
 * Disassembly of [**Pokémon Yellow**][pokeyellow]
 * Disassembly of [**Pokémon Pinball**][pokepinball]
