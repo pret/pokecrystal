@@ -5,10 +5,10 @@ SECTION "NULL", ROM0
 NULL::
 
 
-INCLUDE "rst.asm"
+INCLUDE "home/rst.asm"
 
 
-INCLUDE "interrupts.asm"
+INCLUDE "home/interrupts.asm"
 
 
 SECTION "Header", ROM0
