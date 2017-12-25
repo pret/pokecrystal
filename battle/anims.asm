@@ -288,6 +288,22 @@ BattleAnim_MirrorMove: ; c929b
 	anim_ret
 ; c929c
 
+; anim_obj command description:
+; anim_obj ANIM_OBJ_NAME, x1, y1, x2, y2
+; The x1/x2 and y1/y2 pairs specify the position on screen of the animation object
+; x1/y1 specify a tile position, and x2/y2 specify a pixel offset from that tile. 
+; Meaningful values for x2/y2 are in the 0-7 range, as 8 pixels make a tile.
+; Valid values for x1 go between -16 and 31. In practice starts from 0 to 15, then from -16 to -10.
+; Negative values are relative to the opponent, while positive values are relative to the player. 
+; Useful values go between 14 and -10 (for the opponent) and between 0 and 13 (for the player).
+; Some sample values are:
+; 0: player left border, 6: player center, -15: enemy center, -10: enemy right border.
+; Valid values for y1 also go between -16 and 31; the useful range goes between 2 and 14.
+; Values between 2 and 8 will be in the opponent's area (2 being the top border and 8 being the
+; bottom border), and values between 8 and 14 will be in the player area (again, 8 being the top
+; border and 14 being the bottom border). The center of the body is often two to four tiles away
+; from the border (i.e., 5-6 for the opponent or 10-11 for the player).
+
 BattleAnim_SweetScent2: ; c929c
 	anim_2gfx ANIM_GFX_FLOWER, ANIM_GFX_MISC
 	anim_obj ANIM_OBJ_FLOWER,   8, 0,  12, 0, $2
