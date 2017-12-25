@@ -79,7 +79,7 @@ INCBIN "gfx/font/up_arrow.2bpp"
 ; f9434
 
 Footprints: ; f9434
-INCBIN "gfx/pokedex/footprints.1bpp"
+INCLUDE "gfx/footprints.asm"
 ; fb434
 
 ; This and the following two functions are unreferenced.
