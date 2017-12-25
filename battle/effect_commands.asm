@@ -5651,10 +5651,10 @@ CheckIfStatCanBeRaised: ; 361ef
 .no_carry
 	pop bc
 	ld a, [hld]
-	sub 999 % $100
+	sub MAX_STAT_VALUE % $100
 	jr nz, .not_already_max
 	ld a, [hl]
-	sbc 999 / $100
+	sbc MAX_STAT_VALUE / $100
 	jp z, .stats_already_max
 .not_already_max
 	ld a, [hBattleTurn]
@@ -6417,14 +6417,14 @@ CalcStats: ; 3661d
 
 .check_maxed_out
 	ld a, [hQuotient + 2]
-	cp 999 % $100
+	cp MAX_STAT_VALUE % $100
 	ld a, b
-	sbc 999 / $100
+	sbc MAX_STAT_VALUE / $100
 	jr c, .not_maxed_out
 
-	ld a, 999 % $100
+	ld a, MAX_STAT_VALUE % $100
 	ld [hQuotient + 2], a
-	ld a, 999 / $100
+	ld a, MAX_STAT_VALUE / $100
 	ld [hQuotient + 1], a
 
 .not_maxed_out

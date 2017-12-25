@@ -2226,7 +2226,7 @@ Function89d85: ; 89d85 (22:5d85)
 	push hl
 	call Mobile22_SetBGMapMode0
 	call _hl_
-	call CGBOnly_LoadEDTile
+	call CGBOnly_CopyTilemapAtOnce
 	pop hl
 
 asm_89d90: ; 89d90 (22:5d90)
@@ -2670,7 +2670,7 @@ Function8a055: ; 8a055 (22:6055)
 	inc hl
 	ld a, $6
 	call Function8a5a3
-	call CGBOnly_LoadEDTile
+	call CGBOnly_CopyTilemapAtOnce
 	pop bc
 	ld a, c
 	cp $b
@@ -2685,7 +2685,7 @@ Function8a055: ; 8a055 (22:6055)
 	ld a, $6
 	hlcoord 15, 4, AttrMap
 	call Function8a5a3
-	call CGBOnly_LoadEDTile
+	call CGBOnly_CopyTilemapAtOnce
 	jp Function89e36
 
 Function8a0a1: ; 8a0a1 (22:60a1)

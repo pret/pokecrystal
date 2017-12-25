@@ -4,7 +4,7 @@ GetSquareRoot: ; 13b87
 ; Rather than calculating the result, we take the index of the
 ; first value in a table of squares that isn't lower than de.
 
-	ld hl, Squares
+	ld hl, .Squares
 	ld b, 0
 .loop
 ; Make sure we don't go past the end of the table.
@@ -22,7 +22,7 @@ GetSquareRoot: ; 13b87
 	jr c, .loop
 	ret
 
-Squares: ; 13b98
+.Squares: ; 13b98
 root	set 1
 	rept $ff
 	dw root*root

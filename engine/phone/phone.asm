@@ -599,7 +599,7 @@ Phone_StartRinging: ; 9033f
 	call PlaySFX
 	call Phone_CallerTextbox
 	call UpdateSprites
-	farcall PhoneRing_LoadEDTile
+	farcall PhoneRing_CopyTilemapAtOnce
 	ret
 ; 90355
 
@@ -609,7 +609,7 @@ HangUp_Wait20Frames: ; 90355
 Phone_Wait20Frames
 	ld c, 20
 	call DelayFrames
-	farcall PhoneRing_LoadEDTile
+	farcall PhoneRing_CopyTilemapAtOnce
 	ret
 ; 90363
 

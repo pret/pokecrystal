@@ -60,7 +60,7 @@ Predef_StartBattle: ; 8c20f
 	call UpdateSprites
 	call DelayFrame
 	call .NonMobile_LoadPokeballTiles
-	call BattleStart_LoadEDTile
+	call BattleStart_CopyTilemapAtOnce
 	jr .resume
 
 .mobile
@@ -663,7 +663,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	call DelayFrame
-	call BattleStart_LoadEDTile
+	call BattleStart_CopyTilemapAtOnce
 
 .nextscene ; 8c673 (23:4673)
 	call StartTrainerBattle_NextScene

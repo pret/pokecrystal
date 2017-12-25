@@ -31,19 +31,19 @@ doorstate: macro
 endm
 
 const_value set 2
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_PHARMACIST1
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_PHARMACIST2
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET1
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET2
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET3
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_ROCKET_GIRL
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_TEACHER
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_SUPER_NERD
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_POKE_BALL1
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_POKE_BALL2
-	const UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_PHARMACIST1
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_PHARMACIST2
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_ROCKET1
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_ROCKET2
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_ROCKET3
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_ROCKET_GIRL
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_TEACHER
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SUPER_NERD
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_POKE_BALL1
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_POKE_BALL2
+	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 
-UndergroundPathSwitchRoomEntrances_MapScriptHeader:
+GoldenrodUndergroundSwitchRoomEntrances_MapScriptHeader:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -112,10 +112,10 @@ UndergroundPathSwitchRoomEntrances_MapScriptHeader:
 	return
 
 SuperNerdScript_0x7ca7a:
-	jumptextfaceplayer UndergroundPathSwitchRoomEntrances_SuperNerdText
+	jumptextfaceplayer GoldenrodUndergroundSwitchRoomEntrances_SuperNerdText
 
 TeacherScript_0x7ca7d:
-	jumptextfaceplayer UndergroundPathSwitchRoomEntrances_TeacherText
+	jumptextfaceplayer GoldenrodUndergroundSwitchRoomEntrances_TeacherText
 
 UndergroundSilverScene1:
 	spriteface PLAYER, RIGHT
@@ -123,14 +123,14 @@ UndergroundSilverScene1:
 	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
-	appear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	appear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	waitsfx
-	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement1
+	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement1
 	spriteface PLAYER, RIGHT
 	scall UndergroundSilverBattleScript
-	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
+	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
 	playsound SFX_EXIT_BUILDING
-	disappear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	setscene 1
 	waitsfx
 	playmapmusic
@@ -142,14 +142,14 @@ UndergroundSilverScene2:
 	special Special_FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
-	appear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	appear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	waitsfx
-	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement2
+	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement2
 	spriteface PLAYER, RIGHT
 	scall UndergroundSilverBattleScript
-	applymovement UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
+	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
 	playsound SFX_EXIT_BUILDING
-	disappear UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	setscene 1
 	waitsfx
 	playmapmusic
@@ -166,13 +166,13 @@ UndergroundSilverBattleScript:
 	writetext UndergroundSilverBeforeText
 	waitbutton
 	closetext
-	setevent EVENT_RIVAL_UNDERGROUND_PATH
+	setevent EVENT_RIVAL_GOLDENROD_UNDERGROUND
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
 	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
-	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_4_TOTODILE
 	startbattle
 	dontrestartmapmusic
@@ -181,7 +181,7 @@ UndergroundSilverBattleScript:
 
 .Totodile:
 	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
-	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_4_CHIKORITA
 	startbattle
 	dontrestartmapmusic
@@ -190,7 +190,7 @@ UndergroundSilverBattleScript:
 
 .Chikorita:
 	winlosstext UndergroundSilverWinText, UndergroundSilverLossText
-	setlasttalked UNDERGROUNDPATHSWITCHROOMENTRANCES_SILVER
+	setlasttalked GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	loadtrainer RIVAL1, RIVAL1_4_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
@@ -279,22 +279,22 @@ Switch1Script:
 	iftrue .On
 	writetext SwitchRoomText_OffTurnOn
 	yesorno
-	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar 1
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_1
-	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
+	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 .On:
 	writetext SwitchRoomText_OnTurnOff
 	yesorno
-	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar -1
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_1
-	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
+	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 Switch2Script:
 	opentext
@@ -304,22 +304,22 @@ Switch2Script:
 	iftrue .On
 	writetext SwitchRoomText_OffTurnOn
 	yesorno
-	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar 2
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_2
-	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
+	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 .On:
 	writetext SwitchRoomText_OnTurnOff
 	yesorno
-	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar -2
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_2
-	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
+	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 Switch3Script:
 	opentext
@@ -329,22 +329,22 @@ Switch3Script:
 	iftrue .On
 	writetext SwitchRoomText_OffTurnOn
 	yesorno
-	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar 3
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_SWITCH_3
-	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
+	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 .On:
 	writetext SwitchRoomText_OnTurnOff
 	yesorno
-	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	copybytetovar UndergroundSwitchPositions
 	addvar -3
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_SWITCH_3
-	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
+	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 EmergencySwitchScript:
 	opentext
@@ -354,32 +354,32 @@ EmergencySwitchScript:
 	iftrue .On
 	writetext SwitchRoomText_OffTurnOn
 	yesorno
-	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	writebyte 7
 	copyvartobyte UndergroundSwitchPositions
 	setevent EVENT_EMERGENCY_SWITCH
 	setevent EVENT_SWITCH_1
 	setevent EVENT_SWITCH_2
 	setevent EVENT_SWITCH_3
-	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
+	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
 .On:
 	writetext SwitchRoomText_OnTurnOff
 	yesorno
-	iffalse UndergroundPathSwitchRoomEntrances_DontToggle
+	iffalse GoldenrodUndergroundSwitchRoomEntrances_DontToggle
 	writebyte 0
 	copyvartobyte UndergroundSwitchPositions
 	clearevent EVENT_EMERGENCY_SWITCH
 	clearevent EVENT_SWITCH_1
 	clearevent EVENT_SWITCH_2
 	clearevent EVENT_SWITCH_3
-	jump UndergroundPathSwitchRoomEntrances_UpdateDoors
+	jump GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors
 
-UndergroundPathSwitchRoomEntrances_DontToggle:
+GoldenrodUndergroundSwitchRoomEntrances_DontToggle:
 	closetext
 	end
 
-UndergroundPathSwitchRoomEntrances_UpdateDoors:
+GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors:
 	copybytetovar UndergroundSwitchPositions
 	if_equal 0, .Position0
 	if_equal 1, .Position1
@@ -623,19 +623,17 @@ UndergroundPathSwitchRoomEntrances_UpdateDoors:
 	clearevent EVENT_SWITCH_14
 	end
 
-UndergroundPathSwitchRoomEntrancesSmokeBall:
+GoldenrodUndergroundSwitchRoomEntrancesSmokeBall:
 	itemball SMOKE_BALL
 
-UndergroundPathSwitchRoomEntrancesFullHeal:
+GoldenrodUndergroundSwitchRoomEntrancesFullHeal:
 	itemball FULL_HEAL
 
-UndergroundPathSwitchRoomEntrancesHiddenMaxPotion:
-	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
+GoldenrodUndergroundSwitchRoomEntrancesHiddenMaxPotion:
+	dwb EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
 
-
-UndergroundPathSwitchRoomEntrancesHiddenRevive:
-	dwb EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
-
+GoldenrodUndergroundSwitchRoomEntrancesHiddenRevive:
+	dwb EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
 
 UndergroundSilverApproachMovement1:
 	step DOWN
@@ -751,7 +749,7 @@ UndergroundSilverLossText:
 	cont "under my heels."
 	done
 
-UndergroundPathSwitchRoomEntrances_SuperNerdText:
+GoldenrodUndergroundSwitchRoomEntrances_SuperNerdText:
 	text "I was challenged"
 	line "to a battle down-"
 	cont "stairs."
@@ -761,7 +759,7 @@ UndergroundPathSwitchRoomEntrances_SuperNerdText:
 	cont "better be careful."
 	done
 
-UndergroundPathSwitchRoomEntrances_TeacherText:
+GoldenrodUndergroundSwitchRoomEntrances_TeacherText:
 	text "There are some"
 	line "shops downstairs…"
 
@@ -931,19 +929,19 @@ SwitchRoomText_Emergency:
 	line "EMERGENCY."
 	done
 
-UndergroundPathSwitchRoomEntrances_MapEventHeader:
+GoldenrodUndergroundSwitchRoomEntrances_MapEventHeader:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 9
-	warp_def $3, $17, 6, WAREHOUSE_ENTRANCE
-	warp_def $a, $16, 1, UNDERGROUND_WAREHOUSE
-	warp_def $a, $17, 2, UNDERGROUND_WAREHOUSE
-	warp_def $19, $5, 2, WAREHOUSE_ENTRANCE
+	warp_def $3, $17, 6, GOLDENROD_UNDERGROUND
+	warp_def $a, $16, 1, GOLDENROD_UNDERGROUND_WAREHOUSE
+	warp_def $a, $17, 2, GOLDENROD_UNDERGROUND_WAREHOUSE
+	warp_def $19, $5, 2, GOLDENROD_UNDERGROUND
 	warp_def $1d, $4, 14, GOLDENROD_CITY
 	warp_def $1d, $5, 14, GOLDENROD_CITY
-	warp_def $19, $15, 1, WAREHOUSE_ENTRANCE
+	warp_def $19, $15, 1, GOLDENROD_UNDERGROUND
 	warp_def $1d, $14, 13, GOLDENROD_CITY
 	warp_def $1d, $15, 13, GOLDENROD_CITY
 
@@ -958,8 +956,8 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	bg_event 1, 10, BGEVENT_READ, Switch2Script
 	bg_event 1, 2, BGEVENT_READ, Switch3Script
 	bg_event 11, 20, BGEVENT_READ, EmergencySwitchScript
-	bg_event 9, 8, BGEVENT_ITEM, UndergroundPathSwitchRoomEntrancesHiddenMaxPotion
-	bg_event 8, 1, BGEVENT_ITEM, UndergroundPathSwitchRoomEntrancesHiddenRevive
+	bg_event 9, 8, BGEVENT_ITEM, GoldenrodUndergroundSwitchRoomEntrancesHiddenMaxPotion
+	bg_event 8, 1, BGEVENT_ITEM, GoldenrodUndergroundSwitchRoomEntrancesHiddenRevive
 
 .ObjectEvents:
 	db 11
@@ -971,6 +969,6 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader:
 	object_event SPRITE_ROCKET_GIRL, 12, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event SPRITE_TEACHER, 27, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x7ca7d, -1
 	object_event SPRITE_SUPER_NERD, 27, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x7ca7a, -1
-	object_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesSmokeBall, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
-	object_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, UndergroundPathSwitchRoomEntrancesFullHeal, EVENT_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES_FULL_HEAL
-	object_event SPRITE_SILVER, 3, 23, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_UNDERGROUND_PATH
+	object_event SPRITE_POKE_BALL, 12, 1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundSwitchRoomEntrancesSmokeBall, EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
+	object_event SPRITE_POKE_BALL, 9, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundSwitchRoomEntrancesFullHeal, EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_FULL_HEAL
+	object_event SPRITE_SILVER, 3, 23, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_GOLDENROD_UNDERGROUND

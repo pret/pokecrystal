@@ -411,7 +411,7 @@ Function8b539: ; 8b539 (22:7539)
 	call Function8b4fd
 	ld e, $0
 	call Function89c44
-	call CGBOnly_LoadEDTile
+	call CGBOnly_CopyTilemapAtOnce
 	ret
 
 Function8b555: ; 8b555 (22:7555)

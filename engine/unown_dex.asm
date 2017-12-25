@@ -48,4 +48,5 @@ PrintUnownWord: ; fba2e (3e:7a2e)
 	jr .loop
 ; fba5a (3e:7a5a)
 
+
 INCLUDE "data/unown_words.asm"

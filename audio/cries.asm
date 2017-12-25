@@ -1166,7 +1166,7 @@ Cry_Weepinbell: ; f35ca
 	musicheader 1, 8, Cry_Weepinbell_Ch8
 ; f35d3
 
-Unknown_Cry_Ch5: ; f35d3
+Unused_Cry_Ch5: ; f35d3
 	sound_duty 0, 0, 3, 3
 	sound __, 16, $e0, $0780
 	sound __, 16, $f0, $0784
@@ -1177,7 +1177,7 @@ Unknown_Cry_Ch5: ; f35d3
 	endchannel
 ; f35ee
 
-Unknown_Cry_Ch6: ; f35ee
+Unused_Cry_Ch6: ; f35ee
 	sound_duty 1, 1, 0, 0
 	sound __, 16, $a0, $0741
 	sound __, 16, $b0, $0743
@@ -1188,7 +1188,7 @@ Unknown_Cry_Ch6: ; f35ee
 	endchannel
 ; f3609
 
-Unknown_Cry_Ch8: ; f3609
+Unused_Cry_Ch8: ; f3609
 	noise __,  3, $f2, $4c
 	noise __,  7, $e0, $3a
 	noise __, 16, $d0, $3a

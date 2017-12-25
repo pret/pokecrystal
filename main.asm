@@ -3,58 +3,13 @@ INCLUDE "includes.asm"
 
 SECTION "bank1", ROMX
 
-PlaceWaitingText:: ; 4000
-	hlcoord 3, 10
-	ld b, 1
-	ld c, 11
-
-	ld a, [wBattleMode]
-	and a
-	jr z, .notinbattle
-
-	call TextBox
-	jr .proceed
-
-.notinbattle
-	predef Predef_LinkTextbox
-
-.proceed
-	hlcoord 4, 11
-	ld de, .Waiting
-	call PlaceString
-	ld c, 50
-	jp DelayFrames
-
-.Waiting: ; 4025
-	db "Waiting...!@"
-
-LoadPushOAM:: ; 4031
-	ld c, hPushOAM - $ff00
-	ld b, PushOAMEnd - PushOAM
-	ld hl, PushOAM
-.loop
-	ld a, [hli]
-	ld [$ff00+c], a
-	inc c
-	dec b
-	jr nz, .loop
-	ret
-
-PushOAM: ; 403f
-	ld a, Sprites / $100
-	ld [rDMA], a
-	ld a, (SpritesEnd - Sprites) / 4 ; 40
-.loop
-	dec a
-	jr nz, .loop
-	ret
-PushOAMEnd
-
+INCLUDE "engine/routines/placewaitingtext.asm"
+INCLUDE "engine/routines/loadpushoam.asm"
 INCLUDE "engine/map_objects.asm"
 INCLUDE "engine/intro_menu.asm"
 INCLUDE "engine/init_map.asm"
 INCLUDE "engine/learn.asm"
-INCLUDE "engine/check_nick_errors.asm"
+INCLUDE "engine/routines/checknickerrors.asm"
 INCLUDE "engine/math.asm"
 INCLUDE "data/items/item_attributes.asm"
 INCLUDE "engine/npc_movement.asm"
@@ -65,14 +20,14 @@ INCLUDE "event/special.asm"
 SECTION "bank2", ROMX
 
 INCLUDE "engine/player_object.asm"
-INCLUDE "engine/sine.asm"
+INCLUDE "engine/routines/sine.asm"
 INCLUDE "engine/predef.asm"
 INCLUDE "engine/color.asm"
 
 
 SECTION "bank3", ROMX
 
-INCLUDE "engine/check_time.asm"
+INCLUDE "engine/routines/checktime.asm"
 INCLUDE "engine/specials.asm"
 INCLUDE "engine/printnum.asm"
 INCLUDE "engine/health.asm"
@@ -82,10 +37,11 @@ INCLUDE "engine/player_step.asm"
 INCLUDE "engine/anim_hp_bar.asm"
 INCLUDE "engine/move_mon.asm"
 INCLUDE "engine/billspctop.asm"
-INCLUDE "engine/get_breedmon_growth.asm"
+INCLUDE "engine/routines/getbreedmonlevelgrowth.asm"
 INCLUDE "event/bug_contest/caught_mon.asm"
 INCLUDE "engine/item_effects.asm"
-INCLUDE "engine/knows_move.asm"
+INCLUDE "engine/routines/getpokeballwobble.asm"
+INCLUDE "engine/routines/knowsmove.asm"
 
 
 SECTION "bank4", ROMX
@@ -106,10 +62,10 @@ INCLUDE "event/bug_contest/contest.asm"
 INCLUDE "event/misc_scripts_2.asm"
 INCLUDE "event/std_collision.asm"
 INCLUDE "event/bug_contest/judging.asm"
-INCLUDE "engine/pokerus_tick.asm"
+INCLUDE "engine/pokerus/apply_pokerus_tick.asm"
 INCLUDE "event/bug_contest/contest_2.asm"
-INCLUDE "engine/unused_correct_party.asm"
-INCLUDE "engine/square_root.asm"
+INCLUDE "engine/routines/correcterrorsinplayerparty.asm"
+INCLUDE "engine/routines/getsquareroot.asm"
 
 
 SECTION "bank5", ROMX
@@ -141,21 +97,7 @@ SECTION "bank9", ROMX
 
 INCLUDE "data/text_buffers.asm"
 INCLUDE "engine/menu.asm"
-
-UpdateItemDescription: ; 0x244c3
-	ld a, [MenuSelection]
-	ld [CurSpecies], a
-	hlcoord 0, 12
-	ld b, 4
-	ld c, SCREEN_WIDTH - 2
-	call TextBox
-	ld a, [MenuSelection]
-	cp -1
-	ret z
-	decoord 1, 14
-	farcall PrintItemDescription
-	ret
-
+INCLUDE "engine/routines/updateitemdescription.asm"
 INCLUDE "engine/pokepic.asm"
 INCLUDE "engine/map_objects_2.asm"
 INCLUDE "engine/scrolling_menu.asm"
@@ -167,58 +109,13 @@ INCLUDE "engine/buy_sell_toss.asm"
 INCLUDE "engine/trainer_card.asm"
 INCLUDE "engine/prof_oaks_pc.asm"
 INCLUDE "engine/decorations.asm"
-
-LevelUpHappinessMod: ; 2709e
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1CaughtLocation
-	call GetPartyLocation
-	ld a, [hl]
-	and $7f
-	ld d, a
-	ld a, [MapGroup]
-	ld b, a
-	ld a, [MapNumber]
-	ld c, a
-	call GetWorldMapLocation
-	cp d
-	ld c, HAPPINESS_GAINLEVEL
-	jr nz, .ok
-	ld c, HAPPINESS_GAINLEVELATHOME
-
-.ok
-	callfar ChangeHappiness
-	ret
-
+INCLUDE "engine/routines/leveluphappinessmod.asm"
 INCLUDE "data/trainers/trainer_dvs.asm"
-
-_ReturnToBattle_UseBall: ; 2715c
-	call ClearBGPalettes
-	call ClearTileMap
-	ld a, [BattleType]
-	cp BATTLETYPE_TUTORIAL
-	jr z, .gettutorialbackpic
-	farcall GetBattleMonBackpic
-	jr .continue
-
-.gettutorialbackpic
-	farcall GetTrainerBackpic
-.continue
-	farcall GetEnemyMonFrontpic
-	farcall _LoadBattleFontsHPBar
-	call GetMemSGBLayout
-	call CloseWindow
-	call LoadStandardMenuDataHeader
-	call WaitBGMap
-	jp SetPalettes
-
-INCLUDE "engine/consume_held_item.asm"
+INCLUDE "engine/routines/returntobattle_useball.asm"
+INCLUDE "engine/routines/consumehelditem.asm"
 INCLUDE "battle/moves/move_effects_pointers.asm"
 INCLUDE "battle/moves/move_effects.asm"
-
-Kurt_SelectQuantity_InterpretJoypad: ; 27a28
-	call BuySellToss_InterpretJoypad
-	ld b, a
-	ret
+INCLUDE "engine/routines/kurt_selectquantity_interpretjoypad.asm"
 
 
 SECTION "bankA", ROMX
@@ -226,7 +123,12 @@ SECTION "bankA", ROMX
 INCLUDE "engine/link.asm"
 INCLUDE "engine/wildmons.asm"
 INCLUDE "battle/link_result.asm"
-INCLUDE "engine/player_gfx_2.asm"
+
+ChrisBackpic: ; 2ba1a
+INCBIN "gfx/player/chris_back.2bpp.lz"
+
+DudeBackpic: ; 2bbaa
+INCBIN "gfx/battle/dude.2bpp.lz"
 
 
 SECTION "bankB", ROMX
@@ -238,9 +140,9 @@ INCLUDE "event/move_deleter.asm"
 INCLUDE "engine/mystery_gift_2.asm"
 INCLUDE "engine/tmhm2.asm"
 INCLUDE "battle/moves/move_descriptions.asm"
-INCLUDE "engine/pokerus.asm"
+INCLUDE "engine/pokerus/pokerus.asm"
 INCLUDE "engine/start_battle.asm"
-INCLUDE "engine/place_graphics.asm"
+INCLUDE "engine/routines/placegraphic.asm"
 
 
 SECTION "Effect Commands", ROMX
@@ -284,7 +186,7 @@ INCLUDE "engine/mail.asm"
 SECTION "Crystal Unique", ROMX
 
 INCLUDE "engine/init_gender.asm"
-INCLUDE "engine/pack_f.asm"
+INCLUDE "engine/routines/drawkrispackgfx.asm"
 INCLUDE "event/move_tutor.asm"
 INCLUDE "engine/crystal_colors.asm"
 INCLUDE "event/celebi.asm"
@@ -300,233 +202,20 @@ SECTION "bank13", ROMX
 INCLUDE "engine/map_palettes.asm"
 INCLUDE "tilesets/palette_maps.asm"
 
-Unknown_4ce05: ; unreferenced
+; unreferenced
+; 0x4ce05
 rept 26
 	db $06
 endr
 ; 0x4ce1f
 
 INCLUDE "data/collision_permissions.asm"
-INCLUDE "engine/empty_sram.asm"
-
-SaveMenu_LoadEDTile: ; 4cf45 (13:4f45)
-	ld a, [hCGB]
-	and a
-	jp z, WaitBGMap
-
-; The following is a modified version of LoadEDTile.
-	ld a, [hBGMapMode]
-	push af
-	xor a
-	ld [hBGMapMode], a
-	ld a, [hMapAnims]
-	push af
-	xor a
-	ld [hMapAnims], a
-.WaitLY:
-	ld a, [rLY]
-	cp $60
-	jr c, .WaitLY
-
-	di
-	ld a, 1 ; BANK(VBGMap2)
-	ld [rVBK], a
-	hlcoord 0, 0, AttrMap
-	call .LoadEDTile
-	ld a, 0 ; BANK(VBGMap0)
-	ld [rVBK], a
-	hlcoord 0, 0
-	call .LoadEDTile
-.WaitLY2:
-	ld a, [rLY]
-	cp $60
-	jr c, .WaitLY2
-	ei
-
-	pop af
-	ld [hMapAnims], a
-	pop af
-	ld [hBGMapMode], a
-	ret
-
-.LoadEDTile: ; 4cf80 (13:4f80)
-	ld [hSPBuffer], sp ; $ffd9
-	ld sp, hl
-	ld a, [hBGMapAddress + 1]
-	ld h, a
-	ld l, 0
-	ld a, SCREEN_HEIGHT
-	ld [hTilesPerCycle], a
-	ld b, 1 << 1
-	ld c, rSTAT % $100
-
-.loop
-rept SCREEN_WIDTH / 2
-	pop de
-.loop\@
-	ld a, [$ff00+c]
-	and b
-	jr nz, .loop\@
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-endr
-
-	ld de, $20 - SCREEN_WIDTH
-	add hl, de
-	ld a, [hTilesPerCycle]
-	dec a
-	ld [hTilesPerCycle], a
-	jr nz, .loop
-
-	ld a, [hSPBuffer]
-	ld l, a
-	ld a, [hSPBuffer + 1]
-	ld h, a
-	ld sp, hl
-	ret
-
-CheckSave:: ; 4cffe
-	ld a, BANK(sCheckValue1) ; BANK(sCheckValue2)
-	call GetSRAMBank
-	ld a, [sCheckValue1]
-	ld b, a
-	ld a, [sCheckValue2]
-	ld c, a
-	call CloseSRAM
-	ld a, b
-	cp SAVE_CHECK_VALUE_1
-	jr nz, .ok
-	ld a, c
-	cp SAVE_CHECK_VALUE_2
-	jr nz, .ok
-	ld c, $1
-	ret
-
-.ok
-	ld c, $0
-	ret
-
+INCLUDE "engine/routines/emptyallsrambanks.asm"
+INCLUDE "engine/routines/savemenu_copytilemapatonce.asm"
+INCLUDE "engine/routines/checksave.asm"
 INCLUDE "data/maps/map_scenes.asm"
-
-_LoadMapPart:: ; 4d15b
-	ld hl, wMisc
-	ld a, [wMetatileStandingY]
-	and a
-	jr z, .top_row
-	ld bc, WMISC_WIDTH * 2
-	add hl, bc
-
-.top_row
-	ld a, [wMetatileStandingX]
-	and a
-	jr z, .left_column
-	inc hl
-	inc hl
-
-.left_column
-	decoord 0, 0
-	ld b, SCREEN_HEIGHT
-.loop
-	ld c, SCREEN_WIDTH
-.loop2
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .loop2
-	ld a, l
-	add 4
-	ld l, a
-	jr nc, .carry
-	inc h
-
-.carry
-	dec b
-	jr nz, .loop
-	ret
-
-PhoneRing_LoadEDTile: ; 4d188
-	ld a, [hCGB]
-	and a
-	jp z, WaitBGMap
-	ld a, [wSpriteUpdatesEnabled]
-	cp $0
-	jp z, WaitBGMap
-
-; What follows is a modified version of LoadEDTile.
-	ld a, [hBGMapMode]
-	push af
-	xor a
-	ld [hBGMapMode], a
-	ld a, [hMapAnims]
-	push af
-	xor a
-	ld [hMapAnims], a
-.wait
-	ld a, [rLY]
-	cp $8f
-	jr c, .wait
-
-	di
-	ld a, 1 ; BANK(VBGMap2)
-	ld [rVBK], a
-	hlcoord 0, 0, AttrMap
-	call .LoadEDTile
-	ld a, 0 ; BANK(VBGMap0)
-	ld [rVBK], a
-	hlcoord 0, 0
-	call .LoadEDTile
-.wait2
-	ld a, [rLY]
-	cp $8f
-	jr c, .wait2
-	ei
-
-	pop af
-	ld [hMapAnims], a
-	pop af
-	ld [hBGMapMode], a
-	ret
-
-.LoadEDTile: ; 4d1cb
-	ld [hSPBuffer], sp
-	ld sp, hl
-	ld a, [hBGMapAddress + 1]
-	ld h, a
-	ld l, 0
-	ld a, SCREEN_HEIGHT
-	ld [hTilesPerCycle], a
-	ld b, 1 << 1 ; not in v/hblank
-	ld c, rSTAT % $100
-
-.loop
-rept SCREEN_WIDTH / 2
-	pop de
-.loop\@
-	ld a, [$ff00+c]
-	and b
-	jr nz, .loop\@
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-endr
-
-	ld de, $20 - SCREEN_WIDTH
-	add hl, de
-	ld a, [hTilesPerCycle]
-	dec a
-	ld [hTilesPerCycle], a
-	jr nz, .loop
-
-	ld a, [hSPBuffer]
-	ld l, a
-	ld a, [hSPBuffer + 1]
-	ld h, a
-	ld sp, hl
-	ret
+INCLUDE "engine/routines/loadmappart.asm"
+INCLUDE "engine/routines/phonering_copytilemapatonce.asm"
 
 Shrink1Pic: ; 4d249
 INCBIN "gfx/shrink/shrink1.2bpp.lz"
@@ -534,129 +223,12 @@ INCBIN "gfx/shrink/shrink1.2bpp.lz"
 Shrink2Pic: ; 4d2d9
 INCBIN "gfx/shrink/shrink2.2bpp.lz"
 
-LinkMonStatsScreen: ; 4d319
-	ld a, [wMenuCursorY]
-	dec a
-	ld [CurPartyMon], a
-	call LowVolume
-	predef StatsScreenInit
-	ld a, [CurPartyMon]
-	inc a
-	ld [wMenuCursorY], a
-	call ClearScreen
-	call ClearBGPalettes
-	call MaxVolume
-	farcall LoadTradeScreenBorder
-	farcall Link_WaitBGMap
-	farcall InitTradeSpeciesList
-	farcall SetTradeRoomBGPals
-	call WaitBGMap2
-	ret
-
-Link_WaitBGMap: ; 4d354
-	call WaitBGMap
-	call WaitBGMap2
-	ret
-
-LinkTextbox2: ; 4d35b
-	ld h, d
-	ld l, e
-	push bc
-	push hl
-	call .PlaceBorder
-	pop hl
-	pop bc
-	ld de, AttrMap - TileMap
-	add hl, de
-	inc b
-	inc b
-	inc c
-	inc c
-	ld a, $7
-.row
-	push bc
-	push hl
-.col
-	ld [hli], a
-	dec c
-	jr nz, .col
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
-	pop bc
-	dec b
-	jr nz, .row
-	ret
-
-.PlaceBorder: ; 4d37e
-	push hl
-	ld a, $76
-	ld [hli], a
-	inc a
-	call .PlaceRow
-	inc a
-	ld [hl], a
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
-.loop
-	push hl
-	ld a, "┌"
-	ld [hli], a
-	ld a, " "
-	call .PlaceRow
-	ld [hl], "─"
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
-	dec b
-	jr nz, .loop
-	ld a, "┐"
-	ld [hli], a
-	ld a, "│"
-	call .PlaceRow
-	ld [hl], "└"
-	ret
-
-.PlaceRow: ; 4d3ab
-	ld d, c
-.row_loop
-	ld [hli], a
-	dec d
-	jr nz, .row_loop
-	ret
-
+INCLUDE "engine/link_2.asm"
 INCLUDE "engine/delete_save_change_clock.asm"
 INCLUDE "tilesets/tileset_headers.asm"
-INCLUDE "engine/flag_predef.asm"
-INCLUDE "engine/trademon_frontpic.asm"
-
-CheckPokerus: ; 4d860
-; Return carry if a monster in your party has Pokerus
-
-; Get number of monsters to iterate over
-	ld a, [PartyCount]
-	and a
-	jr z, .NoPokerus
-	ld b, a
-; Check each monster in the party for Pokerus
-	ld hl, PartyMon1PokerusStatus
-	ld de, PARTYMON_STRUCT_LENGTH
-.Check:
-	ld a, [hl]
-	and $0f ; only the bottom nybble is used
-	jr nz, .HasPokerus
-; Next PartyMon
-	add hl, de
-	dec b
-	jr nz, .Check
-.NoPokerus:
-	and a
-	ret
-.HasPokerus:
-	scf
-	ret
-
+INCLUDE "engine/routines/flagpredef.asm"
+INCLUDE "engine/routines/trademonfrontpic.asm"
+INCLUDE "engine/pokerus/check_pokerus.asm"
 INCLUDE "event/lucky_number.asm"
 INCLUDE "engine/caught_data.asm"
 INCLUDE "engine/search2.asm"
@@ -667,7 +239,7 @@ INCLUDE "engine/init_hof_credits.asm"
 INCLUDE "mobile/get_trainer_class.asm"
 INCLUDE "battle/sliding_intro.asm"
 INCLUDE "mobile/print_opp_message.asm"
-INCLUDE "engine/check_battle_scene.asm"
+INCLUDE "engine/routines/checkbattlescene.asm"
 INCLUDE "engine/gbc_only.asm"
 INCLUDE "event/poke_seer.asm"
 
@@ -685,9 +257,9 @@ INCLUDE "engine/tempmon.asm"
 INCLUDE "text/types.asm"
 INCLUDE "text/unused_gen_1_trainers.asm"
 INCLUDE "engine/mon_stats.asm"
-INCLUDE "engine/init_list.asm"
+INCLUDE "engine/routines/initlist.asm"
 INCLUDE "engine/experience.asm"
-INCLUDE "engine/switch_party_mons.asm"
+INCLUDE "engine/routines/switchpartymons.asm"
 INCLUDE "gfx/load_pics.asm"
 INCLUDE "engine/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
@@ -751,11 +323,7 @@ INCLUDE "engine/timeofdaypals.asm"
 INCLUDE "engine/battle_transition.asm"
 INCLUDE "event/field_moves.asm"
 INCLUDE "event/magnet_train.asm"
-
-BattleStart_LoadEDTile: ; 8cf4f
-	call CGBOnly_LoadEDTile
-	ret
-
+INCLUDE "engine/routines/battlestart_copytilemapatonce.asm"
 INCLUDE "engine/sprites.asm"
 INCLUDE "engine/mon_icons.asm"
 
@@ -897,8 +465,8 @@ SECTION "bank3E", ROMX
 INCLUDE "gfx/font.asm"
 INCLUDE "engine/time_capsule.asm"
 INCLUDE "event/name_rater.asm"
-INCLUDE "engine/play_slow_cry.asm"
-INCLUDE "engine/new_pokedex_entry.asm"
+INCLUDE "engine/routines/playslowcry.asm"
+INCLUDE "engine/routines/newpokedexentry.asm"
 INCLUDE "engine/time_capsule_2.asm"
 INCLUDE "engine/unown_dex.asm"
 INCLUDE "event/magikarp.asm"
@@ -973,15 +541,7 @@ INCLUDE "text/phone/extra2.asm"
 
 SECTION "bank5E", ROMX
 
-_UpdateBattleHUDs:
-	farcall DrawPlayerHUD
-	ld hl, PlayerHPPal
-	call SetHPPal
-	farcall DrawEnemyHUD
-	ld hl, EnemyHPPal
-	call SetHPPal
-	farcall FinishBattleAnim
-	ret
+INCLUDE "engine/routines/updatebattlehuds.asm"
 
 
 SECTION "mobile_5e", ROMX
@@ -1036,11 +596,15 @@ INCLUDE "engine/print_party.asm"
 
 SECTION "bank77_2", ROMX
 
-INCLUDE "engine/printhoursmins.asm"
+INCLUDE "engine/routines/printhoursmins.asm"
 INCLUDE "engine/diploma.asm"
 INCLUDE "engine/pokedex_3.asm"
 INCLUDE "event/catch_tutorial_input.asm"
-INCLUDE "engine/pokegear_2.asm"
+INCLUDE "engine/routines/townmap_convertlinebreakcharacters.asm"
+
+PokegearGFX: ; 1de2e4
+INCBIN "gfx/pokegear/pokegear.2bpp.lz"
+
 INCLUDE "engine/european_mail.asm"
 
 

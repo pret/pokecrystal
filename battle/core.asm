@@ -2573,11 +2573,11 @@ WinTrainerBattle: ; 3cfa4
 .CheckMaxedOutMomMoney: ; 3d0b1
 	ld hl, wMomsMoney + 2
 	ld a, [hld]
-	cp 999999 % $100
+	cp MAX_MONEY % $100
 	ld a, [hld]
-	sbc 999999 / $100 % $100
+	sbc MAX_MONEY / $100 % $100
 	ld a, [hl]
-	sbc 999999 / $10000 % $100
+	sbc MAX_MONEY / $10000 % $100
 	ret
 ; 3d0be
 
@@ -2602,17 +2602,17 @@ AddBattleMoneyToAccount: ; 3d0be
 	jr nz, .loop
 	pop hl
 	ld a, [hld]
-	cp 999999 % $100
+	cp MAX_MONEY % $100
 	ld a, [hld]
-	sbc 999999 / $100 % $100
+	sbc MAX_MONEY / $100 % $100
 	ld a, [hl]
-	sbc 999999 / $10000 % $100
+	sbc MAX_MONEY / $10000 % $100
 	ret c
-	ld [hl], 999999 / $10000 % $100
+	ld [hl], MAX_MONEY / $10000 % $100
 	inc hl
-	ld [hl], 999999 / $100 % $100
+	ld [hl], MAX_MONEY / $100 % $100
 	inc hl
-	ld [hl], 999999 % $100
+	ld [hl], MAX_MONEY % $100
 	ret
 ; 3d0ea
 
@@ -7009,14 +7009,14 @@ ApplyStatLevelMultiplier: ; 3ecb7
 
 ; Cap at 999.
 	ld a, [hQuotient + 2]
-	sub 999 % $100
+	sub MAX_STAT_VALUE % $100
 	ld a, [hQuotient + 1]
-	sbc 999 / $100
+	sbc MAX_STAT_VALUE / $100
 	jp c, .okay3
 
-	ld a, 999 / $100
+	ld a, MAX_STAT_VALUE / $100
 	ld [hQuotient + 1], a
-	ld a, 999 % $100
+	ld a, MAX_STAT_VALUE % $100
 	ld [hQuotient + 2], a
 
 .okay3
@@ -7132,13 +7132,13 @@ BoostStat: ; 3ed7c
 
 ; Cap at 999.
 	ld a, [hld]
-	sub 999 % $100
+	sub MAX_STAT_VALUE % $100
 	ld a, [hl]
-	sbc 999 / $100
+	sbc MAX_STAT_VALUE / $100
 	ret c
-	ld a, 999 / $100
+	ld a, MAX_STAT_VALUE / $100
 	ld [hli], a
-	ld a, 999 % $100
+	ld a, MAX_STAT_VALUE % $100
 	ld [hld], a
 	ret
 ; 3ed9f
@@ -9135,10 +9135,10 @@ AddLastMobileBattleToLinkRecord: ; 3fa42
 	dec hl
 	ld a, [hl]
 	inc hl
-	cp 9999 / $100
+	cp MAX_LINK_RECORD / $100
 	ret c
 	ld a, [hl]
-	cp 9999 % $100
+	cp MAX_LINK_RECORD % $100
 	ret
 ; 3fac8
 

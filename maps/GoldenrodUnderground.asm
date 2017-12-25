@@ -1,15 +1,15 @@
 const_value set 2
-	const WAREHOUSEENTRANCE_SUPER_NERD1
-	const WAREHOUSEENTRANCE_SUPER_NERD2
-	const WAREHOUSEENTRANCE_SUPER_NERD3
-	const WAREHOUSEENTRANCE_SUPER_NERD4
-	const WAREHOUSEENTRANCE_POKE_BALL
-	const WAREHOUSEENTRANCE_GRAMPS
-	const WAREHOUSEENTRANCE_SUPER_NERD5
-	const WAREHOUSEENTRANCE_SUPER_NERD6
-	const WAREHOUSEENTRANCE_GRANNY
+	const GOLDENRODUNDERGROUND_SUPER_NERD1
+	const GOLDENRODUNDERGROUND_SUPER_NERD2
+	const GOLDENRODUNDERGROUND_SUPER_NERD3
+	const GOLDENRODUNDERGROUND_SUPER_NERD4
+	const GOLDENRODUNDERGROUND_POKE_BALL
+	const GOLDENRODUNDERGROUND_GRAMPS
+	const GOLDENRODUNDERGROUND_SUPER_NERD5
+	const GOLDENRODUNDERGROUND_SUPER_NERD6
+	const GOLDENRODUNDERGROUND_GRANNY
 
-WarehouseEntrance_MapScriptHeader:
+GoldenrodUnderground_MapScriptHeader:
 .SceneScripts:
 	db 0
 
@@ -58,56 +58,56 @@ WarehouseEntrance_MapScriptHeader:
 	if_equal SATURDAY, .Saturday
 
 .Sunday:
-	disappear WAREHOUSEENTRANCE_GRAMPS
-	disappear WAREHOUSEENTRANCE_SUPER_NERD5
-	appear WAREHOUSEENTRANCE_SUPER_NERD6
-	appear WAREHOUSEENTRANCE_GRANNY
+	disappear GOLDENRODUNDERGROUND_GRAMPS
+	disappear GOLDENRODUNDERGROUND_SUPER_NERD5
+	appear GOLDENRODUNDERGROUND_SUPER_NERD6
+	appear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Monday:
-	disappear WAREHOUSEENTRANCE_GRAMPS
+	disappear GOLDENRODUNDERGROUND_GRAMPS
 	checkmorn
 	iffalse .NotMondayMorning
-	appear WAREHOUSEENTRANCE_GRAMPS
+	appear GOLDENRODUNDERGROUND_GRAMPS
 .NotMondayMorning:
-	disappear WAREHOUSEENTRANCE_SUPER_NERD5
-	disappear WAREHOUSEENTRANCE_SUPER_NERD6
-	disappear WAREHOUSEENTRANCE_GRANNY
+	disappear GOLDENRODUNDERGROUND_SUPER_NERD5
+	disappear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Tuesday:
-	disappear WAREHOUSEENTRANCE_GRAMPS
-	appear WAREHOUSEENTRANCE_SUPER_NERD5
-	disappear WAREHOUSEENTRANCE_SUPER_NERD6
-	disappear WAREHOUSEENTRANCE_GRANNY
+	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_SUPER_NERD5
+	disappear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Wednesday:
-	disappear WAREHOUSEENTRANCE_GRAMPS
-	disappear WAREHOUSEENTRANCE_SUPER_NERD5
-	appear WAREHOUSEENTRANCE_SUPER_NERD6
-	disappear WAREHOUSEENTRANCE_GRANNY
+	disappear GOLDENRODUNDERGROUND_GRAMPS
+	disappear GOLDENRODUNDERGROUND_SUPER_NERD5
+	appear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Thursday:
-	disappear WAREHOUSEENTRANCE_GRAMPS
-	appear WAREHOUSEENTRANCE_SUPER_NERD5
-	disappear WAREHOUSEENTRANCE_SUPER_NERD6
-	disappear WAREHOUSEENTRANCE_GRANNY
+	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_SUPER_NERD5
+	disappear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Friday:
-	disappear WAREHOUSEENTRANCE_GRAMPS
-	disappear WAREHOUSEENTRANCE_SUPER_NERD5
-	appear WAREHOUSEENTRANCE_SUPER_NERD6
-	disappear WAREHOUSEENTRANCE_GRANNY
+	disappear GOLDENRODUNDERGROUND_GRAMPS
+	disappear GOLDENRODUNDERGROUND_SUPER_NERD5
+	appear GOLDENRODUNDERGROUND_SUPER_NERD6
+	disappear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 .Saturday:
-	disappear WAREHOUSEENTRANCE_GRAMPS
-	appear WAREHOUSEENTRANCE_SUPER_NERD5
-	disappear WAREHOUSEENTRANCE_SUPER_NERD6
-	appear WAREHOUSEENTRANCE_GRANNY
+	disappear GOLDENRODUNDERGROUND_GRAMPS
+	appear GOLDENRODUNDERGROUND_SUPER_NERD5
+	disappear GOLDENRODUNDERGROUND_SUPER_NERD6
+	appear GOLDENRODUNDERGROUND_GRANNY
 	return
 
 TrainerSupernerdEric:
@@ -159,7 +159,7 @@ GrannyScript_0x7c132:
 	checkcode VAR_WEEKDAY
 	if_equal SUNDAY, .Open
 	if_equal SATURDAY, .Open
-	jump WarehouseEntranceScript_ShopClosed
+	jump GoldenrodUndergroundScript_ShopClosed
 
 .Open:
 	pokemart MARTTYPE_BITTER, MART_UNDERGROUND
@@ -169,14 +169,14 @@ GrannyScript_0x7c132:
 GrampsScript_0x7c146:
 	opentext
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
-	iftrue WarehouseEntranceScript_ShopClosed
+	iftrue GoldenrodUndergroundScript_ShopClosed
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, .CheckMorn
-	jump WarehouseEntranceScript_ShopClosed
+	jump GoldenrodUndergroundScript_ShopClosed
 
 .CheckMorn:
 	checkmorn
-	iffalse WarehouseEntranceScript_ShopClosed
+	iffalse GoldenrodUndergroundScript_ShopClosed
 	pokemart MARTTYPE_BARGAIN, 0
 	closetext
 	end
@@ -187,7 +187,7 @@ OlderHaircutBrotherScript:
 	if_equal TUESDAY, .DoHaircut
 	if_equal THURSDAY, .DoHaircut
 	if_equal SATURDAY, .DoHaircut
-	jump WarehouseEntranceScript_ShopClosed
+	jump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -270,7 +270,7 @@ YoungerHaircutBrotherScript:
 	if_equal SUNDAY, .DoHaircut
 	if_equal WEDNESDAY, .DoHaircut
 	if_equal FRIDAY, .DoHaircut
-	jump WarehouseEntranceScript_ShopClosed
+	jump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -396,29 +396,26 @@ BasementDoorScript::
 	closetext
 	end
 
-WarehouseEntranceScript_ShopClosed:
+GoldenrodUndergroundScript_ShopClosed:
 	writetext UnknownText_0x7c904
 	waitbutton
 	closetext
 	end
 
-WarehouseEntranceCoinCase:
+GoldenrodUndergroundCoinCase:
 	itemball COIN_CASE
 
-MapWarehouseEntranceSignpost1Script:
+MapGoldenrodUndergroundSignpost1Script:
 	jumptext UnknownText_0x7c91a
 
-WarehouseEntranceHiddenParlyzHeal:
-	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
+GoldenrodUndergroundHiddenParlyzHeal:
+	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
 
+GoldenrodUndergroundHiddenSuperPotion:
+	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION, SUPER_POTION
 
-WarehouseEntranceHiddenSuperPotion:
-	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_SUPER_POTION, SUPER_POTION
-
-
-WarehouseEntranceHiddenAntidote:
-	dwb EVENT_WAREHOUSE_ENTRANCE_HIDDEN_ANTIDOTE, ANTIDOTE
-
+GoldenrodUndergroundHiddenAntidote:
+	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE, ANTIDOTE
 
 SupernerdEricSeenText:
 	text "I got booted out"
@@ -649,18 +646,18 @@ UnknownText_0x7c91a:
 	line "THIS POINT"
 	done
 
-WarehouseEntrance_MapEventHeader:
+GoldenrodUnderground_MapEventHeader:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 6
-	warp_def $2, $3, 7, UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
-	warp_def $22, $3, 4, UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
-	warp_def $6, $12, 4, WAREHOUSE_ENTRANCE
-	warp_def $1f, $15, 3, WAREHOUSE_ENTRANCE
-	warp_def $1f, $16, 3, WAREHOUSE_ENTRANCE
-	warp_def $1b, $16, 1, UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES
+	warp_def $2, $3, 7, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
+	warp_def $22, $3, 4, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
+	warp_def $6, $12, 4, GOLDENROD_UNDERGROUND
+	warp_def $1f, $15, 3, GOLDENROD_UNDERGROUND
+	warp_def $1f, $16, 3, GOLDENROD_UNDERGROUND
+	warp_def $1b, $16, 1, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
 
 .CoordEvents:
 	db 0
@@ -668,10 +665,10 @@ WarehouseEntrance_MapEventHeader:
 .BGEvents:
 	db 5
 	bg_event 6, 18, BGEVENT_READ, BasementDoorScript
-	bg_event 6, 19, BGEVENT_READ, MapWarehouseEntranceSignpost1Script
-	bg_event 13, 6, BGEVENT_ITEM, WarehouseEntranceHiddenParlyzHeal
-	bg_event 18, 4, BGEVENT_ITEM, WarehouseEntranceHiddenSuperPotion
-	bg_event 8, 17, BGEVENT_ITEM, WarehouseEntranceHiddenAntidote
+	bg_event 6, 19, BGEVENT_READ, MapGoldenrodUndergroundSignpost1Script
+	bg_event 13, 6, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
+	bg_event 18, 4, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
+	bg_event 8, 17, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
 
 .ObjectEvents:
 	db 9
@@ -679,8 +676,8 @@ WarehouseEntrance_MapEventHeader:
 	object_event SPRITE_SUPER_NERD, 9, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
 	object_event SPRITE_SUPER_NERD, 27, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
 	object_event SPRITE_SUPER_NERD, 6, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacDonald, -1
-	object_event SPRITE_POKE_BALL, 25, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WarehouseEntranceCoinCase, EVENT_WAREHOUSE_ENTRANCE_COIN_CASE
-	object_event SPRITE_GRAMPS, 11, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x7c146, EVENT_WAREHOUSE_ENTRANCE_GRAMPS
-	object_event SPRITE_SUPER_NERD, 14, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_OLDER_HAIRCUT_BROTHER
-	object_event SPRITE_SUPER_NERD, 15, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_WAREHOUSE_ENTRANCE_YOUNGER_HAIRCUT_BROTHER
-	object_event SPRITE_GRANNY, 21, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x7c132, EVENT_WAREHOUSE_ENTRANCE_GRANNY
+	object_event SPRITE_POKE_BALL, 25, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundCoinCase, EVENT_GOLDENROD_UNDERGROUND_COIN_CASE
+	object_event SPRITE_GRAMPS, 11, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x7c146, EVENT_GOLDENROD_UNDERGROUND_GRAMPS
+	object_event SPRITE_SUPER_NERD, 14, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	object_event SPRITE_SUPER_NERD, 15, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	object_event SPRITE_GRANNY, 21, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x7c132, EVENT_GOLDENROD_UNDERGROUND_GRANNY

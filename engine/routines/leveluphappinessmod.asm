@@ -1,0 +1,20 @@
+LevelUpHappinessMod: ; 2709e
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1CaughtLocation
+	call GetPartyLocation
+	ld a, [hl]
+	and $7f
+	ld d, a
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+	call GetWorldMapLocation
+	cp d
+	ld c, HAPPINESS_GAINLEVEL
+	jr nz, .ok
+	ld c, HAPPINESS_GAINLEVELATHOME
+
+.ok
+	callfar ChangeHappiness
+	ret

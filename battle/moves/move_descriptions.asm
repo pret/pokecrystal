@@ -263,7 +263,6 @@ MoveFDDescription:
 MoveFEDescription:
 MoveFFDescription:
 Move00Description:
-UnknownMoveDescription:
 	db "?@"
 
 PoundDescription:

@@ -462,8 +462,8 @@ NationalPark_BlockData:
 NationalParkBugContest_BlockData:
 	INCBIN "maps/NationalPark.blk"
 
-Route6UndergroundEntrance_BlockData:
-Route5UndergroundEntrance_BlockData:
+Route5UndergroundPathEntrance_BlockData:
+Route6UndergroundPathEntrance_BlockData:
 	INCBIN "maps/UndergroundPathEntrance.blk"
 
 BetaPokecenterTradeStation_BlockData:
@@ -571,17 +571,17 @@ Route16_BlockData:
 Route18_BlockData:
 	INCBIN "maps/Route18.blk"
 
-WarehouseEntrance_BlockData:
-	INCBIN "maps/WarehouseEntrance.blk"
+GoldenrodUnderground_BlockData:
+	INCBIN "maps/GoldenrodUnderground.blk"
 
-UndergroundPathSwitchRoomEntrances_BlockData:
-	INCBIN "maps/UndergroundPathSwitchRoomEntrances.blk"
+GoldenrodUndergroundSwitchRoomEntrances_BlockData:
+	INCBIN "maps/GoldenrodUndergroundSwitchRoomEntrances.blk"
 
 GoldenrodDeptStoreB1F_BlockData:
 	INCBIN "maps/GoldenrodDeptStoreB1F.blk"
 
-UndergroundWarehouse_BlockData:
-	INCBIN "maps/UndergroundWarehouse.blk"
+GoldenrodUndergroundWarehouse_BlockData:
+	INCBIN "maps/GoldenrodUndergroundWarehouse.blk"
 
 BetaElevator_BlockData:
 	INCBIN "maps/BetaElevator.blk"
@@ -953,8 +953,8 @@ FuchsiaGym_BlockData:
 SafariZoneBeta_BlockData:
 	INCBIN "maps/SafariZoneBeta.blk"
 
-Underground_BlockData:
-	INCBIN "maps/Underground.blk"
+UndergroundPath_BlockData:
+	INCBIN "maps/UndergroundPath.blk"
 
 Route39Barn_BlockData:
 	INCBIN "maps/Route39Barn.blk"

@@ -968,14 +968,14 @@ Sfx_Fanfare2: ; f0d56
 	musicheader 1, 8, Sfx_Fanfare2_Ch8
 ; f0d5f
 
-UnknownSfx: ; f0d5f
-	musicheader 4, 5, UnknownSfx_Ch5
-	musicheader 1, 6, UnknownSfx_Ch6
-	musicheader 1, 7, UnknownSfx_Ch7
-	musicheader 1, 8, UnknownSfx_Ch8
+UnusedSfx: ; f0d5f
+	musicheader 4, 5, UnusedSfx_Ch5
+	musicheader 1, 6, UnusedSfx_Ch6
+	musicheader 1, 7, UnusedSfx_Ch7
+	musicheader 1, 8, UnusedSfx_Ch8
 ; f0d6b
 
-UnknownSfx_Ch5: ; f0d6b
+UnusedSfx_Ch5: ; f0d6b
 	togglesfx
 	tempo 124
 	volume $77
@@ -1000,7 +1000,7 @@ UnknownSfx_Ch5: ; f0d6b
 	endchannel
 ; f0d8a
 
-UnknownSfx_Ch6: ; f0d8a
+UnusedSfx_Ch6: ; f0d8a
 	togglesfx
 	vibrato $8, $27
 	dutycycle $2
@@ -1025,7 +1025,7 @@ UnknownSfx_Ch6: ; f0d8a
 	endchannel
 ; f0da6
 
-UnknownSfx_Ch7: ; f0da6
+UnusedSfx_Ch7: ; f0da6
 	togglesfx
 	notetype $c, $25
 	octave 4
@@ -1041,7 +1041,7 @@ UnknownSfx_Ch7: ; f0da6
 	endchannel
 ; f0db6
 
-UnknownSfx_Ch8: ; f0db6
+UnusedSfx_Ch8: ; f0db6
 	togglesfx
 	sfxtogglenoise $4
 	notetype $c

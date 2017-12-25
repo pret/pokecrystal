@@ -14,7 +14,7 @@ Function1dd6a9: ; 1dd6a9
 	pop bc
 	ret
 
-PrintHoursMins ; 1dd6bb (77:56bb)
+PrintHoursMins: ; 1dd6bb (77:56bb)
 ; Hours in b, minutes in c
 	ld a, b
 	cp 12

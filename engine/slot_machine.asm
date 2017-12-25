@@ -471,10 +471,10 @@ Slots_LoadReelState: ; 929f6 (24:69f6)
 
 Slot_CheckCoinCaseFull: ; 92a04 (24:6a04)
 	ld a, d
-	cp 9999 / $100
+	cp MAX_COINS / $100
 	jr c, .not_full
 	ld a, e
-	cp 9999 % $100
+	cp MAX_COINS % $100
 	jr c, .not_full
 	scf
 	ret
@@ -766,14 +766,15 @@ UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
 
 ; 92bbe (24:6bbe)
 
+; unreferenced
 Function92bbe: ; 92bbe
 	push hl
 	srl a
 	srl a
-	add Unknown_92bce % $100
+	add .Unknown_92bce % $100
 	ld l, a
 	ld a, 0
-	adc Unknown_92bce / $100
+	adc .Unknown_92bce / $100
 	ld h, a
 	ld a, [hl]
 	pop hl
@@ -781,7 +782,7 @@ Function92bbe: ; 92bbe
 
 ; 92bce
 
-Unknown_92bce: ; 92bce
+.Unknown_92bce: ; 92bce
 	db 0, 1, 2, 3, 4, 5
 ; 92bd4
 

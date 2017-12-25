@@ -45,7 +45,7 @@ Route5_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $f, $11, 1, ROUTE_5_UNDERGROUND_ENTRANCE
+	warp_def $f, $11, 1, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
 	warp_def $11, $8, 1, ROUTE_5_SAFFRON_CITY_GATE
 	warp_def $11, $9, 2, ROUTE_5_SAFFRON_CITY_GATE
 	warp_def $b, $a, 1, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE

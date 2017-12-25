@@ -27,9 +27,9 @@ UnknownScript_0x7d78a:
 	jump UnknownScript_0x7d791
 
 UnknownScript_0x7d791:
-	checkevent EVENT_WAREHOUSE_LAYOUT_2
+	checkevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
 	iftrue .Layout2
-	checkevent EVENT_WAREHOUSE_LAYOUT_3
+	checkevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
 	iftrue .Layout3
 	changeblock $a, $8, $d
 	return
@@ -43,7 +43,7 @@ UnknownScript_0x7d791:
 	return
 
 UnknownScript_0x7d7ac:
-	clearevent EVENT_WAREHOUSE_BLOCKED_OFF
+	clearevent EVENT_GOLDENROD_UNDERGROUND_WAREHOUSE_BLOCKED_OFF
 	return
 
 GoldenrodDeptStoreB1FBlackBelt1Script:
@@ -115,7 +115,7 @@ GoldenrodDeptStoreB1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $2, $11, 3, UNDERGROUND_WAREHOUSE
+	warp_def $2, $11, 3, GOLDENROD_UNDERGROUND_WAREHOUSE
 	warp_def $4, $9, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 	warp_def $4, $a, 2, GOLDENROD_DEPT_STORE_ELEVATOR
 

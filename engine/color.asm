@@ -307,7 +307,7 @@ Function8bec:
 	ld a, [EnemySafeguardCount] ; value
 	and $3
 	call FillBoxCGB
-	call LoadEDTile
+	call CopyTilemapAtOnce
 	ret
 
 ApplyMonOrTrainerPals:
