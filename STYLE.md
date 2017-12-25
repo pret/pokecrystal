@@ -75,8 +75,8 @@ vPascalCase: ; vram
 PascalCase:  ; rom
 
 ; Some constants are also prefixed
-rBGP EQU 1 ; hardware register
-hPascalCase EQU 1 ; hram
+rBGP EQU $ff47 ; hardware register
+hPascalCase EQU $ff80 ; hram
 
 ; Most other constants should be upper case
 UPPER_CASE EQU 1
