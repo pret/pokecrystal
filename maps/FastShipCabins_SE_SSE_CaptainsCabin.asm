@@ -37,15 +37,15 @@ SSAquaCaptain:
 	closetext
 	end
 
-Granddaughter2:
+SSAquaGranddaughterBefore:
 	spriteface FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, RIGHT
 	opentext
-	writetext GranddaughterCaptainPlayWithMeText
+	writetext SSAquaGranddaughterCaptainPlayWithMeText
 	waitbutton
 	closetext
 	faceplayer
 	opentext
-	writetext GranddaughterHasToFindGrandpaText
+	writetext SSAquaGranddaughterHasToFindGrandpaText
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
@@ -64,14 +64,14 @@ Granddaughter2:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .PlayerIsFemale
 	opentext
-	writetext GranddaughterWasPlayingMText
+	writetext SSAquaGranddaughterWasPlayingMText
 	waitbutton
 	closetext
 	jump .cont
 
 .PlayerIsFemale:
 	opentext
-	writetext GranddaughterWasPlayingFText
+	writetext SSAquaGranddaughterWasPlayingFText
 	waitbutton
 	closetext
 .cont:
@@ -84,7 +84,7 @@ Granddaughter2:
 	setmapscene FAST_SHIP_1F, $0
 	jump SSAquaMetalCoatAndDocking
 
-Grandpa:
+SSAquaGrandpa:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
@@ -98,7 +98,7 @@ Grandpa:
 	end
 
 SSAquaMetalCoatAndDocking:
-	writetext GrandpaHaveThisText
+	writetext SSAquaGrandpaHaveThisText
 	buttonsound
 	verbosegiveitem METAL_COAT
 	iffalse .NoRoom
@@ -117,7 +117,7 @@ SSAquaMetalCoatAndDocking:
 	end
 
 SSAquaFoundGranddaughter:
-	writetext GrandpaHaveThisText
+	writetext SSAquaGrandpaHaveThisText
 	buttonsound
 	verbosegiveitem METAL_COAT
 	iffalse .NoRoom
@@ -127,15 +127,15 @@ SSAquaFoundGranddaughter:
 	end
 
 SSAquaGotMetalCoat:
-	writetext GrandpaTravellingText
+	writetext SSAquaGrandpaTravellingText
 	waitbutton
 	closetext
 	end
 
-Granddaughter1:
+SSAquaGranddaughterAfter:
 	faceplayer
 	opentext
-	writetext GranddaughterHadFunText
+	writetext SSAquaGranddaughterHadFunText
 	waitbutton
 	closetext
 	end
@@ -284,17 +284,17 @@ SSAquaEntertainedGranddaughterText:
 	line "you for that."
 	done
 
-GrandpaHaveThisText:
+SSAquaGrandpaHaveThisText:
 	text "I know! I'd like"
 	line "you to have this!"
 	done
 
-GrandpaTravellingText:
+SSAquaGrandpaTravellingText:
 	text "We're traveling"
 	line "around the world."
 	done
 
-GranddaughterCaptainPlayWithMeText:
+SSAquaGranddaughterCaptainPlayWithMeText:
 	text "CAPTAIN, play with"
 	line "me, please?"
 
@@ -302,38 +302,38 @@ GranddaughterCaptainPlayWithMeText:
 	line "to play more!"
 	done
 
-GranddaughterHasToFindGrandpaText:
+SSAquaGranddaughterHasToFindGrandpaText:
 	text "Hi! Will you play"
 	line "with me?"
 
 	para "…Oh!"
 
-	para "Grandpa's worried"
+	para "SSAquaGrandpa's worried"
 	line "about me?"
 
 	para "I have to go!"
 
 	para "I have to go find"
-	line "Grandpa!"
+	line "SSAquaGrandpa!"
 	done
 
-GranddaughterWasPlayingMText:
-	text "Grandpa, here I"
+SSAquaGranddaughterWasPlayingMText:
+	text "SSAquaGrandpa, here I"
 	line "am! I was playing"
 
 	para "with the CAPTAIN"
 	line "and this guy!"
 	done
 
-GranddaughterWasPlayingFText:
-	text "Grandpa, here I"
+SSAquaGranddaughterWasPlayingFText:
+	text "SSAquaGrandpa, here I"
 	line "am! I was playing"
 
 	para "with the CAPTAIN"
 	line "and this big girl!"
 	done
 
-GranddaughterHadFunText:
+SSAquaGranddaughterHadFunText:
 	text "I had lots of fun"
 	line "playing!"
 	done
@@ -485,9 +485,9 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
 .ObjectEvents:
 	db 11
 	object_event SPRITE_CAPTAIN, 25, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SSAquaCaptain, -1
-	object_event SPRITE_GENTLEMAN, 17, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Grandpa, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
-	object_event SPRITE_TWIN, 17, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Granddaughter1, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
-	object_event SPRITE_TWIN, 25, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Granddaughter2, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
+	object_event SPRITE_GENTLEMAN, 17, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SSAquaGrandpa, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	object_event SPRITE_TWIN, 17, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SSAquaGranddaughterAfter, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	object_event SPRITE_TWIN, 25, 2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SSAquaGranddaughterBefore, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
 	object_event SPRITE_POKEFAN_M, 6, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 5, TrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event SPRITE_TWIN, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event SPRITE_TWIN, 4, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
