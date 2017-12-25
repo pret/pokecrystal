@@ -235,10 +235,10 @@ NamingScreen: ; 116c1
 	pop de
 	ld b, SPRITE_ANIM_INDEX_RED_WALK
 	ld a, d
-	cp KrisSpriteGFX / $100
+	cp HIGH(KrisSpriteGFX)
 	jr nz, .not_kris
 	ld a, e
-	cp KrisSpriteGFX % $100
+	cp LOW(KrisSpriteGFX)
 	jr nz, .not_kris
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK
 .not_kris

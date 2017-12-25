@@ -116,13 +116,13 @@ Function170139: ; 170139
 	ld a, c
 	ld [de], a
 	inc de
-	ld a, PartyMons % $100
+	ld a, LOW(PartyMons)
 	ld [wcd49], a
-	ld a, PartyMons / $100
+	ld a, HIGH(PartyMons)
 	ld [wcd4a], a
-	ld a, PartyMonNicknames % $100
+	ld a, LOW(PartyMonNicknames)
 	ld [wcd4b], a
-	ld a, PartyMonNicknames / $100
+	ld a, HIGH(PartyMonNicknames)
 	ld [wcd4c], a
 	ld a, 3
 .CopyLoop:
@@ -355,9 +355,9 @@ ReadBTTrainerParty: ; 1702b7
 	ld hl, wBT_OTTempTrainerClass
 	ld a, [hli]
 	ld [OtherTrainerClass], a
-	ld a, OTPartyMonNicknames % $100
+	ld a, LOW(OTPartyMonNicknames)
 	ld [BGMapBuffer], a
-	ld a, OTPartyMonNicknames / $100
+	ld a, HIGH(OTPartyMonNicknames)
 	ld [BGMapBuffer + 1], a
 
 	; Copy Pkmn into Memory from the address in hl

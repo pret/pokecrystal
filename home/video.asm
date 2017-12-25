@@ -143,9 +143,9 @@ UpdateBGMap:: ; 164c
 	ld h, a
 	push hl
 
-	xor a
+	xor a ; LOW(VBGMap1)
 	ld [hBGMapAddress], a
-	ld a, VBGMap1 >> 8
+	ld a, HIGH(VBGMap1)
 	ld [hBGMapAddress + 1], a
 
 	ld a, [hBGMapMode]

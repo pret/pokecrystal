@@ -4,9 +4,9 @@ InitMovementBuffer:: ; 1b1e
 	ld [wMovementBufferCount], a
 	ld a, $0 ; useless
 	ld [wUnusedMovementBufferBank], a
-	ld a, MovementBuffer % $100
+	ld a, LOW(MovementBuffer)
 	ld [wUnusedMovementBufferPointer], a
-	ld a, MovementBuffer / $100
+	ld a, HIGH(MovementBuffer)
 	ld [wUnusedMovementBufferPointer + 1], a
 	ret
 ; 1b35

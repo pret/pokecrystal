@@ -124,28 +124,28 @@ _CheckItem:: ; d244
 
 DoesHLEqualNumItems: ; d27b
 	ld a, l
-	cp NumItems % $100
+	cp LOW(NumItems)
 	ret nz
 	ld a, h
-	cp NumItems / $100
+	cp HIGH(NumItems)
 	ret
 
 GetPocketCapacity: ; d283
 	ld c, MAX_ITEMS
 	ld a, e
-	cp NumItems % $100
+	cp LOW(NumItems)
 	jr nz, .not_bag
 	ld a, d
-	cp NumItems / $100
+	cp HIGH(NumItems)
 	ret z
 
 .not_bag
 	ld c, MAX_PC_ITEMS
 	ld a, e
-	cp PCItems % $100
+	cp LOW(PCItems)
 	jr nz, .not_pc
 	ld a, d
-	cp PCItems / $100
+	cp HIGH(PCItems)
 	ret z
 
 .not_pc

@@ -9,9 +9,9 @@ InitClock: ; 90672 (24:4672)
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $10
 	ld [MusicFade], a
-	ld a, MUSIC_NONE % $100
+	ld a, LOW(MUSIC_NONE)
 	ld [MusicFadeID], a
-	ld a, MUSIC_NONE / $100
+	ld a, HIGH(MUSIC_NONE)
 	ld [MusicFadeID + 1], a
 	ld c, 8
 	call DelayFrames

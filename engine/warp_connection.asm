@@ -233,9 +233,9 @@ LoadMapTimeOfDay: ; 104750
 	ret
 
 .ClearBGMap: ; 104770 (41:4770)
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [wBGMapAnchor + 1], a
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [wBGMapAnchor], a
 	ld [hSCY], a
 	ld [hSCX], a

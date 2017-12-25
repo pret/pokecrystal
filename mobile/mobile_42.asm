@@ -1297,7 +1297,7 @@ MobileTradeAnim_DisplayReceivedMon:
 MobileTradeAnim_DisplayEggData
 	call WaitTop
 	call MobileTradeAnim_ClearTilemap
-	ld a, VBGMap1 / $100
+	ld a, HIGH(VBGMap1)
 	ld [hBGMapAddress + 1], a
 	hlcoord 5, 0
 	ld b, 6
@@ -1320,7 +1320,7 @@ MobileTradeAnim_DisplayEggData
 Function108a33: ; 108a33
 	call WaitTop
 	call MobileTradeAnim_ClearTilemap
-	ld a, VBGMap1 / $100
+	ld a, HIGH(VBGMap1)
 	ld [hBGMapAddress + 1], a
 	hlcoord 5, 0
 	ld b, 6
@@ -1340,7 +1340,7 @@ Function108a33: ; 108a33
 MobileTradeAnim_LoadMonTemplate: ; 108a5b
 	call WaitTop
 	call MobileTradeAnim_ClearTilemap
-	ld a, VBGMap1 / $100
+	ld a, HIGH(VBGMap1)
 	ld [hBGMapAddress + 1], a
 	hlcoord 4, 0
 	ld b,  6
@@ -1363,7 +1363,7 @@ MobileTradeAnim_LoadMonTemplate: ; 108a5b
 MobileTradeAnim_MonDisplay_UpdateBGMap: ; 108a87
 	call WaitBGMap
 	call WaitTop
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [hBGMapAddress + 1], a
 	ret
 ; 108a92

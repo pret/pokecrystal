@@ -95,7 +95,7 @@ dsprite: MACRO
 ; conditional segment is there because not every instance of
 ; this macro is directly OAM
 if _NARG >= 7 ; y tile, y pxl, x tile, x pxl, vtile offset, flags, palette
-	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, (\6 << 3) + (\7 & 7)
+	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, (\6 << 3) + (\7 & PALETTE_MASK)
 else
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
 endc

@@ -2812,7 +2812,7 @@ _UpdateSprites:: ; 5920
 .fill
 	ld a, [VramState]
 	bit 1, a
-	ld b, SpritesEnd % $100
+	ld b, LOW(SpritesEnd)
 	jr z, .ok
 	ld b, 28 * 4
 .ok
@@ -2820,7 +2820,7 @@ _UpdateSprites:: ; 5920
 	cp b
 	ret nc
 	ld l, a
-	ld h, Sprites / $100
+	ld h, HIGH(Sprites)
 	ld de, 4
 	ld a, b
 	ld c, SCREEN_HEIGHT_PX + 16
@@ -3032,11 +3032,11 @@ PRIORITY_HIGH EQU $30
 	ld l, a
 	ld a, [hUsedSpriteIndex]
 	ld c, a
-	ld b, Sprites / $100
+	ld b, HIGH(Sprites)
 	ld a, [hli]
 	ld [hUsedSpriteTile], a
 	add c
-	cp SpritesEnd % $100
+	cp LOW(SpritesEnd)
 	jr nc, .full
 .addsprite
 	ld a, [hFFC0]

@@ -108,10 +108,10 @@ Function110030:: ; 110030 (44:4030)
 	ld a, [$c988]
 	ld l, a
 	push hl
-	ld a, Function110236 % $100
+	ld a, LOW(Function110236)
 	cp l
 	jr nz, .okay
-	ld a, Function110236 / $100
+	ld a, HIGH(Function110236)
 	cp h
 .okay
 	call nz, Function1100b4
@@ -615,7 +615,7 @@ Function11032c: ; 11032c
 ; 110393
 
 Function110393: ; 110393
-	ld c, rIE % $100
+	ld c, LOW(rIE)
 	ld a, [$ff00+c]
 	or $c
 	ld [$ff00+c], a
@@ -1969,11 +1969,11 @@ Function110d37: ; 110d37
 	push de
 	ld b, 0
 .check_under_10k
-	ld a, 10000 / $100
+	ld a, HIGH(10000)
 	cp h
 	jr c, .subtract_10k
 	jr nz, .done_10k
-	ld a, 10000 % $100
+	ld a, LOW(10000)
 	cp l
 	jr z, .subtract_10k
 	jr nc, .done_10k
@@ -1993,11 +1993,11 @@ Function110d37: ; 110d37
 	inc de
 	ld b, 0
 .check_under_1k
-	ld a, 1000 / $100
+	ld a, HIGH(1000)
 	cp h
 	jr c, .subtract_1k
 	jr nz, .done_1k
-	ld a, 1000 % $100
+	ld a, LOW(1000)
 	cp l
 	jr z, .subtract_1k
 	jr nc, .done_1k
@@ -2017,10 +2017,10 @@ Function110d37: ; 110d37
 	inc de
 	ld b, 0
 .check_under_100
-	ld a, 100 / $100
+	ld a, HIGH(100)
 	cp h
 	jr nz, .subtract_100
-	ld a, 100 % $100
+	ld a, LOW(100)
 	cp l
 	jr z, .subtract_100
 	jr nc, .check_under_10
@@ -8521,14 +8521,14 @@ Function1136c1: ; 1136c1
 
 .asm_113734
 	ld hl, $cc0c
-	ld a, Unknown_113b8e % $100
+	ld a, LOW(Unknown_113b8e)
 	ld [hli], a
-	ld a, Unknown_113b8e / $100
+	ld a, HIGH(Unknown_113b8e)
 	ld [hl], a
 	ld hl, $cc0e
-	ld a, Unknown_113a70 % $100
+	ld a, LOW(Unknown_113a70)
 	ld [hli], a
-	ld a, Unknown_113a70 / $100
+	ld a, HIGH(Unknown_113a70)
 	ld [hl], a
 	ld hl, $cbe7
 	ld de, $cc18
@@ -8610,7 +8610,7 @@ endr
 	ld [$cc0d], a
 	ld a, l
 	ld [$cc0c], a
-	cp $8e ; XXX (Unknown_113b8e + $100) % $100 ???
+	cp $8e ; XXX ; LOW(Unknown_113b8e + $100) ???
 	jp nz, .asm_113751
 	ld de, $cc18
 	ld hl, $cbe7

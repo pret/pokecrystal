@@ -264,7 +264,7 @@ Function104a95: ; 104a95 (41:4a95)
 	ld a, [rLY]
 	cp $90
 	jr c, .ly_loop
-	ld c, rRP % $100
+	ld c, LOW(rRP)
 	ld a, $c0
 	ld [$ff00+c], a
 	ld b, 240 ; This might have been intended as a 4-second timeout buffer.
@@ -274,7 +274,7 @@ Function104a95: ; 104a95 (41:4a95)
 	call MysteryGift_ReadJoypad
 
 	ld b, $2
-	ld c, rRP % $100
+	ld c, LOW(rRP)
 	; Delay frame
 .ly_loop2
 	ld a, [$ff00+c]
@@ -715,7 +715,7 @@ Function104ddd: ; 104ddd (41:4ddd)
 .loop
 	call MysteryGift_ReadJoypad
 	ld b, $2
-	ld c, rRP % $100
+	ld c, LOW(rRP)
 	ld a, [hMGJoypadReleased]
 	bit B_BUTTON_F, a
 	jr z, .next
@@ -731,7 +731,7 @@ Function104ddd: ; 104ddd (41:4ddd)
 	jr nz, .loop
 
 Function104dfe: ; 104dfe (41:4dfe)
-	ld c, rRP % $100
+	ld c, LOW(rRP)
 	ld d, $0
 	ld e, d
 	call Function104db7
@@ -771,7 +771,7 @@ Function104e3a: ; 104e3a (41:4e3a)
 Function104e46: ; 104e46 (41:4e46)
 	ld a, $2
 	ld [hPrintNum9], a
-	ld c, rRP % $100
+	ld c, LOW(rRP)
 	ld d, $0
 	ld e, d
 	ld d, $3d
@@ -812,7 +812,7 @@ Function104e93: ; 104e93 (41:4e93)
 	ld [hPrintNum6], a
 	push hl
 	push bc
-	ld c, rRP % $100
+	ld c, LOW(rRP)
 	ld d, $3d
 	call Function104dd1
 	ld hl, hPrintNum2
@@ -844,7 +844,7 @@ Function104e93: ; 104e93 (41:4e93)
 	ret
 
 Function104ed6: ; 104ed6 (41:4ed6)
-	ld c, rRP % $100
+	ld c, LOW(rRP)
 	ld d, $5
 	call Function104dd1
 	ld d, $5
@@ -981,7 +981,7 @@ Function104f57: ; 104f57 (41:4f57)
 	ret
 
 Function104faf: ; 104faf (41:4faf)
-	ld c, rRP % $100
+	ld c, LOW(rRP)
 	ld d, $0
 	call Function104db7
 	jp z, Function104f42

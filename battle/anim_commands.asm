@@ -237,16 +237,16 @@ Functioncc220: ; cc220
 ; Appears to be unused.
 	xor a
 	ld [hBGMapMode], a
-	ld a, (VBGMap0 tile $28) % $100
+	ld a, LOW(VBGMap0 tile $28)
 	ld [hBGMapAddress], a
-	ld a, (VBGMap0 tile $28) / $100
+	ld a, HIGH(VBGMap0 tile $28)
 	ld [hBGMapAddress + 1], a
 	call WaitBGMap2
 	ld a, $60
 	ld [hWY], a
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [hBGMapAddress], a
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [hBGMapAddress + 1], a
 	call BattleAnimDelayFrame
 	ret
@@ -1501,10 +1501,10 @@ BattleAnim_UpdateOAM_All: ; cc96e
 	jr nz, .loop
 	ld a, [wBattleAnimOAMPointerLo]
 	ld l, a
-	ld h, Sprites / $100
+	ld h, HIGH(Sprites)
 .loop2
 	ld a, l
-	cp SpritesEnd % $100
+	cp LOW(SpritesEnd)
 	jr nc, .done
 	xor a
 	ld [hli], a

@@ -23,7 +23,7 @@ PlaySpriteAnimations: ; 8cf69
 	push bc
 	push af
 
-	ld a, Sprites % $100
+	ld a, LOW(Sprites)
 	ld [wCurrSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
 
@@ -60,11 +60,11 @@ DoNextFrameForAllSprites: ; 8cf7a
 
 	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
-	ld h, Sprites / $100
+	ld h, HIGH(Sprites)
 
 .loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> SpritesEnd)
 	ld a, l
-	cp SpritesEnd % $100
+	cp LOW(SpritesEnd)
 	jr nc, .done
 	xor a
 	ld [hli], a
@@ -100,11 +100,11 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 
 	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
-	ld h, (Sprites + $40) / $100
+	ld h, HIGH(Sprites + 16 * 4)
 
 .loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> Sprites + $40)
 	ld a, l
-	cp (Sprites + 16 * 4) % $100
+	cp LOW(Sprites + 16 * 4)
 	jr nc, .done
 	xor a
 	ld [hli], a
@@ -253,7 +253,7 @@ UpdateAnimFrame: ; 8d04c
 	push bc
 	ld a, [wCurrSpriteOAMAddr]
 	ld e, a
-	ld d, Sprites / $100
+	ld d, HIGH(Sprites)
 	ld a, [hli]
 	ld c, a ; number of objects
 .loop
@@ -302,7 +302,7 @@ UpdateAnimFrame: ; 8d04c
 	inc de
 	ld a, e
 	ld [wCurrSpriteOAMAddr], a
-	cp SpritesEnd % $100
+	cp LOW(SpritesEnd)
 	jr nc, .reached_the_end
 	dec c
 	jr nz, .loop

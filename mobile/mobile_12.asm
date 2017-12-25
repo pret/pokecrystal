@@ -39,9 +39,9 @@ InitMobileProfile: ; 4802f (12:402f)
 .asm_4808a
 	ld a, $5
 	ld [MusicFade], a
-	ld a, MUSIC_MOBILE_ADAPTER_MENU % $100
+	ld a, LOW(MUSIC_MOBILE_ADAPTER_MENU)
 	ld [MusicFadeID], a
-	ld a, MUSIC_MOBILE_ADAPTER_MENU / $100
+	ld a, HIGH(MUSIC_MOBILE_ADAPTER_MENU)
 	ld [MusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames

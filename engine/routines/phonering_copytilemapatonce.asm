@@ -50,7 +50,7 @@ PhoneRing_CopyTilemapAtOnce: ; 4d188
 	ld a, SCREEN_HEIGHT
 	ld [hTilesPerCycle], a
 	ld b, 1 << 1 ; not in v/hblank
-	ld c, rSTAT % $100
+	ld c, LOW(rSTAT)
 
 .loop
 rept SCREEN_WIDTH / 2

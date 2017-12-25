@@ -523,10 +523,10 @@ LoadPalette_White_Col1_Col2_Black:
 	ld a, $5
 	ld [rSVBK], a
 
-	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [de], a
 	inc de
-	ld a, (palred 31 + palgreen 31 + palblue 31) / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [de], a
 	inc de
 
@@ -912,9 +912,9 @@ InitCGBPals::
 	ld [rBGPI], a
 	ld c, 4 * 8
 .bgpals_loop
-	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [rBGPD], a
-	ld a, (palred 31 + palgreen 31 + palblue 31) / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [rBGPD], a
 	dec c
 	jr nz, .bgpals_loop
@@ -922,9 +922,9 @@ InitCGBPals::
 	ld [rOBPI], a
 	ld c, 4 * 8
 .obpals_loop
-	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [rOBPD], a
-	ld a, (palred 31 + palgreen 31 + palblue 31) / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [rOBPD], a
 	dec c
 	jr nz, .obpals_loop
@@ -943,9 +943,9 @@ InitCGBPals::
 .LoadWhitePals:
 	ld c, 4 * 16
 .loop
-	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [hli], a
-	ld a, (palred 31 + palgreen 31 + palblue 31) / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [hli], a
 	dec c
 	jr nz, .loop
@@ -1070,7 +1070,7 @@ SGBBorder_PushBGPals:
 	ld [rBGP], a
 	ld hl, PredefPals
 	ld de, VTiles1
-	ld bc, $1000
+	ld bc, $100 tiles
 	call CopyData
 	call DrawDefaultTiles
 	ld a, $e3

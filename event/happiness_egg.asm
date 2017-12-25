@@ -159,9 +159,9 @@ DayCareStep:: ; 7282
 	dec hl
 	inc [hl]
 	ld a, [hl]
-	cp 5242880 / $10000
+	cp HIGH($500000 >> 8)
 	jr c, .day_care_lady
-	ld a, 5242880 / $10000
+	ld a, HIGH($500000 >> 8)
 	ld [hl], a
 
 .day_care_lady
@@ -181,9 +181,9 @@ DayCareStep:: ; 7282
 	dec hl
 	inc [hl]
 	ld a, [hl]
-	cp 5242880 / $10000
+	cp HIGH($500000 >> 8)
 	jr c, .check_egg
-	ld a, 5242880 / $10000
+	ld a, HIGH($500000 >> 8)
 	ld [hl], a
 
 .check_egg

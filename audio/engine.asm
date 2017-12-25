@@ -539,7 +539,7 @@ PlayDanger: ; e8307
 	ld a, [Danger]
 	bit DANGER_ON_F, a
 	ret z
-	and $ff - (1 << DANGER_ON_F)
+	and $ff ^ (1 << DANGER_ON_F)
 	ld d, a
 	call _CheckSFX
 	jr c, .asm_e8335
@@ -2297,9 +2297,9 @@ SetNoteDuration: ; e8a8d
 	add hl, bc
 	ld a, [hl]
 	; multiply NoteLength by delay units
-	ld l, 0; just multiply
+	ld l, 0 ; just multiply
 	call .Multiply
-	ld a, l ; % $100
+	ld a, l ; low
 	; store Tempo in de
 	ld hl, Channel1Tempo - Channel1
 	add hl, bc
@@ -2310,7 +2310,7 @@ SetNoteDuration: ; e8a8d
 	ld hl, Channel1Field0x16 - Channel1
 	add hl, bc
 	ld l, [hl]
-	; multiply Tempo by last result (NoteLength * delay % $100)
+	; multiply Tempo by last result (NoteLength * LOW(delay))
 	call .Multiply
 	; copy result to de
 	ld e, l

@@ -85,10 +85,10 @@ SpecialReturnShuckle: ; 737e
 
 ; OT ID
 	ld a, [hli]
-	cp 00518 / $100
+	cp HIGH(00518)
 	jr nz, .DontReturn
 	ld a, [hl]
-	cp 00518 % $100
+	cp LOW(00518)
 	jr nz, .DontReturn
 
 ; OT

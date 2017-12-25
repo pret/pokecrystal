@@ -193,9 +193,9 @@ Credits_UpdateGFXRequestPath: ; 109964 (42:5964)
 	ld [Requested2bppSource], a
 	ld a, h
 	ld [Requested2bppSource + 1], a
-	ld a, VTiles2 % $100
+	ld a, LOW(VTiles2)
 	ld [Requested2bppDest], a
-	ld a, VTiles2 / $100
+	ld a, HIGH(VTiles2)
 	ld [Requested2bppDest + 1], a
 	jr Credits_RequestGFX
 
@@ -374,9 +374,9 @@ ParseCredits: ; 1099aa
 	set 7, [hl]
 	ld a, 32
 	ld [MusicFade], a
-	ld a, MUSIC_POST_CREDITS % $100
+	ld a, LOW(MUSIC_POST_CREDITS)
 	ld [MusicFadeID], a
-	ld a, MUSIC_POST_CREDITS / $100
+	ld a, HIGH(MUSIC_POST_CREDITS)
 	ld [MusicFadeID + 1], a
 	ret
 
@@ -523,20 +523,20 @@ GetCreditsPalette: ; 109b2c
 ; Update the first three colors in both palette buffers.
 	push af
 	push hl
-	add UnknBGPals % $100
+	add LOW(UnknBGPals)
 	ld e, a
 	ld a, 0
-	adc UnknBGPals / $100
+	adc HIGH(UnknBGPals)
 	ld d, a
 	ld bc, 24
 	call CopyBytes
 
 	pop hl
 	pop af
-	add BGPals % $100
+	add LOW(BGPals)
 	ld e, a
 	ld a, 0
-	adc BGPals / $100
+	adc HIGH(BGPals)
 	ld d, a
 	ld bc, 24
 	call CopyBytes

@@ -3,9 +3,9 @@ Copyright_GFPresents: ; e4579
 	call PlayMusic
 	call ClearBGPalettes
 	call ClearTileMap
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [hBGMapAddress + 1], a
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [hBGMapAddress], a
 	ld [hJoyDown], a
 	ld [hSCX], a
@@ -1922,9 +1922,9 @@ Intro_RustleGrass: ; e546d (39:546d)
 	ld [Requested2bppSource], a
 	ld a, [hli]
 	ld [Requested2bppSource + 1], a
-	ld a, (VTiles2 tile $09) % $100
+	ld a, LOW(VTiles2 tile $09)
 	ld [Requested2bppDest], a
-	ld a, (VTiles2 tile $09) / $100
+	ld a, HIGH(VTiles2 tile $09)
 	ld [Requested2bppDest + 1], a
 	ld a, 4
 	ld [Requested2bppSize], a

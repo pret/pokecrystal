@@ -156,7 +156,7 @@ UpdateOverworldMap: ; d536 (3:5536)
 	ld a, [wBGMapAnchor + 1]
 	inc a
 	and $3
-	or VBGMap0 / $100
+	or HIGH(VBGMap0)
 	ld [wBGMapAnchor + 1], a
 .not_overflowed
 	ld hl, wMetatileStandingY
@@ -187,7 +187,7 @@ UpdateOverworldMap: ; d536 (3:5536)
 	ld a, [wBGMapAnchor + 1]
 	dec a
 	and $3
-	or VBGMap0 / $100
+	or HIGH(VBGMap0)
 	ld [wBGMapAnchor + 1], a
 .not_underflowed
 	ld hl, wMetatileStandingY

@@ -3015,26 +3015,26 @@ EZChat_GetSeenPokemonByKana: ; 11d3ba
 	ld a, [rSVBK]
 	push af
 	ld hl, $c648
-	ld a, w5_d800 % $100
+	ld a, LOW(w5_d800)
 	ld [wcd2d], a
 	ld [hli], a
-	ld a, w5_d800 / $100
+	ld a, HIGH(w5_d800)
 	ld [wcd2e], a
 	ld [hl], a
 
-	ld a, SortedPokemon % $100
+	ld a, LOW(SortedPokemon)
 	ld [wcd2f], a
-	ld a, SortedPokemon / $100
+	ld a, HIGH(SortedPokemon)
 	ld [wcd30], a
 
-	ld a, $c6a8 % $100
+	ld a, LOW($c6a8)
 	ld [wcd31], a
-	ld a, $c6a8 / $100
+	ld a, HIGH($c6a8)
 	ld [wcd32], a
 
-	ld a, $c64a % $100
+	ld a, LOW($c64a)
 	ld [wcd33], a
-	ld a, $c64a / $100
+	ld a, HIGH($c64a)
 	ld [wcd34], a
 
 	ld hl, EZChat_SortedWords

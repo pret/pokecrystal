@@ -35,9 +35,9 @@ PokeGear: ; 90b8d (24:4b8d)
 	pop af
 	ld [Options], a
 	call ClearBGPalettes
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [hBGMapAddress], a
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [hBGMapAddress + 1], a
 	ld a, $90
 	ld [hWY], a
@@ -243,18 +243,18 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld a, [wcf65]
 	and a
 	jr nz, .kanto_0
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [hBGMapAddress], a
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [hBGMapAddress + 1], a
 	call .UpdateBGMap
 	ld a, $90
 	jr .finish
 
 .kanto_0
-	xor a
+	xor a ; LOW(VBGMap1)
 	ld [hBGMapAddress], a
-	ld a, VBGMap1 / $100
+	ld a, HIGH(VBGMap1)
 	ld [hBGMapAddress + 1], a
 	call .UpdateBGMap
 	xor a
@@ -2161,9 +2161,9 @@ _FlyMap: ; 91af3
 	call ClearBGPalettes
 	ld a, $90
 	ld [hWY], a
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [hBGMapAddress], a
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [hBGMapAddress + 1], a
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
@@ -3003,9 +3003,9 @@ INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 	call ClearBGPalettes
 	ld a, $90
 	ld [hWY], a
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [hBGMapAddress], a
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [hBGMapAddress + 1], a
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
