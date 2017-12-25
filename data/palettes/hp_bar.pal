@@ -1,0 +1,9 @@
+; green
+	RGB 30, 26, 15
+	RGB 00, 23, 00
+; yellow
+	RGB 30, 26, 15
+	RGB 31, 21, 00
+; red
+	RGB 30, 26, 15
+	RGB 31, 00, 00

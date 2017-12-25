@@ -1,4 +1,3 @@
-
 _AnimateTileset:: ; fc000
 ; Iterate over a given pointer array of
 ; animation functions (one per frame).

@@ -145,7 +145,7 @@ _CGB_FinishBattleScreenLayout: ; 8e23
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, PAL_BATTLE_BG_TEXT
 	call ByteFill
-	ld hl, Palettes_979c
+	ld hl, BattleObjectPals
 	ld de, UnknOBPals palette PAL_BATTLE_OB_GRAY
 	ld bc, 6 palettes
 	ld a, BANK(UnknOBPals)
@@ -621,8 +621,8 @@ _CGB_Evolution: ; 91e4
 	ld a, [PlayerHPPal]
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-	ld hl, Palettes_979c
-	ld de, UnknOBPals palette 2
+	ld hl, BattleObjectPals
+	ld de, UnknOBPals palette PAL_BATTLE_OB_GRAY
 	ld bc, 6 palettes
 	ld a, BANK(UnknOBPals)
 	call FarCopyWRAM
