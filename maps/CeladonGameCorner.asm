@@ -58,7 +58,7 @@ CeladonGameCornerFisherScript:
 	buttonsound
 	checkitem COIN_CASE
 	iffalse .NoCoinCase
-	checkcoins 9998
+	checkcoins MAX_COINS - 1
 	if_equal $0, .FullCoinCase
 	stringtotext .coinname, $1
 	scall .GiveCoins

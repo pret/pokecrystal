@@ -1579,9 +1579,9 @@ CalcPkmnStatC: ; e17b
 	jr c, .stat_value_okay
 
 .max_stat
-	ld a, 999 / $100
+	ld a, MAX_STAT_VALUE / $100
 	ld [hMultiplicand + 1], a
-	ld a, 999 % $100
+	ld a, MAX_STAT_VALUE % $100
 	ld [hMultiplicand + 2], a
 
 .stat_value_okay

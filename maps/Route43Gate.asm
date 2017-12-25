@@ -1,3 +1,5 @@
+ROUTE43GATE_TOLL EQU 1000
+
 const_value set 2
 	const ROUTE43GATE_OFFICER
 	const ROUTE43GATE_ROCKET1
@@ -48,17 +50,17 @@ RocketScript_Southbound:
 	opentext
 	writetext RocketText_TollFee
 	buttonsound
-	checkmoney $0, 999
+	checkmoney $0, ROUTE43GATE_TOLL - 1
 	if_equal $0, RocketScript_TollSouth
 	jump RocketScript_YoureBrokeSouth
 
 RocketScript_TollSouth:
-	takemoney $0, 1000
+	takemoney $0, ROUTE43GATE_TOLL
 	writetext RocketText_ThankYou
 	jump RocketScript_ShakeDownSouth
 
 RocketScript_YoureBrokeSouth:
-	takemoney $0, 1000
+	takemoney $0, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
 	jump RocketScript_ShakeDownSouth
 
@@ -80,17 +82,17 @@ RocketScript_Northbound:
 	opentext
 	writetext RocketText_TollFee
 	buttonsound
-	checkmoney $0, 999
+	checkmoney $0, ROUTE43GATE_TOLL - 1
 	if_equal $0, RocketScript_TollNorth
 	jump RocketScript_YoureBrokeNorth
 
 RocketScript_TollNorth:
-	takemoney $0, 1000
+	takemoney $0, ROUTE43GATE_TOLL
 	writetext RocketText_ThankYou
 	jump RocketScript_ShakeDownNorth
 
 RocketScript_YoureBrokeNorth:
-	takemoney $0, 1000
+	takemoney $0, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
 	jump RocketScript_ShakeDownNorth
 
