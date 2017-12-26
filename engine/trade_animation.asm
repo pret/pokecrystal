@@ -236,7 +236,7 @@ DoTradeAnimation: ; 29082
 ; 290af
 
 .JumpTable: ; 290af
-; entries correspond to macros/trade_anim.asm enumeration
+; entries correspond to macros/scripts/trade_anims.asm enumeration
 	dw TradeAnim_AdvanceScriptPointer ; 00
 	dw TradeAnim_ShowGivemonData      ; 01
 	dw TradeAnim_ShowGetmonData       ; 02

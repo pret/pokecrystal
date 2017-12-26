@@ -5,7 +5,7 @@ endc
 	db \1
 	endm
 
-; BattleAnimCommands indexes (see engine/anims/anim_commands.asm)
+; BattleAnimCommands indexes (see engine/battle_anims/anim_commands.asm)
 	enum_start $d0
 
 	enum anim_obj_command ; $d0

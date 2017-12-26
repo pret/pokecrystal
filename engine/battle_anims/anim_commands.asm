@@ -351,7 +351,7 @@ RunBattleAnimCommand: ; cc25f
 
 
 BattleAnimCommands:: ; cc2a4 (33:42a4)
-; entries correspond to macros/move_anim.asm enumeration
+; entries correspond to macros/scripts/battle_anims.asm enumeration
 	dw BattleAnimCmd_Obj
 	dw BattleAnimCmd_1GFX
 	dw BattleAnimCmd_2GFX

@@ -6,17 +6,17 @@ INCLUDE "includes.asm"
 
 SECTION "Pic Pointers", ROMX
 
-INCLUDE "gfx/pokemon/pic_pointers.asm"
+INCLUDE "data/pokemon/pic_pointers.asm"
 
 
 SECTION "Unown Pic Pointers", ROMX
 
-INCLUDE "gfx/pokemon/unown_pic_pointers.asm"
+INCLUDE "data/pokemon/unown_pic_pointers.asm"
 
 
 SECTION "Trainer Pic Pointers", ROMX
 
-INCLUDE "gfx/trainer_pic_pointers.asm"
+INCLUDE "data/trainers/pic_pointers.asm"
 
 
 SECTION "Pics 1", ROMX

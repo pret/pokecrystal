@@ -17,7 +17,7 @@
 	const SPRITEANIMSTRUCT_0E              ; e
 	const SPRITEANIMSTRUCT_0F              ; f
 
-; SpriteAnimSeqData indexes (see data/sprites/sequences.asm)
+; SpriteAnimSeqData indexes (see data/sprite_anims/sequences.asm)
 	const_def
 	const SPRITE_ANIM_INDEX_PARTY_MON               ; 00
 	const SPRITE_ANIM_INDEX_GS_TITLE_TRAIL          ; 01
@@ -103,7 +103,7 @@
 	const SPRITE_ANIM_SEQ_INTRO_UNOWN_F        ; 21
 	const SPRITE_ANIM_SEQ_INTRO_SUICUNE_AWAY   ; 22
 
-; SpriteAnimFrameData indexes (see data/sprites/framesets.asm)
+; SpriteAnimFrameData indexes (see data/sprite_anims/framesets.asm)
 	const_def
 	const SPRITE_ANIM_FRAMESET_00
 	const SPRITE_ANIM_FRAMESET_PARTY_MON ; 01
@@ -172,7 +172,7 @@
 	const SPRITE_ANIM_FRAMESET_CELEBI_LEFT ; 40
 	const SPRITE_ANIM_FRAMESET_CELEBI_RIGHT ; 41
 
-; SpriteAnimOAMData indexes (see data/sprites/oam.asm)
+; SpriteAnimOAMData indexes (see data/sprite_anims/oam.asm)
 	const_def
 	const SPRITE_ANIM_OAMSET_RED_WALK_1 ; 00
 	const SPRITE_ANIM_OAMSET_RED_WALK_2 ; 01

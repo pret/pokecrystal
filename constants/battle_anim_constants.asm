@@ -26,7 +26,7 @@
 	const BATTLEANIMSTRUCT_17
 BATTLEANIMSTRUCT_LENGTH EQU const_value
 
-; BattleAnimObjects indexes (see data/anims/objects.asm)
+; BattleAnimObjects indexes (see data/battle_anims/objects.asm)
 	const_def
 	const ANIM_OBJ_00
 	const ANIM_OBJ_01
@@ -217,7 +217,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const ANIM_OBJ_BA
 	const ANIM_OBJ_BB
 
-; DoBattleAnimFrame arguments (see engine/anims/functions.asm)
+; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
 	const BATTLEANIMFUNC_00
 	const BATTLEANIMFUNC_01
@@ -300,7 +300,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const BATTLEANIMFUNC_4E
 	const BATTLEANIMFUNC_4F
 
-; BattleAnimFrameData indexes (see data/anims/framesets.asm)
+; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
 	const_def
 	const BATTLEANIMFRAMESET_00
 	const BATTLEANIMFRAMESET_01
@@ -488,7 +488,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const BATTLEANIMFRAMESET_B7
 	const BATTLEANIMFRAMESET_B8
 
-; BattleAnimOAMData indexes (see data/anims/oam.asm)
+; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
 	const BATTLEANIMOAMSET_00
 	const BATTLEANIMOAMSET_01
@@ -707,7 +707,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const BATTLEANIMOAMSET_D6
 	const BATTLEANIMOAMSET_D7
 
-; BattleBGEffects indexes (see engine/anims/bg_effects.asm)
+; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 const_value SET 1
 	const ANIM_BG_FLASH_INVERTED
 	const ANIM_BG_FLASH_WHITE
@@ -763,7 +763,7 @@ const_value SET 1
 	const ANIM_BG_WOBBLE_MON
 	const ANIM_BG_35
 
-; AnimObjGFX indexes (see data/anims/object_gfx.asm)
+; AnimObjGFX indexes (see data/battle_anims/object_gfx.asm)
 const_value SET 1
 	const ANIM_GFX_HIT
 	const ANIM_GFX_CUT

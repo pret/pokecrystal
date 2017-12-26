@@ -40,7 +40,7 @@ INCLUDE "engine/billspctop.asm"
 INCLUDE "engine/routines/getbreedmonlevelgrowth.asm"
 INCLUDE "event/bug_contest/caught_mon.asm"
 INCLUDE "engine/item_effects.asm"
-INCLUDE "engine/routines/getpokeballwobble.asm"
+INCLUDE "engine/battle_anims/getpokeballwobble.asm"
 INCLUDE "engine/routines/knowsmove.asm"
 
 
@@ -118,11 +118,11 @@ INCLUDE "engine/prof_oaks_pc.asm"
 INCLUDE "engine/decorations.asm"
 INCLUDE "engine/routines/leveluphappinessmod.asm"
 INCLUDE "data/trainers/trainer_dvs.asm"
-INCLUDE "engine/routines/returntobattle_useball.asm"
-INCLUDE "engine/routines/consumehelditem.asm"
+INCLUDE "engine/battle/returntobattle_useball.asm"
+INCLUDE "engine/battle/consumehelditem.asm"
 INCLUDE "data/moves/move_effects_pointers.asm"
 INCLUDE "data/moves/move_effects.asm"
-INCLUDE "engine/routines/kurt_selectquantity_interpretjoypad.asm"
+INCLUDE "event/kurt_selectquantity_interpretjoypad.asm"
 
 
 SECTION "bankA", ROMX
@@ -246,7 +246,7 @@ INCLUDE "engine/init_hof_credits.asm"
 INCLUDE "mobile/get_trainer_class.asm"
 INCLUDE "engine/battle/sliding_intro.asm"
 INCLUDE "mobile/print_opp_message.asm"
-INCLUDE "engine/routines/checkbattlescene.asm"
+INCLUDE "engine/battle/checkbattlescene.asm"
 INCLUDE "engine/gbc_only.asm"
 INCLUDE "event/poke_seer.asm"
 
@@ -308,7 +308,7 @@ INCLUDE "engine/debug.asm"
 SECTION "bank21", ROMX
 
 INCLUDE "engine/printer.asm"
-INCLUDE "gfx/anims.asm"
+INCLUDE "gfx/battle_anims.asm"
 INCLUDE "event/halloffame.asm"
 
 
@@ -330,7 +330,7 @@ INCLUDE "engine/timeofdaypals.asm"
 INCLUDE "engine/battle/battle_transition.asm"
 INCLUDE "event/field_moves.asm"
 INCLUDE "event/magnet_train.asm"
-INCLUDE "engine/routines/battlestart_copytilemapatonce.asm"
+INCLUDE "engine/battle/battlestart_copytilemapatonce.asm"
 INCLUDE "engine/sprites.asm"
 INCLUDE "engine/mon_icons.asm"
 
@@ -389,7 +389,7 @@ INCLUDE "engine/battle/trainer_scripts.asm"
 
 SECTION "bank32", ROMX
 
-INCLUDE "engine/anims/bg_effects.asm"
+INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/move_anims.asm"
 INCLUDE "event/poisonstep_pals.asm"
 
@@ -400,14 +400,14 @@ INCBIN "gfx/credits/theend.2bpp"
 SECTION "Move Animations", ROMX
 
 INCLUDE "event/bug_contest/display_stats.asm"
-INCLUDE "engine/anims/anim_commands.asm"
-INCLUDE "engine/anims/engine.asm"
-INCLUDE "data/anims/objects.asm"
-INCLUDE "engine/anims/functions.asm"
-INCLUDE "engine/anims/helpers.asm"
-INCLUDE "data/anims/framesets.asm"
-INCLUDE "data/anims/oam.asm"
-INCLUDE "data/anims/object_gfx.asm"
+INCLUDE "engine/battle_anims/anim_commands.asm"
+INCLUDE "engine/battle_anims/engine.asm"
+INCLUDE "data/battle_anims/objects.asm"
+INCLUDE "engine/battle_anims/functions.asm"
+INCLUDE "engine/battle_anims/helpers.asm"
+INCLUDE "data/battle_anims/framesets.asm"
+INCLUDE "data/battle_anims/oam.asm"
+INCLUDE "data/battle_anims/object_gfx.asm"
 
 
 SECTION "Pic Animations 1", ROMX
@@ -554,7 +554,7 @@ INCLUDE "text/phone/extra2.asm"
 
 SECTION "bank5E", ROMX
 
-INCLUDE "engine/routines/updatebattlehuds.asm"
+INCLUDE "engine/battle/updatebattlehuds.asm"
 
 
 SECTION "mobile_5e", ROMX

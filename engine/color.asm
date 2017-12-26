@@ -1218,8 +1218,9 @@ INCLUDE "data/palettes/hp_bar.pal"
 ExpBarPalette:
 INCLUDE "data/palettes/exp_bar.pal"
 
-INCLUDE "gfx/pokemon/palette_pointers.asm"
-INCLUDE "gfx/trainer_palettes.asm"
+INCLUDE "data/palettes/pokemon_palettes.asm"
+
+INCLUDE "data/palettes/trainer_palettes.asm"
 
 LoadMapPals:
 	farcall LoadSpecialMapPalette

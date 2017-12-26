@@ -1,7 +1,6 @@
 # Pic Animations
 
-Defined in [macros/scripts/gfx_anim.asm](/macros/scripts/gfx_anim.asm) and [engine/anims/anim_commands.asm:BattleAnimCommands](/engine/anims/anim_commands.asm).
-
+Defined in [macros/scripts/gfx_anims.asm](/macros/scripts/gfx_anims.asm).
 
 Pic animations are assembled in 3 parts:
 
@@ -20,12 +19,12 @@ Pic animations are assembled in 3 parts:
 
 Animation data is in these files:
 
-- gfx/pics/anims.asm:
+- [gfx/pokemon/anims.asm](/gfx/pokemon/anims.asm):
   Main animations (played everywhere)
 
-- gfx/pics/extras.asm:
+- [gfx/pokemon/extras.asm](/gfx/pokemon/extras.asm):
   Extra animations, appended to the main animation.  
   Used in the status screen (blinking, tail wags etc.)
 
-- gfx/pics/unown_anims.asm and gfx/pics/unown_extras.asm:
+- [gfx/pokemon/unown_anims.asm](/gfx/pokemon/unown_anims.asm) and [gfx/pokemon/unown_extras.asm](/gfx/pokemon/unown_extras.asm):
   Unown has its own animation data despite having an entry in the main tables.

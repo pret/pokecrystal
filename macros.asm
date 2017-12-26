@@ -11,13 +11,13 @@ INCLUDE "macros/tilesets.asm"
 
 INCLUDE "macros/scripts/audio.asm"
 INCLUDE "macros/scripts/maps.asm"
-INCLUDE "macros/scripts/event.asm"
+INCLUDE "macros/scripts/events.asm"
 INCLUDE "macros/scripts/text.asm"
 INCLUDE "macros/scripts/movement.asm"
 INCLUDE "macros/scripts/effect_commands.asm"
-INCLUDE "macros/scripts/move_anim.asm"
-INCLUDE "macros/scripts/trade_anim.asm"
-INCLUDE "macros/scripts/gfx_anim.asm"
+INCLUDE "macros/scripts/battle_anims.asm"
+INCLUDE "macros/scripts/trade_anims.asm"
+INCLUDE "macros/scripts/gfx_anims.asm"
 
 percent EQUS "* $ff / 100"
 

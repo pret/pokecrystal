@@ -551,13 +551,13 @@ BrokenGetStdGraphics: ; 8d1ac
 ; 8d1c4
 
 
-INCLUDE "data/sprites/sequences.asm"
+INCLUDE "data/sprite_anims/sequences.asm"
 
 INCLUDE "engine/sprite_anims.asm"
 
-INCLUDE "data/sprites/framesets.asm"
+INCLUDE "data/sprite_anims/framesets.asm"
 
-INCLUDE "data/sprites/oam.asm"
+INCLUDE "data/sprite_anims/oam.asm"
 
 
 BrokenStdGFXPointers: ; Broken 2bpp pointers

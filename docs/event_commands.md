@@ -1,6 +1,6 @@
 # Event Commands
 
-Defined in [macros/scripts/event.asm](/macros/scripts/event.asm) and [engine/scripting.asm:ScriptCommandTable](/engine/scripting.asm).
+Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/scripting.asm:ScriptCommandTable](/engine/scripting.asm).
 
 
 ## `$00`: `scall` *script*
