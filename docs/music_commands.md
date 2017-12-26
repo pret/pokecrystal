@@ -7,8 +7,6 @@ See also: [Sound Engine Commands](https://github.com/pret/pokecrystal/wiki/Sound
 
 ## `musicheader` *n*, *index*, *address*
 
-## `cry_header` *n*, *index*, *address*
-
 ## `note` *pitch*, *length*
 
 (Used on all channels)
