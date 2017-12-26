@@ -20,7 +20,6 @@ crystal_obj := \
 audio.o \
 home.o \
 main.o \
-maps.o \
 wram.o \
 data/pokemon/dex_entries.o \
 data/pokemon/egg_moves.o \
@@ -30,6 +29,7 @@ engine/events.o \
 gfx/pics.o \
 gfx/sprites.o \
 lib/mobile/main.o \
+maps/maps.o \
 text/common_text.o
 
 crystal11_obj := $(crystal_obj:.o=11.o)
