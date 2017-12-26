@@ -1218,7 +1218,7 @@ INCLUDE "data/palettes/hp_bar.pal"
 ExpBarPalette:
 INCLUDE "data/palettes/exp_bar.pal"
 
-INCLUDE "gfx/pics/palette_pointers.asm"
+INCLUDE "gfx/pokemon/palette_pointers.asm"
 INCLUDE "gfx/trainer_palettes.asm"
 
 LoadMapPals:

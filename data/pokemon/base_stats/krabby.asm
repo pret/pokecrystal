@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/krabby/front.dimensions"
+	INCBIN "gfx/pokemon/krabby/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups

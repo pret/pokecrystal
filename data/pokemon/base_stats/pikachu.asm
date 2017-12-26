@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 10 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/pikachu/front.dimensions"
+	INCBIN "gfx/pokemon/pikachu/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn FIELD, FAIRY ; egg groups

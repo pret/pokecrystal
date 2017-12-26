@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/kingdra/front.dimensions"
+	INCBIN "gfx/pokemon/kingdra/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn AMPHIBIAN, REPTILE ; egg groups

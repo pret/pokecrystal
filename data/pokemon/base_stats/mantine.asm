@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 25 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/mantine/front.dimensions"
+	INCBIN "gfx/pokemon/mantine/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db SLOW ; growth rate
 	dn AMPHIBIAN, AMPHIBIAN ; egg groups

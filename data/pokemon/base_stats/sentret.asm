@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 15 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/sentret/front.dimensions"
+	INCBIN "gfx/pokemon/sentret/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn FIELD, FIELD ; egg groups

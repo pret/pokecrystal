@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 15 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/golem/front.dimensions"
+	INCBIN "gfx/pokemon/golem/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_SLOW ; growth rate
 	dn INANIMATE, INANIMATE ; egg groups

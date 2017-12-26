@@ -406,25 +406,25 @@ INCLUDE "battle/anim_objects.asm"
 
 SECTION "Pic Animations 1", ROMX
 
-INCLUDE "gfx/pics/animation.asm"
-INCLUDE "gfx/pics/anim_pointers.asm"
-INCLUDE "gfx/pics/anims.asm"
-INCLUDE "gfx/pics/extra_pointers.asm"
-INCLUDE "gfx/pics/extras.asm"
-INCLUDE "gfx/pics/unown_anim_pointers.asm"
-INCLUDE "gfx/pics/unown_anims.asm"
-INCLUDE "gfx/pics/unown_extra_pointers.asm"
-INCLUDE "gfx/pics/unown_extras.asm"
-INCLUDE "gfx/pics/bitmask_pointers.asm"
-INCLUDE "gfx/pics/bitmasks.asm"
-INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
-INCLUDE "gfx/pics/unown_bitmasks.asm"
+INCLUDE "gfx/pokemon/animation.asm"
+INCLUDE "gfx/pokemon/anim_pointers.asm"
+INCLUDE "gfx/pokemon/anims.asm"
+INCLUDE "gfx/pokemon/extra_pointers.asm"
+INCLUDE "gfx/pokemon/extras.asm"
+INCLUDE "gfx/pokemon/unown_anim_pointers.asm"
+INCLUDE "gfx/pokemon/unown_anims.asm"
+INCLUDE "gfx/pokemon/unown_extra_pointers.asm"
+INCLUDE "gfx/pokemon/unown_extras.asm"
+INCLUDE "gfx/pokemon/bitmask_pointers.asm"
+INCLUDE "gfx/pokemon/bitmasks.asm"
+INCLUDE "gfx/pokemon/unown_bitmask_pointers.asm"
+INCLUDE "gfx/pokemon/unown_bitmasks.asm"
 
 
 SECTION "Pic Animations 2", ROMX
 
-INCLUDE "gfx/pics/frame_pointers.asm"
-INCLUDE "gfx/pics/kanto_frames.asm"
+INCLUDE "gfx/pokemon/frame_pointers.asm"
+INCLUDE "gfx/pokemon/kanto_frames.asm"
 
 
 SECTION "Font Inversed", ROMX
@@ -435,9 +435,9 @@ INCBIN "gfx/font/font_inversed.1bpp"
 
 SECTION "Pic Animations 3", ROMX
 
-INCLUDE "gfx/pics/johto_frames.asm"
-INCLUDE "gfx/pics/unown_frame_pointers.asm"
-INCLUDE "gfx/pics/unown_frames.asm"
+INCLUDE "gfx/pokemon/johto_frames.asm"
+INCLUDE "gfx/pokemon/unown_frame_pointers.asm"
+INCLUDE "gfx/pokemon/unown_frames.asm"
 
 
 SECTION "bank38", ROMX

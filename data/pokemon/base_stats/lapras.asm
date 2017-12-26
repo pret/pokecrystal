@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 40 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/lapras/front.dimensions"
+	INCBIN "gfx/pokemon/lapras/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db SLOW ; growth rate
 	dn MONSTER, AMPHIBIAN ; egg groups

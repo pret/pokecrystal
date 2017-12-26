@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/haunter/front.dimensions"
+	INCBIN "gfx/pokemon/haunter/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_SLOW ; growth rate
 	dn AMORPHOUS, AMORPHOUS ; egg groups

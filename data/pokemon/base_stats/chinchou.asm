@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/chinchou/front.dimensions"
+	INCBIN "gfx/pokemon/chinchou/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db SLOW ; growth rate
 	dn FISH, FISH ; egg groups

@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 35 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/vaporeon/front.dimensions"
+	INCBIN "gfx/pokemon/vaporeon/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn FIELD, FIELD ; egg groups

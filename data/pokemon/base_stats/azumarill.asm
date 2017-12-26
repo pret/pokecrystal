@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/azumarill/front.dimensions"
+	INCBIN "gfx/pokemon/azumarill/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db FAST ; growth rate
 	dn AMPHIBIAN, FAIRY ; egg groups

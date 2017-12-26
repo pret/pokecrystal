@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 10 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/togetic/front.dimensions"
+	INCBIN "gfx/pokemon/togetic/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db FAST ; growth rate
 	dn AVIAN, FAIRY ; egg groups

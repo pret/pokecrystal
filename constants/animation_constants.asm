@@ -763,7 +763,7 @@ const_value SET 1
 	const ANIM_BG_WOBBLE_MON
 	const ANIM_BG_35
 
-; PokeAnims indexes (see gfx/pics/animation.asm)
+; PokeAnims indexes (see gfx/pokemon/animation.asm)
 	const_def
 	const ANIM_MON_SLOW
 	const ANIM_MON_NORMAL

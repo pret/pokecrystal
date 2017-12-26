@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 25 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/steelix/front.dimensions"
+	INCBIN "gfx/pokemon/steelix/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn INANIMATE, INANIMATE ; egg groups
