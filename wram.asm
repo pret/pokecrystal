@@ -1956,7 +1956,7 @@ SouthMapConnection:: map_connection_struct South ; d1b5
 WestMapConnection::  map_connection_struct West ; d1c1
 EastMapConnection::  map_connection_struct East ; d1cd
 
-TilesetHeader::
+Tileset::
 TilesetBank:: db ; d1d9
 TilesetAddress:: dw ; d1da
 TilesetBlocksBank:: db ; d1dc
@@ -1966,7 +1966,7 @@ TilesetCollisionAddress:: dw ; d1e0
 TilesetAnim:: dw ; bank 3f ; d1e2
 	ds 2  ; unused ; d1e4
 TilesetPalettes:: dw ; bank 3f ; d1e6
-TilesetHeaderEnd::
+TilesetEnd::
 
 EvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
 

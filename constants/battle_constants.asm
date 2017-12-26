@@ -32,14 +32,14 @@ NUM_LEVEL_STATS EQU const_value
 
 ; move struct members (see battle/moves/moves.asm)
 	const_def
-	const MOVE_ANIM
-	const MOVE_EFFECT
-	const MOVE_POWER
-	const MOVE_TYPE
-	const MOVE_ACC
-	const MOVE_PP
-	const MOVE_CHANCE
-	const MOVE_LENGTH
+	const MOVE_ANIM   ; 0
+	const MOVE_EFFECT ; 1
+	const MOVE_POWER  ; 2
+	const MOVE_TYPE   ; 3
+	const MOVE_ACC    ; 4
+	const MOVE_PP     ; 5
+	const MOVE_CHANCE ; 6
+MOVE_LENGTH EQU const_value
 
 ; stat constants
 ; indexes for:

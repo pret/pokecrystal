@@ -232,7 +232,7 @@ INCBIN "gfx/shrink/shrink2.2bpp.lz"
 
 INCLUDE "engine/link_2.asm"
 INCLUDE "engine/delete_save_change_clock.asm"
-INCLUDE "tilesets/tileset_headers.asm"
+INCLUDE "tilesets/tilesets.asm"
 INCLUDE "engine/routines/flagpredef.asm"
 INCLUDE "engine/routines/trademonfrontpic.asm"
 INCLUDE "engine/pokerus/check_pokerus.asm"

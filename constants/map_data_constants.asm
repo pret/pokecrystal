@@ -3,7 +3,7 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
-; map header fields (see maps/map_headers.asm)
+; map header struct members (see maps/map_headers.asm)
 	const_def
 	const MAPHEADER_MAPHEADER2_BANK ; 0
 	const MAPHEADER_TILESET         ; 1
@@ -200,7 +200,7 @@ NUM_SPAWNS EQU const_value
 	const OBJECTTYPE_6
 
 
-; EmotesPointers indexes (see engine/overworld.asm)
+; Emotes indexes (see data/emotes.asm)
 	const_def
 	const EMOTE_SHOCK ; 0
 	const EMOTE_QUESTION ; 1

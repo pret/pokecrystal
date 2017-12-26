@@ -1,6 +1,6 @@
 ; pokemon ids
 ; indexes for:
-; - CryHeaders (see data/pokemon/cry_headers.asm)
+; - PokemonCries (see data/pokemon/cries.asm)
 ; - BaseData (see data/pokemon/base_stats.asm)
 ; - EggMovePointers (see data/pokemon/egg_move_pointers.asm)
 ; - EvosAttacksPointers (see data/pokemon/evos_attacks_pointers.asm)

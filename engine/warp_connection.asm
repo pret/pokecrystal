@@ -292,8 +292,8 @@ LoadMapTimeOfDay: ; 104750
 	ret
 
 LoadGraphics: ; 1047cf
-	call LoadTilesetHeader
 	call LoadTileset
+	call LoadTilesetGFX
 	xor a
 	ld [hMapAnims], a
 	xor a

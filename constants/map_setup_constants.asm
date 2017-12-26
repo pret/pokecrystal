@@ -41,7 +41,7 @@ const_value SET 1
 	const map_save_screen         ; 0c
 	const map_buffer_screen       ; 0d
 	const map_load_graphics       ; 0e
-	const map_load_tileset_header ; 0f
+	const map_load_tileset        ; 0f
 	const map_time_of_day         ; 10
 	const map_palettes            ; 11
 	const map_wildmons            ; 12

@@ -678,7 +678,7 @@ KRIS EQU __enum__
 
 NUM_TRAINER_CLASSES EQU __enum__
 
-; TrainerClassAttributes fields (see data/trainers/trainer_attributes.asm)
+; TrainerClassAttributes struct members (see data/trainers/trainer_attributes.asm)
 	const_def
 	const TRNATTR_ITEM1           ; 0
 	const TRNATTR_ITEM2           ; 1

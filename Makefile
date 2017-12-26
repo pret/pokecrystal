@@ -100,41 +100,41 @@ pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.
-gfx/pics/dewgong/frames.asm: gfx/pics/dewgong/front.animated.tilemap gfx/pics/dewgong/front.dimensions
+gfx/pokemon/dewgong/frames.asm: gfx/pokemon/dewgong/front.animated.tilemap gfx/pokemon/dewgong/front.dimensions
 	tools/pokemon_animation -f $^ > $@
 	echo "	db \$$4d" >> $@
 
 # Lugia has two unused tile ids in its last frame. The tiles themselves are missing.
-gfx/pics/lugia/frames.asm: gfx/pics/lugia/front.animated.tilemap gfx/pics/lugia/front.dimensions
+gfx/pokemon/lugia/frames.asm: gfx/pokemon/lugia/front.animated.tilemap gfx/pokemon/lugia/front.dimensions
 	tools/pokemon_animation -f $^ > $@
 	echo "	db \$$5e, \$$59" >> $@
 
 # Girafarig has a redundant tile after the end. It is used in two frames, so it must be injected into the generated graphics.
 # This is more involved, so it's hacked into pokemon_animation_graphics.
-gfx/pics/girafarig/front.animated.2bpp: gfx/pics/girafarig/front.2bpp gfx/pics/girafarig/front.dimensions
+gfx/pokemon/girafarig/front.animated.2bpp: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions
 	tools/pokemon_animation_graphics --girafarig -o $@ $^
-gfx/pics/girafarig/front.animated.tilemap: gfx/pics/girafarig/front.2bpp gfx/pics/girafarig/front.dimensions
+gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions
 	tools/pokemon_animation_graphics --girafarig -t $@ $^
 
 
 ### Pokemon pic graphics rules
 
-gfx/pics/%/normal.gbcpal: gfx/pics/%/front.png
+gfx/pokemon/%/normal.gbcpal: gfx/pokemon/%/front.png
 	$(RGBGFX) -p $@ $<
-gfx/pics/%/normal.pal: gfx/pics/%/normal.gbcpal
+gfx/pokemon/%/normal.pal: gfx/pokemon/%/normal.gbcpal
 	tools/palette -p $< > $@
-gfx/pics/%/back.2bpp: gfx/pics/%/back.png
+gfx/pokemon/%/back.2bpp: gfx/pokemon/%/back.png
 	$(RGBGFX) -h -o $@ $<
-gfx/pics/%/bitmask.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
+gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation -b $^ > $@
-gfx/pics/%/frames.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
+gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation -f $^ > $@
-gfx/pics/%/front.animated.2bpp: gfx/pics/%/front.2bpp gfx/pics/%/front.dimensions
+gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation_graphics -o $@ $^
-gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimensions
+gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation_graphics -t $@ $^
 # Don't use -h, pokemon_animation_graphics takes care of it
-#gfx/pics/%/front.2bpp: gfx/pics/%/front.png
+#gfx/pokemon/%/front.2bpp: gfx/pokemon/%/front.png
 #	$(RGBGFX) -o $@ $<
 
 

@@ -157,6 +157,6 @@ INCLUDE "audio/sfx_crystal.asm"
 
 SECTION "Cries", ROMX
 
-INCLUDE "data/pokemon/cry_headers.asm"
+INCLUDE "data/pokemon/cries.asm"
 
 INCLUDE "audio/cries.asm"

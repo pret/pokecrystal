@@ -1,4 +1,3 @@
-
 BattleAnimOAMData: ; ceeae
 ; vtile offset (?), length, address
 	dbbw $00, 16, .OAMData_00 ; 00

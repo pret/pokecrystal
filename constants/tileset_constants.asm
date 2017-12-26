@@ -1,4 +1,4 @@
-; Tilesets indexes (see tilesets/tileset_headers.asm)
+; Tilesets indexes (see tilesets/tilesets.asm)
 const_value SET 1
 	const TILESET_JOHTO_1              ; 01
 	const TILESET_JOHTO_2              ; 02

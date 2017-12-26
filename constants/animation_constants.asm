@@ -775,7 +775,7 @@ const_value SET 1
 	const ANIM_MON_EGG1
 	const ANIM_MON_EGG2
 
-; AnimObjGFX indexes (see battle/objects/gfx_headers.asm)
+; AnimObjGFX indexes (see battle/objects/object_gfx.asm)
 const_value SET 1
 	const ANIM_GFX_HIT
 	const ANIM_GFX_CUT

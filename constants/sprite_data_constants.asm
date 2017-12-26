@@ -1,12 +1,12 @@
-; sprite_header struct members (see gfx/sprite_headers.asm)
+; overworld_sprite struct members (see gfx/sprite_data.asm)
 	const_def
-	const SPRITEHEADER_ADDR_LO ; 0
-	const SPRITEHEADER_ADDR_HI ; 1
-	const SPRITEHEADER_SIZE    ; 2
-	const SPRITEHEADER_BANK    ; 3
-	const SPRITEHEADER_TYPE    ; 4
-	const SPRITEHEADER_PALETTE ; 5
-NUM_SPRITEHEADER_FIELDS EQU const_value
+	const SPRITEDATA_ADDR    ; 0
+	const SPRITEDATA_ADDR_HI ; 1
+	const SPRITEDATA_SIZE    ; 2
+	const SPRITEDATA_BANK    ; 3
+	const SPRITEDATA_TYPE    ; 4
+	const SPRITEDATA_PALETTE ; 5
+NUM_SPRITEDATA_FIELDS EQU const_value
 
 ; sprite types
 const_value SET 1

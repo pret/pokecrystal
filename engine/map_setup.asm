@@ -91,7 +91,7 @@ MapSetupScript_Connection: ; 153bf
 	db map_change_callback
 	db map_player_coord
 	db map_load_blocks
-	db map_load_tileset_header
+	db map_load_tileset
 	db map_save_screen
 	db map_load_objects
 	db map_fade_music
@@ -253,7 +253,7 @@ MapSetupCommands: ; 15440
 	dba SaveScreen ; 0c
 	dba BufferScreen ; 0d
 	dba LoadGraphics ; 0e
-	dba LoadTilesetHeader ; 0f
+	dba LoadTileset ; 0f
 	dba LoadMapTimeOfDay ; 10
 	dba LoadMapPalettes ; 11
 	dba LoadWildMonData ; 12
