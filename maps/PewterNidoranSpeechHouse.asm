@@ -1,6 +1,6 @@
 const_value set 2
 	const PEWTERNIDORANSPEECHHOUSE_SUPER_NERD
-	const PEWTERNIDORANSPEECHHOUSE_GROWLITHE
+	const PEWTERNIDORANSPEECHHOUSE_NIDORAN_M
 
 PewterNidoranSpeechHouse_MapScriptHeader:
 .SceneScripts:
