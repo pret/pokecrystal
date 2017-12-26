@@ -644,10 +644,10 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	ld a, e
 	and $1c ; get level
 	srl a
-	add .Jumptable % $100
+	add LOW(.Jumptable)
 	ld l, a
 	ld a, 0
-	adc .Jumptable / $100
+	adc HIGH(.Jumptable)
 	ld h, a
 	ld a, [hli]
 	ld h, [hl]
@@ -1185,14 +1185,14 @@ CardFlip_CheckWinCondition: ; e0637
 
 .IsCoinCaseFull: ; e0833
 	ld a, [Coins]
-	cp MAX_COINS / $100
+	cp HIGH(MAX_COINS)
 	jr c, .less
 	jr z, .check_low
 	jr .more
 
 .check_low
 	ld a, [Coins + 1]
-	cp MAX_COINS % $100
+	cp LOW(MAX_COINS)
 	jr c, .less
 
 .more

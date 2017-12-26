@@ -617,9 +617,9 @@ SpecialGameboyCheck: ; c478
 
 
 Special_FadeOutMusic: ; c48f
-	ld a, MUSIC_NONE % $100
+	ld a, LOW(MUSIC_NONE)
 	ld [MusicFadeID], a
-	ld a, MUSIC_NONE / $100
+	ld a, HIGH(MUSIC_NONE)
 	ld [MusicFadeID + 1], a
 	ld a, $2
 	ld [MusicFade], a

@@ -606,7 +606,7 @@ CopyTilemapAtOnce:: ; 323d
 	ld a, SCREEN_HEIGHT
 	ld [hTilesPerCycle], a
 	ld b, 1 << 1 ; not in v/hblank
-	ld c, rSTAT % $100
+	ld c, LOW(rSTAT)
 
 .loop
 rept SCREEN_WIDTH / 2
@@ -1350,14 +1350,14 @@ PushLYOverrides:: ; 3b0c
 	and a
 	ret z
 
-	ld a, LYOverridesBackup % $100
+	ld a, LOW(LYOverridesBackup)
 	ld [Requested2bppSource], a
-	ld a, LYOverridesBackup / $100
+	ld a, HIGH(LYOverridesBackup)
 	ld [Requested2bppSource + 1], a
 
-	ld a, LYOverrides % $100
+	ld a, LOW(LYOverrides)
 	ld [Requested2bppDest], a
-	ld a, LYOverrides / $100
+	ld a, HIGH(LYOverrides)
 	ld [Requested2bppDest + 1], a
 
 	ld a, (LYOverridesEnd - LYOverrides) / 16

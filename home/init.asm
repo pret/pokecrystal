@@ -141,9 +141,9 @@ Init:: ; 17d
 
 	farcall InitCGBPals
 
-	ld a, VBGMap1 / $100
+	ld a, HIGH(VBGMap1)
 	ld [hBGMapAddress + 1], a
-	xor a ; VBGMap1 % $100
+	xor a ; LOW(VBGMap1)
 	ld [hBGMapAddress], a
 
 	farcall StartClock
@@ -201,7 +201,7 @@ ClearWRAM:: ; 25a
 	push af
 	ld [rSVBK], a
 	xor a
-	ld hl, $d000
+	ld hl, wRAM1Start
 	ld bc, $1000
 	call ByteFill
 	pop af

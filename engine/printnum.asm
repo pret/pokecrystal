@@ -80,51 +80,51 @@ _PrintNum:: ; c4c7
 	jr z, .six
 
 .seven
-	ld a, 1000000 / $10000 % $100
+	ld a, HIGH(1000000 >> 8)
 	ld [hPrintNum5], a
-	ld a, 1000000 / $100 % $100
+	ld a, HIGH(1000000) ; mid
 	ld [hPrintNum6], a
-	ld a, 1000000 % $100
+	ld a, LOW(1000000)
 	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .six
-	ld a, 100000 / $10000 % $100
+	ld a, HIGH(100000 >> 8)
 	ld [hPrintNum5], a
-	ld a, 100000 / $100 % $100
+	ld a, HIGH(100000) ; mid
 	ld [hPrintNum6], a
-	ld a, 100000 % $100
+	ld a, LOW(100000)
 	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .five
-	xor a
+	xor a ; HIGH(10000 >> 8)
 	ld [hPrintNum5], a
-	ld a, 10000 / $100
+	ld a, HIGH(10000) ; mid
 	ld [hPrintNum6], a
-	ld a, 10000 % $100
+	ld a, LOW(10000)
 	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .four
-	xor a
+	xor a ; HIGH(1000 >> 8)
 	ld [hPrintNum5], a
-	ld a, 1000 / $100
+	ld a, HIGH(1000) ; mid
 	ld [hPrintNum6], a
-	ld a, 1000 % $100
+	ld a, LOW(1000)
 	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .three
-	xor a
+	xor a ; HIGH(100 >> 8)
 	ld [hPrintNum5], a
-	xor a
+	xor a ; HIGH(100) ; mid
 	ld [hPrintNum6], a
-	ld a, 100
+	ld a, LOW(100)
 	ld [hPrintNum7], a
 	call .PrintDigit
 	call .AdvancePointer

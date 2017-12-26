@@ -83,11 +83,11 @@ CheckBalance_MomItem2: ; fd044
 
 .check_have_2300
 	ld hl, hMoneyTemp
-	ld [hl], MOM_MONEY / $10000
+	ld [hl], HIGH(MOM_MONEY >> 8)
 	inc hl
-	ld [hl], MOM_MONEY / $100 % $100
+	ld [hl], HIGH(MOM_MONEY) ; mid
 	inc hl
-	ld [hl], MOM_MONEY % $100
+	ld [hl], LOW(MOM_MONEY)
 .loop
 	ld de, MomItemTriggerBalance
 	ld bc, wMomsMoney

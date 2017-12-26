@@ -109,9 +109,9 @@ Printer_StartTransmittingTilemap: ; 84099 (21:4099)
 	call Printer_CopyPacket
 	; prepare to send 40 tiles
 	call Printer_Convert2RowsTo2bpp
-	ld a, (40 tiles) % $100
+	ld a, LOW(40 tiles)
 	ld [wPrinterSendByteCounter], a
-	ld a, (40 tiles) / $100
+	ld a, HIGH(40 tiles)
 	ld [wPrinterSendByteCounter + 1], a
 	; compute the checksum
 	call Printer_ComputeChecksum
@@ -142,9 +142,9 @@ Printer_SignalSendHeader: ; 840de (21:40de)
 	call Printer_CopyPacket
 	; prepare to send 1 tile
 	call Printer_StageHeaderForSend
-	ld a, 4 % $100
+	ld a, LOW(4)
 	ld [wPrinterSendByteCounter], a
-	ld a, 4 / $100
+	ld a, HIGH(4)
 	ld [wPrinterSendByteCounter + 1], a
 	; compute the checksum
 	call Printer_ComputeChecksum

@@ -11,7 +11,7 @@ LoadPushOAM:: ; 4031
 	ret
 
 .PushOAM: ; 403f
-	ld a, Sprites / $100
+	ld a, HIGH(Sprites)
 	ld [rDMA], a
 	ld a, (SpritesEnd - Sprites) / 4 ; 40
 .pushoam_loop

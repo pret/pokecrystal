@@ -127,7 +127,7 @@ CalcMagikarpLength: ; fbbfc
 
 ; if bc < 10:    [wMagikarpLength] = c + 190
 ; if bc ≥ $ff00: [wMagikarpLength] = c + 1370
-; else:          [wMagikarpLength] = z × 100 + (bc − x) / y
+; else:          [wMagikarpLength] = z * 100 + (bc - x) / y
 
 ; X, Y, and Z depend on the value of b as follows:
 

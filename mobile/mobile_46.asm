@@ -1901,17 +1901,17 @@ Function118f68:
 	and a
 	jr z, .asm_118fba
 	ld hl, $c346
-	ld a, $c608 % $100
+	ld a, LOW($c608)
 	ld [hli], a
-	ld a, $c608 / $100
+	ld a, HIGH($c608)
 	ld [hli], a
 	ld a, [wcd4b]
 	ld [hli], a
 	ld a, [wcd4c]
 	ld [hli], a
-	ld a, $c708 % $100
+	ld a, LOW($c708)
 	ld [hli], a
-	ld a, $c708 / $100
+	ld a, HIGH($c708)
 	ld [hli], a
 	ld a, $60
 	ld [hli], a
@@ -2530,17 +2530,17 @@ Function1193a0:
 	ld [wcd3c], a
 	call BattleTowerRoomMenu2
 	ld hl, $c346
-	ld a, wd000 % $100
+	ld a, LOW(wd000)
 	ld [hli], a
-	ld a, wd000 / $100
+	ld a, HIGH(wd000)
 	ld [hli], a
 	ld a, [wcd3b]
 	ld [hli], a
 	xor a
 	ld [hli], a
-	ld a, $c708 % $100
+	ld a, LOW($c708)
 	ld [hli], a
-	ld a, $c708 / $100
+	ld a, HIGH($c708)
 	ld [hli], a
 	ld a, $60
 	ld [hli], a
@@ -3358,17 +3358,17 @@ Function1198f7:
 	ld hl, $c608 + 2
 	call Function119940
 	ld hl, w3_d800
-	ld a, $c608 % $100
+	ld a, LOW($c608)
 	ld [hli], a
-	ld a, $c608 / $100
+	ld a, HIGH($c608)
 	ld [hli], a
 	ld a, $f6
 	ld [hli], a
 	xor a
 	ld [hli], a
-	ld a, $c708 % $100
+	ld a, LOW($c708)
 	ld [hli], a
-	ld a, $c708 / $100
+	ld a, HIGH($c708)
 	ld [hli], a
 	ld a, [wcd51]
 	ld [hli], a
@@ -3794,10 +3794,10 @@ Function119b6b: ; 119b6b
 	cp $d
 	jr nz, .asm_119b93
 	ld a, l
-	cp (w3_d869) % $100
+	cp LOW(w3_d869)
 	jr nz, .asm_119be3
 	ld a, h
-	cp (w3_d869) / $100
+	cp HIGH(w3_d869)
 	jr nz, .asm_119be3
 	ld a, $5
 	call GetSRAMBank
@@ -5497,9 +5497,9 @@ Function11a90f: ; 11a90f
 .asm_11a94f
 	xor a
 	ld [$c31f], a
-	ld a, $c320 % $100
+	ld a, LOW($c320)
 	ld [$c31b], a
-	ld a, $c320 / $100
+	ld a, HIGH($c320)
 	ld [$c31c], a
 	hlcoord 1, 14
 	ld a, l
@@ -7456,29 +7456,29 @@ Function11b6b4: ; 11b6b4
 	ld a, [wcd31]
 	ld [$c709], a
 
-	ld a, $c708 % $100
+	ld a, LOW($c708) ; Species
 	ld [wMobileMonSpeciesPointerBuffer], a
-	ld a, $c708 / $100
+	ld a, HIGH($c708)
 	ld [wMobileMonSpeciesPointerBuffer + 1], a
 
-	ld a, $c60d % $100 ; Partymon Struct
+	ld a, LOW($c60d) ; Partymon Struct
 	ld [wMobileMonStructurePointerBuffer], a
-	ld a, $c60d / $100
+	ld a, HIGH($c60d)
 	ld [wMobileMonStructurePointerBuffer + 1], a
 
-	ld a, $c63d % $100 ; OT
+	ld a, LOW($c63d) ; OT
 	ld [wMobileMonOTNamePointerBuffer], a
-	ld a, $c63d / $100
+	ld a, HIGH($c63d)
 	ld [wMobileMonOTNamePointerBuffer + 1], a
 
-	ld a, $c642 % $100 ; Nickname
+	ld a, LOW($c642) ; Nickname
 	ld [wMobileMonNicknamePointerBuffer], a
-	ld a, $c642 / $100
+	ld a, HIGH($c642)
 	ld [wMobileMonNicknamePointerBuffer + 1], a
 
-	ld a, $c647 % $100 ; ???
+	ld a, LOW($c647) ; Mail
 	ld [wMobileMonMailPointerBuffer], a
-	ld a, $c647 / $100
+	ld a, HIGH($c647)
 	ld [wMobileMonMailPointerBuffer + 1], a
 
 	ld a, $46
@@ -7762,29 +7762,29 @@ Function11b93b: ; 11b93b
 	call CopyBytes
 	call CloseSRAM
 
-	ld a, $c608 % $100
+	ld a, LOW($c608)
 	ld [wMobileMonSpeciesPointerBuffer], a
-	ld a, $c608 / $100
+	ld a, HIGH($c608)
 	ld [wMobileMonSpeciesPointerBuffer + 1], a
 
-	ld a, $c611 % $100
+	ld a, LOW($c611)
 	ld [wMobileMonStructurePointerBuffer], a
-	ld a, $c611 / $100
+	ld a, HIGH($c611)
 	ld [wMobileMonStructurePointerBuffer + 1], a
 
-	ld a, $c641 % $100
+	ld a, LOW($c641)
 	ld [wMobileMonOTNamePointerBuffer], a
-	ld a, $c641 / $100
+	ld a, HIGH($c641)
 	ld [wMobileMonOTNamePointerBuffer + 1], a
 
-	ld a, $c646 % $100
+	ld a, LOW($c646)
 	ld [wMobileMonNicknamePointerBuffer], a
-	ld a, $c646 / $100
+	ld a, HIGH($c646)
 	ld [wMobileMonNicknamePointerBuffer + 1], a
 
-	ld a, $c64b % $100
+	ld a, LOW($c64b)
 	ld [wMobileMonMailPointerBuffer], a
-	ld a, $c64b / $100
+	ld a, HIGH($c64b)
 	ld [wMobileMonMailPointerBuffer + 1], a
 	call AddMobileMonToParty
 	farcall SaveAfterLinkTrade

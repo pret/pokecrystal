@@ -32,9 +32,9 @@ LoadPoisonBGPals: ; cbcdd
 	ld c, $20
 .loop
 ; RGB 28, 21, 31
-	ld a, (palred 28 + palgreen 21 + palblue 31) % $100
+	ld a, LOW(palred 28 + palgreen 21 + palblue 31)
 	ld [hli], a
-	ld a, (palred 28 + palgreen 21 + palblue 31) / $100
+	ld a, HIGH(palred 28 + palgreen 21 + palblue 31)
 	ld [hli], a
 	dec c
 	jr nz, .loop

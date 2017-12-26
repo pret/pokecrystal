@@ -663,10 +663,10 @@ rept 4
 	add hl, hl
 endr
 	ld a, l
-	add VTiles0 % $100
+	add LOW(VTiles0)
 	ld l, a
 	ld a, h
-	adc VTiles0 / $100
+	adc HIGH(VTiles0)
 	ld h, a
 	ret
 ; 14418

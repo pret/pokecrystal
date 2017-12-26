@@ -1570,18 +1570,18 @@ CalcPkmnStatC: ; e17b
 
 .no_overflow_4
 	ld a, [hQuotient + 1]
-	cp (1000 / $100) + 1
+	cp HIGH(MAX_STAT_VALUE + 1) + 1
 	jr nc, .max_stat
-	cp 1000 / $100
+	cp HIGH(MAX_STAT_VALUE + 1)
 	jr c, .stat_value_okay
 	ld a, [hQuotient + 2]
-	cp 1000 % $100
+	cp LOW(MAX_STAT_VALUE + 1)
 	jr c, .stat_value_okay
 
 .max_stat
-	ld a, MAX_STAT_VALUE / $100
+	ld a, HIGH(MAX_STAT_VALUE)
 	ld [hMultiplicand + 1], a
-	ld a, MAX_STAT_VALUE % $100
+	ld a, LOW(MAX_STAT_VALUE)
 	ld [hMultiplicand + 2], a
 
 .stat_value_okay
@@ -1702,9 +1702,9 @@ GivePoke:: ; e277
 	ld hl, PartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-	ld a, 01001 / $100
+	ld a, HIGH(01001)
 	ld [hli], a
-	ld [hl], 01001 % $100
+	ld [hl], LOW(01001)
 	pop bc
 	farcall SetGiftPartyMonCaughtData
 	jr .skip_nickname

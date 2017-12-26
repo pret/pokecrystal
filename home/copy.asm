@@ -72,16 +72,16 @@ OldDMATransfer:: ; dfd
 	call DelayFrame
 ; add $100 to hl and de
 	ld a, l
-	add $100 % $100
+	add LOW($100)
 	ld l, a
 	ld a, h
-	adc $100 / $100
+	adc HIGH($100)
 	ld h, a
 	ld a, e
-	add $100 % $100
+	add LOW($100)
 	ld e, a
 	ld a, d
-	adc $100 / $100
+	adc HIGH($100)
 	ld d, a
 	jr .loop
 

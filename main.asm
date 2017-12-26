@@ -85,7 +85,14 @@ INCLUDE "event/daycare.asm"
 INCLUDE "event/print_unown.asm"
 INCLUDE "event/print_photo.asm"
 INCLUDE "engine/breeding.asm"
+
+
 INCLUDE "tilesets/data.asm"
+
+
+SECTION "Roofs", ROMX
+
+INCLUDE "tilesets/roofs.asm"
 
 
 SECTION "Clock Reset", ROMX

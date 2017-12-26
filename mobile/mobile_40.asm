@@ -2736,9 +2736,9 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 
 .ContinueCopy:
 	; Copy, via wc608...
-	ld a, wc608 % $100
+	ld a, LOW(wc608)
 	ld [StringBuffer2], a
-	ld a, wc608 / $100
+	ld a, HIGH(wc608)
 	ld [StringBuffer2 + 1], a
 	; ... bc bytes...
 	ld a, c
@@ -7237,9 +7237,9 @@ Function1030cd: ; 1030cd
 	add a
 	add a
 
-	add Unknown_10327a % $100
+	add LOW(Unknown_10327a)
 	ld l, a
-	ld a, Unknown_10327a / $100
+	ld a, HIGH(Unknown_10327a)
 	adc 0
 	ld h, a
 

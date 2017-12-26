@@ -46,9 +46,9 @@ InitDisplayForRedCredits: ; 4e8c2
 	ld hl, UnknBGPals
 	ld c, 4 tiles
 .load_white_palettes
-	ld a, (palred 31 + palgreen 31 + palblue 31) % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [hli], a
-	ld a, (palred 31 + palgreen 31 + palblue 31) / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [hli], a
 	dec c
 	jr nz, .load_white_palettes

@@ -63,7 +63,7 @@ LoadPokeComPalette: ; 494f2
 ; 49501
 
 PokeComPalette: ; 49501
-INCLUDE "tilesets/pokecom_center.pal"
+INCLUDE "tilesets/palettes/pokecom_center.pal"
 ; 49541
 
 LoadBattleTowerPalette: ; 49541
@@ -76,7 +76,7 @@ LoadBattleTowerPalette: ; 49541
 ; 49550
 
 BattleTowerPalette: ; 49550
-INCLUDE "tilesets/battle_tower.pal"
+INCLUDE "tilesets/palettes/battle_tower.pal"
 ; 49590
 
 LoadIcePathPalette: ; 49590
@@ -89,7 +89,7 @@ LoadIcePathPalette: ; 49590
 ; 4959f
 
 IcePathPalette: ; 4959f
-INCLUDE "tilesets/ice_path.pal"
+INCLUDE "tilesets/palettes/ice_path.pal"
 ; 495df
 
 LoadHousePalette: ; 495df
@@ -102,7 +102,7 @@ LoadHousePalette: ; 495df
 ; 495ee
 
 HousePalette: ; 495ee
-INCLUDE "tilesets/house_1.pal"
+INCLUDE "tilesets/palettes/house_1.pal"
 ; 4962e
 
 LoadRadioTowerPalette: ; 4962e
@@ -115,7 +115,7 @@ LoadRadioTowerPalette: ; 4962e
 ; 4963d
 
 RadioTowerPalette: ; 4963d
-INCLUDE "tilesets/radio_tower.pal"
+INCLUDE "tilesets/palettes/radio_tower.pal"
 ; 4967d
 
 MansionPalette1: ; 4967d

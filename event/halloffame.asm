@@ -36,9 +36,9 @@ HallOfFame:: ; 0x8640e
 ; 0x86455
 
 RedCredits:: ; 86455
-	ld a, MUSIC_NONE % $100
+	ld a, LOW(MUSIC_NONE)
 	ld [MusicFadeID], a
-	ld a, MUSIC_NONE / $100
+	ld a, HIGH(MUSIC_NONE)
 	ld [MusicFadeID + 1], a
 	ld a, 10
 	ld [MusicFade], a
@@ -59,9 +59,9 @@ RedCredits:: ; 86455
 ; 8648e
 
 HallOfFame_FadeOutMusic: ; 8648e
-	ld a, MUSIC_NONE % $100
+	ld a, LOW(MUSIC_NONE)
 	ld [MusicFadeID], a
-	ld a, MUSIC_NONE / $100
+	ld a, HIGH(MUSIC_NONE)
 	ld [MusicFadeID + 1], a
 	ld a, 10
 	ld [MusicFade], a

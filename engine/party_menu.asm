@@ -587,10 +587,10 @@ PlacePartyMonMobileBattleSelection: ; 50307
 
 
 PartyMenuCheckEgg: ; 50389
-	ld a, PartySpecies % $100
+	ld a, LOW(PartySpecies)
 	add b
 	ld e, a
-	ld a, PartySpecies / $100
+	ld a, HIGH(PartySpecies)
 	adc 0
 	ld d, a
 	ld a, [de]

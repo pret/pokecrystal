@@ -43,6 +43,7 @@ CheckShininess:
 	and a
 	ret
 
+; unreferenced
 CheckContestMon:
 ; Check a mon's DVs at hl in the bug catching contest.
 ; Return carry if its DVs are good enough to place in the contest.
@@ -108,7 +109,8 @@ InitPartyMenuPalettes:
 	call WipeAttrMap
 	ret
 
-SGB_ApplyPartyMenuHPPals: ; 8ade SGB layout $fc
+; SGB layout for SCGB_PARTY_MENU_HP_PALS
+SGB_ApplyPartyMenuHPPals: ; 8ade
 	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld e, a
@@ -343,11 +345,11 @@ ApplyHPBarPals:
 	ret
 
 .Enemy:
-	ld de, BGPals + 2 palettes + 2
+	ld de, BGPals palette PAL_BATTLE_BG_ENEMY_HP + 2
 	jr .okay
 
 .Player:
-	ld de, BGPals + 3 palettes + 2
+	ld de, BGPals palette PAL_BATTLE_BG_PLAYER_HP + 2
 
 .okay
 	ld l, c
@@ -395,11 +397,11 @@ LoadStatsScreenPals:
 	ld a, $5
 	ld [rSVBK], a
 	ld a, [hli]
-	ld [UnknBGPals], a
-	ld [UnknBGPals + 8 * 2], a
+	ld [UnknBGPals palette 0], a
+	ld [UnknBGPals palette 2], a
 	ld a, [hl]
-	ld [UnknBGPals + 1], a
-	ld [UnknBGPals + 8 * 2 + 1], a
+	ld [UnknBGPals palette 0 + 1], a
+	ld [UnknBGPals palette 2 + 1], a
 	pop af
 	ld [rSVBK], a
 	call ApplyPals
@@ -457,7 +459,7 @@ Function95f0:
 ; XXX
 	ld hl, .Palette
 	ld de, UnknBGPals
-	ld bc, 8
+	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 	call ApplyPals
@@ -521,10 +523,10 @@ LoadPalette_White_Col1_Col2_Black:
 	ld a, $5
 	ld [rSVBK], a
 
-	ld a, $7fff % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [de], a
 	inc de
-	ld a, $7fff / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [de], a
 	inc de
 
@@ -574,7 +576,7 @@ ResetBGPals:
 	ld [rSVBK], a
 
 	ld hl, UnknBGPals
-	ld c, 8
+	ld c, 1 palettes
 .loop
 	ld a, $ff
 	ld [hli], a
@@ -655,7 +657,8 @@ ApplyAttrMap:
 	ld [rVBK], a
 	ret
 
-CGB_ApplyPartyMenuHPPals: ; 96f3 CGB layout $fc
+; CGB layout for SCGB_PARTY_MENU_HP_PALS
+CGB_ApplyPartyMenuHPPals: ; 96f3
 	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld e, a
@@ -746,7 +749,7 @@ GetMonPalettePointer_:
 Function9779: mobile
 	call CheckCGB
 	ret z
-	ld hl, Palettes_979c
+	ld hl, BattleObjectPals
 	ld a, $90
 	ld [rOBPI], a
 	ld c, 6 palettes
@@ -755,15 +758,15 @@ Function9779: mobile
 	ld [rOBPD], a
 	dec c
 	jr nz, .loop
-	ld hl, Palettes_979c
+	ld hl, BattleObjectPals
 	ld de, UnknOBPals palette 2
 	ld bc, 2 palettes
 	ld a, $5
 	call FarCopyWRAM
 	ret
 
-Palettes_979c:
-INCLUDE "data/palettes/979c.pal"
+BattleObjectPals:
+INCLUDE "data/palettes/battle_objects.pal"
 
 Function97cc:
 ; XXX
@@ -909,9 +912,9 @@ InitCGBPals::
 	ld [rBGPI], a
 	ld c, 4 * 8
 .bgpals_loop
-	ld a, $7fff % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [rBGPD], a
-	ld a, $7fff / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [rBGPD], a
 	dec c
 	jr nz, .bgpals_loop
@@ -919,9 +922,9 @@ InitCGBPals::
 	ld [rOBPI], a
 	ld c, 4 * 8
 .obpals_loop
-	ld a, $7fff % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [rOBPD], a
-	ld a, $7fff / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [rOBPD], a
 	dec c
 	jr nz, .obpals_loop
@@ -940,9 +943,9 @@ InitCGBPals::
 .LoadWhitePals:
 	ld c, 4 * 16
 .loop
-	ld a, $7fff % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [hli], a
-	ld a, $7fff / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [hli], a
 	dec c
 	jr nz, .loop
@@ -1006,7 +1009,7 @@ PushSGBBorder:
 
 SGB_ClearVRAM:
 	ld hl, VTiles0
-	ld bc, $2000
+	ld bc, VRAM_End - VTiles0
 	xor a
 	call ByteFill
 	ret
@@ -1067,7 +1070,7 @@ SGBBorder_PushBGPals:
 	ld [rBGP], a
 	ld hl, PredefPals
 	ld de, VTiles1
-	ld bc, $1000
+	ld bc, $100 tiles
 	call CopyData
 	call DrawDefaultTiles
 	ld a, $e3
@@ -1194,90 +1197,13 @@ SGBDelayCycles:
 	jr nz, .wait
 	ret
 
-BlkPacket_9a86:
-	db $21, $01, $03, $00, $00, $00, $13, $11, $00, $00, $00, $00, $00, $00, $00, $00
+INCLUDE "data/palettes/blk_packets.asm"
 
-BlkPacket_9a96:
-	db $21, $01, $07, $05, $00, $0a, $13, $0d, $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_9aa6:
-	db $22, $05, $07, $0a, $00, $0c, $13, $11, $03, $05, $01, $00, $0a, $03, $03, $00
-	db $0a, $08, $13, $0a, $03, $0a, $00, $04, $08, $0b, $03, $0f, $0b, $00, $13, $07
-
-BlkPacket_9ac6:
-	db $21, $01, $07, $05, $00, $01, $07, $07, $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_9ad6:
-	db $21, $01, $07, $05, $0b, $01, $13, $02, $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_9ae6:
-	db $21, $01, $07, $05, $01, $01, $08, $08, $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_9af6:
-	db $21, $01, $07, $05, $07, $05, $0d, $0b, $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_9b06:
-	db $22, $05, $03, $05, $00, $00, $13, $0b, $03, $0a, $00, $04, $13, $09, $02, $0f
-	db $00, $06, $13, $07, $03, $00, $04, $04, $0f, $09, $03, $00, $00, $0c, $13, $11
-
-BlkPacket_9b26:
-	db $23, $07, $07, $10, $00, $00, $02, $0c, $02, $00, $0c, $00, $12, $01, $02, $00
-	db $0c, $02, $12, $03, $02, $00, $0c, $04, $12, $05, $02, $00, $0c, $06, $12, $07
-	db $02, $00, $0c, $08, $12, $09, $02, $00, $0c, $0a, $12, $0b, $00, $00, $00, $00
-
-BlkPacket_9b56:
-	db $22, $03, $07, $20, $00, $00, $13, $04, $03, $0f, $00, $06, $13, $11, $03, $05
-	db $0f, $01, $12, $04, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_9b76:
-	db $21, $01, $07, $10, $00, $00, $13, $05, $00, $00, $00, $00, $00, $00, $00, $00
-
-BlkPacket_9b86:
-	db $21, $02, $07, $0a, $00, $04, $13, $0d, $03, $05, $00, $06, $13, $0b, $00, $00
-
-PalPacket_9b96:	db $51, $48, $00, $49, $00, $4a, $00, $4b, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9ba6:	db $51, $2b, $00, $24, $00, $20, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9bb6:	db $51, $41, $00, $42, $00, $43, $00, $44, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9bc6:	db $51, $4c, $00, $4c, $00, $4c, $00, $4c, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9bd6:	db $51, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9be6:	db $51, $36, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9bf6:	db $51, $37, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c06:	db $51, $38, $00, $39, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c16:	db $51, $3a, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c26:	db $51, $3b, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c36:	db $51, $3c, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c46:	db $51, $39, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c56:	db $51, $2e, $00, $2f, $00, $30, $00, $31, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c66:	db $51, $1a, $00, $1a, $00, $1a, $00, $1a, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c76:	db $51, $32, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c86:	db $51, $3c, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9c96:	db $51, $3d, $00, $3e, $00, $3f, $00, $40, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9ca6:	db $51, $33, $00, $34, $00, $1b, $00, $1f, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9cb6:	db $51, $1b, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9cc6:	db $51, $1c, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9cd6:	db $51, $35, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9ce6:	db $01, $ff, $7f, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9cf6:	db $09, $ff, $7f, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d06:	db $59, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d16:	db $89, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d26:	db $89, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d36:	db $99, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d46:	db $a1, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d56:	db $b9, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d66:	db $b9, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d76:	db $79, $5d, $08, $00, $0b, $8c, $d0, $f4, $60, $00, $00, $00, $00, $00, $00, $00
-PalPacket_9d86:	db $79, $52, $08, $00, $0b, $a9, $e7, $9f, $01, $c0, $7e, $e8, $e8, $e8, $e8, $e0
-PalPacket_9d96:	db $79, $47, $08, $00, $0b, $c4, $d0, $16, $a5, $cb, $c9, $05, $d0, $10, $a2, $28
-PalPacket_9da6:	db $79, $3c, $08, $00, $0b, $f0, $12, $a5, $c9, $c9, $c8, $d0, $1c, $a5, $ca, $c9
-PalPacket_9db6:	db $79, $31, $08, $00, $0b, $0c, $a5, $ca, $c9, $7e, $d0, $06, $a5, $cb, $c9, $7e
-PalPacket_9dc6:	db $79, $26, $08, $00, $0b, $39, $cd, $48, $0c, $d0, $34, $a5, $c9, $c9, $80, $d0
-PalPacket_9dd6:	db $79, $1b, $08, $00, $0b, $ea, $ea, $ea, $ea, $ea, $a9, $01, $cd, $4f, $0c, $d0
-PalPacket_9de6:	db $79, $10, $08, $00, $0b, $4c, $20, $08, $ea, $ea, $ea, $ea, $ea, $60, $ea, $ea
+INCLUDE "data/palettes/pal_packets.asm"
 
 PredefPals:
 INCLUDE "data/palettes/predef.pal"
 
-SGBBorderMap:
 INCLUDE "data/sgb_border_map.asm"
 
 SGBBorderPalettes:
@@ -1287,20 +1213,10 @@ SGBBorder:
 INCBIN "gfx/sgb/sgb_border.2bpp"
 
 HPBarPals:
-; green
-	RGB 30, 26, 15
-	RGB 00, 23, 00
-; yellow
-	RGB 30, 26, 15
-	RGB 31, 21, 00
-; red
-	RGB 30, 26, 15
-	RGB 31, 00, 00
+INCLUDE "data/palettes/hp_bar.pal"
 
 ExpBarPalette:
-; blue
-	RGB 30, 26, 15
-	RGB 04, 17, 31
+INCLUDE "data/palettes/exp_bar.pal"
 
 INCLUDE "gfx/pics/palette_pointers.asm"
 INCLUDE "gfx/trainer_palettes.asm"
@@ -1314,7 +1230,7 @@ LoadMapPals:
 	and 7
 	ld e, a
 	ld d, 0
-	ld hl, .TilesetColorsPointers
+	ld hl, EnvironmentColorsPointers
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1405,40 +1321,7 @@ endr
 	call FarCopyWRAM
 	ret
 
-.TilesetColorsPointers:
-	dw .OutdoorColors ; unused
-	dw .OutdoorColors ; TOWN
-	dw .OutdoorColors ; ROUTE
-	dw .IndoorColors  ; INDOOR
-	dw .DungeonColors ; CAVE
-	dw .Perm5Colors   ; ENVIRONMENT_5
-	dw .IndoorColors  ; GATE
-	dw .DungeonColors ; DUNGEON
-
-; Valid indices: $00 - $29
-.OutdoorColors:
-	db $00, $01, $02, $28, $04, $05, $06, $07 ; morn
-	db $08, $09, $0a, $28, $0c, $0d, $0e, $0f ; day
-	db $10, $11, $12, $29, $14, $15, $16, $17 ; nite
-	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f ; dark
-
-.IndoorColors:
-	db $20, $21, $22, $23, $24, $25, $26, $07 ; morn
-	db $20, $21, $22, $23, $24, $25, $26, $07 ; day
-	db $10, $11, $12, $13, $14, $15, $16, $07 ; nite
-	db $18, $19, $1a, $1b, $1c, $1d, $1e, $07 ; dark
-
-.DungeonColors:
-	db $00, $01, $02, $03, $04, $05, $06, $07 ; morn
-	db $08, $09, $0a, $0b, $0c, $0d, $0e, $0f ; day
-	db $10, $11, $12, $13, $14, $15, $16, $17 ; nite
-	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f ; dark
-
-.Perm5Colors:
-	db $00, $01, $02, $03, $04, $05, $06, $07 ; morn
-	db $08, $09, $0a, $0b, $0c, $0d, $0e, $0f ; day
-	db $10, $11, $12, $13, $14, $15, $16, $17 ; nite
-	db $18, $19, $1a, $1b, $1c, $1d, $1e, $1f ; dark
+INCLUDE "data/maps/environment_colors.asm"
 
 Palette_b309: ; b309 mobile
 	RGB 31, 31, 31
@@ -1453,13 +1336,13 @@ Palette_b311: ; b311 not mobile
 	RGB 00, 00, 00
 
 TilesetBGPalette:
-INCLUDE "data/palettes/tileset_bg.pal"
+INCLUDE "data/palettes/overworld/tileset_bg.pal"
 
 MapObjectPals::
-INCLUDE "data/palettes/map_objects.pal"
+INCLUDE "data/palettes/overworld/map_objects.pal"
 
 RoofPals:
-INCLUDE "data/palettes/roofs.pal"
+INCLUDE "data/palettes/overworld/roofs.pal"
 
 DiplomaPalettes:
 INCLUDE "data/palettes/diploma.pal"
@@ -1468,10 +1351,10 @@ PartyMenuOBPals:
 INCLUDE "data/palettes/party_menu.pal"
 
 Palettes_b6f1:
-INCLUDE "data/palettes/b6f1.pal"
+INCLUDE "data/palettes/unknown/b6f1.pal"
 
 Palettes_b719:
-INCLUDE "data/palettes/b719.pal"
+INCLUDE "data/palettes/unknown/b719.pal"
 
 MalePokegearPals:
 INCLUDE "data/palettes/pokegear.pal"
@@ -1480,7 +1363,7 @@ FemalePokegearPals:
 INCLUDE "data/palettes/pokegear_f.pal"
 
 Palettes_b789:
-INCLUDE "data/palettes/b789.pal"
+INCLUDE "data/palettes/unknown/b789.pal"
 
 SlotMachinePals:
 INCLUDE "data/palettes/slot_machine.pal"

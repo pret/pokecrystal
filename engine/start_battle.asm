@@ -191,7 +191,7 @@ ClearBattleRAM: ; 2ef18
 	call ClearWindowData
 
 	ld hl, hBGMapAddress
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [hli], a
-	ld [hl], VBGMap0 / $100
+	ld [hl], HIGH(VBGMap0)
 	ret

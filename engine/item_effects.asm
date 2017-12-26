@@ -861,7 +861,7 @@ HeavyBallMultiplier:
 
 .compare
 	ld c, a
-	cp 1024 >> 8 ; 102.4 kg
+	cp HIGH(1024) ; 102.4 kg
 	jr c, .lightmon
 
 	ld hl, .WeightsTable
@@ -892,10 +892,10 @@ HeavyBallMultiplier:
 
 .WeightsTable:
 ; weight factor, boost
-	db 2048 >> 8, 0
-	db 3072 >> 8, 20
-	db 4096 >> 8, 30
-	db 65280 >> 8, 40
+	db HIGH(2048),   0
+	db HIGH(3072),  20
+	db HIGH(4096),  30
+	db HIGH(65280), 40
 
 LureBallMultiplier:
 ; multiply catch rate by 3 if this is a fishing rod battle

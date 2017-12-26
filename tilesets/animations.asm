@@ -1,4 +1,3 @@
-
 _AnimateTileset:: ; fc000
 ; Iterate over a given pointer array of
 ; animation functions (one per frame).
@@ -476,10 +475,10 @@ AnimateWaterTile: ; fc402
 	add a
 	add a
 
-	add WaterTileFrames % $100
+	add LOW(WaterTileFrames)
 	ld l, a
 	ld a, 0
-	adc WaterTileFrames / $100
+	adc HIGH(WaterTileFrames)
 	ld h, a
 
 ; Stack now points to the start of the tile for this frame.
@@ -514,10 +513,10 @@ ForestTreeLeftAnimation: ; fc45c
 	add a
 	add a
 	add a
-	add ForestTreeLeftFrames % $100
+	add LOW(ForestTreeLeftFrames)
 	ld l, a
 	ld a, 0
-	adc ForestTreeLeftFrames / $100
+	adc HIGH(ForestTreeLeftFrames)
 	ld h, a
 
 .asm_fc47d
@@ -556,10 +555,10 @@ ForestTreeRightAnimation: ; fc4c4
 	add a
 	add a
 	add a
-	add ForestTreeLeftFrames % $100
+	add LOW(ForestTreeLeftFrames)
 	ld l, a
 	ld a, 0
-	adc ForestTreeLeftFrames / $100
+	adc HIGH(ForestTreeLeftFrames)
 	ld h, a
 	push bc
 	ld bc, ForestTreeRightFrames - ForestTreeLeftFrames
@@ -592,10 +591,10 @@ ForestTreeLeftAnimation2: ; fc4f2
 	add a
 	add a
 	add a
-	add ForestTreeLeftFrames % $100
+	add LOW(ForestTreeLeftFrames)
 	ld l, a
 	ld a, 0
-	adc ForestTreeLeftFrames / $100
+	adc HIGH(ForestTreeLeftFrames)
 	ld h, a
 
 .asm_fc515
@@ -624,10 +623,10 @@ ForestTreeRightAnimation2: ; fc51c
 	add a
 	add a
 	add a
-	add ForestTreeLeftFrames % $100
+	add LOW(ForestTreeLeftFrames)
 	ld l, a
 	ld a, 0
-	adc ForestTreeLeftFrames / $100
+	adc HIGH(ForestTreeLeftFrames)
 	ld h, a
 	push bc
 	ld bc, ForestTreeRightFrames - ForestTreeLeftFrames

@@ -159,9 +159,9 @@ DayCareStep:: ; 7282
 	dec hl
 	inc [hl]
 	ld a, [hl]
-	cp 5242880 / $10000
+	cp HIGH(MAX_DAY_CARE_EXP >> 8)
 	jr c, .day_care_lady
-	ld a, 5242880 / $10000
+	ld a, HIGH(MAX_DAY_CARE_EXP >> 8)
 	ld [hl], a
 
 .day_care_lady
@@ -181,9 +181,9 @@ DayCareStep:: ; 7282
 	dec hl
 	inc [hl]
 	ld a, [hl]
-	cp 5242880 / $10000
+	cp HIGH(MAX_DAY_CARE_EXP >> 8)
 	jr c, .check_egg
-	ld a, 5242880 / $10000
+	ld a, HIGH(MAX_DAY_CARE_EXP >> 8)
 	ld [hl], a
 
 .check_egg
@@ -199,7 +199,7 @@ DayCareStep:: ; 7282
 	callfar CheckBreedmonCompatibility
 	ld a, [wd265]
 	cp 230
-	ld b, -1 + 32 percent
+	ld b, 32 percent - 1
 	jr nc, .okay
 	ld a, [wd265]
 	cp 170

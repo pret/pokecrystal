@@ -15,10 +15,10 @@ GiveOddEgg: ; 1fb4b6
 
 	; Break on $ffff.
 	ld a, d
-	cp $ffff / $100
+	cp HIGH($ffff)
 	jr nz, .not_done
 	ld a, e
-	cp $ffff % $100
+	cp LOW($ffff)
 	jr z, .done
 .not_done
 
@@ -60,14 +60,14 @@ GiveOddEgg: ; 1fb4b6
 	ld [wMobileMonSpeciesBuffer], a
 
 	; load pointer to (wMobileMonSpeciesBuffer - 1) in wMobileMonSpeciesPointerBuffer
-	ld a, (wMobileMonSpeciesBuffer - 1) % $100
+	ld a, LOW(wMobileMonSpeciesBuffer - 1)
 	ld [wMobileMonSpeciesPointerBuffer], a
-	ld a, (wMobileMonSpeciesBuffer - 1) / $100
+	ld a, HIGH(wMobileMonSpeciesBuffer - 1)
 	ld [wMobileMonSpeciesPointerBuffer + 1], a
 	; load pointer to OddEggSpecies in wMobileMonStructurePointerBuffer
-	ld a, OddEggSpecies % $100
+	ld a, LOW(OddEggSpecies)
 	ld [wMobileMonStructurePointerBuffer], a
-	ld a, OddEggSpecies / $100
+	ld a, HIGH(OddEggSpecies)
 	ld [wMobileMonStructurePointerBuffer + 1], a
 
 	; load Odd Egg Name in wTempOddEggNickname
@@ -77,14 +77,14 @@ GiveOddEgg: ; 1fb4b6
 	call CopyBytes
 
 	; load pointer to wTempOddEggNickname in wMobileMonOTNamePointerBuffer
-	ld a, wTempOddEggNickname % $100
+	ld a, LOW(wTempOddEggNickname)
 	ld [wMobileMonOTNamePointerBuffer], a
-	ld a, wTempOddEggNickname / $100
+	ld a, HIGH(wTempOddEggNickname)
 	ld [wMobileMonOTNamePointerBuffer + 1], a
 	; load pointer to wOddEggName in wMobileMonNicknamePointerBuffer
-	ld a, wOddEggName % $100
+	ld a, LOW(wOddEggName)
 	ld [wMobileMonNicknamePointerBuffer], a
-	ld a, wOddEggName / $100
+	ld a, HIGH(wOddEggName)
 	ld [wMobileMonNicknamePointerBuffer + 1], a
 	farcall AddMobileMonToParty
 	ret

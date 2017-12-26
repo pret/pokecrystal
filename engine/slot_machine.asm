@@ -471,10 +471,10 @@ Slots_LoadReelState: ; 929f6 (24:69f6)
 
 Slot_CheckCoinCaseFull: ; 92a04 (24:6a04)
 	ld a, d
-	cp MAX_COINS / $100
+	cp HIGH(MAX_COINS)
 	jr c, .not_full
 	ld a, e
-	cp MAX_COINS % $100
+	cp LOW(MAX_COINS)
 	jr c, .not_full
 	scf
 	ret
@@ -771,10 +771,10 @@ Function92bbe: ; 92bbe
 	push hl
 	srl a
 	srl a
-	add .Unknown_92bce % $100
+	add LOW(.Unknown_92bce)
 	ld l, a
 	ld a, 0
-	adc .Unknown_92bce / $100
+	adc HIGH(.Unknown_92bce)
 	ld h, a
 	ld a, [hl]
 	pop hl

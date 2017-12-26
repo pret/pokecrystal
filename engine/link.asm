@@ -162,9 +162,9 @@ TimeCapsule: ; 2805d
 	ld [de], a
 	ld hl, wTimeCapsulePartyMon1Species
 	call Function2868a
-	ld a, OTPartyMonOT % $100
+	ld a, LOW(OTPartyMonOT)
 	ld [wUnusedD102], a
-	ld a, OTPartyMonOT / $100
+	ld a, HIGH(OTPartyMonOT)
 	ld [wUnusedD102 + 1], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -333,10 +333,10 @@ Gen2ToGen2LinkComms: ; 28177
 	push bc
 	ld bc, MAIL_MSG_LENGTH + 1
 	call CopyBytes
-	ld a, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) % $100
+	ld a, LOW(MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1))
 	add e
 	ld e, a
-	ld a, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) / $100
+	ld a, HIGH(MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1))
 	adc d
 	ld d, a
 	pop bc
@@ -346,10 +346,10 @@ Gen2ToGen2LinkComms: ; 28177
 	ld b, PARTY_LENGTH
 .copy_author_loop
 	push bc
-	ld a, (MAIL_MSG_LENGTH + 1) % $100
+	ld a, LOW(MAIL_MSG_LENGTH + 1)
 	add e
 	ld e, a
-	ld a, (MAIL_MSG_LENGTH + 1) / $100
+	ld a, HIGH(MAIL_MSG_LENGTH + 1)
 	adc d
 	ld d, a
 	ld bc, MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)
@@ -403,9 +403,9 @@ Gen2ToGen2LinkComms: ; 28177
 	ld de, OTPartyMons
 	ld bc, OTPartyDataEnd - OTPartyMons
 	call CopyBytes
-	ld a, OTPartyMonOT % $100
+	ld a, LOW(OTPartyMonOT)
 	ld [wUnusedD102], a
-	ld a, OTPartyMonOT / $100
+	ld a, HIGH(OTPartyMonOT)
 	ld [wUnusedD102 + 1], a
 	ld de, MUSIC_NONE
 	call PlayMusic

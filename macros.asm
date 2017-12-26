@@ -19,7 +19,6 @@ INCLUDE "macros/scripts/move_anim.asm"
 INCLUDE "macros/scripts/trade_anim.asm"
 INCLUDE "macros/scripts/gfx_anim.asm"
 
-
 percent EQUS "* $ff / 100"
 
 tiles EQUS "* LEN_2BPP_TILE"

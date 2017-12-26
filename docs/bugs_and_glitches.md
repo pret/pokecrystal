@@ -72,16 +72,16 @@ This is a bug with `SpeciesItemBoost` in [battle/effect_commands.asm](/battle/ef
 	sla l
 	rl h
 
-	ld a, 999 / $100
+	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
 	jr c, .cap
-	ld a, 999 % $100
+	ld a, LOW(MAX_STAT_VALUE)
 	cp l
 	ret nc
 
 .cap
-	ld h, 999 / $100
-	ld l, 999 % $100
+	ld h, HIGH(MAX_STAT_VALUE)
+	ld l, LOW(MAX_STAT_VALUE)
 	ret
 ```
 
@@ -128,16 +128,16 @@ This is a bug with `DittoMetalPowder` in [battle/effect_commands.asm](/battle/ef
 	scf
 	rr c
 
-	ld a, 999 / $100
+	ld a, HIGH(MAX_STAT_VALUE)
 	cp b
 	jr c, .cap
-	ld a, 999 % $100
+	ld a, LOW(MAX_STAT_VALUE)
 	cp c
 	ret nc
 
 .cap
-	ld b, 999 / $100
-	ld c, 999 % $100
+	ld b, HIGH(MAX_STAT_VALUE)
+	ld c, LOW(MAX_STAT_VALUE)
 	ret
 ```
 
@@ -1398,7 +1398,7 @@ ClearWRAM:: ; 25a
 	push af
 	ld [rSVBK], a
 	xor a
-	ld hl, $d000
+	ld hl, wRAM1Start
 	ld bc, $1000
 	call ByteFill
 	pop af

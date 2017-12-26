@@ -1,8 +1,3 @@
-SECTION "Roofs", ROMX
-
-INCLUDE "tilesets/roofs.asm"
-
-
 SECTION "Tileset Data 1", ROMX
 
 TilesetKantoGFX: ; 0x18000

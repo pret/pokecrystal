@@ -27,7 +27,7 @@ ReanchorBGMap_NoOAMUpdate:: ; 6454
 	ld a, $90
 	ld [hWY], a
 	call OverworldTextModeSwitch
-	ld a, VBGMap1 / $100
+	ld a, HIGH(VBGMap1)
 	call .LoadBGMapAddrIntoHRAM
 	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	farcall LoadOW_BGPal7
@@ -38,11 +38,11 @@ ReanchorBGMap_NoOAMUpdate:: ; 6454
 	ld [hBGMapMode], a
 	ld [hWY], a
 	farcall HDMATransfer_FillBGMap0WithBlack ; no need to farcall
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	call .LoadBGMapAddrIntoHRAM
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [wBGMapAnchor], a
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [wBGMapAnchor + 1], a
 	xor a
 	ld [hSCX], a
@@ -86,13 +86,13 @@ HDMATransfer_FillBGMap0WithBlack: ; 64db
 	ld hl, wDecompressScratch
 	ld bc, wScratchAttrMap - wDecompressScratch
 	call ByteFill
-	ld a, wDecompressScratch / $100
+	ld a, HIGH(wDecompressScratch)
 	ld [rHDMA1], a
-	ld a, wDecompressScratch % $100
+	ld a, LOW(wDecompressScratch)
 	ld [rHDMA2], a
-	ld a, (VBGMap0 % $8000) / $100
+	ld a, HIGH(VBGMap0 % $8000)
 	ld [rHDMA3], a
-	ld a, (VBGMap0 % $8000) % $100
+	ld a, LOW(VBGMap0 % $8000)
 	ld [rHDMA4], a
 	ld a, $3f
 	ld [hDMATransfer], a

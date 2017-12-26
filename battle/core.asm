@@ -2573,11 +2573,11 @@ WinTrainerBattle: ; 3cfa4
 .CheckMaxedOutMomMoney: ; 3d0b1
 	ld hl, wMomsMoney + 2
 	ld a, [hld]
-	cp MAX_MONEY % $100
+	cp LOW(MAX_MONEY)
 	ld a, [hld]
-	sbc MAX_MONEY / $100 % $100
+	sbc HIGH(MAX_MONEY) ; mid
 	ld a, [hl]
-	sbc MAX_MONEY / $10000 % $100
+	sbc HIGH(MAX_MONEY >> 8)
 	ret
 ; 3d0be
 
@@ -2602,17 +2602,17 @@ AddBattleMoneyToAccount: ; 3d0be
 	jr nz, .loop
 	pop hl
 	ld a, [hld]
-	cp MAX_MONEY % $100
+	cp LOW(MAX_MONEY)
 	ld a, [hld]
-	sbc MAX_MONEY / $100 % $100
+	sbc HIGH(MAX_MONEY) ; mid
 	ld a, [hl]
-	sbc MAX_MONEY / $10000 % $100
+	sbc HIGH(MAX_MONEY >> 8)
 	ret c
-	ld [hl], MAX_MONEY / $10000 % $100
+	ld [hl], HIGH(MAX_MONEY >> 8)
 	inc hl
-	ld [hl], MAX_MONEY / $100 % $100
+	ld [hl], HIGH(MAX_MONEY) ; mid
 	inc hl
-	ld [hl], MAX_MONEY % $100
+	ld [hl], LOW(MAX_MONEY)
 	ret
 ; 3d0ea
 
@@ -6384,25 +6384,25 @@ LoadEnemyMon: ; 3e8eb
 
 ; We're clear if the length is < 1536
 	ld a, [wMagikarpLength]
-	cp $06 ; $600 = 1536
+	cp HIGH(1536)
 	jr nz, .CheckMagikarpArea
 
-; 5% chance of skipping size checks
+; 5% chance of skipping both size checks
 	call Random
-	cp $0c ; / $100
+	cp 5 percent
 	jr c, .CheckMagikarpArea
 ; Try again if > 1614
 	ld a, [wMagikarpLength + 1]
-	cp $50
+	cp LOW(1614) + 2
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
 	call Random
-	cp $32 ; / $100
+	cp 20 percent - 1
 	jr c, .CheckMagikarpArea
 ; Try again if > 1598
 	ld a, [wMagikarpLength + 1]
-	cp $40
+	cp LOW(1598) + 2
 	jr nc, .GenerateDVs
 
 .CheckMagikarpArea:
@@ -6423,11 +6423,11 @@ LoadEnemyMon: ; 3e8eb
 	jr z, .Happiness
 ; 40% chance of not flooring
 	call Random
-	cp $64 ; / $100
+	cp 40 percent - 2
 	jr c, .Happiness
 ; Floor at length 1024
 	ld a, [wMagikarpLength]
-	cp 1024 >> 8
+	cp HIGH(1024)
 	jr c, .GenerateDVs ; try again
 
 ; Finally done with DVs
@@ -6462,7 +6462,7 @@ LoadEnemyMon: ; 3e8eb
 .TreeMon:
 ; If we're headbutting trees, some monsters enter battle asleep
 	call CheckSleepingTreeMon
-	ld a, SLP ; Asleep for 7 turns
+	ld a, TREEMON_SLEEP_TURNS
 	jr c, .UpdateStatus
 ; Otherwise, no status
 	xor a
@@ -7009,14 +7009,14 @@ ApplyStatLevelMultiplier: ; 3ecb7
 
 ; Cap at 999.
 	ld a, [hQuotient + 2]
-	sub MAX_STAT_VALUE % $100
+	sub LOW(MAX_STAT_VALUE)
 	ld a, [hQuotient + 1]
-	sbc MAX_STAT_VALUE / $100
+	sbc HIGH(MAX_STAT_VALUE)
 	jp c, .okay3
 
-	ld a, MAX_STAT_VALUE / $100
+	ld a, HIGH(MAX_STAT_VALUE)
 	ld [hQuotient + 1], a
-	ld a, MAX_STAT_VALUE % $100
+	ld a, LOW(MAX_STAT_VALUE)
 	ld [hQuotient + 2], a
 
 .okay3
@@ -7132,13 +7132,13 @@ BoostStat: ; 3ed7c
 
 ; Cap at 999.
 	ld a, [hld]
-	sub MAX_STAT_VALUE % $100
+	sub LOW(MAX_STAT_VALUE)
 	ld a, [hl]
-	sbc MAX_STAT_VALUE / $100
+	sbc HIGH(MAX_STAT_VALUE)
 	ret c
-	ld a, MAX_STAT_VALUE / $100
+	ld a, HIGH(MAX_STAT_VALUE)
 	ld [hli], a
-	ld a, MAX_STAT_VALUE % $100
+	ld a, LOW(MAX_STAT_VALUE)
 	ld [hld], a
 	ret
 ; 3ed9f
@@ -7217,7 +7217,7 @@ _BattleRandom:: ; 3edd8
 	ld b, 10 ; number of seeds
 
 ; Generate next number in the sequence for each seed
-; The algorithm takes the form *5 + 1 % 256
+; a[n+1] = (a[n] * 5 + 1) % 256
 .loop
 	; get last #
 	ld a, [hl]
@@ -9135,10 +9135,10 @@ AddLastMobileBattleToLinkRecord: ; 3fa42
 	dec hl
 	ld a, [hl]
 	inc hl
-	cp MAX_LINK_RECORD / $100
+	cp HIGH(MAX_LINK_RECORD)
 	ret c
 	ld a, [hl]
-	cp MAX_LINK_RECORD % $100
+	cp LOW(MAX_LINK_RECORD)
 	ret
 ; 3fac8
 

@@ -1,6 +1,5 @@
-; valid roofs: 0, 1, 2, 3, 4, or -1 for none
-
 MapGroupRoofs: ; 1c021i
+; entries correspond to Roofs (see below)
 	db -1 ; group 0 (unused)
 	db  3 ; group 1 (Olivine)
 	db  2 ; group 2 (Mahogany)
@@ -29,3 +28,11 @@ MapGroupRoofs: ; 1c021i
 	db -1 ; group 25
 	db  0 ; group 26 (Cherrygrove)
 ; 1c03c
+
+Roofs: ; 1c03c
+INCBIN "gfx/tilesets/roofs/0.2bpp"
+INCBIN "gfx/tilesets/roofs/1.2bpp"
+INCBIN "gfx/tilesets/roofs/2.2bpp"
+INCBIN "gfx/tilesets/roofs/3.2bpp"
+INCBIN "gfx/tilesets/roofs/4.2bpp"
+; 1c30c

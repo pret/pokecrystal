@@ -199,24 +199,24 @@ _ResetWRAM: ; 5bae
 	ld [Coins], a
 	ld [Coins + 1], a
 
-IF START_MONEY / $10000
-	ld a, START_MONEY / $10000
+IF START_MONEY >= $10000
+	ld a, HIGH(START_MONEY >> 8)
 ENDC
 	ld [Money], a
-	ld a, START_MONEY / $100 % $100
+	ld a, HIGH(START_MONEY) ; mid
 	ld [Money + 1], a
-	ld a, START_MONEY % $100
+	ld a, LOW(START_MONEY)
 	ld [Money + 2], a
 
 	xor a
 	ld [wWhichMomItem], a
 
 	ld hl, MomItemTriggerBalance
-	ld [hl], MOM_MONEY / $10000
+	ld [hl], HIGH(MOM_MONEY >> 8)
 	inc hl
-	ld [hl], MOM_MONEY / $100 % $100
+	ld [hl], HIGH(MOM_MONEY) ; mid
 	inc hl
-	ld [hl], MOM_MONEY % $100
+	ld [hl], LOW(MOM_MONEY)
 
 	call InitializeNPCNames
 
@@ -372,9 +372,9 @@ Continue: ; 5d65
 .Check2Pass:
 	ld a, $8
 	ld [MusicFade], a
-	ld a, MUSIC_NONE % $100
+	ld a, LOW(MUSIC_NONE)
 	ld [MusicFadeID], a
-	ld a, MUSIC_NONE / $100
+	ld a, HIGH(MUSIC_NONE)
 	ld [MusicFadeID + 1], a
 	call ClearBGPalettes
 	call Continue_MobileAdapterMenu
@@ -426,9 +426,9 @@ Continue_MobileAdapterMenu: ; 5df0
 	ret nz
 	ld a, 5
 	ld [MusicFade], a
-	ld a, MUSIC_MOBILE_ADAPTER_MENU % $100
+	ld a, LOW(MUSIC_MOBILE_ADAPTER_MENU)
 	ld [MusicFadeID], a
-	ld a, MUSIC_MOBILE_ADAPTER_MENU / $100
+	ld a, HIGH(MUSIC_MOBILE_ADAPTER_MENU)
 	ld [MusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames
@@ -437,9 +437,9 @@ Continue_MobileAdapterMenu: ; 5df0
 	farcall _SaveData
 	ld a, 8
 	ld [MusicFade], a
-	ld a, MUSIC_NONE % $100
+	ld a, LOW(MUSIC_NONE)
 	ld [MusicFadeID], a
-	ld a, MUSIC_NONE / $100
+	ld a, HIGH(MUSIC_NONE)
 	ld [MusicFadeID + 1], a
 	ld c, 35
 	call DelayFrames
@@ -1405,9 +1405,9 @@ GameInit:: ; 642e
 	call ClearWindowData
 	call ClearBGPalettes
 	call ClearTileMap
-	ld a, VBGMap0 / $100
+	ld a, HIGH(VBGMap0)
 	ld [hBGMapAddress + 1], a
-	xor a
+	xor a ; LOW(VBGMap0)
 	ld [hBGMapAddress], a
 	ld [hJoyDown], a
 	ld [hSCX], a

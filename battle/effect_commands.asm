@@ -3576,14 +3576,14 @@ BattleCommand_DamageCalc: ; 35612
 	jr nz, .Cap
 
 	ld a, [hProduct + 2]
-	cp 998 / $100
+	cp HIGH(MAX_STAT_VALUE - MIN_NEUTRAL_DAMAGE + 1)
 	jr c, .dont_cap_2
 
-	cp 998 / $100 + 1
+	cp HIGH(MAX_STAT_VALUE - MIN_NEUTRAL_DAMAGE + 1) + 1
 	jr nc, .Cap
 
 	ld a, [hProduct + 3]
-	cp 998 % $100
+	cp LOW(MAX_STAT_VALUE - MIN_NEUTRAL_DAMAGE + 1)
 	jr nc, .Cap
 
 .dont_cap_2
@@ -3601,21 +3601,21 @@ BattleCommand_DamageCalc: ; 35612
 	jr c, .Cap
 
 	ld a, [hl]
-	cp 998 / $100
+	cp HIGH(MAX_STAT_VALUE - MIN_NEUTRAL_DAMAGE + 1)
 	jr c, .dont_cap_3
 
-	cp 998 / $100 + 1
+	cp HIGH(MAX_STAT_VALUE - MIN_NEUTRAL_DAMAGE + 1) + 1
 	jr nc, .Cap
 
 	inc hl
 	ld a, [hld]
-	cp 998 % $100
+	cp LOW(MAX_STAT_VALUE - MIN_NEUTRAL_DAMAGE + 1)
 	jr c, .dont_cap_3
 
 .Cap:
-	ld a, 997 / $100
+	ld a, HIGH(MAX_STAT_VALUE - MIN_NEUTRAL_DAMAGE)
 	ld [hli], a
-	ld a, 997 % $100
+	ld a, LOW(MAX_STAT_VALUE - MIN_NEUTRAL_DAMAGE)
 	ld [hld], a
 
 
@@ -3623,7 +3623,7 @@ BattleCommand_DamageCalc: ; 35612
 ; Minimum neutral damage is 2 (bringing the cap to 999).
 	inc hl
 	ld a, [hl]
-	add 2
+	add MIN_NEUTRAL_DAMAGE
 	ld [hld], a
 	jr nc, .dont_floor
 	inc [hl]
@@ -5651,10 +5651,10 @@ CheckIfStatCanBeRaised: ; 361ef
 .no_carry
 	pop bc
 	ld a, [hld]
-	sub MAX_STAT_VALUE % $100
+	sub LOW(MAX_STAT_VALUE)
 	jr nz, .not_already_max
 	ld a, [hl]
-	sbc MAX_STAT_VALUE / $100
+	sbc HIGH(MAX_STAT_VALUE)
 	jp z, .stats_already_max
 .not_already_max
 	ld a, [hBattleTurn]
@@ -6417,14 +6417,14 @@ CalcStats: ; 3661d
 
 .check_maxed_out
 	ld a, [hQuotient + 2]
-	cp MAX_STAT_VALUE % $100
+	cp LOW(MAX_STAT_VALUE)
 	ld a, b
-	sbc MAX_STAT_VALUE / $100
+	sbc HIGH(MAX_STAT_VALUE)
 	jr c, .not_maxed_out
 
-	ld a, MAX_STAT_VALUE % $100
+	ld a, LOW(MAX_STAT_VALUE)
 	ld [hQuotient + 2], a
-	ld a, MAX_STAT_VALUE / $100
+	ld a, HIGH(MAX_STAT_VALUE)
 	ld [hQuotient + 1], a
 
 .not_maxed_out
@@ -8367,7 +8367,7 @@ BattleCommand_Heal: ; 3713e
 	call GetBattleVarAddr
 	ld a, [hl]
 	and a
-	ld [hl], REST_TURNS + 1
+	ld [hl], REST_SLEEP_TURNS + 1
 	ld hl, WentToSleepText
 	jr z, .no_status_to_heal
 	ld hl, RestedText

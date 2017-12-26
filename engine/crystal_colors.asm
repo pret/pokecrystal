@@ -126,10 +126,7 @@ LoadOW_BGPal7:: ; 49409
 ; 49418
 
 Palette_TextBG7: ; 49418
-	RGB 31, 31, 31
-	RGB 08, 19, 28
-	RGB 05, 05, 16
-	RGB 00, 00, 00
+INCLUDE "data/palettes/overworld/bg_text.pal"
 ; 49420
 
 Function49420:: ; 49420 (12:5420)
@@ -144,7 +141,7 @@ Function49420:: ; 49420 (12:5420)
 MG_Mobile_Layout01: ; 4942f
 	call MG_Mobile_Layout_LoadPals
 	ld de, UnknBGPals palette PAL_BG_TEXT
-	ld hl, Palette_49478
+	ld hl, .Palette_49478
 	ld bc, 1 palettes
 	ld a, BANK(UnknBGPals)
 	call FarCopyWRAM
@@ -174,7 +171,7 @@ MG_Mobile_Layout01: ; 4942f
 	ret
 ; 49478
 
-Palette_49478: ; 49478
+.Palette_49478: ; 49478
 	RGB 31, 31, 31
 	RGB 26, 31, 00
 	RGB 20, 16, 03
@@ -210,7 +207,7 @@ Function49496: ; 49496
 INCLUDE "tilesets/special_palettes.asm"
 
 MG_Mobile_Layout02: ; 49706
-	ld hl, Palette_49732
+	ld hl, .Palette_49732
 	ld de, UnknBGPals
 	ld bc, 1 palettes
 	ld a, BANK(UnknBGPals)
@@ -218,7 +215,7 @@ MG_Mobile_Layout02: ; 49706
 	farcall ApplyPals
 	call MG_Mobile_Layout_WipeAttrMap
 	farcall ApplyAttrMap
-	ld hl, Palette_4973a
+	ld hl, .Palette_4973a
 	ld de, UnknOBPals
 	ld bc, 1 palettes
 	ld a, BANK(UnknOBPals)
@@ -226,14 +223,14 @@ MG_Mobile_Layout02: ; 49706
 	ret
 ; 49732
 
-Palette_49732: ; 49732
+.Palette_49732: ; 49732
 	RGB 31, 31, 31
 	RGB 23, 16, 07
 	RGB 23, 07, 07
 	RGB 03, 07, 20
 ; 4973a
 
-Palette_4973a: ; 4973a
+.Palette_4973a: ; 4973a
 	RGB 00, 00, 00
 	RGB 07, 05, 31
 	RGB 14, 18, 31
@@ -241,17 +238,17 @@ Palette_4973a: ; 4973a
 ; 49742
 
 Function49742: ; 49742
-	ld hl, Palette_49757
+	ld hl, .Palette_49757
 	ld de, UnknBGPals
-	ld bc, $40
+	ld bc, 8 palettes
 	ld a, $5
 	call FarCopyWRAM
 	farcall ApplyPals
 	ret
 ; 49757
 
-Palette_49757: ; 49757
-INCLUDE "data/palettes/49757.pal"
+.Palette_49757: ; 49757
+INCLUDE "data/palettes/unknown/49757.pal"
 ; 49797
 
 _InitMG_Mobile_LinkTradePalMap: ; 49797
@@ -326,11 +323,4 @@ InitMG_Mobile_LinkTradePalMap: ; 49856
 ; 4985a
 
 Unknown_4985a: ; unreferenced
-	db $ab, $03, $57, $24, $ac, $0e, $13, $32
-	db $be, $30, $5b, $4c, $47, $60, $ed, $f2
-	db $ab, $03, $55, $26, $aa, $0a, $13, $3a
-	db $be, $28, $33, $24, $6e, $71, $df, $b0
-	db $a8, $00, $e5, $e0, $9a, $fc, $f4, $2c
-	db $fe, $4c, $a3, $5e, $c6, $3a, $ab, $4d
-	db $a8, $00, $b5, $b0, $de, $e8, $fc, $1c
-	db $ba, $66, $f7, $0e, $ba, $5e, $43, $bd
+INCLUDE "data/palettes/unknown/4985a.asm"

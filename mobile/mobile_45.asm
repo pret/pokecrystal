@@ -1,4 +1,3 @@
-
 SECTION "bank45", ROMX
 
 	charmap " ", $20 ; revert to ascii
@@ -7613,9 +7612,9 @@ Function117c4a:
 	ld c, 8
 .loop
 	push hl
-	ld a, $7fff % $100
+	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
 	ld [hli], a
-	ld a, $7fff / $100
+	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
 	ld [hl], a
 	pop hl
 	add hl, de

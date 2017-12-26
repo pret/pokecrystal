@@ -47,7 +47,7 @@ SaveMenu_CopyTilemapAtOnce: ; 4cf45 (13:4f45)
 	ld a, SCREEN_HEIGHT
 	ld [hTilesPerCycle], a
 	ld b, 1 << 1
-	ld c, rSTAT % $100
+	ld c, LOW(rSTAT)
 
 .loop
 rept SCREEN_WIDTH / 2
