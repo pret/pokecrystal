@@ -18,8 +18,6 @@ before_script:
       fi;
     }
 script:
-  - make tools
-  - make crystal crystal11
-  - make compare
+  - make -j2 compare
 #  - check_status
 
