@@ -135,7 +135,7 @@ ROMX $31
 ROMX $32
 	"bank32"
 ROMX $33
-	"bank33"
+	"Move Animations"
 	"Extra Songs 2"
 ROMX $34
 	"Pic Animations 1"

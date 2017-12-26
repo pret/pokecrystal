@@ -50,7 +50,6 @@ TMHMMoves: ; 1167a
 	db FIRE_PUNCH
 	db FURY_CUTTER
 	db NIGHTMARE
-
 ; HMs
 	db CUT
 	db FLY
@@ -59,11 +58,9 @@ TMHMMoves: ; 1167a
 	db FLASH
 	db WHIRLPOOL
 	db WATERFALL
-
 ; Move tutor
 	db FLAMETHROWER
 	db THUNDERBOLT
 	db ICE_BEAM
-
 	db 0 ; end
 ; 116b7

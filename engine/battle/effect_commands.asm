@@ -1428,7 +1428,7 @@ BattleCommand_Stab: ; 346d2
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	ld b, a
-	ld hl, TypeMatchup
+	ld hl, TypeMatchups
 
 .TypesLoop:
 	ld a, [hli]
@@ -1559,7 +1559,7 @@ CheckTypeMatchup: ; 347d3
 	ld c, [hl]
 	ld a, 10 ; 1.0
 	ld [wTypeMatchup], a
-	ld hl, TypeMatchup
+	ld hl, TypeMatchups
 .TypesLoop:
 	ld a, [hli]
 	cp $ff
@@ -1638,12 +1638,9 @@ BattleCommand_ResetTypeMatchup: ; 34833
 
 ; 3484e
 
-INCLUDE "battle/ai/switch.asm"
+INCLUDE "engine/battle/ai/switch.asm"
 
-TypeMatchup: ; 34bb1
-INCLUDE "battle/type_matchup.asm"
-; 34cfd
-
+INCLUDE "data/type_matchups.asm"
 
 BattleCommand_DamageVariation: ; 34cfd
 ; damagevariation
@@ -8413,7 +8410,7 @@ BattleCommand_Heal: ; 3713e
 
 ; 371cd
 
-INCLUDE "battle/effects/transform.asm"
+INCLUDE "engine/battle/effect_commands/transform.asm"
 
 BattleSideCopy: ; 372c6
 ; Copy bc bytes from hl to de if it's the player's turn.
@@ -8640,9 +8637,9 @@ BattleCommand_Selfdestruct: ; 37380
 ; 373c9
 
 
-INCLUDE "battle/effects/mirror_move.asm"
+INCLUDE "engine/battle/effect_commands/mirror_move.asm"
 
-INCLUDE "battle/effects/metronome.asm"
+INCLUDE "engine/battle/effect_commands/metronome.asm"
 
 
 CheckUserMove: ; 37462
@@ -8689,7 +8686,7 @@ ResetTurn: ; 3747b
 ; 37492
 
 
-INCLUDE "battle/effects/thief.asm"
+INCLUDE "engine/battle/effect_commands/thief.asm"
 
 
 BattleCommand_ArenaTrap: ; 37517
@@ -8721,7 +8718,7 @@ BattleCommand_ArenaTrap: ; 37517
 ; 37536
 
 
-INCLUDE "battle/effects/nightmare.asm"
+INCLUDE "engine/battle/effect_commands/nightmare.asm"
 
 
 BattleCommand_Defrost: ; 37563
@@ -8758,21 +8755,21 @@ BattleCommand_Defrost: ; 37563
 ; 37588
 
 
-INCLUDE "battle/effects/curse.asm"
+INCLUDE "engine/battle/effect_commands/curse.asm"
 
-INCLUDE "battle/effects/protect.asm"
+INCLUDE "engine/battle/effect_commands/protect.asm"
 
-INCLUDE "battle/effects/endure.asm"
+INCLUDE "engine/battle/effect_commands/endure.asm"
 
-INCLUDE "battle/effects/spikes.asm"
+INCLUDE "engine/battle/effect_commands/spikes.asm"
 
-INCLUDE "battle/effects/foresight.asm"
+INCLUDE "engine/battle/effect_commands/foresight.asm"
 
-INCLUDE "battle/effects/perish_song.asm"
+INCLUDE "engine/battle/effect_commands/perish_song.asm"
 
-INCLUDE "battle/effects/sandstorm.asm"
+INCLUDE "engine/battle/effect_commands/sandstorm.asm"
 
-INCLUDE "battle/effects/rollout.asm"
+INCLUDE "engine/battle/effect_commands/rollout.asm"
 
 
 BattleCommand5d: ; 37791
@@ -8845,7 +8842,7 @@ ResetFuryCutterCount: ; 377be
 ; 377ce
 
 
-INCLUDE "battle/effects/attract.asm"
+INCLUDE "engine/battle/effect_commands/attract.asm"
 
 BattleCommand_HappinessPower: ; 3784b
 ; happinesspower
@@ -8876,7 +8873,7 @@ BattleCommand_HappinessPower: ; 3784b
 ; 37874
 
 
-INCLUDE "battle/effects/present.asm"
+INCLUDE "engine/battle/effect_commands/present.asm"
 
 BattleCommand_FrustrationPower: ; 3790e
 ; frustrationpower

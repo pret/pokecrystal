@@ -1,6 +1,5 @@
 ; Battle animation command interpreter.
 
-
 PlayBattleAnim: ; cc0d6
 
 	ld a, [rSVBK]

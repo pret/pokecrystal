@@ -30,7 +30,7 @@ TREEMON_SLEEP_TURNS EQU 7
 	const ABILITY ; used for BattleCommand_Curse
 NUM_LEVEL_STATS EQU const_value
 
-; move struct members (see battle/moves/moves.asm)
+; move struct members (see data/moves/moves.asm)
 	const_def
 	const MOVE_ANIM   ; 0
 	const MOVE_EFFECT ; 1
@@ -213,7 +213,7 @@ SUBSTATUS_CURLED EQU 0
 	const WEATHER_SUN_END
 	const WEATHER_SANDSTORM_END
 
-; MoveEffectsPointers indexes (see battle/moves/move_effects_pointers.asm)
+; MoveEffectsPointers indexes (see data/moves/move_effects_pointers.asm)
 	const_def
 	const EFFECT_NORMAL_HIT
 	const EFFECT_SLEEP

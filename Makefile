@@ -169,23 +169,23 @@ gfx/slots/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates -
 
 gfx/card_flip/card_flip_2.2bpp: tools/gfx += --remove-whitespace
 
-gfx/fx/angels.2bpp: tools/gfx += --trim-whitespace
-gfx/fx/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
-gfx/fx/bubble.2bpp: tools/gfx += --trim-whitespace
-gfx/fx/charge.2bpp: tools/gfx += --trim-whitespace
-gfx/fx/egg.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/explosion.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/hit.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/horn.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/lightning.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
-gfx/fx/noise.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/objects.2bpp: tools/gfx += --remove-whitespace --remove-xflip
-gfx/fx/pokeball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
-gfx/fx/reflect.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/rocks.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/skyattack.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/status.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/angels.2bpp: tools/gfx += --trim-whitespace
+gfx/anims/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
+gfx/anims/bubble.2bpp: tools/gfx += --trim-whitespace
+gfx/anims/charge.2bpp: tools/gfx += --trim-whitespace
+gfx/anims/egg.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/explosion.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/hit.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/horn.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/lightning.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/anims/noise.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/objects.2bpp: tools/gfx += --remove-whitespace --remove-xflip
+gfx/anims/pokeball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/anims/reflect.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/rocks.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/skyattack.2bpp: tools/gfx += --remove-whitespace
+gfx/anims/status.2bpp: tools/gfx += --remove-whitespace
 
 gfx/player/chris.2bpp: rgbgfx += -h
 gfx/player/chris_back.2bpp: rgbgfx += -h

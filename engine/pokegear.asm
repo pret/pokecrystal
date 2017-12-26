@@ -2338,7 +2338,7 @@ HasVisitedSpawn: ; 91c50
 
 ; 91c5e
 
-INCLUDE "data/flypoints.asm"
+INCLUDE "data/maps/flypoints.asm"
 
 ret_91c8f: ; 91c8f
 	ret

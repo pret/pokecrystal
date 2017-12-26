@@ -1,26 +1,18 @@
 ; hMapEntryMethod values
-; MapSetupScripts indexes (see engine/map_setup.asm)
+; MapSetupScripts indexes (see data/maps/map_setup_scripts.asm)
 const_value SET $f1
-	const MAPSETUP_WARP
-	const MAPSETUP_CONTINUE
-	const MAPSETUP_RELOADMAP
-	const MAPSETUP_TELEPORT
-	const MAPSETUP_DOOR
-	const MAPSETUP_FALL
-	const MAPSETUP_CONNECTION
-	const MAPSETUP_LINKRETURN
-	const MAPSETUP_TRAIN
-	const MAPSETUP_SUBMENU
-	const MAPSETUP_BADWARP
-	const MAPSETUP_FLY
-
-; callback types
-const_value SET 1
-	const MAPCALLBACK_TILES
-	const MAPCALLBACK_OBJECTS
-	const MAPCALLBACK_CMDQUEUE
-	const MAPCALLBACK_SPRITES
-	const MAPCALLBACK_NEWMAP
+	const MAPSETUP_WARP       ; f1
+	const MAPSETUP_CONTINUE   ; f2
+	const MAPSETUP_RELOADMAP  ; f3
+	const MAPSETUP_TELEPORT   ; f4
+	const MAPSETUP_DOOR       ; f5
+	const MAPSETUP_FALL       ; f6
+	const MAPSETUP_CONNECTION ; f7
+	const MAPSETUP_LINKRETURN ; f8
+	const MAPSETUP_TRAIN      ; f9
+	const MAPSETUP_SUBMENU    ; fa
+	const MAPSETUP_BADWARP    ; fb
+	const MAPSETUP_FLY        ; fc
 
 ; MapSetupCommands indexes (see engine/map_setup.asm)
 ; Names taken from Condensation water's scripting compendium
@@ -73,3 +65,11 @@ const_value SET 1
 	const map_text_scroll_off     ; 2c
 	const map_stop_script         ; 2d
 map_end EQU -1
+
+; callback types
+const_value SET 1
+	const MAPCALLBACK_TILES
+	const MAPCALLBACK_OBJECTS
+	const MAPCALLBACK_CMDQUEUE
+	const MAPCALLBACK_SPRITES
+	const MAPCALLBACK_NEWMAP

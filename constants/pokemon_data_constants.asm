@@ -192,6 +192,18 @@ FISHSWARM_QWILFISH EQU 1
 FISHSWARM_REMORAID EQU 2
 
 
+; PokeAnims indexes (see gfx/pokemon/animation.asm)
+	const_def
+	const ANIM_MON_SLOW
+	const ANIM_MON_NORMAL
+	const ANIM_MON_MENU
+	const ANIM_MON_TRADE
+	const ANIM_MON_EVOLVE
+	const ANIM_MON_HATCH
+	const ANIM_MON_UNUSED
+	const ANIM_MON_EGG1
+	const ANIM_MON_EGG2
+
 ; MonMenuOptions indexes (see engine/mon_menu.asm)
 const_value SET 1
 ; moves

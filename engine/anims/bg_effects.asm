@@ -78,6 +78,7 @@ DoBattleBGEffectFunction: ; c804a (32:404a)
 	jp hl
 
 BattleBGEffects: ; c805a (32:405a)
+; entries correspond to ANIM_BG_* constants
 	dw BattleBGEffect_End
 	dw BattleBGEffect_FlashInverted
 	dw BattleBGEffect_FlashWhite

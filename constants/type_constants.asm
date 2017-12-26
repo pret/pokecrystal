@@ -1,6 +1,6 @@
-; TypeNames indexes (see text/types.asm)
+; TypeNames indexes (see data/type_names.asm)
 ; also used in:
-; - TypeMatchup (see battle.type_matchup.asm)
+; - TypeMatchups (see data/type_matchups.asm)
 ; - Pokedex_SearchForMons.TypeConversionTable and Pokedex_PlaceSearchScreenTypeStrings.TypeStrings (see engine/pokedex.asm)
 	const_def
 

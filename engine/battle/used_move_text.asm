@@ -5,10 +5,8 @@ DisplayUsedMoveText: ; 105db0
 	jp WaitBGMap
 ; 105db9
 
-
 UsedMoveText: ; 105db9
 ; this is a stream of text and asm from 105db9 to 105ef6
-
 	text_jump _ActorNameText
 	start_asm
 	ld a, [hBattleTurn]
@@ -44,7 +42,6 @@ UsedMoveText: ; 105db9
 .grammar
 	call GetMoveGrammar
 ; wd265 now contains MoveGrammar
-
 
 ; everything except 'instead' made redundant in localization
 

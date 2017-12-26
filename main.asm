@@ -34,7 +34,7 @@ INCLUDE "engine/health.asm"
 INCLUDE "event/overworld.asm"
 INCLUDE "engine/items.asm"
 INCLUDE "engine/player_step.asm"
-INCLUDE "engine/anim_hp_bar.asm"
+INCLUDE "engine/battle/anim_hp_bar.asm"
 INCLUDE "engine/move_mon.asm"
 INCLUDE "engine/billspctop.asm"
 INCLUDE "engine/routines/getbreedmonlevelgrowth.asm"
@@ -111,7 +111,7 @@ INCLUDE "engine/scrolling_menu.asm"
 INCLUDE "engine/switch_items.asm"
 INCLUDE "engine/menu_2.asm"
 INCLUDE "engine/mon_menu.asm"
-INCLUDE "battle/menu.asm"
+INCLUDE "engine/battle/menu.asm"
 INCLUDE "engine/buy_sell_toss.asm"
 INCLUDE "engine/trainer_card.asm"
 INCLUDE "engine/prof_oaks_pc.asm"
@@ -120,8 +120,8 @@ INCLUDE "engine/routines/leveluphappinessmod.asm"
 INCLUDE "data/trainers/trainer_dvs.asm"
 INCLUDE "engine/routines/returntobattle_useball.asm"
 INCLUDE "engine/routines/consumehelditem.asm"
-INCLUDE "battle/moves/move_effects_pointers.asm"
-INCLUDE "battle/moves/move_effects.asm"
+INCLUDE "data/moves/move_effects_pointers.asm"
+INCLUDE "data/moves/move_effects.asm"
 INCLUDE "engine/routines/kurt_selectquantity_interpretjoypad.asm"
 
 
@@ -129,7 +129,7 @@ SECTION "bankA", ROMX
 
 INCLUDE "engine/link.asm"
 INCLUDE "engine/wildmons.asm"
-INCLUDE "battle/link_result.asm"
+INCLUDE "engine/battle/link_result.asm"
 
 ChrisBackpic: ; 2ba1a
 INCBIN "gfx/player/chris_back.2bpp.lz"
@@ -140,51 +140,51 @@ INCBIN "gfx/battle/dude.2bpp.lz"
 
 SECTION "bankB", ROMX
 
-INCLUDE "battle/trainer_huds.asm"
+INCLUDE "engine/battle/trainer_huds.asm"
 INCLUDE "data/trainers/trainer_class_names.asm"
-INCLUDE "battle/ai/redundant.asm"
+INCLUDE "engine/battle/ai/redundant.asm"
 INCLUDE "event/move_deleter.asm"
 INCLUDE "engine/mystery_gift_2.asm"
 INCLUDE "engine/tmhm2.asm"
-INCLUDE "battle/moves/move_descriptions.asm"
+INCLUDE "data/moves/move_descriptions.asm"
 INCLUDE "engine/pokerus/pokerus.asm"
-INCLUDE "engine/start_battle.asm"
+INCLUDE "engine/battle/start_battle.asm"
 INCLUDE "engine/routines/placegraphic.asm"
 
 
 SECTION "Effect Commands", ROMX
 
-INCLUDE "battle/effect_commands.asm"
+INCLUDE "engine/battle/effect_commands.asm"
 
 
 SECTION "Enemy Trainers", ROMX
 
-INCLUDE "battle/ai/items.asm"
-INCLUDE "battle/ai/scoring.asm"
-INCLUDE "engine/read_trainer_attributes.asm"
+INCLUDE "engine/battle/ai/items.asm"
+INCLUDE "engine/battle/ai/scoring.asm"
+INCLUDE "engine/battle/read_trainer_attributes.asm"
 INCLUDE "data/trainers/trainer_attributes.asm"
-INCLUDE "engine/read_trainer_party.asm"
+INCLUDE "engine/battle/read_trainer_party.asm"
 INCLUDE "data/trainers/party_pointers.asm"
 INCLUDE "data/trainers/parties.asm"
 
 
 SECTION "Battle Core", ROMX
 
-INCLUDE "battle/core.asm"
-INCLUDE "battle/effect_command_pointers.asm"
+INCLUDE "engine/battle/core.asm"
+INCLUDE "data/moves/effect_command_pointers.asm"
 
 
 SECTION "bank10", ROMX
 
 INCLUDE "engine/pokedex.asm"
-INCLUDE "battle/moves/moves.asm"
+INCLUDE "data/moves/moves.asm"
 INCLUDE "engine/evolve.asm"
 
 
 SECTION "bank11", ROMX
 
 INCLUDE "engine/fruit_trees.asm"
-INCLUDE "battle/ai/move.asm"
+INCLUDE "engine/battle/ai/move.asm"
 INCLUDE "engine/pokedex_2.asm"
 INCLUDE "data/pokemon/dex_entry_pointers.asm"
 INCLUDE "engine/mail.asm"
@@ -244,7 +244,7 @@ INCLUDE "event/catch_tutorial.asm"
 INCLUDE "engine/evolution_animation.asm"
 INCLUDE "engine/init_hof_credits.asm"
 INCLUDE "mobile/get_trainer_class.asm"
-INCLUDE "battle/sliding_intro.asm"
+INCLUDE "engine/battle/sliding_intro.asm"
 INCLUDE "mobile/print_opp_message.asm"
 INCLUDE "engine/routines/checkbattlescene.asm"
 INCLUDE "engine/gbc_only.asm"
@@ -261,7 +261,7 @@ INCLUDE "event/card_key.asm"
 INCLUDE "event/basement_key.asm"
 INCLUDE "event/sacred_ash.asm"
 INCLUDE "engine/tempmon.asm"
-INCLUDE "text/types.asm"
+INCLUDE "engine/types.asm"
 INCLUDE "text/unused_gen_1_trainers.asm"
 INCLUDE "engine/mon_stats.asm"
 INCLUDE "engine/routines/initlist.asm"
@@ -308,7 +308,7 @@ INCLUDE "engine/debug.asm"
 SECTION "bank21", ROMX
 
 INCLUDE "engine/printer.asm"
-INCLUDE "battle/anim_gfx.asm"
+INCLUDE "gfx/anims.asm"
 INCLUDE "event/halloffame.asm"
 
 
@@ -327,7 +327,7 @@ INCLUDE "mobile/mobile_22_2.asm"
 SECTION "bank23", ROMX
 
 INCLUDE "engine/timeofdaypals.asm"
-INCLUDE "engine/battle_transition.asm"
+INCLUDE "engine/battle/battle_transition.asm"
 INCLUDE "event/field_moves.asm"
 INCLUDE "event/magnet_train.asm"
 INCLUDE "engine/routines/battlestart_copytilemapatonce.asm"
@@ -384,24 +384,30 @@ SECTION "bank2F", ROMX
 INCLUDE "engine/std_scripts.asm"
 INCLUDE "engine/phone/phone_scripts.asm"
 INCLUDE "engine/phone/generic_calls.asm"
-INCLUDE "engine/trainer_scripts.asm"
+INCLUDE "engine/battle/trainer_scripts.asm"
 
 
 SECTION "bank32", ROMX
 
-INCLUDE "battle/bg_effects.asm"
-INCLUDE "battle/anims.asm"
+INCLUDE "engine/anims/bg_effects.asm"
+INCLUDE "data/moves/move_anims.asm"
 INCLUDE "event/poisonstep_pals.asm"
 
 TheEndGFX:: ; cbd2e
 INCBIN "gfx/credits/theend.2bpp"
 
 
-SECTION "bank33", ROMX
+SECTION "Move Animations", ROMX
 
 INCLUDE "event/bug_contest/display_stats.asm"
-INCLUDE "battle/anim_commands.asm"
-INCLUDE "battle/anim_objects.asm"
+INCLUDE "engine/anims/anim_commands.asm"
+INCLUDE "engine/anims/engine.asm"
+INCLUDE "data/anims/objects.asm"
+INCLUDE "engine/anims/functions.asm"
+INCLUDE "engine/anims/helpers.asm"
+INCLUDE "data/anims/framesets.asm"
+INCLUDE "data/anims/oam.asm"
+INCLUDE "data/anims/object_gfx.asm"
 
 
 SECTION "Pic Animations 1", ROMX
@@ -477,8 +483,8 @@ INCLUDE "engine/routines/newpokedexentry.asm"
 INCLUDE "engine/time_capsule_2.asm"
 INCLUDE "engine/unown_dex.asm"
 INCLUDE "event/magikarp.asm"
-INCLUDE "battle/hidden_power.asm"
-INCLUDE "battle/misc.asm"
+INCLUDE "engine/battle/hidden_power.asm"
+INCLUDE "engine/battle/misc.asm"
 
 
 SECTION "bank3F", ROMX
@@ -497,7 +503,7 @@ INCLUDE "engine/dma_transfer.asm"
 INCLUDE "gfx/emotes.asm"
 INCLUDE "engine/warp_connection.asm"
 INCLUDE "engine/mystery_gift.asm"
-INCLUDE "battle/used_move_text.asm"
+INCLUDE "engine/battle/used_move_text.asm"
 INCLUDE "mobile/mobile_41.asm"
 INCLUDE "gfx/overworld_font.asm"
 
@@ -589,7 +595,7 @@ SECTION "bank72", ROMX
 
 INCLUDE "data/items/item_names.asm"
 INCLUDE "data/items/item_descriptions.asm"
-INCLUDE "battle/move_names.asm"
+INCLUDE "data/moves/move_names.asm"
 INCLUDE "engine/landmarks.asm"
 
 

@@ -820,7 +820,7 @@ TryEnemyFlee: ; 3c543
 	ret
 ; 3c59a
 
-INCLUDE "data/battle/flee_mons.asm"
+INCLUDE "data/wild/flee_mons.asm"
 
 CompareMovePriority: ; 3c5b4
 ; Compare the priority of the player and enemy's moves.

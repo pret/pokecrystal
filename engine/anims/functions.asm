@@ -13,6 +13,7 @@ DoBattleAnimFrame: ; ccfbe
 ; ccfce
 
 .Jumptable:
+; entries correspond to BATTLEANIMFUNC_* constants
 	dw BattleAnimFunction_Null ; 00
 	dw BattleAnimFunction_01 ; 01
 	dw BattleAnimFunction_02 ; 02
@@ -450,7 +451,7 @@ GetBallAnimPal: ; cd249 (33:5249)
 	ret
 ; cd26c (33:526c)
 
-INCLUDE "data/battle/ball_colors.asm"
+INCLUDE "data/anims/ball_colors.asm"
 
 BattleAnimFunction_10: ; cd284 (33:5284)
 	call BattleAnim_AnonJumptable

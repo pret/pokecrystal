@@ -1,4 +1,3 @@
-
 BattleTowerText_0x1ec000: ; 0x1ec000
 	text "Hello, glad to"
 	line "meet you!"

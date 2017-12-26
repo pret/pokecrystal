@@ -1,13 +1,11 @@
 ; The multiplier is divided by 10, so we can use values like 0.5.
-
+; All other cases are neutral (1x).
 SUPER_EFFECTIVE    EQU 20
 NOT_VERY_EFFECTIVE EQU 05
 NO_EFFECT          EQU 00
 
-; All other cases are neutral (1x).
-
+TypeMatchups: ; 34bb1
 	;  attacker  defender*=
-
 	db NORMAL,    ROCK,      NOT_VERY_EFFECTIVE
 	db NORMAL,    STEEL,     NOT_VERY_EFFECTIVE
 	db FIRE,      FIRE,      NOT_VERY_EFFECTIVE
@@ -117,12 +115,11 @@ NO_EFFECT          EQU 00
 	db STEEL,     ROCK,      SUPER_EFFECTIVE
 	db STEEL,     STEEL,     NOT_VERY_EFFECTIVE
 
+	db $fe ; end
 
 ; Foresight removes Ghost's immunities.
-
-	db $fe
-
 	db NORMAL,    GHOST,     NO_EFFECT
 	db FIGHTING,  GHOST,     NO_EFFECT
 
-	db $ff ; end
+	db $ff ; end (with Foresight)
+; 34cfd

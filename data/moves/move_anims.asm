@@ -1,4 +1,5 @@
 BattleAnimations:: ; c906f
+; entries correspond to constants/move_constants.asm
 	dw BattleAnim_0
 	dw BattleAnim_Pound
 	dw BattleAnim_KarateChop
