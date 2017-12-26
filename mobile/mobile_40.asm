@@ -6932,7 +6932,7 @@ Function102e4f: ; 102e4f
 	ld a, [de]
 	cp $ff
 	ret z
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	push bc
 	push hl
 	push de
@@ -6961,7 +6961,7 @@ Function102ea8: ; 102ea8
 	ld hl, PartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer2
@@ -6974,7 +6974,7 @@ Function102ea8: ; 102ea8
 	ld hl, OTPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, UnknownText_0x102ee2
 	call PrintTextBoxText
@@ -7054,7 +7054,7 @@ Function102f85: ; 102f85
 	ld hl, OTPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	call Function102dc3
 	ld de, String_102fb2

@@ -24,7 +24,7 @@ GetName:: ; 33c3
 	jr nz, .NotPokeName
 
 	ld a, [CurSpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, PKMN_NAME_LENGTH
 	add hl, de
@@ -115,7 +115,7 @@ GetBasePokemonName:: ; 3420
 ; 343b
 
 GetPokemonName:: ; 343b
-; Get Pokemon name wd265.
+; Get Pokemon name wNamedObjectIndexBuffer.
 
 	ld a, [hROMBank]
 	push af
@@ -124,7 +124,7 @@ GetPokemonName:: ; 343b
 	rst Bankswitch
 
 ; Each name is ten characters
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	dec a
 	ld d, 0
 	ld e, a
@@ -153,11 +153,11 @@ GetPokemonName:: ; 343b
 ; 3468
 
 GetItemName:: ; 3468
-; Get item name wd265.
+; Get item name wNamedObjectIndexBuffer.
 
 	push hl
 	push bc
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 
 	cp TM01
 	jr nc, .TM
@@ -177,12 +177,12 @@ GetItemName:: ; 3468
 ; 3487
 
 GetTMHMName:: ; 3487
-; Get TM/HM name by item id wd265.
+; Get TM/HM name by item id wNamedObjectIndexBuffer.
 
 	push hl
 	push de
 	push bc
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	push af
 
 ; TM/HM prefix
@@ -204,7 +204,7 @@ GetTMHMName:: ; 3487
 
 ; TM/HM number
 	push de
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	ld c, a
 	callfar GetTMHMNumber
 	pop de
@@ -242,7 +242,7 @@ GetTMHMName:: ; 3487
 	ld [de], a
 
 	pop af
-	ld [wd265], a
+	ld [wCurTMHM], a
 	pop bc
 	pop de
 	pop hl

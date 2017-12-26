@@ -12,7 +12,7 @@ BugContest_SetCaughtContestMon: ; e6ce
 .firstcatch
 	call .generatestats
 	ld a, [TempEnemyMonSpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, .caughttext
 	call PrintText

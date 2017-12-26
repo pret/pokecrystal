@@ -214,7 +214,7 @@ Special_GameCornerPrizeMonCheckDex: ; c230
 	call SetSeenAndCaughtMon
 	call FadeToMenu
 	ld a, [ScriptVar]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	farcall NewPokedexEntry
 	call ExitAllMenus
 	ret
@@ -343,7 +343,7 @@ Special_GetMysteryGiftItem: ; c309
 	ld [sMysteryGiftItem], a
 	call CloseSRAM
 	ld a, [CurItem]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld hl, .ReceiveItemText
 	call PrintText

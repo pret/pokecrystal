@@ -866,7 +866,7 @@ PrintText_UsedItemOn_AND_AIUpdateHUD: ; 38568
 
 PrintText_UsedItemOn: ; 38571
 	ld a, [CurEnemyItem]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld hl, StringBuffer1
 	ld de, wMonOrItemNameBuffer

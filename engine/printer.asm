@@ -751,7 +751,7 @@ Printer_PrintBoxListSegment: ; 848e7 (21:48e7)
 	ld a, [de]
 	cp $ff
 	jp z, .finish
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [CurPartySpecies], a
 
 	push bc

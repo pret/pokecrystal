@@ -241,7 +241,7 @@ EvolveAfterBattle_MasterLoop
 	ld [CurSpecies], a
 	ld [TempMonSpecies], a
 	ld [wEvolutionNewSpecies], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 
 	push hl
@@ -355,7 +355,7 @@ UpdateSpeciesNameIfNotNicknamed: ; 42414
 	ld a, [CurSpecies]
 	push af
 	ld a, [BaseDexNo]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	pop af
 	ld [CurSpecies], a
@@ -376,7 +376,7 @@ UpdateSpeciesNameIfNotNicknamed: ; 42414
 	call AddNTimes
 	push hl
 	ld a, [CurSpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	pop de
@@ -481,7 +481,7 @@ LearnLevelMoves: ; 42487
 .learn
 	ld a, d
 	ld [wPutativeTMHMMove], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	call CopyName1
 	predef LearnMove

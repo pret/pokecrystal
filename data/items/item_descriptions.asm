@@ -9,7 +9,7 @@ PrintItemDescription: ; 0x1c8955
 	push de
 	farcall GetTMHMItemMove
 	pop hl
-	ld a, [wd265]
+	ld a, [wCurTMHM]
 	ld [CurSpecies], a
 	predef PrintMoveDesc
 	ret

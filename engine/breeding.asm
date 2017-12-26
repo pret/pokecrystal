@@ -256,7 +256,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld a, [CurPartySpecies]
 	dec de
 	ld [de], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [CurSpecies], a
 	call GetPokemonName
 	xor a

@@ -1270,7 +1270,7 @@ HandleWrap: ; 3c874
 	ret nz
 
 	ld a, [de]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [FXAnimID], a
 	call GetMoveName
 	dec [hl]
@@ -1325,7 +1325,7 @@ HandleLeftovers: ; 3c8eb
 
 	callfar GetUserItem
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld a, b
 	cp HELD_LEFTOVERS

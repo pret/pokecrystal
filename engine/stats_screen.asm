@@ -402,7 +402,7 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	ld a, "/"
 	ld [hli], a
 	ld a, [BaseDexNo]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	call PlaceString
 	call StatsScreen_PlaceHorizontalDivider
@@ -721,7 +721,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld b, a
 	farcall TimeCapsule_ReplaceTeruSama
 	ld a, b
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ret
 ; 4e1a0 (13:61a0)

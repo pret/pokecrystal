@@ -1,6 +1,6 @@
 _DoItemEffect:: ; e722
 	ld a, [CurItem]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	call CopyName1
 	ld a, 1
@@ -589,7 +589,7 @@ ParkBall: ; e8a2
 	call PrintText
 
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 
 	call YesNoBox
@@ -649,7 +649,7 @@ ParkBall: ; e8a2
 	call PrintText
 
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 
 	call YesNoBox
@@ -2559,7 +2559,7 @@ Mysteryberry: ; f5bf
 
 	push hl
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	call CopyName1
 	pop hl
