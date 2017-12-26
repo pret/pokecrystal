@@ -805,7 +805,6 @@ NEXTU ; c6d0
 wPokedexDataStart::
 wPokedexOrder:: ds $100 ; >= NUM_POKEMON
 wPokedexOrderEnd::
-wPokedexMetadata::
 wDexListingScrollOffset:: db ; offset of the first displayed entry from the start
 wDexListingCursor:: db ; Dex cursor
 wDexListingEnd:: db ; Last mon to display
