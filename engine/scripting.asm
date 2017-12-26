@@ -661,7 +661,7 @@ GetPocketName:
 
 CurItemName:
 	ld a, [CurItem]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ret
 
@@ -1993,7 +1993,7 @@ Script_pokenamemem:
 	jr nz, .gotit
 	ld a, [ScriptVar]
 .gotit
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld de, StringBuffer1
 
@@ -2022,7 +2022,7 @@ Script_itemtotext:
 	jr nz, .ok
 	ld a, [ScriptVar]
 .ok
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld de, StringBuffer1
 	jr ConvertMemToText

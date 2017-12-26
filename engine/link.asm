@@ -1488,7 +1488,7 @@ Function28926: ; 28926
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	hlcoord 0, 12
 	ld b, 4
@@ -1657,7 +1657,7 @@ LinkTrade: ; 28b87
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wd004
@@ -1669,7 +1669,7 @@ LinkTrade: ; 28b87
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, UnknownText_0x28eb8
 	bccoord 1, 14
@@ -2093,14 +2093,14 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 	jr .done
 
 .mon_too_new
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld a, $1
 	jr .done
 
 .move_too_new
 	push bc
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	call CopyName1
 	pop bc
@@ -2126,7 +2126,7 @@ Function29c67: ; 29c67
 	ld hl, PartyCount
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ret
 ; 29c7b

@@ -38,7 +38,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld hl, PlayerName
 	call CopyBytes
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wMonOrItemNameBuffer
@@ -105,7 +105,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	call CopyBytes
 	callfar InsertPokemonIntoBox
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	call GiveANickname_YesNo
 	ld hl, StringBuffer1

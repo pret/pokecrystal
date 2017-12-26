@@ -641,7 +641,7 @@ GetDecoName: ; 26c72
 
 .getpokename ; 26cc0
 	push bc
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	pop bc
 	jr .copy

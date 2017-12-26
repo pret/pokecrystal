@@ -303,7 +303,7 @@ Function1dc51a: ; 1dc51a
 	and a
 	jr z, .no_move
 
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	jr .got_string
 

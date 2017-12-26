@@ -41,7 +41,7 @@ GetTMHMMove: ; 1166a
 	ld c, a
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wCurTMHM], a
 	ret
 ; 1167a
 

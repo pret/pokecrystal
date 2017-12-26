@@ -172,7 +172,7 @@ StartMenu_PrintBugContestStatus: ; 24be7
 	and a
 	ld de, .None
 	jr z, .no_contest_mon
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 
 .no_contest_mon

@@ -670,7 +670,7 @@ CantUseItemText: ; 12a67
 
 PartyMonItemName: ; 12a6c
 	ld a, [CurItem]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	call CopyName1
 	ret
@@ -889,17 +889,17 @@ TryGiveItemToPartymon: ; 12bd9
 	ret
 
 .already_holding_item
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld hl, SwitchAlreadyHoldingText
 	call StartMenuYesNo
 	jr c, .abort
 
 	call GiveItemToPokemon
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	push af
 	ld a, [CurItem]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	pop af
 	ld [CurItem], a
 	call ReceiveItemFromPokemon
@@ -907,13 +907,13 @@ TryGiveItemToPartymon: ; 12bd9
 
 	ld hl, TookAndMadeHoldText
 	call MenuTextBoxBackup
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	ld [CurItem], a
 	call GivePartyItem
 	ret
 
 .bag_full
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	ld [CurItem], a
 	call ReceiveItemFromPokemon
 	ld hl, ItemStorageIsFullText
@@ -954,7 +954,7 @@ TakePartyItem: ; 12c60
 	farcall ItemIsMail
 	call GetPartyItemLocation
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [hl], NO_ITEM
 	call GetItemName
 	ld hl, TookFromText

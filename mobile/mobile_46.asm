@@ -4083,7 +4083,7 @@ BattleTower_UbersCheck: ; 119dd1 (46:5dd1)
 .uber_under_70
 	pop af
 	ld a, [de]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wcd49
@@ -6381,7 +6381,7 @@ Function11b099: ; 11b099
 .loop
 	push af
 	ld a, [de]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	push de
 	push hl
 	call .PlaceMonNameOrPlaceholderString

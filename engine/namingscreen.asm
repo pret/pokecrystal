@@ -92,7 +92,7 @@ NamingScreen: ; 116c1
 	ld e, $1
 	rst FarCall ;  ; indirect jump to LoadMenuMonIcon (8e83f (23:683f))
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	hlcoord 5, 2
 	call PlaceString

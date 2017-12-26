@@ -51,7 +51,7 @@ TryAddMonToParty: ; d88c
 	and a
 	jr nz, .skipnickname
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, PartyMonNicknames
 	ld a, [hMoveMon]
@@ -938,7 +938,7 @@ SentPkmnIntoBox: ; de6e
 	call CopyBytes
 
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 
 	ld de, sBoxMonNicknames
@@ -1647,7 +1647,7 @@ GivePoke:: ; e277
 
 .done
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [TempEnemyMonSpecies], a
 	call GetPokemonName
 	ld hl, StringBuffer1

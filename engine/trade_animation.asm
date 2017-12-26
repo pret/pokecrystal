@@ -884,7 +884,7 @@ TradeAnim_GetFrontpic: ; 29491
 
 TradeAnim_GetNickname: ; 294a9
 	push de
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, StringBuffer1
 	pop de

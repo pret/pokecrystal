@@ -1112,7 +1112,7 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 	xor a
 	ld [wBillsPC_MonHasMail], a
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	cp EGG
 	ret z
 
@@ -1948,7 +1948,7 @@ ReleasePKMN_ByePKMN: ; e3180 (38:7180)
 .skip_cry
 
 	ld a, [CurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	hlcoord 1, 16
 	ld de, PCString_ReleasedPKMN

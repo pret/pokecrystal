@@ -259,7 +259,7 @@ TMHM_ShowTMMoveDescription: ; 2c946 (b:4946)
 	jr nc, TMHM_JoypadLoop
 	ld [wd265], a
 	predef GetTMHMMove
-	ld a, [wd265]
+	ld a, [wCurTMHM]
 	ld [CurSpecies], a
 	hlcoord 1, 14
 	call PrintMoveDesc
@@ -387,7 +387,7 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 	ld [wd265], a
 .okay
 	predef GetTMHMMove
-	ld a, [wd265]
+	ld a, [wCurTMHM]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	pop hl
@@ -453,7 +453,7 @@ Function2ca95: ; 2ca95
 	ld bc, 3
 	add hl, bc
 	predef GetTMHMMove
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	push hl
@@ -523,7 +523,7 @@ Function2cadf: ; 2cadf
 ; 0x2cafa
 
 .CheckHaveRoomForTMHM: ; 2cafa
-	ld a, [wd265]
+	ld a, [wCurTMHM]
 	dec a
 	ld hl, TMsHMs
 	ld b, 0
@@ -539,7 +539,7 @@ Function2cadf: ; 2cadf
 
 ConsumeTM: ; 2cb0c (b:4b0c)
 	call ConvertCurItemIntoCurTMHM
-	ld a, [wd265]
+	ld a, [wCurTMHM]
 	dec a
 	ld hl, TMsHMs
 	ld b, 0
