@@ -250,6 +250,7 @@ const_value SET 1
 	const FRUITTREE_FUCHSIA_CITY  ; 1e
 NUM_FRUIT_TREES EQU const_value +- 1
 
+
 ; elevator floors
 ; used by `elevfloor`
 	const_def

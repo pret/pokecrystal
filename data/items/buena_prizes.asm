@@ -1,5 +1,5 @@
 BuenaPrizeItems: ; 8b15e
-; there are NUM_BUENA_PRIZES items (see event/buena.asm)
+; there are NUM_BUENA_PRIZES items (see events/buena.asm)
 	db ULTRA_BALL,   2
 	db FULL_RESTORE, 2
 	db NUGGET,       3

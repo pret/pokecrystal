@@ -678,7 +678,7 @@ This is a bug with `ItemAttributes` in [items/item_attributes.asm](/items/item_a
 
 ## Daisy's grooming doesn't always increase happiness
 
-This is a bug with `MassageOrHaircut` in [event/special.asm](/event/special.asm):
+This is a bug with `MassageOrHaircut` in [events/special.asm](/events/special.asm):
 
 ```asm
 ; Bug: Subtracting $ff from $ff fails to set c.
@@ -753,7 +753,7 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](
 
 ## Magikarp lengths can be miscalculated
 
-This is a bug with `CalcMagikarpLength.BCLessThanDE` in [event/magikarp.asm](/event/magikarp.asm):
+This is a bug with `CalcMagikarpLength.BCLessThanDE` in [events/magikarp.asm](/events/magikarp.asm):
 
 ```asm
 .BCLessThanDE: ; fbc9a
@@ -1348,7 +1348,7 @@ In [engine/events.asm](/engine/events.asm):
 
 ## `Special_CheckBugContestContestantFlag` can read beyond its data table
 
-In [event/bug_contest_2.asm](/event/bug_contest_2.asm):
+In [events/bug_contest/contest_2.asm](/events/bug_contest/contest_2.asm):
 
 ```asm
 Special_CheckBugContestContestantFlag: ; 139ed
