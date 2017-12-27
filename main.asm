@@ -413,7 +413,7 @@ INCLUDE "data/battle_anims/object_gfx.asm"
 
 SECTION "Pic Animations 1", ROMX
 
-INCLUDE "gfx/pokemon/animation.asm"
+INCLUDE "engine/pic_animation.asm"
 INCLUDE "gfx/pokemon/anim_pointers.asm"
 INCLUDE "gfx/pokemon/anims.asm"
 INCLUDE "gfx/pokemon/extra_pointers.asm"

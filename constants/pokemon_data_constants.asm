@@ -149,7 +149,7 @@ FISHSWARM_QWILFISH EQU 1
 FISHSWARM_REMORAID EQU 2
 
 
-; PokeAnims indexes (see gfx/pokemon/animation.asm)
+; PokeAnims indexes (see engine/pic_animation.asm)
 	const_def
 	const ANIM_MON_SLOW
 	const ANIM_MON_NORMAL
