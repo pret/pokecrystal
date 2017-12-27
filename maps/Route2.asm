@@ -15,35 +15,35 @@ Route2_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TrainerBug_catcherRob:
-	trainer EVENT_BEAT_BUG_CATCHER_ROB, BUG_CATCHER, ROB, Bug_catcherRobSeenText, Bug_catcherRobBeatenText, 0, .Script
+TrainerBugCatcherRob:
+	trainer EVENT_BEAT_BUG_CATCHER_ROB, BUG_CATCHER, ROB, BugCatcherRobSeenText, BugCatcherRobBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bug_catcherRobAfterBattleText
+	writetext BugCatcherRobAfterBattleText
 	waitbutton
 	closetext
 	end
 
-TrainerBug_catcherEd:
-	trainer EVENT_BEAT_BUG_CATCHER_ED, BUG_CATCHER, ED, Bug_catcherEdSeenText, Bug_catcherEdBeatenText, 0, .Script
+TrainerBugCatcherEd:
+	trainer EVENT_BEAT_BUG_CATCHER_ED, BUG_CATCHER, ED, BugCatcherEdSeenText, BugCatcherEdBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bug_catcherEdAfterBattleText
+	writetext BugCatcherEdAfterBattleText
 	waitbutton
 	closetext
 	end
 
-TrainerBug_catcherDoug:
-	trainer EVENT_BEAT_BUG_CATCHER_DOUG, BUG_CATCHER, DOUG, Bug_catcherDougSeenText, Bug_catcherDougBeatenText, 0, .Script
+TrainerBugCatcherDoug:
+	trainer EVENT_BEAT_BUG_CATCHER_DOUG, BUG_CATCHER, DOUG, BugCatcherDougSeenText, BugCatcherDougBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bug_catcherDougAfterBattleText
+	writetext BugCatcherDougAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -81,23 +81,23 @@ Route2HiddenFullRestore:
 Route2HiddenRevive:
 	dwb EVENT_ROUTE_2_HIDDEN_REVIVE, REVIVE
 
-Bug_catcherRobSeenText:
+BugCatcherRobSeenText:
 	text "My bug #MON are"
 	line "tough. Prepare to"
 	cont "lose!"
 	done
 
-Bug_catcherRobBeatenText:
+BugCatcherRobBeatenText:
 	text "I was whipped…"
 	done
 
-Bug_catcherRobAfterBattleText:
+BugCatcherRobAfterBattleText:
 	text "I'm going to look"
 	line "for stronger bug"
 	cont "#MON."
 	done
 
-Bug_catcherEdSeenText:
+BugCatcherEdSeenText:
 	text "If you walk in"
 	line "tall grass wearing"
 
@@ -105,26 +105,26 @@ Bug_catcherEdSeenText:
 	line "nicks and cuts?"
 	done
 
-Bug_catcherEdBeatenText:
+BugCatcherEdBeatenText:
 	text "Ouch, ouch, ouch!"
 	done
 
-Bug_catcherEdAfterBattleText:
+BugCatcherEdAfterBattleText:
 	text "They'll really"
 	line "sting when you"
 	cont "take a bath."
 	done
 
-Bug_catcherDougSeenText:
+BugCatcherDougSeenText:
 	text "Why don't girls"
 	line "like bug #MON?"
 	done
 
-Bug_catcherDougBeatenText:
+BugCatcherDougBeatenText:
 	text "No good!"
 	done
 
-Bug_catcherDougAfterBattleText:
+BugCatcherDougAfterBattleText:
 	text "Bug #MON squish"
 	line "like plush toys"
 
@@ -172,9 +172,9 @@ Route2_MapEventHeader:
 
 .ObjectEvents:
 	db 8
-	object_event SPRITE_BUG_CATCHER, 45, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBug_catcherRob, -1
-	object_event SPRITE_BUG_CATCHER, 4, 6, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBug_catcherEd, -1
-	object_event SPRITE_BUG_CATCHER, 40, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBug_catcherDoug, -1
+	object_event SPRITE_BUG_CATCHER, 45, 10, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1
+	object_event SPRITE_BUG_CATCHER, 4, 6, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherEd, -1
+	object_event SPRITE_BUG_CATCHER, 40, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherDoug, -1
 	object_event SPRITE_POKE_BALL, 29, 0, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2DireHit, EVENT_ROUTE_2_DIRE_HIT
 	object_event SPRITE_POKE_BALL, 23, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2MaxPotion, EVENT_ROUTE_2_MAX_POTION
 	object_event SPRITE_POKE_BALL, 2, 19, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Carbos, EVENT_ROUTE_2_CARBOS

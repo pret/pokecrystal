@@ -14,13 +14,13 @@ Route38_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TrainerBird_keeperToby:
-	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, Bird_keeperTobySeenText, Bird_keeperTobyBeatenText, 0, .Script
+TrainerBirdKeeperToby:
+	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, BirdKeeperTobySeenText, BirdKeeperTobyBeatenText, 0, .Script
 
 .Script
 	end_if_just_battled
 	opentext
-	writetext Bird_keeperTobyAfterBattleText
+	writetext BirdKeeperTobyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -322,18 +322,18 @@ Route38TrainerTips:
 FruitTreeScript_0x1a1f33:
 	fruittree FRUITTREE_ROUTE_38
 
-Bird_keeperTobySeenText:
+BirdKeeperTobySeenText:
 	text "Fly high into the"
 	line "sky, my beloved"
 	cont "bird #MON!"
 	done
 
-Bird_keeperTobyBeatenText:
+BirdKeeperTobyBeatenText:
 	text "I feel like just"
 	line "flying away now."
 	done
 
-Bird_keeperTobyAfterBattleText:
+BirdKeeperTobyAfterBattleText:
 	text "I plan to train in"
 	line "CIANWOOD CITY to"
 
@@ -493,7 +493,7 @@ Route38_MapEventHeader:
 	db 7
 	object_event SPRITE_STANDING_YOUNGSTER, 1, 4, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyChad1, -1
 	object_event SPRITE_LASS, 3, 15, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassDana1, -1
-	object_event SPRITE_STANDING_YOUNGSTER, 15, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBird_keeperToby, -1
+	object_event SPRITE_STANDING_YOUNGSTER, 15, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBirdKeeperToby, -1
 	object_event SPRITE_BUENA, 9, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyValerie, -1
 	object_event SPRITE_SAILOR, 5, 24, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSailorHarry, -1
 	object_event SPRITE_FRUIT_TREE, 10, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a1f33, -1

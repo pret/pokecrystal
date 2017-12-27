@@ -22,13 +22,13 @@ TrainerFirebreatherLyle:
 	closetext
 	end
 
-TrainerBug_catcherKen:
-	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, Bug_catcherKenSeenText, Bug_catcherKenBeatenText, 0, .Script
+TrainerBugCatcherKen:
+	trainer EVENT_BEAT_BUG_CATCHER_KEN, BUG_CATCHER, KEN, BugCatcherKenSeenText, BugCatcherKenBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bug_catcherKenAfterBattleText
+	writetext BugCatcherKenAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -132,18 +132,18 @@ FirebreatherLyleAfterBattleText:
 	line "Really?"
 	done
 
-Bug_catcherKenSeenText:
+BugCatcherKenSeenText:
 	text "I'm visiting my"
 	line "grandma to catch"
 	cont "me some bugs!"
 	done
 
-Bug_catcherKenBeatenText:
+BugCatcherKenBeatenText:
 	text "Ooh, wow."
 	line "You're tough!"
 	done
 
-Bug_catcherKenAfterBattleText:
+BugCatcherKenAfterBattleText:
 	text "You can find lots"
 	line "of #MON in the"
 	cont "trees of JOHTO!"
@@ -246,6 +246,6 @@ FastShipCabins_SW_SSW_NW_MapEventHeader:
 .ObjectEvents:
 	db 4
 	object_event SPRITE_FISHER, 15, 1, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	object_event SPRITE_BUG_CATCHER, 15, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBug_catcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	object_event SPRITE_BUG_CATCHER, 15, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBugCatcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	object_event SPRITE_BUENA, 26, 1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 	object_event SPRITE_ROCKER, 28, 3, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerGuitaristClyde, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
