@@ -111,8 +111,8 @@ _ResetWRAM: ; 5bae
 	xor a
 	call ByteFill
 
-	ld hl, wRAM1Start
-	ld bc, wGameData - wRAM1Start
+	ld hl, WRAM1_Start
+	ld bc, wGameData - WRAM1_Start
 	xor a
 	call ByteFill
 

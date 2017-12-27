@@ -1398,8 +1398,8 @@ ClearWRAM:: ; 25a
 	push af
 	ld [rSVBK], a
 	xor a
-	ld hl, wRAM1Start
-	ld bc, $1000
+	ld hl, WRAM1_Start
+	ld bc, WRAM1_End - WRAM1_Start
 	call ByteFill
 	pop af
 	inc a
