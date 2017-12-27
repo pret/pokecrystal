@@ -1,5 +1,5 @@
 PicPointers::
-; entries correspond to constants/pokemon_constants.asm, two apiece
+; entries correspond to Pokémon species, two apiece
 	dba_pic BulbasaurFrontpic
 	dba_pic BulbasaurBackpic
 	dba_pic IvysaurFrontpic

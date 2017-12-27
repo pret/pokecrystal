@@ -1,17 +1,7 @@
-BORDER_WIDTH   EQU 2
-TEXTBOX_WIDTH  EQU SCREEN_WIDTH
-TEXTBOX_INNERW EQU TEXTBOX_WIDTH - BORDER_WIDTH
-TEXTBOX_HEIGHT EQU 6
-TEXTBOX_INNERH EQU TEXTBOX_HEIGHT - BORDER_WIDTH
-TEXTBOX_X      EQU 0
-TEXTBOX_INNERX EQU TEXTBOX_X + 1
-TEXTBOX_Y      EQU SCREEN_HEIGHT - TEXTBOX_HEIGHT
-TEXTBOX_INNERY EQU TEXTBOX_Y + 2
-
 ClearBox:: ; fb6
 ; Fill a c*b box at hl with blank tiles.
-
 	ld a, " "
+	; fallthrough
 
 FillBoxWithByte::
 .row
@@ -54,7 +44,6 @@ ClearScreen:: ; fdb
 	call ByteFill
 	jr ClearTileMap
 ; fe8
-
 
 
 TextBox:: ; fe8

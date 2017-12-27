@@ -2,7 +2,7 @@
 
 Defined in [macros/scripts/audio.asm](/macros/scripts/audio.asm) and [audio/engine.asm:MusicCommands](/audio/engine.asm).
 
-See also: [Sound Engine Commands](https://github.com/pret/pokecrystal/wiki/Sound-Engine-Commands)
+*See also: [Sound Engine Commands](https://github.com/pret/pokecrystal/wiki/Sound-Engine-Commands)*
 
 
 ## `musicheader` *n*, *index*, *address*

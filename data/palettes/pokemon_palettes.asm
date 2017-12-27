@@ -1,4 +1,5 @@
 PokemonPalettes: ; a8ce
+; entries correspond to Pokémon species, two apiece
 
 ; 000
 	RGB 30, 22, 17

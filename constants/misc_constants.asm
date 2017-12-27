@@ -16,39 +16,13 @@ HP_GREEN  EQU 0
 HP_YELLOW EQU 1
 HP_RED    EQU 2
 
+; save file corruption check values
+SAVE_CHECK_VALUE_1 EQU 99
+SAVE_CHECK_VALUE_2 EQU 127
 
-; name lengths
-NAME_LENGTH        EQU 11
-PLAYER_NAME_LENGTH EQU 8
-BOX_NAME_LENGTH    EQU 9
-PKMN_NAME_LENGTH   EQU 11
-MOVE_NAME_LENGTH   EQU 13
-ITEM_NAME_LENGTH   EQU 13
-TRAINER_CLASS_NAME_LENGTH EQU 13
-NAME_LENGTH_JAPANESE EQU 6
-
-; GetName types (see home/names.asm)
-PKMN_NAME     EQU 1
-MOVE_NAME     EQU 2
-; dummied out EQU 3
-ITEM_NAME     EQU 4
-PARTY_OT_NAME EQU 5
-ENEMY_OT_NAME EQU 6
-TRAINER_NAME  EQU 7
-; broken ptr  EQU 8
-
-
-; printing text
-const_value set 5
-	const PRINTNUM_MONEY_F        ; 5
-	const PRINTNUM_RIGHTALIGN_F   ; 6
-	const PRINTNUM_LEADINGZEROS_F ; 7
-
-; PrintNum arguments (see engine/printnum.asm)
-PRINTNUM_MONEY          EQU 1 << PRINTNUM_MONEY_F
-PRINTNUM_RIGHTALIGN     EQU 1 << PRINTNUM_RIGHTALIGN_F
-PRINTNUM_LEADINGZEROS   EQU 1 << PRINTNUM_LEADINGZEROS_F
-
+; hMenuReturn
+HMENURETURN_SCRIPT EQU %10000000
+HMENURETURN_ASM    EQU %11111111
 
 ; DoPlayerMovement.DoStep arguments (see engine/player_movement.asm)
 	const_def
@@ -61,24 +35,12 @@ PRINTNUM_LEADINGZEROS   EQU 1 << PRINTNUM_LEADINGZEROS_F
 	const STEP_BACK_LEDGE    ; 6
 	const STEP_WALK_IN_PLACE ; 7
 
-
-; hMenuReturn
-HMENURETURN_SCRIPT EQU %10000000
-HMENURETURN_ASM    EQU %11111111
-
-
-; save file corruption check values
-SAVE_CHECK_VALUE_1 EQU 99
-SAVE_CHECK_VALUE_2 EQU 127
-
-
 ; time of day boundaries
 MORN_HOUR EQU 4  ; 4 AM
 DAY_HOUR  EQU 10 ; 10 AM
 NITE_HOUR EQU 18 ; 6 PM
 NOON_HOUR EQU 12 ; 12 PM
 MAX_HOUR  EQU 24 ; 12 AM
-
 
 ; boxes
 MONS_PER_BOX EQU 20
@@ -91,13 +53,11 @@ NUM_HOF_TEAMS = 30
 
 MAX_LINK_RECORD EQU 9999
 
-
 ; significant money values
 START_MONEY EQU 3000
 MOM_MONEY   EQU 2300
 MAX_MONEY   EQU 999999
 MAX_COINS   EQU 9999
-
 
 ; ChangeHappiness arguments (see data/happiness_changes.asm)
 const_value = 1
@@ -121,4 +81,5 @@ const_value = 1
 	const HAPPINESS_MASSAGE           ; 12
 	const HAPPINESS_GAINLEVELATHOME   ; 13
 
+; day-care
 MAX_DAY_CARE_EXP EQU $500000
