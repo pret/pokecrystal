@@ -1,4 +1,4 @@
-; MoveEffectsPointers indexes (see data/moves/move_effects_pointers.asm)
+; MoveEffectsPointers indexes (see data/moves/effects_pointers.asm)
 	const_def
 	const EFFECT_NORMAL_HIT
 	const EFFECT_SLEEP

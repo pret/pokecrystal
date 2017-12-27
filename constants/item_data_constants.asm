@@ -1,4 +1,4 @@
-; item_attributes struct members (see data/items/item_attributes.asm)
+; item_attributes struct members (see data/items/attributes.asm)
 	const_def
 	const ITEMATTR_PRICE
 	const ITEMATTR_PRICE_HI

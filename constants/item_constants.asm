@@ -1,9 +1,9 @@
 ; item ids
 ; indexes for:
-; - ItemAttributes (see data/items/item_attributes.asm)
-; - ItemDescriptions (see data/items/item_descriptions.asm)
+; - ItemNames (see data/items/names.asm)
+; - ItemDescriptions (see data/items/descriptions.asm)
+; - ItemAttributes (see data/items/attributes.asm)
 ; - ItemEffects (see engine/item_effects.asm)
-; - ItemNames (see data/items/item_names.asm)
 	const_def
 	const NO_ITEM      ; $00
 	const MASTER_BALL  ; $01

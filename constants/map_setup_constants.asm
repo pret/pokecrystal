@@ -1,5 +1,5 @@
 ; hMapEntryMethod values
-; MapSetupScripts indexes (see data/maps/map_setup_scripts.asm)
+; MapSetupScripts indexes (see data/maps/setup_scripts.asm)
 const_value SET $f1
 	const MAPSETUP_WARP       ; f1
 	const MAPSETUP_CONTINUE   ; f2

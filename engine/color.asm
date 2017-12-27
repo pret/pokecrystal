@@ -1218,9 +1218,9 @@ INCLUDE "data/palettes/hp_bar.pal"
 ExpBarPalette:
 INCLUDE "data/palettes/exp_bar.pal"
 
-INCLUDE "data/palettes/pokemon_palettes.asm"
+INCLUDE "data/pokemon/palettes.asm"
 
-INCLUDE "data/palettes/trainer_palettes.asm"
+INCLUDE "data/trainers/palettes.asm"
 
 LoadMapPals:
 	farcall LoadSpecialMapPalette

@@ -11,7 +11,7 @@ INCLUDE "engine/init_map.asm"
 INCLUDE "engine/learn.asm"
 INCLUDE "engine/routines/checknickerrors.asm"
 INCLUDE "engine/math.asm"
-INCLUDE "data/items/item_attributes.asm"
+INCLUDE "data/items/attributes.asm"
 INCLUDE "engine/npc_movement.asm"
 INCLUDE "engine/events/happiness_egg.asm"
 INCLUDE "engine/events/special.asm"
@@ -117,11 +117,12 @@ INCLUDE "engine/trainer_card.asm"
 INCLUDE "engine/events/prof_oaks_pc.asm"
 INCLUDE "engine/decorations.asm"
 INCLUDE "engine/routines/leveluphappinessmod.asm"
-INCLUDE "data/trainers/trainer_dvs.asm"
+INCLUDE "engine/battle/read_trainer_dvs.asm"
+INCLUDE "data/trainers/dvs.asm"
 INCLUDE "engine/battle/returntobattle_useball.asm"
 INCLUDE "engine/battle/consumehelditem.asm"
-INCLUDE "data/moves/move_effects_pointers.asm"
-INCLUDE "data/moves/move_effects.asm"
+INCLUDE "data/moves/effects_pointers.asm"
+INCLUDE "data/moves/effects.asm"
 INCLUDE "engine/events/kurt_selectquantity_interpretjoypad.asm"
 
 
@@ -141,12 +142,12 @@ INCBIN "gfx/battle/dude.2bpp.lz"
 SECTION "bankB", ROMX
 
 INCLUDE "engine/battle/trainer_huds.asm"
-INCLUDE "data/trainers/trainer_class_names.asm"
+INCLUDE "data/trainers/class_names.asm"
 INCLUDE "engine/battle/ai/redundant.asm"
 INCLUDE "engine/events/move_deleter.asm"
 INCLUDE "engine/mystery_gift_2.asm"
 INCLUDE "engine/tmhm2.asm"
-INCLUDE "data/moves/move_descriptions.asm"
+INCLUDE "data/moves/descriptions.asm"
 INCLUDE "engine/events/pokerus/pokerus.asm"
 INCLUDE "engine/battle/start_battle.asm"
 INCLUDE "engine/routines/placegraphic.asm"
@@ -162,7 +163,7 @@ SECTION "Enemy Trainers", ROMX
 INCLUDE "engine/battle/ai/items.asm"
 INCLUDE "engine/battle/ai/scoring.asm"
 INCLUDE "engine/battle/read_trainer_attributes.asm"
-INCLUDE "data/trainers/trainer_attributes.asm"
+INCLUDE "data/trainers/attributes.asm"
 INCLUDE "engine/battle/read_trainer_party.asm"
 INCLUDE "data/trainers/party_pointers.asm"
 INCLUDE "data/trainers/parties.asm"
@@ -171,7 +172,7 @@ INCLUDE "data/trainers/parties.asm"
 SECTION "Battle Core", ROMX
 
 INCLUDE "engine/battle/core.asm"
-INCLUDE "data/moves/effect_command_pointers.asm"
+INCLUDE "data/battle_command_pointers.asm"
 
 
 SECTION "bank10", ROMX
@@ -220,7 +221,7 @@ INCLUDE "data/collision_permissions.asm"
 INCLUDE "engine/routines/emptyallsrambanks.asm"
 INCLUDE "engine/routines/savemenu_copytilemapatonce.asm"
 INCLUDE "engine/routines/checksave.asm"
-INCLUDE "data/maps/map_scenes.asm"
+INCLUDE "data/maps/scenes.asm"
 INCLUDE "engine/routines/loadmappart.asm"
 INCLUDE "engine/routines/phonering_copytilemapatonce.asm"
 
@@ -270,7 +271,7 @@ INCLUDE "engine/routines/switchpartymons.asm"
 INCLUDE "gfx/load_pics.asm"
 INCLUDE "engine/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
-INCLUDE "data/pokemon/pokemon_names.asm"
+INCLUDE "data/pokemon/names.asm"
 
 Unknown_53d84: ; unreferenced
 	db $1a, $15
@@ -390,7 +391,7 @@ INCLUDE "engine/events/trainer_scripts.asm"
 SECTION "bank32", ROMX
 
 INCLUDE "engine/battle_anims/bg_effects.asm"
-INCLUDE "data/moves/move_anims.asm"
+INCLUDE "data/moves/animations.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
 TheEndGFX:: ; cbd2e
@@ -593,9 +594,9 @@ INCLUDE "text/phone/trainers1.asm"
 
 SECTION "Miscellaneous Text", ROMX
 
-INCLUDE "data/items/item_names.asm"
-INCLUDE "data/items/item_descriptions.asm"
-INCLUDE "data/moves/move_names.asm"
+INCLUDE "data/items/names.asm"
+INCLUDE "data/items/descriptions.asm"
+INCLUDE "data/moves/names.asm"
 INCLUDE "engine/landmarks.asm"
 
 

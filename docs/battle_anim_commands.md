@@ -1,6 +1,6 @@
 # Battle Animation Commands
 
-Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) and [data/moves/move_anims.asm:BattleAnimations](/data/moves/move_anims.asm).
+Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) and [data/moves/animations.asm:BattleAnimations](/data/moves/animations.asm).
 
 
 ## `$00`−`$EF`: `anim_wait` *length*

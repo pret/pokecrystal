@@ -3,7 +3,7 @@ command: macro
 \1 equs "db \1_command"
 endm
 
-; BattleCommandPointers indexes (see data/moves/effect_command_pointers.asm)
+; BattleCommandPointers indexes (see data/battle_command_pointers.asm)
 	enum_start 1
 	command checkturn               ; 01
 	command checkobedience          ; 02

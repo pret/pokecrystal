@@ -1,4 +1,4 @@
-PicPointers::
+PokemonPicPointers::
 ; entries correspond to Pokémon species, two apiece
 	dba_pic BulbasaurFrontpic
 	dba_pic BulbasaurBackpic

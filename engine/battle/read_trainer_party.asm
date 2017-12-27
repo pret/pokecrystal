@@ -1,4 +1,3 @@
-
 ReadTrainerParty: ; 39771
 	ld a, [InBattleTowerBattle]
 	bit 0, a

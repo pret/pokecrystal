@@ -5,12 +5,14 @@ ENDM
 
 ; trainer class ids
 ; `trainerclass` indexes are for:
-; - TrainerClassAttributes (see data/trainers/trainer_attributes.asm)
-; - TrainerClassDVs (see data/trainers/trainer_dvs.asm)
-; - TrainerClassNames (see data/trainers/trainer_class_names.asm)
-; - TrainerEncounterMusic (see data/trainers/encounter_music.asm)
+; - TrainerClassNames (see data/trainers/class_names.asm)
+; - TrainerClassAttributes (see data/trainers/attributes.asm)
+; - TrainerClassDVs (see data/trainers/dvs.asm)
 ; - TrainerGroups (see data/trainers/party_pointers.asm)
-; - BTTrainerClassGenders (see data/trainers/gendered_trainers.asm)
+; - TrainerEncounterMusic (see data/trainers/encounter_music.asm)
+; - TrainerPicPointers (see data/trainers/pic_pointers.asm)
+; - TrainerPalettes (see data/trainers/palettes.asm)
+; - BTTrainerClassGenders (see data/trainers/genders.asm)
 ; trainer constants are Trainers indexes, for the sub-tables of TrainerGroups (see data/trainers/parties.asm)
 	enum_start
 CHRIS EQU __enum__

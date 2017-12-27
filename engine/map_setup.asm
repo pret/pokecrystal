@@ -14,7 +14,7 @@ RunMapSetupScript:: ; 15363
 	ret
 ; 15377
 
-INCLUDE "data/maps/map_setup_scripts.asm"
+INCLUDE "data/maps/setup_scripts.asm"
 
 ReadMapSetupScript: ; 1541d
 .loop

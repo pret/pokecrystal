@@ -1,4 +1,4 @@
-; TrainerClassAttributes struct members (see data/trainers/trainer_attributes.asm)
+; TrainerClassAttributes struct members (see data/trainers/attributes.asm)
 	const_def
 	const TRNATTR_ITEM1           ; 0
 	const TRNATTR_ITEM2           ; 1
@@ -45,7 +45,7 @@ SWITCH_SOMETIMES   EQU 1 << SWITCH_SOMETIMES_F
 SWITCH_RARELY      EQU 1 << SWITCH_RARELY_F
 SWITCH_OFTEN       EQU 1 << SWITCH_OFTEN_F
 
-; TrainerTypes indexes (see trainers/read_party.asm)
+; TrainerTypes indexes (see engine/battle/read_trainer_party.asm)
 	const_def
 	const TRAINERTYPE_NORMAL
 	const TRAINERTYPE_MOVES

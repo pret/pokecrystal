@@ -1,9 +1,9 @@
 ; move ids
 ; indexes for:
 ; - Moves (see data/moves/moves.asm)
-; - MoveNames (see data/moves/move_names.asm)
-; - MoveDescriptions (see data/moves/move_descriptions.asm)
-; - BattleAnimations (see data/moves/move_anims.asm)
+; - MoveNames (see data/moves/names.asm)
+; - MoveDescriptions (see data/moves/descriptions.asm)
+; - BattleAnimations (see data/moves/animations.asm)
 	const_def
 	const NO_MOVE      ; 00
 	const POUND        ; 01

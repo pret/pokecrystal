@@ -186,7 +186,7 @@ BattleCommand_BellyDrum: ; 37c1a
 
 This bug affects Acid, Iron Tail, and Rock Smash.
 
-This is a bug with `DefenseDownHit` in [data/moves/move_effects.asm](/data/moves/move_effects.asm):
+This is a bug with `DefenseDownHit` in [data/moves/effects.asm](/data/moves/effects.asm):
 
 ```asm
 DefenseDownHit:
@@ -661,7 +661,7 @@ FastBallMultiplier:
 
 ## Dragon Scale, not Dragon Fang, boosts Dragon-type moves
 
-This is a bug with `ItemAttributes` in [items/item_attributes.asm](/items/item_attributes.asm):
+This is a bug with `ItemAttributes` in [items/attributes.asm](/items/attributes.asm):
 
 ```asm
 ; DRAGON FANG

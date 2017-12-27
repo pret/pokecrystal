@@ -1,7 +1,7 @@
 	dw 0 ; padding
 
 BattleCommandPointers: ; 3fd28
-; entries correspond to macros/scripts/effect_commands.asm
+; entries correspond to macros/scripts/battle_commands.asm
 	dw BattleCommand_CheckTurn ; 34084
 	dw BattleCommand_CheckObedience ; 343db
 	dw BattleCommand_UsedMoveText ; 34541
