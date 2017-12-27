@@ -16,6 +16,7 @@
 ; - AnimationExtraPointers (see gfx/pokemon/extra_pointers.asm)
 ; - BitmasksPointers (see gfx/pokemon/bitmask_pointers.asm)
 ; - FramesPointers (see gfx/pokemon/frame_pointers.asm)
+; - Footprints (see gfx/footprints.asm)
 ; - SortedPokemon (see mobile/fixed_words.asm)
 const_value set 1
 	const BULBASAUR  ; 01
