@@ -376,7 +376,7 @@ SECTION "bank2E", ROMX
 
 INCLUDE "engine/events_3.asm"
 INCLUDE "engine/radio.asm"
-INCLUDE "gfx/mail.asm"
+INCLUDE "engine/mail_2.asm"
 
 
 SECTION "bank2F", ROMX

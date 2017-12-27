@@ -147,11 +147,11 @@ gfx/trainers/%.2bpp: rgbgfx += -h
 gfx/trainers/%.pal: gfx/trainers/%.gbcpal
 	tools/palette -p $< > $@
 
-gfx/mail/0b9b46.1bpp: tools/gfx += --remove-whitespace
-gfx/mail/0b9d46.1bpp: tools/gfx += --remove-whitespace
-gfx/mail/0b9d86.1bpp: tools/gfx += --remove-whitespace
-gfx/mail/0b9dc6.1bpp: tools/gfx += --remove-whitespace
-gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/dragonite.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/large_note.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/surf_mail_border.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/flower_mail_border.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/litebluemail_border.1bpp: tools/gfx += --remove-whitespace
 
 gfx/pokedex/pokedex.2bpp: tools/gfx += --trim-whitespace
 gfx/pokedex/sgb.2bpp: tools/gfx += --trim-whitespace

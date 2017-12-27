@@ -612,6 +612,13 @@ Credits_TheEnd: ; 109c11 (42:5c11)
 ; 109c24 (42:5c24)
 
 
-INCLUDE "gfx/credits.asm"
+CreditsBorderGFX:    INCBIN "gfx/credits/border.2bpp"
+
+CreditsMonsGFX:
+CreditsPichuGFX:     INCBIN "gfx/credits/pichu.2bpp"
+CreditsSmoochumGFX:  INCBIN "gfx/credits/smoochum.2bpp"
+CreditsDittoGFX:     INCBIN "gfx/credits/ditto.2bpp"
+CreditsIgglybuffGFX: INCBIN "gfx/credits/igglybuff.2bpp"
+
 INCLUDE "data/credits_script.asm"
 INCLUDE "data/credits_strings.asm"
