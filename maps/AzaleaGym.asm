@@ -91,13 +91,13 @@ TrainerTwinsAmyandmay2:
 	closetext
 	end
 
-TrainerBugCatcherbenny:
-	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, BugCatcherbennySeenText, BugCatcherbennyBeatenText, 0, .AfterScript
+TrainerBugCatcherBenny:
+	trainer EVENT_BEAT_BUG_CATCHER_BENNY, BUG_CATCHER, BUG_CATCHER_BENNY, BugCatcherBennySeenText, BugCatcherBennyBeatenText, 0, .AfterScript
 
 .AfterScript:
 	end_if_just_battled
 	opentext
-	writetext BugCatcherbennyAfterBattleText
+	writetext BugCatcherBennyAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -232,7 +232,7 @@ BugsyText_BugMonsAreDeep:
 	line "ites thoroughly."
 	done
 
-BugCatcherbennySeenText:
+BugCatcherBennySeenText:
 	text "Bug #MON evolve"
 	line "young. So they get"
 
@@ -240,12 +240,12 @@ BugCatcherbennySeenText:
 	line "faster."
 	done
 
-BugCatcherbennyBeatenText:
+BugCatcherBennyBeatenText:
 	text "Just evolving"
 	line "isn't enough!"
 	done
 
-BugCatcherbennyAfterBattleText:
+BugCatcherBennyAfterBattleText:
 	text "#MON become"
 	line "stronger if they"
 	cont "evolve. Really!"
@@ -381,7 +381,7 @@ AzaleaGym_MapEventHeader:
 .ObjectEvents:
 	db 7
 	object_event SPRITE_BUGSY, 7, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, AzaleaGymBugsyScript, -1
-	object_event SPRITE_BUG_CATCHER, 3, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBugCatcherbenny, -1
+	object_event SPRITE_BUG_CATCHER, 3, 5, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBugCatcherBenny, -1
 	object_event SPRITE_BUG_CATCHER, 8, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherAl, -1
 	object_event SPRITE_BUG_CATCHER, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherJosh, -1
 	object_event SPRITE_TWIN, 10, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsAmyandmay1, -1
