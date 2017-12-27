@@ -1,13 +1,8 @@
 INCLUDE "includes.asm"
 INCLUDE "macros/wram.asm"
+
+
 INCLUDE "vram.asm"
-
-WRAM0_Start EQU $c000
-WRAM0_End   EQU $d000
-WRAM1_Start EQU $d000
-WRAM1_End   EQU $e000
-
-GLOBAL WRAM0_Start, WRAM0_End, WRAM1_Start, WRAM1_End
 
 
 SECTION "Stack", WRAM0

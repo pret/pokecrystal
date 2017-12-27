@@ -1,9 +1,3 @@
-VRAM_Begin EQU $8000
-VRAM_End   EQU $a000
-
-GLOBAL VRAM_Begin, VRAM_End
-
-
 SECTION "VRAM0", VRAM
 
 VTiles0:: ds $800

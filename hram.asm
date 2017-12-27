@@ -1,4 +1,3 @@
-HRAM_START         EQU $ff80
 hPushOAM           EQU $ff80 ; 10 bytes
 
 hROMBankBackup     EQU $ff8a
@@ -124,5 +123,3 @@ hDMATransfer       EQU $ffe8
 hMobile            EQU $ffe9
 hFFEA              EQU $ffea
 hClockResetTrigger EQU $ffeb
-
-HRAM_END EQU $ffff

@@ -1,4 +1,19 @@
-; Graciously aped from http://nocash.emubase.de/pandocs.htm .
+; Graciously aped from:
+; http://nocash.emubase.de/pandocs.htm
+; http://gameboy.mongenel.com/dmg/asmmemmap.html
+
+; memory map
+VRAM_Begin  EQU $8000
+VRAM_End    EQU $a000
+SRAM_Begin  EQU $a000
+SRAM_End    EQU $c000
+WRAM0_Begin EQU $c000
+WRAM0_End   EQU $d000
+WRAM1_Begin EQU $d000
+WRAM1_End   EQU $e000
+; hardware registers $ff00-$ff80 (see below)
+HRAM_Begin  EQU $ff80
+HRAM_End    EQU $ffff
 
 ; MBC3
 MBC3SRamEnable EQU $0000

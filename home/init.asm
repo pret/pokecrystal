@@ -69,8 +69,8 @@ Init:: ; 17d
 	ld [rLCDC], a
 
 ; Clear WRAM bank 0
-	ld hl, WRAM0_Start
-	ld bc, WRAM0_End - WRAM0_Start
+	ld hl, WRAM0_Begin
+	ld bc, WRAM0_End - WRAM0_Begin
 .ByteFill:
 	ld [hl], 0
 	inc hl
@@ -87,8 +87,8 @@ Init:: ; 17d
 	ld a, [hFFEA]
 	push af
 	xor a
-	ld hl, HRAM_START
-	ld bc, HRAM_END - HRAM_START
+	ld hl, HRAM_Begin
+	ld bc, HRAM_End - HRAM_Begin
 	call ByteFill
 	pop af
 	ld [hFFEA], a
@@ -201,8 +201,8 @@ ClearWRAM:: ; 25a
 	push af
 	ld [rSVBK], a
 	xor a
-	ld hl, WRAM1_Start
-	ld bc, WRAM1_End - WRAM1_Start
+	ld hl, WRAM1_Begin
+	ld bc, WRAM1_End - WRAM1_Begin
 	call ByteFill
 	pop af
 	inc a
