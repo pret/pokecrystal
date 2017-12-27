@@ -444,9 +444,9 @@ GetSpriteAnimFrame: ; 8d132
 	inc [hl]
 	call .GetPointer ; load pointer from SpriteAnimFrameData
 	ld a, [hli]
-	cp -2
+	cp dorestart_command
 	jr z, .restart
-	cp -1
+	cp endanim_command
 	jr z, .repeat_last
 
 	push af

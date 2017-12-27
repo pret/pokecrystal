@@ -29,10 +29,11 @@ GetBattleAnimFrame: ; ce7d1
 	inc [hl]
 	call .GetPointer
 	ld a, [hli]
-	cp -2
+	cp dorestart_command
 	jr z, .restart
-	cp -1
+	cp endanim_command
 	jr z, .repeat_last
+
 	push af
 	ld a, [hl]
 	push hl
@@ -41,12 +42,11 @@ GetBattleAnimFrame: ; ce7d1
 	add hl, bc
 	ld [hl], a
 	pop hl
-
 .okay
 	ld a, [hl]
 	and $c0
 	srl a
-	ld [wBattleAnimTemp7], a
+	ld [wBattleAnimTempAddSubFlags], a
 	pop af
 	ret
 

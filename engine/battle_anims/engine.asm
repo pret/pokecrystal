@@ -88,7 +88,7 @@ BattleAnimOAMUpdate: ; cca09
 	jp z, .delete
 	push af
 	ld hl, wBattleAnimTempOAMFlags
-	ld a, [wBattleAnimTemp7]
+	ld a, [wBattleAnimTempAddSubFlags]
 	xor [hl]
 	and $e0
 	ld [hl], a
@@ -200,7 +200,7 @@ InitBattleAnimBuffer: ; ccaaa
 	and %10000000
 	ld [wBattleAnimTempOAMFlags], a
 	xor a
-	ld [wBattleAnimTemp7], a
+	ld [wBattleAnimTempAddSubFlags], a
 	ld hl, BATTLEANIMSTRUCT_PALETTE
 	add hl, bc
 	ld a, [hl]
@@ -208,7 +208,7 @@ InitBattleAnimBuffer: ; ccaaa
 	ld hl, BATTLEANIMSTRUCT_02
 	add hl, bc
 	ld a, [hl]
-	ld [wBattleAnimTemp1], a
+	ld [wBattleAnimTempField02], a
 	ld hl, BATTLEANIMSTRUCT_TILEID
 	add hl, bc
 	ld a, [hli]
@@ -239,7 +239,7 @@ InitBattleAnimBuffer: ; ccaaa
 	ld [wBattleAnimTempXCoord], a
 	ld a, [hli]
 	ld d, a
-	ld a, [wBattleAnimTemp1]
+	ld a, [wBattleAnimTempField02]
 	cp $ff
 	jr nz, .check_kinesis_softboiled_milkdrink
 	ld a, 5 * 8

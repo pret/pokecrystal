@@ -2941,21 +2941,16 @@ wBattleAnimTemp0:: db
 wBattleAnimTemp1:: db
 wBattleAnimTemp2:: db
 wBattleAnimTemp3:: db
-wBattleAnimTemp4:: db
-wBattleAnimTemp5:: db
-wBattleAnimTemp6:: db
-wBattleAnimTemp7:: db
-wBattleAnimTemp8:: db
 
 NEXTU ; d419
 wBattleAnimTempOAMFlags:: db
-	ds 1
+wBattleAnimTempField02:: db
 wBattleAnimTempTileID:: db
 wBattleAnimTempXCoord:: db
 wBattleAnimTempYCoord:: db
 wBattleAnimTempXOffset:: db
 wBattleAnimTempYOffset:: db
-	ds 1
+wBattleAnimTempAddSubFlags:: db
 wBattleAnimTempPalette:: db
 ENDU ; d422
 
