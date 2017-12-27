@@ -4,7 +4,8 @@ charmap "<CR>", $d
 
 INCLUDE "constants/hardware_constants.asm"
 
-SECTION "Main", ROMX
+
+SECTION "Mobile Adapter SDK", ROMX
 
 Function110000: ; 110000 (44:4000)
 ; Copy b bytes from hl to de

@@ -1,342 +1,210 @@
-CheckForMobileBattleRules: ; 8b1e1
-	ld de, .PointerTables
-	call BattleTower_ExecuteJumptable
-	ret z
-	call BattleTower_PleaseReturnWhenReady
-	scf
-	ret
-; 8b1ed
+Function_LoadOpponentTrainerAndPokemons: ; 1f8000
+	ld a, [rSVBK]
+	push af
+	ld a, BANK(BT_OTTrainer)
+	ld [rSVBK], a
 
-.PointerTables: ; 8b1ed
-	db 2
-	dw .Functions
-	dw .TextPointers
+	; Fill BT_OTTrainer with zeros
+	xor a
+	ld hl, BT_OTTrainer
+	ld bc, BT_OTTrainerEnd - BT_OTTrainer
+	call ByteFill
 
-.Functions: ; 8b1f2
-	dw BattleTower_CheckPartyLengthIs3
-	dw BattleTower_CheckPartyHasThreeMonsThatAreNotEggs
-; 8b1f6
+	; Write $ff into the Item-Slots
+	ld a, $ff
+	ld [BT_OTPkmn1Item], a
+	ld [BT_OTPkmn2Item], a
+	ld [BT_OTPkmn3Item], a
 
-.TextPointers: ; 8b1f6
-	dw .ExcuseMeText
-	dw JumpText_NeedAtLeastThreeMon
-	dw JumpText_EggDoesNotQualify
-; 8b1fc
+	; Set BT_OTTrainer as start address to write the following data to
+	ld de, BT_OTTrainer
 
-.ExcuseMeText: ; 0x8b1fc
-	; Excuse me!
-	text_jump UnknownText_0x1c5937
-	db "@"
-; 0x8b201
-
-CheckForBattleTowerRules: ; 8b201
-	ld hl, StringBuffer2
-	ld [hl], "3"
-	inc hl
-	ld [hl], "@"
-	ld de, .PointerTables
-	call BattleTower_ExecuteJumptable
-	ret z
-	call BattleTower_PleaseReturnWhenReady
-	scf
-	ret
-; 8b215
-
-.PointerTables: ; 8b215
-	db 4
-	dw .Functions
-	dw .TextPointers
-
-.Functions: ; 8b21a
-	dw Function_PartyCountEq3
-	dw Function_PartySpeciesAreUnique
-	dw Function_PartyItemsAreUnique
-	dw Function_HasPartyAnEgg
-; 8b222
-
-.TextPointers: ; 8b222
-	dw JumpText_ExcuseMeYoureNotReady
-	dw JumpText_OnlyThreePkmnMayBeEntered
-	dw JumpText_ThePkmnMustAllBeDifferentKinds
-	dw JumpText_ThePkmnMustNotHoldTheSameItems
-	dw JumpText_YouCantTakeAnEgg
-; 8b22c
-
-JumpText_ExcuseMeYoureNotReady: ; 0x8b22c
-	; Excuse me. You're not ready.
-	text_jump Text_ExcuseMeYoureNotReady
-	db "@"
-; 0x8b231
-
-BattleTower_PleaseReturnWhenReady: ; 8b231
-	ld hl, .PleaseReturnWhenReady
-	call PrintText
-	ret
-; 8b238
-
-.PleaseReturnWhenReady: ; 0x8b238
-	; Please return when you're ready.
-	text_jump UnknownText_0x1c5962
-	db "@"
-; 0x8b23d
-
-JumpText_NeedAtLeastThreeMon: ; 0x8b23d
-	; You need at least three #MON.
-	text_jump UnknownText_0x1c5983
-	db "@"
-; 0x8b242
-
-JumpText_EggDoesNotQualify: ; 0x8b242
-	; Sorry, an EGG doesn't qualify.
-	text_jump UnknownText_0x1c59a3
-	db "@"
-; 0x8b247
-
-JumpText_OnlyThreePkmnMayBeEntered: ; 0x8b247
-	; Only three #MON may be entered.
-	text_jump Text_OnlyThreePkmnMayBeEntered
-	db "@"
-; 0x8b24c
-
-JumpText_ThePkmnMustAllBeDifferentKinds: ; 0x8b24c
-	; The @  #MON must all be different kinds.
-	text_jump Text_ThePkmnMustAllBeDifferentKinds
-	db "@"
-; 0x8b251
-
-JumpText_ThePkmnMustNotHoldTheSameItems: ; 0x8b251
-	; The @  #MON must not hold the same items.
-	text_jump Text_ThePkmnMustNotHoldTheSameItems
-	db "@"
-; 0x8b256
-
-JumpText_YouCantTakeAnEgg: ; 0x8b256
-	; You can't take an EGG!
-	text_jump Text_YouCantTakeAnEgg
-	db "@"
-; 0x8b25b
-
-BattleTower_ExecuteJumptable: ; 8b25b
-	ld bc, 0
-.loop
-	call .DoJumptableFunction
-	call c, .PrintFailureText
-	call .Next_CheckReachedEnd
-	jr nz, .loop
-	ld a, b
-	and a
-	ret
-; 8b26c
-
-.DoJumptableFunction: ; 8b26c
-	push de
-	push bc
-	call .GetFunctionPointer
-	ld a, c
-	rst JumpTable
-	pop bc
-	pop de
-	ret
-; 8b276
-
-.Next_CheckReachedEnd: ; 8b276
-	inc c
-	ld a, [de]
-	cp c
-	ret
-; 8b27a
-
-.GetFunctionPointer: ; 8b27a
-	inc de
-	ld a, [de]
-	ld l, a
-	inc de
-	ld a, [de]
-	ld h, a
-	ret
-; 8b281
-
-.GetTextPointers: ; 8b281
-	inc de
-	inc de
-	inc de
-	ld a, [de]
-	ld l, a
-	inc de
-	ld a, [de]
-	ld h, a
-	ret
-; 8b28a
-
-.LoadTextPointer: ; 8b28a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ret
-; 8b28e
-
-.PrintFailureText: ; 8b28e
-	push de
-	push bc
-	ld a, b
-	and a
-	call z, .PrintFirstText
-	pop bc
-	call .PrintNthText
-	ld b, $1
-	pop de
-	ret
-; 8b29d
-
-.PrintFirstText: ; 8b29d
-	push de
-	call .GetTextPointers
-	call .LoadTextPointer
-	call PrintText
-	pop de
-	ret
-; 8b2a9
-
-.PrintNthText: ; 8b2a9
-	push bc
-	call .GetTextPointers
-	inc hl
-	inc hl
-	ld b, $0
-	add hl, bc
-	add hl, bc
-	call .LoadTextPointer
-	call PrintText
-	pop bc
-	ret
-; 8b2bb
-
-BattleTower_CheckPartyLengthIs3: ; 8b2bb
-	ld a, [PartyCount]
-	cp 3
-	ret
-; 8b2c1
-
-BattleTower_CheckPartyHasThreeMonsThatAreNotEggs: ; 8b2c1
-	ld hl, PartyCount
-	ld a, [hli]
-	ld b, $0
-	ld c, a
-.loop
-	ld a, [hli]
-	cp EGG
-	jr z, .egg
-	inc b
-
-.egg
-	dec c
-	jr nz, .loop
-	ld a, [PartyCount]
-	cp b
-	ret z
-	ld a, b
-	cp 3
-	ret
-; 8b2da
-
-Function_PartyCountEq3: ; 8b2da
-	ld a, [PartyCount]
-	cp 3
-	ret z
-	scf
-	ret
-; 8b2e2
-
-Function_PartySpeciesAreUnique: ; 8b2e2
-	ld hl, PartyMon1Species
-	call VerifyUniqueness
-	ret
-; 8b2e9
-
-VerifyUniqueness: ; 8b2e9
-	ld de, PartyCount
-	ld a, [de]
-	inc de
-	dec a
-	jr z, .done
+	ld a, [hRandomAdd]
 	ld b, a
-.loop
-	push hl
-	push de
-	ld c, b
-	call .isegg
-	jr z, .next
-	ld a, [hl]
-	and a
-	jr z, .next
-.loop2
-	call .nextmon
-	call .isegg
-	jr z, .next2
-	cp [hl]
-	jr z, .gotcha
+.resample ; loop to find a random trainer
+	call Random
+	ld a, [hRandomAdd]
+	add b
+	ld b, a ; b contains the nr of the trainer
+IF DEF(CRYSTAL11)
+	and (1 << 7) - 1
+	cp 70
+ELSE
+	and (1 << 5) - 1
+	cp 21
+ENDC
+	jr nc, .resample
+	ld b, a
 
-.next2
+	ld a, BANK(sBTTrainers)
+	call GetSRAMBank
+
+	ld c, BATTLETOWER_NROFTRAINERS
+	ld hl, sBTTrainers
+.next_trainer
+	ld a, [hli]
+	cp b
+	jr z, .resample
 	dec c
-	jr nz, .loop2
+	jr nz, .next_trainer ; c <= 7  initialise all 7 trainers?
 
-.next
-	pop de
-	pop hl
-	call .nextmon
-	dec b
-	jr nz, .loop
+	ld hl, sBTTrainers
+	ld a, [sNrOfBeatenBattleTowerTrainers]
+	ld c, a
+	ld a, b
+	ld b, 0
+	add hl, bc
+	ld [hl], a
 
-.done
-	and a
+	call CloseSRAM
+
+	push af
+; Copy name (10 bytes) and class (1 byte) of trainer
+	ld hl, BattleTowerTrainers
+	ld bc, NAME_LENGTH
+	call AddNTimes
+	ld bc, NAME_LENGTH
+	call CopyBytes
+
+	call Function_LoadRandomBattleTowerPkmn
+	pop af
+
+	ld hl, BattleTowerTrainerData
+	ld bc, BATTLETOWER_TRAINERDATALENGTH
+	call AddNTimes
+	ld bc, BATTLETOWER_TRAINERDATALENGTH
+.copy_bt_trainer_data_loop
+	ld a, BANK(BattleTowerTrainerData)
+	call GetFarByte
+	ld [de], a
+	inc hl
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .copy_bt_trainer_data_loop
+
+	pop af
+	ld [rSVBK], a
+
 	ret
 
-.gotcha
-	pop de
-	pop hl
-	scf
-	ret
-; 8b31a
 
-.nextmon ; 8b31a
+Function_LoadRandomBattleTowerPkmn: ; 1f8081
+	ld c, BATTLETOWER_NROFPKMNS
+.loop
 	push bc
+	ld a, BANK(sBTPkmnPrevTrainer1)
+	call GetSRAMBank
+
+.FindARandomBattleTowerPkmn:
+	; From Which LevelGroup are the Pkmn loaded
+	; a = 1..10
+	ld a, [wBTChoiceOfLvlGroup] ; [$d800]
+	dec a
+	ld hl, BattleTowerMons
+	ld bc, BattleTowerMons2 - BattleTowerMons1
+	call AddNTimes
+
+	ld a, [hRandomAdd]
+	ld b, a
+.resample
+	call Random
+	ld a, [hRandomAdd]
+	add b
+	ld b, a
+	and $1f
+	cp BATTLETOWER_NRMONSPERLEVELBRACKET
+	jr nc, .resample
+	; in register 'a' is the chosen Pkmn of the LevelGroup
+
+	; Check if Pkmn was already loaded before
+	; Check current and the 2 previous teams
+	; includes check if item is double at the current team
+	ld bc, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
+	call AddNTimes
+	ld a, [hli]
+	ld b, a
+	ld a, [hld]
+	ld c, a
+	ld a, [BT_OTPkmn1]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn1Item]
+	cp c
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn2]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn2Item]
+	cp c
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn3]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [BT_OTPkmn3Item]
+	cp c
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer1]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer2]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevTrainer3]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer1]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer2]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+	ld a, [sBTPkmnPrevPrevTrainer3]
+	cp b
+	jr z, .FindARandomBattleTowerPkmn
+
+	ld bc, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
+	call CopyBytes
+
+	ld a, [wNamedObjectIndexBuffer]
+	push af
+	push de
+	ld hl, - (PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH)
+	add hl, de
+	ld a, [hl]
+	ld [wNamedObjectIndexBuffer], a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
-	inc de
+	push hl
+	call GetPokemonName
+	ld h, d
+	ld l, e
+	pop de
+	ld bc, PKMN_NAME_LENGTH
+	call CopyBytes
+
+	pop de
+	pop af
+	ld [wNamedObjectIndexBuffer], a
 	pop bc
-	ret
-; 8b322
-
-.isegg ; 8b322
-	push bc
-	ld b, a
-	ld a, [de]
-	cp EGG
-	ld a, b
-	pop bc
-	ret
-; 8b32a
-
-Function_PartyItemsAreUnique: ; 8b32a
-	ld hl, PartyMon1Item
-	call VerifyUniqueness
-	ret
-; 8b331
-
-Function_HasPartyAnEgg: ; 8b331
-	ld hl, PartyCount
-	ld a, [hli]
-	ld c, a
-.loop
-	ld a, [hli]
-	cp EGG
-	jr z, .found
 	dec c
-	jr nz, .loop
-	and a
-	ret
+	jp nz, .loop
 
-.found
-	scf
+	ld a, [sBTPkmnPrevTrainer1]
+	ld [sBTPkmnPrevPrevTrainer1], a
+	ld a, [sBTPkmnPrevTrainer2]
+	ld [sBTPkmnPrevPrevTrainer2], a
+	ld a, [sBTPkmnPrevTrainer3]
+	ld [sBTPkmnPrevPrevTrainer3], a
+	ld a, [BT_OTPkmn1]
+	ld [sBTPkmnPrevTrainer1], a
+	ld a, [BT_OTPkmn2]
+	ld [sBTPkmnPrevTrainer2], a
+	ld a, [BT_OTPkmn3]
+	ld [sBTPkmnPrevTrainer3], a
+	call CloseSRAM
 	ret
-; 8b342
+; 1f814e
+
+INCLUDE "data/battle_tower.asm"

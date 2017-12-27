@@ -73,7 +73,7 @@ ChangeHappiness: ; 71c2
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-	cp $64 ; $80?
+	cp $64 ; why not $80?
 	pop de
 
 	ld a, [de]
@@ -141,7 +141,9 @@ StepHappiness:: ; 725a
 	jr nz, .loop
 	ret
 
+
 DayCareStep:: ; 7282
+; Raise the experience of Day-Care Pokémon every step cycle.
 
 	ld a, [wDayCareMan]
 	bit 0, a

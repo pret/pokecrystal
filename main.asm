@@ -190,7 +190,7 @@ INCLUDE "data/pokemon/dex_entry_pointers.asm"
 INCLUDE "engine/mail.asm"
 
 
-SECTION "Crystal Unique", ROMX
+SECTION "Crystal Features 1", ROMX
 
 INCLUDE "engine/init_gender.asm"
 INCLUDE "engine/routines/drawkrispackgfx.asm"
@@ -312,7 +312,7 @@ INCLUDE "gfx/battle_anims.asm"
 INCLUDE "events/halloffame.asm"
 
 
-SECTION "bank22", ROMX
+SECTION "Crystal Features 2", ROMX
 
 INCLUDE "events/kurt.asm"
 INCLUDE "engine/player_gfx.asm"
@@ -320,7 +320,7 @@ INCLUDE "mobile/mobile_22.asm"
 INCLUDE "events/crystal_unown.asm"
 INCLUDE "events/buena.asm"
 INCLUDE "events/dratini.asm"
-INCLUDE "events/battle_tower.asm"
+INCLUDE "events/battle_tower_rules.asm"
 INCLUDE "mobile/mobile_22_2.asm"
 
 
@@ -508,7 +508,7 @@ INCLUDE "mobile/mobile_41.asm"
 INCLUDE "gfx/overworld_font.asm"
 
 
-SECTION "mobile_42", ROMX
+SECTION "Mobile 42", ROMX
 
 INCLUDE "mobile/mobile_42.asm"
 
@@ -519,7 +519,7 @@ IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.2bpp.lz"
 
 
-SECTION "bank43", ROMX
+SECTION "Title", ROMX
 
 INCLUDE "engine/unused_title.asm"
 INCLUDE "engine/title.asm"
@@ -531,7 +531,7 @@ INCLUDE "mobile/mobile_45.asm"
 INCLUDE "mobile/mobile_46.asm"
 
 
-SECTION "battle_tower_47", ROMX
+SECTION "Battle Tower", ROMX
 
 INCLUDE "mobile/battle_tower_47.asm"
 
@@ -542,7 +542,7 @@ INCLUDE "mobile/mobile_5b.asm"
 INCLUDE "engine/link_trade.asm"
 
 
-SECTION "mobile_5c", ROMX
+SECTION "Mobile 5C", ROMX
 
 INCLUDE "mobile/mobile_5c.asm"
 
@@ -552,17 +552,17 @@ SECTION "Crystal Phone Text 2", ROMX
 INCLUDE "text/phone/extra2.asm"
 
 
-SECTION "bank5E", ROMX
+SECTION "UpdateBattleHUDs", ROMX
 
 INCLUDE "engine/battle/updatebattlehuds.asm"
 
 
-SECTION "mobile_5e", ROMX
+SECTION "Mobile 5E", ROMX
 
 INCLUDE "mobile/mobile_5e.asm"
 
 
-SECTION "bank5F", ROMX
+SECTION "Mobile 5F", ROMX
 
 INCLUDE "mobile/mobile_5f.asm"
 
@@ -591,7 +591,7 @@ INCLUDE "text/phone/elm.asm"
 INCLUDE "text/phone/trainers1.asm"
 
 
-SECTION "bank72", ROMX
+SECTION "Miscellaneous Text", ROMX
 
 INCLUDE "data/items/item_names.asm"
 INCLUDE "data/items/item_descriptions.asm"
@@ -636,13 +636,10 @@ SECTION "Mobile News Data", ROMX
 INCLUDE "mobile/news/news.asm"
 
 
-SECTION "bank7E", ROMX
+SECTION "Crystal Events", ROMX
 
-INCLUDE "engine/battle_tower.asm"
-INCLUDE "engine/odd_eggs.asm"
-
-
-SECTION "bank7F", ROMX
+INCLUDE "events/battle_tower.asm"
+INCLUDE "events/odd_egg.asm"
 
 
 SECTION "Mobile Stadium 2", ROMX

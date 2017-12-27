@@ -2818,7 +2818,7 @@ wPokeAnimBitmaskBuffer:: ds 7
 wPokeAnimStructEnd::
 
 
-SECTION "Battle Tower", WRAMX
+SECTION "Battle Tower RAM", WRAMX
 
 w3_d000:: ds 1 ; d000
 w3_d001:: ds 1
