@@ -631,8 +631,8 @@ Function8949c: ; 8949c
 	ld a, 5
 	ld [rSVBK], a
 	ld hl, Palette_894b3
-	ld de, UnknBGPals + 8 * 7
-	ld bc, 8
+	ld de, UnknBGPals palette 7
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a

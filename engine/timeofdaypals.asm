@@ -41,19 +41,18 @@ _TimeOfDayPals:: ; 8c011
 ; update palette id
 	ld [TimeOfDayPal], a
 
-
-; save bg palette 8
-	ld hl, UnknBGPals + 8 * 7 ; UnknBGPals + 7 pals
+; save bg palette 7
+	ld hl, UnknBGPals palette PAL_BG_TEXT
 
 ; save wram bank
 	ld a, [rSVBK]
 	ld b, a
 ; wram bank 5
-	ld a, 5
+	ld a, $5
 	ld [rSVBK], a
 
 ; push palette
-	ld c, 4 ; NUM_PAL_COLORS
+	ld c, NUM_PAL_COLORS
 .push
 	ld d, [hl]
 	inc hl
@@ -73,7 +72,7 @@ _TimeOfDayPals:: ; 8c011
 	call GetSGBLayout
 
 
-; restore bg palette 8
+; restore bg palette 7
 	ld hl, UnknOBPals - 1 ; last byte in UnknBGPals
 
 ; save wram bank
@@ -84,7 +83,7 @@ _TimeOfDayPals:: ; 8c011
 	ld [rSVBK], a
 
 ; pop palette
-	ld e, 4 ; NUM_PAL_COLORS
+	ld e, NUM_PAL_COLORS
 .pop
 	pop bc
 	ld [hl], c

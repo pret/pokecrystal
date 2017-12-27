@@ -5,7 +5,7 @@ NOT_VERY_EFFECTIVE EQU 05
 NO_EFFECT          EQU 00
 
 TypeMatchups: ; 34bb1
-	;  attacker  defender*=
+	;  attacker,  defender,  *=
 	db NORMAL,    ROCK,      NOT_VERY_EFFECTIVE
 	db NORMAL,    STEEL,     NOT_VERY_EFFECTIVE
 	db FIRE,      FIRE,      NOT_VERY_EFFECTIVE
