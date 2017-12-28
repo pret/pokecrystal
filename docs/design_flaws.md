@@ -157,14 +157,14 @@ Modify `GetFrontpicPointer`:
 	cp UNOWN
 	jr z, .unown
 	ld a, [CurPartySpecies]
-	ld d, BANK(PokemonPicPointers)
 	ld hl, PokemonPicPointers
+	ld d, BANK(PokemonPicPointers)
 	jr .ok
 
 .unown
 	ld a, [UnownLetter]
-	ld d, BANK(UnownPicPointers)
 	ld hl, UnownPicPointers
+	ld d, BANK(UnownPicPointers)
 
 .ok
 	dec a
@@ -264,6 +264,7 @@ INCBIN "gfx/footprints/charmeleon.1bpp"
 INCBIN "gfx/footprints/charizard.1bpp"
 INCBIN "gfx/footprints/squirtle.1bpp"
 INCBIN "gfx/footprints/wartortle.1bpp"
+...
 ```
 
 Modify `Pokedex_LoadAnyFootprint`:

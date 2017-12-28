@@ -30,7 +30,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
 - [Daisy's grooming doesn't always increase happiness](#daisys-grooming-doesnt-always-increase-happiness)
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
-- [Magikarp lengths in Lake of Rage have a unit conversion error](#magikarp-lengths-in-lake-of-rage-have-a-unit-conversion-error)
+- [Magikarp length limits have a unit conversion error](#magikarp-length-limits-have-a-unit-conversion-error)
 - [Magikarp lengths can be miscalculated](#magikarp-lengths-can-be-miscalculated)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
 - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
@@ -785,7 +785,7 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](
 **Fix:** Change both `jr z, .Happiness` to `jr nz, .Happiness`.
 
 
-## Magikarp lengths in Lake of Rage have a unit conversion error
+## Magikarp length limits have a unit conversion error
 
 This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](/engine/battle/core.asm):
 
@@ -795,31 +795,31 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](
 	ld bc, PlayerID
 	callfar CalcMagikarpLength
 
-; We're clear if the length is < 1536
+; No reason to keep going if length > 1536 (i.e. if length / 256 != 6)
 	ld a, [wMagikarpLength]
-	cp HIGH(1536)
+	cp HIGH(1536) ; this compares to 6'0'', should be cp 5
 	jr nz, .CheckMagikarpArea
 
 ; 5% chance of skipping both size checks
 	call Random
 	cp 5 percent
 	jr c, .CheckMagikarpArea
-; Try again if > 1614
+; Try again if length > 1615
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1616)
+	cp LOW(1616) ; this compares to 6'80'', should be cp 3
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
 	call Random
 	cp 20 percent - 1
 	jr c, .CheckMagikarpArea
-; Try again if > 1598
+; Try again if length > 1599
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1600)
+	cp LOW(1600) ; this compares to 6'64'', should be cp 2
 	jr nc, .GenerateDVs
 ```
 
-*To do:* Fix this bug.
+**Fix:** Change the three `cp` instructions to use their commented values.
 
 
 ## Magikarp lengths can be miscalculated
