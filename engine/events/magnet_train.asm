@@ -328,7 +328,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_MAGNET_TRAIN_BLUE

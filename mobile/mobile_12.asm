@@ -84,7 +84,7 @@ InitMobileProfile: ; 4802f (12:402f)
 	ld a, [wd002]
 	bit 6, a
 	jr nz, .asm_48113
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	ld hl, Strings_484fb
 	call GetNthString
 	ld d, h
@@ -298,7 +298,7 @@ asm_4828d: ; 4828d (12:428d)
 	ld de, String_484ff
 	call PlaceString
 	call WaitBGMap
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	inc a
 	ld [wMenuCursorBuffer], a
 	call StaticMenuJoypad
@@ -316,11 +316,11 @@ asm_4828d: ; 4828d (12:428d)
 	cp $50
 	jr nz, .asm_482e1
 	ld a, $1
-	ld [PlayerGender], a
+	ld [wPlayerGender], a
 	jr .asm_482f1
 .asm_482ed
 	xor a
-	ld [PlayerGender], a
+	ld [wPlayerGender], a
 .asm_482f1
 	ld d, h
 	ld e, l
@@ -804,10 +804,10 @@ Function4873c: ; 4873c (12:473c)
 	ld a, A_BUTTON
 	add B_BUTTON
 	ld [hli], a ; joypad filter
-	; ld a, [PlayerGender]
+	; ld a, [wPlayerGender]
 	; xor 1
 	; inc a
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	and a
 	jr z, .male
 	ld a, 2

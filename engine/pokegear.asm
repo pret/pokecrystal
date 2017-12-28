@@ -657,7 +657,7 @@ PokegearMap_InitPlayerIcon: ; 9106a
 	push af
 	depixel 0, 0
 	ld b, SPRITE_ANIM_INDEX_RED_WALK
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK
@@ -734,7 +734,7 @@ PokegearMap_UpdateCursorPosition: ; 910d4
 ; 910e8
 
 TownMap_GetKantoLandmarkLimits: ; 910e8
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 6, a
 	jr z, .not_hof
 	ld d, ROUTE_28
@@ -1583,7 +1583,7 @@ RadioChannels:
 
 .EvolutionRadio:
 ; This station airs in the Lake of Rage area when Rocket are still in Mahogany.
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 4, a
 	jr z, .NoSignal
 	ld a, [wPokegearMapPlayerIconLandmark]
@@ -1669,7 +1669,7 @@ LoadStation_BuenasPassword: ; 917a5 (24:57a5)
 	ld hl, PlayRadioShow
 	call Radio_BackUpFarCallParams
 	ld de, NotBuenasPasswordName
-	ld a, [StatusFlags2]
+	ld a, [wStatusFlags2]
 	bit 0, a
 	ret z
 	ld de, BuenasPasswordName
@@ -2329,7 +2329,7 @@ CheckIfVisitedFlypoint: ; 91c3c
 
 HasVisitedSpawn: ; 91c50
 ; Check if spawn point c has been visited.
-	ld hl, VisitedSpawns
+	ld hl, wVisitedSpawns
 	ld b, CHECK_FLAG
 	ld d, 0
 	predef FlagPredef
@@ -2530,7 +2530,7 @@ _Area: ; 91d11
 	ret
 
 .right
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 6, a ; hall of fame
 	ret z
 	ld a, [hWY]
@@ -2659,7 +2659,7 @@ _Area: ; 91d11
 	inc de
 	push bc
 	ld c, 0 ; RED
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .got_gender
 	inc c   ; BLUE
@@ -2886,7 +2886,7 @@ TownMapPlayerIcon: ; 91fa6
 ; Animation/palette
 	depixel 0, 0
 	ld b, SPRITE_ANIM_INDEX_RED_WALK ; Male
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK ; Female

@@ -1431,7 +1431,7 @@ wFarCallBCBuffer:: dw ; cfb9
 
 wcfbb:: db
 
-GameTimerPause:: ; cfbc
+wGameTimerPause:: ; cfbc
 ; bit 0
 	db
 
@@ -2238,7 +2238,7 @@ wBugContestSecsRemaining:: db ; d46d
 wMapStatusEnd:: ds 2 ; d470
 
 wCrystalData::
-PlayerGender:: ; d472
+wPlayerGender:: ; d472
 ; bit 0:
 ;	0 male
 ;	1 female
@@ -2348,7 +2348,7 @@ CurTimeOfDay:: db ; d848
 	ds 1
 
 wSecretID:: dw
-StatusFlags:: ; d84c
+wStatusFlags:: ; d84c
 	; 0 - pokedex
 	; 1 - unown dex
 	; 2 -
@@ -2359,7 +2359,7 @@ StatusFlags:: ; d84c
 	; 7 - bug contest on
 	db
 
-StatusFlags2:: ; d84d
+wStatusFlags2:: ; d84d
 	; 0 - rockets
 	; 1 -
 	; 2 - bug contest timer
@@ -2377,8 +2377,8 @@ wMomSavingMoney:: db ; d854
 Coins:: dw ; d855
 
 Badges::
-JohtoBadges:: flag_array NUM_JOHTO_BADGES ; d857
-KantoBadges:: flag_array NUM_KANTO_BADGES ; d858
+wJohtoBadges:: flag_array NUM_JOHTO_BADGES ; d857
+wKantoBadges:: flag_array NUM_KANTO_BADGES ; d858
 
 
 TMsHMs:: ds NUM_TMS + NUM_HMS ; d859
@@ -2557,7 +2557,7 @@ wCelebiEvent:: db
 
 	ds 1
 
-BikeFlags:: ; dbf5
+wBikeFlags:: ; dbf5
 ; bit 0: using strength
 ; bit 1: always on bike
 ; bit 2: downhill
@@ -2599,9 +2599,9 @@ wWhichMomItemSet:: db ; dc18
 MomItemTriggerBalance:: ds 3 ; dc19
 
 wDailyResetTimer:: dw ; dc1c
-DailyFlags:: db
-WeeklyFlags:: db
-SwarmFlags:: db
+wDailyFlags:: db
+wWeeklyFlags:: db
+wSwarmFlags:: db
 	ds 2
 wStartDay:: db
 	ds 3
@@ -2660,7 +2660,7 @@ wPlayerDataEnd::
 
 wMapData::
 
-VisitedSpawns:: flag_array NUM_SPAWNS ; dca5
+wVisitedSpawns:: flag_array NUM_SPAWNS ; dca5
 
 wDigWarpNumber:: db ; dcaa
 wDigMapGroup::   db ; dcab
@@ -2717,7 +2717,7 @@ PokedexSeen:: flag_array NUM_POKEMON ; deb9
 EndPokedexSeen::
 
 UnownDex:: ds NUM_UNOWN ; ded9
-UnlockedUnowns:: db ; def3
+wUnlockedUnowns:: db ; def3
 wFirstUnownSeen:: db
 
 wDayCareMan:: ; def5

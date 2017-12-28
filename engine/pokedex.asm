@@ -103,7 +103,7 @@ InitPokedex: ; 40063
 	ret
 
 Pokedex_CheckUnlockedUnownMode: ; 400a2
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 1, a
 	jr nz, .unlocked
 

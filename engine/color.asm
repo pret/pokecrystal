@@ -718,7 +718,7 @@ GetPlayerOrMonPalettePointer:
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a ; transformed to male
 	jr nz, .male
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	and a
 	jr z, .male
 	ld hl, KrisPalette

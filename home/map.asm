@@ -2305,7 +2305,7 @@ GetMapHeaderMusic:: ; 2cbd
 	ret
 
 .radiotower
-	ld a, [StatusFlags2]
+	ld a, [wStatusFlags2]
 	bit 0, a
 	jr z, .clearedradiotower
 	ld de, MUSIC_ROCKET_OVERTURE
@@ -2320,7 +2320,7 @@ GetMapHeaderMusic:: ; 2cbd
 	jr .done
 
 .mahoganymart
-	ld a, [StatusFlags2]
+	ld a, [wStatusFlags2]
 	bit 7, a
 	jr z, .clearedmahogany
 	ld de, MUSIC_ROCKET_HIDEOUT

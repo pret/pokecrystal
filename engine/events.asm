@@ -491,7 +491,7 @@ CheckTimeEvents: ; 9693a
 	and a
 	jr nz, .nothing
 
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug contest
 	jr z, .do_daily
 

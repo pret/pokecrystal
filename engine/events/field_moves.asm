@@ -8,7 +8,7 @@ PlayWhirlpoolSound: ; 8c7d4
 
 BlindingFlash: ; 8c7e1
 	farcall FadeOutPalettes
-	ld hl, StatusFlags
+	ld hl, wStatusFlags
 	set 2, [hl] ; Flash
 	farcall ReplaceTimeOfDayPals
 	farcall UpdateTimeOfDayPal

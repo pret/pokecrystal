@@ -64,7 +64,7 @@ GetPlayerSprite: ; 14183
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
 	jr nz, .go
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .go
 	ld hl, .Kris

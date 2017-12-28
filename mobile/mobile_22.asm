@@ -25,17 +25,17 @@ OpenSRAMBank4: ; 89160
 
 
 Function89168: ; 89168 (22:5168)
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	set 7, [hl]
 	ret
 
 Function8916e: ; 8916e (22:516e)
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	res 7, [hl]
 	ret
 
 Function89174: ; 89174 (22:5174)
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	bit 7, [hl]
 	ret
 
@@ -619,7 +619,7 @@ Function89481: ; 89481
 
 Function89492: ; 89492 (22:5492)
 	ld d, 0
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	ret z
 	inc d
@@ -1269,7 +1269,7 @@ Function897d5: ; 897d5
 
 Function89807: ; 89807 (22:5807)
 	ld hl, MobileAdapterGFX + $200
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .asm_89814
 	ld hl, MobileAdapterGFX + $200 + $230

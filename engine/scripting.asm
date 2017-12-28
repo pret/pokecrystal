@@ -2609,14 +2609,14 @@ _EngineFlagAction:
 Script_wildoff:
 ; script command 0x38
 
-	ld hl, StatusFlags
+	ld hl, wStatusFlags
 	set 5, [hl]
 	ret
 
 Script_wildon:
 ; script command 0x37
 
-	ld hl, StatusFlags
+	ld hl, wStatusFlags
 	res 5, [hl]
 	ret
 
@@ -2991,12 +2991,12 @@ Script_end_all:
 Script_halloffame:
 ; script command 0xa1
 
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	res 0, [hl]
 	farcall TrainerRankings_HallOfFame
 	farcall TrainerRankings_HallOfFame2
 	farcall HallOfFame
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	set 0, [hl]
 	jr ReturnFromCredits
 

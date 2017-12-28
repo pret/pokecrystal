@@ -3,7 +3,7 @@ InitCrystalData: ; 48000
 	ld [wd474], a
 	xor a
 	ld [wd473], a
-	ld [PlayerGender], a
+	ld [wPlayerGender], a
 	ld [wd475], a
 	ld [wd476], a
 	ld [wd477], a
@@ -37,7 +37,7 @@ InitGender: ; 48dcb (12:4dcb)
 	call CloseWindow
 	ld a, [wMenuCursorY]
 	dec a
-	ld [PlayerGender], a
+	ld [wPlayerGender], a
 	ld c, 10
 	call DelayFrames
 	ret

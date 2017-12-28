@@ -400,7 +400,7 @@ PlaceGenderedPlayerName:: ; 1252
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	ld de, String_kun
 	jr z, PlaceCommandCharacter

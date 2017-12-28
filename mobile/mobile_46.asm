@@ -1198,7 +1198,7 @@ BattleTowerRoomMenu_PlacePickLevelMenu:
 	ld [wcd4f], a
 	ld a, $1
 	ld [rSVBK], a
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 6, a ; Hall Of Fame
 	jr nz, .asm_11896b
 	ld hl, Strings_Ll0ToL40		; Address to list of strings with the choosable levels

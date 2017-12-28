@@ -2543,7 +2543,7 @@ Unknown_100ff3: ; 100ff3
 	dbwww $80, PlayerName, NAME_LENGTH, NULL
 	dbwww $80, PlayerID, 2, NULL
 	dbwww $80, wSecretID, 2, NULL
-	dbwww $80, PlayerGender, 1, NULL
+	dbwww $80, wPlayerGender, 1, NULL
 	dbwww $04, $a603, 8, NULL
 	dbwww $04, $a007, PARTYMON_STRUCT_LENGTH, NULL
 	db -1
@@ -2812,7 +2812,7 @@ Function1011f1: ; 1011f1
 	call CloseSRAM
 	ld hl, wdc41
 	res 4, [hl]
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	bit 7, [hl]
 	jr z, .skip
 	ld hl, wdc41
@@ -4703,7 +4703,7 @@ Function101e98: ; 101e98
 	call ClearSprites
 	farcall Function8adb3
 	ret c
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	set 7, [hl]
 	ld hl, wdc41
 	set 4, [hl]
@@ -4711,7 +4711,7 @@ Function101e98: ; 101e98
 ; 101ead
 
 Function101ead: ; 101ead
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	bit 7, [hl]
 	jr nz, .asm_101ec8
 	ld hl, wdc41
@@ -7896,7 +7896,7 @@ Function1036f9: ; 1036f9
 
 Function103700: ; 103700
 	ld c, $0a
-	ld hl, SwarmFlags
+	ld hl, wSwarmFlags
 	bit 4, [hl]
 	jr z, .asm_10370f
 	farcall Function1008a6
@@ -7994,11 +7994,11 @@ Function103780: ; 103780
 
 Function10378c: ; 10378c
 	ld c, 0
-	ld hl, SwarmFlags
+	ld hl, wSwarmFlags
 	bit 4, [hl]
 	jr nz, .already_set
 	ld c, $01
-	ld hl, SwarmFlags
+	ld hl, wSwarmFlags
 	set 4, [hl]
 
 .already_set
@@ -8020,7 +8020,7 @@ Function10378c: ; 10378c
 	ld a, c
 	and a
 	ret z
-	ld hl, SwarmFlags
+	ld hl, wSwarmFlags
 	res 4, [hl]
 	ret
 ; 1037c2

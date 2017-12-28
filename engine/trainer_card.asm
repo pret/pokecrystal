@@ -120,7 +120,7 @@ TrainerCard_Page1_Joypad: ; 251d7 (9:51d7)
 
 .KantoCheck:
 ; unreferenced
-	ld a, [KantoBadges]
+	ld a, [wKantoBadges]
 	and a
 	ret z
 	ld a, $4
@@ -166,7 +166,7 @@ TrainerCard_Page2_Joypad: ; 25221 (9:5221)
 
 .KantoCheck:
 ; unreferenced
-	ld a, [KantoBadges]
+	ld a, [wKantoBadges]
 	and a
 	ret z
 	ld a, $4
@@ -281,7 +281,7 @@ TrainerCard_Page1_PrintDexCaught_GameTime: ; 2530a (9:530a)
 	hlcoord 2, 8
 	ld de, .StatusTilemap
 	call TrainerCardSetup_PlaceTilemapString
-	ld a, [StatusFlags] ; pokedex
+	ld a, [wStatusFlags]
 	bit 0, a
 	ret nz
 	hlcoord 1, 9
@@ -562,7 +562,7 @@ TrainerCard_JohtoBadgesOAM: ; 254c9
 	; cycle 1: face tile, in1 tile, in2 tile, in3 tile
 	; cycle 2: face tile, in1 tile, in2 tile, in3 tile
 
-	dw JohtoBadges
+	dw wJohtoBadges
 
 	; Zephyrbadge
 	db $68, $18, 0

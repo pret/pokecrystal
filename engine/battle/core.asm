@@ -6695,7 +6695,7 @@ CheckSleepingTreeMon: ; 3eb38
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
 
-	ld a, [UnlockedUnowns]
+	ld a, [wUnlockedUnowns]
 	ld c, a
 	ld de, 0
 
@@ -7074,7 +7074,7 @@ BadgeStatBoosts: ; 3ed45
 	and a
 	ret nz
 
-	ld a, [JohtoBadges]
+	ld a, [wJohtoBadges]
 
 ; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
 	ld d, a
@@ -9349,7 +9349,7 @@ GetTrainerBackpic: ; 3fbff
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a ; transformed to male
 	jr nz, .Chris
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .Chris
 

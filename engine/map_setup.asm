@@ -168,7 +168,7 @@ CheckReplaceKrisSprite: ; 154f7
 
 .CheckBiking: ; 1550c (5:550c)
 	and a
-	ld hl, BikeFlags
+	ld hl, wBikeFlags
 	bit 1, [hl]
 	ret z
 	ld a, PLAYER_BIKE

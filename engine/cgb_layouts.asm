@@ -183,7 +183,7 @@ InitPartyMenuBGPal0: ; 8e9f
 ; 8eb9
 
 _CGB_PokegearPals: ; 8eb9
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .male
 	ld hl, FemalePokegearPals
@@ -719,7 +719,7 @@ _CGB_TrainerCard: ; 9289
 	; fill screen with opposite-gender palette for the card border
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	and a
 	ld a, $1 ; kris
 	jr z, .got_gender
@@ -729,7 +729,7 @@ _CGB_TrainerCard: ; 9289
 	; fill trainer sprite area with same-gender palette
 	hlcoord 14, 1, AttrMap
 	lb bc, 7, 5
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	and a
 	ld a, $0 ; chris
 	jr z, .got_gender2
@@ -768,7 +768,7 @@ _CGB_TrainerCard: ; 9289
 	ld a, $7 ; pryce
 	call FillBoxCGB
 	; clair uses kris's palette
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	and a
 	push af
 	jr z, .got_gender3
@@ -847,7 +847,7 @@ _CGB_PackPals: ; 93d3
 	cp BATTLETYPE_TUTORIAL
 	jr z, .tutorial_male
 
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .tutorial_male
 

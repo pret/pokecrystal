@@ -1,7 +1,7 @@
 Function88248: ; 88248
 ; XXX
 	ld c, CAL
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .okay
 	ld c, KAREN
@@ -58,7 +58,7 @@ MovePlayerPic: ; 88266
 
 ShowPlayerNamingChoices: ; 88297
 	ld hl, ChrisNameMenuHeader
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotGender
 	ld hl, KrisNameMenuHeader
@@ -76,7 +76,7 @@ INCLUDE "data/default_names.asm"
 GetPlayerNameArray: ; 88318 This Function is never called
 	ld hl, PlayerName
 	ld de, MalePlayerNameArray
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .done
 	ld de, FemalePlayerNameArray
@@ -92,7 +92,7 @@ GetPlayerIcon: ; 8832c
 	ld de, ChrisSpriteGFX
 	ld b, BANK(ChrisSpriteGFX)
 
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .done
 
@@ -105,7 +105,7 @@ GetPlayerIcon: ; 8832c
 
 GetCardPic: ; 8833e
 	ld hl, ChrisCardPic
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotClass
 	ld hl, KrisCardPic
@@ -131,7 +131,7 @@ CardGFX: ; 887c5
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 GetPlayerBackpic: ; 88825
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, GetChrisBackpic
 	call GetKrisBackpic
@@ -150,7 +150,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	xor a
 	ld [hBGMapMode], a
 	ld e, 0
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotClass
 	ld e, 1
@@ -159,7 +159,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	ld a, e
 	ld [TrainerClass], a
 	ld de, ChrisPic
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotPic
 	ld de, KrisPic
@@ -179,7 +179,7 @@ DrawIntroPlayerPic: ; 88874
 
 ; Get class
 	ld e, CHRIS
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotClass
 	ld e, KRIS
@@ -189,7 +189,7 @@ DrawIntroPlayerPic: ; 88874
 
 ; Load pic
 	ld de, ChrisPic
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotPic
 	ld de, KrisPic

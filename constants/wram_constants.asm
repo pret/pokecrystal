@@ -131,7 +131,7 @@ DAY_CARE_DEPOSIT  EQU 3
 	const DEXMODE_ABC
 	const DEXMODE_UNOWN
 
-; JohtoBadges:
+; wJohtoBadges:
 	const_def
 	const ZEPHYRBADGE
 	const HIVEBADGE
@@ -143,7 +143,7 @@ DAY_CARE_DEPOSIT  EQU 3
 	const RISINGBADGE
 NUM_JOHTO_BADGES EQU const_value
 
-; KantoBadges:
+; wKantoBadges:
 	const_def
 	const BOULDERBADGE
 	const CASCADEBADGE

@@ -53,7 +53,7 @@ SpecialGiveShuckle: ; 7305
 	call CopyName2
 
 ; Engine flag for this event.
-	ld hl, DailyFlags
+	ld hl, wDailyFlags
 	set 5, [hl]
 ; setflag ENGINE_SHUCKLE_GIVEN
 	ld a, 1

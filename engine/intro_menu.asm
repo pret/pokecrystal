@@ -193,8 +193,8 @@ _ResetWRAM: ; 5bae
 	xor a
 	ld [MonType], a
 
-	ld [JohtoBadges], a
-	ld [KantoBadges], a
+	ld [wJohtoBadges], a
+	ld [wKantoBadges], a
 
 	ld [Coins], a
 	ld [Coins + 1], a
@@ -483,7 +483,7 @@ FinishContinueFunction: ; 5e5d
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	set 0, [hl]
 	res 7, [hl]
 	ld hl, wEnteredMapFromContinue
@@ -540,7 +540,7 @@ Continue_LoadMenuHeader: ; 5ebf
 	xor a
 	ld [hBGMapMode], a
 	ld hl, .MenuDataHeader_Dex
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 0, a ; pokedex
 	jr nz, .pokedex_header
 	ld hl, .MenuDataHeader_NoDex
@@ -631,7 +631,7 @@ Continue_UnknownGameTime: ; 5f48
 
 Continue_DisplayBadgeCount: ; 5f58
 	push hl
-	ld hl, JohtoBadges
+	ld hl, wJohtoBadges
 	ld b, 2
 	call CountSetBits
 	pop hl
@@ -641,7 +641,7 @@ Continue_DisplayBadgeCount: ; 5f58
 ; 5f6b
 
 Continue_DisplayPokedexNumCaught: ; 5f6b
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 0, a ; Pokedex
 	ret z
 	push hl
@@ -813,7 +813,7 @@ NamePlayer: ; 0x6074
 
 	ld hl, PlayerName
 	ld de, .Chris
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .Male
 	ld de, .Kris
@@ -989,7 +989,7 @@ Intro_PlacePlayerSprite: ; 61cd
 	ld [hli], a
 
 	ld b, 0
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .male
 	ld b, 1
