@@ -1,5 +1,7 @@
 # Bugs and Glitches
 
+These are known bugs and glitches in the original Pokémon Crystal game: code that clearly does not work as intended, or that only works in limited circumstances but has the possibility to fail or crash.
+
 
 ## Contents
 

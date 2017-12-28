@@ -1,5 +1,7 @@
 # Design Flaws
 
+These are parts of the code that do not work *incorrectly*, like [bugs and glitches](/docs/bugs_and_glitches.md), but that clearly exist just to work around a problem. In other words, with a slightly different design, the code would not need to exist at all. Design flaws may be exceptions to a usual rule, such as "tables of pointers in different banks use `dba`" ([one exception](#pic-banks-are-offset-by-pics_fix), [and another](#pokédex-entry-banks-are-derived-from-their-species-ids)) or "graphics used as a unit as stored and loaded contiguously" ([a notable exception](#footprints-are-split-into-top-and-bottom-halves)).
+
 
 ## Contents
 
