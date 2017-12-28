@@ -19,9 +19,9 @@ REEL_SIZE EQU 15
 	const SLOTS_WAIT_STOP_REEL2
 	const SLOTS_WAIT_REEL3
 	const SLOTS_WAIT_STOP_REEL3
-	const SlotsAction_Next_09
-	const SlotsAction_Next_0a
-	const SlotsAction_Next_0b
+	const SLOTS_NEXT_09
+	const SLOTS_NEXT_0a
+	const SLOTS_NEXT_0b
 	const SLOTS_FLASH_IF_WIN
 	const SLOTS_FLASH_SCREEN
 	const SLOTS_GIVE_EARNED_COINS
@@ -1218,7 +1218,7 @@ ReelAction_EndGolem: ; 92d6e
 ReelAction_InitChansey: ; 92d7e
 ; Ensures the lining up of SEVEN symbols, but this mode is only possible
 ; when there is bias to SEVEN symbols (and even then, it's still rare).
-; Chansey releases and egg and reel #3 is made to advance 17 slots very 
+; Chansey releases and egg and reel #3 is made to advance 17 slots very
 ; quickly as many times as necessary for the match to SEVENs to show up.
 
 	call Slots_CheckMatchedAllThreeReels
