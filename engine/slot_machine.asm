@@ -19,9 +19,9 @@ REEL_SIZE EQU 15
 	const SLOTS_WAIT_STOP_REEL2
 	const SLOTS_WAIT_REEL3
 	const SLOTS_WAIT_STOP_REEL3
-	const SLOTS_NEXT_09
-	const SLOTS_NEXT_0a
-	const SLOTS_NEXT_0b
+	const SlotsAction_Next_09
+	const SlotsAction_Next_0a
+	const SlotsAction_Next_0b
 	const SLOTS_FLASH_IF_WIN
 	const SLOTS_FLASH_SCREEN
 	const SLOTS_GIVE_EARNED_COINS
@@ -127,7 +127,7 @@ _SlotMachine:
 	ld bc, wSlotsEnd - wSlots
 	xor a
 	call ByteFill
-	call InitReelTiles
+	call Slots_InitReelTiles
 	call Slots_GetPals
 	ld a, $7
 	ld hl, wSpriteAnimDict
@@ -266,33 +266,33 @@ SlotsJumptable: ; 92844 (24:6844)
 	jumptable .Jumptable, wJumptableIndex
 
 .Jumptable:
-	dw Slots_Init              ; 00
-	dw Slots_BetAndStart       ; 01
-	dw Slots_WaitStart         ; 02
-	dw Slots_WaitReel1         ; 03
-	dw Slots_WaitStopReel1     ; 04
-	dw Slots_WaitReel2         ; 05
-	dw Slots_WaitStopReel2     ; 06
-	dw Slots_WaitReel3         ; 07
-	dw Slots_WaitStopReel3     ; 08
-	dw Slots_Next              ; 09
-	dw Slots_Next              ; 0a
-	dw Slots_Next              ; 0b
-	dw Slots_FlashIfWin        ; 0c
-	dw Slots_FlashScreen       ; 0d
-	dw Slots_GiveEarnedCoins   ; 0e
-	dw Slots_PayoutTextAndAnim ; 0f
-	dw Slots_PayoutAnim        ; 10
-	dw Slots_RestartOrQuit     ; 11
-	dw Slots_Quit              ; 12
+	dw SlotsAction_Init              ; 00
+	dw SlotsAction_BetAndStart       ; 01
+	dw SlotsAction_WaitStart         ; 02
+	dw SlotsAction_WaitReel1         ; 03
+	dw SlotsAction_WaitStopReel1     ; 04
+	dw SlotsAction_WaitReel2         ; 05
+	dw SlotsAction_WaitStopReel2     ; 06
+	dw SlotsAction_WaitReel3         ; 07
+	dw SlotsAction_WaitStopReel3     ; 08
+	dw SlotsAction_Next              ; 09
+	dw SlotsAction_Next              ; 0a
+	dw SlotsAction_Next              ; 0b
+	dw SlotsAction_FlashIfWin        ; 0c
+	dw SlotsAction_FlashScreen       ; 0d
+	dw SlotsAction_GiveEarnedCoins   ; 0e
+	dw SlotsAction_PayoutTextAndAnim ; 0f
+	dw SlotsAction_PayoutAnim        ; 10
+	dw SlotsAction_RestartOrQuit     ; 11
+	dw SlotsAction_Quit              ; 12
 
-Slots_Next: ; 92879 (24:6879)
+SlotsAction_Next: ; 92879 (24:6879)
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Slots_Init: ; 9287e (24:687e)
-	call Slots_Next
+SlotsAction_Init: ; 9287e (24:687e)
+	call SlotsAction_Next
 	xor a
 	ld [wFirstTwoReelsMatching], a
 	ld [wFirstTwoReelsMatchingSevens], a
@@ -300,7 +300,7 @@ Slots_Init: ; 9287e (24:687e)
 	ld [wSlotMatched], a
 	ret
 
-Slots_BetAndStart: ; 9288e (24:688e)
+SlotsAction_BetAndStart: ; 9288e (24:688e)
 	call Slots_AskBet
 	jr nc, .proceed
 	ld a, SLOTS_QUIT
@@ -308,7 +308,7 @@ Slots_BetAndStart: ; 9288e (24:688e)
 	ret
 
 .proceed
-	call Slots_Next
+	call SlotsAction_Next
 	call Slots_IlluminateBetLights
 	call Slots_InitBias
 	ld a, 32
@@ -326,7 +326,7 @@ Slots_BetAndStart: ; 9288e (24:688e)
 	call Slots_PlaySFX
 	ret
 
-Slots_WaitStart: ; 928c6 (24:68c6)
+SlotsAction_WaitStart: ; 928c6 (24:68c6)
 	ld hl, wSlotsDelay
 	ld a, [hl]
 	and a
@@ -335,20 +335,20 @@ Slots_WaitStart: ; 928c6 (24:68c6)
 	ret
 
 .proceed
-	call Slots_Next
+	call SlotsAction_Next
 	xor a
 	ld [hJoypadSum], a
 	ret
 
-Slots_WaitReel1: ; 928d6 (24:68d6)
+SlotsAction_WaitReel1: ; 928d6 (24:68d6)
 	ld hl, hJoypadSum
 	ld a, [hl]
 	and A_BUTTON
 	ret z
-	call Slots_Next
+	call SlotsAction_Next
 	call Slots_StopReel1
 	ld [wReel1ReelAction], a
-Slots_WaitStopReel1: ; 928e6 (24:68e6)
+SlotsAction_WaitStopReel1: ; 928e6 (24:68e6)
 	ld a, [wReel1ReelAction]
 	cp REEL_ACTION_DO_NOTHING
 	ret nz
@@ -357,18 +357,18 @@ Slots_WaitStopReel1: ; 928e6 (24:68e6)
 	ld bc, wReel1
 	ld de, wReel1Stopped
 	call Slots_LoadReelState
-	call Slots_Next
+	call SlotsAction_Next
 	xor a
 	ld [hJoypadSum], a
-Slots_WaitReel2: ; 92900 (24:6900)
+SlotsAction_WaitReel2: ; 92900 (24:6900)
 	ld hl, hJoypadSum
 	ld a, [hl]
 	and A_BUTTON
 	ret z
-	call Slots_Next
+	call SlotsAction_Next
 	call Slots_StopReel2
 	ld [wReel2ReelAction], a
-Slots_WaitStopReel2: ; 92910 (24:6910)
+SlotsAction_WaitStopReel2: ; 92910 (24:6910)
 	ld a, [wReel2ReelAction]
 	cp REEL_ACTION_DO_NOTHING
 	ret nz
@@ -377,18 +377,18 @@ Slots_WaitStopReel2: ; 92910 (24:6910)
 	ld bc, wReel2
 	ld de, wReel2Stopped
 	call Slots_LoadReelState
-	call Slots_Next
+	call SlotsAction_Next
 	xor a
 	ld [hJoypadSum], a
-Slots_WaitReel3: ; 9292a (24:692a)
+SlotsAction_WaitReel3: ; 9292a (24:692a)
 	ld hl, hJoypadSum
 	ld a, [hl]
 	and A_BUTTON
 	ret z
-	call Slots_Next
+	call SlotsAction_Next
 	call Slots_StopReel3
 	ld [wReel3ReelAction], a
-Slots_WaitStopReel3: ; 9293a (24:693a)
+SlotsAction_WaitStopReel3: ; 9293a (24:693a)
 	ld a, [wReel3ReelAction]
 	cp REEL_ACTION_DO_NOTHING
 	ret nz
@@ -397,24 +397,24 @@ Slots_WaitStopReel3: ; 9293a (24:693a)
 	ld bc, wReel3
 	ld de, wReel3Stopped
 	call Slots_LoadReelState
-	call Slots_Next
+	call SlotsAction_Next
 	xor a
 	ld [hJoypadSum], a
 	ret
 
-Slots_FlashIfWin: ; 92955 (24:6955)
+SlotsAction_FlashIfWin: ; 92955 (24:6955)
 	ld a, [wSlotMatched]
 	cp SLOTS_NOMATCH
 	jr nz, .GotIt
-	call Slots_Next
-	call Slots_Next
+	call SlotsAction_Next
+	call SlotsAction_Next
 	ret
 
 .GotIt:
-	call Slots_Next
+	call SlotsAction_Next
 	ld a, 16
 	ld [wSlotsDelay], a
-Slots_FlashScreen: ; 9296b (24:696b)
+SlotsAction_FlashScreen: ; 9296b (24:696b)
 	ld hl, wSlotsDelay
 	ld a, [hl]
 	and a
@@ -432,25 +432,25 @@ Slots_FlashScreen: ; 9296b (24:696b)
 
 .done
 	call Slots_GetPals
-	call Slots_Next
+	call SlotsAction_Next
 	ret
 
-Slots_GiveEarnedCoins: ; 92987 (24:6987)
+SlotsAction_GiveEarnedCoins: ; 92987 (24:6987)
 	xor a
 	ld [wFirstTwoReelsMatching], a
 	ld [wFirstTwoReelsMatchingSevens], a
 	ld a, %11100100
 	call DmgToCgbBGPals
-	call SlotGetPayout
+	call Slots_GetPayout
 	xor a
 	ld [wSlotsDelay], a
-	call Slots_Next
+	call SlotsAction_Next
 	ret
 
-Slots_PayoutTextAndAnim: ; 9299e (24:699e)
-	call SlotPayoutText
-	call Slots_Next
-Slots_PayoutAnim: ; 929a4 (24:69a4)
+SlotsAction_PayoutTextAndAnim: ; 9299e (24:699e)
+	call Slots_PayoutText
+	call SlotsAction_Next
+SlotsAction_PayoutAnim: ; 929a4 (24:69a4)
 	ld hl, wSlotsDelay
 	ld a, [hl]
 	inc [hl]
@@ -470,7 +470,7 @@ Slots_PayoutAnim: ; 929a4 (24:69a4)
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	call Slot_CheckCoinCaseFull
+	call Slots_CheckCoinCaseFull
 	jr c, .okay
 	inc de
 .okay
@@ -485,10 +485,10 @@ Slots_PayoutAnim: ; 929a4 (24:69a4)
 	ret
 
 .done
-	call Slots_Next
+	call SlotsAction_Next
 	ret
 
-Slots_RestartOrQuit: ; 929d9 (24:69d9)
+SlotsAction_RestartOrQuit: ; 929d9 (24:69d9)
 	call Slots_DeilluminateBetLights
 	call WaitPressAorB_BlinkCursor
 	call Slots_AskPlayAgain
@@ -502,7 +502,7 @@ Slots_RestartOrQuit: ; 929d9 (24:69d9)
 	ld [wJumptableIndex], a
 	ret
 
-Slots_Quit: ; 929f0 (24:69f0)
+SlotsAction_Quit: ; 929f0 (24:69f0)
 	ld hl, wJumptableIndex
 	set SLOTS_END_LOOP_F, [hl]
 	ret
@@ -521,7 +521,7 @@ Slots_LoadReelState: ; 929f6 (24:69f6)
 	ld [de], a
 	ret
 
-Slot_CheckCoinCaseFull: ; 92a04 (24:6a04)
+Slots_CheckCoinCaseFull: ; 92a04 (24:6a04)
 	ld a, d
 	cp HIGH(MAX_COINS)
 	jr c, .not_full
@@ -653,7 +653,7 @@ Slots_StopReel3: ; 92a60 (24:6a60)
 	ld a, REEL_ACTION_STOP_REEL3
 	ret
 
-InitReelTiles: ; 92a98 (24:6a98)
+Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel1
 	ld hl, wReel1OAMAddr - wReel1
 	add hl, bc
@@ -719,7 +719,7 @@ InitReelTiles: ; 92a98 (24:6a98)
 	ld hl, wReel1SpinDistance - wReel1
 	add hl, bc
 	ld [hl], REEL_ACTION_DO_NOTHING
-	call UpdateReelPositionAndOAM
+	call Slots_UpdateReelPositionAndOAM
 	ret
 
 Slots_SpinReels: ; 92b0f (24:6b0f)
@@ -750,7 +750,7 @@ Slots_SpinReels: ; 92b0f (24:6b0f)
 	add [hl]
 	ld [hl], a
 	and $f
-	jr z, UpdateReelPositionAndOAM
+	jr z, Slots_UpdateReelPositionAndOAM
 	ld hl, wReel1OAMAddr - wReel1
 	add hl, bc
 	ld a, [hli]
@@ -768,7 +768,7 @@ Slots_SpinReels: ; 92b0f (24:6b0f)
 	jr nz, .loop
 	ret
 
-UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
+Slots_UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
 	ld hl, wReel1XCoord - wReel1
 	add hl, bc
 	ld a, [hl]
@@ -1165,7 +1165,7 @@ ReelAction_InitGolem: ; 92d20
 	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], 0
-	call Function92fc0
+	call Slots_GetNumberOfGolems
 	push bc
 	push af
 	depixel 12, 13
@@ -1307,7 +1307,7 @@ ReelAction_Unused: ; 92df7
 	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl] ; REEL_ACTION_CHECK_DROP_REEL
-	call Function92fc0
+	call Slots_GetNumberOfGolems
 	ld hl, wReel1ManipDelay - wReel1
 	add hl, bc
 	ld [hl], a
@@ -1655,7 +1655,7 @@ Slots_CopyReelState: ; 92fb4
 
 ; 92fc0
 
-Function92fc0: ; 92fc0
+Slots_GetNumberOfGolems: ; 92fc0
 	ld hl, wReel1Position - wReel1
 	add hl, bc
 	ld a, [hl]
@@ -1911,7 +1911,7 @@ Slots_AskPlayAgain: ; 930e9 (24:70e9)
 	text_jump UnknownText_0x1c5092
 	db "@"
 
-SlotGetPayout: ; 93124 (24:7124)
+Slots_GetPayout: ; 93124 (24:7124)
 	ld a, [wSlotMatched]
 	cp SLOTS_NOMATCH
 	jr z, .no_win
@@ -1944,7 +1944,7 @@ SlotGetPayout: ; 93124 (24:7124)
 	ld [hl], a
 	ret
 
-SlotPayoutText: ; 93158 (24:7158)
+Slots_PayoutText: ; 93158 (24:7158)
 	ld a, [wSlotMatched]
 	cp SLOTS_NOMATCH
 	jr nz, .MatchedSomething
@@ -2066,7 +2066,7 @@ endr
 
 ; 9321d
 
-SlotMachine_AnimateGolem: ; 9321d (24:721d)
+Slots_AnimateGolem: ; 9321d (24:721d)
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
