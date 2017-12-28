@@ -1,13 +1,13 @@
-; In this game, footprints are stored in a non-continuous manner.
-; Instead, they're stored in a 32x8 grid.
-; Each of the footprints is 16x16, so, since tiles on the GB are 8x8,
-; you get the two top tiles first, while the two bottom tiles are stored
-; on the next row of the image.
+; Footprints are 2x2 tiles each, but are stored as a 16x64-tile image
+; (32 rows of 8 footprints per row).
+; That means there's a row of the top two tiles for eight footprints,
+; then a row of the bottom two tiles for those eight footprints.
 
-; These macros help extract the first two tiles, and the last two tiles,
-; respectively.
-footprint_top    EQUS "                0, 2 * LEN_1BPP_TILE"
+; These macros help extract the first and the last two tiles, respectively.
+footprint_top    EQUS "0,                 2 * LEN_1BPP_TILE"
 footprint_bottom EQUS "2 * LEN_1BPP_TILE, 2 * LEN_1BPP_TILE"
+
+; Entries correspond to Pokémon species, two apiece, 8 tops then 8 bottoms
 
 ; 001-008 top halves
 INCBIN "gfx/footprints/bulbasaur.1bpp",  footprint_top

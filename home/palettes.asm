@@ -246,7 +246,7 @@ CopyPals:: ; d50
 ; copy c palettes in order b from de to hl
 
 	push bc
-	ld c, 4 ; NUM_PAL_COLORS
+	ld c, NUM_PAL_COLORS
 .loop
 	push de
 	push hl
@@ -280,7 +280,7 @@ CopyPals:: ; d50
 	jr nz, .loop
 
 ; de += 8 (next pal)
-	ld a, 1 palettes ; NUM_PAL_COLORS * 2 ; bytes per pal
+	ld a, NUM_PAL_COLORS * 2
 	add e
 	jr nc, .ok
 	inc d
@@ -303,8 +303,8 @@ ClearVBank1:: ; d79
 	ld a, 1
 	ld [rVBK], a
 
-	ld hl, VTiles0
-	ld bc, VRAM_End - VTiles0
+	ld hl, VRAM_Begin
+	ld bc, VRAM_End - VRAM_Begin
 	xor a
 	call ByteFill
 

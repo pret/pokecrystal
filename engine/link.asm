@@ -861,7 +861,7 @@ Link_PrepPartyData_Gen2: ; 28595
 	pop bc
 	dec b
 	jr nz, .loop2
-; Copy the mail metadata to wcabf
+; Copy the mail data to wcabf
 	ld hl, sPartyMail
 	ld b, PARTY_LENGTH
 .loop3

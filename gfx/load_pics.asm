@@ -103,13 +103,13 @@ _GetFrontpic: ; 510a5
 	ret
 
 GetFrontpicPointer: ; 510d7
-GLOBAL PicPointers, UnownPicPointers
+GLOBAL PokemonPicPointers, UnownPicPointers
 
 	ld a, [CurPartySpecies]
 	cp UNOWN
 	jr z, .unown
 	ld a, [CurPartySpecies]
-	ld d, BANK(PicPointers)
+	ld d, BANK(PokemonPicPointers)
 	jr .ok
 
 .unown
@@ -117,7 +117,7 @@ GLOBAL PicPointers, UnownPicPointers
 	ld d, BANK(UnownPicPointers)
 
 .ok
-	ld hl, PicPointers ; UnownPicPointers
+	ld hl, PokemonPicPointers ; UnownPicPointers
 	dec a
 	ld bc, 6
 	call AddNTimes
@@ -212,10 +212,10 @@ GetMonBackpic: ; 5116c
 
 	; These are assumed to be at the same
 	; address in their respective banks.
-	GLOBAL PicPointers,  UnownPicPointers
-	ld hl, PicPointers ; UnownPicPointers
+	GLOBAL PokemonPicPointers,  UnownPicPointers
+	ld hl, PokemonPicPointers ; UnownPicPointers
 	ld a, b
-	ld d, BANK(PicPointers)
+	ld d, BANK(PokemonPicPointers)
 	cp UNOWN
 	jr nz, .ok
 	ld a, c
@@ -295,16 +295,16 @@ GLOBAL PICS_FIX
 Function511ec: ; 511ec
 	ld a, c
 	push de
-	ld hl, PicPointers
+	ld hl, PokemonPicPointers
 	dec a
 	ld bc, 6
 	call AddNTimes
-	ld a, BANK(PicPointers)
+	ld a, BANK(PokemonPicPointers)
 	call GetFarByte
 	call FixPicBank
 	push af
 	inc hl
-	ld a, BANK(PicPointers)
+	ld a, BANK(PokemonPicPointers)
 	call GetFarHalfword
 	pop af
 	pop de

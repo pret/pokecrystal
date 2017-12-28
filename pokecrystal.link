@@ -68,7 +68,7 @@ ROMX $10
 ROMX $11
 	"bank11"
 ROMX $12
-	"Crystal Unique"
+	"Crystal Features 1"
 ROMX $13
 	"bank13"
 ROMX $14
@@ -100,7 +100,7 @@ ROMX $20
 ROMX $21
 	"bank21"
 ROMX $22
-	"bank22"
+	"Crystal Features 2"
 ROMX $23
 	"bank23"
 ROMX $24
@@ -135,7 +135,7 @@ ROMX $31
 ROMX $32
 	"bank32"
 ROMX $33
-	"bank33"
+	"Move Animations"
 	"Extra Songs 2"
 ROMX $34
 	"Pic Animations 1"
@@ -174,21 +174,21 @@ ROMX $40
 ROMX $41
 	"bank41"
 ROMX $42
-	"mobile_42"
+	"Mobile 42"
 	"Intro Logo"
 	"Credits"
 ROMX $43
-	"bank43"
+	"Title"
 ROMX $44
-	"Main"
+	"Mobile Adapter SDK"
 ROMX $45
-	"bank45"
+	"Mobile 45"
 	"Mobile Stadium"
 ROMX $46
-	"bank46"
-	"bank46_2"
+	"Mobile 46"
+	"Mobile 46 ASCII"
 ROMX $47
-	"battle_tower_47"
+	"Battle Tower"
 ROMX $48
 	org $4000
 	"Pic Pointers"
@@ -235,16 +235,16 @@ ROMX $5a
 ROMX $5b
 	"bank5B"
 ROMX $5c
-	"mobile_5c"
+	"Mobile 5C"
 ROMX $5d
 	"Crystal Phone Text 2"
 ROMX $5e
-	"bank5E"
+	"UpdateBattleHUDs"
 	"Songs 5"
 	"Crystal Sound Effects"
-	"mobile_5e"
+	"Mobile 5E"
 ROMX $5f
-	"bank5F"
+	"Mobile 5F"
 ROMX $60
 	"Map Scripts 13"
 	"Pokedex Entries 001-064"
@@ -284,7 +284,7 @@ ROMX $70
 ROMX $71
 	"Text 3"
 ROMX $72
-	"bank72"
+	"Miscellaneous Text"
 ROMX $73
 	"Pokedex Entries 129-192"
 ROMX $74
@@ -302,9 +302,8 @@ ROMX $7c
 ROMX $7d
 	"Mobile News Data"
 ROMX $7e
-	"bank7E"
+	"Crystal Events"
 ROMX $7f
-	"bank7F"
 	org $7de0
 	"Mobile Stadium 2"
 WRAM0
@@ -325,7 +324,7 @@ WRAMX 1
 WRAMX 2
 	"Pic Animations"
 WRAMX 3
-	"Battle Tower"
+	"Battle Tower RAM"
 WRAMX 5
 	"GBC Video"
 	org $d300

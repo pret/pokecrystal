@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 15 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/beedrill/front.dimensions"
+	INCBIN "gfx/pokemon/beedrill/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn INSECT, INSECT ; egg groups

@@ -17,4 +17,4 @@ LoadMapGroupRoof:: ; 1c000
 ; 1c021
 
 
-INCLUDE "data/maps/mapgroup_roofs.asm"
+INCLUDE "data/maps/roofs.asm"

@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 20 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/remoraid/front.dimensions"
+	INCBIN "gfx/pokemon/remoraid/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn AMPHIBIAN, FISH ; egg groups

@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 15 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/pidgeot/front.dimensions"
+	INCBIN "gfx/pokemon/pidgeot/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_SLOW ; growth rate
 	dn AVIAN, AVIAN ; egg groups

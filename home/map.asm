@@ -1391,7 +1391,7 @@ UpdateBGMapColumn:: ; 27f8
 	ret
 ; 2821
 
-LoadTileset:: ; 2821
+LoadTilesetGFX:: ; 2821
 	ld hl, TilesetAddress
 	ld a, [hli]
 	ld h, [hl]
@@ -2054,7 +2054,7 @@ ReloadTilesetAndPalettes:: ; 2bae
 	call SwitchToAnyMapBank
 	farcall UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
-	call LoadTileset
+	call LoadTilesetGFX
 	ld a, 9
 	call SkipMusic
 	pop af
@@ -2372,17 +2372,17 @@ GetFishingGroup:: ; 2d19
 	ret
 ; 2d27
 
-LoadTilesetHeader:: ; 2d27
+LoadTileset:: ; 2d27
 	push hl
 	push bc
 
 	ld hl, Tilesets
-	ld bc, TilesetHeaderEnd - TilesetHeader
+	ld bc, TilesetEnd - Tileset
 	ld a, [wTileset]
 	call AddNTimes
 
 	ld de, TilesetBank
-	ld bc, TilesetHeaderEnd - TilesetHeader
+	ld bc, TilesetEnd - Tileset
 
 	ld a, BANK(Tilesets)
 	call FarCopyBytes

@@ -100,41 +100,41 @@ pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.
-gfx/pics/dewgong/frames.asm: gfx/pics/dewgong/front.animated.tilemap gfx/pics/dewgong/front.dimensions
+gfx/pokemon/dewgong/frames.asm: gfx/pokemon/dewgong/front.animated.tilemap gfx/pokemon/dewgong/front.dimensions
 	tools/pokemon_animation -f $^ > $@
 	echo "	db \$$4d" >> $@
 
 # Lugia has two unused tile ids in its last frame. The tiles themselves are missing.
-gfx/pics/lugia/frames.asm: gfx/pics/lugia/front.animated.tilemap gfx/pics/lugia/front.dimensions
+gfx/pokemon/lugia/frames.asm: gfx/pokemon/lugia/front.animated.tilemap gfx/pokemon/lugia/front.dimensions
 	tools/pokemon_animation -f $^ > $@
 	echo "	db \$$5e, \$$59" >> $@
 
 # Girafarig has a redundant tile after the end. It is used in two frames, so it must be injected into the generated graphics.
 # This is more involved, so it's hacked into pokemon_animation_graphics.
-gfx/pics/girafarig/front.animated.2bpp: gfx/pics/girafarig/front.2bpp gfx/pics/girafarig/front.dimensions
+gfx/pokemon/girafarig/front.animated.2bpp: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions
 	tools/pokemon_animation_graphics --girafarig -o $@ $^
-gfx/pics/girafarig/front.animated.tilemap: gfx/pics/girafarig/front.2bpp gfx/pics/girafarig/front.dimensions
+gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp gfx/pokemon/girafarig/front.dimensions
 	tools/pokemon_animation_graphics --girafarig -t $@ $^
 
 
 ### Pokemon pic graphics rules
 
-gfx/pics/%/normal.gbcpal: gfx/pics/%/front.png
+gfx/pokemon/%/normal.gbcpal: gfx/pokemon/%/front.png
 	$(RGBGFX) -p $@ $<
-gfx/pics/%/normal.pal: gfx/pics/%/normal.gbcpal
+gfx/pokemon/%/normal.pal: gfx/pokemon/%/normal.gbcpal
 	tools/palette -p $< > $@
-gfx/pics/%/back.2bpp: gfx/pics/%/back.png
+gfx/pokemon/%/back.2bpp: gfx/pokemon/%/back.png
 	$(RGBGFX) -h -o $@ $<
-gfx/pics/%/bitmask.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
+gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation -b $^ > $@
-gfx/pics/%/frames.asm: gfx/pics/%/front.animated.tilemap gfx/pics/%/front.dimensions
+gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation -f $^ > $@
-gfx/pics/%/front.animated.2bpp: gfx/pics/%/front.2bpp gfx/pics/%/front.dimensions
+gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation_graphics -o $@ $^
-gfx/pics/%/front.animated.tilemap: gfx/pics/%/front.2bpp gfx/pics/%/front.dimensions
+gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation_graphics -t $@ $^
 # Don't use -h, pokemon_animation_graphics takes care of it
-#gfx/pics/%/front.2bpp: gfx/pics/%/front.png
+#gfx/pokemon/%/front.2bpp: gfx/pokemon/%/front.png
 #	$(RGBGFX) -o $@ $<
 
 
@@ -147,11 +147,11 @@ gfx/trainers/%.2bpp: rgbgfx += -h
 gfx/trainers/%.pal: gfx/trainers/%.gbcpal
 	tools/palette -p $< > $@
 
-gfx/mail/0b9b46.1bpp: tools/gfx += --remove-whitespace
-gfx/mail/0b9d46.1bpp: tools/gfx += --remove-whitespace
-gfx/mail/0b9d86.1bpp: tools/gfx += --remove-whitespace
-gfx/mail/0b9dc6.1bpp: tools/gfx += --remove-whitespace
-gfx/mail/0b9cfe.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/dragonite.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/large_note.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/surf_mail_border.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/flower_mail_border.1bpp: tools/gfx += --remove-whitespace
+gfx/mail/litebluemail_border.1bpp: tools/gfx += --remove-whitespace
 
 gfx/pokedex/pokedex.2bpp: tools/gfx += --trim-whitespace
 gfx/pokedex/sgb.2bpp: tools/gfx += --trim-whitespace
@@ -169,23 +169,23 @@ gfx/slots/slots_3.2bpp: tools/gfx += --interleave --png=$< --remove-duplicates -
 
 gfx/card_flip/card_flip_2.2bpp: tools/gfx += --remove-whitespace
 
-gfx/fx/angels.2bpp: tools/gfx += --trim-whitespace
-gfx/fx/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
-gfx/fx/bubble.2bpp: tools/gfx += --trim-whitespace
-gfx/fx/charge.2bpp: tools/gfx += --trim-whitespace
-gfx/fx/egg.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/explosion.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/hit.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/horn.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/lightning.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
-gfx/fx/noise.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/objects.2bpp: tools/gfx += --remove-whitespace --remove-xflip
-gfx/fx/pokeball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
-gfx/fx/reflect.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/rocks.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/skyattack.2bpp: tools/gfx += --remove-whitespace
-gfx/fx/status.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/angels.2bpp: tools/gfx += --trim-whitespace
+gfx/battle_anims/beam.2bpp: tools/gfx += --remove-xflip --remove-yflip --remove-whitespace
+gfx/battle_anims/bubble.2bpp: tools/gfx += --trim-whitespace
+gfx/battle_anims/charge.2bpp: tools/gfx += --trim-whitespace
+gfx/battle_anims/egg.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/explosion.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/hit.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/horn.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/lightning.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/battle_anims/noise.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/objects.2bpp: tools/gfx += --remove-whitespace --remove-xflip
+gfx/battle_anims/pokeball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_anims/reflect.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/rocks.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/skyattack.2bpp: tools/gfx += --remove-whitespace
+gfx/battle_anims/status.2bpp: tools/gfx += --remove-whitespace
 
 gfx/player/chris.2bpp: rgbgfx += -h
 gfx/player/chris_back.2bpp: rgbgfx += -h

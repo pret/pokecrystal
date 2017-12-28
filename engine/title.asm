@@ -88,7 +88,7 @@ _TitleScreen: ; 10ed67
 ; Suicune gfx
 	hlbgcoord 0, 12
 	ld bc, 6 bgrows ; the rest of the screen
-	ld a, 8
+	ld a, 0 | VRAM_BANK_1
 	call ByteFill
 
 

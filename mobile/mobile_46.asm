@@ -1,4 +1,4 @@
-SECTION "bank46", ROMX
+SECTION "Mobile 46", ROMX
 
 Function118000: ; 118000
 	ld a, $1
@@ -3016,7 +3016,7 @@ Unknown_1196b8: ; 1196b8
 ; 1196cd
 
 
-SECTION "bank46_2", ROMX
+SECTION "Mobile 46 ASCII", ROMX
 ; A hack to use ascii above.
 
 Function1196cd: ; 1196cd (46:56cd)

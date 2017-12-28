@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 25 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/magby/front.dimensions"
+	INCBIN "gfx/pokemon/magby/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn NO_EGGS, NO_EGGS ; egg groups

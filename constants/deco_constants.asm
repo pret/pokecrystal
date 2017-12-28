@@ -7,7 +7,7 @@ const_value = 1
 	const DECO_DOLL
 	const DECO_BIGDOLL
 
-; DecorationNames indexes (see engine/decorations.asm)
+; DecorationNames indexes (see data/decorations/names.asm)
 const_value = 1
 	const PUT_IT_AWAY
 	const MAGNAPLANT
@@ -35,7 +35,7 @@ const_value = 1
 	const YELLOW_CARPET
 	const GREEN_CARPET
 
-; DoDecorationAction2 arguments (see engine/decorations.asm)
+; DoDecorationAction2.DecoActions indexes (see engine/decorations.asm)
 const_value = 1
 	const SET_UP_BED
 	const PUT_AWAY_BED
@@ -59,43 +59,46 @@ deco: MACRO
 	enum DECOFLAG_\1
 endm
 
-; decorations (see data/decoration_attribute.asm)
+; decorations:
+; - DecorationAttributes (see data/decorations/attributes.asm)
+; - DecorationIDs (see data/decorations/decorations.asm)
 const_value = 1
 __enum__ = 0
+; FindOwnedBeds.beds values (see engine/decorations.asm)
 	const BEDS
 	deco  FEATHERY_BED
 	deco  PINK_BED
 	deco  POLKADOT_BED
 	deco  PIKACHU_BED
-
+; FindOwnedCarpets.carpets values (see engine/decorations.asm)
 	const CARPETS
 	deco  RED_CARPET
 	deco  BLUE_CARPET
 	deco  YELLOW_CARPET
 	deco  GREEN_CARPET
-
+; FindOwnedPlants.plants values (see engine/decorations.asm)
 	const PLANTS
 	deco  MAGNAPLANT
 	deco  TROPICPLANT
 	deco  JUMBOPLANT
-
+; FindOwnedPosters.posters values (see engine/decorations.asm)
 	const POSTERS
 	deco  TOWN_MAP
 	deco  PIKACHU_POSTER
 	deco  CLEFAIRY_POSTER
 	deco  JIGGLYPUFF_POSTER
-
+; FindOwnedConsoles.consoles values (see engine/decorations.asm)
 	const CONSOLES
 	deco  FAMICOM
 	deco  SNES
 	deco  N64
 	deco  VIRTUAL_BOY
-
+; FindOwnedBigDolls.big_dolls values (see engine/decorations.asm)
 	const BIG_DOLLS
 	deco  BIG_SNORLAX_DOLL
 	deco  BIG_ONIX_DOLL
 	deco  BIG_LAPRAS_DOLL
-
+; FindOwnedOrnaments.ornaments values (see engine/decorations.asm)
 	const DOLLS
 	deco  PIKACHU_DOLL
 	deco  SURF_PIKACHU_DOLL

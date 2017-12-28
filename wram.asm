@@ -1,11 +1,12 @@
 INCLUDE "includes.asm"
 INCLUDE "macros/wram.asm"
+
+
 INCLUDE "vram.asm"
 
 
 SECTION "Stack", WRAM0
 
-wRAM0Start::
 StackBottom::
 	ds $100 - 1
 Stack::
@@ -805,7 +806,6 @@ NEXTU ; c6d0
 wPokedexDataStart::
 wPokedexOrder:: ds $100 ; >= NUM_POKEMON
 wPokedexOrderEnd::
-wPokedexMetadata::
 wDexListingScrollOffset:: db ; offset of the first displayed entry from the start
 wDexListingCursor:: db ; Dex cursor
 wDexListingEnd:: db ; Last mon to display
@@ -1504,7 +1504,6 @@ wDaysSince:: db
 
 SECTION "WRAM 1", WRAMX
 
-wRAM1Start::
 wd000:: ds 1
 
 DefaultSpawnpoint:: db
@@ -1840,7 +1839,7 @@ CurElevatorFloors:: db
 
 NEXTU ; d0f0
 ; mailbox data
-	ds 1
+wCurMessageScrollPosition:: db
 wCurMessageIndex:: db
 wMailboxCount:: db
 wMailboxItems:: ds MAILBOX_CAPACITY
@@ -1956,7 +1955,7 @@ SouthMapConnection:: map_connection_struct South ; d1b5
 WestMapConnection::  map_connection_struct West ; d1c1
 EastMapConnection::  map_connection_struct East ; d1cd
 
-TilesetHeader::
+Tileset::
 TilesetBank:: db ; d1d9
 TilesetAddress:: dw ; d1da
 TilesetBlocksBank:: db ; d1dc
@@ -1966,7 +1965,7 @@ TilesetCollisionAddress:: dw ; d1e0
 TilesetAnim:: dw ; bank 3f ; d1e2
 	ds 2  ; unused ; d1e4
 TilesetPalettes:: dw ; bank 3f ; d1e6
-TilesetHeaderEnd::
+TilesetEnd::
 
 EvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
 
@@ -2819,7 +2818,7 @@ wPokeAnimBitmaskBuffer:: ds 7
 wPokeAnimStructEnd::
 
 
-SECTION "Battle Tower", WRAMX
+SECTION "Battle Tower RAM", WRAMX
 
 w3_d000:: ds 1 ; d000
 w3_d001:: ds 1
@@ -2942,21 +2941,16 @@ wBattleAnimTemp0:: db
 wBattleAnimTemp1:: db
 wBattleAnimTemp2:: db
 wBattleAnimTemp3:: db
-wBattleAnimTemp4:: db
-wBattleAnimTemp5:: db
-wBattleAnimTemp6:: db
-wBattleAnimTemp7:: db
-wBattleAnimTemp8:: db
 
 NEXTU ; d419
 wBattleAnimTempOAMFlags:: db
-	ds 1
+wBattleAnimTempField02:: db
 wBattleAnimTempTileID:: db
 wBattleAnimTempXCoord:: db
 wBattleAnimTempYCoord:: db
 wBattleAnimTempXOffset:: db
 wBattleAnimTempYOffset:: db
-	ds 1
+wBattleAnimTempAddSubFlags:: db
 wBattleAnimTempPalette:: db
 ENDU ; d422
 

@@ -1,5 +1,5 @@
 EnvironmentColorsPointers:
-; entries correspond to environment constants (see constants/map_constants.asm)
+; entries correspond to environment constants (see constants/map_data_constants.asm)
 	dw .OutdoorColors ; unused
 	dw .OutdoorColors ; TOWN
 	dw .OutdoorColors ; ROUTE

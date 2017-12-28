@@ -1008,8 +1008,8 @@ PushSGBBorder:
 	ret
 
 SGB_ClearVRAM:
-	ld hl, VTiles0
-	ld bc, VRAM_End - VTiles0
+	ld hl, VRAM_Begin
+	ld bc, VRAM_End - VRAM_Begin
 	xor a
 	call ByteFill
 	ret
@@ -1218,8 +1218,9 @@ INCLUDE "data/palettes/hp_bar.pal"
 ExpBarPalette:
 INCLUDE "data/palettes/exp_bar.pal"
 
-INCLUDE "gfx/pics/palette_pointers.asm"
-INCLUDE "gfx/trainer_palettes.asm"
+INCLUDE "data/pokemon/palettes.asm"
+
+INCLUDE "data/trainers/palettes.asm"
 
 LoadMapPals:
 	farcall LoadSpecialMapPalette

@@ -18,8 +18,8 @@ Route44_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TrainerBird_keeperVance1:
-	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, Bird_keeperVance1SeenText, Bird_keeperVance1BeatenText, 0, .Script
+TrainerBirdKeeperVance1:
+	trainer EVENT_BEAT_BIRD_KEEPER_VANCE, BIRD_KEEPER, VANCE1, BirdKeeperVance1SeenText, BirdKeeperVance1BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
@@ -49,7 +49,7 @@ UnknownScript_0x19d856:
 
 UnknownScript_0x19d86a:
 	scall UnknownScript_0x19d8f7
-	winlosstext Bird_keeperVance1BeatenText, 0
+	winlosstext BirdKeeperVance1BeatenText, 0
 	copybytetovar wVanceFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -368,13 +368,13 @@ FisherEdgarAfterBattleText:
 	line "again for a while."
 	done
 
-Bird_keeperVance1SeenText:
+BirdKeeperVance1SeenText:
 	text "Do you know about"
 	line "the legendary bird"
 	cont "#MON?"
 	done
 
-Bird_keeperVance1BeatenText:
+BirdKeeperVance1BeatenText:
 	text "Whew! You're hot"
 	line "stuff."
 	done
@@ -530,7 +530,7 @@ Route44_MapEventHeader:
 	object_event SPRITE_FISHER, 13, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherEdgar, -1
 	object_event SPRITE_YOUNGSTER, 9, 10, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicPhil, -1
 	object_event SPRITE_SUPER_NERD, 2, 43, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacZach, -1
-	object_event SPRITE_YOUNGSTER, 5, 51, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBird_keeperVance1, -1
+	object_event SPRITE_YOUNGSTER, 5, 51, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBirdKeeperVance1, -1
 	object_event SPRITE_COOLTRAINER_M, 15, 41, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 5, TrainerCooltrainermAllen, -1
 	object_event SPRITE_COOLTRAINER_F, 14, 31, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 5, TrainerCooltrainerfCybil, -1
 	object_event SPRITE_FRUIT_TREE, 5, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x19da40, -1

@@ -1104,7 +1104,7 @@ PrintLevel:: ; 382d
 
 ; How many digits?
 	ld c, 2
-	cp 100
+	cp 100 ; This is distinct from MAX_LEVEL.
 	jr c, Print8BitNumRightAlign
 
 ; 3-digit numbers overwrite the :L.

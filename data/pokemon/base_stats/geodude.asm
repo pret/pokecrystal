@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 15 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/geodude/front.dimensions"
+	INCBIN "gfx/pokemon/geodude/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_SLOW ; growth rate
 	dn INANIMATE, INANIMATE ; egg groups

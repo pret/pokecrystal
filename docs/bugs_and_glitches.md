@@ -56,7 +56,7 @@
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-This is a bug with `SpeciesItemBoost` in [battle/effect_commands.asm](/battle/effect_commands.asm):
+This is a bug with `SpeciesItemBoost` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```asm
 ; Double the stat
@@ -90,7 +90,7 @@ This is a bug with `SpeciesItemBoost` in [battle/effect_commands.asm](/battle/ef
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-This is a bug with `DittoMetalPowder` in [battle/effect_commands.asm](/battle/effect_commands.asm):
+This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```asm
 	ld a, c
@@ -146,7 +146,7 @@ This is a bug with `DittoMetalPowder` in [battle/effect_commands.asm](/battle/ef
 
 ([Video](https://www.youtube.com/watch?v=zuCLMikWo4Y))
 
-This is a bug with `BattleCommand_BellyDrum` in [battle/effect_commands.asm](/battle/effect_commands.asm):
+This is a bug with `BattleCommand_BellyDrum` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```asm
 BattleCommand_BellyDrum: ; 37c1a
@@ -186,7 +186,7 @@ BattleCommand_BellyDrum: ; 37c1a
 
 This bug affects Acid, Iron Tail, and Rock Smash.
 
-This is a bug with `DefenseDownHit` in [battle/moves/move_effects.asm](/battle/moves/move_effects.asm):
+This is a bug with `DefenseDownHit` in [data/moves/effects.asm](/data/moves/effects.asm):
 
 ```asm
 DefenseDownHit:
@@ -227,7 +227,7 @@ DefenseDownHit:
 
 ([Video](https://www.youtube.com/watch?v=1v9x4SgMggs))
 
-This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](/battle/core.asm):
+This is a bug with `CheckPlayerHasUsableMoves` in [engine/battle/core.asm](/engine/battle/core.asm):
 
 ```asm
 .done
@@ -259,7 +259,7 @@ This is a bug with `CheckPlayerHasUsableMoves` in [battle/core.asm](/battle/core
 
 This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider Web, Transform, and stat-lowering effects of moves like String Shot or Bubble during the semi-invulnerable turn of Fly or Dig.
 
-This is a bug with `CheckHiddenOpponent` in [battle/effect_commands.asm](/battle/effect_commands.asm):
+This is a bug with `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```asm
 CheckHiddenOpponent: ; 37daa
@@ -277,7 +277,7 @@ CheckHiddenOpponent: ; 37daa
 
 ([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
 
-This is a bug with `BattleCommand_BeatUp` in [battle/effect_commands.asm](/battle/effect_commands.asm):
+This is a bug with `BattleCommand_BeatUp` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```asm
 .got_mon
@@ -314,7 +314,7 @@ This is a bug with `BattleCommand_BeatUp` in [battle/effect_commands.asm](/battl
 
 This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
 
-This is a bug with `BattleCommand_Present` in [battle/effects/present.asm](/battle/effects/present.asm):
+This is a bug with `BattleCommand_Present` in [engine/battle/effect_commands/present.asm](/engine/battle/effect_commands/present.asm):
 
 ```asm
 BattleCommand_Present: ; 37874
@@ -355,7 +355,7 @@ BattleCommand_Present: ; 37874
 
 ([Video](https://www.youtube.com/watch?v=cygMO-zHTls))
 
-This is a bug with `AI_Smart_MeanLook` in [battle/ai/scoring.asm](/battle/ai/scoring.asm):
+This is a bug with `AI_Smart_MeanLook` in [engine/battle/ai/scoring.asm](/engine/battle/ai/scoring.asm):
 
 ```asm
 ; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
@@ -370,7 +370,7 @@ This is a bug with `AI_Smart_MeanLook` in [battle/ai/scoring.asm](/battle/ai/sco
 
 ## AI makes a false assumption about `CheckTypeMatchup`
 
-In [battle/effect_commands.asm](/battle/effect_commands.asm):
+In [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```asm
 BattleCheckTypeMatchup: ; 347c8
@@ -401,7 +401,7 @@ CheckTypeMatchup: ; 347d3
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
 
-This is a bug with `AI_HealStatus` in [battle/ai/items.asm](/battle/ai/items.asm):
+This is a bug with `AI_HealStatus` in [engine/battle/ai/items.asm](/engine/battle/ai/items.asm):
 
 ```asm
 AI_HealStatus: ; 384e0
@@ -429,7 +429,7 @@ AI_HealStatus: ; 384e0
 
 ([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
 
-This is a bug with `LongAnim_UpdateVariables` in [engine/anim_hp_bar.asm](/engine/anim_hp_bar.asm):
+This is a bug with `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](/engine/battle/anim_hp_bar.asm):
 
 ```asm
 	; This routine is buggy. The result from ComputeHPBarPixels is stored
@@ -661,7 +661,7 @@ FastBallMultiplier:
 
 ## Dragon Scale, not Dragon Fang, boosts Dragon-type moves
 
-This is a bug with `ItemAttributes` in [items/item_attributes.asm](/items/item_attributes.asm):
+This is a bug with `ItemAttributes` in [items/attributes.asm](/items/attributes.asm):
 
 ```asm
 ; DRAGON FANG
@@ -678,7 +678,7 @@ This is a bug with `ItemAttributes` in [items/item_attributes.asm](/items/item_a
 
 ## Daisy's grooming doesn't always increase happiness
 
-This is a bug with `MassageOrHaircut` in [event/special.asm](/event/special.asm):
+This is a bug with `MassageOrHaircut` in [engine/events/special.asm](/engine/events/special.asm):
 
 ```asm
 ; Bug: Subtracting $ff from $ff fails to set c.
@@ -727,7 +727,7 @@ Data_DaisyMassage: ; 746b
 
 ## Magikarp in Lake of Rage are shorter, not longer
 
-This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [battle/core.asm](/battle/core.asm):
+This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](/engine/battle/core.asm):
 
 ```asm
 .CheckMagikarpArea:
@@ -753,7 +753,7 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [battle/core.asm](/battle
 
 ## Magikarp lengths can be miscalculated
 
-This is a bug with `CalcMagikarpLength.BCLessThanDE` in [event/magikarp.asm](/event/magikarp.asm):
+This is a bug with `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.asm](/engine/events/magikarp.asm):
 
 ```asm
 .BCLessThanDE: ; fbc9a
@@ -1348,7 +1348,7 @@ In [engine/events.asm](/engine/events.asm):
 
 ## `Special_CheckBugContestContestantFlag` can read beyond its data table
 
-In [event/bug_contest_2.asm](/event/bug_contest_2.asm):
+In [engine/events/bug_contest/contest_2.asm](/engine/events/bug_contest/contest_2.asm):
 
 ```asm
 Special_CheckBugContestContestantFlag: ; 139ed
@@ -1398,8 +1398,8 @@ ClearWRAM:: ; 25a
 	push af
 	ld [rSVBK], a
 	xor a
-	ld hl, wRAM1Start
-	ld bc, $1000
+	ld hl, WRAM1_Begin
+	ld bc, WRAM1_End - WRAM1_Begin
 	call ByteFill
 	pop af
 	inc a

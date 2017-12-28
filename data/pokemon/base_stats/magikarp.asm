@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 5 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/magikarp/front.dimensions"
+	INCBIN "gfx/pokemon/magikarp/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db SLOW ; growth rate
 	dn FISH, REPTILE ; egg groups

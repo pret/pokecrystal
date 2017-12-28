@@ -1,4 +1,3 @@
-
 Special:: ; c01b
 ; Run script special de.
 	ld hl, SpecialsPointers

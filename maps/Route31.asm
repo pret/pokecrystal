@@ -24,8 +24,8 @@ Route31_MapScriptHeader:
 	specialphonecall SPECIALCALL_WORRIED
 	return
 
-TrainerBug_catcherWade1:
-	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, Bug_catcherWade1SeenText, Bug_catcherWade1BeatenText, 0, .Script
+TrainerBugCatcherWade1:
+	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, BugCatcherWade1SeenText, BugCatcherWade1BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
@@ -39,7 +39,7 @@ TrainerBug_catcherWade1:
 	iftrue .AcceptedNumberSTD
 	checkevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskAgain
-	writetext Bug_catcherWade1AfterText
+	writetext BugCatcherWade1AfterText
 	waitbutton
 	setevent EVENT_WADE_ASKED_FOR_PHONE_NUMBER
 	scall .AskPhoneNumberSTD
@@ -57,7 +57,7 @@ TrainerBug_catcherWade1:
 
 .WadeRematch:
 	scall .RematchSTD
-	winlosstext Bug_catcherWade1BeatenText, 0
+	winlosstext BugCatcherWade1BeatenText, 0
 	copybytetovar wWadeFightCount
 	if_equal 4, .Fight4
 	if_equal 3, .Fight3
@@ -274,17 +274,17 @@ Route31CooltrainerMText:
 	cont "explore it."
 	done
 
-Bug_catcherWade1SeenText:
+BugCatcherWade1SeenText:
 	text "I caught a bunch"
 	line "of #MON. Let me"
 	cont "battle with you!"
 	done
 
-Bug_catcherWade1BeatenText:
+BugCatcherWade1BeatenText:
 	text "Awwwww…"
 	done
 
-Bug_catcherWade1AfterText:
+BugCatcherWade1AfterText:
 	text "You can catch"
 	line "#MON even if"
 
@@ -438,7 +438,7 @@ Route31_MapEventHeader:
 	db 7
 	object_event SPRITE_FISHER, 7, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
 	object_event SPRITE_YOUNGSTER, 5, 9, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31YoungsterScript, -1
-	object_event SPRITE_BUG_CATCHER, 13, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBug_catcherWade1, -1
+	object_event SPRITE_BUG_CATCHER, 13, 21, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherWade1, -1
 	object_event SPRITE_COOLTRAINER_M, 8, 33, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
 	object_event SPRITE_FRUIT_TREE, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31FruitTree, -1
 	object_event SPRITE_POKE_BALL, 5, 29, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION

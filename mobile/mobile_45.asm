@@ -1,4 +1,4 @@
-SECTION "bank45", ROMX
+SECTION "Mobile 45", ROMX
 
 	charmap " ", $20 ; revert to ascii
 

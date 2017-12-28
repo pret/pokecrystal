@@ -444,9 +444,9 @@ GetSpriteAnimFrame: ; 8d132
 	inc [hl]
 	call .GetPointer ; load pointer from SpriteAnimFrameData
 	ld a, [hli]
-	cp -2
+	cp dorestart_command
 	jr z, .restart
-	cp -1
+	cp endanim_command
 	jr z, .repeat_last
 
 	push af
@@ -551,13 +551,13 @@ BrokenGetStdGraphics: ; 8d1ac
 ; 8d1c4
 
 
-INCLUDE "data/sprite_anim_seqs.asm"
+INCLUDE "data/sprite_anims/sequences.asm"
 
 INCLUDE "engine/sprite_anims.asm"
 
-INCLUDE "data/sprite_anim_frames.asm"
+INCLUDE "data/sprite_anims/framesets.asm"
 
-INCLUDE "data/sprite_anim_oam.asm"
+INCLUDE "data/sprite_anims/oam.asm"
 
 
 BrokenStdGFXPointers: ; Broken 2bpp pointers

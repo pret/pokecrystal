@@ -9,24 +9,24 @@ Route18_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TrainerBird_keeperBoris:
-	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, Bird_keeperBorisSeenText, Bird_keeperBorisBeatenText, 0, .Script
+TrainerBirdKeeperBoris:
+	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, BirdKeeperBorisSeenText, BirdKeeperBorisBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bird_keeperBorisAfterBattleText
+	writetext BirdKeeperBorisAfterBattleText
 	waitbutton
 	closetext
 	end
 
-TrainerBird_keeperBob:
-	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, Bird_keeperBobSeenText, Bird_keeperBobBeatenText, 0, .Script
+TrainerBirdKeeperBob:
+	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, BirdKeeperBobSeenText, BirdKeeperBobBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bird_keeperBobAfterBattleText
+	writetext BirdKeeperBobAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -34,7 +34,7 @@ TrainerBird_keeperBob:
 Route18Sign:
 	jumptext Route18SignText
 
-Bird_keeperBorisSeenText:
+BirdKeeperBorisSeenText:
 	text "If you're looking"
 	line "for #MON, you"
 
@@ -42,27 +42,27 @@ Bird_keeperBorisSeenText:
 	line "the tall grass."
 	done
 
-Bird_keeperBorisBeatenText:
+BirdKeeperBorisBeatenText:
 	text "Ayieee!"
 	done
 
-Bird_keeperBorisAfterBattleText:
+BirdKeeperBorisAfterBattleText:
 	text "Since you're so"
 	line "strong, it must be"
 	cont "fun to battle."
 	done
 
-Bird_keeperBobSeenText:
+BirdKeeperBobSeenText:
 	text "CYCLING ROAD is a"
 	line "quick shortcut to"
 	cont "CELADON."
 	done
 
-Bird_keeperBobBeatenText:
+BirdKeeperBobBeatenText:
 	text "…Whew!"
 	done
 
-Bird_keeperBobAfterBattleText:
+BirdKeeperBobAfterBattleText:
 	text "If you don't have"
 	line "a BICYCLE, you're"
 
@@ -95,5 +95,5 @@ Route18_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBird_keeperBoris, -1
-	object_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBird_keeperBob, -1
+	object_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBoris, -1
+	object_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBob, -1

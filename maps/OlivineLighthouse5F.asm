@@ -12,13 +12,13 @@ OlivineLighthouse5F_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-TrainerBird_keeperDenis:
-	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, Bird_keeperDenisSeenText, Bird_keeperDenisBeatenText, 0, .Script
+TrainerBirdKeeperDenis:
+	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, BirdKeeperDenisSeenText, BirdKeeperDenisBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bird_keeperDenisAfterBattleText
+	writetext BirdKeeperDenisAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -69,7 +69,7 @@ SailorErnestAfterBattleText:
 	cont "compassionate."
 	done
 
-Bird_keeperDenisSeenText:
+BirdKeeperDenisSeenText:
 	text "We're pretty high"
 	line "up here. My bird"
 
@@ -77,11 +77,11 @@ Bird_keeperDenisSeenText:
 	line "prime form."
 	done
 
-Bird_keeperDenisBeatenText:
+BirdKeeperDenisBeatenText:
 	text "Oops…They crashed…"
 	done
 
-Bird_keeperDenisAfterBattleText:
+BirdKeeperDenisAfterBattleText:
 	text "My #MON learned"
 	line "how to use FLY in"
 	cont "CIANWOOD."
@@ -115,7 +115,7 @@ OlivineLighthouse5F_MapEventHeader:
 .ObjectEvents:
 	db 5
 	object_event SPRITE_SAILOR, 11, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorErnest, -1
-	object_event SPRITE_YOUNGSTER, 3, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerBird_keeperDenis, -1
+	object_event SPRITE_YOUNGSTER, 3, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerBirdKeeperDenis, -1
 	object_event SPRITE_POKE_BALL, 12, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FRareCandy, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
 	object_event SPRITE_POKE_BALL, 15, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FSuperRepel, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
 	object_event SPRITE_POKE_BALL, 13, 2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FTMSwagger, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER

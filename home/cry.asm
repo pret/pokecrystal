@@ -62,11 +62,11 @@ LoadCryHeader:: ; 37f3
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(CryHeaders)
+	ld a, BANK(PokemonCries)
 	rst Bankswitch
 
-	ld hl, CryHeaders
-rept 6
+	ld hl, PokemonCries
+rept 6 ; sizeof(mon_cry)
 	add hl, bc
 endr
 

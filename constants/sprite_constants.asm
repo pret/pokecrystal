@@ -1,5 +1,5 @@
 ; sprite ids
-; SpriteHeaders indexes (see gfx/sprite_headers.asm)
+; OverworldSprites indexes (see gfx/sprite_data.asm)
 	const_def
 	const SPRITE_NONE ; 00
 	const SPRITE_CHRIS ; 01

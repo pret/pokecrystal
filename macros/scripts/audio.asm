@@ -1,3 +1,8 @@
+musicheader: macro
+	; number of tracks, track idx, address
+	dbw ((\1 - 1) << 6) + (\2 - 1), \3
+	endm
+
 note: MACRO
 	dn (\1), (\2) - 1
 	ENDM
@@ -12,15 +17,6 @@ noise: macro
 	note \1, \2 ; duration
 	db \3 ; intensity
 	db \4 ; frequency
-	endm
-
-musicheader: macro
-	; number of tracks, track idx, address
-	dbw ((\1 - 1) << 6) + (\2 - 1), \3
-	endm
-
-cry_header: macro
-	dw \1, \2, \3
 	endm
 
 ; MusicCommands indexes (see audio/engine.asm)

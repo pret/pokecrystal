@@ -34,24 +34,24 @@ TrainerPokefanmJoshua:
 	closetext
 	end
 
-TrainerBird_keeperPerry:
-	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, Bird_keeperPerrySeenText, Bird_keeperPerryBeatenText, 0, .Script
+TrainerBirdKeeperPerry:
+	trainer EVENT_BEAT_BIRD_KEEPER_PERRY, BIRD_KEEPER, PERRY, BirdKeeperPerrySeenText, BirdKeeperPerryBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bird_keeperPerryAfterBattleText
+	writetext BirdKeeperPerryAfterBattleText
 	waitbutton
 	closetext
 	end
 
-TrainerBird_keeperBret:
-	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, Bird_keeperBretSeenText, Bird_keeperBretBeatenText, 0, .Script
+TrainerBirdKeeperBret:
+	trainer EVENT_BEAT_BIRD_KEEPER_BRET, BIRD_KEEPER, BRET, BirdKeeperBretSeenText, BirdKeeperBretBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bird_keeperBretAfterBattleText
+	writetext BirdKeeperBretAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -114,24 +114,24 @@ PokefanmJoshuaAfterBattleText:
 	line "still the best."
 	done
 
-Bird_keeperPerrySeenText:
+BirdKeeperPerrySeenText:
 	text "Agility is the key"
 	line "attribute of bird"
 	cont "#MON."
 	done
 
-Bird_keeperPerryBeatenText:
+BirdKeeperPerryBeatenText:
 	text "You beat me with"
 	line "your speed…"
 	done
 
-Bird_keeperPerryAfterBattleText:
+BirdKeeperPerryAfterBattleText:
 	text "Your #MON are"
 	line "remarkably well-"
 	cont "trained."
 	done
 
-Bird_keeperBretSeenText:
+BirdKeeperBretSeenText:
 	text "Check out my #-"
 	line "MON. Just look at"
 
@@ -139,12 +139,12 @@ Bird_keeperBretSeenText:
 	line "their plumage."
 	done
 
-Bird_keeperBretBeatenText:
+BirdKeeperBretBeatenText:
 	text "Shoot!"
 	line "Not good enough!"
 	done
 
-Bird_keeperBretAfterBattleText:
+BirdKeeperBretAfterBattleText:
 	text "If you groom them,"
 	line "#MON get happy."
 	done
@@ -211,8 +211,8 @@ Route13_MapEventHeader:
 
 .ObjectEvents:
 	db 5
-	object_event SPRITE_YOUNGSTER, 6, 42, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBird_keeperPerry, -1
-	object_event SPRITE_YOUNGSTER, 6, 43, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBird_keeperBret, -1
+	object_event SPRITE_YOUNGSTER, 6, 42, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBirdKeeperPerry, -1
+	object_event SPRITE_YOUNGSTER, 6, 43, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBirdKeeperBret, -1
 	object_event SPRITE_POKEFAN_M, 8, 32, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerPokefanmJoshua, -1
 	object_event SPRITE_POKEFAN_M, 10, 14, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerHikerKenny, -1
 	object_event SPRITE_POKEFAN_M, 6, 25, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanmAlex, -1

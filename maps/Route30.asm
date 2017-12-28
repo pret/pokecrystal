@@ -196,13 +196,13 @@ TrainerYoungsterMikey:
 	closetext
 	end
 
-TrainerBug_catcherDon:
-	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, Bug_catcherDonSeenText, Bug_catcherDonBeatenText, 0, .Script
+TrainerBugCatcherDon:
+	trainer EVENT_BEAT_BUG_CATCHER_DON, BUG_CATCHER, DON, BugCatcherDonSeenText, BugCatcherDonBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bug_catcherDonAfterText
+	writetext BugCatcherDonAfterText
 	waitbutton
 	closetext
 	end
@@ -325,18 +325,18 @@ YoungsterMikeyAfterText:
 	cont "to get better."
 	done
 
-Bug_catcherDonSeenText:
+BugCatcherDonSeenText:
 	text "Instead of a bug"
 	line "#MON, I found"
 	cont "a trainer!"
 	done
 
-Bug_catcherDonBeatenText:
+BugCatcherDonBeatenText:
 	text "Argh! You're too"
 	line "strong!"
 	done
 
-Bug_catcherDonAfterText:
+BugCatcherDonAfterText:
 	text "I ran out of #"
 	line "BALLS while I was"
 	cont "catching #MON."
@@ -432,7 +432,7 @@ Route30_MapEventHeader:
 	object_event SPRITE_YOUNGSTER, 26, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, YoungsterJoey_ImportantBattleScript, EVENT_ROUTE_30_BATTLE
 	object_event SPRITE_YOUNGSTER, 28, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
 	object_event SPRITE_YOUNGSTER, 23, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerYoungsterMikey, -1
-	object_event SPRITE_BUG_CATCHER, 7, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBug_catcherDon, -1
+	object_event SPRITE_BUG_CATCHER, 7, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherDon, -1
 	object_event SPRITE_YOUNGSTER, 30, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route30YoungsterScript, -1
 	object_event SPRITE_MONSTER, 24, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE
 	object_event SPRITE_MONSTER, 25, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_30_BATTLE

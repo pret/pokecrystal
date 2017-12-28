@@ -387,13 +387,13 @@ IlexForestHeadbuttGuyScript:
 	closetext
 	end
 
-TrainerBug_catcherWayne:
-	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, Bug_catcherWayneSeenText, Bug_catcherWayneBeatenText, 0, .Script
+TrainerBugCatcherWayne:
+	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, BugCatcherWayneSeenText, BugCatcherWayneBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
 	opentext
-	writetext Bug_catcherWayneAfterBattleText
+	writetext BugCatcherWayneAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -913,7 +913,7 @@ Text_KurtCaughtCelebi:
 	para "I'm going!"
 	done
 
-Bug_catcherWayneSeenText:
+BugCatcherWayneSeenText:
 	text "Don't sneak up on"
 	line "me like that!"
 
@@ -921,12 +921,12 @@ Bug_catcherWayneSeenText:
 	line "#MON away!"
 	done
 
-Bug_catcherWayneBeatenText:
+BugCatcherWayneBeatenText:
 	text "I hadn't seen that"
 	line "#MON before…"
 	done
 
-Bug_catcherWayneAfterBattleText:
+BugCatcherWayneAfterBattleText:
 	text "A #MON I've"
 	line "never seen before"
 
@@ -969,7 +969,7 @@ IlexForest_MapEventHeader:
 	object_event SPRITE_POKE_BALL, 32, 20, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestRevive, EVENT_ILEX_FOREST_REVIVE
 	object_event SPRITE_KURT, 29, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ILEX_FOREST_KURT
 	object_event SPRITE_LASS, 24, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, IlexForestLassScript, EVENT_ILEX_FOREST_LASS
-	object_event SPRITE_YOUNGSTER, 1, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerBug_catcherWayne, -1
+	object_event SPRITE_YOUNGSTER, 1, 12, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerBugCatcherWayne, -1
 	object_event SPRITE_POKE_BALL, 17, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestXAttack, EVENT_ILEX_FOREST_X_ATTACK
 	object_event SPRITE_POKE_BALL, 7, 17, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestAntidote, EVENT_ILEX_FOREST_ANTIDOTE
 	object_event SPRITE_POKE_BALL, 1, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IlexForestEther, EVENT_ILEX_FOREST_ETHER

@@ -12,7 +12,7 @@
 	db 100 ; unknown
 	db 10 ; step cycles to hatch
 	db 5 ; unknown
-	INCBIN "gfx/pics/togepi/front.dimensions"
+	INCBIN "gfx/pokemon/togepi/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db FAST ; growth rate
 	dn NO_EGGS, NO_EGGS ; egg groups
