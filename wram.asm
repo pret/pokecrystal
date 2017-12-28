@@ -1320,6 +1320,7 @@ NEXTU ; cf64
 ; miscellaneous
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
+wSlotsDelay::
 	db
 wCurrPocket::
 wPrinterQueueLength::
@@ -1637,6 +1638,9 @@ StartFlypoint:: db
 EndFlypoint:: db
 
 NEXTU ; d002
+wKeepSevenBiasChance::
+; used in the slots to handle the favoring of 7 symbol streaks
+
 ; unidentified
 wd002:: db
 wd003:: db

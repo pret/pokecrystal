@@ -6371,13 +6371,13 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .GenerateDVs ; try again
 
 .Magikarp:
-; These filters are untranslated
+; These filters are untranslated.
 ; They expect at wMagikarpLength a 2-byte value in mm,
-; but the value is at ft and in (one byte each)
+; but the value is in feet and inches (one byte each).
 
 ; The first filter is supposed to make very large Magikarp even rarer,
 ; by targeting those 1600 mm or larger.
-; After the conversion to feet, they are unable to target any,
+; After the conversion to feet, it is unable to target any,
 ; as the largest possible Magikarp is 5'3'', which reads as 1283.
 	ld a, [TempEnemyMonSpecies]
 	cp MAGIKARP
