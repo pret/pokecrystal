@@ -22,8 +22,12 @@ void output_dimensions(char* png_filename, char* out_filename) {
 
 	// width
 	fseek(f, 16, SEEK_SET);
-	fread(bytes, 1, 4, f);
+	int size = fread(bytes, 1, 4, f);
 	fclose(f);
+	if (size != 4) {
+		fprintf(stderr, "failed to read at offset 0x10 in file %s\n", png_filename);
+		exit(1);
+	}
 
 	width = 0;
 	for (i = 0; i < 4; i++) {

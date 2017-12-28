@@ -21,7 +21,10 @@ uint8_t *read_u8(char *filename, int *size) {
 	*size = ftell(f);
 	rewind(f);
 	uint8_t *data = malloc(*size);
-	fread(data, 1, *size, f);
+	if (*size != (int)fread(data, 1, *size, f)) {
+		fprintf(stderr, "Could not read file: \"%s\"\n", filename);
+		exit(1);
+	}
 	fclose(f);
 	return data;
 }

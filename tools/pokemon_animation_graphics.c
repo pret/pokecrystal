@@ -100,7 +100,10 @@ void create_tilemap(struct Tilemap* tilemap, struct Graphic* graphic, char* grap
 		fprintf(stderr, "malloc failure\n");
 		exit(1);
 	}
-	fread(graphics, 1, graphics_size, f);
+	if (graphics_size != (long)fread(graphics, 1, graphics_size, f)) {
+		fprintf(stderr, "failed to read file %s\n", graphics_filename);
+		exit(1);
+	}
 	fclose(f);
 
 	int num_tiles_per_frame = width * height;
@@ -213,7 +216,10 @@ int main(int argc, char* argv[]) {
 	if (!f) {
 		exit(1);
 	}
-	fread(bytes, 1, 1, f);
+	if (1 != fread(bytes, 1, 1, f)) {
+		fprintf(stderr, "failed to read file %s\n", dimensions_filename);
+		exit(1);
+	}
 	fclose(f);
 	width = bytes[0] & 0xf;
 	height = bytes[0] >> 4;
