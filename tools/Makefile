@@ -18,5 +18,6 @@ all: $(tools)
 clean:
 	rm -f $(tools)
 
+gfx md5: common.h
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<
