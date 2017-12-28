@@ -92,7 +92,7 @@ LoadTrainerBattlePokeballTiles:
 ; Load the tiles used in the Pokeball Graphic that fills the screen
 ; at the start of every Trainer battle.
 	ld de, TrainerBattlePokeballTiles
-	ld hl, VTiles1 tile $7e
+	ld hl, vTiles1 tile $7e
 	ld b, BANK(TrainerBattlePokeballTiles)
 	ld c, 2
 	call Request2bpp
@@ -103,7 +103,7 @@ LoadTrainerBattlePokeballTiles:
 	ld [rVBK], a
 
 	ld de, TrainerBattlePokeballTiles
-	ld hl, VTiles4 tile $7e
+	ld hl, vTiles4 tile $7e
 	ld b, BANK(TrainerBattlePokeballTiles)
 	ld c, 2
 	call Request2bpp

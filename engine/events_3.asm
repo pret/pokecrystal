@@ -132,7 +132,7 @@ PlaceMapNameSign:: ; b8098 (2e:4098)
 
 LoadMapNameSignGFX: ; b80c6
 	ld de, MapEntryFrameGFX
-	ld hl, VTiles2 tile $60
+	ld hl, vTiles2 tile $60
 	lb bc, BANK(MapEntryFrameGFX), $e
 	call Get2bpp
 	ret
@@ -654,13 +654,13 @@ LoadFishingGFX: ; b84b3
 	ld de, KrisFishingGFX
 .got_gender
 
-	ld hl, VTiles0 tile $02
+	ld hl, vTiles0 tile $02
 	call .LoadGFX
-	ld hl, VTiles0 tile $06
+	ld hl, vTiles0 tile $06
 	call .LoadGFX
-	ld hl, VTiles0 tile $0a
+	ld hl, vTiles0 tile $0a
 	call .LoadGFX
-	ld hl, VTiles1 tile $7c
+	ld hl, vTiles1 tile $7c
 	call .LoadGFX
 
 	pop af

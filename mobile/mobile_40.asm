@@ -6843,7 +6843,7 @@ Function102dc3: ; 102dc3
 Function102dd3: ; 102dd3
 	call DisableLCD
 	ld de, GFX_1032a2
-	ld hl, VTiles0
+	ld hl, vTiles0
 	lb bc, BANK(GFX_1032a2), 4
 	call Get2bpp
 	farcall __LoadTradeScreenBorder

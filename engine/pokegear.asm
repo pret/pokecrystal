@@ -35,9 +35,9 @@ PokeGear: ; 90b8d (24:4b8d)
 	pop af
 	ld [Options], a
 	call ClearBGPalettes
-	xor a ; LOW(VBGMap0)
+	xor a ; LOW(vBGMap0)
 	ld [hBGMapAddress], a
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
 	ld a, $90
 	ld [hWY], a
@@ -88,15 +88,15 @@ PokeGear: ; 90b8d (24:4b8d)
 Pokegear_LoadGFX: ; 90c4e
 	call ClearVBank1
 	ld hl, TownMapGFX
-	ld de, VTiles2
+	ld de, vTiles2
 	ld a, BANK(TownMapGFX)
 	call FarDecompress
 	ld hl, PokegearGFX
-	ld de, VTiles2 + $30 tiles
+	ld de, vTiles2 + $30 tiles
 	ld a, BANK(PokegearGFX)
 	call FarDecompress
 	ld hl, PokegearSpritesGFX
-	ld de, VTiles0
+	ld de, vTiles0
 	ld a, BANK(PokegearSpritesGFX)
 	call Decompress
 	ld a, [MapGroup]
@@ -113,7 +113,7 @@ Pokegear_LoadGFX: ; 90c4e
 	ld a, b
 	; standing sprite
 	push af
-	ld de, VTiles0 tile $10
+	ld de, vTiles0 tile $10
 	ld bc, 4 tiles
 	call FarCopyBytes
 	pop af
@@ -121,14 +121,14 @@ Pokegear_LoadGFX: ; 90c4e
 	; walking sprite
 	ld de, 12 tiles
 	add hl, de
-	ld de, VTiles0 tile $14
+	ld de, vTiles0 tile $14
 	ld bc, 4 tiles
 	call FarCopyBytes
 	ret
 
 .ssaqua
 	ld hl, FastShipGFX
-	ld de, VTiles0 tile $10
+	ld de, vTiles0 tile $10
 	ld bc, 8 tiles
 	call CopyBytes
 	ret
@@ -243,18 +243,18 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld a, [wcf65]
 	and a
 	jr nz, .kanto_0
-	xor a ; LOW(VBGMap0)
+	xor a ; LOW(vBGMap0)
 	ld [hBGMapAddress], a
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
 	call .UpdateBGMap
 	ld a, $90
 	jr .finish
 
 .kanto_0
-	xor a ; LOW(VBGMap1)
+	xor a ; LOW(vBGMap1)
 	ld [hBGMapAddress], a
-	ld a, HIGH(VBGMap1)
+	ld a, HIGH(vBGMap1)
 	ld [hBGMapAddress + 1], a
 	call .UpdateBGMap
 	xor a
@@ -2119,7 +2119,7 @@ _FlyMap: ; 91af3
 	farcall ClearSpriteAnims
 	call LoadTownMapGFX
 	ld de, FlyMapLabelBorderGFX
-	ld hl, VTiles2 tile $30
+	ld hl, vTiles2 tile $30
 	lb bc, BANK(FlyMapLabelBorderGFX), 6
 	call Request1bpp
 	call FlyMap
@@ -2161,9 +2161,9 @@ _FlyMap: ; 91af3
 	call ClearBGPalettes
 	ld a, $90
 	ld [hWY], a
-	xor a ; LOW(VBGMap0)
+	xor a ; LOW(vBGMap0)
 	ld [hBGMapAddress], a
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
@@ -2455,18 +2455,18 @@ _Area: ; 91d11
 	ld a, $1
 	ld [hInMenu], a
 	ld de, PokedexNestIconGFX
-	ld hl, VTiles0 tile $7f
+	ld hl, vTiles0 tile $7f
 	lb bc, BANK(PokedexNestIconGFX), 1
 	call Request2bpp
 	call .GetPlayerOrFastShipIcon
-	ld hl, VTiles0 tile $78
+	ld hl, vTiles0 tile $78
 	ld c, 4
 	call Request2bpp
 	call LoadTownMapGFX
 	call FillKantoMap
 	call .PlaceString_MonsNest
 	call TownMapPals
-	hlbgcoord 0, 0, VBGMap1
+	hlbgcoord 0, 0, vBGMap1
 	call TownMapBGUpdate
 	call FillJohtoMap
 	call .PlaceString_MonsNest
@@ -2871,7 +2871,7 @@ TownMapPlayerIcon: ; 91fa6
 	push af
 	farcall GetPlayerIcon
 ; Standing icon
-	ld hl, VTiles0 tile $10
+	ld hl, vTiles0 tile $10
 	ld c, 4 ; # tiles
 	call Request2bpp
 ; Walking icon
@@ -2879,7 +2879,7 @@ TownMapPlayerIcon: ; 91fa6
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, VTiles0 tile $14
+	ld hl, vTiles0 tile $14
 	ld c, 4 ; # tiles
 	ld a, BANK(ChrisSpriteGFX) ; does nothing
 	call Request2bpp
@@ -2913,7 +2913,7 @@ TownMapPlayerIcon: ; 91fa6
 
 LoadTownMapGFX: ; 91ff2
 	ld hl, TownMapGFX
-	ld de, VTiles2
+	ld de, vTiles2
 	lb bc, BANK(TownMapGFX), $30
 	call DecompressRequest2bpp
 	ret
@@ -2948,13 +2948,13 @@ INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 	farcall ClearSpriteAnims
 	call LoadTownMapGFX
 	ld de, FlyMapLabelBorderGFX
-	ld hl, VTiles2 tile $30
+	ld hl, vTiles2 tile $30
 	lb bc, BANK(FlyMapLabelBorderGFX), 6
 	call Request1bpp
 	call FillKantoMap
 	call TownMapBubble
 	call TownMapPals
-	hlbgcoord 0, 0, VBGMap1
+	hlbgcoord 0, 0, vBGMap1
 	call TownMapBGUpdate
 	call FillJohtoMap
 	call TownMapBubble
@@ -3003,9 +3003,9 @@ INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 	call ClearBGPalettes
 	ld a, $90
 	ld [hWY], a
-	xor a ; LOW(VBGMap0)
+	xor a ; LOW(vBGMap0)
 	ld [hBGMapAddress], a
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a

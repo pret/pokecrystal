@@ -110,12 +110,12 @@ GetCardPic: ; 8833e
 	jr z, .GotClass
 	ld hl, KrisCardPic
 .GotClass:
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	ld bc, $23 tiles
 	ld a, BANK(ChrisCardPic) ; BANK(KrisCardPic)
 	call FarCopyBytes
 	ld hl, CardGFX
-	ld de, VTiles2 tile $23
+	ld de, vTiles2 tile $23
 	ld bc, 6 tiles
 	ld a, BANK(CardGFX)
 	call FarCopyBytes
@@ -140,7 +140,7 @@ GetPlayerBackpic: ; 88825
 GetChrisBackpic: ; 88830
 	ld hl, ChrisBackpic
 	ld b, BANK(ChrisBackpic)
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	ld c, 7 * 7
 	predef DecompressPredef
 	ret
@@ -165,7 +165,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	ld de, KrisPic
 
 .GotPic:
-	ld hl, VTiles2
+	ld hl, vTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7
 	call Get2bpp
@@ -194,7 +194,7 @@ DrawIntroPlayerPic: ; 88874
 	jr z, .GotPic
 	ld de, KrisPic
 .GotPic:
-	ld hl, VTiles2
+	ld hl, vTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7 ; dimensions
 	call Get2bpp
@@ -216,7 +216,7 @@ INCBIN "gfx/player/kris.2bpp"
 GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret

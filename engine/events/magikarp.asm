@@ -79,7 +79,7 @@ Special_CheckMagikarpLength: ; fbb32
 ; 0xfbbae
 
 Magikarp_LoadFeetInchesChars: ; fbbae
-	ld hl, VTiles2 tile "′" ; $6e
+	ld hl, vTiles2 tile "′" ; $6e
 	ld de, .feetinchchars
 	lb bc, BANK(.feetinchchars), 2
 	call Request2bpp

@@ -1277,7 +1277,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	call ClearBGPalettes
 	call DisableLCD
 	ld hl, MysteryGiftGFX
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	ld a, BANK(MysteryGiftGFX)
 	ld bc, MysteryGiftGFXEnd - MysteryGiftGFX
 	call FarCopyBytes
@@ -1576,12 +1576,12 @@ Function1057d7: ; 1057d7 (41:57d7)
 	call ClearBGPalettes
 	call DisableLCD
 	ld hl, MysteryGiftJP_GFX
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	ld a, BANK(MysteryGiftJP_GFX)
 	lb bc, 4, 0
 	call FarCopyBytes
 	ld hl, MysteryGiftJP_GFX + $400
-	ld de, VTiles0 tile $00
+	ld de, vTiles0 tile $00
 	ld a, BANK(MysteryGiftJP_GFX)
 	ld bc, $80
 	call FarCopyBytes

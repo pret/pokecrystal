@@ -597,17 +597,17 @@ Function8b677: ; 8b677
 
 Function8b690: ; 8b690
 	ld hl, GFX_17afa5 + $514
-	ld de, VTiles2
+	ld de, vTiles2
 	ld bc, $160
 	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
 	ld hl, GFX_17afa5 + $514 + $160 - $10
-	ld de, VTiles2 tile $61
+	ld de, vTiles2 tile $61
 	ld bc, $10
 	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
 	ld hl, GFX_17afa5 + $514 + $160
-	ld de, VTiles1 tile $6e
+	ld de, vTiles1 tile $6e
 	ld bc, $10
 	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes

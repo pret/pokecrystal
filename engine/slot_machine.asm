@@ -36,7 +36,7 @@ _SlotMachine:
 	call DelayFrame
 	call DisableLCD
 	hlbgcoord 0, 0
-	ld bc, VBGMap1 - VBGMap0
+	ld bc, vBGMap1 - vBGMap0
 	ld a, " "
 	call ByteFill
 	ld b, SCGB_SLOT_MACHINE
@@ -48,19 +48,19 @@ _SlotMachine:
 	call ByteFill
 
 	ld hl, Slots2LZ
-	ld de, VTiles0 tile $00
+	ld de, vTiles0 tile $00
 	call Decompress
 
 	ld hl, Slots3LZ
-	ld de, VTiles0 tile $40
+	ld de, vTiles0 tile $40
 	call Decompress
 
 	ld hl, Slots1LZ
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	call Decompress
 
 	ld hl, Slots2LZ
-	ld de, VTiles2 tile $25
+	ld de, vTiles2 tile $25
 	call Decompress
 
 	ld hl, SlotsTilemap

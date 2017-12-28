@@ -12,10 +12,10 @@ _DummyGame: ; e1e5b (38:5e5b)
 	call GetSGBLayout
 	callfar ClearSpriteAnims
 	ld hl, LZ_e2221
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	call Decompress
 	ld hl, Unknown_e00ed
-	ld de, VTiles0 tile $00
+	ld de, vTiles0 tile $00
 	ld bc, 4 tiles
 	ld a, BANK(Unknown_e00ed)
 	call FarCopyBytes

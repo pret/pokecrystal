@@ -105,7 +105,7 @@ LoadGenderScreenPal: ; 48e47 (12:4e47)
 
 LoadGenderScreenLightBlueTile: ; 48e64 (12:4e64)
 	ld de, .LightBlueTile
-	ld hl, VTiles2 tile $00
+	ld hl, vTiles2 tile $00
 	lb bc, BANK(.LightBlueTile), 1
 	call Get2bpp
 	ret

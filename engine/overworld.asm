@@ -663,10 +663,10 @@ rept 4
 	add hl, hl
 endr
 	ld a, l
-	add LOW(VTiles0)
+	add LOW(vTiles0)
 	ld l, a
 	ld a, h
-	adc HIGH(VTiles0)
+	adc HIGH(vTiles0)
 	ld h, a
 	ret
 ; 14418

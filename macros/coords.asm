@@ -46,6 +46,6 @@ bgcoord: MACRO
 IF _NARG >= 4
 	ld \1, \3 bgrows + \2 + \4
 ELSE
-	ld \1, \3 bgrows + \2 + VBGMap0
+	ld \1, \3 bgrows + \2 + vBGMap0
 ENDC
 ENDM

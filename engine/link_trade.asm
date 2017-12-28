@@ -4,7 +4,7 @@ INCBIN "gfx/trade/border_tiles.2bpp"
 
 __LoadTradeScreenBorder: ; 16d421
 	ld de, LinkCommsBorderGFX
-	ld hl, VTiles2
+	ld hl, vTiles2
 	lb bc, BANK(LinkCommsBorderGFX), 70
 	call Get2bpp
 	ret
@@ -139,7 +139,7 @@ _LoadTradeScreenBorder: ; 16d696
 
 LinkComms_LoadPleaseWaitTextboxBorderGFX: ; 16d69a
 	ld de, LinkCommsBorderGFX + $30 tiles
-	ld hl, VTiles2 tile $76
+	ld hl, vTiles2 tile $76
 	lb bc, BANK(LinkCommsBorderGFX), 8
 	call Get2bpp
 	ret

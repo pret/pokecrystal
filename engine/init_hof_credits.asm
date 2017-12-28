@@ -6,7 +6,7 @@ InitDisplayForHallOfFame: ; 4e881
 	call LoadStandardFont
 	call LoadFontsBattleExtra
 	hlbgcoord 0, 0
-	ld bc, VBGMap1 - VBGMap0
+	ld bc, vBGMap1 - vBGMap0
 	ld a, " "
 	call ByteFill
 	hlcoord 0, 0, AttrMap
@@ -36,7 +36,7 @@ InitDisplayForRedCredits: ; 4e8c2
 	call LoadStandardFont
 	call LoadFontsBattleExtra
 	hlbgcoord 0, 0
-	ld bc, VBGMap1 - VBGMap0
+	ld bc, vBGMap1 - vBGMap0
 	ld a, " "
 	call ByteFill
 	hlcoord 0, 0, AttrMap

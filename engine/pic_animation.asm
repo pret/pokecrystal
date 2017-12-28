@@ -1120,7 +1120,7 @@ HOF_AnimateFrontpic: ; d066e Predef 49
 	ld l, e
 	push bc
 	push hl
-	ld de, VTiles2
+	ld de, vTiles2
 	predef GetAnimatedFrontpicPredef
 	pop hl
 	pop bc

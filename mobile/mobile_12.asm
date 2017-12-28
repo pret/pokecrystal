@@ -22,11 +22,11 @@ InitMobileProfile: ; 4802f (12:402f)
 	call Function486bf
 	call LoadFontsExtra
 	ld de, MobileUpArrowGFX
-	ld hl, VTiles2 tile $10
+	ld hl, vTiles2 tile $10
 	lb bc, BANK(MobileUpArrowGFX), 1
 	call Request1bpp
 	ld de, MobileDownArrowGFX
-	ld hl, VTiles2 tile $11
+	ld hl, vTiles2 tile $11
 	lb bc, BANK(MobileDownArrowGFX), 1
 	call Request1bpp
 	call Function4a3a7

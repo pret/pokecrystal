@@ -249,7 +249,7 @@ AnimateHOFMonEntrance: ; 865b5
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
 	call ByteFill
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	predef GetMonBackpic
 	ld a, $31
 	ld [hGraphicStartTile], a
@@ -533,7 +533,7 @@ DisplayHOFMon: ; 86748
 
 HOF_AnimatePlayerPic: ; 86810
 	call ClearBGPalettes
-	ld hl, VTiles2 tile HALLOFFAME_COLON
+	ld hl, vTiles2 tile HALLOFFAME_COLON
 	ld de, FontExtra + 13 tiles ; "<COLON>"
 	lb bc, BANK(FontExtra), 1
 	call Request2bpp

@@ -902,7 +902,7 @@ InitCGBPals::
 ; CGB only
 	ld a, $1
 	ld [rVBK], a
-	ld hl, VTiles0
+	ld hl, vTiles0
 	ld bc, $200 tiles
 	xor a
 	call ByteFill
@@ -1069,7 +1069,7 @@ SGBBorder_PushBGPals:
 	ld a, %11100100
 	ld [rBGP], a
 	ld hl, PredefPals
-	ld de, VTiles1
+	ld de, vTiles1
 	ld bc, $100 tiles
 	call CopyData
 	call DrawDefaultTiles
@@ -1085,7 +1085,7 @@ SGBBorder_MorePalPushing:
 	call DisableLCD
 	ld a, $e4
 	ld [rBGP], a
-	ld de, VTiles1
+	ld de, vTiles1
 	ld bc, 20 tiles
 	call CopyData
 	ld b, 18
@@ -1119,7 +1119,7 @@ SGBBorder_YetMorePalPushing:
 	call DisableLCD
 	ld a, %11100100
 	ld [rBGP], a
-	ld de, VTiles1
+	ld de, vTiles1
 	ld b, $80
 .loop
 	push bc

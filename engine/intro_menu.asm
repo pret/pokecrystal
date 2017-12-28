@@ -942,7 +942,7 @@ Intro_WipeInFrontpic: ; 6182
 ; 619c
 
 Intro_PrepTrainerPic: ; 619c
-	ld de, VTiles2
+	ld de, vTiles2
 	farcall GetTrainerPic
 	xor a
 	ld [hGraphicStartTile], a
@@ -953,7 +953,7 @@ Intro_PrepTrainerPic: ; 619c
 ; 61b4
 
 ShrinkFrame: ; 61b4
-	ld de, VTiles2
+	ld de, vTiles2
 	ld c, $31
 	predef DecompressPredef
 	xor a
@@ -968,7 +968,7 @@ Intro_PlacePlayerSprite: ; 61cd
 
 	farcall GetPlayerIcon
 	ld c, $c
-	ld hl, VTiles0
+	ld hl, vTiles0
 	call Request2bpp
 
 	ld hl, Sprites
@@ -1376,7 +1376,7 @@ Copyright: ; 63e2
 	call ClearTileMap
 	call LoadFontsExtra
 	ld de, CopyrightGFX
-	ld hl, VTiles2 tile $60
+	ld hl, vTiles2 tile $60
 	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
 	hlcoord 2, 7
@@ -1405,9 +1405,9 @@ GameInit:: ; 642e
 	call ClearWindowData
 	call ClearBGPalettes
 	call ClearTileMap
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
-	xor a ; LOW(VBGMap0)
+	xor a ; LOW(vBGMap0)
 	ld [hBGMapAddress], a
 	ld [hJoyDown], a
 	ld [hSCX], a

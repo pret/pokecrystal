@@ -322,11 +322,11 @@ Function11c1b9: ; 11c1b9
 	call SetPalettes
 	call DisableLCD
 	ld hl, GFX_11d67e
-	ld de, VTiles2
+	ld de, vTiles2
 	ld bc, $60
 	call CopyBytes
 	ld hl, LZ_11d6de
-	ld de, VTiles0
+	ld de, vTiles0
 	call Decompress
 	call EnableLCD
 	farcall ReloadMapPart

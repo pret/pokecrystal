@@ -21,11 +21,11 @@ PhoneRing_CopyTilemapAtOnce: ; 4d188
 	jr c, .wait
 
 	di
-	ld a, BANK(VBGMap2)
+	ld a, BANK(vBGMap2)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
 	call .CopyTilemapAtOnce
-	ld a, BANK(VBGMap0)
+	ld a, BANK(vBGMap0)
 	ld [rVBK], a
 	hlcoord 0, 0
 	call .CopyTilemapAtOnce

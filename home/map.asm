@@ -1241,10 +1241,10 @@ ScrollMapUp:: ; 2748
 	ld h, a
 	ld bc, $0200
 	add hl, bc
-; cap d at HIGH(VBGMap0)
+; cap d at HIGH(vBGMap0)
 	ld a, h
 	and %00000011
-	or HIGH(VBGMap0)
+	or HIGH(vBGMap0)
 	ld e, l
 	ld d, a
 	call UpdateBGMapRow
@@ -1369,10 +1369,10 @@ UpdateBGMapColumn:: ; 27f8
 	ld e, a
 	jr nc, .skip
 	inc d
-; cap d at HIGH(VBGMap0)
+; cap d at HIGH(vBGMap0)
 	ld a, d
 	and $3
-	or HIGH(VBGMap0)
+	or HIGH(vBGMap0)
 	ld d, a
 
 .skip
@@ -1409,7 +1409,7 @@ LoadTilesetGFX:: ; 2821
 	call FarDecompress
 
 	ld hl, wDecompressScratch
-	ld de, VTiles2
+	ld de, vTiles2
 	ld bc, $60 tiles
 	call CopyBytes
 
@@ -1419,7 +1419,7 @@ LoadTilesetGFX:: ; 2821
 	ld [rVBK], a
 
 	ld hl, wDecompressScratch + $60 tiles
-	ld de, VTiles2
+	ld de, vTiles2
 	ld bc, $60 tiles
 	call CopyBytes
 

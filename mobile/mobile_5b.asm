@@ -170,7 +170,7 @@ Function16c0fa: ; 16c0fa
 
 MobileSystemSplashScreen_InitGFX: ; 16c108
 	call DisableLCD
-	ld hl, VTiles2
+	ld hl, vTiles2
 	ld de, .Tiles
 	lb bc, BANK(.Tiles), $68
 	call Get2bpp
@@ -708,7 +708,7 @@ Function16cc02: ; 16cc02
 ; 16cc18
 
 Function16cc18: ; 16cc18
-	ld hl, VTiles1
+	ld hl, vTiles1
 	ld de, GFX_16cca3
 	lb bc, BANK(GFX_16cca3), $2e
 	call Get2bpp
@@ -763,7 +763,7 @@ Function16cc62: ; 16cc62
 ; 16cc6e
 
 Function16cc6e: ; 16cc6e
-	hlbgcoord 0, 0, VBGMap1
+	hlbgcoord 0, 0, vBGMap1
 	jr Function16cc73
 
 Function16cc73:

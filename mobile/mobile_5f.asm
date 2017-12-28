@@ -1,7 +1,7 @@
 Function17c000: ; 17c000
 	call DisableLCD
 
-	ld hl, VTiles2
+	ld hl, vTiles2
 	ld bc, $31 tiles
 	xor a
 	call ByteFill
@@ -56,7 +56,7 @@ Function17c000: ; 17c000
 	ld [rSVBK], a
 
 	ld hl, MobileSelectGFX
-	ld de, VTiles0 tile $30
+	ld de, vTiles0 tile $30
 	ld bc, $20 tiles
 	call CopyBytes
 
@@ -64,12 +64,12 @@ Function17c000: ; 17c000
 	ld [rVBK], a
 
 	ld hl, HaveWantGFX
-	ld de, VTiles2
+	ld de, vTiles2
 	ld bc, $80 tiles
 	call CopyBytes
 
 	ld hl, HaveWantGFX + $800
-	ld de, VTiles1
+	ld de, vTiles1
 	ld bc, $10 tiles
 	call CopyBytes
 
@@ -629,28 +629,28 @@ Function17d370: ; 17d370
 	call ClearScreen
 	farcall ReloadMapPart
 	call DisableLCD
-	ld hl, VTiles1 tile $6e
+	ld hl, vTiles1 tile $6e
 	ld de, $c608
 	ld bc, 1 tiles
 	call CopyBytes
 	ld a, $1
 	ld [rVBK], a
 	ld hl, PokemonNewsGFX
-	ld de, VTiles1
+	ld de, vTiles1
 	ld bc, $48 tiles
 	call CopyBytes
 	xor a
-	ld hl, VTiles2 tile $7f
+	ld hl, vTiles2 tile $7f
 	ld bc, 1 tiles
 	call ByteFill
 	ld hl, $c608
-	ld de, VTiles1 tile $6e
+	ld de, vTiles1 tile $6e
 	ld bc, 1 tiles
 	call CopyBytes
 	xor a
 	ld [rVBK], a
 	ld hl, GFX_17eb7e
-	ld de, VTiles2 tile $60
+	ld de, vTiles2 tile $60
 	ld bc, 1 tiles
 	call CopyBytes
 	call EnableLCD
@@ -677,22 +677,22 @@ Function17d3f6: ; 17d3f6
 
 Function17d405:
 	call DisableLCD
-	ld hl, VTiles1 tile $6e
+	ld hl, vTiles1 tile $6e
 	ld de, $c608
 	ld bc, 1 tiles
 	call CopyBytes
 	ld a, $1
 	ld [rVBK], a
 	ld hl, PokemonNewsGFX
-	ld de, VTiles1
+	ld de, vTiles1
 	ld bc, $48 tiles
 	call CopyBytes
 	xor a
-	ld hl, VTiles2 tile $7f
+	ld hl, vTiles2 tile $7f
 	ld bc, 1 tiles
 	call ByteFill
 	ld hl, $c608
-	ld de, VTiles1 tile $6e
+	ld de, vTiles1 tile $6e
 	ld bc, 1 tiles
 	call CopyBytes
 	xor a
@@ -1531,7 +1531,7 @@ Function17d98b: ; 17d98b
 	ld a, [$c709]
 	ld d, a
 	push de
-	ld de, VTiles2
+	ld de, vTiles2
 	farcall GetTrainerPic
 	pop hl
 	decoord 0, 0
@@ -2952,7 +2952,7 @@ Function17e2a7: ; 17e2a7
 	ld [wcf66], a
 	farcall Function118233
 	ld de, GFX_17eb7e
-	ld hl, VTiles2 tile $60
+	ld hl, vTiles2 tile $60
 	lb bc, BANK(GFX_17eb7e), 1
 	call Get2bpp
 	ld a, [wc300]

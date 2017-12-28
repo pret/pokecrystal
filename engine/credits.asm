@@ -33,17 +33,17 @@ Credits:: ; 109847
 	jr nz, .load_loop
 
 	ld de, CreditsBorderGFX
-	ld hl, VTiles2 tile $20
+	ld hl, vTiles2 tile $20
 	lb bc, BANK(CreditsBorderGFX), $09
 	call Request2bpp
 
 	ld de, CopyrightGFX
-	ld hl, VTiles2 tile $60
+	ld hl, vTiles2 tile $60
 	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
 
 	ld de, TheEndGFX
-	ld hl, VTiles2 tile $40
+	ld hl, vTiles2 tile $40
 	lb bc, BANK(TheEndGFX), $10
 	call Request2bpp
 
@@ -55,7 +55,7 @@ Credits:: ; 109847
 	call Credits_LoadBorderGFX
 	ld e, l
 	ld d, h
-	ld hl, VTiles2
+	ld hl, vTiles2
 	lb bc, BANK(CreditsMonsGFX), 16
 	call Request2bpp
 
@@ -193,9 +193,9 @@ Credits_UpdateGFXRequestPath: ; 109964 (42:5964)
 	ld [Requested2bppSource], a
 	ld a, h
 	ld [Requested2bppSource + 1], a
-	ld a, LOW(VTiles2)
+	ld a, LOW(vTiles2)
 	ld [Requested2bppDest], a
-	ld a, HIGH(VTiles2)
+	ld a, HIGH(vTiles2)
 	ld [Requested2bppDest + 1], a
 	jr Credits_RequestGFX
 
