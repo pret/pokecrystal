@@ -1,6 +1,6 @@
 ; Enumerate variables
 
-enum_start: macro
+enum_start: MACRO
 if _NARG >= 1
 __enum__ = \1
 else
@@ -13,12 +13,12 @@ __enumdir__ = +1
 endc
 endm
 
-enum: macro
+enum: MACRO
 \1 = __enum__
 __enum__ = __enum__ + __enumdir__
 endm
 
-enum_set: macro
+enum_set: MACRO
 __enum__ = \1
 endm
 

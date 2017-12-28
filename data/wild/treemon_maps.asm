@@ -1,4 +1,4 @@
-treemon_map: macro
+treemon_map: MACRO
 	map \1
 	db  \2 ; treemon set
 endm

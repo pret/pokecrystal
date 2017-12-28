@@ -1,6 +1,6 @@
-bccoord equs "coord bc,"
-decoord equs "coord de,"
-hlcoord equs "coord hl,"
+bccoord EQUS "coord bc,"
+decoord EQUS "coord de,"
+hlcoord EQUS "coord hl,"
 
 coord: MACRO
 ; register, x, y[, origin]

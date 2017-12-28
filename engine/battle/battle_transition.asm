@@ -828,7 +828,7 @@ StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 ; 8c792 (23:4792)
 
 .boxes ; 8c792
-zoombox: macro
+zoombox: MACRO
 ; width, height, start y, start x
 	db \1, \2
 	dwcoord \3, \4

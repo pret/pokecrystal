@@ -1,4 +1,4 @@
-specialcall: macro
+specialcall: MACRO
 ; condition, contact, script
 	dw \1
 	db \2

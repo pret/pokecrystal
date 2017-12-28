@@ -200,7 +200,7 @@ NextChar:: ; 1083
 	jp PlaceNextChar
 
 CheckDict:: ; 1087
-dict: macro
+dict: MACRO
 if \1 == 0
 	and a
 else
@@ -209,7 +209,7 @@ endc
 	jp z, \2
 endm
 
-dict2: macro
+dict2: MACRO
 	cp \1
 	jr nz, ._\@
 	ld a, \2
@@ -309,7 +309,7 @@ Char15:: ; 117b
 ; 1186
 
 
-print_name: macro
+print_name: MACRO
 	push de
 	ld de, \1
 	jp PlaceCommandCharacter

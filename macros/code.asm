@@ -38,7 +38,7 @@ jumptable: MACRO
 ; Many mobile functions were dummied out in localization.
 mobile EQUS "ret"
 
-maskbits: macro
+maskbits: MACRO
 ; example usage in rejection sampling:
 ; .loop
 ; 	call Random

@@ -1,4 +1,4 @@
-phone: macro
+phone: MACRO
 ; trainer class, trainer id, map, ?, script 1, ?, script 2
 	db  \1, \2
 	map \3

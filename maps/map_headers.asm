@@ -1,4 +1,4 @@
-map_header: macro
+map_header: MACRO
 ;\1: map label
 ;\2: tileset: a TILESET_* constant
 ;\3: environment: TOWN, ROUTE, INDOOR, CAVE, ENVIRONMENT_5, GATE, or DUNGEON

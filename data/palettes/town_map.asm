@@ -6,7 +6,7 @@
 	const PAL_TOWNMAP_POI      ; 4
 	const PAL_TOWNMAP_POI_MTN  ; 5
 
-townmappals: macro
+townmappals: MACRO
 rept _NARG / 2
 	dn PAL_TOWNMAP_\2, PAL_TOWNMAP_\1
 	shift

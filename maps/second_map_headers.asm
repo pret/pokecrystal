@@ -1,4 +1,4 @@
-map_header_2: macro
+map_header_2: MACRO
 ;\1: map label
 ;\2: map id
 ;\3: border block
@@ -14,7 +14,7 @@ map_header_2: macro
 	db \4
 endm
 
-connection: macro
+connection: MACRO
 if "\1" == "north"
 ;\2: map id
 ;\3: map label (eventually will be rolled into map id)

@@ -211,7 +211,7 @@ roam_struct: MACRO
 \1DVs::       dw
 ENDM
 
-bugcontestwinner: macro
+bugcontestwinner: MACRO
 \1WinnerID:: db
 \1Mon::      db
 \1Score::    dw

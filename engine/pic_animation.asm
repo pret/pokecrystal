@@ -56,7 +56,7 @@ pokeanim: MACRO
 	rept _NARG
 ; Workaround for a bug where macro args can't come after the start of a symbol
 if !def(\1_POKEANIM)
-\1_POKEANIM equs "PokeAnim_\1_"
+\1_POKEANIM EQUS "PokeAnim_\1_"
 endc
 	db (\1_POKEANIM - PokeAnim_SetupCommands) / 2
 	shift
@@ -142,7 +142,7 @@ SetUpPokeAnim: ; d00b4
 ; d00da
 
 PokeAnim_SetupCommands: ; d00da
-setup_command: macro
+setup_command: MACRO
 \1_: dw \1
 endm
 	setup_command PokeAnim_Finish
