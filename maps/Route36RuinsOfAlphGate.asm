@@ -40,10 +40,10 @@ Route36RuinsOfAlphGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 3, ROUTE_36
-	warp_def $0, $5, 4, ROUTE_36
-	warp_def $7, $4, 9, RUINS_OF_ALPH_OUTSIDE
-	warp_def $7, $5, 9, RUINS_OF_ALPH_OUTSIDE
+	warp_def 4, 0, 3, ROUTE_36
+	warp_def 5, 0, 4, ROUTE_36
+	warp_def 4, 7, 9, RUINS_OF_ALPH_OUTSIDE
+	warp_def 5, 7, 9, RUINS_OF_ALPH_OUTSIDE
 
 .CoordEvents:
 	db 0
@@ -53,5 +53,5 @@ Route36RuinsOfAlphGate_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route36RuinsOfAlphGateOfficerScript, -1
-	object_event SPRITE_GRAMPS, 5, 7, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route36RuinsOfAlphGateGrampsScript, -1
+	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route36RuinsOfAlphGateOfficerScript, -1
+	object_event 7, 5, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route36RuinsOfAlphGateGrampsScript, -1

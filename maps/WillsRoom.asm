@@ -134,9 +134,9 @@ WillsRoom_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $11, $5, 4, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def $2, $4, 1, KOGAS_ROOM
-	warp_def $2, $5, 2, KOGAS_ROOM
+	warp_def 5, 17, 4, INDIGO_PLATEAU_POKECENTER_1F
+	warp_def 4, 2, 1, KOGAS_ROOM
+	warp_def 5, 2, 2, KOGAS_ROOM
 
 .CoordEvents:
 	db 0
@@ -146,4 +146,4 @@ WillsRoom_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_WILL, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WillScript_Battle, -1
+	object_event 5, 7, SPRITE_WILL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WillScript_Battle, -1

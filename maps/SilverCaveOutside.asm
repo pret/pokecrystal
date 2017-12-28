@@ -29,17 +29,17 @@ SilverCaveOutside_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $13, $17, 1, SILVER_CAVE_POKECENTER_1F
-	warp_def $b, $12, 1, SILVER_CAVE_ROOM_1
+	warp_def 23, 19, 1, SILVER_CAVE_POKECENTER_1F
+	warp_def 18, 11, 1, SILVER_CAVE_ROOM_1
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 3
-	bg_event 19, 24, BGEVENT_READ, MtSilverPokecenterSign
-	bg_event 13, 17, BGEVENT_READ, MtSilverSign
-	bg_event 25, 9, BGEVENT_ITEM, SilverCaveOutsideHiddenFullRestore
+	bg_event 24, 19, BGEVENT_READ, MtSilverPokecenterSign
+	bg_event 17, 13, BGEVENT_READ, MtSilverSign
+	bg_event 9, 25, BGEVENT_ITEM, SilverCaveOutsideHiddenFullRestore
 
 .ObjectEvents:
 	db 0

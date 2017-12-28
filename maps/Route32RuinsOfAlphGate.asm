@@ -52,10 +52,10 @@ Route32RuinsOfAlphGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 10, RUINS_OF_ALPH_OUTSIDE
-	warp_def $5, $0, 11, RUINS_OF_ALPH_OUTSIDE
-	warp_def $4, $9, 2, ROUTE_32
-	warp_def $5, $9, 3, ROUTE_32
+	warp_def 0, 4, 10, RUINS_OF_ALPH_OUTSIDE
+	warp_def 0, 5, 11, RUINS_OF_ALPH_OUTSIDE
+	warp_def 9, 4, 2, ROUTE_32
+	warp_def 9, 5, 3, ROUTE_32
 
 .CoordEvents:
 	db 0
@@ -65,6 +65,6 @@ Route32RuinsOfAlphGate_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route32RuinsOfAlphGateOfficerScript, -1
-	object_event SPRITE_POKEFAN_M, 2, 8, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route32RuinsOfAlphGatePokefanMScript, -1
-	object_event SPRITE_YOUNGSTER, 6, 1, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route32RuinsOfAlphGateYoungsterScript, -1
+	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route32RuinsOfAlphGateOfficerScript, -1
+	object_event 8, 2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route32RuinsOfAlphGatePokefanMScript, -1
+	object_event 1, 6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route32RuinsOfAlphGateYoungsterScript, -1

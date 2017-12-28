@@ -36,10 +36,10 @@ IlexForestAzaleaGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 2, ILEX_FOREST
-	warp_def $5, $0, 3, ILEX_FOREST
-	warp_def $4, $9, 7, AZALEA_TOWN
-	warp_def $5, $9, 8, AZALEA_TOWN
+	warp_def 0, 4, 2, ILEX_FOREST
+	warp_def 0, 5, 3, ILEX_FOREST
+	warp_def 9, 4, 7, AZALEA_TOWN
+	warp_def 9, 5, 8, AZALEA_TOWN
 
 .CoordEvents:
 	db 0
@@ -49,5 +49,5 @@ IlexForestAzaleaGate_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, IlexForestAzaleaGateOfficerScript, -1
-	object_event SPRITE_GRANNY, 3, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestAzaleaGateGrannyScript, -1
+	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, IlexForestAzaleaGateOfficerScript, -1
+	object_event 1, 3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestAzaleaGateGrannyScript, -1

@@ -250,27 +250,27 @@ MahoganyTown_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $7, $b, 1, MAHOGANY_MART_1F
-	warp_def $7, $11, 1, MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
-	warp_def $d, $6, 1, MAHOGANY_GYM
-	warp_def $d, $f, 1, MAHOGANY_POKECENTER_1F
-	warp_def $1, $9, 3, ROUTE_43_MAHOGANY_GATE
+	warp_def 11, 7, 1, MAHOGANY_MART_1F
+	warp_def 17, 7, 1, MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
+	warp_def 6, 13, 1, MAHOGANY_GYM
+	warp_def 15, 13, 1, MAHOGANY_POKECENTER_1F
+	warp_def 9, 1, 3, ROUTE_43_MAHOGANY_GATE
 
 .CoordEvents:
 	db 2
-	coord_event 0, $8, $13, UnknownScript_0x190013
-	coord_event 0, $9, $13, UnknownScript_0x190013
+	coord_event 19, 8, 0, UnknownScript_0x190013
+	coord_event 19, 9, 0, UnknownScript_0x190013
 
 .BGEvents:
 	db 4
-	bg_event 5, 1, BGEVENT_READ, MahoganyTownSign
-	bg_event 7, 9, BGEVENT_READ, MahoganyTownRagecandybarSign
-	bg_event 13, 3, BGEVENT_READ, MahoganyGymSign
-	bg_event 13, 16, BGEVENT_READ, MahoganyTownPokecenterSign
+	bg_event 1, 5, BGEVENT_READ, MahoganyTownSign
+	bg_event 9, 7, BGEVENT_READ, MahoganyTownRagecandybarSign
+	bg_event 3, 13, BGEVENT_READ, MahoganyGymSign
+	bg_event 16, 13, BGEVENT_READ, MahoganyTownPokecenterSign
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_POKEFAN_M, 8, 19, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
-	object_event SPRITE_GRAMPS, 9, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x19007e, -1
-	object_event SPRITE_FISHER, 14, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MahoganyTownFisherScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	object_event SPRITE_LASS, 8, 12, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownLassScript, EVENT_MAHOGANY_MART_OWNERS
+	object_event 19, 8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
+	object_event 6, 9, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x19007e, -1
+	object_event 6, 14, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MahoganyTownFisherScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	object_event 12, 8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownLassScript, EVENT_MAHOGANY_MART_OWNERS

@@ -78,9 +78,9 @@ CopycatsHouse1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $2, 8, SAFFRON_CITY
-	warp_def $7, $3, 8, SAFFRON_CITY
-	warp_def $0, $2, 1, COPYCATS_HOUSE_2F
+	warp_def 2, 7, 8, SAFFRON_CITY
+	warp_def 3, 7, 8, SAFFRON_CITY
+	warp_def 2, 0, 1, COPYCATS_HOUSE_2F
 
 .CoordEvents:
 	db 0
@@ -90,6 +90,6 @@ CopycatsHouse1F_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CopycatsHouse1FPokefanMScript, -1
-	object_event SPRITE_POKEFAN_F, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x18ad16, -1
-	object_event SPRITE_CLEFAIRY, 6, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClefairyScript_0x18ad2a, -1
+	object_event 2, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CopycatsHouse1FPokefanMScript, -1
+	object_event 5, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x18ad16, -1
+	object_event 6, 6, SPRITE_CLEFAIRY, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClefairyScript_0x18ad2a, -1

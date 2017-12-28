@@ -25,24 +25,24 @@ MountMortar1FOutside_MapEventHeader:
 
 .Warps:
 	db 9
-	warp_def $21, $3, 3, ROUTE_42
-	warp_def $21, $11, 4, ROUTE_42
-	warp_def $21, $25, 5, ROUTE_42
-	warp_def $5, $11, 1, MOUNT_MORTAR_2F_INSIDE
-	warp_def $15, $b, 1, MOUNT_MORTAR_1F_INSIDE
-	warp_def $15, $1d, 2, MOUNT_MORTAR_1F_INSIDE
-	warp_def $1d, $11, 2, MOUNT_MORTAR_B1F
-	warp_def $d, $7, 3, MOUNT_MORTAR_1F_INSIDE
-	warp_def $d, $21, 4, MOUNT_MORTAR_1F_INSIDE
+	warp_def 3, 33, 3, ROUTE_42
+	warp_def 17, 33, 4, ROUTE_42
+	warp_def 37, 33, 5, ROUTE_42
+	warp_def 17, 5, 1, MOUNT_MORTAR_2F_INSIDE
+	warp_def 11, 21, 1, MOUNT_MORTAR_1F_INSIDE
+	warp_def 29, 21, 2, MOUNT_MORTAR_1F_INSIDE
+	warp_def 17, 29, 2, MOUNT_MORTAR_B1F
+	warp_def 7, 13, 3, MOUNT_MORTAR_1F_INSIDE
+	warp_def 33, 13, 4, MOUNT_MORTAR_1F_INSIDE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 22, 25, BGEVENT_ITEM, MountMortar1FOutsideHiddenHyperPotion
+	bg_event 25, 22, BGEVENT_ITEM, MountMortar1FOutsideHiddenHyperPotion
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_POKE_BALL, 15, 13, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FOutsideEther, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
-	object_event SPRITE_POKE_BALL, 18, 31, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FOutsideRevive, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE
+	object_event 13, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FOutsideEther, EVENT_MOUNT_MORTAR_1F_OUTSIDE_ETHER
+	object_event 31, 18, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FOutsideRevive, EVENT_MOUNT_MORTAR_1F_OUTSIDE_REVIVE

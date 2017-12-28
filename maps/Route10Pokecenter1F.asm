@@ -86,9 +86,9 @@ Route10Pokecenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, ROUTE_10_NORTH
-	warp_def $7, $4, 1, ROUTE_10_NORTH
-	warp_def $7, $0, 1, POKECENTER_2F
+	warp_def 3, 7, 1, ROUTE_10_NORTH
+	warp_def 4, 7, 1, ROUTE_10_NORTH
+	warp_def 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 0
@@ -98,7 +98,7 @@ Route10Pokecenter1F_MapEventHeader:
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x188bd4, -1
-	object_event SPRITE_GENTLEMAN, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FGentlemanScript, -1
-	object_event SPRITE_GYM_GUY, 2, 7, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188bda, -1
-	object_event SPRITE_COOLTRAINER_F, 3, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FCooltrainerFScript, -1
+	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x188bd4, -1
+	object_event 7, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FGentlemanScript, -1
+	object_event 7, 2, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188bda, -1
+	object_event 1, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FCooltrainerFScript, -1

@@ -30,10 +30,10 @@ Route38EcruteakGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 1, ROUTE_38
-	warp_def $5, $0, 2, ROUTE_38
-	warp_def $4, $9, 14, ECRUTEAK_CITY
-	warp_def $5, $9, 15, ECRUTEAK_CITY
+	warp_def 0, 4, 1, ROUTE_38
+	warp_def 0, 5, 2, ROUTE_38
+	warp_def 9, 4, 14, ECRUTEAK_CITY
+	warp_def 9, 5, 15, ECRUTEAK_CITY
 
 .CoordEvents:
 	db 0
@@ -43,4 +43,4 @@ Route38EcruteakGate_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerScript, -1
+	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerScript, -1

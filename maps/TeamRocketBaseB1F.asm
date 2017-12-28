@@ -733,65 +733,65 @@ TeamRocketBaseB1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $2, $1b, 3, MAHOGANY_MART_1F
-	warp_def $e, $3, 1, TEAM_ROCKET_BASE_B2F
-	warp_def $f, $5, 4, TEAM_ROCKET_BASE_B1F
-	warp_def $2, $19, 3, TEAM_ROCKET_BASE_B1F
+	warp_def 27, 2, 3, MAHOGANY_MART_1F
+	warp_def 3, 14, 1, TEAM_ROCKET_BASE_B2F
+	warp_def 5, 15, 4, TEAM_ROCKET_BASE_B1F
+	warp_def 25, 2, 3, TEAM_ROCKET_BASE_B1F
 
 .CoordEvents:
 	db 30
 	; There are five security cameras in the base.
 	; Walking in front of one triggers two Rocket Grunts.
-	coord_event 0, $2, $18, SecurityCamera1a
-	coord_event 0, $3, $18, SecurityCamera1b
-	coord_event 0, $2, $6, SecurityCamera2a
-	coord_event 0, $3, $6, SecurityCamera2b
-	coord_event 0, $6, $18, SecurityCamera3a
-	coord_event 0, $7, $18, SecurityCamera3b
-	coord_event 0, $10, $16, SecurityCamera4
-	coord_event 0, $10, $8, SecurityCamera5
+	coord_event 24, 2, 0, SecurityCamera1a
+	coord_event 24, 3, 0, SecurityCamera1b
+	coord_event 6, 2, 0, SecurityCamera2a
+	coord_event 6, 3, 0, SecurityCamera2b
+	coord_event 24, 6, 0, SecurityCamera3a
+	coord_event 24, 7, 0, SecurityCamera3b
+	coord_event 22, 16, 0, SecurityCamera4
+	coord_event 8, 16, 0, SecurityCamera5
 	; There are spots on the floor that trigger a Pokémon battle.
 	; Each Pokémon (Voltorb, Koffing, Geodude) knows Selfdestruct.
-	coord_event 0, $7, $2, ExplodingTrap1
-	coord_event 0, $7, $3, ExplodingTrap2
-	coord_event 0, $7, $4, ExplodingTrap3
-	coord_event 0, $8, $1, ExplodingTrap4
-	coord_event 0, $8, $3, ExplodingTrap5
-	coord_event 0, $8, $5, ExplodingTrap6
-	coord_event 0, $9, $3, ExplodingTrap7
-	coord_event 0, $9, $4, ExplodingTrap8
-	coord_event 0, $a, $1, ExplodingTrap9
-	coord_event 0, $a, $2, ExplodingTrap10
-	coord_event 0, $a, $3, ExplodingTrap11
-	coord_event 0, $a, $5, ExplodingTrap12
-	coord_event 0, $b, $2, ExplodingTrap13
-	coord_event 0, $b, $4, ExplodingTrap14
-	coord_event 0, $c, $1, ExplodingTrap15
-	coord_event 0, $c, $2, ExplodingTrap16
-	coord_event 0, $c, $4, ExplodingTrap17
-	coord_event 0, $c, $5, ExplodingTrap18
-	coord_event 0, $d, $1, ExplodingTrap19
-	coord_event 0, $d, $3, ExplodingTrap20
-	coord_event 0, $d, $4, ExplodingTrap21
-	coord_event 0, $d, $5, ExplodingTrap22
+	coord_event 2, 7, 0, ExplodingTrap1
+	coord_event 3, 7, 0, ExplodingTrap2
+	coord_event 4, 7, 0, ExplodingTrap3
+	coord_event 1, 8, 0, ExplodingTrap4
+	coord_event 3, 8, 0, ExplodingTrap5
+	coord_event 5, 8, 0, ExplodingTrap6
+	coord_event 3, 9, 0, ExplodingTrap7
+	coord_event 4, 9, 0, ExplodingTrap8
+	coord_event 1, 10, 0, ExplodingTrap9
+	coord_event 2, 10, 0, ExplodingTrap10
+	coord_event 3, 10, 0, ExplodingTrap11
+	coord_event 5, 10, 0, ExplodingTrap12
+	coord_event 2, 11, 0, ExplodingTrap13
+	coord_event 4, 11, 0, ExplodingTrap14
+	coord_event 1, 12, 0, ExplodingTrap15
+	coord_event 2, 12, 0, ExplodingTrap16
+	coord_event 4, 12, 0, ExplodingTrap17
+	coord_event 5, 12, 0, ExplodingTrap18
+	coord_event 1, 13, 0, ExplodingTrap19
+	coord_event 3, 13, 0, ExplodingTrap20
+	coord_event 4, 13, 0, ExplodingTrap21
+	coord_event 5, 13, 0, ExplodingTrap22
 
 .BGEvents:
 	db 9
-	bg_event 11, 19, BGEVENT_READ, MapTeamRocketBaseB1FSignpost0Script
-	bg_event 1, 24, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event 1, 6, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event 15, 8, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event 15, 22, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event 5, 24, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event 11, 20, BGEVENT_READ, MapTeamRocketBaseB1FSignpost7Script
-	bg_event 11, 21, BGEVENT_READ, MapTeamRocketBaseB1FSignpost7Script
-	bg_event 11, 3, BGEVENT_ITEM, TeamRocketBaseB1FHiddenRevive
+	bg_event 19, 11, BGEVENT_READ, MapTeamRocketBaseB1FSignpost0Script
+	bg_event 24, 1, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
+	bg_event 6, 1, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
+	bg_event 8, 15, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
+	bg_event 22, 15, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
+	bg_event 24, 5, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
+	bg_event 20, 11, BGEVENT_READ, MapTeamRocketBaseB1FSignpost7Script
+	bg_event 21, 11, BGEVENT_READ, MapTeamRocketBaseB1FSignpost7Script
+	bg_event 3, 11, BGEVENT_ITEM, TeamRocketBaseB1FHiddenRevive
 
 .ObjectEvents:
 	db 6
-	object_event SPRITE_ROCKET, 0, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
-	object_event SPRITE_ROCKET, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event SPRITE_SCIENTIST, 12, 18, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event SPRITE_POKE_BALL, 6, 27, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB1FHyperPotion, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
-	object_event SPRITE_POKE_BALL, 15, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB1FNugget, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
-	object_event SPRITE_POKE_BALL, 12, 21, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB1FGuardSpec, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC
+	object_event 0, 0, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
+	object_event 2, 4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event 18, 12, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event 27, 6, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB1FHyperPotion, EVENT_TEAM_ROCKET_BASE_B1F_HYPER_POTION
+	object_event 14, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB1FNugget, EVENT_TEAM_ROCKET_BASE_B1F_NUGGET
+	object_event 21, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TeamRocketBaseB1FGuardSpec, EVENT_TEAM_ROCKET_BASE_B1F_GUARD_SPEC

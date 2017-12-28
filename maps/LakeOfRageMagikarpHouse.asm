@@ -211,17 +211,17 @@ LakeOfRageMagikarpHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, LAKE_OF_RAGE
-	warp_def $7, $3, 2, LAKE_OF_RAGE
+	warp_def 2, 7, 2, LAKE_OF_RAGE
+	warp_def 3, 7, 2, LAKE_OF_RAGE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, MagikarpHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, MagikarpHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, MagikarpHouseBookshelf
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_FISHING_GURU, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x19a6ae, -1
+	object_event 2, 3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x19a6ae, -1

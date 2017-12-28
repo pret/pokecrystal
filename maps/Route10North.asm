@@ -21,16 +21,16 @@ Route10North_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $1, $b, 1, ROUTE_10_POKECENTER_1F
-	warp_def $9, $3, 1, POWER_PLANT
+	warp_def 11, 1, 1, ROUTE_10_POKECENTER_1F
+	warp_def 3, 9, 1, POWER_PLANT
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 11, 5, BGEVENT_READ, PowerPlantSign
-	bg_event 1, 12, BGEVENT_READ, Route10PokecenterSign
+	bg_event 5, 11, BGEVENT_READ, PowerPlantSign
+	bg_event 12, 1, BGEVENT_READ, Route10PokecenterSign
 
 .ObjectEvents:
 	db 0

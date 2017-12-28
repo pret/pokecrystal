@@ -143,23 +143,23 @@ TrainerHouse1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $d, $2, 3, VIRIDIAN_CITY
-	warp_def $d, $3, 3, VIRIDIAN_CITY
-	warp_def $2, $8, 1, TRAINER_HOUSE_B1F
+	warp_def 2, 13, 3, VIRIDIAN_CITY
+	warp_def 3, 13, 3, VIRIDIAN_CITY
+	warp_def 8, 2, 1, TRAINER_HOUSE_B1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 3
-	bg_event 0, 5, BGEVENT_READ, MapTrainerHouse1FSignpost0Script
-	bg_event 0, 7, BGEVENT_READ, MapTrainerHouse1FSignpost1Script
-	bg_event 10, 7, BGEVENT_READ, MapTrainerHouse1FSignpost2Script
+	bg_event 5, 0, BGEVENT_READ, MapTrainerHouse1FSignpost0Script
+	bg_event 7, 0, BGEVENT_READ, MapTrainerHouse1FSignpost1Script
+	bg_event 7, 10, BGEVENT_READ, MapTrainerHouse1FSignpost2Script
 
 .ObjectEvents:
 	db 5
-	object_event SPRITE_RECEPTIONIST, 11, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FReceptionistScript, -1
-	object_event SPRITE_COOLTRAINER_M, 11, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerMScript, -1
-	object_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerFScript, -1
-	object_event SPRITE_YOUNGSTER, 8, 4, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FYoungsterScript, -1
-	object_event SPRITE_GENTLEMAN, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FGentlemanScript, -1
+	object_event 0, 11, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FReceptionistScript, -1
+	object_event 7, 11, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerMScript, -1
+	object_event 6, 2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FCooltrainerFScript, -1
+	object_event 4, 8, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FYoungsterScript, -1
+	object_event 2, 4, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FGentlemanScript, -1

@@ -133,18 +133,18 @@ CinnabarIsland_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $b, $b, 1, CINNABAR_POKECENTER_1F
+	warp_def 11, 11, 1, CINNABAR_POKECENTER_1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 4
-	bg_event 11, 12, BGEVENT_READ, CinnabarIslandPokecenterSign
-	bg_event 11, 9, BGEVENT_READ, CinnabarIslandGymSign
+	bg_event 12, 11, BGEVENT_READ, CinnabarIslandPokecenterSign
+	bg_event 9, 11, BGEVENT_READ, CinnabarIslandGymSign
 	bg_event 7, 7, BGEVENT_READ, CinnabarIslandSign
-	bg_event 1, 9, BGEVENT_ITEM, CinnabarIslandHiddenRareCandy
+	bg_event 9, 1, BGEVENT_ITEM, CinnabarIslandHiddenRareCandy
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_BLUE, 6, 9, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	object_event 9, 6, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

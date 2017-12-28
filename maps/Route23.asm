@@ -28,17 +28,17 @@ Route23_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $5, $9, 1, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def $5, $a, 2, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def $d, $9, 10, VICTORY_ROAD
-	warp_def $d, $a, 10, VICTORY_ROAD
+	warp_def 9, 5, 1, INDIGO_PLATEAU_POKECENTER_1F
+	warp_def 10, 5, 2, INDIGO_PLATEAU_POKECENTER_1F
+	warp_def 9, 13, 10, VICTORY_ROAD
+	warp_def 10, 13, 10, VICTORY_ROAD
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 7, 11, BGEVENT_READ, IndigoPlateauSign
+	bg_event 11, 7, BGEVENT_READ, IndigoPlateauSign
 
 .ObjectEvents:
 	db 0

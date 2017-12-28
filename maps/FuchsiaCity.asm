@@ -130,35 +130,35 @@ FuchsiaCity_MapEventHeader:
 
 .Warps:
 	db 11
-	warp_def $d, $5, 2, FUCHSIA_MART
-	warp_def $d, $16, 1, SAFARI_ZONE_MAIN_OFFICE
-	warp_def $1b, $8, 1, FUCHSIA_GYM
-	warp_def $1b, $b, 1, FUCHSIA_BILL_SPEECH_HOUSE
-	warp_def $1b, $13, 1, FUCHSIA_POKECENTER_1F
-	warp_def $1b, $1b, 1, SAFARI_ZONE_WARDENS_HOME
-	warp_def $3, $12, 3, SAFARI_ZONE_FUCHSIA_GATE_BETA
-	warp_def $16, $25, 1, ROUTE_15_FUCHSIA_GATE
-	warp_def $17, $25, 2, ROUTE_15_FUCHSIA_GATE
-	warp_def $23, $7, 1, ROUTE_19___FUCHSIA_GATE
-	warp_def $23, $8, 2, ROUTE_19___FUCHSIA_GATE
+	warp_def 5, 13, 2, FUCHSIA_MART
+	warp_def 22, 13, 1, SAFARI_ZONE_MAIN_OFFICE
+	warp_def 8, 27, 1, FUCHSIA_GYM
+	warp_def 11, 27, 1, FUCHSIA_BILL_SPEECH_HOUSE
+	warp_def 19, 27, 1, FUCHSIA_POKECENTER_1F
+	warp_def 27, 27, 1, SAFARI_ZONE_WARDENS_HOME
+	warp_def 18, 3, 3, SAFARI_ZONE_FUCHSIA_GATE_BETA
+	warp_def 37, 22, 1, ROUTE_15_FUCHSIA_GATE
+	warp_def 37, 23, 2, ROUTE_15_FUCHSIA_GATE
+	warp_def 7, 35, 1, ROUTE_19___FUCHSIA_GATE
+	warp_def 8, 35, 2, ROUTE_19___FUCHSIA_GATE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 8
-	bg_event 15, 21, BGEVENT_READ, FuchsiaCitySign
-	bg_event 29, 5, BGEVENT_READ, FuchsiaGymSign
-	bg_event 15, 25, BGEVENT_READ, SafariZoneOfficeSign
-	bg_event 29, 27, BGEVENT_READ, WardensHomeSign
-	bg_event 5, 17, BGEVENT_READ, SafariZoneClosedSign
-	bg_event 15, 13, BGEVENT_READ, NoLitteringSign
-	bg_event 27, 20, BGEVENT_READ, FuchsiaCityPokecenterSign
-	bg_event 13, 6, BGEVENT_READ, FuchsiaCityMartSign
+	bg_event 21, 15, BGEVENT_READ, FuchsiaCitySign
+	bg_event 5, 29, BGEVENT_READ, FuchsiaGymSign
+	bg_event 25, 15, BGEVENT_READ, SafariZoneOfficeSign
+	bg_event 27, 29, BGEVENT_READ, WardensHomeSign
+	bg_event 17, 5, BGEVENT_READ, SafariZoneClosedSign
+	bg_event 13, 15, BGEVENT_READ, NoLitteringSign
+	bg_event 20, 27, BGEVENT_READ, FuchsiaCityPokecenterSign
+	bg_event 6, 13, BGEVENT_READ, FuchsiaCityMartSign
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_YOUNGSTER, 18, 23, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
-	object_event SPRITE_POKEFAN_M, 8, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
-	object_event SPRITE_TEACHER, 14, 16, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1
-	object_event SPRITE_FRUIT_TREE, 1, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaCityFruitTree, -1
+	object_event 23, 18, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityYoungster, -1
+	object_event 13, 8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, FuchsiaCityPokefanM, -1
+	object_event 16, 14, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaCityTeacher, -1
+	object_event 8, 1, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaCityFruitTree, -1

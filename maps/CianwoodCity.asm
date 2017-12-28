@@ -386,40 +386,40 @@ CianwoodCity_MapEventHeader:
 
 .Warps:
 	db 7
-	warp_def $29, $11, 1, MANIAS_HOUSE
-	warp_def $2b, $8, 1, CIANWOOD_GYM
-	warp_def $2b, $17, 1, CIANWOOD_POKECENTER_1F
-	warp_def $2f, $f, 1, CIANWOOD_PHARMACY
-	warp_def $1f, $9, 1, CIANWOOD_CITY_PHOTO_STUDIO
-	warp_def $25, $f, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
-	warp_def $11, $5, 1, POKE_SEERS_HOUSE
+	warp_def 17, 41, 1, MANIAS_HOUSE
+	warp_def 8, 43, 1, CIANWOOD_GYM
+	warp_def 23, 43, 1, CIANWOOD_POKECENTER_1F
+	warp_def 15, 47, 1, CIANWOOD_PHARMACY
+	warp_def 9, 31, 1, CIANWOOD_CITY_PHOTO_STUDIO
+	warp_def 15, 37, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
+	warp_def 5, 17, 1, POKE_SEERS_HOUSE
 
 .CoordEvents:
 	db 1
-	coord_event 1, $10, $b, CianwoodCitySuicuneAndEusine
+	coord_event 11, 16, 1, CianwoodCitySuicuneAndEusine
 
 .BGEvents:
 	db 8
-	bg_event 34, 20, BGEVENT_READ, CianwoodCitySign
-	bg_event 45, 7, BGEVENT_READ, CianwoodGymSign
-	bg_event 43, 24, BGEVENT_READ, CianwoodPokecenterSign
-	bg_event 47, 19, BGEVENT_READ, CianwoodPharmacySign
-	bg_event 32, 8, BGEVENT_READ, CianwoodPhotoStudioSign
-	bg_event 24, 8, BGEVENT_READ, CianwoodPokeSeerSign
-	bg_event 19, 4, BGEVENT_ITEM, CianwoodCityHiddenRevive
-	bg_event 29, 5, BGEVENT_ITEM, CianwoodCityHiddenMaxEther
+	bg_event 20, 34, BGEVENT_READ, CianwoodCitySign
+	bg_event 7, 45, BGEVENT_READ, CianwoodGymSign
+	bg_event 24, 43, BGEVENT_READ, CianwoodPokecenterSign
+	bg_event 19, 47, BGEVENT_READ, CianwoodPharmacySign
+	bg_event 8, 32, BGEVENT_READ, CianwoodPhotoStudioSign
+	bg_event 8, 24, BGEVENT_READ, CianwoodPokeSeerSign
+	bg_event 4, 19, BGEVENT_ITEM, CianwoodCityHiddenRevive
+	bg_event 5, 29, BGEVENT_ITEM, CianwoodCityHiddenMaxEther
 
 .ObjectEvents:
 	db 12
-	object_event SPRITE_STANDING_YOUNGSTER, 37, 21, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodCityYoungster, -1
-	object_event SPRITE_POKEFAN_M, 33, 17, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityPokefanM, -1
-	object_event SPRITE_LASS, 42, 14, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityLass, -1
-	object_event SPRITE_ROCK, 16, 8, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event SPRITE_ROCK, 17, 9, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event SPRITE_ROCK, 25, 4, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event SPRITE_ROCK, 29, 5, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event SPRITE_ROCK, 27, 10, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event SPRITE_ROCK, 19, 4, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
-	object_event SPRITE_POKEFAN_F, 46, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityChucksWife, -1
-	object_event SPRITE_SUPER_NERD, 21, 11, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
-	object_event SPRITE_SUICUNE, 14, 10, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
+	object_event 21, 37, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodCityYoungster, -1
+	object_event 17, 33, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityPokefanM, -1
+	object_event 14, 42, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityLass, -1
+	object_event 8, 16, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 9, 17, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 4, 25, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 5, 29, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 10, 27, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 4, 19, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityRock, -1
+	object_event 10, 46, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityChucksWife, -1
+	object_event 11, 21, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CIANWOOD_CITY_EUSINE
+	object_event 10, 14, SPRITE_SUICUNE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

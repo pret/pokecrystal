@@ -80,19 +80,19 @@ RedsHouse1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $2, 1, PALLET_TOWN
-	warp_def $7, $3, 1, PALLET_TOWN
-	warp_def $0, $7, 1, REDS_HOUSE_2F
+	warp_def 2, 7, 1, PALLET_TOWN
+	warp_def 3, 7, 1, PALLET_TOWN
+	warp_def 7, 0, 1, REDS_HOUSE_2F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 3
-	bg_event 1, 0, BGEVENT_READ, RedsHouse1FBookshelf
+	bg_event 0, 1, BGEVENT_READ, RedsHouse1FBookshelf
 	bg_event 1, 1, BGEVENT_READ, RedsHouse1FBookshelf
-	bg_event 1, 2, BGEVENT_READ, RedsHouse1FTV
+	bg_event 2, 1, BGEVENT_READ, RedsHouse1FTV
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_REDS_MOM, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RedsMom, -1
+	object_event 5, 3, SPRITE_REDS_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RedsMom, -1

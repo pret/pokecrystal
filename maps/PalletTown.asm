@@ -75,21 +75,21 @@ PalletTown_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $5, $5, 1, REDS_HOUSE_1F
-	warp_def $5, $d, 1, BLUES_HOUSE
-	warp_def $b, $c, 1, OAKS_LAB
+	warp_def 5, 5, 1, REDS_HOUSE_1F
+	warp_def 13, 5, 1, BLUES_HOUSE
+	warp_def 12, 11, 1, OAKS_LAB
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 4
-	bg_event 9, 7, BGEVENT_READ, PalletTownSign
-	bg_event 5, 3, BGEVENT_READ, RedsHouseSign
+	bg_event 7, 9, BGEVENT_READ, PalletTownSign
+	bg_event 3, 5, BGEVENT_READ, RedsHouseSign
 	bg_event 13, 13, BGEVENT_READ, OaksLabSign
-	bg_event 5, 11, BGEVENT_READ, BluesHouseSign
+	bg_event 11, 5, BGEVENT_READ, BluesHouseSign
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_TEACHER, 8, 3, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PalletTownTeacherScript, -1
-	object_event SPRITE_FISHER, 14, 12, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PalletTownFisherScript, -1
+	object_event 3, 8, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PalletTownTeacherScript, -1
+	object_event 12, 14, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PalletTownFisherScript, -1

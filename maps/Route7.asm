@@ -40,16 +40,16 @@ Route7_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $6, $f, 1, ROUTE_7_SAFFRON_GATE
-	warp_def $7, $f, 2, ROUTE_7_SAFFRON_GATE
+	warp_def 15, 6, 1, ROUTE_7_SAFFRON_GATE
+	warp_def 15, 7, 2, ROUTE_7_SAFFRON_GATE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 11, 5, BGEVENT_READ, Route7UndergroundPathSign
-	bg_event 9, 6, BGEVENT_READ, Route7LockedDoor
+	bg_event 5, 11, BGEVENT_READ, Route7UndergroundPathSign
+	bg_event 6, 9, BGEVENT_READ, Route7LockedDoor
 
 .ObjectEvents:
 	db 0

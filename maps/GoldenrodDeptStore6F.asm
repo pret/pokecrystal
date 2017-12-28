@@ -155,23 +155,23 @@ GoldenrodDeptStore6F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $f, 2, GOLDENROD_DEPT_STORE_5F
-	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
-	warp_def $0, $d, 1, GOLDENROD_DEPT_STORE_ROOF
+	warp_def 15, 0, 2, GOLDENROD_DEPT_STORE_5F
+	warp_def 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def 13, 0, 1, GOLDENROD_DEPT_STORE_ROOF
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 6
-	bg_event 0, 14, BGEVENT_READ, GoldenrodDeptStore6FDirectory
-	bg_event 0, 3, BGEVENT_READ, GoldenrodDeptStore6FElevatorButton
-	bg_event 1, 8, BGEVENT_UP, GoldenrodVendingMachine
-	bg_event 1, 9, BGEVENT_UP, GoldenrodVendingMachine
-	bg_event 1, 10, BGEVENT_UP, GoldenrodVendingMachine
-	bg_event 1, 11, BGEVENT_UP, GoldenrodVendingMachine
+	bg_event 14, 0, BGEVENT_READ, GoldenrodDeptStore6FDirectory
+	bg_event 3, 0, BGEVENT_READ, GoldenrodDeptStore6FElevatorButton
+	bg_event 8, 1, BGEVENT_UP, GoldenrodVendingMachine
+	bg_event 9, 1, BGEVENT_UP, GoldenrodVendingMachine
+	bg_event 10, 1, BGEVENT_UP, GoldenrodVendingMachine
+	bg_event 11, 1, BGEVENT_UP, GoldenrodVendingMachine
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_LASS, 2, 10, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore6FLassScript, -1
-	object_event SPRITE_SUPER_NERD, 2, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore6FSuperNerdScript, -1
+	object_event 10, 2, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore6FLassScript, -1
+	object_event 8, 2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore6FSuperNerdScript, -1

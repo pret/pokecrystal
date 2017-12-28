@@ -33,15 +33,15 @@ CeladonDeptStoreElevator_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $1, -1, CELADON_DEPT_STORE_1F
-	warp_def $3, $2, -1, CELADON_DEPT_STORE_1F
+	warp_def 1, 3, -1, CELADON_DEPT_STORE_1F
+	warp_def 2, 3, -1, CELADON_DEPT_STORE_1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 0, 3, BGEVENT_READ, CeladonDeptStoreElevatorScript
+	bg_event 3, 0, BGEVENT_READ, CeladonDeptStoreElevatorScript
 
 .ObjectEvents:
 	db 0

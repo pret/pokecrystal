@@ -79,21 +79,21 @@ CeladonDeptStore1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $7, $7, 1, CELADON_CITY
-	warp_def $7, $8, 1, CELADON_CITY
-	warp_def $0, $f, 2, CELADON_DEPT_STORE_2F
-	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
+	warp_def 7, 7, 1, CELADON_CITY
+	warp_def 8, 7, 1, CELADON_CITY
+	warp_def 15, 0, 2, CELADON_DEPT_STORE_2F
+	warp_def 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 0, 14, BGEVENT_READ, CeladonDeptStore1FDirectory
-	bg_event 0, 3, BGEVENT_READ, CeladonDeptStore1FElevatorButton
+	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore1FDirectory
+	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore1FElevatorButton
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_RECEPTIONIST, 1, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FReceptionistScript, -1
-	object_event SPRITE_GENTLEMAN, 4, 11, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FGentlemanScript, -1
-	object_event SPRITE_TEACHER, 3, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FTeacherScript, -1
+	object_event 10, 1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FReceptionistScript, -1
+	object_event 11, 4, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FGentlemanScript, -1
+	object_event 5, 3, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FTeacherScript, -1

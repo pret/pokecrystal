@@ -50,17 +50,17 @@ EcruteakLugiaSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 7, ECRUTEAK_CITY
-	warp_def $7, $4, 7, ECRUTEAK_CITY
+	warp_def 3, 7, 7, ECRUTEAK_CITY
+	warp_def 4, 7, 7, ECRUTEAK_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 1, 2, BGEVENT_READ, LugiaSpeechHouseRadio
+	bg_event 2, 1, BGEVENT_READ, LugiaSpeechHouseRadio
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseGrampsScript, -1
-	object_event SPRITE_YOUNGSTER, 4, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseYoungsterScript, -1
+	object_event 2, 3, SPRITE_GRAMPS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseGrampsScript, -1
+	object_event 5, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakLugiaSpeechHouseYoungsterScript, -1

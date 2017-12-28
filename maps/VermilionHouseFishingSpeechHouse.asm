@@ -56,16 +56,16 @@ VermilionHouseFishingSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, VERMILION_CITY
-	warp_def $7, $3, 1, VERMILION_CITY
+	warp_def 2, 7, 1, VERMILION_CITY
+	warp_def 3, 7, 1, VERMILION_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 0, 3, BGEVENT_READ, FishingDudesHousePhoto
+	bg_event 3, 0, BGEVENT_READ, FishingDudesHousePhoto
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_FISHING_GURU, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FishingDude, -1
+	object_event 2, 4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FishingDude, -1

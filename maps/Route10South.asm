@@ -81,16 +81,16 @@ Route10South_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $1, $6, 2, ROCK_TUNNEL_1F
+	warp_def 6, 1, 2, ROCK_TUNNEL_1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 3, 5, BGEVENT_READ, Route10Sign
+	bg_event 5, 3, BGEVENT_READ, Route10Sign
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_POKEFAN_M, 3, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerJim, -1
-	object_event SPRITE_POKEFAN_M, 10, 8, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerPokefanmRobert, -1
+	object_event 17, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerJim, -1
+	object_event 8, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerPokefanmRobert, -1

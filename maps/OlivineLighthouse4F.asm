@@ -87,16 +87,16 @@ OlivineLighthouse4F_MapEventHeader:
 
 .Warps:
 	db 10
-	warp_def $3, $d, 1, OLIVINE_LIGHTHOUSE_3F
-	warp_def $5, $3, 2, OLIVINE_LIGHTHOUSE_5F
-	warp_def $7, $9, 3, OLIVINE_LIGHTHOUSE_5F
-	warp_def $5, $9, 3, OLIVINE_LIGHTHOUSE_3F
-	warp_def $9, $10, 6, OLIVINE_LIGHTHOUSE_3F
-	warp_def $9, $11, 7, OLIVINE_LIGHTHOUSE_3F
-	warp_def $3, $8, 8, OLIVINE_LIGHTHOUSE_3F
-	warp_def $3, $9, 9, OLIVINE_LIGHTHOUSE_3F
-	warp_def $7, $10, 4, OLIVINE_LIGHTHOUSE_5F
-	warp_def $7, $11, 5, OLIVINE_LIGHTHOUSE_5F
+	warp_def 13, 3, 1, OLIVINE_LIGHTHOUSE_3F
+	warp_def 3, 5, 2, OLIVINE_LIGHTHOUSE_5F
+	warp_def 9, 7, 3, OLIVINE_LIGHTHOUSE_5F
+	warp_def 9, 5, 3, OLIVINE_LIGHTHOUSE_3F
+	warp_def 16, 9, 6, OLIVINE_LIGHTHOUSE_3F
+	warp_def 17, 9, 7, OLIVINE_LIGHTHOUSE_3F
+	warp_def 8, 3, 8, OLIVINE_LIGHTHOUSE_3F
+	warp_def 9, 3, 9, OLIVINE_LIGHTHOUSE_3F
+	warp_def 16, 7, 4, OLIVINE_LIGHTHOUSE_5F
+	warp_def 17, 7, 5, OLIVINE_LIGHTHOUSE_5F
 
 .CoordEvents:
 	db 0
@@ -106,5 +106,5 @@ OlivineLighthouse4F_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_SAILOR, 14, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorKent, -1
-	object_event SPRITE_LASS, 2, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerLassConnie, -1
+	object_event 7, 14, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorKent, -1
+	object_event 11, 2, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerLassConnie, -1

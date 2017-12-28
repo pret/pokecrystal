@@ -1028,23 +1028,23 @@ Pokecenter2F_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $7, $0, -1, POKECENTER_2F
-	warp_def $0, $5, 1, TRADE_CENTER
-	warp_def $0, $9, 1, COLOSSEUM
-	warp_def $2, $d, 1, TIME_CAPSULE
-	warp_def $0, $6, 1, MOBILE_TRADE_ROOM_MOBILE
-	warp_def $0, $a, 1, MOBILE_BATTLE_ROOM
+	warp_def 0, 7, -1, POKECENTER_2F
+	warp_def 5, 0, 1, TRADE_CENTER
+	warp_def 9, 0, 1, COLOSSEUM
+	warp_def 13, 2, 1, TIME_CAPSULE
+	warp_def 6, 0, 1, MOBILE_TRADE_ROOM_MOBILE
+	warp_def 10, 0, 1, MOBILE_BATTLE_ROOM
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 3, 7, BGEVENT_READ, MapPokecenter2FSignpost0Script
+	bg_event 7, 3, BGEVENT_READ, MapPokecenter2FSignpost0Script
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_LINK_RECEPTIONIST, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_Trade, -1
-	object_event SPRITE_LINK_RECEPTIONIST, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_Battle, -1
-	object_event SPRITE_LINK_RECEPTIONIST, 3, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_TimeCapsule, -1
-	object_event SPRITE_OFFICER, 1, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY
+	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_Trade, -1
+	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_Battle, -1
+	object_event 13, 3, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_TimeCapsule, -1
+	object_event 1, 1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x192c9a, EVENT_MYSTERY_GIFT_DELIVERY_GUY

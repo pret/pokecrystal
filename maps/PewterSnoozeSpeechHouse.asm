@@ -26,17 +26,17 @@ PewterSnoozeSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, PEWTER_CITY
-	warp_def $7, $3, 5, PEWTER_CITY
+	warp_def 2, 7, 5, PEWTER_CITY
+	warp_def 3, 7, 5, PEWTER_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, PewterSnoozeSpeechHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, PewterSnoozeSpeechHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, PewterSnoozeSpeechHouseBookshelf
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_GRAMPS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterSnoozeSpeechHouseGrampsScript, -1
+	object_event 5, 3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterSnoozeSpeechHouseGrampsScript, -1

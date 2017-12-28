@@ -135,10 +135,10 @@ KogasRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $4, 2, WILLS_ROOM
-	warp_def $11, $5, 3, WILLS_ROOM
-	warp_def $2, $4, 1, BRUNOS_ROOM
-	warp_def $2, $5, 2, BRUNOS_ROOM
+	warp_def 4, 17, 2, WILLS_ROOM
+	warp_def 5, 17, 3, WILLS_ROOM
+	warp_def 4, 2, 1, BRUNOS_ROOM
+	warp_def 5, 2, 2, BRUNOS_ROOM
 
 .CoordEvents:
 	db 0
@@ -148,4 +148,4 @@ KogasRoom_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_KOGA, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, KogaScript_Battle, -1
+	object_event 5, 7, SPRITE_KOGA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, KogaScript_Battle, -1

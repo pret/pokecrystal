@@ -33,17 +33,17 @@ GuideGentsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, CHERRYGROVE_CITY
-	warp_def $7, $3, 4, CHERRYGROVE_CITY
+	warp_def 2, 7, 4, CHERRYGROVE_CITY
+	warp_def 3, 7, 4, CHERRYGROVE_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, GuideGentsHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, GuideGentsHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, GuideGentsHouseBookshelf
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	object_event 2, 3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GuideGentsHouseGuideGent, EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE

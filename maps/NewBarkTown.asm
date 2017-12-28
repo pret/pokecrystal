@@ -287,25 +287,25 @@ NewBarkTown_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $3, $6, 1, ELMS_LAB
-	warp_def $5, $d, 1, KRISS_HOUSE_1F
-	warp_def $b, $3, 1, KRISS_NEIGHBORS_HOUSE
-	warp_def $d, $b, 1, ELMS_HOUSE
+	warp_def 6, 3, 1, ELMS_LAB
+	warp_def 13, 5, 1, KRISS_HOUSE_1F
+	warp_def 3, 11, 1, KRISS_NEIGHBORS_HOUSE
+	warp_def 11, 13, 1, ELMS_HOUSE
 
 .CoordEvents:
 	db 2
-	coord_event 0, $8, $1, NewBarkTown_TeacherStopsYouScene1
-	coord_event 0, $9, $1, NewBarkTown_TeacherStopsYouScene2
+	coord_event 1, 8, 0, NewBarkTown_TeacherStopsYouScene1
+	coord_event 1, 9, 0, NewBarkTown_TeacherStopsYouScene2
 
 .BGEvents:
 	db 4
 	bg_event 8, 8, BGEVENT_READ, NewBarkTownSign
-	bg_event 5, 11, BGEVENT_READ, MapNewBarkTownSignpost1Script
+	bg_event 11, 5, BGEVENT_READ, MapNewBarkTownSignpost1Script
 	bg_event 3, 3, BGEVENT_READ, MapNewBarkTownSignpost2Script
-	bg_event 13, 9, BGEVENT_READ, MapNewBarkTownSignpost3Script
+	bg_event 9, 13, BGEVENT_READ, MapNewBarkTownSignpost3Script
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_TEACHER, 8, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
-	object_event SPRITE_FISHER, 9, 12, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
-	object_event SPRITE_SILVER, 2, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownSilverScript, EVENT_RIVAL_NEW_BARK_TOWN
+	object_event 6, 8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
+	object_event 12, 9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
+	object_event 3, 2, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownSilverScript, EVENT_RIVAL_NEW_BARK_TOWN

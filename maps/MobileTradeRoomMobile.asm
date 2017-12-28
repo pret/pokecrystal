@@ -40,15 +40,15 @@ MobileTradeRoomMobile_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 5, POKECENTER_2F
-	warp_def $7, $5, 5, POKECENTER_2F
+	warp_def 4, 7, 5, POKECENTER_2F
+	warp_def 5, 7, 5, POKECENTER_2F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 2, 4, BGEVENT_UP, MapMobileTradeRoomMobileSignpost0Script
+	bg_event 4, 2, BGEVENT_UP, MapMobileTradeRoomMobileSignpost0Script
 
 .ObjectEvents:
 	db 0

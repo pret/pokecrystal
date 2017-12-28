@@ -1,5 +1,5 @@
 spawn: MACRO
-; map, y, x
+; map, x, y
 	map \1
 	db \2, \3
 ENDM

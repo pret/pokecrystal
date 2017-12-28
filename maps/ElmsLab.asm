@@ -1376,44 +1376,44 @@ ElmsLab_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $b, $4, 1, NEW_BARK_TOWN
-	warp_def $b, $5, 1, NEW_BARK_TOWN
+	warp_def 4, 11, 1, NEW_BARK_TOWN
+	warp_def 5, 11, 1, NEW_BARK_TOWN
 
 .CoordEvents:
 	db 8
-	coord_event 1, $6, $4, LabTryToLeaveScript
-	coord_event 1, $6, $5, LabTryToLeaveScript
-	coord_event 3, $5, $4, MeetCopScript
-	coord_event 3, $5, $5, MeetCopScript2
-	coord_event 5, $8, $4, AideScript_WalkPotions1
-	coord_event 5, $8, $5, AideScript_WalkPotions2
-	coord_event 6, $8, $4, AideScript_WalkBalls1
-	coord_event 6, $8, $5, AideScript_WalkBalls2
+	coord_event 4, 6, 1, LabTryToLeaveScript
+	coord_event 5, 6, 1, LabTryToLeaveScript
+	coord_event 4, 5, 3, MeetCopScript
+	coord_event 5, 5, 3, MeetCopScript2
+	coord_event 4, 8, 5, AideScript_WalkPotions1
+	coord_event 5, 8, 5, AideScript_WalkPotions2
+	coord_event 4, 8, 6, AideScript_WalkBalls1
+	coord_event 5, 8, 6, AideScript_WalkBalls2
 
 .BGEvents:
 	db 16
-	bg_event 1, 2, BGEVENT_READ, ElmsLabHealingMachine
-	bg_event 1, 6, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 1, 7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 1, 8, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 1, 9, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 7, 0, BGEVENT_READ, ElmsLabTravelTip1
-	bg_event 7, 1, BGEVENT_READ, ElmsLabTravelTip2
-	bg_event 7, 2, BGEVENT_READ, ElmsLabTravelTip3
-	bg_event 7, 3, BGEVENT_READ, ElmsLabTravelTip4
-	bg_event 7, 6, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 2, 1, BGEVENT_READ, ElmsLabHealingMachine
+	bg_event 6, 1, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 7, 1, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 8, 1, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 9, 1, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 0, 7, BGEVENT_READ, ElmsLabTravelTip1
+	bg_event 1, 7, BGEVENT_READ, ElmsLabTravelTip2
+	bg_event 2, 7, BGEVENT_READ, ElmsLabTravelTip3
+	bg_event 3, 7, BGEVENT_READ, ElmsLabTravelTip4
+	bg_event 6, 7, BGEVENT_READ, ElmsLabBookshelf
 	bg_event 7, 7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 7, 8, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 7, 9, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 3, 9, BGEVENT_READ, ElmsLabTrashcan
-	bg_event 0, 5, BGEVENT_READ, ElmsLabWindow
-	bg_event 5, 3, BGEVENT_DOWN, ElmsLabPC
+	bg_event 8, 7, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 9, 7, BGEVENT_READ, ElmsLabBookshelf
+	bg_event 9, 3, BGEVENT_READ, ElmsLabTrashcan
+	bg_event 5, 0, BGEVENT_READ, ElmsLabWindow
+	bg_event 3, 5, BGEVENT_DOWN, ElmsLabPC
 
 .ObjectEvents:
 	db 6
-	object_event SPRITE_ELM, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
-	object_event SPRITE_SCIENTIST, 9, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	object_event SPRITE_POKE_BALL, 3, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
-	object_event SPRITE_POKE_BALL, 3, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	object_event SPRITE_POKE_BALL, 3, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
-	object_event SPRITE_OFFICER, 3, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB
+	object_event 5, 2, SPRITE_ELM, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
+	object_event 2, 9, SPRITE_SCIENTIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	object_event 6, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	object_event 7, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	object_event 8, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	object_event 5, 3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB

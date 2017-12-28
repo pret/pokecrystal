@@ -76,8 +76,8 @@ Route26DayofWeekSiblingsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, ROUTE_26
-	warp_def $7, $3, 3, ROUTE_26
+	warp_def 2, 7, 3, ROUTE_26
+	warp_def 3, 7, 3, ROUTE_26
 
 .CoordEvents:
 	db 0
@@ -87,4 +87,4 @@ Route26DayofWeekSiblingsHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKEDEX, 3, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokedexScript_0x7b1e4, -1
+	object_event 3, 3, SPRITE_POKEDEX, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokedexScript_0x7b1e4, -1

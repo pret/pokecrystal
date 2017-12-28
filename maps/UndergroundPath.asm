@@ -19,16 +19,16 @@ UndergroundPath_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $2, $3, 3, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
-	warp_def $18, $3, 3, ROUTE_6_UNDERGROUND_PATH_ENTRANCE
+	warp_def 3, 2, 3, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
+	warp_def 3, 24, 3, ROUTE_6_UNDERGROUND_PATH_ENTRANCE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 9, 3, BGEVENT_ITEM, UndergroundPathHiddenFullRestore
-	bg_event 19, 1, BGEVENT_ITEM, UndergroundPathHiddenXSpecial
+	bg_event 3, 9, BGEVENT_ITEM, UndergroundPathHiddenFullRestore
+	bg_event 1, 19, BGEVENT_ITEM, UndergroundPathHiddenXSpecial
 
 .ObjectEvents:
 	db 0

@@ -140,20 +140,20 @@ Route17_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $52, $11, 1, ROUTE_17_18_GATE
-	warp_def $53, $11, 2, ROUTE_17_18_GATE
+	warp_def 17, 82, 1, ROUTE_17_18_GATE
+	warp_def 17, 83, 2, ROUTE_17_18_GATE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 54, 9, BGEVENT_ITEM, Route17HiddenMaxEther
-	bg_event 77, 8, BGEVENT_ITEM, Route17HiddenMaxElixer
+	bg_event 9, 54, BGEVENT_ITEM, Route17HiddenMaxEther
+	bg_event 8, 77, BGEVENT_ITEM, Route17HiddenMaxElixer
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_BIKER, 17, 4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerRiley, -1
-	object_event SPRITE_BIKER, 68, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerBikerJoel, -1
-	object_event SPRITE_BIKER, 53, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBikerGlenn, -1
-	object_event SPRITE_BIKER, 80, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerCharles, -1
+	object_event 4, 17, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerRiley, -1
+	object_event 9, 68, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerBikerJoel, -1
+	object_event 3, 53, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBikerGlenn, -1
+	object_event 6, 80, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerCharles, -1

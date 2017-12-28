@@ -59,8 +59,8 @@ CeruleanTradeSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, CERULEAN_CITY
-	warp_def $7, $3, 3, CERULEAN_CITY
+	warp_def 2, 7, 3, CERULEAN_CITY
+	warp_def 3, 7, 3, CERULEAN_CITY
 
 .CoordEvents:
 	db 0
@@ -70,7 +70,7 @@ CeruleanTradeSpeechHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_GRANNY, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanTradeSpeechHouseGrannyScript, -1
-	object_event SPRITE_GRAMPS, 2, 1, SPRITEMOVEDATA_WANDER, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanTradeSpeechHouseGrampsScript, -1
-	object_event SPRITE_RHYDON, 2, 5, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, RhydonScript_0x188139, -1
-	object_event SPRITE_ZUBAT, 6, 5, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ZubatScript_0x188143, -1
+	object_event 2, 4, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanTradeSpeechHouseGrannyScript, -1
+	object_event 1, 2, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanTradeSpeechHouseGrampsScript, -1
+	object_event 5, 2, SPRITE_RHYDON, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, RhydonScript_0x188139, -1
+	object_event 5, 6, SPRITE_ZUBAT, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ZubatScript_0x188143, -1

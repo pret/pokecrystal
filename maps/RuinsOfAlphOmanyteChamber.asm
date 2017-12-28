@@ -150,23 +150,23 @@ RuinsOfAlphOmanyteChamber_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $9, $3, 3, RUINS_OF_ALPH_OUTSIDE
-	warp_def $9, $4, 3, RUINS_OF_ALPH_OUTSIDE
-	warp_def $3, $3, 6, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def $3, $4, 7, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def $0, $4, 1, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
+	warp_def 3, 9, 3, RUINS_OF_ALPH_OUTSIDE
+	warp_def 4, 9, 3, RUINS_OF_ALPH_OUTSIDE
+	warp_def 3, 3, 6, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_def 4, 3, 7, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_def 4, 0, 1, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 6
-	bg_event 3, 2, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
-	bg_event 3, 5, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
-	bg_event 2, 3, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost2Script
-	bg_event 2, 4, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost3Script
-	bg_event 0, 3, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost4Script
-	bg_event 0, 4, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost5Script
+	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
+	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
+	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost2Script
+	bg_event 4, 2, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost3Script
+	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost4Script
+	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost5Script
 
 .ObjectEvents:
 	db 0

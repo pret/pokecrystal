@@ -50,7 +50,7 @@ TinTowerRoof_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $d, $9, 4, TIN_TOWER_9F
+	warp_def 9, 13, 4, TIN_TOWER_9F
 
 .CoordEvents:
 	db 0
@@ -60,4 +60,4 @@ TinTowerRoof_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_HO_OH, 5, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TinTowerHoOh, EVENT_TIN_TOWER_ROOF_HO_OH
+	object_event 9, 5, SPRITE_HO_OH, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TinTowerHoOh, EVENT_TIN_TOWER_ROOF_HO_OH

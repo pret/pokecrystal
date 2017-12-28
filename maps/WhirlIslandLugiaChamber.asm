@@ -49,7 +49,7 @@ WhirlIslandLugiaChamber_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $d, $9, 3, WHIRL_ISLAND_B2F
+	warp_def 9, 13, 3, WHIRL_ISLAND_B2F
 
 .CoordEvents:
 	db 0
@@ -59,4 +59,4 @@ WhirlIslandLugiaChamber_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_LUGIA, 5, 9, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Lugia, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
+	object_event 9, 5, SPRITE_LUGIA, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Lugia, EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA

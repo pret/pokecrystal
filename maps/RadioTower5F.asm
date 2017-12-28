@@ -426,26 +426,26 @@ RadioTower5F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $0, $0, 1, RADIO_TOWER_4F
-	warp_def $0, $c, 3, RADIO_TOWER_4F
+	warp_def 0, 0, 1, RADIO_TOWER_4F
+	warp_def 12, 0, 3, RADIO_TOWER_4F
 
 .CoordEvents:
 	db 2
-	coord_event 0, $3, $0, FakeDirectorScript
-	coord_event 1, $5, $10, RadioTower5FRocketBossScene
+	coord_event 0, 3, 0, FakeDirectorScript
+	coord_event 16, 5, 1, RadioTower5FRocketBossScene
 
 .BGEvents:
 	db 5
-	bg_event 0, 3, BGEVENT_READ, MapRadioTower5FSignpost0Script
-	bg_event 0, 11, BGEVENT_READ, MapRadioTower5FSignpost2Script
-	bg_event 0, 15, BGEVENT_READ, MapRadioTower5FSignpost2Script
-	bg_event 1, 16, BGEVENT_READ, RadioTower5FBookshelf
-	bg_event 1, 17, BGEVENT_READ, RadioTower5FBookshelf
+	bg_event 3, 0, BGEVENT_READ, MapRadioTower5FSignpost0Script
+	bg_event 11, 0, BGEVENT_READ, MapRadioTower5FSignpost2Script
+	bg_event 15, 0, BGEVENT_READ, MapRadioTower5FSignpost2Script
+	bg_event 16, 1, BGEVENT_READ, RadioTower5FBookshelf
+	bg_event 17, 1, BGEVENT_READ, RadioTower5FBookshelf
 
 .ObjectEvents:
 	db 5
-	object_event SPRITE_GENTLEMAN, 6, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
-	object_event SPRITE_ROCKET, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event SPRITE_ROCKET_GIRL, 2, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event SPRITE_ROCKER, 5, 13, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	object_event SPRITE_POKE_BALL, 5, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL
+	object_event 3, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
+	object_event 13, 5, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 17, 2, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 13, 5, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	object_event 8, 5, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL

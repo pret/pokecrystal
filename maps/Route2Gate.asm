@@ -31,10 +31,10 @@ Route2Gate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 3, ROUTE_2
-	warp_def $0, $5, 4, ROUTE_2
-	warp_def $7, $4, 2, ROUTE_2
-	warp_def $7, $5, 2, ROUTE_2
+	warp_def 4, 0, 3, ROUTE_2
+	warp_def 5, 0, 4, ROUTE_2
+	warp_def 4, 7, 2, ROUTE_2
+	warp_def 5, 7, 2, ROUTE_2
 
 .CoordEvents:
 	db 0
@@ -44,4 +44,4 @@ Route2Gate_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_SCIENTIST, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route2GateScientistScript, -1
+	object_event 6, 4, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route2GateScientistScript, -1

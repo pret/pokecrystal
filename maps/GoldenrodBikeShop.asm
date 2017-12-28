@@ -108,24 +108,24 @@ GoldenrodBikeShop_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, GOLDENROD_CITY
-	warp_def $7, $3, 2, GOLDENROD_CITY
+	warp_def 2, 7, 2, GOLDENROD_CITY
+	warp_def 3, 7, 2, GOLDENROD_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 9
-	bg_event 2, 1, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 3, 0, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 3, 1, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 5, 0, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 5, 1, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 6, 0, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 6, 1, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event 1, 2, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event 0, 3, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event 1, 3, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event 0, 5, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event 1, 5, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event 0, 6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event 1, 6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
 	bg_event 6, 6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 6, 7, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event 7, 6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_CLERK, 2, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x54750, -1
+	object_event 7, 2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x54750, -1

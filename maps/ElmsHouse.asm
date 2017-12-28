@@ -89,19 +89,19 @@ ElmsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, NEW_BARK_TOWN
-	warp_def $7, $3, 4, NEW_BARK_TOWN
+	warp_def 2, 7, 4, NEW_BARK_TOWN
+	warp_def 3, 7, 4, NEW_BARK_TOWN
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 3
-	bg_event 1, 0, BGEVENT_READ, ElmsHousePC
-	bg_event 1, 6, BGEVENT_READ, ElmsHouseBookshelf
-	bg_event 1, 7, BGEVENT_READ, ElmsHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, ElmsHousePC
+	bg_event 6, 1, BGEVENT_READ, ElmsHouseBookshelf
+	bg_event 7, 1, BGEVENT_READ, ElmsHouseBookshelf
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_TEACHER, 5, 1, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ElmsWife, -1
-	object_event SPRITE_BUG_CATCHER, 4, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElmsSon, -1
+	object_event 1, 5, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ElmsWife, -1
+	object_event 5, 4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElmsSon, -1

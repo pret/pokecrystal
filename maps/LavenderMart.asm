@@ -53,8 +53,8 @@ LavenderMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, LAVENDER_TOWN
-	warp_def $7, $3, 5, LAVENDER_TOWN
+	warp_def 2, 7, 5, LAVENDER_TOWN
+	warp_def 3, 7, 5, LAVENDER_TOWN
 
 .CoordEvents:
 	db 0
@@ -64,6 +64,6 @@ LavenderMart_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x7eb1c, -1
-	object_event SPRITE_POKEFAN_M, 6, 6, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderMartPokefanMScript, -1
-	object_event SPRITE_ROCKER, 2, 9, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavenderMartRockerScript, -1
+	object_event 1, 3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x7eb1c, -1
+	object_event 6, 6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderMartPokefanMScript, -1
+	object_event 9, 2, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavenderMartRockerScript, -1

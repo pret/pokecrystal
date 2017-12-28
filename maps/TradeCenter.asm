@@ -59,8 +59,8 @@ TradeCenter_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 2, POKECENTER_2F
-	warp_def $7, $5, 2, POKECENTER_2F
+	warp_def 4, 7, 2, POKECENTER_2F
+	warp_def 5, 7, 2, POKECENTER_2F
 
 .CoordEvents:
 	db 0
@@ -68,9 +68,9 @@ TradeCenter_MapEventHeader:
 .BGEvents:
 	db 2
 	bg_event 4, 4, BGEVENT_RIGHT, MapTradeCenterSignpost1Script
-	bg_event 4, 5, BGEVENT_LEFT, MapTradeCenterSignpost1Script
+	bg_event 5, 4, BGEVENT_LEFT, MapTradeCenterSignpost1Script
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_CHRIS, 4, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
-	object_event SPRITE_CHRIS, 4, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT
+	object_event 3, 4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_GAVE_KURT_APRICORNS
+	object_event 6, 4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_RECEIVED_BALLS_FROM_KURT

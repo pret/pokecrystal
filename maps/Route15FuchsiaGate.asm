@@ -25,10 +25,10 @@ Route15FuchsiaGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 8, FUCHSIA_CITY
-	warp_def $5, $0, 9, FUCHSIA_CITY
-	warp_def $4, $9, 1, ROUTE_15
-	warp_def $5, $9, 2, ROUTE_15
+	warp_def 0, 4, 8, FUCHSIA_CITY
+	warp_def 0, 5, 9, FUCHSIA_CITY
+	warp_def 9, 4, 1, ROUTE_15
+	warp_def 9, 5, 2, ROUTE_15
 
 .CoordEvents:
 	db 0
@@ -38,4 +38,4 @@ Route15FuchsiaGate_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route15FuchsiaGateOfficerScript, -1
+	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route15FuchsiaGateOfficerScript, -1

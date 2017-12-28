@@ -38,8 +38,8 @@ VioletKylesHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 6, VIOLET_CITY
-	warp_def $7, $4, 6, VIOLET_CITY
+	warp_def 3, 7, 6, VIOLET_CITY
+	warp_def 4, 7, 6, VIOLET_CITY
 
 .CoordEvents:
 	db 0
@@ -49,5 +49,5 @@ VioletKylesHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletKylesHousePokefanMScript, -1
-	object_event SPRITE_YOUNGSTER, 5, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Kyle, -1
+	object_event 2, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletKylesHousePokefanMScript, -1
+	object_event 6, 5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Kyle, -1

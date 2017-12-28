@@ -285,34 +285,34 @@ BurnedTower1F_MapEventHeader:
 
 .Warps:
 	db 14
-	warp_def $f, $9, 13, ECRUTEAK_CITY
-	warp_def $f, $a, 13, ECRUTEAK_CITY
-	warp_def $9, $a,  1, BURNED_TOWER_B1F
-	warp_def $5, $5,  1, BURNED_TOWER_B1F
-	warp_def $6, $5,  1, BURNED_TOWER_B1F
-	warp_def $6, $4,  1, BURNED_TOWER_B1F
-	warp_def $4, $f,  2, BURNED_TOWER_B1F
-	warp_def $5, $f,  2, BURNED_TOWER_B1F
-	warp_def $7, $a,  3, BURNED_TOWER_B1F
-	warp_def $e, $5,  4, BURNED_TOWER_B1F
-	warp_def $e, $4,  4, BURNED_TOWER_B1F
-	warp_def $e, $e,  5, BURNED_TOWER_B1F
-	warp_def $e, $f,  5, BURNED_TOWER_B1F
-	warp_def $f, $7,  6, BURNED_TOWER_B1F
+	warp_def 9, 15, 13, ECRUTEAK_CITY
+	warp_def 10, 15, 13, ECRUTEAK_CITY
+	warp_def 10, 9,  1, BURNED_TOWER_B1F
+	warp_def 5, 5,  1, BURNED_TOWER_B1F
+	warp_def 5, 6,  1, BURNED_TOWER_B1F
+	warp_def 4, 6,  1, BURNED_TOWER_B1F
+	warp_def 15, 4,  2, BURNED_TOWER_B1F
+	warp_def 15, 5,  2, BURNED_TOWER_B1F
+	warp_def 10, 7,  3, BURNED_TOWER_B1F
+	warp_def 5, 14,  4, BURNED_TOWER_B1F
+	warp_def 4, 14,  4, BURNED_TOWER_B1F
+	warp_def 14, 14,  5, BURNED_TOWER_B1F
+	warp_def 15, 14,  5, BURNED_TOWER_B1F
+	warp_def 7, 15,  6, BURNED_TOWER_B1F
 
 .CoordEvents:
 	db 1
-	coord_event 1, $9, $b, BurnedTowerRivalBattleScript
+	coord_event 11, 9, 1, BurnedTowerRivalBattleScript
 
 .BGEvents:
 	db 2
-	bg_event  7,  8, BGEVENT_ITEM, BurnedTower1FHiddenEther
-	bg_event 11, 13, BGEVENT_ITEM, BurnedTower1FHiddenUltraBall
+	bg_event 8, 7, BGEVENT_ITEM, BurnedTower1FHiddenEther
+	bg_event 13, 11, BGEVENT_ITEM, BurnedTower1FHiddenUltraBall
 
 .ObjectEvents:
 	db 5
-	object_event SPRITE_ROCK, 4, 15, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTower1FRock, -1
-	object_event SPRITE_SUPER_NERD, 12, 12, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BurnedTower1FEusineScript, EVENT_BURNED_TOWER_1F_EUSINE
-	object_event SPRITE_SILVER, 9, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
-	object_event SPRITE_MORTY, 14, 14, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BurnedTower1FMortyScript, EVENT_BURNED_TOWER_MORTY
-	object_event SPRITE_POKE_BALL, 2, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTower1FHPUp, EVENT_BURNED_TOWER_1F_HP_UP
+	object_event 15, 4, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTower1FRock, -1
+	object_event 12, 12, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BurnedTower1FEusineScript, EVENT_BURNED_TOWER_1F_EUSINE
+	object_event 8, 9, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
+	object_event 14, 14, SPRITE_MORTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BurnedTower1FMortyScript, EVENT_BURNED_TOWER_MORTY
+	object_event 14, 2, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTower1FHPUp, EVENT_BURNED_TOWER_1F_HP_UP

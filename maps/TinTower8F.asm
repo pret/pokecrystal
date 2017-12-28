@@ -25,12 +25,12 @@ TinTower8F_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $5, $2, 2, TIN_TOWER_7F
-	warp_def $b, $2, 1, TIN_TOWER_9F
-	warp_def $7, $10, 2, TIN_TOWER_9F
-	warp_def $3, $a, 3, TIN_TOWER_9F
-	warp_def $f, $e, 6, TIN_TOWER_9F
-	warp_def $9, $6, 7, TIN_TOWER_9F
+	warp_def 2, 5, 2, TIN_TOWER_7F
+	warp_def 2, 11, 1, TIN_TOWER_9F
+	warp_def 16, 7, 2, TIN_TOWER_9F
+	warp_def 10, 3, 3, TIN_TOWER_9F
+	warp_def 14, 15, 6, TIN_TOWER_9F
+	warp_def 6, 9, 7, TIN_TOWER_9F
 
 .CoordEvents:
 	db 0
@@ -40,6 +40,6 @@ TinTower8F_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_POKE_BALL, 13, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower8FNugget, EVENT_TIN_TOWER_8F_NUGGET
-	object_event SPRITE_POKE_BALL, 6, 11, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower8FMaxElixer, EVENT_TIN_TOWER_8F_MAX_ELIXER
-	object_event SPRITE_POKE_BALL, 1, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower8FFullRestore, EVENT_TIN_TOWER_8F_FULL_RESTORE
+	object_event 7, 13, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower8FNugget, EVENT_TIN_TOWER_8F_NUGGET
+	object_event 11, 6, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower8FMaxElixer, EVENT_TIN_TOWER_8F_MAX_ELIXER
+	object_event 3, 1, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower8FFullRestore, EVENT_TIN_TOWER_8F_FULL_RESTORE

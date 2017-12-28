@@ -296,51 +296,51 @@ SaffronGym_MapEventHeader:
 
 .Warps:
 	db 32
-	warp_def $11, $8, 2, SAFFRON_CITY
-	warp_def $11, $9, 2, SAFFRON_CITY
-	warp_def $f, $b, 18, SAFFRON_GYM
-	warp_def $f, $13, 19, SAFFRON_GYM
-	warp_def $b, $13, 20, SAFFRON_GYM
-	warp_def $b, $1, 21, SAFFRON_GYM
-	warp_def $3, $5, 22, SAFFRON_GYM
-	warp_def $5, $b, 23, SAFFRON_GYM
-	warp_def $f, $1, 24, SAFFRON_GYM
-	warp_def $3, $13, 25, SAFFRON_GYM
-	warp_def $11, $f, 26, SAFFRON_GYM
-	warp_def $11, $5, 27, SAFFRON_GYM
-	warp_def $9, $5, 28, SAFFRON_GYM
-	warp_def $3, $9, 29, SAFFRON_GYM
-	warp_def $9, $f, 30, SAFFRON_GYM
-	warp_def $5, $f, 31, SAFFRON_GYM
-	warp_def $5, $1, 32, SAFFRON_GYM
-	warp_def $11, $13, 3, SAFFRON_GYM
-	warp_def $9, $13, 4, SAFFRON_GYM
-	warp_def $9, $1, 5, SAFFRON_GYM
-	warp_def $5, $5, 6, SAFFRON_GYM
-	warp_def $3, $b, 7, SAFFRON_GYM
-	warp_def $11, $1, 8, SAFFRON_GYM
-	warp_def $5, $13, 9, SAFFRON_GYM
-	warp_def $f, $f, 10, SAFFRON_GYM
-	warp_def $f, $5, 11, SAFFRON_GYM
-	warp_def $b, $5, 12, SAFFRON_GYM
-	warp_def $5, $9, 13, SAFFRON_GYM
-	warp_def $b, $f, 14, SAFFRON_GYM
-	warp_def $3, $f, 15, SAFFRON_GYM
-	warp_def $3, $1, 16, SAFFRON_GYM
-	warp_def $9, $b, 17, SAFFRON_GYM
+	warp_def 8, 17, 2, SAFFRON_CITY
+	warp_def 9, 17, 2, SAFFRON_CITY
+	warp_def 11, 15, 18, SAFFRON_GYM
+	warp_def 19, 15, 19, SAFFRON_GYM
+	warp_def 19, 11, 20, SAFFRON_GYM
+	warp_def 1, 11, 21, SAFFRON_GYM
+	warp_def 5, 3, 22, SAFFRON_GYM
+	warp_def 11, 5, 23, SAFFRON_GYM
+	warp_def 1, 15, 24, SAFFRON_GYM
+	warp_def 19, 3, 25, SAFFRON_GYM
+	warp_def 15, 17, 26, SAFFRON_GYM
+	warp_def 5, 17, 27, SAFFRON_GYM
+	warp_def 5, 9, 28, SAFFRON_GYM
+	warp_def 9, 3, 29, SAFFRON_GYM
+	warp_def 15, 9, 30, SAFFRON_GYM
+	warp_def 15, 5, 31, SAFFRON_GYM
+	warp_def 1, 5, 32, SAFFRON_GYM
+	warp_def 19, 17, 3, SAFFRON_GYM
+	warp_def 19, 9, 4, SAFFRON_GYM
+	warp_def 1, 9, 5, SAFFRON_GYM
+	warp_def 5, 5, 6, SAFFRON_GYM
+	warp_def 11, 3, 7, SAFFRON_GYM
+	warp_def 1, 17, 8, SAFFRON_GYM
+	warp_def 19, 5, 9, SAFFRON_GYM
+	warp_def 15, 15, 10, SAFFRON_GYM
+	warp_def 5, 15, 11, SAFFRON_GYM
+	warp_def 5, 11, 12, SAFFRON_GYM
+	warp_def 9, 5, 13, SAFFRON_GYM
+	warp_def 15, 11, 14, SAFFRON_GYM
+	warp_def 15, 3, 15, SAFFRON_GYM
+	warp_def 1, 3, 16, SAFFRON_GYM
+	warp_def 11, 9, 17, SAFFRON_GYM
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 15, 8, BGEVENT_READ, SaffronGymStatue
+	bg_event 8, 15, BGEVENT_READ, SaffronGymStatue
 
 .ObjectEvents:
 	db 6
-	object_event SPRITE_SABRINA, 8, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SabrinaScript_0x189c2e, -1
-	object_event SPRITE_GRANNY, 16, 17, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerMediumRebecca, -1
-	object_event SPRITE_YOUNGSTER, 16, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
-	object_event SPRITE_GRANNY, 4, 3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerMediumDoris, -1
-	object_event SPRITE_YOUNGSTER, 4, 17, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicJared, -1
-	object_event SPRITE_GYM_GUY, 14, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuyScript, -1
+	object_event 9, 8, SPRITE_SABRINA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SabrinaScript_0x189c2e, -1
+	object_event 17, 16, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerMediumRebecca, -1
+	object_event 3, 16, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
+	object_event 3, 4, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerMediumDoris, -1
+	object_event 17, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicJared, -1
+	object_event 9, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuyScript, -1

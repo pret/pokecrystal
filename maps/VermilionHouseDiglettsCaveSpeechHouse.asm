@@ -26,8 +26,8 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, VERMILION_CITY
-	warp_def $7, $3, 6, VERMILION_CITY
+	warp_def 2, 7, 6, VERMILION_CITY
+	warp_def 3, 7, 6, VERMILION_CITY
 
 .CoordEvents:
 	db 0
@@ -37,4 +37,4 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_GENTLEMAN, 3, 1, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionHouseDiglettsCaveSpeechHouseGentlemanScript, -1
+	object_event 1, 3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionHouseDiglettsCaveSpeechHouseGentlemanScript, -1

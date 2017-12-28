@@ -291,30 +291,30 @@ FastShip1F_MapEventHeader:
 
 .Warps:
 	db 12
-	warp_def $1, $19, -1, FAST_SHIP_1F
-	warp_def $8, $1b, 1, FAST_SHIP_CABINS_NNW_NNE_NE
-	warp_def $8, $17, 2, FAST_SHIP_CABINS_NNW_NNE_NE
-	warp_def $8, $13, 3, FAST_SHIP_CABINS_NNW_NNE_NE
-	warp_def $8, $f, 1, FAST_SHIP_CABINS_SW_SSW_NW
-	warp_def $f, $f, 2, FAST_SHIP_CABINS_SW_SSW_NW
-	warp_def $f, $13, 4, FAST_SHIP_CABINS_SW_SSW_NW
-	warp_def $f, $17, 1, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
-	warp_def $f, $1b, 3, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
-	warp_def $d, $3, 5, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
-	warp_def $c, $6, 1, FAST_SHIP_B1F
-	warp_def $e, $1e, 2, FAST_SHIP_B1F
+	warp_def 25, 1, -1, FAST_SHIP_1F
+	warp_def 27, 8, 1, FAST_SHIP_CABINS_NNW_NNE_NE
+	warp_def 23, 8, 2, FAST_SHIP_CABINS_NNW_NNE_NE
+	warp_def 19, 8, 3, FAST_SHIP_CABINS_NNW_NNE_NE
+	warp_def 15, 8, 1, FAST_SHIP_CABINS_SW_SSW_NW
+	warp_def 15, 15, 2, FAST_SHIP_CABINS_SW_SSW_NW
+	warp_def 19, 15, 4, FAST_SHIP_CABINS_SW_SSW_NW
+	warp_def 23, 15, 1, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
+	warp_def 27, 15, 3, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
+	warp_def 3, 13, 5, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
+	warp_def 6, 12, 1, FAST_SHIP_B1F
+	warp_def 30, 14, 2, FAST_SHIP_B1F
 
 .CoordEvents:
 	db 2
-	coord_event 2, $6, $18, WorriedGrandpaSceneLeft
-	coord_event 2, $6, $19, WorriedGrandpaSceneRight
+	coord_event 24, 6, 2, WorriedGrandpaSceneLeft
+	coord_event 25, 6, 2, WorriedGrandpaSceneRight
 
 .BGEvents:
 	db 0
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_SAILOR, 2, 25, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x75160, -1
-	object_event SPRITE_SAILOR, 7, 14, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
-	object_event SPRITE_SAILOR, 17, 22, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailorScript, -1
-	object_event SPRITE_GENTLEMAN, 6, 19, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
+	object_event 25, 2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x75160, -1
+	object_event 14, 7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
+	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailorScript, -1
+	object_event 19, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

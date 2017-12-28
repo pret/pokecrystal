@@ -246,32 +246,32 @@ VictoryRoad_MapEventHeader:
 
 .Warps:
 	db 10
-	warp_def $43, $9, 5, VICTORY_ROAD_GATE
-	warp_def $31, $1, 3, VICTORY_ROAD
-	warp_def $23, $1, 2, VICTORY_ROAD
-	warp_def $1f, $d, 5, VICTORY_ROAD
-	warp_def $11, $d, 4, VICTORY_ROAD
-	warp_def $21, $11, 7, VICTORY_ROAD
-	warp_def $13, $11, 6, VICTORY_ROAD
-	warp_def $b, $0, 9, VICTORY_ROAD
-	warp_def $1b, $0, 8, VICTORY_ROAD
-	warp_def $5, $d, 3, ROUTE_23
+	warp_def 9, 67, 5, VICTORY_ROAD_GATE
+	warp_def 1, 49, 3, VICTORY_ROAD
+	warp_def 1, 35, 2, VICTORY_ROAD
+	warp_def 13, 31, 5, VICTORY_ROAD
+	warp_def 13, 17, 4, VICTORY_ROAD
+	warp_def 17, 33, 7, VICTORY_ROAD
+	warp_def 17, 19, 6, VICTORY_ROAD
+	warp_def 0, 11, 9, VICTORY_ROAD
+	warp_def 0, 27, 8, VICTORY_ROAD
+	warp_def 13, 5, 3, ROUTE_23
 
 .CoordEvents:
 	db 2
-	coord_event 0, $8, $c, UnknownScript_0x74492
-	coord_event 0, $8, $d, UnknownScript_0x744b5
+	coord_event 12, 8, 0, UnknownScript_0x74492
+	coord_event 13, 8, 0, UnknownScript_0x744b5
 
 .BGEvents:
 	db 2
-	bg_event 29, 3, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion
-	bg_event 65, 3, BGEVENT_ITEM, VictoryRoadHiddenFullHeal
+	bg_event 3, 29, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion
+	bg_event 3, 65, BGEVENT_ITEM, VictoryRoadHiddenFullHeal
 
 .ObjectEvents:
 	db 6
-	object_event SPRITE_SILVER, 13, 18, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
-	object_event SPRITE_POKE_BALL, 28, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadTMEarthquake, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
-	object_event SPRITE_POKE_BALL, 48, 12, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadMaxRevive, EVENT_VICTORY_ROAD_MAX_REVIVE
-	object_event SPRITE_POKE_BALL, 29, 18, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
-	object_event SPRITE_POKE_BALL, 48, 15, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullHeal, EVENT_VICTORY_ROAD_FULL_HEAL
-	object_event SPRITE_POKE_BALL, 38, 7, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP
+	object_event 18, 13, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
+	object_event 3, 28, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadTMEarthquake, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
+	object_event 12, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadMaxRevive, EVENT_VICTORY_ROAD_MAX_REVIVE
+	object_event 18, 29, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullRestore, EVENT_VICTORY_ROAD_FULL_RESTORE
+	object_event 15, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadFullHeal, EVENT_VICTORY_ROAD_FULL_HEAL
+	object_event 7, 38, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadHPUp, EVENT_VICTORY_ROAD_HP_UP

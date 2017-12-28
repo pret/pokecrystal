@@ -50,18 +50,18 @@ CherrygroveGymSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, CHERRYGROVE_CITY
-	warp_def $7, $3, 3, CHERRYGROVE_CITY
+	warp_def 2, 7, 3, CHERRYGROVE_CITY
+	warp_def 3, 7, 3, CHERRYGROVE_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, CherrygroveGymSpeechHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, CherrygroveGymSpeechHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, CherrygroveGymSpeechHouseBookshelf
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveGymSpeechHousePokefanMScript, -1
-	object_event SPRITE_BUG_CATCHER, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveGymSpeechHouseBugCatcherScript, -1
+	object_event 2, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveGymSpeechHousePokefanMScript, -1
+	object_event 5, 5, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveGymSpeechHouseBugCatcherScript, -1

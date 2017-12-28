@@ -11,9 +11,9 @@ Route6UndergroundPathEntrance_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, ROUTE_6
-	warp_def $7, $4, 1, ROUTE_6
-	warp_def $3, $4, 2, UNDERGROUND_PATH
+	warp_def 3, 7, 1, ROUTE_6
+	warp_def 4, 7, 1, ROUTE_6
+	warp_def 4, 3, 2, UNDERGROUND_PATH
 
 .CoordEvents:
 	db 0

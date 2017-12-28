@@ -210,12 +210,12 @@ OlivineLighthouse2F_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $b, $3, 3, OLIVINE_LIGHTHOUSE_1F
-	warp_def $3, $5, 2, OLIVINE_LIGHTHOUSE_3F
-	warp_def $d, $10, 4, OLIVINE_LIGHTHOUSE_1F
-	warp_def $d, $11, 5, OLIVINE_LIGHTHOUSE_1F
-	warp_def $b, $10, 4, OLIVINE_LIGHTHOUSE_3F
-	warp_def $b, $11, 5, OLIVINE_LIGHTHOUSE_3F
+	warp_def 3, 11, 3, OLIVINE_LIGHTHOUSE_1F
+	warp_def 5, 3, 2, OLIVINE_LIGHTHOUSE_3F
+	warp_def 16, 13, 4, OLIVINE_LIGHTHOUSE_1F
+	warp_def 17, 13, 5, OLIVINE_LIGHTHOUSE_1F
+	warp_def 16, 11, 4, OLIVINE_LIGHTHOUSE_3F
+	warp_def 17, 11, 5, OLIVINE_LIGHTHOUSE_3F
 
 .CoordEvents:
 	db 0
@@ -225,5 +225,5 @@ OlivineLighthouse2F_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_SAILOR, 3, 9, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorHuey1, -1
-	object_event SPRITE_GENTLEMAN, 8, 17, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerGentlemanAlfred, -1
+	object_event 9, 3, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorHuey1, -1
+	object_event 17, 8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerGentlemanAlfred, -1

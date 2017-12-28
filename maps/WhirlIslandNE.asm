@@ -17,9 +17,9 @@ WhirlIslandNE_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $d, $3, 2, ROUTE_41
-	warp_def $3, $11, 2, WHIRL_ISLAND_B1F
-	warp_def $b, $d, 3, WHIRL_ISLAND_B1F
+	warp_def 3, 13, 2, ROUTE_41
+	warp_def 17, 3, 2, WHIRL_ISLAND_B1F
+	warp_def 13, 11, 3, WHIRL_ISLAND_B1F
 
 .CoordEvents:
 	db 0
@@ -29,4 +29,4 @@ WhirlIslandNE_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKE_BALL, 11, 11, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WhirlIslandNEUltraBall, EVENT_WHIRL_ISLAND_NE_ULTRA_BALL
+	object_event 11, 11, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WhirlIslandNEUltraBall, EVENT_WHIRL_ISLAND_NE_ULTRA_BALL

@@ -103,24 +103,24 @@ VictoryRoadGate_MapEventHeader:
 
 .Warps:
 	db 8
-	warp_def $7, $11, 1, ROUTE_22
-	warp_def $7, $12, 1, ROUTE_22
-	warp_def $11, $9, 1, ROUTE_26
-	warp_def $11, $a, 1, ROUTE_26
-	warp_def $0, $9, 1, VICTORY_ROAD
-	warp_def $0, $a, 1, VICTORY_ROAD
-	warp_def $7, $1, 2, ROUTE_28
-	warp_def $7, $2, 2, ROUTE_28
+	warp_def 17, 7, 1, ROUTE_22
+	warp_def 18, 7, 1, ROUTE_22
+	warp_def 9, 17, 1, ROUTE_26
+	warp_def 10, 17, 1, ROUTE_26
+	warp_def 9, 0, 1, VICTORY_ROAD
+	warp_def 10, 0, 1, VICTORY_ROAD
+	warp_def 1, 7, 2, ROUTE_28
+	warp_def 2, 7, 2, ROUTE_28
 
 .CoordEvents:
 	db 1
-	coord_event 0, $b, $a, VictoryRoadGateBadgeCheckScene
+	coord_event 10, 11, 0, VictoryRoadGateBadgeCheckScene
 
 .BGEvents:
 	db 0
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_OFFICER, 11, 8, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
-	object_event SPRITE_BLACK_BELT, 5, 7, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
-	object_event SPRITE_BLACK_BELT, 5, 12, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX
+	object_event 8, 11, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
+	object_event 7, 5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
+	object_event 12, 5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX

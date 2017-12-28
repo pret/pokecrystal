@@ -203,18 +203,18 @@ OlivineGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $4, 2, OLIVINE_CITY
-	warp_def $f, $5, 2, OLIVINE_CITY
+	warp_def 4, 15, 2, OLIVINE_CITY
+	warp_def 5, 15, 2, OLIVINE_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 13, 3, BGEVENT_READ, OlivineGymStatue
-	bg_event 13, 6, BGEVENT_READ, OlivineGymStatue
+	bg_event 3, 13, BGEVENT_READ, OlivineGymStatue
+	bg_event 6, 13, BGEVENT_READ, OlivineGymStatue
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_JASMINE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
-	object_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1
+	object_event 5, 3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
+	object_event 7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1

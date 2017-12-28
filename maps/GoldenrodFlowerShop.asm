@@ -165,8 +165,8 @@ GoldenrodFlowerShop_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, GOLDENROD_CITY
-	warp_def $7, $3, 6, GOLDENROD_CITY
+	warp_def 2, 7, 6, GOLDENROD_CITY
+	warp_def 3, 7, 6, GOLDENROD_CITY
 
 .CoordEvents:
 	db 0
@@ -176,5 +176,5 @@ GoldenrodFlowerShop_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_TEACHER, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FlowerShopTeacherScript, -1
-	object_event SPRITE_LASS, 6, 5, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FlowerShopFloriaScript, EVENT_FLORIA_AT_FLOWER_SHOP
+	object_event 2, 4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FlowerShopTeacherScript, -1
+	object_event 5, 6, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FlowerShopFloriaScript, EVENT_FLORIA_AT_FLOWER_SHOP

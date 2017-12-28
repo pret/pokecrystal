@@ -161,20 +161,20 @@ DayCare_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $5, $0, 3, ROUTE_34
-	warp_def $6, $0, 4, ROUTE_34
-	warp_def $7, $2, 5, ROUTE_34
-	warp_def $7, $3, 5, ROUTE_34
+	warp_def 0, 5, 3, ROUTE_34
+	warp_def 0, 6, 4, ROUTE_34
+	warp_def 2, 7, 5, ROUTE_34
+	warp_def 3, 7, 5, ROUTE_34
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, DayCareBookshelf
+	bg_event 0, 1, BGEVENT_READ, DayCareBookshelf
 	bg_event 1, 1, BGEVENT_READ, DayCareBookshelf
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
-	object_event SPRITE_GRANNY, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1
+	object_event 2, 3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
+	object_event 5, 3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1

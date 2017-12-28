@@ -150,8 +150,8 @@ BluesHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, PALLET_TOWN
-	warp_def $7, $3, 2, PALLET_TOWN
+	warp_def 2, 7, 2, PALLET_TOWN
+	warp_def 3, 7, 2, PALLET_TOWN
 
 .CoordEvents:
 	db 0
@@ -161,4 +161,4 @@ BluesHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_DAISY, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DaisyScript, -1
+	object_event 2, 3, SPRITE_DAISY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DaisyScript, -1

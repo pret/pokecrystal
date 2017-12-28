@@ -139,21 +139,21 @@ MountMoonSquare_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $5, $14, 5, MOUNT_MOON
-	warp_def $b, $16, 6, MOUNT_MOON
-	warp_def $7, $d, 1, MOUNT_MOON_GIFT_SHOP
+	warp_def 20, 5, 5, MOUNT_MOON
+	warp_def 22, 11, 6, MOUNT_MOON
+	warp_def 13, 7, 1, MOUNT_MOON_GIFT_SHOP
 
 .CoordEvents:
 	db 1
-	coord_event 0, $b, $7, ClefairyDance
+	coord_event 7, 11, 0, ClefairyDance
 
 .BGEvents:
 	db 2
 	bg_event 7, 7, BGEVENT_ITEM, MountMoonSquareHiddenMoonStone
-	bg_event 7, 17, BGEVENT_READ, DontLitterSign
+	bg_event 17, 7, BGEVENT_READ, DontLitterSign
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_FAIRY, 6, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	object_event SPRITE_FAIRY, 6, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	object_event SPRITE_ROCK, 7, 7, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK
+	object_event 6, 6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	object_event 7, 6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	object_event 7, 7, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK

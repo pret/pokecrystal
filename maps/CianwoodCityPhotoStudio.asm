@@ -54,8 +54,8 @@ CianwoodCityPhotoStudio_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, CIANWOOD_CITY
-	warp_def $7, $3, 5, CIANWOOD_CITY
+	warp_def 2, 7, 5, CIANWOOD_CITY
+	warp_def 3, 7, 5, CIANWOOD_CITY
 
 .CoordEvents:
 	db 0
@@ -65,4 +65,4 @@ CianwoodCityPhotoStudio_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_FISHING_GURU, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x9e0e0, -1
+	object_event 2, 3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x9e0e0, -1

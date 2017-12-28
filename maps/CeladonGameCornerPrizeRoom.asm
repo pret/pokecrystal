@@ -275,18 +275,18 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $5, $2, 7, CELADON_CITY
-	warp_def $5, $3, 7, CELADON_CITY
+	warp_def 2, 5, 7, CELADON_CITY
+	warp_def 3, 5, 7, CELADON_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 2, BGEVENT_READ, GoldenrodGameCornerTMVendor
-	bg_event 1, 4, BGEVENT_READ, GoldenrodGameCornerPokemonVendor
+	bg_event 2, 1, BGEVENT_READ, GoldenrodGameCornerTMVendor
+	bg_event 4, 1, BGEVENT_READ, GoldenrodGameCornerPokemonVendor
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_GENTLEMAN, 2, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomGentlemanScript, -1
-	object_event SPRITE_PHARMACIST, 4, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomPharmacistScript, -1
+	object_event 0, 2, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomGentlemanScript, -1
+	object_event 4, 4, SPRITE_PHARMACIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomPharmacistScript, -1

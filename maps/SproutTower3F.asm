@@ -335,27 +335,27 @@ SproutTower3F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $e, $a, 4, SPROUT_TOWER_2F
+	warp_def 10, 14, 4, SPROUT_TOWER_2F
 
 .CoordEvents:
 	db 1
-	coord_event 0, $9, $b, UnknownScript_0x184947
+	coord_event 11, 9, 0, UnknownScript_0x184947
 
 .BGEvents:
 	db 6
-	bg_event 1, 8, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event 1, 11, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event 0, 9, BGEVENT_READ, MapSproutTower3FSignpost3Script
-	bg_event 0, 10, BGEVENT_READ, MapSproutTower3FSignpost3Script
-	bg_event 15, 5, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event 15, 14, BGEVENT_READ, MapSproutTower3FSignpost5Script
+	bg_event 8, 1, BGEVENT_READ, MapSproutTower3FSignpost5Script
+	bg_event 11, 1, BGEVENT_READ, MapSproutTower3FSignpost5Script
+	bg_event 9, 0, BGEVENT_READ, MapSproutTower3FSignpost3Script
+	bg_event 10, 0, BGEVENT_READ, MapSproutTower3FSignpost3Script
+	bg_event 5, 15, BGEVENT_READ, MapSproutTower3FSignpost5Script
+	bg_event 14, 15, BGEVENT_READ, MapSproutTower3FSignpost5Script
 
 .ObjectEvents:
 	db 7
-	object_event SPRITE_SAGE, 13, 8, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1
-	object_event SPRITE_SAGE, 8, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSageTroy, -1
-	object_event SPRITE_SAGE, 2, 10, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
-	object_event SPRITE_SAGE, 11, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageNeal, -1
-	object_event SPRITE_POKE_BALL, 14, 6, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FPotion, EVENT_SPROUT_TOWER_3F_POTION
-	object_event SPRITE_POKE_BALL, 1, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FEscapeRope, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
-	object_event SPRITE_SILVER, 4, 10, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER
+	object_event 8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1
+	object_event 8, 8, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSageTroy, -1
+	object_event 10, 2, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1
+	object_event 11, 11, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageNeal, -1
+	object_event 6, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FPotion, EVENT_SPROUT_TOWER_3F_POTION
+	object_event 14, 1, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower3FEscapeRope, EVENT_SPROUT_TOWER_3F_ESCAPE_ROPE
+	object_event 10, 4, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_SPROUT_TOWER

@@ -42,11 +42,11 @@ OlivineLighthouse1F_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $11, $a, 9, OLIVINE_CITY
-	warp_def $11, $b, 9, OLIVINE_CITY
-	warp_def $b, $3, 1, OLIVINE_LIGHTHOUSE_2F
-	warp_def $d, $10, 3, OLIVINE_LIGHTHOUSE_2F
-	warp_def $d, $11, 4, OLIVINE_LIGHTHOUSE_2F
+	warp_def 10, 17, 9, OLIVINE_CITY
+	warp_def 11, 17, 9, OLIVINE_CITY
+	warp_def 3, 11, 1, OLIVINE_LIGHTHOUSE_2F
+	warp_def 16, 13, 3, OLIVINE_LIGHTHOUSE_2F
+	warp_def 17, 13, 4, OLIVINE_LIGHTHOUSE_2F
 
 .CoordEvents:
 	db 0
@@ -56,5 +56,5 @@ OlivineLighthouse1F_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_SAILOR, 2, 8, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineLighthouse1FSailorScript, -1
-	object_event SPRITE_POKEFAN_F, 9, 16, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineLighthouse1FPokefanFScript, -1
+	object_event 8, 2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineLighthouse1FSailorScript, -1
+	object_event 16, 9, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineLighthouse1FPokefanFScript, -1

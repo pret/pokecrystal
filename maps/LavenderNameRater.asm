@@ -29,8 +29,8 @@ LavenderNameRater_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, LAVENDER_TOWN
-	warp_def $7, $3, 4, LAVENDER_TOWN
+	warp_def 2, 7, 4, LAVENDER_TOWN
+	warp_def 3, 7, 4, LAVENDER_TOWN
 
 .CoordEvents:
 	db 0
@@ -40,4 +40,4 @@ LavenderNameRater_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_GENTLEMAN, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderNameRater, -1
+	object_event 2, 3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderNameRater, -1

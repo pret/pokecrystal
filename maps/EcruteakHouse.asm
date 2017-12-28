@@ -283,23 +283,23 @@ EcruteakHouse_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $11, $4, 3, ECRUTEAK_CITY
-	warp_def $11, $5, 3, ECRUTEAK_CITY
-	warp_def $3, $5, 4, ECRUTEAK_HOUSE
-	warp_def $f, $11, 3, ECRUTEAK_HOUSE
-	warp_def $3, $11, 3, WISE_TRIOS_ROOM
+	warp_def 4, 17, 3, ECRUTEAK_CITY
+	warp_def 5, 17, 3, ECRUTEAK_CITY
+	warp_def 5, 3, 4, ECRUTEAK_HOUSE
+	warp_def 17, 15, 3, ECRUTEAK_HOUSE
+	warp_def 17, 3, 3, WISE_TRIOS_ROOM
 
 .CoordEvents:
 	db 2
-	coord_event 0, $7, $4, EcruteakHouse_CoordEvent1
-	coord_event 0, $7, $5, EcruteakHouse_CoordEvent2
+	coord_event 4, 7, 0, EcruteakHouse_CoordEvent1
+	coord_event 5, 7, 0, EcruteakHouse_CoordEvent2
 
 .BGEvents:
 	db 0
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_SAGE, 6, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
-	object_event SPRITE_SAGE, 6, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
-	object_event SPRITE_SAGE, 9, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
-	object_event SPRITE_GRAMPS, 11, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHouseGrampsScript, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	object_event 4, 6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
+	object_event 5, 6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
+	object_event 6, 9, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	object_event 3, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHouseGrampsScript, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
