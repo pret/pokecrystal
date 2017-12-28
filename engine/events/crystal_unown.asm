@@ -105,7 +105,7 @@ SpecialKabutoChamber: ; 8ae4e
 
 Special_DisplayUnownWords: ; 8ae68
 	ld a, [ScriptVar]
-	ld hl, .MenuDataHeader_Escape
+	ld hl, .MenuDataHeaders_UnownWalls
 	and a
 	jr z, .load
 
@@ -153,8 +153,6 @@ Special_DisplayUnownWords: ; 8ae68
 	ret
 ; 8aebc
 
-.UnownText: ; 8aebc
-
 unownwall: MACRO
 rept _NARG
 if \1 == "-"
@@ -180,36 +178,35 @@ endr
 	db $ff
 endm
 
-.UnownText_Escape:
+.UnownText: ; 8aebc
+;.UnownText_Escape:
 	; db      $08, $44, $04, $00, $2e, $08, $ff
 	unownwall "E", "S", "C", "A", "P", "E"
-.UnownText_Light:
+;.UnownText_Light:
 	; db      $26, $20, $0c, $0e, $46, $ff
 	unownwall "L", "I", "G", "H", "T"
-.UnownText_Water:
+;.UnownText_Water:
 	; db      $4c, $00, $46, $08, $42, $ff
 	unownwall "W", "A", "T", "E", "R"
-.UnownText_Ho_Oh:
+;.UnownText_Ho_Oh:
 	; db      $0e, $2c, $64, $2c, $0e, $ff
 	unownwall "H", "O", "-", "O", "H"
 ; 8aed5
 
-.MenuDataHeader_Escape: ; 0x8aed5
+.MenuDataHeaders_UnownWalls: ; 0x8aed5
+;.MenuDataHeader_Escape:
 	db $40 ; flags
 	db 04, 03 ; start coords
 	db 09, 16 ; end coords
-
-.MenuDataHeader_Light: ; 0x8aeda
+;.MenuDataHeader_Light:
 	db $40 ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
-
-.MenuDataHeader_Water: ; 0x8aedf
+;.MenuDataHeader_Water:
 	db $40 ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
-
-.MenuDataHeader_Ho_Oh: ; 0x8aee4
+;.MenuDataHeader_Ho_Oh:
 	db $40 ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
