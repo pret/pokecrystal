@@ -6388,27 +6388,27 @@ LoadEnemyMon: ; 3e8eb
 	ld bc, PlayerID
 	callfar CalcMagikarpLength
 
-; We're clear if the length is < 1536
+; No reason to keep going if length > 1536 (i.e. if length / 256 != 6)
 	ld a, [wMagikarpLength]
-	cp HIGH(1536)
+	cp HIGH(1536) ; this compares to 6'0'', should be cp 5
 	jr nz, .CheckMagikarpArea
 
 ; 5% chance of skipping both size checks
 	call Random
 	cp 5 percent
 	jr c, .CheckMagikarpArea
-; Try again if > 1614
+; Try again if length > 1615
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1616)
+	cp LOW(1616) ; this compares to 6'80'', should be cp 3
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
 	call Random
 	cp 20 percent - 1
 	jr c, .CheckMagikarpArea
-; Try again if > 1598
+; Try again if length > 1599
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1600)
+	cp LOW(1600) ; this compares to 6'64'', should be cp 2
 	jr nc, .GenerateDVs
 
 .CheckMagikarpArea:
@@ -6436,7 +6436,7 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .Happiness
 ; Floor at length 1024
 	ld a, [wMagikarpLength]
-	cp HIGH(1024)
+	cp HIGH(1024) ; compares to 4'0'', cp 3 would be closer to intended value
 	jr c, .GenerateDVs ; try again
 
 ; Finally done with DVs
