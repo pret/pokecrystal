@@ -56,6 +56,8 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 
 ## Thick Club and Light Ball can decrease damage done with boosted (Special) Attack
 
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
 This is a bug with `SpeciesItemBoost` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
@@ -89,6 +91,8 @@ This is a bug with `SpeciesItemBoost` in [engine/battle/effect_commands.asm](/en
 
 
 ## Metal Powder can increase damage taken with boosted (Special) Defense
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
@@ -146,6 +150,8 @@ This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/en
 
 ## Belly Drum sharply boosts Attack even with under 50% HP
 
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
 ([Video](https://www.youtube.com/watch?v=zuCLMikWo4Y))
 
 This is a bug with `BattleCommand_BellyDrum` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
@@ -184,12 +190,16 @@ BattleCommand_BellyDrum: ; 37c1a
 
 ## Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling
 
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
 ([Video](https://twitter.com/crystal_rby/status/874626362287562752))
 
 *To do:* Identify specific code causing this bug and fix it.
 
 
 ## Moves that lower Defense can do so after breaking a Substitute
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://www.youtube.com/watch?v=OGwKPRJLaaI))
 
@@ -227,12 +237,16 @@ DefenseDownHit:
 
 ## Counter and Mirror Coat still work if the opponent uses an item
 
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
 ([Video](https://www.youtube.com/watch?v=uRYyzKRatFk))
 
 *To do:* Identify specific code causing this bug and fix it.
 
 
 ## A Disabled but PP Up–enhanced move may not trigger Struggle
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://www.youtube.com/watch?v=1v9x4SgMggs))
 
@@ -259,12 +273,16 @@ This is a bug with `CheckPlayerHasUsableMoves` in [engine/battle/core.asm](/engi
 
 ## A Pokémon that fainted from Pursuit will have its old status condition when revived
 
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
 ([Video](https://www.youtube.com/watch?v=tiRvw-Nb2ME))
 
 *To do:* Identify specific code causing this bug and fix it.
 
 
 ## Lock-On and Mind Reader don't always bypass Fly and Dig
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider Web, Transform, and stat-lowering effects of moves like String Shot or Bubble during the semi-invulnerable turn of Fly or Dig.
 
@@ -283,6 +301,8 @@ CheckHiddenOpponent: ; 37daa
 
 
 ## Beat Up can desynchronize link battles
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
 
@@ -318,6 +338,8 @@ This is a bug with `BattleCommand_BeatUp` in [engine/battle/effect_commands.asm]
 
 
 ## Present damage is incorrect in link battles
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://www.youtube.com/watch?v=XJaQoKtrEuw))
 
@@ -669,6 +691,8 @@ FastBallMultiplier:
 
 
 ## Dragon Scale, not Dragon Fang, boosts Dragon-type moves
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 This is a bug with `ItemAttributes` in [items/attributes.asm](/items/attributes.asm):
 
