@@ -30,6 +30,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
 - [Daisy's grooming doesn't always increase happiness](#daisys-grooming-doesnt-always-increase-happiness)
 - [Magikarp in Lake of Rage are shorter, not longer](#magikarp-in-lake-of-rage-are-shorter-not-longer)
+- [Magikarp lengths in Lake of Rage have a unit conversion error](#magikarp-lengths-in-lake-of-rage-have-a-unit-conversion-error)
 - [Magikarp lengths can be miscalculated](#magikarp-lengths-can-be-miscalculated)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
 - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
@@ -782,6 +783,43 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](
 ```
 
 **Fix:** Change both `jr z, .Happiness` to `jr nz, .Happiness`.
+
+
+## Magikarp lengths in Lake of Rage have a unit conversion error
+
+This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](/engine/battle/core.asm):
+
+```asm
+; Get Magikarp's length
+	ld de, EnemyMonDVs
+	ld bc, PlayerID
+	callfar CalcMagikarpLength
+
+; We're clear if the length is < 1536
+	ld a, [wMagikarpLength]
+	cp HIGH(1536)
+	jr nz, .CheckMagikarpArea
+
+; 5% chance of skipping both size checks
+	call Random
+	cp 5 percent
+	jr c, .CheckMagikarpArea
+; Try again if > 1614
+	ld a, [wMagikarpLength + 1]
+	cp LOW(1616)
+	jr nc, .GenerateDVs
+
+; 20% chance of skipping this check
+	call Random
+	cp 20 percent - 1
+	jr c, .CheckMagikarpArea
+; Try again if > 1598
+	ld a, [wMagikarpLength + 1]
+	cp LOW(1600)
+	jr nc, .GenerateDVs
+```
+
+*To do:* Fix this bug.
 
 
 ## Magikarp lengths can be miscalculated
