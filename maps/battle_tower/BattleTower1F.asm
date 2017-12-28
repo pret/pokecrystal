@@ -56,7 +56,7 @@ UnknownScript_0x9e3e0:
 ReceptionistScript_0x9e3e2:
 	writebyte BATTLETOWERACTION_GET_CHALLENGE_STATE ; copybytetovar sBattleTowerChallengeState
 	special BattleTowerAction
-	if_equal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
+	if_equal $3, Script_BeatenAllTrainers2 ; maps/battle_tower/BattleTowerBattleRoom.asm
 	opentext
 	writetext Text_BattleTowerWelcomesYou
 	buttonsound
