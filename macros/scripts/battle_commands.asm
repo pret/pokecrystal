@@ -1,7 +1,7 @@
 command: MACRO
 	enum \1_command
 \1 EQUS "db \1_command"
-endm
+ENDM
 
 ; BattleCommandPointers indexes (see data/battle_command_pointers.asm)
 	enum_start 1

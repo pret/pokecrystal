@@ -1413,7 +1413,7 @@ else
 	dbpixel \1, \2
 	dw \3
 endc
-endm
+ENDM
 
 	cardflip_cursor 11,  2,       .Impossible
 	cardflip_cursor 12,  2,       .Impossible

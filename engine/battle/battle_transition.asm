@@ -832,7 +832,7 @@ zoombox: MACRO
 ; width, height, start y, start x
 	db \1, \2
 	dwcoord \3, \4
-endm
+ENDM
 	zoombox  4,  2,  8, 8
 	zoombox  6,  4,  7, 7
 	zoombox  8,  6,  6, 6

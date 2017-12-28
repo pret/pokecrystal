@@ -1450,7 +1450,7 @@ ENDC
 	ld a, [wd004]
 	inc a
 	ld [wBillsPC_NumMonsInBox], a
-endm
+ENDM
 
 CopyBoxmonSpecies: ; e2d30 (38:6d30)
 	xor a

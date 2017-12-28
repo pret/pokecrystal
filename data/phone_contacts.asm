@@ -6,7 +6,7 @@ phone: MACRO
 	dba \5
 	db  \6
 	dba \7
-endm
+ENDM
 
 PhoneContacts: ; 9045f
 ; entries correspond to PHONE_* constants

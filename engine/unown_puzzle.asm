@@ -120,7 +120,7 @@ rept _NARG / 2
 	shift
 	shift
 endr
-endm
+ENDM
 	initpuzcoord 0,0, 0,1, 0,2, 0,3, 0,4, 0,5
 	initpuzcoord 1,0,                     1,5
 	initpuzcoord 2,0,                     2,5
@@ -603,7 +603,7 @@ puzzle_coords: MACRO
 	dbpixel \1, \2, \3, \4
 	dwcoord \5, \6
 	db \7, \8
-endm
+ENDM
 ; OAM coords, tilemap coords, vacant tile, filler
 	puzzle_coords  3,  3, 4, 4,  1,  0, PUZZLE_BORDER, 0
 	puzzle_coords  6,  3, 4, 4,  4,  0, PUZZLE_BORDER, 0

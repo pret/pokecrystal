@@ -10,7 +10,7 @@ rept \2
 	shift
 endr
 	db 0
-endm
+ENDM
 
 RoamMaps: ; 2a40f
 	roam_map ROUTE_29, 2, ROUTE_30, ROUTE_46

@@ -4,7 +4,7 @@ define: MACRO
 if !def(\1)
 \1 EQUS \2
 endc
-endm
+ENDM
 
 const_value = 0
 

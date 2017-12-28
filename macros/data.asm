@@ -3,27 +3,27 @@
 dwb: MACRO
 	dw \1
 	db \2
-	ENDM
+ENDM
 
 dbw: MACRO
 	db \1
 	dw \2
-	ENDM
+ENDM
 
 dbbw: MACRO
 	db \1, \2
 	dw \3
-	ENDM
+ENDM
 
 dbww: MACRO
 	db \1
 	dw \2, \3
-	ENDM
+ENDM
 
 dbwww: MACRO
 	db \1
 	dw \2, \3, \4
-	ENDM
+ENDM
 
 dn: MACRO ; nybbles
 	rept _NARG / 2
@@ -31,7 +31,7 @@ dn: MACRO ; nybbles
 	shift
 	shift
 	endr
-	ENDM
+ENDM
 
 dc: MACRO ; "crumbs"
 	rept _NARG / 4
@@ -41,7 +41,7 @@ dc: MACRO ; "crumbs"
 	shift
 	shift
 	endr
-	ENDM
+ENDM
 
 dx: MACRO
 x = 8 * ((\1) - 1)
@@ -49,33 +49,33 @@ x = 8 * ((\1) - 1)
 	db ((\2) >> x) & $ff
 x = x + -8
 	endr
-	ENDM
+ENDM
 
 dt: MACRO ; three-byte (big-endian)
 	dx 3, \1
-	ENDM
+ENDM
 
 dd: MACRO ; four-byte (big-endian)
 	dx 4, \1
-	ENDM
+ENDM
 
 bigdw: MACRO ; big-endian word
 	dx 2, \1
-	ENDM
+ENDM
 
 dba: MACRO ; dbw bank, address
 	rept _NARG
 	dbw BANK(\1), \1
 	shift
 	endr
-	ENDM
+ENDM
 
 dab: MACRO ; dwb address, bank
 	rept _NARG
 	dwb \1, BANK(\1)
 	shift
 	endr
-	ENDM
+ENDM
 
 dba_pic: MACRO ; dbw bank, address
 	db BANK(\1) - PICS_FIX
@@ -89,7 +89,7 @@ if _NARG >= 4
 else
 	db \1 * 8, \2 * 8
 endc
-endm
+ENDM
 
 dsprite: MACRO
 ; conditional segment is there because not every instance of
@@ -99,7 +99,7 @@ if _NARG >= 7 ; y tile, y pxl, x tile, x pxl, vtile offset, flags, palette
 else
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
 endc
-endm
+ENDM
 
 
 sine_wave: MACRO

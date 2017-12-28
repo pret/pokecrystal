@@ -207,14 +207,14 @@ else
 	cp \1
 endc
 	jp z, \2
-endm
+ENDM
 
 dict2: MACRO
 	cp \1
 	jr nz, ._\@
 	ld a, \2
 ._\@:
-endm
+ENDM
 
 	dict "<DAY>",     Char15
 	dict "<LINE>",    LineChar
@@ -313,7 +313,7 @@ print_name: MACRO
 	push de
 	ld de, \1
 	jp PlaceCommandCharacter
-endm
+ENDM
 
 PrintMomsName:   print_name MomsName   ; 1186
 PrintPlayerName: print_name PlayerName ; 118d

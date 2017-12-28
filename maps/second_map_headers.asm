@@ -12,7 +12,7 @@ map_header_2: MACRO
 	dw \1_MapScriptHeader
 	dw \1_MapEventHeader
 	db \4
-endm
+ENDM
 
 connection: MACRO
 if "\1" == "north"
@@ -82,7 +82,7 @@ if "\1" == "east"
 	db 0
 	dw OverworldMap + \2_WIDTH + 7
 endc
-endm
+ENDM
 
 
 	map_header_2 NewBarkTown, NEW_BARK_TOWN, $5, WEST | EAST

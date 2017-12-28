@@ -4218,7 +4218,7 @@ if \1 % 12 == 0
 x = x +- 1
 endc
 	db x
-endm
+ENDM
 	macro_11f220 18 ; 01: Types
 	macro_11f220 36 ; 02: Greetings
 	macro_11f220 69 ; 03: People
@@ -4243,7 +4243,7 @@ EZChat_SortedWords:
 macro_11f23c: MACRO
 	dw x - w3_d000, \1
 x = x + 2 * \1
-endm
+ENDM
 x = $d012
 	macro_11f23c $2f ; a
 	macro_11f23c $1e ; i

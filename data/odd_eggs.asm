@@ -1,7 +1,7 @@
 prob: MACRO
 prob_total = prob_total + (\1)
 	dw prob_total * $ffff / 100
-endm
+ENDM
 
 OddEggProbabilities:
 prob_total = 0

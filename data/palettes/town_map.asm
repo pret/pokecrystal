@@ -12,7 +12,7 @@ rept _NARG / 2
 	shift
 	shift
 endr
-endm
+ENDM
 
 ; gfx/pokegear/town_map.png
 	townmappals EARTH,    EARTH,    EARTH,    MOUNTAIN, MOUNTAIN, MOUNTAIN

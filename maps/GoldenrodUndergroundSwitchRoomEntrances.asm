@@ -7,7 +7,7 @@ UNDERGROUND_DOOR_OPEN2   EQU $3d
 ugdoor: MACRO
 \1_YCOORD EQU \2
 \1_XCOORD EQU \3
-endm
+ENDM
 
 	ugdoor UGDOOR_1,  $10, $06
 	ugdoor UGDOOR_2,  $0a, $06
@@ -28,7 +28,7 @@ endm
 
 doorstate: MACRO
 	changeblock UGDOOR_\1_YCOORD, UGDOOR_\1_XCOORD, UNDERGROUND_DOOR_\2
-endm
+ENDM
 
 const_value set 2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_PHARMACIST1

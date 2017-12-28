@@ -11,16 +11,16 @@ __enumdir__ = \2
 else
 __enumdir__ = +1
 endc
-endm
+ENDM
 
 enum: MACRO
 \1 = __enum__
 __enum__ = __enum__ + __enumdir__
-endm
+ENDM
 
 enum_set: MACRO
 __enum__ = \1
-endm
+ENDM
 
 
 ; Enumerate constants

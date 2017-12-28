@@ -144,7 +144,7 @@ SetUpPokeAnim: ; d00b4
 PokeAnim_SetupCommands: ; d00da
 setup_command: MACRO
 \1_: dw \1
-endm
+ENDM
 	setup_command PokeAnim_Finish
 	setup_command PokeAnim_BasePic
 	setup_command PokeAnim_SetWait
@@ -586,7 +586,7 @@ x = x + 1
 endr
 y = y + 7
 endr
-endm
+ENDM
 
 PokeAnim_ConvertAndApplyBitmask: ; d036b
 	xor a

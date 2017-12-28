@@ -5,7 +5,7 @@ x = 1
 x = x + 1
 	endr
 	db -1
-endm
+ENDM
 
 UnownWords: ; fba5a
 ; entries correspond to Unown forms

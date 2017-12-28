@@ -13,7 +13,7 @@ map_header: MACRO
 	db \4, \5
 	dn \6, \7
 	db \8
-endm
+ENDM
 
 MapGroupPointers::
 ; pointers to the first map header of each map group

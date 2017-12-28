@@ -1,23 +1,23 @@
 musicheader: MACRO
 	; number of tracks, track idx, address
 	dbw ((\1 - 1) << 6) + (\2 - 1), \3
-	endm
+ENDM
 
 note: MACRO
 	dn (\1), (\2) - 1
-	ENDM
+ENDM
 
 sound: MACRO
 	note \1, \2
 	db \3 ; intensity
 	dw \4 ; frequency
-	endm
+ENDM
 
 noise: MACRO
 	note \1, \2 ; duration
 	db \3 ; intensity
 	db \4 ; frequency
-	endm
+ENDM
 
 ; MusicCommands indexes (see audio/engine.asm)
 	enum_start $d8
@@ -25,7 +25,7 @@ noise: MACRO
 	enum notetype_cmd ; $d8
 octave: MACRO
 	db notetype_cmd - (\1)
-	endm
+ENDM
 
 notetype: MACRO
 	db notetype_cmd
@@ -33,37 +33,37 @@ notetype: MACRO
 	if _NARG >= 2
 	db \2 ; intensity
 	endc
-	endm
+ENDM
 
 	enum pitchoffset_cmd ; $d9
 pitchoffset: MACRO
 	db pitchoffset_cmd
 	dn \1, \2 - 1 ; octave, key
-	endm
+ENDM
 
 	enum tempo_cmd ; $da
 tempo: MACRO
 	db tempo_cmd
 	bigdw \1 ; tempo
-	endm
+ENDM
 
 	enum dutycycle_cmd ; $db
 dutycycle: MACRO
 	db dutycycle_cmd
 	db \1 ; duty_cycle
-	endm
+ENDM
 
 	enum intensity_cmd ; $dc
 intensity: MACRO
 	db intensity_cmd
 	db \1 ; intensity
-	endm
+ENDM
 
 	enum soundinput_cmd ; $dd
 soundinput: MACRO
 	db soundinput_cmd
 	db \1 ; input
-	endm
+ENDM
 
 	enum sound_duty_cmd ; $de
 sound_duty: MACRO
@@ -73,193 +73,193 @@ sound_duty: MACRO
 	else
 	db \1 ; one-byte duty value for legacy support
 	endc
-	endm
+ENDM
 
 	enum togglesfx_cmd ; $df
 togglesfx: MACRO
 	db togglesfx_cmd
-	endm
+ENDM
 
 	enum slidepitchto_cmd ; $e0
 slidepitchto: MACRO
 	db slidepitchto_cmd
 	db \1 - 1 ; duration
 	dn \2, \3 ; octave, pitch
-	endm
+ENDM
 
 	enum vibrato_cmd ; $e1
 vibrato: MACRO
 	db vibrato_cmd
 	db \1 ; delay
 	db \2 ; extent
-	endm
+ENDM
 
 	enum unknownmusic0xe2_cmd ; $e2
 unknownmusic0xe2: MACRO
 	db unknownmusic0xe2_cmd
 	db \1 ; unknown
-	endm
+ENDM
 
 	enum togglenoise_cmd ; $e3
 togglenoise: MACRO
 	db togglenoise_cmd
 	db \1 ; id
-	endm
+ENDM
 
 	enum panning_cmd ; $e4
 panning: MACRO
 	db panning_cmd
 	db \1 ; tracks
-	endm
+ENDM
 
 	enum volume_cmd ; $e5
 volume: MACRO
 	db volume_cmd
 	db \1 ; volume
-	endm
+ENDM
 
 	enum tone_cmd ; $e6
 tone: MACRO
 	db tone_cmd
 	bigdw \1 ; tone
-	endm
+ENDM
 
 	enum unknownmusic0xe7_cmd ; $e7
 unknownmusic0xe7: MACRO
 	db unknownmusic0xe7_cmd
 	db \1 ; unknown
-	endm
+ENDM
 
 	enum unknownmusic0xe8_cmd ; $e8
 unknownmusic0xe8: MACRO
 	db unknownmusic0xe8_cmd
 	db \1 ; unknown
-	endm
+ENDM
 
 	enum tempo_relative_cmd ; $e9
 tempo_relative: MACRO
 	db tempo_relative_cmd
 	bigdw \1 ; value
-	endm
+ENDM
 
 	enum restartchannel_cmd ; $ea
 restartchannel: MACRO
 	db restartchannel_cmd
 	dw \1 ; address
-	endm
+ENDM
 
 	enum newsong_cmd ; $eb
 newsong: MACRO
 	db newsong_cmd
 	bigdw \1 ; id
-	endm
+ENDM
 
 	enum sfxpriorityon_cmd ; $ec
 sfxpriorityon: MACRO
 	db sfxpriorityon_cmd
-	endm
+ENDM
 
 	enum sfxpriorityoff_cmd ; $ed
 sfxpriorityoff: MACRO
 	db sfxpriorityoff_cmd
-	endm
+ENDM
 
 	enum unknownmusic0xee_cmd ; $ee
 unknownmusic0xee: MACRO
 	db unknownmusic0xee_cmd
 	dw \1 ; address
-	endm
+ENDM
 
 	enum stereopanning_cmd ; $ef
 stereopanning: MACRO
 	db stereopanning_cmd
 	db \1 ; tracks
-	endm
+ENDM
 
 	enum sfxtogglenoise_cmd ; $f0
 sfxtogglenoise: MACRO
 	db sfxtogglenoise_cmd
 	db \1 ; id
-	endm
+ENDM
 
 	enum music0xf1_cmd ; $f1
 music0xf1: MACRO
 	db music0xf1_cmd
-	endm
+ENDM
 
 	enum music0xf2_cmd ; $f2
 music0xf2: MACRO
 	db music0xf2_cmd
-	endm
+ENDM
 
 	enum music0xf3_cmd ; $f3
 music0xf3: MACRO
 	db music0xf3_cmd
-	endm
+ENDM
 
 	enum music0xf4_cmd ; $f4
 music0xf4: MACRO
 	db music0xf4_cmd
-	endm
+ENDM
 
 	enum music0xf5_cmd ; $f5
 music0xf5: MACRO
 	db music0xf5_cmd
-	endm
+ENDM
 
 	enum music0xf6_cmd ; $f6
 music0xf6: MACRO
 	db music0xf6_cmd
-	endm
+ENDM
 
 	enum music0xf7_cmd ; $f7
 music0xf7: MACRO
 	db music0xf7_cmd
-	endm
+ENDM
 
 	enum music0xf8_cmd ; $f8
 music0xf8: MACRO
 	db music0xf8_cmd
-	endm
+ENDM
 
 	enum unknownmusic0xf9_cmd ; $f9
 unknownmusic0xf9: MACRO
 	db unknownmusic0xf9_cmd
-	endm
+ENDM
 
 	enum setcondition_cmd ; $fa
 setcondition: MACRO
 	db setcondition_cmd
 	db \1 ; condition
-	endm
+ENDM
 
 	enum jumpif_cmd ; $fb
 jumpif: MACRO
 	db jumpif_cmd
 	db \1 ; condition
 	dw \2 ; address
-	endm
+ENDM
 
 	enum jumpchannel_cmd ; $fc
 jumpchannel: MACRO
 	db jumpchannel_cmd
 	dw \1 ; address
-	endm
+ENDM
 
 	enum loopchannel_cmd ; $fd
 loopchannel: MACRO
 	db loopchannel_cmd
 	db \1 ; count
 	dw \2 ; address
-	endm
+ENDM
 
 	enum callchannel_cmd ; $fe
 callchannel: MACRO
 	db callchannel_cmd
 	dw \1 ; address
-	endm
+ENDM
 
 	enum endchannel_cmd ; $ff
 endchannel: MACRO
 	db endchannel_cmd
-	endm
+ENDM

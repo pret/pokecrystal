@@ -10,35 +10,35 @@ x = x | (1 << (\3 + 1))
 endr
 endc
 	db x
-	endm
+ENDM
 
 	enum_start $fc
 
 	enum delanim_command ; $fc
 delanim: MACRO ; used for oam
 	db delanim_command
-	endm
+ENDM
 
 	enum dorepeat_command ; $fd
 dorepeat: MACRO
 	db dorepeat_command
 	db \1 ; #
-	endm
+ENDM
 
 	enum setrepeat_command ; $fe
 setrepeat: MACRO
 	db setrepeat_command
 	db \1 ; #
-	endm
+ENDM
 
 	enum endanim_command ; $ff
 endanim: MACRO
 	db endanim_command
-	endm
+ENDM
 
 __enum__ = $fe
 
 	enum dorestart_command ; $fe
 dorestart: MACRO ; used for oam
 	db dorestart_command
-	endm
+ENDM

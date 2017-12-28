@@ -1,13 +1,13 @@
 map: MACRO
 ;\1: map id
 	db GROUP_\1, MAP_\1
-endm
+ENDM
 
 
 scene_script: MACRO
 ;\1: script pointer
 	dw \1, 0
-endm
+ENDM
 
 warp_def: MACRO
 ;\1: y: top to bottom, starts at 0
@@ -16,7 +16,7 @@ warp_def: MACRO
 ;\4: map id: from constants/map_constants.asm
 	db \1, \2, \3
 	map \4
-endm
+ENDM
 
 coord_event: MACRO
 ;\1: scene id: controlled by setscene/setmapscene
@@ -26,7 +26,7 @@ coord_event: MACRO
 	db \1, \2, \3, $0
 	dw \4
 	db $0, $0
-endm
+ENDM
 
 bg_event: MACRO
 ;\1: y: top to bottom, starts at 0
@@ -35,7 +35,7 @@ bg_event: MACRO
 ;\4: script pointer
 	db \1, \2, \3
 	dw \4
-endm
+ENDM
 
 object_event: MACRO
 ;\1: sprite: a SPRITE_* constant
@@ -65,7 +65,7 @@ object_event: MACRO
 	dw \9
 	shift
 	dw \9
-endm
+ENDM
 
 
 trainer: MACRO
@@ -79,7 +79,7 @@ trainer: MACRO
 	dw \1
 	db \2, \3
 	dw \4, \5, \6, \7
-endm
+ENDM
 
 itemball: MACRO
 ;\1: item: from constants/item_constants.asm
@@ -89,7 +89,7 @@ if _NARG == 2
 else
 	db \1, 1
 endc
-endm
+ENDM
 
 elevfloor: MACRO
 ;\1: floor: a FLOOR_* constant
@@ -105,4 +105,4 @@ stonetable: MACRO
 ;\3: script pointer
 	db \1, \2
 	dw \3
-endm
+ENDM

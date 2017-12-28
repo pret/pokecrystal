@@ -8,8 +8,8 @@ rept (_NARG +- 1) / 2
 	shift
 	shift
 endr
-endm
+ENDM
 
 tilecoll: MACRO
 	db COLL_\1, COLL_\2, COLL_\3, COLL_\4
-endm
+ENDM

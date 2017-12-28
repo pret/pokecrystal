@@ -1,7 +1,7 @@
 treemon_map: MACRO
 	map \1
 	db  \2 ; treemon set
-endm
+ENDM
 
 TreeMonMaps: ; b825e
 	treemon_map ROUTE_26, 4
