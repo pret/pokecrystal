@@ -230,8 +230,13 @@ int png_get_width(char *filename) {
 	const int OFFSET_WIDTH = 16;
 	uint8_t bytes[4];
 	fseek(f, OFFSET_WIDTH, SEEK_SET);
-	fread(bytes, 1, 4, f);
+	size_t size = 4;
+	size_t result = fread(bytes, 1, size, f);
 	fclose(f);
+	if (result != size) {
+		fprintf(stderr, "Could not read file at offset 0x%x: \"%s\"\n", OFFSET_WIDTH, filename);
+		exit(1);
+	}
 
 	int width = 0;
 	for (int i = 0; i < 4; i++) {

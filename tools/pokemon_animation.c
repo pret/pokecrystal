@@ -38,7 +38,7 @@ void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap
 	uint8_t* tilemap;
 	uint8_t* this_frame;
 	FILE* f;
-	long size;
+	size_t size;
 	int width;
 	int height;
 	uint8_t byte;
@@ -48,7 +48,7 @@ void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap
 
 	f = fopen(tilemap_filename, "rb");
 	if (f == NULL) {
-		fprintf(stderr, "could not open file %s", tilemap_filename);
+		fprintf(stderr, "could not open file %s\n", tilemap_filename);
 		exit(1);
 	}
 
@@ -65,15 +65,21 @@ void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap
 		fprintf(stderr, "malloc failure\n");
 		exit(1);
 	}
-	fread(tilemap, 1, size, f);
+	if (size != fread(tilemap, 1, size, f)) {
+		fprintf(stderr, "failed to read file %s\n", tilemap_filename);
+		exit(1);
+	}
 	fclose(f);
 
 	f = fopen(dimensions_filename, "rb");
 	if (f == NULL) {
-		fprintf(stderr, "could not open file %s", dimensions_filename);
+		fprintf(stderr, "could not open file %s\n", dimensions_filename);
 		exit(1);
 	}
-	fread(&byte, 1, 1, f);
+	if (1 != fread(&byte, 1, 1, f))  {
+		fprintf(stderr, "failed to read file %s\n", dimensions_filename);
+		exit(1);
+	}
 	fclose(f);
 
 	width = byte & 0xf;
@@ -137,7 +143,7 @@ void make_frames(struct Frames* frames, struct Bitmasks* bitmasks, char* tilemap
 	//}
 	//free(frames->frames);
 
-	//fprintf(stderr, "num bitmasks: %d", bitmasks->num_bitmasks);
+	//fprintf(stderr, "num bitmasks: %d\n", bitmasks->num_bitmasks);
 	//for (i = 0; i < bitmasks->num_bitmasks; i++) {
 	//	free(bitmasks->bitmasks[i].data);
 	//	fprintf(stderr, "freed bitmask %d\n", i);
@@ -263,7 +269,7 @@ int main(int argc, char* argv[]) {
 
 	//ext = strrchr(argv[3], '.');
 	//if (!ext || ext == argv[3]) {
-	//	fprintf(stderr, "need a file extension to determine what to write to %s", argv[3]);
+	//	fprintf(stderr, "need a file extension to determine what to write to %s\n", argv[3]);
 	//}
 
 	make_frames(&frames, &bitmasks, tilemap_filename, dimensions_filename);

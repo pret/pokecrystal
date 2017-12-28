@@ -29,7 +29,11 @@ void print_pokemon_palette(char* palette_filename) {
 	}
 
 	fseek(f, 2, SEEK_SET);
-	fread(bytes, 1, 4, f);
+	size_t size = 4;
+	if (size != fread(bytes, 1, size, f)) {
+		fprintf(stderr, "failed to read file %s\n", palette_filename);
+		exit(1);
+	}
 	fclose(f);
 
 	print_rgb((bytes[1] << 8) | bytes[0]);
@@ -39,7 +43,7 @@ void print_pokemon_palette(char* palette_filename) {
 void print_palette(char* palette_filename) {
 	FILE* f;
 	uint8_t* bytes;
-	long size;
+	size_t size;
 	int i;
 
 	f = fopen(palette_filename, "rb");
@@ -63,10 +67,13 @@ void print_palette(char* palette_filename) {
 	}
 
 	fseek(f, 0, SEEK_SET);
-	fread(bytes, 1, size, f);
+	if (size != fread(bytes, 1, size, f)) {
+		fprintf(stderr, "failed to read file %s\n", palette_filename);
+		exit(1);
+	}
 	fclose(f);
 
-	for (i = 0; i + 1 < size; i += 2) {
+	for (i = 0; i + 1 < (int)size; i += 2) {
 		print_rgb((bytes[i + 1] << 8) | bytes[i]);
 	}
 }
