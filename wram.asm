@@ -1839,7 +1839,7 @@ CurElevatorFloors:: db
 
 NEXTU ; d0f0
 ; mailbox data
-	ds 1
+wCurMessageScrollPosition:: db
 wCurMessageIndex:: db
 wMailboxCount:: db
 wMailboxItems:: ds MAILBOX_CAPACITY
