@@ -108,7 +108,7 @@ PrintMagikarpLength: ; fbbdb
 ; fbbfc
 
 CalcMagikarpLength: ; fbbfc
-; Return Magikarp's length (in mm) at wMagikarpLength (big endian).
+; Return Magikarp's length (in feet and inches) at wMagikarpLength (big endian).
 ;
 ; input:
 ;   de: EnemyMonDVs
@@ -247,6 +247,10 @@ CalcMagikarpLength: ; fbbfc
 	ld e, l
 
 .done
+	; convert from mm to feet and inches
+	; in = mm / 25.4
+	; ft = in / 12
+
 	; hl = de × 10
 	ld h, d
 	ld l, e
@@ -275,9 +279,9 @@ CalcMagikarpLength: ; fbbfc
 	ld e, a
 
 	ld hl, wMagikarpLength
-	ld [hl], d
+	ld [hl], d ; ft
 	inc hl
-	ld [hl], e
+	ld [hl], e ; in
 	ret
 ; fbc9a
 
@@ -305,8 +309,11 @@ CalcMagikarpLength: ; fbbfc
 ; fbca8
 
 .Lengths: ; fbca8
-;	     ????, divisor
-	dwb   110, 1
+; [wMagikarpLength] = z * 100 + (bc - x) / y
+; First argument is the bc threshold as well as x.
+; Second argument is y.
+; In reality, due to the bug at .BCLessThanDE, the threshold is determined by only register b.
+	dwb   110, 1 ; not used unless the bug is fixed
 	dwb   310, 2
 	dwb   710, 4
 	dwb  2710, 20

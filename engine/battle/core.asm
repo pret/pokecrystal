@@ -6371,8 +6371,14 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .GenerateDVs ; try again
 
 .Magikarp:
-; Skimming this part recommended
+; These filters are untranslated
+; They expect at wMagikarpLength a 2-byte value in mm,
+; but the value is at ft and in (one byte each)
 
+; The first filter is supposed to make very large Magikarp even rarer,
+; by targeting those 1600 mm or larger.
+; After the conversion to feet, they are unable to target any,
+; as the largest possible Magikarp is 5'3'', which reads as 1283.
 	ld a, [TempEnemyMonSpecies]
 	cp MAGIKARP
 	jr nz, .Happiness
@@ -6393,7 +6399,7 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .CheckMagikarpArea
 ; Try again if > 1614
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1614) + 2
+	cp LOW(1616)
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
@@ -6402,7 +6408,7 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .CheckMagikarpArea
 ; Try again if > 1598
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1598) + 2
+	cp LOW(1600)
 	jr nc, .GenerateDVs
 
 .CheckMagikarpArea:
@@ -6415,6 +6421,9 @@ LoadEnemyMon: ; 3e8eb
 
 ; Intended behavior enforces a minimum size at Lake of Rage
 ; The real behavior prevents size flooring in the Lake of Rage area
+
+; Moreover, due to the check not being translated to feet, all Magikarp
+; smaller than 4'0'' may be caught by the filter, a lot more than intended
 	ld a, [MapGroup]
 	cp GROUP_LAKE_OF_RAGE
 	jr z, .Happiness
