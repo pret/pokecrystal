@@ -2794,7 +2794,7 @@ wPokeAnimGraphicStartTile:: db
 wPokeAnimCoord:: dw
 wPokeAnimFrontpicHeight:: db
 ; PokeAnim Data
-wPokeAnimExtraFlag:: db
+wPokeAnimIdleFlag:: db
 wPokeAnimSpeed:: db
 wPokeAnimPointerBank:: db
 wPokeAnimPointerAddr:: dw
