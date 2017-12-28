@@ -8,6 +8,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Thick Club and Light Ball can decrease damage done with boosted (Special) Attack](#thick-club-and-light-ball-can-decrease-damage-done-with-boosted-special-attack)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
+- [Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling](#confusion-damage-is-affected-by-type-boosting-items-and-explosionself-destruct-doubling)
 - [Moves that lower Defense can do so after breaking a Substitute](#moves-that-lower-defense-can-do-so-after-breaking-a-substitute)
 - [Counter and Mirror Coat still work if the opponent uses an item](#counter-and-mirror-coat-still-work-if-the-opponent-uses-an-item)
 - [A Disabled but PP Up–enhanced move may not trigger Struggle](#a-disabled-but-pp-upenhanced-move-may-not-trigger-struggle)
@@ -51,7 +52,6 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
 - [`Special_CheckBugContestContestantFlag` can read beyond its data table](#special_checkbugcontestcontestantflag-can-read-beyond-its-data-table)
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
-- [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
 
 
 ## Thick Club and Light Ball can decrease damage done with boosted (Special) Attack
@@ -180,6 +180,13 @@ BattleCommand_BellyDrum: ; 37c1a
 	and a
 	jr nz, .failed
 ```
+
+
+## Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling
+
+([Video](https://twitter.com/crystal_rby/status/874626362287562752))
+
+*To do:* Identify specific code causing this bug and fix it.
 
 
 ## Moves that lower Defense can do so after breaking a Substitute
@@ -1412,46 +1419,3 @@ ClearWRAM:: ; 25a
 ```
 
 **Fix:** Change `jr nc, .bank_loop` to `jr c, .bank_loop`.
-
-
-## `GetForestTreeFrame` works, but it's still bad
-
-In [tilesets/animations.asm](/tilesets/animations.asm):
-
-```asm
-GetForestTreeFrame: ; fc54c
-; Return 0 if a is even, or 2 if odd.
-	and a
-	jr z, .even
-	cp 1
-	jr z, .odd
-	cp 2
-	jr z, .even
-	cp 3
-	jr z, .odd
-	cp 4
-	jr z, .even
-	cp 5
-	jr z, .odd
-	cp 6
-	jr z, .even
-.odd
-	ld a, 2
-	scf
-	ret
-.even
-	xor a
-	ret
-; fc56d
-```
-
-**Fix:**
-
-```asm
-GetForestTreeFrame: ; fc54c
-; Return 0 if a is even, or 2 if odd.
-	and 1
-	add a
-	ret
-; fc56d
-```

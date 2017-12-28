@@ -10,6 +10,7 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [Footprints are split into top and bottom halves](#footprints-are-split-into-top-and-bottom-halves)
 - [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
 - [`ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items](#item_c3-and-item_dc-break-up-the-continuous-sequence-of-tm-items)
+- [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
 
 
 ## Pic banks are offset by `PICS_FIX`
@@ -71,6 +72,8 @@ GLOBAL PICS_FIX
 	db BANK(Pics_1) + 23
 ```
 
+**Fix:** Use `dba` instead of `dba_pic`, and don't call `FixPicBank` to modify `a`.
+
 
 ## `PokemonPicPointers` and `UnownPicPointers` are assumed to start at the same address
 
@@ -88,6 +91,19 @@ INCLUDE "data/pokemon/pic_pointers.asm"
 SECTION "Unown Pic Pointers", ROMX
 
 INCLUDE "data/pokemon/unown_pic_pointers.asm"
+```
+
+In [pokecrystal.link](/pokecrystal.link):
+
+```
+ROMX $48
+	org $4000
+	"Pic Pointers"
+	"Pics 1"
+ROMX $49
+	org $4000
+	"Unown Pic Pointers"
+	"Pics 2"
 ```
 
 Two routines in [gfx/load_pics.asm](/gfx/load_pics.asm) make this assumption; `GetFrontpicPointer`:
@@ -123,6 +139,50 @@ And `GetMonBackpic`:
 	cp UNOWN
 	jr nz, .ok
 	ld a, c
+	ld d, BANK(UnownPicPointers)
+.ok
+	dec a
+	ld bc, 6
+	call AddNTimes
+```
+
+**Fix:**
+
+Don't enforce `org $4000` in pokecrystal.link.
+
+Modify `GetFrontpicPointer`:
+
+```asm
+	ld a, [CurPartySpecies]
+	cp UNOWN
+	jr z, .unown
+	ld a, [CurPartySpecies]
+	ld d, BANK(PokemonPicPointers)
+	ld hl, PokemonPicPointers
+	jr .ok
+
+.unown
+	ld a, [UnownLetter]
+	ld d, BANK(UnownPicPointers)
+	ld hl, UnownPicPointers
+
+.ok
+	dec a
+	ld bc, 6
+	call AddNTimes
+```
+
+And `GetMonBackpic`:
+
+```asm
+	GLOBAL PokemonPicPointers, UnownPicPointers
+	ld a, b
+	ld hl, PokemonPicPointers
+	ld d, BANK(PokemonPicPointers)
+	cp UNOWN
+	jr nz, .ok
+	ld a, c
+	ld hl, UnownPicPointers
 	ld d, BANK(UnownPicPointers)
 .ok
 	dec a
@@ -188,6 +248,31 @@ INCBIN "gfx/footprints/wartortle.1bpp",  footprint_bottom
 	ld d, h
 	ld hl, VTiles2 tile $64
 	lb bc, BANK(Footprints), 2
+	call Request1bpp
+```
+
+**Fix:**
+
+Store footprints contiguously:
+
+```asm
+INCBIN "gfx/footprints/bulbasaur.1bpp"
+INCBIN "gfx/footprints/ivysaur.1bpp"
+INCBIN "gfx/footprints/venusaur.1bpp"
+INCBIN "gfx/footprints/charmander.1bpp"
+INCBIN "gfx/footprints/charmeleon.1bpp"
+INCBIN "gfx/footprints/charizard.1bpp"
+INCBIN "gfx/footprints/squirtle.1bpp"
+INCBIN "gfx/footprints/wartortle.1bpp"
+```
+
+Modify `Pokedex_LoadAnyFootprint`:
+
+```asm
+	ld e, l
+	ld d, h
+	ld hl, VTiles2 tile $62
+	lb bc, BANK(Footprints), 4
 	call Request1bpp
 ```
 
@@ -297,6 +382,8 @@ PokedexShow_GetDexEntryBank:
 	db BANK(PokedexEntries4)
 ```
 
+**Fix:** Use `dba` instead of `dw` in `PokedexDataPointerTable`, and modify the code that accesses it to match.
+
 
 ## `ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items
 
@@ -354,4 +441,71 @@ GetNumberedTMHM: ; d417
 	dec a
 	ld c, a
 	ret
+```
+
+**Fix:**
+
+Move `ITEM_C3` and `ITEM_DC` above all the TMs in every table of item data.
+
+Modify engine/items.asm:
+
+```asm
+GetTMHMNumber:: ; d407
+; Return the number of a TM/HM by item id c.
+	ld a, c
+	sub TM01
+	inc a
+	ld c, a
+	ret
+
+GetNumberedTMHM: ; d417
+; Return the item id of a TM/HM by number c.
+	ld a, c
+	add TM01
+	dec a
+	ld c, a
+	ret
+```
+
+
+## `GetForestTreeFrame` works, but it's still bad
+
+In [tilesets/animations.asm](/tilesets/animations.asm):
+
+```asm
+GetForestTreeFrame: ; fc54c
+; Return 0 if a is even, or 2 if odd.
+	and a
+	jr z, .even
+	cp 1
+	jr z, .odd
+	cp 2
+	jr z, .even
+	cp 3
+	jr z, .odd
+	cp 4
+	jr z, .even
+	cp 5
+	jr z, .odd
+	cp 6
+	jr z, .even
+.odd
+	ld a, 2
+	scf
+	ret
+.even
+	xor a
+	ret
+; fc56d
+```
+
+**Fix:**
+
+```asm
+GetForestTreeFrame: ; fc54c
+; Return 0 if a is even, or 2 if odd.
+	and 1
+	add a
+	ret
+; fc56d
 ```
