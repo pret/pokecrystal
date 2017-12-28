@@ -1630,17 +1630,13 @@ NEXTU ; d002
 ; miscellaneous
 wTempDayOfWeek::
 wApricorns::
+wKeepSevenBiasChance:: ; used in the slots to handle the favoring of 7 symbol streaks
 	db
-
 	ds 2
-
 StartFlypoint:: db
 EndFlypoint:: db
 
 NEXTU ; d002
-wKeepSevenBiasChance::
-; used in the slots to handle the favoring of 7 symbol streaks
-
 ; unidentified
 wd002:: db
 wd003:: db
