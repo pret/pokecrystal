@@ -8,6 +8,19 @@ SLOTS_SQUIRTLE EQU $10
 SLOTS_STARYU EQU $14
 REEL_SIZE EQU 15
 
+; Constants for slot_reel offsets (see macros/wram.asm)
+REEL_ACTION        EQUS "(wReel1ReelAction - wReel1)"
+REEL_TILEMAP_ADDR  EQUS "(wReel1TilemapAddr - wReel1)"
+REEL_POSITION      EQUS "(wReel1Position - wReel1)"
+REEL_SPIN_DISTANCE EQUS "(wReel1SpinDistance - wReel1)"
+REEL_SPIN_RATE     EQUS "(wReel1SpinRate - wReel1)"
+REEL_OAM_ADDR      EQUS "(wReel1OAMAddr - wReel1)"
+REEL_X_COORD       EQUS "(wReel1XCoord - wReel1)"
+REEL_MANIP_COUNTER EQUS "(wReel1ManipCounter - wReel1)"
+REEL_MANIP_DELAY   EQUS "(wReel1ManipDelay - wReel1)"
+REEL_FIELD_0B      EQUS "(wReel1Field0b - wReel1)"
+REEL_STOP_DELAY    EQUS "(wReel1StopDelay - wReel1)"
+
 ; SlotsJumptable constants
 	const_def
 	const SLOTS_INIT
@@ -536,7 +549,7 @@ Slots_CheckCoinCaseFull: ; 92a04 (24:6a04)
 	ret
 
 Slots_GetCurrentReelState: ; 92a12 (24:6a12)
-	ld hl, wReel1Position - wReel1
+	ld hl, REEL_POSITION
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -547,7 +560,7 @@ Slots_GetCurrentReelState: ; 92a12 (24:6a12)
 	and $f
 	ld e, a
 	ld d, $0
-	ld hl, wReel1TilemapAddr - wReel1
+	ld hl, REEL_TILEMAP_ADDR
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -655,68 +668,68 @@ Slots_StopReel3: ; 92a60 (24:6a60)
 
 Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel1
-	ld hl, wReel1OAMAddr - wReel1
+	ld hl, REEL_OAM_ADDR
 	add hl, bc
 	ld de, Sprites + 16 * 4
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wReel1TilemapAddr - wReel1
+	ld hl, REEL_TILEMAP_ADDR
 	add hl, bc
 	ld de, Reel1Tilemap
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wReel1XCoord - wReel1
+	ld hl, REEL_X_COORD
 	add hl, bc
 	ld [hl], 6 * 8
 	call .OAM
 
 	ld bc, wReel2
-	ld hl, wReel1OAMAddr - wReel1
+	ld hl, REEL_OAM_ADDR
 	add hl, bc
 	ld de, Sprites + 24 * 4
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wReel1TilemapAddr - wReel1
+	ld hl, REEL_TILEMAP_ADDR
 	add hl, bc
 	ld de, Reel2Tilemap
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wReel1XCoord - wReel1
+	ld hl, REEL_X_COORD
 	add hl, bc
 	ld [hl], 10 * 8
 	call .OAM
 
 	ld bc, wReel3
-	ld hl, wReel1OAMAddr - wReel1
+	ld hl, REEL_OAM_ADDR
 	add hl, bc
 	ld de, Sprites + 32 * 4
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wReel1TilemapAddr - wReel1
+	ld hl, REEL_TILEMAP_ADDR
 	add hl, bc
 	ld de, Reel3Tilemap
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wReel1XCoord - wReel1
+	ld hl, REEL_X_COORD
 	add hl, bc
 	ld [hl], 14 * 8
 	call .OAM
 	ret
 
 .OAM: ; 92af9 (24:6af9)
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	ld [hl], REEL_ACTION_DO_NOTHING
-	ld hl, wReel1Position - wReel1
+	ld hl, REEL_POSITION
 	add hl, bc
 	ld [hl], REEL_SIZE - 1
-	ld hl, wReel1SpinDistance - wReel1
+	ld hl, REEL_SPIN_DISTANCE
 	add hl, bc
 	ld [hl], REEL_ACTION_DO_NOTHING
 	call Slots_UpdateReelPositionAndOAM
@@ -732,26 +745,26 @@ Slots_SpinReels: ; 92b0f (24:6b0f)
 	ret
 
 .SpinReel: ; 92b22 (24:6b22)
-	ld hl, wReel1SpinDistance - wReel1
+	ld hl, REEL_SPIN_DISTANCE
 	add hl, bc
 	ld a, [hl]
 	and $f
 	jr nz, .skip
 	call ReelActionJumptable
 .skip
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
 	ld d, a
-	ld hl, wReel1SpinDistance - wReel1
+	ld hl, REEL_SPIN_DISTANCE
 	add hl, bc
 	add [hl]
 	ld [hl], a
 	and $f
 	jr z, Slots_UpdateReelPositionAndOAM
-	ld hl, wReel1OAMAddr - wReel1
+	ld hl, REEL_OAM_ADDR
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -769,17 +782,17 @@ Slots_SpinReels: ; 92b0f (24:6b0f)
 	ret
 
 Slots_UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
-	ld hl, wReel1XCoord - wReel1
+	ld hl, REEL_X_COORD
 	add hl, bc
 	ld a, [hl]
 	ld [wCurrReelXCoord], a
 	ld a, 10 * 8
 	ld [wCurrReelYCoord], a
-	ld hl, wReel1Position - wReel1
+	ld hl, REEL_POSITION
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, wReel1TilemapAddr - wReel1
+	ld hl, REEL_TILEMAP_ADDR
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -788,7 +801,7 @@ Slots_UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
 	ld e, l
 	ld d, h
 	call .LoadOAM
-	ld hl, wReel1Position - wReel1
+	ld hl, REEL_POSITION
 	add hl, bc
 	ld a, [hl]
 	inc a
@@ -801,7 +814,7 @@ Slots_UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
 	ret
 
 .LoadOAM: ; 92b83 (24:6b83)
-	ld hl, wReel1OAMAddr - wReel1
+	ld hl, REEL_OAM_ADDR
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -862,7 +875,7 @@ Function92bbe: ; 92bbe
 ; 92bd4
 
 ReelActionJumptable: ; 92bd4 (24:6bd4)
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -910,7 +923,7 @@ ReelAction_DoNothing: ; 92c16
 ; 92c17
 
 ReelAction_QuadrupleRate: ; 92c17
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 16
 	ret
@@ -918,7 +931,7 @@ ReelAction_QuadrupleRate: ; 92c17
 ; 92c1e
 
 ReelAction_DoubleRate: ; 92c1e
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 8
 	ret
@@ -926,7 +939,7 @@ ReelAction_DoubleRate: ; 92c1e
 ; 92c25
 
 ReelAction_NormalRate: ; 92c25
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 4
 	ret
@@ -934,7 +947,7 @@ ReelAction_NormalRate: ; 92c25
 ; 92c2c
 
 ReelAction_HalfRate: ; 92c2c
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 2
 	ret
@@ -942,7 +955,7 @@ ReelAction_HalfRate: ; 92c2c
 ; 92c33
 
 ReelAction_QuarterRate: ; 92c33
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 1
 	ret
@@ -950,17 +963,17 @@ ReelAction_QuarterRate: ; 92c33
 ; 92c3a
 
 Slots_StopReel: ; 92c3a
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 0
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	ld [hl], REEL_ACTION_STOP_REEL_IGNORE_JOYPAD
-	ld hl, wReel1StopDelay - wReel1
+	ld hl, REEL_STOP_DELAY
 	add hl, bc
 	ld [hl], 3
 ReelAction_StopReelIgnoreJoypad: ; 92c4c
-	ld hl, wReel1StopDelay - wReel1
+	ld hl, REEL_STOP_DELAY
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -969,7 +982,7 @@ ReelAction_StopReelIgnoreJoypad: ; 92c4c
 	ret
 
 .EndReel:
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	ld a, REEL_ACTION_DO_NOTHING
 	ld [hl], a
@@ -979,14 +992,14 @@ ReelAction_StopReelIgnoreJoypad: ; 92c4c
 
 ReelAction_StopReel1: ; 92c5e
 ; If no bias: don't manipulate reel.
-; If bias: manipulate reel up to wReel1ManipCounter (i.e. 4) times,
+; If bias: manipulate reel up to wReel1ManipCounter (i.e. 4) slots,
 ; stoping early if the biased symbol shows up anywhere in reel #1,
 ; even if the current bet won't allow lining it up.
 
 	ld a, [wSlotBias]
 	cp SLOTS_NOBIAS
 	jr z, .NoBias
-	ld hl, wReel1ManipCounter - wReel1
+	ld hl, REEL_MANIP_COUNTER
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1018,7 +1031,7 @@ ReelAction_StopReel1: ; 92c5e
 
 ReelAction_StopReel2: ; 92c86
 ; If no bias: don't manipulate reel.
-; If bias: manipulate reel up to wReel2ManipCounter (i.e. 4) times,
+; If bias: manipulate reel up to wReel2ManipCounter (i.e. 4) slots,
 ; stoping early if the biased symbol is lined up in the first two
 ; reels, according to the lines that the current bet allows.
 
@@ -1032,7 +1045,7 @@ ReelAction_StopReel2: ; 92c86
 	ld a, [wSlotBias]
 	cp SLOTS_NOBIAS
 	jr z, .NoBias
-	ld hl, wReel1ManipCounter - wReel1
+	ld hl, REEL_MANIP_COUNTER
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1047,7 +1060,7 @@ ReelAction_StopReel2: ; 92c86
 ; 92ca9
 
 ReelAction_StopReel3: ; 92ca9
-; Manipulate the reel up to wReel3ManipCounter (i.e. 4) times,
+; Manipulate the reel up to wReel3ManipCounter (i.e. 4) slots,
 ; stopping early if the bias symbol is lined up for a win.
 ; If not biased to any symbols, stop as soon as nothing is lined up.
 
@@ -1056,7 +1069,7 @@ ReelAction_StopReel3: ; 92ca9
 	ld hl, wSlotBias
 	cp [hl]
 	jr z, .NoBias
-	ld hl, wReel1ManipCounter - wReel1
+	ld hl, REEL_MANIP_COUNTER
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1068,7 +1081,7 @@ ReelAction_StopReel3: ; 92ca9
 	ld a, [wSlotBias]
 	cp SLOTS_NOBIAS
 	jr z, .NoBias
-	ld hl, wReel1ManipCounter - wReel1
+	ld hl, REEL_MANIP_COUNTER
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1099,13 +1112,13 @@ ReelAction_SetUpReel2SkipTo7: ; 92cd2
 .no_match
 	ld a, SFX_STOP_SLOT
 	call Slots_PlaySFX
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_WAIT_REEL2_SKIP_TO_7
-	ld hl, wReel1ManipDelay - wReel1
+	ld hl, REEL_MANIP_DELAY
 	add hl, bc
 	ld [hl], 32
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 0
 	ret
@@ -1113,7 +1126,7 @@ ReelAction_SetUpReel2SkipTo7: ; 92cd2
 ; 92cf8
 
 ReelAction_WaitReel2SkipTo7: ; 92cf8
-	ld hl, wReel1ManipDelay - wReel1
+	ld hl, REEL_MANIP_DELAY
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1124,10 +1137,10 @@ ReelAction_WaitReel2SkipTo7: ; 92cf8
 .asm_92d02
 	ld a, SFX_THROW_BALL
 	call Slots_PlaySFX
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_FAST_SPIN_REEL2_UNTIL_LINED_UP_7S
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 8
 	ret
@@ -1159,10 +1172,10 @@ ReelAction_InitGolem: ; 92d20
 	ld a, SFX_STOP_SLOT
 	call Slots_PlaySFX
 	call Slots_WaitSFX
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_WAIT_GOLEM
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 0
 	call Slots_GetNumberOfGolems
@@ -1192,10 +1205,10 @@ ReelAction_WaitGolem: ; 92d4f
 	ret
 
 .one
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_END_GOLEM
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 8
 	ret
@@ -1205,10 +1218,10 @@ ReelAction_WaitGolem: ; 92d4f
 ReelAction_EndGolem: ; 92d6e
 	xor a
 	ld [wSlotsDelay], a
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	dec [hl] ; REEL_ACTION_WAIT_GOLEM
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 0
 	ret
@@ -1226,10 +1239,10 @@ ReelAction_InitChansey: ; 92d7e
 	ld a, SFX_STOP_SLOT
 	call Slots_PlaySFX
 	call Slots_WaitSFX
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_WAIT_CHANSEY
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 0
 	push bc
@@ -1247,7 +1260,7 @@ ReelAction_WaitChansey: ; 92da4
 	ld a, [wSlotsDelay]
 	and a
 	ret z
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_WAIT_EGG
 	ld a, 2
@@ -1256,17 +1269,17 @@ ReelAction_WaitEgg: ; 92db3
 	ld a, [wSlotsDelay]
 	cp $4
 	ret c
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_DROP_REEL
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 16
-	ld hl, wReel1ManipDelay - wReel1
+	ld hl, REEL_MANIP_DELAY
 	add hl, bc
 	ld [hl], 17
 ReelAction_DropReel: ; 92dca
-	ld hl, wReel1ManipDelay - wReel1
+	ld hl, REEL_MANIP_DELAY
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1285,10 +1298,10 @@ ReelAction_DropReel: ; 92dca
 	ret
 
 .EggAgain:
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 0
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	dec [hl]
 	dec [hl] ; REEL_ACTION_WAIT_CHANSEY
@@ -1304,15 +1317,15 @@ ReelAction_Unused: ; 92df7
 	ld a, SFX_STOP_SLOT
 	call Slots_PlaySFX
 	call Slots_WaitSFX
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_CHECK_DROP_REEL
 	call Slots_GetNumberOfGolems
-	ld hl, wReel1ManipDelay - wReel1
+	ld hl, REEL_MANIP_DELAY
 	add hl, bc
 	ld [hl], a
 ReelAction_CheckDropReel: ; 92e10
-	ld hl, wReel1ManipDelay - wReel1
+	ld hl, REEL_MANIP_DELAY
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1323,17 +1336,17 @@ ReelAction_CheckDropReel: ; 92e10
 
 .spin
 	dec [hl]
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_WAIT_DROP_REEL
-	ld hl, wReel1Field0b - wReel1
+	ld hl, REEL_FIELD_0B
 	add hl, bc
 	ld [hl], 32
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 0
 ReelAction_WaitDropReel: ; 92e31
-	ld hl, wReel1Field0b - wReel1
+	ld hl, REEL_FIELD_0B
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1342,10 +1355,10 @@ ReelAction_WaitDropReel: ; 92e31
 	ret
 
 .DropReel:
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	dec [hl]
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 8
 	ret
@@ -1365,17 +1378,17 @@ ReelAction_StartSlowAdvanceReel3: ; 92e47
 	ld a, SFX_STOP_SLOT
 	call Slots_PlaySFX
 	call Slots_WaitSFX
-	ld hl, wReel1SpinRate - wReel1
+	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 1
-	ld hl, wReel1ReelAction - wReel1
+	ld hl, REEL_ACTION
 	add hl, bc
 	inc [hl] ; REEL_ACTION_WAIT_SLOW_ADVANCE_REEL3
-	ld hl, wReel1ManipDelay - wReel1
+	ld hl, REEL_MANIP_DELAY
 	add hl, bc
 	ld [hl], 16
 ReelAction_WaitSlowAdvanceReel3: ; 92e64
-	ld hl, wReel1ManipDelay - wReel1
+	ld hl, REEL_MANIP_DELAY
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -1654,7 +1667,7 @@ Slots_CopyReelState: ; 92fb4
 ; 92fc0
 
 Slots_GetNumberOfGolems: ; 92fc0
-	ld hl, wReel1Position - wReel1
+	ld hl, REEL_POSITION
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -1674,7 +1687,7 @@ Slots_GetNumberOfGolems: ; 92fc0
 	jr nz, .not_biased_to_seven
 	ld e, $0
 .loop1
-	ld hl, wReel1Position - wReel1
+	ld hl, REEL_POSITION
 	add hl, bc
 	inc [hl]
 	inc e
@@ -1695,7 +1708,7 @@ Slots_GetNumberOfGolems: ; 92fc0
 .loop2
 	ld a, e
 	inc e
-	ld hl, wReel1Position - wReel1
+	ld hl, REEL_POSITION
 	add hl, bc
 	add [hl]
 	ld [hl], a
