@@ -43,9 +43,9 @@ debgcoord EQUS "bgcoord de,"
 bcbgcoord EQUS "bgcoord bc,"
 
 bgcoord: MACRO
-IF _NARG >= 4
+	if _NARG >= 4
 	ld \1, \3 bgrows + \2 + \4
-ELSE
+	else
 	ld \1, \3 bgrows + \2 + vBGMap0
-ENDC
+	endc
 ENDM

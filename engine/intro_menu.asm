@@ -199,9 +199,9 @@ _ResetWRAM: ; 5bae
 	ld [Coins], a
 	ld [Coins + 1], a
 
-IF START_MONEY >= $10000
+if START_MONEY >= $10000
 	ld a, HIGH(START_MONEY >> 8)
-ENDC
+endc
 	ld [Money], a
 	ld a, HIGH(START_MONEY) ; mid
 	ld [Money + 1], a
@@ -646,11 +646,11 @@ Continue_DisplayPokedexNumCaught: ; 5f6b
 	ret z
 	push hl
 	ld hl, PokedexCaught
-IF NUM_POKEMON % 8
+if NUM_POKEMON % 8
 	ld b, NUM_POKEMON / 8 + 1
-ELSE
+else
 	ld b, NUM_POKEMON / 8
-ENDC
+endc
 	call CountSetBits
 	pop hl
 	ld de, wd265
