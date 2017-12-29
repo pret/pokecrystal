@@ -5,7 +5,7 @@ Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) a
 
 ## `$00`−`$CF`: `anim_wait` *length*
 
-*length*: duration in frames
+- *length*: duration in frames
 
 
 ## `$D0`: `anim_obj` *object*, *x*, *y*, *param*
@@ -13,12 +13,12 @@ Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) a
 
 Spawns an *object* at coordinate (*x*, *y*).
 
-*object*: `ANIM_OBJ` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
-*x*: the x position in pixels
-*y*: the x position in pixels
-*x_tile*: an added x position in tiles (8 pixels)
-*y_tile*: an added y position in tiles (8 pixels)
-*param*: modifies the behavior of *object*. The meaning differs for each object.
+- *object*: `ANIM_OBJ` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
+- *x*: the x position in pixels
+- *y*: the x position in pixels
+- *x_tile*: an added x position in tiles (8 pixels)
+- *y_tile*: an added y position in tiles (8 pixels)
+- *param*: modifies the behavior of *object*. The meaning differs for each object.
 
 *TODO: what happens for x/y values greater than 160/144 respectively?*
 *TODO: useful positions*
@@ -35,7 +35,7 @@ Spawns an *object* at coordinate (*x*, *y*).
 
 ## `$D5`: `anim_5gfx` *gfx1*, *gfx2*, *gfx3*, *gfx4*, *gfx5*
 
-*gfx*: `ANIM_GFX` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
+- *gfx*: `ANIM_GFX` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
 
 
 ## `$D6`: `anim_incobj` *id*
@@ -112,7 +112,7 @@ Removes all active objects.
 
 ## `$F0`: `anim_bgeffect` *bg_effect*, *unknown1*, *unknown2*, *unknown3*
 
-*bg_effect*: `ANIM_BG` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
+- *bg_effect*: `ANIM_BG` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
 
 
 ## `$F1`: `anim_bgp` *colors*
