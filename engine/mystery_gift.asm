@@ -116,7 +116,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 
 .PrintTextAndExit: ; 1049c5 (41:49c5)
 	call PrintText
-	ld a, rLCDC_DEFAULT
+	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ret
 ; 1049cd (41:49cd)
@@ -1497,7 +1497,7 @@ Function10571a: ; 10571a (41:571a)
 
 asm_105726: ; 105726 (41:5726)
 	call PrintText
-	ld a, rLCDC_DEFAULT
+	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ret
 ; 10572e (41:572e)

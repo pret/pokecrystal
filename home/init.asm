@@ -125,7 +125,7 @@ Init:: ; 17d
 	ld [hWX], a
 	ld [rWX], a
 
-	ld a, rLCDC_DEFAULT ; %11100011
+	ld a, LCDC_DEFAULT ; %11100011
 	; LCD on
 	; Win tilemap 1
 	; Win on

@@ -85,7 +85,7 @@ UnownPuzzle: ; e1190
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
-	ld a, rLCDC_DEFAULT
+	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ret
 ; e124e

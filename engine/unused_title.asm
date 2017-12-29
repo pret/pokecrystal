@@ -55,7 +55,7 @@ UnusedTitleScreen: ; 10c000
 
 	call EnableLCD
 	ld a, [rLCDC]
-	set rLCDC_SPRITE_ENABLE, a
+	set rLCDC_SPRITES_ENABLE, a
 	set rLCDC_SPRITE_SIZE, a
 	ld [rLCDC], a
 

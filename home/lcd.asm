@@ -62,7 +62,7 @@ DisableLCD:: ; 568
 	jr nz, .wait
 
 	ld a, [rLCDC]
-	and $ff ^ 1 << rLCDC_ENABLE
+	and $ff ^ (1 << rLCDC_ENABLE)
 	ld [rLCDC], a
 
 	xor a

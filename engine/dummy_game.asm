@@ -34,7 +34,7 @@ _DummyGame: ; e1e5b (38:5e5b)
 	ld [wJumptableIndex], a
 	ld a, $1
 	ld [hBGMapMode], a
-	ld a, rLCDC_DEFAULT
+	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ld a, $e4
 	call DmgToCgbBGPals

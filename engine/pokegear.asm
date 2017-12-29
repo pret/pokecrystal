@@ -59,7 +59,7 @@ PokeGear: ; 90b8d (24:4b8d)
 	call InitPokegearModeIndicatorArrow
 	ld a, 8
 	call SkipMusic
-	ld a, rLCDC_DEFAULT
+	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	call TownMap_InitCursorAndPlayerIconPositions
 	xor a
@@ -1851,7 +1851,7 @@ _TownMap: ; 9191c
 	farcall ClearSpriteAnims
 	ld a, 8
 	call SkipMusic
-	ld a, rLCDC_DEFAULT
+	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	call TownMap_GetCurrentLandmark
 	ld [wTownMapPlayerIconLandmark], a
