@@ -19,5 +19,5 @@ before_script:
     }
 script:
   - make -j2 compare
-#  - check_status
+  - check_status
 
