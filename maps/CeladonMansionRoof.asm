@@ -39,17 +39,17 @@ CeladonMansionRoof_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $1, $1, 1, CELADON_MANSION_3F
-	warp_def $1, $6, 4, CELADON_MANSION_3F
-	warp_def $5, $2, 1, CELADON_MANSION_ROOF_HOUSE
+	warp_def 1, 1, 1, CELADON_MANSION_3F
+	warp_def 6, 1, 4, CELADON_MANSION_3F
+	warp_def 2, 5, 1, CELADON_MANSION_ROOF_HOUSE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 1, 6, BGEVENT_LEFT, MapCeladonMansionRoofSignpost0Script
+	bg_event 6, 1, BGEVENT_LEFT, MapCeladonMansionRoofSignpost0Script
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_FISHER, 5, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofFisherScript, -1
+	object_event 7, 5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofFisherScript, -1

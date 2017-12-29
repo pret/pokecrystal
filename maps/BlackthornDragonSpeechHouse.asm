@@ -53,8 +53,8 @@ BlackthornDragonSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, BLACKTHORN_CITY
-	warp_def $7, $3, 2, BLACKTHORN_CITY
+	warp_def 2, 7, 2, BLACKTHORN_CITY
+	warp_def 3, 7, 2, BLACKTHORN_CITY
 
 .CoordEvents:
 	db 0
@@ -64,5 +64,5 @@ BlackthornDragonSpeechHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_GRANNY, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornDragonSpeechHouseGrannyScript, -1
-	object_event SPRITE_EKANS, 5, 5, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornDragonSpeechHouseDratiniScript, -1
+	object_event 2, 3, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornDragonSpeechHouseGrannyScript, -1
+	object_event 5, 5, SPRITE_EKANS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornDragonSpeechHouseDratiniScript, -1

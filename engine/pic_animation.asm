@@ -55,7 +55,7 @@ AnimateMon_Unused: ; d003a
 pokeanim: MACRO
 	rept _NARG
 ; Workaround for a bug where macro args can't come after the start of a symbol
-if !def(\1_POKEANIM)
+if !DEF(\1_POKEANIM)
 \1_POKEANIM EQUS "PokeAnim_\1_"
 endc
 	db (\1_POKEANIM - PokeAnim_SetupCommands) / 2
@@ -77,13 +77,13 @@ PokeAnims: ; d0042
 
 .Slow:   pokeanim StereoCry, Setup2, Play
 .Normal: pokeanim StereoCry, Setup, Play
-.Menu:   pokeanim CryNoWait, Setup, Play, SetWait, Wait, Extra, Play
-.Trade:  pokeanim Extra, Play2, Extra, Play, SetWait, Wait, Cry, Setup, Play
-.Evolve: pokeanim Extra, Play, SetWait, Wait, CryNoWait, Setup, Play
-.Hatch:  pokeanim Extra, Play, CryNoWait, Setup, Play, SetWait, Wait, Extra, Play
-.Unused: pokeanim CryNoWait, Setup, Play, SetWait, Wait, Extra, Play
+.Menu:   pokeanim CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
+.Trade:  pokeanim Idle, Play2, Idle, Play, SetWait, Wait, Cry, Setup, Play
+.Evolve: pokeanim Idle, Play, SetWait, Wait, CryNoWait, Setup, Play
+.Hatch:  pokeanim Idle, Play, CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
+.Unused: pokeanim CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
 .Egg1:   pokeanim Setup, Play
-.Egg2:   pokeanim Extra, Play
+.Egg2:   pokeanim Idle, Play
 
 
 AnimateFrontpic: ; d008e
@@ -151,7 +151,7 @@ ENDM
 	setup_command PokeAnim_Wait
 	setup_command PokeAnim_Setup
 	setup_command PokeAnim_Setup2
-	setup_command PokeAnim_Extra
+	setup_command PokeAnim_Idle
 	setup_command PokeAnim_Play
 	setup_command PokeAnim_Play2
 	setup_command PokeAnim_Cry
@@ -198,7 +198,7 @@ PokeAnim_Setup2: ; d011d
 	ret
 ; d012f
 
-PokeAnim_Extra: ; d012f
+PokeAnim_Idle: ; d012f
 	ld c, TRUE
 	ld b, 0
 	call PokeAnim_InitAnim
@@ -360,18 +360,18 @@ PokeAnim_InitPicAttributes: ; d01d6
 PokeAnim_InitAnim: ; d0228
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(wPokeAnimExtraFlag)
+	ld a, BANK(wPokeAnimIdleFlag)
 	ld [rSVBK], a
 	push bc
-	ld hl, wPokeAnimExtraFlag
-	ld bc, wPokeAnimStructEnd - wPokeAnimExtraFlag
+	ld hl, wPokeAnimIdleFlag
+	ld bc, wPokeAnimStructEnd - wPokeAnimIdleFlag
 	xor a
 	call ByteFill
 	pop bc
 	ld a, b
 	ld [wPokeAnimSpeed], a
 	ld a, c
-	ld [wPokeAnimExtraFlag], a
+	ld [wPokeAnimIdleFlag], a
 	call GetMonAnimPointer
 	call GetMonFramesPointer
 	call GetMonBitmaskPointer
@@ -949,20 +949,20 @@ GetMonAnimPointer: ; d055c
 
 	ld c, BANK(UnownAnimations)
 	ld hl, UnownAnimationPointers
-	ld de, UnownAnimationExtraPointers
+	ld de, UnownAnimationIdlePointers
 	call PokeAnim_IsUnown
 	jr z, .unown
 	ld c, BANK(PicAnimations)
 	ld hl, AnimationPointers
-	ld de, AnimationExtraPointers
+	ld de, AnimationIdlePointers
 .unown
 
-	ld a, [wPokeAnimExtraFlag]
+	ld a, [wPokeAnimIdleFlag]
 	and a
-	jr z, .extras
+	jr z, .idles
 	ld h, d
 	ld l, e
-.extras
+.idles
 
 	ld a, [wPokeAnimSpeciesOrUnown]
 	dec a
@@ -982,12 +982,12 @@ GetMonAnimPointer: ; d055c
 .egg
 	ld hl, EggAnimation
 	ld c, BANK(EggAnimation)
-	ld a, [wPokeAnimExtraFlag]
+	ld a, [wPokeAnimIdleFlag]
 	and a
-	jr z, .extras_egg
-	ld hl, EggAnimationExtra
-	ld c, BANK(EggAnimationExtra)
-.extras_egg
+	jr z, .idles_egg
+	ld hl, EggAnimationIdle
+	ld c, BANK(EggAnimationIdle)
+.idles_egg
 
 	ld a, c
 	ld [wPokeAnimPointerBank], a

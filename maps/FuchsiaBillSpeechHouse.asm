@@ -33,8 +33,8 @@ FuchsiaBillSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, FUCHSIA_CITY
-	warp_def $7, $3, 4, FUCHSIA_CITY
+	warp_def 2, 7, 4, FUCHSIA_CITY
+	warp_def 3, 7, 4, FUCHSIA_CITY
 
 .CoordEvents:
 	db 0
@@ -44,5 +44,5 @@ FuchsiaBillSpeechHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaBillSpeechHousePokefanFScript, -1
-	object_event SPRITE_YOUNGSTER, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaBillSpeechHouseYoungsterScript, -1
+	object_event 2, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaBillSpeechHousePokefanFScript, -1
+	object_event 6, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaBillSpeechHouseYoungsterScript, -1

@@ -85,8 +85,8 @@ Route12SuperRodHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, ROUTE_12
-	warp_def $7, $3, 1, ROUTE_12
+	warp_def 2, 7, 1, ROUTE_12
+	warp_def 3, 7, 1, ROUTE_12
 
 .CoordEvents:
 	db 0
@@ -96,4 +96,4 @@ Route12SuperRodHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_FISHING_GURU, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x7f484, -1
+	object_event 5, 3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x7f484, -1

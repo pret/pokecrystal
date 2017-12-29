@@ -11,7 +11,7 @@ CeruleanPokecenter2FBeta_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $0, 1, CERULEAN_POKECENTER_1F
+	warp_def 0, 7, 1, CERULEAN_POKECENTER_1F
 
 .CoordEvents:
 	db 0

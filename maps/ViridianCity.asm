@@ -221,11 +221,11 @@ ViridianCity_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $7, $20, 1, VIRIDIAN_GYM
-	warp_def $9, $15, 1, VIRIDIAN_NICKNAME_SPEECH_HOUSE
-	warp_def $f, $17, 1, TRAINER_HOUSE_1F
-	warp_def $13, $1d, 2, VIRIDIAN_MART
-	warp_def $19, $17, 1, VIRIDIAN_POKECENTER_1F
+	warp_def 32, 7, 1, VIRIDIAN_GYM
+	warp_def 21, 9, 1, VIRIDIAN_NICKNAME_SPEECH_HOUSE
+	warp_def 23, 15, 1, TRAINER_HOUSE_1F
+	warp_def 29, 19, 2, VIRIDIAN_MART
+	warp_def 23, 25, 1, VIRIDIAN_POKECENTER_1F
 
 .CoordEvents:
 	db 0
@@ -233,15 +233,15 @@ ViridianCity_MapEventHeader:
 .BGEvents:
 	db 6
 	bg_event 17, 17, BGEVENT_READ, ViridianCitySign
-	bg_event 7, 27, BGEVENT_READ, ViridianGymSign
-	bg_event 1, 19, BGEVENT_READ, ViridianCityWelcomeSign
-	bg_event 15, 21, BGEVENT_READ, TrainerHouseSign
-	bg_event 25, 24, BGEVENT_READ, ViridianCityPokecenterSign
-	bg_event 19, 30, BGEVENT_READ, ViridianCityMartSign
+	bg_event 27, 7, BGEVENT_READ, ViridianGymSign
+	bg_event 19, 1, BGEVENT_READ, ViridianCityWelcomeSign
+	bg_event 21, 15, BGEVENT_READ, TrainerHouseSign
+	bg_event 24, 25, BGEVENT_READ, ViridianCityPokecenterSign
+	bg_event 30, 19, BGEVENT_READ, ViridianCityMartSign
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_GRAMPS, 5, 18, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x1a9a4c, -1
-	object_event SPRITE_GRAMPS, 8, 30, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x1a9a61, -1
-	object_event SPRITE_FISHER, 23, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FisherScript_0x1a9a75, -1
-	object_event SPRITE_YOUNGSTER, 21, 17, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianCityYoungsterScript, -1
+	object_event 18, 5, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x1a9a4c, -1
+	object_event 30, 8, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x1a9a61, -1
+	object_event 6, 23, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FisherScript_0x1a9a75, -1
+	object_event 17, 21, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianCityYoungsterScript, -1

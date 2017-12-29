@@ -72,15 +72,15 @@ MobileBattleRoom_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $4, 6, POKECENTER_2F
-	warp_def $7, $5, 6, POKECENTER_2F
+	warp_def 4, 7, 6, POKECENTER_2F
+	warp_def 5, 7, 6, POKECENTER_2F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 2, 4, BGEVENT_UP, MapMobileBattleRoomSignpost0Script
+	bg_event 4, 2, BGEVENT_UP, MapMobileBattleRoomSignpost0Script
 
 .ObjectEvents:
 	db 0

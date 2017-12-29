@@ -273,22 +273,22 @@ CeladonGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $11, $4, 8, CELADON_CITY
-	warp_def $11, $5, 8, CELADON_CITY
+	warp_def 4, 17, 8, CELADON_CITY
+	warp_def 5, 17, 8, CELADON_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 15, 3, BGEVENT_READ, CeladonGymStatue
-	bg_event 15, 6, BGEVENT_READ, CeladonGymStatue
+	bg_event 3, 15, BGEVENT_READ, CeladonGymStatue
+	bg_event 6, 15, BGEVENT_READ, CeladonGymStatue
 
 .ObjectEvents:
 	db 6
-	object_event SPRITE_ERIKA, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ErikaScript_0x72a6a, -1
-	object_event SPRITE_LASS, 8, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassMichelle, -1
-	object_event SPRITE_LASS, 8, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTanya, -1
-	object_event SPRITE_BUENA, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBeautyJulia, -1
-	object_event SPRITE_TWIN, 10, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoandzoe1, -1
-	object_event SPRITE_TWIN, 10, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoandzoe2, -1
+	object_event 5, 3, SPRITE_ERIKA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ErikaScript_0x72a6a, -1
+	object_event 7, 8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassMichelle, -1
+	object_event 2, 8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTanya, -1
+	object_event 3, 5, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBeautyJulia, -1
+	object_event 4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoandzoe1, -1
+	object_event 5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoandzoe2, -1

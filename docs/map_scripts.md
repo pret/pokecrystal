@@ -60,17 +60,17 @@ Callback types:
 
 ## `.Warps: db` *N*
 
-- **`warp_def` *y*, *x*, *warp_id*, *map***
+- **`warp_def` *x*, *y*, *warp_id*, *map***
 
 
 ## `.CoordEvents: db` *N*
 
-- **`coord_event` *scene id*, *y*, *x*, *script***
+- **`coord_event` *x*, *y*, *scene id*, *script***
 
 
 ## `.BGEvents: db` *N*
 
-- **`bg_event` *y*, *x*, *type*, *script***
+- **`bg_event` *x*, *y*, *type*, *script***
 
 BG event types:
 
@@ -90,7 +90,7 @@ BG event types:
 
 ## `.ObjectEvents: db` *N*
 
-- **`object_event` *sprite*, *y*, *x*, *movement*, *ry*, *rx*, *h1*, *h2*, *palette*, *type*, *range*, *script*, *event_flag***
+- **`object_event` *x*, *y*, *sprite*, *movement*, *ry*, *rx*, *h1*, *h2*, *palette*, *type*, *range*, *script*, *event_flag***
 
 Movement types:
 

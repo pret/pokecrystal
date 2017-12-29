@@ -378,21 +378,21 @@ MrPokemonsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 2, ROUTE_30
-	warp_def $7, $3, 2, ROUTE_30
+	warp_def 2, 7, 2, ROUTE_30
+	warp_def 3, 7, 2, ROUTE_30
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 5
-	bg_event 1, 0, BGEVENT_READ, MapMrPokemonsHouseSignpost1Script
+	bg_event 0, 1, BGEVENT_READ, MapMrPokemonsHouseSignpost1Script
 	bg_event 1, 1, BGEVENT_READ, MapMrPokemonsHouseSignpost1Script
-	bg_event 1, 6, BGEVENT_READ, MapMrPokemonsHouseSignpost3Script
-	bg_event 1, 7, BGEVENT_READ, MapMrPokemonsHouseSignpost3Script
-	bg_event 4, 6, BGEVENT_READ, MapMrPokemonsHouseSignpost4Script
+	bg_event 6, 1, BGEVENT_READ, MapMrPokemonsHouseSignpost3Script
+	bg_event 7, 1, BGEVENT_READ, MapMrPokemonsHouseSignpost3Script
+	bg_event 6, 4, BGEVENT_READ, MapMrPokemonsHouseSignpost4Script
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_GENTLEMAN, 5, 3, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MrPokemonsHouse_MrPokemonScript, -1
-	object_event SPRITE_OAK, 5, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK
+	object_event 3, 5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MrPokemonsHouse_MrPokemonScript, -1
+	object_event 6, 5, SPRITE_OAK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK

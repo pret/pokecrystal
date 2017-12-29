@@ -100,9 +100,9 @@ Route32Pokecenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, ROUTE_32
-	warp_def $7, $4, 1, ROUTE_32
-	warp_def $7, $0, 1, POKECENTER_2F
+	warp_def 3, 7, 1, ROUTE_32
+	warp_def 4, 7, 1, ROUTE_32
+	warp_def 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 0
@@ -112,6 +112,6 @@ Route32Pokecenter1F_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x69b52, -1
-	object_event SPRITE_FISHING_GURU, 4, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x69b55, -1
-	object_event SPRITE_COOLTRAINER_F, 2, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FCooltrainerFScript, -1
+	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x69b52, -1
+	object_event 1, 4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x69b55, -1
+	object_event 6, 2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FCooltrainerFScript, -1

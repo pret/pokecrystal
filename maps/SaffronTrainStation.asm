@@ -221,21 +221,21 @@ SaffronTrainStation_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $8, 6, SAFFRON_CITY
-	warp_def $11, $9, 6, SAFFRON_CITY
-	warp_def $5, $6, 4, GOLDENROD_MAGNET_TRAIN_STATION
-	warp_def $5, $b, 3, GOLDENROD_MAGNET_TRAIN_STATION
+	warp_def 8, 17, 6, SAFFRON_CITY
+	warp_def 9, 17, 6, SAFFRON_CITY
+	warp_def 6, 5, 4, GOLDENROD_MAGNET_TRAIN_STATION
+	warp_def 11, 5, 3, GOLDENROD_MAGNET_TRAIN_STATION
 
 .CoordEvents:
 	db 1
-	coord_event 0, $6, $b, Script_ArriveFromGoldenrod
+	coord_event 11, 6, 0, Script_ArriveFromGoldenrod
 
 .BGEvents:
 	db 0
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_OFFICER, 9, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
-	object_event SPRITE_GYM_GUY, 14, 10, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x18a875, -1
-	object_event SPRITE_TEACHER, 11, 6, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
-	object_event SPRITE_LASS, 10, 6, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event 9, 9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
+	object_event 10, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x18a875, -1
+	object_event 6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event 6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION

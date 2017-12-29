@@ -153,22 +153,22 @@ CeladonDeptStore6F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $0, $f, 2, CELADON_DEPT_STORE_5F
-	warp_def $0, $2, 1, CELADON_DEPT_STORE_ELEVATOR
+	warp_def 15, 0, 2, CELADON_DEPT_STORE_5F
+	warp_def 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 6
-	bg_event 0, 14, BGEVENT_READ, CeladonDeptStore6FDirectory
-	bg_event 0, 3, BGEVENT_READ, CeladonDeptStore1FElevatorButton
-	bg_event 1, 8, BGEVENT_UP, CeladonDeptStore6FVendingMachine
-	bg_event 1, 9, BGEVENT_UP, CeladonDeptStore6FVendingMachine
-	bg_event 1, 10, BGEVENT_UP, CeladonDeptStore6FVendingMachine
-	bg_event 1, 11, BGEVENT_UP, CeladonDeptStore6FVendingMachine
+	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore6FDirectory
+	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore1FElevatorButton
+	bg_event 8, 1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
+	bg_event 9, 1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
+	bg_event 10, 1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
+	bg_event 11, 1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_SUPER_NERD, 2, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FSuperNerdScript, -1
-	object_event SPRITE_YOUNGSTER, 5, 12, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FYoungsterScript, -1
+	object_event 9, 2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FSuperNerdScript, -1
+	object_event 12, 5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FYoungsterScript, -1

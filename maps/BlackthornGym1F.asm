@@ -392,26 +392,26 @@ BlackthornGym1F_MapEventHeader:
 
 .Warps:
 	db 7
-	warp_def $11, $4, 1, BLACKTHORN_CITY
-	warp_def $11, $5, 1, BLACKTHORN_CITY
-	warp_def $7, $1, 1, BLACKTHORN_GYM_2F
-	warp_def $9, $7, 2, BLACKTHORN_GYM_2F
-	warp_def $6, $2, 3, BLACKTHORN_GYM_2F
-	warp_def $7, $7, 4, BLACKTHORN_GYM_2F
-	warp_def $6, $7, 5, BLACKTHORN_GYM_2F
+	warp_def 4, 17, 1, BLACKTHORN_CITY
+	warp_def 5, 17, 1, BLACKTHORN_CITY
+	warp_def 1, 7, 1, BLACKTHORN_GYM_2F
+	warp_def 7, 9, 2, BLACKTHORN_GYM_2F
+	warp_def 2, 6, 3, BLACKTHORN_GYM_2F
+	warp_def 7, 7, 4, BLACKTHORN_GYM_2F
+	warp_def 7, 6, 5, BLACKTHORN_GYM_2F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 15, 3, BGEVENT_READ, BlackthornGymStatue
-	bg_event 15, 6, BGEVENT_READ, BlackthornGymStatue
+	bg_event 3, 15, BGEVENT_READ, BlackthornGymStatue
+	bg_event 6, 15, BGEVENT_READ, BlackthornGymStatue
 
 .ObjectEvents:
 	db 5
-	object_event SPRITE_CLAIR, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
-	object_event SPRITE_COOLTRAINER_M, 6, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
-	object_event SPRITE_COOLTRAINER_M, 14, 1, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
-	object_event SPRITE_COOLTRAINER_F, 2, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1
-	object_event SPRITE_GYM_GUY, 15, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornGymGuyScript, -1
+	object_event 5, 3, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
+	object_event 6, 6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
+	object_event 1, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1
+	object_event 9, 2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainerfLola, -1
+	object_event 7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornGymGuyScript, -1

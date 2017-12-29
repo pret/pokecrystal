@@ -50,8 +50,8 @@ BattleTowerElevator_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $1, 1, BATTLE_TOWER_HALLWAY
-	warp_def $3, $2, 1, BATTLE_TOWER_HALLWAY
+	warp_def 1, 3, 1, BATTLE_TOWER_HALLWAY
+	warp_def 2, 3, 1, BATTLE_TOWER_HALLWAY
 
 .CoordEvents:
 	db 0
@@ -61,4 +61,4 @@ BattleTowerElevator_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_RECEPTIONIST, 2, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MovementData_BattleTowerElevatorReceptionistWalksIn, -1
+	object_event 1, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MovementData_BattleTowerElevatorReceptionistWalksIn, -1

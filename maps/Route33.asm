@@ -200,7 +200,7 @@ Route33_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $9, $b, 3, UNION_CAVE_1F
+	warp_def 11, 9, 3, UNION_CAVE_1F
 
 .CoordEvents:
 	db 0
@@ -211,6 +211,6 @@ Route33_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_POKEFAN_M, 13, 6, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerAnthony, -1
-	object_event SPRITE_LASS, 16, 13, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route33LassScript, -1
-	object_event SPRITE_FRUIT_TREE, 16, 14, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route33FruitTreeScript, -1
+	object_event 6, 13, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerAnthony, -1
+	object_event 13, 16, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route33LassScript, -1
+	object_event 14, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route33FruitTreeScript, -1

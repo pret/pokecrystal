@@ -13,7 +13,7 @@
 ; - NewPokedexOrder (see data/pokemon/dex_order_new.asm)
 ; - Pokered_MonIndices (see data/time_capsule/mon_order.asm)
 ; - AnimationPointers (see gfx/pokemon/anim_pointers.asm)
-; - AnimationExtraPointers (see gfx/pokemon/extra_pointers.asm)
+; - AnimationIdlePointers (see gfx/pokemon/idle_pointers.asm)
 ; - BitmasksPointers (see gfx/pokemon/bitmask_pointers.asm)
 ; - FramesPointers (see gfx/pokemon/frame_pointers.asm)
 ; - Footprints (see gfx/footprints.asm)

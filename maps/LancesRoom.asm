@@ -343,21 +343,21 @@ LancesRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $17, $4, 3, KARENS_ROOM
-	warp_def $17, $5, 4, KARENS_ROOM
-	warp_def $1, $4, 1, HALL_OF_FAME
-	warp_def $1, $5, 2, HALL_OF_FAME
+	warp_def 4, 23, 3, KARENS_ROOM
+	warp_def 5, 23, 4, KARENS_ROOM
+	warp_def 4, 1, 1, HALL_OF_FAME
+	warp_def 5, 1, 2, HALL_OF_FAME
 
 .CoordEvents:
 	db 2
-	coord_event 1, $5, $4, Script_ApproachLanceFromLeft
-	coord_event 1, $5, $5, Script_ApproachLanceFromRight
+	coord_event 4, 5, 1, Script_ApproachLanceFromLeft
+	coord_event 5, 5, 1, Script_ApproachLanceFromRight
 
 .BGEvents:
 	db 0
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_LANCE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceScript_0x180e7b, -1
-	object_event SPRITE_TEACHER, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
-	object_event SPRITE_OAK, 7, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	object_event 5, 3, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceScript_0x180e7b, -1
+	object_event 4, 7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
+	object_event 4, 7, SPRITE_OAK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

@@ -175,18 +175,18 @@ ViridianGym_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $11, $4, 1, VIRIDIAN_CITY
-	warp_def $11, $5, 1, VIRIDIAN_CITY
+	warp_def 4, 17, 1, VIRIDIAN_CITY
+	warp_def 5, 17, 1, VIRIDIAN_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 13, 3, BGEVENT_READ, ViridianGymStatue
-	bg_event 13, 6, BGEVENT_READ, ViridianGymStatue
+	bg_event 3, 13, BGEVENT_READ, ViridianGymStatue
+	bg_event 6, 13, BGEVENT_READ, ViridianGymStatue
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_BLUE, 3, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
-	object_event SPRITE_GYM_GUY, 13, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event 5, 3, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event 7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE

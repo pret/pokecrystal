@@ -213,21 +213,21 @@ CeladonCafe_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $6, 9, CELADON_CITY
-	warp_def $7, $7, 9, CELADON_CITY
+	warp_def 6, 7, 9, CELADON_CITY
+	warp_def 7, 7, 9, CELADON_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 0, 5, BGEVENT_READ, EatathonContestPoster
-	bg_event 1, 7, BGEVENT_READ, CeladonCafeTrashcan
+	bg_event 5, 0, BGEVENT_READ, EatathonContestPoster
+	bg_event 7, 1, BGEVENT_READ, CeladonCafeTrashcan
 
 .ObjectEvents:
 	db 5
-	object_event SPRITE_SUPER_NERD, 3, 9, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CeladonCafeChef, -1
-	object_event SPRITE_FISHER, 6, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher1, -1
-	object_event SPRITE_FISHER, 7, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher2, -1
-	object_event SPRITE_FISHER, 2, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher3, -1
-	object_event SPRITE_TEACHER, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCafeTeacher, -1
+	object_event 9, 3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CeladonCafeChef, -1
+	object_event 4, 6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher1, -1
+	object_event 1, 7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher2, -1
+	object_event 1, 2, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher3, -1
+	object_event 4, 3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCafeTeacher, -1

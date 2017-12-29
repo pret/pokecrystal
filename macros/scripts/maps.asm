@@ -10,39 +10,39 @@ scene_script: MACRO
 ENDM
 
 warp_def: MACRO
-;\1: y: top to bottom, starts at 0
-;\2: x: left to right, starts at 0
+;\1: x: left to right, starts at 0
+;\2: y: top to bottom, starts at 0
 ;\3: warp destination: starts at 1
 ;\4: map id: from constants/map_constants.asm
-	db \1, \2, \3
+	db \2, \1, \3
 	map \4
 ENDM
 
 coord_event: MACRO
-;\1: scene id: controlled by setscene/setmapscene
+;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
-;\3: x: left to right, starts at 0
+;\3: scene id: controlled by setscene/setmapscene
 ;\4: script pointer
-	db \1, \2, \3, $0
+	db \3, \2, \1, $0
 	dw \4
 	db $0, $0
 ENDM
 
 bg_event: MACRO
-;\1: y: top to bottom, starts at 0
-;\2: x: left to right, starts at 0
+;\1: x: left to right, starts at 0
+;\2: y: top to bottom, starts at 0
 ;\3: function: a BGEVENT_* constant
 ;\4: script pointer
-	db \1, \2, \3
+	db \2, \1, \3
 	dw \4
 ENDM
 
 object_event: MACRO
-;\1: sprite: a SPRITE_* constant
+;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
-;\3: x: left to right, starts at 0
+;\3: sprite: a SPRITE_* constant
 ;\4: movement function: a SPRITEMOVEDATA_* constant
-;\5, \6: movement radius: y, x
+;\5, \6: movement radius: x, y
 ;\7, \8: hour limits: h1, h2 (0-23)
 ;  * if h1 < h2, the object_event will only appear from h1 to h2
 ;  * if h1 > h2, the object_event will not appear from h2 to h1
@@ -54,8 +54,8 @@ object_event: MACRO
 ;\11: sight range: applies to OBJECTTYPE_TRAINER
 ;\12: script pointer
 ;\13: event flag: an EVENT_* constant, or -1 to always appear
-	db \1, \2 + 4, \3 + 4, \4
-	dn \5, \6
+	db \3, \2 + 4, \1 + 4, \4
+	dn \6, \5
 	db \7, \8
 	shift
 	dn \8, \9

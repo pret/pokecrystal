@@ -108,25 +108,25 @@ SproutTower1F_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $f, $9, 7, VIOLET_CITY
-	warp_def $f, $a, 7, VIOLET_CITY
-	warp_def $4, $6, 1, SPROUT_TOWER_2F
-	warp_def $6, $2, 2, SPROUT_TOWER_2F
-	warp_def $3, $11, 3, SPROUT_TOWER_2F
+	warp_def 9, 15, 7, VIOLET_CITY
+	warp_def 10, 15, 7, VIOLET_CITY
+	warp_def 6, 4, 1, SPROUT_TOWER_2F
+	warp_def 2, 6, 2, SPROUT_TOWER_2F
+	warp_def 17, 3, 3, SPROUT_TOWER_2F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 15, 7, BGEVENT_READ, MapSproutTower1FSignpost1Script
-	bg_event 15, 12, BGEVENT_READ, MapSproutTower1FSignpost1Script
+	bg_event 7, 15, BGEVENT_READ, MapSproutTower1FSignpost1Script
+	bg_event 12, 15, BGEVENT_READ, MapSproutTower1FSignpost1Script
 
 .ObjectEvents:
 	db 6
-	object_event SPRITE_SAGE, 4, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage1Script, -1
-	object_event SPRITE_SAGE, 7, 6, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage2Script, -1
-	object_event SPRITE_GRANNY, 12, 11, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SproutTower1FGrannyScript, -1
-	object_event SPRITE_TEACHER, 9, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SproutTower1FTeacherScript, -1
-	object_event SPRITE_SAGE, 5, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageChow, -1
-	object_event SPRITE_POKE_BALL, 7, 16, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower1FParlyzHeal, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL
+	object_event 7, 4, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage1Script, -1
+	object_event 6, 7, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage2Script, -1
+	object_event 11, 12, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SproutTower1FGrannyScript, -1
+	object_event 9, 9, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SproutTower1FTeacherScript, -1
+	object_event 3, 5, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageChow, -1
+	object_event 16, 7, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower1FParlyzHeal, EVENT_SPROUT_TOWER1F_PARLYZ_HEAL

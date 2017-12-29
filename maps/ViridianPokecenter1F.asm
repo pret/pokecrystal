@@ -77,9 +77,9 @@ ViridianPokecenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 5, VIRIDIAN_CITY
-	warp_def $7, $4, 5, VIRIDIAN_CITY
-	warp_def $7, $0, 1, POKECENTER_2F
+	warp_def 3, 7, 5, VIRIDIAN_CITY
+	warp_def 4, 7, 5, VIRIDIAN_CITY
+	warp_def 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 0
@@ -89,7 +89,7 @@ ViridianPokecenter1F_MapEventHeader:
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x9b690, -1
-	object_event SPRITE_COOLTRAINER_M, 4, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x9b693, -1
-	object_event SPRITE_COOLTRAINER_F, 3, 5, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FCooltrainerFScript, -1
-	object_event SPRITE_BUG_CATCHER, 6, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FBugCatcherScript, -1
+	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x9b690, -1
+	object_event 8, 4, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x9b693, -1
+	object_event 5, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FCooltrainerFScript, -1
+	object_event 1, 6, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FBugCatcherScript, -1

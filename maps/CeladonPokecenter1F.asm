@@ -151,9 +151,9 @@ CeladonPokecenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 5, CELADON_CITY
-	warp_def $7, $4, 5, CELADON_CITY
-	warp_def $7, $0, 1, POKECENTER_2F
+	warp_def 3, 7, 5, CELADON_CITY
+	warp_def 4, 7, 5, CELADON_CITY
+	warp_def 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 0
@@ -163,8 +163,8 @@ CeladonPokecenter1F_MapEventHeader:
 
 .ObjectEvents:
 	db 5
-	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x71e22, -1
-	object_event SPRITE_GENTLEMAN, 5, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x71e25, -1
-	object_event SPRITE_PHARMACIST, 3, 0, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FPharmacistScript, -1
-	object_event SPRITE_COOLTRAINER_F, 6, 8, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FCooltrainerFScript, -1
-	object_event SPRITE_SUPER_NERD, 3, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonEusine, EVENT_SET_WHEN_FOUGHT_HO_OH
+	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x71e22, -1
+	object_event 1, 5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x71e25, -1
+	object_event 0, 3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FPharmacistScript, -1
+	object_event 8, 6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FCooltrainerFScript, -1
+	object_event 4, 3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonEusine, EVENT_SET_WHEN_FOUGHT_HO_OH

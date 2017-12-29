@@ -17,8 +17,8 @@ TinTower6F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $9, $3, 1, TIN_TOWER_7F
-	warp_def $f, $b, 1, TIN_TOWER_5F
+	warp_def 3, 9, 1, TIN_TOWER_7F
+	warp_def 11, 15, 1, TIN_TOWER_5F
 
 .CoordEvents:
 	db 0
@@ -28,4 +28,4 @@ TinTower6F_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKE_BALL, 8, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower6FMaxPotion, EVENT_TIN_TOWER_6F_MAX_POTION
+	object_event 8, 8, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower6FMaxPotion, EVENT_TIN_TOWER_6F_MAX_POTION

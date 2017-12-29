@@ -17,8 +17,8 @@ TinTower3F_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $e, $a, 1, TIN_TOWER_2F
-	warp_def $2, $10, 2, TIN_TOWER_4F
+	warp_def 10, 14, 1, TIN_TOWER_2F
+	warp_def 16, 2, 2, TIN_TOWER_4F
 
 .CoordEvents:
 	db 0
@@ -28,4 +28,4 @@ TinTower3F_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKE_BALL, 14, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower3FFullHeal, EVENT_TIN_TOWER_3F_FULL_HEAL
+	object_event 3, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower3FFullHeal, EVENT_TIN_TOWER_3F_FULL_HEAL

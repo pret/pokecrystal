@@ -27,13 +27,13 @@ TinTower9F_MapEventHeader:
 
 .Warps:
 	db 7
-	warp_def $3, $c, 2, TIN_TOWER_8F
-	warp_def $5, $2, 3, TIN_TOWER_8F
-	warp_def $7, $c, 4, TIN_TOWER_8F
-	warp_def $9, $7, 1, TIN_TOWER_ROOF
-	warp_def $7, $10, 5, TIN_TOWER_7F
-	warp_def $d, $6, 5, TIN_TOWER_8F
-	warp_def $d, $8, 6, TIN_TOWER_8F
+	warp_def 12, 3, 2, TIN_TOWER_8F
+	warp_def 2, 5, 3, TIN_TOWER_8F
+	warp_def 12, 7, 4, TIN_TOWER_8F
+	warp_def 7, 9, 1, TIN_TOWER_ROOF
+	warp_def 16, 7, 5, TIN_TOWER_7F
+	warp_def 6, 13, 5, TIN_TOWER_8F
+	warp_def 8, 13, 6, TIN_TOWER_8F
 
 .CoordEvents:
 	db 0
@@ -43,4 +43,4 @@ TinTower9F_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKE_BALL, 1, 9, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower9FHPUp, EVENT_TIN_TOWER_9F_HP_UP
+	object_event 9, 1, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower9FHPUp, EVENT_TIN_TOWER_9F_HP_UP

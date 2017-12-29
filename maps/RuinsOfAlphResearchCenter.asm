@@ -398,20 +398,20 @@ RuinsOfAlphResearchCenter_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, RUINS_OF_ALPH_OUTSIDE
-	warp_def $7, $3, 6, RUINS_OF_ALPH_OUTSIDE
+	warp_def 2, 7, 6, RUINS_OF_ALPH_OUTSIDE
+	warp_def 3, 7, 6, RUINS_OF_ALPH_OUTSIDE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 3
-	bg_event 5, 6, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost0Script
-	bg_event 4, 3, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost1Script
-	bg_event 1, 7, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost2Script
+	bg_event 6, 5, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost0Script
+	bg_event 3, 4, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost1Script
+	bg_event 7, 1, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost2Script
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_SCIENTIST, 5, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591e5, -1
-	object_event SPRITE_SCIENTIST, 2, 5, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x59214, -1
-	object_event SPRITE_SCIENTIST, 5, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
+	object_event 4, 5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591e5, -1
+	object_event 5, 2, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x59214, -1
+	object_event 2, 5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST

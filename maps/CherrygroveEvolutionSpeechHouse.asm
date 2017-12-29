@@ -47,18 +47,18 @@ CherrygroveEvolutionSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, CHERRYGROVE_CITY
-	warp_def $7, $3, 5, CHERRYGROVE_CITY
+	warp_def 2, 7, 5, CHERRYGROVE_CITY
+	warp_def 3, 7, 5, CHERRYGROVE_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, CherrygroveEvolutionSpeechHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, CherrygroveEvolutionSpeechHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, CherrygroveEvolutionSpeechHouseBookshelf
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_LASS, 5, 3, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LassScript_0x196cb9, -1
-	object_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x196cb2, -1
+	object_event 3, 5, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LassScript_0x196cb9, -1
+	object_event 2, 5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x196cb2, -1

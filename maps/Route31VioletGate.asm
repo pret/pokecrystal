@@ -33,10 +33,10 @@ Route31VioletGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $4, $0, 8, VIOLET_CITY
-	warp_def $5, $0, 9, VIOLET_CITY
-	warp_def $4, $9, 1, ROUTE_31
-	warp_def $5, $9, 2, ROUTE_31
+	warp_def 0, 4, 8, VIOLET_CITY
+	warp_def 0, 5, 9, VIOLET_CITY
+	warp_def 9, 4, 1, ROUTE_31
+	warp_def 9, 5, 2, ROUTE_31
 
 .CoordEvents:
 	db 0
@@ -46,5 +46,5 @@ Route31VioletGate_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_OFFICER, 2, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route31VioletGateOfficerScript, -1
-	object_event SPRITE_COOLTRAINER_F, 2, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route31VioletGateCooltrainerFScript, -1
+	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route31VioletGateOfficerScript, -1
+	object_event 1, 2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route31VioletGateCooltrainerFScript, -1

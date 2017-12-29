@@ -359,8 +359,8 @@ BillsHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, ROUTE_25
-	warp_def $7, $3, 1, ROUTE_25
+	warp_def 2, 7, 1, ROUTE_25
+	warp_def 3, 7, 1, ROUTE_25
 
 .CoordEvents:
 	db 0
@@ -370,4 +370,4 @@ BillsHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_GRAMPS, 3, 2, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BillsGrandpa, -1
+	object_event 2, 3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BillsGrandpa, -1

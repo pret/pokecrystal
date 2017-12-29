@@ -118,17 +118,17 @@ Route20_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $7, $26, 1, SEAFOAM_GYM
+	warp_def 38, 7, 1, SEAFOAM_GYM
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 11, 37, BGEVENT_READ, CinnabarGymSign
+	bg_event 37, 11, BGEVENT_READ, CinnabarGymSign
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_SWIMMER_GIRL, 8, 52, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
-	object_event SPRITE_SWIMMER_GIRL, 13, 45, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
-	object_event SPRITE_SWIMMER_GUY, 13, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCameron, -1
+	object_event 52, 8, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
+	object_event 45, 13, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
+	object_event 12, 13, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCameron, -1

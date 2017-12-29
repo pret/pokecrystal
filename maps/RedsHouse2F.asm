@@ -31,15 +31,15 @@ RedsHouse2F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $0, $7, 3, REDS_HOUSE_1F
+	warp_def 7, 0, 3, REDS_HOUSE_1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 5, 3, BGEVENT_READ, RedsHouse2FN64Script
-	bg_event 1, 0, BGEVENT_READ, RedsHouse2FPCScript
+	bg_event 3, 5, BGEVENT_READ, RedsHouse2FN64Script
+	bg_event 0, 1, BGEVENT_READ, RedsHouse2FPCScript
 
 .ObjectEvents:
 	db 0

@@ -194,8 +194,8 @@ Route39Barn_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 1, ROUTE_39
-	warp_def $7, $4, 1, ROUTE_39
+	warp_def 3, 7, 1, ROUTE_39
+	warp_def 4, 7, 1, ROUTE_39
 
 .CoordEvents:
 	db 0
@@ -205,6 +205,6 @@ Route39Barn_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_TWIN, 3, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TwinScript_0x9cc76, -1
-	object_event SPRITE_TWIN, 3, 4, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TwinScript_0x9cc90, -1
-	object_event SPRITE_TAUROS, 3, 3, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MooMoo, -1
+	object_event 2, 3, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TwinScript_0x9cc76, -1
+	object_event 4, 3, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TwinScript_0x9cc90, -1
+	object_event 3, 3, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MooMoo, -1

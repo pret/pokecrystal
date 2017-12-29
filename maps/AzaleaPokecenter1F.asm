@@ -82,9 +82,9 @@ AzaleaPokecenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, AZALEA_TOWN
-	warp_def $7, $4, 1, AZALEA_TOWN
-	warp_def $7, $0, 1, POKECENTER_2F
+	warp_def 3, 7, 1, AZALEA_TOWN
+	warp_def 4, 7, 1, AZALEA_TOWN
+	warp_def 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 0
@@ -94,7 +94,7 @@ AzaleaPokecenter1F_MapEventHeader:
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FNurseScript, -1
-	object_event SPRITE_GENTLEMAN, 6, 9, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FGentlemanScript, -1
-	object_event SPRITE_FISHING_GURU, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FFishingGuruScript, -1
-	object_event SPRITE_POKEFAN_F, 4, 1, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FPokefanFScript, -1
+	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FNurseScript, -1
+	object_event 9, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FGentlemanScript, -1
+	object_event 6, 1, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FFishingGuruScript, -1
+	object_event 1, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FPokefanFScript, -1

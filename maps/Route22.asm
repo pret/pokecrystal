@@ -21,14 +21,14 @@ Route22_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $5, $d, 1, VICTORY_ROAD_GATE
+	warp_def 13, 5, 1, VICTORY_ROAD_GATE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 7, 15, BGEVENT_READ, VictoryRoadEntranceSign
+	bg_event 15, 7, BGEVENT_READ, VictoryRoadEntranceSign
 
 .ObjectEvents:
 	db 0

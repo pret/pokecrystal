@@ -1442,9 +1442,9 @@ copy_box_data: MACRO
 	jr .loop\@
 
 .done\@
-IF \1
+if \1
 	call CloseSRAM
-ENDC
+endc
 	ld a, -1
 	ld [de], a
 	ld a, [wd004]

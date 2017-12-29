@@ -262,34 +262,34 @@ OaksLab_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $b, $4, 3, PALLET_TOWN
-	warp_def $b, $5, 3, PALLET_TOWN
+	warp_def 4, 11, 3, PALLET_TOWN
+	warp_def 5, 11, 3, PALLET_TOWN
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 16
-	bg_event 1, 6, BGEVENT_READ, OaksLabBookshelf
-	bg_event 1, 7, BGEVENT_READ, OaksLabBookshelf
-	bg_event 1, 8, BGEVENT_READ, OaksLabBookshelf
-	bg_event 1, 9, BGEVENT_READ, OaksLabBookshelf
-	bg_event 7, 0, BGEVENT_READ, OaksLabBookshelf
+	bg_event 6, 1, BGEVENT_READ, OaksLabBookshelf
 	bg_event 7, 1, BGEVENT_READ, OaksLabBookshelf
-	bg_event 7, 2, BGEVENT_READ, OaksLabBookshelf
-	bg_event 7, 3, BGEVENT_READ, OaksLabBookshelf
-	bg_event 7, 6, BGEVENT_READ, OaksLabBookshelf
+	bg_event 8, 1, BGEVENT_READ, OaksLabBookshelf
+	bg_event 9, 1, BGEVENT_READ, OaksLabBookshelf
+	bg_event 0, 7, BGEVENT_READ, OaksLabBookshelf
+	bg_event 1, 7, BGEVENT_READ, OaksLabBookshelf
+	bg_event 2, 7, BGEVENT_READ, OaksLabBookshelf
+	bg_event 3, 7, BGEVENT_READ, OaksLabBookshelf
+	bg_event 6, 7, BGEVENT_READ, OaksLabBookshelf
 	bg_event 7, 7, BGEVENT_READ, OaksLabBookshelf
-	bg_event 7, 8, BGEVENT_READ, OaksLabBookshelf
-	bg_event 7, 9, BGEVENT_READ, OaksLabBookshelf
-	bg_event 0, 4, BGEVENT_READ, OaksLabPoster1
-	bg_event 0, 5, BGEVENT_READ, OaksLabPoster2
-	bg_event 3, 9, BGEVENT_READ, OaksLabTrashcan
-	bg_event 1, 0, BGEVENT_READ, OaksLabPC
+	bg_event 8, 7, BGEVENT_READ, OaksLabBookshelf
+	bg_event 9, 7, BGEVENT_READ, OaksLabBookshelf
+	bg_event 4, 0, BGEVENT_READ, OaksLabPoster1
+	bg_event 5, 0, BGEVENT_READ, OaksLabPoster2
+	bg_event 9, 3, BGEVENT_READ, OaksLabTrashcan
+	bg_event 0, 1, BGEVENT_READ, OaksLabPC
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_OAK, 2, 4, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Oak, -1
-	object_event SPRITE_SCIENTIST, 8, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OaksAssistant1Script, -1
-	object_event SPRITE_SCIENTIST, 9, 8, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OaksAssistant2Script, -1
-	object_event SPRITE_SCIENTIST, 4, 1, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OaksAssistant3Script, -1
+	object_event 4, 2, SPRITE_OAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Oak, -1
+	object_event 1, 8, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OaksAssistant1Script, -1
+	object_event 8, 9, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OaksAssistant2Script, -1
+	object_event 1, 4, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OaksAssistant3Script, -1

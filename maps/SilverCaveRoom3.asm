@@ -56,7 +56,7 @@ SilverCaveRoom3_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $21, $9, 2, SILVER_CAVE_ROOM_2
+	warp_def 9, 33, 2, SILVER_CAVE_ROOM_2
 
 .CoordEvents:
 	db 0
@@ -66,4 +66,4 @@ SilverCaveRoom3_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_RED, 10, 9, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER
+	object_event 9, 10, SPRITE_RED, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER

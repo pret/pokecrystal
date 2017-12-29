@@ -810,23 +810,23 @@ GoldenrodPokecenter1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $7, $3, 15, GOLDENROD_CITY
-	warp_def $7, $4, 15, GOLDENROD_CITY
-	warp_def $6, $0, 1, GOLDENROD_POKECOM_CENTER_2F_MOBILE
-	warp_def $7, $0, 1, POKECENTER_2F
+	warp_def 3, 7, 15, GOLDENROD_CITY
+	warp_def 4, 7, 15, GOLDENROD_CITY
+	warp_def 0, 6, 1, GOLDENROD_POKECOM_CENTER_2F_MOBILE
+	warp_def 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 2
-	coord_event 0, $7, $3, GoldenrodPokecenter1F_GSBallSceneLeft
-	coord_event 0, $7, $4, GoldenrodPokecenter1F_GSBallSceneRight
+	coord_event 3, 7, 0, GoldenrodPokecenter1F_GSBallSceneLeft
+	coord_event 4, 7, 0, GoldenrodPokecenter1F_GSBallSceneRight
 
 .BGEvents:
 	db 0
 
 .ObjectEvents:
 	db 5
-	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x60f91, -1
-	object_event SPRITE_LINK_RECEPTIONIST, 8, 16, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
-	object_event SPRITE_GAMEBOY_KID, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
-	object_event SPRITE_LASS, 4, 1, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
-	object_event SPRITE_POKEFAN_F, 5, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x61024, -1
+	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x60f91, -1
+	object_event 16, 8, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 6, 1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
+	object_event 1, 4, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
+	object_event 7, 5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x61024, -1

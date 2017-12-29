@@ -82,19 +82,19 @@ SafariZoneWardensHome_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 6, FUCHSIA_CITY
-	warp_def $7, $3, 6, FUCHSIA_CITY
+	warp_def 2, 7, 6, FUCHSIA_CITY
+	warp_def 3, 7, 6, FUCHSIA_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 4
-	bg_event 1, 0, BGEVENT_READ, WardensHomeBookshelf
+	bg_event 0, 1, BGEVENT_READ, WardensHomeBookshelf
 	bg_event 1, 1, BGEVENT_READ, WardensHomeBookshelf
-	bg_event 0, 7, BGEVENT_READ, WardenPhoto
-	bg_event 0, 9, BGEVENT_READ, SafariZonePhoto
+	bg_event 7, 0, BGEVENT_READ, WardenPhoto
+	bg_event 9, 0, BGEVENT_READ, SafariZonePhoto
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_LASS, 4, 2, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, WardensGranddaughter, -1
+	object_event 2, 4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, WardensGranddaughter, -1

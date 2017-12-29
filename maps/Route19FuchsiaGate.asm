@@ -51,10 +51,10 @@ Route19FuchsiaGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 10, FUCHSIA_CITY
-	warp_def $0, $5, 11, FUCHSIA_CITY
-	warp_def $7, $4, 1, ROUTE_19
-	warp_def $7, $5, 1, ROUTE_19
+	warp_def 4, 0, 10, FUCHSIA_CITY
+	warp_def 5, 0, 11, FUCHSIA_CITY
+	warp_def 4, 7, 1, ROUTE_19
+	warp_def 5, 7, 1, ROUTE_19
 
 .CoordEvents:
 	db 0
@@ -64,4 +64,4 @@ Route19FuchsiaGate_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x1ab3f6, -1
+	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x1ab3f6, -1

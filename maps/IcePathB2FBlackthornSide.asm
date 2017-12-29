@@ -21,16 +21,16 @@ IcePathB2FBlackthornSide_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $f, $3, 8, ICE_PATH_B1F
-	warp_def $3, $3, 2, ICE_PATH_B3F
+	warp_def 3, 15, 8, ICE_PATH_B1F
+	warp_def 3, 3, 2, ICE_PATH_B3F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 10, 2, BGEVENT_ITEM, IcePathB2FBlackthornSideHiddenIceHeal
+	bg_event 2, 10, BGEVENT_ITEM, IcePathB2FBlackthornSideHiddenIceHeal
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKE_BALL, 16, 8, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FBlackthornSideTMRest, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST
+	object_event 8, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FBlackthornSideTMRest, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST

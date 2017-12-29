@@ -99,17 +99,17 @@ Route27SandstormHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, ROUTE_27
-	warp_def $7, $3, 1, ROUTE_27
+	warp_def 2, 7, 1, ROUTE_27
+	warp_def 3, 7, 1, ROUTE_27
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, SandstormHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, SandstormHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, SandstormHouseBookshelf
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_GRANNY, 4, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SandstormHouseWoman, -1
+	object_event 2, 4, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SandstormHouseWoman, -1

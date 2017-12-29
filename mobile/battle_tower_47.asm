@@ -5,19 +5,19 @@ BattleTowerText:: ; 11c000
 ; 3: Player won
 	ld a, [rSVBK]
 	push af
-	ld a, 3 ; BANK(BT_OTTrainerClass)
+	ld a, BANK(BT_OTTrainerClass)
 	ld [rSVBK], a
-IF DEF(CRYSTAL11)
+if DEF(CRYSTAL11)
 	ld hl, BT_OTTrainerClass
-ELSE
-	ld hl, BT_OTName + 5
+else
 ; BUG ALERT
 ; Instead of loading the Trainer Class, this routine
 ; loads the 6th character in the Trainer's name, then
 ; uses it to get the gender of the trainer.
 ; As a consequence, the enemy trainer's dialog will
 ; always be sampled from the female array.
-ENDC
+	ld hl, BT_OTName + 5
+endc
 	ld a, [hl]
 	dec a
 	ld e, a

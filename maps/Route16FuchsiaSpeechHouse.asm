@@ -28,17 +28,17 @@ Route16FuchsiaSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, ROUTE_16
-	warp_def $7, $3, 1, ROUTE_16
+	warp_def 2, 7, 1, ROUTE_16
+	warp_def 3, 7, 1, ROUTE_16
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, Route16FuchsiaSpeechHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, Route16FuchsiaSpeechHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, Route16FuchsiaSpeechHouseBookshelf
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_SUPER_NERD, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route16FuchsiaSpeechHouseSuperNerdScript, -1
+	object_event 2, 3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route16FuchsiaSpeechHouseSuperNerdScript, -1

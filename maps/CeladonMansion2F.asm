@@ -55,19 +55,19 @@ CeladonMansion2F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $0, 4, CELADON_MANSION_1F
-	warp_def $0, $1, 2, CELADON_MANSION_3F
-	warp_def $0, $6, 3, CELADON_MANSION_3F
-	warp_def $0, $7, 5, CELADON_MANSION_1F
+	warp_def 0, 0, 4, CELADON_MANSION_1F
+	warp_def 1, 0, 2, CELADON_MANSION_3F
+	warp_def 6, 0, 3, CELADON_MANSION_3F
+	warp_def 7, 0, 5, CELADON_MANSION_1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 3
-	bg_event 3, 0, BGEVENT_READ, CeladonMansion2FComputer
-	bg_event 8, 5, BGEVENT_UP, CeladonMansion2FSign
-	bg_event 3, 2, BGEVENT_READ, CeladonMansion2FBookshelf
+	bg_event 0, 3, BGEVENT_READ, CeladonMansion2FComputer
+	bg_event 5, 8, BGEVENT_UP, CeladonMansion2FSign
+	bg_event 2, 3, BGEVENT_READ, CeladonMansion2FBookshelf
 
 .ObjectEvents:
 	db 0

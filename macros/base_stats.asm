@@ -1,7 +1,7 @@
 ; Used in data/pokemon/base_stats/*.asm
 
 define: MACRO
-if !def(\1)
+if !DEF(\1)
 \1 EQUS \2
 endc
 ENDM
@@ -9,7 +9,7 @@ ENDM
 const_value = 0
 
 add_tm: MACRO
-if !def(TM01)
+if !DEF(TM01)
 TM01 = const_value
 	enum_start 1
 endc
@@ -19,7 +19,7 @@ endc
 ENDM
 
 add_hm: MACRO
-if !def(HM01)
+if !DEF(HM01)
 HM01 = const_value
 endc
 	define _\@_1, "HM_\1"
@@ -38,7 +38,7 @@ tms1 = 0
 tms2 = 0
 tms3 = 0
 rept _NARG
-	if def(\1_TMNUM)
+	if DEF(\1_TMNUM)
 	if \1_TMNUM < 24 + 1
 tms1 = tms1 | (1 << ((\1_TMNUM) - 1))
 	elif \1_TMNUM < 48 + 1

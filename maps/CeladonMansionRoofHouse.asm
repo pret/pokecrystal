@@ -122,8 +122,8 @@ CeladonMansionRoofHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, CELADON_MANSION_ROOF
-	warp_def $7, $3, 3, CELADON_MANSION_ROOF
+	warp_def 2, 7, 3, CELADON_MANSION_ROOF
+	warp_def 3, 7, 3, CELADON_MANSION_ROOF
 
 .CoordEvents:
 	db 0
@@ -133,4 +133,4 @@ CeladonMansionRoofHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_PHARMACIST, 2, 3, SPRITEMOVEDATA_STANDING_DOWN, 2, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PharmacistScript_0x71afd, -1
+	object_event 3, 2, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PharmacistScript_0x71afd, -1

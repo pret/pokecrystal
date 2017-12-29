@@ -116,8 +116,8 @@ HallOfFame_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $d, $4, 3, LANCES_ROOM
-	warp_def $d, $5, 4, LANCES_ROOM
+	warp_def 4, 13, 3, LANCES_ROOM
+	warp_def 5, 13, 4, LANCES_ROOM
 
 .CoordEvents:
 	db 0
@@ -127,4 +127,4 @@ HallOfFame_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_LANCE, 12, 4, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 4, 12, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

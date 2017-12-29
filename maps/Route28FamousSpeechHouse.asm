@@ -76,18 +76,18 @@ Route28FamousSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, ROUTE_28
-	warp_def $7, $3, 1, ROUTE_28
+	warp_def 2, 7, 1, ROUTE_28
+	warp_def 3, 7, 1, ROUTE_28
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, CelebrityHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, CelebrityHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, CelebrityHouseBookshelf
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_COOLTRAINER_F, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Celebrity, -1
-	object_event SPRITE_MOLTRES, 5, 6, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CelebritysFearow, -1
+	object_event 2, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Celebrity, -1
+	object_event 6, 5, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CelebritysFearow, -1

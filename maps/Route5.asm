@@ -45,10 +45,10 @@ Route5_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $f, $11, 1, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
-	warp_def $11, $8, 1, ROUTE_5_SAFFRON_CITY_GATE
-	warp_def $11, $9, 2, ROUTE_5_SAFFRON_CITY_GATE
-	warp_def $b, $a, 1, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE
+	warp_def 17, 15, 1, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
+	warp_def 8, 17, 1, ROUTE_5_SAFFRON_CITY_GATE
+	warp_def 9, 17, 2, ROUTE_5_SAFFRON_CITY_GATE
+	warp_def 10, 11, 1, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE
 
 .CoordEvents:
 	db 0
@@ -56,8 +56,8 @@ Route5_MapEventHeader:
 .BGEvents:
 	db 2
 	bg_event 17, 17, BGEVENT_READ, Route5UndergroundPathSign
-	bg_event 11, 10, BGEVENT_READ, HouseForSaleSign
+	bg_event 10, 11, BGEVENT_READ, HouseForSaleSign
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKEFAN_M, 16, 17, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH
+	object_event 17, 16, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH

@@ -45,18 +45,18 @@ OlivinePunishmentSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 5, OLIVINE_CITY
-	warp_def $7, $3, 5, OLIVINE_CITY
+	warp_def 2, 7, 5, OLIVINE_CITY
+	warp_def 3, 7, 5, OLIVINE_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, OlivinePunishmentSpeechHouseBookshelf1
+	bg_event 0, 1, BGEVENT_READ, OlivinePunishmentSpeechHouseBookshelf1
 	bg_event 1, 1, BGEVENT_READ, OlivinePunishmentSpeechHouseBookshelf2
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_POKEFAN_M, 2, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDad, -1
-	object_event SPRITE_LASS, 5, 5, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDaughter, -1
+	object_event 1, 2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDad, -1
+	object_event 5, 5, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDaughter, -1

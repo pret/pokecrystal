@@ -62,20 +62,20 @@ GoldenrodDeptStore3F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $c, 1, GOLDENROD_DEPT_STORE_2F
-	warp_def $0, $f, 2, GOLDENROD_DEPT_STORE_4F
-	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def 12, 0, 1, GOLDENROD_DEPT_STORE_2F
+	warp_def 15, 0, 2, GOLDENROD_DEPT_STORE_4F
+	warp_def 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 0, 14, BGEVENT_READ, GoldenrodDeptStore3FDirectory
-	bg_event 0, 3, BGEVENT_READ, GoldenrodDeptStore3FElevatorButton
+	bg_event 14, 0, BGEVENT_READ, GoldenrodDeptStore3FDirectory
+	bg_event 3, 0, BGEVENT_READ, GoldenrodDeptStore3FElevatorButton
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_CLERK, 1, 6, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x55db8, -1
-	object_event SPRITE_SUPER_NERD, 5, 12, SPRITEMOVEDATA_SPINRANDOM_FAST, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FSuperNerdScript, -1
-	object_event SPRITE_ROCKER, 5, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FRockerScript, -1
+	object_event 6, 1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x55db8, -1
+	object_event 12, 5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FSuperNerdScript, -1
+	object_event 2, 5, SPRITE_ROCKER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FRockerScript, -1

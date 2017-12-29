@@ -77,8 +77,8 @@ CherrygroveMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, CHERRYGROVE_CITY
-	warp_def $7, $3, 1, CHERRYGROVE_CITY
+	warp_def 2, 7, 1, CHERRYGROVE_CITY
+	warp_def 3, 7, 1, CHERRYGROVE_CITY
 
 .CoordEvents:
 	db 0
@@ -88,6 +88,6 @@ CherrygroveMart_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x19680a, -1
-	object_event SPRITE_COOLTRAINER_M, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x19681d, -1
-	object_event SPRITE_YOUNGSTER, 5, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveMartYoungsterScript, -1
+	object_event 1, 3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x19680a, -1
+	object_event 7, 6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x19681d, -1
+	object_event 2, 5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveMartYoungsterScript, -1

@@ -83,17 +83,17 @@ Route18_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $6, $2, 3, ROUTE_17_18_GATE
-	warp_def $7, $2, 4, ROUTE_17_18_GATE
+	warp_def 2, 6, 3, ROUTE_17_18_GATE
+	warp_def 2, 7, 4, ROUTE_17_18_GATE
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 5, 9, BGEVENT_READ, Route18Sign
+	bg_event 9, 5, BGEVENT_READ, Route18Sign
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_YOUNGSTER, 12, 9, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBoris, -1
-	object_event SPRITE_YOUNGSTER, 6, 13, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBob, -1
+	object_event 9, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBoris, -1
+	object_event 13, 6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBob, -1

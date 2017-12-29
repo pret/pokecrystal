@@ -138,10 +138,10 @@ KarensRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $4, 3, BRUNOS_ROOM
-	warp_def $11, $5, 4, BRUNOS_ROOM
-	warp_def $2, $4, 1, LANCES_ROOM
-	warp_def $2, $5, 2, LANCES_ROOM
+	warp_def 4, 17, 3, BRUNOS_ROOM
+	warp_def 5, 17, 4, BRUNOS_ROOM
+	warp_def 4, 2, 1, LANCES_ROOM
+	warp_def 5, 2, 2, LANCES_ROOM
 
 .CoordEvents:
 	db 0
@@ -151,4 +151,4 @@ KarensRoom_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_KAREN, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KarenScript_Battle, -1
+	object_event 5, 7, SPRITE_KAREN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KarenScript_Battle, -1

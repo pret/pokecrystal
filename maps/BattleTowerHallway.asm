@@ -84,12 +84,12 @@ BattleTowerHallway_MapEventHeader:
 
 .Warps:
 	db 6
-	warp_def $1, $b, 1, BATTLE_TOWER_ELEVATOR
-	warp_def $0, $5, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def $0, $7, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def $0, $9, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def $0, $d, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def $0, $f, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def 11, 1, 1, BATTLE_TOWER_ELEVATOR
+	warp_def 5, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def 7, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def 9, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def 13, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_def 15, 0, 1, BATTLE_TOWER_BATTLE_ROOM
 
 .CoordEvents:
 	db 0
@@ -99,4 +99,4 @@ BattleTowerHallway_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_RECEPTIONIST, 2, 11, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEventHeader, -1
+	object_event 11, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEventHeader, -1

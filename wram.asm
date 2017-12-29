@@ -827,12 +827,12 @@ wDexListingCursorBackup:: db
 wBackupDexListingCursor:: db
 wBackupDexListingPage:: db
 wDexCurrentLocation:: db
-IF DEF(CRYSTAL11)
+if DEF(CRYSTAL11)
 wPokedexStatus:: db
 wPokedexDataEnd::
-ELSE
+else
 wPokedexDataEnd:: ds 1
-ENDC
+endc
 	ds 2
 
 NEXTU ; c6d0
@@ -1312,9 +1312,9 @@ wCardFlipWhichCard:: db
 NEXTU ; cf64
 ; pokedex
 wDexEntryPrevJumptableIndex:: db
-IF !DEF(CRYSTAL11)
+if !DEF(CRYSTAL11)
 wPokedexStatus:: db
-ENDC
+endc
 
 NEXTU ; cf64
 ; miscellaneous
@@ -2794,7 +2794,7 @@ wPokeAnimGraphicStartTile:: db
 wPokeAnimCoord:: dw
 wPokeAnimFrontpicHeight:: db
 ; PokeAnim Data
-wPokeAnimExtraFlag:: db
+wPokeAnimIdleFlag:: db
 wPokeAnimSpeed:: db
 wPokeAnimPointerBank:: db
 wPokeAnimPointerAddr:: dw

@@ -34,17 +34,17 @@ LavenderTownSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 3, LAVENDER_TOWN
-	warp_def $7, $3, 3, LAVENDER_TOWN
+	warp_def 2, 7, 3, LAVENDER_TOWN
+	warp_def 3, 7, 3, LAVENDER_TOWN
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, LavenderTownSpeechHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, LavenderTownSpeechHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, LavenderTownSpeechHouseBookshelf
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKEFAN_F, 3, 2, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LavenderTownSpeechHousePokefanFScript, -1
+	object_event 2, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LavenderTownSpeechHousePokefanFScript, -1

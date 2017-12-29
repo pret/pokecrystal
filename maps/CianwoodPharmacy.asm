@@ -78,17 +78,17 @@ CianwoodPharmacy_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, CIANWOOD_CITY
-	warp_def $7, $3, 4, CIANWOOD_CITY
+	warp_def 2, 7, 4, CIANWOOD_CITY
+	warp_def 3, 7, 4, CIANWOOD_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, CianwoodPharmacyBookshelf
+	bg_event 0, 1, BGEVENT_READ, CianwoodPharmacyBookshelf
 	bg_event 1, 1, BGEVENT_READ, CianwoodPharmacyBookshelf
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_PHARMACIST, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPharmacist, -1
+	object_event 2, 3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPharmacist, -1

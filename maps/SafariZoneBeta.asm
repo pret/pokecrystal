@@ -11,8 +11,8 @@ SafariZoneBeta_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $17, $9, 1, SAFARI_ZONE_FUCHSIA_GATE_BETA
-	warp_def $17, $a, 2, SAFARI_ZONE_FUCHSIA_GATE_BETA
+	warp_def 9, 23, 1, SAFARI_ZONE_FUCHSIA_GATE_BETA
+	warp_def 10, 23, 2, SAFARI_ZONE_FUCHSIA_GATE_BETA
 
 .CoordEvents:
 	db 0

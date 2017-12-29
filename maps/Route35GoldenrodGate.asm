@@ -201,10 +201,10 @@ Route35GoldenrodGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $0, $4, 1, ROUTE_35
-	warp_def $0, $5, 2, ROUTE_35
-	warp_def $7, $4, 12, GOLDENROD_CITY
-	warp_def $7, $5, 12, GOLDENROD_CITY
+	warp_def 4, 0, 1, ROUTE_35
+	warp_def 5, 0, 2, ROUTE_35
+	warp_def 4, 7, 12, GOLDENROD_CITY
+	warp_def 5, 7, 12, GOLDENROD_CITY
 
 .CoordEvents:
 	db 0
@@ -214,6 +214,6 @@ Route35GoldenrodGate_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_OFFICER, 4, 0, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x69d37, -1
-	object_event SPRITE_POKEFAN_F, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x69dc6, -1
-	object_event SPRITE_FISHER, 2, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route35GoldenrodGateFisherScript, -1
+	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x69d37, -1
+	object_event 6, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x69dc6, -1
+	object_event 3, 2, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route35GoldenrodGateFisherScript, -1

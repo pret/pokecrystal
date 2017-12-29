@@ -62,15 +62,15 @@ GoldenrodDeptStoreElevator_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $3, $1, -1, GOLDENROD_DEPT_STORE_1F
-	warp_def $3, $2, -1, GOLDENROD_DEPT_STORE_1F
+	warp_def 1, 3, -1, GOLDENROD_DEPT_STORE_1F
+	warp_def 2, 3, -1, GOLDENROD_DEPT_STORE_1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 0, 3, BGEVENT_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
+	bg_event 3, 0, BGEVENT_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
 
 .ObjectEvents:
 	db 0

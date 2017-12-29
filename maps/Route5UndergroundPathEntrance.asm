@@ -25,9 +25,9 @@ Route5UndergroundPathEntrance_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 1, ROUTE_5
-	warp_def $7, $4, 1, ROUTE_5
-	warp_def $3, $4, 1, UNDERGROUND_PATH
+	warp_def 3, 7, 1, ROUTE_5
+	warp_def 4, 7, 1, ROUTE_5
+	warp_def 4, 3, 1, UNDERGROUND_PATH
 
 .CoordEvents:
 	db 0
@@ -37,4 +37,4 @@ Route5UndergroundPathEntrance_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_TEACHER, 2, 2, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route5UndergroundPathEntranceTeacherScript, -1
+	object_event 2, 2, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route5UndergroundPathEntranceTeacherScript, -1

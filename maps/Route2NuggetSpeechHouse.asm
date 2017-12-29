@@ -58,8 +58,8 @@ Route2NuggetSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, ROUTE_2
-	warp_def $7, $3, 1, ROUTE_2
+	warp_def 2, 7, 1, ROUTE_2
+	warp_def 3, 7, 1, ROUTE_2
 
 .CoordEvents:
 	db 0
@@ -69,4 +69,4 @@ Route2NuggetSpeechHouse_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FisherScript_0x9b847, -1
+	object_event 2, 4, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FisherScript_0x9b847, -1

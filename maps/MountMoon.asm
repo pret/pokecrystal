@@ -166,14 +166,14 @@ MountMoon_MapEventHeader:
 
 .Warps:
 	db 8
-	warp_def $3, $3, 1, ROUTE_3
-	warp_def $f, $f, 1, ROUTE_4
-	warp_def $3, $d, 7, MOUNT_MOON
-	warp_def $b, $f, 8, MOUNT_MOON
-	warp_def $5, $19, 1, MOUNT_MOON_SQUARE
-	warp_def $f, $19, 2, MOUNT_MOON_SQUARE
-	warp_def $3, $19, 3, MOUNT_MOON
-	warp_def $d, $19, 4, MOUNT_MOON
+	warp_def 3, 3, 1, ROUTE_3
+	warp_def 15, 15, 1, ROUTE_4
+	warp_def 13, 3, 7, MOUNT_MOON
+	warp_def 15, 11, 8, MOUNT_MOON
+	warp_def 25, 5, 1, MOUNT_MOON_SQUARE
+	warp_def 25, 15, 2, MOUNT_MOON_SQUARE
+	warp_def 25, 3, 3, MOUNT_MOON
+	warp_def 25, 13, 4, MOUNT_MOON
 
 .CoordEvents:
 	db 0
@@ -183,4 +183,4 @@ MountMoon_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_SILVER, 3, 7, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	object_event 7, 3, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

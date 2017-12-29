@@ -117,9 +117,9 @@ SaffronPokecenter1F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $7, $3, 4, SAFFRON_CITY
-	warp_def $7, $4, 4, SAFFRON_CITY
-	warp_def $7, $0, 1, POKECENTER_2F
+	warp_def 3, 7, 4, SAFFRON_CITY
+	warp_def 4, 7, 4, SAFFRON_CITY
+	warp_def 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 0
@@ -129,7 +129,7 @@ SaffronPokecenter1F_MapEventHeader:
 
 .ObjectEvents:
 	db 4
-	object_event SPRITE_NURSE, 1, 3, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x18a47d, -1
-	object_event SPRITE_TEACHER, 2, 7, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x18a480, -1
-	object_event SPRITE_FISHER, 6, 8, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FisherScript_0x18a48c, -1
-	object_event SPRITE_YOUNGSTER, 4, 1, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FYoungsterScript, -1
+	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x18a47d, -1
+	object_event 7, 2, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x18a480, -1
+	object_event 8, 6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FisherScript_0x18a48c, -1
+	object_event 1, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FYoungsterScript, -1

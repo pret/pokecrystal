@@ -175,16 +175,16 @@ TrainerHouseB1F_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def $4, $9, 3, TRAINER_HOUSE_1F
+	warp_def 9, 4, 3, TRAINER_HOUSE_1F
 
 .CoordEvents:
 	db 1
-	coord_event 0, $3, $7, TrainerHouseReceptionistScript
+	coord_event 7, 3, 0, TrainerHouseReceptionistScript
 
 .BGEvents:
 	db 0
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_RECEPTIONIST, 1, 7, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
-	object_event SPRITE_CHRIS, 11, 6, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 7, 1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 6, 11, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

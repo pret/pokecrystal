@@ -45,18 +45,18 @@ OlivineHouseBeta_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 4, OLIVINE_CITY
-	warp_def $7, $3, 4, OLIVINE_CITY
+	warp_def 2, 7, 4, OLIVINE_CITY
+	warp_def 3, 7, 4, OLIVINE_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, OlivineHouseBetaBookshelf1
+	bg_event 0, 1, BGEVENT_READ, OlivineHouseBetaBookshelf1
 	bg_event 1, 1, BGEVENT_READ, OlivineHouseBetaBookshelf2
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_TEACHER, 3, 2, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
-	object_event SPRITE_RHYDON, 4, 6, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RhydonScript_0x9c592, -1
+	object_event 2, 3, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
+	object_event 6, 4, SPRITE_RHYDON, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RhydonScript_0x9c592, -1

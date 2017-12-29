@@ -149,23 +149,23 @@ RuinsOfAlphAerodactylChamber_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $9, $3, 4, RUINS_OF_ALPH_OUTSIDE
-	warp_def $9, $4, 4, RUINS_OF_ALPH_OUTSIDE
-	warp_def $3, $3, 8, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def $3, $4, 9, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def $0, $4, 1, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM
+	warp_def 3, 9, 4, RUINS_OF_ALPH_OUTSIDE
+	warp_def 4, 9, 4, RUINS_OF_ALPH_OUTSIDE
+	warp_def 3, 3, 8, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_def 4, 3, 9, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_def 4, 0, 1, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 6
-	bg_event 3, 2, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
-	bg_event 3, 5, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
-	bg_event 2, 3, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost2Script
-	bg_event 2, 4, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost3Script
-	bg_event 0, 3, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost4Script
-	bg_event 0, 4, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost5Script
+	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
+	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
+	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost2Script
+	bg_event 4, 2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost3Script
+	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost4Script
+	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost5Script
 
 .ObjectEvents:
 	db 0

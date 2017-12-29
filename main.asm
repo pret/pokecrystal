@@ -416,12 +416,12 @@ SECTION "Pic Animations 1", ROMX
 INCLUDE "engine/pic_animation.asm"
 INCLUDE "gfx/pokemon/anim_pointers.asm"
 INCLUDE "gfx/pokemon/anims.asm"
-INCLUDE "gfx/pokemon/extra_pointers.asm"
-INCLUDE "gfx/pokemon/extras.asm"
+INCLUDE "gfx/pokemon/idle_pointers.asm"
+INCLUDE "gfx/pokemon/idles.asm"
 INCLUDE "gfx/pokemon/unown_anim_pointers.asm"
 INCLUDE "gfx/pokemon/unown_anims.asm"
-INCLUDE "gfx/pokemon/unown_extra_pointers.asm"
-INCLUDE "gfx/pokemon/unown_extras.asm"
+INCLUDE "gfx/pokemon/unown_idle_pointers.asm"
+INCLUDE "gfx/pokemon/unown_idles.asm"
 INCLUDE "gfx/pokemon/bitmask_pointers.asm"
 INCLUDE "gfx/pokemon/bitmasks.asm"
 INCLUDE "gfx/pokemon/unown_bitmask_pointers.asm"
@@ -645,8 +645,8 @@ INCLUDE "engine/events/odd_egg.asm"
 
 SECTION "Mobile Stadium 2", ROMX
 
-IF DEF(CRYSTAL11)
+if DEF(CRYSTAL11)
 INCBIN "mobile/stadium/stadium2_2.bin"
-ELSE
+else
 INCBIN "mobile/stadium/stadium2_1.bin"
-ENDC
+endc

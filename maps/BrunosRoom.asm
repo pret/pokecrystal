@@ -130,10 +130,10 @@ BrunosRoom_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $11, $4, 3, KOGAS_ROOM
-	warp_def $11, $5, 4, KOGAS_ROOM
-	warp_def $2, $4, 1, KARENS_ROOM
-	warp_def $2, $5, 2, KARENS_ROOM
+	warp_def 4, 17, 3, KOGAS_ROOM
+	warp_def 5, 17, 4, KOGAS_ROOM
+	warp_def 4, 2, 1, KARENS_ROOM
+	warp_def 5, 2, 2, KARENS_ROOM
 
 .CoordEvents:
 	db 0
@@ -143,4 +143,4 @@ BrunosRoom_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_BRUNO, 7, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BrunoScript_Battle, -1
+	object_event 5, 7, SPRITE_BRUNO, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BrunoScript_Battle, -1

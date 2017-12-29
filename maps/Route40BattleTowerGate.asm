@@ -76,10 +76,10 @@ Route40BattleTowerGate_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $7, $4, 1, ROUTE_40
-	warp_def $7, $5, 1, ROUTE_40
-	warp_def $0, $4, 1, BATTLE_TOWER_OUTSIDE
-	warp_def $0, $5, 2, BATTLE_TOWER_OUTSIDE
+	warp_def 4, 7, 1, ROUTE_40
+	warp_def 5, 7, 1, ROUTE_40
+	warp_def 4, 0, 1, BATTLE_TOWER_OUTSIDE
+	warp_def 5, 0, 2, BATTLE_TOWER_OUTSIDE
 
 .CoordEvents:
 	db 0
@@ -89,5 +89,5 @@ Route40BattleTowerGate_MapEventHeader:
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_ROCKER, 3, 3, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route40BattleTowerGateRockerScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
-	object_event SPRITE_TWIN, 5, 7, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route40BattleTowerGateTwinScript, -1
+	object_event 3, 3, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route40BattleTowerGateRockerScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
+	object_event 7, 5, SPRITE_TWIN, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route40BattleTowerGateTwinScript, -1

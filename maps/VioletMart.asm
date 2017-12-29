@@ -54,8 +54,8 @@ VioletMart_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, VIOLET_CITY
-	warp_def $7, $3, 1, VIOLET_CITY
+	warp_def 2, 7, 1, VIOLET_CITY
+	warp_def 3, 7, 1, VIOLET_CITY
 
 .CoordEvents:
 	db 0
@@ -65,6 +65,6 @@ VioletMart_MapEventHeader:
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_CLERK, 3, 1, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x68295, -1
-	object_event SPRITE_GRANNY, 6, 7, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletMartGrannyScript, -1
-	object_event SPRITE_COOLTRAINER_M, 2, 5, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletMartCooltrainerMScript, -1
+	object_event 1, 3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x68295, -1
+	object_event 7, 6, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletMartGrannyScript, -1
+	object_event 5, 2, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletMartCooltrainerMScript, -1

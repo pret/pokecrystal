@@ -11,10 +11,10 @@ DragonsDen1F_MapEventHeader:
 
 .Warps:
 	db 4
-	warp_def $5, $3, 8, BLACKTHORN_CITY
-	warp_def $3, $3, 4, DRAGONS_DEN_1F
-	warp_def $f, $5, 1, DRAGONS_DEN_B1F
-	warp_def $d, $5, 2, DRAGONS_DEN_1F
+	warp_def 3, 5, 8, BLACKTHORN_CITY
+	warp_def 3, 3, 4, DRAGONS_DEN_1F
+	warp_def 5, 15, 1, DRAGONS_DEN_B1F
+	warp_def 5, 13, 2, DRAGONS_DEN_1F
 
 .CoordEvents:
 	db 0

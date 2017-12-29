@@ -52,17 +52,17 @@ Route30BerrySpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 1, ROUTE_30
-	warp_def $7, $3, 1, ROUTE_30
+	warp_def 2, 7, 1, ROUTE_30
+	warp_def 3, 7, 1, ROUTE_30
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 1, 0, BGEVENT_READ, Route30BerrySpeechHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, Route30BerrySpeechHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, Route30BerrySpeechHouseBookshelf
 
 .ObjectEvents:
 	db 1
-	object_event SPRITE_POKEFAN_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x196d64, -1
+	object_event 2, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x196d64, -1

@@ -261,25 +261,25 @@ RuinsOfAlphKabutoChamber_MapEventHeader:
 
 .Warps:
 	db 5
-	warp_def $9, $3, 2, RUINS_OF_ALPH_OUTSIDE
-	warp_def $9, $4, 2, RUINS_OF_ALPH_OUTSIDE
-	warp_def $3, $3, 4, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def $3, $4, 5, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def $0, $4, 1, RUINS_OF_ALPH_KABUTO_ITEM_ROOM
+	warp_def 3, 9, 2, RUINS_OF_ALPH_OUTSIDE
+	warp_def 4, 9, 2, RUINS_OF_ALPH_OUTSIDE
+	warp_def 3, 3, 4, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_def 4, 3, 5, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_def 4, 0, 1, RUINS_OF_ALPH_KABUTO_ITEM_ROOM
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 6
-	bg_event 3, 2, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
-	bg_event 3, 5, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
-	bg_event 2, 3, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
-	bg_event 2, 4, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost3Script
-	bg_event 0, 3, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
-	bg_event 0, 4, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
+	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
+	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
+	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
+	bg_event 4, 2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost3Script
+	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
+	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_RECEPTIONIST, 5, 5, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	object_event SPRITE_SCIENTIST, 1, 3, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1
+	object_event 5, 5, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
+	object_event 3, 1, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1

@@ -274,20 +274,20 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $1f, $0, 3, GOLDENROD_POKECENTER_1F
-	warp_def $1f, $1, 3, GOLDENROD_POKECENTER_1F
+	warp_def 0, 31, 3, GOLDENROD_POKECENTER_1F
+	warp_def 1, 31, 3, GOLDENROD_POKECENTER_1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 3
-	bg_event 26, 6, BGEVENT_UP, MapGoldenrodPokeComCenter2FMobileSignpost0Script
-	bg_event 28, 6, BGEVENT_UP, MapGoldenrodPokeComCenter2FMobileSignpost1Script
-	bg_event 26, 3, BGEVENT_UP, MapGoldenrodPokeComCenter2FMobileSignpost2Script
+	bg_event 6, 26, BGEVENT_UP, MapGoldenrodPokeComCenter2FMobileSignpost0Script
+	bg_event 6, 28, BGEVENT_UP, MapGoldenrodPokeComCenter2FMobileSignpost1Script
+	bg_event 3, 26, BGEVENT_UP, MapGoldenrodPokeComCenter2FMobileSignpost2Script
 
 .ObjectEvents:
 	db 3
-	object_event SPRITE_SCIENTIST, 28, 4, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist1Script, -1
-	object_event SPRITE_SCIENTIST, 27, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist2Script, -1
-	object_event SPRITE_SCIENTIST, 29, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist3Script, -1
+	object_event 4, 28, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist1Script, -1
+	object_event 7, 27, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist2Script, -1
+	object_event 7, 29, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokeComCenter2FMobileScientist3Script, -1

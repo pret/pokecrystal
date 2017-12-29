@@ -168,17 +168,17 @@ EcruteakItemfinderHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $3, 11, ECRUTEAK_CITY
-	warp_def $7, $4, 11, ECRUTEAK_CITY
+	warp_def 3, 7, 11, ECRUTEAK_CITY
+	warp_def 4, 7, 11, ECRUTEAK_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 1
-	bg_event 1, 2, BGEVENT_READ, ItemFinderHouseRadio
+	bg_event 2, 1, BGEVENT_READ, ItemFinderHouseRadio
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_COOLTRAINER_M, 3, 2, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakItemfinderGuy, -1
-	object_event SPRITE_POKEDEX, 3, 3, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHistoryBook, -1
+	object_event 2, 3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakItemfinderGuy, -1
+	object_event 3, 3, SPRITE_POKEDEX, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHistoryBook, -1

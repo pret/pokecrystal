@@ -57,19 +57,19 @@ GoldenrodPPSpeechHouse_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def $7, $2, 7, GOLDENROD_CITY
-	warp_def $7, $3, 7, GOLDENROD_CITY
+	warp_def 2, 7, 7, GOLDENROD_CITY
+	warp_def 3, 7, 7, GOLDENROD_CITY
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 3
-	bg_event 1, 0, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf1
+	bg_event 0, 1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf1
 	bg_event 1, 1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf2
-	bg_event 1, 7, BGEVENT_READ, GoldenrodPPSpeechHouseRadio
+	bg_event 7, 1, BGEVENT_READ, GoldenrodPPSpeechHouseRadio
 
 .ObjectEvents:
 	db 2
-	object_event SPRITE_FISHER, 4, 2, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
-	object_event SPRITE_LASS, 3, 5, SPRITEMOVEDATA_STANDING_LEFT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1
+	object_event 2, 4, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
+	object_event 5, 3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1

@@ -223,23 +223,23 @@ GoldenrodDeptStore5F_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def $0, $c, 1, GOLDENROD_DEPT_STORE_4F
-	warp_def $0, $f, 1, GOLDENROD_DEPT_STORE_6F
-	warp_def $0, $2, 1, GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_def 12, 0, 1, GOLDENROD_DEPT_STORE_4F
+	warp_def 15, 0, 1, GOLDENROD_DEPT_STORE_6F
+	warp_def 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 2
-	bg_event 0, 14, BGEVENT_READ, GoldenrodDeptStore5FDirectory
-	bg_event 0, 3, BGEVENT_READ, GoldenrodDeptStore5FElevatorButton
+	bg_event 14, 0, BGEVENT_READ, GoldenrodDeptStore5FDirectory
+	bg_event 3, 0, BGEVENT_READ, GoldenrodDeptStore5FElevatorButton
 
 .ObjectEvents:
 	db 6
-	object_event SPRITE_CLERK, 5, 8, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x5609c, -1
-	object_event SPRITE_LASS, 6, 3, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore5FLassScript, -1
-	object_event SPRITE_COOLTRAINER_M, 3, 6, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Mike, -1
-	object_event SPRITE_POKEFAN_M, 5, 13, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore5FPokefanMScript, -1
-	object_event SPRITE_TWIN, 1, 9, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Carrie, -1
-	object_event SPRITE_RECEPTIONIST, 5, 7, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY
+	object_event 8, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x5609c, -1
+	object_event 3, 6, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore5FLassScript, -1
+	object_event 6, 3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Mike, -1
+	object_event 13, 5, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore5FPokefanMScript, -1
+	object_event 9, 1, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Carrie, -1
+	object_event 7, 5, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x560ce, EVENT_GOLDENROD_DEPT_STORE_5F_HAPPINESS_EVENT_LADY
