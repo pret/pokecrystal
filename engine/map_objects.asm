@@ -285,7 +285,7 @@ EndSpriteMovement: ; 467b
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld [hl], a ; OBJECT_30
+	ld [hl], a ; OBJECT_1E
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -482,22 +482,22 @@ MovementAnonymousJumptable: ; 4793
 	ret
 ; 479b
 
-ClearObjectStructField28: ; 479b
-	ld hl, OBJECT_28
+ClearObjectStructField1c: ; 479b
+	ld hl, OBJECT_1C
 	add hl, bc
 	ld [hl], 0
 	ret
 ; 47a2
 
-IncrementObjectStructField28: ; 47a2
-	ld hl, OBJECT_28
+IncrementObjectStructField1c: ; 47a2
+	ld hl, OBJECT_1C
 	add hl, bc
 	inc [hl]
 	ret
 ; 47a8
 
-Object28AnonymousJumptable: ; 47a8
-	ld hl, OBJECT_28
+Field1cAnonymousJumptable: ; 47a8
+	ld hl, OBJECT_1C
 	add hl, bc
 	ld a, [hl]
 	pop hl
@@ -505,15 +505,15 @@ Object28AnonymousJumptable: ; 47a8
 	ret
 ; 47b0
 
-GetValueObjectStructField28: ; 47b0
-	ld hl, OBJECT_28
+GetValueObjectStructField1c: ; 47b0
+	ld hl, OBJECT_1C
 	add hl, bc
 	ld a, [hl]
 	ret
 ; 47b6
 
-SetValueObjectStructField28: ; 47b6
-	ld hl, OBJECT_28
+SetValueObjectStructField1c: ; 47b6
+	ld hl, OBJECT_1C
 	add hl, bc
 	ld [hl], a
 	ret
@@ -541,7 +541,7 @@ ObjectMovementReset: ; 47bc
 ; 47dd
 
 MapObjectMovementPattern: ; 47dd
-	call ClearObjectStructField28
+	call ClearObjectStructField1c
 	call GetSpriteMovementFunction
 	ld a, [hl]
 	ld hl, .Pointers
@@ -1002,7 +1002,7 @@ MapObjectMovementPattern: ; 47dd
 	ld d, b
 	ld e, c
 	pop bc
-	ld hl, OBJECT_29
+	ld hl, OBJECT_1D
 	add hl, bc
 	ld [hl], e
 	inc hl
@@ -1021,7 +1021,7 @@ MapObjectMovementPattern: ; 47dd
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], e
-	ld hl, OBJECT_30
+	ld hl, OBJECT_1E
 	add hl, bc
 	ld [hl], a
 	ld hl, OBJECT_STEP_TYPE
@@ -1141,7 +1141,7 @@ WaitStep_InPlace: ; 4b79
 ; 4b86
 
 NPCJump: ; 4b86
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .Jump
 	dw .Land
@@ -1158,7 +1158,7 @@ NPCJump: ; 4b86
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 	ret
 
 .Land:
@@ -1176,7 +1176,7 @@ NPCJump: ; 4b86
 ; 4bbf
 
 PlayerJump: ; 4bbf
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .initjump
 	dw .stepjump
@@ -1186,7 +1186,7 @@ PlayerJump: ; 4bbf
 .initjump
 	ld hl, wPlayerStepFlags
 	set 7, [hl]
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .stepjump
 	call UpdateJumpPosition
 	call UpdatePlayerStep
@@ -1201,14 +1201,14 @@ PlayerJump: ; 4bbf
 	ld hl, wPlayerStepFlags
 	set 6, [hl]
 	set 4, [hl]
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 	ret
 
 .initland
 	call GetNextTile
 	ld hl, wPlayerStepFlags
 	set 7, [hl]
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .stepland
 	call UpdateJumpPosition
 	call UpdatePlayerStep
@@ -1226,7 +1226,7 @@ PlayerJump: ; 4bbf
 ; 4c18
 
 TeleportFrom: ; 4c18
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .InitSpin
 	dw .DoSpin
@@ -1241,7 +1241,7 @@ TeleportFrom: ; 4c18
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .DoSpin:
 	ld hl, OBJECT_ACTION
 	add hl, bc
@@ -1250,14 +1250,14 @@ TeleportFrom: ; 4c18
 	add hl, bc
 	dec [hl]
 	ret nz
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 	ret
 
 .InitSpinRise:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld [hl], 0
-	ld hl, OBJECT_31
+	ld hl, OBJECT_1F
 	add hl, bc
 	ld [hl], $10
 	ld hl, OBJECT_STEP_DURATION
@@ -1266,12 +1266,12 @@ TeleportFrom: ; 4c18
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res 3, [hl]
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .DoSpinRise:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_SPIN
-	ld hl, OBJECT_31
+	ld hl, OBJECT_1F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
@@ -1296,7 +1296,7 @@ TeleportFrom: ; 4c18
 ; 4c89
 
 TeleportTo: ; 4c89
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .InitWait
 	dw .DoWait
@@ -1314,7 +1314,7 @@ TeleportTo: ; 4c89
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 	ret
 ; 4caa
 
@@ -1323,18 +1323,18 @@ TeleportTo: ; 4c89
 	add hl, bc
 	dec [hl]
 	ret nz
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .InitDescent:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld [hl], 0
-	ld hl, OBJECT_31
+	ld hl, OBJECT_1F
 	add hl, bc
 	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 	ret
 ; 4cc9
 
@@ -1342,7 +1342,7 @@ TeleportTo: ; 4c89
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_SPIN
-	ld hl, OBJECT_31
+	ld hl, OBJECT_1F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
@@ -1357,12 +1357,12 @@ TeleportTo: ; 4c89
 	add hl, bc
 	dec [hl]
 	ret nz
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .InitFinalSpin:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 	ret
 ; 4cf5
 
@@ -1388,7 +1388,7 @@ TeleportTo: ; 4c89
 ; 4d14
 
 Skyfall: ; 4d14
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .Init
 	dw .Step
@@ -1403,7 +1403,7 @@ Skyfall: ; 4d14
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .Step:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1415,15 +1415,15 @@ Skyfall: ; 4d14
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld [hl], 0
-	ld hl, OBJECT_31
+	ld hl, OBJECT_1F
 	add hl, bc
 	ld [hl], 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .Fall:
-	ld hl, OBJECT_31
+	ld hl, OBJECT_1F
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
@@ -1438,7 +1438,7 @@ Skyfall: ; 4d14
 	add hl, bc
 	dec [hl]
 	ret nz
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .Finish:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
@@ -1453,7 +1453,7 @@ Skyfall: ; 4d14
 ; 4d7e
 
 GotBiteStep: ; 4d7e
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .Init
 	dw .Run
@@ -1466,7 +1466,7 @@ GotBiteStep: ; 4d7e
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], 0
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .Run:
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
@@ -1558,7 +1558,7 @@ StepTypeBump: ; 4dff
 ; 4e0c
 
 StepType05: ; 4e0c
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .Reset
 	dw StepType04
@@ -1569,7 +1569,7 @@ StepType05: ; 4e0c
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 StepType04: ; 4e21
 	call MobileFn_4fb2
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -1607,7 +1607,7 @@ StepType07: ; 4e47
 
 PlayerStep: ; 4e56
 ; AnimateStep?
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .init
 	dw .step
@@ -1615,7 +1615,7 @@ PlayerStep: ; 4e56
 .init
 	ld hl, wPlayerStepFlags
 	set 7, [hl]
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .step
 	call UpdatePlayerStep
 	ld hl, OBJECT_STEP_DURATION
@@ -1635,7 +1635,7 @@ PlayerStep: ; 4e56
 ; 4e83
 
 PlayerOrNPCTurnStep: ; 4e83
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .init1
 	dw .step1
@@ -1653,15 +1653,15 @@ PlayerOrNPCTurnStep: ; 4e83
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 2
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .step1
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .init2
-	ld hl, OBJECT_29 ; new facing
+	ld hl, OBJECT_1D ; new facing
 	add hl, bc
 	ld a, [hl]
 	ld hl, OBJECT_FACING
@@ -1670,7 +1670,7 @@ PlayerOrNPCTurnStep: ; 4e83
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 2
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .step2
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1715,7 +1715,7 @@ StepType0f: ; 4ecd
 ; 4f04
 
 StepTypeTrackingObject: ; 4f04
-	ld hl, OBJECT_29
+	ld hl, OBJECT_1D
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -1750,19 +1750,19 @@ StepTypeTrackingObject: ; 4f04
 
 StepType14: ; 4f33
 StepType15: ; 4f33
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .Init
 	dw .Run
 
 .Init:
 	xor a
-	ld hl, OBJECT_29
+	ld hl, OBJECT_1D
 	add hl, bc
 	ld [hl], a
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 .Run:
-	ld hl, OBJECT_29
+	ld hl, OBJECT_1D
 	add hl, bc
 	ld d, [hl]
 	ld a, [wPlayerStepVectorY]
@@ -1774,7 +1774,7 @@ StepType15: ; 4f33
 	jr z, .ok
 	ld a, [hl]
 	call .GetSign
-	ld hl, OBJECT_29
+	ld hl, OBJECT_1D
 	add hl, bc
 	ld [hl], a
 	ld d, a
@@ -1788,7 +1788,7 @@ StepType15: ; 4f33
 	ret
 
 .GetSign:
-	ld hl, OBJECT_30
+	ld hl, OBJECT_1E
 	add hl, bc
 	and 1
 	ld a, [hl]
@@ -1799,10 +1799,10 @@ StepType15: ; 4f33
 ; 4f77
 
 StepType16: ; 4f77
-	call Object28AnonymousJumptable ; ????
+	call Field1cAnonymousJumptable ; ????
 ; 4f7a
 StepType17: ; 4f7a
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .null
 	dw .null
@@ -1811,7 +1811,7 @@ StepType17: ; 4f7a
 ; 4f83
 
 SkyfallTop: ; 4f83
-	call Object28AnonymousJumptable
+	call Field1cAnonymousJumptable
 ; anonymous dw
 	dw .Init
 	dw .Run
@@ -1823,7 +1823,7 @@ SkyfallTop: ; 4f83
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call IncrementObjectStructField28
+	call IncrementObjectStructField1c
 
 .Run:
 	ld hl, OBJECT_STEP_DURATION
@@ -1843,7 +1843,7 @@ SkyfallTop: ; 4f83
 ; 4fb2
 
 MobileFn_4fb2: mobile
-	ld hl, OBJECT_29
+	ld hl, OBJECT_1D
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
@@ -1866,7 +1866,7 @@ MobileFn_4fb2: mobile
 UpdateJumpPosition: ; 4fd5
 	call GetStepVector
 	ld a, h
-	ld hl, OBJECT_31
+	ld hl, OBJECT_1F
 	add hl, bc
 	ld e, [hl]
 	add e

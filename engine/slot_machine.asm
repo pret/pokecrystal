@@ -1326,14 +1326,14 @@ ReelAction_CheckDropReel: ; 92e10
 	ld hl, wReel1ReelAction - wReel1
 	add hl, bc
 	inc [hl] ; REEL_ACTION_WAIT_DROP_REEL
-	ld hl, wReel1Slot0b - wReel1
+	ld hl, wReel1Field0b - wReel1
 	add hl, bc
 	ld [hl], 32
 	ld hl, wReel1SpinRate - wReel1
 	add hl, bc
 	ld [hl], 0
 ReelAction_WaitDropReel: ; 92e31
-	ld hl, wReel1Slot0b - wReel1
+	ld hl, wReel1Field0b - wReel1
 	add hl, bc
 	ld a, [hl]
 	and a

@@ -149,7 +149,7 @@ channel_struct: MACRO
 \1Octave::            db ; 7-0 (0 is highest)
 \1PitchOffset::       db ; raises existing octaves (to repeat phrases)
 \1NoteDuration::      db ; frames remaining for the current note
-\1Field0x16::         ds 1 ; c117
+\1Field16::           ds 1 ; c117
                       ds 1 ; c118
 \1LoopCount::         db
 \1Tempo::             dw
@@ -162,16 +162,16 @@ channel_struct: MACRO
 \1PitchWheelTarget::  dw ; frequency endpoint for pitch wheel
 \1PitchWheelAmount::  db ; c124
 \1PitchWheelAmountFraction::   db ; c125
-\1Field0x25::         db ; c126
+\1Field25::           db ; c126
                       ds 1 ; c127
 \1CryPitch::          dw
-\1Field0x29::         ds 1
-\1Field0x2a::         ds 2
-\1Field0x2c::         ds 1
+\1Field29::           ds 1
+\1Field2a::           ds 2
+\1Field2c::           ds 1
 \1NoteLength::        db ; frames per 16th note
-\1Field0x2e::         ds 1 ; c12f
-\1Field0x2f::         ds 1 ; c130
-\1Field0x30::         ds 1 ; c131
+\1Field2e::           ds 1 ; c12f
+\1Field2f::           ds 1 ; c130
+\1Field30::           ds 1 ; c131
                       ds 1 ; c132
 ENDM
 
@@ -277,10 +277,10 @@ slot_reel: MACRO
 \1XCoord::       db
 \1ManipCounter:: db
 \1ManipDelay::   db
-\1Slot0b::       ds 1
-\1Slot0c::       ds 1
-\1Slot0d::       ds 1
-\1Slot0e::       ds 1
+\1Field0b::      ds 1
+\1Field0c::      ds 1
+\1Field0d::      ds 1
+\1Field0e::      ds 1
 \1StopDelay::    db
 ENDM
 
@@ -313,10 +313,10 @@ object_struct: MACRO
 \1SpriteXOffset::     db
 \1SpriteYOffset::     db
 \1MovementByteIndex:: db
-\1Object28::          ds 1
-\1Object29::          ds 1
-\1Object30::          ds 1
-\1Object31::          ds 1
+\1Field1c::           ds 1
+\1Field1d::           ds 1
+\1Field1e::           ds 1
+\1Field1f::           ds 1
 \1Range::             db
 	ds 7
 \1StructEnd::
@@ -351,44 +351,44 @@ sprite_anim_struct: MACRO
 \1Duration::       db
 \1DurationOffset:: db
 \1FrameIndex::     db
-\1Sprite0b::       ds 1
-\1Sprite0c::       ds 1
-\1Sprite0d::       ds 1
-\1Sprite0e::       ds 1
-\1Sprite0f::       ds 1
+\1JumptableIndex:: db
+\1Field0c::        ds 1
+\1Field0d::        ds 1
+\1Field0e::        ds 1
+\1Field0f::        ds 1
 ENDM
 
 battle_anim_struct: MACRO
 ; Placeholder until we can figure out what it all means
-\1_Index::              db
-\1_Anim01::             ds 1
-\1_Anim02::             ds 1
-\1_FramesetIndex::      db
-\1_FunctionIndex::      db
-\1_Anim05::             ds 1
-\1_TileID::             db
-\1_XCoord::             db
-\1_YCoord::             db
-\1_XOffset::            db
-\1_YOffset::            db
-\1_Anim0b::             ds 1
-\1_Anim0c::             ds 1
-\1_Anim0d::             ds 1
-\1_AnonJumptableIndex:: db
-\1_Anim0f::             ds 1
-\1_Anim10::             ds 1
-\1_Anim11::             ds 1
-\1_Anim12::             ds 1
-\1_Anim13::             ds 1
-\1_Anim14::             ds 1
-\1_Anim15::             ds 1
-\1_Anim16::             ds 1
-\1_Anim17::             ds 1
+\1Index::              db
+\1Field01::            ds 1
+\1Field02::            ds 1
+\1FramesetID::         db
+\1Function::           db
+\1Palette::            db
+\1TileID::             db
+\1XCoord::             db
+\1YCoord::             db
+\1XOffset::            db
+\1YOffset::            db
+\1Field0b::            ds 1
+\1Duration::           db
+\1Frame::              db
+\1AnonJumptableIndex:: db
+\1Field0f::            ds 1
+\1Field10::            ds 1
+\1Field11::            ds 1
+\1Field12::            ds 1
+\1Field13::            ds 1
+\1Field14::            ds 1
+\1Field15::            ds 1
+\1Field16::            ds 1
+\1Field17::            ds 1
 ENDM
 
 battle_bg_effect: MACRO
-\1_Function:: db
-\1_01::       ds 1
-\1_02::       ds 1
-\1_03::       ds 1
+\1Function:: db
+\1Field01::  ds 1
+\1Field02::  ds 1
+\1Field03::  ds 1
 ENDM
