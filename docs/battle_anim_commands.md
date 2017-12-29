@@ -5,26 +5,23 @@ Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) a
 
 ## `$00`−`$EF`: `anim_wait` *length*
 
-## `$D0`: `anim_obj` *object*, *x1*, *x2*, *y1*, *y2*, *param*
 
-The *x1*/*x2* and *y1*/*y2* pairs specify the position on screen of the animation object.
-*x1*/*y1* specify a tile position, and *x2*/*y2* specify a pixel offset from that tile. 
+## `$D0`: `anim_obj` *object*, *x*, *y*, *param*
+*Alternate*: `anim_obj` *object*, *x_tile*, *x*, *y_tile*, *y*, *param*
 
-Values for *x2*/*y2* are in the 0-7 range, since 8 pixels make a tile.
+Spawns an *object* at coordinate (*x*, *y*).
 
-Values for *x1* are between -16 to 31. In practice *x1* starts between 0 to 15, then between -16 to -10. Negative values are relative to the opponent, while positive values are relative to the player. Useful values are between 14 to -10 (for the opponent) and between 0 to 13 (for the player).
+*object*: `ANIM_OBJ` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
+*x*: the x position in pixels
+*y*: the x position in pixels
+*x_tile*: an added x position in tiles (8 pixels)
+*y_tile*: an added y position in tiles (8 pixels)
+*param*: modifies the behavior of *object*. The meaning differs for each object.
 
-Some sample values are:
+*TODO: what happens for x/y values greater than 160/144 respectively?*
+*TODO: useful positions*
+*TODO: document each object*
 
-- 0: player left border
-- 6: player center
-- -15: enemy center
-- -10: enemy right border
-
-Values for *y1* are also between -16 to 31; the useful range is between 2 to 14.
-Values between 2 to 8 will be in the opponent's area (2 being the top border and 8 being the
-bottom border), and values between 8 to 14 will be in the player's area (again, 8 being the top border and 14 being the bottom border).
-The center of the body is often 2 to 4 tiles away from the border (i.e., 5-6 for the opponent or 10-11 for the player).
 
 ## `$D1`: `anim_1gfx` *gfx*
 
