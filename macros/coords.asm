@@ -1,51 +1,55 @@
+screenrows EQUS "* SCREEN_WIDTH"
+bgrows     EQUS "* BG_MAP_WIDTH"
+
+hlcoord EQUS "coord hl,"
 bccoord EQUS "coord bc,"
 decoord EQUS "coord de,"
-hlcoord EQUS "coord hl,"
 
 coord: MACRO
 ; register, x, y[, origin]
 	if _NARG < 4
-	ld \1, TileMap + SCREEN_WIDTH * (\3) + (\2)
+	ld \1, (\3) screenrows + (\2) + TileMap
 	else
-	ld \1, \4 + SCREEN_WIDTH * (\3) + (\2)
+	ld \1, (\3) screenrows + (\2) + \4
+	endc
+ENDM
+
+hlbgcoord EQUS "bgcoord hl,"
+bcbgcoord EQUS "bgcoord bc,"
+debgcoord EQUS "bgcoord de,"
+
+bgcoord: MACRO
+; register, x, y[, origin]
+	if _NARG < 4
+	ld \1, (\3) bgrows + (\2) + vBGMap0
+	else
+	ld \1, (\3) bgrows + (\2) + \4
 	endc
 ENDM
 
 dwcoord: MACRO
+; x, y
 	rept _NARG / 2
-	dw TileMap + SCREEN_WIDTH * (\2) + (\1)
+	dw (\2) screenrows + (\1) + TileMap
 	shift
 	shift
 	endr
 ENDM
 
 ldcoord_a: MACRO
+; x, y[, origin]
 	if _NARG < 3
-	ld [TileMap + SCREEN_WIDTH * (\2) + (\1)], a
+	ld [(\2) screenrows + (\1) + TileMap], a
 	else
-	ld [\3 + SCREEN_WIDTH * (\2) + (\1)], a
+	ld [(\2) screenrows + (\1) + \3], a
 	endc
 ENDM
 
 lda_coord: MACRO
+; x, y[, origin]
 	if _NARG < 3
-	ld a, [TileMap + SCREEN_WIDTH * (\2) + (\1)]
+	ld a, [(\2) screenrows + (\1) + TileMap]
 	else
-	ld a, [\3 + SCREEN_WIDTH * (\2) + (\1)]
-	endc
-ENDM
-
-
-bgrows EQUS "* $20" ; SCREEN_WIDTH
-
-hlbgcoord EQUS "bgcoord hl,"
-debgcoord EQUS "bgcoord de,"
-bcbgcoord EQUS "bgcoord bc,"
-
-bgcoord: MACRO
-	if _NARG >= 4
-	ld \1, \3 bgrows + \2 + \4
-	else
-	ld \1, \3 bgrows + \2 + vBGMap0
+	ld a, [(\2) screenrows + (\1) + \3]
 	endc
 ENDM
