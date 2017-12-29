@@ -149,8 +149,8 @@ RunTradeAnimScript: ; 28fa1
 	jr z, .NotCGB
 	ld a, $1
 	ld [rVBK], a
-	ld hl, VTiles0
-	ld bc, sScratch - VTiles0
+	ld hl, vTiles0
+	ld bc, sScratch - vTiles0
 	xor a
 	call ByteFill
 	ld a, $0
@@ -158,19 +158,19 @@ RunTradeAnimScript: ; 28fa1
 
 .NotCGB:
 	hlbgcoord 0, 0
-	ld bc, sScratch - VBGMap0
+	ld bc, sScratch - vBGMap0
 	ld a, " "
 	call ByteFill
 	ld hl, TradeGameBoyLZ
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	call Decompress
 	ld hl, TradeArrowGFX
-	ld de, VTiles1 tile $6d
+	ld de, vTiles1 tile $6d
 	ld bc, $10
 	ld a, BANK(TradeArrowGFX)
 	call FarCopyBytes
 	ld hl, TradeArrowGFX + $10
-	ld de, VTiles1 tile $6e
+	ld de, vTiles1 tile $6e
 	ld bc, $10
 	ld a, BANK(TradeArrowGFX)
 	call FarCopyBytes
@@ -186,11 +186,11 @@ RunTradeAnimScript: ; 28fa1
 	call LoadTradeBallAndCableGFX
 	ld a, [wPlayerTrademonSpecies]
 	ld hl, wPlayerTrademonDVs
-	ld de, VTiles0
+	ld de, vTiles0
 	call TradeAnim_GetFrontpic
 	ld a, [wOTTrademonSpecies]
 	ld hl, wOTTrademonDVs
-	ld de, VTiles0 tile $31
+	ld de, vTiles0 tile $31
 	call TradeAnim_GetFrontpic
 	ld a, [wPlayerTrademonSpecies]
 	ld de, wPlayerTrademonSpeciesName
@@ -490,7 +490,7 @@ TradeAnim_TubeToPlayer8: ; 29229
 	call DisableLCD
 	callfar ClearSpriteAnims
 	hlbgcoord 0, 0
-	ld bc, sScratch - VBGMap0
+	ld bc, sScratch - vBGMap0
 	ld a, " "
 	call ByteFill
 	xor a
@@ -627,7 +627,7 @@ TradeAnim_PlaceTrademonStatsOnTubeAnim: ; 292f6
 	push af
 	call ClearBGPalettes
 	call WaitTop
-	ld a, HIGH(VBGMap1)
+	ld a, HIGH(vBGMap1)
 	ld [hBGMapAddress + 1], a
 	call ClearTileMap
 	hlcoord 0, 0
@@ -657,7 +657,7 @@ TradeAnim_PlaceTrademonStatsOnTubeAnim: ; 292f6
 	call ByteFill
 	call WaitBGMap
 	call WaitTop
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
 	call ClearTileMap
 	ret
@@ -776,7 +776,7 @@ TradeAnim_TextboxScrollStart: ; 293de
 
 TradeAnim_ScrollOutRight: ; 293ea
 	call WaitTop
-	ld a, HIGH(VBGMap1)
+	ld a, HIGH(vBGMap1)
 	ld [hBGMapAddress + 1], a
 	call WaitBGMap
 	ld a, $7
@@ -785,7 +785,7 @@ TradeAnim_ScrollOutRight: ; 293ea
 	ld [hWY], a
 	call DelayFrame
 	call WaitTop
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
 	call ClearTileMap
 	call TradeAnim_IncrementJumptableIndex
@@ -802,14 +802,14 @@ TradeAnim_ScrollOutRight2: ; 2940c
 	ret
 
 .done
-	ld a, HIGH(VBGMap1)
+	ld a, HIGH(vBGMap1)
 	ld [hBGMapAddress + 1], a
 	call WaitBGMap
 	ld a, $7
 	ld [hWX], a
 	ld a, $90
 	ld [hWY], a
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
 	call TradeAnim_AdvanceScriptPointer
 	ret
@@ -895,14 +895,14 @@ TradeAnim_GetNickname: ; 294a9
 ; 294bb
 
 TradeAnim_ShowGivemonFrontpic: ; 294bb
-	ld de, VTiles0
+	ld de, vTiles0
 	jr TradeAnim_ShowFrontpic
 
 TradeAnim_ShowGetmonFrontpic: ; 294c0
-	ld de, VTiles0 tile $31
+	ld de, vTiles0 tile $31
 TradeAnim_ShowFrontpic: ; 294c3
 	call DelayFrame
-	ld hl, VTiles2
+	ld hl, vTiles2
 	lb bc, 10, $31
 	call Request2bpp
 	call WaitTop
@@ -1009,7 +1009,7 @@ ShowOTTrademonStats: ; 29549
 TrademonStats_MonTemplate: ; 29573
 	call WaitTop
 	call TradeAnim_BlankTileMap
-	ld a, HIGH(VBGMap1)
+	ld a, HIGH(vBGMap1)
 	ld [hBGMapAddress + 1], a
 	hlcoord 3, 0
 	ld b, $6
@@ -1032,7 +1032,7 @@ TrademonStats_MonTemplate: ; 29573
 TrademonStats_Egg: ; 295a1
 	call WaitTop
 	call TradeAnim_BlankTileMap
-	ld a, HIGH(VBGMap1)
+	ld a, HIGH(vBGMap1)
 	ld [hBGMapAddress + 1], a
 	hlcoord 3, 0
 	ld b, 6
@@ -1055,7 +1055,7 @@ TrademonStats_Egg: ; 295a1
 TrademonStats_WaitBGMap: ; 295d8
 	call WaitBGMap
 	call WaitTop
-	ld a, HIGH(VBGMap0)
+	ld a, HIGH(vBGMap0)
 	ld [hBGMapAddress + 1], a
 	ret
 
@@ -1499,15 +1499,15 @@ TradeAnim_FlashBGPals: ; 2981d
 LoadTradeBallAndCableGFX: ; 2982b
 	call DelayFrame
 	ld de, TradeBallGFX
-	ld hl, VTiles0 tile $62
+	ld hl, vTiles0 tile $62
 	lb bc, BANK(TradeBallGFX), $6
 	call Request2bpp
 	ld de, TradePoofGFX
-	ld hl, VTiles0 tile $68
+	ld hl, vTiles0 tile $68
 	lb bc, BANK(TradePoofGFX), $c
 	call Request2bpp
 	ld de, TradeCableGFX
-	ld hl, VTiles0 tile $74
+	ld hl, vTiles0 tile $74
 	lb bc, BANK(TradeCableGFX), $4
 	call Request2bpp
 	xor a
@@ -1523,7 +1523,7 @@ LoadTradeBubbleGFX: ; 2985a
 	ld e, $3
 	callfar LoadMenuMonIcon
 	ld de, TradeBubbleGFX
-	ld hl, VTiles0 tile $72
+	ld hl, vTiles0 tile $72
 	lb bc, BANK(TradeBubbleGFX), $4
 	call Request2bpp
 	xor a

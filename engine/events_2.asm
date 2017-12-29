@@ -2,7 +2,7 @@
 
 
 WarpToSpawnPoint:: ; 97c28
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	res 1, [hl] ; safari zone?
 	res 2, [hl] ; bug contest
 	ret
@@ -108,7 +108,7 @@ RandomEncounter:: ; 97cc0
 	jr c, .nope
 	call CanUseSweetScent
 	jr nc, .nope
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug contest
 	jr nz, .bug_contest
 	farcall TryWildEncounter
@@ -149,7 +149,7 @@ WildBattleScript: ; 97cf9
 ; 97cfd
 
 CanUseSweetScent:: ; 97cfd
-	ld hl, StatusFlags
+	ld hl, wStatusFlags
 	bit 5, [hl]
 	jr nz, .no
 	ld a, [wEnvironment]
@@ -263,7 +263,7 @@ DoBikeStep:: ; 97db3
 	; If the bike shop owner doesn't have our number, or
 	; if we've already gotten the call, we don't have to
 	; be here.
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 4, [hl] ; bike shop call
 	jr z, .NoCall
 
@@ -314,7 +314,7 @@ DoBikeStep:: ; 97db3
 	ld [wSpecialPhoneCallID], a
 	xor a
 	ld [wSpecialPhoneCallID + 1], a
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	res 4, [hl] ; bike shop call
 	scf
 	ret

@@ -2,7 +2,7 @@ HALLOFFAME_COLON EQU $63
 
 HallOfFame:: ; 0x8640e
 	call HallOfFame_FadeOutMusic
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	push af
 	ld a, 1
 	ld [wGameLogicPaused], a
@@ -11,7 +11,7 @@ HallOfFame:: ; 0x8640e
 	ld [wSpawnAfterChampion], a
 
 	; Enable the Pokégear map to cycle through all of Kanto
-	ld hl, StatusFlags
+	ld hl, wStatusFlags
 	set 6, [hl] ; hall of fame
 
 	farcall HallOfFame_InitSaveIfNeeded
@@ -52,7 +52,7 @@ RedCredits:: ; 86455
 	call DisableSpriteUpdates
 	ld a, SPAWN_RED
 	ld [wSpawnAfterChampion], a
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	ld b, a
 	farcall Credits
 	ret
@@ -249,7 +249,7 @@ AnimateHOFMonEntrance: ; 865b5
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
 	call ByteFill
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	predef GetMonBackpic
 	ld a, $31
 	ld [hGraphicStartTile], a
@@ -533,7 +533,7 @@ DisplayHOFMon: ; 86748
 
 HOF_AnimatePlayerPic: ; 86810
 	call ClearBGPalettes
-	ld hl, VTiles2 tile HALLOFFAME_COLON
+	ld hl, vTiles2 tile HALLOFFAME_COLON
 	ld de, FontExtra + 13 tiles ; "<COLON>"
 	lb bc, BANK(FontExtra), 1
 	call Request2bpp

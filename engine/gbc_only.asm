@@ -20,12 +20,12 @@ GBCOnlyScreen: ; 4ea82
 	ld [rSVBK], a
 
 	ld de, $d000
-	ld hl, VTiles2
+	ld hl, vTiles2
 	lb bc, BANK(GBCOnlyGFX), $54
 	call Get2bpp
 
 	ld de, Font
-	ld hl, VTiles1
+	ld hl, vTiles1
 	lb bc, BANK(Font), $80
 	call Get1bpp
 

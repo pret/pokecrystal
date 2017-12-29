@@ -25,17 +25,17 @@ OpenSRAMBank4: ; 89160
 
 
 Function89168: ; 89168 (22:5168)
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	set 7, [hl]
 	ret
 
 Function8916e: ; 8916e (22:516e)
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	res 7, [hl]
 	ret
 
 Function89174: ; 89174 (22:5174)
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	bit 7, [hl]
 	ret
 
@@ -535,7 +535,7 @@ Function893e2: ; 893e2 (22:53e2)
 	ret
 
 Function893ef: ; 893ef
-	ld de, VTiles0
+	ld de, vTiles0
 	ld hl, GFX_8940b
 	ld bc, $20
 	ld a, BANK(GFX_8940b)
@@ -556,12 +556,12 @@ INCBIN "gfx/unknown/08940b.2bpp"
 ; 8942b
 
 Function8942b: ; 8942b (22:542b)
-	ld de, VTiles0 tile $02
+	ld de, vTiles0 tile $02
 	ld hl, MobileAdapterGFX + $7d0
 	ld bc, $80
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
-	ld de, VTiles0 tile $0a
+	ld de, vTiles0 tile $0a
 	ld hl, MobileAdapterGFX + $c60
 	ld bc, $40
 	ld a, BANK(MobileAdapterGFX)
@@ -583,7 +583,7 @@ Function89448: ; 89448 (22:5448)
 
 Function89455: ; 89455 (22:5455)
 	ld hl, MobileAdapterGFX + $7d0
-	ld de, VTiles2 tile $0c
+	ld de, vTiles2 tile $0c
 	ld bc, $490
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
@@ -591,12 +591,12 @@ Function89455: ; 89455 (22:5455)
 
 Function89464: ; 89464
 	ld hl, MobileAdapterGFX
-	ld de, VTiles2
+	ld de, vTiles2
 	ld bc, $200
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ld hl, MobileAdapterGFX + $660
-	ld de, VTiles2 tile $20
+	ld de, vTiles2 tile $20
 	ld bc, $170
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
@@ -619,7 +619,7 @@ Function89481: ; 89481
 
 Function89492: ; 89492 (22:5492)
 	ld d, 0
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	ret z
 	inc d
@@ -1227,7 +1227,7 @@ Function897af: ; 897af
 	ld [TrainerClass], a
 	xor a
 	ld [CurPartySpecies], a
-	ld de, VTiles2 tile $37
+	ld de, vTiles2 tile $37
 	farcall GetTrainerPic
 	pop bc
 	ret
@@ -1269,13 +1269,13 @@ Function897d5: ; 897d5
 
 Function89807: ; 89807 (22:5807)
 	ld hl, MobileAdapterGFX + $200
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .asm_89814
 	ld hl, MobileAdapterGFX + $200 + $230
 .asm_89814
 	call DisableLCD
-	ld de, VTiles2 tile $37
+	ld de, vTiles2 tile $37
 	ld bc, $230
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes

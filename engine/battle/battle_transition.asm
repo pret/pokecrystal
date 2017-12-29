@@ -92,7 +92,7 @@ LoadTrainerBattlePokeballTiles:
 ; Load the tiles used in the Pokeball Graphic that fills the screen
 ; at the start of every Trainer battle.
 	ld de, TrainerBattlePokeballTiles
-	ld hl, VTiles1 tile $7e
+	ld hl, vTiles1 tile $7e
 	ld b, BANK(TrainerBattlePokeballTiles)
 	ld c, 2
 	call Request2bpp
@@ -103,7 +103,7 @@ LoadTrainerBattlePokeballTiles:
 	ld [rVBK], a
 
 	ld de, TrainerBattlePokeballTiles
-	ld hl, VTiles4 tile $7e
+	ld hl, vTiles4 tile $7e
 	ld b, BANK(TrainerBattlePokeballTiles)
 	ld c, 2
 	call Request2bpp
@@ -828,11 +828,11 @@ StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 ; 8c792 (23:4792)
 
 .boxes ; 8c792
-zoombox: macro
+zoombox: MACRO
 ; width, height, start y, start x
 	db \1, \2
 	dwcoord \3, \4
-endm
+ENDM
 	zoombox  4,  2,  8, 8
 	zoombox  6,  4,  7, 7
 	zoombox  8,  6,  6, 6

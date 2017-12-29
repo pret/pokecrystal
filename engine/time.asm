@@ -101,7 +101,7 @@ CheckDailyResetTimer:: ; 11452
 	call CheckDayDependentEventHL
 	ret nc
 	xor a
-	ld hl, DailyFlags
+	ld hl, wDailyFlags
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -226,14 +226,14 @@ CheckUnusedTwoDayTimer: ; 1150c
 ; 1151c
 
 ; XXX
-	ld hl, DailyFlags
+	ld hl, wDailyFlags
 	set 2, [hl]
 	ret
 ; 11522
 
 ; XXX
 	and a
-	ld hl, DailyFlags
+	ld hl, wDailyFlags
 	bit 2, [hl]
 	ret nz
 	scf

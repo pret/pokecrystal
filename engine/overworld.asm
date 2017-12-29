@@ -64,7 +64,7 @@ GetPlayerSprite: ; 14183
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
 	jr nz, .go
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .go
 	ld hl, .Kris
@@ -663,10 +663,10 @@ rept 4
 	add hl, hl
 endr
 	ld a, l
-	add LOW(VTiles0)
+	add LOW(vTiles0)
 	ld l, a
 	ld a, h
-	adc HIGH(VTiles0)
+	adc HIGH(vTiles0)
 	ld h, a
 	ret
 ; 14418

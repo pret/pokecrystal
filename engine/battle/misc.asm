@@ -176,9 +176,9 @@ DoBadgeTypeBoosts: ; fbe24
 
 	ld hl, .BadgeTypes
 
-	ld a, [KantoBadges]
+	ld a, [wKantoBadges]
 	ld b, a
-	ld a, [JohtoBadges]
+	ld a, [wJohtoBadges]
 	ld c, a
 
 .CheckBadge:

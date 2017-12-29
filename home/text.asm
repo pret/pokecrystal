@@ -200,21 +200,21 @@ NextChar:: ; 1083
 	jp PlaceNextChar
 
 CheckDict:: ; 1087
-dict: macro
+dict: MACRO
 if \1 == 0
 	and a
 else
 	cp \1
 endc
 	jp z, \2
-endm
+ENDM
 
-dict2: macro
+dict2: MACRO
 	cp \1
 	jr nz, ._\@
 	ld a, \2
 ._\@:
-endm
+ENDM
 
 	dict "<DAY>",     Char15
 	dict "<LINE>",    LineChar
@@ -309,11 +309,11 @@ Char15:: ; 117b
 ; 1186
 
 
-print_name: macro
+print_name: MACRO
 	push de
 	ld de, \1
 	jp PlaceCommandCharacter
-endm
+ENDM
 
 PrintMomsName:   print_name MomsName   ; 1186
 PrintPlayerName: print_name PlayerName ; 118d
@@ -400,7 +400,7 @@ PlaceGenderedPlayerName:: ; 1252
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	ld de, String_kun
 	jr z, PlaceCommandCharacter

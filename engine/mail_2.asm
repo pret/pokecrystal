@@ -28,7 +28,7 @@ ReadAnyMail: ; b9237
 	ld de, SpanishItalianFont
 
 .got_font
-	ld hl, VTiles1
+	ld hl, vTiles1
 	lb bc, BANK(StandardEnglishFont), $80
 	call Get1bpp
 	pop de
@@ -128,7 +128,7 @@ MailGFXPointers: ; b92f8
 
 LoadSurfMailGFX: ; b9317
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, SurfMailBorderGFX
 	ld c, 8 * 8
 	call LoadMailGFX_Color2
@@ -142,7 +142,7 @@ LoadSurfMailGFX: ; b9317
 
 LoadLiteBlueMailGFX: ; b9335
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, LiteBlueMailBorderGFX
 	ld c, 8 * 8
 	call LoadMailGFX_Color2
@@ -213,7 +213,7 @@ FinishLoadingSurfLiteBlueMailGFX: ; b9351
 
 LoadEonMailGFX: ; b93d2
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, EonMailBorder1GFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
@@ -232,7 +232,7 @@ LoadEonMailGFX: ; b93d2
 	ld de, MailEeveeGFX
 	ld c, 6 * 8
 	call LoadMailGFX_Color3
-	ld hl, VTiles2 tile $3d
+	ld hl, vTiles2 tile $3d
 	ld de, MailLargeCircleGFX
 	ld c, 4 * 8
 	call LoadMailGFX_Color1
@@ -263,7 +263,7 @@ LoadEonMailGFX: ; b93d2
 
 LoadLovelyMailGFX: ; b944b
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, LovelyMailBorderGFX
 	ld c, 5 * 8
 	call LoadMailGFX_Color2
@@ -326,7 +326,7 @@ LovelyEonMail_PlaceIcons: ; b9491
 
 LoadMorphMailGFX: ; b94d6
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld bc, 5 * 8
 	call MailGFX_GenerateMonochromeTilesColor2
 	ld de, MorphMailBorderCornerGFX + 3 * 8
@@ -402,7 +402,7 @@ LoadMorphMailGFX: ; b94d6
 
 LoadBlueSkyMailGFX: ; b9582
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, EonMailBorder1GFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
@@ -490,7 +490,7 @@ Mail_Place6TileRow: ; b9636
 
 LoadFlowerMailGFX: ; b963e
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, FlowerMailBorderGFX
 	ld c, 8 * 8
 	call LoadMailGFX_Color1
@@ -545,14 +545,14 @@ LoadFlowerMailGFX: ; b963e
 
 LoadPortraitMailGFX: ; b96ca
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, PortraitMailBorderGFX
 	ld c, 5 * 8
 	call LoadMailGFX_Color2
 	ld de, PortraitMailUnderlineGFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
-	ld hl, VTiles2 tile $3d
+	ld hl, vTiles2 tile $3d
 	ld de, PortraitMailLargePokeballGFX
 	ld c, 4 * 8
 	call LoadMailGFX_Color1
@@ -576,7 +576,7 @@ LoadPortraitMailGFX: ; b96ca
 
 LoadMusicMailGFX: ; b9710
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, MusicMailBorderGFX
 	ld c, 4 * 8
 	call LoadMailGFX_Color2
@@ -619,7 +619,7 @@ LoadMusicMailGFX: ; b9710
 
 LoadMirageMailGFX: ; b9776
 	push bc
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld bc, 5 * 8
 	call MailGFX_GenerateMonochromeTilesColor2
 	ld de, BlueSkyMailGrassGFX

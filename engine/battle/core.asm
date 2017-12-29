@@ -5309,13 +5309,13 @@ BattleMenuPKMN_Loop:
 Battle_StatsScreen: ; 3e308
 	call DisableLCD
 
-	ld hl, VTiles2 tile $31
-	ld de, VTiles0
+	ld hl, vTiles2 tile $31
+	ld de, vTiles0
 	ld bc, $11 tiles
 	call CopyBytes
 
-	ld hl, VTiles2
-	ld de, VTiles0 tile $11
+	ld hl, vTiles2
+	ld de, vTiles0 tile $11
 	ld bc, $31 tiles
 	call CopyBytes
 
@@ -5330,13 +5330,13 @@ Battle_StatsScreen: ; 3e308
 
 	call DisableLCD
 
-	ld hl, VTiles0
-	ld de, VTiles2 tile $31
+	ld hl, vTiles0
+	ld de, vTiles2 tile $31
 	ld bc, $11 tiles
 	call CopyBytes
 
-	ld hl, VTiles0 tile $11
-	ld de, VTiles2
+	ld hl, vTiles0 tile $11
+	ld de, vTiles2
 	ld bc, $31 tiles
 	call CopyBytes
 
@@ -6371,8 +6371,14 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .GenerateDVs ; try again
 
 .Magikarp:
-; Skimming this part recommended
+; These filters are untranslated.
+; They expect at wMagikarpLength a 2-byte value in mm,
+; but the value is in feet and inches (one byte each).
 
+; The first filter is supposed to make very large Magikarp even rarer,
+; by targeting those 1600 mm or larger.
+; After the conversion to feet, it is unable to target any,
+; as the largest possible Magikarp is 5'3'', which reads as 1283.
 	ld a, [TempEnemyMonSpecies]
 	cp MAGIKARP
 	jr nz, .Happiness
@@ -6382,27 +6388,27 @@ LoadEnemyMon: ; 3e8eb
 	ld bc, PlayerID
 	callfar CalcMagikarpLength
 
-; We're clear if the length is < 1536
+; No reason to keep going if length > 1536 (i.e. if length / 256 != 6)
 	ld a, [wMagikarpLength]
-	cp HIGH(1536)
+	cp HIGH(1536) ; this compares to 6'0'', should be cp 5
 	jr nz, .CheckMagikarpArea
 
 ; 5% chance of skipping both size checks
 	call Random
 	cp 5 percent
 	jr c, .CheckMagikarpArea
-; Try again if > 1614
+; Try again if length > 1615
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1614) + 2
+	cp LOW(1616) ; this compares to 6'80'', should be cp 3
 	jr nc, .GenerateDVs
 
 ; 20% chance of skipping this check
 	call Random
 	cp 20 percent - 1
 	jr c, .CheckMagikarpArea
-; Try again if > 1598
+; Try again if length > 1599
 	ld a, [wMagikarpLength + 1]
-	cp LOW(1598) + 2
+	cp LOW(1600) ; this compares to 6'64'', should be cp 2
 	jr nc, .GenerateDVs
 
 .CheckMagikarpArea:
@@ -6415,6 +6421,9 @@ LoadEnemyMon: ; 3e8eb
 
 ; Intended behavior enforces a minimum size at Lake of Rage
 ; The real behavior prevents size flooring in the Lake of Rage area
+
+; Moreover, due to the check not being translated to feet, all Magikarp
+; smaller than 4'0'' may be caught by the filter, a lot more than intended
 	ld a, [MapGroup]
 	cp GROUP_LAKE_OF_RAGE
 	jr z, .Happiness
@@ -6427,7 +6436,7 @@ LoadEnemyMon: ; 3e8eb
 	jr c, .Happiness
 ; Floor at length 1024
 	ld a, [wMagikarpLength]
-	cp HIGH(1024)
+	cp HIGH(1024) ; compares to 4'0'', cp 3 would be closer to intended value
 	jr c, .GenerateDVs ; try again
 
 ; Finally done with DVs
@@ -6695,7 +6704,7 @@ CheckSleepingTreeMon: ; 3eb38
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
 
-	ld a, [UnlockedUnowns]
+	ld a, [wUnlockedUnowns]
 	ld c, a
 	ld de, 0
 
@@ -6779,7 +6788,7 @@ BattleWinSlideInEnemyTrainerFrontpic: ; 3ebd8
 	call FinishBattleAnim
 	ld a, [OtherTrainerClass]
 	ld [TrainerClass], a
-	ld de, VTiles2
+	ld de, vTiles2
 	callfar GetTrainerPic
 	hlcoord 19, 0
 	ld c, 0
@@ -7074,7 +7083,7 @@ BadgeStatBoosts: ; 3ed45
 	and a
 	ret nz
 
-	ld a, [JohtoBadges]
+	ld a, [wJohtoBadges]
 
 ; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
 	ld d, a
@@ -7155,15 +7164,15 @@ _LoadHPBar: ; 3eda6
 
 LoadHPExpBarGFX: ; unreferenced
 	ld de, EnemyHPBarBorderGFX
-	ld hl, VTiles2 tile $6c
+	ld hl, vTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
 	call Get1bpp
 	ld de, HPExpBarBorderGFX
-	ld hl, VTiles2 tile $73
+	ld hl, vTiles2 tile $73
 	lb bc, BANK(HPExpBarBorderGFX), 6
 	call Get1bpp
 	ld de, ExpBarGFX
-	ld hl, VTiles2 tile $55
+	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 8
 	jp Get2bpp
 ; 3edd1
@@ -8286,7 +8295,7 @@ DropPlayerSub: ; 3f447
 	ld [CurPartySpecies], a
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	predef GetMonBackpic
 	pop af
 	ld [CurPartySpecies], a
@@ -8325,7 +8334,7 @@ DropEnemySub: ; 3f486
 	call GetBaseData
 	ld hl, EnemyMonDVs
 	predef GetUnownLetter
-	ld de, VTiles2
+	ld de, vTiles2
 	predef GetAnimatedFrontpicPredef
 	pop af
 	ld [CurPartySpecies], a
@@ -8382,7 +8391,7 @@ BattleIntro: ; 3f4dd
 	call DisableSpriteUpdates
 	farcall ClearBattleRAM
 	call InitEnemy
-	call BackUpVBGMap2
+	call BackUpBGMap2
 	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	ld hl, rLCDC
@@ -8428,13 +8437,13 @@ InitEnemy: ; 3f55e
 	jp InitEnemyWildmon ; wild
 ; 3f568
 
-BackUpVBGMap2: ; 3f568
+BackUpBGMap2: ; 3f568
 	ld a, [rSVBK]
 	push af
 	ld a, $6 ; BANK(wDecompressScratch)
 	ld [rSVBK], a
 	ld hl, wDecompressScratch
-	ld bc, $40 tiles ; VBGMap3 - VBGMap2
+	ld bc, $40 tiles ; vBGMap3 - vBGMap2
 	ld a, $2
 	call ByteFill
 	ld a, [rVBK]
@@ -8442,8 +8451,8 @@ BackUpVBGMap2: ; 3f568
 	ld a, $1
 	ld [rVBK], a
 	ld de, wDecompressScratch
-	hlbgcoord 0, 0 ; VBGMap2
-	lb bc, BANK(BackUpVBGMap2), $40
+	hlbgcoord 0, 0 ; vBGMap2
+	lb bc, BANK(BackUpBGMap2), $40
 	call Request2bpp
 	pop af
 	ld [rVBK], a
@@ -8467,7 +8476,7 @@ InitEnemyTrainer: ; 3f594
 	ld [OTPartyMon1Item], a
 .ok
 
-	ld de, VTiles2
+	ld de, vTiles2
 	callfar GetTrainerPic
 	xor a
 	ld [hGraphicStartTile], a
@@ -8531,7 +8540,7 @@ InitEnemyWildmon: ; 3f607
 	ld a, [UnownLetter]
 	ld [wFirstUnownSeen], a
 .skip_unown
-	ld de, VTiles2
+	ld de, vTiles2
 	predef GetAnimatedFrontpicPredef
 	xor a
 	ld [TrainerClass], a
@@ -9336,7 +9345,7 @@ InitBattleDisplay: ; 3fb6c
 ; 3fbff
 
 GetTrainerBackpic: ; 3fbff
-; Load the player character's backpic (6x6) into VRAM starting from VTiles2 tile $31.
+; Load the player character's backpic (6x6) into VRAM starting from vTiles2 tile $31.
 
 ; Special exception for Dude.
 	ld b, BANK(DudeBackpic)
@@ -9349,7 +9358,7 @@ GetTrainerBackpic: ; 3fbff
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a ; transformed to male
 	jr nz, .Chris
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .Chris
 
@@ -9363,7 +9372,7 @@ GetTrainerBackpic: ; 3fbff
 	ld hl, ChrisBackpic
 
 .Decompress:
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	ld c, $31
 	predef DecompressPredef
 	ret
@@ -9374,8 +9383,8 @@ CopyBackpic: ; 3fc30
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, VTiles0
-	ld de, VTiles2 tile $31
+	ld hl, vTiles0
+	ld de, vTiles2 tile $31
 	ld a, [hROMBank]
 	ld b, a
 	ld c, $31

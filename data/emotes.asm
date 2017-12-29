@@ -2,7 +2,7 @@ emote: MACRO
 ; graphics pointer, length, starting tile
 	dw \1
 	db \2 tiles, BANK(\1)
-	dw VTiles1 tile \3
+	dw vTiles1 tile \3
 ENDM
 
 Emotes: ; 144d

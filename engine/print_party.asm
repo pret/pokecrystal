@@ -141,17 +141,17 @@ PrintPartyMonPage1: ; 1dc381
 	call LoadFontsBattleExtra
 
 	ld de, GBPrinterHPIcon
-	ld hl, VTiles2 tile $71
+	ld hl, vTiles2 tile $71
 	lb bc, BANK(GBPrinterHPIcon), 1
 	call Request1bpp
 
 	ld de, GBPrinterLvIcon
-	ld hl, VTiles2 tile $6e
+	ld hl, vTiles2 tile $6e
 	lb bc, BANK(GBPrinterLvIcon), 1
 	call Request1bpp
 
 	ld de, ShinyIconGFX
-	ld hl, VTiles2 tile $3f
+	ld hl, vTiles2 tile $3f
 	lb bc, BANK(ShinyIconGFX), 1
 	call Get2bpp
 

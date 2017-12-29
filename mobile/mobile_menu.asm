@@ -628,7 +628,7 @@ Function4a449: ; 4a449
 
 Function4a485: ; 4a485 (12:6485)
 	ld de, GFX_49c0c
-	ld hl, VTiles2 tile $00
+	ld hl, vTiles2 tile $00
 	lb bc, BANK(GFX_49c0c), 13
 	call Get2bpp
 	ret

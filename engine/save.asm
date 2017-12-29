@@ -691,8 +691,8 @@ TryLoadSaveData: ; 14f1c
 	ld de, StartDay
 	ld bc, 8
 	call CopyBytes
-	ld hl, sPlayerData + StatusFlags - wPlayerData
-	ld de, StatusFlags
+	ld hl, sPlayerData + wStatusFlags - wPlayerData
+	ld de, wStatusFlags
 	ld a, [hl]
 	ld [de], a
 	call CloseSRAM
@@ -710,8 +710,8 @@ TryLoadSaveData: ; 14f1c
 	ld de, StartDay
 	ld bc, 8
 	call CopyBytes
-	ld hl, sBackupPlayerData + StatusFlags - wPlayerData
-	ld de, StatusFlags
+	ld hl, sBackupPlayerData + wStatusFlags - wPlayerData
+	ld de, wStatusFlags
 	ld a, [hl]
 	ld [de], a
 	call CloseSRAM

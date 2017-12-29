@@ -18,7 +18,7 @@ DoPlayerMovement:: ; 80000
 
 ; Standing downhill instead moves down.
 
-	ld hl, BikeFlags
+	ld hl, wBikeFlags
 	bit 2, [hl] ; downhill
 	ret z
 
@@ -285,7 +285,7 @@ DoPlayerMovement:: ; 80000
 	call .BikeCheck
 	jr nz, .walk
 
-	ld hl, BikeFlags
+	ld hl, wBikeFlags
 	bit 2, [hl] ; downhill
 	jr z, .fast
 
@@ -672,7 +672,7 @@ DoPlayerMovement:: ; 80000
 
 .CheckStrengthBoulder: ; 8036f
 
-	ld hl, BikeFlags
+	ld hl, wBikeFlags
 	bit 0, [hl] ; using strength
 	jr z, .not_boulder
 

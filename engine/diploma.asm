@@ -10,7 +10,7 @@ PlaceDiplomaOnScreen: ; 1dd709
 	call ClearSprites
 	call DisableLCD
 	ld hl, DiplomaGFX
-	ld de, VTiles2
+	ld de, vTiles2
 	call Decompress
 	ld hl, DiplomaPage1Tilemap
 	decoord 0, 0

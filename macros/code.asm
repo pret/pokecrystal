@@ -2,11 +2,11 @@
 
 lb: MACRO ; r, hi, lo
 	ld \1, (\2 & $ff) << 8 + (\3 & $ff)
-	ENDM
+ENDM
 
 ln: MACRO ; r, hi, lo
 	ld \1, (\2 & $f) << 4 + (\3 & $f)
-	ENDM
+ENDM
 
 ldpixel: MACRO
 if _NARG >= 5
@@ -14,7 +14,7 @@ if _NARG >= 5
 else
 	lb \1, \2 * 8, \3 * 8
 endc
-	ENDM
+ENDM
 
 depixel EQUS "ldpixel de,"
 bcpixel EQUS "ldpixel bc,"
@@ -33,12 +33,12 @@ jumptable: MACRO
 	ld h, [hl]
 	ld l, a
 	jp hl
-	ENDM
+ENDM
 
 ; Many mobile functions were dummied out in localization.
 mobile EQUS "ret"
 
-maskbits: macro
+maskbits: MACRO
 ; example usage in rejection sampling:
 ; .loop
 ; 	call Random
@@ -52,4 +52,4 @@ x = (x + 1) * 2 +- 1
 endc
 endr
 	and x
-	ENDM
+ENDM

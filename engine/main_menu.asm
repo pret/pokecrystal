@@ -9,7 +9,7 @@ MainMenu: ; 49cdc
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes
-	ld hl, GameTimerPause
+	ld hl, wGameTimerPause
 	res 0, [hl]
 	call MainMenu_GetWhichMenu
 	ld [wWhichIndexSet], a
@@ -168,7 +168,7 @@ MainMenu_GetWhichMenu: ; 49da4
 	cp -1
 	call CloseSRAM
 	jr nz, .mystery_gift
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 7, a
 	ld a, $1 ; Continue
 	jr z, .ok
@@ -182,7 +182,7 @@ MainMenu_GetWhichMenu: ; 49da4
 	ret
 
 .mystery_gift
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 7, a
 	jr z, .ok3
 	jr .ok3

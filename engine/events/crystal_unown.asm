@@ -176,7 +176,7 @@ endc
 shift
 endr
 	db $ff
-endm
+ENDM
 
 .UnownText: ; 8aebc
 ;.UnownText_Escape:

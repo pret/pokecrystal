@@ -1,4 +1,4 @@
-phone: macro
+phone: MACRO
 ; trainer class, trainer id, map, ?, script 1, ?, script 2
 	db  \1, \2
 	map \3
@@ -6,7 +6,7 @@ phone: macro
 	dba \5
 	db  \6
 	dba \7
-endm
+ENDM
 
 PhoneContacts: ; 9045f
 ; entries correspond to PHONE_* constants

@@ -232,7 +232,7 @@ LoadTrainerHudOAM: ; 2c143
 
 LoadBallIconGFX: ; 2c165
 	ld de, .gfx
-	ld hl, VTiles0 tile $31
+	ld hl, vTiles0 tile $31
 	lb bc, BANK(LoadBallIconGFX), 4
 	call Get2bpp_2
 	ret

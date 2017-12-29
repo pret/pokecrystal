@@ -4,7 +4,7 @@ PlayRadioShow:
 	cp POKE_FLUTE_RADIO
 	jr nc, .ok
 ; If Team Rocket is not occupying the radio tower, we don't need to be here.
-	ld a, [StatusFlags2]
+	ld a, [wStatusFlags2]
 	bit 0, a ; checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	jr z, .ok
 ; If we're in Kanto, we don't need to be here.
@@ -1176,11 +1176,11 @@ PeoplePlaces4: ; People
 	jr nc, PeoplePlaces4
 	push af
 	ld hl, .E4Names
-	ld a, [StatusFlags]
+	ld a, [wStatusFlags]
 	bit 6, a ; ENGINE_CREDITS_SKIP
 	jr z, .ok
 	ld hl, .KantoLeaderNames
-	ld a, [KantoBadges]
+	ld a, [wKantoBadges]
 	cp %11111111
 	jr nz, .ok
 	ld hl, .MiscNames
@@ -1571,7 +1571,7 @@ BuenasPassword4:
 	jp c, BuenasPassword8
 	ld a, [wBuenasPassword]
 ; If we already generated the password today, we don't need to generate a new one.
-	ld hl, WeeklyFlags
+	ld hl, wWeeklyFlags
 	bit 7, [hl]
 	jr nz, .AlreadyGotIt
 ; There are only 11 groups to choose from.
@@ -1593,7 +1593,7 @@ BuenasPassword4:
 	add e
 	ld [wBuenasPassword], a
 ; Set the flag so that we don't generate a new password this week.
-	ld hl, WeeklyFlags
+	ld hl, wWeeklyFlags
 	set 7, [hl]
 .AlreadyGotIt:
 	ld c, a
@@ -1737,14 +1737,14 @@ BuenasPassword7:
 
 BuenasPasswordAfterMidnight:
 	push hl
-	ld hl, WeeklyFlags
+	ld hl, wWeeklyFlags
 	res 7, [hl]
 	pop hl
 	ld a, BUENAS_PASSWORD_8
 	jp NextRadioLine
 
 BuenasPassword8:
-	ld hl, WeeklyFlags
+	ld hl, wWeeklyFlags
 	res 7, [hl]
 	ld hl, BuenaRadioMidnightText10
 	ld a, BUENAS_PASSWORD_9
@@ -1812,7 +1812,7 @@ BuenasPassword20:
 	farcall NoRadioName
 	pop af
 	ld [hBGMapMode], a
-	ld hl, WeeklyFlags
+	ld hl, wWeeklyFlags
 	res 7, [hl]
 	ld a, BUENAS_PASSWORD
 	ld [wCurrentRadioLine], a

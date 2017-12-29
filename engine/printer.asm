@@ -49,7 +49,7 @@ PrintDexEntry: ; 8442c
 	ld a, [wPrinterQueueLength]
 	push af
 
-	ld hl, VTiles1
+	ld hl, vTiles1
 	ld de, FontInversed
 	lb bc, BANK(FontInversed), $80
 	call Request1bpp

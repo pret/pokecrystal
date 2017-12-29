@@ -386,7 +386,7 @@ InitSpriteAnimBuffer: ; 8d0ec
 
 GetSpriteAnimVTile: ; 8d109
 ; a = wSpriteAnimDict[a] if a in wSpriteAnimDict else 0
-; VTiles offset
+; vTiles offset
 	push hl
 	push bc
 	ld hl, wSpriteAnimDict
@@ -631,7 +631,7 @@ AnimateEndOfExpBar: ; 8e79d
 	ld de, SGBEndOfExpBarGFX
 
 .load
-	ld hl, VTiles0 tile $00
+	ld hl, vTiles0 tile $00
 	lb bc, BANK(EndOfExpBarGFX), 1
 	call Request2bpp
 	ld c, 8

@@ -1,6 +1,6 @@
-bccoord equs "coord bc,"
-decoord equs "coord de,"
-hlcoord equs "coord hl,"
+bccoord EQUS "coord bc,"
+decoord EQUS "coord de,"
+hlcoord EQUS "coord hl,"
 
 coord: MACRO
 ; register, x, y[, origin]
@@ -9,7 +9,7 @@ coord: MACRO
 	else
 	ld \1, \4 + SCREEN_WIDTH * (\3) + (\2)
 	endc
-	ENDM
+ENDM
 
 dwcoord: MACRO
 	rept _NARG / 2
@@ -17,7 +17,7 @@ dwcoord: MACRO
 	shift
 	shift
 	endr
-	ENDM
+ENDM
 
 ldcoord_a: MACRO
 	if _NARG < 3
@@ -25,7 +25,7 @@ ldcoord_a: MACRO
 	else
 	ld [\3 + SCREEN_WIDTH * (\2) + (\1)], a
 	endc
-	ENDM
+ENDM
 
 lda_coord: MACRO
 	if _NARG < 3
@@ -33,7 +33,7 @@ lda_coord: MACRO
 	else
 	ld a, [\3 + SCREEN_WIDTH * (\2) + (\1)]
 	endc
-	ENDM
+ENDM
 
 
 bgrows EQUS "* $20" ; SCREEN_WIDTH
@@ -46,6 +46,6 @@ bgcoord: MACRO
 IF _NARG >= 4
 	ld \1, \3 bgrows + \2 + \4
 ELSE
-	ld \1, \3 bgrows + \2 + VBGMap0
+	ld \1, \3 bgrows + \2 + vBGMap0
 ENDC
 ENDM

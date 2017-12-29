@@ -1,10 +1,10 @@
 ; Used in data/pokemon/base_stats/*.asm
 
-define: macro
+define: MACRO
 if !def(\1)
-\1 equs \2
+\1 EQUS \2
 endc
-endm
+ENDM
 
 const_value = 0
 

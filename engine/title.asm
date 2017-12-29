@@ -26,7 +26,7 @@ _TitleScreen: ; 10ed67
 
 ; Decompress running Suicune gfx
 	ld hl, TitleSuicuneGFX
-	ld de, VTiles1
+	ld de, vTiles1
 	call Decompress
 
 
@@ -42,7 +42,7 @@ _TitleScreen: ; 10ed67
 ; BG Map 1:
 
 ; line 0 (copyright)
-	hlbgcoord 0, 0, VBGMap1
+	hlbgcoord 0, 0, vBGMap1
 	ld bc, 1 bgrows
 	ld a, 7 ; palette
 	call ByteFill
@@ -99,12 +99,12 @@ _TitleScreen: ; 10ed67
 
 ; Decompress logo
 	ld hl, TitleLogoGFX
-	ld de, VTiles1
+	ld de, vTiles1
 	call Decompress
 
 ; Decompress background crystal
 	ld hl, TitleCrystalGFX
-	ld de, VTiles0
+	ld de, vTiles0
 	call Decompress
 
 
@@ -122,7 +122,7 @@ _TitleScreen: ; 10ed67
 	call DrawTitleGraphic
 
 ; Draw copyright text
-	hlbgcoord 3, 0, VBGMap1
+	hlbgcoord 3, 0, vBGMap1
 	lb bc, 1, 13
 	ld d, $c
 	ld e, $10
@@ -260,10 +260,10 @@ SuicuneFrameIterator: ; 10eea7
 ; 10eece
 
 .Frames: ; 10eece
-	db $80 ; VTiles4 tile $00
-	db $88 ; VTiles4 tile $08
-	db $00 ; VTiles5 tile $00
-	db $08 ; VTiles5 tile $08
+	db $80 ; vTiles4 tile $00
+	db $88 ; vTiles4 tile $08
+	db $00 ; vTiles5 tile $00
+	db $08 ; vTiles5 tile $08
 ; 10eed2
 
 

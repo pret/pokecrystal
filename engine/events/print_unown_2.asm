@@ -105,7 +105,7 @@ x = x +- \2
 endr
 y = y + 1
 endr
-endm
+ENDM
 
 UnownPrinter_OverworldMapRectangle: ; e008b
 	overworldmaprect 7, 7

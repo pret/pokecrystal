@@ -4401,7 +4401,7 @@ Function11581e: ; 11581e
 
 Function1158c2: ; 1158c2
 	ld a, e
-	ld [SwarmFlags], a
+	ld [wSwarmFlags], a
 	ld a, d
 	ld [$dc21], a
 	xor a
@@ -4422,7 +4422,7 @@ Function1158c2: ; 1158c2
 	ld l, c
 	ld h, b
 	xor a
-	ld [WeeklyFlags], a
+	ld [wWeeklyFlags], a
 
 .asm_1158e5
 	ld b, $3
@@ -4447,7 +4447,7 @@ Function1158c2: ; 1158c2
 	push hl
 	dec hl
 	ld a, c
-	ld [WeeklyFlags], a
+	ld [wWeeklyFlags], a
 .asm_115908
 	xor a
 	ld [hld], a
@@ -4468,7 +4468,7 @@ Function1158c2: ; 1158c2
 	ld [$dc1a], a
 	push de
 	push hl
-	ld hl, SwarmFlags
+	ld hl, wSwarmFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4562,7 +4562,7 @@ endr
 	ld a, $a
 	ld [hli], a
 	push hl
-	ld hl, SwarmFlags
+	ld hl, wSwarmFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4587,7 +4587,7 @@ endr
 	jp nz, .asm_1158e5
 
 .asm_1159c4
-	ld a, [WeeklyFlags]
+	ld a, [wWeeklyFlags]
 	cp $0
 	jr z, .asm_1159d8
 	push hl
@@ -5061,9 +5061,9 @@ Function115bc8: ; 115bc8
 
 Function115c49: ; 115c49
 	ld a, e
-	ld [WeeklyFlags], a
+	ld [wWeeklyFlags], a
 	ld a, d
-	ld [SwarmFlags], a
+	ld [wSwarmFlags], a
 	xor a
 	ld [de], a
 	inc de
@@ -5131,7 +5131,7 @@ endr
 	ld [$dc1a], a
 	push de
 	push hl
-	ld hl, WeeklyFlags
+	ld hl, wWeeklyFlags
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -5243,9 +5243,9 @@ Function115cfd: ; 115cfd
 .asm_115d38
 	push de
 	push hl
-	ld a, [WeeklyFlags]
+	ld a, [wWeeklyFlags]
 	ld l, a
-	ld a, [SwarmFlags]
+	ld a, [wSwarmFlags]
 	ld h, a
 	ld e, [hl]
 	inc hl

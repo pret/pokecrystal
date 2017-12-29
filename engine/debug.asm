@@ -104,14 +104,14 @@ Function81928: ; 81928
 Function81948: ; 81948
 	ld a, $1
 	ld [rVBK], a
-	ld hl, VTiles0
-	ld bc, sScratch - VTiles0
+	ld hl, vTiles0
+	ld bc, sScratch - vTiles0
 	xor a
 	call ByteFill
 	ld a, $0
 	ld [rVBK], a
-	ld hl, VTiles0
-	ld bc, sScratch - VTiles0
+	ld hl, vTiles0
+	ld bc, sScratch - vTiles0
 	xor a
 	call ByteFill
 	hlcoord 0, 0, AttrMap
@@ -128,15 +128,15 @@ Function81948: ; 81948
 
 Function8197c: ; 8197c
 	ld hl, DebugColorTestGFX + $10
-	ld de, VTiles2 tile $6a
+	ld de, vTiles2 tile $6a
 	ld bc, $160
 	call CopyBytes
 	ld hl, DebugColorTestGFX
-	ld de, VTiles0
+	ld de, vTiles0
 	ld bc, $10
 	call CopyBytes
 	call LoadStandardFont
-	ld hl, VTiles1
+	ld hl, vTiles1
 	lb bc, 8, 0
 .asm_8199d
 	ld a, [hl]
@@ -314,7 +314,7 @@ Function81adb: ; 81adb
 	ld [wBoxAlignment], a
 	hlcoord 12, 3
 	call _PrepMonFrontpic
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	predef GetMonBackpic
 	ld a, $31
 	ld [hGraphicStartTile], a
@@ -345,7 +345,7 @@ Function81adb: ; 81adb
 	ld de, StringBuffer1
 	hlcoord 4, 1
 	call PlaceString
-	ld de, VTiles2
+	ld de, vTiles2
 	callfar GetTrainerPic
 	xor a
 	ld [TempEnemyMonSpecies], a
@@ -1062,14 +1062,14 @@ TilesetColorTest:
 	xor a
 	ld [hBGMapMode], a
 	ld de, DebugColorTestGFX + $10
-	ld hl, VTiles2 tile $6a
+	ld hl, vTiles2 tile $6a
 	lb bc, BANK(DebugColorTestGFX), $16
 	call Request2bpp
 	ld de, DebugColorTestGFX
-	ld hl, VTiles1
+	ld hl, vTiles1
 	lb bc, BANK(DebugColorTestGFX), 1
 	call Request2bpp
-	ld a, HIGH(VBGMap1)
+	ld a, HIGH(vBGMap1)
 	ld [hBGMapAddress + 1], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
