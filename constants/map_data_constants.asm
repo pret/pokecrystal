@@ -17,7 +17,7 @@ MAP_NONE   EQU 0
 NUM_MAPHEADER_ATTRIBUTES EQU const_value
 
 ; map environments (wEnvironment)
-const_value SET 1
+const_value set 1
 	const TOWN
 	const ROUTE
 	const INDOOR
@@ -217,7 +217,7 @@ NUM_SPAWNS EQU const_value
 EMOTE_MEM EQU -1
 
 ; FruitTreeItems indexes (see data/items/fruit_trees.asm)
-const_value SET 1
+const_value set 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02
 	const FRUITTREE_ROUTE_38      ; 03

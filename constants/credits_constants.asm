@@ -105,7 +105,7 @@
 	const PAAD_TESTING
 
 ; CreditsScript indexes (see data/credits_script.asm)
-const_value SET -7
+const_value set -7
 	const CREDITS_THEEND
 	const CREDITS_WAIT2
 	const CREDITS_MUSIC

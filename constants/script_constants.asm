@@ -39,7 +39,7 @@ RETVAR_ADDR_DE EQU (1 << 6)
 RETVAR_EXECUTE EQU (2 << 6)
 
 ; PlayerEventScriptPointers indexes (see engine/events.asm)
-const_value SET -1
+const_value set -1
 	const PLAYEREVENT_MAPSCRIPT
 	const PLAYEREVENT_NONE
 	const PLAYEREVENT_SEENBYTRAINER

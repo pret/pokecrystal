@@ -7,7 +7,7 @@
 	const WILDMON    ; 4
 
 ; Options: (bits) ; cfcc
-const_value SET 4
+const_value set 4
 	const NO_TEXT_SCROLL ; 4
 	const STEREO         ; 5
 	const BATTLE_SHIFT   ; 6
@@ -41,7 +41,7 @@ GBPRINTER_DARKER   EQU $60
 GBPRINTER_DARKEST  EQU $7f
 
 ; WalkingDirection: ; d043
-const_value SET -1
+const_value set -1
 	const STANDING ; -1
 	const DOWN     ; 0
 	const UP       ; 1
