@@ -32,7 +32,7 @@ _TitleScreen: ; 10ed67
 
 ; Clear screen palettes
 	hlbgcoord 0, 0
-	ld bc, 20 bgrows
+	ld bc, 20 * BG_MAP_WIDTH
 	xor a
 	call ByteFill
 
@@ -43,7 +43,7 @@ _TitleScreen: ; 10ed67
 
 ; line 0 (copyright)
 	hlbgcoord 0, 0, vBGMap1
-	ld bc, 1 bgrows
+	ld bc, BG_MAP_WIDTH
 	ld a, 7 ; palette
 	call ByteFill
 
@@ -54,27 +54,27 @@ _TitleScreen: ; 10ed67
 
 ; lines 3-4
 	hlbgcoord 0, 3
-	ld bc, 2 bgrows
+	ld bc, 2 * BG_MAP_WIDTH
 	ld a, 2
 	call ByteFill
 ; line 5
 	hlbgcoord 0, 5
-	ld bc, 1 bgrows
+	ld bc, BG_MAP_WIDTH
 	ld a, 3
 	call ByteFill
 ; line 6
 	hlbgcoord 0, 6
-	ld bc, 1 bgrows
+	ld bc, BG_MAP_WIDTH
 	ld a, 4
 	call ByteFill
 ; line 7
 	hlbgcoord 0, 7
-	ld bc, 1 bgrows
+	ld bc, BG_MAP_WIDTH
 	ld a, 5
 	call ByteFill
 ; lines 8-9
 	hlbgcoord 0, 8
-	ld bc, 2 bgrows
+	ld bc, 2 * BG_MAP_WIDTH
 	ld a, 6
 	call ByteFill
 
@@ -87,7 +87,7 @@ _TitleScreen: ; 10ed67
 
 ; Suicune gfx
 	hlbgcoord 0, 12
-	ld bc, 6 bgrows ; the rest of the screen
+	ld bc, 6 * BG_MAP_WIDTH ; the rest of the screen
 	ld a, 0 | VRAM_BANK_1
 	call ByteFill
 
@@ -110,7 +110,7 @@ _TitleScreen: ; 10ed67
 
 ; Clear screen tiles
 	hlbgcoord 0, 0
-	ld bc, 64 bgrows
+	ld bc, 64 * BG_MAP_WIDTH
 	ld a, " "
 	call ByteFill
 
