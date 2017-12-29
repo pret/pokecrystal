@@ -617,7 +617,7 @@ ApplyPals:
 
 ApplyAttrMap:
 	ld a, [rLCDC]
-	bit 7, a
+	bit rLCDC_ENABLE, a
 	jr z, .UpdateVBank1
 	ld a, [hBGMapMode]
 	push af
@@ -1073,7 +1073,7 @@ SGBBorder_PushBGPals:
 	ld bc, $100 tiles
 	call CopyData
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, rLCDC_DEFAULT
 	ld [rLCDC], a
 	ld hl, PalPacket_9d06
 	call PushSGBPals
@@ -1107,7 +1107,7 @@ SGBBorder_MorePalPushing:
 	ld bc, 16 palettes
 	call CopyData
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, rLCDC_DEFAULT
 	ld [rLCDC], a
 	ld hl, PalPacket_9d46
 	call PushSGBPals
@@ -1131,7 +1131,7 @@ SGBBorder_YetMorePalPushing:
 	dec b
 	jr nz, .loop
 	call DrawDefaultTiles
-	ld a, $e3
+	ld a, rLCDC_DEFAULT
 	ld [rLCDC], a
 	ld hl, PalPacket_9d36
 	call PushSGBPals

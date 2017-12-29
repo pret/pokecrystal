@@ -114,10 +114,16 @@ rWave_d     EQU $ff3d
 rWave_e     EQU $ff3e
 rWave_f     EQU $ff3f
 rLCDC       EQU $ff40 ; LCD Control (R/W)
+rLCDC_SPRITE_ENABLE  EQU 1
+rLCDC_SPRITE_SIZE    EQU 2
+rLCDC_WINDOW_TILEMAP EQU 6
+rLCDC_ENABLE         EQU 7
+rLCDC_DEFAULT        EQU %11100011
 rSTAT       EQU $ff41 ; LCDC Status (R/W)
 rSCY        EQU $ff42 ; Scroll Y (R/W)
 rSCX        EQU $ff43 ; Scroll X (R/W)
 rLY         EQU $ff44 ; LCDC Y-Coordinate (R)
+LY_VBLANK   EQU 144
 rLYC        EQU $ff45 ; LY Compare (R/W)
 rDMA        EQU $ff46 ; DMA Transfer and Start Address (W)
 rBGP        EQU $ff47 ; BG Palette Data (R/W) - Non CGB Mode Only

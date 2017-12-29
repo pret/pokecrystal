@@ -43,7 +43,7 @@ DisableLCD:: ; 568
 
 ; Don't need to do anything if the LCD is already off
 	ld a, [rLCDC]
-	bit 7, a ; lcd enable
+	bit rLCDC_ENABLE, a
 	ret z
 
 	xor a
@@ -58,11 +58,11 @@ DisableLCD:: ; 568
 .wait
 ; Wait until VBlank would normally happen
 	ld a, [rLY]
-	cp 145
+	cp LY_VBLANK + 1
 	jr nz, .wait
 
 	ld a, [rLCDC]
-	and %01111111 ; lcd enable off
+	and $ff ^ 1 << rLCDC_ENABLE
 	ld [rLCDC], a
 
 	xor a
@@ -75,7 +75,7 @@ DisableLCD:: ; 568
 
 EnableLCD:: ; 58a
 	ld a, [rLCDC]
-	set 7, a ; lcd enable
+	set rLCDC_ENABLE, a
 	ld [rLCDC], a
 	ret
 ; 591
