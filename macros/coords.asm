@@ -53,3 +53,8 @@ lda_coord: MACRO
 	ld a, [(\2) screenrows + (\1) + \3]
 	endc
 ENDM
+
+ld_dims: MACRO
+; register, width, height
+	lb \1, \3, \2
+ENDM
