@@ -5,12 +5,12 @@ DefaultOptions: ; 14f7c
 	db $00
 ; TextBoxFrame: frame 1
 	db FRAME_1
-; TextBoxFlags: ??
-	db $01
+; TextBoxFlags: use text speed
+	db 1 << TEXT_DELAY_F
 ; GBPrinter: normal brightness
 	db GBPRINTER_NORMAL
 ; Options2: menu account on
-	db $01
+	db 1 << MENU_ACCOUNT
 ; $cfd2: ??
 	db $00
 ; $cfd3: ??

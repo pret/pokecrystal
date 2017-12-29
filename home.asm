@@ -306,7 +306,7 @@ PrintLetterDelay:: ; 313d
 
 ; non-scrolling text?
 	ld a, [TextBoxFlags]
-	bit 1, a
+	bit NO_TEXT_DELAY_F, a
 	ret z
 
 	push hl
@@ -323,7 +323,7 @@ PrintLetterDelay:: ; 313d
 
 ; force fast scroll?
 	ld a, [TextBoxFlags]
-	bit 0, a
+	bit TEXT_DELAY_F, a
 	jr z, .fast
 
 ; text speed

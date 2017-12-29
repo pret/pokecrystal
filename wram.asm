@@ -1480,7 +1480,10 @@ wSaveFileExists:: db
 TextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
 	db
-TextBoxFlags:: db
+TextBoxFlags::
+; bit 0: 1-frame text delay
+; bit 4: no text delay
+	db
 GBPrinter:: ; cfd0
 ; bit 0-6: brightness
 ;   lightest: $00
