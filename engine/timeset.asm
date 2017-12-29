@@ -24,15 +24,15 @@ InitClock: ; 90672 (24:4672)
 	ld [hBGMapMode], a
 	call LoadStandardFont
 	ld de, TimeSetBackgroundGFX
-	ld hl, VTiles2 tile $00
+	ld hl, vTiles2 tile $00
 	lb bc, BANK(TimeSetBackgroundGFX), 1
 	call Request1bpp
 	ld de, TimeSetUpArrowGFX
-	ld hl, VTiles2 tile $01
+	ld hl, vTiles2 tile $01
 	lb bc, BANK(TimeSetUpArrowGFX), 1
 	call Request1bpp
 	ld de, TimeSetDownArrowGFX
-	ld hl, VTiles2 tile $02
+	ld hl, vTiles2 tile $02
 	lb bc, BANK(TimeSetDownArrowGFX), 1
 	call Request1bpp
 	call .ClearScreen
@@ -410,11 +410,11 @@ Special_SetDayOfWeek: ; 90913
 	ld a, $1
 	ld [hInMenu], a
 	ld de, TimeSetUpArrowGFX
-	ld hl, VTiles1 tile $6f
+	ld hl, vTiles1 tile $6f
 	lb bc, BANK(TimeSetUpArrowGFX), 1
 	call Request1bpp
 	ld de, TimeSetDownArrowGFX
-	ld hl, VTiles1 tile $75
+	ld hl, vTiles1 tile $75
 	lb bc, BANK(TimeSetDownArrowGFX), 1
 	call Request1bpp
 	xor a

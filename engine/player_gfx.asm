@@ -1,7 +1,7 @@
 Function88248: ; 88248
 ; XXX
 	ld c, CAL
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .okay
 	ld c, KAREN
@@ -58,7 +58,7 @@ MovePlayerPic: ; 88266
 
 ShowPlayerNamingChoices: ; 88297
 	ld hl, ChrisNameMenuHeader
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotGender
 	ld hl, KrisNameMenuHeader
@@ -76,7 +76,7 @@ INCLUDE "data/default_names.asm"
 GetPlayerNameArray: ; 88318 This Function is never called
 	ld hl, PlayerName
 	ld de, MalePlayerNameArray
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .done
 	ld de, FemalePlayerNameArray
@@ -92,7 +92,7 @@ GetPlayerIcon: ; 8832c
 	ld de, ChrisSpriteGFX
 	ld b, BANK(ChrisSpriteGFX)
 
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .done
 
@@ -105,17 +105,17 @@ GetPlayerIcon: ; 8832c
 
 GetCardPic: ; 8833e
 	ld hl, ChrisCardPic
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotClass
 	ld hl, KrisCardPic
 .GotClass:
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	ld bc, $23 tiles
 	ld a, BANK(ChrisCardPic) ; BANK(KrisCardPic)
 	call FarCopyBytes
 	ld hl, CardGFX
-	ld de, VTiles2 tile $23
+	ld de, vTiles2 tile $23
 	ld bc, 6 tiles
 	ld a, BANK(CardGFX)
 	call FarCopyBytes
@@ -131,7 +131,7 @@ CardGFX: ; 887c5
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 GetPlayerBackpic: ; 88825
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, GetChrisBackpic
 	call GetKrisBackpic
@@ -140,7 +140,7 @@ GetPlayerBackpic: ; 88825
 GetChrisBackpic: ; 88830
 	ld hl, ChrisBackpic
 	ld b, BANK(ChrisBackpic)
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	ld c, 7 * 7
 	predef DecompressPredef
 	ret
@@ -150,7 +150,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	xor a
 	ld [hBGMapMode], a
 	ld e, 0
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotClass
 	ld e, 1
@@ -159,13 +159,13 @@ HOF_LoadTrainerFrontpic: ; 88840
 	ld a, e
 	ld [TrainerClass], a
 	ld de, ChrisPic
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotPic
 	ld de, KrisPic
 
 .GotPic:
-	ld hl, VTiles2
+	ld hl, vTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7
 	call Get2bpp
@@ -179,7 +179,7 @@ DrawIntroPlayerPic: ; 88874
 
 ; Get class
 	ld e, CHRIS
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotClass
 	ld e, KRIS
@@ -189,12 +189,12 @@ DrawIntroPlayerPic: ; 88874
 
 ; Load pic
 	ld de, ChrisPic
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotPic
 	ld de, KrisPic
 .GotPic:
-	ld hl, VTiles2
+	ld hl, vTiles2
 	ld b, BANK(ChrisPic) ; BANK(KrisPic)
 	ld c, 7 * 7 ; dimensions
 	call Get2bpp
@@ -216,7 +216,7 @@ INCBIN "gfx/player/kris.2bpp"
 GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	lb bc, BANK(KrisBackpic), 7 * 7 ; dimensions
 	call Get2bpp
 	ret

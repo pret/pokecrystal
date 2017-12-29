@@ -871,7 +871,7 @@ BattleBGEffect_RunPicResizeScript: ; c83ed (32:43ed)
 bgsquare: MACRO
 	dn \1, \2
 	dw \3
-endm
+ENDM
 
 	bgsquare 6, 6, .SixBySix
 	bgsquare 4, 4, .FourByFour

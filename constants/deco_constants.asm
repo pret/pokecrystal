@@ -57,7 +57,7 @@ const_value = 1
 deco: MACRO
 	const DECO_\1
 	enum DECOFLAG_\1
-endm
+ENDM
 
 ; decorations:
 ; - DecorationAttributes (see data/decorations/attributes.asm)

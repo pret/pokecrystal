@@ -7,7 +7,7 @@ StartMenu:: ; 125cd
 
 	farcall ReanchorBGMap_NoOAMUpdate
 
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug catching contest
 	ld hl, .MenuDataHeader
 	jr z, .GotMenuData
@@ -284,7 +284,7 @@ endr
 	ld [wWhichIndexSet], a
 	call .FillMenuList
 
-	ld hl, StatusFlags
+	ld hl, wStatusFlags
 	bit 0, [hl]
 	jr z, .no_pokedex
 	ld a, 0 ; pokedex
@@ -301,7 +301,7 @@ endr
 	ld a, [wLinkMode]
 	and a
 	jr nz, .no_pack
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug catching contest
 	jr nz, .no_pack
 	ld a, 2 ; pack
@@ -321,7 +321,7 @@ endr
 	ld a, [wLinkMode]
 	and a
 	jr nz, .no_save
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug catching contest
 	ld a, 8 ; quit
 	jr nz, .write
@@ -390,7 +390,7 @@ endr
 ; 128d1
 
 .DrawBugContestStatusBox: ; 128d1
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug catching contest
 	ret z
 	farcall StartMenu_DrawBugContestStatusBox
@@ -398,7 +398,7 @@ endr
 ; 128de
 
 .DrawBugContestStatus: ; 128de
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug catching contest
 	jr nz, .contest
 	ret

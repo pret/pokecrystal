@@ -273,7 +273,7 @@ Function170cc6: ; 170cc6
 	ld a, $1
 	ld [rVBK], a
 	ld de, wd000
-	ld hl, VTiles0
+	ld hl, vTiles0
 	lb bc, $6, $c1
 	call Get2bpp
 	xor a
@@ -282,7 +282,7 @@ Function170cc6: ; 170cc6
 	ld de, wd000
 	call Decompress
 	ld de, UnknBGPals
-	ld hl, VTiles0
+	ld hl, vTiles0
 	lb bc, $6, $53
 	call Get2bpp
 	pop af
@@ -295,7 +295,7 @@ Function170d02: ; 170d02
 	ld a, $1
 	ld [rVBK], a
 	ld de, GFX_171848
-	ld hl, VTiles1 tile $41
+	ld hl, vTiles1 tile $41
 	lb bc, BANK(GFX_171848), $18
 	call Get2bpp
 	xor a
@@ -687,11 +687,11 @@ String_171c73: ; 171c73
 Function171c87: ; 171c87 (5c:5c87)
 	call DisableLCD
 	ld hl, GFX_171db1
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	ld bc, $6e0
 	call CopyBytes
 	ld hl, LZ_172abd
-	ld de, VTiles0 tile $00
+	ld de, vTiles0 tile $00
 	call Decompress
 	call EnableLCD
 	ld hl, Tilemap_172491
@@ -759,11 +759,11 @@ Function171cf0: ; 171cf0 (5c:5cf0)
 Function171d2b: ; 171d2b (5c:5d2b)
 	call DisableLCD
 	ld hl, GFX_171db1
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	ld bc, $6e0
 	call CopyBytes
 	ld hl, LZ_172abd
-	ld de, VTiles0 tile $00
+	ld de, vTiles0 tile $00
 	call Decompress
 	call EnableLCD
 	ld hl, Tilemap_172685
@@ -862,7 +862,7 @@ Function172e78: ; 172e78 (5c:6e78)
 	call ByteFill
 	call DisableLCD
 	ld hl, GameBoyN64GFX
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	ld bc, $610
 	call CopyBytes
 	call EnableLCD

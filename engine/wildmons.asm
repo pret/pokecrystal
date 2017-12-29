@@ -336,7 +336,7 @@ ChooseWildEncounter: ; 2a14f
 	cp UNOWN
 	jr nz, .done
 
-	ld a, [UnlockedUnowns]
+	ld a, [wUnlockedUnowns]
 	and a
 	jr z, .nowildbattle
 
@@ -428,7 +428,7 @@ _JohtoWildmonCheck
 _SwarmWildmonCheck
 	call CopyCurrMapDE
 	push hl
-	ld hl, SwarmFlags
+	ld hl, wSwarmFlags
 	bit 2, [hl]
 	pop hl
 	jr z, .CheckYanma
@@ -445,7 +445,7 @@ _SwarmWildmonCheck
 
 .CheckYanma:
 	push hl
-	ld hl, SwarmFlags
+	ld hl, wSwarmFlags
 	bit 3, [hl]
 	pop hl
 	jr z, _NoSwarmWildmon

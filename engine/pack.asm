@@ -1294,7 +1294,7 @@ DrawPackGFX: ; 1089d
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .male_dude
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr nz, .female
 .male_dude
@@ -1304,7 +1304,7 @@ DrawPackGFX: ; 1089d
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, VTiles2 tile $50
+	ld hl, vTiles2 tile $50
 	lb bc, BANK(PackGFX), 15
 	call Request2bpp
 	ret
@@ -1411,7 +1411,7 @@ Pack_InitGFX: ; 10955
 	call ClearSprites
 	call DisableLCD
 	ld hl, PackMenuGFX
-	ld de, VTiles2
+	ld de, vTiles2
 	ld bc, $60 tiles
 	ld a, BANK(PackMenuGFX)
 	call FarCopyBytes

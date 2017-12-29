@@ -178,7 +178,7 @@ endc
 shift
 endr
 	db $ff
-endm
+ENDM
 
 .UnownText_Escape:
 	; db      $08, $44, $04, $00, $2e, $08, $ff

@@ -726,7 +726,7 @@ BattleCommand_CheckObedience: ; 343db
 
 .obeylevel
 	; The maximum obedience level is constrained by owned badges:
-	ld hl, JohtoBadges
+	ld hl, wJohtoBadges
 
 	; risingbadge
 	bit RISINGBADGE, [hl]

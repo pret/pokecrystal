@@ -4,243 +4,243 @@
 ; Directional movements
 
 	enum movement_turn_head ; $00
-turn_head: macro
+turn_head: MACRO
 	db movement_turn_head | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_turn_step ; $04
-turn_step: macro
+turn_step: MACRO
 	db movement_turn_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_slow_step ; $08
-slow_step: macro
+slow_step: MACRO
 	db movement_slow_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_step ; $0c
-step: macro
+step: MACRO
 	db movement_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_big_step ; $10
-big_step: macro
+big_step: MACRO
 	db movement_big_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_slow_slide_step ; $14
-slow_slide_step: macro
+slow_slide_step: MACRO
 	db movement_slow_slide_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_slide_step ; $18
-slide_step: macro
+slide_step: MACRO
 	db movement_slide_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_fast_slide_step ; $1c
-fast_slide_step: macro
+fast_slide_step: MACRO
 	db movement_fast_slide_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_turn_away ; $20
-turn_away: macro
+turn_away: MACRO
 	db movement_turn_away | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_turn_in ; $24
-turn_in: macro
+turn_in: MACRO
 	db movement_turn_in | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_turn_waterfall ; $28
-turn_waterfall: macro
+turn_waterfall: MACRO
 	db movement_turn_waterfall | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_slow_jump_step ; $2c
-slow_jump_step: macro
+slow_jump_step: MACRO
 	db movement_slow_jump_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_jump_step ; $30
-jump_step: macro
+jump_step: MACRO
 	db movement_jump_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 	enum movement_fast_jump_step ; $34
-fast_jump_step: macro
+fast_jump_step: MACRO
 	db movement_fast_jump_step | \1
-	endm
+ENDM
 
 __enum__ = __enum__ + 3
 
 ; Control
 	enum movement_remove_sliding ; $38
-remove_sliding: macro
+remove_sliding: MACRO
 	db movement_remove_sliding
-	endm
+ENDM
 
 	enum movement_set_sliding ; $39
-set_sliding: macro
+set_sliding: MACRO
 	db movement_set_sliding
-	endm
+ENDM
 
 	enum movement_remove_fixed_facing ; $3a
-remove_fixed_facing: macro
+remove_fixed_facing: MACRO
 	db movement_remove_fixed_facing
-	endm
+ENDM
 
 	enum movement_fix_facing ; $3b
-fix_facing: macro
+fix_facing: MACRO
 	db movement_fix_facing
-	endm
+ENDM
 
 	enum movement_show_object ; $3c
-show_object: macro
+show_object: MACRO
 	db movement_show_object
-	endm
+ENDM
 
 	enum movement_hide_object ; $3d
-hide_object: macro
+hide_object: MACRO
 	db movement_hide_object
-	endm
+ENDM
 
 ; Sleep
 
 	enum movement_step_sleep ; $3e
-step_sleep: macro
+step_sleep: MACRO
 if \1 <= 8
 	db movement_step_sleep + \1 - 1
 else
 	db movement_step_sleep + 8, \1
 endc
-endm
+ENDM
 
 __enum__ = __enum__ + 8
 
 	enum movement_step_end ; $47
-step_end: macro
+step_end: MACRO
 	db movement_step_end
-	endm
+ENDM
 
 	enum movement_step_48 ; $48
-step_48: macro
+step_48: MACRO
 	db movement_step_48
 	db \1 ; ???
-	endm
+ENDM
 
 	enum movement_remove_object ; $49
-remove_object: macro
+remove_object: MACRO
 	db movement_remove_object
-	endm
+ENDM
 
 	enum movement_step_loop ; $4a
-step_loop: macro
+step_loop: MACRO
 	db movement_step_loop
-	endm
+ENDM
 
 	enum movement_step_4b ; $4b
-step_4b: macro
+step_4b: MACRO
 	db movement_step_4b
-	endm
+ENDM
 
 	enum movement_teleport_from ; $4c
-teleport_from: macro
+teleport_from: MACRO
 	db movement_teleport_from
-	endm
+ENDM
 
 	enum movement_teleport_to ; $4d
-teleport_to: macro
+teleport_to: MACRO
 	db movement_teleport_to
-	endm
+ENDM
 
 	enum movement_skyfall ; $4e
-skyfall: macro
+skyfall: MACRO
 	db movement_skyfall
-	endm
+ENDM
 
 	enum movement_step_dig ; $4f
-step_dig: macro
+step_dig: MACRO
 	db movement_step_dig
 	db \1 ; length
-	endm
+ENDM
 
 	enum movement_step_bump ; $50
-step_bump: macro
+step_bump: MACRO
 	db movement_step_bump
-	endm
+ENDM
 
 	enum movement_fish_got_bite ; $51
-fish_got_bite: macro
+fish_got_bite: MACRO
 	db movement_fish_got_bite
-	endm
+ENDM
 
 	enum movement_fish_cast_rod ; $52
-fish_cast_rod: macro
+fish_cast_rod: MACRO
 	db movement_fish_cast_rod
-	endm
+ENDM
 
 	enum movement_hide_emote ; $53
-hide_emote: macro
+hide_emote: MACRO
 	db movement_hide_emote
-	endm
+ENDM
 
 	enum movement_show_emote ; $54
-show_emote: macro
+show_emote: MACRO
 	db movement_show_emote
-	endm
+ENDM
 
 	enum movement_step_shake ; $55
-step_shake: macro
+step_shake: MACRO
 	db movement_step_shake
 	db \1 ; displacement
-	endm
+ENDM
 
 	enum movement_tree_shake ; $56
-tree_shake: macro
+tree_shake: MACRO
 	db movement_tree_shake
-	endm
+ENDM
 
 	enum movement_rock_smash ; $57
-rock_smash: macro
+rock_smash: MACRO
 	db movement_rock_smash
 	db \1 ; length
-	endm
+ENDM
 
 	enum movement_return_dig ; $58
-return_dig: macro
+return_dig: MACRO
 	db movement_return_dig
 	db \1 ; length
-	endm
+ENDM
 
 	enum movement_skyfall_top ; $59
-skyfall_top: macro
+skyfall_top: MACRO
 	db movement_skyfall_top
-	endm
+ENDM

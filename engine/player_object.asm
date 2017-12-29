@@ -33,7 +33,7 @@ SpawnPlayer: ; 8029
 	ld a, [wPlayerSpriteSetupFlags]
 	bit 2, a
 	jr nz, .ok
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .ok
 	ln e, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT

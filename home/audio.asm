@@ -461,7 +461,7 @@ SpecialMapMusic:: ; 3d62
 	cp PLAYER_SURF_PIKA
 	jr z, .surf
 
-	ld a, [StatusFlags2]
+	ld a, [wStatusFlags2]
 	bit 2, a
 	jr nz, .contest
 

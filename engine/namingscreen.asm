@@ -175,7 +175,7 @@ NamingScreen: ; 116c1
 
 .Box: ; 117f5 (4:57f5)
 	ld de, PokeBallSpriteGFX
-	ld hl, VTiles0 tile $00
+	ld hl, vTiles0 tile $00
 	lb bc, BANK(PokeBallSpriteGFX), $4
 	call Request2bpp
 	xor a
@@ -217,7 +217,7 @@ NamingScreen: ; 116c1
 
 .LoadSprite: ; 11847 (4:5847)
 	push de
-	ld hl, VTiles0 tile $00
+	ld hl, vTiles0 tile $00
 	ld c, $4
 	push bc
 	call Request2bpp
@@ -226,7 +226,7 @@ NamingScreen: ; 116c1
 	add hl, de
 	ld e, l
 	ld d, h
-	ld hl, VTiles0 tile $04
+	ld hl, vTiles0 tile $04
 	call Request2bpp
 	xor a
 	ld hl, wSpriteAnimDict
@@ -905,22 +905,22 @@ LoadNamingScreenGFX: ; 11c51
 	call LoadFontsExtra
 
 	ld de, NamingScreenGFX_MiddleLine
-	ld hl, VTiles1 tile $6b
+	ld hl, vTiles1 tile $6b
 	lb bc, BANK(NamingScreenGFX_MiddleLine), 1
 	call Get1bpp
 
 	ld de, NamingScreenGFX_UnderLine
-	ld hl, VTiles1 tile $72
+	ld hl, vTiles1 tile $72
 	lb bc, BANK(NamingScreenGFX_UnderLine), 1
 	call Get1bpp
 
-	ld de, VTiles2 tile $60
+	ld de, vTiles2 tile $60
 	ld hl, NamingScreenGFX_Border
 	ld bc, 1 tiles
 	ld a, BANK(NamingScreenGFX_Border)
 	call FarCopyBytes
 
-	ld de, VTiles0 tile $7e
+	ld de, vTiles0 tile $7e
 	ld hl, NamingScreenGFX_Cursor
 	ld bc, 2 tiles
 	ld a, BANK(NamingScreenGFX_Cursor)
@@ -998,7 +998,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 	call ClearBGPalettes
 	call DisableLCD
 	call LoadNamingScreenGFX
-	ld de, VTiles0 tile $00
+	ld de, vTiles0 tile $00
 	ld hl, .MailIcon
 	ld bc, 8 tiles
 	ld a, BANK(.MailIcon)

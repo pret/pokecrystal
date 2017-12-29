@@ -331,7 +331,7 @@ rept 4
 	add hl, hl
 endr
 
-	ld de, VTiles0
+	ld de, vTiles0
 	add hl, de
 	push hl
 

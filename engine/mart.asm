@@ -58,7 +58,7 @@ BargainShop: ; 15a84
 	ld a, [hli]
 	or [hl]
 	jr z, .skip_set
-	ld hl, DailyFlags
+	ld hl, wDailyFlags
 	set 6, [hl]
 
 .skip_set
@@ -81,7 +81,7 @@ Pharmacist: ; 15aae
 RooftopSale: ; 15ac4
 	ld b, BANK(RooftopSaleData1)
 	ld de, RooftopSaleData1
-	ld hl, StatusFlags
+	ld hl, wStatusFlags
 	bit 6, [hl] ; hall of fame
 	jr z, .ok
 	ld b, BANK(RooftopSaleData2)

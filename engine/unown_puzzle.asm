@@ -19,11 +19,11 @@ UnownPuzzle: ; e1190
 	xor a
 	call ByteFill
 	ld hl, UnownPuzzleCursorGFX
-	ld de, VTiles1 tile $60
+	ld de, vTiles1 tile $60
 	ld bc, 4 tiles
 	call CopyBytes
 	ld hl, UnownPuzzleStartCancelLZ
-	ld de, VTiles1 tile $6d
+	ld de, vTiles1 tile $6d
 	call Decompress
 	call LoadUnownPuzzlePiecesGFX
 	hlcoord 0, 0
@@ -114,13 +114,13 @@ InitUnownPuzzlePiecePositions: ; e124e
 ; e126d
 
 .PuzzlePieceInitialPositions: ; e126d
-initpuzcoord: macro
+initpuzcoord: MACRO
 rept _NARG / 2
 	db \1 puzcoord \2
 	shift
 	shift
 endr
-endm
+ENDM
 	initpuzcoord 0,0, 0,1, 0,2, 0,3, 0,4, 0,5
 	initpuzcoord 1,0,                     1,5
 	initpuzcoord 2,0,                     2,5
@@ -599,11 +599,11 @@ RedrawUnownPuzzlePieces: ; e14d9
 
 UnownPuzzleCoordData: ; e1559
 
-puzzle_coords: macro
+puzzle_coords: MACRO
 	dbpixel \1, \2, \3, \4
 	dwcoord \5, \6
 	db \7, \8
-endm
+ENDM
 ; OAM coords, tilemap coords, vacant tile, filler
 	puzzle_coords  3,  3, 4, 4,  1,  0, PUZZLE_BORDER, 0
 	puzzle_coords  6,  3, 4, 4,  4,  0, PUZZLE_BORDER, 0
@@ -648,8 +648,8 @@ endm
 	puzzle_coords 18, 18, 4, 4, 16, 15, PUZZLE_BORDER, 0
 
 ConvertLoadedPuzzlePieces: ; e1631
-	ld hl, VTiles2
-	ld de, VTiles0
+	ld hl, vTiles2
+	ld de, vTiles0
 	ld b, 6
 .loop
 	push bc
@@ -821,14 +821,14 @@ endr
 ; e1703
 
 GFXHeaders: ; e1703
-	dw .TileBordersGFX + 0 tiles, VTiles0 tile $00
-	dw .TileBordersGFX + 1 tiles, VTiles0 tile $01
-	dw .TileBordersGFX + 2 tiles, VTiles0 tile $02
-	dw .TileBordersGFX + 3 tiles, VTiles0 tile $0c
-	dw .TileBordersGFX + 4 tiles, VTiles0 tile $0e
-	dw .TileBordersGFX + 5 tiles, VTiles0 tile $18
-	dw .TileBordersGFX + 6 tiles, VTiles0 tile $19
-	dw .TileBordersGFX + 7 tiles, VTiles0 tile $1a
+	dw .TileBordersGFX + 0 tiles, vTiles0 tile $00
+	dw .TileBordersGFX + 1 tiles, vTiles0 tile $01
+	dw .TileBordersGFX + 2 tiles, vTiles0 tile $02
+	dw .TileBordersGFX + 3 tiles, vTiles0 tile $0c
+	dw .TileBordersGFX + 4 tiles, vTiles0 tile $0e
+	dw .TileBordersGFX + 5 tiles, vTiles0 tile $18
+	dw .TileBordersGFX + 6 tiles, vTiles0 tile $19
+	dw .TileBordersGFX + 7 tiles, vTiles0 tile $1a
 ; e1723
 
 .TileBordersGFX: ; e1723
@@ -845,7 +845,7 @@ LoadUnownPuzzlePiecesGFX: ; e17a3
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, VTiles2
+	ld de, vTiles2
 	call Decompress
 	call ConvertLoadedPuzzlePieces
 	ret

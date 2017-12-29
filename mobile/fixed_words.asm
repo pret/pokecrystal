@@ -322,11 +322,11 @@ Function11c1b9: ; 11c1b9
 	call SetPalettes
 	call DisableLCD
 	ld hl, GFX_11d67e
-	ld de, VTiles2
+	ld de, vTiles2
 	ld bc, $60
 	call CopyBytes
 	ld hl, LZ_11d6de
-	ld de, VTiles0
+	ld de, vTiles0
 	call Decompress
 	call EnableLCD
 	farcall ReloadMapPart
@@ -4209,7 +4209,7 @@ MobileEZChatCategoryPointers: ; 11daac
 ; 11f220
 
 MobileEZChatData_WordAndPageCounts:
-macro_11f220: macro
+macro_11f220: MACRO
 ; parameter: number of words
 	db \1
 ; 12 words per page (0-based indexing)
@@ -4218,7 +4218,7 @@ if \1 % 12 == 0
 x = x +- 1
 endc
 	db x
-endm
+ENDM
 	macro_11f220 18 ; 01: Types
 	macro_11f220 36 ; 02: Greetings
 	macro_11f220 69 ; 03: People
@@ -4240,10 +4240,10 @@ EZChat_SortedWords:
 ; allocated size for each.
 ; These arrays are expanded dynamically to accomodate
 ; any Pokemon you've seen that starts with each kana.\
-macro_11f23c: macro
+macro_11f23c: MACRO
 	dw x - w3_d000, \1
 x = x + 2 * \1
-endm
+ENDM
 x = $d012
 	macro_11f23c $2f ; a
 	macro_11f23c $1e ; i

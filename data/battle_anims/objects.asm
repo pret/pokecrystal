@@ -14,7 +14,7 @@ battleanimobj: MACRO
 	db \4 ; callback
 	db \5 ; palette
 	db \6 ; tile offset
-endm
+ENDM
 
 BattleAnimObjects: ; ccb56
 ; entries correspond to ANIM_OBJ_* constants

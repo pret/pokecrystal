@@ -43,7 +43,7 @@ LoadMenuTextBox:: ; 1d58
 	db $40 ; tile backup
 	db 12, 0 ; start coords
 	db 17, 19 ; end coords
-	dw VTiles0
+	dw vTiles0
 	db 0 ; default option
 ; 1d67
 

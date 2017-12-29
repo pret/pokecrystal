@@ -1,4 +1,4 @@
-map_header_2: macro
+map_header_2: MACRO
 ;\1: map label
 ;\2: map id
 ;\3: border block
@@ -12,9 +12,9 @@ map_header_2: macro
 	dw \1_MapScriptHeader
 	dw \1_MapEventHeader
 	db \4
-endm
+ENDM
 
-connection: macro
+connection: MACRO
 if "\1" == "north"
 ;\2: map id
 ;\3: map label (eventually will be rolled into map id)
@@ -82,7 +82,7 @@ if "\1" == "east"
 	db 0
 	dw OverworldMap + \2_WIDTH + 7
 endc
-endm
+ENDM
 
 
 	map_header_2 NewBarkTown, NEW_BARK_TOWN, $5, WEST | EAST

@@ -39,7 +39,7 @@ EvolutionAnimation: ; 4e5e1
 	farcall ClearSpriteAnims
 
 	ld de, .GFX
-	ld hl, VTiles0
+	ld hl, vTiles0
 	lb bc, BANK(.GFX), 8
 	call Request2bpp
 
@@ -58,8 +58,8 @@ EvolutionAnimation: ; 4e5e1
 	ld [CurSpecies], a
 	call .PlaceFrontpic
 
-	ld de, VTiles2
-	ld hl, VTiles2 tile $31
+	ld de, vTiles2
+	ld hl, vTiles2 tile $31
 	ld bc, 7 * 7
 	call Request2bpp
 
@@ -167,7 +167,7 @@ EvolutionAnimation: ; 4e5e1
 	call GetBaseData
 	ld a, $1
 	ld [wBoxAlignment], a
-	ld de, VTiles2
+	ld de, vTiles2
 	predef GetAnimatedFrontpicPredef
 	xor a
 	ld [wBoxAlignment], a

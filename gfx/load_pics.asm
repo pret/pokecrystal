@@ -132,7 +132,7 @@ GLOBAL PokemonPicPointers, UnownPicPointers
 	ret
 
 GetAnimatedFrontpic: ; 51103
-	ld a, BANK(VTiles3)
+	ld a, BANK(vTiles3)
 	ld [rVBK], a
 	push hl
 	ld de, wDecompressScratch

@@ -110,7 +110,7 @@ Function170139: ; 170139
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
 	ld bc, PlayerID
-	ld de, PlayerGender
+	ld de, wPlayerGender
 	farcall GetMobileOTTrainerClass
 	ld de, wBT_OTTempPkmn1CaughtGender
 	ld a, c

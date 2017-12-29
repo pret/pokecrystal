@@ -1,9 +1,9 @@
-tileset: macro
+tileset: MACRO
 	dba \1GFX, \1Meta, \1Coll
 	dw \1Anim
 	dw NULL
 	dw \1PalMap
-endm
+ENDM
 
 Tilesets:: ; 4d596
 ; entries correspond to TILESET_* constants

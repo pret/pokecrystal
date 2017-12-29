@@ -3,7 +3,7 @@ InitCrystalData: ; 48000
 	ld [wd474], a
 	xor a
 	ld [wd473], a
-	ld [PlayerGender], a
+	ld [wPlayerGender], a
 	ld [wd475], a
 	ld [wd476], a
 	ld [wd477], a
@@ -37,7 +37,7 @@ InitGender: ; 48dcb (12:4dcb)
 	call CloseWindow
 	ld a, [wMenuCursorY]
 	dec a
-	ld [PlayerGender], a
+	ld [wPlayerGender], a
 	ld c, 10
 	call DelayFrames
 	ret
@@ -105,7 +105,7 @@ LoadGenderScreenPal: ; 48e47 (12:4e47)
 
 LoadGenderScreenLightBlueTile: ; 48e64 (12:4e64)
 	ld de, .LightBlueTile
-	ld hl, VTiles2 tile $00
+	ld hl, vTiles2 tile $00
 	lb bc, BANK(.LightBlueTile), 1
 	call Get2bpp
 	ret

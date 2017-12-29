@@ -1,24 +1,24 @@
-map: macro
+map: MACRO
 ;\1: map id
 	db GROUP_\1, MAP_\1
-endm
+ENDM
 
 
-scene_script: macro
+scene_script: MACRO
 ;\1: script pointer
 	dw \1, 0
-endm
+ENDM
 
-warp_def: macro
+warp_def: MACRO
 ;\1: y: top to bottom, starts at 0
 ;\2: x: left to right, starts at 0
 ;\3: warp destination: starts at 1
 ;\4: map id: from constants/map_constants.asm
 	db \1, \2, \3
 	map \4
-endm
+ENDM
 
-coord_event: macro
+coord_event: MACRO
 ;\1: scene id: controlled by setscene/setmapscene
 ;\2: y: top to bottom, starts at 0
 ;\3: x: left to right, starts at 0
@@ -26,18 +26,18 @@ coord_event: macro
 	db \1, \2, \3, $0
 	dw \4
 	db $0, $0
-endm
+ENDM
 
-bg_event: macro
+bg_event: MACRO
 ;\1: y: top to bottom, starts at 0
 ;\2: x: left to right, starts at 0
 ;\3: function: a BGEVENT_* constant
 ;\4: script pointer
 	db \1, \2, \3
 	dw \4
-endm
+ENDM
 
-object_event: macro
+object_event: MACRO
 ;\1: sprite: a SPRITE_* constant
 ;\2: y: top to bottom, starts at 0
 ;\3: x: left to right, starts at 0
@@ -65,10 +65,10 @@ object_event: macro
 	dw \9
 	shift
 	dw \9
-endm
+ENDM
 
 
-trainer: macro
+trainer: MACRO
 ;\1: flag: an EVENT_BEAT_* constant
 ;\2: trainer group
 ;\3: trainer id
@@ -79,9 +79,9 @@ trainer: macro
 	dw \1
 	db \2, \3
 	dw \4, \5, \6, \7
-endm
+ENDM
 
-itemball: macro
+itemball: MACRO
 ;\1: item: from constants/item_constants.asm
 ;\2: quantity: default 1
 if _NARG == 2
@@ -89,9 +89,9 @@ if _NARG == 2
 else
 	db \1, 1
 endc
-endm
+ENDM
 
-elevfloor: macro
+elevfloor: MACRO
 ;\1: floor: a FLOOR_* constant
 ;\2: warp destination: starts at 1
 ;\3: map id
@@ -99,10 +99,10 @@ elevfloor: macro
 	map \3
 ENDM
 
-stonetable: macro
+stonetable: MACRO
 ;\1: warp id
 ;\2: object_event id
 ;\3: script pointer
 	db \1, \2
 	dw \3
-endm
+ENDM

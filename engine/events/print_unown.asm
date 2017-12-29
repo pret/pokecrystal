@@ -15,12 +15,12 @@ UnownPrinter: ; 16be4
 	call ClearTileMap
 
 	ld de, UnownDexATile
-	ld hl, VTiles1 tile $6f
+	ld hl, vTiles1 tile $6f
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
 	ld de, UnownDexBTile
-	ld hl, VTiles1 tile $75
+	ld hl, vTiles1 tile $75
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
@@ -139,7 +139,7 @@ UnownPrinter: ; 16be4
 	ld [CurPartySpecies], a
 	xor a
 	ld [wBoxAlignment], a
-	ld de, VTiles2
+	ld de, vTiles2
 	predef GetMonFrontpic
 	call .Load2bppToSRAM
 	hlcoord 1, 6
@@ -147,7 +147,7 @@ UnownPrinter: ; 16be4
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	farcall RotateUnownFrontpic
 	ret
 
@@ -184,7 +184,7 @@ UnownPrinter: ; 16be4
 	ld bc, $31 tiles
 	xor a
 	call ByteFill
-	ld hl, VTiles2 tile $31
+	ld hl, vTiles2 tile $31
 	ld de, sScratch
 	ld c, $31
 	ld a, [hROMBank]

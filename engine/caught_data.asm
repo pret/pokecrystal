@@ -193,7 +193,7 @@ SetBoxmonOrEggmonCaughtData: ; 4db53
 .NotPokecenter2F:
 	call GetWorldMapLocation
 	ld b, a
-	ld a, [PlayerGender]
+	ld a, [wPlayerGender]
 	rrca
 	or b
 	ld [hl], a

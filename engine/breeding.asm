@@ -704,22 +704,22 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	farcall BlankScreen
 	call DisableLCD
 	ld hl, EggHatchGFX
-	ld de, VTiles0 tile $00
+	ld de, vTiles0 tile $00
 	ld bc, $20
 	ld a, BANK(EggHatchGFX)
 	call FarCopyBytes
 	farcall ClearSpriteAnims
-	ld de, VTiles2 tile $00
+	ld de, vTiles2 tile $00
 	ld a, [wJumptableIndex]
 	call GetHatchlingFrontpic
-	ld de, VTiles2 tile $31
+	ld de, vTiles2 tile $31
 	ld a, EGG
 	call GetEggFrontpic
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic
 	call EnableLCD
 	hlcoord 7, 4
-	ld b, HIGH(VBGMap0)
+	ld b, HIGH(vBGMap0)
 	ld c, $31 ; Egg tiles start here
 	ld a, EGG
 	call Hatch_UpdateFrontpicBGMapCenter
@@ -768,7 +768,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	call ClearSprites
 	call Hatch_InitShellFragments
 	hlcoord 6, 3
-	ld b, HIGH(VBGMap0)
+	ld b, HIGH(vBGMap0)
 	ld c, $00 ; Hatchling tiles start here
 	ld a, [wJumptableIndex]
 	call Hatch_UpdateFrontpicBGMapCenter

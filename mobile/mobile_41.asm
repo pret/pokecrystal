@@ -1011,20 +1011,20 @@ MobileFunc_106462: mobile
 
 Function106464:: ; 106464
 	ld de, MobilePhoneTilesGFX
-	ld hl, VTiles2 tile $60
+	ld hl, vTiles2 tile $60
 	lb bc, BANK(MobilePhoneTilesGFX), 1
 	call Get2bpp
 	ld de, FontsExtra2_UpArrowGFX
-	ld hl, VTiles2 tile $61
+	ld hl, vTiles2 tile $61
 	lb bc, BANK(FontsExtra2_UpArrowGFX), 1
 	call Get2bpp
 	ld de, GFX_106514
-	ld hl, VTiles2 tile $62
+	ld hl, vTiles2 tile $62
 	ld c, 9
 	ld b, BANK(GFX_106514)
 	call Get2bpp
 	ld de, $40b0
-	ld hl, VTiles2 tile $6b
+	ld hl, vTiles2 tile $6b
 	ld b, $f ; XXX no graphics at 0f:40b0
 	call Get2bpp
 	farcall LoadFrame
@@ -1039,11 +1039,11 @@ Function10649b: ; 10649b
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, VTiles2 tile $79
+	ld hl, vTiles2 tile $79
 	ld c, 6
 	ld b, BANK(Frames)
 	call Function1064c3
-	ld hl, VTiles2 tile $7f
+	ld hl, vTiles2 tile $7f
 	ld de, TextBoxSpaceGFX
 	ld c, 1
 	ld b, BANK(TextBoxSpaceGFX)

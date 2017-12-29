@@ -1,9 +1,9 @@
-specialcall: macro
+specialcall: MACRO
 ; condition, contact, script
 	dw \1
 	db \2
 	dba \3
-endm
+ENDM
 
 SpecialPhoneCallList: ; 90627
 ; entries correspond to SPECIALCALL_* constants

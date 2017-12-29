@@ -97,7 +97,7 @@ GetFishGroupIndex: ; 9245b
 ; Return the index of fishgroup d in de.
 
 	push hl
-	ld hl, DailyFlags
+	ld hl, wDailyFlags
 	bit 2, [hl]
 	pop hl
 	jr z, .done

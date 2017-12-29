@@ -36,7 +36,7 @@ SweetScentNothing: ; 0x506e9
 SweetScentEncounter: ; 506ef
 	farcall CanUseSweetScent
 	jr nc, .no_battle
-	ld hl, StatusFlags2
+	ld hl, wStatusFlags2
 	bit 2, [hl]
 	jr nz, .not_in_bug_contest
 	farcall GetMapEncounterRate

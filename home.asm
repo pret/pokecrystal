@@ -574,11 +574,11 @@ CopyTilemapAtOnce:: ; 323d
 	jr c, .wait
 
 	di
-	ld a, BANK(VTiles3)
+	ld a, BANK(vTiles3)
 	ld [rVBK], a
 	hlcoord 0, 0, AttrMap
 	call .StackPointerMagic
-	ld a, BANK(VTiles0)
+	ld a, BANK(vTiles0)
 	ld [rVBK], a
 	hlcoord 0, 0
 	call .StackPointerMagic
@@ -597,7 +597,7 @@ CopyTilemapAtOnce:: ; 323d
 ; 327b
 
 .StackPointerMagic: ; 327b
-; Copy all tiles to VBGMap
+; Copy all tiles to vBGMap
 	ld [hSPBuffer], sp
 	ld sp, hl
 	ld a, [hBGMapAddress + 1]
@@ -1074,7 +1074,7 @@ _PrepMonFrontpic:: ; 378b
 	jr c, .not_pokemon
 
 	push hl
-	ld de, VTiles2
+	ld de, vTiles2
 	predef GetMonFrontpic
 	pop hl
 	xor a
