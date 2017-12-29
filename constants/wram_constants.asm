@@ -31,8 +31,8 @@ TEXT_DELAY_SLOW EQU 5
 
 ; TextBoxFlags:
 	const_def
-	const TEXT_DELAY_F    ; 0
-	const NO_TEXT_DELAY_F ; 1
+	const FAST_TEXT_DELAY_F ; 0
+	const NO_TEXT_DELAY_F   ; 1
 
 ; Options2:
 	const_def

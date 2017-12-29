@@ -323,7 +323,7 @@ PrintLetterDelay:: ; 313d
 
 ; force fast scroll?
 	ld a, [TextBoxFlags]
-	bit TEXT_DELAY_F, a
+	bit FAST_TEXT_DELAY_F, a
 	jr z, .fast
 
 ; text speed

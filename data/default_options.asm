@@ -6,7 +6,7 @@ DefaultOptions: ; 14f7c
 ; TextBoxFrame: frame 1
 	db FRAME_1
 ; TextBoxFlags: use text speed
-	db 1 << TEXT_DELAY_F
+	db 1 << FAST_TEXT_DELAY_F
 ; GBPrinter: normal brightness
 	db GBPRINTER_NORMAL
 ; Options2: menu account on
