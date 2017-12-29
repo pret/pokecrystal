@@ -7398,6 +7398,7 @@ Function11b5e8: ; 11b5e8
 
 .RunJumptable:
 	jumptable .Jumptable, wJumptableIndex
+
 .Jumptable:
 	dw Function11b66d
 	dw Function11b6b3

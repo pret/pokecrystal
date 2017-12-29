@@ -534,11 +534,9 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ret
 
 .Jumptable: ; 4e00d (13:600d)
-
 	dw .PinkPage
 	dw .GreenPage
 	dw .BluePage
-
 
 .PinkPage: ; 4e013 (13:6013)
 	hlcoord 0, 9
@@ -887,7 +885,6 @@ StatsScreen_GetAnimationParam: ; 4e2ad (13:62ad)
 	dw .BoxMon
 	dw .Tempmon
 	dw .Wildmon
-
 
 .PartyMon: ; 4e2bf (13:62bf)
 	ld a, [CurPartyMon]

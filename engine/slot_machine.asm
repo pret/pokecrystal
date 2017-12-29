@@ -20,8 +20,8 @@ REEL_SIZE EQU 15
 	const SLOTS_WAIT_REEL3
 	const SLOTS_WAIT_STOP_REEL3
 	const SLOTS_NEXT_09
-	const SLOTS_NEXT_0a
-	const SLOTS_NEXT_0b
+	const SLOTS_NEXT_0A
+	const SLOTS_NEXT_0B
 	const SLOTS_FLASH_IF_WIN
 	const SLOTS_FLASH_SCREEN
 	const SLOTS_GIVE_EARNED_COINS
@@ -1437,7 +1437,6 @@ Slots_CheckMatchedFirstTwoReels: ; 92e94
 ; 92ebd
 
 .Jumptable: ; 92ebd
-
 	dw .zero
 	dw .one
 	dw .two
@@ -1552,7 +1551,6 @@ Slots_CheckMatchedAllThreeReels: ; 92f1d
 ; 92f48
 
 .Jumptable: ; 92f48
-
 	dw .zero
 	dw .one
 	dw .two
@@ -2032,7 +2030,7 @@ endr
 ; or this code was intended to lead to flipped percentages.
 	ld a, [wKeepSevenBiasChance]
 	and a
-	jr nz, .lowerSevenStreakOdds
+	jr nz, .lower_seven_streak_odds
 	call Random
 	and %0010100
 	ret z ; 25% chance to stick with seven symbol bias
@@ -2040,7 +2038,7 @@ endr
 	ld [wSlotBias], a
 	ret
 
-.lowerSevenStreakOdds
+.lower_seven_streak_odds
 	call Random
 	and %0011100
 	ret z ; 12.5% chance to stick with seven symbol bias
@@ -2080,11 +2078,9 @@ Slots_AnimateGolem: ; 9321d (24:721d)
 	jp hl
 
 .Jumptable: ; 9322d (24:722d)
-
 	dw .init
 	dw .fall
 	dw .roll
-
 
 .init ; 93233 (24:7233)
 	ld hl, SPRITEANIMSTRUCT_0E
@@ -2181,11 +2177,9 @@ Slots_AnimateChansey: ; 932ac (24:72ac)
 	jp hl
 
 .Jumptable: ; 932bc (24:72bc)
-
 	dw .walk
 	dw .one
 	dw .two
-
 
 .walk ; 932c2 (24:72c2)
 	ld hl, SPRITEANIMSTRUCT_XCOORD

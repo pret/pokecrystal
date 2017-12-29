@@ -80,7 +80,6 @@ _CardFlip: ; e00ee (38:40ee)
 ; e01a0 (38:41a0)
 
 .Jumptable: ; e01a0
-
 	dw .AskPlayWithThree
 	dw .DeductCoins
 	dw .ChooseACard
@@ -656,7 +655,6 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 ; e0553
 
 .Jumptable: ; e0553
-
 	dw .Level1
 	dw .Level2
 	dw .Level3
@@ -833,7 +831,6 @@ CardFlip_CheckWinCondition: ; e0637
 ; e0643
 
 .Jumptable: ; e0643
-
 	dw .Impossible
 	dw .Impossible
 	dw .PikaJiggly

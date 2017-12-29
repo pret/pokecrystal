@@ -285,7 +285,6 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	dw .Map
 	dw .Phone
 	dw .Radio
-
 ; 90e1a
 
 .Clock: ; 90e1a

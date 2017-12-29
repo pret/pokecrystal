@@ -128,7 +128,6 @@ CutFunction: ; c785
 	ret
 
 .Jumptable: ; c796 (3:4796)
-
 	dw .CheckAble
 	dw .DoCut
 	dw .FailCut

@@ -381,7 +381,6 @@ MobileTradeAnim_JumptableLoop: ; 10824b
 ; 10828a
 
 .Jumptable: ; 10828a
-
 	dw GetMobileTradeAnimByte ; 00
 	dw MobileTradeAnim_ShowPlayerMonToBeSent ; 01
 	dw MobileTradeAnim_02 ; 02

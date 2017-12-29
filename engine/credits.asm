@@ -152,9 +152,7 @@ Credits_Jumptable: ; 109926
 	jp hl
 ; 109937
 
-
 .Jumptable: ; 109937 (42:5937)
-
 	dw ParseCredits
 	dw Credits_Next
 	dw Credits_Next
@@ -168,7 +166,6 @@ Credits_Jumptable: ; 109926
 	dw Credits_UpdateGFXRequestPath
 	dw Credits_RequestGFX
 	dw Credits_LoopBack
-
 
 Credits_Next: ; 109951 (42:5951)
 	ld hl, wJumptableIndex

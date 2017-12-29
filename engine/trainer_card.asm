@@ -80,7 +80,6 @@ TrainerCard: ; 25105
 	dw TrainerCard_Page3_Joypad
 	dw TrainerCard_Quit
 
-
 TrainerCard_IncrementJumptable: ; 251ab (9:51ab)
 	ld hl, wJumptableIndex
 	inc [hl]

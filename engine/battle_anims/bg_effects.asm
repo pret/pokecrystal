@@ -2066,6 +2066,7 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 	dw .cgb_zero
 	dw .cgb_one
 	dw .cgb_two
+
 .cgb_zero
 	call BattleBGEffects_IncrementJumptable
 	ld hl, BG_EFFECT_STRUCT_03

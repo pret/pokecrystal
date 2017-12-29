@@ -28,7 +28,6 @@ Pack: ; 10000
 ; 10030
 
 .Jumptable: ; 10030 (4:4030)
-
 	dw .InitGFX            ;  0
 	dw .InitItemsPocket    ;  1
 	dw .ItemsPocketMenu    ;  2
@@ -694,7 +693,6 @@ BattlePack: ; 10493
 ; 104c3
 
 .Jumptable: ; 104c3 (4:44c3)
-
 	dw .InitGFX            ;  0
 	dw .InitItemsPocket    ;  1
 	dw .ItemsPocketMenu    ;  2
@@ -865,7 +863,6 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 0x10614
 
 .UsableJumptable: ; 10614
-
 	dw .Use
 	dw .Quit
 ; 10618
@@ -885,7 +882,6 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 0x10627
 
 .UnusableJumptable: ; 10627
-
 	dw .Quit
 ; 10629
 
@@ -897,7 +893,6 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	ret
 
 .ItemFunctionJumptable: ; 10637 (4:4637)
-
 	dw .Oak
 	dw .Oak
 	dw .Oak
@@ -1002,11 +997,11 @@ DepositSellPack: ; 106be
 ; 106d1
 
 .Jumptable: ; 106d1 (4:46d1)
-
 	dw .ItemsPocket
 	dw .BallsPocket
 	dw .KeyItemsPocket
 	dw .TMHMPocket
+
 .ItemsPocket: ; 106d9 (4:46d9)
 	xor a
 	call InitPocket

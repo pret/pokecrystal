@@ -188,7 +188,6 @@ UnownPuzzleJumptable: ; e12ca
 ; e12d9
 
 .Jumptable: ; e12d9
-
 	dw .Function
 ; e12db
 

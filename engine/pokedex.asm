@@ -184,7 +184,6 @@ Pokedex_RunJumptable: ; 4010b
 	call Pokedex_LoadPointer
 	jp hl
 
-
 .Jumptable: ; 40115 (10:4115)
 	dw Pokedex_InitMainScreen
 	dw Pokedex_UpdateMainScreen
@@ -200,7 +199,6 @@ Pokedex_RunJumptable: ; 4010b
 	dw Pokedex_InitUnownMode
 	dw Pokedex_UpdateUnownMode
 	dw Pokedex_Exit
-
 
 Pokedex_IncrementDexPointer: ; 40131 (10:4131)
 	ld hl, wJumptableIndex
@@ -1623,12 +1621,10 @@ Pokedex_OrderMonsByMode: ; 40bdc
 	call Pokedex_LoadPointer
 	jp hl
 
-
 .Jumptable: ; 40bf0 (10:4bf0)
 	dw .NewMode
 	dw .OldMode
 	dw Pokedex_ABCMode
-
 
 .NewMode: ; 40bf6 (10:4bf6)
 	ld de, NewPokedexOrder

@@ -303,7 +303,6 @@ MagnetTrain_Jumptable: ; 8cdf7
 ; 8ce06
 
 .Jumptable: ; 8ce06
-
 	dw .InitPlayerSpriteAnim
 	dw .WaitScene
 	dw .MoveTrain1
