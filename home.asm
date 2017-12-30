@@ -332,7 +332,7 @@ PrintLetterDelay:: ; 313d
 	jr .updatedelay
 
 .fast
-	ld a, 1
+	ld a, TEXT_DELAY_FAST
 
 .updatedelay
 	ld [TextDelayFrames], a
@@ -347,11 +347,11 @@ PrintLetterDelay:: ; 313d
 
 ; Wait one frame if holding A or B.
 	ld a, [hJoyDown]
-	bit 0, a ; A_BUTTON
+	bit A_BUTTON_F, a
 	jr z, .checkb
 	jr .delay
 .checkb
-	bit 1, a ; B_BUTTON
+	bit B_BUTTON_F, a
 	jr z, .wait
 
 .delay

@@ -65,21 +65,21 @@ ScrollingMenuJoyAction: ; 24609
 	ld a, [hJoyPressed]
 	and BUTTONS
 	or b
-	bit 0, a ; A
+	bit A_BUTTON_F, a
 	jp nz, .a_button
-	bit 1, a ; B
+	bit B_BUTTON_F, a
 	jp nz, .b_button
-	bit 2, a ; Select
+	bit SELECT_F, a
 	jp nz, .select
-	bit 3, a ; Start
+	bit START_F, a
 	jp nz, .start
-	bit 4, a ; Right
+	bit D_RIGHT_F, a
 	jp nz, .d_right
-	bit 5, a ; Left
+	bit D_LEFT_F, a
 	jp nz, .d_left
-	bit 6, a ; Up
+	bit D_UP_F, a
 	jp nz, .d_up
-	bit 7, a ; Down
+	bit D_DOWN_F, a
 	jp nz, .d_down
 	jr .loop
 ; 24640
