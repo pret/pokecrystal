@@ -29,9 +29,7 @@ PrinterJumptableIteration: ; 84022
 	jp hl
 ; 84031
 
-
 .Jumptable: ; 84031 (21:4031)
-
 	dw Print_InitPrinterHandshake ; 00
 	dw Printer_CheckConnectionStatus ; 01
 	dw Printer_WaitSerial ; 02
@@ -54,7 +52,6 @@ PrinterJumptableIteration: ; 84022
 	dw Printer_SectionOne ; 11
 	dw Printer_WaitLoopBack ; 12
 	dw Printer_WaitLoopBack_ ; 13
-
 
 Printer_NextSection: ; 84059 (21:4059)
 	ld hl, wJumptableIndex
@@ -471,7 +468,6 @@ _PrinterReceive:: ; 842db
 	jp hl
 ; 842ea
 
-
 .Jumptable: ; 842ea (21:42ea)
 	dw Printer_DoNothing ; 00
 
@@ -508,7 +504,6 @@ _PrinterReceive:: ; 842db
 	dw Printer_Send0x00 ; 1d
 	dw Printer_ReceiveTowPrinterHandshakeAndSend0x00 ; 1e
 	dw Printer_ReceiveTowPrinterStatusFlagsAndExitSendLoop ; 1f
-
 
 Printer_NextInstruction: ; 8432a (21:432a)
 	ld hl, wPrinterOpcode

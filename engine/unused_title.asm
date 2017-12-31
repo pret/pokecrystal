@@ -55,8 +55,8 @@ UnusedTitleScreen: ; 10c000
 
 	call EnableLCD
 	ld a, [rLCDC]
-	set 1, a
-	set 2, a
+	set rLCDC_SPRITES_ENABLE, a
+	set rLCDC_SPRITE_SIZE, a
 	ld [rLCDC], a
 
 	call DelayFrame

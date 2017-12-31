@@ -8395,11 +8395,11 @@ BattleIntro: ; 3f4dd
 	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	ld hl, rLCDC
-	res 6, [hl]
+	res rLCDC_WINDOW_TILEMAP, [hl] ; select 9800-9BFF
 	call InitBattleDisplay
 	call BattleStartMessage
 	ld hl, rLCDC
-	set 6, [hl]
+	set rLCDC_WINDOW_TILEMAP, [hl] ; select 9C00-9FFF
 	xor a
 	ld [hBGMapMode], a
 	call EmptyBattleTextBox

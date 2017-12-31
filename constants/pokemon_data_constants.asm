@@ -45,7 +45,7 @@ GENDERLESS   EQU 255
 	const SLOW
 
 ; BaseEggGroups values
-const_value SET 1
+const_value set 1
 	const MONSTER      ; 1
 	const AMPHIBIAN    ; 2
 	const INSECT       ; 3
@@ -103,7 +103,7 @@ PARTY_LENGTH EQU 6
 
 
 ; evolution types (used in data/pokemon/evos_attacks.asm)
-const_value SET 1
+const_value set 1
 	const EVOLVE_LEVEL
 	const EVOLVE_ITEM
 	const EVOLVE_TRADE
@@ -111,13 +111,13 @@ const_value SET 1
 	const EVOLVE_STAT
 
 ; EVOLVE_HAPPINESS triggers
-const_value SET 1
+const_value set 1
 	const TR_ANYTIME
 	const TR_MORNDAY
 	const TR_NITE
 
 ; EVOLVE_STAT triggers
-const_value SET 1
+const_value set 1
 	const ATK_GT_DEF
 	const ATK_LT_DEF
 	const ATK_EQ_DEF
@@ -162,7 +162,7 @@ FISHSWARM_REMORAID EQU 2
 	const ANIM_MON_EGG2
 
 ; MonMenuOptions indexes (see engine/mon_menu.asm)
-const_value SET 1
+const_value set 1
 ; moves
 	const MONMENU_CUT        ; 1
 	const MONMENU_FLY        ; 2

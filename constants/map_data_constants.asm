@@ -17,7 +17,7 @@ MAP_NONE   EQU 0
 NUM_MAPHEADER_ATTRIBUTES EQU const_value
 
 ; map environments (wEnvironment)
-const_value SET 1
+const_value set 1
 	const TOWN
 	const ROUTE
 	const INDOOR
@@ -34,7 +34,7 @@ const_value SET 1
 	const PALETTE_MORN
 	const PALETTE_DARK
 
-; fish groups 
+; fish groups
 	const_def
 	const FISHGROUP_NONE
 	const FISHGROUP_SHORE
@@ -97,10 +97,10 @@ const_value SET 1
 	const OBJECT_SPRITE_X_OFFSET     ; 19
 	const OBJECT_SPRITE_Y_OFFSET     ; 1a
 	const OBJECT_MOVEMENT_BYTE_INDEX ; 1b
-	const OBJECT_28                  ; 1c
-	const OBJECT_29                  ; 1d
-	const OBJECT_30                  ; 1e
-	const OBJECT_31                  ; 1f
+	const OBJECT_1C                  ; 1c
+	const OBJECT_1D                  ; 1d
+	const OBJECT_1E                  ; 1e
+	const OBJECT_1F                  ; 1f
 	const OBJECT_RANGE               ; 20
 ; 33-39 are not used
 
@@ -217,7 +217,7 @@ NUM_SPAWNS EQU const_value
 EMOTE_MEM EQU -1
 
 ; FruitTreeItems indexes (see data/items/fruit_trees.asm)
-const_value SET 1
+const_value set 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02
 	const FRUITTREE_ROUTE_38      ; 03

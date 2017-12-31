@@ -23,8 +23,8 @@ GetSquareRoot: ; 13b87
 	ret
 
 .Squares: ; 13b98
-root	set 1
+root = 1
 	rept $ff
-	dw root*root
-root	set root+1
+	dw root * root
+root = root + 1
 	endr

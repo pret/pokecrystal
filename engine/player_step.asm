@@ -59,7 +59,6 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 	ret
 
 .Jumptable: ; d4f2 (3:54f2)
-
 	dw GetMovementPermissions
 	dw BufferScreen
 	dw .mobile

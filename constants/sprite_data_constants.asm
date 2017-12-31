@@ -9,7 +9,7 @@
 NUM_SPRITEDATA_FIELDS EQU const_value
 
 ; sprite types
-const_value SET 1
+const_value set 1
 	const WALKING_SPRITE  ; 1
 	const STANDING_SPRITE ; 2
 	const STILL_SPRITE    ; 3

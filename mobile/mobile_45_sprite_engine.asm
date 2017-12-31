@@ -411,7 +411,7 @@ Function1161d5: ; 1161d5
 .wait_for_vblank
 ; Wait until a vblank would occur had interrupts not just been disabled.
 	ld a, [rLY]
-	cp $91
+	cp LY_VBLANK + 1
 	jr nz, .wait_for_vblank
 
 	ld a, $d0

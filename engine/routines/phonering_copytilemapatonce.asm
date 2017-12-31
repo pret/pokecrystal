@@ -17,7 +17,7 @@ PhoneRing_CopyTilemapAtOnce: ; 4d188
 	ld [hMapAnims], a
 .wait
 	ld a, [rLY]
-	cp $8f
+	cp LY_VBLANK - 1
 	jr c, .wait
 
 	di
@@ -31,7 +31,7 @@ PhoneRing_CopyTilemapAtOnce: ; 4d188
 	call .CopyTilemapAtOnce
 .wait2
 	ld a, [rLY]
-	cp $8f
+	cp LY_VBLANK - 1
 	jr c, .wait2
 	ei
 

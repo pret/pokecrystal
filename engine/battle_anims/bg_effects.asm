@@ -2066,6 +2066,7 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 	dw .cgb_zero
 	dw .cgb_one
 	dw .cgb_two
+
 .cgb_zero
 	call BattleBGEffects_IncrementJumptable
 	ld hl, BG_EFFECT_STRUCT_03
@@ -2313,7 +2314,7 @@ BattleBGEffect_2e: ; c8ce1 (32:4ce1)
 	ld [hSCY], a
 	xor $ff
 	inc a
-	ld [AnimObject01_YOffset], a
+	ld [AnimObject01YOffset], a
 	ret
 
 BattleBGEffect_1f: ; c8cf9 (32:4cf9)

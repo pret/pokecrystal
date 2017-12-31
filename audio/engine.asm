@@ -829,7 +829,7 @@ LoadNote: ; e83d1
 	ld hl, Channel1PitchWheelAmountFraction - Channel1
 	add hl, bc
 	ld [hl], a ; remainder
-	ld hl, Channel1Field0x25 - Channel1
+	ld hl, Channel1Field25 - Channel1
 	add hl, bc
 	xor a
 	ld [hl], a
@@ -981,12 +981,12 @@ ApplyPitchWheel: ; e84f9
 	add hl, de
 	ld d, h
 	ld e, l
-	; [Channel*Field0x25] += [Channel*PitchWheelAmountFraction]
+	; [Channel*Field25] += [Channel*PitchWheelAmountFraction]
 	; if rollover: Frequency += 1
 	ld hl, Channel1PitchWheelAmountFraction - Channel1
 	add hl, bc
 	ld a, [hl]
-	ld hl, Channel1Field0x25 - Channel1
+	ld hl, Channel1Field25 - Channel1
 	add hl, bc
 	add [hl]
 	ld [hl], a
@@ -1023,7 +1023,7 @@ ApplyPitchWheel: ; e84f9
 	ld a, d
 	sbc 0
 	ld d, a
-	; [Channel*Field0x25] *= 2
+	; [Channel*Field25] *= 2
 	; if rollover: Frequency -= 1
 	ld hl, Channel1PitchWheelAmountFraction - Channel1
 	add hl, bc
@@ -1726,7 +1726,7 @@ MusicE2: ; e8873
 ; seems to have been dummied out
 ; params: 1
 	call GetMusicByte
-	ld hl, Channel1Field0x2c - Channel1
+	ld hl, Channel1Field2c - Channel1
 	add hl, bc
 	ld [hl], a
 	ld hl, Channel1Flags2 - Channel1
@@ -1849,7 +1849,7 @@ MusicE7: ; e88f7
 	add hl, bc
 	set SOUND_UNKN_0E, [hl]
 	call GetMusicByte
-	ld hl, Channel1Field0x29 - Channel1
+	ld hl, Channel1Field29 - Channel1
 	add hl, bc
 	ld [hl], a
 	ret
@@ -1885,7 +1885,7 @@ MusicE8: ; e891e
 	add hl, bc
 	set SOUND_UNKN_0D, [hl]
 	call GetMusicByte
-	ld hl, Channel1Field0x2a - Channel1
+	ld hl, Channel1Field2a - Channel1
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2307,7 +2307,7 @@ SetNoteDuration: ; e8a8d
 	inc hl
 	ld d, [hl]
 	; add ???? to the next result
-	ld hl, Channel1Field0x16 - Channel1
+	ld hl, Channel1Field16 - Channel1
 	add hl, bc
 	ld l, [hl]
 	; multiply Tempo by last result (NoteLength * LOW(delay))
@@ -2316,7 +2316,7 @@ SetNoteDuration: ; e8a8d
 	ld e, l
 	ld d, h
 	; store result in ????
-	ld hl, Channel1Field0x16 - Channel1
+	ld hl, Channel1Field16 - Channel1
 	add hl, bc
 	ld [hl], e
 	; store result in NoteDuration
@@ -2392,7 +2392,7 @@ Tempo: ; e8b03
 	ld [hl], d
 	; clear ????
 	xor a
-	ld hl, Channel1Field0x16 - Channel1
+	ld hl, Channel1Field16 - Channel1
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2749,7 +2749,7 @@ PlayStereoSFX:: ; e8ca6
 	add hl, bc
 	ld [hl], a
 
-	ld hl, Channel1Field0x30 - Channel1 ; $c131 - Channel1
+	ld hl, Channel1Field30 - Channel1 ; $c131 - Channel1
 	add hl, bc
 	ld [hl], a
 
@@ -2760,11 +2760,11 @@ PlayStereoSFX:: ; e8ca6
 ; ch3-4
 	ld a, [wSFXDuration]
 
-	ld hl, Channel1Field0x2e - Channel1 ; $c12f - Channel1
+	ld hl, Channel1Field2e - Channel1 ; $c12f - Channel1
 	add hl, bc
 	ld [hl], a
 
-	ld hl, Channel1Field0x2f - Channel1 ; $c130 - Channel1
+	ld hl, Channel1Field2f - Channel1 ; $c130 - Channel1
 	add hl, bc
 	ld [hl], a
 

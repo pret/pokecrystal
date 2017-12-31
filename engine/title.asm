@@ -201,7 +201,7 @@ _TitleScreen: ; 10ed67
 
 ; Set sprite size to 8x16
 	ld a, [rLCDC]
-	set 2, a
+	set rLCDC_SPRITE_SIZE, a
 	ld [rLCDC], a
 
 	ld a, +112

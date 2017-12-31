@@ -46,7 +46,6 @@ LoadMenuMonIcon: ; 8e83f
 	dw Mobile_InitPartyMenuBGPal71 ; mobile
 	dw .GetPartyMenuMonIcon ; unused
 
-
 .GetPartyMenuMonIcon: ; 8e862 (23:6862)
 	call InitPartyMenuIcon
 	call .GetPartyMonItemGFX
