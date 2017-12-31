@@ -262,19 +262,19 @@ SetMagnetTrainPals: ; 8cdc3
 
 	; bushes
 	hlbgcoord 0, 0
-	ld bc, 4 bgrows
+	ld bc, 4 * BG_MAP_WIDTH
 	ld a, $2
 	call ByteFill
 
 	; train
 	hlbgcoord 0, 4
-	ld bc, 10 bgrows
+	ld bc, 10 * BG_MAP_WIDTH
 	xor a
 	call ByteFill
 
 	; more bushes
 	hlbgcoord 0, 14
-	ld bc, 4 bgrows
+	ld bc, 4 * BG_MAP_WIDTH
 	ld a, $2
 	call ByteFill
 

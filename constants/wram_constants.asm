@@ -29,6 +29,11 @@ TEXT_DELAY_SLOW EQU 5
 	const FRAME_7 ; 6
 	const FRAME_8 ; 7
 
+; TextBoxFlags:
+	const_def
+	const FAST_TEXT_DELAY_F ; 0
+	const NO_TEXT_DELAY_F   ; 1
+
 ; Options2:
 	const_def
 	const MENU_ACCOUNT ; 0

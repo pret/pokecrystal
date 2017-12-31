@@ -697,7 +697,7 @@ PokeFluteTerminatorCharacter:: ; 13e0
 PlaceHLTextAtBC:: ; 13e5
 	ld a, [TextBoxFlags]
 	push af
-	set 1, a
+	set NO_TEXT_DELAY_F, a
 	ld [TextBoxFlags], a
 
 	call DoTextUntilTerminator

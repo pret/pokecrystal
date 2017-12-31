@@ -89,9 +89,9 @@ MonMenuLoop: ; 24d59
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ld a, [hJoyPressed]
-	bit 0, a ; A
+	bit A_BUTTON_F, a
 	jr nz, .select
-	bit 1, a ; B
+	bit B_BUTTON_F, a
 	jr nz, .cancel
 	jr .loop
 

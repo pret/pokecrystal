@@ -442,10 +442,10 @@ ButtonSound:: ; aaf
 	jr .load_cursor_state
 
 .cursor_off
-	ld a, [TileMap + 17 + 17 * SCREEN_WIDTH]
+	lda_coord 17, 17
 
 .load_cursor_state
-	ld [TileMap + 18 + 17 * SCREEN_WIDTH], a
+	ldcoord_a 18, 17
 	ret
 ; b06
 
