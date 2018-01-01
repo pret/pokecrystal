@@ -908,7 +908,7 @@ InitCGBPals::
 	call ByteFill
 	ld a, $0
 	ld [rVBK], a
-	ld a, $80
+	ld a, 1 << rBGPI_AUTO_INCREMENT
 	ld [rBGPI], a
 	ld c, 4 * 8
 .bgpals_loop
@@ -918,7 +918,7 @@ InitCGBPals::
 	ld [rBGPD], a
 	dec c
 	jr nz, .bgpals_loop
-	ld a, $80
+	ld a, 1 << rOBPI_AUTO_INCREMENT
 	ld [rOBPI], a
 	ld c, 4 * 8
 .obpals_loop
