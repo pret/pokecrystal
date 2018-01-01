@@ -593,7 +593,7 @@ ENDM
 	map_header_2 LavenderPokecenter1F, LAVENDER_POKECENTER_1F, $0, 0
 	map_header_2 LavenderPokecenter2FBeta, LAVENDER_POKECENTER_2F_BETA, $0, 0
 	map_header_2 MrFujisHouse, MR_FUJIS_HOUSE, $0, 0
-	map_header_2 LavenderTownSpeechHouse, LAVENDER_TOWN_SPEECH_HOUSE, $0, 0
+	map_header_2 LavenderSpeechHouse, LAVENDER_SPEECH_HOUSE, $0, 0
 	map_header_2 LavenderNameRater, LAVENDER_NAME_RATER, $0, 0
 	map_header_2 LavenderMart, LAVENDER_MART, $0, 0
 	map_header_2 SoulHouse, SOUL_HOUSE, $0, 0
@@ -634,7 +634,7 @@ ENDM
 	map_header_2 CianwoodGym, CIANWOOD_GYM, $0, 0
 	map_header_2 CianwoodPokecenter1F, CIANWOOD_POKECENTER_1F, $0, 0
 	map_header_2 CianwoodPharmacy, CIANWOOD_PHARMACY, $0, 0
-	map_header_2 CianwoodCityPhotoStudio, CIANWOOD_CITY_PHOTO_STUDIO, $0, 0
+	map_header_2 CianwoodPhotoStudio, CIANWOOD_PHOTO_STUDIO, $0, 0
 	map_header_2 CianwoodLugiaSpeechHouse, CIANWOOD_LUGIA_SPEECH_HOUSE, $0, 0
 	map_header_2 PokeSeersHouse, POKE_SEERS_HOUSE, $0, 0
 	map_header_2 BattleTower1F, BATTLE_TOWER_1F, $0, 0
@@ -673,7 +673,7 @@ ENDM
 	map_header_2 CopycatsHouse1F, COPYCATS_HOUSE_1F, $0, 0
 	map_header_2 CopycatsHouse2F, COPYCATS_HOUSE_2F, $0, 0
 	map_header_2 Route5UndergroundPathEntrance, ROUTE_5_UNDERGROUND_PATH_ENTRANCE, $0, 0
-	map_header_2 Route5SaffronCityGate, ROUTE_5_SAFFRON_CITY_GATE, $0, 0
+	map_header_2 Route5SaffronGate, ROUTE_5_SAFFRON_GATE, $0, 0
 	map_header_2 Route5CleanseTagSpeechHouse, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE, $0, 0
 	map_header_2 CherrygroveMart, CHERRYGROVE_MART, $0, 0
 	map_header_2 CherrygrovePokecenter1F, CHERRYGROVE_POKECENTER_1F, $0, 0

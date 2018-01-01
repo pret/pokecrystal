@@ -351,7 +351,7 @@ ENDM
 	mapgroup LAVENDER_POKECENTER_1F,                       4,  5 ;  5
 	mapgroup LAVENDER_POKECENTER_2F_BETA,                  4,  8 ;  6
 	mapgroup MR_FUJIS_HOUSE,                               4,  5 ;  7
-	mapgroup LAVENDER_TOWN_SPEECH_HOUSE,                   4,  4 ;  8
+	mapgroup LAVENDER_SPEECH_HOUSE,                        4,  4 ;  8
 	mapgroup LAVENDER_NAME_RATER,                          4,  4 ;  9
 	mapgroup LAVENDER_MART,                                4,  6 ; 10
 	mapgroup SOUL_HOUSE,                                   4,  5 ; 11
@@ -413,7 +413,7 @@ ENDM
 	mapgroup CIANWOOD_GYM,                                 9,  5 ;  5
 	mapgroup CIANWOOD_POKECENTER_1F,                       4,  5 ;  6
 	mapgroup CIANWOOD_PHARMACY,                            4,  4 ;  7
-	mapgroup CIANWOOD_CITY_PHOTO_STUDIO,                   4,  4 ;  8
+	mapgroup CIANWOOD_PHOTO_STUDIO,                        4,  4 ;  8
 	mapgroup CIANWOOD_LUGIA_SPEECH_HOUSE,                  4,  4 ;  9
 	mapgroup POKE_SEERS_HOUSE,                             4,  4 ; 10
 	mapgroup BATTLE_TOWER_1F,                              5,  8 ; 11
@@ -470,7 +470,7 @@ ENDM
 	mapgroup COPYCATS_HOUSE_1F,                            4,  4 ; 11
 	mapgroup COPYCATS_HOUSE_2F,                            3,  5 ; 12
 	mapgroup ROUTE_5_UNDERGROUND_PATH_ENTRANCE,            4,  4 ; 13
-	mapgroup ROUTE_5_SAFFRON_CITY_GATE,                    4,  5 ; 14
+	mapgroup ROUTE_5_SAFFRON_GATE,                         4,  5 ; 14
 	mapgroup ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE,             4,  4 ; 15
 
 	newgroup                                                     ; 26

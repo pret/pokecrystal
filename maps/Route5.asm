@@ -46,8 +46,8 @@ Route5_MapEventHeader:
 .Warps:
 	db 4
 	warp_def 17, 15, 1, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
-	warp_def 8, 17, 1, ROUTE_5_SAFFRON_CITY_GATE
-	warp_def 9, 17, 2, ROUTE_5_SAFFRON_CITY_GATE
+	warp_def 8, 17, 1, ROUTE_5_SAFFRON_GATE
+	warp_def 9, 17, 2, ROUTE_5_SAFFRON_GATE
 	warp_def 10, 11, 1, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE
 
 .CoordEvents:

@@ -390,7 +390,7 @@ CianwoodCity_MapEventHeader:
 	warp_def 8, 43, 1, CIANWOOD_GYM
 	warp_def 23, 43, 1, CIANWOOD_POKECENTER_1F
 	warp_def 15, 47, 1, CIANWOOD_PHARMACY
-	warp_def 9, 31, 1, CIANWOOD_CITY_PHOTO_STUDIO
+	warp_def 9, 31, 1, CIANWOOD_PHOTO_STUDIO
 	warp_def 15, 37, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
 	warp_def 5, 17, 1, POKE_SEERS_HOUSE
 

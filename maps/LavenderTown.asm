@@ -113,7 +113,7 @@ LavenderTown_MapEventHeader:
 	db 7
 	warp_def 5, 5, 1, LAVENDER_POKECENTER_1F
 	warp_def 5, 9, 1, MR_FUJIS_HOUSE
-	warp_def 3, 13, 1, LAVENDER_TOWN_SPEECH_HOUSE
+	warp_def 3, 13, 1, LAVENDER_SPEECH_HOUSE
 	warp_def 7, 13, 1, LAVENDER_NAME_RATER
 	warp_def 1, 5, 2, LAVENDER_MART
 	warp_def 13, 11, 1, SOUL_HOUSE

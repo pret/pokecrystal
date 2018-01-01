@@ -175,7 +175,7 @@ BluesHouse_BlockData:
 PewterNidoranSpeechHouse_BlockData:
 PewterSnoozeSpeechHouse_BlockData:
 FuchsiaBillSpeechHouse_BlockData:
-LavenderTownSpeechHouse_BlockData:
+LavenderSpeechHouse_BlockData:
 LavenderNameRater_BlockData:
 Route12SuperRodHouse_BlockData:
 Route28FamousSpeechHouse_BlockData:
@@ -183,7 +183,7 @@ CeladonMansionRoofHouse_BlockData:
 Route16FuchsiaSpeechHouse_BlockData:
 ManiasHouse_BlockData:
 CianwoodPharmacy_BlockData:
-CianwoodCityPhotoStudio_BlockData:
+CianwoodPhotoStudio_BlockData:
 CianwoodLugiaSpeechHouse_BlockData:
 PokeSeersHouse_BlockData:
 ViridianNicknameSpeechHouse_BlockData:
@@ -211,11 +211,11 @@ Route6SaffronGate_BlockData:
 Route40BattleTowerGate_BlockData:
 Route2Gate_BlockData:
 Route2946Gate_BlockData:
-Route5SaffronCityGate_BlockData:
+Route5SaffronGate_BlockData:
 	INCBIN "maps/NorthSouthGate.blk"
 
-BetaTeakCity_BlockData:
-	INCBIN "maps/BetaTeakCity.blk"
+BetaEcruteakCity_BlockData:
+	INCBIN "maps/BetaEcruteakCity.blk"
 
 BetaCherrygroveCity_BlockData:
 	INCBIN "maps/BetaCherrygroveCity.blk"
@@ -372,17 +372,17 @@ BetaPewterMuseumOfScience2F_BlockData:
 EarlsPokemonAcademy_BlockData:
 	INCBIN "maps/EarlsPokemonAcademy.blk"
 
-BetaCinnabarIslandPokemonLabHallway_BlockData:
-	INCBIN "maps/BetaCinnabarIslandPokemonLabHallway.blk"
+BetaCinnabarPokemonLabHallway_BlockData:
+	INCBIN "maps/BetaCinnabarPokemonLabHallway.blk"
 
-BetaCinnabarIslandPokemonLabRoom1_BlockData:
-	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom1.blk"
+BetaCinnabarPokemonLabRoom1_BlockData:
+	INCBIN "maps/BetaCinnabarPokemonLabRoom1.blk"
 
-BetaCinnabarIslandPokemonLabRoom2_BlockData:
-	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom2.blk"
+BetaCinnabarPokemonLabRoom2_BlockData:
+	INCBIN "maps/BetaCinnabarPokemonLabRoom2.blk"
 
-BetaCinnabarIslandPokemonLabRoom3_BlockData:
-	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom3.blk"
+BetaCinnabarPokemonLabRoom3_BlockData:
+	INCBIN "maps/BetaCinnabarPokemonLabRoom3.blk"
 
 GoldenrodDeptStore1F_BlockData:
 CeladonDeptStore1F_BlockData:
@@ -824,8 +824,8 @@ FastShip1F_BlockData:
 FastShipB1F_BlockData:
 	INCBIN "maps/FastShipB1F.blk"
 
-BetaSSAquaInsideCutOut_BlockData:
-	INCBIN "maps/BetaSSAquaInsideCutOut.blk"
+BetaFastShipInsideCutOut_BlockData:
+	INCBIN "maps/BetaFastShipInsideCutOut.blk"
 
 FastShipCabins_NNW_NNE_NE_BlockData:
 	INCBIN "maps/FastShipCabins_NNW_NNE_NE.blk"
