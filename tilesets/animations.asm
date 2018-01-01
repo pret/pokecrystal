@@ -95,7 +95,7 @@ TilesetJohto1Anim: ; 0xfc0a3
 	dw NULL,  DoneTileAnimation
 ; 0xfc0d7
 
-TilesetAnimfc0d7: ; 0xfc0d7
+UnusedTilesetAnim_fc0d7: ; 0xfc0d7
 	dw vTiles2 tile $03, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw vTiles2 tile $03, WriteTileFromBuffer
@@ -109,7 +109,7 @@ TilesetAnimfc0d7: ; 0xfc0d7
 	dw NULL,  DoneTileAnimation
 ; 0xfc103
 
-TilesetAnimfc103: ; 0xfc103
+UnusedTilesetAnim_fc103: ; 0xfc103
 	dw vTiles2 tile $14, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw vTiles2 tile $14, WriteTileFromBuffer
@@ -149,7 +149,7 @@ TilesetGym1Anim: ; 0xfc15f
 	dw NULL,  DoneTileAnimation
 ; 0xfc17f
 
-TilesetAnimfc17f: ; 0xfc17f
+UnusedTilesetAnim_fc17f: ; 0xfc17f
 	dw vTiles2 tile $53, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileDown
 	dw wTileAnimBuffer, ScrollTileDown
@@ -164,7 +164,7 @@ TilesetAnimfc17f: ; 0xfc17f
 	dw NULL,  DoneTileAnimation
 ; 0xfc1af
 
-TilesetAnimfc1af: ; 0xfc1af
+UnusedTilesetAnim_fc1af: ; 0xfc1af
 	dw vTiles2 tile $54, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileDown
 	dw wTileAnimBuffer, ScrollTileDown
@@ -245,7 +245,7 @@ TilesetSproutTowerAnim: ; 0xfc27f
 	dw NULL,  DoneTileAnimation
 ; 0xfc2bf
 
-TilesetAnimfc2bf: ; 0xfc2bf
+UnusedTilesetAnim_fc2bf: ; 0xfc2bf
 	dw vTiles2 tile $4f, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw vTiles2 tile $4f, WriteTileFromBuffer
