@@ -2921,7 +2921,7 @@ Function11d323: ; 11d323
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_11d33a
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af

@@ -158,22 +158,22 @@ Function819a7: ; 819a7
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_819f4
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
-	ld a, $80
+	ld a, 1 << rBGPI_AUTO_INCREMENT
 	ld [rBGPI], a
 	ld hl, Palette_819f4
-	ld c, $40
+	ld c, 8 palettes
 	xor a
 .asm_819c8
 	ld [rBGPD], a
 	dec c
 	jr nz, .asm_819c8
-	ld a, $80
+	ld a, 1 << rOBPI_AUTO_INCREMENT
 	ld [rOBPI], a
 	ld hl, Palette_81a34
-	ld c, $40
+	ld c, 8 palettes
 .asm_819d6
 	ld a, [hli]
 	ld [rOBPD], a
@@ -438,7 +438,7 @@ Function81c33: ; 81c33
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld de, wc608
 	ld c, $1
 	call Function81ee3
@@ -1153,7 +1153,7 @@ Function8220f: ; 8220f
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	add hl, de
 	ld de, wc608
 	ld bc, 8
@@ -1200,12 +1200,12 @@ Function82236: ; 82236
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld a, [wcf64]
-	ld bc, 8
+	ld bc, 1 palettes
 	call AddNTimes
 	ld de, wc608
-	ld bc, 8
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -1230,14 +1230,14 @@ Function822a3: ; 822a3
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld a, [wcf64]
-	ld bc, 8
+	ld bc, 1 palettes
 	call AddNTimes
 	ld e, l
 	ld d, h
 	ld hl, wc608
-	ld bc, 8
+	ld bc, 1 palettes
 	call CopyBytes
 	hlcoord 1, 0
 	ld de, wc608

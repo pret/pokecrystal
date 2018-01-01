@@ -836,7 +836,7 @@ MobileTradeAnim_02: ; 108638
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
@@ -882,7 +882,7 @@ MobileTradeAnim_10: ; 108689
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
@@ -926,7 +926,7 @@ MobileTradeAnim_11: ; 1086f4
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_109107
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
@@ -946,7 +946,7 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 	ld de, SFX_GIVE_TRADEMON
 	call PlaySFX
 	ld c, 40
-	ld hl, BGPals palette 6
+	ld hl, wBGPals2 palette 6
 	call Function1082f0
 	call Function108af4
 .loop
@@ -1010,7 +1010,7 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 
 MobileTradeAnim_GiveTrademon2: ; 1087cf
 	ld c, 40
-	ld hl, BGPals + 1 palettes
+	ld hl, wBGPals2 + 1 palettes
 	call Function1082f0
 	call Function108af4
 	call Function108b5a
@@ -1109,12 +1109,12 @@ MobileTradeAnim_GetTrademon1: ; 108863
 
 MobileTradeAnim_GetTrademon2: ; 108894
 	ld c, 20
-	ld hl, BGPals + 1 palettes
+	ld hl, wBGPals2 + 1 palettes
 	call Function1082fa
 	ld de, SFX_GIVE_TRADEMON
 	call PlaySFX
 	ld c, 20
-	ld hl, BGPals + 1 palettes
+	ld hl, wBGPals2 + 1 palettes
 	call Function1082fa
 	call Function108af4
 .asm_1088ad
@@ -1178,7 +1178,7 @@ MobileTradeAnim_GetTrademon2: ; 108894
 
 MobileTradeAnim_GetTrademon3: ; 10890a
 	ld c, 40
-	ld hl, BGPals palette 6
+	ld hl, wBGPals2 palette 6
 	call Function1082f0
 	call Function108af4
 	call GetMobileTradeAnimByte
@@ -1449,22 +1449,22 @@ Function108af4: ; 108af4
 	and $1
 	jr z, .copy_palette_109147
 	ld hl, Palette_109187
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	ld hl, Palette_109187
-	ld de, OBPals
+	ld de, wOBPals2
 	ld bc, 8 palettes
 	call CopyBytes
 	jr .done_copy
 
 .copy_palette_109147
 	ld hl, Palette_109147
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	ld hl, Palette_109147
-	ld de, OBPals
+	ld de, wOBPals2
 	ld bc, 8 palettes
 	call CopyBytes
 
@@ -1484,8 +1484,8 @@ Function108b45: ; 108b45
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld de, (31 << 10) + (31 << 5) + 31 ; $7fff
-	ld hl, UnknBGPals
+	ld de, palred 31 + palgreen 31 + palblue 31
+	ld hl, wBGPals1
 	ld a, e
 	ld [hli], a
 	ld d, a
@@ -1500,8 +1500,8 @@ Function108b5a: ; 108b5a
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld de, (15 << 10) + (31 << 5) + 18 ; $3ff2
-	ld hl, BGPals + 4 palettes
+	ld de, palred 18 + palgreen 31 + palblue 15
+	ld hl, wBGPals2 + 4 palettes
 	ld c, $10
 .loop
 	ld a, e
@@ -1525,11 +1525,11 @@ Function108b78: ; 108b78
 	ld a, c
 	and $2
 	jr z, .Orange
-	ld de, (31 << 10) + (31 << 5) + 31 ; $7fff
+	ld de, palred 31 + palgreen 31 + palblue 31
 	jr .load_pal
 
 .Orange:
-	ld de, ( 1 << 10) + (15 << 5) + 31 ; $05ff
+	ld de, palred 31 + palgreen 15 + palblue 1
 .load_pal
 	ld a, e
 	ld [hli], a
@@ -1561,7 +1561,7 @@ Function108b98: ; 108b98
 .asm_108bad
 	ld hl, Palette_108b98
 .asm_108bb0
-	ld de, UnknBGPals + 7 palettes
+	ld de, wBGPals1 + 7 palettes
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
@@ -1806,7 +1806,7 @@ Function108d07: ; 108d07
 	ld hl, Palette_1093c7
 	call AddNTimes
 	ld a, $5
-	ld de, UnknBGPals + 4 palettes
+	ld de, wBGPals1 + 4 palettes
 	ld bc, 1 palettes
 	call FarCopyWRAM
 	ret

@@ -680,11 +680,11 @@ ClearPalettes:: ; 3317
 	ld a, [rSVBK]
 	push af
 
-	ld a, BANK(BGPals)
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
-; Fill BGPals and OBPals with $ffff (white)
-	ld hl, BGPals
+; Fill wBGPals2 and wOBPals2 with $ffff (white)
+	ld hl, wBGPals2
 	ld bc, 16 palettes
 	ld a, $ff
 	call ByteFill

@@ -520,20 +520,20 @@ GetCreditsPalette: ; 109b2c
 ; Update the first three colors in both palette buffers.
 	push af
 	push hl
-	add LOW(UnknBGPals)
+	add LOW(wBGPals1)
 	ld e, a
 	ld a, 0
-	adc HIGH(UnknBGPals)
+	adc HIGH(wBGPals1)
 	ld d, a
 	ld bc, 24
 	call CopyBytes
 
 	pop hl
 	pop af
-	add LOW(BGPals)
+	add LOW(wBGPals2)
 	ld e, a
 	ld a, 0
-	adc HIGH(BGPals)
+	adc HIGH(wBGPals2)
 	ld d, a
 	ld bc, 24
 	call CopyBytes

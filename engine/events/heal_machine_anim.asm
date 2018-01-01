@@ -158,7 +158,7 @@ INCBIN "gfx/overworld/heal_machine.2bpp"
 
 .cgb
 	ld hl, .palettes
-	ld de, OBPals palette PAL_OW_TREE
+	ld de, wOBPals2 palette PAL_OW_TREE
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -201,7 +201,7 @@ INCBIN "gfx/overworld/heal_machine.2bpp"
 	ld a, $5
 	ld [rSVBK], a
 
-	ld hl, OBPals palette PAL_OW_TREE
+	ld hl, wOBPals2 palette PAL_OW_TREE
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]

@@ -50,7 +50,7 @@ OAM_X_FLIP    EQU 5
 OAM_Y_FLIP    EQU 6
 OAM_PRIORITY  EQU 7 ; 0: OBJ above BG, 1: OBJ behind BG (colors 1-3)
 
-; BP Map attribute flags
+; BG Map attribute flags
 PALETTE_MASK EQU %111
 VRAM_BANK_1  EQU 1 << OAM_TILE_BANK ; $08
 OBP_NUM      EQU 1 << OAM_OBP_NUM   ; $10
@@ -60,7 +60,7 @@ BEHIND_BG    EQU 1 << OAM_PRIORITY  ; $80
 
 ; Other useful constants
 LCDC_DEFAULT EQU %11100011
-LY_VBLANK EQU 144
+LY_VBLANK    EQU 144
 
 ; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)
@@ -145,8 +145,10 @@ rHDMA4      EQU $ff54 ; CGB Mode Only - New DMA Destination, Low
 rHDMA5      EQU $ff55 ; CGB Mode Only - New DMA Length/Mode/Start
 rRP         EQU $ff56 ; CGB Mode Only - Infrared Communications Port
 rBGPI       EQU $ff68 ; CGB Mode Only - Background Palette Index
+rBGPI_AUTO_INCREMENT EQU 7 ; increment rBGPI after write to rBGPD
 rBGPD       EQU $ff69 ; CGB Mode Only - Background Palette Data
 rOBPI       EQU $ff6a ; CGB Mode Only - Sprite Palette Index
+rOBPI_AUTO_INCREMENT EQU 7 ; increment rOBPI after write to rOBPD
 rOBPD       EQU $ff6b ; CGB Mode Only - Sprite Palette Data
 rUNKNOWN1   EQU $ff6c ; (FEh) Bit 0 (Read/Write) - CGB Mode Only
 rSVBK       EQU $ff70 ; CGB Mode Only - WRAM Bank

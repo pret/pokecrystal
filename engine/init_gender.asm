@@ -88,7 +88,7 @@ InitGenderScreen: ; 48e14 (12:4e14)
 
 LoadGenderScreenPal: ; 48e47 (12:4e47)
 	ld hl, .Palette
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM

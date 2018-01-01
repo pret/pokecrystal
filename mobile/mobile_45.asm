@@ -7607,7 +7607,7 @@ Function117c4a:
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	ld de, 1 palettes
 	ld c, 8
 .loop

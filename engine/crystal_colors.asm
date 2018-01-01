@@ -54,15 +54,15 @@ MG_Mobile_Layout_WipeAttrMap: ; 49346 (12:5346)
 	ret
 
 MG_Mobile_Layout_LoadPals: ; 49351 (12:5351)
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld hl, Palette_493e1
 	ld bc, 5 palettes
-	ld a, BANK(UnknBGPals)
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
-	ld de, UnknBGPals palette PAL_BG_TEXT
+	ld de, wBGPals1 palette PAL_BG_TEXT
 	ld hl, Palette_TextBG7
 	ld bc, 1 palettes
-	ld a, BANK(UnknBGPals)
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
 
@@ -118,9 +118,9 @@ INCLUDE "data/palettes/mg_mobile.pal"
 
 LoadOW_BGPal7:: ; 49409
 	ld hl, Palette_TextBG7
-	ld de, UnknBGPals palette PAL_BG_TEXT
+	ld de, wBGPals1 palette PAL_BG_TEXT
 	ld bc, 1 palettes
-	ld a, BANK(UnknBGPals)
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
 ; 49418
@@ -131,19 +131,19 @@ INCLUDE "data/palettes/overworld/bg_text.pal"
 
 Function49420:: ; 49420 (12:5420)
 	ld hl, MansionPalette4
-	ld de, UnknBGPals palette PAL_BG_ROOF
+	ld de, wBGPals1 palette PAL_BG_ROOF
 	ld bc, 1 palettes
-	ld a, BANK(UnknBGPals)
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
 ; 4942f (12:542f)
 
 MG_Mobile_Layout01: ; 4942f
 	call MG_Mobile_Layout_LoadPals
-	ld de, UnknBGPals palette PAL_BG_TEXT
+	ld de, wBGPals1 palette PAL_BG_TEXT
 	ld hl, .Palette_49478
 	ld bc, 1 palettes
-	ld a, BANK(UnknBGPals)
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call MG_Mobile_Layout_WipeAttrMap
 	hlcoord 0, 0, AttrMap
@@ -208,17 +208,17 @@ INCLUDE "tilesets/special_palettes.asm"
 
 MG_Mobile_Layout02: ; 49706
 	ld hl, .Palette_49732
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 1 palettes
-	ld a, BANK(UnknBGPals)
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals
 	call MG_Mobile_Layout_WipeAttrMap
 	farcall ApplyAttrMap
 	ld hl, .Palette_4973a
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 1 palettes
-	ld a, BANK(UnknOBPals)
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
 ; 49732
@@ -239,7 +239,7 @@ MG_Mobile_Layout02: ; 49706
 
 Function49742: ; 49742
 	ld hl, .Palette_49757
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 8 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -305,9 +305,9 @@ _InitMG_Mobile_LinkTradePalMap: ; 49797
 
 LoadTradeRoomBGPals: ; 49811
 	ld hl, TradeRoomPalette
-	ld de, UnknBGPals palette PAL_BG_GREEN
+	ld de, wBGPals1 palette PAL_BG_GREEN
 	ld bc, 6 palettes
-	ld a, BANK(UnknBGPals)
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals
 	ret

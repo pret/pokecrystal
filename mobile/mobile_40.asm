@@ -6853,7 +6853,7 @@ Function102dd3: ; 102dd3
 
 Function102dec: ; 102dec
 	ld hl, Palettes_1032e2
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 4 palettes
 	ld a, $05
 	call FarCopyWRAM

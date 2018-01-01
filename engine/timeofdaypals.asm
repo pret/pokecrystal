@@ -42,7 +42,7 @@ _TimeOfDayPals:: ; 8c011
 	ld [TimeOfDayPal], a
 
 ; save bg palette 7
-	ld hl, UnknBGPals palette PAL_BG_TEXT
+	ld hl, wBGPals1 palette PAL_BG_TEXT
 
 ; save wram bank
 	ld a, [rSVBK]
@@ -73,7 +73,7 @@ _TimeOfDayPals:: ; 8c011
 
 
 ; restore bg palette 7
-	ld hl, UnknOBPals - 1 ; last byte in UnknBGPals
+	ld hl, wOBPals1 - 1 ; last byte in wBGPals1
 
 ; save wram bank
 	ld a, [rSVBK]
@@ -176,12 +176,12 @@ FillWhiteBGColor: ; 8c0c1
 	ld a, $5
 	ld [rSVBK], a
 
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, UnknBGPals + 1 palettes
+	ld hl, wBGPals1 + 1 palettes
 	ld c, 6
 .loop
 	ld a, e

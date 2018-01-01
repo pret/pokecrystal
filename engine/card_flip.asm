@@ -1652,7 +1652,7 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, .palettes
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 9 palettes
 	call CopyBytes
 	pop af

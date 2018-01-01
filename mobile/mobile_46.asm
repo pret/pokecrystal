@@ -3449,7 +3449,7 @@ Function119987: ; 119987
 	ld l, a
 	ld a, [wcf65]
 	ld h, a
-	ld de, BGPals
+	ld de, wBGPals2
 	ld a, $22
 	jp Function119e2b
 

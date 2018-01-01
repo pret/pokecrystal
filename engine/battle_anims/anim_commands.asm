@@ -1433,14 +1433,14 @@ BattleAnim_SetBGPals: ; cc91a
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, BGPals
-	ld de, UnknBGPals
+	ld hl, wBGPals2
+	ld de, wBGPals1
 	ld a, [rBGP]
 	ld b, a
 	ld c, 7
 	call CopyPals
-	ld hl, OBPals
-	ld de, UnknOBPals
+	ld hl, wOBPals2
+	ld de, wOBPals1
 	ld a, [rBGP]
 	ld b, a
 	ld c, 2
@@ -1461,8 +1461,8 @@ BattleAnim_SetOBPals: ; cc94b
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, OBPals palette PAL_BATTLE_OB_GRAY
-	ld de, UnknOBPals palette PAL_BATTLE_OB_GRAY
+	ld hl, wOBPals2 palette PAL_BATTLE_OB_GRAY
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY
 	ld a, [rOBP0]
 	ld b, a
 	ld c, 2
