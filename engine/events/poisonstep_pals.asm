@@ -28,7 +28,7 @@ LoadPoisonBGPals: ; cbcdd
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld c, 4 palettes
 .loop
 ; RGB 28, 21, 31

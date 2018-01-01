@@ -281,7 +281,7 @@ Function170cc6: ; 170cc6
 	ld hl, LZ_1715a4
 	ld de, wd000
 	call Decompress
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld hl, vTiles0
 	lb bc, $6, $53
 	call Get2bpp
@@ -716,7 +716,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_171d71
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	ld hl, EngineBuffer5
@@ -884,11 +884,11 @@ Function172eb9:
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_172edf
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	ld hl, Palette_172edf
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 8 palettes
 	call CopyBytes
 	call SetPalettes

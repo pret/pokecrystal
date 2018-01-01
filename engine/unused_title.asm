@@ -67,22 +67,22 @@ UnusedTitleScreen: ; 10c000
 	ld [rSVBK], a
 
 	ld hl, UnusedTitleBG_Palettes
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 
 	ld hl, UnusedTitleFG_Palettes
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 8 palettes
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_Palettes
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 8 palettes
 	call CopyBytes
 
 	ld hl, UnusedTitleFG_Palettes
-	ld de, OBPals
+	ld de, wOBPals2
 	ld bc, 8 palettes
 	call CopyBytes
 

@@ -2,8 +2,8 @@
 
 
 UpdatePalsIfCGB:: ; c2f
-; update bgp data from BGPals
-; update obp data from OBPals
+; update bgp data from wBGPals2
+; update obp data from wOBPals2
 ; return carry if successful
 
 ; check cgb
@@ -24,10 +24,10 @@ ForceUpdateCGBPals:: ; c37
 
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(BGPals)
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
-	ld hl, BGPals
+	ld hl, wBGPals2
 
 ; copy 8 pals to bgpd
 	ld a, %10000000 ; auto increment, index 0
@@ -43,7 +43,7 @@ endr
 	dec b
 	jr nz, .bgp
 
-; hl is now OBPals
+; hl is now wOBPals2
 
 ; copy 8 pals to obpd
 	ld a, %10000000 ; auto increment, index 0
@@ -90,12 +90,12 @@ DmgToCgbBGPals:: ; c9f
 	ld a, [rSVBK]
 	push af
 
-	ld a, BANK(BGPals)
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 ; copy & reorder bg pal buffer
-	ld hl, BGPals ; to
-	ld de, UnknBGPals ; from
+	ld hl, wBGPals2 ; to
+	ld de, wBGPals1 ; from
 ; order
 	ld a, [rBGP]
 	ld b, a
@@ -138,12 +138,12 @@ DmgToCgbObjPals:: ; ccb
 	ld a, [rSVBK]
 	push af
 
-	ld a, BANK(OBPals)
+	ld a, BANK(wOBPals2)
 	ld [rSVBK], a
 
 ; copy & reorder obj pal buffer
-	ld hl, OBPals ; to
-	ld de, UnknOBPals ; from
+	ld hl, wOBPals2 ; to
+	ld de, wOBPals1 ; from
 ; order
 	ld a, [rOBP0]
 	ld b, a
@@ -178,11 +178,11 @@ DmgToCgbObjPal0:: ; cf8
 
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(OBPals)
+	ld a, BANK(wOBPals2)
 	ld [rSVBK], a
 
-	ld hl, OBPals palette 0
-	ld de, UnknOBPals palette 0
+	ld hl, wOBPals2 palette 0
+	ld de, wOBPals1 palette 0
 	ld a, [rOBP0]
 	ld b, a
 	ld c, 1
@@ -216,11 +216,11 @@ DmgToCgbObjPal1:: ; d24
 
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(OBPals)
+	ld a, BANK(wOBPals2)
 	ld [rSVBK], a
 
-	ld hl, OBPals palette 1
-	ld de, UnknOBPals palette 1
+	ld hl, wOBPals2 palette 1
+	ld de, wOBPals1 palette 1
 	ld a, [rOBP1]
 	ld b, a
 	ld c, 1
@@ -325,9 +325,9 @@ Special_ReloadSpritesNoPalettes:: ; d91
 	ret z
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(BGPals)
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld bc, (8 palettes) + (2 palettes)
 	xor a
 	call ByteFill

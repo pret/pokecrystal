@@ -158,7 +158,7 @@ Function819a7: ; 819a7
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_819f4
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	ld a, $80
@@ -438,7 +438,7 @@ Function81c33: ; 81c33
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld de, wc608
 	ld c, $1
 	call Function81ee3
@@ -1153,7 +1153,7 @@ Function8220f: ; 8220f
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	add hl, de
 	ld de, wc608
 	ld bc, 8
@@ -1200,7 +1200,7 @@ Function82236: ; 82236
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld a, [wcf64]
 	ld bc, 1 palettes
 	call AddNTimes
@@ -1230,7 +1230,7 @@ Function822a3: ; 822a3
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld a, [wcf64]
 	ld bc, 1 palettes
 	call AddNTimes

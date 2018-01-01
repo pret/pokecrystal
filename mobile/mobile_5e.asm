@@ -760,26 +760,26 @@ Function17aba0: ; 17aba0 (5e:6ba0)
 Function17abcf: ; 17abcf (5e:6bcf)
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(UnknBGPals)
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, Palette_17ac55
-	ld de, UnknBGPals ; $d000
+	ld de, wBGPals1 ; $d000
 	ld bc, 6 palettes
 	call CopyBytes
 
 	ld hl, Palette_17ac95
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 8 palettes
 	call CopyBytes
 
 	ld hl, GFX_17afa5 + $510
-	ld de, UnknOBPals palette 1
+	ld de, wOBPals1 palette 1
 	ld bc, 2 palettes
 	call CopyBytes
 
 	ld hl, MapObjectPals palette 1
-	ld de, UnknOBPals palette 3
+	ld de, wOBPals1 palette 3
 	ld bc, 1 palettes
 	ld a, BANK(MapObjectPals)
 	call FarCopyBytes

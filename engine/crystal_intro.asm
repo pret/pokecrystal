@@ -322,9 +322,9 @@ GameFreakLogoScene4: ; e4776 (39:4776)
 	ld a, $5
 	ld [rSVBK], a
 	ld a, [hli]
-	ld [OBPals + 12], a
+	ld [wOBPals2 + 12], a
 	ld a, [hli]
-	ld [OBPals + 13], a
+	ld [wOBPals2 + 13], a
 	pop af
 	ld [rSVBK], a
 	ld a, $1
@@ -483,11 +483,11 @@ IntroScene1: ; e495b (39:495b)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_365ad
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -556,11 +556,11 @@ IntroScene3: ; e49fd (39:49fd)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e5edd
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -622,11 +622,11 @@ IntroScene5: ; e4a7a (39:4a7a)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_365ad
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -729,12 +729,12 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld [rSVBK], a
 
 	ld hl, Palette_e5edd
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 
 	ld hl, Palette_e5edd
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 
@@ -887,11 +887,11 @@ IntroScene11: ; e4c86 (39:4c86)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_365ad
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_365ad
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -1014,11 +1014,11 @@ IntroScene13: ; e4d6d (39:4d6d)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e5edd
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -1123,11 +1123,11 @@ IntroScene15: ; e4e40 (39:4e40)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e77dd
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -1197,11 +1197,11 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e6d6d
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e6d6d
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -1271,11 +1271,11 @@ IntroScene19: ; e4f7e (39:4f7e)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e77dd
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -1441,11 +1441,11 @@ IntroScene26: ; e50bb (39:50bb)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, Palette_e679d
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	ld hl, Palette_e679d
-	ld de, BGPals
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
@@ -1516,7 +1516,7 @@ IntroScene28: ; e5152 (39:5152)
 	ret
 
 Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
-; load the (a)th palette from .FadePals to all BGPals
+; load the (a)th palette from .FadePals to all wBGPals2
 	ld hl, .FadePals
 	add l
 	ld l, a
@@ -1528,7 +1528,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld de, BGPals
+	ld de, wBGPals2
 	ld b, 8 ; number of BG pals
 .loop1
 	push hl
@@ -1599,7 +1599,7 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	add a
 	ld e, a
 	ld d, $0
-	ld hl, BGPals
+	ld hl, wBGPals2
 	add hl, de
 	inc hl
 	inc hl
@@ -1622,7 +1622,7 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 
 	push hl
 	push bc
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld bc, 8 palettes
 	xor a
 	call ByteFill
@@ -1726,7 +1726,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	ld [rSVBK], a
 
 	push bc
-	ld de, BGPals
+	ld de, wBGPals2
 
 	ld a, c
 	add e
@@ -1739,7 +1739,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	call CopyBytes
 	pop bc
 
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld a, c
 	add e
 	ld e, a
@@ -1779,7 +1779,7 @@ Intro_FadeUnownWordPals: ; e539d (39:539d)
 	add a
 	ld e, a
 	ld d, $0
-	ld hl, BGPals
+	ld hl, wBGPals2
 	add hl, de
 rept 4
 	inc hl
@@ -1949,7 +1949,7 @@ Intro_ClearBGPals: ; e54a3 (39:54a3)
 	ld a, $5
 	ld [rSVBK], a
 
-	ld hl, BGPals
+	ld hl, wBGPals2
 	ld bc, 16 palettes
 	xor a
 	call ByteFill

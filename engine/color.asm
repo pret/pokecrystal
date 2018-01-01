@@ -142,13 +142,13 @@ Function8b07:
 	ret z
 ; CGB only
 	ld hl, .BGPal
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
 
 	ld hl, .OBPal
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -191,7 +191,7 @@ Function8b4d:
 	jp PushSGBPals_
 
 .cgb
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld a, $3b
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
@@ -207,7 +207,7 @@ Function8b67:
 	jp PushSGBPals_
 
 .cgb
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld a, $3c
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
@@ -239,7 +239,7 @@ Function8b81:
 	jp PushSGBPals_
 
 .cgb
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld a, c
 	call GetMonPalettePointer_
 	call LoadPalette_White_Col1_Col2_Black
@@ -265,7 +265,7 @@ LoadMonPaletteAsNthBGPal:
 
 got_palette_pointer_8bd7
 	push hl
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	ld de, 1 palettes
 .loop
 	and a
@@ -327,7 +327,7 @@ ApplyMonOrTrainerPals:
 	call GetTrainerPalettePointer
 
 .load_palettes
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	call LoadPalette_White_Col1_Col2_Black
 	call WipeAttrMap
 	call ApplyAttrMap
@@ -345,11 +345,11 @@ ApplyHPBarPals:
 	ret
 
 .Enemy:
-	ld de, BGPals palette PAL_BATTLE_BG_ENEMY_HP + 2
+	ld de, wBGPals2 palette PAL_BATTLE_BG_ENEMY_HP + 2
 	jr .okay
 
 .Player:
-	ld de, BGPals palette PAL_BATTLE_BG_PLAYER_HP + 2
+	ld de, wBGPals2 palette PAL_BATTLE_BG_PLAYER_HP + 2
 
 .okay
 	ld l, c
@@ -397,11 +397,11 @@ LoadStatsScreenPals:
 	ld a, $5
 	ld [rSVBK], a
 	ld a, [hli]
-	ld [UnknBGPals palette 0], a
-	ld [UnknBGPals palette 2], a
+	ld [wBGPals1 palette 0], a
+	ld [wBGPals1 palette 2], a
 	ld a, [hl]
-	ld [UnknBGPals palette 0 + 1], a
-	ld [UnknBGPals palette 2 + 1], a
+	ld [wBGPals1 palette 0 + 1], a
+	ld [wBGPals1 palette 2 + 1], a
 	pop af
 	ld [rSVBK], a
 	call ApplyPals
@@ -441,7 +441,7 @@ LoadMailPalettes:
 	ret
 
 .cgb
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -458,7 +458,7 @@ INCLUDE "engine/cgb_layouts.asm"
 Function95f0:
 ; XXX
 	ld hl, .Palette
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld bc, 1 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -474,7 +474,7 @@ Function95f0:
 	RGB 00, 03, 19
 
 CopyFourPalettes:
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld c, $4
 
 CopyPalettes:
@@ -575,7 +575,7 @@ ResetBGPals:
 	ld a, $5
 	ld [rSVBK], a
 
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	ld c, 1 palettes
 .loop
 	ld a, $ff
@@ -608,8 +608,8 @@ WipeAttrMap:
 	ret
 
 ApplyPals:
-	ld hl, UnknBGPals
-	ld de, BGPals
+	ld hl, wBGPals1
+	ld de, wBGPals2
 	ld bc, 16 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -686,7 +686,7 @@ CGB_ApplyPartyMenuHPPals: ; 96f3
 
 InitPartyMenuOBPals:
 	ld hl, PartyMenuOBPals
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 2 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -759,7 +759,7 @@ Function9779: mobile
 	dec c
 	jr nz, .loop
 	ld hl, BattleObjectPals
-	ld de, UnknOBPals palette 2
+	ld de, wOBPals1 palette 2
 	ld bc, 2 palettes
 	ld a, $5
 	call FarCopyWRAM
@@ -932,9 +932,9 @@ InitCGBPals::
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call .LoadWhitePals
-	ld hl, BGPals
+	ld hl, wBGPals2
 	call .LoadWhitePals
 	pop af
 	ld [rSVBK], a
@@ -1253,7 +1253,7 @@ LoadMapPals:
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	ld b, 8
 .outer_loop
 	ld a, [de] ; lookup index for TilesetBGPalette
@@ -1289,9 +1289,9 @@ LoadMapPals:
 	ld bc, 8 palettes
 	ld hl, MapObjectPals
 	call AddNTimes
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	ld bc, 8 palettes
-	ld a, BANK(UnknOBPals)
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 
 	ld a, [wEnvironment]
@@ -1316,7 +1316,7 @@ rept 4
 	inc hl
 endr
 .morn_day
-	ld de, UnknBGPals palette PAL_BG_ROOF + 2
+	ld de, wBGPals1 palette PAL_BG_ROOF + 2
 	ld bc, 4
 	ld a, $5
 	call FarCopyWRAM

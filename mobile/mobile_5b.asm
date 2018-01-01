@@ -187,7 +187,7 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 ; 16c130
 
 .LoadPals: ; 16c130
-	ld de, UnknBGPals
+	ld de, wBGPals1
 	ld hl, UnknownMobilePalettes_16c903
 	ld bc, 8
 	ld a, $5
@@ -244,7 +244,7 @@ Function16c943: ; 16c943
 	ld [rSVBK], a
 	ld a, $ff
 	ld bc, 1 palettes
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call ByteFill
 	pop af
 	ld [rSVBK], a
@@ -261,7 +261,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cabb
 	ld d, a
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cabb
 	cp d
@@ -275,7 +275,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c981
 
 .asm_16c988
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cadc
 
@@ -284,7 +284,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cad8
 	ld d, a
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cad8
 	cp d
@@ -298,7 +298,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c9a9
 
 .asm_16c9b0
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cb08
 
@@ -307,7 +307,7 @@ Function16c943: ; 16c943
 	call Function16cab6
 	call Function16cac4
 	ld d, a
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cac4
 	cp d
@@ -321,7 +321,7 @@ Function16c943: ; 16c943
 	jr nz, .asm_16c9d1
 
 .asm_16c9d8
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cae8
 
@@ -371,7 +371,7 @@ Function16ca11: ; 16ca11
 	ld e, $0
 	ld a, $0
 .asm_16ca28
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cabb
 	cp $1f
@@ -385,12 +385,12 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca37
 
 .asm_16ca3f
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cadc
 
 .asm_16ca48
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cad8
 	cp $1f
@@ -404,12 +404,12 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca57
 
 .asm_16ca5f
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cb08
 
 .asm_16ca68
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cac4
 	cp $1f
@@ -423,7 +423,7 @@ Function16ca11: ; 16ca11
 	jr nz, .asm_16ca77
 
 .asm_16ca7f
-	ld hl, UnknBGPals
+	ld hl, wBGPals1
 	call Function16cab6
 	call Function16cae8
 
@@ -682,7 +682,7 @@ Function16cbd1: ; 16cbd1
 	ld bc, 2
 	ld hl, Unknown_16cfa3
 	call AddNTimes
-	ld de, UnknBGPals + 1 palettes + 4
+	ld de, wBGPals1 + 1 palettes + 4
 	ld bc, 2
 	ld a, $5
 	call FarCopyWRAM
@@ -717,13 +717,13 @@ Function16cc18: ; 16cc18
 
 Function16cc25: ; 16cc25
 	ld hl, Unknown_16cfa9
-	ld de, UnknBGPals + 1 palettes
+	ld de, wBGPals1 + 1 palettes
 	call .CopyPal
 	ld hl, Unknown_16cfb1
-	ld de, UnknOBPals
+	ld de, wOBPals1
 	call .CopyPal
 	ld hl, Unknown_16cfb9
-	ld de, UnknOBPals + 1 palettes
+	ld de, wOBPals1 + 1 palettes
 	call .CopyPal
 	ret
 ; 16cc41
