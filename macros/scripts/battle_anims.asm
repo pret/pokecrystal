@@ -11,10 +11,17 @@ ENDM
 	enum anim_obj_command ; $d0
 anim_obj: MACRO
 	db anim_obj_command
-	db \1 ; obj
-	db (\2 << 3) + \3 ; x
-	db (\4 << 3) + \5 ; y
+if _NARG <= 4
+	db \1 ; object
+	db \2 ; x
+	db \3 ; y
+	db \4 ; param
+else
+	db \1 ; object
+	db (\2) * 8 + (\3) ; x_tile, x
+	db (\4) * 8 + (\5) ; y_tile, y
 	db \6 ; param
+endc
 ENDM
 
 	enum anim_1gfx_command ; $d1
@@ -60,14 +67,14 @@ ENDM
 	enum anim_incobj_command ; $d6
 anim_incobj: MACRO
 	db anim_incobj_command
-	db \1 ; id
+	db \1 ; object_id
 ENDM
 
 	enum anim_setobj_command ; $d7
 anim_setobj: MACRO
 	db anim_setobj_command
-	db \1 ; id
-	db \2 ; obj
+	db \1 ; object_id
+	db \2 ; value
 ENDM
 
 	enum anim_incbgeffect_command ; $d8
@@ -115,7 +122,7 @@ ENDM
 anim_sound: MACRO
 	db anim_sound_command
 	db (\1 << 2) | \2 ; duration, tracks
-	db \3 ; id
+	db \3 ; sound_id
 ENDM
 
 	enum anim_cry_command ; $e1
