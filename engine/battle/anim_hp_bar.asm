@@ -45,7 +45,7 @@ _AnimateHPBar: ; d627
 	and a
 	jr nz, .player
 	ld a, [wCurHPAnimMaxHP]
-	cp 6 * 8
+	cp HP_BAR_LENGTH_PX
 	jr nc, .player
 	and a
 	ret
@@ -203,7 +203,7 @@ LongAnim_UpdateVariables: ; d6f5
 
 ShortHPBarAnim_UpdateTiles: ; d730
 	call HPBarAnim_UpdateHPRemaining
-	ld d, $6
+	ld d, HP_BAR_LENGTH
 	ld a, [wWhichHPBar]
 	and $1
 	ld b, a
@@ -229,7 +229,7 @@ LongHPBarAnim_UpdateTiles: ; d749
 	ld d, a
 	call ComputeHPBarPixels
 	ld c, e
-	ld d, $6
+	ld d, HP_BAR_LENGTH
 	ld a, [wWhichHPBar]
 	and $1
 	ld b, a
@@ -377,7 +377,7 @@ ShortHPBar_CalcPixelFrame: ; d839
 	ld b, 0
 	ld hl, 0
 	ld a, [wCurHPBarPixels]
-	cp 6 * 8
+	cp HP_BAR_LENGTH_PX
 	jr nc, .return_max
 	and a
 	jr z, .return_zero
@@ -388,7 +388,7 @@ ShortHPBar_CalcPixelFrame: ; d839
 ; by 48, the loop runs one extra time. To fix, uncomment the line below.
 .loop
 	ld a, l
-	sub 6 * 8
+	sub HP_BAR_LENGTH_PX
 	ld l, a
 	ld a, h
 	sbc $0
@@ -404,7 +404,7 @@ ShortHPBar_CalcPixelFrame: ; d839
 	add hl, bc
 	pop bc
 	ld a, l
-	sub 6 * 8
+	sub HP_BAR_LENGTH_PX
 	ld l, a
 	ld a, h
 	sbc $0

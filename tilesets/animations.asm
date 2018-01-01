@@ -935,26 +935,24 @@ TileAnimationPalette: ; fc6d7
 	ret nz
 
 ; Ready for BGPD input...
-	ld a, %10011000 ; auto increment, index $18 (pal 3 color 0)
+
+	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_WATER
 	ld [rBGPI], a
 
 	ld a, [rSVBK]
 	push af
-	ld a, 5 ; wra5: gfx
+	ld a, BANK(UnknBGPals)
 	ld [rSVBK], a
 
 ; Update color 0 in order 0 1 2 1
-
 	ld a, l
 	and %110 ; frames 0 2 4 6
-
 	jr z, .color0
-
 	cp 4
 	jr z, .color2
 
 .color1
-	ld hl, UnknBGPals + $1a ; pal 3 color 1
+	ld hl, UnknBGPals palette PAL_BG_WATER + 2
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -962,7 +960,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 
 .color0
-	ld hl, UnknBGPals + $18 ; pal 3 color 0
+	ld hl, UnknBGPals palette PAL_BG_WATER
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -970,7 +968,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 
 .color2
-	ld hl, UnknBGPals + $1c ; pal 3 color 2
+	ld hl, UnknBGPals palette PAL_BG_WATER + 4
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -999,19 +997,19 @@ FlickeringCaveEntrancePalette: ; fc71e
 
 	ld a, [rSVBK]
 	push af
-	ld a, 5 ; wra5: gfx
+	ld a, BANK(UnknBGPals)
 	ld [rSVBK], a
 ; Ready for BGPD input...
-	ld a, %10100000 ; auto-increment, index $20 (pal 4 color 0)
+	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_YELLOW
 	ld [rBGPI], a
 	ld a, [hVBlankCounter]
-	and %00000010
+	and 1 << 1
 	jr nz, .bit1set
-	ld hl, UnknBGPals + $20 ; pal 4 color 0
+	ld hl, UnknBGPals palette PAL_BG_YELLOW
 	jr .okay
 
 .bit1set
-	ld hl, UnknBGPals + $22 ; pal 4 color 2
+	ld hl, UnknBGPals palette PAL_BG_YELLOW + 2
 
 .okay
 	ld a, [hli]

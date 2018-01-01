@@ -30,7 +30,7 @@ ForceUpdateCGBPals:: ; c37
 	ld hl, BGPals
 
 ; copy 8 pals to bgpd
-	ld a, %10000000 ; auto increment, index 0
+	ld a, 1 << rBGPI_AUTO_INCREMENT
 	ld [rBGPI], a
 	ld c, LOW(rBGPD)
 	ld b, 8 / 2
@@ -46,7 +46,7 @@ endr
 ; hl is now OBPals
 
 ; copy 8 pals to obpd
-	ld a, %10000000 ; auto increment, index 0
+	ld a, 1 << rOBPI_AUTO_INCREMENT
 	ld [rOBPI], a
 	ld c, LOW(rOBPD)
 	ld b, 8 / 2
