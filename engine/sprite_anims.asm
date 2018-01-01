@@ -43,7 +43,7 @@ DoAnimFrame: ; 8d24b
 	dw .sprite_anim_seq_1A
 	dw .sprite_anim_seq_1B
 	dw .sprite_anim_seq_1C
-	dw .IntroSuicune 
+	dw .IntroSuicune
 	dw .IntroPichuWooper
 	dw .Celebi
 	dw .IntroUnown

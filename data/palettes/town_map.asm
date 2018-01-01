@@ -31,4 +31,4 @@ ENDM
 	townmappals CITY,     CITY,     CITY,     CITY,     CITY,     CITY
 	townmappals CITY,     BORDER,   CITY,     CITY,     CITY,     CITY
 	townmappals CITY,     CITY,     CITY,     CITY,     BORDER,   BORDER
-	townmappals BORDER,   BORDER,   BORDER,   BORDER,   BORDER,   BORDER 
+	townmappals BORDER,   BORDER,   BORDER,   BORDER,   BORDER,   BORDER
