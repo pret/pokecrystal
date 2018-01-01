@@ -1,6 +1,6 @@
 # Battle Animation Commands
 
-Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) and [data/moves/animations.asm:BattleAnimations](/data/moves/animations.asm).
+Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) and [engine/battle_anims/anim_commands.asm:BattleAnimCommands](/engine/battle_anims/anim_commands.asm).
 
 
 ## `$00`−`$CF`: `anim_wait` *length*
@@ -80,7 +80,7 @@ Temporarily creates sprites from the top row of the player backpic, so that the 
 
 ## `$DB`: `anim_checkpokeball`
 
-Sets `var` to the result of [GetPokeBallWobble](/engine/battle_anims/getpokeballwobble.asm).
+Sets `BattleAnimVar` to the result of [GetPokeBallWobble](/engine/battle_anims/getpokeballwobble.asm).
 
 
 ## `$DC`: `anim_transform`
@@ -190,19 +190,19 @@ Does nothing. Unused.
 
 ## `$F8`: `anim_if_param_equal` *value*, *address*
 
-Jumps to another script if `wKickCounter` is equal to *value*.
+Jumps to another script if `wBattleAnimParam` (aka `wKickCounter` or `wPresentPower`) is equal to *value*.
 
 ## `$F9`: `anim_setvar` *value*
 
-Sets `var` to *value*.
+Sets `BattleAnimVar` to *value*.
 
 ## `$FA`: `anim_incvar`
 
-Increments `var` by 1.
+Increments `BattleAnimVar` by 1.
 
 ## `$FB`: `anim_if_var_equal` *value*, *address*
 
-Jumps to another script if `var` is equal to *value*.
+Jumps to another script if `BattleAnimVar` is equal to *value*.
 
 ## `$FC`: `anim_jump` *address*
 
