@@ -50,7 +50,7 @@ OAM_X_FLIP    EQU 5
 OAM_Y_FLIP    EQU 6
 OAM_PRIORITY  EQU 7 ; 0: OBJ above BG, 1: OBJ behind BG (colors 1-3)
 
-; BP Map attribute flags
+; BG Map attribute flags
 PALETTE_MASK EQU %111
 VRAM_BANK_1  EQU 1 << OAM_TILE_BANK ; $08
 OBP_NUM      EQU 1 << OAM_OBP_NUM   ; $10
@@ -60,7 +60,7 @@ BEHIND_BG    EQU 1 << OAM_PRIORITY  ; $80
 
 ; Other useful constants
 LCDC_DEFAULT EQU %11100011
-LY_VBLANK EQU 144
+LY_VBLANK    EQU 144
 
 ; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)

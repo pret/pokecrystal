@@ -1532,7 +1532,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 	ld b, 8 ; number of BG pals
 .loop1
 	push hl
-	ld c, 8 ; number of bytes per pal
+	ld c, 1 palettes
 .loop2
 	ld a, [hli]
 	ld [de], a
@@ -1735,7 +1735,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	adc d
 	ld d, a
 
-	ld bc, 8
+	ld bc, 1 palettes
 	call CopyBytes
 	pop bc
 
@@ -1747,7 +1747,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	adc d
 	ld d, a
 
-	ld bc, 8
+	ld bc, 1 palettes
 	call CopyBytes
 
 	pop af
@@ -1950,7 +1950,7 @@ Intro_ClearBGPals: ; e54a3 (39:54a3)
 	ld [rSVBK], a
 
 	ld hl, BGPals
-	ld bc, 16 * 8
+	ld bc, 16 palettes
 	xor a
 	call ByteFill
 

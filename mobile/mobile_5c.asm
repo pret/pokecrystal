@@ -717,7 +717,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld [rSVBK], a
 	ld hl, Palette_171d71
 	ld de, UnknBGPals
-	ld bc, $40
+	ld bc, 8 palettes
 	call CopyBytes
 	ld hl, EngineBuffer5
 	ld a, $ff
@@ -885,11 +885,11 @@ Function172eb9:
 	ld [rSVBK], a
 	ld hl, Palette_172edf
 	ld de, UnknBGPals
-	ld bc, $40
+	ld bc, 8 palettes
 	call CopyBytes
 	ld hl, Palette_172edf
 	ld de, BGPals
-	ld bc, $40
+	ld bc, 8 palettes
 	call CopyBytes
 	call SetPalettes
 	pop af

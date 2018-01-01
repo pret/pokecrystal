@@ -2351,7 +2351,7 @@ Pokedex_BlackOutBG: ; 41401 (10:5401)
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, UnknBGPals
-	ld bc, $40
+	ld bc, 8 palettes
 	xor a
 	call ByteFill
 	pop af

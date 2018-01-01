@@ -243,7 +243,7 @@ Function16c943: ; 16c943
 	ld a, $5
 	ld [rSVBK], a
 	ld a, $ff
-	ld bc, $0008
+	ld bc, 1 palettes
 	ld hl, UnknBGPals
 	call ByteFill
 	pop af

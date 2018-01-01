@@ -658,7 +658,7 @@ Function11636e: ; 11636e
 	ld [rSVBK], a
 	ld hl, BGPals
 	ld de, UnknBGPals
-	ld bc, $0040
+	ld bc, 8 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a

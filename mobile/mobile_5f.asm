@@ -49,7 +49,7 @@ Function17c000: ; 17c000
 
 	ld hl, HaveWantPals
 	ld de, UnknBGPals
-	ld bc, $80
+	ld bc, 16 palettes
 	call CopyBytes
 
 	pop af
@@ -1964,8 +1964,8 @@ Function17dcaf:
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, UnknBGPals
-	ld de, $8
-	ld c, $8
+	ld de, 1 palettes
+	ld c, 8
 .asm_17dcbb
 	push hl
 	ld a, $ff

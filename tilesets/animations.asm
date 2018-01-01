@@ -954,7 +954,7 @@ TileAnimationPalette: ; fc6d7
 	jr z, .color2
 
 .color1
-	ld hl, UnknBGPals + $1a ; pal 3 color 1
+	ld hl, UnknBGPals + palette 3 + 2
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -962,7 +962,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 
 .color0
-	ld hl, UnknBGPals + $18 ; pal 3 color 0
+	ld hl, UnknBGPals + palette 3
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -970,7 +970,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 
 .color2
-	ld hl, UnknBGPals + $1c ; pal 3 color 2
+	ld hl, UnknBGPals + palette 3 + 4
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -1007,11 +1007,11 @@ FlickeringCaveEntrancePalette: ; fc71e
 	ld a, [hVBlankCounter]
 	and %00000010
 	jr nz, .bit1set
-	ld hl, UnknBGPals + $20 ; pal 4 color 0
+	ld hl, UnknBGPals + palette 4
 	jr .okay
 
 .bit1set
-	ld hl, UnknBGPals + $22 ; pal 4 color 2
+	ld hl, UnknBGPals + palette 4 + 2
 
 .okay
 	ld a, [hli]

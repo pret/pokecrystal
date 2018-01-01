@@ -1202,10 +1202,10 @@ Function82236: ; 82236
 	ld [rSVBK], a
 	ld hl, BGPals
 	ld a, [wcf64]
-	ld bc, 8
+	ld bc, 1 palettes
 	call AddNTimes
 	ld de, wc608
-	ld bc, 8
+	ld bc, 1 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -1232,12 +1232,12 @@ Function822a3: ; 822a3
 	ld [rSVBK], a
 	ld hl, BGPals
 	ld a, [wcf64]
-	ld bc, 8
+	ld bc, 1 palettes
 	call AddNTimes
 	ld e, l
 	ld d, h
 	ld hl, wc608
-	ld bc, 8
+	ld bc, 1 palettes
 	call CopyBytes
 	hlcoord 1, 0
 	ld de, wc608

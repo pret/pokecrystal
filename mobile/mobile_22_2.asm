@@ -621,7 +621,7 @@ Function8b6bb: ; 8b6bb
 	ld [rSVBK], a
 	ld hl, Palette_8b6d5
 	ld de, UnknBGPals
-	ld bc, $0018
+	ld bc, 3 palettes
 	call CopyBytes
 	pop af
 	ld [rSVBK], a

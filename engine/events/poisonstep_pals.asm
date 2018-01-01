@@ -29,7 +29,7 @@ LoadPoisonBGPals: ; cbcdd
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, BGPals
-	ld c, $20
+	ld c, 4 palettes
 .loop
 ; RGB 28, 21, 31
 	ld a, LOW(palred 28 + palgreen 21 + palblue 31)
