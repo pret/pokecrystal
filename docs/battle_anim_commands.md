@@ -9,7 +9,8 @@ Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) a
 
 
 ## `$D0`: `anim_obj` *object*, *x*, *y*, *param*
-*Alternate*: `anim_obj` *object*, *x_tile*, *x*, *y_tile*, *y*, *param*
+
+***Alternate*: `anim_obj` *object*, *x_tile*, *x*, *y_tile*, *y*, *param***
 
 Spawns an *object* at coordinate (*x*, *y*).
 
