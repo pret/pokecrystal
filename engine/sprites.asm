@@ -683,7 +683,7 @@ AnimateEndOfExpBar: ; 8e79d
 
 	ld a, $0
 	ld [hli], a
-	ld a, $6 ; OBJ 6
+	ld a, PAL_BATTLE_OB_BLUE
 	ld [hli], a
 	jr .anim_loop
 ; 8e7f4
@@ -701,7 +701,7 @@ ClearSpriteAnims2: ; 8e814
 	ld hl, wSpriteAnimDict
 	ld bc, wSpriteAnimsEnd - wSpriteAnimDict
 .loop
-	ld [hl], $0
+	ld [hl], 0
 	inc hl
 	dec bc
 	ld a, c
