@@ -629,7 +629,7 @@ ENDM
 	map_header_2 Route16FuchsiaSpeechHouse, ROUTE_16_FUCHSIA_SPEECH_HOUSE, $0, 0
 	map_header_2 Route16Gate, ROUTE_16_GATE, $0, 0
 	map_header_2 Route7SaffronGate, ROUTE_7_SAFFRON_GATE, $0, 0
-	map_header_2 Route1718Gate, ROUTE_17_18_GATE, $0, 0
+	map_header_2 Route17Route18Gate, ROUTE_17_ROUTE_18_GATE, $0, 0
 	map_header_2 ManiasHouse, MANIAS_HOUSE, $0, 0
 	map_header_2 CianwoodGym, CIANWOOD_GYM, $0, 0
 	map_header_2 CianwoodPokecenter1F, CIANWOOD_POKECENTER_1F, $0, 0
@@ -661,7 +661,7 @@ ENDM
 	map_header_2 Route26HealSpeechHouse, ROUTE_26_HEAL_SPEECH_HOUSE, $0, 0
 	map_header_2 Route26DayofWeekSiblingsHouse, ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE, $0, 0
 	map_header_2 Route27SandstormHouse, ROUTE_27_SANDSTORM_HOUSE, $0, 0
-	map_header_2 Route2946Gate, ROUTE_29_46_GATE, $0, 0
+	map_header_2 Route29Route46Gate, ROUTE_29_ROUTE_46_GATE, $0, 0
 	map_header_2 FightingDojo, FIGHTING_DOJO, $0, 0
 	map_header_2 SaffronGym, SAFFRON_GYM, $0, 0
 	map_header_2 SaffronMart, SAFFRON_MART, $0, 0

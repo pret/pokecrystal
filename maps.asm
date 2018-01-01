@@ -132,7 +132,7 @@ INCLUDE "maps/CeladonCafe.asm"
 INCLUDE "maps/Route16FuchsiaSpeechHouse.asm"
 INCLUDE "maps/Route16Gate.asm"
 INCLUDE "maps/Route7SaffronGate.asm"
-INCLUDE "maps/Route1718Gate.asm"
+INCLUDE "maps/Route17Route18Gate.asm"
 
 
 SECTION "Map Scripts 8", ROMX
@@ -170,7 +170,7 @@ INCLUDE "maps/ElmsHouse.asm"
 INCLUDE "maps/Route26HealSpeechHouse.asm"
 INCLUDE "maps/Route26DayofWeekSiblingsHouse.asm"
 INCLUDE "maps/Route27SandstormHouse.asm"
-INCLUDE "maps/Route2946Gate.asm"
+INCLUDE "maps/Route29Route46Gate.asm"
 
 
 SECTION "Map Scripts 10", ROMX

@@ -402,7 +402,7 @@ ENDM
 	mapgroup ROUTE_16_FUCHSIA_SPEECH_HOUSE,                4,  4 ; 23
 	mapgroup ROUTE_16_GATE,                                4,  5 ; 24
 	mapgroup ROUTE_7_SAFFRON_GATE,                         4,  5 ; 25
-	mapgroup ROUTE_17_18_GATE,                             4,  5 ; 26
+	mapgroup ROUTE_17_ROUTE_18_GATE,                       4,  5 ; 26
 
 	newgroup                                                     ; 22
 
@@ -453,7 +453,7 @@ ENDM
 	mapgroup ROUTE_26_HEAL_SPEECH_HOUSE,                   4,  4 ; 10
 	mapgroup ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE,          4,  4 ; 11
 	mapgroup ROUTE_27_SANDSTORM_HOUSE,                     4,  4 ; 12
-	mapgroup ROUTE_29_46_GATE,                             4,  5 ; 13
+	mapgroup ROUTE_29_ROUTE_46_GATE,                       4,  5 ; 13
 
 	newgroup                                                     ; 25
 

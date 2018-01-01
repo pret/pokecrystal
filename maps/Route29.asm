@@ -421,7 +421,7 @@ Route29_MapEventHeader:
 
 .Warps:
 	db 1
-	warp_def 27, 1, 3, ROUTE_29_46_GATE
+	warp_def 27, 1, 3, ROUTE_29_ROUTE_46_GATE
 
 .CoordEvents:
 	db 2

@@ -17,7 +17,7 @@ MapScenes:: ; 4d01e
 	scene_def VICTORY_ROAD_GATE,                           wVictoryRoadGateSceneID
 	scene_def SAFFRON_TRAIN_STATION,                       wSaffronTrainStationSceneID
 	scene_def ROUTE_16_GATE,                               wRoute16GateSceneID
-	scene_def ROUTE_17_18_GATE,                            wRoute1718GateSceneID
+	scene_def ROUTE_17_ROUTE_18_GATE,                      wRoute17Route18GateSceneID
 	scene_def INDIGO_PLATEAU_POKECENTER_1F,                wIndigoPlateauPokecenter1FSceneID
 	scene_def WILLS_ROOM,                                  wWillsRoomSceneID
 	scene_def KOGAS_ROOM,                                  wKogasRoomSceneID

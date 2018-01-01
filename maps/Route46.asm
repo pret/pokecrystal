@@ -256,8 +256,8 @@ Route46_MapEventHeader:
 
 .Warps:
 	db 3
-	warp_def 7, 33, 1, ROUTE_29_46_GATE
-	warp_def 8, 33, 2, ROUTE_29_46_GATE
+	warp_def 7, 33, 1, ROUTE_29_ROUTE_46_GATE
+	warp_def 8, 33, 2, ROUTE_29_ROUTE_46_GATE
 	warp_def 14, 5, 3, DARK_CAVE_VIOLET_ENTRANCE
 
 .CoordEvents:

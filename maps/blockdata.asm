@@ -210,7 +210,7 @@ Route34IlexForestGate_BlockData:
 Route6SaffronGate_BlockData:
 Route40BattleTowerGate_BlockData:
 Route2Gate_BlockData:
-Route2946Gate_BlockData:
+Route29Route46Gate_BlockData:
 Route5SaffronGate_BlockData:
 	INCBIN "maps/NorthSouthGate.blk"
 
@@ -276,7 +276,7 @@ Route15FuchsiaGate_BlockData:
 Route8SaffronGate_BlockData:
 Route16Gate_BlockData:
 Route7SaffronGate_BlockData:
-Route1718Gate_BlockData:
+Route17Route18Gate_BlockData:
 Route31VioletGate_BlockData:
 	INCBIN "maps/EastWestGate.blk"
 

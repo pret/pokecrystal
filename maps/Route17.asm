@@ -140,8 +140,8 @@ Route17_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def 17, 82, 1, ROUTE_17_18_GATE
-	warp_def 17, 83, 2, ROUTE_17_18_GATE
+	warp_def 17, 82, 1, ROUTE_17_ROUTE_18_GATE
+	warp_def 17, 83, 2, ROUTE_17_ROUTE_18_GATE
 
 .CoordEvents:
 	db 0

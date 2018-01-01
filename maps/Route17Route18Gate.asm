@@ -1,7 +1,7 @@
 const_value set 2
-	const ROUTE1718GATE_OFFICER
+	const ROUTE17ROUTE18GATE_OFFICER
 
-Route1718Gate_MapScriptHeader:
+Route17Route18Gate_MapScriptHeader:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -12,8 +12,8 @@ Route1718Gate_MapScriptHeader:
 .DummyScene:
 	end
 
-Route1718GateOfficerScript:
-	jumptextfaceplayer Route1718GateOfficerText
+Route17Route18GateOfficerScript:
+	jumptextfaceplayer Route17Route18GateOfficerText
 
 UnknownScript_0x73611:
 	checkitem BICYCLE
@@ -21,7 +21,7 @@ UnknownScript_0x73611:
 	end
 
 UnknownScript_0x73617:
-	showemote EMOTE_SHOCK, ROUTE1718GATE_OFFICER, 15
+	showemote EMOTE_SHOCK, ROUTE17ROUTE18GATE_OFFICER, 15
 	spriteface PLAYER, UP
 	opentext
 	writetext UnknownText_0x7364d
@@ -35,7 +35,7 @@ MovementData_0x73629:
 	turn_head LEFT
 	step_end
 
-Route1718GateOfficerText:
+Route17Route18GateOfficerText:
 	text "CYCLING ROAD"
 	line "Uphill Starts Here"
 	done
@@ -51,7 +51,7 @@ UnknownText_0x7364d:
 	line "BICYCLE to go on."
 	done
 
-Route1718Gate_MapEventHeader:
+Route17Route18Gate_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -72,4 +72,4 @@ Route1718Gate_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route1718GateOfficerScript, -1
+	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route17Route18GateOfficerScript, -1

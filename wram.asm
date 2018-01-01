@@ -2440,7 +2440,7 @@ wTrainerHouseB1FSceneID::                         db ; d979
 wVictoryRoadGateSceneID::                         db ; d97a
 wSaffronTrainStationSceneID::                     db ; d97b
 wRoute16GateSceneID::                             db ; d97c
-wRoute1718GateSceneID::                           db ; d97d
+wRoute17Route18GateSceneID::                      db ; d97d
 wIndigoPlateauPokecenter1FSceneID::               db ; d97e
 wWillsRoomSceneID::                               db ; d97f
 wKogasRoomSceneID::                               db ; d980

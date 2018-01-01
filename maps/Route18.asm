@@ -83,8 +83,8 @@ Route18_MapEventHeader:
 
 .Warps:
 	db 2
-	warp_def 2, 6, 3, ROUTE_17_18_GATE
-	warp_def 2, 7, 4, ROUTE_17_18_GATE
+	warp_def 2, 6, 3, ROUTE_17_ROUTE_18_GATE
+	warp_def 2, 7, 4, ROUTE_17_ROUTE_18_GATE
 
 .CoordEvents:
 	db 0
