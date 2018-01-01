@@ -15,14 +15,17 @@ Spawns an *object* at coordinate (*x*, *y*).
 
 - *object*: `ANIM_OBJ` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
 - *x*: the x position in pixels
-- *y*: the x position in pixels
+- *y*: the y position in pixels
 - *x_tile*: an added x position in tiles (8 pixels)
 - *y_tile*: an added y position in tiles (8 pixels)
 - *param*: modifies the behavior of *object*. The meaning differs for each object.
 
-*TODO: what happens for x/y values greater than 160/144 respectively?*
-*TODO: useful positions*
-*TODO: document each object*
+The y position also depends on the y offset defined by the object.
+
+- *TODO: what happens for x/y values greater than 160/144 respectively? Is it 1:1 with screen coordinates?*
+- *TODO: how are the x/y values mirrored when the opponent is attacking?*
+- *TODO: useful positions*
+- *TODO: document each object*
 
 
 ## `$D1`: `anim_1gfx` *gfx*
@@ -35,14 +38,35 @@ Spawns an *object* at coordinate (*x*, *y*).
 
 ## `$D5`: `anim_5gfx` *gfx1*, *gfx2*, *gfx3*, *gfx4*, *gfx5*
 
+Loads 1-5 sets of graphics. Will overwrite any previously loaded sets.
+
 - *gfx*: `ANIM_GFX` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
 
 
-## `$D6`: `anim_incobj` *id*
+## `$D6`: `anim_incobj` *object_id*
 
-## `$D7`: `anim_setobj` *id*, *object*
+Increments an object's state.
 
-## `$D8`: `anim_incbgeffect` *effect*
+- *object_id*: the nth object in order of creation
+
+Objects are state machines. `anim_incobj` progresses the state of an object.
+
+## `$D7`: `anim_setobj` *object_id*, *state*
+
+Sets an object's state to a specific value.
+
+- *object_id*: the nth object in order of creation
+- *state*: the state index
+
+Objects are state machines. `anim_setobj` changes the state of an object.
+
+## `$D8`: `anim_incbgeffect` *bg_effect*
+
+Increments a bg effect's state.
+
+- *bg_effect*: `ANIM_BG` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
+
+Since there can't be two of the same bg effect, the effect type is used. This is distinct from `anim_incobj`.
 
 
 ## `$D9`: `anim_enemyfeetobj`
@@ -65,7 +89,10 @@ Sets `var` to the result of [GetPokeBallWobble](/engine/battle_anims/getpokeball
 
 ## `$DE`: `anim_dropsub`
 
+
 ## `$DF`: `anim_resetobp0`
+
+Resets rOBP0 to the default (`q0123` or `%00011011`).
 
 
 ## `$E0`: `anim_sound` *duration*, *tracks*, *sound_id*
@@ -79,6 +106,7 @@ Plays the user's cry.
 
 ## `$E2`: `anim_minimizeopp`
 
+
 ## `$E3`: `anim_oamon`
 
 ## `$E4`: `anim_oamoff`
@@ -91,23 +119,39 @@ Removes all active objects.
 
 ## `$E6`: `anim_beatup`
 
+
 ## `$E7`: `anim_0xe7`
+
+Does nothing. Unused.
+
 
 ## `$E8`: `anim_updateactorpic`
 
 ## `$E9`: `anim_minimize`
 
+
 ## `$EA`: `anim_0xea`
+
+Does nothing. Unused.
 
 ## `$EB`: `anim_0xeb`
 
+Does nothing. Unused.
+
 ## `$EC`: `anim_0xec`
 
+Does nothing. Unused.
+
 ## `$ED`: `anim_0xed`
+
+Does nothing. Unused.
+
 
 ## `$EE`: `anim_if_param_and` *value*, *address*
 
 ## `$EF`: `anim_jumpuntil` *address*
+
+Jumps to another script and decrements `param` until it reaches 0. Similar to `anim_loop`.
 
 
 ## `$F0`: `anim_bgeffect` *bg_effect*, *unknown1*, *unknown2*, *unknown3*
@@ -130,11 +174,19 @@ Sets `rOBP1` to *colors*.
 
 ## `$F4`: `anim_clearsprites`
 
+
 ## `$F5`: `anim_0xf5`
+
+Does nothing. Unused.
 
 ## `$F6`: `anim_0xf6`
 
+Does nothing. Unused.
+
 ## `$F7`: `anim_0xf7`
+
+Does nothing. Unused.
+
 
 ## `$F8`: `anim_if_param_equal` *value*, *address*
 
@@ -164,6 +216,8 @@ Jumps to another script up to *count* times. Then does nothing, allowing executi
 
 Calls a script.
 
+There is no call stack. The return address is overwritten, so the maximum call depth is 1.
+
 ## `$FF`: `anim_ret`
 
-Ends the script and returns to the place where it was called. If there was no caller, the animation ends.
+Ends the script and returns to where it was called from. If there was no caller, the animation ends.
