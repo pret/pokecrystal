@@ -1484,7 +1484,7 @@ Function108b45: ; 108b45
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld de, (31 << 10) + (31 << 5) + 31 ; $7fff
+	ld de, palred 31 + palgreen 31 + palblue 31
 	ld hl, wBGPals1
 	ld a, e
 	ld [hli], a
@@ -1500,7 +1500,7 @@ Function108b5a: ; 108b5a
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld de, (15 << 10) + (31 << 5) + 18 ; $3ff2
+	ld de, palred 18 + palgreen 31 + palblue 15
 	ld hl, wBGPals2 + 4 palettes
 	ld c, $10
 .loop
@@ -1525,11 +1525,11 @@ Function108b78: ; 108b78
 	ld a, c
 	and $2
 	jr z, .Orange
-	ld de, (31 << 10) + (31 << 5) + 31 ; $7fff
+	ld de, palred 31 + palgreen 31 + palblue 31
 	jr .load_pal
 
 .Orange:
-	ld de, ( 1 << 10) + (15 << 5) + 31 ; $05ff
+	ld de, palred 31 + palgreen 15 + palblue 1
 .load_pal
 	ld a, e
 	ld [hli], a
