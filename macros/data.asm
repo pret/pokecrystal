@@ -85,20 +85,17 @@ ENDM
 
 dbpixel: MACRO
 if _NARG >= 4
+; x tile, x pxl, y tile, y pxl
 	db \1 * 8 + \3, \2 * 8 + \4
 else
+; x, y
 	db \1 * 8, \2 * 8
 endc
 ENDM
 
 dsprite: MACRO
-; conditional segment is there because not every instance of
-; this macro is directly OAM
-if _NARG >= 7 ; y tile, y pxl, x tile, x pxl, vtile offset, flags, palette
-	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, (\6 << 3) + (\7 & PALETTE_MASK)
-else
+; y tile, y pxl, x tile, x pxl, vtile offset, flags, attributes
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
-endc
 ENDM
 
 
