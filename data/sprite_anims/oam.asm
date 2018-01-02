@@ -35,7 +35,7 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $fa, .OAMData_GSTitleTrail             ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_2
 	dbw $00, .OAMData_TextEntryCursor          ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR
 	dbw $00, .OAMData_ForUnusedFrameset09      ; SPRITE_ANIM_OAMSET_FOR_UNUSED_FRAMESET_09
-	dbw $00, .OAMData_Unused22                 ; SPRITE_ANIM_OAMSET_UNUSED_22
+	dbw $00, .OAMData_GSIntroGameFreakLogo     ; SPRITE_ANIM_OAMSET_GS_INTRO_GAMEFREAK_LOGO
 	dbw $0f, .OAMData_GSIntroStar              ; SPRITE_ANIM_OAMSET_GS_INTRO_STAR
 	dbw $11, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_1
 	dbw $12, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_2
@@ -471,7 +471,7 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0,  3,  0, $01, 0 | Y_FLIP
 	dsprite  0,  0,  4,  0, $00, 0 | X_FLIP | Y_FLIP
 
-.OAMData_Unused22:
+.OAMData_GSIntroGameFreakLogo:
 	db 15
 	dsprite -3,  4, -2,  4, $00, 1 | OBP_NUM
 	dsprite -3,  4, -1,  4, $01, 1 | OBP_NUM
