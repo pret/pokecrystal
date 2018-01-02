@@ -737,7 +737,8 @@ GetMonPalettePointer_:
 	call GetMonPalettePointer
 	ret
 
-Function9779: mobile
+Unreferenced_Function9779:
+	ret
 	call CheckCGB
 	ret z
 	ld hl, BattleObjectPals

@@ -85,7 +85,7 @@ _SlotMachine:
 	call PlaySFX
 	call WaitSFX
 	call ClearBGPalettes
-	farcall TrainerRankings_EndSlotsWinStreak
+	farcall StubbedTrainerRankings_EndSlotsWinStreak
 	ld hl, Options
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC
@@ -1935,7 +1935,7 @@ Slots_GetPayout: ; 93124 (24:7124)
 	ld a, [hl]
 	ld [wPayout], a
 	ld d, a
-	farcall TrainerRankings_AddToSlotsPayouts
+	farcall StubbedTrainerRankings_AddToSlotsPayouts
 	ret
 
 .PayoutTable:
@@ -1959,7 +1959,7 @@ Slots_PayoutText: ; 93158 (24:7158)
 	jr nz, .MatchedSomething
 	ld hl, .Text_Darn
 	call PrintText
-	farcall TrainerRankings_EndSlotsWinStreak
+	farcall StubbedTrainerRankings_EndSlotsWinStreak
 	ret
 
 .MatchedSomething:
@@ -1983,7 +1983,7 @@ Slots_PayoutText: ; 93158 (24:7158)
 .return
 	ld hl, .Text_PrintPayout
 	call PrintText
-	farcall TrainerRankings_AddToSlotsWinStreak
+	farcall StubbedTrainerRankings_AddToSlotsWinStreak
 	ret
 
 ; 93195 (24:7195)

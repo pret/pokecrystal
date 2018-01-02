@@ -1957,7 +1957,7 @@ LinkTrade: ; 28b87
 
 .save
 	farcall SaveAfterLinkTrade
-	farcall TrainerRankings_Trades
+	farcall StubbedTrainerRankings_Trades
 	farcall BackupMobileEventIndex
 	ld c, 40
 	call DelayFrames

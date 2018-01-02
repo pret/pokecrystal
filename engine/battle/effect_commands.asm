@@ -8078,7 +8078,7 @@ BattleCommand_LeechSeed: ; 36f9d
 
 BattleCommand_Splash: ; 36fe1
 	call AnimateCurrentMove
-	farcall TrainerRankings_Splash
+	farcall StubbedTrainerRankings_Splash
 	jp PrintNothingHappened
 
 ; 36fed
@@ -8605,7 +8605,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand_Selfdestruct: ; 37380
-	farcall TrainerRankings_Selfdestruct
+	farcall StubbedTrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3

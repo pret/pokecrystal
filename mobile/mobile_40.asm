@@ -40,7 +40,7 @@ Function100022: ; 100022
 	ld a, b
 	ld [wcd24], a
 	farcall Function10127e
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464 ; load broken gfx
 	farcall Function11615a ; init RAM
 	ld hl, VramState
@@ -3077,7 +3077,7 @@ Function1013aa: ; 1013aa
 
 Function1013c0: ; 1013c0
 	farcall BlankScreen
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call FinishExitMenu
 	ret
@@ -5454,7 +5454,7 @@ Function102423: ; 102423
 	call Function102921
 	ret nc
 	farcall SaveAfterLinkTrade
-	farcall TrainerRankings_Trades
+	farcall StubbedTrainerRankings_Trades
 	farcall BackupMobileEventIndex
 	ld hl, wcd4b
 	set 1, [hl]

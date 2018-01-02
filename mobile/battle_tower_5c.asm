@@ -243,7 +243,7 @@ RunBattleTowerTrainer: ; 17024d
 
 	xor a
 	ld [wLinkMode], a
-	farcall Special_TrainerRankings_Healings
+	farcall Special_StubbedTrainerRankings_Healings
 	farcall HealParty
 	call ReadBTTrainerParty
 	call Clears5_a89a

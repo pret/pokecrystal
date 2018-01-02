@@ -487,7 +487,7 @@ BattleTowerRoomMenu_InitRAM: ; 1183cb
 	ld [hMobileReceive], a
 	ld [hMobile], a
 	ei
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	farcall Function115d99
 	farcall Function11615a
@@ -4461,7 +4461,7 @@ Function11a00e: ; 11a00e
 	call PushWindow
 	farcall Function11765d
 	farcall Function117ab4
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ExitMenu
 	farcall ReloadMapPart
@@ -4484,7 +4484,7 @@ Function11a0ca: ; 11a0ca
 	call PushWindow
 	farcall Function11765d
 	farcall Function17d3f6
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ExitMenu
 	farcall ReloadMapPart
@@ -5577,7 +5577,7 @@ Function11a9ce: ; 11a9ce
 	call ClearBGPalettes
 	call ReloadTilesetAndPalettes
 	call Call_ExitMenu
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ret_d90
 	farcall FinishExitMenu

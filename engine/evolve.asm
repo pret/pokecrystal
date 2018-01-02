@@ -247,7 +247,7 @@ EvolveAfterBattle_MasterLoop
 	push hl
 	ld hl, Text_EvolvedIntoPKMN
 	call PrintTextBoxText
-	farcall TrainerRankings_MonsEvolved
+	farcall StubbedTrainerRankings_MonsEvolved
 
 	ld de, MUSIC_NONE
 	call PlayMusic

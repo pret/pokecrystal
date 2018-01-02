@@ -61,7 +61,7 @@ String_114163: ; 114163
 ; 114165
 
 Jumptable_114165: ; 114165
-	dw Function114268
+	dw Stubbed_Function114268
 	dw Function114269
 	dw Function11433c
 	dw Function1143b7
@@ -159,7 +159,8 @@ Function11425c: ; 11425c
 
 ; 114268
 
-Function114268: mobile
+Stubbed_Function114268:
+	ret
 
 ; 114269
 

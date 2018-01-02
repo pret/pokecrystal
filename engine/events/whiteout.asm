@@ -49,7 +49,7 @@ BattleBGMap: ; 1250a
 ; 12513
 
 HalveMoney: ; 12513
-	farcall TrainerRankings_WhiteOuts
+	farcall StubbedTrainerRankings_WhiteOuts
 
 ; Halve the player's money.
 	ld hl, Money

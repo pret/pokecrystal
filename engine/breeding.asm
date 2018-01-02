@@ -232,7 +232,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	push de
 
 	farcall SetEggMonCaughtData
-	farcall TrainerRankings_EggsHatched
+	farcall StubbedTrainerRankings_EggsHatched
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH

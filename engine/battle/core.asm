@@ -160,7 +160,7 @@ WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 
 BattleTurn: ; 3c12f
 .loop
-	call MobileFn_3c1bf
+	call Stubbed_Function3c1bf
 	call CheckContestBattleOver
 	jp c, .quit
 
@@ -231,7 +231,8 @@ BattleTurn: ; 3c12f
 	ret
 ; 3c1bf
 
-MobileFn_3c1bf: mobile
+Stubbed_Function3c1bf:
+	ret
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a89b ; s5_a89b
@@ -2588,7 +2589,7 @@ AddBattleMoneyToAccount: ; 3d0be
 	push bc
 	ld b, h
 	ld c, l
-	farcall TrainerRankings_AddToBattlePayouts
+	farcall StubbedTrainerRankings_AddToBattlePayouts
 	pop bc
 	pop hl
 .loop
@@ -8375,7 +8376,7 @@ Unreferenced_DoBattle: ; 3f4d9
 ; 3f4dd
 
 BattleIntro: ; 3f4dd
-	farcall TrainerRankings_Battles ; mobile
+	farcall StubbedTrainerRankings_Battles ; mobile
 	call LoadTrainerOrWildMonPic
 	xor a
 	ld [TempBattleMonSpecies], a
@@ -8460,7 +8461,7 @@ BackUpBGMap2: ; 3f568
 
 InitEnemyTrainer: ; 3f594
 	ld [TrainerClass], a
-	farcall TrainerRankings_TrainerBattles
+	farcall StubbedTrainerRankings_TrainerBattles
 	xor a
 	ld [TempEnemyMonSpecies], a
 	callfar GetTrainerAttributes
@@ -8516,7 +8517,7 @@ InitEnemyTrainer: ; 3f594
 InitEnemyWildmon: ; 3f607
 	ld a, WILD_BATTLE
 	ld [wBattleMode], a
-	farcall TrainerRankings_WildBattles
+	farcall StubbedTrainerRankings_WildBattles
 	call LoadEnemyMon
 	ld hl, EnemyMonMoves
 	ld de, wWildMonMoves
@@ -8698,7 +8699,7 @@ CheckPayDay: ; 3f71d
 ; 3f759
 
 ShowLinkBattleParticipantsAfterEnd: ; 3f759
-	farcall TrainerRankings_LinkBattles
+	farcall StubbedTrainerRankings_LinkBattles
 	farcall BackupMobileEventIndex
 	ld a, [CurOTMon]
 	ld hl, OTPartyMon1Status
@@ -8728,17 +8729,17 @@ DisplayLinkBattleResult: ; 3f77c
 	cp $1
 	jr c, .victory
 	jr z, .loss
-	farcall TrainerRankings_ColosseumDraws
+	farcall StubbedTrainerRankings_ColosseumDraws
 	ld de, .Draw
 	jr .store_result
 
 .victory
-	farcall TrainerRankings_ColosseumWins
+	farcall StubbedTrainerRankings_ColosseumWins
 	ld de, .Win
 	jr .store_result
 
 .loss
-	farcall TrainerRankings_ColosseumLosses
+	farcall StubbedTrainerRankings_ColosseumLosses
 	ld de, .Lose
 	jr .store_result
 
@@ -9486,7 +9487,7 @@ BattleStartMessage: ; 3fc8b
 	cp BATTLETYPE_FISH
 	jr nz, .NotFishing
 
-	farcall TrainerRankings_HookedEncounters
+	farcall StubbedTrainerRankings_HookedEncounters
 
 	ld hl, HookedPokemonAttackedText
 	jr .PlaceBattleStartText

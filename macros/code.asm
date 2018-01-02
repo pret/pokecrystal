@@ -35,9 +35,6 @@ jumptable: MACRO
 	jp hl
 ENDM
 
-; Many mobile functions were dummied out in localization.
-mobile EQUS "ret"
-
 maskbits: MACRO
 ; example usage in rejection sampling:
 ; .loop

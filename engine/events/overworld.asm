@@ -427,7 +427,7 @@ UsedSurfScript: ; c986
 	end
 
 .empty_fn ; c9a2
-	farcall TrainerRankings_Surf
+	farcall StubbedTrainerRankings_Surf
 	ret
 
 UsedSurfText: ; c9a9
@@ -700,7 +700,7 @@ Script_UsedWaterfall: ; 0xcb20
 	ld a, [PlayerStandingTile]
 	call CheckWaterfallTile
 	ret z
-	farcall TrainerRankings_Waterfall
+	farcall StubbedTrainerRankings_Waterfall
 	ld a, $1
 	ld [ScriptVar], a
 	ret

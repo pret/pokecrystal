@@ -517,7 +517,7 @@ ParkBall: ; e8a2
 	cp BATTLETYPE_TUTORIAL
 	jp z, .FinishTutorial
 
-	farcall TrainerRankings_WildMonsCaught
+	farcall StubbedTrainerRankings_WildMonsCaught
 
 	ld hl, Text_GotchaMonWasCaught
 	call PrintText

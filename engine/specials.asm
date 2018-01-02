@@ -178,7 +178,7 @@ SpecialsPointers:: ; c029
 	add_special Special_Mobile_SelectThreeMons
 	add_special Special_Function1037eb
 	add_special Special_Function10383c
-	add_special Special_TrainerRankings_Healings
+	add_special Special_StubbedTrainerRankings_Healings
 	add_special Special_RefreshSprites
 	add_special Special_Function1037c2
 	add_special Special_Mobile_DummyReturnFalse

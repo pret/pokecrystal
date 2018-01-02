@@ -146,7 +146,7 @@ TeachTMHM: ; 2c867
 	and a
 	jr z, .nope
 
-	farcall TrainerRankings_TMsHMsTaught
+	farcall StubbedTrainerRankings_TMsHMsTaught
 	ld a, [CurItem]
 	call IsHM
 	ret c

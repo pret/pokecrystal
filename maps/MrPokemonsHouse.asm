@@ -113,7 +113,7 @@ MrPokemonsHouse_OakScript:
 	special Special_FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	playmusic MUSIC_HEAL
-	special Special_TrainerRankings_Healings
+	special Special_StubbedTrainerRankings_Healings
 	special HealParty
 	pause 60
 	special Special_FadeInQuickly

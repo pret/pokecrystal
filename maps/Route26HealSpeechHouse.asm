@@ -16,7 +16,7 @@ TeacherScript_0x7b125:
 	closetext
 	special Special_FadeBlackQuickly
 	special ReloadSpritesNoPalettes
-	special Special_TrainerRankings_Healings
+	special Special_StubbedTrainerRankings_Healings
 	playmusic MUSIC_HEAL
 	special HealParty
 	pause 60
