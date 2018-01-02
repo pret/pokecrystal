@@ -1,20 +1,20 @@
 SpriteAnimOAMData: ; 8d94d
 ; entries correspond to SPRITE_ANIM_OAMSET_* constants
 	; vtile offset, pointer
-	dbw $00, .OAMData_RedWalk ; SPRITE_ANIM_OAMSET_RED_WALK_1
-	dbw $04, .OAMData_RedWalk ; SPRITE_ANIM_OAMSET_RED_WALK_2
-	dbw $4c, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_GS_INTRO_BUBBLE_1
-	dbw $5c, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_GS_INTRO_BUBBLE_2
-	dbw $6c, .OAMData_GSIntroShellder ; SPRITE_ANIM_OAMSET_GS_INTRO_SHELLDER_1
-	dbw $6e, .OAMData_GSIntroShellder ; SPRITE_ANIM_OAMSET_GS_INTRO_SHELLDER_2
-	dbw $2d, .OAMData_GSIntroMagikarp ; SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_1
-	dbw $4d, .OAMData_GSIntroMagikarp ; SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_2
-	dbw $60, .OAMData_GSIntroLapras ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_1
-	dbw $00, .OAMData_GSIntroLapras ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_2
-	dbw $00, .OAMData_GSIntroLapras ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_3
-	dbw $06, .OAMData_GSIntroLapras ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_4
-	dbw $0c, .OAMData_GSIntroNote ; SPRITE_ANIM_OAMSET_GS_INTRO_NOTE
-	dbw $0d, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_UNUSED_0D
+	dbw $00, .OAMData_RedWalk                  ; SPRITE_ANIM_OAMSET_RED_WALK_1
+	dbw $04, .OAMData_RedWalk                  ; SPRITE_ANIM_OAMSET_RED_WALK_2
+	dbw $4c, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_BUBBLE_1
+	dbw $5c, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_BUBBLE_2
+	dbw $6c, .OAMData_GSIntroShellder          ; SPRITE_ANIM_OAMSET_GS_INTRO_SHELLDER_1
+	dbw $6e, .OAMData_GSIntroShellder          ; SPRITE_ANIM_OAMSET_GS_INTRO_SHELLDER_2
+	dbw $2d, .OAMData_GSIntroMagikarp          ; SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_1
+	dbw $4d, .OAMData_GSIntroMagikarp          ; SPRITE_ANIM_OAMSET_GS_INTRO_MAGIKARP_2
+	dbw $60, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_1
+	dbw $00, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_2
+	dbw $00, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_3
+	dbw $06, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_4
+	dbw $0c, .OAMData_GSIntroNote              ; SPRITE_ANIM_OAMSET_GS_INTRO_NOTE
+	dbw $0d, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_UNUSED_0D
 	dbw $00, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1
 	dbw $04, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2
 	dbw $08, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_3
@@ -22,125 +22,125 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $44, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_2
 	dbw $48, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_3
 	dbw $4c, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_4
-	dbw $80, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_15
-	dbw $85, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_16
-	dbw $8a, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_17
-	dbw $00, .OAMData_IntroUnownF2_1 ; SPRITE_ANIM_OAMSET_GS_INTRO_SMALL_FIREBALL
-	dbw $01, .OAMData_TradePoofBubble ; SPRITE_ANIM_OAMSET_GS_INTRO_MED_FIREBALL
-	dbw $09, .OAMData_GSIntroBigFireball ; SPRITE_ANIM_OAMSET_GS_INTRO_BIG_FIREBALL
-	dbw $10, .OAMData_GSIntroStarter ; SPRITE_ANIM_OAMSET_GS_INTRO_CHIKORITA
-	dbw $29, .OAMData_GSIntroStarter ; SPRITE_ANIM_OAMSET_GS_INTRO_CYNDAQUIL
-	dbw $42, .OAMData_GSIntroStarter ; SPRITE_ANIM_OAMSET_GS_INTRO_TOTODILE
-	dbw $f8, .OAMData_GSTitleTrail ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_1
-	dbw $fa, .OAMData_GSTitleTrail ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_2
-	dbw $00, .OAMData_TextEntryCursor ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR
-	dbw $00, .OAMData_ForUnusedFrameset09 ; SPRITE_ANIM_OAMSET_FOR_UNUSED_FRAMESET_09
-	dbw $00, .OAMData_Unused22 ; SPRITE_ANIM_OAMSET_UNUSED_22
-	dbw $0f, .OAMData_GSIntroStar ; SPRITE_ANIM_OAMSET_GS_INTRO_STAR
-	dbw $11, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_1
-	dbw $12, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_2
-	dbw $13, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_3
-	dbw $00, .OAMData_SlotsGolem ; SPRITE_ANIM_OAMSET_SLOTS_GOLEM_1
-	dbw $08, .OAMData_SlotsGolem ; SPRITE_ANIM_OAMSET_SLOTS_GOLEM_2
-	dbw $10, .OAMData_SlotsChansey1 ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_1
-	dbw $10, .OAMData_SlotsChansey2 ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_2
-	dbw $10, .OAMData_SlotsChansey3 ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_3
-	dbw $10, .OAMData_SlotsChansey4 ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_4
-	dbw $10, .OAMData_SlotsChansey5 ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_5
-	dbw $3a, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_SLOTS_EGG
-	dbw $00, .OAMData_RedWalk ; SPRITE_ANIM_OAMSET_STILL_CURSOR
-	dbw $00, .OAMData_TradePokeBall1 ; SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1
-	dbw $02, .OAMData_MagnetTrainRed ; SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_2
-	dbw $06, .OAMData_TradePoofBubble ; SPRITE_ANIM_OAMSET_TRADE_POOF_1
-	dbw $0a, .OAMData_TradePoofBubble ; SPRITE_ANIM_OAMSET_TRADE_POOF_2
-	dbw $0e, .OAMData_TradePoofBubble ; SPRITE_ANIM_OAMSET_TRADE_POOF_3
-	dbw $12, .OAMData_TradeTubeBulge ; SPRITE_ANIM_OAMSET_TRADE_TUBE_BULGE_1
-	dbw $13, .OAMData_TradeTubeBulge ; SPRITE_ANIM_OAMSET_TRADE_TUBE_BULGE_2
-	dbw $00, .OAMData_RedWalk ; SPRITE_ANIM_OAMSET_TRADEMON_ICON_1
-	dbw $04, .OAMData_RedWalk ; SPRITE_ANIM_OAMSET_TRADEMON_ICON_2
-	dbw $10, .OAMData_TradePoofBubble ; SPRITE_ANIM_OAMSET_TRADEMON_BUBBLE
-	dbw $00, .OAMData_MagnetTrainRed ; SPRITE_ANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_1
-	dbw $04, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_2
-	dbw $00, .OAMData_RadioTuningKnob ; SPRITE_ANIM_OAMSET_RADIO_TUNING_KNOB
-	dbw $00, .OAMData_PartyMonWithMail1 ; SPRITE_ANIM_OAMSET_PARTY_MON_WITH_MAIL_1
-	dbw $00, .OAMData_PartyMonWithMail2 ; SPRITE_ANIM_OAMSET_PARTY_MON_WITH_MAIL_2
-	dbw $00, .OAMData_PartyMonWithItem1 ; SPRITE_ANIM_OAMSET_PARTY_MON_WITH_ITEM_1
-	dbw $00, .OAMData_PartyMonWithItem2 ; SPRITE_ANIM_OAMSET_PARTY_MON_WITH_ITEM_2
-	dbw $00, .OAMData_MagnetTrainRed ; SPRITE_ANIM_OAMSET_MAGNET_TRAIN_RED_1
-	dbw $04, .OAMData_MagnetTrainRed ; SPRITE_ANIM_OAMSET_MAGNET_TRAIN_RED_2
-	dbw $00, .OAMData_Unused43_4A ; SPRITE_ANIM_OAMSET_UNUSED_43
-	dbw $30, .OAMData_Unused43_4A ; SPRITE_ANIM_OAMSET_UNUSED_44
-	dbw $03, .OAMData_Unused43_4A ; SPRITE_ANIM_OAMSET_UNUSED_45
-	dbw $33, .OAMData_Unused43_4A ; SPRITE_ANIM_OAMSET_UNUSED_46
-	dbw $06, .OAMData_Unused43_4A ; SPRITE_ANIM_OAMSET_UNUSED_47
-	dbw $36, .OAMData_Unused43_4A ; SPRITE_ANIM_OAMSET_UNUSED_48
-	dbw $09, .OAMData_Unused43_4A ; SPRITE_ANIM_OAMSET_UNUSED_49
-	dbw $39, .OAMData_Unused43_4A ; SPRITE_ANIM_OAMSET_UNUSED_4A
-	dbw $0c, .OAMData_Unused4B ; SPRITE_ANIM_OAMSET_UNUSED_4B
-	dbw $0c, .OAMData_Unused4C ; SPRITE_ANIM_OAMSET_UNUSED_4C
-	dbw $3c, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_4D
-	dbw $3e, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_4E
-	dbw $00, .OAMData_Leaf ; SPRITE_ANIM_OAMSET_LEAF
-	dbw $00, .OAMData_Tree ; SPRITE_ANIM_OAMSET_TREE_1
-	dbw $00, .OAMData_CutTree2 ; SPRITE_ANIM_OAMSET_CUT_TREE_2
-	dbw $00, .OAMData_CutTree3 ; SPRITE_ANIM_OAMSET_CUT_TREE_3
-	dbw $00, .OAMData_CutTree4 ; SPRITE_ANIM_OAMSET_CUT_TREE_4
-	dbw $00, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_EGG_CRACK
-	dbw $01, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_EGG_HATCH
-	dbw $00, .OAMData_GSIntroHoOh1 ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_1
-	dbw $00, .OAMData_GSIntroHoOh2 ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_2
-	dbw $00, .OAMData_GSIntroHoOh3 ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_3
-	dbw $00, .OAMData_GSIntroHoOh4 ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_4
-	dbw $00, .OAMData_GSIntroHoOh5 ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_5
-	dbw $04, .OAMData_Tree ; SPRITE_ANIM_OAMSET_HEADBUTT_TREE_2
-	dbw $00, .OAMData_EZChatCursor1 ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_1
-	dbw $00, .OAMData_EZChatCursor2 ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_2
-	dbw $00, .OAMData_EZChatCursor3 ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_3
-	dbw $00, .OAMData_EZChatCursor4 ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_4
-	dbw $00, .OAMData_EZChatCursor5 ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_5
-	dbw $00, .OAMData_EZChatCursor6 ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_6
-	dbw $00, .OAMData_EZChatCursor7 ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_7
-	dbw $00, .OAMData_BlueWalk ; SPRITE_ANIM_OAMSET_BLUE_WALK_1
-	dbw $04, .OAMData_BlueWalk ; SPRITE_ANIM_OAMSET_BLUE_WALK_2
-	dbw $00, .OAMData_MagnetTrainBlue ; SPRITE_ANIM_OAMSET_MAGNET_TRAIN_BLUE_1
-	dbw $04, .OAMData_MagnetTrainBlue ; SPRITE_ANIM_OAMSET_MAGNET_TRAIN_BLUE_2
-	dbw $20, .OAMData_MobileTradeCableBulge ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_1
-	dbw $21, .OAMData_MobileTradeCableBulge ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_2
-	dbw $22, .OAMData_MobileTradePing1 ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_1
-	dbw $23, .OAMData_MobileTradePing2 ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_2
-	dbw $27, .OAMData_MobileTradePing3 ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_3
-	dbw $2a, .OAMData_MobileTradeSentPulse ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_SENT_PULSE
-	dbw $2a, .OAMData_MobileTradeOTPulse ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_OT_PULSE
-	dbw $00, .OAMData_IntroSuicune1 ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_1
-	dbw $08, .OAMData_IntroSuicune2 ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_2
-	dbw $60, .OAMData_IntroSuicune3 ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_3
-	dbw $68, .OAMData_IntroSuicune4 ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_4
-	dbw $00, .OAMData_IntroPichu ; SPRITE_ANIM_OAMSET_INTRO_PICHU_1
-	dbw $05, .OAMData_IntroPichu ; SPRITE_ANIM_OAMSET_INTRO_PICHU_2
-	dbw $0a, .OAMData_IntroPichu ; SPRITE_ANIM_OAMSET_INTRO_PICHU_3
-	dbw $50, .OAMData_IntroWooper ; SPRITE_ANIM_OAMSET_INTRO_WOOPER
-	dbw $00, .OAMData_IntroUnown1 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_1
-	dbw $01, .OAMData_IntroUnown2 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_2
-	dbw $04, .OAMData_IntroUnown3 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_3
-	dbw $00, .OAMData_IntroUnownF2_1 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_1
-	dbw $01, .OAMData_IntroUnownF2_2 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_2
-	dbw $03, .OAMData_IntroUnownF2_3 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_3
-	dbw $08, .OAMData_IntroUnownF2_4_5 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_4
-	dbw $1c, .OAMData_IntroUnownF2_4_5 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_5
-	dbw $80, .OAMData_IntroSuicuneAway ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_AWAY
-	dbw $00, .OAMData_Celebi ; SPRITE_ANIM_OAMSET_CELEBI_1
-	dbw $04, .OAMData_Celebi ; SPRITE_ANIM_OAMSET_CELEBI_2
-	dbw $d0, .OAMData_GameFreakLogo1_3 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_1
-	dbw $d3, .OAMData_GameFreakLogo1_3 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_2
-	dbw $d6, .OAMData_GameFreakLogo1_3 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_3
-	dbw $6c, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_4
-	dbw $68, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_5
-	dbw $64, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_6
-	dbw $60, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_7
-	dbw $0c, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_8
-	dbw $08, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_9
-	dbw $04, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_10
-	dbw $00, .OAMData_GameFreakLogo4_11 ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11
+	dbw $80, .OAMData_Unused15_17              ; SPRITE_ANIM_OAMSET_UNUSED_15
+	dbw $85, .OAMData_Unused15_17              ; SPRITE_ANIM_OAMSET_UNUSED_16
+	dbw $8a, .OAMData_Unused15_17              ; SPRITE_ANIM_OAMSET_UNUSED_17
+	dbw $00, .OAMData_IntroUnownF2_1           ; SPRITE_ANIM_OAMSET_GS_INTRO_SMALL_FIREBALL
+	dbw $01, .OAMData_TradePoofBubble          ; SPRITE_ANIM_OAMSET_GS_INTRO_MED_FIREBALL
+	dbw $09, .OAMData_GSIntroBigFireball       ; SPRITE_ANIM_OAMSET_GS_INTRO_BIG_FIREBALL
+	dbw $10, .OAMData_GSIntroStarter           ; SPRITE_ANIM_OAMSET_GS_INTRO_CHIKORITA
+	dbw $29, .OAMData_GSIntroStarter           ; SPRITE_ANIM_OAMSET_GS_INTRO_CYNDAQUIL
+	dbw $42, .OAMData_GSIntroStarter           ; SPRITE_ANIM_OAMSET_GS_INTRO_TOTODILE
+	dbw $f8, .OAMData_GSTitleTrail             ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_1
+	dbw $fa, .OAMData_GSTitleTrail             ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_2
+	dbw $00, .OAMData_TextEntryCursor          ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR
+	dbw $00, .OAMData_ForUnusedFrameset09      ; SPRITE_ANIM_OAMSET_FOR_UNUSED_FRAMESET_09
+	dbw $00, .OAMData_Unused22                 ; SPRITE_ANIM_OAMSET_UNUSED_22
+	dbw $0f, .OAMData_GSIntroStar              ; SPRITE_ANIM_OAMSET_GS_INTRO_STAR
+	dbw $11, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_1
+	dbw $12, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_2
+	dbw $13, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_3
+	dbw $00, .OAMData_SlotsGolem               ; SPRITE_ANIM_OAMSET_SLOTS_GOLEM_1
+	dbw $08, .OAMData_SlotsGolem               ; SPRITE_ANIM_OAMSET_SLOTS_GOLEM_2
+	dbw $10, .OAMData_SlotsChansey1            ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_1
+	dbw $10, .OAMData_SlotsChansey2            ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_2
+	dbw $10, .OAMData_SlotsChansey3            ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_3
+	dbw $10, .OAMData_SlotsChansey4            ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_4
+	dbw $10, .OAMData_SlotsChansey5            ; SPRITE_ANIM_OAMSET_SLOTS_CHANSEY_5
+	dbw $3a, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_SLOTS_EGG
+	dbw $00, .OAMData_RedWalk                  ; SPRITE_ANIM_OAMSET_STILL_CURSOR
+	dbw $00, .OAMData_TradePokeBall1           ; SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1
+	dbw $02, .OAMData_MagnetTrainRed           ; SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_2
+	dbw $06, .OAMData_TradePoofBubble          ; SPRITE_ANIM_OAMSET_TRADE_POOF_1
+	dbw $0a, .OAMData_TradePoofBubble          ; SPRITE_ANIM_OAMSET_TRADE_POOF_2
+	dbw $0e, .OAMData_TradePoofBubble          ; SPRITE_ANIM_OAMSET_TRADE_POOF_3
+	dbw $12, .OAMData_TradeTubeBulge           ; SPRITE_ANIM_OAMSET_TRADE_TUBE_BULGE_1
+	dbw $13, .OAMData_TradeTubeBulge           ; SPRITE_ANIM_OAMSET_TRADE_TUBE_BULGE_2
+	dbw $00, .OAMData_RedWalk                  ; SPRITE_ANIM_OAMSET_TRADEMON_ICON_1
+	dbw $04, .OAMData_RedWalk                  ; SPRITE_ANIM_OAMSET_TRADEMON_ICON_2
+	dbw $10, .OAMData_TradePoofBubble          ; SPRITE_ANIM_OAMSET_TRADEMON_BUBBLE
+	dbw $00, .OAMData_MagnetTrainRed           ; SPRITE_ANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_1
+	dbw $04, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_2
+	dbw $00, .OAMData_RadioTuningKnob          ; SPRITE_ANIM_OAMSET_RADIO_TUNING_KNOB
+	dbw $00, .OAMData_PartyMonWithMail1        ; SPRITE_ANIM_OAMSET_PARTY_MON_WITH_MAIL_1
+	dbw $00, .OAMData_PartyMonWithMail2        ; SPRITE_ANIM_OAMSET_PARTY_MON_WITH_MAIL_2
+	dbw $00, .OAMData_PartyMonWithItem1        ; SPRITE_ANIM_OAMSET_PARTY_MON_WITH_ITEM_1
+	dbw $00, .OAMData_PartyMonWithItem2        ; SPRITE_ANIM_OAMSET_PARTY_MON_WITH_ITEM_2
+	dbw $00, .OAMData_MagnetTrainRed           ; SPRITE_ANIM_OAMSET_MAGNET_TRAIN_RED_1
+	dbw $04, .OAMData_MagnetTrainRed           ; SPRITE_ANIM_OAMSET_MAGNET_TRAIN_RED_2
+	dbw $00, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_43
+	dbw $30, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_44
+	dbw $03, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_45
+	dbw $33, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_46
+	dbw $06, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_47
+	dbw $36, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_48
+	dbw $09, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_49
+	dbw $39, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_4A
+	dbw $0c, .OAMData_Unused4B                 ; SPRITE_ANIM_OAMSET_UNUSED_4B
+	dbw $0c, .OAMData_Unused4C                 ; SPRITE_ANIM_OAMSET_UNUSED_4C
+	dbw $3c, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_4D
+	dbw $3e, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_4E
+	dbw $00, .OAMData_Leaf                     ; SPRITE_ANIM_OAMSET_LEAF
+	dbw $00, .OAMData_Tree                     ; SPRITE_ANIM_OAMSET_TREE_1
+	dbw $00, .OAMData_CutTree2                 ; SPRITE_ANIM_OAMSET_CUT_TREE_2
+	dbw $00, .OAMData_CutTree3                 ; SPRITE_ANIM_OAMSET_CUT_TREE_3
+	dbw $00, .OAMData_CutTree4                 ; SPRITE_ANIM_OAMSET_CUT_TREE_4
+	dbw $00, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_EGG_CRACK
+	dbw $01, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_EGG_HATCH
+	dbw $00, .OAMData_GSIntroHoOh1             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_1
+	dbw $00, .OAMData_GSIntroHoOh2             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_2
+	dbw $00, .OAMData_GSIntroHoOh3             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_3
+	dbw $00, .OAMData_GSIntroHoOh4             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_4
+	dbw $00, .OAMData_GSIntroHoOh5             ; SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_5
+	dbw $04, .OAMData_Tree                     ; SPRITE_ANIM_OAMSET_HEADBUTT_TREE_2
+	dbw $00, .OAMData_EZChatCursor1            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_1
+	dbw $00, .OAMData_EZChatCursor2            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_2
+	dbw $00, .OAMData_EZChatCursor3            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_3
+	dbw $00, .OAMData_EZChatCursor4            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_4
+	dbw $00, .OAMData_EZChatCursor5            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_5
+	dbw $00, .OAMData_EZChatCursor6            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_6
+	dbw $00, .OAMData_EZChatCursor7            ; SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_7
+	dbw $00, .OAMData_BlueWalk                 ; SPRITE_ANIM_OAMSET_BLUE_WALK_1
+	dbw $04, .OAMData_BlueWalk                 ; SPRITE_ANIM_OAMSET_BLUE_WALK_2
+	dbw $00, .OAMData_MagnetTrainBlue          ; SPRITE_ANIM_OAMSET_MAGNET_TRAIN_BLUE_1
+	dbw $04, .OAMData_MagnetTrainBlue          ; SPRITE_ANIM_OAMSET_MAGNET_TRAIN_BLUE_2
+	dbw $20, .OAMData_MobileTradeCableBulge    ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_1
+	dbw $21, .OAMData_MobileTradeCableBulge    ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_2
+	dbw $22, .OAMData_MobileTradePing1         ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_1
+	dbw $23, .OAMData_MobileTradePing2         ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_2
+	dbw $27, .OAMData_MobileTradePing3         ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_3
+	dbw $2a, .OAMData_MobileTradeSentPulse     ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_SENT_PULSE
+	dbw $2a, .OAMData_MobileTradeOTPulse       ; SPRITE_ANIM_OAMSET_MOBILE_TRADE_OT_PULSE
+	dbw $00, .OAMData_IntroSuicune1            ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_1
+	dbw $08, .OAMData_IntroSuicune2            ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_2
+	dbw $60, .OAMData_IntroSuicune3            ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_3
+	dbw $68, .OAMData_IntroSuicune4            ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_4
+	dbw $00, .OAMData_IntroPichu               ; SPRITE_ANIM_OAMSET_INTRO_PICHU_1
+	dbw $05, .OAMData_IntroPichu               ; SPRITE_ANIM_OAMSET_INTRO_PICHU_2
+	dbw $0a, .OAMData_IntroPichu               ; SPRITE_ANIM_OAMSET_INTRO_PICHU_3
+	dbw $50, .OAMData_IntroWooper              ; SPRITE_ANIM_OAMSET_INTRO_WOOPER
+	dbw $00, .OAMData_IntroUnown1              ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_1
+	dbw $01, .OAMData_IntroUnown2              ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_2
+	dbw $04, .OAMData_IntroUnown3              ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_3
+	dbw $00, .OAMData_IntroUnownF2_1           ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_1
+	dbw $01, .OAMData_IntroUnownF2_2           ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_2
+	dbw $03, .OAMData_IntroUnownF2_3           ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_3
+	dbw $08, .OAMData_IntroUnownF2_4_5         ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_4
+	dbw $1c, .OAMData_IntroUnownF2_4_5         ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_5
+	dbw $80, .OAMData_IntroSuicuneAway         ; SPRITE_ANIM_OAMSET_INTRO_SUICUNE_AWAY
+	dbw $00, .OAMData_Celebi                   ; SPRITE_ANIM_OAMSET_CELEBI_1
+	dbw $04, .OAMData_Celebi                   ; SPRITE_ANIM_OAMSET_CELEBI_2
+	dbw $d0, .OAMData_GameFreakLogo1_3         ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_1
+	dbw $d3, .OAMData_GameFreakLogo1_3         ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_2
+	dbw $d6, .OAMData_GameFreakLogo1_3         ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_3
+	dbw $6c, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_4
+	dbw $68, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_5
+	dbw $64, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_6
+	dbw $60, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_7
+	dbw $0c, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_8
+	dbw $08, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_9
+	dbw $04, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_10
+	dbw $00, .OAMData_GameFreakLogo4_11        ; SPRITE_ANIM_OAMSET_GAMEFREAK_LOGO_11
 
 .OAMData_1x1_Palette0:
 	db 1
@@ -180,9 +180,8 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite -1,  0,  0,  0, $00, 7 | X_FLIP
 	dsprite  0,  0, -1,  0, $00, 7 | Y_FLIP
 	dsprite  0,  0,  0,  0, $00, 7 | X_FLIP | Y_FLIP
-; 8db4b
 
-; 8db4b
+; unused
 	db 4
 	dsprite -1,  0, -1,  0, $00, 0 | BEHIND_BG
 	dsprite -1,  0,  0,  0, $00, 0 | X_FLIP | BEHIND_BG
@@ -305,9 +304,8 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite -1,  4,  1,  4, $16, 0
 	dsprite  0,  4,  1,  4, $17, 0
 	dsprite  1,  4,  1,  4, $18, 0
-; 8dcf9
 
-; 8dcf9
+; unused
 	db 36
 	dsprite -3,  0, -3,  0, $00, 0
 	dsprite -3,  0, -2,  0, $01, 0
