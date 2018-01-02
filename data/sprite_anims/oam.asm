@@ -22,9 +22,9 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $44, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_2
 	dbw $48, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_3
 	dbw $4c, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_4
-	dbw $80, .OAMData_Unused15_17              ; SPRITE_ANIM_OAMSET_UNUSED_15
-	dbw $85, .OAMData_Unused15_17              ; SPRITE_ANIM_OAMSET_UNUSED_16
-	dbw $8a, .OAMData_Unused15_17              ; SPRITE_ANIM_OAMSET_UNUSED_17
+	dbw $80, .OAMData_GSIntroPikachuTail       ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_1
+	dbw $85, .OAMData_GSIntroPikachuTail       ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_2
+	dbw $8a, .OAMData_GSIntroPikachuTail       ; SPRITE_ANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_3
 	dbw $00, .OAMData_IntroUnownF2_1           ; SPRITE_ANIM_OAMSET_GS_INTRO_SMALL_FIREBALL
 	dbw $01, .OAMData_TradePoofBubble          ; SPRITE_ANIM_OAMSET_GS_INTRO_MED_FIREBALL
 	dbw $09, .OAMData_GSIntroBigFireball       ; SPRITE_ANIM_OAMSET_GS_INTRO_BIG_FIREBALL
@@ -432,7 +432,7 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite -1,  0, -1,  4, $00, 0
 	dsprite  0,  0, -1,  4, $10, 0
 
-.OAMData_Unused15_17:
+.OAMData_GSIntroPikachuTail:
 	db 5
 	dsprite -2,  0,  3,  0, $00, 0
 	dsprite -2,  0,  4,  0, $01, 0
