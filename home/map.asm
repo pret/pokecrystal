@@ -2042,7 +2042,7 @@ ReturnToMapWithSpeechTextbox:: ; 0x2b74
 ReloadTilesetAndPalettes:: ; 2bae
 	call DisableLCD
 	call ClearSprites
-	farcall RefreshSprites
+	farcall Special_RefreshSprites
 	call LoadStandardFont
 	call LoadFontsExtra
 	ld a, [hROMBank]

@@ -95,7 +95,7 @@ DidntCatchSudowoodo:
 	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
 	special Special_MapCallbackSprites_LoadUsedSpritesGFX
-	special RefreshSprites
+	special Special_RefreshSprites
 	end
 
 Route36FloriaScript:

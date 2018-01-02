@@ -9,7 +9,7 @@ RuinsOfAlphOmanyteChamber_MapScriptHeader:
 	dbw MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
-	special SpecialOmanyteChamber
+	special Special_OmanyteChamber
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .OpenWall
 	end

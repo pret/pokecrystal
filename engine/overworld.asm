@@ -41,7 +41,7 @@ Function14157: ; mobile
 	ret
 ; 14168
 
-RefreshSprites:: ; 14168
+Special_RefreshSprites:: ; 14168
 	call .Refresh
 	call Special_MapCallbackSprites_LoadUsedSpritesGFX
 	ret

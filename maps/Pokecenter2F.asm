@@ -76,10 +76,10 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Mobile_DummyReturnFalse ; always returns false
+	special Special_Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_TradeReceptionistMobile
-	special AskMobileOrCable
+	special Special_AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
@@ -153,7 +153,7 @@ LinkReceptionistScript_Trade:
 	iffalse .Mobile_DidNotSave
 	special Special_TryQuickSave
 	iffalse .Mobile_DidNotSave
-	special Function1011f1
+	special Special_Function1011f1
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
@@ -178,10 +178,10 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Mobile_DummyReturnFalse ; always returns false
+	special Special_Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_BattleReceptionistMobile
-	special AskMobileOrCable
+	special Special_AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
@@ -255,9 +255,9 @@ LinkReceptionistScript_Battle:
 	writetext Text_MustSaveGame
 	yesorno
 	iffalse .Mobile_DidNotSave
-	special Function103780
+	special Special_Function103780
 	iffalse .Mobile_DidNotSave
-	special Function1011f1
+	special Special_Function1011f1
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
@@ -271,7 +271,7 @@ LinkReceptionistScript_Battle:
 	end
 
 .SelectThreeMons:
-	special Mobile_SelectThreeMons
+	special Special_Mobile_SelectThreeMons
 	iffalse .Mobile_DidNotSelect
 	if_equal $1, .Mobile_OK
 	if_equal $2, .Mobile_OK
@@ -381,7 +381,7 @@ Script_LeftCableTradeCenter:
 	end
 
 Script_LeftMobileTradeRoom:
-	special Function101220
+	special Special_Function101220
 	scall Script_WalkOutOfMobileTradeRoom
 	setscene $0
 	setmapscene MOBILE_TRADE_ROOM_MOBILE, $0
@@ -401,7 +401,7 @@ Script_LeftCableColosseum:
 	end
 
 Script_LeftMobileBattleRoom:
-	special Function101220
+	special Special_Function101220
 	scall Script_WalkOutOfMobileBattleRoom
 	setscene $0
 	setmapscene MOBILE_BATTLE_ROOM, $0

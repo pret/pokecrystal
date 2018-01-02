@@ -9,7 +9,7 @@ RuinsOfAlphHoOhChamber_MapScriptHeader:
 	dbw MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
-	special SpecialHoOhChamber
+	special Special_HoOhChamber
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue .OpenWall
 	end

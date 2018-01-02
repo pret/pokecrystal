@@ -1672,7 +1672,7 @@ Function118ded: ; 118ded
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	farcall Function11b93b
+	farcall Special_Function11b93b
 	pop af
 	ld [rSVBK], a
 
@@ -5729,7 +5729,7 @@ Text_ThisBattleRoomPleaseWait: ; 0x11ac1f
 	done
 ; 0x11ac3e
 
-Function11ac3e: ; 11ac3e
+Special_Function11ac3e: ; 11ac3e
 	call SpeechTextBox
 	call FadeToMenu
 	callfar ClearSpriteAnims2
@@ -7060,7 +7060,7 @@ Function11b3d9: ; 11b3d9
 	ret
 ; 11b444
 
-Function11b444: ; 11b444
+Special_Function11b444: ; 11b444
 ; special
 	call Mobile46_InitJumptable
 	call Mobile46_RunJumptable
@@ -7349,7 +7349,7 @@ Function11b5e7: ; 11b5e7
 	ret
 ; 11b5e8
 
-Function11b5e8: ; 11b5e8
+Special_Function11b5e8: ; 11b5e8
 	ld a, $0
 	call GetSRAMBank
 	ld hl, wRTC
@@ -7585,7 +7585,7 @@ Function11b6b4: ; 11b6b4
 	ret
 ; 11b7e5
 
-Function11b7e5: ; 11b7e5
+Special_Function11b7e5: ; 11b7e5
 	ld a, [$c60d] ; species
 	ld [wOTTrademonSpecies], a
 	ld [CurPartySpecies], a
@@ -7644,7 +7644,7 @@ Function11b7e5: ; 11b7e5
 	ret
 ; 11b879
 
-Function11b879: ; 11b879
+Special_Function11b879: ; 11b879
 	farcall BattleTower_CheckSaveFileExistsAndIsYours
 	ld a, [ScriptVar]
 	and a
@@ -7737,7 +7737,7 @@ Function11b879: ; 11b879
 	ret
 ; 11b920
 
-Function11b920: ; 11b920
+Special_Function11b920: ; 11b920
 	call Mobile46_InitJumptable
 	ld a, $5
 	call GetSRAMBank
@@ -7750,7 +7750,7 @@ Function11b920: ; 11b920
 	ret
 ; 11b93b
 
-Function11b93b: ; 11b93b
+Special_Function11b93b: ; 11b93b
 	ld a, $5
 	call GetSRAMBank
 	xor a
@@ -7894,7 +7894,7 @@ AddMobileMonToParty: ; 11b98f
 	ret
 ; 11ba38
 
-Function11ba38: ; 11ba38
+Special_Function11ba38: ; 11ba38
 	farcall CheckCurPartyMonFainted
 	ret c
 	xor a

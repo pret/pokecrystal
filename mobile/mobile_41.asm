@@ -304,7 +304,7 @@ TrainerRankings_FruitPicked: mobile ; 10609b
 	ld hl, sTrainerRankingFruitPicked
 	jp TrainerRankings_Increment3Byte
 
-TrainerRankings_Healings: mobile ; 1060a2
+Special_TrainerRankings_Healings: mobile ; 1060a2
 	ld hl, sTrainerRankingHealings
 	jp TrainerRankings_Increment3Byte
 
@@ -773,7 +773,7 @@ endr
 
 ; functions related to the cable club and various NPC scripts referencing mobile communications
 
-Mobile_DummyReturnFalse: ; 10630f
+Special_Mobile_DummyReturnFalse: ; 10630f
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -798,7 +798,7 @@ Mobile_AlwaysReturnNotCarry: ; 10632f
 	or a
 	ret
 
-Function106331: ; 106331 - called by Mobile_DummyReturnFalse in Crystal-J
+Function106331: ; 106331 - called by Special_Mobile_DummyReturnFalse in Crystal-J
 	; check ~[4:b000] == [7:a800]
 	ld a, $4
 	call GetSRAMBank

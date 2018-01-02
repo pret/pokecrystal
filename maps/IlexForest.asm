@@ -472,7 +472,7 @@ MapIlexForestSignpost4Script:
 	startbattle
 	reloadmapafterbattle
 	pause 20
-	special CheckCaughtCelebi
+	special Special_CheckCaughtCelebi
 	iffalse .DidntCatchCelebi
 	appear ILEXFOREST_KURT
 	applymovement ILEXFOREST_KURT, MovementData_0x6ef4e

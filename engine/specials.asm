@@ -126,73 +126,73 @@ SpecialsPointers:: ; c029
 	add_special Special_PhotoStudio
 	add_special Special_InitRoamMons
 	add_special Special_FadeOutMusic
-	add_special Diploma
-	add_special PrintDiploma
+	add_special Special_Diploma
+	add_special Special_PrintDiploma
 
 	; Crystal
-	add_special Function11ac3e
-	add_special Function11b444
-	add_special Function11b5e8
-	add_special Function11b7e5
-	add_special Function11b879
-	add_special Function11b920
-	add_special Function11b93b
-	add_special BattleTowerRoomMenu
-	add_special Function1700ba
-	add_special Function170114
-	add_special BattleTowerBattle
-	add_special Function1704e1
-	add_special EmptySpecial_17021d
-	add_special Function_LoadOpponentTrainerAndPokemonsWithOTSprite
-	add_special Function11ba38
-	add_special SpecialCheckForBattleTowerRules
+	add_special Special_Function11ac3e
+	add_special Special_Function11b444
+	add_special Special_Function11b5e8
+	add_special Special_Function11b7e5
+	add_special Special_Function11b879
+	add_special Special_Function11b920
+	add_special Special_Function11b93b
+	add_special Special_BattleTowerRoomMenu
+	add_special Special_Function1700ba
+	add_special Special_Function170114
+	add_special Special_BattleTowerBattle
+	add_special Special_Function1704e1
+	add_special DummySpecial17021d
+	add_special Special_LoadOpponentTrainerAndPokemonWithOTSprite
+	add_special Special_Function11ba38
+	add_special Special_CheckForBattleTowerRules
 	add_special Special_GiveOddEgg
-	add_special Reset
-	add_special Function1011f1
-	add_special Function101220
-	add_special Function101225
-	add_special Function101231
+	add_special Reset ; bank 0
+	add_special Special_Function1011f1
+	add_special Special_Function101220
+	add_special Special_Function101225
+	add_special Special_Function101231
 	add_special Special_MoveTutor
-	add_special SpecialOmanyteChamber
-	add_special Function11c1ab
-	add_special BattleTowerAction
+	add_special Special_OmanyteChamber
+	add_special Special_Function11c1ab
+	add_special Special_BattleTowerAction
 	add_special Special_DisplayUnownWords
 	add_special Special_Menu_ChallengeExplanationCancel
-	add_special Function17d2b6
-	add_special Function17d2ce
-	add_special BattleTowerMobileError
-	add_special AskMobileOrCable
-	add_special SpecialHoOhChamber
-	add_special Function102142
+	add_special Special_Function17d2b6
+	add_special Special_Function17d2ce
+	add_special Special_BattleTowerMobileError
+	add_special Special_AskMobileOrCable
+	add_special Special_HoOhChamber
+	add_special Special_Function102142
 	add_special Special_CelebiShrineEvent
-	add_special CheckCaughtCelebi
-	add_special SpecialPokeSeer
-	add_special SpecialBuenasPassword
-	add_special SpecialBuenaPrize
-	add_special SpecialDratini
+	add_special Special_CheckCaughtCelebi
+	add_special Special_PokeSeer
+	add_special Special_BuenasPassword
+	add_special Special_BuenaPrize
+	add_special Special_Dratini
 	add_special Special_SampleKenjiBreakCountdown
-	add_special SpecialBeastsCheck
-	add_special SpecialMonCheck
+	add_special Special_BeastsCheck
+	add_special Special_MonCheck
 	add_special Special_SetPlayerPalette
-	add_special ret_170bd2
-	add_special Mobile_SelectThreeMons
-	add_special Function1037eb
-	add_special Function10383c
-	add_special TrainerRankings_Healings
-	add_special RefreshSprites
-	add_special Function1037c2
-	add_special Mobile_DummyReturnFalse
-	add_special Function103780
-	add_special Function10387b
-	add_special AskRememberPassword
-	add_special LoadMapPalettes
-	add_special FindItemInPCOrBag
+	add_special DummySpecial170bd2
+	add_special Special_Mobile_SelectThreeMons
+	add_special Special_Function1037eb
+	add_special Special_Function10383c
+	add_special Special_TrainerRankings_Healings
+	add_special Special_RefreshSprites
+	add_special Special_Function1037c2
+	add_special Special_Mobile_DummyReturnFalse
+	add_special Special_Function103780
+	add_special Special_Function10387b
+	add_special Special_AskRememberPassword
+	add_special Special_LoadMapPalettes
+	add_special UnusedSpecial_FindItemInPCOrBag
 	add_special Special_InitialSetDSTFlag
 	add_special Special_InitialClearDSTFlag
-	add_special SpecialNone
+	add_special DummySpecialc224
 ; c224
 
-SpecialNone: ; c224
+DummySpecialc224: ; c224
 	ret
 ; c225
 
@@ -625,14 +625,14 @@ Special_FadeOutMusic: ; c48f
 	ret
 ; c49f
 
-Diploma: ; c49f
+Special_Diploma: ; c49f
 	call FadeToMenu
 	farcall _Diploma
 	call ExitAllMenus
 	ret
 ; c4ac
 
-PrintDiploma: ; c4ac
+Special_PrintDiploma: ; c4ac
 	call FadeToMenu
 	farcall _PrintDiploma
 	call ExitAllMenus

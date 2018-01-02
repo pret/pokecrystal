@@ -79,7 +79,7 @@ MapSetupCommands: ; 15440
 	dba LoadGraphics ; 0e
 	dba LoadTileset ; 0f
 	dba LoadMapTimeOfDay ; 10
-	dba LoadMapPalettes ; 11
+	dba Special_LoadMapPalettes ; 11
 	dba LoadWildMonData ; 12
 	dba RefreshMapSprites ; 13
 	dba HandleNewMap ; 14

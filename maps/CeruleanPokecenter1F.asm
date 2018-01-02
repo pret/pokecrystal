@@ -14,7 +14,7 @@ NurseScript_0x18820f:
 	jumpstd pokecenternurse
 
 SuperNerdScript_0x188212:
-	special Mobile_DummyReturnFalse
+	special Special_Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x188221
 
