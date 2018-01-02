@@ -32,10 +32,10 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_Leaf
 	dw .Frameset_CutTree
 	dw .Frameset_EggCrack
-	dw .Frameset_EggHatch
-	dw .Frameset_Unused21
-	dw .Frameset_Unused22
-	dw .Frameset_Unused23
+	dw .Frameset_EggHatch1
+	dw .Frameset_EggHatch2
+	dw .Frameset_EggHatch3
+	dw .Frameset_EggHatch4
 	dw .Frameset_GSIntroHoOh
 	dw .Frameset_HeadbuttTree
 	dw .Frameset_EZChatCursor0
@@ -310,19 +310,19 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_OAMSET_EGG_CRACK, 32
 	endanim
 
-.Frameset_EggHatch:
+.Frameset_EggHatch1:
 	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32
 	endanim
 
-.Frameset_Unused21:
+.Frameset_EggHatch2:
 	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32, OAM_X_FLIP
 	endanim
 
-.Frameset_Unused22:
+.Frameset_EggHatch3:
 	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32, OAM_Y_FLIP
 	endanim
 
-.Frameset_Unused23:
+.Frameset_EggHatch4:
 	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32, OAM_X_FLIP, OAM_Y_FLIP
 	endanim
 

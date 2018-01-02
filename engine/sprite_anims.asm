@@ -39,7 +39,7 @@ DoAnimFrame: ; 8d24b
 	dw .FlyFrom
 	dw .FlyLeaf
 	dw .FlyTo
-	dw .ForUnused1A
+	dw .GSIntroHoOh
 	dw .EZChatCursor
 	dw .MobileTradeSentPulse
 	dw .MobileTradeOTPulse
@@ -202,7 +202,7 @@ DoAnimFrame: ; 8d24b
 	ret
 ; 8d35a
 
-.ForUnused1A ; 8d35a (23:535a)
+.GSIntroHoOh ; 8d35a (23:535a)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
