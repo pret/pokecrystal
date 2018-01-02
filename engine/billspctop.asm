@@ -143,7 +143,7 @@ BillsPC_DepositMenu: ; e4fe (3:64fe)
 	and a
 	ret
 
-Functione512: ; unused
+Unreferenced_Functione512:
 	ld a, [PartyCount]
 	and a
 	jr z, .no_pkmn
@@ -212,7 +212,7 @@ BillsPC_WithdrawMenu: ; e559 (3:6559)
 	and a
 	ret
 
-Functione56d: ; unused
+Unreferenced_Functione56d:
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
 	jr nc, .asm_e576

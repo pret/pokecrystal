@@ -361,7 +361,7 @@ HandleCmdQueue:: ; 97e08
 	ret
 ; 97e25
 
-GetNthCmdQueueEntry: ; 97e25 unreferenced
+Unreferenced_GetNthCmdQueueEntry: ; 97e25
 	ld hl, wCmdQueue
 	ld bc, CMDQUEUE_ENTRY_SIZE
 	call AddNTimes

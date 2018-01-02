@@ -817,24 +817,32 @@ PartyMenuStrings: ; 0x504d2
 
 ChooseAMonString: ; 0x504e4
 	db "Choose a #MON.@"
+
 UseOnWhichPKMNString: ; 0x504f3
 	db "Use on which <PK><MN>?@"
+
 WhichPKMNString: ; 0x50504
 	db "Which <PK><MN>?@"
+
 TeachWhichPKMNString: ; 0x5050e
 	db "Teach which <PK><MN>?@"
+
 MoveToWhereString: ; 0x5051e
 	db "Move to where?@"
-ChooseAFemalePKMNString: ; 0x5052d  ; UNUSED
+
+ChooseAFemalePKMNString: ; 0x5052d
+; unused
 	db "Choose a ♀<PK><MN>.@"
-ChooseAMalePKMNString: ; 0x5053b    ; UNUSED
+
+ChooseAMalePKMNString: ; 0x5053b
+; unused
 	db "Choose a ♂<PK><MN>.@"
+
 ToWhichPKMNString: ; 0x50549
 	db "To which <PK><MN>?@"
 
 YouHaveNoPKMNString: ; 0x50556
 	db "You have no <PK><MN>!@"
-
 
 PrintPartyMenuActionText: ; 50566
 	ld a, [CurPartyMon]

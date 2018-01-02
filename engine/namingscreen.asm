@@ -765,7 +765,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b56
 
-Dakutens: ; Dummied out
+Dakutens: ; unused
 	db "かが", "きぎ", "くぐ", "けげ", "こご"
 	db "さざ", "しじ", "すず", "せぜ", "そぞ"
 	db "ただ", "ちぢ", "つづ", "てで", "とど"
@@ -776,7 +776,7 @@ Dakutens: ; Dummied out
 	db "ハバ", "ヒビ", "フブ", "へべ", "ホボ"
 	db $ff
 
-Handakutens: ; Dummied out
+Handakutens: ; unused
 	db "はぱ", "ひぴ", "ふぷ", "へぺ", "ほぽ"
 	db "ハパ", "ヒピ", "フプ", "へぺ", "ホポ"
 	db $ff
@@ -1051,7 +1051,7 @@ INCBIN "gfx/icon/mail2.2bpp"
 
 ; 11f7a (4:5f7a)
 
-.Dummy: ; dummied out
+.UnusedString11f7a:
 	db "メールを かいてね@"
 
 ; 11f84

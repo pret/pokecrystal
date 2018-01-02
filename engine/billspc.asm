@@ -246,7 +246,6 @@ BillsPCDepositMenuDataHeader: ; 0xe253d (38:653d)
 ; 0xe2564 (38:6564)
 
 Unreferenced_BillsPCClearThreeBoxes: ; e2564
-; unreferenced
 	hlcoord 0, 0
 	ld b,  4
 	ld c,  8
@@ -1586,7 +1585,7 @@ endr
 	db -1
 ; e2ed5
 
-BillsPC_UnusedFillBox: ; e2ed5
+Unreferenced_BillsPC_FillBox: ; e2ed5
 .row
 	push bc
 	push hl

@@ -18,7 +18,7 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-Unused_0x75ea6:
+Unreferenced_0x75ea6:
 	end
 
 SSAquaCaptain:

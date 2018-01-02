@@ -892,7 +892,7 @@ Text_Mart_ICanPayThisMuch: ; 0x15f78
 	db "@"
 ; 0x15f7d
 
-DummyString ; 15f7d
+.UnusedString15f7d: ; 15f7d
 	db "!ダミー!@"
 
 Text_Mart_HowMayIHelpYou: ; 0x15f83

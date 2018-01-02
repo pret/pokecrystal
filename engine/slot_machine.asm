@@ -183,7 +183,7 @@ SlotsLoop: ; 927af (24:67af)
 	ld [wCurrSpriteOAMAddr], a
 	callfar DoNextFrameForFirst16Sprites
 	call .PrintCoinsAndPayout
-	call .DummyFunc
+	call .Stubbed_Function927d3
 	call DelayFrame
 	and a
 	ret
@@ -192,7 +192,7 @@ SlotsLoop: ; 927af (24:67af)
 	scf
 	ret
 
-.DummyFunc: ; 927d3 (24:67d3)
+.Stubbed_Function927d3: ; 927d3 (24:67d3)
 ; dummied out
 	ret
 	ld a, [wReel1ReelAction]

@@ -232,8 +232,7 @@ ClearActorHud: ; cc207
 	ret
 ; cc220
 
-Functioncc220: ; cc220
-; Appears to be unused.
+Unreferenced_Functioncc220: ; cc220
 	xor a
 	ld [hBGMapMode], a
 	ld a, LOW(vBGMap0 tile $28)

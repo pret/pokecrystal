@@ -654,8 +654,7 @@ Unreferenced_Function1704ca: ; 1704ca
 	ret
 ; 1704e1
 
-Special_Function1704e1: ; 1704e1
-; unreferenced special
+UnusedSpecial_Function1704e1: ; 1704e1
 	call SpeechTextBox
 	call FadeToMenu
 	call InitBattleTowerChallengeRAM

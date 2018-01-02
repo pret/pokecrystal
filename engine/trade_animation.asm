@@ -1563,8 +1563,8 @@ TradeAnim_WaitAnim2: ; 29886
 ; 29893
 
 
-DebugTrade: ; 29893
-; This function is unreferenced.
+Unreferenced_DebugTrade: ; 29893
+; This function is not referenced.
 ; It was meant for use in Japanese versions, so the
 ; constant used for copy length was changed by accident.
 

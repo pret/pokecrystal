@@ -1268,7 +1268,7 @@ MonMenu_Fly: ; 12e30
 	ld a, $0
 	ret
 
-.Unused:
+.Unreferenced:
 	ld a, $1
 	ret
 ; 12e55

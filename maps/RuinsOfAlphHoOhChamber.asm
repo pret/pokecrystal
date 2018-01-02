@@ -115,8 +115,8 @@ UnknownText_0x58612:
 	line "on the walls…"
 	done
 
-; possibly unused
-UnknownText_0x58633:
+; unused
+UnusedText_0x58633:
 	text "It's UNOWN text!"
 	done
 
