@@ -65,7 +65,7 @@ ReceptionistScript_0x560ce:
 	if_not_equal SUNDAY, .EventIsOver
 	checkflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	iftrue .EventIsOver
-	special GetFirstPokemonHappiness
+	special Special_GetFirstPokemonHappiness
 	writetext UnknownText_0x56143
 	buttonsound
 	if_greater_than $95, .VeryHappy
@@ -106,7 +106,7 @@ ReceptionistScript_0x560ce:
 Carrie:
 	faceplayer
 	opentext
-	special SpecialGameboyCheck
+	special Special_GameboyCheck
 	if_not_equal $2, .NotGBC ; This is a dummy check from Gold and Silver.  In normal gameplay, this would not be checked.
 	writetext UnknownText_0x56241
 	waitbutton

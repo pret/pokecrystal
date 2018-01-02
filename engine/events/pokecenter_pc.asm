@@ -1,4 +1,4 @@
-PokemonCenterPC: ; 1559a
+Special_PokemonCenterPC: ; 1559a
 	call PC_CheckPartyForPokemon
 	ret c
 	call PC_PlayBootSound
@@ -216,7 +216,7 @@ Function15715: ; 15715
 	ld hl, KrissPCMenuData
 	call LoadMenuDataHeader
 .asm_15722
-	call UpdateTimePals
+	call Special_UpdateTimePals
 	call DoNthMenu
 	jr c, .asm_15731
 	call MenuJumptable

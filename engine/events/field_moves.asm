@@ -7,7 +7,7 @@ PlayWhirlpoolSound: ; 8c7d4
 ; 8c7e1
 
 BlindingFlash: ; 8c7e1
-	farcall FadeOutPalettes
+	farcall Special_FadeOutPalettes
 	ld hl, wStatusFlags
 	set 2, [hl] ; Flash
 	farcall ReplaceTimeOfDayPals
@@ -15,7 +15,7 @@ BlindingFlash: ; 8c7e1
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
-	farcall FadeInPalettes
+	farcall Special_FadeInPalettes
 	ret
 ; 8c80a
 

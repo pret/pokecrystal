@@ -335,7 +335,7 @@ Unreferenced_Function50cd0: ; 50cd0
 	jr nz, .loop
 	ret
 
-UnreferencedPredef22:
+UnusedPredef22:
 	push hl
 	push hl
 	ld hl, PartyMonNicknames

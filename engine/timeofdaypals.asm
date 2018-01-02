@@ -98,7 +98,7 @@ _TimeOfDayPals:: ; 8c011
 	ld [rSVBK], a
 
 ; update palettes
-	call _UpdateTimePals
+	call _Special_UpdateTimePals
 	call DelayFrame
 
 ; successful change
@@ -112,14 +112,14 @@ _TimeOfDayPals:: ; 8c011
 ; 8c070
 
 
-_UpdateTimePals:: ; 8c070
+_Special_UpdateTimePals:: ; 8c070
 	ld c, $9 ; normal
 	call GetTimePalFade
 	call DmgToCgbTimePals
 	ret
 ; 8c079
 
-FadeInPalettes:: ; 8c079
+Special_FadeInPalettes:: ; 8c079
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
@@ -127,7 +127,7 @@ FadeInPalettes:: ; 8c079
 	ret
 ; 8c084
 
-FadeOutPalettes:: ; 8c084
+Special_FadeOutPalettes:: ; 8c084
 	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade

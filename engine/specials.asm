@@ -15,7 +15,7 @@ Special:: ; c01b
 ; c029
 
 SpecialsPointers:: ; c029
-	add_special WarpToSpawnPoint
+	add_special Special_WarpToSpawnPoint
 
 ; Communications
 	add_special Special_SetBitsForLinkTradeRequest
@@ -25,7 +25,7 @@ SpecialsPointers:: ; c029
 	add_special Special_CheckBothSelectedSameRoom
 	add_special Special_FailedLinkToPast
 	add_special Special_CloseLink
-	add_special WaitForOtherPlayerToExit
+	add_special Special_WaitForOtherPlayerToExit
 	add_special Special_SetBitsForBattleRequest
 	add_special Special_SetBitsForTimeCapsuleRequest
 	add_special Special_CheckTimeCapsuleCompatibility
@@ -39,92 +39,92 @@ SpecialsPointers:: ; c029
 	add_special Special_UnlockMysteryGift
 
 ; Map Events
-	add_special BugContestJudging
-	add_special CheckPartyFullAfterContest
-	add_special ContestDropOffMons
-	add_special ContestReturnMons
+	add_special Special_BugContestJudging
+	add_special Special_CheckPartyFullAfterContest
+	add_special Special_ContestDropOffMons
+	add_special Special_ContestReturnMons
 	add_special Special_GiveParkBalls
 	add_special Special_CheckMagikarpLength
 	add_special Special_MagikarpHouseSign
-	add_special HealParty
-	add_special PokemonCenterPC
+	add_special HealParty ; this is both a special and a predef
+	add_special Special_PokemonCenterPC
 	add_special Special_KrissHousePC
 	add_special Special_DayCareMan
 	add_special Special_DayCareLady
 	add_special Special_DayCareManOutside
-	add_special MoveDeletion
+	add_special Special_MoveDeletion
 	add_special Special_BankOfMom
 	add_special Special_MagnetTrain
-	add_special SpecialNameRival
+	add_special Special_NameRival
 	add_special Special_SetDayOfWeek
 	add_special Special_TownMap
 	add_special Special_UnownPrinter
-	add_special MapRadio
+	add_special Special_MapRadio
 	add_special Special_UnownPuzzle
 	add_special Special_SlotMachine
 	add_special Special_CardFlip
 	add_special Special_DummyNonfunctionalGameCornerGame
 	add_special Special_ClearBGPalettesBufferScreen
-	add_special FadeOutPalettes
+	add_special Special_FadeOutPalettes
 	add_special Special_BattleTowerFade
 	add_special Special_FadeBlackQuickly
-	add_special FadeInPalettes
+	add_special Special_FadeInPalettes
 	add_special Special_FadeInQuickly
 	add_special Special_ReloadSpritesNoPalettes
-	add_special ClearBGPalettes
-	add_special UpdateTimePals
-	add_special ClearTileMap
-	add_special UpdateSprites
-	add_special ReplaceKrisSprite
+	add_special ClearBGPalettes ; bank 0
+	add_special Special_UpdateTimePals
+	add_special ClearTileMap ; bank 0
+	add_special UpdateSprites ; bank 0
+	add_special ReplaceKrisSprite ; bank 0
 	add_special Special_GameCornerPrizeMonCheckDex
-	add_special SpecialSeenMon
-	add_special WaitSFX
-	add_special PlayMapMusic
-	add_special RestartMapMusic
-	add_special HealMachineAnim
+	add_special UnusedSpecial_SeenMon
+	add_special WaitSFX ; bank 0
+	add_special PlayMapMusic ; bank 0
+	add_special RestartMapMusic ; bank 0
+	add_special Special_HealMachineAnim
 	add_special Special_SurfStartStep
 	add_special Special_FindGreaterThanThatLevel
 	add_special Special_FindAtLeastThatHappy
 	add_special Special_FindThatSpecies
 	add_special Special_FindThatSpeciesYourTrainerID
-	add_special Special_CheckUnusedTwoDayTimer ; unreferenced
+	add_special UnusedSpecial_CheckUnusedTwoDayTimer
 	add_special Special_DayCareMon1
 	add_special Special_DayCareMon2
 	add_special Special_SelectRandomBugContestContestants
 	add_special Special_ActivateFishingSwarm
-	add_special ToggleMaptileDecorations
-	add_special ToggleDecorationsVisibility
-	add_special SpecialGiveShuckle
-	add_special SpecialReturnShuckle
+	add_special Special_ToggleMaptileDecorations
+	add_special Special_ToggleDecorationsVisibility
+	add_special Special_GiveShuckle
+	add_special Special_ReturnShuckle
 	add_special Special_BillsGrandfather
-	add_special SpecialCheckPokerus
+	add_special Special_CheckPokerus
 	add_special Special_DisplayCoinCaseBalance
 	add_special Special_DisplayMoneyAndCoinBalance
-	add_special PlaceMoneyTopRight
+	add_special Special_PlaceMoneyTopRight
 	add_special Special_CheckForLuckyNumberWinners
 	add_special Special_CheckLuckyNumberShowFlag
 	add_special Special_ResetLuckyNumberShowFlag
 	add_special Special_PrintTodaysLuckyNumber
 	add_special Special_SelectApricornForKurt
-	add_special SpecialNameRater
+	add_special Special_NameRater
 	add_special Special_DisplayLinkRecord
-	add_special GetFirstPokemonHappiness
-	add_special CheckFirstMonIsEgg
-	add_special RandomUnseenWildMon
-	add_special RandomPhoneWildMon
-	add_special RandomPhoneMon
-	add_special MapCallbackSprites_LoadUsedSpritesGFX
-	add_special PlaySlowCry
-	add_special SpecialSnorlaxAwake
+	add_special Special_GetFirstPokemonHappiness
+	add_special Special_CheckFirstMonIsEgg
+	add_special Special_RandomUnseenWildMon
+	add_special Special_RandomPhoneWildMon
+	add_special Special_RandomPhoneMon
+	add_special Special_MapCallbackSprites_LoadUsedSpritesGFX
+	add_special Special_PlaySlowCry
+	add_special Special_SnorlaxAwake
 	add_special Special_YoungerHaircutBrother
 	add_special Special_OlderHaircutBrother
 	add_special Special_DaisyMassage
-	add_special PlayCurMonCry
-	add_special ProfOaksPCBoot
-	add_special SpecialGameboyCheck
-	add_special SpecialTrainerHouse
-	add_special PhotoStudio
-	add_special InitRoamMons
+	add_special Special_PlayCurMonCry
+	add_special Special_ProfOaksPCBoot
+	add_special Special_GameboyCheck
+	add_special Special_TrainerHouse
+	add_special Special_PhotoStudio
+	add_special Special_InitRoamMons
 	add_special Special_FadeOutMusic
 	add_special Diploma
 	add_special PrintDiploma
@@ -219,7 +219,7 @@ Special_GameCornerPrizeMonCheckDex: ; c230
 	ret
 ; c252
 
-SpecialSeenMon: ; c252
+UnusedSpecial_SeenMon: ; c252
 	ld a, [ScriptVar]
 	dec a
 	call SetSeenMon
@@ -265,7 +265,7 @@ FoundNone: ; c298
 	ret
 ; c29d
 
-SpecialNameRival: ; 0xc29d
+Special_NameRival: ; 0xc29d
 	ld b, $2 ; rival
 	ld de, RivalName
 	farcall _NamingScreen
@@ -279,7 +279,7 @@ SpecialNameRival: ; 0xc29d
 DefaultRivalName: ; 0xc2b2
 	db "SILVER@"
 
-SpecialNameRater: ; c2b9
+Special_NameRater: ; c2b9
 	farcall NameRater
 	ret
 ; c2c0
@@ -363,14 +363,14 @@ Special_GetMysteryGiftItem: ; c309
 	db "@"
 ; 0xc34a
 
-BugContestJudging: ; c34a
-	farcall _BugContestJudging
+Special_BugContestJudging: ; c34a
+	farcall _Special_BugContestJudging
 	ld a, b
 	ld [ScriptVar], a
 	ret
 ; c355
 
-MapRadio: ; c355
+Special_MapRadio: ; c355
 	ld a, [ScriptVar]
 	ld e, a
 	farcall PlayRadio
@@ -483,7 +483,7 @@ ScriptReturnCarry: ; c3e2
 	ret
 ; c3ef
 
-Special_CheckUnusedTwoDayTimer: ; c3ef
+UnusedSpecial_CheckUnusedTwoDayTimer: ; c3ef
 	farcall CheckUnusedTwoDayTimer
 	ld a, [wUnusedTwoDayTimer]
 	ld [ScriptVar], a
@@ -517,7 +517,7 @@ StoreSwarmMapIndices:: ; c403
 ; c419
 
 
-SpecialCheckPokerus: ; c419
+Special_CheckPokerus: ; c419
 ; Check if a monster in your party has Pokerus
 	farcall CheckPokerus
 	jp ScriptReturnCarry
@@ -536,7 +536,7 @@ Special_CheckLuckyNumberShowFlag: ; c434
 	jp ScriptReturnCarry
 ; c43d
 
-SpecialSnorlaxAwake: ; 0xc43d
+Special_SnorlaxAwake: ; 0xc43d
 ; Check if the Poké Flute channel is playing, and if the player is standing
 ; next to Snorlax.
 
@@ -587,13 +587,13 @@ SpecialSnorlaxAwake: ; 0xc43d
 	db -1
 
 
-PlayCurMonCry: ; c472
+Special_PlayCurMonCry: ; c472
 	ld a, [CurPartySpecies]
 	jp PlayCry
 ; c478
 
 
-SpecialGameboyCheck: ; c478
+Special_GameboyCheck: ; c478
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
@@ -639,7 +639,7 @@ PrintDiploma: ; c4ac
 	ret
 ; c4b9
 
-SpecialTrainerHouse: ; 0xc4b9
+Special_TrainerHouse: ; 0xc4b9
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)
 	call GetSRAMBank
 	ld a, [sMysteryGiftTrainerHouseFlag]

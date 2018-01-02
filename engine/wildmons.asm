@@ -508,7 +508,7 @@ LookUpWildmonsForMapDE: ; 2a288
 ; 2a2a0
 
 
-InitRoamMons: ; 2a2a0
+Special_InitRoamMons: ; 2a2a0
 ; initialize wRoamMon structs
 
 ; species
@@ -804,7 +804,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ; Finds a rare wild Pokemon in the route of the trainer calling, then checks if it's been Seen already.
 ; The trainer will then tell you about the Pokemon if you haven't seen it.
-RandomUnseenWildMon: ; 2a4ab
+Special_RandomUnseenWildMon: ; 2a4ab
 	farcall GetCallerLocation
 	ld d, b
 	ld e, c
@@ -877,7 +877,7 @@ RandomUnseenWildMon: ; 2a4ab
 	db "@"
 ; 0x2a51f
 
-RandomPhoneWildMon: ; 2a51f
+Special_RandomPhoneWildMon: ; 2a51f
 	farcall GetCallerLocation
 	ld d, b
 	ld e, c
@@ -917,7 +917,7 @@ RandomPhoneWildMon: ; 2a51f
 	jp CopyBytes
 ; 2a567
 
-RandomPhoneMon: ; 2a567
+Special_RandomPhoneMon: ; 2a567
 ; Get a random monster owned by the trainer who's calling.
 	farcall GetCallerLocation
 	ld hl, TrainerGroups

@@ -27,7 +27,7 @@ PlaceMenuItemQuantity: ; 0x24ac3
 .done
 	ret
 
-PlaceMoneyTopRight: ; 24ae8
+Special_PlaceMoneyTopRight: ; 24ae8
 	ld hl, MenuDataHeader_0x24b15
 	call CopyMenuDataHeader
 	jr PlaceMoneyDataHeader

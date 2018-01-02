@@ -208,7 +208,7 @@ CheckMapForSomethingToCut: ; c7ce
 
 Script_CutFromMenu: ; c7fe
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 
 Script_Cut: ; 0xc802
 	callasm GetPartyNick
@@ -318,7 +318,7 @@ UseFlash: ; c8e0
 
 Script_UseFlash: ; 0xc8e6
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	writetext UnknownText_0xc8f3
 	callasm BlindingFlash
 	closetext
@@ -407,7 +407,7 @@ SurfFunction: ; c909
 	ret
 
 SurfFromMenuScript: ; c983
-	special UpdateTimePals
+	special Special_UpdateTimePals
 
 UsedSurfScript: ; c986
 	writetext UsedSurfText ; "used SURF!"
@@ -620,10 +620,10 @@ FlyFunction: ; ca3b
 .FlyScript: ; 0xcaa3
 	reloadmappart
 	callasm HideSprites
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	callasm FlyFromAnim
 	farscall Script_AbortBugContest
-	special WarpToSpawnPoint
+	special Special_WarpToSpawnPoint
 	callasm DelayLoadingNewSprites
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_FLY
@@ -680,7 +680,7 @@ CheckMapCanWaterfall: ; cb07
 
 Script_WaterfallFromMenu: ; 0xcb1c
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 
 Script_UsedWaterfall: ; 0xcb20
 	callasm GetPartyNick
@@ -856,13 +856,13 @@ dig_incave
 
 .UsedEscapeRopeScript: ; 0xcc2b
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	writetext .Text_UsedEscapeRope
 	jump .UsedDigOrEscapeRopeScript
 
 .UsedDigScript: ; 0xcc35
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	writetext .Text_UsedDig
 
 .UsedDigOrEscapeRopeScript: ; 0xcc3c
@@ -871,7 +871,7 @@ dig_incave
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .DigOut
 	farscall Script_AbortBugContest
-	special WarpToSpawnPoint
+	special Special_WarpToSpawnPoint
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_DOOR
 	playsound SFX_WARP_FROM
@@ -950,7 +950,7 @@ TeleportFunction: ; cc61
 
 .TeleportScript: ; 0xccbb
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	writetext .Text_ReturnToLastMonCenter
 	pause 60
 	reloadmappart
@@ -958,7 +958,7 @@ TeleportFunction: ; cc61
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .TeleportFrom
 	farscall Script_AbortBugContest
-	special WarpToSpawnPoint
+	special Special_WarpToSpawnPoint
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_TELEPORT
 	playsound SFX_WARP_FROM
@@ -1021,7 +1021,7 @@ SetStrengthFlag: ; cd12
 
 Script_StrengthFromMenu: ; 0xcd29
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 
 Script_UsedStrength: ; 0xcd2d
 	callasm SetStrengthFlag
@@ -1183,7 +1183,7 @@ TryWhirlpoolMenu: ; cdde
 
 Script_WhirlpoolFromMenu: ; 0xce0b
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 
 Script_UsedWhirlpool: ; 0xce0f
 	callasm GetPartyNick
@@ -1284,7 +1284,7 @@ UnknownText_0xcea2: ; 0xcea2
 
 HeadbuttFromMenuScript: ; 0xcea7
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 
 HeadbuttScript: ; 0xceab
 	callasm GetPartyNick
@@ -1382,7 +1382,7 @@ GetFacingObject: ; cf0d
 
 RockSmashFromMenuScript: ; 0xcf2e
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 
 RockSmashScript: ; cf32
 	callasm GetPartyNick
@@ -1611,7 +1611,7 @@ Fishing_CheckFacingUp: ; d06c
 Script_FishCastRod: ; 0xd07c
 	reloadmappart
 	loadvar hBGMapMode, $0
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	loademote EMOTE_ROD
 	callasm LoadFishingGFX
 	loademote EMOTE_SHOCK
@@ -1735,7 +1735,7 @@ BikeFunction: ; d0b3
 
 Script_GetOnBike: ; 0xd13e
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	writecode VAR_MOVEMENT, PLAYER_BIKE
 	writetext GotOnTheBikeText
 	waitbutton
@@ -1755,7 +1755,7 @@ Script_GetOnBike_Register: ; 0xd14e
 
 Script_GetOffBike: ; 0xd158
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	writetext GotOffTheBikeText
 	waitbutton

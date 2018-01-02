@@ -43,7 +43,7 @@ CheckShininess:
 	and a
 	ret
 
-Unreferenced_CheckContestMon:
+UnusedPredef_CheckContestMon:
 ; Check a mon's DVs at hl in the bug catching contest.
 ; Return carry if its DVs are good enough to place in the contest.
 

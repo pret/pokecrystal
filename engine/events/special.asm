@@ -1,4 +1,4 @@
-SpecialGiveShuckle: ; 7305
+Special_GiveShuckle: ; 7305
 
 ; Adding to the party.
 	xor a
@@ -70,7 +70,7 @@ SpecialShuckleOT:
 SpecialShuckleNick:
 	db "SHUCKIE@"
 
-SpecialReturnShuckle: ; 737e
+Special_ReturnShuckle: ; 737e
 	farcall SelectMonFromParty
 	jr c, .refused
 

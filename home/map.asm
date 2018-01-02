@@ -1983,7 +1983,7 @@ FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call LoadStandardMenuDataHeader
-	farcall FadeOutPalettes
+	farcall Special_FadeOutPalettes
 	call ClearSprites
 	call DisableSpriteUpdates
 	ret
@@ -2009,7 +2009,7 @@ FinishExitMenu:: ; 2b5c
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
 	call WaitBGMap2
-	farcall FadeInPalettes
+	farcall Special_FadeInPalettes
 	call EnableSpriteUpdates
 	ret
 ; 2b74
@@ -2031,7 +2031,7 @@ ReturnToMapWithSpeechTextbox:: ; 0x2b74
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
-	call UpdateTimePals
+	call Special_UpdateTimePals
 	call DelayFrame
 	ld a, $1
 	ld [hMapAnims], a

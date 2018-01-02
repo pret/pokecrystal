@@ -1197,7 +1197,7 @@ DecorationDesc_GiantOrnament: ; 26fdd
 	db "@"
 ; 0x26feb
 
-ToggleMaptileDecorations: ; 26feb
+Special_ToggleMaptileDecorations: ; 26feb
 	lb de, 0, 4
 	ld a, [Bed]
 	call SetDecorationTile
@@ -1251,7 +1251,7 @@ SetDecorationTile: ; 27037
 	ret
 ; 27043
 
-ToggleDecorationsVisibility: ; 27043
+Special_ToggleDecorationsVisibility: ; 27043
 	ld de, EVENT_KRISS_HOUSE_2F_CONSOLE
 	ld hl, VariableSprites + SPRITE_CONSOLE - SPRITE_VARS
 	ld a, [Console]

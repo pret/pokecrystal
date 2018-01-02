@@ -166,11 +166,11 @@ LanceHealsCommon:
 	writetext LanceHealsText1
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	special TrainerRankings_Healings
 	playsound SFX_FULL_HEAL
 	special HealParty
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	opentext
 	writetext LanceHealsText2
 	waitbutton

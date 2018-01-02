@@ -1,4 +1,4 @@
-_BugContestJudging: ; 1369d
+_Special_BugContestJudging: ; 1369d
 	call ContestScore
 	farcall TrainerRankings_BugContestScore
 	call BugContest_JudgeContestants

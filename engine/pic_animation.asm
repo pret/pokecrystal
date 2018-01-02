@@ -1110,7 +1110,7 @@ PokeAnim_GetSpeciesOrUnown: ; d065c
 	ret
 ; d0669
 
-UnreferencedPredef48: ; d0669 Predef 48
+UnusedPredef48: ; d0669 Predef 48
 	ld a, $1
 	ld [wBoxAlignment], a
 

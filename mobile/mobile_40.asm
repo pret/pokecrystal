@@ -318,7 +318,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	farcall FadeOutPalettes
+	farcall Special_FadeOutPalettes
 	farcall Function106464
 	call HideSprites
 	call DelayFrame

@@ -1,7 +1,7 @@
 ; More overworld event handling.
 
 
-WarpToSpawnPoint:: ; 97c28
+Special_WarpToSpawnPoint:: ; 97c28
 	ld hl, wStatusFlags2
 	res 1, [hl] ; safari zone?
 	res 2, [hl] ; bug contest

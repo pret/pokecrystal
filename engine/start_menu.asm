@@ -25,12 +25,12 @@ StartMenu:: ; 125cd
 	call _OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	farcall LoadFonts_NoOAMUpdate
 	call .DrawBugContestStatus
-	call UpdateTimePals
+	call Special_UpdateTimePals
 	jr .Select
 
 .Reopen:
 	call UpdateSprites
-	call UpdateTimePals
+	call Special_UpdateTimePals
 	call .SetUpMenuItems
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
@@ -78,7 +78,7 @@ StartMenu:: ; 125cd
 	call ExitMenu
 .ReturnEnd2:
 	call CloseText
-	call UpdateTimePals
+	call Special_UpdateTimePals
 	ret
 
 .GetInput:

@@ -7,7 +7,7 @@ _Squirtbottle: ; 50730
 
 .SquirtbottleScript:
 	reloadmappart
-	special UpdateTimePals
+	special Special_UpdateTimePals
 	callasm .CheckCanUseSquirtbottle
 	iffalse .NothingHappenedScript
 	farjump WateredWeirdTreeScript

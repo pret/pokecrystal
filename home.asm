@@ -793,7 +793,7 @@ ScrollingMenu:: ; 350c
 .UpdatePalettes: ; 3524
 	ld hl, VramState
 	bit 0, [hl]
-	jp nz, UpdateTimePals
+	jp nz, Special_UpdateTimePals
 	jp SetPalettes
 ; 352f
 

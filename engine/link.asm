@@ -2143,7 +2143,7 @@ Special_EnterTimeCapsule: ; 29c7b
 	ret
 ; 29c92
 
-WaitForOtherPlayerToExit: ; 29c92
+Special_WaitForOtherPlayerToExit: ; 29c92
 	ld c, 3
 	call DelayFrames
 	ld a, -1

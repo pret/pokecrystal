@@ -91,8 +91,8 @@ MapSetupCommands: ; 15440
 	dba LoadMapAttributes ; 1a
 	dba LoadMapAttributes_SkipPeople ; 1b
 	dba ClearBGPalettes ; 1c
-	dba FadeOutPalettes ; 1d
-	dba FadeInPalettes ; 1e
+	dba Special_FadeOutPalettes ; 1d
+	dba Special_FadeInPalettes ; 1e
 	dba GetCoordOfUpperLeftCorner ; 1f
 	dba RestoreFacingAfterWarp ; 20
 	dba SpawnInFacingDown ; 21
@@ -233,7 +233,7 @@ FadeOldMapMusic: ; 15567
 ; 1556d
 
 RetainOldPalettes: ; 1556d
-	farcall _UpdateTimePals
+	farcall _Special_UpdateTimePals
 	ret
 
 RotatePalettesRightMapAndMusic: ; 15574

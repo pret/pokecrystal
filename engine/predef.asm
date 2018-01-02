@@ -64,7 +64,7 @@ PredefPointers:: ; 856b
 	add_predef CopyPkmnToTempMon
 	add_predef ListMoves ; $20
 	add_predef PlaceNonFaintStatus
-	add_predef UnreferencedPredef22
+	add_predef UnusedPredef22
 	add_predef ListMovePP
 	add_predef GetGender
 	add_predef StatsScreenInit
@@ -81,7 +81,7 @@ PredefPointers:: ; 856b
 	add_predef InitSGBBorder ; $30
 	add_predef LoadSGBLayout
 	add_predef Pokedex_GetArea
-	add_predef Unreferenced_CheckContestMon
+	add_predef UnusedPredef_CheckContestMon
 	add_predef DoBattleTransition
 	add_predef DummyPredef35
 	add_predef DummyPredef36
@@ -102,7 +102,7 @@ PredefPointers:: ; 856b
 	add_predef PlaceStatusString
 	add_predef LoadMonAnimation
 	add_predef AnimateFrontpic
-	add_predef UnreferencedPredef48 ; $48
+	add_predef UnusedPredef48 ; $48
 	add_predef HOF_AnimateFrontpic
 	dbw $ff, InexplicablyEmptyFunction ; ???
 ; 864c

@@ -125,7 +125,7 @@ LanceScript_0x180e7b:
 	pause 30
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRunsBackAndForth
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, $4, $d
 	end

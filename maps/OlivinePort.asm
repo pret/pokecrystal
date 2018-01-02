@@ -46,7 +46,7 @@ SailorScript_0x748c0:
 	waitsfx
 	applymovement PLAYER, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	waitsfx
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7490a

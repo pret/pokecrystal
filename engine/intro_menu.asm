@@ -1048,7 +1048,7 @@ StartTitleScreen: ; 6219
 	ld [hWY], a
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call UpdateTimePals
+	call Special_UpdateTimePals
 	ld a, [wIntroSceneFrameCounter]
 	cp $5
 	jr c, .ok

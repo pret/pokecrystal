@@ -33,7 +33,7 @@ JanineImpersonatorScript_0x196462:
 	applymovement FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR, MovementData_0x196486
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_JANINE
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_MapCallbackSprites_LoadUsedSpritesGFX
 	opentext
 	writetext UnknownText_0x19654e
 	waitbutton
@@ -41,7 +41,7 @@ JanineImpersonatorScript_0x196462:
 	applymovement FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR, MovementData_0x196486
 	faceplayer
 	variablesprite SPRITE_JANINE_IMPERSONATOR, SPRITE_LASS
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_MapCallbackSprites_LoadUsedSpritesGFX
 	end
 
 MovementData_0x196486:
