@@ -1713,22 +1713,22 @@ Function1057d7: ; 1057d7 (41:57d7)
 ; 1058f0 (41:58f0)
 
 .OAM_data: ; 1058f0
-	dsprite  2, 1,  6, 4, $00, $00
-	dsprite  2, 1,  7, 4, $01, $00
-	dsprite  2, 1,  8, 4, $02, $00
-	dsprite  2, 1,  9, 4, $03, $00
-	dsprite  3, 1,  6, 4, $04, $00
-	dsprite  3, 1,  7, 4, $05, $00
-	dsprite  3, 1,  8, 4, $06, $00
-	dsprite  3, 1,  9, 4, $07, $00
-	dsprite  0, 1, 11, 4, $00, $00
-	dsprite  0, 1, 12, 4, $01, $00
-	dsprite  0, 1, 13, 4, $02, $00
-	dsprite  0, 1, 14, 4, $03, $00
-	dsprite  1, 1, 11, 4, $04, $00
-	dsprite  1, 1, 12, 4, $05, $00
-	dsprite  1, 1, 13, 4, $06, $00
-	dsprite  1, 1, 14, 4, $07, $00
+	dsprite  2, 1,  6, 4, $00, 0
+	dsprite  2, 1,  7, 4, $01, 0
+	dsprite  2, 1,  8, 4, $02, 0
+	dsprite  2, 1,  9, 4, $03, 0
+	dsprite  3, 1,  6, 4, $04, 0
+	dsprite  3, 1,  7, 4, $05, 0
+	dsprite  3, 1,  8, 4, $06, 0
+	dsprite  3, 1,  9, 4, $07, 0
+	dsprite  0, 1, 11, 4, $00, 0
+	dsprite  0, 1, 12, 4, $01, 0
+	dsprite  0, 1, 13, 4, $02, 0
+	dsprite  0, 1, 14, 4, $03, 0
+	dsprite  1, 1, 11, 4, $04, 0
+	dsprite  1, 1, 12, 4, $05, 0
+	dsprite  1, 1, 13, 4, $06, 0
+	dsprite  1, 1, 14, 4, $07, 0
 
 ; japanese mystery gift gfx
 MysteryGiftJP_GFX: ; 105930

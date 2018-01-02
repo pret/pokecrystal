@@ -573,27 +573,27 @@ RedrawUnownPuzzlePieces: ; e14d9
 ; e150f
 
 .OAM_HoldingPiece: ; e150f
-	dsprite -1, -4, -1, -4, $00, $00
-	dsprite -1, -4,  0, -4, $01, $00
-	dsprite -1, -4,  0,  4, $02, $00
-	dsprite  0, -4, -1, -4, $0c, $00
-	dsprite  0, -4,  0, -4, $0d, $00
-	dsprite  0, -4,  0,  4, $0e, $00
-	dsprite  0,  4, -1, -4, $18, $00
-	dsprite  0,  4,  0, -4, $19, $00
-	dsprite  0,  4,  0,  4, $1a, $00
+	dsprite -1, -4, -1, -4, $00, 0
+	dsprite -1, -4,  0, -4, $01, 0
+	dsprite -1, -4,  0,  4, $02, 0
+	dsprite  0, -4, -1, -4, $0c, 0
+	dsprite  0, -4,  0, -4, $0d, 0
+	dsprite  0, -4,  0,  4, $0e, 0
+	dsprite  0,  4, -1, -4, $18, 0
+	dsprite  0,  4,  0, -4, $19, 0
+	dsprite  0,  4,  0,  4, $1a, 0
 	db -1
 
 .OAM_NotHoldingPiece: ; e1534
-	dsprite -1, -4, -1, -4, $00, $00
-	dsprite -1, -4,  0, -4, $01, $00
-	dsprite -1, -4,  0,  4, $00, $20 ; xflip
-	dsprite  0, -4, -1, -4, $02, $00
-	dsprite  0, -4,  0, -4, $03, $00
-	dsprite  0, -4,  0,  4, $02, $20 ; xflip
-	dsprite  0,  4, -1, -4, $00, $40 ; yflip
-	dsprite  0,  4,  0, -4, $01, $40 ; yflip
-	dsprite  0,  4,  0,  4, $00, $60 ; xflip, yflip
+	dsprite -1, -4, -1, -4, $00, 0
+	dsprite -1, -4,  0, -4, $01, 0
+	dsprite -1, -4,  0,  4, $00, 0 | X_FLIP
+	dsprite  0, -4, -1, -4, $02, 0
+	dsprite  0, -4,  0, -4, $03, 0
+	dsprite  0, -4,  0,  4, $02, 0 | X_FLIP
+	dsprite  0,  4, -1, -4, $00, 0 | Y_FLIP
+	dsprite  0,  4,  0, -4, $01, 0 | Y_FLIP
+	dsprite  0,  4,  0,  4, $00, 0 | X_FLIP | Y_FLIP
 	db -1
 
 UnownPuzzleCoordData: ; e1559

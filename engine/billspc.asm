@@ -1523,30 +1523,30 @@ endr
 ; e2e2b (38:6e2b)
 
 .OAM: ; e2e2b
-	dsprite 4, 6, 10, 0, $00, $00
-	dsprite 4, 6, 11, 0, $00, $00
-	dsprite 4, 6, 12, 0, $00, $00
-	dsprite 4, 6, 13, 0, $00, $00
-	dsprite 4, 6, 14, 0, $00, $00
-	dsprite 4, 6, 15, 0, $00, $00
-	dsprite 4, 6, 16, 0, $00, $00
-	dsprite 4, 6, 17, 0, $00, $00
-	dsprite 4, 6, 18, 0, $00, $00
-	dsprite 4, 6, 18, 7, $00, $00
-	dsprite 7, 1, 10, 0, $00, $40
-	dsprite 7, 1, 11, 0, $00, $40
-	dsprite 7, 1, 12, 0, $00, $40
-	dsprite 7, 1, 13, 0, $00, $40
-	dsprite 7, 1, 14, 0, $00, $40
-	dsprite 7, 1, 15, 0, $00, $40
-	dsprite 7, 1, 16, 0, $00, $40
-	dsprite 7, 1, 17, 0, $00, $40
-	dsprite 7, 1, 18, 0, $00, $40
-	dsprite 7, 1, 18, 7, $00, $40
-	dsprite 5, 6,  9, 6, $01, $00
-	dsprite 6, 1,  9, 6, $01, $40
-	dsprite 5, 6, 19, 1, $01, $20
-	dsprite 6, 1, 19, 1, $01, $60
+	dsprite 4, 6, 10, 0, $00, 0
+	dsprite 4, 6, 11, 0, $00, 0
+	dsprite 4, 6, 12, 0, $00, 0
+	dsprite 4, 6, 13, 0, $00, 0
+	dsprite 4, 6, 14, 0, $00, 0
+	dsprite 4, 6, 15, 0, $00, 0
+	dsprite 4, 6, 16, 0, $00, 0
+	dsprite 4, 6, 17, 0, $00, 0
+	dsprite 4, 6, 18, 0, $00, 0
+	dsprite 4, 6, 18, 7, $00, 0
+	dsprite 7, 1, 10, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 11, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 12, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 13, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 14, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 15, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 16, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 17, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 18, 0, $00, 0 | Y_FLIP
+	dsprite 7, 1, 18, 7, $00, 0 | Y_FLIP
+	dsprite 5, 6,  9, 6, $01, 0
+	dsprite 6, 1,  9, 6, $01, 0 | Y_FLIP
+	dsprite 5, 6, 19, 1, $01, 0 | X_FLIP
+	dsprite 6, 1, 19, 1, $01, 0 | X_FLIP | Y_FLIP
 	db -1
 ; e2e8c
 
@@ -1573,16 +1573,16 @@ endr
 ; e2eac
 
 .OAM: ; e2eac
-	dsprite 4, 7, 10, 0, $06, $00
-	dsprite 5, 3, 11, 0, $00, $40
-	dsprite 5, 3, 12, 0, $00, $40
-	dsprite 5, 3, 13, 0, $00, $40
-	dsprite 5, 3, 14, 0, $00, $40
-	dsprite 5, 3, 15, 0, $00, $40
-	dsprite 5, 3, 16, 0, $00, $40
-	dsprite 5, 3, 17, 0, $00, $40
-	dsprite 5, 3, 18, 0, $00, $40
-	dsprite 4, 7, 19, 0, $07, $00
+	dsprite 4, 7, 10, 0, $06, 0
+	dsprite 5, 3, 11, 0, $00, 0 | Y_FLIP
+	dsprite 5, 3, 12, 0, $00, 0 | Y_FLIP
+	dsprite 5, 3, 13, 0, $00, 0 | Y_FLIP
+	dsprite 5, 3, 14, 0, $00, 0 | Y_FLIP
+	dsprite 5, 3, 15, 0, $00, 0 | Y_FLIP
+	dsprite 5, 3, 16, 0, $00, 0 | Y_FLIP
+	dsprite 5, 3, 17, 0, $00, 0 | Y_FLIP
+	dsprite 5, 3, 18, 0, $00, 0 | Y_FLIP
+	dsprite 4, 7, 19, 0, $07, 0
 	db -1
 ; e2ed5
 

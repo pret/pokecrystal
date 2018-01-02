@@ -2026,59 +2026,59 @@ Pokedex_PutOldModeCursorOAM: ; 41157 (10:5157)
 	ret
 
 .CursorOAM: ; 41167
-	db $18, $47, $30, $07
-	db $10, $47, $31, $07
-	db $10, $4f, $32, $07
-	db $10, $57, $32, $07
-	db $10, $5f, $32, $07
-	db $10, $67, $33, $07
-	db $10, $7e, $33, $27
-	db $10, $86, $32, $27
-	db $10, $8e, $32, $27
-	db $10, $96, $32, $27
-	db $10, $9e, $31, $27
-	db $18, $9e, $30, $27
-	db $20, $47, $30, $47
-	db $28, $47, $31, $47
-	db $28, $4f, $32, $47
-	db $28, $57, $32, $47
-	db $28, $5f, $32, $47
-	db $28, $67, $33, $47
-	db $28, $7e, $33, $67
-	db $28, $86, $32, $67
-	db $28, $8e, $32, $67
-	db $28, $96, $32, $67
-	db $28, $9e, $31, $67
-	db $20, $9e, $30, $67
+	db $18, $47, $30, 7
+	db $10, $47, $31, 7
+	db $10, $4f, $32, 7
+	db $10, $57, $32, 7
+	db $10, $5f, $32, 7
+	db $10, $67, $33, 7
+	db $10, $7e, $33, 7 | X_FLIP
+	db $10, $86, $32, 7 | X_FLIP
+	db $10, $8e, $32, 7 | X_FLIP
+	db $10, $96, $32, 7 | X_FLIP
+	db $10, $9e, $31, 7 | X_FLIP
+	db $18, $9e, $30, 7 | X_FLIP
+	db $20, $47, $30, 7 | Y_FLIP
+	db $28, $47, $31, 7 | Y_FLIP
+	db $28, $4f, $32, 7 | Y_FLIP
+	db $28, $57, $32, 7 | Y_FLIP
+	db $28, $5f, $32, 7 | Y_FLIP
+	db $28, $67, $33, 7 | Y_FLIP
+	db $28, $7e, $33, 7 | X_FLIP | Y_FLIP
+	db $28, $86, $32, 7 | X_FLIP | Y_FLIP
+	db $28, $8e, $32, 7 | X_FLIP | Y_FLIP
+	db $28, $96, $32, 7 | X_FLIP | Y_FLIP
+	db $28, $9e, $31, 7 | X_FLIP | Y_FLIP
+	db $20, $9e, $30, 7 | X_FLIP | Y_FLIP
 	db $ff
 
 .CursorAtTopOAM: ; 411c8
 ; OAM data for when the cursor is at the top of the list. The tiles at the top
 ; are cut off so they don't show up outside the list area.
-	db $18, $47, $30, $07
-	db $10, $47, $34, $07
-	db $10, $4f, $35, $07
-	db $10, $57, $35, $07
-	db $10, $5f, $35, $07
-	db $10, $67, $36, $07
-	db $10, $7e, $36, $27
-	db $10, $86, $35, $27
-	db $10, $8e, $35, $27
-	db $10, $96, $35, $27
-	db $10, $9e, $34, $27
-	db $18, $9e, $30, $27
-	db $20, $47, $30, $47
-	db $28, $47, $31, $47
-	db $28, $4f, $32, $47
-	db $28, $57, $32, $47
-	db $28, $5f, $32, $47
-	db $28, $67, $33, $47
-	db $28, $7e, $33, $67
-	db $28, $86, $32, $67
-	db $28, $8e, $32, $67
-	db $28, $96, $32, $67
-	db $28, $9e, $31, $67
-	db $20, $9e, $30, $67
+	db $18, $47, $30, 7
+	db $10, $47, $34, 7
+	db $10, $4f, $35, 7
+	db $10, $57, $35, 7
+	db $10, $5f, $35, 7
+	db $10, $67, $36, 7
+	db $10, $7e, $36, 7 | X_FLIP
+	db $10, $86, $35, 7 | X_FLIP
+	db $10, $8e, $35, 7 | X_FLIP
+	db $10, $96, $35, 7 | X_FLIP
+	db $10, $9e, $34, 7 | X_FLIP
+	db $18, $9e, $30, 7 | X_FLIP
+	db $20, $47, $30, 7 | Y_FLIP
+	db $28, $47, $31, 7 | Y_FLIP
+	db $28, $4f, $32, 7 | Y_FLIP
+	db $28, $57, $32, 7 | Y_FLIP
+	db $28, $5f, $32, 7 | Y_FLIP
+	db $28, $67, $33, 7 | Y_FLIP
+	db $28, $7e, $33, 7 | X_FLIP | Y_FLIP
+	db $28, $86, $32, 7 | X_FLIP | Y_FLIP
+	db $28, $8e, $32, 7 | X_FLIP | Y_FLIP
+	db $28, $96, $32, 7 | X_FLIP | Y_FLIP
+	db $28, $9e, $31, 7 | X_FLIP | Y_FLIP
+	db $20, $9e, $30, 7 | X_FLIP | Y_FLIP
 	db $ff
 
 Pokedex_PutNewModeABCModeCursorOAM: ; 41229 (10:5229)
@@ -2087,26 +2087,26 @@ Pokedex_PutNewModeABCModeCursorOAM: ; 41229 (10:5229)
 	ret
 
 .CursorOAM: ; 41230
-	db $1b, $47, $30, $07
-	db $13, $47, $31, $07
-	db $13, $4f, $32, $07
-	db $13, $57, $32, $07
-	db $13, $5f, $33, $07
-	db $13, $80, $33, $27
-	db $13, $88, $32, $27
-	db $13, $90, $32, $27
-	db $13, $98, $31, $27
-	db $1b, $98, $30, $27
-	db $23, $47, $30, $47
-	db $2b, $47, $31, $47
-	db $2b, $4f, $32, $47
-	db $2b, $57, $32, $47
-	db $2b, $5f, $33, $47
-	db $2b, $80, $33, $67
-	db $2b, $88, $32, $67
-	db $2b, $90, $32, $67
-	db $2b, $98, $31, $67
-	db $23, $98, $30, $67
+	db $1b, $47, $30, 7
+	db $13, $47, $31, 7
+	db $13, $4f, $32, 7
+	db $13, $57, $32, 7
+	db $13, $5f, $33, 7
+	db $13, $80, $33, 7 | X_FLIP
+	db $13, $88, $32, 7 | X_FLIP
+	db $13, $90, $32, 7 | X_FLIP
+	db $13, $98, $31, 7 | X_FLIP
+	db $1b, $98, $30, 7 | X_FLIP
+	db $23, $47, $30, 7 | Y_FLIP
+	db $2b, $47, $31, 7 | Y_FLIP
+	db $2b, $4f, $32, 7 | Y_FLIP
+	db $2b, $57, $32, 7 | Y_FLIP
+	db $2b, $5f, $33, 7 | Y_FLIP
+	db $2b, $80, $33, 7 | X_FLIP | Y_FLIP
+	db $2b, $88, $32, 7 | X_FLIP | Y_FLIP
+	db $2b, $90, $32, 7 | X_FLIP | Y_FLIP
+	db $2b, $98, $31, 7 | X_FLIP | Y_FLIP
+	db $23, $98, $30, 7 | X_FLIP | Y_FLIP
 	db $ff
 
 Pokedex_UpdateSearchResultsCursorOAM: ; 41281 (10:5281)
@@ -2118,30 +2118,30 @@ Pokedex_UpdateSearchResultsCursorOAM: ; 41281 (10:5281)
 	ret
 
 .CursorOAM: ; 41290
-	db $1b, $47, $30, $07
-	db $13, $47, $31, $07
-	db $13, $4f, $32, $07
-	db $13, $57, $32, $07
-	db $13, $5f, $32, $07
-	db $13, $67, $33, $07
-	db $13, $7e, $33, $27
-	db $13, $86, $32, $27
-	db $13, $8e, $32, $27
-	db $13, $96, $32, $27
-	db $13, $9e, $31, $27
-	db $1b, $9e, $30, $27
-	db $23, $47, $30, $47
-	db $2b, $47, $31, $47
-	db $2b, $4f, $32, $47
-	db $2b, $57, $32, $47
-	db $2b, $5f, $32, $47
-	db $2b, $67, $33, $47
-	db $2b, $7e, $33, $67
-	db $2b, $86, $32, $67
-	db $2b, $8e, $32, $67
-	db $2b, $96, $32, $67
-	db $2b, $9e, $31, $67
-	db $23, $9e, $30, $67
+	db $1b, $47, $30, 7
+	db $13, $47, $31, 7
+	db $13, $4f, $32, 7
+	db $13, $57, $32, 7
+	db $13, $5f, $32, 7
+	db $13, $67, $33, 7
+	db $13, $7e, $33, 7 | X_FLIP
+	db $13, $86, $32, 7 | X_FLIP
+	db $13, $8e, $32, 7 | X_FLIP
+	db $13, $96, $32, 7 | X_FLIP
+	db $13, $9e, $31, 7 | X_FLIP
+	db $1b, $9e, $30, 7 | X_FLIP
+	db $23, $47, $30, 7 | Y_FLIP
+	db $2b, $47, $31, 7 | Y_FLIP
+	db $2b, $4f, $32, 7 | Y_FLIP
+	db $2b, $57, $32, 7 | Y_FLIP
+	db $2b, $5f, $32, 7 | Y_FLIP
+	db $2b, $67, $33, 7 | Y_FLIP
+	db $2b, $7e, $33, 7 | X_FLIP | Y_FLIP
+	db $2b, $86, $32, 7 | X_FLIP | Y_FLIP
+	db $2b, $8e, $32, 7 | X_FLIP | Y_FLIP
+	db $2b, $96, $32, 7 | X_FLIP | Y_FLIP
+	db $2b, $9e, $31, 7 | X_FLIP | Y_FLIP
+	db $23, $9e, $30, 7 | X_FLIP | Y_FLIP
 	db $ff
 
 Pokedex_LoadCursorOAM: ; 412f1 (10:52f1)

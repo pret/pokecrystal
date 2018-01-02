@@ -40,7 +40,7 @@ AnimateDexSearchSlowpoke: ; 441cf
 
 DoDexSearchSlowpokeFrame: ; 44207
 	ld a, [wDexSearchSlowpokeFrame]
-	ld hl, .SpriteData
+	ld hl, .SlowpokeSpriteData
 	ld de, Sprites
 .loop
 	ld a, [hli]
@@ -64,16 +64,16 @@ DoDexSearchSlowpokeFrame: ; 44207
 	inc de
 	jr .loop
 
-.SpriteData: ; 44228
-	dsprite 11, 0,  9, 0, $00, $00
-	dsprite 11, 0, 10, 0, $01, $00
-	dsprite 11, 0, 11, 0, $02, $00
-	dsprite 12, 0,  9, 0, $10, $00
-	dsprite 12, 0, 10, 0, $11, $00
-	dsprite 12, 0, 11, 0, $12, $00
-	dsprite 13, 0,  9, 0, $20, $00
-	dsprite 13, 0, 10, 0, $21, $00
-	dsprite 13, 0, 11, 0, $22, $00
+.SlowpokeSpriteData: ; 44228
+	dsprite 11, 0,  9, 0, $00, 0
+	dsprite 11, 0, 10, 0, $01, 0
+	dsprite 11, 0, 11, 0, $02, 0
+	dsprite 12, 0,  9, 0, $10, 0
+	dsprite 12, 0, 10, 0, $11, 0
+	dsprite 12, 0, 11, 0, $12, 0
+	dsprite 13, 0,  9, 0, $20, 0
+	dsprite 13, 0, 10, 0, $21, 0
+	dsprite 13, 0, 11, 0, $22, 0
 	db -1
 
 DisplayDexEntry: ; 4424d
