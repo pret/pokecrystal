@@ -216,7 +216,7 @@ Function15715: ; 15715
 	ld hl, KrissPCMenuData
 	call LoadMenuDataHeader
 .asm_15722
-	call Special_UpdateTimePals
+	call UpdateTimePals
 	call DoNthMenu
 	jr c, .asm_15731
 	call MenuJumptable
@@ -354,7 +354,7 @@ KrisWithdrawItemMenu: ; 0x157d1
 	ld [CurItemQuantity], a
 	ld hl, PCItems
 	call TossItem
-	predef PartyMonItemName
+	predef Predef_PartyMonItemName
 	ld hl, .WithdrewText
 	call MenuTextBox
 	xor a
@@ -518,7 +518,7 @@ KrisDepositItemMenu: ; 0x1588b
 	ld [CurItemQuantity], a
 	ld hl, NumItems
 	call TossItem
-	predef PartyMonItemName
+	predef Predef_PartyMonItemName
 	ld hl, .DepositText
 	call PrintText
 	ret

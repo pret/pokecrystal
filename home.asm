@@ -44,6 +44,7 @@ INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
 
 InexplicablyEmptyFunction:: ; 2d43
+; unused
 ; Inexplicably empty.
 ; Seen in PredefPointers.
 rept 16
@@ -710,7 +711,7 @@ GetSGBLayout:: ; 3340
 	ret z
 
 .sgb
-	predef_jump LoadSGBLayout
+	predef_jump Predef_LoadSGBLayout
 ; 334e
 
 SetHPPal:: ; 334e
@@ -793,7 +794,7 @@ ScrollingMenu:: ; 350c
 .UpdatePalettes: ; 3524
 	ld hl, VramState
 	bit 0, [hl]
-	jp nz, Special_UpdateTimePals
+	jp nz, UpdateTimePals
 	jp SetPalettes
 ; 352f
 
@@ -1073,12 +1074,12 @@ _PrepMonFrontpic:: ; 378b
 
 	push hl
 	ld de, vTiles2
-	predef GetMonFrontpic
+	predef Predef_GetMonFrontpic
 	pop hl
 	xor a
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	xor a
 	ld [wBoxAlignment], a
 	ret

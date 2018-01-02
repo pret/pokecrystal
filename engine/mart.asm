@@ -525,7 +525,7 @@ StandardMartAskPurchaseQuantity:
 ; 15d97
 
 MartConfirmPurchase: ; 15d97
-	predef PartyMonItemName
+	predef Predef_PartyMonItemName
 	ld a, MARTTEXT_COSTS_THIS_MUCH
 	call LoadBuyMenuText
 	call YesNoBox
@@ -864,7 +864,7 @@ SellMenu: ; 15eb3
 	ld a, [wMartItemID]
 	ld hl, NumItems
 	call TossItem
-	predef PartyMonItemName
+	predef Predef_PartyMonItemName
 	hlcoord 1, 14
 	lb bc, 3, 18
 	call ClearBox

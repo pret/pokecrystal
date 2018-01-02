@@ -188,7 +188,7 @@ PlacePartymonHPBar: ; 50117
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	predef ComputeHPBarPixels
+	predef Predef_ComputeHPBarPixels
 	ret
 ; 50138
 
@@ -297,7 +297,7 @@ PlacePartyMonStatus: ; 501b2
 	ld e, l
 	ld d, h
 	pop hl
-	call PlaceStatusString
+	call Predef_PlaceStatusString
 
 .next
 	pop hl
@@ -329,7 +329,7 @@ PlacePartyMonTMHMCompatibility: ; 501e0
 	add hl, de
 	ld a, [hl]
 	ld [CurPartySpecies], a
-	predef CanLearnTMHMMove
+	predef Predef_CanLearnTMHMMove
 	pop hl
 	call .PlaceAbleNotAble
 	call PlaceString
@@ -468,7 +468,7 @@ PlacePartyMonGender: ; 502b1
 	ld [CurPartyMon], a
 	xor a
 	ld [MonType], a
-	call GetGender
+	call Predef_GetGender
 	ld de, .unknown
 	jr c, .got_gender
 	ld de, .male

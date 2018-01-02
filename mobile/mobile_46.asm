@@ -6696,7 +6696,7 @@ Function11b242: ; 11b242
 	call PlaceString
 	xor a
 	ld [MonType], a
-	farcall GetGender
+	farcall Predef_GetGender
 	hlcoord 1, 4
 	ld a, [CurPartySpecies]
 	ld bc, wcd2f
@@ -7154,7 +7154,7 @@ Function11b483: ; 11b483
 	pop de
 	push de
 	ld b, OTPARTYMON
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 	pop de
 	ld h, d
 	ld l, e
@@ -7573,7 +7573,7 @@ Function11b6b4: ; 11b6b4
 	ld hl, $c60d + MON_STAT_EXP - 1
 	ld de, $c60d + MON_MAXHP
 	ld b, $1
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 	ld de, $c60d + MON_MAXHP
 	ld hl, $c60d + MON_HP
 	ld a, [de]

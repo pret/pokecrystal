@@ -1985,7 +1985,7 @@ Function100c74: ; 100c74
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 10
-	predef ListMoves
+	predef Predef_ListMoves
 	ret
 ; 100c98
 
@@ -6796,7 +6796,7 @@ Function102d48: ; 102d48
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1DVs
 	call AddNTimes
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	farcall UpdateUnownDex
 	ld a, [wFirstUnownSeen]
 	and a

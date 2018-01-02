@@ -233,7 +233,7 @@ FadeOldMapMusic: ; 15567
 ; 1556d
 
 RetainOldPalettes: ; 1556d
-	farcall _Special_UpdateTimePals
+	farcall _UpdateTimePals
 	ret
 
 RotatePalettesRightMapAndMusic: ; 15574

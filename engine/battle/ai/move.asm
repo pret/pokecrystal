@@ -92,7 +92,7 @@ AIChooseMove: ; 440ce
 
 	push bc
 	ld d, BANK(TrainerClassAttributes)
-	predef FlagPredef
+	predef Predef_Flag
 	ld d, c
 	pop bc
 

@@ -854,7 +854,7 @@ PushSGBPals:
 	jr nz, .loop
 	ret
 
-InitSGBBorder:
+Predef_InitSGBBorder:
 	call CheckCGB
 	ret nz
 ; SGB/DMG only

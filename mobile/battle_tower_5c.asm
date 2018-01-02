@@ -248,7 +248,7 @@ RunBattleTowerTrainer: ; 17024d
 	call ReadBTTrainerParty
 	call Clears5_a89a
 
-	predef StartBattle
+	predef Predef_StartBattle
 
 	farcall LoadPokemonData
 	farcall HealParty
@@ -484,7 +484,7 @@ endr
 	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $1
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 	pop de
 	pop hl
 	dec de

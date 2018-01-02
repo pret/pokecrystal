@@ -290,26 +290,26 @@ MobileTradeAnim_ClearBGMap: ; 1081ca
 MobileTradeAnim_GetFrontpic: ; 1081e9
 	push de
 	push af
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef GetMonFrontpic
+	predef Predef_GetMonFrontpic
 	ret
 ; 108201
 
 Function108201: ; 108201
 	push de
 	push af
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef GetAnimatedFrontpicPredef
+	predef Predef_GetAnimatedFrontpic
 	ret
 ; 108219
 
@@ -318,7 +318,7 @@ Function108219: ; 108219
 	hlcoord 7, 2
 	ld d, $0
 	ld e, ANIM_MON_TRADE
-	predef AnimateFrontpic
+	predef Predef_AnimateFrontpic
 	ret
 ; 108229
 
@@ -327,7 +327,7 @@ Function108229: ; 108229
 	hlcoord 7, 2
 	ld d, $0
 	ld e, ANIM_MON_TRADE
-	predef LoadMonAnimation
+	predef Predef_LoadMonAnimation
 	ret
 ; 108239
 
@@ -1238,7 +1238,7 @@ asm_108966
 	xor a
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	call WaitBGMap
 	ret
 ; 10898a
@@ -1252,7 +1252,7 @@ Function10898a: ; 10898a
 	xor a
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	call WaitBGMap
 	ret
 ; 1089a8

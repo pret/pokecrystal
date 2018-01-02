@@ -29,7 +29,7 @@ RocketScript_0x1adbfa:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear ROUTE24_ROCKET
 	pause 25
 	special Special_FadeInQuickly

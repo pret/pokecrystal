@@ -30,7 +30,7 @@ ItemFinder: ; 12580
 
 .Script_FoundSomething: ; 0x125ad
 	reloadmappart
-	special Special_UpdateTimePals
+	special UpdateTimePals
 	callasm .ItemfinderSound
 	writetext .Text_FoundSomething
 	closetext
@@ -39,7 +39,7 @@ ItemFinder: ; 12580
 
 .Script_FoundNothing: ; 0x125ba
 	reloadmappart
-	special Special_UpdateTimePals
+	special UpdateTimePals
 	writetext .Text_FoundNothing
 	closetext
 	end

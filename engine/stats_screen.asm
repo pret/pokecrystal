@@ -1,14 +1,14 @@
 BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
-	jr nz, StatsScreenInit
+	jr nz, Predef_StatsScreenInit
 
 	ld a, [wBattleMode]
 	and a
-	jr z, StatsScreenInit
+	jr z, Predef_StatsScreenInit
 	jr _MobileStatsScreenInit
 
-StatsScreenInit: ; 4dc8a
+Predef_StatsScreenInit: ; 4dc8a
 	ld hl, StatsScreenMain
 	jr StatsScreenInit_gotaddress
 
@@ -234,7 +234,7 @@ StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 	jr .done
 
 .breedmon
-	farcall CopyPkmnToTempMon
+	farcall Predef_CopyPkmnToTempMon
 	ld a, [CurPartySpecies]
 	cp EGG
 	jr z, .done
@@ -419,7 +419,7 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	farcall ComputeHPBarPixels
+	farcall Predef_ComputeHPBarPixels
 	ld hl, wCurHPPal
 	call SetHPPal
 	ld b, SCGB_STATS_SCREEN_HP_PALS
@@ -429,7 +429,7 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 
 .PlaceGenderChar: ; 4df66 (13:5f66)
 	push hl
-	farcall GetGender
+	farcall Predef_GetGender
 	pop hl
 	ret c
 	ld a, "♂"
@@ -540,7 +540,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 .PinkPage: ; 4e013 (13:6013)
 	hlcoord 0, 9
 	ld b, $0
-	predef DrawPlayerHP
+	predef Predef_DrawPlayerHP
 	hlcoord 8, 9
 	ld [hl], $41
 	ld de, .Status_Type
@@ -562,7 +562,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 6, 13
 	push hl
 	ld de, TempMonStatus
-	predef PlaceStatusString
+	predef Predef_PlaceStatusString
 	pop hl
 	jr nz, .done_status
 	jr .StatusOK
@@ -576,7 +576,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	call PlaceString
 .done_status
 	hlcoord 1, 15
-	predef PrintMonTypes
+	predef Predef_PrintMonTypes
 	hlcoord 9, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
@@ -610,7 +610,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld a, [TempMonLevel]
 	ld b, a
 	ld de, TempMonExp + 2
-	predef FillInExpBar
+	predef Predef_FillInExpBar
 	hlcoord 10, 16
 	ld [hl], $40
 	hlcoord 19, 16
@@ -703,11 +703,11 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 8, 10
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
-	predef ListMoves
+	predef Predef_ListMoves
 	hlcoord 12, 11
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
-	predef ListMovePP
+	predef Predef_ListMovePP
 	ret
 
 .GetItemName: ; 4e189 (13:6189)
@@ -748,7 +748,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	jr nz, .BluePageVerticalDivider
 	hlcoord 11, 8
 	ld bc, 6
-	predef PrintTempMonStats
+	predef Predef_PrintTempMonStats
 	ret
 
 .PlaceOTInfo: ; 4e1cc (13:61cc)
@@ -801,7 +801,7 @@ OTString: ; 4e222
 
 StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	ld hl, TempMonDVs
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	call StatsScreen_GetAnimationParam
 	jr c, .egg
 	and a
@@ -863,11 +863,11 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	ret c
 	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, vTiles2 tile $00
-	predef GetAnimatedFrontpicPredef
+	predef Predef_GetAnimatedFrontpic
 	hlcoord 0, 0
 	ld d, $0
 	ld e, ANIM_MON_MENU
-	predef LoadMonAnimation
+	predef Predef_LoadMonAnimation
 	ld hl, wcf64
 	set 6, [hl]
 	ret
@@ -1067,11 +1067,11 @@ StatsScreen_AnimateEgg: ; 4e497 (13:6497)
 	ld [wBoxAlignment], a
 	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, vTiles2 tile $00
-	predef GetAnimatedFrontpicPredef
+	predef Predef_GetAnimatedFrontpic
 	pop de
 	hlcoord 0, 0
 	ld d, $0
-	predef LoadMonAnimation
+	predef Predef_LoadMonAnimation
 	ld hl, wcf64
 	set 6, [hl]
 	ret

@@ -2031,7 +2031,7 @@ ReturnToMapWithSpeechTextbox:: ; 0x2b74
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
-	call Special_UpdateTimePals
+	call UpdateTimePals
 	call DelayFrame
 	ld a, $1
 	ld [hMapAnims], a

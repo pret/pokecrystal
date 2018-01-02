@@ -442,7 +442,7 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	ld [wEnvironment], a
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
-	call Special_UpdateTimePals
+	call UpdateTimePals
 	ld a, [rBGP]
 	ld [wBGP], a
 	ld a, [rOBP0]

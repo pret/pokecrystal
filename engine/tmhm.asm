@@ -1,4 +1,4 @@
-CanLearnTMHMMove: ; 11639
+Predef_CanLearnTMHMMove: ; 11639
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call GetBaseData
@@ -23,7 +23,7 @@ CanLearnTMHMMove: ; 11639
 	ld b, CHECK_FLAG
 	push de
 	ld d, 0
-	predef FlagPredef
+	predef Predef_Flag
 	pop de
 	ret
 
@@ -33,7 +33,7 @@ CanLearnTMHMMove: ; 11639
 	ret
 ; 1166a
 
-GetTMHMMove: ; 1166a
+Predef_GetTMHMMove: ; 1166a
 	ld a, [wd265]
 	dec a
 	ld hl, TMHMMoves

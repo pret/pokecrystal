@@ -18,7 +18,7 @@ TimeOfDayPals:: ; 47e
 	ret
 ; 485
 
-Special_UpdateTimePals:: ; 485
-	callfar _Special_UpdateTimePals
+UpdateTimePals:: ; 485
+	callfar _UpdateTimePals
 	ret
 ; 48c

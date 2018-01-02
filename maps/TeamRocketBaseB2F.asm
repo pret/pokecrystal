@@ -110,7 +110,7 @@ UnknownScript_0x6cfac:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear TEAMROCKETBASEB2F_ROCKET1
 	disappear TEAMROCKETBASEB2F_ROCKET_GIRL
 	disappear TEAMROCKETBASEB2F_ROCKET2

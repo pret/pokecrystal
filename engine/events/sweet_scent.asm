@@ -8,7 +8,7 @@ SweetScentFromMenu: ; 506bc
 
 .SweetScent: ; 0x506c8
 	reloadmappart
-	special Special_UpdateTimePals
+	special UpdateTimePals
 	callasm GetPartyNick
 	writetext UnknownText_0x50726
 	waitbutton

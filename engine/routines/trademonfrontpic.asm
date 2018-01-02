@@ -4,13 +4,13 @@ GetTrademonFrontpic: ; 4d7fd
 	ld de, vTiles2
 	push de
 	push af
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef GetAnimatedFrontpicPredef
+	predef Predef_GetAnimatedFrontpic
 	ret
 
 AnimateTrademonFrontpic: ; 4d81e
@@ -34,5 +34,5 @@ AnimateTrademonFrontpic: ; 4d81e
 	hlcoord 7, 2
 	ld d, $0
 	ld e, ANIM_MON_TRADE
-	predef AnimateFrontpic
+	predef Predef_AnimateFrontpic
 	ret

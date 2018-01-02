@@ -545,7 +545,7 @@ AI_Items: ; 39196
 
 AIUpdateHUD: ; 38387
 	call UpdateEnemyMonInParty
-	farcall UpdateEnemyHUD
+	farcall Predef_UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
 	ld hl, wEnemyItemState
@@ -664,7 +664,7 @@ EnemyPotionFinish: ; 38436
 	xor a
 	ld [wWhichHPBar], a
 	call AIUsedItemSound
-	predef AnimateHPBar
+	predef Predef_AnimateHPBar
 	jp AIUpdateHUD
 
 

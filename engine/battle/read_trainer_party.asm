@@ -103,7 +103,7 @@ TrainerType1: ; 397eb
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	predef TryAddMonToParty
+	predef Predef_TryAddMonToParty
 	pop hl
 	jr .loop
 ; 39806
@@ -124,7 +124,7 @@ TrainerType2: ; 39806
 	ld [MonType], a
 
 	push hl
-	predef TryAddMonToParty
+	predef Predef_TryAddMonToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Moves
@@ -200,7 +200,7 @@ TrainerType3: ; 39871
 	ld a, OTPARTYMON
 	ld [MonType], a
 	push hl
-	predef TryAddMonToParty
+	predef Predef_TryAddMonToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item
@@ -231,7 +231,7 @@ TrainerType4: ; 3989d
 	ld [MonType], a
 
 	push hl
-	predef TryAddMonToParty
+	predef Predef_TryAddMonToParty
 	ld a, [OTPartyCount]
 	dec a
 	ld hl, OTPartyMon1Item

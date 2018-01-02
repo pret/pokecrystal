@@ -130,7 +130,7 @@ AnimateHallOfFame: ; 864c3
 	call WaitBGMap
 	decoord 6, 5
 	ld c, $6
-	predef HOF_AnimateFrontpic
+	predef HOF_Predef_AnimateFrontpic
 	ld c, 60
 	call DelayFrames
 	and a
@@ -244,18 +244,18 @@ AnimateHOFMonEntrance: ; 865b5
 	ld a, [hli]
 	ld [TempMonDVs + 1], a
 	ld hl, TempMonDVs
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
 	call ByteFill
 	ld de, vTiles2 tile $31
-	predef GetMonBackpic
+	predef Predef_GetMonBackpic
 	ld a, $31
 	ld [hGraphicStartTile], a
 	hlcoord 6, 6
 	lb bc, 6, 6
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ld a, $d0
 	ld [hSCY], a
 	ld a, $90
@@ -403,7 +403,7 @@ _HallOfFamePC: ; 86650
 	call SetPalettes
 	decoord 6, 5
 	ld c, $6
-	predef HOF_AnimateFrontpic
+	predef HOF_Predef_AnimateFrontpic
 	and a
 	ret
 
@@ -478,7 +478,7 @@ DisplayHOFMon: ; 86748
 	ld [CurPartySpecies], a
 	ld [wd265], a
 	ld hl, TempMonDVs
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	xor a
 	ld [wBoxAlignment], a
 	hlcoord 6, 5
@@ -499,7 +499,7 @@ DisplayHOFMon: ; 86748
 	call PlaceString
 	ld a, TEMPMON
 	ld [MonType], a
-	farcall GetGender
+	farcall Predef_GetGender
 	ld a, " "
 	jr c, .got_gender
 	ld a, "♂"
@@ -546,7 +546,7 @@ HOF_AnimatePlayerPic: ; 86810
 	ld [hGraphicStartTile], a
 	hlcoord 6, 6
 	lb bc, 6, 6
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ld a, $d0
 	ld [hSCY], a
 	ld a, $90
@@ -570,7 +570,7 @@ HOF_AnimatePlayerPic: ; 86810
 	ld [hGraphicStartTile], a
 	hlcoord 12, 5
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ld a, $c0
 	ld [hSCX], a
 	call WaitBGMap

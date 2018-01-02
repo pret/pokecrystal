@@ -943,24 +943,24 @@ Intro_WipeInFrontpic: ; 6182
 
 Intro_PrepTrainerPic: ; 619c
 	ld de, vTiles2
-	farcall GetTrainerPic
+	farcall Predef_GetTrainerPic
 	xor a
 	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ret
 ; 61b4
 
 ShrinkFrame: ; 61b4
 	ld de, vTiles2
 	ld c, $31
-	predef DecompressPredef
+	predef Predef_Decompress
 	xor a
 	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ret
 ; 61cd
 
@@ -1048,7 +1048,7 @@ StartTitleScreen: ; 6219
 	ld [hWY], a
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call Special_UpdateTimePals
+	call UpdateTimePals
 	ld a, [wIntroSceneFrameCounter]
 	cp $5
 	jr c, .ok

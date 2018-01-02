@@ -1,4 +1,4 @@
-LoadPoisonBGPals: ; cbcdd
+Predef_LoadPoisonBGPals: ; cbcdd
 	call .LoadPals
 	ld a, [hCGB]
 	and a
@@ -20,7 +20,7 @@ LoadPoisonBGPals: ; cbcdd
 	call DmgToCgbBGPals
 	ld c, 4
 	call DelayFrames
-	farcall _Special_UpdateTimePals
+	farcall _UpdateTimePals
 	ret
 
 .cgb
@@ -44,5 +44,5 @@ LoadPoisonBGPals: ; cbcdd
 	ld [hCGBPalUpdate], a
 	ld c, 4
 	call DelayFrames
-	farcall _Special_UpdateTimePals
+	farcall _UpdateTimePals
 	ret

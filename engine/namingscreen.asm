@@ -103,7 +103,7 @@ NamingScreen: ; 116c1
 	inc de
 	hlcoord 5, 4
 	call PlaceString
-	farcall GetGender
+	farcall Predef_GetGender
 	jr c, .genderless
 	ld a, "♂"
 	jr nz, .place_gender

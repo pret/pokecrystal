@@ -6,7 +6,7 @@ EvolvePokemon: ; 421d8
 	ld c, a
 	ld b, SET_FLAG
 	call EvoFlagAction
-EvolveAfterBattle: ; 421e6
+Predef_EvolveAfterBattle: ; 421e6
 	xor a
 	ld [wMonTriedToEvolve], a
 	dec a
@@ -55,7 +55,7 @@ EvolveAfterBattle_MasterLoop
 	push hl
 	xor a
 	ld [MonType], a
-	predef CopyPkmnToTempMon
+	predef Predef_CopyPkmnToTempMon
 	pop hl
 
 .loop
@@ -265,7 +265,7 @@ EvolveAfterBattle_MasterLoop
 	ld hl, TempMonExp + 2
 	ld de, TempMonMaxHP
 	ld b, $1
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 
 	ld a, [CurPartyMon]
 	ld hl, PartyMons
@@ -301,7 +301,7 @@ EvolveAfterBattle_MasterLoop
 	ld [wd265], a
 	xor a
 	ld [MonType], a
-	call LearnLevelMoves
+	call Predef_LearnLevelMoves
 	ld a, [wd265]
 	dec a
 	call SetSeenAndCaughtMon
@@ -311,7 +311,7 @@ EvolveAfterBattle_MasterLoop
 	jr nz, .skip_unown
 
 	ld hl, TempMonDVs
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	callfar UpdateUnownDex
 
 .skip_unown
@@ -429,7 +429,7 @@ Text_WhatEvolving: ; 0x42482
 ; 0x42487
 
 
-LearnLevelMoves: ; 42487
+Predef_LearnLevelMoves: ; 42487
 	ld a, [wd265]
 	ld [CurPartySpecies], a
 	dec a
@@ -484,7 +484,7 @@ LearnLevelMoves: ; 42487
 	ld [wd265], a
 	call GetMoveName
 	call CopyName1
-	predef LearnMove
+	predef Predef_LearnMove
 	pop hl
 	jr .find_move
 
@@ -495,7 +495,7 @@ LearnLevelMoves: ; 42487
 ; 424e1
 
 
-FillMoves: ; 424e1
+Predef_FillMoves: ; 424e1
 ; Fill in moves at de for CurPartySpecies at CurPartyLevel
 
 	push hl
@@ -621,7 +621,7 @@ ShiftMoves: ; 4256e
 EvoFlagAction: ; 42577
 	push de
 	ld d, $0
-	predef FlagPredef
+	predef Predef_Flag
 	pop de
 	ret
 ; 42581

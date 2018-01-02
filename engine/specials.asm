@@ -70,9 +70,9 @@ SpecialsPointers:: ; c029
 	add_special Special_FadeBlackQuickly
 	add_special Special_FadeInPalettes
 	add_special Special_FadeInQuickly
-	add_special Special_ReloadSpritesNoPalettes
+	add_special ReloadSpritesNoPalettes ; bank 0
 	add_special ClearBGPalettes ; bank 0
-	add_special Special_UpdateTimePals
+	add_special UpdateTimePals ; bank 0
 	add_special ClearTileMap ; bank 0
 	add_special UpdateSprites ; bank 0
 	add_special ReplaceKrisSprite ; bank 0
@@ -214,7 +214,7 @@ Special_GameCornerPrizeMonCheckDex: ; c230
 	call FadeToMenu
 	ld a, [ScriptVar]
 	ld [wd265], a
-	farcall NewPokedexEntry
+	farcall Predef_NewPokedexEntry
 	call ExitAllMenus
 	ret
 ; c252

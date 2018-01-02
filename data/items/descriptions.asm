@@ -11,7 +11,7 @@ PrintItemDescription: ; 0x1c8955
 	pop hl
 	ld a, [wd265]
 	ld [CurSpecies], a
-	predef PrintMoveDesc
+	predef Predef_PrintMoveDesc
 	ret
 
 .not_a_tm

@@ -55,7 +55,7 @@ UnknownScript_0x184947:
 	closetext
 	playsound SFX_WARP_TO
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear SPROUTTOWER3F_SILVER
 	waitsfx
 	special Special_FadeInQuickly

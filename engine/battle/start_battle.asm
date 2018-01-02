@@ -33,7 +33,7 @@ FindFirstAliveMonAndStartBattle: ; 2ee2f
 	add hl, de
 	ld a, [hl]
 	ld [BattleMonLevel], a
-	predef DoBattleTransition
+	predef Predef_DoBattleTransition
 	farcall _LoadBattleFontsHPBar
 	ld a, 1
 	ld [hBGMapMode], a

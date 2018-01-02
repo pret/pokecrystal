@@ -1,54 +1,54 @@
 ; Pic animation arrangement.
 
-AnimateMon_Slow_Normal: ; d0000
+UnusedPredef_AnimateMon_Slow_Normal: ; d0000
 	hlcoord 12, 0
 	ld a, [wBattleMode]
 	cp WILD_BATTLE
 	jr z, .wild
 	ld e, ANIM_MON_SLOW
 	ld d, $0
-	call AnimateFrontpic
+	call Predef_AnimateFrontpic
 	ret
 
 .wild
 	ld e, ANIM_MON_NORMAL
 	ld d, $0
-	call AnimateFrontpic
+	call Predef_AnimateFrontpic
 	ret
 ; d001a
 
 AnimateMon_Menu: ; d001a
 	ld e, ANIM_MON_MENU
 	ld d, $0
-	call AnimateFrontpic
+	call Predef_AnimateFrontpic
 	ret
 ; d0022
 
 AnimateMon_Trade: ; d0022
 	ld e, ANIM_MON_TRADE
 	ld d, $0
-	call AnimateFrontpic
+	call Predef_AnimateFrontpic
 	ret
 ; d002a
 
 AnimateMon_Evolve: ; d002a
 	ld e, ANIM_MON_EVOLVE
 	ld d, $0
-	call AnimateFrontpic
+	call Predef_AnimateFrontpic
 	ret
 ; d0032
 
 AnimateMon_Hatch: ; d0032
 	ld e, ANIM_MON_HATCH
 	ld d, $0
-	call AnimateFrontpic
+	call Predef_AnimateFrontpic
 	ret
 ; d003a
 
 AnimateMon_Unused: ; d003a
 	ld e, ANIM_MON_UNUSED
 	ld d, $0
-	call AnimateFrontpic
+	call Predef_AnimateFrontpic
 	ret
 ; d0042
 
@@ -86,10 +86,10 @@ PokeAnims: ; d0042
 .Egg2:   pokeanim Idle, Play
 
 
-AnimateFrontpic: ; d008e
+Predef_AnimateFrontpic: ; d008e
 	call AnimateMon_CheckIfPokemon
 	ret c
-	call LoadMonAnimation
+	call Predef_LoadMonAnimation
 .loop
 	call SetUpPokeAnim
 	push af
@@ -99,7 +99,7 @@ AnimateFrontpic: ; d008e
 	ret
 ; d00a3
 
-LoadMonAnimation: ; d00a3
+Predef_LoadMonAnimation: ; d00a3
 	push hl
 	ld c, e
 	ld b, 0
@@ -1114,7 +1114,7 @@ UnusedPredef48: ; d0669 Predef 48
 	ld a, $1
 	ld [wBoxAlignment], a
 
-HOF_AnimateFrontpic: ; d066e Predef 49
+HOF_Predef_AnimateFrontpic: ; d066e Predef 49
 	call AnimateMon_CheckIfPokemon
 	jr c, .fail
 	ld h, d
@@ -1122,12 +1122,12 @@ HOF_AnimateFrontpic: ; d066e Predef 49
 	push bc
 	push hl
 	ld de, vTiles2
-	predef GetAnimatedFrontpicPredef
+	predef Predef_GetAnimatedFrontpic
 	pop hl
 	pop bc
 	ld d, 0
 	ld e, c
-	call AnimateFrontpic
+	call Predef_AnimateFrontpic
 	xor a
 	ld [wBoxAlignment], a
 	ret
