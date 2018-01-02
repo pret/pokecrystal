@@ -8,6 +8,7 @@ INCLUDE "macros/coords.asm"
 INCLUDE "macros/color.asm"
 INCLUDE "macros/base_stats.asm"
 INCLUDE "macros/tilesets.asm"
+INCLUDE "macros/boxes.asm"
 
 INCLUDE "macros/scripts/audio.asm"
 INCLUDE "macros/scripts/maps.asm"
