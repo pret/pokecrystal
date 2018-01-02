@@ -861,12 +861,11 @@ Hatch_InitShellFragments: ; 173b3 (5:73b3)
 ; 173ef (5:73ef)
 
 shell_fragment: MACRO
-; y tile, y pxl, x tile, x pxl, frameset offset, jumptable index
+; y tile, y pxl, x tile, x pxl, frameset offset, ???
 	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5 - SPRITE_ANIM_FRAMESET_EGG_HATCH_1, \6
 ENDM
 
 .SpriteData: ; 173ef
-; Probably OAM.
 	shell_fragment 10, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $3c
 	shell_fragment 11, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $04
 	shell_fragment 10, 4, 10, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $30
