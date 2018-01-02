@@ -25,7 +25,7 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $80, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_15
 	dbw $85, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_16
 	dbw $8a, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_17
-	dbw $00, .OAMData_Unused18 ; SPRITE_ANIM_OAMSET_UNUSED_18
+	dbw $00, .OAMData_IntroUnownF2_1 ; SPRITE_ANIM_OAMSET_UNUSED_18
 	dbw $01, .OAMData_TradePoofBubble ; SPRITE_ANIM_OAMSET_UNUSED_19
 	dbw $09, .OAMData_Unused1A ; SPRITE_ANIM_OAMSET_UNUSED_1A
 	dbw $10, .OAMData_GSIntroStarter ; SPRITE_ANIM_OAMSET_GS_INTRO_CHIKORITA
@@ -122,7 +122,7 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $00, .OAMData_IntroUnown1 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_1
 	dbw $01, .OAMData_IntroUnown2 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_2
 	dbw $04, .OAMData_IntroUnown3 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_3
-	dbw $00, .OAMData_Unused18 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_1
+	dbw $00, .OAMData_IntroUnownF2_1 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_1
 	dbw $01, .OAMData_IntroUnownF2_2 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_2
 	dbw $03, .OAMData_IntroUnownF2_3 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_3
 	dbw $08, .OAMData_IntroUnownF2_4_5 ; SPRITE_ANIM_OAMSET_INTRO_UNOWN_F_2_4
@@ -167,7 +167,7 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0, -1,  0, $01, 0 | BEHIND_BG
 	dsprite  0,  0,  0,  0, $01, 0 | X_FLIP | BEHIND_BG
 
-.OAMData_Unused18:
+.OAMData_IntroUnownF2_1:
 	db 4
 	dsprite -1,  0, -1,  0, $00, 0
 	dsprite -1,  0,  0,  0, $00, 0 | X_FLIP
