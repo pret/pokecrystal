@@ -860,18 +860,23 @@ Hatch_InitShellFragments: ; 173b3 (5:73b3)
 	ret
 ; 173ef (5:73ef)
 
+shell_fragment: MACRO
+; y tile, y pxl, x tile, x pxl, frameset offset, jumptable index
+	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5 - SPRITE_ANIM_FRAMESET_EGG_HATCH_1, \6
+ENDM
+
 .SpriteData: ; 173ef
 ; Probably OAM.
-	dsprite 10, 4,  9, 0, $00, $3c
-	dsprite 11, 4,  9, 0, $01, $04
-	dsprite 10, 4, 10, 0, $00, $30
-	dsprite 11, 4, 10, 0, $01, $10
-	dsprite 10, 4, 11, 0, $02, $24
-	dsprite 11, 4, 11, 0, $03, $1c
-	dsprite 10, 0,  9, 4, $00, $36
-	dsprite 12, 0,  9, 4, $01, $0a
-	dsprite 10, 0, 10, 4, $02, $2a
-	dsprite 12, 0, 10, 4, $03, $16
+	shell_fragment 10, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $3c
+	shell_fragment 11, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $04
+	shell_fragment 10, 4, 10, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $30
+	shell_fragment 11, 4, 10, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $10
+	shell_fragment 10, 4, 11, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_3, $24
+	shell_fragment 11, 4, 11, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_4, $1c
+	shell_fragment 10, 0,  9, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $36
+	shell_fragment 12, 0,  9, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $0a
+	shell_fragment 10, 0, 10, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_3, $2a
+	shell_fragment 12, 0, 10, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_4, $16
 	db -1
 ; 17418
 
