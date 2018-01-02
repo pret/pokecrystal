@@ -9,7 +9,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_PartyMonWithItemFast
 	dw .Frameset_GSTitleTrail
 	dw .Frameset_TextEntryCursor
-	dw .Frameset_09
+	dw .Frameset_Unused09
 	dw .Frameset_GameFreakLogo
 	dw .Frameset_GSIntroStar
 	dw .Frameset_GSIntroSparkle
@@ -28,31 +28,31 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_EvolutionBallOfLight
 	dw .Frameset_RadioTuningKnob
 	dw .Frameset_MagnetTrainRed
-	dw .Frameset_1c
+	dw .Frameset_Unused1C
 	dw .Frameset_Leaf
 	dw .Frameset_CutTree
 	dw .Frameset_EggCrack
 	dw .Frameset_EggHatch
-	dw .Frameset_21
-	dw .Frameset_22
-	dw .Frameset_23
-	dw .Frameset_24
+	dw .Frameset_Unused21
+	dw .Frameset_Unused22
+	dw .Frameset_Unused23
+	dw .Frameset_GSIntroHoOh
 	dw .Frameset_HeadbuttTree
-	dw .Frameset_26
-	dw .Frameset_27
-	dw .Frameset_28
-	dw .Frameset_29
-	dw .Frameset_2a
-	dw .Frameset_2b
-	dw .Frameset_2c
+	dw .Frameset_EZChatCursor0
+	dw .Frameset_EZChatCursor1
+	dw .Frameset_EZChatCursor2
+	dw .Frameset_EZChatCursor3
+	dw .Frameset_EZChatCursor4
+	dw .Frameset_EZChatCursor5
+	dw .Frameset_EZChatCursor6
 	dw .Frameset_BlueWalk
 	dw .Frameset_MagnetTrainBlue
 	dw .Frameset_MobileTradeSentBall
 	dw .Frameset_MobileTradeOTBall
-	dw .Frameset_ForMobile22
-	dw .Frameset_ForMobile23
-	dw .Frameset_ForMobile24
-	dw .Frameset_ForMobile25
+	dw .Frameset_MobileTradeCableBulge
+	dw .Frameset_MobileTradeSentPulse
+	dw .Frameset_MobileTradeOTPulse
+	dw .Frameset_MobileTradePing
 	dw .Frameset_IntroSuicune
 	dw .Frameset_IntroSuicune2
 	dw .Frameset_IntroPichu
@@ -133,8 +133,8 @@ SpriteAnimFrameData: ; 8d6e6
 	dorepeat  1
 	dorestart
 
-.Frameset_09:
-	frame SPRITE_ANIM_OAMSET_FOR_FRAMESET_09,  1
+.Frameset_Unused09:
+	frame SPRITE_ANIM_OAMSET_FOR_UNUSED_09,  1
 	dorepeat  1
 	dorestart
 
@@ -216,8 +216,8 @@ SpriteAnimFrameData: ; 8d6e6
 	delanim
 
 .Frameset_TradeTubeBulge:
-	frame SPRITE_ANIM_OAMSET_35,  3
-	frame SPRITE_ANIM_OAMSET_36,  3
+	frame SPRITE_ANIM_OAMSET_TRADE_TUBE_BULGE_1,  3
+	frame SPRITE_ANIM_OAMSET_TRADE_TUBE_BULGE_2,  3
 	dorestart
 
 .Frameset_TrademonIcon:
@@ -247,49 +247,49 @@ SpriteAnimFrameData: ; 8d6e6
 	dorestart
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_43,  8
-	frame SPRITE_ANIM_OAMSET_44,  8
+	frame SPRITE_ANIM_OAMSET_UNUSED_43,  8
+	frame SPRITE_ANIM_OAMSET_UNUSED_44,  8
 	dorestart
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_45,  8
-	frame SPRITE_ANIM_OAMSET_46,  8
+	frame SPRITE_ANIM_OAMSET_UNUSED_45,  8
+	frame SPRITE_ANIM_OAMSET_UNUSED_46,  8
 	dorestart
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_47,  8
-	frame SPRITE_ANIM_OAMSET_48,  8
+	frame SPRITE_ANIM_OAMSET_UNUSED_47,  8
+	frame SPRITE_ANIM_OAMSET_UNUSED_48,  8
 	dorestart
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_49,  1
-	frame SPRITE_ANIM_OAMSET_49,  1, OAM_X_FLIP
-	frame SPRITE_ANIM_OAMSET_49,  1, OAM_X_FLIP, OAM_Y_FLIP
-	frame SPRITE_ANIM_OAMSET_49,  1, OAM_Y_FLIP
+	frame SPRITE_ANIM_OAMSET_UNUSED_49,  1
+	frame SPRITE_ANIM_OAMSET_UNUSED_49,  1, OAM_X_FLIP
+	frame SPRITE_ANIM_OAMSET_UNUSED_49,  1, OAM_X_FLIP, OAM_Y_FLIP
+	frame SPRITE_ANIM_OAMSET_UNUSED_49,  1, OAM_Y_FLIP
 	dorestart
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_4A, 32
+	frame SPRITE_ANIM_OAMSET_UNUSED_4A, 32
 	endanim
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_4B, 32
+	frame SPRITE_ANIM_OAMSET_UNUSED_4B, 32
 	endanim
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_4C, 32
+	frame SPRITE_ANIM_OAMSET_UNUSED_4C, 32
 	endanim
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_4D, 32
+	frame SPRITE_ANIM_OAMSET_UNUSED_4D, 32
 	endanim
 
 ; XXX
-	frame SPRITE_ANIM_OAMSET_4E,  3
+	frame SPRITE_ANIM_OAMSET_UNUSED_4E,  3
 	dorepeat  3
 	dorestart
 
-.Frameset_1c:
+.Frameset_Unused1C:
 	dorepeat 32
 	endanim
 
@@ -311,28 +311,28 @@ SpriteAnimFrameData: ; 8d6e6
 	endanim
 
 .Frameset_EggHatch:
-	frame SPRITE_ANIM_OAMSET_55, 32
+	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32
 	endanim
 
-.Frameset_21:
-	frame SPRITE_ANIM_OAMSET_55, 32, OAM_X_FLIP
+.Frameset_Unused21:
+	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32, OAM_X_FLIP
 	endanim
 
-.Frameset_22:
-	frame SPRITE_ANIM_OAMSET_55, 32, OAM_Y_FLIP
+.Frameset_Unused22:
+	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32, OAM_Y_FLIP
 	endanim
 
-.Frameset_23:
-	frame SPRITE_ANIM_OAMSET_55, 32, OAM_X_FLIP, OAM_Y_FLIP
+.Frameset_Unused23:
+	frame SPRITE_ANIM_OAMSET_EGG_HATCH, 32, OAM_X_FLIP, OAM_Y_FLIP
 	endanim
 
-.Frameset_24:
-	frame SPRITE_ANIM_OAMSET_56, 10
-	frame SPRITE_ANIM_OAMSET_57,  9
-	frame SPRITE_ANIM_OAMSET_58, 10
-	frame SPRITE_ANIM_OAMSET_59, 10
-	frame SPRITE_ANIM_OAMSET_58,  9
-	frame SPRITE_ANIM_OAMSET_5A, 10
+.Frameset_GSIntroHoOh:
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_1, 10
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_2,  9
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_3, 10
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_4, 10
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_3,  9
+	frame SPRITE_ANIM_OAMSET_GS_INTRO_HO_OH_5, 10
 	dorestart
 
 .Frameset_HeadbuttTree:
@@ -342,32 +342,32 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_OAMSET_HEADBUTT_TREE_2,  2, OAM_X_FLIP
 	dorestart
 
-.Frameset_26:
-	frame SPRITE_ANIM_OAMSET_5C,  2
+.Frameset_EZChatCursor0:
+	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_1,  2
 	endanim
 
-.Frameset_27:
-	frame SPRITE_ANIM_OAMSET_5D,  2
+.Frameset_EZChatCursor1:
+	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_2,  2
 	endanim
 
-.Frameset_28:
-	frame SPRITE_ANIM_OAMSET_5E,  2
+.Frameset_EZChatCursor2:
+	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_3,  2
 	endanim
 
-.Frameset_29:
-	frame SPRITE_ANIM_OAMSET_5F,  2
+.Frameset_EZChatCursor3:
+	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_4,  2
 	endanim
 
-.Frameset_2a:
-	frame SPRITE_ANIM_OAMSET_60,  2
+.Frameset_EZChatCursor4:
+	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_5,  2
 	endanim
 
-.Frameset_2b:
-	frame SPRITE_ANIM_OAMSET_61,  2
+.Frameset_EZChatCursor5:
+	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_6,  2
 	endanim
 
-.Frameset_2c:
-	frame SPRITE_ANIM_OAMSET_62,  2
+.Frameset_EZChatCursor6:
+	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_7,  2
 	endanim
 
 .Frameset_MobileTradeSentBall:
@@ -406,23 +406,23 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_OAMSET_TRADE_POOF_3,  3
 	delanim
 
-.Frameset_ForMobile22:
-	frame SPRITE_ANIM_OAMSET_FOR_MOBILE_22_1,  3
-	frame SPRITE_ANIM_OAMSET_FOR_MOBILE_22_2,  3
+.Frameset_MobileTradeCableBulge:
+	frame SPRITE_ANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_1,  3
+	frame SPRITE_ANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_2,  3
 	dorestart
 
-.Frameset_ForMobile23:
-	frame SPRITE_ANIM_OAMSET_FOR_MOBILE_23,  3
+.Frameset_MobileTradeSentPulse:
+	frame SPRITE_ANIM_OAMSET_MOBILE_TRADE_SENT_PULSE,  3
 	endanim
 
-.Frameset_ForMobile24:
-	frame SPRITE_ANIM_OAMSET_FOR_MOBILE_24,  3
+.Frameset_MobileTradeOTPulse:
+	frame SPRITE_ANIM_OAMSET_MOBILE_TRADE_OT_PULSE,  3
 	endanim
 
-.Frameset_ForMobile25:
-	frame SPRITE_ANIM_OAMSET_FOR_MOBILE_25_1,  2
-	frame SPRITE_ANIM_OAMSET_FOR_MOBILE_25_2,  2
-	frame SPRITE_ANIM_OAMSET_FOR_MOBILE_25_3,  2
+.Frameset_MobileTradePing:
+	frame SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_1,  2
+	frame SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_2,  2
+	frame SPRITE_ANIM_OAMSET_MOBILE_TRADE_PING_3,  2
 	delanim
 
 .Frameset_IntroSuicune:

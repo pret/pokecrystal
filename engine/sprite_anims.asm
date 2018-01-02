@@ -27,7 +27,7 @@ DoAnimFrame: ; 8d24b
 	dw .SlotsChansey
 	dw .SlotsChanseyEgg
 	dw .MailCursor
-	dw .ForUnusedCursor
+	dw .UnusedCursor
 	dw .DummyGameCursor
 	dw .PokegearArrow
 	dw .TradePokeBall
@@ -39,10 +39,10 @@ DoAnimFrame: ; 8d24b
 	dw .FlyFrom
 	dw .FlyLeaf
 	dw .FlyTo
-	dw .sprite_anim_seq_19
-	dw .sprite_anim_seq_1A
-	dw .sprite_anim_seq_1B
-	dw .sprite_anim_seq_1C
+	dw .ForUnused1A
+	dw .EZChatCursor
+	dw .MobileTradeSentPulse
+	dw .MobileTradeOTPulse
 	dw .IntroSuicune
 	dw .IntroPichuWooper
 	dw .Celebi
@@ -202,7 +202,7 @@ DoAnimFrame: ; 8d24b
 	ret
 ; 8d35a
 
-.sprite_anim_seq_19 ; 8d35a (23:535a)
+.ForUnused1A ; 8d35a (23:535a)
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -403,7 +403,7 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.ForUnusedCursor ; 8d46e (23:546e)
+.UnusedCursor ; 8d46e (23:546e)
 	callfar ret_e00ed
 	ret
 
@@ -748,11 +748,11 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.sprite_anim_seq_1B ; 8d630 (23:5630)
+.MobileTradeSentPulse ; 8d630 (23:5630)
 	farcall Function108bc7
 	ret
 
-.sprite_anim_seq_1C ; 8d637 (23:5637)
+.MobileTradeOTPulse ; 8d637 (23:5637)
 	farcall Function108be0
 	ret
 
@@ -845,7 +845,7 @@ DoAnimFrame: ; 8d24b
 	ld [hl], a
 	ret
 
-.sprite_anim_seq_1A ; 8d6b7 (23:56b7)
+.EZChatCursor ; 8d6b7 (23:56b7)
 	farcall AnimateEZChatCursor
 	ret
 
