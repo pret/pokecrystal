@@ -268,7 +268,7 @@ CopyBoxmonToTempMon: ; e5bb
 	call CloseSRAM
 	ret
 
-Functione5d9: ; unreferenced
+Unreferenced_Functione5d9:
 	ld a, [wCurBox]
 	cp b
 	jr z, .same_box

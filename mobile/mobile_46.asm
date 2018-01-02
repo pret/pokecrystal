@@ -1559,8 +1559,7 @@ IndexDownloadURL: ; 0x118ce5
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
 
-Function118d35: ; 118d35
-; unreferenced
+Unreferenced_Function118d35: ; 118d35
 	ld hl, $d200
 	ld a, [wcd38]
 	and a
@@ -6957,8 +6956,7 @@ Function11b397: ; 11b397
 	jr .loop
 ; 11b3b6
 
-Function11b3b6: ; 11b3b6
-; unreferenced
+Unreferenced_Function11b3b6: ; 11b3b6
 .loop
 	ld a, [hl]
 	cp -1

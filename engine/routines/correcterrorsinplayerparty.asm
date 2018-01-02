@@ -1,4 +1,4 @@
-CorrectErrorsInPlayerParty: ; unreferenced
+Unreferenced_CorrectErrorsInPlayerParty:
 	ld hl, PartyCount
 	ld a, [hl]
 	and a

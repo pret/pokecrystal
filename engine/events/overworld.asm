@@ -986,7 +986,7 @@ StrengthFunction: ; cce5
 	jr c, .Failed
 	jr .UseStrength
 
-.AlreadyUsing: ; unreferenced
+.Unreferenced_AlreadyUsing:
 	ld hl, .JumpText
 	call MenuTextBoxBackup
 	ld a, $80

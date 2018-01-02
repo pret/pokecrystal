@@ -81,7 +81,7 @@ PredefPointers:: ; 856b
 	add_predef InitSGBBorder ; $30
 	add_predef LoadSGBLayout
 	add_predef Pokedex_GetArea
-	add_predef CheckContestMon
+	add_predef Unreferenced_CheckContestMon
 	add_predef DoBattleTransition
 	add_predef DummyPredef35
 	add_predef DummyPredef36

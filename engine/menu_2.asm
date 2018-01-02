@@ -112,8 +112,8 @@ CoinString: ; 24b89
 ShowMoney_TerminatorString: ; 24b8e
 	db "@"
 
-Function24b8f: ; 24b8f
-; unreferenced, related to safari?
+Unreferenced_Function24b8f: ; 24b8f
+; related to safari?
 	ld hl, Options
 	ld a, [hl]
 	push af

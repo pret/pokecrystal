@@ -332,8 +332,7 @@ CopyTradeName: ; fcdf4
 	ret
 ; fcdfb
 
-Functionfcdfb: ; fcdfb
-; unreferenced
+Unreferenced_Functionfcdfb: ; fcdfb
 	ld bc, 4
 	call CopyBytes
 	ld a, "@"
@@ -341,8 +340,7 @@ Functionfcdfb: ; fcdfb
 	ret
 ; fce05
 
-Functionfce05: ; fce05
-; unreferenced
+Unreferenced_Functionfce05: ; fce05
 	ld bc, 3
 	call CopyBytes
 	ld a, "@"

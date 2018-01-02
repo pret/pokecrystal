@@ -43,8 +43,7 @@ CheckShininess:
 	and a
 	ret
 
-; unreferenced
-CheckContestMon:
+Unreferenced_CheckContestMon:
 ; Check a mon's DVs at hl in the bug catching contest.
 ; Return carry if its DVs are good enough to place in the contest.
 
@@ -135,8 +134,7 @@ SGB_ApplyPartyMenuHPPals: ; 8ade
 	ld [hl], e
 	ret
 
-Function8b07:
-; Unreferenced
+Unreferenced_Function8b07:
 	call CheckCGB
 	ret z
 ; CGB only
@@ -169,8 +167,7 @@ Function8b07:
 	RGB 08, 16, 28
 	RGB 00, 00, 00
 
-Function8b3f:
-; Unreferenced
+Unreferenced_Function8b3f:
 	call CheckCGB
 	ret nz
 	ld a, [hSGB]

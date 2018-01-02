@@ -137,7 +137,7 @@ LoadObjectsRunCallback_02: ; 154d7
 	ret
 ; 154ea (5:54ea)
 
-; unreferenced
+; unused
 	ret
 ; 154eb
 

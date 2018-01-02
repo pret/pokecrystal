@@ -1383,7 +1383,7 @@ UpdateBGMapColumn:: ; 27f8
 	ret
 ; 2816
 
-; unreferenced
+Unreferenced_Function2816::
 	ld hl, BGMapBuffer
 	ld bc, BGMapBufferEnd - BGMapBuffer
 	xor a

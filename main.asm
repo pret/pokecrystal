@@ -210,7 +210,7 @@ SECTION "bank13", ROMX
 INCLUDE "engine/map_palettes.asm"
 INCLUDE "tilesets/palette_maps.asm"
 
-; unreferenced
+; unused
 ; 0x4ce05
 rept 26
 	db $06
@@ -273,7 +273,7 @@ INCLUDE "engine/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
 
-Unknown_53d84: ; unreferenced
+Unreferenced_53d84:
 	db $1a, $15
 	db $33, $16
 	db $4b, $17

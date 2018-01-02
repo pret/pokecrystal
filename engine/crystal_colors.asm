@@ -322,5 +322,5 @@ InitMG_Mobile_LinkTradePalMap: ; 49856
 	ret
 ; 4985a
 
-Unknown_4985a: ; unreferenced
+; unused
 INCLUDE "data/palettes/unknown/4985a.asm"

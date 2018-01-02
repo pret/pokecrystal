@@ -3093,7 +3093,7 @@ Function1013dd: ; 1013dd
 	ret
 ; 1013e1
 
-Function1013e1: ; 1013e1 ; unreferenced
+Unreferenced_Function1013e1: ; 1013e1 
 	push de
 	inc de
 	ld b, a
@@ -3130,7 +3130,7 @@ Function1013f5: ; 1013f5
 	ret
 ; 101400
 
-Function101400: ; 101400 ; unreferenced
+Unreferenced_Function101400: ; 101400 
 	ld a, [de]
 	inc de
 	cp [hl]
@@ -3318,7 +3318,7 @@ Function101507: ; 101507
 	ret
 ; 10151d
 
-Function10151d: ; 10151d ; unreferenced
+Unreferenced_Function10151d: ; 10151d 
 	ld a, $34
 	call Function3e32
 	ld a, [wMobileCommsJumptableIndex]
@@ -3513,7 +3513,7 @@ Function101663: ; 101663
 	ret
 ; 101674
 
-Function101674: ; 101674 ; unreferenced
+Unreferenced_Function101674: ; 101674 
 	ld a, $05
 	ld hl, w5_dc00
 	call Function101635
@@ -4402,7 +4402,7 @@ Function101cbc: ; 101cbc
 	ret
 ; 101cc2
 
-Function101cc2: ; 101cc2 ; unreferenced
+Unreferenced_Function101cc2: ; 101cc2 
 	ld a, $02
 	ld [wcd2b], a
 	ret
@@ -4683,7 +4683,7 @@ Function101e64: ; 101e64
 	ret
 ; 101e82
 
-Function101e82: ; 101e82 ; unreferenced
+Unreferenced_Function101e82: ; 101e82 
 	call Function101ecc
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
@@ -4691,7 +4691,7 @@ Function101e82: ; 101e82 ; unreferenced
 	ret
 ; 101e8d
 
-Function101e8d: ; 101e8d ; unreferenced
+Unreferenced_Function101e8d: ; 101e8d 
 	call Function101ed3
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
@@ -6506,7 +6506,7 @@ Function102b4e: ; 102b4e
 	ret
 ; 102b68
 
-Function102b68: ; 102b68 ; unreferenced
+Unreferenced_Function102b68: ; 102b68 
 	xor a
 	ld hl, wWindowStackPointer
 	ld bc, $10

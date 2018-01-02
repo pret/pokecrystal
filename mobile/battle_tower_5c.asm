@@ -634,8 +634,7 @@ SkipBattleTowerTrainer: ; 1704c9
 	ret
 ; 1704ca
 
-Function1704ca: ; 1704ca
-; unreferenced mobile function
+Unreferenced_Function1704ca: ; 1704ca
 	ld a, [$be46]
 	cp $7
 	jr c, .asm_1704d3

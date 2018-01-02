@@ -117,8 +117,7 @@ TrainerCard_Page1_Joypad: ; 251d7 (9:51d7)
 	ld [wJumptableIndex], a
 	ret
 
-.KantoCheck:
-; unreferenced
+.Unreferenced_KantoCheck:
 	ld a, [wKantoBadges]
 	and a
 	ret z
@@ -163,8 +162,7 @@ TrainerCard_Page2_Joypad: ; 25221 (9:5221)
 	ld [wJumptableIndex], a
 	ret
 
-.KantoCheck:
-; unreferenced
+.Unreferenced_KantoCheck:
 	ld a, [wKantoBadges]
 	and a
 	ret z

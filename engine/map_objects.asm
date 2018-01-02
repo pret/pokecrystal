@@ -418,8 +418,7 @@ UpdatePlayerStep: ; 4738
 	ret
 ; 4759
 
-Function4759: ; 4759
-; unreferenced
+Unreferenced_Function4759: ; 4759
 	push bc
 	ld e, a
 	ld d, 0

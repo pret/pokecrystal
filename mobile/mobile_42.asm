@@ -1825,7 +1825,7 @@ LZ_1090a7:
 INCBIN "gfx/unknown/1090a7.tilemap.lz"
 
 Palette_1090f7:
-; unreferenced
+; unused
 	RGB 31, 31, 31
 	RGB  0,  0,  0
 

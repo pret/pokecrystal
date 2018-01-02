@@ -9515,8 +9515,7 @@ Function113eb8: ; 113eb8
 	jp Function111f97
 ; 113ec7
 
-Function113ec7: ; 113ec7
-; Unreferenced
+Unreferenced_Function113ec7: ; 113ec7
 	ld hl, $c822
 	ld a, [hl]
 	push af

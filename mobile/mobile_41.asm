@@ -244,8 +244,7 @@ TrainerRankings_StepCount: mobile ; 10602e (41:602e)
 	ld hl, sTrainerRankingStepCount
 	jp TrainerRankings_Increment4Byte
 
-; Unreferenced in English version.
-TrainerRankings_BattleTowerWins: mobile ; 106035
+Unreferenced_TrainerRankings_BattleTowerWins: mobile ; 106035
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa8d]
@@ -520,8 +519,7 @@ RestoreMobileEventIndex: ; 10619d (41:619d)
 	ret
 ; 1061b3 (41:61b3)
 
-; Unreferenced in English version.
-VerifyTrainerRankingsChecksum: ; 1061b3
+Unreferenced_VerifyTrainerRankingsChecksum: ; 1061b3
 	call CalculateTrainerRankingsChecksum
 	ld hl, sTrainerRankingsChecksum
 	ld a, d

@@ -2806,7 +2806,8 @@ Script_warpcheck:
 	farcall EnableEvents
 	ret
 
-Script_enableevents: ; unreferenced
+Script_enableevents:
+; unused
 	farcall EnableEvents
 	ret
 
@@ -3037,7 +3038,7 @@ Script_check_save:
 	ret
 
 
-; unreferenced
+; unused
 	ld a, [.byte]
 	ld [ScriptVar], a
 	ret

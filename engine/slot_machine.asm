@@ -232,8 +232,8 @@ SlotsLoop: ; 927af (24:67af)
 
 ; 92811 (24:6811)
 
-Function92811: ; 92811
-; unreferenced - debug function?
+Unreferenced_Function92811: ; 92811
+; debug function?
 	ld a, [wSlotBias]
 	add 0
 	daa
@@ -252,8 +252,7 @@ Function92811: ; 92811
 
 ; 9282c
 
-Function9282c: ; 9282c
-; unreferenced
+Unreferenced_Function9282c: ; 9282c
 ; animate OAM tiles?
 	ld hl, wcf66
 	ld a, [hl]
@@ -854,8 +853,7 @@ Slots_UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
 
 ; 92bbe (24:6bbe)
 
-; unreferenced
-Function92bbe: ; 92bbe
+Unreferenced_Function92bbe: ; 92bbe
 	push hl
 	srl a
 	srl a

@@ -447,8 +447,7 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	dw wBufferMonNick
 ; 4df7f
 
-Function4df7f: ; 4df7f
-; unreferenced
+Unreferenced_Function4df7f: ; 4df7f
 	hlcoord 7, 0
 	ld bc, SCREEN_WIDTH
 	ld d, SCREEN_HEIGHT
@@ -962,8 +961,7 @@ StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 	ret
 ; 4e32a (13:632a)
 
-; unreferenced
-Unknown_4e32a: ; 4e32a
+Unreferenced_4e32a: ; 4e32a
 ; A blank tile?
 	ds 16
 ; 4e33a

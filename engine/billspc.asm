@@ -245,7 +245,7 @@ BillsPCDepositMenuDataHeader: ; 0xe253d (38:653d)
 	db "CANCEL@"
 ; 0xe2564 (38:6564)
 
-BillsPC_ClearThreeBoxes: ; e2564
+Unreferenced_BillsPCClearThreeBoxes: ; e2564
 ; unreferenced
 	hlcoord 0, 0
 	ld b,  4

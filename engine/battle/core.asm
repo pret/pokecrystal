@@ -1951,8 +1951,7 @@ GetMaxHP: ; 3ccac
 	ret
 ; 3ccc2
 
-GetHalfHP: ; 3ccc2
-; unreferenced
+Unreferenced_GetHalfHP: ; 3ccc2
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]
 	and a
@@ -6769,8 +6768,7 @@ CheckUnownLetter: ; 3eb75
 
 ; 3ebc7
 
-SwapBattlerLevels: ; 3ebc7
-; unreferenced
+Unreferenced_SwapBattlerLevels: ; 3ebc7
 	push bc
 	ld a, [BattleMonLevel]
 	ld b, a
@@ -7162,7 +7160,7 @@ _LoadHPBar: ; 3eda6
 	ret
 ; 3edad
 
-LoadHPExpBarGFX: ; unreferenced
+Unreferenced_LoadHPExpBarGFX:
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
@@ -8104,7 +8102,7 @@ TextJump_ComeBack: ; 3f35b
 	db "@"
 ; 3f360
 
-HandleSafariAngerEatingStatus: ; unreferenced
+Unreferenced_HandleSafariAngerEatingStatus:
 	ld hl, wSafariMonEating
 	ld a, [hl]
 	and a
@@ -8371,8 +8369,7 @@ StartBattle: ; 3f4c1
 	ret
 ; 3f4d9
 
-_DoBattle: ; 3f4d9
-; unreferenced
+Unreferenced_DoBattle: ; 3f4d9
 	call DoBattle
 	ret
 ; 3f4dd

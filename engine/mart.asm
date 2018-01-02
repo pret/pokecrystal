@@ -797,7 +797,7 @@ SellMenu: ; 15eb3
 	ret
 ; 15ed3
 
-.NothingToSell: ; unreferenced
+.Unreferenced_NothingToSell:
 	ld hl, .NothingToSellText
 	call MenuTextBoxBackup
 	and a

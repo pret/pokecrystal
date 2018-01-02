@@ -1597,8 +1597,7 @@ Function28b22: ; 28b22
 	ret
 ; 28b42
 
-Function28b42: ; 28b42
-; unreferenced
+Unreferenced_Function28b42: ; 28b42
 	hlcoord 0, 16
 	ld a, "┘"
 	ld bc, 2 * SCREEN_WIDTH
@@ -2020,8 +2019,7 @@ SetTradeRoomBGPals: ; 28eff
 	ret
 ; 28f09
 
-Function28f09: ; 28f09
-; unreferenced
+Unreferenced_Function28f09: ; 28f09
 	hlcoord 0, 0
 	ld b, 6
 	ld c, 18
@@ -2577,12 +2575,11 @@ Special_CableClubCheckWhichChris: ; 29f47
 	ret
 ; 29f54
 
-UnusedGen1LinkCommsBorderGFX: ; 29f54
-; unreferenced
+Unreferenced_Gen1LinkCommsBorderGFX: ; 29f54
 INCBIN "gfx/trade/unused_gen_1_border_tiles.2bpp"
 ; 29fe4
 
-Function29fe4: ; unreferenced
+Unreferenced_Function29fe4:
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld d, $0

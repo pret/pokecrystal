@@ -57,8 +57,7 @@ INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
 INCLUDE "home/flag.asm"
 
-Function2ebb:: ; 2ebb
-; unreferenced
+Unreferenced_Function2ebb:: ; 2ebb
 	ld a, [wMonStatusFlags]
 	bit 1, a
 	ret z
@@ -79,8 +78,7 @@ xor_a_dec_a:: ; 2ec8
 	ret
 ; 2ecb
 
-Function2ecb:: ; 2ecb
-; unreferenced
+Unreferenced_Function2ecb:: ; 2ecb
 	push hl
 	ld hl, wMonStatusFlags
 	bit 1, [hl]
