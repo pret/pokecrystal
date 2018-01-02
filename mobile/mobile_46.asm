@@ -7223,7 +7223,7 @@ Function11b483: ; 11b483
 	jr .loop8
 
 .okay4
-	ld a, $0 ; BANK(sPartyMail)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld a, MAIL_STRUCT_LENGTH
 .loop9

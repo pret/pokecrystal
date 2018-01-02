@@ -162,7 +162,7 @@ _TitleScreen: ; 10ed67
 
 	ld a, [rSVBK]
 	push af
-	ld a, 5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 ; Make alternating lines come in from opposite sides

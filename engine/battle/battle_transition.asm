@@ -298,7 +298,7 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 
 StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 	call StartTrainerBattle_NextScene
@@ -356,7 +356,7 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 
 StartTrainerBattle_SetUpForSpinOutro: ; 8c43d (23:443d)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	xor a
@@ -498,7 +498,7 @@ ENDM
 
 StartTrainerBattle_SetUpForRandomScatterOutro: ; 8c578 (23:4578)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	ld a, $10
