@@ -1,7 +1,6 @@
-Predef_LoadSGBLayout: ; 864c
-; LoadSGBLayout
+LoadSGBLayout: ; 864c
 	call CheckCGB
-	jp nz, Predef_LoadSGBLayoutCGB
+	jp nz, LoadSGBLayoutCGB
 
 	ld a, b
 	cp SCGB_RAM

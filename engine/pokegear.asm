@@ -2440,7 +2440,7 @@ FlyMap: ; 91c90
 
 ; 91d11
 
-_Area: ; 91d11
+Pokedex_GetArea: ; 91d11
 ; e: Current landmark
 	ld a, [wTownMapPlayerIconLandmark]
 	push af

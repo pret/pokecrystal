@@ -230,6 +230,5 @@ CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld bc, PKMN_NAME_LENGTH
 	jp CopyBytes
 
-Predef1: ; 747a
-; not used
+DummyPredef1: ; 747a
 	ret

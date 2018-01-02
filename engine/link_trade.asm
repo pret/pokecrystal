@@ -181,7 +181,7 @@ Function16d6e1: ; 16d6e1
 	hlcoord 4, 10
 	ld b, 1
 	ld c, 10
-	predef Predef_LinkTextbox
+	predef LinkTextboxPredef
 	hlcoord 5, 11
 	ld de, .Waiting
 	call PlaceString

@@ -101,7 +101,7 @@ DisplayAlreadyCaughtText: ; cc0c7
 	text_jump UnknownText_0x1c10dd
 	db "@"
 
-Predef2F:
-Predef38:
-Predef39: ; cc0d5
+DummyPredef2F:
+DummyPredef38:
+DummyPredef39: ; cc0d5
 	ret

@@ -257,7 +257,7 @@ _MomText_ItsInRoom: ; 0xfd1ca
 
 	db 0 ; unused
 
-Predef3A: ; fd1d0
+DummyPredef3A: ; fd1d0
 	ret
 ; fd1d1
 

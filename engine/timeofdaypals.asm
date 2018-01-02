@@ -1,5 +1,5 @@
-Predef35: ; 8c000
-Predef36:
+DummyPredef35: ; 8c000
+DummyPredef36:
 	ret
 
 UpdateTimeOfDayPal:: ; 8c001

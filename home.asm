@@ -712,7 +712,7 @@ GetSGBLayout:: ; 3340
 	ret z
 
 .sgb
-	predef_jump Predef_LoadSGBLayout ; LoadSGBLayout
+	predef_jump LoadSGBLayout
 ; 334e
 
 SetHPPal:: ; 334e

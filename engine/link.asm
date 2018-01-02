@@ -1362,7 +1362,7 @@ Function28926: ; 28926
 	hlcoord 0, 15
 	ld b, 1
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	hlcoord 2, 16
 	ld de, .String_Stats_Trade
 	call PlaceString
@@ -1471,7 +1471,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	farcall Link_WaitBGMap
 	ld hl, .Text_CantTradeLastMon
 	bccoord 1, 14
@@ -1493,7 +1493,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	farcall Link_WaitBGMap
 	ld hl, .Text_Abnormal
 	bccoord 1, 14
@@ -1503,7 +1503,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
 	call PlaceString
@@ -1649,7 +1649,7 @@ LinkTrade: ; 28b87
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	farcall Link_WaitBGMap
 	ld a, [wd002]
 	ld hl, PartySpecies
@@ -1678,7 +1678,7 @@ LinkTrade: ; 28b87
 	hlcoord 10, 7
 	ld b, 3
 	ld c, 7
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	ld de, String28eab
 	hlcoord 12, 8
 	call PlaceString
@@ -1718,7 +1718,7 @@ LinkTrade: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
 	call PlaceString
@@ -1735,7 +1735,7 @@ LinkTrade: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
 	call PlaceString
@@ -1965,7 +1965,7 @@ LinkTrade: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	hlcoord 1, 14
 	ld de, String28ebd
 	call PlaceString
@@ -2002,7 +2002,7 @@ String_TooBadTheTradeWasCanceled: ; 28ece
 	next "was canceled!@"
 
 
-Predef_LinkTextbox: ; 28eef
+LinkTextboxPredef: ; 28eef
 	ld d, h
 	ld e, l
 	farcall LinkTextbox
@@ -2025,11 +2025,11 @@ Function28f09: ; 28f09
 	hlcoord 0, 0
 	ld b, 6
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	hlcoord 0, 8
 	ld b, 6
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxPredef
 	farcall PlaceTradePartnerNamesAndParty
 	ret
 ; 28f24

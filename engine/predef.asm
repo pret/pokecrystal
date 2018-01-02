@@ -31,7 +31,7 @@ PredefPointers:: ; 856b
 ; address, bank
 
 	add_predef LearnMove ; $0
-	add_predef Predef1
+	add_predef DummyPredef1
 	add_predef HealParty
 	add_predef FlagPredef
 	add_predef ComputeHPBarPixels
@@ -46,7 +46,7 @@ PredefPointers:: ; 856b
 	add_predef CalcPkmnStatC
 	add_predef CanLearnTMHMMove
 	add_predef GetTMHMMove
-	add_predef Predef_LinkTextbox ; $ 10
+	add_predef LinkTextboxPredef ; $ 10
 	add_predef PrintMoveDesc
 	add_predef UpdatePlayerHUD
 	add_predef PlaceGraphic
@@ -64,7 +64,7 @@ PredefPointers:: ; 856b
 	add_predef CopyPkmnToTempMon
 	add_predef ListMoves ; $20
 	add_predef PlaceNonFaintStatus
-	add_predef Predef22
+	add_predef UnreferencedPredef22
 	add_predef ListMovePP
 	add_predef GetGender
 	add_predef StatsScreenInit
@@ -77,18 +77,18 @@ PredefPointers:: ; 856b
 	add_predef PrintMonTypes
 	add_predef GetUnownLetter
 	add_predef LoadPoisonBGPals
-	add_predef Predef2F
+	add_predef DummyPredef2F
 	add_predef InitSGBBorder ; $30
-	add_predef Predef_LoadSGBLayout
-	add_predef _Area
+	add_predef LoadSGBLayout
+	add_predef Pokedex_GetArea
 	add_predef CheckContestMon
-	add_predef Predef_StartBattle
-	add_predef Predef35
-	add_predef Predef36
+	add_predef DoBattleTransition
+	add_predef DummyPredef35
+	add_predef DummyPredef36
 	add_predef PlayBattleAnim
-	add_predef Predef38 ; $38
-	add_predef Predef39
-	add_predef Predef3A
+	add_predef DummyPredef38 ; $38
+	add_predef DummyPredef39
+	add_predef DummyPredef3A
 	add_predef PartyMonItemName
 	add_predef GetMonFrontpic
 	add_predef GetMonBackpic
@@ -102,7 +102,7 @@ PredefPointers:: ; 856b
 	add_predef PlaceStatusString
 	add_predef LoadMonAnimation
 	add_predef AnimateFrontpic
-	add_predef Predef48 ; $48
+	add_predef UnreferencedPredef48 ; $48
 	add_predef HOF_AnimateFrontpic
 	dbw $ff, InexplicablyEmptyFunction ; ???
 ; 864c

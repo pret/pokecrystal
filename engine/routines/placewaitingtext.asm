@@ -11,7 +11,7 @@ PlaceWaitingText:: ; 4000
 	jr .proceed
 
 .notinbattle
-	predef Predef_LinkTextbox
+	predef LinkTextboxPredef
 
 .proceed
 	hlcoord 4, 11
