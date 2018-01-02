@@ -77,7 +77,7 @@ _DummyGame: ; e1e5b (38:5e5b)
 	ret
 
 .ResetBoard:
-	call ret_e00ed
+	call Ret_e00ed
 	jr nc, .proceed
 	ld hl, wJumptableIndex
 	set 7, [hl]
@@ -232,7 +232,7 @@ endr
 	ld hl, wJumptableIndex
 	inc [hl]
 .AskPlayAgain:
-	call ret_e00ed
+	call Ret_e00ed
 	jr nc, .restart
 	ld hl, wJumptableIndex
 	set 7, [hl]

@@ -209,14 +209,6 @@ SECTION "bank13", ROMX
 
 INCLUDE "engine/map_palettes.asm"
 INCLUDE "tilesets/palette_maps.asm"
-
-; unused
-; 0x4ce05
-rept 26
-	db $06
-endr
-; 0x4ce1f
-
 INCLUDE "data/collision_permissions.asm"
 INCLUDE "engine/routines/emptyallsrambanks.asm"
 INCLUDE "engine/routines/savemenu_copytilemapatonce.asm"
@@ -272,20 +264,7 @@ INCLUDE "gfx/load_pics.asm"
 INCLUDE "engine/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
-
-Unreferenced_53d84:
-	db $1a, $15
-	db $33, $16
-	db $4b, $17
-	db $62, $18
-	db $79, $19
-	db $90, $1a
-	db $a8, $1b
-	db $c4, $1c
-	db $e0, $1d
-	db $f6, $1e
-	db $ff, $1f
-	db $ff, $20
+INCLUDE "data/unknown_table.asm"
 
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
@@ -450,15 +429,6 @@ INCLUDE "gfx/pokemon/unown_frames.asm"
 SECTION "bank38", ROMX
 
 INCLUDE "engine/events/print_unown_2.asm"
-
-Unknown_e00ed:
-; Graphics for an unused Game Corner
-; game were meant to be here.
-
-ret_e00ed: ; e00ed (38:40ed)
-; How many coins?
-	ret
-
 INCLUDE "engine/card_flip.asm"
 INCLUDE "engine/unown_puzzle.asm"
 INCLUDE "engine/dummy_game.asm"

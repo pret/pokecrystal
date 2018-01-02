@@ -404,7 +404,7 @@ DoAnimFrame: ; 8d24b
 	ret
 
 .ForUnusedCursor ; 8d46e (23:546e)
-	callfar ret_e00ed
+	callfar Ret_e00ed
 	ret
 
 .PokegearArrow ; 8d475 (23:5475)

@@ -2,6 +2,13 @@ CARDFLIP_LIGHT_OFF EQU $ef
 CARDFLIP_LIGHT_ON  EQU $f5
 CARDFLIP_DECK_SIZE EQU 4 * 6
 
+; two labels below called from inside ./dummy_game.asm
+Unknown_e00ed: ; e00ed (38:40ed)
+; Graphics for an unused Game Corner
+; game were meant to be here.
+Ret_e00ed: ; e00ed (38:40ed)
+	ret
+
 _CardFlip: ; e00ee (38:40ee)
 	ld hl, Options
 	set 4, [hl]
