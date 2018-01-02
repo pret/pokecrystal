@@ -25,16 +25,16 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $80, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_15
 	dbw $85, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_16
 	dbw $8a, .OAMData_Unused15_17 ; SPRITE_ANIM_OAMSET_UNUSED_17
-	dbw $00, .OAMData_IntroUnownF2_1 ; SPRITE_ANIM_OAMSET_UNUSED_18
-	dbw $01, .OAMData_TradePoofBubble ; SPRITE_ANIM_OAMSET_UNUSED_19
-	dbw $09, .OAMData_Unused1A ; SPRITE_ANIM_OAMSET_UNUSED_1A
+	dbw $00, .OAMData_IntroUnownF2_1 ; SPRITE_ANIM_OAMSET_GS_INTRO_SMALL_FIREBALL
+	dbw $01, .OAMData_TradePoofBubble ; SPRITE_ANIM_OAMSET_GS_INTRO_MED_FIREBALL
+	dbw $09, .OAMData_GSIntroBigFireball ; SPRITE_ANIM_OAMSET_GS_INTRO_BIG_FIREBALL
 	dbw $10, .OAMData_GSIntroStarter ; SPRITE_ANIM_OAMSET_GS_INTRO_CHIKORITA
 	dbw $29, .OAMData_GSIntroStarter ; SPRITE_ANIM_OAMSET_GS_INTRO_CYNDAQUIL
 	dbw $42, .OAMData_GSIntroStarter ; SPRITE_ANIM_OAMSET_GS_INTRO_TOTODILE
 	dbw $f8, .OAMData_GSTitleTrail ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_1
 	dbw $fa, .OAMData_GSTitleTrail ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_2
 	dbw $00, .OAMData_TextEntryCursor ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR
-	dbw $00, .OAMData_ForUnused09 ; SPRITE_ANIM_OAMSET_FOR_UNUSED_09
+	dbw $00, .OAMData_ForUnusedFrameset09 ; SPRITE_ANIM_OAMSET_FOR_UNUSED_FRAMESET_09
 	dbw $00, .OAMData_Unused22 ; SPRITE_ANIM_OAMSET_UNUSED_22
 	dbw $0f, .OAMData_GSIntroStar ; SPRITE_ANIM_OAMSET_GS_INTRO_STAR
 	dbw $11, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_1
@@ -208,7 +208,7 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  1,  0,  0,  0, $01, 0 | X_FLIP | Y_FLIP
 	dsprite  1,  0,  1,  0, $00, 0 | X_FLIP | Y_FLIP
 
-.OAMData_Unused1A:
+.OAMData_GSIntroBigFireball:
 	db 36
 	dsprite -3,  0, -3,  0, $00, 0
 	dsprite -3,  0, -2,  0, $01, 0
@@ -460,7 +460,7 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0, -1,  7, $00, 0 | Y_FLIP
 	dsprite  0,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
 
-.OAMData_ForUnused09:
+.OAMData_ForUnusedFrameset09:
 	db 10
 	dsprite -1,  7,  0,  0, $00, 0
 	dsprite -1,  7,  1,  0, $01, 0

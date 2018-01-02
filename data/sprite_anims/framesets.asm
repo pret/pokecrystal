@@ -134,7 +134,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dorestart
 
 .Frameset_Unused09:
-	frame SPRITE_ANIM_OAMSET_FOR_UNUSED_09,  1
+	frame SPRITE_ANIM_OAMSET_FOR_UNUSED_FRAMESET_09,  1
 	dorepeat  1
 	dorestart
 
