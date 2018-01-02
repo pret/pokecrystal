@@ -1309,7 +1309,7 @@ PokegearPhoneContactSubmenu: ; 91342 (24:5342)
 
 ; 9146e
 
-; XXX
+; unused
 	ld a, [hHours]
 	cp 12
 	jr c, .am
@@ -1499,7 +1499,7 @@ UpdateRadioStation: ; 9166f (24:566f)
 
 ; 916a1 (24:56a1)
 
-; XXX
+; unused
 	ld [wPokegearRadioChannelBank], a
 	ld a, [hli]
 	ld [wPokegearRadioChannelAddr], a
@@ -2932,7 +2932,7 @@ INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX: ; 922e1
 INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 
-; XXX
+Unreferenced_Function92311:
 	xor a
 	ld [wTownMapPlayerIconLandmark], a
 	call ClearBGPalettes

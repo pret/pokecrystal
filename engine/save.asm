@@ -415,8 +415,7 @@ EraseHallOfFame: ; 14d06
 	jp CloseSRAM
 ; 14d18
 
-Function14d18: ; 14d18
-; XXX
+Unreferenced_Function14d18: ; 14d18
 ; copy .Data to SRA4:a007
 	ld a, $4
 	call GetSRAMBank
@@ -452,8 +451,7 @@ SaveData: ; 14d68
 	ret
 ; 14d6c
 
-Function14d6c: ; 14d6c
-; XXX
+Unreferenced_Function14d6c: ; 14d6c
 	ld a, $4
 	call GetSRAMBank
 	ld a, [$a60b]
@@ -469,8 +467,7 @@ Function14d6c: ; 14d6c
 	ret
 ; 14d83
 
-Function14d83: ; 14d83
-; XXX
+Unreferenced_Function14d83: ; 14d83
 	ld a, $4
 	call GetSRAMBank
 	xor a
@@ -480,8 +477,7 @@ Function14d83: ; 14d83
 	ret
 ; 14d93
 
-Function14d93: ; 14d93
-; XXX
+Unreferenced_Function14d93: ; 14d93
 	ld a, $7
 	call GetSRAMBank
 	xor a

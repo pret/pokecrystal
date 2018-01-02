@@ -6908,7 +6908,7 @@ Function112d33: ; 112d33
 	dec a
 	jp .asm_112e46
 
-; XXX
+; unused
 	ret
 
 .asm_112d4d
@@ -8611,7 +8611,7 @@ endr
 	ld [$cc0d], a
 	ld a, l
 	ld [$cc0c], a
-	cp $8e ; XXX ; LOW(Unknown_113b8e + $100) ???
+	cp $8e ; XXX LOW(Unknown_113b8e + $100) ???
 	jp nz, .asm_113751
 	ld de, $cc18
 	ld hl, $cbe7

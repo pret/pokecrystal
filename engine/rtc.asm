@@ -1,4 +1,4 @@
-StopRTC: ; Unreferenced???
+StopRTC: ; Unreferenced
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock

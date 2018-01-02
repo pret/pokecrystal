@@ -1,5 +1,4 @@
-Function88248: ; 88248
-; XXX
+Unreferenced_Function88248: ; 88248
 	ld c, CAL
 	ld a, [wPlayerGender]
 	bit 0, a

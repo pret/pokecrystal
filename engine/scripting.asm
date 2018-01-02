@@ -2852,7 +2852,7 @@ Script_loadbytec2cf:
 	ld [wc2cf], a
 	ret
 
-	ld c, c ; XXX
+	ld c, c ; unused
 
 Script_closetext:
 ; script command 0x49

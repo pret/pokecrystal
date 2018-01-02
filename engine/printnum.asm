@@ -165,7 +165,7 @@ _PrintNum:: ; c4c7
 	dec e
 	jr nz, .money_leading_zero
 	inc hl
-	ld [hl], $f2 ; XXX
+	ld [hl], "<DOT>"
 
 .money_leading_zero
 	call .AdvancePointer

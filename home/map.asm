@@ -384,7 +384,7 @@ CheckIndoorMap:: ; 22f4
 	ret
 ; 2300
 
-; XXX
+; unused
 	cp INDOOR
 	ret z
 	cp GATE
@@ -2075,7 +2075,6 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 
 ; inputs:
 ; b = map group, c = map number
-; XXX de = ???
 
 ; outputs:
 ; hl points to the map header
@@ -2247,7 +2246,7 @@ GetMapEnvironment:: ; 2c8a
 	ret
 ; 2c98
 
-	ret ; XXX
+	ret ; unused
 ; 2c99
 
 GetAnyMapEnvironment:: ; 2c99

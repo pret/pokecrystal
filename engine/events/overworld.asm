@@ -1749,7 +1749,7 @@ Script_GetOnBike_Register: ; 0xd14e
 	special ReplaceKrisSprite
 	end
 
-; XXX
+; unused
 	nop
 	ret
 

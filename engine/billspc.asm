@@ -2559,7 +2559,7 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	ret
 ; e3778 (38:7778)
 
-	hlcoord 11, 7 ; XXX
+	hlcoord 11, 7 ; unused
 
 .MenuDataHeader: ; 0xe377b
 	db $40 ; flags

@@ -739,7 +739,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b39 (4:5b39)
 
-; XXX
+; unused
 	ld a, [wNamingScreenCurrNameLength]
 	and a
 	ret z
@@ -1434,7 +1434,7 @@ MailComposition_TryAddLastCharacter: ; 121ac (4:61ac)
 
 ; 121b2 (4:61b2)
 
-; XXX
+; unused
 	ld a, [wNamingScreenCurrNameLength]
 	and a
 	ret z

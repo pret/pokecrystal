@@ -552,7 +552,7 @@ CopyTilemapAtOnce:: ; 323d
 	jr .CopyTilemapAtOnce
 ; 323f
 
-; XXX
+; unused
 	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 3246
@@ -1127,8 +1127,7 @@ Print8BitNumRightAlign:: ; 3842
 	jp PrintNum
 ; 384d
 
-Function384d:: ; 384d
-; XXX
+Unreferenced_Function384d:: ; 384d
 ; GetNthMove
 	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
@@ -1321,8 +1320,7 @@ GetPartyLocation:: ; 3927
 	jp AddNTimes
 ; 392d
 
-Function392d:: ; 392d
-; XXX
+Unreferenced_Function392d:: ; 392d
 ; GetDexNumber
 ; Probably used in gen 1 to convert index number to dex number
 ; Not required in gen 2 because index number == dex number

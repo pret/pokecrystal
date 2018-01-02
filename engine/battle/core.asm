@@ -8551,8 +8551,7 @@ InitEnemyWildmon: ; 3f607
 	ret
 ; 3f662
 
-Function3f662: ; 3f662
-; XXX
+Unreferenced_Function3f662: ; 3f662
 	ld hl, EnemyMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld b, NUM_MOVES

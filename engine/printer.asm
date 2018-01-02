@@ -596,8 +596,7 @@ PlacePrinterStatusString: ; 84785
 	ret
 ; 847bd
 
-Function847bd: ; 847bd
-; XXX
+Unreferenced_Function847bd: ; 847bd
 	ld a, [wPrinterStatus]
 	and a
 	ret z

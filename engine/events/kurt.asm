@@ -163,7 +163,7 @@ Kurt_SelectQuantity: ; 880c2
 	db 09, 06 ; start coords
 	db 12, 19 ; end coords
 
-	db 0, 0, -1, 0 ; XXX
+	db 0, 0, -1, 0 ; unused
 
 .PlaceApricornName: ; 88116
 	call MenuBoxCoord2Tile

@@ -725,8 +725,7 @@ MailGFX_PlaceMessage: ; b9803
 	jp PlaceString
 ; b984e
 
-Functionb984e: ; b984e
-; XXX
+Unreferenced_Functionb984e: ; b984e
 .loop
 	ld a, [hl]
 	xor $ff

@@ -33,8 +33,7 @@ Function11c075: ; 11c075
 	ret
 ; 11c082
 
-Function11c082: ; 11c082
-; XXX
+Unreferenced_Function11c082: ; 11c082
 	push de
 	ld a, c
 	call Function11c254

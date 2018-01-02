@@ -112,7 +112,7 @@ Mobile_ReloadMapPart: ; 104099
 	ret
 ; 1040d4
 
-; XXX
+; unused
 	ld hl, .unreferenced_1040da
 	jp CallInSafeGFXMode
 
@@ -136,7 +136,7 @@ Mobile_ReloadMapPart: ; 104099
 	ret
 ; 1040fb
 
-; XXX
+; unused
 	ld hl, .unreferenced_104101
 	jp CallInSafeGFXMode
 

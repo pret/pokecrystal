@@ -78,8 +78,7 @@ CheckContestMon:
 	and a
 	ret
 
-Function8aa4:
-; XXX
+Unreferenced_Function8aa4:
 	push de
 	push bc
 	ld hl, PalPacket_9ce6
@@ -180,8 +179,7 @@ Function8b3f:
 	ld hl, BlkPacket_9a86
 	jp PushSGBPals_
 
-Function8b4d:
-; XXX
+Unreferenced_Function8b4d:
 	call CheckCGB
 	jr nz, .cgb
 	ld a, [hSGB]
@@ -196,8 +194,7 @@ Function8b4d:
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
-Function8b67:
-; XXX
+Unreferenced_Function8b67:
 	call CheckCGB
 	jr nz, .cgb
 	ld a, [hSGB]
@@ -212,8 +209,7 @@ Function8b67:
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
-Function8b81:
-; XXX
+Unreferenced_Function8b81:
 	call CheckCGB
 	jr nz, .cgb
 	ld a, [hSGB]
@@ -281,8 +277,7 @@ got_palette_pointer_8bd7
 	call LoadPalette_White_Col1_Col2_Black
 	ret
 
-Function8bec:
-; XXX
+Unreferenced_Function8bec:
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
@@ -455,8 +450,7 @@ INCLUDE "data/palettes/mail.pal"
 
 INCLUDE "engine/cgb_layouts.asm"
 
-Function95f0:
-; XXX
+Unreferenced_Function95f0:
 	ld hl, .Palette
 	ld de, wBGPals1
 	ld bc, 1 palettes
@@ -768,8 +762,7 @@ Function9779: mobile
 BattleObjectPals:
 INCLUDE "data/palettes/battle_objects.pal"
 
-Function97cc:
-; XXX
+Unreferenced_Function97cc:
 	call CheckCGB
 	ret z
 	ld a, $90
@@ -979,8 +972,7 @@ _InitSGBBorderPals:
 	dw PalPacket_9dd6
 	dw PalPacket_9de6
 
-Function9911:
-; XXX
+Unreferenced_Function9911:
 	di
 	xor a
 	ld [rJOYP], a

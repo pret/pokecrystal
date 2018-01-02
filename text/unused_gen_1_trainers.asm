@@ -1,5 +1,4 @@
-GetGen1TrainerClassName: ; 50a28
-; XXX
+Unreferenced_GetGen1TrainerClassName: ; 50a28
 	ld hl, .Strings
 	ld a, [TrainerClass]
 	dec a

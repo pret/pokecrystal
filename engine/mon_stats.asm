@@ -324,8 +324,7 @@ ListMovePP: ; 50c50
 	jr nz, .load_loop
 	ret
 
-Function50cd0: ; 50cd0
-; XXX
+Unreferenced_Function50cd0: ; 50cd0
 .loop
 	ld [hl], $32
 	inc hl

@@ -7350,7 +7350,7 @@ INCBIN "data/mobile/ascii-sym.txt"
 
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
-; XXX better function names
+; Needs better function names
 MobileStudium: ; 0x117a7f
 	ld a, [hInMenu]
 	push af
