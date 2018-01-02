@@ -6388,7 +6388,7 @@ LoadEnemyMon: ; 3e8eb
 	ld bc, PlayerID
 	callfar CalcMagikarpLength
 
-; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6)
+; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6 feet)
 	ld a, [wMagikarpLength]
 	cp HIGH(1536) ; should be "cp 5", since 1536 mm = 5'0", but HIGH(1536) = 6
 	jr nz, .CheckMagikarpArea
@@ -6397,7 +6397,7 @@ LoadEnemyMon: ; 3e8eb
 	call Random
 	cp 5 percent
 	jr c, .CheckMagikarpArea
-; Try again if length >= 1616 mm
+; Try again if length >= 1616 mm (i.e. if LOW(length) >= 3 inches)
 	ld a, [wMagikarpLength + 1]
 	cp LOW(1616) ; should be "cp 3", since 1616 mm = 5'3", but LOW(1616) = 80
 	jr nc, .GenerateDVs
@@ -6406,7 +6406,7 @@ LoadEnemyMon: ; 3e8eb
 	call Random
 	cp 20 percent - 1
 	jr c, .CheckMagikarpArea
-; Try again if length >= 1600 mm
+; Try again if length >= 1600 mm (i.e. if LOW(length) >= 2 inches)
 	ld a, [wMagikarpLength + 1]
 	cp LOW(1600) ; should be "cp 2", since 1600 mm = 5'2", but LOW(1600) = 64
 	jr nc, .GenerateDVs
@@ -6435,7 +6435,7 @@ LoadEnemyMon: ; 3e8eb
 	call Random
 	cp 40 percent - 2
 	jr c, .Happiness
-; Try again if length < 1024 mm
+; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
 	ld a, [wMagikarpLength]
 	cp HIGH(1024) ; should be "cp 3", since 1024 mm = 3'4", but HIGH(1024) = 4
 	jr c, .GenerateDVs ; try again
