@@ -1,16 +1,16 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+
+from __future__ import print_function
 
 import sys
 import re
 
-encoding = 'utf-8'
-
 def total_bank_size(type):
 	# used to output the size of EMPTY banks
 	sizes = {
-		'ROM0':  0x4000, # 0000–3FFF
-		'ROMX':  0x4000, # 4000–7FFF
-		'VRAM':  0x2000, # 8000–9FFF
+		'ROM0':  0x4000, # 0000-3FFF
+		'ROMX':  0x4000, # 4000-7FFF
+		'VRAM':  0x2000, # 8000-9FFF
 		'SRAM':  0x2000, # A000-BFFF
 		'WRAM0': 0x1000, # C000-CFFF
 		'WRAMX': 0x1000, # D000-DFFF
@@ -52,8 +52,8 @@ def sorted_mapfile(input):
 			bank_type = x.group(1)
 			bank_number = '00'
 			bank_size = 0
-			bank_queue.clear()
-			section_queue.clear()
+			del bank_queue[:]
+			del section_queue[:]
 			continue
 
 		x = re.match(bank_rx, line)
@@ -66,8 +66,8 @@ def sorted_mapfile(input):
 			if bank_type == 'WRAM':
 				bank_type = 'WRAM0' if bank_number == '00' else 'WRAMX'
 			bank_size = 0
-			bank_queue.clear()
-			section_queue.clear()
+			del bank_queue[:]
+			del section_queue[:]
 			continue
 
 		x = re.match(section_rx, line)
@@ -81,7 +81,7 @@ def sorted_mapfile(input):
 			name = x.group(4)
 			bank_size += int(size, 16)
 			bank_queue.append('; %s:%s-%s ($%s) %s\n' % (bank_number, start, end, size, name))
-			section_queue.clear()
+			del section_queue[:]
 			continue
 
 		x = re.match(label_rx, line)
@@ -99,7 +99,8 @@ def sorted_mapfile(input):
 			# finish current bank
 			slack = int(x.group(1), 16)
 			yield '; %s $%s ($%04X) ($%04X free)\n' % (bank_type, bank_number, bank_size, slack)
-			yield from bank_queue
+			for line in bank_queue:
+				yield line
 			continue
 
 def main():
@@ -108,10 +109,10 @@ def main():
 		sys.exit(1)
 	input_filename = sys.argv[1]
 	output_filename = sys.argv[2]
-	with open(input_filename, 'r', encoding=encoding) as infile:
+	with open(input_filename, 'r') as infile:
 		input = infile.readlines()
 		output = sorted_mapfile(input)
-	with open(output_filename, 'w', encoding=encoding) as outfile:
+	with open(output_filename, 'w') as outfile:
 		for line in output:
 			outfile.write(line)
 
