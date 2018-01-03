@@ -36,4 +36,4 @@ ConvertMon_1to2: ; fb908
 ; fb91c
 
 
-INCLUDE "data/time_capsule/mon_order.asm"
+INCLUDE "data/pokemon/rby_order.asm"

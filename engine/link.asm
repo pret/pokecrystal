@@ -1130,7 +1130,7 @@ TimeCapsule_ReplaceTeruSama: ; 28771
 	ret
 
 
-INCLUDE "data/time_capsule/catch_rate_items.asm"
+INCLUDE "data/items/catch_rate_items.asm"
 
 
 Link_CopyOTData: ; 2879e
