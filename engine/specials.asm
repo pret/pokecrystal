@@ -113,7 +113,7 @@ SpecialsPointers:: ; c029
 	add_special Special_RandomUnseenWildMon
 	add_special Special_RandomPhoneWildMon
 	add_special Special_RandomPhoneMon
-	add_special Special_MapCallbackSprites_LoadUsedSpritesGFX
+	add_special Special_LoadUsedSpritesGFX
 	add_special Special_PlaySlowCry
 	add_special Special_SnorlaxAwake
 	add_special Special_YoungerHaircutBrother
