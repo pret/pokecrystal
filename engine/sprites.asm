@@ -36,7 +36,7 @@ PlaySpriteAnimations: ; 8cf69
 
 DoNextFrameForAllSprites: ; 8cf7a
 	ld hl, wSpriteAnimationStructs
-	ld e, 10 ; There are 10 structs here.
+	ld e, NUM_SPRITE_ANIM_STRUCTS
 
 .loop
 	ld a, [hl]
@@ -53,7 +53,7 @@ DoNextFrameForAllSprites: ; 8cf7a
 	jr c, .done
 
 .next
-	ld bc, $10
+	ld bc, SPRITEANIMSTRUCT_LENGTH
 	add hl, bc
 	dec e
 	jr nz, .loop
@@ -76,7 +76,7 @@ DoNextFrameForAllSprites: ; 8cf7a
 
 DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 	ld hl, wSpriteAnimationStructs
-	ld e, 10
+	ld e, NUM_SPRITE_ANIM_STRUCTS
 
 .loop
 	ld a, [hl]
@@ -93,7 +93,7 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 	jr c, .done
 
 .next
-	ld bc, $10
+	ld bc, SPRITEANIMSTRUCT_LENGTH
 	add hl, bc
 	dec e
 	jr nz, .loop
@@ -119,12 +119,12 @@ InitSpriteAnimStruct:: ; 8cfd6
 	push de
 	push af
 	ld hl, wSpriteAnimationStructs
-	ld e, 10
+	ld e, NUM_SPRITE_ANIM_STRUCTS
 .loop
 	ld a, [hl]
 	and a
 	jr z, .found
-	ld bc, $10
+	ld bc, SPRITEANIMSTRUCT_LENGTH
 	add hl, bc
 	dec e
 	jr nz, .loop
@@ -222,8 +222,8 @@ DeinitializeSprite: ; 8d036
 DeinitializeAllSprites: ; 8d03d (23:503d)
 ; Clear the index field of every struct in the wSpriteAnimationStructs array.
 	ld hl, wSpriteAnimationStructs
-	ld bc, $10
-	ld e, 10
+	ld bc, SPRITEANIMSTRUCT_LENGTH
+	ld e, NUM_SPRITE_ANIM_STRUCTS
 	xor a
 .loop
 	ld [hl], a
@@ -391,7 +391,7 @@ GetSpriteAnimVTile: ; 8d109
 	push bc
 	ld hl, wSpriteAnimDict
 	ld b, a
-	ld c, 10
+	ld c, NUM_SPRITE_ANIM_STRUCTS
 .loop
 	ld a, [hli]
 	cp b

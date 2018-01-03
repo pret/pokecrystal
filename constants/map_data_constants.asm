@@ -102,7 +102,9 @@ const_value set 1
 	const OBJECT_1E                  ; 1e
 	const OBJECT_1F                  ; 1f
 	const OBJECT_RANGE               ; 20
-; 33-39 are not used
+	; 21-27 are not used
+OBJECT_STRUCT_LENGTH EQU 40
+NUM_OBJECT_STRUCTS EQU 13 ; see ObjectStructs
 
 ; map_object struct members (see macros/wram.asm)
 	const_def

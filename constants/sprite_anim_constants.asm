@@ -16,6 +16,8 @@
 	const SPRITEANIMSTRUCT_0D              ; d
 	const SPRITEANIMSTRUCT_0E              ; e
 	const SPRITEANIMSTRUCT_0F              ; f
+SPRITEANIMSTRUCT_LENGTH EQU const_value
+NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 
 ; SpriteAnimSeqData indexes (see data/sprite_anims/sequences.asm)
 	const_def
