@@ -78,8 +78,8 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $39, .OAMData_Unused43_4A              ; SPRITE_ANIM_OAMSET_UNUSED_4A
 	dbw $0c, .OAMData_Unused4B                 ; SPRITE_ANIM_OAMSET_UNUSED_4B
 	dbw $0c, .OAMData_Unused4C                 ; SPRITE_ANIM_OAMSET_UNUSED_4C
-	dbw $3c, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_4D
-	dbw $3e, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_4E
+	dbw $3c, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_UNUSED_4D
+	dbw $3e, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_UNUSED_4E
 	dbw $00, .OAMData_Leaf                     ; SPRITE_ANIM_OAMSET_LEAF
 	dbw $00, .OAMData_Tree                     ; SPRITE_ANIM_OAMSET_TREE_1
 	dbw $00, .OAMData_CutTree2                 ; SPRITE_ANIM_OAMSET_CUT_TREE_2
