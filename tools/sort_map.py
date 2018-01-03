@@ -23,10 +23,15 @@ def total_bank_size(type):
 	return sizes[type]
 
 def sorted_mapfile(input):
+	# ex: OAM:
 	unused_rx = re.compile(r'^([A-Z]+):$')
+	# ex: ROM Bank #1:
 	bank_rx = re.compile(r'^([A-Z]+) Bank #([0-9]+)')
+	# ex:   SECTION: $4000-$747A ($347B bytes) ["bank1"]
 	section_rx = re.compile(r' +SECTION: \$([0-9A-F]+)(?:-\$([0-9A-F]+))? \(\$([0-9A-F]+) bytes\) \["(.+)"\]')
+	# ex:            $4025 = PlaceWaitingText.Waiting
 	label_rx = re.compile(r' +\$([0-9A-F]+) = (.+)')
+	# ex:     SLACK: $0B85 bytes
 	slack_rx = re.compile(r' +SLACK: \$([0-9A-F]+) bytes')
 
 	bank_type = None
