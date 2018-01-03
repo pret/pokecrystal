@@ -40,6 +40,7 @@ def map_to_sym(input):
 	# ex:     SLACK: $0B85 bytes
 	slack_rx = re.compile(r' +SLACK: \$([0-9A-F]+) bytes')
 
+	rom_size = 0
 	bank_type = None
 	bank_number = None
 	bank_size = 0
@@ -56,7 +57,7 @@ def map_to_sym(input):
 		if x:
 			# start an unused bank
 			bank_type = x.group(1)
-			bank_number = '00'
+			bank_number = None
 			bank_size = 0
 			del bank_lines[:]
 			del section_lines[:]
@@ -105,6 +106,8 @@ def map_to_sym(input):
 			# finish current section
 			bank_lines.extend(sorted(section_lines))
 			# finish current bank
+			if bank_type.startswith('ROM'): # ROM0 or ROMX
+				rom_size += bank_size
 			slack = int(x.group(1), 16)
 			if bank_type in {'ROM0', 'WRAM0', 'OAM', 'HRAM'}:
 				# ex: ; ROM0 ($3E93) ($016D free)
@@ -115,6 +118,11 @@ def map_to_sym(input):
 			for line in bank_lines:
 				yield line
 			continue
+
+	total_rom_size = 0x4000 * 128
+	free_space = total_rom_size - rom_size
+	percent_free = free_space * 100.0 / total_rom_size
+	yield '; ROM: %.2f%% free space ($%06X) ($%06X free)\n' % (percent_free, rom_size, free_space)
 
 def main():
 	if len(sys.argv) < 3:
