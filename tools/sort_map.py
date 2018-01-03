@@ -82,7 +82,7 @@ def sorted_mapfile(input):
 			bank_queue.extend(sorted(section_queue))
 			# finish current bank
 			slack = int(x.group(1), 16)
-			yield '; %s $%s ($%s) ($%04X free)\n' % (bank_type, bank_number, bank_size, slack)
+			yield '; %s $%s ($%04X) ($%04X free)\n' % (bank_type, bank_number, bank_size, slack)
 			yield from bank_queue
 			continue
 
