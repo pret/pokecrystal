@@ -139,11 +139,11 @@ TilesetPortAnim: ; 0xfc12f
 ; 0xfc15f
 
 TilesetGym1Anim: ; 0xfc15f
-	dw NULL,  SafariFountainAnim2
+	dw NULL,  LavaBubbleAnim2
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
-	dw NULL,  SafariFountainAnim1
+	dw NULL,  LavaBubbleAnim1
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
@@ -704,7 +704,7 @@ FlowerTileFrames: ; fc58c
 ; fc5cc
 
 
-SafariFountainAnim1: ; fc5cc
+LavaBubbleAnim1: ; fc5cc
 ; Splash in the bottom-right corner of the fountain.
 	ld hl, sp+0
 	ld b, h
@@ -718,7 +718,7 @@ SafariFountainAnim1: ; fc5cc
 	swap a
 	ld e, a
 	ld d, 0
-	ld hl, SafariFountainFrames
+	ld hl, LavaBubbleFrames
 	add hl, de
 	ld sp, hl
 	ld hl, vTiles2 tile $5b
@@ -726,7 +726,7 @@ SafariFountainAnim1: ; fc5cc
 ; fc5eb
 
 
-SafariFountainAnim2: ; fc5eb
+LavaBubbleAnim2: ; fc5eb
 ; Splash in the top-left corner of the fountain.
 	ld hl, sp+0
 	ld b, h
@@ -738,7 +738,7 @@ SafariFountainAnim2: ; fc5eb
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, SafariFountainFrames
+	ld hl, LavaBubbleFrames
 	add hl, de
 	ld sp, hl
 	ld hl, vTiles2 tile $38
@@ -746,11 +746,11 @@ SafariFountainAnim2: ; fc5eb
 ; fc605
 
 
-SafariFountainFrames: ; fc605
-	INCBIN "gfx/tilesets/safari/1.2bpp"
-	INCBIN "gfx/tilesets/safari/2.2bpp"
-	INCBIN "gfx/tilesets/safari/3.2bpp"
-	INCBIN "gfx/tilesets/safari/4.2bpp"
+LavaBubbleFrames: ; fc605
+	INCBIN "gfx/tilesets/lava/1.2bpp"
+	INCBIN "gfx/tilesets/lava/2.2bpp"
+	INCBIN "gfx/tilesets/lava/3.2bpp"
+	INCBIN "gfx/tilesets/lava/4.2bpp"
 ; fc645
 
 
