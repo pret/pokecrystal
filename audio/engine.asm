@@ -40,7 +40,7 @@ _MapSetup_Sound_Off:: ; e8000
 
 	ld hl, Channels ; start of channel data
 	ld de, ChannelsEnd - Channels ; length of area to clear (entire sound wram area)
-.clearchannels ; clear Channel1-$c2bf
+.clearchannels
 	xor a
 	ld [hli], a
 	dec de
@@ -2749,7 +2749,7 @@ PlayStereoSFX:: ; e8ca6
 	add hl, bc
 	ld [hl], a
 
-	ld hl, Channel1Field30 - Channel1 ; $c131 - Channel1
+	ld hl, Channel1Field30 - Channel1
 	add hl, bc
 	ld [hl], a
 
@@ -2760,11 +2760,11 @@ PlayStereoSFX:: ; e8ca6
 ; ch3-4
 	ld a, [wSFXDuration]
 
-	ld hl, Channel1Field2e - Channel1 ; $c12f - Channel1
+	ld hl, Channel1Field2e - Channel1
 	add hl, bc
 	ld [hl], a
 
-	ld hl, Channel1Field2f - Channel1 ; $c130 - Channel1
+	ld hl, Channel1Field2f - Channel1
 	add hl, bc
 	ld [hl], a
 
