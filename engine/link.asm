@@ -811,31 +811,24 @@ Link_PrepPartyData_Gen2: ; 28595
 	inc de
 	dec b
 	jr nz, .loop1
-	; de = $c806
 	ld hl, PlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	; de = $c811
 	ld hl, PartyCount
 	ld bc, 1 + PARTY_LENGTH + 1
 	call CopyBytes
-	; de = $c819
 	ld hl, PlayerID
 	ld bc, 2
 	call CopyBytes
-	; de = $c81b
 	ld hl, PartyMon1Species
 	ld bc, PARTY_LENGTH * PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	; de = $c93b
 	ld hl, PartyMonOT
 	ld bc, PARTY_LENGTH * NAME_LENGTH
 	call CopyBytes
-	; de = $c97d
 	ld hl, PartyMonNicknames
 	ld bc, PARTY_LENGTH * PKMN_NAME_LENGTH
 	call CopyBytes
-	; de = $c9bf
 
 ; Okay, we did all that.  Now, are we in the trade center?
 	ld a, [wLinkMode]

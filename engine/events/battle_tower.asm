@@ -100,7 +100,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 .FindARandomBattleTowerPkmn:
 	; From Which LevelGroup are the Pkmn loaded
 	; a = 1..10
-	ld a, [wBTChoiceOfLvlGroup] ; [$d800]
+	ld a, [wBTChoiceOfLvlGroup]
 	dec a
 	ld hl, BattleTowerMons
 	ld bc, BattleTowerMons2 - BattleTowerMons1
