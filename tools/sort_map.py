@@ -23,6 +23,7 @@ def total_bank_size(type):
 	return sizes[type]
 
 def sorted_mapfile(input):
+	unused_rx = re.compile(r'^([A-Z]+):$')
 	bank_rx = re.compile(r'^([A-Z]+) Bank #([0-9]+)')
 	section_rx = re.compile(r' +SECTION: \$([0-9A-F]+)(?:-\$([0-9A-F]+))? \(\$([0-9A-F]+) bytes\) \["(.+)"\]')
 	label_rx = re.compile(r' +\$([0-9A-F]+) = (.+)')
@@ -39,6 +40,16 @@ def sorted_mapfile(input):
 		if line.startswith('  EMPTY'):
 			# empty banks have their entire capacity as slack
 			line = '    SLACK: $%04X bytes\n' % total_bank_size(bank_type)
+
+		x = re.match(unused_rx, line)
+		if x:
+			# start an unused bank
+			bank_type = x.group(1)
+			bank_number = '00'
+			bank_size = 0
+			bank_queue.clear()
+			section_queue.clear()
+			continue
 
 		x = re.match(bank_rx, line)
 		if x:
