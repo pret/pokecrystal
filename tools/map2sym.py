@@ -86,7 +86,7 @@ def map_to_sym(input):
 			size = x.group(3).zfill(4)
 			name = x.group(4)
 			bank_size += int(size, 16)
-			# ex: ; ROMX $01 ($347B) ($0B85 free)
+			# ex: ; 01:4000-747A ($347B) bank1
 			bank_lines.append('; %s:%s-%s ($%s) %s\n' % (bank_number, start, end, size, name))
 			del section_lines[:]
 			continue
@@ -106,8 +106,12 @@ def map_to_sym(input):
 			bank_lines.extend(sorted(section_lines))
 			# finish current bank
 			slack = int(x.group(1), 16)
-			# ex: ; 01:4000-747A ($347B) bank1
-			yield '; %s $%s ($%04X) ($%04X free)\n' % (bank_type, bank_number, bank_size, slack)
+			if bank_type in {'ROM0', 'WRAM0', 'OAM', 'HRAM'}:
+				# ex: ; ROM0 ($3E93) ($016D free)
+				yield '; %s ($%04X) ($%04X free)\n' % (bank_type, bank_size, slack)
+			else:
+				# ex: ; ROMX $01 ($347B) ($0B85 free)
+				yield '; %s $%s ($%04X) ($%04X free)\n' % (bank_type, bank_number, bank_size, slack)
 			for line in bank_lines:
 				yield line
 			continue
