@@ -379,7 +379,7 @@ Serve2bppRequest:: ; 1769
 	jr _Serve2bppRequest
 
 
-Serve2bppRequest@VBlank:: ; 1778
+Serve2bppRequest_VBlank:: ; 1778
 
 	ld a, [Requested2bpp]
 	and a
