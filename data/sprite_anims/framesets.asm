@@ -20,7 +20,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_RedWalk
 	dw .Frameset_StillCursor
 	dw .Frameset_TradePokeBall
-	dw .Frameset_TradePokeBall0
+	dw .Frameset_TradePokeBallWiggle
 	dw .Frameset_TradePoof
 	dw .Frameset_TradeTubeBulge
 	dw .Frameset_TrademonIcon
@@ -38,13 +38,13 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_EggHatch4
 	dw .Frameset_GSIntroHoOh
 	dw .Frameset_HeadbuttTree
-	dw .Frameset_EZChatCursor0
 	dw .Frameset_EZChatCursor1
 	dw .Frameset_EZChatCursor2
 	dw .Frameset_EZChatCursor3
 	dw .Frameset_EZChatCursor4
 	dw .Frameset_EZChatCursor5
 	dw .Frameset_EZChatCursor6
+	dw .Frameset_EZChatCursor7
 	dw .Frameset_BlueWalk
 	dw .Frameset_MagnetTrainBlue
 	dw .Frameset_MobileTradeSentBall
@@ -202,7 +202,7 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1, 32
 	endanim
 
-.Frameset_TradePokeBall0:
+.Frameset_TradePokeBallWiggle:
 	frame SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1,  3
 	frame SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_2,  3
 	frame SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1,  3
@@ -342,31 +342,31 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_OAMSET_HEADBUTT_TREE_2,  2, OAM_X_FLIP
 	dorestart
 
-.Frameset_EZChatCursor0:
+.Frameset_EZChatCursor1:
 	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_1,  2
 	endanim
 
-.Frameset_EZChatCursor1:
+.Frameset_EZChatCursor2:
 	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_2,  2
 	endanim
 
-.Frameset_EZChatCursor2:
+.Frameset_EZChatCursor3:
 	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_3,  2
 	endanim
 
-.Frameset_EZChatCursor3:
+.Frameset_EZChatCursor4:
 	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_4,  2
 	endanim
 
-.Frameset_EZChatCursor4:
+.Frameset_EZChatCursor5:
 	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_5,  2
 	endanim
 
-.Frameset_EZChatCursor5:
+.Frameset_EZChatCursor6:
 	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_6,  2
 	endanim
 
-.Frameset_EZChatCursor6:
+.Frameset_EZChatCursor7:
 	frame SPRITE_ANIM_OAMSET_EZCHAT_CURSOR_7,  2
 	endanim
 
