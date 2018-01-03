@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
-from __future__ import print_function
+"""
+Convert an rgbds .map file into a sorted .sym file
+with bank and section data in comments.
+"""
 
 import sys
 import re
@@ -105,7 +108,7 @@ def sorted_mapfile(input):
 
 def main():
 	if len(sys.argv) < 3:
-		print('Usage: %s pokecrystal.map sorted.sym' % sys.argv[0], file=sys.stderr)
+		sys.stderr.write('Usage: %s pokecrystal.map sorted.sym\n' % sys.argv[0])
 		sys.exit(1)
 	input_filename = sys.argv[1]
 	output_filename = sys.argv[2]
