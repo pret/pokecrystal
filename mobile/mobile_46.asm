@@ -2602,7 +2602,7 @@ Function119413: ; 119413
 	jr z, .asm_119447
 	ld a, $6
 	ld [rSVBK], a
-	ld a, [wd000]
+	ld a, [w3_d000]
 	ld c, a
 	ld a, [w3_d000 + 1]
 	ld b, a
@@ -3539,11 +3539,11 @@ Function1199e2: ; 1199e2
 	ld [w3_d8a1], a
 	ld [w3_d8a2], a
 	ld [w3_d8a3], a
-	ld hl, $d8a0
+	ld hl, w3_d8a0
 	ld bc, $d889
 	call Function119e98
 	call Function119e98
-	ld hl, $d8a0
+	ld hl, w3_d8a0
 	ld a, [wcd2d]
 	cp [hl]
 	jr nz, Function119ac9
@@ -3564,12 +3564,12 @@ Function1199e2: ; 1199e2
 	ld [w3_d8a1], a
 	ld [w3_d8a2], a
 	ld [w3_d8a3], a
-	ld hl, $d8a0
+	ld hl, w3_d8a0
 	ld bc, $d88e
 	call Function119e98
 	ld bc, $d893
 	call Function119e98
-	ld hl, $d8a0
+	ld hl, w3_d8a0
 	ld a, [wcd2f]
 	cp [hl]
 	jr nz, .asm_119aa7
