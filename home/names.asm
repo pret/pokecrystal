@@ -7,7 +7,7 @@ NamesPointers:: ; 33ab
 	dbw 0, PartyMonOT
 	dbw 0, OTPartyMonOT
 	dba TrainerClassNames
-	dbw $4, PackMenuGFX + 60
+	dbw BANK(PackMenuGFX), PackMenuGFX + 60
 ; 33c3
 
 GetName:: ; 33c3
