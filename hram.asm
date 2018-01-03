@@ -1,3 +1,7 @@
+; HRAM uses constants instead of labels so that
+; "ld a, [hAddress]" and "ld [hAddress], a" will
+; use the more efficient "ldh" instruction.
+
 hPushOAM           EQU $ff80 ; 10 bytes
 
 hROMBankBackup     EQU $ff8a
@@ -33,7 +37,7 @@ hJoyLast           EQU $ffa9
 hInMenu            EQU $ffaa
 
 hPrinter           EQU $ffac
-hGraphicStartTile           EQU $ffad
+hGraphicStartTile  EQU $ffad
 hMoveMon           EQU $ffae
 hMapObjectIndexBuffer EQU $ffaf
 hObjectStructIndexBuffer EQU $ffb0
@@ -81,7 +85,7 @@ hMoneyTemp         EQU $ffc3
 hMGJoypadPressed   EQU $ffc3
 hMGJoypadReleased  EQU $ffc4
 
-hLCDCPointer              EQU $ffc6
+hLCDCPointer       EQU $ffc6
 hLYOverrideStart   EQU $ffc7
 hLYOverrideEnd     EQU $ffc8
 hMobileReceive     EQU $ffc9
