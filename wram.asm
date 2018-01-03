@@ -1202,8 +1202,7 @@ wcd74:: ds 1
 wOTMonSelection:: ds 2 ; ds 3
 wcd77:: ds 1
 
-wcd78:: ds 1
-wcd79:: ds 1
+wMobileCrashCheckPointer:: dw
 wcd7a:: ds 2
 wcd7c:: ds 3
 wcd7f:: ds 1

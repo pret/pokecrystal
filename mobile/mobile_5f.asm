@@ -620,8 +620,8 @@ Function17d314: ; 17d314
 Function17d370: ; 17d370
 	xor a
 	ld [wcd77], a
-	ld [wcd78], a
-	ld [wcd79], a
+	ld [wMobileCrashCheckPointer], a
+	ld [wMobileCrashCheckPointer + 1], a
 	dec a
 	ld [wcd6c], a
 	call ClearBGPalettes
@@ -958,9 +958,9 @@ Function17d5c4:
 	ld h, a
 	add hl, bc
 	ld a, l
-	ld [wcd78], a
+	ld [wMobileCrashCheckPointer], a
 	ld a, h
-	ld [wcd79], a
+	ld [wMobileCrashCheckPointer + 1], a
 	ld a, $3
 	ld [wcd77], a
 	ret
@@ -1122,9 +1122,9 @@ Function17d6fd: ; 17d6fd
 	ld a, [wcd77]
 	bit 7, a
 	jr nz, asm_17d721
-	ld a, [wcd78]
+	ld a, [wMobileCrashCheckPointer]
 	ld l, a
-	ld a, [wcd79]
+	ld a, [wMobileCrashCheckPointer + 1]
 	ld h, a
 	ld a, [hl]
 	cp $ff
@@ -1193,11 +1193,11 @@ Jumptable17d72a: ; 17d72a
 	dw Function17e27f
 	dw Function17e293
 	dw Function17e2a7
-	dw Function17e367
-	dw Function17e37e
-	dw Function17e395
-	dw Function17e3ac
-	dw Function17e3c3
+	dw IncCrashCheckPointer_SaveGameData
+	dw IncCrashCheckPointer_SaveAfterLinkTrade
+	dw IncCrashCheckPointer_SaveBox
+	dw IncCrashCheckPointer_SaveChecksum
+	dw IncCrashCheckPointer_SaveTrainerRankingsChecksum
 	dw Function17e3e0
 	dw Function17e3f0
 	dw Function17e409
@@ -1208,12 +1208,12 @@ Function17d78c: ; 17d78c
 ; 17d78d
 
 Function17d78d: ; 17d78d
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld a, $6
 	call GetSRAMBank
 	ld hl, $a006
@@ -1229,40 +1229,40 @@ Function17d78d: ; 17d78d
 ; 17d7b4
 
 Function17d7b4: ; 17d7b4
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld d, $0
 	call PlayMusic2
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17d7c2
 
 Function17d7c2: ; 17d7c2
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld d, $0
 	call PlaySFX
 	call WaitSFX
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17d7d3
 
 Function17d7d3: ; 17d7d3
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	dec a
 	ld e, a
 	ld d, $0
 	call PlayCryHeader
 	call WaitSFX
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17d7e5
 
 Function17d7e5: ; 17d7e5
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld [wcd4f], a
 	ld a, [hli]
@@ -1283,12 +1283,12 @@ Function17d7e5: ; 17d7e5
 	ld [wcd53], a
 	ld de, wcd4f
 	call Function17e691
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17d818
 
 Function17d818: ; 17d818
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -1297,7 +1297,7 @@ Function17d818: ; 17d818
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e447
 	ld e, l
 	ld d, h
@@ -1308,7 +1308,7 @@ Function17d818: ; 17d818
 ; 17d833
 
 Function17d833: ; 17d833
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -1317,7 +1317,7 @@ Function17d833: ; 17d833
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	push de
 	push bc
 	call Function17e32b
@@ -1336,7 +1336,7 @@ Function17d833: ; 17d833
 ; 17d85d
 
 Function17d85d: ; 17d85d
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -1406,7 +1406,7 @@ Function17d85d: ; 17d85d
 	jr .asm_17d878
 
 .asm_17d8c7
-	call Function17e41e
+	call HlToCrashCheckPointer
 	push bc
 	ld a, $3
 	ld [rSVBK], a
@@ -1437,13 +1437,13 @@ Function17d85d: ; 17d85d
 ; 17d902
 
 Function17d902: ; 17d902
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	push de
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e32b
 	pop de
 	ld hl, wBGPals1
@@ -1472,11 +1472,11 @@ Function17d902: ; 17d902
 ; 17d93a
 
 Function17d93a: ; 17d93a
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $5
 	call CopyBytes
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e32b
 	ld a, [rSVBK]
 	push af
@@ -1508,11 +1508,11 @@ Function17d93a: ; 17d93a
 ; 17d98b
 
 Function17d98b: ; 17d98b
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $4
 	call CopyBytes
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e32b
 	ld a, [rSVBK]
 	push af
@@ -1545,11 +1545,11 @@ Function17d98b: ; 17d98b
 ; 17d9e3
 
 Function17d9e3: ; 17d9e3
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $7
 	call CopyBytes
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld a, [$c70b]
 	push af
 	cp $c0
@@ -1591,11 +1591,11 @@ Function17d9e3: ; 17d9e3
 ; 17da31
 
 Function17da31: ; 17da31
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $4
 	call CopyBytes
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld a, [$c709]
 	push af
 	cp $c0
@@ -1681,7 +1681,7 @@ Function17da9c: ; 17da9c
 	call Function17e55b
 	call Function17e5af
 .asm_17daba
-	jp Function17e415
+	jp IncCrashCheckPointer
 
 .asm_17dabd
 	ld a, [wcd2f]
@@ -1723,7 +1723,7 @@ Function17dadc: ; 17dadc
 	call Function17e5af
 
 .asm_17db0e
-	jp Function17e415
+	jp IncCrashCheckPointer
 
 .asm_17db11
 	ld hl, wcd24
@@ -1758,7 +1758,7 @@ Function17db2d: ; 17db2d
 	call Function17e5af
 
 .asm_17db53
-	jp Function17e415
+	jp IncCrashCheckPointer
 ; 17db56
 
 Function17db56: ; 17db56
@@ -1776,7 +1776,7 @@ Function17db56: ; 17db56
 	call Function17e5af
 
 .asm_17db74
-	jp Function17e415
+	jp IncCrashCheckPointer
 ; 17db77
 
 Function17db77: ; 17db77
@@ -1808,7 +1808,7 @@ Function17db77: ; 17db77
 	call Function17e5af
 
 .asm_17dbae
-	jp Function17e415
+	jp IncCrashCheckPointer
 ; 17dbb1
 
 Function17dbb1: ; 17dbb1
@@ -1878,11 +1878,11 @@ Function17dbe9: ; 17dbe9
 	call Function17e451
 	call Function17e55b
 	call Function17e5af
-	jp Function17e415
+	jp IncCrashCheckPointer
 ; 17dc1f
 
 Function17dc1f: ; 17dc1f
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c688
 	ld bc, $6
 	call CopyBytes
@@ -1950,15 +1950,15 @@ MenuData2_17dc96:
 ; 17dc9f
 
 Function17dc9f: ; 17dc9f
-	call Function17e415
-	call Function17e41e
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer
 	call RotateFourPalettesLeft
 	ret
 ; 17dca9
 
 Function17dca9: ; 17dca9
-	call Function17e415
-	call Function17e41e
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer
 
 Function17dcaf:
 	ld a, $5
@@ -1983,7 +1983,7 @@ Function17dcaf:
 ; 17dccf
 
 Function17dccf: ; 17dccf
-	call Function17e415
+	call IncCrashCheckPointer
 	push hl
 	ld a, [wcd4b]
 	ld l, a
@@ -1999,11 +1999,11 @@ Function17dccf: ; 17dccf
 	ld a, [hl]
 	ld b, a
 	call Function17e43d
-	call Function17e41e
+	call HlToCrashCheckPointer
 .asm_17dced
-	ld a, [wcd78]
+	ld a, [wMobileCrashCheckPointer]
 	ld l, a
-	ld a, [wcd79]
+	ld a, [wMobileCrashCheckPointer + 1]
 	ld h, a
 	ld a, [hl]
 	cp $ff
@@ -2021,7 +2021,7 @@ Function17dccf: ; 17dccf
 
 .asm_17dd0d
 	pop hl
-	jp Function17e41e
+	jp HlToCrashCheckPointer
 
 .asm_17dd11
 	pop hl
@@ -2029,7 +2029,7 @@ Function17dccf: ; 17dccf
 ; 17dd13
 
 Function17dd13: ; 17dd13
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -2038,7 +2038,7 @@ Function17dd13: ; 17dd13
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e447
 	push hl
 	hlcoord 0, 0
@@ -2051,7 +2051,7 @@ Function17dd13: ; 17dd13
 ; 17dd30
 
 Function17dd30: ; 17dd30
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2061,7 +2061,7 @@ Function17dd30: ; 17dd30
 	ld b, $0
 	ld a, [hli]
 	push af
-	call Function17e41e
+	call HlToCrashCheckPointer
 	pop af
 	hlcoord 0, 0
 	add hl, de
@@ -2070,7 +2070,7 @@ Function17dd30: ; 17dd30
 ; 17dd49
 
 Function17dd49: ; 17dd49
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $a
 	call CopyBytes
@@ -2151,7 +2151,7 @@ Function17dd49: ; 17dd49
 ; 17ddcd
 
 Function17ddcd: ; 17ddcd
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $8
 	call CopyBytes
@@ -2213,7 +2213,7 @@ Function17ddcd: ; 17ddcd
 ; 17de32
 
 Function17de32: ; 17de32
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $9
 	call CopyBytes
@@ -2272,7 +2272,7 @@ Function17de32: ; 17de32
 ; 17de91
 
 Function17de91: ; 17de91
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $7
 	call CopyBytes
@@ -2315,7 +2315,7 @@ Function17de91: ; 17de91
 ; 17ded9
 
 Function17ded9: ; 17ded9
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $1f
 	call CopyBytes
@@ -2656,7 +2656,7 @@ asm_17e0ee
 ; 17e0fd
 
 Function17e0fd: ; 17e0fd
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $6
 	call CopyBytes
@@ -2690,7 +2690,7 @@ Function17e0fd: ; 17e0fd
 ; 17e133
 
 Function17e133: ; 17e133
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $5
 	call CopyBytes
@@ -2721,7 +2721,7 @@ Function17e133: ; 17e133
 ; 17e165
 
 Function17e165: ; 17e165
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $5
 	call CopyBytes
@@ -2758,7 +2758,7 @@ Function17e165: ; 17e165
 ; 17e1a1
 
 Function17e1a1: ; 17e1a1
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $d
 	call CopyBytes
@@ -2867,19 +2867,19 @@ Function17e1a1: ; 17e1a1
 ; 17e254
 
 Function17e254: ; 17e254
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	ld a, [hli]
 	ld [de], a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17e261
 
 Function17e261: ; 17e261
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2888,12 +2888,12 @@ Function17e261: ; 17e261
 	add [hl]
 	ld [de], a
 	inc hl
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17e270
 
 Function17e270: ; 17e270
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2902,12 +2902,12 @@ Function17e270: ; 17e270
 	sub [hl]
 	ld [de], a
 	inc hl
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17e27f
 
 Function17e27f: ; 17e27f
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2916,7 +2916,7 @@ Function17e27f: ; 17e27f
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld l, c
 	ld h, b
 	ld a, [de]
@@ -2926,7 +2926,7 @@ Function17e27f: ; 17e27f
 ; 17e293
 
 Function17e293: ; 17e293
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2935,7 +2935,7 @@ Function17e293: ; 17e293
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld l, c
 	ld h, b
 	ld a, [de]
@@ -2945,8 +2945,8 @@ Function17e293: ; 17e293
 ; 17e2a7
 
 Function17e2a7: ; 17e2a7
-	call Function17e415
-	call Function17e41e
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer
 	call Function17e32b
 	xor a
 	ld [wcf66], a
@@ -3035,77 +3035,46 @@ Function17e349: ; 17e349
 	ret
 ; 17e367
 
-Function17e367: ; 17e367
-	call Function17e415
-	call Function17e41e
+inc_crash_check_pointer_farcall: MACRO
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer ; redundant
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	farcall SaveGameData_
+REPT _NARG
+	farcall \1
+SHIFT
+ENDR
 	pop af
 	ld [rSVBK], a
 	ret
+ENDM
+
+IncCrashCheckPointer_SaveGameData: ; 17e367
+	inc_crash_check_pointer_farcall SaveGameData_
 ; 17e37e
 
-Function17e37e: ; 17e37e
-	call Function17e415
-	call Function17e41e
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	farcall SaveAfterLinkTrade
-	pop af
-	ld [rSVBK], a
-	ret
-; 17e395
+IncCrashCheckPointer_SaveAfterLinkTrade: ; 17e37e
+	inc_crash_check_pointer_farcall SaveAfterLinkTrade
 
-Function17e395: ; 17e395
-	call Function17e415
-	call Function17e41e
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	farcall SaveBox
-	pop af
-	ld [rSVBK], a
-	ret
+IncCrashCheckPointer_SaveBox: ; 17e395
+	inc_crash_check_pointer_farcall SaveBox
 ; 17e3ac
 
-Function17e3ac: ; 17e3ac
-	call Function17e415
-	call Function17e41e
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	farcall SaveChecksum
-	pop af
-	ld [rSVBK], a
-	ret
+IncCrashCheckPointer_SaveChecksum: ; 17e3ac
+	inc_crash_check_pointer_farcall SaveChecksum
 ; 17e3c3
 
-Function17e3c3: ; 17e3c3
-	call Function17e415
-	call Function17e41e
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	farcall UpdateTrainerRankingsChecksum2
-	farcall BackupMobileEventIndex
-	pop af
-	ld [rSVBK], a
-	ret
+IncCrashCheckPointer_SaveTrainerRankingsChecksum: ; 17e3c3
+	inc_crash_check_pointer_farcall UpdateTrainerRankingsChecksum2, BackupMobileEventIndex
 ; 17e3e0
 
 Function17e3e0: ; 17e3e0
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld c, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld a, $1
 	ld [hBGMapMode], a
 	call DelayFrames
@@ -3113,8 +3082,8 @@ Function17e3e0: ; 17e3e0
 ; 17e3f0
 
 Function17e3f0: ; 17e3f0
-	call Function17e415
-	call Function17e41e
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer
 .asm_17e3f6
 	call JoyTextDelay
 	ld hl, hJoyPressed
@@ -3137,20 +3106,20 @@ Function17e409: ; 17e409
 Function17e40f: ; 17e40f
 	ld de, wBGPals1
 	add hl, de
-	jr Function17e41e
+	jr HlToCrashCheckPointer
 
-Function17e415:
-	ld a, [wcd78]
+IncCrashCheckPointer:
+	ld a, [wMobileCrashCheckPointer]
 	ld l, a
-	ld a, [wcd79]
+	ld a, [wMobileCrashCheckPointer + 1]
 	ld h, a
 	inc hl
 
-Function17e41e:
+HlToCrashCheckPointer:
 	ld a, l
-	ld [wcd78], a
+	ld [wMobileCrashCheckPointer], a
 	ld a, h
-	ld [wcd79], a
+	ld [wMobileCrashCheckPointer + 1], a
 	ret
 ; 17e427
 
