@@ -178,7 +178,7 @@ UnownPrinter: ; 16be4
 	hlcoord 1, 9
 	ld de, UnownDexVacantString
 	call PlaceString
-	xor a
+	xor a ; effectively ld a, BANK(sScratch)
 	call GetSRAMBank
 	ld hl, sScratch
 	ld bc, $31 tiles
