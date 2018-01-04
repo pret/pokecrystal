@@ -90,7 +90,7 @@ LoadGenderScreenPal: ; 48e47 (12:4e47)
 	ld hl, .Palette
 	ld de, wBGPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals
 	ret

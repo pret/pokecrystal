@@ -1,7 +1,7 @@
 CheckBattleScene: ; 4ea44
 ; Return carry if battle scene is turned off.
 
-	ld a, 0
+	ld a, BANK(wLinkMode)
 	ld hl, wLinkMode
 	call GetFarWRAMByte
 	cp LINK_MOBILE
@@ -33,7 +33,7 @@ CheckBattleScene: ; 4ea44
 	ret
 
 .from_wram
-	ld a, $5
+	ld a, BANK(w5_dc00)
 	ld hl, w5_dc00
 	call GetFarWRAMByte
 	bit 0, a

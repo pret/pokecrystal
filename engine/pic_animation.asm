@@ -335,12 +335,12 @@ PokeAnim_InitPicAttributes: ; d01d6
 	ld a, d
 	ld [wPokeAnimGraphicStartTile], a
 
-	ld a, $1
+	ld a, BANK(CurPartySpecies)
 	ld hl, CurPartySpecies
 	call GetFarWRAMByte
 	ld [wPokeAnimSpecies], a
 
-	ld a, $1
+	ld a, BANK(UnownLetter)
 	ld hl, UnownLetter
 	call GetFarWRAMByte
 	ld [wPokeAnimUnownLetter], a

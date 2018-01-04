@@ -241,7 +241,7 @@ Function49742: ; 49742
 	ld hl, .Palette_49757
 	ld de, wBGPals1
 	ld bc, 8 palettes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	farcall ApplyPals
 	ret

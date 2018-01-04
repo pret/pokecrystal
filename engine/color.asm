@@ -144,13 +144,13 @@ Function8b07:
 	ld hl, .BGPal
 	ld de, wBGPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 
 	ld hl, .OBPal
 	ld de, wOBPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 
 	call ApplyPals
@@ -359,7 +359,7 @@ ApplyHPBarPals:
 	ld bc, HPBarPals
 	add hl, bc
 	ld bc, 4
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	call FarCopyWRAM
 	ld a, $1
 	ld [hCGBPalUpdate], a
@@ -443,7 +443,7 @@ LoadMailPalettes:
 .cgb
 	ld de, wBGPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
 	call WipeAttrMap
@@ -460,7 +460,7 @@ Function95f0:
 	ld hl, .Palette
 	ld de, wBGPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
 	call WipeAttrMap
@@ -611,7 +611,7 @@ ApplyPals:
 	ld hl, wBGPals1
 	ld de, wBGPals2
 	ld bc, 16 palettes
-	ld a, $5
+	ld a, BANK(wPals)
 	call FarCopyWRAM
 	ret
 
@@ -688,7 +688,7 @@ InitPartyMenuOBPals:
 	ld hl, PartyMenuOBPals
 	ld de, wOBPals1
 	ld bc, 2 palettes
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
 
@@ -761,7 +761,7 @@ Function9779: mobile
 	ld hl, BattleObjectPals
 	ld de, wOBPals1 palette 2
 	ld bc, 2 palettes
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
 
@@ -1318,7 +1318,7 @@ endr
 .morn_day
 	ld de, wBGPals1 palette PAL_BG_ROOF + 2
 	ld bc, 4
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
 
