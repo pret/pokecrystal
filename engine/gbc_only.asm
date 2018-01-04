@@ -13,7 +13,7 @@ GBCOnlyScreen: ; 4ea82
 	ld de, wd000
 	ld a, [rSVBK]
 	push af
-	ld a, 0 ; this is tantamount to selecting Bank 1
+	ld a, 0 ; this has the same effect as selecting bank 1 (http://gbdev.gg8.se/files/docs/mirrors/pandocs.html#videodisplay)
 	ld [rSVBK], a
 	call Decompress
 	pop af
