@@ -119,7 +119,7 @@ Mobile_ReloadMapPart: ; 104099
 .unreferenced_1040da
 	ld a, $1
 	ld [rVBK], a
-	ld a, $3
+	ld a, BANK(w3_d800)
 	ld [rSVBK], a
 	ld de, w3_d800
 	ld a, [hBGMapAddress + 1]
