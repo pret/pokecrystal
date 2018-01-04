@@ -198,7 +198,7 @@ INCBIN "gfx/overworld/heal_machine.2bpp"
 .go
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wOBPals2)
 	ld [rSVBK], a
 
 	ld hl, wOBPals2 palette PAL_OW_TREE

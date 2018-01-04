@@ -9320,7 +9320,7 @@ InitBattleDisplay: ; 3fb6c
 .BlankBGMap: ; 3fbd6
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld hl, wDecompressScratch
@@ -9381,7 +9381,7 @@ GetTrainerBackpic: ; 3fbff
 CopyBackpic: ; 3fc30
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	ld hl, vTiles0
 	ld de, vTiles2 tile $31

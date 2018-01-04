@@ -428,9 +428,9 @@ GetBallAnimPal: ; cd249 (33:5249)
 	ld hl, BallColors
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(CurItem)
 	ld [rSVBK], a
-	ld a, [CurItem] ; CurItem
+	ld a, [CurItem]
 	ld e, a
 	pop af
 	ld [rSVBK], a

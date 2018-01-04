@@ -279,7 +279,7 @@ PokeAnim_StereoCry: ; d0196
 PokeAnim_DeinitFrames: ; d01a9
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, BANK(wPokeAnimCoord)
 	ld [rSVBK], a
 	call PokeAnim_PlaceGraphic
 	farcall HDMATransferTileMapToWRAMBank3
@@ -876,7 +876,7 @@ PokeAnim_PlaceGraphic: ; d04bd
 PokeAnim_SetVBank1: ; d0504
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, BANK(wPokeAnimCoord)
 	ld [rSVBK], a
 	xor a
 	ld [hBGMapMode], a

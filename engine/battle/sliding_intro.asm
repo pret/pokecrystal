@@ -1,7 +1,7 @@
 BattleIntroSlidingPics: ; 4e980
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	call .subfunction1
 	ld a, rSCX - $ff00

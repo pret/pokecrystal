@@ -394,7 +394,7 @@ LoadStatsScreenPals:
 	add hl, bc
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld a, [hli]
 	ld [wBGPals1 palette 0], a
@@ -504,7 +504,7 @@ GetPredefPal:
 LoadHLPaletteIntoDE:
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	ld [rSVBK], a
 	ld c, $8
 .loop
@@ -520,7 +520,7 @@ LoadHLPaletteIntoDE:
 LoadPalette_White_Col1_Col2_Black:
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
@@ -572,7 +572,7 @@ ResetBGPals:
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, wBGPals1
@@ -930,7 +930,7 @@ InitCGBPals::
 	jr nz, .obpals_loop
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, wBGPals1
 	call .LoadWhitePals
@@ -1251,7 +1251,7 @@ LoadMapPals:
 	; Switch to palettes WRAM bank
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, wBGPals1
 	ld b, 8

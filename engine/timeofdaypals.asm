@@ -47,8 +47,8 @@ _TimeOfDayPals:: ; 8c011
 ; save wram bank
 	ld a, [rSVBK]
 	ld b, a
-; wram bank 5
-	ld a, $5
+	
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 ; push palette
@@ -78,8 +78,8 @@ _TimeOfDayPals:: ; 8c011
 ; save wram bank
 	ld a, [rSVBK]
 	ld d, a
-; wram bank 5
-	ld a, 5
+	
+	ld a, BANK(wOBPals1)
 	ld [rSVBK], a
 
 ; pop palette
@@ -173,7 +173,7 @@ Special_FadeBlackQuickly: ; 8c0b6
 FillWhiteBGColor: ; 8c0c1
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, wBGPals1

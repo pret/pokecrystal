@@ -16,7 +16,7 @@ Special_MagnetTrain: ; 8cc04
 	ld h, a
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wMagnetTrain)
 	ld [rSVBK], a
 
 	ld a, h
@@ -129,7 +129,7 @@ MagntTrain_LoadGFX_PlayMusic: ; 8ccc9
 	ld [hSCY], a
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(wPlayerGender)
 	ld [rSVBK], a
 	farcall GetPlayerIcon
 	pop af
@@ -325,7 +325,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld b, SPRITE_ANIM_INDEX_MAGNET_TRAIN_RED
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(wPlayerGender)
 	ld [rSVBK], a
 	ld a, [wPlayerGender]
 	bit 0, a
@@ -429,7 +429,7 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	call DelayFrame
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(wEnvironment)
 	ld [rSVBK], a
 	ld a, [TimeOfDayPal]
 	push af

@@ -206,7 +206,7 @@ GetMonBackpic: ; 5116c
 	ld c, a
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	push de
 
@@ -327,7 +327,7 @@ GetTrainerPic: ; 5120d
 	call AddNTimes
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	push de
 	ld a, BANK(TrainerPicPointers)
@@ -358,7 +358,7 @@ DecompressPredef: ; 5125d
 
 	ld a, [rSVBK]
 	push af
-	ld a, 6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	push de

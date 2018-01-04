@@ -63,7 +63,7 @@ InitDisplayForRedCredits: ; 4e8c2
 ResetDisplayBetweenHallOfFameMons: ; 4e906
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	ld hl, wDecompressScratch
 	ld bc, wScratchAttrMap - wDecompressScratch

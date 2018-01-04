@@ -2278,6 +2278,7 @@ StartSecond:: db ; d4b9
 wRTC:: ds 8 ; d4ba
 wDST:: db ; d4c2
 
+GameTime::
 GameTimeCap::     db ; d4c3
 GameTimeHours::   dw ; d4c4
 GameTimeMinutes:: db ; d4c6
@@ -2879,6 +2880,7 @@ w3_dffc:: ds 4
 SECTION "GBC Video", WRAMX
 
 ; eight 4-color palettes each
+wPals::
 wBGPals1:: ds 8 palettes ; d000
 wOBPals1:: ds 8 palettes ; d040
 wBGPals2:: ds 8 palettes ; d080
@@ -2889,6 +2891,7 @@ LYOverridesEnd:: ; d190
 
 	ds 1
 
+wMagnetTrain::
 wMagnetTrainDirection:: db
 wMagnetTrainInitPosition:: db
 wMagnetTrainHoldPosition:: db

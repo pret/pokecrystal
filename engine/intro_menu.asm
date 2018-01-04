@@ -1019,7 +1019,7 @@ CrystalIntroSequence: ; 620b
 StartTitleScreen: ; 6219
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	call .TitleScreen

@@ -2578,7 +2578,7 @@ BGEffects_LoadBGPal0_OBPal1: ; c8e52 (32:4e52)
 	ld h, a
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld a, h
 	push bc
@@ -2605,7 +2605,7 @@ BGEffects_LoadBGPal1_OBPal0: ; c8e7f (32:4e7f)
 	ld h, a
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld a, h
 	push bc

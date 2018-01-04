@@ -154,7 +154,7 @@ UnownPrinter: ; 16be4
 .Load2bppToSRAM: ; 16cff
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld a, BANK(sScratch)

@@ -1649,7 +1649,7 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, .palettes
 	ld de, wBGPals1

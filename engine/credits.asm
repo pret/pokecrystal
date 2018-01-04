@@ -13,7 +13,7 @@ Credits:: ; 109847
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wPals)
 	ld [rSVBK], a
 
 	call ClearBGPalettes

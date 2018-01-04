@@ -96,7 +96,7 @@ Init:: ; 17d
 	ld [hCGB], a
 
 	call ClearWRAM
-	ld a, 1
+	ld a, BANK(wd000)
 	ld [rSVBK], a
 	call ClearVRAM
 	call ClearSprites

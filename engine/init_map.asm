@@ -79,7 +79,7 @@ LoadFonts_NoOAMUpdate:: ; 64bf
 HDMATransfer_FillBGMap0WithBlack: ; 64db
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld a, "<BLACK>" ; $60

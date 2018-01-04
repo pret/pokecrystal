@@ -586,7 +586,7 @@ Place2DMenuCursor: ; 24329
 _PushWindow:: ; 24374
 	ld a, [rSVBK]
 	push af
-	ld a, $7
+	ld a, BANK(wWindowStack)
 	ld [rSVBK], a
 
 	ld hl, wWindowStackPointer
@@ -691,7 +691,7 @@ _ExitMenu:: ; 243e8
 
 	ld a, [rSVBK]
 	push af
-	ld a, $7
+	ld a, BANK(wWindowStack)
 	ld [rSVBK], a
 
 	call GetWindowStackTop
