@@ -142,7 +142,7 @@ SpecialsPointers:: ; c029
 	add_special Special_Function170114
 	add_special Special_BattleTowerBattle
 	add_special UnusedSpecial_Function1704e1
-	add_special DummySpecial17021d
+	add_special DummySpecial_17021d
 	add_special Special_LoadOpponentTrainerAndPokemonWithOTSprite
 	add_special Special_Function11ba38
 	add_special Special_CheckForBattleTowerRules
@@ -174,7 +174,7 @@ SpecialsPointers:: ; c029
 	add_special Special_BeastsCheck
 	add_special Special_MonCheck
 	add_special Special_SetPlayerPalette
-	add_special DummySpecial170bd2
+	add_special DummySpecial_170bd2
 	add_special Special_Mobile_SelectThreeMons
 	add_special Special_Function1037eb
 	add_special Special_Function10383c
@@ -189,10 +189,10 @@ SpecialsPointers:: ; c029
 	add_special UnusedSpecial_FindItemInPCOrBag
 	add_special Special_InitialSetDSTFlag
 	add_special Special_InitialClearDSTFlag
-	add_special DummySpecialc224
+	add_special DummySpecial_c224
 ; c224
 
-DummySpecialc224: ; c224
+DummySpecial_c224: ; c224
 	ret
 ; c225
 

@@ -33,7 +33,7 @@ PredefPointers:: ; 856b
 	add_predef Predef_LearnMove ; $0
 	add_predef DummyPredef1
 	add_predef HealParty ; this is both a special and a predef
-	add_predef Predef_Flag
+	add_predef Predef_FlagAction
 	add_predef Predef_ComputeHPBarPixels
 	add_predef Predef_FillPP
 	add_predef Predef_TryAddMonToParty

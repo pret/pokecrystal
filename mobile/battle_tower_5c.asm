@@ -189,7 +189,7 @@ Special_BattleTowerBattle: ; 170215
 	ret
 ; 17021d
 
-DummySpecial17021d: ; 17021d
+DummySpecial_17021d: ; 17021d
 	ret
 ; 17021e
 
@@ -1751,7 +1751,7 @@ Special_LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
 	db SPRITE_OFFICER
 	db SPRITE_ROCKET_GIRL
 
-DummySpecial170bd2: ; 170bd2
+DummySpecial_170bd2: ; 170bd2
 	ret
 ; 170bd3
 

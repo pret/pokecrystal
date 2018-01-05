@@ -1,4 +1,4 @@
-Predef_Flag: ; 4d7c1
+Predef_FlagAction: ; 4d7c1
 ; Perform action b on flag c in flag array hl.
 ; If checking a flag, check flag array d:hl unless d is 0.
 

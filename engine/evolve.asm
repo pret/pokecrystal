@@ -621,7 +621,7 @@ ShiftMoves: ; 4256e
 EvoFlagAction: ; 42577
 	push de
 	ld d, $0
-	predef Predef_Flag
+	predef Predef_FlagAction
 	pop de
 	ret
 ; 42581

@@ -2760,7 +2760,7 @@ PlayerMonFaintHappinessMod: ; 3d1aa
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
 	ld b, RESET_FLAG
-	predef Predef_Flag
+	predef Predef_FlagAction
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
 	xor a
@@ -3357,10 +3357,10 @@ AddBattleParticipant: ; 3d581
 	ld hl, wBattleParticipantsNotFainted
 	ld b, SET_FLAG
 	push bc
-	predef Predef_Flag
+	predef Predef_FlagAction
 	pop bc
 	ld hl, wBattleParticipantsIncludingFainted
-	predef_jump Predef_Flag
+	predef_jump Predef_FlagAction
 ; 3d599
 
 FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
@@ -4350,7 +4350,7 @@ PursuitSwitch: ; 3dc5b
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
 	ld b, RESET_FLAG
-	predef Predef_Flag
+	predef Predef_FlagAction
 	call PlayerMonFaintedAnimation
 	ld hl, BattleText_PkmnFainted
 	jr .done_fainted
@@ -6631,7 +6631,7 @@ LoadEnemyMon: ; 3e8eb
 	ld c, a
 	ld b, SET_FLAG
 	ld hl, PokedexSeen
-	predef Predef_Flag
+	predef Predef_FlagAction
 
 	ld hl, EnemyMonStats
 	ld de, EnemyStats
@@ -7313,7 +7313,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld c, a
 	ld b, CHECK_FLAG
 	ld d, $0
-	predef Predef_Flag
+	predef Predef_FlagAction
 	ld a, c
 	and a
 	pop bc
@@ -7642,7 +7642,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld a, [CurPartyMon]
 	ld c, a
 	ld b, SET_FLAG
-	predef Predef_Flag
+	predef Predef_FlagAction
 	pop af
 	ld [CurPartyLevel], a
 

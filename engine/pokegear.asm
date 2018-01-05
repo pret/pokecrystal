@@ -2331,7 +2331,7 @@ HasVisitedSpawn: ; 91c50
 	ld hl, wVisitedSpawns
 	ld b, CHECK_FLAG
 	ld d, 0
-	predef Predef_Flag
+	predef Predef_FlagAction
 	ld a, c
 	ret
 

@@ -23,7 +23,7 @@ Predef_CanLearnTMHMMove: ; 11639
 	ld b, CHECK_FLAG
 	push de
 	ld d, 0
-	predef Predef_Flag
+	predef Predef_FlagAction
 	pop de
 	ret
 

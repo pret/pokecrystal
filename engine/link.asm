@@ -2584,7 +2584,7 @@ Unreferenced_Function29fe4:
 	call GetSRAMBank
 	ld d, $0
 	ld b, CHECK_FLAG
-	predef Predef_Flag
+	predef Predef_FlagAction
 	call CloseSRAM
 	ld a, c
 	and a

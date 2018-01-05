@@ -1668,7 +1668,7 @@ RevivePokemon: ; f0d6
 	ld d, 0
 	ld hl, wBattleParticipantsIncludingFainted
 	ld b, CHECK_FLAG
-	predef Predef_Flag
+	predef Predef_FlagAction
 	ld a, c
 	and a
 	jr z, .skip_to_revive
@@ -1677,7 +1677,7 @@ RevivePokemon: ; f0d6
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
 	ld b, SET_FLAG
-	predef Predef_Flag
+	predef Predef_FlagAction
 
 .skip_to_revive
 	xor a
