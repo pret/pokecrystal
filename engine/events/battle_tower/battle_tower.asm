@@ -570,42 +570,7 @@ Function17042c: ; 17042c
 	ret
 ; 170470
 
-Unknown_170470:
-	db $12
-	db $24
-	db $45
-	db $45
-	db $42
-	db $42
-	db $45
-	db $42
-	db $27
-	db $27
-	db $45
-	db $27
-	db $42
-	db $24
-
-Unknown_17047e:
-; see data/battle_tower_2.asm
-	db $03,  4
-	db $05,  8
-	db $03,  5
-	db $0e,  6
-	db $03,  2
-	db $00,  0
-	db $39,  7
-	db $07,  4
-	db $00,  5
-	db $04,  7
-	db $01,  5
-	db $00,  0
-	db $0f,  5
-	db $14,  7
-	db $05,  5
-	db $11, 12
-	db $0c,  6
-	db $06,  4
+INCLUDE "data/battle_tower/unknown_levels.asm"
 
 
 CopyBTTrainer_FromBT_OT_TowBT_OTTemp: ; 1704a2
@@ -1653,7 +1618,7 @@ Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
 	ld b, $0
 	pop af
 	ld [rSVBK], a
-	ld hl, .Sprites
+	ld hl, BTTrainerClassSprites
 	add hl, bc
 	ld a, [hl]
 	ld [wBTTempOTSprite], a
@@ -1685,73 +1650,7 @@ Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
 	ret
 ; 170b90
 
-.Sprites:
-	db SPRITE_FALKNER
-	db SPRITE_WHITNEY
-	db SPRITE_BUGSY
-	db SPRITE_MORTY
-	db SPRITE_PRYCE
-	db SPRITE_JASMINE
-	db SPRITE_CHUCK
-	db SPRITE_CLAIR
-	db SPRITE_SILVER
-	db SPRITE_OAK
-	db SPRITE_WILL
-	db SPRITE_CHRIS
-	db SPRITE_BRUNO
-	db SPRITE_KAREN
-	db SPRITE_KOGA
-	db SPRITE_LANCE
-	db SPRITE_BROCK
-	db SPRITE_MISTY
-	db SPRITE_SURGE
-	db SPRITE_SCIENTIST
-	db SPRITE_ERIKA
-	db SPRITE_YOUNGSTER
-	db SPRITE_YOUNGSTER
-	db SPRITE_YOUNGSTER
-	db SPRITE_LASS
-	db SPRITE_JANINE
-	db SPRITE_COOLTRAINER_M
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_BUENA
-	db SPRITE_SUPER_NERD
-	db SPRITE_ROCKET
-	db SPRITE_GENTLEMAN
-	db SPRITE_BUENA
-	db SPRITE_TEACHER
-	db SPRITE_SABRINA
-	db SPRITE_BUG_CATCHER
-	db SPRITE_FISHER
-	db SPRITE_SUPER_NERD
-	db SPRITE_COOLTRAINER_F
-	db SPRITE_SAILOR
-	db SPRITE_SUPER_NERD
-	db SPRITE_BLUE
-	db SPRITE_ROCKER
-	db SPRITE_POKEFAN_M
-	db SPRITE_BIKER
-	db SPRITE_BLAINE
-	db SPRITE_PHARMACIST
-	db SPRITE_FISHER
-	db SPRITE_SUPER_NERD
-	db SPRITE_BLACK_BELT
-	db SPRITE_ROCKET
-	db SPRITE_YOUNGSTER
-	db SPRITE_LASS
-	db SPRITE_YOUNGSTER
-	db SPRITE_ROCKET_GIRL
-	db SPRITE_SAGE
-	db SPRITE_GRANNY
-	db SPRITE_ROCKER
-	db SPRITE_POKEFAN_M
-	db SPRITE_KIMONO_GIRL
-	db SPRITE_TWIN
-	db SPRITE_POKEFAN_F
-	db SPRITE_RED
-	db SPRITE_BLUE
-	db SPRITE_OFFICER
-	db SPRITE_ROCKET_GIRL
+INCLUDE "data/trainers/sprites.asm"
 
 ret_170bd2: ; 170bd2
 	ret

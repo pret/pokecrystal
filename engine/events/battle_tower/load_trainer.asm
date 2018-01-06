@@ -207,4 +207,4 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	ret
 ; 1f814e
 
-INCLUDE "data/battle_tower.asm"
+INCLUDE "data/battle_tower/parties.asm"

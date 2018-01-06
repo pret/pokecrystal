@@ -75,7 +75,7 @@ Function17005a: ; 17005a
 
 ; 1700b0
 
-INCLUDE "mobile/battle_tower_5c.asm"
+INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
 Function170be4: ; 170be4
 	ld a, $5

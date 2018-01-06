@@ -1,3 +1,5 @@
+; Used by GetMobileOTTrainerClass
+
 MaleTrainers: ; 4e95d
 	db BURGLAR
 	db YOUNGSTER
