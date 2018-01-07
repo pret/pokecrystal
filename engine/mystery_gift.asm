@@ -1117,7 +1117,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	ld d, $0
 	ld b, CHECK_FLAG
 	ld hl, sMysteryGiftDecorationsReceived
-	predef_id Predef_FlagAction
+	predef_id Predef_SmallFarFlagAction
 	push hl
 	push bc
 	call Predef
@@ -1129,7 +1129,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	ret nz
 	call GetMysteryGiftBank
 	ld b, SET_FLAG
-	predef Predef_FlagAction
+	predef Predef_SmallFarFlagAction
 	call CloseSRAM
 	xor a
 	ret
@@ -1142,7 +1142,7 @@ MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
 	ld d, $0
 	ld b, CHECK_FLAG
 	ld hl, sMysteryGiftDecorationsReceived
-	predef Predef_FlagAction
+	predef Predef_SmallFarFlagAction
 	ld a, c
 	and a
 	pop bc

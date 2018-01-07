@@ -109,7 +109,7 @@ TradeFlagAction: ; fcc4a
 	ld hl, wTradeFlags
 	ld a, [wJumptableIndex]
 	ld c, a
-	predef Predef_FlagAction
+	predef Predef_SmallFarFlagAction
 	ld a, c
 	and a
 	ret

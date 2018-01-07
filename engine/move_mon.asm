@@ -1119,7 +1119,7 @@ Predef_GiveEgg:: ; df8c
 	ld d, $0
 	ld hl, PokedexCaught
 	ld b, RESET_FLAG
-	predef Predef_FlagAction
+	predef Predef_SmallFarFlagAction
 
 .skip_caught_flag
 ; If we haven't seen this Pokemon before receiving
@@ -1135,7 +1135,7 @@ Predef_GiveEgg:: ; df8c
 	ld d, $0
 	ld hl, PokedexSeen
 	ld b, RESET_FLAG
-	predef Predef_FlagAction
+	predef Predef_SmallFarFlagAction
 
 .skip_seen_flag
 	pop af
