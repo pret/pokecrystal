@@ -103,7 +103,7 @@ NamingScreen: ; 116c1
 	inc de
 	hlcoord 5, 4
 	call PlaceString
-	farcall GetGender
+	farcall Predef_GetGender
 	jr c, .genderless
 	ld a, "♂"
 	jr nz, .place_gender
@@ -739,7 +739,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b39 (4:5b39)
 
-; XXX
+; unused
 	ld a, [wNamingScreenCurrNameLength]
 	and a
 	ret z
@@ -765,7 +765,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b56
 
-Dakutens: ; Dummied out
+Dakutens: ; unused
 	db "かが", "きぎ", "くぐ", "けげ", "こご"
 	db "さざ", "しじ", "すず", "せぜ", "そぞ"
 	db "ただ", "ちぢ", "つづ", "てで", "とど"
@@ -776,7 +776,7 @@ Dakutens: ; Dummied out
 	db "ハバ", "ヒビ", "フブ", "へべ", "ホボ"
 	db $ff
 
-Handakutens: ; Dummied out
+Handakutens: ; unused
 	db "はぱ", "ひぴ", "ふぷ", "へぺ", "ほぽ"
 	db "ハパ", "ヒピ", "フプ", "へぺ", "ホポ"
 	db $ff
@@ -1051,7 +1051,7 @@ INCBIN "gfx/icon/mail2.2bpp"
 
 ; 11f7a (4:5f7a)
 
-.Dummy: ; dummied out
+.UnusedString11f7a:
 	db "メールを かいてね@"
 
 ; 11f84
@@ -1434,7 +1434,7 @@ MailComposition_TryAddLastCharacter: ; 121ac (4:61ac)
 
 ; 121b2 (4:61b2)
 
-; XXX
+; unused
 	ld a, [wNamingScreenCurrNameLength]
 	and a
 	ret z

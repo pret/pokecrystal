@@ -31,7 +31,7 @@ HallOfFame_MapScriptHeader:
 	setscene $1
 	pause 15
 	writebyte 2 ; Machine is in the Hall of Fame
-	special HealMachineAnim
+	special Special_HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER

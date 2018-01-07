@@ -27,7 +27,7 @@ PlaceMenuItemQuantity: ; 0x24ac3
 .done
 	ret
 
-PlaceMoneyTopRight: ; 24ae8
+Special_PlaceMoneyTopRight: ; 24ae8
 	ld hl, MenuDataHeader_0x24b15
 	call CopyMenuDataHeader
 	jr PlaceMoneyDataHeader
@@ -112,8 +112,8 @@ CoinString: ; 24b89
 ShowMoney_TerminatorString: ; 24b8e
 	db "@"
 
-Function24b8f: ; 24b8f
-; unreferenced, related to safari?
+Unreferenced_Function24b8f: ; 24b8f
+; related to safari?
 	ld hl, Options
 	ld a, [hl]
 	push af

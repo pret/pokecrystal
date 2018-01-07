@@ -246,45 +246,45 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_OAMSET_MAGNET_TRAIN_RED_2,  8, OAM_X_FLIP
 	dorestart
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_43,  8
 	frame SPRITE_ANIM_OAMSET_44,  8
 	dorestart
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_45,  8
 	frame SPRITE_ANIM_OAMSET_46,  8
 	dorestart
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_47,  8
 	frame SPRITE_ANIM_OAMSET_48,  8
 	dorestart
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_49,  1
 	frame SPRITE_ANIM_OAMSET_49,  1, OAM_X_FLIP
 	frame SPRITE_ANIM_OAMSET_49,  1, OAM_X_FLIP, OAM_Y_FLIP
 	frame SPRITE_ANIM_OAMSET_49,  1, OAM_Y_FLIP
 	dorestart
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_4A, 32
 	endanim
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_4B, 32
 	endanim
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_4C, 32
 	endanim
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_4D, 32
 	endanim
 
-; XXX
+; unused
 	frame SPRITE_ANIM_OAMSET_4E,  3
 	dorepeat  3
 	dorestart

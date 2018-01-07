@@ -418,8 +418,7 @@ UpdatePlayerStep: ; 4738
 	ret
 ; 4759
 
-Function4759: ; 4759
-; unreferenced
+Unreferenced_Function4759: ; 4759
 	push bc
 	ld e, a
 	ld d, 0
@@ -1571,7 +1570,7 @@ StepType05: ; 4e0c
 	ld [hl], a
 	call IncrementObjectStructField1c
 StepType04: ; 4e21
-	call MobileFn_4fb2
+	call Stubbed_Function4fb2
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -1579,7 +1578,7 @@ StepType04: ; 4e21
 ; 4e2b
 
 NPCStep: ; 4e2b
-	call MobileFn_4fb2
+	call Stubbed_Function4fb2
 	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1842,7 +1841,8 @@ SkyfallTop: ; 4f83
 	ret
 ; 4fb2
 
-MobileFn_4fb2: mobile
+Stubbed_Function4fb2:
+	ret
 	ld hl, OBJECT_1D
 	add hl, bc
 	inc [hl]

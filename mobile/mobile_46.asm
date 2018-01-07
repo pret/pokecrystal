@@ -487,7 +487,7 @@ BattleTowerRoomMenu_InitRAM: ; 1183cb
 	ld [hMobileReceive], a
 	ld [hMobile], a
 	ei
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	farcall Function115d99
 	farcall Function11615a
@@ -1559,8 +1559,7 @@ IndexDownloadURL: ; 0x118ce5
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
 
-Function118d35: ; 118d35
-; unreferenced
+Unreferenced_Function118d35: ; 118d35
 	ld hl, $d200
 	ld a, [wcd38]
 	and a
@@ -1673,7 +1672,7 @@ Function118ded: ; 118ded
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	farcall Function11b93b
+	farcall Special_Function11b93b
 	pop af
 	ld [rSVBK], a
 
@@ -4462,7 +4461,7 @@ Function11a00e: ; 11a00e
 	call PushWindow
 	farcall Function11765d
 	farcall Function117ab4
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ExitMenu
 	farcall ReloadMapPart
@@ -4485,7 +4484,7 @@ Function11a0ca: ; 11a0ca
 	call PushWindow
 	farcall Function11765d
 	farcall Function17d3f6
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ExitMenu
 	farcall ReloadMapPart
@@ -5578,7 +5577,7 @@ Function11a9ce: ; 11a9ce
 	call ClearBGPalettes
 	call ReloadTilesetAndPalettes
 	call Call_ExitMenu
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ret_d90
 	farcall FinishExitMenu
@@ -5730,7 +5729,7 @@ Text_ThisBattleRoomPleaseWait: ; 0x11ac1f
 	done
 ; 0x11ac3e
 
-Function11ac3e: ; 11ac3e
+Special_Function11ac3e: ; 11ac3e
 	call SpeechTextBox
 	call FadeToMenu
 	callfar ClearSpriteAnims2
@@ -6697,7 +6696,7 @@ Function11b242: ; 11b242
 	call PlaceString
 	xor a
 	ld [MonType], a
-	farcall GetGender
+	farcall Predef_GetGender
 	hlcoord 1, 4
 	ld a, [CurPartySpecies]
 	ld bc, wcd2f
@@ -6957,8 +6956,7 @@ Function11b397: ; 11b397
 	jr .loop
 ; 11b3b6
 
-Function11b3b6: ; 11b3b6
-; unreferenced
+Unreferenced_Function11b3b6: ; 11b3b6
 .loop
 	ld a, [hl]
 	cp -1
@@ -7062,7 +7060,7 @@ Function11b3d9: ; 11b3d9
 	ret
 ; 11b444
 
-Function11b444: ; 11b444
+Special_Function11b444: ; 11b444
 ; special
 	call Mobile46_InitJumptable
 	call Mobile46_RunJumptable
@@ -7156,7 +7154,7 @@ Function11b483: ; 11b483
 	pop de
 	push de
 	ld b, OTPARTYMON
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 	pop de
 	ld h, d
 	ld l, e
@@ -7351,7 +7349,7 @@ Function11b5e7: ; 11b5e7
 	ret
 ; 11b5e8
 
-Function11b5e8: ; 11b5e8
+Special_Function11b5e8: ; 11b5e8
 	ld a, $0
 	call GetSRAMBank
 	ld hl, wRTC
@@ -7575,7 +7573,7 @@ Function11b6b4: ; 11b6b4
 	ld hl, $c60d + MON_STAT_EXP - 1
 	ld de, $c60d + MON_MAXHP
 	ld b, $1
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 	ld de, $c60d + MON_MAXHP
 	ld hl, $c60d + MON_HP
 	ld a, [de]
@@ -7587,7 +7585,7 @@ Function11b6b4: ; 11b6b4
 	ret
 ; 11b7e5
 
-Function11b7e5: ; 11b7e5
+Special_Function11b7e5: ; 11b7e5
 	ld a, [$c60d] ; species
 	ld [wOTTrademonSpecies], a
 	ld [CurPartySpecies], a
@@ -7646,7 +7644,7 @@ Function11b7e5: ; 11b7e5
 	ret
 ; 11b879
 
-Function11b879: ; 11b879
+Special_Function11b879: ; 11b879
 	farcall BattleTower_CheckSaveFileExistsAndIsYours
 	ld a, [ScriptVar]
 	and a
@@ -7739,7 +7737,7 @@ Function11b879: ; 11b879
 	ret
 ; 11b920
 
-Function11b920: ; 11b920
+Special_Function11b920: ; 11b920
 	call Mobile46_InitJumptable
 	ld a, $5
 	call GetSRAMBank
@@ -7752,7 +7750,7 @@ Function11b920: ; 11b920
 	ret
 ; 11b93b
 
-Function11b93b: ; 11b93b
+Special_Function11b93b: ; 11b93b
 	ld a, $5
 	call GetSRAMBank
 	xor a
@@ -7896,7 +7894,7 @@ AddMobileMonToParty: ; 11b98f
 	ret
 ; 11ba38
 
-Function11ba38: ; 11ba38
+Special_Function11ba38: ; 11ba38
 	farcall CheckCurPartyMonFainted
 	ret c
 	xor a

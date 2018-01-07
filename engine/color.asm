@@ -43,8 +43,7 @@ CheckShininess:
 	and a
 	ret
 
-; unreferenced
-CheckContestMon:
+UnusedPredef_CheckContestMon:
 ; Check a mon's DVs at hl in the bug catching contest.
 ; Return carry if its DVs are good enough to place in the contest.
 
@@ -78,8 +77,7 @@ CheckContestMon:
 	and a
 	ret
 
-Function8aa4:
-; XXX
+Unreferenced_Function8aa4:
 	push de
 	push bc
 	ld hl, PalPacket_9ce6
@@ -136,8 +134,7 @@ SGB_ApplyPartyMenuHPPals: ; 8ade
 	ld [hl], e
 	ret
 
-Function8b07:
-; Unreferenced
+Unreferenced_Function8b07:
 	call CheckCGB
 	ret z
 ; CGB only
@@ -170,8 +167,7 @@ Function8b07:
 	RGB 08, 16, 28
 	RGB 00, 00, 00
 
-Function8b3f:
-; Unreferenced
+Unreferenced_Function8b3f:
 	call CheckCGB
 	ret nz
 	ld a, [hSGB]
@@ -180,8 +176,7 @@ Function8b3f:
 	ld hl, BlkPacket_9a86
 	jp PushSGBPals_
 
-Function8b4d:
-; XXX
+Unreferenced_Function8b4d:
 	call CheckCGB
 	jr nz, .cgb
 	ld a, [hSGB]
@@ -196,8 +191,7 @@ Function8b4d:
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
-Function8b67:
-; XXX
+Unreferenced_Function8b67:
 	call CheckCGB
 	jr nz, .cgb
 	ld a, [hSGB]
@@ -212,8 +206,7 @@ Function8b67:
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
-Function8b81:
-; XXX
+Unreferenced_Function8b81:
 	call CheckCGB
 	jr nz, .cgb
 	ld a, [hSGB]
@@ -281,8 +274,7 @@ got_palette_pointer_8bd7
 	call LoadPalette_White_Col1_Col2_Black
 	ret
 
-Function8bec:
-; XXX
+Unreferenced_Function8bec:
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
@@ -455,8 +447,7 @@ INCLUDE "data/palettes/mail.pal"
 
 INCLUDE "engine/cgb_layouts.asm"
 
-Function95f0:
-; XXX
+Unreferenced_Function95f0:
 	ld hl, .Palette
 	ld de, wBGPals1
 	ld bc, 1 palettes
@@ -746,7 +737,8 @@ GetMonPalettePointer_:
 	call GetMonPalettePointer
 	ret
 
-Function9779: mobile
+Unreferenced_Function9779:
+	ret
 	call CheckCGB
 	ret z
 	ld hl, BattleObjectPals
@@ -768,8 +760,7 @@ Function9779: mobile
 BattleObjectPals:
 INCLUDE "data/palettes/battle_objects.pal"
 
-Function97cc:
-; XXX
+Unreferenced_Function97cc:
 	call CheckCGB
 	ret z
 	ld a, $90
@@ -864,7 +855,7 @@ PushSGBPals:
 	jr nz, .loop
 	ret
 
-InitSGBBorder:
+Predef_InitSGBBorder:
 	call CheckCGB
 	ret nz
 ; SGB/DMG only
@@ -979,8 +970,7 @@ _InitSGBBorderPals:
 	dw PalPacket_9dd6
 	dw PalPacket_9de6
 
-Function9911:
-; XXX
+Unreferenced_Function9911:
 	di
 	xor a
 	ld [rJOYP], a

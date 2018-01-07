@@ -994,6 +994,7 @@ CountStep: ; 96b79
 	ret
 ; 96bd3
 
+; unused
 .unreferenced ; 96bd3
 	ld a, 7
 	scf
@@ -1060,7 +1061,7 @@ Invalid_0x96c2d: ; 96c2d
 	end
 ; 96c2e
 
-; unreferenced
+; unused
 	end
 ; 96c2f
 

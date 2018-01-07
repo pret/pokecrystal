@@ -39,7 +39,7 @@ TrainerGruntM1:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear SLOWPOKEWELLB1F_ROCKET1
 	disappear SLOWPOKEWELLB1F_ROCKET2
 	disappear SLOWPOKEWELLB1F_ROCKET3
@@ -67,7 +67,7 @@ TrainerGruntM1:
 	clearevent EVENT_AZALEA_TOWN_SLOWPOKES
 	clearevent EVENT_KURTS_HOUSE_SLOWPOKE
 	clearevent EVENT_KURTS_HOUSE_KURT_1
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	special HealParty
 	pause 15
 	warp KURTS_HOUSE, $3, $3

@@ -24,7 +24,7 @@ FarmerMScript_SellMilk:
 	checkitem MOOMOO_MILK
 	iftrue FarmerMScript_Milking
 	writetext FarmerMText_BuyMilk
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	yesorno
 	iffalse FarmerMScript_NoSale
 	checkmoney $0, 500
@@ -32,7 +32,7 @@ FarmerMScript_SellMilk:
 	giveitem MOOMOO_MILK
 	iffalse FarmerMScript_NoRoom
 	takemoney $0, 500
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext FarmerMText_GotMilk

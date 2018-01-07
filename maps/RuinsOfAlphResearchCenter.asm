@@ -169,8 +169,8 @@ UnknownScript_0x59260:
 	closetext
 	end
 
-UnknownScript_0x59269:
-	jumptext UnknownText_0x59848
+UnreferencedScript_0x59269:
+	jumptext UnusedText_0x59848
 
 MapRuinsOfAlphResearchCenterSignpost0Script:
 	jumptext UnknownText_0x59886
@@ -308,8 +308,8 @@ UnknownText_0x595cb:
 	cont "kinds of them…"
 	done
 
-; possibly unused
-UnknownText_0x59669:
+; unused
+UnusedText_0x59669:
 	text "We think something"
 	line "caused the cryptic"
 
@@ -320,8 +320,8 @@ UnknownText_0x59669:
 	line "studies on that."
 	done
 
-; possibly unused
-UnknownText_0x596d3:
+; unused
+UnusedText_0x596d3:
 	text "According to my"
 	line "research…"
 
@@ -374,8 +374,8 @@ UnknownText_0x5982d:
 	line "printed out."
 	done
 
-; possibly unused
-UnknownText_0x59848:
+; unused
+UnusedText_0x59848:
 	text "It's a photo of"
 	line "the RESEARCH"
 

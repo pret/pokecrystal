@@ -1,4 +1,4 @@
-NewPokedexEntry: ; fb877
+Predef_NewPokedexEntry: ; fb877
 	ld a, [hMapAnims]
 	push af
 	xor a

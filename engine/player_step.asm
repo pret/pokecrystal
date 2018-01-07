@@ -76,7 +76,7 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 	ret
 
 .mobile ; d509 (3:5509)
-	farcall TrainerRankings_StepCount
+	farcall StubbedTrainerRankings_StepCount
 	ret
 
 .fail2 ; d510 (3:5510)

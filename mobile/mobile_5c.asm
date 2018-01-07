@@ -654,7 +654,7 @@ Function171c41: ; 171c41 (5c:5c41)
 	dec [hl]
 	ret nz
 	call ClearBGPalettes
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	ld a, $2
 	ld [wc303], a

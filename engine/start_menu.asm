@@ -593,7 +593,7 @@ HasNoItems: ; 129d5
 
 TossItemFromPC: ; 129f4
 	push de
-	call PartyMonItemName
+	call Predef_PartyMonItemName
 	farcall _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
@@ -616,7 +616,7 @@ TossItemFromPC: ; 129f4
 	pop hl
 	ld a, [CurItemQuantity]
 	call TossItem
-	call PartyMonItemName
+	call Predef_PartyMonItemName
 	ld hl, .TossedThisMany
 	call MenuTextBox
 	call ExitMenu
@@ -668,7 +668,7 @@ CantUseItemText: ; 12a67
 ; 12a6c
 
 
-PartyMonItemName: ; 12a6c
+Predef_PartyMonItemName: ; 12a6c
 	ld a, [CurItem]
 	ld [wd265], a
 	call GetItemName
@@ -862,7 +862,7 @@ GiveTakePartyMonItem: ; 12b60
 TryGiveItemToPartymon: ; 12bd9
 
 	call SpeechTextBox
-	call PartyMonItemName
+	call Predef_PartyMonItemName
 	call GetPartyItemLocation
 	ld a, [hl]
 	and a
@@ -1225,7 +1225,7 @@ OpenPartyStats: ; 12e00
 	xor a
 	ld [MonType], a
 	call LowVolume
-	predef StatsScreenInit
+	predef Predef_StatsScreenInit
 	call MaxVolume
 	call Call_ExitMenu
 	ld a, 0
@@ -1255,7 +1255,7 @@ MonMenu_Fly: ; 12e30
 	jr z, .Fail
 	cp $0
 	jr z, .Error
-	farcall TrainerRankings_Fly
+	farcall StubbedTrainerRankings_Fly
 	ld b, $4
 	ld a, $2
 	ret
@@ -1268,7 +1268,7 @@ MonMenu_Fly: ; 12e30
 	ld a, $0
 	ret
 
-.Unused:
+.Unreferenced:
 	ld a, $1
 	ret
 ; 12e55
@@ -1792,7 +1792,7 @@ SetUpMoveScreenBG: ; 13172
 	hlcoord 5, 1
 	call PlaceString
 	push bc
-	farcall CopyPkmnToTempMon
+	farcall Predef_CopyPkmnToTempMon
 	pop hl
 	call PrintLevel
 	ld hl, PlayerHPPal
@@ -1809,7 +1809,7 @@ SetUpMoveList: ; 131ef
 	ld [hBGMapMode], a
 	ld [wMoveSwapBuffer], a
 	ld [MonType], a
-	predef CopyPkmnToTempMon
+	predef Predef_CopyPkmnToTempMon
 	ld hl, TempMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
@@ -1817,9 +1817,9 @@ SetUpMoveList: ; 131ef
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 3
-	predef ListMoves
+	predef Predef_ListMoves
 	hlcoord 10, 4
-	predef ListMovePP
+	predef Predef_ListMovePP
 	call WaitBGMap
 	call SetPalettes
 	ld a, [wNumMoves]
@@ -1863,7 +1863,7 @@ PlaceMoveData: ; 13256
 	ld a, [CurMove]
 	ld b, a
 	hlcoord 2, 12
-	predef PrintMoveType
+	predef Predef_PrintMoveType
 	ld a, [CurMove]
 	dec a
 	ld hl, Moves + MOVE_POWER
@@ -1886,7 +1886,7 @@ PlaceMoveData: ; 13256
 
 .description
 	hlcoord 1, 14
-	predef PrintMoveDesc
+	predef Predef_PrintMoveDesc
 	ld a, $1
 	ld [hBGMapMode], a
 	ret

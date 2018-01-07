@@ -1,4 +1,4 @@
-TryAddMonToParty: ; d88c
+Predef_TryAddMonToParty: ; d88c
 ; Check if to copy wild Pkmn or generate new Pkmn
 	; Whose is it?
 	ld de, PartyCount
@@ -120,7 +120,7 @@ GeneratePartyMonStats: ; d906
 	endr
 	ld [hl], a
 	ld [Buffer1], a
-	predef FillMoves
+	predef Predef_FillMoves
 
 .next
 	pop de
@@ -195,7 +195,7 @@ endr
 	push de
 	inc hl
 	inc hl
-	call FillPP
+	call Predef_FillPP
 	pop de
 	pop hl
 rept 4
@@ -224,7 +224,7 @@ endr
 	ld a, $1
 	ld c, a
 	ld b, FALSE
-	call CalcPkmnStatC
+	call Predef_CalcPkmnStatC
 	ld a, [hProduct + 2]
 	ld [de], a
 	inc de
@@ -297,7 +297,7 @@ endr
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $0 ; if b = 1, then stat calculation takes stat exp into account.
-	call CalcPkmnStats
+	call Predef_CalcPkmnStats
 
 .next3
 	ld a, [MonType]
@@ -311,7 +311,7 @@ endr
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	callfar UpdateUnownDex
 
 .done
@@ -319,7 +319,7 @@ endr
 	ret
 ; da6d
 
-FillPP: ; da6d
+Predef_FillPP: ; da6d
 	push bc
 	ld b, NUM_MOVES
 .loop
@@ -350,7 +350,7 @@ FillPP: ; da6d
 	ret
 ; da96
 
-AddTempmonToParty: ; da96
+Predef_AddTempmonToParty: ; da96
 	ld hl, PartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
@@ -422,7 +422,7 @@ AddTempmonToParty: ; da96
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	callfar UpdateUnownDex
 	ld a, [wFirstUnownSeen]
 	and a
@@ -434,7 +434,7 @@ AddTempmonToParty: ; da96
 	and a
 	ret
 
-SentGetPkmnIntoFromBox: ; db3f
+Predef_SendGetPkmnIntoFromBox: ; db3f
 ; Sents/Gets Pkmn into/from Box depending on Parameter
 ; wPokemonWithdrawDepositParameter == 0: get Pkmn into Party
 ; wPokemonWithdrawDepositParameter == 1: sent Pkmn into Box
@@ -597,7 +597,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	srl a
 	add $2
 	ld [MonType], a
-	predef CopyPkmnToTempMon
+	predef Predef_CopyPkmnToTempMon
 	callfar CalcLevel
 	ld a, d
 	ld [CurPartyLevel], a
@@ -617,7 +617,7 @@ SentGetPkmnIntoFromBox: ; db3f
 
 	push bc
 	ld b, $1
-	call CalcPkmnStats
+	call Predef_CalcPkmnStats
 	pop bc
 
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -830,7 +830,7 @@ Functiondd64: ; dd64
 	add hl, bc
 	push bc
 	ld b, $1
-	call CalcPkmnStats
+	call Predef_CalcPkmnStats
 	ld hl, PartyMon1Moves
 	ld a, [PartyCount]
 	dec a
@@ -840,7 +840,7 @@ Functiondd64: ; dd64
 	ld e, l
 	ld a, $1
 	ld [Buffer1], a
-	predef FillMoves
+	predef Predef_FillMoves
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
@@ -904,8 +904,8 @@ DepositBreedmon: ; de44
 	ld bc, BOXMON_STRUCT_LENGTH
 	jp CopyBytes
 
-SentPkmnIntoBox: ; de6e
-; Sents the Pkmn into one of Bills Boxes
+Predef_SendPkmnIntoBox: ; de6e
+; Sends the Pkmn into one of Bills Boxes
 ; the data comes mainly from 'EnemyMon:'
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -1010,7 +1010,7 @@ SentPkmnIntoBox: ; de6e
 	cp UNOWN
 	jr nz, .not_unown
 	ld hl, sBoxMon1DVs
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	callfar UpdateUnownDex
 
 .not_unown
@@ -1086,7 +1086,7 @@ ShiftBoxMon: ; df47
 	ret
 ; df8c
 
-GiveEgg:: ; df8c
+Predef_GiveEgg:: ; df8c
 	ld a, [CurPartySpecies]
 	push af
 	callfar GetPreEvolution
@@ -1094,7 +1094,7 @@ GiveEgg:: ; df8c
 	ld a, [CurPartySpecies]
 	dec a
 
-; TryAddMonToParty sets Seen and Caught flags
+; Predef_TryAddMonToParty sets Seen and Caught flags
 ; when it is successful.  This routine will make
 ; sure that we aren't newly setting flags.
 	push af
@@ -1104,11 +1104,11 @@ GiveEgg:: ; df8c
 	call CheckSeenMon
 	push bc
 
-	call TryAddMonToParty
+	call Predef_TryAddMonToParty
 
 ; If we haven't caught this Pokemon before receiving
 ; the Egg, reset the flag that was just set by
-; TryAddMonToParty.
+; Predef_TryAddMonToParty.
 	pop bc
 	ld a, c
 	and a
@@ -1119,12 +1119,12 @@ GiveEgg:: ; df8c
 	ld d, $0
 	ld hl, PokedexCaught
 	ld b, RESET_FLAG
-	predef FlagPredef
+	predef Predef_SmallFarFlagAction
 
 .skip_caught_flag
 ; If we haven't seen this Pokemon before receiving
 ; the Egg, reset the flag that was just set by
-; TryAddMonToParty.
+; Predef_TryAddMonToParty.
 	pop bc
 	ld a, c
 	and a
@@ -1135,7 +1135,7 @@ GiveEgg:: ; df8c
 	ld d, $0
 	ld hl, PokedexSeen
 	ld b, RESET_FLAG
-	predef FlagPredef
+	predef Predef_SmallFarFlagAction
 
 .skip_seen_flag
 	pop af
@@ -1360,7 +1360,7 @@ ComputeNPCTrademonStats: ; e134
 	ld a, MON_STAT_EXP - 1
 	call GetPartyParamLocation
 	ld b, $1
-	call CalcPkmnStats
+	call Predef_CalcPkmnStats
 	pop de
 	ld a, MON_HP
 	call GetPartyParamLocation
@@ -1372,7 +1372,7 @@ ComputeNPCTrademonStats: ; e134
 	ret
 ; e167
 
-CalcPkmnStats: ; e167
+Predef_CalcPkmnStats: ; e167
 ; Calculates all 6 Stats of a Pkmn
 ; b: Take into account stat EXP if TRUE
 ; 'c' counts from 1-6 and points with 'BaseStats' to the base value
@@ -1382,7 +1382,7 @@ CalcPkmnStats: ; e167
 	ld c, $0
 .loop
 	inc c
-	call CalcPkmnStatC
+	call Predef_CalcPkmnStatC
 	ld a, [hMultiplicand + 1]
 	ld [de], a
 	inc de
@@ -1395,7 +1395,7 @@ CalcPkmnStats: ; e167
 	ret
 ; e17b
 
-CalcPkmnStatC: ; e17b
+Predef_CalcPkmnStatC: ; e17b
 ; 'c' is 1-6 and points to the BaseStat
 ; 1: HP
 ; 2: Attack
@@ -1596,7 +1596,7 @@ GivePoke:: ; e277
 	push bc
 	xor a ; PARTYMON
 	ld [MonType], a
-	call TryAddMonToParty
+	call Predef_TryAddMonToParty
 	jr nc, .failed
 	ld hl, PartyMonNicknames
 	ld a, [PartyCount]
@@ -1626,7 +1626,7 @@ GivePoke:: ; e277
 	ld a, [CurPartySpecies]
 	ld [TempEnemyMonSpecies], a
 	callfar LoadEnemyMon
-	call SentPkmnIntoBox
+	call Predef_SendPkmnIntoBox
 	jp nc, .FailedToGiveMon
 	ld a, BOXMON
 	ld [MonType], a
@@ -1795,7 +1795,7 @@ InitNickname: ; e3de
 	pop hl
 	ld de, StringBuffer1
 	call InitName
-	ld a, $4 ; XXX could this be in bank 4 in pokered?
+	ld a, $4 ; ExitAllMenus is in bank 0, XXX could this be in bank 4 in pokered?
 	ld hl, ExitAllMenus
 	rst FarCall
 	ret

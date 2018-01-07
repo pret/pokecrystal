@@ -67,7 +67,7 @@ _AnimateHPBar: ; d627
 	ld a, [hli]
 	ld b, a
 	pop hl
-	call ComputeHPBarPixels
+	call Predef_ComputeHPBarPixels
 	ld a, e
 	ld [wCurHPBarPixels], a
 
@@ -79,7 +79,7 @@ _AnimateHPBar: ; d627
 	ld e, a
 	ld a, [wCurHPAnimMaxHP + 1]
 	ld d, a
-	call ComputeHPBarPixels
+	call Predef_ComputeHPBarPixels
 	ld a, e
 	ld [wNewHPBarPixels], a
 
@@ -183,11 +183,11 @@ LongAnim_UpdateVariables: ; d6f5
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	; This routine is buggy. The result from ComputeHPBarPixels is stored
+	; This routine is buggy. The result from Predef_ComputeHPBarPixels is stored
 	; in e. However, the pop de opcode deletes this result before it is even
 	; used. The game then proceeds as though it never deleted that output.
 	; To fix, uncomment the line below.
-	call ComputeHPBarPixels
+	call Predef_ComputeHPBarPixels
 	; ld a, e
 	pop bc
 	pop de
@@ -227,7 +227,7 @@ LongHPBarAnim_UpdateTiles: ; d749
 	ld e, a
 	ld a, [wCurHPAnimMaxHP + 1]
 	ld d, a
-	call ComputeHPBarPixels
+	call Predef_ComputeHPBarPixels
 	ld c, e
 	ld d, HP_BAR_LENGTH
 	ld a, [wWhichHPBar]

@@ -84,18 +84,18 @@ INCLUDE "gfx/footprints.asm"
 
 ; This and the following two functions are unreferenced.
 ; Debug, perhaps?
-Unknown_fb434:
+Unreferenced_fb434:
 	db 0
 
-Functionfb435: ; 4b435
-	ld a, [Unknown_fb434]
+Unreferenced_Functionfb435: ; 4b435
+	ld a, [Unreferenced_fb434]
 	and a
 	jp nz, Get1bpp_2
 	jp Get1bpp
 ; fb43f
 
-Functionfb43f: ; fb43f
-	ld a, [Unknown_fb434]
+Unreferenced_Functionfb43f: ; fb43f
+	ld a, [Unreferenced_fb434]
 	and a
 	jp nz, Get2bpp_2
 	jp Get2bpp

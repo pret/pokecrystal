@@ -28,8 +28,7 @@ MenuTextBox:: ; 1d4f
 	jp PrintText
 ; 1d57
 
-ret_1d57:: ; 1d57
-; unreferenced
+; unused
 	ret
 ; 1d58
 
@@ -453,8 +452,7 @@ PlaceNthMenuStrings:: ; 1f8d
 	ret
 ; 1f9e
 
-Function1f9e:: ; 1f9e
-; unreferenced
+Unreferenced_Function1f9e:: ; 1f9e
 	call GetMenuDataPointerTableEntry
 	inc hl
 	inc hl

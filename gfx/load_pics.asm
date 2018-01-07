@@ -1,4 +1,4 @@
-GetUnownLetter: ; 51040
+Predef_GetUnownLetter: ; 51040
 ; Return Unown letter in UnownLetter based on DVs at hl
 
 ; Take the middle 2 bits of each DV and place them in order:
@@ -48,7 +48,7 @@ GetUnownLetter: ; 51040
 	ld [UnownLetter], a
 	ret
 
-GetMonFrontpic: ; 51077
+Predef_GetMonFrontpic: ; 51077
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call IsAPokemon
@@ -60,7 +60,7 @@ GetMonFrontpic: ; 51077
 	ld [rSVBK], a
 	ret
 
-GetAnimatedFrontpicPredef: ; 5108b
+Predef_GetAnimatedFrontpic: ; 5108b
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call IsAPokemon
@@ -195,7 +195,7 @@ LoadFrontpicTiles: ; 5114f
 	jr nz, .loop
 	ret
 
-GetMonBackpic: ; 5116c
+Predef_GetMonBackpic: ; 5116c
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	ret c
@@ -311,7 +311,7 @@ Function511ec: ; 511ec
 	call FarDecompress
 	ret
 
-GetTrainerPic: ; 5120d
+Predef_GetTrainerPic: ; 5120d
 	ld a, [TrainerClass]
 	and a
 	ret z
@@ -353,7 +353,7 @@ GetTrainerPic: ; 5120d
 	ld [hBGMapMode], a
 	ret
 
-DecompressPredef: ; 5125d
+Predef_Decompress: ; 5125d
 ; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
 
 	ld a, [rSVBK]

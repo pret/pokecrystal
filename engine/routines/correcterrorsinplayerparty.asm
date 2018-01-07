@@ -1,4 +1,4 @@
-CorrectErrorsInPlayerParty: ; unreferenced
+Unreferenced_CorrectErrorsInPlayerParty:
 	ld hl, PartyCount
 	ld a, [hl]
 	and a
@@ -90,7 +90,7 @@ CorrectErrorsInPlayerParty: ; unreferenced
 	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $1
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 	pop hl
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc

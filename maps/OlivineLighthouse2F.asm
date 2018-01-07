@@ -164,8 +164,8 @@ SailorHuey1BeatenText:
 	line "I lose!"
 	done
 
-; possibly unused
-UnknownText_0x5b0be:
+; unused
+UnusedText_0x5b0be:
 	text "What power!"
 	line "How would you like"
 

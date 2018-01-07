@@ -1,4 +1,4 @@
-GetFirstPokemonHappiness: ; 718d
+Special_GetFirstPokemonHappiness: ; 718d
 	ld hl, PartyMon1Happiness
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, PartySpecies
@@ -17,7 +17,7 @@ GetFirstPokemonHappiness: ; 718d
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
-CheckFirstMonIsEgg: ; 71ac
+Special_CheckFirstMonIsEgg: ; 71ac
 	ld a, [PartySpecies]
 	ld [wd265], a
 	cp EGG

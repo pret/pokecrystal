@@ -1309,7 +1309,7 @@ PokegearPhoneContactSubmenu: ; 91342 (24:5342)
 
 ; 9146e
 
-; XXX
+; unused
 	ld a, [hHours]
 	cp 12
 	jr c, .am
@@ -1499,7 +1499,7 @@ UpdateRadioStation: ; 9166f (24:566f)
 
 ; 916a1 (24:56a1)
 
-; XXX
+; unused
 	ld [wPokegearRadioChannelBank], a
 	ld a, [hli]
 	ld [wPokegearRadioChannelAddr], a
@@ -1751,7 +1751,7 @@ LoadStation_EvolutionRadio: ; 9183e (24:583e)
 
 ; 91853 (24:5853)
 
-LoadStation_Dummy: ; 91853
+Unreferenced_LoadStation: ; 91853
 	ret
 
 RadioMusicRestartDE: ; 91854 (24:5854)
@@ -2331,7 +2331,7 @@ HasVisitedSpawn: ; 91c50
 	ld hl, wVisitedSpawns
 	ld b, CHECK_FLAG
 	ld d, 0
-	predef FlagPredef
+	predef Predef_SmallFarFlagAction
 	ld a, c
 	ret
 
@@ -2440,7 +2440,7 @@ FlyMap: ; 91c90
 
 ; 91d11
 
-_Area: ; 91d11
+Predef_Pokedex_GetArea: ; 91d11
 ; e: Current landmark
 	ld a, [wTownMapPlayerIconLandmark]
 	push af
@@ -2932,7 +2932,7 @@ INCBIN "gfx/pokegear/dexmap_nest_icon.2bpp"
 FlyMapLabelBorderGFX: ; 922e1
 INCBIN "gfx/pokegear/flymap_label_border.1bpp"
 
-; XXX
+Unreferenced_Function92311:
 	xor a
 	ld [wTownMapPlayerIconLandmark], a
 	call ClearBGPalettes

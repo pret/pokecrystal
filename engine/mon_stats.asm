@@ -1,8 +1,8 @@
-DrawPlayerHP: ; 50b0a
+Predef_DrawPlayerHP: ; 50b0a
 	ld a, $1
 	jr DrawHP
 
-DrawEnemyHP: ; 50b0e
+Predef_DrawEnemyHP: ; 50b0e
 	ld a, $2
 
 DrawHP: ; 50b10
@@ -43,7 +43,7 @@ DrawHP: ; 50b10
 	ld c, e
 
 .not_boxmon
-	predef ComputeHPBarPixels
+	predef Predef_ComputeHPBarPixels
 	ld a, 6
 	ld d, a
 	ld c, a
@@ -82,7 +82,7 @@ DrawHP: ; 50b10
 	pop de
 	ret
 
-PrintTempMonStats: ; 50b7b
+Predef_PrintTempMonStats: ; 50b7b
 ; Print TempMon's stats at hl, with spacing bc.
 	push bc
 	push hl
@@ -121,7 +121,7 @@ PrintTempMonStats: ; 50b7b
 	next "SPEED"
 	next "@"
 
-GetGender: ; 50bdd
+Predef_GetGender: ; 50bdd
 ; Return the gender of a given monster (CurPartyMon/CurOTMon/CurWildMon).
 ; When calling this function, a should be set to an appropriate MonType value.
 
@@ -235,7 +235,7 @@ GetGender: ; 50bdd
 	scf
 	ret
 
-ListMovePP: ; 50c50
+Predef_ListMovePP: ; 50c50
 	ld a, [wNumMoves]
 	inc a
 	ld c, a
@@ -324,8 +324,7 @@ ListMovePP: ; 50c50
 	jr nz, .load_loop
 	ret
 
-Function50cd0: ; 50cd0
-; XXX
+Unreferenced_Function50cd0: ; 50cd0
 .loop
 	ld [hl], $32
 	inc hl
@@ -336,7 +335,7 @@ Function50cd0: ; 50cd0
 	jr nz, .loop
 	ret
 
-Predef22: ; unreferenced predef
+UnusedPredef22:
 	push hl
 	push hl
 	ld hl, PartyMonNicknames
@@ -344,7 +343,7 @@ Predef22: ; unreferenced predef
 	call GetNick
 	pop hl
 	call PlaceString
-	call CopyPkmnToTempMon
+	call Predef_CopyPkmnToTempMon
 	pop hl
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -353,7 +352,7 @@ Predef22: ; unreferenced predef
 	ld bc, -12
 	add hl, bc
 	ld b, $0
-	call DrawEnemyHP
+	call Predef_DrawEnemyHP
 	pop hl
 	ld bc, 5
 	add hl, bc
@@ -364,7 +363,7 @@ Predef22: ; unreferenced predef
 .egg
 	ret
 
-PlaceStatusString: ; 50d0a
+Predef_PlaceStatusString: ; 50d0a
 	push de
 	inc de
 	inc de
@@ -374,7 +373,7 @@ PlaceStatusString: ; 50d0a
 	ld a, [de]
 	or b
 	pop de
-	jr nz, PlaceNonFaintStatus
+	jr nz, Predef_PlaceNonFaintStatus
 	push de
 	ld de, FntString
 	call CopyStatusString
@@ -397,7 +396,7 @@ CopyStatusString: ; 50d25
 	ld [hl], a
 	ret
 
-PlaceNonFaintStatus: ; 50d2e
+Predef_PlaceNonFaintStatus: ; 50d2e
 	push de
 	ld a, [de]
 	ld de, PsnString
@@ -431,7 +430,7 @@ BrnString: db "BRN@"
 FrzString: db "FRZ@"
 ParString: db "PAR@"
 
-ListMoves: ; 50d6f
+Predef_ListMoves: ; 50d6f
 ; List moves at hl, spaced every [Buffer1] tiles.
 	ld de, wListMoves_MoveIndicesBuffer
 	ld b, $0

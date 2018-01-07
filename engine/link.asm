@@ -150,7 +150,7 @@ TimeCapsule: ; 2805d
 	ld [wd265], a
 	push hl
 	push de
-	callfar ConvertMon_1to2
+	callfar Predef_ConvertMon_1to2
 	pop de
 	pop hl
 	ld a, [wd265]
@@ -449,7 +449,7 @@ Gen2ToGen2LinkComms: ; 28177
 	pop af
 	ld [rIF], a
 
-	predef StartBattle
+	predef Predef_StartBattle
 
 	ld a, [rIF]
 	ld h, a
@@ -786,7 +786,7 @@ Link_PrepPartyData_Gen1: ; 28499
 	add hl, bc
 	ld c, STAT_SATK
 	ld b, TRUE
-	predef CalcPkmnStatC
+	predef Predef_CalcPkmnStatC
 
 	pop bc
 	pop de
@@ -993,7 +993,7 @@ Function2868a: ; 2868a
 	push bc
 	push de
 	ld [wd265], a
-	callfar ConvertMon_1to2
+	callfar Predef_ConvertMon_1to2
 	pop de
 	pop bc
 	ld a, [wd265]
@@ -1072,7 +1072,7 @@ Function2868a: ; 2868a
 	add hl, bc
 	ld c, STAT_SATK
 	ld b, TRUE
-	predef CalcPkmnStatC
+	predef Predef_CalcPkmnStatC
 	pop bc
 	pop hl
 	ld a, [hQuotient + 1]
@@ -1085,7 +1085,7 @@ Function2868a: ; 2868a
 	add hl, bc
 	ld c, STAT_SDEF
 	ld b, TRUE
-	predef CalcPkmnStatC
+	predef Predef_CalcPkmnStatC
 	pop bc
 	pop hl
 	ld a, [hQuotient + 1]
@@ -1597,8 +1597,7 @@ Function28b22: ; 28b22
 	ret
 ; 28b42
 
-Function28b42: ; 28b42
-; unreferenced
+Unreferenced_Function28b42: ; 28b42
 	hlcoord 0, 16
 	ld a, "┘"
 	ld bc, 2 * SCREEN_WIDTH
@@ -1892,11 +1891,11 @@ LinkTrade: ; 28b87
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .player_2
-	predef TradeAnimation
+	predef Predef_TradeAnimation
 	jr .done_animation
 
 .player_2
-	predef TradeAnimationPlayer2
+	predef Predef_TradeAnimationPlayer2
 
 .done_animation
 	pop af
@@ -1914,7 +1913,7 @@ LinkTrade: ; 28b87
 	ld de, TempMonSpecies
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	predef AddTempmonToParty
+	predef Predef_AddTempmonToParty
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
@@ -1958,7 +1957,7 @@ LinkTrade: ; 28b87
 
 .save
 	farcall SaveAfterLinkTrade
-	farcall TrainerRankings_Trades
+	farcall StubbedTrainerRankings_Trades
 	farcall BackupMobileEventIndex
 	ld c, 40
 	call DelayFrames
@@ -2020,8 +2019,7 @@ SetTradeRoomBGPals: ; 28eff
 	ret
 ; 28f09
 
-Function28f09: ; 28f09
-; unreferenced
+Unreferenced_Function28f09: ; 28f09
 	hlcoord 0, 0
 	ld b, 6
 	ld c, 18
@@ -2145,7 +2143,7 @@ Special_EnterTimeCapsule: ; 29c7b
 	ret
 ; 29c92
 
-WaitForOtherPlayerToExit: ; 29c92
+Special_WaitForOtherPlayerToExit: ; 29c92
 	ld c, 3
 	call DelayFrames
 	ld a, -1
@@ -2577,17 +2575,16 @@ Special_CableClubCheckWhichChris: ; 29f47
 	ret
 ; 29f54
 
-UnusedGen1LinkCommsBorderGFX: ; 29f54
-; unreferenced
+Unreferenced_Gen1LinkCommsBorderGFX: ; 29f54
 INCBIN "gfx/trade/unused_gen_1_border_tiles.2bpp"
 ; 29fe4
 
-Function29fe4: ; unreferenced
+Unreferenced_Function29fe4:
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld d, $0
 	ld b, CHECK_FLAG
-	predef FlagPredef
+	predef Predef_SmallFarFlagAction
 	call CloseSRAM
 	ld a, c
 	and a

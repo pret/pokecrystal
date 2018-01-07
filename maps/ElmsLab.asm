@@ -308,11 +308,11 @@ ElmsLabHealingMachine:
 	end
 
 ElmsLabHealingMachine_HealParty:
-	special TrainerRankings_Healings
+	special Special_StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_NONE
 	writebyte 1 ; Machine is in Elm's Lab
-	special HealMachineAnim
+	special Special_HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	closetext
@@ -556,7 +556,7 @@ CopScript:
 	opentext
 	writetext ElmsLabOfficerText1
 	buttonsound
-	special SpecialNameRival
+	special Special_NameRival
 	writetext ElmsLabOfficerText2
 	waitbutton
 	closetext

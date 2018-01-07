@@ -534,8 +534,7 @@ TossMenu: ; 10364
 	ret
 ; 1039d
 
-ResetPocketCursorPositions: ; 1039d
-; unreferenced
+Unreferenced_ResetPocketCursorPositions: ; 1039d
 	ld a, [wCurrPocket]
 	and a
 	jr z, .items
@@ -1511,8 +1510,7 @@ Pack_GetItemName: ; 10a1d
 	ret
 ; 10a2a
 
-Pack_ClearTilemap: ; 10a2a
-; unreferenced
+Unreferenced_Pack_ClearTilemap: ; 10a2a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "

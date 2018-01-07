@@ -15,7 +15,7 @@ LavenderNameRater_MapScriptHeader:
 LavenderNameRater:
 	faceplayer
 	opentext
-	special SpecialNameRater
+	special Special_NameRater
 	waitbutton
 	closetext
 	end

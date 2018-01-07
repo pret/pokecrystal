@@ -1015,8 +1015,7 @@ Text_PlaySound:: ; 1500
 	ret
 ; 1522
 
-Function1522:: ; 1522
-; XXX
+Unreferenced_Function1522:: ; 1522
 ; TX_CRY
 	push de
 	ld e, [hl]

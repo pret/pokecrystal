@@ -217,7 +217,7 @@ endr
 
 INCLUDE "data/items/mom_phone.asm"
 
-	db 0, 0, 0 ; XXX
+	db 0, 0, 0 ; unused
 
 _MomText_HiHowAreYou: ; 0xfd1b1
 	; Hi,  ! How are you?
@@ -255,10 +255,10 @@ _MomText_ItsInRoom: ; 0xfd1ca
 	db "@"
 ; 0xfd1cf
 
-	db 0 ; XXX
+	db 0 ; unused
 
-Predef3A: ; fd1d0
+DummyPredef3A: ; fd1d0
 	ret
 ; fd1d1
 
-	ret ; XXX
+	ret ; unused

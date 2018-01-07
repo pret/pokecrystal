@@ -192,7 +192,7 @@ OlderHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
@@ -228,14 +228,14 @@ OlderHaircutBrotherScript:
 
 .then
 	takemoney $0, 500
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7c6d8
@@ -275,7 +275,7 @@ YoungerHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
@@ -311,14 +311,14 @@ YoungerHaircutBrotherScript:
 
 .then
 	takemoney $0, 300
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7c82a
@@ -349,21 +349,21 @@ YoungerHaircutBrotherScript:
 
 UnknownScript_0x7c2bb:
 	writetext HaircutBrosText_SlightlyHappier
-	special PlayCurMonCry
+	special Special_PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x7c2c4:
 	writetext HaircutBrosText_Happier
-	special PlayCurMonCry
+	special Special_PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x7c2cd:
 	writetext HaircutBrosText_MuchHappier
-	special PlayCurMonCry
+	special Special_PlayCurMonCry
 	waitbutton
 	closetext
 	end

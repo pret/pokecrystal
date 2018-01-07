@@ -240,7 +240,7 @@ PrintWinLossText:: ; 3718
 	cp BATTLETYPE_CANLOSE
 	jr .canlose ; ??????????
 
-; unreferenced
+; unused
 	ld hl, wWinTextPointer
 	jr .ok
 

@@ -1,5 +1,4 @@
-Function1dd6a9: ; 1dd6a9
-; XXX
+Unreferenced_Function1dd6a9: ; 1dd6a9
 	ld a, b
 	ld b, c
 	ld c, a

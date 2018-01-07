@@ -361,7 +361,7 @@ CelebiEvent_SetBattleType: ; 49bf3
 
 ; 49bf9
 
-CheckCaughtCelebi: ; 49bf9
+Special_CheckCaughtCelebi: ; 49bf9
 	ld a, [wBattleResult]
 	bit 6, a
 	jr z, .false

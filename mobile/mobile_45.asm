@@ -61,7 +61,7 @@ String_114163: ; 114163
 ; 114165
 
 Jumptable_114165: ; 114165
-	dw Function114268
+	dw Stubbed_Function114268
 	dw Function114269
 	dw Function11433c
 	dw Function1143b7
@@ -159,7 +159,8 @@ Function11425c: ; 11425c
 
 ; 114268
 
-Function114268: mobile
+Stubbed_Function114268:
+	ret
 
 ; 114269
 
@@ -7350,7 +7351,7 @@ INCBIN "data/mobile/ascii-sym.txt"
 
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
-; XXX better function names
+; Needs better function names
 MobileStudium: ; 0x117a7f
 	ld a, [hInMenu]
 	push af

@@ -384,7 +384,7 @@ CheckIndoorMap:: ; 22f4
 	ret
 ; 2300
 
-; XXX
+; unused
 	cp INDOOR
 	ret z
 	cp GATE
@@ -1383,7 +1383,7 @@ UpdateBGMapColumn:: ; 27f8
 	ret
 ; 2816
 
-; unreferenced
+Unreferenced_Function2816::
 	ld hl, BGMapBuffer
 	ld bc, BGMapBufferEnd - BGMapBuffer
 	xor a
@@ -1983,7 +1983,7 @@ FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call LoadStandardMenuDataHeader
-	farcall FadeOutPalettes
+	farcall Special_FadeOutPalettes
 	call ClearSprites
 	call DisableSpriteUpdates
 	ret
@@ -2009,7 +2009,7 @@ FinishExitMenu:: ; 2b5c
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
 	call WaitBGMap2
-	farcall FadeInPalettes
+	farcall Special_FadeInPalettes
 	call EnableSpriteUpdates
 	ret
 ; 2b74
@@ -2042,7 +2042,7 @@ ReturnToMapWithSpeechTextbox:: ; 0x2b74
 ReloadTilesetAndPalettes:: ; 2bae
 	call DisableLCD
 	call ClearSprites
-	farcall RefreshSprites
+	farcall Special_RefreshSprites
 	call LoadStandardFont
 	call LoadFontsExtra
 	ld a, [hROMBank]
@@ -2075,7 +2075,6 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 
 ; inputs:
 ; b = map group, c = map number
-; XXX de = ???
 
 ; outputs:
 ; hl points to the map header
@@ -2247,7 +2246,7 @@ GetMapEnvironment:: ; 2c8a
 	ret
 ; 2c98
 
-	ret ; XXX
+	ret ; unused
 ; 2c99
 
 GetAnyMapEnvironment:: ; 2c99

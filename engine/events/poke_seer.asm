@@ -15,7 +15,7 @@
 	const SEERACTION_CANT_TELL_2
 	const SEERACTION_LEVEL_ONLY
 
-SpecialPokeSeer: ; 4f0bc
+Special_PokeSeer: ; 4f0bc
 	ld a, SEER_INTRO
 	call PrintSeerText
 	call JoyWaitAorB

@@ -443,7 +443,7 @@ GetMartDialogGroup: ; 15ca3
 
 
 BuyMenuLoop: ; 15cef
-	farcall PlaceMoneyTopRight
+	farcall Special_PlaceMoneyTopRight
 	call UpdateSprites
 	ld hl, MenuDataHeader_Buy
 	call CopyMenuDataHeader
@@ -525,7 +525,7 @@ StandardMartAskPurchaseQuantity:
 ; 15d97
 
 MartConfirmPurchase: ; 15d97
-	predef PartyMonItemName
+	predef Predef_PartyMonItemName
 	ld a, MARTTEXT_COSTS_THIS_MUCH
 	call LoadBuyMenuText
 	call YesNoBox
@@ -797,7 +797,7 @@ SellMenu: ; 15eb3
 	ret
 ; 15ed3
 
-.NothingToSell: ; unreferenced
+.Unreferenced_NothingToSell:
 	ld hl, .NothingToSellText
 	call MenuTextBoxBackup
 	and a
@@ -864,7 +864,7 @@ SellMenu: ; 15eb3
 	ld a, [wMartItemID]
 	ld hl, NumItems
 	call TossItem
-	predef PartyMonItemName
+	predef Predef_PartyMonItemName
 	hlcoord 1, 14
 	lb bc, 3, 18
 	call ClearBox
@@ -892,7 +892,7 @@ Text_Mart_ICanPayThisMuch: ; 0x15f78
 	db "@"
 ; 0x15f7d
 
-DummyString ; 15f7d
+.UnusedString15f7d: ; 15f7d
 	db "!ダミー!@"
 
 Text_Mart_HowMayIHelpYou: ; 0x15f83

@@ -58,7 +58,7 @@ CheckFruitTree: ; 44055
 ; 4405f
 
 PickedFruitTree: ; 4405f
-	farcall TrainerRankings_FruitPicked
+	farcall StubbedTrainerRankings_FruitPicked
 	ld b, 1
 	jp GetFruitTreeFlag
 ; 4406a

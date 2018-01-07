@@ -279,7 +279,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	ret
 
 .min
-; unreferenced
+; unused
 	db "min.@"
 ; 49e75
 
