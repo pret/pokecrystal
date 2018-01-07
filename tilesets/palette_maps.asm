@@ -1,3 +1,14 @@
+tilepal: MACRO
+; vram bank, pals
+x = \1 << OAM_TILE_BANK
+rept (_NARG +- 1) / 2
+	dn (x | PAL_BG_\3), (x | PAL_BG_\2)
+	shift
+	shift
+endr
+ENDM
+
+
 TilesetKantoPalMap: ; 0x4c075
 INCLUDE "tilesets/kanto_palette_map.asm"
 ; 0x4c0e5

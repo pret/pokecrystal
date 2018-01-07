@@ -1,15 +1,15 @@
 RGB: MACRO
 rept _NARG / 3
-	dw ((\3) << 10) + ((\2) << 5) + (\1)
+	dw palred (\1) + palgreen (\2) + palblue (\3)
 	shift
 	shift
 	shift
 endr
 ENDM
 
+palred   EQUS "(1 << 0) *"
+palgreen EQUS "(1 << 5) *"
+palblue  EQUS "(1 << 10) *"
+
 palettes EQUS "* 8"
 palette  EQUS "+ 8 *"
-
-palred   EQUS "$0001 *"
-palgreen EQUS "$0020 *"
-palblue  EQUS "$0400 *"

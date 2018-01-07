@@ -1,3 +1,9 @@
+tilecoll: MACRO
+; used in tilesets/*_collision.asm
+	db COLL_\1, COLL_\2, COLL_\3, COLL_\4
+ENDM
+
+
 SECTION "Tileset Data 1", ROMX
 
 TilesetKantoGFX: ; 0x18000

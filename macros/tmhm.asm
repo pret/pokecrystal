@@ -1,10 +1,11 @@
-; Used in data/pokemon/base_stats/*.asm
-
 define: MACRO
 if !DEF(\1)
 \1 EQUS \2
 endc
 ENDM
+
+
+; Used in constants/item_constants.asm
 
 const_value = 0
 
@@ -30,6 +31,9 @@ ENDM
 add_mt: MACRO
 	enum \1_TMNUM
 ENDM
+
+
+; Used in data/pokemon/base_stats/*.asm
 
 ; N TMs/HMs need (N+7)/8 bytes for their bit flags.
 ; The rgbasm integers tms1, tms2, tms3 each hold 3 bytes, or 24 bits.
