@@ -418,7 +418,7 @@ EraseHallOfFame: ; 14d06
 Function14d18: ; 14d18
 ; XXX
 ; copy .Data to SRA4:a007
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	ld hl, .Data
 	ld de, $a007
@@ -454,7 +454,7 @@ SaveData: ; 14d68
 
 Function14d6c: ; 14d6c
 ; XXX
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	ld a, [$a60b]
 	ld b, $0
@@ -471,7 +471,7 @@ Function14d6c: ; 14d6c
 
 Function14d83: ; 14d83
 ; XXX
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	xor a
 	ld [$a60c], a
@@ -482,7 +482,7 @@ Function14d83: ; 14d83
 
 Function14d93: ; 14d93
 ; XXX
-	ld a, $7
+	ld a, 7 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	xor a
 	ld [$a000], a

@@ -1561,7 +1561,7 @@ Function10578c: ; 10578c (41:578c)
 	ld a, [sCrystalData + 0]
 	ld [de], a
 	inc de
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	ld hl, $a603
 	ld bc, $8

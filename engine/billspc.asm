@@ -2104,7 +2104,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 	ld hl, wBillsPC_BackupScrollPosition
 	add [hl]
 	ld [CurPartyMon], a
-	ld a, $1
+	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld hl, sBoxSpecies
 	call CopySpeciesToTemp

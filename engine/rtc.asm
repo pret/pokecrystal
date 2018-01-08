@@ -146,7 +146,7 @@ Function140ae: ; 140ae
 	farcall ClearDailyTimers
 	farcall Function170923
 ; mobile
-	ld a, $5
+	ld a, 5 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	ld a, [$aa8c]
 	inc a

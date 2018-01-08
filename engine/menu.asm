@@ -730,7 +730,7 @@ Function24423: ; 24423
 	ld a, [VramState]
 	bit 0, a
 	ret z
-	xor a
+	xor a ; effectively ld a, BANK(sScratch)
 	call GetSRAMBank
 	hlcoord 0, 0
 	ld de, sScratch
@@ -738,7 +738,7 @@ Function24423: ; 24423
 	call CopyBytes
 	call CloseSRAM
 	call OverworldTextModeSwitch
-	xor a
+	xor a ; effectively ld a, BANK(sScratch)
 	call GetSRAMBank
 	ld hl, sScratch
 	decoord 0, 0
