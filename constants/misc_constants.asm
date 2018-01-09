@@ -16,6 +16,9 @@ HP_GREEN  EQU 0
 HP_YELLOW EQU 1
 HP_RED    EQU 2
 
+; G/S version ID: 0 = Gold, 1 = Silver (used by checkver)
+GS_VERSION EQU 0
+
 ; save file corruption check values
 SAVE_CHECK_VALUE_1 EQU 99
 SAVE_CHECK_VALUE_2 EQU 127

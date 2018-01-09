@@ -1975,12 +1975,12 @@ GetVarAction:
 Script_checkver:
 ; script command 0x18
 
-	ld a, [Version]
+	ld a, [.gs_version]
 	ld [ScriptVar], a
 	ret
 
-Version:
-	db VERSION
+.gs_version:
+	db GS_VERSION
 
 Script_pokenamemem:
 ; script command 0x40
