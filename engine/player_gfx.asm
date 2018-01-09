@@ -71,7 +71,7 @@ ShowPlayerNamingChoices: ; 88297
 	call CloseWindow
 	ret
 
-INCLUDE "data/default_names.asm"
+INCLUDE "data/player_names.asm"
 
 GetPlayerNameArray: ; 88318 This Function is never called
 	ld hl, PlayerName
