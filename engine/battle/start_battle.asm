@@ -93,7 +93,7 @@ PlayBattleMusic: ; 2ee6c
 	cp RED
 	jr z, .done
 
-	; really, they should have included admins and scientists here too...
+	; They should have included EXECUTIVEM, EXECUTIVEF, and SCIENTIST too...
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jr z, .done
@@ -104,8 +104,10 @@ PlayBattleMusic: ; 2ee6c
 	farcall IsKantoGymLeader
 	jr c, .done
 
+	; IsGymLeader also counts CHAMPION, RED, and the Kanto gym leaders
+	; but they have been taken care of before this
 	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
-	farcall IsJohtoGymLeader
+	farcall IsGymLeader
 	jr c, .done
 
 	ld de, MUSIC_RIVAL_BATTLE

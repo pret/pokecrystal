@@ -865,15 +865,7 @@ GetMovePriority: ; 3c5c5
 	ret
 ; 3c5df
 
-MoveEffectPriorities: ; 3c5df
-	db EFFECT_PROTECT,      3
-	db EFFECT_ENDURE,       3
-	db EFFECT_PRIORITY_HIT, 2
-	db EFFECT_FORCE_SWITCH, 0
-	db EFFECT_COUNTER,      0
-	db EFFECT_MIRROR_COAT,  0
-	db -1
-; 3c5ec
+INCLUDE "data/moves/effects_priorities.asm"
 
 GetMoveEffect: ; 3c5ec
 	ld a, b
@@ -2640,7 +2632,7 @@ PlayVictoryMusic: ; 3d0ea
 
 .trainer_victory
 	ld de, MUSIC_GYM_VICTORY
-	call IsJohtoGymLeader
+	call IsGymLeader
 	jr c, .play_music
 	ld de, MUSIC_TRAINER_VICTORY
 
@@ -2652,58 +2644,22 @@ PlayVictoryMusic: ; 3d0ea
 	ret
 ; 3d123
 
-; These functions check if the current opponent is a gym leader or one of a
-; few other special trainers.
-
-; Note: KantoGymLeaders is a subset of JohtoGymLeaders. If you wish to
-; differentiate between the two, call IsKantoGymLeader first.
-
-; The Lance and Red entries are unused for music checks; those trainers are
-; accounted for elsewhere.
-
 IsKantoGymLeader: ; 0x3d123
 	ld hl, KantoGymLeaders
 	jr IsGymLeaderCommon
 
-IsJohtoGymLeader: ; 0x3d128
-	ld hl, JohtoGymLeaders
+IsGymLeader: ; 0x3d128
+	ld hl, GymLeaders
 IsGymLeaderCommon:
 	push de
 	ld a, [OtherTrainerClass]
-	ld de, $0001
+	ld de, $1
 	call IsInArray
 	pop de
 	ret
 ; 0x3d137
 
-JohtoGymLeaders:
-	db FALKNER
-	db WHITNEY
-	db BUGSY
-	db MORTY
-	db PRYCE
-	db JASMINE
-	db CHUCK
-	db CLAIR
-	db WILL
-	db BRUNO
-	db KAREN
-	db KOGA
-; fallthrough
-; these two entries are unused
-	db CHAMPION
-	db RED
-; fallthrough
-KantoGymLeaders:
-	db BROCK
-	db MISTY
-	db LT_SURGE
-	db ERIKA
-	db JANINE
-	db SABRINA
-	db BLAINE
-	db BLUE
-	db -1
+INCLUDE "data/trainers/leaders.asm"
 
 HandlePlayerMonFaint: ; 3d14e
 	call FaintYourPokemon
@@ -4586,12 +4542,12 @@ UseHeldStatusHealingItem: ; 3dde9
 ; 3de44
 
 .Statuses: ; 3de44
-	db HELD_HEAL_POISON, 1 << PSN
-	db HELD_HEAL_FREEZE, 1 << FRZ
-	db HELD_HEAL_BURN, 1 << BRN
-	db HELD_HEAL_SLEEP, SLP
+	db HELD_HEAL_POISON,   1 << PSN
+	db HELD_HEAL_FREEZE,   1 << FRZ
+	db HELD_HEAL_BURN,     1 << BRN
+	db HELD_HEAL_SLEEP,    SLP
 	db HELD_HEAL_PARALYZE, 1 << PAR
-	db HELD_HEAL_STATUS, ALL_STATUS
+	db HELD_HEAL_STATUS,   ALL_STATUS
 	db $ff
 ; 3de51
 
@@ -6652,13 +6608,13 @@ CheckSleepingTreeMon: ; 3eb38
 	jr nz, .NotSleeping
 
 ; Get list for the time of day
-	ld hl, .Morn
+	ld hl, AsleepTreeMonsMorn
 	ld a, [TimeOfDay]
 	cp DAY_F
 	jr c, .Check
-	ld hl, .Day
+	ld hl, AsleepTreeMonsDay
 	jr z, .Check
-	ld hl, .Nite
+	ld hl, AsleepTreeMonsNite
 
 .Check:
 	ld a, [TempEnemyMonSpecies]
@@ -6671,36 +6627,7 @@ CheckSleepingTreeMon: ; 3eb38
 	and a
 	ret
 
-.Nite:
-	db CATERPIE
-	db METAPOD
-	db BUTTERFREE
-	db WEEDLE
-	db KAKUNA
-	db BEEDRILL
-	db SPEAROW
-	db EKANS
-	db EXEGGCUTE
-	db LEDYBA
-	db AIPOM
-	db -1 ; end
-
-.Day:
-	db VENONAT
-	db HOOTHOOT
-	db NOCTOWL
-	db SPINARAK
-	db HERACROSS
-	db -1 ; end
-
-.Morn:
-	db VENONAT
-	db HOOTHOOT
-	db NOCTOWL
-	db SPINARAK
-	db HERACROSS
-	db -1 ; end
-; 3eb75
+INCLUDE "data/wild/treemons_asleep.asm"
 
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
@@ -8491,7 +8418,7 @@ InitEnemyTrainer: ; 3f594
 	ld a, TRAINER_BATTLE
 	ld [wBattleMode], a
 
-	call IsJohtoGymLeader
+	call IsGymLeader
 	jr nc, .done
 	xor a
 	ld [CurPartyMon], a
