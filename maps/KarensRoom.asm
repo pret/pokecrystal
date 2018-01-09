@@ -21,11 +21,11 @@ KarensRoom_MapScriptHeader:
 .KarensRoomDoors:
 	checkevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepDoorsClosed
-	changeblock $4, $e, $2a
+	changeblock 4, 14, $2a
 .KeepDoorsClosed:
 	checkevent EVENT_KARENS_ROOM_EXIT_OPEN
 	iffalse .OpenDoors
-	changeblock $4, $2, $16
+	changeblock 4, 2, $16
 .OpenDoors:
 	return
 
@@ -34,10 +34,10 @@ KarensRoom_MapScriptHeader:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock $4, $e, $2a
+	changeblock 4, 14, $2a
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -51,7 +51,7 @@ KarenScript_Battle:
 	waitbutton
 	closetext
 	winlosstext KarenScript_KarenBeatenText, 0
-	loadtrainer KAREN, 1
+	loadtrainer KAREN, KAREN1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
@@ -60,7 +60,7 @@ KarenScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock $4, $2, $16
+	changeblock 4, 2, $16
 	reloadmappart
 	closetext
 	setevent EVENT_KARENS_ROOM_EXIT_OPEN

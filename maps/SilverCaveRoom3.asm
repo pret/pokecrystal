@@ -16,7 +16,7 @@ Red:
 	waitbutton
 	closetext
 	winlosstext .Text2, .Text2
-	loadtrainer RED, 1
+	loadtrainer RED, RED1
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -37,8 +37,8 @@ Red:
 	end
 
 .Text1:
-	text $56
-	line $56
+	text "<......>"
+	line "<......>"
 	done
 
 .Text2:
@@ -46,8 +46,8 @@ Red:
 	done
 
 .Text3:
-	text $56
-	line $56
+	text "<......>"
+	line "<......>"
 	done
 
 SilverCaveRoom3_MapEventHeader:

@@ -40,7 +40,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateEightBadgesText
 	waitbutton
 	closetext
-	setscene $1
+	setscene 1
 	end
 
 VictoryRoadGateLeftBlackBeltScript:

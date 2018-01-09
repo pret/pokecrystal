@@ -28,11 +28,11 @@ Route35NationalParkGate_MapScriptHeader:
 .CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
-	setscene $0
+	setscene 0
 	return
 
 .BugContestIsRunning:
-	setscene $2
+	setscene 2
 	return
 
 .CheckIfContestAvailable:
@@ -76,7 +76,7 @@ Route35NationalParkGate_MapScriptHeader:
 	playsound SFX_ENTER_DOOR
 	special FadeOutPalettes
 	waitsfx
-	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47
 	end
 
 OfficerScript_0x6a204:
@@ -114,7 +114,7 @@ Route35NationalParkGate_OkayToProceed:
 	special FadeOutPalettes
 	waitsfx
 	special Special_SelectRandomBugContestContestants
-	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, $a, $2f
+	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47
 	end
 
 Route35NationalParkGate_EnterContest:

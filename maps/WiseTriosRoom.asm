@@ -105,7 +105,7 @@ TrainerSageKoji:
 	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
 	spriteface WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	setscene $1
+	setscene 1
 	end
 
 UnknownScript_0x9861b:

@@ -35,11 +35,11 @@ FastShip1F_MapScriptHeader:
 	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .SkipGrandpa
-	setscene $2
+	setscene 2
 	end
 
 .SkipGrandpa:
-	setscene $0
+	setscene 0
 	end
 
 SailorScript_0x75160:
@@ -71,8 +71,8 @@ SailorScript_0x75160:
 	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	setmapscene VERMILION_PORT, $1
-	warp VERMILION_PORT, $7, $11
+	setmapscene VERMILION_PORT, 1
+	warp VERMILION_PORT, 7, 17
 	end
 
 ._Olivine:
@@ -84,8 +84,8 @@ SailorScript_0x75160:
 	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	setmapscene OLIVINE_PORT, $1
-	warp OLIVINE_PORT, $7, $17
+	setmapscene OLIVINE_PORT, 1
+	warp OLIVINE_PORT, 7, 23
 	end
 
 .LetThePlayerOut:
@@ -120,7 +120,7 @@ FastShip1FSailorScript:
 	jumptextfaceplayer FastShip1FSailorText
 
 WorriedGrandpaSceneRight:
-	moveobject FASTSHIP1F_GENTLEMAN, $14, $6
+	moveobject FASTSHIP1F_GENTLEMAN, 20, 6
 
 WorriedGrandpaSceneLeft:
 	appear FASTSHIP1F_GENTLEMAN
@@ -135,7 +135,7 @@ WorriedGrandpaSceneLeft:
 	spriteface PLAYER, RIGHT
 	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75222
 	disappear FASTSHIP1F_GENTLEMAN
-	setscene $0
+	setscene 0
 	end
 
 MovementData_0x7520e:

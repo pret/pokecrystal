@@ -26,20 +26,28 @@ CHRIS EQU __enum__
 
 KRIS EQU __enum__
 	trainerclass FALKNER ; 1
+	const FALKNER1
 
 	trainerclass WHITNEY ; 2
+	const WHITNEY1
 
 	trainerclass BUGSY ; 3
+	const BUGSY1
 
 	trainerclass MORTY ; 4
+	const MORTY1
 
 	trainerclass PRYCE ; 5
+	const PRYCE1
 
 	trainerclass JASMINE ; 6
+	const JASMINE1
 
 	trainerclass CHUCK ; 7
+	const CHUCK1
 
 	trainerclass CLAIR ; 8
+	const CLAIR1
 
 	trainerclass RIVAL1 ; 9
 	const RIVAL1_1_CHIKORITA
@@ -61,6 +69,7 @@ KRIS EQU __enum__
 	trainerclass POKEMON_PROF ; a
 
 	trainerclass WILL ; b
+	const WILL1
 
 	trainerclass CAL ; c
 	const CAL1
@@ -68,19 +77,25 @@ KRIS EQU __enum__
 	const CAL3
 
 	trainerclass BRUNO ; d
+	const BRUNO1
 
 	trainerclass KAREN ; e
+	const KAREN1
 
 	trainerclass KOGA ; f
+	const KOGA1
 
 	trainerclass CHAMPION ; 10
 	const LANCE
 
 	trainerclass BROCK ; 11
+	const BROCK1
 
 	trainerclass MISTY ; 12
+	const MISTY1
 
 	trainerclass LT_SURGE ; 13
+	const LT_SURGE1
 
 	trainerclass SCIENTIST ; 14
 	const ROSS
@@ -90,6 +105,7 @@ KRIS EQU __enum__
 	const RICH
 
 	trainerclass ERIKA ; 15
+	const ERIKA1
 
 	trainerclass YOUNGSTER ; 16
 	const JOEY1
@@ -174,6 +190,7 @@ KRIS EQU __enum__
 	const DANA5
 
 	trainerclass JANINE ; 1a
+	const JANINE1
 
 	trainerclass COOLTRAINERM ; 1b
 	const NICK
@@ -306,6 +323,7 @@ KRIS EQU __enum__
 	const SHIRLEY
 
 	trainerclass SABRINA ; 23
+	const SABRINA1
 
 	trainerclass BUG_CATCHER ; 24
 	const DON
@@ -478,6 +496,7 @@ KRIS EQU __enum__
 	const GLENN
 
 	trainerclass BLAINE ; 2e
+	const BLAINE1
 
 	trainerclass BURGLAR ; 2f
 	const DUNCAN
@@ -662,8 +681,10 @@ KRIS EQU __enum__
 	const JAIME
 
 	trainerclass RED ; 3f
+	const RED1
 
 	trainerclass BLUE ; 40
+	const BLUE1
 
 	trainerclass OFFICER ; 41
 	const KEITH

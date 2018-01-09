@@ -21,11 +21,11 @@ KogasRoom_MapScriptHeader:
 .KogasRoomDoors:
 	checkevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepDoorsClosed
-	changeblock $4, $e, $2a
+	changeblock 4, 14, $2a
 .KeepDoorsClosed:
 	checkevent EVENT_KOGAS_ROOM_EXIT_OPEN
 	iffalse .OpenDoors
-	changeblock $4, $2, $16
+	changeblock 4, 2, $16
 .OpenDoors:
 	return
 
@@ -34,10 +34,10 @@ KogasRoom_MapScriptHeader:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock $4, $e, $2a
+	changeblock 4, 14, $2a
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -51,7 +51,7 @@ KogaScript_Battle:
 	waitbutton
 	closetext
 	winlosstext KogaScript_KogaBeatenText, 0
-	loadtrainer KOGA, 1
+	loadtrainer KOGA, KOGA1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KOGA
@@ -60,7 +60,7 @@ KogaScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock $4, $2, $16
+	changeblock 4, 2, $16
 	reloadmappart
 	closetext
 	setevent EVENT_KOGAS_ROOM_EXIT_OPEN

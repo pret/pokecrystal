@@ -22,7 +22,7 @@ VictoryRoad_MapScriptHeader:
 	end
 
 UnknownScript_0x74492:
-	moveobject VICTORYROAD_SILVER, $12, $b
+	moveobject VICTORYROAD_SILVER, 18, 11
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
@@ -32,7 +32,7 @@ UnknownScript_0x74492:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x7454c
 	disappear VICTORYROAD_SILVER
-	setscene $1
+	setscene 1
 	playmapmusic
 	end
 
@@ -46,7 +46,7 @@ UnknownScript_0x744b5:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x74555
 	disappear VICTORYROAD_SILVER
-	setscene $1
+	setscene 1
 	playmapmusic
 	end
 

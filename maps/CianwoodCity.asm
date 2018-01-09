@@ -49,9 +49,9 @@ CianwoodCitySuicuneAndEusine:
 	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00e0
 	disappear CIANWOODCITY_SUICUNE
 	pause 10
-	setscene $0
+	setscene 0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_42
-	setmapscene ROUTE_42, $1
+	setmapscene ROUTE_42, 1
 	checkevent EVENT_FOUGHT_EUSINE
 	iftrue .Done
 	setevent EVENT_FOUGHT_EUSINE
@@ -151,20 +151,20 @@ CianwoodCityHiddenMaxEther:
 	dwb EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
 
 MovementData_0x1a00da:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step DOWN
 	fast_jump_step DOWN
 	fast_jump_step RIGHT
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x1a00e0:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step RIGHT
 	fast_jump_step UP
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x1a00e7:

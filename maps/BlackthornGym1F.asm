@@ -16,15 +16,15 @@ BlackthornGym1F_MapScriptHeader:
 .Boulders:
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_1
 	iffalse .skip1
-	changeblock $8, $2, $3b
+	changeblock 8, 2, $3b
 .skip1
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_2
 	iffalse .skip2
-	changeblock $2, $4, $3a
+	changeblock 2, 4, $3a
 .skip2
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_3
 	iffalse .skip3
-	changeblock $8, $6, $3b
+	changeblock 8, 6, $3b
 .skip3
 	return
 
@@ -39,7 +39,7 @@ BlackthornGymClairScript:
 	waitbutton
 	closetext
 	winlosstext ClairWinText, 0
-	loadtrainer CLAIR, 1
+	loadtrainer CLAIR, CLAIR1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR
@@ -146,7 +146,7 @@ BlackthornGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext CLAIR, 1, $1
+	trainertotext CLAIR, CLAIR1, $1
 	jumpstd gymstatue2
 
 ClairIntroText:

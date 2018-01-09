@@ -15,8 +15,8 @@ MobileBattleRoom_MapScriptHeader:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $5
+	setscene 1
+	setmapscene POKECENTER_2F, 5
 	end
 
 MapMobileBattleRoomSignpost0Script:

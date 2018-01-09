@@ -133,7 +133,7 @@ NoBeastsText:
 	para "#MON RAIKOU and"
 	line "ENTEI?"
 
-	para $56, $56, $56
+	para "<......><......><......>"
 
 	para "Okay…"
 

@@ -38,7 +38,7 @@ BattleTower1F_MapScriptHeader:
 	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
 .SkipEverything:
-	setscene $1
+	setscene 1
 .Scene1:
 	end
 
@@ -81,10 +81,10 @@ Script_ChooseChallenge: ; 0x9e40f
 	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene $0
+	setscene 0
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene $1
+	setscene 1
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ ; set 1, [sBattleTowerSaveFileFlags]
 	special BattleTowerAction
 	special BattleTowerRoomMenu
@@ -105,9 +105,9 @@ Script_ResumeBattleTowerChallenge:
 	special BattleTowerAction
 Script_WalkToBattleTowerElevator:
 	musicfadeout MUSIC_NONE, 8
-	setmapscene BATTLE_TOWER_BATTLE_ROOM, $0
-	setmapscene BATTLE_TOWER_ELEVATOR, $0
-	setmapscene BATTLE_TOWER_HALLWAY, $0
+	setmapscene BATTLE_TOWER_BATTLE_ROOM, 0
+	setmapscene BATTLE_TOWER_ELEVATOR, 0
+	setmapscene BATTLE_TOWER_HALLWAY, 0
 	follow BATTLETOWER1F_RECEPTIONIST, PLAYER
 	applymovement BATTLETOWER1F_RECEPTIONIST, MovementData_BattleTower1FWalkToElevator
 	writebyte BATTLETOWERACTION_0A
@@ -208,10 +208,10 @@ continue:
 	writetext Text_SaveBeforeReentry
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene $0
+	setscene 0
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene $1
+	setscene 1
 	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
 	writebyte BATTLETOWERACTION_12

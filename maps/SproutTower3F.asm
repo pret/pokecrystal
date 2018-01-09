@@ -59,7 +59,7 @@ UnknownScript_0x184947:
 	disappear SPROUTTOWER3F_SILVER
 	waitsfx
 	special Special_FadeInQuickly
-	setscene $1
+	setscene 1
 	special RestartMapMusic
 	end
 

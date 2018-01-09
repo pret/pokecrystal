@@ -19,7 +19,7 @@ BrockScript_0x1a2864:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1a29bb, 0
-	loadtrainer BROCK, 1
+	loadtrainer BROCK, BROCK1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK
@@ -72,7 +72,7 @@ PewterGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext BROCK, 1, $1
+	trainertotext BROCK, BROCK1, $1
 	jumpstd gymstatue2
 
 UnknownText_0x1a28d0:

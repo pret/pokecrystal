@@ -23,7 +23,7 @@ PryceScript_0x199a9e:
 	waitbutton
 	closetext
 	winlosstext PryceText_Impressed, 0
-	loadtrainer PRYCE, 1
+	loadtrainer PRYCE, PRYCE1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE
@@ -146,7 +146,7 @@ MahoganyGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext PRYCE, 1, $1
+	trainertotext PRYCE, PRYCE1, $1
 	jumpstd gymstatue2
 
 PryceText_Intro:

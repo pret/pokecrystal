@@ -37,12 +37,12 @@ Colosseum_MapScriptHeader:
 	return
 
 .PreparePokecenter2F:
-	setmapscene POKECENTER_2F, $2
+	setmapscene POKECENTER_2F, 2
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $2
+	setscene 1
+	setmapscene POKECENTER_2F, 2
 	end
 
 MapColosseumSignpost1Script:

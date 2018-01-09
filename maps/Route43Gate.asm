@@ -25,11 +25,11 @@ Route43Gate_MapScriptHeader:
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	setmapscene ROUTE_43, $0
+	setmapscene ROUTE_43, 0
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43, $1
+	setmapscene ROUTE_43, 1
 	return
 
 .RocketTakeover:
@@ -37,7 +37,7 @@ Route43Gate_MapScriptHeader:
 	checkcode VAR_FACING
 	if_equal DOWN, RocketScript_Southbound
 	if_equal UP, RocketScript_Northbound
-	setscene $1
+	setscene 1
 	end
 
 RocketScript_Southbound:
@@ -69,7 +69,7 @@ RocketScript_ShakeDownSouth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
-	setscene $1
+	setscene 1
 	special RestartMapMusic
 	end
 
@@ -101,7 +101,7 @@ RocketScript_ShakeDownNorth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
-	setscene $1
+	setscene 1
 	special RestartMapMusic
 	end
 

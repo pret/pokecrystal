@@ -23,8 +23,8 @@ GoldenrodDeptStoreRoof_MapScriptHeader:
 	return
 
 .ChangeBlock:
-	changeblock $0, $2, $3f
-	changeblock $0, $4, $f
+	changeblock 0, 2, $3f
+	changeblock 0, 4, $f
 	return
 
 .CheckSaleChangeClerk:

@@ -376,15 +376,15 @@ LinkReceptionistScript_TimeCapsule:
 Script_LeftCableTradeCenter:
 	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkTradeRoom
-	setscene $0
-	setmapscene TRADE_CENTER, $0
+	setscene 0
+	setmapscene TRADE_CENTER, 0
 	end
 
 Script_LeftMobileTradeRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileTradeRoom
-	setscene $0
-	setmapscene MOBILE_TRADE_ROOM_MOBILE, $0
+	setscene 0
+	setmapscene MOBILE_TRADE_ROOM_MOBILE, 0
 	end
 
 Script_WalkOutOfMobileTradeRoom:
@@ -396,15 +396,15 @@ Script_WalkOutOfMobileTradeRoom:
 Script_LeftCableColosseum:
 	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkBattleRoom
-	setscene $0
-	setmapscene COLOSSEUM, $0
+	setscene 0
+	setmapscene COLOSSEUM, 0
 	end
 
 Script_LeftMobileBattleRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileBattleRoom
-	setscene $0
-	setmapscene MOBILE_BATTLE_ROOM, $0
+	setscene 0
+	setmapscene MOBILE_BATTLE_ROOM, 0
 	end
 
 Script_WalkOutOfMobileBattleRoom:
@@ -579,8 +579,8 @@ Script_LeftTimeCapsule:
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsRightLooksDown_2
 .Done:
-	setscene $0
-	setmapscene TIME_CAPSULE, $0
+	setscene 0
+	setmapscene TIME_CAPSULE, 0
 	end
 
 MapPokecenter2FSignpost0Script:

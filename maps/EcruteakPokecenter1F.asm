@@ -53,7 +53,7 @@ EcruteakPokecenter1F_MapScriptHeader:
 	disappear ECRUTEAKPOKECENTER1F_BILL
 	clearevent EVENT_MET_BILL
 	setflag ENGINE_TIME_CAPSULE
-	setscene $1
+	setscene 1
 	waitsfx
 	end
 

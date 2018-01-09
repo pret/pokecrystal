@@ -42,7 +42,7 @@ UnknownScript_0x1a088c:
 	writetext Route27FisherText
 	waitbutton
 	closetext
-	setscene $1
+	setscene 1
 	end
 
 Route27FisherScript:

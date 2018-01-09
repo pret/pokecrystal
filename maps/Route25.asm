@@ -48,7 +48,7 @@ UnknownScript_0x19eea0:
 	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
-	setscene $0
+	setscene 0
 	special RestartMapMusic
 	end
 
@@ -74,7 +74,7 @@ UnknownScript_0x19eee0:
 	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
-	setscene $0
+	setscene 0
 	special RestartMapMusic
 	end
 

@@ -125,9 +125,9 @@ MrPokemonsHouse_OakScript:
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
 	setevent EVENT_KRISS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
-	setscene $1
-	setmapscene CHERRYGROVE_CITY, $1
-	setmapscene ELMS_LAB, $3
+	setscene 1
+	setmapscene CHERRYGROVE_CITY, 1
+	setmapscene ELMS_LAB, 3
 	specialphonecall SPECIALCALL_ROBBED
 	clearevent EVENT_COP_IN_ELMS_LAB
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
@@ -169,7 +169,7 @@ MrPokemonsHouse_OakExits:
 	step DOWN
 	step LEFT
 	turn_head DOWN
-	db $3f ; movement
+	step_sleep 2
 	step_end
 
 MrPokemonIntroText1:

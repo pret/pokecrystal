@@ -23,15 +23,15 @@ RuinsOfAlphAerodactylChamber_MapScriptHeader:
 .HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue .WallOpen
-	changeblock $4, $0, $2e
+	changeblock 4, 0, $2e
 .WallOpen:
 	checkevent EVENT_SOLVED_AERODACTYL_PUZZLE
 	iffalse .FloorClosed
 	return
 
 .FloorClosed:
-	changeblock $2, $2, $1
-	changeblock $4, $2, $2
+	changeblock 2, 2, $1
+	changeblock 4, 2, $2
 	return
 
 .WallOpenScript:
@@ -40,10 +40,10 @@ RuinsOfAlphAerodactylChamber_MapScriptHeader:
 	showemote EMOTE_SHOCK, PLAYER, 20
 	pause 30
 	playsound SFX_STRENGTH
-	changeblock $4, $0, $30
+	changeblock 4, 0, $30
 	reloadmappart
 	earthquake 50
-	setscene $1
+	setscene 1
 	closetext
 	end
 
@@ -59,11 +59,11 @@ UnknownScript_0x58df7:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_AERODACTYL_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_3
-	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, 1
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
-	changeblock $2, $2, $18
-	changeblock $4, $2, $19
+	changeblock 2, 2, $18
+	changeblock 4, 2, $19
 	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -106,7 +106,7 @@ UnknownScript_0x58e46:
 	end
 
 MovementData_0x58e4d:
-	db $59 ; movement
+	skyfall_top
 	step_end
 
 UnknownText_0x58e4f:

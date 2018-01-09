@@ -21,7 +21,7 @@ SurgeScript_0x1920a5:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x192238, 0
-	loadtrainer LT_SURGE, 1
+	loadtrainer LT_SURGE, LT_SURGE1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_LTSURGE
@@ -101,7 +101,7 @@ VermilionGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext LT_SURGE, 1, $1
+	trainertotext LT_SURGE, LT_SURGE1, $1
 	jumpstd gymstatue2
 
 UnknownText_0x192142:

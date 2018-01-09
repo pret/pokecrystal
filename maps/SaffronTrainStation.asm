@@ -41,7 +41,7 @@ OfficerScript_0x18a81e:
 	warpcheck
 	newloadmap MAPSETUP_TRAIN
 	applymovement PLAYER, .MovementBoardTheTrain
-	wait $14
+	wait 20
 	end
 
 .MovementBoardTheTrain:

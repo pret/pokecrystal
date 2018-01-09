@@ -44,9 +44,9 @@ Route36SuicuneScript:
 	disappear ROUTE36_SUICUNE
 	spriteface PLAYER, DOWN
 	pause 10
-	setscene $0
+	setscene 0
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	setmapscene CIANWOOD_CITY, $1
+	setmapscene CIANWOOD_CITY, 1
 	end
 
 SudowoodoScript:

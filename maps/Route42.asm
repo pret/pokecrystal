@@ -31,9 +31,9 @@ Route42SuicuneScript:
 	applymovement ROUTE42_SUICUNE, MovementData_0x1a9356
 	disappear ROUTE42_SUICUNE
 	pause 10
-	setscene $0
+	setscene 0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	setmapscene ROUTE_36, $1
+	setmapscene ROUTE_36, 1
 	end
 
 TrainerFisherTully1:
@@ -216,14 +216,14 @@ Route42HiddenMaxPotion:
 
 
 MovementData_0x1a9356:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step UP
 	fast_jump_step UP
 	fast_jump_step UP
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 FisherTully1SeenText:

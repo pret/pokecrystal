@@ -18,7 +18,7 @@ JasmineScript_0x9c12f:
 	waitbutton
 	closetext
 	winlosstext Jasmine_BetterTrainer, 0
-	loadtrainer JASMINE, 1
+	loadtrainer JASMINE, JASMINE1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
@@ -91,7 +91,7 @@ OlivineGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext JASMINE, 1, $1
+	trainertotext JASMINE, JASMINE1, $1
 	jumpstd gymstatue2
 
 Jasmine_SteelTypeIntro:

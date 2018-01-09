@@ -24,7 +24,7 @@ RuinsOfAlphInnerChamber_MapScriptHeader:
 	writetext RuinsOfAlphStrangePresenceText
 	waitbutton
 	closetext
-	setscene $0
+	setscene 0
 	setevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
 	end

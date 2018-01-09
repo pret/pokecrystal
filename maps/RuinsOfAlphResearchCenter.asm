@@ -26,7 +26,7 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 	return
 
 .ShowScientist:
-	moveobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, $3, $7
+	moveobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, 3, 7
 	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 	return
 
@@ -55,7 +55,7 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 	waitbutton
 	closetext
 	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59276
-	setscene $0
+	setscene 0
 	special RestartMapMusic
 	end
 

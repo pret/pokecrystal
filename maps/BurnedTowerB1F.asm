@@ -28,7 +28,7 @@ BurnedTowerB1F_MapScriptHeader:
 .LadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .NoChange
-	changeblock $6, $e, $2
+	changeblock 6, 14, $2
 .NoChange:
 	return
 
@@ -81,11 +81,11 @@ ReleaseTheBeasts:
 	disappear BURNEDTOWERB1F_SUICUNE1
 	waitsfx
 	special RestartMapMusic
-	setscene $1
+	setscene 1
 	setevent EVENT_RELEASED_THE_BEASTS
 	special InitRoamMons
-	setmapscene ECRUTEAK_GYM, $1
-	setmapscene CIANWOOD_CITY, $1
+	setmapscene ECRUTEAK_GYM, 1
+	setmapscene CIANWOOD_CITY, 1
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	setevent EVENT_ECRUTEAK_GYM_GRAMPS
 	clearevent EVENT_ECRUTEAK_CITY_GRAMPS
@@ -93,10 +93,10 @@ ReleaseTheBeasts:
 	setevent EVENT_BURNED_TOWER_1F_EUSINE
 	appear BURNEDTOWERB1F_EUSINE
 	refreshscreen $0
-	changeblock $6, $e, $1b
+	changeblock 6, 14, $1b
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	end
 
 BurnedTowerB1FEusine:

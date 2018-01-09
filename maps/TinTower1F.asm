@@ -79,7 +79,7 @@ TinTower1F_MapScriptHeader:
 .StairsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue .DontHideStairs
-	changeblock $a, $2, $9
+	changeblock 10, 2, $9
 .DontHideStairs:
 	return
 
@@ -125,36 +125,36 @@ TinTower1F_MapScriptHeader:
 	disappear TINTOWER1F_SUICUNE
 	setevent EVENT_FOUGHT_SUICUNE
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_42
-	setmapscene ROUTE_42, $0
+	setmapscene ROUTE_42, 0
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	setmapscene ROUTE_36, $0
+	setmapscene ROUTE_36, 0
 	setevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	setmapscene CIANWOOD_CITY, $0
-	setscene $1
+	setmapscene CIANWOOD_CITY, 0
+	setscene 1
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	reloadmapafterbattle
 	pause 20
 	spriteface PLAYER, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	playsound SFX_ENTER_DOOR
-	moveobject TINTOWER1F_EUSINE, $a, $f
+	moveobject TINTOWER1F_EUSINE, 10, 15
 	appear TINTOWER1F_EUSINE
 	applymovement TINTOWER1F_EUSINE, MovementData_0x1851ec
 	playsound SFX_ENTER_DOOR
-	moveobject TINTOWER1F_SAGE1, $9, $f
+	moveobject TINTOWER1F_SAGE1, 9, 15
 	appear TINTOWER1F_SAGE1
 	applymovement TINTOWER1F_SAGE1, MovementData_0x1851f5
 	playsound SFX_ENTER_DOOR
-	moveobject TINTOWER1F_SAGE2, $9, $f
+	moveobject TINTOWER1F_SAGE2, 9, 15
 	appear TINTOWER1F_SAGE2
 	applymovement TINTOWER1F_SAGE2, MovementData_0x1851fb
 	playsound SFX_ENTER_DOOR
-	moveobject TINTOWER1F_SAGE3, $9, $f
+	moveobject TINTOWER1F_SAGE3, 9, 15
 	appear TINTOWER1F_SAGE3
 	applymovement TINTOWER1F_SAGE3, MovementData_0x1851fe
-	moveobject TINTOWER1F_SAGE1, $7, $d
-	moveobject TINTOWER1F_SAGE2, $9, $d
-	moveobject TINTOWER1F_SAGE3, $b, $d
+	moveobject TINTOWER1F_SAGE1, 7, 13
+	moveobject TINTOWER1F_SAGE2, 9, 13
+	moveobject TINTOWER1F_SAGE3, 11, 13
 	spriteface PLAYER, RIGHT
 	opentext
 	writetext TinTowerEusineSuicuneText
@@ -201,7 +201,7 @@ TinTower1FSage5Script:
 	earthquake 72
 	waitsfx
 	playsound SFX_STRENGTH
-	changeblock $a, $2, $20
+	changeblock 10, 2, $20
 	reloadmappart
 	setevent EVENT_GOT_RAINBOW_WING
 	closetext

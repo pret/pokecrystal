@@ -39,7 +39,7 @@ OfficerScript_0x550ec:
 	warpcheck
 	newloadmap MAPSETUP_TRAIN
 	applymovement PLAYER, .MovementBoardTheTrain
-	wait $14
+	wait 20
 	end
 
 .MovementBoardTheTrain:

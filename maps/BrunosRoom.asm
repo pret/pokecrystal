@@ -21,11 +21,11 @@ BrunosRoom_MapScriptHeader:
 .BrunosRoomDoors:
 	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepDoorClosed
-	changeblock $4, $e, $2a
+	changeblock 4, 14, $2a
 .KeepDoorClosed:
 	checkevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	iffalse .OpenDoor
-	changeblock $4, $2, $16
+	changeblock 4, 2, $16
 .OpenDoor:
 	return
 
@@ -34,10 +34,10 @@ BrunosRoom_MapScriptHeader:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock $4, $e, $2a
+	changeblock 4, 14, $2a
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -51,7 +51,7 @@ BrunoScript_Battle:
 	waitbutton
 	closetext
 	winlosstext BrunoScript_BrunoBeatenText, 0
-	loadtrainer BRUNO, 1
+	loadtrainer BRUNO, BRUNO1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
@@ -60,7 +60,7 @@ BrunoScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock $4, $2, $16
+	changeblock 4, 2, $16
 	reloadmappart
 	closetext
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN

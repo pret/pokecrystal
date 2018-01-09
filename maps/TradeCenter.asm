@@ -32,8 +32,8 @@ TradeCenter_MapScriptHeader:
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $1
+	setscene 1
+	setmapscene POKECENTER_2F, 1
 	end
 
 MapTradeCenterSignpost1Script:

@@ -30,12 +30,12 @@ WhitneyScript_0x5400c:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x541a5, 0
-	loadtrainer WHITNEY, 1
+	loadtrainer WHITNEY, WHITNEY1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_WHITNEY
 	setevent EVENT_MADE_WHITNEY_CRY
-	setscene $1
+	setscene 1
 	setevent EVENT_BEAT_BEAUTY_VICTORIA
 	setevent EVENT_BEAT_BEAUTY_SAMANTHA
 	setevent EVENT_BEAT_LASS_CARRIE
@@ -112,7 +112,7 @@ WhitneyCriesScript:
 	waitbutton
 	closetext
 	applymovement GOLDENRODGYM_LASS2, BridgetWalksAwayMovement
-	setscene $0
+	setscene 0
 	clearevent EVENT_MADE_WHITNEY_CRY
 	end
 
@@ -171,7 +171,7 @@ GoldenrodGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext WHITNEY, 1, $1
+	trainertotext WHITNEY, WHITNEY1, $1
 	jumpstd gymstatue2
 
 BridgetWalksUpMovement:

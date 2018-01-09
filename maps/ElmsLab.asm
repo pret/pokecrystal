@@ -42,7 +42,7 @@ ElmsLab_MapScriptHeader:
 .MoveElmCallback:
 	checkscene
 	iftrue .Skip
-	moveobject ELMSLAB_ELM, $3, $4
+	moveobject ELMSLAB_ELM, 3, 4
 .Skip:
 	return
 
@@ -84,7 +84,7 @@ ElmsLab_MapScriptHeader:
 	opentext
 	writetext ElmText_ChooseAPokemon
 	waitbutton
-	setscene $1
+	setscene 1
 	closetext
 	end
 
@@ -274,8 +274,8 @@ ElmDirectionsScript:
 	closetext
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
-	setscene $5
-	setmapscene NEW_BARK_TOWN, $1
+	setscene 5
+	setmapscene NEW_BARK_TOWN, 1
 	end
 
 ElmDescribesMrPokemonScript:
@@ -341,13 +341,13 @@ ElmAfterTheftScript:
 	buttonsound
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
-	setmapscene ROUTE_29, $1
+	setmapscene ROUTE_29, 1
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
 	waitbutton
 	closetext
-	setscene $6
+	setscene 6
 	end
 
 ElmStudyingEggScript:
@@ -479,7 +479,7 @@ AideScript_GivePotions:
 	writetext AideText_AlwaysBusy
 	waitbutton
 	closetext
-	setscene $2
+	setscene 2
 	end
 
 AideScript_WalkBalls1:
@@ -507,7 +507,7 @@ AideScript_GiveYouBalls:
 	buttonsound
 	itemnotify
 	closetext
-	setscene $2
+	setscene 2
 	end
 
 AideScript_ReceiveTheBalls:
@@ -562,7 +562,7 @@ CopScript:
 	closetext
 	applymovement ELMSLAB_OFFICER, OfficerLeavesMovement
 	disappear ELMSLAB_OFFICER
-	setscene $2
+	setscene 2
 	end
 
 ElmsLabWindow:
@@ -794,7 +794,7 @@ ElmText_GotAnEmail:
 	text "Oh, hey! I got an"
 	line "e-mail!"
 
-	para $56, $56, $56
+	para "<......><......><......>"
 	line "Hm… Uh-huh…"
 
 	para "Okay…"

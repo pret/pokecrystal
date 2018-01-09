@@ -23,7 +23,7 @@ UnknownScript_0x7d781:
 	jump UnknownScript_0x7d791
 
 UnknownScript_0x7d78a:
-	changeblock $10, $4, $d
+	changeblock 16, 4, $d
 	jump UnknownScript_0x7d791
 
 UnknownScript_0x7d791:
@@ -31,15 +31,15 @@ UnknownScript_0x7d791:
 	iftrue .Layout2
 	checkevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
 	iftrue .Layout3
-	changeblock $a, $8, $d
+	changeblock 10, 8, $d
 	return
 
 .Layout2:
-	changeblock $4, $a, $d
+	changeblock 4, 10, $d
 	return
 
 .Layout3:
-	changeblock $a, $c, $d
+	changeblock 10, 12, $d
 	return
 
 UnknownScript_0x7d7ac:

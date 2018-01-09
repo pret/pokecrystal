@@ -21,8 +21,8 @@ RadioTower3F_MapScriptHeader:
 	return
 
 .Change:
-	changeblock $e, $2, $2a
-	changeblock $e, $4, $1
+	changeblock 14, 2, $2a
+	changeblock 14, 4, $1
 	return
 
 RadioTower3FSuperNerdScript:
@@ -143,8 +143,8 @@ UnknownScript_0x5e605:
 	waitbutton
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR
-	changeblock $e, $2, $2a
-	changeblock $e, $4, $1
+	changeblock 14, 2, $2a
+	changeblock 14, 4, $1
 	reloadmappart
 	closetext
 	waitsfx

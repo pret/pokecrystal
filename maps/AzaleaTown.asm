@@ -37,7 +37,7 @@ AzaleaTown_MapScriptHeader:
 	return
 
 AzaleaTownRivalBattleScene1:
-	moveobject AZALEATOWN_SILVER, $b, $b
+	moveobject AZALEATOWN_SILVER, 11, 11
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
@@ -102,7 +102,7 @@ AzaleaTownRivalBattleScript:
 	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleExitMovement
 	playsound SFX_EXIT_BUILDING
 	disappear AZALEATOWN_SILVER
-	setscene $0
+	setscene 0
 	waitsfx
 	playmapmusic
 	end
@@ -170,7 +170,7 @@ AzaleaTownCelebiScene:
 	setflag ENGINE_HAVE_EXAMINED_GS_BALL
 	clearevent EVENT_ILEX_FOREST_LASS
 	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	setscene $0
+	setscene 0
 	closetext
 	end
 

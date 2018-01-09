@@ -45,7 +45,7 @@ TeamRocketBaseB3F_MapScriptHeader:
 	return
 
 .OpenSesame:
-	changeblock $a, $8, $7
+	changeblock 10, 8, $7
 	return
 
 LanceGetPasswordScript:
@@ -60,7 +60,7 @@ LanceGetPasswordScript:
 	closetext
 	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12c
 	disappear TEAMROCKETBASEB3F_LANCE
-	setscene $1
+	setscene 1
 	end
 
 RocketBaseRival:
@@ -79,7 +79,7 @@ RocketBaseRival:
 	applymovement PLAYER, RocketBaseRivalShovesPlayerMovement
 	applymovement TEAMROCKETBASEB3F_SILVER, RocketBaseRivalLeaveMovement
 	disappear TEAMROCKETBASEB3F_SILVER
-	setscene $2
+	setscene 2
 	special RestartMapMusic
 	end
 
@@ -116,7 +116,7 @@ UnknownScript_0x6e056:
 	playsound SFX_TACKLE
 	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e147
 	disappear TEAMROCKETBASEB3F_ROCKET1
-	setscene $3
+	setscene 3
 	end
 
 RocketBaseMurkrow:
@@ -194,7 +194,7 @@ TeamRocketBaseB3FLockedDoor:
 	writetext UnknownText_0x6e9a3
 	waitbutton
 	playsound SFX_ENTER_DOOR
-	changeblock $a, $8, $7
+	changeblock 10, 8, $7
 	reloadmappart
 	closetext
 	setevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE

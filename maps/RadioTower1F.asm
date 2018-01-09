@@ -249,8 +249,8 @@ UnknownText_0x5cf5a:
 	done
 
 UnknownText_0x5cf79:
-	text $56
-	line $56
+	text "<......>"
+	line "<......>"
 	done
 
 UnknownText_0x5cf7e:

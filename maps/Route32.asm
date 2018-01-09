@@ -127,7 +127,7 @@ Route32WannaBuyASlowpokeTailScript:
 SlowpokeTailSalesmanScript:
 	faceplayer
 _OfferToSellSlowpokeTail:
-	setscene $2
+	setscene 2
 	opentext
 	writetext Text_MillionDollarSlowpokeTail
 	yesorno

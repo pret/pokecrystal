@@ -12,7 +12,7 @@ BattleTowerHallway_MapScriptHeader:
 
 .Scene0:
 	priorityjump .ChooseBattleRoom
-	setscene $1
+	setscene 1
 .Scene1:
 	end
 

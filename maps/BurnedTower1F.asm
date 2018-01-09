@@ -29,11 +29,11 @@ BurnedTower1F_MapScriptHeader:
 .HoleAndLadder:
 	checkevent EVENT_HOLE_IN_BURNED_TOWER
 	iftrue .Next
-	changeblock $a, $8, $32 ; hole
+	changeblock 10, 8, $32 ; hole
 .Next:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .Done
-	changeblock $6, $e, $9 ; ladder
+	changeblock 6, 14, $9 ; ladder
 .Done:
 	return
 
@@ -45,8 +45,8 @@ BurnedTower1F_MapScriptHeader:
 	writetext BurnedTower1FEusineIntroText
 	waitbutton
 	closetext
-	moveobject BURNEDTOWER1F_EUSINE, $9, $e
-	setscene $1
+	moveobject BURNEDTOWER1F_EUSINE, 9, 14
+	setscene 1
 	end
 
 BurnedTowerRivalBattleScript:
@@ -98,7 +98,7 @@ BurnedTowerRivalBattleScript:
 	writetext BurnedTowerSilver_AfterText1
 	waitbutton
 	closetext
-	setscene $2
+	setscene 2
 	setevent EVENT_RIVAL_BURNED_TOWER
 	special Special_FadeOutMusic
 	pause 15
@@ -106,7 +106,7 @@ BurnedTowerRivalBattleScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playsound SFX_ENTER_DOOR
 	waitsfx
-	changeblock $a, $8, $25
+	changeblock 10, 8, $25
 	reloadmappart
 	pause 15
 	applymovement PLAYER, BurnedTower1FMovement_PlayerStartsToFall

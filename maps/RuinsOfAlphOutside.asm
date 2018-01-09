@@ -35,12 +35,12 @@ RuinsOfAlphOutside_MapScriptHeader:
 
 .YesScientist:
 	appear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene $1
+	setscene 1
 	return
 
 .NoScientist:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene $0
+	setscene 0
 	return
 
 RuinsOfAlphOutsideScientistScene1:
@@ -66,7 +66,7 @@ UnknownScript_0x58044:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	stopfollow
 	applymovement PLAYER, MovementData_0x580c5
-	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, $1
+	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, 1
 	warpcheck
 	end
 

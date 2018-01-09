@@ -48,9 +48,9 @@ CeruleanGym_MapScriptHeader:
 	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	clearevent EVENT_ROUTE_24_ROCKET
 	clearevent EVENT_ROUTE_25_MISTY_BOYFRIEND
-	setscene $0
-	setmapscene ROUTE_25, $1
-	setmapscene POWER_PLANT, $0
+	setscene 0
+	setmapscene ROUTE_25, 1
+	setmapscene POWER_PLANT, 0
 	waitsfx
 	special RestartMapMusic
 	pause 15
@@ -67,7 +67,7 @@ MistyScript_0x188432:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x18870c, 0
-	loadtrainer MISTY, 1
+	loadtrainer MISTY, MISTY1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MISTY
@@ -161,7 +161,7 @@ CeruleanGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext MISTY, 1, $1
+	trainertotext MISTY, MISTY1, $1
 	jumpstd gymstatue2
 
 MovementData_0x1884e3:
@@ -178,9 +178,9 @@ MovementData_0x1884e8:
 
 MovementData_0x1884eb:
 	fix_facing
-	db $39 ; movement
+	set_sliding
 	jump_step UP
-	db $38 ; movement
+	remove_sliding
 	remove_fixed_facing
 	step_sleep 8
 	step_sleep 8

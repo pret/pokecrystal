@@ -28,7 +28,7 @@ HallOfFame_MapScriptHeader:
 	closetext
 	spriteface HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
-	setscene $1
+	setscene 1
 	pause 15
 	writebyte 2 ; Machine is in the Hall of Fame
 	special HealMachineAnim
@@ -38,7 +38,7 @@ HallOfFame_MapScriptHeader:
 	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	setmapscene SPROUT_TOWER_3F, $1
+	setmapscene SPROUT_TOWER_3F, 1
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue .SkipPhoneCall

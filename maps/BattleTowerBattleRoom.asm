@@ -14,7 +14,7 @@ BattleTowerBattleRoom_MapScriptHeader:
 .EnterBattleRoom: ; 0x9f419
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
 	priorityjump Script_BattleRoom
-	setscene $1
+	setscene 1
 .DummyScene:
 	end
 
@@ -87,14 +87,14 @@ Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	special BattleTowerAction
 	closetext
 	special FadeOutPalettes
-	warpfacing UP, BATTLE_TOWER_1F, $7, $7
+	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 	opentext
 	jump Script_BattleTowerHopeToServeYouAgain
 
 Script_FailedBattleTowerChallenge:
 	pause 60
 	special Special_BattleTowerFade
-	warpfacing UP, BATTLE_TOWER_1F, $7, $7
+	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
 	special BattleTowerAction
 	opentext
@@ -106,7 +106,7 @@ Script_FailedBattleTowerChallenge:
 Script_BeatenAllTrainers: ; 0x9f4d9
 	pause 60
 	special Special_BattleTowerFade
-	warpfacing UP, BATTLE_TOWER_1F, $7, $7
+	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 Script_BeatenAllTrainers2:
 	opentext
 	writetext Text_CongratulationsYouveBeatenAllTheTrainers

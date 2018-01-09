@@ -23,11 +23,11 @@ LancesRoom_MapScriptHeader:
 .LancesRoomDoors:
 	checkevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	iffalse .KeepDoorsClosed
-	changeblock $4, $16, $34
+	changeblock 4, 22, $34
 .KeepDoorsClosed:
 	checkevent EVENT_LANCES_ROOM_EXIT_OPEN
 	iffalse .OpenDoors
-	changeblock $4, $0, $b
+	changeblock 4, 0, $b
 .OpenDoors:
 	return
 
@@ -36,10 +36,10 @@ LancesRoom_MapScriptHeader:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock $4, $16, $34
+	changeblock 4, 22, $34
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	end
 
@@ -69,7 +69,7 @@ LanceScript_0x180e7b:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock $4, $0, $b
+	changeblock 4, 0, $b
 	reloadmappart
 	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
@@ -127,7 +127,7 @@ LanceScript_0x180e7b:
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRunsBackAndForth
 	special FadeOutPalettes
 	pause 15
-	warpfacing UP, HALL_OF_FAME, $4, $d
+	warpfacing UP, HALL_OF_FAME, 4, 13
 	end
 
 LancesRoom_PlayerWalksInMovementData:

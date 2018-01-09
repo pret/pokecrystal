@@ -26,7 +26,7 @@ OlivinePort_MapScriptHeader:
 .LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74a32
 	appear OLIVINEPORT_SAILOR1
-	setscene $0
+	setscene 0
 	setevent EVENT_GAVE_KURT_APRICORNS
 	blackoutmod OLIVINE_CITY
 	end
@@ -64,8 +64,8 @@ SailorScript_0x748c0:
 UnknownScript_0x7490a:
 	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear OLIVINEPORT_SAILOR1
-	setmapscene FAST_SHIP_1F, $1
-	warp FAST_SHIP_1F, $19, $1
+	setmapscene FAST_SHIP_1F, 1
+	warp FAST_SHIP_1F, 25, 1
 	end
 
 UnknownScript_0x74919:

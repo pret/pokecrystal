@@ -23,7 +23,7 @@ AzaleaGymBugsyScript:
 	waitbutton
 	closetext
 	winlosstext BugsyText_ResearchIncomplete, 0
-	loadtrainer BUGSY, 1
+	loadtrainer BUGSY, BUGSY1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BUGSY
@@ -146,7 +146,7 @@ AzaleaGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext BUGSY, 1, $1
+	trainertotext BUGSY, BUGSY1, $1
 	jumpstd gymstatue2
 
 BugsyText_INeverLose:

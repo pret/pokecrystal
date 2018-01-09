@@ -59,7 +59,7 @@ Route29Tutorial1:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	setscene $0
+	setscene 0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -84,7 +84,7 @@ Route29Tutorial2:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	setscene $0
+	setscene 0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -93,7 +93,7 @@ Script_RefusedTutorial1:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1b
-	setscene $0
+	setscene 0
 	end
 
 Script_RefusedTutorial2:
@@ -101,7 +101,7 @@ Script_RefusedTutorial2:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2b
-	setscene $0
+	setscene 0
 	end
 
 CatchingTutorialDudeScript:

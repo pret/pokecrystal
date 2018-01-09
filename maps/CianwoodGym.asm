@@ -40,7 +40,7 @@ ChuckScript_0x9d60f:
 	waitbutton
 	closetext
 	winlosstext ChuckLossText, 0
-	loadtrainer CHUCK, 1
+	loadtrainer CHUCK, CHUCK1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
@@ -138,7 +138,7 @@ CianwoodGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext CHUCK, 1, $1
+	trainertotext CHUCK, CHUCK1, $1
 	jumpstd gymstatue2
 
 CianwoodGymMovement_ChuckChucksBoulder:

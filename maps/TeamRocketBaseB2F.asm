@@ -44,18 +44,18 @@ TeamRocketBaseB2F_MapScriptHeader:
 	return
 
 .Change:
-	changeblock $e, $c, $7
+	changeblock 14, 12, $7
 	return
 
 UnknownScript_0x6cf95:
-	moveobject TEAMROCKETBASEB2F_LANCE, $9, $d
+	moveobject TEAMROCKETBASEB2F_LANCE, 9, 13
 	jump UnknownScript_0x6cfac
 
 UnknownScript_0x6cf9c:
-	moveobject TEAMROCKETBASEB2F_ROCKET_GIRL, $15, $10
-	moveobject TEAMROCKETBASEB2F_ROCKET1, $15, $10
-	moveobject TEAMROCKETBASEB2F_DRAGON, $a, $d
-	moveobject TEAMROCKETBASEB2F_LANCE, $a, $d
+	moveobject TEAMROCKETBASEB2F_ROCKET_GIRL, 21, 16
+	moveobject TEAMROCKETBASEB2F_ROCKET1, 21, 16
+	moveobject TEAMROCKETBASEB2F_DRAGON, 10, 13
+	moveobject TEAMROCKETBASEB2F_LANCE, 10, 13
 UnknownScript_0x6cfac:
 	appear TEAMROCKETBASEB2F_ROCKET_GIRL
 	appear TEAMROCKETBASEB2F_ROCKET1
@@ -118,7 +118,7 @@ UnknownScript_0x6cfac:
 	disappear TEAMROCKETBASEB2F_ROCKET4
 	pause 15
 	special Special_FadeInQuickly
-	setscene $2
+	setscene 2
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	spriteface TEAMROCKETBASEB2F_LANCE, DOWN
 	opentext
@@ -175,7 +175,7 @@ LanceHealsCommon:
 	writetext LanceHealsText2
 	waitbutton
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	checkcode VAR_FACING
 	if_equal RIGHT, UnknownScript_0x6d0be
@@ -280,7 +280,7 @@ UnknownScript_0x6d182:
 	end
 
 UnknownScript_0x6d184:
-	moveobject TEAMROCKETBASEB2F_LANCE, $12, $6
+	moveobject TEAMROCKETBASEB2F_LANCE, 18, 6
 	appear TEAMROCKETBASEB2F_LANCE
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d27a
 	spriteface PLAYER, RIGHT
@@ -304,7 +304,7 @@ UnknownScript_0x6d184:
 	clearflag ENGINE_ROCKET_SIGNAL_ON_CH20
 	setevent EVENT_ROUTE_43_GATE_ROCKETS
 	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	setscene $3
+	setscene 3
 	clearevent EVENT_LAKE_OF_RAGE_CIVILIANS
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	setevent EVENT_SECURITY_CAMERA_1
@@ -330,7 +330,7 @@ UnknownScript_0x6d1e8:
 	writetext UnknownText_0x6dd6b
 	waitbutton
 	playsound SFX_ENTER_DOOR
-	changeblock $e, $c, $7
+	changeblock 14, 12, $7
 	reloadmappart
 	closetext
 	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
@@ -414,9 +414,9 @@ MovementData_0x6d236:
 
 MovementData_0x6d23b:
 	fix_facing
-	db $39 ; movement
+	set_sliding
 	jump_step RIGHT
-	db $38 ; movement
+	remove_sliding
 	remove_fixed_facing
 	step_end
 

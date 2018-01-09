@@ -165,8 +165,8 @@ DragonShrine_MapScriptHeader:
 	waitsfx
 	special RestartMapMusic
 	specialphonecall SPECIALCALL_MASTERBALL
-	setscene $1
-	setmapscene DRAGONS_DEN_B1F, $1
+	setscene 1
+	setmapscene DRAGONS_DEN_B1F, 1
 	writetext UnknownText_0x18d9f2
 	buttonsound
 	writetext UnknownText_0x18da0b
@@ -614,7 +614,7 @@ UnknownText_0x18d916:
 
 	para "You did fail?"
 
-	para $56, $56, $56, $56, $56, $56
+	para "<......><......><......><......><......><......>"
 
 	para "…What? You passed?"
 	done
@@ -665,7 +665,7 @@ UnknownText_0x18da0b:
 	done
 
 UnknownText_0x18dab4:
-	text $56, $56, $56, $56, $56, $56
+	text "<......><......><......><......><......><......>"
 	done
 
 DragonShrine_MapEventHeader:

@@ -80,7 +80,7 @@ DragonsDenB1F_ClairScene:
 	pause 30
 	special RestartMapMusic
 	disappear DRAGONSDENB1F_CLAIR
-	setscene $0
+	setscene 0
 	end
 
 TrainerCooltrainermDarin:

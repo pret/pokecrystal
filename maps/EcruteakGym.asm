@@ -32,7 +32,7 @@ MortyScript_0x99d58:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9a00a, 0
-	loadtrainer MORTY, 1
+	loadtrainer MORTY, MORTY1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
@@ -43,7 +43,7 @@ MortyScript_0x99d58:
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymActivateRockets
-	setmapscene ECRUTEAK_HOUSE, $1
+	setmapscene ECRUTEAK_HOUSE, 1
 	setevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone:
@@ -94,7 +94,7 @@ EcruteakGymClosed:
 	special FadeOutPalettes
 	playsound SFX_ENTER_DOOR
 	waitsfx
-	warp ECRUTEAK_CITY, $6, $1b
+	warp ECRUTEAK_CITY, 6, 27
 	end
 
 TrainerSageJeffrey:
@@ -162,7 +162,7 @@ EcruteakGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext MORTY, 1, $1
+	trainertotext MORTY, MORTY1, $1
 	jumpstd gymstatue2
 
 MovementData_0x99e5d:

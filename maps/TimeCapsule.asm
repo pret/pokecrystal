@@ -32,8 +32,8 @@ TimeCapsule_MapScriptHeader:
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $3
+	setscene 1
+	setmapscene POKECENTER_2F, 3
 	end
 
 MapTimeCapsuleSignpost1Script:

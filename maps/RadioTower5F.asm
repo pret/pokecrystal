@@ -47,7 +47,7 @@ FakeDirectorScript:
 	buttonsound
 	verbosegiveitem BASEMENT_KEY
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
 	end
 
@@ -115,7 +115,7 @@ RadioTower5FRocketBossScene:
 	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
 	disappear RADIOTOWER5F_DIRECTOR
-	moveobject RADIOTOWER5F_DIRECTOR, $c, $0
+	moveobject RADIOTOWER5F_DIRECTOR, 12, 0
 	appear RADIOTOWER5F_DIRECTOR
 	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksIn
 	spriteface PLAYER, RIGHT
@@ -126,8 +126,8 @@ RadioTower5FRocketBossScene:
 	writetext RadioTower5FDirectorDescribeClearBellText
 	waitbutton
 	closetext
-	setscene $2
-	setmapscene ECRUTEAK_HOUSE, $0
+	setscene 2
+	setmapscene ECRUTEAK_HOUSE, 0
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump .UselessJump

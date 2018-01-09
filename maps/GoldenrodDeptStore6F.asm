@@ -105,8 +105,8 @@ GoldenrodClangText:
 	text "Clang! A can of"
 	line "@"
 	text_from_ram StringBuffer3
-	text $55
-	db "popped out!"
+	text ""
+	cont "popped out!"
 	done
 
 GoldenrodVendingNoMoneyText:

@@ -15,8 +15,8 @@ MobileTradeRoomMobile_MapScriptHeader:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $4
+	setscene 1
+	setmapscene POKECENTER_2F, 4
 	end
 
 MapMobileTradeRoomMobileSignpost0Script:

@@ -22,7 +22,7 @@ SabrinaScript_0x189c2e:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x189df4, 0
-	loadtrainer SABRINA, 1
+	loadtrainer SABRINA, SABRINA1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_SABRINA
@@ -111,7 +111,7 @@ SaffronGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext SABRINA, 1, $1
+	trainertotext SABRINA, SABRINA1, $1
 	jumpstd gymstatue2
 
 UnknownText_0x189cdf:

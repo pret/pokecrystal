@@ -101,7 +101,7 @@ CherrygroveCityGuideGent:
 	end
 
 CherrygroveSilverSceneSouth:
-	moveobject CHERRYGROVECITY_SILVER, $27, $7
+	moveobject CHERRYGROVECITY_SILVER, 39, 7
 CherrygroveSilverSceneNorth:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -171,7 +171,7 @@ CherrygroveSilverSceneNorth:
 	spriteface PLAYER, LEFT
 	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_SILVER
-	setscene $0
+	setscene 0
 	special HealParty
 	playmapmusic
 	end

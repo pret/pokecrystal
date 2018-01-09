@@ -37,11 +37,11 @@ Route36NationalParkGate_MapScriptHeader:
 .CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
-	setscene $0
+	setscene 0
 	return
 
 .BugContestIsRunning:
-	setscene $2
+	setscene 2
 	return
 
 .CheckIfContestAvailable:
@@ -93,7 +93,7 @@ Route36NationalParkGate_MapScriptHeader:
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
 	waitsfx
-	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, 33, 18
 	end
 
 .CopyContestants:
@@ -177,7 +177,7 @@ Route36OfficerScriptContest:
 	special FadeOutPalettes
 	waitsfx
 	special Special_SelectRandomBugContestContestants
-	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, 33, 18
 	end
 
 .LeaveMonsWithOfficer:

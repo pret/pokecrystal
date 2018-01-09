@@ -20,7 +20,7 @@ FalknerScript_0x683c2:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x6854a, 0
-	loadtrainer FALKNER, 1
+	loadtrainer FALKNER, FALKNER1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_FALKNER
@@ -36,7 +36,7 @@ FalknerScript_0x683c2:
 	iftrue .SpeechAfterTM
 	setevent EVENT_BEAT_BIRD_KEEPER_ROD
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
-	setmapscene ELMS_LAB, $2
+	setmapscene ELMS_LAB, 2
 	specialphonecall SPECIALCALL_ASSISTANT
 	writetext UnknownText_0x685c8
 	buttonsound
@@ -109,7 +109,7 @@ VioletGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext FALKNER, 1, $1
+	trainertotext FALKNER, FALKNER1, $1
 	jumpstd gymstatue2
 
 UnknownText_0x68473:
