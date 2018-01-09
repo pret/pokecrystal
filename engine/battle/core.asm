@@ -857,7 +857,7 @@ GetMovePriority: ; 3c5c5
 	cp -1
 	jr nz, .loop
 
-	ld a, 1
+	ld a, BASE_PRIORITY
 	ret
 
 .done
@@ -4808,7 +4808,7 @@ PrintPlayerHUD: ; 3dfbf
 	ld [de], a
 	ld hl, BattleMonLevel
 	ld de, TempMonLevel
-	ld bc, $0011
+	ld bc, $11
 	call CopyBytes
 	ld a, [CurBattleMon]
 	ld hl, PartyMon1Species

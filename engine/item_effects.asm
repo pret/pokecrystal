@@ -1436,7 +1436,7 @@ RareCandy: ; ef14
 	call TextBox
 
 	hlcoord 11, 1
-	ld bc, $0004
+	ld bc, 4
 	predef PrintTempMonStats
 
 	call WaitPressAorB_BlinkCursor
@@ -2572,7 +2572,7 @@ Mysteryberry: ; f5bf
 	cp SKETCH
 	jr z, .CantUsePPUpOnSketch
 
-	ld bc, $0015
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	ld a, [hl]
 	cp 3 << 6 ; have 3 PP Ups already been used?

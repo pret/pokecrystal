@@ -17,6 +17,9 @@ MIN_NEUTRAL_DAMAGE EQU 2
 REST_SLEEP_TURNS EQU 2
 TREEMON_SLEEP_TURNS EQU 7
 
+; default move priority
+BASE_PRIORITY EQU 1
+
 ; PlayerStatLevels and EnemyStatLevels indexes
 ; used for GetStatName
 	const_def

@@ -2106,11 +2106,11 @@ GetMapHeaderMember:: ; 0x2c04
 ; Extract data from the current map's header.
 
 ; inputs:
-; de = offset of desired data within the mapheader
+; de = offset of desired data within the mapheader (a MAPHEADER_* constant)
 
 ; outputs:
 ; bc = data from the current map's header
-; (e.g., de = $0003 would return a pointer to the secondary map header)
+; (e.g., de = MAPHEADER_MAPHEADER2 would return a pointer to the secondary map header)
 
 	ld a, [MapGroup]
 	ld b, a

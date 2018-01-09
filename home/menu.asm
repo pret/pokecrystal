@@ -517,7 +517,7 @@ ClearWindowData:: ; 1fbf
 ; 1ff0
 
 .bytefill ; 1ff0
-	ld bc, $0010
+	ld bc, $10
 	xor a
 	call ByteFill
 	ret
