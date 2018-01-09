@@ -4,7 +4,7 @@ LoadOverworldFont:: ; 106594
 	lb bc, BANK(.font), $80
 	call Get2bpp
 	ld de, .space
-	ld hl, vTiles2 tile $7f
+	ld hl, vTiles2 tile " "
 	lb bc, BANK(.space), 1
 	call Get2bpp
 	ret

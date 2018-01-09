@@ -188,7 +188,7 @@ LoadFrontpicTiles: ; 5114f
 	pop bc
 .loop
 	push bc
-	ld c, $0
+	ld c, 0
 	call LoadFrontpic
 	pop bc
 	dec b

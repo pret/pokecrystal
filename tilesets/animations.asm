@@ -367,9 +367,9 @@ ScrollTileUp: ; fc34f
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld bc, $e
+	ld bc, TILE_WIDTH * 2 - 2
 	add hl, bc
-	ld a, 4
+	ld a, TILE_WIDTH / 2
 .loop
 	ld c, [hl]
 	ld [hl], e
@@ -391,14 +391,14 @@ ScrollTileUp: ; fc34f
 ScrollTileDown: ; fc36a
 	ld h, d
 	ld l, e
-	ld de, $e
+	ld de, TILE_WIDTH * 2 - 2
 	push hl
 	add hl, de
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
 	pop hl
-	ld a, 4
+	ld a, TILE_WIDTH / 2
 .loop
 	ld b, [hl]
 	ld [hl], d
