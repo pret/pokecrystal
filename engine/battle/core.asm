@@ -234,7 +234,7 @@ BattleTurn: ; 3c12f
 MobileFn_3c1bf: mobile
 	ld a, 5 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld hl, $a89b ; s5_a89b
+	ld hl, $a89b ; address of MBC30 bank
 	inc [hl]
 	jr nz, .finish
 	dec hl

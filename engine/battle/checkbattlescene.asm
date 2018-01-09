@@ -21,7 +21,7 @@ CheckBattleScene: ; 4ea44
 
 	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld a, [$a60c]
+	ld a, [$a60c] ; address of MBC30 bank
 	ld c, a
 	call CloseSRAM
 

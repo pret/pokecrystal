@@ -148,12 +148,12 @@ Function140ae: ; 140ae
 ; mobile
 	ld a, 5 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld a, [$aa8c]
+	ld a, [$aa8c] ; address of MBC30 bank
 	inc a
-	ld [$aa8c], a
-	ld a, [$b2fa]
+	ld [$aa8c], a ; address of MBC30 bank
+	ld a, [$b2fa] ; address of MBC30 bank
 	inc a
-	ld [$b2fa], a
+	ld [$b2fa], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 
