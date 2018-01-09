@@ -319,7 +319,7 @@ Unused_FadeOutMusic:: ; 3ca8
 ; 3cae
 
 FadeInMusic:: ; 3cae
-	ld a, 4 | 1 << 7
+	ld a, 4 | (1 << MUSIC_FADE_IN_F)
 	ld [MusicFade], a
 	ret
 ; 3cb4

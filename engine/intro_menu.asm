@@ -853,7 +853,7 @@ ShrinkPlayer: ; 610f
 	ld a, [hROMBank]
 	push af
 
-	ld a, 0 << 7 | 32 ; fade out
+	ld a, 32 ; fade time
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e

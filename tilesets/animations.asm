@@ -303,7 +303,7 @@ WaitTileAnimation: ; fc2fe
 StandingTileFrame8: ; fc2ff
 	ld a, [TileAnimationTimer]
 	inc a
-	and 7
+	and %111
 	ld [TileAnimationTimer], a
 	ret
 ; fc309
@@ -313,9 +313,9 @@ ScrollTileRightLeft: ; fc309
 ; Scroll right for 4 ticks, then left for 4 ticks.
 	ld a, [TileAnimationTimer]
 	inc a
-	and 7
+	and %111
 	ld [TileAnimationTimer], a
-	and 4
+	and %100
 	jr nz, ScrollTileLeft
 	jr ScrollTileRight
 ; fc318
@@ -324,9 +324,9 @@ ScrollTileUpDown: ; fc318
 ; Scroll up for 4 ticks, then down for 4 ticks.
 	ld a, [TileAnimationTimer]
 	inc a
-	and 7
+	and %111
 	ld [TileAnimationTimer], a
-	and 4
+	and %100
 	jr nz, ScrollTileDown
 	jr ScrollTileUp
 ; fc327
@@ -336,11 +336,11 @@ ScrollTileLeft: ; fc327
 	ld l, e
 	ld c, 4
 .loop
-	rept 4
+rept 4
 	ld a, [hl]
 	rlca
 	ld [hli], a
-	endr
+endr
 	dec c
 	jr nz, .loop
 	ret
@@ -351,11 +351,11 @@ ScrollTileRight: ; fc33b
 	ld l, e
 	ld c, 4
 .loop
-	rept 4
+rept 4
 	ld a, [hl]
 	rrca
 	ld [hli], a
-	endr
+endr
 	dec c
 	jr nz, .loop
 	ret
@@ -424,7 +424,7 @@ AnimateFountain: ; fc387
 	ld c, l
 	ld hl, .frames
 	ld a, [TileAnimationTimer]
-	and 7
+	and %111
 	add a
 	add l
 	ld l, a
@@ -468,7 +468,7 @@ AnimateWaterTile: ; fc402
 	ld a, [TileAnimationTimer]
 
 ; 4 tile graphics, updated every other frame.
-	and 3 << 1
+	and %110
 
 ; 2 x 8 = 16 bytes per tile
 	add a
@@ -676,7 +676,7 @@ AnimateFlowerTile: ; fc56d
 
 ; Alternate tile graphic every other frame
 	ld a, [TileAnimationTimer]
-	and 1 << 1
+	and %10
 	ld e, a
 
 ; CGB has different color mappings for flowers.
@@ -684,14 +684,14 @@ AnimateFlowerTile: ; fc56d
 	and 1
 
 	add e
-	swap a ; << 4 (16 bytes)
+	swap a
 	ld e, a
 	ld d, 0
 	ld hl, FlowerTileFrames
 	add hl, de
 	ld sp, hl
 
-	ld hl, vTiles2 + $30 ; tile 4
+	ld hl, vTiles2 tile $03
 
 	jp WriteTile
 ; fc58c
@@ -710,11 +710,11 @@ LavaBubbleAnim1: ; fc5cc
 	ld b, h
 	ld c, l
 	ld a, [TileAnimationTimer]
-	and 6
+	and %110
 	srl a
 	inc a
 	inc a
-	and 3
+	and %011
 	swap a
 	ld e, a
 	ld d, 0
@@ -732,7 +732,7 @@ LavaBubbleAnim2: ; fc5eb
 	ld b, h
 	ld c, l
 	ld a, [TileAnimationTimer]
-	and 6
+	and %110
 	add a
 	add a
 	add a
@@ -764,7 +764,7 @@ AnimateSproutPillarTile: ; fc645
 	ld c, l
 
 	ld a, [TileAnimationTimer]
-	and 7
+	and %111
 
 ; Get frame index a
 	ld hl, .frames
@@ -948,7 +948,7 @@ TileAnimationPalette: ; fc6d7
 	ld a, l
 	and %110 ; frames 0 2 4 6
 	jr z, .color0
-	cp 4
+	cp %100 ; frame 4
 	jr z, .color2
 
 .color1
@@ -992,7 +992,7 @@ FlickeringCaveEntrancePalette: ; fc71e
 	ret nz
 ; We only want to be here if we're in a dark cave.
 	ld a, [wTimeOfDayPalset]
-	cp $ff ; 3,3,3,3
+	cp %11111111 ; 3,3,3,3
 	ret nz
 
 	ld a, [rSVBK]
@@ -1003,7 +1003,7 @@ FlickeringCaveEntrancePalette: ; fc71e
 	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_YELLOW
 	ld [rBGPI], a
 	ld a, [hVBlankCounter]
-	and 1 << 1
+	and %10
 	jr nz, .bit1set
 	ld hl, wBGPals1 palette PAL_BG_YELLOW
 	jr .okay

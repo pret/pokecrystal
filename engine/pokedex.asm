@@ -2422,7 +2422,7 @@ Pokedex_LoadCurrentFootprint: ; 41478 (10:5478)
 Pokedex_LoadAnyFootprint: ; 4147b
 	ld a, [wd265]
 	dec a
-	and ($ff ^ $07) ; $f8 ; $1f << 3
+	and %11111000
 	srl a
 	srl a
 	srl a
@@ -2430,7 +2430,7 @@ Pokedex_LoadAnyFootprint: ; 4147b
 	ld d, a
 	ld a, [wd265]
 	dec a
-	and 7
+	and %111
 	swap a ; * $10
 	ld l, a
 	ld h, 0

@@ -1157,7 +1157,7 @@ CheckFaintedFrzSlp: ; 4e53f
 	ld hl, MON_STATUS
 	add hl, bc
 	ld a, [hl]
-	and (1 << FRZ) | SLP
+	and 1 << FRZ | SLP
 	jr nz, .fainted_frz_slp
 	and a
 	ret

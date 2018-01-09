@@ -123,6 +123,12 @@ const_value set 1
 	const ATK_EQ_DEF
 
 
+; PP
+PP_UP_MASK EQU %11000000
+PP_UP_ONE  EQU %01000000
+PP_MASK    EQU %00111111
+
+
 ; significant happiness values
 BASE_HAPPINESS        EQU 70
 FRIEND_BALL_HAPPINESS EQU 200

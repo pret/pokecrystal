@@ -2291,7 +2291,7 @@ PokeDoll: ; f48f
 	inc a
 	ld [wForcedSwitch], a
 	ld a, [wBattleResult]
-	and 3 << 6
+	and $c0
 	or $2
 	ld [wBattleResult], a
 	jp UseItemText
@@ -2575,7 +2575,7 @@ Mysteryberry: ; f5bf
 	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	ld a, [hl]
-	cp 3 << 6 ; have 3 PP Ups already been used?
+	cp PP_UP_MASK
 	jr c, .do_ppup
 
 .CantUsePPUpOnSketch:
@@ -2586,7 +2586,7 @@ Mysteryberry: ; f5bf
 
 .do_ppup
 	ld a, [hl]
-	add 1 << 6 ; increase PP Up count by 1
+	add PP_UP_ONE
 	ld [hl], a
 	ld a, $1
 	ld [wd265], a
@@ -2714,7 +2714,7 @@ RestorePP: ; f6e8
 	ld a, [wd265]
 	ld b, a
 	ld a, [hl]
-	and (1 << 6) - 1
+	and PP_MASK
 	cp b
 	jr nc, .dont_restore
 
@@ -2732,7 +2732,7 @@ RestorePP: ; f6e8
 
 .restore_some
 	ld a, [hl]
-	and (1 << 6) - 1
+	and PP_MASK
 	add c
 	cp b
 	jr nc, .restore_all
@@ -2740,7 +2740,7 @@ RestorePP: ; f6e8
 
 .restore_all
 	ld a, [hl]
-	and 3 << 6
+	and PP_UP_MASK
 	or b
 	ld [hl], a
 	ret
@@ -3125,7 +3125,7 @@ ApplyPPUp: ; f84c
 
 .use
 	ld a, [hl]
-	and 3 << 6
+	and PP_UP_MASK
 	ld a, [de] ; wasted cycle
 	call nz, ComputeMaxPP
 
@@ -3209,7 +3209,7 @@ RestoreAllPP: ; f8b9
 	pop bc
 	pop de
 	ld a, [de]
-	and 3 << 6
+	and PP_UP_MASK
 	ld b, a
 	ld a, [wd265]
 	add b
@@ -3282,7 +3282,7 @@ GetMaxPPOfMove: ; f8ec
 .notwild
 	add hl, bc
 	ld a, [hl]
-	and 3 << 6
+	and PP_UP_MASK
 	pop bc
 
 	or b
@@ -3293,7 +3293,7 @@ GetMaxPPOfMove: ; f8ec
 	ld a, b ; this gets lost anyway
 	call ComputeMaxPP
 	ld a, [hl]
-	and (1 << 6) - 1
+	and PP_MASK
 	ld [wd265], a
 
 	pop af

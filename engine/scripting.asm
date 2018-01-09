@@ -898,7 +898,7 @@ Script_musicfadeout:
 	call GetScriptByte
 	ld [MusicFadeID + 1], a
 	call GetScriptByte
-	and $7f
+	and $ff ^ (1 << MUSIC_FADE_IN_F)
 	ld [MusicFade], a
 	ret
 
