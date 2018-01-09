@@ -1,4 +1,4 @@
-INCLUDE "includes.asm"
+INCLUDE "constants.asm"
 
 
 ; PokemonPicPointers and UnownPicPointers are assumed to start at the same

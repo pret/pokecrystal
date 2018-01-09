@@ -1,4 +1,4 @@
-INCLUDE "includes.asm"
+INCLUDE "constants.asm"
 INCLUDE "macros/wram.asm"
 
 

@@ -1,4 +1,5 @@
-INCLUDE "includes.asm"
+INCLUDE "constants.asm"
+
 
 SECTION "Events", ROMX
 
