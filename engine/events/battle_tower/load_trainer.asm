@@ -26,7 +26,7 @@ Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	ld a, [hRandomAdd]
 	add b
 	ld b, a ; b contains the nr of the trainer
-if DEF(CRYSTAL11)
+if DEF(_CRYSTAL11)
 	and $7f
 else
 	and $1f

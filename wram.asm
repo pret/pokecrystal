@@ -827,7 +827,7 @@ wDexListingCursorBackup:: db
 wBackupDexListingCursor:: db
 wBackupDexListingPage:: db
 wDexCurrentLocation:: db
-if DEF(CRYSTAL11)
+if DEF(_CRYSTAL11)
 wPokedexStatus:: db
 wPokedexDataEnd::
 else
@@ -1312,7 +1312,7 @@ wCardFlipWhichCard:: db
 NEXTU ; cf64
 ; pokedex
 wDexEntryPrevJumptableIndex:: db
-if !DEF(CRYSTAL11)
+if !DEF(_CRYSTAL11)
 wPokedexStatus:: db
 endc
 

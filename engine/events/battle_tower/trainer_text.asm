@@ -7,7 +7,7 @@ BattleTowerText:: ; 11c000
 	push af
 	ld a, BANK(BT_OTTrainerClass)
 	ld [rSVBK], a
-if DEF(CRYSTAL11)
+if DEF(_CRYSTAL11)
 	ld hl, BT_OTTrainerClass
 else
 ; BUG ALERT
@@ -16,7 +16,7 @@ else
 ; uses it to get the gender of the trainer.
 ; As a consequence, the enemy trainer's dialog will
 ; always be sampled from the female array.
-	ld hl, BT_OTName + 5
+	ld hl, BT_OTName + NAME_LENGTH_JAPANESE - 1
 endc
 	ld a, [hl]
 	dec a
