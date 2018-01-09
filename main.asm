@@ -263,7 +263,7 @@ INCLUDE "engine/events/basement_key.asm"
 INCLUDE "engine/events/sacred_ash.asm"
 INCLUDE "engine/tempmon.asm"
 INCLUDE "engine/types.asm"
-INCLUDE "text/unused_gen_1_trainers.asm"
+INCLUDE "data/unused_text/gen_1_trainers.asm"
 INCLUDE "engine/mon_stats.asm"
 INCLUDE "engine/routines/initlist.asm"
 INCLUDE "engine/experience.asm"
@@ -294,7 +294,7 @@ INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
 
 SECTION "Crystal Phone Text", ROMX
 
-INCLUDE "text/phone/extra.asm"
+INCLUDE "data/phone_text/extra.asm"
 
 
 SECTION "bank20", ROMX
@@ -302,7 +302,7 @@ SECTION "bank20", ROMX
 INCLUDE "engine/player_movement.asm"
 INCLUDE "engine/engine_flags.asm"
 INCLUDE "engine/variables.asm"
-INCLUDE "text/battle.asm"
+INCLUDE "data/battle_text.asm"
 INCLUDE "engine/debug.asm"
 
 
@@ -354,23 +354,23 @@ INCLUDE "engine/phone/buenas_password.asm"
 
 SECTION "Phone Text", ROMX
 
-INCLUDE "text/phone/anthony_overworld.asm"
-INCLUDE "text/phone/todd_overworld.asm"
-INCLUDE "text/phone/gina_overworld.asm"
-INCLUDE "text/phone/irwin_overworld.asm"
-INCLUDE "text/phone/arnie_overworld.asm"
-INCLUDE "text/phone/alan_overworld.asm"
-INCLUDE "text/phone/dana_overworld.asm"
-INCLUDE "text/phone/chad_overworld.asm"
-INCLUDE "text/phone/derek_overworld.asm"
-INCLUDE "text/phone/tully_overworld.asm"
-INCLUDE "text/phone/brent_overworld.asm"
-INCLUDE "text/phone/tiffany_overworld.asm"
-INCLUDE "text/phone/vance_overworld.asm"
-INCLUDE "text/phone/wilton_overworld.asm"
-INCLUDE "text/phone/kenji_overworld.asm"
-INCLUDE "text/phone/parry_overworld.asm"
-INCLUDE "text/phone/erin_overworld.asm"
+INCLUDE "data/phone_text/anthony_overworld.asm"
+INCLUDE "data/phone_text/todd_overworld.asm"
+INCLUDE "data/phone_text/gina_overworld.asm"
+INCLUDE "data/phone_text/irwin_overworld.asm"
+INCLUDE "data/phone_text/arnie_overworld.asm"
+INCLUDE "data/phone_text/alan_overworld.asm"
+INCLUDE "data/phone_text/dana_overworld.asm"
+INCLUDE "data/phone_text/chad_overworld.asm"
+INCLUDE "data/phone_text/derek_overworld.asm"
+INCLUDE "data/phone_text/tully_overworld.asm"
+INCLUDE "data/phone_text/brent_overworld.asm"
+INCLUDE "data/phone_text/tiffany_overworld.asm"
+INCLUDE "data/phone_text/vance_overworld.asm"
+INCLUDE "data/phone_text/wilton_overworld.asm"
+INCLUDE "data/phone_text/kenji_overworld.asm"
+INCLUDE "data/phone_text/parry_overworld.asm"
+INCLUDE "data/phone_text/erin_overworld.asm"
 
 
 SECTION "bank2E", ROMX
@@ -550,7 +550,7 @@ INCLUDE "mobile/mobile_5c.asm"
 
 SECTION "Crystal Phone Text 2", ROMX
 
-INCLUDE "text/phone/extra2.asm"
+INCLUDE "data/phone_text/extra2.asm"
 
 
 SECTION "UpdateBattleHUDs", ROMX
@@ -570,26 +570,26 @@ INCLUDE "mobile/mobile_5f.asm"
 
 SECTION "Common Text 1", ROMX
 
-INCLUDE "text/stdtext.asm"
-INCLUDE "text/phone/jack_overworld.asm"
-INCLUDE "text/phone/beverly_overworld.asm"
-INCLUDE "text/phone/huey_overworld.asm"
-INCLUDE "text/phone/gaven_overworld.asm"
-INCLUDE "text/phone/beth_overworld.asm"
-INCLUDE "text/phone/jose_overworld.asm"
-INCLUDE "text/phone/reena_overworld.asm"
-INCLUDE "text/phone/joey_overworld.asm"
-INCLUDE "text/phone/wade_overworld.asm"
-INCLUDE "text/phone/ralph_overworld.asm"
-INCLUDE "text/phone/liz_overworld.asm"
+INCLUDE "data/std_text.asm"
+INCLUDE "data/phone_text/jack_overworld.asm"
+INCLUDE "data/phone_text/beverly_overworld.asm"
+INCLUDE "data/phone_text/huey_overworld.asm"
+INCLUDE "data/phone_text/gaven_overworld.asm"
+INCLUDE "data/phone_text/beth_overworld.asm"
+INCLUDE "data/phone_text/jose_overworld.asm"
+INCLUDE "data/phone_text/reena_overworld.asm"
+INCLUDE "data/phone_text/joey_overworld.asm"
+INCLUDE "data/phone_text/wade_overworld.asm"
+INCLUDE "data/phone_text/ralph_overworld.asm"
+INCLUDE "data/phone_text/liz_overworld.asm"
 
 
 SECTION "Special Phone Text", ROMX
 
-INCLUDE "text/phone/mom.asm"
-INCLUDE "text/phone/bill.asm"
-INCLUDE "text/phone/elm.asm"
-INCLUDE "text/phone/trainers1.asm"
+INCLUDE "data/phone_text/mom.asm"
+INCLUDE "data/phone_text/bill.asm"
+INCLUDE "data/phone_text/elm.asm"
+INCLUDE "data/phone_text/trainers1.asm"
 
 
 SECTION "Miscellaneous Text", ROMX
@@ -624,7 +624,7 @@ INCLUDE "engine/european_mail.asm"
 
 SECTION "Battle Tower Text", ROMX
 
-INCLUDE "text/battle_tower.asm"
+INCLUDE "data/battle_tower/trainer_text.asm"
 
 
 SECTION "Battle Tower Trainer Data", ROMX

@@ -22,7 +22,7 @@ GoldenrodNameRaterBookshelf:
 GoldenrodNameRaterRadio:
 	jumpstd radio2
 
-INCLUDE "text/unused_sweet_honey.asm"
+INCLUDE "data/unused_text/sweet_honey.asm"
 
 GoldenrodNameRater_MapEventHeader:
 	; filler
