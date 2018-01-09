@@ -7,7 +7,6 @@ _Sine:: ; 84d9
 	and %111111
 	cp  %100000
 	jr nc, .negative
-
 	call .ApplySineWave
 	ld a, h
 	ret
@@ -16,7 +15,7 @@ _Sine:: ; 84d9
 	and %011111
 	call .ApplySineWave
 	ld a, h
-	xor -1
+	xor $ff
 	inc a
 	ret
 
@@ -31,7 +30,6 @@ _Sine:: ; 84d9
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-
 ; Factor amplitude
 .multiply
 	srl a

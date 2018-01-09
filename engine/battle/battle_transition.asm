@@ -640,7 +640,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 .cgb
 	ld hl, .daypals
 	ld a, [TimeOfDayPal]
-	and (1 << 2) - 1
+	and $3
 	cp 3
 	jr nz, .daytime
 	ld hl, .nightpals
@@ -754,22 +754,23 @@ WipeLYOverrides: ; 8c6d8
 
 
 StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
-	and (1 << 6) - 1
-	cp 1 << 5
-	jr nc, .okay
-	call .DoSineWave
+; a = d * sin(a * pi/32)
+	and %111111
+	cp %100000
+	jr nc, .negative
+	call .ApplySineWave
 	ld a, h
 	ret
 
-.okay
-	and (1 << 5) - 1
-	call .DoSineWave
+.negative
+	and %011111
+	call .ApplySineWave
 	ld a, h
-	xor -1 ; cpl
+	xor $ff
 	inc a
 	ret
 
-.DoSineWave: ; 8c70c (23:470c)
+.ApplySineWave: ; 8c70c (23:470c)
 	ld e, a
 	ld a, d
 	ld d, 0
@@ -780,15 +781,15 @@ StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-.loop
+.multiply
 	srl a
-	jr nc, .skip
+	jr nc, .even
 	add hl, de
-.skip
+.even
 	sla e
 	rl d
 	and a
-	jr nz, .loop
+	jr nz, .multiply
 	ret
 ; 8c728 (23:4728)
 

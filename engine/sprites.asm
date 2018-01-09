@@ -576,21 +576,22 @@ BrokenStdGFXPointers: ; Broken 2bpp pointers
 
 
 Sprites_Cosine: ; 8e72a
-	add $10
+; a = d * cos(a * pi/32)
+	add %010000
 Sprites_Sine: ; 8e72c
-; floor(d * sin(a * pi/32))
-	and $3f
-	cp $20
+; a = d * sin(a * pi/32)
+	and %111111
+	cp %100000
 	jr nc, .negative
 	call .ApplySineWave
 	ld a, h
 	ret
 
 .negative
-	and $1f
+	and %011111
 	call .ApplySineWave
 	ld a, h
-	xor $ff ; cpl
+	xor $ff
 	inc a
 	ret
 ; 8e741
@@ -610,7 +611,6 @@ Sprites_Sine: ; 8e72c
 	srl a
 	jr nc, .even
 	add hl, de
-
 .even
 	sla e
 	rl d

@@ -238,27 +238,27 @@ UpdateCelebiPosition: ; 49aa2 (12:5aa2)
 
 
 CelebiEvent_Cosine: ; 49b3b (12:5b3b)
-	add $10
-	and $3f
-	cp $20
+; a = d * cos(a * pi/32)
+	add %010000
+	and %111111
+	cp %100000
 	jr nc, .negative
-	call .SineFunction
+	call .ApplySineWave
 	ld a, h
 	ret
 
 .negative
-	and $1f
-	call .SineFunction
+	and %011111
+	call .ApplySineWave
 	ld a, h
 	xor $ff
 	inc a
 	ret
 
-
-.SineFunction: ; 49b52 (12:5b52)
+.ApplySineWave: ; 49b52 (12:5b52)
 	ld e, a
 	ld a, d
-	ld d, $0
+	ld d, 0
 	ld hl, .sinewave
 	add hl, de
 	add hl, de
@@ -276,7 +276,6 @@ CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 	and a
 	jr nz, .multiply
 	ret
-
 ; 49b6e (12:5b6e)
 
 .sinewave ; 49b6e
