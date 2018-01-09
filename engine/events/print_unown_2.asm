@@ -1,7 +1,7 @@
 RotateUnownFrontpic: ; e0000
 ; something to do with Unown printer
 	push de
-	xor a ; effectively ld a, BANK(sScratch)
+	xor a ; sScratch
 	call GetSRAMBank
 	ld hl, sScratch
 	ld bc, 0

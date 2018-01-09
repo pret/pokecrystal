@@ -975,7 +975,7 @@ BattleAnimCmd_RaiseSub: ; cc640 (33:4640)
 	push af
 	ld a, 1 ; unnecessary bankswitch?
 	ld [rSVBK], a
-	xor a ; effectively ld a, BANK(sScratch)
+	xor a ; sScratch
 	call GetSRAMBank
 
 GetSubstitutePic: ; cc64c
@@ -1049,7 +1049,7 @@ BattleAnimCmd_MinimizeOpp: ; cc6cf (33:46cf)
 	push af
 	ld a, 1 ; unnecessary bankswitch?
 	ld [rSVBK], a
-	xor a ; effectively ld a, BANK(sScratch)
+	xor a ; sScratch
 	call GetSRAMBank
 	call GetMinimizePic
 	call Request2bpp
@@ -1105,7 +1105,7 @@ BattleAnimCmd_Minimize: ; cc735 (33:4735)
 	push af
 	ld a, 1 ; unnecessary bankswitch?
 	ld [rSVBK], a
-	xor a ; effectively ld a, BANK(sScratch)
+	xor a ; sScratch
 	call GetSRAMBank
 	call GetMinimizePic
 	ld hl, vTiles0 tile $00
