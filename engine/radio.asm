@@ -28,6 +28,7 @@ PlayRadioShow:
 	jp hl
 
 RadioJumptable:
+; entries correspond to constants/radio_constants.asm
 	dw OaksPkmnTalk1  ; $00
 	dw PokedexShow1 ; $01
 	dw BenMonMusic1  ; $02
@@ -203,11 +204,11 @@ OaksPkmnTalk4:
 ; Choose a random route, and a random Pokemon from that route.
 .sample
 	call Random
-	and $1f
-	cp $f ; so wasteful
+	and %11111
+	cp (OaksPkmnTalkRoutesEnd - OaksPkmnTalkRoutes) / 2
 	jr nc, .sample
 	; We now have a number between 0 and 14.
-	ld hl, .routes
+	ld hl, OaksPkmnTalkRoutes
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -239,14 +240,15 @@ OaksPkmnTalk4:
 	jr .loop
 
 .done
+	; Point hl to the list of morning Pokémon., skipping percentages
 rept 4
 	inc hl
 endr
 	; Generate a number, either 0, 1, or 2, to choose a time of day.
 .loop2
 	call Random
-	and 3
-	cp 3
+	and $3
+	cp DARKNESS_F
 	jr z, .loop2
 
 	ld bc, 2 * NUM_GRASSMON
@@ -273,6 +275,7 @@ endr
 	ld de, wMonOrItemNameBuffer
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
+
 	; Now that we've chosen our wild Pokemon,
 	; let's recover the map index info and get its name.
 	pop bc
@@ -289,22 +292,7 @@ endr
 	ld a, OAKS_POKEMON_TALK
 	jp PrintRadioLine
 
-.routes
-	map ROUTE_29
-	map ROUTE_46
-	map ROUTE_30
-	map ROUTE_32
-	map ROUTE_34
-	map ROUTE_35
-	map ROUTE_37
-	map ROUTE_38
-	map ROUTE_39
-	map ROUTE_42
-	map ROUTE_43
-	map ROUTE_44
-	map ROUTE_45
-	map ROUTE_36
-	map ROUTE_31
+INCLUDE "data/radio/oaks_pkmn_talk_routes.asm"
 
 OaksPkmnTalk5:
 	ld hl, OPT_OakText2
@@ -361,7 +349,7 @@ OPT_MaryText1:
 
 OaksPkmnTalk8:
 	call Random
-	and $f
+	and $f ; 0-15 are all the valid indexes into .Descriptors
 	ld e, a
 	ld d, 0
 	ld hl, .Descriptors
@@ -473,7 +461,7 @@ OaksPkmnTalk8:
 
 OaksPkmnTalk9:
 	call Random
-	and $f
+	and $f ; 0-15 are all the valid indexes into .Descriptors
 	ld e, a
 	ld d, 0
 	ld hl, .Descriptors
@@ -652,7 +640,7 @@ OaksPkmnTalk14:
 	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
-	ld de, $1d
+	ld de, MUSIC_POKEMON_TALK
 	callfar RadioMusicRestartDE
 	ld hl, .terminator
 	call PrintText
@@ -1146,7 +1134,7 @@ PeoplePlaces2:
 PeoplePlaces3:
 	ld hl, PnP_Text3
 	call Random
-	cp $7b ; 48 percent
+	cp 49 percent - 1
 	ld a, PLACES_AND_PEOPLE_4 ; People
 	jr c, .ok
 	ld a, PLACES_AND_PEOPLE_6 ; Places
@@ -1175,15 +1163,15 @@ PeoplePlaces4: ; People
 	cp NUM_TRAINER_CLASSES - 1
 	jr nc, PeoplePlaces4
 	push af
-	ld hl, .E4Names
+	ld hl, PnP_HiddenPeople
 	ld a, [wStatusFlags]
 	bit 6, a ; ENGINE_CREDITS_SKIP
 	jr z, .ok
-	ld hl, .KantoLeaderNames
+	ld hl, PnP_HiddenPeople_BeatE4
 	ld a, [wKantoBadges]
-	cp %11111111
+	cp %11111111 ; all badges
 	jr nz, .ok
-	ld hl, .MiscNames
+	ld hl, PnP_HiddenPeople_BeatKanto
 .ok
 	pop af
 	ld c, a
@@ -1203,10 +1191,7 @@ PeoplePlaces4: ; People
 	ld a, PLACES_AND_PEOPLE_5
 	jp NextRadioLine
 
-.E4Names:          db WILL, BRUNO, KAREN, KOGA, CHAMPION
-.KantoLeaderNames: db BROCK, MISTY, LT_SURGE, ERIKA, JANINE, SABRINA, BLAINE, BLUE
-.MiscNames:        db RIVAL1, POKEMON_PROF, CAL, RIVAL2, RED
-                   db -1
+INCLUDE "data/radio/pnp_hidden_people.asm"
 
 PnP_Text4:
 	; @  @ @
@@ -1215,7 +1200,7 @@ PnP_Text4:
 
 PeoplePlaces5:
 	call Random
-	and $f
+	and $f ; 0-15 are all the valid indexes into .Descriptors
 	ld e, a
 	ld d, 0
 	ld hl, .Descriptors
@@ -1225,11 +1210,11 @@ PeoplePlaces5:
 	ld h, [hl]
 	ld l, a
 	call Random
-	cp $a ; 6.25 percent
+	cp 4 percent
 	ld a, PLACES_AND_PEOPLE
 	jr c, .ok
 	call Random
-	cp $7b ; 48 percent
+	cp 49 percent - 1
 	ld a, PLACES_AND_PEOPLE_4 ; People
 	jr c, .ok
 	ld a, PLACES_AND_PEOPLE_6 ; Places
@@ -1336,9 +1321,9 @@ PnP_odd:
 
 PeoplePlaces6: ; Places
 	call Random
-	cp 9
+	cp (PnP_HiddenPlacesEnd - PnP_HiddenPlaces) / 2
 	jr nc, PeoplePlaces6
-	ld hl, .Maps
+	ld hl, PnP_HiddenPlaces
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -1353,16 +1338,7 @@ PeoplePlaces6: ; Places
 	ld a, PLACES_AND_PEOPLE_7
 	jp NextRadioLine
 
-.Maps:
-	map PALLET_TOWN
-	map ROUTE_22
-	map PEWTER_CITY
-	map CERULEAN_POLICE_STATION
-	map ROUTE_12
-	map ROUTE_11
-	map ROUTE_16
-	map ROUTE_14
-	map CINNABAR_POKECENTER_2F_BETA
+INCLUDE "data/radio/pnp_hidden_places.asm"
 
 PnP_Text5:
 	; @ @
@@ -1371,7 +1347,7 @@ PnP_Text5:
 
 PeoplePlaces7:
 	call Random
-	and $f
+	and $f ; 0-15 are all the valid indexes into .Descriptors
 	ld e, a
 	ld d, 0
 	ld hl, .Descriptors
@@ -1386,7 +1362,7 @@ PeoplePlaces7:
 	ld a, PLACES_AND_PEOPLE
 	jr c, .ok
 	call Random
-	cp 1 + 48 percent
+	cp 49 percent - 1
 	ld a, PLACES_AND_PEOPLE_4 ; People
 	jr c, .ok
 	ld a, PLACES_AND_PEOPLE_6 ; Places
@@ -1572,7 +1548,7 @@ BuenasPassword4:
 	ld a, [wBuenasPassword]
 ; If we already generated the password today, we don't need to generate a new one.
 	ld hl, wWeeklyFlags
-	bit 7, [hl]
+	bit 7, [hl] ; ENGINE_BUENAS_PASSWORD
 	jr nz, .AlreadyGotIt
 ; There are only 11 groups to choose from.
 .greater_than_11
@@ -1586,7 +1562,7 @@ BuenasPassword4:
 ; For each group, choose one of the three passwords.
 .greater_than_three
 	call Random
-	and $3
+	maskbits NUM_PASSWORDS_PER_CATEGORY
 	cp NUM_PASSWORDS_PER_CATEGORY
 	jr nc, .greater_than_three
 ; The high nybble of wBuenasPassword will now contain the password group index, and the low nybble contains the actual password.
@@ -1594,7 +1570,7 @@ BuenasPassword4:
 	ld [wBuenasPassword], a
 ; Set the flag so that we don't generate a new password this week.
 	ld hl, wWeeklyFlags
-	set 7, [hl]
+	set 7, [hl] ; ENGINE_BUENAS_PASSWORD
 .AlreadyGotIt:
 	ld c, a
 	call GetBuenasPassword
@@ -1608,7 +1584,7 @@ GetBuenasPassword:
 	ld a, c
 	swap a
 	and $f
-	ld hl, PasswordTable
+	ld hl, BuenasPasswordTable
 	ld d, 0
 	ld e, a
 	add hl, de
@@ -1640,11 +1616,11 @@ GetBuenasPassword:
 	ret
 
 .StringFunctionJumpTable:
-	dw .Mon
-	dw .Item
-	dw .Move
-	dw .RawString
-
+; entries correspond to BUENA_* constants
+	dw .Mon       ; BUENA_MON
+	dw .Item      ; BUENA_ITEM
+	dw .Move      ; BUENA_MOVE
+	dw .RawString ; BUENA_STRING
 
 .Mon:
 	call .GetTheIndex
@@ -1693,30 +1669,7 @@ GetBuenasPassword:
 	ld de, StringBuffer1
 	ret
 
-PasswordTable:
-	dw .JohtoStarters
-	dw .Beverages
-	dw .HealingItems
-	dw .Balls
-	dw .Pokemon1
-	dw .Pokemon2
-	dw .JohtoTowns
-	dw .Types
-	dw .Moves
-	dw .XItems
-	dw .RadioStations
-                    ; string type, points, option 1, option 2, option 3
-.JohtoStarters:      db BUENA_MON,    10, CYNDAQUIL, TOTODILE, CHIKORITA
-.Beverages:          db BUENA_ITEM,   12, FRESH_WATER, SODA_POP, LEMONADE
-.HealingItems:       db BUENA_ITEM,   12, POTION, ANTIDOTE, PARLYZ_HEAL
-.Balls:              db BUENA_ITEM,   12, POKE_BALL, GREAT_BALL, ULTRA_BALL
-.Pokemon1:           db BUENA_MON,    10, PIKACHU, RATTATA, GEODUDE
-.Pokemon2:           db BUENA_MON,    10, HOOTHOOT, SPINARAK, DROWZEE
-.JohtoTowns:         db BUENA_STRING, 16, "NEW BARK TOWN@", "CHERRYGROVE CITY@", "AZALEA TOWN@"
-.Types:              db BUENA_STRING,  6, "FLYING@", "BUG@", "GRASS@"
-.Moves:              db BUENA_MOVE,   12, TACKLE, GROWL, MUD_SLAP
-.XItems:             db BUENA_ITEM,   12, X_ATTACK, X_DEFEND, X_SPEED
-.RadioStations:      db BUENA_STRING, 13, "#MON Talk@", "#MON Music@", "Lucky Channel@"
+INCLUDE "data/radio/buenas_passwords.asm"
 
 BuenasPassword5:
 	ld hl, BuenaRadioText5
@@ -1738,14 +1691,14 @@ BuenasPassword7:
 BuenasPasswordAfterMidnight:
 	push hl
 	ld hl, wWeeklyFlags
-	res 7, [hl]
+	res 7, [hl] ; ENGINE_BUENAS_PASSWORD
 	pop hl
 	ld a, BUENAS_PASSWORD_8
 	jp NextRadioLine
 
 BuenasPassword8:
 	ld hl, wWeeklyFlags
-	res 7, [hl]
+	res 7, [hl] ; ENGINE_BUENAS_PASSWORD
 	ld hl, BuenaRadioMidnightText10
 	ld a, BUENAS_PASSWORD_9
 	jp NextRadioLine
@@ -1958,18 +1911,7 @@ StartRadioStation:
 	callfar RadioMusicRestartDE
 	ret
 
-RadioChannelSongs:
-	dw MUSIC_POKEMON_TALK
-	dw MUSIC_POKEMON_CENTER
-	dw MUSIC_TITLE
-	dw MUSIC_GAME_CORNER
-	dw MUSIC_BUENAS_PASSWORD
-	dw MUSIC_VIRIDIAN_CITY
-	dw MUSIC_BICYCLE
-	dw MUSIC_ROCKET_OVERTURE
-	dw MUSIC_POKE_FLUTE_CHANNEL
-	dw MUSIC_RUINS_OF_ALPH_RADIO
-	dw MUSIC_LAKE_OF_RAGE_ROCKET_RADIO
+INCLUDE "data/radio/channel_music.asm"
 
 NextRadioLine:
 	push af
