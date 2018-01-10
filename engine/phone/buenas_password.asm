@@ -167,4 +167,4 @@ BuenaPhoneScript_Random1:
 	end
 ; a0c28
 
-INCLUDE "data/phone_text/buena.asm"
+INCLUDE "data/phone/text/buena.asm"

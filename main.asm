@@ -294,7 +294,7 @@ INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
 
 SECTION "Crystal Phone Text", ROMX
 
-INCLUDE "data/phone_text/extra.asm"
+INCLUDE "data/phone/text/extra.asm"
 
 
 SECTION "bank20", ROMX
@@ -354,23 +354,23 @@ INCLUDE "engine/phone/buenas_password.asm"
 
 SECTION "Phone Text", ROMX
 
-INCLUDE "data/phone_text/anthony_overworld.asm"
-INCLUDE "data/phone_text/todd_overworld.asm"
-INCLUDE "data/phone_text/gina_overworld.asm"
-INCLUDE "data/phone_text/irwin_overworld.asm"
-INCLUDE "data/phone_text/arnie_overworld.asm"
-INCLUDE "data/phone_text/alan_overworld.asm"
-INCLUDE "data/phone_text/dana_overworld.asm"
-INCLUDE "data/phone_text/chad_overworld.asm"
-INCLUDE "data/phone_text/derek_overworld.asm"
-INCLUDE "data/phone_text/tully_overworld.asm"
-INCLUDE "data/phone_text/brent_overworld.asm"
-INCLUDE "data/phone_text/tiffany_overworld.asm"
-INCLUDE "data/phone_text/vance_overworld.asm"
-INCLUDE "data/phone_text/wilton_overworld.asm"
-INCLUDE "data/phone_text/kenji_overworld.asm"
-INCLUDE "data/phone_text/parry_overworld.asm"
-INCLUDE "data/phone_text/erin_overworld.asm"
+INCLUDE "data/phone/text/anthony_overworld.asm"
+INCLUDE "data/phone/text/todd_overworld.asm"
+INCLUDE "data/phone/text/gina_overworld.asm"
+INCLUDE "data/phone/text/irwin_overworld.asm"
+INCLUDE "data/phone/text/arnie_overworld.asm"
+INCLUDE "data/phone/text/alan_overworld.asm"
+INCLUDE "data/phone/text/dana_overworld.asm"
+INCLUDE "data/phone/text/chad_overworld.asm"
+INCLUDE "data/phone/text/derek_overworld.asm"
+INCLUDE "data/phone/text/tully_overworld.asm"
+INCLUDE "data/phone/text/brent_overworld.asm"
+INCLUDE "data/phone/text/tiffany_overworld.asm"
+INCLUDE "data/phone/text/vance_overworld.asm"
+INCLUDE "data/phone/text/wilton_overworld.asm"
+INCLUDE "data/phone/text/kenji_overworld.asm"
+INCLUDE "data/phone/text/parry_overworld.asm"
+INCLUDE "data/phone/text/erin_overworld.asm"
 
 
 SECTION "bank2E", ROMX
@@ -550,7 +550,7 @@ INCLUDE "mobile/mobile_5c.asm"
 
 SECTION "Crystal Phone Text 2", ROMX
 
-INCLUDE "data/phone_text/extra2.asm"
+INCLUDE "data/phone/text/extra2.asm"
 
 
 SECTION "UpdateBattleHUDs", ROMX
@@ -571,25 +571,25 @@ INCLUDE "mobile/mobile_5f.asm"
 SECTION "Common Text 1", ROMX
 
 INCLUDE "data/std_text.asm"
-INCLUDE "data/phone_text/jack_overworld.asm"
-INCLUDE "data/phone_text/beverly_overworld.asm"
-INCLUDE "data/phone_text/huey_overworld.asm"
-INCLUDE "data/phone_text/gaven_overworld.asm"
-INCLUDE "data/phone_text/beth_overworld.asm"
-INCLUDE "data/phone_text/jose_overworld.asm"
-INCLUDE "data/phone_text/reena_overworld.asm"
-INCLUDE "data/phone_text/joey_overworld.asm"
-INCLUDE "data/phone_text/wade_overworld.asm"
-INCLUDE "data/phone_text/ralph_overworld.asm"
-INCLUDE "data/phone_text/liz_overworld.asm"
+INCLUDE "data/phone/text/jack_overworld.asm"
+INCLUDE "data/phone/text/beverly_overworld.asm"
+INCLUDE "data/phone/text/huey_overworld.asm"
+INCLUDE "data/phone/text/gaven_overworld.asm"
+INCLUDE "data/phone/text/beth_overworld.asm"
+INCLUDE "data/phone/text/jose_overworld.asm"
+INCLUDE "data/phone/text/reena_overworld.asm"
+INCLUDE "data/phone/text/joey_overworld.asm"
+INCLUDE "data/phone/text/wade_overworld.asm"
+INCLUDE "data/phone/text/ralph_overworld.asm"
+INCLUDE "data/phone/text/liz_overworld.asm"
 
 
 SECTION "Special Phone Text", ROMX
 
-INCLUDE "data/phone_text/mom.asm"
-INCLUDE "data/phone_text/bill.asm"
-INCLUDE "data/phone_text/elm.asm"
-INCLUDE "data/phone_text/trainers1.asm"
+INCLUDE "data/phone/text/mom.asm"
+INCLUDE "data/phone/text/bill.asm"
+INCLUDE "data/phone/text/elm.asm"
+INCLUDE "data/phone/text/trainers1.asm"
 
 
 SECTION "Miscellaneous Text", ROMX

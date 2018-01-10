@@ -761,9 +761,9 @@ GetCallerLocation: ; 90439
 ; 9045f
 
 
-INCLUDE "data/phone_contacts.asm"
+INCLUDE "data/phone/phone_contacts.asm"
 
-INCLUDE "data/phone_special.asm"
+INCLUDE "data/phone/special_calls.asm"
 
 
 UnknownScript_0x90657: ; 0x90657
