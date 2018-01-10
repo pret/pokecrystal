@@ -108,7 +108,7 @@ INCBIN "gfx/title/old_bg.tilemap"
 ; 10d8b1
 
 UnusedTitleBG_Palettes: ; 10d8b1
-INCLUDE "data/palettes/unused_title/bg.pal"
+INCLUDE "gfx/title/old_bg.pal"
 ; 10dab1
 
 UnusedTitleFG_GFX: ; 10dab1
@@ -116,7 +116,7 @@ INCBIN "gfx/title/old_fg.2bpp"
 ; 10eab1
 
 UnusedTitleFG_Palettes: ; 10eab1
-INCLUDE "data/palettes/unused_title/ob.pal"
+INCLUDE "gfx/title/old_fg.pal"
 ; 10ecb1
 
 UnusedTitleFG_OAM: ; 10ecb1

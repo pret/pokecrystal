@@ -1041,7 +1041,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 ; 11ef4 (4:5ef4)
 
 .MailIcon: ; 11ef4
-INCBIN "gfx/icon/mail2.2bpp"
+INCBIN "gfx/icons/mail2.2bpp"
 ; 11f74
 
 .initwNamingScreenMaxNameLength ; 11f74 (4:5f74)

@@ -193,10 +193,10 @@ Function819a7: ; 819a7
 ; 819f4
 
 Palette_819f4: ; 819f4
-INCLUDE "data/palettes/debug/bg.pal"
+INCLUDE "gfx/debug/bg.pal"
 
 Palette_81a34: ; 81a34
-INCLUDE "data/palettes/debug/ob.pal"
+INCLUDE "gfx/debug/ob.pal"
 ; 81a74
 
 Function81a74: ; 81a74

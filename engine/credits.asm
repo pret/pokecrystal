@@ -540,7 +540,7 @@ GetCreditsPalette: ; 109b2c
 	ret
 
 CreditsPalettes:
-INCLUDE "data/palettes/credits.pal"
+INCLUDE "gfx/credits/credits.pal"
 ; 109bca
 
 Credits_LoadBorderGFX: ; 109bca (42:5bca)

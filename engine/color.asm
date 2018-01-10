@@ -451,7 +451,7 @@ LoadMailPalettes:
 	ret
 
 .MailPals:
-INCLUDE "data/palettes/mail.pal"
+INCLUDE "gfx/mail/mail.pal"
 
 INCLUDE "engine/cgb_layouts.asm"
 
@@ -766,7 +766,7 @@ Function9779: mobile
 	ret
 
 BattleObjectPals:
-INCLUDE "data/palettes/battle_objects.pal"
+INCLUDE "gfx/battle_anims/battle_anims.pal"
 
 Function97cc:
 ; XXX
@@ -1197,27 +1197,27 @@ SGBDelayCycles:
 	jr nz, .wait
 	ret
 
-INCLUDE "data/palettes/blk_packets.asm"
+INCLUDE "gfx/sgb/blk_packets.asm"
 
-INCLUDE "data/palettes/pal_packets.asm"
+INCLUDE "gfx/sgb/pal_packets.asm"
 
 PredefPals:
-INCLUDE "data/palettes/predef.pal"
+INCLUDE "gfx/sgb/predef.pal"
 
 SGBBorderMap:
 INCBIN "gfx/sgb/sgb_border.tilemap"
 
 SGBBorderPalettes:
-INCLUDE "data/palettes/sgb_border.pal"
+INCLUDE "gfx/sgb/sgb_border.pal"
 
 SGBBorder:
 INCBIN "gfx/sgb/sgb_border.2bpp"
 
 HPBarPals:
-INCLUDE "data/palettes/hp_bar.pal"
+INCLUDE "gfx/battle/hp_bar.pal"
 
 ExpBarPalette:
-INCLUDE "data/palettes/exp_bar.pal"
+INCLUDE "gfx/battle/exp_bar.pal"
 
 INCLUDE "data/pokemon/palettes.asm"
 
@@ -1338,34 +1338,34 @@ Palette_b311: ; b311 not mobile
 	RGB 00, 00, 00
 
 TilesetBGPalette:
-INCLUDE "data/palettes/overworld/tileset_bg.pal"
+INCLUDE "gfx/tilesets/bg_tiles.pal"
 
 MapObjectPals::
-INCLUDE "data/palettes/overworld/map_objects.pal"
+INCLUDE "gfx/sprites/map_objects.pal"
 
 RoofPals:
-INCLUDE "data/palettes/overworld/roofs.pal"
+INCLUDE "gfx/tilesets/roofs.pal"
 
 DiplomaPalettes:
-INCLUDE "data/palettes/diploma.pal"
+INCLUDE "gfx/diploma/diploma.pal"
 
 PartyMenuOBPals:
-INCLUDE "data/palettes/party_menu.pal"
+INCLUDE "gfx/icons/party_menu.pal"
 
 Palettes_b6f1:
-INCLUDE "data/palettes/unknown/b6f1.pal"
+INCLUDE "gfx/unknown/b6f1.pal"
 
 Palettes_b719:
-INCLUDE "data/palettes/unknown/b719.pal"
+INCLUDE "gfx/unknown/b719.pal"
 
 MalePokegearPals:
-INCLUDE "data/palettes/pokegear.pal"
+INCLUDE "gfx/pokegear/pokegear.pal"
 
 FemalePokegearPals:
-INCLUDE "data/palettes/pokegear_f.pal"
+INCLUDE "gfx/pokegear/pokegear_f.pal"
 
 Palettes_b789:
-INCLUDE "data/palettes/unknown/b789.pal"
+INCLUDE "gfx/unknown/b789.pal"
 
 SlotMachinePals:
-INCLUDE "data/palettes/slot_machine.pal"
+INCLUDE "gfx/slots/slots.pal"

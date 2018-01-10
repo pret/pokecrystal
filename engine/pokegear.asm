@@ -2834,7 +2834,7 @@ TownMapPals: ; 91f13
 	ret
 
 .PalMap:
-INCLUDE "data/palettes/town_map_palette_map.asm"
+INCLUDE "gfx/pokegear/town_map_palette_map.asm"
 ; 91f7b
 
 TownMapMon: ; 91f7b

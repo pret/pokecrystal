@@ -1662,7 +1662,7 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 ; e0c93 (38:4c93)
 
 .palettes ; e0c93
-INCLUDE "data/palettes/card_flip.pal"
+INCLUDE "gfx/card_flip/card_flip.pal"
 ; e0cdb
 
 CardFlipLZ03: ; e0cdb

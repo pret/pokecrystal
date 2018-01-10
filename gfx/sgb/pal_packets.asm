@@ -1,3 +1,5 @@
+; indexes correspond to PredefPals palettes (see gfx/sgb/predef.pal)
+
 PalPacket_9b96:
 	db $51, $48, $00, $49, $00, $4a, $00, $4b, $00, $00, $00, $00, $00, $00, $00, $00
 

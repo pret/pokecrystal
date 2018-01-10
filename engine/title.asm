@@ -399,4 +399,4 @@ INCBIN "gfx/title/crystal.2bpp.lz"
 ; 10fede
 
 TitleScreenPalettes:
-INCLUDE "data/palettes/title.pal"
+INCLUDE "gfx/title/title.pal"

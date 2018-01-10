@@ -341,7 +341,7 @@ GameFreakLogoScene5: ; e47ab (39:47ab)
 ; e47ac (39:47ac)
 
 GameFreakLogoPalettes: ; e47ac
-INCLUDE "data/palettes/crystal_intro/gamefreak_logo.pal"
+INCLUDE "gfx/intro/gamefreak_logo.pal"
 ; e47cc
 
 GameFreakLogo: ; e47cc
@@ -1550,7 +1550,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 ; e519c (39:519c)
 
 .FadePals: ; e519c
-INCLUDE "data/palettes/crystal_intro/fade.pal"
+INCLUDE "gfx/intro/fade.pal"
 ; e51dc
 
 CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
@@ -2088,7 +2088,7 @@ INCBIN "gfx/intro/003.tilemap.lz"
 ; e5edd
 
 Palette_e5edd: ; e5edd
-INCLUDE "data/palettes/crystal_intro/intro_1.pal"
+INCLUDE "gfx/intro/intro_1.pal"
 ; e5f5d
 
 IntroUnownsGFX: ; e5f5d
@@ -2124,7 +2124,7 @@ INCBIN "gfx/intro/007.tilemap.lz"
 ; e65ad
 
 Palette_365ad: ; e65ad
-INCLUDE "data/palettes/crystal_intro/intro_2.pal"
+INCLUDE "gfx/intro/intro_2.pal"
 ; e662d
 
 IntroCrystalUnownsGFX: ; e662d
@@ -2140,7 +2140,7 @@ INCBIN "gfx/intro/015.tilemap.lz"
 ; e679d
 
 Palette_e679d: ; e679d
-INCLUDE "data/palettes/crystal_intro/intro_3.pal"
+INCLUDE "gfx/intro/intro_3.pal"
 ; e681d
 
 IntroSuicuneCloseGFX: ; e681d
@@ -2156,7 +2156,7 @@ INCBIN "gfx/intro/011.tilemap.lz"
 ; e6d6d
 
 Palette_e6d6d: ; e6d6d
-INCLUDE "data/palettes/crystal_intro/intro_4.pal"
+INCLUDE "gfx/intro/intro_4.pal"
 ; e6ded
 
 IntroSuicuneJumpGFX: ; e6ded
@@ -2184,7 +2184,7 @@ INCBIN "gfx/intro/013.tilemap.lz"
 ; e77dd
 
 Palette_e77dd: ; e77dd
-INCLUDE "data/palettes/crystal_intro/intro_5.pal"
+INCLUDE "gfx/intro/intro_5.pal"
 
 IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.2bpp.lz"

@@ -307,8 +307,8 @@ GetIconGFX: ; 8e9de
 	ret
 
 HeldItemIcons:
-INCBIN "gfx/icon/mail.2bpp"
-INCBIN "gfx/icon/item.2bpp"
+INCBIN "gfx/icons/mail.2bpp"
+INCBIN "gfx/icons/item.2bpp"
 ; 8ea17
 
 GetIcon_de: ; 8ea17

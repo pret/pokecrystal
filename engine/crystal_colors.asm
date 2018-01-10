@@ -113,7 +113,7 @@ MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
 ; 493e1 (12:53e1)
 
 Palette_493e1: ; 493e1
-INCLUDE "data/palettes/mg_mobile.pal"
+INCLUDE "gfx/mystery_gift/mg_mobile.pal"
 ; 49409
 
 LoadOW_BGPal7:: ; 49409
@@ -126,7 +126,7 @@ LoadOW_BGPal7:: ; 49409
 ; 49418
 
 Palette_TextBG7: ; 49418
-INCLUDE "data/palettes/overworld/bg_text.pal"
+INCLUDE "gfx/font/bg_text.pal"
 ; 49420
 
 Function49420:: ; 49420 (12:5420)
@@ -248,7 +248,7 @@ Function49742: ; 49742
 ; 49757
 
 .Palette_49757: ; 49757
-INCLUDE "data/palettes/unknown/49757.pal"
+INCLUDE "gfx/unknown/49757.pal"
 ; 49797
 
 _InitMG_Mobile_LinkTradePalMap: ; 49797
@@ -314,7 +314,7 @@ LoadTradeRoomBGPals: ; 49811
 ; 49826
 
 TradeRoomPalette: ; 49826
-INCLUDE "data/palettes/trade_room.pal"
+INCLUDE "gfx/trade/border.pal"
 ; 49856
 
 InitMG_Mobile_LinkTradePalMap: ; 49856
@@ -323,4 +323,4 @@ InitMG_Mobile_LinkTradePalMap: ; 49856
 ; 4985a
 
 Unknown_4985a: ; unreferenced
-INCLUDE "data/palettes/unknown/4985a.asm"
+INCLUDE "gfx/unknown/4985a.asm"

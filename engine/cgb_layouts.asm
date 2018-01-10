@@ -891,11 +891,11 @@ _CGB_PackPals: ; 93d3
 ; 9439
 
 .ChrisPackPals: ; 9439
-INCLUDE "data/palettes/pack.pal"
+INCLUDE "gfx/pack/pack.pal"
 ; 9469
 
 .KrisPackPals: ; 9469
-INCLUDE "data/palettes/pack_f.pal"
+INCLUDE "gfx/pack/pack_f.pal"
 ; 9499
 
 _CGB_Pokepic: ; 9499
