@@ -105,7 +105,7 @@
 	const SPRITE_RAIKOU ; 65
 	const SPRITE_STANDING_YOUNGSTER ; 66
 
-; SpriteMons indexes (see data/sprite_mons.asm)
+; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 const_value set $80
 SPRITE_POKEMON EQU const_value
 	const SPRITE_UNOWN ; 80

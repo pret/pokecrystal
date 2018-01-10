@@ -1,6 +1,6 @@
-INCLUDE "data/facings.asm"
+INCLUDE "data/sprites/facings.asm"
 
-INCLUDE "data/map_objects.asm"
+INCLUDE "data/sprites/map_objects.asm"
 
 
 ; 4357

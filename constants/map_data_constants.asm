@@ -202,7 +202,7 @@ NUM_SPAWNS EQU const_value
 	const OBJECTTYPE_6
 
 
-; Emotes indexes (see data/emotes.asm)
+; Emotes indexes (see data/sprites/emotes.asm)
 	const_def
 	const EMOTE_SHOCK ; 0
 	const EMOTE_QUESTION ; 1

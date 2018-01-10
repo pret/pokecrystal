@@ -36,7 +36,7 @@ const_value set (1 << 3)
 	const PAL_NPC_TREE   ; e
 	const PAL_NPC_ROCK   ; f
 
-; SpriteMovementData indexes (see data/map_objects.asm)
+; SpriteMovementData indexes (see data/sprites/map_objects.asm)
 	const_def
 	const SPRITEMOVEDATA_00                   ; 00
 	const SPRITEMOVEDATA_ITEM_TREE            ; 01
@@ -158,7 +158,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const OBJECT_ACTION_GRASS_SHAKE  ; 0f
 	const OBJECT_ACTION_SKYFALL      ; 10
 
-; Facings indexes (see data/facings.asm)
+; Facings indexes (see data/sprites/facings.asm)
 	const_def
 	const FACING_STEP_DOWN_0    ; 00
 	const FACING_STEP_DOWN_1    ; 01

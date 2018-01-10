@@ -47,10 +47,8 @@ ClearScreen:: ; fdb
 
 
 TextBox:: ; fe8
-; Draw a text box at hl with room for
-; b lines of c characters each.
-; Places a border around the textbox,
-; then switches the palette to the
+; Draw a text box at hl with room for b lines of c characters each.
+; Places a border around the textbox, then switches the palette to the
 ; text black-and-white scheme.
 	push bc
 	push hl
