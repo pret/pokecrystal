@@ -170,7 +170,7 @@ INCLUDE "data/trainers/parties.asm"
 SECTION "Battle Core", ROMX
 
 INCLUDE "engine/battle/core.asm"
-INCLUDE "data/battle_command_pointers.asm"
+INCLUDE "data/battle/effect_command_pointers.asm"
 
 
 SECTION "bank10", ROMX
@@ -300,7 +300,7 @@ SECTION "bank20", ROMX
 INCLUDE "engine/player_movement.asm"
 INCLUDE "engine/engine_flags.asm"
 INCLUDE "engine/variables.asm"
-INCLUDE "data/battle_text.asm"
+INCLUDE "data/battle/battle_text.asm"
 INCLUDE "engine/debug.asm"
 
 

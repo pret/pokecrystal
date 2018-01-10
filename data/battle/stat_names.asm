@@ -7,4 +7,4 @@ StatNames:
 	db "SPCL.DEF@"
 	db "ACCURACY@"
 	db "EVASION@"
-	db "ABILITY@"
+	db "ABILITY@" ; used for BattleCommand_Curse
