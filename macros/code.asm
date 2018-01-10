@@ -39,15 +39,17 @@ ENDM
 mobile EQUS "ret"
 
 maskbits: MACRO
+; masks just enough bits to cover the argument
+; e.g. "maskbits %00010100" becomes "and %00011111"
 ; example usage in rejection sampling:
 ; .loop
 ; 	call Random
-; 	maskbits 30
+; 	maskbits 30 +- 1
 ; 	cp 30
 ; 	jr nc, .loop
 x = 1
 rept 8
-if \1 > x
+if x < (\1)
 x = (x + 1) * 2 +- 1
 endc
 endr

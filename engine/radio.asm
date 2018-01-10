@@ -348,11 +348,13 @@ OPT_MaryText1:
 	db "@"
 
 OaksPkmnTalk8:
+	; 0-15 are all valid indexes into .Adverbs,
+	; so no need for a retry loop
 	call Random
-	and $f ; 0-15 are all the valid indexes into .Descriptors
+	maskbits NUM_OAKS_MON_TALK_ADVERBS +- 1
 	ld e, a
 	ld d, 0
-	ld hl, .Descriptors
+	ld hl, .Adverbs
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -361,7 +363,8 @@ OaksPkmnTalk8:
 	ld a, OAKS_POKEMON_TALK_9
 	jp NextRadioLine
 
-.Descriptors:
+.Adverbs:
+; there are NUM_OAKS_MON_TALK_ADVERBS entries
 	dw .sweetadorably
 	dw .wigglyslickly
 	dw .aptlynamed
@@ -460,11 +463,13 @@ OaksPkmnTalk8:
 	db "@"
 
 OaksPkmnTalk9:
+	; 0-15 are all valid indexes into .Adjectives,
+	; so no need for a retry loop
 	call Random
-	and $f ; 0-15 are all the valid indexes into .Descriptors
+	maskbits NUM_OAKS_MON_TALK_ADJECTIVES +- 1
 	ld e, a
 	ld d, 0
-	ld hl, .Descriptors
+	ld hl, .Adjectives
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -481,7 +486,8 @@ OaksPkmnTalk9:
 .ok
 	jp NextRadioLine
 
-.Descriptors:
+.Adjectives:
+; there are NUM_OAKS_MON_TALK_ADJECTIVES entries
 	dw .cute
 	dw .weird
 	dw .pleasant
@@ -1158,7 +1164,7 @@ PnP_Text3:
 
 PeoplePlaces4: ; People
 	call Random
-	and $7f
+	maskbits NUM_TRAINER_CLASSES +- 1
 	inc a
 	cp NUM_TRAINER_CLASSES - 1
 	jr nc, PeoplePlaces4
@@ -1199,11 +1205,13 @@ PnP_Text4:
 	db "@"
 
 PeoplePlaces5:
+	; 0-15 are all valid indexes into .Adjectives,
+	; so no need for a retry loop
 	call Random
-	and $f ; 0-15 are all the valid indexes into .Descriptors
+	maskbits NUM_PNP_PEOPLE_ADJECTIVES +- 1
 	ld e, a
 	ld d, 0
-	ld hl, .Descriptors
+	ld hl, .Adjectives
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1221,7 +1229,8 @@ PeoplePlaces5:
 .ok
 	jp NextRadioLine
 
-.Descriptors:
+.Adjectives:
+; there are NUM_PNP_PEOPLE_ADJECTIVES entries
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy
@@ -1346,11 +1355,13 @@ PnP_Text5:
 	db "@"
 
 PeoplePlaces7:
+	; 0-15 are all valid indexes into .Adjectives,
+	; so no need for a retry loop
 	call Random
-	and $f ; 0-15 are all the valid indexes into .Descriptors
+	maskbits NUM_PNP_PLACES_ADJECTIVES +- 1
 	ld e, a
 	ld d, 0
-	ld hl, .Descriptors
+	ld hl, .Adjectives
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1369,7 +1380,8 @@ PeoplePlaces7:
 .ok
 	jp PrintRadioLine
 
-.Descriptors:
+.Adjectives:
+; there are NUM_PNP_PLACES_ADJECTIVES entries
 	dw PnP_cute
 	dw PnP_lazy
 	dw PnP_happy
@@ -1553,7 +1565,7 @@ BuenasPassword4:
 ; There are only 11 groups to choose from.
 .greater_than_11
 	call Random
-	maskbits NUM_PASSWORD_CATEGORIES
+	maskbits NUM_PASSWORD_CATEGORIES +- 1
 	cp NUM_PASSWORD_CATEGORIES
 	jr nc, .greater_than_11
 ; Store it in the high nybble of e.
@@ -1562,7 +1574,7 @@ BuenasPassword4:
 ; For each group, choose one of the three passwords.
 .greater_than_three
 	call Random
-	maskbits NUM_PASSWORDS_PER_CATEGORY
+	maskbits NUM_PASSWORDS_PER_CATEGORY +- 1
 	cp NUM_PASSWORDS_PER_CATEGORY
 	jr nc, .greater_than_three
 ; The high nybble of wBuenasPassword will now contain the password group index, and the low nybble contains the actual password.

@@ -105,9 +105,16 @@
 	const MAPRADIO_LETS_ALL_SING
 	const MAPRADIO_ROCKET
 
+; These tables in engine/radio.asm are all sized to a power of 2
+; so there's no need for a rejection sampling loop
+NUM_OAKS_MON_TALK_ADVERBS    EQU 16 ; OaksPkmnTalk8.Adverbs
+NUM_OAKS_MON_TALK_ADJECTIVES EQU 16 ; OaksPkmnTalk9.Adjectives
+NUM_PNP_PEOPLE_ADJECTIVES    EQU 16 ; PeoplePlaces5.Adjectives
+NUM_PNP_PLACES_ADJECTIVES    EQU 16 ; PeoplePlaces7.Adjectives
+
 ; BuenasPasswordTable sizes (see data/radio/buenas_passwords.asm)
-NUM_PASSWORD_CATEGORIES EQU 11
-NUM_PASSWORDS_PER_CATEGORY EQU 3
+NUM_PASSWORD_CATEGORIES    EQU 11
+NUM_PASSWORDS_PER_CATEGORY EQU  3
 
 ; GetBuenasPassword.StringFunctionJumpTable indexes (see engine/radio.asm)
 	const_def
