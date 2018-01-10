@@ -471,7 +471,7 @@ GetNumberedTMHM: ; d417
 
 ## `GetForestTreeFrame` works, but it's still bad
 
-In [tilesets/animations.asm](/tilesets/animations.asm):
+In [engine/tileset_anims.asm](/engine/tileset_anims.asm):
 
 ```asm
 GetForestTreeFrame: ; fc54c

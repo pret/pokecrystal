@@ -1,5 +1,6 @@
 MapGroupRoofs: ; 1c021i
-; entries correspond to Roofs (see below)
+; entries correspond to map groups
+; values are indexes for Roofs (see below)
 	db -1 ; group 0 (unused)
 	db  3 ; group 1 (Olivine)
 	db  2 ; group 2 (Mahogany)

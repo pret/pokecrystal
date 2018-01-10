@@ -85,14 +85,12 @@ INCLUDE "engine/events/daycare.asm"
 INCLUDE "engine/events/print_unown.asm"
 INCLUDE "engine/events/print_photo.asm"
 INCLUDE "engine/breeding.asm"
-
-
-INCLUDE "tilesets/data.asm"
+INCLUDE "data/tileset_data.asm"
 
 
 SECTION "Roofs", ROMX
 
-INCLUDE "tilesets/roofs.asm"
+INCLUDE "engine/mapgroup_roofs.asm"
 
 
 SECTION "Clock Reset", ROMX
@@ -208,7 +206,7 @@ INCLUDE "engine/events/buena_menu.asm"
 SECTION "bank13", ROMX
 
 INCLUDE "engine/map_palettes.asm"
-INCLUDE "tilesets/palette_maps.asm"
+INCLUDE "gfx/tilesets/palette_maps.asm"
 
 ; unreferenced
 ; 0x4ce05
@@ -233,7 +231,7 @@ INCBIN "gfx/shrink/shrink2.2bpp.lz"
 
 INCLUDE "engine/link_2.asm"
 INCLUDE "engine/delete_save_change_clock.asm"
-INCLUDE "tilesets/tilesets.asm"
+INCLUDE "data/tilesets.asm"
 INCLUDE "engine/routines/flagpredef.asm"
 INCLUDE "engine/routines/trademonfrontpic.asm"
 INCLUDE "engine/events/pokerus/check_pokerus.asm"
@@ -490,7 +488,7 @@ INCLUDE "engine/battle/misc.asm"
 
 SECTION "bank3F", ROMX
 
-INCLUDE "tilesets/animations.asm"
+INCLUDE "engine/tileset_anims.asm"
 INCLUDE "engine/npctrade.asm"
 INCLUDE "engine/events/mom_phone.asm"
 

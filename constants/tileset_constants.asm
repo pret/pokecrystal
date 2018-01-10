@@ -1,4 +1,4 @@
-; Tilesets indexes (see tilesets/tilesets.asm)
+; Tilesets indexes (see data/tilesets.asm)
 const_value set 1
 	const TILESET_JOHTO_1              ; 01
 	const TILESET_JOHTO_2              ; 02
@@ -37,7 +37,7 @@ const_value set 1
 	const TILESET_OMANYTE_WORD_ROOM    ; 23
 	const TILESET_AERODACTYL_WORD_ROOM ; 24
 
-; bg palette values (see tilesets/*_palette_map.asm)
+; bg palette values (see gfx/tilesets/*_palette_map.asm)
 	const_def
 	const PAL_BG_GRAY   ; 0
 	const PAL_BG_RED    ; 1

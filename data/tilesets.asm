@@ -5,6 +5,11 @@ tileset: MACRO
 	dw \1PalMap
 ENDM
 
+; Associated data:
+; - The *GFX, *Meta, and *Coll are defined in data/tileset_data.asm
+; - The *Anim are defined in engine/tileset_anims.asm
+; - The *PalMap are defined in gfx/tilesets/palette_maps.asm
+
 Tilesets:: ; 4d596
 ; entries correspond to TILESET_* constants
 	tileset Tileset0
