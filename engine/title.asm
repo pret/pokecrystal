@@ -167,8 +167,8 @@ _TitleScreen: ; 10ed67
 
 ; Make alternating lines come in from opposite sides
 
-; ( This part is actually totally pointless, you can't
-;   see anything until these values are overwritten!  )
+; (This part is actually totally pointless, you can't
+;  see anything until these values are overwritten!)
 
 	ld b, 80 / 2 ; alternate for 80 lines
 	ld hl, LYOverrides

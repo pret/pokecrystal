@@ -1,5 +1,6 @@
 CARDFLIP_LIGHT_OFF EQU $ef
 CARDFLIP_LIGHT_ON  EQU $f5
+
 CARDFLIP_DECK_SIZE EQU 4 * 6
 
 _CardFlip: ; e00ee (38:40ee)
@@ -25,11 +26,11 @@ _CardFlip: ; e00ee (38:40ee)
 	ld de, vTiles0 tile $00
 	call Decompress
 	ld hl, CardFlipOffButtonGFX
-	ld de, vTiles1 tile $6f
+	ld de, vTiles0 tile CARDFLIP_LIGHT_OFF
 	ld bc, 1 tiles
 	call CopyBytes
 	ld hl, CardFlipOnButtonGFX
-	ld de, vTiles1 tile $75
+	ld de, vTiles0 tile CARDFLIP_LIGHT_ON
 	ld bc, 1 tiles
 	call CopyBytes
 

@@ -1204,7 +1204,8 @@ INCLUDE "data/palettes/pal_packets.asm"
 PredefPals:
 INCLUDE "data/palettes/predef.pal"
 
-INCLUDE "data/sgb_border_map.asm"
+SGBBorderMap:
+INCBIN "gfx/sgb/sgb_border.tilemap"
 
 SGBBorderPalettes:
 INCLUDE "data/palettes/sgb_border.pal"
