@@ -589,7 +589,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	dec b
 	jr nz, .loop
 
-	call .loadpokeballgfx ; ld a, [OtherTrainerClass] \ ld de, PokeBallTransition \ ret
+	call .loadpokeballgfx
 	hlcoord 2, 1
 
 	ld b, SCREEN_WIDTH - 4
