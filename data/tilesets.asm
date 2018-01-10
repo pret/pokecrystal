@@ -6,7 +6,7 @@ tileset: MACRO
 ENDM
 
 ; Associated data:
-; - The *GFX, *Meta, and *Coll are defined in data/tileset_data.asm
+; - The *GFX, *Meta, and *Coll are defined in gfx/tilesets.asm
 ; - The *Anim are defined in engine/tileset_anims.asm
 ; - The *PalMap are defined in gfx/tilesets/palette_maps.asm
 

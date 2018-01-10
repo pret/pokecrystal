@@ -5,13 +5,13 @@ LoadMapGroupRoof:: ; 1c000
 	ld hl, MapGroupRoofs
 	add hl, de
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	ld hl, Roofs
-	ld bc, $90
+	ld bc, 9 tiles
 	call AddNTimes
 	ld de, vTiles2 tile $0a
-	ld bc, $90
+	ld bc, 9 tiles
 	call CopyBytes
 	ret
 ; 1c021

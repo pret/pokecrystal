@@ -1,4 +1,5 @@
 tilepal: MACRO
+; used in gfx/tilesets/*_palette_map.asm
 ; vram bank, pals
 x = \1 << OAM_TILE_BANK
 rept (_NARG +- 1) / 2
