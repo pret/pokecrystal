@@ -23,9 +23,6 @@ BattleTowerTrainers: ; 1f814e
 	db "KAUFMAN@@@", SWIMMERM
 	db "LANCASTER@", SKIER
 	db "McMAHILL@@", CAMPER
-if !DEF(_CRYSTAL11)
-BattleTowerTrainersEnd:
-endc
 ; The following can only be sampled in Crystal 1.1.
 	db "OBRIEN@@@@", GENTLEMAN
 	db "FROST@@@@@", BEAUTY
@@ -76,7 +73,4 @@ endc
 	db "DYKSTRA@@@", SWIMMERF
 	db "EATON@@@@@", BIKER
 	db "WONG@@@@@@", FIREBREATHER
-if DEF(_CRYSTAL11)
-BattleTowerTrainersEnd:
-endc
 ; 1f8450

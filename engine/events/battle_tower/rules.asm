@@ -213,7 +213,7 @@ BattleTower_ExecuteJumptable: ; 8b25b
 
 BattleTower_CheckPartyLengthIs3: ; 8b2bb
 	ld a, [PartyCount]
-	cp 3
+	cp BATTLETOWER_NROFPKMNS
 	ret
 ; 8b2c1
 
@@ -235,13 +235,13 @@ BattleTower_CheckPartyHasThreeMonsThatAreNotEggs: ; 8b2c1
 	cp b
 	ret z
 	ld a, b
-	cp 3
+	cp BATTLETOWER_NROFPKMNS
 	ret
 ; 8b2da
 
 Function_PartyCountEq3: ; 8b2da
 	ld a, [PartyCount]
-	cp 3
+	cp BATTLETOWER_NROFPKMNS
 	ret z
 	scf
 	ret
