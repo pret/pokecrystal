@@ -20,8 +20,14 @@ TREEMON_SLEEP_TURNS EQU 7
 ; default move priority
 BASE_PRIORITY EQU 1
 
-; PlayerStatLevels and EnemyStatLevels indexes
-; used for GetStatName
+; type effectiveness factors, scaled by 10
+SUPER_EFFECTIVE    EQU 20
+EFFECTIVE          EQU 10
+NOT_VERY_EFFECTIVE EQU 05
+NO_EFFECT          EQU 00
+
+; PlayerStatLevels and EnemyStatLevels indexes (see wram.asm)
+; GetStatName arguments (see data/battle/stat_names.asm)
 	const_def
 	const ATTACK
 	const DEFENSE

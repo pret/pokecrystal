@@ -1,19 +1,21 @@
 TreeMons: ; b82e8
-	dw TreeMons1
-	dw TreeMons1
-	dw TreeMons2
-	dw TreeMons3
-	dw TreeMons4
-	dw TreeMons5
-	dw TreeMons6
-	dw RockMons
-	dw TreeMons1
+; entries correspond to TREEMON_SET_* constants
+	dw TreeMonSet_City
+	dw TreeMonSet_Canyon
+	dw TreeMonSet_Azalea
+	dw TreeMonSet_Route
+	dw TreeMonSet_Kanto
+	dw TreeMonSet_Lake
+	dw TreeMonSet_Forest
+	dw TreeMonSet_Rock
+	dw TreeMonSet_City
 
 ; Two tables each (common, rare).
 ; Structure:
 ;	db  %, species, level
 
-TreeMons1: ; b82fa
+TreeMonSet_City:
+TreeMonSet_Canyon: ; b82fa
 ; common
 	db 50, SPEAROW,    10
 	db 15, SPEAROW,    10
@@ -31,7 +33,7 @@ TreeMons1: ; b82fa
 	db  5, AIPOM,      10
 	db -1
 
-TreeMons2: ; b8320
+TreeMonSet_Azalea: ; b8320
 ; common
 	db 50, SPEAROW,    10
 	db 15, EKANS,      10
@@ -49,7 +51,7 @@ TreeMons2: ; b8320
 	db  5, AIPOM,      10
 	db -1
 
-TreeMons3: ; b8346
+TreeMonSet_Route: ; b8346
 ; common
 	db 50, HOOTHOOT,   10
 	db 15, SPINARAK,   10
@@ -67,7 +69,7 @@ TreeMons3: ; b8346
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMons4: ; b836c
+TreeMonSet_Kanto: ; b836c
 ; common
 	db 50, HOOTHOOT,   10
 	db 15, EKANS,      10
@@ -85,7 +87,7 @@ TreeMons4: ; b836c
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMons5: ; b8392
+TreeMonSet_Lake: ; b8392
 ; common
 	db 50, HOOTHOOT,   10
 	db 15, VENONAT,    10
@@ -103,7 +105,7 @@ TreeMons5: ; b8392
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMons6: ; b83b8
+TreeMonSet_Forest: ; b83b8
 ; common
 	db 50, HOOTHOOT,   10
 	db 15, PINECO,     10
@@ -121,7 +123,7 @@ TreeMons6: ; b83b8
 	db  5, KAKUNA,     10
 	db -1
 
-RockMons: ; b83de
+TreeMonSet_Rock: ; b83de
 	db 90, KRABBY,     15
 	db 10, SHUCKLE,    15
 	db -1

@@ -1,13 +1,11 @@
 ReturnFromMapSetupScript:: ; b8000
 	xor a
 	ld [hBGMapMode], a
-	; For some reson, GameFreak chose to use a farcall here instead of just falling through.
-	; No other function in the game references the function at 2E:400A, here labeled
-	; ReturnFromMapSetupScript.inefficient_farcall.
 	farcall .inefficient_farcall ; this is a waste of 6 ROM bytes and 6 stack bytes
 	ret
 ; b800a
 
+; should have just been a fallthrough
 .inefficient_farcall ; b800a
 	ld a, [MapGroup]
 	ld b, a
@@ -70,6 +68,7 @@ ReturnFromMapSetupScript:: ; b8000
 ; b8070
 
 .CheckSpecialMap: ; b8070
+; These landmarks do not get pop-up signs.
 	cp -1
 	ret z
 	cp SPECIAL_MAP
@@ -401,6 +400,7 @@ RockMonEncounter: ; b8219
 	call GetTreeMons
 	jr nc, .no_battle
 
+	; 40% chance of an encounter
 	ld a, 10
 	call RandomRange
 	cp 4
@@ -461,7 +461,7 @@ GetTreeMons: ; b82d2
 ; Return the address of TreeMon table a in hl.
 ; Return nc if table a doesn't exist.
 
-	cp 8
+	cp NUM_TREEMON_SETS
 	jr nc, .quit
 
 	and a
@@ -491,15 +491,16 @@ GetTreeMon: ; b83e5
 	push hl
 	call GetTreeScore
 	pop hl
-	and a
+	and a ; TREEMON_SCORE_BAD
 	jr z, .bad
-	cp 1
+	cp TREEMON_SCORE_GOOD
 	jr z, .good
-	cp 2
+	cp TREEMON_SCORE_RARE
 	jr z, .rare
 	ret
 
 .bad
+	; 10% chance of an encounter
 	ld a, 10
 	call RandomRange
 	and a
@@ -507,6 +508,7 @@ GetTreeMon: ; b83e5
 	jr SelectTreeMon
 
 .good
+	; 50% chance of an encounter
 	ld a, 10
 	call RandomRange
 	cp 5
@@ -514,6 +516,7 @@ GetTreeMon: ; b83e5
 	jr SelectTreeMon
 
 .rare
+	; 80% chance of an encounter
 	ld a, 10
 	call RandomRange
 	cp 8
@@ -542,7 +545,7 @@ SelectTreeMon: ; b841f
 
 .ok
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, NoTreeMon
 
 	ld a, [hli]
@@ -575,15 +578,15 @@ GetTreeScore: ; b8443
 	jr c, .good
 
 .bad
-	xor a
+	xor a ; TREEMON_SCORE_BAD
 	ret
 
 .good
-	ld a, 1
+	ld a, TREEMON_SCORE_GOOD
 	ret
 
 .rare
-	ld a, 2
+	ld a, TREEMON_SCORE_RARE
 	ret
 ; b8466
 

@@ -1429,6 +1429,7 @@ LoadTilesetGFX:: ; 2821
 	pop af
 	ld [rSVBK], a
 
+; These tilesets support dynamic per-mapgroup roof tiles.
 	ld a, [wTileset]
 	cp TILESET_JOHTO_1
 	jr z, .load_roof

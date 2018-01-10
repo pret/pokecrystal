@@ -2045,12 +2045,12 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 
 ; If any party Pokemon was introduced in the generation 2 games, don't let it in.
 	ld hl, PartySpecies
-	ld b, PARTY_LENGTH ; 6
+	ld b, PARTY_LENGTH
 .loop
 	ld a, [hli]
 	cp -1
 	jr z, .checkitem
-	cp CHIKORITA ; MEW + 1 ; 151 + 1
+	cp MEW + 1
 	jr nc, .mon_too_new
 	dec b
 	jr nz, .loop
