@@ -120,10 +120,12 @@ gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp g
 
 ### Pokemon pic graphics rules
 
-gfx/pokemon/%/normal.gbcpal: gfx/pokemon/%/front.png
-	$(RGBGFX) -p $@ $<
+gfx/pokemon/%/front.dimensions: gfx/pokemon/%/front.png
+	tools/png_dimensions $< $@
 gfx/pokemon/%/normal.pal: gfx/pokemon/%/normal.gbcpal
 	tools/palette -p $< > $@
+gfx/pokemon/%/normal.gbcpal: gfx/pokemon/%/front.png
+	$(RGBGFX) -p $@ $<
 gfx/pokemon/%/back.2bpp: gfx/pokemon/%/back.png
 	$(RGBGFX) -h -o $@ $<
 gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
@@ -134,9 +136,6 @@ gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.
 	tools/pokemon_animation_graphics -o $@ $^
 gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation_graphics -t $@ $^
-# Don't use -h, pokemon_animation_graphics takes care of it
-#gfx/pokemon/%/front.2bpp: gfx/pokemon/%/front.png
-#	$(RGBGFX) -o $@ $<
 
 
 ### Misc file-specific graphics rules
@@ -147,6 +146,8 @@ gfx/shrink/shrink2.2bpp: rgbgfx += -h
 gfx/trainers/%.2bpp: rgbgfx += -h
 gfx/trainers/%.pal: gfx/trainers/%.gbcpal
 	tools/palette -p $< > $@
+gfx/trainers/%.gbcpal: gfx/trainers/%.png
+	$(RGBGFX) -p $@ $<
 
 gfx/mail/dragonite.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/large_note.1bpp: tools/gfx += --remove-whitespace
@@ -227,12 +228,3 @@ gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -d1 -o $@ $@)
-
-%.tilemap: %.png
-	$(RGBGFX) -t $@ $<
-%.gbcpal: %.png
-	$(RGBGFX) -p $@ $<
-%.pal: %.gbcpal
-	tools/palette $< > $@
-%.dimensions: %.png
-	tools/png_dimensions $< $@
