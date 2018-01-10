@@ -27,12 +27,12 @@ Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	add b
 	ld b, a ; b contains the nr of the trainer
 if DEF(_CRYSTAL11)
-	maskbits BATTLETOWER_NUM_UNIQUE_TRAINERS
+	maskbits BATTLETOWER_NUM_UNIQUE_TRAINERS +- 1
 	cp BATTLETOWER_NUM_UNIQUE_TRAINERS
 else
 ; Crystal 1.0 used the wrong constant here, so only the first 21
 ; trainers in BattleTowerTrainers can be sampled.
-	maskbits BATTLETOWER_NUM_UNIQUE_PKMN
+	maskbits BATTLETOWER_NUM_UNIQUE_PKMN +- 1
 	cp BATTLETOWER_NUM_UNIQUE_PKMN
 endc
 	jr nc, .resample
@@ -115,7 +115,7 @@ Function_LoadRandomBattleTowerPkmn: ; 1f8081
 	ld a, [hRandomAdd]
 	add b
 	ld b, a
-	maskbits BATTLETOWER_NUM_UNIQUE_PKMN
+	maskbits BATTLETOWER_NUM_UNIQUE_PKMN +- 1
 	cp BATTLETOWER_NUM_UNIQUE_PKMN
 	jr nc, .resample
 	; in register 'a' is the chosen Pkmn of the LevelGroup
