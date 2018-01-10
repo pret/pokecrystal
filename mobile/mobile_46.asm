@@ -6930,7 +6930,7 @@ Function11b31b: ; 11b31b
 	db $39 ; 13
 
 Function11b397: ; 11b397
-	ld de, Sprites
+	ld de, Sprite01
 .loop
 	ld a, [hl]
 	cp $ff
@@ -6939,20 +6939,20 @@ Function11b397: ; 11b397
 	and $7
 	swap a
 	add [hl]
-	inc hl ; 1
-	ld [de], a
+	inc hl
+	ld [de], a ; y
 	inc de
 
-	ld a, [hli] ; 2
-	ld [de], a
+	ld a, [hli]
+	ld [de], a ; x
 	inc de
 
 	ld a, [bc]
 	inc bc
-	ld [de], a
+	ld [de], a ; tile id
 	inc de
-	ld a, $5 ; OBPal 5
-	ld [de], a
+	ld a, $5
+	ld [de], a ; attributes
 	inc de
 	jr .loop
 ; 11b3b6
@@ -6989,7 +6989,7 @@ Function11b3b6: ; 11b3b6
 ; 11b3d9
 
 Function11b3d9: ; 11b3d9
-	ld de, Sprites + 28 * 4
+	ld de, Sprite29
 	push de
 	ld a, [wc7d2]
 	dec a

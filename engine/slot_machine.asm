@@ -260,15 +260,15 @@ Function9282c: ; 9282c
 	inc [hl]
 	and $7
 	ret nz
-	ld hl, Sprites + 16 * 4 + 2
-	ld c, 40 - 16
+	ld hl, Sprite17TileID
+	ld c, NUM_SPRITE_OAM_STRUCTS - 16
 .loop
 	ld a, [hl]
-	xor $20
-	ld [hli], a
+	xor %00100000
+	ld [hli], a ; tile id
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop
 	ret
@@ -670,7 +670,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel1
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprites + 16 * 4
+	ld de, Sprite17
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -688,7 +688,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel2
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprites + 24 * 4
+	ld de, Sprite25
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -706,7 +706,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel3
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprites + 32 * 4
+	ld de, Sprite33
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -821,34 +821,34 @@ Slots_UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
 	ld l, a
 .loop
 	ld a, [wCurrReelYCoord]
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, [wCurrReelXCoord]
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, [de]
-	ld [hli], a
+	ld [hli], a ; tile id
 	srl a
 	srl a
-	set 7, a
-	ld [hli], a
+	set OAM_PRIORITY, a
+	ld [hli], a ; attributes
 
 	ld a, [wCurrReelYCoord]
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, [wCurrReelXCoord]
-	add 1 * 8
-	ld [hli], a
+	add 1 * TILE_WIDTH
+	ld [hli], a ; x
 	ld a, [de]
 	inc a
 	inc a
-	ld [hli], a
+	ld [hli], a ; tile id
 	srl a
 	srl a
-	set 7, a
-	ld [hli], a
+	set OAM_PRIORITY, a
+	ld [hli], a ; attributes
 	inc de
 	ld a, [wCurrReelYCoord]
-	sub 2 * 8
+	sub 2 * TILE_WIDTH
 	ld [wCurrReelYCoord], a
-	cp 2 * 8
+	cp 2 * TILE_WIDTH
 	jr nz, .loop
 	ret
 

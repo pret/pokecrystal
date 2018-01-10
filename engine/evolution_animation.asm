@@ -346,15 +346,15 @@ EvolutionAnimation: ; 4e5e1
 	inc a
 	and $7
 	ld b, a
-	ld hl, Sprites + 3 ; attributes
-	ld c, 40
+	ld hl, Sprite01Attributes
+	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop6
 	ld a, [hl]
 	or b
-	ld [hli], a
+	ld [hli], a ; attributes
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop6
 	pop bc

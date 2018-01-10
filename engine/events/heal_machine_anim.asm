@@ -73,20 +73,20 @@ HealMachineAnim: ; 12324
 	call .LoadPalettes
 	ld de, .HealMachineGFX
 	ld hl, vTiles0 tile $7c
-	lb bc, BANK(.HealMachineGFX), $2
+	lb bc, BANK(.HealMachineGFX), 2
 	call Request2bpp
 	ret
 ; 12393
 
 .PC_LoadBallsOntoMachine: ; 12393
-	ld hl, Sprites + $80
+	ld hl, Sprite33
 	ld de, .PC_ElmsLab_OAM
 	call .PlaceHealingMachineTile
 	call .PlaceHealingMachineTile
 	jr .LoadBallsOntoMachine
 
 .HOF_LoadBallsOntoMachine: ; 123a1
-	ld hl, Sprites + $80
+	ld hl, Sprite33
 	ld de, .HOF_OAM
 
 .LoadBallsOntoMachine: ; 123a7
@@ -249,17 +249,17 @@ INCBIN "gfx/overworld/heal_machine.2bpp"
 	ld a, [de]
 	add c
 	inc de
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, [de]
 	add b
 	inc de
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ; tile id
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ; attributes
 	pop bc
 	ret
 ; 124c1

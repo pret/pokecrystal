@@ -182,12 +182,12 @@ ClearSprites:: ; 300b
 
 HideSprites:: ; 3016
 ; Set all OAM y-positions to 160 to hide them offscreen
-	ld hl, Sprites
-	ld de, 4 ; length of an OAM struct
-	ld b, (SpritesEnd - Sprites) / 4 ; number of OAM structs
-	ld a, 160 ; y
+	ld hl, Sprite01YCoord
+	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld b, NUM_SPRITE_OAM_STRUCTS
+	ld a, SCREEN_WIDTH_PX
 .loop
-	ld [hl], a
+	ld [hl], a ; y
 	add hl, de
 	dec b
 	jr nz, .loop

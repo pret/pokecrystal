@@ -258,15 +258,15 @@ BattleAnim_ClearCGB_OAMFlags: ; cc23d
 	bit 3, a
 	jr z, .delete
 
-	ld hl, Sprites + 3
-	ld c, (SpritesEnd - Sprites) / 4
+	ld hl, Sprite01Attributes
+	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop
 	ld a, [hl]
 	and $f0
 	ld [hli], a
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop
 	ret

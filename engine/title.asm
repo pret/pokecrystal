@@ -323,7 +323,7 @@ DrawTitleGraphic: ; 10eeef
 ; 10ef06
 
 InitializeBackground: ; 10ef06
-	ld hl, Sprites
+	ld hl, Sprite01
 	ld d, -$22
 	ld e, $0
 	ld c, 5
@@ -344,17 +344,17 @@ InitializeBackground: ; 10ef06
 	ld b, $40
 .loop2
 	ld a, d
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, b
-	ld [hli], a
+	ld [hli], a ; x
 	add $8
 	ld b, a
 	ld a, e
-	ld [hli], a
+	ld [hli], a ; tile id
 	inc e
 	inc e
-	ld a, $80
-	ld [hli], a
+	ld a, 0 | BEHIND_BG
+	ld [hli], a ; attributes
 	dec c
 	jr nz, .loop2
 	ret
@@ -366,9 +366,9 @@ AnimateTitleCrystal: ; 10ef32
 
 ; Stop at y=6
 ; y is really from the bottom of the sprite, which is two tiles high
-	ld hl, Sprites
+	ld hl, Sprite01YCoord
 	ld a, [hl]
-	cp 6 + $10
+	cp 6 + 2 * TILE_WIDTH
 	ret z
 
 ; Move all 30 parts of the crystal down by 2
@@ -376,10 +376,10 @@ AnimateTitleCrystal: ; 10ef32
 .loop
 	ld a, [hl]
 	add 2
-	ld [hli], a
+	ld [hli], a ; y
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop
 

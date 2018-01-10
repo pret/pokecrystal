@@ -100,11 +100,11 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 
 	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
-	ld h, HIGH(Sprites + 16 * 4)
+	ld h, HIGH(Sprite17)
 
 .loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> Sprites + $40)
 	ld a, l
-	cp LOW(Sprites + 16 * 4)
+	cp LOW(Sprite17)
 	jr nc, .done
 	xor a
 	ld [hli], a
@@ -650,8 +650,8 @@ AnimateEndOfExpBar: ; 8e79d
 ; 8e7c6
 
 .AnimateFrame: ; 8e7c6
-	ld hl, Sprites
-	ld c, $8
+	ld hl, Sprite01
+	ld c, 8 ; number of animated circles
 .anim_loop
 	ld a, c
 	and a
@@ -669,8 +669,8 @@ AnimateEndOfExpBar: ; 8e79d
 	call Sprites_Sine
 	pop hl
 	pop de
-	add 13 * 8
-	ld [hli], a
+	add 13 * TILE_WIDTH
+	ld [hli], a ; y
 
 	pop af
 	push de
@@ -678,13 +678,13 @@ AnimateEndOfExpBar: ; 8e79d
 	call Sprites_Cosine
 	pop hl
 	pop de
-	add 10 * 8 + 4
-	ld [hli], a
+	add 10 * TILE_WIDTH + 4
+	ld [hli], a ; x
 
 	ld a, $0
-	ld [hli], a
+	ld [hli], a ; tile id
 	ld a, PAL_BATTLE_OB_BLUE
-	ld [hli], a
+	ld [hli], a ; attributes
 	jr .anim_loop
 ; 8e7f4
 

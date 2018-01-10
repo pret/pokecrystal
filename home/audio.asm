@@ -506,16 +506,16 @@ Function3d9f:: ; 3d9f
 ; Places a BCD number at the
 ; upper center of the screen.
 ; Unreferenced.
-	ld a, 4 * 8
-	ld [Sprites + 38 * 4], a
-	ld [Sprites + 39 * 4], a
-	ld a, 10 * 8
-	ld [Sprites + 38 * 4 + 1], a
-	ld a, 11 * 8
-	ld [Sprites + 39 * 4 + 1], a
+	ld a, 4 * TILE_WIDTH
+	ld [Sprite39YCoord], a
+	ld [Sprite40YCoord], a
+	ld a, 10 * TILE_WIDTH
+	ld [Sprite39XCoord], a
+	ld a, 11 * TILE_WIDTH
+	ld [Sprite40XCoord], a
 	xor a
-	ld [Sprites + 38 * 4 + 3], a
-	ld [Sprites + 39 * 4 + 3], a
+	ld [Sprite39Attributes], a
+	ld [Sprite40Attributes], a
 	ld a, [wc296]
 	cp 100
 	jr nc, .max
@@ -525,17 +525,17 @@ Function3d9f:: ; 3d9f
 	swap a
 	and $f
 	add "0"
-	ld [Sprites + 38 * 4 + 2], a
+	ld [Sprite39TileID], a
 	ld a, b
 	and $f
 	add "0"
-	ld [Sprites + 39 * 4 + 2], a
+	ld [Sprite40TileID], a
 	ret
 
 .max
 	ld a, "9"
-	ld [Sprites + 38 * 4 + 2], a
-	ld [Sprites + 39 * 4 + 2], a
+	ld [Sprite39TileID], a
+	ld [Sprite40TileID], a
 	ret
 ; 3dde
 

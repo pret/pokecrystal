@@ -62,8 +62,8 @@ ShakeHeadbuttTree: ; 8c80a
 	xor a
 	ld [hBGMapMode], a
 	farcall ClearSpriteAnims
-	ld hl, Sprites + 36 * 4
-	ld bc, SpritesEnd - (Sprites + 36 * 4)
+	ld hl, Sprite37
+	ld bc, SpritesEnd - Sprite37
 	xor a
 	call ByteFill
 	ld de, Font
@@ -393,19 +393,19 @@ FlyToAnim: ; 8cb33
 	ret
 
 .RestorePlayerSprite_DespawnLeaves: ; 8cb82 (23:4b82)
-	ld hl, Sprites + 2 ; Tile ID
+	ld hl, Sprite01TileID
 	xor a
-	ld c, $4
-.loop2
-	ld [hli], a
+	ld c, 4
+.OAMloop
+	ld [hli], a ; tile id
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	inc a
 	dec c
-	jr nz, .loop2
-	ld hl, Sprites + 4 * 4
-	ld bc, SpritesEnd - (Sprites + 4 * 4)
+	jr nz, .OAMloop
+	ld hl, Sprite05
+	ld bc, SpritesEnd - Sprite05
 	xor a
 	call ByteFill
 	ret

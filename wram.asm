@@ -303,20 +303,46 @@ wc3fc:: ds 1
 SECTION "Sprites", WRAM0
 
 Sprites:: ; c400
-; 4 bytes per sprite
-; 40 sprites
-; struct:
-;	y (px)
-;	x (px)
-;	tile id
-;	attributes:
-;		bit 7: priority
-;		bit 6: y flip
-;		bit 5: x flip
-;		bit 4: pal # (non-cgb)
-;		bit 3: vram bank (cgb only)
-;		bit 2-0: pal # (cgb only)
-	ds 4 * 40
+Sprite01:: sprite_oam_struct Sprite01
+Sprite02:: sprite_oam_struct Sprite02
+Sprite03:: sprite_oam_struct Sprite03
+Sprite04:: sprite_oam_struct Sprite04
+Sprite05:: sprite_oam_struct Sprite05
+Sprite06:: sprite_oam_struct Sprite06
+Sprite07:: sprite_oam_struct Sprite07
+Sprite08:: sprite_oam_struct Sprite08
+Sprite09:: sprite_oam_struct Sprite09
+Sprite10:: sprite_oam_struct Sprite10
+Sprite11:: sprite_oam_struct Sprite11
+Sprite12:: sprite_oam_struct Sprite12
+Sprite13:: sprite_oam_struct Sprite13
+Sprite14:: sprite_oam_struct Sprite14
+Sprite15:: sprite_oam_struct Sprite15
+Sprite16:: sprite_oam_struct Sprite16
+Sprite17:: sprite_oam_struct Sprite17
+Sprite18:: sprite_oam_struct Sprite18
+Sprite19:: sprite_oam_struct Sprite19
+Sprite20:: sprite_oam_struct Sprite20
+Sprite21:: sprite_oam_struct Sprite21
+Sprite22:: sprite_oam_struct Sprite22
+Sprite23:: sprite_oam_struct Sprite23
+Sprite24:: sprite_oam_struct Sprite24
+Sprite25:: sprite_oam_struct Sprite25
+Sprite26:: sprite_oam_struct Sprite26
+Sprite27:: sprite_oam_struct Sprite27
+Sprite28:: sprite_oam_struct Sprite28
+Sprite29:: sprite_oam_struct Sprite29
+Sprite30:: sprite_oam_struct Sprite30
+Sprite31:: sprite_oam_struct Sprite31
+Sprite32:: sprite_oam_struct Sprite32
+Sprite33:: sprite_oam_struct Sprite33
+Sprite34:: sprite_oam_struct Sprite34
+Sprite35:: sprite_oam_struct Sprite35
+Sprite36:: sprite_oam_struct Sprite36
+Sprite37:: sprite_oam_struct Sprite37
+Sprite38:: sprite_oam_struct Sprite38
+Sprite39:: sprite_oam_struct Sprite39
+Sprite40:: sprite_oam_struct Sprite40
 SpritesEnd::
 
 

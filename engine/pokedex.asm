@@ -2050,7 +2050,7 @@ Pokedex_PutOldModeCursorOAM: ; 41157 (10:5157)
 	dsprite  5,  0, 19, -2, $32, 7 | X_FLIP | Y_FLIP
 	dsprite  5,  0, 20, -2, $31, 7 | X_FLIP | Y_FLIP
 	dsprite  4,  0, 20, -2, $30, 7 | X_FLIP | Y_FLIP
-	db $ff
+	db -1
 
 .CursorAtTopOAM: ; 411c8
 ; OAM data for when the cursor is at the top of the list. The tiles at the top
@@ -2079,7 +2079,7 @@ Pokedex_PutOldModeCursorOAM: ; 41157 (10:5157)
 	dsprite  5,  0, 19, -2, $32, 7 | X_FLIP | Y_FLIP
 	dsprite  5,  0, 20, -2, $31, 7 | X_FLIP | Y_FLIP
 	dsprite  4,  0, 20, -2, $30, 7 | X_FLIP | Y_FLIP
-	db $ff
+	db -1
 
 Pokedex_PutNewModeABCModeCursorOAM: ; 41229 (10:5229)
 	ld hl, .CursorOAM
@@ -2107,7 +2107,7 @@ Pokedex_PutNewModeABCModeCursorOAM: ; 41229 (10:5229)
 	dsprite  5,  3, 18,  0, $32, 7 | X_FLIP | Y_FLIP
 	dsprite  5,  3, 19,  0, $31, 7 | X_FLIP | Y_FLIP
 	dsprite  4,  3, 19,  0, $30, 7 | X_FLIP | Y_FLIP
-	db $ff
+	db -1
 
 Pokedex_UpdateSearchResultsCursorOAM: ; 41281 (10:5281)
 	ld a, [wCurrentDexMode]
@@ -2142,28 +2142,28 @@ Pokedex_UpdateSearchResultsCursorOAM: ; 41281 (10:5281)
 	dsprite  5,  3, 19, -2, $32, 7 | X_FLIP | Y_FLIP
 	dsprite  5,  3, 20, -2, $31, 7 | X_FLIP | Y_FLIP
 	dsprite  4,  3, 20, -2, $30, 7 | X_FLIP | Y_FLIP
-	db $ff
+	db -1
 
 Pokedex_LoadCursorOAM: ; 412f1 (10:52f1)
-	ld de, Sprites
+	ld de, Sprite01
 .loop
 	ld a, [hl]
-	cp $ff
+	cp -1
 	ret z
 	ld a, [wDexListingCursor]
 	and $7
 	swap a
-	add [hl]
+	add [hl] ; y
 	inc hl
 	ld [de], a
 	inc de
-	ld a, [hli]
+	ld a, [hli] ; x
 	ld [de], a
 	inc de
-	ld a, [hli]
+	ld a, [hli] ; tile id
 	ld [de], a
 	inc de
-	ld a, [hli]
+	ld a, [hli] ; attributes
 	ld [de], a
 	inc de
 	jr .loop

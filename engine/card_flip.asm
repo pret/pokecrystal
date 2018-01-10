@@ -594,23 +594,23 @@ CardFlip_CopyToBox: ; e04f7 (38:44f7)
 ; e0509 (38:4509)
 
 CardFlip_CopyOAM: ; e0509
-	ld de, Sprites
+	ld de, Sprite01
 	ld a, [hli]
 .loop
 	push af
 	ld a, [hli]
 	add b
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
 	add c
-	ld [de], a
+	ld [de], a ; x
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; tile id
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; attributes
 	inc de
 	pop af
 	dec a
@@ -619,11 +619,11 @@ CardFlip_CopyOAM: ; e0509
 ; e0521
 
 CardFlip_ShiftDigitsLeftTwoPixels: ; e0521 (38:4521)
-	ld de, vTiles1 tile ("0" & $7f)
-	ld hl, vTiles1 tile ("0" & $7f) + 2
+	ld de, vTiles0 tile "0"
+	ld hl, vTiles0 tile "0" + 2
 	ld bc, 10 tiles - 2
 	call CopyBytes
-	ld hl, vTiles1 tile $7f + 1 tiles - 2
+	ld hl, vTiles0 tile "9" + 1 tiles - 2
 	xor a
 	ld [hli], a
 	ld [hl], a

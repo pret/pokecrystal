@@ -971,7 +971,7 @@ Intro_PlacePlayerSprite: ; 61cd
 	ld hl, vTiles0
 	call Request2bpp
 
-	ld hl, Sprites
+	ld hl, Sprite01
 	ld de, .sprites
 	ld a, [de]
 	inc de
@@ -980,19 +980,19 @@ Intro_PlacePlayerSprite: ; 61cd
 .loop
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, [de]
 	inc de
-	ld [hli], a
+	ld [hli], a ; tile id
 
-	ld b, 0
+	ld b, PAL_OW_RED
 	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .male
-	ld b, 1
+	ld b, PAL_OW_BLUE
 .male
 	ld a, b
 
@@ -1004,6 +1004,7 @@ Intro_PlacePlayerSprite: ; 61cd
 
 .sprites ; 61fe
 	db 4
+	; y pxl, x pxl, tile offset
 	db  9 * 8 + 4,  9 * 8, 0
 	db  9 * 8 + 4, 10 * 8, 1
 	db 10 * 8 + 4,  9 * 8, 2

@@ -28,7 +28,7 @@ ShowPlayerMonsRemaining: ; 2c01c
 	ld [hl], a
 	ld a, 8
 	ld [wPlaceBallsDirection], a
-	ld hl, Sprites
+	ld hl, Sprite01
 	jp LoadTrainerHudOAM
 ; 2c03a
 
@@ -44,7 +44,7 @@ ShowOTTrainerMonsRemaining: ; 2c03a
 	ld [hl], 4 * 8
 	ld a, -8
 	ld [wPlaceBallsDirection], a
-	ld hl, Sprites + PARTY_LENGTH * 4
+	ld hl, Sprite07
 	jp LoadTrainerHudOAM
 ; 2c059
 
@@ -193,7 +193,7 @@ LinkBattle_TrainerHuds: ; 2c10d
 	ld [hl], 8 * 8
 	ld a, $8
 	ld [wPlaceBallsDirection], a
-	ld hl, Sprites
+	ld hl, Sprite01
 	call LoadTrainerHudOAM
 
 	ld hl, OTPartyMon1HP
@@ -203,7 +203,7 @@ LinkBattle_TrainerHuds: ; 2c10d
 	ld a, 10 * 8
 	ld [hli], a
 	ld [hl], 13 * 8
-	ld hl, Sprites + PARTY_LENGTH * 4
+	ld hl, Sprite07
 	jp LoadTrainerHudOAM
 ; 2c143
 
@@ -212,13 +212,13 @@ LoadTrainerHudOAM: ; 2c143
 	ld c, PARTY_LENGTH
 .loop
 	ld a, [wPlaceBallsY]
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, [wPlaceBallsX]
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, [de]
-	ld [hli], a
-	ld a, $3
-	ld [hli], a
+	ld [hli], a ; tile id
+	ld a, PAL_BATTLE_OB_YELLOW
+	ld [hli], a ; attributes
 	ld a, [wPlaceBallsX]
 	ld b, a
 	ld a, [wPlaceBallsDirection]

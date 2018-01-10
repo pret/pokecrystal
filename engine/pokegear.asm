@@ -2596,7 +2596,7 @@ _Area: ; 91d11
 	ld e, a
 	farcall FindNest ; load nest landmarks into TileMap[0,0]
 	decoord 0, 0
-	ld hl, Sprites
+	ld hl, Sprite01
 .nestloop
 	ld a, [de]
 	and a
@@ -2609,14 +2609,14 @@ _Area: ; 91d11
 	; load into OAM
 	ld a, d
 	sub 4
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, e
 	sub 4
-	ld [hli], a
-	ld a, $7f ; nest icon in this context
-	ld [hli], a
+	ld [hli], a ; x
+	ld a, $7f ; nest icon
+	ld [hli], a ; tile id
 	xor a
-	ld [hli], a
+	ld [hli], a ; attributes
 	; next
 	pop de
 	inc de
@@ -2640,37 +2640,37 @@ _Area: ; 91d11
 	ld c, e
 	ld b, d
 	ld de, .PlayerOAM
-	ld hl, Sprites
+	ld hl, Sprite01
 .ShowPlayerLoop:
 	ld a, [de]
 	cp $80
 	jr z, .clear_oam
 	add b
-	ld [hli], a
+	ld [hli], a ; y
 	inc de
 	ld a, [de]
 	add c
-	ld [hli], a
+	ld [hli], a ; x
 	inc de
 	ld a, [de]
 	add $78 ; where the player's sprite is loaded
-	ld [hli], a
+	ld [hli], a ; tile id
 	inc de
 	push bc
-	ld c, 0 ; RED
+	ld c, PAL_OW_RED
 	ld a, [wPlayerGender]
 	bit 0, a
-	jr z, .got_gender
-	inc c   ; BLUE
-.got_gender
+	jr z, .male
+	inc c ; PAL_OW_BLUE
+.male
 	ld a, c
-	ld [hli], a
+	ld [hli], a ; attributes
 	pop bc
 	jr .ShowPlayerLoop
 
 .clear_oam
-	ld hl, Sprites + 4 * 4
-	ld bc, SpritesEnd - (Sprites + 4 * 4)
+	ld hl, Sprite05
+	ld bc, SpritesEnd - Sprite05
 	xor a
 	call ByteFill
 	ret
@@ -2678,10 +2678,11 @@ _Area: ; 91d11
 ; 91e9c
 
 .PlayerOAM: ; 91e9c
-	db -1 * 8, -1 * 8,  0 ; top left
-	db -1 * 8,  0 * 8,  1 ; top right
-	db  0 * 8, -1 * 8,  2 ; bottom left
-	db  0 * 8,  0 * 8,  3 ; bottom right
+	; y pxl, x pxl, tile offset
+	db -1 * 8, -1 * 8, 0 ; top left
+	db -1 * 8,  0 * 8, 1 ; top right
+	db  0 * 8, -1 * 8, 2 ; bottom left
+	db  0 * 8,  0 * 8, 3 ; bottom right
 	db $80 ; terminator
 ; 91ea9
 

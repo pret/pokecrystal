@@ -1502,7 +1502,7 @@ BillsPC_UpdateSelectionCursor: ; e2e01 (38:6e01)
 
 .place_cursor
 	ld hl, .OAM
-	ld de, Sprites
+	ld de, Sprite01
 .loop
 	ld a, [hl]
 	cp -1
@@ -1512,9 +1512,9 @@ BillsPC_UpdateSelectionCursor: ; e2e01 (38:6e01)
 	swap a
 	add [hl]
 	inc hl
-	ld [de], a
+	ld [de], a ; y
 	inc de
-rept 3
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -1552,7 +1552,7 @@ endr
 
 BillsPC_UpdateInsertCursor: ; e2e8c
 	ld hl, .OAM
-	ld de, Sprites
+	ld de, Sprite01
 .loop
 	ld a, [hl]
 	cp -1
@@ -1562,9 +1562,9 @@ BillsPC_UpdateInsertCursor: ; e2e8c
 	swap a
 	add [hl]
 	inc hl
-	ld [de], a
+	ld [de], a ; y
 	inc de
-rept 3
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	ld a, [hli]
 	ld [de], a
 	inc de

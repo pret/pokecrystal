@@ -572,7 +572,7 @@ Function89448: ; 89448 (22:5448)
 ; Clears the Sprites array
 	push af
 	ld hl, Sprites
-	ld d, $10 * 6
+	ld d, 24 * SPRITEOAMSTRUCT_LENGTH
 	xor a
 .loop
 	ld [hli], a
@@ -1924,7 +1924,7 @@ Function89b97: ; 89b97 (22:5b97)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, Sprites
+	ld de, Sprite01
 .asm_89bb4
 	ld a, [hli]
 	cp $ff
@@ -1934,19 +1934,19 @@ Function89b97: ; 89b97 (22:5b97)
 .asm_89bbb
 	push hl
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
 	add b
-	ld [de], a
+	ld [de], a ; x
 	inc de
-	ld a, $8
+	ld a, $08
 	add b
 	ld b, a
-	ld a, [hli]
+	ld a, [hli] ; tile id
 	ld [de], a
 	inc de
-	ld a, [hli]
+	ld a, [hli] ; attributes
 	ld [de], a
 	inc de
 	pop hl
@@ -2014,10 +2014,10 @@ Function89c44: ; 89c44 (22:5c44)
 	pop de
 	ret
 .asm_89c4f
-	ld hl, Sprites
+	ld hl, Sprite01
 	push de
 	ld a, b
-	ld [hli], a
+	ld [hli], a ; y
 	ld d, $8
 	ld a, e
 	and a
@@ -2029,11 +2029,11 @@ Function89c44: ; 89c44 (22:5c44)
 	jr nz, .asm_89c5c
 .asm_89c60
 	pop de
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, d
-	ld [hli], a
+	ld [hli], a ; tile id
 	xor a
-	ld [hli], a
+	ld [hli], a ; attributes
 	ret
 
 Function89c67: ; 89c67 (22:5c67)
@@ -2124,20 +2124,20 @@ Function89cdf: ; 89cdf (22:5cdf)
 	ld c, a
 	ld e, $2
 	ld a, $2
-	ld hl, Sprites
+	ld hl, Sprite01
 .asm_89cee
 	push af
 	push bc
 	ld d, $4
 .asm_89cf2
 	ld a, b
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, c
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, e
-	ld [hli], a
+	ld [hli], a ; tile id
 	ld a, $1
-	ld [hli], a
+	ld [hli], a ; attributes
 	ld a, $8
 	add c
 	ld c, a
@@ -3301,7 +3301,7 @@ asm_8a529: ; 8a529 (22:6529)
 	ld [hli], a
 	ld hl, Sprites
 	xor a
-	ld bc, $20
+	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ret
 

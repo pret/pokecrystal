@@ -60,9 +60,9 @@ BattleIntroSlidingPics: ; 4e980
 ; 4e9d6
 
 .subfunction3 ; 4e9d6
-	ld hl, Sprites + 1 ; x pixel
+	ld hl, Sprite01XCoord
 	ld c, $12 ; 18
-	ld de, $4
+	ld de, SPRITEOAMSTRUCT_LENGTH
 .loop3
 	dec [hl]
 	dec [hl]

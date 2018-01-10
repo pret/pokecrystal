@@ -32,7 +32,7 @@ UnusedTitleScreen: ; 10c000
 
 	ld hl, UnusedTitleBG_Tilemap
 	debgcoord 0, 0
-	ld bc, 32 * 32
+	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
 .copy
 	ld a, 0
 	ld [rVBK], a
@@ -49,8 +49,8 @@ UnusedTitleScreen: ; 10c000
 	jr nz, .copy
 
 	ld hl, UnusedTitleFG_OAM
-	ld de, Sprites
-	ld bc, $a0
+	ld de, Sprite01
+	ld bc, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 	call CopyBytes
 
 	call EnableLCD

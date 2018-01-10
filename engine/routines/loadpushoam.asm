@@ -13,7 +13,7 @@ LoadPushOAM:: ; 4031
 .PushOAM: ; 403f
 	ld a, HIGH(Sprites)
 	ld [rDMA], a
-	ld a, (SpritesEnd - Sprites) / 4 ; 40
+	ld a, NUM_SPRITE_OAM_STRUCTS
 .pushoam_loop
 	dec a
 	jr nz, .pushoam_loop

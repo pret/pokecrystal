@@ -9329,27 +9329,27 @@ CopyBackpic: ; 3fc30
 ; 3fc5b
 
 .LoadTrainerBackpicAsOAM: ; 3fc5b
-	ld hl, Sprites
+	ld hl, Sprite01
 	xor a
 	ld [hMapObjectIndexBuffer], a
-	ld b, $6
-	ld e, 21 * 8
+	ld b, 6
+	ld e, (SCREEN_WIDTH + 1) * TILE_WIDTH
 .outer_loop
-	ld c, $3
-	ld d, 8 * 8
+	ld c, 3
+	ld d, 8 * TILE_WIDTH
 .inner_loop
-	ld [hl], d
+	ld [hl], d ; y
 	inc hl
-	ld [hl], e
+	ld [hl], e ; x
 	inc hl
 	ld a, [hMapObjectIndexBuffer]
-	ld [hli], a
+	ld [hli], a ; tile id
 	inc a
 	ld [hMapObjectIndexBuffer], a
-	ld a, $1
-	ld [hli], a
+	ld a, PAL_BATTLE_OB_PLAYER
+	ld [hli], a ; attributes
 	ld a, d
-	add $8
+	add 1 * TILE_WIDTH
 	ld d, a
 	dec c
 	jr nz, .inner_loop
@@ -9357,7 +9357,7 @@ CopyBackpic: ; 3fc30
 	add $3
 	ld [hMapObjectIndexBuffer], a
 	ld a, e
-	add $8
+	add 1 * TILE_WIDTH
 	ld e, a
 	dec b
 	jr nz, .outer_loop

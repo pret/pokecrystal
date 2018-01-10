@@ -470,8 +470,8 @@ TrainerCard_Page2_3_OAMUpdate: ; 25448 (9:5448)
 	ld d, a
 	ld a, [de]
 	ld c, a
-	ld de, Sprites
-	ld b, 8
+	ld de, Sprite01
+	ld b, NUM_JOHTO_BADGES
 .loop
 	srl c
 	push bc
@@ -512,27 +512,27 @@ TrainerCard_Page2_3_OAMUpdate: ; 25448 (9:5448)
 	ld hl, .facing2
 .loop2
 	ld a, [hli]
-	cp $ff
+	cp -1
 	ret z
 	add b
-	ld [de], a
+	ld [de], a ; y
 	inc de
 
 	ld a, [hli]
 	add c
-	ld [de], a
+	ld [de], a ; x
 	inc de
 
 	ld a, [wcf65]
 	and $7f
 	add [hl]
-	ld [de], a
+	ld [de], a ; tile id
 	inc hl
 	inc de
 
 	ld a, [wcf66]
 	add [hl]
-	ld [de], a
+	ld [de], a ; attributes
 	inc hl
 	inc de
 	jr .loop2
@@ -540,18 +540,17 @@ TrainerCard_Page2_3_OAMUpdate: ; 25448 (9:5448)
 ; 254a7 (9:54a7)
 
 .facing1 ; 254a7
-	; y, x, tile, OAM attributes
-	db 0, 0, 0, 0
-	db 0, 8, 1, 0
-	db 8, 0, 2, 0
-	db 8, 8, 3, 0
+	dsprite  0,  0,  0,  0, $00, 0
+	dsprite  0,  0,  1,  0, $01, 0
+	dsprite  1,  0,  0,  0, $02, 0
+	dsprite  1,  0,  1,  0, $03, 0
 	db -1
 
 .facing2 ; 254b8
-	db 0, 0, 1, X_FLIP
-	db 0, 8, 0, X_FLIP
-	db 8, 0, 3, X_FLIP
-	db 8, 8, 2, X_FLIP
+	dsprite  0,  0,  0,  0, $01, 0 | X_FLIP
+	dsprite  0,  0,  1,  0, $00, 0 | X_FLIP
+	dsprite  1,  0,  0,  0, $03, 0 | X_FLIP
+	dsprite  1,  0,  1,  0, $02, 0 | X_FLIP
 	db -1
 
 TrainerCard_JohtoBadgesOAM: ; 254c9

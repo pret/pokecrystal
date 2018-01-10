@@ -549,25 +549,25 @@ RedrawUnownPuzzlePieces: ; e14d9
 	ld hl, .OAM_NotHoldingPiece
 
 .load
-	ld de, Sprites
+	ld de, Sprite01
 .loop
 	ld a, [hli]
 	cp -1
 	ret z
 	add b
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
 	add c
-	ld [de], a
+	ld [de], a ; x
 	inc de
 	ld a, [wd002]
 	add [hl]
-	ld [de], a
+	ld [de], a ; tile id
 	inc hl
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; attributes
 	inc de
 	jr .loop
 ; e150f

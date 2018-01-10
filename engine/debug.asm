@@ -1016,17 +1016,17 @@ Function81f5e: ; 81f5e
 
 .asm_81fb7
 	ld a, b
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, [de]
 	add a
 	add a
-	add $18
-	ld [hli], a
+	add 3 * TILE_WIDTH
+	ld [hli], a ; x
 	xor a
-	ld [hli], a
+	ld [hli], a ; tile id
 	ld a, c
-	ld [hli], a
-	ld a, $10
+	ld [hli], a ; attributes
+	ld a, 2 * TILE_WIDTH
 	add b
 	ld b, a
 	inc c

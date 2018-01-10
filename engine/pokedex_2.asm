@@ -41,15 +41,15 @@ AnimateDexSearchSlowpoke: ; 441cf
 DoDexSearchSlowpokeFrame: ; 44207
 	ld a, [wDexSearchSlowpokeFrame]
 	ld hl, .SlowpokeSpriteData
-	ld de, Sprites
+	ld de, Sprite01
 .loop
 	ld a, [hli]
 	cp -1
 	ret z
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; x
 	inc de
 	ld a, [wDexSearchSlowpokeFrame]
 	ld b, a
@@ -57,10 +57,10 @@ DoDexSearchSlowpokeFrame: ; 44207
 	add b
 	add [hl]
 	inc hl
-	ld [de], a
+	ld [de], a ; tile id
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; attributes
 	inc de
 	jr .loop
 

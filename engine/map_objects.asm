@@ -2793,6 +2793,7 @@ Function5903: ; 5903
 	db SPRITEMOVEDATA_STANDING_LEFT
 	db SPRITEMOVEDATA_STANDING_RIGHT
 ; 5920
+
 _UpdateSprites:: ; 5920
 	ld a, [VramState]
 	bit 0, a
@@ -2814,18 +2815,18 @@ _UpdateSprites:: ; 5920
 	bit 1, a
 	ld b, LOW(SpritesEnd)
 	jr z, .ok
-	ld b, 28 * 4
+	ld b, 28 * SPRITEOAMSTRUCT_LENGTH
 .ok
 	ld a, [hUsedSpriteIndex]
 	cp b
 	ret nc
 	ld l, a
 	ld h, HIGH(Sprites)
-	ld de, 4
+	ld de, SPRITEOAMSTRUCT_LENGTH
 	ld a, b
-	ld c, SCREEN_HEIGHT_PX + 16
+	ld c, SCREEN_HEIGHT_PX + 2 * TILE_WIDTH
 .loop
-	ld [hl], c
+	ld [hl], c ; y
 	add hl, de
 	cp l
 	jr nz, .loop
@@ -3042,12 +3043,12 @@ PRIORITY_HIGH EQU $30
 	ld a, [hFFC0]
 	add [hl]
 	inc hl
-	ld [bc], a
+	ld [bc], a ; y
 	inc c
 	ld a, [hFFBF]
 	add [hl]
 	inc hl
-	ld [bc], a
+	ld [bc], a ; x
 	inc c
 	ld e, [hl]
 	inc hl
@@ -3058,7 +3059,7 @@ PRIORITY_HIGH EQU $30
 .nope1
 	add [hl]
 	inc hl
-	ld [bc], a
+	ld [bc], a ; tile id
 	inc c
 	ld a, e
 	bit 1, a
@@ -3068,7 +3069,7 @@ PRIORITY_HIGH EQU $30
 .nope2
 	and %11110000
 	or d
-	ld [bc], a
+	ld [bc], a ; attributes
 	inc c
 	ld a, [hUsedSpriteTile]
 	dec a

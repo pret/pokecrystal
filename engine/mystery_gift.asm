@@ -1456,33 +1456,33 @@ Function105688: ; 105688 (41:5688)
 	jr asm_105726
 
 Function1056eb: ; 1056eb (41:56eb)
-	ld c, $10
-.asm_1056ed
-	ld hl, Sprites
-	ld b, $8
-.asm_1056f2
+	ld c, 16
+.loop
+	ld hl, Sprite01YCoord
+	ld b, 8
+.dec_y_loop
 	dec [hl]
-rept 4
+rept SPRITEOAMSTRUCT_LENGTH
 	inc hl
 endr
 	dec b
-	jr nz, .asm_1056f2
-	ld hl, Sprites + $20
-	ld b, $8
-.asm_1056ff
+	jr nz, .dec_y_loop
+	ld hl, Sprite09YCoord
+	ld b, 8
+.inc_y_loop
 	inc [hl]
-rept 4
+rept SPRITEOAMSTRUCT_LENGTH
 	inc hl
 endr
 	dec b
-	jr nz, .asm_1056ff
+	jr nz, .inc_y_loop
 	dec c
 	ret z
 	push bc
 	ld c, 4
 	call DelayFrames
 	pop bc
-	jr .asm_1056ed
+	jr .loop
 
 Function105712: ; 105712 (41:5712)
 	call Function105777
@@ -1580,7 +1580,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld a, BANK(MysteryGiftJP_GFX)
 	lb bc, 4, 0
 	call FarCopyBytes
-	ld hl, MysteryGiftJP_GFX + $400
+	ld hl, MysteryGiftJP_GFX + $40 tiles
 	ld de, vTiles0 tile $00
 	ld a, BANK(MysteryGiftJP_GFX)
 	ld bc, $80
@@ -1656,9 +1656,9 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld [hl], $3c
 	hlcoord 17, 15
 	ld [hl], $3e
-	ld de, Sprites
+	ld de, Sprite01
 	ld hl, .OAM_data
-	ld bc, $40
+	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call CopyBytes
 	call EnableLCD
 	call WaitBGMap

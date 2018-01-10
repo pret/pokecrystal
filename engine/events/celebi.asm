@@ -43,26 +43,26 @@ Special_CelebiShrineEvent: ; 4989a
 .done
 	pop af
 	ld [VramState], a
-	call .RefreshPlayerSprite_ClearAllOthers
+	call .RestorePlayerSprite_DespawnLeaves
 	call CelebiEvent_SetBattleType
 	ret
 
 ; 498f9
 
-.RefreshPlayerSprite_ClearAllOthers: ; 498f9
-	ld hl, Sprites + 2
+.RestorePlayerSprite_DespawnLeaves: ; 498f9
+	ld hl, Sprite01TileID
 	xor a
-	ld c, $4
+	ld c, 4
 .OAMloop:
-	ld [hli], a
+	ld [hli], a ; tile id
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, Sprites + 4 * 4
-	ld bc, 36 * 4
+	ld hl, Sprite05
+	ld bc, SpritesEnd - Sprite05
 	xor a
 	call ByteFill
 	ret
