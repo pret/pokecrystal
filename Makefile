@@ -159,6 +159,9 @@ gfx/pokedex/pokedex.2bpp: tools/gfx += --trim-whitespace
 gfx/pokedex/sgb.2bpp: tools/gfx += --trim-whitespace
 gfx/pokedex/slowpoke.2bpp: tools/gfx += --trim-whitespace
 
+gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
+gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+
 gfx/title/crystal.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/old_fg.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/logo.2bpp: rgbgfx += -x 4
@@ -204,8 +207,7 @@ gfx/battle/dude.2bpp: rgbgfx += -h
 
 gfx/font/unused_bold_font.1bpp: tools/gfx += --trim-whitespace
 
-gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
-gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
 
 gfx/mobile/ascii_font.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/electro_ball.2bpp: tools/gfx += --trim-whitespace
