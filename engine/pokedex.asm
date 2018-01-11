@@ -1794,7 +1794,7 @@ Pokedex_PrevSearchMonType: ; 40f65
 
 	ld hl, wDexSearchMonType1
 	ld a, [hl]
-	cp $1
+	cp 1
 	jr z, .wrap_around
 	dec [hl]
 	jr .done
@@ -1808,7 +1808,7 @@ Pokedex_PrevSearchMonType: ; 40f65
 	jr .done
 
 .wrap_around
-	ld [hl], $11
+	ld [hl], NUM_TYPES - 1
 
 .done
 	scf
@@ -1821,18 +1821,18 @@ Pokedex_NextSearchMonType: ; 40f84
 
 	ld hl, wDexSearchMonType1
 	ld a, [hl]
-	cp $11
+	cp NUM_TYPES - 1
 	jr nc, .type1_wrap_around
 	inc [hl]
 	jr .done
 .type1_wrap_around
-	ld [hl], $1
+	ld [hl], 1
 	jr .done
 
 .type2
 	ld hl, wDexSearchMonType2
 	ld a, [hl]
-	cp $11
+	cp NUM_TYPES - 1
 	jr nc, .type2_wrap_around
 	inc [hl]
 	jr .done
@@ -1864,7 +1864,7 @@ Pokedex_PlaceTypeString: ; 40fcd (10:4fcd)
 	push hl
 	ld e, a
 	ld d, 0
-	ld hl, .TypeStrings
+	ld hl, PokedexTypeSearchStrings
 rept 9
 	add hl, de
 endr
@@ -1874,25 +1874,7 @@ endr
 	call PlaceString
 	ret
 
-.TypeStrings: ; 40fe4
-	db "  ----  @"
-	db " NORMAL @"
-	db "  FIRE  @"
-	db " WATER  @"
-	db " GRASS  @"
-	db "ELECTRIC@"
-	db "  ICE   @"
-	db "FIGHTING@"
-	db " POISON @"
-	db " GROUND @"
-	db " FLYING @"
-	db "PSYCHIC @"
-	db "  BUG   @"
-	db "  ROCK  @"
-	db " GHOST  @"
-	db " DRAGON @"
-	db "  DARK  @"
-	db " STEEL  @"
+INCLUDE "data/types/search_strings.asm"
 
 Pokedex_SearchForMons: ; 41086
 	ld a, [wDexSearchMonType2]
@@ -1907,7 +1889,7 @@ Pokedex_SearchForMons: ; 41086
 	dec a
 	ld e, a
 	ld d, 0
-	ld hl, .TypeConversionTable
+	ld hl, PokedexTypeSearchConversionTable
 	add hl, de
 	ld a, [hl]
 	ld [wDexConvertedMonType], a
@@ -1969,24 +1951,7 @@ Pokedex_SearchForMons: ; 41086
 .done
 	ret
 
-.TypeConversionTable: ; 410f6
-	db NORMAL
-	db FIRE
-	db WATER
-	db GRASS
-	db ELECTRIC
-	db ICE
-	db FIGHTING
-	db POISON
-	db GROUND
-	db FLYING
-	db PSYCHIC
-	db BUG
-	db ROCK
-	db GHOST
-	db DRAGON
-	db DARK
-	db STEEL
+INCLUDE "data/types/search_types.asm"
 
 Pokedex_DisplayTypeNotFoundMessage: ; 41107
 	xor a

@@ -1,3 +1,15 @@
+; WritePartyMenuTilemap.Jumptable indexes
+	const_def
+	const PARTYMENUQUALITY_NICKNAMES
+	const PARTYMENUQUALITY_HP_BAR
+	const PARTYMENUQUALITY_HP_DIGITS
+	const PARTYMENUQUALITY_LEVEL
+	const PARTYMENUQUALITY_STATUS
+	const PARTYMENUQUALITY_TMHM_COMPAT
+	const PARTYMENUQUALITY_EVO_STONE_COMPAT
+	const PARTYMENUQUALITY_GENDER
+	const PARTYMENUQUALITY_MOBILE_SELECTION
+
 SelectMonFromParty: ; 50000
 	call DisableSpriteUpdates
 	xor a
@@ -57,16 +69,16 @@ WritePartyMenuTilemap: ; 0x5005f
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
 	call ByteFill ; blank the tilemap
-	call GetPartyMenuTilemapPointers ; This reads from a pointer table???
+	call GetPartyMenuQualityIndexes
 .loop
 	ld a, [hli]
-	cp $ff
-	jr z, .end ; 0x5007a $8
+	cp -1
+	jr z, .end
 	push hl
 	ld hl, .Jumptable
 	rst JumpTable
 	pop hl
-	jr .loop ; 0x50082 $f3
+	jr .loop
 .end
 	pop af
 	ld [Options], a
@@ -74,6 +86,7 @@ WritePartyMenuTilemap: ; 0x5005f
 ; 0x50089
 
 .Jumptable: ; 50089
+; entries correspond to PARTYMENUQUALITY_* constants
 	dw PlacePartyNicknames
 	dw PlacePartyHPBar
 	dw PlacePartyMenuHPDigits
@@ -598,7 +611,7 @@ PartyMenuCheckEgg: ; 50389
 	ret
 ; 50396
 
-GetPartyMenuTilemapPointers: ; 50396
+GetPartyMenuQualityIndexes: ; 50396
 	ld a, [PartyMenuActionText]
 	and $f0
 	jr nz, .skip
@@ -620,23 +633,32 @@ GetPartyMenuTilemapPointers: ; 50396
 ; 503b2
 
 .Pointers: ; 503b2
-	dw .Default
-	dw .Default
-	dw .Default
-	dw .TMHM
-	dw .Default
-	dw .EvoStone
-	dw .Gender
-	dw .Gender
-	dw .Default
-	dw .Mobile
+; entries correspond to PARTYMENUACTION_* constants
+	dw .Default  ; PARTYMENUACTION_CHOOSE_POKEMON
+	dw .Default  ; PARTYMENUACTION_HEALING_ITEM
+	dw .Default  ; PARTYMENUACTION_SWITCH
+	dw .TMHM     ; PARTYMENUACTION_TEACH_TMHM
+	dw .Default  ; PARTYMENUACTION_MOVE
+	dw .EvoStone ; PARTYMENUACTION_EVO_STONE
+	dw .Gender   ; PARTYMENUACTION_GIVE_MON
+	dw .Gender   ; PARTYMENUACTION_GIVE_MON_FEMALE
+	dw .Default  ; PARTYMENUACTION_GIVE_ITEM
+	dw .Mobile   ; PARTYMENUACTION_MOBILE
 ; 503c6
 
-.Default: db 0, 1, 2, 3, 4, $ff
-.TMHM: db 0, 5, 3, 4, $ff
-.EvoStone: db 0, 6, 3, 4, $ff
-.Gender: db 0, 7, 3, 4, $ff
-.Mobile: db 0, 8, 3, 4, $ff
+partymenuqualities: MACRO
+rept _NARG
+	db PARTYMENUQUALITY_\1
+shift
+endr
+	db -1 ; end
+ENDM
+
+.Default:  partymenuqualities NICKNAMES, HP_BAR, HP_DIGITS, LEVEL, STATUS
+.TMHM:     partymenuqualities NICKNAMES, TMHM_COMPAT, LEVEL, STATUS
+.EvoStone: partymenuqualities NICKNAMES, EVO_STONE_COMPAT, LEVEL, STATUS
+.Gender:   partymenuqualities NICKNAMES, GENDER, LEVEL, STATUS
+.Mobile:   partymenuqualities NICKNAMES, MOBILE_SELECTION, LEVEL, STATUS
 ; 503e0
 
 

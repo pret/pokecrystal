@@ -1576,7 +1576,7 @@ HealStatus: ; f030 (3:7030)
 GetItemHealingAction: ; f058 (3:7058)
 	push hl
 	ld a, [CurItem]
-	ld hl, .healingactions
+	ld hl, StatusHealingActions
 	ld bc, 3
 .next
 	cp [hl]
@@ -1595,24 +1595,7 @@ GetItemHealingAction: ; f058 (3:7058)
 	ret
 ; f071 (3:7071)
 
-.healingactions ; f071
-; item, party menu action text, status
-	db ANTIDOTE,     PARTYMENUTEXT_HEAL_PSN, 1 << PSN
-	db BURN_HEAL,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
-	db ICE_HEAL,     PARTYMENUTEXT_HEAL_FRZ, 1 << FRZ
-	db AWAKENING,    PARTYMENUTEXT_HEAL_SLP, SLP
-	db PARLYZ_HEAL,  PARTYMENUTEXT_HEAL_PAR, 1 << PAR
-	db FULL_HEAL,    PARTYMENUTEXT_HEAL_ALL, %11111111
-	db FULL_RESTORE, PARTYMENUTEXT_HEAL_ALL, %11111111
-	db HEAL_POWDER,  PARTYMENUTEXT_HEAL_ALL, %11111111
-	db PSNCUREBERRY, PARTYMENUTEXT_HEAL_PSN, 1 << PSN
-	db PRZCUREBERRY, PARTYMENUTEXT_HEAL_PAR, 1 << PAR
-	db BURNT_BERRY,  PARTYMENUTEXT_HEAL_FRZ, 1 << FRZ
-	db ICE_BERRY,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
-	db MINT_BERRY,   PARTYMENUTEXT_HEAL_SLP, SLP
-	db MIRACLEBERRY, PARTYMENUTEXT_HEAL_ALL, %11111111
-	db -1, 0, 0
-; f09e
+INCLUDE "data/items/heal_status.asm"
 
 StatusHealer_Jumptable: ; f09e (3:709e)
 	ld hl, .dw
@@ -2118,7 +2101,7 @@ GetOneFifthMaxHP: ; f378 (3:7378)
 GetHealingItemAmount: ; f395 (3:7395)
 	push hl
 	ld a, [CurItem]
-	ld hl, .Healing
+	ld hl, HealingHPAmounts
 	ld d, a
 .next
 	ld a, [hli]
@@ -2140,24 +2123,7 @@ GetHealingItemAmount: ; f395 (3:7395)
 	ret
 ; f3af (3:73af)
 
-.Healing: ; f3af
-	dbw FRESH_WATER,   50
-	dbw SODA_POP,      60
-	dbw LEMONADE,      80
-	dbw HYPER_POTION, 200
-	dbw SUPER_POTION,  50
-	dbw POTION,        20
-	dbw MAX_POTION,   MAX_STAT_VALUE
-	dbw FULL_RESTORE, MAX_STAT_VALUE
-	dbw MOOMOO_MILK,  100
-	dbw BERRY,         10
-	dbw GOLD_BERRY,    30
-	dbw ENERGYPOWDER,  50
-	dbw ENERGY_ROOT,  200
-	dbw RAGECANDYBAR,  20
-	dbw BERRY_JUICE,   20
-	dbw -1,             0
-; f3df
+INCLUDE "data/items/heal_hp.asm"
 
 Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 ; Softboiled/Milk Drink in the field
@@ -2328,7 +2294,7 @@ XSpecial: ; f4c5
 	call UseItemText
 
 	ld a, [CurItem]
-	ld hl, .x_item_table
+	ld hl, XItemStats
 
 .loop
 	cp [hl]
@@ -2357,12 +2323,7 @@ XSpecial: ; f4c5
 	ret
 ; f504
 
-.x_item_table ; f504
-	db X_ATTACK,  ATTACK
-	db X_DEFEND,  DEFENSE
-	db X_SPEED,   SPEED
-	db X_SPECIAL, SP_ATTACK
-; f50c
+INCLUDE "data/items/x_stats.asm"
 
 
 PokeFlute: ; f50c

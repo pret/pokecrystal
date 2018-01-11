@@ -18,7 +18,7 @@ Predef_LoadSGBLayout: ; 864c
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .Finish
+	ld de, _LoadSGBLayout_ReturnFromJumpTable
 	push de
 	jp hl
 ; 866f
@@ -389,15 +389,13 @@ endr
 	jr z, .partymon
 	; Egg
 	ld hl, wSGBPals + 3
-	; RGB 7, 7, 7
-	ld [hl], $e7
+	ld [hl], LOW(palred 7 + palgreen 7 + palblue 7)
 	inc hl
-	ld [hl], $1c
+	ld [hl], HIGH(palred 7 + palgreen 7 + palblue 7)
 	inc hl
-	; RGB 2, 3, 3
-	ld [hl], $62
+	ld [hl], LOW(palred 2 + palgreen 3 + palblue 3)
 	inc hl
-	ld [hl], $c
+	ld [hl], HIGH(palred 2 + palgreen 3 + palblue 3)
 	jr .done
 
 .partymon
@@ -576,7 +574,7 @@ endr
 	ld a, [MapGroup]
 	ld e, a
 	ld d, 0
-	ld hl, .SGBRoofPalInds
+	ld hl, MapGroupRoofSGBPalInds
 	add hl, de
 	ld a, [hl]
 	ret
@@ -598,37 +596,9 @@ endr
 	ret
 ; 8a45
 
-.SGBRoofPalInds: ; 8a45
-	db $00 ; Unused
-	db $12 ; Olivine
-	db $14 ; Mahogany
-	db $18 ; Various Dungeons
-	db $11 ; Ecruteak
-	db $15 ; Blackthorn
-	db $09 ; Cinnabar
-	db $04 ; Cerulean
-	db $0f ; Azalea
-	db $16 ; Lake Of Rage
-	db $0e ; Violet
-	db $10 ; Goldenrod
-	db $06 ; Vermilion
-	db $01 ; Palette
-	db $03 ; Pewter
-	db $06 ; Fast Ship
-	db $0b ; Indigo Plateau
-	db $08 ; Fuchsia
-	db $05 ; Lavender
-	db $17 ; Silver Cave Outside
-	db $08 ; Pokemon Center 2F
-	db $07 ; Celadon
-	db $13 ; Cianwood
-	db $02 ; Viridian
-	db $0c ; New Bark
-	db $0a ; Saffron
-	db $0d ; Cherrygrove
-; 8a60
+INCLUDE "data/maps/sgb_roofs.asm"
 
-.Finish: ; 8a60
+_LoadSGBLayout_ReturnFromJumpTable: ; 8a60
 	push de
 	call PushSGBPals_
 	pop hl

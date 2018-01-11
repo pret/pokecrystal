@@ -1,0 +1,32 @@
+; Crystal does not support SGB, so this is unused.
+
+MapGroupRoofSGBPalInds: ; 8a45
+; entries correspond to map groups
+	db $00 ; group 0 (unused)
+	db $12 ; group 1 (Olivine)
+	db $14 ; group 2 (Mahogany)
+	db $18 ; group 3 (dungeons)
+	db $11 ; group 4 (Ecruteak)
+	db $15 ; group 5 (Blackthorn)
+	db $09 ; group 6 (Cinnabar)
+	db $04 ; group 7 (Cerulean)
+	db $0f ; group 8 (Azalea)
+	db $16 ; group 9 (Lake of Rage)
+	db $0e ; group 10 (Violet)
+	db $10 ; group 11 (Goldenrod)
+	db $06 ; group 12 (Vermilion)
+	db $01 ; group 13 (Pallet)
+	db $03 ; group 14 (Pewter)
+	db $06 ; group 15 (Mount Moon Square)
+	db $0b ; group 16 (Indigo)
+	db $08 ; group 17 (Fuchsia)
+	db $05 ; group 18 (Lavender)
+	db $17 ; group 19 (Silver Cave)
+	db $08 ; group 20 (Cable Club)
+	db $07 ; group 21 (Celadon)
+	db $13 ; group 22 (Cianwood)
+	db $02 ; group 23 (Viridian)
+	db $0c ; group 24 (New Bark)
+	db $0a ; group 25 (Saffron)
+	db $0d ; group 26 (Cherrygrove)
+; 8a60

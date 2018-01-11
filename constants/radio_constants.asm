@@ -1,7 +1,8 @@
 ; radio channel ids
 ; indexes for:
-; - PlayRadioShow/RadioJumptable (see engine/radio.asm)
 ; - RadioChannelSongs (see data/radio/channel_music.asm)
+; - PlayRadioShow/RadioJumptable (see engine/radio.asm)
+; - RadioChannels (see engine/radio.asm)
 	const_def
 	const OAKS_POKEMON_TALK      ; 00
 	const POKEDEX_SHOW           ; 01

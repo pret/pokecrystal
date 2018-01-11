@@ -216,7 +216,7 @@ FindApricornsInBag: ; 24c64
 	ld bc, 10
 	call ByteFill
 
-	ld hl, .ApricornBalls
+	ld hl, ApricornBalls
 .loop
 	ld a, [hl]
 	cp -1
@@ -252,12 +252,4 @@ FindApricornsInBag: ; 24c64
 	pop hl
 	ret
 
-.ApricornBalls: ; 24ca0
-	db RED_APRICORN, LEVEL_BALL
-	db BLU_APRICORN, LURE_BALL
-	db YLW_APRICORN, MOON_BALL
-	db GRN_APRICORN, FRIEND_BALL
-	db WHT_APRICORN, FAST_BALL
-	db BLK_APRICORN, HEAVY_BALL
-	db PNK_APRICORN, LOVE_BALL
-	db -1
+INCLUDE "data/items/apricorn_balls.asm"

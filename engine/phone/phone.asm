@@ -75,20 +75,20 @@ GetRemainingSpaceInPhoneList: ; 90040
 	cp -1
 	jr z, .done
 	cp c
-	jr z, .elm_or_mom
+	jr z, .continue
+
 	push bc
 	push hl
 	ld c, a
 	call _CheckCellNum
-	jr c, .elm_or_mom_in_list
+	jr c, .permanent
 	ld hl, Buffer1
 	inc [hl]
-
-.elm_or_mom_in_list
+.permanent
 	pop hl
 	pop bc
 
-.elm_or_mom
+.continue
 	jr .loop
 
 .done
@@ -98,9 +98,7 @@ GetRemainingSpaceInPhoneList: ; 90040
 	ret
 ; 90066
 
-PermanentNumbers: ; 90066
-	db PHONECONTACT_MOM, PHONECONTACT_ELM, -1
-; 90069
+INCLUDE "data/phone/permanent_numbers.asm"
 
 
 FarPlaceString: ; 90069

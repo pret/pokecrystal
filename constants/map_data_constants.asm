@@ -244,6 +244,7 @@ NUM_TREEMON_SETS EQU const_value
 EMOTE_MEM EQU -1
 
 ; FruitTreeItems indexes (see data/items/fruit_trees.asm)
+; used by fruittree command
 const_value set 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02
@@ -278,8 +279,8 @@ const_value set 1
 NUM_FRUIT_TREES EQU const_value +- 1
 
 
-; elevator floors
-; used by elevfloor
+; ElevatorFloorNames indexes (see data/elevator_floors.asm)
+; used by elevfloor macro
 	const_def
 	const FLOOR_B4F
 	const FLOOR_B3F

@@ -31,7 +31,6 @@ LoadPoisonBGPals: ; cbcdd
 	ld hl, wBGPals2
 	ld c, 4 palettes
 .loop
-; RGB 28, 21, 31
 	ld a, LOW(palred 28 + palgreen 21 + palblue 31)
 	ld [hli], a
 	ld a, HIGH(palred 28 + palgreen 21 + palblue 31)

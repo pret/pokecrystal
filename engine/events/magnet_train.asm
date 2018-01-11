@@ -220,8 +220,7 @@ GetMagnetTrainBGTiles: ; 8cd74
 ; 8cd82
 
 MagnetTrainBGTiles: ; 8cd82
-; Alternating tiles for each line
-; of the Magnet Train tilemap.
+; Alternating tiles for each line of the Magnet Train tilemap.
 	db $4c, $4d ; bush
 	db $5c, $5d ; bush
 	db $4c, $4d ; bush
@@ -263,25 +262,25 @@ SetMagnetTrainPals: ; 8cdc3
 	; bushes
 	hlbgcoord 0, 0
 	ld bc, 4 * BG_MAP_WIDTH
-	ld a, $2
+	ld a, PAL_BG_GREEN
 	call ByteFill
 
 	; train
 	hlbgcoord 0, 4
 	ld bc, 10 * BG_MAP_WIDTH
-	xor a
+	xor a ; PAL_BG_GRAY
 	call ByteFill
 
 	; more bushes
 	hlbgcoord 0, 14
 	ld bc, 4 * BG_MAP_WIDTH
-	ld a, $2
+	ld a, PAL_BG_GREEN
 	call ByteFill
 
 	; train window
 	hlbgcoord 7, 8
 	ld bc, 6
-	ld a, $4
+	ld a, PAL_BG_YELLOW
 	call ByteFill
 
 	ld a, $0
@@ -459,23 +458,11 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 ; 8ceff
 
 MagnetTrainTilemap1:
-	db $1f, $05, $06, $0a, $0a
-	db $0a, $09, $0a, $0a, $0a
-	db $0a, $0a, $0a, $09, $0a
-	db $0a, $0a, $0b, $0c, $1f
+	db $1f, $05, $06, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0b, $0c, $1f
 MagnetTrainTilemap2:
-	db $14, $15, $16, $1a, $1a
-	db $1a, $19, $1a, $1a, $1a
-	db $1a, $1a, $1a, $19, $1a
-	db $1a, $1a, $1b, $1c, $1d
+	db $14, $15, $16, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1b, $1c, $1d
 MagnetTrainTilemap3:
-	db $24, $25, $26, $27, $07
-	db $2f, $29, $28, $28, $28
-	db $28, $28, $28, $29, $07
-	db $2f, $2a, $2b, $2c, $2d
+	db $24, $25, $26, $27, $07, $2f, $29, $28, $28, $28, $28, $28, $28, $29, $07, $2f, $2a, $2b, $2c, $2d
 MagnetTrainTilemap4:
-	db $20, $1f, $2e, $1f, $17
-	db $00, $2e, $1f, $1f, $1f
-	db $1f, $1f, $1f, $2e, $17
-	db $00, $1f, $2e, $1f, $0f
+	db $20, $1f, $2e, $1f, $17, $00, $2e, $1f, $1f, $1f, $1f, $1f, $1f, $2e, $17, $00, $1f, $2e, $1f, $0f
 ; 8cf4f

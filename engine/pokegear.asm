@@ -1510,7 +1510,7 @@ UpdateRadioStation: ; 9166f (24:566f)
 ; 916ad
 
 RadioChannels:
-; frequencies and the shows that play on them.
+; entries correspond to constants/radio_constants.asm
 
 ; frequency value given here = 4 × ingame_frequency − 2
 	dbw 16, .PkmnTalkAndPokedexShow

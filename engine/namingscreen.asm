@@ -765,21 +765,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b56
 
-Dakutens: ; Dummied out
-	db "かが", "きぎ", "くぐ", "けげ", "こご"
-	db "さざ", "しじ", "すず", "せぜ", "そぞ"
-	db "ただ", "ちぢ", "つづ", "てで", "とど"
-	db "はば", "ひび", "ふぶ", "へべ", "ほぼ"
-	db "カガ", "キギ", "クグ", "ケゲ", "コゴ"
-	db "サザ", "シジ", "スズ", "セゼ", "ソゾ"
-	db "タダ", "チヂ", "ツヅ", "テデ", "トド"
-	db "ハバ", "ヒビ", "フブ", "へべ", "ホボ"
-	db -1 ; end
-
-Handakutens: ; Dummied out
-	db "はぱ", "ひぴ", "ふぷ", "へぺ", "ほぽ"
-	db "ハパ", "ヒピ", "フプ", "へぺ", "ホポ"
-	db -1 ; end
+INCLUDE "data/unused_text/dakutens.asm"
 
 ; 11bbc
 

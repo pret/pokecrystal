@@ -200,12 +200,12 @@ Elevator_MenuData2: ; 0x13558
 	db 4, 0 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, CurElevator
-	dba GetElevatorFlorStrings
+	dba GetElevatorFloorStrings
 	dba NULL
 	dba NULL
 ; 13568
 
-GetElevatorFlorStrings: ; 13568
+GetElevatorFloorStrings: ; 13568
 	ld a, [MenuSelection]
 GetFloorString: ; 1356b
 	push de
@@ -220,7 +220,7 @@ FloorToString: ; 13575
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, .floors
+	ld hl, ElevatorFloorNames
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -230,54 +230,4 @@ FloorToString: ; 13575
 	ret
 ; 13583
 
-.floors
-	dw .b4f
-	dw .b3f
-	dw .b2f
-	dw .b1f
-	dw ._1f
-	dw ._2f
-	dw ._3f
-	dw ._4f
-	dw ._5f
-	dw ._6f
-	dw ._7f
-	dw ._8f
-	dw ._9f
-	dw ._10f
-	dw ._11f
-	dw .roof
-
-.b4f
-	db "B4F@"
-.b3f
-	db "B3F@"
-.b2f
-	db "B2F@"
-.b1f
-	db "B1F@"
-._1f
-	db "1F@"
-._2f
-	db "2F@"
-._3f
-	db "3F@"
-._4f
-	db "4F@"
-._5f
-	db "5F@"
-._6f
-	db "6F@"
-._7f
-	db "7F@"
-._8f
-	db "8F@"
-._9f
-	db "9F@"
-._10f
-	db "10F@"
-._11f
-	db "11F@"
-.roof
-	db "ROOF@"
-; 135db
+INCLUDE "data/elevator_floors.asm"

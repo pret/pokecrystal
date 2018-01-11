@@ -164,7 +164,7 @@ const_value set 70
 
 
 ; PartyMenuActionText values
-; GetPartyMenuTilemapPointers arguments (see engine/party_menu.asm)
+; GetPartyMenuQualityIndexes arguments (see engine/party_menu.asm)
 	const_def
 	const PARTYMENUACTION_CHOOSE_POKEMON
 	const PARTYMENUACTION_HEALING_ITEM

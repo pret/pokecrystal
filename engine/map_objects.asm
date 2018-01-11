@@ -392,6 +392,7 @@ StepVectors: ; 4700
 	db -4,  0,  4, 4
 	db  4,  0,  4, 4
 ; 4730
+
 GetStepVectorSign: ; 4730
 	add a
 	ret z  ; 0 or 128
@@ -400,6 +401,7 @@ GetStepVectorSign: ; 4730
 	ld a, -1
 	ret    ; 129 - 255
 ; 4738
+
 UpdatePlayerStep: ; 4738
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc

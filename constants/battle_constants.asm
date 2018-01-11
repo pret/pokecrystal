@@ -63,6 +63,7 @@ const_value set 1
 	const STAT_SATK
 	const STAT_SDEF
 NUM_STATS EQU const_value
+STAT_SPC EQU STAT_SATK
 
 ; stat formula constants
 STAT_MIN_NORMAL EQU 5

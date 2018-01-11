@@ -96,6 +96,4 @@ GetTypeName: ; 50964
 ; 5097b
 
 
-INCLUDE "data/type_names.asm"
-
-; 50a28
+INCLUDE "data/types/names.asm"
