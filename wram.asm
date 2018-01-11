@@ -1343,6 +1343,12 @@ wPokedexStatus:: db
 endc
 
 NEXTU ; cf64
+; trainer card badges
+wTrainerCardBadgeFrameCounter:: db
+wTrainerCardBadgeTileID:: db
+wTrainerCardBadgeAttributes:: db
+
+NEXTU ; cf64
 ; miscellaneous
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
