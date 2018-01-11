@@ -123,38 +123,6 @@ const_value set 1
 	const ATK_EQ_DEF
 
 
-; PP
-PP_UP_MASK EQU %11000000
-PP_UP_ONE  EQU %01000000
-PP_MASK    EQU %00111111
-
-
-; significant happiness values
-BASE_HAPPINESS        EQU 70
-FRIEND_BALL_HAPPINESS EQU 200
-HAPPINESS_TO_EVOLVE   EQU 220
-HAPPINESS_THRESHOLD_1 EQU 100
-HAPPINESS_THRESHOLD_2 EQU 200
-
-
-; wild data
-
-NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
-NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
-
-GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2 + 1) * 3 + 2
-WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
-
-
-; swarms
-
-SWARM_DUNSPARCE EQU 0
-SWARM_YANMA     EQU 1
-
-FISHSWARM_QWILFISH EQU 1
-FISHSWARM_REMORAID EQU 2
-
-
 ; PokeAnims indexes (see engine/pic_animation.asm)
 	const_def
 	const ANIM_MON_SLOW
@@ -166,6 +134,7 @@ FISHSWARM_REMORAID EQU 2
 	const ANIM_MON_UNUSED
 	const ANIM_MON_EGG1
 	const ANIM_MON_EGG2
+
 
 ; MonMenuOptions indexes (see engine/mon_menu.asm)
 const_value set 1
@@ -198,3 +167,55 @@ MONMENU_FIELD_MOVE EQU 0
 MONMENU_MENUOPTION EQU 1
 
 NUM_MONMENU_ITEMS EQU 8
+
+
+; treemon sets
+; TreeMons indexes (see data/wild/treemons.asm)
+	const_def
+	const TREEMON_SET_CITY
+	const TREEMON_SET_CANYON
+	const TREEMON_SET_AZALEA
+	const TREEMON_SET_ROUTE
+	const TREEMON_SET_KANTO
+	const TREEMON_SET_LAKE
+	const TREEMON_SET_FOREST
+	const TREEMON_SET_ROCK
+NUM_TREEMON_SETS EQU const_value
+
+; treemon scores
+	const_def
+	const TREEMON_SCORE_BAD  ; 0
+	const TREEMON_SCORE_GOOD ; 1
+	const TREEMON_SCORE_RARE ; 2
+
+
+; wild data
+
+NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
+NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
+
+GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2 + 1) * 3 + 2
+WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
+
+
+; swarms
+
+SWARM_DUNSPARCE EQU 0
+SWARM_YANMA     EQU 1
+
+FISHSWARM_QWILFISH EQU 1
+FISHSWARM_REMORAID EQU 2
+
+
+; significant happiness values
+BASE_HAPPINESS        EQU 70
+FRIEND_BALL_HAPPINESS EQU 200
+HAPPINESS_TO_EVOLVE   EQU 220
+HAPPINESS_THRESHOLD_1 EQU 100
+HAPPINESS_THRESHOLD_2 EQU 200
+
+
+; PP
+PP_UP_MASK EQU %11000000
+PP_UP_ONE  EQU %01000000
+PP_MASK    EQU %00111111
