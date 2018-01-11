@@ -87,8 +87,8 @@ InitPokedex: ; 40063
 
 	xor a
 	ld [wJumptableIndex], a
-	ld [wDexEntryPrevJumptableIndex], a
-	ld [wcf65], a
+	ld [wPrevDexEntryJumptableIndex], a
+	ld [wPrevDexEntryBackup], a
 	ld [wcf66], a
 
 	call Pokedex_CheckUnlockedUnownMode
@@ -119,7 +119,7 @@ Pokedex_CheckUnlockedUnownMode: ; 400a2
 
 Pokedex_InitCursorPosition: ; 400b4
 	ld hl, wPokedexOrder
-	ld a, [wLastDexEntry]
+	ld a, [wPrevDexEntry]
 	and a
 	jr z, .done
 	cp NUM_POKEMON + 1
@@ -291,7 +291,7 @@ Pokedex_UpdateMainScreen: ; 401ae (10:41ae)
 	ld a, DEXSTATE_DEX_ENTRY_SCR
 	ld [wJumptableIndex], a
 	ld a, DEXSTATE_MAIN_SCR
-	ld [wDexEntryPrevJumptableIndex], a
+	ld [wPrevDexEntryJumptableIndex], a
 	ret
 
 .select
@@ -332,7 +332,7 @@ Pokedex_InitDexEntryScreen: ; 40217 (10:4217)
 	call Pokedex_DrawDexEntryScreenBG
 	call Pokedex_InitArrowCursor
 	call Pokedex_GetSelectedMon
-	ld [wLastDexEntry], a
+	ld [wPrevDexEntry], a
 	farcall DisplayDexEntry
 	call Pokedex_DrawFootprint
 	call WaitBGMap
@@ -377,7 +377,7 @@ Pokedex_UpdateDexEntryScreen: ; 40258 (10:4258)
 
 .max_volume
 	call MaxVolume
-	ld a, [wDexEntryPrevJumptableIndex]
+	ld a, [wPrevDexEntryJumptableIndex]
 	ld [wJumptableIndex], a
 	ret
 
@@ -386,7 +386,7 @@ Pokedex_Page: ; 40292
 	xor $1
 	ld [wPokedexStatus], a
 	call Pokedex_GetSelectedMon
-	ld [wLastDexEntry], a
+	ld [wPrevDexEntry], a
 	farcall DisplayDexEntry
 	call WaitBGMap
 	ret
@@ -402,7 +402,7 @@ Pokedex_ReinitDexEntryScreen: ; 402aa (10:42aa)
 	call Pokedex_InitArrowCursor
 	call Pokedex_LoadCurrentFootprint
 	call Pokedex_GetSelectedMon
-	ld [wLastDexEntry], a
+	ld [wPrevDexEntry], a
 	farcall DisplayDexEntry
 	call Pokedex_DrawFootprint
 	call Pokedex_LoadSelectedMonTiles
@@ -475,9 +475,9 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	call Pokedex_ApplyPrintPals
 	xor a
 	ld [hSCX], a
-	ld a, [wcf65]
+	ld a, [wPrevDexEntryBackup]
 	push af
-	ld a, [wDexEntryPrevJumptableIndex]
+	ld a, [wPrevDexEntryJumptableIndex]
 	push af
 	ld a, [wJumptableIndex]
 	push af
@@ -485,9 +485,9 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	pop af
 	ld [wJumptableIndex], a
 	pop af
-	ld [wDexEntryPrevJumptableIndex], a
+	ld [wPrevDexEntryJumptableIndex], a
 	pop af
-	ld [wcf65], a
+	ld [wPrevDexEntryBackup], a
 	call ClearBGPalettes
 	call DisableLCD
 	call Pokedex_LoadInvertedFont
@@ -697,8 +697,8 @@ Pokedex_UpdateSearchScreen: ; 40471 (10:4471)
 	ld [wDexListingScrollOffsetBackup], a
 	ld a, [wDexListingCursor]
 	ld [wDexListingCursorBackup], a
-	ld a, [wLastDexEntry]
-	ld [wcf65], a
+	ld a, [wPrevDexEntry]
+	ld [wPrevDexEntryBackup], a
 	xor a
 	ld [wDexListingScrollOffset], a
 	ld [wDexListingCursor], a
@@ -773,7 +773,7 @@ Pokedex_UpdateSearchResultsScreen: ; 40562 (10:4562)
 	ld a, DEXSTATE_DEX_ENTRY_SCR
 	ld [wJumptableIndex], a
 	ld a, DEXSTATE_SEARCH_RESULTS_SCR
-	ld [wDexEntryPrevJumptableIndex], a
+	ld [wPrevDexEntryJumptableIndex], a
 	ret
 
 .return_to_search_screen
@@ -781,8 +781,8 @@ Pokedex_UpdateSearchResultsScreen: ; 40562 (10:4562)
 	ld [wDexListingScrollOffset], a
 	ld a, [wDexListingCursorBackup]
 	ld [wDexListingCursor], a
-	ld a, [wcf65]
-	ld [wLastDexEntry], a
+	ld a, [wPrevDexEntryBackup]
+	ld [wPrevDexEntry], a
 	call Pokedex_BlackOutBG
 	call ClearSprites
 	call Pokedex_OrderMonsByMode

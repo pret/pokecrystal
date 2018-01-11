@@ -490,7 +490,7 @@ NamingScreenJoypadLoop: ; 11915
 	ret
 
 .select
-	ld hl, wcf64
+	ld hl, wNamingScreenLetterCase
 	ld a, [hl]
 	xor 1
 	ld [hl], a
@@ -922,7 +922,7 @@ LoadNamingScreenGFX: ; 11c51
 	ld [hSCX], a
 	ld [wGlobalAnimXOffset], a
 	ld [wJumptableIndex], a
-	ld [wcf64], a
+	ld [wNamingScreenLetterCase], a
 	ld [hBGMapMode], a
 	ld [wNamingScreenCurrNameLength], a
 	ld a, $7
@@ -1218,9 +1218,9 @@ INCBIN "gfx/icons/mail2.2bpp"
 	ret
 
 .select
-	ld hl, wcf64
+	ld hl, wNamingScreenLetterCase
 	ld a, [hl]
-	xor $1
+	xor 1
 	ld [hl], a
 	jr nz, .switch_to_lowercase
 	ld de, MailEntry_Uppercase

@@ -92,9 +92,9 @@ AnimateHallOfFame: ; 864c3
 	ld de, MUSIC_HALL_OF_FAME
 	call HallOfFame_PlayMusicDE
 	xor a
-	ld [wcf64], a
+	ld [wHallOfFameMonCounter], a
 .loop
-	ld a, [wcf64]
+	ld a, [wHallOfFameMonCounter]
 	cp PARTY_LENGTH
 	jr nc, .done
 	ld hl, wHallOfFameTempMon1
@@ -108,7 +108,7 @@ AnimateHallOfFame: ; 864c3
 	pop hl
 	call .DisplayNewHallOfFamer
 	jr c, .done
-	ld hl, wcf64
+	ld hl, wHallOfFameMonCounter
 	inc [hl]
 	jr .loop
 
@@ -321,7 +321,7 @@ _HallOfFamePC: ; 86650
 
 .DisplayTeam:
 	xor a
-	ld [wcf64], a
+	ld [wHallOfFameMonCounter], a
 .next
 	call .DisplayMonAndStrings
 	jr c, .start_button
@@ -341,7 +341,7 @@ _HallOfFamePC: ; 86650
 	jr .loop
 
 .a_button
-	ld hl, wcf64
+	ld hl, wHallOfFameMonCounter
 	inc [hl]
 	jr .next
 
@@ -356,7 +356,7 @@ _HallOfFamePC: ; 86650
 .DisplayMonAndStrings:
 ; Print the number of times the player has entered the Hall of Fame.
 ; If that number is above 200, print "HOF Master!" instead.
-	ld a, [wcf64]
+	ld a, [wHallOfFameMonCounter]
 	cp PARTY_LENGTH
 	jr nc, .fail
 	ld hl, wHallOfFameTempMon1

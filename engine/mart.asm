@@ -785,7 +785,7 @@ SellMenu: ; 15eb3
 	farcall DepositSellInitPackBuffers
 .loop
 	farcall DepositSellPack
-	ld a, [wcf66]
+	ld a, [wPackUsedItem]
 	and a
 	jp z, .quit
 	call .TryToSellItem

@@ -94,7 +94,7 @@ Copyright_GFPresents: ; e4579
 	xor a
 	ld [wJumptableIndex], a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld a, $1
@@ -146,7 +146,7 @@ PlaceGameFreakPresents_0: ; e468c
 ; e468d
 
 PlaceGameFreakPresents_1: ; e468d
-	ld hl, wcf65
+	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $20
 	jr nc, .PlaceGameFreak
@@ -173,7 +173,7 @@ PlaceGameFreakPresents_1: ; e468d
 ; e46ba
 
 PlaceGameFreakPresents_2: ; e46ba
-	ld hl, wcf65
+	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $40
 	jr nc, .place_presents
@@ -197,7 +197,7 @@ PlaceGameFreakPresents_2: ; e46ba
 ; e46dd
 
 PlaceGameFreakPresents_3: ; e46dd
-	ld hl, wcf65
+	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $80
 	jr nc, .finish
@@ -503,7 +503,7 @@ IntroScene1: ; e495b (39:495b)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -523,7 +523,7 @@ IntroScene2: ; e49d6 (39:49d6)
 	call PlaySFX
 	pop af
 .DontPlaySound:
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	xor a
 	call CrystalIntro_UnownFade
 	ret
@@ -642,7 +642,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -669,7 +669,7 @@ IntroScene6: ; e4af7 (39:4af7)
 	call PlaySFX
 	pop af
 .NoUnown:
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	xor a
 	call CrystalIntro_UnownFade
 	ret
@@ -682,7 +682,7 @@ IntroScene6: ; e4af7 (39:4af7)
 	call PlaySFX
 	pop af
 .StopUnown:
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, $1
 	call CrystalIntro_UnownFade
 	ret
@@ -758,7 +758,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -907,7 +907,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -925,7 +925,7 @@ IntroScene12: ; e4cfa (39:4cfa)
 	ld c, a
 	and $1f
 	sla a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, c
 	and $e0
 	srl a
@@ -939,7 +939,7 @@ IntroScene12: ; e4cfa (39:4cfa)
 	and $f
 	sla a
 	sla a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, c
 	and $70
 	or $40
@@ -1041,7 +1041,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1068,7 +1068,7 @@ IntroScene14: ; e4dfa (39:4dfa)
 
 .asm_e4e1a
 	ld a, $1
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, [wGlobalAnimXOffset]
 	cp $88
 	jr c, .asm_e4e2c
@@ -1150,7 +1150,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	call _InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1217,7 +1217,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1299,7 +1299,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	call _InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1331,7 +1331,7 @@ IntroScene20: ; e5019 (39:5019)
 	and $1c
 	srl a
 	srl a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	xor a
 	call Intro_Scene20_AppearUnown
 	ret
@@ -1341,7 +1341,7 @@ IntroScene20: ; e5019 (39:5019)
 	and $1c
 	srl a
 	srl a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, 1
 	call Intro_Scene20_AppearUnown
 	ret
@@ -1358,7 +1358,7 @@ IntroScene21: ; e505d (39:505d)
 	xor a
 	ld [hBGMapMode], a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1461,13 +1461,13 @@ IntroScene26: ; e50bb (39:50bb)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
 IntroScene27: ; e512d (39:512d)
 ; Spell out C R Y S T A L with Unown.
-	ld hl, wcf65
+	ld hl, wIntroSceneTimer
 	inc [hl]
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -1477,7 +1477,7 @@ IntroScene27: ; e512d (39:512d)
 
 	ld c, a
 	and $f
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, c
 	and $70
 	swap a
@@ -1603,7 +1603,7 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	add hl, de
 	inc hl
 	inc hl
-	ld a, [wcf65]
+	ld a, [wIntroSceneTimer]
 	and %111111
 	cp %011111
 	jr z, .okay
@@ -1714,7 +1714,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	ld hl, .pal2
 
 .got_pointer
-	ld a, [wcf65]
+	ld a, [wIntroSceneTimer]
 	and $7
 	add a
 	add a
@@ -1784,7 +1784,7 @@ Intro_FadeUnownWordPals: ; e539d (39:539d)
 rept 4
 	inc hl
 endr
-	ld a, [wcf65]
+	ld a, [wIntroSceneTimer]
 	add a
 	ld c, a
 	ld b, $0

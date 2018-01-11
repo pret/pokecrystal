@@ -86,20 +86,20 @@ Special_MagnetTrain: ; 8cc04
 MagnetTrain_UpdateLYOverrides: ; 8cc99
 	ld hl, LYOverridesBackup
 	ld c, $2f
-	ld a, [wcf64]
+	ld a, [wMagnetTrainOffset]
 	add a
 	ld [hSCX], a
 	call .loadloop
 	ld c, $30
-	ld a, [wcf65]
+	ld a, [wMagnetTrainPosition]
 	call .loadloop
 	ld c, $31
-	ld a, [wcf64]
+	ld a, [wMagnetTrainOffset]
 	add a
 	call .loadloop
 	ld a, [wMagnetTrainDirection]
 	ld d, a
-	ld hl, wcf64
+	ld hl, wMagnetTrainOffset
 	ld a, [hl]
 	add d
 	add d
@@ -147,11 +147,11 @@ MagntTrain_LoadGFX_PlayMusic: ; 8ccc9
 	call MagnetTrain_InitLYOverrides
 	ld hl, wJumptableIndex
 	xor a
-	ld [hli], a
+	ld [hli], a ; wJumptableIndex
 	ld a, [wMagnetTrainInitPosition]
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; wMagnetTrainOffset
+	ld [hli], a ; wMagnetTrainPosition
+	ld [hli], a ; wMagnetTrainWaitCounter
 	ld de, MUSIC_MAGNET_TRAIN
 	call PlayMusic2
 	ret
@@ -341,13 +341,13 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld [hl], $0
 	call .Next
 	ld a, $80
-	ld [wcf66], a
+	ld [wMagnetTrainWaitCounter], a
 	ret
 ; 8ce47
 
 .MoveTrain1: ; 8ce47
 	ld hl, wMagnetTrainHoldPosition
-	ld a, [wcf65]
+	ld a, [wMagnetTrainPosition]
 	cp [hl]
 	jr z, .PrepareToHoldTrain
 	ld e, a
@@ -355,7 +355,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	xor $ff
 	inc a
 	add e
-	ld [wcf65], a
+	ld [wMagnetTrainPosition], a
 	ld hl, wGlobalAnimXOffset
 	ld a, [wMagnetTrainDirection]
 	add [hl]
@@ -365,12 +365,12 @@ MagnetTrain_Jumptable: ; 8cdf7
 .PrepareToHoldTrain:
 	call .Next
 	ld a, $80
-	ld [wcf66], a
+	ld [wMagnetTrainWaitCounter], a
 	ret
 ; 8ce6d
 
 .WaitScene: ; 8ce6d
-	ld hl, wcf66
+	ld hl, wMagnetTrainWaitCounter
 	ld a, [hl]
 	and a
 	jr z, .DoneWaiting
@@ -384,7 +384,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 
 .MoveTrain2: ; 8ce7a
 	ld hl, wMagnetTrainFinalPosition
-	ld a, [wcf65]
+	ld a, [wMagnetTrainPosition]
 	cp [hl]
 	jr z, .PrepareToFinishAnim
 	ld e, a
@@ -395,7 +395,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld a, e
 	add d
 	add d
-	ld [wcf65], a
+	ld [wMagnetTrainPosition], a
 	ld hl, wGlobalAnimXOffset
 	ld a, [wMagnetTrainDirection]
 	ld d, a

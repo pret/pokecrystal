@@ -110,3 +110,4 @@ EVENT_LOCATION EQU $7f
 	const_def
 	const JOHTO_REGION ; 0
 	const KANTO_REGION ; 1
+NUM_REGIONS EQU const_value

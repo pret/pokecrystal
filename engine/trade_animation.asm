@@ -398,8 +398,8 @@ TradeAnim_InitTubeAnim: ; 2914e
 	call DmgToCgbObjPal0
 
 	call TradeAnim_IncrementJumptableIndex
-	ld a, $5c
-	ld [wcf64], a
+	ld a, 92
+	ld [wFrameCounter], a
 	ret
 
 ; 291af
@@ -486,8 +486,8 @@ TradeAnim_TubeToPlayer5: ; 29211
 
 TradeAnim_TubeToOT6:
 TradeAnim_TubeToPlayer6: ; 29220
-	ld a, $80
-	ld [wcf64], a
+	ld a, 128
+	ld [wFrameCounter], a
 	call TradeAnim_IncrementJumptableIndex
 	ret
 
@@ -522,7 +522,7 @@ TradeAnim_TubeToOT7:
 TradeAnim_TubeToPlayer2:
 TradeAnim_TubeToPlayer7: ; 2925d
 	call TradeAnim_FlashBGPals
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .done
@@ -1126,8 +1126,8 @@ TradeAnim_RockingBall: ; 2961b
 	ld a, SPRITE_ANIM_INDEX_TRADE_POKE_BALL
 	call _InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
-	ld a, $20
-	ld [wcf64], a
+	ld a, 32
+	ld [wFrameCounter], a
 	ret
 
 ; 2962c
@@ -1143,8 +1143,8 @@ TradeAnim_DropBall: ; 2962c
 	add hl, bc
 	ld [hl], $dc
 	call TradeAnim_AdvanceScriptPointer
-	ld a, $38
-	ld [wcf64], a
+	ld a, 56
+	ld [wFrameCounter], a
 	ret
 
 ; 29649
@@ -1154,8 +1154,8 @@ TradeAnim_Poof: ; 29649
 	ld a, SPRITE_ANIM_INDEX_TRADE_POOF
 	call _InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
-	ld a, $10
-	ld [wcf64], a
+	ld a, 16
+	ld [wFrameCounter], a
 	ld de, SFX_BALL_POOF
 	call PlaySFX
 	ret
@@ -1169,8 +1169,8 @@ TradeAnim_BulgeThroughTube: ; 29660
 	ld a, SPRITE_ANIM_INDEX_TRADE_TUBE_BULGE
 	call _InitSpriteAnimStruct
 	call TradeAnim_AdvanceScriptPointer
-	ld a, $40
-	ld [wcf64], a
+	ld a, 64
+	ld [wFrameCounter], a
 	ret
 
 ; 29676
@@ -1547,7 +1547,7 @@ LoadTradeBubbleGFX: ; 2985a
 ; 29879
 
 TradeAnim_WaitAnim: ; 29879
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .done
@@ -1561,7 +1561,7 @@ TradeAnim_WaitAnim: ; 29879
 ; 29886
 
 TradeAnim_WaitAnim2: ; 29886
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .done

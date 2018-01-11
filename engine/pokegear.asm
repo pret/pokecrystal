@@ -87,9 +87,9 @@ PokeGear: ; 90b8d (24:4b8d)
 	ld [rLCDC], a
 	call TownMap_InitCursorAndPlayerIconPositions
 	xor a
-	ld [wJumptableIndex], a
-	ld [wcf64], a
-	ld [wcf65], a
+	ld [wJumptableIndex], a ; POKEGEARSTATE_CLOCKINIT
+	ld [wPokegearCard], a ; POKEGEARCARD_CLOCK
+	ld [wPokegearMapRegion], a ; JOHTO_REGION
 	ld [wcf66], a
 	ld [wPokegearPhoneScrollPosition], a
 	ld [wPokegearPhoneCursorPosition], a
@@ -173,7 +173,7 @@ InitPokegearModeIndicatorArrow: ; 90d32 (24:4d32)
 	ret
 
 AnimatePokegearModeIndicatorArrow: ; 90d41 (24:4d41)
-	ld hl, wcf64
+	ld hl, wPokegearCard
 	ld e, [hl]
 	ld d, 0
 	ld hl, .XCoords
@@ -239,8 +239,8 @@ TownMap_InitCursorAndPlayerIconPositions: ; 90d70 (24:4d70)
 Pokegear_InitJumptableIndices: ; 90d9e (24:4d9e)
 	ld a, POKEGEARSTATE_CLOCKINIT
 	ld [wJumptableIndex], a
-	xor a
-	ld [wcf64], a
+	xor a ; POKEGEARCARD_CLOCK
+	ld [wPokegearCard], a
 	ret
 
 InitPokegearTilemap: ; 90da8 (24:4da8)
@@ -250,7 +250,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld bc, TileMapEnd - TileMap
 	ld a, $4f
 	call ByteFill
-	ld a, [wcf64]
+	ld a, [wPokegearCard]
 	maskbits NUM_POKEGEAR_CARDS +- 1
 	add a
 	ld e, a
@@ -267,7 +267,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 .return_from_jumptable
 	call Pokegear_FinishTilemap
 	farcall TownMapPals
-	ld a, [wcf65]
+	ld a, [wPokegearMapRegion]
 	and a
 	jr nz, .kanto_0
 	xor a ; LOW(vBGMap0)
@@ -288,10 +288,10 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 .finish
 	ld [hWY], a
 	; swap region maps
-	ld a, [wcf65]
-	and 1
+	ld a, [wPokegearMapRegion]
+	maskbits NUM_REGIONS +- 1
 	xor 1
-	ld [wcf65], a
+	ld [wPokegearMapRegion], a
 	ret
 
 .UpdateBGMap: ; 90e00 (24:4e00)
@@ -1361,7 +1361,7 @@ Pokegear_SwitchPage: ; 91480 (24:5480)
 	ld a, c
 	ld [wJumptableIndex], a
 	ld a, b
-	ld [wcf64], a
+	ld [wPokegearCard], a
 	call DeleteSpriteAnimStruct2ToEnd
 	ret
 

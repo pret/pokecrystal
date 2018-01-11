@@ -152,7 +152,7 @@ wMapTimeOfDay:: db
 
 wPrinterConnectionOpen:: db
 wPrinterOpcode:: db
-wLastDexEntry:: db
+wPrevDexEntry:: db
 wDisableTextAcceleration:: db
 wPreviousLandmark:: db
 wCurrentLandmark:: db
@@ -1302,8 +1302,8 @@ wNamedObjectTypeBuffer:: db
 
 	ds 1
 
-wBattleTowerBattleEnded::
 wJumptableIndex::
+wBattleTowerBattleEnded::
 	db
 
 UNION ; cf64
@@ -1315,7 +1315,11 @@ wcf66:: db
 NEXTU ; cf64
 ; intro and title data
 wIntroSceneFrameCounter:: db
+UNION ; cf65
+wIntroSceneTimer:: db
+NEXTU ; cf65
 wTitleScreenTimer:: dw
+ENDU
 
 NEXTU ; cf64
 ; credits data
@@ -1324,23 +1328,25 @@ wCreditsBorderMon:: db
 wCreditsLYOverride:: db
 
 NEXTU ; cf64
-; unown puzzle data
-wHoldingUnownPuzzlePiece:: db
-wUnownPuzzleCursorPosition:: db
-wUnownPuzzleHeldPiece:: db
-
-NEXTU ; cf64
-; card flip data
-wCardFlipCursorY:: db
-wCardFlipCursorX:: db
-wCardFlipWhichCard:: db
-
-NEXTU ; cf64
 ; pokedex
-wDexEntryPrevJumptableIndex:: db
-if !DEF(_CRYSTAL11)
+wPrevDexEntryJumptableIndex:: db
+if DEF(_CRYSTAL11)
+wPrevDexEntryBackup:: db
+else
+wPrevDexEntryBackup::
 wPokedexStatus:: db
 endc
+
+NEXTU ; cf64
+; pokegear
+wPokegearCard:: db
+wPokegearMapRegion:: db
+
+NEXTU ; cf64
+; pack
+wPackJumptableIndex:: db
+wCurrPocket:: db
+wPackUsedItem:: db
 
 NEXTU ; cf64
 ; trainer card badges
@@ -1349,12 +1355,32 @@ wTrainerCardBadgeTileID:: db
 wTrainerCardBadgeAttributes:: db
 
 NEXTU ; cf64
+; card flip data
+wCardFlipCursorY:: db
+wCardFlipCursorX:: db
+wCardFlipWhichCard:: db
+
+NEXTU ; cf64
+; magnet train
+wMagnetTrainOffset:: db
+wMagnetTrainPosition:: db
+wMagnetTrainWaitCounter:: db
+
+NEXTU ; cf64
+; unown puzzle data
+wHoldingUnownPuzzlePiece:: db
+wUnownPuzzleCursorPosition:: db
+wUnownPuzzleHeldPiece:: db
+
+NEXTU ; cf64
 ; miscellaneous
+wFrameCounter::
 wNrOfBeatenBattleTowerTrainers::
 wMomBankDigitCursorPosition::
+wNamingScreenLetterCase::
+wHallOfFameMonCounter::
 wSlotsDelay::
 	db
-wCurrPocket::
 wPrinterQueueLength::
 	db
 ENDU ; cf67

@@ -19,7 +19,7 @@ Special_CelebiShrineEvent: ; 4989a
 	ld a, $80
 	ld [hl], a
 	ld a, 160 ; frame count
-	ld [wcf64], a
+	ld [wFrameCounter], a
 	ld d, $0
 .loop
 	ld a, [wJumptableIndex]
@@ -86,7 +86,7 @@ LoadCelebiGFX: ; 49912
 ; 49935
 
 CelebiEvent_CountDown: ; 49935
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .done
