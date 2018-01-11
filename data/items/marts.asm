@@ -1,4 +1,5 @@
 Marts: ; 160a9
+; entries correspond to MART_* constants
 	dw MartCherrygrove
 	dw MartCherrygroveDex
 	dw MartViolet
