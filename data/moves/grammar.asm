@@ -3,7 +3,7 @@
 ; Made redundant in English localization, where all are just "[move]!"
 
 MoveGrammar: ; 105e7a
-; 0: originally "[move]¯つかった!" ("[move]¯tsukatta!", or "used¯[move]!")
+; 0: originally "[move]¯つかった!" ("used¯[move]!")
 	db SWORDS_DANCE
 	db GROWTH
 	db STRENGTH
