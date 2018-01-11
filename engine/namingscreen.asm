@@ -774,12 +774,12 @@ Dakutens: ; Dummied out
 	db "サザ", "シジ", "スズ", "セゼ", "ソゾ"
 	db "タダ", "チヂ", "ツヅ", "テデ", "トド"
 	db "ハバ", "ヒビ", "フブ", "へべ", "ホボ"
-	db $ff
+	db -1 ; end
 
 Handakutens: ; Dummied out
 	db "はぱ", "ひぴ", "ふぷ", "へぺ", "ほぽ"
 	db "ハパ", "ヒピ", "フプ", "へぺ", "ホポ"
-	db $ff
+	db -1 ; end
 
 ; 11bbc
 

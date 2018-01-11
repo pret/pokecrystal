@@ -137,7 +137,7 @@ Special_DisplayUnownWords: ; 8ae68
 .loop2
 	ld a, [de]
 	inc de
-	cp $ff
+	cp -1
 	jr nz, .loop2
 	dec c
 	jr nz, .loop2
@@ -175,7 +175,7 @@ endc
 	db x
 shift
 endr
-	db $ff
+	db -1 ; end
 ENDM
 
 .UnownText: ; 8aebc

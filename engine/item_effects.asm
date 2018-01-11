@@ -748,7 +748,7 @@ BallMultiplierFunctionTable:
 	dbw MOON_BALL,   MoonBallMultiplier
 	dbw LOVE_BALL,   LoveBallMultiplier
 	dbw PARK_BALL,   ParkBallMultiplier
-	db $ff
+	db -1 ; end
 
 UltraBallMultiplier:
 ; multiply catch rate by 2

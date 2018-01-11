@@ -77,7 +77,7 @@ GetPlayerSprite: ; 14183
 	cp c
 	jr z, .good
 	inc hl
-	cp $ff
+	cp -1
 	jr nz, .loop
 
 ; Any player state not in the array defaults to Chris's sprite.
@@ -100,14 +100,14 @@ GetPlayerSprite: ; 14183
 	db PLAYER_BIKE,      SPRITE_CHRIS_BIKE
 	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
-	db $ff
+	db -1 ; end
 
 .Kris:
 	db PLAYER_NORMAL,    SPRITE_KRIS
 	db PLAYER_BIKE,      SPRITE_KRIS_BIKE
 	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
-	db $ff
+	db -1 ; end
 ; 141c9
 
 

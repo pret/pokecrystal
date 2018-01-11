@@ -4548,7 +4548,7 @@ UseHeldStatusHealingItem: ; 3dde9
 	db HELD_HEAL_SLEEP,    SLP
 	db HELD_HEAL_PARALYZE, 1 << PAR
 	db HELD_HEAL_STATUS,   ALL_STATUS
-	db $ff
+	db -1 ; end
 ; 3de51
 
 UseConfusionHealingItem: ; 3de51
@@ -4672,7 +4672,7 @@ HandleStatBoostingHeldItems: ; 3de97
 	dbw HELD_SP_DEFENSE_UP, BattleCommand_SpecialDefenseUp
 	dbw HELD_ACCURACY_UP,   BattleCommand_AccuracyUp
 	dbw HELD_EVASION_UP,    BattleCommand_EvasionUp
-	db $ff
+	db -1 ; end
 ; 3df12
 
 GetPartymonItem: ; 3df12

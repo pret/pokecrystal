@@ -5844,7 +5844,7 @@ Unknown_116815: ; 116815
 	db $c, $5
 	db $9, $8
 	db $8, $4
-	db $ff
+	db -1 ; end
 
 Unknown_11683e: ; 11683e
 	db $fd, $20
@@ -5867,7 +5867,7 @@ Unknown_11683e: ; 11683e
 	db $12, $5
 	db $f, $8
 	db $e, $4
-	db $ff
+	db -1 ; end
 
 Unknown_116867: ; 116867
 	db $14, $8
@@ -5910,7 +5910,7 @@ Unknown_116881: ; 116881
 	db $fd, $2
 	db $23, $2
 	db $fd, $40
-	db $ff
+	db -1 ; end
 
 Unknown_1168ae: ; 1168ae
 	db $24, $4

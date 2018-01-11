@@ -25,7 +25,7 @@ CeladonDeptStoreElevatorData:
 	elevfloor FLOOR_4F, 3, CELADON_DEPT_STORE_4F
 	elevfloor FLOOR_5F, 3, CELADON_DEPT_STORE_5F
 	elevfloor FLOOR_6F, 2, CELADON_DEPT_STORE_6F
-	db $ff ; end
+	db -1 ; end
 
 CeladonDeptStoreElevator_MapEventHeader:
 	; filler
