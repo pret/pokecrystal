@@ -163,8 +163,7 @@ const_value set 70
 	const MART_UNDERGROUND
 
 
-; PartyMenuActionText values
-; GetPartyMenuQualityIndexes arguments (see engine/party_menu.asm)
+; PartyMenuQualityPointers indexes (see data/party_menu_qualities.asm)
 	const_def
 	const PARTYMENUACTION_CHOOSE_POKEMON
 	const PARTYMENUACTION_HEALING_ITEM

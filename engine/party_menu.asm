@@ -1,15 +1,3 @@
-; WritePartyMenuTilemap.Jumptable indexes
-	const_def
-	const PARTYMENUQUALITY_NICKNAMES
-	const PARTYMENUQUALITY_HP_BAR
-	const PARTYMENUQUALITY_HP_DIGITS
-	const PARTYMENUQUALITY_LEVEL
-	const PARTYMENUQUALITY_STATUS
-	const PARTYMENUQUALITY_TMHM_COMPAT
-	const PARTYMENUQUALITY_EVO_STONE_COMPAT
-	const PARTYMENUQUALITY_GENDER
-	const PARTYMENUQUALITY_MOBILE_SELECTION
-
 SelectMonFromParty: ; 50000
 	call DisableSpriteUpdates
 	xor a
@@ -62,7 +50,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl] ; Disable text delay
+	set NO_TEXT_SCROLL, [hl]
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
@@ -619,7 +607,7 @@ GetPartyMenuQualityIndexes: ; 50396
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, .Pointers
+	ld hl, PartyMenuQualityPointers
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -628,38 +616,11 @@ GetPartyMenuQualityIndexes: ; 50396
 	ret
 
 .skip
-	ld hl, .Default
+	ld hl, PartyMenuQualityPointers.Default
 	ret
 ; 503b2
 
-.Pointers: ; 503b2
-; entries correspond to PARTYMENUACTION_* constants
-	dw .Default  ; PARTYMENUACTION_CHOOSE_POKEMON
-	dw .Default  ; PARTYMENUACTION_HEALING_ITEM
-	dw .Default  ; PARTYMENUACTION_SWITCH
-	dw .TMHM     ; PARTYMENUACTION_TEACH_TMHM
-	dw .Default  ; PARTYMENUACTION_MOVE
-	dw .EvoStone ; PARTYMENUACTION_EVO_STONE
-	dw .Gender   ; PARTYMENUACTION_GIVE_MON
-	dw .Gender   ; PARTYMENUACTION_GIVE_MON_FEMALE
-	dw .Default  ; PARTYMENUACTION_GIVE_ITEM
-	dw .Mobile   ; PARTYMENUACTION_MOBILE
-; 503c6
-
-partymenuqualities: MACRO
-rept _NARG
-	db PARTYMENUQUALITY_\1
-shift
-endr
-	db -1 ; end
-ENDM
-
-.Default:  partymenuqualities NICKNAMES, HP_BAR, HP_DIGITS, LEVEL, STATUS
-.TMHM:     partymenuqualities NICKNAMES, TMHM_COMPAT, LEVEL, STATUS
-.EvoStone: partymenuqualities NICKNAMES, EVO_STONE_COMPAT, LEVEL, STATUS
-.Gender:   partymenuqualities NICKNAMES, GENDER, LEVEL, STATUS
-.Mobile:   partymenuqualities NICKNAMES, MOBILE_SELECTION, LEVEL, STATUS
-; 503e0
+INCLUDE "data/party_menu_qualities.asm"
 
 
 InitPartyMenuGFX: ; 503e0
