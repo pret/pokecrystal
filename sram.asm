@@ -187,7 +187,8 @@ SECTION "SRAM Crystal Data", SRAM
 sMobileEventIndex:: db ; be3c
 
 sCrystalData:: ds wCrystalDataEnd - wCrystalData
-sMobileEventIndexBackup:: db
+
+sMobileEventIndexBackup:: db ; be44
 
 
 SECTION "SRAM Battle Tower", SRAM
@@ -241,6 +242,7 @@ SECTION "Boxes 8-14", SRAM
 SECTION "SRAM Mobile", SRAM, BANK [5]
 
 	ds 1 ; former location for sMobileEventIndex, moved to 1:BE3C in English
+
 sTrainerRankings:: ; a001
 sTrainerRankingGameTimeHOF:: ds 4
 sTrainerRankingStepCountHOF:: ds 4
@@ -287,10 +289,11 @@ sTrainerRankingBugContestScore:: ds 2
 sTrainerRankingsChecksum:: ds 2
 sTrainerRankingsEnd:: ; a083
 
-ds 1 ; Former location for sMobileEventIndexBackup, moved to 1:BE44 in English
+	ds 1 ; Former location for sMobileEventIndexBackup, moved to 1:BE44 in English
+
 sTrainerRankingsBackup:: ds sTrainerRankingsEnd - sTrainerRankings
 
-ds $945
+	ds $945
 ; aa4b
 
 sMobileLoginPassword:: ds MOBILE_LOGIN_PASSWORD_LENGTH
