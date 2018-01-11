@@ -50,7 +50,7 @@ RuinsOfAlphOmanyteChamber_MapScriptHeader:
 
 MapRuinsOfAlphOmanyteChamberSignpost2Script:
 	refreshscreen $0
-	writebyte $1
+	writebyte UNOWNPUZZLE_OMANYTE
 	special Special_UnownPuzzle
 	closetext
 	iftrue UnknownScript_0x58c36
@@ -84,7 +84,7 @@ MapRuinsOfAlphOmanyteChamberSignpost3Script:
 MapRuinsOfAlphOmanyteChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58c8e
-	writebyte $2
+	writebyte UNOWNWORDS_WATER
 	special Special_DisplayUnownWords
 	closetext
 	end
@@ -94,7 +94,7 @@ MapRuinsOfAlphOmanyteChamberSignpost5Script:
 	iftrue UnknownScript_0x58c85
 	opentext
 	writetext UnknownText_0x58cc0
-	writebyte $2
+	writebyte UNOWNWORDS_WATER
 	special Special_DisplayUnownWords
 	closetext
 	end

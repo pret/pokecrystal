@@ -157,7 +157,7 @@ PlaceStartCancelBoxBorder: ; e128d
 	ld a, $f3
 	ld [hli], a
 	ld bc, 10
-	ld a, $ef
+	ld a, PUZZLE_VOID
 	call ByteFill
 	hlcoord 15, 16
 	ld a, $f3
@@ -218,7 +218,7 @@ UnownPuzzleJumptable: ; e12ca
 	ld a, [hl]
 	cp 1 puzcoord 0
 	ret c
-	sub $6
+	sub 6
 	ld [hl], a
 	jr .done_joypad
 
@@ -235,7 +235,7 @@ UnownPuzzleJumptable: ; e12ca
 	ret z
 	cp 5 puzcoord 0
 	ret nc
-	add $6
+	add 6
 	ld [hl], a
 	jr .done_joypad
 
@@ -835,7 +835,7 @@ INCBIN "gfx/unown_puzzle/tile_borders.2bpp"
 
 LoadUnownPuzzlePiecesGFX: ; e17a3
 	ld a, [ScriptVar]
-	and 3
+	maskbits NUM_UNOWN_PUZZLES +- 1
 	ld e, a
 	ld d, 0
 	ld hl, .LZPointers
@@ -851,6 +851,7 @@ LoadUnownPuzzlePiecesGFX: ; e17a3
 ; e17bd
 
 .LZPointers: ; e17bd
+; entries correspond to UNOWNPUZZLE_* constants
 	dw KabutoPuzzleLZ
 	dw OmanytePuzzleLZ
 	dw AerodactylPuzzleLZ

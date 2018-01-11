@@ -105,7 +105,7 @@ SpecialKabutoChamber: ; 8ae4e
 
 Special_DisplayUnownWords: ; 8ae68
 	ld a, [ScriptVar]
-	ld hl, .MenuDataHeaders_UnownWalls
+	ld hl, MenuDataHeaders_UnownWalls
 	and a
 	jr z, .load
 
@@ -131,7 +131,7 @@ Special_DisplayUnownWords: ; 8ae68
 	add hl, de
 	ld a, [ScriptVar]
 	ld c, a
-	ld de, .UnownText
+	ld de, UnownWalls
 	and a
 	jr z, .copy
 .loop2
@@ -142,10 +142,10 @@ Special_DisplayUnownWords: ; 8ae68
 	dec c
 	jr nz, .loop2
 .copy
-	call .CopyWord
+	call _DisplayUnownWords_CopyWord
 	ld bc, AttrMap - TileMap
 	add hl, bc
-	call .FillAttr
+	call _DisplayUnownWords_FillAttr
 	call WaitBGMap2
 	call JoyWaitAorB
 	call PlayClickSFX
@@ -153,66 +153,9 @@ Special_DisplayUnownWords: ; 8ae68
 	ret
 ; 8aebc
 
-unownwall: MACRO
-rept _NARG
-if \1 == "-"
-x = $64
-else
-if \1 >= "Y"
-x = 2 * (\1 - "Y") + $60
-else
-if \1 >= "Q"
-x = 2 * (\1 - "Q") + $40
-else
-if \1 >= "I"
-x = 2 * (\1 - "I") + $20
-else
-x = 2 * (\1 - "A")
-endc
-endc
-endc
-endc
-	db x
-shift
-endr
-	db -1 ; end
-ENDM
+INCLUDE "data/unown_walls.asm"
 
-.UnownText: ; 8aebc
-;.UnownText_Escape:
-	; db      $08, $44, $04, $00, $2e, $08, $ff
-	unownwall "E", "S", "C", "A", "P", "E"
-;.UnownText_Light:
-	; db      $26, $20, $0c, $0e, $46, $ff
-	unownwall "L", "I", "G", "H", "T"
-;.UnownText_Water:
-	; db      $4c, $00, $46, $08, $42, $ff
-	unownwall "W", "A", "T", "E", "R"
-;.UnownText_Ho_Oh:
-	; db      $0e, $2c, $64, $2c, $0e, $ff
-	unownwall "H", "O", "-", "O", "H"
-; 8aed5
-
-.MenuDataHeaders_UnownWalls: ; 0x8aed5
-;.MenuDataHeader_Escape:
-	db $40 ; flags
-	db 04, 03 ; start coords
-	db 09, 16 ; end coords
-;.MenuDataHeader_Light:
-	db $40 ; flags
-	db 04, 04 ; start coords
-	db 09, 15 ; end coords
-;.MenuDataHeader_Water:
-	db $40 ; flags
-	db 04, 04 ; start coords
-	db 09, 15 ; end coords
-;.MenuDataHeader_Ho_Oh:
-	db $40 ; flags
-	db 04, 04 ; start coords
-	db 09, 15 ; end coords
-; 8aee9
-
-.FillAttr: ; 8aee9
+_DisplayUnownWords_FillAttr: ; 8aee9
 	ld a, [de]
 	cp $ff
 	ret z
@@ -226,7 +169,7 @@ ENDM
 	inc hl
 	inc hl
 	inc de
-	jr .FillAttr
+	jr _DisplayUnownWords_FillAttr
 ; 8aefd
 
 .PlaceSquare: ; 8aefd
@@ -242,7 +185,7 @@ ENDM
 	ret
 ; 8af09
 
-.CopyWord: ; 8af09
+_DisplayUnownWords_CopyWord: ; 8af09
 	push hl
 	push de
 .word_loop

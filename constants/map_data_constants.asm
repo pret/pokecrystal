@@ -142,6 +142,11 @@ SLIDING      EQU 3
 EMOTE_OBJECT EQU 7
 
 
+; see engine/overworld.asm
+MAX_OUTDOOR_SPRITES EQU 23
+SPRITE_GFX_LIST_CAPACITY EQU $20
+
+
 ; SpawnPoints indexes (see data/maps/spawn_points.asm)
 const_value = -1
 	const SPAWN_N_A
@@ -176,6 +181,26 @@ const_value = -1
 	const SPAWN_MT_SILVER
 	const SPAWN_FAST_SHIP
 NUM_SPAWNS EQU const_value
+
+
+; treemon sets
+; TreeMons indexes (see data/wild/treemons.asm)
+	const_def
+	const TREEMON_SET_CITY
+	const TREEMON_SET_CANYON
+	const TREEMON_SET_AZALEA
+	const TREEMON_SET_ROUTE
+	const TREEMON_SET_KANTO
+	const TREEMON_SET_LAKE
+	const TREEMON_SET_FOREST
+	const TREEMON_SET_ROCK
+NUM_TREEMON_SETS EQU const_value
+
+; treemon scores
+	const_def
+	const TREEMON_SCORE_BAD  ; 0
+	const TREEMON_SCORE_GOOD ; 1
+	const TREEMON_SCORE_RARE ; 2
 
 
 ; TryBGEvent arguments (see engine/events.asm)
@@ -253,28 +278,8 @@ const_value set 1
 NUM_FRUIT_TREES EQU const_value +- 1
 
 
-; treemon sets
-; TreeMons indexes (see data/wild/treemons.asm)
-	const_def
-	const TREEMON_SET_CITY
-	const TREEMON_SET_CANYON
-	const TREEMON_SET_AZALEA
-	const TREEMON_SET_ROUTE
-	const TREEMON_SET_KANTO
-	const TREEMON_SET_LAKE
-	const TREEMON_SET_FOREST
-	const TREEMON_SET_ROCK
-NUM_TREEMON_SETS EQU const_value
-
-; treemon scores
-	const_def
-	const TREEMON_SCORE_BAD  ; 0
-	const TREEMON_SCORE_GOOD ; 1
-	const TREEMON_SCORE_RARE ; 2
-
-
 ; elevator floors
-; used by `elevfloor`
+; used by elevfloor
 	const_def
 	const FLOOR_B4F
 	const FLOOR_B3F
@@ -305,6 +310,20 @@ CMDQUEUE_CAPACITY EQU 4
 ; command queue types
 CMDQUEUE_STONETABLE EQU 2
 
-; see engine/overworld.asm
-MAX_OUTDOOR_SPRITES EQU 23
-SPRITE_GFX_LIST_CAPACITY EQU $20
+
+; used by Special_UnownPuzzle
+; LoadUnownPuzzlePiecesGFX.LZPointers indexes (see engine/unown_puzzle.asm)
+	const_def
+	const UNOWNPUZZLE_KABUTO     ; 0
+	const UNOWNPUZZLE_OMANYTE    ; 1
+	const UNOWNPUZZLE_AERODACTYL ; 2
+	const UNOWNPUZZLE_HO_OH      ; 3
+NUM_UNOWN_PUZZLES EQU const_value
+
+; used by Special_DisplayUnownWords
+; UnownWalls and MenuDataHeaders_UnownWalls indexes (see data/unown_walls.asm)
+	const_def
+	const UNOWNWORDS_ESCAPE ; 0
+	const UNOWNWORDS_LIGHT  ; 1
+	const UNOWNWORDS_WATER  ; 2
+	const UNOWNWORDS_HO_OH  ; 3

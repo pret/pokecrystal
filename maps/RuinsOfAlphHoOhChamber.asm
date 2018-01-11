@@ -50,7 +50,7 @@ RuinsOfAlphHoOhChamber_MapScriptHeader:
 
 MapRuinsOfAlphHoOhChamberSignpost2Script:
 	refreshscreen $0
-	writebyte $3
+	writebyte UNOWNPUZZLE_HO_OH
 	special Special_UnownPuzzle
 	closetext
 	iftrue UnknownScript_0x585ba
@@ -84,7 +84,7 @@ MapRuinsOfAlphHoOhChamberSignpost3Script:
 MapRuinsOfAlphHoOhChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58612
-	writebyte $3
+	writebyte UNOWNWORDS_HO_OH
 	special Special_DisplayUnownWords
 	closetext
 	end
@@ -94,7 +94,7 @@ MapRuinsOfAlphHoOhChamberSignpost5Script:
 	iftrue UnknownScript_0x58609
 	opentext
 	writetext UnknownText_0x58644
-	writebyte $3
+	writebyte UNOWNWORDS_HO_OH
 	special Special_DisplayUnownWords
 	closetext
 	end
