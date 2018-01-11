@@ -1,3 +1,14 @@
+TRADEANIM_RIGHT_ARROW EQU $ed
+TRADEANIM_LEFT_ARROW  EQU $ee
+
+; TradeAnim_TubeAnimJumptable.Jumptable indexes
+	const_def
+	const TRADEANIMSTATE_0 ; 0
+	const TRADEANIMSTATE_1 ; 1
+	const TRADEANIMSTATE_2 ; 2
+	const TRADEANIMSTATE_3 ; 3
+TRADEANIMJUMPTABLE_LENGTH EQU const_value
+
 TradeAnimation: ; 28f24
 	xor a
 	ld [wcf66], a
@@ -165,13 +176,13 @@ RunTradeAnimScript: ; 28fa1
 	ld de, vTiles2 tile $31
 	call Decompress
 	ld hl, TradeArrowGFX
-	ld de, vTiles1 tile $6d
-	ld bc, $10
+	ld de, vTiles0 tile TRADEANIM_RIGHT_ARROW
+	ld bc, 1 tiles
 	ld a, BANK(TradeArrowGFX)
 	call FarCopyBytes
-	ld hl, TradeArrowGFX + $10
-	ld de, vTiles1 tile $6e
-	ld bc, $10
+	ld hl, TradeArrowGFX + 1 tiles
+	ld de, vTiles0 tile TRADEANIM_LEFT_ARROW
+	ld bc, 1 tiles
 	ld a, BANK(TradeArrowGFX)
 	call FarCopyBytes
 	xor a
@@ -317,7 +328,7 @@ TradeAnim_End: ; 29123
 ; 29129
 
 TradeAnim_TubeToOT1: ; 29129
-	ld a, $ed ; >>>>>>>>
+	ld a, TRADEANIM_RIGHT_ARROW
 	call TradeAnim_PlaceTrademonStatsOnTubeAnim
 	ld a, [wLinkTradeSendmonSpecies]
 	ld [wd265], a
@@ -327,11 +338,11 @@ TradeAnim_TubeToOT1: ; 29129
 	jr TradeAnim_InitTubeAnim
 
 TradeAnim_TubeToPlayer1: ; 2913c
-	ld a, $ee ; <<<<<<<<
+	ld a, TRADEANIM_LEFT_ARROW
 	call TradeAnim_PlaceTrademonStatsOnTubeAnim
 	ld a, [wLinkTradeGetmonSpecies]
 	ld [wd265], a
-	ld a, $2
+	ld a, TRADEANIMSTATE_2
 	depixel 9, 18, 4, 4
 	ld b, $4
 TradeAnim_InitTubeAnim: ; 2914e
@@ -400,7 +411,7 @@ TradeAnim_TubeToOT2: ; 291af
 	ld [hSCX], a
 	cp $50
 	ret nz
-	ld a, $1
+	ld a, TRADEANIMSTATE_1
 	call TradeAnim_TubeAnimJumptable
 	call TradeAnim_IncrementJumptableIndex
 	ret
@@ -414,7 +425,7 @@ TradeAnim_TubeToOT3: ; 291c4
 	ld [hSCX], a
 	cp $a0
 	ret nz
-	ld a, $2
+	ld a, TRADEANIMSTATE_2
 	call TradeAnim_TubeAnimJumptable
 	call TradeAnim_IncrementJumptableIndex
 	ret
@@ -440,7 +451,7 @@ TradeAnim_TubeToPlayer3: ; 291e8
 	ld [hSCX], a
 	cp $b0
 	ret nz
-	ld a, $1
+	ld a, TRADEANIMSTATE_1
 	call TradeAnim_TubeAnimJumptable
 	call TradeAnim_IncrementJumptableIndex
 	ret
@@ -454,7 +465,7 @@ TradeAnim_TubeToPlayer4: ; 291fd
 	ld [hSCX], a
 	cp $60
 	ret nz
-	xor a
+	xor a ; TRADEANIMSTATE_0
 	call TradeAnim_TubeAnimJumptable
 	call TradeAnim_IncrementJumptableIndex
 	ret
@@ -541,7 +552,7 @@ TradeAnim_GetTrademonSFX: ; 29277
 ; 29281
 
 TradeAnim_TubeAnimJumptable: ; 29281
-	and 3
+	maskbits TRADEANIMJUMPTABLE_LENGTH +- 1
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable
@@ -554,6 +565,7 @@ TradeAnim_TubeAnimJumptable: ; 29281
 ; 2928f
 
 .Jumptable: ; 2928f
+; entries correspond to TRADEANIMSTATE_* constants
 	dw .Zero
 	dw .One
 	dw .Two

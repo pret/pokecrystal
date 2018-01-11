@@ -435,7 +435,7 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	ld a, [wEnvironment]
 	push af
 	ld a, [TimeOfDay]
-	and $3
+	maskbits NUM_DAYTIMES +- 1
 	ld [TimeOfDayPal], a
 	ld a, $1
 	ld [wEnvironment], a

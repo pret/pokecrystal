@@ -80,7 +80,7 @@ rept 4
 endr
 
 	ld a, [TimeOfDay]
-	and 3
+	maskbits NUM_DAYTIMES +- 1
 	cp NITE_F
 	jr c, .time_species
 	inc hl

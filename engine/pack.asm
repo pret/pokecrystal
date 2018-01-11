@@ -1,3 +1,17 @@
+; Pack.Jumptable and BattlePack.Jumptable indexes
+	const_def
+	const PACKSTATE_INITGFX            ;  0
+	const PACKSTATE_INITITEMSPOCKET    ;  1
+	const PACKSTATE_ITEMSPOCKETMENU    ;  2
+	const PACKSTATE_INITBALLSPOCKET    ;  3
+	const PACKSTATE_BALLSPOCKETMENU    ;  4
+	const PACKSTATE_INITKEYITEMSPOCKET ;  5
+	const PACKSTATE_KEYITEMSPOCKETMENU ;  6
+	const PACKSTATE_INITTMHMPOCKET     ;  7
+	const PACKSTATE_TMHMPOCKETMENU     ;  8
+	const PACKSTATE_QUITNOSCRIPT       ;  9
+	const PACKSTATE_QUITRUNSCRIPT      ; 10
+
 Pack: ; 10000
 	ld hl, Options
 	set NO_TEXT_SCROLL, [hl]
@@ -28,6 +42,7 @@ Pack: ; 10000
 ; 10030
 
 .Jumptable: ; 10030 (4:4030)
+; entries correspond to PACKSTATE_* constants
 	dw .InitGFX            ;  0
 	dw .InitItemsPocket    ;  1
 	dw .ItemsPocketMenu    ;  2
@@ -50,7 +65,7 @@ Pack: ; 10000
 	ret
 
 .InitItemsPocket: ; 10056 (4:4056)
-	xor a
+	xor a ; ITEM_POCKET
 	ld [wCurrPocket], a
 	call ClearPocketList
 	call DrawPocketName
@@ -70,15 +85,15 @@ Pack: ; 10000
 	ld [wItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wItemsPocketCursor], a
-	ld b, $7
-	ld c, $3
+	ld b, PACKSTATE_INITTMHMPOCKET ; left
+	ld c, PACKSTATE_INITBALLSPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
 	call .ItemBallsKey_LoadSubmenu
 	ret
 
 .InitKeyItemsPocket: ; 10094 (4:4094)
-	ld a, $2
+	ld a, KEY_ITEM_POCKET
 	ld [wCurrPocket], a
 	call ClearPocketList
 	call DrawPocketName
@@ -98,15 +113,15 @@ Pack: ; 10000
 	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wKeyItemsPocketCursor], a
-	ld b, $3
-	ld c, $7
+	ld b, PACKSTATE_INITBALLSPOCKET ; left
+	ld c, PACKSTATE_INITTMHMPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
 	call .ItemBallsKey_LoadSubmenu
 	ret
 
 .InitTMHMPocket: ; 100d3 (4:40d3)
-	ld a, $3
+	ld a, TM_HM_POCKET
 	ld [wCurrPocket], a
 	call ClearPocketList
 	call DrawPocketName
@@ -118,8 +133,8 @@ Pack: ; 10000
 
 .TMHMPocketMenu: ; 100e8 (4:40e8)
 	farcall TMHMPocket
-	ld b, $5
-	ld c, $1
+	ld b, PACKSTATE_INITKEYITEMSPOCKET ; left
+	ld c, PACKSTATE_INITITEMSPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
 	farcall _CheckTossableItem
@@ -162,7 +177,6 @@ Pack: ; 10000
 ; 0x10137
 
 .Jumptable1: ; 10137
-
 	dw .UseItem
 	dw QuitItemSubmenu
 
@@ -211,7 +225,7 @@ Pack: ; 10000
 	ret
 
 .InitBallsPocket: ; 10186 (4:4186)
-	ld a, $1
+	ld a, BALL_POCKET
 	ld [wCurrPocket], a
 	call ClearPocketList
 	call DrawPocketName
@@ -231,8 +245,8 @@ Pack: ; 10000
 	ld [wBallsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wBallsPocketCursor], a
-	ld b, $1
-	ld c, $5
+	ld b, PACKSTATE_INITITEMSPOCKET ; left
+	ld c, PACKSTATE_INITKEYITEMSPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
 	call .ItemBallsKey_LoadSubmenu
@@ -327,7 +341,6 @@ MenuDataHeader_UsableKeyItem: ; 0x10249
 ; 0x1026a
 
 Jumptable_UseGiveTossRegisterQuit: ; 1026a
-
 	dw UseItem
 	dw GiveItem
 	dw TossMenu
@@ -353,7 +366,6 @@ MenuDataHeader_UsableItem: ; 0x10274
 ; 0x10291
 
 Jumptable_UseGiveTossQuit: ; 10291
-
 	dw UseItem
 	dw GiveItem
 	dw TossMenu
@@ -376,7 +388,6 @@ MenuDataHeader_UnusableItem: ; 0x10299
 ; 0x102ac
 
 Jumptable_UseQuit: ; 102ac
-
 	dw UseItem
 	dw QuitItemSubmenu
 ; 102b0
@@ -398,7 +409,6 @@ MenuDataHeader_UnusableKeyItem: ; 0x102b0
 ; 0x102c7
 
 Jumptable_UseRegisterQuit: ; 102c7
-
 	dw UseItem
 	dw RegisterItem
 	dw QuitItemSubmenu
@@ -422,7 +432,6 @@ MenuDataHeader_HoldableKeyItem: ; 0x102cd
 ; 0x102ea
 
 Jumptable_GiveTossRegisterQuit: ; 102ea
-
 	dw GiveItem
 	dw TossMenu
 	dw RegisterItem
@@ -446,7 +455,6 @@ MenuDataHeader_HoldableItem: ; 0x102f2
 ; 0x1030b
 
 Jumptable_GiveTossQuit: ; 1030b
-
 	dw GiveItem
 	dw TossMenu
 	dw QuitItemSubmenu
@@ -462,14 +470,14 @@ UseItem: ; 10311
 ; 1031f
 
 .dw ; 1031f (4:431f)
-
+; entries correspond to ITEMMENU_* constants
+	dw .Oak     ; ITEMMENU_NOUSE
 	dw .Oak
 	dw .Oak
 	dw .Oak
-	dw .Oak
-	dw .Current
-	dw .Party
-	dw .Field
+	dw .Current ; ITEMMENU_CURRENT
+	dw .Party   ; ITEMMENU_PARTY
+	dw .Field   ; ITEMMENU_CLOSE
 ; 1035c
 
 .Oak: ; 1032d (4:432d)
@@ -503,7 +511,7 @@ UseItem: ; 10311
 	ld a, [wItemEffectSucceeded]
 	and a
 	jr z, .Oak
-	ld a, $a
+	ld a, PACKSTATE_QUITRUNSCRIPT
 	ld [wJumptableIndex], a
 	ret
 ; 10364 (4:4364)
@@ -537,11 +545,11 @@ TossMenu: ; 10364
 ResetPocketCursorPositions: ; 1039d
 ; unreferenced
 	ld a, [wCurrPocket]
-	and a
+	and a ; ITEM_POCKET
 	jr z, .items
-	dec a
+	dec a ; BALL_POCKET
 	jr z, .balls
-	dec a
+	dec a ; KEY_ITEM_POCKET
 	jr z, .key
 	ret
 
@@ -693,6 +701,7 @@ BattlePack: ; 10493
 ; 104c3
 
 .Jumptable: ; 104c3 (4:44c3)
+; entries correspond to PACKSTATE_* constants
 	dw .InitGFX            ;  0
 	dw .InitItemsPocket    ;  1
 	dw .ItemsPocketMenu    ;  2
@@ -715,7 +724,7 @@ BattlePack: ; 10493
 	ret
 
 .InitItemsPocket: ; 104e9 (4:44e9)
-	xor a
+	xor a ; ITEM_POCKET
 	ld [wCurrPocket], a
 	call ClearPocketList
 	call DrawPocketName
@@ -735,15 +744,15 @@ BattlePack: ; 10493
 	ld [wItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wItemsPocketCursor], a
-	ld b, $7
-	ld c, $3
+	ld b, PACKSTATE_INITTMHMPOCKET ; left
+	ld c, PACKSTATE_INITBALLSPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
 	call ItemSubmenu
 	ret
 
 .InitKeyItemsPocket: ; 10527 (4:4527)
-	ld a, $2
+	ld a, KEY_ITEM_POCKET
 	ld [wCurrPocket], a
 	call ClearPocketList
 	call DrawPocketName
@@ -763,15 +772,15 @@ BattlePack: ; 10493
 	ld [wKeyItemsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wKeyItemsPocketCursor], a
-	ld b, $3
-	ld c, $7
+	ld b, PACKSTATE_INITBALLSPOCKET ; left
+	ld c, PACKSTATE_INITTMHMPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
 	call ItemSubmenu
 	ret
 
 .InitTMHMPocket: ; 10566 (4:4566)
-	ld a, $3
+	ld a, TM_HM_POCKET
 	ld [wCurrPocket], a
 	call ClearPocketList
 	call DrawPocketName
@@ -785,8 +794,8 @@ BattlePack: ; 10493
 
 .TMHMPocketMenu: ; 10581 (4:4581)
 	farcall TMHMPocket
-	ld b, $5
-	ld c, $1
+	ld b, PACKSTATE_INITKEYITEMSPOCKET ; left
+	ld c, PACKSTATE_INITITEMSPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
 	xor a
@@ -794,7 +803,7 @@ BattlePack: ; 10493
 	ret
 
 .InitBallsPocket: ; 10594 (4:4594)
-	ld a, $1
+	ld a, BALL_POCKET
 	ld [wCurrPocket], a
 	call ClearPocketList
 	call DrawPocketName
@@ -814,8 +823,8 @@ BattlePack: ; 10493
 	ld [wBallsPocketScrollPosition], a
 	ld a, [wMenuCursorY]
 	ld [wBallsPocketCursor], a
-	ld b, $1
-	ld c, $5
+	ld b, PACKSTATE_INITITEMSPOCKET ; left
+	ld c, PACKSTATE_INITKEYITEMSPOCKET ; right
 	call Pack_InterpretJoypad
 	ret c
 	call ItemSubmenu
@@ -893,13 +902,14 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	ret
 
 .ItemFunctionJumptable: ; 10637 (4:4637)
+; entries correspond to ITEMMENU_* constants
+	dw .Oak         ; ITEMMENU_NOUSE
 	dw .Oak
 	dw .Oak
 	dw .Oak
-	dw .Oak
-	dw .Unused
-	dw .BattleField
-	dw .BattleOnly
+	dw .Unused      ; ITEMMENU_CURRENT
+	dw .BattleField ; ITEMMENU_PARTY
+	dw .BattleOnly  ; ITEMMENU_CLOSE
 
 .Oak: ; 10645 (4:4645)
 	ld hl, Text_ThisIsntTheTime
@@ -937,7 +947,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 	cp $2
 	jr z, .didnt_use_item
 .quit_run_script ; 1067e (4:467e)
-	ld a, 10
+	ld a, PACKSTATE_QUITRUNSCRIPT
 	ld [wJumptableIndex], a
 	ret
 
@@ -954,7 +964,7 @@ InitPackBuffers: ; 1068a
 	xor a
 	ld [wJumptableIndex], a
 	ld a, [wLastPocket]
-	and $3
+	maskbits NUM_POCKETS +- 1
 	ld [wCurrPocket], a
 	inc a
 	add a
@@ -997,13 +1007,14 @@ DepositSellPack: ; 106be
 ; 106d1
 
 .Jumptable: ; 106d1 (4:46d1)
+; entries correspond to *_POCKET constants
 	dw .ItemsPocket
 	dw .BallsPocket
 	dw .KeyItemsPocket
 	dw .TMHMPocket
 
 .ItemsPocket: ; 106d9 (4:46d9)
-	xor a
+	xor a ; ITEM_POCKET
 	call InitPocket
 	ld hl, PC_Mart_ItemsPocketMenuDataHeader
 	call CopyMenuDataHeader
@@ -1019,7 +1030,7 @@ DepositSellPack: ; 106be
 	ret
 
 .KeyItemsPocket: ; 106ff (4:46ff)
-	ld a, 2
+	ld a, KEY_ITEM_POCKET
 	call InitPocket
 	ld hl, PC_Mart_KeyItemsPocketMenuDataHeader
 	call CopyMenuDataHeader
@@ -1035,7 +1046,7 @@ DepositSellPack: ; 106be
 	ret
 
 .TMHMPocket: ; 10726 (4:4726)
-	ld a, 3
+	ld a, TM_HM_POCKET
 	call InitPocket
 	call WaitBGMap_DrawPackGFX
 	farcall TMHMPocket
@@ -1044,7 +1055,7 @@ DepositSellPack: ; 106be
 	ret
 
 .BallsPocket: ; 1073b (4:473b)
-	ld a, 1
+	ld a, BALL_POCKET
 	call InitPocket
 	ld hl, PC_Mart_BallsPocketMenuDataHeader
 	call CopyMenuDataHeader
@@ -1098,7 +1109,7 @@ DepositSellTutorial_InterpretJoypad: ; 1076f
 .d_left
 	ld a, [wJumptableIndex]
 	dec a
-	and $3
+	maskbits NUM_POCKETS +- 1
 	ld [wJumptableIndex], a
 	push de
 	ld de, SFX_SWITCH_POCKETS
@@ -1110,7 +1121,7 @@ DepositSellTutorial_InterpretJoypad: ; 1076f
 .d_right
 	ld a, [wJumptableIndex]
 	inc a
-	and $3
+	maskbits NUM_POCKETS +- 1
 	ld [wJumptableIndex], a
 	push de
 	ld de, SFX_SWITCH_POCKETS
@@ -1144,14 +1155,14 @@ TutorialPack: ; 107bb
 ; 107e1
 
 .dw ; 107e1 (4:47e1)
-
+; entries correspond to *_POCKET constants
 	dw .Items
 	dw .Balls
 	dw .KeyItems
 	dw .TMHM
 
 .Items: ; 107e9 (4:47e9)
-	xor a
+	xor a ; ITEM_POCKET
 	ld hl, .ItemsMenuDataHeader
 	jr .DisplayPocket
 
@@ -1175,7 +1186,7 @@ TutorialPack: ; 107bb
 ; 10807
 
 .KeyItems: ; 10807 (4:4807)
-	ld a, 2
+	ld a, KEY_ITEM_POCKET
 	ld hl, .KeyItemsMenuDataHeader
 	jr .DisplayPocket
 
@@ -1199,7 +1210,7 @@ TutorialPack: ; 107bb
 ; 10826
 
 .TMHM: ; 10826 (4:4826)
-	ld a, 3
+	ld a, TM_HM_POCKET
 	call InitPocket
 	call WaitBGMap_DrawPackGFX
 	farcall TMHMPocket
@@ -1208,7 +1219,7 @@ TutorialPack: ; 107bb
 	ret
 
 .Balls: ; 1083b (4:483b)
-	ld a, 1
+	ld a, BALL_POCKET
 	ld hl, .BallsMenuDataHeader
 	jr .DisplayPocket
 
@@ -1283,7 +1294,7 @@ WaitBGMap_DrawPackGFX: ; 1089a (4:489a)
 	call WaitBGMap
 DrawPackGFX: ; 1089d
 	ld a, [wCurrPocket]
-	and $3
+	maskbits NUM_POCKETS +- 1
 	ld e, a
 	ld d, $0
 	ld a, [BattleType]
@@ -1310,10 +1321,10 @@ DrawPackGFX: ; 1089d
 ; 108cc
 
 PackGFXPointers: ; 108cc
-	dw PackGFX + (15 tiles) * 1
-	dw PackGFX + (15 tiles) * 3
-	dw PackGFX + (15 tiles) * 0
-	dw PackGFX + (15 tiles) * 2
+	dw PackGFX + (15 tiles) * 1 ; ITEM_POCKET
+	dw PackGFX + (15 tiles) * 3 ; BALL_POCKET
+	dw PackGFX + (15 tiles) * 0 ; KEY_ITEM_POCKET
+	dw PackGFX + (15 tiles) * 2 ; TM_HM_POCKET
 ; 108d4
 
 Pack_InterpretJoypad: ; 108d4 (4:48d4)
@@ -1344,7 +1355,7 @@ Pack_InterpretJoypad: ; 108d4 (4:48d4)
 	ret
 
 .b_button
-	ld a, 9
+	ld a, PACKSTATE_QUITNOSCRIPT
 	ld [wJumptableIndex], a
 	scf
 	ret
@@ -1489,15 +1500,19 @@ DrawPocketName: ; 109bb
 ; 109e1
 
 .tilemap ; 109e1
+; ITEM_POCKET
 	db $00, $04, $04, $04, $01 ; top border
 	db $06, $07, $08, $09, $0a ; Items
 	db $02, $05, $05, $05, $03 ; bottom border
+; BALL_POCKET
 	db $00, $04, $04, $04, $01 ; top border
 	db $15, $16, $17, $18, $19 ; Balls
 	db $02, $05, $05, $05, $03 ; bottom border
+; KEY_ITEM_POCKET
 	db $00, $04, $04, $04, $01 ; top border
 	db $0b, $0c, $0d, $0e, $0f ; Key Items
 	db $02, $05, $05, $05, $03 ; bottom border
+; TM_HM_POCKET
 	db $00, $04, $04, $04, $01 ; top border
 	db $10, $11, $12, $13, $14 ; TM/HM
 	db $02, $05, $05, $05, $03 ; bottom border

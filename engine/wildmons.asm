@@ -678,9 +678,9 @@ UpdateRoamMons: ; 2a30d
 	ld l, e
 ; Choose which map to warp to.
 	call Random
-	and $1f ; 1/8n chance it moves to a completely random map, where n is the number of roaming connections from the current map.
+	and %00011111 ; 1/8n chance it moves to a completely random map, where n is the number of roaming connections from the current map.
 	jr z, JumpRoamMon
-	and 3
+	and %11
 	cp [hl]
 	jr nc, .update_loop ; invalid index, try again
 	inc hl
@@ -739,10 +739,10 @@ JumpRoamMons: ; 2a394
 JumpRoamMon: ; 2a3cd
 .loop
 	ld hl, RoamMaps
-.innerloop1 ; This loop is completely unnecessary.
-	call Random ; Choose a random number
-	and $f ; Take the lower nybble only.  This gives a number between 0 and 15.
-	cp $10 ; If the number is greater than or equal to 16, loop back and try again.
+.innerloop1            ; This loop is completely unnecessary.
+	call Random        ; Choose a random number.
+	maskbits $10 - 1   ; Mask the number to limit it between 0 and 15.
+	cp $10             ; If the number is not less than 16, try again.
 	jr nc, .innerloop1 ; I'm sure you can guess why this check is bogus.
 	inc a
 	ld b, a
@@ -825,7 +825,7 @@ RandomUnseenWildMon: ; 2a4ab
 	call AddNTimes
 .randloop1
 	call Random
-	and $3
+	and %11
 	jr z, .randloop1
 	dec a
 	ld c, a
@@ -902,7 +902,7 @@ RandomPhoneWildMon: ; 2a51f
 
 .done
 	call Random
-	and $3
+	and %11
 	ld c, a
 	ld b, $0
 	add hl, bc

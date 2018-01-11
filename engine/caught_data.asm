@@ -7,17 +7,17 @@ CheckPartyFullAfterContest: ; 4d9e5
 	call GetBaseData
 	ld hl, PartyCount
 	ld a, [hl]
-	cp 6
+	cp PARTY_LENGTH
 	jp nc, .TryAddToBox
 	inc a
 	ld [hl], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [wContestMon]
 	ld [hli], a
 	ld [CurSpecies], a
-	ld a, $ff
+	ld a, -1
 	ld [hl], a
 	ld hl, PartyMon1Species
 	ld a, [PartyCount]
@@ -75,8 +75,8 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld hl, PartyMon1CaughtLocation
 	call GetPartyLocation
 	ld a, [hl]
-	and $80
-	ld b, $13
+	and CAUGHT_GENDER_MASK
+	ld b, NATIONAL_PARK
 	or b
 	ld [hl], a
 	xor a
@@ -135,8 +135,8 @@ CheckPartyFullAfterContest: ; 4d9e5
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLocation
 	ld a, [hl]
-	and $80
-	ld b, $13
+	and CAUGHT_GENDER_MASK
+	ld b, NATIONAL_PARK
 	or b
 	ld [hl], a
 	call CloseSRAM
@@ -227,7 +227,7 @@ SetGiftPartyMonCaughtData: ; 4dba3
 SetGiftMonCaughtData: ; 4dbaf
 	xor a
 	ld [hli], a
-	ld a, $7e
+	ld a, GIFT_LOCATION
 	rrc b
 	or b
 	ld [hl], a
@@ -239,7 +239,7 @@ SetEggMonCaughtData: ; 4dbb8 (13:5bb8)
 	call GetPartyLocation
 	ld a, [CurPartyLevel]
 	push af
-	ld a, $1
+	ld a, CAUGHT_EGG_LEVEL
 	ld [CurPartyLevel], a
 	call SetBoxmonOrEggmonCaughtData
 	pop af

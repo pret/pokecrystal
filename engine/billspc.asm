@@ -136,7 +136,7 @@ _DepositPKMN: ; e2391 (38:6391)
 	jp c, BillsPCDepositFuncCancel
 	ld a, [wMenuCursorY]
 	dec a
-	and $3
+	and %11
 	ld e, a
 	ld d, 0
 	ld hl, BillsPCDepositJumptable
@@ -401,7 +401,7 @@ BillsPC_Withdraw: ; e2675 (38:6675)
 	jp c, .cancel
 	ld a, [wMenuCursorY]
 	dec a
-	and 3
+	and %11
 	ld e, a
 	ld d, 0
 	ld hl, .dw
@@ -663,7 +663,7 @@ _MovePKMNWithoutMail: ; e2759
 	jp c, .Cancel
 	ld a, [wMenuCursorY]
 	dec a
-	and 3
+	and %11
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable2

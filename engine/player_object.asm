@@ -589,7 +589,7 @@ Special_SurfStartStep: ; 8379
 	ld a, [PlayerDirection]
 	srl a
 	srl a
-	and 3
+	maskbits NUM_DIRECTIONS +- 1
 	ld e, a
 	ld d, 0
 	ld hl, .movement_data

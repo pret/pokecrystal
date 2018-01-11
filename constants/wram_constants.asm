@@ -52,6 +52,7 @@ const_value set -1
 	const UP       ; 1
 	const LEFT     ; 2
 	const RIGHT    ; 3
+NUM_DIRECTIONS EQU const_value
 
 DOWN_MASK  EQU 1 << DOWN
 UP_MASK    EQU 1 << UP
@@ -71,6 +72,7 @@ FACE_RIGHT EQU 1
 	const DAY_F      ; 1
 	const NITE_F     ; 2
 	const DARKNESS_F ; 3
+NUM_DAYTIMES EQU const_value
 
 MORN     EQU 1 << MORN_F
 DAY      EQU 1 << DAY_F

@@ -63,6 +63,10 @@ const_value set 1
 	const NO_EGGS      ; f
 
 
+; pokedex entries (see data/pokemon/dex_entries.asm)
+NUM_DEX_ENTRY_BANKS EQU 4
+
+
 ; party_struct members (see macros/wram.asm)
 MON_SPECIES            EQUS "(PartyMon1Species - PartyMon1)"
 MON_ITEM               EQUS "(PartyMon1Item - PartyMon1)"
@@ -96,6 +100,21 @@ MON_SDF                EQUS "(PartyMon1SpclDef - PartyMon1)"
 BOXMON_STRUCT_LENGTH   EQUS "(PartyMon1End - PartyMon1)"
 PARTYMON_STRUCT_LENGTH EQUS "(PartyMon1StatsEnd - PartyMon1)"
 REDMON_STRUCT_LENGTH EQU 44
+
+
+; caught data
+
+CAUGHT_TIME_MASK  EQU %11000000
+CAUGHT_LEVEL_MASK EQU %00111111
+
+CAUGHT_GENDER_MASK   EQU %10000000
+CAUGHT_LOCATION_MASK EQU %01111111
+
+CAUGHT_BY_UNKNOWN EQU 0
+CAUGHT_BY_GIRL    EQU 1
+CAUGHT_BY_BOY     EQU 2
+
+CAUGHT_EGG_LEVEL EQU 1
 
 
 ; maximum number of party pokemon

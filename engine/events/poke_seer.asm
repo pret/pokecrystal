@@ -20,7 +20,7 @@ SpecialPokeSeer: ; 4f0bc
 	call PrintSeerText
 	call JoyWaitAorB
 
-	ld b, $6
+	ld b, PARTY_LENGTH
 	farcall SelectMonFromParty
 	jr c, .cancel
 
@@ -163,11 +163,11 @@ GetCaughtLevel: ; 4f18c
 	call ByteFill
 
 	; caught level
-	; Limited to between 1 and 63 for some reason.
+	; Limited to between 1 and 63 since it's a 6-bit quantity.
 	ld a, [wSeerCaughtData]
-	and $3f
+	and CAUGHT_LEVEL_MASK
 	jr z, .unknown
-	cp 1 ; hatched from an egg
+	cp CAUGHT_EGG_LEVEL ; egg marker value
 	jr nz, .print
 	ld a, EGG_LEVEL ; egg hatch level
 
@@ -193,7 +193,7 @@ GetCaughtLevel: ; 4f18c
 
 GetCaughtTime: ; 4f1c5
 	ld a, [wSeerCaughtData]
-	and $c0
+	and CAUGHT_TIME_MASK
 	jr z, .none
 
 	rlca
@@ -233,11 +233,11 @@ UnknownCaughtData: ; 4f1f8
 
 GetCaughtLocation: ; 4f20a
 	ld a, [wSeerCaughtGender]
-	and $7f
+	and CAUGHT_LOCATION_MASK
 	jr z, .Unknown
-	cp $7f
+	cp EVENT_LOCATION
 	jr z, .event
-	cp $7e
+	cp GIFT_LOCATION
 	jr z, .fail
 	ld e, a
 	farcall GetLandmarkName
@@ -440,22 +440,22 @@ GetCaughtGender: ; 4f301
 	add hl, bc
 
 	ld a, [hl]
-	and $7f
+	and CAUGHT_LOCATION_MASK
 	jr z, .genderless
-	cp $7f
+	cp EVENT_LOCATION
 	jr z, .genderless
 
 	ld a, [hl]
-	and $80
+	and CAUGHT_GENDER_MASK
 	jr nz, .male
-	ld c, 1
+	ld c, CAUGHT_BY_GIRL
 	ret
 
 .male
-	ld c, 2
+	ld c, CAUGHT_BY_BOY
 	ret
 
 .genderless
-	ld c, 0
+	ld c, CAUGHT_BY_UNKNOWN
 	ret
 ; 4f31c

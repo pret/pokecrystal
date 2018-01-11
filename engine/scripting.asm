@@ -614,7 +614,7 @@ GetPocketName:
 	ld a, [wItemAttributeParamBuffer]
 	dec a
 	ld hl, .Pockets
-	and 3
+	maskbits NUM_POCKETS +- 1
 	add a
 	ld e, a
 	ld d, 0
@@ -2474,7 +2474,7 @@ Script_warpfacing:
 ; parameters: facing, map_group, map_id, x, y
 
 	call GetScriptByte
-	and $3
+	maskbits NUM_DIRECTIONS +- 1
 	ld c, a
 	ld a, [wPlayerSpriteSetupFlags]
 	set 5, a

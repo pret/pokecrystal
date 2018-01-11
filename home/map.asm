@@ -1371,7 +1371,7 @@ UpdateBGMapColumn:: ; 27f8
 	inc d
 ; cap d at HIGH(vBGMap0)
 	ld a, d
-	and $3
+	and %11
 	or HIGH(vBGMap0)
 	ld d, a
 

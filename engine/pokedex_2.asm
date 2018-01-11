@@ -230,7 +230,7 @@ GetDexEntryPointer: ; 44333
 	push de
 	rlca
 	rlca
-	and $3
+	maskbits NUM_DEX_ENTRY_BANKS +- 1
 	ld hl, .PokedexEntryBanks
 	ld d, 0
 	ld e, a
@@ -241,12 +241,6 @@ GetDexEntryPointer: ; 44333
 	ret
 
 .PokedexEntryBanks: ; 44351
-
-GLOBAL PokedexEntries1
-GLOBAL PokedexEntries2
-GLOBAL PokedexEntries3
-GLOBAL PokedexEntries4
-
 	db BANK(PokedexEntries1)
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)

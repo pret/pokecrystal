@@ -17,7 +17,7 @@ SpecialBuenasPassword: ; 8af6b
 	ld a, [MenuSelection]
 	ld c, a
 	ld a, [wBuenasPassword]
-	and $3
+	maskbits NUM_PASSWORDS_PER_CATEGORY +- 1
 	cp c
 	jr nz, .wrong
 	ld b, $1
@@ -46,7 +46,7 @@ SpecialBuenasPassword: ; 8af6b
 ; 0x8afb4
 
 .PasswordIndices: ; 8afb8
-	db 3
+	db NUM_PASSWORDS_PER_CATEGORY
 	db 0, 1, 2
 	db -1
 

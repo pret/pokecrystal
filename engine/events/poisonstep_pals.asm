@@ -10,8 +10,8 @@ LoadPoisonBGPals: ; cbcdd
 	and a
 	jr nz, .cgb
 	ld a, [TimeOfDayPal]
-	and $3
-	cp $3
+	maskbits NUM_DAYTIMES +- 1
+	cp DARKNESS_F
 	ld a, %00000000
 	jr z, .convert_pals
 	ld a, %10101010

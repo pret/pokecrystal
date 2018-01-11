@@ -154,7 +154,7 @@ UpdateOverworldMap: ; d536 (3:5536)
 	jr nc, .not_overflowed
 	ld a, [wBGMapAnchor + 1]
 	inc a
-	and $3
+	and %11
 	or HIGH(vBGMap0)
 	ld [wBGMapAnchor + 1], a
 .not_overflowed
@@ -185,7 +185,7 @@ UpdateOverworldMap: ; d536 (3:5536)
 	jr nc, .not_underflowed
 	ld a, [wBGMapAnchor + 1]
 	dec a
-	and $3
+	and %11
 	or HIGH(vBGMap0)
 	ld [wBGMapAnchor + 1], a
 .not_underflowed

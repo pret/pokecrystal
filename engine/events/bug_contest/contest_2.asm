@@ -2,7 +2,7 @@ Special_SelectRandomBugContestContestants: ; 139a8
 ; Select five random people to participate in the current contest.
 
 ; First we have to make sure that any old data is cleared away.
-	ld c, 10 ; Number of people to choose from.
+	ld c, NUM_BUG_CONTESTANTS
 	ld hl, BugCatchingContestantEventFlagTable
 .loop1
 	push bc
@@ -26,9 +26,9 @@ Special_SelectRandomBugContestContestants: ; 139a8
 .next
 ; Choose a flag at uniform random to be set.
 	call Random
-	cp 250
+	cp $ff / NUM_BUG_CONTESTANTS * NUM_BUG_CONTESTANTS
 	jr nc, .next
-	ld c, 25
+	ld c, $ff / NUM_BUG_CONTESTANTS
 	call SimpleDivide
 	ld e, b
 	ld d, 0
@@ -59,7 +59,7 @@ Special_SelectRandomBugContestContestants: ; 139a8
 Special_CheckBugContestContestantFlag: ; 139ed
 ; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
 
-; Bug: If a >= 10 when this is called, it will read beyond the table.
+; Bug: If a >= NUM_BUG_CONTESTANTS when this is called, it will read beyond the table.
 
 	ld hl, BugCatchingContestantEventFlagTable
 	ld e, a
@@ -74,18 +74,7 @@ Special_CheckBugContestContestantFlag: ; 139ed
 	ret
 ; 139fe
 
-BugCatchingContestantEventFlagTable: ; 139fe
-	dw EVENT_BUG_CATCHING_CONTESTANT_1A
-	dw EVENT_BUG_CATCHING_CONTESTANT_2A
-	dw EVENT_BUG_CATCHING_CONTESTANT_3A
-	dw EVENT_BUG_CATCHING_CONTESTANT_4A
-	dw EVENT_BUG_CATCHING_CONTESTANT_5A
-	dw EVENT_BUG_CATCHING_CONTESTANT_6A
-	dw EVENT_BUG_CATCHING_CONTESTANT_7A
-	dw EVENT_BUG_CATCHING_CONTESTANT_8A
-	dw EVENT_BUG_CATCHING_CONTESTANT_9A
-	dw EVENT_BUG_CATCHING_CONTESTANT_10A
-; 13a12
+INCLUDE "data/bug_contest_flags.asm"
 
 ContestDropOffMons: ; 13a12
 	ld hl, PartyMon1HP
@@ -101,7 +90,7 @@ ContestDropOffMons: ; 13a12
 	ld a, [hl]
 	ld [wBugContestSecondPartySpecies], a
 ; ... and replacing it with the terminator byte
-	ld [hl], $ff
+	ld [hl], -1
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -118,7 +107,7 @@ ContestReturnMons: ; 13a31
 	ld a, [wBugContestSecondPartySpecies]
 	ld [hl], a
 ; Restore the party count, which must be recomputed.
-	ld b, $1
+	ld b, 1
 .loop
 	ld a, [hli]
 	cp -1

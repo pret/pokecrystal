@@ -894,7 +894,7 @@ MapObjectMovementPattern: ; 47dd
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, de
 	ld a, [hl]
-	and 3
+	maskbits NUM_DIRECTIONS +- 1
 	ld d, 1 * 8 + 6
 	cp DOWN
 	jr z, .ok_13

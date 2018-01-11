@@ -730,7 +730,7 @@ HandleEncore: ; 3c4df
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	ret nz
 
 .end_player_encore
@@ -754,7 +754,7 @@ HandleEncore: ; 3c4df
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	ret nz
 
 .end_enemy_encore
@@ -1401,7 +1401,7 @@ HandleMysteryberry: ; 3c93c
 	and a
 	jr z, .quit
 	ld a, [de]
-	and $3f
+	and PP_MASK
 	jr z, .restore
 	inc hl
 	inc de
@@ -5650,7 +5650,7 @@ MoveSelectionScreen: ; 3e4bc
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jr z, .no_pp_left
 	ld a, [PlayerDisableCount]
 	swap a
@@ -5849,7 +5849,7 @@ MoveInfoBox: ; 3e6c8
 	ld hl, BattleMonPP
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	ld [StringBuffer1], a
 	call .PrintPP
 
@@ -5912,7 +5912,7 @@ CheckPlayerHasUsableMoves: ; 3e786
 	or [hl]
 	inc hl
 	or [hl]
-	and $3f
+	and PP_MASK
 	ret nz
 	jr .force_struggle
 
@@ -5934,8 +5934,7 @@ CheckPlayerHasUsableMoves: ; 3e786
 
 .done
 	; Bug: this will result in a move with PP Up confusing the game.
-	; Replace with "and $3f" to fix.
-	and a
+	and a ; should be "and PP_MASK"
 	ret nz
 
 .force_struggle
@@ -6014,7 +6013,7 @@ ParseEnemyAction: ; 3e7c1
 	cp [hl]
 	jr z, .disabled
 	ld a, [de]
-	and $3f
+	and PP_MASK
 	jr nz, .enough_pp
 
 .disabled
@@ -6032,7 +6031,7 @@ ParseEnemyAction: ; 3e7c1
 .loop2
 	ld hl, EnemyMonMoves
 	call BattleRandom
-	and 3 ; TODO factor in NUM_MOVES
+	maskbits NUM_MOVES +- 1
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -6049,7 +6048,7 @@ ParseEnemyAction: ; 3e7c1
 	add hl, bc
 	ld b, a
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jr z, .loop2
 	ld a, c
 	ld [CurEnemyMoveNum], a

@@ -56,7 +56,7 @@ AIChooseMove: ; 440ce
 	inc hl
 	ld a, [de]
 	inc de
-	and $3f
+	and PP_MASK
 	jr nz, .CheckMovePP
 	ld [hl], 80
 	jr .CheckMovePP
@@ -186,7 +186,7 @@ AIChooseMove: ; 440ce
 .ChooseMove:
 	ld hl, Buffer1
 	call Random
-	and 3
+	maskbits NUM_MOVES +- 1
 	ld c, a
 	ld b, 0
 	add hl, bc

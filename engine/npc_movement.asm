@@ -70,14 +70,14 @@ Function6f07: ; 6f07
 	ld e, [hl]
 	ld hl, OBJECT_PALETTE
 	add hl, bc
-	bit 7, [hl]
+	bit OAM_PRIORITY, [hl]
 	jp nz, Function6fa1
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld a, [hl]
 	ld d, a
 	call GetTileCollision
-	and a ; land
+	and a ; LANDTILE
 	jr z, Function6f3e
 	scf
 	ret
@@ -106,7 +106,7 @@ Function6f3e: ; 6f3e
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	and 3
+	maskbits NUM_DIRECTIONS +- 1
 	ld e, a
 	ld d, 0
 	ld hl, .data_6f5b
@@ -131,7 +131,7 @@ Function6f5f: ; 6f5f
 	push af
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	and 3
+	maskbits NUM_DIRECTIONS +- 1
 	ld e, a
 	ld d, 0
 	ld hl, .data_6f7b
@@ -178,49 +178,49 @@ Function6fa1: ; 6fa1
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	and 3
-	jr z, .asm_6fb2
+	maskbits NUM_DIRECTIONS +- 1
+	jr z, .down
 	dec a
-	jr z, .asm_6fb7
+	jr z, .up
 	dec a
-	jr z, .asm_6fbb
-	jr .asm_6fbf
+	jr z, .left
+	jr .right
 
-.asm_6fb2
+.down
 	inc e
 	push de
 	inc d
-	jr .asm_6fc2
+	jr .continue
 
-.asm_6fb7
+.up
 	push de
 	inc d
-	jr .asm_6fc2
+	jr .continue
 
-.asm_6fbb
+.left
 	push de
 	inc e
-	jr .asm_6fc2
+	jr .continue
 
-.asm_6fbf
+.right
 	inc d
 	push de
 	inc e
 
-.asm_6fc2
+.continue
 	call GetCoordTile
 	call GetTileCollision
 	pop de
-	and a ; land
-	jr nz, .asm_6fd7
+	and a ; LANDTILE
+	jr nz, .not_land
 	call GetCoordTile
 	call GetTileCollision
-	and a ; land
-	jr nz, .asm_6fd7
+	and a ; LANDTILE
+	jr nz, .not_land
 	xor a
 	ret
 
-.asm_6fd7
+.not_land
 	scf
 	ret
 ; 6fd9

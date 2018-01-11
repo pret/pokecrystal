@@ -1,3 +1,9 @@
+const_value set 1
+	const PINK_PAGE  ; 1
+	const GREEN_PAGE ; 2
+	const BLUE_PAGE  ; 3
+NUM_STAT_PAGES EQU const_value +- 1
+
 BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -58,12 +64,12 @@ StatsScreenMain: ; 0x4dcd2
 	; stupid interns
 	ld [wcf64], a
 	ld a, [wcf64]
-	and $fc
-	or $1
+	and %11111100
+	or 1
 	ld [wcf64], a
 .loop ; 4dce3
 	ld a, [wJumptableIndex]
-	and $7f
+	and $ff ^ (1 << 7)
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim ; check for keys?
@@ -79,13 +85,13 @@ StatsScreenMobile: ; 4dcf7
 	; stupid interns
 	ld [wcf64], a
 	ld a, [wcf64]
-	and $fc
-	or $1
+	and %11111100
+	or 1
 	ld [wcf64], a
 .loop
 	farcall Mobile_SetOverworldDelay
 	ld a, [wJumptableIndex]
-	and $7f
+	and $ff ^ (1 << 7)
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim
@@ -277,7 +283,7 @@ StatsScreen_GetJoypad: ; 4de2c (13:5e2c)
 StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	push af
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_STAT_PAGES +- 1
 	ld c, a
 	pop af
 	bit B_BUTTON_F, a
@@ -335,20 +341,20 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 
 .a_button
 	ld a, c
-	cp $3
+	cp BLUE_PAGE ; last page
 	jr z, .b_button
 .d_right
 	inc c
-	ld a, $3
+	ld a, BLUE_PAGE ; last page
 	cp c
 	jr nc, .set_page
-	ld c, $1
+	ld c, PINK_PAGE ; first page
 	jr .set_page
 
 .d_left
 	dec c
 	jr nz, .set_page
-	ld c, $3
+	ld c, BLUE_PAGE ; last page
 	jr .set_page
 
 .done
@@ -507,7 +513,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .ClearBox: ; 4dfda (13:5fda)
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_STAT_PAGES +- 1
 	ld c, a
 	call StatsScreen_LoadPageIndicators
 	hlcoord 0, 8
@@ -517,7 +523,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .LoadPals: ; 4dfed (13:5fed)
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_STAT_PAGES +- 1
 	ld c, a
 	farcall LoadStatsScreenPals
 	call DelayFrame
@@ -527,13 +533,14 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .PageTilemap: ; 4e002 (13:6002)
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_STAT_PAGES +- 1
 	dec a
 	ld hl, .Jumptable
 	rst JumpTable
 	ret
 
 .Jumptable: ; 4e00d (13:600d)
+; entries correspond to *_PAGE constants
 	dw .PinkPage
 	dw .GreenPage
 	dw .BluePage
@@ -1089,13 +1096,13 @@ StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 	ld a, $36
 	call .load_square
 	ld a, c
-	cp $2
+	cp GREEN_PAGE
 	ld a, $3a
-	hlcoord 13, 5
+	hlcoord 13, 5 ; PINK_PAGE (< GREEN_PAGE)
 	jr c, .load_square
-	hlcoord 15, 5
+	hlcoord 15, 5 ; GREEN_PAGE (= GREEN_PAGE)
 	jr z, .load_square
-	hlcoord 17, 5
+	hlcoord 17, 5 ; BLUE_PAGE (> GREEN_PAGE)
 .load_square ; 4e4f7 (13:64f7)
 	push bc
 	ld [hli], a

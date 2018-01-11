@@ -247,7 +247,7 @@ endr
 	; Generate a number, either 0, 1, or 2, to choose a time of day.
 .loop2
 	call Random
-	and $3
+	maskbits NUM_DAYTIMES +- 1
 	cp DARKNESS_F
 	jr z, .loop2
 
@@ -692,8 +692,8 @@ PokedexShow_GetDexEntryBank:
 	dec a
 	rlca
 	rlca
-	and 3
-	ld hl, .pokedexbanks
+	maskbits NUM_DEX_ENTRY_BANKS +- 1
+	ld hl, .PokedexEntryBanks
 	ld d, 0
 	ld e, a
 	add hl, de
@@ -702,7 +702,7 @@ PokedexShow_GetDexEntryBank:
 	pop hl
 	ret
 
-.pokedexbanks
+.PokedexEntryBanks
 	db BANK(PokedexEntries1)
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)

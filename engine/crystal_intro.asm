@@ -247,10 +247,10 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
-	and $3f
-	cp $20
+	and %111111
+	cp %100000
 	jr nc, .asm_e4723
-	add $20
+	add %100000
 .asm_e4723
 	ld e, a
 	farcall BattleAnim_Sine_e
@@ -1604,12 +1604,12 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	inc hl
 	inc hl
 	ld a, [wcf65]
-	and $3f
-	cp $1f
+	and %111111
+	cp %011111
 	jr z, .okay
 	jr c, .okay
 	ld c, a
-	ld a, $3f
+	ld a, %111111
 	sub c
 .okay
 

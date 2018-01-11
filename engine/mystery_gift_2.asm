@@ -29,7 +29,7 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 	inc de ; wc80f
 	call CloseSRAM
 	call Random
-	and $1
+	and 1
 	ld [de], a
 	inc de ; wc810
 	call .RandomSample
@@ -59,10 +59,10 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 .RandomSample: ; 2c6ac (b:46ac)
 	push de
 	call Random
-	cp $19 ; 10 percent
+	cp 10 percent
 	jr c, .tenpercent
 	call Random
-	and $7
+	and %111
 	ld d, a
 	rl d
 	ld e, $80
@@ -80,10 +80,10 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 
 .tenpercent
 	call Random
-	cp $32 ; 20 percent
+	cp 20 percent - 1
 	jr c, .twopercent
 	call Random
-	and $3
+	and %011
 	ld d, a
 	rl d
 	ld e, $80
@@ -102,7 +102,7 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 
 .twopercent
 	call Random
-	cp $32 ; 50 ; 20 percent
+	cp 20 percent - 1
 	jr c, .pointfourpercent
 	ld a, b
 	swap a

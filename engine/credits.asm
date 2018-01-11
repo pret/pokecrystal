@@ -504,7 +504,7 @@ GetCreditsPalette: ; 109b2c
 .GetPalAddress:
 ; Each set of palette data is 24 bytes long.
 	ld a, [wCreditsBorderMon] ; scene
-	and 3
+	and %11
 	add a
 	add a ; * 8
 	add a
@@ -549,13 +549,13 @@ Credits_LoadBorderGFX: ; 109bca (42:5bca)
 	cp $ff
 	jr z, .init
 
-	and 3
+	and %11
 	ld e, a
 	inc a
-	and 3
+	and %11
 	ld [hl], a
 	ld a, [wCreditsBorderMon]
-	and 3
+	and %11
 	add a
 	add a
 	add e

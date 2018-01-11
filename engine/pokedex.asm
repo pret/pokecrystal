@@ -1,3 +1,4 @@
+; Pokedex_RunJumptable.Jumptable indexes
 	const_def
 	const DEXSTATE_MAIN_SCR
 	const DEXSTATE_UPDATE_MAIN_SCR
@@ -185,6 +186,7 @@ Pokedex_RunJumptable: ; 4010b
 	jp hl
 
 .Jumptable: ; 40115 (10:4115)
+; entries correspond to DEXSTATE_* constants
 	dw Pokedex_InitMainScreen
 	dw Pokedex_UpdateMainScreen
 	dw Pokedex_InitDexEntryScreen
@@ -739,7 +741,7 @@ Pokedex_InitSearchResultsScreen: ; 4050a (10:450a)
 	farcall DrawPokedexSearchResultsWindow
 	call Pokedex_PlaceSearchResultsTypeStrings
 	call Pokedex_UpdateSearchResultsCursorOAM
-	ld a, $ff
+	ld a, -1
 	ld [CurPartySpecies], a
 	ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout
@@ -1123,13 +1125,14 @@ Pokedex_DrawMainScreenBG: ; 4074c (10:474c)
 	ret
 
 String_SEEN: ; 407e1
-	db "SEEN", $ff
+	db "SEEN", -1
 String_OWN: ; 407e6
-	db "OWN", $ff
+	db "OWN", -1
 String_SELECT_OPTION: ; 407ea
 	db $3b, $48, $49, $4a, $44, $45, $46, $47 ; SELECT > OPTION
+	; fallthrough
 String_START_SEARCH: ; 407f2
-	db $3c, $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $3c, $ff ; START > SEARCH
+	db $3c, $3b, $41, $42, $43, $4b, $4c, $4d, $4e, $3c, -1 ; START > SEARCH
 
 Pokedex_DrawDexEntryScreenBG: ; 407fd
 	call Pokedex_FillBackgroundColor2
@@ -1164,13 +1167,13 @@ Pokedex_DrawDexEntryScreenBG: ; 407fd
 	ret
 
 .Unused: ; 4084f
-	db $5c, $5d, $ff ; No.
+	db $5c, $5d, -1 ; No.
 .Height: ; 40852
-	db "HT  ?", $5e, "??", $5f, $ff ; HT  ?'??"
+	db "HT  ?", $5e, "??", $5f, -1 ; HT  ?'??"
 .Weight: ; 4085c
-	db "WT   ???lb", $ff ; WT   ???lb
+	db "WT   ???lb", -1 ; WT   ???lb
 .MenuItems: ; 40867
-	db $3b, " PAGE AREA CRY PRNT", $ff
+	db $3b, " PAGE AREA CRY PRNT", -1
 
 Pokedex_DrawOptionScreenBG: ; 4087c (10:487c)
 	call Pokedex_FillBackgroundColor2
@@ -1195,7 +1198,7 @@ Pokedex_DrawOptionScreenBG: ; 4087c (10:487c)
 	ret
 
 .Title: ; 408b2
-	db $3b, " OPTION ", $3c, $ff
+	db $3b, " OPTION ", $3c, -1
 
 .Modes: ; 408bd
 	db   "NEW #DEX MODE"
@@ -1229,10 +1232,10 @@ Pokedex_DrawSearchScreenBG: ; 408f0 (10:48f0)
 	ret
 
 .Title: ; 4092a
-	db $3b, " SEARCH ", $3c, $ff
+	db $3b, " SEARCH ", $3c, -1
 
 .TypeLeftRightArrows: ; 40935
-	db $3d, "        ", $3e, $ff
+	db $3d, "        ", $3e, -1
 
 .Types: ; 40940
 	db   "TYPE1"

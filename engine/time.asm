@@ -133,16 +133,16 @@ endr
 Special_SampleKenjiBreakCountdown: ; 11485
 ; Generate a random number between 3 and 6
 	call Random
-	and 3
+	and %11
 	add 3
 	ld [wKenjiBreakTimer], a
 	ret
 ; 11490
 
 StartBugContestTimer: ; 11490
-	ld a, 20
+	ld a, BUG_CONTEST_MINUTES
 	ld [wBugContestMinsRemaining], a
-	ld a, 0
+	ld a, BUG_CONTEST_SECONDS
 	ld [wBugContestSecsRemaining], a
 	call UpdateTime
 	ld hl, wBugContestStartTime
@@ -252,7 +252,7 @@ RestartLuckyNumberCountdown: ; 1152b
 	ld a, FRIDAY
 	sub c
 	jr z, .friday_saturday
-	jr nc, .earlier ; should've done "ret nc"
+	jr nc, .earlier ; could have done "ret nc"
 
 .friday_saturday
 	add 7

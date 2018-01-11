@@ -1,11 +1,3 @@
-; Trade dialogs
-	const_def
-	const TRADE_INTRO
-	const TRADE_CANCEL
-	const TRADE_WRONG
-	const TRADE_COMPLETE
-	const TRADE_AFTER
-
 NPCTrade:: ; fcba8
 	ld a, e
 	ld [wJumptableIndex], a
@@ -83,9 +75,9 @@ CheckTradeGender: ; fcc23
 	ld e, TRADE_GENDER
 	call GetTradeAttribute
 	ld a, [hl]
-	and a
+	and a ; TRADE_EITHER_GENDER
 	jr z, .matching
-	cp 1
+	cp TRADE_MALE_ONLY
 	jr z, .check_male
 
 	farcall GetGender
@@ -178,10 +170,10 @@ DoNPCTrade: ; fcc63
 	ld e, TRADE_DIALOG
 	call GetTradeAttribute
 	ld a, [hl]
-	cp 3
-	ld a, 1
+	cp TRADE_DIALOG_GIRL
+	ld a, CAUGHT_BY_GIRL
 	jr c, .okay
-	ld a, 2
+	ld a, CAUGHT_BY_BOY
 .okay
 	ld [wOTTrademonCaughtData], a
 
@@ -400,7 +392,7 @@ GetTradeMonNames: ; fce1b
 	and a
 	ret z
 
-	cp 1
+	cp TRADE_MALE_ONLY
 	ld a, "♂"
 	jr z, .done
 	ld a, "♀"
@@ -433,31 +425,28 @@ PrintTradeText: ; fcf38
 ; fcf53
 
 TradeTexts: ; fcf53
-; intro
+; entries correspond to TRADE_* × TRADE_DIALOG_* constants
+; TRADE_INTRO
 	dw TradeIntroText1
 	dw TradeIntroText2
 	dw TradeIntroText3
 	dw TradeIntroText4
-
-; cancel
+; TRADE_CANCEL
 	dw TradeCancelText1
 	dw TradeCancelText2
 	dw TradeCancelText3
 	dw TradeCancelText4
-
-; wrong mon
+; TRADE_WRONG
 	dw TradeWrongText1
 	dw TradeWrongText2
 	dw TradeWrongText3
 	dw TradeWrongText4
-
-; completed
+; TRADE_COMPLETE
 	dw TradeCompleteText1
 	dw TradeCompleteText2
 	dw TradeCompleteText3
 	dw TradeCompleteText4
-
-; after
+; TRADE_AFTER
 	dw TradeAfterText1
 	dw TradeAfterText2
 	dw TradeAfterText3

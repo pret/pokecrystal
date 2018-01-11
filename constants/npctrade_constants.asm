@@ -19,3 +19,25 @@ TRADE_PADDING EQU 31
 	const NPCTRADE_CHRIS  ; 4
 	const NPCTRADE_KIM    ; 5
 	const NPCTRADE_FOREST ; 6
+
+; trade gender limits
+TRADE_EITHER_GENDER EQU 0
+TRADE_MALE_ONLY     EQU 1
+TRADE_FEMALE_ONLY   EQU 2
+
+; TradeTexts indexes (see engine/npctrade.asm)
+
+; trade dialogs
+	const_def
+	const TRADE_INTRO
+	const TRADE_CANCEL
+	const TRADE_WRONG
+	const TRADE_COMPLETE
+	const TRADE_AFTER
+
+; trade dialog sets
+	const_def
+	const TRADE_DIALOG_COLLECTOR
+	const TRADE_DIALOG_HAPPY
+	const TRADE_DIALOG_NEWBIE
+	const TRADE_DIALOG_GIRL

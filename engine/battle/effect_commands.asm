@@ -846,19 +846,20 @@ BattleCommand_CheckObedience: ; 343db
 
 
 .DoNothing:
+	; 4 random choices
 	call BattleRandom
-	and 3
+	and %11
 
 	ld hl, LoafingAroundText
-	and a
+	and a ; 0
 	jr z, .Print
 
 	ld hl, WontObeyText
-	dec a
+	dec a ; 1
 	jr z, .Print
 
 	ld hl, TurnedAwayText
-	dec a
+	dec a ; 2
 	jr z, .Print
 
 	ld hl, IgnoredOrdersText
@@ -888,7 +889,7 @@ BattleCommand_CheckObedience: ; 343db
 
 .GetTotalPP:
 	ld a, [hli]
-	and $3f ; exclude pp up
+	and PP_MASK
 	add b
 	ld b, a
 
@@ -911,7 +912,7 @@ BattleCommand_CheckObedience: ; 343db
 
 ; Can't use another move if only one move has PP.
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	cp b
 	jr z, .DoNothing
 
@@ -931,7 +932,7 @@ BattleCommand_CheckObedience: ; 343db
 
 .RandomMove:
 	call BattleRandom
-	and 3 ; TODO NUM_MOVES
+	maskbits NUM_MOVES +- 1
 
 	cp b
 	jr nc, .RandomMove
@@ -947,7 +948,7 @@ BattleCommand_CheckObedience: ; 343db
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jr z, .RandomMove
 
 
@@ -1118,7 +1119,7 @@ BattleCommand_DoTurn: ; 34555
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jr z, .out_of_pp
 	dec [hl]
 	ld b, 0
@@ -3906,7 +3907,7 @@ BattleCommand_Encore: ; 35864
 	ld bc, BattleMonPP - BattleMonMoves - 1
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jp z, .failed
 	ld a, [AttackMissed]
 	and a
@@ -4386,7 +4387,7 @@ BattleCommand_SleepTalk: ; 35b33
 .sample_move
 	push hl
 	call BattleRandom
-	and 3 ; TODO factor in NUM_MOVES
+	maskbits NUM_MOVES +- 1
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -4550,17 +4551,18 @@ BattleCommand_Spite: ; 35c0f
 	add hl, bc
 	pop bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jr z, .failed
 	push bc
 	call GetMoveName
+	; lose 2-5 PP
 	call BattleRandom
-	and 3
+	and %11
 	inc a
 	inc a
 	ld b, a
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	cp b
 	jr nc, .deplete_pp
 	ld b, a
@@ -6208,13 +6210,12 @@ BattleCommand_TriStatusChance: ; 3658f
 
 	call BattleCommand_EffectChance
 
-; 1/3 chance of each status
 .loop
+	; 1/3 chance of each status
 	call BattleRandom
 	swap a
-	and 3
+	and %11
 	jr z, .loop
-; jump
 	dec a
 	ld hl, .ptrs
 	rst JumpTable
@@ -7392,7 +7393,8 @@ BattleCommand_TrapTarget: ; 36c2d
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 	call BattleRandom
-	and 3
+	; trapped for 2-5 turns
+	and %11
 	inc a
 	inc a
 	inc a
@@ -7590,8 +7592,9 @@ BattleCommand_FinishConfusingTarget: ; 36d70
 
 .got_confuse_count
 	set SUBSTATUS_CONFUSED, [hl]
+	; confused for 2-5 turns
 	call BattleRandom
-	and 3
+	and %11
 	inc a
 	inc a
 	ld [bc], a
@@ -8201,7 +8204,7 @@ BattleCommand_Conversion: ; 3707f
 .done
 .loop3
 	call BattleRandom
-	and 3 ; TODO factor in NUM_MOVES
+	maskbits NUM_MOVES +- 1
 	ld c, a
 	ld b, 0
 	ld hl, StringBuffer1

@@ -1,3 +1,27 @@
+; Pokégear cards
+	const_def
+	const POKEGEARCARD_CLOCK ; 0
+	const POKEGEARCARD_MAP   ; 1
+	const POKEGEARCARD_PHONE ; 2
+	const POKEGEARCARD_RADIO ; 3
+NUM_POKEGEAR_CARDS EQU const_value
+
+; PokegearJumptable.Jumptable indexes
+	const_def
+	const POKEGEARSTATE_CLOCKINIT       ; 0
+	const POKEGEARSTATE_CLOCKJOYPAD     ; 1
+	const POKEGEARSTATE_MAPCHECKREGION  ; 2
+	const POKEGEARSTATE_JOHTOMAPINIT    ; 3
+	const POKEGEARSTATE_JOHTOMAPJOYPAD  ; 4
+	const POKEGEARSTATE_KANTOMAPINIT    ; 5
+	const POKEGEARSTATE_KANTOMAPJOYPAD  ; 6
+	const POKEGEARSTATE_PHONEINIT       ; 7
+	const POKEGEARSTATE_PHONEJOYPAD     ; 8
+	const POKEGEARSTATE_MAKEPHONECALL   ; 9
+	const POKEGEARSTATE_FINISHPHONECALL ; a
+	const POKEGEARSTATE_RADIOINIT       ; b
+	const POKEGEARSTATE_RADIOJOYPAD     ; c
+
 PokeGear: ; 90b8d (24:4b8d)
 	ld hl, Options
 	ld a, [hl]
@@ -163,7 +187,10 @@ AnimatePokegearModeIndicatorArrow: ; 90d41 (24:4d41)
 ; 90d52 (24:4d52)
 
 .XCoords: ; 90d52
-	db $00, $10, $20, $30
+	db $00 ; POKEGEARCARD_CLOCK
+	db $10 ; POKEGEARCARD_MAP
+	db $20 ; POKEGEARCARD_PHONE
+	db $30 ; POKEGEARCARD_RADIO
 ; 90d56
 
 TownMap_GetCurrentLandmark: ; 90d56
@@ -210,7 +237,7 @@ TownMap_InitCursorAndPlayerIconPositions: ; 90d70 (24:4d70)
 	ret
 
 Pokegear_InitJumptableIndices: ; 90d9e (24:4d9e)
-	ld a, $0
+	ld a, POKEGEARSTATE_CLOCKINIT
 	ld [wJumptableIndex], a
 	xor a
 	ld [wcf64], a
@@ -224,7 +251,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld a, $4f
 	call ByteFill
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_POKEGEAR_CARDS +- 1
 	add a
 	ld e, a
 	ld d, 0
@@ -260,6 +287,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	xor a
 .finish
 	ld [hWY], a
+	; swap region maps
 	ld a, [wcf65]
 	and 1
 	xor 1
@@ -281,6 +309,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 ; 90e12 (24:4e12)
 
 .Jumptable: ; 90e12
+; entries correspond to POKEGEARCARD_* constants
 	dw .Clock
 	dw .Map
 	dw .Phone
@@ -319,12 +348,12 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld e, 1
 .ok
 	farcall PokegearMap
-	ld a, $7
+	ld a, $07
 	ld bc, $12
 	hlcoord 1, 2
 	call ByteFill
 	hlcoord 0, 2
-	ld [hl], $6
+	ld [hl], $06
 	hlcoord 19, 2
 	ld [hl], $17
 	ld a, [wPokegearMapCursorLandmark]
@@ -382,13 +411,13 @@ Pokegear_FinishTilemap: ; 90eb0 (24:4eb0)
 	call ByteFill
 	ld de, wPokegearFlags
 	ld a, [de]
-	bit 0, a
+	bit 0, a ; ENGINE_MAP_CARD
 	call nz, .PlaceMapIcon
 	ld a, [de]
-	bit 2, a
+	bit 2, a ; ENGINE_PHONE_CARD
 	call nz, .PlacePhoneIcon
 	ld a, [de]
-	bit 1, a
+	bit 1, a ; ENGINE_RADIO_CARD
 	call nz, .PlaceRadioIcon
 	hlcoord 0, 0
 	ld a, $46
@@ -433,6 +462,7 @@ PokegearJumptable: ; 90f04 (24:4f04)
 	jp hl
 
 .Jumptable: ; 90f13 (24:4f13)
+; entries correspond to POKEGEARSTATE_* constants
 	dw PokegearClock_Init
 	dw PokegearClock_Joypad
 	dw PokegearMap_CheckRegion
@@ -460,32 +490,32 @@ PokegearClock_Joypad: ; 90f3e (24:4f3e)
 	call .UpdateClock
 	ld hl, hJoyLast
 	ld a, [hl]
-	and A_BUTTON + B_BUTTON + START + SELECT
+	and A_BUTTON | B_BUTTON | START | SELECT
 	jr nz, .quit
 	ld a, [hl]
 	and D_RIGHT
 	ret z
 	ld a, [wPokegearFlags]
-	bit 0, a
+	bit 0, a ; ENGINE_MAP_CARD
 	jr z, .no_map_card
-	ld c, $2
-	ld b, $1
+	ld c, POKEGEARSTATE_MAPCHECKREGION
+	ld b, POKEGEARCARD_MAP
 	jr .done
 
 .no_map_card
 	ld a, [wPokegearFlags]
-	bit 2, a
+	bit 2, a ; ENGINE_PHONE_CARD
 	jr z, .no_phone_card
-	ld c, $7
-	ld b, $2
+	ld c, POKEGEARSTATE_PHONEINIT
+	ld b, POKEGEARCARD_PHONE
 	jr .done
 
 .no_phone_card
 	ld a, [wPokegearFlags]
-	bit 1, a
+	bit 1, a ; ENGINE_RADIO_CARD
 	ret z
-	ld c, $b
-	ld b, $3
+	ld c, POKEGEARSTATE_RADIOINIT
+	ld b, POKEGEARCARD_RADIO
 .done
 	call Pokegear_SwitchPage
 	ret
@@ -535,12 +565,12 @@ PokegearMap_CheckRegion: ; 90fb4 (24:4fb4)
 	cp KANTO_LANDMARK
 	jr nc, .kanto
 .johto
-	ld a, 3
+	ld a, POKEGEARSTATE_JOHTOMAPINIT
 	jr .done
 	ret
 
 .kanto
-	ld a, 5
+	ld a, POKEGEARSTATE_KANTOMAPINIT
 .done
 	ld [wJumptableIndex], a
 	call ExitPokegearRadio_HandleMusic
@@ -583,23 +613,23 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 
 .right
 	ld a, [wPokegearFlags]
-	bit 2, a
+	bit 2, a ; ENGINE_PHONE_CARD
 	jr z, .no_phone
-	ld c, $7
-	ld b, $2
+	ld c, POKEGEARSTATE_PHONEINIT
+	ld b, POKEGEARCARD_PHONE
 	jr .done
 
 .no_phone
 	ld a, [wPokegearFlags]
-	bit 1, a
+	bit 1, a ; ENGINE_RADIO_CARD
 	ret z
-	ld c, $b
-	ld b, $3
+	ld c, POKEGEARSTATE_RADIOINIT
+	ld b, POKEGEARCARD_RADIO
 	jr .done
 
 .left
-	ld c, $0
-	ld b, $0
+	ld c, POKEGEARSTATE_CLOCKINIT
+	ld b, POKEGEARCARD_CLOCK
 .done
 	call Pokegear_SwitchPage
 	ret
@@ -657,7 +687,7 @@ PokegearMap_InitPlayerIcon: ; 9106a
 	depixel 0, 0
 	ld b, SPRITE_ANIM_INDEX_RED_WALK
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit 0, a ; ENGINE_PLAYER_IS_FEMALE
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK
 .got_gender
@@ -688,7 +718,7 @@ PokegearMap_InitCursor: ; 91098
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $4
+	ld [hl], $04
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], SPRITE_ANIM_SEQ_NULL
@@ -734,7 +764,7 @@ PokegearMap_UpdateCursorPosition: ; 910d4
 
 TownMap_GetKantoLandmarkLimits: ; 910e8
 	ld a, [wStatusFlags]
-	bit 6, a
+	bit 6, a ; ENGINE_CREDITS_SKIP
 	jr z, .not_hof
 	ld d, ROUTE_28
 	ld e, PALLET_TOWN
@@ -754,7 +784,7 @@ PokegearRadio_Init: ; 910f9 (24:50f9)
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $8
+	ld [hl], $08
 	call _UpdateRadioStation
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -780,23 +810,23 @@ PokegearRadio_Joypad: ; 91112 (24:5112)
 
 .left
 	ld a, [wPokegearFlags]
-	bit 2, a
+	bit 2, a ; ENGINE_PHONE_CARD
 	jr z, .no_phone
-	ld c, $7
-	ld b, $2
+	ld c, POKEGEARSTATE_PHONEINIT
+	ld b, POKEGEARCARD_PHONE
 	jr .switch_page
 
 .no_phone
 	ld a, [wPokegearFlags]
-	bit 0, a
+	bit 0, a ; ENGINE_MAP_CARD
 	jr z, .no_map
-	ld c, $2
-	ld b, $1
+	ld c, POKEGEARSTATE_MAPCHECKREGION
+	ld b, POKEGEARCARD_MAP
 	jr .switch_page
 
 .no_map
-	ld c, $0
-	ld b, $0
+	ld c, POKEGEARSTATE_CLOCKINIT
+	ld b, POKEGEARCARD_CLOCK
 .switch_page
 	call Pokegear_SwitchPage
 	ret
@@ -839,23 +869,23 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 
 .left
 	ld a, [wPokegearFlags]
-	bit 0, a
+	bit 0, a ; ENGINE_MAP_CARD
 	jr z, .no_map
-	ld c, $2
-	ld b, $1
+	ld c, POKEGEARSTATE_MAPCHECKREGION
+	ld b, POKEGEARCARD_MAP
 	jr .switch_page
 
 .no_map
-	ld c, $0
-	ld b, $0
+	ld c, POKEGEARSTATE_CLOCKINIT
+	ld b, POKEGEARCARD_CLOCK
 	jr .switch_page
 
 .right
 	ld a, [wPokegearFlags]
-	bit 1, a
+	bit 1, a ; ENGINE_RADIO_CARD
 	ret z
-	ld c, $b
-	ld b, $3
+	ld c, POKEGEARSTATE_RADIOINIT
+	ld b, POKEGEARCARD_RADIO
 .switch_page
 	call Pokegear_SwitchPage
 	ret
@@ -891,7 +921,7 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 	ret
 
 .quit_submenu
-	ld a, $8
+	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
 	ret
 
@@ -931,7 +961,7 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 	farcall Phone_NoSignal
 	ld hl, .OutOfServiceArea
 	call PrintText
-	ld a, $8
+	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
 	ld hl, PokegearText_WhomToCall
 	call PrintText
@@ -958,7 +988,7 @@ PokegearPhone_FinishPhoneCall: ; 91256 (24:5256)
 	and A_BUTTON | B_BUTTON
 	ret z
 	farcall HangUp
-	ld a, $8
+	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
 	ld hl, PokegearText_WhomToCall
 	call PrintText
@@ -993,7 +1023,7 @@ PokegearPhone_GetDPad: ; 9126d (24:526d)
 .down
 	ld hl, wPokegearPhoneCursorPosition
 	ld a, [hl]
-	cp $3
+	cp 3
 	jr nc, .scroll_page_down
 	inc [hl]
 	jr .done_joypad_same_page
@@ -1001,7 +1031,7 @@ PokegearPhone_GetDPad: ; 9126d (24:526d)
 .scroll_page_down
 	ld hl, wPokegearPhoneScrollPosition
 	ld a, [hl]
-	cp $6
+	cp 6
 	ret nc
 	inc [hl]
 	jr .done_joypad_update_page
@@ -1075,7 +1105,7 @@ PokegearPhone_UpdateDisplayList: ; 912d8 (24:52d8)
 	ld a, [wPokegearPhoneLoadNameBuffer]
 	inc a
 	ld [wPokegearPhoneLoadNameBuffer], a
-	cp $4
+	cp 4
 	jr c, .loop
 	call PokegearPhone_UpdateCursor
 	ret
@@ -1337,9 +1367,9 @@ Pokegear_SwitchPage: ; 91480 (24:5480)
 
 ExitPokegearRadio_HandleMusic: ; 91492
 	ld a, [wPokegearRadioMusicPlaying]
-	cp $fe
+	cp RESTART_MAP_MUSIC
 	jr z, .restart_map_music
-	cp $ff
+	cp ENTER_MAP_MUSIC
 	call z, EnterMapMusic
 	xor a
 	ld [wPokegearRadioMusicPlaying], a
@@ -1364,11 +1394,11 @@ DeleteSpriteAnimStruct2ToEnd: ; 914ab (24:54ab)
 
 Pokegear_LoadTilemapRLE: ; 914bb (24:54bb)
 	; Format: repeat count, tile ID
-	; Terminated with $FF
+	; Terminated with -1
 	hlcoord 0, 0
 .loop
 	ld a, [de]
-	cp $ff
+	cp -1
 	ret z
 	ld b, a
 	inc de
@@ -1560,7 +1590,7 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a
+	bit 3, a ; ENGINE_EXPN_CARD
 	jr z, .NoSignal
 	jp LoadStation_PlacesAndPeople
 
@@ -1568,7 +1598,7 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a
+	bit 3, a ; ENGINE_EXPN_CARD
 	jr z, .NoSignal
 	jp LoadStation_LetsAllSing
 
@@ -1576,14 +1606,14 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a
+	bit 3, a ; ENGINE_EXPN_CARD
 	jr z, .NoSignal
 	jp LoadStation_PokeFluteRadio
 
 .EvolutionRadio:
 ; This station airs in the Lake of Rage area when Rocket are still in Mahogany.
 	ld a, [wStatusFlags]
-	bit 4, a
+	bit 4, a ; ENGINE_ROCKET_SIGNAL_ON_CH20
 	jr z, .NoSignal
 	ld a, [wPokegearMapPlayerIconLandmark]
 	cp MAHOGANY_TOWN
@@ -1669,7 +1699,7 @@ LoadStation_BuenasPassword: ; 917a5 (24:57a5)
 	call Radio_BackUpFarCallParams
 	ld de, NotBuenasPasswordName
 	ld a, [wStatusFlags2]
-	bit 0, a
+	bit 0, a ; ENGINE_ROCKETS_IN_RADIO_TOWER
 	ret z
 	ld de, BuenasPasswordName
 	ret
@@ -1768,7 +1798,7 @@ RadioMusicRestartDE: ; 91854 (24:5854)
 
 RadioMusicRestartPokemonChannel: ; 91868 (24:5868)
 	push de
-	ld a, $fe
+	ld a, RESTART_MAP_MUSIC
 	ld [wPokegearRadioMusicPlaying], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -1799,7 +1829,7 @@ NoRadioStation: ; 91888 (24:5888)
 NoRadioMusic: ; 9189d (24:589d)
 	ld de, MUSIC_NONE
 	call PlayMusic
-	ld a, $ff
+	ld a, ENTER_MAP_MUSIC
 	ld [wPokegearRadioMusicPlaying], a
 	ret
 
@@ -1810,7 +1840,7 @@ NoRadioName: ; 918a9 (24:58a9)
 	lb bc, 3, 18
 	call ClearBox
 	hlcoord 0, 12
-	ld bc, $412
+	lb bc, 4, 18
 	call TextBox
 	ret
 
@@ -1966,26 +1996,26 @@ _TownMap: ; 9191c
 	ld a, [wTownMapPlayerIconLandmark]
 	cp KANTO_LANDMARK
 	jr nc, .kanto2
-	ld e, $0
+	ld e, JOHTO_REGION
 	jr .okay_tilemap
 
 .kanto2
-	ld e, $1
+	ld e, KANTO_REGION
 .okay_tilemap
 	farcall PokegearMap
-	ld a, $7
+	ld a, $07
 	ld bc, 6
 	hlcoord 1, 0
 	call ByteFill
 	hlcoord 0, 0
-	ld [hl], $6
+	ld [hl], $06
 	hlcoord 7, 0
 	ld [hl], $17
 	hlcoord 7, 1
 	ld [hl], $16
 	hlcoord 7, 2
 	ld [hl], $26
-	ld a, $7
+	ld a, $07
 	ld bc, NAME_LENGTH
 	hlcoord 8, 2
 	call ByteFill
@@ -2001,7 +2031,7 @@ PlayRadio: ; 91a53
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	call .PlayStation
 	ld c, 100
 	call DelayFrames
@@ -2031,10 +2061,10 @@ PlayRadio: ; 91a53
 ; 91a87
 
 .PlayStation: ; 91a87
-	ld a, -1
-	ld [EnemyTurnsTaken], a
+	ld a, ENTER_MAP_MUSIC
+	ld [wPokegearRadioMusicPlaying], a
 	ld hl, .StationPointers
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -2063,6 +2093,7 @@ PlayRadio: ; 91a53
 ; 91ab9
 
 .StationPointers: ; 91ab9
+; entries correspond to radio station constants
 	dw .OakOrPnP
 	dw LoadStation_OaksPokemonTalk
 	dw LoadStation_PokedexShow
@@ -2286,7 +2317,7 @@ TownMapBubble: ; 91bb5
 GetMapCursorCoordinates: ; 91c17
 	ld a, [wTownMapPlayerIconLandmark]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	ld de, Flypoints
 	add hl, de
@@ -2296,10 +2327,10 @@ GetMapCursorCoordinates: ; 91c17
 	ld c, a
 	ld a, [wTownMapCursorCoordinates + 1]
 	ld b, a
-	ld hl, $4
+	ld hl, 4
 	add hl, bc
 	ld [hl], e
-	ld hl, $5
+	ld hl, 5
 	add hl, bc
 	ld [hl], d
 	ret
@@ -2477,7 +2508,7 @@ _Area: ; 91d11
 	call SetPalettes
 	xor a
 	ld [hBGMapMode], a
-	xor a ; Johto
+	xor a ; JOHTO_REGION
 	call .GetAndPlaceNest
 .loop
 	call JoyTextDelay
@@ -2524,13 +2555,13 @@ _Area: ; 91d11
 	call ClearSprites
 	ld a, $90
 	ld [hWY], a
-	xor a ; Johto
+	xor a ; JOHTO_REGION
 	call .GetAndPlaceNest
 	ret
 
 .right
 	ld a, [wStatusFlags]
-	bit 6, a ; hall of fame
+	bit 6, a ; ENGINE_CREDITS_SKIP
 	ret z
 	ld a, [hWY]
 	and a
@@ -2538,7 +2569,7 @@ _Area: ; 91d11
 	call ClearSprites
 	xor a
 	ld [hWY], a
-	ld a, 1 ; Kanto
+	ld a, KANTO_REGION
 	call .GetAndPlaceNest
 	ret
 
@@ -2791,12 +2822,11 @@ TownMapPals: ; 91f13
 ; Current tile
 	ld a, [hli]
 	push hl
-; HP/borders use palette 0
+; The palette map covers tiles $00 to $5f; $60 and above use palette 0
 	cp $60
 	jr nc, .pal0
-; The palette data is condensed to nybbles,
 
-; least-significant first.
+; The palette data is condensed to nybbles, least-significant first.
 	ld hl, .PalMap
 	srl a
 	jr c, .odd
@@ -2807,7 +2837,7 @@ TownMapPals: ; 91f13
 	adc 0
 	ld h, a
 	ld a, [hl]
-	and %111
+	and PALETTE_MASK
 	jr .update
 
 .odd
@@ -2819,7 +2849,7 @@ TownMapPals: ; 91f13
 	ld h, a
 	ld a, [hl]
 	swap a
-	and %111
+	and PALETTE_MASK
 	jr .update
 
 .pal0
@@ -2839,7 +2869,7 @@ INCLUDE "gfx/pokegear/town_map_palette_map.asm"
 ; 91f7b
 
 TownMapMon: ; 91f7b
-; Draw the FlyMon icon at town map location in
+; Draw the FlyMon icon at town map location
 
 ; Get FlyMon species
 	ld a, [CurPartyMon]
@@ -2850,7 +2880,7 @@ TownMapMon: ; 91f7b
 	ld a, [hl]
 	ld [wd265], a
 ; Get FlyMon icon
-	ld e, 8 ; starting tile in VRAM
+	ld e, $08 ; starting tile in VRAM
 	farcall GetSpeciesIcon
 ; Animation/palette
 	depixel 0, 0
@@ -2858,7 +2888,7 @@ TownMapMon: ; 91f7b
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $8
+	ld [hl], $08
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], SPRITE_ANIM_SEQ_NULL

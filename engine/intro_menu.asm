@@ -1333,7 +1333,7 @@ ResetClock: ; 6392
 Function639b: ; unreferenced
 	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
 	ld a, [wTitleScreenTimer]
-	and $3
+	and %00000011
 	ret nz
 	ld bc, SpriteAnim10
 	ld hl, SPRITEANIMSTRUCT_FRAME

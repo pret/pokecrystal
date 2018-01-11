@@ -77,9 +77,8 @@ BugContest_ThirdPlaceScoreText: ; 0x1372b
 ; 0x13730
 
 LoadContestantName: ; 13730
-
-; If a = 0, get your name.
-	dec a
+; If a = 1, get your name.
+	dec a ; BUG_CONTEST_PLAYER
 	jr z, .player
 ; Find the pointer for the trainer class of the Bug Catching Contestant whose ID is in a.
 	ld c, a
@@ -141,11 +140,11 @@ INCLUDE "data/bug_contest_winners.asm"
 
 BugContest_GetPlayersResult: ; 13807
 	ld hl, wBugContestThirdPlaceWinnerID
-	ld de, -4
-	ld b, 3
+	ld de, - BUG_CONTESTANT_SIZE
+	ld b, 3 ; 3rd, 2nd, or 1st
 .loop
 	ld a, [hl]
-	cp 1 ; Player
+	cp BUG_CONTEST_PLAYER
 	jr z, .done
 	add hl, de
 	dec b
@@ -159,7 +158,7 @@ BugContest_JudgeContestants: ; 13819
 	call ClearContestResults
 	call ComputeAIContestantScores
 	ld hl, wBugContestTempWinnerID
-	ld a, 1 ; Player
+	ld a, BUG_CONTEST_PLAYER
 	ld [hli], a
 	ld a, [wContestMon]
 	ld [hli], a
@@ -190,11 +189,11 @@ DetermineContestWinners: ; 1383e
 	jr c, .not_first_place
 	ld hl, wBugContestSecondPlaceWinnerID
 	ld de, wBugContestThirdPlaceWinnerID
-	ld bc, 4
+	ld bc, BUG_CONTESTANT_SIZE
 	call CopyBytes
 	ld hl, wBugContestFirstPlaceWinnerID
 	ld de, wBugContestSecondPlaceWinnerID
-	ld bc, 4
+	ld bc, BUG_CONTESTANT_SIZE
 	call CopyBytes
 	ld hl, wBugContestFirstPlaceWinnerID
 	call CopyTempContestant
@@ -208,7 +207,7 @@ DetermineContestWinners: ; 1383e
 	jr c, .not_second_place
 	ld hl, wBugContestSecondPlaceWinnerID
 	ld de, wBugContestThirdPlaceWinnerID
-	ld bc, 4
+	ld bc, BUG_CONTESTANT_SIZE
 	call CopyBytes
 	ld hl, wBugContestSecondPlaceWinnerID
 	call CopyTempContestant
@@ -230,7 +229,7 @@ DetermineContestWinners: ; 1383e
 CopyTempContestant: ; 138a0
 ; Could've just called CopyBytes.
 	ld de, wBugContestTempWinnerID
-rept 3
+rept BUG_CONTESTANT_SIZE +- 1
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -264,6 +263,7 @@ ComputeAIContestantScores: ; 138b0
 	inc hl
 	inc hl
 .loop2
+	; 0, 1, or 2 for 1st, 2nd, or 3rd
 	call Random
 	and 3
 	cp 3
@@ -278,8 +278,9 @@ ComputeAIContestantScores: ; 138b0
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	; randomly perturb score
 	call Random
-	and 7
+	and %111
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -294,7 +295,7 @@ ComputeAIContestantScores: ; 138b0
 .done
 	inc e
 	ld a, e
-	cp 10
+	cp NUM_BUG_CONTESTANTS
 	jr nz, .loop
 	ret
 ; 13900
@@ -337,26 +338,26 @@ ContestScore: ; 13900
 	; DVs
 	ld a, [wContestMonDVs + 0]
 	ld b, a
-	and 2
+	and %0010
 	add a
 	add a
 	ld c, a
 
 	swap b
 	ld a, b
-	and 2
+	and %0010
 	add a
 	add c
 	ld d, a
 
 	ld a, [wContestMonDVs + 1]
 	ld b, a
-	and 2
+	and %0010
 	ld c, a
 
 	swap b
 	ld a, b
-	and 2
+	and %0010
 	srl a
 	add c
 	add c
