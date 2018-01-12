@@ -26,10 +26,8 @@ SilverCaveRoom1UltraBall:
 SilverCaveRoom1HiddenDireHit:
 	dwb EVENT_SILVER_CAVE_ROOM_1_HIDDEN_DIRE_HIT, DIRE_HIT
 
-
 SilverCaveRoom1HiddenUltraBall:
 	dwb EVENT_SILVER_CAVE_ROOM_1_HIDDEN_ULTRA_BALL, ULTRA_BALL
-
 
 SilverCaveRoom1_MapEventHeader:
 	; filler

@@ -14,10 +14,8 @@ TinTower5FRareCandy:
 TinTower5FHiddenFullRestore:
 	dwb EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
-
 TinTower5FHiddenCarbos:
 	dwb EVENT_TIN_TOWER_5F_HIDDEN_CARBOS, CARBOS
-
 
 TinTower5F_MapEventHeader:
 	; filler

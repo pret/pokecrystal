@@ -22,7 +22,6 @@ SilverCaveRoom2PPUp:
 SilverCaveRoom2HiddenMaxPotion:
 	dwb EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION, MAX_POTION
 
-
 SilverCaveRoom2_MapEventHeader:
 	; filler
 	db 0, 0

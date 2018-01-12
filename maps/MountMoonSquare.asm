@@ -77,7 +77,6 @@ ClefairyDance:
 MountMoonSquareHiddenMoonStone:
 	dwb EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
 
-
 DontLitterSign:
 	jumptext DontLitterSignText
 

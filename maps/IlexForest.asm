@@ -416,10 +416,8 @@ IlexForestEther:
 IlexForestHiddenEther:
 	dwb EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER
 
-
 IlexForestHiddenSuperPotion:
 	dwb EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION, SUPER_POTION
-
 
 IlexForestHiddenFullHeal:
 	dwb EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL, FULL_HEAL

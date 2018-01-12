@@ -83,7 +83,6 @@ GoldenrodVendingMachine:
 	db "LEMONADE     ¥350@"
 	db "CANCEL@"
 
-
 GoldenrodDeptStore6FLassScript:
 	jumptextfaceplayer GoldenrodDeptStore6FLassText
 

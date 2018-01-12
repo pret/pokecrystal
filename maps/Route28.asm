@@ -11,7 +11,6 @@ Route28Sign:
 Route28HiddenRareCandy:
 	dwb EVENT_ROUTE_28_HIDDEN_RARE_CANDY, RARE_CANDY
 
-
 Route28SignText:
 	text "ROUTE 28"
 	done

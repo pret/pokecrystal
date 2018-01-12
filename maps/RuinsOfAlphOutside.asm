@@ -112,7 +112,6 @@ TrainerPsychicNathan:
 	closetext
 	end
 
-
 TrainerSuperNerdStan:
 	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, .Script
 
@@ -123,7 +122,6 @@ TrainerSuperNerdStan:
 	waitbutton
 	closetext
 	end
-
 
 RuinsOfAlphOutsideSignpost0Script:
 	jumptext UnknownText_0x58325

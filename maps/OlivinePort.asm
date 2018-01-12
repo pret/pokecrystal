@@ -236,7 +236,6 @@ CooltrainerFScript_0x74a22:
 OlivinePortHiddenProtein:
 	dwb EVENT_OLIVINE_PORT_HIDDEN_PROTEIN, PROTEIN
 
-
 MovementData_0x74a30:
 	step DOWN
 	step_end

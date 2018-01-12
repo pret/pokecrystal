@@ -490,10 +490,8 @@ Route34Nugget:
 Route34HiddenRareCandy:
 	dwb EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
 
-
 Route34HiddenSuperPotion:
 	dwb EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
-
 
 Route34MovementData_DayCareManWalksBackInside:
 	slow_step LEFT

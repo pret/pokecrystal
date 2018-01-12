@@ -18,7 +18,6 @@ MountMortar1FOutsideRevive:
 MountMortar1FOutsideHiddenHyperPotion:
 	dwb EVENT_MOUNT_MORTAR_1F_OUTSIDE_HIDDEN_HYPER_POTION, HYPER_POTION
 
-
 MountMortar1FOutside_MapEventHeader:
 	; filler
 	db 0, 0

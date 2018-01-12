@@ -542,7 +542,6 @@ TeamRocketBaseB1FGuardSpec:
 TeamRocketBaseB1FHiddenRevive:
 	dwb EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE, REVIVE
 
-
 SecurityCameraMovement1:
 	big_step RIGHT
 	big_step RIGHT

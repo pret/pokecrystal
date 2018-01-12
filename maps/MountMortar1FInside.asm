@@ -66,7 +66,6 @@ MountMortar1FInsideUltraBall:
 MountMortar1FInsideHiddenMaxRepel:
 	dwb EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL
 
-
 PokemaniacMillerSeenText:
 	text "I'm not losing"
 	line "this time!"

@@ -15,7 +15,7 @@ CeladonGameCornerPrizeRoomGentlemanScript:
 CeladonGameCornerPrizeRoomPharmacistScript:
 	jumptextfaceplayer CeladonGameCornerPrizeRoomPharmacistText
 
-GoldenrodGameCornerTMVendor:
+CeladonGameCornerPrizeRoomTMVendor:
 	faceplayer
 	opentext
 	writetext CeladonPrizeRoom_PrizeVendorIntroText
@@ -102,7 +102,6 @@ CeladonPrizeRoom_NoCoinCase:
 	closetext
 	end
 
-
 CeladonPrizeRoom_TMMenuDataHeader:
 	db $40 ; flags
 	db 02, 00 ; start coords
@@ -118,8 +117,7 @@ CeladonPrizeRoom_TMMenuDataHeader:
 	db "TM15    7500@"
 	db "CANCEL@"
 
-
-GoldenrodGameCornerPokemonVendor:
+CeladonGameCornerPrizeRoomPokemonVendor:
 	faceplayer
 	opentext
 	writetext CeladonPrizeRoom_PrizeVendorIntroText
@@ -191,7 +189,6 @@ GoldenrodGameCornerPokemonVendor:
 	takecoins 8888
 	jump .loop
 
-
 .MenuDataHeader:
 	db $40 ; flags
 	db 02, 00 ; start coords
@@ -206,7 +203,6 @@ GoldenrodGameCornerPokemonVendor:
 	db "PORYGON    5555@"
 	db "LARVITAR   8888@"
 	db "CANCEL@"
-
 
 CeladonGameCornerPrizeRoomGentlemanText:
 	text "I wanted PORYGON,"
@@ -283,8 +279,8 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 .BGEvents:
 	db 2
-	bg_event 2, 1, BGEVENT_READ, GoldenrodGameCornerTMVendor
-	bg_event 4, 1, BGEVENT_READ, GoldenrodGameCornerPokemonVendor
+	bg_event 2, 1, BGEVENT_READ, CeladonGameCornerPrizeRoomTMVendor
+	bg_event 4, 1, BGEVENT_READ, CeladonGameCornerPrizeRoomPokemonVendor
 
 .ObjectEvents:
 	db 2

@@ -214,7 +214,6 @@ FruitTreeScript_0x1a9351:
 Route42HiddenMaxPotion:
 	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
 
-
 MovementData_0x1a9356:
 	set_sliding
 	fast_jump_step UP

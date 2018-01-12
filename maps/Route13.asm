@@ -79,7 +79,6 @@ Route13DirectionsSign:
 Route13HiddenCalcium:
 	dwb EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
 
-
 PokefanmAlexSeenText:
 	text "Bow down before my"
 	line "regal #MON!"

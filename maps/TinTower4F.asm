@@ -22,7 +22,6 @@ TinTower4FEscapeRope:
 TinTower4FHiddenMaxPotion:
 	dwb EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION, MAX_POTION
 
-
 TinTower4F_MapEventHeader:
 	; filler
 	db 0, 0

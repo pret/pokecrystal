@@ -14,7 +14,6 @@ IcePathB2FBlackthornSideTMRest:
 IcePathB2FBlackthornSideHiddenIceHeal:
 	dwb EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL, ICE_HEAL
 
-
 IcePathB2FBlackthornSide_MapEventHeader:
 	; filler
 	db 0, 0

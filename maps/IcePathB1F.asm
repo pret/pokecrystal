@@ -62,7 +62,6 @@ IcePathB1F_MapScriptHeader:
 	earthquake 80
 	end
 
-
 IcePathB1FBoulder:
 	jumpstd strengthboulder
 
@@ -72,12 +71,10 @@ IcePathB1FIron:
 IcePathB1FHiddenMaxPotion:
 	dwb EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
-
 IcePathBoulderFellThroughText:
 	text "The boulder fell"
 	line "through."
 	done
-
 
 IcePathB1F_MapEventHeader:
 	; filler

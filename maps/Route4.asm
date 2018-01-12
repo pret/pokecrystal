@@ -53,7 +53,6 @@ Route4HPUp:
 Route4HiddenUltraBall:
 	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
 
-
 BirdKeeperHankSeenText:
 	text "I'm raising my"
 	line "#MON. Want to"

@@ -94,7 +94,6 @@ MoveTutor:
 	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
-
 .MoveMenuDataHeader:
 	db $40 ; flags
 	db 02, 00 ; start coords
@@ -109,7 +108,6 @@ MoveTutor:
 	db "THUNDERBOLT@"
 	db "ICE BEAM@"
 	db "CANCEL@"
-
 
 .Refused:
 	writetext UnknownText_0x1990b4

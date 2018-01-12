@@ -116,7 +116,6 @@ FruitTreeScript_0x1a8e0d:
 Route37HiddenEther:
 	dwb EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
 
-
 TwinsAnnandanne1SeenText:
 	text "ANN: ANNE and I"
 	line "are in this to-"

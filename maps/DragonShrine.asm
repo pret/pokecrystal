@@ -265,7 +265,6 @@ ElderScript_0x18d20d:
 	closetext
 	end
 
-
 MenuDataHeader_0x18d215:
 	db $40 ; flags
 	db 04, 08 ; start coords
@@ -279,7 +278,6 @@ MenuDataHeader_0x18d215:
 	db "Pal@"
 	db "Underling@"
 	db "Friend@"
-
 
 MenuDataHeader_0x18d234:
 	db $40 ; flags
@@ -295,7 +293,6 @@ MenuDataHeader_0x18d234:
 	db "Raising@"
 	db "Cheating@"
 
-
 MenuDataHeader_0x18d258:
 	db $40 ; flags
 	db 04, 05 ; start coords
@@ -309,7 +306,6 @@ MenuDataHeader_0x18d258:
 	db "Weak person@"
 	db "Tough person@"
 	db "Anybody@"
-
 
 MenuDataHeader_0x18d283:
 	db $40 ; flags
@@ -325,7 +321,6 @@ MenuDataHeader_0x18d283:
 	db "Violence@"
 	db "Knowledge@"
 
-
 MenuDataHeader_0x18d2a5:
 	db $40 ; flags
 	db 04, 12 ; start coords
@@ -339,7 +334,6 @@ MenuDataHeader_0x18d2a5:
 	db "Tough@"
 	db "Both@"
 	db "Weak@"
-
 
 MovementData_0x18d2bf:
 	slow_step UP

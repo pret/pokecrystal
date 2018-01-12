@@ -48,7 +48,6 @@ UnknownScript_0x62600:
 	closetext
 	end
 
-
 MenuDataHeader_0x62602:
 	db $40 ; flags
 	db 00, 00 ; start coords
@@ -62,7 +61,6 @@ MenuDataHeader_0x62602:
 	db "# つうしん クラブ@" ; # COM CLUB
 	db "モバイルセンター@" ; MOBILE CENTER
 	db "やめる@" ; QUIT
-
 
 MapGoldenrodPokeComCenter2FMobileSignpost1Script:
 	opentext
@@ -93,7 +91,6 @@ UnknownScript_0x6264a:
 	closetext
 	end
 
-
 MenuDataHeader_0x6264c:
 	db $40 ; flags
 	db 00, 00 ; start coords
@@ -107,7 +104,6 @@ MenuDataHeader_0x6264c:
 	db "でんわ", $1f,"つかうとき@" ; Use phone
 	db "でんわ", $4a,"つながらないとき@" ; Don't use phone
 	db "やめる@" ; QUIT
-
 
 MapGoldenrodPokeComCenter2FMobileSignpost2Script:
 	jumptext UnknownText_0x62b26

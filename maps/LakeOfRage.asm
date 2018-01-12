@@ -234,14 +234,11 @@ LakeOfRageTMDetect:
 LakeOfRageHiddenFullRestore:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
-
 LakeOfRageHiddenRareCandy:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_RARE_CANDY, RARE_CANDY
 
-
 LakeOfRageHiddenMaxPotion:
 	dwb EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION, MAX_POTION
-
 
 MovementData_0x70155:
 	teleport_from

@@ -358,7 +358,6 @@ TeamRocketBaseB2FTMThief:
 TeamRocketBaseB2FHiddenFullHeal:
 	dwb EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL
 
-
 MovementData_0x6d212:
 	step RIGHT
 	step RIGHT

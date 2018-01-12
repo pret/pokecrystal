@@ -46,7 +46,6 @@ OlivineLighthouse5FTMSwagger:
 OlivineLighthouse5FHiddenHyperPotion:
 	dwb EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION, HYPER_POTION
 
-
 SailorErnestSeenText:
 	text "I wanted to battle"
 	line "JASMINE, but she's"

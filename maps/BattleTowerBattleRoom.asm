@@ -133,12 +133,10 @@ UnreferencedScript_0x9f4f7:
 	closetext
 	end
 
-
 Text_ReturnedAfterSave_Mobile:
 	text "You'll be returned"
 	line "after you SAVE."
 	done
-
 
 BattleTowerBattleRoom_MapEventHeader:
 	; filler

@@ -250,7 +250,6 @@ Route30FruitTree2:
 Route30HiddenPotion:
 	dwb EVENT_ROUTE_30_HIDDEN_POTION, POTION
 
-
 Route30_JoeysRattataAttacksMovement:
 	fix_facing
 	big_step UP

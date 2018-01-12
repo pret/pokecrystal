@@ -307,7 +307,6 @@ NationalParkTMDig:
 NationalParkHiddenFullHeal:
 	dwb EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
 
-
 NationalParkLassText:
 	text "Look! Check out my"
 	line "bag!"
