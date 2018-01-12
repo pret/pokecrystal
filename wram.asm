@@ -2496,7 +2496,7 @@ wCeruleanGymSceneID::                             db ; d977
 wRoute25SceneID::                                 db ; d978
 wTrainerHouseB1FSceneID::                         db ; d979
 wVictoryRoadGateSceneID::                         db ; d97a
-wSaffronTrainStationSceneID::                     db ; d97b
+wSaffronMagnetTrainStationSceneID::               db ; d97b
 wRoute16GateSceneID::                             db ; d97c
 wRoute17Route18GateSceneID::                      db ; d97d
 wIndigoPlateauPokecenter1FSceneID::               db ; d97e

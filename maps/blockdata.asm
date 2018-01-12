@@ -849,8 +849,8 @@ SafariZoneMainOffice_BlockData:
 KrissHouse2F_BlockData:
 	INCBIN "maps/KrissHouse2F.blk"
 
-SaffronTrainStation_BlockData:
-	INCBIN "maps/SaffronTrainStation.blk"
+SaffronMagnetTrainStation_BlockData:
+	INCBIN "maps/SaffronMagnetTrainStation.blk"
 
 CeruleanGym_BlockData:
 	INCBIN "maps/CeruleanGym.blk"

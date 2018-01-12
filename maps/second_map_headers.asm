@@ -668,7 +668,7 @@ ENDM
 	map_header_2 SaffronPokecenter1F, SAFFRON_POKECENTER_1F, $0, 0
 	map_header_2 SaffronPokecenter2FBeta, SAFFRON_POKECENTER_2F_BETA, $0, 0
 	map_header_2 MrPsychicsHouse, MR_PSYCHICS_HOUSE, $0, 0
-	map_header_2 SaffronTrainStation, SAFFRON_TRAIN_STATION, $0, 0
+	map_header_2 SaffronMagnetTrainStation, SAFFRON_MAGNET_TRAIN_STATION, $0, 0
 	map_header_2 SilphCo1F, SILPH_CO_1F, $0, 0
 	map_header_2 CopycatsHouse1F, COPYCATS_HOUSE_1F, $0, 0
 	map_header_2 CopycatsHouse2F, COPYCATS_HOUSE_2F, $0, 0

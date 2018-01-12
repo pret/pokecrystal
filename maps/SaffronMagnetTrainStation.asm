@@ -1,10 +1,10 @@
 const_value set 2
-	const SAFFRONTRAINSTATION_OFFICER
-	const SAFFRONTRAINSTATION_GYM_GUY
-	const SAFFRONTRAINSTATION_TEACHER
-	const SAFFRONTRAINSTATION_LASS
+	const SAFFRONMAGNETTRAINSTATION_OFFICER
+	const SAFFRONMAGNETTRAINSTATION_GYM_GUY
+	const SAFFRONMAGNETTRAINSTATION_TEACHER
+	const SAFFRONMAGNETTRAINSTATION_LASS
 
-SaffronTrainStation_MapScriptHeader:
+SaffronMagnetTrainStation_MapScriptHeader:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -34,7 +34,7 @@ OfficerScript_0x18a81e:
 	writetext UnknownText_0x18a917
 	waitbutton
 	closetext
-	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a88f
+	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a898
 	writebyte TRUE
 	special Special_MagnetTrain
@@ -61,9 +61,9 @@ OfficerScript_0x18a81e:
 	end
 
 Script_ArriveFromGoldenrod:
-	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a88f
+	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a8a1
-	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a894
+	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a894
 	opentext
 	writetext UnknownText_0x18a993
 	waitbutton
@@ -86,11 +86,11 @@ UnknownScript_0x18a883:
 	closetext
 	end
 
-SaffronTrainStationTeacherScript:
-	jumptextfaceplayer SaffronTrainStationTeacherText
+SaffronMagnetTrainStationTeacherScript:
+	jumptextfaceplayer SaffronMagnetTrainStationTeacherText
 
-SaffronTrainStationLassScript:
-	jumptextfaceplayer SaffronTrainStationLassText
+SaffronMagnetTrainStationLassScript:
+	jumptextfaceplayer SaffronMagnetTrainStationLassText
 
 MovementData_0x18a88f:
 	step UP
@@ -192,7 +192,7 @@ UnknownText_0x18aa61:
 	line "KANTO and JOHTO?"
 	done
 
-SaffronTrainStationTeacherText:
+SaffronMagnetTrainStationTeacherText:
 	text "Before the MAGNET"
 	line "TRAIN STATION was"
 
@@ -204,7 +204,7 @@ SaffronTrainStationTeacherText:
 	cont "to live there."
 	done
 
-SaffronTrainStationLassText:
+SaffronMagnetTrainStationLassText:
 	text "Hi. Do you have a"
 	line "rail PASS? I have"
 
@@ -215,7 +215,7 @@ SaffronTrainStationLassText:
 	line "TRAIN have PASSES."
 	done
 
-SaffronTrainStation_MapEventHeader:
+SaffronMagnetTrainStation_MapEventHeader:
 	; filler
 	db 0, 0
 
@@ -237,5 +237,5 @@ SaffronTrainStation_MapEventHeader:
 	db 4
 	object_event 9, 9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
 	object_event 10, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x18a875, -1
-	object_event 6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
-	object_event 6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event 6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event 6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION

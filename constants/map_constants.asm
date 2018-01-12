@@ -465,7 +465,7 @@ ENDM
 	mapgroup SAFFRON_POKECENTER_1F,                        4,  5 ;  6
 	mapgroup SAFFRON_POKECENTER_2F_BETA,                   4,  8 ;  7
 	mapgroup MR_PSYCHICS_HOUSE,                            4,  4 ;  8
-	mapgroup SAFFRON_TRAIN_STATION,                        9, 10 ;  9
+	mapgroup SAFFRON_MAGNET_TRAIN_STATION,                 9, 10 ;  9
 	mapgroup SILPH_CO_1F,                                  4,  8 ; 10
 	mapgroup COPYCATS_HOUSE_1F,                            4,  4 ; 11
 	mapgroup COPYCATS_HOUSE_2F,                            3,  5 ; 12
