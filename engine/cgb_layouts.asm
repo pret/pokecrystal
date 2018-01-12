@@ -258,30 +258,11 @@ _CGB_StatsScreenHPPals: ; 8edb
 ; 8f52
 
 StatsScreenPagePals: ; 8f52
-; pink
-	RGB 31, 31, 31
-	RGB 31, 19, 31
-	RGB 31, 15, 31
-	RGB 00, 00, 00
-; green
-	RGB 31, 31, 31
-	RGB 21, 31, 14
-	RGB 17, 31, 00
-	RGB 00, 00, 00
-; blue
-	RGB 31, 31, 31
-	RGB 17, 31, 31
-	RGB 17, 31, 31
-	RGB 00, 00, 00
+INCLUDE "gfx/stats/pages.pal"
 ; 8f6a
 
 StatsScreenPals: ; 8f6a
-; pink
-	RGB 31, 19, 31
-; green
-	RGB 21, 31, 14
-; blue
-	RGB 17, 31, 31
+INCLUDE "gfx/stats/stats.pal"
 ; 8f70
 
 _CGB_Pokedex: ; 8f70
@@ -319,16 +300,11 @@ _CGB_Pokedex: ; 8f70
 ; 8fba
 
 .PokedexQuestionMarkPalette: ; 8fba
-	RGB 11, 23, 00
-	RGB 07, 17, 00
-	RGB 06, 16, 03
-	RGB 05, 12, 01
+INCLUDE "gfx/pokedex/question_mark.pal"
+; 8fc2
 
 .PokedexCursorPalette: ; 8fc2
-	RGB 00, 00, 00
-	RGB 11, 23, 00
-	RGB 07, 17, 00
-	RGB 00, 00, 00
+INCLUDE "gfx/pokedex/cursor.pal"
 ; 8fca
 
 _CGB_BillsPC: ; 8fca
@@ -385,10 +361,7 @@ _CGB_BillsPC: ; 8fca
 ; 9036
 
 .BillsPCOrangePalette: ; 9036
-	RGB 31, 15, 00
-	RGB 23, 12, 00
-	RGB 15, 07, 00
-	RGB 00, 00, 00
+INCLUDE "gfx/pc/orange.pal"
 ; 903e
 
 _CGB_PokedexUnownMode: ; 903e
@@ -970,10 +943,7 @@ _CGB_GamefreakLogo: ; 94fa
 ; 9521
 
 .Palette: ; 9521
-	RGB 31, 31, 31
-	RGB 13, 11, 00
-	RGB 23, 12, 28
-	RGB 00, 00, 00
+INCLUDE "gfx/splash/logo.pal"
 ; 9529
 
 _CGB_PlayerOrMonFrontpicPals: ; 9529
@@ -1059,13 +1029,5 @@ _CGB_MysteryGift: ; 9591
 ; 95e0
 
 .Palettes: ; 95e0
-	RGB 31, 31, 31
-	RGB 16, 31, 14
-	RGB 05, 14, 21
-	RGB 05, 13, 10
-
-	RGB 31, 31, 31
-	RGB 11, 21, 25
-	RGB 05, 14, 21
-	RGB 00, 03, 19
+INCLUDE "gfx/mystery_gift/mystery_gift.pal"
 ; 95f0

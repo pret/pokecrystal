@@ -130,7 +130,7 @@ INCLUDE "gfx/font/bg_text.pal"
 ; 49420
 
 Function49420:: ; 49420 (12:5420)
-	ld hl, MansionPalette4
+	ld hl, MansionPalette1 + 8 palettes
 	ld de, wBGPals1 palette PAL_BG_ROOF
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)

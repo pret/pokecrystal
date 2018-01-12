@@ -119,53 +119,7 @@ INCLUDE "gfx/tilesets/radio_tower.pal"
 ; 4967d
 
 MansionPalette1: ; 4967d
-	RGB 30, 28, 26
-	RGB 19, 19, 19
-	RGB 13, 13, 13
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 19, 24
-	RGB 30, 10, 06
-	RGB 07, 07, 07
-
-	RGB 18, 24, 09
-	RGB 15, 20, 01
-	RGB 09, 13, 00
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 15, 16, 31
-	RGB 09, 09, 31
-	RGB 07, 07, 07
-
-	RGB 30, 28, 26
-	RGB 31, 31, 07
-	RGB 31, 16, 01
-	RGB 07, 07, 07
-
-	RGB 26, 24, 17
-	RGB 21, 17, 07
-	RGB 16, 13, 03
-	RGB 07, 07, 07
-
-MansionPalette3: ; 496ad
-	RGB 30, 28, 26
-	RGB 17, 19, 31
-	RGB 14, 16, 31
-	RGB 07, 07, 07
-
-	RGB 31, 31, 16
-	RGB 31, 31, 16
-	RGB 14, 09, 00
-	RGB 00, 00, 00
-; 496bd
-
-MansionPalette4: ; 496bd
-	RGB 05, 05, 16
-	RGB 08, 19, 28
-	RGB 00, 00, 00
-	RGB 31, 31, 31
+INCLUDE "gfx/tilesets/celadon_mansion_1.pal"
 ; 496c5
 
 LoadMansionPalette: ; 496c5
@@ -181,20 +135,17 @@ LoadMansionPalette: ; 496c5
 	call FarCopyWRAM
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1 palette PAL_BG_WATER
-	ld hl, MansionPalette3
+	ld hl, MansionPalette1 + 6 palettes
 	ld bc, 1 palettes
 	call FarCopyWRAM
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1 palette PAL_BG_ROOF
-	ld hl, MansionPalette4
+	ld hl, MansionPalette1 + 8 palettes
 	ld bc, 1 palettes
 	call FarCopyWRAM
 	ret
 ; 496fe
 
 MansionPalette2: ; 496fe
-	RGB 25, 24, 23
-	RGB 20, 19, 19
-	RGB 14, 16, 31
-	RGB 07, 07, 07
+INCLUDE "gfx/tilesets/celadon_mansion_2.pal"
 ; 49706
