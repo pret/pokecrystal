@@ -56,7 +56,7 @@ VRAM_BANK_1  EQU 1 << OAM_TILE_BANK ; $08
 OBP_NUM      EQU 1 << OAM_OBP_NUM   ; $10
 X_FLIP       EQU 1 << OAM_X_FLIP    ; $20
 Y_FLIP       EQU 1 << OAM_Y_FLIP    ; $40
-BEHIND_BG    EQU 1 << OAM_PRIORITY  ; $80
+PRIORITY     EQU 1 << OAM_PRIORITY  ; $80
 
 ; Other useful constants
 LCDC_DEFAULT EQU %11100011

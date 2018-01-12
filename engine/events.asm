@@ -1106,4 +1106,5 @@ ChangeDirectionScript: ; 9
 ; 96c56
 
 INCLUDE "engine/scripting.asm"
+
 INCLUDE "engine/events_2.asm"

@@ -162,10 +162,10 @@ SpriteAnimOAMData: ; 8d94d
 
 .OAMData_TradePokeBall1:
 	db 4
-	dsprite -1,  0, -1,  0, $00, 0 | BEHIND_BG
-	dsprite -1,  0,  0,  0, $00, 0 | X_FLIP | BEHIND_BG
-	dsprite  0,  0, -1,  0, $01, 0 | BEHIND_BG
-	dsprite  0,  0,  0,  0, $01, 0 | X_FLIP | BEHIND_BG
+	dsprite -1,  0, -1,  0, $00, 0 | PRIORITY
+	dsprite -1,  0,  0,  0, $00, 0 | X_FLIP | PRIORITY
+	dsprite  0,  0, -1,  0, $01, 0 | PRIORITY
+	dsprite  0,  0,  0,  0, $01, 0 | X_FLIP | PRIORITY
 
 .OAMData_IntroUnownF2_1:
 	db 4
@@ -183,10 +183,10 @@ SpriteAnimOAMData: ; 8d94d
 
 ; unused
 	db 4
-	dsprite -1,  0, -1,  0, $00, 0 | BEHIND_BG
-	dsprite -1,  0,  0,  0, $00, 0 | X_FLIP | BEHIND_BG
-	dsprite  0,  0, -1,  0, $00, 0 | Y_FLIP | BEHIND_BG
-	dsprite  0,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP | BEHIND_BG
+	dsprite -1,  0, -1,  0, $00, 0 | PRIORITY
+	dsprite -1,  0,  0,  0, $00, 0 | X_FLIP | PRIORITY
+	dsprite  0,  0, -1,  0, $00, 0 | Y_FLIP | PRIORITY
+	dsprite  0,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP | PRIORITY
 
 .OAMData_TradePoofBubble:
 	db 16
@@ -353,10 +353,10 @@ SpriteAnimOAMData: ; 8d94d
 
 .OAMData_MagnetTrainRed:
 	db 4
-	dsprite -1,  0, -1,  0, $00, PAL_OW_RED | BEHIND_BG
-	dsprite -1,  0,  0,  0, $01, PAL_OW_RED | BEHIND_BG
-	dsprite  0,  0, -1,  0, $02, PAL_OW_RED | BEHIND_BG
-	dsprite  0,  0,  0,  0, $03, PAL_OW_RED | BEHIND_BG
+	dsprite -1,  0, -1,  0, $00, PAL_OW_RED | PRIORITY
+	dsprite -1,  0,  0,  0, $01, PAL_OW_RED | PRIORITY
+	dsprite  0,  0, -1,  0, $02, PAL_OW_RED | PRIORITY
+	dsprite  0,  0,  0,  0, $03, PAL_OW_RED | PRIORITY
 
 .OAMData_PartyMonWithMail1:
 	db 4
@@ -410,22 +410,22 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite -1,  0, -1,  0, $22, 0
 	dsprite -1,  0,  0,  0, $23, 0
 	dsprite -1,  0,  1,  0, $24, 0
-	dsprite  0,  0, -3,  0, $30, 0 | BEHIND_BG
-	dsprite  0,  0, -2,  0, $31, 0 | BEHIND_BG
-	dsprite  0,  0, -1,  0, $32, 0 | BEHIND_BG
-	dsprite  0,  0,  0,  0, $33, 0 | BEHIND_BG
-	dsprite  0,  0,  1,  0, $34, 0 | BEHIND_BG
-	dsprite  1,  0, -3,  0, $40, 0 | BEHIND_BG
-	dsprite  1,  0, -2,  0, $41, 0 | BEHIND_BG
-	dsprite  1,  0, -1,  0, $42, 0 | BEHIND_BG
-	dsprite  1,  0,  0,  0, $43, 0 | BEHIND_BG
-	dsprite  1,  0,  1,  0, $44, 0 | BEHIND_BG
-	dsprite  1,  0,  2,  0, $45, 0 | BEHIND_BG
-	dsprite  2,  0, -2,  0, $51, 0 | BEHIND_BG
-	dsprite  2,  0, -1,  0, $52, 0 | BEHIND_BG
-	dsprite  2,  0,  0,  0, $53, 0 | BEHIND_BG
-	dsprite  2,  0,  1,  0, $54, 0 | BEHIND_BG
-	dsprite  2,  0,  2,  0, $55, 0 | BEHIND_BG
+	dsprite  0,  0, -3,  0, $30, 0 | PRIORITY
+	dsprite  0,  0, -2,  0, $31, 0 | PRIORITY
+	dsprite  0,  0, -1,  0, $32, 0 | PRIORITY
+	dsprite  0,  0,  0,  0, $33, 0 | PRIORITY
+	dsprite  0,  0,  1,  0, $34, 0 | PRIORITY
+	dsprite  1,  0, -3,  0, $40, 0 | PRIORITY
+	dsprite  1,  0, -2,  0, $41, 0 | PRIORITY
+	dsprite  1,  0, -1,  0, $42, 0 | PRIORITY
+	dsprite  1,  0,  0,  0, $43, 0 | PRIORITY
+	dsprite  1,  0,  1,  0, $44, 0 | PRIORITY
+	dsprite  1,  0,  2,  0, $45, 0 | PRIORITY
+	dsprite  2,  0, -2,  0, $51, 0 | PRIORITY
+	dsprite  2,  0, -1,  0, $52, 0 | PRIORITY
+	dsprite  2,  0,  0,  0, $53, 0 | PRIORITY
+	dsprite  2,  0,  1,  0, $54, 0 | PRIORITY
+	dsprite  2,  0,  2,  0, $55, 0 | PRIORITY
 
 .OAMData_GSIntroNote:
 	db 2
@@ -749,10 +749,10 @@ SpriteAnimOAMData: ; 8d94d
 
 .OAMData_MagnetTrainBlue:
 	db 4
-	dsprite -1,  0, -1,  0, $00, PAL_OW_BLUE | BEHIND_BG
-	dsprite -1,  0,  0,  0, $01, PAL_OW_BLUE | BEHIND_BG
-	dsprite  0,  0, -1,  0, $02, PAL_OW_BLUE | BEHIND_BG
-	dsprite  0,  0,  0,  0, $03, PAL_OW_BLUE | BEHIND_BG
+	dsprite -1,  0, -1,  0, $00, PAL_OW_BLUE | PRIORITY
+	dsprite -1,  0,  0,  0, $01, PAL_OW_BLUE | PRIORITY
+	dsprite  0,  0, -1,  0, $02, PAL_OW_BLUE | PRIORITY
+	dsprite  0,  0,  0,  0, $03, PAL_OW_BLUE | PRIORITY
 
 .OAMData_MobileTradeCableBulge:
 	db 1
@@ -1060,26 +1060,26 @@ SpriteAnimOAMData: ; 8d94d
 
 .OAMData_IntroSuicuneAway:
 	db 20
-	dsprite  0,  0,   1,  0, $00, 1 | BEHIND_BG
-	dsprite  1,  0,   2,  0, $00, 1 | BEHIND_BG
-	dsprite  2,  0,   3,  0, $00, 1 | BEHIND_BG
-	dsprite  3,  0,   4,  0, $00, 1 | BEHIND_BG
-	dsprite  4,  0,   5,  0, $00, 1 | BEHIND_BG
-	dsprite  3,  0,   6,  0, $00, 1 | BEHIND_BG
-	dsprite  2,  0,   7,  0, $00, 1 | BEHIND_BG
-	dsprite  1,  0,   8,  0, $00, 1 | BEHIND_BG
-	dsprite  0,  0,   9,  0, $00, 1 | BEHIND_BG
-	dsprite  1,  0,  10,  0, $00, 1 | BEHIND_BG
-	dsprite  2,  0,  11,  0, $00, 1 | BEHIND_BG
-	dsprite  3,  0,  12,  0, $00, 1 | BEHIND_BG
-	dsprite  4,  0,  13,  0, $00, 1 | BEHIND_BG
-	dsprite  3,  0,  14,  0, $00, 1 | BEHIND_BG
-	dsprite  2,  0,  15,  0, $00, 1 | BEHIND_BG
-	dsprite  1,  0,  16,  0, $00, 1 | BEHIND_BG
-	dsprite  0,  0, -15,  0, $00, 1 | BEHIND_BG
-	dsprite  1,  0, -14,  0, $00, 1 | BEHIND_BG
-	dsprite  2,  0, -13,  0, $00, 1 | BEHIND_BG
-	dsprite  3,  0, -12,  0, $00, 1 | BEHIND_BG
+	dsprite  0,  0,   1,  0, $00, 1 | PRIORITY
+	dsprite  1,  0,   2,  0, $00, 1 | PRIORITY
+	dsprite  2,  0,   3,  0, $00, 1 | PRIORITY
+	dsprite  3,  0,   4,  0, $00, 1 | PRIORITY
+	dsprite  4,  0,   5,  0, $00, 1 | PRIORITY
+	dsprite  3,  0,   6,  0, $00, 1 | PRIORITY
+	dsprite  2,  0,   7,  0, $00, 1 | PRIORITY
+	dsprite  1,  0,   8,  0, $00, 1 | PRIORITY
+	dsprite  0,  0,   9,  0, $00, 1 | PRIORITY
+	dsprite  1,  0,  10,  0, $00, 1 | PRIORITY
+	dsprite  2,  0,  11,  0, $00, 1 | PRIORITY
+	dsprite  3,  0,  12,  0, $00, 1 | PRIORITY
+	dsprite  4,  0,  13,  0, $00, 1 | PRIORITY
+	dsprite  3,  0,  14,  0, $00, 1 | PRIORITY
+	dsprite  2,  0,  15,  0, $00, 1 | PRIORITY
+	dsprite  1,  0,  16,  0, $00, 1 | PRIORITY
+	dsprite  0,  0, -15,  0, $00, 1 | PRIORITY
+	dsprite  1,  0, -14,  0, $00, 1 | PRIORITY
+	dsprite  2,  0, -13,  0, $00, 1 | PRIORITY
+	dsprite  3,  0, -12,  0, $00, 1 | PRIORITY
 
 .OAMData_Celebi:
 	db 4

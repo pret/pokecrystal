@@ -353,7 +353,7 @@ InitializeBackground: ; 10ef06
 	ld [hli], a ; tile id
 	inc e
 	inc e
-	ld a, 0 | BEHIND_BG
+	ld a, 0 | PRIORITY
 	ld [hli], a ; attributes
 	dec c
 	jr nz, .loop2

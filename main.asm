@@ -373,7 +373,10 @@ INCLUDE "data/phone/text/erin_overworld.asm"
 
 SECTION "bank2E", ROMX
 
-INCLUDE "engine/events_3.asm"
+INCLUDE "engine/events/map_name_sign.asm"
+INCLUDE "engine/events/checkforhiddenitems.asm"
+INCLUDE "engine/events/treemons.asm"
+INCLUDE "gfx/fishing.asm"
 INCLUDE "engine/radio.asm"
 INCLUDE "engine/mail_2.asm"
 
