@@ -9,7 +9,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_PartyMonWithItemFast
 	dw .Frameset_GSTitleTrail
 	dw .Frameset_TextEntryCursor
-	dw .Frameset_Unused09
+	dw .Frameset_TextEntryCursorBig
 	dw .Frameset_GameFreakLogo
 	dw .Frameset_GSIntroStar
 	dw .Frameset_GSIntroSparkle
@@ -133,8 +133,8 @@ SpriteAnimFrameData: ; 8d6e6
 	dorepeat  1
 	dorestart
 
-.Frameset_Unused09:
-	frame SPRITE_ANIM_OAMSET_FOR_UNUSED_FRAMESET_09,  1
+.Frameset_TextEntryCursorBig:
+	frame SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG,  1
 	dorepeat  1
 	dorestart
 
