@@ -750,39 +750,39 @@ Function1704e1: ; 1704e1
 
 .DrawBorder: ; 1705b7
 	hlcoord 0, 4
-	ld a, $79
+	ld a, "┌"
 	ld [hli], a
 	ld c, SCREEN_WIDTH - 2
 .top_border_loop
-	ld a, $7a
+	ld a, "─"
 	ld [hli], a
 	dec c
 	jr nz, .top_border_loop
-	ld a, $7b
+	ld a, "┐"
 	ld [hli], a
 	ld de, SCREEN_WIDTH
 	ld c, 12
 .left_border_loop
-	ld a, $7c
+	ld a, "│"
 	ld [hl], a
 	add hl, de
 	dec c
 	jr nz, .left_border_loop
-	ld a, $7d
+	ld a, "└"
 	ld [hli], a
 	ld c, SCREEN_WIDTH - 2
 .bottom_border_loop
-	ld a, $7a
+	ld a, "─"
 	ld [hli], a
 	dec c
 	jr nz, .bottom_border_loop
-	ld a, $7e
+	ld a, "┘"
 	ld [hl], a
 	ld de, -SCREEN_WIDTH
 	add hl, de
 	ld c, 12
 .right_border_loop
-	ld a, $7c
+	ld a, "│"
 	ld [hl], a
 	add hl, de
 	dec c
