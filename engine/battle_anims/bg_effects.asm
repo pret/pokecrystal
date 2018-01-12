@@ -506,13 +506,13 @@ BattleBGEffect_HeadFollow: ; c8281 (32:4281)
 	push bc
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn
-	ld a, ANIM_OBJ_BA
+	ld a, ANIM_OBJ_PLAYERHEADFOLLOW
 	ld [wBattleAnimTemp0], a
 	ld a, 16 * 8 + 4
 	jr .okay
 
 .player_turn
-	ld a, ANIM_OBJ_BB
+	ld a, ANIM_OBJ_ENEMYHEADFOLLOW
 	ld [wBattleAnimTemp0], a
 	ld a, 6 * 8
 .okay
