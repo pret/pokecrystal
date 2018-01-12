@@ -1341,7 +1341,7 @@ TilesetBGPalette:
 INCLUDE "gfx/tilesets/bg_tiles.pal"
 
 MapObjectPals::
-INCLUDE "gfx/overworld/map_sprites.pal"
+INCLUDE "gfx/overworld/npc_sprites.pal"
 
 RoofPals:
 INCLUDE "gfx/tilesets/roofs.pal"
