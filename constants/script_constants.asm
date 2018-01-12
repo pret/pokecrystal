@@ -37,7 +37,8 @@ NUM_MEM_BUFFERS EQU const_value
 	const PHONE_CONTACT_REFUSED ; 2
 
 
-; GetVarAction arguments (see engine/variables.asm)
+; writecode/checkcode arguments
+; _GetVarAction.VarActionTable indexes (see engine/variables.asm)
 	const_def
 	const VAR_STRINGBUFFER2    ; 00
 	const VAR_PARTYCOUNT       ; 01
