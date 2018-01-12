@@ -17,37 +17,37 @@ GoldenrodVendingMachine:
 	loadmenudata .MenuData
 	verticalmenu
 	closewindow
-	if_equal $1, .FreshWater
-	if_equal $2, .SodaPop
-	if_equal $3, .Lemonade
+	if_equal 1, .FreshWater
+	if_equal 2, .SodaPop
+	if_equal 3, .Lemonade
 	closetext
 	end
 
 .FreshWater:
-	checkmoney $0, 200
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 200
+	if_equal HAVE_LESS, .NotEnoughMoney
 	giveitem FRESH_WATER
 	iffalse .NotEnoughSpace
-	takemoney $0, 200
-	itemtotext FRESH_WATER, $0
+	takemoney YOUR_MONEY, 200
+	itemtotext FRESH_WATER, MEM_BUFFER_0
 	jump .VendItem
 
 .SodaPop:
-	checkmoney $0, 300
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 300
+	if_equal HAVE_LESS, .NotEnoughMoney
 	giveitem SODA_POP
 	iffalse .NotEnoughSpace
-	takemoney $0, 300
-	itemtotext SODA_POP, $0
+	takemoney YOUR_MONEY, 300
+	itemtotext SODA_POP, MEM_BUFFER_0
 	jump .VendItem
 
 .Lemonade:
-	checkmoney $0, 350
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 350
+	if_equal HAVE_LESS, .NotEnoughMoney
 	giveitem LEMONADE
 	iffalse .NotEnoughSpace
-	takemoney $0, 350
-	itemtotext LEMONADE, $0
+	takemoney YOUR_MONEY, 350
+	itemtotext LEMONADE, MEM_BUFFER_0
 	jump .VendItem
 
 .VendItem:

@@ -59,7 +59,7 @@ DayCareManScript_Outside:
 	special Special_DayCareManOutside
 	waitbutton
 	closetext
-	if_equal $1, .end_fail
+	if_equal TRUE, .end_fail
 	clearflag ENGINE_DAY_CARE_MAN_HAS_EGG
 	checkcode VAR_FACING
 	if_equal RIGHT, .walk_around_player
@@ -112,9 +112,9 @@ TrainerCamperTodd1:
 	scall .AskNumber2
 .FinishAsk:
 	askforphonenumber PHONE_CAMPER_TODD
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext CAMPER, TODD1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext CAMPER, TODD1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -237,9 +237,9 @@ TrainerPicnickerGina1:
 	scall .AskNumber2
 .FinishAsk:
 	askforphonenumber PHONE_PICNICKER_GINA
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext PICNICKER, GINA1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext PICNICKER, GINA1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 

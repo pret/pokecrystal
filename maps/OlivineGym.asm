@@ -91,7 +91,7 @@ OlivineGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext JASMINE, JASMINE1, $1
+	trainertotext JASMINE, JASMINE1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 Jasmine_SteelTypeIntro:

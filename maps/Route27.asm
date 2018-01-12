@@ -84,9 +84,9 @@ UnknownScript_0x1a08e8:
 	scall UnknownScript_0x1a095b
 UnknownScript_0x1a08eb:
 	askforphonenumber PHONE_BIRDKEEPER_JOSE
-	if_equal $1, UnknownScript_0x1a096b
-	if_equal $2, UnknownScript_0x1a0967
-	trainertotext BIRD_KEEPER, JOSE2, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a096b
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a0967
+	trainertotext BIRD_KEEPER, JOSE2, MEM_BUFFER_0
 	scall UnknownScript_0x1a095f
 	jump UnknownScript_0x1a0963
 
@@ -217,9 +217,9 @@ UnknownScript_0x1a09d2:
 	scall UnknownScript_0x1a0a33
 UnknownScript_0x1a09d5:
 	askforphonenumber PHONE_COOLTRAINERF_REENA
-	if_equal $1, UnknownScript_0x1a0a43
-	if_equal $2, UnknownScript_0x1a0a3f
-	trainertotext COOLTRAINERF, REENA1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a0a43
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a0a3f
+	trainertotext COOLTRAINERF, REENA1, MEM_BUFFER_0
 	scall UnknownScript_0x1a0a37
 	jump UnknownScript_0x1a0a3b
 

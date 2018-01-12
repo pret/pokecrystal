@@ -27,11 +27,11 @@ FarmerMScript_SellMilk:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse FarmerMScript_NoSale
-	checkmoney $0, 500
-	if_equal $2, FarmerMScript_NoMoney
+	checkmoney YOUR_MONEY, 500
+	if_equal HAVE_LESS, FarmerMScript_NoMoney
 	giveitem MOOMOO_MILK
 	iffalse FarmerMScript_NoRoom
-	takemoney $0, 500
+	takemoney YOUR_MONEY, 500
 	special PlaceMoneyTopRight
 	waitsfx
 	playsound SFX_TRANSACTION

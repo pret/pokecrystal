@@ -31,27 +31,25 @@ KrissHouse2F_MapScriptHeader:
 	special ToggleMaptileDecorations
 	return
 
-
 	db 0, 0, 0 ; filler
 
-
 Doll1:
-	describedecoration 1
+	describedecoration DECODESC_LEFT_DOLL
 
 Doll2:
-	describedecoration 2
+	describedecoration DECODESC_RIGHT_DOLL
 
 BigDoll:
-	describedecoration 3
+	describedecoration DECODESC_BIG_DOLL
 
 GameConsole:
-	describedecoration 4
+	describedecoration DECODESC_CONSOLE
 
 KrissHousePoster:
 	dw EVENT_KRISS_ROOM_POSTER, .Script
 
 .Script:
-	describedecoration 0
+	describedecoration DECODESC_POSTER
 
 KrissHouseRadio:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM

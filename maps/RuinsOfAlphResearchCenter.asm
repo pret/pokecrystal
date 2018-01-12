@@ -22,7 +22,7 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 
 .ScientistCallback:
 	checkscene
-	if_equal $1, .ShowScientist
+	if_equal 1, .ShowScientist
 	return
 
 .ShowScientist:
@@ -63,7 +63,7 @@ ScientistScript_0x591d1:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x591df
+	if_equal NUM_UNOWN, UnknownScript_0x591df
 	writetext UnknownText_0x59311
 	waitbutton
 	closetext
@@ -79,7 +79,7 @@ ScientistScript_0x591e5:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x5920b
+	if_equal NUM_UNOWN, UnknownScript_0x5920b
 	checkflag ENGINE_UNOWN_DEX
 	iftrue UnknownScript_0x59205
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
@@ -112,7 +112,7 @@ ScientistScript_0x59214:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x5922e
+	if_equal NUM_UNOWN, UnknownScript_0x5922e
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
 	writetext UnknownText_0x5954f
@@ -137,7 +137,7 @@ MapRuinsOfAlphResearchCenterSignpost1Script:
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x59241
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x59247
+	if_equal NUM_UNOWN, UnknownScript_0x59247
 UnknownScript_0x59241:
 	writetext UnknownText_0x597b6
 	waitbutton
@@ -155,7 +155,7 @@ MapRuinsOfAlphResearchCenterSignpost2Script:
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x5925a
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x59260
+	if_equal NUM_UNOWN, UnknownScript_0x59260
 UnknownScript_0x5925a:
 	writetext UnknownText_0x5980e
 	waitbutton

@@ -68,8 +68,8 @@ ReceptionistScript_0x560ce:
 	special GetFirstPokemonHappiness
 	writetext UnknownText_0x56143
 	buttonsound
-	if_greater_than $95, .VeryHappy
-	if_greater_than $31, .SomewhatHappy
+	if_greater_than 150 - 1, .VeryHappy
+	if_greater_than 50 - 1, .SomewhatHappy
 	jump .NotVeryHappy
 
 .VeryHappy:
@@ -107,7 +107,7 @@ Carrie:
 	faceplayer
 	opentext
 	special SpecialGameboyCheck
-	if_not_equal $2, .NotGBC ; This is a dummy check from Gold and Silver.  In normal gameplay, this would not be checked.
+	if_not_equal GBCHECK_CGB, .NotGBC ; This is a dummy check from Gold/Silver
 	writetext UnknownText_0x56241
 	waitbutton
 	closetext

@@ -92,7 +92,7 @@ ReleaseTheBeasts:
 	setevent EVENT_BURNED_TOWER_MORTY
 	setevent EVENT_BURNED_TOWER_1F_EUSINE
 	appear BURNEDTOWERB1F_EUSINE
-	refreshscreen $0
+	refreshscreen
 	changeblock 6, 14, $1b
 	reloadmappart
 	closetext
@@ -106,7 +106,7 @@ BurnedTowerB1FEusine:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal $1, .Movement
+	if_equal UP, .Movement
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement1
 	jump UnknownScript_0x18622a
 

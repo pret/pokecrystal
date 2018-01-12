@@ -32,7 +32,7 @@ Red:
 	special Special_FadeInQuickly
 	pause 30
 	special HealParty
-	refreshscreen $0
+	refreshscreen
 	credits
 	end
 

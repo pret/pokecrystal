@@ -57,7 +57,7 @@ DragonsDenB1F_ClairScene:
 	buttonsound
 	giveitem TM_DRAGONBREATH
 	iffalse .BagFull
-	itemtotext TM_DRAGONBREATH, $0
+	itemtotext TM_DRAGONBREATH, MEM_BUFFER_0
 	writetext NotifyReceiveDragonbreath
 	playsound SFX_ITEM
 	waitsfx
@@ -135,7 +135,7 @@ PokeBallScript_0x18c95a:
 	iffalse .BagFull
 	disappear DRAGONSDENB1F_POKE_BALL1
 	opentext
-	itemtotext DRAGON_FANG, $0
+	itemtotext DRAGON_FANG, MEM_BUFFER_0
 	writetext Text_FoundDragonFang
 	playsound SFX_ITEM
 	waitsfx
@@ -145,7 +145,7 @@ PokeBallScript_0x18c95a:
 
 .BagFull:
 	opentext
-	itemtotext DRAGON_FANG, $0
+	itemtotext DRAGON_FANG, MEM_BUFFER_0
 	writetext Text_FoundDragonFang
 	buttonsound
 	writetext Text_NoRoomForDragonFang

@@ -28,15 +28,15 @@ CeladonPrizeRoom_tmcounterloop:
 	loadmenudata CeladonPrizeRoom_TMMenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .doubleteam
-	if_equal $2, .psychic
-	if_equal $3, .hyperbeam
+	if_equal 1, .doubleteam
+	if_equal 2, .psychic
+	if_equal 3, .hyperbeam
 	jump CeladonPrizeRoom_cancel
 
 .doubleteam
 	checkcoins 1500
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_DOUBLE_TEAM, $0
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	itemtotext TM_DOUBLE_TEAM, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	giveitem TM_DOUBLE_TEAM
@@ -46,8 +46,8 @@ CeladonPrizeRoom_tmcounterloop:
 
 .psychic
 	checkcoins 3500
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_PSYCHIC_M, $0
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	itemtotext TM_PSYCHIC_M, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	giveitem TM_PSYCHIC_M
@@ -57,8 +57,8 @@ CeladonPrizeRoom_tmcounterloop:
 
 .hyperbeam
 	checkcoins 7500
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_HYPER_BEAM, $0
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	itemtotext TM_HYPER_BEAM, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	giveitem TM_HYPER_BEAM
@@ -132,17 +132,17 @@ GoldenrodGameCornerPokemonVendor:
 	loadmenudata .MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .pikachu
-	if_equal $2, .porygon
-	if_equal $3, .larvitar
+	if_equal 1, .pikachu
+	if_equal 2, .porygon
+	if_equal 3, .larvitar
 	jump CeladonPrizeRoom_cancel
 
 .pikachu
 	checkcoins 2222
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, CeladonPrizeRoom_notenoughroom
-	pokenamemem PIKACHU, $0
+	if_equal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
+	pokenamemem PIKACHU, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	waitsfx
@@ -157,10 +157,10 @@ GoldenrodGameCornerPokemonVendor:
 
 .porygon
 	checkcoins 5555
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, CeladonPrizeRoom_notenoughroom
-	pokenamemem PORYGON, $0
+	if_equal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
+	pokenamemem PORYGON, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	waitsfx
@@ -175,10 +175,10 @@ GoldenrodGameCornerPokemonVendor:
 
 .larvitar
 	checkcoins 8888
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, CeladonPrizeRoom_notenoughroom
-	pokenamemem LARVITAR, $0
+	if_equal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
+	pokenamemem LARVITAR, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	waitsfx

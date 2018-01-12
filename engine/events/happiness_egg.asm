@@ -21,7 +21,7 @@ CheckFirstMonIsEgg: ; 71ac
 	ld a, [PartySpecies]
 	ld [wd265], a
 	cp EGG
-	ld a, $1
+	ld a, 1
 	jr z, .egg
 	xor a
 

@@ -157,13 +157,13 @@ LinkReceptionistScript_Trade:
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
-	writebyte $0
+	writebyte FALSE
 	end
 
 .Mobile_DidNotSave:
 	writetext Text_PleaseComeAgain
 	closetext
-	writebyte $1
+	writebyte TRUE
 	end
 
 BattleTradeMobile_WalkIn:
@@ -261,13 +261,13 @@ LinkReceptionistScript_Battle:
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
-	writebyte $0
+	writebyte FALSE
 	end
 
 .Mobile_DidNotSave:
 	writetext Text_PleaseComeAgain
 	closetext
-	writebyte $1
+	writebyte TRUE
 	end
 
 .SelectThreeMons:
@@ -283,11 +283,11 @@ LinkReceptionistScript_Battle:
 	waitbutton
 .Mobile_DidNotSelect:
 	closetext
-	writebyte $0
+	writebyte FALSE
 	end
 
 .Mobile_OK:
-	writebyte $1
+	writebyte TRUE
 	end
 
 Script_TimeCapsuleClosed:
@@ -584,7 +584,7 @@ Script_LeftTimeCapsule:
 	end
 
 MapPokecenter2FSignpost0Script:
-	refreshscreen $0
+	refreshscreen
 	special Special_DisplayLinkRecord
 	closetext
 	end

@@ -69,11 +69,11 @@ AcademyBlackboard:
 	loadmenudata .BlackboardMenuData
 	_2dmenu
 	closewindow
-	if_equal $1, .Poison
-	if_equal $2, .Paralysis
-	if_equal $3, .Sleep
-	if_equal $4, .Burn
-	if_equal $5, .Freeze
+	if_equal 1, .Poison
+	if_equal 2, .Paralysis
+	if_equal 3, .Sleep
+	if_equal 4, .Burn
+	if_equal 5, .Freeze
 	closetext
 	end
 

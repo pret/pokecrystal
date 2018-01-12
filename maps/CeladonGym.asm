@@ -109,7 +109,7 @@ CeladonGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext ERIKA, ERIKA1, $1
+	trainertotext ERIKA, ERIKA1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 UnknownText_0x72b28:

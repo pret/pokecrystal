@@ -30,7 +30,7 @@ RuinsOfAlphOutside_MapScriptHeader:
 
 .MaybeScientist:
 	checkcode VAR_UNOWNCOUNT
-	if_greater_than $2, .YesScientist
+	if_greater_than 2, .YesScientist
 	jump .NoScientist
 
 .YesScientist:

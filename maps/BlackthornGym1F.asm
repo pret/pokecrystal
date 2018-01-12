@@ -70,7 +70,7 @@ BlackthornGymClairScript:
 	buttonsound
 	giveitem TM_DRAGONBREATH
 	iffalse .BagFull
-	itemtotext TM_DRAGONBREATH, $0
+	itemtotext TM_DRAGONBREATH, MEM_BUFFER_0
 	writetext BlackthornGymText_ReceivedTM24
 	playsound SFX_ITEM
 	waitsfx
@@ -146,7 +146,7 @@ BlackthornGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext CLAIR, CLAIR1, $1
+	trainertotext CLAIR, CLAIR1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 ClairIntroText:

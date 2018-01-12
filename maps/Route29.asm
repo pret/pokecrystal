@@ -108,7 +108,7 @@ CatchingTutorialDudeScript:
 	faceplayer
 	opentext
 	checkcode VAR_BOXSPACE
-	if_equal $0, .BoxFull
+	if_equal 0, .BoxFull
 	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
 	iftrue .BoxFull
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM

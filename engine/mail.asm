@@ -128,7 +128,7 @@ CheckPokeItem:: ; 44654
 	push bc
 	push de
 	farcall SelectMonFromParty
-	ld a, $2
+	ld a, POKEMAIL_REFUSED
 	jr c, .pop_return
 
 	ld a, [CurPartyMon]
@@ -137,7 +137,7 @@ CheckPokeItem:: ; 44654
 	call AddNTimes
 	ld d, [hl]
 	farcall ItemIsMail
-	ld a, $3
+	ld a, POKEMAIL_NO_MAIL
 	jr nc, .pop_return
 
 	ld a, BANK(sPartyMail)
@@ -162,7 +162,7 @@ CheckPokeItem:: ; 44654
 	cp "@"
 	jr z, .done
 	cp c
-	ld a, $0
+	ld a, POKEMAIL_WRONG_MAIL
 	jr nz, .close_sram_return
 	inc hl
 	inc de
@@ -173,12 +173,12 @@ CheckPokeItem:: ; 44654
 
 .done
 	farcall CheckCurPartyMonFainted
-	ld a, $4
+	ld a, POKEMAIL_LAST_MON
 	jr c, .close_sram_return
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
-	ld a, $1
+	ld a, POKEMAIL_CORRECT
 
 .close_sram_return
 	call CloseSRAM

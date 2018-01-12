@@ -33,9 +33,9 @@ DragonShrine_MapScriptHeader:
 	loadmenudata MenuDataHeader_0x18d215
 	verticalmenu
 	closewindow
-	if_equal $1, .RightAnswer
-	if_equal $2, .WrongAnswer
-	if_equal $3, .RightAnswer
+	if_equal 1, .RightAnswer
+	if_equal 2, .WrongAnswer
+	if_equal 3, .RightAnswer
 	end
 
 .Question2:
@@ -45,9 +45,9 @@ DragonShrine_MapScriptHeader:
 	loadmenudata MenuDataHeader_0x18d234
 	verticalmenu
 	closewindow
-	if_equal $1, .RightAnswer
-	if_equal $2, .RightAnswer
-	if_equal $3, .WrongAnswer
+	if_equal 1, .RightAnswer
+	if_equal 2, .RightAnswer
+	if_equal 3, .WrongAnswer
 .Question3:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_3
 	writetext UnknownText_0x18d3f3
@@ -55,9 +55,9 @@ DragonShrine_MapScriptHeader:
 	loadmenudata MenuDataHeader_0x18d258
 	verticalmenu
 	closewindow
-	if_equal $1, .WrongAnswer
-	if_equal $2, .RightAnswer
-	if_equal $3, .RightAnswer
+	if_equal 1, .WrongAnswer
+	if_equal 2, .RightAnswer
+	if_equal 3, .RightAnswer
 .Question4:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_4
 	writetext UnknownText_0x18d420
@@ -65,9 +65,9 @@ DragonShrine_MapScriptHeader:
 	loadmenudata MenuDataHeader_0x18d283
 	verticalmenu
 	closewindow
-	if_equal $1, .RightAnswer
-	if_equal $2, .WrongAnswer
-	if_equal $3, .RightAnswer
+	if_equal 1, .RightAnswer
+	if_equal 2, .WrongAnswer
+	if_equal 3, .RightAnswer
 .Question5:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_5
 	writetext UnknownText_0x18d44a
@@ -75,9 +75,9 @@ DragonShrine_MapScriptHeader:
 	loadmenudata MenuDataHeader_0x18d2a5
 	verticalmenu
 	closewindow
-	if_equal $1, .WrongAnswer
-	if_equal $2, .RightAnswer
-	if_equal $3, .WrongAnswer
+	if_equal 1, .WrongAnswer
+	if_equal 2, .RightAnswer
+	if_equal 3, .WrongAnswer
 .RightAnswer:
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
 	iftrue .PassedTheTest

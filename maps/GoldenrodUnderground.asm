@@ -35,7 +35,7 @@ GoldenrodUnderground_MapScriptHeader:
 	clearevent EVENT_SWITCH_12
 	clearevent EVENT_SWITCH_13
 	clearevent EVENT_SWITCH_14
-	writebyte $0
+	writebyte 0
 	copyvartobyte UndergroundSwitchPositions
 	return
 
@@ -196,8 +196,8 @@ OlderHaircutBrotherScript:
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
-	checkmoney $0, 500
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 500
+	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	buttonsound
 	special Special_YoungerHaircutBrother
@@ -227,7 +227,7 @@ OlderHaircutBrotherScript:
 	jump .then
 
 .then
-	takemoney $0, 500
+	takemoney YOUR_MONEY, 500
 	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
 	waitbutton
@@ -279,8 +279,8 @@ YoungerHaircutBrotherScript:
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
-	checkmoney $0, 300
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 300
+	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	buttonsound
 	special Special_OlderHaircutBrother
@@ -310,7 +310,7 @@ YoungerHaircutBrotherScript:
 	jump .then
 
 .then
-	takemoney $0, 300
+	takemoney YOUR_MONEY, 300
 	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
 	waitbutton

@@ -49,7 +49,7 @@ RuinsOfAlphHoOhChamber_MapScriptHeader:
 	end
 
 MapRuinsOfAlphHoOhChamberSignpost2Script:
-	refreshscreen $0
+	refreshscreen
 	writebyte UNOWNPUZZLE_HO_OH
 	special Special_UnownPuzzle
 	closetext

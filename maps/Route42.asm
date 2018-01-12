@@ -61,9 +61,9 @@ UnknownScript_0x1a9268:
 	scall UnknownScript_0x1a92f5
 UnknownScript_0x1a926b:
 	askforphonenumber PHONE_FISHER_TULLY
-	if_equal $1, UnknownScript_0x1a9305
-	if_equal $2, UnknownScript_0x1a9301
-	trainertotext FISHER, TULLY1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a9305
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a9301
+	trainertotext FISHER, TULLY1, MEM_BUFFER_0
 	scall UnknownScript_0x1a92f9
 	jump UnknownScript_0x1a92fd
 

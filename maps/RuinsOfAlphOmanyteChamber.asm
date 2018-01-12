@@ -49,7 +49,7 @@ RuinsOfAlphOmanyteChamber_MapScriptHeader:
 	end
 
 MapRuinsOfAlphOmanyteChamberSignpost2Script:
-	refreshscreen $0
+	refreshscreen
 	writebyte UNOWNPUZZLE_OMANYTE
 	special Special_UnownPuzzle
 	closetext

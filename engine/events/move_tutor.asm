@@ -22,7 +22,7 @@ Special_MoveTutor: ; 4925b
 .enter_loop
 	call CheckCanLearnMoveTutorMove
 	jr nc, .loop
-	xor a
+	xor a ; FALSE
 	ld [ScriptVar], a
 	jr .quit
 
@@ -35,10 +35,11 @@ Special_MoveTutor: ; 4925b
 
 .GetMoveTutorMove: ; 492a5
 	ld a, [ScriptVar]
-	cp 1
+	cp MOVETUTOR_FLAMETHROWER
 	jr z, .flamethrower
-	cp 2
+	cp MOVETUTOR_THUNDERBOLT
 	jr z, .thunderbolt
+	; MOVETUTOR_ICE_BEAM
 	ld a, ICE_BEAM
 	ret
 

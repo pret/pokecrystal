@@ -20,7 +20,7 @@ MobileBattleRoom_MapScriptHeader:
 	end
 
 MapMobileBattleRoomSignpost0Script:
-	refreshscreen $0
+	refreshscreen
 	special Function1037c2
 	if_equal $1, .one
 	special Function1037eb
@@ -39,7 +39,7 @@ MapMobileBattleRoomSignpost0Script:
 	pause 60
 	special FadeInPalettes
 	special RestartMapMusic
-	refreshscreen $0
+	refreshscreen
 .two_
 	special TrainerRankings_Healings
 	special HealParty

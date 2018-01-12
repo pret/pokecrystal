@@ -27,7 +27,7 @@ VioletPokecenter1F_ElmsAideScript:
 	checkcode VAR_PARTYCOUNT
 	if_equal PARTY_LENGTH, .PartyFull
 	giveegg TOGEPI, 5
-	stringtotext .eggname, $1
+	stringtotext .eggname, MEM_BUFFER_1
 	scall .AideGivesEgg
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB

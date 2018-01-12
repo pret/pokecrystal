@@ -26,8 +26,8 @@ Oak:
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges:
 	checkcode VAR_BADGES
-	if_equal 16, .OpenMtSilver
-	if_equal  8, .Complain
+	if_equal NUM_BADGES, .OpenMtSilver
+	if_equal NUM_JOHTO_BADGES, .Complain
 	jump .AhGood
 
 .CheckPokedex:

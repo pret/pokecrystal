@@ -35,7 +35,7 @@ UnknownScript_0x7e217:
 	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x7e237
+	if_equal PARTY_LENGTH, UnknownScript_0x7e237
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON
 	waitsfx

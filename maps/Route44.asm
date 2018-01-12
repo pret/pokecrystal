@@ -41,9 +41,9 @@ UnknownScript_0x19d853:
 	scall UnknownScript_0x19d8e3
 UnknownScript_0x19d856:
 	askforphonenumber PHONE_BIRDKEEPER_VANCE
-	if_equal $1, UnknownScript_0x19d8f3
-	if_equal $2, UnknownScript_0x19d8ef
-	trainertotext BIRD_KEEPER, VANCE1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19d8f3
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19d8ef
+	trainertotext BIRD_KEEPER, VANCE1, MEM_BUFFER_0
 	scall UnknownScript_0x19d8e7
 	jump UnknownScript_0x19d8eb
 
@@ -185,9 +185,9 @@ UnknownScript_0x19d957:
 	scall UnknownScript_0x19d8e3
 UnknownScript_0x19d95a:
 	askforphonenumber PHONE_FISHER_WILTON
-	if_equal $1, UnknownScript_0x19d8f3
-	if_equal $2, UnknownScript_0x19d8ef
-	trainertotext FISHER, WILTON1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19d8f3
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19d8ef
+	trainertotext FISHER, WILTON1, MEM_BUFFER_0
 	scall UnknownScript_0x19d8e7
 	jump UnknownScript_0x19d8eb
 

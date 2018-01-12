@@ -603,13 +603,13 @@ SpecialGameboyCheck: ; c478
 	jr nz, .sgb
 
 .gb
-	xor a
+	xor a ; GBCHECK_GB
 	jr .done
 .sgb
-	ld a, 1
+	ld a, GBCHECK_SGB
 	jr .done
 .cgb
-	ld a, 2
+	ld a, GBCHECK_CGB
 .done
 	ld [ScriptVar], a
 	ret

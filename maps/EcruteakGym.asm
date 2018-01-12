@@ -162,7 +162,7 @@ EcruteakGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext MORTY, MORTY1, $1
+	trainertotext MORTY, MORTY1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 MovementData_0x99e5d:

@@ -125,7 +125,7 @@ Script_GivePlayerHisPrize: ; 0x9e47a
 	writebyte BATTLETOWERACTION_GIVEREWARD
 	special BattleTowerAction
 	if_equal POTION, Script_YourPackIsStuffedFull
-	itemtotext $0, $1
+	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_1
 	giveitem ITEM_FROM_MEM, 5
 	writetext Text_PlayerGotFive
 	writebyte BATTLETOWERACTION_1D

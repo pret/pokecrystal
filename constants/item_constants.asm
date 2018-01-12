@@ -290,7 +290,8 @@ NUM_HMS = const_value - HM01
 	add_mt ICE_BEAM
 NUM_TM_HM_TUTOR = __enum__ +- 1
 
-ITEM_FROM_MEM EQU $ff
+USE_SCRIPT_VAR EQU $00
+ITEM_FROM_MEM  EQU $ff
 
 ; leftovers from red
 SAFARI_BALL    EQU $08 ; MOON_STONE

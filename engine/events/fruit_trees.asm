@@ -2,7 +2,7 @@ FruitTreeScript:: ; 44000
 	callasm GetCurTreeFruit
 	opentext
 	copybytetovar CurFruit
-	itemtotext $0, $0
+	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_0
 	writetext FruitBearingTreeText
 	buttonsound
 	callasm TryResetFruitTrees

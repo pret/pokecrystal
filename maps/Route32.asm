@@ -190,9 +190,9 @@ TrainerFisherRalph1:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_RALPH
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext FISHER, RALPH1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext FISHER, RALPH1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -324,9 +324,9 @@ TrainerPicnickerLiz1:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_LIZ
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext PICNICKER, LIZ1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext PICNICKER, LIZ1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 

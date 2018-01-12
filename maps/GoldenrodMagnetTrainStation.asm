@@ -34,7 +34,7 @@ OfficerScript_0x550ec:
 	closetext
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, MovementData_0x55146
 	applymovement PLAYER, MovementData_0x5514f
-	writebyte $0
+	writebyte FALSE
 	special Special_MagnetTrain
 	warpcheck
 	newloadmap MAPSETUP_TRAIN

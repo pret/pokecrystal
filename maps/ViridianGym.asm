@@ -60,7 +60,7 @@ ViridianGymStatue:
 	jumpstd gymstatue1
 
 .Beaten:
-	trainertotext BLUE, BLUE1, $1
+	trainertotext BLUE, BLUE1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 LeaderBlueBeforeText:

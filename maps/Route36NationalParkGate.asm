@@ -67,8 +67,8 @@ Route36NationalParkGate_MapScriptHeader:
 	spriteface PLAYER, UP
 	opentext
 	checkcode VAR_CONTESTMINUTES
-	addvar $1
-	RAM2MEM $0
+	addvar 1
+	vartomem MEM_BUFFER_0
 	writetext UnknownText_0x6b284
 	yesorno
 	iffalse .GoBackToContest
@@ -155,7 +155,7 @@ Route36OfficerScriptContest:
 	yesorno
 	iffalse .DecidedNotToJoinContest
 	checkcode VAR_PARTYCOUNT
-	if_greater_than $1, .LeaveMonsWithOfficer
+	if_greater_than 1, .LeaveMonsWithOfficer
 	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 .ResumeStartingContest:
@@ -182,12 +182,12 @@ Route36OfficerScriptContest:
 
 .LeaveMonsWithOfficer:
 	checkcode VAR_PARTYCOUNT
-	if_less_than $6, .ContinueLeavingMons
+	if_less_than PARTY_LENGTH, .ContinueLeavingMons
 	checkcode VAR_BOXSPACE
-	if_equal $0, .BoxFull
+	if_equal 0, .BoxFull
 .ContinueLeavingMons:
 	special CheckFirstMonIsEgg
-	if_equal $1, .FirstMonIsEgg
+	if_equal TRUE, .FirstMonIsEgg
 	writetext UnknownText_0x6afb0
 	yesorno
 	iffalse .RefusedToLeaveMons

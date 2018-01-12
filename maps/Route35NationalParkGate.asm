@@ -58,8 +58,8 @@ Route35NationalParkGate_MapScriptHeader:
 	spriteface ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
 	opentext
 	checkcode VAR_CONTESTMINUTES
-	addvar $1
-	RAM2MEM $0
+	addvar 1
+	vartomem MEM_BUFFER_0
 	writetext UnknownText_0x6a79a
 	yesorno
 	iffalse .GoBackToContest
@@ -94,7 +94,7 @@ OfficerScript_0x6a204:
 	yesorno
 	iffalse Route35NationalParkGate_DeclinedToParticipate
 	checkcode VAR_PARTYCOUNT
-	if_greater_than $1, Route35NationalParkGate_LeaveTheRestBehind
+	if_greater_than 1, Route35NationalParkGate_LeaveTheRestBehind
 	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 Route35NationalParkGate_OkayToProceed:
@@ -129,13 +129,13 @@ Route35NationalParkGate_FacingLeft:
 
 Route35NationalParkGate_LeaveTheRestBehind:
 	checkcode VAR_PARTYCOUNT
-	if_less_than 6, Route35NationalParkGate_LessThanFullParty
+	if_less_than PARTY_LENGTH, Route35NationalParkGate_LessThanFullParty
 	checkcode VAR_BOXSPACE
 	if_equal 0, Route35NationalParkGate_NoRoomInBox
 
 Route35NationalParkGate_LessThanFullParty: ; 6a27d
 	special CheckFirstMonIsEgg
-	if_equal $1, Route35NationalParkGate_FirstMonIsEgg
+	if_equal TRUE, Route35NationalParkGate_FirstMonIsEgg
 	writetext UnknownText_0x6a4c6
 	yesorno
 	iffalse Route35NationalParkGate_DeclinedToLeaveMonsBehind

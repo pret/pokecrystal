@@ -197,7 +197,7 @@ TinTower1FSage5Script:
 	buttonsound
 	verbosegiveitem RAINBOW_WING
 	closetext
-	refreshscreen $0
+	refreshscreen
 	earthquake 72
 	waitsfx
 	playsound SFX_STRENGTH

@@ -81,7 +81,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld [hl], a
 	xor a
 	ld [wContestMon], a
-	and a
+	and a ; BUGCONTEST_CAUGHT_MON
 	ld [ScriptVar], a
 	ret
 
@@ -142,12 +142,12 @@ CheckPartyFullAfterContest: ; 4d9e5
 	call CloseSRAM
 	xor a
 	ld [wContestMon], a
-	ld a, $1
+	ld a, BUGCONTEST_BOXED_MON
 	ld [ScriptVar], a
 	ret
 
 .DidntCatchAnything: ; 4db35
-	ld a, $2
+	ld a, BUGCONTEST_NO_CATCH
 	ld [ScriptVar], a
 	ret
 

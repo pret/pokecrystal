@@ -45,9 +45,10 @@ UnknownScript_0x19a6e0:
 	writetext UnknownText_0x19a93e
 	waitbutton
 	special Special_CheckMagikarpLength
-	if_equal $0, UnknownScript_0x19a71c
-	if_equal $1, UnknownScript_0x19a722
-	if_equal $2, UnknownScript_0x19a716
+	if_equal MAGIKARPLENGTH_NOT_MAGIKARP, UnknownScript_0x19a71c
+	if_equal MAGIKARPLENGTH_REFUSED, UnknownScript_0x19a722
+	if_equal MAGIKARPLENGTH_TOO_SHORT, UnknownScript_0x19a716
+	; MAGIKARPLENGTH_BEAT_RECORD
 	jump UnknownScript_0x19a6fe
 
 UnknownScript_0x19a6fe:

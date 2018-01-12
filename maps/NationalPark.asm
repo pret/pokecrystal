@@ -94,9 +94,9 @@ UnknownScript_0x5c071:
 	scall UnknownScript_0x5c100
 UnknownScript_0x5c074:
 	askforphonenumber PHONE_SCHOOLBOY_JACK
-	if_equal $1, UnknownScript_0x5c110
-	if_equal $2, UnknownScript_0x5c10c
-	trainertotext SCHOOLBOY, JACK1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5c110
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5c10c
+	trainertotext SCHOOLBOY, JACK1, MEM_BUFFER_0
 	scall UnknownScript_0x5c104
 	jump UnknownScript_0x5c108
 
@@ -224,9 +224,9 @@ UnknownScript_0x5c160:
 	scall UnknownScript_0x5c193
 UnknownScript_0x5c163:
 	askforphonenumber PHONE_POKEFAN_BEVERLY
-	if_equal $1, UnknownScript_0x5c1a3
-	if_equal $2, UnknownScript_0x5c19f
-	trainertotext POKEFANF, BEVERLY1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5c1a3
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5c19f
+	trainertotext POKEFANF, BEVERLY1, MEM_BUFFER_0
 	scall UnknownScript_0x5c197
 	jump UnknownScript_0x5c19b
 

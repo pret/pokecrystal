@@ -48,7 +48,7 @@ RuinsOfAlphAerodactylChamber_MapScriptHeader:
 	end
 
 MapRuinsOfAlphAerodactylChamberSignpost2Script:
-	refreshscreen $0
+	refreshscreen
 	writebyte UNOWNPUZZLE_AERODACTYL
 	special Special_UnownPuzzle
 	closetext

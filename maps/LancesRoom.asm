@@ -73,7 +73,7 @@ LanceScript_0x180e7b:
 	reloadmappart
 	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
+	musicfadeout MUSIC_BEAUTY_ENCOUNTER, 16
 	pause 30
 	showemote EMOTE_SHOCK, LANCESROOM_LANCE, 15
 	spriteface LANCESROOM_LANCE, DOWN

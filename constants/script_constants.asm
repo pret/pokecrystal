@@ -3,6 +3,40 @@ PLAYER      EQU  0
 LAST_TALKED EQU -2
 
 
+; memory constants
+	const_def
+	const MEM_BUFFER_0 ; use StringBuffer3
+	const MEM_BUFFER_1 ; use StringBuffer4
+	const MEM_BUFFER_2 ; use StringBuffer5
+NUM_MEM_BUFFERS EQU const_value
+
+
+; checkmoney/takemoney accounts
+	const_def
+	const YOUR_MONEY ; 0
+	const MOMS_MONEY ; 1
+
+; checkmoney/checkcoins return values
+	const_def
+	const HAVE_MORE   ; 0
+	const HAVE_AMOUNT ; 1
+	const HAVE_LESS   ; 2
+
+; checkpokeitem return values
+	const_def
+	const POKEMAIL_WRONG_MAIL ; 0
+	const POKEMAIL_CORRECT    ; 1
+	const POKEMAIL_REFUSED    ; 2
+	const POKEMAIL_NO_MAIL    ; 3
+	const POKEMAIL_LAST_MON   ; 4
+
+; askforphonenumber return values
+	const_def
+	const PHONE_CONTACT_GOT     ; 0
+	const PHONE_CONTACTS_FULL   ; 1
+	const PHONE_CONTACT_REFUSED ; 2
+
+
 ; GetVarAction arguments (see engine/variables.asm)
 	const_def
 	const VAR_STRINGBUFFER2    ; 00
@@ -80,6 +114,7 @@ NUM_PLAYER_EVENTS EQU const_value
 	const OBJECTTYPE_6
 
 
+; showemote arguments
 ; Emotes indexes (see data/sprites/emotes.asm)
 	const_def
 	const EMOTE_SHOCK ; 0
@@ -97,8 +132,8 @@ NUM_PLAYER_EVENTS EQU const_value
 EMOTE_MEM EQU -1
 
 
+; fruittree arguments
 ; FruitTreeItems indexes (see data/items/fruit_trees.asm)
-; used by fruittree command
 const_value set 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02
@@ -133,8 +168,18 @@ const_value set 1
 NUM_FRUIT_TREES EQU const_value +- 1
 
 
+; describedecoration arguments
+; DescribeDecoration.JumpTable indexes (see engine/decorations.asm)
+	const_def
+	const DECODESC_POSTER     ; 0
+	const DECODESC_LEFT_DOLL  ; 1
+	const DECODESC_RIGHT_DOLL ; 2
+	const DECODESC_BIG_DOLL   ; 3
+	const DECODESC_CONSOLE    ; 4
+
+
+; elevfloor macro values
 ; ElevatorFloorNames indexes (see data/elevator_floors.asm)
-; used by elevfloor macro
 	const_def
 	const FLOOR_B4F
 	const FLOOR_B3F
@@ -167,6 +212,40 @@ CMDQUEUE_CAPACITY EQU 4
 CMDQUEUE_STONETABLE EQU 2
 
 
+; SpecialGameboyCheck return values
+	const_def
+	const GBCHECK_GB  ; 0
+	const GBCHECK_SGB ; 1
+	const GBCHECK_CGB ; 2
+
+; Special_CheckMagikarpLength return values
+	const_def
+	const MAGIKARPLENGTH_NOT_MAGIKARP ; 0
+	const MAGIKARPLENGTH_REFUSED      ; 1
+	const MAGIKARPLENGTH_TOO_SHORT    ; 2
+	const MAGIKARPLENGTH_BEAT_RECORD  ; 3
+
+; SpecialReturnShuckle return values
+	const_def
+	const SHUCKIE_WRONG_MON ; 0
+	const SHUCKIE_REFUSED   ; 1
+	const SHUCKIE_RETURNED  ; 2
+	const SHUCKIE_HAPPY     ; 3
+	const SHUCKIE_FAINTED   ; 4
+
+; CheckPartyFullAfterContest return values
+	const_def
+	const BUGCONTEST_CAUGHT_MON ; 0
+	const BUGCONTEST_BOXED_MON  ; 1
+	const BUGCONTEST_NO_CATCH   ; 2
+
+; used by HealMachineAnim
+; HealMachineAnim.Pointers indexes (see engine/events/heal_machine_anim.asm)
+	const_def
+	const HEALMACHINE_POKECENTER   ; 0
+	const HEALMACHINE_ELMS_LAB     ; 1
+	const HEALMACHINE_HALL_OF_FAME ; 2
+
 ; used by Special_UnownPuzzle
 ; LoadUnownPuzzlePiecesGFX.LZPointers indexes (see engine/unown_puzzle.asm)
 	const_def
@@ -183,3 +262,9 @@ NUM_UNOWN_PUZZLES EQU const_value
 	const UNOWNWORDS_LIGHT  ; 1
 	const UNOWNWORDS_WATER  ; 2
 	const UNOWNWORDS_HO_OH  ; 3
+
+; used by Special_MoveTutor
+const_value set 1
+	const MOVETUTOR_FLAMETHROWER ; 1
+	const MOVETUTOR_THUNDERBOLT  ; 2
+	const MOVETUTOR_ICE_BEAM     ; 3

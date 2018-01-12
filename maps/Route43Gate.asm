@@ -50,17 +50,17 @@ RocketScript_Southbound:
 	opentext
 	writetext RocketText_TollFee
 	buttonsound
-	checkmoney $0, ROUTE43GATE_TOLL - 1
-	if_equal $0, RocketScript_TollSouth
+	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
+	if_equal HAVE_MORE, RocketScript_TollSouth
 	jump RocketScript_YoureBrokeSouth
 
 RocketScript_TollSouth:
-	takemoney $0, ROUTE43GATE_TOLL
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_ThankYou
 	jump RocketScript_ShakeDownSouth
 
 RocketScript_YoureBrokeSouth:
-	takemoney $0, ROUTE43GATE_TOLL
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
 	jump RocketScript_ShakeDownSouth
 
@@ -82,17 +82,17 @@ RocketScript_Northbound:
 	opentext
 	writetext RocketText_TollFee
 	buttonsound
-	checkmoney $0, ROUTE43GATE_TOLL - 1
-	if_equal $0, RocketScript_TollNorth
+	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
+	if_equal HAVE_MORE, RocketScript_TollNorth
 	jump RocketScript_YoureBrokeNorth
 
 RocketScript_TollNorth:
-	takemoney $0, ROUTE43GATE_TOLL
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_ThankYou
 	jump RocketScript_ShakeDownNorth
 
 RocketScript_YoureBrokeNorth:
-	takemoney $0, ROUTE43GATE_TOLL
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
 	jump RocketScript_ShakeDownNorth
 

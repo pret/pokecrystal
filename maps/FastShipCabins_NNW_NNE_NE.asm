@@ -100,7 +100,7 @@ SailorScript_0x755f1:
 	setevent EVENT_FAST_SHIP_LAZY_SAILOR
 	setmapscene FAST_SHIP_B1F, 1
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x75629
+	if_equal RIGHT, UnknownScript_0x75629
 	applymovement FASTSHIPCABINS_NNW_NNE_NE_SAILOR, MovementData_0x75637
 	playsound SFX_EXIT_BUILDING
 	disappear FASTSHIPCABINS_NNW_NNE_NE_SAILOR

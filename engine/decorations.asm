@@ -1061,12 +1061,13 @@ INCLUDE "data/decorations/decorations.asm"
 
 DescribeDecoration:: ; 26f59
 	ld a, b
-	ld hl, JumpTable_DecorationDesc
+	ld hl, .JumpTable
 	rst JumpTable
 	ret
 ; 26f5f
 
-JumpTable_DecorationDesc: ; 26f5f
+.JumpTable: ; 26f5f
+; entries correspond to DECODESC_* constants
 	dw DecorationDesc_Poster
 	dw DecorationDesc_LeftOrnament
 	dw DecorationDesc_RightOrnament

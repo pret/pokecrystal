@@ -132,7 +132,7 @@ KurtScript_0x18e178:
 	buttonsound
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	special Special_SelectApricornForKurt
-	if_equal $0, .Cancel
+	if_equal FALSE, .Cancel
 	if_equal BLU_APRICORN, .Blu
 	if_equal YLW_APRICORN, .Ylw
 	if_equal GRN_APRICORN, .Grn

@@ -146,7 +146,7 @@ MahoganyGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext PRYCE, PRYCE1, $1
+	trainertotext PRYCE, PRYCE1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 PryceText_Intro:

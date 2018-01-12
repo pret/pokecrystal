@@ -63,35 +63,35 @@ MoveTutor:
 	yesorno
 	iffalse .Refused2
 	checkcoins 4000
-	if_equal $2, .NotEnoughMoney
+	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x1990ce
 	loadmenudata .MoveMenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .Flamethrower
-	if_equal $2, .Thunderbolt
-	if_equal $3, .IceBeam
+	if_equal MOVETUTOR_FLAMETHROWER, .Flamethrower
+	if_equal MOVETUTOR_THUNDERBOLT, .Thunderbolt
+	if_equal MOVETUTOR_ICE_BEAM, .IceBeam
 	jump .Incompatible
 
 .Flamethrower:
-	writebyte $1
+	writebyte MOVETUTOR_FLAMETHROWER
 	writetext UnknownText_0x1991cf
 	special Special_MoveTutor
-	if_equal $0, .TeachMove
+	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
 .Thunderbolt:
-	writebyte $2
+	writebyte MOVETUTOR_THUNDERBOLT
 	writetext UnknownText_0x1991cf
 	special Special_MoveTutor
-	if_equal $0, .TeachMove
+	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
 .IceBeam:
-	writebyte $3
+	writebyte MOVETUTOR_ICE_BEAM
 	writetext UnknownText_0x1991cf
 	special Special_MoveTutor
-	if_equal $0, .TeachMove
+	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
 

@@ -61,9 +61,9 @@ TrainerYoungsterJoey:
 	scall .AskNumber2
 .RequestNumber:
 	askforphonenumber PHONE_YOUNGSTER_JOEY
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext YOUNGSTER, JOEY1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext YOUNGSTER, JOEY1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 

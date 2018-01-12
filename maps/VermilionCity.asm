@@ -68,7 +68,7 @@ VermilionGymBadgeGuy:
 	checkevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	iftrue .AlreadyGotItem
 	checkcode VAR_BADGES
-	if_equal 16, .AllBadges
+	if_equal NUM_BADGES, .AllBadges
 	if_greater_than 13, .MostBadges
 	if_greater_than 9, .SomeBadges
 	writetext UnknownText_0x1aabc8

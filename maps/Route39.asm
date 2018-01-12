@@ -50,9 +50,9 @@ PokefanMDerekWantsYourNumber:
 	scall PokefanMDerekAsksNumber2
 PokefanMDerekAsksForPhoneNumber:
 	askforphonenumber PHONE_POKEFANM_DEREK
-	if_equal $1, PokefanMDerekPhoneFull
-	if_equal $2, PokefanMDerekDeclined
-	trainertotext POKEFANM, DEREK1, $0
+	if_equal PHONE_CONTACTS_FULL, PokefanMDerekPhoneFull
+	if_equal PHONE_CONTACT_REFUSED, PokefanMDerekDeclined
+	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
 	scall PokefanMDerekRegistered
 	jump PokefanMDerekAccepted
 

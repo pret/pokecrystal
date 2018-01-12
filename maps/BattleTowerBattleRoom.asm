@@ -29,7 +29,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	waitsfx
 	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksIn
 	opentext
-	battletowertext 1
+	battletowertext $1
 	buttonsound
 	closetext
 	special BattleTowerBattle ; calls predef startbattle

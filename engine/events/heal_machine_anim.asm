@@ -47,6 +47,7 @@ HealMachineAnim: ; 12324
 ; 12365
 
 .Pointers: ; 12365
+; entries correspond to HEALMACHINE_* constants
 	dw .Pokecenter
 	dw .ElmLab
 	dw .HallOfFame

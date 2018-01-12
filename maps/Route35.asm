@@ -50,9 +50,9 @@ UnknownScript_0x19c8ec:
 	scall UnknownScript_0x19c907
 UnknownScript_0x19c8ef:
 	askforphonenumber PHONE_JUGGLER_IRWIN
-	if_equal $1, UnknownScript_0x19c917
-	if_equal $2, UnknownScript_0x19c913
-	trainertotext JUGGLER, IRWIN1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19c917
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19c913
+	trainertotext JUGGLER, IRWIN1, MEM_BUFFER_0
 	scall UnknownScript_0x19c90b
 	jump UnknownScript_0x19c90f
 
@@ -153,9 +153,9 @@ UnknownScript_0x19c9a4:
 	scall UnknownScript_0x19c907
 UnknownScript_0x19c9a7:
 	askforphonenumber PHONE_BUG_CATCHER_ARNIE
-	if_equal $1, UnknownScript_0x19c917
-	if_equal $2, UnknownScript_0x19c913
-	trainertotext BUG_CATCHER, ARNIE1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19c917
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19c913
+	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
 	scall UnknownScript_0x19c90b
 	jump UnknownScript_0x19c90f
 

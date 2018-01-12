@@ -133,7 +133,7 @@ Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/s
 
 ## `$3E`: `readcoins` *memory*
 
-## `$3F`: `RAM2MEM` *memory*
+## `$3F`: `vartomem` *memory*
 
 ## `$40`: `pokenamemem` *mon_id*, *memory*
 
@@ -151,7 +151,7 @@ Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/s
 
 ## `$47`: `opentext`
 
-## `$48`: `refreshscreen` *dummy*
+## `$48`: `refreshscreen` [*dummy*=0]
 
 ## `$49`: `closetext`
 

@@ -64,15 +64,15 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 	loadmenudata GoldenrodGameCornerTMVendorMenuData
 	verticalmenu
 	closewindow
-	if_equal $1, .Thunder
-	if_equal $2, .Blizzard
-	if_equal $3, .FireBlast
+	if_equal 1, .Thunder
+	if_equal 2, .Blizzard
+	if_equal 3, .FireBlast
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
 	checkcoins 5500
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_THUNDER, $0
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	itemtotext TM_THUNDER, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_THUNDER
@@ -82,8 +82,8 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 
 .Blizzard:
 	checkcoins 5500
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_BLIZZARD, $0
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	itemtotext TM_BLIZZARD, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_BLIZZARD
@@ -93,8 +93,8 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 
 .FireBlast:
 	checkcoins 5500
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_FIRE_BLAST, $0
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	itemtotext TM_FIRE_BLAST, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_FIRE_BLAST
@@ -168,17 +168,17 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	loadmenudata .MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .abra
-	if_equal $2, .cubone
-	if_equal $3, .wobbuffet
+	if_equal 1, .abra
+	if_equal 2, .cubone
+	if_equal 3, .wobbuffet
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .abra
 	checkcoins 100
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem ABRA, $0
+	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	pokenamemem ABRA, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
@@ -193,10 +193,10 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 .cubone
 	checkcoins 800
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem CUBONE, $0
+	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	pokenamemem CUBONE, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
@@ -211,10 +211,10 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 .wobbuffet
 	checkcoins 1500
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem WOBBUFFET, $0
+	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	pokenamemem WOBBUFFET, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
@@ -301,21 +301,21 @@ GoldenrodGameCornerLeftTheirDrinkScript:
 GoldenrodGameCornerSlotsMachineScript:
 	random 6
 	if_equal 0, GoldenrodGameCornerLuckySlotsMachineScript
-	refreshscreen $0
+	refreshscreen
 	writebyte FALSE
 	special Special_SlotMachine
 	closetext
 	end
 
 GoldenrodGameCornerLuckySlotsMachineScript:
-	refreshscreen $0
+	refreshscreen
 	writebyte TRUE
 	special Special_SlotMachine
 	closetext
 	end
 
 GoldenrodGameCornerCardFlipMachineScript:
-	refreshscreen $0
+	refreshscreen
 	special Special_CardFlip
 	closetext
 	end

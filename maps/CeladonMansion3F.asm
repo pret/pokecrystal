@@ -16,7 +16,7 @@ CooltrainerMScript_0x71670:
 	opentext
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
-	if_greater_than 248, UnknownScript_0x7167e
+	if_greater_than NUM_POKEMON - 2 - 1, UnknownScript_0x7167e ; ignore Mew and Celebi
 	waitbutton
 	closetext
 	end

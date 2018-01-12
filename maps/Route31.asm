@@ -49,9 +49,9 @@ TrainerBugCatcherWade1:
 	scall .AskAgainSTD
 .Continue:
 	askforphonenumber PHONE_BUG_CATCHER_WADE
-	if_equal $1, .PhoneFullSTD
-	if_equal $2, .DeclinedNumberSTD
-	trainertotext BUG_CATCHER, WADE1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFullSTD
+	if_equal PHONE_CONTACT_REFUSED, .DeclinedNumberSTD
+	trainertotext BUG_CATCHER, WADE1, MEM_BUFFER_0
 	scall .RegisterNumberSTD
 	jump .AcceptedNumberSTD
 
@@ -198,10 +198,11 @@ Route31MailRecipientScript:
 	writetext Text_Route31SleepyManGotMail
 	buttonsound
 	checkpokeitem ReceivedSpearowMailText
-	if_equal $0, .WrongMail
-	if_equal $2, .Refused
-	if_equal $3, .NoMail
-	if_equal $4, .LastMon
+	if_equal POKEMAIL_WRONG_MAIL, .WrongMail
+	if_equal POKEMAIL_REFUSED, .Refused
+	if_equal POKEMAIL_NO_MAIL, .NoMail
+	if_equal POKEMAIL_LAST_MON, .LastMon
+	; POKEMAIL_CORRECT
 	writetext Text_Route31HandOverMailMon
 	buttonsound
 	writetext Text_Route31ReadingMail

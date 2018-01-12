@@ -128,7 +128,7 @@ ScriptCommandTable:
 	dw Script_warp                       ; 3c
 	dw Script_readmoney                  ; 3d
 	dw Script_readcoins                  ; 3e
-	dw Script_RAM2MEM                    ; 3f
+	dw Script_vartomem                   ; 3f
 	dw Script_pokenamemem                ; 40
 	dw Script_itemtotext                 ; 41
 	dw Script_mapnametotext              ; 42
@@ -728,14 +728,14 @@ Script_askforphonenumber:
 	ld c, a
 	farcall AddPhoneNumber
 	jr c, .phonefull
-	xor a
+	xor a ; PHONE_CONTACT_GOT
 	jr .done
 .phonefull
-	ld a, 1
+	ld a, PHONE_CONTACTS_FULL
 	jr .done
 .refused
 	call GetScriptByte
-	ld a, 2
+	ld a, PHONE_CONTACT_REFUSED
 .done
 	ld [ScriptVar], a
 	ret
@@ -1880,7 +1880,7 @@ Script_checkver:
 
 Script_pokenamemem:
 ; script command 0x40
-; parameters: pokemon (0 to use ScriptVar), memory
+; parameters: pokemon (0 aka USE_SCRIPT_VAR to use ScriptVar), memory
 
 	call GetScriptByte
 	and a
@@ -1893,7 +1893,7 @@ Script_pokenamemem:
 
 ConvertMemToText:
 	call GetScriptByte
-	cp 3
+	cp NUM_MEM_BUFFERS
 	jr c, .ok
 	xor a
 .ok
@@ -1907,10 +1907,10 @@ CopyConvertedText:
 
 Script_itemtotext:
 ; script command 0x41
-; parameters: item (0 to use ScriptVar), memory
+; parameters: item (0 aka USE_SCRIPT_VAR to use ScriptVar), memory
 
 	call GetScriptByte
-	and a
+	and a ; USE_SCRIPT_VAR
 	jr nz, .ok
 	ld a, [ScriptVar]
 .ok
@@ -1999,7 +1999,7 @@ Script_readcoins:
 	ld de, StringBuffer1
 	jp ConvertMemToText
 
-Script_RAM2MEM:
+Script_vartomem:
 ; script command 0x3f
 ; parameters: memory
 
@@ -2150,15 +2150,15 @@ Script_checkmoney:
 	farcall CompareMoney
 
 CompareMoneyAction:
-	jr c, .two
-	jr z, .one
-	ld a, 0
+	jr c, .less
+	jr z, .exact
+	ld a, HAVE_MORE
 	jr .done
-.one
-	ld a, 1
+.exact
+	ld a, HAVE_AMOUNT
 	jr .done
-.two
-	ld a, 2
+.less
+	ld a, HAVE_LESS
 .done
 	ld [ScriptVar], a
 	ret
@@ -2166,9 +2166,9 @@ CompareMoneyAction:
 GetMoneyAccount:
 	call GetScriptByte
 	and a
-	ld de, Money
+	ld de, Money ; YOUR_MONEY
 	ret z
-	ld de, wMomsMoney
+	ld de, wMomsMoney ; MOMS_MONEY
 	ret
 
 LoadMoneyAmountToMem:
@@ -2431,7 +2431,7 @@ Script_checkflag:
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld b, 2 ; check
+	ld b, CHECK_FLAG
 	call _EngineFlagAction
 	ld a, c
 	and a
@@ -2667,7 +2667,7 @@ Script_loadbytec2cf:
 	ld [wc2cf], a
 	ret
 
-	ld c, c ; XXX
+	db $49 ; XXX
 
 Script_closetext:
 ; script command 0x49

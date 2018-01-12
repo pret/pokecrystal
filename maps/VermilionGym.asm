@@ -101,7 +101,7 @@ VermilionGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext LT_SURGE, LT_SURGE1, $1
+	trainertotext LT_SURGE, LT_SURGE1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 UnknownText_0x192142:

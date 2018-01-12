@@ -76,7 +76,7 @@ Kurt_SelectApricorn: ; 88055
 	jr nz, .done
 
 .nope
-	xor a
+	xor a ; FALSE
 
 .done
 	ld c, a

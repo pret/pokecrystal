@@ -191,9 +191,9 @@ TrainerSchoolboyAlan1:
 	scall .AskNumber2
 .ContinueAskForPhoneNumber:
 	askforphonenumber PHONE_SCHOOLBOY_ALAN
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext SCHOOLBOY, ALAN1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext SCHOOLBOY, ALAN1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 

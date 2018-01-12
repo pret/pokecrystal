@@ -38,7 +38,7 @@ UnknownScript_0x7a4f6:
 	opentext
 	writetext UnknownText_0x7a604
 	buttonsound
-	stringtotext GearName, $1
+	stringtotext GearName, MEM_BUFFER_1
 	scall UnknownScript_0x7a57e
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD

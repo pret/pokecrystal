@@ -36,7 +36,7 @@ OfficerScript_0x18a81e:
 	closetext
 	applymovement SAFFRONTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a898
-	writebyte $1
+	writebyte TRUE
 	special Special_MagnetTrain
 	warpcheck
 	newloadmap MAPSETUP_TRAIN

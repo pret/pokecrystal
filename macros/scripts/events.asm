@@ -424,9 +424,9 @@ readcoins: MACRO
 	db \1 ; memory
 ENDM
 
-	enum RAM2MEM_command ; $3f
-RAM2MEM: MACRO
-	db RAM2MEM_command
+	enum vartomem_command ; $3f
+vartomem: MACRO
+	db vartomem_command
 	db \1 ; memory
 ENDM
 
@@ -483,7 +483,11 @@ ENDM
 	enum refreshscreen_command ; $48
 refreshscreen: MACRO
 	db refreshscreen_command
+if _NARG == 1
 	db \1 ; dummy
+else
+	db 0
+endc
 ENDM
 
 	enum closetext_command ; $49

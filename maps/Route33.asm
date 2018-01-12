@@ -38,9 +38,9 @@ TrainerHikerAnthony:
 	scall .AskNumber2
 .AskForPhoneNumber:
 	askforphonenumber PHONE_HIKER_ANTHONY
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext HIKER, ANTHONY2, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext HIKER, ANTHONY2, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 

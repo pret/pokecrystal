@@ -4,7 +4,7 @@ Script_BattleWhiteout:: ; 0x124c1
 ; 0x124c8
 
 Script_OverworldWhiteout:: ; 0x124c8
-	refreshscreen $0
+	refreshscreen
 	callasm OverworldBGMap
 
 Script_Whiteout: ; 0x124ce

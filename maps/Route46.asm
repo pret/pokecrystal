@@ -47,9 +47,9 @@ UnknownScript_0x1a96c3:
 	scall UnknownScript_0x1a9753
 UnknownScript_0x1a96c6:
 	askforphonenumber PHONE_PICNICKER_ERIN
-	if_equal $1, UnknownScript_0x1a9763
-	if_equal $2, UnknownScript_0x1a975f
-	trainertotext PICNICKER, ERIN1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a9763
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a975f
+	trainertotext PICNICKER, ERIN1, MEM_BUFFER_0
 	scall UnknownScript_0x1a9757
 	jump UnknownScript_0x1a975b
 

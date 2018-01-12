@@ -148,7 +148,7 @@ CooltrainerFScript_0x5cdd5:
 	waitsfx
 	writetext UnknownText_0x5d37b
 	buttonsound
-	stringtotext RadioCardText, $1
+	stringtotext RadioCardText, MEM_BUFFER_1
 	scall UnknownScript_0x5ce3e
 	writetext UnknownText_0x5d3c0
 	buttonsound

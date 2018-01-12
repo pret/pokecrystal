@@ -109,7 +109,7 @@ VioletGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext FALKNER, FALKNER1, $1
+	trainertotext FALKNER, FALKNER1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 UnknownText_0x68473:

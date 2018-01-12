@@ -56,13 +56,13 @@ UnknownScript_0x190040:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse UnknownScript_0x190072
-	checkmoney $0, 300
-	if_equal $2, UnknownScript_0x19006c
+	checkmoney YOUR_MONEY, 300
+	if_equal HAVE_LESS, UnknownScript_0x19006c
 	giveitem RAGECANDYBAR
 	iffalse UnknownScript_0x190078
 	waitsfx
 	playsound SFX_TRANSACTION
-	takemoney $0, 300
+	takemoney YOUR_MONEY, 300
 	special PlaceMoneyTopRight
 	writetext UnknownText_0x19014a
 	waitbutton

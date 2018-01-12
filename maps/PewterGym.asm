@@ -72,7 +72,7 @@ PewterGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext BROCK, BROCK1, $1
+	trainertotext BROCK, BROCK1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 UnknownText_0x1a28d0:

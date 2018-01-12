@@ -30,7 +30,7 @@ HallOfFame_MapScriptHeader:
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
 	setscene 1
 	pause 15
-	writebyte 2 ; Machine is in the Hall of Fame
+	writebyte HEALMACHINE_HALL_OF_FAME
 	special HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
 	setevent EVENT_TELEPORT_GUY

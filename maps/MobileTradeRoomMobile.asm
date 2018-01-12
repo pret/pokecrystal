@@ -20,7 +20,7 @@ MobileTradeRoomMobile_MapScriptHeader:
 	end
 
 MapMobileTradeRoomMobileSignpost0Script:
-	refreshscreen $0
+	refreshscreen
 	special Function1037c2
 	writetext MobileTradeRoomMobile_EstablishingCommsText
 	waitbutton

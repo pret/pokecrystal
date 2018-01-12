@@ -171,7 +171,7 @@ GoldenrodGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext WHITNEY, WHITNEY1, $1
+	trainertotext WHITNEY, WHITNEY1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 BridgetWalksUpMovement:

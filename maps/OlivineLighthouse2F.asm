@@ -41,9 +41,9 @@ UnknownScript_0x5afb0:
 	scall UnknownScript_0x5b057
 UnknownScript_0x5afb3:
 	askforphonenumber PHONE_SAILOR_HUEY
-	if_equal $1, UnknownScript_0x5b067
-	if_equal $2, UnknownScript_0x5b063
-	trainertotext SAILOR, HUEY1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5b067
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5b063
+	trainertotext SAILOR, HUEY1, MEM_BUFFER_0
 	scall UnknownScript_0x5b05b
 	jump UnknownScript_0x5b05f
 

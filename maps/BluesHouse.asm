@@ -27,8 +27,8 @@ DaisyScript:
 	writetext DaisyWhichMonText
 	waitbutton
 	special Special_DaisyMassage
-	if_equal 0, .Refused
-	if_equal 1, .CantGroomEgg
+	if_equal $0, .Refused
+	if_equal $1, .CantGroomEgg
 	setflag ENGINE_TEA_IN_BLUES_HOUSE
 	writetext DaisyAlrightText
 	waitbutton
