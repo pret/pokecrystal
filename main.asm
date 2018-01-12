@@ -596,6 +596,7 @@ INCLUDE "data/phone/text/trainers1.asm"
 SECTION "Miscellaneous Text", ROMX
 
 INCLUDE "data/items/names.asm"
+INCLUDE "engine/routines/printitemdescription.asm"
 INCLUDE "data/items/descriptions.asm"
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/landmarks.asm"
