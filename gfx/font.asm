@@ -54,8 +54,8 @@ UnusedWeekdayKanjiGFX: ; unused kanji
 INCBIN "gfx/font/unused_weekday_kanji.2bpp"
 ; f8f24
 
-OverworldPhoneIconGFX: ; f8f24
-INCBIN "gfx/font/overworld_phone_icon.2bpp"
+PokegearPhoneIconGFX: ; f8f24
+INCBIN "gfx/font/phone_icon.2bpp"
 ; f8f34
 
 UnusedBoldFontGFX: ; unused bold letters + unown chars
@@ -66,7 +66,15 @@ TextBoxSpaceGFX: ; f9204
 INCBIN "gfx/frames/space.1bpp"
 ; f9214
 
-MobilePhoneTilesGFX: ; f9214
+FontsExtra_SolidBlackGFX: ; f9214
+INCBIN "gfx/font/black.1bpp"
+; f921c
+
+UnusedUpArrowGFX: ; unused up arrow + whitespace
+INCBIN "gfx/font/unused_arrow.1bpp"
+; f9234
+
+MobilePhoneTilesGFX: ; f9234
 INCBIN "gfx/mobile/phone_tiles.2bpp"
 ; f9344
 
@@ -105,42 +113,42 @@ Functionfb43f: ; fb43f
 _LoadStandardFont:: ; fb449
 	ld de, Font
 	ld hl, vTiles1
-	lb bc, BANK(Font), $80
+	lb bc, BANK(Font), 128 ; "A" to "9"
 	ld a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp z, Copy1bpp
 
 	ld de, Font
 	ld hl, vTiles1
-	lb bc, BANK(Font), $20
+	lb bc, BANK(Font), 32 ; "A" to "]"
 	call Get1bpp_2
-	ld de, Font + $20 * LEN_1BPP_TILE
+	ld de, Font + 32 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $20
-	lb bc, BANK(Font), $20
+	lb bc, BANK(Font), 32 ; "a" to $bf
 	call Get1bpp_2
-	ld de, Font + $40 * LEN_1BPP_TILE
+	ld de, Font + 64 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $40
-	lb bc, BANK(Font), $20
+	lb bc, BANK(Font), 32 ; "Ä" to "←"
 	call Get1bpp_2
-	ld de, Font + $60 * LEN_1BPP_TILE
+	ld de, Font + 96 * LEN_1BPP_TILE
 	ld hl, vTiles1 tile $60
-	lb bc, BANK(Font), $20
+	lb bc, BANK(Font), 32 ; "'" to "9"
 	call Get1bpp_2
 	ret
 ; fb48a
 
 _LoadFontsExtra1:: ; fb48a
-	ld de, MobilePhoneTilesGFX
+	ld de, FontsExtra_SolidBlackGFX
 	ld hl, vTiles2 tile "<BLACK>" ; $60
-	lb bc, BANK(MobilePhoneTilesGFX), 1
+	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
 	call Get1bpp_2
-	ld de, OverworldPhoneIconGFX
+	ld de, PokegearPhoneIconGFX
 	ld hl, vTiles2 tile "<PHONE>" ; $62
-	lb bc, BANK(OverworldPhoneIconGFX), 1
+	lb bc, BANK(PokegearPhoneIconGFX), 1
 	call Get2bpp_2
-	ld de, FontExtra + 3 * LEN_2BPP_TILE
-	ld hl, vTiles2 tile $63
-	lb bc, BANK(FontExtra), $16
+	ld de, FontExtra tile 3
+	ld hl, vTiles2 tile "<BOLD_D>"
+	lb bc, BANK(FontExtra), 22 ; "<BOLD_D>" to "ぉ"
 	call Get2bpp_2
 	jr LoadFrame
 ; fb4b0
@@ -157,7 +165,7 @@ _LoadFontsExtra2:: ; fb4b0
 _LoadFontsBattleExtra:: ; fb4be
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
-	lb bc, BANK(FontBattleExtra), $19
+	lb bc, BANK(FontBattleExtra), 25
 	call Get2bpp_2
 	jr LoadFrame
 ; fb4cc
@@ -165,13 +173,13 @@ _LoadFontsBattleExtra:: ; fb4be
 LoadFrame: ; fb4cc
 	ld a, [TextBoxFrame]
 	and 7
-	ld bc, LEN_1BPP_TILE * 6
+	ld bc, 6 * LEN_1BPP_TILE
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, vTiles2 tile "┌" ; $79
-	lb bc, BANK(Frames), 6
+	lb bc, BANK(Frames), 6 ; "┌" to "┘"
 	call Get1bpp_2
 	ld hl, vTiles2 tile " " ; $7f
 	ld de, TextBoxSpaceGFX
@@ -183,11 +191,11 @@ LoadFrame: ; fb4cc
 LoadBattleFontsHPBar: ; fb4f2
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
-	lb bc, BANK(FontBattleExtra), $c
+	lb bc, BANK(FontBattleExtra), 12
 	call Get2bpp_2
 	ld hl, vTiles2 tile $70
-	ld de, FontBattleExtra tile $10
-	lb bc, BANK(FontBattleExtra), 3
+	ld de, FontBattleExtra tile 16
+	lb bc, BANK(FontBattleExtra), 3 ; "<ど>" to "『"
 	call Get2bpp_2
 	call LoadFrame
 
@@ -204,7 +212,7 @@ LoadHPBar: ; fb50d
 	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 9
 	call Get2bpp_2
-	ld de, MobilePhoneTilesGFX + 9 * LEN_2BPP_TILE
+	ld de, MobilePhoneTilesGFX tile 7 ; mobile phone icon
 	ld hl, vTiles2 tile $5e
 	lb bc, BANK(MobilePhoneTilesGFX), 2
 	call Get2bpp_2

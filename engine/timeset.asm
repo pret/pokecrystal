@@ -1,3 +1,6 @@
+TIMESET_UP_ARROW   EQUS "\"♂\"" ; $ef
+TIMESET_DOWN_ARROW EQUS "\"♀\"" ; $f5
+
 InitClock: ; 90672 (24:4672)
 ; Ask the player to set the time.
 	ld a, [hInMenu]
@@ -410,11 +413,11 @@ Special_SetDayOfWeek: ; 90913
 	ld a, $1
 	ld [hInMenu], a
 	ld de, TimeSetUpArrowGFX
-	ld hl, vTiles1 tile $6f
+	ld hl, vTiles0 tile TIMESET_UP_ARROW
 	lb bc, BANK(TimeSetUpArrowGFX), 1
 	call Request1bpp
 	ld de, TimeSetDownArrowGFX
-	ld hl, vTiles1 tile $75
+	ld hl, vTiles0 tile TIMESET_DOWN_ARROW
 	lb bc, BANK(TimeSetDownArrowGFX), 1
 	call Request1bpp
 	xor a
@@ -431,9 +434,9 @@ Special_SetDayOfWeek: ; 90913
 	ld c, 9
 	call TextBox
 	hlcoord 14, 3
-	ld [hl], "♂" ; gets overwritten with special up arrow
+	ld [hl], TIMESET_UP_ARROW
 	hlcoord 14, 6
-	ld [hl], "♀" ; gets overwritten with special down arrow
+	ld [hl], TIMESET_DOWN_ARROW
 	hlcoord 10, 5
 	call .PlaceWeekdayString
 	call ApplyTilemap

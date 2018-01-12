@@ -1010,16 +1010,16 @@ MobileFunc_106462: mobile
 ; 106464
 
 Function106464:: ; 106464
-	ld de, MobilePhoneTilesGFX
-	ld hl, vTiles2 tile $60
-	lb bc, BANK(MobilePhoneTilesGFX), 1
+	ld de, FontsExtra_SolidBlackGFX
+	ld hl, vTiles2 tile "<BLACK>" ; $60
+	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
 	call Get2bpp
 	ld de, FontsExtra2_UpArrowGFX
-	ld hl, vTiles2 tile $61
+	ld hl, vTiles2 tile "▲" ; $61
 	lb bc, BANK(FontsExtra2_UpArrowGFX), 1
 	call Get2bpp
 	ld de, GFX_106514
-	ld hl, vTiles2 tile $62
+	ld hl, vTiles2 tile "<PHONE>" ; $62
 	ld c, 9
 	ld b, BANK(GFX_106514)
 	call Get2bpp
@@ -1103,8 +1103,8 @@ asm_1064ed
 ; 10650a
 
 Function10650a: ; 10650a
-	ld de, MobilePhoneTilesGFX + $20
-	lb bc, BANK(MobilePhoneTilesGFX), $11
+	ld de, MobilePhoneTilesGFX
+	lb bc, BANK(MobilePhoneTilesGFX), 17
 	call Get2bpp
 	ret
 ; 106514

@@ -1,3 +1,9 @@
+NAMINGSCREEN_CURSOR     EQU $7e
+
+NAMINGSCREEN_BORDER     EQUS "\"<BLACK>\"" ; $60
+NAMINGSCREEN_MIDDLELINE EQUS "\"→\"" ; $eb
+NAMINGSCREEN_UNDERLINE  EQUS "\"<DOT>\"" ; $f2
+
 _NamingScreen: ; 0x116b7
 	call DisableSpriteUpdates
 	call NamingScreen
@@ -287,7 +293,7 @@ NamingScreen_InitText: ; 118a8
 	call WaitTop
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, $60
+	ld a, NAMINGSCREEN_BORDER
 	call ByteFill
 	hlcoord 1, 1
 	lb bc, 6, 18
@@ -729,7 +735,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 	ld a, [hl]
 	cp "@"
 	jr z, .end_of_string
-	ld [hl], $f2
+	ld [hl], NAMINGSCREEN_UNDERLINE
 	and a
 	ret
 
@@ -776,12 +782,12 @@ NamingScreen_DeleteCharacter: ; 11bbc (4:5bbc)
 	ret z
 	dec [hl]
 	call NamingScreen_GetTextCursorPosition
-	ld [hl], $f2
+	ld [hl], NAMINGSCREEN_UNDERLINE
 	inc hl
 	ld a, [hl]
-	cp $f2
+	cp NAMINGSCREEN_UNDERLINE
 	ret nz
-	ld [hl], $eb
+	ld [hl], NAMINGSCREEN_MIDDLELINE
 	ret
 
 NamingScreen_GetTextCursorPosition: ; 11bd0 (4:5bd0)
@@ -800,17 +806,17 @@ NamingScreen_GetTextCursorPosition: ; 11bd0 (4:5bd0)
 ; 11be0
 
 NamingScreen_InitNameEntry: ; 11be0
-; load $f2, ($eb * [wNamingScreenMaxNameLength]), $50 into the dw address at wNamingScreenDestinationPointer
+; load NAMINGSCREEN_UNDERLINE, (NAMINGSCREEN_MIDDLELINE * [wNamingScreenMaxNameLength]), "@" into the dw address at wNamingScreenDestinationPointer
 	ld hl, wNamingScreenDestinationPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], $f2
+	ld [hl], NAMINGSCREEN_UNDERLINE
 	inc hl
 	ld a, [wNamingScreenMaxNameLength]
 	dec a
 	ld c, a
-	ld a, $eb
+	ld a, NAMINGSCREEN_MIDDLELINE
 .loop
 	ld [hli], a
 	dec c
@@ -829,9 +835,9 @@ NamingScreen_StoreEntry: ; 11bf7 (4:5bf7)
 	ld c, a
 .loop
 	ld a, [hl]
-	cp $eb
+	cp NAMINGSCREEN_MIDDLELINE
 	jr z, .terminator
-	cp $f2
+	cp NAMINGSCREEN_UNDERLINE
 	jr nz, .not_terminator
 .terminator
 	ld [hl], "@"
@@ -891,22 +897,22 @@ LoadNamingScreenGFX: ; 11c51
 	call LoadFontsExtra
 
 	ld de, NamingScreenGFX_MiddleLine
-	ld hl, vTiles1 tile $6b
+	ld hl, vTiles0 tile NAMINGSCREEN_MIDDLELINE
 	lb bc, BANK(NamingScreenGFX_MiddleLine), 1
 	call Get1bpp
 
 	ld de, NamingScreenGFX_UnderLine
-	ld hl, vTiles1 tile $72
+	ld hl, vTiles0 tile NAMINGSCREEN_UNDERLINE
 	lb bc, BANK(NamingScreenGFX_UnderLine), 1
 	call Get1bpp
 
-	ld de, vTiles2 tile $60
+	ld de, vTiles2 tile NAMINGSCREEN_BORDER
 	ld hl, NamingScreenGFX_Border
 	ld bc, 1 tiles
 	ld a, BANK(NamingScreenGFX_Border)
 	call FarCopyBytes
 
-	ld de, vTiles0 tile $7e
+	ld de, vTiles0 tile NAMINGSCREEN_CURSOR
 	ld hl, NamingScreenGFX_Cursor
 	ld bc, 2 tiles
 	ld a, BANK(NamingScreenGFX_Cursor)
@@ -915,7 +921,7 @@ LoadNamingScreenGFX: ; 11c51
 	ld a, $5
 	ld hl, wSpriteAnimDict + 9 * 2
 	ld [hli], a
-	ld [hl], $7e
+	ld [hl], NAMINGSCREEN_CURSOR
 	xor a
 	ld [hSCY], a
 	ld [wGlobalAnimYOffset], a
@@ -1019,9 +1025,9 @@ _ComposeMailMessage: ; 11e75 (mail?)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $10
+	ld hl, MAIL_LINE_LENGTH
 	add hl, de
-	ld [hl], $4e
+	ld [hl], "<NEXT>"
 	ret
 
 ; 11ef4 (4:5ef4)
@@ -1046,7 +1052,7 @@ INCBIN "gfx/icons/mail2.2bpp"
 	call WaitTop
 	hlcoord 0, 0
 	ld bc, 6 * SCREEN_WIDTH
-	ld a, $60 ; border
+	ld a, NAMINGSCREEN_BORDER
 	call ByteFill
 	hlcoord 0, 6
 	ld bc, 12 * SCREEN_WIDTH
@@ -1176,13 +1182,13 @@ INCBIN "gfx/icons/mail2.2bpp"
 	jr c, .start
 	ld hl, wNamingScreenCurrNameLength
 	ld a, [hl]
-	cp $10
+	cp MAIL_LINE_LENGTH
 	ret nz
 	inc [hl]
 	call NamingScreen_GetTextCursorPosition
-	ld [hl], $f2
+	ld [hl], NAMINGSCREEN_UNDERLINE
 	dec hl
-	ld [hl], $4e
+	ld [hl], "<NEXT>"
 	ret
 
 .start
@@ -1202,13 +1208,13 @@ INCBIN "gfx/icons/mail2.2bpp"
 	call NamingScreen_DeleteCharacter
 	ld hl, wNamingScreenCurrNameLength
 	ld a, [hl]
-	cp $10
+	cp MAIL_LINE_LENGTH
 	ret nz
 	dec [hl]
 	call NamingScreen_GetTextCursorPosition
-	ld [hl], $f2
+	ld [hl], NAMINGSCREEN_UNDERLINE
 	inc hl
-	ld [hl], $4e
+	ld [hl], "<NEXT>"
 	ret
 
 .finished

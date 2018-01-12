@@ -1,3 +1,6 @@
+PRINTPARTY_HP    EQUS "\"◀\"" ; $71
+PRINTPARTY_SHINY EQUS "\"<ENEMY>\"" ; $3f
+
 PrintPage1: ; 1dc1b0
 	hlcoord 0, 0
 	decoord 0, 0, wPrinterTileMapBuffer
@@ -141,17 +144,17 @@ PrintPartyMonPage1: ; 1dc381
 	call LoadFontsBattleExtra
 
 	ld de, GBPrinterHPIcon
-	ld hl, vTiles2 tile $71
+	ld hl, vTiles2 tile PRINTPARTY_HP
 	lb bc, BANK(GBPrinterHPIcon), 1
 	call Request1bpp
 
 	ld de, GBPrinterLvIcon
-	ld hl, vTiles2 tile $6e
+	ld hl, vTiles2 tile "<LV>"
 	lb bc, BANK(GBPrinterLvIcon), 1
 	call Request1bpp
 
 	ld de, ShinyIconGFX
-	ld hl, vTiles2 tile $3f
+	ld hl, vTiles2 tile PRINTPARTY_SHINY
 	lb bc, BANK(ShinyIconGFX), 1
 	call Get2bpp
 
@@ -166,7 +169,7 @@ PrintPartyMonPage1: ; 1dc381
 	ld a, [TempMonLevel]
 	call PrintLevel_Force3Digits
 	hlcoord 12, 2
-	ld [hl], "◀" ; Filled left triangle
+	ld [hl], PRINTPARTY_HP
 	inc hl
 	ld de, TempMonMaxHP
 	lb bc, 2, 3
@@ -330,7 +333,7 @@ Function1dc52c: ; 1dc52c
 	farcall CheckShininess
 	ret nc
 	hlcoord 18, 2
-	ld [hl], "<SHINY>"
+	ld [hl], PRINTPARTY_SHINY
 	ret
 ; 1dc550
 

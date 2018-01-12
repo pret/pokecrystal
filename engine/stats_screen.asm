@@ -459,7 +459,7 @@ Function4df7f: ; 4df7f
 	ld bc, SCREEN_WIDTH
 	ld d, SCREEN_HEIGHT
 .loop
-	ld a, "|"
+	ld a, $31 ; vertical divider
 	ld [hl], a
 	add hl, bc
 	dec d
@@ -470,7 +470,7 @@ Function4df7f: ; 4df7f
 StatsScreen_PlaceHorizontalDivider: ; 4df8f (13:5f8f)
 	hlcoord 0, 7
 	ld b, SCREEN_WIDTH
-	ld a, "_"
+	ld a, $62 ; horizontal divider (empty HP/exp bar)
 .loop
 	ld [hli], a
 	dec b
@@ -489,7 +489,7 @@ StatsScreen_PlaceShinyIcon: ; 4dfa6 (13:5fa6)
 	farcall CheckShininess
 	ret nc
 	hlcoord 19, 0
-	ld [hl], "<SHINY>"
+	ld [hl], $3f ; shiny icon
 	ret
 
 StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
@@ -550,7 +550,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld b, $0
 	predef DrawPlayerHP
 	hlcoord 8, 9
-	ld [hl], $41
+	ld [hl], $41 ; right HP/exp bar end cap
 	ld de, .Status_Type
 	hlcoord 0, 12
 	call PlaceString
@@ -562,7 +562,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	and $f0
 	jr z, .NotImmuneToPkrs
 	hlcoord 8, 8
-	ld [hl], "."
+	ld [hl], "." ; Pokérus immunity dot
 .NotImmuneToPkrs:
 	ld a, [MonType]
 	cp BOXMON
@@ -588,7 +588,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 9, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
-	ld a, "|"
+	ld a, $31 ; vertical divider
 .vertical_divider
 	ld [hl], a
 	add hl, de
@@ -620,9 +620,9 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld de, TempMonExp + 2
 	predef FillInExpBar
 	hlcoord 10, 16
-	ld [hl], $40
+	ld [hl], $40 ; left exp bar end cap
 	hlcoord 19, 16
-	ld [hl], $41
+	ld [hl], $41 ; right exp bar end cap
 	ret
 
 .PrintNextLevel: ; 4e0d3 (13:60d3)
@@ -748,7 +748,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 10, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
-	ld a, "|"
+	ld a, $31 ; vertical divider
 .BluePageVerticalDivider:
 	ld [hl], a
 	add hl, de
@@ -1087,17 +1087,17 @@ StatsScreen_AnimateEgg: ; 4e497 (13:6497)
 
 StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 	hlcoord 13, 5
-	ld a, $36
+	ld a, $36 ; first of 4 small square tiles
 	call .load_square
 	hlcoord 15, 5
-	ld a, $36
+	ld a, $36 ; """
 	call .load_square
 	hlcoord 17, 5
-	ld a, $36
+	ld a, $36 ; """
 	call .load_square
 	ld a, c
 	cp GREEN_PAGE
-	ld a, $3a
+	ld a, $3a ; first of 4 large square tiles
 	hlcoord 13, 5 ; PINK_PAGE (< GREEN_PAGE)
 	jr c, .load_square
 	hlcoord 15, 5 ; GREEN_PAGE (= GREEN_PAGE)
@@ -1120,7 +1120,7 @@ StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 CopyNickname: ; 4e505 (13:6505)
 	ld de, StringBuffer1
 	ld bc, PKMN_NAME_LENGTH
-	jr .okay ; uuterly pointless
+	jr .okay ; utterly pointless
 .okay
 	ld a, [MonType]
 	cp BOXMON
