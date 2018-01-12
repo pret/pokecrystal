@@ -169,14 +169,11 @@ INCBIN "gfx/overworld/heal_machine.2bpp"
 ; 12451
 
 .palettes ; 12451
-	RGB 31, 31, 31
-	RGB 31, 19, 10
-	RGB 31, 07, 01
-	RGB 00, 00, 00
+INCLUDE "gfx/overworld/heal_machine.pal"
 ; 12459
 
 .FlashPalettes8Times: ; 12459
-	ld c, $8
+	ld c, 8
 .palette_loop
 	push bc
 	call .FlashPalettes

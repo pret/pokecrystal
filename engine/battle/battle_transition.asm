@@ -691,17 +691,12 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 ; 8c6a1 (23:46a1)
 
 .daypals ; 8c6a1
-	RGB 31, 18, 29
-	RGB 31, 11, 15
-	RGB 31, 05, 05
-	RGB 07, 07, 07
+INCLUDE "gfx/overworld/trainer_battle_day.pal"
 ; 8c6a9
 
 .nightpals ; 8c6a9
-	RGB 31, 18, 29
-	RGB 31, 05, 05
-	RGB 31, 05, 05
-	RGB 31, 05, 05
+INCLUDE "gfx/overworld/trainer_battle_nite.pal"
+; 8c6b1
 
 .loadpokeballgfx
 	ld a, [OtherTrainerClass]

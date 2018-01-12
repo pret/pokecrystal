@@ -97,10 +97,7 @@ LoadGenderScreenPal: ; 48e47 (12:4e47)
 ; 48e5c (12:4e5c)
 
 .Palette: ; 48e5c
-	RGB 31, 31, 31
-	RGB 09, 30, 31
-	RGB 01, 11, 31
-	RGB 00, 00, 00
+INCLUDE "gfx/intro/gender_screen.pal"
 ; 48e64
 
 LoadGenderScreenLightBlueTile: ; 48e64 (12:4e64)
