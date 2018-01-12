@@ -26,6 +26,7 @@ const_value set 1
 	const PAL_OW_ROCK   ; 7
 
 ; object_events set bit 3 so as not to use the sprite's default palette
+; MapObjectPals indexes (see gfx/overworld/npc_sprites.pal)
 const_value set (1 << 3)
 	const PAL_NPC_RED    ; 8
 	const PAL_NPC_BLUE   ; 9

@@ -38,6 +38,7 @@ const_value set 1
 	const TILESET_AERODACTYL_WORD_ROOM ; 24
 
 ; bg palette values (see gfx/tilesets/*_palette_map.asm)
+; TilesetBGPalette indexes (see gfx/tilesets/bg_tiles.pal)
 	const_def
 	const PAL_BG_GRAY   ; 0
 	const PAL_BG_RED    ; 1

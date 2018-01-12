@@ -18,6 +18,7 @@ ENDM
 ; - MapGroupPointers (see maps/map_headers.asm)
 ; - MapGroupRoofs (see data/maps/roofs.asm)
 ; - OutdoorSprites (see data/maps/outdoor_sprites.asm)
+; - RoofPals (see gfx/tilesets/roofs.pal)
 ; `mapgroup` indexes are for the sub-tables of MapGroupPointers (see maps/map_headers.asm)
 	const_def
 

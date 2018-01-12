@@ -596,7 +596,7 @@ endr
 	ret
 ; 8a45
 
-INCLUDE "data/maps/sgb_roofs.asm"
+INCLUDE "gfx/sgb/roof_pal_inds.asm"
 
 _LoadSGBLayout_ReturnFromJumpTable: ; 8a60
 	push de
