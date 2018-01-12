@@ -562,10 +562,10 @@ NamingScreen_AnimateCursor: ; 11a3b (4:5a3b)
 .ok
 	cp d
 	ld de, .LetterEntries
-	ld a, $0
+	ld a, $0 ; SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR
 	jr nz, .ok2
 	ld de, .CaseDelEnd
-	ld a, $1
+	ld a, $1 ; SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG
 .ok2
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc

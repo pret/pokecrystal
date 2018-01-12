@@ -34,7 +34,7 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $f8, .OAMData_GSTitleTrail ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_1
 	dbw $fa, .OAMData_GSTitleTrail ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_2
 	dbw $00, .OAMData_TextEntryCursor ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR
-	dbw $00, .OAMData_ForFrameset09 ; SPRITE_ANIM_OAMSET_FOR_FRAMESET_09
+	dbw $00, .OAMData_TextEntryCursorBig ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG
 	dbw $00, .OAMData_22 ; SPRITE_ANIM_OAMSET_22
 	dbw $0f, .OAMData_GSIntroStar ; SPRITE_ANIM_OAMSET_GS_INTRO_STAR
 	dbw $11, .OAMData_1x1_Palette0 ; SPRITE_ANIM_OAMSET_GS_INTRO_SPARKLE_1
@@ -460,7 +460,7 @@ SpriteAnimOAMData: ; 8d94d
 	dsprite  0,  0, -1,  7, $00, 0 | Y_FLIP
 	dsprite  0,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
 
-.OAMData_ForFrameset09:
+.OAMData_TextEntryCursorBig:
 	db 10
 	dsprite -1,  7,  0,  0, $00, 0
 	dsprite -1,  7,  1,  0, $01, 0
