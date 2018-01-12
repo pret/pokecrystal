@@ -28,6 +28,7 @@ TEXT_DELAY_SLOW EQU 5
 	const FRAME_6 ; 5
 	const FRAME_7 ; 6
 	const FRAME_8 ; 7
+NUM_FRAMES EQU const_value
 
 ; TextBoxFlags:
 	const_def

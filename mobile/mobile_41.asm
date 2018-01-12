@@ -1033,17 +1033,17 @@ Function106464:: ; 106464
 
 Function10649b: ; 10649b
 	ld a, [TextBoxFrame]
-	and $7
-	ld bc, 3 tiles
+	maskbits NUM_FRAMES +- 1
+	ld bc, 6 * LEN_1BPP_TILE
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, vTiles2 tile $79
-	ld c, 6
+	ld hl, vTiles2 tile "┌" ; $79
+	ld c, 6 ; "┌" to "┘"
 	ld b, BANK(Frames)
 	call Function1064c3
-	ld hl, vTiles2 tile $7f
+	ld hl, vTiles2 tile " " ; $7f
 	ld de, TextBoxSpaceGFX
 	ld c, 1
 	ld b, BANK(TextBoxSpaceGFX)
