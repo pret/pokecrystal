@@ -14,30 +14,30 @@ BlackthornGym2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	callback MAPCALLBACK_CMDQUEUE, .Boulders
+	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
 
-.Boulders:
-	writecmdqueue .BoulderCmdQueue
+.SetUpStoneTable:
+	writecmdqueue .CommandQueue
 	return
 
-.BoulderCmdQueue:
-	cmdqueue CMDQUEUE_STONETABLE, .BoulderTable ; check if any stones are sitting on a warp
+.CommandQueue:
+	cmdqueue CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
 
-.BoulderTable:
-	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Disappear4
-	stonetable 3, BLACKTHORNGYM2F_BOULDER2, .Disappear5
-	stonetable 4, BLACKTHORNGYM2F_BOULDER3, .Disappear6
+.StoneTable:
+	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Boulder1
+	stonetable 3, BLACKTHORNGYM2F_BOULDER2, .Boulder2
+	stonetable 4, BLACKTHORNGYM2F_BOULDER3, .Boulder3
 	db -1 ; end
 
-.Disappear4:
+.Boulder1:
 	disappear BLACKTHORNGYM2F_BOULDER1
 	jump .Fall
 
-.Disappear5:
+.Boulder2:
 	disappear BLACKTHORNGYM2F_BOULDER2
 	jump .Fall
 
-.Disappear6:
+.Boulder3:
 	disappear BLACKTHORNGYM2F_BOULDER3
 	jump .Fall
 

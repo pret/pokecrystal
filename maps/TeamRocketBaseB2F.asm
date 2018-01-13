@@ -44,7 +44,7 @@ TeamRocketBaseB2F_MapScriptHeader:
 	return
 
 .Change:
-	changeblock 14, 12, $7
+	changeblock 14, 12, $07
 	return
 
 UnknownScript_0x6cf95:
@@ -330,7 +330,7 @@ UnknownScript_0x6d1e8:
 	writetext UnknownText_0x6dd6b
 	waitbutton
 	playsound SFX_ENTER_DOOR
-	changeblock 14, 12, $7
+	changeblock 14, 12, $07
 	reloadmappart
 	closetext
 	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER

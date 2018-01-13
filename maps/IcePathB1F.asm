@@ -25,7 +25,7 @@ IcePathB1F_MapScriptHeader:
 	stonetable 4, ICEPATHB1F_BOULDER2, .Boulder2
 	stonetable 5, ICEPATHB1F_BOULDER3, .Boulder3
 	stonetable 6, ICEPATHB1F_BOULDER4, .Boulder4
-	db -1
+	db -1 ; end
 
 .Boulder1:
 	disappear ICEPATHB1F_BOULDER1

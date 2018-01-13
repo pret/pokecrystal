@@ -13,8 +13,8 @@ IcePathB2FMahoganySide_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-BoulderScript_0x7e5a3:
-	jumptext UnknownText_0x7e5ad
+IcePathB2FMahoganySideBoulder:
+	jumptext IcePathB2FMahoganySideBoulderText
 
 IcePathB2FMahoganySideFullHeal:
 	itemball FULL_HEAL
@@ -25,7 +25,7 @@ IcePathB2FMahoganySideMaxPotion:
 IcePathB2FMahoganySideHiddenCarbos:
 	hiddenitem EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS, CARBOS
 
-UnknownText_0x7e5ad:
+IcePathB2FMahoganySideBoulderText:
 	text "It's immovably"
 	line "imbedded in ice."
 	done
@@ -52,9 +52,9 @@ IcePathB2FMahoganySide_MapEventHeader:
 
 .ObjectEvents:
 	db 6
-	object_event 11, 3, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_1A
-	object_event 4, 7, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_2A
-	object_event 3, 12, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_3A
-	object_event 12, 13, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BoulderScript_0x7e5a3, EVENT_BOULDER_IN_ICE_PATH_4A
+	object_event 11, 3, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_1A
+	object_event 4, 7, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_2A
+	object_event 3, 12, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_3A
+	object_event 12, 13, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_4A
 	object_event 8, 9, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FMahoganySideFullHeal, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_FULL_HEAL
 	object_event 0, 2, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FMahoganySideMaxPotion, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_MAX_POTION
