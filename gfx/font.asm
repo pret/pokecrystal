@@ -23,15 +23,6 @@ INCBIN "gfx/frames/9.1bpp"
 
 StatsScreenPageTilesGFX: ; f89b0
 INCBIN "gfx/stats/stats_tiles.2bpp"
-; f8a90
-
-ShinyIconGFX: ; f8a90
-; also part of StatsScreenPageTilesGFX
-INCBIN "gfx/stats/shiny.2bpp"
-
-ExpBarEndsGFX: ; f8aa0
-; not referenced on its own, but part of StatsScreenPageTilesGFX
-INCBIN "gfx/stats/exp_bar_ends.2bpp"
 ; f8ac0
 
 EnemyHPBarBorderGFX: ; f8ac0

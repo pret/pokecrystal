@@ -89,6 +89,9 @@
 	charmap "′",         $6e ; gfx/font/feet_inches.png
 	charmap "″",         $6f ; gfx/font/feet_inches.png
 
+	; needed for StatsScreen_PlaceShinyIcon and PrintPartyMonPage1
+	charmap "<SHINY>",   $3f ; gfx/stats/stats_tiles.png, tile 14
+
 ; Actual characters (from gfx/font/font.png)
 
 	charmap "A",         $80

@@ -1,5 +1,4 @@
-PRINTPARTY_HP    EQUS "\"◀\"" ; $71
-PRINTPARTY_SHINY EQUS "\"<ENEMY>\"" ; $3f
+PRINTPARTY_HP EQUS "\"◀\"" ; $71
 
 PrintPage1: ; 1dc1b0
 	hlcoord 0, 0
@@ -153,9 +152,9 @@ PrintPartyMonPage1: ; 1dc381
 	lb bc, BANK(GBPrinterLvIcon), 1
 	call Request1bpp
 
-	ld de, ShinyIconGFX
-	ld hl, vTiles2 tile PRINTPARTY_SHINY
-	lb bc, BANK(ShinyIconGFX), 1
+	ld de, StatsScreenPageTilesGFX + 14 tiles ; shiny icon
+	ld hl, vTiles2 tile "<SHINY>"
+	lb bc, BANK(StatsScreenPageTilesGFX), 1
 	call Get2bpp
 
 	xor a
@@ -333,7 +332,7 @@ Function1dc52c: ; 1dc52c
 	farcall CheckShininess
 	ret nc
 	hlcoord 18, 2
-	ld [hl], PRINTPARTY_SHINY
+	ld [hl], "<SHINY>"
 	ret
 ; 1dc550
 

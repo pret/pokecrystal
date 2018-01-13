@@ -489,7 +489,7 @@ StatsScreen_PlaceShinyIcon: ; 4dfa6 (13:5fa6)
 	farcall CheckShininess
 	ret nc
 	hlcoord 19, 0
-	ld [hl], $3f ; shiny icon
+	ld [hl], "<SHINY>"
 	ret
 
 StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
@@ -958,7 +958,7 @@ StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 	ld [rVBK], a
 	ld de, TextBoxSpaceGFX
 	lb bc, BANK(TextBoxSpaceGFX), 1
-	ld hl, vTiles2 tile $7f
+	ld hl, vTiles2 tile " "
 	call Get2bpp
 	pop af
 	ld [rVBK], a
@@ -971,7 +971,7 @@ StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 
 ; unreferenced
 Unknown_4e32a: ; 4e32a
-; A blank tile?
+; An unused space tile?
 	ds 16
 ; 4e33a
 
