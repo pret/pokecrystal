@@ -24,7 +24,7 @@ TeamRocketBaseB2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .TransmitterDoorCallback
+	callback MAPCALLBACK_TILES, .TransmitterDoorCallback
 
 .DummyScene0:
 	end
@@ -315,7 +315,7 @@ UnknownScript_0x6d184:
 	end
 
 TeamRocketBaseB2FLockedDoor:
-	dw EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER, .Script
+	conditional_event EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER, .Script
 
 .Script:
 	opentext
@@ -356,7 +356,7 @@ TeamRocketBaseB2FTMThief:
 	itemball TM_THIEF
 
 TeamRocketBaseB2FHiddenFullHeal:
-	dwb EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem EVENT_TEAM_ROCKET_BASE_B2F_HIDDEN_FULL_HEAL, FULL_HEAL
 
 MovementData_0x6d212:
 	step RIGHT

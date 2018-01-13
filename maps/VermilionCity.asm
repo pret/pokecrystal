@@ -12,7 +12,7 @@ VermilionCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VERMILION
@@ -123,7 +123,7 @@ VermilionCityMartSign:
 	jumpstd martsign
 
 VermilionCityHiddenFullHeal:
-	dwb EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
 
 VermilionCityTeacherText:
 	text "VERMILION PORT is"

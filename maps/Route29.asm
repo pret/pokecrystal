@@ -16,7 +16,7 @@ Route29_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Tuscany
+	callback MAPCALLBACK_OBJECTS, .Tuscany
 
 .DummyScene0:
 	end

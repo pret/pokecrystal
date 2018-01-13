@@ -12,7 +12,7 @@ CeruleanCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CERULEAN
@@ -147,7 +147,7 @@ CeruleanCityMartSign:
 	jumpstd martsign
 
 CeruleanCityHiddenBerserkGene:
-	dwb EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY, BERSERK_GENE
+	hiddenitem EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY, BERSERK_GENE
 
 CeruleanCityCooltrainerMText1:
 	text "KANTO's POWER"

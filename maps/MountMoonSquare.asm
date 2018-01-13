@@ -10,8 +10,8 @@ MountMoonSquare_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .DisappearMoonStone
-	dbw MAPCALLBACK_OBJECTS, .DisappearRock
+	callback MAPCALLBACK_NEWMAP, .DisappearMoonStone
+	callback MAPCALLBACK_OBJECTS, .DisappearRock
 
 .DummyScene:
 	end
@@ -75,7 +75,7 @@ ClefairyDance:
 	end
 
 MountMoonSquareHiddenMoonStone:
-	dwb EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
+	hiddenitem EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
 
 DontLitterSign:
 	jumptext DontLitterSignText

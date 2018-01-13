@@ -11,8 +11,8 @@ Colosseum_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
-	dbw MAPCALLBACK_NEWMAP, .PreparePokecenter2F
+	callback MAPCALLBACK_OBJECTS, .SetWhichChris
+	callback MAPCALLBACK_NEWMAP, .PreparePokecenter2F
 
 .InitializeColosseum:
 	priorityjump .InitializeAndPreparePokecenter2F

@@ -21,8 +21,8 @@ Route36NationalParkGate_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .CheckIfContestRunning
-	dbw MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
+	callback MAPCALLBACK_NEWMAP, .CheckIfContestRunning
+	callback MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
 
 .DummyScene0:
 	end

@@ -12,7 +12,7 @@ MahoganyTown_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
 	end

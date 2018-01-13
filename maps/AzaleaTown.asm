@@ -21,7 +21,7 @@ AzaleaTown_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .Flypoint
+	callback MAPCALLBACK_NEWMAP, .Flypoint
 
 .DummyScene0:
 	end
@@ -211,7 +211,7 @@ WhiteApricornTree:
 	fruittree FRUITTREE_AZALEA_TOWN
 
 AzaleaTownHiddenFullHeal:
-	dwb EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL
 
 AzaleaTownRivalBattleApproachMovement1:
 	step LEFT

@@ -12,7 +12,7 @@ Route19_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .ClearRocks
+	callback MAPCALLBACK_TILES, .ClearRocks
 
 .ClearRocks:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED

@@ -18,8 +18,8 @@ TinTower1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_OBJECTS, .NPCsCallback
-	dbw MAPCALLBACK_TILES, .StairsCallback
+	callback MAPCALLBACK_OBJECTS, .NPCsCallback
+	callback MAPCALLBACK_TILES, .StairsCallback
 
 .FaceSuicune:
 	priorityjump .SuicuneBattle

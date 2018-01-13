@@ -18,7 +18,7 @@ ElmsLab_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .MoveElmCallback
+	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
 
 .MeetElm:
 	priorityjump .WalkUpToElm

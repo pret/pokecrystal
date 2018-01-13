@@ -14,7 +14,7 @@ WiseTriosRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .WiseTrioCallback
+	callback MAPCALLBACK_OBJECTS, .WiseTrioCallback
 
 .DummyScene0:
 	end

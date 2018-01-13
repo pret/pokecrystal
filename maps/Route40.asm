@@ -18,7 +18,7 @@ Route40_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .MonicaCallback
+	callback MAPCALLBACK_OBJECTS, .MonicaCallback
 
 .MonicaCallback:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
@@ -135,7 +135,7 @@ Route40Rock:
 	jumpstd smashrock
 
 Route40HiddenHyperPotion:
-	dwb EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a621c:
 	step RIGHT

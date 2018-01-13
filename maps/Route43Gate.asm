@@ -13,7 +13,7 @@ Route43Gate_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
+	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .RocketShakedown:
 	priorityjump .RocketTakeover

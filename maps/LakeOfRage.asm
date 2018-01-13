@@ -20,8 +20,8 @@ LakeOfRage_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
-	dbw MAPCALLBACK_OBJECTS, .Wesley
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .Wesley
 
 .DummyScene0:
 	end
@@ -232,13 +232,13 @@ LakeOfRageTMDetect:
 	itemball TM_DETECT
 
 LakeOfRageHiddenFullRestore:
-	dwb EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
 LakeOfRageHiddenRareCandy:
-	dwb EVENT_LAKE_OF_RAGE_HIDDEN_RARE_CANDY, RARE_CANDY
+	hiddenitem EVENT_LAKE_OF_RAGE_HIDDEN_RARE_CANDY, RARE_CANDY
 
 LakeOfRageHiddenMaxPotion:
-	dwb EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION, MAX_POTION
 
 MovementData_0x70155:
 	teleport_from

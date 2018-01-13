@@ -7,7 +7,7 @@ WhirlIslandLugiaChamber_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Lugia
+	callback MAPCALLBACK_OBJECTS, .Lugia
 
 .Lugia:
 	checkevent EVENT_FOUGHT_LUGIA

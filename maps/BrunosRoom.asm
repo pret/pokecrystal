@@ -9,7 +9,7 @@ BrunosRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .BrunosRoomDoors
+	callback MAPCALLBACK_TILES, .BrunosRoomDoors
 
 .LockDoor:
 	priorityjump .BrunosDoorLocksBehindYou

@@ -16,7 +16,7 @@
 
 ## `.MapCallbacks: db` *N*
 
-- **`dbw` *type*, *script***
+- **`callback` *type*, *script***
 
 Callback types:
 
@@ -30,11 +30,21 @@ Callback types:
 
 - **`MAPCALLBACK_CMDQUEUE`**
 
-  **`dbw CMDQUEUE_STONETABLE,` *table_pointer***
-  
-  **`stonetable` *warp_id*, *person*, *script***
-  
-  **`db -1 ; end`**
+<!-- need pre tags here; can't use inline bold/italic formatting in Markdown code blocks -->
+<pre>
+	callback MAPCALLBACK_CMDQUEUE, .Boulders
+
+.Boulders:
+	writecmdqueue .BoulderCmdQueue
+	return
+
+.BoulderCmdQueue:
+	cmdqueue CMDQUEUE_STONETABLE, .BoulderTable
+
+.BoulderTable:
+	stonetable <i>warp_id</i>, <i>person</i>, <i>script</i>
+	db -1 ; end
+</pre>
 
 
 ## Event scripts
@@ -54,8 +64,10 @@ Callback types:
 
 ## `MapName_MapEventHeader:`
 
+```asm
 	; filler
 	db 0, 0
+```
 
 
 ## `.Warps: db` *N*
@@ -80,11 +92,11 @@ BG event types:
 
 - **`BGEVENT_IFSET/IFNOTSET`**
 
-  **`dw` *event_flag*, *script***
+  **`conditional_event` *event_flag*, *script***
 
 - **`BGEVENT_ITEM`**
 
-  **`dwb` *event_flag*, *item_id***
+  **`hiddenitem` *event_flag*, *item_id***
 
 - **`BGEVENT_COPY`**
 

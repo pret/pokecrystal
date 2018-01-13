@@ -44,7 +44,7 @@ MountMortar2FInsideEscapeRope:
 	itemball ESCAPE_ROPE
 
 MountMortar2FInsideHiddenFullRestore:
-	dwb EVENT_MOUNT_MORTAR_2F_INSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem EVENT_MOUNT_MORTAR_2F_INSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
 SupernerdHughSeenText:
 	text "Yo! MARKUS!"

@@ -14,7 +14,7 @@ Route43_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
+	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT

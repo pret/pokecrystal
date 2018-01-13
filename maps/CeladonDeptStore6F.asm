@@ -8,7 +8,7 @@ CeladonDeptStore6F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .Callback
+	callback MAPCALLBACK_TILES, .Callback
 
 .Callback:
 	changeblock 12, 0, $03

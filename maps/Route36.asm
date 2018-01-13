@@ -17,7 +17,7 @@ Route36_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .ArthurCallback
+	callback MAPCALLBACK_OBJECTS, .ArthurCallback
 
 .DummyScene0:
 	end

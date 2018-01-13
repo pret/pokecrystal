@@ -14,15 +14,14 @@ BlackthornGym2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_CMDQUEUE, .Boulders
+	callback MAPCALLBACK_CMDQUEUE, .Boulders
 
 .Boulders:
 	writecmdqueue .BoulderCmdQueue
 	return
 
 .BoulderCmdQueue:
-	dbw CMDQUEUE_STONETABLE, .BoulderTable ; check if any stones are sitting on a warp
-	dw 0 ; filler
+	cmdqueue CMDQUEUE_STONETABLE, .BoulderTable ; check if any stones are sitting on a warp
 
 .BoulderTable:
 	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Disappear4

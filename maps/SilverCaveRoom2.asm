@@ -20,7 +20,7 @@ SilverCaveRoom2PPUp:
 	itemball PP_UP
 
 SilverCaveRoom2HiddenMaxPotion:
-	dwb EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION, MAX_POTION
 
 SilverCaveRoom2_MapEventHeader:
 	; filler

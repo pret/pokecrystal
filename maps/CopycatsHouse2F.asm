@@ -12,7 +12,7 @@ CopycatsHouse2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Callback
+	callback MAPCALLBACK_OBJECTS, .Callback
 
 .Callback:
 	checkflag ENGINE_PLAYER_IS_FEMALE

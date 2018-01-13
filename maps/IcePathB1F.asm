@@ -11,15 +11,14 @@ IcePathB1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
+	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
 
 .SetUpStoneTable:
 	writecmdqueue .CommandQueue
 	return
 
 .CommandQueue:
-	dbw CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
-	dw 0 ; filler
+	cmdqueue CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
 
 .StoneTable:
 	stonetable 3, ICEPATHB1F_BOULDER1, .Boulder1
@@ -69,7 +68,7 @@ IcePathB1FIron:
 	itemball IRON
 
 IcePathB1FHiddenMaxPotion:
-	dwb EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
 IcePathBoulderFellThroughText:
 	text "The boulder fell"

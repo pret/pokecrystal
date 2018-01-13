@@ -8,7 +8,7 @@ DayCare_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .EggCheckCallback
+	callback MAPCALLBACK_OBJECTS, .EggCheckCallback
 
 .EggCheckCallback:
 	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG

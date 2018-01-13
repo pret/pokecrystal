@@ -10,7 +10,7 @@ Route34IlexForestGate_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .IsForestRestless
+	callback MAPCALLBACK_OBJECTS, .IsForestRestless
 
 .IsForestRestless:
 	checkevent EVENT_FOREST_IS_RESTLESS

@@ -12,7 +12,7 @@ EcruteakHouse_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .InitializeSages
+	callback MAPCALLBACK_OBJECTS, .InitializeSages
 
 .DummyScene0:
 	end

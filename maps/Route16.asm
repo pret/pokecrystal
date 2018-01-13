@@ -4,7 +4,7 @@ Route16_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .AlwaysOnBike
+	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
 
 .AlwaysOnBike:
 	checkcode VAR_YCOORD

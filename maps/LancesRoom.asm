@@ -11,7 +11,7 @@ LancesRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .LancesRoomDoors
+	callback MAPCALLBACK_TILES, .LancesRoomDoors
 
 .LockDoor:
 	priorityjump .LancesDoorLocksBehindYou

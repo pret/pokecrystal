@@ -14,8 +14,8 @@ GoldenrodDeptStoreB1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_TILES, UnknownScript_0x7d781
-	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x7d7ac
+	callback MAPCALLBACK_TILES, UnknownScript_0x7d781
+	callback MAPCALLBACK_NEWMAP, UnknownScript_0x7d7ac
 
 UnknownScript_0x7d781:
 	checkevent EVENT_RECEIVED_CARD_KEY

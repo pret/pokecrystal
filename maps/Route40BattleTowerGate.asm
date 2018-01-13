@@ -8,7 +8,7 @@ Route40BattleTowerGate_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .ShowSailor
+	callback MAPCALLBACK_OBJECTS, .ShowSailor
 
 .ShowSailor:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

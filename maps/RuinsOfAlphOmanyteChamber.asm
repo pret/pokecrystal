@@ -6,7 +6,7 @@ RuinsOfAlphOmanyteChamber_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .HiddenDoors
+	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
 	special SpecialOmanyteChamber

@@ -64,7 +64,7 @@ MountMortar1FInsideUltraBall:
 	itemball ULTRA_BALL
 
 MountMortar1FInsideHiddenMaxRepel:
-	dwb EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL
+	hiddenitem EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL
 
 PokemaniacMillerSeenText:
 	text "I'm not losing"

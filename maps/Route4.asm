@@ -51,7 +51,7 @@ Route4HPUp:
 	itemball HP_UP
 
 Route4HiddenUltraBall:
-	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
+	hiddenitem EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
 
 BirdKeeperHankSeenText:
 	text "I'm raising my"

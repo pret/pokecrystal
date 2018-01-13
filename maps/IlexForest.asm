@@ -17,7 +17,7 @@ IlexForest_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .FarfetchdCallback
+	callback MAPCALLBACK_OBJECTS, .FarfetchdCallback
 
 .FarfetchdCallback:
 	checkevent EVENT_GOT_HM01_CUT
@@ -414,13 +414,13 @@ IlexForestEther:
 	itemball ETHER
 
 IlexForestHiddenEther:
-	dwb EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER
+	hiddenitem EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER
 
 IlexForestHiddenSuperPotion:
-	dwb EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION, SUPER_POTION
 
 IlexForestHiddenFullHeal:
-	dwb EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL, FULL_HEAL
 
 IlexForestBoulder:
 ; unused

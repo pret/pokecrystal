@@ -13,7 +13,7 @@ Route37_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Sunny
+	callback MAPCALLBACK_OBJECTS, .Sunny
 
 .Sunny:
 	checkcode VAR_WEEKDAY
@@ -114,7 +114,7 @@ FruitTreeScript_0x1a8e0d:
 	fruittree FRUITTREE_ROUTE_37_3
 
 Route37HiddenEther:
-	dwb EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
+	hiddenitem EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
 
 TwinsAnnandanne1SeenText:
 	text "ANN: ANNE and I"

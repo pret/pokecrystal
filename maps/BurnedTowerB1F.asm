@@ -17,7 +17,7 @@ BurnedTowerB1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .LadderCallback
+	callback MAPCALLBACK_TILES, .LadderCallback
 
 .DummyScene0:
 	end

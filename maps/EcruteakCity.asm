@@ -13,7 +13,7 @@ EcruteakCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_ECRUTEAK
@@ -88,7 +88,7 @@ EcruteakCityMartSign:
 	jumpstd martsign
 
 EcruteakCityHiddenHyperPotion:
-	dwb EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 UnusedMissingDaughterText:
 ; This text is neither used nor referenced in the final game.

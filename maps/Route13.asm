@@ -77,7 +77,7 @@ Route13DirectionsSign:
 	jumptext Route13DirectionsSignText
 
 Route13HiddenCalcium:
-	dwb EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
+	hiddenitem EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
 
 PokefanmAlexSeenText:
 	text "Bow down before my"

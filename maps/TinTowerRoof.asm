@@ -7,7 +7,7 @@ TinTowerRoof_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .HoOh
+	callback MAPCALLBACK_OBJECTS, .HoOh
 
 .HoOh:
 	checkevent EVENT_FOUGHT_HO_OH

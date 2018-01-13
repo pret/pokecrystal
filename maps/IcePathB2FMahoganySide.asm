@@ -23,7 +23,7 @@ IcePathB2FMahoganySideMaxPotion:
 	itemball MAX_POTION
 
 IcePathB2FMahoganySideHiddenCarbos:
-	dwb EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS, CARBOS
+	hiddenitem EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS, CARBOS
 
 UnknownText_0x7e5ad:
 	text "It's immovably"

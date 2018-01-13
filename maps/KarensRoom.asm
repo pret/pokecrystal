@@ -9,7 +9,7 @@ KarensRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .KarensRoomDoors
+	callback MAPCALLBACK_TILES, .KarensRoomDoors
 
 .LockDoor:
 	priorityjump .KarensDoorLocksBehindYou

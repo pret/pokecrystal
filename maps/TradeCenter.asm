@@ -10,7 +10,7 @@ TradeCenter_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
+	callback MAPCALLBACK_OBJECTS, .SetWhichChris
 
 .InitializeTradeCenter:
 	priorityjump .InitializeAndPreparePokecenter2F

@@ -51,7 +51,7 @@ GoldenrodUndergroundSwitchRoomEntrances_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .UpdateDoorPositions
+	callback MAPCALLBACK_TILES, .UpdateDoorPositions
 
 .DummyScene0:
 	end
@@ -630,10 +630,10 @@ GoldenrodUndergroundSwitchRoomEntrancesFullHeal:
 	itemball FULL_HEAL
 
 GoldenrodUndergroundSwitchRoomEntrancesHiddenMaxPotion:
-	dwb EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
 
 GoldenrodUndergroundSwitchRoomEntrancesHiddenRevive:
-	dwb EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
 
 UndergroundSilverApproachMovement1:
 	step DOWN

@@ -24,7 +24,7 @@ TeamRocketBaseB3F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .CheckGiovanniDoor
+	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
 
 .LanceGetsPassword:
 	priorityjump LanceGetPasswordScript
@@ -174,7 +174,7 @@ TrainerScientistMitch:
 	end
 
 TeamRocketBaseB3FLockedDoor:
-	dw EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE, .Script
+	conditional_event EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE, .Script
 
 .Script:
 	opentext

@@ -13,7 +13,7 @@ GoldenrodUndergroundWarehouse_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .ResetSwitches
+	callback MAPCALLBACK_NEWMAP, .ResetSwitches
 
 .ResetSwitches:
 	clearevent EVENT_SWITCH_1

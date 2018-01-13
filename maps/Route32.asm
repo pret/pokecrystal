@@ -23,7 +23,7 @@ Route32_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Frieda
+	callback MAPCALLBACK_OBJECTS, .Frieda
 
 .DummyScene0:
 	end
@@ -506,10 +506,10 @@ Route32PokecenterSign:
 	jumpstd pokecentersign
 
 Route32HiddenGreatBall:
-	dwb EVENT_ROUTE_32_HIDDEN_GREAT_BALL, GREAT_BALL
+	hiddenitem EVENT_ROUTE_32_HIDDEN_GREAT_BALL, GREAT_BALL
 
 Route32HiddenSuperPotion:
-	dwb EVENT_ROUTE_32_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem EVENT_ROUTE_32_HIDDEN_SUPER_POTION, SUPER_POTION
 
 Movement_Route32CooltrainerMPushesYouBackToViolet:
 	step UP

@@ -13,7 +13,7 @@ MahoganyMart1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .MahoganyMart1FStaircase
+	callback MAPCALLBACK_TILES, .MahoganyMart1FStaircase
 
 .DummyScene0:
 	end

@@ -18,7 +18,7 @@ GoldenrodGameCorner_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Callback
+	callback MAPCALLBACK_OBJECTS, .Callback
 
 .Callback:
 	checkevent EVENT_BEAT_ELITE_FOUR

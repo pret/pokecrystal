@@ -13,7 +13,7 @@ TeamRocketBaseB1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .HideSecurityGrunt
+	callback MAPCALLBACK_OBJECTS, .HideSecurityGrunt
 
 .DummyScene:
 	end
@@ -540,7 +540,7 @@ TeamRocketBaseB1FGuardSpec:
 	itemball GUARD_SPEC
 
 TeamRocketBaseB1FHiddenRevive:
-	dwb EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE, REVIVE
+	hiddenitem EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE, REVIVE
 
 SecurityCameraMovement1:
 	big_step RIGHT

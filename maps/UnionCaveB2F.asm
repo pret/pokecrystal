@@ -12,7 +12,7 @@ UnionCaveB2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Lapras
+	callback MAPCALLBACK_OBJECTS, .Lapras
 
 .Lapras:
 	checkflag ENGINE_UNION_CAVE_LAPRAS

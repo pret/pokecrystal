@@ -13,7 +13,7 @@ IndigoPlateauPokecenter1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .PrepareElite4
+	callback MAPCALLBACK_NEWMAP, .PrepareElite4
 
 .DummyScene:
 	end

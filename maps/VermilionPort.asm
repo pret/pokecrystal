@@ -11,7 +11,7 @@ VermilionPort_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
 	end
@@ -195,7 +195,7 @@ SuperNerdScript_0x74ee6:
 	end
 
 VermilionPortHiddenIron:
-	dwb EVENT_VERMILION_PORT_HIDDEN_IRON, IRON
+	hiddenitem EVENT_VERMILION_PORT_HIDDEN_IRON, IRON
 
 MovementData_0x74ef1:
 	step DOWN

@@ -11,7 +11,7 @@ BlackthornGym1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .Boulders
+	callback MAPCALLBACK_TILES, .Boulders
 
 .Boulders:
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_1

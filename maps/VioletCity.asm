@@ -14,7 +14,7 @@ VioletCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VIOLET
@@ -98,7 +98,7 @@ VioletCityFruitTreeScript:
 	fruittree FRUITTREE_VIOLET_CITY
 
 VioletCityHiddenHyperPotion:
-	dwb EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 VioletCityFollowEarl_MovementData:
 	big_step DOWN

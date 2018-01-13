@@ -14,8 +14,8 @@ GoldenrodDeptStoreRoof_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_TILES, .CheckSaleChangeBlock
-	dbw MAPCALLBACK_OBJECTS, .CheckSaleChangeClerk
+	callback MAPCALLBACK_TILES, .CheckSaleChangeBlock
+	callback MAPCALLBACK_OBJECTS, .CheckSaleChangeClerk
 
 .CheckSaleChangeBlock:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON

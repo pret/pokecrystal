@@ -11,7 +11,7 @@ KurtsHouse_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .KurtCallback
+	callback MAPCALLBACK_OBJECTS, .KurtCallback
 
 .KurtCallback:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL

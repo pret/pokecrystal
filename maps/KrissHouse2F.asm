@@ -10,9 +10,10 @@ KrissHouse2F_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .InitializeRoom
-	dbw MAPCALLBACK_TILES, .SetSpawn
+	callback MAPCALLBACK_NEWMAP, .InitializeRoom
+	callback MAPCALLBACK_TILES, .SetSpawn
 
+; unused
 .Null:
 	end
 
@@ -20,11 +21,11 @@ KrissHouse2F_MapScriptHeader:
 	special ToggleDecorationsVisibility
 	setevent EVENT_IN_YOUR_ROOM
 	checkevent EVENT_INITIALIZED_EVENTS
-	iftrue .SkipInizialization
+	iftrue .SkipInitialization
 	jumpstd initializeevents
 	return
 
-.SkipInizialization:
+.SkipInitialization:
 	return
 
 .SetSpawn:
@@ -46,7 +47,7 @@ GameConsole:
 	describedecoration DECODESC_CONSOLE
 
 KrissHousePoster:
-	dw EVENT_KRISS_ROOM_POSTER, .Script
+	conditional_event EVENT_KRISS_ROOM_POSTER, .Script
 
 .Script:
 	describedecoration DECODESC_POSTER

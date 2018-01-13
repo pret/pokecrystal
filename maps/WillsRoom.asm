@@ -9,7 +9,7 @@ WillsRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .WillsRoomDoors
+	callback MAPCALLBACK_TILES, .WillsRoomDoors
 
 .LockDoor:
 	priorityjump .WillsDoorLocksBehindYou

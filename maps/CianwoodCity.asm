@@ -20,7 +20,7 @@ CianwoodCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
+	callback MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
 
 .DummyScene0:
 	end
@@ -145,10 +145,10 @@ CianwoodCityRock:
 	jumpstd smashrock
 
 CianwoodCityHiddenRevive:
-	dwb EVENT_CIANWOOD_CITY_HIDDEN_REVIVE, REVIVE
+	hiddenitem EVENT_CIANWOOD_CITY_HIDDEN_REVIVE, REVIVE
 
 CianwoodCityHiddenMaxEther:
-	dwb EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
+	hiddenitem EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
 
 MovementData_0x1a00da:
 	set_sliding

@@ -9,6 +9,12 @@ scene_script: MACRO
 	dw \1, 0
 ENDM
 
+callback: MACRO
+;\1: type: a MAPCALLBACK_* constant
+;\2: script pointer
+	dbw \1, \2
+ENDM
+
 warp_def: MACRO
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
@@ -23,9 +29,10 @@ coord_event: MACRO
 ;\2: y: top to bottom, starts at 0
 ;\3: scene id: controlled by setscene/setmapscene
 ;\4: script pointer
-	db \3, \2, \1, $0
+	db \3, \2, \1
+	db 0 ; filler
 	dw \4
-	db $0, $0
+	db 0, 0 ; filler
 ENDM
 
 bg_event: MACRO
@@ -91,6 +98,12 @@ else
 endc
 ENDM
 
+hiddenitem: MACRO
+;\1: flag: an EVENT_* constant
+;\2: item: from constants/item_constants.asm
+	dwb \1, \2
+ENDM
+
 elevfloor: MACRO
 ;\1: floor: a FLOOR_* constant
 ;\2: warp destination: starts at 1
@@ -99,10 +112,22 @@ elevfloor: MACRO
 	map \3
 ENDM
 
+conditional_event: MACRO
+;\1: flag: an EVENT_* constant
+;\2: script pointer
+	dw \1, \2
+ENDM
+
+cmdqueue: MACRO
+;\1: type: a CMDQUEUE_* constant
+;\2: data pointer
+	dbw \1, \2
+	dw 0 ; filler
+ENDM
+
 stonetable: MACRO
 ;\1: warp id
 ;\2: object_event id
 ;\3: script pointer
-	db \1, \2
-	dw \3
+	dbbw \1, \2, \3
 ENDM

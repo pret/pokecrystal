@@ -7,7 +7,7 @@ CinnabarIsland_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CINNABAR
@@ -35,7 +35,7 @@ CinnabarIslandPokecenterSign:
 	jumpstd pokecentersign
 
 CinnabarIslandHiddenRareCandy:
-	dwb EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY, RARE_CANDY
+	hiddenitem EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY, RARE_CANDY
 
 CinnabarIslandBlueTeleport:
 	teleport_from

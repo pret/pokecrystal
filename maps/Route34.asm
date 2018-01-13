@@ -19,7 +19,7 @@ Route34_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .EggCheckCallback
+	callback MAPCALLBACK_OBJECTS, .EggCheckCallback
 
 .EggCheckCallback:
 	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
@@ -488,10 +488,10 @@ Route34Nugget:
 	itemball NUGGET
 
 Route34HiddenRareCandy:
-	dwb EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
+	hiddenitem EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
 
 Route34HiddenSuperPotion:
-	dwb EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
 
 Route34MovementData_DayCareManWalksBackInside:
 	slow_step LEFT

@@ -9,7 +9,7 @@ KogasRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .KogasRoomDoors
+	callback MAPCALLBACK_TILES, .KogasRoomDoors
 
 .LockDoor:
 	priorityjump .KogasDoorLocksBehindYou

@@ -17,7 +17,7 @@ DragonsDenB1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .CheckSilver
+	callback MAPCALLBACK_NEWMAP, .CheckSilver
 
 .DummyScene0:
 	end
@@ -183,13 +183,13 @@ DragonsDenB1FMaxElixer:
 	itemball MAX_ELIXER
 
 DragonsDenB1FHiddenRevive:
-	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_REVIVE, REVIVE
+	hiddenitem EVENT_DRAGONS_DEN_B1F_HIDDEN_REVIVE, REVIVE
 
 DragonsDenB1FHiddenMaxPotion:
-	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
 DragonsDenB1FHiddenMaxElixer:
-	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_ELIXER, MAX_ELIXER
+	hiddenitem EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_ELIXER, MAX_ELIXER
 
 MovementDragonsDen_ClairWalksToYou:
 	slow_step RIGHT

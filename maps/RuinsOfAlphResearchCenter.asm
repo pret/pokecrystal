@@ -11,7 +11,7 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .ScientistCallback
+	callback MAPCALLBACK_OBJECTS, .ScientistCallback
 
 .DummyScene0:
 	end

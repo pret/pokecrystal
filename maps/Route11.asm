@@ -63,7 +63,7 @@ FruitTreeScript_0x68055:
 	fruittree FRUITTREE_ROUTE_11
 
 Route11HiddenRevive:
-	dwb EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
+	hiddenitem EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
 
 YoungsterOwenSeenText:
 	text "There's no cheat-"

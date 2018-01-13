@@ -15,9 +15,9 @@ GoldenrodUnderground_MapScriptHeader:
 
 .MapCallbacks:
 	db 3
-	dbw MAPCALLBACK_NEWMAP, .ResetSwitches
-	dbw MAPCALLBACK_TILES, .CheckBasementKey
-	dbw MAPCALLBACK_OBJECTS, .CheckDayOfWeek
+	callback MAPCALLBACK_NEWMAP, .ResetSwitches
+	callback MAPCALLBACK_TILES, .CheckBasementKey
+	callback MAPCALLBACK_OBJECTS, .CheckDayOfWeek
 
 .ResetSwitches:
 	clearevent EVENT_SWITCH_1
@@ -409,13 +409,13 @@ MapGoldenrodUndergroundSignpost1Script:
 	jumptext UnknownText_0x7c91a
 
 GoldenrodUndergroundHiddenParlyzHeal:
-	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
 
 GoldenrodUndergroundHiddenSuperPotion:
-	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION, SUPER_POTION
 
 GoldenrodUndergroundHiddenAntidote:
-	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE, ANTIDOTE
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE, ANTIDOTE
 
 SupernerdEricSeenText:
 	text "I got booted out"
