@@ -56,8 +56,7 @@ MonSubmenu: ; 24d19
 
 .MenuDataHeader: ; 24d3f
 	db $40 ; tile backup
-	db 00, 06 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 6, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw 0
 	db 1 ; default option
 ; 24d47
@@ -326,8 +325,7 @@ BattleMonMenu: ; 24e99
 
 MenuDataHeader_0x24ed4: ; 24ed4
 	db $00 ; flags
-	db 11, 11 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData2_0x24edc
 	db 1 ; default option
 ; 24edc

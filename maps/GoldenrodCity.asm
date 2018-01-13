@@ -96,8 +96,7 @@ MoveTutor:
 
 .MoveMenuDataHeader:
 	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 15 ; end coords
+	menu_coords 0, 2, 15, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 

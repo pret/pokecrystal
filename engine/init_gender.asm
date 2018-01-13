@@ -45,8 +45,7 @@ InitGender: ; 48dcb (12:4dcb)
 
 .MenuDataHeader: ; 0x48dfc
 	db $40 ; flags
-	db 04, 06 ; start coords
-	db 09, 12 ; end coords
+	menu_coords 6, 4, 12, 9
 	dw .MenuData2
 	db 1 ; default option
 ; 0x48e04

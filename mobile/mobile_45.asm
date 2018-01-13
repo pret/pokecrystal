@@ -7298,16 +7298,14 @@ Function1179a7: ; 1179a7 (45:79a7)
 
 MenuDataHeader_1179b5: ; 1179b5
 	db $40 ; flags
-	db 12,  0 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 1179bd
 
 MenuDataHeader_1179bd: ; 1179bd
 	db $40 ; flags
-	db  7, 14 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 1179c5
@@ -7658,18 +7656,16 @@ Function117c89:
 	ret
 
 MenuDataHeader_117cbc: ; 0x117cbc
-	db $40    ; flags
-	db 12,  0 ; start coords
-	db 17, 19 ; end coords
-	dw NULL   ; menu data 2
-	db 0      ; default option
+	db $40 ; flags
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw NULL
+	db 0 ; default option
 
 MenuDataHeader_117cc4: ; 0x117cc4
-	db $40    ; flags
-	db  7, 14 ; start coords
-	db 11, 19 ; end coords
-	dw NULL   ; menu data 2
-	db 0      ; default item
+	db $40 ; flags
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	dw NULL
+	db 0 ; default item
 
 YesNo117ccc: ; 0x117ccc
 	db   "はい"

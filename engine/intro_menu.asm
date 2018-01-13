@@ -554,8 +554,7 @@ Continue_LoadMenuHeader: ; 5ebf
 
 .MenuDataHeader_Dex: ; 5ed9
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 09, 15 ; end coords
+	menu_coords 0, 0, 15, 9
 	dw .MenuData2_Dex
 	db 1 ; default option
 ; 5ee1
@@ -571,8 +570,7 @@ Continue_LoadMenuHeader: ; 5ebf
 
 .MenuDataHeader_NoDex: ; 5efb
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 09, 15 ; end coords
+	menu_coords 0, 0, 15, 9
 	dw .MenuData2_NoDex
 	db 1 ; default option
 ; 5f03

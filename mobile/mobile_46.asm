@@ -3956,16 +3956,14 @@ BattleTowerRoomMenu_UpdateYesNoMenu:
 
 MenuDataHeader_119cf7: ; 119cf7
 	db $40 ; flags
-	db  7, 12 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 12, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 119cff
 
 MenuData_119cff: ; 119cff
 	db $40 ; flags
-	db  7, 15 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 15, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 119d07
@@ -4758,16 +4756,14 @@ String_11a2d3: ; 11a2d3
 
 MenuDataHeader_11a2d6: ; 11a2d6
 	db $40 ; flags
-	db  6, 14 ; start coords
-	db 10, 19 ; end coords
+	menu_coords 14, 6, SCREEN_WIDTH - 1, 10
 	dw NULL
 	db 0 ; default option
 ; 11a2de
 
 MenuDataHeader_11a2de: ; 11a2de
 	db $40 ; flags
-	db  7, 14 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 11a2e6
@@ -5330,8 +5326,7 @@ String_11a7f4: ; 11a7f4
 
 MenuDataHeader_11a804: ; 11a804
 	db $40 ; flags
-	db  0,  0 ; start coords
-	db  5, 19 ; end coords
+	menu_coords 0, 0, SCREEN_WIDTH - 1, 5
 	dw NULL
 	db 0 ; default option
 ; 11a80c
@@ -6002,8 +5997,7 @@ Function11adc4:
 
 MenuDataHeader_11ae38: ; 11ae38
 	db $40 ; flags
-	db 10, 10 ; start coords
-	db 17, 17 ; end coords
+	menu_coords 10, 10, 17, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 11ae40
@@ -6249,8 +6243,7 @@ Function11afd6: ; 11afd6
 
 MenuDataHeader_11afe8: ; 11afe8
 	db $40 ; flags
-	db 12,  9 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 9, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 11aff0
@@ -6267,8 +6260,7 @@ String_11b003: ; 11b003
 
 MenuDataHeader_11b013: ; 11b013
 	db $40 ; flags
-	db  7, 14 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 1 ; default option
 ; 11b01b

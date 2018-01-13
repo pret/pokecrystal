@@ -564,8 +564,7 @@ MobileDesc_ZipCode:          db "Your zip code?@"
 
 MenuDataHeader_0x484f1: ; 0x484f1
 	db $40 ; flags
-	db 02, 11 ; start coords
-	db 07, 19 ; end coords
+	menu_coords 11, 2, SCREEN_WIDTH - 1, 7
 	dw MenuData2_0x484f9
 	db 1 ; default option
 ; 0x484f9
@@ -580,23 +579,19 @@ String_484ff: db "Girl@"
 
 MenuDataHeader_0x48504: ; 0x48504
 	db $40 ; flags
-	db 00, 10 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 
 MenuDataHeader_0x48509: ; 0x48509
 	db $40 ; flags
-	db 05, 10 ; start coords
-	db 07, 19 ; end coords
+	menu_coords 10, 5, SCREEN_WIDTH - 1, 7
 
 MenuDataHeader_0x4850e: ; 0x4850e
 	db $40 ; flags
-	db 09, 10 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 10, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
 MenuDataHeader_0x48513: ; 0x48513
 	db $40 ; flags
-	db 01, 11 ; start coords
-	db 12, 18 ; end coords
+	menu_coords 11, 1, 18, 12
 	dw MenuData2_0x4851b
 	db 1 ; default option
 ; 0x4851b
@@ -1278,8 +1273,7 @@ Function48a9a: ; 48a9a (12:4a9a)
 
 MenuDataHeader_0x48a9c: ; 0x48a9c
 	db $40 ; flags
-	db 08, 10 ; start coords
-	db 13, 19 ; end coord
+	menu_coords 10, 8, SCREEN_WIDTH - 1, 13
 
 String_48aa1: ; 48aa1
 	db   "Tell Now"

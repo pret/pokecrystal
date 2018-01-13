@@ -716,8 +716,7 @@ Function4ac58: ; 4ac58
 
 MenuDataHeader_0x4aca2: ; 0x4aca2
 	db $40 ; flags
-	db 09, 11 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 11, 9, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 1 ; default option
 ; 0x4acaa

@@ -163,8 +163,7 @@ Pack: ; 10000
 ; 10124 (4:4124)
 .MenuDataHeader1: ; 0x10124
 	db $40 ; flags
-	db 07, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2_1
 	db 1 ; default option
 ; 0x1012c
@@ -184,8 +183,7 @@ Pack: ; 10000
 
 .MenuDataHeader2: ; 0x1013b
 	db $40 ; flags
-	db 05, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2_2
 	db 1 ; default option
 ; 0x10143
@@ -324,8 +322,7 @@ Pack: ; 10000
 ; 10249 (4:4249)
 MenuDataHeader_UsableKeyItem: ; 0x10249
 	db $40 ; flags
-	db 01, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10251
@@ -350,8 +347,7 @@ Jumptable_UseGiveTossRegisterQuit: ; 1026a
 
 MenuDataHeader_UsableItem: ; 0x10274
 	db $40 ; flags
-	db 03, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x1027c
@@ -374,8 +370,7 @@ Jumptable_UseGiveTossQuit: ; 10291
 
 MenuDataHeader_UnusableItem: ; 0x10299
 	db %01000000 ; flags
-	db 07, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x102a1
@@ -394,8 +389,7 @@ Jumptable_UseQuit: ; 102ac
 
 MenuDataHeader_UnusableKeyItem: ; 0x102b0
 	db %01000000 ; flags
-	db 05, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x102b8
@@ -416,8 +410,7 @@ Jumptable_UseRegisterQuit: ; 102c7
 
 MenuDataHeader_HoldableKeyItem: ; 0x102cd
 	db $40 ; flags
-	db 03, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x102d5
@@ -440,8 +433,7 @@ Jumptable_GiveTossRegisterQuit: ; 102ea
 
 MenuDataHeader_HoldableItem: ; 0x102f2
 	db $40 ; flags
-	db 05, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x102fa
@@ -858,8 +850,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 10601 (4:4601)
 .UsableMenuDataHeader: ; 0x10601
 	db $40 ; flags
-	db 07, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .UsableMenuData2
 	db 1 ; default option
 ; 0x10609
@@ -878,8 +869,7 @@ TMHMSubmenu: ; 105dc (4:45dc)
 
 .UnusableMenuDataHeader: ; 0x10618
 	db $40 ; flags
-	db 09, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .UnusableMenuData2
 	db 1 ; default option
 ; 0x10620
@@ -1170,8 +1160,7 @@ TutorialPack: ; 107bb
 ; 107ef (4:47ef)
 .ItemsMenuDataHeader: ; 0x107ef
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .ItemsMenuData2
 	db 1 ; default option
 ; 0x107f7
@@ -1194,8 +1183,7 @@ TutorialPack: ; 107bb
 ; 1080e (4:480e)
 .KeyItemsMenuDataHeader: ; 0x1080e
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .KeyItemsMenuData2
 	db 1 ; default option
 ; 0x10816
@@ -1227,8 +1215,7 @@ TutorialPack: ; 107bb
 ; 10842 (4:4842)
 .BallsMenuDataHeader: ; 0x10842
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .BallsMenuData2
 	db 1 ; default option
 ; 0x1084a
@@ -1553,8 +1540,7 @@ Pack_InitColors: ; 10a40
 
 ItemsPocketMenuDataHeader: ; 0x10a4f
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10a57
@@ -1571,8 +1557,7 @@ ItemsPocketMenuDataHeader: ; 0x10a4f
 
 PC_Mart_ItemsPocketMenuDataHeader: ; 0x10a67
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10a6f
@@ -1589,8 +1574,7 @@ PC_Mart_ItemsPocketMenuDataHeader: ; 0x10a67
 
 KeyItemsPocketMenuDataHeader: ; 0x10a7f
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10a87
@@ -1607,8 +1591,7 @@ KeyItemsPocketMenuDataHeader: ; 0x10a7f
 
 PC_Mart_KeyItemsPocketMenuDataHeader: ; 0x10a97
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10a9f
@@ -1625,8 +1608,7 @@ PC_Mart_KeyItemsPocketMenuDataHeader: ; 0x10a97
 
 BallsPocketMenuDataHeader: ; 0x10aaf
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10ab7
@@ -1643,8 +1625,7 @@ BallsPocketMenuDataHeader: ; 0x10aaf
 
 PC_Mart_BallsPocketMenuDataHeader: ; 0x10ac7
 	db $40 ; flags
-	db 01, 07 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10acf

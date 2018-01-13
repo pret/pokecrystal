@@ -38,8 +38,7 @@ _KrisDecorationMenu: ; 0x2675c
 
 .MenuDataHeader: ; 0x2679a
 	db $40 ; flags
-	db 00, 05 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 5, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x267a2
@@ -424,8 +423,7 @@ PopulateDecoCategoryMenu: ; 2695b
 
 .NonscrollingMenuDataHeader: ; 0x269b5
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .NonscrollingMenuData2
 	db 1 ; default option
 ; 0x269bd
@@ -440,8 +438,7 @@ PopulateDecoCategoryMenu: ; 2695b
 
 .ScrollingMenuDataHeader: ; 0x269c5
 	db $40 ; flags
-	db 01, 01 ; start coords
-	db 16, 18 ; end coords
+	menu_coords 1, 1, SCREEN_WIDTH - 2, SCREEN_HEIGHT - 2
 	dw .ScrollingMenuData2
 	db 1 ; default option
 ; 0x269cd
@@ -952,8 +949,7 @@ QueryWhichSide: ; 26e9a
 
 MenuDataHeader_0x26eab: ; 0x26eab
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 07, 13 ; end coords
+	menu_coords 0, 0, 13, 7
 	dw MenuData2_0x26eb3
 	db 1 ; default option
 ; 0x26eb3

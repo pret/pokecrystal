@@ -48,8 +48,7 @@ _ResetClock: ; 4d3b1
 
 .NoYes_MenuDataHeader: ; 0x4d40d
 	db $00 ; flags
-	db 07, 14 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .NoYes_MenuData2
 	db 1 ; default option
 
@@ -286,8 +285,7 @@ _DeleteSaveData: ; 4d54c
 
 .NoYesMenuDataHeader: ; 0x4d585
 	db $00 ; flags
-	db 07, 14 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 

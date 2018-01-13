@@ -911,8 +911,7 @@ Function8b855: ; 8b855
 
 MenuDataHeader_0x8b867: ; 0x8b867
 	db $40 ; flags
-	db 03, 01 ; start coords
-	db 13, 18 ; end coords
+	menu_coords 1, 3, 18, 13
 	dw MenuData2_0x8b870
 	db 1 ; default option
 ; 0x8b86f
@@ -1084,13 +1083,11 @@ Function8b9ab: ; 8b9ab
 
 MenuDataHeader_0x8b9ac: ; 0x8b9ac
 	db $40 ; flags
-	db 00, 11 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
 MenuDataHeader_0x8b9b1: ; 0x8b9b1
 	db $40 ; flags
-	db 00, 11 ; start coords
-	db 07, 19 ; end coords
+	menu_coords 11, 0, SCREEN_WIDTH - 1, 7
 	dw MenuData2_0x8b9b9
 	db 1 ; default option
 ; 0x8b9b9
@@ -1105,8 +1102,7 @@ MenuData2_0x8b9b9: ; 0x8b9b9
 
 MenuDataHeader_0x8b9ca: ; 0x8b9ca
 	db $40 ; flags
-	db 00, 11 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData2_0x8b9d2
 	db 1 ; default option
 ; 0x8b9d2

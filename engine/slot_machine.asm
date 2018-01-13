@@ -1871,8 +1871,7 @@ Slots_AskBet: ; 9307c (24:707c)
 
 .MenuDataHeader: ; 0x930d6
 	db $40 ; flags
-	db 10, 14 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 14, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x930de

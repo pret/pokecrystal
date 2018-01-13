@@ -153,15 +153,13 @@ StartMenu:: ; 125cd
 
 .MenuDataHeader:
 	db $40 ; tile backup
-	db 0, 10 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default selection
 
 .ContestMenuDataHeader:
 	db $40 ; tile backup
-	db 2, 10 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 10, 2, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default selection
 
@@ -977,8 +975,7 @@ TakePartyItem: ; 12c60
 
 GiveTakeItemMenuData: ; 12c9b
 	db %01010000
-	db 12, 12 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .Items
 	db 1 ; default option
 
@@ -1166,8 +1163,7 @@ MonMailAction: ; 12d45
 
 .MenuDataHeader:
 	db $40 ; flags
-	db 10, 12 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x12dd1

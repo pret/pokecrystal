@@ -618,8 +618,7 @@ Text_Mart_CostsThisMuch: ; 0x15e13
 
 MenuDataHeader_Buy: ; 0x15e18
 	db $40 ; flags
-	db 03, 01 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 1, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .menudata2
 	db 1 ; default option
 ; 0x15e20
@@ -903,8 +902,7 @@ Text_Mart_HowMayIHelpYou: ; 0x15f83
 
 MenuDataHeader_BuySell: ; 0x15f88
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 07 ; end coords
+	menu_coords 0, 0, 7, 8
 	dw .menudata2
 	db 1 ; default option
 ; 0x15f90

@@ -34,8 +34,7 @@ Function24f19: ; 24f19
 
 BattleMenuDataHeader: ; 24f2c
 	db $40 ; flags
-	db 12, 08 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 8, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f34
 	db 1 ; default option
 ; 24f34
@@ -57,8 +56,7 @@ Strings24f3d: ; 0x24f3d
 
 MenuDataHeader_0x24f4e: ; 24f4e
 	db $40 ; flags
-	db 12, 00 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f56
 	db 1 ; default option
 ; 24f56
@@ -88,8 +86,7 @@ Function24f7c: ; 24f7c
 
 MenuDataHeader_0x24f89: ; 24f89
 	db $40 ; flags
-	db 12, 02 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 2, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f91
 	db 1 ; default option
 ; 24f91

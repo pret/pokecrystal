@@ -230,8 +230,7 @@ BillsPCDepositFuncCancel: ; e2537 (38:6537)
 
 BillsPCDepositMenuDataHeader: ; 0xe253d (38:653d)
 	db $40 ; flags
-	db 04, 09 ; start coords
-	db 13, 19 ; end coords
+	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData2
 	db 1 ; default option
 ; 0xe2545
@@ -491,8 +490,7 @@ BillsPC_Withdraw: ; e2675 (38:6675)
 
 .MenuDataHeader: ; 0xe2731
 	db $40 ; flags
-	db 04, 09 ; start coords
-	db 13, 19 ; end coords
+	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
 ; 0xe2739
@@ -715,8 +713,7 @@ _MovePKMNWithoutMail: ; e2759
 
 .MenuDataHeader: ; 0xe28c3
 	db $40 ; flags
-	db 04, 09 ; start coords
-	db 13, 19 ; end coords
+	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData2
 	db 1 ; default option
 ; 0xe28cb
@@ -2334,8 +2331,7 @@ BillsPC_ClearTilemap: ; e35e2 (38:75e2)
 
 _ChangeBox_menudataheader: ; 0xe35f1
 	db $40 ; flags
-	db 05, 01 ; start coords
-	db 12, 09 ; end coords
+	menu_coords 1, 5, 9, 12
 	dw .menudata2
 	db 1 ; default option
 ; 0xe35f9
@@ -2563,8 +2559,7 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 
 .MenuDataHeader: ; 0xe377b
 	db $40 ; flags
-	db 04, 11 ; start coords
-	db 13, 19 ; end coords
+	menu_coords 11, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData2
 	db 1 ; default option
 ; 0xe3783

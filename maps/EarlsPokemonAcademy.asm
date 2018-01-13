@@ -104,8 +104,7 @@ AcademyBlackboard:
 
 .BlackboardMenuData:
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 11 ; end coords
+	menu_coords 0, 0, 11, 8
 	dw .MenuData2
 	db 1 ; default option
 

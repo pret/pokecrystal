@@ -2120,8 +2120,7 @@ Function100d67: ; 100d67
 
 .MenuDataHeader: ; 100d88
 	db 0 ; flags
-	db 11, 11 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 
@@ -6288,8 +6287,7 @@ Function1029af: ; 1029af
 
 MenuDataHeader_1029bb: ; 1029bb
 	db $40 ; flags
-	db 10, 3 ; start coords
-	db 12, 15 ; end coords
+	menu_coords 3, 10, 15, 12
 	dw NULL
 	db 1 ; default option
 ; 1029c3
@@ -7786,8 +7784,7 @@ AskMobileOrCable: ; 103612
 
 MenuDataHeader_103640: ; 103640
 	db $40 ; flags
-	db  6, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 6, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData2_103648
 	db 1 ; default option
 
@@ -7941,8 +7938,7 @@ Function103700: ; 103700
 
 MenuDataHeader_103747: ; 103747
 	db $40 ; flags
-	db  5, 13 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData2_10374f
 	db 1 ; default option
 

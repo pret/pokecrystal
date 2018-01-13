@@ -484,8 +484,7 @@ Function17d246: ; 17d246
 
 MenuDataHeader_17d26a: ; 17d26a
 	db $40 ; flags
-	db  0,  0 ; start coords
-	db  9, 14 ; end coords
+	menu_coords 0, 0, 14, 9
 	dw MenuData2_17d272
 	db 1 ; default option
 
@@ -500,8 +499,7 @@ MenuData2_17d272: ; 17d272
 
 MenuDataHeader_ChallengeExplanationCancel: ; 17d28f
 	db $40 ; flags
-	db  0,  0 ; start coords
-	db  7, 14 ; end coords
+	menu_coords 0, 0, 14, 7
 	dw MenuData2_ChallengeExplanationCancel
 	db 1 ; default option
 

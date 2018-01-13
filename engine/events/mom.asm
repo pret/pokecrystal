@@ -729,8 +729,7 @@ Mom_HeldString: ; 166b0
 
 MenuDataHeader_0x166b5: ; 0x166b5
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 10, 10 ; end coords
+	menu_coords 0, 0, 10, 10
 	dw MenuData2_0x166bd
 	db 1 ; default option
 ; 0x166bd

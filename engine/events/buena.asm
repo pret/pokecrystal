@@ -30,8 +30,7 @@ SpecialBuenasPassword: ; 8af6b
 
 .MenuDataHeader: ; 0x8afa9
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 07, 10 ; end coords
+	menu_coords 0, 0, 10, 7
 	dw .MenuData2
 	db 1 ; default option
 ; 0x8afb1
@@ -226,8 +225,7 @@ PrintBlueCardBalance: ; 8b097
 
 BlueCardBalanceMenuDataHeader: ; 0x8b0d1
 	db $40 ; flags
-	db 11, 00 ; start coords
-	db 13, 11 ; end coords
+	menu_coords 0, 11, 11, 13
 ; 8b0d6
 
 Buena_PlacePrizeMenuBox: ; 8b0d6
@@ -238,8 +236,7 @@ Buena_PlacePrizeMenuBox: ; 8b0d6
 
 .menudataheader ; 0x8b0dd
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 11, 17 ; end coords
+	menu_coords 0, 0, 17, TEXTBOX_Y - 1
 ; 8b0e2
 
 Buena_PrizeMenu: ; 8b0e2
@@ -271,8 +268,7 @@ Buena_PrizeMenu: ; 8b0e2
 
 .MenuDataHeader: ; 0x8b113
 	db $40 ; flags
-	db 01, 01 ; start coords
-	db 09, 16 ; end coords
+	menu_coords 1, 1, 16, 9
 	dw .MenuData2
 	db 1 ; default option
 ; 0x8b11b

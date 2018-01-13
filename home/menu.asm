@@ -41,8 +41,7 @@ LoadMenuTextBox:: ; 1d58
 
 .MenuDataHeader: ; 1d5f
 	db $40 ; tile backup
-	db 12, 0 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw vTiles0
 	db 0 ; default option
 ; 1d67
@@ -61,8 +60,7 @@ LoadStandardMenuDataHeader:: ; 1d6e
 
 .MenuDataHeader: ; 1d75
 	db $40 ; tile backup
-	db 0, 0 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw 0
 	db 1 ; default option
 ; 1d7d
@@ -184,8 +182,7 @@ InterpretTwoOptionMenu:: ; 1dfe
 
 YesNoMenuDataHeader:: ; 1e1d
 	db $40 ; tile backup
-	db 5, 10 ; start coords
-	db 9, 15 ; end coords
+	menu_coords 10, 5, 15, 9
 	dw .MenuData2
 	db 1 ; default option
 ; 1e25

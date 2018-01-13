@@ -70,8 +70,7 @@ _BillsPC: ; e3fd
 
 .MenuDataHeader: ; 0xe46f
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 

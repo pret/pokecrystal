@@ -1,7 +1,6 @@
 ChrisNameMenuHeader: ; 882b5
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 11, 10 ; end coords
+	menu_coords 0, 0, 10, TEXTBOX_Y - 1
 	dw .MaleNames
 	db 1 ; ????
 	db 0 ; default option
@@ -20,8 +19,7 @@ MalePlayerNameArray: ; 882c9
 
 KrisNameMenuHeader: ; 882e5
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 11, 10 ; end coords
+	menu_coords 0, 0, 10, TEXTBOX_Y - 1
 	dw .FemaleNames
 	db 1 ; ????
 	db 0 ; default option

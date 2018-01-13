@@ -85,13 +85,12 @@ Kurt_SelectApricorn: ; 88055
 
 .MenuDataHeader: ; 0x88086
 	db $40 ; flags
-	db 01, 01 ; start coords
-	db 10, 13 ; end coords
+	menu_coords 1, 1, 13, 10
 	dw .MenuData2
 	db 1 ; default option
 ; 0x8808e
 
-	db 0
+	db 0 ; XXX
 
 .MenuData2: ; 0x8808f
 	db $10 ; flags
@@ -160,10 +159,12 @@ Kurt_SelectQuantity: ; 880c2
 
 .MenuDataHeader: ; 0x8810d
 	db $40 ; flags
-	db 09, 06 ; start coords
-	db 12, 19 ; end coords
+	menu_coords 6, 9, SCREEN_WIDTH - 1, 12
 
-	db 0, 0, -1, 0 ; XXX
+	; XXX
+	dw 0
+	db -1
+	db 0
 
 .PlaceApricornName: ; 88116
 	call MenuBoxCoord2Tile

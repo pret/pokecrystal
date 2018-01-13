@@ -673,8 +673,7 @@ Function171c66: ; 171c66 (5c:5c66)
 
 MenuDataHeader_171c6b: ; 171c6b
 	db $40 ; flags
-	db 12,  0 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 171c73

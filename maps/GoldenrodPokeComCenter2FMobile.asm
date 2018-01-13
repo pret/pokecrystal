@@ -50,8 +50,7 @@ UnknownScript_0x62600:
 
 MenuDataHeader_0x62602:
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 15 ; end coords
+	menu_coords 0, 0, 15, 8
 	dw .MenuData2
 	db 1 ; default option
 
@@ -93,8 +92,7 @@ UnknownScript_0x6264a:
 
 MenuDataHeader_0x6264c:
 	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 15 ; end coords
+	menu_coords 0, 0, 15, 8
 	dw .MenuData2
 	db 1 ; default option
 

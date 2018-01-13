@@ -267,8 +267,7 @@ DragonShrineElder3Script:
 
 DragonShrineQuestion1_MenuDataHeader:
 	db $40 ; flags
-	db 04, 08 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
@@ -281,8 +280,7 @@ DragonShrineQuestion1_MenuDataHeader:
 
 DragonShrineQuestion2_MenuDataHeader:
 	db $40 ; flags
-	db 04, 09 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 9, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
@@ -295,8 +293,7 @@ DragonShrineQuestion2_MenuDataHeader:
 
 DragonShrineQuestion3_MenuDataHeader:
 	db $40 ; flags
-	db 04, 05 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 5, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
@@ -309,8 +306,7 @@ DragonShrineQuestion3_MenuDataHeader:
 
 DragonShrineQuestion4_MenuDataHeader:
 	db $40 ; flags
-	db 04, 08 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
@@ -323,8 +319,7 @@ DragonShrineQuestion4_MenuDataHeader:
 
 DragonShrineQuestion5_MenuDataHeader:
 	db $40 ; flags
-	db 04, 12 ; start coords
-	db 11, 19 ; end coords
+	menu_coords 12, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 

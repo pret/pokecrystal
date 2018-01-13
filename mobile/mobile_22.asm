@@ -278,8 +278,7 @@ Function89261: ; 89261
 
 MenuDataHeader_0x892a3: ; 0x892a3
 	db $40 ; flags
-	db 05, 10 ; start coords
-	db 09, 15 ; end coords
+	menu_coords 10, 5, 15, 9
 	dw MenuData2_0x892ab
 	db 1 ; default option
 ; 0x892ab
@@ -2833,8 +2832,7 @@ Function8a116: ; 8a116 (22:6116)
 
 MenuDataHeader_0x8a176: ; 0x8a176
 	db $40 ; flags
-	db 00, 14 ; start coords
-	db 06, 19 ; end coords
+	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
 ; 8a17b
 
 Function8a17b: ; 8a17b (22:617b)
@@ -2856,8 +2854,7 @@ Function8a17b: ; 8a17b (22:617b)
 
 MenuDataHeader_0x8a19a: ; 0x8a19a
 	db $40 ; flags
-	db 00, 14 ; start coords
-	db 06, 19 ; end coords
+	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
 	dw MenuData2_0x8a1a2
 	db 1 ; default option
 ; 0x8a1a2
@@ -3016,8 +3013,7 @@ Function8a2aa: ; 8a2aa (22:62aa)
 
 MenuDataHeader_0x8a2ef: ; 0x8a2ef
 	db $40 ; flags
-	db 12, 00 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 ; 8a2f4
 
 UnknownText_0x8a2f4: ; 0x8a2f4
@@ -3178,8 +3174,7 @@ Unknown_8a40b: db 1, 2, 3, -1
 
 MenuDataHeader_0x8a40f: ; 0x8a40f
 	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 10 ; end coords
+	menu_coords 0, 2, 10, TEXTBOX_Y - 1
 	dw MenuData2_0x8a417
 	db 1 ; default option
 ; 0x8a417
@@ -3195,8 +3190,7 @@ MenuData2_0x8a417: ; 0x8a417
 
 MenuDataHeader_0x8a435: ; 0x8a435
 	db $40 ; flags
-	db 02, 00 ; start coords
-	db 09, 10 ; end coords
+	menu_coords 0, 2, 10, 9
 	dw MenuData2_0x8a43d
 	db 1 ; default option
 ; 0x8a43d
@@ -3921,8 +3915,7 @@ Jumptable_8a9c5: ; 8a9c5 (22:69c5)
 
 MenuDataHeader_0x8a9c9: ; 0x8a9c9
 	db $40 ; flags
-	db 04, 11 ; start coords
-	db 11, 18 ; end coords
+	menu_coords 11, 4, 18, TEXTBOX_Y - 1
 ; 8a9ce
 
 Function8a9ce: ; 8a9ce (22:69ce)
@@ -3951,8 +3944,7 @@ Function8a9ce: ; 8a9ce (22:69ce)
 
 MenuDataHeader_0x8a9f2: ; 0x8a9f2
 	db $40 ; flags
-	db 04, 11 ; start coords
-	db 11, 18 ; end coords
+	menu_coords 11, 4, 18, TEXTBOX_Y - 1
 	dw MenuData2_0x8a9fa
 	db 1 ; default option
 ; 0x8a9fa

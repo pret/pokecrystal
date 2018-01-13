@@ -100,5 +100,4 @@ CheckCanLearnMoveTutorMove: ; 492b9
 
 .MenuDataHeader: ; 0x4930a
 	db $40 ; flags
-	db 12, 00 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1

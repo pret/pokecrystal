@@ -559,8 +559,7 @@ MailboxPC: ; 0x44806
 
 .TopMenuDataHeader: ; 0x4494c
 	db %01000000 ; flags
-	db 1, 8 ; start coords
-	db 10, 18 ; end coords
+	menu_coords 8, 1, SCREEN_WIDTH - 2, 10
 	dw .TopMenuData2
 	db 1 ; default option
 
@@ -575,8 +574,7 @@ MailboxPC: ; 0x44806
 
 .SubMenuDataHeader: ; 0x44964
 	db %01000000 ; flags
-	db 0,  0 ; start coords
-	db 9, 13 ; end coords
+	menu_coords 0, 0, 13, 9
 	dw .SubMenuData2
 	db 1 ; default option
 

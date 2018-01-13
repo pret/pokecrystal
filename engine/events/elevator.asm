@@ -189,8 +189,7 @@ Elevator_GetCurrentFloorString: ; 1353f
 
 Elevator_MenuDataHeader: ; 0x13550
 	db $40 ; flags
-	db 01, 12 ; start coords
-	db 09, 18 ; end coords
+	menu_coords 12, 1, 18, 9
 	dw Elevator_MenuData2
 	db 1 ; default option
 ; 0x13558

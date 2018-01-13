@@ -508,8 +508,7 @@ Function1161d5: ; 1161d5
 
 MenuDataHeader_11628c: ; 11628c
 	db $40 ; flags
-	db  6,  0 ; start coords
-	db 17, 19 ; end coords
+	menu_coords 0, 6, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 116294
