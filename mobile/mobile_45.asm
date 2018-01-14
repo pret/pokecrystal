@@ -7297,7 +7297,7 @@ Function1179a7: ; 1179a7 (45:79a7)
 ; 1179b5 (45:79b5)
 
 MenuDataHeader_1179b5: ; 1179b5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 12,  0 ; start coords
 	db 17, 19 ; end coords
 	dw NULL
@@ -7305,7 +7305,7 @@ MenuDataHeader_1179b5: ; 1179b5
 ; 1179bd
 
 MenuDataHeader_1179bd: ; 1179bd
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  7, 14 ; start coords
 	db 11, 19 ; end coords
 	dw NULL
@@ -7658,14 +7658,14 @@ Function117c89:
 	ret
 
 MenuDataHeader_117cbc: ; 0x117cbc
-	db $40    ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 12,  0 ; start coords
 	db 17, 19 ; end coords
 	dw NULL   ; menu data 2
 	db 0      ; default option
 
 MenuDataHeader_117cc4: ; 0x117cc4
-	db $40    ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  7, 14 ; start coords
 	db 11, 19 ; end coords
 	dw NULL   ; menu data 2

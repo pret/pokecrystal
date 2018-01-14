@@ -147,7 +147,7 @@ Pack: ; 10000
 
 ; 10124 (4:4124)
 .MenuDataHeader1: ; 0x10124
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 07, 13 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2_1
@@ -155,7 +155,7 @@ Pack: ; 10000
 ; 0x1012c
 
 .MenuData2_1: ; 0x1012c
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "USE@"
 	db "QUIT@"
@@ -169,7 +169,7 @@ Pack: ; 10000
 ; 1013b
 
 .MenuDataHeader2: ; 0x1013b
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 05, 13 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2_2
@@ -177,7 +177,7 @@ Pack: ; 10000
 ; 0x10143
 
 .MenuData2_2: ; 0x10143
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "USE@"
 	db "GIVE@"
@@ -309,7 +309,7 @@ Pack: ; 10000
 
 ; 10249 (4:4249)
 MenuDataHeader_UsableKeyItem: ; 0x10249
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 01, 13 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
@@ -317,7 +317,7 @@ MenuDataHeader_UsableKeyItem: ; 0x10249
 ; 0x10251
 
 .MenuData2: ; 0x10251
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 5 ; items
 	db "USE@"
 	db "GIVE@"
@@ -336,7 +336,7 @@ Jumptable_UseGiveTossRegisterQuit: ; 1026a
 ; 10274
 
 MenuDataHeader_UsableItem: ; 0x10274
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 03, 13 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
@@ -344,7 +344,7 @@ MenuDataHeader_UsableItem: ; 0x10274
 ; 0x1027c
 
 .MenuData2: ; 0x1027c
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
 	db "USE@"
 	db "GIVE@"
@@ -361,7 +361,7 @@ Jumptable_UseGiveTossQuit: ; 10291
 ; 10299
 
 MenuDataHeader_UnusableItem: ; 0x10299
-	db %01000000 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 07, 13 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
@@ -369,7 +369,7 @@ MenuDataHeader_UnusableItem: ; 0x10299
 ; 0x102a1
 
 .MenuData2: ; 0x102a1
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "USE@"
 	db "QUIT@"
@@ -382,7 +382,7 @@ Jumptable_UseQuit: ; 102ac
 ; 102b0
 
 MenuDataHeader_UnusableKeyItem: ; 0x102b0
-	db %01000000 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 05, 13 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
@@ -390,7 +390,7 @@ MenuDataHeader_UnusableKeyItem: ; 0x102b0
 ; 0x102b8
 
 .MenuData2: ; 0x102b8
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "USE@"
 	db "SEL@"
@@ -405,7 +405,7 @@ Jumptable_UseRegisterQuit: ; 102c7
 ; 102cd
 
 MenuDataHeader_HoldableKeyItem: ; 0x102cd
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 03, 13 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
@@ -413,7 +413,7 @@ MenuDataHeader_HoldableKeyItem: ; 0x102cd
 ; 0x102d5
 
 .MenuData2: ; 0x102d5
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
 	db "GIVE@"
 	db "TOSS@"
@@ -430,7 +430,7 @@ Jumptable_GiveTossRegisterQuit: ; 102ea
 ; 102f2
 
 MenuDataHeader_HoldableItem: ; 0x102f2
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 05, 13 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
@@ -438,7 +438,7 @@ MenuDataHeader_HoldableItem: ; 0x102f2
 ; 0x102fa
 
 .MenuData2: ; 0x102fa
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "GIVE@"
 	db "TOSS@"

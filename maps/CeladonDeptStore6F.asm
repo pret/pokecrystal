@@ -80,14 +80,14 @@ CeladonDeptStore6FVendingMachine:
 	jump .Start
 
 .MenuData:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 02, 00 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "FRESH WATER  ¥200@"
 	db "SODA POP     ¥300@"

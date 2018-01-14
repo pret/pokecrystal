@@ -53,14 +53,14 @@ PlaceMoneyDataHeader: ; 24b01
 	ret
 
 MenuDataHeader_0x24b15: ; 0x24b15
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 11 ; start coords
 	db 02, 19 ; end coords
 	dw NULL
 	db 1 ; default option
 
 MenuDataHeader_0x24b1d: ; 0x24b1d
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 11, 00 ; start coords
 	db 13, 08 ; end coords
 	dw NULL

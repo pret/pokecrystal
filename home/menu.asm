@@ -40,7 +40,7 @@ LoadMenuTextBox:: ; 1d58
 ; 1d5f
 
 .MenuDataHeader: ; 1d5f
-	db $40 ; tile backup
+	db MENU_BACKUP_TILES ; flags
 	db 12, 0 ; start coords
 	db 17, 19 ; end coords
 	dw vTiles0
@@ -60,7 +60,7 @@ LoadStandardMenuDataHeader:: ; 1d6e
 ; 1d75
 
 .MenuDataHeader: ; 1d75
-	db $40 ; tile backup
+	db MENU_BACKUP_TILES ; flags
 	db 0, 0 ; start coords
 	db 17, 19 ; end coords
 	dw 0
@@ -183,7 +183,7 @@ InterpretTwoOptionMenu:: ; 1dfe
 ; 1e1d
 
 YesNoMenuDataHeader:: ; 1e1d
-	db $40 ; tile backup
+	db MENU_BACKUP_TILES ; flags
 	db 5, 10 ; start coords
 	db 9, 15 ; end coords
 	dw .MenuData2
@@ -191,7 +191,7 @@ YesNoMenuDataHeader:: ; 1e1d
 ; 1e25
 
 .MenuData2: ; 1e25
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "YES@"
 	db "NO@"

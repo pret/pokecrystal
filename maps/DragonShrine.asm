@@ -267,14 +267,14 @@ ElderScript_0x18d20d:
 
 
 MenuDataHeader_0x18d215:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 08 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Pal@"
 	db "Underling@"
@@ -282,14 +282,14 @@ MenuDataHeader_0x18d215:
 
 
 MenuDataHeader_0x18d234:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 09 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Strategy@"
 	db "Raising@"
@@ -297,14 +297,14 @@ MenuDataHeader_0x18d234:
 
 
 MenuDataHeader_0x18d258:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 05 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Weak person@"
 	db "Tough person@"
@@ -312,14 +312,14 @@ MenuDataHeader_0x18d258:
 
 
 MenuDataHeader_0x18d283:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 08 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Love@"
 	db "Violence@"
@@ -327,14 +327,14 @@ MenuDataHeader_0x18d283:
 
 
 MenuDataHeader_0x18d2a5:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 12 ; start coords
 	db 11, 19 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Tough@"
 	db "Both@"

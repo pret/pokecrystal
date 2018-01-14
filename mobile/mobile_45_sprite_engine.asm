@@ -507,7 +507,7 @@ Function1161d5: ; 1161d5
 ; 11628c
 
 MenuDataHeader_11628c: ; 11628c
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  6,  0 ; start coords
 	db 17, 19 ; end coords
 	dw NULL

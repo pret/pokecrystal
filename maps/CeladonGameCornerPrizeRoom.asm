@@ -104,14 +104,14 @@ CeladonPrizeRoom_NoCoinCase:
 
 
 CeladonPrizeRoom_TMMenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 02, 00 ; start coords
 	db 11, 15 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "TM32    1500@"
 	db "TM29    3500@"
@@ -193,14 +193,14 @@ GoldenrodGameCornerPokemonVendor:
 
 
 .MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 02, 00 ; start coords
 	db 11, 17 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "PIKACHU    2222@"
 	db "PORYGON    5555@"

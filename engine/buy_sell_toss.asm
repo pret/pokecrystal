@@ -214,7 +214,7 @@ BuySell_DisplaySubtotal: ; 250d1
 ; 250ed
 
 TossItem_MenuDataHeader: ; 0x250ed
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 09, 15 ; start coords
 	db 11, 19 ; end coords
 	dw ret_25097
@@ -222,7 +222,7 @@ TossItem_MenuDataHeader: ; 0x250ed
 ; 0x250f5
 
 BuyItem_MenuDataHeader: ; 0x250f5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 15, 07 ; start coords
 	db 17, 19 ; end coords
 	dw DisplayPurchasePrice
@@ -230,7 +230,7 @@ BuyItem_MenuDataHeader: ; 0x250f5
 ; 0x250fd
 
 SellItem_MenuDataHeader: ; 0x250fd
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 15, 07 ; start coords
 	db 17, 19 ; end coords
 	dw DisplaySellingPrice

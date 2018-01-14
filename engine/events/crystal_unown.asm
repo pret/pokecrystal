@@ -195,19 +195,19 @@ ENDM
 
 .MenuDataHeaders_UnownWalls: ; 0x8aed5
 ;.MenuDataHeader_Escape:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 03 ; start coords
 	db 09, 16 ; end coords
 ;.MenuDataHeader_Light:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
 ;.MenuDataHeader_Water:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
 ;.MenuDataHeader_Ho_Oh:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 04 ; start coords
 	db 09, 15 ; end coords
 ; 8aee9

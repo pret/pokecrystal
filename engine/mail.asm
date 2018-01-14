@@ -558,14 +558,14 @@ MailboxPC: ; 0x44806
 	ret
 
 .TopMenuDataHeader: ; 0x4494c
-	db %01000000 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 1, 8 ; start coords
 	db 10, 18 ; end coords
 	dw .TopMenuData2
 	db 1 ; default option
 
 .TopMenuData2:
-	db %00010000 ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows/columns?
 	db 1 ; horizontal spacing?
 	dbw 0, wMailboxCount ; text pointer
@@ -574,14 +574,14 @@ MailboxPC: ; 0x44806
 	dba NULL
 
 .SubMenuDataHeader: ; 0x44964
-	db %01000000 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 0,  0 ; start coords
 	db 9, 13 ; end coords
 	dw .SubMenuData2
 	db 1 ; default option
 
 .SubMenuData2:
-	db %10000000 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "READ MAIL@"
 	db "PUT IN PACK@"

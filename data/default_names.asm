@@ -1,5 +1,5 @@
 ChrisNameMenuHeader: ; 882b5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 00 ; start coords
 	db 11, 10 ; end coords
 	dw .MaleNames
@@ -7,7 +7,7 @@ ChrisNameMenuHeader: ; 882b5
 	db 0 ; default option
 
 .MaleNames: ; 882be
-	db $91 ; flags
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B ; flags
 	db 5 ; items
 	db "NEW NAME@"
 MalePlayerNameArray: ; 882c9
@@ -19,7 +19,7 @@ MalePlayerNameArray: ; 882c9
 	db " NAME @" ; title
 
 KrisNameMenuHeader: ; 882e5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 00 ; start coords
 	db 11, 10 ; end coords
 	dw .FemaleNames
@@ -27,7 +27,7 @@ KrisNameMenuHeader: ; 882e5
 	db 0 ; default option
 
 .FemaleNames: ; 882ee
-	db $91 ; flags
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B ; flags
 	db 5 ; items
 	db "NEW NAME@"
 FemalePlayerNameArray: ; 882f9

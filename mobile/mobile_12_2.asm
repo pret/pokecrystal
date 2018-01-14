@@ -715,7 +715,7 @@ Function4ac58: ; 4ac58
 ; 4aca2
 
 MenuDataHeader_0x4aca2: ; 0x4aca2
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 09, 11 ; start coords
 	db 17, 19 ; end coords
 	dw NULL

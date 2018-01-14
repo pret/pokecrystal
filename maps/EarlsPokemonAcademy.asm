@@ -103,14 +103,14 @@ AcademyBlackboard:
 	jump .Loop
 
 .BlackboardMenuData:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 00 ; start coords
 	db 08, 11 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
 	dba .Text

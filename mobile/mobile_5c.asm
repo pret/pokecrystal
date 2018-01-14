@@ -672,7 +672,7 @@ Function171c66: ; 171c66 (5c:5c66)
 ; 171c6b (5c:5c6b)
 
 MenuDataHeader_171c6b: ; 171c6b
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 12,  0 ; start coords
 	db 17, 19 ; end coords
 	dw NULL

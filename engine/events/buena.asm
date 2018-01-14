@@ -29,7 +29,7 @@ SpecialBuenasPassword: ; 8af6b
 ; 8afa9
 
 .MenuDataHeader: ; 0x8afa9
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 00 ; start coords
 	db 07, 10 ; end coords
 	dw .MenuData2
@@ -39,7 +39,7 @@ SpecialBuenasPassword: ; 8af6b
 	db 0
 
 .MenuData2: ; 0x8afb2
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 0 ; items
 	dw .PasswordIndices
 	dw .PlacePasswordChoices
@@ -225,7 +225,7 @@ PrintBlueCardBalance: ; 8b097
 ; 8b0d1
 
 BlueCardBalanceMenuDataHeader: ; 0x8b0d1
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 11, 00 ; start coords
 	db 13, 11 ; end coords
 ; 8b0d6
@@ -237,7 +237,7 @@ Buena_PlacePrizeMenuBox: ; 8b0d6
 ; 8b0dd
 
 .menudataheader ; 0x8b0dd
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 00 ; start coords
 	db 11, 17 ; end coords
 ; 8b0e2
@@ -270,7 +270,7 @@ Buena_PrizeMenu: ; 8b0e2
 ; 8b113
 
 .MenuDataHeader: ; 0x8b113
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 01, 01 ; start coords
 	db 09, 16 ; end coords
 	dw .MenuData2
@@ -280,7 +280,7 @@ Buena_PrizeMenu: ; 8b0e2
 	db 0
 
 .MenuData2: ; 0x8b11c
-	db $10 ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 13 ; rows, columns
 	db 1 ; spacing
 	dba .indices

@@ -277,7 +277,7 @@ Function89261: ; 89261
 ; 892a3
 
 MenuDataHeader_0x892a3: ; 0x892a3
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 05, 10 ; start coords
 	db 09, 15 ; end coords
 	dw MenuData2_0x892ab
@@ -285,7 +285,7 @@ MenuDataHeader_0x892a3: ; 0x892a3
 ; 0x892ab
 
 MenuData2_0x892ab: ; 0x892ab
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "はい@"
 	db "いいえ@"
@@ -2832,7 +2832,7 @@ Function8a116: ; 8a116 (22:6116)
 ; 8a176 (22:6176)
 
 MenuDataHeader_0x8a176: ; 0x8a176
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 14 ; start coords
 	db 06, 19 ; end coords
 ; 8a17b
@@ -2855,7 +2855,7 @@ Function8a17b: ; 8a17b (22:617b)
 ; 8a19a (22:619a)
 
 MenuDataHeader_0x8a19a: ; 0x8a19a
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 14 ; start coords
 	db 06, 19 ; end coords
 	dw MenuData2_0x8a1a2
@@ -2863,7 +2863,7 @@ MenuDataHeader_0x8a19a: ; 0x8a19a
 ; 0x8a1a2
 
 MenuData2_0x8a1a2: ; 0x8a1a2
-	db $e0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "ひらく@"
 	db "すてる@"
@@ -3015,7 +3015,7 @@ Function8a2aa: ; 8a2aa (22:62aa)
 ; 8a2ef (22:62ef)
 
 MenuDataHeader_0x8a2ef: ; 0x8a2ef
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 12, 00 ; start coords
 	db 17, 19 ; end coords
 ; 8a2f4
@@ -3177,7 +3177,7 @@ Unknown_8a408: db 1, 2, -1
 Unknown_8a40b: db 1, 2, 3, -1
 
 MenuDataHeader_0x8a40f: ; 0x8a40f
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 02, 00 ; start coords
 	db 11, 10 ; end coords
 	dw MenuData2_0x8a417
@@ -3185,7 +3185,7 @@ MenuDataHeader_0x8a40f: ; 0x8a40f
 ; 0x8a417
 
 MenuData2_0x8a417: ; 0x8a417
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
 	db "めいしりスト@"
 	db "じぶんの めいし@"
@@ -3194,7 +3194,7 @@ MenuData2_0x8a417: ; 0x8a417
 ; 0x8a435
 
 MenuDataHeader_0x8a435: ; 0x8a435
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 02, 00 ; start coords
 	db 09, 10 ; end coords
 	dw MenuData2_0x8a43d
@@ -3202,7 +3202,7 @@ MenuDataHeader_0x8a435: ; 0x8a435
 ; 0x8a43d
 
 MenuData2_0x8a43d: ; 0x8a43d
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "めいしりスト@"
 	db "じぶんの めいし@"
@@ -3920,7 +3920,7 @@ Jumptable_8a9c5: ; 8a9c5 (22:69c5)
 ; 8a9c9 (22:69c9)
 
 MenuDataHeader_0x8a9c9: ; 0x8a9c9
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 11 ; start coords
 	db 11, 18 ; end coords
 ; 8a9ce
@@ -3950,7 +3950,7 @@ Function8a9ce: ; 8a9ce (22:69ce)
 ; 8a9f2 (22:69f2)
 
 MenuDataHeader_0x8a9f2: ; 0x8a9f2
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 11 ; start coords
 	db 11, 18 ; end coords
 	dw MenuData2_0x8a9fa
@@ -3958,7 +3958,7 @@ MenuDataHeader_0x8a9f2: ; 0x8a9f2
 ; 0x8a9fa
 
 MenuData2_0x8a9fa: ; 0x8a9fa
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "へんしゅう@"
 	db "みる@"

@@ -42,7 +42,7 @@ ClosePokepic:: ; 24528
 	ret
 
 PokepicMenuDataHeader: ; 0x24547
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 06 ; start coords
 	db 13, 14 ; end coords
 	dw NULL

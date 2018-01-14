@@ -229,7 +229,7 @@ BillsPCDepositFuncCancel: ; e2537 (38:6537)
 ; e253d (38:653d)
 
 BillsPCDepositMenuDataHeader: ; 0xe253d (38:653d)
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 09 ; start coords
 	db 13, 19 ; end coords
 	dw .MenuData2
@@ -237,7 +237,7 @@ BillsPCDepositMenuDataHeader: ; 0xe253d (38:653d)
 ; 0xe2545
 
 .MenuData2: ; 0xe2545 (38:6545)
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "DEPOSIT@"
 	db "STATS@"
@@ -490,7 +490,7 @@ BillsPC_Withdraw: ; e2675 (38:6675)
 ; e2731 (38:6731)
 
 .MenuDataHeader: ; 0xe2731
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 09 ; start coords
 	db 13, 19 ; end coords
 	dw .MenuData
@@ -498,7 +498,7 @@ BillsPC_Withdraw: ; e2675 (38:6675)
 ; 0xe2739
 
 .MenuData: ; 0xe2739
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "WITHDRAW@"
 	db "STATS@"
@@ -714,7 +714,7 @@ _MovePKMNWithoutMail: ; e2759
 ; e28c3
 
 .MenuDataHeader: ; 0xe28c3
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 09 ; start coords
 	db 13, 19 ; end coords
 	dw .MenuData2
@@ -722,7 +722,7 @@ _MovePKMNWithoutMail: ; e2759
 ; 0xe28cb
 
 .MenuData2: ; 0xe28cb
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "MOVE@"
 	db "STATS@"
@@ -2562,7 +2562,7 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	hlcoord 11, 7 ; XXX
 
 .MenuDataHeader: ; 0xe377b
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 11 ; start coords
 	db 13, 19 ; end coords
 	dw .MenuData2
@@ -2570,7 +2570,7 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 ; 0xe3783
 
 .MenuData2: ; 0xe3783
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "SWITCH@"
 	db "NAME@"

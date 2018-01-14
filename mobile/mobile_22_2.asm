@@ -910,7 +910,7 @@ Function8b855: ; 8b855
 ; 8b867
 
 MenuDataHeader_0x8b867: ; 0x8b867
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 03, 01 ; start coords
 	db 13, 18 ; end coords
 	dw MenuData2_0x8b870
@@ -920,7 +920,7 @@ MenuDataHeader_0x8b867: ; 0x8b867
 	db 0
 
 MenuData2_0x8b870: ; 0x8b870
-	db $3c ; flags
+	db SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT ; flags
 	db 5 ; items
 	db 3, 1
 	dbw 0, wd002
@@ -1083,12 +1083,12 @@ Function8b9ab: ; 8b9ab
 ; 8b9ac
 
 MenuDataHeader_0x8b9ac: ; 0x8b9ac
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 11 ; start coords
 	db 11, 19 ; end coords
 
 MenuDataHeader_0x8b9b1: ; 0x8b9b1
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 11 ; start coords
 	db 07, 19 ; end coords
 	dw MenuData2_0x8b9b9
@@ -1096,7 +1096,7 @@ MenuDataHeader_0x8b9b1: ; 0x8b9b1
 ; 0x8b9b9
 
 MenuData2_0x8b9b9: ; 0x8b9b9
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "へんしゅう@" ; EDIT
 	db "いれかえ@"   ; REPLACE
@@ -1104,7 +1104,7 @@ MenuData2_0x8b9b9: ; 0x8b9b9
 ; 0x8b9ca
 
 MenuDataHeader_0x8b9ca: ; 0x8b9ca
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 11 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_0x8b9d2
@@ -1112,7 +1112,7 @@ MenuDataHeader_0x8b9ca: ; 0x8b9ca
 ; 0x8b9d2
 
 MenuData2_0x8b9d2: ; 0x8b9d2
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 5 ; items
 	db "みる@"       ; VIEW
 	db "へんしゅう@" ; EDIT

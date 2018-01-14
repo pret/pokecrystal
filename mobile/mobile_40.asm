@@ -924,14 +924,14 @@ Function100597: ; 100597
 ; 1005b2
 
 MenuDataHeader_1005b2: ; 1005b2
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 6, 14
 	db 10, 19
 	dw MenuData2_1005ba
 	db 1 ; default option
 
 MenuData2_1005ba:
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "はい@"
 	db "いいえ@"
@@ -975,14 +975,14 @@ Function1005e1: ; 1005e1
 ; 1005fc
 
 MenuDataHeader_1005fc: ; 1005fc
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 6, 14
 	db 10, 19
 	dw MenuData2_100604
 	db 1 ; default option
 
 MenuData2_100604: ; 100604
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "かける@"
 	db "まつ@"
@@ -2126,7 +2126,7 @@ Function100d67: ; 100d67
 	db 1 ; default option
 
 .MenuData2: ; 100d90
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
 	db "いれかえる@"  ; TRADE
 	db "つよさをみる@" ; STATS
@@ -6287,7 +6287,7 @@ Function1029af: ; 1029af
 ; 1029bb
 
 MenuDataHeader_1029bb: ; 1029bb
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 10, 3 ; start coords
 	db 12, 15 ; end coords
 	dw NULL
@@ -7785,14 +7785,14 @@ AskMobileOrCable: ; 103612
 ; 103640
 
 MenuDataHeader_103640: ; 103640
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  6, 13 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_103648
 	db 1 ; default option
 
 MenuData2_103648: ; 103648
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 2
 	db "モバイル@"
 	db "ケーブル@"
@@ -7940,14 +7940,14 @@ Function103700: ; 103700
 ; 103747
 
 MenuDataHeader_103747: ; 103747
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  5, 13 ; start coords
 	db 11, 19 ; end coords
 	dw MenuData2_10374f
 	db 1 ; default option
 
 MenuData2_10374f: ; 10374f
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
 	db "はい@"
 	db "やめる@"

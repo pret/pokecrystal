@@ -30,7 +30,7 @@ MainMenu: ; 49cdc
 ; 49d14
 
 .MenuDataHeader: ; 49d14
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 00 ; start coords
 	db 07, 16 ; end coords
 	dw .MenuData2
@@ -38,7 +38,7 @@ MainMenu: ; 49cdc
 ; 49d1c
 
 .MenuData2: ; 49d1c
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw MainMenuItems
 	dw PlaceMenuStrings

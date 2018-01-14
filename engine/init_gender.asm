@@ -44,7 +44,7 @@ InitGender: ; 48dcb (12:4dcb)
 ; 48dfc (12:4dfc)
 
 .MenuDataHeader: ; 0x48dfc
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 04, 06 ; start coords
 	db 09, 12 ; end coords
 	dw .MenuData2
@@ -52,7 +52,7 @@ InitGender: ; 48dcb (12:4dcb)
 ; 0x48e04
 
 .MenuData2: ; 0x48e04
-	db $a1 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
 	db 2 ; items
 	db "Boy@"
 	db "Girl@"

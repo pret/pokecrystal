@@ -3955,7 +3955,7 @@ BattleTowerRoomMenu_UpdateYesNoMenu:
 ; 119cf7
 
 MenuDataHeader_119cf7: ; 119cf7
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  7, 12 ; start coords
 	db 11, 19 ; end coords
 	dw NULL
@@ -3963,7 +3963,7 @@ MenuDataHeader_119cf7: ; 119cf7
 ; 119cff
 
 MenuData_119cff: ; 119cff
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  7, 15 ; start coords
 	db 11, 19 ; end coords
 	dw NULL
@@ -4757,7 +4757,7 @@ String_11a2d3: ; 11a2d3
 ; 11a2d6
 
 MenuDataHeader_11a2d6: ; 11a2d6
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  6, 14 ; start coords
 	db 10, 19 ; end coords
 	dw NULL
@@ -4765,7 +4765,7 @@ MenuDataHeader_11a2d6: ; 11a2d6
 ; 11a2de
 
 MenuDataHeader_11a2de: ; 11a2de
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  7, 14 ; start coords
 	db 11, 19 ; end coords
 	dw NULL
@@ -5329,7 +5329,7 @@ String_11a7f4: ; 11a7f4
 ; 11a804
 
 MenuDataHeader_11a804: ; 11a804
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  0,  0 ; start coords
 	db  5, 19 ; end coords
 	dw NULL
@@ -6001,7 +6001,7 @@ Function11adc4:
 ; 11ae38
 
 MenuDataHeader_11ae38: ; 11ae38
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 10, 10 ; start coords
 	db 17, 17 ; end coords
 	dw NULL
@@ -6248,7 +6248,7 @@ Function11afd6: ; 11afd6
 ; 11afe8
 
 MenuDataHeader_11afe8: ; 11afe8
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 12,  9 ; start coords
 	db 17, 19 ; end coords
 	dw NULL
@@ -6266,7 +6266,7 @@ String_11b003: ; 11b003
 ; 11b013
 
 MenuDataHeader_11b013: ; 11b013
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db  7, 14 ; start coords
 	db 11, 19 ; end coords
 	dw NULL

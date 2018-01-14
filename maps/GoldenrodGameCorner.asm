@@ -140,14 +140,14 @@ GoldenrodGameCornerPrizeVendor_NoCoinCaseScript:
 
 
 GoldenrodGameCornerTMVendorMenuData:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 02, 00 ; start coords
 	db 11, 15 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "TM25    5500@"
 	db "TM14    5500@"
@@ -229,14 +229,14 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 
 .MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 02, 00 ; start coords
 	db 11, 17 ; end coords
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "ABRA        100@"
 	db "CUBONE      800@"

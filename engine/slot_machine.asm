@@ -1868,7 +1868,7 @@ Slots_AskBet: ; 9307c (24:707c)
 ; 0x930d6
 
 .MenuDataHeader: ; 0x930d6
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 10, 14 ; start coords
 	db 17, 19 ; end coords
 	dw .MenuData2
@@ -1876,7 +1876,7 @@ Slots_AskBet: ; 9307c (24:707c)
 ; 0x930de
 
 .MenuData2: ; 0x930de
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db " 3@"
 	db " 2@"

@@ -563,7 +563,7 @@ MobileDesc_ZipCode:          db "Your zip code?@"
 ; 484f1
 
 MenuDataHeader_0x484f1: ; 0x484f1
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 02, 11 ; start coords
 	db 07, 19 ; end coords
 	dw MenuData2_0x484f9
@@ -571,7 +571,7 @@ MenuDataHeader_0x484f1: ; 0x484f1
 ; 0x484f9
 
 MenuData2_0x484f9: ; 0x484f9
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 2 ; items
 Strings_484fb:
 String_484fb: db "Boy@"
@@ -579,22 +579,22 @@ String_484ff: db "Girl@"
 ; 0x48504
 
 MenuDataHeader_0x48504: ; 0x48504
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 00, 10 ; start coords
 	db 17, 19 ; end coords
 
 MenuDataHeader_0x48509: ; 0x48509
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 05, 10 ; start coords
 	db 07, 19 ; end coords
 
 MenuDataHeader_0x4850e: ; 0x4850e
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 09, 10 ; start coords
 	db 11, 19 ; end coords
 
 MenuDataHeader_0x48513: ; 0x48513
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 01, 11 ; start coords
 	db 12, 18 ; end coords
 	dw MenuData2_0x4851b
@@ -602,7 +602,7 @@ MenuDataHeader_0x48513: ; 0x48513
 ; 0x4851b
 
 MenuData2_0x4851b: ; 0x4851b
-	db $1d ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_CALL_FUNCTION1_CANCEL ; flags
 	db 6 ; items
 
 Unknown_4851d: ; 4851d
@@ -1277,7 +1277,7 @@ Function48a9a: ; 48a9a (12:4a9a)
 ; 48a9c (12:4a9c)
 
 MenuDataHeader_0x48a9c: ; 0x48a9c
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 08, 10 ; start coords
 	db 13, 19 ; end coord
 

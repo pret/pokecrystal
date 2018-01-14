@@ -188,7 +188,7 @@ Elevator_GetCurrentFloorString: ; 1353f
 ; 13550
 
 Elevator_MenuDataHeader: ; 0x13550
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 01, 12 ; start coords
 	db 09, 18 ; end coords
 	dw Elevator_MenuData2
@@ -196,7 +196,7 @@ Elevator_MenuDataHeader: ; 0x13550
 ; 0x13558
 
 Elevator_MenuData2: ; 0x13558
-	db $10 ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, CurElevator

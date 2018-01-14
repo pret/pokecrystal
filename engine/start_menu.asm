@@ -152,21 +152,21 @@ StartMenu:: ; 125cd
 
 
 .MenuDataHeader:
-	db $40 ; tile backup
+	db MENU_BACKUP_TILES ; flags
 	db 0, 10 ; start coords
 	db 17, 19 ; end coords
 	dw .MenuData
 	db 1 ; default selection
 
 .ContestMenuDataHeader:
-	db $40 ; tile backup
+	db MENU_BACKUP_TILES ; flags
 	db 2, 10 ; start coords
 	db 17, 19 ; end coords
 	dw .MenuData
 	db 1 ; default selection
 
 .MenuData:
-	db %10101000 ; x padding, wrap around, start can close
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_ENABLE_START ; flags
 	dn 0, 0 ; rows, columns
 	dw MenuItemsList
 	dw .MenuString
@@ -1165,7 +1165,7 @@ MonMailAction: ; 12d45
 
 
 .MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	db 10, 12 ; start coords
 	db 17, 19 ; end coords
 	dw .MenuData2
@@ -1173,7 +1173,7 @@ MonMailAction: ; 12d45
 ; 0x12dd1
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "READ@"
 	db "TAKE@"
