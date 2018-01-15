@@ -103,6 +103,6 @@ PredefPointers:: ; 856b
 	add_predef Predef_LoadMonAnimation
 	add_predef Predef_AnimateFrontpic
 	add_predef UnusedPredef48 ; $48
-	add_predef HOF_Predef_AnimateFrontpic
+	add_predef Predef_HOF_AnimateFrontpic
 	dbw $ff, InexplicablyEmptyFunction ; ???
 ; 864c

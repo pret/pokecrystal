@@ -364,7 +364,7 @@ Special_GetMysteryGiftItem: ; c309
 ; 0xc34a
 
 Special_BugContestJudging: ; c34a
-	farcall _Special_BugContestJudging
+	farcall _BugContestJudging
 	ld a, b
 	ld [ScriptVar], a
 	ret

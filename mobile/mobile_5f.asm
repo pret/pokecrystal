@@ -1498,7 +1498,7 @@ Function17d93a: ; 17d93a
 	add hl, de
 	ld e, l
 	ld d, h
-	farcall HOF_Predef_AnimateFrontpic
+	farcall Predef_HOF_AnimateFrontpic
 	pop af
 	ld [rSVBK], a
 	call Function17e349

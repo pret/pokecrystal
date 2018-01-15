@@ -130,7 +130,7 @@ AnimateHallOfFame: ; 864c3
 	call WaitBGMap
 	decoord 6, 5
 	ld c, $6
-	predef HOF_Predef_AnimateFrontpic
+	predef Predef_HOF_AnimateFrontpic
 	ld c, 60
 	call DelayFrames
 	and a
@@ -403,7 +403,7 @@ _HallOfFamePC: ; 86650
 	call SetPalettes
 	decoord 6, 5
 	ld c, $6
-	predef HOF_Predef_AnimateFrontpic
+	predef Predef_HOF_AnimateFrontpic
 	and a
 	ret
 
