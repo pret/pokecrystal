@@ -114,8 +114,8 @@ UnknownText_0x58e4f:
 	line "on the walls…"
 	done
 
-; possibly unused.. again?
-UnknownText_0x58e70:
+; unused
+UnusedText_0x58e70:
 	text "It's UNOWN text!"
 	done
 

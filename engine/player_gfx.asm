@@ -1,5 +1,4 @@
-Function88248: ; 88248
-; XXX
+Unreferenced_Function88248: ; 88248
 	ld c, CAL
 	ld a, [wPlayerGender]
 	bit 0, a
@@ -31,7 +30,7 @@ MovePlayerPic: ; 88266
 	xor a
 	ld [hBGMapMode], a
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	xor a
 	ld [hBGMapThird], a
 	call WaitBGMap
@@ -142,7 +141,7 @@ GetChrisBackpic: ; 88830
 	ld b, BANK(ChrisBackpic)
 	ld de, vTiles2 tile $31
 	ld c, 7 * 7
-	predef DecompressPredef
+	predef Predef_Decompress
 	ret
 
 HOF_LoadTrainerFrontpic: ; 88840
@@ -204,7 +203,7 @@ DrawIntroPlayerPic: ; 88874
 	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ret
 
 ChrisPic: ; 888a9

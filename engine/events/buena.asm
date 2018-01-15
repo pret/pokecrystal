@@ -1,4 +1,4 @@
-SpecialBuenasPassword: ; 8af6b
+Special_BuenasPassword: ; 8af6b
 	xor a
 	ld [wWhichIndexSet], a
 	ld hl, .MenuDataHeader
@@ -63,7 +63,7 @@ SpecialBuenasPassword: ; 8af6b
 	ret
 ; 8afd4
 
-SpecialBuenaPrize: ; 8afd4
+Special_BuenaPrize: ; 8afd4
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $1

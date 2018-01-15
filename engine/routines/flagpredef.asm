@@ -1,5 +1,5 @@
-FlagPredef: ; 4d7c1
-; Perform action b on flag c in flag array hl.
+Predef_SmallFarFlagAction: ; 4d7c1
+; Perform action b on bit c in flag array hl.
 ; If checking a flag, check flag array d:hl unless d is 0.
 
 ; For longer flag arrays, see FlagAction.

@@ -15,7 +15,7 @@ NurseScript_0x18a47d:
 	jumpstd pokecenternurse
 
 TeacherScript_0x18a480:
-	special Mobile_DummyReturnFalse
+	special Special_Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x18a4a3
 

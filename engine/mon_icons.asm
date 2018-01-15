@@ -281,8 +281,7 @@ FlyFunction_GetMonIcon: ; 8e9bc (23:69bc)
 	ret
 ; 8e9cc (23:69cc)
 
-GetMonIcon2: ; 8e9cc
-; unreferenced
+Unreferenced_GetMonIcon2: ; 8e9cc
 	push de
 	ld a, [wd265]
 	call ReadMonMenuIcon

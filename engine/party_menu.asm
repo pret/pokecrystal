@@ -189,7 +189,7 @@ PlacePartymonHPBar: ; 50117
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	predef ComputeHPBarPixels
+	predef Predef_ComputeHPBarPixels
 	ret
 ; 50138
 
@@ -298,7 +298,7 @@ PlacePartyMonStatus: ; 501b2
 	ld e, l
 	ld d, h
 	pop hl
-	call PlaceStatusString
+	call Predef_PlaceStatusString
 
 .next
 	pop hl
@@ -330,7 +330,7 @@ PlacePartyMonTMHMCompatibility: ; 501e0
 	add hl, de
 	ld a, [hl]
 	ld [CurPartySpecies], a
-	predef CanLearnTMHMMove
+	predef Predef_CanLearnTMHMMove
 	pop hl
 	call .PlaceAbleNotAble
 	call PlaceString
@@ -469,7 +469,7 @@ PlacePartyMonGender: ; 502b1
 	ld [CurPartyMon], a
 	xor a
 	ld [MonType], a
-	call GetGender
+	call Predef_GetGender
 	ld de, .unknown
 	jr c, .got_gender
 	ld de, .male
@@ -800,24 +800,32 @@ PartyMenuStrings: ; 0x504d2
 
 ChooseAMonString: ; 0x504e4
 	db "Choose a #MON.@"
+
 UseOnWhichPKMNString: ; 0x504f3
 	db "Use on which <PK><MN>?@"
+
 WhichPKMNString: ; 0x50504
 	db "Which <PK><MN>?@"
+
 TeachWhichPKMNString: ; 0x5050e
 	db "Teach which <PK><MN>?@"
+
 MoveToWhereString: ; 0x5051e
 	db "Move to where?@"
-ChooseAFemalePKMNString: ; 0x5052d  ; UNUSED
+
+ChooseAFemalePKMNString: ; 0x5052d
+; unused
 	db "Choose a ♀<PK><MN>.@"
-ChooseAMalePKMNString: ; 0x5053b    ; UNUSED
+
+ChooseAMalePKMNString: ; 0x5053b
+; unused
 	db "Choose a ♂<PK><MN>.@"
+
 ToWhichPKMNString: ; 0x50549
 	db "To which <PK><MN>?@"
 
 YouHaveNoPKMNString: ; 0x50556
 	db "You have no <PK><MN>!@"
-
 
 PrintPartyMenuActionText: ; 50566
 	ld a, [CurPartyMon]

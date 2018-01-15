@@ -1,4 +1,4 @@
-AskRememberPassword: ; 4ae12
+Special_AskRememberPassword: ; 4ae12
 	call .DoMenu
 	ld a, $0
 	jr c, .okay

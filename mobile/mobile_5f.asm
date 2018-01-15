@@ -412,7 +412,7 @@ Function17d1f1: ; 17d1f1
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	callfar UpdateUnownDex
 	ld a, [wFirstUnownSeen]
 	and a
@@ -511,7 +511,7 @@ MenuData2_ChallengeExplanationCancel: ; 17d297
 	db "Cancel@"
 ; 17d2b6
 
-Function17d2b6: ; 17d2b6
+Special_Function17d2b6: ; 17d2b6
 	call Function17d2c0
 	farcall Function1181da
 	ret
@@ -526,7 +526,7 @@ Function17d2c0: ; 17d2c0
 	ret
 ; 17d2ce
 
-Function17d2ce: ; 17d2ce
+Special_Function17d2ce: ; 17d2ce
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa72]
@@ -1498,7 +1498,7 @@ Function17d93a: ; 17d93a
 	add hl, de
 	ld e, l
 	ld d, h
-	farcall HOF_AnimateFrontpic
+	farcall HOF_Predef_AnimateFrontpic
 	pop af
 	ld [rSVBK], a
 	call Function17e349
@@ -1530,12 +1530,12 @@ Function17d98b: ; 17d98b
 	ld d, a
 	push de
 	ld de, vTiles2
-	farcall GetTrainerPic
+	farcall Predef_GetTrainerPic
 	pop hl
 	decoord 0, 0
 	add hl, de
 	ld bc, $707
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	pop af
 	ld [rSVBK], a
 	call Function17e349
@@ -2337,7 +2337,7 @@ Function17ded9: ; 17ded9
 	ld [MonType], a
 	push hl
 	push bc
-	predef TryAddMonToParty
+	predef Predef_TryAddMonToParty
 	farcall SetCaughtData
 	pop bc
 	pop hl
@@ -2442,7 +2442,7 @@ Function17ded9: ; 17ded9
 	ld e, l
 	push hl
 	ld b, $0
-	farcall CalcPkmnStats
+	farcall Predef_CalcPkmnStats
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1HP
@@ -2508,7 +2508,7 @@ Function17ded9: ; 17ded9
 	ld d, h
 	ld e, l
 	pop hl
-	predef FillPP
+	predef Predef_FillPP
 	pop hl
 	pop bc
 	jp asm_17e0ee
@@ -2531,7 +2531,7 @@ Function17e026: ; 17e026
 	push bc
 	push hl
 	farcall LoadEnemyMon
-	farcall SentPkmnIntoBox
+	farcall Predef_SendPkmnIntoBox
 	farcall SetBoxMonCaughtData
 	pop hl
 	pop bc
@@ -2622,7 +2622,7 @@ Function17e026: ; 17e026
 	push hl
 	ld hl, sBoxMon1Moves
 	ld de, sBoxMon1PP
-	predef FillPP
+	predef Predef_FillPP
 	call CloseSRAM
 	pop hl
 	pop bc
@@ -4617,7 +4617,7 @@ Function17f524: ; 17f524
 	jr .asm_17f536
 ; 17f53d
 
-BattleTowerMobileError: ; 17f53d
+Special_BattleTowerMobileError: ; 17f53d
 	call FadeToMenu
 	xor a
 	ld [wc303], a
@@ -5244,7 +5244,7 @@ String_17fe63: ; 17fe63
 	next "せつめいしょを ごらんください"
 	db   "@"
 
-String_17fe9a: ; 17fe9a ; unreferenced
+String_17fe9a: ; 17fe9a ; unused
 	db   "ポケモンニュースが"
 	next "あたらしくなっているので"
 	next "レポートを おくれません"

@@ -182,7 +182,7 @@ CheckPlayerTurn:
 	call StdBattleTextBox
 	call CantMove
 	call UpdateBattleMonInParty
-	ld hl, UpdatePlayerHUD
+	ld hl, Predef_UpdatePlayerHUD
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
@@ -433,7 +433,7 @@ CheckEnemyTurn: ; 3421f
 	call StdBattleTextBox
 	call CantMove
 	call UpdateEnemyMonInParty
-	ld hl, UpdateEnemyHUD
+	ld hl, Predef_UpdateEnemyHUD
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
@@ -672,7 +672,7 @@ HitConfusion: ; 343a5
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	call z, PlayFXAnimID
 
-	ld hl, UpdatePlayerHUD
+	ld hl, Predef_UpdatePlayerHUD
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
@@ -1538,12 +1538,12 @@ BattleCheckTypeMatchup: ; 347c8
 	ld hl, EnemyMonType1
 	ld a, [hBattleTurn]
 	and a
-	jr z, CheckTypeMatchup
+	jr z, Predef_CheckTypeMatchup
 	ld hl, BattleMonType1
-CheckTypeMatchup: ; 347d3
+Predef_CheckTypeMatchup: ; 347d3
 ; There is an incorrect assumption about this function made in the AI related code: when
-; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
-; offensive type in a will make this function do the right thing. Since a is overwritten,
+; the AI calls Predef_CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing
+; the offensive type in a will make this function do the right thing. Since a is overwritten,
 ; this assumption is incorrect. A simple fix would be to load the move type for the
 ; current move into a in BattleCheckTypeMatchup, before falling through, which is
 ; consistent with how the rest of the code assumes this code works like.
@@ -2621,7 +2621,7 @@ BattleCommand_CheckDestinyBond: ; 351c0
 	ld [Buffer6], a
 	ld h, b
 	ld l, c
-	predef AnimateHPBar
+	predef Predef_AnimateHPBar
 	call RefreshBattleHuds
 
 	call BattleCommand_SwitchTurn
@@ -4015,7 +4015,7 @@ BattleCommand_PainSplit: ; 35926
 	ld a, $1
 	ld [wWhichHPBar], a
 	hlcoord 10, 9
-	predef AnimateHPBar
+	predef Predef_AnimateHPBar
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [Buffer4], a
@@ -4030,7 +4030,7 @@ BattleCommand_PainSplit: ; 35926
 	ld [wWhichHPBar], a
 	call ResetDamage
 	hlcoord 2, 2
-	predef AnimateHPBar
+	predef Predef_AnimateHPBar
 	farcall _UpdateBattleHUDs
 
 	ld hl, SharedPainText
@@ -4172,7 +4172,7 @@ BattleCommand_Conversion2: ; 359e6
 
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
-	predef GetTypeName
+	predef Predef_GetTypeName
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
 
@@ -4711,7 +4711,7 @@ PlayFXAnimID: ; 35d08
 	ld c, 3
 	call DelayFrames
 
-	callfar PlayBattleAnim
+	callfar Predef_PlayBattleAnim
 
 	ret
 
@@ -4773,7 +4773,7 @@ EnemyHurtItself: ; 35d1c
 	hlcoord 2, 2
 	xor a
 	ld [wWhichHPBar], a
-	predef AnimateHPBar
+	predef Predef_AnimateHPBar
 .did_no_damage
 	jp RefreshBattleHuds
 
@@ -4833,7 +4833,7 @@ PlayerHurtItself: ; 35d7e
 	hlcoord 10, 9
 	ld a, $1
 	ld [wWhichHPBar], a
-	predef AnimateHPBar
+	predef Predef_AnimateHPBar
 .did_no_damage
 	jp RefreshBattleHuds
 
@@ -5301,7 +5301,7 @@ SapHealth: ; 36011
 	xor a
 .hp_bar
 	ld [wWhichHPBar], a
-	predef AnimateHPBar
+	predef Predef_AnimateHPBar
 	call RefreshBattleHuds
 	jp UpdateBattleMonInParty
 
@@ -6239,11 +6239,11 @@ BattleCommand_Curl: ; 365a7
 
 
 BattleCommand_RaiseSubNoAnim: ; 365af
-	ld hl, GetBattleMonBackpic
+	ld hl, Predef_GetBattleMonBackpic
 	ld a, [hBattleTurn]
 	and a
 	jr z, .PlayerTurn
-	ld hl, GetEnemyMonFrontpic
+	ld hl, Predef_GetEnemyMonFrontpic
 .PlayerTurn:
 	xor a
 	ld [hBGMapMode], a
@@ -7525,7 +7525,7 @@ BattleCommand_Recoil: ; 36cb2
 	xor a
 .animate_hp_bar
 	ld [wWhichHPBar], a
-	predef AnimateHPBar
+	predef Predef_AnimateHPBar
 	call RefreshBattleHuds
 	ld hl, RecoilText
 	jp StdBattleTextBox
@@ -8023,7 +8023,7 @@ BattleCommand_LeechSeed: ; 36f9d
 
 BattleCommand_Splash: ; 36fe1
 	call AnimateCurrentMove
-	farcall TrainerRankings_Splash
+	farcall StubbedTrainerRankings_Splash
 	jp PrintNothingHappened
 
 ; 36fed
@@ -8227,7 +8227,7 @@ BattleCommand_Conversion: ; 3707f
 	inc de
 	ld [de], a
 	ld [wNamedObjectIndexBuffer], a
-	farcall GetTypeName
+	farcall Predef_GetTypeName
 	call AnimateCurrentMove
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
@@ -8550,7 +8550,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand_Selfdestruct: ; 37380
-	farcall TrainerRankings_Selfdestruct
+	farcall StubbedTrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3
@@ -9856,7 +9856,7 @@ PlayUserBattleAnim: ; 37e47
 	push hl
 	push de
 	push bc
-	callfar PlayBattleAnim
+	callfar Predef_PlayBattleAnim
 	pop bc
 	pop de
 	pop hl
@@ -9878,7 +9878,7 @@ PlayOpponentBattleAnim: ; 37e54
 	push bc
 	call BattleCommand_SwitchTurn
 
-	callfar PlayBattleAnim
+	callfar Predef_PlayBattleAnim
 
 	call BattleCommand_SwitchTurn
 	pop bc

@@ -2,7 +2,8 @@
 ; which were used for Trainer Rankings in Pokémon News.
 
 ; Copies certain values at the time the player enters the Hall of Fame.
-TrainerRankings_HallOfFame2:: mobile ; 0x105ef6
+StubbedTrainerRankings_HallOfFame2:: ; 0x105ef6
+	ret
 	ld a, BANK(sTrainerRankingGameTimeHOF)
 	call GetSRAMBank
 
@@ -33,7 +34,8 @@ TrainerRankings_HallOfFame2:: mobile ; 0x105ef6
 	ret
 ; 105f33
 
-TrainerRankings_MagikarpLength: mobile ; 105f33
+StubbedTrainerRankings_MagikarpLength: ; 105f33
+	ret
 	ld a, BANK(sTrainerRankingLongestMagikarp)
 	call GetSRAMBank
 	ld de, Buffer1
@@ -101,7 +103,8 @@ TrainerRankings_MagikarpLength: mobile ; 105f33
 	ret
 ; 105f79
 
-TrainerRankings_BugContestScore: mobile ; 105f79
+StubbedTrainerRankings_BugContestScore: ; 105f79
+	ret
 	ld a, BANK(sTrainerRankingBugContestScore)
 	call GetSRAMBank
 	ld a, [hProduct]
@@ -130,7 +133,8 @@ TrainerRankings_BugContestScore: mobile ; 105f79
 	ret
 ; 105f9f
 
-TrainerRankings_AddToSlotsWinStreak: mobile ; 105f9f
+StubbedTrainerRankings_AddToSlotsWinStreak: ; 105f9f
+	ret
 	ld a, BANK(sTrainerRankingCurrentSlotsStreak)
 	call GetSRAMBank
 
@@ -170,7 +174,8 @@ TrainerRankings_AddToSlotsWinStreak: mobile ; 105f9f
 	ret
 ; 105fd0
 
-TrainerRankings_EndSlotsWinStreak: mobile ; 105fd0
+StubbedTrainerRankings_EndSlotsWinStreak: ; 105fd0
+	ret
 	ld a, BANK(sTrainerRankingCurrentSlotsStreak)
 	call GetSRAMBank
 	ld hl, sTrainerRankingCurrentSlotsStreak
@@ -182,7 +187,8 @@ TrainerRankings_EndSlotsWinStreak: mobile ; 105fd0
 	ret
 ; 105fe3
 
-TrainerRankings_AddToSlotsPayouts: mobile ; 105fe3
+StubbedTrainerRankings_AddToSlotsPayouts: ; 105fe3
+	ret
 	ld a, BANK(sTrainerRankingTotalSlotsPayouts)
 	call GetSRAMBank
 	ld hl, sTrainerRankingTotalSlotsPayouts + 3
@@ -210,7 +216,8 @@ TrainerRankings_AddToSlotsPayouts: mobile ; 105fe3
 	ret
 ; 106008
 
-TrainerRankings_AddToBattlePayouts: mobile ; 106008
+StubbedTrainerRankings_AddToBattlePayouts: ; 106008
+	ret
 	ld a, BANK(sTrainerRankingTotalBattlePayouts)
 	call GetSRAMBank
 	ld hl, sTrainerRankingTotalBattlePayouts + 3
@@ -240,12 +247,13 @@ TrainerRankings_AddToBattlePayouts: mobile ; 106008
 	ret
 ; 10602e
 
-TrainerRankings_StepCount: mobile ; 10602e (41:602e)
+StubbedTrainerRankings_StepCount: ; 10602e (41:602e)
+	ret
 	ld hl, sTrainerRankingStepCount
-	jp TrainerRankings_Increment4Byte
+	jp StubbedTrainerRankings_Increment4Byte
 
-; Unreferenced in English version.
-TrainerRankings_BattleTowerWins: mobile ; 106035
+Unreferenced_StubbedTrainerRankings_BattleTowerWins: ; 106035
+	ret
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa8d]
@@ -253,167 +261,196 @@ TrainerRankings_BattleTowerWins: mobile ; 106035
 	call CloseSRAM
 	ret nz
 	ld hl, sTrainerRankingBattleTowerWins
-	jp TrainerRankings_Increment2Byte
+	jp StubbedTrainerRankings_Increment2Byte
 
-TrainerRankings_TMsHMsTaught: mobile ; 106049
+StubbedTrainerRankings_TMsHMsTaught: ; 106049
+	ret
 	ld hl, sTrainerRankingTMsHMsTaught
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Battles: mobile ; 106050
+StubbedTrainerRankings_Battles: ; 106050
+	ret
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL ; Exclude the Dude’s tutorial battle
 	ret z
 	ld hl, sTrainerRankingBattles
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_WildBattles: mobile ; 10605d
+StubbedTrainerRankings_WildBattles: ; 10605d
+	ret
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL ; Exclude the Dude’s tutorial battle
 	ret z
 	ld hl, sTrainerRankingWildBattles
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_TrainerBattles: mobile ; 10606a
+StubbedTrainerRankings_TrainerBattles: ; 10606a
+	ret
 	ld hl, sTrainerRankingTrainerBattles
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Unused1: mobile ; 106071
+StubbedTrainerRankings_Unused1: ; 106071
+	ret
 	ld hl, sTrainerRankingUnused1
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_HallOfFame:: mobile ; 0x106078
+StubbedTrainerRankings_HallOfFame:: ; 0x106078
+	ret
 	ld hl, sTrainerRankingHOFEntries
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_WildMonsCaught: mobile ; 10607f (41:607f)
+StubbedTrainerRankings_WildMonsCaught: ; 10607f (41:607f)
+	ret
 	ld hl, sTrainerRankingWildMonsCaught
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_HookedEncounters: mobile ; 106086
+StubbedTrainerRankings_HookedEncounters: ; 106086
+	ret
 	ld hl, sTrainerRankingHookedEncounters
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_EggsHatched: mobile ; 10608d (41:608d)
+StubbedTrainerRankings_EggsHatched: ; 10608d (41:608d)
+	ret
 	ld hl, sTrainerRankingEggsHatched
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_MonsEvolved: mobile ; 106094
+StubbedTrainerRankings_MonsEvolved: ; 106094
+	ret
 	ld hl, sTrainerRankingMonsEvolved
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_FruitPicked: mobile ; 10609b
+StubbedTrainerRankings_FruitPicked: ; 10609b
+	ret
 	ld hl, sTrainerRankingFruitPicked
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Healings: mobile ; 1060a2
+Special_StubbedTrainerRankings_Healings: ; 1060a2
+	ret
 	ld hl, sTrainerRankingHealings
-	jp TrainerRankings_Increment3Byte
+	jp StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_MysteryGift: mobile ; 1060a9 (41:60a9)
+StubbedTrainerRankings_MysteryGift: ; 1060a9 (41:60a9)
+	ret
 	ld hl, sTrainerRankingMysteryGift
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Trades: mobile ; 1060af
+StubbedTrainerRankings_Trades: ; 1060af
+	ret
 	ld hl, sTrainerRankingTrades
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Fly: mobile ; 1060b5
+StubbedTrainerRankings_Fly: ; 1060b5
+	ret
 	ld hl, sTrainerRankingFly
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Surf: mobile ; 1060bb
+StubbedTrainerRankings_Surf: ; 1060bb
+	ret
 	ld hl, sTrainerRankingSurf
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Waterfall: mobile ; 1060c1
+StubbedTrainerRankings_Waterfall: ; 1060c1
+	ret
 	ld hl, sTrainerRankingWaterfall
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_WhiteOuts: mobile ; 1060c7
+StubbedTrainerRankings_WhiteOuts: ; 1060c7
+	ret
 	ld hl, sTrainerRankingWhiteOuts
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_LuckyNumberShow: mobile ; 1060cd
+StubbedTrainerRankings_LuckyNumberShow: ; 1060cd
+	ret
 	ld hl, sTrainerRankingLuckyNumberShow
-	jr TrainerRankings_Increment2Byte
+	jr StubbedTrainerRankings_Increment2Byte
 
-TrainerRankings_PhoneCalls: mobile ; 1060d3
+StubbedTrainerRankings_PhoneCalls: ; 1060d3
+	ret
 	ld hl, sTrainerRankingPhoneCalls
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Unused2: mobile ; 1060df
+StubbedTrainerRankings_Unused2: ; 1060df
+	ret
 	ld hl, sTrainerRankingUnused2
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_LinkBattles: mobile ; 1060df
+StubbedTrainerRankings_LinkBattles: ; 1060df
+	ret
 	ld hl, sTrainerRankingLinkBattles
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Splash: mobile ; 1060e5
+StubbedTrainerRankings_Splash: ; 1060e5
+	ret
 	; Only counts if it’s the player’s turn
 	ld a, [hBattleTurn]
 	and a
 	ret nz
 	ld hl, sTrainerRankingSplash
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_TreeEncounters: mobile ; 1060ef
+StubbedTrainerRankings_TreeEncounters: ; 1060ef
+	ret
 	ld hl, sTrainerRankingTreeEncounters
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_Unused3: mobile ; 1060f5
+StubbedTrainerRankings_Unused3: ; 1060f5
+	ret
 	ld hl, sTrainerRankingUnused3
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_ColosseumWins: mobile ; win
+StubbedTrainerRankings_ColosseumWins: ; win
+	ret
 	ld hl, sTrainerRankingColosseumWins
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 
-TrainerRankings_ColosseumLosses: mobile ; lose
+StubbedTrainerRankings_ColosseumLosses: ; lose
+	ret
 	ld hl, sTrainerRankingColosseumLosses
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 ; 106107
 
-TrainerRankings_ColosseumDraws: mobile ; draw
+StubbedTrainerRankings_ColosseumDraws: ; draw
+	ret
 	ld hl, sTrainerRankingColosseumDraws
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 ; 10610d
 
 ; Counts uses of both Selfdestruct and Explosion.
-TrainerRankings_Selfdestruct: mobile ; 10610d
+StubbedTrainerRankings_Selfdestruct: ; 10610d
+	ret
 	; Only counts if it’s the player’s turn
 	ld a, [hBattleTurn]
 	and a
 	ret nz
 	ld hl, sTrainerRankingSelfdestruct
-	jr TrainerRankings_Increment3Byte
+	jr StubbedTrainerRankings_Increment3Byte
 ; 106117
 
-TrainerRankings_Increment4Byte: ; 106117
+StubbedTrainerRankings_Increment4Byte: ; 106117
 	push bc
 	ld bc, 3
-	jr TrainerRankings_Increment
+	jr StubbedTrainerRankings_Increment
 ; 10611d
 
-TrainerRankings_Increment3Byte: ; 10611d
+StubbedTrainerRankings_Increment3Byte: ; 10611d
 	push bc
 	ld bc, 2
-	jr TrainerRankings_Increment
+	jr StubbedTrainerRankings_Increment
 ; 106123
 
-TrainerRankings_Increment2Byte: ; 106123
+StubbedTrainerRankings_Increment2Byte: ; 106123
 	push bc
 	ld bc, 1
-	jr TrainerRankings_Increment
+	jr StubbedTrainerRankings_Increment
 ; 106129
 
 ; unused
-TrainerRankings_Increment1Byte: ; 106129
+StubbedTrainerRankings_Increment1Byte: ; 106129
 	push bc
 	ld bc, 0
 
 ; Increments a big-endian value of bc + 1 bytes at hl
-TrainerRankings_Increment: ; 10612d
+StubbedTrainerRankings_Increment: ; 10612d
 	ld a, BANK(sTrainerRankings)
 	call GetSRAMBank
 	push hl
@@ -450,7 +487,8 @@ TrainerRankings_Increment: ; 10612d
 ; 106155
 
 ; Used when SRAM bank 5 isn’t already loaded — what’s the point of this?
-UpdateTrainerRankingsChecksum2: mobile ; 106155
+UpdateTrainerRankingsChecksum2: ; 106155
+	ret
 	ld a, BANK(sTrainerRankings)
 	call GetSRAMBank
 	call UpdateTrainerRankingsChecksum
@@ -520,8 +558,7 @@ RestoreMobileEventIndex: ; 10619d (41:619d)
 	ret
 ; 1061b3 (41:61b3)
 
-; Unreferenced in English version.
-VerifyTrainerRankingsChecksum: ; 1061b3
+Unreferenced_VerifyTrainerRankingsChecksum: ; 1061b3
 	call CalculateTrainerRankingsChecksum
 	ld hl, sTrainerRankingsChecksum
 	ld a, d
@@ -773,15 +810,16 @@ endr
 	ret
 ; 10630f
 
-; functions related to the cable club and various NPC scripts referencing mobile communications
+; functions related to the cable club and various NPC scripts referencing communications
 
-Mobile_DummyReturnFalse: ; 10630f
+Special_Mobile_DummyReturnFalse: ; 10630f
 	xor a
 	ld [ScriptVar], a
 	ret
 ; 106314
 
-MobileFn_106314: mobile ; 106314
+Stubbed_Function106314: ; 106314
+	ret
 	ld a, $4
 	call GetSRAMBank
 	ld a, c
@@ -800,7 +838,7 @@ Mobile_AlwaysReturnNotCarry: ; 10632f
 	or a
 	ret
 
-Function106331: ; 106331 - called by Mobile_DummyReturnFalse in Crystal-J
+Function106331: ; 106331 - called by Special_Mobile_DummyReturnFalse in Crystal-J
 	; check ~[4:b000] == [7:a800]
 	ld a, $4
 	call GetSRAMBank
@@ -960,7 +998,7 @@ Function106403: ; 106403
 	or c
 	inc a
 	ld c, a
-	call MobileFn_106314
+	call Stubbed_Function106314
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -978,7 +1016,7 @@ Function106403: ; 106403
 
 .asm_106435
 	ld c, $0
-	call MobileFn_106314
+	call Stubbed_Function106314
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a
@@ -1005,7 +1043,8 @@ Function106453: ; 106453
 	ret
 ; 106462
 
-MobileFunc_106462: mobile
+Stubbed_Function106462:
+	ret
 	ret
 ; 106464
 

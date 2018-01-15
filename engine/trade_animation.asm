@@ -9,7 +9,7 @@ TRADEANIM_LEFT_ARROW  EQU $ee
 	const TRADEANIMSTATE_3 ; 3
 TRADEANIMJUMPTABLE_LENGTH EQU const_value
 
-TradeAnimation: ; 28f24
+Predef_TradeAnimation: ; 28f24
 	xor a
 	ld [wcf66], a
 	ld hl, wPlayerTrademonSenderName
@@ -60,7 +60,7 @@ TradeAnimation: ; 28f24
 	tradeanim_scroll_out_right
 	tradeanim_end
 
-TradeAnimationPlayer2: ; 28f63
+Predef_TradeAnimationPlayer2: ; 28f63
 	xor a
 	ld [wcf66], a
 	ld hl, wOTTrademonSenderName
@@ -883,13 +883,13 @@ TradeAnim_AnimateFrontpic: ; 29487
 TradeAnim_GetFrontpic: ; 29491
 	push de
 	push af
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef GetMonFrontpic
+	predef Predef_GetMonFrontpic
 	ret
 
 ; 294a9
@@ -923,7 +923,7 @@ TradeAnim_ShowFrontpic: ; 294c3
 	xor a
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	call WaitBGMap
 	ret
 
@@ -1575,8 +1575,8 @@ TradeAnim_WaitAnim2: ; 29886
 ; 29893
 
 
-DebugTrade: ; 29893
-; This function is unreferenced.
+Unreferenced_DebugTrade: ; 29893
+; This function is not referenced.
 ; It was meant for use in Japanese versions, so the
 ; constant used for copy length was changed by accident.
 

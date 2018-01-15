@@ -16,10 +16,10 @@ BattleTower1F_MapScriptHeader:
 
 .Scene0:
 	writebyte BATTLETOWERACTION_CHECKSAVEFILEISYOURS
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	iffalse .SkipEverything
 	writebyte BATTLETOWERACTION_GET_CHALLENGE_STATE ; copybytetovar sBattleTowerChallengeState
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_equal $0, .SkipEverything
 	if_equal $2, .priorityjump1
 	if_equal $3, .SkipEverything
@@ -34,9 +34,9 @@ BattleTower1F_MapScriptHeader:
 .priorityjump1
 	priorityjump BattleTower_LeftWithoutSaving
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	writebyte BATTLETOWERACTION_06
-	special BattleTowerAction
+	special Special_BattleTowerAction
 .SkipEverything:
 	setscene 1
 .Scene1:
@@ -55,13 +55,13 @@ UnknownScript_0x9e3e0:
 
 ReceptionistScript_0x9e3e2:
 	writebyte BATTLETOWERACTION_GET_CHALLENGE_STATE ; copybytetovar sBattleTowerChallengeState
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_equal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
 	opentext
 	writetext Text_BattleTowerWelcomesYou
 	buttonsound
 	writebyte BATTLETOWERACTION_CHECK_EXPLANATION_READ ; if new save file: bit 1, [sBattleTowerSaveFileFlags]
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_not_equal $0, Script_Menu_ChallengeExplanationCancel
 	jump Script_BattleTowerIntroductionYesNo
 
@@ -75,8 +75,8 @@ Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 
 Script_ChooseChallenge: ; 0x9e40f
 	writebyte BATTLETOWERACTION_RESETDATA ; ResetBattleTowerTrainerSRAM
-	special BattleTowerAction
-	special SpecialCheckForBattleTowerRules
+	special Special_BattleTowerAction
+	special Special_CheckForBattleTowerRules
 	if_not_equal FALSE, Script_WaitButton
 	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
@@ -86,23 +86,23 @@ Script_ChooseChallenge: ; 0x9e40f
 	iffalse Script_Menu_ChallengeExplanationCancel
 	setscene 1
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ ; set 1, [sBattleTowerSaveFileFlags]
-	special BattleTowerAction
-	special BattleTowerRoomMenu
+	special Special_BattleTowerAction
+	special Special_BattleTowerRoomMenu
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, Script_MobileError
 	writebyte BATTLETOWERACTION_11
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
 	waitbutton
 	closetext
 	writebyte BATTLETOWERACTION_CHOOSEREWARD
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	jump Script_WalkToBattleTowerElevator
 
 Script_ResumeBattleTowerChallenge:
 	closetext
 	writebyte BATTLETOWERACTION_LOADLEVELGROUP ; load choice of level group
-	special BattleTowerAction
+	special Special_BattleTowerAction
 Script_WalkToBattleTowerElevator:
 	musicfadeout MUSIC_NONE, 8
 	setmapscene BATTLE_TOWER_BATTLE_ROOM, 0
@@ -111,7 +111,7 @@ Script_WalkToBattleTowerElevator:
 	follow BATTLETOWER1F_RECEPTIONIST, PLAYER
 	applymovement BATTLETOWER1F_RECEPTIONIST, MovementData_BattleTower1FWalkToElevator
 	writebyte BATTLETOWERACTION_0A
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	warpsound
 	disappear BATTLETOWER1F_RECEPTIONIST
 	stopfollow
@@ -121,15 +121,15 @@ Script_WalkToBattleTowerElevator:
 
 Script_GivePlayerHisPrize: ; 0x9e47a
 	writebyte BATTLETOWERACTION_1C
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	writebyte BATTLETOWERACTION_GIVEREWARD
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_equal POTION, Script_YourPackIsStuffedFull
 	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_1
 	giveitem ITEM_FROM_MEM, 5
 	writetext Text_PlayerGotFive
 	writebyte BATTLETOWERACTION_1D
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	closetext
 	end
 
@@ -147,7 +147,7 @@ Script_BattleTowerExplanation: ; 0x9e4a5
 	writetext Text_BattleTowerIntroduction_2
 Script_BattleTowerSkipExplanation:
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	jump Script_Menu_ChallengeExplanationCancel
 
 Script_BattleTowerHopeToServeYouAgain:
@@ -157,7 +157,7 @@ Script_BattleTowerHopeToServeYouAgain:
 	end
 
 UnreferencedScript_0x9e4b6:
-	special BattleTowerMobileError
+	special Special_BattleTowerMobileError
 	closetext
 	end
 
@@ -173,8 +173,8 @@ UnreferencedScript_0x9e4be:
 	special Special_TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ
-	special BattleTowerAction
-	special Function1700ba
+	special Special_BattleTowerAction
+	special Special_Function1700ba
 	if_equal $a, Script_Menu_ChallengeExplanationCancel
 	if_not_equal $0, Script_MobileError
 	writetext Text_ReceivedAListOfLeadersOnTheHonorRoll
@@ -187,15 +187,15 @@ UnreferencedScript_0x9e4be:
 
 UnreferencedScript_0x9e4ea:
 	writebyte BATTLETOWERACTION_LEVEL_CHECK
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_not_equal $0, Script_APkmnLevelExceeds
 	writebyte BATTLETOWERACTION_UBERS_CHECK
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_not_equal $0, Script_MayNotEnterABattleRoomUnderL70
-	special SpecialCheckForBattleTowerRules
+	special Special_CheckForBattleTowerRules
 	if_not_equal FALSE, Script_WaitButton
 	writebyte BATTLETOWERACTION_05
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_equal $0, .zero
 	writetext Text_CantBeRegistered_PreviousRecordDeleted
 	jump continue
@@ -213,9 +213,9 @@ continue:
 	iffalse Script_Menu_ChallengeExplanationCancel
 	setscene 1
 	writebyte BATTLETOWERACTION_06
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	writebyte BATTLETOWERACTION_12
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
 	waitbutton
 	jump Script_ResumeBattleTowerChallenge
@@ -236,7 +236,7 @@ Script_MayNotEnterABattleRoomUnderL70: ; 0x9e549
 	jump Script_Menu_ChallengeExplanationCancel
 
 Script_MobileError:
-	special BattleTowerMobileError
+	special Special_BattleTowerMobileError
 	closetext
 	end
 

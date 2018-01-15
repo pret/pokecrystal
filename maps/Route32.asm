@@ -59,7 +59,7 @@ Route32CooltrainerMContinueScene:
 	closetext
 	end
 
-.Unused:
+.Unreferenced:
 	writetext Route32CooltrainerMText_UnusedSproutTower
 	waitbutton
 	closetext
@@ -837,7 +837,7 @@ BirdKeeperPeterAfterText:
 	cont "in VIOLET CITY."
 	done
 
-; possibly unused
+; unused
 Route32UnusedText:
 	text "The fishermen"
 	line "yelled at me for"

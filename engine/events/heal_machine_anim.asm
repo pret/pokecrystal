@@ -1,4 +1,4 @@
-HealMachineAnim: ; 12324
+Special_HealMachineAnim: ; 12324
 	; If you have no Pokemon, don't change the buffer.  This can lead to some glitchy effects if you have no Pokemon.
 	ld a, [PartyCount]
 	and a

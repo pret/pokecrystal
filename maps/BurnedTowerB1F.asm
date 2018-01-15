@@ -83,7 +83,7 @@ ReleaseTheBeasts:
 	special RestartMapMusic
 	setscene 1
 	setevent EVENT_RELEASED_THE_BEASTS
-	special InitRoamMons
+	special Special_InitRoamMons
 	setmapscene ECRUTEAK_GYM, 1
 	setmapscene CIANWOOD_CITY, 1
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

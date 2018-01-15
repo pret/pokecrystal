@@ -502,10 +502,9 @@ GetMapMusic:: ; 3d97
 	ret
 ; 3d9f
 
-Function3d9f:: ; 3d9f
+Unreferenced_Function3d9f:: ; 3d9f
 ; Places a BCD number at the
 ; upper center of the screen.
-; Unreferenced.
 	ld a, 4 * TILE_WIDTH
 	ld [Sprite39YCoord], a
 	ld [Sprite40YCoord], a

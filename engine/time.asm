@@ -225,13 +225,13 @@ CheckUnusedTwoDayTimer: ; 1150c
 	ret
 ; 1151c
 
-; XXX
+; unused
 	ld hl, wDailyFlags
 	set 2, [hl]
 	ret
 ; 11522
 
-; XXX
+; unused
 	and a
 	ld hl, wDailyFlags
 	bit 2, [hl]

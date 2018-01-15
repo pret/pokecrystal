@@ -166,7 +166,7 @@ Init:: ; 17d
 
 	call DelayFrame
 
-	predef InitSGBBorder ; SGB init
+	predef Predef_InitSGBBorder ; SGB init
 
 	call MapSetup_Sound_Off
 	xor a

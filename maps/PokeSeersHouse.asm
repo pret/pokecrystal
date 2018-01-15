@@ -11,7 +11,7 @@ PokeSeersHouse_MapScriptHeader:
 SeerScript:
 	faceplayer
 	opentext
-	special SpecialPokeSeer
+	special Special_PokeSeer
 	waitbutton
 	closetext
 	end

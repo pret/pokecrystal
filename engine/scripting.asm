@@ -1370,7 +1370,7 @@ Script_startbattle:
 ; script command 0x5f
 
 	call BufferScreen
-	predef StartBattle
+	predef Predef_StartBattle
 	ld a, [wBattleResult]
 	and $3f
 	ld [ScriptVar], a
@@ -2351,7 +2351,7 @@ Script_giveegg:
 	ld [CurPartySpecies], a
 	call GetScriptByte
 	ld [CurPartyLevel], a
-	farcall GiveEgg
+	farcall Predef_GiveEgg
 	ret nc
 	ld a, 2
 	ld [ScriptVar], a
@@ -2624,7 +2624,8 @@ Script_warpcheck:
 	farcall EnableEvents
 	ret
 
-Script_enableevents: ; unreferenced
+Script_enableevents:
+; unused
 	farcall EnableEvents
 	ret
 
@@ -2667,7 +2668,7 @@ Script_loadbytec2cf:
 	ld [wc2cf], a
 	ret
 
-	db $49 ; XXX
+	db closetext_command ; unused
 
 Script_closetext:
 ; script command 0x49
@@ -2804,8 +2805,8 @@ Script_halloffame:
 
 	ld hl, wGameTimerPause
 	res 0, [hl]
-	farcall TrainerRankings_HallOfFame
-	farcall TrainerRankings_HallOfFame2
+	farcall StubbedTrainerRankings_HallOfFame
+	farcall StubbedTrainerRankings_HallOfFame2
 	farcall HallOfFame
 	ld hl, wGameTimerPause
 	set 0, [hl]
@@ -2847,7 +2848,7 @@ Script_check_save:
 	ret
 
 
-; unreferenced
+; unused
 	ld a, [.byte]
 	ld [ScriptVar], a
 	ret

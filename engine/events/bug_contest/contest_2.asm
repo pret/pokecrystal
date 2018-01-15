@@ -76,7 +76,7 @@ Special_CheckBugContestContestantFlag: ; 139ed
 
 INCLUDE "data/bug_contest_flags.asm"
 
-ContestDropOffMons: ; 13a12
+Special_ContestDropOffMons: ; 13a12
 	ld hl, PartyMon1HP
 	ld a, [hli]
 	or [hl]
@@ -101,7 +101,7 @@ ContestDropOffMons: ; 13a12
 	ret
 ; 13a31
 
-ContestReturnMons: ; 13a31
+Special_ContestReturnMons: ; 13a31
 ; Restore the species of the second mon.
 	ld hl, PartySpecies + 1
 	ld a, [wBugContestSecondPartySpecies]

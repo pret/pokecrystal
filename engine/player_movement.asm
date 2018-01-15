@@ -316,7 +316,7 @@ DoPlayerMovement:: ; 80000
 	scf
 	ret
 
-; unused?
+; unused
 	xor a
 	ret
 

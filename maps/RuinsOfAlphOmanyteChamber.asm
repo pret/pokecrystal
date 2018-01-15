@@ -9,7 +9,7 @@ RuinsOfAlphOmanyteChamber_MapScriptHeader:
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
-	special SpecialOmanyteChamber
+	special Special_OmanyteChamber
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .OpenWall
 	end
@@ -115,8 +115,8 @@ UnknownText_0x58c8e:
 	line "on the walls…"
 	done
 
-; possibly unused.. this again?
-UnknownText_0x58caf:
+; unused
+UnusedText_0x58caf:
 	text "It's UNOWN text!"
 	done
 

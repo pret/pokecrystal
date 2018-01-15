@@ -33,14 +33,14 @@ DaisyScript:
 	writetext DaisyAlrightText
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext GroomedMonLooksContentText
-	special PlayCurMonCry
+	special Special_PlayCurMonCry
 	buttonsound
 	writetext DaisyAllDoneText
 	waitbutton

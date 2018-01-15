@@ -35,7 +35,7 @@ CheckOppositeGender: ; 377f5
 	xor a
 	ld [MonType], a
 
-	farcall GetGender
+	farcall Predef_GetGender
 	jr c, .genderless_samegender
 
 	ld b, 1
@@ -58,7 +58,7 @@ CheckOppositeGender: ; 377f5
 	ld [TempMonDVs + 1], a
 	ld a, 3
 	ld [MonType], a
-	farcall GetGender
+	farcall Predef_GetGender
 	pop bc
 	jr c, .genderless_samegender
 

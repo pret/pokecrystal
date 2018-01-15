@@ -305,12 +305,12 @@ LoadGraphics: ; 1047cf
 	ld [hMapAnims], a
 	xor a
 	ld [hTileAnimFrame], a
-	farcall RefreshSprites
+	farcall Special_RefreshSprites
 	call LoadFontsExtra
 	farcall LoadOverworldFont
 	ret
 
-LoadMapPalettes: ; 1047eb
+Special_LoadMapPalettes: ; 1047eb
 	ld b, SCGB_MAPPALS
 	jp GetSGBLayout
 ; 1047f0

@@ -1488,7 +1488,7 @@ AI_Smart_Encore: ; 38c3b
 	push hl
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	ld hl, EnemyMonType1
-	predef CheckTypeMatchup
+	predef Predef_CheckTypeMatchup
 
 	pop hl
 	ld a, [wd265]

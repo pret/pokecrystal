@@ -99,7 +99,7 @@ SafeUpdateSprites:: ; 2e31
 	ld [hOAMUpdate], a
 	ret
 
-; XXX
+; unused
 	scf
 	ret
 ; 2e50

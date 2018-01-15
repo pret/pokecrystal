@@ -18,7 +18,7 @@ ManiaScript:
 	writetext ManiaText_AskLookAfterShuckle
 	yesorno
 	iffalse .refusetotakeshuckie
-	special SpecialGiveShuckle
+	special Special_GiveShuckle
 	iffalse .partyfull
 	writetext ManiaText_TakeCareOfShuckle
 	buttonsound
@@ -54,7 +54,7 @@ ManiaScript:
 	writetext ManiaText_CanIHaveMyMonBack
 	yesorno
 	iffalse .refused
-	special SpecialReturnShuckle
+	special Special_ReturnShuckle
 	if_equal SHUCKIE_WRONG_MON, .wrong
 	if_equal SHUCKIE_REFUSED, .refused
 	if_equal SHUCKIE_HAPPY, .superhappy

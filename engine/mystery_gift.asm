@@ -63,7 +63,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	jr z, .skip_append_save
 	call .SaveMysteryGiftTrainerName
 	farcall RestoreMobileEventIndex
-	farcall TrainerRankings_MysteryGift
+	farcall StubbedTrainerRankings_MysteryGift
 	farcall BackupMobileEventIndex
 .skip_append_save
 	ld a, [wMysteryGiftPartnerSentDeco]
@@ -1117,7 +1117,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	ld d, $0
 	ld b, CHECK_FLAG
 	ld hl, sMysteryGiftDecorationsReceived
-	predef_id FlagPredef
+	predef_id Predef_SmallFarFlagAction
 	push hl
 	push bc
 	call Predef
@@ -1129,7 +1129,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	ret nz
 	call GetMysteryGiftBank
 	ld b, SET_FLAG
-	predef FlagPredef
+	predef Predef_SmallFarFlagAction
 	call CloseSRAM
 	xor a
 	ret
@@ -1142,7 +1142,7 @@ MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
 	ld d, $0
 	ld b, CHECK_FLAG
 	ld hl, sMysteryGiftDecorationsReceived
-	predef FlagPredef
+	predef Predef_SmallFarFlagAction
 	ld a, c
 	and a
 	pop bc
@@ -1369,7 +1369,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	jr .gfx_loop
 ; 105232 (41:5232)
 
-.Load6GFX: ; unreferenced
+.Unreferenced_Load6GFX:
 	ld b,  6
 	jr .gfx_loop
 

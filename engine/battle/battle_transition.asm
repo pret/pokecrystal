@@ -1,4 +1,4 @@
-Predef_StartBattle: ; 8c20f
+Predef_DoBattleTransition: ; 8c20f
 	call .InitGFX
 	ld a, [rBGP]
 	ld [wBGP], a
@@ -16,7 +16,7 @@ Predef_StartBattle: ; 8c20f
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .done
-	call FlashyTransitionToBattle
+	call BattleTransitionJumptable
 	call DelayFrame
 	jr .loop
 
@@ -144,7 +144,7 @@ TrainerBattlePokeballTiles: ; 8c2f4
 INCBIN "gfx/overworld/trainer_battle_pokeball_tiles.2bpp"
 
 
-FlashyTransitionToBattle: ; 8c314
+BattleTransitionJumptable: ; 8c314
 	jumptable .dw, wJumptableIndex
 ; 8c323
 
@@ -859,8 +859,7 @@ ENDM
 	ret
 ; 8c7c9 (23:47c9)
 
-Function8c7c9:
-; XXX
+Unreferenced_Function8c7c9:
 	ld a, $1
 	ld [hBGMapMode], a
 	call WaitBGMap

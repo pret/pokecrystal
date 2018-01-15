@@ -10,7 +10,7 @@ _MainMenu: ; 5ae8
 	jp StartTitleScreen
 ; 5b04
 
-; unreferenced
+; unused
 	ret
 ; 5b05
 
@@ -825,7 +825,7 @@ NamePlayer: ; 0x6074
 	db "KRIS@@@@@@@"
 ; 60e9
 
-Function60e9: ; Unreferenced
+Unreferenced_Function60e9:
 	call LoadMenuDataHeader
 	call VerticalMenu
 	ld a, [wMenuCursorY]
@@ -941,24 +941,24 @@ Intro_WipeInFrontpic: ; 6182
 
 Intro_PrepTrainerPic: ; 619c
 	ld de, vTiles2
-	farcall GetTrainerPic
+	farcall Predef_GetTrainerPic
 	xor a
 	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ret
 ; 61b4
 
 ShrinkFrame: ; 61b4
 	ld de, vTiles2
 	ld c, $31
-	predef DecompressPredef
+	predef Predef_Decompress
 	xor a
 	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ret
 ; 61cd
 
@@ -1093,7 +1093,7 @@ RunTitleScreen: ; 627b
 	ret
 ; 6292
 
-Function6292: ; 6292 ; unreferenced
+Unreferenced_Function6292: ; 6292
 	ld a, [hVBlankCounter]
 	and $7
 	ret nz
@@ -1124,7 +1124,7 @@ TitleScreenScene: ; 62a3
 	dw TitleScreenEnd
 ; 62b7
 
-.NextScene: ; Unreferenced
+.Unreferenced_NextScene:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
@@ -1328,7 +1328,7 @@ ResetClock: ; 6392
 	jp Init
 ; 639b
 
-Function639b: ; unreferenced
+Unreferenced_Function639b:
 	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
 	ld a, [wTitleScreenTimer]
 	and %00000011

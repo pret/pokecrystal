@@ -74,7 +74,7 @@ Route35NationalParkGate_MapScriptHeader:
 	closetext
 	scall Route35NationalParkGate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	waitsfx
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47
 	end
@@ -95,7 +95,7 @@ OfficerScript_0x6a204:
 	iffalse Route35NationalParkGate_DeclinedToParticipate
 	checkcode VAR_PARTYCOUNT
 	if_greater_than 1, Route35NationalParkGate_LeaveTheRestBehind
-	special ContestDropOffMons
+	special Special_ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 Route35NationalParkGate_OkayToProceed:
 	setflag ENGINE_BUG_CONTEST_TIMER
@@ -111,7 +111,7 @@ Route35NationalParkGate_OkayToProceed:
 	special Special_GiveParkBalls
 	scall Route35NationalParkGate_EnterContest
 	playsound SFX_ENTER_DOOR
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	waitsfx
 	special Special_SelectRandomBugContestContestants
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47
@@ -134,12 +134,12 @@ Route35NationalParkGate_LeaveTheRestBehind:
 	if_equal 0, Route35NationalParkGate_NoRoomInBox
 
 Route35NationalParkGate_LessThanFullParty: ; 6a27d
-	special CheckFirstMonIsEgg
+	special Special_CheckFirstMonIsEgg
 	if_equal TRUE, Route35NationalParkGate_FirstMonIsEgg
 	writetext UnknownText_0x6a4c6
 	yesorno
 	iffalse Route35NationalParkGate_DeclinedToLeaveMonsBehind
-	special ContestDropOffMons
+	special Special_ContestDropOffMons
 	iftrue Route35NationalParkGate_FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6a537

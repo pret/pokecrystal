@@ -35,9 +35,6 @@ jumptable: MACRO
 	jp hl
 ENDM
 
-; Many mobile functions were dummied out in localization.
-mobile EQUS "ret"
-
 maskbits: MACRO
 ; masks just enough bits to cover the argument
 ; e.g. "maskbits %00010100" becomes "and %00011111"

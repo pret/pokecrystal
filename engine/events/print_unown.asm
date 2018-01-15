@@ -140,13 +140,13 @@ UnownPrinter: ; 16be4
 	xor a
 	ld [wBoxAlignment], a
 	ld de, vTiles2
-	predef GetMonFrontpic
+	predef Predef_GetMonFrontpic
 	call .Load2bppToSRAM
 	hlcoord 1, 6
 	xor a
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ld de, vTiles2 tile $31
 	farcall RotateUnownFrontpic
 	ret
@@ -228,6 +228,6 @@ PlaceUnownPrinterFrontpic: ; 16dac
 	ld a, $31
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	ret
 ; 16dc7

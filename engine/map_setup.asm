@@ -79,7 +79,7 @@ MapSetupCommands: ; 15440
 	dba LoadGraphics ; 0e
 	dba LoadTileset ; 0f
 	dba LoadMapTimeOfDay ; 10
-	dba LoadMapPalettes ; 11
+	dba Special_LoadMapPalettes ; 11
 	dba LoadWildMonData ; 12
 	dba RefreshMapSprites ; 13
 	dba HandleNewMap ; 14
@@ -91,8 +91,8 @@ MapSetupCommands: ; 15440
 	dba LoadMapAttributes ; 1a
 	dba LoadMapAttributes_SkipPeople ; 1b
 	dba ClearBGPalettes ; 1c
-	dba FadeOutPalettes ; 1d
-	dba FadeInPalettes ; 1e
+	dba Special_FadeOutPalettes ; 1d
+	dba Special_FadeInPalettes ; 1e
 	dba GetCoordOfUpperLeftCorner ; 1f
 	dba RestoreFacingAfterWarp ; 20
 	dba SpawnInFacingDown ; 21
@@ -137,7 +137,7 @@ LoadObjectsRunCallback_02: ; 154d7
 	ret
 ; 154ea (5:54ea)
 
-; unreferenced
+; unused
 	ret
 ; 154eb
 

@@ -202,8 +202,8 @@ UnknownText_0x589b8:
 	cont "this wall here…"
 	done
 
-; possibly unused
-UnknownText_0x58a03:
+; unused
+UnusedText_0x58a03:
 	text "The patterns on"
 	line "the wall appear to"
 	cont "be words!"
@@ -226,8 +226,8 @@ UnknownText_0x58aa7:
 	line "on the walls…"
 	done
 
-; possibly unused
-UnknownText_0x58ac8:
+; unused
+UnusedText_0x58ac8:
 	text "It's UNOWN text!"
 	done
 

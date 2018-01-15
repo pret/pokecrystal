@@ -398,8 +398,7 @@ LinkDataReceived:: ; 908
 	ret
 ; 919
 
-Function919:: ; 919
-; XXX
+Unreferenced_Function919:: ; 919
 	ld a, [wLinkMode]
 	and a
 	ret nz

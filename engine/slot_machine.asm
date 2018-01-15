@@ -87,7 +87,7 @@ _SlotMachine:
 	call PlaySFX
 	call WaitSFX
 	call ClearBGPalettes
-	farcall TrainerRankings_EndSlotsWinStreak
+	farcall StubbedTrainerRankings_EndSlotsWinStreak
 	ld hl, Options
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC
@@ -185,7 +185,7 @@ SlotsLoop: ; 927af (24:67af)
 	ld [wCurrSpriteOAMAddr], a
 	callfar DoNextFrameForFirst16Sprites
 	call .PrintCoinsAndPayout
-	call .DummyFunc
+	call .Stubbed_Function927d3
 	call DelayFrame
 	and a
 	ret
@@ -194,7 +194,7 @@ SlotsLoop: ; 927af (24:67af)
 	scf
 	ret
 
-.DummyFunc: ; 927d3 (24:67d3)
+.Stubbed_Function927d3: ; 927d3 (24:67d3)
 ; dummied out
 	ret
 	ld a, [wReel1ReelAction]
@@ -234,8 +234,8 @@ SlotsLoop: ; 927af (24:67af)
 
 ; 92811 (24:6811)
 
-Function92811: ; 92811
-; unreferenced - debug function?
+Unreferenced_Function92811: ; 92811
+; debug function?
 	ld a, [wSlotBias]
 	add 0
 	daa
@@ -254,8 +254,7 @@ Function92811: ; 92811
 
 ; 9282c
 
-Function9282c: ; 9282c
-; unreferenced
+Unreferenced_Function9282c: ; 9282c
 ; animate OAM tiles?
 	ld hl, wcf66
 	ld a, [hl]
@@ -856,8 +855,7 @@ Slots_UpdateReelPositionAndOAM: ; 92b53 (24:6b53)
 
 ; 92bbe (24:6bbe)
 
-; unreferenced
-Function92bbe: ; 92bbe
+Unreferenced_Function92bbe: ; 92bbe
 	push hl
 	srl a
 	srl a
@@ -1938,7 +1936,7 @@ Slots_GetPayout: ; 93124 (24:7124)
 	ld a, [hl]
 	ld [wPayout], a
 	ld d, a
-	farcall TrainerRankings_AddToSlotsPayouts
+	farcall StubbedTrainerRankings_AddToSlotsPayouts
 	ret
 
 .PayoutTable:
@@ -1962,7 +1960,7 @@ Slots_PayoutText: ; 93158 (24:7158)
 	jr nz, .MatchedSomething
 	ld hl, .Text_Darn
 	call PrintText
-	farcall TrainerRankings_EndSlotsWinStreak
+	farcall StubbedTrainerRankings_EndSlotsWinStreak
 	ret
 
 .MatchedSomething:
@@ -1986,7 +1984,7 @@ Slots_PayoutText: ; 93158 (24:7158)
 .return
 	ld hl, .Text_PrintPayout
 	call PrintText
-	farcall TrainerRankings_AddToSlotsWinStreak
+	farcall StubbedTrainerRankings_AddToSlotsWinStreak
 	ret
 
 ; 93195 (24:7195)

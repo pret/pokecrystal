@@ -217,7 +217,7 @@ DragonShrineElder1Script:
 	waitsfx
 	givepoke DRATINI, 15
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
-	special SpecialDratini
+	special Special_Dratini
 	setevent EVENT_GOT_DRATINI
 	setevent EVENT_JUST_RECEIVED_DRATINI
 	writetext DragonShrineSymbolicDragonText

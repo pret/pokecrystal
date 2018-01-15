@@ -392,7 +392,7 @@ HueyPhoneScript1:
 	iftrue HueyWednesdayNight
 
 .NotWednesday:
-	special RandomPhoneMon
+	special Special_RandomPhoneMon
 	farjump UnknownScript_0xa0908
 
 .WantsBattle:
@@ -629,7 +629,7 @@ JoeyPhoneScript1:
 	iftrue JoeyMondayAfternoon
 
 .NotMonday:
-	special RandomPhoneMon
+	special Special_RandomPhoneMon
 	farjump UnknownScript_0xa0930
 
 .WantsBattle:
@@ -851,7 +851,7 @@ LizPhoneScript1:
 	iftrue LizThursdayAfternoon
 
 .NotThursday:
-	special RandomPhoneMon
+	special Special_RandomPhoneMon
 	farjump UnknownScript_0xa0948
 
 .WantsBattle:

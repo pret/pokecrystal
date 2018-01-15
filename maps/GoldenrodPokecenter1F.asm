@@ -17,7 +17,7 @@ NurseScript_0x60f91:
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
 	writebyte BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 
@@ -49,7 +49,7 @@ GoldenrodPokecenter1F_GSBallSceneLeft:
 
 GoldenrodPokecenter1F_GSBallSceneRight:
 	writebyte BATTLETOWERACTION_CHECKMOBILEEVENT
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	if_equal MOBILE_EVENT_OBJECT_GS_BALL, .gsball
 	end
 

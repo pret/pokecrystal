@@ -161,7 +161,7 @@ Kurt_SelectQuantity: ; 880c2
 	db $40 ; flags
 	menu_coords 6, 9, SCREEN_WIDTH - 1, 12
 
-	; XXX
+	; unused
 	dw 0
 	db -1
 	db 0

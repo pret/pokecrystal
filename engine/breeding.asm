@@ -10,7 +10,7 @@ CheckBreedmonCompatibility: ; 16e1d
 	ld [TempMonDVs + 1], a
 	ld a, TEMPMON
 	ld [MonType], a
-	predef GetGender
+	predef Predef_GetGender
 	jr c, .genderless
 	ld b, $1
 	jr nz, .breedmon2
@@ -26,7 +26,7 @@ CheckBreedmonCompatibility: ; 16e1d
 	ld [TempMonDVs + 1], a
 	ld a, $3
 	ld [MonType], a
-	predef GetGender
+	predef Predef_GetGender
 	pop bc
 	jr c, .genderless
 	ld a, $1
@@ -232,7 +232,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	push de
 
 	farcall SetEggMonCaughtData
-	farcall TrainerRankings_EggsHatched
+	farcall StubbedTrainerRankings_EggsHatched
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -289,7 +289,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $0
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 	pop bc
 	ld hl, MON_MAXHP
 	add hl, bc
@@ -514,7 +514,7 @@ GLOBAL EggMoves
 	cp b
 	jr nz, .loop5
 	ld [wPutativeTMHMMove], a
-	predef CanLearnTMHMMove
+	predef Predef_CanLearnTMHMMove
 	ld a, c
 	and a
 	jr z, .done
@@ -559,7 +559,7 @@ LoadEggMove: ; 17169
 	ld [hl], b
 	ld hl, wEggMonMoves
 	ld de, wEggMonPP
-	predef FillPP
+	predef Predef_FillPP
 	pop bc
 	pop de
 	ret
@@ -590,7 +590,7 @@ GetHeritableMoves: ; 17197
 	ld [TempMonDVs + 1], a
 	ld a, TEMPMON
 	ld [MonType], a
-	predef GetGender
+	predef Predef_GetGender
 	jr c, .inherit_mon2_moves
 	jr nz, .inherit_mon2_moves
 	jr .inherit_mon1_moves
@@ -606,7 +606,7 @@ GetHeritableMoves: ; 17197
 	ld [TempMonDVs + 1], a
 	ld a, TEMPMON
 	ld [MonType], a
-	predef GetGender
+	predef Predef_GetGender
 	jr c, .inherit_mon1_moves
 	jr nz, .inherit_mon1_moves
 
@@ -647,9 +647,9 @@ GetEggFrontpic: ; 17224 (5:7224)
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, BattleMonDVs
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	pop de
-	predef_jump GetMonFrontpic
+	predef_jump Predef_GetMonFrontpic
 
 GetHatchlingFrontpic: ; 1723c (5:723c)
 	push de
@@ -657,9 +657,9 @@ GetHatchlingFrontpic: ; 1723c (5:723c)
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, BattleMonDVs
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	pop de
-	predef_jump GetAnimatedFrontpicPredef
+	predef_jump Predef_GetAnimatedFrontpic
 
 Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
 	push af
@@ -677,7 +677,7 @@ Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
 	ld a, c
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef PlaceGraphic
+	predef Predef_PlaceGraphic
 	pop af
 	call Hatch_LoadFrontpicPal
 	call SetPalettes
@@ -779,7 +779,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	hlcoord 6, 3
 	ld d, $0
 	ld e, ANIM_MON_HATCH
-	predef AnimateFrontpic
+	predef Predef_AnimateFrontpic
 	pop af
 	ld [CurSpecies], a
 	ret
@@ -985,8 +985,7 @@ DayCareMonCompatibilityText: ; 1746c
 	db "@"
 ; 0x174b5
 
-DayCareMonPrintEmptyString: ; 174b5
-; unreferenced
+Unreferenced_DayCareMonPrintEmptyString: ; 174b5
 	ld hl, .string
 	ret
 ; 174b9

@@ -76,10 +76,10 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Mobile_DummyReturnFalse ; always returns false
+	special Special_Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_TradeReceptionistMobile
-	special AskMobileOrCable
+	special Special_AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
@@ -107,7 +107,7 @@ LinkReceptionistScript_Trade:
 	end
 
 .FriendNotReady:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
 	closetext
 	end
@@ -132,7 +132,7 @@ LinkReceptionistScript_Trade:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .AbortLink:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 .Cancel:
 	closetext
 	end
@@ -153,7 +153,7 @@ LinkReceptionistScript_Trade:
 	iffalse .Mobile_DidNotSave
 	special Special_TryQuickSave
 	iffalse .Mobile_DidNotSave
-	special Function1011f1
+	special Special_Function1011f1
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
@@ -178,10 +178,10 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Mobile_DummyReturnFalse ; always returns false
+	special Special_Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_BattleReceptionistMobile
-	special AskMobileOrCable
+	special Special_AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
@@ -209,7 +209,7 @@ LinkReceptionistScript_Battle:
 	end
 
 .FriendNotReady:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
 	closetext
 	end
@@ -234,7 +234,7 @@ LinkReceptionistScript_Battle:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .AbortLink:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 .Cancel:
 	closetext
 	end
@@ -255,9 +255,9 @@ LinkReceptionistScript_Battle:
 	writetext Text_MustSaveGame
 	yesorno
 	iffalse .Mobile_DidNotSave
-	special Function103780
+	special Special_Function103780
 	iffalse .Mobile_DidNotSave
-	special Function1011f1
+	special Special_Function1011f1
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
@@ -271,7 +271,7 @@ LinkReceptionistScript_Battle:
 	end
 
 .SelectThreeMons:
-	special Mobile_SelectThreeMons
+	special Special_Mobile_SelectThreeMons
 	iffalse .Mobile_DidNotSelect
 	if_equal $1, .Mobile_OK
 	if_equal $2, .Mobile_OK
@@ -342,7 +342,7 @@ LinkReceptionistScript_TimeCapsule:
 	end
 
 .FriendNotReady:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
 	closetext
 	end
@@ -354,7 +354,7 @@ LinkReceptionistScript_TimeCapsule:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .Cancel:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 	closetext
 	end
 
@@ -374,14 +374,14 @@ LinkReceptionistScript_TimeCapsule:
 	end
 
 Script_LeftCableTradeCenter:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkTradeRoom
 	setscene 0
 	setmapscene TRADE_CENTER, 0
 	end
 
 Script_LeftMobileTradeRoom:
-	special Function101220
+	special Special_Function101220
 	scall Script_WalkOutOfMobileTradeRoom
 	setscene 0
 	setmapscene MOBILE_TRADE_ROOM_MOBILE, 0
@@ -394,14 +394,14 @@ Script_WalkOutOfMobileTradeRoom:
 	end
 
 Script_LeftCableColosseum:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkBattleRoom
 	setscene 0
 	setmapscene COLOSSEUM, 0
 	end
 
 Script_LeftMobileBattleRoom:
-	special Function101220
+	special Special_Function101220
 	scall Script_WalkOutOfMobileBattleRoom
 	setscene 0
 	setmapscene MOBILE_BATTLE_ROOM, 0
@@ -558,7 +558,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	end
 
 Script_LeftTimeCapsule:
-	special WaitForOtherPlayerToExit
+	special Special_WaitForOtherPlayerToExit
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight

@@ -427,7 +427,7 @@ UsedSurfScript: ; c986
 	end
 
 .empty_fn ; c9a2
-	farcall TrainerRankings_Surf
+	farcall StubbedTrainerRankings_Surf
 	ret
 
 UsedSurfText: ; c9a9
@@ -623,7 +623,7 @@ FlyFunction: ; ca3b
 	special UpdateTimePals
 	callasm FlyFromAnim
 	farscall Script_AbortBugContest
-	special WarpToSpawnPoint
+	special Special_WarpToSpawnPoint
 	callasm DelayLoadingNewSprites
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_FLY
@@ -700,7 +700,7 @@ Script_UsedWaterfall: ; 0xcb20
 	ld a, [PlayerStandingTile]
 	call CheckWaterfallTile
 	ret z
-	farcall TrainerRankings_Waterfall
+	farcall StubbedTrainerRankings_Waterfall
 	ld a, $1
 	ld [ScriptVar], a
 	ret
@@ -871,7 +871,7 @@ dig_incave
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .DigOut
 	farscall Script_AbortBugContest
-	special WarpToSpawnPoint
+	special Special_WarpToSpawnPoint
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_DOOR
 	playsound SFX_WARP_FROM
@@ -958,7 +958,7 @@ TeleportFunction: ; cc61
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .TeleportFrom
 	farscall Script_AbortBugContest
-	special WarpToSpawnPoint
+	special Special_WarpToSpawnPoint
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_TELEPORT
 	playsound SFX_WARP_FROM
@@ -986,7 +986,7 @@ StrengthFunction: ; cce5
 	jr c, .Failed
 	jr .UseStrength
 
-.AlreadyUsing: ; unreferenced
+.Unreferenced_AlreadyUsing:
 	ld hl, .JumpText
 	call MenuTextBoxBackup
 	ld a, $80
@@ -1749,7 +1749,7 @@ Script_GetOnBike_Register: ; 0xd14e
 	special ReplaceKrisSprite
 	end
 
-; XXX
+; unused
 	nop
 	ret
 

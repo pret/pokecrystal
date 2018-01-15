@@ -40,7 +40,7 @@ Function100022: ; 100022
 	ld a, b
 	ld [wcd24], a
 	farcall Function10127e
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464 ; load broken gfx
 	farcall Function11615a ; init RAM
 	ld hl, VramState
@@ -318,7 +318,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	farcall FadeOutPalettes
+	farcall Special_FadeOutPalettes
 	farcall Function106464
 	call HideSprites
 	call DelayFrame
@@ -1985,7 +1985,7 @@ Function100c74: ; 100c74
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 10
-	predef ListMoves
+	predef Predef_ListMoves
 	ret
 ; 100c98
 
@@ -2803,7 +2803,7 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 	ret
 ; 1011f1
 
-Function1011f1: ; 1011f1
+Special_Function1011f1: ; 1011f1
 	ld a, $04
 	call GetSRAMBank
 	ld a, [$a60c]
@@ -2827,20 +2827,20 @@ Function1011f1: ; 1011f1
 	ret
 ; 101220
 
-Function101220: ; 101220
+Special_Function101220: ; 101220
 	xor a
 	ld [wLinkMode], a
 	ret
 ; 101225
 
-Function101225: ; 101225
+Special_Function101225: ; 101225
 	ld d, 1
 	ld e, BANK(Jumptable_101297)
 	ld bc, Jumptable_101297
 	call Function100000
 	jr Function10123d
 
-Function101231: ; 101231
+Special_Function101231: ; 101231
 	ld d, 2
 	ld e, BANK(Jumptable_101297)
 	ld bc, Jumptable_101297
@@ -2871,7 +2871,7 @@ Function101251: ; 101251
 	call Function1021e0
 	call Function1020ea
 	ret c
-	call Function102142
+	call Special_Function102142
 	ret
 ; 101265
 
@@ -3076,7 +3076,7 @@ Function1013aa: ; 1013aa
 
 Function1013c0: ; 1013c0
 	farcall BlankScreen
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call FinishExitMenu
 	ret
@@ -3092,7 +3092,7 @@ Function1013dd: ; 1013dd
 	ret
 ; 1013e1
 
-Function1013e1: ; 1013e1 ; unreferenced
+Unreferenced_Function1013e1: ; 1013e1 
 	push de
 	inc de
 	ld b, a
@@ -3129,7 +3129,7 @@ Function1013f5: ; 1013f5
 	ret
 ; 101400
 
-Function101400: ; 101400 ; unreferenced
+Unreferenced_Function101400: ; 101400 
 	ld a, [de]
 	inc de
 	cp [hl]
@@ -3317,7 +3317,7 @@ Function101507: ; 101507
 	ret
 ; 10151d
 
-Function10151d: ; 10151d ; unreferenced
+Unreferenced_Function10151d: ; 10151d 
 	ld a, $34
 	call Function3e32
 	ld a, [wMobileCommsJumptableIndex]
@@ -3512,7 +3512,7 @@ Function101663: ; 101663
 	ret
 ; 101674
 
-Function101674: ; 101674 ; unreferenced
+Unreferenced_Function101674: ; 101674 
 	ld a, $05
 	ld hl, w5_dc00
 	call Function101635
@@ -4401,7 +4401,7 @@ Function101cbc: ; 101cbc
 	ret
 ; 101cc2
 
-Function101cc2: ; 101cc2 ; unreferenced
+Unreferenced_Function101cc2: ; 101cc2 
 	ld a, $02
 	ld [wcd2b], a
 	ret
@@ -4682,7 +4682,7 @@ Function101e64: ; 101e64
 	ret
 ; 101e82
 
-Function101e82: ; 101e82 ; unreferenced
+Unreferenced_Function101e82: ; 101e82 
 	call Function101ecc
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
@@ -4690,7 +4690,7 @@ Function101e82: ; 101e82 ; unreferenced
 	ret
 ; 101e8d
 
-Function101e8d: ; 101e8d ; unreferenced
+Unreferenced_Function101e8d: ; 101e8d 
 	call Function101ed3
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
@@ -5024,7 +5024,7 @@ Function102112: ; 102112
 	ret
 ; 102142
 
-Function102142: ; 102142
+Special_Function102142: ; 102142
 	call Function10218d
 	call Function102180
 	ld hl, UnknownText_0x1021d1
@@ -5453,7 +5453,7 @@ Function102423: ; 102423
 	call Function102921
 	ret nc
 	farcall SaveAfterLinkTrade
-	farcall TrainerRankings_Trades
+	farcall StubbedTrainerRankings_Trades
 	farcall BackupMobileEventIndex
 	ld hl, wcd4b
 	set 1, [hl]
@@ -6504,7 +6504,7 @@ Function102b4e: ; 102b4e
 	ret
 ; 102b68
 
-Function102b68: ; 102b68 ; unreferenced
+Unreferenced_Function102b68: ; 102b68 
 	xor a
 	ld hl, wWindowStackPointer
 	ld bc, $10
@@ -6794,7 +6794,7 @@ Function102d48: ; 102d48
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, PartyMon1DVs
 	call AddNTimes
-	predef GetUnownLetter
+	predef Predef_GetUnownLetter
 	farcall UpdateUnownDex
 	ld a, [wFirstUnownSeen]
 	and a
@@ -7722,9 +7722,9 @@ Unknown_1035d7: ; 1035d7
 	dw Unknown_103608
 	dw Unknown_103608
 	dw Unknown_1035fe
-	dw AskMobileOrCable
-	dw AskMobileOrCable
-	dw AskMobileOrCable
+	dw Special_AskMobileOrCable
+	dw Special_AskMobileOrCable
+	dw Special_AskMobileOrCable
 
 Unknown_1035e7: ; 1035e7
 	dwcoord 0, 6
@@ -7755,7 +7755,7 @@ Unknown_103608: ; 103608
 	db 2, 2, 3
 ; 103612
 
-AskMobileOrCable: ; 103612
+Special_AskMobileOrCable: ; 103612
 	ld hl, MenuDataHeader_103640
 	call LoadMenuDataHeader
 	ld a, [wMobileOrCable_LastSelection]
@@ -7811,7 +7811,7 @@ Function103654: ; 103654
 	ret
 ; 10366e
 
-Mobile_SelectThreeMons: ; 10366e
+Special_Mobile_SelectThreeMons: ; 10366e
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr z, .asm_10369b
@@ -7979,7 +7979,7 @@ UnknownText_0x10377b: ; 0x10377b
 	db "@"
 ; 0x103780
 
-Function103780: ; 103780
+Special_Function103780: ; 103780
 	ld a, [wd265]
 	push af
 	call Function10378c
@@ -8021,7 +8021,7 @@ Function10378c: ; 10378c
 	ret
 ; 1037c2
 
-Function1037c2: ; 1037c2
+Special_Function1037c2: ; 1037c2
 	call Function103823
 	jr c, .nope
 	ld a, [wdc5f]
@@ -8047,7 +8047,7 @@ UnknownText_0x1037e6: ; 0x1037e6
 	db "@"
 ; 0x1037eb
 
-Function1037eb: ; 1037eb
+Special_Function1037eb: ; 1037eb
 	call Function103823
 	jr nc, .asm_103807
 	ld hl, UnknownText_0x103819
@@ -8102,7 +8102,7 @@ Function103823: ; 103823
 	ret
 ; 10383c
 
-Function10383c: ; 10383c
+Special_Function10383c: ; 10383c
 	ld a, $01
 	ld [wdc60], a
 	xor a
@@ -8135,7 +8135,7 @@ UnknownText_0x103876: ; 0x103876
 	db "@"
 ; 0x10387b
 
-Function10387b: ; 10387b
+Special_Function10387b: ; 10387b
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	ret nz

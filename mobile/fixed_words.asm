@@ -33,8 +33,7 @@ Function11c075: ; 11c075
 	ret
 ; 11c082
 
-Function11c082: ; 11c082
-; XXX
+Unreferenced_Function11c082: ; 11c082
 	push de
 	ld a, c
 	call Function11c254
@@ -275,7 +274,7 @@ CopyMobileEZChatToC608: ; 11c156
 	jr .copy_string
 ; 11c1ab
 
-Function11c1ab: ; 11c1ab
+Special_Function11c1ab: ; 11c1ab
 	ld a, [hInMenu]
 	push af
 	ld a, $1

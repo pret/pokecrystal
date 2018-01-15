@@ -324,7 +324,7 @@ Route29FisherText:
 	line "progress."
 	done
 
-; possibly unused
+; unused
 Text_WaitingForDay:
 	text "I'm waiting for"
 	line "#MON that"

@@ -6,7 +6,7 @@ CheckCGB: ; 8d55
 	ret
 ; 8d59
 
-Predef_LoadSGBLayoutCGB: ; 8d59
+LoadSGBLayoutCGB: ; 8d59
 	ld a, b
 	cp SCGB_RAM
 	jr nz, .not_ram

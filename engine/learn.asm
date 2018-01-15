@@ -1,4 +1,4 @@
-LearnMove: ; 6508
+Predef_LearnMove: ; 6508
 	call LoadTileMapToTempTileMap
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
@@ -144,7 +144,7 @@ ForgetMove: ; 65d3
 	hlcoord 5 + 2, 2 + 2
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
-	predef ListMoves
+	predef Predef_ListMoves
 	; wMenuData3
 	ld a, $4
 	ld [w2DMenuCursorInitY], a

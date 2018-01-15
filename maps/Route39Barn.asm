@@ -52,7 +52,7 @@ MooMoo:
 	iftrue .HappyCow
 	writetext Text_WeakMoo
 	writebyte MILTANK
-	special PlaySlowCry
+	special Special_PlaySlowCry
 	buttonsound
 	writetext Text_ItsCryIsWeak
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO

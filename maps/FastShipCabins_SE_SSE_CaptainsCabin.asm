@@ -18,7 +18,7 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
 .MapCallbacks:
 	db 0
 
-Unused_0x75ea6:
+Unreferenced_0x75ea6:
 	end
 
 SSAquaCaptain:
@@ -49,7 +49,7 @@ SSAquaGranddaughterBefore:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2
 	applymovement PLAYER, MovementData_0x76004
 	moveobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, 3, 19

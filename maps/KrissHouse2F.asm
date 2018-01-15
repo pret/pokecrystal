@@ -18,7 +18,7 @@ KrissHouse2F_MapScriptHeader:
 	end
 
 .InitializeRoom:
-	special ToggleDecorationsVisibility
+	special Special_ToggleDecorationsVisibility
 	setevent EVENT_IN_YOUR_ROOM
 	checkevent EVENT_INITIALIZED_EVENTS
 	iftrue .SkipInitialization
@@ -29,7 +29,7 @@ KrissHouse2F_MapScriptHeader:
 	return
 
 .SetSpawn:
-	special ToggleMaptileDecorations
+	special Special_ToggleMaptileDecorations
 	return
 
 	db 0, 0, 0 ; filler

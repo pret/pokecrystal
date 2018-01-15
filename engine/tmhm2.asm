@@ -38,7 +38,7 @@ ConvertCurItemIntoCurTMHM: ; 2c7a7 (b:47a7)
 
 GetTMHMItemMove: ; 2c7b6 (b:47b6)
 	call ConvertCurItemIntoCurTMHM
-	predef GetTMHMMove
+	predef Predef_GetTMHMMove
 	ret
 
 AskTeachTMHM: ; 2c7bf (b:47bf)
@@ -118,7 +118,7 @@ ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
 ; 2c867
 
 TeachTMHM: ; 2c867
-	predef CanLearnTMHMMove
+	predef Predef_CanLearnTMHMMove
 
 	push bc
 	ld a, [CurPartyMon]
@@ -141,12 +141,12 @@ TeachTMHM: ; 2c867
 	callfar KnowsMove
 	jr c, .nope
 
-	predef LearnMove
+	predef Predef_LearnMove
 	ld a, b
 	and a
 	jr z, .nope
 
-	farcall TrainerRankings_TMsHMsTaught
+	farcall StubbedTrainerRankings_TMsHMsTaught
 	ld a, [CurItem]
 	call IsHM
 	ret c
@@ -258,11 +258,11 @@ TMHM_ShowTMMoveDescription: ; 2c946 (b:4946)
 	cp NUM_TMS + NUM_HMS + 1
 	jr nc, TMHM_JoypadLoop
 	ld [wd265], a
-	predef GetTMHMMove
+	predef Predef_GetTMHMMove
 	ld a, [wd265]
 	ld [CurSpecies], a
 	hlcoord 1, 14
-	call PrintMoveDesc
+	call Predef_PrintMoveDesc
 	jp TMHM_JoypadLoop
 
 TMHM_ChooseTMorHM: ; 2c974 (b:4974)
@@ -386,7 +386,7 @@ TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
 	pop af
 	ld [wd265], a
 .okay
-	predef GetTMHMMove
+	predef Predef_GetTMHMMove
 	ld a, [wd265]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
@@ -447,12 +447,11 @@ TMHMPocket_GetCurrentLineCoord: ; 2ca86 (b:4a86)
 	ret
 ; 2ca95 (b:4a95)
 
-Function2ca95: ; 2ca95
-; unreferenced
+Unreferenced_Function2ca95: ; 2ca95
 	pop hl
 	ld bc, 3
 	add hl, bc
-	predef GetTMHMMove
+	predef Predef_GetTMHMMove
 	ld a, [wd265]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
@@ -499,8 +498,7 @@ TMHM_PlaySFX_ReadText2: ; 2cad6 (b:4ad6)
 	ret
 ; 2cadf (b:4adf)
 
-Function2cadf: ; 2cadf
-; unreferenced
+Unreferenced_Function2cadf: ; 2cadf
 	call ConvertCurItemIntoCurTMHM
 	call .CheckHaveRoomForTMHM
 	ld hl, .NoRoomText
@@ -574,7 +572,7 @@ CountTMsHMs: ; 2cb2a (b:4b2a)
 	ld [wd265], a
 	ret
 
-PrintMoveDesc: ; 2cb3e
+Predef_PrintMoveDesc: ; 2cb3e
 	push hl
 	ld hl, MoveDescriptions
 	ld a, [CurSpecies]

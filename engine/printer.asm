@@ -596,8 +596,7 @@ PlacePrinterStatusString: ; 84785
 	ret
 ; 847bd
 
-Function847bd: ; 847bd
-; XXX
+Unreferenced_Function847bd: ; 847bd
 	ld a, [wPrinterStatus]
 	and a
 	ret z
@@ -861,7 +860,7 @@ Printer_GetMonGender: ; 8498a (21:498a)
 	ld [CurPartyMon], a
 	ld a, TEMPMON
 	ld [MonType], a
-	farcall GetGender
+	farcall Predef_GetGender
 	ld a, " "
 	jr c, .got_gender
 	ld a, "♂"

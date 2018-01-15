@@ -1615,9 +1615,8 @@ Function48c63: ; 48c63
 	ret
 ; 48c8e
 
-Function48c8e: ; 48c8e
-; unreferenced
-	ld hl, $d02a
+Unreferenced_Function48c8e: ; 48c8e
+	ld hl, wd019 + $11
 	ld d, h
 	ld e, l
 	farcall Function48c63

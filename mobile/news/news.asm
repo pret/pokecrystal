@@ -1,9 +1,8 @@
 ; http://forums.glitchcity.info/index.php?topic=7509.msg206449#msg206449
 
-	db $cc, $6b, $1e ; XXX
+	db $cc, $6b, $1e ; unused
 
-Function1f4003: ; 1f4003
-; XXX
+Unreferenced_Function1f4003: ; 1f4003
 	ld a, $6
 	call GetSRAMBank
 	ld hl, .news_data
@@ -16,8 +15,7 @@ Function1f4003: ; 1f4003
 .news_data
 INCBIN "mobile/news/news_1.bin"
 
-Function1f4dbe: ; 1f4dbe
-; XXX
+Unreferenced_Function1f4dbe: ; 1f4dbe
 	ld a, $6
 	call GetSRAMBank
 	ld hl, .news_data

@@ -18,7 +18,7 @@ ConvertMon_2to1: ; fb8f1
 	ret
 ; fb908
 
-ConvertMon_1to2: ; fb908
+Predef_ConvertMon_1to2: ; fb908
 ; Takes the Gen-1 Pokemon number stored in wd265 and returns the corresponding value from Pokered_MonIndices in wd265.
 	push bc
 	push hl

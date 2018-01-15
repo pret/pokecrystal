@@ -47,9 +47,9 @@ UnknownScript_0x60bab:
 	closetext
 	special RestartMapMusic
 	cry AMPHAROS
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	pause 10
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	opentext
 	writetext UnknownText_0x60f3d
 	waitbutton
@@ -109,7 +109,7 @@ MonsterScript_0x60c3a:
 	iftrue UnknownScript_0x60c51
 	writetext UnknownText_0x60f03
 	writebyte AMPHAROS
-	special PlaySlowCry
+	special Special_PlaySlowCry
 	buttonsound
 	writetext UnknownText_0x60f19
 	waitbutton
@@ -121,10 +121,10 @@ UnknownScript_0x60c51:
 	cry AMPHAROS
 	waitbutton
 	closetext
-	special FadeOutPalettes
-	special FadeInPalettes
-	special FadeOutPalettes
-	special FadeInPalettes
+	special Special_FadeOutPalettes
+	special Special_FadeInPalettes
+	special Special_FadeOutPalettes
+	special Special_FadeInPalettes
 	end
 
 OlivineLighthouse6FSuperPotion:

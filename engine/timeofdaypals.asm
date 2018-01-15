@@ -1,5 +1,5 @@
-Predef35: ; 8c000
-Predef36:
+DummyPredef35: ; 8c000
+DummyPredef36:
 	ret
 
 UpdateTimeOfDayPal:: ; 8c001
@@ -119,7 +119,7 @@ _UpdateTimePals:: ; 8c070
 	ret
 ; 8c079
 
-FadeInPalettes:: ; 8c079
+Special_FadeInPalettes:: ; 8c079
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
@@ -127,7 +127,7 @@ FadeInPalettes:: ; 8c079
 	ret
 ; 8c084
 
-FadeOutPalettes:: ; 8c084
+Special_FadeOutPalettes:: ; 8c084
 	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade

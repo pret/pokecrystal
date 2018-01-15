@@ -1,6 +1,6 @@
 MANIA_OT_ID EQU 00518
 
-SpecialGiveShuckle: ; 7305
+Special_GiveShuckle: ; 7305
 
 ; Adding to the party.
 	xor a
@@ -12,7 +12,7 @@ SpecialGiveShuckle: ; 7305
 	ld a, 15
 	ld [CurPartyLevel], a
 
-	predef TryAddMonToParty
+	predef Predef_TryAddMonToParty
 	jr nc, .NotGiven
 
 ; Caught data.
@@ -71,7 +71,7 @@ SpecialShuckleOT:
 SpecialShuckleNick:
 	db "SHUCKIE@"
 
-SpecialReturnShuckle: ; 737e
+Special_ReturnShuckle: ; 737e
 	farcall SelectMonFromParty
 	jr c, .refused
 
@@ -231,6 +231,5 @@ CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld bc, PKMN_NAME_LENGTH
 	jp CopyBytes
 
-Predef1: ; 747a
-; not used
+DummyPredef1: ; 747a
 	ret

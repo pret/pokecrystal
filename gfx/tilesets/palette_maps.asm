@@ -140,3 +140,10 @@ INCLUDE "gfx/tilesets/battle_tower_palette_map.asm"
 TilesetBattleTowerOutsidePalMap: ; 0x4cd95
 INCLUDE "gfx/tilesets/battle_tower_outside_palette_map.asm"
 ; 0x4ce05
+
+; unused
+; 0x4ce05
+rept 26
+	db $06
+endr
+; 0x4ce1f

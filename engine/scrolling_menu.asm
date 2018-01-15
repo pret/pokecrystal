@@ -84,7 +84,7 @@ ScrollingMenuJoyAction: ; 24609
 	jr .loop
 ; 24640
 
-.unreferenced ; unreferenced
+.unreferenced ; unused
 	ld a, -1
 	and a
 	ret

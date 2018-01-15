@@ -1,5 +1,5 @@
 Phone_GenericCall_Male:
-	special RandomPhoneMon
+	special Special_RandomPhoneMon
 	farscall PhoneScript_Random2
 	if_equal 0, .Bragging
 	farscall PhoneScript_Generic_Male
@@ -9,7 +9,7 @@ Phone_GenericCall_Male:
 	farjump Phone_BraggingCall_Male
 
 Phone_GenericCall_Female:
-	special RandomPhoneMon
+	special Special_RandomPhoneMon
 	farscall PhoneScript_Random2
 	if_equal 0, .Bragging
 	farscall PhoneScript_Generic_Female
@@ -27,7 +27,7 @@ Phone_BraggingCall_Female:
 	farjump Phone_FoundAMon_Female
 
 Phone_FoundAMon_Male:
-	special RandomPhoneWildMon
+	special Special_RandomPhoneWildMon
 	farscall PhoneScript_Random2
 	if_equal 0, .GotAway
 	farscall Phone_WhoDefeatedMon_Male
@@ -37,7 +37,7 @@ Phone_FoundAMon_Male:
 	farjump Phone_GotAwayCall_Male
 
 Phone_FoundAMon_Female:
-	special RandomPhoneWildMon
+	special Special_RandomPhoneWildMon
 	farscall PhoneScript_Random2
 	if_equal 0, .GotAway
 	farscall Phone_WhoDefeatedMon_Female
@@ -851,7 +851,7 @@ Phone_CheckIfUnseenRare_Female:
 	farjump PhoneScript_HangupText_Female
 
 PhoneScriptRareWildMon:
-	special RandomUnseenWildMon
+	special Special_RandomUnseenWildMon
 	end
 
 PhoneScript_BugCatchingContest:

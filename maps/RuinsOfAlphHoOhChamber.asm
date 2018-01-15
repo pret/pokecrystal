@@ -9,7 +9,7 @@ RuinsOfAlphHoOhChamber_MapScriptHeader:
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
-	special SpecialHoOhChamber
+	special Special_HoOhChamber
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue .OpenWall
 	end
@@ -115,8 +115,8 @@ UnknownText_0x58612:
 	line "on the walls…"
 	done
 
-; possibly unused
-UnknownText_0x58633:
+; unused
+UnusedText_0x58633:
 	text "It's UNOWN text!"
 	done
 

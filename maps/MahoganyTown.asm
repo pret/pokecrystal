@@ -53,7 +53,7 @@ UnknownScript_0x190039:
 UnknownScript_0x190040:
 	opentext
 	writetext UnknownText_0x1900b0
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	yesorno
 	iffalse UnknownScript_0x190072
 	checkmoney YOUR_MONEY, 300
@@ -63,7 +63,7 @@ UnknownScript_0x190040:
 	waitsfx
 	playsound SFX_TRANSACTION
 	takemoney YOUR_MONEY, 300
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x19014a
 	waitbutton
 	closetext

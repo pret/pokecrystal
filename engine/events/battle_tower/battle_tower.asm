@@ -1,11 +1,11 @@
-BattleTowerRoomMenu: ; 1700b0
+Special_BattleTowerRoomMenu: ; 1700b0
 ; special
 	call InitBattleTowerChallengeRAM
 	farcall _BattleTowerRoomMenu
 	ret
 ; 1700ba
 
-Function1700ba: ; 1700ba
+Special_Function1700ba: ; 1700ba
 	call InitBattleTowerChallengeRAM
 	farcall Function11811a
 	ret
@@ -53,7 +53,7 @@ Function1700c4: ; 1700c4
 	ret
 ; 170114
 
-Function170114: ; 170114
+Special_Function170114: ; 170114
 	call InitBattleTowerChallengeRAM
 	call .Function170121
 	farcall Function11805f
@@ -182,14 +182,14 @@ Function170139: ; 170139
 	ret
 ; 170215
 
-BattleTowerBattle: ; 170215
+Special_BattleTowerBattle: ; 170215
 	xor a
 	ld [wBattleTowerBattleEnded], a
 	call _BattleTowerBattle
 	ret
 ; 17021d
 
-EmptySpecial_17021d: ; 17021d
+DummySpecial_17021d: ; 17021d
 	ret
 ; 17021e
 
@@ -243,12 +243,12 @@ RunBattleTowerTrainer: ; 17024d
 
 	xor a
 	ld [wLinkMode], a
-	farcall TrainerRankings_Healings
+	farcall Special_StubbedTrainerRankings_Healings
 	farcall HealParty
 	call ReadBTTrainerParty
 	call Clears5_a89a
 
-	predef StartBattle
+	predef Predef_StartBattle
 
 	farcall LoadPokemonData
 	farcall HealParty
@@ -484,7 +484,7 @@ endr
 	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $1
-	predef CalcPkmnStats
+	predef Predef_CalcPkmnStats
 	pop de
 	pop hl
 	dec de
@@ -599,8 +599,7 @@ SkipBattleTowerTrainer: ; 1704c9
 	ret
 ; 1704ca
 
-Function1704ca: ; 1704ca
-; unreferenced mobile function
+Unreferenced_Function1704ca: ; 1704ca
 	ld a, [$be46]
 	cp $7
 	jr c, .asm_1704d3
@@ -620,8 +619,7 @@ Function1704ca: ; 1704ca
 	ret
 ; 1704e1
 
-Function1704e1: ; 1704e1
-; unreferenced special
+UnusedSpecial_Function1704e1: ; 1704e1
 	call SpeechTextBox
 	call FadeToMenu
 	call InitBattleTowerChallengeRAM
@@ -902,7 +900,7 @@ Function1704e1: ; 1704e1
 	db "れきだいりーダーいちらん@"
 ; 170687
 
-BattleTowerAction: ; 170687
+Special_BattleTowerAction: ; 170687
 	ld a, [ScriptVar]
 	ld e, a
 	ld d, 0
@@ -1605,7 +1603,7 @@ BattleTowerAction_UbersCheck: ; 170b16 (5c:4b16) BattleTowerAction $19
 	ld [ScriptVar], a
 	ret
 
-Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
+Special_LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
 	farcall Function_LoadOpponentTrainerAndPokemons
 	ld a, [rSVBK]
 	push af
@@ -1652,11 +1650,11 @@ Function_LoadOpponentTrainerAndPokemonsWithOTSprite: ; 0x170b44
 
 INCLUDE "data/trainers/sprites.asm"
 
-ret_170bd2: ; 170bd2
+DummySpecial_170bd2: ; 170bd2
 	ret
 ; 170bd3
 
-SpecialCheckForBattleTowerRules: ; 170bd3
+Special_CheckForBattleTowerRules: ; 170bd3
 	farcall CheckForBattleTowerRules
 	jr c, .asm_170bde
 	xor a ; FALSE

@@ -527,8 +527,7 @@ GetFrameOAMPointer: ; 8d1a2
 	ret
 ; 8d1ac
 
-BrokenGetStdGraphics: ; 8d1ac
-; dummied out
+Unreferenced_BrokenGetStdGraphics: ; 8d1ac
 	push hl
 	ld l, a
 	ld h, 0

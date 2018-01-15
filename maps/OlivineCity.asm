@@ -45,7 +45,7 @@ UnknownScript_0x1a8833:
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	end
 
 UnknownScript_0x1a886b:
@@ -69,7 +69,7 @@ UnknownScript_0x1a886b:
 	setscene 1
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	end
 
 OlivineCitySailor1Script:

@@ -3,7 +3,7 @@ LinkMonStatsScreen: ; 4d319
 	dec a
 	ld [CurPartyMon], a
 	call LowVolume
-	predef StatsScreenInit
+	predef Predef_StatsScreenInit
 	ld a, [CurPartyMon]
 	inc a
 	ld [wMenuCursorY], a
