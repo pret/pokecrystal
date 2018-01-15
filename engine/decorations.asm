@@ -37,14 +37,14 @@ _KrisDecorationMenu: ; 0x2675c
 ; 0x2679a
 
 .MenuDataHeader: ; 0x2679a
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 5, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x267a2
 
 .MenuData2: ; 0x267a2
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw wd002
 	dw PlaceNthMenuStrings
@@ -422,14 +422,14 @@ PopulateDecoCategoryMenu: ; 2695b
 ; 0x269b5
 
 .NonscrollingMenuDataHeader: ; 0x269b5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .NonscrollingMenuData2
 	db 1 ; default option
 ; 0x269bd
 
 .NonscrollingMenuData2: ; 0x269bd
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw wd002
 	dw DecorationMenuFunction
@@ -437,14 +437,14 @@ PopulateDecoCategoryMenu: ; 2695b
 ; 0x269c5
 
 .ScrollingMenuDataHeader: ; 0x269c5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 1, SCREEN_WIDTH - 2, SCREEN_HEIGHT - 2
 	dw .ScrollingMenuData2
 	db 1 ; default option
 ; 0x269cd
 
 .ScrollingMenuData2: ; 0x269cd
-	db $10 ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 8, 0 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, wd002 ; text pointer
@@ -948,14 +948,14 @@ QueryWhichSide: ; 26e9a
 ; 26eab
 
 MenuDataHeader_0x26eab: ; 0x26eab
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 13, 7
 	dw MenuData2_0x26eb3
 	db 1 ; default option
 ; 0x26eb3
 
 MenuData2_0x26eb3: ; 0x26eb3
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "RIGHT SIDE@"
 	db "LEFT SIDE@"

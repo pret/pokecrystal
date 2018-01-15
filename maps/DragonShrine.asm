@@ -266,65 +266,65 @@ DragonShrineElder3Script:
 	end
 
 DragonShrineQuestion1_MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Pal@"
 	db "Underling@"
 	db "Friend@"
 
 DragonShrineQuestion2_MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Strategy@"
 	db "Raising@"
 	db "Cheating@"
 
 DragonShrineQuestion3_MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 5, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Weak person@"
 	db "Tough person@"
 	db "Anybody@"
 
 DragonShrineQuestion4_MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Love@"
 	db "Violence@"
 	db "Knowledge@"
 
 DragonShrineQuestion5_MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Tough@"
 	db "Both@"

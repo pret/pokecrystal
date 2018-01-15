@@ -553,14 +553,14 @@ Continue_LoadMenuHeader: ; 5ebf
 ; 5ed9
 
 .MenuDataHeader_Dex: ; 5ed9
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 9
 	dw .MenuData2_Dex
 	db 1 ; default option
 ; 5ee1
 
 .MenuData2_Dex: ; 5ee1
-	db $00 ; flags
+	db 0 ; flags
 	db 4 ; items
 	db "PLAYER@"
 	db "BADGES@"
@@ -569,14 +569,14 @@ Continue_LoadMenuHeader: ; 5ebf
 ; 5efb
 
 .MenuDataHeader_NoDex: ; 5efb
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 9
 	dw .MenuData2_NoDex
 	db 1 ; default option
 ; 5f03
 
 .MenuData2_NoDex: ; 5f03
-	db $00 ; flags
+	db 0 ; flags
 	db 4 ; items
 	db "PLAYER <PLAYER>@"
 	db "BADGES@"

@@ -49,13 +49,13 @@ UnknownScript_0x62600:
 	end
 
 MenuDataHeader_0x62602:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 8
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "# つうしん クラブ@" ; # COM CLUB
 	db "モバイルセンター@" ; MOBILE CENTER
@@ -91,13 +91,13 @@ UnknownScript_0x6264a:
 	end
 
 MenuDataHeader_0x6264c:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 8
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "でんわ", $1f,"つかうとき@" ; Use phone
 	db "でんわ", $4a,"つながらないとき@" ; Don't use phone

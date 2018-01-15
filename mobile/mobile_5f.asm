@@ -483,13 +483,13 @@ Function17d246: ; 17d246
 ; 17d26a
 
 MenuDataHeader_17d26a: ; 17d26a
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 14, 9
 	dw MenuData2_17d272
 	db 1 ; default option
 
 MenuData2_17d272: ; 17d272
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4
 	db "ニュース¯よみこむ@"
 	db "ニュース¯みる@"
@@ -498,13 +498,13 @@ MenuData2_17d272: ; 17d272
 ; 17d28f
 
 MenuDataHeader_ChallengeExplanationCancel: ; 17d28f
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 14, 7
 	dw MenuData2_ChallengeExplanationCancel
 	db 1 ; default option
 
 MenuData2_ChallengeExplanationCancel: ; 17d297
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3
 	db "Challenge@"
 	db "Explanation@"
@@ -1941,7 +1941,7 @@ Function17dc1f: ; 17dc1f
 ; 17dc96
 
 MenuData2_17dc96:
-	db $e0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2
 	db "はい@"
 	db "いいえ@"

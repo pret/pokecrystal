@@ -461,7 +461,7 @@ Function4a28a: ; 4a28a (12:628a)
 ; 4a346 (12:6346)
 
 MenuDataHeader_0x4a346: ; 0x4a346
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 0, SCREEN_WIDTH - 1, 6
 
 String_4a34b: ; 4a34b
@@ -483,14 +483,14 @@ UnknownText_0x4a35d: ; 0x4a35d
 ; 0x4a362
 
 DeletePassword_YesNo_MenuDataHeader: ; 0x4a362
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData2_0x4a36a
 	db 2 ; default option
 ; 0x4a36a
 
 MenuData2_0x4a36a: ; 0x4a36a
-	db $e0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2 ; items
 	db "はい@"
 	db "いいえ@"

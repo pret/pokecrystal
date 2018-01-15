@@ -1418,37 +1418,28 @@ wMenuDataBank:: db
 wMenuDataHeaderEnd::
 
 wMenuData2::
-UNION ; cf91
 ; MenuData2
-wMenuData2Flags:: ; cf91
-; bit 7: When set, start printing text one tile to the right of the border
-;        In scrolling menus, SELECT is functional
-; bit 6: When set, start printing text one tile below the border
-;        In scrolling menus, START is functional
-; bit 5: ????
-; bit 4: ????
-; bit 3: ????
-; bit 2: ????
-; bit 1: Enable Select button
-; bit 0: Disable B button
-	db
+
+wMenuData2Flags:: db ; cf91
+
+UNION ; cf92
+; Vertical Menu/DoNthMenu/SetUpMenu
 wMenuData2Items:: db ; cf92
 wMenuData2IndicesPointer:: dw ; cf94
 wMenuData2DisplayFunctionPointer:: dw ; cf96
 wMenuData2PointerTableAddr:: dw ; cf97
 
-NEXTU ; cf91
-; 2D menu
-	ds 2 ; cf91
-wMenuData2Spacing:: db ; cf93
+NEXTU ; cf92
+; 2D Menu
+wMenuData2_2DMenuDimensions:: db ; cf92
+wMenuData2_2DMenuSpacing:: db ; cf93
 wMenuData2_2DMenuItemStringsBank:: db ; cf94
 wMenuData2_2DMenuItemStringsAddr:: dw ; cf96
 wMenuData2_2DMenuFunctionBank:: db ; cf97
 wMenuData2_2DMenuFunctionAddr:: dw ; cf98
 
-NEXTU ; cf91
-; scrolling menu
-	ds 1 ; cf91
+NEXTU ; cf92
+; Scrolling Menu
 wMenuData2_ScrollingMenuHeight:: db ; cf92
 wMenuData2_ScrollingMenuWidth:: db ; cf93
 wMenuData2_ScrollingMenuSpacing:: db ; cf94
@@ -1465,7 +1456,16 @@ w2DMenuCursorInitY:: db ; cfa1
 w2DMenuCursorInitX:: db ; cfa2
 w2DMenuNumRows:: db ; cfa3
 w2DMenuNumCols:: db ; cfa4
-w2DMenuFlags1:: db ; cfa5
+w2DMenuFlags1:: ; cfa5
+; bit 7: Disable checking of wMenuJoypadFilter
+; bit 6: Enable sprite animations
+; bit 5: Wrap around vertically
+; bit 4: Wrap around horizontally
+; bit 3: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 5 is disabled and we tried to go too far down
+; bit 2: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 5 is disabled and we tried to go too far up
+; bit 1: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 4 is disabled and we tried to go too far left
+; bit 0: Set bit 7 in w2DMenuFlags2 and exit the loop if bit 4 is disabled and we tried to go too far right
+	db
 w2DMenuFlags2:: db ; cfa6
 w2DMenuCursorOffsets:: db ; cfa7
 wMenuJoypadFilter:: db ; cfa8

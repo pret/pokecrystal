@@ -229,14 +229,14 @@ BillsPCDepositFuncCancel: ; e2537 (38:6537)
 ; e253d (38:653d)
 
 BillsPCDepositMenuDataHeader: ; 0xe253d (38:653d)
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData2
 	db 1 ; default option
 ; 0xe2545
 
 .MenuData2: ; 0xe2545 (38:6545)
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "DEPOSIT@"
 	db "STATS@"
@@ -488,14 +488,14 @@ BillsPC_Withdraw: ; e2675 (38:6675)
 ; e2731 (38:6731)
 
 .MenuDataHeader: ; 0xe2731
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
 ; 0xe2739
 
 .MenuData: ; 0xe2739
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "WITHDRAW@"
 	db "STATS@"
@@ -711,14 +711,14 @@ _MovePKMNWithoutMail: ; e2759
 ; e28c3
 
 .MenuDataHeader: ; 0xe28c3
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData2
 	db 1 ; default option
 ; 0xe28cb
 
 .MenuData2: ; 0xe28cb
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "MOVE@"
 	db "STATS@"
@@ -2329,14 +2329,14 @@ BillsPC_ClearTilemap: ; e35e2 (38:75e2)
 ; e35f1 (38:75f1)
 
 _ChangeBox_menudataheader: ; 0xe35f1
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 5, 9, 12
 	dw .menudata2
 	db 1 ; default option
 ; 0xe35f9
 
 .menudata2 ; 0xe35f9
-	db $22 ; flags
+	db MENU_UNUSED_1 | MENU_UNUSED_3 ; flags
 	db 4, 0
 	db 1
 	dba .boxes
@@ -2557,14 +2557,14 @@ BillsPC_ChangeBoxSubmenu: ; e36f9 (38:76f9)
 	hlcoord 11, 7 ; unused
 
 .MenuDataHeader: ; 0xe377b
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData2
 	db 1 ; default option
 ; 0xe3783
 
 .MenuData2: ; 0xe3783
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "SWITCH@"
 	db "NAME@"

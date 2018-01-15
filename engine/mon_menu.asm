@@ -55,7 +55,7 @@ MonSubmenu: ; 24d19
 ; 24d3f
 
 .MenuDataHeader: ; 24d3f
-	db $40 ; tile backup
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw 0
 	db 1 ; default option
@@ -77,7 +77,7 @@ MonSubmenu: ; 24d19
 
 MonMenuLoop: ; 24d59
 .loop
-	ld a, $a0 ; flags
+	ld a, MENU_UNUSED_3 | MENU_BACKUP_TILES_2 ; flags
 	ld [wMenuData2Flags], a
 	ld a, [Buffer1] ; items
 	ld [wMenuData2Items], a
@@ -324,14 +324,14 @@ BattleMonMenu: ; 24e99
 ; 24ed4
 
 MenuDataHeader_0x24ed4: ; 24ed4
-	db $00 ; flags
+	db 0 ; flags
 	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData2_0x24edc
 	db 1 ; default option
 ; 24edc
 
 MenuData2_0x24edc: ; 24edc
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "SWITCH@"
 	db "STATS@"

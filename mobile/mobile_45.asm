@@ -7298,14 +7298,14 @@ Function1179a7: ; 1179a7 (45:79a7)
 ; 1179b5 (45:79b5)
 
 MenuDataHeader_1179b5: ; 1179b5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 1179bd
 
 MenuDataHeader_1179bd: ; 1179bd
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
@@ -7657,13 +7657,13 @@ Function117c89:
 	ret
 
 MenuDataHeader_117cbc: ; 0x117cbc
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 
 MenuDataHeader_117cc4: ; 0x117cc4
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default item

@@ -69,13 +69,13 @@ _BillsPC: ; e3fd
 	ret
 
 .MenuDataHeader: ; 0xe46f
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2: ; 0xe477
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw .items
 	dw PlaceMenuStrings

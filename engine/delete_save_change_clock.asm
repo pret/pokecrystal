@@ -47,13 +47,13 @@ _ResetClock: ; 4d3b1
 	db "@"
 
 .NoYes_MenuDataHeader: ; 0x4d40d
-	db $00 ; flags
+	db 0 ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .NoYes_MenuData2
 	db 1 ; default option
 
 .NoYes_MenuData2: ; 0x4d415
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "NO@"
 	db "YES@"
@@ -284,13 +284,13 @@ _DeleteSaveData: ; 4d54c
 	db "@"
 
 .NoYesMenuDataHeader: ; 0x4d585
-	db $00 ; flags
+	db 0 ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2: ; 0x4d58d
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "NO@"
 	db "YES@"

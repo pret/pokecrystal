@@ -40,15 +40,15 @@ UnownWalls: ; 8aebc
 
 MenuDataHeaders_UnownWalls: ; 0x8aed5
 ; UNOWNWORDS_ESCAPE
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 3, 4, 16, 9
 ; UNOWNWORDS_LIGHT
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 4, 4, 15, 9
 ; UNOWNWORDS_WATER
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 4, 4, 15, 9
 ; UNOWNWORDS_HO_OH
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 4, 4, 15, 9
 ; 8aee9

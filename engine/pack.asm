@@ -162,14 +162,14 @@ Pack: ; 10000
 
 ; 10124 (4:4124)
 .MenuDataHeader1: ; 0x10124
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2_1
 	db 1 ; default option
 ; 0x1012c
 
 .MenuData2_1: ; 0x1012c
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "USE@"
 	db "QUIT@"
@@ -182,14 +182,14 @@ Pack: ; 10000
 ; 1013b
 
 .MenuDataHeader2: ; 0x1013b
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2_2
 	db 1 ; default option
 ; 0x10143
 
 .MenuData2_2: ; 0x10143
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "USE@"
 	db "GIVE@"
@@ -321,14 +321,14 @@ Pack: ; 10000
 
 ; 10249 (4:4249)
 MenuDataHeader_UsableKeyItem: ; 0x10249
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10251
 
 .MenuData2: ; 0x10251
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 5 ; items
 	db "USE@"
 	db "GIVE@"
@@ -346,14 +346,14 @@ Jumptable_UseGiveTossRegisterQuit: ; 1026a
 ; 10274
 
 MenuDataHeader_UsableItem: ; 0x10274
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x1027c
 
 .MenuData2: ; 0x1027c
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
 	db "USE@"
 	db "GIVE@"
@@ -369,14 +369,14 @@ Jumptable_UseGiveTossQuit: ; 10291
 ; 10299
 
 MenuDataHeader_UnusableItem: ; 0x10299
-	db %01000000 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x102a1
 
 .MenuData2: ; 0x102a1
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "USE@"
 	db "QUIT@"
@@ -388,14 +388,14 @@ Jumptable_UseQuit: ; 102ac
 ; 102b0
 
 MenuDataHeader_UnusableKeyItem: ; 0x102b0
-	db %01000000 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x102b8
 
 .MenuData2: ; 0x102b8
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "USE@"
 	db "SEL@"
@@ -409,14 +409,14 @@ Jumptable_UseRegisterQuit: ; 102c7
 ; 102cd
 
 MenuDataHeader_HoldableKeyItem: ; 0x102cd
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x102d5
 
 .MenuData2: ; 0x102d5
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 4 ; items
 	db "GIVE@"
 	db "TOSS@"
@@ -432,14 +432,14 @@ Jumptable_GiveTossRegisterQuit: ; 102ea
 ; 102f2
 
 MenuDataHeader_HoldableItem: ; 0x102f2
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x102fa
 
 .MenuData2: ; 0x102fa
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "GIVE@"
 	db "TOSS@"
@@ -848,14 +848,14 @@ TMHMSubmenu: ; 105dc (4:45dc)
 
 ; 10601 (4:4601)
 .UsableMenuDataHeader: ; 0x10601
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .UsableMenuData2
 	db 1 ; default option
 ; 0x10609
 
 .UsableMenuData2: ; 0x10609
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "USE@"
 	db "QUIT@"
@@ -867,14 +867,14 @@ TMHMSubmenu: ; 105dc (4:45dc)
 ; 10618
 
 .UnusableMenuDataHeader: ; 0x10618
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .UnusableMenuData2
 	db 1 ; default option
 ; 0x10620
 
 .UnusableMenuData2: ; 0x10620
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 1 ; items
 	db "QUIT@"
 ; 0x10627
@@ -1158,14 +1158,14 @@ TutorialPack: ; 107bb
 
 ; 107ef (4:47ef)
 .ItemsMenuDataHeader: ; 0x107ef
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .ItemsMenuData2
 	db 1 ; default option
 ; 0x107f7
 
 .ItemsMenuData2: ; 0x107f7
-	db $ae ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, wDudeNumItems
@@ -1181,14 +1181,14 @@ TutorialPack: ; 107bb
 
 ; 1080e (4:480e)
 .KeyItemsMenuDataHeader: ; 0x1080e
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .KeyItemsMenuData2
 	db 1 ; default option
 ; 0x10816
 
 .KeyItemsMenuData2: ; 0x10816
-	db $ae ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, wDudeNumKeyItems
@@ -1213,14 +1213,14 @@ TutorialPack: ; 107bb
 
 ; 10842 (4:4842)
 .BallsMenuDataHeader: ; 0x10842
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .BallsMenuData2
 	db 1 ; default option
 ; 0x1084a
 
 .BallsMenuData2: ; 0x1084a
-	db $ae ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, wDudeNumBalls
@@ -1537,14 +1537,14 @@ Pack_InitColors: ; 10a40
 ; 10a4f
 
 ItemsPocketMenuDataHeader: ; 0x10a4f
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10a57
 
 .MenuData2: ; 0x10a57
-	db $ae ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumItems
@@ -1554,14 +1554,14 @@ ItemsPocketMenuDataHeader: ; 0x10a4f
 ; 10a67
 
 PC_Mart_ItemsPocketMenuDataHeader: ; 0x10a67
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10a6f
 
 .MenuData2: ; 0x10a6f
-	db $2e ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumItems
@@ -1571,14 +1571,14 @@ PC_Mart_ItemsPocketMenuDataHeader: ; 0x10a67
 ; 10a7f
 
 KeyItemsPocketMenuDataHeader: ; 0x10a7f
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10a87
 
 .MenuData2: ; 0x10a87
-	db $ae ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, NumKeyItems
@@ -1588,14 +1588,14 @@ KeyItemsPocketMenuDataHeader: ; 0x10a7f
 ; 10a97
 
 PC_Mart_KeyItemsPocketMenuDataHeader: ; 0x10a97
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10a9f
 
 .MenuData2: ; 0x10a9f
-	db $2e ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP ; flags
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, NumKeyItems
@@ -1605,14 +1605,14 @@ PC_Mart_KeyItemsPocketMenuDataHeader: ; 0x10a97
 ; 10aaf
 
 BallsPocketMenuDataHeader: ; 0x10aaf
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10ab7
 
 .MenuData2: ; 0x10ab7
-	db $ae ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumBalls
@@ -1622,14 +1622,14 @@ BallsPocketMenuDataHeader: ; 0x10aaf
 ; 10ac7
 
 PC_Mart_BallsPocketMenuDataHeader: ; 0x10ac7
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 1, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x10acf
 
 .MenuData2: ; 0x10acf
-	db $2e ; flags
+	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
 	dbw 0, NumBalls

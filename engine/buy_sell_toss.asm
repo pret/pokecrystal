@@ -214,21 +214,21 @@ BuySell_DisplaySubtotal: ; 250d1
 ; 250ed
 
 TossItem_MenuDataHeader: ; 0x250ed
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 15, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw ret_25097
 	db 0 ; default option
 ; 0x250f5
 
 BuyItem_MenuDataHeader: ; 0x250f5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw DisplayPurchasePrice
 	db -1 ; default option
 ; 0x250fd
 
 SellItem_MenuDataHeader: ; 0x250fd
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw DisplaySellingPrice
 	db 0 ; default option

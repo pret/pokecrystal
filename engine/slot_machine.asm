@@ -1868,14 +1868,14 @@ Slots_AskBet: ; 9307c (24:707c)
 ; 0x930d6
 
 .MenuDataHeader: ; 0x930d6
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x930de
 
 .MenuData2: ; 0x930de
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db " 3@"
 	db " 2@"

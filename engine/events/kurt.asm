@@ -84,7 +84,7 @@ Kurt_SelectApricorn: ; 88055
 ; 88086
 
 .MenuDataHeader: ; 0x88086
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 1, 13, 10
 	dw .MenuData2
 	db 1 ; default option
@@ -93,7 +93,7 @@ Kurt_SelectApricorn: ; 88055
 	db 0 ; XXX
 
 .MenuData2: ; 0x8808f
-	db $10 ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 7
 	db 1
 	dbw 0, Buffer1
@@ -158,12 +158,10 @@ Kurt_SelectQuantity: ; 880c2
 ; 8810d
 
 .MenuDataHeader: ; 0x8810d
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 9, SCREEN_WIDTH - 1, 12
-
-	; unused
-	dw 0
-	db -1
+	dw NULL
+	db -1 ; default option
 	db 0
 
 .PlaceApricornName: ; 88116

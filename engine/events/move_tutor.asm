@@ -99,5 +99,5 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	ret
 
 .MenuDataHeader: ; 0x4930a
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1

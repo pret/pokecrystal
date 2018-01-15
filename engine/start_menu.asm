@@ -152,19 +152,19 @@ StartMenu:: ; 125cd
 
 
 .MenuDataHeader:
-	db $40 ; tile backup
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default selection
 
 .ContestMenuDataHeader:
-	db $40 ; tile backup
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 2, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default selection
 
 .MenuData:
-	db %10101000 ; x padding, wrap around, start can close
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_ENABLE_START ; flags
 	dn 0, 0 ; rows, columns
 	dw MenuItemsList
 	dw .MenuString
@@ -974,13 +974,13 @@ TakePartyItem: ; 12c60
 
 
 GiveTakeItemMenuData: ; 12c9b
-	db %01010000
+	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
 	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .Items
 	db 1 ; default option
 
 .Items:
-	db %10000000 ; x padding
+	db STATICMENU_CURSOR ; flags
 	db 2 ; # items
 	db "GIVE@"
 	db "TAKE@"
@@ -1162,14 +1162,14 @@ MonMailAction: ; 12d45
 
 
 .MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x12dd1
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "READ@"
 	db "TAKE@"

@@ -3954,14 +3954,14 @@ BattleTowerRoomMenu_UpdateYesNoMenu:
 ; 119cf7
 
 MenuDataHeader_119cf7: ; 119cf7
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 119cff
 
 MenuData_119cff: ; 119cff
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 15, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
@@ -4754,14 +4754,14 @@ String_11a2d3: ; 11a2d3
 ; 11a2d6
 
 MenuDataHeader_11a2d6: ; 11a2d6
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 6, SCREEN_WIDTH - 1, 10
 	dw NULL
 	db 0 ; default option
 ; 11a2de
 
 MenuDataHeader_11a2de: ; 11a2de
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
@@ -5324,7 +5324,7 @@ String_11a7f4: ; 11a7f4
 ; 11a804
 
 MenuDataHeader_11a804: ; 11a804
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, 5
 	dw NULL
 	db 0 ; default option
@@ -5995,7 +5995,7 @@ Function11adc4:
 ; 11ae38
 
 MenuDataHeader_11ae38: ; 11ae38
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 10, 17, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
@@ -6241,7 +6241,7 @@ Function11afd6: ; 11afd6
 ; 11afe8
 
 MenuDataHeader_11afe8: ; 11afe8
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
@@ -6258,7 +6258,7 @@ String_11b003: ; 11b003
 ; 11b013
 
 MenuDataHeader_11b013: ; 11b013
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 1 ; default option

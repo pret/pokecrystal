@@ -1870,13 +1870,13 @@ CoinVendor_IntroScript: ; 0xbcde0
 
 
 .MenuDataHeader:
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 4, 15, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db " 50 :  ¥1000@"
 	db "500 : ¥10000@"

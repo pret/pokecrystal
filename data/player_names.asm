@@ -1,12 +1,12 @@
 ChrisNameMenuHeader: ; 882b5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, TEXTBOX_Y - 1
 	dw .MaleNames
 	db 1 ; ????
 	db 0 ; default option
 
 .MaleNames: ; 882be
-	db $91 ; flags
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B ; flags
 	db 5 ; items
 	db "NEW NAME@"
 MalePlayerNameArray: ; 882c9
@@ -18,14 +18,14 @@ MalePlayerNameArray: ; 882c9
 	db " NAME @" ; title
 
 KrisNameMenuHeader: ; 882e5
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, TEXTBOX_Y - 1
 	dw .FemaleNames
 	db 1 ; ????
 	db 0 ; default option
 
 .FemaleNames: ; 882ee
-	db $91 ; flags
+	db STATICMENU_CURSOR | STATICMENU_PLACE_TITLE | STATICMENU_DISABLE_B ; flags
 	db 5 ; items
 	db "NEW NAME@"
 FemalePlayerNameArray: ; 882f9

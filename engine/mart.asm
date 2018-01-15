@@ -617,14 +617,14 @@ Text_Mart_CostsThisMuch: ; 0x15e13
 ; 0x15e18
 
 MenuDataHeader_Buy: ; 0x15e18
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .menudata2
 	db 1 ; default option
 ; 0x15e20
 
 .menudata2 ; 0x15e20
-	db $30 ; pointers
+	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, CurMart
@@ -901,14 +901,14 @@ Text_Mart_HowMayIHelpYou: ; 0x15f83
 ; 0x15f88
 
 MenuDataHeader_BuySell: ; 0x15f88
-	db $40 ; flags
+	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 7, 8
 	dw .menudata2
 	db 1 ; default option
 ; 0x15f90
 
 .menudata2 ; 0x15f90
-	db $80 ; strings
+	db STATICMENU_CURSOR ; strings
 	db 3 ; items
 	db "BUY@"
 	db "SELL@"
