@@ -22,7 +22,7 @@ RadioTower3F_MapScriptHeader:
 
 .Change:
 	changeblock 14, 2, $2a
-	changeblock 14, 4, $1
+	changeblock 14, 4, $01
 	return
 
 RadioTower3FSuperNerdScript:
@@ -144,7 +144,7 @@ UnknownScript_0x5e605:
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR
 	changeblock 14, 2, $2a
-	changeblock 14, 4, $1
+	changeblock 14, 4, $01
 	reloadmappart
 	closetext
 	waitsfx

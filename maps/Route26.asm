@@ -153,8 +153,8 @@ UnknownScript_0x1a4e1e:
 	scall UnknownScript_0x1a4e7f
 UnknownScript_0x1a4e21:
 	askforphonenumber PHONE_COOLTRAINERF_BETH
-	if_equal $1, UnknownScript_0x1a4e8f
-	if_equal $2, UnknownScript_0x1a4e8b
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a4e8f
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a4e8b
 	trainertotext COOLTRAINERF, BETH1, MEM_BUFFER_0
 	scall UnknownScript_0x1a4e83
 	jump UnknownScript_0x1a4e87

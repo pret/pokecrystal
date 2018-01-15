@@ -429,10 +429,10 @@ Function17d1f1: ; 17d1f1
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Parameter: [ScriptVar] = 0..1
 ;
-; if [ScriptVar] == 0
+; if [ScriptVar] == FALSE
 ;    Show japanese menu options
 ;    - News - News - ??? - Cancel
-; if [ScriptVar] == 1
+; if [ScriptVar] == TRUE
 ;    Show BattleTower-Menu with 3 options in english language
 ;    - Challenge - Explanation - Cancel
 Special_Menu_ChallengeExplanationCancel: ; 17d224

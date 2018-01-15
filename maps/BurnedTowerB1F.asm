@@ -28,7 +28,7 @@ BurnedTowerB1F_MapScriptHeader:
 .LadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .NoChange
-	changeblock 6, 14, $2
+	changeblock 6, 14, $02
 .NoChange:
 	return
 

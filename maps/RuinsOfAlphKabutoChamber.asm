@@ -34,8 +34,8 @@ RuinsOfAlphKabutoChamber_MapScriptHeader:
 	return
 
 .FloorClosed:
-	changeblock 2, 2, $1
-	changeblock 4, 2, $2
+	changeblock 2, 2, $01
+	changeblock 4, 2, $02
 	return
 
 .WallOpenScript:

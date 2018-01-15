@@ -2452,7 +2452,7 @@ WinTrainerBattle: ; 3cfa4
 	ld c, 40
 	call DelayFrames
 	call EmptyBattleTextBox
-	ld c, $3
+	ld c, BATTLETOWERTEXT_LOSS_TEXT
 	farcall BattleTowerText
 	call WaitPressAorB_BlinkCursor
 	ld hl, wPayDayMoney
@@ -3022,7 +3022,7 @@ LostBattle: ; 3d38e
 	call DelayFrames
 
 	call EmptyBattleTextBox
-	ld c, 2
+	ld c, BATTLETOWERTEXT_WIN_TEXT
 	farcall BattleTowerText
 	call WaitPressAorB_BlinkCursor
 	call ClearTileMap

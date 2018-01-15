@@ -240,14 +240,14 @@ CMDQUEUE_STONETABLE EQU 2
 	const BUGCONTEST_BOXED_MON  ; 1
 	const BUGCONTEST_NO_CATCH   ; 2
 
-; used by HealMachineAnim
+; HealMachineAnim writebyte arguments
 ; HealMachineAnim.Pointers indexes (see engine/events/heal_machine_anim.asm)
 	const_def
 	const HEALMACHINE_POKECENTER   ; 0
 	const HEALMACHINE_ELMS_LAB     ; 1
 	const HEALMACHINE_HALL_OF_FAME ; 2
 
-; used by Special_UnownPuzzle
+; Special_UnownPuzzle writebyte arguments
 ; LoadUnownPuzzlePiecesGFX.LZPointers indexes (see engine/unown_puzzle.asm)
 	const_def
 	const UNOWNPUZZLE_KABUTO     ; 0
@@ -256,7 +256,7 @@ CMDQUEUE_STONETABLE EQU 2
 	const UNOWNPUZZLE_HO_OH      ; 3
 NUM_UNOWN_PUZZLES EQU const_value
 
-; used by Special_DisplayUnownWords
+; Special_DisplayUnownWords writebyte arguments
 ; UnownWalls and MenuDataHeaders_UnownWalls indexes (see data/unown_walls.asm)
 	const_def
 	const UNOWNWORDS_ESCAPE ; 0
@@ -264,7 +264,7 @@ NUM_UNOWN_PUZZLES EQU const_value
 	const UNOWNWORDS_WATER  ; 2
 	const UNOWNWORDS_HO_OH  ; 3
 
-; used by Special_MoveTutor
+; Special_MoveTutor writebyte arguments
 const_value set 1
 	const MOVETUTOR_FLAMETHROWER ; 1
 	const MOVETUTOR_THUNDERBOLT  ; 2

@@ -1659,11 +1659,11 @@ ret_170bd2: ; 170bd2
 SpecialCheckForBattleTowerRules: ; 170bd3
 	farcall CheckForBattleTowerRules
 	jr c, .asm_170bde
-	xor a
+	xor a ; FALSE
 	jr .asm_170be0
 
 .asm_170bde
-	ld a, $1
+	ld a, TRUE
 
 .asm_170be0
 	ld [ScriptVar], a

@@ -79,7 +79,7 @@ TinTower1F_MapScriptHeader:
 .StairsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue .DontHideStairs
-	changeblock 10, 2, $9
+	changeblock 10, 2, $09
 .DontHideStairs:
 	return
 

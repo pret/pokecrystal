@@ -33,7 +33,7 @@ BurnedTower1F_MapScriptHeader:
 .Next:
 	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue .Done
-	changeblock 6, 14, $9 ; ladder
+	changeblock 6, 14, $09 ; ladder
 .Done:
 	return
 

@@ -67,17 +67,17 @@ ReceptionistScript_0x9e3e2:
 
 Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 	writetext Text_WantToGoIntoABattleRoom
-	writebyte $1
+	writebyte TRUE
 	special Special_Menu_ChallengeExplanationCancel
-	if_equal $1, Script_ChooseChallenge
-	if_equal $2, Script_BattleTowerExplanation
+	if_equal 1, Script_ChooseChallenge
+	if_equal 2, Script_BattleTowerExplanation
 	jump Script_BattleTowerHopeToServeYouAgain
 
 Script_ChooseChallenge: ; 0x9e40f
 	writebyte BATTLETOWERACTION_RESETDATA ; ResetBattleTowerTrainerSRAM
 	special BattleTowerAction
 	special SpecialCheckForBattleTowerRules
-	if_not_equal $0, Script_WaitButton
+	if_not_equal FALSE, Script_WaitButton
 	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
@@ -193,7 +193,7 @@ UnreferencedScript_0x9e4ea:
 	special BattleTowerAction
 	if_not_equal $0, Script_MayNotEnterABattleRoomUnderL70
 	special SpecialCheckForBattleTowerRules
-	if_not_equal $0, Script_WaitButton
+	if_not_equal FALSE, Script_WaitButton
 	writebyte BATTLETOWERACTION_05
 	special BattleTowerAction
 	if_equal $0, .zero

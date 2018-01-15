@@ -27,7 +27,7 @@ LancesRoom_MapScriptHeader:
 .KeepDoorsClosed:
 	checkevent EVENT_LANCES_ROOM_EXIT_OPEN
 	iffalse .OpenDoors
-	changeblock 4, 0, $b
+	changeblock 4, 0, $0b
 .OpenDoors:
 	return
 
@@ -69,7 +69,7 @@ LanceScript_0x180e7b:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock 4, 0, $b
+	changeblock 4, 0, $0b
 	reloadmappart
 	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
