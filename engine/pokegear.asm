@@ -116,7 +116,7 @@ Pokegear_LoadGFX: ; 90c4e
 	ld a, BANK(TownMapGFX)
 	call FarDecompress
 	ld hl, PokegearGFX
-	ld de, vTiles2 + $30 tiles
+	ld de, vTiles2 tile $30
 	ld a, BANK(PokegearGFX)
 	call FarDecompress
 	ld hl, PokegearSpritesGFX
@@ -2944,7 +2944,7 @@ TownMapPlayerIcon: ; 91fa6
 LoadTownMapGFX: ; 91ff2
 	ld hl, TownMapGFX
 	ld de, vTiles2
-	lb bc, BANK(TownMapGFX), $30
+	lb bc, BANK(TownMapGFX), 48
 	call DecompressRequest2bpp
 	ret
 

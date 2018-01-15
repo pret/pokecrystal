@@ -231,7 +231,7 @@ StatsScreen_LoadFont: ; fb53e
 LoadStatsScreenPageTilesGFX: ; fb571
 	ld de, StatsScreenPageTilesGFX
 	ld hl, vTiles2 tile $31
-	lb bc, BANK(StatsScreenPageTilesGFX), $11
+	lb bc, BANK(StatsScreenPageTilesGFX), 17
 	call Get2bpp_2
 	ret
 ; fb57e

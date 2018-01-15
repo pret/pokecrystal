@@ -1077,7 +1077,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	call CopyMinimizePic
 	ld hl, vTiles2 tile $00
 	ld de, sScratch
-	lb bc, BANK(GetMinimizePic), $31
+	lb bc, BANK(GetMinimizePic), 7 * 7
 	ret
 
 .player
@@ -1085,7 +1085,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	call CopyMinimizePic
 	ld hl, vTiles2 tile $31
 	ld de, sScratch
-	lb bc, BANK(GetMinimizePic), $24
+	lb bc, BANK(GetMinimizePic), 6 * 6
 	ret
 
 CopyMinimizePic: ; cc719 (33:4719)

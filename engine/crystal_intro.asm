@@ -52,7 +52,7 @@ Copyright_GFPresents: ; e4579
 .GetGFLogoGFX: ; e45e8
 	ld de, GameFreakLogo
 	ld hl, vTiles2
-	lb bc, BANK(GameFreakLogo), $1c
+	lb bc, BANK(GameFreakLogo), 28
 	call Get1bpp
 
 	ld a, [rSVBK]

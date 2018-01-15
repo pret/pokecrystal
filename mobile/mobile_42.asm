@@ -181,12 +181,12 @@ Function1080b7: ; 1080b7
 
 	ld de, TradeBallGFX
 	ld hl, vTiles0
-	lb bc, BANK(TradeBallGFX), $06
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $06
-	lb bc, BANK(TradePoofGFX), $0c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 
 	xor a
@@ -616,11 +616,11 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, vTiles0
-	lb bc, BANK(TradeBallGFX), $06
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $06
-	lb bc, BANK(TradePoofGFX), $0c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	ld a, [wPlayerTrademonDVs]
 	ld [TempMonDVs], a
@@ -690,11 +690,11 @@ MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, vTiles0
-	lb bc, BANK(TradeBallGFX), $06
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $06
-	lb bc, BANK(TradePoofGFX), $0c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	xor a
 	ld [hSCX], a
@@ -759,11 +759,11 @@ MobileTradeAnim_GetOddEgg: ; 108589
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, vTiles0
-	lb bc, BANK(TradeBallGFX), $06
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $06
-	lb bc, BANK(TradePoofGFX), $0c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	xor a
 	ld [hSCX], a

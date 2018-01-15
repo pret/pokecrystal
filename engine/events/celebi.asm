@@ -1,3 +1,5 @@
+SPECIALCELEBIEVENT_CELEBI EQU $84
+
 Special_CelebiShrineEvent: ; 4989a
 	call DelayFrame
 	ld a, [VramState]
@@ -10,7 +12,7 @@ Special_CelebiShrineEvent: ; 4989a
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $84
+	ld [hl], SPECIALCELEBIEVENT_CELEBI
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], SPRITE_ANIM_SEQ_CELEBI
@@ -76,8 +78,8 @@ LoadCelebiGFX: ; 49912
 	lb bc, BANK(SpecialCelebiLeafGFX), 4
 	call Request2bpp
 	ld de, SpecialCelebiGFX
-	ld hl, vTiles0 tile $84
-	lb bc, BANK(SpecialCelebiGFX), $10
+	ld hl, vTiles0 tile SPECIALCELEBIEVENT_CELEBI
+	lb bc, BANK(SpecialCelebiGFX), 4 * 4
 	call Request2bpp
 	xor a
 	ld [wJumptableIndex], a
@@ -306,22 +308,22 @@ GetCelebiSpriteTile: ; 49bae
 
 
 .Frame1:
-	ld a, $84
+	ld a, SPECIALCELEBIEVENT_CELEBI
 	jr .load_tile
 
 
 .Frame2:
-	ld a, $88
+	ld a, SPECIALCELEBIEVENT_CELEBI + 4
 	jr .load_tile
 
 
 .Frame3:
-	ld a, $8c
+	ld a, SPECIALCELEBIEVENT_CELEBI + 8
 	jr .load_tile
 
 
 .Frame4:
-	ld a, $90
+	ld a, SPECIALCELEBIEVENT_CELEBI + 12
 
 .load_tile
 	ld hl, SPRITEANIMSTRUCT_TILE_ID

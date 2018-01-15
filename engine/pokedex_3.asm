@@ -7,7 +7,7 @@ LoadSGBPokedexGFX: ; 1ddf1c
 LoadSGBPokedexGFX2: ; 1ddf26 (77:5f26)
 	ld hl, SGBPokedexGFX_LZ
 	ld de, vTiles2 tile $31
-	lb bc, BANK(SGBPokedexGFX_LZ), $3a
+	lb bc, BANK(SGBPokedexGFX_LZ), 58
 	call DecompressRequest2bpp
 	ret
 

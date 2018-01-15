@@ -1,7 +1,7 @@
 Function115d99: ; 115d99
 	ld de, GFX_11601a
 	ld hl, vTiles0 tile $60
-	lb bc, BANK(GFX_11601a), $14
+	lb bc, BANK(GFX_11601a), 20
 	call Get2bpp
 	xor a
 	ld [wc305], a

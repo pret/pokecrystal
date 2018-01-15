@@ -1512,15 +1512,15 @@ LoadTradeBallAndCableGFX: ; 2982b
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, vTiles0 tile $62
-	lb bc, BANK(TradeBallGFX), $6
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $68
-	lb bc, BANK(TradePoofGFX), $c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	ld de, TradeCableGFX
 	ld hl, vTiles0 tile $74
-	lb bc, BANK(TradeCableGFX), $4
+	lb bc, BANK(TradeCableGFX), 4
 	call Request2bpp
 	xor a
 	ld hl, wSpriteAnimDict
@@ -1536,7 +1536,7 @@ LoadTradeBubbleGFX: ; 2985a
 	callfar LoadMenuMonIcon
 	ld de, TradeBubbleGFX
 	ld hl, vTiles0 tile $72
-	lb bc, BANK(TradeBubbleGFX), $4
+	lb bc, BANK(TradeBubbleGFX), 4
 	call Request2bpp
 	xor a
 	ld hl, wSpriteAnimDict

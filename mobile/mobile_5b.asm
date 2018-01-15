@@ -172,7 +172,7 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	call DisableLCD
 	ld hl, vTiles2
 	ld de, .Tiles
-	lb bc, BANK(.Tiles), $68
+	lb bc, BANK(.Tiles), 104
 	call Get2bpp
 	call .LoadPals
 	call .LoadTileMap
@@ -710,7 +710,7 @@ Function16cc02: ; 16cc02
 Function16cc18: ; 16cc18
 	ld hl, vTiles1
 	ld de, GFX_16cca3
-	lb bc, BANK(GFX_16cca3), $2e
+	lb bc, BANK(GFX_16cca3), 46
 	call Get2bpp
 	ret
 ; 16cc25

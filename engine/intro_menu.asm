@@ -1376,7 +1376,7 @@ Copyright: ; 63e2
 	call LoadFontsExtra
 	ld de, CopyrightGFX
 	ld hl, vTiles2 tile $60
-	lb bc, BANK(CopyrightGFX), $1d
+	lb bc, BANK(CopyrightGFX), 29
 	call Request2bpp
 	hlcoord 2, 7
 	ld de, CopyrightString

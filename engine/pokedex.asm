@@ -829,7 +829,7 @@ Pokedex_UpdateUnownMode: ; 405df (10:45df)
 .decompress
 	ld hl, PokedexLZ
 	ld de, vTiles2 tile $31
-	lb bc, BANK(PokedexLZ), $3a
+	lb bc, BANK(PokedexLZ), 58
 	call DecompressRequest2bpp
 
 .done

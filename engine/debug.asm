@@ -1061,9 +1061,9 @@ TilesetColorTest:
 	call WaitBGMap2
 	xor a
 	ld [hBGMapMode], a
-	ld de, DebugColorTestGFX + $10
+	ld de, DebugColorTestGFX + 1 tiles
 	ld hl, vTiles2 tile $6a
-	lb bc, BANK(DebugColorTestGFX), $16
+	lb bc, BANK(DebugColorTestGFX), 22
 	call Request2bpp
 	ld de, DebugColorTestGFX
 	ld hl, vTiles1

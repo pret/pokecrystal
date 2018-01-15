@@ -147,11 +147,11 @@ TrainerCard_Page2_LoadGFX: ; 251f4 (9:51f4)
 	call WaitBGMap
 	ld de, LeaderGFX
 	ld hl, vTiles2 tile $29
-	lb bc, BANK(LeaderGFX), $56
+	lb bc, BANK(LeaderGFX), 86
 	call Request2bpp
 	ld de, BadgeGFX
 	ld hl, vTiles0 tile $00
-	lb bc, BANK(BadgeGFX), $2c
+	lb bc, BANK(BadgeGFX), 44
 	call Request2bpp
 	call TrainerCard_Page2_3_InitObjectsAndStrings
 	call TrainerCard_IncrementJumptable
@@ -196,11 +196,11 @@ TrainerCard_Page3_LoadGFX: ; 2524c (9:524c)
 	call WaitBGMap
 	ld de, LeaderGFX2
 	ld hl, vTiles2 tile $29
-	lb bc, BANK(LeaderGFX2), $56
+	lb bc, BANK(LeaderGFX2), 86
 	call Request2bpp
 	ld de, BadgeGFX2
 	ld hl, vTiles0 tile $00
-	lb bc, BANK(BadgeGFX2), $2c
+	lb bc, BANK(BadgeGFX2), 44
 	call Request2bpp
 	call TrainerCard_Page2_3_InitObjectsAndStrings
 	call TrainerCard_IncrementJumptable
