@@ -1,3 +1,6 @@
+; Special routines can be used with the "special" map script command.
+; They often use ScriptVar for arguments and return values.
+
 add_special: MACRO
 \1Special::
 	dba \1
