@@ -253,7 +253,7 @@ INCLUDE "engine/events/basement_key.asm"
 INCLUDE "engine/events/sacred_ash.asm"
 INCLUDE "engine/tempmon.asm"
 INCLUDE "engine/types.asm"
-INCLUDE "data/unused_text/gen_1_trainers.asm"
+INCLUDE "data/unused/gen_1_trainer_names.asm"
 INCLUDE "engine/mon_stats.asm"
 INCLUDE "engine/routines/initlist.asm"
 INCLUDE "engine/experience.asm"
@@ -262,7 +262,7 @@ INCLUDE "gfx/load_pics.asm"
 INCLUDE "engine/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
-INCLUDE "data/unknown_table.asm"
+INCLUDE "data/unused/unknown_53d84.asm"
 
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.

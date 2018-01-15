@@ -14,7 +14,7 @@ SpriteAnimOAMData: ; 8d94d
 	dbw $00, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_3
 	dbw $06, .OAMData_GSIntroLapras            ; SPRITE_ANIM_OAMSET_GS_INTRO_LAPRAS_4
 	dbw $0c, .OAMData_GSIntroNote              ; SPRITE_ANIM_OAMSET_GS_INTRO_NOTE
-	dbw $0d, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_SMALL_NOTE
+	dbw $0d, .OAMData_1x1_Palette0             ; SPRITE_ANIM_OAMSET_GS_INTRO_INVISIBLE_NOTE
 	dbw $00, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1
 	dbw $04, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2
 	dbw $08, .OAMData_GSIntroJigglypuffPikachu ; SPRITE_ANIM_OAMSET_GS_INTRO_JIGGLYPUFF_3

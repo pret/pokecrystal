@@ -771,7 +771,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b56
 
-INCLUDE "data/unused_text/dakutens.asm"
+INCLUDE "data/unused/dakutens.asm"
 
 ; 11bbc
 
