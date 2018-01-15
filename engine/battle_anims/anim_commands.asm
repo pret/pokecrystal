@@ -5,7 +5,7 @@ Predef_PlayBattleAnim: ; cc0d6
 	ld a, [rSVBK]
 	push af
 
-	ld a, 5
+	ld a, BANK(ActiveAnimObjects)
 	ld [rSVBK], a
 
 	call _PlayBattleAnim
@@ -163,7 +163,7 @@ BattleAnimRestoreHuds: ; cc1bb
 
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(CurBattleMon) ; alternatively: BANK(TempMon), BANK(PartyMon1), several others
 	ld [rSVBK], a
 
 	ld hl, UpdateBattleHuds
@@ -916,7 +916,7 @@ BattleAnimCmd_E7: ; cc5db (33:45db)
 BattleAnimCmd_Transform: ; cc5dc (33:45dc)
 	ld a, [rSVBK]
 	push af
-	ld a, 1
+	ld a, BANK(CurPartySpecies)
 	ld [rSVBK], a
 	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
@@ -972,9 +972,9 @@ BattleAnimCmd_RaiseSub: ; cc640 (33:4640)
 
 	ld a, [rSVBK]
 	push af
-	ld a, 1
+	ld a, 1 ; unnecessary bankswitch?
 	ld [rSVBK], a
-	xor a
+	xor a ; sScratch
 	call GetSRAMBank
 
 GetSubstitutePic: ; cc64c
@@ -1046,9 +1046,9 @@ GetSubstitutePic: ; cc64c
 BattleAnimCmd_MinimizeOpp: ; cc6cf (33:46cf)
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, 1 ; unnecessary bankswitch?
 	ld [rSVBK], a
-	xor a
+	xor a ; sScratch
 	call GetSRAMBank
 	call GetMinimizePic
 	call Request2bpp
@@ -1102,9 +1102,9 @@ INCBIN "gfx/battle/minimize.2bpp"
 BattleAnimCmd_Minimize: ; cc735 (33:4735)
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, 1 ; unnecessary bankswitch?
 	ld [rSVBK], a
-	xor a
+	xor a ; sScratch
 	call GetSRAMBank
 	call GetMinimizePic
 	ld hl, vTiles0 tile $00
@@ -1117,7 +1117,7 @@ BattleAnimCmd_Minimize: ; cc735 (33:4735)
 BattleAnimCmd_DropSub: ; cc750 (33:4750)
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(CurPartySpecies)
 	ld [rSVBK], a
 
 	ld a, [CurPartySpecies] ; CurPartySpecies
@@ -1142,7 +1142,7 @@ BattleAnimCmd_DropSub: ; cc750 (33:4750)
 BattleAnimCmd_BeatUp: ; cc776 (33:4776)
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(CurPartySpecies)
 	ld [rSVBK], a
 	ld a, [CurPartySpecies] ; CurPartySpecies
 	push af
@@ -1253,7 +1253,7 @@ endr
 
 	ld a, [rSVBK]
 	push af
-	ld a, 1
+	ld a, BANK(EnemyMon) ; BattleMon is in WRAM0, but EnemyMon is in WRAMX
 	ld [rSVBK], a
 
 	ld a, [hBattleTurn]
@@ -1261,14 +1261,14 @@ endr
 	jr nz, .enemy
 
 	ld a, $f0
-	ld [CryTracks], a ; CryTracks
-	ld a, [BattleMonSpecies] ; BattleMonSpecies
+	ld [CryTracks], a
+	ld a, [BattleMonSpecies]
 	jr .done_cry_tracks
 
 .enemy
 	ld a, $0f
-	ld [CryTracks], a ; CryTracks
-	ld a, [EnemyMonSpecies] ; EnemyMon
+	ld [CryTracks], a
+	ld a, [EnemyMonSpecies]
 
 .done_cry_tracks
 	push hl
@@ -1430,7 +1430,7 @@ BattleAnim_SetBGPals: ; cc91a
 	ret z
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, wBGPals2
 	ld de, wBGPals1
@@ -1458,7 +1458,7 @@ BattleAnim_SetOBPals: ; cc94b
 	ret z
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	ld [rSVBK], a
 	ld hl, wOBPals2 palette PAL_BATTLE_OB_GRAY
 	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY

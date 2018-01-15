@@ -10,16 +10,16 @@ GBCOnlyScreen: ; 4ea82
 	call ClearTileMap
 
 	ld hl, GBCOnlyGFX
-	ld de, $d000
+	ld de, wd000
 	ld a, [rSVBK]
 	push af
-	ld a, 0
+	ld a, 0 ; this has the same effect as selecting bank 1 (http://gbdev.gg8.se/files/docs/mirrors/pandocs.html#videodisplay)
 	ld [rSVBK], a
 	call Decompress
 	pop af
 	ld [rSVBK], a
 
-	ld de, $d000
+	ld de, wd000
 	ld hl, vTiles2
 	lb bc, BANK(GBCOnlyGFX), $54
 	call Get2bpp

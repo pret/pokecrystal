@@ -26,7 +26,7 @@ Predef_LoadPoisonBGPals: ; cbcdd
 .cgb
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 	ld hl, wBGPals2
 	ld c, 4 palettes

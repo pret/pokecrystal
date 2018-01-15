@@ -57,7 +57,7 @@ Copyright_GFPresents: ; e4579
 
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld hl, IntroLogoGFX
@@ -319,7 +319,7 @@ GameFreakLogoScene4: ; e4776 (39:4776)
 	add hl, de
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wOBPals2)
 	ld [rSVBK], a
 	ld a, [hli]
 	ld [wOBPals2 + 12], a
@@ -352,7 +352,7 @@ INCBIN "gfx/splash/logo2.1bpp"
 CrystalIntro: ; e48ac
 	ld a, [rSVBK]
 	push af
-	ld a, 5
+	ld a, BANK(wPals)
 	ld [rSVBK], a
 	ld a, [hInMenu]
 	push af
@@ -480,7 +480,7 @@ IntroScene1: ; e495b (39:495b)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, wBGPals1
@@ -553,7 +553,7 @@ IntroScene3: ; e49fd (39:49fd)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
 	ld de, wBGPals1
@@ -619,7 +619,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, wBGPals1
@@ -725,7 +725,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, Palette_e5edd
@@ -884,7 +884,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, wBGPals1
@@ -1011,7 +1011,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
 	ld de, wBGPals1
@@ -1120,7 +1120,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	call Intro_LoadTilemap
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
 	ld de, wBGPals1
@@ -1194,7 +1194,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e6d6d
 	ld de, wBGPals1
@@ -1268,7 +1268,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	call Intro_LoadTilemap
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
 	ld de, wBGPals1
@@ -1438,7 +1438,7 @@ IntroScene26: ; e50bb (39:50bb)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e679d
 	ld de, wBGPals1
@@ -1526,7 +1526,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 	ld de, wBGPals2
 	ld b, 8 ; number of BG pals
@@ -1617,7 +1617,7 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	ld b, $0
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 	push hl
@@ -1722,7 +1722,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	ld c, a
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 	push bc
@@ -1791,7 +1791,7 @@ endr
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 	push hl
@@ -1846,7 +1846,7 @@ endr
 Intro_LoadTilemap: ; e541b (39:541b)
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld hl, wDecompressScratch
@@ -1946,7 +1946,7 @@ Intro_SetCGBPalUpdate: ; e549e (39:549e)
 Intro_ClearBGPals: ; e54a3 (39:54a3)
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 	ld hl, wBGPals2
@@ -1965,7 +1965,7 @@ Intro_ClearBGPals: ; e54a3 (39:54a3)
 Intro_DecompressRequest2bpp_128Tiles: ; e54c2 (39:54c2)
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	push de
@@ -1984,7 +1984,7 @@ Intro_DecompressRequest2bpp_128Tiles: ; e54c2 (39:54c2)
 Intro_DecompressRequest2bpp_255Tiles: ; e54de (39:54de)
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	push de
@@ -2003,7 +2003,7 @@ Intro_DecompressRequest2bpp_255Tiles: ; e54de (39:54de)
 Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	push de
@@ -2022,7 +2022,7 @@ Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
 Intro_ResetLYOverrides: ; e5516 (39:5516)
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 	ld hl, LYOverrides
@@ -2039,7 +2039,7 @@ Intro_ResetLYOverrides: ; e5516 (39:5516)
 Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	; Scroll the grass every frame.
 	; Scroll the trees every other frame and at half speed.

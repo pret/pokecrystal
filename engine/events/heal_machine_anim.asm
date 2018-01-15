@@ -161,7 +161,7 @@ INCBIN "gfx/overworld/heal_machine.2bpp"
 	ld hl, .palettes
 	ld de, wOBPals2 palette PAL_OW_TREE
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wOBPals2)
 	call FarCopyWRAM
 	ld a, $1
 	ld [hCGBPalUpdate], a
@@ -196,7 +196,7 @@ INCLUDE "gfx/overworld/heal_machine.pal"
 .go
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wOBPals2)
 	ld [rSVBK], a
 
 	ld hl, wOBPals2 palette PAL_OW_TREE

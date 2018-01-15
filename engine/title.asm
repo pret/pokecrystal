@@ -139,7 +139,7 @@ _TitleScreen: ; 10ed67
 	ld a, [rSVBK]
 	push af
 ; WRAM bank 5
-	ld a, 5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 ; Update palette colors
@@ -162,7 +162,7 @@ _TitleScreen: ; 10ed67
 
 	ld a, [rSVBK]
 	push af
-	ld a, 5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 ; Make alternating lines come in from opposite sides

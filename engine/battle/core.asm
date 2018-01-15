@@ -233,9 +233,9 @@ BattleTurn: ; 3c12f
 
 Stubbed_Function3c1bf:
 	ret
-	ld a, $5
+	ld a, 5 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld hl, $a89b ; s5_a89b
+	ld hl, $a89b ; address of MBC30 bank
 	inc [hl]
 	jr nz, .finish
 	dec hl
@@ -8365,7 +8365,7 @@ InitEnemy: ; 3f55e
 BackUpBGMap2: ; 3f568
 	ld a, [rSVBK]
 	push af
-	ld a, $6 ; BANK(wDecompressScratch)
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	ld hl, wDecompressScratch
 	ld bc, $40 tiles ; vBGMap3 - vBGMap2
@@ -9244,7 +9244,7 @@ InitBattleDisplay: ; 3fb6c
 .BlankBGMap: ; 3fbd6
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld hl, wDecompressScratch
@@ -9305,7 +9305,7 @@ GetTrainerBackpic: ; 3fbff
 CopyBackpic: ; 3fc30
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	ld hl, vTiles0
 	ld de, vTiles2 tile $31

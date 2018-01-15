@@ -155,7 +155,7 @@ Function819a7: ; 819a7
 	ret z
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 	ld hl, Palette_819f4
 	ld de, wBGPals2
@@ -436,7 +436,7 @@ Function81c33: ; 81c33
 	jr z, .asm_81c69
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 	ld hl, wBGPals2
 	ld de, wc608
@@ -1145,7 +1145,7 @@ Function82203: ; 82203
 Function8220f: ; 8220f
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld a, [wcf64]
 	ld l, a
@@ -1198,7 +1198,7 @@ Function82236: ; 82236
 	call Function821d8
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 	ld hl, wBGPals2
 	ld a, [wcf64]
@@ -1228,7 +1228,7 @@ Function82236: ; 82236
 Function822a3: ; 822a3
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 	ld hl, wBGPals2
 	ld a, [wcf64]

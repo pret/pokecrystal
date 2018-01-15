@@ -119,7 +119,7 @@ Mobile_ReloadMapPart: ; 104099
 .unreferenced_1040da
 	ld a, $1
 	ld [rVBK], a
-	ld a, $3
+	ld a, BANK(w3_d800)
 	ld [rSVBK], a
 	ld de, w3_d800
 	ld a, [hBGMapAddress + 1]
@@ -143,7 +143,7 @@ Mobile_ReloadMapPart: ; 104099
 .unreferenced_104101
 	ld a, $1
 	ld [rVBK], a
-	ld a, $3
+	ld a, BANK(w3_d800)
 	ld [rSVBK], a
 	ld hl, w3_d800
 	call HDMATransferToWRAMBank3
@@ -221,7 +221,7 @@ CallInSafeGFXMode: ; 104177
 	ld [hMapAnims], a
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wScratchTileMap)
 	ld [rSVBK], a
 	ld a, [rVBK]
 	push af
@@ -472,7 +472,7 @@ _Get2bpp:: ; 104284
 	; switch to WRAM bank 6
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wScratchTileMap)
 	ld [rSVBK], a
 
 	push bc
@@ -542,7 +542,7 @@ _Get1bpp:: ; 1042b2
 .bankswitch ; 1042d6
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wScratchTileMap)
 	ld [rSVBK], a
 
 	push bc

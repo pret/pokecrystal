@@ -174,7 +174,7 @@ Predef_GetGender: ; 50bdd
 ; sBoxMon data is read directly from SRAM.
 	ld a, [MonType]
 	cp BOXMON
-	ld a, 1
+	ld a, BANK(sBox)
 	call z, GetSRAMBank
 
 ; Attack DV

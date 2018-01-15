@@ -466,7 +466,7 @@ AnimateTileset:: ; 17d3
 
 	ld a, [rSVBK]
 	push af
-	ld a, 1
+	ld a, BANK(TilesetAnim)
 	ld [rSVBK], a
 
 	ld a, [rVBK]

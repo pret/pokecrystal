@@ -141,13 +141,13 @@ Unreferenced_Function8b07:
 	ld hl, .BGPal
 	ld de, wBGPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 
 	ld hl, .OBPal
 	ld de, wOBPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 
 	call ApplyPals
@@ -351,7 +351,7 @@ ApplyHPBarPals:
 	ld bc, HPBarPals
 	add hl, bc
 	ld bc, 4
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	call FarCopyWRAM
 	ld a, $1
 	ld [hCGBPalUpdate], a
@@ -386,7 +386,7 @@ LoadStatsScreenPals:
 	add hl, bc
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld a, [hli]
 	ld [wBGPals1 palette 0], a
@@ -435,7 +435,7 @@ LoadMailPalettes:
 .cgb
 	ld de, wBGPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
 	call WipeAttrMap
@@ -451,7 +451,7 @@ Unreferenced_Function95f0:
 	ld hl, .Palette
 	ld de, wBGPals1
 	ld bc, 1 palettes
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call ApplyPals
 	call WipeAttrMap
@@ -495,7 +495,7 @@ GetPredefPal:
 LoadHLPaletteIntoDE:
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	ld [rSVBK], a
 	ld c, $8
 .loop
@@ -511,7 +511,7 @@ LoadHLPaletteIntoDE:
 LoadPalette_White_Col1_Col2_Black:
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
@@ -563,7 +563,7 @@ ResetBGPals:
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, wBGPals1
@@ -602,7 +602,7 @@ ApplyPals:
 	ld hl, wBGPals1
 	ld de, wBGPals2
 	ld bc, 16 palettes
-	ld a, $5
+	ld a, BANK(wPals)
 	call FarCopyWRAM
 	ret
 
@@ -679,7 +679,7 @@ InitPartyMenuOBPals:
 	ld hl, PartyMenuOBPals
 	ld de, wOBPals1
 	ld bc, 2 palettes
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
 
@@ -753,7 +753,7 @@ Unreferenced_Function9779:
 	ld hl, BattleObjectPals
 	ld de, wOBPals1 palette 2
 	ld bc, 2 palettes
-	ld a, $5
+	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
 
@@ -921,7 +921,7 @@ InitCGBPals::
 	jr nz, .obpals_loop
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, wBGPals1
 	call .LoadWhitePals
@@ -1242,7 +1242,7 @@ LoadMapPals:
 	; Switch to palettes WRAM bank
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, wBGPals1
 	ld b, 8
@@ -1309,7 +1309,7 @@ endr
 .morn_day
 	ld de, wBGPals1 palette PAL_BG_ROOF + 2
 	ld bc, 4
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
 

@@ -494,7 +494,7 @@ ClearWindowData:: ; 1fbf
 
 	ld a, [rSVBK]
 	push af
-	ld a, $7
+	ld a, BANK(wWindowStack)
 	ld [rSVBK], a
 
 	xor a

@@ -585,7 +585,7 @@ Place2DMenuCursor: ; 24329
 _PushWindow:: ; 24374
 	ld a, [rSVBK]
 	push af
-	ld a, $7
+	ld a, BANK(wWindowStack)
 	ld [rSVBK], a
 
 	ld hl, wWindowStackPointer
@@ -690,7 +690,7 @@ _ExitMenu:: ; 243e8
 
 	ld a, [rSVBK]
 	push af
-	ld a, $7
+	ld a, BANK(wWindowStack)
 	ld [rSVBK], a
 
 	call GetWindowStackTop
@@ -728,7 +728,7 @@ Unreferenced_Function24423: ; 24423
 	ld a, [VramState]
 	bit 0, a
 	ret z
-	xor a
+	xor a ; sScratch
 	call GetSRAMBank
 	hlcoord 0, 0
 	ld de, sScratch
@@ -736,7 +736,7 @@ Unreferenced_Function24423: ; 24423
 	call CopyBytes
 	call CloseSRAM
 	call OverworldTextModeSwitch
-	xor a
+	xor a ; sScratch
 	call GetSRAMBank
 	ld hl, sScratch
 	decoord 0, 0

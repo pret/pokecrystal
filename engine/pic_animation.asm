@@ -279,7 +279,7 @@ PokeAnim_StereoCry: ; d0196
 PokeAnim_DeinitFrames: ; d01a9
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, BANK(wPokeAnimCoord)
 	ld [rSVBK], a
 	call PokeAnim_PlaceGraphic
 	farcall HDMATransferTileMapToWRAMBank3
@@ -335,12 +335,12 @@ PokeAnim_InitPicAttributes: ; d01d6
 	ld a, d
 	ld [wPokeAnimGraphicStartTile], a
 
-	ld a, $1
+	ld a, BANK(CurPartySpecies)
 	ld hl, CurPartySpecies
 	call GetFarWRAMByte
 	ld [wPokeAnimSpecies], a
 
-	ld a, $1
+	ld a, BANK(UnownLetter)
 	ld hl, UnownLetter
 	call GetFarWRAMByte
 	ld [wPokeAnimUnownLetter], a
@@ -876,7 +876,7 @@ PokeAnim_PlaceGraphic: ; d04bd
 PokeAnim_SetVBank1: ; d0504
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, BANK(wPokeAnimCoord)
 	ld [rSVBK], a
 	xor a
 	ld [hBGMapMode], a

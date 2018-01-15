@@ -1401,7 +1401,7 @@ LoadTilesetGFX:: ; 2821
 
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld a, e

@@ -55,7 +55,7 @@ Init:: ; 17d
 	ld [rOBP1], a
 	ld [rTMA], a
 	ld [rTAC], a
-	ld [$d000], a
+	ld [WRAM1_Begin], a
 
 	ld a, %100 ; Start timer at 4096Hz
 	ld [rTAC], a
@@ -96,7 +96,7 @@ Init:: ; 17d
 	ld [hCGB], a
 
 	call ClearWRAM
-	ld a, 1
+	ld a, BANK(wd000)
 	ld [rSVBK], a
 	call ClearVRAM
 	call ClearSprites

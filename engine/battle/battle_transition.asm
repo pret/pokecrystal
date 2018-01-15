@@ -23,7 +23,7 @@ Predef_DoBattleTransition: ; 8c20f
 .done
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, wBGPals1
@@ -44,7 +44,7 @@ Predef_DoBattleTransition: ; 8c20f
 	ld [hLYOverrideEnd], a
 	ld [hSCY], a
 
-	ld a, $1
+	ld a, 1 ; unnecessary bankswitch?
 	ld [rSVBK], a
 	pop af
 	ld [hVBlank], a
@@ -116,7 +116,7 @@ LoadTrainerBattlePokeballTiles:
 ConvertTrainerBattlePokeballTilesTo2bpp: ; 8c2cf
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	push hl
 	ld hl, wDecompressScratch
@@ -298,7 +298,7 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 
 StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 	call StartTrainerBattle_NextScene
@@ -356,7 +356,7 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 
 StartTrainerBattle_SetUpForSpinOutro: ; 8c43d (23:443d)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	xor a
@@ -498,7 +498,7 @@ ENDM
 
 StartTrainerBattle_SetUpForRandomScatterOutro: ; 8c578 (23:4578)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	ld a, $10
@@ -647,7 +647,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 .daytime
 	ld a, [rSVBK]
 	push af
-	ld a, $5 ; WRAM5 = palettes
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	call .copypals
 	push hl
@@ -724,7 +724,7 @@ PokeBallTransition:
 WipeLYOverrides: ; 8c6d8
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 	ld hl, LYOverrides

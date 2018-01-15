@@ -417,10 +417,10 @@ EraseHallOfFame: ; 14d06
 
 Unreferenced_Function14d18: ; 14d18
 ; copy .Data to SRA4:a007
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	ld hl, .Data
-	ld de, $a007
+	ld de, $a007 ; address of MBC30 bank
 	ld bc, .DataEnd - .Data
 	call CopyBytes
 	jp CloseSRAM
@@ -452,9 +452,9 @@ SaveData: ; 14d68
 ; 14d6c
 
 Unreferenced_Function14d6c: ; 14d6c
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld a, [$a60b]
+	ld a, [$a60b] ; address of MBC30 bank
 	ld b, $0
 	and a
 	jr z, .ok
@@ -462,26 +462,26 @@ Unreferenced_Function14d6c: ; 14d6c
 
 .ok
 	ld a, b
-	ld [$a60b], a
+	ld [$a60b], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 ; 14d83
 
 Unreferenced_Function14d83: ; 14d83
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	xor a
-	ld [$a60c], a
-	ld [$a60d], a
+	ld [$a60c], a ; address of MBC30 bank
+	ld [$a60d], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 ; 14d93
 
 Unreferenced_Function14d93: ; 14d93
-	ld a, $7
+	ld a, 7 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	xor a
-	ld [$a000], a
+	ld [$a000], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 ; 14da0
@@ -869,6 +869,11 @@ VerifyBackupChecksum: ; 1507c (5:507c)
 
 
 _SaveData: ; 1509a
+	; This is called within two scenarios:
+	;   a) ErasePreviousSave (the process of erasing the save from a previous game file)
+	;   b) unused mobile functionality
+	; It is not part of a regular save.
+	
 	ld a, BANK(sCrystalData)
 	call GetSRAMBank
 	ld hl, wCrystalData
@@ -876,7 +881,11 @@ _SaveData: ; 1509a
 	ld bc, wCrystalDataEnd - wCrystalData
 	call CopyBytes
 
-	; XXX SRAM bank 7
+	; This block originally had some mobile functionality, but since we're still in
+	; BANK(sCrystalData), it instead overwrites the sixteen EventFlags starting at 1:a603 with
+	; garbage from wd479. This isn't an issue, since ErasePreviousSave is followed by a regular
+	; save that unwrites the garbage.
+	
 	ld hl, wd479
 	ld a, [hli]
 	ld [$a60e + 0], a
@@ -893,8 +902,10 @@ _LoadData: ; 150b9
 	ld de, wCrystalData
 	ld bc, wCrystalDataEnd - wCrystalData
 	call CopyBytes
-
-	; XXX SRAM bank 7
+	
+	; This block originally had some mobile functionality to mirror _SaveData above, but instead it
+	; (harmlessly) writes the aforementioned EventFlags to the unused wd479.
+	
 	ld hl, wd479
 	ld a, [$a60e + 0]
 	ld [hli], a

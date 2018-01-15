@@ -63,7 +63,7 @@ UnusedTitleScreen: ; 10c000
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, UnusedTitleBG_Palettes
