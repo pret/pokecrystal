@@ -1,8 +1,3 @@
-add_predef: MACRO
-\1Predef::
-	dab \1
-ENDM
-
 predef_id: MACRO
 ; Some functions load the predef id
 ; without immediately calling Predef.

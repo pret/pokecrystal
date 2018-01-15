@@ -101,11 +101,6 @@ special: MACRO
 	dw (\1Special - SpecialsPointers) / 3
 ENDM
 
-add_special: MACRO
-\1Special::
-	dba \1
-ENDM
-
 	enum ptcallasm_command ; $10
 ptcallasm: MACRO
 	db ptcallasm_command
