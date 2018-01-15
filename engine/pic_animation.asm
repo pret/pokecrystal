@@ -1024,7 +1024,7 @@ GetMonFramesPointer: ; d05ce
 	ld hl, UnownFramesPointers
 	jr z, .got_frames
 	ld a, [wPokeAnimSpecies]
-	cp CHIKORITA
+	cp JOHTO_POKEMON
 	ld b, BANK(FramesPointers)
 	ld c, BANK(KantoFrames)
 	ld hl, FramesPointers

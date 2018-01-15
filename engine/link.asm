@@ -2050,7 +2050,7 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 	ld a, [hli]
 	cp -1
 	jr z, .checkitem
-	cp MEW + 1
+	cp JOHTO_POKEMON
 	jr nc, .mon_too_new
 	dec b
 	jr nz, .loop
