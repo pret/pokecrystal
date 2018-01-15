@@ -1,124 +1,124 @@
-; $00
+; $00 (_CGB_BattleGrayscale via PalPacket_9c66)
 	RGB 31, 31, 31
 	RGB 22, 25, 19
 	RGB 16, 21, 30
 	RGB 00, 00, 00
-; $01
+; $01 (Pallet map group)
 	RGB 31, 31, 31
 	RGB 27, 28, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $02
+; $02 (Viridian map group)
 	RGB 31, 31, 31
 	RGB 24, 28, 19
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $03
+; $03 (Pewter map group)
 	RGB 31, 31, 31
 	RGB 24, 24, 24
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $04
+; $04 (Cerulean map group)
 	RGB 31, 31, 31
 	RGB 21, 23, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $05
+; $05 (Lavender map group)
 	RGB 31, 31, 31
 	RGB 24, 21, 27
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $06
+; $06 (Vermilion map group)
 	RGB 31, 31, 31
 	RGB 31, 24, 16
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $07
+; $07 (Celadon map group)
 	RGB 31, 31, 31
 	RGB 25, 30, 26
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $08
+; $08 (Fuchsia map group)
 	RGB 31, 31, 31
 	RGB 31, 25, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $09
+; $09 (Cinnabar map group)
 	RGB 31, 31, 31
 	RGB 31, 20, 19
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $0a
+; $0a (Saffron map group)
 	RGB 31, 31, 31
 	RGB 31, 26, 19
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $0b
+; $0b (Indigo map group)
 	RGB 31, 31, 31
 	RGB 27, 28, 27
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $0c
+; $0c (New Bark map group)
 	RGB 31, 31, 31
 	RGB 24, 30, 23
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $0d
+; $0d (Cherrygrove map group)
 	RGB 31, 31, 31
 	RGB 29, 24, 29
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $0e
+; $0e (Violet map group)
 	RGB 31, 31, 31
 	RGB 26, 23, 29
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $0f
+; $0f (Azalea map group)
 	RGB 31, 31, 31
 	RGB 25, 23, 20
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $10
+; $10 (Goldenrod map group, _CGB_MoveList)
 	RGB 31, 31, 31
 	RGB 29, 26, 18
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $11
+; $11 (Ecruteak map group)
 	RGB 31, 31, 31
 	RGB 31, 21, 18
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $12
+; $12 (Olivine map group)
 	RGB 31, 31, 31
 	RGB 26, 25, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $13
+; $13 (Cianwood map group)
 	RGB 31, 31, 31
 	RGB 22, 21, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $14
+; $14 (Mahogany map group)
 	RGB 31, 31, 31
 	RGB 22, 25, 21
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $15
+; $15 (Blackthorn map group)
 	RGB 31, 31, 31
 	RGB 21, 21, 22
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $16
+; $16 (Lake of Rage map group)
 	RGB 31, 31, 31
 	RGB 31, 20, 20
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $17
+; $17 (Silver Cave map group)
 	RGB 31, 31, 31
 	RGB 26, 26, 26
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $18
+; $18 (dungeon map group)
 	RGB 31, 31, 31
 	RGB 21, 14, 09
 	RGB 15, 20, 20
@@ -128,22 +128,22 @@
 	RGB 12, 28, 22
 	RGB 15, 20, 20
 	RGB 00, 00, 00
-; $1a
+; $1a (_CGB_Evolution, _CGB_BattleGrayscale via PalPacket_9c66)
 	RGB 31, 31, 31
 	RGB 07, 07, 07
 	RGB 02, 03, 03
 	RGB 00, 00, 00
-; $1b
+; $1b (_CGB_Diploma via PalPacket_9cb6, _CGB0d via PalPacket_9cb6)
 	RGB 31, 31, 31
 	RGB 30, 22, 17
 	RGB 16, 14, 19
 	RGB 00, 00, 00
-; $1c
+; $1c (_CGB_TradeTube, Unreferenced_Function97cc)
 	RGB 31, 31, 31
 	RGB 18, 20, 27
 	RGB 11, 15, 23
 	RGB 00, 00, 00
-; $1d
+; $1d (_CGB_Pokedex, _CGB_BillsPC, _CGB_PokedexUnownMode, _CGB_PokedexSearchOption)
 	RGB 31, 31, 31
 	RGB 31, 20, 10
 	RGB 26, 10, 06
@@ -163,7 +163,7 @@
 	RGB 28, 20, 15
 	RGB 21, 14, 09
 	RGB 00, 00, 00
-; $21
+; $21 (Unreferenced_Function97cc)
 	RGB 31, 31, 31
 	RGB 20, 26, 16
 	RGB 09, 20, 11
@@ -178,7 +178,7 @@
 	RGB 31, 28, 14
 	RGB 26, 20, 00
 	RGB 00, 00, 00
-; $24
+; $24 (_CGB_TrainerCard, _CGB13 via PalPacket_9ba6)
 	RGB 31, 31, 31
 	RGB 26, 21, 22
 	RGB 15, 15, 18
@@ -213,7 +213,7 @@
 	RGB 20, 17, 18
 	RGB 18, 13, 11
 	RGB 00, 00, 00
-; $2b
+; $2b (_CGB13 via PalPacket_9ba6)
 	RGB 31, 31, 31
 	RGB 23, 21, 16
 	RGB 12, 12, 10
@@ -228,12 +228,12 @@
 	RGB 26, 23, 16
 	RGB 29, 14, 09
 	RGB 00, 00, 00
-; $2e
+; $2e (_CGB_PartyMenu via PalPacket_9c56)
 	RGB 31, 31, 31
 	RGB 18, 18, 18
 	RGB 10, 10, 10
 	RGB 00, 00, 00
-; $2f
+; $2f (_CGB_PartyMenu via PalPacket_9c56)
 	RGB 31, 31, 31
 	RGB 30, 26, 15
 	RGB 00, 23, 00
@@ -253,12 +253,12 @@
 	RGB 29, 26, 19
 	RGB 27, 20, 14
 	RGB 00, 00, 00
-; $33
+; $33 (_CGB06 via PalPacket_9ca6)
 	RGB 31, 31, 31
 	RGB 24, 20, 10
 	RGB 21, 00, 04
 	RGB 00, 00, 00
-; $34
+; $34 (_CGB06 via PalPacket_9ca6)
 	RGB 31, 31, 31
 	RGB 31, 20, 10
 	RGB 21, 00, 04
@@ -278,27 +278,27 @@
 	RGB 15, 28, 26
 	RGB 23, 24, 24
 	RGB 00, 00, 00
-; $38
+; $38 (_CGB07.Function9166)
 	RGB 31, 31, 24
 	RGB 07, 27, 19
 	RGB 26, 20, 10
 	RGB 19, 12, 08
-; $39
+; $39 (_CGB07.Function9166, _CGB0f via PalPacket_9c46)
 	RGB 31, 31, 31
 	RGB 31, 28, 14
 	RGB 31, 13, 31
 	RGB 00, 00, 00
-; $3a
+; $3a (_CGB07.Function9180)
 	RGB 31, 31, 31
 	RGB 16, 18, 21
 	RGB 10, 12, 18
 	RGB 00, 00, 00
-; $3b
+; $3b (Unreferenced_Function8b4d)
 	RGB 31, 31, 31
 	RGB 23, 21, 16
 	RGB 12, 12, 10
 	RGB 00, 00, 00
-; $3c
+; $3c (_CGB06, Unreferenced_Function8b67, _CGB07.Function9180 via PalPacket_9c36)
 	RGB 31, 31, 31
 	RGB 31, 14, 00
 	RGB 07, 11, 15
@@ -378,7 +378,7 @@
 	RGB 18, 23, 31
 	RGB 15, 20, 31
 	RGB 00, 00, 00
-; $4c
+; $4c (_CGB_UnownPuzzle)
 	RGB 31, 31, 31
 	RGB 24, 20, 11
 	RGB 18, 13, 11
@@ -388,7 +388,7 @@
 	RGB 31, 31, 31
 	RGB 25, 30, 00
 	RGB 25, 30, 00
-; $4e
+; $4e (_CGB_GamefreakLogo)
 	RGB 00, 00, 00
 	RGB 08, 11, 11
 	RGB 21, 21, 21

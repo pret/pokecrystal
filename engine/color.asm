@@ -466,7 +466,7 @@ Unreferenced_Function95f0:
 
 CopyFourPalettes:
 	ld de, wBGPals1
-	ld c, $4
+	ld c, 4
 
 CopyPalettes:
 .loop
