@@ -258,7 +258,7 @@ INCLUDE "engine/mon_stats.asm"
 INCLUDE "engine/routines/initlist.asm"
 INCLUDE "engine/experience.asm"
 INCLUDE "engine/routines/switchpartymons.asm"
-INCLUDE "gfx/load_pics.asm"
+INCLUDE "engine/load_pics.asm"
 INCLUDE "engine/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
@@ -355,7 +355,7 @@ SECTION "bank2E", ROMX
 INCLUDE "engine/events/map_name_sign.asm"
 INCLUDE "engine/events/checkforhiddenitems.asm"
 INCLUDE "engine/events/treemons.asm"
-INCLUDE "gfx/fishing.asm"
+INCLUDE "engine/events/loadfishinggfx.asm"
 INCLUDE "engine/radio.asm"
 INCLUDE "engine/mail_2.asm"
 
@@ -447,7 +447,7 @@ INCLUDE "engine/crystal_intro.asm"
 
 SECTION "bank3E", ROMX
 
-INCLUDE "gfx/font.asm"
+INCLUDE "engine/load_font.asm"
 INCLUDE "engine/time_capsule.asm"
 INCLUDE "engine/events/name_rater.asm"
 INCLUDE "engine/routines/playslowcry.asm"
@@ -477,7 +477,7 @@ INCLUDE "engine/warp_connection.asm"
 INCLUDE "engine/mystery_gift.asm"
 INCLUDE "engine/battle/used_move_text.asm"
 INCLUDE "mobile/mobile_41.asm"
-INCLUDE "gfx/overworld_font.asm"
+INCLUDE "engine/routines/loadoverworldfont.asm"
 
 
 SECTION "Mobile 42", ROMX

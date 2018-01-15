@@ -394,8 +394,8 @@ FixBackpicAlignment: ; 5127c
 
 .got_dims
 	ld a, [hl]
-	ld b, $0
-	ld c, $8
+	ld b, 0
+	ld c, 8
 .loop
 	rra
 	rl b
@@ -483,10 +483,10 @@ LoadFrontpic: ; 512f2
 	inc de
 	ld b, a
 	xor a
-	rept 8
+rept 8
 	rr b
 	rla
-	endr
+endr
 	ld [hli], a
 	dec c
 	jr nz, .right_loop

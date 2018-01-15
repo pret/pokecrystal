@@ -24,7 +24,7 @@ dba_pic: MACRO ; dbw bank, address
 ENDM
 ```
 
-The offset is translated into a correct bank by `FixPicBank` in [gfx/load_pics.asm](/gfx/load_pics.asm):
+The offset is translated into a correct bank by `FixPicBank` in [engine/load_pics.asm](/engine/load_pics.asm):
 
 ```asm
 FixPicBank: ; 511c5
@@ -106,7 +106,7 @@ ROMX $49
 	"Pics 2"
 ```
 
-Two routines in [gfx/load_pics.asm](/gfx/load_pics.asm) make this assumption; `GetFrontpicPointer`:
+Two routines in [engine/load_pics.asm](/engine/load_pics.asm) make this assumption; `GetFrontpicPointer`:
 
 ```asm
 	ld a, [CurPartySpecies]

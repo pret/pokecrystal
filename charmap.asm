@@ -80,7 +80,7 @@
 
 ; Actual characters (from other graphics files)
 
-	; needed for _LoadFontsExtra1 (see gfx/font.asm)
+	; needed for _LoadFontsExtra1 (see engine/load_font.asm)
 	charmap "<BLACK>",   $60 ; gfx/font/black_arrow.2bpp
 	charmap "▲",         $61 ; gfx/font/up_arrow.png
 	charmap "<PHONE>",   $62 ; gfx/font/phone_icon.2bpp
