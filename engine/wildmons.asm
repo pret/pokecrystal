@@ -212,7 +212,7 @@ TryWildEncounter:: ; 2a0e7
 GetMapEncounterRate: ; 2a111
 	ld hl, wMornEncounterRate
 	call CheckOnWater
-	ld a, 3
+	ld a, wWaterEncounterRate - wMornEncounterRate
 	jr z, .ok
 	ld a, [TimeOfDay]
 .ok
@@ -571,7 +571,7 @@ CheckEncounterRoamMon: ; 2a2ce
 	ld hl, wRoamMon1MapGroup
 	ld c, a
 	ld b, 0
-	ld a, 7 ; length of the RoamMon struct
+	ld a, 7 ; length of the roam_struct
 	call AddNTimes
 	ld a, d
 	cp [hl]
@@ -821,7 +821,7 @@ Special_RandomUnseenWildMon: ; 2a4ab
 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
 	add hl, bc
 	ld a, [TimeOfDay]
-	ld bc, 7 * 2
+	ld bc, NUM_GRASSMON * 2
 	call AddNTimes
 .randloop1
 	call Random
@@ -893,7 +893,7 @@ Special_RandomPhoneWildMon: ; 2a51f
 	add hl, bc
 	ld a, [TimeOfDay]
 	inc a
-	ld bc, 7 * 2
+	ld bc, NUM_GRASSMON * 2
 .loop
 	dec a
 	jr z, .done
@@ -952,16 +952,17 @@ Special_RandomPhoneMon: ; 2a567
 	ld a, BANK(Trainers)
 	call GetFarByte
 	inc hl
-	ld bc, 2
-	cp 0
+	ld bc, 2 ; level, species
+	cp TRAINERTYPE_NORMAL
 	jr z, .got_mon_length
-	ld bc, 2 + NUM_MOVES
-	cp 1
+	ld bc, 2 + NUM_MOVES ; level, species, moves
+	cp TRAINERTYPE_MOVES
 	jr z, .got_mon_length
-	ld bc, 2 + 1
-	cp 2
+	ld bc, 2 + 1 ; level, species, item
+	cp TRAINERTYPE_ITEM
 	jr z, .got_mon_length
-	ld bc, 2 + 1 + NUM_MOVES
+	; TRAINERTYPE_ITEM_MOVES
+	ld bc, 2 + 1 + NUM_MOVES ; level, species, item, moves
 .got_mon_length
 
 	ld e, 0
@@ -977,7 +978,7 @@ Special_RandomPhoneMon: ; 2a567
 
 .rand
 	call Random
-	and 7
+	maskbits PARTY_LENGTH
 	cp e
 	jr nc, .rand
 
