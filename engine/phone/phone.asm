@@ -163,7 +163,7 @@ CheckPhoneContactTimeOfDay: ; 900ad (24:40ad)
 
 	farcall CheckTime
 	pop af
-	and MORN | DAY | NITE
+	and ANYTIME
 	and c
 
 	pop de
