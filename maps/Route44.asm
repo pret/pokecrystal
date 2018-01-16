@@ -26,29 +26,29 @@ TrainerBirdKeeperVance1:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_VANCE
-	iftrue VanceWantsBattle
+	iftrue .WantsBattle
 	checkcellnum PHONE_BIRDKEEPER_VANCE
-	iftrue Rt44NumberAcceptedM
+	iftrue Route44NumberAcceptedM
 	checkevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext BirdKeeperVanceLegendaryBirdsText
 	buttonsound
 	setevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
-	scall Rt44AskNumber1M
+	scall Route44AskNumber1M
 	jump .AskForNumber
 
 .AskedAlready:
-	scall Rt44AskNumber2M
+	scall Route44AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_BIRDKEEPER_VANCE
-	if_equal $1, Rt44PhoneFullM
-	if_equal $2, Rt44NumberDeclinedM
+	if_equal $1, Route44PhoneFullM
+	if_equal $2, Route44NumberDeclinedM
 	trainertotext BIRD_KEEPER, VANCE1, $0
-	scall Rt44RegisteredNumberM
-	jump Rt44NumberAcceptedM
+	scall Route44RegisteredNumberM
+	jump Route44NumberAcceptedM
 
-VanceWantsBattle:
-	scall Rt44RematchM
+.WantsBattle:
+	scall Route44RematchM
 	winlosstext BirdKeeperVance1BeatenText, 0
 	copybytetovar wVanceFightCount
 	if_equal 2, .Fight2
@@ -85,11 +85,11 @@ VanceWantsBattle:
 	iftrue .Carbos
 	checkevent EVENT_GOT_CARBOS_FROM_VANCE
 	iftrue .ReceivedCarbosBefore
-	scall Rt44RematchGiftM
+	scall Route44RematchGiftM
 	verbosegiveitem CARBOS
 	iffalse VancePackFull
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
-	jump Rt44NumberAcceptedM
+	jump Route44NumberAcceptedM
 
 .ReceivedCarbosBefore:
 	end
@@ -102,41 +102,41 @@ VanceWantsBattle:
 	iffalse VancePackFull
 	clearevent EVENT_VANCE_CARBOS
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
-	jump Rt44NumberAcceptedM
+	jump Route44NumberAcceptedM
 
-Rt44AskNumber1M:
+Route44AskNumber1M:
 	jumpstd asknumber1m
 	end
 
-Rt44AskNumber2M:
+Route44AskNumber2M:
 	jumpstd asknumber2m
 	end
 
-Rt44RegisteredNumberM:
+Route44RegisteredNumberM:
 	jumpstd registerednumberm
 	end
 
-Rt44NumberAcceptedM:
+Route44NumberAcceptedM:
 	jumpstd numberacceptedm
 	end
 
-Rt44NumberDeclinedM:
+Route44NumberDeclinedM:
 	jumpstd numberdeclinedm
 	end
 
-Rt44PhoneFullM:
+Route44PhoneFullM:
 	jumpstd phonefullm
 	end
 
-Rt44RematchM:
+Route44RematchM:
 	jumpstd rematchm
 	end
 
-Rt44GiftM:
+Route44GiftM:
 	jumpstd giftm
 	end
 
-Rt44PackFullM:
+Route44PackFullM:
 	jumpstd packfullm
 	end
 
@@ -145,7 +145,7 @@ VancePackFull:
 	jumpstd packfullm
 	end
 
-Rt44RematchGiftM:
+Route44RematchGiftM:
 	jumpstd rematchgiftm
 	end
 
@@ -172,27 +172,27 @@ TrainerFisherWilton1:
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue WiltonHasItem
 	checkcellnum PHONE_FISHER_WILTON
-	iftrue Rt44NumberAcceptedM
+	iftrue Route44NumberAcceptedM
 	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext FisherWiltonHugePoliwagText
 	buttonsound
 	setevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
-	scall Rt44AskNumber1M
+	scall Route44AskNumber1M
 	jump .AskForNumber
 
 .AskedAlready:
-	scall Rt44AskNumber2M
+	scall Route44AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_WILTON
-	if_equal $1, Rt44PhoneFullM
-	if_equal $2, Rt44NumberDeclinedM
+	if_equal $1, Route44PhoneFullM
+	if_equal $2, Route44NumberDeclinedM
 	trainertotext FISHER, WILTON1, $0
-	scall Rt44RegisteredNumberM
-	jump Rt44NumberAcceptedM
+	scall Route44RegisteredNumberM
+	jump Route44NumberAcceptedM
 
 WiltonWantsBattle:
-	scall Rt44RematchM
+	scall Route44RematchM
 	winlosstext FisherWilton1BeatenText, 0
 	copybytetovar wWiltonFightCount
 	if_equal 2, .Fight2
@@ -228,7 +228,7 @@ WiltonWantsBattle:
 	end
 
 WiltonHasItem:
-	scall Rt44GiftM
+	scall Route44GiftM
 	checkevent EVENT_WILTON_HAS_ULTRA_BALL
 	iftrue .UltraBall
 	checkevent EVENT_WILTON_HAS_GREAT_BALL
@@ -237,23 +237,23 @@ WiltonHasItem:
 	iftrue .PokeBall
 .UltraBall:
 	verbosegiveitem ULTRA_BALL
-	iffalse .Rt44PackFullM
+	iffalse .Route44PackFullM
 	jump .ItemReceived
 
 .GreatBall:
 	verbosegiveitem GREAT_BALL
-	iffalse .Rt44PackFullM
+	iffalse .Route44PackFullM
 	jump .ItemReceived
 
 .PokeBall:
 	verbosegiveitem POKE_BALL
-	iffalse .Rt44PackFullM
+	iffalse .Route44PackFullM
 .ItemReceived:
 	clearflag ENGINE_WILTON_HAS_ITEM
-	jump Rt44NumberAcceptedM
+	jump Route44NumberAcceptedM
 
-.Rt44PackFullM:
-	jump Rt44PackFullM
+.Route44PackFullM:
+	jump Route44PackFullM
 
 TrainerFisherEdgar:
 	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, .Script
