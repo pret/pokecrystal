@@ -1,72 +1,52 @@
-Unreferenced_GetGen1TrainerClassName: ; 50a28
-	ld hl, .Strings
-	ld a, [TrainerClass]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, StringBuffer1
-.copy
-	ld a, [hli]
-	ld [de], a
-	inc de
-	cp "@"
-	jr nz, .copy
-	ret
-
-.Strings: ; 50a42
+Gen1TrainerClassNames: ; 50a42
 ; Untranslated trainer class names from Red.
 	dw .Youngster
 	dw .BugCatcher
 	dw .Lass
-	dw OTClassName
+	dw OTClassName ; sailor
 	dw .JrTrainerM
 	dw .JrTrainerF
 	dw .Pokemaniac
 	dw .SuperNerd
-	dw OTClassName
-	dw OTClassName
+	dw OTClassName ; hiker
+	dw OTClassName ; biker
 	dw .Burglar
 	dw .Engineer
 	dw .Jack
-	dw OTClassName
+	dw OTClassName ; fisher
 	dw .Swimmer
-	dw OTClassName
-	dw OTClassName
+	dw OTClassName ; cue ball
+	dw OTClassName ; gambler
 	dw .Beauty
-	dw OTClassName
+	dw OTClassName ; psychic
 	dw .Rocker
 	dw .Juggler
-	dw OTClassName
-	dw OTClassName
+	dw OTClassName ; tamer
+	dw OTClassName ; bird keeper
 	dw .Blackbelt
-	dw OTClassName
+	dw OTClassName ; rival1
 	dw .ProfOak
 	dw .Chief
 	dw .Scientist
-	dw OTClassName
+	dw OTClassName ; giovanni
 	dw .Rocket
 	dw .CooltrainerM
 	dw .CooltrainerF
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
-	dw OTClassName
+	dw OTClassName ; bruno
+	dw OTClassName ; brock
+	dw OTClassName ; misty
+	dw OTClassName ; lt.surge
+	dw OTClassName ; erika
+	dw OTClassName ; koga
+	dw OTClassName ; blaine
+	dw OTClassName ; sabrina
+	dw OTClassName ; gentleman
+	dw OTClassName ; rival2
+	dw OTClassName ; rival3
+	dw OTClassName ; lorelei
+	dw OTClassName ; channeler
+	dw OTClassName ; agatha
+	dw OTClassName ; lance
 
 .Youngster:    db "たんパン@"
 .BugCatcher:   db "むしとり@"
