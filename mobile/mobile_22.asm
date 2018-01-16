@@ -1227,7 +1227,7 @@ Function897af: ; 897af
 	xor a
 	ld [CurPartySpecies], a
 	ld de, vTiles2 tile $37
-	farcall Predef_GetTrainerPic
+	farcall GetTrainerPic
 	pop bc
 	ret
 ; 897d5
@@ -1259,7 +1259,7 @@ Function897d5: ; 897d5
 	ld [hGraphicStartTile], a
 	hlcoord 12, 3
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	call Function8963d
 	pop bc
 	ret

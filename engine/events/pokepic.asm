@@ -12,7 +12,7 @@ Pokepic:: ; 244e3
 	ld [CurSpecies], a
 	call GetBaseData
 	ld de, vTiles1
-	predef Predef_GetMonFrontpic
+	predef GetMonFrontpic
 	ld a, [wMenuBorderTopCoord]
 	inc a
 	ld b, a
@@ -23,7 +23,7 @@ Pokepic:: ; 244e3
 	ld a, $80
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	call WaitBGMap
 	ret
 

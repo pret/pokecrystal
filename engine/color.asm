@@ -43,7 +43,7 @@ CheckShininess:
 	and a
 	ret
 
-UnusedPredef_CheckContestMon:
+Unused_CheckContestMon:
 ; Check a mon's DVs at hl in the bug catching contest.
 ; Return carry if its DVs are good enough to place in the contest.
 
@@ -855,7 +855,7 @@ PushSGBPals:
 	jr nz, .loop
 	ret
 
-Predef_InitSGBBorder:
+InitSGBBorder:
 	call CheckCGB
 	ret nz
 ; SGB/DMG only

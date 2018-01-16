@@ -315,12 +315,12 @@ Function81adb: ; 81adb
 	hlcoord 12, 3
 	call _PrepMonFrontpic
 	ld de, vTiles2 tile $31
-	predef Predef_GetMonBackpic
+	predef GetMonBackpic
 	ld a, $31
 	ld [hGraphicStartTile], a
 	hlcoord 2, 4
 	lb bc, 6, 6
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	ld a, [wd003]
 	and a
 	jr z, .asm_81b66
@@ -346,13 +346,13 @@ Function81adb: ; 81adb
 	hlcoord 4, 1
 	call PlaceString
 	ld de, vTiles2
-	callfar Predef_GetTrainerPic
+	callfar GetTrainerPic
 	xor a
 	ld [TempEnemyMonSpecies], a
 	ld [hGraphicStartTile], a
 	hlcoord 2, 3
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 
 .asm_81ba9
 	ld a, $1
@@ -739,7 +739,7 @@ Function81df4: ; 81df4
 	ld a, [wd004]
 	inc a
 	ld [wd265], a
-	predef Predef_GetTMHMMove
+	predef GetTMHMMove
 	ld a, [wd265]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
@@ -748,7 +748,7 @@ Function81df4: ; 81df4
 	ld a, [wd004]
 	call Function81e55
 	ld [CurItem], a
-	predef Predef_CanLearnTMHMMove
+	predef CanLearnTMHMMove
 	ld a, c
 	and a
 	ld de, String_81e46

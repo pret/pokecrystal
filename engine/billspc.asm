@@ -1095,10 +1095,10 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	ld hl, TempMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	call GetBaseData
 	ld de, vTiles2 tile $00
-	predef Predef_GetMonFrontpic
+	predef GetMonFrontpic
 	xor a
 	ld [wBillsPC_MonHasMail], a
 	ld a, [CurPartySpecies]
@@ -1115,7 +1115,7 @@ PCMonInfo: ; e2ac6 (38:6ac6)
 
 	ld a, $3
 	ld [MonType], a
-	farcall Predef_GetGender
+	farcall GetGender
 	jr c, .skip_gender
 	ld a, "♂"
 	jr nz, .printgender
@@ -1698,7 +1698,7 @@ BillsPC_StatsScreen: ; e2f7e (38:6f7e)
 	call BillsPC_CopyMon
 	ld a, $3
 	ld [MonType], a
-	predef Predef_StatsScreenInit
+	predef StatsScreenInit
 	call BillsPC_InitGFX
 	call MaxVolume
 	ret
@@ -1726,7 +1726,7 @@ StatsScreenDPad: ; e2f95 (38:6f95)
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	ld hl, TempMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	call GetBaseData
 	call BillsPC_CopyMon
 .pressed_a_b_right_left
@@ -1819,7 +1819,7 @@ DepositPokemon: ; e307c (38:707c)
 	call GetNick
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
-	predef Predef_SendGetPkmnIntoFromBox
+	predef SendGetPkmnIntoFromBox
 	jr c, .asm_boxisfull
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
@@ -1874,7 +1874,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	call CloseSRAM
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	predef Predef_SendGetPkmnIntoFromBox
+	predef SendGetPkmnIntoFromBox
 	jr c, .PartyFull
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a

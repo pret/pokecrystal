@@ -353,7 +353,7 @@ KrisWithdrawItemMenu: ; 0x157d1
 	ld [CurItemQuantity], a
 	ld hl, PCItems
 	call TossItem
-	predef Predef_PartyMonItemName
+	predef PartyMonItemName
 	ld hl, .WithdrewText
 	call MenuTextBox
 	xor a
@@ -517,7 +517,7 @@ KrisDepositItemMenu: ; 0x1588b
 	ld [CurItemQuantity], a
 	ld hl, NumItems
 	call TossItem
-	predef Predef_PartyMonItemName
+	predef PartyMonItemName
 	ld hl, .DepositText
 	call PrintText
 	ret

@@ -104,7 +104,7 @@ DoPoisonStep:: ; 505da
 	ld de, SFX_POISON
 	call PlaySFX
 	ld b, $2
-	predef Predef_LoadPoisonBGPals
+	predef LoadPoisonBGPals
 	call DelayFrame
 	ret
 ; 50669
@@ -145,7 +145,7 @@ DoPoisonStep:: ; 505da
 	ld a, [PartyCount]
 	cp [hl]
 	jr nz, .party_loop
-	predef Predef_CheckPlayerPartyForFitPkmn
+	predef CheckPlayerPartyForFitPkmn
 	ld a, d
 	ld [ScriptVar], a
 	ret

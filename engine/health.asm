@@ -52,7 +52,7 @@ HealPartyMon: ; c677
 	farcall RestoreAllPP
 	ret
 
-Predef_ComputeHPBarPixels: ; c699
+ComputeHPBarPixels: ; c699
 ; e = bc * (6 * 8) / de
 	ld a, b
 	or c
@@ -103,7 +103,7 @@ Predef_ComputeHPBarPixels: ; c699
 	ld e, 0
 	ret
 
-Predef_AnimateHPBar: ; c6e0
+AnimateHPBar: ; c6e0
 	call WaitBGMap
 	call _AnimateHPBar
 	call WaitBGMap

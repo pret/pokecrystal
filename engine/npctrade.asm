@@ -59,7 +59,7 @@ NPCTrade:: ; fcba8
 	push af
 	ld a, [wcf64]
 	push af
-	predef Predef_TradeAnimation
+	predef TradeAnimation
 	pop af
 	ld [wcf64], a
 	pop af
@@ -80,12 +80,12 @@ CheckTradeGender: ; fcc23
 	cp TRADE_MALE_ONLY
 	jr z, .check_male
 
-	farcall Predef_GetGender
+	farcall GetGender
 	jr nz, .not_matching
 	jr .matching
 
 .check_male
-	farcall Predef_GetGender
+	farcall GetGender
 	jr z, .not_matching
 
 .matching
@@ -101,7 +101,7 @@ TradeFlagAction: ; fcc4a
 	ld hl, wTradeFlags
 	ld a, [wJumptableIndex]
 	ld c, a
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	ld a, c
 	and a
 	ret
@@ -188,7 +188,7 @@ DoNPCTrade: ; fcc63
 	ld [MonType], a
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
-	predef Predef_TryAddMonToParty
+	predef TryAddMonToParty
 
 	ld e, TRADE_DIALOG
 	call GetTradeAttribute

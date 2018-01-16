@@ -2362,7 +2362,7 @@ HasVisitedSpawn: ; 91c50
 	ld hl, wVisitedSpawns
 	ld b, CHECK_FLAG
 	ld d, 0
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	ld a, c
 	ret
 
@@ -2471,7 +2471,7 @@ FlyMap: ; 91c90
 
 ; 91d11
 
-Predef_Pokedex_GetArea: ; 91d11
+Pokedex_GetArea: ; 91d11
 ; e: Current landmark
 	ld a, [wTownMapPlayerIconLandmark]
 	push af

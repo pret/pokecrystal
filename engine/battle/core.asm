@@ -47,7 +47,7 @@ DoBattle: ; 3c000
 
 .player_2
 	call LoadTileMapToTempTileMap
-	call Predef_CheckPlayerPartyForFitPkmn
+	call CheckPlayerPartyForFitPkmn
 	ld a, d
 	and a
 	jp z, LostBattle
@@ -1278,7 +1278,7 @@ HandleWrap: ; 3c874
 	xor a
 	ld [wNumHits], a
 	ld [FXAnimID + 1], a
-	predef Predef_PlayBattleAnim
+	predef PlayBattleAnim
 	call SwitchTurnCore
 
 .skip_anim
@@ -2040,7 +2040,7 @@ UpdateHPBar: ; 3cd3c
 .ok
 	push bc
 	ld [wWhichHPBar], a
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 	pop bc
 	ret
 ; 3cd55
@@ -2054,7 +2054,7 @@ HandleEnemyMonFaint: ; 3cd55
 	xor a
 	ld [wWhichMonFaintedFirst], a
 	call UpdateBattleStateAndExperienceAfterEnemyFaint
-	call Predef_CheckPlayerPartyForFitPkmn
+	call CheckPlayerPartyForFitPkmn
 	ld a, d
 	and a
 	jp z, LostBattle
@@ -2062,7 +2062,7 @@ HandleEnemyMonFaint: ; 3cd55
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
-	call nz, Predef_UpdatePlayerHUD
+	call nz, UpdatePlayerHUD
 
 	ld a, $1
 	ld [hBGMapMode], a
@@ -2186,7 +2186,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint: ; 3ce01
 	call PlayerMonFaintHappinessMod
 
 .player_mon_did_not_faint
-	call Predef_CheckPlayerPartyForFitPkmn
+	call CheckPlayerPartyForFitPkmn
 	ld a, d
 	and a
 	ret z
@@ -2670,7 +2670,7 @@ HandlePlayerMonFaint: ; 3d14e
 	ld a, $1
 	ld [wWhichMonFaintedFirst], a
 	call PlayerMonFaintHappinessMod
-	call Predef_CheckPlayerPartyForFitPkmn
+	call CheckPlayerPartyForFitPkmn
 	ld a, d
 	and a
 	jp z, LostBattle
@@ -2716,7 +2716,7 @@ PlayerMonFaintHappinessMod: ; 3d1aa
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
 	ld b, RESET_FLAG
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
 	xor a
@@ -3313,10 +3313,10 @@ AddBattleParticipant: ; 3d581
 	ld hl, wBattleParticipantsNotFainted
 	ld b, SET_FLAG
 	push bc
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	pop bc
 	ld hl, wBattleParticipantsIncludingFainted
-	predef_jump Predef_SmallFarFlagAction
+	predef_jump SmallFarFlagAction
 ; 3d599
 
 FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
@@ -3534,7 +3534,7 @@ LoadEnemyPkmnToSwitchTo: ; 3d6ca
 	and a
 	jr nz, .skip_unown
 	ld hl, EnemyMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld a, [UnownLetter]
 	ld [wFirstUnownSeen], a
 .skip_unown
@@ -3644,8 +3644,8 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	call GetBaseData
 	ld a, OTPARTYMON
 	ld [MonType], a
-	predef Predef_CopyPkmnToTempMon
-	call Predef_GetEnemyMonFrontpic
+	predef CopyPkmnToTempMon
+	call GetEnemyMonFrontpic
 
 	xor a
 	ld [wNumHits], a
@@ -3670,7 +3670,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	hlcoord 12, 0
 	ld d, $0
 	ld e, ANIM_MON_SLOW
-	predef Predef_AnimateFrontpic
+	predef AnimateFrontpic
 	jr .skip_cry
 
 .cry_no_anim
@@ -3680,7 +3680,7 @@ Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
 	call PlayStereoCry
 
 .skip_cry
-	call Predef_UpdateEnemyHUD
+	call UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -3721,7 +3721,7 @@ ResetEnemyStatLevels: ; 3d867
 	ret
 ; 3d873
 
-Predef_CheckPlayerPartyForFitPkmn: ; 3d873
+CheckPlayerPartyForFitPkmn: ; 3d873
 ; Has the player any Pkmn in his Party that can fight?
 	ld a, [PartyCount]
 	ld e, a
@@ -4124,7 +4124,7 @@ SwitchPlayerMon: ; 3db32
 
 SendOutPlayerMon: ; 3db5f
 	ld hl, BattleMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	hlcoord 1, 5
 	ld b, 7
 	ld c, 8
@@ -4132,7 +4132,7 @@ SendOutPlayerMon: ; 3db5f
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	call Predef_GetBattleMonBackpic
+	call GetBattleMonBackpic
 	xor a
 	ld [hGraphicStartTile], a
 	ld [wBattleMenuCursorBuffer], a
@@ -4172,7 +4172,7 @@ SendOutPlayerMon: ; 3db5f
 	call PlayStereoCry
 
 .statused
-	call Predef_UpdatePlayerHUD
+	call UpdatePlayerHUD
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -4218,13 +4218,13 @@ BreakAttraction: ; 3dc18
 SpikesDamage: ; 3dc23
 	ld hl, PlayerScreens
 	ld de, BattleMonType
-	ld bc, Predef_UpdatePlayerHUD
+	ld bc, UpdatePlayerHUD
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld hl, EnemyScreens
 	ld de, EnemyMonType
-	ld bc, Predef_UpdateEnemyHUD
+	ld bc, UpdateEnemyHUD
 .ok
 
 	bit SCREENS_SPIKES, [hl]
@@ -4306,7 +4306,7 @@ PursuitSwitch: ; 3dc5b
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
 	ld b, RESET_FLAG
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	call PlayerMonFaintedAnimation
 	ld hl, BattleText_PkmnFainted
 	jr .done_fainted
@@ -4455,7 +4455,7 @@ HandleHPHealingItem: ; 3dd2f
 
 .got_hp_bar_coords
 	ld [wWhichHPBar], a
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 UseOpponentItem:
 	call RefreshBattleHuds
 	callfar GetOpponentItem
@@ -4478,7 +4478,7 @@ ItemRecoveryAnim: ; 3ddc8
 	xor a
 	ld [wNumHits], a
 	ld [FXAnimID + 1], a
-	predef Predef_PlayBattleAnim
+	predef PlayBattleAnim
 	call SwitchTurnCore
 	pop bc
 	pop de
@@ -4708,7 +4708,7 @@ UpdateBattleHUDs: ; 3df2c
 	ret
 ; 3df48
 
-Predef_UpdatePlayerHUD:: ; 3df48
+UpdatePlayerHUD:: ; 3df48
 	push hl
 	push de
 	push bc
@@ -4741,7 +4741,7 @@ DrawPlayerHUD: ; 3df58
 	ld b, 1
 	xor a ; PARTYMON
 	ld [MonType], a
-	predef Predef_DrawPlayerHP
+	predef DrawPlayerHP
 
 	; Exp bar
 	push de
@@ -4754,7 +4754,7 @@ DrawPlayerHUD: ; 3df58
 	hlcoord 10, 11
 	ld a, [TempMonLevel]
 	ld b, a
-	call Predef_FillInExpBar
+	call FillInExpBar
 	pop de
 	ret
 ; 3df98
@@ -4823,7 +4823,7 @@ PrintPlayerHUD: ; 3dfbf
 
 	ld a, TEMPMON
 	ld [MonType], a
-	callfar Predef_GetGender
+	callfar GetGender
 	ld a, " "
 	jr c, .got_gender_char
 	ld a, "♂"
@@ -4837,7 +4837,7 @@ PrintPlayerHUD: ; 3dfbf
 	push af ; back up gender
 	push hl
 	ld de, BattleMonStatus
-	predef Predef_PlaceNonFaintStatus
+	predef PlaceNonFaintStatus
 	pop hl
 	pop bc
 	ret nz
@@ -4852,7 +4852,7 @@ PrintPlayerHUD: ; 3dfbf
 	jp PrintLevel
 ; 3e036
 
-Predef_UpdateEnemyHUD:: ; 3e036
+UpdateEnemyHUD:: ; 3e036
 	push hl
 	push de
 	push bc
@@ -4901,7 +4901,7 @@ DrawEnemyHUD: ; 3e043
 
 	ld a, TEMPMON
 	ld [MonType], a
-	callfar Predef_GetGender
+	callfar GetGender
 	ld a, " "
 	jr c, .got_gender
 	ld a, "♂"
@@ -4916,7 +4916,7 @@ DrawEnemyHUD: ; 3e043
 	push af
 	push hl
 	ld de, EnemyMonStatus
-	predef Predef_PlaceNonFaintStatus
+	predef PlaceNonFaintStatus
 	pop hl
 	pop bc
 	jr nz, .skip_level
@@ -5141,8 +5141,8 @@ BattleMenu_Pack: ; 3e1c7
 	call ClearPalettes
 	call DelayFrame
 	call _LoadBattleFontsHPBar
-	call Predef_GetBattleMonBackpic
-	call Predef_GetEnemyMonFrontpic
+	call GetBattleMonBackpic
+	call GetEnemyMonFrontpic
 	call ExitMenu
 	call WaitBGMap
 	call FinishBattleAnim
@@ -5174,10 +5174,10 @@ BattleMenu_Pack: ; 3e1c7
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .tutorial2
-	call Predef_GetBattleMonBackpic
+	call GetBattleMonBackpic
 
 .tutorial2
-	call Predef_GetEnemyMonFrontpic
+	call GetEnemyMonFrontpic
 	ld a, $1
 	ld [wMenuCursorY], a
 	call ExitMenu
@@ -5531,7 +5531,7 @@ MoveSelectionScreen: ; 3e4bc
 .got_start_coord
 	ld a, SCREEN_WIDTH
 	ld [Buffer1], a
-	predef Predef_ListMoves
+	predef ListMoves
 
 	ld b, 5
 	ld a, [wMoveSelectionMenuType]
@@ -5864,7 +5864,7 @@ MoveInfoBox: ; 3e6c8
 	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 	ld b, a
 	hlcoord 2, 10
-	predef Predef_PrintMoveType
+	predef PrintMoveType
 
 .done
 	ret
@@ -6319,7 +6319,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; Get letter based on DVs
 	ld hl, EnemyMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 ; Can't use any letters that haven't been unlocked
 ; If combined with forced shiny battletype, causes an infinite loop
 	call CheckUnownLetter
@@ -6408,7 +6408,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, EnemyMonMaxHP
 	ld b, FALSE
 	ld hl, EnemyMonDVs - (MON_DVS - MON_STAT_EXP + 1) ; LinkBattleRNs + 7 ; ?
-	predef Predef_CalcPkmnStats
+	predef CalcPkmnStats
 
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
@@ -6523,7 +6523,7 @@ LoadEnemyMon: ; 3e8eb
 ; Make sure the predef knows this isn't a partymon
 	ld [wEvolutionOldSpecies], a
 ; Fill moves based on level
-	predef Predef_FillMoves
+	predef FillMoves
 
 .PP:
 ; Trainer battle?
@@ -6534,7 +6534,7 @@ LoadEnemyMon: ; 3e8eb
 ; Fill wild PP
 	ld hl, EnemyMonMoves
 	ld de, EnemyMonPP
-	predef Predef_FillPP
+	predef FillPP
 	jr .Finish
 
 .TrainerPP:
@@ -6587,7 +6587,7 @@ LoadEnemyMon: ; 3e8eb
 	ld c, a
 	ld b, SET_FLAG
 	ld hl, PokedexSeen
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 
 	ld hl, EnemyMonStats
 	ld de, EnemyStats
@@ -6715,7 +6715,7 @@ BattleWinSlideInEnemyTrainerFrontpic: ; 3ebd8
 	ld a, [OtherTrainerClass]
 	ld [TrainerClass], a
 	ld de, vTiles2
-	callfar Predef_GetTrainerPic
+	callfar GetTrainerPic
 	hlcoord 19, 0
 	ld c, 0
 
@@ -7192,7 +7192,7 @@ Call_PlayBattleAnim: ; 3ee17
 	ld a, d
 	ld [FXAnimID + 1], a
 	call WaitBGMap
-	predef_jump Predef_PlayBattleAnim
+	predef_jump PlayBattleAnim
 ; 3ee27
 
 FinishBattleAnim: ; 3ee27
@@ -7240,7 +7240,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld c, a
 	ld b, CHECK_FLAG
 	ld d, $0
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	ld a, c
 	and a
 	pop bc
@@ -7418,7 +7418,7 @@ GiveExperiencePoints: ; 3ee3b
 .not_max_exp
 	xor a ; PARTYMON
 	ld [MonType], a
-	predef Predef_CopyPkmnToTempMon
+	predef CopyPkmnToTempMon
 	callfar CalcLevel
 	pop bc
 	ld hl, MON_LEVEL
@@ -7455,7 +7455,7 @@ GiveExperiencePoints: ; 3ee3b
 	add hl, bc
 	push bc
 	ld b, TRUE
-	predef Predef_CalcPkmnStats
+	predef CalcPkmnStats
 	pop bc
 	pop de
 	ld hl, MON_MAXHP + 1
@@ -7508,7 +7508,7 @@ GiveExperiencePoints: ; 3ee3b
 	call ApplyStatLevelMultiplierOnAllStats
 	callfar ApplyStatusEffectOnPlayerStats
 	callfar BadgeStatBoosts
-	callfar Predef_UpdatePlayerHUD
+	callfar UpdatePlayerHUD
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	ld a, $1
@@ -7531,14 +7531,14 @@ GiveExperiencePoints: ; 3ee3b
 .skip_animation2
 	xor a ; PARTYMON
 	ld [MonType], a
-	predef Predef_CopyPkmnToTempMon
+	predef CopyPkmnToTempMon
 	hlcoord 9, 0
 	ld b, $a
 	ld c, $9
 	call TextBox
 	hlcoord 11, 1
 	ld bc, 4
-	predef Predef_PrintTempMonStats
+	predef PrintTempMonStats
 	ld c, $1e
 	call DelayFrames
 	call WaitPressAorB_BlinkCursor
@@ -7558,7 +7558,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld a, b
 	ld [CurPartyLevel], a
 	push bc
-	predef Predef_LearnLevelMoves
+	predef LearnLevelMoves
 	pop bc
 	ld a, b
 	cp c
@@ -7569,7 +7569,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld a, [CurPartyMon]
 	ld c, a
 	ld b, SET_FLAG
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	pop af
 	ld [CurPartyLevel], a
 
@@ -7691,7 +7691,7 @@ AnimateExpBar: ; 3f136
 	ld [wd002], a
 	xor a ; PARTYMON
 	ld [MonType], a
-	predef Predef_CopyPkmnToTempMon
+	predef CopyPkmnToTempMon
 	ld a, [TempMonLevel]
 	ld b, a
 	ld e, a
@@ -8062,7 +8062,7 @@ Unreferenced_HandleSafariAngerEatingStatus:
 	jp StdBattleTextBox
 ; 3f390
 
-Predef_FillInExpBar: ; 3f390
+FillInExpBar: ; 3f390
 	push hl
 	call CalcExpBar
 	pop hl
@@ -8204,7 +8204,7 @@ PlaceExpBar: ; 3f41c
 	ret
 ; 3f43d
 
-Predef_GetBattleMonBackpic: ; 3f43d
+GetBattleMonBackpic: ; 3f43d
 	ld a, [PlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_RaiseSub
@@ -8220,9 +8220,9 @@ DropPlayerSub: ; 3f447
 	ld a, [BattleMonSpecies]
 	ld [CurPartySpecies], a
 	ld hl, BattleMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld de, vTiles2 tile $31
-	predef Predef_GetMonBackpic
+	predef GetMonBackpic
 	pop af
 	ld [CurPartySpecies], a
 	ret
@@ -8240,7 +8240,7 @@ GetBattleMonBackpic_DoAnim: ; 3f46f
 	ret
 ; 3f47c
 
-Predef_GetEnemyMonFrontpic: ; 3f47c
+GetEnemyMonFrontpic: ; 3f47c
 	ld a, [EnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ld hl, BattleAnimCmd_RaiseSub
@@ -8259,9 +8259,9 @@ DropEnemySub: ; 3f486
 	ld [CurPartySpecies], a
 	call GetBaseData
 	ld hl, EnemyMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld de, vTiles2
-	predef Predef_GetAnimatedFrontpic
+	predef GetAnimatedFrontpic
 	pop af
 	ld [CurPartySpecies], a
 	ret
@@ -8278,7 +8278,7 @@ GetEnemyMonFrontpic_DoAnim: ; 3f4b4
 	ret
 ; 3f4c1
 
-Predef_StartBattle: ; 3f4c1
+StartBattle: ; 3f4c1
 ; This check prevents you from entering a battle without any Pokemon.
 ; Those using walk-through-walls to bypass getting a Pokemon experience
 ; the effects of this check.
@@ -8337,7 +8337,7 @@ BattleIntro: ; 3f4dd
 	call ClearSprites
 	ld a, [wBattleMode]
 	cp WILD_BATTLE
-	call z, Predef_UpdateEnemyHUD
+	call z, UpdateEnemyHUD
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
@@ -8402,14 +8402,14 @@ InitEnemyTrainer: ; 3f594
 .ok
 
 	ld de, vTiles2
-	callfar Predef_GetTrainerPic
+	callfar GetTrainerPic
 	xor a
 	ld [hGraphicStartTile], a
 	dec a
 	ld [wEnemyItemState], a
 	hlcoord 12, 0
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	ld a, -1
 	ld [CurOTMon], a
 	ld a, TRAINER_BATTLE
@@ -8455,7 +8455,7 @@ InitEnemyWildmon: ; 3f607
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld hl, EnemyMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld a, [CurPartySpecies]
 	cp UNOWN
 	jr nz, .skip_unown
@@ -8466,13 +8466,13 @@ InitEnemyWildmon: ; 3f607
 	ld [wFirstUnownSeen], a
 .skip_unown
 	ld de, vTiles2
-	predef Predef_GetAnimatedFrontpic
+	predef GetAnimatedFrontpic
 	xor a
 	ld [TrainerClass], a
 	ld [hGraphicStartTile], a
 	hlcoord 12, 0
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	ret
 ; 3f662
 
@@ -8551,7 +8551,7 @@ ExitBattle: ; 3f69e
 	call CheckPayDay
 	xor a
 	ld [wForceEvolution], a
-	predef Predef_EvolveAfterBattle
+	predef EvolveAfterBattle
 	farcall GivePokerusAndConvertBerries
 	ret
 ; 3f6d0
@@ -9225,7 +9225,7 @@ InitBattleDisplay: ; 3fb6c
 	ld [hGraphicStartTile], a
 	hlcoord 2, 6
 	lb bc, 6, 6
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	xor a
 	ld [hWY], a
 	ld [rWY], a
@@ -9297,8 +9297,8 @@ GetTrainerBackpic: ; 3fbff
 
 .Decompress:
 	ld de, vTiles2 tile $31
-	ld c, $31
-	predef Predef_Decompress
+	ld c, 7 * 7
+	predef DecompressGet2bpp
 	ret
 ; 3fc30
 
@@ -9320,7 +9320,7 @@ CopyBackpic: ; 3fc30
 	ld [hGraphicStartTile], a
 	hlcoord 2, 6
 	lb bc, 6, 6
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	ret
 ; 3fc5b
 
@@ -9400,7 +9400,7 @@ BattleStartMessage: ; 3fc8b
 	hlcoord 12, 0
 	ld d, $0
 	ld e, ANIM_MON_NORMAL
-	predef Predef_AnimateFrontpic
+	predef AnimateFrontpic
 	jr .skip_cry ; cry is played during the animation
 
 .cry_no_anim

@@ -565,7 +565,7 @@ DayCare_GiveEgg: ; 169ac
 	pop hl
 	push bc
 	ld b, $0
-	predef Predef_CalcPkmnStats
+	predef CalcPkmnStats
 	pop bc
 	ld hl, MON_HP
 	add hl, bc
@@ -639,7 +639,7 @@ DayCare_InitBreeding: ; 16a3b
 	cp DITTO
 	ld a, $0
 	jr z, .LoadWhichBreedmonIsTheMother
-	farcall Predef_GetGender
+	farcall GetGender
 	ld a, $0
 	jr z, .LoadWhichBreedmonIsTheMother
 	inc a
@@ -684,7 +684,7 @@ DayCare_InitBreeding: ; 16a3b
 	ld de, wEggMonMoves
 	xor a
 	ld [Buffer1], a
-	predef Predef_FillMoves
+	predef FillMoves
 	farcall InitEggMoves
 	ld hl, wEggMonID
 	ld a, [PlayerID]
@@ -726,7 +726,7 @@ DayCare_InitBreeding: ; 16a3b
 	ld a, TEMPMON
 	ld [MonType], a
 	push hl
-	farcall Predef_GetGender
+	farcall GetGender
 	pop hl
 	ld de, wBreedMon1DVs
 	ld bc, wBreedMon2DVs
@@ -770,7 +770,7 @@ DayCare_InitBreeding: ; 16a3b
 	call CopyBytes
 	ld hl, wEggMonMoves
 	ld de, wEggMonPP
-	predef Predef_FillPP
+	predef FillPP
 	ld hl, wMonOrItemNameBuffer
 	ld de, StringBuffer1
 	ld bc, NAME_LENGTH

@@ -711,7 +711,7 @@ GetSGBLayout:: ; 3340
 	ret z
 
 .sgb
-	predef_jump Predef_LoadSGBLayout
+	predef_jump LoadSGBLayout
 ; 334e
 
 SetHPPal:: ; 334e
@@ -1074,12 +1074,12 @@ _PrepMonFrontpic:: ; 378b
 
 	push hl
 	ld de, vTiles2
-	predef Predef_GetMonFrontpic
+	predef GetMonFrontpic
 	pop hl
 	xor a
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	xor a
 	ld [wBoxAlignment], a
 	ret

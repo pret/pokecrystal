@@ -860,7 +860,7 @@ Printer_GetMonGender: ; 8498a (21:498a)
 	ld [CurPartyMon], a
 	ld a, TEMPMON
 	ld [MonType], a
-	farcall Predef_GetGender
+	farcall GetGender
 	ld a, " "
 	jr c, .got_gender
 	ld a, "♂"

@@ -159,7 +159,7 @@ PrintPartyMonPage1: ; 1dc381
 
 	xor a
 	ld [MonType], a
-	farcall Predef_CopyPkmnToTempMon
+	farcall CopyPkmnToTempMon
 	hlcoord 0, 7
 	ld b, 9
 	ld c, 18
@@ -215,7 +215,7 @@ PrintPartyMonPage1: ; 1dc381
 	call Function1dc51a
 	call Function1dc52c
 	ld hl, TempMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld hl, wBoxAlignment
 	xor a
 	ld [hl], a
@@ -243,7 +243,7 @@ PrintPartyMonPage2: ; 1dc47b
 	call LoadFontsBattleExtra
 	xor a
 	ld [MonType], a
-	farcall Predef_CopyPkmnToTempMon
+	farcall CopyPkmnToTempMon
 	hlcoord 0, 0
 	ld b, 15
 	ld c, 18
@@ -318,7 +318,7 @@ Function1dc51a: ; 1dc51a
 ; 1dc52c
 
 Function1dc52c: ; 1dc52c
-	farcall Predef_GetGender
+	farcall GetGender
 	ld a, " "
 	jr c, .got_gender
 	ld a, "♂"

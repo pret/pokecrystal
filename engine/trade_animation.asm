@@ -9,7 +9,7 @@ TRADEANIM_LEFT_ARROW  EQU $ee
 	const TRADEANIMSTATE_3 ; 3
 TRADEANIMJUMPTABLE_LENGTH EQU const_value
 
-Predef_TradeAnimation: ; 28f24
+TradeAnimation: ; 28f24
 	xor a
 	ld [wcf66], a
 	ld hl, wPlayerTrademonSenderName
@@ -60,7 +60,7 @@ Predef_TradeAnimation: ; 28f24
 	tradeanim_scroll_out_right
 	tradeanim_end
 
-Predef_TradeAnimationPlayer2: ; 28f63
+TradeAnimationPlayer2: ; 28f63
 	xor a
 	ld [wcf66], a
 	ld hl, wOTTrademonSenderName
@@ -883,13 +883,13 @@ TradeAnim_AnimateFrontpic: ; 29487
 TradeAnim_GetFrontpic: ; 29491
 	push de
 	push af
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	pop af
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef Predef_GetMonFrontpic
+	predef GetMonFrontpic
 	ret
 
 ; 294a9
@@ -923,7 +923,7 @@ TradeAnim_ShowFrontpic: ; 294c3
 	xor a
 	ld [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	call WaitBGMap
 	ret
 

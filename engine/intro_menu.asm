@@ -941,24 +941,24 @@ Intro_WipeInFrontpic: ; 6182
 
 Intro_PrepTrainerPic: ; 619c
 	ld de, vTiles2
-	farcall Predef_GetTrainerPic
+	farcall GetTrainerPic
 	xor a
 	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	ret
 ; 61b4
 
 ShrinkFrame: ; 61b4
 	ld de, vTiles2
-	ld c, $31
-	predef Predef_Decompress
+	ld c, 7 * 7
+	predef DecompressGet2bpp
 	xor a
 	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	ret
 ; 61cd
 

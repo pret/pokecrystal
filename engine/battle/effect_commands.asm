@@ -182,7 +182,7 @@ CheckPlayerTurn:
 	call StdBattleTextBox
 	call CantMove
 	call UpdateBattleMonInParty
-	ld hl, Predef_UpdatePlayerHUD
+	ld hl, UpdatePlayerHUD
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
@@ -433,7 +433,7 @@ CheckEnemyTurn: ; 3421f
 	call StdBattleTextBox
 	call CantMove
 	call UpdateEnemyMonInParty
-	ld hl, Predef_UpdateEnemyHUD
+	ld hl, UpdateEnemyHUD
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
@@ -672,7 +672,7 @@ HitConfusion: ; 343a5
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	call z, PlayFXAnimID
 
-	ld hl, Predef_UpdatePlayerHUD
+	ld hl, UpdatePlayerHUD
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
@@ -1538,11 +1538,11 @@ BattleCheckTypeMatchup: ; 347c8
 	ld hl, EnemyMonType1
 	ld a, [hBattleTurn]
 	and a
-	jr z, Predef_CheckTypeMatchup
+	jr z, CheckTypeMatchup
 	ld hl, BattleMonType1
-Predef_CheckTypeMatchup: ; 347d3
+CheckTypeMatchup: ; 347d3
 ; There is an incorrect assumption about this function made in the AI related code: when
-; the AI calls Predef_CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing
+; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing
 ; the offensive type in a will make this function do the right thing. Since a is overwritten,
 ; this assumption is incorrect. A simple fix would be to load the move type for the
 ; current move into a in BattleCheckTypeMatchup, before falling through, which is
@@ -2621,7 +2621,7 @@ BattleCommand_CheckDestinyBond: ; 351c0
 	ld [Buffer6], a
 	ld h, b
 	ld l, c
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 	call RefreshBattleHuds
 
 	call BattleCommand_SwitchTurn
@@ -4015,7 +4015,7 @@ BattleCommand_PainSplit: ; 35926
 	ld a, $1
 	ld [wWhichHPBar], a
 	hlcoord 10, 9
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 	ld hl, EnemyMonHP
 	ld a, [hli]
 	ld [Buffer4], a
@@ -4030,7 +4030,7 @@ BattleCommand_PainSplit: ; 35926
 	ld [wWhichHPBar], a
 	call ResetDamage
 	hlcoord 2, 2
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 	farcall _UpdateBattleHUDs
 
 	ld hl, SharedPainText
@@ -4172,7 +4172,7 @@ BattleCommand_Conversion2: ; 359e6
 
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
-	predef Predef_GetTypeName
+	predef GetTypeName
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
 
@@ -4711,7 +4711,7 @@ PlayFXAnimID: ; 35d08
 	ld c, 3
 	call DelayFrames
 
-	callfar Predef_PlayBattleAnim
+	callfar PlayBattleAnim
 
 	ret
 
@@ -4773,7 +4773,7 @@ EnemyHurtItself: ; 35d1c
 	hlcoord 2, 2
 	xor a
 	ld [wWhichHPBar], a
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 .did_no_damage
 	jp RefreshBattleHuds
 
@@ -4833,7 +4833,7 @@ PlayerHurtItself: ; 35d7e
 	hlcoord 10, 9
 	ld a, $1
 	ld [wWhichHPBar], a
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 .did_no_damage
 	jp RefreshBattleHuds
 
@@ -5301,7 +5301,7 @@ SapHealth: ; 36011
 	xor a
 .hp_bar
 	ld [wWhichHPBar], a
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 	call RefreshBattleHuds
 	jp UpdateBattleMonInParty
 
@@ -6239,11 +6239,11 @@ BattleCommand_Curl: ; 365a7
 
 
 BattleCommand_RaiseSubNoAnim: ; 365af
-	ld hl, Predef_GetBattleMonBackpic
+	ld hl, GetBattleMonBackpic
 	ld a, [hBattleTurn]
 	and a
 	jr z, .PlayerTurn
-	ld hl, Predef_GetEnemyMonFrontpic
+	ld hl, GetEnemyMonFrontpic
 .PlayerTurn:
 	xor a
 	ld [hBGMapMode], a
@@ -7525,7 +7525,7 @@ BattleCommand_Recoil: ; 36cb2
 	xor a
 .animate_hp_bar
 	ld [wWhichHPBar], a
-	predef Predef_AnimateHPBar
+	predef AnimateHPBar
 	call RefreshBattleHuds
 	ld hl, RecoilText
 	jp StdBattleTextBox
@@ -8227,7 +8227,7 @@ BattleCommand_Conversion: ; 3707f
 	inc de
 	ld [de], a
 	ld [wNamedObjectIndexBuffer], a
-	farcall Predef_GetTypeName
+	farcall GetTypeName
 	call AnimateCurrentMove
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
@@ -9856,7 +9856,7 @@ PlayUserBattleAnim: ; 37e47
 	push hl
 	push de
 	push bc
-	callfar Predef_PlayBattleAnim
+	callfar PlayBattleAnim
 	pop bc
 	pop de
 	pop hl
@@ -9878,7 +9878,7 @@ PlayOpponentBattleAnim: ; 37e54
 	push bc
 	call BattleCommand_SwitchTurn
 
-	callfar Predef_PlayBattleAnim
+	callfar PlayBattleAnim
 
 	call BattleCommand_SwitchTurn
 	pop bc

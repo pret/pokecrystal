@@ -33,7 +33,7 @@ AppearUser: ; fbd77 (3e:7d77)
 	ld a, $31
 .okay
 	ld [hGraphicStartTile], a
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 FinishAppearDisappearUser: ; fbd91 (3e:7d91)
 	ld a, $1
 	ld [hBGMapMode], a

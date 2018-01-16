@@ -591,7 +591,7 @@ HasNoItems: ; 129d5
 
 TossItemFromPC: ; 129f4
 	push de
-	call Predef_PartyMonItemName
+	call PartyMonItemName
 	farcall _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
@@ -614,7 +614,7 @@ TossItemFromPC: ; 129f4
 	pop hl
 	ld a, [CurItemQuantity]
 	call TossItem
-	call Predef_PartyMonItemName
+	call PartyMonItemName
 	ld hl, .TossedThisMany
 	call MenuTextBox
 	call ExitMenu
@@ -666,7 +666,7 @@ CantUseItemText: ; 12a67
 ; 12a6c
 
 
-Predef_PartyMonItemName: ; 12a6c
+PartyMonItemName: ; 12a6c
 	ld a, [CurItem]
 	ld [wd265], a
 	call GetItemName
@@ -860,7 +860,7 @@ GiveTakePartyMonItem: ; 12b60
 TryGiveItemToPartymon: ; 12bd9
 
 	call SpeechTextBox
-	call Predef_PartyMonItemName
+	call PartyMonItemName
 	call GetPartyItemLocation
 	ld a, [hl]
 	and a
@@ -1221,7 +1221,7 @@ OpenPartyStats: ; 12e00
 	xor a
 	ld [MonType], a
 	call LowVolume
-	predef Predef_StatsScreenInit
+	predef StatsScreenInit
 	call MaxVolume
 	call Call_ExitMenu
 	ld a, 0
@@ -1788,7 +1788,7 @@ SetUpMoveScreenBG: ; 13172
 	hlcoord 5, 1
 	call PlaceString
 	push bc
-	farcall Predef_CopyPkmnToTempMon
+	farcall CopyPkmnToTempMon
 	pop hl
 	call PrintLevel
 	ld hl, PlayerHPPal
@@ -1805,7 +1805,7 @@ SetUpMoveList: ; 131ef
 	ld [hBGMapMode], a
 	ld [wMoveSwapBuffer], a
 	ld [MonType], a
-	predef Predef_CopyPkmnToTempMon
+	predef CopyPkmnToTempMon
 	ld hl, TempMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
@@ -1813,9 +1813,9 @@ SetUpMoveList: ; 131ef
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	hlcoord 2, 3
-	predef Predef_ListMoves
+	predef ListMoves
 	hlcoord 10, 4
-	predef Predef_ListMovePP
+	predef ListMovePP
 	call WaitBGMap
 	call SetPalettes
 	ld a, [wNumMoves]
@@ -1859,7 +1859,7 @@ PlaceMoveData: ; 13256
 	ld a, [CurMove]
 	ld b, a
 	hlcoord 2, 12
-	predef Predef_PrintMoveType
+	predef PrintMoveType
 	ld a, [CurMove]
 	dec a
 	ld hl, Moves + MOVE_POWER
@@ -1882,7 +1882,7 @@ PlaceMoveData: ; 13256
 
 .description
 	hlcoord 1, 14
-	predef Predef_PrintMoveDesc
+	predef PrintMoveDesc
 	ld a, $1
 	ld [hBGMapMode], a
 	ret

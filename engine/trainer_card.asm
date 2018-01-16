@@ -254,7 +254,7 @@ TrainerCard_PrintTopHalfOfCard: ; 25299 (9:5299)
 	lb bc, 5, 7
 	xor a
 	ld [hGraphicStartTile], a
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	ret
 
 ; 252ec (9:52ec)

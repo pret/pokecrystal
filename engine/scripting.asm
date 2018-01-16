@@ -1370,7 +1370,7 @@ Script_startbattle:
 ; script command 0x5f
 
 	call BufferScreen
-	predef Predef_StartBattle
+	predef StartBattle
 	ld a, [wBattleResult]
 	and $3f
 	ld [ScriptVar], a
@@ -2351,7 +2351,7 @@ Script_giveegg:
 	ld [CurPartySpecies], a
 	call GetScriptByte
 	ld [CurPartyLevel], a
-	farcall Predef_GiveEgg
+	farcall GiveEgg
 	ret nc
 	ld a, 2
 	ld [ScriptVar], a

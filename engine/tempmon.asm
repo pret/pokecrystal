@@ -1,4 +1,4 @@
-Predef_CopyPkmnToTempMon: ; 5084a
+CopyPkmnToTempMon: ; 5084a
 ; gets the BaseData of a Pkmn
 ; and copys the PkmnStructure to TempMon
 
@@ -51,7 +51,7 @@ _TempMonStatsCalculation: ; 50893
 	add hl, bc
 	push bc
 	ld b, $1
-	predef Predef_CalcPkmnStats
+	predef CalcPkmnStats
 	pop bc
 	ld hl, MON_HP
 	add hl, bc

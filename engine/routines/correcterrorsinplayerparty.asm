@@ -90,7 +90,7 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $1
-	predef Predef_CalcPkmnStats
+	predef CalcPkmnStats
 	pop hl
 	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc

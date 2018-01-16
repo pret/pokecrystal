@@ -122,7 +122,7 @@ EvolutionAnimation: ; 4e5e1
 	hlcoord 7, 2
 	ld d, $0
 	ld e, ANIM_MON_EVOLVE
-	predef Predef_AnimateFrontpic
+	predef AnimateFrontpic
 
 	pop af
 	ld [CurPartySpecies], a
@@ -168,7 +168,7 @@ EvolutionAnimation: ; 4e5e1
 	ld a, $1
 	ld [wBoxAlignment], a
 	ld de, vTiles2
-	predef Predef_GetAnimatedFrontpic
+	predef GetAnimatedFrontpic
 	xor a
 	ld [wBoxAlignment], a
 	ret

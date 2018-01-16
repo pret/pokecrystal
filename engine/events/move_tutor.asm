@@ -55,7 +55,7 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	ld hl, .MenuDataHeader
 	call LoadMenuDataHeader
 
-	predef Predef_CanLearnTMHMMove
+	predef CanLearnTMHMMove
 
 	push bc
 	ld a, [CurPartyMon]
@@ -79,7 +79,7 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	callfar KnowsMove
 	jr c, .didnt_learn
 
-	predef Predef_LearnMove
+	predef LearnMove
 	ld a, b
 	and a
 	jr z, .didnt_learn

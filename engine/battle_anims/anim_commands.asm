@@ -1,6 +1,6 @@
 ; Battle animation command interpreter.
 
-Predef_PlayBattleAnim: ; cc0d6
+PlayBattleAnim: ; cc0d6
 
 	ld a, [rSVBK]
 	push af
@@ -167,7 +167,7 @@ BattleAnimRestoreHuds: ; cc1bb
 	ld [rSVBK], a
 
 	ld hl, UpdateBattleHuds
-	ld a, BANK(Predef_UpdatePlayerHUD)
+	ld a, BANK(UpdatePlayerHUD)
 	rst FarCall ; Why not "call UpdateBattleHuds"?
 
 	pop af
@@ -928,18 +928,18 @@ BattleAnimCmd_Transform: ; cc5dc (33:45dc)
 	ld a, [TempBattleMonSpecies] ; TempBattleMonSpecies
 	ld [CurPartySpecies], a ; CurPartySpecies
 	ld hl, BattleMonDVs ; BattleMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld de, vTiles0 tile $00
-	predef Predef_GetMonFrontpic
+	predef GetMonFrontpic
 	jr .done
 
 .player
 	ld a, [TempEnemyMonSpecies] ; TempEnemyMonSpecies
 	ld [CurPartySpecies], a ; CurPartySpecies
 	ld hl, EnemyMonDVs ; EnemyMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld de, vTiles0 tile $00
-	predef Predef_GetMonBackpic
+	predef GetMonBackpic
 
 .done
 	pop af
@@ -1155,16 +1155,16 @@ BattleAnimCmd_BeatUp: ; cc776 (33:4776)
 	jr z, .player
 
 	ld hl, BattleMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld de, vTiles2 tile $00
-	predef Predef_GetMonFrontpic
+	predef GetMonFrontpic
 	jr .done
 
 .player
 	ld hl, EnemyMonDVs
-	predef Predef_GetUnownLetter
+	predef GetUnownLetter
 	ld de, vTiles2 tile $31
-	predef Predef_GetMonBackpic
+	predef GetMonBackpic
 
 .done
 	pop af

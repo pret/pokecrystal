@@ -28,7 +28,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 	inc hl
 	call GetMoveByte
 	ld hl, EnemyMonType
-	call Predef_CheckTypeMatchup
+	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1 ; 1.0 + 0.1
 	jr nc, .super_effective
@@ -73,7 +73,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 	ld a, [BattleMonType1]
 	ld b, a
 	ld hl, EnemyMonType1
-	call Predef_CheckTypeMatchup
+	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1 ; 1.0 + 0.1
 	jr c, .ok
@@ -82,7 +82,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 	ld a, [BattleMonType2]
 	cp b
 	jr z, .ok2
-	call Predef_CheckTypeMatchup
+	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1 ; 1.0 + 0.1
 	jr c, .ok2
@@ -123,7 +123,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 	inc hl
 	call GetMoveByte
 	ld hl, BattleMonType1
-	call Predef_CheckTypeMatchup
+	call CheckTypeMatchup
 
 	ld a, [wTypeMatchup]
 	; immune
@@ -390,7 +390,7 @@ FindEnemyMonsImmuneToLastCounterMove: ; 34a2a
 	inc hl
 	call GetMoveByte
 	ld hl, BaseType
-	call Predef_CheckTypeMatchup
+	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
 	jr nz, .next
@@ -481,7 +481,7 @@ FindEnemyMonsWithASuperEffectiveMove: ; 34aa7
 	inc hl
 	call GetMoveByte
 	ld hl, BattleMonType1
-	call Predef_CheckTypeMatchup
+	call CheckTypeMatchup
 
 	; if immune or not very effective: continue
 	ld a, [wTypeMatchup]
@@ -585,7 +585,7 @@ FindEnemyMonsThatResistPlayer: ; 34b20
 .skip_move
 	ld a, [BattleMonType1]
 	ld hl, BaseType
-	call Predef_CheckTypeMatchup
+	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1
 	jr nc, .dont_choose_mon
@@ -593,7 +593,7 @@ FindEnemyMonsThatResistPlayer: ; 34b20
 
 .check_type
 	ld hl, BaseType
-	call Predef_CheckTypeMatchup
+	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1
 	jr nc, .dont_choose_mon

@@ -30,7 +30,7 @@ MovePlayerPic: ; 88266
 	xor a
 	ld [hBGMapMode], a
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	xor a
 	ld [hBGMapThird], a
 	call WaitBGMap
@@ -141,7 +141,7 @@ GetChrisBackpic: ; 88830
 	ld b, BANK(ChrisBackpic)
 	ld de, vTiles2 tile $31
 	ld c, 7 * 7
-	predef Predef_Decompress
+	predef DecompressGet2bpp
 	ret
 
 HOF_LoadTrainerFrontpic: ; 88840
@@ -203,7 +203,7 @@ DrawIntroPlayerPic: ; 88874
 	ld [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef Predef_PlaceGraphic
+	predef PlaceGraphic
 	ret
 
 ChrisPic: ; 888a9

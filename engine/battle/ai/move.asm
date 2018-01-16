@@ -92,7 +92,7 @@ AIChooseMove: ; 440ce
 
 	push bc
 	ld d, BANK(TrainerClassAttributes)
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	ld d, c
 	pop bc
 

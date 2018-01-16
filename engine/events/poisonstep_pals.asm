@@ -1,4 +1,4 @@
-Predef_LoadPoisonBGPals: ; cbcdd
+LoadPoisonBGPals: ; cbcdd
 	call .LoadPals
 	ld a, [hCGB]
 	and a

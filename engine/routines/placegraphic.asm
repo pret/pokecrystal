@@ -1,7 +1,6 @@
-Predef_PlaceGraphic: ; 2ef6e
+PlaceGraphic: ; 2ef6e
 ; Fill wBoxAlignment-aligned box width b height c
 ; with iterating tile starting from hGraphicStartTile at hl.
-; Predef $13
 
 	ld de, SCREEN_WIDTH
 

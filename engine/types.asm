@@ -1,4 +1,4 @@
-Predef_PrintMonTypes: ; 5090d
+PrintMonTypes: ; 5090d
 ; Print one or both types of [CurSpecies]
 ; on the stats screen at hl.
 
@@ -24,7 +24,7 @@ Predef_PrintMonTypes: ; 5090d
 
 .Print:
 	ld b, a
-	jr Predef_PrintType
+	jr PrintType
 
 .hide_type_2
 	; Erase any type name that was here before.
@@ -40,7 +40,7 @@ Predef_PrintMonTypes: ; 5090d
 ; 5093a
 
 
-Predef_PrintMoveType: ; 5093a
+PrintMoveType: ; 5093a
 ; Print the type of move b at hl.
 
 	push hl
@@ -58,7 +58,7 @@ Predef_PrintMoveType: ; 5093a
 	ld b, a
 
 
-Predef_PrintType: ; 50953
+PrintType: ; 50953
 ; Print type b at hl.
 
 	ld a, b
@@ -78,7 +78,7 @@ Predef_PrintType: ; 50953
 ; 50964
 
 
-Predef_GetTypeName: ; 50964
+GetTypeName: ; 50964
 ; Copy the name of type [wd265] to StringBuffer1.
 
 	ld a, [wd265]

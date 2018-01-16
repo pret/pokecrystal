@@ -1,4 +1,4 @@
-Predef_LoadSGBLayout: ; 864c
+LoadSGBLayout: ; 864c
 	call CheckCGB
 	jp nz, LoadSGBLayoutCGB
 

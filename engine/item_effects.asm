@@ -415,7 +415,7 @@ ParkBall: ; e8a2
 	ld [hBattleTurn], a
 	ld [Buffer2], a
 	ld [wNumHits], a
-	predef Predef_PlayBattleAnim
+	predef PlayBattleAnim
 
 	ld a, [wWildMon]
 	and a
@@ -547,7 +547,7 @@ ParkBall: ; e8a2
 
 	ld a, [EnemyMonSpecies]
 	ld [wd265], a
-	predef Predef_NewPokedexEntry
+	predef NewPokedexEntry
 
 .skip_pokedex
 	ld a, [BattleType]
@@ -567,7 +567,7 @@ ParkBall: ; e8a2
 	ld [MonType], a
 	call ClearSprites
 
-	predef Predef_TryAddMonToParty
+	predef TryAddMonToParty
 
 	farcall SetCaughtData
 
@@ -623,7 +623,7 @@ ParkBall: ; e8a2
 .SendToPC:
 	call ClearSprites
 
-	predef Predef_SendPkmnIntoBox
+	predef SendPkmnIntoBox
 
 	farcall SetBoxMonCaughtData
 
@@ -979,7 +979,7 @@ LoveBallMultiplier:
 	ld [MonType], a
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
-	farcall Predef_GetGender
+	farcall GetGender
 	jr c, .done1 ; no effect on genderless
 
 	ld d, 0 ; male
@@ -993,7 +993,7 @@ LoveBallMultiplier:
 	ld [CurPartySpecies], a
 	ld a, WILDMON
 	ld [MonType], a
-	farcall Predef_GetGender
+	farcall GetGender
 	jr c, .done2 ; no effect on genderless
 
 	ld d, 0 ; male
@@ -1283,7 +1283,7 @@ UpdateStatsAfterItem: ; ee8c
 	ld a, MON_STAT_EXP - 1
 	call GetPartyParamLocation
 	ld b, $1
-	predef_jump Predef_CalcPkmnStats
+	predef_jump CalcPkmnStats
 ; ee9f
 
 RareCandy_StatBooster_ExitMenu: ; ee9f
@@ -1422,7 +1422,7 @@ RareCandy: ; ef14
 
 	xor a ; PARTYMON
 	ld [MonType], a
-	predef Predef_CopyPkmnToTempMon
+	predef CopyPkmnToTempMon
 
 	hlcoord 9, 0
 	ld b, 10
@@ -1431,7 +1431,7 @@ RareCandy: ; ef14
 
 	hlcoord 11, 1
 	ld bc, 4
-	predef Predef_PrintTempMonStats
+	predef PrintTempMonStats
 
 	call WaitPressAorB_BlinkCursor
 
@@ -1439,7 +1439,7 @@ RareCandy: ; ef14
 	ld [MonType], a
 	ld a, [CurPartySpecies]
 	ld [wd265], a
-	predef Predef_LearnLevelMoves
+	predef LearnLevelMoves
 
 	xor a
 	ld [wForceEvolution], a
@@ -1645,7 +1645,7 @@ RevivePokemon: ; f0d6
 	ld d, 0
 	ld hl, wBattleParticipantsIncludingFainted
 	ld b, CHECK_FLAG
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	ld a, c
 	and a
 	jr z, .skip_to_revive
@@ -1654,7 +1654,7 @@ RevivePokemon: ; f0d6
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
 	ld b, SET_FLAG
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 
 .skip_to_revive
 	xor a
@@ -1821,7 +1821,7 @@ HealHP_SFX_GFX: ; f1db (3:71db)
 	call AddNTimes
 	ld a, $2
 	ld [wWhichHPBar], a
-	predef_jump Predef_AnimateHPBar
+	predef_jump AnimateHPBar
 
 UseItem_SelectMon: ; f1f9 (3:71f9)
 	call .SelectMon
@@ -2912,7 +2912,7 @@ UseBallInTrainerBattle: ; f7a0
 	ld [wBattleAnimParam], a
 	ld [hBattleTurn], a
 	ld [wNumHits], a
-	predef Predef_PlayBattleAnim
+	predef PlayBattleAnim
 	ld hl, BlockedTheBallText
 	call PrintText
 	ld hl, DontBeAThiefText
@@ -3059,7 +3059,7 @@ ApplyPPUp: ; f84c
 	call GetPartyParamLocation
 	push hl
 	ld de, Buffer1
-	predef Predef_FillPP
+	predef FillPP
 	pop hl
 	ld bc, MON_PP - MON_MOVES
 	add hl, bc

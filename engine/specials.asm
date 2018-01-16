@@ -38,7 +38,7 @@ Special_GameCornerPrizeMonCheckDex: ; c230
 	call FadeToMenu
 	ld a, [ScriptVar]
 	ld [wd265], a
-	farcall Predef_NewPokedexEntry
+	farcall NewPokedexEntry
 	call ExitAllMenus
 	ret
 ; c252

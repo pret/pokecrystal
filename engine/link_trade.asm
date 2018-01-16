@@ -48,7 +48,7 @@ _LinkTextbox: ; 16d61d
 	ld l, e
 	push bc
 	push hl
-	call .draw_border
+	call .PlaceBorder
 	pop hl
 	pop bc
 
@@ -58,7 +58,7 @@ _LinkTextbox: ; 16d61d
 	inc b
 	inc c
 	inc c
-	ld a, $7
+	ld a, PAL_BG_TEXT
 .row
 	push bc
 	push hl
@@ -75,12 +75,12 @@ _LinkTextbox: ; 16d61d
 	ret
 ; 16d640
 
-.draw_border ; 16d640
+.PlaceBorder ; 16d640
 	push hl
 	ld a, $30
 	ld [hli], a
 	inc a
-	call .fill_row
+	call .PlaceRow
 	inc a
 	ld [hl], a
 	pop hl
@@ -91,7 +91,7 @@ _LinkTextbox: ; 16d61d
 	ld a, $33
 	ld [hli], a
 	ld a, " "
-	call .fill_row
+	call .PlaceRow
 	ld [hl], $34
 	pop hl
 	ld de, SCREEN_WIDTH
@@ -102,17 +102,17 @@ _LinkTextbox: ; 16d61d
 	ld a, $35
 	ld [hli], a
 	ld a, $36
-	call .fill_row
+	call .PlaceRow
 	ld [hl], $37
 	ret
 ; 16d66d
 
-.fill_row ; 16d66d
+.PlaceRow ; 16d66d
 	ld d, c
-.loop4
+.row_loop
 	ld [hli], a
 	dec d
-	jr nz, .loop4
+	jr nz, .row_loop
 	ret
 ; 16d673
 
@@ -181,7 +181,7 @@ Function16d6e1: ; 16d6e1
 	hlcoord 4, 10
 	ld b, 1
 	ld c, 10
-	predef Predef_LinkTextbox
+	predef LinkTextboxAtHL
 	hlcoord 5, 11
 	ld de, .Waiting
 	call PlaceString

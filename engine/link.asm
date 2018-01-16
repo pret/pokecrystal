@@ -150,7 +150,7 @@ TimeCapsule: ; 2805d
 	ld [wd265], a
 	push hl
 	push de
-	callfar Predef_ConvertMon_1to2
+	callfar ConvertMon_1to2
 	pop de
 	pop hl
 	ld a, [wd265]
@@ -449,7 +449,7 @@ Gen2ToGen2LinkComms: ; 28177
 	pop af
 	ld [rIF], a
 
-	predef Predef_StartBattle
+	predef StartBattle
 
 	ld a, [rIF]
 	ld h, a
@@ -786,7 +786,7 @@ Link_PrepPartyData_Gen1: ; 28499
 	add hl, bc
 	ld c, STAT_SATK
 	ld b, TRUE
-	predef Predef_CalcPkmnStatC
+	predef CalcPkmnStatC
 
 	pop bc
 	pop de
@@ -986,7 +986,7 @@ Function2868a: ; 2868a
 	push bc
 	push de
 	ld [wd265], a
-	callfar Predef_ConvertMon_1to2
+	callfar ConvertMon_1to2
 	pop de
 	pop bc
 	ld a, [wd265]
@@ -1065,7 +1065,7 @@ Function2868a: ; 2868a
 	add hl, bc
 	ld c, STAT_SATK
 	ld b, TRUE
-	predef Predef_CalcPkmnStatC
+	predef CalcPkmnStatC
 	pop bc
 	pop hl
 	ld a, [hQuotient + 1]
@@ -1078,7 +1078,7 @@ Function2868a: ; 2868a
 	add hl, bc
 	ld c, STAT_SDEF
 	ld b, TRUE
-	predef Predef_CalcPkmnStatC
+	predef CalcPkmnStatC
 	pop bc
 	pop hl
 	ld a, [hQuotient + 1]
@@ -1355,7 +1355,7 @@ Function28926: ; 28926
 	hlcoord 0, 15
 	ld b, 1
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	hlcoord 2, 16
 	ld de, .String_Stats_Trade
 	call PlaceString
@@ -1464,7 +1464,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
 	ld hl, .Text_CantTradeLastMon
 	bccoord 1, 14
@@ -1486,7 +1486,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
 	ld hl, .Text_Abnormal
 	bccoord 1, 14
@@ -1496,7 +1496,7 @@ Function28926: ; 28926
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
 	call PlaceString
@@ -1641,7 +1641,7 @@ LinkTrade: ; 28b87
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
 	ld a, [wd002]
 	ld hl, PartySpecies
@@ -1670,7 +1670,7 @@ LinkTrade: ; 28b87
 	hlcoord 10, 7
 	ld b, 3
 	ld c, 7
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	ld de, String28eab
 	hlcoord 12, 8
 	call PlaceString
@@ -1710,7 +1710,7 @@ LinkTrade: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
 	call PlaceString
@@ -1727,7 +1727,7 @@ LinkTrade: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
 	call PlaceString
@@ -1884,11 +1884,11 @@ LinkTrade: ; 28b87
 	ld a, [hLinkPlayerNumber]
 	cp $1
 	jr z, .player_2
-	predef Predef_TradeAnimation
+	predef TradeAnimation
 	jr .done_animation
 
 .player_2
-	predef Predef_TradeAnimationPlayer2
+	predef TradeAnimationPlayer2
 
 .done_animation
 	pop af
@@ -1906,7 +1906,7 @@ LinkTrade: ; 28b87
 	ld de, TempMonSpecies
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	predef Predef_AddTempmonToParty
+	predef AddTempmonToParty
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
@@ -1957,7 +1957,7 @@ LinkTrade: ; 28b87
 	hlcoord 0, 12
 	ld b, 4
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	hlcoord 1, 14
 	ld de, String28ebd
 	call PlaceString
@@ -1994,7 +1994,7 @@ String_TooBadTheTradeWasCanceled: ; 28ece
 	next "was canceled!@"
 
 
-Predef_LinkTextbox: ; 28eef
+LinkTextboxAtHL: ; 28eef
 	ld d, h
 	ld e, l
 	farcall LinkTextbox
@@ -2016,11 +2016,11 @@ Unreferenced_Function28f09: ; 28f09
 	hlcoord 0, 0
 	ld b, 6
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	hlcoord 0, 8
 	ld b, 6
 	ld c, 18
-	call Predef_LinkTextbox
+	call LinkTextboxAtHL
 	farcall PlaceTradePartnerNamesAndParty
 	ret
 ; 28f24
@@ -2577,7 +2577,7 @@ Unreferenced_Function29fe4:
 	call GetSRAMBank
 	ld d, $0
 	ld b, CHECK_FLAG
-	predef Predef_SmallFarFlagAction
+	predef SmallFarFlagAction
 	call CloseSRAM
 	ld a, c
 	and a

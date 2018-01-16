@@ -1,8 +1,8 @@
-Predef_DrawPlayerHP: ; 50b0a
+DrawPlayerHP: ; 50b0a
 	ld a, $1
 	jr DrawHP
 
-Predef_DrawEnemyHP: ; 50b0e
+DrawEnemyHP: ; 50b0e
 	ld a, $2
 
 DrawHP: ; 50b10
@@ -43,7 +43,7 @@ DrawHP: ; 50b10
 	ld c, e
 
 .not_boxmon
-	predef Predef_ComputeHPBarPixels
+	predef ComputeHPBarPixels
 	ld a, 6
 	ld d, a
 	ld c, a
@@ -82,7 +82,7 @@ DrawHP: ; 50b10
 	pop de
 	ret
 
-Predef_PrintTempMonStats: ; 50b7b
+PrintTempMonStats: ; 50b7b
 ; Print TempMon's stats at hl, with spacing bc.
 	push bc
 	push hl
@@ -121,7 +121,7 @@ Predef_PrintTempMonStats: ; 50b7b
 	next "SPEED"
 	next "@"
 
-Predef_GetGender: ; 50bdd
+GetGender: ; 50bdd
 ; Return the gender of a given monster (CurPartyMon/CurOTMon/CurWildMon).
 ; When calling this function, a should be set to an appropriate MonType value.
 
@@ -235,7 +235,7 @@ Predef_GetGender: ; 50bdd
 	scf
 	ret
 
-Predef_ListMovePP: ; 50c50
+ListMovePP: ; 50c50
 	ld a, [wNumMoves]
 	inc a
 	ld c, a
@@ -335,7 +335,7 @@ Unreferenced_Function50cd0: ; 50cd0
 	jr nz, .loop
 	ret
 
-UnusedPredef22:
+Unused_PlaceEnemyHPLevel:
 	push hl
 	push hl
 	ld hl, PartyMonNicknames
@@ -343,7 +343,7 @@ UnusedPredef22:
 	call GetNick
 	pop hl
 	call PlaceString
-	call Predef_CopyPkmnToTempMon
+	call CopyPkmnToTempMon
 	pop hl
 	ld a, [CurPartySpecies]
 	cp EGG
@@ -352,7 +352,7 @@ UnusedPredef22:
 	ld bc, -12
 	add hl, bc
 	ld b, $0
-	call Predef_DrawEnemyHP
+	call DrawEnemyHP
 	pop hl
 	ld bc, 5
 	add hl, bc
@@ -363,7 +363,7 @@ UnusedPredef22:
 .egg
 	ret
 
-Predef_PlaceStatusString: ; 50d0a
+PlaceStatusString: ; 50d0a
 	push de
 	inc de
 	inc de
@@ -373,7 +373,7 @@ Predef_PlaceStatusString: ; 50d0a
 	ld a, [de]
 	or b
 	pop de
-	jr nz, Predef_PlaceNonFaintStatus
+	jr nz, PlaceNonFaintStatus
 	push de
 	ld de, FntString
 	call CopyStatusString
@@ -396,7 +396,7 @@ CopyStatusString: ; 50d25
 	ld [hl], a
 	ret
 
-Predef_PlaceNonFaintStatus: ; 50d2e
+PlaceNonFaintStatus: ; 50d2e
 	push de
 	ld a, [de]
 	ld de, PsnString
@@ -430,7 +430,7 @@ BrnString: db "BRN@"
 FrzString: db "FRZ@"
 ParString: db "PAR@"
 
-Predef_ListMoves: ; 50d6f
+ListMoves: ; 50d6f
 ; List moves at hl, spaced every [Buffer1] tiles.
 	ld de, wListMoves_MoveIndicesBuffer
 	ld b, $0
