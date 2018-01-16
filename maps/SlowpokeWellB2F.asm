@@ -13,17 +13,17 @@ GymGuyScript_0x5ad0b:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
-	iftrue UnknownScript_0x5ad22
+	iftrue .GotKingsRock
 	writetext UnknownText_0x5ad2a
 	buttonsound
 	verbosegiveitem KINGS_ROCK
-	iffalse UnknownScript_0x5ad20
+	iffalse .NoRoom
 	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
-UnknownScript_0x5ad20:
+.NoRoom:
 	closetext
 	end
 
-UnknownScript_0x5ad22:
+.GotKingsRock:
 	writetext UnknownText_0x5adf2
 	waitbutton
 	closetext
