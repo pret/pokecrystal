@@ -28,27 +28,27 @@ TrainerBirdKeeperVance1:
 	checkflag ENGINE_VANCE
 	iftrue VanceWantsBattle
 	checkcellnum PHONE_BIRDKEEPER_VANCE
-	iftrue NumberAcceptedM
+	iftrue Rt44NumberAcceptedM
 	checkevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext BirdKeeperVanceLegendaryBirdsText
 	buttonsound
 	setevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
-	scall AskNumber1M
+	scall Rt44AskNumber1M
 	jump .AskForNumber
 
 .AskedAlready:
-	scall AskNumber2M
+	scall Rt44AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_BIRDKEEPER_VANCE
-	if_equal $1, PhoneFullM
-	if_equal $2, NumberDeclinedM
+	if_equal $1, Rt44PhoneFullM
+	if_equal $2, Rt44NumberDeclinedM
 	trainertotext BIRD_KEEPER, VANCE1, $0
-	scall RegisteredNumberM
-	jump NumberAcceptedM
+	scall Rt44RegisteredNumberM
+	jump Rt44NumberAcceptedM
 
 VanceWantsBattle:
-	scall RematchM
+	scall Rt44RematchM
 	winlosstext BirdKeeperVance1BeatenText, 0
 	copybytetovar wVanceFightCount
 	if_equal 2, .Fight2
@@ -85,11 +85,11 @@ VanceWantsBattle:
 	iftrue .Carbos
 	checkevent EVENT_GOT_CARBOS_FROM_VANCE
 	iftrue .ReceivedCarbosBefore
-	scall RematchGiftM
+	scall Rt44RematchGiftM
 	verbosegiveitem CARBOS
 	iffalse VancePackFull
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
-	jump NumberAcceptedM
+	jump Rt44NumberAcceptedM
 
 .ReceivedCarbosBefore:
 	end
@@ -102,41 +102,41 @@ VanceWantsBattle:
 	iffalse VancePackFull
 	clearevent EVENT_VANCE_CARBOS
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
-	jump NumberAcceptedM
+	jump Rt44NumberAcceptedM
 
-AskNumber1M:
+Rt44AskNumber1M:
 	jumpstd asknumber1m
 	end
 
-AskNumber2M:
+Rt44AskNumber2M:
 	jumpstd asknumber2m
 	end
 
-RegisteredNumberM:
+Rt44RegisteredNumberM:
 	jumpstd registerednumberm
 	end
 
-NumberAcceptedM:
+Rt44NumberAcceptedM:
 	jumpstd numberacceptedm
 	end
 
-NumberDeclinedM:
+Rt44NumberDeclinedM:
 	jumpstd numberdeclinedm
 	end
 
-PhoneFullM:
+Rt44PhoneFullM:
 	jumpstd phonefullm
 	end
 
-RematchM:
+Rt44RematchM:
 	jumpstd rematchm
 	end
 
-GiftM:
+Rt44GiftM:
 	jumpstd giftm
 	end
 
-PackFullM:
+Rt44PackFullM:
 	jumpstd packfullm
 	end
 
@@ -145,7 +145,7 @@ VancePackFull:
 	jumpstd packfullm
 	end
 
-RematchGiftM:
+Rt44RematchGiftM:
 	jumpstd rematchgiftm
 	end
 
@@ -172,27 +172,27 @@ TrainerFisherWilton1:
 	checkflag ENGINE_WILTON_HAS_ITEM
 	iftrue WiltonHasItem
 	checkcellnum PHONE_FISHER_WILTON
-	iftrue NumberAcceptedM
+	iftrue Rt44NumberAcceptedM
 	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext FisherWiltonHugePoliwagText
 	buttonsound
 	setevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
-	scall AskNumber1M
+	scall Rt44AskNumber1M
 	jump .AskForNumber
 
 .AskedAlready:
-	scall AskNumber2M
+	scall Rt44AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_WILTON
-	if_equal $1, PhoneFullM
-	if_equal $2, NumberDeclinedM
+	if_equal $1, Rt44PhoneFullM
+	if_equal $2, Rt44NumberDeclinedM
 	trainertotext FISHER, WILTON1, $0
-	scall RegisteredNumberM
-	jump NumberAcceptedM
+	scall Rt44RegisteredNumberM
+	jump Rt44NumberAcceptedM
 
 WiltonWantsBattle:
-	scall RematchM
+	scall Rt44RematchM
 	winlosstext FisherWilton1BeatenText, 0
 	copybytetovar wWiltonFightCount
 	if_equal 2, .Fight2
@@ -228,7 +228,7 @@ WiltonWantsBattle:
 	end
 
 WiltonHasItem:
-	scall GiftM
+	scall Rt44GiftM
 	checkevent EVENT_WILTON_HAS_ULTRA_BALL
 	iftrue .UltraBall
 	checkevent EVENT_WILTON_HAS_GREAT_BALL
@@ -237,23 +237,23 @@ WiltonHasItem:
 	iftrue .PokeBall
 .UltraBall:
 	verbosegiveitem ULTRA_BALL
-	iffalse .PackFullM
+	iffalse .Rt44PackFullM
 	jump .ItemReceived
 
 .GreatBall:
 	verbosegiveitem GREAT_BALL
-	iffalse .PackFullM
+	iffalse .Rt44PackFullM
 	jump .ItemReceived
 
 .PokeBall:
 	verbosegiveitem POKE_BALL
-	iffalse .PackFullM
+	iffalse .Rt44PackFullM
 .ItemReceived:
 	clearflag ENGINE_WILTON_HAS_ITEM
-	jump NumberAcceptedM
+	jump Rt44NumberAcceptedM
 
-.PackFullM:
-	jump PackFullM
+.Rt44PackFullM:
+	jump Rt44PackFullM
 
 TrainerFisherEdgar:
 	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, .Script
