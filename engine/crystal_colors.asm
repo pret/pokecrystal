@@ -23,7 +23,6 @@ GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
 ; 49330 (12:5330)
 
 .dw ; 49330
-
 	dw MG_Mobile_Layout00
 	dw MG_Mobile_Layout01
 	dw MG_Mobile_Layout02

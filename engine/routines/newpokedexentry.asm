@@ -11,13 +11,13 @@ NewPokedexEntry: ; fb877
 	ld a, [wPokedexStatus]
 	push af
 	ld a, [hSCX]
-	add $5
+	add POKDEX_SCX
 	ld [hSCX], a
 	xor a
 	ld [wPokedexStatus], a
 	farcall _NewPokedexEntry
 	call WaitPressAorB_BlinkCursor
-	ld a, $1
+	ld a, 1 ; page 2
 	ld [wPokedexStatus], a
 	farcall DisplayDexEntry
 	call WaitPressAorB_BlinkCursor
@@ -26,7 +26,7 @@ NewPokedexEntry: ; fb877
 	call MaxVolume
 	call RotateThreePalettesRight
 	ld a, [hSCX]
-	add -5 ; 251 ; NUM_POKEMON
+	add -POKDEX_SCX
 	ld [hSCX], a
 	call .ReturnFromDexRegistration
 	pop af

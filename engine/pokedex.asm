@@ -15,6 +15,9 @@
 	const DEXSTATE_UPDATE_UNOWN_MODE
 	const DEXSTATE_EXIT
 
+POKDEX_SCX EQU 5
+GLOBAL POKDEX_SCX
+
 Pokedex: ; 40000
 
 	ld a, [hWX]
@@ -230,7 +233,7 @@ Pokedex_InitMainScreen: ; 4013c (10:413c)
 	call Pokedex_SetBGMapMode_3ifDMG_4ifCGB
 	call Pokedex_ResetBGMapMode
 	call Pokedex_DrawMainScreenBG
-	ld a, $5
+	ld a, POKDEX_SCX
 	ld [hSCX], a
 
 	ld a, [wCurrentDexMode]
@@ -323,7 +326,7 @@ Pokedex_UpdateMainScreen: ; 401ae (10:41ae)
 
 Pokedex_InitDexEntryScreen: ; 40217 (10:4217)
 	call LowVolume
-	xor a
+	xor a ; page 1
 	ld [wPokedexStatus], a
 	xor a
 	ld [hBGMapMode], a
@@ -383,7 +386,7 @@ Pokedex_UpdateDexEntryScreen: ; 40258 (10:4258)
 
 Pokedex_Page: ; 40292
 	ld a, [wPokedexStatus]
-	xor $1
+	xor 1 ; toggle page
 	ld [wPokedexStatus], a
 	call Pokedex_GetSelectedMon
 	ld [wPrevDexEntry], a
@@ -394,7 +397,7 @@ Pokedex_Page: ; 40292
 Pokedex_ReinitDexEntryScreen: ; 402aa (10:42aa)
 ; Reinitialize the Pokédex entry screen after changing the selected mon.
 	call Pokedex_BlackOutBG
-	xor a
+	xor a ; page 1
 	ld [wPokedexStatus], a
 	xor a
 	ld [hBGMapMode], a
@@ -419,10 +422,10 @@ Pokedex_ReinitDexEntryScreen: ; 402aa (10:42aa)
 
 DexEntryScreen_ArrowCursorData: ; 402e8
 	db D_RIGHT | D_LEFT, 4
-	dwcoord 1, 17
-	dwcoord 6, 17
-	dwcoord 11, 17
-	dwcoord 15, 17
+	dwcoord 1, 17  ; PAGE
+	dwcoord 6, 17  ; AREA
+	dwcoord 11, 17 ; CRY
+	dwcoord 15, 17 ; PRNT
 
 
 DexEntryScreen_MenuActionJumptable: ; 402f2
@@ -450,7 +453,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	ld [hBGMapMode], a
 	ld a, $90
 	ld [hWY], a
-	ld a, $5
+	ld a, POKDEX_SCX
 	ld [hSCX], a
 	call DelayFrame
 	call Pokedex_RedisplayDexEntry
@@ -494,7 +497,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	call Pokedex_RedisplayDexEntry
 	call EnableLCD
 	call WaitBGMap
-	ld a, $5
+	ld a, POKDEX_SCX
 	ld [hSCX], a
 	call Pokedex_ApplyUsualPals
 	ret
@@ -555,16 +558,16 @@ Pokedex_UpdateOptionScreen: ; 403be (10:43be)
 
 .NoUnownModeArrowCursorData: ; 403f3
 	db D_UP | D_DOWN, 3
-	dwcoord 2,  4
-	dwcoord 2,  6
-	dwcoord 2,  8
+	dwcoord 2,  4 ; NEW
+	dwcoord 2,  6 ; OLD
+	dwcoord 2,  8 ; ABC
 
 .ArrowCursorData: ; 403fb
 	db D_UP | D_DOWN, 4
-	dwcoord 2,  4
-	dwcoord 2,  6
-	dwcoord 2,  8
-	dwcoord 2, 10
+	dwcoord 2,  4 ; NEW
+	dwcoord 2,  6 ; OLD
+	dwcoord 2,  8 ; ABC
+	dwcoord 2, 10 ; UNOWN
 
 .MenuActionJumptable: ; 40405 (10:4405)
 	dw .MenuAction_NewMode
@@ -657,10 +660,10 @@ Pokedex_UpdateSearchScreen: ; 40471 (10:4471)
 
 .ArrowCursorData: ; 4049e
 	db D_UP | D_DOWN, 4
-	dwcoord 2, 4
-	dwcoord 2, 6
-	dwcoord 2, 13
-	dwcoord 2, 15
+	dwcoord 2, 4  ; TYPE 1
+	dwcoord 2, 6  ; TYPE 2
+	dwcoord 2, 13 ; BEGIN SEARCH
+	dwcoord 2, 15 ; CANCEL
 
 .MenuActionJumptable: ; 404a8
 	dw .MenuAction_MonSearchType
@@ -730,7 +733,7 @@ Pokedex_InitSearchResultsScreen: ; 4050a (10:450a)
 	call Pokedex_SetBGMapMode3
 	call Pokedex_ResetBGMapMode
 	call Pokedex_DrawSearchResultsScreenBG
-	ld a, $5
+	ld a, POKDEX_SCX
 	ld [hSCX], a
 	ld a, $4a
 	ld [hWX], a
@@ -1345,33 +1348,34 @@ endr
 	ret
 
 UnownModeLetterAndCursorCoords: ; 40a3e
+; entries correspond to Unown forms
 ;           letter, cursor
-	dwcoord   4,11,   3,11
-	dwcoord   4,10,   3,10
-	dwcoord   4, 9,   3, 9
-	dwcoord   4, 8,   3, 8
-	dwcoord   4, 7,   3, 7
-	dwcoord   4, 6,   3, 6
-	dwcoord   4, 5,   3, 5
-	dwcoord   4, 4,   3, 4
-	dwcoord   4, 3,   3, 2
-	dwcoord   5, 3,   5, 2
-	dwcoord   6, 3,   6, 2
-	dwcoord   7, 3,   7, 2
-	dwcoord   8, 3,   8, 2
-	dwcoord   9, 3,   9, 2
-	dwcoord  10, 3,  10, 2
-	dwcoord  11, 3,  11, 2
-	dwcoord  12, 3,  12, 2
-	dwcoord  13, 3,  13, 2
-	dwcoord  14, 3,  15, 2
-	dwcoord  14, 4,  15, 4
-	dwcoord  14, 5,  15, 5
-	dwcoord  14, 6,  15, 6
-	dwcoord  14, 7,  15, 7
-	dwcoord  14, 8,  15, 8
-	dwcoord  14, 9,  15, 9
-	dwcoord  14,10,  15,10
+	dwcoord   4,11,   3,11 ; A
+	dwcoord   4,10,   3,10 ; B
+	dwcoord   4, 9,   3, 9 ; C
+	dwcoord   4, 8,   3, 8 ; D
+	dwcoord   4, 7,   3, 7 ; E
+	dwcoord   4, 6,   3, 6 ; F
+	dwcoord   4, 5,   3, 5 ; G
+	dwcoord   4, 4,   3, 4 ; H
+	dwcoord   4, 3,   3, 2 ; I
+	dwcoord   5, 3,   5, 2 ; J
+	dwcoord   6, 3,   6, 2 ; K
+	dwcoord   7, 3,   7, 2 ; L
+	dwcoord   8, 3,   8, 2 ; M
+	dwcoord   9, 3,   9, 2 ; N
+	dwcoord  10, 3,  10, 2 ; O
+	dwcoord  11, 3,  11, 2 ; P
+	dwcoord  12, 3,  12, 2 ; Q
+	dwcoord  13, 3,  13, 2 ; R
+	dwcoord  14, 3,  15, 2 ; S
+	dwcoord  14, 4,  15, 4 ; T
+	dwcoord  14, 5,  15, 5 ; U
+	dwcoord  14, 6,  15, 6 ; V
+	dwcoord  14, 7,  15, 7 ; W
+	dwcoord  14, 8,  15, 8 ; X
+	dwcoord  14, 9,  15, 9 ; Y
+	dwcoord  14,10,  15,10 ; Z
 
 Pokedex_FillBackgroundColor2: ; 40aa6
 	hlcoord 0, 0

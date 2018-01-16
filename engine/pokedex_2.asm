@@ -182,7 +182,7 @@ DisplayDexEntry: ; 4424d
 	call FarString
 	pop bc
 	ld a, [wPokedexStatus]
-	or a
+	or a ; check for page 2
 	ret z
 
 ; Page 2
