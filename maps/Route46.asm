@@ -34,27 +34,27 @@ TrainerPicnickerErin1:
 	checkflag ENGINE_ERIN
 	iftrue ErinWantsBattle
 	checkcellnum PHONE_PICNICKER_ERIN
-	iftrue NumberAcceptedF
+	iftrue Rt46NumberAcceptedF
 	checkevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext PicnickerErinAfterBattleText
 	buttonsound
 	setevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
-	scall AskNumber1F
+	scall Rt46AskNumber1F
 	jump .AskForNumber
 
 .AskedAlready:
-	scall AskNumber2F
+	scall Rt46AskNumber2F
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_ERIN
-	if_equal $1, PhoneFullF
-	if_equal $2, NumberDeclinedF
+	if_equal $1, Rt46PhoneFullF
+	if_equal $2, Rt46NumberDeclinedF
 	trainertotext PICNICKER, ERIN1, $0
-	scall RegisteredNumberF
-	jump NumberAcceptedF
+	scall Rt46RegisteredNumberF
+	jump Rt46NumberAcceptedF
 
 ErinWantsBattle:
-	scall RematchF
+	scall Rt46RematchF
 	winlosstext PicnickerErin1BeatenText, 0
 	copybytetovar wErinFightCount
 	if_equal 2, .Fight2
@@ -91,11 +91,11 @@ ErinWantsBattle:
 	iftrue .HasCalcium
 	checkevent EVENT_GOT_CALCIUM_FROM_ERIN
 	iftrue .GotCalciumAlready
-	scall RematchGiftF
+	scall Rt46RematchGiftF
 	verbosegiveitem CALCIUM
 	iffalse ErinNoRoomForCalcium
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
-	jump NumberAcceptedF
+	jump Rt46NumberAcceptedF
 
 .GotCalciumAlready:
 	end
@@ -108,33 +108,33 @@ ErinWantsBattle:
 	iffalse ErinNoRoomForCalcium
 	clearevent EVENT_ERIN_CALCIUM
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
-	jump NumberAcceptedF
+	jump Rt46NumberAcceptedF
 
-AskNumber1F:
+Rt46AskNumber1F:
 	jumpstd asknumber1f
 	end
 
-AskNumber2F:
+Rt46AskNumber2F:
 	jumpstd asknumber2f
 	end
 
-RegisteredNumberF:
+Rt46RegisteredNumberF:
 	jumpstd registerednumberf
 	end
 
-NumberAcceptedF:
+Rt46NumberAcceptedF:
 	jumpstd numberacceptedf
 	end
 
-NumberDeclinedF:
+Rt46NumberDeclinedF:
 	jumpstd numberdeclinedf
 	end
 
-PhoneFullF:
+Rt46PhoneFullF:
 	jumpstd phonefullf
 	end
 
-RematchF:
+Rt46RematchF:
 	jumpstd rematchf
 	end
 
@@ -143,7 +143,7 @@ ErinNoRoomForCalcium:
 	jumpstd packfullf
 	end
 
-RematchGiftF:
+Rt46RematchGiftF:
 	jumpstd rematchgiftf
 	end
 
