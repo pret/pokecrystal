@@ -34,29 +34,29 @@ TrainerCooltrainermGaven3:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_GAVEN
-	iftrue UnknownScript_0x1a4d79
+	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERM_GAVEN
-	iftrue UnknownScript_0x1a4dcb
+	iftrue .NumberAcceptedM
 	checkevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a4d62
-	writetext UnknownText_0x1a4fe4
+	iftrue .AskedAlready
+	writetext CooltrainermGavenAfterText
 	buttonsound
 	setevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1a4dbf
-	jump UnknownScript_0x1a4d65
+	scall .AskNumber1M
+	jump .AskForNumber
 
-UnknownScript_0x1a4d62:
-	scall UnknownScript_0x1a4dc3
-UnknownScript_0x1a4d65:
+.AskedAlready:
+	scall .AskNumber2M
+.AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERM_GAVEN
-	if_equal $1, UnknownScript_0x1a4dd3
-	if_equal $2, UnknownScript_0x1a4dcf
+	if_equal $1, .PhoneFullM
+	if_equal $2, .NumberDeclinedM
 	trainertotext COOLTRAINERM, GAVEN3, $0
-	scall UnknownScript_0x1a4dc7
-	jump UnknownScript_0x1a4dcb
+	scall .RegisteredNumberM
+	jump .NumberAcceptedM
 
-UnknownScript_0x1a4d79:
-	scall UnknownScript_0x1a4dd7
+.WantsBattle:
+	scall .RematchM
 	winlosstext CooltrainermGaven3BeatenText, 0
 	copybytetovar wGavenFightCount
 	if_equal 2, .Fight2
@@ -91,31 +91,31 @@ UnknownScript_0x1a4d79:
 	clearflag ENGINE_GAVEN
 	end
 
-UnknownScript_0x1a4dbf:
+.AskNumber1M:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x1a4dc3:
+.AskNumber2M:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x1a4dc7:
+.RegisteredNumberM:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x1a4dcb:
+.NumberAcceptedM:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x1a4dcf:
+.NumberDeclinedM:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x1a4dd3:
+.PhoneFullM:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x1a4dd7:
+.RematchM:
 	jumpstd rematchm
 	end
 
@@ -138,29 +138,29 @@ TrainerCooltrainerfBeth1:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_BETH
-	iftrue UnknownScript_0x1a4e35
+	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERF_BETH
-	iftrue UnknownScript_0x1a4e87
+	iftrue .NumberAcceptedF
 	checkevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a4e1e
-	writetext UnknownText_0x1a51d9
+	iftrue .AskedAlready
+	writetext CooltrainerfBethAfterText
 	buttonsound
 	setevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1a4e7b
-	jump UnknownScript_0x1a4e21
+	scall .AskNumber1F
+	jump .AskForNumber
 
-UnknownScript_0x1a4e1e:
-	scall UnknownScript_0x1a4e7f
-UnknownScript_0x1a4e21:
+.AskedAlready:
+	scall .AskNumber2F
+.AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERF_BETH
-	if_equal $1, UnknownScript_0x1a4e8f
-	if_equal $2, UnknownScript_0x1a4e8b
+	if_equal $1, .PhoneFullF
+	if_equal $2, .NumberDeclinedF
 	trainertotext COOLTRAINERF, BETH1, $0
-	scall UnknownScript_0x1a4e83
-	jump UnknownScript_0x1a4e87
+	scall .RegisteredNumberF
+	jump .NumberAcceptedF
 
-UnknownScript_0x1a4e35:
-	scall UnknownScript_0x1a4e93
+.WantsBattle:
+	scall .RematchF
 	winlosstext CooltrainerfBeth1BeatenText, 0
 	copybytetovar wBethFightCount
 	if_equal 2, .Fight2
@@ -195,31 +195,31 @@ UnknownScript_0x1a4e35:
 	clearflag ENGINE_BETH
 	end
 
-UnknownScript_0x1a4e7b:
+.AskNumber1F:
 	jumpstd asknumber1f
 	end
 
-UnknownScript_0x1a4e7f:
+.AskNumber2F:
 	jumpstd asknumber2f
 	end
 
-UnknownScript_0x1a4e83:
+.RegisteredNumberF:
 	jumpstd registerednumberf
 	end
 
-UnknownScript_0x1a4e87:
+.NumberAcceptedF:
 	jumpstd numberacceptedf
 	end
 
-UnknownScript_0x1a4e8b:
+.NumberDeclinedF:
 	jumpstd numberdeclinedf
 	end
 
-UnknownScript_0x1a4e8f:
+.PhoneFullF:
 	jumpstd phonefullf
 	end
 
-UnknownScript_0x1a4e93:
+.RematchF:
 	jumpstd rematchf
 	end
 
@@ -292,7 +292,7 @@ CooltrainermGaven3BeatenText:
 	line "tougher!"
 	done
 
-UnknownText_0x1a4fe4:
+CooltrainermGavenAfterText:
 	text "To get to #MON"
 	line "LEAGUE, you have"
 
@@ -352,7 +352,7 @@ CooltrainerfBeth1BeatenText:
 	line "tools of war."
 	done
 
-UnknownText_0x1a51d9:
+CooltrainerfBethAfterText:
 	text "#MON are in-"
 	line "valuable, lifelong"
 	cont "partners."
