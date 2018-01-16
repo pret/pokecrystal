@@ -26,29 +26,29 @@ TrainerBirdKeeperVance1:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_VANCE
-	iftrue UnknownScript_0x19d86a
+	iftrue VanceWantsBattle
 	checkcellnum PHONE_BIRDKEEPER_VANCE
-	iftrue UnknownScript_0x19d8eb
+	iftrue NumberAcceptedM
 	checkevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x19d853
-	writetext UnknownText_0x19dbf3
+	iftrue .AskedAlready
+	writetext BirdKeeperVanceLegendaryBirdsText
 	buttonsound
 	setevent EVENT_VANCE_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x19d8df
-	jump UnknownScript_0x19d856
+	scall AskNumber1M
+	jump .AskForNumber
 
-UnknownScript_0x19d853:
-	scall UnknownScript_0x19d8e3
-UnknownScript_0x19d856:
+.AskedAlready:
+	scall AskNumber2M
+.AskForNumber:
 	askforphonenumber PHONE_BIRDKEEPER_VANCE
-	if_equal $1, UnknownScript_0x19d8f3
-	if_equal $2, UnknownScript_0x19d8ef
+	if_equal $1, PhoneFullM
+	if_equal $2, NumberDeclinedM
 	trainertotext BIRD_KEEPER, VANCE1, $0
-	scall UnknownScript_0x19d8e7
-	jump UnknownScript_0x19d8eb
+	scall RegisteredNumberM
+	jump NumberAcceptedM
 
-UnknownScript_0x19d86a:
-	scall UnknownScript_0x19d8f7
+VanceWantsBattle:
+	scall RematchM
 	winlosstext BirdKeeperVance1BeatenText, 0
 	copybytetovar wVanceFightCount
 	if_equal 2, .Fight2
@@ -82,70 +82,70 @@ UnknownScript_0x19d86a:
 	reloadmapafterbattle
 	clearflag ENGINE_VANCE
 	checkevent EVENT_VANCE_CARBOS
-	iftrue UnknownScript_0x19d8cb
+	iftrue .Carbos
 	checkevent EVENT_GOT_CARBOS_FROM_VANCE
-	iftrue UnknownScript_0x19d8ca
-	scall UnknownScript_0x19d90a
+	iftrue .ReceivedCarbosBefore
+	scall RematchGiftM
 	verbosegiveitem CARBOS
-	iffalse UnknownScript_0x19d903
+	iffalse VancePackFull
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
-	jump UnknownScript_0x19d8eb
+	jump NumberAcceptedM
 
-UnknownScript_0x19d8ca:
+.ReceivedCarbosBefore:
 	end
 
-UnknownScript_0x19d8cb:
+.Carbos:
 	opentext
-	writetext UnknownText_0x19dc67
+	writetext BirdKeeperVance2BeatenText
 	waitbutton
 	verbosegiveitem CARBOS
-	iffalse UnknownScript_0x19d903
+	iffalse VancePackFull
 	clearevent EVENT_VANCE_CARBOS
 	setevent EVENT_GOT_CARBOS_FROM_VANCE
-	jump UnknownScript_0x19d8eb
+	jump NumberAcceptedM
 
-UnknownScript_0x19d8df:
+AskNumber1M:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x19d8e3:
+AskNumber2M:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x19d8e7:
+RegisteredNumberM:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x19d8eb:
+NumberAcceptedM:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x19d8ef:
+NumberDeclinedM:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x19d8f3:
+PhoneFullM:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x19d8f7:
+RematchM:
 	jumpstd rematchm
 	end
 
-UnknownScript_0x19d8fb:
+GiftM:
 	jumpstd giftm
 	end
 
-UnknownScript_0x19d8ff:
+PackFullM:
 	jumpstd packfullm
 	end
 
-UnknownScript_0x19d903:
+VancePackFull:
 	setevent EVENT_VANCE_CARBOS
 	jumpstd packfullm
 	end
 
-UnknownScript_0x19d90a:
+RematchGiftM:
 	jumpstd rematchgiftm
 	end
 
@@ -168,31 +168,31 @@ TrainerFisherWilton1:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_WILTON
-	iftrue UnknownScript_0x19d96e
+	iftrue WiltonWantsBattle
 	checkflag ENGINE_WILTON_HAS_ITEM
-	iftrue UnknownScript_0x19d9b4
+	iftrue WiltonHasItem
 	checkcellnum PHONE_FISHER_WILTON
-	iftrue UnknownScript_0x19d8eb
+	iftrue NumberAcceptedM
 	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x19d957
-	writetext UnknownText_0x19daa8
+	iftrue .AskedAlready
+	writetext FisherWiltonHugePoliwagText
 	buttonsound
 	setevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x19d8df
-	jump UnknownScript_0x19d95a
+	scall AskNumber1M
+	jump .AskForNumber
 
-UnknownScript_0x19d957:
-	scall UnknownScript_0x19d8e3
-UnknownScript_0x19d95a:
+.AskedAlready:
+	scall AskNumber2M
+.AskForNumber:
 	askforphonenumber PHONE_FISHER_WILTON
-	if_equal $1, UnknownScript_0x19d8f3
-	if_equal $2, UnknownScript_0x19d8ef
+	if_equal $1, PhoneFullM
+	if_equal $2, NumberDeclinedM
 	trainertotext FISHER, WILTON1, $0
-	scall UnknownScript_0x19d8e7
-	jump UnknownScript_0x19d8eb
+	scall RegisteredNumberM
+	jump NumberAcceptedM
 
-UnknownScript_0x19d96e:
-	scall UnknownScript_0x19d8f7
+WiltonWantsBattle:
+	scall RematchM
 	winlosstext FisherWilton1BeatenText, 0
 	copybytetovar wWiltonFightCount
 	if_equal 2, .Fight2
@@ -227,33 +227,33 @@ UnknownScript_0x19d96e:
 	clearflag ENGINE_WILTON
 	end
 
-UnknownScript_0x19d9b4:
-	scall UnknownScript_0x19d8fb
+WiltonHasItem:
+	scall GiftM
 	checkevent EVENT_WILTON_HAS_ULTRA_BALL
-	iftrue UnknownScript_0x19d9c9
+	iftrue .UltraBall
 	checkevent EVENT_WILTON_HAS_GREAT_BALL
-	iftrue UnknownScript_0x19d9d2
+	iftrue .GreatBall
 	checkevent EVENT_WILTON_HAS_POKE_BALL
-	iftrue UnknownScript_0x19d9db
-UnknownScript_0x19d9c9:
+	iftrue .PokeBall
+.UltraBall:
 	verbosegiveitem ULTRA_BALL
-	iffalse UnknownScript_0x19d9e7
-	jump UnknownScript_0x19d9e1
+	iffalse .PackFullM
+	jump .ItemReceived
 
-UnknownScript_0x19d9d2:
+.GreatBall:
 	verbosegiveitem GREAT_BALL
-	iffalse UnknownScript_0x19d9e7
-	jump UnknownScript_0x19d9e1
+	iffalse .PackFullM
+	jump .ItemReceived
 
-UnknownScript_0x19d9db:
+.PokeBall:
 	verbosegiveitem POKE_BALL
-	iffalse UnknownScript_0x19d9e7
-UnknownScript_0x19d9e1:
+	iffalse .PackFullM
+.ItemReceived:
 	clearflag ENGINE_WILTON_HAS_ITEM
-	jump UnknownScript_0x19d8eb
+	jump NumberAcceptedM
 
-UnknownScript_0x19d9e7:
-	jump UnknownScript_0x19d8ff
+.PackFullM:
+	jump PackFullM
 
 TrainerFisherEdgar:
 	trainer EVENT_BEAT_FISHER_EDGAR, FISHER, EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, .Script
@@ -334,7 +334,7 @@ FisherWilton1BeatenText:
 	line "it."
 	done
 
-UnknownText_0x19daa8:
+FisherWiltonHugePoliwagText:
 	text "That POLIWAG that"
 	line "got away…"
 	cont "It was huge."
@@ -379,7 +379,7 @@ BirdKeeperVance1BeatenText:
 	line "stuff."
 	done
 
-UnknownText_0x19dbf3:
+BirdKeeperVanceLegendaryBirdsText:
 	text "ARTICUNO, ZAPDOS"
 	line "and MOLTRES are"
 
@@ -391,7 +391,7 @@ UnknownText_0x19dbf3:
 	cont "birds, though."
 	done
 
-UnknownText_0x19dc67:
+BirdKeeperVance2BeatenText:
 	text "Why can't I ever"
 	line "beat you?"
 
