@@ -932,7 +932,7 @@ BattleCommand_CheckObedience: ; 343db
 
 .RandomMove:
 	call BattleRandom
-	maskbits NUM_MOVES +- 1
+	maskbits NUM_MOVES
 
 	cp b
 	jr nc, .RandomMove
@@ -4387,7 +4387,7 @@ BattleCommand_SleepTalk: ; 35b33
 .sample_move
 	push hl
 	call BattleRandom
-	maskbits NUM_MOVES +- 1
+	maskbits NUM_MOVES
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -8204,7 +8204,7 @@ BattleCommand_Conversion: ; 3707f
 .done
 .loop3
 	call BattleRandom
-	maskbits NUM_MOVES +- 1
+	maskbits NUM_MOVES
 	ld c, a
 	ld b, 0
 	ld hl, StringBuffer1

@@ -6031,7 +6031,7 @@ ParseEnemyAction: ; 3e7c1
 .loop2
 	ld hl, EnemyMonMoves
 	call BattleRandom
-	maskbits NUM_MOVES +- 1
+	maskbits NUM_MOVES
 	ld c, a
 	ld b, 0
 	add hl, bc

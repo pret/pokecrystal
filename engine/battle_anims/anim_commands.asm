@@ -1206,7 +1206,7 @@ BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 	srl a
 	ld [wSFXDuration], a
 	call .GetCryTrack
-	maskbits NUM_NOISE_CHANS +- 1
+	maskbits NUM_NOISE_CHANS
 	ld [CryTracks], a ; CryTracks
 
 	ld e, a
@@ -1243,7 +1243,7 @@ BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 
 BattleAnimCmd_Cry: ; cc807 (33:4807)
 	call GetBattleAnimByte
-	maskbits NUM_NOISE_CHANS +- 1
+	maskbits NUM_NOISE_CHANS
 	ld e, a
 	ld d, 0
 	ld hl, .CryData

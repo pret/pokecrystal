@@ -230,7 +230,7 @@ GetDexEntryPointer: ; 44333
 	push de
 	rlca
 	rlca
-	maskbits NUM_DEX_ENTRY_BANKS +- 1
+	maskbits NUM_DEX_ENTRY_BANKS
 	ld hl, .PokedexEntryBanks
 	ld d, 0
 	ld e, a

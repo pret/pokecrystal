@@ -283,7 +283,7 @@ StatsScreen_GetJoypad: ; 4de2c (13:5e2c)
 StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	push af
 	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES +- 1
+	maskbits NUM_STAT_PAGES
 	ld c, a
 	pop af
 	bit B_BUTTON_F, a
@@ -512,7 +512,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .ClearBox: ; 4dfda (13:5fda)
 	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES +- 1
+	maskbits NUM_STAT_PAGES
 	ld c, a
 	call StatsScreen_LoadPageIndicators
 	hlcoord 0, 8
@@ -522,7 +522,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .LoadPals: ; 4dfed (13:5fed)
 	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES +- 1
+	maskbits NUM_STAT_PAGES
 	ld c, a
 	farcall LoadStatsScreenPals
 	call DelayFrame
@@ -532,7 +532,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .PageTilemap: ; 4e002 (13:6002)
 	ld a, [wcf64]
-	maskbits NUM_STAT_PAGES +- 1
+	maskbits NUM_STAT_PAGES
 	dec a
 	ld hl, .Jumptable
 	rst JumpTable

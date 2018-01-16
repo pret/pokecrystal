@@ -1230,7 +1230,7 @@ LoadMapPals:
 	ld l, a
 	; Futher refine by time of day
 	ld a, [TimeOfDayPal]
-	maskbits NUM_DAYTIMES +- 1
+	maskbits NUM_DAYTIMES
 	add a
 	add a
 	add a
@@ -1276,7 +1276,7 @@ LoadMapPals:
 
 .got_pals
 	ld a, [TimeOfDayPal]
-	maskbits NUM_DAYTIMES +- 1
+	maskbits NUM_DAYTIMES
 	ld bc, 8 palettes
 	ld hl, MapObjectPals
 	call AddNTimes
@@ -1300,7 +1300,7 @@ LoadMapPals:
 	ld de, RoofPals
 	add hl, de
 	ld a, [TimeOfDayPal]
-	maskbits NUM_DAYTIMES +- 1
+	maskbits NUM_DAYTIMES
 	cp NITE_F
 	jr c, .morn_day
 rept 4

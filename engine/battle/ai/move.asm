@@ -186,7 +186,7 @@ AIChooseMove: ; 440ce
 .ChooseMove:
 	ld hl, Buffer1
 	call Random
-	maskbits NUM_MOVES +- 1
+	maskbits NUM_MOVES
 	ld c, a
 	ld b, 0
 	add hl, bc

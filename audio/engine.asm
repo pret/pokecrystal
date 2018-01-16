@@ -1304,7 +1304,7 @@ ParseSFXOrRest: ; e8698
 	ld [hl], a
 	; are we on the last channel? (noise sampling)
 	ld a, [CurChannel]
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	cp CHAN4
 	ret z
 	; update hi frequency from next param
@@ -1668,7 +1668,7 @@ MusicEE; e883e
 ; if ????, jump
 	; get channel
 	ld a, [CurChannel]
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	ld e, a
 	ld d, 0
 	; hl = Channel1JumpCondition + channel id
@@ -1966,7 +1966,7 @@ Music_NoteType: ; e8963
 	add hl, bc
 	ld [hl], a
 	ld a, [CurChannel]
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	cp CHAN4
 	ret z
 	; intensity
@@ -2414,7 +2414,7 @@ SetLRTracks: ; e8b1b
 	push de
 	; store current channel in de
 	ld a, [CurChannel]
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	ld e, a
 	ld d, 0
 	; get this channel's lr tracks
@@ -2449,7 +2449,7 @@ _PlayMusic:: ; e8b30
 	call LoadMusicByte ; store first byte of music header in a
 	rlca
 	rlca
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	inc a
 .loop
 ; start playing channels
@@ -2505,7 +2505,7 @@ _PlayCryHeader:: ; e8b79
 	; Top 2 bits contain the number of channels
 	rlca
 	rlca
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 
 ; For each channel:
 	inc a
@@ -2530,7 +2530,7 @@ _PlayCryHeader:: ; e8b79
 
 ; No tempo for channel 4
 	ld a, [CurChannel]
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	cp CHAN4
 	jr nc, .start
 
@@ -2669,7 +2669,7 @@ _PlaySFX:: ; e8c04
 	call LoadMusicByte
 	rlca ; top 2
 	rlca ; bits
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	inc a ; # channels -> # loops
 .startchannels
 	push af
@@ -2722,7 +2722,7 @@ PlayStereoSFX:: ; e8ca6
 	call LoadMusicByte
 	rlca
 	rlca
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	inc a
 
 .loop
@@ -2736,7 +2736,7 @@ PlayStereoSFX:: ; e8ca6
 	push de
 	; get tracks for this channel
 	ld a, [CurChannel]
-	maskbits NUM_MUSIC_CHANS +- 1
+	maskbits NUM_MUSIC_CHANS
 	ld e, a
 	ld d, 0
 	call GetLRTracks

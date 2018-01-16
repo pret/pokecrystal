@@ -251,7 +251,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld a, $4f
 	call ByteFill
 	ld a, [wPokegearCard]
-	maskbits NUM_POKEGEAR_CARDS +- 1
+	maskbits NUM_POKEGEAR_CARDS
 	add a
 	ld e, a
 	ld d, 0
@@ -289,7 +289,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ld [hWY], a
 	; swap region maps
 	ld a, [wPokegearMapRegion]
-	maskbits NUM_REGIONS +- 1
+	maskbits NUM_REGIONS
 	xor 1
 	ld [wPokegearMapRegion], a
 	ret

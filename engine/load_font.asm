@@ -82,7 +82,7 @@ _LoadFontsBattleExtra:: ; fb4be
 
 LoadFrame: ; fb4cc
 	ld a, [TextBoxFrame]
-	maskbits NUM_FRAMES +- 1
+	maskbits NUM_FRAMES
 	ld bc, 6 * LEN_1BPP_TILE
 	ld hl, Frames
 	call AddNTimes

@@ -13,6 +13,7 @@ endr
 ENDM
 
 RoamMaps: ; 2a40f
+; there are NUM_ROAMMON_MAPS entries
 	roam_map ROUTE_29, 2, ROUTE_30, ROUTE_46
 	roam_map ROUTE_30, 2, ROUTE_29, ROUTE_31
 	roam_map ROUTE_31, 3, ROUTE_30, ROUTE_32, ROUTE_36

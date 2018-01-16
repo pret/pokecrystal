@@ -640,7 +640,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 .cgb
 	ld hl, .daypals
 	ld a, [TimeOfDayPal]
-	maskbits NUM_DAYTIMES +- 1
+	maskbits NUM_DAYTIMES
 	cp DARKNESS_F
 	jr nz, .daytime
 	ld hl, .nightpals

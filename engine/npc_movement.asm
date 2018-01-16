@@ -106,7 +106,7 @@ Function6f3e: ; 6f3e
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	maskbits NUM_DIRECTIONS +- 1
+	maskbits NUM_DIRECTIONS
 	ld e, a
 	ld d, 0
 	ld hl, .data_6f5b
@@ -131,7 +131,7 @@ Function6f5f: ; 6f5f
 	push af
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
-	maskbits NUM_DIRECTIONS +- 1
+	maskbits NUM_DIRECTIONS
 	ld e, a
 	ld d, 0
 	ld hl, .data_6f7b
@@ -178,7 +178,7 @@ Function6fa1: ; 6fa1
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld a, [hl]
-	maskbits NUM_DIRECTIONS +- 1
+	maskbits NUM_DIRECTIONS
 	jr z, .down
 	dec a
 	jr z, .up

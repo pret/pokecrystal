@@ -552,7 +552,7 @@ TradeAnim_GetTrademonSFX: ; 29277
 ; 29281
 
 TradeAnim_TubeAnimJumptable: ; 29281
-	maskbits TRADEANIMJUMPTABLE_LENGTH +- 1
+	maskbits TRADEANIMJUMPTABLE_LENGTH
 	ld e, a
 	ld d, 0
 	ld hl, .Jumptable

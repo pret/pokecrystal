@@ -739,11 +739,11 @@ JumpRoamMons: ; 2a394
 JumpRoamMon: ; 2a3cd
 .loop
 	ld hl, RoamMaps
-.innerloop1            ; This loop is completely unnecessary.
-	call Random        ; Choose a random number.
-	maskbits $10 - 1   ; Mask the number to limit it between 0 and 15.
-	cp $10             ; If the number is not less than 16, try again.
-	jr nc, .innerloop1 ; I'm sure you can guess why this check is bogus.
+.innerloop1                   ; This loop happens to be unnecessary.
+	call Random               ; Choose a random number.
+	maskbits NUM_ROAMMON_MAPS ; Mask the number to limit it between 0 and 15.
+	cp NUM_ROAMMON_MAPS       ; If the number is not less than 16, try again.
+	jr nc, .innerloop1        ; I'm sure you can guess why this check is bogus.
 	inc a
 	ld b, a
 .innerloop2 ; Loop to get hl to the address of the chosen roam map.

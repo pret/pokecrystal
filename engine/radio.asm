@@ -247,7 +247,7 @@ endr
 	; Generate a number, either 0, 1, or 2, to choose a time of day.
 .loop2
 	call Random
-	maskbits NUM_DAYTIMES +- 1
+	maskbits NUM_DAYTIMES
 	cp DARKNESS_F
 	jr z, .loop2
 
@@ -351,7 +351,7 @@ OaksPkmnTalk8:
 	; 0-15 are all valid indexes into .Adverbs,
 	; so no need for a retry loop
 	call Random
-	maskbits NUM_OAKS_MON_TALK_ADVERBS +- 1
+	maskbits NUM_OAKS_MON_TALK_ADVERBS
 	ld e, a
 	ld d, 0
 	ld hl, .Adverbs
@@ -466,7 +466,7 @@ OaksPkmnTalk9:
 	; 0-15 are all valid indexes into .Adjectives,
 	; so no need for a retry loop
 	call Random
-	maskbits NUM_OAKS_MON_TALK_ADJECTIVES +- 1
+	maskbits NUM_OAKS_MON_TALK_ADJECTIVES
 	ld e, a
 	ld d, 0
 	ld hl, .Adjectives
@@ -692,7 +692,7 @@ PokedexShow_GetDexEntryBank:
 	dec a
 	rlca
 	rlca
-	maskbits NUM_DEX_ENTRY_BANKS +- 1
+	maskbits NUM_DEX_ENTRY_BANKS
 	ld hl, .PokedexEntryBanks
 	ld d, 0
 	ld e, a
@@ -1164,7 +1164,7 @@ PnP_Text3:
 
 PeoplePlaces4: ; People
 	call Random
-	maskbits NUM_TRAINER_CLASSES +- 1
+	maskbits NUM_TRAINER_CLASSES
 	inc a
 	cp NUM_TRAINER_CLASSES - 1
 	jr nc, PeoplePlaces4
@@ -1208,7 +1208,7 @@ PeoplePlaces5:
 	; 0-15 are all valid indexes into .Adjectives,
 	; so no need for a retry loop
 	call Random
-	maskbits NUM_PNP_PEOPLE_ADJECTIVES +- 1
+	maskbits NUM_PNP_PEOPLE_ADJECTIVES
 	ld e, a
 	ld d, 0
 	ld hl, .Adjectives
@@ -1358,7 +1358,7 @@ PeoplePlaces7:
 	; 0-15 are all valid indexes into .Adjectives,
 	; so no need for a retry loop
 	call Random
-	maskbits NUM_PNP_PLACES_ADJECTIVES +- 1
+	maskbits NUM_PNP_PLACES_ADJECTIVES
 	ld e, a
 	ld d, 0
 	ld hl, .Adjectives
@@ -1565,7 +1565,7 @@ BuenasPassword4:
 ; There are only 11 groups to choose from.
 .greater_than_11
 	call Random
-	maskbits NUM_PASSWORD_CATEGORIES +- 1
+	maskbits NUM_PASSWORD_CATEGORIES
 	cp NUM_PASSWORD_CATEGORIES
 	jr nc, .greater_than_11
 ; Store it in the high nybble of e.
@@ -1574,7 +1574,7 @@ BuenasPassword4:
 ; For each group, choose one of the three passwords.
 .greater_than_three
 	call Random
-	maskbits NUM_PASSWORDS_PER_CATEGORY +- 1
+	maskbits NUM_PASSWORDS_PER_CATEGORY
 	cp NUM_PASSWORDS_PER_CATEGORY
 	jr nc, .greater_than_three
 ; The high nybble of wBuenasPassword will now contain the password group index, and the low nybble contains the actual password.

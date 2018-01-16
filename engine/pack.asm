@@ -954,7 +954,7 @@ InitPackBuffers: ; 1068a
 	ld [wJumptableIndex], a
 	; pocket id -> jumptable index
 	ld a, [wLastPocket]
-	maskbits NUM_POCKETS +- 1
+	maskbits NUM_POCKETS
 	ld [wCurrPocket], a
 	inc a
 	add a
@@ -1099,7 +1099,7 @@ DepositSellTutorial_InterpretJoypad: ; 1076f
 .d_left
 	ld a, [wJumptableIndex]
 	dec a
-	maskbits NUM_POCKETS +- 1
+	maskbits NUM_POCKETS
 	ld [wJumptableIndex], a
 	push de
 	ld de, SFX_SWITCH_POCKETS
@@ -1111,7 +1111,7 @@ DepositSellTutorial_InterpretJoypad: ; 1076f
 .d_right
 	ld a, [wJumptableIndex]
 	inc a
-	maskbits NUM_POCKETS +- 1
+	maskbits NUM_POCKETS
 	ld [wJumptableIndex], a
 	push de
 	ld de, SFX_SWITCH_POCKETS
@@ -1281,7 +1281,7 @@ WaitBGMap_DrawPackGFX: ; 1089a (4:489a)
 	call WaitBGMap
 DrawPackGFX: ; 1089d
 	ld a, [wCurrPocket]
-	maskbits NUM_POCKETS +- 1
+	maskbits NUM_POCKETS
 	ld e, a
 	ld d, $0
 	ld a, [BattleType]
