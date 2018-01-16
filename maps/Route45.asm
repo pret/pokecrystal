@@ -28,99 +28,99 @@ TrainerBlackbeltKenji:
 	end_if_just_battled
 	opentext
 	checkcellnum PHONE_BLACKBELT_KENJI
-	iftrue UnknownScript_0x19e0e4
+	iftrue .Registered
 	checkevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x19e0cd
+	iftrue .AskedAlready
 	special Special_SampleKenjiBreakCountdown
-	writetext UnknownText_0x19e5e2
+	writetext BlackbeltKenjiAfterBattleText
 	waitbutton
 	setevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x19e11b
-	jump UnknownScript_0x19e0d0
+	scall Route45AskNumber1M
+	jump .AskForNumber
 
-UnknownScript_0x19e0cd:
-	scall UnknownScript_0x19e11f
-UnknownScript_0x19e0d0:
+.AskedAlready:
+	scall Route45AskNumber2M
+.AskForNumber:
 	askforphonenumber PHONE_BLACKBELT_KENJI
-	if_equal $1, UnknownScript_0x19e12f
-	if_equal $2, UnknownScript_0x19e12b
+	if_equal $1, Route45PhoneFullM
+	if_equal $2, Route45NumberDeclinedM
 	trainertotext BLACKBELT_T, KENJI3, $0
-	scall UnknownScript_0x19e123
-	jump UnknownScript_0x19e127
+	scall Route45RegisteredNumberM
+	jump Route45NumberAcceptedM
 
-UnknownScript_0x19e0e4:
+.Registered:
 	checkcode VAR_KENJI_BREAK
-	if_not_equal $1, UnknownScript_0x19e127
+	if_not_equal $1, Route45NumberAcceptedM
 	checkmorn
-	iftrue UnknownScript_0x19e10c
+	iftrue .Morning
 	checknite
-	iftrue UnknownScript_0x19e112
+	iftrue .Night
 	checkevent EVENT_KENJI_ON_BREAK
-	iffalse UnknownScript_0x19e127
-	scall UnknownScript_0x19e137
+	iffalse Route45NumberAcceptedM
+	scall Route45GiftM
 	verbosegiveitem PP_UP
-	iffalse UnknownScript_0x19e118
+	iffalse .NoRoom
 	clearevent EVENT_KENJI_ON_BREAK
 	special Special_SampleKenjiBreakCountdown
-	jump UnknownScript_0x19e127
+	jump Route45NumberAcceptedM
 
-UnknownScript_0x19e10c:
-	writetext UnknownText_0x19e634
+.Morning:
+	writetext BlackbeltKenjiMorningText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x19e112:
-	writetext UnknownText_0x19e66c
+.Night:
+	writetext BlackbeltKenjiNightText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x19e118:
-	jump UnknownScript_0x19e13b
+.NoRoom:
+	jump Route45PackFullM
 
-UnknownScript_0x19e11b:
+Route45AskNumber1M:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x19e11f:
+Route45AskNumber2M:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x19e123:
+Route45RegisteredNumberM:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x19e127:
+Route45NumberAcceptedM:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x19e12b:
+Route45NumberDeclinedM:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x19e12f:
+Route45PhoneFullM:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x19e133:
+Route45RematchM:
 	jumpstd rematchm
 	end
 
-UnknownScript_0x19e137:
+Route45GiftM:
 	jumpstd giftm
 	end
 
-UnknownScript_0x19e13b:
+Route45PackFullM:
 	jumpstd packfullm
 	end
 
-UnknownScript_0x19e13f:
+HikerParryHasIron:
 	setevent EVENT_PARRY_IRON
 	jumpstd packfullm
 	end
 
-UnknownScript_0x19e146:
+Route45RematchGiftM:
 	jumpstd rematchgiftm
 	end
 
@@ -154,29 +154,29 @@ TrainerHikerParry:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_PARRY
-	iftrue UnknownScript_0x19e1b8
+	iftrue .WantsBattle
 	checkcellnum PHONE_HIKER_PARRY
-	iftrue UnknownScript_0x19e127
+	iftrue Route45NumberAcceptedM
 	checkevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x19e1a1
-	writetext UnknownText_0x19e434
+	iftrue .AskedAlready
+	writetext HikerParryAfterBattleText
 	buttonsound
 	setevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x19e11b
-	jump UnknownScript_0x19e1a4
+	scall Route45AskNumber1M
+	jump .AskForNumber
 
-UnknownScript_0x19e1a1:
-	scall UnknownScript_0x19e11f
-UnknownScript_0x19e1a4:
+.AskedAlready:
+	scall Route45AskNumber2M
+.AskForNumber:
 	askforphonenumber PHONE_HIKER_PARRY
-	if_equal $1, UnknownScript_0x19e12f
-	if_equal $2, UnknownScript_0x19e12b
+	if_equal $1, Route45PhoneFullM
+	if_equal $2, Route45NumberDeclinedM
 	trainertotext HIKER, PARRY1, $0
-	scall UnknownScript_0x19e123
-	jump UnknownScript_0x19e127
+	scall Route45RegisteredNumberM
+	jump Route45NumberAcceptedM
 
-UnknownScript_0x19e1b8:
-	scall UnknownScript_0x19e133
+.WantsBattle:
+	scall Route45RematchM
 	winlosstext HikerParry3BeatenText, 0
 	copybytetovar wParryFightCount
 	if_equal 2, .Fight2
@@ -210,27 +210,27 @@ UnknownScript_0x19e1b8:
 	reloadmapafterbattle
 	clearflag ENGINE_PARRY
 	checkevent EVENT_PARRY_IRON
-	iftrue UnknownScript_0x19e219
+	iftrue .HasIron
 	checkevent EVENT_GOT_IRON_FROM_PARRY
-	iftrue UnknownScript_0x19e218
-	scall UnknownScript_0x19e146
+	iftrue .GotIron
+	scall Route45RematchGiftM
 	verbosegiveitem IRON
-	iffalse UnknownScript_0x19e13f
+	iffalse HikerParryHasIron
 	setevent EVENT_GOT_IRON_FROM_PARRY
-	jump UnknownScript_0x19e127
+	jump Route45NumberAcceptedM
 
-UnknownScript_0x19e218:
+.GotIron:
 	end
 
-UnknownScript_0x19e219:
+.HasIron:
 	opentext
-	writetext UnknownText_0x19e52c
+	writetext HikerParryGivesIronText
 	waitbutton
 	verbosegiveitem IRON
-	iffalse UnknownScript_0x19e13f
+	iffalse HikerParryHasIron
 	clearevent EVENT_PARRY_IRON
 	setevent EVENT_GOT_IRON_FROM_PARRY
-	jump UnknownScript_0x19e127
+	jump Route45NumberAcceptedM
 
 TrainerHikerTimothy:
 	trainer EVENT_BEAT_HIKER_TIMOTHY, HIKER, TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, 0, .Script
@@ -265,15 +265,15 @@ TrainerCooltrainerfKelly:
 	closetext
 	end
 
-YoungsterScript_0x19e269:
+TrainerCamperQuentin:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_CAMPER_QUENTIN
-	iftrue UnknownScript_0x19e285
-	writetext UnknownText_0x19e87f
+	iftrue .Defeated
+	writetext CamperQuentinSeenText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x19e899, 0
+	winlosstext CamperQuentinBeatenText, 0
 	loadtrainer CAMPER, QUENTIN
 	startbattle
 	reloadmapafterbattle
@@ -281,14 +281,14 @@ YoungsterScript_0x19e269:
 	closetext
 	end
 
-UnknownScript_0x19e285:
-	writetext UnknownText_0x19e8bb
+.Defeated:
+	writetext CamperQuentinAfterBattleText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x19e28b:
-	writetext UnknownText_0x19e830
+Route45DummyScript:
+	writetext Route45DummyText
 	waitbutton
 	closetext
 	end
@@ -370,7 +370,7 @@ HikerParry3BeatenText:
 	line "big loser!"
 	done
 
-UnknownText_0x19e434:
+HikerParryAfterBattleText:
 	text "I'm not much good"
 	line "at thinking, see?"
 
@@ -405,7 +405,7 @@ HikerTimothyAfterBattleText:
 	line "#MON."
 	done
 
-UnknownText_0x19e52c:
+HikerParryGivesIronText:
 	text "I just can't find"
 	line "a way to win!"
 
@@ -430,7 +430,7 @@ BlackbeltKenji3BeatenText:
 	text "Waaaargh!"
 	done
 
-UnknownText_0x19e5e2:
+BlackbeltKenjiAfterBattleText:
 	text "This calls for"
 	line "extreme measures."
 
@@ -439,13 +439,13 @@ UnknownText_0x19e5e2:
 	cont "solitude."
 	done
 
-UnknownText_0x19e634:
+BlackbeltKenjiMorningText:
 	text "I'm going to train"
 	line "a bit more before"
 	cont "I break for lunch."
 	done
 
-UnknownText_0x19e66c:
+BlackbeltKenjiNightText:
 	text "We had plenty of"
 	line "rest at lunch, so"
 
@@ -500,7 +500,7 @@ CooltrainerfKellyAfterBattleText:
 	cont "to harm #MON."
 	done
 
-UnknownText_0x19e830:
+Route45DummyText:
 	text "I'm really, really"
 	line "tough!"
 
@@ -509,17 +509,17 @@ UnknownText_0x19e830:
 	cont "tough I really am?"
 	done
 
-UnknownText_0x19e87f:
+CamperQuentinSeenText:
 	text "I'm really, really"
 	line "tough!"
 	done
 
-UnknownText_0x19e899:
+CamperQuentinBeatenText:
 	text "I was tough at the"
 	line "BATTLE TOWER…"
 	done
 
-UnknownText_0x19e8bb:
+CamperQuentinAfterBattleText:
 	text "Have you been to"
 	line "the BATTLE TOWER?"
 
@@ -562,4 +562,4 @@ Route45_MapEventHeader:
 	object_event 5, 66, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45Revive, EVENT_ROUTE_45_REVIVE
 	object_event 6, 20, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45Elixer, EVENT_ROUTE_45_ELIXER
 	object_event 7, 33, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route45MaxPotion, EVENT_ROUTE_45_MAX_POTION
-	object_event 4, 70, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x19e269, -1
+	object_event 4, 70, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerCamperQuentin, -1
