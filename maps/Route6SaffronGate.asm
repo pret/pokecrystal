@@ -12,23 +12,23 @@ Route6SaffronGate_MapScriptHeader:
 .DummyScene:
 	end
 
-OfficerScript_0x1926ea:
+Route6SaffronGuardScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x1926f8
-	writetext UnknownText_0x1926fe
+	iftrue .ReturnedPart
+	writetext Route6SaffronGuardWelcomeText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1926f8:
-	writetext UnknownText_0x1927cb
+.ReturnedPart:
+	writetext Route6SaffronGuardMagnetTrainText
 	waitbutton
 	closetext
 	end
 
-UnknownText_0x1926fe:
+Route6SaffronGuardWelcomeText:
 	text "Welcome to SAFFRON"
 	line "CITY, home of the"
 	cont "MAGNET TRAIN!"
@@ -49,7 +49,7 @@ UnknownText_0x1926fe:
 	line "PLANT."
 	done
 
-UnknownText_0x1927cb:
+Route6SaffronGuardMagnetTrainText:
 	text "The MAGNET TRAIN"
 	line "is the most famous"
 
@@ -76,4 +76,4 @@ Route6SaffronGate_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x1926ea, -1
+	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route6SaffronGuardScript, -1
