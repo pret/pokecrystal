@@ -48,38 +48,38 @@ TrainerPokemaniacBen:
 	closetext
 	end
 
-TrainerPokemaniacBrent1:
-	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrent1SeenText, PokemaniacBrent1BeatenText, 0, .Script
+TrainerPokemaniacBrent:
+	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrentSeenText, PokemaniacBrentBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_BRENT
-	iftrue UnknownScript_0x19d0cf
+	iftrue .WantsBattle
 	checkcellnum PHONE_POKEMANIAC_BRENT
-	iftrue UnknownScript_0x19d138
+	iftrue .NumberAcceptedM
 	checkevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x19d0b8
-	writetext UnknownText_0x19d359
+	iftrue .AskedAlready
+	writetext PokemaniacBrentAfterBattleText
 	buttonsound
 	setevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x19d12c
-	jump UnknownScript_0x19d0bb
+	scall .AskNumber1M
+	jump .AskForNumber
 
-UnknownScript_0x19d0b8:
-	scall UnknownScript_0x19d130
-UnknownScript_0x19d0bb:
+.AskedAlready:
+	scall .AskNumber2M
+.AskForNumber:
 	askforphonenumber PHONE_POKEMANIAC_BRENT
-	if_equal $1, UnknownScript_0x19d140
-	if_equal $2, UnknownScript_0x19d13c
+	if_equal $1, .PhoneFullM
+	if_equal $2, .NumberDeclinedM
 	trainertotext POKEMANIAC, BRENT1, $0
-	scall UnknownScript_0x19d134
-	jump UnknownScript_0x19d138
+	scall .RegisteredNumberM
+	jump .NumberAcceptedM
 
-UnknownScript_0x19d0cf:
-	scall UnknownScript_0x19d144
-	winlosstext PokemaniacBrent1BeatenText, 0
+.WantsBattle:
+	scall .RematchM
+	winlosstext PokemaniacBrentBeatenText, 0
 	copybytetovar wBrentFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -125,31 +125,31 @@ UnknownScript_0x19d0cf:
 	clearflag ENGINE_BRENT
 	end
 
-UnknownScript_0x19d12c:
+.AskNumber1M:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x19d130:
+.AskNumber2M:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x19d134:
+.RegisteredNumberM:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x19d138:
+.NumberAcceptedM:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x19d13c:
+.NumberDeclinedM:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x19d140:
+.PhoneFullM:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x19d144:
+.RematchM:
 	jumpstd rematchm
 	end
 
@@ -175,42 +175,42 @@ TrainerFisherMarvin:
 	closetext
 	end
 
-TrainerPicnickerTiffany3:
-	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffany3SeenText, PicnickerTiffany3BeatenText, 0, .Script
+TrainerPicnickerTiffany:
+	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffanySeenText, PicnickerTiffanyBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_TIFFANY
-	iftrue UnknownScript_0x19d1c1
+	iftrue .WantsBattle
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
-	iftrue UnknownScript_0x19d21e
+	iftrue .HasPinkBow
 	checkcellnum PHONE_PICNICKER_TIFFANY
-	iftrue UnknownScript_0x19d245
+	iftrue .NumberAcceptedF
 	checkpoke CLEFAIRY
-	iffalse UnknownScript_0x19d233
+	iffalse .NoClefairy
 	checkevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x19d1aa
-	writetext UnknownText_0x19d618
+	iftrue .AskedAlready
+	writetext PicnickerTiffanyWantsPicnicText
 	buttonsound
 	setevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x19d239
-	jump UnknownScript_0x19d1ad
+	scall .AskNumber1F
+	jump .AskForNumber
 
-UnknownScript_0x19d1aa:
-	scall UnknownScript_0x19d23d
-UnknownScript_0x19d1ad:
+.AskedAlready:
+	scall .AskNumber2F
+.AskForNumber:
 	askforphonenumber PHONE_PICNICKER_TIFFANY
-	if_equal $1, UnknownScript_0x19d24d
-	if_equal $2, UnknownScript_0x19d249
+	if_equal $1, .PhoneFullF
+	if_equal $2, .NumberDeclinedF
 	trainertotext PICNICKER, TIFFANY3, $0
-	scall UnknownScript_0x19d241
-	jump UnknownScript_0x19d245
+	scall .RegisteredNumberF
+	jump .NumberAcceptedF
 
-UnknownScript_0x19d1c1:
-	scall UnknownScript_0x19d251
-	winlosstext PicnickerTiffany3BeatenText, 0
+.WantsBattle:
+	scall .RematchF
+	winlosstext PicnickerTiffanyBeatenText, 0
 	copybytetovar wTiffanyFightCount
 	if_equal 3, .Fight3
 	if_equal 2, .Fight2
@@ -256,56 +256,56 @@ UnknownScript_0x19d1c1:
 	clearflag ENGINE_TIFFANY
 	end
 
-UnknownScript_0x19d21e:
-	scall UnknownScript_0x19d255
+.HasPinkBow:
+	scall .GiftF
 	verbosegiveitem PINK_BOW
-	iffalse UnknownScript_0x19d230
+	iffalse .NoRoom
 	clearflag ENGINE_TIFFANY_HAS_PINK_BOW
 	setevent EVENT_TIFFANY_GAVE_PINK_BOW
-	jump UnknownScript_0x19d245
+	jump .NumberAcceptedF
 
-UnknownScript_0x19d230:
-	jump UnknownScript_0x19d259
+.NoRoom:
+	jump .PackFullF
 
-UnknownScript_0x19d233:
-	writetext UnknownText_0x19d64b
+.NoClefairy:
+	writetext PicnickerTiffanyClefairyText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x19d239:
+.AskNumber1F:
 	jumpstd asknumber1f
 	end
 
-UnknownScript_0x19d23d:
+.AskNumber2F:
 	jumpstd asknumber2f
 	end
 
-UnknownScript_0x19d241:
+.RegisteredNumberF:
 	jumpstd registerednumberf
 	end
 
-UnknownScript_0x19d245:
+.NumberAcceptedF:
 	jumpstd numberacceptedf
 	end
 
-UnknownScript_0x19d249:
+.NumberDeclinedF:
 	jumpstd numberdeclinedf
 	end
 
-UnknownScript_0x19d24d:
+.PhoneFullF:
 	jumpstd phonefullf
 	end
 
-UnknownScript_0x19d251:
+.RematchF:
 	jumpstd rematchf
 	end
 
-UnknownScript_0x19d255:
+.GiftF:
 	jumpstd giftf
 	end
 
-UnknownScript_0x19d259:
+.PackFullF:
 	jumpstd packfullf
 	end
 
@@ -348,17 +348,17 @@ PokemaniacBenAfterBattleText:
 	line "I bet she's cute!"
 	done
 
-PokemaniacBrent1SeenText:
+PokemaniacBrentSeenText:
 	text "Hey! Do you have"
 	line "any rare #MON?"
 	done
 
-PokemaniacBrent1BeatenText:
+PokemaniacBrentBeatenText:
 	text "Oh, my poor #-"
 	line "MON! Darlings!"
 	done
 
-UnknownText_0x19d359:
+PokemaniacBrentAfterBattleText:
 	text "I'd be happy just"
 	line "to own a single"
 	cont "rare #MON."
@@ -439,7 +439,7 @@ CamperSpencerAfterBattleText:
 	line "to camp there."
 	done
 
-PicnickerTiffany3SeenText:
+PicnickerTiffanySeenText:
 	text "Are you going to"
 	line "LAKE OF RAGE too?"
 
@@ -447,18 +447,18 @@ PicnickerTiffany3SeenText:
 	line "little while!"
 	done
 
-PicnickerTiffany3BeatenText:
+PicnickerTiffanyBeatenText:
 	text "I played too much!"
 	done
 
-UnknownText_0x19d618:
+PicnickerTiffanyWantsPicnicText:
 	text "I'm having a pic-"
 	line "nic with #MON."
 
 	para "Won't you join us?"
 	done
 
-UnknownText_0x19d64b:
+PicnickerTiffanyClefairyText:
 	text "Isn't my CLEFAIRY"
 	line "just the most"
 	cont "adorable thing?"
@@ -524,10 +524,10 @@ Route43_MapEventHeader:
 .ObjectEvents:
 	db 8
 	object_event 13, 5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacBen, -1
-	object_event 13, 20, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacBrent1, -1
+	object_event 13, 20, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacBrent, -1
 	object_event 14, 7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacRon, -1
 	object_event 4, 16, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerFisherMarvin, -1
-	object_event 9, 25, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTiffany3, -1
+	object_event 9, 25, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTiffany, -1
 	object_event 13, 40, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperSpencer, -1
 	object_event 1, 26, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x19d266, -1
 	object_event 12, 32, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route43MaxEther, EVENT_ROUTE_43_MAX_ETHER
