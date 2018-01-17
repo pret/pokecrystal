@@ -45,7 +45,7 @@ TeamRocketBaseB3F_MapScripts:
 	return
 
 .OpenSesame:
-	changeblock 10, 8, $07
+	changeblock 10, 8, $07 ; floor
 	return
 
 LanceGetPasswordScript:
@@ -194,7 +194,7 @@ TeamRocketBaseB3FLockedDoor:
 	writetext UnknownText_0x6e9a3
 	waitbutton
 	playsound SFX_ENTER_DOOR
-	changeblock 10, 8, $07
+	changeblock 10, 8, $07 ; floor
 	reloadmappart
 	closetext
 	setevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE

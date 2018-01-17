@@ -19,12 +19,12 @@ GoldenrodDeptStoreRoof_MapScripts:
 
 .CheckSaleChangeBlock:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
-	iftrue .ChangeBlock
+	iftrue .SaleIsOn
 	return
 
-.ChangeBlock:
-	changeblock 0, 2, $3f
-	changeblock 0, 4, $0f
+.SaleIsOn:
+	changeblock 0, 2, $3f ; cardboard boxes
+	changeblock 0, 4, $0f ; vendor booth
 	return
 
 .CheckSaleChangeClerk:

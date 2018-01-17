@@ -28,7 +28,7 @@ MahoganyMart1F_MapScripts:
 	return
 
 .ShowStairs:
-	changeblock 6, 2, $1e
+	changeblock 6, 2, $1e ; stairs
 	return
 
 PharmacistScript_0x6c367:
@@ -89,7 +89,7 @@ UnknownScript_0x6c38f:
 	waitbutton
 	showemote EMOTE_SHOCK, MAHOGANYMART1F_PHARMACIST, 10
 	playsound SFX_FAINT
-	changeblock 6, 2, $1e
+	changeblock 6, 2, $1e ; stairs
 	reloadmappart
 	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART

@@ -79,7 +79,7 @@ TinTower1F_MapScripts:
 .StairsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue .DontHideStairs
-	changeblock 10, 2, $09
+	changeblock 10, 2, $09 ; floor
 .DontHideStairs:
 	return
 
@@ -201,7 +201,7 @@ TinTower1FSage5Script:
 	earthquake 72
 	waitsfx
 	playsound SFX_STRENGTH
-	changeblock 10, 2, $20
+	changeblock 10, 2, $20 ; stairs
 	reloadmappart
 	setevent EVENT_GOT_RAINBOW_WING
 	closetext

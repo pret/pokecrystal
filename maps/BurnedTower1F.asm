@@ -28,13 +28,13 @@ BurnedTower1F_MapScripts:
 
 .HoleAndLadder:
 	checkevent EVENT_HOLE_IN_BURNED_TOWER
-	iftrue .Next
-	changeblock 10, 8, $32 ; hole
-.Next:
+	iftrue .KeepHoleOpen
+	changeblock 10, 8, $32 ; floor
+.KeepHoleOpen:
 	checkevent EVENT_RELEASED_THE_BEASTS
-	iftrue .Done
+	iftrue .HideBasement
 	changeblock 6, 14, $09 ; ladder
-.Done:
+.HideBasement:
 	return
 
 .MeetEusine:
@@ -106,7 +106,7 @@ BurnedTowerRivalBattleScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playsound SFX_ENTER_DOOR
 	waitsfx
-	changeblock 10, 8, $25
+	changeblock 10, 8, $25 ; hole
 	reloadmappart
 	pause 15
 	applymovement PLAYER, BurnedTower1FMovement_PlayerStartsToFall

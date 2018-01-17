@@ -27,9 +27,9 @@ BurnedTowerB1F_MapScripts:
 
 .LadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
-	iftrue .NoChange
-	changeblock 6, 14, $02
-.NoChange:
+	iftrue .HideLadder
+	changeblock 6, 14, $02 ; floor
+.HideLadder:
 	return
 
 ReleaseTheBeasts:
@@ -93,7 +93,7 @@ ReleaseTheBeasts:
 	setevent EVENT_BURNED_TOWER_1F_EUSINE
 	appear BURNEDTOWERB1F_EUSINE
 	refreshscreen
-	changeblock 6, 14, $1b
+	changeblock 6, 14, $1b ; ladder
 	reloadmappart
 	closetext
 	setscene 1

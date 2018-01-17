@@ -40,11 +40,11 @@ TeamRocketBaseB2F_MapScripts:
 
 .TransmitterDoorCallback:
 	checkevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
-	iftrue .Change
+	iftrue .OpenDoor
 	return
 
-.Change:
-	changeblock 14, 12, $07
+.OpenDoor:
+	changeblock 14, 12, $07 ; floor
 	return
 
 UnknownScript_0x6cf95:
@@ -330,7 +330,7 @@ UnknownScript_0x6d1e8:
 	writetext UnknownText_0x6dd6b
 	waitbutton
 	playsound SFX_ENTER_DOOR
-	changeblock 14, 12, $07
+	changeblock 14, 12, $07 ; floor
 	reloadmappart
 	closetext
 	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER

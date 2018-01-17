@@ -17,12 +17,12 @@ Route19_MapScripts:
 .ClearRocks:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue .Done
-	changeblock 6, 6, $7a
-	changeblock 8, 6, $7a
-	changeblock 10, 6, $7a
-	changeblock 12, 8, $7a
-	changeblock 4, 8, $7a
-	changeblock 10, 10, $7a
+	changeblock  6,  6, $7a ; rock
+	changeblock  8,  6, $7a ; rock
+	changeblock 10,  6, $7a ; rock
+	changeblock 12,  8, $7a ; rock
+	changeblock  4,  8, $7a ; rock
+	changeblock 10, 10, $7a ; rock
 .Done:
 	return
 

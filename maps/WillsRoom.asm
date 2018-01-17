@@ -20,21 +20,21 @@ WillsRoom_MapScripts:
 
 .WillsRoomDoors:
 	checkevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	iffalse .KeepDoorsClosed
-	changeblock 4, 14, $2a
-.KeepDoorsClosed:
+	iffalse .KeepEntranceOpen
+	changeblock 4, 14, $2a ; wall
+.KeepEntranceOpen:
 	checkevent EVENT_WILLS_ROOM_EXIT_OPEN
-	iffalse .OpenDoors
-	changeblock 4, 2, $16
-.OpenDoors:
+	iffalse .KeepExitClosed
+	changeblock 4, 2, $16 ; open door
+.KeepExitClosed:
 	return
 
 .WillsDoorLocksBehindYou:
-	applymovement PLAYER, MovementData_0x18052c
+	applymovement PLAYER, WillsRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock 4, 14, $2a
+	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
 	setscene 1
@@ -46,7 +46,7 @@ WillScript_Battle:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_WILL
-	iftrue WillScript_0x180526
+	iftrue WillScript_AfterBattle
 	writetext WillScript_WillBeforeText
 	waitbutton
 	closetext
@@ -60,20 +60,20 @@ WillScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock 4, 2, $16
+	changeblock 4, 2, $16 ; open door
 	reloadmappart
 	closetext
 	setevent EVENT_WILLS_ROOM_EXIT_OPEN
 	waitsfx
 	end
 
-WillScript_0x180526:
+WillScript_AfterBattle:
 	writetext WillScript_WillDefeatText
 	waitbutton
 	closetext
 	end
 
-MovementData_0x18052c:
+WillsRoom_EnterMovement:
 	step UP
 	step UP
 	step UP

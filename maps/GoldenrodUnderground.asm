@@ -45,7 +45,7 @@ GoldenrodUnderground_MapScripts:
 	return
 
 .LockBasementDoor:
-	changeblock 18, 6, $3d
+	changeblock 18, 6, $3d ; locked door
 	return
 
 .CheckDayOfWeek:
@@ -384,7 +384,7 @@ BasementDoorScript::
 	writetext UnknownText_0x7c5d6
 	waitbutton
 	closetext
-	changeblock 18, 6, $2e
+	changeblock 18, 6, $2e ; unlocked door
 	reloadmappart
 	closetext
 	setevent EVENT_USED_BASEMENT_KEY

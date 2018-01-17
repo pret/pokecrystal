@@ -21,8 +21,8 @@ RadioTower3F_MapScripts:
 	return
 
 .Change:
-	changeblock 14, 2, $2a
-	changeblock 14, 4, $01
+	changeblock 14, 2, $2a ; open shutter
+	changeblock 14, 4, $01 ; floor
 	return
 
 RadioTower3FSuperNerdScript:
@@ -143,8 +143,8 @@ UnknownScript_0x5e605:
 	waitbutton
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR
-	changeblock 14, 2, $2a
-	changeblock 14, 4, $01
+	changeblock 14, 2, $2a ; open shutter
+	changeblock 14, 4, $01 ; floor
 	reloadmappart
 	closetext
 	waitsfx

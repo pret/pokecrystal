@@ -8,10 +8,10 @@ CeladonDeptStore6F_MapScripts:
 
 .MapCallbacks:
 	db 1
-	callback MAPCALLBACK_TILES, .Callback
+	callback MAPCALLBACK_TILES, .HideRooftopStairs
 
-.Callback:
-	changeblock 12, 0, $03
+.HideRooftopStairs:
+	changeblock 12, 0, $03 ; wall
 	return
 
 CeladonDeptStore6FSuperNerdScript:
