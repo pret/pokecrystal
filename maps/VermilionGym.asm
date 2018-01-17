@@ -5,7 +5,7 @@ const_value set 2
 	const VERMILIONGYM_SUPER_NERD
 	const VERMILIONGYM_GYM_GUY
 
-VermilionGym_MapScriptHeader:
+VermilionGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -260,7 +260,7 @@ UnknownText_0x19261e:
 	line "but trash."
 	done
 
-VermilionGym_MapEventHeader:
+VermilionGym_MapEvents:
 	; filler
 	db 0, 0
 

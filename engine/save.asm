@@ -525,9 +525,9 @@ SavePlayerData: ; 14dd7
 	ld de, sPlayerData
 	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, wMapData
-	ld de, sMapData
-	ld bc, wMapDataEnd - wMapData
+	ld hl, wCurrMapData
+	ld de, sCurrMapData
+	ld bc, wCurrMapDataEnd - wCurrMapData
 	call CopyBytes
 	jp CloseSRAM
 ; 14df7
@@ -592,9 +592,9 @@ SaveBackupPlayerData: ; 14e55
 	ld de, sBackupPlayerData
 	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, wMapData
-	ld de, sBackupMapData
-	ld bc, wMapDataEnd - wMapData
+	ld hl, wCurrMapData
+	ld de, sBackupCurrMapData
+	ld bc, wCurrMapDataEnd - wCurrMapData
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -777,9 +777,9 @@ LoadPlayerData: ; 14fd7 (5:4fd7)
 	ld de, wPlayerData
 	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, sMapData
-	ld de, wMapData
-	ld bc, wMapDataEnd - wMapData
+	ld hl, sCurrMapData
+	ld de, wCurrMapData
+	ld bc, wCurrMapDataEnd - wCurrMapData
 	call CopyBytes
 	call CloseSRAM
 	ld a, BANK(sBattleTowerChallengeState)
@@ -833,9 +833,9 @@ LoadBackupPlayerData: ; 15046 (5:5046)
 	ld de, wPlayerData
 	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, sBackupMapData
-	ld de, wMapData
-	ld bc, wMapDataEnd - wMapData
+	ld hl, sBackupCurrMapData
+	ld de, wCurrMapData
+	ld bc, wCurrMapDataEnd - wCurrMapData
 	call CopyBytes
 	call CloseSRAM
 	ret

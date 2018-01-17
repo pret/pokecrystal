@@ -2,7 +2,7 @@ const_value set 2
 	const ILEXFORESTAZALEAGATE_OFFICER
 	const ILEXFORESTAZALEAGATE_GRANNY
 
-IlexForestAzaleaGate_MapScriptHeader:
+IlexForestAzaleaGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -30,7 +30,7 @@ IlexForestAzaleaGateGrannyText:
 	line "mischief!"
 	done
 
-IlexForestAzaleaGate_MapEventHeader:
+IlexForestAzaleaGate_MapEvents:
 	; filler
 	db 0, 0
 

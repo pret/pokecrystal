@@ -2,7 +2,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE6F_LASS
 	const GOLDENRODDEPTSTORE6F_SUPER_NERD
 
-GoldenrodDeptStore6F_MapScriptHeader:
+GoldenrodDeptStore6F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -147,7 +147,7 @@ GoldenrodDeptStore6FDirectoryText:
 	para "6F TRANQUIL SQUARE"
 	done
 
-GoldenrodDeptStore6F_MapEventHeader:
+GoldenrodDeptStore6F_MapEvents:
 	; filler
 	db 0, 0
 

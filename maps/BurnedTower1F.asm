@@ -5,7 +5,7 @@ const_value set 2
 	const BURNEDTOWER1F_MORTY
 	const BURNEDTOWER1F_POKE_BALL
 
-BurnedTower1F_MapScriptHeader:
+BurnedTower1F_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .EusineScene
@@ -277,7 +277,7 @@ BurnedTower1FMortyText:
 	line "TOWER with him."
 	done
 
-BurnedTower1F_MapEventHeader:
+BurnedTower1F_MapEvents:
 	; filler
 	db 0, 0
 

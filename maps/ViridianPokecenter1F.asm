@@ -4,7 +4,7 @@ const_value set 2
 	const VIRIDIANPOKECENTER1F_COOLTRAINER_F
 	const VIRIDIANPOKECENTER1F_BUG_CATCHER
 
-ViridianPokecenter1F_MapScriptHeader:
+ViridianPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -71,7 +71,7 @@ ViridianPokecenter1FBugCatcherText:
 	line "come a GYM LEADER."
 	done
 
-ViridianPokecenter1F_MapEventHeader:
+ViridianPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const DAYCARE_GRAMPS
 	const DAYCARE_GRANNY
 
-DayCare_MapScriptHeader:
+DayCare_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -155,7 +155,7 @@ DayCareText_PartyFull:
 	line "this."
 	done
 
-DayCare_MapEventHeader:
+DayCare_MapEvents:
 	; filler
 	db 0, 0
 

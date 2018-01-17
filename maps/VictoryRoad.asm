@@ -6,7 +6,7 @@ const_value set 2
 	const VICTORYROAD_POKE_BALL4
 	const VICTORYROAD_POKE_BALL5
 
-VictoryRoad_MapScriptHeader:
+VictoryRoad_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -238,7 +238,7 @@ UnknownText_0x747aa:
 	line "thing else."
 	done
 
-VictoryRoad_MapEventHeader:
+VictoryRoad_MapEvents:
 	; filler
 	db 0, 0
 

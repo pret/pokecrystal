@@ -4,7 +4,7 @@ const_value set 2
 	const CELADONMANSION3F_SUPER_NERD
 	const CELADONMANSION3F_FISHER
 
-CeladonMansion3F_MapScriptHeader:
+CeladonMansion3F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -189,7 +189,7 @@ UnknownText_0x71996:
 	cont "a # DOLL."
 	done
 
-CeladonMansion3F_MapEventHeader:
+CeladonMansion3F_MapEvents:
 	; filler
 	db 0, 0
 

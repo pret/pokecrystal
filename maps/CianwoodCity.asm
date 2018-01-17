@@ -12,7 +12,7 @@ const_value set 2
 	const CIANWOODCITY_EUSINE
 	const CIANWOODCITY_SUICUNE
 
-CianwoodCity_MapScriptHeader:
+CianwoodCity_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -380,7 +380,7 @@ CianwoodPokeSeerSignText:
 	line "AHEAD"
 	done
 
-CianwoodCity_MapEventHeader:
+CianwoodCity_MapEvents:
 	; filler
 	db 0, 0
 

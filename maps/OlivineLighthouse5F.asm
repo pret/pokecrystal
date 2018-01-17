@@ -5,7 +5,7 @@ const_value set 2
 	const OLIVINELIGHTHOUSE5F_POKE_BALL2
 	const OLIVINELIGHTHOUSE5F_POKE_BALL3
 
-OlivineLighthouse5F_MapScriptHeader:
+OlivineLighthouse5F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -90,7 +90,7 @@ BirdKeeperDenisAfterBattleText:
 	cont "across the sea…"
 	done
 
-OlivineLighthouse5F_MapEventHeader:
+OlivineLighthouse5F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -6,7 +6,7 @@ const_value set 2
 	const VERMILIONCITY_BIG_SNORLAX
 	const VERMILIONCITY_POKEFAN_M
 
-VermilionCity_MapScriptHeader:
+VermilionCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -267,7 +267,7 @@ VermilionCityPortSignText:
 	line "ENTRANCE"
 	done
 
-VermilionCity_MapEventHeader:
+VermilionCity_MapEvents:
 	; filler
 	db 0, 0
 

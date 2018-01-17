@@ -5,7 +5,7 @@ const_value set 2
 	const VIOLETPOKECENTER1F_YOUNGSTER
 	const VIOLETPOKECENTER1F_SCIENTIST
 
-VioletPokecenter1F_MapScriptHeader:
+VioletPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -215,7 +215,7 @@ VioletPokecenter1FYoungsterText:
 	line "they please."
 	done
 
-VioletPokecenter1F_MapEventHeader:
+VioletPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

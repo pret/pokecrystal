@@ -4,7 +4,7 @@ const_value set 2
 	const ROUTE4_LASS2
 	const ROUTE4_POKE_BALL
 
-Route4_MapScriptHeader:
+Route4_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -120,7 +120,7 @@ MtMoonSquareSignText:
 	line "stairs."
 	done
 
-Route4_MapEventHeader:
+Route4_MapEvents:
 	; filler
 	db 0, 0
 

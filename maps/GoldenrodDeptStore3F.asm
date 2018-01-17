@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE3F_SUPER_NERD
 	const GOLDENRODDEPTSTORE3F_ROCKER
 
-GoldenrodDeptStore3F_MapScriptHeader:
+GoldenrodDeptStore3F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -56,7 +56,7 @@ GoldenrodDeptStore3FDirectoryText:
 	line "   COLLECTION"
 	done
 
-GoldenrodDeptStore3F_MapEventHeader:
+GoldenrodDeptStore3F_MapEvents:
 	; filler
 	db 0, 0
 

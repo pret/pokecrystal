@@ -3,7 +3,7 @@ const_value set 2
 	const PEWTERGYM_YOUNGSTER
 	const PEWTERGYM_GYM_GUY
 
-PewterGym_MapScriptHeader:
+PewterGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -208,7 +208,7 @@ PewterGymGuyWinText:
 	line "that seriously."
 	done
 
-PewterGym_MapEventHeader:
+PewterGym_MapEvents:
 	; filler
 	db 0, 0
 

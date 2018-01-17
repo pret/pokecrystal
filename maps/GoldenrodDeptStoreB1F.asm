@@ -8,7 +8,7 @@ const_value set 2
 	const GOLDENRODDEPTSTOREB1F_BLACK_BELT3
 	const GOLDENRODDEPTSTOREB1F_MACHOP
 
-GoldenrodDeptStoreB1F_MapScriptHeader:
+GoldenrodDeptStoreB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -109,7 +109,7 @@ UnknownText_0x7d8bb:
 	text "MACHOKE: Maaacho!"
 	done
 
-GoldenrodDeptStoreB1F_MapEventHeader:
+GoldenrodDeptStoreB1F_MapEvents:
 	; filler
 	db 0, 0
 

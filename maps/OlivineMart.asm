@@ -3,7 +3,7 @@ const_value set 2
 	const OLIVINEMART_COOLTRAINER_F
 	const OLIVINEMART_LASS
 
-OlivineMart_MapScriptHeader:
+OlivineMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -45,7 +45,7 @@ OlivineMartLassText:
 	line "It's a secret!"
 	done
 
-OlivineMart_MapEventHeader:
+OlivineMart_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const VIRIDIANGYM_BLUE
 	const VIRIDIANGYM_GYM_GUY
 
-ViridianGym_MapScriptHeader:
+ViridianGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -169,7 +169,7 @@ ViridianGymGuyWinText:
 	line "tears to my eyes."
 	done
 
-ViridianGym_MapEventHeader:
+ViridianGym_MapEvents:
 	; filler
 	db 0, 0
 

@@ -1,7 +1,7 @@
 const_value set 2
 	const MOUNTMOON_SILVER
 
-MountMoon_MapScriptHeader:
+MountMoon_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .RivalEncounter
@@ -160,7 +160,7 @@ MountMoonSilverTextLoss:
 	cont "greatest trainer."
 	done
 
-MountMoon_MapEventHeader:
+MountMoon_MapEvents:
 	; filler
 	db 0, 0
 

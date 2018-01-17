@@ -1,10 +1,10 @@
 INCLUDE "constants.asm"
 
 
-SECTION "Map Headers", ROMX
+SECTION "Maps", ROMX
 
-INCLUDE "data/maps/map_headers.asm"
-INCLUDE "data/maps/map_headers_2.asm"
+INCLUDE "data/maps/map_defs.asm"
+INCLUDE "data/maps/map_data.asm"
 
 
 INCLUDE "data/maps/blocks.asm"

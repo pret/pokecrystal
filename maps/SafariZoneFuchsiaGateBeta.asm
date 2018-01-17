@@ -1,11 +1,11 @@
-SafariZoneFuchsiaGateBeta_MapScriptHeader:
+SafariZoneFuchsiaGateBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-SafariZoneFuchsiaGateBeta_MapEventHeader:
+SafariZoneFuchsiaGateBeta_MapEvents:
 	; filler
 	db 0, 0
 

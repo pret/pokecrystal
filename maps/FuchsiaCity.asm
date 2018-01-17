@@ -4,7 +4,7 @@ const_value set 2
 	const FUCHSIACITY_TEACHER
 	const FUCHSIACITY_FRUIT_TREE
 
-FuchsiaCity_MapScriptHeader:
+FuchsiaCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -124,7 +124,7 @@ NoLitteringSignText:
 	line "waste with you."
 	done
 
-FuchsiaCity_MapEventHeader:
+FuchsiaCity_MapEvents:
 	; filler
 	db 0, 0
 
@@ -139,8 +139,8 @@ FuchsiaCity_MapEventHeader:
 	warp_def 18, 3, 3, SAFARI_ZONE_FUCHSIA_GATE_BETA
 	warp_def 37, 22, 1, ROUTE_15_FUCHSIA_GATE
 	warp_def 37, 23, 2, ROUTE_15_FUCHSIA_GATE
-	warp_def 7, 35, 1, ROUTE_19___FUCHSIA_GATE
-	warp_def 8, 35, 2, ROUTE_19___FUCHSIA_GATE
+	warp_def 7, 35, 1, ROUTE_19_FUCHSIA_GATE
+	warp_def 8, 35, 2, ROUTE_19_FUCHSIA_GATE
 
 .CoordEvents:
 	db 0

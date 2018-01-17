@@ -2,7 +2,7 @@ const_value set 2
 	const OLIVINEGYM_JASMINE
 	const OLIVINEGYM_GYM_GUY
 
-OlivineGym_MapScriptHeader:
+OlivineGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -197,7 +197,7 @@ OlivineGymGuyPreText:
 	cont "sionate."
 	done
 
-OlivineGym_MapEventHeader:
+OlivineGym_MapEvents:
 	; filler
 	db 0, 0
 

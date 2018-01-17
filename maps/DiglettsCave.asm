@@ -1,7 +1,7 @@
 const_value set 2
 	const DIGLETTSCAVE_POKEFAN_M
 
-DiglettsCave_MapScriptHeader:
+DiglettsCave_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -22,7 +22,7 @@ DiglettsCavePokefanMText:
 	line "shocking."
 	done
 
-DiglettsCave_MapEventHeader:
+DiglettsCave_MapEvents:
 	; filler
 	db 0, 0
 

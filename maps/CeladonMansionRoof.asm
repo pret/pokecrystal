@@ -1,7 +1,7 @@
 const_value set 2
 	const CELADONMANSIONROOF_FISHER
 
-CeladonMansionRoof_MapScriptHeader:
+CeladonMansionRoof_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -33,7 +33,7 @@ UnknownText_0x71aa1:
 	line "moustache!"
 	done
 
-CeladonMansionRoof_MapEventHeader:
+CeladonMansionRoof_MapEvents:
 	; filler
 	db 0, 0
 

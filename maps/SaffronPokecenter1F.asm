@@ -4,7 +4,7 @@ const_value set 2
 	const SAFFRONPOKECENTER1F_FISHER
 	const SAFFRONPOKECENTER1F_YOUNGSTER
 
-SaffronPokecenter1F_MapScriptHeader:
+SaffronPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -111,7 +111,7 @@ SaffronPokecenter1FYoungsterText:
 	line "SAFFRON."
 	done
 
-SaffronPokecenter1F_MapEventHeader:
+SaffronPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

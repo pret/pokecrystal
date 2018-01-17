@@ -4,7 +4,7 @@ const_value set 2
 	const SOULHOUSE_LASS
 	const SOULHOUSE_GRANNY
 
-SoulHouse_MapScriptHeader:
+SoulHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -72,7 +72,7 @@ SoulHouseGrannyText:
 	line "my grandchildren…"
 	done
 
-SoulHouse_MapEventHeader:
+SoulHouse_MapEvents:
 	; filler
 	db 0, 0
 

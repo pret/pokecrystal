@@ -1,6 +1,6 @@
 CheckForHiddenItems: ; b8172
 ; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	ld [Buffer1], a
 ; Get the coordinate of the bottom right corner of the screen, and load it in Buffer3/Buffer4.
 	ld a, [XCoord]
@@ -9,8 +9,8 @@ CheckForHiddenItems: ; b8172
 	ld a, [YCoord]
 	add SCREEN_HEIGHT / 4
 	ld [Buffer3], a
-; Get the pointer for the first BG event header in the map...
-	ld hl, wCurrMapBGEventHeaderPointer
+; Get the pointer for the first bg_event in the map...
+	ld hl, wCurrMapBGEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -20,7 +20,7 @@ CheckForHiddenItems: ; b8172
 	jr z, .nobgeventitems
 ; For i = 1:wCurrMapBGEventCount...
 .loop
-; Store the counter in Buffer2, and store the BG event header pointer in the stack.
+; Store the counter in Buffer2, and store the bg_event pointer in the stack.
 	ld [Buffer2], a
 	push hl
 ; Get the Y coordinate of the BG event.
@@ -58,7 +58,7 @@ CheckForHiddenItems: ; b8172
 	jr z, .itemnearby
 
 .next
-; Restore the BG event header pointer and increment it by the length of a BG event header.
+; Restore the bg_event pointer and increment it by the length of a bg_event.
 	pop hl
 	ld bc, 5
 	add hl, bc

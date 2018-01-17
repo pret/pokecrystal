@@ -4,7 +4,7 @@ const_value set 2
 	const OAKSLAB_SCIENTIST2
 	const OAKSLAB_SCIENTIST3
 
-OaksLab_MapScriptHeader:
+OaksLab_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -256,7 +256,7 @@ OaksLabPCText:
 	line "TOWN 8-)"
 	done
 
-OaksLab_MapEventHeader:
+OaksLab_MapEvents:
 	; filler
 	db 0, 0
 

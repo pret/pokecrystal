@@ -1,11 +1,11 @@
-CinnabarPokecenter2FBeta_MapScriptHeader:
+CinnabarPokecenter2FBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-CinnabarPokecenter2FBeta_MapEventHeader:
+CinnabarPokecenter2FBeta_MapEvents:
 	; filler
 	db 0, 0
 

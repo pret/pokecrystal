@@ -7,7 +7,7 @@ const_value set 2
 	const FASTSHIPCABINS_NNW_NNE_NE_GENTLEMAN
 	const FASTSHIPCABINS_NNW_NNE_NE_PHARMACIST
 
-FastShipCabins_NNW_NNE_NE_MapScriptHeader:
+FastShipCabins_NNW_NNE_NE_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -266,7 +266,7 @@ BurglarCoreyAfterBattleText:
 	line "lost it…"
 	done
 
-FastShipCabins_NNW_NNE_NE_MapEventHeader:
+FastShipCabins_NNW_NNE_NE_MapEvents:
 	; filler
 	db 0, 0
 

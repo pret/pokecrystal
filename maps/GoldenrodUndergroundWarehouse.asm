@@ -7,7 +7,7 @@ const_value set 2
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL2
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL3
 
-GoldenrodUndergroundWarehouse_MapScriptHeader:
+GoldenrodUndergroundWarehouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -210,7 +210,7 @@ UnknownText_0x7dc8d:
 	line "MON nationwide!"
 	done
 
-GoldenrodUndergroundWarehouse_MapEventHeader:
+GoldenrodUndergroundWarehouse_MapEvents:
 	; filler
 	db 0, 0
 

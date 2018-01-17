@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE35GOLDENRODGATE_POKEFAN_F
 	const ROUTE35GOLDENRODGATE_FISHER
 
-Route35GoldenrodGate_MapScriptHeader:
+Route35GoldenrodGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -195,7 +195,7 @@ Route35GoldenrodGateFisherText:
 	line "different kinds."
 	done
 
-Route35GoldenrodGate_MapEventHeader:
+Route35GoldenrodGate_MapEvents:
 	; filler
 	db 0, 0
 

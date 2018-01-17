@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE35_FRUIT_TREE
 	const ROUTE35_POKE_BALL
 
-Route35_MapScriptHeader:
+Route35_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -462,7 +462,7 @@ Route35SignText:
 	text "ROUTE 35"
 	done
 
-Route35_MapEventHeader:
+Route35_MapEvents:
 	; filler
 	db 0, 0
 

@@ -9,7 +9,7 @@ const_value set 2
 	const GOLDENRODUNDERGROUND_SUPER_NERD6
 	const GOLDENRODUNDERGROUND_GRANNY
 
-GoldenrodUnderground_MapScriptHeader:
+GoldenrodUnderground_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -646,7 +646,7 @@ UnknownText_0x7c91a:
 	line "THIS POINT"
 	done
 
-GoldenrodUnderground_MapEventHeader:
+GoldenrodUnderground_MapEvents:
 	; filler
 	db 0, 0
 

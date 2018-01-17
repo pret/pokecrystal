@@ -4,7 +4,7 @@ const_value set 2
 	const OLIVINELIGHTHOUSE3F_YOUNGSTER
 	const OLIVINELIGHTHOUSE3F_POKE_BALL
 
-OlivineLighthouse3F_MapScriptHeader:
+OlivineLighthouse3F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -112,7 +112,7 @@ GentlemanPrestonAfterBattleText:
 	cont "like ONIX."
 	done
 
-OlivineLighthouse3F_MapEventHeader:
+OlivineLighthouse3F_MapEvents:
 	; filler
 	db 0, 0
 

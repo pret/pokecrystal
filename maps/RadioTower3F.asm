@@ -7,7 +7,7 @@ const_value set 2
 	const RADIOTOWER3F_ROCKET3
 	const RADIOTOWER3F_SCIENTIST
 
-RadioTower3F_MapScriptHeader:
+RadioTower3F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -328,7 +328,7 @@ UnknownText_0x5eae4:
 	line "Host DJ BEN"
 	done
 
-RadioTower3F_MapEventHeader:
+RadioTower3F_MapEvents:
 	; filler
 	db 0, 0
 

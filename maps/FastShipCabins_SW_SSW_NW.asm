@@ -4,7 +4,7 @@ const_value set 2
 	const FASTSHIPCABINS_SW_SSW_NW_BUENA
 	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
 
-FastShipCabins_SW_SSW_NW_MapScriptHeader:
+FastShipCabins_SW_SSW_NW_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -222,7 +222,7 @@ FastShipArrivedVermilionText:
 	cont "VERMILION CITY."
 	done
 
-FastShipCabins_SW_SSW_NW_MapEventHeader:
+FastShipCabins_SW_SSW_NW_MapEvents:
 	; filler
 	db 0, 0
 

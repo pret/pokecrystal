@@ -4,7 +4,7 @@ const_value set 2
 	const ROUTE34ILEXFORESTGATE_LASS
 	const ROUTE34ILEXFORESTGATE_TEACHER2
 
-Route34IlexForestGate_MapScriptHeader:
+Route34IlexForestGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -135,7 +135,7 @@ Route34IlexForestGateLassText:
 	cont "type #MON."
 	done
 
-Route34IlexForestGate_MapEventHeader:
+Route34IlexForestGate_MapEvents:
 	; filler
 	db 0, 0
 

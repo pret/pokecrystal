@@ -1,4 +1,4 @@
-Route16_MapScriptHeader:
+Route16_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -28,7 +28,7 @@ CyclingRoadSignText:
 	line "ALL THE WAY!"
 	done
 
-Route16_MapEventHeader:
+Route16_MapEvents:
 	; filler
 	db 0, 0
 

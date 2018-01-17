@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE39BARN_TWIN2
 	const ROUTE39BARN_MOOMOO
 
-Route39Barn_MapScriptHeader:
+Route39Barn_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -188,7 +188,7 @@ Text_RefusedToGiveBerry:
 	para "MILTANK looks sad."
 	done
 
-Route39Barn_MapEventHeader:
+Route39Barn_MapEvents:
 	; filler
 	db 0, 0
 

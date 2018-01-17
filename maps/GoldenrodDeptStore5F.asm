@@ -6,7 +6,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE5F_CARRIE
 	const GOLDENRODDEPTSTORE5F_RECEPTIONIST
 
-GoldenrodDeptStore5F_MapScriptHeader:
+GoldenrodDeptStore5F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -217,7 +217,7 @@ GoldenrodDeptStore5FDirectoryText:
 	para "5F TM CORNER"
 	done
 
-GoldenrodDeptStore5F_MapEventHeader:
+GoldenrodDeptStore5F_MapEvents:
 	; filler
 	db 0, 0
 

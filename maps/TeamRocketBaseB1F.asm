@@ -6,7 +6,7 @@ const_value set 2
 	const TEAMROCKETBASEB1F_POKE_BALL2
 	const TEAMROCKETBASEB1F_POKE_BALL3
 
-TeamRocketBaseB1F_MapScriptHeader:
+TeamRocketBaseB1F_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -726,7 +726,7 @@ UnknownText_0x6cdd0:
 	line "turned off."
 	done
 
-TeamRocketBaseB1F_MapEventHeader:
+TeamRocketBaseB1F_MapEvents:
 	; filler
 	db 0, 0
 

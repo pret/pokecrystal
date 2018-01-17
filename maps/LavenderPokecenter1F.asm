@@ -4,7 +4,7 @@ const_value set 2
 	const LAVENDERPOKECENTER1F_TEACHER
 	const LAVENDERPOKECENTER1F_YOUNGSTER
 
-LavenderPokecenter1F_MapScriptHeader:
+LavenderPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -80,7 +80,7 @@ UnknownText_0x7e7ed:
 	cont "smoothly again."
 	done
 
-LavenderPokecenter1F_MapEventHeader:
+LavenderPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

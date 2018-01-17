@@ -1,7 +1,7 @@
 const_value set 2
 	const HALLOFFAME_LANCE
 
-HallOfFame_MapScriptHeader:
+HallOfFame_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .EnterHallOfFame
@@ -110,7 +110,7 @@ HallOfFame_LanceText:
 	line "as CHAMPIONS!"
 	done
 
-HallOfFame_MapEventHeader:
+HallOfFame_MapEvents:
 	; filler
 	db 0, 0
 

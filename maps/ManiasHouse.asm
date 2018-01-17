@@ -1,7 +1,7 @@
 const_value set 2
 	const MANIASHOUSE_ROCKER
 
-ManiasHouse_MapScriptHeader:
+ManiasHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -199,7 +199,7 @@ ManiaText_ShuckleIsYourLastMon:
 	line "in battle?"
 	done
 
-ManiasHouse_MapEventHeader:
+ManiasHouse_MapEvents:
 	; filler
 	db 0, 0
 

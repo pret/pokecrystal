@@ -6,7 +6,7 @@ const_value set 2
 	const COPYCATSHOUSE2F_BIRDDOLL
 	const COPYCATSHOUSE2F_COPYCAT2 ; if player is female
 
-CopycatsHouse2F_MapScriptHeader:
+CopycatsHouse2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -360,7 +360,7 @@ CopycatsHouse2FDollText:
 	para "It's only a doll…"
 	done
 
-CopycatsHouse2F_MapEventHeader:
+CopycatsHouse2F_MapEvents:
 	; filler
 	db 0, 0
 

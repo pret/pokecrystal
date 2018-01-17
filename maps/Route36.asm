@@ -9,7 +9,7 @@ const_value set 2
 	const ROUTE36_FLORIA
 	const ROUTE36_SUICUNE
 
-Route36_MapScriptHeader:
+Route36_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -659,7 +659,7 @@ Route36TrainerTips2Text:
 	line "landmarks."
 	done
 
-Route36_MapEventHeader:
+Route36_MapEvents:
 	; filler
 	db 0, 0
 

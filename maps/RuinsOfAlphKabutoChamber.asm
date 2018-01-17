@@ -2,7 +2,7 @@ const_value set 2
 	const RUINSOFALPHKABUTOCHAMBER_RECEPTIONIST
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
-RuinsOfAlphKabutoChamber_MapScriptHeader:
+RuinsOfAlphKabutoChamber_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .CheckWall
@@ -255,7 +255,7 @@ UnknownText_0x58b3f:
 	line "scanned the area."
 	done
 
-RuinsOfAlphKabutoChamber_MapEventHeader:
+RuinsOfAlphKabutoChamber_MapEvents:
 	; filler
 	db 0, 0
 

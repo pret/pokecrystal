@@ -3,7 +3,7 @@ const_value set 2
 	const OLIVINELIGHTHOUSE6F_MONSTER
 	const OLIVINELIGHTHOUSE6F_POKE_BALL
 
-OlivineLighthouse6F_MapScriptHeader:
+OlivineLighthouse6F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -257,7 +257,7 @@ UnknownText_0x60f3d:
 	line "Palulu!"
 	done
 
-OlivineLighthouse6F_MapEventHeader:
+OlivineLighthouse6F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,7 +3,7 @@ const_value set 2
 	const CHARCOALKILN_YOUNGSTER
 	const CHARCOALKILN_MOLTRES
 
-CharcoalKiln_MapScriptHeader:
+CharcoalKiln_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -148,7 +148,7 @@ FarfetchdText:
 	text "FARFETCH'D: Kwaa!"
 	done
 
-CharcoalKiln_MapEventHeader:
+CharcoalKiln_MapEvents:
 	; filler
 	db 0, 0
 

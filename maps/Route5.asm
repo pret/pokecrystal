@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE5_POKEFAN_M
 
-Route5_MapScriptHeader:
+Route5_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -39,7 +39,7 @@ HouseForSaleSignText:
 	line "Nobody lives here."
 	done
 
-Route5_MapEventHeader:
+Route5_MapEvents:
 	; filler
 	db 0, 0
 

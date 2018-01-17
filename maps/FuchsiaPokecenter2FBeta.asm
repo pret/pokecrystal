@@ -1,11 +1,11 @@
-FuchsiaPokecenter2FBeta_MapScriptHeader:
+FuchsiaPokecenter2FBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-FuchsiaPokecenter2FBeta_MapEventHeader:
+FuchsiaPokecenter2FBeta_MapEvents:
 	; filler
 	db 0, 0
 

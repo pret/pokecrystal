@@ -5,7 +5,7 @@ const_value set 2
 	const GOLDENRODPOKECENTER1F_LASS
 	const GOLDENRODPOKECENTER1F_POKEFAN_F
 
-GoldenrodPokecenter1F_MapScriptHeader:
+GoldenrodPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -804,7 +804,7 @@ UnknownText_0x62549:
 	line "the EON MAIL."
 	done
 
-GoldenrodPokecenter1F_MapEventHeader:
+GoldenrodPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

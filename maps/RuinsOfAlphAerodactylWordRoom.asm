@@ -1,11 +1,11 @@
-RuinsOfAlphAerodactylWordRoom_MapScriptHeader:
+RuinsOfAlphAerodactylWordRoom_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-RuinsOfAlphAerodactylWordRoom_MapEventHeader:
+RuinsOfAlphAerodactylWordRoom_MapEvents:
 	; filler
 	db 0, 0
 

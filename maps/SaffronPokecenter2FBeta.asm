@@ -1,11 +1,11 @@
-SaffronPokecenter2FBeta_MapScriptHeader:
+SaffronPokecenter2FBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-SaffronPokecenter2FBeta_MapEventHeader:
+SaffronPokecenter2FBeta_MapEvents:
 	; filler
 	db 0, 0
 

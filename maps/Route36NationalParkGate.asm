@@ -12,7 +12,7 @@ const_value set 2
 	const ROUTE36NATIONALPARKGATE_YOUNGSTER7
 	const ROUTE36NATIONALPARKGATE_OFFICER2
 
-Route36NationalParkGate_MapScriptHeader:
+Route36NationalParkGate_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -849,7 +849,7 @@ UnknownText_0x6b97f:
 	cont "for you."
 	done
 
-Route36NationalParkGate_MapEventHeader:
+Route36NationalParkGate_MapEvents:
 	; filler
 	db 0, 0
 

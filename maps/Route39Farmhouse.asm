@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE39FARMHOUSE_POKEFAN_M
 	const ROUTE39FARMHOUSE_POKEFAN_F
 
-Route39Farmhouse_MapScriptHeader:
+Route39Farmhouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -192,7 +192,7 @@ FarmerFText_SnoreSpeech:
 	cont "it, hon."
 	done
 
-Route39Farmhouse_MapEventHeader:
+Route39Farmhouse_MapEvents:
 	; filler
 	db 0, 0
 

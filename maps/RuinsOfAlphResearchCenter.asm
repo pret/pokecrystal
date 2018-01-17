@@ -3,7 +3,7 @@ const_value set 2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 
-RuinsOfAlphResearchCenter_MapScriptHeader:
+RuinsOfAlphResearchCenter_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -392,7 +392,7 @@ UnknownText_0x59886:
 	cont "Ancients…"
 	done
 
-RuinsOfAlphResearchCenter_MapEventHeader:
+RuinsOfAlphResearchCenter_MapEvents:
 	; filler
 	db 0, 0
 

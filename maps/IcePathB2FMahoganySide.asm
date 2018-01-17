@@ -6,7 +6,7 @@ const_value set 2
 	const ICEPATHB2FMAHOGANYSIDE_POKE_BALL1
 	const ICEPATHB2FMAHOGANYSIDE_POKE_BALL2
 
-IcePathB2FMahoganySide_MapScriptHeader:
+IcePathB2FMahoganySide_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -30,7 +30,7 @@ IcePathB2FMahoganySideBoulderText:
 	line "imbedded in ice."
 	done
 
-IcePathB2FMahoganySide_MapEventHeader:
+IcePathB2FMahoganySide_MapEvents:
 	; filler
 	db 0, 0
 

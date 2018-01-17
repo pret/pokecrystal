@@ -763,7 +763,7 @@ endr
 ; e16c7
 
 UnownPuzzle_AddPuzzlePieceBorders: ; e16c7
-	ld hl, GFXHeaders
+	ld hl, PuzzlePieceBorderData
 	ld a, 8
 .loop
 	push af
@@ -819,7 +819,7 @@ endr
 	ret
 ; e1703
 
-GFXHeaders: ; e1703
+PuzzlePieceBorderData: ; e1703
 	dw .TileBordersGFX + 0 tiles, vTiles0 tile $00
 	dw .TileBordersGFX + 1 tiles, vTiles0 tile $01
 	dw .TileBordersGFX + 2 tiles, vTiles0 tile $02

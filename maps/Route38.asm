@@ -7,7 +7,7 @@ const_value set 2
 	const ROUTE38_FRUIT_TREE
 	const ROUTE38_BUENA2
 
-Route38_MapScriptHeader:
+Route38_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -472,7 +472,7 @@ Route38TrainerTipsText:
 	cont "its evolution."
 	done
 
-Route38_MapEventHeader:
+Route38_MapEvents:
 	; filler
 	db 0, 0
 

@@ -4,7 +4,7 @@ const_value set 2
 	const OLIVINEPOKECENTER1F_FISHER
 	const OLIVINEPOKECENTER1F_TEACHER
 
-OlivinePokecenter1F_MapScriptHeader:
+OlivinePokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -47,7 +47,7 @@ OlivinePokecenter1FTeacherText:
 	cont "rare #MON."
 	done
 
-OlivinePokecenter1F_MapEventHeader:
+OlivinePokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

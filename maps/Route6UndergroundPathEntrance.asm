@@ -1,11 +1,11 @@
-Route6UndergroundPathEntrance_MapScriptHeader:
+Route6UndergroundPathEntrance_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-Route6UndergroundPathEntrance_MapEventHeader:
+Route6UndergroundPathEntrance_MapEvents:
 	; filler
 	db 0, 0
 

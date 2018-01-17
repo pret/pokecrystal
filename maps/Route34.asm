@@ -13,7 +13,7 @@ const_value set 2
 	const ROUTE34_COOLTRAINER_F3
 	const ROUTE34_POKE_BALL
 
-Route34_MapScriptHeader:
+Route34_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -760,7 +760,7 @@ DayCareSignText:
 	line "#MON FOR YOU!"
 	done
 
-Route34_MapEventHeader:
+Route34_MapEvents:
 	; filler
 	db 0, 0
 

@@ -1,7 +1,7 @@
 const_value set 2
 	const MRPSYCHICSHOUSE_FISHING_GURU
 
-MrPsychicsHouse_MapScriptHeader:
+MrPsychicsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -47,7 +47,7 @@ MrPsychicText2:
 	line "target's SPCL.DEF."
 	done
 
-MrPsychicsHouse_MapEventHeader:
+MrPsychicsHouse_MapEvents:
 	; filler
 	db 0, 0
 

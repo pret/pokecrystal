@@ -6,7 +6,7 @@ const_value set 2
 	const CERULEANGYM_SWIMMER_GUY
 	const CERULEANGYM_GYM_GUY
 
-CeruleanGym_MapScriptHeader:
+CeruleanGym_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -362,7 +362,7 @@ CeruleanGymGuyWinText:
 	cont "great battle!"
 	done
 
-CeruleanGym_MapEventHeader:
+CeruleanGym_MapEvents:
 	; filler
 	db 0, 0
 

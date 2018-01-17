@@ -4,7 +4,7 @@ const_value set 2
 	const CELADONDEPTSTORE2F_POKEFAN_M
 	const CELADONDEPTSTORE2F_YOUNGSTER
 
-CeladonDeptStore2F_MapScriptHeader:
+CeladonDeptStore2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -68,7 +68,7 @@ CeladonDeptStore2FDirectoryText:
 	line "    MARKET"
 	done
 
-CeladonDeptStore2F_MapEventHeader:
+CeladonDeptStore2F_MapEvents:
 	; filler
 	db 0, 0
 

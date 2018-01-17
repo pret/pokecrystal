@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE29ROUTE46GATE_OFFICER
 	const ROUTE29ROUTE46GATE_YOUNGSTER
 
-Route29Route46Gate_MapScriptHeader:
+Route29Route46Gate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -36,7 +36,7 @@ Route29Route46GateYoungsterText:
 	line "everywhere."
 	done
 
-Route29Route46Gate_MapEventHeader:
+Route29Route46Gate_MapEvents:
 	; filler
 	db 0, 0
 

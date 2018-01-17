@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE18_YOUNGSTER1
 	const ROUTE18_YOUNGSTER2
 
-Route18_MapScriptHeader:
+Route18_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -77,7 +77,7 @@ Route18SignText:
 	line "FUCHSIA CITY"
 	done
 
-Route18_MapEventHeader:
+Route18_MapEvents:
 	; filler
 	db 0, 0
 

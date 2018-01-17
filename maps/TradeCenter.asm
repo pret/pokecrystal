@@ -2,7 +2,7 @@ const_value set 2
 	const TRADECENTER_CHRIS1
 	const TRADECENTER_CHRIS2
 
-TradeCenter_MapScriptHeader:
+TradeCenter_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .InitializeTradeCenter
@@ -53,7 +53,7 @@ ChrisScript_0x19340b:
 	line "ready."
 	done
 
-TradeCenter_MapEventHeader:
+TradeCenter_MapEvents:
 	; filler
 	db 0, 0
 

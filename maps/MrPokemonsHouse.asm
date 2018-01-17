@@ -2,7 +2,7 @@ const_value set 2
 	const MRPOKEMONSHOUSE_GENTLEMAN
 	const MRPOKEMONSHOUSE_OAK
 
-MrPokemonsHouse_MapScriptHeader:
+MrPokemonsHouse_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .MeetMrPokemon
@@ -372,7 +372,7 @@ MrPokemonsHouse_StrangeCoinsText:
 	line "another country…"
 	done
 
-MrPokemonsHouse_MapEventHeader:
+MrPokemonsHouse_MapEvents:
 	; filler
 	db 0, 0
 

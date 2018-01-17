@@ -3,7 +3,7 @@ const_value set 2
 	const CHERRYGROVEMART_COOLTRAINER_M
 	const CHERRYGROVEMART_YOUNGSTER
 
-CherrygroveMart_MapScriptHeader:
+CherrygroveMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -71,7 +71,7 @@ CherrygroveMartYoungsterText:
 	line "ANTIDOTE with you."
 	done
 
-CherrygroveMart_MapEventHeader:
+CherrygroveMart_MapEvents:
 	; filler
 	db 0, 0
 

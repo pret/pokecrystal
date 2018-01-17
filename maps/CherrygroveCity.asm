@@ -5,7 +5,7 @@ const_value set 2
 	const CHERRYGROVECITY_YOUNGSTER
 	const CHERRYGROVECITY_FISHER
 
-CherrygroveCity_MapScriptHeader:
+CherrygroveCity_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -546,7 +546,7 @@ GuideGentsHouseSignText:
 	text "GUIDE GENT'S HOUSE"
 	done
 
-CherrygroveCity_MapEventHeader:
+CherrygroveCity_MapEvents:
 	; filler
 	db 0, 0
 

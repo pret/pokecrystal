@@ -131,7 +131,7 @@ CheckPhoneCall:: ; 90074 (24:4074)
 	cp b
 	jr nz, .no_call
 
-	call GetMapHeaderPhoneServiceNybble
+	call GetMapPhoneService
 	and a
 	jr nz, .no_call
 
@@ -328,7 +328,7 @@ Function90199: ; 90199 (24:4199)
 	and a
 	jr nz, .OutOfArea
 	; If you're in an area without phone service, don't do the call
-	call GetMapHeaderPhoneServiceNybble
+	call GetMapPhoneService
 	and a
 	jr nz, .OutOfArea
 	; If the person can't take a call at that time, don't do the call

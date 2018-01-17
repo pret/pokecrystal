@@ -11,7 +11,7 @@ const_value set 2
 	const RADIOTOWER2F_BUENA
 	const RADIOTOWER2F_RECEPTIONIST
 
-RadioTower2F_MapScriptHeader:
+RadioTower2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -710,7 +710,7 @@ UnknownText_0x5e463:
 	line "#MON Radio"
 	done
 
-RadioTower2F_MapEventHeader:
+RadioTower2F_MapEvents:
 	; filler
 	db 0, 0
 

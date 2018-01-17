@@ -5,7 +5,7 @@ const_value set 2
 	const BLACKTHORNGYM1F_COOLTRAINER_F
 	const BLACKTHORNGYM1F_GYM_GUY
 
-BlackthornGym1F_MapScriptHeader:
+BlackthornGym1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -386,7 +386,7 @@ BlackthornGymGuyWinText:
 	cont "#MON CHAMPION!"
 	done
 
-BlackthornGym1F_MapEventHeader:
+BlackthornGym1F_MapEvents:
 	; filler
 	db 0, 0
 

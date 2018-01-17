@@ -7,7 +7,7 @@ const_value set 2
 	const ECRUTEAKGYM_GYM_GUY
 	const ECRUTEAKGYM_GRAMPS
 
-EcruteakGym_MapScriptHeader:
+EcruteakGym_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .ForcedToLeave
@@ -386,7 +386,7 @@ UnknownText_0x9a49c:
 	para "Hohohoho."
 	done
 
-EcruteakGym_MapEventHeader:
+EcruteakGym_MapEvents:
 	; filler
 	db 0, 0
 

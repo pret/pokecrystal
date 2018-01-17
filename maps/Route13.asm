@@ -5,7 +5,7 @@ const_value set 2
 	const ROUTE13_POKEFAN_M2
 	const ROUTE13_POKEFAN_M3
 
-Route13_MapScriptHeader:
+Route13_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -191,7 +191,7 @@ Route13DirectionsSignText:
 	line "CITY"
 	done
 
-Route13_MapEventHeader:
+Route13_MapEvents:
 	; filler
 	db 0, 0
 

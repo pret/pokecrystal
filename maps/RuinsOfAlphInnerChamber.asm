@@ -3,7 +3,7 @@ const_value set 2
 	const RUINSOFALPHINNERCHAMBER_TEACHER
 	const RUINSOFALPHINNERCHAMBER_GRAMPS
 
-RuinsOfAlphInnerChamber_MapScriptHeader:
+RuinsOfAlphInnerChamber_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -76,7 +76,7 @@ RuinsOfAlphInnerChamberStatueText:
 	cont "MON."
 	done
 
-RuinsOfAlphInnerChamber_MapEventHeader:
+RuinsOfAlphInnerChamber_MapEvents:
 	; filler
 	db 0, 0
 

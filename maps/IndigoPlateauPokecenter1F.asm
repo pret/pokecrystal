@@ -6,7 +6,7 @@ const_value set 2
 	const INDIGOPLATEAUPOKECENTER1F_GRAMPS
 	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
-IndigoPlateauPokecenter1F_MapScriptHeader:
+IndigoPlateauPokecenter1F_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -302,7 +302,7 @@ AbraText:
 	text "ABRA: Aabra…"
 	done
 
-IndigoPlateauPokecenter1F_MapEventHeader:
+IndigoPlateauPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

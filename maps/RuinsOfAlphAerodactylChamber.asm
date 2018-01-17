@@ -1,4 +1,4 @@
-RuinsOfAlphAerodactylChamber_MapScriptHeader:
+RuinsOfAlphAerodactylChamber_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .CheckWall
@@ -143,7 +143,7 @@ UnknownText_0x58ee7:
 	line "fangs."
 	done
 
-RuinsOfAlphAerodactylChamber_MapEventHeader:
+RuinsOfAlphAerodactylChamber_MapEvents:
 	; filler
 	db 0, 0
 

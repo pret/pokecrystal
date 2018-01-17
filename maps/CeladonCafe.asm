@@ -5,7 +5,7 @@ const_value set 2
 	const CELADONCAFE_FISHER3
 	const CELADONCAFE_TEACHER
 
-CeladonCafe_MapScriptHeader:
+CeladonCafe_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -207,7 +207,7 @@ NoRoomForLeftoversText:
 	line "hold another item…"
 	done
 
-CeladonCafe_MapEventHeader:
+CeladonCafe_MapEvents:
 	; filler
 	db 0, 0
 

@@ -4,7 +4,7 @@ const_value set 2
 	const FUCHSIAPOKECENTER1F_COOLTRAINER_F
 	const FUCHSIAPOKECENTER1F_JANINE_IMPERSONATOR
 
-FuchsiaPokecenter1F_MapScriptHeader:
+FuchsiaPokecenter1F_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -88,7 +88,7 @@ UnknownText_0x19654e:
 	line "like her now!"
 	done
 
-FuchsiaPokecenter1F_MapEventHeader:
+FuchsiaPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

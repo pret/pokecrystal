@@ -4,7 +4,7 @@ const_value set 2
 	const FASTSHIP1F_SAILOR3
 	const FASTSHIP1F_GENTLEMAN
 
-FastShip1F_MapScriptHeader:
+FastShip1F_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -285,7 +285,7 @@ UnknownText_0x754be:
 	cont "VERMILION CITY."
 	done
 
-FastShip1F_MapEventHeader:
+FastShip1F_MapEvents:
 	; filler
 	db 0, 0
 

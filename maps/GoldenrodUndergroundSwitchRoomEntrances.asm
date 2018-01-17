@@ -43,7 +43,7 @@ const_value set 2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_POKE_BALL2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 
-GoldenrodUndergroundSwitchRoomEntrances_MapScriptHeader:
+GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -929,7 +929,7 @@ SwitchRoomText_Emergency:
 	line "EMERGENCY."
 	done
 
-GoldenrodUndergroundSwitchRoomEntrances_MapEventHeader:
+GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const CELADONDEPTSTORE6F_SUPER_NERD
 	const CELADONDEPTSTORE6F_YOUNGSTER
 
-CeladonDeptStore6F_MapScriptHeader:
+CeladonDeptStore6F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -145,7 +145,7 @@ CeladonDeptStore6FDirectoryText:
 	line "VENDING MACHINES"
 	done
 
-CeladonDeptStore6F_MapEventHeader:
+CeladonDeptStore6F_MapEvents:
 	; filler
 	db 0, 0
 

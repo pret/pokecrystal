@@ -1,8 +1,8 @@
 Function8b342:: ; 8b342
-; Loads the secondary map header pointer, then runs through a
+; Loads the map data pointer, then runs through a
 ; dw with three dummy functions. Spends a lot of energy
 ; doing pretty much nothing.
-	call GetSecondaryMapHeaderPointer
+	call GetMapDataPointer
 	ld d, h
 	ld e, l
 

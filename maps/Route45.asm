@@ -13,7 +13,7 @@ const_value set 2
 	const ROUTE45_POKE_BALL4
 	const ROUTE45_YOUNGSTER
 
-Route45_MapScriptHeader:
+Route45_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -531,7 +531,7 @@ Route45SignText:
 	line "MOUNTAIN RD. AHEAD"
 	done
 
-Route45_MapEventHeader:
+Route45_MapEvents:
 	; filler
 	db 0, 0
 

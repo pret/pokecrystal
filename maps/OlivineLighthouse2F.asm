@@ -2,7 +2,7 @@ const_value set 2
 	const OLIVINELIGHTHOUSE2F_SAILOR
 	const OLIVINELIGHTHOUSE2F_GENTLEMAN
 
-OlivineLighthouse2F_MapScriptHeader:
+OlivineLighthouse2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -204,7 +204,7 @@ UnknownText_0x5b1b6:
 	cont "before."
 	done
 
-OlivineLighthouse2F_MapEventHeader:
+OlivineLighthouse2F_MapEvents:
 	; filler
 	db 0, 0
 

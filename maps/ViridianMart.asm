@@ -3,7 +3,7 @@ const_value set 2
 	const VIRIDIANMART_LASS
 	const VIRIDIANMART_COOLTRAINER_M
 
-ViridianMart_MapScriptHeader:
+ViridianMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -36,7 +36,7 @@ ViridianMartCooltrainerMText:
 	line "south of here."
 	done
 
-ViridianMart_MapEventHeader:
+ViridianMart_MapEvents:
 	; filler
 	db 0, 0
 

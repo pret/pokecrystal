@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODHAPPINESSRATER_POKEFAN_M
 	const GOLDENRODHAPPINESSRATER_TWIN
 
-GoldenrodHappinessRater_MapScriptHeader:
+GoldenrodHappinessRater_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -136,7 +136,7 @@ GoldenrodHappinessRaterTwinText:
 	cont "acts really glad!"
 	done
 
-GoldenrodHappinessRater_MapEventHeader:
+GoldenrodHappinessRater_MapEvents:
 	; filler
 	db 0, 0
 

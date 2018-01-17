@@ -12,7 +12,7 @@ const_value set 2
 	const FASTSHIPB1F_YOUNGSTER1
 	const FASTSHIPB1F_YOUNGSTER2
 
-FastShipB1F_MapScriptHeader:
+FastShipB1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -448,7 +448,7 @@ SchoolboyRickyAfterBattleText:
 	cont "stone panels."
 	done
 
-FastShipB1F_MapEventHeader:
+FastShipB1F_MapEvents:
 	; filler
 	db 0, 0
 

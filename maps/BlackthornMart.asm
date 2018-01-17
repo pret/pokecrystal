@@ -3,7 +3,7 @@ const_value set 2
 	const BLACKTHORNMART_COOLTRAINER_M
 	const BLACKTHORNMART_BLACK_BELT
 
-BlackthornMart_MapScriptHeader:
+BlackthornMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -46,7 +46,7 @@ BlackthornMartBlackBeltText:
 	cont "REPEL sprays."
 	done
 
-BlackthornMart_MapEventHeader:
+BlackthornMart_MapEvents:
 	; filler
 	db 0, 0
 

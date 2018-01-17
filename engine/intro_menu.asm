@@ -542,10 +542,10 @@ Continue_LoadMenuHeader: ; 5ebf
 	ld hl, .MenuDataHeader_Dex
 	ld a, [wStatusFlags]
 	bit 0, a ; pokedex
-	jr nz, .pokedex_header
+	jr nz, .show_menu
 	ld hl, .MenuDataHeader_NoDex
 
-.pokedex_header
+.show_menu
 	call _OffsetMenuDataHeader
 	call MenuBox
 	call PlaceVerticalMenuItems

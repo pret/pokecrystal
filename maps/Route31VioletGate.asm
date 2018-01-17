@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE31VIOLETGATE_OFFICER
 	const ROUTE31VIOLETGATE_COOLTRAINER_F
 
-Route31VioletGate_MapScriptHeader:
+Route31VioletGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -27,7 +27,7 @@ Route31VioletGateCooltrainerFText:
 	cont "phone home!"
 	done
 
-Route31VioletGate_MapEventHeader:
+Route31VioletGate_MapEvents:
 	; filler
 	db 0, 0
 

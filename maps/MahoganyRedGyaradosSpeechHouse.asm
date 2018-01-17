@@ -2,7 +2,7 @@ const_value set 2
 	const MAHOGANYREDGYARADOSSPEECHHOUSE_BLACK_BELT
 	const MAHOGANYREDGYARADOSSPEECHHOUSE_TEACHER
 
-MahoganyRedGyaradosSpeechHouse_MapScriptHeader:
+MahoganyRedGyaradosSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -60,7 +60,7 @@ UnknownText_0x199a3d:
 	line "It's creepy."
 	done
 
-MahoganyRedGyaradosSpeechHouse_MapEventHeader:
+MahoganyRedGyaradosSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

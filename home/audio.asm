@@ -340,7 +340,7 @@ FadeToMapMusic:: ; 3cbc
 	push bc
 	push af
 
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 	ld a, [wMapMusic]
 	cp e
 	jr z, .done
@@ -368,7 +368,7 @@ PlayMapMusic:: ; 3cdf
 	push bc
 	push af
 
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 	ld a, [wMapMusic]
 	cp e
 	jr z, .done
@@ -402,7 +402,7 @@ EnterMapMusic:: ; 3d03
 	ld a, [PlayerState]
 	cp PLAYER_BIKE
 	jr z, .play
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 .play
 	push de
 	ld de, MUSIC_NONE
@@ -495,10 +495,10 @@ SpecialMapMusic:: ; 3d62
 	ret
 ; 3d97
 
-GetMapMusic:: ; 3d97
+GetMapMusic_MaybeSpecial:: ; 3d97
 	call SpecialMapMusic
 	ret c
-	call GetMapHeaderMusic
+	call GetMapMusic
 	ret
 ; 3d9f
 

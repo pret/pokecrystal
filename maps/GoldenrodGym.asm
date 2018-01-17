@@ -6,7 +6,7 @@ const_value set 2
 	const GOLDENRODGYM_BUENA2
 	const GOLDENRODGYM_GYM_GUY
 
-GoldenrodGym_MapScriptHeader:
+GoldenrodGym_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -379,7 +379,7 @@ GoldenrodGymGuyWinText:
 	cont "the ladies here."
 	done
 
-GoldenrodGym_MapEventHeader:
+GoldenrodGym_MapEvents:
 	; filler
 	db 0, 0
 

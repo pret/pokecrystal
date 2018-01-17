@@ -9,7 +9,7 @@ const_value set 2
 	const SLOWPOKEWELLB1F_BOULDER
 	const SLOWPOKEWELLB1F_POKE_BALL
 
-SlowpokeWellB1F_MapScriptHeader:
+SlowpokeWellB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -320,7 +320,7 @@ SlowpokeWellB1FTaillessSlowpokeText:
 	line "its TAIL cut off…"
 	done
 
-SlowpokeWellB1F_MapEventHeader:
+SlowpokeWellB1F_MapEvents:
 	; filler
 	db 0, 0
 

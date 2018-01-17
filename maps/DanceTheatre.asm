@@ -9,7 +9,7 @@ const_value set 2
 	const DANCETHEATRE_COOLTRAINER_M
 	const DANCETHEATRE_GRANNY
 
-DanceTheatre_MapScriptHeader:
+DanceTheatre_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -337,7 +337,7 @@ FancyPanelText:
 	cont "with flowers."
 	done
 
-DanceTheatre_MapEventHeader:
+DanceTheatre_MapEvents:
 	; filler
 	db 0, 0
 

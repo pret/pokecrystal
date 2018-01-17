@@ -4,7 +4,7 @@ const_value set 2
 	const ROUTE10POKECENTER1F_GYM_GUY
 	const ROUTE10POKECENTER1F_COOLTRAINER_F
 
-Route10Pokecenter1F_MapScriptHeader:
+Route10Pokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -80,7 +80,7 @@ Route10Pokecenter1FCooltrainerFText:
 	line "PLANT."
 	done
 
-Route10Pokecenter1F_MapEventHeader:
+Route10Pokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const MOUNTMORTAR1FOUTSIDE_POKE_BALL1
 	const MOUNTMORTAR1FOUTSIDE_POKE_BALL2
 
-MountMortar1FOutside_MapScriptHeader:
+MountMortar1FOutside_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -18,7 +18,7 @@ MountMortar1FOutsideRevive:
 MountMortar1FOutsideHiddenHyperPotion:
 	hiddenitem EVENT_MOUNT_MORTAR_1F_OUTSIDE_HIDDEN_HYPER_POTION, HYPER_POTION
 
-MountMortar1FOutside_MapEventHeader:
+MountMortar1FOutside_MapEvents:
 	; filler
 	db 0, 0
 

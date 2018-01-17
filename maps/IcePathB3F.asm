@@ -2,7 +2,7 @@ const_value set 2
 	const ICEPATHB3F_POKE_BALL
 	const ICEPATHB3F_ROCK
 
-IcePathB3F_MapScriptHeader:
+IcePathB3F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -15,7 +15,7 @@ IcePathB3FNevermeltice:
 IcePathB3FRock:
 	jumpstd smashrock
 
-IcePathB3F_MapEventHeader:
+IcePathB3F_MapEvents:
 	; filler
 	db 0, 0
 

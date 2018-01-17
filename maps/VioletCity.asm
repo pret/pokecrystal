@@ -8,7 +8,7 @@ const_value set 2
 	const VIOLETCITY_POKE_BALL1
 	const VIOLETCITY_POKE_BALL2
 
-VioletCity_MapScriptHeader:
+VioletCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -278,7 +278,7 @@ EarlsPokemonAcademySignText:
 	line "ACADEMY"
 	done
 
-VioletCity_MapEventHeader:
+VioletCity_MapEvents:
 	; filler
 	db 0, 0
 

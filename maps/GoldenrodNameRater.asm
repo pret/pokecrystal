@@ -1,7 +1,7 @@
 const_value set 2
 	const GOLDENRODNAMERATER_NAME_RATER
 
-GoldenrodNameRater_MapScriptHeader:
+GoldenrodNameRater_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -24,7 +24,7 @@ GoldenrodNameRaterRadio:
 
 INCLUDE "data/unused/sweet_honey_text.asm"
 
-GoldenrodNameRater_MapEventHeader:
+GoldenrodNameRater_MapEvents:
 	; filler
 	db 0, 0
 

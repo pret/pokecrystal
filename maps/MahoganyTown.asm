@@ -4,7 +4,7 @@ const_value set 2
 	const MAHOGANYTOWN_FISHER
 	const MAHOGANYTOWN_LASS
 
-MahoganyTown_MapScriptHeader:
+MahoganyTown_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -244,7 +244,7 @@ MahoganyGymSignText:
 	line "Winter's Harshness"
 	done
 
-MahoganyTown_MapEventHeader:
+MahoganyTown_MapEvents:
 	; filler
 	db 0, 0
 

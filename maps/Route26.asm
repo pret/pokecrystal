@@ -8,7 +8,7 @@ const_value set 2
 	const ROUTE26_FRUIT_TREE
 	const ROUTE26_POKE_BALL
 
-Route26_MapScriptHeader:
+Route26_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -412,7 +412,7 @@ Route26SignText:
 	line "RECEPTION GATE"
 	done
 
-Route26_MapEventHeader:
+Route26_MapEvents:
 	; filler
 	db 0, 0
 

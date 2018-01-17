@@ -1,11 +1,11 @@
-WhirlIslandNW_MapScriptHeader:
+WhirlIslandNW_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-WhirlIslandNW_MapEventHeader:
+WhirlIslandNW_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,7 +3,7 @@ const_value set 2
 	const MOUNTMOONSQUARE_FAIRY2
 	const MOUNTMOONSQUARE_ROCK
 
-MountMoonSquare_MapScriptHeader:
+MountMoonSquare_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -132,7 +132,7 @@ DontLitterSignText:
 	line "DON'T LITTER"
 	done
 
-MountMoonSquare_MapEventHeader:
+MountMoonSquare_MapEvents:
 	; filler
 	db 0, 0
 

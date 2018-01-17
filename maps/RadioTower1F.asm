@@ -6,7 +6,7 @@ const_value set 2
 	const RADIOTOWER1F_GENTLEMAN
 	const RADIOTOWER1F_COOLTRAINER_F
 
-RadioTower1F_MapScriptHeader:
+RadioTower1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -472,7 +472,7 @@ UnknownText_0x5d631:
 	cont "ent ID numbers!"
 	done
 
-RadioTower1F_MapEventHeader:
+RadioTower1F_MapEvents:
 	; filler
 	db 0, 0
 

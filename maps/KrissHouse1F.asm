@@ -5,7 +5,7 @@ const_value set 2
 	const KRISSHOUSE1F_MOM4
 	const KRISSHOUSE1F_POKEFAN_F
 
-KrissHouse1F_MapScriptHeader:
+KrissHouse1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -385,7 +385,7 @@ TVText:
 	line "rolling too!"
 	done
 
-KrissHouse1F_MapEventHeader:
+KrissHouse1F_MapEvents:
 	; filler
 	db 0, 0
 

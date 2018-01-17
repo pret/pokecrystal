@@ -9,7 +9,7 @@ const_value set 2
 	const ROUTE42_POKE_BALL2
 	const ROUTE42_SUICUNE
 
-Route42_MapScriptHeader:
+Route42_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -318,7 +318,7 @@ Route42Sign2Text:
 	line "MAHOGANY TOWN"
 	done
 
-Route42_MapEventHeader:
+Route42_MapEvents:
 	; filler
 	db 0, 0
 

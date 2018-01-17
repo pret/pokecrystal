@@ -2,7 +2,7 @@ const_value set 2
 	const BLACKTHORNDRAGONSPEECHHOUSE_GRANNY
 	const BLACKTHORNDRAGONSPEECHHOUSE_EKANS
 
-BlackthornDragonSpeechHouse_MapScriptHeader:
+BlackthornDragonSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -47,7 +47,7 @@ BlackthornDragonSpeechHouseDratiniText:
 	text "DRATINI: Draa!"
 	done
 
-BlackthornDragonSpeechHouse_MapEventHeader:
+BlackthornDragonSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

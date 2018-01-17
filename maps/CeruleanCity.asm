@@ -6,7 +6,7 @@ const_value set 2
 	const CERULEANCITY_FISHER
 	const CERULEANCITY_YOUNGSTER
 
-CeruleanCity_MapScriptHeader:
+CeruleanCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -275,7 +275,7 @@ CeruleanLockedDoorText:
 	text "It's locked…"
 	done
 
-CeruleanCity_MapEventHeader:
+CeruleanCity_MapEvents:
 	; filler
 	db 0, 0
 

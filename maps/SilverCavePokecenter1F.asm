@@ -2,7 +2,7 @@ const_value set 2
 	const SILVERCAVEPOKECENTER1F_NURSE
 	const SILVERCAVEPOKECENTER1F_GRANNY
 
-SilverCavePokecenter1F_MapScriptHeader:
+SilverCavePokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -29,7 +29,7 @@ SilverCavePokecenter1FGrannyText:
 	line "anywhere…"
 	done
 
-SilverCavePokecenter1F_MapEventHeader:
+SilverCavePokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

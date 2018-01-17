@@ -7,7 +7,7 @@ const_value set 2
 	const MAHOGANYGYM_ROCKER3
 	const MAHOGANYGYM_GYM_GUY
 
-MahoganyGym_MapScriptHeader:
+MahoganyGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -372,7 +372,7 @@ MahoganyGymGuyWinText:
 	line "eration gap!"
 	done
 
-MahoganyGym_MapEventHeader:
+MahoganyGym_MapEvents:
 	; filler
 	db 0, 0
 

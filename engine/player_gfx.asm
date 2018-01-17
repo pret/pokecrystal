@@ -56,11 +56,11 @@ MovePlayerPic: ; 88266
 	jr .loop
 
 ShowPlayerNamingChoices: ; 88297
-	ld hl, ChrisNameMenuHeader
+	ld hl, ChrisNameMenuDataHeader
 	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotGender
-	ld hl, KrisNameMenuHeader
+	ld hl, KrisNameMenuDataHeader
 .GotGender:
 	call LoadMenuDataHeader
 	call VerticalMenu

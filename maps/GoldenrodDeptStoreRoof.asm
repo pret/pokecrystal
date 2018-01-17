@@ -8,7 +8,7 @@ const_value set 2
 	const GOLDENRODDEPTSTOREROOF_TEACHER
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
 
-GoldenrodDeptStoreRoof_MapScriptHeader:
+GoldenrodDeptStoreRoof_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -211,7 +211,7 @@ PokeDollVendingMachineText:
 	line "empty…"
 	done
 
-GoldenrodDeptStoreRoof_MapEventHeader:
+GoldenrodDeptStoreRoof_MapEvents:
 	; filler
 	db 0, 0
 

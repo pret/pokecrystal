@@ -8,7 +8,7 @@ const_value set 2
 	const ROUTE43_FRUIT_TREE
 	const ROUTE43_POKE_BALL
 
-Route43_MapScriptHeader:
+Route43_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -500,7 +500,7 @@ Route43TrainerTipsText:
 	line "#MON's type."
 	done
 
-Route43_MapEventHeader:
+Route43_MapEvents:
 	; filler
 	db 0, 0
 

@@ -7,7 +7,7 @@ const_value set 2
 	const ROUTE37_FRUIT_TREE2
 	const ROUTE37_FRUIT_TREE3
 
-Route37_MapScriptHeader:
+Route37_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -237,7 +237,7 @@ Route37SignText:
 	text "ROUTE 37"
 	done
 
-Route37_MapEventHeader:
+Route37_MapEvents:
 	; filler
 	db 0, 0
 

@@ -4,7 +4,7 @@ const_value set 2
 	const ROUTE17_BIKER3
 	const ROUTE17_BIKER4
 
-Route17_MapScriptHeader:
+Route17_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -132,7 +132,7 @@ BikerCharlesAfterBattleText:
 	cont "Take it easy!"
 	done
 
-Route17_MapEventHeader:
+Route17_MapEvents:
 	; filler
 	db 0, 0
 

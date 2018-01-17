@@ -4,7 +4,7 @@ const_value set 2
 	const SAFFRONMAGNETTRAINSTATION_TEACHER
 	const SAFFRONMAGNETTRAINSTATION_LASS
 
-SaffronMagnetTrainStation_MapScriptHeader:
+SaffronMagnetTrainStation_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -215,7 +215,7 @@ SaffronMagnetTrainStationLassText:
 	line "TRAIN have PASSES."
 	done
 
-SaffronMagnetTrainStation_MapEventHeader:
+SaffronMagnetTrainStation_MapEvents:
 	; filler
 	db 0, 0
 

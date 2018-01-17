@@ -9,7 +9,7 @@ const_value set 2
 	const ROUTE27_POKE_BALL2
 	const ROUTE27_FISHER
 
-Route27_MapScriptHeader:
+Route27_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -467,7 +467,7 @@ TohjoFallsSignText:
 	line "KANTO AND JOHTO"
 	done
 
-Route27_MapEventHeader:
+Route27_MapEvents:
 	; filler
 	db 0, 0
 

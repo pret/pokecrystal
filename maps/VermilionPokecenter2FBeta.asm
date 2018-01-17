@@ -1,11 +1,11 @@
-VermilionPokecenter2FBeta_MapScriptHeader:
+VermilionPokecenter2FBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-VermilionPokecenter2FBeta_MapEventHeader:
+VermilionPokecenter2FBeta_MapEvents:
 	; filler
 	db 0, 0
 

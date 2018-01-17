@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE32RUINSOFALPHGATE_POKEFAN_M
 	const ROUTE32RUINSOFALPHGATE_YOUNGSTER
 
-Route32RuinsOfAlphGate_MapScriptHeader:
+Route32RuinsOfAlphGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -46,7 +46,7 @@ Route32RuinsOfAlphGateYoungsterText:
 	cont "what they are."
 	done
 
-Route32RuinsOfAlphGate_MapEventHeader:
+Route32RuinsOfAlphGate_MapEvents:
 	; filler
 	db 0, 0
 

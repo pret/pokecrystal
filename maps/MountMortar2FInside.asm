@@ -7,7 +7,7 @@ const_value set 2
 	const MOUNTMORTAR2FINSIDE_POKE_BALL6
 	const MOUNTMORTAR2FINSIDE_SUPER_NERD
 
-MountMortar2FInside_MapScriptHeader:
+MountMortar2FInside_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -66,7 +66,7 @@ SupernerdHughAfterBattleText:
 	line "use STRENGTH?"
 	done
 
-MountMortar2FInside_MapEventHeader:
+MountMortar2FInside_MapEvents:
 	; filler
 	db 0, 0
 

@@ -393,7 +393,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	hlcoord 17, 2
 	inc a
 	ld [hli], a
-	call GetMapHeaderPhoneServiceNybble
+	call GetMapPhoneService
 	and a
 	ret nz
 	hlcoord 18, 2
@@ -926,7 +926,7 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 	ret
 
 PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
-	call GetMapHeaderPhoneServiceNybble
+	call GetMapPhoneService
 	and a
 	jr nz, .no_service
 	ld hl, Options

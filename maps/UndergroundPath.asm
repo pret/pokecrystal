@@ -1,4 +1,4 @@
-UndergroundPath_MapScriptHeader:
+UndergroundPath_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -11,7 +11,7 @@ UndergroundPathHiddenFullRestore:
 UndergroundPathHiddenXSpecial:
 	hiddenitem EVENT_UNDERGROUND_PATH_HIDDEN_X_SPECIAL, X_SPECIAL
 
-UndergroundPath_MapEventHeader:
+UndergroundPath_MapEvents:
 	; filler
 	db 0, 0
 

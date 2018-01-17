@@ -7,7 +7,7 @@ const_value set 2
 	const ROUTE31_POKE_BALL1
 	const ROUTE31_POKE_BALL2
 
-Route31_MapScriptHeader:
+Route31_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -417,7 +417,7 @@ DarkCaveSignText:
 	text "DARK CAVE"
 	done
 
-Route31_MapEventHeader:
+Route31_MapEvents:
 	; filler
 	db 0, 0
 

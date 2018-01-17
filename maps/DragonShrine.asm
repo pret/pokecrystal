@@ -4,7 +4,7 @@ const_value set 2
 	const DRAGONSHRINE_ELDER3
 	const DRAGONSHRINE_CLAIR
 
-DragonShrine_MapScriptHeader:
+DragonShrine_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DragonShrineTest
@@ -657,7 +657,7 @@ DragonShrineSpeechlessText:
 	text "<......><......><......><......><......><......>"
 	done
 
-DragonShrine_MapEventHeader:
+DragonShrine_MapEvents:
 	; filler
 	db 0, 0
 

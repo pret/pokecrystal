@@ -10,7 +10,7 @@ const_value set 2
 	const ROUTE41_SWIMMER_GIRL4
 	const ROUTE41_SWIMMER_GIRL5
 
-Route41_MapScriptHeader:
+Route41_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -341,7 +341,7 @@ SwimmerfWendyAfterBattleText:
 	line "it's scary."
 	done
 
-Route41_MapEventHeader:
+Route41_MapEvents:
 	; filler
 	db 0, 0
 

@@ -8,7 +8,7 @@ const_value set 2
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL3
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL4
 
-DarkCaveVioletEntrance_MapScriptHeader:
+DarkCaveVioletEntrance_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -33,7 +33,7 @@ DarkCaveVioletEntranceRock:
 DarkCaveVioletEntranceHiddenElixer:
 	hiddenitem EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER, ELIXER
 
-DarkCaveVioletEntrance_MapEventHeader:
+DarkCaveVioletEntrance_MapEvents:
 	; filler
 	db 0, 0
 

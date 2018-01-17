@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE8_SUPER_NERD2
 	const ROUTE8_FRUIT_TREE
 
-Route8_MapScriptHeader:
+Route8_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -172,7 +172,7 @@ Route8UndergroundPathSignText:
 	line "read…"
 	done
 
-Route8_MapEventHeader:
+Route8_MapEvents:
 	; filler
 	db 0, 0
 

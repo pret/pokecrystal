@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE20_SWIMMER_GIRL2
 	const ROUTE20_SWIMMER_GUY
 
-Route20_MapScriptHeader:
+Route20_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -112,7 +112,7 @@ CinnabarGymSignText:
 	line "LEADER: BLAINE"
 	done
 
-Route20_MapEventHeader:
+Route20_MapEvents:
 	; filler
 	db 0, 0
 

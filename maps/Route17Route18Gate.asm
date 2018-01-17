@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE17ROUTE18GATE_OFFICER
 
-Route17Route18Gate_MapScriptHeader:
+Route17Route18Gate_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -51,7 +51,7 @@ UnknownText_0x7364d:
 	line "BICYCLE to go on."
 	done
 
-Route17Route18Gate_MapEventHeader:
+Route17Route18Gate_MapEvents:
 	; filler
 	db 0, 0
 

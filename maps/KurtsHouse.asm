@@ -5,7 +5,7 @@ const_value set 2
 	const KURTSHOUSE_KURT2
 	const KURTSHOUSE_TWIN2
 
-KurtsHouse_MapScriptHeader:
+KurtsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -676,7 +676,7 @@ KurtsHouseCelebiStatueText:
 	cont "tector."
 	done
 
-KurtsHouse_MapEventHeader:
+KurtsHouse_MapEvents:
 	; filler
 	db 0, 0
 

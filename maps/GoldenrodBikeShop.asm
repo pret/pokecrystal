@@ -1,7 +1,7 @@
 const_value set 2
 	const GOLDENRODBIKESHOP_CLERK
 
-GoldenrodBikeShop_MapScriptHeader:
+GoldenrodBikeShop_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -102,7 +102,7 @@ UnknownText_0x548ed:
 	line "BICYCLE!"
 	done
 
-GoldenrodBikeShop_MapEventHeader:
+GoldenrodBikeShop_MapEvents:
 	; filler
 	db 0, 0
 

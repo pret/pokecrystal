@@ -1,7 +1,7 @@
 const_value set 2
 	const WILLSROOM_WILL
 
-WillsRoom_MapScriptHeader:
+WillsRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .LockDoor
@@ -128,7 +128,7 @@ WillScript_WillDefeatText:
 	line "of the ELITE FOUR."
 	done
 
-WillsRoom_MapEventHeader:
+WillsRoom_MapEvents:
 	; filler
 	db 0, 0
 

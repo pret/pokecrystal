@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE46_FRUIT_TREE2
 	const ROUTE46_POKE_BALL
 
-Route46_MapScriptHeader:
+Route46_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -250,7 +250,7 @@ Route46SignText:
 	line "MOUNTAIN RD. AHEAD"
 	done
 
-Route46_MapEventHeader:
+Route46_MapEvents:
 	; filler
 	db 0, 0
 

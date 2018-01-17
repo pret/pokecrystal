@@ -11,7 +11,7 @@ const_value set 2
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_POKEFAN_F
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD2
 
-FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
+FastShipCabins_SE_SSE_CaptainsCabin_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -462,7 +462,7 @@ SSAquaHasArrivedVermilionText:
 	cont "VERMILION CITY."
 	done
 
-FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader:
+FastShipCabins_SE_SSE_CaptainsCabin_MapEvents:
 	; filler
 	db 0, 0
 

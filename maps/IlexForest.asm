@@ -11,7 +11,7 @@ const_value set 2
 	const ILEXFOREST_POKE_BALL3
 	const ILEXFOREST_POKE_BALL4
 
-IlexForest_MapScriptHeader:
+IlexForest_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -937,7 +937,7 @@ BugCatcherWayneAfterBattleText:
 	cont "places too."
 	done
 
-IlexForest_MapEventHeader:
+IlexForest_MapEvents:
 	; filler
 	db 0, 0
 

@@ -1,7 +1,7 @@
 const_value set 2
 	const LAKEOFRAGEHIDDENPOWERHOUSE_FISHER
 
-LakeOfRageHiddenPowerHouse_MapScriptHeader:
+LakeOfRageHiddenPowerHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -67,7 +67,7 @@ HiddenPowerGuyText3:
 	text "I am meditating…"
 	done
 
-LakeOfRageHiddenPowerHouse_MapEventHeader:
+LakeOfRageHiddenPowerHouse_MapEvents:
 	; filler
 	db 0, 0
 

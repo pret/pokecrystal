@@ -8,7 +8,7 @@ const_value set 2
 	const ROUTE2_POKE_BALL4
 	const ROUTE2_FRUIT_TREE
 
-Route2_MapScriptHeader:
+Route2_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -146,7 +146,7 @@ UnknownText_0x1ac49f:
 	text "DIGLETT'S CAVE"
 	done
 
-Route2_MapEventHeader:
+Route2_MapEvents:
 	; filler
 	db 0, 0
 

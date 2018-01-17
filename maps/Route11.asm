@@ -5,7 +5,7 @@ const_value set 2
 	const ROUTE11_YOUNGSTER4
 	const ROUTE11_FRUIT_TREE
 
-Route11_MapScriptHeader:
+Route11_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -145,7 +145,7 @@ Route11SignText:
 	text "ROUTE 11"
 	done
 
-Route11_MapEventHeader:
+Route11_MapEvents:
 	; filler
 	db 0, 0
 

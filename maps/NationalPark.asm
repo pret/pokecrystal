@@ -14,7 +14,7 @@ const_value set 2
 	const NATIONALPARK_GAMEBOY_KID
 	const NATIONALPARK_POKE_BALL2
 
-NationalPark_MapScriptHeader:
+NationalPark_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -513,7 +513,7 @@ UnknownText_0x5c7c6:
 	cont "pressing START."
 	done
 
-NationalPark_MapEventHeader:
+NationalPark_MapEvents:
 	; filler
 	db 0, 0
 

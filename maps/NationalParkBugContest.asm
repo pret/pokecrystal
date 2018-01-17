@@ -12,7 +12,7 @@ const_value set 2
 	const NATIONALPARKBUGCONTEST_POKE_BALL1
 	const NATIONALPARKBUGCONTEST_POKE_BALL2
 
-NationalParkBugContest_MapScriptHeader:
+NationalParkBugContest_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -220,7 +220,7 @@ UnknownText_0x5cc1d:
 	cont "pressing START."
 	done
 
-NationalParkBugContest_MapEventHeader:
+NationalParkBugContest_MapEvents:
 	; filler
 	db 0, 0
 

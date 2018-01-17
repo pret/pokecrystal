@@ -4,7 +4,7 @@ const_value set 2
 	const CELADONMANSION1F_CLEFAIRY
 	const CELADONMANSION1F_GROWLITHE2
 
-CeladonMansion1F_MapScriptHeader:
+CeladonMansion1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -74,7 +74,7 @@ CeladonMansionManagersSuiteSignText:
 	line "MANAGER'S SUITE"
 	done
 
-CeladonMansion1F_MapEventHeader:
+CeladonMansion1F_MapEvents:
 	; filler
 	db 0, 0
 

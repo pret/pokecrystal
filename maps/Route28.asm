@@ -1,4 +1,4 @@
-Route28_MapScriptHeader:
+Route28_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -15,7 +15,7 @@ Route28SignText:
 	text "ROUTE 28"
 	done
 
-Route28_MapEventHeader:
+Route28_MapEvents:
 	; filler
 	db 0, 0
 

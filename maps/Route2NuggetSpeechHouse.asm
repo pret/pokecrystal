@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE2NUGGETSPEECHHOUSE_FISHER
 
-Route2NuggetSpeechHouse_MapScriptHeader:
+Route2NuggetSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -52,7 +52,7 @@ UnknownText_0x9b8e5:
 	line "have to do!"
 	done
 
-Route2NuggetSpeechHouse_MapEventHeader:
+Route2NuggetSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

@@ -9,7 +9,7 @@ const_value set 2
 	const CELADONGAMECORNER_GYM_GUY
 	const CELADONGAMECORNER_GRAMPS
 
-CeladonGameCorner_MapScriptHeader:
+CeladonGameCorner_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -281,7 +281,7 @@ UnknownText_0x72567:
 	para "Huh? It's empty!"
 	done
 
-CeladonGameCorner_MapEventHeader:
+CeladonGameCorner_MapEvents:
 	; filler
 	db 0, 0
 

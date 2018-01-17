@@ -4,7 +4,7 @@ const_value set 2
 	const ECRUTEAKHOUSE_SAGE3
 	const ECRUTEAKHOUSE_GRAMPS
 
-EcruteakHouse_MapScriptHeader:
+EcruteakHouse_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -277,7 +277,7 @@ EcruteakHouseGrampsText:
 	line "never to return."
 	done
 
-EcruteakHouse_MapEventHeader:
+EcruteakHouse_MapEvents:
 	; filler
 	db 0, 0
 

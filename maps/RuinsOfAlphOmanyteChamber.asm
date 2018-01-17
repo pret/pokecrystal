@@ -1,4 +1,4 @@
-RuinsOfAlphOmanyteChamber_MapScriptHeader:
+RuinsOfAlphOmanyteChamber_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .CheckWall
@@ -144,7 +144,7 @@ UnknownText_0x58d26:
 	line "its ten tentacles."
 	done
 
-RuinsOfAlphOmanyteChamber_MapEventHeader:
+RuinsOfAlphOmanyteChamber_MapEvents:
 	; filler
 	db 0, 0
 

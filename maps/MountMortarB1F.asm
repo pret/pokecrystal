@@ -7,7 +7,7 @@ const_value set 2
 	const MOUNTMORTARB1F_POKE_BALL4
 	const MOUNTMORTARB1F_POKE_BALL5
 
-MountMortarB1F_MapScriptHeader:
+MountMortarB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -134,7 +134,7 @@ UnknownText_0x7e3df:
 	line "in your party!"
 	done
 
-MountMortarB1F_MapEventHeader:
+MountMortarB1F_MapEvents:
 	; filler
 	db 0, 0
 

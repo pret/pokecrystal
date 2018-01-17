@@ -8,7 +8,7 @@ const_value set 2
 	const ROUTE29_TUSCANY
 	const ROUTE29_POKE_BALL
 
-Route29_MapScriptHeader:
+Route29_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -415,7 +415,7 @@ Route29Sign2Text:
 	line "NEW BARK TOWN"
 	done
 
-Route29_MapEventHeader:
+Route29_MapEvents:
 	; filler
 	db 0, 0
 

@@ -9,7 +9,7 @@ const_value set 2
 	const CELADONCITY_TEACHER2
 	const CELADONCITY_LASS
 
-CeladonCity_MapScriptHeader:
+CeladonCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -234,7 +234,7 @@ CeladonCityTrainerTipsText:
 	cont "STORE!"
 	done
 
-CeladonCity_MapEventHeader:
+CeladonCity_MapEvents:
 	; filler
 	db 0, 0
 

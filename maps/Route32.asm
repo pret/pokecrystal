@@ -14,7 +14,7 @@ const_value set 2
 	const ROUTE32_FRIEDA
 	const ROUTE32_POKE_BALL2
 
-Route32_MapScriptHeader:
+Route32_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -928,7 +928,7 @@ Route32UnionCaveSignText:
 	line "AHEAD"
 	done
 
-Route32_MapEventHeader:
+Route32_MapEvents:
 	; filler
 	db 0, 0
 

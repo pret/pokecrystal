@@ -12,7 +12,7 @@ const_value set 2
 	const GOLDENRODGAMECORNER_POKEFAN_M2
 	const GOLDENRODGAMECORNER_POKEFAN_M3
 
-GoldenrodGameCorner_MapScriptHeader:
+GoldenrodGameCorner_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -436,7 +436,7 @@ GoldenrodGameCornerLeftTheirDrinkText:
 	para "It smells sweet."
 	done
 
-GoldenrodGameCorner_MapEventHeader:
+GoldenrodGameCorner_MapEvents:
 	; filler
 	db 0, 0
 

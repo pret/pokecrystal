@@ -7,7 +7,7 @@ const_value set 2
 	const ECRUTEAKCITY_YOUNGSTER
 	const ECRUTEAKCITY_GRAMPS3
 
-EcruteakCity_MapScriptHeader:
+EcruteakCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -259,7 +259,7 @@ BurnedTowerSignText:
 	line "as it is unsafe."
 	done
 
-EcruteakCity_MapEventHeader:
+EcruteakCity_MapEvents:
 	; filler
 	db 0, 0
 

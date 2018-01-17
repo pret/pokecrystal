@@ -1,7 +1,7 @@
 const_value set 2
 	const BRUNOSROOM_BRUNO
 
-BrunosRoom_MapScriptHeader:
+BrunosRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .LockDoor
@@ -124,7 +124,7 @@ BrunoScript_BrunoDefeatText:
 	line "challenge!"
 	done
 
-BrunosRoom_MapEventHeader:
+BrunosRoom_MapEvents:
 	; filler
 	db 0, 0
 

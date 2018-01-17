@@ -1,7 +1,7 @@
 const_value set 2
 	const CIANWOODPHOTOSTUDIO_FISHING_GURU
 
-CianwoodPhotoStudio_MapScriptHeader:
+CianwoodPhotoStudio_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -48,7 +48,7 @@ UnknownText_0x9e156:
 	line "memento…"
 	done
 
-CianwoodPhotoStudio_MapEventHeader:
+CianwoodPhotoStudio_MapEvents:
 	; filler
 	db 0, 0
 

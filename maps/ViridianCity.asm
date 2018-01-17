@@ -4,7 +4,7 @@ const_value set 2
 	const VIRIDIANCITY_FISHER
 	const VIRIDIANCITY_YOUNGSTER
 
-ViridianCity_MapScriptHeader:
+ViridianCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -215,7 +215,7 @@ TrainerHouseSignText:
 	line "Trainer Battles"
 	done
 
-ViridianCity_MapEventHeader:
+ViridianCity_MapEvents:
 	; filler
 	db 0, 0
 

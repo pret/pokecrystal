@@ -108,13 +108,13 @@
 	const MUSIC_BATTLE_TOWER_LOBBY           ; 65
 	const MUSIC_MOBILE_CENTER                ; 66
 
-; GetMapHeaderMusic picks music for this value (see home/map.asm)
+; GetMapMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64
 
 ; ExitPokegearRadio_HandleMusic uses these values
 RESTART_MAP_MUSIC EQU $fe
 ENTER_MAP_MUSIC   EQU $ff
 
-; GetMapHeaderMusic picks music for this bit flag
+; GetMapMusic picks music for this bit flag
 RADIO_TOWER_MUSIC_F EQU 7
 RADIO_TOWER_MUSIC EQU 1 << RADIO_TOWER_MUSIC_F

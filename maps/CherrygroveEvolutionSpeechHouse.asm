@@ -2,7 +2,7 @@ const_value set 2
 	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_LASS
 	const CHERRYGROVEEVOLUTIONSPEECHHOUSE_YOUNGSTER
 
-CherrygroveEvolutionSpeechHouse_MapScriptHeader:
+CherrygroveEvolutionSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -41,7 +41,7 @@ UnknownText_0x196cfc:
 	line "if one did that!"
 	done
 
-CherrygroveEvolutionSpeechHouse_MapEventHeader:
+CherrygroveEvolutionSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

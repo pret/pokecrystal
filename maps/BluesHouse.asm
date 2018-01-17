@@ -1,7 +1,7 @@
 const_value set 2
 	const BLUESHOUSE_DAISY
 
-BluesHouse_MapScriptHeader:
+BluesHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -144,7 +144,7 @@ DaisyCantGroomEggText:
 	cont "groom an EGG."
 	done
 
-BluesHouse_MapEventHeader:
+BluesHouse_MapEvents:
 	; filler
 	db 0, 0
 

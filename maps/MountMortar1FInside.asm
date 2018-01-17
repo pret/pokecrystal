@@ -10,7 +10,7 @@ const_value set 2
 	const MOUNTMORTAR1FINSIDE_POKE_BALL6
 	const MOUNTMORTAR1FINSIDE_POKE_BALL7
 
-MountMortar1FInside_MapScriptHeader:
+MountMortar1FInside_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -116,7 +116,7 @@ SupernerdMarkusAfterBattleText:
 	line "WATERFALL?"
 	done
 
-MountMortar1FInside_MapEventHeader:
+MountMortar1FInside_MapEvents:
 	; filler
 	db 0, 0
 

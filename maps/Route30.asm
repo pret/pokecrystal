@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE30_COOLTRAINER_F
 	const ROUTE30_POKE_BALL
 
-Route30_MapScriptHeader:
+Route30_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -406,7 +406,7 @@ YoungsterJoeyText_GiveHPUpAfterBattle:
 	line "tougher too."
 	done
 
-Route30_MapEventHeader:
+Route30_MapEvents:
 	; filler
 	db 0, 0
 

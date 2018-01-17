@@ -4,7 +4,7 @@ const_value set 2
 	const BATTLETOWEROUTSIDE_SAILOR
 	const BATTLETOWEROUTSIDE_LASS
 
-BattleTowerOutside_MapScriptHeader:
+BattleTowerOutside_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -126,7 +126,7 @@ BattleTowerOutsideText_DoorsOpen:
 	text "It's open!"
 	done
 
-BattleTowerOutside_MapEventHeader:
+BattleTowerOutside_MapEvents:
 	; filler
 	db 0, 0
 

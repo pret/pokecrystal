@@ -1,7 +1,7 @@
 const_value set 2
 	const KOGASROOM_KOGA
 
-KogasRoom_MapScriptHeader:
+KogasRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .LockDoor
@@ -129,7 +129,7 @@ KogaScript_KogaDefeatText:
 	cont "abilities to test!"
 	done
 
-KogasRoom_MapEventHeader:
+KogasRoom_MapEvents:
 	; filler
 	db 0, 0
 

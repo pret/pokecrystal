@@ -5,7 +5,7 @@ const_value set 2
 	const MAHOGANYMART1F_DRAGON
 	const MAHOGANYMART1F_GRANNY
 
-MahoganyMart1F_MapScriptHeader:
+MahoganyMart1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -220,7 +220,7 @@ UnknownText_0x6c5ba:
 	line "I'll go first."
 	done
 
-MahoganyMart1F_MapEventHeader:
+MahoganyMart1F_MapEvents:
 	; filler
 	db 0, 0
 

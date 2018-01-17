@@ -2,7 +2,7 @@ const_value set 2
 	const CHERRYGROVEGYMSPEECHHOUSE_POKEFAN_M
 	const CHERRYGROVEGYMSPEECHHOUSE_BUG_CATCHER
 
-CherrygroveGymSpeechHouse_MapScriptHeader:
+CherrygroveGymSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -44,7 +44,7 @@ CherrygroveGymSpeechHouseBugCatcherText:
 	line "them tougher!"
 	done
 
-CherrygroveGymSpeechHouse_MapEventHeader:
+CherrygroveGymSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

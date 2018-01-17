@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE44_POKE_BALL2
 	const ROUTE44_POKE_BALL3
 
-Route44_MapScriptHeader:
+Route44_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -506,7 +506,7 @@ Route44Sign2Text:
 	line "BLACKTHORN CITY"
 	done
 
-Route44_MapEventHeader:
+Route44_MapEvents:
 	; filler
 	db 0, 0
 

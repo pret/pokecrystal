@@ -9,7 +9,7 @@ const_value set 2
 	const DRAGONSDENB1F_POKE_BALL2
 	const DRAGONSDENB1F_POKE_BALL3
 
-DragonsDenB1F_MapScriptHeader:
+DragonsDenB1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -406,7 +406,7 @@ Text_NoRoomForDragonFang:
 	cont "items."
 	done
 
-DragonsDenB1F_MapEventHeader:
+DragonsDenB1F_MapEvents:
 	; filler
 	db 0, 0
 

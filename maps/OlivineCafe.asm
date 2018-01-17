@@ -3,7 +3,7 @@ const_value set 2
 	const OLIVINECAFE_FISHING_GURU
 	const OLIVINECAFE_SAILOR2
 
-OlivineCafe_MapScriptHeader:
+OlivineCafe_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -78,7 +78,7 @@ OlivineCafeSailorText:
 	line "stop eating!"
 	done
 
-OlivineCafe_MapEventHeader:
+OlivineCafe_MapEvents:
 	; filler
 	db 0, 0
 

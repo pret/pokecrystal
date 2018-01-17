@@ -4,7 +4,7 @@ const_value set 2
 	const VIOLETGYM_YOUNGSTER2
 	const VIOLETGYM_GYM_GUY
 
-VioletGym_MapScriptHeader:
+VioletGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -281,7 +281,7 @@ VioletGymGuyWinText:
 	line "time at all!"
 	done
 
-VioletGym_MapEventHeader:
+VioletGym_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,7 +3,7 @@ const_value set 2
 	const FUCHSIAMART_FISHER
 	const FUCHSIAMART_COOLTRAINER_F
 
-FuchsiaMart_MapScriptHeader:
+FuchsiaMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -37,7 +37,7 @@ FuchsiaMartCooltrainerFText:
 	cont "town."
 	done
 
-FuchsiaMart_MapEventHeader:
+FuchsiaMart_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE40BATTLETOWERGATE_ROCKER
 	const ROUTE40BATTLETOWERGATE_TWIN
 
-Route40BattleTowerGate_MapScriptHeader:
+Route40BattleTowerGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -70,7 +70,7 @@ Route40BattleTowerGateTwinText:
 	line "them now!"
 	done
 
-Route40BattleTowerGate_MapEventHeader:
+Route40BattleTowerGate_MapEvents:
 	; filler
 	db 0, 0
 

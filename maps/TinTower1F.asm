@@ -10,7 +10,7 @@ const_value set 2
 	const TINTOWER1F_SAGE5
 	const TINTOWER1F_SAGE6
 
-TinTower1F_MapScriptHeader:
+TinTower1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .FaceSuicune
@@ -522,7 +522,7 @@ TinTower1FSage6Text2:
 	line "with SUICUNE."
 	done
 
-TinTower1F_MapEventHeader:
+TinTower1F_MapEvents:
 	; filler
 	db 0, 0
 

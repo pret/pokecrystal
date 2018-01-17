@@ -6,7 +6,7 @@ const_value set 2
 	const EARLSPOKEMONACADEMY_YOUNGSTER2
 	const EARLSPOKEMONACADEMY_POKEDEX
 
-EarlsPokemonAcademy_MapScriptHeader:
+EarlsPokemonAcademy_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -411,7 +411,7 @@ AcademyStickerMachineText:
 	para "stickers!"
 	done
 
-EarlsPokemonAcademy_MapEventHeader:
+EarlsPokemonAcademy_MapEvents:
 	; filler
 	db 0, 0
 

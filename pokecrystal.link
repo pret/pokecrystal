@@ -106,7 +106,7 @@ ROMX $23
 ROMX $24
 	"bank24"
 ROMX $25
-	"Map Headers"
+	"Maps"
 	"Events"
 ROMX $26
 	"Map Scripts 11"
@@ -117,11 +117,11 @@ ROMX $28
 ROMX $29
 	"Phone Text"
 ROMX $2a
-	"Map Blockdata 1"
+	"Map Blocks 1"
 ROMX $2b
-	"Map Blockdata 2"
+	"Map Blocks 2"
 ROMX $2c
-	"Map Blockdata 3"
+	"Map Blocks 3"
 ROMX $2d
 	"Tileset Data 5"
 ROMX $2e

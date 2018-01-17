@@ -2,7 +2,7 @@ const_value set 2
 	const ECRUTEAKITEMFINDERHOUSE_COOLTRAINER_M
 	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
 
-EcruteakItemfinderHouse_MapScriptHeader:
+EcruteakItemfinderHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -162,7 +162,7 @@ EcruteakThreeMonText:
 	line "grassland."
 	done
 
-EcruteakItemfinderHouse_MapEventHeader:
+EcruteakItemfinderHouse_MapEvents:
 	; filler
 	db 0, 0
 

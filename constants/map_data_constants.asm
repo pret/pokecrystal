@@ -3,18 +3,18 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
-; map header struct members (see data/maps/map_headers.asm)
+; map header struct members (see data/maps/map_defs.asm)
 	const_def
-	const MAPHEADER_MAPHEADER2_BANK ; 0
-	const MAPHEADER_TILESET         ; 1
-	const MAPHEADER_ENVIRONMENT     ; 2
-	const MAPHEADER_MAPHEADER2      ; 3
-	const MAPHEADER_MAPHEADER2_HI   ; 4
-	const MAPHEADER_LOCATION        ; 5
-	const MAPHEADER_MUSIC           ; 6
-	const MAPHEADER_PALETTE         ; 7
-	const MAPHEADER_FISHGROUP       ; 8
-NUM_MAPHEADER_ATTRIBUTES EQU const_value
+	const MAPDEF_MAPDATA_BANK ; 0
+	const MAPDEF_TILESET      ; 1
+	const MAPDEF_ENVIRONMENT  ; 2
+	const MAPDEF_MAPDATA      ; 3
+	const MAPDEF_MAPDATA_HI   ; 4
+	const MAPDEF_LOCATION     ; 5
+	const MAPDEF_MUSIC        ; 6
+	const MAPDEF_PALETTE      ; 7
+	const MAPDEF_FISHGROUP    ; 8
+NUM_MAPDEF_ATTRIBUTES EQU const_value
 
 ; map environments (wEnvironment)
 const_value set 1
@@ -52,7 +52,7 @@ const_value set 1
 	const FISHGROUP_QWILFISH_NO_SWARM
 
 
-; connection directions (see data/maps/map_headers_2.asm)
+; connection directions (see data/maps/map_data.asm)
 	const_def
 	const EAST_F
 	const WEST_F

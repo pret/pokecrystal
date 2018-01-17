@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE9_POKEFAN_M1
 	const ROUTE9_POKEFAN_M2
 
-Route9_MapScriptHeader:
+Route9_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -205,7 +205,7 @@ Route9SignText:
 	line "ROCK TUNNEL"
 	done
 
-Route9_MapEventHeader:
+Route9_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const SEAFOAMGYM_BLAINE
 	const SEAFOAMGYM_GYM_GUY
 
-SeafoamGym_MapScriptHeader:
+SeafoamGym_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -157,7 +157,7 @@ SeafoamGymGuyWinText2:
 	line "for a building."
 	done
 
-SeafoamGym_MapEventHeader:
+SeafoamGym_MapEvents:
 	; filler
 	db 0, 0
 

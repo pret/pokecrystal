@@ -4,7 +4,7 @@ const_value set 2
 	const POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
 	const POKECENTER2F_OFFICER
 
-Pokecenter2F_MapScriptHeader:
+Pokecenter2F_MapScripts:
 .SceneScripts:
 	db 6
 	scene_script .Scene0
@@ -1022,7 +1022,7 @@ Text_BrokeStadiumRules:
 	line "when you're ready."
 	done
 
-Pokecenter2F_MapEventHeader:
+Pokecenter2F_MapEvents:
 	; filler
 	db 0, 0
 

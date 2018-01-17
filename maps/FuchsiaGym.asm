@@ -6,7 +6,7 @@ const_value set 2
 	const FUCHSIAGYM_FUCHSIA_GYM_4
 	const FUCHSIAGYM_GYM_GUY
 
-FuchsiaGym_MapScriptHeader:
+FuchsiaGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -380,7 +380,7 @@ FuchsiaGymGuyWinText:
 	cont "from JOHTO!"
 	done
 
-FuchsiaGym_MapEventHeader:
+FuchsiaGym_MapEvents:
 	; filler
 	db 0, 0
 

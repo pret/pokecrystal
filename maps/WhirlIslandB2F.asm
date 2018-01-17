@@ -3,7 +3,7 @@ const_value set 2
 	const WHIRLISLANDB2F_POKE_BALL2
 	const WHIRLISLANDB2F_POKE_BALL3
 
-WhirlIslandB2F_MapScriptHeader:
+WhirlIslandB2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ WhirlIslandB2FMaxRevive:
 WhirlIslandB2FMaxElixer:
 	itemball MAX_ELIXER
 
-WhirlIslandB2F_MapEventHeader:
+WhirlIslandB2F_MapEvents:
 	; filler
 	db 0, 0
 

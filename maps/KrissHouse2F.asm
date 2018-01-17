@@ -4,7 +4,7 @@ const_value set 2
 	const KRISSHOUSE2F_DOLL_2
 	const KRISSHOUSE2F_BIG_DOLL
 
-KrissHouse2F_MapScriptHeader:
+KrissHouse2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -115,7 +115,7 @@ KrisRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-KrissHouse2F_MapEventHeader:
+KrissHouse2F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -5,7 +5,7 @@ const_value set 2
 	const LAVRADIOTOWER1F_GENTLEMAN
 	const LAVRADIOTOWER1F_SUPER_NERD2
 
-LavRadioTower1F_MapScriptHeader:
+LavRadioTower1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -221,7 +221,7 @@ UnknownText_0x7f36b:
 	line "reference library."
 	done
 
-LavRadioTower1F_MapEventHeader:
+LavRadioTower1F_MapEvents:
 	; filler
 	db 0, 0
 

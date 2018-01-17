@@ -1,7 +1,7 @@
 const_value set 2
 	const KARENSROOM_KAREN
 
-KarensRoom_MapScriptHeader:
+KarensRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .LockDoor
@@ -132,7 +132,7 @@ KarenScript_KarenDefeatText:
 	line "PION is waiting."
 	done
 
-KarensRoom_MapEventHeader:
+KarensRoom_MapEvents:
 	; filler
 	db 0, 0
 

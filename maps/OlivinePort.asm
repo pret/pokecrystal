@@ -7,7 +7,7 @@ const_value set 2
 	const OLIVINEPORT_YOUNGSTER
 	const OLIVINEPORT_COOLTRAINER_F
 
-OlivinePort_MapScriptHeader:
+OlivinePort_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -384,7 +384,7 @@ OlivinePortSailorText:
 	line "allowed in."
 	done
 
-OlivinePort_MapEventHeader:
+OlivinePort_MapEvents:
 	; filler
 	db 0, 0
 

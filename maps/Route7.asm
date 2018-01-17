@@ -1,4 +1,4 @@
-Route7_MapScriptHeader:
+Route7_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -34,7 +34,7 @@ Route7LockedDoorText:
 	text "It's locked…"
 	done
 
-Route7_MapEventHeader:
+Route7_MapEvents:
 	; filler
 	db 0, 0
 

@@ -4,7 +4,7 @@ const_value set 2
 	const OLIVINECITY_SAILOR2
 	const OLIVINECITY_OLIVINE_RIVAL
 
-OlivineCity_MapScriptHeader:
+OlivineCity_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -287,7 +287,7 @@ UnknownText_0x1a8cba:
 	text "BATTLE TOWER AHEAD"
 	done
 
-OlivineCity_MapEventHeader:
+OlivineCity_MapEvents:
 	; filler
 	db 0, 0
 

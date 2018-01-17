@@ -1,7 +1,7 @@
 const_value set 2
 	const LAVENDERSPEECHHOUSE_POKEFAN_F
 
-LavenderSpeechHouse_MapScriptHeader:
+LavenderSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -28,7 +28,7 @@ LavenderSpeechHousePokefanFText:
 	line "built."
 	done
 
-LavenderSpeechHouse_MapEventHeader:
+LavenderSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

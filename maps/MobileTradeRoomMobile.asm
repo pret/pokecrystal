@@ -1,4 +1,4 @@
-MobileTradeRoomMobile_MapScriptHeader:
+MobileTradeRoomMobile_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .InitializeMobileTradeRoomMobile
@@ -34,7 +34,7 @@ MobileTradeRoomMobile_EstablishingCommsText:
 	line "communications…"
 	done
 
-MobileTradeRoomMobile_MapEventHeader:
+MobileTradeRoomMobile_MapEvents:
 	; filler
 	db 0, 0
 

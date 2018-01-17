@@ -12,7 +12,7 @@ const_value set 2
 	const AZALEATOWN_AZALEA_ROCKET3
 	const AZALEATOWN_KURT_OUTSIDE
 
-AzaleaTown_MapScriptHeader:
+AzaleaTown_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -455,7 +455,7 @@ AzaleaTownIlexForestSignText:
 	line "gate."
 	done
 
-AzaleaTown_MapEventHeader:
+AzaleaTown_MapEvents:
 	; filler
 	db 0, 0
 

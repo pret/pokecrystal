@@ -2,7 +2,7 @@ const_value set 2
 	const SILPHCO1F_RECEPTIONIST
 	const SILPHCO1F_OFFICER
 
-SilphCo1F_MapScriptHeader:
+SilphCo1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -55,7 +55,7 @@ UnknownText_0x18aca8:
 	line "anywhere yet."
 	done
 
-SilphCo1F_MapEventHeader:
+SilphCo1F_MapEvents:
 	; filler
 	db 0, 0
 

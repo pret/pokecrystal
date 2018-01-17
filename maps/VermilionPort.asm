@@ -3,7 +3,7 @@ const_value set 2
 	const VERMILIONPORT_SAILOR2
 	const VERMILIONPORT_SUPER_NERD
 
-VermilionPort_MapScriptHeader:
+VermilionPort_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -298,7 +298,7 @@ UnknownText_0x750a6:
 	cont "there."
 	done
 
-VermilionPort_MapEventHeader:
+VermilionPort_MapEvents:
 	; filler
 	db 0, 0
 

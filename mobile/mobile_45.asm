@@ -4329,7 +4329,7 @@ Function11581e: ; 11581e
 	push hl
 	ld a, [wCurrMapCallbackCount]
 	ld l, a
-	ld a, [wCurrMapCallbackHeaderPointer]
+	ld a, [wCurrMapCallbacksPointer]
 	ld h, a
 	cp b
 	jr c, .asm_1158bb
@@ -4351,7 +4351,7 @@ Function11581e: ; 11581e
 	ld a, l
 	ld [wCurrMapCallbackCount], a
 	ld a, h
-	ld [wCurrMapCallbackHeaderPointer], a
+	ld [wCurrMapCallbacksPointer], a
 	pop bc
 	pop hl
 	ld hl, wCurrMapSceneScriptCount
@@ -4896,7 +4896,7 @@ Function115b00: ; 115b00
 	push hl
 	ld a, [wCurrMapCallbackCount]
 	ld l, a
-	ld a, [wCurrMapCallbackHeaderPointer]
+	ld a, [wCurrMapCallbacksPointer]
 	ld h, a
 	cp b
 	jr c, .asm_115b36
@@ -4918,7 +4918,7 @@ Function115b00: ; 115b00
 	ld a, l
 	ld [wCurrMapCallbackCount], a
 	ld a, h
-	ld [wCurrMapCallbackHeaderPointer], a
+	ld [wCurrMapCallbacksPointer], a
 	pop bc
 	pop hl
 	ld hl, wCurrMapSceneScriptCount

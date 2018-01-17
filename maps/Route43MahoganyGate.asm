@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE43MAHOGANYGATE_OFFICER
 
-Route43MahoganyGate_MapScriptHeader:
+Route43MahoganyGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -38,7 +38,7 @@ UnknownText_0x19ab65:
 	cont "days."
 	done
 
-Route43MahoganyGate_MapEventHeader:
+Route43MahoganyGate_MapEvents:
 	; filler
 	db 0, 0
 

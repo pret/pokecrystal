@@ -3,7 +3,7 @@ const_value set 2
 	const PEWTERMART_YOUNGSTER
 	const PEWTERMART_SUPER_NERD
 
-PewterMart_MapScriptHeader:
+PewterMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -45,7 +45,7 @@ PewterMartSuperNerdText:
 	line "excellent."
 	done
 
-PewterMart_MapEventHeader:
+PewterMart_MapEvents:
 	; filler
 	db 0, 0
 

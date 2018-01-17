@@ -842,7 +842,7 @@ HandleStoneQueue:: ; 3567
 	ld a, [hROMBank]
 	push af
 
-	call SwitchToMapScriptHeaderBank
+	call SwitchToMapScriptsBank
 	call .WarpAction
 
 	pop bc
@@ -899,7 +899,7 @@ HandleStoneQueue:: ; 3567
 ; 35b0
 
 .check_on_warp ; 35b0
-	ld hl, wCurrMapWarpHeaderPointer
+	ld hl, wCurrMapWarpsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

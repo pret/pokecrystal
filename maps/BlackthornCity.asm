@@ -9,7 +9,7 @@ const_value set 2
 	const BLACKTHORNCITY_SANTOS
 	const BLACKTHORNCITY_COOLTRAINER_F2
 
-BlackthornCity_MapScriptHeader:
+BlackthornCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -312,7 +312,7 @@ BlackthornCityTrainerTipsText:
 	cont "problem."
 	done
 
-BlackthornCity_MapEventHeader:
+BlackthornCity_MapEvents:
 	; filler
 	db 0, 0
 

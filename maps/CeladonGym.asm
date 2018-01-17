@@ -6,7 +6,7 @@ const_value set 2
 	const CELADONGYM_TWIN1
 	const CELADONGYM_TWIN2
 
-CeladonGym_MapScriptHeader:
+CeladonGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -267,7 +267,7 @@ TwinsJoandzoe2AfterBattleText:
 	line "much stronger!"
 	done
 
-CeladonGym_MapEventHeader:
+CeladonGym_MapEvents:
 	; filler
 	db 0, 0
 

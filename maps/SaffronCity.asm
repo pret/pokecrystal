@@ -8,7 +8,7 @@ const_value set 2
 	const SAFFRONCITY_YOUNGSTER2
 	const SAFFRONCITY_LASS2
 
-SaffronCity_MapScriptHeader:
+SaffronCity_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -265,7 +265,7 @@ SaffronCityMagnetTrainStationSignText:
 	cont "STATION"
 	done
 
-SaffronCity_MapEventHeader:
+SaffronCity_MapEvents:
 	; filler
 	db 0, 0
 

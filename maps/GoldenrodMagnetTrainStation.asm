@@ -2,7 +2,7 @@ const_value set 2
 	const GOLDENRODMAGNETTRAINSTATION_OFFICER
 	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN
 
-GoldenrodMagnetTrainStation_MapScriptHeader:
+GoldenrodMagnetTrainStation_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -164,7 +164,7 @@ GoldenrodMagnetTrainStationGentlemanText:
 	cont "to KANTO."
 	done
 
-GoldenrodMagnetTrainStation_MapEventHeader:
+GoldenrodMagnetTrainStation_MapEvents:
 	; filler
 	db 0, 0
 

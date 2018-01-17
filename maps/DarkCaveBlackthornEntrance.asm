@@ -3,7 +3,7 @@ const_value set 2
 	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL1
 	const DARKCAVEBLACKTHORNENTRANCE_POKE_BALL2
 
-DarkCaveBlackthornEntrance_MapScriptHeader:
+DarkCaveBlackthornEntrance_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -61,7 +61,7 @@ DarkCaveBlackthornEntrancePharmacistText2:
 	cont "type moves."
 	done
 
-DarkCaveBlackthornEntrance_MapEventHeader:
+DarkCaveBlackthornEntrance_MapEvents:
 	; filler
 	db 0, 0
 

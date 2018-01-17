@@ -14,7 +14,7 @@ const_value set 2
 	const TEAMROCKETBASEB2F_ROCKET4
 	const TEAMROCKETBASEB2F_POKE_BALL
 
-TeamRocketBaseB2F_MapScriptHeader:
+TeamRocketBaseB2F_MapScripts:
 .SceneScripts:
 	db 4
 	scene_script .DummyScene0
@@ -908,7 +908,7 @@ UnknownText_0x6de03:
 	line "broadcast."
 	done
 
-TeamRocketBaseB2F_MapEventHeader:
+TeamRocketBaseB2F_MapEvents:
 	; filler
 	db 0, 0
 

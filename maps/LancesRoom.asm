@@ -3,7 +3,7 @@ const_value set 2
 	const LANCESROOM_MARY
 	const LANCESROOM_OAK
 
-LancesRoom_MapScriptHeader:
+LancesRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .LockDoor
@@ -337,7 +337,7 @@ UnknownText_0x1813c5:
 	cont "the interview!"
 	done
 
-LancesRoom_MapEventHeader:
+LancesRoom_MapEvents:
 	; filler
 	db 0, 0
 

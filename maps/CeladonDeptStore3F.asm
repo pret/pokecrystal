@@ -5,7 +5,7 @@ const_value set 2
 	const CELADONDEPTSTORE3F_GAMEBOY_KID2
 	const CELADONDEPTSTORE3F_SUPER_NERD
 
-CeladonDeptStore3F_MapScriptHeader:
+CeladonDeptStore3F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -94,7 +94,7 @@ CeladonDeptStore3FDirectoryText:
 	line "Stronger!"
 	done
 
-CeladonDeptStore3F_MapEventHeader:
+CeladonDeptStore3F_MapEvents:
 	; filler
 	db 0, 0
 

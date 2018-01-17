@@ -1,7 +1,7 @@
 const_value set 2
 	const TINTOWER5F_POKE_BALL
 
-TinTower5F_MapScriptHeader:
+TinTower5F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -17,7 +17,7 @@ TinTower5FHiddenFullRestore:
 TinTower5FHiddenCarbos:
 	hiddenitem EVENT_TIN_TOWER_5F_HIDDEN_CARBOS, CARBOS
 
-TinTower5F_MapEventHeader:
+TinTower5F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const BATTLETOWERBATTLEROOM_YOUNGSTER
 	const BATTLETOWERBATTLEROOM_RECEPTIONIST
 
-BattleTowerBattleRoom_MapScriptHeader:
+BattleTowerBattleRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .EnterBattleRoom
@@ -138,7 +138,7 @@ Text_ReturnedAfterSave_Mobile:
 	line "after you SAVE."
 	done
 
-BattleTowerBattleRoom_MapEventHeader:
+BattleTowerBattleRoom_MapEvents:
 	; filler
 	db 0, 0
 

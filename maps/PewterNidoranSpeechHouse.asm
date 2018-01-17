@@ -2,7 +2,7 @@ const_value set 2
 	const PEWTERNIDORANSPEECHHOUSE_SUPER_NERD
 	const PEWTERNIDORANSPEECHHOUSE_NIDORAN_M
 
-PewterNidoranSpeechHouse_MapScriptHeader:
+PewterNidoranSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -28,7 +28,7 @@ PewterNidoranText:
 	text "NIDORAN: Gau gau!"
 	done
 
-PewterNidoranSpeechHouse_MapEventHeader:
+PewterNidoranSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

@@ -1,11 +1,11 @@
-ViridianPokecenter2FBeta_MapScriptHeader:
+ViridianPokecenter2FBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-ViridianPokecenter2FBeta_MapEventHeader:
+ViridianPokecenter2FBeta_MapEvents:
 	; filler
 	db 0, 0
 

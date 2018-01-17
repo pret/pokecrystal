@@ -12,7 +12,7 @@ const_value set 2
 	const ROUTE40_LASS2
 	const ROUTE40_STANDING_YOUNGSTER
 
-Route40_MapScriptHeader:
+Route40_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -337,7 +337,7 @@ Route40SignText:
 	line "OLIVINE CITY"
 	done
 
-Route40_MapEventHeader:
+Route40_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODPOKECOMCENTER2FMOBILE_SCIENTIST2
 	const GOLDENRODPOKECOMCENTER2FMOBILE_SCIENTIST3
 
-GoldenrodPokeComCenter2FMobile_MapScriptHeader:
+GoldenrodPokeComCenter2FMobile_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -262,7 +262,7 @@ UnknownText_0x62b26:
 	para "<......> <......> <......>"
 	done
 
-GoldenrodPokeComCenter2FMobile_MapEventHeader:
+GoldenrodPokeComCenter2FMobile_MapEvents:
 	; filler
 	db 0, 0
 

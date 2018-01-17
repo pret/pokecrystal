@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODBILLSHOUSE_POKEFAN_F
 	const GOLDENRODBILLSHOUSE_TWIN
 
-GoldenrodBillsHouse_MapScriptHeader:
+GoldenrodBillsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -242,7 +242,7 @@ UnknownText_0x55069:
 	line "system."
 	done
 
-GoldenrodBillsHouse_MapEventHeader:
+GoldenrodBillsHouse_MapEvents:
 	; filler
 	db 0, 0
 

@@ -899,7 +899,7 @@ wGameboyPrinter2bppSourceEnd::
 wca80:: db
 wPrinterRowIndex:: db
 
-; Printer data header
+; Printer data
 wPrinterData:: ds 4
 wPrinterChecksum:: dw ; ca86
 wPrinterHandshake:: db
@@ -1781,7 +1781,7 @@ wBargainShopFlags:: db
 NEXTU ; d03e
 ; trainer data
 	ds 3
-wTempTrainerHeader::
+wTempTrainer::
 wTempTrainerEventFlag:: dw
 wTempTrainerClass:: db
 wTempTrainerID:: db
@@ -1790,7 +1790,7 @@ wWinTextPointer:: dw
 wLossTextPointer:: dw
 wScriptAfterPointer:: dw
 wRunningTrainerBattleScript:: db
-wTempTrainerHeaderEnd::
+wTempTrainerEnd::
 
 NEXTU ; d03e
 ; player movement data
@@ -1992,23 +1992,26 @@ wOverworldMapAnchor:: dw ; d194
 wMetatileStandingY:: db ; d196
 wMetatileStandingX:: db ; d197
 
-wSecondMapHeaderBank:: db ; d198
+wPartialMapDef::
+wMapDataBank:: db ; d198
 wTileset:: db ; d199
 wEnvironment:: db ; d19a
-wSecondMapHeaderAddr:: dw ; d19b
+wMapDataPointer:: dw ; d19b
+wPartialMapDefEnd::
 
-; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
-MapHeader:: ; d19d
+wMapData:: ; d19d
 MapBorderBlock:: db ; d19d
+; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeight:: db ; d19e
 MapWidth:: db ; d19f
-MapBlockDataBank:: db; d1a0
-MapBlockDataPointer:: dw ; d1a1
-MapScriptHeaderBank:: db ; d1a3
-MapScriptHeaderPointer:: dw ; d1a4
-MapEventHeaderPointer:: dw ; d1a6
+MapBlocksBank:: db; d1a0
+MapBlocksPointer:: dw ; d1a1
+MapScriptsBank:: db ; d1a3
+MapScriptsPointer:: dw ; d1a4
+MapEventsPointer:: dw ; d1a6
 ; bit set
 MapConnections:: db ; d1a8
+wMapDataEnd::
 
 NorthMapConnection:: map_connection_struct North ; d1a9
 SouthMapConnection:: map_connection_struct South ; d1b5
@@ -2630,17 +2633,17 @@ wCurrMapSceneScriptPointer:: dw ; dbf7
 
 wCurrentCaller:: dw ; dbf9
 wCurrMapWarpCount:: db ; dbfb
-wCurrMapWarpHeaderPointer:: dw ; dbfc
+wCurrMapWarpsPointer:: dw ; dbfc
 wCurrMapCoordEventCount:: db ; dbfe
-wCurrMapCoordEventHeaderPointer:: dw ; dbff
+wCurrMapCoordEventsPointer:: dw ; dbff
 wCurrMapBGEventCount:: db ; dc01
-wCurrMapBGEventHeaderPointer:: dw ; dc02
+wCurrMapBGEventsPointer:: dw ; dc02
 wCurrMapObjectEventCount:: db ; dc04
-wCurrMapObjectEventHeaderPointer:: dw ; dc05
+wCurrMapObjectEventsPointer:: dw ; dc05
 wCurrMapSceneScriptCount:: db ; dc07
-wCurrMapSceneScriptHeaderPointer:: dw ; dc08
+wCurrMapSceneScriptsPointer:: dw ; dc08
 wCurrMapCallbackCount:: db ; dc0a
-wCurrMapCallbackHeaderPointer:: dw ; dc0b
+wCurrMapCallbacksPointer:: dw ; dc0b
 
 	ds 2
 
@@ -2719,7 +2722,7 @@ wKurtApricornQuantity:: db
 wPlayerDataEnd::
 
 
-wMapData::
+wCurrMapData::
 
 wVisitedSpawns:: flag_array NUM_SPAWNS ; dca5
 
@@ -2745,7 +2748,7 @@ YCoord:: db ; dcb7 ; current y coordinate relative to top-left corner of current
 XCoord:: db ; dcb8 ; current x coordinate relative to top-left corner of current map
 wScreenSave:: ds 6 * 5
 
-wMapDataEnd::
+wCurrMapDataEnd::
 
 
 SECTION "Party", WRAMX
@@ -2845,7 +2848,7 @@ TempTileMap::
 ; 20x18 grid of 8x8 tiles
 	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
 
-; PokeAnim Header
+; PokeAnim data
 wPokeAnimSceneIndex:: db
 wPokeAnimPointer:: dw
 wPokeAnimSpecies:: db

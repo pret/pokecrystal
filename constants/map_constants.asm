@@ -15,11 +15,11 @@ ENDM
 
 ; map group ids
 ; `newgroup` indexes are for:
-; - MapGroupPointers (see data/maps/map_headers.asm)
+; - MapGroupPointers (see data/maps/map_defs.asm)
 ; - MapGroupRoofs (see data/maps/roofs.asm)
 ; - OutdoorSprites (see data/maps/outdoor_sprites.asm)
 ; - RoofPals (see gfx/tilesets/roofs.pal)
-; `mapgroup` indexes are for the sub-tables of MapGroupPointers (see data/maps/map_headers.asm)
+; `mapgroup` indexes are for the sub-tables of MapGroupPointers (see data/maps/map_defs.asm)
 	const_def
 
 	newgroup                                                     ;  1
@@ -172,7 +172,7 @@ ENDM
 
 	mapgroup CINNABAR_POKECENTER_1F,                       4,  5 ;  1
 	mapgroup CINNABAR_POKECENTER_2F_BETA,                  4,  8 ;  2
-	mapgroup ROUTE_19___FUCHSIA_GATE,                      4,  5 ;  3
+	mapgroup ROUTE_19_FUCHSIA_GATE,                        4,  5 ;  3
 	mapgroup SEAFOAM_GYM,                                  4,  5 ;  4
 	mapgroup ROUTE_19,                                    18, 10 ;  5
 	mapgroup ROUTE_20,                                     9, 30 ;  6

@@ -5,7 +5,7 @@ const_value set 2
 	const CELADONPOKECENTER1F_COOLTRAINER_F
 	const CELADONPOKECENTER1F_EUSINE
 
-CeladonPokecenter1F_MapScriptHeader:
+CeladonPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -145,7 +145,7 @@ NoBeastsText:
 	line "you, <PLAYER>!"
 	done
 
-CeladonPokecenter1F_MapEventHeader:
+CeladonPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

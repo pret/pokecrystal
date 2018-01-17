@@ -2,7 +2,7 @@ const_value set 2
 	const TRAINERHOUSEB1F_RECEPTIONIST
 	const TRAINERHOUSEB1F_CHRIS
 
-TrainerHouseB1F_MapScriptHeader:
+TrainerHouseB1F_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -169,7 +169,7 @@ TrainerHouseB1FCalBeforeText:
 	cont "could battle you."
 	done
 
-TrainerHouseB1F_MapEventHeader:
+TrainerHouseB1F_MapEvents:
 	; filler
 	db 0, 0
 

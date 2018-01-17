@@ -1,4 +1,4 @@
-CeladonDeptStoreElevator_MapScriptHeader:
+CeladonDeptStoreElevator_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -27,7 +27,7 @@ CeladonDeptStoreElevatorData:
 	elevfloor FLOOR_6F, 2, CELADON_DEPT_STORE_6F
 	db -1 ; end
 
-CeladonDeptStoreElevator_MapEventHeader:
+CeladonDeptStoreElevator_MapEvents:
 	; filler
 	db 0, 0
 

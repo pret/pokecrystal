@@ -1,7 +1,7 @@
 const_value set 2
 	const MOVEDELETERSHOUSE_SUPER_NERD
 
-MoveDeletersHouse_MapScriptHeader:
+MoveDeletersHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ MoveDeleter:
 MoveDeletersHouseBookshelf:
 	jumpstd difficultbookshelf
 
-MoveDeletersHouse_MapEventHeader:
+MoveDeletersHouse_MapEvents:
 	; filler
 	db 0, 0
 

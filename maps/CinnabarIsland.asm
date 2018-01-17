@@ -1,7 +1,7 @@
 const_value set 2
 	const CINNABARISLAND_BLUE
 
-CinnabarIsland_MapScriptHeader:
+CinnabarIsland_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -127,7 +127,7 @@ CinnabarIslandSignText:
 	line "Burning Desire"
 	done
 
-CinnabarIsland_MapEventHeader:
+CinnabarIsland_MapEvents:
 	; filler
 	db 0, 0
 

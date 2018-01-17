@@ -3,7 +3,7 @@ const_value set 2
 	const COPYCATSHOUSE1F_POKEFAN_F
 	const COPYCATSHOUSE1F_CLEFAIRY
 
-CopycatsHouse1F_MapScriptHeader:
+CopycatsHouse1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -72,7 +72,7 @@ UnknownText_0x18ae4b:
 	text "BLISSEY: Bliisii!"
 	done
 
-CopycatsHouse1F_MapEventHeader:
+CopycatsHouse1F_MapEvents:
 	; filler
 	db 0, 0
 

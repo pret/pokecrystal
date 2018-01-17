@@ -4,7 +4,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE1F_BUG_CATCHER
 	const GOLDENRODDEPTSTORE1F_GENTLEMAN
 
-GoldenrodDeptStore1F_MapScriptHeader:
+GoldenrodDeptStore1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -78,7 +78,7 @@ GoldenrodDeptStore1FDirectoryText:
 	para "ROOFTOP LOOKOUT"
 	done
 
-GoldenrodDeptStore1F_MapEventHeader:
+GoldenrodDeptStore1F_MapEvents:
 	; filler
 	db 0, 0
 

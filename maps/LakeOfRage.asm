@@ -12,7 +12,7 @@ const_value set 2
 	const LAKEOFRAGE_POKE_BALL1
 	const LAKEOFRAGE_POKE_BALL2
 
-LakeOfRage_MapScriptHeader:
+LakeOfRage_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -493,7 +493,7 @@ UnknownText_0x70903:
 	line "HOUSE"
 	done
 
-LakeOfRage_MapEventHeader:
+LakeOfRage_MapEvents:
 	; filler
 	db 0, 0
 

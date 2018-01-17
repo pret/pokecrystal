@@ -7,7 +7,7 @@ const_value set 2
 	const ROUTE15_TEACHER2
 	const ROUTE15_POKE_BALL
 
-Route15_MapScriptHeader:
+Route15_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -201,7 +201,7 @@ Route15SignText:
 	line "LAVENDER TOWN"
 	done
 
-Route15_MapEventHeader:
+Route15_MapEvents:
 	; filler
 	db 0, 0
 

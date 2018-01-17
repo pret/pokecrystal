@@ -2,7 +2,7 @@ const_value set 2
 	const CELADONGAMECORNERPRIZEROOM_GENTLEMAN
 	const CELADONGAMECORNERPRIZEROOM_PHARMACIST
 
-CeladonGameCornerPrizeRoom_MapScriptHeader:
+CeladonGameCornerPrizeRoom_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -263,7 +263,7 @@ CeladonPrizeRoom_NoCoinCaseText:
 	line "a COIN CASE."
 	done
 
-CeladonGameCornerPrizeRoom_MapEventHeader:
+CeladonGameCornerPrizeRoom_MapEvents:
 	; filler
 	db 0, 0
 

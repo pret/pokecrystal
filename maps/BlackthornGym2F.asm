@@ -8,7 +8,7 @@ const_value set 2
 	const BLACKTHORNGYM2F_BOULDER5
 	const BLACKTHORNGYM2F_BOULDER6
 
-BlackthornGym2F_MapScriptHeader:
+BlackthornGym2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -125,7 +125,7 @@ BlackthornGym2FBoulderFellText:
 	line "through!"
 	done
 
-BlackthornGym2F_MapEventHeader:
+BlackthornGym2F_MapEvents:
 	; filler
 	db 0, 0
 

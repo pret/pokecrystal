@@ -6,7 +6,7 @@ const_value set 2
 	const SPROUTTOWER1F_SAGE3
 	const SPROUTTOWER1F_POKE_BALL
 
-SproutTower1F_MapScriptHeader:
+SproutTower1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -102,7 +102,7 @@ UnknownText_0x1846d6:
 	line "distinguished."
 	done
 
-SproutTower1F_MapEventHeader:
+SproutTower1F_MapEvents:
 	; filler
 	db 0, 0
 

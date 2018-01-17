@@ -6,7 +6,7 @@ const_value set 2
 	const UNIONCAVEB2F_POKE_BALL2
 	const UNIONCAVEB2F_LAPRAS
 
-UnionCaveB2F_MapScriptHeader:
+UnionCaveB2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -141,7 +141,7 @@ CooltrainerfEmmaAfterBattleText:
 	line "that #MON…"
 	done
 
-UnionCaveB2F_MapEventHeader:
+UnionCaveB2F_MapEvents:
 	; filler
 	db 0, 0
 

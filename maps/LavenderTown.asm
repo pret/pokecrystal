@@ -4,7 +4,7 @@ const_value set 2
 	const LAVENDERTOWN_GRAMPS
 	const LAVENDERTOWN_YOUNGSTER
 
-LavenderTown_MapScriptHeader:
+LavenderTown_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -105,7 +105,7 @@ SoulHouseSignText:
 	line "#MON Rest Easy"
 	done
 
-LavenderTown_MapEventHeader:
+LavenderTown_MapEvents:
 	; filler
 	db 0, 0
 

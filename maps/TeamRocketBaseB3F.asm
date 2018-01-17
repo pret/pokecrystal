@@ -14,7 +14,7 @@ const_value set 2
 	const TEAMROCKETBASEB3F_POKE_BALL4
 	const TEAMROCKETBASEB3F_POKE_BALL5
 
-TeamRocketBaseB3F_MapScriptHeader:
+TeamRocketBaseB3F_MapScripts:
 .SceneScripts:
 	db 4
 	scene_script .LanceGetsPassword
@@ -565,7 +565,7 @@ UnknownText_0x6e9a3:
 	para "The door opened!"
 	done
 
-TeamRocketBaseB3F_MapEventHeader:
+TeamRocketBaseB3F_MapEvents:
 	; filler
 	db 0, 0
 

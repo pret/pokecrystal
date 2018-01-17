@@ -5,7 +5,7 @@ const_value set 2
 	const RADIOTOWER5F_ROCKER
 	const RADIOTOWER5F_POKE_BALL
 
-RadioTower5F_MapScriptHeader:
+RadioTower5F_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -420,7 +420,7 @@ SignpostRadioTower5FStudio:
 	text "5F STUDIO 1"
 	done
 
-RadioTower5F_MapEventHeader:
+RadioTower5F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,7 +3,7 @@ const_value set 2
 	const VICTORYROADGATE_BLACK_BELT1
 	const VICTORYROADGATE_BLACK_BELT2
 
-VictoryRoadGate_MapScriptHeader:
+VictoryRoadGate_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -97,7 +97,7 @@ VictoryRoadGateRightBlackBeltText:
 	line "ready for you!"
 	done
 
-VictoryRoadGate_MapEventHeader:
+VictoryRoadGate_MapEvents:
 	; filler
 	db 0, 0
 

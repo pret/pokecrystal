@@ -1,4 +1,4 @@
-SilverCaveOutside_MapScriptHeader:
+SilverCaveOutside_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -23,7 +23,7 @@ MtSilverSignText:
 	text "MT.SILVER"
 	done
 
-SilverCaveOutside_MapEventHeader:
+SilverCaveOutside_MapEvents:
 	; filler
 	db 0, 0
 

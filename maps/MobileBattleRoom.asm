@@ -1,4 +1,4 @@
-MobileBattleRoom_MapScriptHeader:
+MobileBattleRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .InitializeMobileBattleRoom
@@ -66,7 +66,7 @@ MobileBattleRoom_HealText:
 	cont "before battle."
 	done
 
-MobileBattleRoom_MapEventHeader:
+MobileBattleRoom_MapEvents:
 	; filler
 	db 0, 0
 

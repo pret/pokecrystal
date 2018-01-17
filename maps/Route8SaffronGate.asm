@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE8SAFFRONGATE_OFFICER
 
-Route8SaffronGate_MapScriptHeader:
+Route8SaffronGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ Route8SaffronGateOfficerText:
 	line "RADIO TOWER there."
 	done
 
-Route8SaffronGate_MapEventHeader:
+Route8SaffronGate_MapEvents:
 	; filler
 	db 0, 0
 

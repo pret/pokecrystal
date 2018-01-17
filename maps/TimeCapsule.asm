@@ -2,7 +2,7 @@ const_value set 2
 	const TIMECAPSULE_CHRIS1
 	const TIMECAPSULE_CHRIS2
 
-TimeCapsule_MapScriptHeader:
+TimeCapsule_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .InitializeTimeCapsule
@@ -53,7 +53,7 @@ UnknownText_0x193521:
 	line "ready."
 	done
 
-TimeCapsule_MapEventHeader:
+TimeCapsule_MapEvents:
 	; filler
 	db 0, 0
 

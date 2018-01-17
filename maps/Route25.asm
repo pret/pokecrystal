@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE25_COOLTRAINER_M2
 	const ROUTE25_POKE_BALL
 
-Route25_MapScriptHeader:
+Route25_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -429,7 +429,7 @@ BillsHouseSignText:
 	text "BILL'S HOUSE"
 	done
 
-Route25_MapEventHeader:
+Route25_MapEvents:
 	; filler
 	db 0, 0
 

@@ -9,7 +9,7 @@ const_value set 2
 	const CIANWOODGYM_BOULDER3
 	const CIANWOODGYM_BOULDER4
 
-CianwoodGym_MapScriptHeader:
+CianwoodGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -305,7 +305,7 @@ BlackbeltLungAfterText:
 	cont "shattered…"
 	done
 
-CianwoodGym_MapEventHeader:
+CianwoodGym_MapEvents:
 	; filler
 	db 0, 0
 

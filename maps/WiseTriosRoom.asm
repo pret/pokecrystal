@@ -6,7 +6,7 @@ const_value set 2
 	const WISETRIOSROOM_SAGE5
 	const WISETRIOSROOM_SAGE6
 
-WiseTriosRoom_MapScriptHeader:
+WiseTriosRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -344,7 +344,7 @@ UnknownText_0x98db5:
 	line "you to the test."
 	done
 
-WiseTriosRoom_MapEventHeader:
+WiseTriosRoom_MapEvents:
 	; filler
 	db 0, 0
 

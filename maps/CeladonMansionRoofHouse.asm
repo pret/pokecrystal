@@ -1,7 +1,7 @@
 const_value set 2
 	const CELADONMANSIONROOFHOUSE_PHARMACIST
 
-CeladonMansionRoofHouse_MapScriptHeader:
+CeladonMansionRoofHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -116,7 +116,7 @@ UnknownText_0x71db3:
 	line "victim's HP."
 	done
 
-CeladonMansionRoofHouse_MapEventHeader:
+CeladonMansionRoofHouse_MapEvents:
 	; filler
 	db 0, 0
 

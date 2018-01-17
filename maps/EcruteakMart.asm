@@ -3,7 +3,7 @@ const_value set 2
 	const ECRUTEAKMART_SUPER_NERD
 	const ECRUTEAKMART_GRANNY
 
-EcruteakMart_MapScriptHeader:
+EcruteakMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -45,7 +45,7 @@ EcruteakMartGrannyText:
 	line "right up."
 	done
 
-EcruteakMart_MapEventHeader:
+EcruteakMart_MapEvents:
 	; filler
 	db 0, 0
 

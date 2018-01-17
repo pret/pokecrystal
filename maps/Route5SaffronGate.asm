@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE5SAFFRONGATE_OFFICER
 
-Route5SaffronGate_MapScriptHeader:
+Route5SaffronGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -20,7 +20,7 @@ Route5SaffronGateOfficerText:
 	cont "don't you agree?"
 	done
 
-Route5SaffronGate_MapEventHeader:
+Route5SaffronGate_MapEvents:
 	; filler
 	db 0, 0
 

@@ -5,7 +5,7 @@ const_value set 2
 	const BATTLETOWER1F_BUG_CATCHER
 	const BATTLETOWER1F_GRANNY
 
-BattleTower1F_MapScriptHeader:
+BattleTower1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .Scene0
@@ -793,7 +793,7 @@ Text_BattleTowerBugCatcher: ; 0x9f35b
 	line "any fire #MON…"
 	done
 
-BattleTower1F_MapEventHeader:
+BattleTower1F_MapEvents:
 	; filler
 	db 0, 0
 

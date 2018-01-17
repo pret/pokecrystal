@@ -5,7 +5,7 @@ const_value set 2
 	const ICEPATHB1F_BOULDER4
 	const ICEPATHB1F_POKE_BALL
 
-IcePathB1F_MapScriptHeader:
+IcePathB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -75,7 +75,7 @@ IcePathBoulderFellThroughText:
 	line "through."
 	done
 
-IcePathB1F_MapEventHeader:
+IcePathB1F_MapEvents:
 	; filler
 	db 0, 0
 

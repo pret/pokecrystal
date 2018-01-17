@@ -3,7 +3,7 @@ const_value set 2
 	const TINTOWER8F_POKE_BALL2
 	const TINTOWER8F_POKE_BALL3
 
-TinTower8F_MapScriptHeader:
+TinTower8F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ TinTower8FMaxElixer:
 TinTower8FFullRestore:
 	itemball FULL_RESTORE
 
-TinTower8F_MapEventHeader:
+TinTower8F_MapEvents:
 	; filler
 	db 0, 0
 

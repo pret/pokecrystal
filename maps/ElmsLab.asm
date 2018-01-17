@@ -6,7 +6,7 @@ const_value set 2
 	const ELMSLAB_POKE_BALL3
 	const ELMSLAB_OFFICER
 
-ElmsLab_MapScriptHeader:
+ElmsLab_MapScripts:
 .SceneScripts:
 	db 6
 	scene_script .MeetElm
@@ -1370,7 +1370,7 @@ ElmsLabPCText:
 	line "screen…"
 	done
 
-ElmsLab_MapEventHeader:
+ElmsLab_MapEvents:
 	; filler
 	db 0, 0
 

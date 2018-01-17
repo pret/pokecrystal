@@ -4,7 +4,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE4F_BUG_CATCHER
 	const GOLDENRODDEPTSTORE4F_GAMEBOY_KID
 
-GoldenrodDeptStore4F_MapScriptHeader:
+GoldenrodDeptStore4F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -77,7 +77,7 @@ GoldenrodDeptStore4FDirectoryText:
 	para "4F MEDICINE BOX"
 	done
 
-GoldenrodDeptStore4F_MapEventHeader:
+GoldenrodDeptStore4F_MapEvents:
 	; filler
 	db 0, 0
 

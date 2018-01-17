@@ -3,7 +3,7 @@ const_value set 2
 	const CELADONDEPTSTORE1F_GENTLEMAN
 	const CELADONDEPTSTORE1F_TEACHER
 
-CeladonDeptStore1F_MapScriptHeader:
+CeladonDeptStore1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -73,7 +73,7 @@ CeladonDeptStore1FDirectoryText:
 	line "    SQUARE"
 	done
 
-CeladonDeptStore1F_MapEventHeader:
+CeladonDeptStore1F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -1,4 +1,4 @@
-RuinsOfAlphHoOhChamber_MapScriptHeader:
+RuinsOfAlphHoOhChamber_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .CheckWall
@@ -144,7 +144,7 @@ UnknownText_0x586aa:
 	line "wings."
 	done
 
-RuinsOfAlphHoOhChamber_MapEventHeader:
+RuinsOfAlphHoOhChamber_MapEvents:
 	; filler
 	db 0, 0
 

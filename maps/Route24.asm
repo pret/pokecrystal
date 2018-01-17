@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE24_ROCKET
 
-Route24_MapScriptHeader:
+Route24_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -118,7 +118,7 @@ UnknownText_0x1adee1:
 	cont "from, me?"
 	done
 
-Route24_MapEventHeader:
+Route24_MapEvents:
 	; filler
 	db 0, 0
 

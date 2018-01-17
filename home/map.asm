@@ -72,7 +72,7 @@ GetMapSceneID:: ; 2147
 
 .next
 	pop hl
-	ld de, 4 ; size of an entry in the scene script table
+	ld de, 4 ; scene_script size
 	add hl, de
 	jr .loop
 
@@ -249,7 +249,7 @@ GetDestinationWarpNumber:: ; 2252
 	ld a, [hROMBank]
 	push af
 
-	call SwitchToMapScriptHeaderBank
+	call SwitchToMapScriptsBank
 	call .GetDestinationWarpNumber
 
 	pop de
@@ -270,7 +270,7 @@ GetDestinationWarpNumber:: ; 2252
 	ret z
 
 	ld c, a
-	ld hl, wCurrMapWarpHeaderPointer
+	ld hl, wCurrMapWarpsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -321,7 +321,7 @@ CopyWarpData:: ; 22a7
 	ld a, [hROMBank]
 	push af
 
-	call SwitchToMapScriptHeaderBank
+	call SwitchToMapScriptsBank
 	call .CopyWarpData
 
 	pop af
@@ -332,7 +332,7 @@ CopyWarpData:: ; 22a7
 
 .CopyWarpData: ; 22b4
 	push bc
-	ld hl, wCurrMapWarpHeaderPointer
+	ld hl, wCurrMapWarpsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -394,35 +394,35 @@ CheckIndoorMap:: ; 22f4
 ; 2309
 
 LoadMapAttributes:: ; 2309
-	call CopyMapHeaders
-	call SwitchToMapScriptHeaderBank
+	call CopyMapDefAndData
+	call SwitchToMapScriptsBank
 	call ReadMapScripts
-	xor a
-	call ReadMapEventHeader
+	xor a ; do not skip object_events
+	call ReadMapEvents
 	ret
 ; 2317
 
 LoadMapAttributes_SkipPeople:: ; 2317
-	call CopyMapHeaders
-	call SwitchToMapScriptHeaderBank
+	call CopyMapDefAndData
+	call SwitchToMapScriptsBank
 	call ReadMapScripts
-	ld a, $1
-	call ReadMapEventHeader
+	ld a, TRUE ; skip object events
+	call ReadMapEvents
 	ret
 ; 2326
 
-CopyMapHeaders:: ; 2326
-	call PartiallyCopyMapHeader
-	call SwitchToMapBank
-	call GetSecondaryMapHeaderPointer
-	call CopySecondMapHeader
+CopyMapDefAndData:: ; 2326
+	call PartialCopyMapDef
+	call SwitchToMapDataBank
+	call GetMapDataPointer
+	call CopyMapData
 	call GetMapConnections
 	ret
 ; 2336
 
-ReadMapEventHeader:: ; 2336
+ReadMapEvents:: ; 2336
 	push af
-	ld hl, MapEventHeaderPointer
+	ld hl, MapEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -433,7 +433,7 @@ ReadMapEventHeader:: ; 2336
 	call ReadBGEvents
 
 	pop af
-	and a
+	and a ; skip object events?
 	ret nz
 
 	call ReadObjectEvents
@@ -441,7 +441,7 @@ ReadMapEventHeader:: ; 2336
 ; 234f
 
 ReadMapScripts:: ; 234f
-	ld hl, MapScriptHeaderPointer
+	ld hl, MapScriptsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -450,9 +450,9 @@ ReadMapScripts:: ; 234f
 	ret
 ; 235c
 
-CopySecondMapHeader:: ; 235c
-	ld de, MapHeader
-	ld c, 12 ; size of the second map header
+CopyMapData:: ; 235c
+	ld de, wMapData
+	ld c, wMapDataEnd - wMapData
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -516,14 +516,14 @@ ReadMapSceneScripts:: ; 23ac
 	ld c, a
 	ld [wCurrMapSceneScriptCount], a ; current map scene script count
 	ld a, l
-	ld [wCurrMapSceneScriptHeaderPointer], a ; map scene script pointer
+	ld [wCurrMapSceneScriptsPointer], a ; map scene script pointer
 	ld a, h
-	ld [wCurrMapSceneScriptHeaderPointer + 1], a
+	ld [wCurrMapSceneScriptsPointer + 1], a
 	ld a, c
 	and a
 	ret z
 
-	ld bc, 4 ; size of a map scene script header entry
+	ld bc, 4 ; scene_script size
 	call AddNTimes
 	ret
 ; 23c3
@@ -533,9 +533,9 @@ ReadMapCallbacks:: ; 23c3
 	ld c, a
 	ld [wCurrMapCallbackCount], a
 	ld a, l
-	ld [wCurrMapCallbackHeaderPointer], a
+	ld [wCurrMapCallbacksPointer], a
 	ld a, h
-	ld [wCurrMapCallbackHeaderPointer + 1], a
+	ld [wCurrMapCallbacksPointer + 1], a
 	ld a, c
 	and a
 	ret z
@@ -550,9 +550,9 @@ ReadWarps:: ; 23da
 	ld c, a
 	ld [wCurrMapWarpCount], a
 	ld a, l
-	ld [wCurrMapWarpHeaderPointer], a
+	ld [wCurrMapWarpsPointer], a
 	ld a, h
-	ld [wCurrMapWarpHeaderPointer + 1], a
+	ld [wCurrMapWarpsPointer + 1], a
 	ld a, c
 	and a
 	ret z
@@ -566,9 +566,9 @@ ReadCoordEvents:: ; 23f1
 	ld c, a
 	ld [wCurrMapCoordEventCount], a
 	ld a, l
-	ld [wCurrMapCoordEventHeaderPointer], a
+	ld [wCurrMapCoordEventsPointer], a
 	ld a, h
-	ld [wCurrMapCoordEventHeaderPointer + 1], a
+	ld [wCurrMapCoordEventsPointer + 1], a
 
 	ld a, c
 	and a
@@ -584,9 +584,9 @@ ReadBGEvents:: ; 2408
 	ld c, a
 	ld [wCurrMapBGEventCount], a
 	ld a, l
-	ld [wCurrMapBGEventHeaderPointer], a
+	ld [wCurrMapBGEventsPointer], a
 	ld a, h
-	ld [wCurrMapBGEventHeaderPointer + 1], a
+	ld [wCurrMapBGEventsPointer + 1], a
 
 	ld a, c
 	and a
@@ -606,12 +606,12 @@ ReadObjectEvents:: ; 241f
 	inc de
 	ld [wCurrMapObjectEventCount], a
 	ld a, e
-	ld [wCurrMapObjectEventHeaderPointer], a
+	ld [wCurrMapObjectEventsPointer], a
 	ld a, d
-	ld [wCurrMapObjectEventHeaderPointer + 1], a
+	ld [wCurrMapObjectEventsPointer + 1], a
 
 	ld a, [wCurrMapObjectEventCount]
-	call CopyMapObjectHeaders
+	call CopyMapObjectEvents
 
 ; get NUM_OBJECTS - [wCurrMapObjectEventCount]
 	ld a, [wCurrMapObjectEventCount]
@@ -643,7 +643,7 @@ ReadObjectEvents:: ; 241f
 	ret
 ; 2457
 
-CopyMapObjectHeaders:: ; 2457
+CopyMapObjectEvents:: ; 2457
 	and a
 	ret z
 
@@ -690,10 +690,10 @@ ClearObjectStructs:: ; 2471
 ; 248a
 
 RestoreFacingAfterWarp:: ; 248a
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	rst Bankswitch
 
-	ld hl, MapEventHeaderPointer
+	ld hl, MapEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -759,12 +759,12 @@ ChangeMap:: ; 24e4
 	add hl, bc
 	ld c, 3
 	add hl, bc
-	ld a, [MapBlockDataBank]
+	ld a, [MapBlocksBank]
 	rst Bankswitch
 
-	ld a, [MapBlockDataPointer]
+	ld a, [MapBlocksPointer]
 	ld e, a
-	ld a, [MapBlockDataPointer+1]
+	ld a, [MapBlocksPointer + 1]
 	ld d, a
 	ld a, [MapHeight]
 	ld b, a
@@ -802,7 +802,7 @@ FillMapConnections:: ; 2524
 	ld b, a
 	ld a, [NorthConnectedMapNumber]
 	ld c, a
-	call GetAnyMapBlockdataBank
+	call GetAnyMapBlocksBank
 
 	ld a, [NorthConnectionStripPointer]
 	ld l, a
@@ -825,7 +825,7 @@ FillMapConnections:: ; 2524
 	ld b, a
 	ld a, [SouthConnectedMapNumber]
 	ld c, a
-	call GetAnyMapBlockdataBank
+	call GetAnyMapBlocksBank
 
 	ld a, [SouthConnectionStripPointer]
 	ld l, a
@@ -848,7 +848,7 @@ FillMapConnections:: ; 2524
 	ld b, a
 	ld a, [WestConnectedMapNumber]
 	ld c, a
-	call GetAnyMapBlockdataBank
+	call GetAnyMapBlocksBank
 
 	ld a, [WestConnectionStripPointer]
 	ld l, a
@@ -871,7 +871,7 @@ FillMapConnections:: ; 2524
 	ld b, a
 	ld a, [EastConnectedMapNumber]
 	ld c, a
-	call GetAnyMapBlockdataBank
+	call GetAnyMapBlocksBank
 
 	ld a, [EastConnectionStripPointer]
 	ld l, a
@@ -992,20 +992,20 @@ CallMapScript:: ; 2631
 	ld a, [ScriptRunning]
 	and a
 	ret nz
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	jr CallScript
 ; 263b
 
 RunMapCallback:: ; 263b
-; Will run the first callback found in the map header with execution index equal to a.
+; Will run the first callback found with execution index equal to a.
 	ld b, a
 	ld a, [hROMBank]
 	push af
-	call SwitchToMapScriptHeaderBank
+	call SwitchToMapScriptsBank
 	call .FindCallback
 	jr nc, .done
 
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	ld b, a
 	ld d, h
 	ld e, l
@@ -1022,7 +1022,7 @@ RunMapCallback:: ; 263b
 	ld c, a
 	and a
 	ret z
-	ld hl, wCurrMapCallbackHeaderPointer
+	ld hl, wCurrMapCallbacksPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1860,7 +1860,7 @@ CheckFacingBGEvent:: ; 2a8b
 	ld c, a
 	ld a, [hROMBank]
 	push af
-	call SwitchToMapScriptHeaderBank
+	call SwitchToMapScriptsBank
 	call CheckIfFacingTileCoordIsBGEvent
 	pop hl
 	ld a, h
@@ -1870,7 +1870,7 @@ CheckFacingBGEvent:: ; 2a8b
 
 CheckIfFacingTileCoordIsBGEvent:: ; 2aaa
 ; Checks to see if you are facing a BG event.  If so, copies it into EngineBuffer1 and sets carry.
-	ld hl, wCurrMapBGEventHeaderPointer
+	ld hl, wCurrMapBGEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1916,7 +1916,7 @@ CheckCurrentMapCoordEvents:: ; 2ad4
 	ld c, a
 	ld a, [hROMBank]
 	push af
-	call SwitchToMapScriptHeaderBank
+	call SwitchToMapScriptsBank
 	call .CoordEventCheck
 	pop hl
 	ld a, h
@@ -1925,7 +1925,7 @@ CheckCurrentMapCoordEvents:: ; 2ad4
 
 .CoordEventCheck:
 ; Checks to see if you are standing on a coord event.  If yes, copies the event to EngineBuffer1 and sets carry.
-	ld hl, wCurrMapCoordEventHeaderPointer
+	ld hl, wCurrMapCoordEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2052,7 +2052,7 @@ ReloadTilesetAndPalettes:: ; 2bae
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call SwitchToAnyMapBank
+	call SwitchToAnyMapDataBank
 	farcall UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
 	call LoadTilesetGFX
@@ -2065,12 +2065,12 @@ ReloadTilesetAndPalettes:: ; 2bae
 	ret
 ; 2be5
 
-GetMapHeaderPointer:: ; 2be5
+GetMapDefPointer:: ; 2be5
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-GetAnyMapHeaderPointer:: ; 0x2bed
+GetAnyMapDefPointer:: ; 0x2bed
 ; Prior to calling this function, you must have switched banks so that
 ; MapGroupPointers is visible.
 
@@ -2078,7 +2078,7 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 ; b = map group, c = map number
 
 ; outputs:
-; hl points to the map header
+; hl points to the map_def
 	push bc ; save map number for later
 
 	; get pointer to map group
@@ -2094,7 +2094,7 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 	ld l, a
 	pop bc ; restore map number
 
-	; find the cth map header
+	; find the cth map_def
 	dec c
 	ld b, 0
 	ld a, 9
@@ -2102,28 +2102,28 @@ GetAnyMapHeaderPointer:: ; 0x2bed
 	ret
 ; 0x2c04
 
-GetMapHeaderMember:: ; 0x2c04
-; Extract data from the current map's header.
+GetMapDefField:: ; 0x2c04
+; Extract data from the current map's map_def.
 
 ; inputs:
-; de = offset of desired data within the mapheader (a MAPHEADER_* constant)
+; de = offset of desired data within the map_def (a MAPDEF_* constant)
 
 ; outputs:
-; bc = data from the current map's header
-; (e.g., de = MAPHEADER_MAPHEADER2 would return a pointer to the secondary map header)
+; bc = data from the current map's map_def
+; (e.g., de = MAPDEF_TILESET would return a pointer to the tileset id)
 
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-GetAnyMapHeaderMember:: ; 0x2c0c
+GetAnyMapDefField:: ; 0x2c0c
 	; bankswitch
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
 
-	call GetAnyMapHeaderPointer
+	call GetAnyMapDefPointer
 	add hl, de
 	ld c, [hl]
 	inc hl
@@ -2135,44 +2135,44 @@ GetAnyMapHeaderMember:: ; 0x2c0c
 	ret
 ; 0x2c1c
 
-SwitchToMapBank:: ; 2c1c
+SwitchToMapDataBank:: ; 2c1c
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-SwitchToAnyMapBank:: ; 2c24
-	call GetAnyMapBank
+SwitchToAnyMapDataBank:: ; 2c24
+	call GetAnyMapDataBank
 	rst Bankswitch
 	ret
 ; 2c29
 
-GetMapBank:: ; 2c29
+GetMapDataBank:: ; 2c29
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-GetAnyMapBank:: ; 2c31
+GetAnyMapDataBank:: ; 2c31
 	push hl
 	push de
-	ld de, MAPHEADER_MAPHEADER2_BANK
-	call GetAnyMapHeaderMember
+	ld de, MAPDEF_MAPDATA_BANK
+	call GetAnyMapDefField
 	ld a, c
 	pop de
 	pop hl
 	ret
 ; 2c3d
 
-PartiallyCopyMapHeader:: ; 2c3d
-; Copy second map header bank, tileset, environment, and second map header address
-; from the current map's map header.
+PartialCopyMapDef:: ; 2c3d
+; Copy map data bank, tileset, environment, and map data address
+; from the current map's map_def.
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
 
-	call GetMapHeaderPointer
-	ld de, wSecondMapHeaderBank
-	ld bc, MapHeader - wSecondMapHeaderBank
+	call GetMapDefPointer
+	ld de, wPartialMapDef
+	ld bc, wPartialMapDefEnd - wPartialMapDef
 	call CopyBytes
 
 	pop af
@@ -2180,36 +2180,36 @@ PartiallyCopyMapHeader:: ; 2c3d
 	ret
 ; 2c52
 
-SwitchToMapScriptHeaderBank:: ; 2c52
-	ld a, [MapScriptHeaderBank]
+SwitchToMapScriptsBank:: ; 2c52
+	ld a, [MapScriptsBank]
 	rst Bankswitch
 	ret
 ; 2c57
 
-GetMapScriptHeaderBank:: ; 2c57
-	ld a, [MapScriptHeaderBank]
+GetMapScriptsBank:: ; 2c57
+	ld a, [MapScriptsBank]
 	ret
 ; 2c5b
 
-GetAnyMapBlockdataBank:: ; 2c5b
+GetAnyMapBlocksBank:: ; 2c5b
 ; Return the blockdata bank for group b map c.
 	push hl
 	push de
 	push bc
 
 	push bc
-	ld de, MAPHEADER_MAPHEADER2
-	call GetAnyMapHeaderMember
+	ld de, MAPDEF_MAPDATA
+	call GetAnyMapDefField
 	ld l, c
 	ld h, b
 	pop bc
 
 	push hl
-	ld de, MAPHEADER_MAPHEADER2_BANK
-	call GetAnyMapHeaderMember
+	ld de, MAPDEF_MAPDATA_BANK
+	call GetAnyMapDefField
 	pop hl
 
-	ld de, MAPHEADER_MAPHEADER2 ; blockdata bank
+	ld de, MAPDEF_MAPDATA ; blockdata bank
 	add hl, de
 	ld a, c
 	call GetFarByte
@@ -2221,12 +2221,12 @@ GetAnyMapBlockdataBank:: ; 2c5b
 	ret
 ; 2c7d
 
-GetSecondaryMapHeaderPointer:: ; 0x2c7d
-; returns the current map's secondary map header pointer in hl.
+GetMapDataPointer:: ; 0x2c7d
+; returns the current map's data pointer in hl.
 	push bc
 	push de
-	ld de, MAPHEADER_MAPHEADER2
-	call GetMapHeaderMember
+	ld de, MAPDEF_MAPDATA
+	call GetMapDefField
 	ld l, c
 	ld h, b
 	pop de
@@ -2238,8 +2238,8 @@ GetMapEnvironment:: ; 2c8a
 	push hl
 	push de
 	push bc
-	ld de, MAPHEADER_ENVIRONMENT
-	call GetMapHeaderMember
+	ld de, MAPDEF_ENVIRONMENT
+	call GetMapDefField
 	ld a, c
 	pop bc
 	pop de
@@ -2254,8 +2254,8 @@ GetAnyMapEnvironment:: ; 2c99
 	push hl
 	push de
 	push bc
-	ld de, MAPHEADER_ENVIRONMENT
-	call GetAnyMapHeaderMember
+	ld de, MAPDEF_ENVIRONMENT
+	call GetAnyMapDefField
 	ld a, c
 	pop bc
 	pop de
@@ -2264,8 +2264,8 @@ GetAnyMapEnvironment:: ; 2c99
 ; 2ca7
 
 GetAnyMapTileset:: ; 2ca7
-	ld de, MAPHEADER_TILESET
-	call GetAnyMapHeaderMember
+	ld de, MAPDEF_TILESET
+	call GetAnyMapDefField
 	ld a, c
 	ret
 ; 2caf
@@ -2276,8 +2276,8 @@ GetWorldMapLocation:: ; 0x2caf
 	push de
 	push bc
 
-	ld de, MAPHEADER_LOCATION
-	call GetAnyMapHeaderMember
+	ld de, MAPDEF_LOCATION
+	call GetAnyMapDefField
 	ld a, c
 
 	pop bc
@@ -2286,11 +2286,11 @@ GetWorldMapLocation:: ; 0x2caf
 	ret
 ; 0x2cbd
 
-GetMapHeaderMusic:: ; 2cbd
+GetMapMusic:: ; 2cbd
 	push hl
 	push bc
-	ld de, MAPHEADER_MUSIC
-	call GetMapHeaderMember
+	ld de, MAPDEF_MUSIC
+	call GetMapDefField
 	ld a, c
 	cp MUSIC_MAHOGANY_MART
 	jr z, .mahoganymart
@@ -2331,13 +2331,13 @@ GetMapHeaderMusic:: ; 2cbd
 	jr .done
 ; 2cff
 
-GetMapHeaderTimeOfDayNybble:: ; 2cff
+GetMapTimeOfDay:: ; 2cff
 	call GetPhoneServiceTimeOfDayByte
 	and $f
 	ret
 ; 2d05
 
-GetMapHeaderPhoneServiceNybble:: ; 2d05
+GetMapPhoneService:: ; 2d05
 	call GetPhoneServiceTimeOfDayByte
 	and $f0
 	swap a
@@ -2348,8 +2348,8 @@ GetPhoneServiceTimeOfDayByte:: ; 2d0d
 	push hl
 	push bc
 
-	ld de, MAPHEADER_PALETTE
-	call GetMapHeaderMember
+	ld de, MAPDEF_PALETTE
+	call GetMapDefField
 	ld a, c
 
 	pop bc
@@ -2362,8 +2362,8 @@ GetFishingGroup:: ; 2d19
 	push hl
 	push bc
 
-	ld de, MAPHEADER_FISHGROUP
-	call GetMapHeaderMember
+	ld de, MAPDEF_FISHGROUP
+	call GetMapDefField
 	ld a, c
 
 	pop bc

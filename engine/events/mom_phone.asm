@@ -9,7 +9,7 @@ MomTriesToBuySomething:: ; fcfec
 	ld a, [wMapReentryScriptQueueFlag]
 	and a
 	ret nz
-	call GetMapHeaderPhoneServiceNybble
+	call GetMapPhoneService
 	and a
 	ret nz
 	xor a

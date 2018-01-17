@@ -5,7 +5,7 @@ const_value set 2
 	const ROUTE43GATE_ROCKET1
 	const ROUTE43GATE_ROCKET2
 
-Route43Gate_MapScriptHeader:
+Route43Gate_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .RocketShakedown
@@ -247,7 +247,7 @@ OfficerText_AvoidGrass:
 	cont "the grass."
 	done
 
-Route43Gate_MapEventHeader:
+Route43Gate_MapEvents:
 	; filler
 	db 0, 0
 

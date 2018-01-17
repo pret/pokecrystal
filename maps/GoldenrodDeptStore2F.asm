@@ -5,7 +5,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE2F_COOLTRAINER_F
 	const GOLDENRODDEPTSTORE2F_GENTLEMAN
 
-GoldenrodDeptStore2F_MapScriptHeader:
+GoldenrodDeptStore2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -100,7 +100,7 @@ GoldenrodDeptStore2FDirectoryText:
 	line "   MARKET"
 	done
 
-GoldenrodDeptStore2F_MapEventHeader:
+GoldenrodDeptStore2F_MapEvents:
 	; filler
 	db 0, 0
 

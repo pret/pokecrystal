@@ -2,7 +2,7 @@ const_value set 2
 	const COLOSSEUM_CHRIS1
 	const COLOSSEUM_CHRIS2
 
-Colosseum_MapScriptHeader:
+Colosseum_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .InitializeColosseum
@@ -62,7 +62,7 @@ ChrisScript_0x193499:
 	line "ready."
 	done
 
-Colosseum_MapEventHeader:
+Colosseum_MapEvents:
 	; filler
 	db 0, 0
 

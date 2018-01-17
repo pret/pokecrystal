@@ -3,7 +3,7 @@ const_value set 2
 	const AZALEAMART_COOLTRAINER_M
 	const AZALEAMART_BUG_CATCHER
 
-AzaleaMart_MapScriptHeader:
+AzaleaMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -45,7 +45,7 @@ AzaleaMartBugCatcherText:
 	cont "times."
 	done
 
-AzaleaMart_MapEventHeader:
+AzaleaMart_MapEvents:
 	; filler
 	db 0, 0
 

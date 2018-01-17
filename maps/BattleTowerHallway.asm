@@ -1,7 +1,7 @@
 const_value set 2
 	const BATTLETOWERHALLWAY_RECEPTIONIST
 
-BattleTowerHallway_MapScriptHeader:
+BattleTowerHallway_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .Scene0
@@ -76,7 +76,7 @@ BattleTowerHallway_MapScriptHeader:
 	warpcheck
 	end
 
-BattleTowerHallway_MapEventHeader:
+BattleTowerHallway_MapEvents:
 	; filler
 	db 0, 0
 
@@ -97,4 +97,4 @@ BattleTowerHallway_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event 11, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEventHeader, -1
+	object_event 11, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEvents, -1

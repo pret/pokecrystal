@@ -1,4 +1,4 @@
-ChrisNameMenuHeader: ; 882b5
+ChrisNameMenuDataHeader: ; 882b5
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, TEXTBOX_Y - 1
 	dw .MaleNames
@@ -17,7 +17,7 @@ MalePlayerNameArray: ; 882c9
 	db 2 ; displacement
 	db " NAME @" ; title
 
-KrisNameMenuHeader: ; 882e5
+KrisNameMenuDataHeader: ; 882e5
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, TEXTBOX_Y - 1
 	dw .FemaleNames

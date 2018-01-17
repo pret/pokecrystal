@@ -7,7 +7,7 @@ const_value set 2
 	const AZALEAGYM_TWIN2
 	const AZALEAGYM_GYM_GUY
 
-AzaleaGym_MapScriptHeader:
+AzaleaGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -361,7 +361,7 @@ AzaleaGymGuyWinText:
 	cont "#MON is bright!"
 	done
 
-AzaleaGym_MapEventHeader:
+AzaleaGym_MapEvents:
 	; filler
 	db 0, 0
 

@@ -6,7 +6,7 @@ const_value set 2
 	const SAFFRONGYM_YOUNGSTER2
 	const SAFFRONGYM_GYM_GUY
 
-SaffronGym_MapScriptHeader:
+SaffronGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -290,7 +290,7 @@ SaffronGymGuyWinText:
 	line "fantastic battle!"
 	done
 
-SaffronGym_MapEventHeader:
+SaffronGym_MapEvents:
 	; filler
 	db 0, 0
 

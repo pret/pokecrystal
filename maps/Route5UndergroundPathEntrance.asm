@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE5UNDERGROUNDPATHENTRANCE_TEACHER
 
-Route5UndergroundPathEntrance_MapScriptHeader:
+Route5UndergroundPathEntrance_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ Route5UndergroundPathEntranceTeacherText:
 	line "love to visit!"
 	done
 
-Route5UndergroundPathEntrance_MapEventHeader:
+Route5UndergroundPathEntrance_MapEvents:
 	; filler
 	db 0, 0
 

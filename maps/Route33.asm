@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE33_LASS
 	const ROUTE33_FRUIT_TREE
 
-Route33_MapScriptHeader:
+Route33_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -194,7 +194,7 @@ Route33SignText:
 	text "ROUTE 33"
 	done
 
-Route33_MapEventHeader:
+Route33_MapEvents:
 	; filler
 	db 0, 0
 

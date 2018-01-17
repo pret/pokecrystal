@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE27SANDSTORMHOUSE_GRANNY
 
-Route27SandstormHouse_MapScriptHeader:
+Route27SandstormHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -93,7 +93,7 @@ SandstormHouseWomanDisloyalText:
 	cont "and trainers."
 	done
 
-Route27SandstormHouse_MapEventHeader:
+Route27SandstormHouse_MapEvents:
 	; filler
 	db 0, 0
 

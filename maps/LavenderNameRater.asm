@@ -1,7 +1,7 @@
 const_value set 2
 	const LAVENDERNAMERATER_NAME_RATER
 
-LavenderNameRater_MapScriptHeader:
+LavenderNameRater_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -23,7 +23,7 @@ LavenderNameRater:
 LavenderNameRaterUnusedBookshelf:
 	jumpstd difficultbookshelf
 
-LavenderNameRater_MapEventHeader:
+LavenderNameRater_MapEvents:
 	; filler
 	db 0, 0
 

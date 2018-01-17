@@ -1,7 +1,7 @@
 const_value set 2
 	const SILVERCAVEROOM3_RED
 
-SilverCaveRoom3_MapScriptHeader:
+SilverCaveRoom3_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -50,7 +50,7 @@ Red:
 	line "<......>"
 	done
 
-SilverCaveRoom3_MapEventHeader:
+SilverCaveRoom3_MapEvents:
 	; filler
 	db 0, 0
 

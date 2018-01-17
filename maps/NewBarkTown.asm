@@ -3,7 +3,7 @@ const_value set 2
 	const NEWBARKTOWN_FISHER
 	const NEWBARKTOWN_SILVER
 
-NewBarkTown_MapScriptHeader:
+NewBarkTown_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -281,7 +281,7 @@ ElmsHouseSignText:
 	text "ELM'S HOUSE"
 	done
 
-NewBarkTown_MapEventHeader:
+NewBarkTown_MapEvents:
 	; filler
 	db 0, 0
 

@@ -9,7 +9,7 @@ const_value set 2
 	const BURNEDTOWERB1F_POKE_BALL
 	const BURNEDTOWERB1F_EUSINE
 
-BurnedTowerB1F_MapScriptHeader:
+BurnedTowerB1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -235,7 +235,7 @@ BurnedTowerB1FEusineText:
 	para "Farewell!"
 	done
 
-BurnedTowerB1F_MapEventHeader:
+BurnedTowerB1F_MapEvents:
 	; filler
 	db 0, 0
 

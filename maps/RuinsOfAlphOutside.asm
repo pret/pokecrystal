@@ -5,7 +5,7 @@ const_value set 2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
-RuinsOfAlphOutside_MapScriptHeader:
+RuinsOfAlphOutside_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -280,7 +280,7 @@ UnknownText_0x5848e:
 	line "message!"
 	done
 
-RuinsOfAlphOutside_MapEventHeader:
+RuinsOfAlphOutside_MapEvents:
 	; filler
 	db 0, 0
 

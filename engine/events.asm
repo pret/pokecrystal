@@ -396,7 +396,7 @@ CheckTileEvent: ; 96874
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	call CallScript
 	ret
 ; 968c7
@@ -450,7 +450,7 @@ RunSceneScript: ; 968ec
 
 	ld e, a
 	ld d, 0
-	ld hl, wCurrMapSceneScriptHeaderPointer
+	ld hl, wCurrMapSceneScriptsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -458,9 +458,9 @@ rept 4
 	add hl, de
 endr
 
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	call GetFarHalfword
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	call CallScript
 
 	ld hl, ScriptFlags
@@ -635,7 +635,7 @@ TryObjectEvent: ; 969b5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	call CallScript
 	ret
 ; 96a12
@@ -646,7 +646,7 @@ TryObjectEvent: ; 969b5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	ld de, EngineBuffer1
 	ld bc, 2
 	call FarCopyBytes
@@ -731,7 +731,7 @@ TryBGEvent: ; 96a38
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	call CallScript
 	scf
 	ret
@@ -740,7 +740,7 @@ TryBGEvent: ; 96a38
 	call CheckBGEventFlag
 	jp nz, .dontread
 	call PlayTalkObject
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
@@ -753,7 +753,7 @@ TryBGEvent: ; 96a38
 .copy
 	call CheckBGEventFlag
 	jr nz, .dontread
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
@@ -774,9 +774,9 @@ TryBGEvent: ; 96a38
 	pop hl
 	inc hl
 	inc hl
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	call GetFarHalfword
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	call CallScript
 	scf
 	ret
@@ -792,7 +792,7 @@ CheckBGEventFlag: ; 96ad8
 	ld h, [hl]
 	ld l, a
 	push hl
-	call GetMapScriptHeaderBank
+	call GetMapScriptsBank
 	call GetFarHalfword
 	ld e, l
 	ld d, h

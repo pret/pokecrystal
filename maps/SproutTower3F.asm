@@ -7,7 +7,7 @@ const_value set 2
 	const SPROUTTOWER3F_POKE_BALL2
 	const SPROUTTOWER3F_SILVER
 
-SproutTower3F_MapScriptHeader:
+SproutTower3F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -329,7 +329,7 @@ UnknownText_0x184f61:
 	line "distinguished."
 	done
 
-SproutTower3F_MapEventHeader:
+SproutTower3F_MapEvents:
 	; filler
 	db 0, 0
 

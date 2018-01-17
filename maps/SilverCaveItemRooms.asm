@@ -2,7 +2,7 @@ const_value set 2
 	const SILVERCAVEITEMROOMS_POKE_BALL1
 	const SILVERCAVEITEMROOMS_POKE_BALL2
 
-SilverCaveItemRooms_MapScriptHeader:
+SilverCaveItemRooms_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -15,7 +15,7 @@ SilverCaveItemRoomsMaxRevive:
 SilverCaveItemRoomsFullRestore:
 	itemball FULL_RESTORE
 
-SilverCaveItemRooms_MapEventHeader:
+SilverCaveItemRooms_MapEvents:
 	; filler
 	db 0, 0
 

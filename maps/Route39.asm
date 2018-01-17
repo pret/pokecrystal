@@ -10,7 +10,7 @@ const_value set 2
 	const ROUTE39_FRUIT_TREE
 	const ROUTE39_POKEFAN_F2
 
-Route39_MapScriptHeader:
+Route39_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -343,7 +343,7 @@ Route39TrainerTipsText:
 	line "any tree you see!"
 	done
 
-Route39_MapEventHeader:
+Route39_MapEvents:
 	; filler
 	db 0, 0
 

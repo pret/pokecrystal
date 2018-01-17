@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE19_FISHER1
 	const ROUTE19_FISHER2
 
-Route19_MapScriptHeader:
+Route19_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -234,13 +234,13 @@ CarefulSwimmingSignText:
 	para "FUCHSIA POLICE"
 	done
 
-Route19_MapEventHeader:
+Route19_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 1
-	warp_def 7, 3, 3, ROUTE_19___FUCHSIA_GATE
+	warp_def 7, 3, 3, ROUTE_19_FUCHSIA_GATE
 
 .CoordEvents:
 	db 0

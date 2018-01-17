@@ -2,7 +2,7 @@ const_value set 2
 	const ROCKTUNNEL1F_POKE_BALL1
 	const ROCKTUNNEL1F_POKE_BALL2
 
-RockTunnel1F_MapScriptHeader:
+RockTunnel1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -21,7 +21,7 @@ RockTunnel1FHiddenXAccuracy:
 RockTunnel1FHiddenXDefend:
 	hiddenitem EVENT_ROCK_TUNNEL_1F_HIDDEN_X_DEFEND, X_DEFEND
 
-RockTunnel1F_MapEventHeader:
+RockTunnel1F_MapEvents:
 	; filler
 	db 0, 0
 

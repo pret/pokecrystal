@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE35NATIONALPARKGATE_YOUNGSTER
 	const ROUTE35NATIONALPARKGATE_OFFICER2
 
-Route35NationalParkGate_MapScriptHeader:
+Route35NationalParkGate_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -437,7 +437,7 @@ UnknownText_0x6a90e:
 	line "the contest."
 	done
 
-Route35NationalParkGate_MapEventHeader:
+Route35NationalParkGate_MapEvents:
 	; filler
 	db 0, 0
 

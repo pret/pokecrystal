@@ -1,11 +1,11 @@
-Route10Pokecenter2FBeta_MapScriptHeader:
+Route10Pokecenter2FBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-Route10Pokecenter2FBeta_MapEventHeader:
+Route10Pokecenter2FBeta_MapEvents:
 	; filler
 	db 0, 0
 

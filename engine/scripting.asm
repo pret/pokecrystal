@@ -2580,11 +2580,11 @@ Script_changemap:
 ; parameters: map_data_pointer
 
 	call GetScriptByte
-	ld [MapBlockDataBank], a
+	ld [MapBlocksBank], a
 	call GetScriptByte
-	ld [MapBlockDataPointer], a
+	ld [MapBlocksPointer], a
 	call GetScriptByte
-	ld [MapBlockDataPointer + 1], a
+	ld [MapBlocksPointer + 1], a
 	call ChangeMap
 	call BufferScreen
 	ret
