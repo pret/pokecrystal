@@ -10,7 +10,7 @@ Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) a
 
 ## `$D0`: <code>anim_obj <i>object</i>, <i>x</i>, <i>y</i>, <i>param</i></code>
 
-***Alternate*: <code>anim_obj <i>object</i>, <i>x_tile</i>, <i>x</i>, <i>y_tile</i>, <i>y</i>, <i>param</i>**
+***Alternate*: <code>anim_obj <i>object</i>, <i>x_tile</i>, <i>x</i>, <i>y_tile</i>, <i>y</i>, <i>param</i></code>**
 
 Spawns an *object* at coordinate (*x*, *y*).
 
