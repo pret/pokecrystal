@@ -518,7 +518,7 @@ MobileTradeAnim_ShowPlayerMonToBeSent: ; 10830e
 	jr c, .skip_cry
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 
 .skip_cry
 	ld c, 80
@@ -653,7 +653,7 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	jr c, .skip_cry
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 
 .skip_cry
 	ld c, 80

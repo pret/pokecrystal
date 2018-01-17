@@ -1019,7 +1019,7 @@ Unreferenced_Function1522:: ; 1522
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call PlayCry
+	call PlayMonCry
 	pop de
 	pop hl
 	pop bc

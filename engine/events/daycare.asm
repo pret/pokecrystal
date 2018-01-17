@@ -1,3 +1,4 @@
+; PrintDayCareText.TextTable indexes
 	const_def
 	const DAYCARETEXT_MAN_INTRO
 	const DAYCARETEXT_MAN_EGG
@@ -13,12 +14,12 @@
 	const DAYCARETEXT_GENIUSES
 	const DAYCARETEXT_ASK_WITHDRAW
 	const DAYCARETEXT_WITHDRAW
+	const DAYCARETEXT_GOT_BACK
 	const DAYCARETEXT_TOO_SOON
 	const DAYCARETEXT_PARTY_FULL
 	const DAYCARETEXT_NOT_ENOUGH_MONEY
 	const DAYCARETEXT_OH_FINE
 	const DAYCARETEXT_COME_AGAIN
-	const DAYCARETEXT_13
 
 Special_DayCareMan: ; 166d6
 	ld hl, wDayCareMan
@@ -44,7 +45,7 @@ Special_DayCareMan: ; 166d6
 	call DayCare_AskWithdrawBreedMon
 	jr c, .print_text
 	farcall RetrievePokemonFromDayCareMan
-	call DayCare_TakeMoney_PlayCry
+	call DayCare_GetBackMonForMoney
 	ld hl, wDayCareMan
 	res 0, [hl]
 	res 5, [hl]
@@ -54,7 +55,7 @@ Special_DayCareMan: ; 166d6
 	call PrintDayCareText
 
 .cancel
-	ld a, DAYCARETEXT_13
+	ld a, DAYCARETEXT_COME_AGAIN
 	call PrintDayCareText
 	ret
 ; 1672a
@@ -83,7 +84,7 @@ Special_DayCareLady: ; 1672a
 	call DayCare_AskWithdrawBreedMon
 	jr c, .print_text
 	farcall RetrievePokemonFromDayCareLady
-	call DayCare_TakeMoney_PlayCry
+	call DayCare_GetBackMonForMoney
 	ld hl, wDayCareLady
 	res 0, [hl]
 	ld hl, wDayCareMan
@@ -94,7 +95,7 @@ Special_DayCareLady: ; 1672a
 	call PrintDayCareText
 
 .cancel
-	ld a, DAYCARETEXT_13
+	ld a, DAYCARETEXT_COME_AGAIN
 	call PrintDayCareText
 	ret
 ; 16781
@@ -145,7 +146,7 @@ DayCareAskDepositPokemon: ; 16798
 	ret
 
 .Declined:
-	ld a, DAYCARETEXT_COME_AGAIN
+	ld a, DAYCARETEXT_OH_FINE
 	scf
 	ret
 
@@ -180,7 +181,7 @@ DayCare_DepositPokemonText: ; 167f6
 	ld a, DAYCARETEXT_DEPOSIT
 	call PrintDayCareText
 	ld a, [CurPartySpecies]
-	call PlayCry
+	call PlayMonCry
 	ld a, DAYCARETEXT_COME_BACK_LATER
 	call PrintDayCareText
 	ret
@@ -190,7 +191,7 @@ DayCare_AskWithdrawBreedMon: ; 16807
 	ld a, [StringBuffer2 + 1]
 	and a
 	jr nz, .grew_at_least_one_level
-	ld a, DAYCARETEXT_PARTY_FULL
+	ld a, DAYCARETEXT_TOO_SOON
 	call PrintDayCareText
 	call YesNoBox
 	jr c, .refused
@@ -218,30 +219,30 @@ DayCare_AskWithdrawBreedMon: ; 16807
 	ret
 
 .refused
-	ld a, DAYCARETEXT_COME_AGAIN
-	scf
-	ret
-
-.not_enough_money
 	ld a, DAYCARETEXT_OH_FINE
 	scf
 	ret
 
-.PartyFull:
+.not_enough_money
 	ld a, DAYCARETEXT_NOT_ENOUGH_MONEY
+	scf
+	ret
+
+.PartyFull:
+	ld a, DAYCARETEXT_PARTY_FULL
 	scf
 	ret
 ; 16850
 
-DayCare_TakeMoney_PlayCry: ; 16850
+DayCare_GetBackMonForMoney: ; 16850
 	ld bc, StringBuffer2 + 2
 	ld de, Money
 	farcall TakeMoney
 	ld a, DAYCARETEXT_WITHDRAW
 	call PrintDayCareText
 	ld a, [CurPartySpecies]
-	call PlayCry
-	ld a, DAYCARETEXT_TOO_SOON
+	call PlayMonCry
+	ld a, DAYCARETEXT_GOT_BACK
 	call PrintDayCareText
 	ret
 ; 1686d
@@ -283,6 +284,7 @@ PrintDayCareText: ; 1689b
 ; 168aa
 
 .TextTable: ; 168aa
+; entries correspond to DAYCARETEXT_* constants
 	dw .DayCareManIntro ; 00
 	dw .DayCareManOddEgg ; 01
 	dw .DayCareLadyIntro ; 02

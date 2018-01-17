@@ -1002,7 +1002,7 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 	call GetCryIndex
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 	ret
 ```
 
@@ -1011,7 +1011,7 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 ```asm
 .Cry: ; 40340
 	ld a, [CurPartySpecies]
-	call PlayCry
+	call PlayMonCry
 	ret
 ```
 

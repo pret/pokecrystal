@@ -413,7 +413,7 @@ Special_SnorlaxAwake: ; 0xc43d
 
 Special_PlayCurMonCry: ; c472
 	ld a, [CurPartySpecies]
-	jp PlayCry
+	jp PlayMonCry
 ; c478
 
 

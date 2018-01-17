@@ -141,7 +141,7 @@ PlayMusic2:: ; 3bbc
 ; 3be3
 
 
-PlayCryHeader:: ; 3be3
+PlayCry:: ; 3be3
 ; Play cry header de.
 
 	push hl
@@ -176,11 +176,11 @@ endr
 	ld a, [hl]
 	ld [CryLength + 1], a
 
-	ld a, BANK(_PlayCryHeader)
+	ld a, BANK(_PlayCry)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-	call _PlayCryHeader
+	call _PlayCry
 
 	pop af
 	ld [hROMBank], a

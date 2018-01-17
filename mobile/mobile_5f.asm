@@ -1253,7 +1253,7 @@ Function17d7d3: ; 17d7d3
 	dec a
 	ld e, a
 	ld d, $0
-	call PlayCryHeader
+	call PlayCry
 	call WaitSFX
 	call HlToCrashCheckPointer
 	ret

@@ -1,6 +1,6 @@
 Special_PlaySlowCry: ; fb841
 	ld a, [ScriptVar]
-	call LoadCryHeader
+	call LoadCry
 	jr c, .done
 
 	ld hl, CryPitch
@@ -23,7 +23,7 @@ Special_PlaySlowCry: ; fb841
 	ld [CryLength], a
 	ld a, h
 	ld [CryLength + 1], a
-	farcall _PlayCryHeader
+	farcall _PlayCry
 	call WaitSFX
 
 .done

@@ -891,7 +891,7 @@ Special_DayCareMon1: ; 17421
 	ld hl, DayCareMon1Text
 	call PrintText
 	ld a, [wBreedMon1Species]
-	call PlayCry
+	call PlayMonCry
 	ld a, [wDayCareLady]
 	bit 0, a
 	jr z, DayCareMonCursor
@@ -904,7 +904,7 @@ Special_DayCareMon2: ; 17440
 	ld hl, DayCareMon2Text
 	call PrintText
 	ld a, [wBreedMon2Species]
-	call PlayCry
+	call PlayMonCry
 	ld a, [wDayCareMan]
 	bit 0, a
 	jr z, DayCareMonCursor

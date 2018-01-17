@@ -249,7 +249,7 @@ PokeAnim_Finish: ; d0171
 
 PokeAnim_Cry: ; d017a
 	ld a, [wPokeAnimSpecies]
-	call _PlayCry
+	call _PlayMonCry
 	ld a, [wPokeAnimSceneIndex]
 	inc a
 	ld [wPokeAnimSceneIndex], a
@@ -258,7 +258,7 @@ PokeAnim_Cry: ; d017a
 
 PokeAnim_CryNoWait: ; d0188
 	ld a, [wPokeAnimSpecies]
-	call PlayCry2
+	call PlayMonCry2
 	ld a, [wPokeAnimSceneIndex]
 	inc a
 	ld [wPokeAnimSceneIndex], a

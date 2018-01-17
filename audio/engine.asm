@@ -2474,7 +2474,7 @@ _PlayMusic:: ; e8b30
 
 ; e8b79
 
-_PlayCryHeader:: ; e8b79
+_PlayCry:: ; e8b79
 ; Play cry de using parameters:
 ;	CryPitch
 ;	CryLength

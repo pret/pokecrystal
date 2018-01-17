@@ -346,7 +346,7 @@ Pokedex_InitDexEntryScreen: ; 40217 (10:4217)
 	ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout
 	ld a, [CurPartySpecies]
-	call PlayCry
+	call PlayMonCry
 	call Pokedex_IncrementDexPointer
 	ret
 
@@ -415,7 +415,7 @@ Pokedex_ReinitDexEntryScreen: ; 402aa (10:42aa)
 	ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout
 	ld a, [CurPartySpecies]
-	call PlayCry
+	call PlayMonCry
 	ld hl, wJumptableIndex
 	dec [hl]
 	ret
@@ -471,7 +471,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	call GetCryIndex
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 	ret
 
 .Print: ; 4034f
@@ -2558,7 +2558,7 @@ _NewPokedexEntry: ; 41a7f
 	ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout
 	ld a, [CurPartySpecies]
-	call PlayCry
+	call PlayMonCry
 	ret
 
 

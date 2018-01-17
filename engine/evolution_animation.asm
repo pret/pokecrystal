@@ -80,7 +80,7 @@ EvolutionAnimation: ; 4e5e1
 	jr c, .skip_cry
 
 	ld a, [wEvolutionOldSpecies]
-	call PlayCry
+	call PlayMonCry
 
 .skip_cry
 	ld de, MUSIC_EVOLUTION
@@ -148,7 +148,7 @@ EvolutionAnimation: ; 4e5e1
 	ret c
 
 	ld a, [PlayerHPPal]
-	call PlayCry
+	call PlayMonCry
 	ret
 ; 4e703
 

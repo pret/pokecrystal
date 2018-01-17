@@ -847,7 +847,7 @@ TradeAnim_ShowGivemonData: ; 2942e
 	jr c, .skip_cry
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 .skip_cry
 
 	call TradeAnim_AdvanceScriptPointer

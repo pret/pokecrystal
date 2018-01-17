@@ -938,7 +938,7 @@ Script_cry:
 	jr nz, .ok
 	ld a, [ScriptVar]
 .ok
-	call PlayCry
+	call PlayMonCry
 	ret
 
 GetScriptObject:

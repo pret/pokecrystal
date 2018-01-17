@@ -1825,7 +1825,7 @@ DepositPokemon: ; e307c (38:707c)
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	ld a, [CurPartySpecies]
-	call PlayCry
+	call PlayMonCry
 	hlcoord 0, 0
 	lb bc, 15, 8
 	call ClearBox
@@ -1880,7 +1880,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	ld a, [CurPartySpecies]
-	call PlayCry
+	call PlayMonCry
 	hlcoord 0, 0
 	lb bc, 15, 8
 	call ClearBox
@@ -1934,7 +1934,7 @@ ReleasePKMN_ByePKMN: ; e3180 (38:7180)
 	jr c, .skip_cry
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 .skip_cry
 
 	ld a, [CurPartySpecies]

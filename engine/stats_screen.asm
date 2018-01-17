@@ -829,7 +829,7 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	call SetPalettes
 	call .AnimateMon
 	ld a, [CurPartySpecies]
-	call PlayCry2
+	call PlayMonCry2
 	ret
 
 .AnimateMon: ; 4e253 (13:6253)
