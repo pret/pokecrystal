@@ -3,147 +3,147 @@
 Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/scripting.asm:ScriptCommandTable](/engine/scripting.asm).
 
 
-## `$00`: `scall` *script*
+## `$00`: <code>scall <i>script</i></code>
 
-## `$01`: `farscall` *script*
+## `$01`: <code>farscall <i>script</i></code>
 
-## `$02`: `ptcall` *script*
+## `$02`: <code>ptcall <i>script</i></code>
 
-## `$03`: `jump` *script*
+## `$03`: <code>jump <i>script</i></code>
 
-## `$04`: `farjump` *script*
+## `$04`: <code>farjump <i>script</i></code>
 
-## `$05`: `ptjump` *script*
+## `$05`: <code>ptjump <i>script</i></code>
 
-## `$06`: `if_equal` *byte*, *script*
+## `$06`: <code>if_equal <i>byte</i>, <i>script</i></code>
 
-## `$07`: `if_not_equal` *byte*, *script*
+## `$07`: <code>if_not_equal <i>byte</i>, <i>script</i></code>
 
-## `$08`: `iffalse` *script*
+## `$08`: <code>iffalse <i>script</i></code>
 
-## `$09`: `iftrue` *script*
+## `$09`: <code>iftrue <i>script</i></code>
 
-## `$0A`: `if_greater_than` *byte*, *script*
+## `$0A`: <code>if_greater_than <i>byte</i>, <i>script</i></code>
 
-## `$0B`: `if_less_than` *byte*, *script*
+## `$0B`: <code>if_less_than <i>byte</i>, <i>script</i></code>
 
-## `$0C`: `jumpstd` *std_script*
+## `$0C`: <code>jumpstd <i>std_script</i></code>
 
-## `$0D`: `callstd` *std_script*
+## `$0D`: <code>callstd <i>std_script</i></code>
 
-## `$0E`: `callasm` *asm*
+## `$0E`: <code>callasm <i>asm</i></code>
 
-## `$0F`: `special` *special_pointer*
+## `$0F`: <code>special <i>special_pointer</i></code>
 
-## `$10`: `ptcallasm` *asm*
+## `$10`: <code>ptcallasm <i>asm</i></code>
 
-## `$11`: `checkmapscene` *map*
+## `$11`: <code>checkmapscene <i>map</i></code>
 
-## `$12`: `setmapscene` *map*, *scene_id*
+## `$12`: <code>setmapscene <i>map</i>, <i>scene_id</i></code>
 
 ## `$13`: `checkscene`
 
-## `$14`: `setscene` *scene_id*
+## `$14`: <code>setscene <i>scene_id</i></code>
 
-## `$15`: `writebyte` *value*
+## `$15`: <code>writebyte <i>value</i></code>
 
-## `$16`: `addvar` *value*
+## `$16`: <code>addvar <i>value</i></code>
 
-## `$17`: `random` *value*
+## `$17`: <code>random <i>value</i></code>
 
 ## `$18`: `checkver`
 
-## `$19`: `copybytetovar` *address*
+## `$19`: <code>copybytetovar <i>address</i></code>
 
-## `$1A`: `copyvartobyte` *address*
+## `$1A`: <code>copyvartobyte <i>address</i></code>
 
-## `$1B`: `loadvar` *address*, *value*
+## `$1B`: <code>loadvar <i>address</i>, <i>value</i></code>
 
-## `$1C`: `checkcode` *variable*
+## `$1C`: <code>checkcode <i>variable</i></code>
 
-## `$1D`: `writevarcode` *variable*
+## `$1D`: <code>writevarcode <i>variable</i></code>
 
-## `$1E`: `writecode` *variable*, *value*
+## `$1E`: <code>writecode <i>variable</i>, <i>value</i></code>
 
-## `$1F`: `giveitem` *item_id*[, *quantity*=1]
+## `$1F`: <code>giveitem <i>item_id</i>[, <i>quantity</i>=1]</code>
 
-## `$20`: `takeitem` *item_id*[, *quantity*=1]
+## `$20`: <code>takeitem <i>item_id</i>[, <i>quantity</i>=1]</code>
 
-## `$21`: `checkitem` *item_id*
+## `$21`: <code>checkitem <i>item_id</i></code>
 
-## `$22`: `givemoney` *account*, *value*
+## `$22`: <code>givemoney <i>account</i>, <i>value</i></code>
 
-## `$23`: `takemoney` *account*, *value*
+## `$23`: <code>takemoney <i>account</i>, <i>value</i></code>
 
-## `$24`: `checkmoney` *account*, *value*
+## `$24`: <code>checkmoney <i>account</i>, <i>value</i></code>
 
-## `$25`: `givecoins` *value*
+## `$25`: <code>givecoins <i>value</i></code>
 
-## `$26`: `takecoins` *value*
+## `$26`: <code>takecoins <i>value</i></code>
 
-## `$27`: `checkcoins` *value*
+## `$27`: <code>checkcoins <i>value</i></code>
 
-## `$28`: `addcellnum` *contact_id*
+## `$28`: <code>addcellnum <i>contact_id</i></code>
 
-## `$29`: `delcellnum` *contact_id*
+## `$29`: <code>delcellnum <i>contact_id</i></code>
 
-## `$2A`: `checkcellnum` *contact_id*
+## `$2A`: <code>checkcellnum <i>contact_id</i></code>
 
-## `$2B`: `checktime` *time*
+## `$2B`: <code>checktime <i>time</i></code>
 
 - **`checkmorn`:** `checktime MORN`
 - **`checkday`:** `checktime DAY`
 - **`checknite`:** `checktime NITE`
 
-## `$2C`: `checkpoke` *mon_id*
+## `$2C`: <code>checkpoke <i>mon_id</i></code>
 
-## `$2D`: `givepoke` *mon_id*, *level*[, *item*=0[, *trainer*=0, *ot_name*, *nickname*]]
+## `$2D`: <code>givepoke <i>mon_id</i>, <i>level</i>[, <i>item</i>=0[, <i>trainer</i>=0, <i>ot_name</i>, <i>nickname</i>]]</code>
 
-## `$2E`: `giveegg` *mon_id*, *level*
+## `$2E`: <code>giveegg <i>mon_id</i>, <i>level</i></code>
 
-## `$2F`: `givepokeitem` *pointer*
+## `$2F`: <code>givepokeitem <i>pointer</i></code>
 
-## `$30`: `checkpokeitem` *pointer*
+## `$30`: <code>checkpokeitem <i>pointer</i></code>
 
-## `$31`: `checkevent` *event_flag*
+## `$31`: <code>checkevent <i>event_flag</i></code>
 
-## `$32`: `clearevent` *event_flag*
+## `$32`: <code>clearevent <i>event_flag</i></code>
 
-## `$33`: `setevent` *event_flag*
+## `$33`: <code>setevent <i>event_flag</i></code>
 
-## `$34`: `checkflag` *engine_flag*
+## `$34`: <code>checkflag <i>engine_flag</i></code>
 
-## `$35`: `clearflag` *engine_flag*
+## `$35`: <code>clearflag <i>engine_flag</i></code>
 
-## `$36`: `setflag` *engine_flag*
+## `$36`: <code>setflag <i>engine_flag</i></code>
 
 ## `$37`: `wildon`
 
 ## `$38`: `wildoff`
 
-## `$39`: `xycompare` *pointer*
+## `$39`: <code>xycompare <i>pointer</i></code>
 
-## `$3A`: `warpmod` *warp_id*, *map*
+## `$3A`: <code>warpmod <i>warp_id</i>, <i>map</i></code>
 
-## `$3B`: `blackoutmod` *map*
+## `$3B`: <code>blackoutmod <i>map</i></code>
 
-## `$3C`: `warp` *map*, *x*, *y*
+## `$3C`: <code>warp <i>map</i>, <i>x</i>, <i>y</i></code>
 
-## `$3D`: `readmoney` *account*, *memory*
+## `$3D`: <code>readmoney <i>account</i>, <i>memory</i></code>
 
-## `$3E`: `readcoins` *memory*
+## `$3E`: <code>readcoins <i>memory</i></code>
 
-## `$3F`: `vartomem` *memory*
+## `$3F`: <code>vartomem <i>memory</i></code>
 
-## `$40`: `pokenamemem` *mon_id*, *memory*
+## `$40`: <code>pokenamemem <i>mon_id</i>, <i>memory</i></code>
 
-## `$41`: `itemtotext` *item_id*, *memory*
+## `$41`: <code>itemtotext <i>item_id</i>, <i>memory</i></code>
 
-## `$42`: `mapnametotext` *memory*
+## `$42`: <code>mapnametotext <i>memory</i></code>
 
-## `$43`: `trainertotext` *trainer_id*, *trainer_group*, *memory*
+## `$43`: <code>trainertotext <i>trainer_id</i>, <i>trainer_group</i>, <i>memory</i></code>
 
-## `$44`: `stringtotext` *text_pointer*, *memory*
+## `$44`: <code>stringtotext <i>text_pointer</i>, <i>memory</i></code>
 
 ## `$45`: `itemnotify`
 
@@ -151,35 +151,35 @@ Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/s
 
 ## `$47`: `opentext`
 
-## `$48`: `refreshscreen` [*dummy*=0]
+## `$48`: <code>refreshscreen [<i>dummy</i>=0]</code>
 
 ## `$49`: `closetext`
 
-## `$4A`: `loadbytec2cf` *byte*
+## `$4A`: <code>loadbytec2cf <i>byte</i></code>
 
-## `$4B`: `farwritetext` *text_pointer*
+## `$4B`: <code>farwritetext <i>text_pointer</i></code>
 
-## `$4C`: `writetext` *text_pointer*
+## `$4C`: <code>writetext <i>text_pointer</i></code>
 
-## `$4D`: `repeattext` *byte1*, *byte2*
+## `$4D`: <code>repeattext <i>byte1</i>, <i>byte2</i></code>
 
 ## `$4E`: `yesorno`
 
-## `$4F`: `loadmenudata` *data_pointer*
+## `$4F`: <code>loadmenudata <i>data_pointer</i></code>
 
 ## `$50`: `closewindow`
 
-## `$51`: `jumptextfaceplayer` *text_pointer*
+## `$51`: <code>jumptextfaceplayer <i>text_pointer</i></code>
 
-## `$52`: `farjumptext` *text_pointer*
+## `$52`: <code>farjumptext <i>text_pointer</i></code>
 
-## `$53`: `jumptext` *text_pointer*
+## `$53`: <code>jumptext <i>text_pointer</i></code>
 
 ## `$54`: `waitbutton`
 
 ## `$55`: `buttonsound`
 
-## `$56`: `pokepic` *mon_id*
+## `$56`: <code>pokepic <i>mon_id</i></code>
 
 ## `$57`: `closepokepic`
 
@@ -193,21 +193,21 @@ Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/s
 
 ## `$5C`: `loadmemtrainer`
 
-## `$5D`: `loadwildmon` *mon_id*, *level*
+## `$5D`: <code>loadwildmon <i>mon_id</i>, <i>level</i></code>
 
-## `$5E`: `loadtrainer` *trainer_group*, *trainer_id*
+## `$5E`: <code>loadtrainer <i>trainer_group</i>, <i>trainer_id</i></code>
 
 ## `$5F`: `startbattle`
 
 ## `$60`: `reloadmapafterbattle`
 
-## `$61`: `catchtutorial` *byte*
+## `$61`: <code>catchtutorial <i>byte</i></code>
 
-## `$62`: `trainertext` *which_text*
+## `$62`: <code>trainertext <i>which_text</i></code>
 
-## `$63`: `trainerflagaction` *action*
+## `$63`: <code>trainerflagaction <i>action</i></code>
 
-## `$64`: `winlosstext` *win_text_pointer*, *loss_text_pointer*
+## `$64`: <code>winlosstext <i>win_text_pointer</i>, <i>loss_text_pointer</i></code>
 
 ## `$65`: `scripttalkafter`
 
@@ -215,65 +215,65 @@ Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/s
 
 ## `$67`: `check_just_battled`
 
-## `$68`: `setlasttalked` *object_id*
+## `$68`: <code>setlasttalked <i>object_id</i></code>
 
-## `$69`: `applymovement` *object_id*, *data_pointer*
+## `$69`: <code>applymovement <i>object_id</i>, <i>data_pointer</i></code>
 
-## `$6A`: `applymovement2` *data_pointer*
+## `$6A`: <code>applymovement2 <i>data_pointer</i></code>
 
 ## `$6B`: `faceplayer`
 
-## `$6C`: `faceobject` *object1*, *object2*
+## `$6C`: <code>faceobject <i>object1</i>, <i>object2</i></code>
 
-## `$6D`: `variablesprite` *variable_sprite_id*, *sprite_id*
+## `$6D`: <code>variablesprite <i>variable_sprite_id</i>, <i>sprite_id</i></code>
 
-## `$6E`: `disappear` *object_id*
+## `$6E`: <code>disappear <i>object_id</i></code>
 
-## `$6F`: `appear` *object_id*
+## `$6F`: <code>appear <i>object_id</i></code>
 
-## `$70`: `follow` *object2*, *object1*
+## `$70`: <code>follow <i>object2</i>, <i>object1</i></code>
 
 ## `$71`: `stopfollow`
 
-## `$72`: `moveobject` *object_id*, *x*, *y*
+## `$72`: <code>moveobject <i>object_id</i>, <i>x</i>, <i>y</i></code>
 
-## `$73`: `writeobjectxy` *object_id*
+## `$73`: <code>writeobjectxy <i>object_id</i></code>
 
-## `$74`: `loademote` *emote_id*
+## `$74`: <code>loademote <i>emote_id</i></code>
 
-## `$75`: `showemote` *emote_id*, *object_id*, *length*
+## `$75`: <code>showemote <i>emote_id</i>, <i>object_id</i>, <i>length</i></code>
 
-## `$76`: `spriteface` *object_id*, *facing*
+## `$76`: <code>spriteface <i>object_id</i>, <i>facing</i></code>
 
-## `$77`: `follownotexact` *object2*, *object1*
+## `$77`: <code>follownotexact <i>object2</i>, <i>object1</i></code>
 
-## `$78`: `earthquake` *param*
+## `$78`: <code>earthquake <i>param</i></code>
 
-## `$79`: `changemap` *bank*, *blockdata_pointer*
+## `$79`: <code>changemap <i>bank</i>, <i>blockdata_pointer</i></code>
 
-## `$7A`: `changeblock` *x*, *y*, *block*
+## `$7A`: <code>changeblock <i>x</i>, <i>y</i>, <i>block</i></code>
 
 ## `$7B`: `reloadmap`
 
 ## `$7C`: `reloadmappart`
 
-## `$7D`: `writecmdqueue` *queue_pointer*
+## `$7D`: <code>writecmdqueue <i>queue_pointer</i></code>
 
-## `$7E`: `delcmdqueue` *byte*
+## `$7E`: <code>delcmdqueue <i>byte</i></code>
 
-## `$7F`: `playmusic` *music_id*
+## `$7F`: <code>playmusic <i>music_id</i></code>
 
 ## `$80`: `encountermusic`
 
-## `$81`: `musicfadeout` *music_id*, *length*
+## `$81`: <code>musicfadeout <i>music_id</i>, <i>length</i></code>
 
 ## `$82`: `playmapmusic`
 
 ## `$83`: `dontrestartmapmusic`
 
-## `$84`: `cry` *mon_id*
+## `$84`: <code>cry <i>mon_id</i></code>
 
-## `$85`: `playsound` *sfx_id*
+## `$85`: <code>playsound <i>sfx_id</i></code>
 
 ## `$86`: `waitsfx`
 
@@ -281,68 +281,68 @@ Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/s
 
 ## `$88`: `specialsound`
 
-## `$89`: `passtoengine` *data_pointer*
+## `$89`: <code>passtoengine <i>data_pointer</i></code>
 
-## `$8A`: `newloadmap` *which_method*
+## `$8A`: <code>newloadmap <i>which_method</i></code>
 
-## `$8B`: `pause` *length*
+## `$8B`: <code>pause <i>length</i></code>
 
-## `$8C`: `deactivatefacing` *length*
+## `$8C`: <code>deactivatefacing <i>length</i></code>
 
-## `$8D`: `priorityjump` *script*
+## `$8D`: <code>priorityjump <i>script</i></code>
 
 ## `$8E`: `warpcheck`
 
-## `$8F`: `ptpriorityjump` *script*
+## `$8F`: <code>ptpriorityjump <i>script</i></code>
 
 ## `$90`: `return`
 
 ## `$91`: `end`
 
-## `$92`: `reloadandreturn` *which_method*
+## `$92`: <code>reloadandreturn <i>which_method</i></code>
 
 ## `$93`: `end_all`
 
-## `$94`: `pokemart` *dialog_id*, *mart_id*
+## `$94`: <code>pokemart <i>dialog_id</i>, <i>mart_id</i></code>
 
-## `$95`: `elevator` *floor_list*
+## `$95`: <code>elevator <i>floor_list</i></code>
 
-## `$96`: `trade` *trade_id*
+## `$96`: <code>trade <i>trade_id</i></code>
 
-## `$97`: `askforphonenumber` *contact_id*
+## `$97`: <code>askforphonenumber <i>contact_id</i></code>
 
-## `$98`: `phonecall` *call_id*
+## `$98`: <code>phonecall <i>call_id</i></code>
 
 ## `$99`: `hangup`
 
-## `$9A`: `describedecoration` *byte*
+## `$9A`: <code>describedecoration <i>byte</i></code>
 
-## `$9B`: `fruittree` *tree_id*
+## `$9B`: <code>fruittree <i>tree_id</i></code>
 
-## `$9C`: `specialphonecall` *call_id*
+## `$9C`: <code>specialphonecall <i>call_id</i></code>
 
 ## `$9D`: `checkphonecall`
 
-## `$9E`: `verbosegiveitem` *item_id*[, *quantity*=1]
+## `$9E`: <code>verbosegiveitem <i>item_id</i>[, <i>quantity</i>=1]</code>
 
-## `$9F`: `verbosegiveitem2` *item_id*, *variable*
+## `$9F`: <code>verbosegiveitem2 <i>item_id</i>, <i>variable</i></code>
 
-## `$A0`: `swarm` *swarm_id*, *map*
+## `$A0`: <code>swarm <i>swarm_id</i>, <i>map</i></code>
 
 ## `$A1`: `halloffame`
 
 ## `$A2`: `credits`
 
-## `$A3`: `warpfacing` *facing*, *map*, *x*, *y*
+## `$A3`: <code>warpfacing <i>facing</i>, <i>map</i>, <i>x</i>, <i>y</i></code>
 
-## `$A4`: `battletowertext` *memory*
+## `$A4`: <code>battletowertext <i>memory</i></code>
 
-## `$A5`: `landmarktotext` *landmark_id*, *memory*
+## `$A5`: <code>landmarktotext <i>landmark_id</i>, <i>memory</i></code>
 
-## `$A6`: `trainerclassname` *trainer_group*, *memory*
+## `$A6`: <code>trainerclassname <i>trainer_group</i>, <i>memory</i></code>
 
-## `$A7`: `name` *type*, *id*, *memory*
+## `$A7`: <code>name <i>type</i>, <i>id</i>, <i>memory</i></code>
 
-## `$A8`: `wait` *duration*
+## `$A8`: <code>wait <i>duration</i></code>
 
 ## `$A9`: `check_save`

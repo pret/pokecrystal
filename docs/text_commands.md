@@ -3,32 +3,32 @@
 Defined in [macros/scripts/text.asm](/macros/scripts/text.asm) and [home/text.asm:TextCommands](/home/text.asm).
 
 
-## `$00`: `text` *text*
+## `$00`: <code>text <i>text</i></code>
 
 Start writing text until `"@"`.
 
 
-## `$4E`: `next` *text*
+## `$4E`: <code>next <i>text</i></code>
 
 Move a line down.
 
 
-## `$4F`: `line` *text*
+## `$4F`: <code>line <i>text</i></code>
 
 Start writing at the bottom line.
 
 
-## `$50`: `page` *text*
+## `$50`: <code>page <i>text</i></code>
 
 Start a new Pokédex page.
 
 
-## `$51`: `para` *text*
+## `$51`: <code>para <i>text</i></code>
 
 Start a new paragraph.
 
 
-## `$55`: `cont` *text*
+## `$55`: <code>cont <i>text</i></code>
 
 Scroll to the next line.
 
@@ -43,24 +43,24 @@ End a text box.
 Prompt the player to end a text box (initiating some other event).
 
 
-## `$01`: `text_from_ram` *address*
+## `$01`: <code>text_from_ram <i>address</i></code>
 
 Write text from a RAM address.
 
 
-## `$02`: `text_bcd` *address*, *flags*
+## `$02`: <code>text_bcd <i>address</i>, <i>flags</i></code>
 
 Write [BCD][bcd] from an address, typically RAM.
 
 [bcd]: https://en.wikipedia.org/wiki/Binary-coded_decimal
 
 
-## `$03`: `text_move` *address*
+## `$03`: <code>text_move <i>address</i></code>
 
 Move to a new tile.
 
 
-## `$04`: `text_box` *address*, *height*, *width*
+## `$04`: <code>text_box <i>address</i>, <i>height</i>, <i>width</i></code>
 
 Draw a box.
 
@@ -86,7 +86,7 @@ first character column of the text box.
 Start interpreting assembly code.
 
 
-## `$09`: `deciram` *address*, *bytes*, *digits*
+## `$09`: <code>deciram <i>address</i>, <i>bytes</i>, <i>digits</i></code>
 
 Read *bytes* bytes from *address* and print them as a *digits*-digit number.
 
@@ -101,7 +101,7 @@ Exit.
 Play `SFX_DEX_FANFARE_50_79`.
 
 
-## `$0C`: `limited_interpret_data` *number*
+## `$0C`: <code>limited_interpret_data <i>number</i></code>
 
 Print *number* `"…"`s.
 
@@ -141,7 +141,7 @@ Play `SFX_FANFARE`.
 Play `SFX_SLOT_MACHINE_START`.
 
 
-## `$14`: `text_buffer` *id*
+## `$14`: <code>text_buffer <i>id</i></code>
 
 Write text from one of the following addresses (listed in `StringBufferPointers`):
 
@@ -159,6 +159,6 @@ Write text from one of the following addresses (listed in `StringBufferPointers`
 Print the weekday.
 
 
-## `$16`: `text_jump` *address*
+## `$16`: <code>text_jump <i>address</i></code>
 
 Write text from a different bank.

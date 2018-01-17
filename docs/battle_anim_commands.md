@@ -3,14 +3,14 @@
 Defined in [macros/scripts/battle_anims.asm](/macros/scripts/battle_anims.asm) and [engine/battle_anims/anim_commands.asm:BattleAnimCommands](/engine/battle_anims/anim_commands.asm).
 
 
-## `$00`−`$CF`: `anim_wait` *length*
+## `$00`−`$CF`: <code>anim_wait <i>length</i></code>
 
 - *length*: duration in frames
 
 
-## `$D0`: `anim_obj` *object*, *x*, *y*, *param*
+## `$D0`: <code>anim_obj <i>object</i>, <i>x</i>, <i>y</i>, <i>param</i></code>
 
-***Alternate*: `anim_obj` *object*, *x_tile*, *x*, *y_tile*, *y*, *param***
+***Alternate*: <code>anim_obj <i>object</i>, <i>x_tile</i>, <i>x</i>, <i>y_tile</i>, <i>y</i>, <i>param</i>**
 
 Spawns an *object* at coordinate (*x*, *y*).
 
@@ -29,22 +29,26 @@ The y position also depends on the y offset defined by the object.
 - *TODO: document each object*
 
 
-## `$D1`: `anim_1gfx` *gfx*
+## `$D1`: <code>anim_1gfx <i>gfx</i></code>
 
-## `$D2`: `anim_2gfx` *gfx1*, *gfx2*
 
-## `$D3`: `anim_3gfx` *gfx1*, *gfx2*, *gfx3*
+## `$D2`: <code>anim_2gfx <i>gfx1</i>, <i>gfx2</i></code>
 
-## `$D4`: `anim_4gfx` *gfx1*, *gfx2*, *gfx3*, *gfx4*
 
-## `$D5`: `anim_5gfx` *gfx1*, *gfx2*, *gfx3*, *gfx4*, *gfx5*
+## `$D3`: <code>anim_3gfx <i>gfx1</i>, <i>gfx2</i>, <i>gfx3</i></code>
+
+
+## `$D4`: <code>anim_4gfx <i>gfx1</i>, <i>gfx2</i>, <i>gfx3</i>, <i>gfx4</i></code>
+
+
+## `$D5`: <code>anim_5gfx <i>gfx1</i>, <i>gfx2</i>, <i>gfx3</i>, <i>gfx4</i>, <i>gfx5</i></code>
 
 Loads 1-5 sets of graphics. Will overwrite any previously loaded sets.
 
 - *gfx*: `ANIM_GFX` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
 
 
-## `$D6`: `anim_incobj` *object_id*
+## `$D6`: <code>anim_incobj <i>object_id</i></code>
 
 Increments an object's state.
 
@@ -52,7 +56,8 @@ Increments an object's state.
 
 Objects are state machines. `anim_incobj` progresses the state of an object.
 
-## `$D7`: `anim_setobj` *object_id*, *state*
+
+## `$D7`: <code>anim_setobj <i>object_id</i>, <i>state</i></code>
 
 Sets an object's state to a specific value.
 
@@ -61,7 +66,8 @@ Sets an object's state to a specific value.
 
 Objects are state machines. `anim_setobj` changes the state of an object.
 
-## `$D8`: `anim_incbgeffect` *bg_effect*
+
+## `$D8`: <code>anim_incbgeffect <i>bg_effect</i></code>
 
 Increments a bg effect's state.
 
@@ -73,6 +79,7 @@ Since there can't be two of the same bg effect, the effect type is used. This is
 ## `$D9`: `anim_enemyfeetobj`
 
 Temporarily creates sprites from the bottom row of the enemy frontpic, so that the player backpic can be moved around without corrupting the enemy frontpic.
+
 
 ## `$DA`: `anim_playerheadobj`
 
@@ -86,7 +93,9 @@ Sets `BattleAnimVar` to the result of [GetPokeBallWobble](/engine/battle_anims/g
 
 ## `$DC`: `anim_transform`
 
+
 ## `$DD`: `anim_raisesub`
+
 
 ## `$DE`: `anim_dropsub`
 
@@ -96,11 +105,12 @@ Sets `BattleAnimVar` to the result of [GetPokeBallWobble](/engine/battle_anims/g
 Resets rOBP0 to the default (`q0123` or `%00011011`).
 
 
-## `$E0`: `anim_sound` *duration*, *tracks*, *sound_id*
+## `$E0`: <code>anim_sound <i>duration</i>, <i>tracks</i>, <i>sound_id</i></code>
 
 Plays a sound.
 
-## `$E1`: `anim_cry` *pitch*
+
+## `$E1`: <code>anim_cry <i>pitch</i></code>
 
 Plays the user's cry.
 
@@ -109,6 +119,7 @@ Plays the user's cry.
 
 
 ## `$E3`: `anim_oamon`
+
 
 ## `$E4`: `anim_oamoff`
 
@@ -128,6 +139,7 @@ Does nothing. Unused.
 
 ## `$E8`: `anim_updateactorpic`
 
+
 ## `$E9`: `anim_minimize`
 
 
@@ -135,40 +147,46 @@ Does nothing. Unused.
 
 Does nothing. Unused.
 
+
 ## `$EB`: `anim_0xeb`
 
 Does nothing. Unused.
 
+
 ## `$EC`: `anim_0xec`
 
 Does nothing. Unused.
+
 
 ## `$ED`: `anim_0xed`
 
 Does nothing. Unused.
 
 
-## `$EE`: `anim_if_param_and` *value*, *address*
+## `$EE`: <code>anim_if_param_and <i>value</i>, <i>address</i></code>
 
-## `$EF`: `anim_jumpuntil` *address*
+
+## `$EF`: <code>anim_jumpuntil <i>address</i></code>
 
 Jumps to another script and decrements `param` until it reaches 0. Similar to `anim_loop`.
 
 
-## `$F0`: `anim_bgeffect` *bg_effect*, *unknown1*, *unknown2*, *unknown3*
+## `$F0`: <code>anim_bgeffect <i>bg_effect</i>, <i>unknown1</i>, <i>unknown2</i>, <i>unknown3</i></code>
 
 - *bg_effect*: `ANIM_BG` constants (see [constants/battle_anim_constants.asm](/constants/battle_anim_constants.asm))
 
 
-## `$F1`: `anim_bgp` *colors*
+## `$F1`: <code>anim_bgp <i>colors</i></code>
 
 Sets `rBGP` to *colors*.
 
-## `$F2`: `anim_obp0` *colors*
+
+## `$F2`: <code>anim_obp0 <i>colors</i></code>
 
 Sets `rOBP0` to *colors*.
 
-## `$F3`: `anim_obp1` *colors*
+
+## `$F3`: <code>anim_obp1 <i>colors</i></code>
 
 Sets `rOBP1` to *colors*.
 
@@ -180,44 +198,53 @@ Sets `rOBP1` to *colors*.
 
 Does nothing. Unused.
 
+
 ## `$F6`: `anim_0xf6`
 
 Does nothing. Unused.
+
 
 ## `$F7`: `anim_0xf7`
 
 Does nothing. Unused.
 
 
-## `$F8`: `anim_if_param_equal` *value*, *address*
+## `$F8`: <code>anim_if_param_equal <i>value</i>, <i>address</i></code>
 
 Jumps to another script if `wBattleAnimParam` (aka `wKickCounter` or `wPresentPower`) is equal to *value*.
 
-## `$F9`: `anim_setvar` *value*
+
+## `$F9`: <code>anim_setvar <i>value</i></code>
 
 Sets `BattleAnimVar` to *value*.
+
 
 ## `$FA`: `anim_incvar`
 
 Increments `BattleAnimVar` by 1.
 
-## `$FB`: `anim_if_var_equal` *value*, *address*
+
+## `$FB`: <code>anim_if_var_equal <i>value</i>, <i>address</i></code>
 
 Jumps to another script if `BattleAnimVar` is equal to *value*.
 
-## `$FC`: `anim_jump` *address*
+
+## `$FC`: <code>anim_jump <i>address</i></code>
 
 Jumps to another script.
 
-## `$FD`: `anim_loop` *count*, *address*
+
+## `$FD`: <code>anim_loop <i>count</i>, <i>address</i></code>
 
 Jumps to another script up to *count* times. Then does nothing, allowing execution to continue.
 
-## `$FE`: `anim_call` *address*
+
+## `$FE`: <code>anim_call <i>address</i></code>
 
 Calls a script.
 
 There is no call stack. The return address is overwritten, so the maximum call depth is 1.
+
 
 ## `$FF`: `anim_ret`
 

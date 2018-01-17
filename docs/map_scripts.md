@@ -1,24 +1,24 @@
 # Map Scripts
 
 
-## `const_value set 2`
+## <code>const_value set 2</code>
 
 <pre>
 	const <i>MAPNAME</i>_<i>OBJECTNAME</i>
 </pre>
 
 
-## `MapName_MapScripts:`
+## <code>MapName_MapScripts:</code>
 
 
-### `.SceneScripts: db` *N*
+### <code>.SceneScripts: db <i>N</i></code>
 
 <pre>
 	scene_script <i>script</i>
 </pre>
 
 
-### `.MapCallbacks: db` *N*
+### <code>.MapCallbacks: db <i>N</i></code>
 
 <pre>
 	callback <i>type</i>, <i>script</i>
@@ -67,7 +67,7 @@ Callback types:
 [Movement commands](movement_commands.md)
 
 
-## `MapName_MapEvents:`
+## <code>MapName_MapEvents:</code>
 
 ```asm
 	; filler
@@ -75,21 +75,21 @@ Callback types:
 ```
 
 
-### `.Warps: db` *N*
+### <code>.Warps: db <i>N</i></code>
 
 <pre>
 	warp_def <i>x</i>, <i>y</i>, <i>warp_id</i>, <i>map</i>
 </pre>
 
 
-### `.CoordEvents: db` *N*
+### <code>.CoordEvents: db <i>N</i></code>
 
 <pre>
 	coord_event <i>x</i>, <i>y</i>, <i>scene_id</i>, <i>script</i>
 </pre>
 
 
-### `.BGEvents: db` *N*
+### <code>.BGEvents: db <i>N</i></code>
 
 <pre>
 	bg_event <i>x</i>, <i>y</i>, <i>type</i>, <i>script</i>
@@ -115,7 +115,7 @@ BG event types:
 
 - `BGEVENT_COPY`
 
-### `.ObjectEvents: db` *N*
+### <code>.ObjectEvents: db <i>N</i></code>
 
 <pre>
 	object_event <i>x</i>, <i>y</i>, <i>sprite</i>, <i>movement</i>, <i>rx</i>, <i>ry</i>, <i>h1</i>, <i>h2</i>, <i>palette</i>, <i>type</i>, <i>range</i>, <i>script</i>, <i>event_flag<i>
