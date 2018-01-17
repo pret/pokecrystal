@@ -1,5 +1,5 @@
 map_data: MACRO
-;\1: map label
+;\1: map name
 ;\2: map id
 ;\3: border block
 ;\4: connections: combo of NORTH, SOUTH, WEST, and/or EAST, or 0 for none
@@ -17,7 +17,7 @@ ENDM
 connection: MACRO
 if "\1" == "north"
 ;\2: map id
-;\3: map label (eventually will be rolled into map id)
+;\3: map name (eventually will be rolled into map id)
 ;\4: x
 ;\5: offset?
 ;\6: strip length
@@ -34,7 +34,7 @@ endc
 
 if "\1" == "south"
 ;\2: map id
-;\3: map label (eventually will be rolled into map id)
+;\3: map name (eventually will be rolled into map id)
 ;\4: x
 ;\5: offset?
 ;\6: strip length
@@ -51,7 +51,7 @@ endc
 
 if "\1" == "west"
 ;\2: map id
-;\3: map label (eventually will be rolled into map id)
+;\3: map name (eventually will be rolled into map id)
 ;\4: y
 ;\5: offset?
 ;\6: strip length
@@ -68,7 +68,7 @@ endc
 
 if "\1" == "east"
 ;\2: map id
-;\3: map label (eventually will be rolled into map id)
+;\3: map name (eventually will be rolled into map id)
 ;\4: y
 ;\5: offset?
 ;\6: strip length
