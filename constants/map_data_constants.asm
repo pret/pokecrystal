@@ -3,7 +3,7 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
-; map header struct members (see maps/map_headers.asm)
+; map header struct members (see data/maps/map_headers.asm)
 	const_def
 	const MAPHEADER_MAPHEADER2_BANK ; 0
 	const MAPHEADER_TILESET         ; 1
@@ -52,7 +52,7 @@ const_value set 1
 	const FISHGROUP_QWILFISH_NO_SWARM
 
 
-; connection directions
+; connection directions (see data/maps/map_headers_2.asm)
 	const_def
 	const EAST_F
 	const WEST_F

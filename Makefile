@@ -20,9 +20,9 @@ crystal_obj := \
 audio.o \
 home.o \
 main.o \
-maps.o \
 wram.o \
 data/common_text/common_text.o \
+data/maps/maps.o \
 data/pokemon/dex_entries.o \
 data/pokemon/egg_moves.o \
 data/pokemon/evos_attacks.o \

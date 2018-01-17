@@ -16,7 +16,7 @@ Route28_BlockData:
 	INCBIN "maps/Route28.blk"
 
 BetaHerosHouse_BlockData:
-	INCBIN "maps/BetaHerosHouse.blk"
+	INCBIN "maps/unused/BetaHerosHouse.blk"
 
 CeladonCity_BlockData:
 	INCBIN "maps/CeladonCity.blk"
@@ -31,25 +31,25 @@ ElmsHouse_BlockData:
 	INCBIN "maps/ElmsHouse.blk"
 
 BetaSproutTower1_BlockData:
-	INCBIN "maps/BetaSproutTower1.blk"
+	INCBIN "maps/unused/BetaSproutTower1.blk"
 
 Route11_BlockData:
 	INCBIN "maps/Route11.blk"
 
 BetaSproutTower5_BlockData:
-	INCBIN "maps/BetaSproutTower5.blk"
+	INCBIN "maps/unused/BetaSproutTower5.blk"
 
 Route15_BlockData:
 	INCBIN "maps/Route15.blk"
 
 BetaSproutTower9_BlockData:
-	INCBIN "maps/BetaSproutTower9.blk"
+	INCBIN "maps/unused/BetaSproutTower9.blk"
 
 Route19_BlockData:
 	INCBIN "maps/Route19.blk"
 
 BetaBlackthornCity_BlockData:
-	INCBIN "maps/BetaBlackthornCity.blk"
+	INCBIN "maps/unused/BetaBlackthornCity.blk"
 
 Route10South_BlockData:
 	INCBIN "maps/Route10South.blk"
@@ -95,7 +95,7 @@ Route24_BlockData:
 	INCBIN "maps/Route24.blk"
 
 BetaVioletCity_BlockData:
-	INCBIN "maps/BetaVioletCity.blk"
+	INCBIN "maps/unused/BetaVioletCity.blk"
 
 Route3_BlockData:
 	INCBIN "maps/Route3.blk"
@@ -104,25 +104,25 @@ PewterCity_BlockData:
 	INCBIN "maps/PewterCity.blk"
 
 BetaIlexForest_BlockData:
-	INCBIN "maps/BetaIlexForest.blk"
+	INCBIN "maps/unused/BetaIlexForest.blk"
 
 BetaSproutTower2_BlockData:
-	INCBIN "maps/BetaSproutTower2.blk"
+	INCBIN "maps/unused/BetaSproutTower2.blk"
 
 Route12_BlockData:
 	INCBIN "maps/Route12.blk"
 
 BetaGoldenrodCity_BlockData:
-	INCBIN "maps/BetaGoldenrodCity.blk"
+	INCBIN "maps/unused/BetaGoldenrodCity.blk"
 
 Route20_BlockData:
 	INCBIN "maps/Route20.blk"
 
 BetaSproutTower6_BlockData:
-	INCBIN "maps/BetaSproutTower6.blk"
+	INCBIN "maps/unused/BetaSproutTower6.blk"
 
 BetaPokecenterMainHouse_BlockData:
-	INCBIN "maps/BetaPokecenterMainHouse.blk"
+	INCBIN "maps/unused/BetaPokecenterMainHouse.blk"
 
 Route30_BlockData:
 	INCBIN "maps/Route30.blk"
@@ -146,7 +146,7 @@ Route38_BlockData:
 	INCBIN "maps/Route38.blk"
 
 BetaCianwoodCity_BlockData:
-	INCBIN "maps/BetaCianwoodCity.blk"
+	INCBIN "maps/unused/BetaCianwoodCity.blk"
 
 OlivineTimsHouse_BlockData:
 OlivineHouseBeta_BlockData:
@@ -215,10 +215,10 @@ Route5SaffronGate_BlockData:
 	INCBIN "maps/NorthSouthGate.blk"
 
 BetaEcruteakCity_BlockData:
-	INCBIN "maps/BetaEcruteakCity.blk"
+	INCBIN "maps/unused/BetaEcruteakCity.blk"
 
 BetaCherrygroveCity_BlockData:
-	INCBIN "maps/BetaCherrygroveCity.blk"
+	INCBIN "maps/unused/BetaCherrygroveCity.blk"
 
 CinnabarIsland_BlockData:
 	INCBIN "maps/CinnabarIsland.blk"
@@ -230,7 +230,7 @@ Route8_BlockData:
 	INCBIN "maps/Route8.blk"
 
 BetaSproutTower3_BlockData:
-	INCBIN "maps/BetaSproutTower3.blk"
+	INCBIN "maps/unused/BetaSproutTower3.blk"
 
 ViridianCity_BlockData:
 	INCBIN "maps/ViridianCity.blk"
@@ -242,13 +242,13 @@ Route21_BlockData:
 	INCBIN "maps/Route21.blk"
 
 BetaSproutTower7_BlockData:
-	INCBIN "maps/BetaSproutTower7.blk"
+	INCBIN "maps/unused/BetaSproutTower7.blk"
 
 Route17_BlockData:
 	INCBIN "maps/Route17.blk"
 
 BetaMahoganyTown_BlockData:
-	INCBIN "maps/BetaMahoganyTown.blk"
+	INCBIN "maps/unused/BetaMahoganyTown.blk"
 
 Route31_BlockData:
 	INCBIN "maps/Route31.blk"
@@ -281,16 +281,16 @@ Route31VioletGate_BlockData:
 	INCBIN "maps/EastWestGate.blk"
 
 BetaAzaleaTown_BlockData:
-	INCBIN "maps/BetaAzaleaTown.blk"
+	INCBIN "maps/unused/BetaAzaleaTown.blk"
 
 VermilionCity_BlockData:
 	INCBIN "maps/VermilionCity.blk"
 
 BetaOlivineCity_BlockData:
-	INCBIN "maps/BetaOlivineCity.blk"
+	INCBIN "maps/unused/BetaOlivineCity.blk"
 
 BetaNewBarkTown_BlockData:
-	INCBIN "maps/BetaNewBarkTown.blk"
+	INCBIN "maps/unused/BetaNewBarkTown.blk"
 
 ElmsLab_BlockData:
 	INCBIN "maps/ElmsLab.blk"
@@ -317,7 +317,7 @@ Route14_BlockData:
 	INCBIN "maps/Route14.blk"
 
 BetaSproutTower8_BlockData:
-	INCBIN "maps/BetaSproutTower8.blk"
+	INCBIN "maps/unused/BetaSproutTower8.blk"
 
 OlivineMart_BlockData:
 EcruteakMart_BlockData:
@@ -338,7 +338,7 @@ Route10North_BlockData:
 	INCBIN "maps/Route10North.blk"
 
 BetaLakeOfRage_BlockData:
-	INCBIN "maps/BetaLakeOfRage.blk"
+	INCBIN "maps/unused/BetaLakeOfRage.blk"
 
 OlivinePokecenter1F_BlockData:
 MahoganyPokecenter1F_BlockData:
@@ -364,25 +364,25 @@ CherrygrovePokecenter1F_BlockData:
 	INCBIN "maps/Pokecenter1F.blk"
 
 BetaPewterMuseumOfScience1F_BlockData:
-	INCBIN "maps/BetaPewterMuseumOfScience1F.blk"
+	INCBIN "maps/unused/BetaPewterMuseumOfScience1F.blk"
 
 BetaPewterMuseumOfScience2F_BlockData:
-	INCBIN "maps/BetaPewterMuseumOfScience2F.blk"
+	INCBIN "maps/unused/BetaPewterMuseumOfScience2F.blk"
 
 EarlsPokemonAcademy_BlockData:
 	INCBIN "maps/EarlsPokemonAcademy.blk"
 
 BetaCinnabarPokemonLabHallway_BlockData:
-	INCBIN "maps/BetaCinnabarPokemonLabHallway.blk"
+	INCBIN "maps/unused/BetaCinnabarPokemonLabHallway.blk"
 
 BetaCinnabarPokemonLabRoom1_BlockData:
-	INCBIN "maps/BetaCinnabarPokemonLabRoom1.blk"
+	INCBIN "maps/unused/BetaCinnabarPokemonLabRoom1.blk"
 
 BetaCinnabarPokemonLabRoom2_BlockData:
-	INCBIN "maps/BetaCinnabarPokemonLabRoom2.blk"
+	INCBIN "maps/unused/BetaCinnabarPokemonLabRoom2.blk"
 
 BetaCinnabarPokemonLabRoom3_BlockData:
-	INCBIN "maps/BetaCinnabarPokemonLabRoom3.blk"
+	INCBIN "maps/unused/BetaCinnabarPokemonLabRoom3.blk"
 
 GoldenrodDeptStore1F_BlockData:
 CeladonDeptStore1F_BlockData:
@@ -425,7 +425,7 @@ CeladonMansionRoof_BlockData:
 	INCBIN "maps/CeladonMansionRoof.blk"
 
 BetaHouse_BlockData:
-	INCBIN "maps/BetaHouse.blk"
+	INCBIN "maps/unused/BetaHouse.blk"
 
 CeladonGameCorner_BlockData:
 	INCBIN "maps/CeladonGameCorner.blk"
@@ -447,7 +447,7 @@ VioletKylesHouse_BlockData:
 	INCBIN "maps/House2.blk"
 
 BetaCave_BlockData:
-	INCBIN "maps/BetaCave.blk"
+	INCBIN "maps/unused/BetaCave.blk"
 
 UnionCaveB1F_BlockData:
 	INCBIN "maps/UnionCaveB1F.blk"
@@ -467,7 +467,7 @@ Route6UndergroundPathEntrance_BlockData:
 	INCBIN "maps/UndergroundPathEntrance.blk"
 
 BetaPokecenterTradeStation_BlockData:
-	INCBIN "maps/BetaPokecenterTradeStation.blk"
+	INCBIN "maps/unused/BetaPokecenterTradeStation.blk"
 
 KurtsHouse_BlockData:
 	INCBIN "maps/KurtsHouse.blk"
@@ -479,7 +479,7 @@ RuinsOfAlphOutside_BlockData:
 	INCBIN "maps/RuinsOfAlphOutside.blk"
 
 BetaRuinsOfAlphUnsolvedPuzzleRoom_BlockData:
-	INCBIN "maps/BetaRuinsOfAlphUnsolvedPuzzleRoom.blk"
+	INCBIN "maps/unused/BetaRuinsOfAlphUnsolvedPuzzleRoom.blk"
 
 RuinsOfAlphInnerChamber_BlockData:
 	INCBIN "maps/RuinsOfAlphInnerChamber.blk"
@@ -494,19 +494,19 @@ SproutTower1F_BlockData:
 	INCBIN "maps/SproutTower1F.blk"
 
 BetaSproutTowerCutOut1_BlockData:
-	INCBIN "maps/BetaSproutTowerCutOut1.blk"
+	INCBIN "maps/unused/BetaSproutTowerCutOut1.blk"
 
 SproutTower2F_BlockData:
 	INCBIN "maps/SproutTower2F.blk"
 
 BetaSproutTowerCutOut2_BlockData:
-	INCBIN "maps/BetaSproutTowerCutOut2.blk"
+	INCBIN "maps/unused/BetaSproutTowerCutOut2.blk"
 
 SproutTower3F_BlockData:
 	INCBIN "maps/SproutTower3F.blk"
 
 BetaSproutTowerCutOut3_BlockData:
-	INCBIN "maps/BetaSproutTowerCutOut3.blk"
+	INCBIN "maps/unused/BetaSproutTowerCutOut3.blk"
 
 RadioTower1F_BlockData:
 	INCBIN "maps/RadioTower1F.blk"
@@ -584,7 +584,7 @@ GoldenrodUndergroundWarehouse_BlockData:
 	INCBIN "maps/GoldenrodUndergroundWarehouse.blk"
 
 BetaElevator_BlockData:
-	INCBIN "maps/BetaElevator.blk"
+	INCBIN "maps/unused/BetaElevator.blk"
 
 TinTower1F_BlockData:
 	INCBIN "maps/TinTower1F.blk"
@@ -623,7 +623,7 @@ BurnedTowerB1F_BlockData:
 	INCBIN "maps/BurnedTowerB1F.blk"
 
 BetaCaveTestMap_BlockData:
-	INCBIN "maps/BetaCaveTestMap.blk"
+	INCBIN "maps/unused/BetaCaveTestMap.blk"
 
 MountMortar1FOutside_BlockData:
 	INCBIN "maps/MountMortar1FOutside.blk"
@@ -686,16 +686,16 @@ SilverCaveRoom3_BlockData:
 	INCBIN "maps/SilverCaveRoom3.blk"
 
 BetaRocketHideout1_BlockData:
-	INCBIN "maps/BetaRocketHideout1.blk"
+	INCBIN "maps/unused/BetaRocketHideout1.blk"
 
 BetaRocketHideout2_BlockData:
-	INCBIN "maps/BetaRocketHideout2.blk"
+	INCBIN "maps/unused/BetaRocketHideout2.blk"
 
 BetaEmptyHouse_BlockData:
-	INCBIN "maps/BetaEmptyHouse.blk"
+	INCBIN "maps/unused/BetaEmptyHouse.blk"
 
 BetaRocketHideout3_BlockData:
-	INCBIN "maps/BetaRocketHideout3.blk"
+	INCBIN "maps/unused/BetaRocketHideout3.blk"
 
 MahoganyMart1F_BlockData:
 MountMoonGiftShop_BlockData:
@@ -711,7 +711,7 @@ TeamRocketBaseB3F_BlockData:
 	INCBIN "maps/TeamRocketBaseB3F.blk"
 
 BetaRoute23EarlyVersion_BlockData:
-	INCBIN "maps/BetaRoute23EarlyVersion.blk"
+	INCBIN "maps/unused/BetaRoute23EarlyVersion.blk"
 
 IndigoPlateauPokecenter1F_BlockData:
 	INCBIN "maps/IndigoPlateauPokecenter1F.blk"
@@ -747,7 +747,7 @@ OlivineGym_BlockData:
 	INCBIN "maps/OlivineGym.blk"
 
 BetaUnknown_BlockData:
-	INCBIN "maps/BetaUnknown.blk"
+	INCBIN "maps/unused/BetaUnknown.blk"
 
 CianwoodGym_BlockData:
 	INCBIN "maps/CianwoodGym.blk"
@@ -780,7 +780,7 @@ OlivineLighthouse6F_BlockData:
 SECTION "Map Blockdata 3", ROMX
 
 BetaCave2_BlockData:
-	INCBIN "maps/BetaCave2.blk"
+	INCBIN "maps/unused/BetaCave2.blk"
 
 SlowpokeWellB1F_BlockData:
 	INCBIN "maps/SlowpokeWellB1F.blk"
@@ -825,7 +825,7 @@ FastShipB1F_BlockData:
 	INCBIN "maps/FastShipB1F.blk"
 
 BetaFastShipInsideCutOut_BlockData:
-	INCBIN "maps/BetaFastShipInsideCutOut.blk"
+	INCBIN "maps/unused/BetaFastShipInsideCutOut.blk"
 
 FastShipCabins_NNW_NNE_NE_BlockData:
 	INCBIN "maps/FastShipCabins_NNW_NNE_NE.blk"
@@ -914,13 +914,13 @@ CeladonGym_BlockData:
 	INCBIN "maps/CeladonGym.blk"
 
 BetaHouse2_BlockData:
-	INCBIN "maps/BetaHouse2.blk"
+	INCBIN "maps/unused/BetaHouse2.blk"
 
 CeladonCafe_BlockData:
 	INCBIN "maps/CeladonCafe.blk"
 
 BetaCeladonMansion_BlockData:
-	INCBIN "maps/BetaCeladonMansion.blk"
+	INCBIN "maps/unused/BetaCeladonMansion.blk"
 
 RockTunnel1F_BlockData:
 	INCBIN "maps/RockTunnel1F.blk"
@@ -1041,7 +1041,7 @@ BattleTowerOutside_BlockData:
 	INCBIN "maps/BattleTowerOutside.blk"
 
 BetaBlank_BlockData:
-	INCBIN "maps/BetaBlank.blk"
+	INCBIN "maps/unused/BetaBlank.blk"
 
 GoldenrodDeptStoreRoof_BlockData:
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"
