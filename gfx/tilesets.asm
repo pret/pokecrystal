@@ -19,18 +19,18 @@ INCLUDE "data/tilesets/kanto_collision.asm"
 ; 0x19006
 
 Tileset0GFX: ; 0x19006
-TilesetJohto1GFX: ; 0x19006
-INCBIN "gfx/tilesets/johto_1.2bpp.lz"
+TilesetJohtoGFX: ; 0x19006
+INCBIN "gfx/tilesets/johto.2bpp.lz"
 ; 0x19c0e
 
 Tileset0Meta: ; 0x19c0e
-TilesetJohto1Meta: ; 0x19c0e
-INCBIN "data/tilesets/johto_1_metatiles.bin"
+TilesetJohtoMeta: ; 0x19c0e
+INCBIN "data/tilesets/johto_metatiles.bin"
 ; 0x1a40e
 
 Tileset0Coll: ; 0x1a40e
-TilesetJohto1Coll: ; 0x1a40e
-INCLUDE "data/tilesets/johto_1_collision.asm"
+TilesetJohtoColl: ; 0x1a40e
+INCLUDE "data/tilesets/johto_collision.asm"
 ; 0x1a60e
 
 TilesetIcePathGFX: ; 0x1a60e
@@ -45,16 +45,16 @@ TilesetIcePathColl: ; 0x1b33e
 INCLUDE "data/tilesets/ice_path_collision.asm"
 ; 0x1b43e
 
-TilesetPlayersHouse2FGFX: ; 0x1b43e
-INCBIN "gfx/tilesets/players_house_2f.2bpp.lz"
+TilesetPlayersRoomGFX: ; 0x1b43e
+INCBIN "gfx/tilesets/players_room.2bpp.lz"
 ; 0x1b8fe
 
-TilesetPlayersHouse2FMeta: ; 0x1b8fe
-INCBIN "data/tilesets/players_house_2f_metatiles.bin"
+TilesetPlayersRoomMeta: ; 0x1b8fe
+INCBIN "data/tilesets/players_room_metatiles.bin"
 ; 0x1bcfe
 
-TilesetPlayersHouse2FColl: ; 0x1bcfe
-INCLUDE "data/tilesets/players_house_2f_collision.asm"
+TilesetPlayersRoomColl: ; 0x1bcfe
+INCLUDE "data/tilesets/players_room_collision.asm"
 ; 0x1bdfe
 
 
@@ -96,16 +96,16 @@ TilesetPlayersHouseColl: ; 0x1dd2c
 INCLUDE "data/tilesets/players_house_collision.asm"
 ; 0x1de2c
 
-TilesetCeladonMansionGFX: ; 0x1de2c
-INCBIN "gfx/tilesets/celadon_mansion.2bpp.lz"
+TilesetMansionGFX: ; 0x1de2c
+INCBIN "gfx/tilesets/mansion.2bpp.lz"
 ; 0x1e58c
 
-TilesetCeladonMansionMeta: ; 0x1e58c
-INCBIN "data/tilesets/celadon_mansion_metatiles.bin"
+TilesetMansionMeta: ; 0x1e58c
+INCBIN "data/tilesets/mansion_metatiles.bin"
 ; 0x1e98c
 
-TilesetCeladonMansionColl: ; 0x1e98c
-INCLUDE "data/tilesets/celadon_mansion_collision.asm"
+TilesetMansionColl: ; 0x1e98c
+INCLUDE "data/tilesets/mansion_collision.asm"
 ; 0x1ea8c
 
 TilesetCaveGFX: ; 0x1ea8c
@@ -113,28 +113,28 @@ INCBIN "gfx/tilesets/cave.2bpp.lz"
 ; 0x1ee1c
 
 TilesetCaveMeta: ; 0x1ee1c
-TilesetWhirlIslandsMeta: ; 0x1ee1c
+TilesetDarkCaveMeta: ; 0x1ee1c
 INCBIN "data/tilesets/cave_metatiles.bin"
 ; 0x1f21c
 
 TilesetCaveColl: ; 0x1f21c
-TilesetWhirlIslandsColl: ; 0x1f21c
+TilesetDarkCaveColl: ; 0x1f21c
 INCLUDE "data/tilesets/cave_collision.asm"
 ; 0x1f31c
 
 
 SECTION "Tileset Data 3", ROMX
 
-TilesetSproutTowerGFX: ; 0x20181
-INCBIN "gfx/tilesets/sprout_tower.2bpp.lz"
+TilesetTowerGFX: ; 0x20181
+INCBIN "gfx/tilesets/tower.2bpp.lz"
 ; 0x206e1
 
-TilesetSproutTowerMeta: ; 0x206e1
-INCBIN "data/tilesets/sprout_tower_metatiles.bin"
+TilesetTowerMeta: ; 0x206e1
+INCBIN "data/tilesets/tower_metatiles.bin"
 ; 0x20ae1
 
-TilesetSproutTowerColl: ; 0x20ae1
-INCLUDE "data/tilesets/sprout_tower_collision.asm"
+TilesetTowerColl: ; 0x20ae1
+INCLUDE "data/tilesets/tower_collision.asm"
 ; 0x20be1
 
 TilesetLabGFX: ; 0x20be1
@@ -185,23 +185,23 @@ TilesetTrainStationColl: ; 0x23791
 INCLUDE "data/tilesets/train_station_collision.asm"
 ; 0x23891
 
-TilesetIlexForestMeta: ; 0x23891
-INCBIN "data/tilesets/ilex_forest_metatiles.bin"
+TilesetForestMeta: ; 0x23891
+INCBIN "data/tilesets/forest_metatiles.bin"
 ; 0x23b11
 
 
 SECTION "Tileset Data 4", ROMX
 
-TilesetGym1GFX: ; 0x30000
-INCBIN "gfx/tilesets/gym_1.2bpp.lz"
+TilesetEliteFourRoomGFX: ; 0x30000
+INCBIN "gfx/tilesets/elite_four_room.2bpp.lz"
 ; 0x304e0
 
-TilesetGym1Meta: ; 0x304e0
-INCBIN "data/tilesets/gym_1_metatiles.bin"
+TilesetEliteFourRoomMeta: ; 0x304e0
+INCBIN "data/tilesets/elite_four_room_metatiles.bin"
 ; 0x308e0
 
-TilesetGym1Coll: ; 0x308e0
-INCLUDE "data/tilesets/gym_1_collision.asm"
+TilesetEliteFourRoomColl: ; 0x308e0
+INCLUDE "data/tilesets/elite_four_room_collision.asm"
 ; 0x309e0
 
 TilesetParkGFX: ; 0x309e0
@@ -240,16 +240,16 @@ TilesetUndergroundColl: ; 0x325b0
 INCLUDE "data/tilesets/underground_collision.asm"
 ; 0x326b0
 
-TilesetWhirlIslandsGFX: ; 0x326b0
-INCBIN "gfx/tilesets/whirl_islands.2bpp.lz"
+TilesetDarkCaveGFX: ; 0x326b0
+INCBIN "gfx/tilesets/dark_cave.2bpp.lz"
 ; 0x329f0
 
-UnusedTilesetWhirlIslandsMeta: ; 0x329f0
-INCBIN "data/tilesets/unused_whirl_islands_metatiles.bin"
+UnusedTilesetDarkCaveMeta: ; 0x329f0
+INCBIN "data/tilesets/unused_dark_cave_metatiles.bin"
 ; 0x331f0
 
-UnusedTilesetWhirlIslandsColl: ; 0x331f0
-INCLUDE "data/tilesets/unused_whirl_islands_collision.asm"
+UnusedTilesetDarkCaveColl: ; 0x331f0
+INCLUDE "data/tilesets/unused_dark_cave_collision.asm"
 ; 0x333f0
 
 
@@ -291,60 +291,60 @@ TilesetGateColl: ; 0xb5de0
 INCLUDE "data/tilesets/gate_collision.asm"
 ; 0xb5ee0
 
-TilesetJohto2GFX: ; 0xb5ee0
+TilesetJohtoModernGFX: ; 0xb5ee0
 TilesetBattleTowerOutsideGFX: ; 0xb5ee0
-INCBIN "gfx/tilesets/johto_2.2bpp.lz"
+INCBIN "gfx/tilesets/johto_modern.2bpp.lz"
 ; 0xb6ae8
 
-TilesetJohto2Meta: ; 0xb6ae8
-INCBIN "data/tilesets/johto_2_metatiles.bin"
+TilesetJohtoModernMeta: ; 0xb6ae8
+INCBIN "data/tilesets/johto_modern_metatiles.bin"
 ; 0xb72e8
 
-TilesetJohto2Coll: ; 0xb72e8
-INCLUDE "data/tilesets/johto_2_collision.asm"
+TilesetJohtoModernColl: ; 0xb72e8
+INCLUDE "data/tilesets/johto_modern_collision.asm"
 ; 0xb74e8
 
-TilesetKurtsHouseGFX: ; 0xb74e8
-INCBIN "gfx/tilesets/kurts_house.2bpp.lz"
+TilesetTraditionalHouseGFX: ; 0xb74e8
+INCBIN "gfx/tilesets/traditional_house.2bpp.lz"
 ; 0xb79a8
 
-TilesetKurtsHouseMeta: ; 0xb79a8
-INCBIN "data/tilesets/kurts_house_metatiles.bin"
+TilesetTraditionalHouseMeta: ; 0xb79a8
+INCBIN "data/tilesets/traditional_house_metatiles.bin"
 ; 0xb7da8
 
-TilesetKurtsHouseColl: ; 0xb7da8
-INCLUDE "data/tilesets/kurts_house_collision.asm"
+TilesetTraditionalHouseColl: ; 0xb7da8
+INCLUDE "data/tilesets/traditional_house_collision.asm"
 ; 0xb7ea8
 
 
 SECTION "Tileset Data 6", ROMX
 
-TilesetIlexForestGFX: ; 0xdc000
-INCBIN "gfx/tilesets/ilex_forest.2bpp.lz"
+TilesetForestGFX: ; 0xdc000
+INCBIN "gfx/tilesets/forest.2bpp.lz"
 ; 0xdc3d0
 
-TilesetOlivineGymGFX: ; 0xdc3d0
-INCBIN "gfx/tilesets/olivine_gym.2bpp.lz"
+TilesetChampionsRoomGFX: ; 0xdc3d0
+INCBIN "gfx/tilesets/champions_room.2bpp.lz"
 ; 0xdcc50
 
-TilesetOlivineGymMeta: ; 0xdcc50
-INCBIN "data/tilesets/olivine_gym_metatiles.bin"
+TilesetChampionsRoomMeta: ; 0xdcc50
+INCBIN "data/tilesets/champions_room_metatiles.bin"
 ; 0xdd050
 
-TilesetOlivineGymColl: ; 0xdd050
-INCLUDE "data/tilesets/olivine_gym_collision.asm"
+TilesetChampionsRoomColl: ; 0xdd050
+INCLUDE "data/tilesets/champions_room_collision.asm"
 ; 0xdd150
 
-TilesetHouse1GFX: ; 0xdd150
-INCBIN "gfx/tilesets/house_1.2bpp.lz"
+TilesetHouseGFX: ; 0xdd150
+INCBIN "gfx/tilesets/house.2bpp.lz"
 ; 0xdd600
 
-TilesetHouse1Meta: ; 0xdd600
-INCBIN "data/tilesets/house_1_metatiles.bin"
+TilesetHouseMeta: ; 0xdd600
+INCBIN "data/tilesets/house_metatiles.bin"
 ; 0xdda00
 
-TilesetHouse1Coll: ; 0xdda00
-INCLUDE "data/tilesets/house_1_collision.asm"
+TilesetHouseColl: ; 0xdda00
+INCLUDE "data/tilesets/house_collision.asm"
 ; 0xddb00
 
 TilesetLighthouseGFX: ; 0xddb00
@@ -359,20 +359,20 @@ TilesetLighthouseColl: ; 0xde370
 INCLUDE "data/tilesets/lighthouse_collision.asm"
 ; 0xde470
 
-TilesetIlexForestColl: ; 0xde470
-INCLUDE "data/tilesets/ilex_forest_collision.asm"
+TilesetForestColl: ; 0xde470
+INCLUDE "data/tilesets/forest_collision.asm"
 ; 0xde570
 
-TilesetPowerPlantGFX: ; 0xde570
-INCBIN "gfx/tilesets/power_plant.2bpp.lz"
+TilesetFacilityGFX: ; 0xde570
+INCBIN "gfx/tilesets/facility.2bpp.lz"
 ; 0xde990
 
-TilesetPowerPlantMeta: ; 0xde990
-INCBIN "data/tilesets/power_plant_metatiles.bin"
+TilesetFacilityMeta: ; 0xde990
+INCBIN "data/tilesets/facility_metatiles.bin"
 ; 0xded90
 
-TilesetPowerPlantColl: ; 0xded90
-INCLUDE "data/tilesets/power_plant_collision.asm"
+TilesetFacilityColl: ; 0xded90
+INCLUDE "data/tilesets/facility_collision.asm"
 ; 0xdee90
 
 TilesetBattleTowerOutsideMeta: ; 0xdee90

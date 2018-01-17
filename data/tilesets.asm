@@ -13,37 +13,37 @@ ENDM
 Tilesets:: ; 4d596
 ; entries correspond to TILESET_* constants
 	tileset Tileset0
-	tileset TilesetJohto1
-	tileset TilesetJohto2
+	tileset TilesetJohto
+	tileset TilesetJohtoModern
 	tileset TilesetKanto
 	tileset TilesetBattleTowerOutside
-	tileset TilesetHouse1
+	tileset TilesetHouse
 	tileset TilesetPlayersHouse
 	tileset TilesetPokecenter
 	tileset TilesetGate
 	tileset TilesetPort
 	tileset TilesetLab
-	tileset TilesetPowerPlant
+	tileset TilesetFacility
 	tileset TilesetMart
-	tileset TilesetCeladonMansion
+	tileset TilesetMansion
 	tileset TilesetGameCorner
-	tileset TilesetGym1
-	tileset TilesetKurtsHouse
+	tileset TilesetEliteFourRoom
+	tileset TilesetTraditionalHouse
 	tileset TilesetTrainStation
-	tileset TilesetOlivineGym
+	tileset TilesetChampionsRoom
 	tileset TilesetLighthouse
-	tileset TilesetPlayersHouse2F
+	tileset TilesetPlayersRoom
 	tileset TilesetPokeComCenter
 	tileset TilesetBattleTower
-	tileset TilesetSproutTower
+	tileset TilesetTower
 	tileset TilesetCave
 	tileset TilesetPark
 	tileset TilesetRuinsOfAlph
 	tileset TilesetRadioTower
 	tileset TilesetUnderground
 	tileset TilesetIcePath
-	tileset TilesetWhirlIslands
-	tileset TilesetIlexForest
+	tileset TilesetDarkCave
+	tileset TilesetForest
 	tileset TilesetBetaWordRoom
 	tileset TilesetHoOhWordRoom
 	tileset TilesetKabutoWordRoom

@@ -35,7 +35,7 @@ _AnimateTileset:: ; fc000
 ; fc01b
 
 Tileset0Anim: ; 0xfc01b
-TilesetJohto2Anim: ; 0xfc01b
+TilesetJohtoModernAnim: ; 0xfc01b
 TilesetKantoAnim: ; 0xfc01b
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
@@ -64,7 +64,7 @@ TilesetParkAnim: ; 0xfc047
 	dw NULL,  DoneTileAnimation
 ; 0xfc073
 
-TilesetIlexForestAnim: ; 0xfc073
+TilesetForestAnim: ; 0xfc073
 	dw NULL,  ForestTreeLeftAnimation
 	dw NULL,  ForestTreeRightAnimation
 	dw NULL,  WaitTileAnimation
@@ -79,7 +79,7 @@ TilesetIlexForestAnim: ; 0xfc073
 	dw NULL,  DoneTileAnimation
 ; 0xfc0a3
 
-TilesetJohto1Anim: ; 0xfc0a3
+TilesetJohtoAnim: ; 0xfc0a3
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -138,7 +138,7 @@ TilesetPortAnim: ; 0xfc12f
 	dw NULL,  DoneTileAnimation
 ; 0xfc15f
 
-TilesetGym1Anim: ; 0xfc15f
+TilesetEliteFourRoomAnim: ; 0xfc15f
 	dw NULL,  LavaBubbleAnim2
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -182,7 +182,7 @@ UnusedTilesetAnim_fc1af: ; 0xfc1af
 ; 0xfc1e7
 
 TilesetCaveAnim: ; 0xfc1e7
-TilesetWhirlIslandsAnim: ; 0xfc1e7
+TilesetDarkCaveAnim: ; 0xfc1e7
 	dw vTiles2 tile $14, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileRightLeft
@@ -226,17 +226,17 @@ TilesetIcePathAnim: ; 0xfc233
 	dw NULL,  DoneTileAnimation
 ; 0xfc27f
 
-TilesetSproutTowerAnim: ; 0xfc27f
-	dw SproutPillarTilePointer9,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer10, AnimateSproutPillarTile
-	dw SproutPillarTilePointer7,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer8,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer5,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer6,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer3,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer4,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer1,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer2,  AnimateSproutPillarTile
+TilesetTowerAnim: ; 0xfc27f
+	dw TowerPillarTilePointer9,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer10, AnimateTowerPillarTile
+	dw TowerPillarTilePointer7,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer8,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer5,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer6,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer3,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer4,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer1,  AnimateTowerPillarTile
+	dw TowerPillarTilePointer2,  AnimateTowerPillarTile
 	dw NULL,  StandingTileFrame
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -259,20 +259,20 @@ UnusedTilesetAnim_fc2bf: ; 0xfc2bf
 ; 0xfc2e7
 
 TilesetBattleTowerOutsideAnim: ; 0xfc2e7
-TilesetHouse1Anim: ; 0xfc2e7
+TilesetHouseAnim: ; 0xfc2e7
 TilesetPlayersHouseAnim: ; 0xfc2e7
 TilesetPokecenterAnim: ; 0xfc2e7
 TilesetGateAnim: ; 0xfc2e7
 TilesetLabAnim: ; 0xfc2e7
-TilesetPowerPlantAnim: ; 0xfc2e7
+TilesetFacilityAnim: ; 0xfc2e7
 TilesetMartAnim: ; 0xfc2e7
-TilesetCeladonMansionAnim: ; 0xfc2e7
+TilesetMansionAnim: ; 0xfc2e7
 TilesetGameCornerAnim: ; 0xfc2e7
-TilesetKurtsHouseAnim: ; 0xfc2e7
+TilesetTraditionalHouseAnim: ; 0xfc2e7
 TilesetTrainStationAnim: ; 0xfc2e7
-TilesetOlivineGymAnim: ; 0xfc2e7
+TilesetChampionsRoomAnim: ; 0xfc2e7
 TilesetLighthouseAnim: ; 0xfc2e7
-TilesetPlayersHouse2FAnim: ; 0xfc2e7
+TilesetPlayersRoomAnim: ; 0xfc2e7
 TilesetPokeComCenterAnim: ; 0xfc2e7
 TilesetBattleTowerAnim: ; 0xfc2e7
 TilesetRuinsOfAlphAnim: ; 0xfc2e7
@@ -754,7 +754,7 @@ LavaBubbleFrames: ; fc605
 ; fc645
 
 
-AnimateSproutPillarTile: ; fc645
+AnimateTowerPillarTile: ; fc645
 ; Read from struct at de:
 ; 	Destination (VRAM)
 ;	Address of the first tile in the frame array
@@ -1023,27 +1023,27 @@ FlickeringCaveEntrancePalette: ; fc71e
 ; fc750
 
 
-SproutPillarTilePointer1:  dw vTiles2 tile $2d, SproutPillarTile1
-SproutPillarTilePointer2:  dw vTiles2 tile $2f, SproutPillarTile2
-SproutPillarTilePointer3:  dw vTiles2 tile $3d, SproutPillarTile3
-SproutPillarTilePointer4:  dw vTiles2 tile $3f, SproutPillarTile4
-SproutPillarTilePointer5:  dw vTiles2 tile $3c, SproutPillarTile5
-SproutPillarTilePointer6:  dw vTiles2 tile $2c, SproutPillarTile6
-SproutPillarTilePointer7:  dw vTiles2 tile $4d, SproutPillarTile7
-SproutPillarTilePointer8:  dw vTiles2 tile $4f, SproutPillarTile8
-SproutPillarTilePointer9:  dw vTiles2 tile $5d, SproutPillarTile9
-SproutPillarTilePointer10: dw vTiles2 tile $5f, SproutPillarTile10
+TowerPillarTilePointer1:  dw vTiles2 tile $2d, TowerPillarTile1
+TowerPillarTilePointer2:  dw vTiles2 tile $2f, TowerPillarTile2
+TowerPillarTilePointer3:  dw vTiles2 tile $3d, TowerPillarTile3
+TowerPillarTilePointer4:  dw vTiles2 tile $3f, TowerPillarTile4
+TowerPillarTilePointer5:  dw vTiles2 tile $3c, TowerPillarTile5
+TowerPillarTilePointer6:  dw vTiles2 tile $2c, TowerPillarTile6
+TowerPillarTilePointer7:  dw vTiles2 tile $4d, TowerPillarTile7
+TowerPillarTilePointer8:  dw vTiles2 tile $4f, TowerPillarTile8
+TowerPillarTilePointer9:  dw vTiles2 tile $5d, TowerPillarTile9
+TowerPillarTilePointer10: dw vTiles2 tile $5f, TowerPillarTile10
 
-SproutPillarTile1:  INCBIN "gfx/tilesets/sprout-pillar/1.2bpp"
-SproutPillarTile2:  INCBIN "gfx/tilesets/sprout-pillar/2.2bpp"
-SproutPillarTile3:  INCBIN "gfx/tilesets/sprout-pillar/3.2bpp"
-SproutPillarTile4:  INCBIN "gfx/tilesets/sprout-pillar/4.2bpp"
-SproutPillarTile5:  INCBIN "gfx/tilesets/sprout-pillar/5.2bpp"
-SproutPillarTile6:  INCBIN "gfx/tilesets/sprout-pillar/6.2bpp"
-SproutPillarTile7:  INCBIN "gfx/tilesets/sprout-pillar/7.2bpp"
-SproutPillarTile8:  INCBIN "gfx/tilesets/sprout-pillar/8.2bpp"
-SproutPillarTile9:  INCBIN "gfx/tilesets/sprout-pillar/9.2bpp"
-SproutPillarTile10: INCBIN "gfx/tilesets/sprout-pillar/10.2bpp"
+TowerPillarTile1:  INCBIN "gfx/tilesets/tower-pillar/1.2bpp"
+TowerPillarTile2:  INCBIN "gfx/tilesets/tower-pillar/2.2bpp"
+TowerPillarTile3:  INCBIN "gfx/tilesets/tower-pillar/3.2bpp"
+TowerPillarTile4:  INCBIN "gfx/tilesets/tower-pillar/4.2bpp"
+TowerPillarTile5:  INCBIN "gfx/tilesets/tower-pillar/5.2bpp"
+TowerPillarTile6:  INCBIN "gfx/tilesets/tower-pillar/6.2bpp"
+TowerPillarTile7:  INCBIN "gfx/tilesets/tower-pillar/7.2bpp"
+TowerPillarTile8:  INCBIN "gfx/tilesets/tower-pillar/8.2bpp"
+TowerPillarTile9:  INCBIN "gfx/tilesets/tower-pillar/9.2bpp"
+TowerPillarTile10: INCBIN "gfx/tilesets/tower-pillar/10.2bpp"
 ; fca98
 
 

@@ -1431,9 +1431,9 @@ LoadTilesetGFX:: ; 2821
 
 ; These tilesets support dynamic per-mapgroup roof tiles.
 	ld a, [wTileset]
-	cp TILESET_JOHTO_1
+	cp TILESET_JOHTO
 	jr z, .load_roof
-	cp TILESET_JOHTO_2
+	cp TILESET_JOHTO_MODERN
 	jr z, .load_roof
 	cp TILESET_BATTLE_TOWER_OUTSIDE
 	jr z, .load_roof

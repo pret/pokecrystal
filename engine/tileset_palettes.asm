@@ -6,11 +6,11 @@ LoadSpecialMapPalette: ; 494ac
 	jr z, .battle_tower
 	cp TILESET_ICE_PATH
 	jr z, .ice_path
-	cp TILESET_HOUSE_1
+	cp TILESET_HOUSE
 	jr z, .house
 	cp TILESET_RADIO_TOWER
 	jr z, .radio_tower
-	cp TILESET_CELADON_MANSION
+	cp TILESET_MANSION
 	jr z, .mansion_mobile
 	jr .do_nothing
 
@@ -102,7 +102,7 @@ LoadHousePalette: ; 495df
 ; 495ee
 
 HousePalette: ; 495ee
-INCLUDE "gfx/tilesets/house_1.pal"
+INCLUDE "gfx/tilesets/house.pal"
 ; 4962e
 
 LoadRadioTowerPalette: ; 4962e
@@ -119,7 +119,7 @@ INCLUDE "gfx/tilesets/radio_tower.pal"
 ; 4967d
 
 MansionPalette1: ; 4967d
-INCLUDE "gfx/tilesets/celadon_mansion_1.pal"
+INCLUDE "gfx/tilesets/mansion_1.pal"
 ; 496c5
 
 LoadMansionPalette: ; 496c5
@@ -147,5 +147,5 @@ LoadMansionPalette: ; 496c5
 ; 496fe
 
 MansionPalette2: ; 496fe
-INCLUDE "gfx/tilesets/celadon_mansion_2.pal"
+INCLUDE "gfx/tilesets/mansion_2.pal"
 ; 49706
