@@ -202,7 +202,7 @@ Unreferenced_Function8b67:
 
 .cgb
 	ld de, wOBPals1
-	ld a, PREDEFPAL_GS_INTRO_CHARIZARD_BG
+	ld a, PREDEFPAL_PACK
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 

@@ -41,14 +41,14 @@ UnreferencedPalPacket_9bf6:
 PalPacket_GSIntroJigglypuffPikachu:
 	sgb_pal_set GS_INTRO_JIGGLYPUFF_PIKACHU_BG, GS_INTRO_JIGGLYPUFF_PIKACHU_OB, 00, 00
 
-PalPacket_GSIntroCharizard:
-	sgb_pal_set GS_INTRO_CHARIZARD_OB, 00, 00, 00
+PalPacket_GSIntroStartersTransition:
+	sgb_pal_set GS_INTRO_STARTERS_TRANSITION, 00, 00, 00
 
 PalPacket_Function8b4d:
 	sgb_pal_set 3B, 00, 00, 00
 
 PalPacket_Pack:
-	sgb_pal_set GS_INTRO_CHARIZARD_BG, 00, 00, 00
+	sgb_pal_set PACK, 00, 00, 00
 
 PalPacket_SCGB_0F:
 	sgb_pal_set GS_INTRO_JIGGLYPUFF_PIKACHU_OB, 00, 00, 00
@@ -63,7 +63,7 @@ PalPacket_Pokegear:
 	sgb_pal_set POKEGEAR, 00, 00, 00
 
 UnreferencedPalPacket_9c86:
-	sgb_pal_set GS_INTRO_CHARIZARD_BG, 00, 00, 00
+	sgb_pal_set PACK, 00, 00, 00
 
 PalPacket_SlotMachine:
 	sgb_pal_set SLOT_MACHINE_0, SLOT_MACHINE_1, SLOT_MACHINE_2, SLOT_MACHINE_3

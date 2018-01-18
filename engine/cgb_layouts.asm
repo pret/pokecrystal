@@ -444,7 +444,7 @@ _CGB06: ; 90f8
 	call CopyFourPalettes
 	call WipeAttrMap
 	ld de, wOBPals1
-	ld a, PREDEFPAL_GS_INTRO_CHARIZARD_BG
+	ld a, PREDEFPAL_PACK
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	hlcoord 0, 6, AttrMap
@@ -524,7 +524,7 @@ _CGB_GSIntro: ; 9122
 	ld hl, PalPacket_Pack + 1
 	call CopyFourPalettes
 	ld de, wOBPals1
-	ld a, PREDEFPAL_GS_INTRO_CHARIZARD_OB
+	ld a, PREDEFPAL_GS_INTRO_STARTERS_TRANSITION
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
