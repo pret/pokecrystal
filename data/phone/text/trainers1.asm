@@ -739,7 +739,7 @@ UnknownText_0x1b5d51: ; 0x1b5d51
 UnknownText_0x1b5d9f: ; 0x1b5d9f
 	text "Hello, @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "speaking."
 
 	para "Oh, <PLAY_G>."
@@ -749,7 +749,7 @@ UnknownText_0x1b5d9f: ; 0x1b5d9f
 UnknownText_0x1b5dcc: ; 0x1b5dcc
 	text "Hello, @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "speaking."
 
 	para "Oh, <PLAY_G>."
@@ -759,7 +759,7 @@ UnknownText_0x1b5dcc: ; 0x1b5dcc
 UnknownText_0x1b5df8: ; 0x1b5df8
 	text "Hello, @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "speaking."
 
 	para "Oh, <PLAY_G>."
@@ -852,7 +852,7 @@ UnknownText_0x1b5ff6: ; 0x1b5ff6
 
 	para "This is @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "the HIKER!"
 	done
 
@@ -862,7 +862,7 @@ UnknownText_0x1b6017: ; 0x1b6017
 
 	para "This is @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "the HIKER!"
 	done
 
@@ -872,7 +872,7 @@ UnknownText_0x1b6041: ; 0x1b6041
 
 	para "This is @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "the HIKER!"
 	done
 
@@ -1033,7 +1033,7 @@ UnknownText_0x1b6352: ; 0x1b6352
 UnknownText_0x1b638c: ; 0x1b638c
 	text "Hello? @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "here…"
 
 	para "Hey, <PLAY_G>!"
@@ -1042,7 +1042,7 @@ UnknownText_0x1b638c: ; 0x1b638c
 UnknownText_0x1b63a8: ; 0x1b63a8
 	text "Hello? @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "here…"
 
 	para "Wow, <PLAY_G>!"
@@ -1051,7 +1051,7 @@ UnknownText_0x1b63a8: ; 0x1b63a8
 UnknownText_0x1b63c4: ; 0x1b63c4
 	text "Hello? @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "here…"
 
 	para "Yippee, <PLAY_G>!"
@@ -1563,7 +1563,7 @@ UnknownText_0x1b6db9: ; 0x1b6db9
 
 	para "Heh, my @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	line "is so tough, it"
 
 	para "doesn't need to go"
@@ -1722,7 +1722,7 @@ UnknownText_0x1b7161: ; 0x1b7161
 
 	para "My @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	line "looks like it will"
 
 	para "get tough enough"

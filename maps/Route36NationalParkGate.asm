@@ -624,7 +624,7 @@ UnknownText_0x6b209:
 UnknownText_0x6b284:
 	text "You still have @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "minute(s) left."
 
 	para "Do you want to"

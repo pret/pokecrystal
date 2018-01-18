@@ -132,10 +132,6 @@ OBJECT_LENGTH EQU const_value
 MAPOBJECT_SCREEN_HEIGHT EQU 11
 MAPOBJECT_SCREEN_WIDTH EQU 12
 
-; NPCs disappear if standing on tile $60-$7f or $e0-$ff,
-; since those IDs are for text characters and textbox frames.
-MAPOBJECT_VISIBLE_TILE_LIMIT EQU $60
-
 
 ; object_struct members (see macros/wram.asm)
 	const_def

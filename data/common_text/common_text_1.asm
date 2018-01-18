@@ -39,7 +39,7 @@ UnknownText_0x1bc089::
 
 UnknownText_0x1bc0a2::
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "recovered @"
 	deciram wd1f3, 2, 3
 	text "HP!"
@@ -65,13 +65,13 @@ UnknownText_0x1bc0ea::
 
 UnknownText_0x1bc101::
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "was defrosted."
 	done
 
 UnknownText_0x1bc115::
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "woke up."
 	done
 
@@ -83,7 +83,7 @@ UnknownText_0x1bc123::
 
 UnknownText_0x1bc13a::
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "is revitalized."
 	done
 
@@ -292,7 +292,7 @@ UnknownText_0x1bc51c::
 	text "Put away the"
 	line "@"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 
 	para "and set up the"
 	line "@"
@@ -376,7 +376,7 @@ UnknownText_0x1bc6e9::
 	done
 
 UnknownText_0x1bc701::
-	text ""
+	text_start
 	done
 
 UnknownText_0x1bc703::
@@ -485,202 +485,202 @@ UnknownText_0x1bc80a::
 ; Oak's Pokémon Talk
 
 _OPT_IntroText1::
-	text ""
+	text_start
 	line "MARY: PROF.OAK'S"
 	done
 
 _OPT_IntroText2::
-	text ""
+	text_start
 	line "#MON TALK!"
 	done
 
 _OPT_IntroText3::
-	text ""
+	text_start
 	line "With me, MARY!"
 	done
 
 _OPT_OakText1::
-	text ""
+	text_start
 	line "OAK: @"
 	text_from_ram wMonOrItemNameBuffer
 	db "@@"
 
 _OPT_OakText2::
-	text ""
+	text_start
 	line "may be seen around"
 	done
 
 _OPT_OakText3::
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer1
 	text "."
 	done
 
 _OPT_MaryText1::
-	text ""
+	text_start
 	line "MARY: @"
 	text_from_ram StringBuffer1
 	text "'s"
 	done
 
 OPT_SweetAdorably::
-	text ""
+	text_start
 	line "sweet and adorably"
 	done
 
 OPT_WigglySlickly::
-	text ""
+	text_start
 	line "wiggly and slickly"
 	done
 
 OPT_AptlyNamed::
-	text ""
+	text_start
 	line "aptly named and"
 	done
 
 OPT_UndeniablyKindOf::
-	text ""
+	text_start
 	line "undeniably kind of"
 	done
 
 OPT_Unbearably::
-	text ""
+	text_start
 	line "so, so unbearably"
 	done
 
 OPT_WowImpressively::
-	text ""
+	text_start
 	line "wow, impressively"
 	done
 
 OPT_AlmostPoisonously::
-	text ""
+	text_start
 	line "almost poisonously"
 	done
 
 OPT_Sensually::
-	text ""
+	text_start
 	line "ooh, so sensually"
 	done
 
 OPT_Mischievously::
-	text ""
+	text_start
 	line "so mischievously"
 	done
 
 OPT_Topically::
-	text ""
+	text_start
 	line "so very topically"
 	done
 
 OPT_Addictively::
-	text ""
+	text_start
 	line "sure addictively"
 	done
 
 OPT_LooksInWater::
-	text ""
+	text_start
 	line "looks in water is"
 	done
 
 OPT_EvolutionMustBe::
-	text ""
+	text_start
 	line "evolution must be"
 	done
 
 OPT_Provocatively::
-	text ""
+	text_start
 	line "provocatively"
 	done
 
 OPT_FlippedOut::
-	text ""
+	text_start
 	line "so flipped out and"
 	done
 
 OPT_HeartMeltingly::
-	text ""
+	text_start
 	line "heart-meltingly"
 	done
 
 OPT_Cute::
-	text ""
+	text_start
 	line "cute."
 	done
 
 OPT_Weird::
-	text ""
+	text_start
 	line "weird."
 	done
 
 OPT_Pleasant::
-	text ""
+	text_start
 	line "pleasant."
 	done
 
 OPT_BoldSortOf::
-	text ""
+	text_start
 	line "bold, sort of."
 	done
 
 OPT_Frightening::
-	text ""
+	text_start
 	line "frightening."
 	done
 
 OPT_SuaveDebonair::
-	text ""
+	text_start
 	line "suave & debonair!"
 	done
 
 OPT_Powerful::
-	text ""
+	text_start
 	line "powerful."
 	done
 
 OPT_Exciting::
-	text ""
+	text_start
 	line "exciting."
 	done
 
 OPT_Groovy::
-	text ""
+	text_start
 	line "groovy!"
 	done
 
 OPT_Inspiring::
-	text ""
+	text_start
 	line "inspiring."
 	done
 
 OPT_Friendly::
-	text ""
+	text_start
 	line "friendly."
 	done
 
 OPT_HotHotHot::
-	text ""
+	text_start
 	line "hot, hot, hot!"
 	done
 
 OPT_Stimulating::
-	text ""
+	text_start
 	line "stimulating."
 	done
 
 OPT_Guarded::
-	text ""
+	text_start
 	line "guarded."
 	done
 
 OPT_Lovely::
-	text ""
+	text_start
 	line "lovely."
 	done
 
 OPT_Speedy::
-	text ""
+	text_start
 	line "speedy."
 	done
 
@@ -689,7 +689,7 @@ _OPT_PokemonChannelText::
 	done
 
 _PokedexShowText::
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer1
 	db "@@"
@@ -697,96 +697,96 @@ _PokedexShowText::
 ; Pokémon Music Channel / Pokémusic
 
 _BenIntroText1::
-	text ""
+	text_start
 	line "BEN: #MON MUSIC"
 	done
 
 _BenIntroText2::
-	text ""
+	text_start
 	line "CHANNEL!"
 	done
 
 _BenIntroText3::
-	text ""
+	text_start
 	line "It's me, DJ BEN!"
 	done
 
 _FernIntroText1::
-	text ""
+	text_start
 	line "FERN: #MUSIC!"
 	done
 
 _FernIntroText2::
-	text ""
+	text_start
 	line "With DJ FERN!"
 	done
 
 _BenFernText1::
-	text ""
+	text_start
 	line "Today's @"
 	current_day
 	text ","
 	done
 
 _BenFernText2A::
-	text ""
+	text_start
 	line "so let us jam to"
 	done
 
 _BenFernText2B::
-	text ""
+	text_start
 	line "so chill out to"
 	done
 
 _BenFernText3A::
-	text ""
+	text_start
 	line "#MON March!"
 	done
 
 _BenFernText3B::
-	text ""
+	text_start
 	line "#MON Lullaby!"
 	done
 
 ; Lucky Channel
 
 _LC_Text1::
-	text ""
+	text_start
 	line "REED: Yeehaw! How"
 	done
 
 _LC_Text2::
-	text ""
+	text_start
 	line "y'all doin' now?"
 	done
 
 _LC_Text3::
-	text ""
+	text_start
 	line "Whether you're up"
 	done
 
 _LC_Text4::
-	text ""
+	text_start
 	line "or way down low,"
 	done
 
 _LC_Text5::
-	text ""
+	text_start
 	line "don't you miss the"
 	done
 
 _LC_Text6::
-	text ""
+	text_start
 	line "LUCKY NUMBER SHOW!"
 	done
 
 _LC_Text7::
-	text ""
+	text_start
 	line "This week's Lucky"
 	done
 
 _LC_Text8::
-	text ""
+	text_start
 	line "Number is @"
 	interpret_data
 	text_from_ram StringBuffer1
@@ -794,49 +794,49 @@ _LC_Text8::
 	done
 
 _LC_Text9::
-	text ""
+	text_start
 	line "I'll repeat that!"
 	done
 
 _LC_Text10::
-	text ""
+	text_start
 	line "Match it and go to"
 	done
 
 _LC_Text11::
-	text ""
+	text_start
 	line "the RADIO TOWER!"
 	done
 
 _LC_DragText1::
-	text ""
+	text_start
 	line "…Repeating myself"
 	done
 
 _LC_DragText2::
-	text ""
+	text_start
 	line "gets to be a drag…"
 	done
 
 ; Places and People
 
 _PnP_Text1::
-	text ""
+	text_start
 	line "PLACES AND PEOPLE!"
 	done
 
 _PnP_Text2::
-	text ""
+	text_start
 	line "Brought to you by"
 	done
 
 _PnP_Text3::
-	text ""
+	text_start
 	line "me, DJ LILY!"
 	done
 
 _PnP_Text4::
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer2
 	text " @"
@@ -844,223 +844,223 @@ _PnP_Text4::
 	db "@@"
 
 _PnP_cute::
-	text ""
+	text_start
 	line "is cute."
 	done
 
 _PnP_lazy::
-	text ""
+	text_start
 	line "is sort of lazy."
 	done
 
 _PnP_happy::
-	text ""
+	text_start
 	line "is always happy."
 	done
 
 _PnP_noisy::
-	text ""
+	text_start
 	line "is quite noisy."
 	done
 
 _PnP_precocious::
-	text ""
+	text_start
 	line "is precocious."
 	done
 
 _PnP_bold::
-	text ""
+	text_start
 	line "is somewhat bold."
 	done
 
 _PnP_picky::
-	text ""
+	text_start
 	line "is too picky!"
 	done
 
 _PnP_sortofok::
-	text ""
+	text_start
 	line "is sort of OK."
 	done
 
 _PnP_soso::
-	text ""
+	text_start
 	line "is just so-so."
 	done
 
 _PnP_great::
-	text ""
+	text_start
 	line "is actually great."
 	done
 
 _PnP_mytype::
-	text ""
+	text_start
 	line "is just my type."
 	done
 
 _PnP_cool::
-	text ""
+	text_start
 	line "is so cool, no?"
 	done
 
 _PnP_inspiring::
-	text ""
+	text_start
 	line "is inspiring!"
 	done
 
 _PnP_weird::
-	text ""
+	text_start
 	line "is kind of weird."
 	done
 
 _PnP_rightforme::
-	text ""
+	text_start
 	line "is right for me?"
 	done
 
 _PnP_odd::
-	text ""
+	text_start
 	line "is definitely odd!"
 	done
 
 _PnP_Text5::
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer1
 	db "@@"
 
 _RocketRadioText1::
-	text ""
+	text_start
 	line "… …Ahem, we are"
 	done
 
 _RocketRadioText2::
-	text ""
+	text_start
 	line "TEAM ROCKET!"
 	done
 
 _RocketRadioText3::
-	text ""
+	text_start
 	line "After three years"
 	done
 
 _RocketRadioText4::
-	text ""
+	text_start
 	line "of preparation, we"
 	done
 
 _RocketRadioText5::
-	text ""
+	text_start
 	line "have risen again"
 	done
 
 _RocketRadioText6::
-	text ""
+	text_start
 	line "from the ashes!"
 	done
 
 _RocketRadioText7::
-	text ""
+	text_start
 	line "GIOVANNI! @"
 	interpret_data
 	text "Can you"
 	done
 
 _RocketRadioText8::
-	text ""
+	text_start
 	line "hear?@"
 	interpret_data
 	text " We did it!"
 	done
 
 _RocketRadioText9::
-	text ""
+	text_start
 	line "@"
 	interpret_data
 	text "Where is our boss?"
 	done
 
 _RocketRadioText10::
-	text ""
+	text_start
 	line "@"
 	interpret_data
 	text "Is he listening?"
 	done
 
 _BuenaRadioText1::
-	text ""
+	text_start
 	line "BUENA: BUENA here!"
 	done
 
 _BuenaRadioText2::
-	text ""
+	text_start
 	line "Today's password!"
 	done
 
 _BuenaRadioText3::
-	text ""
+	text_start
 	line "Let me think… It's"
 	done
 
 _BuenaRadioText4::
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer1
 	text "!"
 	done
 
 _BuenaRadioText5::
-	text ""
+	text_start
 	line "Don't forget it!"
 	done
 
 _BuenaRadioText6::
-	text ""
+	text_start
 	line "I'm in GOLDENROD's"
 	done
 
 _BuenaRadioText7::
-	text ""
+	text_start
 	line "RADIO TOWER!"
 	done
 
 _BuenaRadioMidnightText1::
-	text ""
+	text_start
 	line "BUENA: Oh my…"
 	done
 
 _BuenaRadioMidnightText2::
-	text ""
+	text_start
 	line "It's midnight! I"
 	done
 
 _BuenaRadioMidnightText3::
-	text ""
+	text_start
 	line "have to shut down!"
 	done
 
 _BuenaRadioMidnightText4::
-	text ""
+	text_start
 	line "Thanks for tuning"
 	done
 
 _BuenaRadioMidnightText5::
-	text ""
+	text_start
 	line "in to the end! But"
 	done
 
 _BuenaRadioMidnightText6::
-	text ""
+	text_start
 	line "don't stay up too"
 	done
 
 _BuenaRadioMidnightText7::
-	text ""
+	text_start
 	line "late! Presented to"
 	done
 
 _BuenaRadioMidnightText8::
-	text ""
+	text_start
 	line "you by DJ BUENA!"
 	done
 
@@ -1073,7 +1073,7 @@ _BuenaRadioMidnightText10::
 	done
 
 _BuenaOffTheAirText::
-	text ""
+	text_start
 	line ""
 	done
 
@@ -1089,7 +1089,7 @@ Text_EnemyUsedOn::
 	text "<ENEMY>"
 	line "used @"
 	text_from_ram wMonOrItemNameBuffer
-	text ""
+	text_start
 	cont "on @"
 	text_from_ram EnemyMonNick
 	text "!"
@@ -1108,7 +1108,7 @@ Text_ThatItemCantBePutInThePack::
 Text_TheItemWasPutInThePack::
 	text "The @"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "was put in the"
 	cont "PACK."
 	done
@@ -1248,7 +1248,7 @@ UnknownText_0x1bd266::
 UnknownText_0x1bd286::
 	text "Trading @"
 	text_from_ram StringBuffer2
-	text ""
+	text_start
 	line "for @"
 	text_from_ram StringBuffer1
 	text "…"
@@ -1432,7 +1432,7 @@ UnknownText_0x1bd5cc::
 UnknownText_0x1bd5f4::
 	text "Hi! The @"
 	text_from_ram wMonOrItemNameBuffer
-	text ""
+	text_start
 	line "you traded me is"
 	cont "doing great!"
 	done
@@ -1621,7 +1621,7 @@ UnknownText_0x1bda90::
 	done
 
 UnknownText_0x1bdaa7::
-	text ""
+	text_start
 	done
 
 UnknownText_0x1bdaa9::
@@ -1725,7 +1725,7 @@ UnknownText_0x1bdd64::
 UnknownText_0x1bdd96::
 	text "Your @"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "has grown a lot."
 
 	para "By level, it's"
@@ -1756,7 +1756,7 @@ UnknownText_0x1bde32::
 	text "Huh? Back already?"
 	line "Your @"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	para "needs a little"
 	line "more time with us."
 

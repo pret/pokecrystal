@@ -45,7 +45,7 @@ BillPhoneNotFullText: ; 0x1b452a
 	para "<PLAY_G>, your BOX"
 	line "has room for @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	cont "more #MON."
 
 	para "Get out there and"

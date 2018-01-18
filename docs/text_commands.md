@@ -101,9 +101,9 @@ Exit.
 Play `SFX_DEX_FANFARE_50_79`.
 
 
-## `$0C`: <code>limited_interpret_data <i>number</i></code>
+## `$0C`: <code>limited_interpret_data <i>n</i></code>
 
-Print *number* `"…"`s.
+Print *n* `"…"`s.
 
 
 ## `$0D`: `link_wait_button`
@@ -143,7 +143,7 @@ Play `SFX_SLOT_MACHINE_START`.
 
 ## `$14`: <code>text_buffer <i>id</i></code>
 
-Write text from one of the following addresses (listed in `StringBufferPointers`):
+Write text from one of the following addresses (listed in [data/text_buffers.asm](/data/text_buffers.asm)):
 
 0. `StringBuffer3`
 1. `StringBuffer4`
@@ -162,3 +162,8 @@ Print the weekday.
 ## `$16`: <code>text_jump <i>address</i></code>
 
 Write text from a different bank.
+
+
+## `$00`: `text_start`
+
+Start writing regular text again after a special command.

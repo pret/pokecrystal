@@ -67,7 +67,7 @@ UnknownText_0x1c01be::
 
 	para "Treat @"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "with loving care."
 	done
 
@@ -99,7 +99,7 @@ Text_Gained::
 	text " gained@@"
 
 Text_ABoostedStringBuffer2ExpPoints::
-	text ""
+	text_start
 	line "a boosted"
 	cont "@"
 	deciram StringBuffer2, 2, 4
@@ -107,7 +107,7 @@ Text_ABoostedStringBuffer2ExpPoints::
 	prompt
 
 Text_StringBuffer2ExpPoints::
-	text ""
+	text_start
 	line "@"
 	deciram StringBuffer2, 2, 4
 	text " EXP. Points!"
@@ -169,7 +169,7 @@ UnknownText_0x1c0396::
 
 	para "Teach @"
 	text_from_ram StringBuffer2
-	text ""
+	text_start
 	line "to a #MON?"
 	done
 
@@ -245,7 +245,7 @@ UnknownText_0x1c04fa::
 	text " sent"
 	line "@"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	cont "to @"
 	text_from_ram wMysteryGiftPlayerName
 	text "'s home."
@@ -546,7 +546,7 @@ UnknownText_0x1c0aa9::
 
 UnknownText_0x1c0acc::
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "fainted!"
 	prompt
 
@@ -599,7 +599,7 @@ UnknownText_0x1c0ba5::
 UnknownText_0x1c0bbb::
 	text "Throw away @"
 	deciram wItemQuantityChangeBuffer, 1, 2
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer2
 	text "(S)?"
@@ -641,7 +641,7 @@ UnknownText_0x1c0c63::
 	done
 
 UnknownText_0x1c0c83::
-	text ""
+	text_start
 	done
 
 Text_YouCantUseItInABattle::
@@ -688,32 +688,32 @@ UnknownText_0x1c0d0e::
 	text "<USER>@@"
 
 UnknownText_0x1c0d12::
-	text ""
+	text_start
 	line "made a whirlwind!"
 	prompt
 
 UnknownText_0x1c0d26::
-	text ""
+	text_start
 	line "took in sunlight!"
 	prompt
 
 UnknownText_0x1c0d3a::
-	text ""
+	text_start
 	line "lowered its head!"
 	prompt
 
 UnknownText_0x1c0d4e::
-	text ""
+	text_start
 	line "is glowing!"
 	prompt
 
 UnknownText_0x1c0d5c::
-	text ""
+	text_start
 	line "flew up high!"
 	prompt
 
 UnknownText_0x1c0d6c::
-	text ""
+	text_start
 	line "dug a hole!"
 	prompt
 
@@ -721,11 +721,11 @@ _ActorNameText::
 	text "<USER>@@"
 
 _UsedMove1Text::
-	text ""
+	text_start
 	line "used @@"
 
 _UsedMove2Text::
-	text ""
+	text_start
 	line "used @@"
 
 _UsedInsteadText::
@@ -761,7 +761,7 @@ UnknownText_0x1c0db0::
 	para "@@"
 
 UnknownText_0x1c0db8::
-	text ""
+	text_start
 	done
 
 UnknownText_0x1c0dba::
@@ -782,7 +782,7 @@ UnknownText_0x1c0dd8::
 UnknownText_0x1c0df3::
 	text "It's @"
 	text_from_ram wBreedMon2Nick
-	text ""
+	text_start
 	line "that was left with"
 	cont "the DAY-CARE LADY."
 	done
@@ -790,7 +790,7 @@ UnknownText_0x1c0df3::
 UnknownText_0x1c0e24::
 	text "It's @"
 	text_from_ram wBreedMon1
-	text ""
+	text_start
 	line "that was left with"
 	cont "the DAY-CARE MAN."
 	done
@@ -874,7 +874,7 @@ UnknownText_0x1c0fbc::
 	deciram wcf64, 1, 3
 	text " @"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "Animation type @"
 	text_from_ram StringBuffer2
 	db "@@"
@@ -953,7 +953,7 @@ ContestJudging_FirstPlaceText::
 	text "!@@"
 
 ContestJudging_FirstPlaceScoreText::
-	text ""
+	text_start
 
 	para "The winning score"
 	line "was @"
@@ -972,7 +972,7 @@ ContestJudging_SecondPlaceText::
 	text "!@@"
 
 ContestJudging_SecondPlaceScoreText::
-	text ""
+	text_start
 	para "The score was"
 	line "@"
 	deciram wBugContestSecondPlaceScore, 2, 3
@@ -990,7 +990,7 @@ ContestJudging_ThirdPlaceText::
 	text "!@@"
 
 ContestJudging_ThirdPlaceScoreText::
-	text ""
+	text_start
 	para "The score was"
 	line "@"
 	deciram wBugContestThirdPlaceScore, 2, 3
@@ -1073,7 +1073,7 @@ _KrissPCHowManyWithdrawText::
 _KrissPCWithdrewItemsText::
 	text "Withdrew @"
 	deciram wItemQuantityChangeBuffer, 1, 2
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer2
 	text "(S)."
@@ -1096,7 +1096,7 @@ _KrissPCHowManyDepositText::
 _KrissPCDepositItemsText::
 	text "Deposited @"
 	deciram wItemQuantityChangeBuffer, 1, 2
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer2
 	text "(S)."
@@ -1349,7 +1349,7 @@ UnknownText_0x1c1a90::
 UnknownText_0x1c1aad::
 	text "Throw away @"
 	deciram wItemQuantityChangeBuffer, 1, 2
-	text ""
+	text_start
 	line "@"
 	text_from_ram StringBuffer2
 	text "(S)?"
@@ -1390,7 +1390,7 @@ UnknownText_0x1c1b2c::
 UnknownText_0x1c1b57::
 	text "Made @"
 	text_from_ram wMonOrItemNameBuffer
-	text ""
+	text_start
 	line "hold @"
 	text_from_ram StringBuffer2
 	text "."
@@ -1415,7 +1415,7 @@ UnknownText_0x1c1baa::
 UnknownText_0x1c1bc4::
 	text "Took @"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "from @"
 	text_from_ram wMonOrItemNameBuffer
 	text "."

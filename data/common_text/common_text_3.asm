@@ -73,7 +73,7 @@ UnknownText_0x1c41e6::
 UnknownText_0x1c4212::
 	text "Trade @"
 	text_from_ram wd004
-	text ""
+	text_start
 	line "for @"
 	text_from_ram StringBuffer1
 	text "?"
@@ -134,7 +134,7 @@ UnknownText_0x1c439c::
 UnknownText_0x1c43dc::
 	text "There are only @"
 	deciram StringBuffer2, 1, 2
-	text ""
+	text_start
 	line "min. left today."
 
 	para "Want a quick"
@@ -274,7 +274,7 @@ UnknownText_0x1c472c::
 UnknownText_0x1c474b::
 	text "The @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "is full…"
 	prompt
 
@@ -320,18 +320,18 @@ UnknownText_0x1c47fa::
 UnknownText_0x1c4837::
 	text "Hm… @"
 	text_from_ram wSeerNickname
-	text ""
+	text_start
 	line "came from @"
 	text_from_ram wSeerOTName
-	text ""
+	text_start
 	cont "in a trade?"
 
 	para "@"
 	text_from_ram wSeerCaughtLocation
-	text ""
+	text_start
 	line "was where @"
 	text_from_ram wSeerOTName
-	text ""
+	text_start
 	cont "met @"
 	text_from_ram wSeerNickname
 	text "!"
@@ -410,7 +410,7 @@ UnknownText_0x1c4a5b::
 
 	para "This @"
 	text_from_ram wSeerNickname
-	text ""
+	text_start
 	line "must have come"
 
 	para "through numerous"
@@ -438,7 +438,7 @@ UnknownText_0x1c4ae5::
 	para "I'm sure that"
 	line "seeing @"
 	text_from_ram wSeerNickname
-	text ""
+	text_start
 	para "in battle would"
 	line "excite anyone."
 	done
@@ -450,7 +450,7 @@ UnknownText_0x1c4b92::
 	db "@@"
 
 UnknownText_0x1c4baf::
-	text ""
+	text_start
 	para "evolved into"
 	line "@"
 	text_from_ram StringBuffer1
@@ -460,14 +460,14 @@ UnknownText_0x1c4baf::
 UnknownText_0x1c4bc5::
 	text "Huh? @"
 	text_from_ram StringBuffer2
-	text ""
+	text_start
 	line "stopped evolving!"
 	prompt
 
 UnknownText_0x1c4be3::
 	text "What? @"
 	text_from_ram StringBuffer2
-	text ""
+	text_start
 	line "is evolving!"
 	done
 
@@ -937,7 +937,7 @@ UnknownText_0x1c5699::
 
 UnknownText_0x1c56af::
 	text_from_ram wMonOrItemNameBuffer
-	text ""
+	text_start
 	line "did not learn"
 	cont "@"
 	text_from_ram StringBuffer2
@@ -954,7 +954,7 @@ UnknownText_0x1c56c9::
 
 	para "But @"
 	text_from_ram wMonOrItemNameBuffer
-	text ""
+	text_start
 	line "can't learn more"
 	cont "than four moves."
 
@@ -973,7 +973,7 @@ UnknownText_0x1c5740::
 UnknownText_0x1c574e::
 	text " Poof!@"
 	interpret_data
-	text ""
+	text_start
 	para "@"
 	text_from_ram wMonOrItemNameBuffer
 	text " forgot"
@@ -1179,7 +1179,7 @@ UnknownText_0x1c5afa::
 UnknownText_0x1c5b17::
 	text "Gotcha! @"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	line "was caught!@"
 	sound_caught_mon
 	db "@@"
@@ -1291,7 +1291,7 @@ UnknownText_0x1c5d03::
 	text "There was a trophy"
 	line "inside!@"
 	sound_dex_fanfare_50_79
-	text ""
+	text_start
 	para "@"
 	text_from_ram PlayerName
 	text " sent the"

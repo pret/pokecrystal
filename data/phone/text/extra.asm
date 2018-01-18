@@ -491,7 +491,7 @@ UnknownText_0x64e2f: ; 0x64e2f
 
 	para "to @"
 	text_from_ram StringBuffer5
-	text ""
+	text_start
 	line "and pick it up?"
 	done
 ; 0x64e90
@@ -561,7 +561,7 @@ UnknownText_0x6501c: ; 0x6501c
 	text "You know what?"
 	line "A wild @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "got away from me"
 	line "again."
 
@@ -918,7 +918,7 @@ DerekCheekPincherText: ; 0x65ab2
 	text "Listen to this."
 	line "My @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "grins happily when"
 	line "I pinch its cheek."
 
@@ -1497,7 +1497,7 @@ UnknownText_0x669ed: ; 0x669ed
 	text "But get this, a"
 	line "wild @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "just barely eluded"
 	line "us."
 
@@ -1808,7 +1808,7 @@ UnknownText_0x6717a: ; 0x6717a
 	text_from_ram StringBuffer3
 	text "'s @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	line "is much stronger"
 	cont "than before!"
 	done
@@ -1831,7 +1831,7 @@ UnknownText_0x671eb: ; 0x671eb
 
 	para "A wild @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	line "got away from me"
 
 	para "again. It's just"

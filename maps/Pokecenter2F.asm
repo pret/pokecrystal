@@ -915,7 +915,7 @@ Text_PleaseEnter:
 Text_RejectNewMon:
 	text "Sorry--@"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	line "can't be taken."
 	prompt
 

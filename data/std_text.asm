@@ -232,7 +232,7 @@ ContestResults_ReadyToJudgeText:
 ContestResults_PlayerWonAPrizeText:
 	text "<PLAYER>, the No.@"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "finisher, wins"
 	cont "@"
 	text_from_ram StringBuffer4
@@ -280,14 +280,14 @@ ContestResults_PartyFullText:
 
 GymStatue_CityGymText:
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "#MON GYM"
 	done
 
 GymStatue_WinningTrainersText:
 	text "LEADER: @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "WINNING TRAINERS:"
 	line "<PLAYER>"
 	done

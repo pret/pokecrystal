@@ -1,7 +1,7 @@
 JoseAskNumber1Text:
 	text "If my @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	line "sees anything"
 
 	para "pretty, it goes"

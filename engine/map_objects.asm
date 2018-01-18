@@ -2474,8 +2474,10 @@ Function56cd: ; 56cd
 	push bc
 	call Coord2Tile
 	pop bc
+; NPCs disappear if standing on tile $60-$7f (or $e0-$ff),
+; since those IDs are for text characters and textbox frames.
 	ld a, [hl]
-	cp MAPOBJECT_VISIBLE_TILE_LIMIT
+	cp FIRST_REGULAR_TEXT_CHAR
 	jr nc, .nope
 .ok8
 	dec d

@@ -1,4 +1,4 @@
-text   EQUS "db \"<START>\"," ; Start writing text.
+text   EQUS "db TX_START,"    ; Start writing text.
 next   EQUS "db \"<NEXT>\","  ; Move a line down.
 line   EQUS "db \"<LINE>\","  ; Start writing at the bottom line.
 page   EQUS "db \"@\","       ; Start a new Pokédex page.
@@ -8,7 +8,12 @@ done   EQUS "db \"<DONE>\""   ; End a text box.
 prompt EQUS "db \"<PROMPT>\"" ; Prompt the player to end a text box (initiating some other event).
 
 ; TextCommands indexes (see home/text.asm)
-	enum_start $01
+	enum_start
+
+	enum TX_START ; $00
+text_start: MACRO
+	db TX_START
+ENDM
 
 	enum TX_RAM ; $01
 text_from_ram: MACRO

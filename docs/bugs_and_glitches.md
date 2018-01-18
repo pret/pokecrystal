@@ -567,7 +567,7 @@ This is a bug with `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2
 
 ```asm
 Text_ABoostedStringBuffer2ExpPoints::
-	text ""
+	text_start
 	line "a boosted"
 	cont "@"
 	deciram StringBuffer2, 2, 4
@@ -575,7 +575,7 @@ Text_ABoostedStringBuffer2ExpPoints::
 	prompt
 
 Text_StringBuffer2ExpPoints::
-	text ""
+	text_start
 	line "@"
 	deciram StringBuffer2, 2, 4
 	text " EXP. Points!"

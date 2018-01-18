@@ -14,7 +14,7 @@ MomPhoneLandmarkText: ; 0x1b4021
 	para "Isn't that where"
 	line "@"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "is? Did you go"
 	line "take a look?"
 	done

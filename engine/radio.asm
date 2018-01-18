@@ -134,7 +134,7 @@ PrintRadioLine:
 	cp 2
 	jr nc, .print
 	inc hl
-	ld [hl], "<START>"
+	ld [hl], TX_START
 	inc a
 	ld [wNumRadioLinesPrinted], a
 	cp 2
@@ -813,7 +813,7 @@ CopyDexEntryPart1:
 	ld bc, SCREEN_WIDTH - 1
 	call FarCopyBytes
 	ld hl, wPokedexShowPointerAddr
-	ld [hl], "<START>"
+	ld [hl], TX_START
 	inc hl
 	ld [hl], "<LINE>"
 	inc hl

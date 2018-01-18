@@ -316,7 +316,7 @@ UnknownText_0x174895: ; 0x174895
 
 	para "in @"
 	text_from_ram StringBuffer5
-	text ""
+	text_start
 	line "when you can."
 	done
 ; 0x1748ea
@@ -372,7 +372,7 @@ UnknownText_0x1749c7: ; 0x1749c7
 GavenGreaterText: ; 0x174a24
 	text "My @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	line "might be greater"
 	cont "than I imagined."
 
@@ -485,7 +485,7 @@ UnknownText_0x174cf6: ; 0x174cf6
 	text "Oh, have you ever"
 	line "seen a @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	cont "before?"
 
 	para "I just battled"
@@ -823,7 +823,7 @@ UnknownText_0x175591: ; 0x175591
 	text "Oh yeah, I took"
 	line "down a @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "in the wild the"
 	line "other day."
 
@@ -927,7 +927,7 @@ UnknownText_0x175869: ; 0x175869
 	text "Oh yeah, we KO'd a"
 	line "wild @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "with one hit a"
 	line "while back."
 
@@ -1549,7 +1549,7 @@ UnknownText_0x176aef: ; 0x176aef
 
 	para "wild @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	line "quite often."
 
 	para "They're easily"
@@ -1605,20 +1605,20 @@ UnknownText_0x176c61: ; 0x176c61
 	para "I took a hike in"
 	line "@"
 	text_from_ram StringBuffer5
-	text ""
+	text_start
 	cont "yesterday, see?"
 
 	para "Well, there were"
 	line "tons of @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "around! You have"
 	line "to see it!"
 
 	para "I get this feeling"
 	line "that @"
 	text_from_ram StringBuffer4
-	text ""
+	text_start
 	para "may be timid."
 	line "I didn't see any"
 

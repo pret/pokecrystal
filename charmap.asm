@@ -1,20 +1,21 @@
-; Control characters
-	charmap "<START>",   $00
-	charmap "<PLAY_G>",  $14 ; gendered PlayerName; same as "<PLAYER>" in English
-	charmap "<DAY>",     $15
+; $00-$16 are TX_* constants (see macros/scripts/text.asm)
+
+; Control characters (see home/text.asm)
+
+	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"; same as "<PLAYER>" in English
 	charmap "¯",         $1f ; soft linebreak
 	charmap "<LNBRK>",   $22
-	charmap "<KOUGEKI>", $23 ; "こうげき"
 	charmap "<POKE>",    $24 ; "<PO><KE>"
 	charmap "%",         $25
 	charmap "<RED>",     $38 ; RedsName
 	charmap "<GREEN>",   $39 ; GreensName
-	charmap "<ENEMY>",   $3f
 	charmap "<MOM>",     $49 ; MomsName
+	charmap "<ENEMY>",   $3f
 	charmap "<PKMN>",    $4a ; "<PK><MN>"
+	charmap "<CONT2>",   $4b ; implements "<CONT>"
+	charmap "<CONT3>",   $4c ; unused
 	charmap "<NEXT>",    $4e
 	charmap "<LINE>",    $4f
-
 	charmap "@",         $50 ; string terminator
 	charmap "<PARA>",    $51
 	charmap "<PLAYER>",  $52 ; PlayerName
@@ -207,17 +208,29 @@
 
 ; Japanese kana, for those bits of text that were not translated to English
 
-	charmap "ガ", $5
-	charmap "ギ", $6
-	charmap "グ", $7
-	charmap "ゲ", $8
-	charmap "ゴ", $9
-	charmap "ザ", $a
-	charmap "ジ", $b
-	charmap "ズ", $c
-	charmap "ゼ", $d
-	charmap "ゾ", $e
-	charmap "ダ", $f
+	charmap "<NI>",      $1d ; "に "
+	charmap "<TTE>",     $1e ; "って"
+	charmap "<O>",       $1e ; "を "
+	charmap "<TA!>",     $22 ; "た！"
+	charmap "<KOUGEKI>", $23 ; "こうげき"
+	charmap "<WA>",      $24 ; "は　"
+	charmap "<NO>",      $25 ; "の　"
+	charmap "<ROUTE>",   $35 ; "ばん　どうろ"
+	charmap "<WATASHI>", $36 ; "わたし"
+	charmap "<KOKO_WA>", $37 ; "ここは"
+	charmap "<GA>",      $4a ; "が "
+
+	charmap "ガ", $05
+	charmap "ギ", $06
+	charmap "グ", $07
+	charmap "ゲ", $08
+	charmap "ゴ", $09
+	charmap "ザ", $0a
+	charmap "ジ", $0b
+	charmap "ズ", $0c
+	charmap "ゼ", $0d
+	charmap "ゾ", $0e
+	charmap "ダ", $0f
 	charmap "ヂ", $10
 	charmap "ヅ", $11
 	charmap "デ", $12
@@ -227,7 +240,6 @@
 	charmap "ビ", $1a
 	charmap "ブ", $1b
 	charmap "ボ", $1c
-;	charmap "ベ", $1d
 
 	charmap "が", $26
 	charmap "ぎ", $27

@@ -214,20 +214,20 @@ dict2: MACRO
 ._\@:
 ENDM
 
-	dict "<DAY>",     Char15
+	dict TX_DAY,      DayOfWeekChar
 	dict "<LINE>",    LineChar
 	dict "<NEXT>",    NextLineChar
 	dict TX_FAR,      TextFar
-	dict $00,         NullChar
-	dict $4c,         Char4C
-	dict $4b,         Char4B
+	dict TX_START,    NullChar
+	dict "<CONT3>",   _ContTextNoPause
+	dict "<CONT2>",   _ContText
 	dict "<PARA>",    Paragraph
 	dict "<MOM>",     PrintMomsName
 	dict "<PLAYER>",  PrintPlayerName
 	dict "<RIVAL>",   PrintRivalName
-	dict $35,         Char35
-	dict $36,         Char36
-	dict $37,         Char37
+	dict "<ROUTE>",   PlaceJPRoute
+	dict "<WATASHI>", PlaceWatashi
+	dict "<KOKO_WA>", PlaceKokoWa
 	dict "<RED>",     PrintRedsName
 	dict "<GREEN>",   PrintGreensName
 	dict "#",         PlacePOKe
@@ -236,7 +236,7 @@ ENDM
 	dict "<TM>",      TMChar
 	dict "<TRNER>",   TrainerChar
 	dict "<KOUGEKI>", PlaceKougeki
-	dict "<LNBRK>",   Char22
+	dict "<LNBRK>",   LineBreakChar
 	dict "<CONT>",    ContText
 	dict "<......>",  SixDotsChar
 	dict "<DONE>",    DoneText
@@ -263,32 +263,32 @@ ENDM
 	jp NextChar
 
 .not_diacritic
-	cp $60 ; Regular characters
+	cp FIRST_REGULAR_TEXT_CHAR
 	jr nc, .place
 
 	cp "パ"
 	jr nc, .handakuten
 
 .dakuten
-	cp $20
-	jr nc, .daku1
+	cp FIRST_HIRAGANA_DAKUTEN_CHAR
+	jr nc, .hiragana_dakuten
 	add "カ" - "ガ"
-	jr .daku2
-.daku1
+	jr .katakana_dakuten
+.hiragana_dakuten
 	add "か" - "が"
-.daku2
+.katakana_dakuten
 	ld b, "ﾞ" ; dakuten
 	call Diacritic
 	jr .place
 
 .handakuten
 	cp "ぱ"
-	jr nc, .han1
+	jr nc, .hiragana_handakuten
 	add "ハ" - "パ"
-	jr .han2
-.han1
+	jr .katakana_handakuten
+.hiragana_handakuten
 	add "は" - "ぱ"
-.han2
+.katakana_handakuten
 	ld b, "ﾟ" ; handakuten
 	call Diacritic
 
@@ -299,7 +299,7 @@ ENDM
 ; 0x117b
 
 
-Char15:: ; 117b
+DayOfWeekChar:: ; 117b
 	ld c, l
 	ld b, h
 	farcall Function17f036
@@ -328,9 +328,9 @@ PlaceKougeki: print_name KougekiText     ; 11cc
 SixDotsChar:  print_name SixDotsCharText ; 11d3
 PlacePKMN:    print_name PlacePKMNText   ; 11da
 PlacePOKE:    print_name PlacePOKEText   ; 11e1
-Char35:       print_name Char35Text      ; 11e8
-Char36:       print_name Char36Text      ; 11ef
-Char37:       print_name Char37Text      ; 11f6
+PlaceJPRoute: print_name PlaceJPRouteText ; 11e8
+PlaceWatashi: print_name PlaceWatashiText ; 11ef
+PlaceKokoWa:  print_name PlaceKokoWaText ; 11f6
 
 
 PlaceMoveTargetsName:: ; 11fd
@@ -350,7 +350,7 @@ PlaceMoveTargetsName_5A: ; 1205
 	jr PlaceCommandCharacter
 
 .enemy
-	ld de, EnemyText ; Enemy
+	ld de, EnemyText
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -375,7 +375,7 @@ PlaceEnemysName:: ; 121b
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld de, String12a2
+	ld de, String_Space
 	call PlaceString
 	push bc
 	callfar Battle_GetTrainerName
@@ -400,9 +400,9 @@ PlaceGenderedPlayerName:: ; 1252
 	ld l, c
 	ld a, [wPlayerGender]
 	bit 0, a
-	ld de, String_kun
+	ld de, KunSuffixText
 	jr z, PlaceCommandCharacter
-	ld de, String_chan
+	ld de, ChanSuffixText
 	jr PlaceCommandCharacter
 
 
@@ -414,22 +414,23 @@ PlaceCommandCharacter:: ; 126a
 	jp NextChar
 ; 0x1273
 
-TMCharText:: db "TM@" ; 1273
-TrainerCharText:: db "TRAINER@" ; 1276
-PCCharText:: db "PC@" ; 127e
-RocketCharText:: db "ROCKET@" ; 1281
-PlacePOKeText:: db "POKé@" ; 1288
-KougekiText:: db "こうげき@" ; 128d
-SixDotsCharText:: db "……@" ; 1292
-EnemyText:: db "Enemy @" ; 1295
-PlacePKMNText:: db "<PK><MN>@" ; PK MN ; 129c
-PlacePOKEText:: db "<PO><KE>@" ; PO KE ; 129f
-String12a2:: db " @" ; 12a2
-Char35Text::
-Char36Text::
-Char37Text:: db "@" ; 12a4
-String_kun:: db "@" ; 12a5
-String_chan:: db "@" ; 12a6
+TMCharText::      db "TM@" 
+TrainerCharText:: db "TRAINER@"
+PCCharText::      db "PC@"
+RocketCharText::  db "ROCKET@"
+PlacePOKeText::   db "POKé@"
+KougekiText::     db "こうげき@"
+SixDotsCharText:: db "……@"
+EnemyText::       db "Enemy @"
+PlacePKMNText::   db "<PK><MN>@"
+PlacePOKEText::   db "<PO><KE>@"
+String_Space::    db " @"
+; These strings have been dummied out.
+PlaceJPRouteText::
+PlaceWatashiText::
+PlaceKokoWaText:: db "@"
+KunSuffixText::   db "@"
+ChanSuffixText::  db "@"
 ; 12a7
 
 NextLineChar:: ; 12a7
@@ -440,7 +441,7 @@ NextLineChar:: ; 12a7
 	jp NextChar
 ; 12b0
 
-Char22:: ; 12b0
+LineBreakChar:: ; 12b0
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
@@ -523,7 +524,7 @@ Paragraph:: ; 12f2
 ; 131f
 
 
-Char4B:: ; 131f
+_ContText:: ; 131f
 	ld a, [wLinkMode]
 	or a
 	jr nz, .communication
@@ -539,8 +540,9 @@ Char4B:: ; 131f
 	ld a, [wLinkMode]
 	or a
 	call z, UnloadBlinkingCursor
+	; fallthrough
 
-Char4C:: ; 1337
+_ContTextNoPause:: ; 1337
 	push de
 	call TextScroll
 	call TextScroll
@@ -561,7 +563,7 @@ ContText:: ; 1345
 	pop de
 	jp NextChar
 
-.cont	db $4b, "@"
+.cont: db "<CONT2>@"
 ; 1356
 
 
@@ -596,7 +598,8 @@ DoneText:: ; 137c
 	ld de, .stop
 	dec de
 	ret
-.stop	db "@"
+
+.stop: db "@"
 ; 1383
 
 NullChar:: ; 1383
@@ -688,7 +691,7 @@ PokeFluteTerminatorCharacter:: ; 13e0
 	ld hl, .stop
 	ret
 
-.stop	db "@"
+.stop: db "@"
 ; 13e5
 
 

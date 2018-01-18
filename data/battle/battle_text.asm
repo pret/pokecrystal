@@ -11,7 +11,7 @@ BattleText_PlayerPickedUpPayDayMoney: ; 0x80730
 WildPokemonAppearedText: ; 0x80746
 	text "Wild @"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	line "appeared!"
 	prompt
 ; 0x8075c
@@ -20,7 +20,7 @@ HookedPokemonAttackedText: ; 0x8075c
 	text "The hooked"
 	line "@"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	cont "attacked!"
 	prompt
 ; 0x80778
@@ -35,7 +35,7 @@ PokemonFellFromTreeText: ; 0x80778
 WildCelebiAppearedText: ; 0x80793
 	text "Wild @"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	line "appeared!"
 	prompt
 ; 0x807a9
@@ -49,7 +49,7 @@ WantsToBattleText:: ; 0x807a9
 BattleText_WildFled: ; 0x807bd
 	text "Wild @"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	line "fled!"
 	prompt
 ; 0x807cf
@@ -57,7 +57,7 @@ BattleText_WildFled: ; 0x807bd
 BattleText_EnemyFled: ; 0x807cf
 	text "Enemy @"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	line "fled!"
 	prompt
 ; 0x807e2
@@ -189,7 +189,7 @@ BattleText_TheSandstormSubsided: ; 0x8098f
 BattleText_EnemyPkmnFainted: ; 0x809a8
 	text "Enemy @"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	line "fainted!"
 	prompt
 ; 0x809be
@@ -197,7 +197,7 @@ BattleText_EnemyPkmnFainted: ; 0x809a8
 GotMoneyForWinningText:
 	text "<PLAYER> got ¥@"
 	deciram wBattleReward, 3, 6
-	text ""
+	text_start
 	line "for winning!"
 	prompt
 
@@ -216,7 +216,7 @@ TiedAgainstText: ; 0x809eb
 SentSomeToMomText:
 	text "<PLAYER> got ¥@"
 	deciram wBattleReward, 3, 6
-	text ""
+	text_start
 	line "for winning!"
 	cont "Sent some to MOM!"
 	prompt
@@ -238,7 +238,7 @@ BattleText_0x80a4f: ; 0x80a4f
 
 BattleText_PkmnFainted: ; 0x80a75
 	text_from_ram BattleMonNick
-	text ""
+	text_start
 	line "fainted!"
 	prompt
 ; 0x80a83
@@ -342,7 +342,7 @@ BattleText_UsersStringBuffer1Activated: ; 0x80bde
 	text "<USER>'s"
 	line "@"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	cont "activated!"
 	prompt
 ; 0x80bf3
@@ -355,14 +355,14 @@ BattleText_ItemsCantBeUsedHere: ; 0x80bf3
 
 BattleText_PkmnIsAlreadyOut: ; 0x80c0d
 	text_from_ram BattleMonNick
-	text ""
+	text_start
 	line "is already out."
 	prompt
 ; 0x80c22
 
 BattleText_PkmnCantBeRecalled: ; 0x80c22
 	text_from_ram BattleMonNick
-	text ""
+	text_start
 	line "can't be recalled!"
 	prompt
 ; 0x80c39
@@ -381,7 +381,7 @@ BattleText_TheMoveIsDisabled: ; 0x80c5b
 
 BattleText_PkmnHasNoMovesLeft: ; 0x80c72
 	text_from_ram BattleMonNick
-	text ""
+	text_start
 	line "has no moves left!"
 	done
 ; 0x80c8a
@@ -405,7 +405,7 @@ BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 BattleText_WildPkmnIsEating: ; 0x80cba
 	text "Wild @"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	line "is eating!"
 	prompt
 ; 0x80cd1
@@ -413,7 +413,7 @@ BattleText_WildPkmnIsEating: ; 0x80cba
 BattleText_WildPkmnIsAngry: ; 0x80cd1
 	text "Wild @"
 	text_from_ram EnemyMonNick
-	text ""
+	text_start
 	line "is angry!"
 	prompt
 ; 0x80ce7
@@ -1103,7 +1103,7 @@ StoleText: ; 0x815da
 	text "<USER>"
 	line "stole @"
 	text_from_ram StringBuffer1
-	text ""
+	text_start
 	cont "from its foe!"
 	prompt
 ; 0x815f7
