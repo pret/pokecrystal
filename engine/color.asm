@@ -768,7 +768,7 @@ Unreferenced_Function97cc:
 	ld a, PREDEFPAL_TRADE_TUBE
 	call GetPredefPal
 	call .PushPalette
-	ld a, PREDEFPAL_21
+	ld a, PREDEFPAL_RB_GREENMON
 	call GetPredefPal
 	call .PushPalette
 	ret
