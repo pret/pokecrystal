@@ -1,3 +1,12 @@
+; Special_HealMachineAnim.Jumptable indexes
+	const_def
+	const HEALMACHINESTATE_LOADGFX
+	const HEALMACHINESTATE_PCLOADBALLS
+	const HEALMACHINESTATE_HOFLOADBALLS
+	const HEALMACHINESTATE_PLAYMUSIC
+	const HEALMACHINESTATE_HOFPLAYSFX
+	const HEALMACHINESTATE_FINISH
+
 Special_HealMachineAnim: ; 12324
 	; If you have no Pokemon, don't change the buffer.  This can lead to some glitchy effects if you have no Pokemon.
 	ld a, [PartyCount]
@@ -36,7 +45,7 @@ Special_HealMachineAnim: ; 12324
 	ld [Buffer3], a
 	add hl, de
 	ld a, [hl]
-	cp 5
+	cp HEALMACHINESTATE_FINISH
 	jr z, .finish
 	ld hl, .Jumptable
 	rst JumpTable
@@ -53,15 +62,23 @@ Special_HealMachineAnim: ; 12324
 	dw .HallOfFame
 ; 1236b
 
+healmachineanimseq: MACRO
+rept _NARG
+	db HEALMACHINESTATE_\1
+	shift
+endr
+ENDM
+
 .Pokecenter: ; 1236b
-	db 0, 1, 3, 5
+	healmachineanimseq LOADGFX, PCLOADBALLS, PLAYMUSIC, FINISH
 .ElmLab: ; 1236f
-	db 0, 1, 3, 5
+	healmachineanimseq LOADGFX, PCLOADBALLS, PLAYMUSIC, FINISH
 .HallOfFame: ; 12373
-	db 0, 2, 4, 5
+	healmachineanimseq LOADGFX, HOFLOADBALLS, HOFPLAYSFX, FINISH
 ; 12377
 
 .Jumptable: ; 12377
+; entries correspond to HEALMACHINESTATE_* constants
 	dw .LoadGFX
 	dw .PC_LoadBallsOntoMachine
 	dw .HOF_LoadBallsOntoMachine
@@ -239,7 +256,7 @@ INCLUDE "gfx/overworld/heal_machine.pal"
 	push bc
 	ld a, [Buffer1]
 	bcpixel 2, 4
-	cp $1 ; ElmsLab
+	cp HEALMACHINE_ELMS_LAB
 	jr z, .okay
 	bcpixel 0, 0
 
