@@ -877,7 +877,8 @@ wc7d4:: ds 1
 ENDU ; c7e8
 ENDU ; c7e8
 
-wc7e8:: ds 24 ; ????
+wc7e8:: ds 24
+wc7e8_End::
 
 
 SECTION "Overworld Map", WRAM0
