@@ -1,115 +1,84 @@
-; indexes correspond to PredefPals palettes (see gfx/sgb/predef.pal)
+; macros taken from pokered's data/sgb_packets.asm
+; names taken from pandocs
+; http://gbdev.gg8.se/wiki/articles/SGB_Functions#SGB_Palette_Commands
 
-PalPacket_9b96:
-	db $51, $48, $00, $49, $00, $4a, $00, $4b, $00, $00, $00, $00, $00, $00, $00, $00
+sgb_pal_set: MACRO
+	db (SGB_PAL_SET << 3) + 1
+	dw PREDEFPAL_\1, PREDEFPAL_\2, PREDEFPAL_\3, PREDEFPAL_\4
+	ds 7
+ENDM
 
-PalPacket_9ba6:
-	db $51, $2b, $00, $24, $00, $20, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+sgb_pal01: MACRO
+	db (SGB_PAL01 << 3) + 1
+ENDM
 
-PalPacket_9bb6:
-	db $51, $41, $00, $42, $00, $43, $00, $44, $00, $00, $00, $00, $00, $00, $00, $00
+sgb_pal23: MACRO
+	db (SGB_PAL23 << 3) + 1
+ENDM
 
-PalPacket_9bc6:
-	db $51, $4c, $00, $4c, $00, $4c, $00, $4c, $00, $00, $00, $00, $00, $00, $00, $00
+sgb_pal_trn: MACRO
+	db (SGB_PAL_TRN << 3) + 1
+	ds 15
+ENDM
 
-PalPacket_9bd6:
-	db $51, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+sgb_mlt_req: MACRO
+	db (SGB_MLT_REG << 3) + 1
+	db \1 - 1
+	ds 14
+ENDM
 
-PalPacket_9be6:
-	db $51, $36, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+sgb_chr_trn: MACRO
+	db (SGB_CHR_TRN << 3) + 1
+	db \1 + (\2 << 1)
+	ds 14
+ENDM
 
-PalPacket_9bf6:
-	db $51, $37, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+sgb_pct_trn: MACRO
+	db (SGB_PCT_TRN << 3) + 1
+	ds 15
+ENDM
 
-PalPacket_9c06:
-	db $51, $38, $00, $39, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 
-PalPacket_9c16:
-	db $51, $3a, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9c26:
-	db $51, $3b, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9c36:
-	db $51, $3c, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9c46:
-	db $51, $39, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9c56:
-	db $51, $2e, $00, $2f, $00, $30, $00, $31, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9c66:
-	db $51, $1a, $00, $1a, $00, $1a, $00, $1a, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9c76:
-	db $51, $32, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9c86:
-	db $51, $3c, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9c96:
-	db $51, $3d, $00, $3e, $00, $3f, $00, $40, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9ca6:
-	db $51, $33, $00, $34, $00, $1b, $00, $1f, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9cb6:
-	db $51, $1b, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9cc6:
-	db $51, $1c, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9cd6:
-	db $51, $35, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+PalPacket_9b96: sgb_pal_set 48, 49, 4A, 4B
+PalPacket_9ba6: sgb_pal_set 2B, 24, 20, 00
+PalPacket_9bb6: sgb_pal_set 41, 42, 43, 44
+PalPacket_9bc6: sgb_pal_set 4C, 4C, 4C, 4C
+PalPacket_9bd6: sgb_pal_set 00, 00, 00, 00
+PalPacket_9be6: sgb_pal_set 36, 00, 00, 00
+PalPacket_9bf6: sgb_pal_set 37, 00, 00, 00
+PalPacket_9c06: sgb_pal_set 38, 39, 00, 00
+PalPacket_9c16: sgb_pal_set 3A, 00, 00, 00
+PalPacket_9c26: sgb_pal_set 3B, 00, 00, 00
+PalPacket_9c36: sgb_pal_set 3C, 00, 00, 00
+PalPacket_9c46: sgb_pal_set 39, 00, 00, 00
+PalPacket_9c56: sgb_pal_set 2E, 2F, 30, 31
+PalPacket_9c66: sgb_pal_set 1A, 1A, 1A, 1A
+PalPacket_9c76: sgb_pal_set 32, 00, 00, 00
+PalPacket_9c86: sgb_pal_set 3C, 00, 00, 00
+PalPacket_9c96: sgb_pal_set 3D, 3E, 3F, 40
+PalPacket_9ca6: sgb_pal_set 33, 34, 1B, 1F
+PalPacket_9cb6: sgb_pal_set 1B, 00, 00, 00
+PalPacket_9cc6: sgb_pal_set 1C, 00, 00, 00
+PalPacket_9cd6: sgb_pal_set 35, 00, 00, 00
 
 PalPacket_9ce6:
-	db $01, $ff, $7f, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal01
+	RGB 31, 31, 31
+rept 6
+	RGB 00, 00, 00
+endr
+	ds 1
 
 PalPacket_9cf6:
-	db $09, $ff, $7f, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
+	sgb_pal23
+	RGB 31, 31, 31
+rept 6
+	RGB 00, 00, 00
+endr
+	ds 1
 
-PalPacket_9d06:
-	db $59, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9d16:
-	db $89, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9d26:
-	db $89, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9d36:
-	db $99, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9d46:
-	db $a1, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9d56:
-	db $b9, $01, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9d66:
-	db $b9, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9d76:
-	db $79, $5d, $08, $00, $0b, $8c, $d0, $f4, $60, $00, $00, $00, $00, $00, $00, $00
-
-PalPacket_9d86:
-	db $79, $52, $08, $00, $0b, $a9, $e7, $9f, $01, $c0, $7e, $e8, $e8, $e8, $e8, $e0
-
-PalPacket_9d96:
-	db $79, $47, $08, $00, $0b, $c4, $d0, $16, $a5, $cb, $c9, $05, $d0, $10, $a2, $28
-
-PalPacket_9da6:
-	db $79, $3c, $08, $00, $0b, $f0, $12, $a5, $c9, $c9, $c8, $d0, $1c, $a5, $ca, $c9
-
-PalPacket_9db6:
-	db $79, $31, $08, $00, $0b, $0c, $a5, $ca, $c9, $7e, $d0, $06, $a5, $cb, $c9, $7e
-
-PalPacket_9dc6:
-	db $79, $26, $08, $00, $0b, $39, $cd, $48, $0c, $d0, $34, $a5, $c9, $c9, $80, $d0
-
-PalPacket_9dd6:
-	db $79, $1b, $08, $00, $0b, $ea, $ea, $ea, $ea, $ea, $a9, $01, $cd, $4f, $0c, $d0
-
-PalPacket_9de6:
-	db $79, $10, $08, $00, $0b, $4c, $20, $08, $ea, $ea, $ea, $ea, $ea, $60, $ea, $ea
+PalTrnPacket:  sgb_pal_trn
+MltReq1Packet: sgb_mlt_req 1
+MltReq2Packet: sgb_mlt_req 2
+ChrTrnPacket:  sgb_chr_trn 0, 0
+PctTrnPacket:  sgb_pct_trn

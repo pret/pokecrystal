@@ -267,7 +267,7 @@ INCLUDE "gfx/stats/stats.pal"
 
 _CGB_Pokedex: ; 8f70
 	ld de, wBGPals1
-	ld a, $1d
+	ld a, PREDEFPAL_1D
 	call GetPredefPal
 	call LoadHLPaletteIntoDE ; dex interface palette
 	ld a, [CurPartySpecies]
@@ -309,7 +309,7 @@ INCLUDE "gfx/pokedex/cursor.pal"
 
 _CGB_BillsPC: ; 8fca
 	ld de, wBGPals1
-	ld a, $1d
+	ld a, PREDEFPAL_1D
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
@@ -366,7 +366,7 @@ INCLUDE "gfx/pc/orange.pal"
 
 _CGB_PokedexUnownMode: ; 903e
 	ld de, wBGPals1
-	ld a, $1d
+	ld a, PREDEFPAL_1D
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [CurPartySpecies]
@@ -444,7 +444,7 @@ _CGB06: ; 90f8
 	call CopyFourPalettes
 	call WipeAttrMap
 	ld de, wOBPals1
-	ld a, $3c
+	ld a, PREDEFPAL_3C
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	hlcoord 0, 6, AttrMap
@@ -508,12 +508,12 @@ _CGB07: ; 9122
 
 .Function9166: ; 9166
 	ld de, wBGPals1
-	ld a, $38
+	ld a, PREDEFPAL_38
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 
 	ld de, wOBPals1
-	ld a, $39
+	ld a, PREDEFPAL_39
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
@@ -524,7 +524,7 @@ _CGB07: ; 9122
 	ld hl, PalPacket_9c36 + 1
 	call CopyFourPalettes
 	ld de, wOBPals1
-	ld a, $3a
+	ld a, PREDEFPAL_3A
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
@@ -579,7 +579,7 @@ _CGB_Evolution: ; 91e4
 	ld a, c
 	and a
 	jr z, .pokemon
-	ld a, $1a
+	ld a, PREDEFPAL_1A
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	jr .got_palette
@@ -640,7 +640,7 @@ _CGB_UnownPuzzle: ; 925e
 	ld hl, PalPacket_9bc6 + 1
 	call CopyFourPalettes
 	ld de, wOBPals1
-	ld a, $4c
+	ld a, PREDEFPAL_4C
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [rSVBK]
@@ -685,7 +685,7 @@ _CGB_TrainerCard: ; 9289
 	ld a, PRYCE
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-	ld a, $24
+	ld a, PREDEFPAL_24
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 
@@ -767,7 +767,7 @@ _CGB_TrainerCard: ; 9289
 
 _CGB_MoveList: ; 9373
 	ld de, wBGPals1
-	ld a, $10
+	ld a, PREDEFPAL_10
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [PlayerHPPal]
@@ -803,7 +803,7 @@ _CGB0f: ; 93a6
 
 _CGB_PokedexSearchOption: ; 93ba
 	ld de, wBGPals1
-	ld a, $1d
+	ld a, PREDEFPAL_1D
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
@@ -927,7 +927,7 @@ _CGB13: ; 94d0
 
 _CGB_GamefreakLogo: ; 94fa
 	ld de, wBGPals1
-	ld a, $4e
+	ld a, PREDEFPAL_4E
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld hl, .Palette
@@ -977,7 +977,7 @@ _CGB_TradeTube: ; 9555
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ld de, wOBPals1 palette 7
-	ld a, $1c
+	ld a, PREDEFPAL_1C
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap

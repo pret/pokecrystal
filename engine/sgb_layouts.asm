@@ -113,22 +113,22 @@ LoadSGBLayout: ; 864c
 	call GetBattlemonBackpicPalettePointer
 
 	ld a, [hli]
-	ld [wSGBPals + $13], a
+	ld [wSGBPals + 19], a
 	ld a, [hli]
-	ld [wSGBPals + $14], a
+	ld [wSGBPals + 20], a
 	ld a, [hli]
-	ld [wSGBPals + $15], a
+	ld [wSGBPals + 21], a
 	ld a, [hl]
-	ld [wSGBPals + $16], a
+	ld [wSGBPals + 22], a
 	call GetEnemyFrontpicPalettePointer
 	ld a, [hli]
-	ld [wSGBPals + $19], a
+	ld [wSGBPals + 25], a
 	ld a, [hli]
-	ld [wSGBPals + $1a], a
+	ld [wSGBPals + 26], a
 	ld a, [hli]
-	ld [wSGBPals + $1b], a
+	ld [wSGBPals + 27], a
 	ld a, [hl]
-	ld [wSGBPals + $1c], a
+	ld [wSGBPals + 28], a
 
 	ld hl, wSGBPals
 	ld de, wSGBPals + $10
@@ -210,13 +210,13 @@ LoadSGBLayout: ; 864c
 	ld bc, $10
 	call CopyBytes
 	ld hl, wSGBPals + 3
-	ld [hl], $9f
+	ld [hl], LOW(palred 31 + palgreen 20 + palblue 10)
 	inc hl
-	ld [hl], $2a
+	ld [hl], HIGH(palred 31 + palgreen 20 + palblue 10)
 	inc hl
-	ld [hl], $5a
+	ld [hl], LOW(palred 26 + palgreen 10 + palblue 6)
 	inc hl
-	ld [hl], $19
+	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
 	ld a, [CurPartySpecies]
 	call GetMonPalettePointer_
 	ld a, [hli]
@@ -238,13 +238,13 @@ LoadSGBLayout: ; 864c
 	ld bc, $10
 	call CopyBytes
 	ld hl, wSGBPals + 3
-	ld [hl], $9f
+	ld [hl], LOW(palred 31 + palgreen 20 + palblue 10)
 	inc hl
-	ld [hl], $2a
+	ld [hl], HIGH(palred 31 + palgreen 20 + palblue 10)
 	inc hl
-	ld [hl], $5a
+	ld [hl], LOW(palred 26 + palgreen 10 + palblue 6)
 	inc hl
-	ld [hl], $19
+	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs
 	call GetPlayerOrMonPalettePointer
@@ -273,13 +273,13 @@ LoadSGBLayout: ; 864c
 	ld bc, $10
 	call CopyBytes
 	ld hl, wSGBPals + 3
-	ld [hl], $9f
+	ld [hl], LOW(palred 31 + palgreen 20 + palblue 10)
 	inc hl
-	ld [hl], $2a
+	ld [hl], HIGH(palred 31 + palgreen 20 + palblue 10)
 	inc hl
-	ld [hl], $5a
+	ld [hl], LOW(palred 26 + palgreen 10 + palblue 6)
 	inc hl
-	ld [hl], $19
+	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
 	ld hl, wSGBPals
 	ld de, BlkPacket_9a86
 	ret
@@ -579,19 +579,19 @@ endr
 	ret
 
 .route
-	ld a, $00
+	ld a, PREDEFPAL_00
 	ret
 
 .cave
-	ld a, $18
+	ld a, PREDEFPAL_18
 	ret
 
 .perm5
-	ld a, $06
+	ld a, PREDEFPAL_06
 	ret
 
 .gate
-	ld a, $03
+	ld a, PREDEFPAL_03
 	ret
 ; 8a45
 

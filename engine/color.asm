@@ -187,7 +187,7 @@ Unreferenced_Function8b4d:
 
 .cgb
 	ld de, wOBPals1
-	ld a, $3b
+	ld a, PREDEFPAL_3B
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
@@ -202,7 +202,7 @@ Unreferenced_Function8b67:
 
 .cgb
 	ld de, wOBPals1
-	ld a, $3c
+	ld a, PREDEFPAL_3C
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
@@ -765,10 +765,10 @@ Unreferenced_Function97cc:
 	ret z
 	ld a, $90
 	ld [rOBPI], a
-	ld a, $1c
+	ld a, PREDEFPAL_1C
 	call GetPredefPal
 	call .PushPalette
-	ld a, $21
+	ld a, PREDEFPAL_21
 	call GetPredefPal
 	call .PushPalette
 	ret
@@ -878,7 +878,7 @@ InitSGBBorder:
 	call PushSGBBorder
 	call SGBDelayCycles
 	call SGB_ClearVRAM
-	ld hl, PalPacket_9d66
+	ld hl, MaskEnCancelPacket
 	call PushSGBPals
 
 .skip
@@ -943,7 +943,7 @@ InitCGBPals::
 	ret
 
 _InitSGBBorderPals:
-	ld hl, .PalPacketPointerTable
+	ld hl, .PacketPointerTable
 	ld c, 9
 .loop
 	push bc
@@ -959,27 +959,27 @@ _InitSGBBorderPals:
 	jr nz, .loop
 	ret
 
-.PalPacketPointerTable:
-	dw PalPacket_9d56
-	dw PalPacket_9d76
-	dw PalPacket_9d86
-	dw PalPacket_9d96
-	dw PalPacket_9da6
-	dw PalPacket_9db6
-	dw PalPacket_9dc6
-	dw PalPacket_9dd6
-	dw PalPacket_9de6
+.PacketPointerTable:
+	dw MaskEnFreezePacket
+	dw DataSndPacket1
+	dw DataSndPacket2
+	dw DataSndPacket3
+	dw DataSndPacket4
+	dw DataSndPacket5
+	dw DataSndPacket6
+	dw DataSndPacket7
+	dw DataSndPacket8
 
 Unreferenced_Function9911:
 	di
 	xor a
 	ld [rJOYP], a
-	ld hl, PalPacket_9d56
+	ld hl, MaskEnFreezePacket
 	call PushSGBPals
 	call PushSGBBorder
 	call SGBDelayCycles
 	call SGB_ClearVRAM
-	ld hl, PalPacket_9d66
+	ld hl, MaskEnCancelPacket
 	call PushSGBPals
 	ei
 	ret
@@ -1005,7 +1005,7 @@ SGB_ClearVRAM:
 	ret
 
 PushSGBBorderPalsAndWait:
-	ld hl, PalPacket_9d26
+	ld hl, MltReq2Packet
 	call PushSGBPals
 	call SGBDelayCycles
 	ld a, [rJOYP]
@@ -1050,7 +1050,7 @@ endr
 	ret
 
 .FinalPush:
-	ld hl, PalPacket_9d16
+	ld hl, MltReq1Packet
 	call PushSGBPals
 	jp SGBDelayCycles
 
@@ -1065,7 +1065,7 @@ SGBBorder_PushBGPals:
 	call DrawDefaultTiles
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
-	ld hl, PalPacket_9d06
+	ld hl, PalTrnPacket
 	call PushSGBPals
 	xor a
 	ld [rBGP], a
@@ -1099,7 +1099,7 @@ SGBBorder_MorePalPushing:
 	call DrawDefaultTiles
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
-	ld hl, PalPacket_9d46
+	ld hl, PctTrnPacket
 	call PushSGBPals
 	xor a
 	ld [rBGP], a
@@ -1123,7 +1123,7 @@ SGBBorder_YetMorePalPushing:
 	call DrawDefaultTiles
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
-	ld hl, PalPacket_9d36
+	ld hl, ChrTrnPacket
 	call PushSGBPals
 	xor a
 	ld [rBGP], a
@@ -1188,8 +1188,8 @@ SGBDelayCycles:
 	ret
 
 INCLUDE "gfx/sgb/blk_packets.asm"
-
 INCLUDE "gfx/sgb/pal_packets.asm"
+INCLUDE "gfx/sgb/data_snd_packets.asm"
 
 PredefPals:
 INCLUDE "gfx/sgb/predef.pal"
