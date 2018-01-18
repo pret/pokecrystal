@@ -1484,7 +1484,7 @@ Function108b45: ; 108b45
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld de, palred 31 + palgreen 31 + palblue 31
+	ld de, PALRGB_WHITE
 	ld hl, wBGPals1
 	ld a, e
 	ld [hli], a
@@ -1525,7 +1525,7 @@ Function108b78: ; 108b78
 	ld a, c
 	and $2
 	jr z, .Orange
-	ld de, palred 31 + palgreen 31 + palblue 31
+	ld de, PALRGB_WHITE
 	jr .load_pal
 
 .Orange:

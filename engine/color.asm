@@ -514,10 +514,10 @@ LoadPalette_White_Col1_Col2_Black:
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
-	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
+	ld a, LOW(PALRGB_WHITE)
 	ld [de], a
 	inc de
-	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
+	ld a, HIGH(PALRGB_WHITE)
 	ld [de], a
 	inc de
 
@@ -903,9 +903,9 @@ InitCGBPals::
 	ld [rBGPI], a
 	ld c, 4 * 8
 .bgpals_loop
-	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
+	ld a, LOW(PALRGB_WHITE)
 	ld [rBGPD], a
-	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
+	ld a, HIGH(PALRGB_WHITE)
 	ld [rBGPD], a
 	dec c
 	jr nz, .bgpals_loop
@@ -913,9 +913,9 @@ InitCGBPals::
 	ld [rOBPI], a
 	ld c, 4 * 8
 .obpals_loop
-	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
+	ld a, LOW(PALRGB_WHITE)
 	ld [rOBPD], a
-	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
+	ld a, HIGH(PALRGB_WHITE)
 	ld [rOBPD], a
 	dec c
 	jr nz, .obpals_loop
@@ -934,9 +934,9 @@ InitCGBPals::
 .LoadWhitePals:
 	ld c, 4 * 16
 .loop
-	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
+	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
-	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
+	ld a, HIGH(PALRGB_WHITE)
 	ld [hli], a
 	dec c
 	jr nz, .loop
@@ -1189,7 +1189,7 @@ SGBDelayCycles:
 
 INCLUDE "gfx/sgb/blk_packets.asm"
 INCLUDE "gfx/sgb/pal_packets.asm"
-INCLUDE "gfx/sgb/data_snd_packets.asm"
+INCLUDE "data/sgb_ctrl_packets.asm"
 
 PredefPals:
 INCLUDE "gfx/sgb/predef.pal"

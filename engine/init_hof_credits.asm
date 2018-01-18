@@ -46,9 +46,9 @@ InitDisplayForRedCredits: ; 4e8c2
 	ld hl, wBGPals1
 	ld c, 4 tiles
 .load_white_palettes
-	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
+	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
-	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
+	ld a, HIGH(PALRGB_WHITE)
 	ld [hli], a
 	dec c
 	jr nz, .load_white_palettes

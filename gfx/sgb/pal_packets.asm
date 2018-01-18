@@ -16,34 +16,6 @@ sgb_pal23: MACRO
 	db (SGB_PAL23 << 3) + 1
 ENDM
 
-sgb_pal_trn: MACRO
-	db (SGB_PAL_TRN << 3) + 1
-	ds 15
-ENDM
-
-sgb_mlt_req: MACRO
-	db (SGB_MLT_REG << 3) + 1
-	db \1 - 1
-	ds 14
-ENDM
-
-sgb_chr_trn: MACRO
-	db (SGB_CHR_TRN << 3) + 1
-	db \1 + (\2 << 1)
-	ds 14
-ENDM
-
-sgb_pct_trn: MACRO
-	db (SGB_PCT_TRN << 3) + 1
-	ds 15
-ENDM
-
-sgb_mask_en: MACRO
-	db (SGB_MASK_EN << 3) + 1
-	db \1
-	ds 14
-ENDM
-
 
 PalPacket_GSTitleScreen:
 	sgb_pal_set GS_TITLE_SCREEN_0, GS_TITLE_SCREEN_1, GS_TITLE_SCREEN_2, GS_TITLE_SCREEN_3
@@ -108,6 +80,7 @@ PalPacket_TradeTube:
 PalPacket_GamefreakLogo:
 	sgb_pal_set GS_INTRO_GAMEFREAK_LOGO, 00, 00, 00
 
+
 PalPacket_9ce6:
 	sgb_pal01
 	RGB 31, 31, 31
@@ -123,12 +96,3 @@ rept 6
 	RGB 00, 00, 00
 endr
 	ds 1
-
-PalTrnPacket:  sgb_pal_trn
-MltReq1Packet: sgb_mlt_req 1
-MltReq2Packet: sgb_mlt_req 2
-ChrTrnPacket:  sgb_chr_trn 0, 0
-PctTrnPacket:  sgb_pct_trn
-
-MaskEnFreezePacket: sgb_mask_en 1
-MaskEnCancelPacket: sgb_mask_en 0

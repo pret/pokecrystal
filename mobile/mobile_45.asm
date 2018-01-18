@@ -7611,9 +7611,9 @@ Function117c4a:
 	ld c, 8
 .loop
 	push hl
-	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
+	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
-	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
+	ld a, HIGH(PALRGB_WHITE)
 	ld [hl], a
 	pop hl
 	add hl, de
