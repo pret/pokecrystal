@@ -24,7 +24,7 @@ PalPacket_SCGB_13:
 	sgb_pal_set 2B, BADGE, 20, 00
 
 PalPacket_SCGB_11:
-	sgb_pal_set 41, 42, 43, 44
+	sgb_pal_set SCGB_11_0, SCGB_11_1, SCGB_11_2, SCGB_11_3
 
 PalPacket_UnownPuzzle:
 	sgb_pal_set UNOWN_PUZZLE, UNOWN_PUZZLE, UNOWN_PUZZLE, UNOWN_PUZZLE

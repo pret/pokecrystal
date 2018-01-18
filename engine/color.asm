@@ -1315,17 +1315,11 @@ endr
 
 INCLUDE "data/maps/environment_colors.asm"
 
-Palette_b309: ; b309 mobile
-	RGB 31, 31, 31
-	RGB 31, 19, 24
-	RGB 30, 10, 06
-	RGB 00, 00, 00
+PartyMenuBGMobilePalette:
+INCLUDE "gfx/stats/party_menu_bg_mobile.pal"
 
-Palette_b311: ; b311 not mobile
-	RGB 31, 31, 31
-	RGB 17, 19, 31
-	RGB 14, 16, 31
-	RGB 00, 00, 00
+PartyMenuBGPalette:
+INCLUDE "gfx/stats/party_menu_bg.pal"
 
 TilesetBGPalette:
 INCLUDE "gfx/tilesets/bg_tiles.pal"
@@ -1340,7 +1334,7 @@ DiplomaPalettes:
 INCLUDE "gfx/diploma/diploma.pal"
 
 PartyMenuOBPals:
-INCLUDE "gfx/icons/party_menu.pal"
+INCLUDE "gfx/stats/party_menu_ob.pal"
 
 UnusedGSTitleBGPals:
 INCLUDE "gfx/title/unused_gs_bg.pal"
