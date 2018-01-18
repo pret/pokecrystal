@@ -3,6 +3,7 @@ MAP_N_A    EQU -1
 GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
+
 ; map header struct members (see data/maps/definitions.asm)
 	const_def
 	const MAPDEF_MAPDATA_BANK ; 0
@@ -67,6 +68,75 @@ const_value set 1
 	shift_const NORTH
 
 
+; SpawnPoints indexes (see data/maps/spawn_points.asm)
+const_value = -1
+	const SPAWN_N_A
+	const SPAWN_HOME
+	const SPAWN_DEBUG
+; kanto
+	const SPAWN_PALLET
+	const SPAWN_VIRIDIAN
+	const SPAWN_PEWTER
+	const SPAWN_CERULEAN
+	const SPAWN_ROCK_TUNNEL
+	const SPAWN_VERMILION
+	const SPAWN_LAVENDER
+	const SPAWN_SAFFRON
+	const SPAWN_CELADON
+	const SPAWN_FUCHSIA
+	const SPAWN_CINNABAR
+	const SPAWN_INDIGO
+; johto
+	const SPAWN_NEW_BARK
+	const SPAWN_CHERRYGROVE
+	const SPAWN_VIOLET
+	const SPAWN_UNION_CAVE
+	const SPAWN_AZALEA
+	const SPAWN_CIANWOOD
+	const SPAWN_GOLDENROD
+	const SPAWN_OLIVINE
+	const SPAWN_ECRUTEAK
+	const SPAWN_MAHOGANY
+	const SPAWN_LAKE
+	const SPAWN_BLACKTHORN
+	const SPAWN_MT_SILVER
+	const SPAWN_FAST_SHIP
+NUM_SPAWNS EQU const_value
+
+
+; outdoor sprite limits (see engine/overworld.asm)
+MAX_OUTDOOR_SPRITES EQU 23
+SPRITE_GFX_LIST_CAPACITY EQU $20
+
+
+; map_object struct members (see macros/wram.asm)
+	const_def
+	const MAPOBJECT_OBJECT_STRUCT_ID ; 0
+	const MAPOBJECT_SPRITE ; 1
+	const MAPOBJECT_Y_COORD ; 2
+	const MAPOBJECT_X_COORD ; 3
+	const MAPOBJECT_MOVEMENT ; 4
+	const MAPOBJECT_RADIUS ; 5
+	const MAPOBJECT_HOUR ; 6
+	const MAPOBJECT_TIMEOFDAY ; 7
+	const MAPOBJECT_COLOR ; 8
+	const MAPOBJECT_RANGE ; 9
+	const MAPOBJECT_SCRIPT_POINTER ; a
+	const MAPOBJECT_POINTER_HI ; b
+	const MAPOBJECT_EVENT_FLAG ; c
+	const MAPOBJECT_FLAG_HI ; d
+	const MAPOBJECT_E ; unused
+	const MAPOBJECT_F ; unused
+OBJECT_LENGTH EQU const_value
+
+MAPOBJECT_SCREEN_HEIGHT EQU 11
+MAPOBJECT_SCREEN_WIDTH EQU 12
+
+; NPCs disappear if standing on tile $60-$7f or $e0-$ff,
+; since those IDs are for text characters and textbox frames.
+MAPOBJECT_VISIBLE_TILE_LIMIT EQU $60
+
+
 ; object_struct members (see macros/wram.asm)
 	const_def
 	const OBJECT_SPRITE              ; 00
@@ -106,29 +176,6 @@ const_value set 1
 OBJECT_STRUCT_LENGTH EQU 40
 NUM_OBJECT_STRUCTS EQU 13 ; see ObjectStructs
 
-; map_object struct members (see macros/wram.asm)
-	const_def
-	const MAPOBJECT_OBJECT_STRUCT_ID ; 0
-	const MAPOBJECT_SPRITE ; 1
-	const MAPOBJECT_Y_COORD ; 2
-	const MAPOBJECT_X_COORD ; 3
-	const MAPOBJECT_MOVEMENT ; 4
-	const MAPOBJECT_RADIUS ; 5
-	const MAPOBJECT_HOUR ; 6
-	const MAPOBJECT_TIMEOFDAY ; 7
-	const MAPOBJECT_COLOR ; 8
-	const MAPOBJECT_RANGE ; 9
-	const MAPOBJECT_SCRIPT_POINTER ; a
-	const MAPOBJECT_POINTER_HI ; b
-	const MAPOBJECT_EVENT_FLAG ; c
-	const MAPOBJECT_FLAG_HI ; d
-	const MAPOBJECT_E ; unused
-	const MAPOBJECT_F ; unused
-OBJECT_LENGTH EQU const_value
-
-MAPOBJECT_SCREEN_HEIGHT EQU 11
-MAPOBJECT_SCREEN_WIDTH EQU 12
-
 ; object_struct OBJECT_FACING values
 OW_DOWN  EQU DOWN  << 2
 OW_UP    EQU UP    << 2
@@ -140,44 +187,3 @@ INVISIBLE    EQU 0
 FIXED_FACING EQU 2
 SLIDING      EQU 3
 EMOTE_OBJECT EQU 7
-
-
-; see engine/overworld.asm
-MAX_OUTDOOR_SPRITES EQU 23
-SPRITE_GFX_LIST_CAPACITY EQU $20
-
-
-; SpawnPoints indexes (see data/maps/spawn_points.asm)
-const_value = -1
-	const SPAWN_N_A
-	const SPAWN_HOME
-	const SPAWN_DEBUG
-; kanto
-	const SPAWN_PALLET
-	const SPAWN_VIRIDIAN
-	const SPAWN_PEWTER
-	const SPAWN_CERULEAN
-	const SPAWN_ROCK_TUNNEL
-	const SPAWN_VERMILION
-	const SPAWN_LAVENDER
-	const SPAWN_SAFFRON
-	const SPAWN_CELADON
-	const SPAWN_FUCHSIA
-	const SPAWN_CINNABAR
-	const SPAWN_INDIGO
-; johto
-	const SPAWN_NEW_BARK
-	const SPAWN_CHERRYGROVE
-	const SPAWN_VIOLET
-	const SPAWN_UNION_CAVE
-	const SPAWN_AZALEA
-	const SPAWN_CIANWOOD
-	const SPAWN_GOLDENROD
-	const SPAWN_OLIVINE
-	const SPAWN_ECRUTEAK
-	const SPAWN_MAHOGANY
-	const SPAWN_LAKE
-	const SPAWN_BLACKTHORN
-	const SPAWN_MT_SILVER
-	const SPAWN_FAST_SHIP
-NUM_SPAWNS EQU const_value

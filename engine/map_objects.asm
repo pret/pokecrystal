@@ -2089,6 +2089,7 @@ SpawnShadow: ; 5529
 	; vtile, palette, movement
 	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_SHADOW
 ; 5538
+
 SpawnStrengthBoulderDust: ; 5538
 	push bc
 	ld de, .BoulderDustObject
@@ -2100,6 +2101,7 @@ SpawnStrengthBoulderDust: ; 5538
 .BoulderDustObject:
 	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_BOULDERDUST
 ; 5547
+
 SpawnEmote: ; 5547
 	push bc
 	ld de, .EmoteObject
@@ -2111,6 +2113,7 @@ SpawnEmote: ; 5547
 .EmoteObject:
 	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_EMOTE
 ; 5556
+
 ShakeGrass: ; 5556
 	push bc
 	ld de, .data_5562
@@ -2122,6 +2125,7 @@ ShakeGrass: ; 5556
 .data_5562
 	db $00, PAL_OW_TREE, SPRITEMOVEDATA_GRASS
 ; 5565
+
 ShakeScreen: ; 5565
 	push bc
 	push af
@@ -2359,7 +2363,7 @@ Function56a3: ; 56a3
 	cp d
 	jr z, .equal_x
 	jr nc, .nope
-	add $b
+	add MAPOBJECT_SCREEN_WIDTH - 1
 	cp d
 	jr c, .nope
 .equal_x
@@ -2367,7 +2371,7 @@ Function56a3: ; 56a3
 	cp e
 	jr z, .equal_y
 	jr nc, .nope
-	add $a
+	add MAPOBJECT_SCREEN_HEIGHT - 1
 	cp e
 	jr c, .nope
 .equal_y
@@ -2406,7 +2410,7 @@ Function56cd: ; 56cd
 	srl a
 	cp SCREEN_WIDTH
 	jr c, .ok3
-	sub $20
+	sub BG_MAP_WIDTH
 .ok3
 	ld [hUsedSpriteIndex], a
 	ld a, [wPlayerBGMapOffsetY]
@@ -2433,9 +2437,9 @@ Function56cd: ; 56cd
 	srl a
 	srl a
 	srl a
-	cp $12
+	cp SCREEN_HEIGHT
 	jr c, .ok6
-	sub $20
+	sub BG_MAP_HEIGHT
 .ok6
 	ld [hUsedSpriteTile], a
 	ld hl, OBJECT_PALETTE
@@ -2457,21 +2461,21 @@ Function56cd: ; 56cd
 	ld a, [hUsedSpriteTile]
 	add e
 	dec a
-	cp $12
+	cp SCREEN_HEIGHT
 	jr nc, .ok9
 	ld b, a
 .next
 	ld a, [hUsedSpriteIndex]
 	add d
 	dec a
-	cp $14
+	cp SCREEN_WIDTH
 	jr nc, .ok8
 	ld c, a
 	push bc
 	call Coord2Tile
 	pop bc
 	ld a, [hl]
-	cp $60
+	cp MAPOBJECT_VISIBLE_TILE_LIMIT
 	jr nc, .nope
 .ok8
 	dec d
@@ -2876,10 +2880,12 @@ ApplyBGMapAnchorToObjects: ; 5958
 	ret
 ; 5991
 
-InitSprites: ; 5991
+
 PRIORITY_LOW  EQU $10
 PRIORITY_NORM EQU $20
 PRIORITY_HIGH EQU $30
+
+InitSprites: ; 5991
 	call .DeterminePriorities
 	ld c, PRIORITY_HIGH
 	call .InitSpritesByPriority
@@ -3069,7 +3075,7 @@ PRIORITY_HIGH EQU $30
 	ld a, [hFFC2]
 	or e
 .nope2
-	and %11110000
+	and OBP_NUM | X_FLIP | Y_FLIP | PRIORITY
 	or d
 	ld [bc], a ; attributes
 	inc c
