@@ -21,7 +21,7 @@ PalPacket_GSTitleScreen:
 	sgb_pal_set GS_TITLE_SCREEN_0, GS_TITLE_SCREEN_1, GS_TITLE_SCREEN_2, GS_TITLE_SCREEN_3
 
 PalPacket_SCGB_13:
-	sgb_pal_set 2B, CGB_BADGE, RB_BROWNMON, 00
+	sgb_pal_set GREENMON_NITE, CGB_BADGE, RB_BROWNMON, 00
 
 PalPacket_SCGB_11:
 	sgb_pal_set SCGB_11_0, SCGB_11_1, SCGB_11_2, SCGB_11_3
