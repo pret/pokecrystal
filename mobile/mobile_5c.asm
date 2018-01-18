@@ -272,14 +272,14 @@ Function170cc6: ; 170cc6
 	call Decompress
 	ld a, $1
 	ld [rVBK], a
-	ld de, wd000
+	ld de, wDecompressBuffer
 	ld hl, vTiles0
 	lb bc, $6, $c1
 	call Get2bpp
 	xor a
 	ld [rVBK], a
 	ld hl, LZ_1715a4
-	ld de, wd000
+	ld de, wDecompressBuffer
 	call Decompress
 	ld de, wBGPals1
 	ld hl, vTiles0

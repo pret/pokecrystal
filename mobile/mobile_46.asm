@@ -2529,9 +2529,9 @@ Function1193a0:
 	ld [wcd3c], a
 	call BattleTowerRoomMenu2
 	ld hl, $c346
-	ld a, LOW(wd000)
+	ld a, LOW($d000)
 	ld [hli], a
-	ld a, HIGH(wd000)
+	ld a, HIGH($d000)
 	ld [hli], a
 	ld a, [wcd3b]
 	ld [hli], a
@@ -3467,10 +3467,10 @@ Function119987: ; 119987
 ; 1199b4
 
 Function1199b4: ; 1199b4
-	ld a, [wd000 + 130]
+	ld a, [w3_d081+1]
 	and a
 	jr nz, .asm_1199c7
-	ld a, [wd000 + 129]
+	ld a, [w3_d081]
 	cp $7
 	jr nc, .asm_1199c7
 	call BattleTowerRoomMenu_IncrementJumptable

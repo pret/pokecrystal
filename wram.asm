@@ -1565,7 +1565,7 @@ wDaysSince:: db
 
 SECTION "WRAM 1", WRAMX
 
-wd000:: ds 1
+wDecompressBuffer:: ds 1
 
 DefaultSpawnpoint:: db
 
@@ -2887,7 +2887,8 @@ SECTION "Battle Tower RAM", WRAMX
 w3_d000:: ds 1 ; d000
 w3_d001:: ds 1
 w3_d002:: ds $7e
-w3_d080:: ds $10
+w3_d080:: ds 1
+w3_d081:: ds $f
 w3_d090:: ds $70
 
 w3_d100::

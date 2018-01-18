@@ -891,13 +891,13 @@ InitCGBPals::
 	call CheckCGB
 	ret z
 ; CGB only
-	ld a, $1
+	ld a, BANK(vTiles3)
 	ld [rVBK], a
-	ld hl, vTiles0
+	ld hl, vTiles3
 	ld bc, $200 tiles
 	xor a
 	call ByteFill
-	ld a, $0
+	ld a, BANK(vTiles0)
 	ld [rVBK], a
 	ld a, 1 << rBGPI_AUTO_INCREMENT
 	ld [rBGPI], a

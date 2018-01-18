@@ -96,7 +96,7 @@ Init:: ; 17d
 	ld [hCGB], a
 
 	call ClearWRAM
-	ld a, BANK(wd000)
+	ld a, 1
 	ld [rSVBK], a
 	call ClearVRAM
 	call ClearSprites
@@ -182,11 +182,11 @@ ClearVRAM:: ; 245
 	ld [rVBK], a
 	call .clear
 
-	xor a
+	xor a ; 0
 	ld [rVBK], a
 .clear
-	ld hl, vTiles0
-	ld bc, $2000
+	ld hl, VRAM_Begin
+	ld bc, VRAM_End - VRAM_Begin
 	xor a
 	call ByteFill
 	ret
