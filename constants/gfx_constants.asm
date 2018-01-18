@@ -19,8 +19,6 @@ EXP_BAR_LENGTH EQU 8 ; tiles
 HP_BAR_LENGTH_PX  EQU HP_BAR_LENGTH  * TILE_WIDTH ; pixels
 EXP_BAR_LENGTH_PX EQU EXP_BAR_LENGTH * TILE_WIDTH ; pixels
 
-PALPACKET_LENGTH EQU $10
-
 ; sprite_oam_struct members (see macros/wram.asm)
 	const_def
 	const SPRITEOAMSTRUCT_YCOORD     ; 0

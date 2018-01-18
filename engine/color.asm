@@ -101,7 +101,7 @@ Unreferenced_Function8aa4:
 	ret
 
 InitPartyMenuPalettes:
-	ld hl, PalPacket_9c56 + 1
+	ld hl, PalPacket_PartyMenu + 1
 	call CopyFourPalettes
 	call InitPartyMenuOBPals
 	call WipeAttrMap
@@ -182,7 +182,7 @@ Unreferenced_Function8b4d:
 	ld a, [hSGB]
 	and a
 	ret z
-	ld hl, PalPacket_9c26
+	ld hl, PalPacket_Function8b4d
 	jp PushSGBPals_
 
 .cgb
@@ -197,12 +197,12 @@ Unreferenced_Function8b67:
 	ld a, [hSGB]
 	and a
 	ret z
-	ld hl, PalPacket_9c36
+	ld hl, PalPacket_Pack
 	jp PushSGBPals_
 
 .cgb
 	ld de, wOBPals1
-	ld a, PREDEFPAL_3C
+	ld a, PREDEFPAL_GS_INTRO_CHARIZARD_BG
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
@@ -765,7 +765,7 @@ Unreferenced_Function97cc:
 	ret z
 	ld a, $90
 	ld [rOBPI], a
-	ld a, PREDEFPAL_1C
+	ld a, PREDEFPAL_TRADE_TUBE
 	call GetPredefPal
 	call .PushPalette
 	ld a, PREDEFPAL_21
@@ -1342,11 +1342,11 @@ INCLUDE "gfx/diploma/diploma.pal"
 PartyMenuOBPals:
 INCLUDE "gfx/icons/party_menu.pal"
 
-Palettes_b6f1:
-INCLUDE "gfx/unknown/b6f1.pal"
+UnusedGSTitleBGPals:
+INCLUDE "gfx/title/unused_gs_bg.pal"
 
-Palettes_b719:
-INCLUDE "gfx/unknown/b719.pal"
+UnusedGSTitleOBPals:
+INCLUDE "gfx/title/unused_gs_fg.pal"
 
 MalePokegearPals:
 INCLUDE "gfx/pokegear/pokegear.pal"
@@ -1354,7 +1354,7 @@ INCLUDE "gfx/pokegear/pokegear.pal"
 FemalePokegearPals:
 INCLUDE "gfx/pokegear/pokegear_f.pal"
 
-Palettes_b789:
+Palettes_SCGB_11:
 INCLUDE "gfx/unknown/b789.pal"
 
 SlotMachinePals:

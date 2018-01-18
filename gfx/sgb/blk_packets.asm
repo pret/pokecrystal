@@ -19,12 +19,12 @@ BlkPacket_9a86:
 	attr_blk_data %011, 0,0,0, 00,00, 19,17
 	ds 8
 
-BlkPacket_9a96:
+BlkPacket_GSIntroJigglypuffPikachu:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 00,10, 19,13
 	ds 8
 
-BlkPacket_9aa6:
+BlkPacket_Battle:
 	attr_blk 5
 	attr_blk_data %111, 2,2,0, 00,12, 19,17
 	attr_blk_data %011, 1,1,0, 01,00, 10,03
@@ -32,27 +32,27 @@ BlkPacket_9aa6:
 	attr_blk_data %011, 2,2,0, 00,04, 08,11
 	attr_blk_data %011, 3,3,0, 11,00, 19,07
 
-BlkPacket_9ac6:
+BlkPacket_StatsScreen:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 00,01, 07,07
 	ds 8
 
-BlkPacket_9ad6:
+BlkPacket_MoveList:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 11,01, 19,02
 	ds 8
 
-BlkPacket_9ae6:
+BlkPacket_Pokedex_PC:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 01,01, 08,08
 	ds 8
 
-BlkPacket_9af6:
+BlkPacket_PokedexUnownMode:
 	attr_blk 1
 	attr_blk_data %111, 1,1,0, 07,05, 13,11
 	ds 8
 
-BlkPacket_9b06:
+BlkPacket_SlotMachine:
 	attr_blk 5
 	attr_blk_data %011, 1,1,0, 00,00, 19,11
 	attr_blk_data %011, 2,2,0, 00,04, 19,09
@@ -60,7 +60,7 @@ BlkPacket_9b06:
 	attr_blk_data %011, 0,0,0, 04,04, 15,09
 	attr_blk_data %011, 0,0,0, 00,12, 19,17
 
-BlkPacket_9b26:
+UnreferencedBlkPacket_9b26:
 	attr_blk 7
 	attr_blk_data %111, 0,0,1, 00,00, 02,12
 	attr_blk_data %010, 0,0,0, 12,00, 18,01
@@ -71,19 +71,19 @@ BlkPacket_9b26:
 	attr_blk_data %010, 0,0,0, 12,10, 18,11
 	ds 4
 
-BlkPacket_9b56:
+BlkPacket_GSTitleScreen:
 	attr_blk 3
 	attr_blk_data %111, 0,0,2, 00,00, 19,04
 	attr_blk_data %011, 3,3,0, 00,06, 19,17
 	attr_blk_data %011, 1,1,0, 15,01, 18,04
 	ds 12
 
-BlkPacket_9b76:
+BlkPacket_SCGB_06:
 	attr_blk 1
 	attr_blk_data %111, 0,0,1, 00,00, 19,05
 	ds 8
 
-BlkPacket_9b86:
+BlkPacket_SCGB_13:
 	attr_blk 2
 	attr_blk_data %111, 2,2,0, 00,04, 19,13
 	attr_blk_data %011, 1,1,0, 00,06, 19,11
