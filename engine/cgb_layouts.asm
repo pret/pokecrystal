@@ -767,7 +767,7 @@ _CGB_TrainerCard: ; 9289
 
 _CGB_MoveList: ; 9373
 	ld de, wBGPals1
-	ld a, PREDEFPAL_10
+	ld a, PREDEFPAL_GOLDENROD
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
 	ld a, [PlayerHPPal]

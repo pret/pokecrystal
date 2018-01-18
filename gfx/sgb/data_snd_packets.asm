@@ -2,22 +2,13 @@
 ; names taken from pandocs
 ; http://gbdev.gg8.se/wiki/articles/SGB_Functions#SGB_Palette_Commands
 
-sgb_mask_en: MACRO
-	db ($17 << 3) + 1
-	db \1
-	ds 14
-ENDM
-
 sgb_data_snd: MACRO
-	db ($0f << 3) + 1
+	db (SGB_DATA_SND << 3) + 1
 	dw \1 ; address
 	db \2 ; bank
 	db \3 ; length (1-11)
 ENDM
 
-
-MaskEnFreezePacket: sgb_mask_en 1
-MaskEnCancelPacket: sgb_mask_en 0
 
 ; These are packets containing SNES code.
 ; This set of packets is found in several Japanese SGB-compatible titles.

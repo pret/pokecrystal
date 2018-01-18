@@ -38,6 +38,12 @@ sgb_pct_trn: MACRO
 	ds 15
 ENDM
 
+sgb_mask_en: MACRO
+	db (SGB_MASK_EN << 3) + 1
+	db \1
+	ds 14
+ENDM
+
 
 PalPacket_9b96: sgb_pal_set 48, 49, 4A, 4B
 PalPacket_9ba6: sgb_pal_set 2B, 24, 20, 00
@@ -82,3 +88,6 @@ MltReq1Packet: sgb_mlt_req 1
 MltReq2Packet: sgb_mlt_req 2
 ChrTrnPacket:  sgb_chr_trn 0, 0
 PctTrnPacket:  sgb_pct_trn
+
+MaskEnFreezePacket: sgb_mask_en 1
+MaskEnCancelPacket: sgb_mask_en 0

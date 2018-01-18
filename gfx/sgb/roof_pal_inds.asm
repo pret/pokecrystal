@@ -2,31 +2,31 @@
 
 MapGroupRoofSGBPalInds: ; 8a45
 ; entries correspond to map groups
-	db PREDEFPAL_00 ; group 0 (unused)
-	db PREDEFPAL_12 ; group 1 (Olivine)
-	db PREDEFPAL_14 ; group 2 (Mahogany)
-	db PREDEFPAL_18 ; group 3 (dungeons)
-	db PREDEFPAL_11 ; group 4 (Ecruteak)
-	db PREDEFPAL_15 ; group 5 (Blackthorn)
-	db PREDEFPAL_09 ; group 6 (Cinnabar)
-	db PREDEFPAL_04 ; group 7 (Cerulean)
-	db PREDEFPAL_0F ; group 8 (Azalea)
-	db PREDEFPAL_16 ; group 9 (Lake of Rage)
-	db PREDEFPAL_0E ; group 10 (Violet)
-	db PREDEFPAL_10 ; group 11 (Goldenrod)
-	db PREDEFPAL_06 ; group 12 (Vermilion)
-	db PREDEFPAL_01 ; group 13 (Pallet)
-	db PREDEFPAL_03 ; group 14 (Pewter)
-	db PREDEFPAL_06 ; group 15 (Mount Moon Square)
-	db PREDEFPAL_0B ; group 16 (Indigo)
-	db PREDEFPAL_08 ; group 17 (Fuchsia)
-	db PREDEFPAL_05 ; group 18 (Lavender)
-	db PREDEFPAL_17 ; group 19 (Silver Cave)
-	db PREDEFPAL_08 ; group 20 (Cable Club)
-	db PREDEFPAL_07 ; group 21 (Celadon)
-	db PREDEFPAL_13 ; group 22 (Cianwood)
-	db PREDEFPAL_02 ; group 23 (Viridian)
-	db PREDEFPAL_0C ; group 24 (New Bark)
-	db PREDEFPAL_0A ; group 25 (Saffron)
-	db PREDEFPAL_0D ; group 26 (Cherrygrove)
+	db PREDEFPAL_00
+	db PREDEFPAL_OLIVINE
+	db PREDEFPAL_MAHOGANY
+	db PREDEFPAL_DUNGEONS
+	db PREDEFPAL_ECRUTEAK
+	db PREDEFPAL_BLACKTHORN
+	db PREDEFPAL_CINNABAR
+	db PREDEFPAL_CERULEAN
+	db PREDEFPAL_AZALEA
+	db PREDEFPAL_LAKE_OF_RAGE
+	db PREDEFPAL_VIOLET
+	db PREDEFPAL_GOLDENROD
+	db PREDEFPAL_VERMILION
+	db PREDEFPAL_PALLET
+	db PREDEFPAL_PEWTER
+	db PREDEFPAL_VERMILION
+	db PREDEFPAL_INDIGO
+	db PREDEFPAL_FUCHSIA
+	db PREDEFPAL_LAVENDER
+	db PREDEFPAL_SILVER_CAVE
+	db PREDEFPAL_FUCHSIA
+	db PREDEFPAL_CELADON
+	db PREDEFPAL_CIANWOOD
+	db PREDEFPAL_VIRIDIAN
+	db PREDEFPAL_NEW_BARK
+	db PREDEFPAL_SAFFRON
+	db PREDEFPAL_CHERRYGROVE
 ; 8a60

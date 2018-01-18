@@ -555,7 +555,7 @@ endr
 	ld a, [TimeOfDayPal]
 	cp NITE_F
 	jr c, .morn_day
-	ld a, $19
+	ld a, PREDEFPAL_NITE
 	ret
 
 .morn_day
@@ -583,15 +583,15 @@ endr
 	ret
 
 .cave
-	ld a, PREDEFPAL_18
+	ld a, PREDEFPAL_DUNGEONS
 	ret
 
 .perm5
-	ld a, PREDEFPAL_06
+	ld a, PREDEFPAL_VERMILION
 	ret
 
 .gate
-	ld a, PREDEFPAL_03
+	ld a, PREDEFPAL_PEWTER
 	ret
 ; 8a45
 
