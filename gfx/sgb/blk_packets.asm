@@ -26,15 +26,15 @@ BlkPacket_GSIntroJigglypuffPikachu:
 
 BlkPacket_Battle:
 	attr_blk 5
-	attr_blk_data %111, 2,2,0, 00,12, 19,17
-	attr_blk_data %011, 1,1,0, 01,00, 10,03
-	attr_blk_data %011, 0,0,0, 10,08, 19,10
-	attr_blk_data %011, 2,2,0, 00,04, 08,11
-	attr_blk_data %011, 3,3,0, 11,00, 19,07
+	attr_blk_data %111, 2,2,0, 00,12, 19,17 ; text box: pal 2
+	attr_blk_data %011, 1,1,0, 01,00, 10,03 ; enemy HP bar: pal 1
+	attr_blk_data %011, 0,0,0, 10,08, 19,10 ; player HP+exp bar: pal 0
+	attr_blk_data %011, 2,2,0, 00,04, 08,11 ; player mon: pal 2
+	attr_blk_data %011, 3,3,0, 11,00, 19,07 ; enemy mon : pal 3
 
 BlkPacket_StatsScreen:
 	attr_blk 1
-	attr_blk_data %111, 1,1,0, 00,01, 07,07
+	attr_blk_data %111, 1,1,0, 00,01, 07,07 ; mon: pal 1
 	ds 8
 
 BlkPacket_MoveList:
@@ -44,21 +44,21 @@ BlkPacket_MoveList:
 
 BlkPacket_Pokedex_PC:
 	attr_blk 1
-	attr_blk_data %111, 1,1,0, 01,01, 08,08
+	attr_blk_data %111, 1,1,0, 01,01, 08,08 ; mon: pal 1
 	ds 8
 
 BlkPacket_PokedexUnownMode:
 	attr_blk 1
-	attr_blk_data %111, 1,1,0, 07,05, 13,11
+	attr_blk_data %111, 1,1,0, 07,05, 13,11 ; unown: pal 1
 	ds 8
 
 BlkPacket_SlotMachine:
 	attr_blk 5
-	attr_blk_data %011, 1,1,0, 00,00, 19,11
-	attr_blk_data %011, 2,2,0, 00,04, 19,09
-	attr_blk_data %010, 3,3,0, 00,06, 19,07
-	attr_blk_data %011, 0,0,0, 04,04, 15,09
-	attr_blk_data %011, 0,0,0, 00,12, 19,17
+	attr_blk_data %011, 1,1,0, 00,00, 19,11 ; "3" rows and top of screen: pal 1
+	attr_blk_data %011, 2,2,0, 00,04, 19,09 ; "2" rows: pal 2
+	attr_blk_data %010, 3,3,0, 00,06, 19,07 ; "1" row: pal 3
+	attr_blk_data %011, 0,0,0, 04,04, 15,09 ; slot reels: pal 0
+	attr_blk_data %011, 0,0,0, 00,12, 19,17 ; text box: pal 0
 
 UnreferencedBlkPacket_9b26:
 	attr_blk 7
