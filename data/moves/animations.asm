@@ -401,7 +401,7 @@ BattleAnim_ThrowPokeBall
 	anim_if_var_equal $1, .Click
 	anim_if_var_equal $2, .BreakFree
 	anim_incobj  1
-	anim_sound 0, 1, SFX_BALL_WIGGLE
+	anim_sound 0, 1, SFX_BALL_WOBBLE
 	anim_jump .Loop
 ; c93bc
 

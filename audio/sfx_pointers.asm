@@ -180,7 +180,7 @@ SFX: ; e927c
 	dba Sfx_Encore
 	dba Sfx_BeatUp
 	dba Sfx_BatonPass
-	dba Sfx_BallWiggle
+	dba Sfx_BallWobble
 	dba Sfx_SweetScent
 	dba Sfx_SweetScent2
 	dba Sfx_HitEndOfExpBar

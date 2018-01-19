@@ -20,7 +20,7 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_RedWalk
 	dw .Frameset_StillCursor
 	dw .Frameset_TradePokeBall
-	dw .Frameset_TradePokeBallWiggle
+	dw .Frameset_TradePokeBallWobble
 	dw .Frameset_TradePoof
 	dw .Frameset_TradeTubeBulge
 	dw .Frameset_TrademonIcon
@@ -202,7 +202,7 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1, 32
 	endanim
 
-.Frameset_TradePokeBallWiggle:
+.Frameset_TradePokeBallWobble:
 	frame SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1,  3
 	frame SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_2,  3
 	frame SPRITE_ANIM_OAMSET_TRADE_POKE_BALL_1,  3
