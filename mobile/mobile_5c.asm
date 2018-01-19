@@ -837,7 +837,7 @@ LZ_172abd:
 INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 
 String_172e31: ; 172e31
-	db "パスワード", $1f, "いれてください@"
+	db "パスワード<WO>いれてください@"
 String_172e3f: ; 172e3f
 	db "きりかえ やめる  けってい@"
 String_172e4e: ; 172e4e

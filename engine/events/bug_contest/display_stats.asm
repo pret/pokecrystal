@@ -82,9 +82,9 @@ DisplayCaughtContestMonStats: ; cc000
 .Health:
 	db "HEALTH@"
 .Stock:
-	db " STOCK ", $4a, " @"
+	db " STOCK <PKMN> @"
 .This:
-	db " THIS ", $4a, "  @"
+	db " THIS <PKMN>  @"
 
 SwitchMonText: ; cc0c2
 	; Switch #MON?

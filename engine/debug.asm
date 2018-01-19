@@ -1,3 +1,27 @@
+const_value set $6a
+	const DEBUGTEST_UP_ARROW ; $6a
+	const DEBUGTEST_TICKS    ; $6b
+	const DEBUGTEST_WHITE    ; $6c
+	const DEBUGTEST_LIGHT    ; $6d
+	const DEBUGTEST_DARK     ; $6e
+	const DEBUGTEST_BLACK    ; $6f
+	const DEBUGTEST_0        ; $70
+	const DEBUGTEST_1        ; $71
+	const DEBUGTEST_2        ; $72
+	const DEBUGTEST_3        ; $73
+	const DEBUGTEST_4        ; $74
+	const DEBUGTEST_5        ; $75
+	const DEBUGTEST_6        ; $76
+	const DEBUGTEST_7        ; $77
+	const DEBUGTEST_8        ; $78
+	const DEBUGTEST_9        ; $79
+	const DEBUGTEST_A        ; $7a
+	const DEBUGTEST_B        ; $7b
+	const DEBUGTEST_C        ; $7c
+	const DEBUGTEST_D        ; $7d
+	const DEBUGTEST_E        ; $7e
+	const DEBUGTEST_F        ; $7f
+
 ColorTest: ; 818ac
 ; A debug menu to test monster and trainer palettes at runtime.
 
@@ -127,13 +151,13 @@ Function81948: ; 81948
 ; 8197c
 
 Function8197c: ; 8197c
-	ld hl, DebugColorTestGFX + $10
-	ld de, vTiles2 tile $6a
-	ld bc, $160
+	ld hl, DebugColorTestGFX + 1 tiles
+	ld de, vTiles2 tile DEBUGTEST_UP_ARROW
+	ld bc, 22 tiles
 	call CopyBytes
 	ld hl, DebugColorTestGFX
 	ld de, vTiles0
-	ld bc, $10
+	ld bc, 1 tiles
 	call CopyBytes
 	call LoadStandardFont
 	ld hl, vTiles1
@@ -278,19 +302,19 @@ Function81adb: ; 81adb
 	ld [hBGMapMode], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, $6f
+	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	hlcoord 1, 3
 	lb bc, 7, 18
-	ld a, $6c
+	ld a, DEBUGTEST_WHITE
 	call Bank20_FillBoxWithByte
 	hlcoord 11, 0
 	lb bc, 2, 3
-	ld a, $6d
+	ld a, DEBUGTEST_LIGHT
 	call Bank20_FillBoxWithByte
 	hlcoord 16, 0
 	lb bc, 2, 3
-	ld a, $6e
+	ld a, DEBUGTEST_DARK
 	call Bank20_FillBoxWithByte
 	call Function81bc0
 	call Function81bf4
@@ -360,9 +384,9 @@ Function81adb: ; 81adb
 	ret
 ; 81baf
 
-String_81baf: db "レア", $6f, $6f, "@" ; rare (shiny)
+String_81baf: db "レアぅぅ@" ; rare (shiny)
 String_81bb4: db "ノーマル@" ; normal
-String_81bb9: db $7a, "きりかえ▶@" ; (A) switches
+String_81bb9: db DEBUGTEST_A, "きりかえ▶@" ; (A) switches
 ; 81bc0
 
 Function81bc0: ; 81bc0
@@ -380,10 +404,10 @@ Function81bc0: ; 81bc0
 
 Function81bde: ; 81bde
 	push af
-	ld a, $6a
+	ld a, DEBUGTEST_UP_ARROW
 	ld [hli], a
 	ld bc, $f
-	ld a, $6b
+	ld a, DEBUGTEST_TICKS
 	call ByteFill
 	ld l, e
 	ld h, d
@@ -458,11 +482,11 @@ Function81c33: ; 81c33
 
 .asm_81c69
 	ld hl, wSGBPals
-	ld a, $1
+	ld a, 1
 	ld [hli], a
-	ld a, $ff
+	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
-	ld a, $7f
+	ld a, HIGH(PALRGB_WHITE)
 	ld [hli], a
 	ld a, [wc608]
 	ld [hli], a
@@ -506,7 +530,7 @@ Function81ca7: ; 81ca7
 
 Function81cbc: ; 81cbc
 	and $f
-	add $70
+	add DEBUGTEST_0
 	ld [hld], a
 	ret
 ; 81cc2
@@ -657,7 +681,7 @@ Function81d89: ; 81d89
 Function81d8e: ; 81d8e
 	hlcoord 0, 10
 	ld bc, $a0
-	ld a, $6f
+	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	hlcoord 2, 12
 	ld de, String_81fcd
@@ -777,8 +801,8 @@ Function81e55: ; 81e55
 ; 81e5e
 
 Function81e5e: ; 81e5e
-	ld bc, $a
-	ld a, $6f
+	ld bc, 10
+	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	ret
 ; 81e67
@@ -864,9 +888,9 @@ Function81eca: ; 81eca
 
 Function81ee3: ; 81ee3
 .asm_81ee3
-	ld a, $ff
+	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
-	ld a, $7f
+	ld a, HIGH(PALRGB_WHITE)
 	ld [hli], a
 	ld a, [de]
 	inc de
@@ -968,7 +992,7 @@ Function81f1d: ; 81f1d
 ; 81f5e
 
 Function81f5e: ; 81f5e
-	ld a, $6f
+	ld a, DEBUGTEST_BLACK
 	hlcoord 10, 0
 	ld [hl], a
 	hlcoord 15, 0
@@ -1039,8 +1063,8 @@ Function81f5e: ; 81f5e
 
 String_81fcd: ; 81fcd
 	db   "おわりますか?" ; Are you finished?
-	next "はい", $f2, $f2, $f2, $7a ; YES (A)
-	next "いいえ",    $f2, $f2, $7b ; NO  (B)
+	next "はい<DOT><DOT><DOT>", DEBUGTEST_A ; YES...(A)
+	next "いいえ<DOT><DOT>", DEBUGTEST_B ; NO..(B)
 	db   "@"
 ; 81fe3
 
@@ -1062,7 +1086,7 @@ TilesetColorTest:
 	xor a
 	ld [hBGMapMode], a
 	ld de, DebugColorTestGFX + 1 tiles
-	ld hl, vTiles2 tile $6a
+	ld hl, vTiles2 tile DEBUGTEST_UP_ARROW
 	lb bc, BANK(DebugColorTestGFX), 22
 	call Request2bpp
 	ld de, DebugColorTestGFX
@@ -1073,23 +1097,23 @@ TilesetColorTest:
 	ld [hBGMapAddress + 1], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, $6f
+	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	hlcoord 0, 0, AttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $7
 	call ByteFill
 	ld de, $15
-	ld a, $6c
+	ld a, DEBUGTEST_WHITE
 	call Function821d2
 	ld de, $1a
-	ld a, $6d
+	ld a, DEBUGTEST_LIGHT
 	call Function821d2
 	ld de, $1f
-	ld a, $6e
+	ld a, DEBUGTEST_DARK
 	call Function821d2
 	ld de, $24
-	ld a, $6f
+	ld a, DEBUGTEST_BLACK
 	call Function821d2
 	call Function821f4
 	call Function8220f
@@ -1134,10 +1158,10 @@ Function821f4: ; 821f4
 	hlcoord 2, 8
 
 Function82203: ; 82203
-	ld a, $6a
+	ld a, DEBUGTEST_UP_ARROW
 	ld [hli], a
 	ld bc, $10 - 1
-	ld a, $6b
+	ld a, DEBUGTEST_TICKS
 	call ByteFill
 	ret
 ; 8220f

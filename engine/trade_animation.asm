@@ -1585,7 +1585,7 @@ Unreferenced_DebugTrade: ; 29893
 	ld a, [hli]
 	ld [wPlayerTrademonSpecies], a
 	ld de, wPlayerTrademonSenderName
-	ld c, 11 + 2 ; jp: 6 + 2
+	ld c, NAME_LENGTH + 2 ; JP: NAME_LENGTH_JAPANESE + 2
 .loop1
 	ld a, [hli]
 	ld [de], a
@@ -1596,7 +1596,7 @@ Unreferenced_DebugTrade: ; 29893
 	ld a, [hli]
 	ld [wOTTrademonSpecies], a
 	ld de, wOTTrademonSenderName
-	ld c, 11 + 2 ; jp: 6 + 2
+	ld c, NAME_LENGTH + 2 ; JP: NAME_LENGTH_JAPANESE + 2
 .loop2
 	ld a, [hli]
 	ld [de], a
@@ -1607,9 +1607,15 @@ Unreferenced_DebugTrade: ; 29893
 
 ; 298b5
 
+debugtrade: MACRO
+; species, ot name, ot id (?)
+	db \1, \2
+	dw \3
+ENDM
+
 .DebugTradeData: ; 298b5
-	db VENUSAUR, "ゲーフり@@", $23, $01 ; GAME FREAK
-	db CHARIZARD, "クりーチャ@", $56, $04 ; Creatures Inc.
+	debugtrade VENUSAUR, "ゲーフり@@", $0123 ; GAME FREAK
+	debugtrade CHARIZARD, "クりーチャ@", $0456 ; Creatures Inc.
 ; 298c7
 
 

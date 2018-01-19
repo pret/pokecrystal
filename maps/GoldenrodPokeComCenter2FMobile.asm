@@ -99,8 +99,8 @@ MenuDataHeader_0x6264c:
 .MenuData2:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "でんわ", $1f,"つかうとき@" ; Use phone
-	db "でんわ", $4a,"つながらないとき@" ; Don't use phone
+	db "でんわ<WO>つかうとき@" ; Use phone
+	db "でんわ<GA>つながらないとき@" ; Don't use phone
 	db "やめる@" ; QUIT
 
 MapGoldenrodPokeComCenter2FMobileSignpost2Script:

@@ -219,8 +219,8 @@ ENDM
 	dict "<NEXT>",    NextLineChar
 	dict TX_FAR,      TextFar
 	dict TX_START,    NullChar
-	dict "<CONT3>",   _ContTextNoPause
-	dict "<CONT2>",   _ContText
+	dict "<SCROLL>",  _ContTextNoPause
+	dict "<_CONT>",   _ContText
 	dict "<PARA>",    Paragraph
 	dict "<MOM>",     PrintMomsName
 	dict "<PLAYER>",  PrintPlayerName
@@ -563,7 +563,7 @@ ContText:: ; 1345
 	pop de
 	jp NextChar
 
-.cont: db "<CONT2>@"
+.cont: db "<_CONT>@"
 ; 1356
 
 

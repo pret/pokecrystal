@@ -717,7 +717,7 @@ NonTrainerCallerNames: ; 903d6
 .bill db "BILL:@"
 .elm db "PROF.ELM:@"
 .bikeshop db "BIKE SHOP:@"
-.buena db "BUENA:", $22, "   DISC JOCKEY@"
+.buena db "BUENA:<LNBRK>   DISC JOCKEY@"
 ; 90423
 
 Phone_GetTrainerName: ; 90423 (24:4423)

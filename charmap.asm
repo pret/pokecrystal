@@ -12,8 +12,8 @@
 	charmap "<MOM>",     $49 ; MomsName
 	charmap "<ENEMY>",   $3f
 	charmap "<PKMN>",    $4a ; "<PK><MN>"
-	charmap "<CONT2>",   $4b ; implements "<CONT>"
-	charmap "<CONT3>",   $4c ; unused
+	charmap "<_CONT>",   $4b ; implements "<CONT>"
+	charmap "<SCROLL>",  $4c
 	charmap "<NEXT>",    $4e
 	charmap "<LINE>",    $4f
 	charmap "@",         $50 ; string terminator
@@ -210,7 +210,7 @@
 
 	charmap "<NI>",      $1d ; "に "
 	charmap "<TTE>",     $1e ; "って"
-	charmap "<O>",       $1e ; "を "
+	charmap "<WO>",      $1f ; "を "
 	charmap "<TA!>",     $22 ; "た！"
 	charmap "<KOUGEKI>", $23 ; "こうげき"
 	charmap "<WA>",      $24 ; "は　"

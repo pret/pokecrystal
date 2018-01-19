@@ -662,7 +662,7 @@ UnknownText_0x1c0cc6::
 
 UnknownText_0x1c0cd0::
 	interpret_data
-	text $4c, "went way up!"
+	text "<SCROLL>went way up!"
 	prompt
 
 UnknownText_0x1c0ce0::
@@ -677,7 +677,7 @@ UnknownText_0x1c0ceb::
 
 UnknownText_0x1c0cf5::
 	interpret_data
-	text $4c, "sharply fell!"
+	text "<SCROLL>sharply fell!"
 	prompt
 
 UnknownText_0x1c0d06::
