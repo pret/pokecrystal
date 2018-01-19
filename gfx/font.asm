@@ -62,7 +62,7 @@ INCBIN "gfx/font/black.1bpp"
 ; f921c
 
 UnusedUpArrowGFX: ; unused up arrow + whitespace
-INCBIN "gfx/font/unused_arrow.1bpp"
+INCBIN "gfx/font/unused_up_arrow.1bpp"
 ; f9234
 
 MobilePhoneTilesGFX: ; f9234
