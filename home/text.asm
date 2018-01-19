@@ -336,12 +336,12 @@ PlaceKokoWa:  print_name PlaceKokoWaText ; 11f6
 PlaceMoveTargetsName:: ; 11fd
 	ld a, [hBattleTurn]
 	xor 1
-	jr PlaceMoveTargetsName_5A
+	jr PlaceMoveUsersName.place
 
 PlaceMoveUsersName:: ; 1203
 	ld a, [hBattleTurn]
 
-PlaceMoveTargetsName_5A: ; 1205
+.place: ; 1205
 	push de
 	and a
 	jr nz, .enemy
