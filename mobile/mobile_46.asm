@@ -967,9 +967,9 @@ Function11878d: ; 11878d (46:478d)
 	bit 0, [hl]
 	jr nz, .asm_118803
 	set 0, [hl]
-	ld a, BANK(wDecompressScratch)
+	ld a, $6
 	ld [rSVBK], a
-	ld de, wDecompressScratch
+	ld de, $d000
 	ld bc, $1000
 	ld a, [hl]
 	sla a
