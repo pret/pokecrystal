@@ -4,7 +4,7 @@ Unreferenced_Function16c000: ; 16c000
 	and a
 	ret z
 	; Only do this once per boot cycle
-	ld a, [hFFEA]
+	ld a, [hSystemBooted]
 	and a
 	ret z
 	; Set some flag, preserving the old state
@@ -19,9 +19,9 @@ Unreferenced_Function16c000: ; 16c000
 	call .RunJumptable
 	farcall DisableMobile
 	; Prevent this routine from running again
-	; until the next time the syatem is turned on
+	; until the next time the system is turned on
 	xor a
-	ld [hFFEA], a
+	ld [hSystemBooted], a
 	; Restore the flag state
 	pop af
 	ld [wcfbe], a

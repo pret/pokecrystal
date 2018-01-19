@@ -20,10 +20,10 @@ DMATransfer:: ; 15d8
 
 
 UpdateBGMapBuffer:: ; 15e3
-; Copy [hFFDC] 16x8 tiles from BGMapBuffer
+; Copy [hBGMapTileCount] 16x8 tiles from BGMapBuffer
 ; to bg map addresses in BGMapBufferPtrs.
 
-; [hFFDC] must be even since this is done in pairs.
+; [hBGMapTileCount] must be even since this is done in pairs.
 
 ; Return carry on success.
 
@@ -76,10 +76,10 @@ rept 2
 endr
 
 ; We've done 2 16x8 blocks
-	ld a, [hFFDC]
+	ld a, [hBGMapTileCount]
 	dec a
 	dec a
-	ld [hFFDC], a
+	ld [hBGMapTileCount], a
 
 	jr nz, .next
 

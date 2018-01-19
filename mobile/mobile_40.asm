@@ -4056,7 +4056,7 @@ _StartMobileBattle: ; 1019ab
 	jr z, .got_link_player_number
 	ld a, 1
 .got_link_player_number
-	ld [hLinkPlayerNumber], a
+	ld [hSerialConnectionStatus], a
 	ret
 ; 101a21
 
@@ -4076,7 +4076,7 @@ StartMobileBattle: ; 101a21
 	xor a
 	ld [wDisableTextAcceleration], a
 	ld a, $ff
-	ld [hLinkPlayerNumber], a
+	ld [hSerialConnectionStatus], a
 	pop af
 	ld [Options], a
 	ret

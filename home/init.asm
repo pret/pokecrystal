@@ -32,7 +32,7 @@ _Start:: ; 16e
 .load
 	ld [hCGB], a
 	ld a, $1
-	ld [hFFEA], a
+	ld [hSystemBooted], a
 ; 17d
 
 
@@ -84,14 +84,14 @@ Init:: ; 17d
 ; Clear HRAM
 	ld a, [hCGB]
 	push af
-	ld a, [hFFEA]
+	ld a, [hSystemBooted]
 	push af
 	xor a
 	ld hl, HRAM_Begin
 	ld bc, HRAM_End - HRAM_Begin
 	call ByteFill
 	pop af
-	ld [hFFEA], a
+	ld [hSystemBooted], a
 	pop af
 	ld [hCGB], a
 
@@ -137,7 +137,7 @@ Init:: ; 17d
 	ld [rLCDC], a
 
 	ld a, -1
-	ld [hLinkPlayerNumber], a
+	ld [hSerialConnectionStatus], a
 
 	farcall InitCGBPals
 

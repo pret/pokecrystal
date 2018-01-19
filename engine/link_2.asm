@@ -56,7 +56,7 @@ LinkTextbox2: ; 4d35b
 
 .PlaceBorder: ; 4d37e
 	push hl
-	ld a, $76
+	ld a, "ぁ" ; $76
 	ld [hli], a
 	inc a
 	call .PlaceRow

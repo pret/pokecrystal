@@ -1352,7 +1352,7 @@ UpdateBGMapRow:: ; 27d3
 	dec c
 	jr nz, .loop
 	ld a, SCREEN_WIDTH
-	ld [hFFDC], a
+	ld [hBGMapTileCount], a
 	ret
 ; 27f8
 
@@ -1379,7 +1379,7 @@ UpdateBGMapColumn:: ; 27f8
 	dec c
 	jr nz, .loop
 	ld a, SCREEN_HEIGHT
-	ld [hFFDC], a
+	ld [hBGMapTileCount], a
 	ret
 ; 2816
 

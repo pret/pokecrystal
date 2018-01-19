@@ -26,7 +26,7 @@ DoBattle: ; 3c000
 	and a
 	jr z, .not_linked
 
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $2
 	jr z, .player_2
 
@@ -97,7 +97,7 @@ DoBattle: ; 3c000
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked_2
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $2
 	jr nz, .not_linked_2
 	xor a
@@ -251,7 +251,7 @@ Stubbed_Function3c1bf:
 ; 3c1d6
 
 HandleBetweenTurnEffects: ; 3c1d6
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .CheckEnemyFirst
 	call CheckFaint_PlayerThenEnemy
@@ -350,7 +350,7 @@ CheckFaint_EnemyThenPlayer: ; 3c25c
 ; 3c27c
 
 HandleBerserkGene: ; 3c27c
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .reverse
 
@@ -458,7 +458,7 @@ DetermineMoveOrder: ; 3c314
 	ld a, [wPlayerAction]
 	cp $2
 	jr nz, .switch
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $2
 	jr z, .player_2
 
@@ -515,7 +515,7 @@ DetermineMoveOrder: ; 3c314
 	jp .enemy_first
 
 .both_have_quick_claw
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $2
 	jr z, .player_2b
 	call BattleRandom
@@ -545,7 +545,7 @@ DetermineMoveOrder: ; 3c314
 	jp .enemy_first
 
 .speed_tie
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $2
 	jr z, .player_2c
 	call BattleRandom
@@ -709,7 +709,7 @@ ParsePlayerAction: ; 3c434
 ; 3c4df
 
 HandleEncore: ; 3c4df
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .player_1
 	call .do_player
@@ -1161,7 +1161,7 @@ ResidualDamage: ; 3c716
 ; 3c801
 
 HandlePerishSong: ; 3c801
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .EnemyFirst
 	call SetPlayerTurn
@@ -1230,7 +1230,7 @@ HandlePerishSong: ; 3c801
 ; 3c874
 
 HandleWrap: ; 3c874
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .EnemyFirst
 	call SetPlayerTurn
@@ -1302,7 +1302,7 @@ SwitchTurnCore: ; 3c8e4
 ; 3c8eb
 
 HandleLeftovers: ; 3c8eb
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .DoEnemyFirst
 	call SetPlayerTurn
@@ -1352,7 +1352,7 @@ HandleLeftovers: ; 3c8eb
 ; 3c93c
 
 HandleMysteryberry: ; 3c93c
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .DoEnemyFirst
 	call SetPlayerTurn
@@ -1491,7 +1491,7 @@ HandleMysteryberry: ; 3c93c
 ; 3ca26
 
 HandleFutureSight: ; 3ca26
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .enemy_first
 	call SetPlayerTurn
@@ -1550,7 +1550,7 @@ HandleFutureSight: ; 3ca26
 ; 3ca8f
 
 HanleDefrost: ; 3ca8f
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .enemy_first
 	call .do_player_turn
@@ -1610,7 +1610,7 @@ HanleDefrost: ; 3ca8f
 ; 3cafb
 
 HandleSafeguard: ; 3cafb
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .player1
 	call .CheckPlayer
@@ -1647,7 +1647,7 @@ HandleSafeguard: ; 3cafb
 	jp StdBattleTextBox
 
 HandleScreens: ; 3cb36
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp 1
 	jr z, .Both
 	call .CheckPlayer
@@ -1731,7 +1731,7 @@ HandleWeather: ; 3cb9e
 	cp WEATHER_SANDSTORM
 	ret nz
 
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp 1
 	jr z, .enemy_first
 
@@ -2115,7 +2115,7 @@ HandleEnemyMonFaint: ; 3cd55
 ; 3cdca
 
 DoubleSwitch: ; 3cdca
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .player_1
 	call ClearSprites
@@ -4350,7 +4350,7 @@ RecallPlayerMon: ; 3dce6
 ; 3dcf9
 
 HandleHealingItems: ; 3dcf9
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .player_1
 	call SetPlayerTurn
@@ -4595,7 +4595,7 @@ UseConfusionHealingItem: ; 3de51
 
 HandleStatBoostingHeldItems: ; 3de97
 ; The effects handled here are not used in-game.
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .player_1
 	call .DoPlayer
@@ -5374,7 +5374,7 @@ PlayerSwitch: ; 3e3ad
 	ret
 
 .dont_run
-	ld a, [hLinkPlayerNumber]
+	ld a, [hSerialConnectionStatus]
 	cp $1
 	jr z, .player_1
 	call BattleMonEntrance
