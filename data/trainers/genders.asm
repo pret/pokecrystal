@@ -1,4 +1,4 @@
-; Used by
+; Used by BattleTowerText
 
 BTTrainerClassGenders: ; 11f2f0
 ; entries correspond to trainer classes
