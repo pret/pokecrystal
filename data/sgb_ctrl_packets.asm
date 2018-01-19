@@ -70,7 +70,7 @@ DataSndPacket2:
 	db  $e8                 ; inx
 	db  $e8                 ; inx
 	db  $e0                 ; cpx #$8c (1)
-        
+
 DataSndPacket3:
 	sgb_data_snd $0847, $0, 11
 	db  $c4                 ; cmp #$c4 (2)
@@ -80,7 +80,7 @@ DataSndPacket3:
 	db  $c9, $05            ; cmp #$05
 	db  $d0, $10            ; bne +$10
 	db  $a2, $28            ; ldx #$28
-        
+
 DataSndPacket4:
 	sgb_data_snd $083c, $0, 11
 	db  $f0, $12            ; beq +$12

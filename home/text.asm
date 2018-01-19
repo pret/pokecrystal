@@ -414,7 +414,7 @@ PlaceCommandCharacter:: ; 126a
 	jp NextChar
 ; 0x1273
 
-TMCharText::      db "TM@" 
+TMCharText::      db "TM@"
 TrainerCharText:: db "TRAINER@"
 PCCharText::      db "PC@"
 RocketCharText::  db "ROCKET@"

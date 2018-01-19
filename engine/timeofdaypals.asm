@@ -47,7 +47,7 @@ _TimeOfDayPals:: ; 8c011
 ; save wram bank
 	ld a, [rSVBK]
 	ld b, a
-	
+
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
@@ -78,7 +78,7 @@ _TimeOfDayPals:: ; 8c011
 ; save wram bank
 	ld a, [rSVBK]
 	ld d, a
-	
+
 	ld a, BANK(wOBPals1)
 	ld [rSVBK], a
 
