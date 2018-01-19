@@ -1,13 +1,13 @@
 NamesPointers:: ; 33ab
 ; entries correspond to GetName constants (see constants/text_constants.asm)
-	dba PokemonNames      ; PKMN_NAME (not used; jumps to GetPokemonName)
-	dba MoveNames         ; MOVE_NAME
-	dbw 0, NULL           ; DUMMY_NAME
-	dba ItemNames         ; ITEM_NAME
-	dbw 0, PartyMonOT     ; PARTY_OT_NAME
-	dbw 0, OTPartyMonOT   ; ENEMY_OT_NAME
-	dba TrainerClassNames ; TRAINER_NAME
-	dbw $4, $4b52         ; BROKEN_NAME (within PackMenuGFX)
+	dba PokemonNames        ; PKMN_NAME (not used; jumps to GetPokemonName)
+	dba MoveNames           ; MOVE_NAME
+	dbw 0, NULL             ; DUMMY_NAME
+	dba ItemNames           ; ITEM_NAME
+	dbw 0, PartyMonOT       ; PARTY_OT_NAME
+	dbw 0, OTPartyMonOT     ; ENEMY_OT_NAME
+	dba TrainerClassNames   ; TRAINER_NAME
+	dbw 4, MoveDescriptions ; MOVE_DESC_NAME_BROKEN (wrong bank)
 ; 33c3
 
 GetName:: ; 33c3
