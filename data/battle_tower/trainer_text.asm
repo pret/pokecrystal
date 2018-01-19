@@ -185,20 +185,20 @@ UnknownText_0x1ec3e5: ; 0x1ec3e5
 ; 0x1ec402
 
 UnknownText_0x1ec402: ; 0x1ec402
-	text "<......><......><......>"
-	line "<......><......>Battle?"
+	text "<……><……><……>"
+	line "<……><……>Battle?"
 	done
 ; 0x1ec411
 
 UnknownText_0x1ec411: ; 0x1ec411
-	text "<......><......><......>"
-	line "<......><......>I won?"
+	text "<……><……><……>"
+	line "<……><……>I won?"
 	done
 ; 0x1ec41f
 
 UnknownText_0x1ec41f: ; 0x1ec41f
-	text "<......><......><......>"
-	line "<......><......>I lost?"
+	text "<……><……><……>"
+	line "<……><……>I lost?"
 	done
 ; 0x1ec42e
 

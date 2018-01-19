@@ -516,7 +516,7 @@ Phone_FirstOfTwoRings: ; 902b3
 Phone_CallerTextboxWithName2: ; 902c9
 	call Phone_CallerTextbox
 	hlcoord 1, 2
-	ld [hl], "<PHONE>"
+	ld [hl], "☎"
 	inc hl
 	inc hl
 	ld a, [PhoneScriptBank]
@@ -616,7 +616,7 @@ Function90363: ; 90363 (24:4363)
 	push bc
 	call Phone_CallerTextbox
 	hlcoord 1, 1
-	ld [hl], "<PHONE>"
+	ld [hl], "☎"
 	inc hl
 	inc hl
 	ld d, h

@@ -794,7 +794,7 @@ ElmText_GotAnEmail:
 	text "Oh, hey! I got an"
 	line "e-mail!"
 
-	para "<......><......><......>"
+	para "<……><……><……>"
 	line "Hm… Uh-huh…"
 
 	para "Okay…"

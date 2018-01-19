@@ -488,7 +488,7 @@ StatsScreen_PlaceShinyIcon: ; 4dfa6 (13:5fa6)
 	farcall CheckShininess
 	ret nc
 	hlcoord 19, 0
-	ld [hl], "<SHINY>"
+	ld [hl], "⁂"
 	ret
 
 StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)

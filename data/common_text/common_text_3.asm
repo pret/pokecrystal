@@ -886,7 +886,7 @@ UnknownText_0x1c5580::
 	done
 
 UnknownText_0x1c5588::
-	text "<......>"
+	text "<……>"
 	done
 
 UnknownText_0x1c558b::
@@ -1048,7 +1048,7 @@ UnknownText_0x1c5821::
 	db "@@"
 
 UnknownText_0x1c5824::
-	text "<......>"
+	text "<……>"
 	done
 
 UnknownText_0x1c5827::

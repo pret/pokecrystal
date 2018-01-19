@@ -433,7 +433,7 @@ GuideGentNoText:
 	done
 
 UnknownText_0x19c4e2:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "You got a #MON"
 	line "at the LAB."
@@ -441,7 +441,7 @@ UnknownText_0x19c4e2:
 	para "What a waste."
 	line "A wimp like you."
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 
 	para "Don't you get what"
 	line "I'm saying?"
@@ -459,7 +459,7 @@ SilverCherrygroveWinText:
 	done
 
 CherrygroveRivalText_YouLost:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "My name's ???."
 
@@ -475,7 +475,7 @@ SilverCherrygroveLossText:
 	done
 
 CherrygroveRivalText_YouWon:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "My name's ???."
 

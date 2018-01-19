@@ -1050,7 +1050,7 @@ Stubbed_Function106462:
 
 Function106464:: ; 106464
 	ld de, FontsExtra_SolidBlackGFX
-	ld hl, vTiles2 tile "<BLACK>" ; $60
+	ld hl, vTiles2 tile "■" ; $60
 	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
 	call Get2bpp
 	ld de, FontsExtra2_UpArrowGFX
@@ -1058,7 +1058,7 @@ Function106464:: ; 106464
 	lb bc, BANK(FontsExtra2_UpArrowGFX), 1
 	call Get2bpp
 	ld de, GFX_106514
-	ld hl, vTiles2 tile "<PHONE>" ; $62
+	ld hl, vTiles2 tile "☎" ; $62
 	ld c, 9
 	ld b, BANK(GFX_106514)
 	call Get2bpp

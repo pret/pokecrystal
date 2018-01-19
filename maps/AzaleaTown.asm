@@ -376,11 +376,11 @@ AzaleaTownYoungsterText:
 AzaleaTownSlowpokeText1:
 	text "SLOWPOKE: …"
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 	done
 
 AzaleaTownSlowpokeText2:
-	text "<......> <......>Yawn?"
+	text "<……> <……>Yawn?"
 	done
 
 WoosterText:

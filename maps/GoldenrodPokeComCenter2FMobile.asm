@@ -239,7 +239,7 @@ UnknownText_0x62b26:
 	line "OFFICE received an"
 	cont "e-mail. It says…"
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 
 	para "To the #COM"
 	line "CENTER staff…"
@@ -259,7 +259,7 @@ UnknownText_0x62b26:
 	para "the world can link"
 	line "without barriers!"
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 	done
 
 GoldenrodPokeComCenter2FMobile_MapEvents:

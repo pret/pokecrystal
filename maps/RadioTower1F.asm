@@ -249,8 +249,8 @@ UnknownText_0x5cf5a:
 	done
 
 UnknownText_0x5cf79:
-	text "<......>"
-	line "<......>"
+	text "<……>"
+	line "<……>"
 	done
 
 UnknownText_0x5cf7e:

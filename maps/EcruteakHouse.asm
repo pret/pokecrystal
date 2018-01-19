@@ -202,7 +202,7 @@ UnknownText_0x98250:
 	line "but I must ask you"
 	cont "to leave."
 
-	para "<......><......><......>"
+	para "<……><……><……>"
 
 	para "Ah!"
 

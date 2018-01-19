@@ -603,7 +603,7 @@ DragonShrineClairYouPassedText:
 
 	para "You did fail?"
 
-	para "<......><......><......><......><......><......>"
+	para "<……><……><……><……><……><……>"
 
 	para "…What? You passed?"
 	done
@@ -654,7 +654,7 @@ DragonShrineRisingBadgeExplanationText:
 	done
 
 DragonShrineSpeechlessText:
-	text "<......><......><......><......><......><......>"
+	text "<……><……><……><……><……><……>"
 	done
 
 DragonShrine_MapEvents:

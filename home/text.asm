@@ -238,7 +238,7 @@ ENDM
 	dict "<KOUGEKI>", PlaceKougeki
 	dict "<LNBRK>",   LineBreakChar
 	dict "<CONT>",    ContText
-	dict "<......>",  SixDotsChar
+	dict "<……>",      SixDotsChar
 	dict "<DONE>",    DoneText
 	dict "<PROMPT>",  PromptText
 	dict "<PKMN>",    PlacePKMN

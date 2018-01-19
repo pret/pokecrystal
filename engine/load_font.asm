@@ -49,11 +49,11 @@ _LoadStandardFont:: ; fb449
 
 _LoadFontsExtra1:: ; fb48a
 	ld de, FontsExtra_SolidBlackGFX
-	ld hl, vTiles2 tile "<BLACK>" ; $60
+	ld hl, vTiles2 tile "■" ; $60
 	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
 	call Get1bpp_2
 	ld de, PokegearPhoneIconGFX
-	ld hl, vTiles2 tile "<PHONE>" ; $62
+	ld hl, vTiles2 tile "☎" ; $62
 	lb bc, BANK(PokegearPhoneIconGFX), 1
 	call Get2bpp_2
 	ld de, FontExtra tile 3

@@ -351,9 +351,9 @@ UnknownText_0xa1717: ; 0xa1717
 	para "that it gradually"
 	line "makes me drowsy…"
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 
-	para "<......> <......> <......>Zzz"
+	para "<……> <……> <……>Zzz"
 
 	para "Oops, I drifted"
 	line "off just thinking"

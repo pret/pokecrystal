@@ -88,7 +88,7 @@ MountMoonSilverMovementAfter:
 	step_end
 
 MountMoonSilverTextBefore:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "It's been a while,"
 	line "<PLAYER>."
@@ -108,7 +108,7 @@ MountMoonSilverTextBefore:
 	done
 
 MountMoonSilverTextWin:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "I thought I raised"
 	line "my #MON to be"
@@ -121,7 +121,7 @@ MountMoonSilverTextWin:
 	done
 
 MountMoonSilverTextAfter:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "…You won, fair"
 	line "and square."
@@ -147,7 +147,7 @@ MountMoonSilverTextAfter:
 	done
 
 MountMoonSilverTextLoss:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "I've repaid my"
 	line "debt to you."

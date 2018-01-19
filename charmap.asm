@@ -19,10 +19,10 @@
 	charmap "@",         $50 ; string terminator
 	charmap "<PARA>",    $51
 	charmap "<PLAYER>",  $52 ; PlayerName
-	charmap "<RIVAL>",   $53
+	charmap "<RIVAL>",   $53 ; RivalName
 	charmap "#",         $54 ; "POKé"
 	charmap "<CONT>",    $55
-	charmap "<......>",  $56 ; "……"
+	charmap "<……>",      $56 ; "……"
 	charmap "<DONE>",    $57
 	charmap "<PROMPT>",  $58
 	charmap "<TARGET>",  $59
@@ -53,8 +53,8 @@
 	charmap "ぅ",         $6f ; hiragana small u, unused
 	charmap "<PO>",      $70
 	charmap "<KE>",      $71
-	charmap "<``>",      $72 ; opening quote
-	charmap "<''>",      $73 ; closing quote
+	charmap "“",         $72 ; opening quote
+	charmap "”",         $73 ; closing quote
 	charmap "·",         $74 ; middle dot, unused
 	charmap "…",         $75 ; ellipsis
 	charmap "ぁ",         $76 ; hiragana small a, unused
@@ -82,16 +82,16 @@
 ; Actual characters (from other graphics files)
 
 	; needed for _LoadFontsExtra1 (see engine/load_font.asm)
-	charmap "<BLACK>",   $60 ; gfx/font/black_arrow.2bpp
+	charmap "■",         $60 ; gfx/font/black.2bpp
 	charmap "▲",         $61 ; gfx/font/up_arrow.png
-	charmap "<PHONE>",   $62 ; gfx/font/phone_icon.2bpp
+	charmap "☎",         $62 ; gfx/font/phone_icon.2bpp
 
 	; needed for Special_MagikarpHouseSign (see engine/events/magikarp.asm)
 	charmap "′",         $6e ; gfx/font/feet_inches.png
 	charmap "″",         $6f ; gfx/font/feet_inches.png
 
 	; needed for StatsScreen_PlaceShinyIcon and PrintPartyMonPage1
-	charmap "<SHINY>",   $3f ; gfx/stats/stats_tiles.png, tile 14
+	charmap "⁂",         $3f ; gfx/stats/stats_tiles.png, tile 14
 
 ; Actual characters (from gfx/font/font.png)
 
