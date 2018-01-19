@@ -121,14 +121,17 @@ UnknownText_0x1bc1cf::
 UnknownText_0x1bc1eb::
 	text "Your PASSCODE has"
 	line "been set."
+
 	para "Enter this number"
 	line "next time to open"
 	cont "the CARD FOLDER."
+
 	para ""
 	done
 
 UnknownText_0x1bc23e::
 	text "0000 is invalid!"
+
 	para ""
 	done
 
@@ -140,6 +143,7 @@ UnknownText_0x1bc251::
 UnknownText_0x1bc272::
 	text "Incorrect"
 	line "PASSCODE!"
+
 	para ""
 	done
 

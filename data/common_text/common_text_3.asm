@@ -439,6 +439,7 @@ UnknownText_0x1c4ae5::
 	line "seeing @"
 	text_from_ram wSeerNickname
 	text_start
+
 	para "in battle would"
 	line "excite anyone."
 	done
@@ -451,6 +452,7 @@ UnknownText_0x1c4b92::
 
 UnknownText_0x1c4baf::
 	text_start
+
 	para "evolved into"
 	line "@"
 	text_from_ram StringBuffer1
@@ -725,10 +727,13 @@ _MobileStadiumEntryText::
 _MobileStadiumSuccessText::
 	text "Data transfer is"
 	line "complete."
+
 	para "We hope you enjoy"
 	line "MOBILE STADIUM"
+
 	para "battles in the N64"
 	line "#MON STADIUM 2."
+
 	para ""
 	done
 
@@ -772,43 +777,55 @@ UnknownText_0x1c521c::
 UnknownText_0x1c5238::
 	text "The CARD FOLDER"
 	line "stores your and"
+
 	para "your friends'"
 	line "CARDS."
+
 	para "A CARD contains"
 	line "information like"
+
 	para "the person's name,"
 	line "phone number and"
 	cont "profile."
+
 	para ""
 	done
 
 UnknownText_0x1c52bc::
 	text "This is your CARD."
+
 	para "Once you've"
 	line "entered your phone"
+
 	para "number, you can"
 	line "trade CARDS with"
 	cont "your friends."
+
 	para ""
 	done
 
 UnknownText_0x1c531e::
 	text "If you have your"
 	line "friend's CARD, you"
+
 	para "can use it to make"
 	line "a call from a"
+
 	para "mobile phone on"
 	line "the 2nd floor of a"
 	cont "#MON CENTER."
+
 	para ""
 	done
 
 UnknownText_0x1c5394::
 	text "To safely store"
 	line "your collection of"
+
 	para "CARDS, you must"
 	line "set a PASSCODE for"
 	cont "your CARD FOLDER."
+
 	para ""
 	done
 
@@ -836,6 +853,7 @@ UnknownText_0x1c5494::
 UnknownText_0x1c54b9::
 	text "The CARD FOLDER"
 	line "has been deleted."
+
 	para ""
 	done
 
@@ -974,6 +992,7 @@ UnknownText_0x1c574e::
 	text " Poof!@"
 	interpret_data
 	text_start
+
 	para "@"
 	text_from_ram wMonOrItemNameBuffer
 	text " forgot"
@@ -1065,18 +1084,21 @@ UnknownText_0x1c58bc::
 
 UnknownText_0x1c58d1::
 	text "Here you go!"
+
 	para ""
 	done
 
 UnknownText_0x1c58e0::
 	text "You don't have"
 	line "enough points."
+
 	para ""
 	done
 
 UnknownText_0x1c58ff::
 	text "You have no room"
 	line "for it."
+
 	para ""
 	done
 
@@ -1087,12 +1109,14 @@ UnknownText_0x1c591a::
 
 UnknownText_0x1c5937::
 	text "Excuse me!"
+
 	para ""
 	done
 
 Text_ExcuseMeYoureNotReady::
 	text "Excuse me."
 	line "You're not ready."
+
 	para ""
 	done
 
@@ -1104,18 +1128,21 @@ UnknownText_0x1c5962::
 UnknownText_0x1c5983::
 	text "You need at least"
 	line "three #MON."
+
 	para ""
 	done
 
 UnknownText_0x1c59a3::
 	text "Sorry, an EGG"
 	line "doesn't qualify."
+
 	para ""
 	done
 
 Text_OnlyThreePkmnMayBeEntered::
 	text "Only three #MON"
 	line "may be entered."
+
 	para ""
 	done
 
@@ -1125,6 +1152,7 @@ Text_ThePkmnMustAllBeDifferentKinds::
 	text " #MON"
 	line "must all be"
 	cont "different kinds."
+
 	para ""
 	done
 
@@ -1134,12 +1162,14 @@ Text_ThePkmnMustNotHoldTheSameItems::
 	text " #MON"
 	line "must not hold the"
 	cont "same items."
+
 	para ""
 	done
 
 Text_YouCantTakeAnEgg::
 	text "You can't take an"
 	line "EGG!"
+
 	para ""
 	done
 
@@ -1292,6 +1322,7 @@ UnknownText_0x1c5d03::
 	line "inside!@"
 	sound_dex_fanfare_50_79
 	text_start
+
 	para "@"
 	text_from_ram PlayerName
 	text " sent the"

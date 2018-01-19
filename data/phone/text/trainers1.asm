@@ -308,8 +308,10 @@ UnknownText_0x1b53f7: ; 0x1b53f7
 	line "@"
 	text_from_ram StringBuffer3
 	text "."
+
 	para "Oh, <PLAY_G>."
 	line "Good morning."
+
 	para ""
 	done
 

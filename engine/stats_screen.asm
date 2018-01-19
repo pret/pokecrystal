@@ -1088,10 +1088,10 @@ StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 	ld a, $36 ; first of 4 small square tiles
 	call .load_square
 	hlcoord 15, 5
-	ld a, $36 ; """
+	ld a, $36 ; " " " "
 	call .load_square
 	hlcoord 17, 5
-	ld a, $36 ; """
+	ld a, $36 ; " " " "
 	call .load_square
 	ld a, c
 	cp GREEN_PAGE

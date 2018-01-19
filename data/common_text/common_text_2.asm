@@ -758,6 +758,7 @@ _EndUsedMove5Text::
 
 UnknownText_0x1c0db0::
 	text "Huh?"
+
 	para "@@"
 
 UnknownText_0x1c0db8::
@@ -966,6 +967,7 @@ ContestJudging_SecondPlaceText::
 	line "@"
 	text_from_ram wBugContestWinnerName
 	text ","
+
 	para "who caught a"
 	line "@"
 	text_from_ram StringBuffer1
@@ -973,6 +975,7 @@ ContestJudging_SecondPlaceText::
 
 ContestJudging_SecondPlaceScoreText::
 	text_start
+
 	para "The score was"
 	line "@"
 	deciram wBugContestSecondPlaceScore, 2, 3
@@ -984,6 +987,7 @@ ContestJudging_ThirdPlaceText::
 	line "@"
 	text_from_ram wBugContestWinnerName
 	text ","
+
 	para "who caught a"
 	line "@"
 	text_from_ram StringBuffer1
@@ -991,6 +995,7 @@ ContestJudging_ThirdPlaceText::
 
 ContestJudging_ThirdPlaceScoreText::
 	text_start
+
 	para "The score was"
 	line "@"
 	deciram wBugContestThirdPlaceScore, 2, 3
@@ -1009,6 +1014,7 @@ UnknownText_0x1c1203::
 
 UnknownText_0x1c123a::
 	text "CURRENT RECORD"
+
 	para "@"
 	text_from_ram StringBuffer1
 	text " caught by"
@@ -1312,17 +1318,21 @@ _OakPCText4::
 UnknownText_0x1c19cd::
 	text "Triple-theme"
 	line "trainer ranking!"
+
 	para "The SAVE file you"
 	line "just sent might"
 	cont "make the rankings!"
+
 	para ""
 	done
 
 UnknownText_0x1c1a22::
 	text "There is no"
 	line "ranking data."
+
 	para "Link to obtain"
 	line "ranking data."
+
 	para ""
 	done
 
