@@ -9,8 +9,8 @@
 	charmap "%",         $25
 	charmap "<RED>",     $38 ; RedsName
 	charmap "<GREEN>",   $39 ; GreensName
-	charmap "<MOM>",     $49 ; MomsName
 	charmap "<ENEMY>",   $3f
+	charmap "<MOM>",     $49 ; MomsName
 	charmap "<PKMN>",    $4a ; "<PK><MN>"
 	charmap "<_CONT>",   $4b ; implements "<CONT>"
 	charmap "<SCROLL>",  $4c
@@ -29,7 +29,7 @@
 	charmap "<USER>",    $5a
 	charmap "<PC>",      $5b ; "PC"
 	charmap "<TM>",      $5c ; "TM"
-	charmap "<TRNER>",   $5d ; "TRAINER"
+	charmap "<TRAINER>", $5d ; "TRAINER"
 	charmap "<ROCKET>",  $5e ; "ROCKET"
 	charmap "<DEXEND>",  $5f
 

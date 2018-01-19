@@ -234,7 +234,7 @@ ENDM
 	dict "<PC>",      PCChar
 	dict "<ROCKET>",  RocketChar
 	dict "<TM>",      TMChar
-	dict "<TRNER>",   TrainerChar
+	dict "<TRAINER>", TrainerChar
 	dict "<KOUGEKI>", PlaceKougeki
 	dict "<LNBRK>",   LineBreakChar
 	dict "<CONT>",    ContText
@@ -735,30 +735,30 @@ DoTextUntilTerminator:: ; 13f6
 ; 1410
 
 TextCommands:: ; 1410
-; entries correspond to macros/text.asm enumeration
-	dw Text_TX
-	dw Text_TX_RAM
-	dw Text_TX_BCD
-	dw Text_TX_MOVE
-	dw Text_TX_BOX
-	dw Text_TX_LOW
-	dw Text_WAIT_BUTTON
-	dw Text_TX_SCROLL
-	dw Text_START_ASM
-	dw Text_TX_NUM
-	dw Text_TX_EXIT
-	dw Text_PlaySound ; $0b
-	dw Text_TX_DOTS
-	dw Text_0D
-	dw Text_PlaySound ; $0e
-	dw Text_PlaySound ; $0f
-	dw Text_PlaySound ; $10
-	dw Text_PlaySound ; $11
-	dw Text_PlaySound ; $12
-	dw Text_PlaySound ; $13
-	dw Text_TX_STRINGBUFFER
-	dw Text_TX_DAY
-	dw Text_TX_FAR
+; entries correspond to TX_* constants (see macros/scripts/text.asm)
+	dw Text_TX               ; TX_START
+	dw Text_TX_RAM           ; TX_RAM
+	dw Text_TX_BCD           ; TX_BCD
+	dw Text_TX_MOVE          ; TX_MOVE
+	dw Text_TX_BOX           ; TX_BOX
+	dw Text_TX_LOW           ; TX_LOW
+	dw Text_WAIT_BUTTON      ; WAIT_BUTTON
+	dw Text_TX_SCROLL        ; TX_SCROLL
+	dw Text_START_ASM        ; START_ASM
+	dw Text_TX_NUM           ; TX_NUM
+	dw Text_TX_EXIT          ; TX_EXIT
+	dw Text_PlaySound        ; TX_SOUND_DEX_FANFARE_50_79
+	dw Text_TX_DOTS          ; TX_DOTS
+	dw Text_LINK_WAIT_BUTTON ; TX_LINK_WAIT_BUTTON
+	dw Text_PlaySound        ; TX_SOUND_DEX_FANFARE_20_49
+	dw Text_PlaySound        ; TX_SOUND_ITEM
+	dw Text_PlaySound        ; TX_SOUND_CAUGHT_MON
+	dw Text_PlaySound        ; TX_SOUND_DEX_FANFARE_80_109
+	dw Text_PlaySound        ; TX_SOUND_FANFARE
+	dw Text_PlaySound        ; TX_SOUND_SLOT_MACHINE_START
+	dw Text_TX_STRINGBUFFER  ; TX_STRINGBUFFER
+	dw Text_TX_DAY           ; TX_DAY
+	dw Text_TX_FAR           ; TX_FAR
 ; 143e
 
 Text_TX:: ; 143e
@@ -900,9 +900,9 @@ Text_WAIT_BUTTON:: ; 149f
 
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
-	jp z, Text_0D
+	jp z, Text_LINK_WAIT_BUTTON
 	cp LINK_MOBILE
-	jp z, Text_0D
+	jp z, Text_LINK_WAIT_BUTTON
 
 	push hl
 	call LoadBlinkingCursor
@@ -1030,13 +1030,13 @@ Unreferenced_Function1522:: ; 1522
 ; 152d
 
 TextSFX:: ; 152d
-	dbw TX_SOUND_0B, SFX_DEX_FANFARE_50_79
-	dbw TX_SOUND_12, SFX_FANFARE
-	dbw TX_SOUND_0E, SFX_DEX_FANFARE_20_49
-	dbw TX_SOUND_0F, SFX_ITEM
-	dbw TX_SOUND_10, SFX_CAUGHT_MON
-	dbw TX_SOUND_11, SFX_DEX_FANFARE_80_109
-	dbw TX_SOUND_13, SFX_SLOT_MACHINE_START
+	dbw TX_SOUND_DEX_FANFARE_50_79,  SFX_DEX_FANFARE_50_79
+	dbw TX_SOUND_FANFARE,            SFX_FANFARE
+	dbw TX_SOUND_DEX_FANFARE_20_49,  SFX_DEX_FANFARE_20_49
+	dbw TX_SOUND_ITEM,               SFX_ITEM
+	dbw TX_SOUND_CAUGHT_MON,         SFX_CAUGHT_MON
+	dbw TX_SOUND_DEX_FANFARE_80_109, SFX_DEX_FANFARE_80_109
+	dbw TX_SOUND_SLOT_MACHINE_START, SFX_SLOT_MACHINE_START
 	db -1
 ; 1543
 
@@ -1069,7 +1069,7 @@ Text_TX_DOTS:: ; 1543
 	ret
 ; 1562
 
-Text_0D:: ; 1562
+Text_LINK_WAIT_BUTTON:: ; 1562
 ; wait for key down
 ; display arrow
 	push hl
