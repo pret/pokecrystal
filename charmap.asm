@@ -6,7 +6,7 @@
 	charmap "¯",         $1f ; soft linebreak
 	charmap "<LNBRK>",   $22
 	charmap "<POKE>",    $24 ; "<PO><KE>"
-	charmap "%",         $25
+	charmap "%",         $25 ; soft linebreak in landmark names
 	charmap "<RED>",     $38 ; RedsName
 	charmap "<GREEN>",   $39 ; GreensName
 	charmap "<ENEMY>",   $3f
@@ -208,6 +208,7 @@
 
 ; Japanese control characters (see home/text.asm)
 
+	charmap "<CTRL_18>", $18 ; "ノ゛"? (ungrammatical)
 	charmap "<NI>",      $1d ; "に "
 	charmap "<TTE>",     $1e ; "って"
 	charmap "<WO>",      $1f ; "を "

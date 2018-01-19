@@ -7318,7 +7318,7 @@ YessNoString_1179c5: ; 1179c5
 ; 1179cc
 
 AskSavePasswordString: ; 1179cc
-	db   "こ%パスワード¯ほぞんして"
+	db   "こ<NO>パスワード¯ほぞんして"
 	line "おきますか?@"
 ; 1179e1
 

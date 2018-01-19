@@ -7085,7 +7085,7 @@ Function102fce: ; 102fce
 ; 102fdb
 
 String_102fdb: ; 102fdb
-	db   "あいてがわ%せんたくに"
+	db   "あいてがわ<NO>せんたくに"
 	next "いじょう<PKMN>あるようです!!"
 	done
 ; 102ff5

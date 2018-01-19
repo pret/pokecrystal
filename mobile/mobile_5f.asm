@@ -236,17 +236,17 @@ CheckStringForErrors_IgnoreTerminator: ; 17d0b3
 	cp "@"
 	jr z, .next
 
-	cp $5
+	cp "ガ"
 	jr c, .end
 	cp "<PLAY_G>"
 	jr c, .next
-	cp $19
+	cp "<CTRL_18>" + 1
 	jr c, .end
-	cp $1d
+	cp "<NI>"
 	jr c, .next
-	cp "%" + 1
+	cp "<NO>" + 1
 	jr c, .end
-	cp $35
+	cp "<ROUTE>"
 	jr c, .next
 	cp "<GREEN>" + 1
 	jr c, .end
