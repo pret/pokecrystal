@@ -206,7 +206,7 @@
 	charmap "8",         $fe
 	charmap "9",         $ff
 
-; Japanese kana, for those bits of text that were not translated to English
+; Japanese control characters (see home/text.asm)
 
 	charmap "<NI>",      $1d ; "に "
 	charmap "<TTE>",     $1e ; "って"
@@ -219,6 +219,8 @@
 	charmap "<WATASHI>", $36 ; "わたし"
 	charmap "<KOKO_WA>", $37 ; "ここは"
 	charmap "<GA>",      $4a ; "が "
+
+; Japanese kana, for those bits of text that were not translated to English
 
 	charmap "ガ", $05
 	charmap "ギ", $06
