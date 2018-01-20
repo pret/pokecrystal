@@ -2,8 +2,8 @@ String_89116:
 	db "-----@"
 
 String_8911c: ; 8911c
-	db   "でんわばんごうが ただしく"   ; Phone number is not
-	next "はいって いません!@"         ; entered correctly!
+	db   "でんわばんごうが ただしく" ; Phone number is not
+	next "はいって いません!@"   ; entered correctly!
 ; 89135
 
 String_89135: ; 89135
@@ -556,13 +556,13 @@ INCBIN "gfx/unknown/08940b.2bpp"
 
 Function8942b: ; 8942b (22:542b)
 	ld de, vTiles0 tile $02
-	ld hl, MobileAdapterGFX + $7d0
-	ld bc, $80
+	ld hl, MobileAdapterGFX + $7d tiles
+	ld bc, 8 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ld de, vTiles0 tile $0a
-	ld hl, MobileAdapterGFX + $c60
-	ld bc, $40
+	ld hl, MobileAdapterGFX + $c6 tiles
+	ld bc, 4 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
@@ -581,9 +581,9 @@ Function89448: ; 89448 (22:5448)
 	ret
 
 Function89455: ; 89455 (22:5455)
-	ld hl, MobileAdapterGFX + $7d0
+	ld hl, MobileAdapterGFX + $7d tiles
 	ld de, vTiles2 tile $0c
-	ld bc, $490
+	ld bc, $49 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
@@ -591,12 +591,12 @@ Function89455: ; 89455 (22:5455)
 Function89464: ; 89464
 	ld hl, MobileAdapterGFX
 	ld de, vTiles2
-	ld bc, $200
+	ld bc, $20 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
-	ld hl, MobileAdapterGFX + $660
+	ld hl, MobileAdapterGFX + $66 tiles
 	ld de, vTiles2 tile $20
-	ld bc, $170
+	ld bc, $17 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
@@ -1267,15 +1267,15 @@ Function897d5: ; 897d5
 
 
 Function89807: ; 89807 (22:5807)
-	ld hl, MobileAdapterGFX + $200
+	ld hl, MobileAdapterGFX + $20 tiles
 	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .asm_89814
-	ld hl, MobileAdapterGFX + $200 + $230
+	ld hl, MobileAdapterGFX + $43 tiles
 .asm_89814
 	call DisableLCD
 	ld de, vTiles2 tile $37
-	ld bc, $230
+	ld bc, $23 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	call EnableLCD

@@ -2054,13 +2054,13 @@ String_11cdc7: ; 11cdc7
 
 String_11cdd9: ; 11cdd9
 ; Words will be displayed in alphabetical order
-	db   "ことば¯アイウエォ の"
+	db   "ことば¯アイウエオ の"
 	next "じゅんばんで ひょうじ します@"
 ; 11cdf5
 
 String_11cdf5: ; 11cdf5
 	db   "しゅるいべつ モード"  ; Category mode
-	next "アイウエォ  モード@" ; ABC mode
+	next "アイウエオ  モード@" ; ABC mode
 ; 11ce0b
 
 Function11ce0b: ; 11ce0b (47:4e0b)
@@ -3601,7 +3601,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "ラララ@@", $98, $5, $0
 	db "わーい@@", $ac, $5, $0
 	db "わーん!!", $b0, $5, $0
-	db "ワォ@@@", $b2, $5, $0
+	db "ワオ@@@", $b2, $5, $0
 	db "わっ!!@", $ce, $5, $0
 	db "わははは!", $d0, $5, $0
 
@@ -3683,7 +3683,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "エキサイト", $d8, $0, $0
 	db "えらい@@", $de, $0, $0
 	db "おかしい@", $ec, $0, $0
-	db "ォッケー@", $8, $1, $0
+	db "オッケー@", $8, $1, $0
 	db "かえりたい", $48, $1, $0
 	db "がっくし@", $5a, $1, $0
 	db "かなしい@", $6c, $1, $0
@@ -3850,7 +3850,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "もようがえ", $3a, $5, $0
 	db "ゆめ@@@", $5a, $5, $0
 	db "ようちえん", $66, $5, $0
-	db "ラジォ@@", $92, $5, $0
+	db "ラジオ@@", $92, $5, $0
 	db "ワールド@", $ae, $5, $0
 
 .Hobbies: ; 11ea58

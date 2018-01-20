@@ -56,7 +56,7 @@ _LoadFontsExtra1:: ; fb48a
 	ld hl, vTiles2 tile "☎" ; $62
 	lb bc, BANK(PokegearPhoneIconGFX), 1
 	call Get2bpp_2
-	ld de, FontExtra tile 3
+	ld de, FontExtra + 3 tiles ; "<BOLD_D>"
 	ld hl, vTiles2 tile "<BOLD_D>"
 	lb bc, BANK(FontExtra), 22 ; "<BOLD_D>" to "ぉ"
 	call Get2bpp_2
@@ -104,8 +104,8 @@ LoadBattleFontsHPBar: ; fb4f2
 	lb bc, BANK(FontBattleExtra), 12
 	call Get2bpp_2
 	ld hl, vTiles2 tile $70
-	ld de, FontBattleExtra tile 16
-	lb bc, BANK(FontBattleExtra), 3 ; "<ど>" to "『"
+	ld de, FontBattleExtra + 16 tiles ; "<DO>"
+	lb bc, BANK(FontBattleExtra), 3 ; "<DO>" to "『"
 	call Get2bpp_2
 	call LoadFrame
 
@@ -122,7 +122,7 @@ LoadHPBar: ; fb50d
 	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 9
 	call Get2bpp_2
-	ld de, MobilePhoneTilesGFX tile 7 ; mobile phone icon
+	ld de, MobilePhoneTilesGFX + 7 tiles ; mobile phone icon
 	ld hl, vTiles2 tile $5e
 	lb bc, BANK(MobilePhoneTilesGFX), 2
 	call Get2bpp_2

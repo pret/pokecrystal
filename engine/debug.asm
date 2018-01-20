@@ -384,7 +384,7 @@ Function81adb: ; 81adb
 	ret
 ; 81baf
 
-String_81baf: db "レアぅぅ@" ; rare (shiny)
+String_81baf: db "レア", DEBUGTEST_BLACK, DEBUGTEST_BLACK, "@" ; rare (shiny)
 String_81bb4: db "ノーマル@" ; normal
 String_81bb9: db DEBUGTEST_A, "きりかえ▶@" ; (A) switches
 ; 81bc0

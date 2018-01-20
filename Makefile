@@ -215,6 +215,7 @@ gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/ascii_font.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/electro_ball.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/electro_ball_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/mobile/mobile_adapter.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
 

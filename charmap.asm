@@ -73,7 +73,7 @@
 
 	charmap "<LV>",      $6e
 
-	charmap "<ど>",       $70 ; hiragana small do, unused
+	charmap "<DO>",      $70 ; hiragana small do, unused
 	charmap "◀",         $71
 	charmap "『",         $72 ; Japanese opening quote, unused
 	charmap "<ID>",      $73
@@ -208,7 +208,7 @@
 
 ; Japanese control characters (see home/text.asm)
 
-	charmap "<CTRL_18>", $18 ; "ノ゛"? (ungrammatical)
+	charmap "<JP_18>",   $18 ; "ノ゛"? (ungrammatical)
 	charmap "<NI>",      $1d ; "に "
 	charmap "<TTE>",     $1e ; "って"
 	charmap "<WO>",      $1f ; "を "
@@ -276,11 +276,18 @@
 	charmap "ぺ", $47
 	charmap "ぽ", $48
 
+	charmap "「", $70
+	charmap "」", $71
+	charmap "』", $73
+	charmap "⋯", $75
+
+	charmap "　", $7f
+
 	charmap "ア", $80
 	charmap "イ", $81
 	charmap "ウ", $82
 	charmap "エ", $83
-	charmap "ォ", $84
+	charmap "オ", $84
 	charmap "カ", $85
 	charmap "キ", $86
 	charmap "ク", $87
@@ -331,7 +338,6 @@
 	charmap "う", $b3
 	charmap "え", $b4
 	charmap "お", $b5
-
 	charmap "か", $b6
 	charmap "き", $b7
 	charmap "く", $b8
@@ -357,7 +363,6 @@
 	charmap "ふ", $cc
 	charmap "へ", $cd
 	charmap "ほ", $ce
-
 	charmap "ま", $cf
 	charmap "み", $d0
 	charmap "む", $d1
@@ -380,8 +385,31 @@
 	charmap "ょ", $e2
 
 	charmap "ー", $e3
-
 	charmap "ﾟ", $e4
 	charmap "ﾞ", $e5
 
+	charmap "？", $e6
+	charmap "！", $e7
+	charmap "。", $e8
+
 	charmap "ァ", $e9
+	charmap "ゥ", $ea
+	charmap "ェ", $eb
+
+	charmap "円", $f0
+
+	charmap "．", $f2
+	charmap "／", $f3
+
+	charmap "ォ", $f4
+
+	charmap "０", $f6
+	charmap "１", $f7
+	charmap "２", $f8
+	charmap "３", $f9
+	charmap "４", $fa
+	charmap "５", $fb
+	charmap "６", $fc
+	charmap "７", $fd
+	charmap "８", $fe
+	charmap "９", $ff

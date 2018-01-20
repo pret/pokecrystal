@@ -6003,7 +6003,7 @@ MenuDataHeader_11ae38: ; 11ae38
 
 String_11ae40: ; 11ae40
 	db   "どちらでも"
-	next "♂ォス"
+	next "♂オス"
 	next "♀メス"
 	db   "@"
 ; 11ae4e
@@ -6338,7 +6338,7 @@ Function11b03d: ; 11b03d
 	ret
 ; 11b07a
 
-.MaleString: db "ォスの "
+.MaleString: db "オスの "
 .FemaleString: db "メスの "
 
 Function11b082: ; 11b082

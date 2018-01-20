@@ -240,7 +240,7 @@ CheckStringForErrors_IgnoreTerminator: ; 17d0b3
 	jr c, .end
 	cp "<PLAY_G>"
 	jr c, .next
-	cp "<CTRL_18>" + 1
+	cp "<JP_18>" + 1
 	jr c, .end
 	cp "<NI>"
 	jr c, .next
