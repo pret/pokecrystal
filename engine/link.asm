@@ -2143,7 +2143,7 @@ Special_EnterTimeCapsule: ; 29c7b
 Special_WaitForOtherPlayerToExit: ; 29c92
 	ld c, 3
 	call DelayFrames
-	ld a, -1
+	ld a, CONNECTION_NOT_ESTABLISHED
 	ld [hSerialConnectionStatus], a
 	xor a
 	ld [rSB], a
@@ -2169,7 +2169,7 @@ Special_WaitForOtherPlayerToExit: ; 29c92
 	ld [rSC], a
 	ld c, 3
 	call DelayFrames
-	ld a, -1
+	ld a, CONNECTION_NOT_ESTABLISHED
 	ld [hSerialConnectionStatus], a
 	ld a, [rIF]
 	push af

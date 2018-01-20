@@ -27,7 +27,7 @@ DoBattle: ; 3c000
 	jr z, .not_linked
 
 	ld a, [hSerialConnectionStatus]
-	cp $2
+	cp USING_INTERNAL_CLOCK
 	jr z, .player_2
 
 .not_linked
@@ -98,7 +98,7 @@ DoBattle: ; 3c000
 	and a
 	jr z, .not_linked_2
 	ld a, [hSerialConnectionStatus]
-	cp $2
+	cp USING_INTERNAL_CLOCK
 	jr nz, .not_linked_2
 	xor a
 	ld [wEnemySwitchMonIndex], a
@@ -252,7 +252,7 @@ Stubbed_Function3c1bf:
 
 HandleBetweenTurnEffects: ; 3c1d6
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .CheckEnemyFirst
 	call CheckFaint_PlayerThenEnemy
 	ret c
@@ -351,7 +351,7 @@ CheckFaint_EnemyThenPlayer: ; 3c25c
 
 HandleBerserkGene: ; 3c27c
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .reverse
 
 	call .player
@@ -459,7 +459,7 @@ DetermineMoveOrder: ; 3c314
 	cp $2
 	jr nz, .switch
 	ld a, [hSerialConnectionStatus]
-	cp $2
+	cp USING_INTERNAL_CLOCK
 	jr z, .player_2
 
 	call BattleRandom
@@ -516,7 +516,7 @@ DetermineMoveOrder: ; 3c314
 
 .both_have_quick_claw
 	ld a, [hSerialConnectionStatus]
-	cp $2
+	cp USING_INTERNAL_CLOCK
 	jr z, .player_2b
 	call BattleRandom
 	cp c
@@ -546,7 +546,7 @@ DetermineMoveOrder: ; 3c314
 
 .speed_tie
 	ld a, [hSerialConnectionStatus]
-	cp $2
+	cp USING_INTERNAL_CLOCK
 	jr z, .player_2c
 	call BattleRandom
 	cp 1 + (50 percent)
@@ -710,7 +710,7 @@ ParsePlayerAction: ; 3c434
 
 HandleEncore: ; 3c4df
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
 	call .do_player
 	jr .do_enemy
@@ -1162,7 +1162,7 @@ ResidualDamage: ; 3c716
 
 HandlePerishSong: ; 3c801
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .EnemyFirst
 	call SetPlayerTurn
 	call .do_it
@@ -1231,7 +1231,7 @@ HandlePerishSong: ; 3c801
 
 HandleWrap: ; 3c874
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .EnemyFirst
 	call SetPlayerTurn
 	call .do_it
@@ -1303,7 +1303,7 @@ SwitchTurnCore: ; 3c8e4
 
 HandleLeftovers: ; 3c8eb
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .DoEnemyFirst
 	call SetPlayerTurn
 	call .do_it
@@ -1353,7 +1353,7 @@ HandleLeftovers: ; 3c8eb
 
 HandleMysteryberry: ; 3c93c
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .DoEnemyFirst
 	call SetPlayerTurn
 	call .do_it
@@ -1492,7 +1492,7 @@ HandleMysteryberry: ; 3c93c
 
 HandleFutureSight: ; 3ca26
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .enemy_first
 	call SetPlayerTurn
 	call .do_it
@@ -1551,7 +1551,7 @@ HandleFutureSight: ; 3ca26
 
 HanleDefrost: ; 3ca8f
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .enemy_first
 	call .do_player_turn
 	jr .do_enemy_turn
@@ -1611,7 +1611,7 @@ HanleDefrost: ; 3ca8f
 
 HandleSafeguard: ; 3cafb
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .player1
 	call .CheckPlayer
 	jr .CheckEnemy
@@ -1648,7 +1648,7 @@ HandleSafeguard: ; 3cafb
 
 HandleScreens: ; 3cb36
 	ld a, [hSerialConnectionStatus]
-	cp 1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .Both
 	call .CheckPlayer
 	jr .CheckEnemy
@@ -1732,7 +1732,7 @@ HandleWeather: ; 3cb9e
 	ret nz
 
 	ld a, [hSerialConnectionStatus]
-	cp 1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .enemy_first
 
 .player_first
@@ -2116,7 +2116,7 @@ HandleEnemyMonFaint: ; 3cd55
 
 DoubleSwitch: ; 3cdca
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
 	call ClearSprites
 	hlcoord 1, 0
@@ -4351,7 +4351,7 @@ RecallPlayerMon: ; 3dce6
 
 HandleHealingItems: ; 3dcf9
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
 	call SetPlayerTurn
 	call HandleHPHealingItem
@@ -4596,7 +4596,7 @@ UseConfusionHealingItem: ; 3de51
 HandleStatBoostingHeldItems: ; 3de97
 ; The effects handled here are not used in-game.
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
 	call .DoPlayer
 	jp .DoEnemy
@@ -5375,7 +5375,7 @@ PlayerSwitch: ; 3e3ad
 
 .dont_run
 	ld a, [hSerialConnectionStatus]
-	cp $1
+	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
 	call BattleMonEntrance
 	call EnemyMonEntrance

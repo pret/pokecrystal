@@ -4052,9 +4052,9 @@ _StartMobileBattle: ; 1019ab
 	call CopyBytes
 	ld a, [wcd2f]
 	and a
-	ld a, 2
+	ld a, USING_INTERNAL_CLOCK
 	jr z, .got_link_player_number
-	ld a, 1
+	ld a, USING_EXTERNAL_CLOCK
 .got_link_player_number
 	ld [hSerialConnectionStatus], a
 	ret
@@ -4075,7 +4075,7 @@ StartMobileBattle: ; 101a21
 	farcall ShowLinkBattleParticipantsAfterEnd
 	xor a
 	ld [wDisableTextAcceleration], a
-	ld a, $ff
+	ld a, CONNECTION_NOT_ESTABLISHED
 	ld [hSerialConnectionStatus], a
 	pop af
 	ld [Options], a
