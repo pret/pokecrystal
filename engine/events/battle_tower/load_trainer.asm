@@ -41,7 +41,7 @@ endc
 	ld a, BANK(sBTTrainers)
 	call GetSRAMBank
 
-	ld c, BATTLETOWER_NROFTRAINERS
+	ld c, BATTLETOWER_STREAK_SIZE
 	ld hl, sBTTrainers
 .next_trainer
 	ld a, [hli]
@@ -93,7 +93,7 @@ endc
 
 
 Function_LoadRandomBattleTowerPkmn: ; 1f8081
-	ld c, BATTLETOWER_NROFPKMNS
+	ld c, BATTLETOWER_PARTY_SIZE
 .loop
 	push bc
 	ld a, BANK(sBTPkmnPrevTrainer1)

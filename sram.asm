@@ -203,7 +203,7 @@ sBattleTower:: ; be46
 sNrOfBeatenBattleTowerTrainers:: db
 sBTChoiceOfLevelGroup:: db
 ; Battle Tower trainers are saved here, so nobody appears more than once
-sBTTrainers:: ds BATTLETOWER_NROFTRAINERS ; sbe48
+sBTTrainers:: ds BATTLETOWER_STREAK_SIZE ; sbe48
 sBattleTowerSaveFileFlags:: db
 sBattleTowerReward:: db
 

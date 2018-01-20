@@ -219,7 +219,7 @@ Function170c8b: ; 170c8b
 ; 170c98
 
 CheckBTMonMovesForErrors: ; 170c98
-	ld c, BATTLETOWER_NROFPKMNS
+	ld c, BATTLETOWER_PARTY_SIZE
 	ld hl, wBT_OTTempPkmn1Moves
 .loop
 	push hl

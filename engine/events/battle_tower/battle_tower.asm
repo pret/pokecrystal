@@ -363,7 +363,7 @@ ReadBTTrainerParty: ; 1702b7
 	; Copy Pkmn into Memory from the address in hl
 	ld de, OTPartyMon1Species
 	ld bc, OTPartyCount
-	ld a, BATTLETOWER_NROFPKMNS		; Number of Pkmn the BattleTower-Trainer has
+	ld a, BATTLETOWER_PARTY_SIZE
 	ld [bc], a
 	inc bc
 .otpartymon_loop
@@ -399,7 +399,7 @@ ReadBTTrainerParty: ; 1702b7
 ValidateBTParty: ; 170394
 ; Check for and fix errors in party data
 	ld hl, wBT_OTTempPkmn1Species
-	ld d, BATTLETOWER_NROFPKMNS
+	ld d, BATTLETOWER_PARTY_SIZE
 .pkmn_loop
 	push de
 	push hl
@@ -509,7 +509,7 @@ BT_ChrisName: ; 170426
 
 Function17042c: ; 17042c
 	ld hl, w3_d202TrainerData
-	ld a, BATTLETOWER_NROFTRAINERS
+	ld a, BATTLETOWER_STREAK_SIZE
 .loop
 	push af
 	push hl
@@ -956,7 +956,7 @@ ResetBattleTowerTrainersSRAM: ; 1706d6 (5c:46d6) BattleTowerAction $1a
 
 	ld a, $ff
 	ld hl, sBTTrainers
-	ld bc, BATTLETOWER_NROFTRAINERS
+	ld bc, BATTLETOWER_STREAK_SIZE
 	call ByteFill
 
 	xor a
