@@ -1062,7 +1062,7 @@ Function81f5e: ; 81f5e
 ; 81fcd
 
 String_81fcd: ; 81fcd
-	db   "おわりますか?" ; Are you finished?
+	db   "おわりますか？" ; Are you finished?
 	next "はい<DOT><DOT><DOT>", DEBUGTEST_A ; YES...(A)
 	next "いいえ<DOT><DOT>", DEBUGTEST_B ; NO..(B)
 	db   "@"

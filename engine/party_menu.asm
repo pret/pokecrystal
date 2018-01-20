@@ -574,16 +574,16 @@ PlacePartyMonMobileBattleSelection: ; 50307
 ; 5036b
 
 .String_Banme: ; 5036b
-	db " ばんめ  @" ; Place
+	db "　ばんめ　　@" ; Place
 ; 50372
 .String_Sanka_Shinai: ; 50372
 	db "さんかしない@" ; Cancel
 ; 50379
 .String_Kettei_Yameru: ; 50379
-	db "けってい  やめる@" ; Quit
+	db "けってい　　やめる@" ; Quit
 ; 50383
 .Strings_1_2_3: ; 50383
-	db "1@", "2@", "3@" ; 1st, 2nd, 3rd
+	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
 ; 50389
 
 

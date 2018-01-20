@@ -7319,12 +7319,12 @@ YessNoString_1179c5: ; 1179c5
 
 AskSavePasswordString: ; 1179cc
 	db   "こ<NO>パスワード¯ほぞんして"
-	line "おきますか?@"
+	line "おきますか？@"
 ; 1179e1
 
 NotAPokemonPasswordString: ; 1179e1
 	db   "パスワード<PKMN>にゅうりょく"
-	line "されていません!@"
+	line "されていません！@"
 ; 1179f7
 
 SavedPasswordString: ; 1179f7

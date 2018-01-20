@@ -217,7 +217,7 @@ NamingScreen: ; 116c1
 ; 11839 (4:5839)
 
 .oTomodachi_no_namae_sutoringu ; 11839
-	db "おともだち の なまえは?@"
+	db "おともだち　の　なまえは？@"
 
 ; 11847
 
@@ -1044,7 +1044,7 @@ INCBIN "gfx/icons/mail2.2bpp"
 ; 11f7a (4:5f7a)
 
 .UnusedString11f7a:
-	db "メールを かいてね@"
+	db "メールを　かいてね@"
 
 ; 11f84
 

@@ -144,7 +144,7 @@ SpeechTextBox:: ; 103e
 ; 1048
 
 TestText:: ; 1048
-	text "ゲームフりーク!"
+	text "ゲームフりーク！"
 	done
 ; 1052
 

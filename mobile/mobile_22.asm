@@ -2,17 +2,17 @@ String_89116:
 	db "-----@"
 
 String_8911c: ; 8911c
-	db   "でんわばんごうが ただしく" ; Phone number is not
-	next "はいって いません!@"   ; entered correctly!
+	db   "でんわばんごうが　ただしく" ; Phone number is not
+	next "はいって　いません！@"   ; entered correctly!
 ; 89135
 
 String_89135: ; 89135
-	db   "データが かわって いますが"  ; The data has changed.
-	next "かきかえないで やめますか?@" ; Quit anyway?
+	db   "データが　かわって　いますが"  ; The data has changed.
+	next "かきかえないで　やめますか？@" ; Quit anyway?
 ; 89153
 
 String_89153: ; 89153
-	db   "メッセージは ありません@"    ; No message
+	db   "メッセージは　ありません@"    ; No message
 ; 89160
 
 OpenSRAMBank4: ; 89160
@@ -1555,7 +1555,7 @@ Function8999c: ; 8999c (22:599c)
 ; 899ac (22:59ac)
 
 String_899ac: ; 899ac
-	db "の めいし@"
+	db "の　めいし@"
 ; 899b2
 
 Function899b2: ; 899b2 (22:59b2)
@@ -2883,11 +2883,11 @@ Function8a1b0: ; 8a1b0
 ; 8a1cc
 
 Strings_8a1cc: ; 8a1cc
-	db   "めいし<NO>せいりと へんしゅうを"
+	db   "めいし<NO>せいりと　へんしゅうを"
 	next "おこないます"
 	db   "@"
 
-	db   "めいしフ,ルダー<NO>めいしと"
+	db   "めいしフォルダー<NO>めいしと"
 	next "あんしょうばんごう<WO>けします"
 	db   "@"
 
@@ -3183,7 +3183,7 @@ MenuData2_0x8a417: ; 0x8a417
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
 	db "めいしりスト@"
-	db "じぶんの めいし@"
+	db "じぶんの　めいし@"
 	db "めいしこうかん@"
 	db "やめる@"
 ; 0x8a435
@@ -3199,7 +3199,7 @@ MenuData2_0x8a43d: ; 0x8a43d
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "めいしりスト@"
-	db "じぶんの めいし@"
+	db "じぶんの　めいし@"
 	db "やめる@"
 ; 0x8a453
 
@@ -3233,8 +3233,8 @@ Strings_8a483: ; 8a483
 	db   "でんわばんごう<WO>いれると"
 	next "めいしこうかん<GA>できます@"
 
-	db   "ともだちと じぶん<NO>めいしを"
-	next "せきがいせんで こうかん します@"
+	db   "ともだちと　じぶん<NO>めいしを"
+	next "せきがいせんで　こうかん　します@"
 ; 8a4d3
 
 Function8a4d3: ; 8a4d3 (22:64d3)
@@ -3746,7 +3746,7 @@ Function8a818: ; 8a818 (22:6818)
 ; 8a868 (22:6868)
 
 .string_8a868
-	db "めいし<WO>かきかえ まし<TA!>@"
+	db "めいし<WO>かきかえ　まし<TA!>@"
 
 .asm_8a875
 	ld de, String_8a88b
@@ -3764,7 +3764,7 @@ Function8a818: ; 8a818 (22:6818)
 
 String_8a88b: ; 8a88b
 	db   "おともだち<NO>なまえが"
-	next "かかれて いません!@"
+	next "かかれて　いません！@"
 ; 8a8a1
 
 Function8a8a1: ; 8a8a1 (22:68a1)
@@ -3821,7 +3821,7 @@ Function8a8c3: ; 8a8c3 (22:68c3)
 ; 8a919 (22:6919)
 
 String_8a919: ; 8a919
-	db "このデータ<WO>けしますか?@"
+	db "このデータ<WO>けしますか？@"
 ; 8a926
 
 String_8a926: ; 8a926
@@ -4070,7 +4070,7 @@ Function8aab6: ; 8aab6 (22:6ab6)
 ; 8aaf0 (22:6af0)
 
 String_8aaf0: ; 8aaf0
-	db "あたらしい めいし<PKMN>できまし<LNBRK>@"
+	db "あたらしい　めいし<PKMN>できまし<LNBRK>@"
 ; 8ab00
 
 Function8ab00: ; 8ab00
@@ -4227,7 +4227,7 @@ Function8aba9: ; 8aba9
 
 String_8ac3b: ; 8ac3b
 	db   "こ<NO>ともだち<NI>でんわを"
-	next "かけますか?@"
+	next "かけますか？@"
 ; 8ac4e
 
 Function8ac4e: ; 8ac4e
@@ -4405,12 +4405,12 @@ Function8ad0b: ; 8ad0b
 
 String_8ad89: ; 8ad89
 	db   "こ<NO>めいし<WO>けして"
-	next "いれかえますか?@"
+	next "いれかえますか？@"
 ; 8ad9c
 
 String_8ad9c: ; 8ad9c
 	db   "おともだち<NO>なまえを"
-	next "のこして おきますか?@"
+	next "のこして　おきますか？@"
 ; 8adb3
 
 Function8adb3: ; 8adb3

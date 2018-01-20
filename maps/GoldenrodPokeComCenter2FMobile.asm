@@ -57,7 +57,7 @@ MenuDataHeader_0x62602:
 .MenuData2:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "# つうしん クラブ@" ; # COM CLUB
+	db "#　つうしん　クラブ@" ; # COM CLUB
 	db "モバイルセンター@" ; MOBILE CENTER
 	db "やめる@" ; QUIT
 

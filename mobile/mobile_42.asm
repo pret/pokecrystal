@@ -1311,8 +1311,8 @@ MobileTradeAnim_DisplayEggData
 
 .EggTemplate: ; 108a1d
 	db   "タマゴ"
-	next "おや/?????"
-	next "<ID>№<DOT>?????"
+	next "おや/？？？？？"
+	next "<ID>№<DOT>？？？？？"
 	db   "@"
 ; 108a33
 
@@ -1352,9 +1352,9 @@ MobileTradeAnim_LoadMonTemplate: ; 108a5b
 ; 108a79
 
 .MonTemplate: ; 108a79
-	db   "─ №<DOT>"
+	db   "─　№<DOT>"
 	next ""
-	next "おや/"
+	next "おや／"
 	next "<ID>№<DOT>"
 	db   "@"
 ; 108a87
@@ -1827,139 +1827,139 @@ INCBIN "gfx/unknown/1090a7.tilemap.lz"
 Palette_1090f7:
 ; unused
 	RGB 31, 31, 31
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
-	RGB 31,  0, 25
-	RGB  0,  0,  0
+	RGB 31, 00, 25
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
-	RGB  9, 19, 31
-	RGB  0,  0,  0
+	RGB 09, 19, 31
+	RGB 00, 00, 00
 
 Palette_109107:
 	RGB 18, 31, 15
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 15,  1
 	RGB 14, 14, 31
-	RGB 12,  9, 31
-	RGB  0,  0,  0
+	RGB 12, 09, 31
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 14, 14, 31
-	RGB 12,  9, 31
-	RGB  0,  0,  0
+	RGB 12, 09, 31
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 31,  7,  9
-	RGB 18,  0,  1
-	RGB  0,  0,  0
+	RGB 31, 07, 09
+	RGB 18, 00, 01
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 15,  1
-	RGB 18,  0, 30
-	RGB  9,  0, 17
-	RGB  0,  0,  0
+	RGB 18, 00, 30
+	RGB 09, 00, 17
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 18,  0, 30
-	RGB  9,  0, 17
-	RGB  0,  0,  0
+	RGB 18, 00, 30
+	RGB 09, 00, 17
+	RGB 00, 00, 00
 
 Palette_109147:
 	RGB 31, 31, 31
 	RGB 31, 31, 12
 	RGB 31, 13, 12
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
 	RGB 31, 23, 15
-	RGB 31, 18,  7
-	RGB 31, 15,  0
+	RGB 31, 18, 07
+	RGB 31, 15, 00
 
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB 31,  0, 25
-	RGB 31,  0, 25
-	RGB  0,  0,  0
+	RGB 31, 00, 25
+	RGB 31, 00, 25
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  9, 19, 31
-	RGB  9, 19, 31
-	RGB  0,  0,  0
+	RGB 09, 19, 31
+	RGB 09, 19, 31
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 Palette_109187:
 	RGB 31, 31, 31
 	RGB 31, 31, 12
 	RGB 31, 13, 12
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
 	RGB 31, 23, 15
-	RGB 31, 18,  7
-	RGB 31, 15,  0
+	RGB 31, 18, 07
+	RGB 31, 15, 00
 
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  9, 19, 31
-	RGB  9, 19, 31
-	RGB  0,  0,  0
+	RGB 09, 19, 31
+	RGB 09, 19, 31
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB 31,  0, 25
-	RGB 31,  0, 25
-	RGB  0,  0,  0
+	RGB 31, 00, 25
+	RGB 31, 00, 25
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 GFX_1091c7:
 INCBIN "gfx/unknown/1091c7.2bpp"
@@ -1968,41 +1968,41 @@ INCBIN "gfx/unknown/1092c7.2bpp"
 
 Palette_1093c7:
 	RGB 18, 31, 15
-	RGB  4, 13, 31
-	RGB  0,  0, 31
-	RGB  0,  0,  0
+	RGB 04, 13, 31
+	RGB 00, 00, 31
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 31, 31,  0
-	RGB 31, 15,  0
-	RGB  0,  0,  0
+	RGB 31, 31, 00
+	RGB 31, 15, 00
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB  9, 24,  0
-	RGB  2, 16,  0
-	RGB  0,  0,  0
+	RGB 09, 24, 00
+	RGB 02, 16, 00
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 31,  7,  9
-	RGB 18,  0,  1
-	RGB  0,  0,  0
+	RGB 31, 07, 09
+	RGB 18, 00, 01
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 28,  5, 31
-	RGB 17,  0, 17
-	RGB  0,  0,  0
+	RGB 28, 05, 31
+	RGB 17, 00, 17
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB  9,  9,  9
-	RGB  4,  4,  4
-	RGB  0,  0,  0
+	RGB 09, 09, 09
+	RGB 04, 04, 04
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 31, 13, 21
-	RGB 27,  7, 12
-	RGB  0,  0,  0
+	RGB 27, 07, 12
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 21, 20, 20
 	RGB 14, 14, 31
-	RGB  0,  0,  0
+	RGB 00, 00, 00

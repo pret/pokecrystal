@@ -1015,10 +1015,10 @@ Unknown_8b903: ; 8b903
 	dw String_8b92a
 	dw String_8b938
 
-String_8b90b: db "めいしを えらんでください@"        ; Please select a noun.
-String_8b919: db "どの めいしと いれかえますか?@"    ; OK to swap with any noun?
-String_8b92a: db "あいてを えらんでください@"        ; Please select an opponent.
-String_8b938: db "いれる ところを えらんでください@" ; Please select a location.
+String_8b90b: db "めいしを　えらんでください@"        ; Please select a noun.
+String_8b919: db "どの　めいしと　いれかえますか？@"    ; OK to swap with any noun?
+String_8b92a: db "あいてを　えらんでください@"        ; Please select an opponent.
+String_8b938: db "いれる　ところを　えらんでください@" ; Please select a location.
 ; 8b94a
 
 Function8b94a: ; 8b94a

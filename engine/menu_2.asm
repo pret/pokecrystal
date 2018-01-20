@@ -139,9 +139,9 @@ Unreferenced_Function24b8f: ; 24b8f
 	ret
 
 .slash_500 ; 24bcf
-	db "/500@"
+	db "／５００@"
 .booru_ko ; 24bd4
-	db "ボール   こ@"
+	db "ボール　　　こ@"
 
 StartMenu_DrawBugContestStatusBox: ; 24bdc
 	hlcoord 0, 0
@@ -195,7 +195,7 @@ StartMenu_PrintBugContestStatus: ; 24be7
 	ret
 
 .Balls_JP: ; 24c43
-	db "ボール   こ@"
+	db "ボール　　　こ@"
 .CAUGHT: ; 24c4b
 	db "CAUGHT@"
 .Balls_EN: ; 24c52

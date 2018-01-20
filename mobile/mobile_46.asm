@@ -5225,40 +5225,40 @@ Function11a63c: ; 11a63c
 ; 11a661
 
 String_11a661: ; 11a661
-	db   "これから モバイルセンターに"
+	db   "これから　モバイルセンターに"
 	next "でんわ<WO>かけます@"
 ; 11a679
 
 String_11a679: ; 11a679
 	db   "モバイルアダプタ<NO>じゅんびは"
-	next "できて いますか?@"
+	next "できて　いますか？@"
 ; 11a692
 
 String_11a692: ; 11a692
 	db   "でんわ<WO>かけています"
-	next "しばらく おまちください@"
+	next "しばらく　おまちください@"
 ; 11a6aa
 
 String_11a6aa: ; 11a6aa
-	db   "でんわをかけると つうわりょう"
+	db   "でんわをかけると　つうわりょう"
 	next "せつぞくりょう<GA>かかります@"
 ; 11a6c8
 
 String_11a6c8: ; 11a6c8
-	db   "せつぞく しました@"
+	db   "せつぞく　しました@"
 ; 11a6d2
 
 String_11a6d2: ; 11a6d2
-	db   "つうしん ちゅう@"
+	db   "つうしん　ちゅう@"
 ; 11a6db
 
 String_11a6db: ; 11a6db
-	db   "つうしん ちゅう"
-	next "セレクト エーでちゅうし@"
+	db   "つうしん　ちゅう"
+	next "セレクト　エーでちゅうし@"
 ; 11a6f1
 
 String_11a6f1: ; 11a6f1
-	db   "この サービスには"
+	db   "この　サービスには"
 	next "つうわりょう<NO>ほかに@"
 ; 11a706
 
@@ -5268,59 +5268,59 @@ String_11a706: ; 11a706
 
 String_11a70b: ; 11a70b
 	db   "えん"
-	next "かかります よろしい ですか?@"
+	next "かかります　よろしい　ですか？@"
 ; 11a71e
 
 String_11a71e: ; 11a71e
-	db   "つうしん しゅうりょう@"
+	db   "つうしん　しゅうりょう@"
 ; 11a72a
 
 String_11a72a: ; 11a72a
-	db   "つないだ じかん"
-	next "  やく   ふん   びょう@"
+	db   "つないだ　じかん"
+	next "　　やく　　　ふん　　　びょう@"
 ; 11a743
 
 String_11a743: ; 11a743
-	db   "もっていない データが"
-	next "あります!@"
+	db   "もっていない　データが"
+	next "あります！@"
 ; 11a755
 
 String_11a755: ; 11a755
-	db   "データ<WO>よみこみますか?@"
+	db   "データ<WO>よみこみますか？@"
 ; 11a762
 
 String_11a762: ; 11a762
-	db   "おなじ データ<WO>よみこんだ"
+	db   "おなじ　データ<WO>よみこんだ"
 	next "こと<GA>ありますが@"
 ; 11a779
 
 String_11a779: ; 11a779
 	db   "そのデータ<WA>なくなっているか"
-	next "こわれて います@"
+	next "こわれて　います@"
 ; 11a791
 
 String_11a791: ; 11a791
-	db   "もっている データと"
-	next "おなじデータしか ありません!@"
+	db   "もっている　データと"
+	next "おなじデータしか　ありません！@"
 ; 11a7ac
 
 String_11a7ac: ; 11a7ac
 	db   "データ<NO>よみこみを"
-	next "ちゅうし しますか?@"
+	next "ちゅうし　しますか？@"
 ; 11a7c1
 
 String_11a7c1: ; 11a7c1 ; new news?
-	db   "あたらしい ニュースは"
-	next "ありません でした@"
+	db   "あたらしい　ニュースは"
+	next "ありません　でした@"
 ; 11a7d7
 
 String_11a7d7: ; 11a7d7
 	db   "あたらしいニュース<GA>あります"
-	next "ニュース<WO>よみこみますか?@"
+	next "ニュース<WO>よみこみますか？@"
 ; 11a7f4
 
 String_11a7f4: ; 11a7f4
-	db   "               @"
+	db   "　　　　　　　　　　　　　　　@"
 ; 11a804
 
 MenuDataHeader_11a804: ; 11a804
@@ -6248,13 +6248,13 @@ MenuDataHeader_11afe8: ; 11afe8
 ; 11aff0
 
 String_11aff0: ; 11aff0
-	db   "この じょうけんで"
+	db   "この　じょうけんで"
 	next "よろしいですか?@"
 ; 11b003
 
 String_11b003: ; 11b003
 	db   "こうかんを"
-	next "ちゅうししますか?@"
+	next "ちゅうししますか？@"
 ; 11b013
 
 MenuDataHeader_11b013: ; 11b013
@@ -6338,8 +6338,8 @@ Function11b03d: ; 11b03d
 	ret
 ; 11b07a
 
-.MaleString: db "オスの "
-.FemaleString: db "メスの "
+.MaleString: db "オスの　"
+.FemaleString: db "メスの　"
 
 Function11b082: ; 11b082
 	call Function11b242
@@ -6809,7 +6809,7 @@ String_11b303: ; 11b303
 ; 11b308
 
 String_11b308: ; 11b308
-	db "     @"
+	db "　　　　　@"
 ; 11b30e
 
 String_11b30e: ; 11b30e

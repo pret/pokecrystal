@@ -482,7 +482,7 @@ DummyGame_InitStrings: ; e2152
 .japstr1
 	db "とったもの@"
 .japstr2
-	db "あと かい@"
+	db "あと　かい@"
 ; e2183
 
 DummyGame_Card2Coord: ; e2183

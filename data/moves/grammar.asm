@@ -55,7 +55,7 @@ MoveGrammar: ; 105e7a
 	db SCARY_FACE
 	db 0 ; end set
 
-; 3: originally "[mon]の¯[move] こうげき!" ("[mon]'s¯[move] attack!")
+; 3: originally "[mon]の¯[move]　こうげき!" ("[mon]'s¯[move] attack!")
 	db POUND
 	db SCRATCH
 	db VICEGRIP
