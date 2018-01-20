@@ -219,7 +219,7 @@ Function170c8b: ; 170c8b
 ; 170c98
 
 CheckBTMonMovesForErrors: ; 170c98
-	ld c, BATTLETOWER_PARTY_SIZE
+	ld c, BATTLETOWER_PARTY_LENGTH
 	ld hl, wBT_OTTempPkmn1Moves
 .loop
 	push hl
@@ -254,7 +254,7 @@ CheckBTMonMovesForErrors: ; 170c98
 
 .done
 	pop hl
-	ld de, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
+	ld de, PARTYMON_STRUCT_LENGTH + MON_NAME_LENGTH
 	add hl, de
 	dec c
 	jr nz, .loop

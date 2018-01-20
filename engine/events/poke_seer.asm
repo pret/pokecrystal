@@ -148,10 +148,10 @@ ReadCaughtData: ; 4f134
 GetCaughtName: ; 4f176
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	ld de, wSeerNickname
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ret
 ; 4f18c

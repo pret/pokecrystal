@@ -630,7 +630,7 @@ GiveItem: ; 103fd
 	call GetCurNick
 	ld hl, StringBuffer1
 	ld de, wMonOrItemNameBuffer
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call TryGiveItemToPartymon
 	pop af

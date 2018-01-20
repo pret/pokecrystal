@@ -599,7 +599,7 @@ ParkBall: ; e8a2
 	dec a
 	ld [CurPartyMon], a
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 
 	ld d, h
@@ -668,7 +668,7 @@ ParkBall: ; e8a2
 
 	ld hl, wMonOrItemNameBuffer
 	ld de, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	ld hl, sBoxMonNicknames
@@ -683,7 +683,7 @@ ParkBall: ; e8a2
 
 	ld hl, sBoxMonNicknames
 	ld de, wMonOrItemNameBuffer
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	call CloseSRAM

@@ -1,16 +1,16 @@
 ; name lengths
-NAME_LENGTH        EQU 11
-PLAYER_NAME_LENGTH EQU 8
-BOX_NAME_LENGTH    EQU 9
-PKMN_NAME_LENGTH   EQU 11
-MOVE_NAME_LENGTH   EQU 13
-ITEM_NAME_LENGTH   EQU 13
+NAME_LENGTH          EQU 11
+PLAYER_NAME_LENGTH   EQU 8
+BOX_NAME_LENGTH      EQU 9
+MON_NAME_LENGTH      EQU 11
+MOVE_NAME_LENGTH     EQU 13
+ITEM_NAME_LENGTH     EQU 13
 TRAINER_CLASS_NAME_LENGTH EQU 13
 NAME_LENGTH_JAPANESE EQU 6
 
 ; GetName types (see home/names.asm)
 const_value set 1
-	const PKMN_NAME             ; 1
+	const MON_NAME              ; 1
 	const MOVE_NAME             ; 2
 	const DUMMY_NAME            ; 3
 	const ITEM_NAME             ; 4

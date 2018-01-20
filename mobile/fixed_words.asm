@@ -270,7 +270,7 @@ CopyMobileEZChatToC608: ; 11c156
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	jr .copy_string
 ; 11c1ab
 

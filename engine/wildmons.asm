@@ -913,7 +913,7 @@ Special_RandomPhoneWildMon: ; 2a51f
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 ; 2a567
 
@@ -997,7 +997,7 @@ Special_RandomPhoneMon: ; 2a567
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 ; 2a5e9
 

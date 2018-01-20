@@ -3989,7 +3989,7 @@ InitBattleMon: ; 3da0d
 	ld a, [CurBattleMon]
 	call SkipNames
 	ld de, BattleMonNick
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld hl, BattleMonAttack
 	ld de, PlayerStats
@@ -4074,7 +4074,7 @@ InitEnemyMon: ; 3dabd
 	ld a, [CurPartyMon]
 	call SkipNames
 	ld de, EnemyMonNick
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld hl, EnemyMonAttack
 	ld de, EnemyStats
@@ -6578,7 +6578,7 @@ LoadEnemyMon: ; 3e8eb
 ; Update enemy nick
 	ld hl, StringBuffer1
 	ld de, EnemyMonNick
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 ; Saw this mon
@@ -7766,7 +7766,7 @@ AnimateExpBar: ; 3f136
 	call PrintPlayerHUD
 	ld hl, BattleMonNick
 	ld de, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call TerminateExpBarSound
 	ld de, SFX_HIT_END_OF_EXP_BAR

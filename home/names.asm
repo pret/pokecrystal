@@ -1,6 +1,6 @@
 NamesPointers:: ; 33ab
 ; entries correspond to GetName constants (see constants/text_constants.asm)
-	dba PokemonNames        ; PKMN_NAME (not used; jumps to GetPokemonName)
+	dba PokemonNames        ; MON_NAME (not used; jumps to GetPokemonName)
 	dba MoveNames           ; MOVE_NAME
 	dbw 0, NULL             ; DUMMY_NAME
 	dba ItemNames           ; ITEM_NAME
@@ -20,13 +20,13 @@ GetName:: ; 33c3
 	push de
 
 	ld a, [wNamedObjectTypeBuffer]
-	cp PKMN_NAME
+	cp MON_NAME
 	jr nz, .NotPokeName
 
 	ld a, [CurSpecies]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, PKMN_NAME_LENGTH
+	ld hl, MON_NAME_LENGTH
 	add hl, de
 	ld e, l
 	ld d, h
@@ -140,9 +140,9 @@ GetPokemonName:: ; 343b
 ; Terminator
 	ld de, StringBuffer1
 	push de
-	ld bc, PKMN_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
-	ld hl, StringBuffer1 + PKMN_NAME_LENGTH - 1
+	ld hl, StringBuffer1 + MON_NAME_LENGTH - 1
 	ld [hl], "@"
 	pop de
 

@@ -531,7 +531,7 @@ DayCare_GiveEgg: ; 169ac
 	ld [hl], a
 
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call DayCare_GetCurrentPartyMember
 	ld hl, wEggNick
 	call CopyBytes
@@ -620,7 +620,7 @@ DayCare_InitBreeding: ; 16a3b
 	ld bc, wEggMonEnd - wEggMon
 	call ByteFill
 	ld hl, wEggNick
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call ByteFill
 	ld hl, wEggOT
 	ld bc, NAME_LENGTH

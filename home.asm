@@ -1207,7 +1207,7 @@ GetNick:: ; 38a2
 	ld de, StringBuffer1
 
 	push de
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop de
 

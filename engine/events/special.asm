@@ -228,7 +228,7 @@ Data_DaisyMassage: ; 746b
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, StringBuffer1
 	ld de, StringBuffer3
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 
 DummyPredef1: ; 747a

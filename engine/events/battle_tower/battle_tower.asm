@@ -285,7 +285,7 @@ ReadBTTrainerParty: ; 1702b7
 ; Check the nicknames for illegal characters, and replace bad nicknames
 ; with their species names.
 	ld de, wBT_OTTempPkmn1Name ; $c643
-	ld c, PKMN_NAME_LENGTH
+	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_1
 
@@ -295,12 +295,12 @@ ReadBTTrainerParty: ; 1702b7
 	ld l, e
 	ld h, d
 	ld de, wBT_OTTempPkmn1Name ; $c643
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_1
 	ld de, wBT_OTTempPkmn2Name ; $c67e
-	ld c, PKMN_NAME_LENGTH
+	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_2
 	ld a, [wBT_OTTempPkmn2] ; [$c64e]
@@ -309,12 +309,12 @@ ReadBTTrainerParty: ; 1702b7
 	ld l, e
 	ld h, d
 	ld de, wBT_OTTempPkmn2Name ; $c67e
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_2
 	ld de, wBT_OTTempPkmn3Name ; $c686 + 51 = $c6b9
-	ld c, PKMN_NAME_LENGTH
+	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_3
 	ld a, [wBT_OTTempPkmn3] ; [$c689]
@@ -323,7 +323,7 @@ ReadBTTrainerParty: ; 1702b7
 	ld l, e
 	ld h, d
 	ld de, wBT_OTTempPkmn3Name ; $c686 + 51 = $c6b9
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_3
@@ -363,7 +363,7 @@ ReadBTTrainerParty: ; 1702b7
 	; Copy Pkmn into Memory from the address in hl
 	ld de, OTPartyMon1Species
 	ld bc, OTPartyCount
-	ld a, BATTLETOWER_PARTY_SIZE
+	ld a, BATTLETOWER_PARTY_LENGTH
 	ld [bc], a
 	inc bc
 .otpartymon_loop
@@ -379,7 +379,7 @@ ReadBTTrainerParty: ; 1702b7
 	ld e, a
 	ld a, [BGMapBuffer + 1]
 	ld d, a
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, e
 	ld [BGMapBuffer], a
@@ -399,7 +399,7 @@ ReadBTTrainerParty: ; 1702b7
 ValidateBTParty: ; 170394
 ; Check for and fix errors in party data
 	ld hl, wBT_OTTempPkmn1Species
-	ld d, BATTLETOWER_PARTY_SIZE
+	ld d, BATTLETOWER_PARTY_LENGTH
 .pkmn_loop
 	push de
 	push hl
@@ -495,7 +495,7 @@ endr
 	ld a, [hl]
 	ld [de], a
 	pop hl
-	ld bc, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH + MON_NAME_LENGTH
 	add hl, bc
 	pop de
 	dec d
@@ -509,7 +509,7 @@ BT_ChrisName: ; 170426
 
 Function17042c: ; 17042c
 	ld hl, w3_d202TrainerData
-	ld a, BATTLETOWER_STREAK_SIZE
+	ld a, BATTLETOWER_STREAK_LENGTH
 .loop
 	push af
 	push hl
@@ -956,7 +956,7 @@ ResetBattleTowerTrainersSRAM: ; 1706d6 (5c:46d6) BattleTowerAction $1a
 
 	ld a, $ff
 	ld hl, sBTTrainers
-	ld bc, BATTLETOWER_STREAK_SIZE
+	ld bc, BATTLETOWER_STREAK_LENGTH
 	call ByteFill
 
 	xor a

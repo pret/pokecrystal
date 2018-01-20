@@ -1117,7 +1117,7 @@ StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 
 CopyNickname: ; 4e505 (13:6505)
 	ld de, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jr .okay ; utterly pointless
 .okay
 	ld a, [MonType]

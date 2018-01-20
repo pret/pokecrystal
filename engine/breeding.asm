@@ -320,7 +320,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	call PrintText
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -345,7 +345,7 @@ HatchEggs: ; 16f70 (5:6f70)
 
 .nonickname
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .next ; 1707d (5:707d)

@@ -831,7 +831,7 @@ Link_PrepPartyData_Gen2: ; 28595
 	ld bc, PARTY_LENGTH * NAME_LENGTH
 	call CopyBytes
 	ld hl, PartyMonNicknames
-	ld bc, PARTY_LENGTH * PKMN_NAME_LENGTH
+	ld bc, PARTY_LENGTH * MON_NAME_LENGTH
 	call CopyBytes
 
 ; Okay, we did all that.  Now, are we in the trade center?
@@ -978,7 +978,7 @@ Function2868a: ; 2868a
 	ld bc, PARTY_LENGTH * NAME_LENGTH
 	call CopyBytes
 	ld de, OTPartyMonNicknames
-	ld bc, PARTY_LENGTH * PKMN_NAME_LENGTH
+	ld bc, PARTY_LENGTH * MON_NAME_LENGTH
 	jp CopyBytes
 ; 286ba
 
@@ -1657,7 +1657,7 @@ LinkTrade: ; 28b87
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wd004
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, [wd003]
 	ld hl, OTPartySpecies

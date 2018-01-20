@@ -94,12 +94,12 @@
 	const POKEDEX_SHOW_7         ; 56
 	const POKEDEX_SHOW_8         ; 57
 
-; PlayRadio arguments (see engine/pokegear.asm)
+; PlayRadio.StationPointers indexes (see engine/pokegear.asm)
 	const_def
 	const MAPRADIO_POKEMON_CHANNEL
 	const MAPRADIO_OAKS_MON_TALK
 	const MAPRADIO_POKEDEX_SHOW
-	const MAPRADIO_PKMN_MUSIC
+	const MAPRADIO_POKEMON_MUSIC
 	const MAPRADIO_LUCKY_CHANNEL
 	const MAPRADIO_UNOWN
 	const MAPRADIO_PLACES_PEOPLE

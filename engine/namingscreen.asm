@@ -254,7 +254,7 @@ NamingScreen: ; 116c1
 	ret
 
 .StoreMonIconParams: ; 1187b (4:587b)
-	ld a, PKMN_NAME_LENGTH - 1
+	ld a, MON_NAME_LENGTH - 1
 	hlcoord 5, 6
 	jr .StoreParams
 

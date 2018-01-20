@@ -774,10 +774,10 @@ Printer_PrintBoxListSegment: ; 848e7 (21:48e7)
 	pop hl
 	jr z, .ok2
 
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	call Printer_GetMonGender
-	ld bc, SCREEN_WIDTH - PKMN_NAME_LENGTH
+	ld bc, SCREEN_WIDTH - MON_NAME_LENGTH
 	add hl, bc
 	ld a, "/"
 	ld [hli], a
@@ -795,7 +795,7 @@ Printer_PrintBoxListSegment: ; 848e7 (21:48e7)
 	ld h, a
 	ld bc, sBoxMonNicknames - sBox
 	add hl, bc
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [wWhichBoxMonToPrint]
 	call AddNTimes
 	ld e, l
@@ -806,7 +806,7 @@ Printer_PrintBoxListSegment: ; 848e7 (21:48e7)
 	call PlaceString
 	pop hl
 
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	push hl
 	ld a, [wAddrOfBoxToPrint]

@@ -60,7 +60,7 @@ TryAddMonToParty: ; d88c
 	ld d, h
 	ld e, l
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skipnickname
@@ -397,7 +397,7 @@ AddTempmonToParty: ; da96
 	ld hl, OTPartyMonNicknames
 	ld a, [CurPartyMon]
 	call SkipNames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	ld a, [CurPartySpecies]
@@ -583,7 +583,7 @@ SendGetPkmnIntoFromBox: ; db3f
 	call SkipNames
 
 .okay12
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop hl
 
@@ -943,7 +943,7 @@ SendPkmnIntoBox: ; de6e
 
 	ld de, sBoxMonNicknames
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	ld hl, EnemyMon
@@ -1044,7 +1044,7 @@ ShiftBoxMon: ; df47
 	call .shift
 
 	ld hl, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call .shift
 
 	ld hl, sBoxMons
@@ -1240,7 +1240,7 @@ RemoveMonFromPartyOrBox: ; e039
 	; Shift the OT names
 	ld d, h
 	ld e, l
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld bc, PartyMonNicknames
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -1283,12 +1283,12 @@ RemoveMonFromPartyOrBox: ; e039
 	jr z, .party6
 	ld hl, sBoxMonNicknames
 .party6
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld bc, PartyMonNicknamesEnd
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -1652,7 +1652,7 @@ GivePoke:: ; e277
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wMonOrItemNameBuffer
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop af
 	and a
@@ -1664,7 +1664,7 @@ GivePoke:: ; e277
 	push hl
 	ld a, [ScriptBank]
 	call GetFarHalfword
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop hl
@@ -1764,7 +1764,7 @@ GivePoke:: ; e277
 	call GetSRAMBank
 	ld hl, wMonOrItemNameBuffer
 	ld de, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ld b, $1

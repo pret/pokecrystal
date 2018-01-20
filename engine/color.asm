@@ -1195,7 +1195,8 @@ PredefPals:
 INCLUDE "gfx/sgb/predef.pal"
 
 SGBBorderMap:
-INCBIN "gfx/sgb/sgb_border.tilemap"
+; interleaved tile ids and palette ids
+INCBIN "gfx/sgb/sgb_border.bin"
 
 SGBBorderPalettes:
 INCLUDE "gfx/sgb/sgb_border.pal"

@@ -2093,7 +2093,7 @@ PlayRadio: ; 91a53
 ; 91ab9
 
 .StationPointers: ; 91ab9
-; entries correspond to radio station constants
+; entries correspond to MAPRADIO_* constants
 	dw .OakOrPnP
 	dw LoadStation_OaksPokemonTalk
 	dw LoadStation_PokedexShow

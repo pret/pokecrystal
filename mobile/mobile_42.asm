@@ -337,7 +337,7 @@ MobileTradeAnim_InitSpeciesName: ; 108239
 	call GetPokemonName
 	ld hl, StringBuffer1
 	pop de
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ret
 ; 10824b

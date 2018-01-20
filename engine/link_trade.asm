@@ -283,7 +283,7 @@ LinkTradeMenu: ; 16d70c
 	ld [hl], a
 	push hl
 	push bc
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld [hl], a
 	pop bc
@@ -335,7 +335,7 @@ LinkTradeMenu: ; 16d70c
 	ld [hl], $1f
 	push hl
 	push bc
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld [hl], $1f
 	pop bc

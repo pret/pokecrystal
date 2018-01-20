@@ -42,7 +42,7 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wMonOrItemNameBuffer
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call GiveANickname_YesNo
 	jr c, .Party_SkipNickname
@@ -120,7 +120,7 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	ld a, BANK(sBoxMonNicknames)
 	call GetSRAMBank
 	ld de, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 

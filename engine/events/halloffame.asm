@@ -208,9 +208,9 @@ GetHallOfFameParty: ; 8653f
 	push bc
 	ld a, c
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
-	ld bc, PKMN_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 
 	pop bc
@@ -460,7 +460,7 @@ DisplayHOFMon: ; 86748
 	ld a, [hli]
 	ld [TempMonLevel], a
 	ld de, StringBuffer2
-	ld bc, PKMN_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
 	ld [StringBuffer2 + 10], a

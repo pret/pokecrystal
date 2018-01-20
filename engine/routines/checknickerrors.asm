@@ -6,7 +6,7 @@ CheckNickErrors:: ; 669f
 
 	push bc
 	push de
-	ld b, PKMN_NAME_LENGTH
+	ld b, MON_NAME_LENGTH
 
 .checkchar
 ; end of nick?

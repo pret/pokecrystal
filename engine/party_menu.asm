@@ -524,7 +524,7 @@ PlacePartyMonMobileBattleSelection: ; 50307
 	dec c
 	jr nz, .loop
 	ld a, l
-	ld e, PKMN_NAME_LENGTH
+	ld e, MON_NAME_LENGTH
 	sub e
 	ld l, a
 	ld a, h

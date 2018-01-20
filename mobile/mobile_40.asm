@@ -2529,7 +2529,7 @@ Unknown_100fc0: ; 100fc0
 	dbwww $80, PlayerID, 2, OTPlayerID
 	dbwww $80, PartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, OTPartyMons
 	dbwww $80, PartyMonOT, NAME_LENGTH * PARTY_LENGTH, OTPartyMonOT
-	dbwww $80, PartyMonNicknames, PKMN_NAME_LENGTH * PARTY_LENGTH, OTPartyMonNicknames
+	dbwww $80, PartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, OTPartyMonNicknames
 	db -1
 
 Unknown_100feb: ; 100feb
@@ -2550,7 +2550,7 @@ Unknown_100ff3: ; 100ff3
 Unknown_10102c: ; 10102c
 	dbwww $80, OTPlayerName, NAME_LENGTH, NULL
 	dbwww $80, OTPlayerID, 2, NULL
-	dbwww $80, OTPartyMonNicknames, PKMN_NAME_LENGTH * PARTY_LENGTH, NULL
+	dbwww $80, OTPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, NULL
 	dbwww $80, OTPartyMonOT, NAME_LENGTH * PARTY_LENGTH, NULL
 	dbwww $80, OTPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
 	db -1

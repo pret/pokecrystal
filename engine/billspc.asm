@@ -1331,11 +1331,11 @@ BillsPC_RefreshTextboxes: ; e2c2c (38:6c2c)
 	jr z, .boxfail
 	ld bc, sBoxMonNicknames - sBox
 	add hl, bc
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	pop hl
@@ -1357,11 +1357,11 @@ BillsPC_RefreshTextboxes: ; e2c2c (38:6c2c)
 	and a
 	jr z, .partyfail
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop hl
 	ld de, StringBuffer1
@@ -1383,11 +1383,11 @@ BillsPC_RefreshTextboxes: ; e2c2c (38:6c2c)
 	and a
 	jr z, .sBoxFail
 	ld hl, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, e
 	call AddNTimes
 	ld de, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	pop hl
@@ -2171,11 +2171,11 @@ CopySpeciesToTemp: ; e3357 (38:7357)
 	ret
 
 CopyNicknameToTemp: ; e3363 (38:7363)
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, wBufferMonNick
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ret
 
