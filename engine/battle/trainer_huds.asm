@@ -44,7 +44,7 @@ ShowOTTrainerMonsRemaining: ; 2c03a
 	ld [hl], 4 * 8
 	ld a, -8
 	ld [wPlaceBallsDirection], a
-	ld hl, Sprite07
+	ld hl, Sprite01 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
 	jp LoadTrainerHudOAM
 ; 2c059
 
@@ -203,7 +203,7 @@ LinkBattle_TrainerHuds: ; 2c10d
 	ld a, 10 * 8
 	ld [hli], a
 	ld [hl], 13 * 8
-	ld hl, Sprite07
+	ld hl, Sprite01 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
 	jp LoadTrainerHudOAM
 ; 2c143
 
