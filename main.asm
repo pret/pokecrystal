@@ -194,7 +194,7 @@ SECTION "Crystal Features 1", ROMX
 INCLUDE "engine/init_gender.asm"
 INCLUDE "engine/routines/drawkrispackgfx.asm"
 INCLUDE "engine/events/move_tutor.asm"
-INCLUDE "engine/crystal_cgb.asm"
+INCLUDE "engine/crystal_layouts.asm"
 INCLUDE "engine/events/celebi.asm"
 INCLUDE "engine/main_menu.asm"
 INCLUDE "mobile/mobile_menu.asm"
