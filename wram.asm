@@ -2482,7 +2482,7 @@ RegisteredItem:: db ; d95c
 PlayerState:: db ; d95d
 
 wHallOfFameCount:: dw
-wTradeFlags:: flag_array 6 ; d960
+wTradeFlags:: flag_array PARTY_LENGTH ; d960
 	ds 1
 MooMooBerries:: db ; d962
 UndergroundSwitchPositions:: db ; d963
