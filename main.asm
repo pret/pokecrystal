@@ -175,7 +175,7 @@ INCLUDE "data/battle/effect_command_pointers.asm"
 
 SECTION "bank10", ROMX
 
-INCLUDE "engine/pokedex.asm"
+INCLUDE "engine/pokedex/pokedex.asm"
 INCLUDE "data/moves/moves.asm"
 INCLUDE "engine/evolve.asm"
 
@@ -184,7 +184,7 @@ SECTION "bank11", ROMX
 
 INCLUDE "engine/events/fruit_trees.asm"
 INCLUDE "engine/battle/ai/move.asm"
-INCLUDE "engine/pokedex_2.asm"
+INCLUDE "engine/pokedex/pokedex_2.asm"
 INCLUDE "data/pokemon/dex_entry_pointers.asm"
 INCLUDE "engine/mail.asm"
 
@@ -451,9 +451,9 @@ INCLUDE "engine/load_font.asm"
 INCLUDE "engine/time_capsule.asm"
 INCLUDE "engine/events/name_rater.asm"
 INCLUDE "engine/routines/playslowcry.asm"
-INCLUDE "engine/routines/newpokedexentry.asm"
+INCLUDE "engine/pokedex/newpokedexentry.asm"
 INCLUDE "engine/time_capsule_2.asm"
-INCLUDE "engine/unown_dex.asm"
+INCLUDE "engine/pokedex/unown_dex.asm"
 INCLUDE "engine/events/magikarp.asm"
 INCLUDE "engine/battle/hidden_power.asm"
 INCLUDE "engine/battle/misc.asm"
@@ -584,7 +584,7 @@ SECTION "bank77_2", ROMX
 
 INCLUDE "engine/routines/printhoursmins.asm"
 INCLUDE "engine/diploma.asm"
-INCLUDE "engine/pokedex_3.asm"
+INCLUDE "engine/pokedex/pokedex_3.asm"
 INCLUDE "engine/events/catch_tutorial_input.asm"
 INCLUDE "engine/routines/townmap_convertlinebreakcharacters.asm"
 

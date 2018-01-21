@@ -993,7 +993,7 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](
 
 ([Video](https://www.youtube.com/watch?v=z305e4sIO24))
 
-The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex.asm](/engine/pokedex.asm):
+The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm):
 
 ```asm
 .Cry: ; 40340

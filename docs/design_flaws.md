@@ -228,7 +228,7 @@ INCBIN "gfx/footprints/wartortle.1bpp",  footprint_bottom
 ...
 ```
 
-`Pokedex_LoadAnyFootprint` in [engine/pokedex.asm](/engine/pokedex.asm):
+`Pokedex_LoadAnyFootprint` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm):
 
 ```asm
 	push hl
@@ -282,7 +282,7 @@ Modify `Pokedex_LoadAnyFootprint`:
 
 `PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.asm](/data/pokemon/dex_entry_pointers.asm) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
 
-Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex_2.asm](/engine/pokedex_2.asm):
+Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](/engine/pokedex/pokedex_2.asm):
 
 ```asm
 GetDexEntryPointer: ; 44333
