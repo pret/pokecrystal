@@ -49,7 +49,7 @@ SECTION "bank4", ROMX
 INCLUDE "engine/pack.asm"
 INCLUDE "engine/time.asm"
 INCLUDE "engine/tmhm.asm"
-INCLUDE "engine/namingscreen.asm"
+INCLUDE "engine/naming_screen.asm"
 INCLUDE "engine/events/misc_scripts.asm"
 INCLUDE "engine/events/heal_machine_anim.asm"
 INCLUDE "engine/events/whiteout.asm"
@@ -194,7 +194,7 @@ SECTION "Crystal Features 1", ROMX
 INCLUDE "engine/init_gender.asm"
 INCLUDE "engine/routines/drawkrispackgfx.asm"
 INCLUDE "engine/events/move_tutor.asm"
-INCLUDE "engine/crystal_colors.asm"
+INCLUDE "engine/crystal_cgb.asm"
 INCLUDE "engine/events/celebi.asm"
 INCLUDE "engine/main_menu.asm"
 INCLUDE "mobile/mobile_menu.asm"
@@ -216,10 +216,10 @@ INCLUDE "engine/routines/loadmappart.asm"
 INCLUDE "engine/routines/phonering_copytilemapatonce.asm"
 
 Shrink1Pic: ; 4d249
-INCBIN "gfx/shrink/shrink1.2bpp.lz"
+INCBIN "gfx/new_game/shrink1.2bpp.lz"
 
 Shrink2Pic: ; 4d2d9
-INCBIN "gfx/shrink/shrink2.2bpp.lz"
+INCBIN "gfx/new_game/shrink2.2bpp.lz"
 
 INCLUDE "engine/link_2.asm"
 INCLUDE "engine/delete_save_change_clock.asm"

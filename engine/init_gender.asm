@@ -96,7 +96,7 @@ LoadGenderScreenPal: ; 48e47 (12:4e47)
 ; 48e5c (12:4e5c)
 
 .Palette: ; 48e5c
-INCLUDE "gfx/intro/gender_screen.pal"
+INCLUDE "gfx/new_game/gender_screen.pal"
 ; 48e64
 
 LoadGenderScreenLightBlueTile: ; 48e64 (12:4e64)
@@ -108,4 +108,4 @@ LoadGenderScreenLightBlueTile: ; 48e64 (12:4e64)
 ; 48e71 (12:4e71)
 
 .LightBlueTile: ; 48e71
-INCBIN "gfx/intro/gender_screen.2bpp"
+INCBIN "gfx/new_game/gender_screen.2bpp"

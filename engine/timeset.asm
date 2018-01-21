@@ -400,11 +400,11 @@ OakText_ResponseToSetTime: ; 0x908b8
 ; 0x908fb
 
 TimeSetBackgroundGFX: ; 908fb
-INCBIN "gfx/timeset/background.1bpp"
+INCBIN "gfx/new_game/timeset_bg.1bpp"
 TimeSetUpArrowGFX: ; 90903
-INCBIN "gfx/timeset/up_arrow.1bpp"
+INCBIN "gfx/new_game/up_arrow.1bpp"
 TimeSetDownArrowGFX: ; 9090b
-INCBIN "gfx/timeset/down_arrow.1bpp"
+INCBIN "gfx/new_game/down_arrow.1bpp"
 ; 90913
 
 Special_SetDayOfWeek: ; 90913

@@ -140,8 +140,8 @@ gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/fro
 
 ### Misc file-specific graphics rules
 
-gfx/shrink/shrink1.2bpp: rgbgfx += -h
-gfx/shrink/shrink2.2bpp: rgbgfx += -h
+gfx/new_game/shrink1.2bpp: rgbgfx += -h
+gfx/new_game/shrink2.2bpp: rgbgfx += -h
 
 gfx/trainers/%.2bpp: rgbgfx += -h
 gfx/trainers/%.pal: gfx/trainers/%.gbcpal

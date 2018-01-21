@@ -938,26 +938,26 @@ LoadNamingScreenGFX: ; 11c51
 ; 11cb7
 
 NamingScreenGFX_Border: ; 11cb7
-INCBIN "gfx/namingscreen/border.2bpp"
+INCBIN "gfx/naming_screen/border.2bpp"
 ; 11cc7
 
 NamingScreenGFX_Cursor: ; 11cc7
-INCBIN "gfx/namingscreen/cursor.2bpp"
+INCBIN "gfx/naming_screen/cursor.2bpp"
 ; 11ce7
 
 INCLUDE "data/name_input_chars.asm"
 ; 11e5d
 
 NamingScreenGFX_End: ; unused
-INCBIN "gfx/namingscreen/end.1bpp"
+INCBIN "gfx/naming_screen/end.1bpp"
 ; 11e6d
 
 NamingScreenGFX_MiddleLine:
-INCBIN "gfx/namingscreen/middle_line.1bpp"
+INCBIN "gfx/naming_screen/middle_line.1bpp"
 ; 11e6d
 
 NamingScreenGFX_UnderLine: ; 11e6d
-INCBIN "gfx/namingscreen/underline.1bpp"
+INCBIN "gfx/naming_screen/underline.1bpp"
 ; 11e75
 
 _ComposeMailMessage: ; 11e75 (mail?)
@@ -1033,7 +1033,7 @@ _ComposeMailMessage: ; 11e75 (mail?)
 ; 11ef4 (4:5ef4)
 
 .MailIcon: ; 11ef4
-INCBIN "gfx/icons/mail2.2bpp"
+INCBIN "gfx/icons/mail_big.2bpp"
 ; 11f74
 
 .initwNamingScreenMaxNameLength ; 11f74 (4:5f74)
