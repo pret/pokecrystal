@@ -11,7 +11,7 @@ NewPokedexEntry: ; fb877
 	ld a, [wPokedexStatus]
 	push af
 	ld a, [hSCX]
-	add POKDEX_SCX
+	add POKEDEX_SCX
 	ld [hSCX], a
 	xor a
 	ld [wPokedexStatus], a
@@ -26,7 +26,7 @@ NewPokedexEntry: ; fb877
 	call MaxVolume
 	call RotateThreePalettesRight
 	ld a, [hSCX]
-	add -POKDEX_SCX
+	add -POKEDEX_SCX
 	ld [hSCX], a
 	call .ReturnFromDexRegistration
 	pop af

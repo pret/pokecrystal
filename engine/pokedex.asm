@@ -15,8 +15,8 @@
 	const DEXSTATE_UPDATE_UNOWN_MODE
 	const DEXSTATE_EXIT
 
-POKDEX_SCX EQU 5
-GLOBAL POKDEX_SCX
+POKEDEX_SCX EQU 5
+GLOBAL POKEDEX_SCX
 
 Pokedex: ; 40000
 
@@ -233,7 +233,7 @@ Pokedex_InitMainScreen: ; 4013c (10:413c)
 	call Pokedex_SetBGMapMode_3ifDMG_4ifCGB
 	call Pokedex_ResetBGMapMode
 	call Pokedex_DrawMainScreenBG
-	ld a, POKDEX_SCX
+	ld a, POKEDEX_SCX
 	ld [hSCX], a
 
 	ld a, [wCurrentDexMode]
@@ -453,7 +453,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	ld [hBGMapMode], a
 	ld a, $90
 	ld [hWY], a
-	ld a, POKDEX_SCX
+	ld a, POKEDEX_SCX
 	ld [hSCX], a
 	call DelayFrame
 	call Pokedex_RedisplayDexEntry
@@ -497,7 +497,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	call Pokedex_RedisplayDexEntry
 	call EnableLCD
 	call WaitBGMap
-	ld a, POKDEX_SCX
+	ld a, POKEDEX_SCX
 	ld [hSCX], a
 	call Pokedex_ApplyUsualPals
 	ret
@@ -733,7 +733,7 @@ Pokedex_InitSearchResultsScreen: ; 4050a (10:450a)
 	call Pokedex_SetBGMapMode3
 	call Pokedex_ResetBGMapMode
 	call Pokedex_DrawSearchResultsScreenBG
-	ld a, POKDEX_SCX
+	ld a, POKEDEX_SCX
 	ld [hSCX], a
 	ld a, $4a
 	ld [hWX], a
