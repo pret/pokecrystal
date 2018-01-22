@@ -2471,22 +2471,22 @@ WinTrainerBattle: ; 3cfa4
 	call nz, .DoubleReward
 	call .CheckMaxedOutMomMoney
 	push af
-	ld a, $0
+	ld a, FALSE
 	jr nc, .okay
 	ld a, [wMomSavingMoney]
-	and $7
-	cp $3
+	and MOM_SAVING_MONEY_MASK
+	cp (1 << MOM_SAVING_SOME_MONEY_F) | (1 << MOM_SAVING_HALF_MONEY_F)
 	jr nz, .okay
-	inc a
+	inc a ; TRUE
 
 .okay
 	ld b, a
-	ld c, $4
+	ld c, 4
 .loop
 	ld a, b
 	and a
 	jr z, .loop2
-	call .SendMoneyToMom
+	call .AddMoneyToMom
 	dec c
 	dec b
 	jr .loop
@@ -2505,7 +2505,7 @@ WinTrainerBattle: ; 3cfa4
 	pop af
 	jr nc, .KeepItAll
 	ld a, [wMomSavingMoney]
-	and $7
+	and MOM_SAVING_MONEY_MASK
 	jr z, .KeepItAll
 	ld hl, .SentToMomTexts
 	dec a
@@ -2523,7 +2523,7 @@ WinTrainerBattle: ; 3cfa4
 	jp StdBattleTextBox
 ; 3d081
 
-.SendMoneyToMom: ; 3d081
+.AddMoneyToMom: ; 3d081
 	push bc
 	ld hl, wBattleReward + 2
 	ld de, wMomsMoney + 2
@@ -2557,9 +2557,9 @@ WinTrainerBattle: ; 3cfa4
 ; 3d0ab
 
 .SentToMomTexts: ; 3d0ab
-	dw SentSomeToMomText
-	dw SentHalfToMomText
-	dw SentAllToMomText
+	dw SentSomeToMomText ; MOM_SAVING_SOME_MONEY_F
+	dw SentHalfToMomText ; MOM_SAVING_HALF_MONEY_F
+	dw SentAllToMomText  ; MOM_SAVING_ALL_MONEY_F
 ; 3d0b1
 
 .CheckMaxedOutMomMoney: ; 3d0b1
@@ -2574,7 +2574,7 @@ WinTrainerBattle: ; 3cfa4
 ; 3d0be
 
 AddBattleMoneyToAccount: ; 3d0be
-	ld c, $3
+	ld c, 3
 	and a
 	push de
 	push hl
@@ -2653,7 +2653,7 @@ IsGymLeader: ; 0x3d128
 IsGymLeaderCommon:
 	push de
 	ld a, [OtherTrainerClass]
-	ld de, $1
+	ld de, 1
 	call IsInArray
 	pop de
 	ret

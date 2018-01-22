@@ -358,7 +358,7 @@ SurfFunction: ; c909
 	call CheckBadge
 	jr c, .asm_c956
 	ld hl, wBikeFlags
-	bit 1, [hl] ; always on bike
+	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .cannotsurf
 	ld a, [PlayerState]
 	cp PLAYER_SURF
@@ -520,7 +520,7 @@ TrySurfOW:: ; c9e7
 	jr c, .quit
 
 	ld hl, wBikeFlags
-	bit 1, [hl] ; always on bike (can't surf)
+	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .quit
 
 	call GetSurfType
@@ -1008,7 +1008,7 @@ StrengthFunction: ; cce5
 
 SetStrengthFlag: ; cd12
 	ld hl, wBikeFlags
-	set 0, [hl]
+	set BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, 0
@@ -1086,7 +1086,7 @@ TryStrengthOW: ; cd78
 	jr c, .nope
 
 	ld hl, wBikeFlags
-	bit 0, [hl]
+	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	jr z, .already_using
 
 	ld a, 2
@@ -1683,7 +1683,7 @@ BikeFunction: ; d0b3
 
 .GetOffBike:
 	ld hl, wBikeFlags
-	bit 1, [hl]
+	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .CantGetOffBike
 	ld hl, Script_GetOffBike
 	ld de, Script_GetOffBike_Register

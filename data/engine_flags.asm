@@ -19,8 +19,8 @@ EngineFlags: ; 80462
 	engine_flag wDayCareMan, DAYCAREMAN_HAS_MON_F
 	engine_flag wDayCareLady, DAYCARELADY_HAS_MON_F
 
-	engine_flag wMomSavingMoney, 0 ; mom saving money ; $8
-	engine_flag wMomSavingMoney, 7 ; dst
+	engine_flag wMomSavingMoney, MOM_SAVING_SOME_MONEY_F ; $8
+	engine_flag wMomSavingMoney, MOM_ACTIVE_F
 
 	engine_flag wUnusedTwoDayTimerOn, 0 ; unused, possibly related to a 2-day timer
 
@@ -38,9 +38,9 @@ EngineFlags: ; 80462
 	engine_flag wStatusFlags2, 6 ; berry -> berry juice when trading?
 	engine_flag wStatusFlags2, 7 ; rockets in mahogany
 
-	engine_flag wBikeFlags, 0 ; strength active ; $18
-	engine_flag wBikeFlags, 1 ; always on bike (cant surf)
-	engine_flag wBikeFlags, 2 ; downhill (cycling road)
+	engine_flag wBikeFlags, BIKEFLAGS_STRENGTH_ACTIVE_F ; $18
+	engine_flag wBikeFlags, BIKEFLAGS_ALWAYS_ON_BIKE_F
+	engine_flag wBikeFlags, BIKEFLAGS_DOWNHILL_F
 
 	engine_flag wJohtoBadges, ZEPHYRBADGE
 	engine_flag wJohtoBadges, HIVEBADGE
@@ -60,15 +60,15 @@ EngineFlags: ; 80462
 	engine_flag wKantoBadges, VOLCANOBADGE
 	engine_flag wKantoBadges, EARTHBADGE
 
-	; unown sets
+	; unown sets (see data/wild/unlocked_unowns.asm)
 	engine_flag wUnlockedUnowns, 0 ; A-K
 	engine_flag wUnlockedUnowns, 1 ; L-R
 	engine_flag wUnlockedUnowns, 2 ; S-W
 	engine_flag wUnlockedUnowns, 3 ; X-Z
-	engine_flag wUnlockedUnowns, 4 ; unused 5
-	engine_flag wUnlockedUnowns, 5 ; unused 6 ; $30
-	engine_flag wUnlockedUnowns, 6 ; unused 7
-	engine_flag wUnlockedUnowns, 7 ; unused 8
+	engine_flag wUnlockedUnowns, 4 ; unused
+	engine_flag wUnlockedUnowns, 5 ; unused ; $30
+	engine_flag wUnlockedUnowns, 6 ; unused
+	engine_flag wUnlockedUnowns, 7 ; unused
 
 	; fly
 	engine_flag wVisitedSpawns, SPAWN_HOME

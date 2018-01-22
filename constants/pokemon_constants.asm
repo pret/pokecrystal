@@ -276,5 +276,32 @@ NUM_POKEMON EQU const_value +- 1
 	const EGG        ; fd
 	const MON_FE     ; fe
 
-; number of Unown forms
-NUM_UNOWN EQU 26
+; Unown forms
+const_value set 1
+	const UNOWN_A ;  1
+	const UNOWN_B ;  2
+	const UNOWN_C ;  3
+	const UNOWN_D ;  4
+	const UNOWN_E ;  5
+	const UNOWN_F ;  6
+	const UNOWN_G ;  7
+	const UNOWN_H ;  8
+	const UNOWN_I ;  9
+	const UNOWN_J ; 10
+	const UNOWN_K ; 11
+	const UNOWN_L ; 12
+	const UNOWN_M ; 13
+	const UNOWN_N ; 14
+	const UNOWN_O ; 15
+	const UNOWN_P ; 16
+	const UNOWN_Q ; 17
+	const UNOWN_R ; 18
+	const UNOWN_S ; 19
+	const UNOWN_T ; 20
+	const UNOWN_U ; 21
+	const UNOWN_V ; 22
+	const UNOWN_W ; 23
+	const UNOWN_X ; 24
+	const UNOWN_Y ; 25
+	const UNOWN_Z ; 26
+NUM_UNOWN EQU const_value +- 1 ; 26

@@ -13,7 +13,7 @@
 	const ENGINE_DAY_CARE_LADY_HAS_MON
 ; wMomSavingMoney
 	const ENGINE_MOM_SAVING_MONEY
-	const ENGINE_DST
+	const ENGINE_MOM_ACTIVE
 ; wUnusedTwoDayTimerOn
 	const ENGINE_0A
 ; wStatusFlags

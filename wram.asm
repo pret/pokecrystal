@@ -2338,7 +2338,9 @@ StartMinute:: db ; d4b8
 StartSecond:: db ; d4b9
 
 wRTC:: ds 8 ; d4ba
-wDST:: db ; d4c2
+wDST:: ; d4c2
+; bit 7: dst
+	db
 
 GameTime::
 GameTimeCap::     db ; d4c3
@@ -2414,30 +2416,36 @@ CurTimeOfDay:: db ; d848
 
 wSecretID:: dw
 wStatusFlags:: ; d84c
-	; 0 - pokedex
-	; 1 - unown dex
-	; 2 -
-	; 3 - pokerus
-	; 4 - rocket signal
-	; 5 - wild encounters on/off
-	; 6 - hall of fame
-	; 7 - bug contest on
+; bit 0: pokedex
+; bit 1: unown dex
+; bit 2: unused
+; bit 3: pokerus
+; bit 4: rocket signal
+; bit 5: wild encounters on/off
+; bit 6: hall of fame
+; bit 7: bug contest on
 	db
 
 wStatusFlags2:: ; d84d
-	; 0 - rockets
-	; 1 -
-	; 2 - bug contest timer
-	; 3 -
-	; 4 - bike shop call
-	; 5 - pokerus
-	; 6 - berry juice?
-	; 7 - rockets in mahogany
+; bit 0: rockets
+; bit 1: unused
+; bit 2: bug contest timer
+; bit 3: unused
+; bit 4: bike shop call
+; bit 5: pokerus
+; bit 6: berry juice
+; bit 7: rockets in mahogany
 	db
 
 Money:: ds 3 ; d84e
 wMomsMoney:: ds 3 ; d851
-wMomSavingMoney:: db ; d854
+
+wMomSavingMoney:: ; d854
+; bit 0: saving some money
+; bit 1: saving half money (unused)
+; bit 2: saving all money (unused)
+; bit 7: active
+	db
 
 Coins:: dw ; d855
 
@@ -2627,8 +2635,7 @@ wBikeFlags:: ; dbf5
 ; bit 1: always on bike
 ; bit 2: downhill
 	db
-
-	ds 1
+	ds 1 ; also cleared by ResetBikeFlags
 
 wCurrMapSceneScriptPointer:: dw ; dbf7
 

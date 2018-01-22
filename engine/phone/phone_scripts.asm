@@ -140,7 +140,7 @@ MomPhoneNoGymQuestScript: ; 0xbcfac
 
 MomPhoneLectureScript: ; 0xbcfb1
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	setflag ENGINE_DST
+	setflag ENGINE_MOM_ACTIVE
 	specialphonecall SPECIALCALL_NONE
 	farwritetext MomPhoneLectureText
 	yesorno
