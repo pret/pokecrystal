@@ -18,4 +18,4 @@ Unreferenced_GetGen1TrainerClassName: ; 50a28
 	jr nz, .copy
 	ret
 
-INCLUDE "data/unused/gen_1_trainer_names.asm"
+INCLUDE "data/text/unused_gen1_trainer_names.asm"

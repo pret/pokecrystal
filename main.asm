@@ -262,7 +262,7 @@ INCLUDE "engine/load_pics.asm"
 INCLUDE "engine/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
-INCLUDE "data/unused/unknown_53d84.asm"
+INCLUDE "data/unused_53d84.asm"
 
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
@@ -279,7 +279,7 @@ SECTION "bank20", ROMX
 INCLUDE "engine/player_movement.asm"
 INCLUDE "engine/engine_flags.asm"
 INCLUDE "engine/variables.asm"
-INCLUDE "data/battle/battle_text.asm"
+INCLUDE "data/text/battle_text.asm"
 INCLUDE "engine/debug.asm"
 
 
@@ -541,7 +541,7 @@ INCLUDE "mobile/mobile_5f.asm"
 
 SECTION "Common Text 1", ROMX
 
-INCLUDE "data/std_text.asm"
+INCLUDE "data/text/std_text.asm"
 INCLUDE "data/phone/text/jack_overworld.asm"
 INCLUDE "data/phone/text/beverly_overworld.asm"
 INCLUDE "data/phone/text/huey_overworld.asm"
