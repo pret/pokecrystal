@@ -10,7 +10,7 @@ GBCOnlyScreen: ; 4ea82
 	call ClearTileMap
 
 	ld hl, GBCOnlyGFX
-	ld de, wDecompressBuffer
+	ld de, wGBCOnlyDecompressBuffer
 	ld a, [rSVBK]
 	push af
 	ld a, 0 ; this has the same effect as selecting bank 1
@@ -19,9 +19,9 @@ GBCOnlyScreen: ; 4ea82
 	pop af
 	ld [rSVBK], a
 
-	ld de, wDecompressBuffer
+	ld de, wGBCOnlyDecompressBuffer
 	ld hl, vTiles2
-	lb bc, BANK(GBCOnlyGFX), $54
+	lb bc, BANK(GBCOnlyGFX), 84
 	call Get2bpp
 
 	ld de, Font

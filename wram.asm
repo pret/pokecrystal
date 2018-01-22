@@ -1566,7 +1566,7 @@ wDaysSince:: db
 
 SECTION "WRAM 1", WRAMX
 
-wDecompressBuffer:: ds 1
+wGBCOnlyDecompressBuffer:: ds 1
 
 DefaultSpawnpoint:: db
 

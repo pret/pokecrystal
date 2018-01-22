@@ -265,25 +265,25 @@ CheckBTMonMovesForErrors: ; 170c98
 Function170cc6: ; 170cc6
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
-	ld hl, LZ_170d16
+	ld hl, PichuAnimatedMobileGFX
 	ld de, wDecompressScratch
 	call Decompress
-	ld a, $1
+	ld a, 1
 	ld [rVBK], a
-	ld de, wDecompressBuffer
+	ld de, wDecompressScratch
 	ld hl, vTiles0
-	lb bc, $6, $c1
+	lb bc, BANK(wDecompressScratch), 193
 	call Get2bpp
 	xor a
 	ld [rVBK], a
-	ld hl, LZ_1715a4
-	ld de, wDecompressBuffer
+	ld hl, ElectroBallMobileGFX
+	ld de, wDecompressScratch
 	call Decompress
 	ld de, wBGPals1
 	ld hl, vTiles0
-	lb bc, $6, $53
+	lb bc, BANK(wDecompressScratch), 83
 	call Get2bpp
 	pop af
 	ld [rSVBK], a
@@ -304,10 +304,10 @@ Function170d02: ; 170d02
 
 ; 170d16
 
-LZ_170d16:
+PichuAnimatedMobileGFX:
 INCBIN "gfx/mobile/pichu_animated.2bpp.lz"
 
-LZ_1715a4:
+ElectroBallMobileGFX:
 INCBIN "gfx/mobile/electro_ball.2bpp.lz"
 
 GFX_171848:
