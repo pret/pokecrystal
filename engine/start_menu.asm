@@ -21,7 +21,7 @@ StartMenu:: ; 125cd
 	farcall ReanchorBGMap_NoOAMUpdate
 
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	ld hl, .MenuDataHeader
 	jr z, .GotMenuData
 	ld hl, .ContestMenuDataHeader
@@ -306,7 +306,7 @@ endr
 	call .FillMenuList
 
 	ld hl, wStatusFlags
-	bit 0, [hl]
+	bit STATUSFLAGS_POKEDEX_F, [hl]
 	jr z, .no_pokedex
 	ld a, STARTMENUITEM_POKEDEX
 	call .AppendMenuList
@@ -323,7 +323,7 @@ endr
 	and a
 	jr nz, .no_pack
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	jr nz, .no_pack
 	ld a, STARTMENUITEM_PACK
 	call .AppendMenuList
@@ -336,14 +336,14 @@ endr
 	call .AppendMenuList
 .no_pokegear
 
-	ld a, 3 ; status
+	ld a, STARTMENUITEM_STATUS
 	call .AppendMenuList
 
 	ld a, [wLinkMode]
 	and a
 	jr nz, .no_save
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	ld a, STARTMENUITEM_QUIT
 	jr nz, .write
 	ld a, STARTMENUITEM_SAVE
@@ -412,7 +412,7 @@ endr
 
 .DrawBugContestStatusBox: ; 128d1
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	ret z
 	farcall StartMenu_DrawBugContestStatusBox
 	ret
@@ -420,7 +420,7 @@ endr
 
 .DrawBugContestStatus: ; 128de
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	jr nz, .contest
 	ret
 .contest

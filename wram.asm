@@ -2420,8 +2420,8 @@ wSecretID:: dw
 wStatusFlags:: ; d84c
 ; bit 0: pokedex
 ; bit 1: unown dex
-; bit 2: unused
-; bit 3: pokerus
+; bit 2: flash
+; bit 3: caught pokerus
 ; bit 4: rocket signal
 ; bit 5: wild encounters on/off
 ; bit 6: hall of fame
@@ -2430,12 +2430,12 @@ wStatusFlags:: ; d84c
 
 wStatusFlags2:: ; d84d
 ; bit 0: rockets
-; bit 1: unused
+; bit 1: safari game (unused)
 ; bit 2: bug contest timer
 ; bit 3: unused
 ; bit 4: bike shop call
-; bit 5: pokerus
-; bit 6: berry juice
+; bit 5: can use sweet scent
+; bit 6: reached goldenrod
 ; bit 7: rockets in mahogany
 	db
 

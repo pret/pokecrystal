@@ -290,7 +290,7 @@ TrainerCard_Page1_PrintDexCaught_GameTime: ; 2530a (9:530a)
 	ld de, .StatusTilemap
 	call TrainerCardSetup_PlaceTilemapString
 	ld a, [wStatusFlags]
-	bit 0, a ; ENGINE_POKEDEX
+	bit STATUSFLAGS_POKEDEX_F, a
 	ret nz
 	hlcoord 1, 9
 	lb bc, 2, 17

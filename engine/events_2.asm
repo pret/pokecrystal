@@ -3,8 +3,8 @@
 
 Special_WarpToSpawnPoint:: ; 97c28
 	ld hl, wStatusFlags2
-	res 1, [hl] ; safari zone?
-	res 2, [hl] ; bug contest
+	res STATUSFLAGS2_SAFARI_GAME_F, [hl]
+	res STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	ret
 ; 97c30
 
@@ -109,7 +109,7 @@ RandomEncounter:: ; 97cc0
 	call CanUseSweetScent
 	jr nc, .nope
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	jr nz, .bug_contest
 	farcall TryWildEncounter
 	jr nz, .nope
@@ -150,7 +150,7 @@ WildBattleScript: ; 97cf9
 
 CanUseSweetScent:: ; 97cfd
 	ld hl, wStatusFlags
-	bit 5, [hl]
+	bit STATUSFLAGS2_CAN_USE_SWEET_SCENT_F, [hl]
 	jr nz, .no
 	ld a, [wEnvironment]
 	cp CAVE
@@ -264,7 +264,7 @@ DoBikeStep:: ; 97db3
 	; if we've already gotten the call, we don't have to
 	; be here.
 	ld hl, wStatusFlags2
-	bit 4, [hl] ; bike shop call
+	bit STATUSFLAGS2_BIKE_SHOP_CALL_F, [hl]
 	jr z, .NoCall
 
 	; If we're not on the bike, we don't have to be here.
@@ -315,7 +315,7 @@ DoBikeStep:: ; 97db3
 	xor a
 	ld [wSpecialPhoneCallID + 1], a
 	ld hl, wStatusFlags2
-	res 4, [hl] ; bike shop call
+	res STATUSFLAGS2_BIKE_SHOP_CALL_F, [hl]
 	scf
 	ret
 

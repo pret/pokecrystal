@@ -764,7 +764,7 @@ PokegearMap_UpdateCursorPosition: ; 910d4
 
 TownMap_GetKantoLandmarkLimits: ; 910e8
 	ld a, [wStatusFlags]
-	bit 6, a ; ENGINE_CREDITS_SKIP
+	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr z, .not_hof
 	ld d, ROUTE_28
 	ld e, PALLET_TOWN
@@ -1613,7 +1613,7 @@ RadioChannels:
 .EvolutionRadio:
 ; This station airs in the Lake of Rage area when Rocket are still in Mahogany.
 	ld a, [wStatusFlags]
-	bit 4, a ; ENGINE_ROCKET_SIGNAL_ON_CH20
+	bit STATUSFLAGS_ROCKET_SIGNAL_F, a
 	jr z, .NoSignal
 	ld a, [wPokegearMapPlayerIconLandmark]
 	cp MAHOGANY_TOWN
@@ -1699,7 +1699,7 @@ LoadStation_BuenasPassword: ; 917a5 (24:57a5)
 	call Radio_BackUpFarCallParams
 	ld de, NotBuenasPasswordName
 	ld a, [wStatusFlags2]
-	bit 0, a ; ENGINE_ROCKETS_IN_RADIO_TOWER
+	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
 	ret z
 	ld de, BuenasPasswordName
 	ret
@@ -2561,7 +2561,7 @@ Pokedex_GetArea: ; 91d11
 
 .right
 	ld a, [wStatusFlags]
-	bit 6, a ; ENGINE_CREDITS_SKIP
+	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	ret z
 	ld a, [hWY]
 	and a

@@ -19,7 +19,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 ; If we haven't been to Goldenrod City at least once,
 ; prevent the contraction of Pokerus.
 	ld hl, wStatusFlags2
-	bit 6, [hl]
+	bit STATUSFLAGS2_REACHED_GOLDENROD_F, [hl]
 	ret z
 	call Random
 	ld a, [hRandomAdd]
@@ -61,7 +61,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 
 .TrySpreadPokerus:
 	call Random
-	cp 1 + 33 percent
+	cp 33 percent + 1
 	ret nc              ; 1/3 chance
 
 	ld a, [PartyCount]
@@ -74,7 +74,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 	jr c, .checkPreviousMonsLoop    ; no more mons after this one, go backwards
 
 	call Random
-	cp 1 + 50 percent
+	cp 50 percent + 1
 	jr c, .checkPreviousMonsLoop    ; 1/2 chance, go backwards
 .checkFollowingMonsLoop
 	add hl, de
@@ -121,14 +121,15 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ld [hl], a
 	ret
 
-; any berry held by a Shuckle may be converted to berry juice
 ConvertBerriesToBerryJuice: ; 2ede6
+; If we haven't been to Goldenrod City at least once,
+; prevent Shuckle from turning held Berry into Berry Juice.
 	ld hl, wStatusFlags2
-	bit 6, [hl]
+	bit STATUSFLAGS2_REACHED_GOLDENROD_F, [hl]
 	ret z
 	call Random
-	cp $10
-	ret nc              ; 1/16 chance
+	cp 6 percent + 1 ; 1/16 chance
+	ret nc
 	ld hl, PartyMons
 	ld a, [PartyCount]
 .partyMonLoop

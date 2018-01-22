@@ -7894,7 +7894,7 @@ Function1036f9: ; 1036f9
 Function103700: ; 103700
 	ld c, $0a
 	ld hl, wSwarmFlags
-	bit 4, [hl]
+	bit SWARMFLAGS_MOBILE_4_F, [hl]
 	jr z, .asm_10370f
 	farcall Function1008a6
 
@@ -7991,18 +7991,18 @@ Special_Function103780: ; 103780
 Function10378c: ; 10378c
 	ld c, 0
 	ld hl, wSwarmFlags
-	bit 4, [hl]
+	bit SWARMFLAGS_MOBILE_4_F, [hl]
 	jr nz, .already_set
-	ld c, $01
+	ld c, 1
 	ld hl, wSwarmFlags
-	set 4, [hl]
+	set SWARMFLAGS_MOBILE_4_F, [hl]
 
 .already_set
 	push bc
 	farcall Link_SaveGame
 	pop bc
 	jr c, .failed_to_save
-	ld a, $01
+	ld a, 1
 	ld [ScriptVar], a
 	ld a, c
 	and a
@@ -8017,7 +8017,7 @@ Function10378c: ; 10378c
 	and a
 	ret z
 	ld hl, wSwarmFlags
-	res 4, [hl]
+	res SWARMFLAGS_MOBILE_4_F, [hl]
 	ret
 ; 1037c2
 

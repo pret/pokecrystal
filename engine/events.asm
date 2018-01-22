@@ -493,7 +493,7 @@ CheckTimeEvents: ; 9693a
 	jr nz, .nothing
 
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	jr z, .do_daily
 
 	farcall CheckBugContestTimer

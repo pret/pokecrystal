@@ -15,15 +15,15 @@ ResetBikeFlags:: ; 2e56
 
 ResetFlashIfOutOfCave:: ; 2e5d
 	ld a, [wEnvironment]
-	cp $2
-	jr z, .asm_2e69
-	cp $1
-	jr z, .asm_2e69
+	cp ROUTE
+	jr z, .outdoors
+	cp TOWN
+	jr z, .outdoors
 	ret
 
-.asm_2e69
+.outdoors
 	ld hl, wStatusFlags
-	res 2, [hl]
+	res STATUSFLAGS_FLASH_F, [hl]
 	ret
 ; 2e6f
 

@@ -5,7 +5,7 @@ PlayRadioShow:
 	jr nc, .ok
 ; If Team Rocket is not occupying the radio tower, we don't need to be here.
 	ld a, [wStatusFlags2]
-	bit 0, a ; checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
+	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
 	jr z, .ok
 ; If we're in Kanto, we don't need to be here.
 	call IsInJohto
@@ -1171,7 +1171,7 @@ PeoplePlaces4: ; People
 	push af
 	ld hl, PnP_HiddenPeople
 	ld a, [wStatusFlags]
-	bit 6, a ; ENGINE_CREDITS_SKIP
+	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr z, .ok
 	ld hl, PnP_HiddenPeople_BeatE4
 	ld a, [wKantoBadges]

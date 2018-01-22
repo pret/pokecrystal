@@ -216,7 +216,7 @@ ReplaceTimeOfDayPals: ; 8c0e5
 
 .DarkCave:
 	ld a, [wStatusFlags]
-	bit 2, a ; Flash
+	bit STATUSFLAGS_FLASH_F, a
 	jr nz, .UsedFlash
 	ld a, %11111111 ; 3, 3, 3, 3
 	ld [wTimeOfDayPalset], a

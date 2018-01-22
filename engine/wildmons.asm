@@ -429,7 +429,7 @@ _SwarmWildmonCheck
 	call CopyCurrMapDE
 	push hl
 	ld hl, wSwarmFlags
-	bit 2, [hl]
+	bit SWARMFLAGS_DUNSPARCE_SWARM_F, [hl]
 	pop hl
 	jr z, .CheckYanma
 	ld a, [wDunsparceMapGroup]
@@ -446,7 +446,7 @@ _SwarmWildmonCheck
 .CheckYanma:
 	push hl
 	ld hl, wSwarmFlags
-	bit 3, [hl]
+	bit SWARMFLAGS_YANMA_SWARM_F, [hl]
 	pop hl
 	jr z, _NoSwarmWildmon
 	ld a, [wYanmaMapGroup]

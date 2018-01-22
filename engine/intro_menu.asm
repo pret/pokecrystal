@@ -541,7 +541,7 @@ Continue_LoadMenuHeader: ; 5ebf
 	ld [hBGMapMode], a
 	ld hl, .MenuDataHeader_Dex
 	ld a, [wStatusFlags]
-	bit 0, a ; pokedex
+	bit STATUSFLAGS_POKEDEX_F, a
 	jr nz, .show_menu
 	ld hl, .MenuDataHeader_NoDex
 
@@ -640,7 +640,7 @@ Continue_DisplayBadgeCount: ; 5f58
 
 Continue_DisplayPokedexNumCaught: ; 5f6b
 	ld a, [wStatusFlags]
-	bit 0, a ; Pokedex
+	bit STATUSFLAGS_POKEDEX_F, a
 	ret z
 	push hl
 	ld hl, PokedexCaught

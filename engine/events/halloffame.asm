@@ -12,7 +12,7 @@ HallOfFame:: ; 0x8640e
 
 	; Enable the Pokégear map to cycle through all of Kanto
 	ld hl, wStatusFlags
-	set 6, [hl] ; hall of fame
+	set STATUSFLAGS_HALL_OF_FAME_F, [hl]
 
 	farcall HallOfFame_InitSaveIfNeeded
 

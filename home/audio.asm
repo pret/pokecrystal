@@ -462,7 +462,7 @@ SpecialMapMusic:: ; 3d62
 	jr z, .surf
 
 	ld a, [wStatusFlags2]
-	bit 2, a
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, a
 	jr nz, .contest
 
 .no

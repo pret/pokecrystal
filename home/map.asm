@@ -2306,7 +2306,7 @@ GetMapMusic:: ; 2cbd
 
 .radiotower
 	ld a, [wStatusFlags2]
-	bit 0, a
+	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
 	jr z, .clearedradiotower
 	ld de, MUSIC_ROCKET_OVERTURE
 	jr .done
@@ -2321,7 +2321,7 @@ GetMapMusic:: ; 2cbd
 
 .mahoganymart
 	ld a, [wStatusFlags2]
-	bit 7, a
+	bit STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F, a
 	jr z, .clearedmahogany
 	ld de, MUSIC_ROCKET_HIDEOUT
 	jr .done

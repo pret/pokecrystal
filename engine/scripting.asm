@@ -2449,14 +2449,14 @@ Script_wildoff:
 ; script command 0x38
 
 	ld hl, wStatusFlags
-	set 5, [hl]
+	set STATUSFLAGS_NO_WILD_ENCOUNTERS_F, [hl]
 	ret
 
 Script_wildon:
 ; script command 0x37
 
 	ld hl, wStatusFlags
-	res 5, [hl]
+	res STATUSFLAGS_NO_WILD_ENCOUNTERS_F, [hl]
 	ret
 
 Script_xycompare:

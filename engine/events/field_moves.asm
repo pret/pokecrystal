@@ -9,7 +9,7 @@ PlayWhirlpoolSound: ; 8c7d4
 BlindingFlash: ; 8c7e1
 	farcall Special_FadeOutPalettes
 	ld hl, wStatusFlags
-	set 2, [hl] ; Flash
+	set STATUSFLAGS_FLASH_F, [hl]
 	farcall ReplaceTimeOfDayPals
 	farcall UpdateTimeOfDayPal
 	ld b, SCGB_MAPPALS

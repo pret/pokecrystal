@@ -166,8 +166,9 @@ MainMenu_GetWhichMenu: ; 49da4
 	cp -1
 	call CloseSRAM
 	jr nz, .mystery_gift
+	; This check makes no difference.
 	ld a, [wStatusFlags]
-	bit 7, a
+	bit STATUSFLAGS_BUG_CONTEST_ON_F, a
 	ld a, $1 ; Continue
 	jr z, .ok
 	jr .ok
@@ -180,8 +181,9 @@ MainMenu_GetWhichMenu: ; 49da4
 	ret
 
 .mystery_gift
+	; This check makes no difference.
 	ld a, [wStatusFlags]
-	bit 7, a
+	bit STATUSFLAGS_BUG_CONTEST_ON_F, a
 	jr z, .ok3
 	jr .ok3
 

@@ -24,19 +24,20 @@ EngineFlags: ; 80462
 
 	engine_flag wUnusedTwoDayTimerOn, 0 ; unused, possibly related to a 2-day timer
 
-	engine_flag wStatusFlags, 0 ; pokedex
-	engine_flag wStatusFlags, 1 ; unown dex
-	engine_flag wStatusFlags, 3 ; pokerus
-	engine_flag wStatusFlags, 4 ; rocket signal on ch20
-	engine_flag wStatusFlags, 6 ; credits skip
-	engine_flag wStatusFlags, 7 ; bug contest on ; $10
-	engine_flag wStatusFlags2, 2 ; bug contest timer
-	engine_flag wStatusFlags2, 1 ; safari zone?
-	engine_flag wStatusFlags2, 0 ; rockets in radio tower
-	engine_flag wStatusFlags2, 4 ; bike shop call enabled (1024 bike steps reqd)
-	engine_flag wStatusFlags2, 5 ; give pokerus
-	engine_flag wStatusFlags2, 6 ; berry -> berry juice when trading?
-	engine_flag wStatusFlags2, 7 ; rockets in mahogany
+	engine_flag wStatusFlags, STATUSFLAGS_POKEDEX_F
+	engine_flag wStatusFlags, STATUSFLAGS_UNOWN_DEX_F
+	engine_flag wStatusFlags, STATUSFLAGS_CAUGHT_POKERUS_F
+	engine_flag wStatusFlags, STATUSFLAGS_ROCKET_SIGNAL_F
+	engine_flag wStatusFlags, STATUSFLAGS_HALL_OF_FAME_F
+	engine_flag wStatusFlags, STATUSFLAGS_BUG_CONTEST_ON_F
+
+	engine_flag wStatusFlags2, STATUSFLAGS2_BUG_CONTEST_TIMER_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_SAFARI_GAME_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_BIKE_SHOP_CALL_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_CAN_USE_SWEET_SCENT_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_REACHED_GOLDENROD_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F
 
 	engine_flag wBikeFlags, BIKEFLAGS_STRENGTH_ACTIVE_F ; $18
 	engine_flag wBikeFlags, BIKEFLAGS_ALWAYS_ON_BIKE_F
@@ -100,7 +101,8 @@ EngineFlags: ; 80462
 	engine_flag wVisitedSpawns, NUM_SPAWNS ; unused
 
 	engine_flag wLuckyNumberShowFlag, LUCKYNUMBERSHOW_GAME_OVER_F
-	engine_flag wStatusFlags2, 3 ; ????
+
+	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_F
 
 	engine_flag wDailyFlags, 0 ; kurt making balls ; $50
 	engine_flag wDailyFlags, 1 ; ????
@@ -120,8 +122,8 @@ EngineFlags: ; 80462
 	engine_flag wWeeklyFlags, 6 ; move tutor
 	engine_flag wWeeklyFlags, 7 ; buenas password
 
-	engine_flag wSwarmFlags, 0 ; buenas password 2
-	engine_flag wSwarmFlags, 1 ; goldenrod dept store sale is on
+	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F
+	engine_flag wSwarmFlags, SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F
 
 	engine_flag wGameTimerPause, 7 ; $62
 
@@ -193,7 +195,7 @@ EngineFlags: ; 80462
 
 	engine_flag wPlayerSpriteSetupFlags, PLAYERSPRITESETUP_FEMALE_TO_MALE_F
 
-	engine_flag wSwarmFlags, 2 ; dunsparce swarm ; $a0
-	engine_flag wSwarmFlags, 3 ; yanma swarm
+	engine_flag wSwarmFlags, SWARMFLAGS_DUNSPARCE_SWARM_F ; $a0
+	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
 
 ; 80648
