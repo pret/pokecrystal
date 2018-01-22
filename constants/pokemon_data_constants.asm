@@ -188,12 +188,23 @@ MONMENU_MENUOPTION EQU 1
 NUM_MONMENU_ITEMS EQU 8
 
 
+; wild data
+
+NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
+NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
+
+GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2 + 1) * 3 + 2
+WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
+
+NUM_ROAMMON_MAPS EQU 16 ; RoamMaps table size (see data/wild/roammon_maps.asm)
+
+
 ; treemon sets
 ; TreeMons indexes (see data/wild/treemons.asm)
 	const_def
 	const TREEMON_SET_CITY
 	const TREEMON_SET_CANYON
-	const TREEMON_SET_AZALEA
+	const TREEMON_SET_TOWN
 	const TREEMON_SET_ROUTE
 	const TREEMON_SET_KANTO
 	const TREEMON_SET_LAKE
@@ -206,26 +217,6 @@ NUM_TREEMON_SETS EQU const_value
 	const TREEMON_SCORE_BAD  ; 0
 	const TREEMON_SCORE_GOOD ; 1
 	const TREEMON_SCORE_RARE ; 2
-
-
-; wild data
-
-NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
-NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
-
-GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2 + 1) * 3 + 2
-WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
-
-NUM_ROAMMON_MAPS EQU 16 ; RoamMaps table size (see data/wild/roammon_maps.asm)
-
-
-; swarms
-
-SWARM_DUNSPARCE EQU 0
-SWARM_YANMA     EQU 1
-
-FISHSWARM_QWILFISH EQU 1
-FISHSWARM_REMORAID EQU 2
 
 
 ; significant happiness values

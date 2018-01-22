@@ -115,6 +115,40 @@ NUM_PLAYER_EVENTS EQU const_value
 	const OBJECTTYPE_6
 
 
+; command queue members
+CMDQUEUE_TYPE  EQU 0
+CMDQUEUE_ADDR  EQU 1
+CMDQUEUE_03    EQU 3
+CMDQUEUE_04    EQU 4
+CMDQUEUE_05    EQU 5
+CMDQUEUE_ENTRY_SIZE EQU 6
+CMDQUEUE_CAPACITY EQU 4
+
+; command queue types
+CMDQUEUE_STONETABLE EQU 2
+
+
+; elevfloor macro values
+; ElevatorFloorNames indexes (see data/elevator_floors.asm)
+	const_def
+	const FLOOR_B4F
+	const FLOOR_B3F
+	const FLOOR_B2F
+	const FLOOR_B1F
+	const FLOOR_1F
+	const FLOOR_2F
+	const FLOOR_3F
+	const FLOOR_4F
+	const FLOOR_5F
+	const FLOOR_6F
+	const FLOOR_7F
+	const FLOOR_8F
+	const FLOOR_9F
+	const FLOOR_10F
+	const FLOOR_11F
+	const FLOOR_ROOF
+
+
 ; showemote arguments
 ; Emotes indexes (see data/sprites/emotes.asm)
 	const_def
@@ -131,7 +165,6 @@ NUM_PLAYER_EVENTS EQU const_value
 	const EMOTE_BOULDER_DUST ; 10
 	const EMOTE_GRASS_RUSTLE ; 11
 EMOTE_MEM EQU -1
-
 
 ; fruittree arguments
 ; FruitTreeItems indexes (see data/items/fruit_trees.asm)
@@ -168,7 +201,6 @@ const_value set 1
 	const FRUITTREE_FUCHSIA_CITY  ; 1e
 NUM_FRUIT_TREES EQU const_value +- 1
 
-
 ; describedecoration arguments
 ; DescribeDecoration.JumpTable indexes (see engine/decorations.asm)
 	const_def
@@ -178,40 +210,18 @@ NUM_FRUIT_TREES EQU const_value +- 1
 	const DECODESC_BIG_DOLL   ; 3
 	const DECODESC_CONSOLE    ; 4
 
-
-; elevfloor macro values
-; ElevatorFloorNames indexes (see data/elevator_floors.asm)
+; swarm arguments
+; StoreSwarmMapIndices arguments
 	const_def
-	const FLOOR_B4F
-	const FLOOR_B3F
-	const FLOOR_B2F
-	const FLOOR_B1F
-	const FLOOR_1F
-	const FLOOR_2F
-	const FLOOR_3F
-	const FLOOR_4F
-	const FLOOR_5F
-	const FLOOR_6F
-	const FLOOR_7F
-	const FLOOR_8F
-	const FLOOR_9F
-	const FLOOR_10F
-	const FLOOR_11F
-	const FLOOR_ROOF
+	const SWARM_DUNSPARCE ; 0
+	const SWARM_YANMA     ; 1
 
 
-; command queue members
-CMDQUEUE_TYPE  EQU 0
-CMDQUEUE_ADDR  EQU 1
-CMDQUEUE_03    EQU 3
-CMDQUEUE_04    EQU 4
-CMDQUEUE_05    EQU 5
-CMDQUEUE_ENTRY_SIZE EQU 6
-CMDQUEUE_CAPACITY EQU 4
-
-; command queue types
-CMDQUEUE_STONETABLE EQU 2
-
+; Special_ActivateFishingSwarm writebyte arguments
+	const_def
+	const FISHSWARM_NONE     ; 0
+	const FISHSWARM_QWILFISH ; 1
+	const FISHSWARM_REMORAID ; 2
 
 ; SpecialGameboyCheck return values
 	const_def
