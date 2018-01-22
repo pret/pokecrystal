@@ -6642,7 +6642,7 @@ CheckUnownLetter: ; 3eb75
 	jr nc, .next
 
 ; Is our letter in the set?
-	ld hl, .LetterSets
+	ld hl, UnlockedUnownLetterSets
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -6663,7 +6663,7 @@ CheckUnownLetter: ; 3eb75
 	inc e
 	inc e
 	ld a, e
-	cp .Set1 - .LetterSets
+	cp UnlockedUnownLetterSets.End - UnlockedUnownLetterSets
 	jr c, .loop
 
 ; Hasn't been unlocked, or the letter is invalid
@@ -6675,26 +6675,8 @@ CheckUnownLetter: ; 3eb75
 	and a
 	ret
 
-.LetterSets:
-	dw .Set1
-	dw .Set2
-	dw .Set3
-	dw .Set4
+INCLUDE "data/wild/unlocked_unowns.asm"
 
-.Set1:
-	;  A   B   C   D   E   F   G   H   I   J   K
-	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
-.Set2:
-	;  L   M   N   O   P   Q   R
-	db 12, 13, 14, 15, 16, 17, 18, $ff
-.Set3:
-	;  S   T   U   V   W
-	db 19, 20, 21, 22, 23, $ff
-.Set4:
-	;  X   Y   Z
-	db 24, 25, 26, $ff
-
-; 3ebc7
 
 Unreferenced_SwapBattlerLevels: ; 3ebc7
 	push bc

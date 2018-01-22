@@ -123,7 +123,7 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 
 MysteryGiftGetItemHeldEffect: ; 2c708 (b:4708)
 	ld a, c
-	cp MysteryGiftItemsEnd - MysteryGiftItems
+	cp MysteryGiftItems.End - MysteryGiftItems
 	jr nc, MysteryGiftFallbackItem
 	ld hl, MysteryGiftItems
 	ld b, 0
@@ -133,7 +133,7 @@ MysteryGiftGetItemHeldEffect: ; 2c708 (b:4708)
 
 MysteryGiftGetDecoration: ; 2c715 (b:4715)
 	ld a, c
-	cp MysteryGiftDecosEnd - MysteryGiftDecos
+	cp MysteryGiftDecos.End - MysteryGiftDecos
 	jr nc, MysteryGiftFallbackItem
 	ld hl, MysteryGiftDecos
 	ld b, 0

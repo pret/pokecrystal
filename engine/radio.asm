@@ -205,7 +205,7 @@ OaksPkmnTalk4:
 .sample
 	call Random
 	and %11111
-	cp (OaksPkmnTalkRoutesEnd - OaksPkmnTalkRoutes) / 2
+	cp (OaksPkmnTalkRoutes.End - OaksPkmnTalkRoutes) / 2
 	jr nc, .sample
 	; We now have a number between 0 and 14.
 	ld hl, OaksPkmnTalkRoutes
@@ -1330,7 +1330,7 @@ PnP_odd:
 
 PeoplePlaces6: ; Places
 	call Random
-	cp (PnP_HiddenPlacesEnd - PnP_HiddenPlaces) / 2
+	cp (PnP_HiddenPlaces.End - PnP_HiddenPlaces) / 2
 	jr nc, PeoplePlaces6
 	ld hl, PnP_HiddenPlaces
 	ld c, a

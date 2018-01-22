@@ -1279,7 +1279,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	ld hl, MysteryGiftGFX
 	ld de, vTiles2 tile $00
 	ld a, BANK(MysteryGiftGFX)
-	ld bc, MysteryGiftGFXEnd - MysteryGiftGFX
+	ld bc, MysteryGiftGFX.End - MysteryGiftGFX
 	call FarCopyBytes
 	hlcoord 0, 0
 	ld a, $42
@@ -1412,7 +1412,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 
 MysteryGiftGFX: ; 105258
 INCBIN "gfx/mystery_gift/mystery_gift.2bpp"
-MysteryGiftGFXEnd:
+.End
 
 Function105688: ; 105688 (41:5688)
 	call ClearTileMap

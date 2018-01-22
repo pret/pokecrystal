@@ -36,5 +36,5 @@ MysteryGiftDecos: ; 2c74a
 	db DECOFLAG_PIKACHU_BED
 	db DECOFLAG_GRIMER_DOLL
 	db DECOFLAG_UNOWN_DOLL
-MysteryGiftDecosEnd
+.End
 ; 2c76f

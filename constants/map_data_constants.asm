@@ -97,7 +97,7 @@ const_value = -1
 	const SPAWN_OLIVINE
 	const SPAWN_ECRUTEAK
 	const SPAWN_MAHOGANY
-	const SPAWN_LAKE
+	const SPAWN_LAKE_OF_RAGE
 	const SPAWN_BLACKTHORN
 	const SPAWN_MT_SILVER
 	const SPAWN_FAST_SHIP

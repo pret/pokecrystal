@@ -15,7 +15,7 @@ GetMobileOTTrainerClass: ; mobile function
 .male_trainer_loop
 	srl c
 	ld a, c
-	cp MaleTrainersEnd - MaleTrainers - 1
+	cp MaleTrainers.End - MaleTrainers - 1
 	jr nc, .male_trainer_loop
 	inc c
 
@@ -33,7 +33,7 @@ GetMobileOTTrainerClass: ; mobile function
 .female_trainer_loop
 	srl c
 	ld a, c
-	cp FemaleTrainersEnd - FemaleTrainers - 1
+	cp FemaleTrainers.End - FemaleTrainers - 1
 	jr nc, .female_trainer_loop
 	inc c
 

@@ -59,7 +59,7 @@ MapRuinsOfAlphOmanyteChamberSignpost2Script:
 UnknownScript_0x58c36:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_OMANYTE_PUZZLE
-	setflag ENGINE_UNLOCKED_UNOWNS_2
+	setflag ENGINE_UNLOCKED_UNOWNS_L_TO_R
 	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, 1
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15

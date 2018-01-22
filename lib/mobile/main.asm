@@ -2169,7 +2169,7 @@ Function110ddd: ; 110ddd
 	push de
 	push bc
 	push hl
-	ld b, URIPrefixEnd - URIPrefix
+	ld b, URIPrefix.End - URIPrefix
 	ld de, URIPrefix
 .asm_110e53
 	ld a, [de]
@@ -2180,7 +2180,7 @@ Function110ddd: ; 110ddd
 	dec b
 	jr nz, .asm_110e53
 	push hl
-	ld b, HTTPUploadURLEnd - HTTPUploadURL
+	ld b, HTTPUploadURL.End - HTTPUploadURL
 	ld c, $0
 	ld de, HTTPUploadURL
 .asm_110e64
@@ -2197,7 +2197,7 @@ Function110ddd: ; 110ddd
 .asm_110e70
 	pop hl
 	push hl
-	ld b, HTTPRankingURLEnd - HTTPRankingURL
+	ld b, HTTPRankingURL.End - HTTPRankingURL
 	ld c, $0
 	ld de, HTTPRankingURL
 .asm_110e79
@@ -2214,7 +2214,7 @@ Function110ddd: ; 110ddd
 .asm_110e86
 	pop hl
 	push hl
-	ld b, HTTPUtilityURLEnd - HTTPUtilityURL
+	ld b, HTTPUtilityURL.End - HTTPUtilityURL
 	ld c, $0
 	ld de, HTTPUtilityURL
 .asm_110e8f
@@ -2233,7 +2233,7 @@ Function110ddd: ; 110ddd
 
 .asm_110ea2
 	pop hl
-	ld b, HTTPDownloadURLEnd - HTTPDownloadURL
+	ld b, HTTPDownloadURL.End - HTTPDownloadURL
 	ld c, $0
 	ld de, HTTPDownloadURL
 .asm_110eaa
@@ -2391,23 +2391,23 @@ Function110f07: ; 110f07
 
 URIPrefix: ; 0x110fad
 	db "http://"
-URIPrefixEnd
+.End
 
 HTTPDownloadURL: ; 0x110fb4
 	db "gameboy.datacenter.ne.jp/cgb/download"
-HTTPDownloadURLEnd
+.End
 
 HTTPUploadURL: ; 0x110fd9
 	db "gameboy.datacenter.ne.jp/cgb/upload"
-HTTPUploadURLEnd
+.End
 
 HTTPUtilityURL: ; 0x110ffc
 	db "gameboy.datacenter.ne.jp/cgb/utility"
-HTTPUtilityURLEnd
+.End
 
 HTTPRankingURL: ; 0x111020
 	db "gameboy.datacenter.ne.jp/cgb/ranking"
-HTTPRankingURLEnd
+.End
 
 Function111044: ; 111044
 	ld hl, $c827
@@ -2749,7 +2749,7 @@ endr
 	jp z, Function1113f7
 
 .asm_111251
-	ld b, URIPrefixEnd - URIPrefix
+	ld b, URIPrefix.End - URIPrefix
 	ld de, URIPrefix
 .asm_111256
 	ld a, [de]
@@ -2760,7 +2760,7 @@ endr
 	dec b
 	jr nz, .asm_111256
 	push hl
-	ld b, HTTPDownloadURLEnd - HTTPDownloadURL
+	ld b, HTTPDownloadURL.End - HTTPDownloadURL
 	ld c, $0
 	ld de, HTTPDownloadURL
 .asm_111268
@@ -2777,7 +2777,7 @@ endr
 .asm_111275
 	pop hl
 	push hl
-	ld b, HTTPRankingURLEnd - HTTPRankingURL
+	ld b, HTTPRankingURL.End - HTTPRankingURL
 	ld c, $0
 	ld de, HTTPRankingURL
 .asm_11127e
@@ -2795,7 +2795,7 @@ endr
 
 .asm_11128f
 	pop hl
-	ld b, HTTPUploadURLEnd - HTTPUploadURL
+	ld b, HTTPUploadURL.End - HTTPUploadURL
 	ld c, $0
 	ld de, HTTPUploadURL
 .asm_111297

@@ -16,4 +16,4 @@ OaksPkmnTalkRoutes:
 	map ROUTE_45
 	map ROUTE_36
 	map ROUTE_31
-OaksPkmnTalkRoutesEnd
+.End

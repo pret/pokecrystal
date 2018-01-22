@@ -1294,7 +1294,7 @@ Script_earthquake:
 
 	ld hl, EarthquakeMovement
 	ld de, wEarthquakeMovementDataBuffer
-	ld bc, EarthquakeMovementEnd - EarthquakeMovement
+	ld bc, EarthquakeMovement.End - EarthquakeMovement
 	call CopyBytes
 	call GetScriptByte
 	ld [wEarthquakeMovementDataBuffer + 1], a
@@ -1312,7 +1312,7 @@ EarthquakeMovement:
 	step_shake 16 ; the 16 gets overwritten with the script byte
 	step_sleep 16 ; the 16 gets overwritten with the lower 6 bits of the script byte
 	step_end
-EarthquakeMovementEnd
+.End
 
 
 Script_loadpikachudata:

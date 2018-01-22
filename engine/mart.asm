@@ -121,7 +121,7 @@ LoadMartPointer: ; 15b10
 
 GetMart: ; 15b31
 	ld a, e
-	cp (MartsEnd - Marts) / 2
+	cp (Marts.End - Marts) / 2
 	jr c, .IsAMart
 	ld b, BANK(DefaultMart)
 	ld de, DefaultMart

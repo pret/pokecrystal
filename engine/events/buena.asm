@@ -288,7 +288,7 @@ Buena_PrizeMenu: ; 8b0e2
 	dba .prizepoints
 ; 8b129
 
-NUM_BUENA_PRIZES EQU 9 ; ((BuenaPrizeItemsEnd - BuenaPrizeItems) / 2)
+NUM_BUENA_PRIZES EQU 9 ; ((BuenaPrizeItems.End - BuenaPrizeItems) / 2)
 
 .indices ; 8b129
 	db NUM_BUENA_PRIZES

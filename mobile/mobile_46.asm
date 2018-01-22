@@ -4105,12 +4105,10 @@ BattleTowerRoomMenu_IncrementJumptable: ; 119e2e (46:5e2e)
 
 XGameCodePrefix: ; 119e33
 INCBIN "data/mobile/x-game-code-prefix.txt"
-XGameCodePrefixEnd:
 ;119e40
 
 XGameResultPrefix: ; 119e40
 INCBIN "data/mobile/x-game-result-prefix.txt"
-XGameResultPrefixEnd:
 ; 119e4f
 
 Function119e4f: ; 119e4f

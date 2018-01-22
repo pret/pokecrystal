@@ -11,7 +11,7 @@ MomItems_1: ; fd136
 	momitem      0,   180, MOM_ITEM, POKE_BALL
 	momitem      0,   450, MOM_ITEM, ESCAPE_ROPE
 	momitem      0,   500, MOM_ITEM, GREAT_BALL
-MomItems_1End: ; fd15e
+.End ; fd15e
 
 MomItems_2: ; fd15e
 	momitem    900,   600, MOM_ITEM, SUPER_POTION
@@ -24,4 +24,4 @@ MomItems_2: ; fd15e
 	momitem  40000,   900, MOM_ITEM, HYPER_POTION
 	momitem  50000,  8000, MOM_DOLL, DECO_PIKACHU_DOLL
 	momitem 100000, 22800, MOM_DOLL, DECO_BIG_SNORLAX_DOLL
-MomItems_2End: ; fd1ae
+.End ; fd1ae

@@ -3037,7 +3037,7 @@ EZChat_GetSeenPokemonByKana: ; 11d3ba
 	ld [wcd34], a
 
 	ld hl, EZChat_SortedWords
-	ld a, (EZChat_SortedWordsEnd - EZChat_SortedWords) / 4
+	ld a, (EZChat_SortedWords.End - EZChat_SortedWords) / 4
 
 .MasterLoop: ; 11d3ef
 	push af
@@ -4196,4 +4196,4 @@ x = $d012
 	macro_11f23c $15 ; wa
 x = $d000
 	macro_11f23c $09 ; end
-EZChat_SortedWordsEnd:
+.End

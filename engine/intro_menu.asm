@@ -902,7 +902,7 @@ ShrinkPlayer: ; 610f
 
 Intro_RotatePalettesLeftFrontpic: ; 616a
 	ld hl, IntroFadePalettes
-	ld b, IntroFadePalettesEnd - IntroFadePalettes
+	ld b, IntroFadePalettes.End - IntroFadePalettes
 .loop
 	ld a, [hli]
 	call DmgToCgbBGPals
@@ -920,7 +920,7 @@ IntroFadePalettes: ; 0x617c
 	db %11111000
 	db %11110100
 	db %11100100
-IntroFadePalettesEnd
+.End
 ; 6182
 
 Intro_WipeInFrontpic: ; 6182
