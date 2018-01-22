@@ -1,3 +1,13 @@
+; InputType: ; c2c7
+AUTO_INPUT EQU $ff
+
+; wCurrentDexMode: ; c7d4
+	const_def
+	const DEXMODE_NEW
+	const DEXMODE_OLD
+	const DEXMODE_ABC
+	const DEXMODE_UNOWN
+
 ; MonType: ; cf5f
 	const_def
 	const PARTYMON   ; 0
@@ -6,14 +16,14 @@
 	const TEMPMON    ; 3
 	const WILDMON    ; 4
 
-; Options: (bits) ; cfcc
+; Options: ; cfcc
+
 const_value set 4
 	const NO_TEXT_SCROLL ; 4
 	const STEREO         ; 5
 	const BATTLE_SHIFT   ; 6
 	const BATTLE_SCENE   ; 7
 
-; Options: (bits 0-2)
 TEXT_DELAY_FAST EQU 1
 TEXT_DELAY_MED  EQU 3
 TEXT_DELAY_SLOW EQU 5
@@ -30,21 +40,21 @@ TEXT_DELAY_SLOW EQU 5
 	const FRAME_8 ; 7
 NUM_FRAMES EQU const_value
 
-; TextBoxFlags:
+; TextBoxFlags: ; cfcf
 	const_def
 	const FAST_TEXT_DELAY_F ; 0
 	const NO_TEXT_DELAY_F   ; 1
 
-; Options2:
-	const_def
-	const MENU_ACCOUNT ; 0
-
-; GBPrinter:
+; GBPrinter: ; cfd0
 GBPRINTER_LIGHTEST EQU $00
 GBPRINTER_LIGHTER  EQU $20
 GBPRINTER_NORMAL   EQU $40
 GBPRINTER_DARKER   EQU $60
 GBPRINTER_DARKEST  EQU $7f
+
+; Options2: ; cfd1
+	const_def
+	const MENU_ACCOUNT ; 0
 
 ; WalkingDirection: ; d043
 const_value set -1
@@ -62,10 +72,23 @@ RIGHT_MASK EQU 1 << RIGHT
 
 ; FacingDirection: ; d044
 FACE_CURRENT EQU 0
-FACE_DOWN  EQU 8
-FACE_UP    EQU 4
-FACE_LEFT  EQU 2
-FACE_RIGHT EQU 1
+FACE_DOWN    EQU 8
+FACE_UP      EQU 4
+FACE_LEFT    EQU 2
+FACE_RIGHT   EQU 1
+
+; wPokemonWithdrawDepositParameter: ; d10b
+PC_WITHDRAW       EQU 0
+PC_DEPOSIT        EQU 1
+DAY_CARE_WITHDRAW EQU 2
+DAY_CARE_DEPOSIT  EQU 3
+
+; wInitListType: ; d263
+INIT_ENEMYOT_LIST    EQU 1
+INIT_BAG_ITEM_LIST   EQU 2
+INIT_OTHER_ITEM_LIST EQU 3
+INIT_PLAYEROT_LIST   EQU 4
+INIT_MON_LIST        EQU 5
 
 ; TimeOfDay: ; d269
 	const_def
@@ -91,6 +114,10 @@ SCRIPT_READ EQU 1
 SCRIPT_WAIT_MOVEMENT EQU 2
 SCRIPT_WAIT EQU 3
 
+; wSpawnAfterChampion: ; d4b5
+SPAWN_LANCE EQU 1
+SPAWN_RED   EQU 2
+
 ; CurDay: ; d4cb
 	const_def
 	const SUNDAY    ; 0
@@ -102,43 +129,10 @@ SCRIPT_WAIT EQU 3
 	const SATURDAY  ; 6
 
 ; MapObjects: ; d71e
-
 PLAYER_OBJECT EQU 0
-
 NUM_OBJECTS   EQU $10
 
-; InputType: ; c2c7
-AUTO_INPUT EQU $ff
-
-; WhichRegisteredItem: ; d95b
-REGISTERED_POCKET EQU %11000000
-REGISTERED_NUMBER EQU %00111111
-
-; PlayerState: ; d95d
-PLAYER_NORMAL    EQU 0
-PLAYER_BIKE      EQU 1
-PLAYER_SKATE     EQU 2
-PLAYER_SURF      EQU 4
-PLAYER_SURF_PIKA EQU 8
-
-; After-Champion Spawn
-SPAWN_LANCE EQU 1
-SPAWN_RED   EQU 2
-
-; wPokemonWithdrawDepositParameter
-PC_WITHDRAW       EQU 0
-PC_DEPOSIT        EQU 1
-DAY_CARE_WITHDRAW EQU 2
-DAY_CARE_DEPOSIT  EQU 3
-
-; wCurrentDexMode
-	const_def
-	const DEXMODE_NEW
-	const DEXMODE_OLD
-	const DEXMODE_ABC
-	const DEXMODE_UNOWN
-
-; wJohtoBadges:
+; wJohtoBadges: ; d857
 	const_def
 	const ZEPHYRBADGE
 	const HIVEBADGE
@@ -150,7 +144,7 @@ DAY_CARE_DEPOSIT  EQU 3
 	const RISINGBADGE
 NUM_JOHTO_BADGES EQU const_value
 
-; wKantoBadges:
+; wKantoBadges: ; d858
 	const_def
 	const BOULDERBADGE
 	const CASCADEBADGE
@@ -163,9 +157,22 @@ NUM_JOHTO_BADGES EQU const_value
 NUM_KANTO_BADGES EQU const_value
 NUM_BADGES EQU NUM_JOHTO_BADGES + NUM_KANTO_BADGES
 
-; wInitListType:
-INIT_ENEMYOT_LIST    EQU 1
-INIT_BAG_ITEM_LIST   EQU 2
-INIT_OTHER_ITEM_LIST EQU 3
-INIT_PLAYEROT_LIST   EQU 4
-INIT_MON_LIST        EQU 5
+; wPokegearFlags: ; d957
+	const_def
+	const POKEGEAR_MAP_CARD_F   ; 0
+	const POKEGEAR_RADIO_CARD_F ; 1
+	const POKEGEAR_PHONE_CARD_F ; 2
+	const POKEGEAR_EXPN_CARD_F  ; 3
+
+POKEGEAR_OBTAINED_F EQU 7
+
+; WhichRegisteredItem: ; d95b
+REGISTERED_POCKET EQU %11000000
+REGISTERED_NUMBER EQU %00111111
+
+; PlayerState: ; d95d
+PLAYER_NORMAL    EQU 0
+PLAYER_BIKE      EQU 1
+PLAYER_SKATE     EQU 2
+PLAYER_SURF      EQU 4
+PLAYER_SURF_PIKA EQU 8

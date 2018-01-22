@@ -7,11 +7,11 @@ EngineFlags: ; 80462
 	; (all locations are in WRAM bank 1)
 
 	; pokegear
-	engine_flag wPokegearFlags, 1 ; radio card       ; $0
-	engine_flag wPokegearFlags, 0 ; map card
-	engine_flag wPokegearFlags, 2 ; phone card
-	engine_flag wPokegearFlags, 3 ; expn card
-	engine_flag wPokegearFlags, 7 ; on/off
+	engine_flag wPokegearFlags, POKEGEAR_RADIO_CARD_F ; $0
+	engine_flag wPokegearFlags, POKEGEAR_MAP_CARD_F
+	engine_flag wPokegearFlags, POKEGEAR_PHONE_CARD_F
+	engine_flag wPokegearFlags, POKEGEAR_EXPN_CARD_F
+	engine_flag wPokegearFlags, POKEGEAR_OBTAINED_F
 
 	;   wDayCareMan, 7 ; day-care 1 on
 	engine_flag wDayCareMan, 6 ; egg is ready
@@ -44,23 +44,23 @@ EngineFlags: ; 80462
 	engine_flag wBikeFlags, 1 ; always on bike (cant surf)
 	engine_flag wBikeFlags, 2 ; downhill (cycling road)
 
-	engine_flag wJohtoBadges, 0 ; zephyrbadge
-	engine_flag wJohtoBadges, 1 ; hivebadge
-	engine_flag wJohtoBadges, 2 ; plainbadge
-	engine_flag wJohtoBadges, 3 ; fogbadge
-	engine_flag wJohtoBadges, 4 ; mineralbadge
-	engine_flag wJohtoBadges, 5 ; stormbadge ; $20
-	engine_flag wJohtoBadges, 6 ; glacierbadge
-	engine_flag wJohtoBadges, 7 ; risingbadge
+	engine_flag wJohtoBadges, ZEPHYRBADGE
+	engine_flag wJohtoBadges, HIVEBADGE
+	engine_flag wJohtoBadges, PLAINBADGE
+	engine_flag wJohtoBadges, FOGBADGE
+	engine_flag wJohtoBadges, MINERALBADGE
+	engine_flag wJohtoBadges, STORMBADGE ; $20
+	engine_flag wJohtoBadges, GLACIERBADGE
+	engine_flag wJohtoBadges, RISINGBADGE
 
-	engine_flag wKantoBadges, 0 ; boulderbadge
-	engine_flag wKantoBadges, 1 ; cascadebadge
-	engine_flag wKantoBadges, 2 ; thunderbadge
-	engine_flag wKantoBadges, 3 ; rainbowbadge
-	engine_flag wKantoBadges, 4 ; soulbadge
-	engine_flag wKantoBadges, 5 ; marshbadge ; $28
-	engine_flag wKantoBadges, 6 ; volcanobadge
-	engine_flag wKantoBadges, 7 ; earthbadge
+	engine_flag wKantoBadges, BOULDERBADGE
+	engine_flag wKantoBadges, CASCADEBADGE
+	engine_flag wKantoBadges, THUNDERBADGE
+	engine_flag wKantoBadges, RAINBOWBADGE
+	engine_flag wKantoBadges, SOULBADGE
+	engine_flag wKantoBadges, MARSHBADGE ; $28
+	engine_flag wKantoBadges, VOLCANOBADGE
+	engine_flag wKantoBadges, EARTHBADGE
 
 	; unown sets
 	engine_flag wUnlockedUnowns, 0 ; 1

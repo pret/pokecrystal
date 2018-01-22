@@ -411,13 +411,13 @@ Pokegear_FinishTilemap: ; 90eb0 (24:4eb0)
 	call ByteFill
 	ld de, wPokegearFlags
 	ld a, [de]
-	bit 0, a ; ENGINE_MAP_CARD
+	bit POKEGEAR_MAP_CARD_F, a
 	call nz, .PlaceMapIcon
 	ld a, [de]
-	bit 2, a ; ENGINE_PHONE_CARD
+	bit POKEGEAR_PHONE_CARD_F, a
 	call nz, .PlacePhoneIcon
 	ld a, [de]
-	bit 1, a ; ENGINE_RADIO_CARD
+	bit POKEGEAR_RADIO_CARD_F, a
 	call nz, .PlaceRadioIcon
 	hlcoord 0, 0
 	ld a, $46
@@ -496,7 +496,7 @@ PokegearClock_Joypad: ; 90f3e (24:4f3e)
 	and D_RIGHT
 	ret z
 	ld a, [wPokegearFlags]
-	bit 0, a ; ENGINE_MAP_CARD
+	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map_card
 	ld c, POKEGEARSTATE_MAPCHECKREGION
 	ld b, POKEGEARCARD_MAP
@@ -504,7 +504,7 @@ PokegearClock_Joypad: ; 90f3e (24:4f3e)
 
 .no_map_card
 	ld a, [wPokegearFlags]
-	bit 2, a ; ENGINE_PHONE_CARD
+	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone_card
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
@@ -512,7 +512,7 @@ PokegearClock_Joypad: ; 90f3e (24:4f3e)
 
 .no_phone_card
 	ld a, [wPokegearFlags]
-	bit 1, a ; ENGINE_RADIO_CARD
+	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
@@ -613,7 +613,7 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 
 .right
 	ld a, [wPokegearFlags]
-	bit 2, a ; ENGINE_PHONE_CARD
+	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
@@ -621,7 +621,7 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 
 .no_phone
 	ld a, [wPokegearFlags]
-	bit 1, a ; ENGINE_RADIO_CARD
+	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
@@ -810,7 +810,7 @@ PokegearRadio_Joypad: ; 91112 (24:5112)
 
 .left
 	ld a, [wPokegearFlags]
-	bit 2, a ; ENGINE_PHONE_CARD
+	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
@@ -818,7 +818,7 @@ PokegearRadio_Joypad: ; 91112 (24:5112)
 
 .no_phone
 	ld a, [wPokegearFlags]
-	bit 0, a ; ENGINE_MAP_CARD
+	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map
 	ld c, POKEGEARSTATE_MAPCHECKREGION
 	ld b, POKEGEARCARD_MAP
@@ -869,7 +869,7 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 
 .left
 	ld a, [wPokegearFlags]
-	bit 0, a ; ENGINE_MAP_CARD
+	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map
 	ld c, POKEGEARSTATE_MAPCHECKREGION
 	ld b, POKEGEARCARD_MAP
@@ -882,7 +882,7 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 
 .right
 	ld a, [wPokegearFlags]
-	bit 1, a ; ENGINE_RADIO_CARD
+	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
@@ -1590,7 +1590,7 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a ; ENGINE_EXPN_CARD
+	bit POKEGEAR_EXPN_CARD_F, a
 	jr z, .NoSignal
 	jp LoadStation_PlacesAndPeople
 
@@ -1598,7 +1598,7 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a ; ENGINE_EXPN_CARD
+	bit POKEGEAR_EXPN_CARD_F, a
 	jr z, .NoSignal
 	jp LoadStation_LetsAllSing
 
@@ -1606,7 +1606,7 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a ; ENGINE_EXPN_CARD
+	bit POKEGEAR_EXPN_CARD_F, a
 	jr z, .NoSignal
 	jp LoadStation_PokeFluteRadio
 

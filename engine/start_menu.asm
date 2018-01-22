@@ -1,3 +1,16 @@
+; StartMenu.Items indexes
+	const_def
+	const STARTMENUITEM_POKEDEX  ; 0
+	const STARTMENUITEM_POKEMON  ; 1
+	const STARTMENUITEM_PACK     ; 2
+	const STARTMENUITEM_STATUS   ; 3
+	const STARTMENUITEM_SAVE     ; 4
+	const STARTMENUITEM_OPTION   ; 5
+	const STARTMENUITEM_EXIT     ; 6
+	const STARTMENUITEM_POKEGEAR ; 7
+	const STARTMENUITEM_QUIT     ; 8
+
+
 StartMenu:: ; 125cd
 
 	call ClearWindowData
@@ -171,6 +184,7 @@ StartMenu:: ; 125cd
 	dw .Items
 
 .Items:
+; entries correspond to STARTMENUITEM_* constants
 	dw StartMenu_Pokedex,  .PokedexString,  .PokedexDesc
 	dw StartMenu_Pokemon,  .PartyString,    .PartyDesc
 	dw StartMenu_Pack,     .PackString,     .PackDesc
@@ -181,41 +195,50 @@ StartMenu:: ; 125cd
 	dw StartMenu_Pokegear, .PokegearString, .PokegearDesc
 	dw StartMenu_Quit,     .QuitString,     .QuitDesc
 
-.PokedexString: 	db "#DEX@"
-.PartyString:   	db "#MON@"
-.PackString:    	db "PACK@"
-.StatusString:  	db "<PLAYER>@"
-.SaveString:    	db "SAVE@"
-.OptionString:  	db "OPTION@"
-.ExitString:    	db "EXIT@"
-.PokegearString:	db "<POKE>GEAR@"
-.QuitString:    	db "QUIT@"
+.PokedexString:  db "#DEX@"
+.PartyString:    db "#MON@"
+.PackString:     db "PACK@"
+.StatusString:   db "<PLAYER>@"
+.SaveString:     db "SAVE@"
+.OptionString:   db "OPTION@"
+.ExitString:     db "EXIT@"
+.PokegearString: db "<POKE>GEAR@"
+.QuitString:     db "QUIT@"
 
-.PokedexDesc:  db   "#MON"
+.PokedexDesc:
+	db   "#MON"
 	next "database@"
 
-.PartyDesc:    db   "Party <PKMN>"
+.PartyDesc:
+	db   "Party <PKMN>"
 	next "status@"
 
-.PackDesc:     db   "Contains"
+.PackDesc:
+	db   "Contains"
 	next "items@"
 
-.PokegearDesc: db   "Trainer's"
+.PokegearDesc:
+	db   "Trainer's"
 	next "key device@"
 
-.StatusDesc:   db   "Your own"
+.StatusDesc:
+	db   "Your own"
 	next "status@"
 
-.SaveDesc:     db   "Save your"
+.SaveDesc:
+	db   "Save your"
 	next "progress@"
 
-.OptionDesc:   db   "Change"
+.OptionDesc:
+	db   "Change"
 	next "settings@"
 
-.ExitDesc:     db   "Close this"
+.ExitDesc:
+	db   "Close this"
 	next "menu@"
 
-.QuitDesc:     db   "Quit and"
+.QuitDesc:
+	db   "Quit and"
 	next "be judged.@"
 
 
@@ -285,14 +308,14 @@ endr
 	ld hl, wStatusFlags
 	bit 0, [hl]
 	jr z, .no_pokedex
-	ld a, 0 ; pokedex
+	ld a, STARTMENUITEM_POKEDEX
 	call .AppendMenuList
 .no_pokedex
 
 	ld a, [PartyCount]
 	and a
 	jr z, .no_pokemon
-	ld a, 1 ; pokemon
+	ld a, STARTMENUITEM_POKEMON
 	call .AppendMenuList
 .no_pokemon
 
@@ -302,14 +325,14 @@ endr
 	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug catching contest
 	jr nz, .no_pack
-	ld a, 2 ; pack
+	ld a, STARTMENUITEM_PACK
 	call .AppendMenuList
 .no_pack
 
 	ld hl, wPokegearFlags
-	bit 7, [hl]
+	bit POKEGEAR_OBTAINED_F, [hl]
 	jr z, .no_pokegear
-	ld a, 7 ; pokegear
+	ld a, STARTMENUITEM_POKEGEAR
 	call .AppendMenuList
 .no_pokegear
 
@@ -321,16 +344,16 @@ endr
 	jr nz, .no_save
 	ld hl, wStatusFlags2
 	bit 2, [hl] ; bug catching contest
-	ld a, 8 ; quit
+	ld a, STARTMENUITEM_QUIT
 	jr nz, .write
-	ld a, 4 ; save
+	ld a, STARTMENUITEM_SAVE
 .write
 	call .AppendMenuList
 .no_save
 
-	ld a, 5 ; option
+	ld a, STARTMENUITEM_OPTION
 	call .AppendMenuList
-	ld a, 6 ; exit
+	ld a, STARTMENUITEM_EXIT
 	call .AppendMenuList
 	ld a, c
 	ld [MenuItemsList], a
@@ -383,7 +406,7 @@ endr
 
 .IsMenuAccountOn: ; 128cb
 	ld a, [Options2]
-	and 1
+	and 1 << MENU_ACCOUNT
 	ret
 ; 128d1
 
@@ -706,26 +729,26 @@ PokemonActionSubmenu: ; 12a88
 	ret
 
 .Actions:
-	dbw MONMENU_CUT,        MonMenu_Cut ; Cut
-	dbw MONMENU_FLY,        MonMenu_Fly ; Fly
-	dbw MONMENU_SURF,       MonMenu_Surf ; Surf
-	dbw MONMENU_STRENGTH,   MonMenu_Strength ; Strength
-	dbw MONMENU_FLASH,      MonMenu_Flash ; Flash
-	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool ; Whirlpool
-	dbw MONMENU_DIG,        MonMenu_Dig ; Dig
-	dbw MONMENU_TELEPORT,   MonMenu_Teleport ; Teleport
-	dbw MONMENU_SOFTBOILED, MonMenu_Softboiled_MilkDrink ; Softboiled
-	dbw MONMENU_MILKDRINK,  MonMenu_Softboiled_MilkDrink ; MilkDrink
-	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt ; Headbutt
-	dbw MONMENU_WATERFALL,  MonMenu_Waterfall ; Waterfall
-	dbw MONMENU_ROCKSMASH,  MonMenu_RockSmash ; RockSmash
-	dbw MONMENU_SWEETSCENT, MonMenu_SweetScent ; SweetScent
+	dbw MONMENU_CUT,        MonMenu_Cut
+	dbw MONMENU_FLY,        MonMenu_Fly
+	dbw MONMENU_SURF,       MonMenu_Surf
+	dbw MONMENU_STRENGTH,   MonMenu_Strength
+	dbw MONMENU_FLASH,      MonMenu_Flash
+	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool
+	dbw MONMENU_DIG,        MonMenu_Dig
+	dbw MONMENU_TELEPORT,   MonMenu_Teleport
+	dbw MONMENU_SOFTBOILED, MonMenu_Softboiled_MilkDrink
+	dbw MONMENU_MILKDRINK,  MonMenu_Softboiled_MilkDrink
+	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt
+	dbw MONMENU_WATERFALL,  MonMenu_Waterfall
+	dbw MONMENU_ROCKSMASH,  MonMenu_RockSmash
+	dbw MONMENU_SWEETSCENT, MonMenu_SweetScent
 	dbw MONMENU_STATS,      OpenPartyStats
 	dbw MONMENU_SWITCH,     SwitchPartyMons
 	dbw MONMENU_ITEM,       GiveTakePartyMonItem
 	dbw MONMENU_CANCEL,     CancelPokemonAction
-	dbw MONMENU_MOVE,       ManagePokemonMoves ; move
-	dbw MONMENU_MAIL,       MonMailAction ; mail
+	dbw MONMENU_MOVE,       ManagePokemonMoves
+	dbw MONMENU_MAIL,       MonMailAction
 ; 12aec
 
 
@@ -749,7 +772,7 @@ SwitchPartyMons: ; 12aec
 	farcall PrintPartyMenuText
 
 	hlcoord 0, 1
-	ld bc, 20 * 2
+	ld bc, SCREEN_WIDTH * 2
 	ld a, [wSwitchMon]
 	dec a
 	call AddNTimes
@@ -1038,7 +1061,7 @@ GetPartyItemLocation: ; 12cd7
 
 
 ReceiveItemFromPokemon: ; 12cdf
-	ld a, $1
+	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	jp ReceiveItem
@@ -1046,7 +1069,7 @@ ReceiveItemFromPokemon: ; 12cdf
 
 
 GiveItemToPokemon: ; 12cea (4:6cea)
-	ld a, $1
+	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, NumItems
 	jp TossItem
