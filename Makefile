@@ -234,3 +234,10 @@ gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -d1 -o $@ $@)
+
+%.tilemap: %.png
+	$(RGBGFX) -t $@ $<
+%.gbcpal: %.png
+	$(RGBGFX) -p $@ $<
+%.dimensions: %.png
+	tools/png_dimensions $< $@
