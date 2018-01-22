@@ -6,7 +6,7 @@ LoadFishingGFX: ; b84b3
 
 	ld de, FishingGFX
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
 	ld de, KrisFishingGFX
 .got_gender

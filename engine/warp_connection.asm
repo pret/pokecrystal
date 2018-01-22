@@ -322,7 +322,7 @@ RefreshMapSprites: ; 1047f0
 	farcall RefreshPlayerSprite
 	farcall CheckReplaceKrisSprite
 	ld hl, wPlayerSpriteSetupFlags
-	bit 6, [hl]
+	bit PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	jr nz, .skip
 	ld hl, VramState
 	set 0, [hl]

@@ -2543,7 +2543,7 @@ RefreshPlayerSprite: ; 579d
 
 .TryResetPlayerAction: ; 57bc
 	ld hl, wPlayerSpriteSetupFlags
-	bit 7, [hl]
+	bit PLAYERSPRITESETUP_RESET_ACTION_F, [hl]
 	jr nz, .ok
 	ret
 
@@ -2555,10 +2555,10 @@ RefreshPlayerSprite: ; 579d
 
 .SpawnInCustomFacing: ; 57ca
 	ld hl, wPlayerSpriteSetupFlags
-	bit 5, [hl]
+	bit PLAYERSPRITESETUP_CUSTOM_FACING_F, [hl]
 	ret z
 	ld a, [wPlayerSpriteSetupFlags]
-	and 3
+	and PLAYERSPRITESETUP_FACING_MASK
 	add a
 	add a
 	jr ContinueSpawnFacing

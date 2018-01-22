@@ -120,7 +120,7 @@
 ; wPlayerGender
 	const ENGINE_PLAYER_IS_FEMALE
 ; wCelebiEvent
-	const ENGINE_HAVE_EXAMINED_GS_BALL
+	const ENGINE_FOREST_IS_RESTLESS
 ; wDailyRematchFlags
 	const ENGINE_JACK
 	const ENGINE_HUEY

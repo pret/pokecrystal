@@ -62,10 +62,10 @@ GetPlayerSprite: ; 14183
 ; Get Chris or Kris's sprite.
 	ld hl, .Chris
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a
+	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .go
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .go
 	ld hl, .Kris
 

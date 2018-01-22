@@ -350,7 +350,7 @@ Special_CheckPokerus: ; c419
 Special_ResetLuckyNumberShowFlag: ; c422
 	farcall RestartLuckyNumberCountdown
 	ld hl, wLuckyNumberShowFlag
-	res 0, [hl]
+	res LUCKYNUMBERSHOW_GAME_OVER_F, [hl]
 	farcall LoadOrRegenerateLuckyIDNumber
 	ret
 ; c434

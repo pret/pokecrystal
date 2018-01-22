@@ -99,7 +99,7 @@ EngineFlags: ; 80462
 	engine_flag wVisitedSpawns, SPAWN_MT_SILVER
 	engine_flag wVisitedSpawns, NUM_SPAWNS ; unused
 
-	engine_flag wLuckyNumberShowFlag, 0 ; lucky number show
+	engine_flag wLuckyNumberShowFlag, LUCKYNUMBERSHOW_GAME_OVER_F
 	engine_flag wStatusFlags2, 3 ; ????
 
 	engine_flag wDailyFlags, 0 ; kurt making balls ; $50
@@ -125,9 +125,9 @@ EngineFlags: ; 80462
 
 	engine_flag wGameTimerPause, 7 ; $62
 
-	engine_flag wPlayerGender, 0 ; player is female
+	engine_flag wPlayerGender, PLAYERGENDER_FEMALE_F
 
-	engine_flag wCelebiEvent, 2 ; have gs ball after kurt examined it
+	engine_flag wCelebiEvent, CELEBIEVENT_FOREST_IS_RESTLESS_F
 
 	; rematches
 	engine_flag wDailyRematchFlags,  0 ; jack
@@ -191,7 +191,7 @@ EngineFlags: ; 80462
 	engine_flag wDailyPhoneTimeOfDayFlags, 22 ; parry
 	engine_flag wDailyPhoneTimeOfDayFlags, 23 ; erin
 
-	engine_flag wPlayerSpriteSetupFlags, 2 ; female player has been transformed into male
+	engine_flag wPlayerSpriteSetupFlags, PLAYERSPRITESETUP_FEMALE_TO_MALE_F
 
 	engine_flag wSwarmFlags, 2 ; dunsparce swarm ; $a0
 	engine_flag wSwarmFlags, 3 ; yanma swarm

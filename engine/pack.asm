@@ -1288,7 +1288,7 @@ DrawPackGFX: ; 1089d
 	cp BATTLETYPE_TUTORIAL
 	jr z, .male_dude
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr nz, .female
 .male_dude
 	ld hl, PackGFXPointers

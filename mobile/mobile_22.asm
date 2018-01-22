@@ -619,7 +619,7 @@ Function89481: ; 89481
 Function89492: ; 89492 (22:5492)
 	ld d, 0
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	ret z
 	inc d
 	ret
@@ -1269,7 +1269,7 @@ Function897d5: ; 897d5
 Function89807: ; 89807 (22:5807)
 	ld hl, MobileAdapterGFX + $20 tiles
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .asm_89814
 	ld hl, MobileAdapterGFX + $43 tiles
 .asm_89814

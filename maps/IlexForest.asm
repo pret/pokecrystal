@@ -464,7 +464,7 @@ MapIlexForestSignpost4Script:
 	pause 30
 	spriteface PLAYER, DOWN
 	pause 20
-	clearflag ENGINE_HAVE_EXAMINED_GS_BALL
+	clearflag ENGINE_FOREST_IS_RESTLESS
 	special Special_CelebiShrineEvent
 	loadwildmon CELEBI, 30
 	startbattle

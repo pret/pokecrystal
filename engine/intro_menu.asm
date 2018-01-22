@@ -812,7 +812,7 @@ NamePlayer: ; 0x6074
 	ld hl, PlayerName
 	ld de, .Chris
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .Male
 	ld de, .Kris
 .Male:
@@ -988,7 +988,7 @@ Intro_PlacePlayerSprite: ; 61cd
 
 	ld b, PAL_OW_RED
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .male
 	ld b, PAL_OW_BLUE
 .male

@@ -2285,7 +2285,9 @@ wXYComparePointer:: dw ; d453
 wBattleScriptFlags:: dw ; d459
 wPlayerSpriteSetupFlags:: ; d45b
 ; bit 7: if set, cancel PlayerAction
+; bit 6: RefreshMapSprites doesn't reload player sprite
 ; bit 5: if set, set facing according to bits 0-1
+; bit 2: female player has been transformed into male
 ; bits 0-1: direction facing
 	db
 wMapReentryScriptQueueFlag:: db ; d45c MemScriptFlag
@@ -2626,7 +2628,9 @@ wCurBox:: db ; db72
 ; 8 chars + $50
 wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES ; db75
 
-wCelebiEvent:: db
+wCelebiEvent:: ; dbf3
+; bit 2: forest is restless
+	db
 
 	ds 1
 
@@ -2720,7 +2724,8 @@ wPhoneList:: ds CONTACT_LIST_SIZE ; dc7c
 ; dc86
 	ds 23
 
-wLuckyNumberShowFlag:: dw ; dc9d
+wLuckyNumberShowFlag:: db ; dc9d
+	ds 1
 wLuckyIDNumber:: dw ; dc9f
 
 wRepelEffect:: db ; If a Repel is in use, it contains the nr of steps it's still active

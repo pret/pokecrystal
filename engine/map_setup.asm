@@ -143,13 +143,13 @@ LoadObjectsRunCallback_02: ; 154d7
 
 DelayClearingOldSprites: ; 154eb
 	ld hl, wPlayerSpriteSetupFlags
-	set 7, [hl]
+	set PLAYERSPRITESETUP_RESET_ACTION_F, [hl]
 	ret
 ; 154f1
 
 DelayLoadingNewSprites: ; 154f1
 	ld hl, wPlayerSpriteSetupFlags
-	set 6, [hl]
+	set PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	ret
 
 CheckReplaceKrisSprite: ; 154f7

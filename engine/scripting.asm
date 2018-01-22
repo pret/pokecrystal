@@ -2477,7 +2477,7 @@ Script_warpfacing:
 	maskbits NUM_DIRECTIONS
 	ld c, a
 	ld a, [wPlayerSpriteSetupFlags]
-	set 5, a
+	set PLAYERSPRITESETUP_CUSTOM_FACING_F, a
 	or c
 	ld [wPlayerSpriteSetupFlags], a
 ; fall through
