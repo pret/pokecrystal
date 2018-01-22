@@ -1639,7 +1639,7 @@ BattleCommand_ResetTypeMatchup: ; 34833
 
 INCLUDE "engine/battle/ai/switch.asm"
 
-INCLUDE "data/battle/type_matchups.asm"
+INCLUDE "data/types/type_matchups.asm"
 
 BattleCommand_DamageVariation: ; 34cfd
 ; damagevariation
@@ -3642,7 +3642,7 @@ BattleCommand_DamageCalc: ; 35612
 ; 35703
 
 
-INCLUDE "data/battle/type_boost_items.asm"
+INCLUDE "data/types/type_boost_items.asm"
 
 
 BattleCommand_ConstantDamage: ; 35726

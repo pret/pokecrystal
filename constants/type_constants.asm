@@ -2,7 +2,8 @@
 ; also used in:
 ; - PokedexTypeSearchConversionTable (see data/types/search_types.asm)
 ; - PokedexTypeSearchStrings (see data/types/search_strings.asm)
-; - TypeMatchups (see data/battle/type_matchups.asm)
+; - TypeMatchups (see data/types/type_matchups.asm)
+; - TypeBoostItems (see data/types/type_boost_items.asm)
 	const_def
 
 PHYSICAL EQU const_value
