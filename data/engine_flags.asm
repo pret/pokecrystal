@@ -104,23 +104,23 @@ EngineFlags: ; 80462
 
 	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_F
 
-	engine_flag wDailyFlags, 0 ; kurt making balls ; $50
-	engine_flag wDailyFlags, 1 ; ????
-	engine_flag wDailyFlags, 2 ; special wilddata?
-	engine_flag wDailyFlags, 3 ; time capsule (24h wait)
-	engine_flag wDailyFlags, 4 ; all fruit trees
-	engine_flag wDailyFlags, 5 ; shuckle given
-	engine_flag wDailyFlags, 6 ; goldenrod underground merchant closed
-	engine_flag wDailyFlags, 7 ; fought in trainer hall today
+	engine_flag wDailyFlags, DAILYFLAGS_KURT_MAKING_BALLS_F ; $50
+	engine_flag wDailyFlags, DAILYFLAGS_BUG_CONTEST_F
+	engine_flag wDailyFlags, DAILYFLAGS_FISH_SWARM_F
+	engine_flag wDailyFlags, DAILYFLAGS_TIME_CAPSULE_F
+	engine_flag wDailyFlags, DAILYFLAGS_ALL_FRUIT_TREES_F
+	engine_flag wDailyFlags, DAILYFLAGS_GOT_SHUCKIE_TODAY_F
+	engine_flag wDailyFlags, DAILYFLAGS_GOLDENROD_UNDERGROUND_BARGAIN_F
+	engine_flag wDailyFlags, DAILYFLAGS_TRAINER_HOUSE_F
 
-	engine_flag wWeeklyFlags, 0 ; mt moon square clefairy ; $58
-	engine_flag wWeeklyFlags, 1 ; union cave lapras
-	engine_flag wWeeklyFlags, 2 ; goldenrod underground haircut used
-	engine_flag wWeeklyFlags, 3 ; goldenrod mall happiness event floor05 object07
-	engine_flag wWeeklyFlags, 4 ; tea in blues house
-	engine_flag wWeeklyFlags, 5 ; indigo plateau rival fight
-	engine_flag wWeeklyFlags, 6 ; move tutor
-	engine_flag wWeeklyFlags, 7 ; buenas password
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_MT_MOON_SQUARE_CLEFAIRY_F ; $58
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_UNION_CAVE_LAPRAS_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_GOLDENROD_UNDERGROUND_GOT_HAIRCUT_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_GOLDENROD_DEPT_STORE_TM27_RETURN_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_DAISYS_GROOMING_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_INDIGO_PLATEAU_RIVAL_FIGHT_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_DAILY_MOVE_TUTOR_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_BUENAS_PASSWORD_F
 
 	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F
 	engine_flag wSwarmFlags, SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F

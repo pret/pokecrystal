@@ -31,7 +31,7 @@ ManiaScript:
 	end
 
 .alreadyhaveshuckie
-	checkflag ENGINE_SHUCKLE_GIVEN
+	checkflag ENGINE_GOT_SHUCKIE_TODAY
 	iffalse .returnshuckie
 	writetext ManiaText_TakeCareOfShuckle
 	waitbutton

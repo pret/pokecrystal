@@ -17,7 +17,6 @@ AUTO_INPUT EQU $ff
 	const WILDMON    ; 4
 
 ; Options:: ; cfcc
-
 const_value set 4
 	const NO_TEXT_SCROLL ; 4
 	const STEREO         ; 5
@@ -225,6 +224,28 @@ CELEBIEVENT_FOREST_IS_RESTLESS_F EQU 2
 	const BIKEFLAGS_STRENGTH_ACTIVE_F ; 0
 	const BIKEFLAGS_ALWAYS_ON_BIKE_F  ; 1
 	const BIKEFLAGS_DOWNHILL_F        ; 2
+
+; wDailyFlags:: ; dc1e
+	const_def
+	const DAILYFLAGS_KURT_MAKING_BALLS_F             ; 0
+	const DAILYFLAGS_BUG_CONTEST_F                   ; 1
+	const DAILYFLAGS_FISH_SWARM_F                    ; 2
+	const DAILYFLAGS_TIME_CAPSULE_F                  ; 3
+	const DAILYFLAGS_ALL_FRUIT_TREES_F               ; 4
+	const DAILYFLAGS_GOT_SHUCKIE_TODAY_F             ; 5
+	const DAILYFLAGS_GOLDENROD_UNDERGROUND_BARGAIN_F ; 6
+	const DAILYFLAGS_TRAINER_HOUSE_F                 ; 7
+
+; wWeeklyFlags:: ; dc1f
+	const_def
+	const WEEKLYFLAGS_MT_MOON_SQUARE_CLEFAIRY_F ; 0
+	const WEEKLYFLAGS_UNION_CAVE_LAPRAS_F ; 1
+	const WEEKLYFLAGS_GOLDENROD_UNDERGROUND_GOT_HAIRCUT_F ; 2
+	const WEEKLYFLAGS_GOLDENROD_DEPT_STORE_TM27_RETURN_F ; 3
+	const WEEKLYFLAGS_DAISYS_GROOMING_F ; 4
+	const WEEKLYFLAGS_INDIGO_PLATEAU_RIVAL_FIGHT_F ; 5
+	const WEEKLYFLAGS_DAILY_MOVE_TUTOR_F ; 6
+	const WEEKLYFLAGS_BUENAS_PASSWORD_F ; 7
 
 ; wSwarmFlags:: ; dc20
 	const_def

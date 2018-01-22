@@ -1560,7 +1560,7 @@ BuenasPassword4:
 	ld a, [wBuenasPassword]
 ; If we already generated the password today, we don't need to generate a new one.
 	ld hl, wWeeklyFlags
-	bit 7, [hl] ; ENGINE_BUENAS_PASSWORD
+	bit WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 	jr nz, .AlreadyGotIt
 ; There are only 11 groups to choose from.
 .greater_than_11
@@ -1582,7 +1582,7 @@ BuenasPassword4:
 	ld [wBuenasPassword], a
 ; Set the flag so that we don't generate a new password this week.
 	ld hl, wWeeklyFlags
-	set 7, [hl] ; ENGINE_BUENAS_PASSWORD
+	set WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 .AlreadyGotIt:
 	ld c, a
 	call GetBuenasPassword
@@ -1703,14 +1703,14 @@ BuenasPassword7:
 BuenasPasswordAfterMidnight:
 	push hl
 	ld hl, wWeeklyFlags
-	res 7, [hl] ; ENGINE_BUENAS_PASSWORD
+	res WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 	pop hl
 	ld a, BUENAS_PASSWORD_8
 	jp NextRadioLine
 
 BuenasPassword8:
 	ld hl, wWeeklyFlags
-	res 7, [hl] ; ENGINE_BUENAS_PASSWORD
+	res WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 	ld hl, BuenaRadioMidnightText10
 	ld a, BUENAS_PASSWORD_9
 	jp NextRadioLine
@@ -1778,7 +1778,7 @@ BuenasPassword20:
 	pop af
 	ld [hBGMapMode], a
 	ld hl, wWeeklyFlags
-	res 7, [hl]
+	res WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 	ld a, BUENAS_PASSWORD
 	ld [wCurrentRadioLine], a
 	xor a

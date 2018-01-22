@@ -788,7 +788,7 @@ RalphPhoneScript1:
 	checkmorn
 	iftrue Ralph_WednesdayMorning
 Ralph_CheckSwarm:
-	checkflag ENGINE_SPECIAL_WILDDATA
+	checkflag ENGINE_FISH_SWARM
 	iftrue Ralph_ReportSwarm
 	farjump UnknownScript_0xa0940
 
@@ -824,9 +824,9 @@ Ralph_FightMe:
 	farjump PhoneScript_WantsToBattle_Male
 
 Ralph_SetUpSwarm:
-	checkflag ENGINE_SPECIAL_WILDDATA
+	checkflag ENGINE_FISH_SWARM
 	iftrue .Generic
-	setflag ENGINE_SPECIAL_WILDDATA
+	setflag ENGINE_FISH_SWARM
 	pokenamemem QWILFISH, MEM_BUFFER_1
 	landmarktotext ROUTE_32, MEM_BUFFER_2
 	writebyte FISHSWARM_QWILFISH

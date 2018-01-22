@@ -102,10 +102,10 @@ CheckDailyResetTimer:: ; 11452
 	ret nc
 	xor a
 	ld hl, wDailyFlags
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
+	ld [hli], a ; wDailyFlags
+	ld [hli], a ; wWeeklyFlags
+	ld [hli], a ; wSwarmFlags
+	ld [hl], a  ; wSwarmFlags + 1
 	ld hl, wDailyRematchFlags
 rept 4
 	ld [hli], a
@@ -227,14 +227,14 @@ CheckUnusedTwoDayTimer: ; 1150c
 
 ; unused
 	ld hl, wDailyFlags
-	set 2, [hl]
+	set DAILYFLAGS_FISH_SWARM_F, [hl]
 	ret
 ; 11522
 
 ; unused
 	and a
 	ld hl, wDailyFlags
-	bit 2, [hl]
+	bit DAILYFLAGS_FISH_SWARM_F, [hl]
 	ret nz
 	scf
 	ret

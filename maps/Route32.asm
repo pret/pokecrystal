@@ -174,7 +174,7 @@ TrainerFisherRalph1:
 	opentext
 	checkflag ENGINE_RALPH
 	iftrue .Rematch
-	checkflag ENGINE_SPECIAL_WILDDATA
+	checkflag ENGINE_FISH_SWARM
 	iftrue .Swarm
 	checkcellnum PHONE_FISHER_RALPH
 	iftrue .NumberAccepted

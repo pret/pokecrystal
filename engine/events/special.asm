@@ -56,7 +56,7 @@ Special_GiveShuckle: ; 7305
 
 ; Engine flag for this event.
 	ld hl, wDailyFlags
-	set 5, [hl] ; ENGINE_SHUCKLE_GIVEN
+	set DAILYFLAGS_GOT_SHUCKIE_TODAY_F, [hl]
 	ld a, 1
 	ld [ScriptVar], a
 	ret

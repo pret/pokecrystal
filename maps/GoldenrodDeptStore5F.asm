@@ -63,7 +63,7 @@ ReceptionistScript_0x560ce:
 	opentext
 	checkcode VAR_WEEKDAY
 	if_not_equal SUNDAY, .EventIsOver
-	checkflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
+	checkflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	iftrue .EventIsOver
 	special Special_GetFirstPokemonHappiness
 	writetext UnknownText_0x56143
@@ -77,7 +77,7 @@ ReceptionistScript_0x560ce:
 	buttonsound
 	verbosegiveitem TM_RETURN
 	iffalse .Done
-	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
+	setflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	closetext
 	end
 
@@ -92,7 +92,7 @@ ReceptionistScript_0x560ce:
 	buttonsound
 	verbosegiveitem TM_FRUSTRATION
 	iffalse .Done
-	setflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
+	setflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	closetext
 	end
 

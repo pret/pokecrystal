@@ -19,7 +19,7 @@ DaisyScript:
 	end
 
 .ThreePM:
-	checkflag ENGINE_TEA_IN_BLUES_HOUSE
+	checkflag ENGINE_DAISYS_GROOMING
 	iftrue .AlreadyGroomedMon
 	writetext DaisyOfferGroomingText
 	yesorno
@@ -29,7 +29,7 @@ DaisyScript:
 	special Special_DaisyMassage
 	if_equal $0, .Refused
 	if_equal $1, .CantGroomEgg
-	setflag ENGINE_TEA_IN_BLUES_HOUSE
+	setflag ENGINE_DAISYS_GROOMING
 	writetext DaisyAlrightText
 	waitbutton
 	closetext

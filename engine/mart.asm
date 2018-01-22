@@ -59,7 +59,7 @@ BargainShop: ; 15a84
 	or [hl]
 	jr z, .skip_set
 	ld hl, wDailyFlags
-	set 6, [hl]
+	set DAILYFLAGS_GOLDENROD_UNDERGROUND_BARGAIN_F, [hl]
 
 .skip_set
 	ld hl, Text_BargainShop_ComeAgain

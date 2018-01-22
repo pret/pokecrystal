@@ -98,7 +98,7 @@ GetFishGroupIndex: ; 9245b
 
 	push hl
 	ld hl, wDailyFlags
-	bit 2, [hl]
+	bit DAILYFLAGS_FISH_SWARM_F, [hl]
 	pop hl
 	jr z, .done
 
