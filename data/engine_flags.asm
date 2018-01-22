@@ -14,13 +14,10 @@ EngineFlags: ; 80462
 	engine_flag wPokegearFlags, POKEGEAR_EXPN_CARD_F
 	engine_flag wPokegearFlags, POKEGEAR_OBTAINED_F
 
-	;   wDayCareMan, 7 ; day-care 1 on
-	engine_flag wDayCareMan, 6 ; egg is ready
-	;   wDayCareMan, 5 ; monster 1 and 2 are compatible
-	engine_flag wDayCareMan, 0 ; monster 1 in day-care
-
-	;   wDayCareLady, 7 = day-care 2 on
-	engine_flag wDayCareLady, 0 ; monster 2 in day-care
+	; day-care
+	engine_flag wDayCareMan, DAYCAREMAN_HAS_EGG_F
+	engine_flag wDayCareMan, DAYCAREMAN_HAS_MON_F
+	engine_flag wDayCareLady, DAYCARELADY_HAS_MON_F
 
 	engine_flag wMomSavingMoney, 0 ; mom saving money ; $8
 	engine_flag wMomSavingMoney, 7 ; dst

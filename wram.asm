@@ -2787,8 +2787,8 @@ wFirstUnownSeen:: db
 
 wDayCareMan:: ; def5
 ; bit 7: active
-; bit 6: monsters are compatible
-; bit 5: egg ready
+; bit 6: egg ready
+; bit 5: monsters are compatible
 ; bit 0: monster 1 in day-care
 	db
 

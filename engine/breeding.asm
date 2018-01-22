@@ -288,7 +288,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	push hl
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld b, $0
+	ld b, FALSE
 	predef CalcPkmnStats
 	pop bc
 	ld hl, MON_MAXHP
@@ -705,7 +705,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	call DisableLCD
 	ld hl, EggHatchGFX
 	ld de, vTiles0 tile $00
-	ld bc, $20
+	ld bc, 2 tiles
 	ld a, BANK(EggHatchGFX)
 	call FarCopyBytes
 	farcall ClearSpriteAnims
@@ -893,7 +893,7 @@ Special_DayCareMon1: ; 17421
 	ld a, [wBreedMon1Species]
 	call PlayMonCry
 	ld a, [wDayCareLady]
-	bit 0, a
+	bit DAYCARELADY_HAS_MON_F, a
 	jr z, DayCareMonCursor
 	call ButtonSound
 	ld hl, wBreedMon2Nick
@@ -906,7 +906,7 @@ Special_DayCareMon2: ; 17440
 	ld a, [wBreedMon2Species]
 	call PlayMonCry
 	ld a, [wDayCareMan]
-	bit 0, a
+	bit DAYCAREMAN_HAS_MON_F, a
 	jr z, DayCareMonCursor
 	call ButtonSound
 	ld hl, wBreedMon1Nick

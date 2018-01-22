@@ -23,7 +23,7 @@
 
 Special_DayCareMan: ; 166d6
 	ld hl, wDayCareMan
-	bit 0, [hl]
+	bit DAYCAREMAN_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
 	ld hl, wDayCareMan
 	ld a, DAYCARETEXT_MAN_INTRO
@@ -33,7 +33,7 @@ Special_DayCareMan: ; 166d6
 	jr c, .print_text
 	farcall DepositMonWithDayCareMan
 	ld hl, wDayCareMan
-	set 0, [hl]
+	set DAYCAREMAN_HAS_MON_F, [hl]
 	call DayCare_DepositPokemonText
 	call DayCare_InitBreeding
 	ret
@@ -47,8 +47,8 @@ Special_DayCareMan: ; 166d6
 	farcall RetrievePokemonFromDayCareMan
 	call DayCare_GetBackMonForMoney
 	ld hl, wDayCareMan
-	res 0, [hl]
-	res 5, [hl]
+	res DAYCAREMAN_HAS_MON_F, [hl]
+	res DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 	jr .cancel
 
 .print_text
@@ -62,7 +62,7 @@ Special_DayCareMan: ; 166d6
 
 Special_DayCareLady: ; 1672a
 	ld hl, wDayCareLady
-	bit 0, [hl]
+	bit DAYCARELADY_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
 	ld hl, wDayCareLady
 	ld a, DAYCARETEXT_LADY_INTRO
@@ -72,7 +72,7 @@ Special_DayCareLady: ; 1672a
 	jr c, .print_text
 	farcall DepositMonWithDayCareLady
 	ld hl, wDayCareLady
-	set 0, [hl]
+	set DAYCARELADY_HAS_MON_F, [hl]
 	call DayCare_DepositPokemonText
 	call DayCare_InitBreeding
 	ret
@@ -86,9 +86,9 @@ Special_DayCareLady: ; 1672a
 	farcall RetrievePokemonFromDayCareLady
 	call DayCare_GetBackMonForMoney
 	ld hl, wDayCareLady
-	res 0, [hl]
+	res DAYCARELADY_HAS_MON_F, [hl]
 	ld hl, wDayCareMan
-	res 5, [hl]
+	res DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 	jr .cancel
 
 .print_text
@@ -101,9 +101,9 @@ Special_DayCareLady: ; 1672a
 ; 16781
 
 DayCareLadyIntroText: ; 16781
-	bit 7, [hl]
+	bit DAYCARELADY_ACTIVE_F, [hl]
 	jr nz, .okay
-	set 7, [hl]
+	set DAYCARELADY_ACTIVE_F, [hl]
 	inc a
 .okay
 	call PrintDayCareText
@@ -112,7 +112,7 @@ DayCareLadyIntroText: ; 16781
 ; 1678f
 
 DayCareManIntroText: ; 1678f
-	set 7, [hl]
+	set DAYCAREMAN_ACTIVE_F, [hl]
 	call PrintDayCareText
 	call YesNoBox
 	ret
@@ -429,7 +429,7 @@ PrintDayCareText: ; 1689b
 
 Special_DayCareManOutside: ; 16936
 	ld hl, wDayCareMan
-	bit 6, [hl]
+	bit DAYCAREMAN_HAS_EGG_F, [hl]
 	jr nz, .AskGiveEgg
 	ld hl, .NotYet
 	call PrintText
@@ -451,7 +451,7 @@ Special_DayCareManOutside: ; 16936
 	jr nc, .PartyFull
 	call DayCare_GiveEgg
 	ld hl, wDayCareMan
-	res 6, [hl]
+	res DAYCAREMAN_HAS_EGG_F, [hl]
 	call DayCare_InitBreeding
 	ld hl, .GotEggText
 	call PrintText
@@ -593,10 +593,10 @@ DayCare_GetCurrentPartyMember: ; 16a31
 
 DayCare_InitBreeding: ; 16a3b
 	ld a, [wDayCareLady]
-	bit 0, a
+	bit DAYCARELADY_HAS_MON_F, a
 	ret z
 	ld a, [wDayCareMan]
-	bit 0, a
+	bit DAYCAREMAN_HAS_MON_F, a
 	ret z
 	callfar CheckBreedmonCompatibility
 	ld a, [wd265]
@@ -605,7 +605,7 @@ DayCare_InitBreeding: ; 16a3b
 	inc a
 	ret z
 	ld hl, wDayCareMan
-	set 5, [hl]
+	set DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 .loop
 	call Random
 	cp 150
@@ -660,6 +660,7 @@ DayCare_InitBreeding: ; 16a3b
 	ld a, EGG_LEVEL
 	ld [CurPartyLevel], a
 
+; Nidoran♀ can give birth to either gender of Nidoran
 	ld a, [CurPartySpecies]
 	cp NIDORAN_F
 	jr nz, .GotEggSpecies
