@@ -543,13 +543,13 @@ ENDM
 	map_data IlexForestAzaleaGate, ILEX_FOREST_AZALEA_GATE, $00, 0
 	map_data Route34IlexForestGate, ROUTE_34_ILEX_FOREST_GATE, $00, 0
 	map_data DayCare, DAY_CARE, $00, 0
-	map_data VermilionHouseFishingSpeechHouse, VERMILION_HOUSE_FISHING_SPEECH_HOUSE, $00, 0
+	map_data VermilionFishingSpeechHouse, VERMILION_FISHING_SPEECH_HOUSE, $00, 0
 	map_data VermilionPokecenter1F, VERMILION_POKECENTER_1F, $00, 0
 	map_data VermilionPokecenter2FBeta, VERMILION_POKECENTER_2F_BETA, $00, 0
 	map_data PokemonFanClub, POKEMON_FAN_CLUB, $00, 0
 	map_data VermilionMagnetTrainSpeechHouse, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE, $00, 0
 	map_data VermilionMart, VERMILION_MART, $00, 0
-	map_data VermilionHouseDiglettsCaveSpeechHouse, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE, $00, 0
+	map_data VermilionDiglettsCaveSpeechHouse, VERMILION_DIGLETTS_CAVE_SPEECH_HOUSE, $00, 0
 	map_data VermilionGym, VERMILION_GYM, $00, 0
 	map_data Route6SaffronGate, ROUTE_6_SAFFRON_GATE, $00, 0
 	map_data Route6UndergroundPathEntrance, ROUTE_6_UNDERGROUND_PATH_ENTRANCE, $00, 0

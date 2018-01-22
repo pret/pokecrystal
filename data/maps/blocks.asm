@@ -168,9 +168,9 @@ GoldenrodHappinessRater_Blocks:
 GoldenrodBillsHouse_Blocks:
 GoldenrodPPSpeechHouse_Blocks:
 GoldenrodNameRater_Blocks:
-VermilionHouseFishingSpeechHouse_Blocks:
+VermilionFishingSpeechHouse_Blocks:
 VermilionMagnetTrainSpeechHouse_Blocks:
-VermilionHouseDiglettsCaveSpeechHouse_Blocks:
+VermilionDiglettsCaveSpeechHouse_Blocks:
 BluesHouse_Blocks:
 PewterNidoranSpeechHouse_Blocks:
 PewterSnoozeSpeechHouse_Blocks:
