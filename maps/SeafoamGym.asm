@@ -2,7 +2,7 @@ const_value set 2
 	const SEAFOAMGYM_BLAINE
 	const SEAFOAMGYM_GYM_GUY
 
-SeafoamGym_MapScriptHeader:
+SeafoamGym_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -22,7 +22,7 @@ BlaineScript_0x1ab4fb:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1ab646, 0
-	loadtrainer BLAINE, 1
+	loadtrainer BLAINE, BLAINE1
 	startbattle
 	iftrue .ReturnAfterBattle
 	appear SEAFOAMGYM_GYM_GUY
@@ -157,7 +157,7 @@ SeafoamGymGuyWinText2:
 	line "for a building."
 	done
 
-SeafoamGym_MapEventHeader:
+SeafoamGym_MapEvents:
 	; filler
 	db 0, 0
 

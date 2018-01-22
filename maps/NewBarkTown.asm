@@ -3,7 +3,7 @@ const_value set 2
 	const NEWBARKTOWN_FISHER
 	const NEWBARKTOWN_SILVER
 
-NewBarkTown_MapScriptHeader:
+NewBarkTown_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -11,7 +11,7 @@ NewBarkTown_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
 	end
@@ -249,7 +249,7 @@ Text_ElmDiscoveredNewMon:
 	done
 
 NewBarkTownRivalText1:
-	text "<......>"
+	text "<……>"
 
 	para "So this is the"
 	line "famous ELM #MON"
@@ -281,7 +281,7 @@ ElmsHouseSignText:
 	text "ELM'S HOUSE"
 	done
 
-NewBarkTown_MapEventHeader:
+NewBarkTown_MapEvents:
 	; filler
 	db 0, 0
 

@@ -23,7 +23,7 @@ CanLearnTMHMMove: ; 11639
 	ld b, CHECK_FLAG
 	push de
 	ld d, 0
-	predef FlagPredef
+	predef SmallFarFlagAction
 	pop de
 	ret
 

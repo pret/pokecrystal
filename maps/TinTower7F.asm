@@ -1,7 +1,7 @@
 const_value set 2
 	const TINTOWER7F_POKE_BALL
 
-TinTower7F_MapScriptHeader:
+TinTower7F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -11,7 +11,7 @@ TinTower7F_MapScriptHeader:
 TinTower7FMaxRevive:
 	itemball MAX_REVIVE
 
-TinTower7F_MapEventHeader:
+TinTower7F_MapEvents:
 	; filler
 	db 0, 0
 

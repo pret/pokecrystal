@@ -1,4 +1,4 @@
-SpecialBuenasPassword: ; 8af6b
+Special_BuenasPassword: ; 8af6b
 	xor a
 	ld [wWhichIndexSet], a
 	ld hl, .MenuDataHeader
@@ -17,7 +17,7 @@ SpecialBuenasPassword: ; 8af6b
 	ld a, [MenuSelection]
 	ld c, a
 	ld a, [wBuenasPassword]
-	and $3
+	maskbits NUM_PASSWORDS_PER_CATEGORY
 	cp c
 	jr nz, .wrong
 	ld b, $1
@@ -29,9 +29,8 @@ SpecialBuenasPassword: ; 8af6b
 ; 8afa9
 
 .MenuDataHeader: ; 0x8afa9
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 07, 10 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 10, 7
 	dw .MenuData2
 	db 1 ; default option
 ; 0x8afb1
@@ -39,15 +38,19 @@ SpecialBuenasPassword: ; 8af6b
 	db 0
 
 .MenuData2: ; 0x8afb2
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 0 ; items
 	dw .PasswordIndices
 	dw .PlacePasswordChoices
 ; 0x8afb4
 
 .PasswordIndices: ; 8afb8
-	db 3
-	db 0, 1, 2
+	db NUM_PASSWORDS_PER_CATEGORY
+x = 0
+rept NUM_PASSWORDS_PER_CATEGORY
+	db x
+x = x + 1
+endr
 	db -1
 
 .PlacePasswordChoices: ; 8afbd
@@ -64,7 +67,7 @@ SpecialBuenasPassword: ; 8af6b
 	ret
 ; 8afd4
 
-SpecialBuenaPrize: ; 8afd4
+Special_BuenaPrize: ; 8afd4
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $1
@@ -225,9 +228,8 @@ PrintBlueCardBalance: ; 8b097
 ; 8b0d1
 
 BlueCardBalanceMenuDataHeader: ; 0x8b0d1
-	db $40 ; flags
-	db 11, 00 ; start coords
-	db 13, 11 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 11, 11, 13
 ; 8b0d6
 
 Buena_PlacePrizeMenuBox: ; 8b0d6
@@ -237,9 +239,8 @@ Buena_PlacePrizeMenuBox: ; 8b0d6
 ; 8b0dd
 
 .menudataheader ; 0x8b0dd
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 11, 17 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 17, TEXTBOX_Y - 1
 ; 8b0e2
 
 Buena_PrizeMenu: ; 8b0e2
@@ -270,9 +271,8 @@ Buena_PrizeMenu: ; 8b0e2
 ; 8b113
 
 .MenuDataHeader: ; 0x8b113
-	db $40 ; flags
-	db 01, 01 ; start coords
-	db 09, 16 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 1, 1, 16, 9
 	dw .MenuData2
 	db 1 ; default option
 ; 0x8b11b
@@ -280,7 +280,7 @@ Buena_PrizeMenu: ; 8b0e2
 	db 0
 
 .MenuData2: ; 0x8b11c
-	db $10 ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 13 ; rows, columns
 	db 1 ; spacing
 	dba .indices

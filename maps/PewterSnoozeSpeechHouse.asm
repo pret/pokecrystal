@@ -1,7 +1,7 @@
 const_value set 2
 	const PEWTERSNOOZESPEECHHOUSE_GRAMPS
 
-PewterSnoozeSpeechHouse_MapScriptHeader:
+PewterSnoozeSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -20,7 +20,7 @@ PewterSnoozeSpeechHouseGrampsText:
 	cont "…Zzzz…"
 	done
 
-PewterSnoozeSpeechHouse_MapEventHeader:
+PewterSnoozeSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

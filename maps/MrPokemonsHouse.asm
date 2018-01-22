@@ -2,7 +2,7 @@ const_value set 2
 	const MRPOKEMONSHOUSE_GENTLEMAN
 	const MRPOKEMONSHOUSE_OAK
 
-MrPokemonsHouse_MapScriptHeader:
+MrPokemonsHouse_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .MeetMrPokemon
@@ -111,9 +111,9 @@ MrPokemonsHouse_OakScript:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	playmusic MUSIC_HEAL
-	special TrainerRankings_Healings
+	special Special_StubbedTrainerRankings_Healings
 	special HealParty
 	pause 60
 	special Special_FadeInQuickly
@@ -125,9 +125,9 @@ MrPokemonsHouse_OakScript:
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
 	setevent EVENT_KRISS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
-	setscene $1
-	setmapscene CHERRYGROVE_CITY, $1
-	setmapscene ELMS_LAB, $3
+	setscene 1
+	setmapscene CHERRYGROVE_CITY, 1
+	setmapscene ELMS_LAB, 3
 	specialphonecall SPECIALCALL_ROBBED
 	clearevent EVENT_COP_IN_ELMS_LAB
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
@@ -169,7 +169,7 @@ MrPokemonsHouse_OakExits:
 	step DOWN
 	step LEFT
 	turn_head DOWN
-	db $3f ; movement
+	step_sleep 2
 	step_end
 
 MrPokemonIntroText1:
@@ -372,7 +372,7 @@ MrPokemonsHouse_StrangeCoinsText:
 	line "another country…"
 	done
 
-MrPokemonsHouse_MapEventHeader:
+MrPokemonsHouse_MapEvents:
 	; filler
 	db 0, 0
 

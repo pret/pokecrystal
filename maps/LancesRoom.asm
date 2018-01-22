@@ -3,7 +3,7 @@ const_value set 2
 	const LANCESROOM_MARY
 	const LANCESROOM_OAK
 
-LancesRoom_MapScriptHeader:
+LancesRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .LockDoor
@@ -11,7 +11,7 @@ LancesRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .LancesRoomDoors
+	callback MAPCALLBACK_TILES, .LancesRoomDoors
 
 .LockDoor:
 	priorityjump .LancesDoorLocksBehindYou
@@ -22,13 +22,13 @@ LancesRoom_MapScriptHeader:
 
 .LancesRoomDoors:
 	checkevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	iffalse .KeepDoorsClosed
-	changeblock $4, $16, $34
-.KeepDoorsClosed:
+	iffalse .KeepEntranceOpen
+	changeblock 4, 22, $34 ; wall
+.KeepEntranceOpen:
 	checkevent EVENT_LANCES_ROOM_EXIT_OPEN
-	iffalse .OpenDoors
-	changeblock $4, $0, $b
-.OpenDoors:
+	iffalse .KeepExitClosed
+	changeblock 4, 0, $0b ; open door
+.KeepExitClosed:
 	return
 
 .LancesDoorLocksBehindYou:
@@ -36,10 +36,10 @@ LancesRoom_MapScriptHeader:
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock $4, $16, $34
+	changeblock 4, 22, $34 ; wall
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	end
 
@@ -69,11 +69,11 @@ LanceScript_0x180e7b:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock $4, $0, $b
+	changeblock 4, 0, $0b ; open door
 	reloadmappart
 	closetext
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	musicfadeout MUSIC_BEAUTY_ENCOUNTER, $10
+	musicfadeout MUSIC_BEAUTY_ENCOUNTER, 16
 	pause 30
 	showemote EMOTE_SHOCK, LANCESROOM_LANCE, 15
 	spriteface LANCESROOM_LANCE, DOWN
@@ -125,9 +125,9 @@ LanceScript_0x180e7b:
 	pause 30
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRunsBackAndForth
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	pause 15
-	warpfacing UP, HALL_OF_FAME, $4, $d
+	warpfacing UP, HALL_OF_FAME, 4, 13
 	end
 
 LancesRoom_PlayerWalksInMovementData:
@@ -337,7 +337,7 @@ UnknownText_0x1813c5:
 	cont "the interview!"
 	done
 
-LancesRoom_MapEventHeader:
+LancesRoom_MapEvents:
 	; filler
 	db 0, 0
 

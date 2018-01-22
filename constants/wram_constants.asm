@@ -28,6 +28,7 @@ TEXT_DELAY_SLOW EQU 5
 	const FRAME_6 ; 5
 	const FRAME_7 ; 6
 	const FRAME_8 ; 7
+NUM_FRAMES EQU const_value
 
 ; TextBoxFlags:
 	const_def
@@ -52,6 +53,7 @@ const_value set -1
 	const UP       ; 1
 	const LEFT     ; 2
 	const RIGHT    ; 3
+NUM_DIRECTIONS EQU const_value
 
 DOWN_MASK  EQU 1 << DOWN
 UP_MASK    EQU 1 << UP
@@ -71,11 +73,14 @@ FACE_RIGHT EQU 1
 	const DAY_F      ; 1
 	const NITE_F     ; 2
 	const DARKNESS_F ; 3
+NUM_DAYTIMES EQU const_value
 
 MORN     EQU 1 << MORN_F
 DAY      EQU 1 << DAY_F
 NITE     EQU 1 << NITE_F
 DARKNESS EQU 1 << DARKNESS_F
+
+ANYTIME EQU MORN | DAY | NITE
 
 ; ScriptFlags: ; d434
 SCRIPT_RUNNING EQU 2
@@ -115,9 +120,6 @@ PLAYER_BIKE      EQU 1
 PLAYER_SKATE     EQU 2
 PLAYER_SURF      EQU 4
 PLAYER_SURF_PIKA EQU 8
-
-OBJECT_STRUCT_LENGTH EQU 40
-NUM_OBJECT_STRUCTS EQU 13
 
 ; After-Champion Spawn
 SPAWN_LANCE EQU 1

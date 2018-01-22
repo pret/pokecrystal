@@ -23,7 +23,7 @@ Function14146: ; mobile
 	push af
 	res 7, [hl]
 	set 6, [hl]
-	call MapCallbackSprites_LoadUsedSpritesGFX
+	call Special_LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
@@ -35,15 +35,15 @@ Function14157: ; mobile
 	push af
 	set 7, [hl]
 	res 6, [hl]
-	call MapCallbackSprites_LoadUsedSpritesGFX
+	call Special_LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
 ; 14168
 
-RefreshSprites:: ; 14168
+Special_RefreshSprites:: ; 14168
 	call .Refresh
-	call MapCallbackSprites_LoadUsedSpritesGFX
+	call Special_LoadUsedSpritesGFX
 	ret
 ; 1416f
 
@@ -77,7 +77,7 @@ GetPlayerSprite: ; 14183
 	cp c
 	jr z, .good
 	inc hl
-	cp $ff
+	cp -1
 	jr nz, .loop
 
 ; Any player state not in the array defaults to Chris's sprite.
@@ -100,14 +100,14 @@ GetPlayerSprite: ; 14183
 	db PLAYER_BIKE,      SPRITE_CHRIS_BIKE
 	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
-	db $ff
+	db -1 ; end
 
 .Kris:
 	db PLAYER_NORMAL,    SPRITE_KRIS
 	db PLAYER_BIKE,      SPRITE_KRIS_BIKE
 	db PLAYER_SURF,      SPRITE_SURF
 	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
-	db $ff
+	db -1 ; end
 ; 141c9
 
 
@@ -164,7 +164,7 @@ AddOutdoorSprites: ; 141ee
 ; 14209
 
 
-MapCallbackSprites_LoadUsedSpritesGFX: ; 14209
+Special_LoadUsedSpritesGFX: ; 14209
 	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites
@@ -719,10 +719,10 @@ LoadEmote:: ; 1442f
 ; 1444d
 
 
-INCLUDE "data/emotes.asm"
+INCLUDE "data/sprites/emotes.asm"
 
-INCLUDE "data/sprite_mons.asm"
+INCLUDE "data/sprites/sprite_mons.asm"
 
 INCLUDE "data/maps/outdoor_sprites.asm"
 
-INCLUDE "data/sprites.asm"
+INCLUDE "data/sprites/sprites.asm"

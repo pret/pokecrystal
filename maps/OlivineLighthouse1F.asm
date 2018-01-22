@@ -2,7 +2,7 @@ const_value set 2
 	const OLIVINELIGHTHOUSE1F_SAILOR
 	const OLIVINELIGHTHOUSE1F_POKEFAN_F
 
-OlivineLighthouse1F_MapScriptHeader:
+OlivineLighthouse1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -36,7 +36,7 @@ OlivineLighthouse1FPokefanFText:
 	cont "those #MON."
 	done
 
-OlivineLighthouse1F_MapEventHeader:
+OlivineLighthouse1F_MapEvents:
 	; filler
 	db 0, 0
 

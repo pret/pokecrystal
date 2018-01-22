@@ -7,13 +7,13 @@ const_value set 2
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL2
 	const GOLDENRODUNDERGROUNDWAREHOUSE_POKE_BALL3
 
-GoldenrodUndergroundWarehouse_MapScriptHeader:
+GoldenrodUndergroundWarehouse_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .ResetSwitches
+	callback MAPCALLBACK_NEWMAP, .ResetSwitches
 
 .ResetSwitches:
 	clearevent EVENT_SWITCH_1
@@ -31,7 +31,7 @@ GoldenrodUndergroundWarehouse_MapScriptHeader:
 	clearevent EVENT_SWITCH_12
 	clearevent EVENT_SWITCH_13
 	clearevent EVENT_SWITCH_14
-	writebyte $0
+	writebyte 0
 	copyvartobyte UndergroundSwitchPositions
 	return
 
@@ -210,7 +210,7 @@ UnknownText_0x7dc8d:
 	line "MON nationwide!"
 	done
 
-GoldenrodUndergroundWarehouse_MapEventHeader:
+GoldenrodUndergroundWarehouse_MapEvents:
 	; filler
 	db 0, 0
 

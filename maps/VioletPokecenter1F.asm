@@ -5,7 +5,7 @@ const_value set 2
 	const VIOLETPOKECENTER1F_YOUNGSTER
 	const VIOLETPOKECENTER1F_SCIENTIST
 
-VioletPokecenter1F_MapScriptHeader:
+VioletPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -27,12 +27,12 @@ VioletPokecenter1F_ElmsAideScript:
 	checkcode VAR_PARTYCOUNT
 	if_equal PARTY_LENGTH, .PartyFull
 	giveegg TOGEPI, 5
-	stringtotext .eggname, $1
+	stringtotext .eggname, MEM_BUFFER_1
 	scall .AideGivesEgg
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
 	clearevent EVENT_TOGEPI_HATCHED
-	setmapscene ROUTE_32, $1
+	setmapscene ROUTE_32, 1
 	writetext UnknownText_0x695c5
 	waitbutton
 	closetext
@@ -215,7 +215,7 @@ VioletPokecenter1FYoungsterText:
 	line "they please."
 	done
 
-VioletPokecenter1F_MapEventHeader:
+VioletPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

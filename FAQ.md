@@ -14,7 +14,7 @@
 
 ## What is pokecrystal11.gbc?
 
-Version 1.1 of Pokémon Crystal, which fixed some issues with the initial international release. `make crystal11` defines `CRYSTAL11` so the assembly builds the changed version.
+Version 1.1 of Pokémon Crystal, which fixed some issues with the initial international release. `make crystal11` defines `_CRYSTAL11` so the assembly builds the changed version.
 
 
 ## Can't build ROM; "ERROR: `UNION` already defined"

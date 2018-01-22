@@ -1,4 +1,5 @@
 StdScripts::
+; entries correspond to constants/std_constants.asm
 	dba PokecenterNurseScript
 	dba DifficultBookshelfScript
 	dba PictureBookshelfScript
@@ -107,13 +108,13 @@ PokecenterNurseScript:
 
 	farwritetext NurseTakePokemonText
 	pause 20
-	special TrainerRankings_Healings
+	special Special_StubbedTrainerRankings_Healings
 	spriteface LAST_TALKED, LEFT
 	pause 10
 	special HealParty
 	playmusic MUSIC_NONE
-	writebyte 0 ; Machine is at a Pokemon Center
-	special HealMachineAnim
+	writebyte HEALMACHINE_POKECENTER
+	special Special_HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	spriteface LAST_TALKED, DOWN
@@ -123,7 +124,7 @@ PokecenterNurseScript:
 	iftrue .no
 	checkflag ENGINE_POKERUS ; nurse already talked about pokerus
 	iftrue .no
-	special SpecialCheckPokerus
+	special Special_CheckPokerus
 	iftrue .pokerus
 .no
 
@@ -203,7 +204,7 @@ HomepageScript:
 Radio1Script:
 	opentext
 	writebyte MAPRADIO_POKEMON_CHANNEL
-	special MapRadio
+	special Special_MapRadio
 	closetext
 	end
 
@@ -211,7 +212,7 @@ Radio2Script:
 ; Lucky Channel
 	opentext
 	writebyte MAPRADIO_LUCKY_CHANNEL
-	special MapRadio
+	special Special_MapRadio
 	closetext
 	end
 
@@ -220,7 +221,7 @@ TrashCanScript: ; 0xbc1a5
 
 PCScript:
 	opentext
-	special PokemonCenterPC
+	special Special_PokemonCenterPC
 	closetext
 	end
 
@@ -250,25 +251,25 @@ DayToTextScript:
 	if_equal THURSDAY, .Thursday
 	if_equal FRIDAY, .Friday
 	if_equal SATURDAY, .Saturday
-	stringtotext .SundayText, 0
+	stringtotext .SundayText, MEM_BUFFER_0
 	end
 .Monday:
-	stringtotext .MondayText, 0
+	stringtotext .MondayText, MEM_BUFFER_0
 	end
 .Tuesday:
-	stringtotext .TuesdayText, 0
+	stringtotext .TuesdayText, MEM_BUFFER_0
 	end
 .Wednesday:
-	stringtotext .WednesdayText, 0
+	stringtotext .WednesdayText, MEM_BUFFER_0
 	end
 .Thursday:
-	stringtotext .ThursdayText, 0
+	stringtotext .ThursdayText, MEM_BUFFER_0
 	end
 .Friday:
-	stringtotext .FridayText, 0
+	stringtotext .FridayText, MEM_BUFFER_0
 	end
 .Saturday:
-	stringtotext .SaturdayText, 0
+	stringtotext .SaturdayText, MEM_BUFFER_0
 	end
 .SundayText:
 	db "SUNDAY@"
@@ -297,7 +298,7 @@ RadioTowerRocketsScript:
 	clearevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
 	specialphonecall SPECIALCALL_WEIRDBROADCAST
-	setmapscene MAHOGANY_TOWN, $1
+	setmapscene MAHOGANY_TOWN, 1
 	end
 
 BugContestResultsWarpScript:
@@ -306,7 +307,7 @@ BugContestResultsWarpScript:
 	setevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	clearevent EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
 	setevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
-	warp ROUTE_36_NATIONAL_PARK_GATE, $0, $4
+	warp ROUTE_36_NATIONAL_PARK_GATE, 0, 4
 	applymovement PLAYER, Movement_ContestResults_WalkAfterWarp
 
 BugContestResultsScript:
@@ -319,8 +320,8 @@ BugContestResultsScript:
 	opentext
 	farwritetext ContestResults_ReadyToJudgeText
 	waitbutton
-	special BugContestJudging
-	RAM2MEM $0
+	special Special_BugContestJudging
+	vartomem MEM_BUFFER_0
 	if_equal 1, BugContestResults_FirstPlace
 	if_equal 2, BugContestResults_SecondPlace
 	if_equal 3, BugContestResults_ThirdPlace
@@ -345,17 +346,18 @@ BugContestResults_FinishUp
 	iffalse BugContestResults_DidNotLeaveMons
 	farwritetext ContestResults_ReturnPartyText
 	waitbutton
-	special ContestReturnMons
+	special Special_ContestReturnMons
 BugContestResults_DidNotLeaveMons
-	special CheckPartyFullAfterContest
-	if_equal $0, BugContestResults_CleanUp
-	if_equal $2, BugContestResults_CleanUp
+	special Special_CheckPartyFullAfterContest
+	if_equal BUGCONTEST_CAUGHT_MON, BugContestResults_CleanUp
+	if_equal BUGCONTEST_NO_CATCH, BugContestResults_CleanUp
+	; BUGCONTEST_BOXED_MON
 	farwritetext ContestResults_PartyFullText
 	waitbutton
 BugContestResults_CleanUp
 	closetext
-	setscene $0
-	setmapscene ROUTE_35_NATIONAL_PARK_GATE, $0
+	setscene 0
+	setmapscene ROUTE_35_NATIONAL_PARK_GATE, 0
 	setevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_2A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_3A
@@ -383,7 +385,7 @@ BugContestResults_CleanUp
 
 BugContestResults_FirstPlace ; 0xbc31e
 	setevent EVENT_GAVE_KURT_APRICORNS
-	itemtotext SUN_STONE, $1
+	itemtotext SUN_STONE, MEM_BUFFER_1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
 	verbosegiveitem SUN_STONE
@@ -392,7 +394,7 @@ BugContestResults_FirstPlace ; 0xbc31e
 ; 0xbc332
 
 BugContestResults_SecondPlace ; 0xbc332
-	itemtotext EVERSTONE, $1
+	itemtotext EVERSTONE, MEM_BUFFER_1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
 	verbosegiveitem EVERSTONE
@@ -401,7 +403,7 @@ BugContestResults_SecondPlace ; 0xbc332
 ; 0xbc343
 
 BugContestResults_ThirdPlace ; 0xbc343
-	itemtotext GOLD_BERRY, $1
+	itemtotext GOLD_BERRY, MEM_BUFFER_1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
 	verbosegiveitem GOLD_BERRY
@@ -620,7 +622,7 @@ InitializeEventsScript:
 	return
 
 AskNumber1MScript:
-	special RandomPhoneMon
+	special Special_RandomPhoneMon
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -705,7 +707,7 @@ AskNumber1MScript:
 	end
 
 AskNumber2MScript:
-	special RandomPhoneMon
+	special Special_RandomPhoneMon
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -1758,7 +1760,7 @@ RematchGiftFScript:
 	end
 
 GymStatue1Script:
-	mapnametotext $0
+	mapnametotext MEM_BUFFER_0
 	opentext
 	farwritetext GymStatue_CityGymText
 	waitbutton
@@ -1766,7 +1768,7 @@ GymStatue1Script:
 	end
 
 GymStatue2Script:
-	mapnametotext $0
+	mapnametotext MEM_BUFFER_0
 	opentext
 	farwritetext GymStatue_CityGymText
 	buttonsound
@@ -1812,18 +1814,18 @@ CoinVendor_IntroScript: ; 0xbcde0
 	loadmenudata .MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .Buy50
-	if_equal $2, .Buy500
+	if_equal 1, .Buy50
+	if_equal 2, .Buy500
 	jump .Cancel
 ; 0xbcdf7
 
 .Buy50: ; 0xbcdf7
-	checkcoins 9949
-	if_equal $0, .CoinCaseFull
-	checkmoney $0, 1000
-	if_equal $2, .NotEnoughMoney
+	checkcoins MAX_COINS - 50
+	if_equal HAVE_MORE, .CoinCaseFull
+	checkmoney YOUR_MONEY, 1000
+	if_equal HAVE_LESS, .NotEnoughMoney
 	givecoins 50
-	takemoney $0, 1000
+	takemoney YOUR_MONEY, 1000
 	waitsfx
 	playsound SFX_TRANSACTION
 	farwritetext CoinVendor_Buy50CoinsText
@@ -1832,12 +1834,12 @@ CoinVendor_IntroScript: ; 0xbcde0
 ; 0xbce1b
 
 .Buy500: ; 0xbce1b
-	checkcoins 9499
-	if_equal $0, .CoinCaseFull
-	checkmoney $0, 10000
-	if_equal $2, .NotEnoughMoney
+	checkcoins MAX_COINS - 500
+	if_equal HAVE_MORE, .CoinCaseFull
+	checkmoney YOUR_MONEY, 10000
+	if_equal HAVE_LESS, .NotEnoughMoney
 	givecoins 500
-	takemoney $0, 10000
+	takemoney YOUR_MONEY, 10000
 	waitsfx
 	playsound SFX_TRANSACTION
 	farwritetext CoinVendor_Buy500CoinsText
@@ -1868,14 +1870,13 @@ CoinVendor_IntroScript: ; 0xbcde0
 
 
 .MenuDataHeader:
-	db $40 ; flags
-	db 04, 00 ; start coords
-	db 11, 15 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 4, 15, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db " 50 :  ¥1000@"
 	db "500 : ¥10000@"
@@ -1886,7 +1887,7 @@ CoinVendor_IntroScript: ; 0xbcde0
 HappinessCheckScript:
 	faceplayer
 	opentext
-	special GetFirstPokemonHappiness
+	special Special_GetFirstPokemonHappiness
 	if_less_than 50, .Unhappy
 	if_less_than 150, .KindaHappy
 	farwritetext HappinessText3

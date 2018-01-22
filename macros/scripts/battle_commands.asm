@@ -3,7 +3,7 @@ command: MACRO
 \1 EQUS "db \1_command"
 ENDM
 
-; BattleCommandPointers indexes (see data/battle_command_pointers.asm)
+; BattleCommandPointers indexes (see data/battle/effect_command_pointers.asm)
 	enum_start 1
 	command checkturn               ; 01
 	command checkobedience          ; 02

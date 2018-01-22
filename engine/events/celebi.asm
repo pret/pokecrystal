@@ -1,3 +1,5 @@
+SPECIALCELEBIEVENT_CELEBI EQU $84
+
 Special_CelebiShrineEvent: ; 4989a
 	call DelayFrame
 	ld a, [VramState]
@@ -10,7 +12,7 @@ Special_CelebiShrineEvent: ; 4989a
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $84
+	ld [hl], SPECIALCELEBIEVENT_CELEBI
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], SPRITE_ANIM_SEQ_CELEBI
@@ -19,7 +21,7 @@ Special_CelebiShrineEvent: ; 4989a
 	ld a, $80
 	ld [hl], a
 	ld a, 160 ; frame count
-	ld [wcf64], a
+	ld [wFrameCounter], a
 	ld d, $0
 .loop
 	ld a, [wJumptableIndex]
@@ -43,26 +45,26 @@ Special_CelebiShrineEvent: ; 4989a
 .done
 	pop af
 	ld [VramState], a
-	call .RefreshPlayerSprite_ClearAllOthers
+	call .RestorePlayerSprite_DespawnLeaves
 	call CelebiEvent_SetBattleType
 	ret
 
 ; 498f9
 
-.RefreshPlayerSprite_ClearAllOthers: ; 498f9
-	ld hl, Sprites + 2
+.RestorePlayerSprite_DespawnLeaves: ; 498f9
+	ld hl, Sprite01TileID
 	xor a
-	ld c, $4
+	ld c, 4
 .OAMloop:
-	ld [hli], a
+	ld [hli], a ; tile id
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, Sprites + 4 * 4
-	ld bc, 36 * 4
+	ld hl, Sprite05
+	ld bc, SpritesEnd - Sprite05
 	xor a
 	call ByteFill
 	ret
@@ -76,8 +78,8 @@ LoadCelebiGFX: ; 49912
 	lb bc, BANK(SpecialCelebiLeafGFX), 4
 	call Request2bpp
 	ld de, SpecialCelebiGFX
-	ld hl, vTiles0 tile $84
-	lb bc, BANK(SpecialCelebiGFX), $10
+	ld hl, vTiles0 tile SPECIALCELEBIEVENT_CELEBI
+	lb bc, BANK(SpecialCelebiGFX), 4 * 4
 	call Request2bpp
 	xor a
 	ld [wJumptableIndex], a
@@ -86,7 +88,7 @@ LoadCelebiGFX: ; 49912
 ; 49935
 
 CelebiEvent_CountDown: ; 49935
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .done
@@ -238,27 +240,27 @@ UpdateCelebiPosition: ; 49aa2 (12:5aa2)
 
 
 CelebiEvent_Cosine: ; 49b3b (12:5b3b)
-	add $10
-	and $3f
-	cp $20
+; a = d * cos(a * pi/32)
+	add %010000
+	and %111111
+	cp %100000
 	jr nc, .negative
-	call .SineFunction
+	call .ApplySineWave
 	ld a, h
 	ret
 
 .negative
-	and $1f
-	call .SineFunction
+	and %011111
+	call .ApplySineWave
 	ld a, h
 	xor $ff
 	inc a
 	ret
 
-
-.SineFunction: ; 49b52 (12:5b52)
+.ApplySineWave: ; 49b52 (12:5b52)
 	ld e, a
 	ld a, d
-	ld d, $0
+	ld d, 0
 	ld hl, .sinewave
 	add hl, de
 	add hl, de
@@ -276,7 +278,6 @@ CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 	and a
 	jr nz, .multiply
 	ret
-
 ; 49b6e (12:5b6e)
 
 .sinewave ; 49b6e
@@ -307,22 +308,22 @@ GetCelebiSpriteTile: ; 49bae
 
 
 .Frame1:
-	ld a, $84
+	ld a, SPECIALCELEBIEVENT_CELEBI
 	jr .load_tile
 
 
 .Frame2:
-	ld a, $88
+	ld a, SPECIALCELEBIEVENT_CELEBI + 4
 	jr .load_tile
 
 
 .Frame3:
-	ld a, $8c
+	ld a, SPECIALCELEBIEVENT_CELEBI + 8
 	jr .load_tile
 
 
 .Frame4:
-	ld a, $90
+	ld a, SPECIALCELEBIEVENT_CELEBI + 12
 
 .load_tile
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
@@ -361,7 +362,7 @@ CelebiEvent_SetBattleType: ; 49bf3
 
 ; 49bf9
 
-CheckCaughtCelebi: ; 49bf9
+Special_CheckCaughtCelebi: ; 49bf9
 	ld a, [wBattleResult]
 	bit 6, a
 	jr z, .false

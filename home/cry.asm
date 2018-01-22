@@ -3,7 +3,7 @@ PlayStereoCry:: ; 37b6
 	ld a, 1
 	ld [wStereoPanningMask], a
 	pop af
-	call _PlayCry
+	call _PlayMonCry
 	call WaitSFX
 	ret
 ; 37c4
@@ -15,27 +15,27 @@ PlayStereoCry2:: ; 37c4
 	ld a, 1
 	ld [wStereoPanningMask], a
 	pop af
-	jp _PlayCry
+	jp _PlayMonCry
 ; 37ce
 
-PlayCry:: ; 37ce
-	call PlayCry2
+PlayMonCry:: ; 37ce
+	call PlayMonCry2
 	call WaitSFX
 	ret
 ; 37d5
 
-PlayCry2:: ; 37d5
+PlayMonCry2:: ; 37d5
 ; Don't wait for the cry to end.
 	push af
 	xor a
 	ld [wStereoPanningMask], a
 	ld [CryTracks], a
 	pop af
-	call _PlayCry
+	call _PlayMonCry
 	ret
 ; 37e2
 
-_PlayCry:: ; 37e2
+_PlayMonCry:: ; 37e2
 	push hl
 	push de
 	push bc
@@ -45,7 +45,7 @@ _PlayCry:: ; 37e2
 
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 
 .done
 	pop bc
@@ -54,7 +54,7 @@ _PlayCry:: ; 37e2
 	ret
 ; 37f3
 
-LoadCryHeader:: ; 37f3
+LoadCry:: ; 37f3
 ; Load cry header bc.
 
 	call GetCryIndex

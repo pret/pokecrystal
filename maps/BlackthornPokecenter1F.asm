@@ -4,7 +4,7 @@ const_value set 2
 	const BLACKTHORNPOKECENTER1F_TWIN
 	const BLACKTHORNPOKECENTER1F_COOLTRAINER_M
 
-BlackthornPokecenter1F_MapScriptHeader:
+BlackthornPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -49,7 +49,7 @@ BlackthornPokecenter1FTwinText:
 	cont "forget an HM move."
 	done
 
-BlackthornPokecenter1F_MapEventHeader:
+BlackthornPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

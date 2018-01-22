@@ -4,7 +4,7 @@ const_value set 2
 	const VERMILIONPOKECENTER1F_SAILOR
 	const VERMILIONPOKECENTER1F_BUG_CATCHER
 
-VermilionPokecenter1F_MapScriptHeader:
+VermilionPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -76,7 +76,7 @@ VermilionPokecenter1FBugCatcherText:
 	line "got them in JOHTO."
 	done
 
-VermilionPokecenter1F_MapEventHeader:
+VermilionPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

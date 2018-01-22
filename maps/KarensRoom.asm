@@ -1,7 +1,7 @@
 const_value set 2
 	const KARENSROOM_KAREN
 
-KarensRoom_MapScriptHeader:
+KarensRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .LockDoor
@@ -9,7 +9,7 @@ KarensRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .KarensRoomDoors
+	callback MAPCALLBACK_TILES, .KarensRoomDoors
 
 .LockDoor:
 	priorityjump .KarensDoorLocksBehindYou
@@ -20,24 +20,24 @@ KarensRoom_MapScriptHeader:
 
 .KarensRoomDoors:
 	checkevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
-	iffalse .KeepDoorsClosed
-	changeblock $4, $e, $2a
-.KeepDoorsClosed:
+	iffalse .KeepEntranceOpen
+	changeblock 4, 14, $2a ; wall
+.KeepEntranceOpen:
 	checkevent EVENT_KARENS_ROOM_EXIT_OPEN
-	iffalse .OpenDoors
-	changeblock $4, $2, $16
-.OpenDoors:
+	iffalse .KeepExitClosed
+	changeblock 4, 2, $16 ; open door
+.KeepExitClosed:
 	return
 
 .KarensDoorLocksBehindYou:
-	applymovement PLAYER, MovementData_0x180c22
+	applymovement PLAYER, KarensMovementData_0x18078e
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock $4, $e, $2a
+	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -46,12 +46,12 @@ KarenScript_Battle:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_KAREN
-	iftrue UnknownScript_0x180c1c
+	iftrue KarenScript_AfterBattle
 	writetext KarenScript_KarenBeforeText
 	waitbutton
 	closetext
 	winlosstext KarenScript_KarenBeatenText, 0
-	loadtrainer KAREN, 1
+	loadtrainer KAREN, KAREN1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_KAREN
@@ -60,20 +60,20 @@ KarenScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock $4, $2, $16
+	changeblock 4, 2, $16 ; open door
 	reloadmappart
 	closetext
 	setevent EVENT_KARENS_ROOM_EXIT_OPEN
 	waitsfx
 	end
 
-UnknownScript_0x180c1c:
+KarenScript_AfterBattle:
 	writetext KarenScript_KarenDefeatText
 	waitbutton
 	closetext
 	end
 
-MovementData_0x180c22:
+KarensMovementData_0x18078e:
 	step UP
 	step UP
 	step UP
@@ -132,7 +132,7 @@ KarenScript_KarenDefeatText:
 	line "PION is waiting."
 	done
 
-KarensRoom_MapEventHeader:
+KarensRoom_MapEvents:
 	; filler
 	db 0, 0
 

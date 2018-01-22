@@ -27,7 +27,7 @@ PlaceMenuItemQuantity: ; 0x24ac3
 .done
 	ret
 
-PlaceMoneyTopRight: ; 24ae8
+Special_PlaceMoneyTopRight: ; 24ae8
 	ld hl, MenuDataHeader_0x24b15
 	call CopyMenuDataHeader
 	jr PlaceMoneyDataHeader
@@ -53,16 +53,14 @@ PlaceMoneyDataHeader: ; 24b01
 	ret
 
 MenuDataHeader_0x24b15: ; 0x24b15
-	db $40 ; flags
-	db 00, 11 ; start coords
-	db 02, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 0, SCREEN_WIDTH - 1, 2
 	dw NULL
 	db 1 ; default option
 
 MenuDataHeader_0x24b1d: ; 0x24b1d
-	db $40 ; flags
-	db 11, 00 ; start coords
-	db 13, 08 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 11, 8, 13
 	dw NULL
 	db 1 ; default option
 
@@ -112,8 +110,8 @@ CoinString: ; 24b89
 ShowMoney_TerminatorString: ; 24b8e
 	db "@"
 
-Function24b8f: ; 24b8f
-; unreferenced, related to safari?
+Unreferenced_Function24b8f: ; 24b8f
+; related to safari?
 	ld hl, Options
 	ld a, [hl]
 	push af
@@ -141,9 +139,9 @@ Function24b8f: ; 24b8f
 	ret
 
 .slash_500 ; 24bcf
-	db "/500@"
+	db "／５００@"
 .booru_ko ; 24bd4
-	db "ボール   こ@"
+	db "ボール　　　こ@"
 
 StartMenu_DrawBugContestStatusBox: ; 24bdc
 	hlcoord 0, 0
@@ -197,7 +195,7 @@ StartMenu_PrintBugContestStatus: ; 24be7
 	ret
 
 .Balls_JP: ; 24c43
-	db "ボール   こ@"
+	db "ボール　　　こ@"
 .CAUGHT: ; 24c4b
 	db "CAUGHT@"
 .Balls_EN: ; 24c52
@@ -216,7 +214,7 @@ FindApricornsInBag: ; 24c64
 	ld bc, 10
 	call ByteFill
 
-	ld hl, .ApricornBalls
+	ld hl, ApricornBalls
 .loop
 	ld a, [hl]
 	cp -1
@@ -252,12 +250,4 @@ FindApricornsInBag: ; 24c64
 	pop hl
 	ret
 
-.ApricornBalls: ; 24ca0
-	db RED_APRICORN, LEVEL_BALL
-	db BLU_APRICORN, LURE_BALL
-	db YLW_APRICORN, MOON_BALL
-	db GRN_APRICORN, FRIEND_BALL
-	db WHT_APRICORN, FAST_BALL
-	db BLK_APRICORN, HEAVY_BALL
-	db PNK_APRICORN, LOVE_BALL
-	db -1
+INCLUDE "data/items/apricorn_balls.asm"

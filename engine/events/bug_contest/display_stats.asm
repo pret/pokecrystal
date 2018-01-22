@@ -82,9 +82,9 @@ DisplayCaughtContestMonStats: ; cc000
 .Health:
 	db "HEALTH@"
 .Stock:
-	db " STOCK ", $4a, " @"
+	db " STOCK <PKMN> @"
 .This:
-	db " THIS ", $4a, "  @"
+	db " THIS <PKMN>  @"
 
 SwitchMonText: ; cc0c2
 	; Switch #MON?
@@ -101,7 +101,7 @@ DisplayAlreadyCaughtText: ; cc0c7
 	text_jump UnknownText_0x1c10dd
 	db "@"
 
-Predef2F:
-Predef38:
-Predef39: ; cc0d5
+DummyPredef2F:
+DummyPredef38:
+DummyPredef39: ; cc0d5
 	ret

@@ -1,4 +1,6 @@
-SpecialGiveShuckle: ; 7305
+MANIA_OT_ID EQU 00518
+
+Special_GiveShuckle: ; 7305
 
 ; Adding to the party.
 	xor a
@@ -32,9 +34,9 @@ SpecialGiveShuckle: ; 7305
 ; OT ID.
 	ld hl, PartyMon1ID
 	call AddNTimes
-	ld a, $2
+	ld a, HIGH(MANIA_OT_ID)
 	ld [hli], a
-	ld [hl], $6
+	ld [hl], LOW(MANIA_OT_ID)
 
 ; Nickname.
 	ld a, [PartyCount]
@@ -54,8 +56,7 @@ SpecialGiveShuckle: ; 7305
 
 ; Engine flag for this event.
 	ld hl, wDailyFlags
-	set 5, [hl]
-; setflag ENGINE_SHUCKLE_GIVEN
+	set 5, [hl] ; ENGINE_SHUCKLE_GIVEN
 	ld a, 1
 	ld [ScriptVar], a
 	ret
@@ -70,7 +71,7 @@ SpecialShuckleOT:
 SpecialShuckleNick:
 	db "SHUCKIE@"
 
-SpecialReturnShuckle: ; 737e
+Special_ReturnShuckle: ; 737e
 	farcall SelectMonFromParty
 	jr c, .refused
 
@@ -85,10 +86,10 @@ SpecialReturnShuckle: ; 737e
 
 ; OT ID
 	ld a, [hli]
-	cp HIGH(00518)
+	cp HIGH(MANIA_OT_ID)
 	jr nz, .DontReturn
 	ld a, [hl]
-	cp LOW(00518)
+	cp LOW(MANIA_OT_ID)
 	jr nz, .DontReturn
 
 ; OT
@@ -115,28 +116,28 @@ SpecialReturnShuckle: ; 737e
 	call AddNTimes
 	ld a, [hl]
 	cp 150
-	ld a, $3
+	ld a, SHUCKIE_HAPPY
 	jr nc, .HappyToStayWithYou
 	xor a ; take from pc
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
-	ld a, $2
+	ld a, SHUCKIE_RETURNED
 .HappyToStayWithYou:
 	ld [ScriptVar], a
 	ret
 
 .refused
-	ld a, $1
+	ld a, SHUCKIE_REFUSED
 	ld [ScriptVar], a
 	ret
 
 .DontReturn:
-	xor a
+	xor a ; SHUCKIE_WRONG_MON
 	ld [ScriptVar], a
 	ret
 
 .fainted
-	ld a, $4
+	ld a, SHUCKIE_FAINTED
 	ld [ScriptVar], a
 	ret
 
@@ -227,9 +228,8 @@ Data_DaisyMassage: ; 746b
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, StringBuffer1
 	ld de, StringBuffer3
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 
-Predef1: ; 747a
-; not used
+DummyPredef1: ; 747a
 	ret

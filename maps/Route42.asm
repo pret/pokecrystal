@@ -9,7 +9,7 @@ const_value set 2
 	const ROUTE42_POKE_BALL2
 	const ROUTE42_SUICUNE
 
-Route42_MapScriptHeader:
+Route42_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -31,9 +31,9 @@ Route42SuicuneScript:
 	applymovement ROUTE42_SUICUNE, MovementData_0x1a9356
 	disappear ROUTE42_SUICUNE
 	pause 10
-	setscene $0
+	setscene 0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	setmapscene ROUTE_36, $1
+	setmapscene ROUTE_36, 1
 	end
 
 TrainerFisherTully1:
@@ -61,9 +61,9 @@ UnknownScript_0x1a9268:
 	scall UnknownScript_0x1a92f5
 UnknownScript_0x1a926b:
 	askforphonenumber PHONE_FISHER_TULLY
-	if_equal $1, UnknownScript_0x1a9305
-	if_equal $2, UnknownScript_0x1a9301
-	trainertotext FISHER, TULLY1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a9305
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a9301
+	trainertotext FISHER, TULLY1, MEM_BUFFER_0
 	scall UnknownScript_0x1a92f9
 	jump UnknownScript_0x1a92fd
 
@@ -212,18 +212,17 @@ FruitTreeScript_0x1a9351:
 	fruittree FRUITTREE_ROUTE_42_3
 
 Route42HiddenMaxPotion:
-	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
-
+	hiddenitem EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
 
 MovementData_0x1a9356:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step UP
 	fast_jump_step UP
 	fast_jump_step UP
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 FisherTully1SeenText:
@@ -319,7 +318,7 @@ Route42Sign2Text:
 	line "MAHOGANY TOWN"
 	done
 
-Route42_MapEventHeader:
+Route42_MapEvents:
 	; filler
 	db 0, 0
 

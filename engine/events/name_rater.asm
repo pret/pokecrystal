@@ -45,13 +45,13 @@ NameRater: ; fb6ed
 	jr c, .samename
 ; Copy the new name from StringBuffer2
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld e, l
 	ld d, h
 	ld hl, StringBuffer2
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld hl, NameRaterEvenBetterText
 
@@ -115,7 +115,7 @@ CheckIfMonIsYourOT: ; fb78a
 IsNewNameEmpty: ; fb7be
 ; Checks to see if the nickname loaded in StringBuffer2 is empty.  If so, return carry.
 	ld hl, StringBuffer2
-	ld c, PKMN_NAME_LENGTH - 1
+	ld c, MON_NAME_LENGTH - 1
 .loop
 	ld a, [hli]
 	cp "@"
@@ -137,7 +137,7 @@ IsNewNameEmpty: ; fb7be
 CompareNewToOld: ; fb7d3
 ; Compares the nickname in StringBuffer2 to the previous nickname.  If they are the same, return carry.
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	push hl
@@ -178,7 +178,7 @@ GetNicknameLength: ; fb802
 	ret z
 	inc c
 	ld a, c
-	cp PKMN_NAME_LENGTH - 1
+	cp MON_NAME_LENGTH - 1
 	jr nz, .loop
 	ret
 ; fb80f

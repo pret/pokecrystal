@@ -1,11 +1,11 @@
-TinTower2F_MapScriptHeader:
+TinTower2F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-TinTower2F_MapEventHeader:
+TinTower2F_MapEvents:
 	; filler
 	db 0, 0
 

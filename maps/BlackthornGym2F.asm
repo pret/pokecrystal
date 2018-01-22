@@ -8,37 +8,36 @@ const_value set 2
 	const BLACKTHORNGYM2F_BOULDER5
 	const BLACKTHORNGYM2F_BOULDER6
 
-BlackthornGym2F_MapScriptHeader:
+BlackthornGym2F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_CMDQUEUE, .Boulders
+	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
 
-.Boulders:
-	writecmdqueue .BoulderCmdQueue
+.SetUpStoneTable:
+	writecmdqueue .CommandQueue
 	return
 
-.BoulderCmdQueue:
-	dbw CMDQUEUE_STONETABLE, .BoulderTable ; check if any stones are sitting on a warp
-	dw 0 ; filler
+.CommandQueue:
+	cmdqueue CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
 
-.BoulderTable:
-	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Disappear4
-	stonetable 3, BLACKTHORNGYM2F_BOULDER2, .Disappear5
-	stonetable 4, BLACKTHORNGYM2F_BOULDER3, .Disappear6
+.StoneTable:
+	stonetable 5, BLACKTHORNGYM2F_BOULDER1, .Boulder1
+	stonetable 3, BLACKTHORNGYM2F_BOULDER2, .Boulder2
+	stonetable 4, BLACKTHORNGYM2F_BOULDER3, .Boulder3
 	db -1 ; end
 
-.Disappear4:
+.Boulder1:
 	disappear BLACKTHORNGYM2F_BOULDER1
 	jump .Fall
 
-.Disappear5:
+.Boulder2:
 	disappear BLACKTHORNGYM2F_BOULDER2
 	jump .Fall
 
-.Disappear6:
+.Boulder3:
 	disappear BLACKTHORNGYM2F_BOULDER3
 	jump .Fall
 
@@ -55,7 +54,6 @@ BlackthornGym2F_MapScriptHeader:
 	playsound SFX_STRENGTH
 	earthquake 80
 	end
-
 
 BlackthornGymBoulder:
 	jumpstd strengthboulder
@@ -127,7 +125,7 @@ BlackthornGym2FBoulderFellText:
 	line "through!"
 	done
 
-BlackthornGym2F_MapEventHeader:
+BlackthornGym2F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -5,13 +5,13 @@ const_value set 2
 	const KURTSHOUSE_KURT2
 	const KURTSHOUSE_TWIN2
 
-KurtsHouse_MapScriptHeader:
+KurtsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .KurtCallback
+	callback MAPCALLBACK_OBJECTS, .KurtCallback
 
 .KurtCallback:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
@@ -132,7 +132,7 @@ KurtScript_0x18e178:
 	buttonsound
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	special Special_SelectApricornForKurt
-	if_equal $0, .Cancel
+	if_equal FALSE, .Cancel
 	if_equal BLU_APRICORN, .Blu
 	if_equal YLW_APRICORN, .Ylw
 	if_equal GRN_APRICORN, .Grn
@@ -311,7 +311,7 @@ KurtScript_0x18e178:
 	clearevent EVENT_AZALEA_TOWN_KURT
 	waitsfx
 	special RestartMapMusic
-	setmapscene AZALEA_TOWN, $2
+	setmapscene AZALEA_TOWN, 2
 	end
 
 KurtScript_0x18e3bd:
@@ -676,7 +676,7 @@ KurtsHouseCelebiStatueText:
 	cont "tector."
 	done
 
-KurtsHouse_MapEventHeader:
+KurtsHouse_MapEvents:
 	; filler
 	db 0, 0
 

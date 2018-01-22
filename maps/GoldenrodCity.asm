@@ -15,14 +15,14 @@ const_value set 2
 	const GOLDENRODCITY_ROCKET6
 	const GOLDENRODCITY_POKEFAN_M2
 
-GoldenrodCity_MapScriptHeader:
+GoldenrodCity_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .FlyPointAndFloria
-	dbw MAPCALLBACK_OBJECTS, .MoveTutor
+	callback MAPCALLBACK_NEWMAP, .FlyPointAndFloria
+	callback MAPCALLBACK_OBJECTS, .MoveTutor
 
 .FlyPointAndFloria:
 	setflag ENGINE_FLYPOINT_GOLDENROD
@@ -63,53 +63,50 @@ MoveTutor:
 	yesorno
 	iffalse .Refused2
 	checkcoins 4000
-	if_equal $2, .NotEnoughMoney
+	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x1990ce
 	loadmenudata .MoveMenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .Flamethrower
-	if_equal $2, .Thunderbolt
-	if_equal $3, .IceBeam
+	if_equal MOVETUTOR_FLAMETHROWER, .Flamethrower
+	if_equal MOVETUTOR_THUNDERBOLT, .Thunderbolt
+	if_equal MOVETUTOR_ICE_BEAM, .IceBeam
 	jump .Incompatible
 
 .Flamethrower:
-	writebyte $1
+	writebyte MOVETUTOR_FLAMETHROWER
 	writetext UnknownText_0x1991cf
 	special Special_MoveTutor
-	if_equal $0, .TeachMove
+	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
 .Thunderbolt:
-	writebyte $2
+	writebyte MOVETUTOR_THUNDERBOLT
 	writetext UnknownText_0x1991cf
 	special Special_MoveTutor
-	if_equal $0, .TeachMove
+	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
 .IceBeam:
-	writebyte $3
+	writebyte MOVETUTOR_ICE_BEAM
 	writetext UnknownText_0x1991cf
 	special Special_MoveTutor
-	if_equal $0, .TeachMove
+	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
-
 .MoveMenuDataHeader:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 15 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 15, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "FLAMETHROWER@"
 	db "THUNDERBOLT@"
 	db "ICE BEAM@"
 	db "CANCEL@"
-
 
 .Refused:
 	writetext UnknownText_0x1990b4
@@ -551,10 +548,10 @@ UnknownText_0x1991ac:
 	done
 
 UnknownText_0x1991cf:
-	text ""
+	text_start
 	done
 
-GoldenrodCity_MapEventHeader:
+GoldenrodCity_MapEvents:
 	; filler
 	db 0, 0
 

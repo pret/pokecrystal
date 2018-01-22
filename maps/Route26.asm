@@ -8,7 +8,7 @@ const_value set 2
 	const ROUTE26_FRUIT_TREE
 	const ROUTE26_POKE_BALL
 
-Route26_MapScriptHeader:
+Route26_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -49,9 +49,9 @@ UnknownScript_0x1a4d62:
 	scall UnknownScript_0x1a4dc3
 UnknownScript_0x1a4d65:
 	askforphonenumber PHONE_COOLTRAINERM_GAVEN
-	if_equal $1, UnknownScript_0x1a4dd3
-	if_equal $2, UnknownScript_0x1a4dcf
-	trainertotext COOLTRAINERM, GAVEN3, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a4dd3
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a4dcf
+	trainertotext COOLTRAINERM, GAVEN3, MEM_BUFFER_0
 	scall UnknownScript_0x1a4dc7
 	jump UnknownScript_0x1a4dcb
 
@@ -153,9 +153,9 @@ UnknownScript_0x1a4e1e:
 	scall UnknownScript_0x1a4e7f
 UnknownScript_0x1a4e21:
 	askforphonenumber PHONE_COOLTRAINERF_BETH
-	if_equal $1, UnknownScript_0x1a4e8f
-	if_equal $2, UnknownScript_0x1a4e8b
-	trainertotext COOLTRAINERF, BETH1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a4e8f
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a4e8b
+	trainertotext COOLTRAINERF, BETH1, MEM_BUFFER_0
 	scall UnknownScript_0x1a4e83
 	jump UnknownScript_0x1a4e87
 
@@ -412,7 +412,7 @@ Route26SignText:
 	line "RECEPTION GATE"
 	done
 
-Route26_MapEventHeader:
+Route26_MapEvents:
 	; filler
 	db 0, 0
 

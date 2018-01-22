@@ -146,15 +146,15 @@ DoWeatherModifiers: ; fbda4
 	ret
 
 .WeatherTypeModifiers:
-	db WEATHER_RAIN, WATER, 15
-	db WEATHER_RAIN, FIRE,  05
-	db WEATHER_SUN,  FIRE,  15
-	db WEATHER_SUN,  WATER, 05
-	db $ff
+	db WEATHER_RAIN, WATER, MORE_EFFECTIVE
+	db WEATHER_RAIN, FIRE,  NOT_VERY_EFFECTIVE
+	db WEATHER_SUN,  FIRE,  MORE_EFFECTIVE
+	db WEATHER_SUN,  WATER, NOT_VERY_EFFECTIVE
+	db -1 ; end
 
 .WeatherMoveModifiers:
-	db WEATHER_RAIN, EFFECT_SOLARBEAM, 05
-	db $ff
+	db WEATHER_RAIN, EFFECT_SOLARBEAM, NOT_VERY_EFFECTIVE
+	db -1 ; end
 ; fbe24
 
 
@@ -183,7 +183,7 @@ DoBadgeTypeBoosts: ; fbe24
 
 .CheckBadge:
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .done
 
 	srl b
@@ -236,22 +236,24 @@ DoBadgeTypeBoosts: ; fbe24
 	ret
 
 .BadgeTypes:
-	db FLYING   ; zephyrbadge
-	db BUG      ; hivebadge
-	db NORMAL   ; plainbadge
-	db GHOST    ; fogbadge
-	db STEEL    ; mineralbadge
-	db FIGHTING ; stormbadge
-	db ICE      ; glacierbadge
-	db DRAGON   ; risingbadge
-
-	db ROCK     ; boulderbadge
-	db WATER    ; cascadebadge
-	db ELECTRIC ; thunderbadge
-	db GRASS    ; rainbowbadge
-	db POISON   ; soulbadge
-	db PSYCHIC  ; marshbadge
-	db FIRE     ; volcanobadge
-	db GROUND   ; earthbadge
-	db $ff
+; entries correspond to wJohtoBadges constants
+	db FLYING   ; ZEPHYRBADGE
+	db BUG      ; HIVEBADGE
+	db NORMAL   ; PLAINBADGE
+	db GHOST    ; FOGBADGE
+	db STEEL    ; MINERALBADGE
+	db FIGHTING ; STORMBADGE
+	db ICE      ; GLACIERBADGE
+	db DRAGON   ; RISINGBADGE
+	; fallthrough
+; entries correspond to wKantoBadges constants
+	db ROCK     ; BOULDERBADGE
+	db WATER    ; CASCADEBADGE
+	db ELECTRIC ; THUNDERBADGE
+	db GRASS    ; RAINBOWBADGE
+	db POISON   ; SOULBADGE
+	db PSYCHIC  ; MARSHBADGE
+	db FIRE     ; VOLCANOBADGE
+	db GROUND   ; EARTHBADGE
+	db -1 ; end
 ; fbe91

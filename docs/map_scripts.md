@@ -1,40 +1,55 @@
 # Map Scripts
 
 
-## `const_value set 2`
+## <code>const_value set 2</code>
 
-- **`const` *`MAPNAME_OBJECTNAME`***
-
-
-## `MapName_MapScriptHeader:`
-
-
-## `.SceneScripts: db` *N*
-
-- **`scene_script` *script***
+<pre>
+	const <i>MAPNAME</i>_<i>OBJECTNAME</i>
+</pre>
 
 
-## `.MapCallbacks: db` *N*
+## <code>MapName_MapScripts:</code>
 
-- **`dbw` *type*, *script***
+
+### <code>.SceneScripts: db <i>N</i></code>
+
+<pre>
+	scene_script <i>script</i>
+</pre>
+
+
+### <code>.MapCallbacks: db <i>N</i></code>
+
+<pre>
+	callback <i>type</i>, <i>script</i>
+</pre>
 
 Callback types:
 
-- **`MAPCALLBACK_NEWMAP`**
+- `MAPCALLBACK_NEWMAP`
 
-- **`MAPCALLBACK_TILES`**
+- `MAPCALLBACK_TILES`
 
-- **`MAPCALLBACK_OBJECTS`**
+- `MAPCALLBACK_OBJECTS`
 
-- **`MAPCALLBACK_SPRITES`**
+- `MAPCALLBACK_SPRITES`
 
-- **`MAPCALLBACK_CMDQUEUE`**
+- `MAPCALLBACK_CMDQUEUE`
 
-  **`dbw CMDQUEUE_STONETABLE,` *table_pointer***
-  
-  **`stonetable` *warp_id*, *person*, *script***
-  
-  **`db -1 ; end`**
+<pre>
+	callback MAPCALLBACK_CMDQUEUE, .Boulders
+
+.Boulders:
+	writecmdqueue .BoulderCmdQueue
+	return
+
+.BoulderCmdQueue:
+	cmdqueue CMDQUEUE_STONETABLE, .BoulderTable
+
+.BoulderTable:
+	stonetable <i>warp_id</i>, <i>person</i>, <i>script</i>
+	db -1 ; end
+</pre>
 
 
 ## Event scripts
@@ -52,88 +67,106 @@ Callback types:
 [Movement commands](movement_commands.md)
 
 
-## `MapName_MapEventHeader:`
+## <code>MapName_MapEvents:</code>
 
+```asm
 	; filler
 	db 0, 0
+```
 
 
-## `.Warps: db` *N*
+### <code>.Warps: db <i>N</i></code>
 
-- **`warp_def` *x*, *y*, *warp_id*, *map***
-
-
-## `.CoordEvents: db` *N*
-
-- **`coord_event` *x*, *y*, *scene_id*, *script***
+<pre>
+	warp_def <i>x</i>, <i>y</i>, <i>warp_id</i>, <i>map</i>
+</pre>
 
 
-## `.BGEvents: db` *N*
+### <code>.CoordEvents: db <i>N</i></code>
 
-- **`bg_event` *x*, *y*, *type*, *script***
+<pre>
+	coord_event <i>x</i>, <i>y</i>, <i>scene_id</i>, <i>script</i>
+</pre>
+
+
+### <code>.BGEvents: db <i>N</i></code>
+
+<pre>
+	bg_event <i>x</i>, <i>y</i>, <i>type</i>, <i>script</i>
+</pre>
 
 BG event types:
 
-- **`BGEVENT_READ`**
+- `BGEVENT_READ`
 
-- **`BGEVENT_UP/DOWN/LEFT/RIGHT`**
+- `BGEVENT_UP/DOWN/LEFT/RIGHT`
 
-- **`BGEVENT_IFSET/IFNOTSET`**
+- `BGEVENT_IFSET/IFNOTSET`
 
-  **`dw` *event_flag*, *script***
+<pre>
+	conditional_event <i>event_flag</i>, <i>script</i>
+</pre>
 
-- **`BGEVENT_ITEM`**
+- `BGEVENT_ITEM`
 
-  **`dwb` *event_flag*, *item_id***
+<pre>
+	hiddenitem <i>event_flag</i>, <i>item_id</i>
+</pre>
 
-- **`BGEVENT_COPY`**
+- `BGEVENT_COPY`
 
-## `.ObjectEvents: db` *N*
+### <code>.ObjectEvents: db <i>N</i></code>
 
-- **`object_event` *x*, *y*, *sprite*, *movement*, *rx*, *ry*, *h1*, *h2*, *palette*, *type*, *range*, *script*, *event_flag***
+<pre>
+	object_event <i>x</i>, <i>y</i>, <i>sprite</i>, <i>movement</i>, <i>rx</i>, <i>ry</i>, <i>h1</i>, <i>h2</i>, <i>palette</i>, <i>type</i>, <i>range</i>, <i>script</i>, <i>event_flag</i>
+</pre>
 
 Movement types:
 
-- **`SPRITEMOVEDATA_ITEM_TREE`**
+- `SPRITEMOVEDATA_ITEM_TREE`
 
-- **`SPRITEMOVEDATA_WANDER`**
+- `SPRITEMOVEDATA_WANDER`
 
-- **`SPRITEMOVEDATA_SPINRANDOM_SLOW`**
+- `SPRITEMOVEDATA_SPINRANDOM_SLOW`
 
-- **`SPRITEMOVEDATA_WALK_UP_DOWN`**
+- `SPRITEMOVEDATA_WALK_UP_DOWN`
 
-- **`SPRITEMOVEDATA_WALK_LEFT_RIGHT`**
+- `SPRITEMOVEDATA_WALK_LEFT_RIGHT`
 
-- **`SPRITEMOVEDATA_STANDING_UP/DOWN/LEFT/RIGHT`**
+- `SPRITEMOVEDATA_STANDING_UP/DOWN/LEFT/RIGHT`
 
-- **`SPRITEMOVEDATA_SPINRANDOM_FAST`**
+- `SPRITEMOVEDATA_SPINRANDOM_FAST`
 
-- **`SPRITEMOVEDATA_SNORLAX`**
+- `SPRITEMOVEDATA_SNORLAX`
 
-- **`SPRITEMOVEDATA_POKEMON`**
+- `SPRITEMOVEDATA_POKEMON`
 
-- **`SPRITEMOVEDATA_SUDOWOODO`**
+- `SPRITEMOVEDATA_SUDOWOODO`
 
-- **`SPRITEMOVEDATA_SMASHABLE_ROCK`**
+- `SPRITEMOVEDATA_SMASHABLE_ROCK`
 
-- **`SPRITEMOVEDATA_STRENGTH_BOULDER`**
+- `SPRITEMOVEDATA_STRENGTH_BOULDER`
 
-- **`SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE`**
+- `SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE`
 
-- **`SPRITEMOVEDATA_SPINCLOCKWISE`**
+- `SPRITEMOVEDATA_SPINCLOCKWISE`
 
-- **`SPRITEMOVEDATA_BIGDOLL`**
+- `SPRITEMOVEDATA_BIGDOLL`
 
-- **`SPRITEMOVEDATA_LAPRAS`**
+- `SPRITEMOVEDATA_LAPRAS`
 
 Object types:
 
-- **`OBJECTTYPE_SCRIPT`**
+- `OBJECTTYPE_SCRIPT`
 
-- **`OBJECTTYPE_ITEMBALL`**
+- `OBJECTTYPE_ITEMBALL`
 
-  **`itemball` *item_id***
+<pre>
+	itemball <i>item_id</i>
+</pre>
 
-- **`OBJECTTYPE_TRAINER`**
+- `OBJECTTYPE_TRAINER`
 
-  **`trainer` *event_flag*, *group_id*, *trainer_id*, *seen_text*, *beaten_text*, *loss_text*, *script***
+<pre>
+	trainer <i>event_flag</i>, <i>group_id</i>, <i>trainer_id</i>, <i>seen_text</i>, <i>beaten_text</i>, <i>loss_text</i>, <i>script</i>
+</pre>

@@ -35,9 +35,10 @@ _GetVarAction:: ; 80648 (20:4648)
 ; 80671 (20:4671)
 
 .VarActionTable: ; 80671
-; RETVAR_STRBUF2: copy [de] to StringBuffer2
-; RETVAR_ADDR_DE: return address in de
-; RETVAR_EXECUTE: call function
+; entries correspond to VAR_* constants
+	; RETVAR_STRBUF2: copy [de] to StringBuffer2
+	; RETVAR_ADDR_DE: return address in de
+	; RETVAR_EXECUTE: call function
 	dwb StringBuffer2,                  RETVAR_STRBUF2
 	dwb PartyCount,                     RETVAR_STRBUF2
 	dwb .BattleResult,                  RETVAR_EXECUTE
@@ -125,7 +126,7 @@ _GetVarAction:: ; 80648 (20:4648)
 	ret z
 	inc b
 	ld a, b
-	cp 26
+	cp NUM_UNOWN
 	jr c, .loop
 	ret
 ; 80715

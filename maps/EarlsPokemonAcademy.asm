@@ -6,7 +6,7 @@ const_value set 2
 	const EARLSPOKEMONACADEMY_YOUNGSTER2
 	const EARLSPOKEMONACADEMY_POKEDEX
 
-EarlsPokemonAcademy_MapScriptHeader:
+EarlsPokemonAcademy_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -69,11 +69,11 @@ AcademyBlackboard:
 	loadmenudata .BlackboardMenuData
 	_2dmenu
 	closewindow
-	if_equal $1, .Poison
-	if_equal $2, .Paralysis
-	if_equal $3, .Sleep
-	if_equal $4, .Burn
-	if_equal $5, .Freeze
+	if_equal 1, .Poison
+	if_equal 2, .Paralysis
+	if_equal 3, .Sleep
+	if_equal 4, .Burn
+	if_equal 5, .Freeze
 	closetext
 	end
 
@@ -103,14 +103,13 @@ AcademyBlackboard:
 	jump .Loop
 
 .BlackboardMenuData:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 11 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 11, 8
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing
 	dba .Text
@@ -412,7 +411,7 @@ AcademyStickerMachineText:
 	para "stickers!"
 	done
 
-EarlsPokemonAcademy_MapEventHeader:
+EarlsPokemonAcademy_MapEvents:
 	; filler
 	db 0, 0
 

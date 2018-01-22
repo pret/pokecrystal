@@ -428,9 +428,9 @@ GetBallAnimPal: ; cd249 (33:5249)
 	ld hl, BallColors
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(CurItem)
 	ld [rSVBK], a
-	ld a, [CurItem] ; CurItem
+	ld a, [CurItem]
 	ld e, a
 	pop af
 	ld [rSVBK], a
@@ -4083,18 +4083,19 @@ BattleAnim_IncAnonJumptableIndex: ; ce72c (33:672c)
 	ret
 
 BattleAnim_Cosine: ; ce732 (33:6732)
-	add $10
+; a = d * cos(a * pi/32)
+	add %010000
 BattleAnim_Sine: ; ce734 (33:6734)
-; a = d sin a
-	and $3f
-	cp $20
+; a = d * sin(a * pi/32)
+	and %111111
+	cp %100000
 	jr nc, .negative
 	call .ApplySineWave
 	ld a, h
 	ret
 
 .negative
-	and $1f
+	and %011111
 	call .ApplySineWave
 	ld a, h
 	xor $ff
@@ -4111,7 +4112,7 @@ BattleAnim_Sine: ; ce734 (33:6734)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $0
+	ld hl, 0
 .multiply
 	srl a
 	jr nc, .even

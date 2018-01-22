@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE21_SWIMMER_GUY
 	const ROUTE21_FISHER
 
-Route21_MapScriptHeader:
+Route21_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -89,7 +89,7 @@ FisherArnoldAfterBattleText:
 	line "to fishing…"
 	done
 
-Route21_MapEventHeader:
+Route21_MapEvents:
 	; filler
 	db 0, 0
 

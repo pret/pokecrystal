@@ -52,12 +52,12 @@ Copyright_GFPresents: ; e4579
 .GetGFLogoGFX: ; e45e8
 	ld de, GameFreakLogo
 	ld hl, vTiles2
-	lb bc, BANK(GameFreakLogo), $1c
+	lb bc, BANK(GameFreakLogo), 28
 	call Get1bpp
 
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld hl, IntroLogoGFX
@@ -94,7 +94,7 @@ Copyright_GFPresents: ; e4579
 	xor a
 	ld [wJumptableIndex], a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld a, $1
@@ -146,7 +146,7 @@ PlaceGameFreakPresents_0: ; e468c
 ; e468d
 
 PlaceGameFreakPresents_1: ; e468d
-	ld hl, wcf65
+	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $20
 	jr nc, .PlaceGameFreak
@@ -173,7 +173,7 @@ PlaceGameFreakPresents_1: ; e468d
 ; e46ba
 
 PlaceGameFreakPresents_2: ; e46ba
-	ld hl, wcf65
+	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $40
 	jr nc, .place_presents
@@ -197,7 +197,7 @@ PlaceGameFreakPresents_2: ; e46ba
 ; e46dd
 
 PlaceGameFreakPresents_3: ; e46dd
-	ld hl, wcf65
+	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $80
 	jr nc, .finish
@@ -247,10 +247,10 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
-	and $3f
-	cp $20
+	and %111111
+	cp %100000
 	jr nc, .asm_e4723
-	add $20
+	add %100000
 .asm_e4723
 	ld e, a
 	farcall BattleAnim_Sine_e
@@ -319,7 +319,7 @@ GameFreakLogoScene4: ; e4776 (39:4776)
 	add hl, de
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wOBPals2)
 	ld [rSVBK], a
 	ld a, [hli]
 	ld [wOBPals2 + 12], a
@@ -341,7 +341,7 @@ GameFreakLogoScene5: ; e47ab (39:47ab)
 ; e47ac (39:47ac)
 
 GameFreakLogoPalettes: ; e47ac
-INCLUDE "data/palettes/crystal_intro/gamefreak_logo.pal"
+INCLUDE "gfx/intro/gamefreak_logo.pal"
 ; e47cc
 
 GameFreakLogo: ; e47cc
@@ -352,7 +352,7 @@ INCBIN "gfx/splash/logo2.1bpp"
 CrystalIntro: ; e48ac
 	ld a, [rSVBK]
 	push af
-	ld a, 5
+	ld a, BANK(wPals)
 	ld [rSVBK], a
 	ld a, [hInMenu]
 	push af
@@ -480,7 +480,7 @@ IntroScene1: ; e495b (39:495b)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, wBGPals1
@@ -503,7 +503,7 @@ IntroScene1: ; e495b (39:495b)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -523,7 +523,7 @@ IntroScene2: ; e49d6 (39:49d6)
 	call PlaySFX
 	pop af
 .DontPlaySound:
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	xor a
 	call CrystalIntro_UnownFade
 	ret
@@ -553,7 +553,7 @@ IntroScene3: ; e49fd (39:49fd)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
 	ld de, wBGPals1
@@ -619,7 +619,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, wBGPals1
@@ -642,7 +642,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -669,7 +669,7 @@ IntroScene6: ; e4af7 (39:4af7)
 	call PlaySFX
 	pop af
 .NoUnown:
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	xor a
 	call CrystalIntro_UnownFade
 	ret
@@ -682,7 +682,7 @@ IntroScene6: ; e4af7 (39:4af7)
 	call PlaySFX
 	pop af
 .StopUnown:
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, $1
 	call CrystalIntro_UnownFade
 	ret
@@ -725,7 +725,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, Palette_e5edd
@@ -758,7 +758,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -884,7 +884,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_365ad
 	ld de, wBGPals1
@@ -907,7 +907,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -925,7 +925,7 @@ IntroScene12: ; e4cfa (39:4cfa)
 	ld c, a
 	and $1f
 	sla a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, c
 	and $e0
 	srl a
@@ -939,7 +939,7 @@ IntroScene12: ; e4cfa (39:4cfa)
 	and $f
 	sla a
 	sla a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, c
 	and $70
 	or $40
@@ -1011,7 +1011,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e5edd
 	ld de, wBGPals1
@@ -1041,7 +1041,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1068,7 +1068,7 @@ IntroScene14: ; e4dfa (39:4dfa)
 
 .asm_e4e1a
 	ld a, $1
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, [wGlobalAnimXOffset]
 	cp $88
 	jr c, .asm_e4e2c
@@ -1120,7 +1120,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	call Intro_LoadTilemap
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
 	ld de, wBGPals1
@@ -1150,7 +1150,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	call _InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1194,7 +1194,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e6d6d
 	ld de, wBGPals1
@@ -1217,7 +1217,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1268,7 +1268,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	call Intro_LoadTilemap
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e77dd
 	ld de, wBGPals1
@@ -1299,7 +1299,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	call _InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1331,7 +1331,7 @@ IntroScene20: ; e5019 (39:5019)
 	and $1c
 	srl a
 	srl a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	xor a
 	call Intro_Scene20_AppearUnown
 	ret
@@ -1341,7 +1341,7 @@ IntroScene20: ; e5019 (39:5019)
 	and $1c
 	srl a
 	srl a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, 1
 	call Intro_Scene20_AppearUnown
 	ret
@@ -1358,7 +1358,7 @@ IntroScene21: ; e505d (39:505d)
 	xor a
 	ld [hBGMapMode], a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
@@ -1438,7 +1438,7 @@ IntroScene26: ; e50bb (39:50bb)
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	ld hl, Palette_e679d
 	ld de, wBGPals1
@@ -1461,13 +1461,13 @@ IntroScene26: ; e50bb (39:50bb)
 	call Intro_SetCGBPalUpdate
 	xor a
 	ld [wIntroSceneFrameCounter], a
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	call NextIntroScene
 	ret
 
 IntroScene27: ; e512d (39:512d)
 ; Spell out C R Y S T A L with Unown.
-	ld hl, wcf65
+	ld hl, wIntroSceneTimer
 	inc [hl]
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -1477,7 +1477,7 @@ IntroScene27: ; e512d (39:512d)
 
 	ld c, a
 	and $f
-	ld [wcf65], a
+	ld [wIntroSceneTimer], a
 	ld a, c
 	and $70
 	swap a
@@ -1526,7 +1526,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 	ld de, wBGPals2
 	ld b, 8 ; number of BG pals
@@ -1550,7 +1550,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 ; e519c (39:519c)
 
 .FadePals: ; e519c
-INCLUDE "data/palettes/crystal_intro/fade.pal"
+INCLUDE "gfx/intro/fade.pal"
 ; e51dc
 
 CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
@@ -1603,13 +1603,13 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	add hl, de
 	inc hl
 	inc hl
-	ld a, [wcf65]
-	and $3f
-	cp $1f
+	ld a, [wIntroSceneTimer]
+	and %111111
+	cp %011111
 	jr z, .okay
 	jr c, .okay
 	ld c, a
-	ld a, $3f
+	ld a, %111111
 	sub c
 .okay
 
@@ -1617,7 +1617,7 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	ld b, $0
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 	push hl
@@ -1714,7 +1714,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	ld hl, .pal2
 
 .got_pointer
-	ld a, [wcf65]
+	ld a, [wIntroSceneTimer]
 	and $7
 	add a
 	add a
@@ -1722,7 +1722,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	ld c, a
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 	push bc
@@ -1784,14 +1784,14 @@ Intro_FadeUnownWordPals: ; e539d (39:539d)
 rept 4
 	inc hl
 endr
-	ld a, [wcf65]
+	ld a, [wIntroSceneTimer]
 	add a
 	ld c, a
 	ld b, $0
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 	push hl
@@ -1846,7 +1846,7 @@ endr
 Intro_LoadTilemap: ; e541b (39:541b)
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	ld hl, wDecompressScratch
@@ -1946,7 +1946,7 @@ Intro_SetCGBPalUpdate: ; e549e (39:549e)
 Intro_ClearBGPals: ; e54a3 (39:54a3)
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 
 	ld hl, wBGPals2
@@ -1965,7 +1965,7 @@ Intro_ClearBGPals: ; e54a3 (39:54a3)
 Intro_DecompressRequest2bpp_128Tiles: ; e54c2 (39:54c2)
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	push de
@@ -1984,7 +1984,7 @@ Intro_DecompressRequest2bpp_128Tiles: ; e54c2 (39:54c2)
 Intro_DecompressRequest2bpp_255Tiles: ; e54de (39:54de)
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	push de
@@ -2003,7 +2003,7 @@ Intro_DecompressRequest2bpp_255Tiles: ; e54de (39:54de)
 Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 
 	push de
@@ -2022,7 +2022,7 @@ Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
 Intro_ResetLYOverrides: ; e5516 (39:5516)
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 	ld hl, LYOverrides
@@ -2039,7 +2039,7 @@ Intro_ResetLYOverrides: ; e5516 (39:5516)
 Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	; Scroll the grass every frame.
 	; Scroll the trees every other frame and at half speed.
@@ -2088,7 +2088,7 @@ INCBIN "gfx/intro/003.tilemap.lz"
 ; e5edd
 
 Palette_e5edd: ; e5edd
-INCLUDE "data/palettes/crystal_intro/intro_1.pal"
+INCLUDE "gfx/intro/intro_1.pal"
 ; e5f5d
 
 IntroUnownsGFX: ; e5f5d
@@ -2124,7 +2124,7 @@ INCBIN "gfx/intro/007.tilemap.lz"
 ; e65ad
 
 Palette_365ad: ; e65ad
-INCLUDE "data/palettes/crystal_intro/intro_2.pal"
+INCLUDE "gfx/intro/intro_2.pal"
 ; e662d
 
 IntroCrystalUnownsGFX: ; e662d
@@ -2140,7 +2140,7 @@ INCBIN "gfx/intro/015.tilemap.lz"
 ; e679d
 
 Palette_e679d: ; e679d
-INCLUDE "data/palettes/crystal_intro/intro_3.pal"
+INCLUDE "gfx/intro/intro_3.pal"
 ; e681d
 
 IntroSuicuneCloseGFX: ; e681d
@@ -2156,7 +2156,7 @@ INCBIN "gfx/intro/011.tilemap.lz"
 ; e6d6d
 
 Palette_e6d6d: ; e6d6d
-INCLUDE "data/palettes/crystal_intro/intro_4.pal"
+INCLUDE "gfx/intro/intro_4.pal"
 ; e6ded
 
 IntroSuicuneJumpGFX: ; e6ded
@@ -2184,7 +2184,7 @@ INCBIN "gfx/intro/013.tilemap.lz"
 ; e77dd
 
 Palette_e77dd: ; e77dd
-INCLUDE "data/palettes/crystal_intro/intro_5.pal"
+INCLUDE "gfx/intro/intro_5.pal"
 
 IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.2bpp.lz"

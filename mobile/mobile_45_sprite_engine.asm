@@ -1,7 +1,7 @@
 Function115d99: ; 115d99
 	ld de, GFX_11601a
 	ld hl, vTiles0 tile $60
-	lb bc, BANK(GFX_11601a), $14
+	lb bc, BANK(GFX_11601a), 20
 	call Get2bpp
 	xor a
 	ld [wc305], a
@@ -22,8 +22,8 @@ Function115dc3: ; 115dc3
 	xor a
 	ld [wc305], a
 	ld a, $a0
-	ld hl, Sprites + 31 * 4
-	ld bc, 8 * 4
+	ld hl, Sprite32
+	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ret
 
@@ -34,8 +34,8 @@ Function115dd3: ; 115dd3
 	and a
 	ret z
 	ld a, $a0
-	ld hl, Sprites + 31 * 4
-	ld bc, 8 * 4
+	ld hl, Sprite32
+	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	call Function115e22
 	ld a, [wc309]
@@ -50,7 +50,7 @@ Function115dd3: ; 115dd3
 	ld d, a
 	push de
 	pop hl
-	ld de, Sprites + 31 * 4
+	ld de, Sprite32
 	ld a, [wc307]
 	ld c, a
 	ld a, [wc308]
@@ -60,17 +60,17 @@ Function115dd3: ; 115dd3
 	push af
 	ld a, [hli]
 	add b
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
 	add c
-	ld [de], a
+	ld [de], a ; x
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; tile id
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; attributes
 	inc de
 	pop af
 	dec a
@@ -361,7 +361,7 @@ Function11619d: ; 11619d
 	jr c, .asm_1161b4
 	ld a, $a0
 	ld hl, Sprites
-	ld bc, $0064
+	ld bc, 25 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 
 .asm_1161b4
@@ -507,9 +507,8 @@ Function1161d5: ; 1161d5
 ; 11628c
 
 MenuDataHeader_11628c: ; 11628c
-	db $40 ; flags
-	db  6,  0 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 6, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 116294
@@ -586,22 +585,22 @@ Function1162f2: ; 1162f2
 	ld e, a
 	ld a, [hli]
 	sub e
-	ld de, Sprites + $24
+	ld de, Sprite10
 .asm_116321
 	push af
 	ld a, [hli]
 	add b
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
 	add c
-	ld [de], a
+	ld [de], a ; x
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; tile id
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; attributes
 	inc de
 	pop af
 	dec a
@@ -627,22 +626,22 @@ Function1162f2: ; 1162f2
 	ld e, a
 	ld a, [hli]
 	sub e
-	ld de, Sprites
+	ld de, Sprite01
 .asm_11635a
 	push af
 	ld a, [hli]
 	add b
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
 	add c
-	ld [de], a
+	ld [de], a ; x
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; tile id
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; attributes
 	inc de
 	pop af
 	dec a
@@ -669,7 +668,7 @@ Function11636e: ; 11636e
 	ld [rSVBK], a
 	ld a, $a0
 	ld hl, Sprites
-	ld bc, 16 * 4
+	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ld a, $90
 	ld [hWY], a
@@ -697,7 +696,7 @@ Function1163c0: ; 1163c0
 	ld [rSVBK], a
 	ld a, $a0
 	ld hl, Sprites
-	ld bc, 16 * 4
+	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	call DelayFrame
 	farcall Function14146

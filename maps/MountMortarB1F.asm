@@ -7,7 +7,7 @@ const_value set 2
 	const MOUNTMORTARB1F_POKE_BALL4
 	const MOUNTMORTARB1F_POKE_BALL5
 
-MountMortarB1F_MapScriptHeader:
+MountMortarB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -35,7 +35,7 @@ UnknownScript_0x7e217:
 	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x7e237
+	if_equal PARTY_LENGTH, UnknownScript_0x7e237
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -72,8 +72,7 @@ MountMortarB1FPPUp:
 	itemball PP_UP
 
 MountMortarB1FHiddenMaxRevive:
-	dwb EVENT_MOUNT_MORTAR_B1F_HIDDEN_MAX_REVIVE, MAX_REVIVE
-
+	hiddenitem EVENT_MOUNT_MORTAR_B1F_HIDDEN_MAX_REVIVE, MAX_REVIVE
 
 UnknownText_0x7e24d:
 	text "Hey!"
@@ -135,7 +134,7 @@ UnknownText_0x7e3df:
 	line "in your party!"
 	done
 
-MountMortarB1F_MapEventHeader:
+MountMortarB1F_MapEvents:
 	; filler
 	db 0, 0
 

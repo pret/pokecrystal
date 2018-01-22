@@ -1,3 +1,5 @@
+NUM_SQUARE_ROOTS EQU 255
+
 GetSquareRoot: ; 13b87
 ; Return the square root of de in b.
 
@@ -10,7 +12,7 @@ GetSquareRoot: ; 13b87
 ; Make sure we don't go past the end of the table.
 	inc b
 	ld a, b
-	cp $ff
+	cp NUM_SQUARE_ROOTS
 	ret z
 
 ; Iterate over the table until b**2 >= de.
@@ -23,8 +25,8 @@ GetSquareRoot: ; 13b87
 	ret
 
 .Squares: ; 13b98
-root = 1
-	rept $ff
-	dw root * root
-root = root + 1
-	endr
+x = 1
+rept NUM_SQUARE_ROOTS
+	dw x * x
+x = x + 1
+endr

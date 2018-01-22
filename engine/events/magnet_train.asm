@@ -16,7 +16,7 @@ Special_MagnetTrain: ; 8cc04
 	ld h, a
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wMagnetTrain)
 	ld [rSVBK], a
 
 	ld a, h
@@ -86,20 +86,20 @@ Special_MagnetTrain: ; 8cc04
 MagnetTrain_UpdateLYOverrides: ; 8cc99
 	ld hl, LYOverridesBackup
 	ld c, $2f
-	ld a, [wcf64]
+	ld a, [wMagnetTrainOffset]
 	add a
 	ld [hSCX], a
 	call .loadloop
 	ld c, $30
-	ld a, [wcf65]
+	ld a, [wMagnetTrainPosition]
 	call .loadloop
 	ld c, $31
-	ld a, [wcf64]
+	ld a, [wMagnetTrainOffset]
 	add a
 	call .loadloop
 	ld a, [wMagnetTrainDirection]
 	ld d, a
-	ld hl, wcf64
+	ld hl, wMagnetTrainOffset
 	ld a, [hl]
 	add d
 	add d
@@ -129,7 +129,7 @@ MagntTrain_LoadGFX_PlayMusic: ; 8ccc9
 	ld [hSCY], a
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(wPlayerGender)
 	ld [rSVBK], a
 	farcall GetPlayerIcon
 	pop af
@@ -147,11 +147,11 @@ MagntTrain_LoadGFX_PlayMusic: ; 8ccc9
 	call MagnetTrain_InitLYOverrides
 	ld hl, wJumptableIndex
 	xor a
-	ld [hli], a
+	ld [hli], a ; wJumptableIndex
 	ld a, [wMagnetTrainInitPosition]
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; wMagnetTrainOffset
+	ld [hli], a ; wMagnetTrainPosition
+	ld [hli], a ; wMagnetTrainWaitCounter
 	ld de, MUSIC_MAGNET_TRAIN
 	call PlayMusic2
 	ret
@@ -220,8 +220,7 @@ GetMagnetTrainBGTiles: ; 8cd74
 ; 8cd82
 
 MagnetTrainBGTiles: ; 8cd82
-; Alternating tiles for each line
-; of the Magnet Train tilemap.
+; Alternating tiles for each line of the Magnet Train tilemap.
 	db $4c, $4d ; bush
 	db $5c, $5d ; bush
 	db $4c, $4d ; bush
@@ -263,25 +262,25 @@ SetMagnetTrainPals: ; 8cdc3
 	; bushes
 	hlbgcoord 0, 0
 	ld bc, 4 * BG_MAP_WIDTH
-	ld a, $2
+	ld a, PAL_BG_GREEN
 	call ByteFill
 
 	; train
 	hlbgcoord 0, 4
 	ld bc, 10 * BG_MAP_WIDTH
-	xor a
+	xor a ; PAL_BG_GRAY
 	call ByteFill
 
 	; more bushes
 	hlbgcoord 0, 14
 	ld bc, 4 * BG_MAP_WIDTH
-	ld a, $2
+	ld a, PAL_BG_GREEN
 	call ByteFill
 
 	; train window
 	hlbgcoord 7, 8
 	ld bc, 6
-	ld a, $4
+	ld a, PAL_BG_YELLOW
 	call ByteFill
 
 	ld a, $0
@@ -325,7 +324,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld b, SPRITE_ANIM_INDEX_MAGNET_TRAIN_RED
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(wPlayerGender)
 	ld [rSVBK], a
 	ld a, [wPlayerGender]
 	bit 0, a
@@ -342,13 +341,13 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld [hl], $0
 	call .Next
 	ld a, $80
-	ld [wcf66], a
+	ld [wMagnetTrainWaitCounter], a
 	ret
 ; 8ce47
 
 .MoveTrain1: ; 8ce47
 	ld hl, wMagnetTrainHoldPosition
-	ld a, [wcf65]
+	ld a, [wMagnetTrainPosition]
 	cp [hl]
 	jr z, .PrepareToHoldTrain
 	ld e, a
@@ -356,7 +355,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	xor $ff
 	inc a
 	add e
-	ld [wcf65], a
+	ld [wMagnetTrainPosition], a
 	ld hl, wGlobalAnimXOffset
 	ld a, [wMagnetTrainDirection]
 	add [hl]
@@ -366,12 +365,12 @@ MagnetTrain_Jumptable: ; 8cdf7
 .PrepareToHoldTrain:
 	call .Next
 	ld a, $80
-	ld [wcf66], a
+	ld [wMagnetTrainWaitCounter], a
 	ret
 ; 8ce6d
 
 .WaitScene: ; 8ce6d
-	ld hl, wcf66
+	ld hl, wMagnetTrainWaitCounter
 	ld a, [hl]
 	and a
 	jr z, .DoneWaiting
@@ -385,7 +384,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 
 .MoveTrain2: ; 8ce7a
 	ld hl, wMagnetTrainFinalPosition
-	ld a, [wcf65]
+	ld a, [wMagnetTrainPosition]
 	cp [hl]
 	jr z, .PrepareToFinishAnim
 	ld e, a
@@ -396,7 +395,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld a, e
 	add d
 	add d
-	ld [wcf65], a
+	ld [wMagnetTrainPosition], a
 	ld hl, wGlobalAnimXOffset
 	ld a, [wMagnetTrainDirection]
 	ld d, a
@@ -429,14 +428,14 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	call DelayFrame
 	ld a, [rSVBK]
 	push af
-	ld a, $1
+	ld a, BANK(wEnvironment)
 	ld [rSVBK], a
 	ld a, [TimeOfDayPal]
 	push af
 	ld a, [wEnvironment]
 	push af
 	ld a, [TimeOfDay]
-	and $3
+	maskbits NUM_DAYTIMES
 	ld [TimeOfDayPal], a
 	ld a, $1
 	ld [wEnvironment], a
@@ -459,23 +458,11 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 ; 8ceff
 
 MagnetTrainTilemap1:
-	db $1f, $05, $06, $0a, $0a
-	db $0a, $09, $0a, $0a, $0a
-	db $0a, $0a, $0a, $09, $0a
-	db $0a, $0a, $0b, $0c, $1f
+	db $1f, $05, $06, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0a, $0a, $0a, $09, $0a, $0a, $0a, $0b, $0c, $1f
 MagnetTrainTilemap2:
-	db $14, $15, $16, $1a, $1a
-	db $1a, $19, $1a, $1a, $1a
-	db $1a, $1a, $1a, $19, $1a
-	db $1a, $1a, $1b, $1c, $1d
+	db $14, $15, $16, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1a, $1a, $1a, $19, $1a, $1a, $1a, $1b, $1c, $1d
 MagnetTrainTilemap3:
-	db $24, $25, $26, $27, $07
-	db $2f, $29, $28, $28, $28
-	db $28, $28, $28, $29, $07
-	db $2f, $2a, $2b, $2c, $2d
+	db $24, $25, $26, $27, $07, $2f, $29, $28, $28, $28, $28, $28, $28, $29, $07, $2f, $2a, $2b, $2c, $2d
 MagnetTrainTilemap4:
-	db $20, $1f, $2e, $1f, $17
-	db $00, $2e, $1f, $1f, $1f
-	db $1f, $1f, $1f, $2e, $17
-	db $00, $1f, $2e, $1f, $0f
+	db $20, $1f, $2e, $1f, $17, $00, $2e, $1f, $1f, $1f, $1f, $1f, $1f, $2e, $17, $00, $1f, $2e, $1f, $0f
 ; 8cf4f

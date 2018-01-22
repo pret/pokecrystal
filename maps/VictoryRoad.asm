@@ -6,7 +6,7 @@ const_value set 2
 	const VICTORYROAD_POKE_BALL4
 	const VICTORYROAD_POKE_BALL5
 
-VictoryRoad_MapScriptHeader:
+VictoryRoad_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -22,7 +22,7 @@ VictoryRoad_MapScriptHeader:
 	end
 
 UnknownScript_0x74492:
-	moveobject VICTORYROAD_SILVER, $12, $b
+	moveobject VICTORYROAD_SILVER, 18, 11
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
@@ -32,7 +32,7 @@ UnknownScript_0x74492:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x7454c
 	disappear VICTORYROAD_SILVER
-	setscene $1
+	setscene 1
 	playmapmusic
 	end
 
@@ -46,7 +46,7 @@ UnknownScript_0x744b5:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x74555
 	disappear VICTORYROAD_SILVER
-	setscene $1
+	setscene 1
 	playmapmusic
 	end
 
@@ -112,12 +112,10 @@ VictoryRoadHPUp:
 	itemball HP_UP
 
 VictoryRoadHiddenMaxPotion:
-	dwb EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION, MAX_POTION
-
+	hiddenitem EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION, MAX_POTION
 
 VictoryRoadHiddenFullHeal:
-	dwb EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL, FULL_HEAL
-
+	hiddenitem EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL, FULL_HEAL
 
 MovementData_0x74539:
 	step LEFT
@@ -240,7 +238,7 @@ UnknownText_0x747aa:
 	line "thing else."
 	done
 
-VictoryRoad_MapEventHeader:
+VictoryRoad_MapEvents:
 	; filler
 	db 0, 0
 

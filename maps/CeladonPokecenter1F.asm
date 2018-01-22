@@ -5,7 +5,7 @@ const_value set 2
 	const CELADONPOKECENTER1F_COOLTRAINER_F
 	const CELADONPOKECENTER1F_EUSINE
 
-CeladonPokecenter1F_MapScriptHeader:
+CeladonPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -30,9 +30,9 @@ CeladonEusine:
 	writetext CeladonEusineText1
 	buttonsound
 	writebyte SUICUNE
-	special SpecialMonCheck
+	special Special_MonCheck
 	iffalse .NoSuicune
-	special SpecialBeastsCheck
+	special Special_BeastsCheck
 	iftrue .HoOh
 	writetext NoBeastsText
 	waitbutton
@@ -45,7 +45,7 @@ CeladonEusine:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal $1, .Location1
+	if_equal UP, .Location1
 	applymovement CELADONPOKECENTER1F_EUSINE, .Movement1
 	jump .Continue
 
@@ -133,7 +133,7 @@ NoBeastsText:
 	para "#MON RAIKOU and"
 	line "ENTEI?"
 
-	para $56, $56, $56
+	para "<……><……><……>"
 
 	para "Okay…"
 
@@ -145,7 +145,7 @@ NoBeastsText:
 	line "you, <PLAYER>!"
 	done
 
-CeladonPokecenter1F_MapEventHeader:
+CeladonPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

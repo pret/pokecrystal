@@ -9,7 +9,7 @@ const_value set 2
 	const ROUTE27_POKE_BALL2
 	const ROUTE27_FISHER
 
-Route27_MapScriptHeader:
+Route27_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -42,7 +42,7 @@ UnknownScript_0x1a088c:
 	writetext Route27FisherText
 	waitbutton
 	closetext
-	setscene $1
+	setscene 1
 	end
 
 Route27FisherScript:
@@ -84,9 +84,9 @@ UnknownScript_0x1a08e8:
 	scall UnknownScript_0x1a095b
 UnknownScript_0x1a08eb:
 	askforphonenumber PHONE_BIRDKEEPER_JOSE
-	if_equal $1, UnknownScript_0x1a096b
-	if_equal $2, UnknownScript_0x1a0967
-	trainertotext BIRD_KEEPER, JOSE2, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a096b
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a0967
+	trainertotext BIRD_KEEPER, JOSE2, MEM_BUFFER_0
 	scall UnknownScript_0x1a095f
 	jump UnknownScript_0x1a0963
 
@@ -217,9 +217,9 @@ UnknownScript_0x1a09d2:
 	scall UnknownScript_0x1a0a33
 UnknownScript_0x1a09d5:
 	askforphonenumber PHONE_COOLTRAINERF_REENA
-	if_equal $1, UnknownScript_0x1a0a43
-	if_equal $2, UnknownScript_0x1a0a3f
-	trainertotext COOLTRAINERF, REENA1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a0a43
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a0a3f
+	trainertotext COOLTRAINERF, REENA1, MEM_BUFFER_0
 	scall UnknownScript_0x1a0a37
 	jump UnknownScript_0x1a0a3b
 
@@ -467,7 +467,7 @@ TohjoFallsSignText:
 	line "KANTO AND JOHTO"
 	done
 
-Route27_MapEventHeader:
+Route27_MapEvents:
 	; filler
 	db 0, 0
 

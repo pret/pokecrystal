@@ -8,7 +8,7 @@ const_value set 2
 	const ROUTE29_TUSCANY
 	const ROUTE29_POKE_BALL
 
-Route29_MapScriptHeader:
+Route29_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -16,7 +16,7 @@ Route29_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Tuscany
+	callback MAPCALLBACK_OBJECTS, .Tuscany
 
 .DummyScene0:
 	end
@@ -59,7 +59,7 @@ Route29Tutorial1:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	setscene $0
+	setscene 0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -84,7 +84,7 @@ Route29Tutorial2:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	setscene $0
+	setscene 0
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -93,7 +93,7 @@ Script_RefusedTutorial1:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1b
-	setscene $0
+	setscene 0
 	end
 
 Script_RefusedTutorial2:
@@ -101,14 +101,14 @@ Script_RefusedTutorial2:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2b
-	setscene $0
+	setscene 0
 	end
 
 CatchingTutorialDudeScript:
 	faceplayer
 	opentext
 	checkcode VAR_BOXSPACE
-	if_equal $0, .BoxFull
+	if_equal 0, .BoxFull
 	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
 	iftrue .BoxFull
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
@@ -324,7 +324,7 @@ Route29FisherText:
 	line "progress."
 	done
 
-; possibly unused
+; unused
 Text_WaitingForDay:
 	text "I'm waiting for"
 	line "#MON that"
@@ -415,13 +415,13 @@ Route29Sign2Text:
 	line "NEW BARK TOWN"
 	done
 
-Route29_MapEventHeader:
+Route29_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 1
-	warp_def 27, 1, 3, ROUTE_29_46_GATE
+	warp_def 27, 1, 3, ROUTE_29_ROUTE_46_GATE
 
 .CoordEvents:
 	db 2

@@ -69,7 +69,7 @@ ReadAnyMail: ; b9237
 	ld h, d
 	ld l, e
 	push hl
-	ld a, $0
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld de, sPartyMon1MailAuthorID - sPartyMon1Mail
 	add hl, de
@@ -725,8 +725,7 @@ MailGFX_PlaceMessage: ; b9803
 	jp PlaceString
 ; b984e
 
-Functionb984e: ; b984e
-; XXX
+Unreferenced_Functionb984e: ; b984e
 .loop
 	ld a, [hl]
 	xor $ff

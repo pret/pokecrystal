@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE39FARMHOUSE_POKEFAN_M
 	const ROUTE39FARMHOUSE_POKEFAN_F
 
-Route39Farmhouse_MapScriptHeader:
+Route39Farmhouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -24,15 +24,15 @@ FarmerMScript_SellMilk:
 	checkitem MOOMOO_MILK
 	iftrue FarmerMScript_Milking
 	writetext FarmerMText_BuyMilk
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	yesorno
 	iffalse FarmerMScript_NoSale
-	checkmoney $0, 500
-	if_equal $2, FarmerMScript_NoMoney
+	checkmoney YOUR_MONEY, 500
+	if_equal HAVE_LESS, FarmerMScript_NoMoney
 	giveitem MOOMOO_MILK
 	iffalse FarmerMScript_NoRoom
-	takemoney $0, 500
-	special PlaceMoneyTopRight
+	takemoney YOUR_MONEY, 500
+	special Special_PlaceMoneyTopRight
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext FarmerMText_GotMilk
@@ -192,7 +192,7 @@ FarmerFText_SnoreSpeech:
 	cont "it, hon."
 	done
 
-Route39Farmhouse_MapEventHeader:
+Route39Farmhouse_MapEvents:
 	; filler
 	db 0, 0
 

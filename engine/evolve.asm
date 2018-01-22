@@ -247,7 +247,7 @@ EvolveAfterBattle_MasterLoop
 	push hl
 	ld hl, Text_EvolvedIntoPKMN
 	call PrintTextBoxText
-	farcall TrainerRankings_MonsEvolved
+	farcall StubbedTrainerRankings_MonsEvolved
 
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -333,7 +333,7 @@ EvolveAfterBattle_MasterLoop
 	inc hl
 	jp .loop
 
-; XXX
+; unused
 	pop hl
 .ReturnToMap:
 	pop de
@@ -371,7 +371,7 @@ UpdateSpeciesNameIfNotNicknamed: ; 42414
 	jr nz, .loop
 
 	ld a, [CurPartyMon]
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld hl, PartyMonNicknames
 	call AddNTimes
 	push hl
@@ -380,7 +380,7 @@ UpdateSpeciesNameIfNotNicknamed: ; 42414
 	call GetPokemonName
 	ld hl, StringBuffer1
 	pop de
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 ; 42454
 
@@ -621,7 +621,7 @@ ShiftMoves: ; 4256e
 EvoFlagAction: ; 42577
 	push de
 	ld d, $0
-	predef FlagPredef
+	predef SmallFarFlagAction
 	pop de
 	ret
 ; 42581

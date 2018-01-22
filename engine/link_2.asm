@@ -30,13 +30,14 @@ LinkTextbox2: ; 4d35b
 	call .PlaceBorder
 	pop hl
 	pop bc
+
 	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
 	inc c
 	inc c
-	ld a, $7
+	ld a, PAL_BG_TEXT
 .row
 	push bc
 	push hl
@@ -51,6 +52,7 @@ LinkTextbox2: ; 4d35b
 	dec b
 	jr nz, .row
 	ret
+; 4d37e
 
 .PlaceBorder: ; 4d37e
 	push hl
@@ -75,12 +77,14 @@ LinkTextbox2: ; 4d35b
 	add hl, de
 	dec b
 	jr nz, .loop
+
 	ld a, "┐"
 	ld [hli], a
 	ld a, "│"
 	call .PlaceRow
 	ld [hl], "└"
 	ret
+; 4d3ab
 
 .PlaceRow: ; 4d3ab
 	ld d, c

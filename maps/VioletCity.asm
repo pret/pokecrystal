@@ -8,13 +8,13 @@ const_value set 2
 	const VIOLETCITY_POKE_BALL1
 	const VIOLETCITY_POKE_BALL2
 
-VioletCity_MapScriptHeader:
+VioletCity_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VIOLET
@@ -98,7 +98,7 @@ VioletCityFruitTreeScript:
 	fruittree FRUITTREE_VIOLET_CITY
 
 VioletCityHiddenHyperPotion:
-	dwb EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem EVENT_VIOLET_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 VioletCityFollowEarl_MovementData:
 	big_step DOWN
@@ -278,7 +278,7 @@ EarlsPokemonAcademySignText:
 	line "ACADEMY"
 	done
 
-VioletCity_MapEventHeader:
+VioletCity_MapEvents:
 	; filler
 	db 0, 0
 

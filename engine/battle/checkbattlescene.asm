@@ -1,7 +1,7 @@
 CheckBattleScene: ; 4ea44
 ; Return carry if battle scene is turned off.
 
-	ld a, 0
+	ld a, BANK(wLinkMode)
 	ld hl, wLinkMode
 	call GetFarWRAMByte
 	cp LINK_MOBILE
@@ -19,9 +19,9 @@ CheckBattleScene: ; 4ea44
 	and a
 	jr nz, .from_wram
 
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld a, [$a60c]
+	ld a, [$a60c] ; address of MBC30 bank
 	ld c, a
 	call CloseSRAM
 
@@ -33,7 +33,7 @@ CheckBattleScene: ; 4ea44
 	ret
 
 .from_wram
-	ld a, $5
+	ld a, BANK(w5_dc00)
 	ld hl, w5_dc00
 	call GetFarWRAMByte
 	bit 0, a

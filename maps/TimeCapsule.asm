@@ -2,7 +2,7 @@ const_value set 2
 	const TIMECAPSULE_CHRIS1
 	const TIMECAPSULE_CHRIS2
 
-TimeCapsule_MapScriptHeader:
+TimeCapsule_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .InitializeTimeCapsule
@@ -10,7 +10,7 @@ TimeCapsule_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
+	callback MAPCALLBACK_OBJECTS, .SetWhichChris
 
 .InitializeTimeCapsule:
 	priorityjump .InitializeAndPreparePokecenter2F
@@ -32,8 +32,8 @@ TimeCapsule_MapScriptHeader:
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $3
+	setscene 1
+	setmapscene POKECENTER_2F, 3
 	end
 
 MapTimeCapsuleSignpost1Script:
@@ -53,7 +53,7 @@ UnknownText_0x193521:
 	line "ready."
 	done
 
-TimeCapsule_MapEventHeader:
+TimeCapsule_MapEvents:
 	; filler
 	db 0, 0
 

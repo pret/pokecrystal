@@ -1,8 +1,7 @@
 ; LCD handling
 
 
-Function547:: ; 547
-; Unreferenced
+Unreferenced_Function547:: ; 547
 	ld a, [hLCDCPointer]
 	cp rSCX - $ff00
 	ret nz

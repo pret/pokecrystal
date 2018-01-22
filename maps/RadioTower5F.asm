@@ -5,7 +5,7 @@ const_value set 2
 	const RADIOTOWER5F_ROCKER
 	const RADIOTOWER5F_POKE_BALL
 
-RadioTower5F_MapScriptHeader:
+RadioTower5F_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -47,7 +47,7 @@ FakeDirectorScript:
 	buttonsound
 	verbosegiveitem BASEMENT_KEY
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
 	end
 
@@ -96,7 +96,7 @@ RadioTower5FRocketBossScene:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear RADIOTOWER5F_ROCKET
 	disappear RADIOTOWER5F_ROCKET_GIRL
 	pause 15
@@ -115,7 +115,7 @@ RadioTower5FRocketBossScene:
 	clearevent EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	special PlayMapMusic
 	disappear RADIOTOWER5F_DIRECTOR
-	moveobject RADIOTOWER5F_DIRECTOR, $c, $0
+	moveobject RADIOTOWER5F_DIRECTOR, 12, 0
 	appear RADIOTOWER5F_DIRECTOR
 	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksIn
 	spriteface PLAYER, RIGHT
@@ -126,8 +126,8 @@ RadioTower5FRocketBossScene:
 	writetext RadioTower5FDirectorDescribeClearBellText
 	waitbutton
 	closetext
-	setscene $2
-	setmapscene ECRUTEAK_HOUSE, $0
+	setscene 2
+	setmapscene ECRUTEAK_HOUSE, 0
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump .UselessJump
@@ -420,7 +420,7 @@ SignpostRadioTower5FStudio:
 	text "5F STUDIO 1"
 	done
 
-RadioTower5F_MapEventHeader:
+RadioTower5F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -32,7 +32,7 @@ _Start:: ; 16e
 .load
 	ld [hCGB], a
 	ld a, $1
-	ld [hFFEA], a
+	ld [hSystemBooted], a
 ; 17d
 
 
@@ -55,7 +55,7 @@ Init:: ; 17d
 	ld [rOBP1], a
 	ld [rTMA], a
 	ld [rTAC], a
-	ld [$d000], a
+	ld [WRAM1_Begin], a
 
 	ld a, %100 ; Start timer at 4096Hz
 	ld [rTAC], a
@@ -84,14 +84,14 @@ Init:: ; 17d
 ; Clear HRAM
 	ld a, [hCGB]
 	push af
-	ld a, [hFFEA]
+	ld a, [hSystemBooted]
 	push af
 	xor a
 	ld hl, HRAM_Begin
 	ld bc, HRAM_End - HRAM_Begin
 	call ByteFill
 	pop af
-	ld [hFFEA], a
+	ld [hSystemBooted], a
 	pop af
 	ld [hCGB], a
 
@@ -136,8 +136,8 @@ Init:: ; 17d
 	; BG on
 	ld [rLCDC], a
 
-	ld a, -1
-	ld [hLinkPlayerNumber], a
+	ld a, CONNECTION_NOT_ESTABLISHED
+	ld [hSerialConnectionStatus], a
 
 	farcall InitCGBPals
 
@@ -182,11 +182,11 @@ ClearVRAM:: ; 245
 	ld [rVBK], a
 	call .clear
 
-	xor a
+	xor a ; 0
 	ld [rVBK], a
 .clear
-	ld hl, vTiles0
-	ld bc, $2000
+	ld hl, VRAM_Begin
+	ld bc, VRAM_End - VRAM_Begin
 	xor a
 	call ByteFill
 	ret

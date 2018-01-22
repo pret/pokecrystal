@@ -1,7 +1,7 @@
 const_value set 2
 	const WHIRLISLANDNE_POKE_BALL
 
-WhirlIslandNE_MapScriptHeader:
+WhirlIslandNE_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -11,7 +11,7 @@ WhirlIslandNE_MapScriptHeader:
 WhirlIslandNEUltraBall:
 	itemball ULTRA_BALL
 
-WhirlIslandNE_MapEventHeader:
+WhirlIslandNE_MapEvents:
 	; filler
 	db 0, 0
 

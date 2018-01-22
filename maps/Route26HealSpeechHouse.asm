@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE26HEALSPEECHHOUSE_TEACHER
 
-Route26HealSpeechHouse_MapScriptHeader:
+Route26HealSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -15,8 +15,8 @@ TeacherScript_0x7b125:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
-	special TrainerRankings_Healings
+	special ReloadSpritesNoPalettes
+	special Special_StubbedTrainerRankings_Healings
 	playmusic MUSIC_HEAL
 	special HealParty
 	pause 60
@@ -48,7 +48,7 @@ UnknownText_0x7b18b:
 	para "Keep at it!"
 	done
 
-Route26HealSpeechHouse_MapEventHeader:
+Route26HealSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

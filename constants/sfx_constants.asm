@@ -180,7 +180,7 @@
 	const SFX_ENCORE                      ; b0
 	const SFX_BEAT_UP                     ; b1
 	const SFX_BATON_PASS                  ; b2
-	const SFX_BALL_WIGGLE                 ; b3
+	const SFX_BALL_WOBBLE                 ; b3
 	const SFX_SWEET_SCENT                 ; b4
 	const SFX_SWEET_SCENT_2               ; b5
 	const SFX_HIT_END_OF_EXP_BAR          ; b6

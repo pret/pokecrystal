@@ -9,7 +9,7 @@ const_value set 2
 	const CIANWOODGYM_BOULDER3
 	const CIANWOODGYM_BOULDER4
 
-CianwoodGym_MapScriptHeader:
+CianwoodGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -40,7 +40,7 @@ ChuckScript_0x9d60f:
 	waitbutton
 	closetext
 	winlosstext ChuckLossText, 0
-	loadtrainer CHUCK, 1
+	loadtrainer CHUCK, CHUCK1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
@@ -138,7 +138,7 @@ CianwoodGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext CHUCK, 1, $1
+	trainertotext CHUCK, CHUCK1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 CianwoodGymMovement_ChuckChucksBoulder:
@@ -305,7 +305,7 @@ BlackbeltLungAfterText:
 	cont "shattered…"
 	done
 
-CianwoodGym_MapEventHeader:
+CianwoodGym_MapEvents:
 	; filler
 	db 0, 0
 

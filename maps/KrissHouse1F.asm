@@ -5,7 +5,7 @@ const_value set 2
 	const KRISSHOUSE1F_MOM4
 	const KRISSHOUSE1F_POKEFAN_F
 
-KrissHouse1F_MapScriptHeader:
+KrissHouse1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -38,12 +38,12 @@ UnknownScript_0x7a4f6:
 	opentext
 	writetext UnknownText_0x7a604
 	buttonsound
-	stringtotext GearName, $1
+	stringtotext GearName, MEM_BUFFER_1
 	scall UnknownScript_0x7a57e
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD
 	addcellnum PHONE_MOM
-	setscene $1
+	setscene 1
 	setevent EVENT_KRISS_HOUSE_MOM_1
 	clearevent EVENT_KRISS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
@@ -385,7 +385,7 @@ TVText:
 	line "rolling too!"
 	done
 
-KrissHouse1F_MapEventHeader:
+KrissHouse1F_MapEvents:
 	; filler
 	db 0, 0
 

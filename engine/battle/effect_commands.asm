@@ -64,7 +64,7 @@ DoMove: ; 3402c
 	inc hl
 	ld [de], a
 	inc de
-	cp $ff
+	cp -1
 	jr nz, .GetMoveEffect
 
 ; Start at the first command.
@@ -138,7 +138,7 @@ BattleCommand_CheckTurn: ; 34084
 	ld [AlreadyFailed], a
 	ld [wSomeoneIsRampaging], a
 
-	ld a, 10 ; 1.0
+	ld a, EFFECTIVE
 	ld [TypeModifier], a
 
 	ld a, [hBattleTurn]
@@ -282,7 +282,7 @@ CheckPlayerTurn:
 
 	; 50% chance of hitting itself
 	call BattleRandom
-	cp $80
+	cp 50 percent + 1
 	jr nc, .not_confused
 
 	; clear confusion-dependent substatus
@@ -311,7 +311,7 @@ CheckPlayerTurn:
 
 	; 50% chance of infatuation
 	call BattleRandom
-	cp $80
+	cp 50 percent + 1
 	jr c, .not_infatuated
 
 	ld hl, InfatuationText
@@ -345,7 +345,7 @@ CheckPlayerTurn:
 
 	; 25% chance to be fully paralyzed
 	call BattleRandom
-	cp $3f
+	cp 25 percent
 	ret nc
 
 	ld hl, FullyParalyzedText
@@ -457,6 +457,8 @@ CheckEnemyTurn: ; 3421f
 	ld hl, EnemyMonStatus
 	bit FRZ, [hl]
 	jr z, .not_frozen
+
+	; Flame Wheel and Sacred Fire thaw the user.
 	ld a, [CurEnemyMove]
 	cp FLAME_WHEEL
 	jr z, .not_frozen
@@ -611,7 +613,7 @@ CheckEnemyTurn: ; 3421f
 
 	; 25% chance to be fully paralyzed
 	call BattleRandom
-	cp $3f
+	cp 25 percent
 	ret nc
 
 	ld hl, FullyParalyzedText
@@ -844,19 +846,20 @@ BattleCommand_CheckObedience: ; 343db
 
 
 .DoNothing:
+	; 4 random choices
 	call BattleRandom
-	and 3
+	and %11
 
 	ld hl, LoafingAroundText
-	and a
+	and a ; 0
 	jr z, .Print
 
 	ld hl, WontObeyText
-	dec a
+	dec a ; 1
 	jr z, .Print
 
 	ld hl, TurnedAwayText
-	dec a
+	dec a ; 2
 	jr z, .Print
 
 	ld hl, IgnoredOrdersText
@@ -886,7 +889,7 @@ BattleCommand_CheckObedience: ; 343db
 
 .GetTotalPP:
 	ld a, [hli]
-	and $3f ; exclude pp up
+	and PP_MASK
 	add b
 	ld b, a
 
@@ -909,7 +912,7 @@ BattleCommand_CheckObedience: ; 343db
 
 ; Can't use another move if only one move has PP.
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	cp b
 	jr z, .DoNothing
 
@@ -929,7 +932,7 @@ BattleCommand_CheckObedience: ; 343db
 
 .RandomMove:
 	call BattleRandom
-	and 3 ; TODO NUM_MOVES
+	maskbits NUM_MOVES
 
 	cp b
 	jr nc, .RandomMove
@@ -945,7 +948,7 @@ BattleCommand_CheckObedience: ; 343db
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jr z, .RandomMove
 
 
@@ -989,6 +992,7 @@ IgnoreSleepOnly: ; 3451f
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 
+	; Snore and Sleep Talk bypass sleep.
 	cp SNORE
 	jr z, .CheckSleep
 	cp SLEEP_TALK
@@ -1115,7 +1119,7 @@ BattleCommand_DoTurn: ; 34555
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jr z, .out_of_pp
 	dec [hl]
 	ld b, 0
@@ -1172,7 +1176,7 @@ BattleCommand_DoTurn: ; 34555
 	db EFFECT_ROLLOUT
 	db EFFECT_BIDE
 	db EFFECT_RAMPAGE
-	db $ff
+	db -1
 ; 3460b
 
 CheckMimicUsed: ; 3460b
@@ -1266,7 +1270,7 @@ BattleCommand_Critical: ; 34631
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld de, 1
-	ld hl, .Criticals
+	ld hl, CriticalHitMoves
 	push bc
 	call IsInArray
 	pop bc
@@ -1288,7 +1292,7 @@ BattleCommand_Critical: ; 34631
 	inc c
 
 .Tally:
-	ld hl, .Chances
+	ld hl, CriticalHitChances
 	ld b, 0
 	add hl, bc
 	call BattleRandom
@@ -1298,12 +1302,7 @@ BattleCommand_Critical: ; 34631
 	ld [CriticalHit], a
 	ret
 
-.Criticals:
-	db KARATE_CHOP, RAZOR_WIND, RAZOR_LEAF, CRABHAMMER, SLASH, AEROBLAST, CROSS_CHOP, $ff
-.Chances:
-	; 6.25% 12.1% 24.6% 33.2% 49.6% 49.6% 49.6%
-	db $11,  $20,  $40,  $55,  $80,  $80,  $80
-	;   0     1     2     3     4     5     6
+INCLUDE "data/battle/critical_hits.asm"
 ; 346b2
 
 
@@ -1433,11 +1432,11 @@ BattleCommand_Stab: ; 346d2
 .TypesLoop:
 	ld a, [hli]
 
-	cp $ff
+	cp -1
 	jr z, .end
 
 	; foresight
-	cp $fe
+	cp -2
 	jr nz, .SkipForesightCheck
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
@@ -1543,8 +1542,8 @@ BattleCheckTypeMatchup: ; 347c8
 	ld hl, BattleMonType1
 CheckTypeMatchup: ; 347d3
 ; There is an incorrect assumption about this function made in the AI related code: when
-; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
-; offensive type in a will make this function do the right thing. Since a is overwritten,
+; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing
+; the offensive type in a will make this function do the right thing. Since a is overwritten,
 ; this assumption is incorrect. A simple fix would be to load the move type for the
 ; current move into a in BattleCheckTypeMatchup, before falling through, which is
 ; consistent with how the rest of the code assumes this code works like.
@@ -1562,9 +1561,9 @@ CheckTypeMatchup: ; 347d3
 	ld hl, TypeMatchups
 .TypesLoop:
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .End
-	cp $fe
+	cp -2
 	jr nz, .Next
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
@@ -1640,7 +1639,7 @@ BattleCommand_ResetTypeMatchup: ; 34833
 
 INCLUDE "engine/battle/ai/switch.asm"
 
-INCLUDE "data/type_matchups.asm"
+INCLUDE "data/battle/type_matchups.asm"
 
 BattleCommand_DamageVariation: ; 34cfd
 ; damagevariation
@@ -1675,7 +1674,7 @@ BattleCommand_DamageVariation: ; 34cfd
 .loop
 	call BattleRandom
 	rrca
-	cp $d9 ; 85%
+	cp 85 percent + 1
 	jr c, .loop
 
 	ld [hMultiplier], a
@@ -1756,7 +1755,7 @@ BattleCommand_CheckHit: ; 34d32
 
 .skip_brightpowder
 	ld a, b
-	cp $ff
+	cp -1
 	jr z, .Hit
 
 	call BattleRandom
@@ -1954,7 +1953,7 @@ BattleCommand_CheckHit: ; 34d32
 
 .skip_foresight_check
 	; subtract evasion from 14
-	ld a, 14
+	ld a, MAX_STAT_LEVEL + 1
 	sub c
 	ld c, a
 	; store the base move accuracy for math ops
@@ -1969,7 +1968,7 @@ BattleCommand_CheckHit: ; 34d32
 .accuracy_loop
 	; look up the multiplier from the table
 	push bc
-	ld hl, .AccProb
+	ld hl, AccuracyLevelMultipliers
 	dec b
 	sla b
 	ld c, b
@@ -2013,21 +2012,7 @@ BattleCommand_CheckHit: ; 34d32
 	ld [hl], a
 	ret
 
-.AccProb:
-	db  33, 100 ;  33% -6
-	db  36, 100 ;  36% -5
-	db  43, 100 ;  43% -4
-	db  50, 100 ;  50% -3
-	db  60, 100 ;  60% -2
-	db  75, 100 ;  75% -1
-	db   1,   1 ; 100%  0
-	db 133, 100 ; 133% +1
-	db 166, 100 ; 166% +2
-	db   2,   1 ; 200% +3
-	db 233, 100 ; 233% +4
-	db 133,  50 ; 266% +5
-	db   3,   1 ; 300% +6
-
+INCLUDE "data/battle/accuracy_multipliers.asm"
 ; 34ecc
 
 
@@ -2199,7 +2184,7 @@ BattleCommand_HitTargetNoSub: ; 34f60
 	xor 1
 	ld [wKickCounter], a
 	ld a, [de]
-	cp $1
+	cp 1
 	push af
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -2438,7 +2423,7 @@ GetFailureResultText: ; 350e4
 	ld hl, AttackMissedText
 	ld de, AttackMissed2Text
 	ld a, [CriticalHit]
-	cp $ff
+	cp -1
 	jr nz, .got_text
 	ld hl, UnaffectedText
 .got_text
@@ -3519,7 +3504,7 @@ BattleCommand_DamageCalc: ; 35612
 
 .NextItem:
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .DoneItem
 
 ; Item effect
@@ -3657,26 +3642,7 @@ BattleCommand_DamageCalc: ; 35612
 ; 35703
 
 
-TypeBoostItems: ; 35703
-	db HELD_NORMAL_BOOST,   NORMAL   ; Pink/Polkadot Bow
-	db HELD_FIGHTING_BOOST, FIGHTING ; Blackbelt
-	db HELD_FLYING_BOOST,   FLYING   ; Sharp Beak
-	db HELD_POISON_BOOST,   POISON   ; Poison Barb
-	db HELD_GROUND_BOOST,   GROUND   ; Soft Sand
-	db HELD_ROCK_BOOST,     ROCK     ; Hard Stone
-	db HELD_BUG_BOOST,      BUG      ; Silverpowder
-	db HELD_GHOST_BOOST,    GHOST    ; Spell Tag
-	db HELD_FIRE_BOOST,     FIRE     ; Charcoal
-	db HELD_WATER_BOOST,    WATER    ; Mystic Water
-	db HELD_GRASS_BOOST,    GRASS    ; Miracle Seed
-	db HELD_ELECTRIC_BOOST, ELECTRIC ; Magnet
-	db HELD_PSYCHIC_BOOST,  PSYCHIC  ; Twistedspoon
-	db HELD_ICE_BOOST,      ICE      ; Nevermeltice
-	db HELD_DRAGON_BOOST,   DRAGON   ; Dragon Scale
-	db HELD_DARK_BOOST,     DARK     ; Blackglasses
-	db HELD_STEEL_BOOST,    STEEL    ; Metal Coat
-	db $ff
-; 35726
+INCLUDE "data/battle/type_boost_items.asm"
 
 
 BattleCommand_ConstantDamage: ; 35726
@@ -3941,7 +3907,7 @@ BattleCommand_Encore: ; 35864
 	ld bc, BattleMonPP - BattleMonMoves - 1
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jp z, .failed
 	ld a, [AttackMissed]
 	and a
@@ -4421,7 +4387,7 @@ BattleCommand_SleepTalk: ; 35b33
 .sample_move
 	push hl
 	call BattleRandom
-	and 3 ; TODO factor in NUM_MOVES
+	maskbits NUM_MOVES
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -4585,17 +4551,18 @@ BattleCommand_Spite: ; 35c0f
 	add hl, bc
 	pop bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	jr z, .failed
 	push bc
 	call GetMoveName
+	; lose 2-5 PP
 	call BattleRandom
-	and 3
+	and %11
 	inc a
 	inc a
 	ld b, a
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	cp b
 	jr nc, .deplete_pp
 	ld b, a
@@ -4671,7 +4638,7 @@ BattleCommand_FalseSwipe: ; 35c94
 	ld [de], a
 .okay
 	ld a, [CriticalHit]
-	cp $2
+	cp 2
 	jr nz, .carry
 	xor a
 	ld [CriticalHit], a
@@ -5049,7 +5016,7 @@ BattleCommand_SleepTarget: ; 35e5c
 	jr nz, .dont_fail
 
 	call BattleRandom
-	cp $40 ; 25%
+	cp 25 percent + 1 ; 25% chance AI fails
 	ret c
 
 .dont_fail
@@ -5149,7 +5116,7 @@ BattleCommand_Poison: ; 35f2c
 	jr nz, .mimic_random
 
 	call BattleRandom
-	cp $40 ; 25% chance AI fails
+	cp 25 percent + 1 ; 25% chance AI fails
 	jr c, .failed
 
 .mimic_random
@@ -5827,7 +5794,7 @@ BattleCommand_StatDown: ; 362e3
 	inc b
 
 .ComputerMiss:
-; Computer opponents have a 1/4 chance of failing.
+; Computer opponents have a 25% chance of failing.
 	ld a, [hBattleTurn]
 	and a
 	jr z, .DidntMiss
@@ -5852,7 +5819,7 @@ BattleCommand_StatDown: ; 362e3
 	jr z, .DidntMiss
 
 	call BattleRandom
-	cp $40
+	cp 25 percent + 1 ; 25% chance AI fails
 	jr c, .Failed
 
 .DidntMiss:
@@ -6104,7 +6071,7 @@ BattleCommand_StatDownFailText: ; 3646a
 
 
 GetStatName: ; 3648f
-	ld hl, .names
+	ld hl, StatNames
 	ld c, "@"
 .CheckName:
 	dec b
@@ -6120,33 +6087,10 @@ GetStatName: ; 3648f
 	ld bc, StringBuffer3 - StringBuffer2
 	jp CopyBytes
 
-.names
-	db "ATTACK@"
-	db "DEFENSE@"
-	db "SPEED@"
-	db "SPCL.ATK@"
-	db "SPCL.DEF@"
-	db "ACCURACY@"
-	db "EVASION@"
-	db "ABILITY@"
-; 364e6
+INCLUDE "data/battle/stat_names.asm"
 
 
-StatLevelMultipliers: ; 364e6
-	db 25, 100 ; 0.25x
-	db 28, 100 ; 0.28x
-	db 33, 100 ; 0.33x
-	db 40, 100 ; 0.40x
-	db 50, 100 ; 0.50x
-	db 66, 100 ; 0.66x
-	db  1,   1 ; 1.00x
-	db 15,  10 ; 1.50x
-	db  2,   1 ; 2.00x
-	db 25,  10 ; 2.50x
-	db  3,   1 ; 3.00x
-	db 35,  10 ; 3.50x
-	db  4,   1 ; 4.00x
-; 36500
+INCLUDE "data/battle/stat_multipliers.asm"
 
 
 BattleCommand_AllStatsUp: ; 36500
@@ -6266,13 +6210,12 @@ BattleCommand_TriStatusChance: ; 3658f
 
 	call BattleCommand_EffectChance
 
-; 1/3 chance of each status
 .loop
+	; 1/3 chance of each status
 	call BattleRandom
 	swap a
-	and 3
+	and %11
 	jr z, .loop
-; jump
 	dec a
 	ld hl, .ptrs
 	rst JumpTable
@@ -7450,7 +7393,8 @@ BattleCommand_TrapTarget: ; 36c2d
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 	call BattleRandom
-	and 3
+	; trapped for 2-5 turns
+	and %11
 	inc a
 	inc a
 	inc a
@@ -7648,8 +7592,9 @@ BattleCommand_FinishConfusingTarget: ; 36d70
 
 .got_confuse_count
 	set SUBSTATUS_CONFUSED, [hl]
+	; confused for 2-5 turns
 	call BattleRandom
-	and 3
+	and %11
 	inc a
 	inc a
 	ld [bc], a
@@ -8078,7 +8023,7 @@ BattleCommand_LeechSeed: ; 36f9d
 
 BattleCommand_Splash: ; 36fe1
 	call AnimateCurrentMove
-	farcall TrainerRankings_Splash
+	farcall StubbedTrainerRankings_Splash
 	jp PrintNothingHappened
 
 ; 36fed
@@ -8259,7 +8204,7 @@ BattleCommand_Conversion: ; 3707f
 .done
 .loop3
 	call BattleRandom
-	and 3 ; TODO factor in NUM_MOVES
+	maskbits NUM_MOVES
 	ld c, a
 	ld b, 0
 	ld hl, StringBuffer1
@@ -8605,7 +8550,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand_Selfdestruct: ; 37380
-	farcall TrainerRankings_Selfdestruct
+	farcall StubbedTrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
 	ld c, 3

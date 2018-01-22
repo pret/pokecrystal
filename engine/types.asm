@@ -35,7 +35,7 @@ PrintMonTypes: ; 5090d
 	ld [hl], a
 	inc bc
 	add hl, bc
-	ld bc, 5
+	ld bc, NAME_LENGTH_JAPANESE - 1
 	jp ByteFill
 ; 5093a
 
@@ -91,11 +91,9 @@ GetTypeName: ; 50964
 	ld h, [hl]
 	ld l, a
 	ld de, StringBuffer1
-	ld bc, 13
+	ld bc, MOVE_NAME_LENGTH
 	jp CopyBytes
 ; 5097b
 
 
-INCLUDE "data/type_names.asm"
-
-; 50a28
+INCLUDE "data/types/names.asm"

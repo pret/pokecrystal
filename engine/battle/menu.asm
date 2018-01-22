@@ -33,15 +33,14 @@ Function24f19: ; 24f19
 ; 24f2c
 
 BattleMenuDataHeader: ; 24f2c
-	db $40 ; flags
-	db 12, 08 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 8, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f34
 	db 1 ; default option
 ; 24f34
 
 MenuData_0x24f34: ; 0x24f34
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	dn 2, 2 ; rows, columns
 	db 6 ; spacing
 	dba Strings24f3d
@@ -56,15 +55,14 @@ Strings24f3d: ; 0x24f3d
 ; 24f4e
 
 MenuDataHeader_0x24f4e: ; 24f4e
-	db $40 ; flags
-	db 12, 00 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f56
 	db 1 ; default option
 ; 24f56
 
 MenuData_0x24f56: ; 24f56
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	dn 2, 2 ; rows, columns
 	db 11 ; spacing
 	dba Strings24f5f
@@ -72,7 +70,7 @@ MenuData_0x24f56: ; 24f56
 ; 24f5f
 
 Strings24f5f: ; 24f5f
-	db "サファりボール×  @" ; "SAFARI BALL×  @"
+	db "サファりボール×　　@" ; "SAFARI BALL×  @"
 	db "エサをなげる@" ; "THROW BAIT"
 	db "いしをなげる@" ; "THROW ROCK"
 	db "にげる@" ; "RUN"
@@ -87,15 +85,14 @@ Function24f7c: ; 24f7c
 ; 24f89
 
 MenuDataHeader_0x24f89: ; 24f89
-	db $40 ; flags
-	db 12, 02 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 2, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f91
 	db 1 ; default option
 ; 24f91
 
 MenuData_0x24f91: ; 24f91
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	dn 2, 2 ; rows, columns
 	db 12 ; spacing
 	dba Strings24f9a

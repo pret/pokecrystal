@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE2GATE_SCIENTIST
 
-Route2Gate_MapScriptHeader:
+Route2Gate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -25,7 +25,7 @@ Route2GateScientistText:
 	cont "TOWN."
 	done
 
-Route2Gate_MapEventHeader:
+Route2Gate_MapEvents:
 	; filler
 	db 0, 0
 

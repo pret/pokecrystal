@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE6SAFFRONGATE_OFFICER
 
-Route6SaffronGate_MapScriptHeader:
+Route6SaffronGate_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -57,7 +57,7 @@ UnknownText_0x1927cb:
 	line "FRON."
 	done
 
-Route6SaffronGate_MapEventHeader:
+Route6SaffronGate_MapEvents:
 	; filler
 	db 0, 0
 

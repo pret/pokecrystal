@@ -3,7 +3,7 @@ const_value set 2
 	const CINNABARPOKECENTER1F_COOLTRAINER_F
 	const CINNABARPOKECENTER1F_FISHER
 
-CinnabarPokecenter1F_MapScriptHeader:
+CinnabarPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -34,7 +34,7 @@ CinnabarPokecenter1FFisherText:
 	cont "erupted."
 	done
 
-CinnabarPokecenter1F_MapEventHeader:
+CinnabarPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

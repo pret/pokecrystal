@@ -5,7 +5,7 @@ const_value set 2
 	const VERMILIONGYM_SUPER_NERD
 	const VERMILIONGYM_GYM_GUY
 
-VermilionGym_MapScriptHeader:
+VermilionGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -21,7 +21,7 @@ SurgeScript_0x1920a5:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x192238, 0
-	loadtrainer LT_SURGE, 1
+	loadtrainer LT_SURGE, LT_SURGE1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_LTSURGE
@@ -101,7 +101,7 @@ VermilionGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext LT_SURGE, 1, $1
+	trainertotext LT_SURGE, LT_SURGE1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 UnknownText_0x192142:
@@ -260,7 +260,7 @@ UnknownText_0x19261e:
 	line "but trash."
 	done
 
-VermilionGym_MapEventHeader:
+VermilionGym_MapEvents:
 	; filler
 	db 0, 0
 

@@ -5,7 +5,7 @@ const_value set 2
 	const OLIVINELIGHTHOUSE5F_POKE_BALL2
 	const OLIVINELIGHTHOUSE5F_POKE_BALL3
 
-OlivineLighthouse5F_MapScriptHeader:
+OlivineLighthouse5F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -44,8 +44,7 @@ OlivineLighthouse5FTMSwagger:
 	itemball TM_SWAGGER
 
 OlivineLighthouse5FHiddenHyperPotion:
-	dwb EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION, HYPER_POTION
-
+	hiddenitem EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION, HYPER_POTION
 
 SailorErnestSeenText:
 	text "I wanted to battle"
@@ -91,7 +90,7 @@ BirdKeeperDenisAfterBattleText:
 	cont "across the sea…"
 	done
 
-OlivineLighthouse5F_MapEventHeader:
+OlivineLighthouse5F_MapEvents:
 	; filler
 	db 0, 0
 

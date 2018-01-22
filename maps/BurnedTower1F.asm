@@ -5,7 +5,7 @@ const_value set 2
 	const BURNEDTOWER1F_MORTY
 	const BURNEDTOWER1F_POKE_BALL
 
-BurnedTower1F_MapScriptHeader:
+BurnedTower1F_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .EusineScene
@@ -14,7 +14,7 @@ BurnedTower1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .HoleAndLadder
+	callback MAPCALLBACK_TILES, .HoleAndLadder
 
 .EusineScene:
 	priorityjump .MeetEusine
@@ -28,13 +28,13 @@ BurnedTower1F_MapScriptHeader:
 
 .HoleAndLadder:
 	checkevent EVENT_HOLE_IN_BURNED_TOWER
-	iftrue .Next
-	changeblock $a, $8, $32 ; hole
-.Next:
+	iftrue .KeepHoleOpen
+	changeblock 10, 8, $32 ; floor
+.KeepHoleOpen:
 	checkevent EVENT_RELEASED_THE_BEASTS
-	iftrue .Done
-	changeblock $6, $e, $9 ; ladder
-.Done:
+	iftrue .HideBasement
+	changeblock 6, 14, $09 ; ladder
+.HideBasement:
 	return
 
 .MeetEusine:
@@ -45,8 +45,8 @@ BurnedTower1F_MapScriptHeader:
 	writetext BurnedTower1FEusineIntroText
 	waitbutton
 	closetext
-	moveobject BURNEDTOWER1F_EUSINE, $9, $e
-	setscene $1
+	moveobject BURNEDTOWER1F_EUSINE, 9, 14
+	setscene 1
 	end
 
 BurnedTowerRivalBattleScript:
@@ -98,7 +98,7 @@ BurnedTowerRivalBattleScript:
 	writetext BurnedTowerSilver_AfterText1
 	waitbutton
 	closetext
-	setscene $2
+	setscene 2
 	setevent EVENT_RIVAL_BURNED_TOWER
 	special Special_FadeOutMusic
 	pause 15
@@ -106,7 +106,7 @@ BurnedTowerRivalBattleScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playsound SFX_ENTER_DOOR
 	waitsfx
-	changeblock $a, $8, $25
+	changeblock 10, 8, $25 ; hole
 	reloadmappart
 	pause 15
 	applymovement PLAYER, BurnedTower1FMovement_PlayerStartsToFall
@@ -131,12 +131,10 @@ BurnedTower1FRock:
 	jumpstd smashrock
 
 BurnedTower1FHiddenEther:
-	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ETHER, ETHER
-
+	hiddenitem EVENT_BURNED_TOWER_1F_HIDDEN_ETHER, ETHER
 
 BurnedTower1FHiddenUltraBall:
-	dwb EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
-
+	hiddenitem EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
 
 BurnedTower1FHPUp:
 	itemball HP_UP
@@ -162,7 +160,7 @@ BurnedTower1FEusineMovement:
 	step_end
 
 BurnedTowerSilver_BeforeText:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "…Oh, it's you."
 
@@ -279,7 +277,7 @@ BurnedTower1FMortyText:
 	line "TOWER with him."
 	done
 
-BurnedTower1F_MapEventHeader:
+BurnedTower1F_MapEvents:
 	; filler
 	db 0, 0
 

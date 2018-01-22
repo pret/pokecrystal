@@ -1,13 +1,13 @@
 NamesPointers:: ; 33ab
-; entries correspond to GetName constants (see constants/misc_constants.asm)
-	dba PokemonNames
-	dba MoveNames
-	dbw 0, 0
-	dba ItemNames
-	dbw 0, PartyMonOT
-	dbw 0, OTPartyMonOT
-	dba TrainerClassNames
-	dbw $4, $4b52 ; within PackMenuGFX
+; entries correspond to GetName constants (see constants/text_constants.asm)
+	dba PokemonNames        ; MON_NAME (not used; jumps to GetPokemonName)
+	dba MoveNames           ; MOVE_NAME
+	dbw 0, NULL             ; DUMMY_NAME
+	dba ItemNames           ; ITEM_NAME
+	dbw 0, PartyMonOT       ; PARTY_OT_NAME
+	dbw 0, OTPartyMonOT     ; ENEMY_OT_NAME
+	dba TrainerClassNames   ; TRAINER_NAME
+	dbw 4, MoveDescriptions ; MOVE_DESC_NAME_BROKEN (wrong bank)
 ; 33c3
 
 GetName:: ; 33c3
@@ -20,13 +20,13 @@ GetName:: ; 33c3
 	push de
 
 	ld a, [wNamedObjectTypeBuffer]
-	cp PKMN_NAME
+	cp MON_NAME
 	jr nz, .NotPokeName
 
 	ld a, [CurSpecies]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, PKMN_NAME_LENGTH
+	ld hl, MON_NAME_LENGTH
 	add hl, de
 	ld e, l
 	ld d, h
@@ -140,9 +140,9 @@ GetPokemonName:: ; 343b
 ; Terminator
 	ld de, StringBuffer1
 	push de
-	ld bc, PKMN_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
-	ld hl, StringBuffer1 + PKMN_NAME_LENGTH - 1
+	ld hl, StringBuffer1 + MON_NAME_LENGTH - 1
 	ld [hl], "@"
 	pop de
 

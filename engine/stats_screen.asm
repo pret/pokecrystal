@@ -1,3 +1,9 @@
+const_value set 1
+	const PINK_PAGE  ; 1
+	const GREEN_PAGE ; 2
+	const BLUE_PAGE  ; 3
+NUM_STAT_PAGES EQU const_value +- 1
+
 BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -58,12 +64,12 @@ StatsScreenMain: ; 0x4dcd2
 	; stupid interns
 	ld [wcf64], a
 	ld a, [wcf64]
-	and $fc
-	or $1
+	and %11111100
+	or 1
 	ld [wcf64], a
 .loop ; 4dce3
 	ld a, [wJumptableIndex]
-	and $7f
+	and $ff ^ (1 << 7)
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim ; check for keys?
@@ -79,13 +85,13 @@ StatsScreenMobile: ; 4dcf7
 	; stupid interns
 	ld [wcf64], a
 	ld a, [wcf64]
-	and $fc
-	or $1
+	and %11111100
+	or 1
 	ld [wcf64], a
 .loop
 	farcall Mobile_SetOverworldDelay
 	ld a, [wJumptableIndex]
-	and $7f
+	and $ff ^ (1 << 7)
 	ld hl, StatsScreenPointerTable
 	rst JumpTable
 	call StatsScreen_WaitAnim
@@ -277,7 +283,7 @@ StatsScreen_GetJoypad: ; 4de2c (13:5e2c)
 StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 	push af
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_STAT_PAGES
 	ld c, a
 	pop af
 	bit B_BUTTON_F, a
@@ -335,20 +341,20 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 
 .a_button
 	ld a, c
-	cp $3
+	cp BLUE_PAGE ; last page
 	jr z, .b_button
 .d_right
 	inc c
-	ld a, $3
+	ld a, BLUE_PAGE ; last page
 	cp c
 	jr nc, .set_page
-	ld c, $1
+	ld c, PINK_PAGE ; first page
 	jr .set_page
 
 .d_left
 	dec c
 	jr nz, .set_page
-	ld c, $3
+	ld c, BLUE_PAGE ; last page
 	jr .set_page
 
 .done
@@ -447,13 +453,12 @@ StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	dw wBufferMonNick
 ; 4df7f
 
-Function4df7f: ; 4df7f
-; unreferenced
+Unreferenced_Function4df7f: ; 4df7f
 	hlcoord 7, 0
 	ld bc, SCREEN_WIDTH
 	ld d, SCREEN_HEIGHT
 .loop
-	ld a, "|"
+	ld a, $31 ; vertical divider
 	ld [hl], a
 	add hl, bc
 	dec d
@@ -464,7 +469,7 @@ Function4df7f: ; 4df7f
 StatsScreen_PlaceHorizontalDivider: ; 4df8f (13:5f8f)
 	hlcoord 0, 7
 	ld b, SCREEN_WIDTH
-	ld a, "_"
+	ld a, $62 ; horizontal divider (empty HP/exp bar)
 .loop
 	ld [hli], a
 	dec b
@@ -483,7 +488,7 @@ StatsScreen_PlaceShinyIcon: ; 4dfa6 (13:5fa6)
 	farcall CheckShininess
 	ret nc
 	hlcoord 19, 0
-	ld [hl], "<SHINY>"
+	ld [hl], "⁂"
 	ret
 
 StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
@@ -507,7 +512,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .ClearBox: ; 4dfda (13:5fda)
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_STAT_PAGES
 	ld c, a
 	call StatsScreen_LoadPageIndicators
 	hlcoord 0, 8
@@ -517,7 +522,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .LoadPals: ; 4dfed (13:5fed)
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_STAT_PAGES
 	ld c, a
 	farcall LoadStatsScreenPals
 	call DelayFrame
@@ -527,13 +532,14 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 
 .PageTilemap: ; 4e002 (13:6002)
 	ld a, [wcf64]
-	and $3
+	maskbits NUM_STAT_PAGES
 	dec a
 	ld hl, .Jumptable
 	rst JumpTable
 	ret
 
 .Jumptable: ; 4e00d (13:600d)
+; entries correspond to *_PAGE constants
 	dw .PinkPage
 	dw .GreenPage
 	dw .BluePage
@@ -543,7 +549,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld b, $0
 	predef DrawPlayerHP
 	hlcoord 8, 9
-	ld [hl], $41
+	ld [hl], $41 ; right HP/exp bar end cap
 	ld de, .Status_Type
 	hlcoord 0, 12
 	call PlaceString
@@ -555,7 +561,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	and $f0
 	jr z, .NotImmuneToPkrs
 	hlcoord 8, 8
-	ld [hl], "."
+	ld [hl], "." ; Pokérus immunity dot
 .NotImmuneToPkrs:
 	ld a, [MonType]
 	cp BOXMON
@@ -581,7 +587,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 9, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
-	ld a, "|"
+	ld a, $31 ; vertical divider
 .vertical_divider
 	ld [hl], a
 	add hl, de
@@ -613,9 +619,9 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld de, TempMonExp + 2
 	predef FillInExpBar
 	hlcoord 10, 16
-	ld [hl], $40
+	ld [hl], $40 ; left exp bar end cap
 	hlcoord 19, 16
-	ld [hl], $41
+	ld [hl], $41 ; right exp bar end cap
 	ret
 
 .PrintNextLevel: ; 4e0d3 (13:60d3)
@@ -741,7 +747,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 10, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
-	ld a, "|"
+	ld a, $31 ; vertical divider
 .BluePageVerticalDivider:
 	ld [hl], a
 	add hl, de
@@ -823,7 +829,7 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	call SetPalettes
 	call .AnimateMon
 	ld a, [CurPartySpecies]
-	call PlayCry2
+	call PlayMonCry2
 	ret
 
 .AnimateMon: ; 4e253 (13:6253)
@@ -864,7 +870,7 @@ StatsScreen_PlaceFrontpic: ; 4e226 (13:6226)
 	ret c
 	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, vTiles2 tile $00
-	predef GetAnimatedFrontpicPredef
+	predef GetAnimatedFrontpic
 	hlcoord 0, 0
 	ld d, $0
 	ld e, ANIM_MON_MENU
@@ -951,7 +957,7 @@ StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 	ld [rVBK], a
 	ld de, TextBoxSpaceGFX
 	lb bc, BANK(TextBoxSpaceGFX), 1
-	ld hl, vTiles2 tile $7f
+	ld hl, vTiles2 tile " "
 	call Get2bpp
 	pop af
 	ld [rVBK], a
@@ -962,9 +968,8 @@ StatsScreen_LoadTextBoxSpaceGFX: ; 4e307 (13:6307)
 	ret
 ; 4e32a (13:632a)
 
-; unreferenced
-Unknown_4e32a: ; 4e32a
-; A blank tile?
+Unreferenced_4e32a: ; 4e32a
+; A blank space tile?
 	ds 16
 ; 4e33a
 
@@ -1069,7 +1074,7 @@ StatsScreen_AnimateEgg: ; 4e497 (13:6497)
 	ld [wBoxAlignment], a
 	call StatsScreen_LoadTextBoxSpaceGFX
 	ld de, vTiles2 tile $00
-	predef GetAnimatedFrontpicPredef
+	predef GetAnimatedFrontpic
 	pop de
 	hlcoord 0, 0
 	ld d, $0
@@ -1080,22 +1085,22 @@ StatsScreen_AnimateEgg: ; 4e497 (13:6497)
 
 StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 	hlcoord 13, 5
-	ld a, $36
+	ld a, $36 ; first of 4 small square tiles
 	call .load_square
 	hlcoord 15, 5
-	ld a, $36
+	ld a, $36 ; " " " "
 	call .load_square
 	hlcoord 17, 5
-	ld a, $36
+	ld a, $36 ; " " " "
 	call .load_square
 	ld a, c
-	cp $2
-	ld a, $3a
-	hlcoord 13, 5
+	cp GREEN_PAGE
+	ld a, $3a ; first of 4 large square tiles
+	hlcoord 13, 5 ; PINK_PAGE (< GREEN_PAGE)
 	jr c, .load_square
-	hlcoord 15, 5
+	hlcoord 15, 5 ; GREEN_PAGE (= GREEN_PAGE)
 	jr z, .load_square
-	hlcoord 17, 5
+	hlcoord 17, 5 ; BLUE_PAGE (> GREEN_PAGE)
 .load_square ; 4e4f7 (13:64f7)
 	push bc
 	ld [hli], a
@@ -1112,8 +1117,8 @@ StatsScreen_LoadPageIndicators: ; 4e4cd (13:64cd)
 
 CopyNickname: ; 4e505 (13:6505)
 	ld de, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
-	jr .okay ; uuterly pointless
+	ld bc, MON_NAME_LENGTH
+	jr .okay ; utterly pointless
 .okay
 	ld a, [MonType]
 	cp BOXMON
@@ -1157,7 +1162,7 @@ CheckFaintedFrzSlp: ; 4e53f
 	ld hl, MON_STATUS
 	add hl, bc
 	ld a, [hl]
-	and (1 << FRZ) | SLP
+	and 1 << FRZ | SLP
 	jr nz, .fainted_frz_slp
 	and a
 	ret

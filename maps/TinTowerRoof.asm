@@ -1,13 +1,13 @@
 const_value set 2
 	const TINTOWERROOF_HO_OH
 
-TinTowerRoof_MapScriptHeader:
+TinTowerRoof_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .HoOh
+	callback MAPCALLBACK_OBJECTS, .HoOh
 
 .HoOh:
 	checkevent EVENT_FOUGHT_HO_OH
@@ -44,7 +44,7 @@ HoOhText:
 	text "Shaoooh!"
 	done
 
-TinTowerRoof_MapEventHeader:
+TinTowerRoof_MapEvents:
 	; filler
 	db 0, 0
 

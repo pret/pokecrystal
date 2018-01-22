@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE42ECRUTEAKGATE_OFFICER
 
-Route42EcruteakGate_MapScriptHeader:
+Route42EcruteakGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ Route42EcruteakGateOfficerText:
 	line "get lost in there."
 	done
 
-Route42EcruteakGate_MapEventHeader:
+Route42EcruteakGate_MapEvents:
 	; filler
 	db 0, 0
 

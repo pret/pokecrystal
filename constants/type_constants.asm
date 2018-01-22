@@ -1,7 +1,8 @@
-; TypeNames indexes (see data/type_names.asm)
+; TypeNames indexes (see data/types/names.asm)
 ; also used in:
-; - TypeMatchups (see data/type_matchups.asm)
-; - Pokedex_SearchForMons.TypeConversionTable and Pokedex_PlaceSearchScreenTypeStrings.TypeStrings (see engine/pokedex.asm)
+; - PokedexTypeSearchConversionTable (see data/types/search_types.asm)
+; - PokedexTypeSearchStrings (see data/types/search_strings.asm)
+; - TypeMatchups (see data/battle/type_matchups.asm)
 	const_def
 
 PHYSICAL EQU const_value
@@ -38,5 +39,6 @@ SPECIAL EQU const_value
 	const ICE
 	const DRAGON
 	const DARK
-
 TYPES_END EQU const_value
+
+NUM_TYPES EQU TYPES_END + UNUSED_TYPES - UNUSED_TYPES_END

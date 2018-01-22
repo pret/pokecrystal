@@ -4,7 +4,7 @@ const_value set 2
 	const FASTSHIPCABINS_SW_SSW_NW_BUENA
 	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
 
-FastShipCabins_SW_SSW_NW_MapScriptHeader:
+FastShipCabins_SW_SSW_NW_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -49,7 +49,7 @@ TrainerGuitaristClyde:
 
 .Script:
 	end_if_just_battled
-	special Mobile_DummyReturnFalse
+	special Special_Mobile_DummyReturnFalse
 	iftrue .mobile
 	opentext
 	writetext UnknownText_0x75d65
@@ -70,8 +70,8 @@ FastShipBed:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
-	special TrainerRankings_Healings
+	special ReloadSpritesNoPalettes
+	special Special_StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60
@@ -222,7 +222,7 @@ FastShipArrivedVermilionText:
 	cont "VERMILION CITY."
 	done
 
-FastShipCabins_SW_SSW_NW_MapEventHeader:
+FastShipCabins_SW_SSW_NW_MapEvents:
 	; filler
 	db 0, 0
 

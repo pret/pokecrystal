@@ -7,7 +7,7 @@ const_value set 2
 	const RADIOTOWER4F_ROCKET_GIRL
 	const RADIOTOWER4F_SCIENTIST
 
-RadioTower4F_MapScriptHeader:
+RadioTower4F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -245,7 +245,7 @@ UnknownText_0x5f00d:
 	text "4F STUDIO 2"
 	done
 
-RadioTower4F_MapEventHeader:
+RadioTower4F_MapEvents:
 	; filler
 	db 0, 0
 

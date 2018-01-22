@@ -11,7 +11,7 @@ InitCommandQueue: ; 1045c4
 	farcall ClearCmdQueue
 	ld a, MAPCALLBACK_CMDQUEUE
 	call RunMapCallback
-	call GetMapHeaderTimeOfDayNybble
+	call GetMapTimeOfDay
 	ld [wMapTimeOfDay], a
 	ret
 
@@ -174,8 +174,11 @@ LoadWarpData: ; 1046c6
 	call GetAnyMapEnvironment
 	call CheckIndoorMap
 	ret nz
+
+; MOUNT_MOON_SQUARE and TIN_TOWER_ROOF are outdoor maps within indoor maps.
+; Dig and Escape Rope should not take you to them.
 	ld a, [wPrevMapGroup]
-	cp GROUP_MOUNT_MOON_SQUARE
+	cp GROUP_MOUNT_MOON_SQUARE ; GROUP_TIN_TOWER_ROOF
 	jr nz, .not_mt_moon_or_tin_tower
 	ld a, [wPrevMapNumber]
 	cp MAP_MOUNT_MOON_SQUARE
@@ -183,6 +186,7 @@ LoadWarpData: ; 1046c6
 	cp MAP_TIN_TOWER_ROOF
 	ret z
 .not_mt_moon_or_tin_tower
+
 	ld a, [wPrevWarp]
 	ld [wDigWarpNumber], a
 	ld a, [wPrevMapGroup]
@@ -206,6 +210,8 @@ LoadWarpData: ; 1046c6
 	ld b, a
 	ld a, [wNextMapNumber]
 	ld c, a
+
+; Respawn in Pokémon Centers.
 	call GetAnyMapTileset
 	ld a, c
 	cp TILESET_POKECENTER
@@ -214,6 +220,7 @@ LoadWarpData: ; 1046c6
 	jr z, .pokecenter_pokecom
 	ret
 .pokecenter_pokecom
+
 	ld a, [wPrevMapGroup]
 	ld [wLastSpawnMapGroup], a
 	ld a, [wPrevMapNumber]
@@ -254,7 +261,7 @@ LoadMapTimeOfDay: ; 104750
 	pop af
 	ld [rVBK], a
 
-	ld a, "<BLACK>"
+	ld a, "■"
 	ld bc, vBGMap1 - vBGMap0
 	hlbgcoord 0, 0
 	call ByteFill
@@ -298,12 +305,12 @@ LoadGraphics: ; 1047cf
 	ld [hMapAnims], a
 	xor a
 	ld [hTileAnimFrame], a
-	farcall RefreshSprites
+	farcall Special_RefreshSprites
 	call LoadFontsExtra
 	farcall LoadOverworldFont
 	ret
 
-LoadMapPalettes: ; 1047eb
+Special_LoadMapPalettes: ; 1047eb
 	ld b, SCGB_MAPPALS
 	jp GetSGBLayout
 ; 1047f0

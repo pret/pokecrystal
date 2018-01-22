@@ -12,7 +12,7 @@ const_value set 2
 	const LAKEOFRAGE_POKE_BALL1
 	const LAKEOFRAGE_POKE_BALL2
 
-LakeOfRage_MapScriptHeader:
+LakeOfRage_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -20,8 +20,8 @@ LakeOfRage_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
-	dbw MAPCALLBACK_OBJECTS, .Wesley
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .Wesley
 
 .DummyScene0:
 	end
@@ -62,7 +62,7 @@ UnknownScript_0x70035:
 	disappear LAKEOFRAGE_LANCE
 	clearevent EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	setevent EVENT_DECIDED_TO_HELP_LANCE
-	setmapscene MAHOGANY_MART_1F, $1
+	setmapscene MAHOGANY_MART_1F, 1
 	end
 
 UnknownScript_0x7004e:
@@ -101,7 +101,7 @@ UnknownScript_0x7007a:
 	waitsfx
 	itemnotify
 	closetext
-	setscene $0
+	setscene 0
 	appear LAKEOFRAGE_LANCE
 	end
 
@@ -232,16 +232,13 @@ LakeOfRageTMDetect:
 	itemball TM_DETECT
 
 LakeOfRageHiddenFullRestore:
-	dwb EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE
-
+	hiddenitem EVENT_LAKE_OF_RAGE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
 LakeOfRageHiddenRareCandy:
-	dwb EVENT_LAKE_OF_RAGE_HIDDEN_RARE_CANDY, RARE_CANDY
-
+	hiddenitem EVENT_LAKE_OF_RAGE_HIDDEN_RARE_CANDY, RARE_CANDY
 
 LakeOfRageHiddenMaxPotion:
-	dwb EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION, MAX_POTION
-
+	hiddenitem EVENT_LAKE_OF_RAGE_HIDDEN_MAX_POTION, MAX_POTION
 
 MovementData_0x70155:
 	teleport_from
@@ -496,7 +493,7 @@ UnknownText_0x70903:
 	line "HOUSE"
 	done
 
-LakeOfRage_MapEventHeader:
+LakeOfRage_MapEvents:
 	; filler
 	db 0, 0
 

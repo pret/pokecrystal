@@ -8,22 +8,22 @@ const_value set 2
 	const ROUTE43_FRUIT_TREE
 	const ROUTE43_POKE_BALL
 
-Route43_MapScriptHeader:
+Route43_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
+	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	setmapscene ROUTE_43_GATE, $0
+	setmapscene ROUTE_43_GATE, 0
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43_GATE, $1
+	setmapscene ROUTE_43_GATE, 1
 	return
 
 TrainerCamperSpencer:
@@ -71,9 +71,9 @@ UnknownScript_0x19d0b8:
 	scall UnknownScript_0x19d130
 UnknownScript_0x19d0bb:
 	askforphonenumber PHONE_POKEMANIAC_BRENT
-	if_equal $1, UnknownScript_0x19d140
-	if_equal $2, UnknownScript_0x19d13c
-	trainertotext POKEMANIAC, BRENT1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19d140
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19d13c
+	trainertotext POKEMANIAC, BRENT1, MEM_BUFFER_0
 	scall UnknownScript_0x19d134
 	jump UnknownScript_0x19d138
 
@@ -202,9 +202,9 @@ UnknownScript_0x19d1aa:
 	scall UnknownScript_0x19d23d
 UnknownScript_0x19d1ad:
 	askforphonenumber PHONE_PICNICKER_TIFFANY
-	if_equal $1, UnknownScript_0x19d24d
-	if_equal $2, UnknownScript_0x19d249
-	trainertotext PICNICKER, TIFFANY3, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19d24d
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19d249
+	trainertotext PICNICKER, TIFFANY3, MEM_BUFFER_0
 	scall UnknownScript_0x19d241
 	jump UnknownScript_0x19d245
 
@@ -500,7 +500,7 @@ Route43TrainerTipsText:
 	line "#MON's type."
 	done
 
-Route43_MapEventHeader:
+Route43_MapEvents:
 	; filler
 	db 0, 0
 

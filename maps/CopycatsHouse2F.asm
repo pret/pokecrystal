@@ -6,13 +6,13 @@ const_value set 2
 	const COPYCATSHOUSE2F_BIRDDOLL
 	const COPYCATSHOUSE2F_COPYCAT2 ; if player is female
 
-CopycatsHouse2F_MapScriptHeader:
+CopycatsHouse2F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Callback
+	callback MAPCALLBACK_OBJECTS, .Callback
 
 .Callback:
 	checkflag ENGINE_PLAYER_IS_FEMALE
@@ -46,7 +46,7 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Default_Merge_1:
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .TalkAboutLostItem
 	opentext
@@ -70,7 +70,7 @@ Copycat:
 .Default_Merge_3a:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	opentext
 	writetext CopycatText_QuickMimicking
 	waitbutton
@@ -99,7 +99,7 @@ Copycat:
 .Default_Merge_3b:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	opentext
 	writetext CopycatText_Worried
 	waitbutton
@@ -142,7 +142,7 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .GotPass_Merge_1:
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .GotPass_Female_2
@@ -164,7 +164,7 @@ Copycat:
 .GotPass_Merge_3:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	opentext
 	writetext CopycatText_ItsAScream
 	waitbutton
@@ -360,7 +360,7 @@ CopycatsHouse2FDollText:
 	para "It's only a doll…"
 	done
 
-CopycatsHouse2F_MapEventHeader:
+CopycatsHouse2F_MapEvents:
 	; filler
 	db 0, 0
 

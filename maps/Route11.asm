@@ -5,7 +5,7 @@ const_value set 2
 	const ROUTE11_YOUNGSTER4
 	const ROUTE11_FRUIT_TREE
 
-Route11_MapScriptHeader:
+Route11_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -63,8 +63,7 @@ FruitTreeScript_0x68055:
 	fruittree FRUITTREE_ROUTE_11
 
 Route11HiddenRevive:
-	dwb EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
-
+	hiddenitem EVENT_ROUTE_11_HIDDEN_REVIVE, REVIVE
 
 YoungsterOwenSeenText:
 	text "There's no cheat-"
@@ -146,7 +145,7 @@ Route11SignText:
 	text "ROUTE 11"
 	done
 
-Route11_MapEventHeader:
+Route11_MapEvents:
 	; filler
 	db 0, 0
 

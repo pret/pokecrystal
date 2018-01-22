@@ -1,13 +1,13 @@
 const_value set 2
 	const WHIRLISLANDLUGIACHAMBER_LUGIA
 
-WhirlIslandLugiaChamber_MapScriptHeader:
+WhirlIslandLugiaChamber_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Lugia
+	callback MAPCALLBACK_OBJECTS, .Lugia
 
 .Lugia:
 	checkevent EVENT_FOUGHT_LUGIA
@@ -43,7 +43,7 @@ LugiaText:
 	text "Gyaaas!"
 	done
 
-WhirlIslandLugiaChamber_MapEventHeader:
+WhirlIslandLugiaChamber_MapEvents:
 	; filler
 	db 0, 0
 

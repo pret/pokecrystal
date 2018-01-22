@@ -5,7 +5,7 @@ const_value set 2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
-RuinsOfAlphOutside_MapScriptHeader:
+RuinsOfAlphOutside_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -13,7 +13,7 @@ RuinsOfAlphOutside_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .ScientistCallback
+	callback MAPCALLBACK_OBJECTS, .ScientistCallback
 
 .DummyScene0:
 	end
@@ -30,17 +30,17 @@ RuinsOfAlphOutside_MapScriptHeader:
 
 .MaybeScientist:
 	checkcode VAR_UNOWNCOUNT
-	if_greater_than $2, .YesScientist
+	if_greater_than 2, .YesScientist
 	jump .NoScientist
 
 .YesScientist:
 	appear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene $1
+	setscene 1
 	return
 
 .NoScientist:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene $0
+	setscene 0
 	return
 
 RuinsOfAlphOutsideScientistScene1:
@@ -66,7 +66,7 @@ UnknownScript_0x58044:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	stopfollow
 	applymovement PLAYER, MovementData_0x580c5
-	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, $1
+	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, 1
 	warpcheck
 	end
 
@@ -112,7 +112,6 @@ TrainerPsychicNathan:
 	closetext
 	end
 
-
 TrainerSuperNerdStan:
 	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, .Script
 
@@ -123,7 +122,6 @@ TrainerSuperNerdStan:
 	waitbutton
 	closetext
 	end
-
 
 RuinsOfAlphOutsideSignpost0Script:
 	jumptext UnknownText_0x58325
@@ -282,7 +280,7 @@ UnknownText_0x5848e:
 	line "message!"
 	done
 
-RuinsOfAlphOutside_MapEventHeader:
+RuinsOfAlphOutside_MapEvents:
 	; filler
 	db 0, 0
 

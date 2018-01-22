@@ -3,7 +3,7 @@ const_value set 2
 	const CELADONDEPTSTORE4F_SUPER_NERD
 	const CELADONDEPTSTORE4F_YOUNGSTER
 
-CeladonDeptStore4F_MapScriptHeader:
+CeladonDeptStore4F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -50,7 +50,7 @@ CeladonDeptStore4FDirectoryText:
 	para "4F: WISEMAN GIFTS"
 	done
 
-CeladonDeptStore4F_MapEventHeader:
+CeladonDeptStore4F_MapEvents:
 	; filler
 	db 0, 0
 

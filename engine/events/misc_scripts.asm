@@ -2,7 +2,7 @@ Script_AbortBugContest: ; 0x122c1
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iffalse .finish
 	setflag ENGINE_DAILY_BUG_CONTEST
-	special ContestReturnMons
+	special Special_ContestReturnMons
 .finish
 	end
 

@@ -63,7 +63,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	jr z, .skip_append_save
 	call .SaveMysteryGiftTrainerName
 	farcall RestoreMobileEventIndex
-	farcall TrainerRankings_MysteryGift
+	farcall StubbedTrainerRankings_MysteryGift
 	farcall BackupMobileEventIndex
 .skip_append_save
 	ld a, [wMysteryGiftPartnerSentDeco]
@@ -1117,7 +1117,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	ld d, $0
 	ld b, CHECK_FLAG
 	ld hl, sMysteryGiftDecorationsReceived
-	predef_id FlagPredef
+	predef_id SmallFarFlagAction
 	push hl
 	push bc
 	call Predef
@@ -1129,7 +1129,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	ret nz
 	call GetMysteryGiftBank
 	ld b, SET_FLAG
-	predef FlagPredef
+	predef SmallFarFlagAction
 	call CloseSRAM
 	xor a
 	ret
@@ -1142,7 +1142,7 @@ MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
 	ld d, $0
 	ld b, CHECK_FLAG
 	ld hl, sMysteryGiftDecorationsReceived
-	predef FlagPredef
+	predef SmallFarFlagAction
 	ld a, c
 	and a
 	pop bc
@@ -1369,7 +1369,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	jr .gfx_loop
 ; 105232 (41:5232)
 
-.Load6GFX: ; unreferenced
+.Unreferenced_Load6GFX:
 	ld b,  6
 	jr .gfx_loop
 
@@ -1456,33 +1456,33 @@ Function105688: ; 105688 (41:5688)
 	jr asm_105726
 
 Function1056eb: ; 1056eb (41:56eb)
-	ld c, $10
-.asm_1056ed
-	ld hl, Sprites
-	ld b, $8
-.asm_1056f2
+	ld c, 16
+.loop
+	ld hl, Sprite01YCoord
+	ld b, 8
+.dec_y_loop
 	dec [hl]
-rept 4
+rept SPRITEOAMSTRUCT_LENGTH
 	inc hl
 endr
 	dec b
-	jr nz, .asm_1056f2
-	ld hl, Sprites + $20
-	ld b, $8
-.asm_1056ff
+	jr nz, .dec_y_loop
+	ld hl, Sprite09YCoord
+	ld b, 8
+.inc_y_loop
 	inc [hl]
-rept 4
+rept SPRITEOAMSTRUCT_LENGTH
 	inc hl
 endr
 	dec b
-	jr nz, .asm_1056ff
+	jr nz, .inc_y_loop
 	dec c
 	ret z
 	push bc
 	ld c, 4
 	call DelayFrames
 	pop bc
-	jr .asm_1056ed
+	jr .loop
 
 Function105712: ; 105712 (41:5712)
 	call Function105777
@@ -1504,9 +1504,9 @@ asm_105726: ; 105726 (41:5726)
 
 String_10572e: ; 10572e
 	db   "エーボタン¯おすと"
-	next "つうしん<PKMN>おこなわれるよ!"
+	next "つうしん<PKMN>おこなわれるよ！"
 	next "ビーボタン¯おすと"
-	next "つうしん¯ちゅうし します"
+	next "つうしん¯ちゅうし　します"
 	db   "@"
 
 ; 10575e
@@ -1561,12 +1561,12 @@ Function10578c: ; 10578c (41:578c)
 	ld a, [sCrystalData + 0]
 	ld [de], a
 	inc de
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld hl, $a603
+	ld hl, $a603 ; address of MBC30 bank
 	ld bc, $8
 	call CopyBytes
-	ld hl, $a007
+	ld hl, $a007 ; address of MBC30 bank
 	ld bc, $c
 	call CopyBytes
 	call CloseSRAM
@@ -1580,7 +1580,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld a, BANK(MysteryGiftJP_GFX)
 	lb bc, 4, 0
 	call FarCopyBytes
-	ld hl, MysteryGiftJP_GFX + $400
+	ld hl, MysteryGiftJP_GFX + $40 tiles
 	ld de, vTiles0 tile $00
 	ld a, BANK(MysteryGiftJP_GFX)
 	ld bc, $80
@@ -1656,9 +1656,9 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld [hl], $3c
 	hlcoord 17, 15
 	ld [hl], $3e
-	ld de, Sprites
+	ld de, Sprite01
 	ld hl, .OAM_data
-	ld bc, $40
+	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call CopyBytes
 	call EnableLCD
 	call WaitBGMap
@@ -1713,22 +1713,22 @@ Function1057d7: ; 1057d7 (41:57d7)
 ; 1058f0 (41:58f0)
 
 .OAM_data: ; 1058f0
-	dsprite  2, 1,  6, 4, $00, $00
-	dsprite  2, 1,  7, 4, $01, $00
-	dsprite  2, 1,  8, 4, $02, $00
-	dsprite  2, 1,  9, 4, $03, $00
-	dsprite  3, 1,  6, 4, $04, $00
-	dsprite  3, 1,  7, 4, $05, $00
-	dsprite  3, 1,  8, 4, $06, $00
-	dsprite  3, 1,  9, 4, $07, $00
-	dsprite  0, 1, 11, 4, $00, $00
-	dsprite  0, 1, 12, 4, $01, $00
-	dsprite  0, 1, 13, 4, $02, $00
-	dsprite  0, 1, 14, 4, $03, $00
-	dsprite  1, 1, 11, 4, $04, $00
-	dsprite  1, 1, 12, 4, $05, $00
-	dsprite  1, 1, 13, 4, $06, $00
-	dsprite  1, 1, 14, 4, $07, $00
+	dsprite  2, 1,  6, 4, $00, 0
+	dsprite  2, 1,  7, 4, $01, 0
+	dsprite  2, 1,  8, 4, $02, 0
+	dsprite  2, 1,  9, 4, $03, 0
+	dsprite  3, 1,  6, 4, $04, 0
+	dsprite  3, 1,  7, 4, $05, 0
+	dsprite  3, 1,  8, 4, $06, 0
+	dsprite  3, 1,  9, 4, $07, 0
+	dsprite  0, 1, 11, 4, $00, 0
+	dsprite  0, 1, 12, 4, $01, 0
+	dsprite  0, 1, 13, 4, $02, 0
+	dsprite  0, 1, 14, 4, $03, 0
+	dsprite  1, 1, 11, 4, $04, 0
+	dsprite  1, 1, 12, 4, $05, 0
+	dsprite  1, 1, 13, 4, $06, 0
+	dsprite  1, 1, 14, 4, $07, 0
 
 ; japanese mystery gift gfx
 MysteryGiftJP_GFX: ; 105930

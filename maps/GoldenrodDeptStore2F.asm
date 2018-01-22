@@ -5,7 +5,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE2F_COOLTRAINER_F
 	const GOLDENRODDEPTSTORE2F_GENTLEMAN
 
-GoldenrodDeptStore2F_MapScriptHeader:
+GoldenrodDeptStore2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -41,8 +41,8 @@ GoldenrodDeptStore2FDirectory:
 GoldenrodDeptStore2FElevatorButton:
 	jumpstd elevatorbutton
 
-; possibly unused
-UnknownText_0x55b7c:
+; unused
+UnusedText_0x55b7c:
 	text "We intend to sell"
 	line "items for #MON"
 	cont "to hold."
@@ -52,8 +52,8 @@ UnknownText_0x55b7c:
 	cont "MON hold it."
 	done
 
-; possibly unused
-UnknownText_0x55bd3:
+; unused
+UnusedText_0x55bd3:
 	text "By giving #MON"
 	line "items to hold, I"
 
@@ -100,7 +100,7 @@ GoldenrodDeptStore2FDirectoryText:
 	line "   MARKET"
 	done
 
-GoldenrodDeptStore2F_MapEventHeader:
+GoldenrodDeptStore2F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,7 +3,7 @@ const_value set 2
 	const CERULEANPOLICESTATION_POKEFAN_F
 	const CERULEANPOLICESTATION_DIGLETT
 
-CeruleanPoliceStation_MapScriptHeader:
+CeruleanPoliceStation_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -43,7 +43,7 @@ CeruleanDiglettText:
 	text "DIGLETT: Dug dug."
 	done
 
-CeruleanPoliceStation_MapEventHeader:
+CeruleanPoliceStation_MapEvents:
 	; filler
 	db 0, 0
 

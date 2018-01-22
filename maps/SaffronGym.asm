@@ -6,7 +6,7 @@ const_value set 2
 	const SAFFRONGYM_YOUNGSTER2
 	const SAFFRONGYM_GYM_GUY
 
-SaffronGym_MapScriptHeader:
+SaffronGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -22,7 +22,7 @@ SabrinaScript_0x189c2e:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x189df4, 0
-	loadtrainer SABRINA, 1
+	loadtrainer SABRINA, SABRINA1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_SABRINA
@@ -111,7 +111,7 @@ SaffronGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext SABRINA, 1, $1
+	trainertotext SABRINA, SABRINA1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 UnknownText_0x189cdf:
@@ -290,7 +290,7 @@ SaffronGymGuyWinText:
 	line "fantastic battle!"
 	done
 
-SaffronGym_MapEventHeader:
+SaffronGym_MapEvents:
 	; filler
 	db 0, 0
 

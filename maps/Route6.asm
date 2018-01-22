@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE6_POKEFAN_M2
 	const ROUTE6_POKEFAN_M3
 
-Route6_MapScriptHeader:
+Route6_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -91,7 +91,7 @@ PokefanmAllanAfterBattleText:
 	cont "your heart melt?"
 	done
 
-Route6_MapEventHeader:
+Route6_MapEvents:
 	; filler
 	db 0, 0
 

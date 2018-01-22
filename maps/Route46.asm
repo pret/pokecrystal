@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE46_FRUIT_TREE2
 	const ROUTE46_POKE_BALL
 
-Route46_MapScriptHeader:
+Route46_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -47,9 +47,9 @@ UnknownScript_0x1a96c3:
 	scall UnknownScript_0x1a9753
 UnknownScript_0x1a96c6:
 	askforphonenumber PHONE_PICNICKER_ERIN
-	if_equal $1, UnknownScript_0x1a9763
-	if_equal $2, UnknownScript_0x1a975f
-	trainertotext PICNICKER, ERIN1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a9763
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a975f
+	trainertotext PICNICKER, ERIN1, MEM_BUFFER_0
 	scall UnknownScript_0x1a9757
 	jump UnknownScript_0x1a975b
 
@@ -250,14 +250,14 @@ Route46SignText:
 	line "MOUNTAIN RD. AHEAD"
 	done
 
-Route46_MapEventHeader:
+Route46_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 3
-	warp_def 7, 33, 1, ROUTE_29_46_GATE
-	warp_def 8, 33, 2, ROUTE_29_46_GATE
+	warp_def 7, 33, 1, ROUTE_29_ROUTE_46_GATE
+	warp_def 8, 33, 2, ROUTE_29_ROUTE_46_GATE
 	warp_def 14, 5, 3, DARK_CAVE_VIOLET_ENTRANCE
 
 .CoordEvents:

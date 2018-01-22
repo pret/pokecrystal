@@ -3,7 +3,7 @@ const_value set 2
 	const VERMILIONMART_SUPER_NERD
 	const VERMILIONMART_BUENA
 
-VermilionMart_MapScriptHeader:
+VermilionMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -36,7 +36,7 @@ VermilionMartBuenaText:
 	cont "SAFFRON."
 	done
 
-VermilionMart_MapEventHeader:
+VermilionMart_MapEvents:
 	; filler
 	db 0, 0
 

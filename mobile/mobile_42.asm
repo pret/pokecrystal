@@ -181,12 +181,12 @@ Function1080b7: ; 1080b7
 
 	ld de, TradeBallGFX
 	ld hl, vTiles0
-	lb bc, BANK(TradeBallGFX), $06
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $06
-	lb bc, BANK(TradePoofGFX), $0c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 
 	xor a
@@ -309,7 +309,7 @@ Function108201: ; 108201
 	ld [CurSpecies], a
 	call GetBaseData
 	pop de
-	predef GetAnimatedFrontpicPredef
+	predef GetAnimatedFrontpic
 	ret
 ; 108219
 
@@ -337,7 +337,7 @@ MobileTradeAnim_InitSpeciesName: ; 108239
 	call GetPokemonName
 	ld hl, StringBuffer1
 	pop de
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ret
 ; 10824b
@@ -361,7 +361,7 @@ MobileTradeAnim_JumptableLoop: ; 10824b
 	ld [hWY], a
 	call LoadStandardFont
 	call LoadFontsBattleExtra
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	scf
 	ret
@@ -518,7 +518,7 @@ MobileTradeAnim_ShowPlayerMonToBeSent: ; 10830e
 	jr c, .skip_cry
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 
 .skip_cry
 	ld c, 80
@@ -616,11 +616,11 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, vTiles0
-	lb bc, BANK(TradeBallGFX), $06
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $06
-	lb bc, BANK(TradePoofGFX), $0c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	ld a, [wPlayerTrademonDVs]
 	ld [TempMonDVs], a
@@ -653,7 +653,7 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	jr c, .skip_cry
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 
 .skip_cry
 	ld c, 80
@@ -690,11 +690,11 @@ MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, vTiles0
-	lb bc, BANK(TradeBallGFX), $06
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $06
-	lb bc, BANK(TradePoofGFX), $0c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	xor a
 	ld [hSCX], a
@@ -759,11 +759,11 @@ MobileTradeAnim_GetOddEgg: ; 108589
 	call DelayFrame
 	ld de, TradeBallGFX
 	ld hl, vTiles0
-	lb bc, BANK(TradeBallGFX), $06
+	lb bc, BANK(TradeBallGFX), 6
 	call Request2bpp
 	ld de, TradePoofGFX
 	ld hl, vTiles0 tile $06
-	lb bc, BANK(TradePoofGFX), $0c
+	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	xor a
 	ld [hSCX], a
@@ -959,7 +959,7 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 	cp $f8
 	jr nz, .next
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_22
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE
 	call _InitSpriteAnimStruct
 
 .next
@@ -984,7 +984,7 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 
 .init
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_22
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE
 	call _InitSpriteAnimStruct
 	xor a
 	call Function108ad4
@@ -1015,7 +1015,7 @@ MobileTradeAnim_GiveTrademon2: ; 1087cf
 	call Function108af4
 	call Function108b5a
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_25
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_PING
 	call _InitSpriteAnimStruct
 	ld de, SFX_FORESIGHT
 	call PlaySFX
@@ -1024,7 +1024,7 @@ MobileTradeAnim_GiveTrademon2: ; 1087cf
 	xor a
 	ld [wcf64], a
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_23
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_PULSE
 	call _InitSpriteAnimStruct
 .loop
 	ld a, [hSCY]
@@ -1051,7 +1051,7 @@ MobileTradeAnim_05: ; 108811
 	ld c, 60
 	call WaitMobileTradeSpriteAnims
 	depixel 30, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_24
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_PULSE
 	call _InitSpriteAnimStruct
 	call GetMobileTradeAnimByte
 	ld de, SFX_THROW_BALL
@@ -1074,7 +1074,7 @@ MobileTradeAnim_07: ; 10884c
 	ld c, 80
 	call DelayFrames
 	depixel 30, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_24
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_PULSE
 	call _InitSpriteAnimStruct
 	call GetMobileTradeAnimByte
 	ld de, SFX_THROW_BALL
@@ -1098,7 +1098,7 @@ MobileTradeAnim_GetTrademon1: ; 108863
 .done
 	farcall DeinitializeAllSprites
 	depixel 9, 10, 2, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_25
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_PING
 	call _InitSpriteAnimStruct
 	ld de, SFX_GLASS_TING_2
 	call PlaySFX
@@ -1134,13 +1134,13 @@ MobileTradeAnim_GetTrademon2: ; 108894
 
 .asm_1088c5
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_22
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE
 	call _InitSpriteAnimStruct
 	jr .asm_1088e7
 
 .asm_1088cf
 	depixel 10, 11, 4, 0
-	ld a, SPRITE_ANIM_INDEX_MOBILE_22
+	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_CABLE_BULGE
 	call _InitSpriteAnimStruct
 	xor a
 	call Function108ad4
@@ -1311,8 +1311,8 @@ MobileTradeAnim_DisplayEggData
 
 .EggTemplate: ; 108a1d
 	db   "タマゴ"
-	next "おや/?????"
-	next "<ID>№<DOT>?????"
+	next "おや/？？？？？"
+	next "<ID>№<DOT>？？？？？"
 	db   "@"
 ; 108a33
 
@@ -1352,9 +1352,9 @@ MobileTradeAnim_LoadMonTemplate: ; 108a5b
 ; 108a79
 
 .MonTemplate: ; 108a79
-	db   "─ №<DOT>"
+	db   "─　№<DOT>"
 	next ""
-	next "おや/"
+	next "おや／"
 	next "<ID>№<DOT>"
 	db   "@"
 ; 108a87
@@ -1484,7 +1484,7 @@ Function108b45: ; 108b45
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld de, palred 31 + palgreen 31 + palblue 31
+	ld de, PALRGB_WHITE
 	ld hl, wBGPals1
 	ld a, e
 	ld [hli], a
@@ -1525,7 +1525,7 @@ Function108b78: ; 108b78
 	ld a, c
 	and $2
 	jr z, .Orange
-	ld de, palred 31 + palgreen 31 + palblue 31
+	ld de, PALRGB_WHITE
 	jr .load_pal
 
 .Orange:
@@ -1825,141 +1825,141 @@ LZ_1090a7:
 INCBIN "gfx/unknown/1090a7.tilemap.lz"
 
 Palette_1090f7:
-; unreferenced
+; unused
 	RGB 31, 31, 31
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
-	RGB 31,  0, 25
-	RGB  0,  0,  0
+	RGB 31, 00, 25
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
-	RGB  9, 19, 31
-	RGB  0,  0,  0
+	RGB 09, 19, 31
+	RGB 00, 00, 00
 
 Palette_109107:
 	RGB 18, 31, 15
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 15,  1
 	RGB 14, 14, 31
-	RGB 12,  9, 31
-	RGB  0,  0,  0
+	RGB 12, 09, 31
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 14, 14, 31
-	RGB 12,  9, 31
-	RGB  0,  0,  0
+	RGB 12, 09, 31
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 31,  7,  9
-	RGB 18,  0,  1
-	RGB  0,  0,  0
+	RGB 31, 07, 09
+	RGB 18, 00, 01
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 15,  1
-	RGB 18,  0, 30
-	RGB  9,  0, 17
-	RGB  0,  0,  0
+	RGB 18, 00, 30
+	RGB 09, 00, 17
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 18,  0, 30
-	RGB  9,  0, 17
-	RGB  0,  0,  0
+	RGB 18, 00, 30
+	RGB 09, 00, 17
+	RGB 00, 00, 00
 
 Palette_109147:
 	RGB 31, 31, 31
 	RGB 31, 31, 12
 	RGB 31, 13, 12
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
 	RGB 31, 23, 15
-	RGB 31, 18,  7
-	RGB 31, 15,  0
+	RGB 31, 18, 07
+	RGB 31, 15, 00
 
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB 31,  0, 25
-	RGB 31,  0, 25
-	RGB  0,  0,  0
+	RGB 31, 00, 25
+	RGB 31, 00, 25
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  9, 19, 31
-	RGB  9, 19, 31
-	RGB  0,  0,  0
+	RGB 09, 19, 31
+	RGB 09, 19, 31
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 Palette_109187:
 	RGB 31, 31, 31
 	RGB 31, 31, 12
 	RGB 31, 13, 12
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
 	RGB 31, 23, 15
-	RGB 31, 18,  7
-	RGB 31, 15,  0
+	RGB 31, 18, 07
+	RGB 31, 15, 00
 
 	RGB 31, 31, 31
 	RGB 20, 20, 20
 	RGB 11, 11, 11
-	RGB  0,  0,  0
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  9, 19, 31
-	RGB  9, 19, 31
-	RGB  0,  0,  0
+	RGB 09, 19, 31
+	RGB 09, 19, 31
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB 31,  0, 25
-	RGB 31,  0, 25
-	RGB  0,  0,  0
+	RGB 31, 00, 25
+	RGB 31, 00, 25
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 	RGB 31, 31, 31
-	RGB  0,  0,  0
-	RGB  0,  0,  0
-	RGB  0,  0,  0
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
 
 GFX_1091c7:
 INCBIN "gfx/unknown/1091c7.2bpp"
@@ -1968,41 +1968,41 @@ INCBIN "gfx/unknown/1092c7.2bpp"
 
 Palette_1093c7:
 	RGB 18, 31, 15
-	RGB  4, 13, 31
-	RGB  0,  0, 31
-	RGB  0,  0,  0
+	RGB 04, 13, 31
+	RGB 00, 00, 31
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 31, 31,  0
-	RGB 31, 15,  0
-	RGB  0,  0,  0
+	RGB 31, 31, 00
+	RGB 31, 15, 00
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB  9, 24,  0
-	RGB  2, 16,  0
-	RGB  0,  0,  0
+	RGB 09, 24, 00
+	RGB 02, 16, 00
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 31,  7,  9
-	RGB 18,  0,  1
-	RGB  0,  0,  0
+	RGB 31, 07, 09
+	RGB 18, 00, 01
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB 28,  5, 31
-	RGB 17,  0, 17
-	RGB  0,  0,  0
+	RGB 28, 05, 31
+	RGB 17, 00, 17
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
-	RGB  9,  9,  9
-	RGB  4,  4,  4
-	RGB  0,  0,  0
+	RGB 09, 09, 09
+	RGB 04, 04, 04
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 31, 13, 21
-	RGB 27,  7, 12
-	RGB  0,  0,  0
+	RGB 27, 07, 12
+	RGB 00, 00, 00
 
 	RGB 18, 31, 15
 	RGB 21, 20, 20
 	RGB 14, 14, 31
-	RGB  0,  0,  0
+	RGB 00, 00, 00

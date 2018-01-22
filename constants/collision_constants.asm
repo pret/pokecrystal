@@ -1,10 +1,10 @@
-; collision permissions (see tilesets/collision_permissions.asm)
+; collision permissions (see data/collision_permissions.asm)
 LANDTILE             EQU $00
 WATERTILE            EQU $01
 WALLTILE             EQU $0f
 TALK                 EQU $10
 
-; collision data types (see tilesets/*_collision.asm)
+; collision data types (see data/tilesets/*_collision.asm)
 ; TileCollisionTable indexes (see data/collision_permissions.asm)
 COLL_FLOOR             EQU $00
 COLL_01                EQU $01 ; garbage
@@ -28,19 +28,19 @@ COLL_CUT_28            EQU $28 ; garbage
 COLL_WATER             EQU $29
 COLL_ICE_2B            EQU $2b ; unused
 COLL_WHIRLPOOL_2C      EQU $2c ; unused
-COLL_WATERFALL_RIGHT   EQU $30 ; unused !!!
-COLL_WATERFALL_LEFT    EQU $31 ; unused !!!
-COLL_WATERFALL_UP      EQU $32 ; unused !!!
+COLL_WATERFALL_RIGHT   EQU $30 ; unused
+COLL_WATERFALL_LEFT    EQU $31 ; unused
+COLL_WATERFALL_UP      EQU $32 ; unused
 COLL_WATERFALL         EQU $33
-COLL_CURRENT_RIGHT     EQU $38 ; unused !!!
-COLL_CURRENT_LEFT      EQU $39 ; unused !!!
-COLL_CURRENT_UP        EQU $3a ; unused !!!
-COLL_CURRENT_DOWN      EQU $3b ; unused !!!
-COLL_BRAKE             EQU $40 ; unused !!!
-COLL_WALK_RIGHT        EQU $41 ; unused !!!
-COLL_WALK_LEFT         EQU $42 ; unused !!!
-COLL_WALK_UP           EQU $43 ; unused !!!
-COLL_WALK_DOWN         EQU $44 ; unused !!!
+COLL_CURRENT_RIGHT     EQU $38 ; unused
+COLL_CURRENT_LEFT      EQU $39 ; unused
+COLL_CURRENT_UP        EQU $3a ; unused
+COLL_CURRENT_DOWN      EQU $3b ; unused
+COLL_BRAKE             EQU $40 ; unused
+COLL_WALK_RIGHT        EQU $41 ; unused
+COLL_WALK_LEFT         EQU $42 ; unused
+COLL_WALK_UP           EQU $43 ; unused
+COLL_WALK_DOWN         EQU $44 ; unused
 COLL_BRAKE_45          EQU $45 ; garbage
 COLL_BRAKE_46          EQU $46 ; unused
 COLL_BRAKE_47          EQU $47 ; unused
@@ -92,16 +92,16 @@ COLL_WINDOW            EQU $9d
 COLL_INCENSE_BURNER    EQU $9f
 COLL_HOP_RIGHT         EQU $a0
 COLL_HOP_LEFT          EQU $a1
-COLL_HOP_UP            EQU $a2 ; unused !!!
+COLL_HOP_UP            EQU $a2 ; unused
 COLL_HOP_DOWN          EQU $a3
 COLL_HOP_DOWN_RIGHT    EQU $a4
 COLL_HOP_DOWN_LEFT     EQU $a5
-COLL_HOP_UP_RIGHT      EQU $a6 ; unused !!!
-COLL_HOP_UP_LEFT       EQU $a7 ; unused !!!
+COLL_HOP_UP_RIGHT      EQU $a6 ; unused
+COLL_HOP_UP_LEFT       EQU $a7 ; unused
 COLL_RIGHT_WALL        EQU $b0
 COLL_LEFT_WALL         EQU $b1
 COLL_UP_WALL           EQU $b2
-COLL_DOWN_WALL         EQU $b3 ; unused !!!
+COLL_DOWN_WALL         EQU $b3 ; unused
 COLL_FF                EQU $ff ; garbage
 
 ; collision data type nybbles

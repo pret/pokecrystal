@@ -1,4 +1,4 @@
-MobileTradeRoomMobile_MapScriptHeader:
+MobileTradeRoomMobile_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .InitializeMobileTradeRoomMobile
@@ -15,17 +15,17 @@ MobileTradeRoomMobile_MapScriptHeader:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $4
+	setscene 1
+	setmapscene POKECENTER_2F, 4
 	end
 
 MapMobileTradeRoomMobileSignpost0Script:
-	refreshscreen $0
-	special Function1037c2
+	refreshscreen
+	special Special_Function1037c2
 	writetext MobileTradeRoomMobile_EstablishingCommsText
 	waitbutton
 	reloadmappart
-	special Function101231
+	special Special_Function101231
 	closetext
 	end
 
@@ -34,7 +34,7 @@ MobileTradeRoomMobile_EstablishingCommsText:
 	line "communications…"
 	done
 
-MobileTradeRoomMobile_MapEventHeader:
+MobileTradeRoomMobile_MapEvents:
 	; filler
 	db 0, 0
 

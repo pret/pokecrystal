@@ -1,4 +1,4 @@
-SpecialBeastsCheck: ; 0x4a6e8
+Special_BeastsCheck: ; 0x4a6e8
 ; Check if the player owns all three legendary beasts.
 ; They must exist in either party or PC, and have the player's OT and ID.
 ; Return the result in ScriptVar.
@@ -29,7 +29,7 @@ SpecialBeastsCheck: ; 0x4a6e8
 	ret
 
 
-SpecialMonCheck: ; 0x4a711
+Special_MonCheck: ; 0x4a711
 ; Check if the player owns any monsters of the species in ScriptVar.
 ; Return the result in ScriptVar.
 

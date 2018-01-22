@@ -4,13 +4,13 @@ const_value set 2
 	const LAVENDERTOWN_GRAMPS
 	const LAVENDERTOWN_YOUNGSTER
 
-LavenderTown_MapScriptHeader:
+LavenderTown_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_LAVENDER
@@ -105,7 +105,7 @@ SoulHouseSignText:
 	line "#MON Rest Easy"
 	done
 
-LavenderTown_MapEventHeader:
+LavenderTown_MapEvents:
 	; filler
 	db 0, 0
 
@@ -113,7 +113,7 @@ LavenderTown_MapEventHeader:
 	db 7
 	warp_def 5, 5, 1, LAVENDER_POKECENTER_1F
 	warp_def 5, 9, 1, MR_FUJIS_HOUSE
-	warp_def 3, 13, 1, LAVENDER_TOWN_SPEECH_HOUSE
+	warp_def 3, 13, 1, LAVENDER_SPEECH_HOUSE
 	warp_def 7, 13, 1, LAVENDER_NAME_RATER
 	warp_def 1, 5, 2, LAVENDER_MART
 	warp_def 13, 11, 1, SOUL_HOUSE

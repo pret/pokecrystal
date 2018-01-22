@@ -10,7 +10,7 @@ const_value set 2
 	const ROUTE39_FRUIT_TREE
 	const ROUTE39_POKEFAN_F2
 
-Route39_MapScriptHeader:
+Route39_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -50,9 +50,9 @@ PokefanMDerekWantsYourNumber:
 	scall PokefanMDerekAsksNumber2
 PokefanMDerekAsksForPhoneNumber:
 	askforphonenumber PHONE_POKEFANM_DEREK
-	if_equal $1, PokefanMDerekPhoneFull
-	if_equal $2, PokefanMDerekDeclined
-	trainertotext POKEFANM, DEREK1, $0
+	if_equal PHONE_CONTACTS_FULL, PokefanMDerekPhoneFull
+	if_equal PHONE_CONTACT_REFUSED, PokefanMDerekDeclined
+	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
 	scall PokefanMDerekRegistered
 	jump PokefanMDerekAccepted
 
@@ -180,8 +180,7 @@ FruitTreeScript_0x1a5bf4:
 	fruittree FRUITTREE_ROUTE_39
 
 Route39HiddenNugget:
-	dwb EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
-
+	hiddenitem EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
 
 Route39MiltankText:
 	text "MILTANK: Mooo!"
@@ -344,7 +343,7 @@ Route39TrainerTipsText:
 	line "any tree you see!"
 	done
 
-Route39_MapEventHeader:
+Route39_MapEvents:
 	; filler
 	db 0, 0
 

@@ -232,7 +232,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	push de
 
 	farcall SetEggMonCaughtData
-	farcall TrainerRankings_EggsHatched
+	farcall StubbedTrainerRankings_EggsHatched
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -320,7 +320,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	call PrintText
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -345,7 +345,7 @@ HatchEggs: ; 16f70 (5:6f70)
 
 .nonickname
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .next ; 1707d (5:707d)
@@ -659,7 +659,7 @@ GetHatchlingFrontpic: ; 1723c (5:723c)
 	ld hl, BattleMonDVs
 	predef GetUnownLetter
 	pop de
-	predef_jump GetAnimatedFrontpicPredef
+	predef_jump GetAnimatedFrontpic
 
 Hatch_UpdateFrontpicBGMapCenter: ; 17254 (5:7254)
 	push af
@@ -726,11 +726,11 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	ld c, 80
 	call DelayFrames
 	xor a
-	ld [wcf64], a
+	ld [wFrameCounter], a
 	ld a, [hSCX]
 	ld b, a
 .outerloop
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	inc [hl]
 	cp 8
@@ -791,7 +791,7 @@ Hatch_LoadFrontpicPal: ; 17363 (5:7363)
 	jp GetSGBLayout
 
 EggHatch_CrackShell: ; 1736d (5:736d)
-	ld a, [wcf64]
+	ld a, [wFrameCounter]
 	dec a
 	and $7
 	cp $7
@@ -860,18 +860,22 @@ Hatch_InitShellFragments: ; 173b3 (5:73b3)
 	ret
 ; 173ef (5:73ef)
 
+shell_fragment: MACRO
+; y tile, y pxl, x tile, x pxl, frameset offset, ???
+	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5 - SPRITE_ANIM_FRAMESET_EGG_HATCH_1, \6
+ENDM
+
 .SpriteData: ; 173ef
-; Probably OAM.
-	dsprite 10, 4,  9, 0, $00, $3c
-	dsprite 11, 4,  9, 0, $01, $04
-	dsprite 10, 4, 10, 0, $00, $30
-	dsprite 11, 4, 10, 0, $01, $10
-	dsprite 10, 4, 11, 0, $02, $24
-	dsprite 11, 4, 11, 0, $03, $1c
-	dsprite 10, 0,  9, 4, $00, $36
-	dsprite 12, 0,  9, 4, $01, $0a
-	dsprite 10, 0, 10, 4, $02, $2a
-	dsprite 12, 0, 10, 4, $03, $16
+	shell_fragment 10, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $3c
+	shell_fragment 11, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $04
+	shell_fragment 10, 4, 10, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $30
+	shell_fragment 11, 4, 10, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $10
+	shell_fragment 10, 4, 11, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_3, $24
+	shell_fragment 11, 4, 11, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_4, $1c
+	shell_fragment 10, 0,  9, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $36
+	shell_fragment 12, 0,  9, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $0a
+	shell_fragment 10, 0, 10, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_3, $2a
+	shell_fragment 12, 0, 10, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_4, $16
 	db -1
 ; 17418
 
@@ -887,7 +891,7 @@ Special_DayCareMon1: ; 17421
 	ld hl, DayCareMon1Text
 	call PrintText
 	ld a, [wBreedMon1Species]
-	call PlayCry
+	call PlayMonCry
 	ld a, [wDayCareLady]
 	bit 0, a
 	jr z, DayCareMonCursor
@@ -900,7 +904,7 @@ Special_DayCareMon2: ; 17440
 	ld hl, DayCareMon2Text
 	call PrintText
 	ld a, [wBreedMon2Species]
-	call PlayCry
+	call PlayMonCry
 	ld a, [wDayCareMan]
 	bit 0, a
 	jr z, DayCareMonCursor
@@ -981,8 +985,7 @@ DayCareMonCompatibilityText: ; 1746c
 	db "@"
 ; 0x174b5
 
-DayCareMonPrintEmptyString: ; 174b5
-; unreferenced
+Unreferenced_DayCareMonPrintEmptyString: ; 174b5
 	ld hl, .string
 	ret
 ; 174b9

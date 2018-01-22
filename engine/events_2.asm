@@ -1,7 +1,7 @@
 ; More overworld event handling.
 
 
-WarpToSpawnPoint:: ; 97c28
+Special_WarpToSpawnPoint:: ; 97c28
 	ld hl, wStatusFlags2
 	res 1, [hl] ; safari zone?
 	res 2, [hl] ; bug contest
@@ -274,7 +274,7 @@ DoBikeStep:: ; 97db3
 
 	; If we're not in an area of phone service, we don't
 	; have to be here.
-	call GetMapHeaderPhoneServiceNybble
+	call GetMapPhoneService
 	and a
 	jr nz, .NoCall
 
@@ -361,7 +361,7 @@ HandleCmdQueue:: ; 97e08
 	ret
 ; 97e25
 
-GetNthCmdQueueEntry: ; 97e25 unreferenced
+Unreferenced_GetNthCmdQueueEntry: ; 97e25
 	ld hl, wCmdQueue
 	ld bc, CMDQUEUE_ENTRY_SIZE
 	call AddNTimes

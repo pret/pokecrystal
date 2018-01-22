@@ -1,11 +1,11 @@
 EmptyAllSRAMBanks: ; 4cf1f
-	ld a, $0
+	ld a, 0
 	call .EmptyBank
-	ld a, $1
+	ld a, 1
 	call .EmptyBank
-	ld a, $2
+	ld a, 2
 	call .EmptyBank
-	ld a, $3
+	ld a, 3
 	call .EmptyBank
 	ret
 

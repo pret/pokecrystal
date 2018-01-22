@@ -2,7 +2,7 @@ const_value set 2
 	const COLOSSEUM_CHRIS1
 	const COLOSSEUM_CHRIS2
 
-Colosseum_MapScriptHeader:
+Colosseum_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .InitializeColosseum
@@ -11,8 +11,8 @@ Colosseum_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_OBJECTS, .SetWhichChris
-	dbw MAPCALLBACK_NEWMAP, .PreparePokecenter2F
+	callback MAPCALLBACK_OBJECTS, .SetWhichChris
+	callback MAPCALLBACK_NEWMAP, .PreparePokecenter2F
 
 .InitializeColosseum:
 	priorityjump .InitializeAndPreparePokecenter2F
@@ -37,12 +37,12 @@ Colosseum_MapScriptHeader:
 	return
 
 .PreparePokecenter2F:
-	setmapscene POKECENTER_2F, $2
+	setmapscene POKECENTER_2F, 2
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $2
+	setscene 1
+	setmapscene POKECENTER_2F, 2
 	end
 
 MapColosseumSignpost1Script:
@@ -62,7 +62,7 @@ ChrisScript_0x193499:
 	line "ready."
 	done
 
-Colosseum_MapEventHeader:
+Colosseum_MapEvents:
 	; filler
 	db 0, 0
 

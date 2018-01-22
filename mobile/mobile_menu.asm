@@ -102,10 +102,10 @@ Function49f16: ; 49f16
 
 
 MobileString1: ; 49fcc
-	db   "めいしフ,ルダー"
+	db   "めいしフォルダー"
 	next "あいさつ"
 	next "プロフィール"
-	next "せ", $1e, "い"
+	next "せ<TTE>い"
 	next "もどる"
 	db   "@"
 ; 49fe9
@@ -115,26 +115,26 @@ MobileStrings2:
 
 String_0x49fe9: ; 49fe9
 	db   "めいし¯つくったり"
-	next "ほぞんしておける フ,ルダーです@"
+	next "ほぞんしておける　フォルダーです@"
 ; 4a004
 
 String_0x4a004: ; 4a004
-	db   "モバイルたいせんや じぶんのめいしで"
-	next "つかう あいさつ¯つくります@"
+	db   "モバイルたいせんや　じぶんのめいしで"
+	next "つかう　あいさつ¯つくります@"
 ; 4a026
 
 String_0x4a026: ; 4a026
-	db   "あなた%じゅうしょや ねんれいの"
-	next "せ", $1e, "い¯かえられます@"
+	db   "あなた<NO>じゅうしょや　ねんれいの"
+	next "せ<TTE>い¯かえられます@"
 ; 4a042
 
 String_0x4a042: ; 4a042
-	db  "モバイルセンター", $1d, "せつぞくするとき"
-	next "ひつような こと¯きめます@"
+	db  "モバイルセンター<NI>せつぞくするとき"
+	next "ひつような　こと¯きめます@"
 ; 4a062
 
 String_0x4a062: ; 4a062
-	db   "まえ%がめん ", $1d, "もどります"
+	db   "まえ<NO>がめん　<NI>もどります"
 	next "@"
 ; 4a071
 
@@ -371,13 +371,13 @@ Function4a239: ; 4a239 (12:6239)
 ; 4a23d (12:623d)
 
 Strings_4a23d: ; 4a23d
-	db   "いつも せつぞく¯する"
+	db   "いつも　せつぞく¯する"
 	next "モバイルセンター¯えらびます@"
 
-	db   "モバイルセンター", $1d, "せつぞくするとき"
+	db   "モバイルセンター<NI>せつぞくするとき"
 	next "つかうパスワード¯ほぞんできます@"
 
-	db   "まえ%がめん ", $1d, "もどります@"
+	db   "まえ<NO>がめん　<NI>もどります@"
 
 	db   "@"
 ; 4a28a
@@ -461,9 +461,8 @@ Function4a28a: ; 4a28a (12:628a)
 ; 4a346 (12:6346)
 
 MenuDataHeader_0x4a346: ; 0x4a346
-	db $40 ; flags
-	db 00, 12 ; start coords
-	db 06, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 12, 0, SCREEN_WIDTH - 1, 6
 
 String_4a34b: ; 4a34b
 	db   "いれなおす"
@@ -484,15 +483,14 @@ UnknownText_0x4a35d: ; 0x4a35d
 ; 0x4a362
 
 DeletePassword_YesNo_MenuDataHeader: ; 0x4a362
-	db $40 ; flags
-	db 07, 14 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData2_0x4a36a
 	db 2 ; default option
 ; 0x4a36a
 
 MenuData2_0x4a36a: ; 0x4a36a
-	db $e0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2 ; items
 	db "はい@"
 	db "いいえ@"
@@ -788,25 +786,25 @@ Function4a5b0: ; 4a5b0 (12:65b0)
 String_4a5c5: ; 4a5c5
 	db "じこしょうかい@"
 String_4a5cd: ; 4a5cd
-	db "たいせん ", $4a, "はじまるとき@"
+	db "たいせん　<GA>はじまるとき@"
 String_4a5da: ; 4a5da
-	db "たいせん ", $1d, "かったとき@"
+	db "たいせん　<NI>かったとき@"
 String_4a5e6: ; 4a5e6
-	db "たいせん ", $1d, "まけたとき@"
+	db "たいせん　<NI>まけたとき@"
 String_4a5f2: ; 4a5f2
 	db "もどる@"
 ; 4a5f6
 
 Strings_4a5f6: ; 4a5f6
-	db "めいし や ニュース ", $1d, "のせる@"
-	db "あなた%あいさつです@"
-	db "モバイル たいせん", $4a, "はじまるとき@"
-	db "あいて", $1d, "みえる あいさつです@"
-	db "モバイル たいせんで かったとき@"
-	db "あいて", $1d, "みえる あいさつです@"
-	db "モバイル たいせんで まけたとき@"
-	db "あいて", $1d, "みえる あいさつです@"
-	db "まえ%がめん ", $1d, "もどります@"
+	db "めいし　や　ニュース　<NI>のせる@"
+	db "あなた<NO>あいさつです@"
+	db "モバイル　たいせん<GA>はじまるとき@"
+	db "あいて<NI>みえる　あいさつです@"
+	db "モバイル　たいせんで　かったとき@"
+	db "あいて<NI>みえる　あいさつです@"
+	db "モバイル　たいせんで　まけたとき@"
+	db "あいて<NI>みえる　あいさつです@"
+	db "まえ<NO>がめん　<NI>もどります@"
 	db "@"
 ; 4a680
 
@@ -847,7 +845,7 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	call ClearBGPalettes
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	farcall Function11c1ab
+	farcall Special_Function11c1ab
 	pop bc
 	call LoadFontsExtra
 	jp Function4a4c4

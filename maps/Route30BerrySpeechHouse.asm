@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE30BERRYSPEECHHOUSE_POKEFAN_M
 
-Route30BerrySpeechHouse_MapScriptHeader:
+Route30BerrySpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -46,7 +46,7 @@ UnknownText_0x196dec:
 	cont "drop right off."
 	done
 
-Route30BerrySpeechHouse_MapEventHeader:
+Route30BerrySpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

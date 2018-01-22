@@ -1,3 +1,7 @@
+; HRAM uses constants instead of labels so that
+; "ld a, [hAddress]" and "ld [hAddress], a" will
+; use the more efficient "ldh" instruction.
+
 hPushOAM           EQU $ff80 ; 10 bytes
 
 hROMBankBackup     EQU $ff8a
@@ -33,9 +37,10 @@ hJoyLast           EQU $ffa9
 hInMenu            EQU $ffaa
 
 hPrinter           EQU $ffac
-hGraphicStartTile           EQU $ffad
+hGraphicStartTile  EQU $ffad
 hMoveMon           EQU $ffae
-hMapObjectIndexBuffer EQU $ffaf
+
+hMapObjectIndexBuffer    EQU $ffaf
 hObjectStructIndexBuffer EQU $ffb0
 
 hConnectionStripLength EQU $ffaf
@@ -81,15 +86,16 @@ hMoneyTemp         EQU $ffc3
 hMGJoypadPressed   EQU $ffc3
 hMGJoypadReleased  EQU $ffc4
 
-hLCDCPointer              EQU $ffc6
+hLCDCPointer       EQU $ffc6
 hLYOverrideStart   EQU $ffc7
 hLYOverrideEnd     EQU $ffc8
-hMobileReceive     EQU $ffc9
-hFFCA              EQU $ffca
-hLinkPlayerNumber  EQU $ffcb
-hFFCC              EQU $ffcc
-hSerialSend        EQU $ffcd
-hSerialReceive     EQU $ffce
+
+hMobileReceive             EQU $ffc9
+hSerialReceivedNewData     EQU $ffca
+hSerialConnectionStatus    EQU $ffcb
+hSerialIgnoringInitialData EQU $ffcc
+hSerialSend                EQU $ffcd
+hSerialReceive             EQU $ffce
 
 hSCX               EQU $ffcf
 hSCY               EQU $ffd0
@@ -104,7 +110,7 @@ hOAMUpdate         EQU $ffd8
 hSPBuffer          EQU $ffd9
 
 hBGMapUpdate       EQU $ffdb
-hFFDC              EQU $ffdc
+hBGMapTileCount    EQU $ffdc
 
 hMapAnims          EQU $ffde
 hTileAnimFrame     EQU $ffdf
@@ -121,5 +127,5 @@ hCGB               EQU $ffe6
 hSGB               EQU $ffe7
 hDMATransfer       EQU $ffe8
 hMobile            EQU $ffe9
-hFFEA              EQU $ffea
+hSystemBooted      EQU $ffea
 hClockResetTrigger EQU $ffeb

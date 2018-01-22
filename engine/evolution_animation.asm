@@ -80,7 +80,7 @@ EvolutionAnimation: ; 4e5e1
 	jr c, .skip_cry
 
 	ld a, [wEvolutionOldSpecies]
-	call PlayCry
+	call PlayMonCry
 
 .skip_cry
 	ld de, MUSIC_EVOLUTION
@@ -148,7 +148,7 @@ EvolutionAnimation: ; 4e5e1
 	ret c
 
 	ld a, [PlayerHPPal]
-	call PlayCry
+	call PlayMonCry
 	ret
 ; 4e703
 
@@ -168,7 +168,7 @@ EvolutionAnimation: ; 4e5e1
 	ld a, $1
 	ld [wBoxAlignment], a
 	ld de, vTiles2
-	predef GetAnimatedFrontpicPredef
+	predef GetAnimatedFrontpic
 	xor a
 	ld [wBoxAlignment], a
 	ret
@@ -346,15 +346,15 @@ EvolutionAnimation: ; 4e5e1
 	inc a
 	and $7
 	ld b, a
-	ld hl, Sprites + 3 ; attributes
-	ld c, 40
+	ld hl, Sprite01Attributes
+	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop6
 	ld a, [hl]
 	or b
-	ld [hli], a
+	ld [hli], a ; attributes
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop6
 	pop bc

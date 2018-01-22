@@ -13,7 +13,7 @@ const_value set 2
 	const ROUTE45_POKE_BALL4
 	const ROUTE45_YOUNGSTER
 
-Route45_MapScriptHeader:
+Route45_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -42,15 +42,15 @@ UnknownScript_0x19e0cd:
 	scall UnknownScript_0x19e11f
 UnknownScript_0x19e0d0:
 	askforphonenumber PHONE_BLACKBELT_KENJI
-	if_equal $1, UnknownScript_0x19e12f
-	if_equal $2, UnknownScript_0x19e12b
-	trainertotext BLACKBELT_T, KENJI3, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19e12f
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19e12b
+	trainertotext BLACKBELT_T, KENJI3, MEM_BUFFER_0
 	scall UnknownScript_0x19e123
 	jump UnknownScript_0x19e127
 
 UnknownScript_0x19e0e4:
 	checkcode VAR_KENJI_BREAK
-	if_not_equal $1, UnknownScript_0x19e127
+	if_not_equal 1, UnknownScript_0x19e127
 	checkmorn
 	iftrue UnknownScript_0x19e10c
 	checknite
@@ -169,9 +169,9 @@ UnknownScript_0x19e1a1:
 	scall UnknownScript_0x19e11f
 UnknownScript_0x19e1a4:
 	askforphonenumber PHONE_HIKER_PARRY
-	if_equal $1, UnknownScript_0x19e12f
-	if_equal $2, UnknownScript_0x19e12b
-	trainertotext HIKER, PARRY1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19e12f
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19e12b
+	trainertotext HIKER, PARRY1, MEM_BUFFER_0
 	scall UnknownScript_0x19e123
 	jump UnknownScript_0x19e127
 
@@ -312,8 +312,7 @@ Route45MaxPotion:
 	itemball MAX_POTION
 
 Route45HiddenPpUp:
-	dwb EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
-
+	hiddenitem EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
 
 HikerErikSeenText:
 	text "Be prepared for"
@@ -532,7 +531,7 @@ Route45SignText:
 	line "MOUNTAIN RD. AHEAD"
 	done
 
-Route45_MapEventHeader:
+Route45_MapEvents:
 	; filler
 	db 0, 0
 

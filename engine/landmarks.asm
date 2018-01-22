@@ -80,8 +80,8 @@ RegionCheck: ; 0x1caea1
 	jr c, .kanto
 
 .johto
-	ld e, 0
+	ld e, JOHTO_REGION
 	ret
 .kanto
-	ld e, 1
+	ld e, KANTO_REGION
 	ret

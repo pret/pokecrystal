@@ -9,7 +9,7 @@ const_value set 2
 	const ROUTE36_FLORIA
 	const ROUTE36_SUICUNE
 
-Route36_MapScriptHeader:
+Route36_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -17,7 +17,7 @@ Route36_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .ArthurCallback
+	callback MAPCALLBACK_OBJECTS, .ArthurCallback
 
 .DummyScene0:
 	end
@@ -44,9 +44,9 @@ Route36SuicuneScript:
 	disappear ROUTE36_SUICUNE
 	spriteface PLAYER, DOWN
 	pause 10
-	setscene $0
+	setscene 0
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	setmapscene CIANWOOD_CITY, $1
+	setmapscene CIANWOOD_CITY, 1
 	end
 
 SudowoodoScript:
@@ -94,8 +94,8 @@ DidntCatchSudowoodo:
 	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Flee
 	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
-	special MapCallbackSprites_LoadUsedSpritesGFX
-	special RefreshSprites
+	special Special_LoadUsedSpritesGFX
+	special Special_RefreshSprites
 	end
 
 Route36FloriaScript:
@@ -191,9 +191,9 @@ TrainerSchoolboyAlan1:
 	scall .AskNumber2
 .ContinueAskForPhoneNumber:
 	askforphonenumber PHONE_SCHOOLBOY_ALAN
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext SCHOOLBOY, ALAN1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext SCHOOLBOY, ALAN1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -659,7 +659,7 @@ Route36TrainerTips2Text:
 	line "landmarks."
 	done
 
-Route36_MapEventHeader:
+Route36_MapEvents:
 	; filler
 	db 0, 0
 

@@ -9,7 +9,7 @@ const_value set 2
 	const BURNEDTOWERB1F_POKE_BALL
 	const BURNEDTOWERB1F_EUSINE
 
-BurnedTowerB1F_MapScriptHeader:
+BurnedTowerB1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -17,7 +17,7 @@ BurnedTowerB1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .LadderCallback
+	callback MAPCALLBACK_TILES, .LadderCallback
 
 .DummyScene0:
 	end
@@ -27,9 +27,9 @@ BurnedTowerB1F_MapScriptHeader:
 
 .LadderCallback:
 	checkevent EVENT_RELEASED_THE_BEASTS
-	iftrue .NoChange
-	changeblock $6, $e, $2
-.NoChange:
+	iftrue .HideLadder
+	changeblock 6, 14, $02 ; floor
+.HideLadder:
 	return
 
 ReleaseTheBeasts:
@@ -81,22 +81,22 @@ ReleaseTheBeasts:
 	disappear BURNEDTOWERB1F_SUICUNE1
 	waitsfx
 	special RestartMapMusic
-	setscene $1
+	setscene 1
 	setevent EVENT_RELEASED_THE_BEASTS
-	special InitRoamMons
-	setmapscene ECRUTEAK_GYM, $1
-	setmapscene CIANWOOD_CITY, $1
+	special Special_InitRoamMons
+	setmapscene ECRUTEAK_GYM, 1
+	setmapscene CIANWOOD_CITY, 1
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	setevent EVENT_ECRUTEAK_GYM_GRAMPS
 	clearevent EVENT_ECRUTEAK_CITY_GRAMPS
 	setevent EVENT_BURNED_TOWER_MORTY
 	setevent EVENT_BURNED_TOWER_1F_EUSINE
 	appear BURNEDTOWERB1F_EUSINE
-	refreshscreen $0
-	changeblock $6, $e, $1b
+	refreshscreen
+	changeblock 6, 14, $1b ; ladder
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	end
 
 BurnedTowerB1FEusine:
@@ -106,7 +106,7 @@ BurnedTowerB1FEusine:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal $1, .Movement
+	if_equal UP, .Movement
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement1
 	jump UnknownScript_0x18622a
 
@@ -235,7 +235,7 @@ BurnedTowerB1FEusineText:
 	para "Farewell!"
 	done
 
-BurnedTowerB1F_MapEventHeader:
+BurnedTowerB1F_MapEvents:
 	; filler
 	db 0, 0
 

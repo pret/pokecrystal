@@ -10,7 +10,7 @@ const_value set 2
 	const TINTOWER1F_SAGE5
 	const TINTOWER1F_SAGE6
 
-TinTower1F_MapScriptHeader:
+TinTower1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .FaceSuicune
@@ -18,8 +18,8 @@ TinTower1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_OBJECTS, .NPCsCallback
-	dbw MAPCALLBACK_TILES, .StairsCallback
+	callback MAPCALLBACK_OBJECTS, .NPCsCallback
+	callback MAPCALLBACK_TILES, .StairsCallback
 
 .FaceSuicune:
 	priorityjump .SuicuneBattle
@@ -33,7 +33,7 @@ TinTower1F_MapScriptHeader:
 	iftrue .GotRainbowWing
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .FaceBeasts
-	special SpecialBeastsCheck
+	special Special_BeastsCheck
 	iffalse .FaceBeasts
 	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
@@ -49,7 +49,7 @@ TinTower1F_MapScriptHeader:
 	iftrue .FoughtSuicune
 	appear TINTOWER1F_SUICUNE
 	writebyte RAIKOU
-	special SpecialMonCheck
+	special Special_MonCheck
 	iftrue .NoRaikou
 	appear TINTOWER1F_RAIKOU
 	jump .CheckEntei
@@ -58,7 +58,7 @@ TinTower1F_MapScriptHeader:
 	disappear TINTOWER1F_RAIKOU
 .CheckEntei:
 	writebyte ENTEI
-	special SpecialMonCheck
+	special Special_MonCheck
 	iftrue .NoEntei
 	appear TINTOWER1F_ENTEI
 	jump .BeastsDone
@@ -79,7 +79,7 @@ TinTower1F_MapScriptHeader:
 .StairsCallback:
 	checkevent EVENT_GOT_RAINBOW_WING
 	iftrue .DontHideStairs
-	changeblock $a, $2, $9
+	changeblock 10, 2, $09 ; floor
 .DontHideStairs:
 	return
 
@@ -87,7 +87,7 @@ TinTower1F_MapScriptHeader:
 	applymovement PLAYER, TinTowerPlayerMovement1
 	pause 15
 	writebyte RAIKOU
-	special SpecialMonCheck
+	special Special_MonCheck
 	iftrue .Next1 ; if player caught Raikou, he doesn't appear in Tin Tower
 	applymovement TINTOWER1F_RAIKOU, TinTowerRaikouMovement1
 	spriteface PLAYER, LEFT
@@ -100,7 +100,7 @@ TinTower1F_MapScriptHeader:
 	waitsfx
 .Next1:
 	writebyte ENTEI
-	special SpecialMonCheck
+	special Special_MonCheck
 	iftrue .Next2 ; if player caught Entei, he doesn't appear in Tin Tower
 	applymovement TINTOWER1F_ENTEI, TinTowerEnteiMovement1
 	spriteface PLAYER, RIGHT
@@ -125,36 +125,36 @@ TinTower1F_MapScriptHeader:
 	disappear TINTOWER1F_SUICUNE
 	setevent EVENT_FOUGHT_SUICUNE
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_42
-	setmapscene ROUTE_42, $0
+	setmapscene ROUTE_42, 0
 	setevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	setmapscene ROUTE_36, $0
+	setmapscene ROUTE_36, 0
 	setevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	setmapscene CIANWOOD_CITY, $0
-	setscene $1
+	setmapscene CIANWOOD_CITY, 0
+	setscene 1
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	reloadmapafterbattle
 	pause 20
 	spriteface PLAYER, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	playsound SFX_ENTER_DOOR
-	moveobject TINTOWER1F_EUSINE, $a, $f
+	moveobject TINTOWER1F_EUSINE, 10, 15
 	appear TINTOWER1F_EUSINE
 	applymovement TINTOWER1F_EUSINE, MovementData_0x1851ec
 	playsound SFX_ENTER_DOOR
-	moveobject TINTOWER1F_SAGE1, $9, $f
+	moveobject TINTOWER1F_SAGE1, 9, 15
 	appear TINTOWER1F_SAGE1
 	applymovement TINTOWER1F_SAGE1, MovementData_0x1851f5
 	playsound SFX_ENTER_DOOR
-	moveobject TINTOWER1F_SAGE2, $9, $f
+	moveobject TINTOWER1F_SAGE2, 9, 15
 	appear TINTOWER1F_SAGE2
 	applymovement TINTOWER1F_SAGE2, MovementData_0x1851fb
 	playsound SFX_ENTER_DOOR
-	moveobject TINTOWER1F_SAGE3, $9, $f
+	moveobject TINTOWER1F_SAGE3, 9, 15
 	appear TINTOWER1F_SAGE3
 	applymovement TINTOWER1F_SAGE3, MovementData_0x1851fe
-	moveobject TINTOWER1F_SAGE1, $7, $d
-	moveobject TINTOWER1F_SAGE2, $9, $d
-	moveobject TINTOWER1F_SAGE3, $b, $d
+	moveobject TINTOWER1F_SAGE1, 7, 13
+	moveobject TINTOWER1F_SAGE2, 9, 13
+	moveobject TINTOWER1F_SAGE3, 11, 13
 	spriteface PLAYER, RIGHT
 	opentext
 	writetext TinTowerEusineSuicuneText
@@ -197,11 +197,11 @@ TinTower1FSage5Script:
 	buttonsound
 	verbosegiveitem RAINBOW_WING
 	closetext
-	refreshscreen $0
+	refreshscreen
 	earthquake 72
 	waitsfx
 	playsound SFX_STRENGTH
-	changeblock $a, $2, $20
+	changeblock 10, 2, $20 ; stairs
 	reloadmappart
 	setevent EVENT_GOT_RAINBOW_WING
 	closetext
@@ -522,7 +522,7 @@ TinTower1FSage6Text2:
 	line "with SUICUNE."
 	done
 
-TinTower1F_MapEventHeader:
+TinTower1F_MapEvents:
 	; filler
 	db 0, 0
 

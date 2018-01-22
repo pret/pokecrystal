@@ -6,7 +6,7 @@ const_value set 2
 	const WHIRLISLANDB1F_POKE_BALL5
 	const WHIRLISLANDB1F_BOULDER
 
-WhirlIslandB1F_MapScriptHeader:
+WhirlIslandB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -32,18 +32,15 @@ WhirlIslandB1FBoulder:
 	jumpstd strengthboulder
 
 WhirlIslandB1FHiddenRareCandy:
-	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_RARE_CANDY, RARE_CANDY
-
+	hiddenitem EVENT_WHIRL_ISLAND_B1F_HIDDEN_RARE_CANDY, RARE_CANDY
 
 WhirlIslandB1FHiddenUltraBall:
-	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
-
+	hiddenitem EVENT_WHIRL_ISLAND_B1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
 
 WhirlIslandB1FHiddenFullRestore:
-	dwb EVENT_WHIRL_ISLAND_B1F_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem EVENT_WHIRL_ISLAND_B1F_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
-
-WhirlIslandB1F_MapEventHeader:
+WhirlIslandB1F_MapEvents:
 	; filler
 	db 0, 0
 

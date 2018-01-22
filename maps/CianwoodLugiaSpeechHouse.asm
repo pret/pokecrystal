@@ -3,7 +3,7 @@ const_value set 2
 	const CIANWOODLUGIASPEECHHOUSE_LASS
 	const CIANWOODLUGIASPEECHHOUSE_TWIN
 
-CianwoodLugiaSpeechHouse_MapScriptHeader:
+CianwoodLugiaSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -61,7 +61,7 @@ CianwoodLugiaSpeechHouseTwinText:
 	cont "get past them."
 	done
 
-CianwoodLugiaSpeechHouse_MapEventHeader:
+CianwoodLugiaSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

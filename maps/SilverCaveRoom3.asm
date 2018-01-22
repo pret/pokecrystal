@@ -1,7 +1,7 @@
 const_value set 2
 	const SILVERCAVEROOM3_RED
 
-SilverCaveRoom3_MapScriptHeader:
+SilverCaveRoom3_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -16,7 +16,7 @@ Red:
 	waitbutton
 	closetext
 	winlosstext .Text2, .Text2
-	loadtrainer RED, 1
+	loadtrainer RED, RED1
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -26,19 +26,19 @@ Red:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear SILVERCAVEROOM3_RED
 	pause 15
 	special Special_FadeInQuickly
 	pause 30
 	special HealParty
-	refreshscreen $0
+	refreshscreen
 	credits
 	end
 
 .Text1:
-	text $56
-	line $56
+	text "<……>"
+	line "<……>"
 	done
 
 .Text2:
@@ -46,11 +46,11 @@ Red:
 	done
 
 .Text3:
-	text $56
-	line $56
+	text "<……>"
+	line "<……>"
 	done
 
-SilverCaveRoom3_MapEventHeader:
+SilverCaveRoom3_MapEvents:
 	; filler
 	db 0, 0
 

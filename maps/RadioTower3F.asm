@@ -7,13 +7,13 @@ const_value set 2
 	const RADIOTOWER3F_ROCKET3
 	const RADIOTOWER3F_SCIENTIST
 
-RadioTower3F_MapScriptHeader:
+RadioTower3F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .CardKeyShutterCallback
+	callback MAPCALLBACK_TILES, .CardKeyShutterCallback
 
 .CardKeyShutterCallback:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
@@ -21,8 +21,8 @@ RadioTower3F_MapScriptHeader:
 	return
 
 .Change:
-	changeblock $e, $2, $2a
-	changeblock $e, $4, $1
+	changeblock 14, 2, $2a ; open shutter
+	changeblock 14, 4, $01 ; floor
 	return
 
 RadioTower3FSuperNerdScript:
@@ -143,8 +143,8 @@ UnknownScript_0x5e605:
 	waitbutton
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR
-	changeblock $e, $2, $2a
-	changeblock $e, $4, $1
+	changeblock 14, 2, $2a ; open shutter
+	changeblock 14, 4, $01 ; floor
 	reloadmappart
 	closetext
 	waitsfx
@@ -328,7 +328,7 @@ UnknownText_0x5eae4:
 	line "Host DJ BEN"
 	done
 
-RadioTower3F_MapEventHeader:
+RadioTower3F_MapEvents:
 	; filler
 	db 0, 0
 

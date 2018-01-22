@@ -69,14 +69,13 @@ _BillsPC: ; e3fd
 	ret
 
 .MenuDataHeader: ; 0xe46f
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2: ; 0xe477
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw .items
 	dw PlaceMenuStrings
@@ -143,7 +142,7 @@ BillsPC_DepositMenu: ; e4fe (3:64fe)
 	and a
 	ret
 
-Functione512: ; unused
+Unreferenced_Functione512:
 	ld a, [PartyCount]
 	and a
 	jr z, .no_pkmn
@@ -212,7 +211,7 @@ BillsPC_WithdrawMenu: ; e559 (3:6559)
 	and a
 	ret
 
-Functione56d: ; unused
+Unreferenced_Functione56d:
 	ld a, [PartyCount]
 	cp PARTY_LENGTH
 	jr nc, .asm_e576
@@ -268,7 +267,7 @@ CopyBoxmonToTempMon: ; e5bb
 	call CloseSRAM
 	ret
 
-Functione5d9: ; unreferenced
+Unreferenced_Functione5d9:
 	ld a, [wCurBox]
 	cp b
 	jr z, .same_box

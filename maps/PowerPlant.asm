@@ -7,7 +7,7 @@ const_value set 2
 	const POWERPLANT_FISHER
 	const POWERPLANT_FOREST
 
-PowerPlant_MapScriptHeader:
+PowerPlant_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -42,7 +42,7 @@ PowerPlantGuardPhoneScript:
 	closetext
 	spriteface PLAYER, DOWN
 	applymovement POWERPLANT_OFFICER1, MovementData_0x188eda
-	setscene $0
+	setscene 0
 	end
 
 OfficerScript_0x188df5:
@@ -148,8 +148,8 @@ PowerPlantManager:
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	clearevent EVENT_CERULEAN_GYM_ROCKET
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
-	setmapscene CERULEAN_GYM, $1
-	setscene $1
+	setmapscene CERULEAN_GYM, 1
+	setscene 1
 	end
 
 UnknownScript_0x188e8d:
@@ -388,7 +388,7 @@ UnknownText_0x189475:
 	line "electricity out!"
 	done
 
-PowerPlant_MapEventHeader:
+PowerPlant_MapEvents:
 	; filler
 	db 0, 0
 

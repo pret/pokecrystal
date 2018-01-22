@@ -3,7 +3,7 @@ const_value set 2
 	const ICEPATH1F_POKE_BALL2
 	const ICEPATH1F_POKE_BALL3
 
-IcePath1F_MapScriptHeader:
+IcePath1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ IcePath1FPPUp:
 IcePath1FProtein:
 	itemball PROTEIN
 
-IcePath1F_MapEventHeader:
+IcePath1F_MapEvents:
 	; filler
 	db 0, 0
 

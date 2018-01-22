@@ -2,7 +2,7 @@ const_value set 2
 	const OLIVINEPUNISHMENTSPEECHHOUSE_POKEFAN_M
 	const OLIVINEPUNISHMENTSPEECHHOUSE_LASS
 
-OlivinePunishmentSpeechHouse_MapScriptHeader:
+OlivinePunishmentSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -39,7 +39,7 @@ OlivinePunishmentSpeechHouseDaughterText:
 	cont "always scares me."
 	done
 
-OlivinePunishmentSpeechHouse_MapEventHeader:
+OlivinePunishmentSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

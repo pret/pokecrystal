@@ -16,12 +16,12 @@ HiddenPowerDamage: ; fbced
 	; Attack
 	ld a, [hl]
 	swap a
-	and 8
+	and %1000
 
 	; Defense
 	ld b, a
 	ld a, [hli]
-	and 8
+	and %1000
 	srl a
 	or b
 
@@ -29,7 +29,7 @@ HiddenPowerDamage: ; fbced
 	ld b, a
 	ld a, [hl]
 	swap a
-	and 8
+	and %1000
 	srl a
 	srl a
 	or b
@@ -37,7 +37,7 @@ HiddenPowerDamage: ; fbced
 	; Special
 	ld b, a
 	ld a, [hl]
-	and 8
+	and %1000
 	srl a
 	srl a
 	srl a
@@ -52,7 +52,7 @@ HiddenPowerDamage: ; fbced
 ; Add Special & 3
 	ld b, a
 	ld a, [hld]
-	and 3
+	and %0011
 	add b
 
 ; Divide by 2 and add 30 + 1
@@ -67,12 +67,12 @@ HiddenPowerDamage: ; fbced
 
 	; Def & 3
 	ld a, [hl]
-	and 3
+	and %0011
 	ld b, a
 
 	; + (Atk & 3) << 2
 	ld a, [hl]
-	and 3 << 4
+	and %0011 << 4
 	swap a
 	add a
 	add a

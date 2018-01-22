@@ -1,7 +1,7 @@
 const_value set 2
 	const TOHJOFALLS_POKE_BALL
 
-TohjoFalls_MapScriptHeader:
+TohjoFalls_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -11,7 +11,7 @@ TohjoFalls_MapScriptHeader:
 TohjoFallsMoonStone:
 	itemball MOON_STONE
 
-TohjoFalls_MapEventHeader:
+TohjoFalls_MapEvents:
 	; filler
 	db 0, 0
 

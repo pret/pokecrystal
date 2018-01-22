@@ -415,13 +415,12 @@ EraseHallOfFame: ; 14d06
 	jp CloseSRAM
 ; 14d18
 
-Function14d18: ; 14d18
-; XXX
+Unreferenced_Function14d18: ; 14d18
 ; copy .Data to SRA4:a007
-	ld a, $4
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	ld hl, .Data
-	ld de, $a007
+	ld de, $a007 ; address of MBC30 bank
 	ld bc, .DataEnd - .Data
 	call CopyBytes
 	jp CloseSRAM
@@ -452,11 +451,10 @@ SaveData: ; 14d68
 	ret
 ; 14d6c
 
-Function14d6c: ; 14d6c
-; XXX
-	ld a, $4
+Unreferenced_Function14d6c: ; 14d6c
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld a, [$a60b]
+	ld a, [$a60b] ; address of MBC30 bank
 	ld b, $0
 	and a
 	jr z, .ok
@@ -464,28 +462,26 @@ Function14d6c: ; 14d6c
 
 .ok
 	ld a, b
-	ld [$a60b], a
+	ld [$a60b], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 ; 14d83
 
-Function14d83: ; 14d83
-; XXX
-	ld a, $4
+Unreferenced_Function14d83: ; 14d83
+	ld a, 4 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	xor a
-	ld [$a60c], a
-	ld [$a60d], a
+	ld [$a60c], a ; address of MBC30 bank
+	ld [$a60d], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 ; 14d93
 
-Function14d93: ; 14d93
-; XXX
-	ld a, $7
+Unreferenced_Function14d93: ; 14d93
+	ld a, 7 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
 	xor a
-	ld [$a000], a
+	ld [$a000], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 ; 14da0
@@ -529,9 +525,9 @@ SavePlayerData: ; 14dd7
 	ld de, sPlayerData
 	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, wMapData
-	ld de, sMapData
-	ld bc, wMapDataEnd - wMapData
+	ld hl, wCurrMapData
+	ld de, sCurrMapData
+	ld bc, wCurrMapDataEnd - wCurrMapData
 	call CopyBytes
 	jp CloseSRAM
 ; 14df7
@@ -596,9 +592,9 @@ SaveBackupPlayerData: ; 14e55
 	ld de, sBackupPlayerData
 	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, wMapData
-	ld de, sBackupMapData
-	ld bc, wMapDataEnd - wMapData
+	ld hl, wCurrMapData
+	ld de, sBackupCurrMapData
+	ld bc, wCurrMapDataEnd - wCurrMapData
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -781,9 +777,9 @@ LoadPlayerData: ; 14fd7 (5:4fd7)
 	ld de, wPlayerData
 	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, sMapData
-	ld de, wMapData
-	ld bc, wMapDataEnd - wMapData
+	ld hl, sCurrMapData
+	ld de, wCurrMapData
+	ld bc, wCurrMapDataEnd - wCurrMapData
 	call CopyBytes
 	call CloseSRAM
 	ld a, BANK(sBattleTowerChallengeState)
@@ -837,9 +833,9 @@ LoadBackupPlayerData: ; 15046 (5:5046)
 	ld de, wPlayerData
 	ld bc, wPlayerDataEnd - wPlayerData
 	call CopyBytes
-	ld hl, sBackupMapData
-	ld de, wMapData
-	ld bc, wMapDataEnd - wMapData
+	ld hl, sBackupCurrMapData
+	ld de, wCurrMapData
+	ld bc, wCurrMapDataEnd - wCurrMapData
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -873,6 +869,11 @@ VerifyBackupChecksum: ; 1507c (5:507c)
 
 
 _SaveData: ; 1509a
+	; This is called within two scenarios:
+	;   a) ErasePreviousSave (the process of erasing the save from a previous game file)
+	;   b) unused mobile functionality
+	; It is not part of a regular save.
+
 	ld a, BANK(sCrystalData)
 	call GetSRAMBank
 	ld hl, wCrystalData
@@ -880,7 +881,11 @@ _SaveData: ; 1509a
 	ld bc, wCrystalDataEnd - wCrystalData
 	call CopyBytes
 
-	; XXX SRAM bank 7
+	; This block originally had some mobile functionality, but since we're still in
+	; BANK(sCrystalData), it instead overwrites the sixteen EventFlags starting at 1:a603 with
+	; garbage from wd479. This isn't an issue, since ErasePreviousSave is followed by a regular
+	; save that unwrites the garbage.
+
 	ld hl, wd479
 	ld a, [hli]
 	ld [$a60e + 0], a
@@ -898,7 +903,9 @@ _LoadData: ; 150b9
 	ld bc, wCrystalDataEnd - wCrystalData
 	call CopyBytes
 
-	; XXX SRAM bank 7
+	; This block originally had some mobile functionality to mirror _SaveData above, but instead it
+	; (harmlessly) writes the aforementioned EventFlags to the unused wd479.
+
 	ld hl, wd479
 	ld a, [$a60e + 0]
 	ld [hli], a

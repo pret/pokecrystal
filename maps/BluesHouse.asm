@@ -1,7 +1,7 @@
 const_value set 2
 	const BLUESHOUSE_DAISY
 
-BluesHouse_MapScriptHeader:
+BluesHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -27,20 +27,20 @@ DaisyScript:
 	writetext DaisyWhichMonText
 	waitbutton
 	special Special_DaisyMassage
-	if_equal 0, .Refused
-	if_equal 1, .CantGroomEgg
+	if_equal $0, .Refused
+	if_equal $1, .CantGroomEgg
 	setflag ENGINE_TEA_IN_BLUES_HOUSE
 	writetext DaisyAlrightText
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext GroomedMonLooksContentText
-	special PlayCurMonCry
+	special Special_PlayCurMonCry
 	buttonsound
 	writetext DaisyAllDoneText
 	waitbutton
@@ -144,7 +144,7 @@ DaisyCantGroomEggText:
 	cont "groom an EGG."
 	done
 
-BluesHouse_MapEventHeader:
+BluesHouse_MapEvents:
 	; filler
 	db 0, 0
 

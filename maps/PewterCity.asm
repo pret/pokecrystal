@@ -5,13 +5,13 @@ const_value set 2
 	const PEWTERCITY_FRUIT_TREE1
 	const PEWTERCITY_FRUIT_TREE2
 
-PewterCity_MapScriptHeader:
+PewterCity_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_PEWTER
@@ -152,7 +152,7 @@ PewterCityWelcomeSignText:
 	line "PEWTER CITY!"
 	done
 
-PewterCity_MapEventHeader:
+PewterCity_MapEvents:
 	; filler
 	db 0, 0
 

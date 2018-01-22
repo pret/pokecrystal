@@ -12,13 +12,13 @@ const_value set 2
 	const ROUTE40_LASS2
 	const ROUTE40_STANDING_YOUNGSTER
 
-Route40_MapScriptHeader:
+Route40_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .MonicaCallback
+	callback MAPCALLBACK_OBJECTS, .MonicaCallback
 
 .MonicaCallback:
 	clearevent EVENT_BATTLE_TOWER_OUTSIDE_SAILOR
@@ -79,7 +79,7 @@ Route40Lass1Script:
 	jumptextfaceplayer Route40Lass1Text
 
 PokefanMScript_0x1a61c7:
-	special Mobile_DummyReturnFalse
+	special Special_Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x1a646a
 
@@ -135,7 +135,7 @@ Route40Rock:
 	jumpstd smashrock
 
 Route40HiddenHyperPotion:
-	dwb EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
 
 MovementData_0x1a621c:
 	step RIGHT
@@ -337,7 +337,7 @@ Route40SignText:
 	line "OLIVINE CITY"
 	done
 
-Route40_MapEventHeader:
+Route40_MapEvents:
 	; filler
 	db 0, 0
 

@@ -4,54 +4,53 @@ const_value set 2
 	const KRISSHOUSE2F_DOLL_2
 	const KRISSHOUSE2F_BIG_DOLL
 
-KrissHouse2F_MapScriptHeader:
+KrissHouse2F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .InitializeRoom
-	dbw MAPCALLBACK_TILES, .SetSpawn
+	callback MAPCALLBACK_NEWMAP, .InitializeRoom
+	callback MAPCALLBACK_TILES, .SetSpawn
 
+; unused
 .Null:
 	end
 
 .InitializeRoom:
-	special ToggleDecorationsVisibility
+	special Special_ToggleDecorationsVisibility
 	setevent EVENT_IN_YOUR_ROOM
 	checkevent EVENT_INITIALIZED_EVENTS
-	iftrue .SkipInizialization
+	iftrue .SkipInitialization
 	jumpstd initializeevents
 	return
 
-.SkipInizialization:
+.SkipInitialization:
 	return
 
 .SetSpawn:
-	special ToggleMaptileDecorations
+	special Special_ToggleMaptileDecorations
 	return
-
 
 	db 0, 0, 0 ; filler
 
-
 Doll1:
-	describedecoration 1
+	describedecoration DECODESC_LEFT_DOLL
 
 Doll2:
-	describedecoration 2
+	describedecoration DECODESC_RIGHT_DOLL
 
 BigDoll:
-	describedecoration 3
+	describedecoration DECODESC_BIG_DOLL
 
 GameConsole:
-	describedecoration 4
+	describedecoration DECODESC_CONSOLE
 
 KrissHousePoster:
-	dw EVENT_KRISS_ROOM_POSTER, .Script
+	conditional_event EVENT_KRISS_ROOM_POSTER, .Script
 
 .Script:
-	describedecoration 0
+	describedecoration DECODESC_POSTER
 
 KrissHouseRadio:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
@@ -93,7 +92,7 @@ KrissHousePC:
 	closetext
 	end
 .Warp:
-	warp NONE, $0, $0
+	warp NONE, 0, 0
 	end
 
 KrisRadioText1:
@@ -116,7 +115,7 @@ KrisRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-KrissHouse2F_MapEventHeader:
+KrissHouse2F_MapEvents:
 	; filler
 	db 0, 0
 

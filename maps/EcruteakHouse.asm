@@ -4,7 +4,7 @@ const_value set 2
 	const ECRUTEAKHOUSE_SAGE3
 	const ECRUTEAKHOUSE_GRAMPS
 
-EcruteakHouse_MapScriptHeader:
+EcruteakHouse_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -12,7 +12,7 @@ EcruteakHouse_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .InitializeSages
+	callback MAPCALLBACK_OBJECTS, .InitializeSages
 
 .DummyScene0:
 	end
@@ -35,7 +35,7 @@ EcruteakHouse_MapScriptHeader:
 	setevent EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
 	checkitem CLEAR_BELL
 	iftrue .NoClearBell
-	setscene $0
+	setscene 0
 .NoClearBell:
 	return
 
@@ -47,7 +47,7 @@ EcruteakHouse_CoordEvent1:
 	checkevent EVENT_RANG_CLEAR_BELL_2
 	iftrue EcruteakHouse_CoordEvent_DontMove
 	applymovement ECRUTEAKHOUSE_SAGE2, MovementData_0x980c7
-	moveobject ECRUTEAKHOUSE_SAGE1, $4, $6
+	moveobject ECRUTEAKHOUSE_SAGE1, 4, 6
 	appear ECRUTEAKHOUSE_SAGE1
 	pause 5
 	disappear ECRUTEAKHOUSE_SAGE2
@@ -57,7 +57,7 @@ EcruteakHouse_CoordEvent2:
 	checkevent EVENT_RANG_CLEAR_BELL_1
 	iftrue EcruteakHouse_CoordEvent_DontMove
 	applymovement ECRUTEAKHOUSE_SAGE1, MovementData_0x980cc
-	moveobject ECRUTEAKHOUSE_SAGE2, $5, $6
+	moveobject ECRUTEAKHOUSE_SAGE2, 5, 6
 	appear ECRUTEAKHOUSE_SAGE2
 	pause 5
 	disappear ECRUTEAKHOUSE_SAGE1
@@ -100,7 +100,7 @@ SageScript_0x98062:
 	writetext UnknownText_0x98250
 	waitbutton
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_GAVE_KURT_APRICORNS
@@ -202,7 +202,7 @@ UnknownText_0x98250:
 	line "but I must ask you"
 	cont "to leave."
 
-	para $56, $56, $56
+	para "<……><……><……>"
 
 	para "Ah!"
 
@@ -277,7 +277,7 @@ EcruteakHouseGrampsText:
 	line "never to return."
 	done
 
-EcruteakHouse_MapEventHeader:
+EcruteakHouse_MapEvents:
 	; filler
 	db 0, 0
 

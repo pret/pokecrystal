@@ -1,7 +1,7 @@
 const_value set 2
 	const BATTLETOWERHALLWAY_RECEPTIONIST
 
-BattleTowerHallway_MapScriptHeader:
+BattleTowerHallway_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .Scene0
@@ -12,7 +12,7 @@ BattleTowerHallway_MapScriptHeader:
 
 .Scene0:
 	priorityjump .ChooseBattleRoom
-	setscene $1
+	setscene 1
 .Scene1:
 	end
 
@@ -20,7 +20,6 @@ BattleTowerHallway_MapScriptHeader:
 	follow BATTLETOWERHALLWAY_RECEPTIONIST, PLAYER
 	callasm .asm_load_battle_room
 	jump .WalkToChosenBattleRoom
-
 
 .asm_load_battle_room
 	ld a, [rSVBK]
@@ -34,7 +33,6 @@ BattleTowerHallway_MapScriptHeader:
 	pop af
 	ld [rSVBK], a
 	ret
-
 
 ; enter different rooms for different levels to battle against
 ; at least it should look like that
@@ -78,7 +76,7 @@ BattleTowerHallway_MapScriptHeader:
 	warpcheck
 	end
 
-BattleTowerHallway_MapEventHeader:
+BattleTowerHallway_MapEvents:
 	; filler
 	db 0, 0
 
@@ -99,4 +97,4 @@ BattleTowerHallway_MapEventHeader:
 
 .ObjectEvents:
 	db 1
-	object_event 11, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEventHeader, -1
+	object_event 11, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEvents, -1

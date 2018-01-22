@@ -1,15 +1,20 @@
+mon_prob: MACRO
+; percent, index
+	db \1, \2 * 2
+ENDM
+
 GrassMonProbTable: ; 2a1cb
-	db 30,  $0 ; 30% chance
-	db 60,  $2 ; 30% chance
-	db 80,  $4 ; 20% chance
-	db 90,  $6 ; 10% chance
-	db 95,  $8 ;  5% chance
-	db 99,  $a ;  4% chance
-	db 100, $c ;  1% chance
+	mon_prob 30,  0 ; 30% chance
+	mon_prob 60,  1 ; 30% chance
+	mon_prob 80,  2 ; 20% chance
+	mon_prob 90,  3 ; 10% chance
+	mon_prob 95,  4 ;  5% chance
+	mon_prob 99,  5 ;  4% chance
+	mon_prob 100, 6 ;  1% chance
 ; 2a1d9
 
 WaterMonProbTable: ; 2a1d9
-	db 60,  $0 ; 60% chance
-	db 90,  $2 ; 30% chance
-	db 100, $4 ; 10% chance
+	mon_prob 60,  0 ; 60% chance
+	mon_prob 90,  1 ; 30% chance
+	mon_prob 100, 2 ; 10% chance
 ; 2a1df

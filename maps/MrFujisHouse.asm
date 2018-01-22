@@ -5,7 +5,7 @@ const_value set 2
 	const MRFUJISHOUSE_NIDORINO
 	const MRFUJISHOUSE_PIDGEY
 
-MrFujisHouse_MapScriptHeader:
+MrFujisHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -79,7 +79,7 @@ MrFujisPidgeyText:
 	text "PIDGEY: Pijji!"
 	done
 
-MrFujisHouse_MapEventHeader:
+MrFujisHouse_MapEvents:
 	; filler
 	db 0, 0
 

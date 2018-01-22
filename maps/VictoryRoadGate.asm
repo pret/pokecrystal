@@ -3,7 +3,7 @@ const_value set 2
 	const VICTORYROADGATE_BLACK_BELT1
 	const VICTORYROADGATE_BLACK_BELT2
 
-VictoryRoadGate_MapScriptHeader:
+VictoryRoadGate_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -29,7 +29,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateOfficerText
 	buttonsound
 	checkcode VAR_BADGES
-	if_greater_than 7, .AllEightBadges
+	if_greater_than NUM_JOHTO_BADGES - 1, .AllEightBadges
 	writetext VictoryRoadGateNotEnoughBadgesText
 	waitbutton
 	closetext
@@ -40,7 +40,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateEightBadgesText
 	waitbutton
 	closetext
-	setscene $1
+	setscene 1
 	end
 
 VictoryRoadGateLeftBlackBeltScript:
@@ -97,7 +97,7 @@ VictoryRoadGateRightBlackBeltText:
 	line "ready for you!"
 	done
 
-VictoryRoadGate_MapEventHeader:
+VictoryRoadGate_MapEvents:
 	; filler
 	db 0, 0
 

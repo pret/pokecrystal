@@ -316,7 +316,7 @@ CheckObjectTime:: ; 18f5
 	ret
 ; 194d
 
-; XXX
+; unused
 	ld [hMapObjectIndexBuffer], a
 	call GetMapObject
 	call CopyObjectStruct
@@ -383,7 +383,7 @@ CopyPlayerObjectTemplate:: ; 19a6
 	ret
 ; 19b8
 
-; XXX
+Unreferenced_Function19b8:
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc

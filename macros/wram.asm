@@ -110,7 +110,7 @@ box: MACRO
 \1Mon1::            box_struct \1Mon1
 \1Mon2::            ds BOXMON_STRUCT_LENGTH * (MONS_PER_BOX +- 1)
 \1MonOT::           ds NAME_LENGTH * MONS_PER_BOX
-\1MonNicknames::    ds PKMN_NAME_LENGTH * MONS_PER_BOX
+\1MonNicknames::    ds MON_NAME_LENGTH * MONS_PER_BOX
 \1MonNicknamesEnd::
 \1End::             ds 2 ; padding
 ENDM
@@ -179,13 +179,13 @@ battle_tower_struct: MACRO
 \1Name:: ds NAME_LENGTH +- 1
 \1TrainerClass:: ds 1
 \1Pkmn1:: party_struct \1Pkmn1
-\1Pkmn1Name:: ds PKMN_NAME_LENGTH
+\1Pkmn1Name:: ds MON_NAME_LENGTH
 \1Pkmn1NameEnd::
 \1Pkmn2:: party_struct \1Pkmn2
-\1Pkmn2Name:: ds PKMN_NAME_LENGTH
+\1Pkmn2Name:: ds MON_NAME_LENGTH
 \1Pkmn2NameEnd::
 \1Pkmn3:: party_struct \1Pkmn3
-\1Pkmn3Name:: ds PKMN_NAME_LENGTH
+\1Pkmn3Name:: ds MON_NAME_LENGTH
 \1Pkmn3NameEnd::
 \1TrainerData:: ds BATTLETOWER_TRAINERDATALENGTH
 \1TrainerEnd::
@@ -222,7 +222,7 @@ hof_mon: MACRO
 \1ID::       dw
 \1DVs::      dw
 \1Level::    db
-\1Nickname:: ds PKMN_NAME_LENGTH +- 1
+\1Nickname:: ds MON_NAME_LENGTH +- 1
 \1End::
 ENDM
 
@@ -247,8 +247,8 @@ ENDM
 
 trademon: MACRO
 \1Species::     db ; wc6d0 | wc702
-\1SpeciesName:: ds PKMN_NAME_LENGTH ; wc6d1 | wc703
-\1Nickname::    ds PKMN_NAME_LENGTH ; wc6dc | wc70e
+\1SpeciesName:: ds MON_NAME_LENGTH ; wc6d1 | wc703
+\1Nickname::    ds MON_NAME_LENGTH ; wc6dc | wc70e
 \1SenderName::  ds NAME_LENGTH ; wc6e7 | wc719
 \1OTName::      ds NAME_LENGTH ; wc6f2 | wc724
 \1DVs::         dw ; wc6fd | wc72f
@@ -337,6 +337,19 @@ map_object: MACRO
 \1ObjectScript::    dw
 \1ObjectEventFlag:: dw
 	ds 2
+ENDM
+
+sprite_oam_struct: MACRO
+\1YCoord::     db
+\1XCoord::     db
+\1TileID::     db
+\1Attributes:: db
+; bit 7: priority
+; bit 6: y flip
+; bit 5: x flip
+; bit 4: pal # (non-cgb)
+; bit 3: vram bank (cgb only)
+; bit 2-0: pal # (cgb only)
 ENDM
 
 sprite_anim_struct: MACRO

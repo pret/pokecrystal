@@ -2,7 +2,7 @@ FruitTreeScript:: ; 44000
 	callasm GetCurTreeFruit
 	opentext
 	copybytetovar CurFruit
-	itemtotext $0, $0
+	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_0
 	writetext FruitBearingTreeText
 	buttonsound
 	callasm TryResetFruitTrees
@@ -58,7 +58,7 @@ CheckFruitTree: ; 44055
 ; 4405f
 
 PickedFruitTree: ; 4405f
-	farcall TrainerRankings_FruitPicked
+	farcall StubbedTrainerRankings_FruitPicked
 	ld b, 1
 	jp GetFruitTreeFlag
 ; 4406a

@@ -7,7 +7,7 @@ const_value set 2
 	const OLIVINEPORT_YOUNGSTER
 	const OLIVINEPORT_COOLTRAINER_F
 
-OlivinePort_MapScriptHeader:
+OlivinePort_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -26,7 +26,7 @@ OlivinePort_MapScriptHeader:
 .LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74a32
 	appear OLIVINEPORT_SAILOR1
-	setscene $0
+	setscene 0
 	setevent EVENT_GAVE_KURT_APRICORNS
 	blackoutmod OLIVINE_CITY
 	end
@@ -46,7 +46,7 @@ SailorScript_0x748c0:
 	waitsfx
 	applymovement PLAYER, MovementData_0x74a30
 	playsound SFX_EXIT_BUILDING
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	waitsfx
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7490a
@@ -64,8 +64,8 @@ SailorScript_0x748c0:
 UnknownScript_0x7490a:
 	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear OLIVINEPORT_SAILOR1
-	setmapscene FAST_SHIP_1F, $1
-	warp FAST_SHIP_1F, $19, $1
+	setmapscene FAST_SHIP_1F, 1
+	warp FAST_SHIP_1F, 25, 1
 	end
 
 UnknownScript_0x74919:
@@ -234,8 +234,7 @@ CooltrainerFScript_0x74a22:
 	end
 
 OlivinePortHiddenProtein:
-	dwb EVENT_OLIVINE_PORT_HIDDEN_PROTEIN, PROTEIN
-
+	hiddenitem EVENT_OLIVINE_PORT_HIDDEN_PROTEIN, PROTEIN
 
 MovementData_0x74a30:
 	step DOWN
@@ -385,7 +384,7 @@ OlivinePortSailorText:
 	line "allowed in."
 	done
 
-OlivinePort_MapEventHeader:
+OlivinePort_MapEvents:
 	; filler
 	db 0, 0
 

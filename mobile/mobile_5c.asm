@@ -75,7 +75,7 @@ Function17005a: ; 17005a
 
 ; 1700b0
 
-INCLUDE "mobile/battle_tower_5c.asm"
+INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
 Function170be4: ; 170be4
 	ld a, $5
@@ -219,7 +219,7 @@ Function170c8b: ; 170c8b
 ; 170c98
 
 CheckBTMonMovesForErrors: ; 170c98
-	ld c, BATTLETOWER_NROFPKMNS
+	ld c, BATTLETOWER_PARTY_LENGTH
 	ld hl, wBT_OTTempPkmn1Moves
 .loop
 	push hl
@@ -254,7 +254,7 @@ CheckBTMonMovesForErrors: ; 170c98
 
 .done
 	pop hl
-	ld de, PARTYMON_STRUCT_LENGTH + PKMN_NAME_LENGTH
+	ld de, PARTYMON_STRUCT_LENGTH + MON_NAME_LENGTH
 	add hl, de
 	dec c
 	jr nz, .loop
@@ -265,25 +265,25 @@ CheckBTMonMovesForErrors: ; 170c98
 Function170cc6: ; 170cc6
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
-	ld hl, LZ_170d16
+	ld hl, PichuAnimatedMobileGFX
 	ld de, wDecompressScratch
 	call Decompress
-	ld a, $1
+	ld a, 1
 	ld [rVBK], a
-	ld de, wd000
+	ld de, wDecompressScratch
 	ld hl, vTiles0
-	lb bc, $6, $c1
+	lb bc, BANK(wDecompressScratch), 193
 	call Get2bpp
 	xor a
 	ld [rVBK], a
-	ld hl, LZ_1715a4
-	ld de, wd000
+	ld hl, ElectroBallMobileGFX
+	ld de, wDecompressScratch
 	call Decompress
 	ld de, wBGPals1
 	ld hl, vTiles0
-	lb bc, $6, $53
+	lb bc, BANK(wDecompressScratch), 83
 	call Get2bpp
 	pop af
 	ld [rSVBK], a
@@ -296,7 +296,7 @@ Function170d02: ; 170d02
 	ld [rVBK], a
 	ld de, GFX_171848
 	ld hl, vTiles1 tile $41
-	lb bc, BANK(GFX_171848), $18
+	lb bc, BANK(GFX_171848), 24
 	call Get2bpp
 	xor a
 	ld [rVBK], a
@@ -304,10 +304,10 @@ Function170d02: ; 170d02
 
 ; 170d16
 
-LZ_170d16:
+PichuAnimatedMobileGFX:
 INCBIN "gfx/mobile/pichu_animated.2bpp.lz"
 
-LZ_1715a4:
+ElectroBallMobileGFX:
 INCBIN "gfx/mobile/electro_ball.2bpp.lz"
 
 GFX_171848:
@@ -430,8 +430,8 @@ Function171a95: ; 171a95 (5c:5a95)
 
 String_171aa7: ; 171aa7
 	db   "モバイルアダプタに"
-	next "せつぞく しています"
-	next "しばらく おまちください"
+	next "せつぞく　しています"
+	next "しばらく　おまちください"
 	db   "@"
 ; 171ac9
 
@@ -514,7 +514,7 @@ Function171b42: ; 171b42 (5c:5b42)
 
 Function171b4b: ; 171b4b (5c:5b4b)
 	depixel 8, 2
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -522,7 +522,7 @@ Function171b4b: ; 171b4b (5c:5b4b)
 	ld [hl], a
 
 	depixel 8, 19
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -530,7 +530,7 @@ Function171b4b: ; 171b4b (5c:5b4b)
 	ld [hl], a
 
 	depixel 17, 14, 2, 0
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -654,7 +654,7 @@ Function171c41: ; 171c41 (5c:5c41)
 	dec [hl]
 	ret nz
 	call ClearBGPalettes
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	ld a, $2
 	ld [wc303], a
@@ -672,15 +672,14 @@ Function171c66: ; 171c66 (5c:5c66)
 ; 171c6b (5c:5c6b)
 
 MenuDataHeader_171c6b: ; 171c6b
-	db $40 ; flags
-	db 12,  0 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 171c73
 
 String_171c73: ; 171c73
-	db   "モバイルセンターを けってい"
+	db   "モバイルセンターを　けってい"
 	next "しました@"
 ; 171c87
 
@@ -838,16 +837,16 @@ LZ_172abd:
 INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 
 String_172e31: ; 172e31
-	db "パスワード", $1f, "いれてください@"
+	db "パスワード<WO>いれてください@"
 String_172e3f: ; 172e3f
-	db "きりかえ やめる  けってい@"
+	db "きりかえ　やめる　　けってい@"
 String_172e4e: ; 172e4e
-	db "きりかえ やめる  "
+	db "きりかえ　やめる　　"
 String_172e58:
 	db "けってい@"
 String_172e5d: ; 172e5d
-	db "せつぞくする モバイルセンターを"
-	next "えらんで ください@"
+	db "せつぞくする　モバイルセンターを"
+	next "えらんで　ください@"
 ; 172e78
 
 
@@ -936,7 +935,7 @@ GameBoyN64GFX:
 INCBIN "gfx/trade/game_boy_n64.2bpp"
 
 Tilemap_1733af:
-if DEF(CRYSTAL11)
+if DEF(_CRYSTAL11)
 INCBIN "gfx/unknown/1733af_corrupt.tilemap"
 else
 INCBIN "gfx/unknown/1733af.tilemap"

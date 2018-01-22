@@ -5,7 +5,7 @@ const_value set 2
 	const CELADONCAFE_FISHER3
 	const CELADONCAFE_TEACHER
 
-CeladonCafe_MapScriptHeader:
+CeladonCafe_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -96,7 +96,7 @@ CeladonCafeTrashcan:
 	giveitem LEFTOVERS
 	iffalse .PackFull
 	opentext
-	itemtotext LEFTOVERS, $0
+	itemtotext LEFTOVERS, MEM_BUFFER_0
 	writetext FoundLeftoversText
 	playsound SFX_ITEM
 	waitsfx
@@ -107,7 +107,7 @@ CeladonCafeTrashcan:
 
 .PackFull:
 	opentext
-	itemtotext LEFTOVERS, $0
+	itemtotext LEFTOVERS, MEM_BUFFER_0
 	writetext FoundLeftoversText
 	buttonsound
 	writetext NoRoomForLeftoversText
@@ -207,7 +207,7 @@ NoRoomForLeftoversText:
 	line "hold another item…"
 	done
 
-CeladonCafe_MapEventHeader:
+CeladonCafe_MapEvents:
 	; filler
 	db 0, 0
 

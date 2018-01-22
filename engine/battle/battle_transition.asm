@@ -1,4 +1,4 @@
-Predef_StartBattle: ; 8c20f
+DoBattleTransition: ; 8c20f
 	call .InitGFX
 	ld a, [rBGP]
 	ld [wBGP], a
@@ -16,14 +16,14 @@ Predef_StartBattle: ; 8c20f
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .done
-	call FlashyTransitionToBattle
+	call BattleTransitionJumptable
 	call DelayFrame
 	jr .loop
 
 .done
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, wBGPals1
@@ -44,7 +44,7 @@ Predef_StartBattle: ; 8c20f
 	ld [hLYOverrideEnd], a
 	ld [hSCY], a
 
-	ld a, $1
+	ld a, 1 ; unnecessary bankswitch?
 	ld [rSVBK], a
 	pop af
 	ld [hVBlank], a
@@ -116,7 +116,7 @@ LoadTrainerBattlePokeballTiles:
 ConvertTrainerBattlePokeballTilesTo2bpp: ; 8c2cf
 	ld a, [rSVBK]
 	push af
-	ld a, $6
+	ld a, BANK(wDecompressScratch)
 	ld [rSVBK], a
 	push hl
 	ld hl, wDecompressScratch
@@ -144,7 +144,7 @@ TrainerBattlePokeballTiles: ; 8c2f4
 INCBIN "gfx/overworld/trainer_battle_pokeball_tiles.2bpp"
 
 
-FlashyTransitionToBattle: ; 8c314
+BattleTransitionJumptable: ; 8c314
 	jumptable .dw, wJumptableIndex
 ; 8c323
 
@@ -298,7 +298,7 @@ StartTrainerBattle_Flash: ; 8c3ab (23:43ab)
 
 StartTrainerBattle_SetUpForWavyOutro: ; 8c3e8 (23:43e8)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 	call StartTrainerBattle_NextScene
@@ -356,7 +356,7 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 
 StartTrainerBattle_SetUpForSpinOutro: ; 8c43d (23:443d)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	xor a
@@ -498,7 +498,7 @@ ENDM
 
 StartTrainerBattle_SetUpForRandomScatterOutro: ; 8c578 (23:4578)
 	farcall Function5602
-	ld a, $5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 	call StartTrainerBattle_NextScene
 	ld a, $10
@@ -589,7 +589,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	dec b
 	jr nz, .loop
 
-	call .loadpokeballgfx ; ld a, [OtherTrainerClass] \ ld de, PokeBallTransition \ ret
+	call .loadpokeballgfx
 	hlcoord 2, 1
 
 	ld b, SCREEN_WIDTH - 4
@@ -640,14 +640,14 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 .cgb
 	ld hl, .daypals
 	ld a, [TimeOfDayPal]
-	and (1 << 2) - 1
-	cp 3
+	maskbits NUM_DAYTIMES
+	cp DARKNESS_F
 	jr nz, .daytime
 	ld hl, .nightpals
 .daytime
 	ld a, [rSVBK]
 	push af
-	ld a, $5 ; WRAM5 = palettes
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 	call .copypals
 	push hl
@@ -691,17 +691,12 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 ; 8c6a1 (23:46a1)
 
 .daypals ; 8c6a1
-	RGB 31, 18, 29
-	RGB 31, 11, 15
-	RGB 31, 05, 05
-	RGB 07, 07, 07
+INCLUDE "gfx/overworld/trainer_battle_day.pal"
 ; 8c6a9
 
 .nightpals ; 8c6a9
-	RGB 31, 18, 29
-	RGB 31, 05, 05
-	RGB 31, 05, 05
-	RGB 31, 05, 05
+INCLUDE "gfx/overworld/trainer_battle_nite.pal"
+; 8c6b1
 
 .loadpokeballgfx
 	ld a, [OtherTrainerClass]
@@ -729,7 +724,7 @@ PokeBallTransition:
 WipeLYOverrides: ; 8c6d8
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 	ld hl, LYOverrides
@@ -754,22 +749,23 @@ WipeLYOverrides: ; 8c6d8
 
 
 StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
-	and (1 << 6) - 1
-	cp 1 << 5
-	jr nc, .okay
-	call .DoSineWave
+; a = d * sin(a * pi/32)
+	and %111111
+	cp %100000
+	jr nc, .negative
+	call .ApplySineWave
 	ld a, h
 	ret
 
-.okay
-	and (1 << 5) - 1
-	call .DoSineWave
+.negative
+	and %011111
+	call .ApplySineWave
 	ld a, h
-	xor -1 ; cpl
+	xor $ff
 	inc a
 	ret
 
-.DoSineWave: ; 8c70c (23:470c)
+.ApplySineWave: ; 8c70c (23:470c)
 	ld e, a
 	ld a, d
 	ld d, 0
@@ -780,15 +776,15 @@ StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-.loop
+.multiply
 	srl a
-	jr nc, .skip
+	jr nc, .even
 	add hl, de
-.skip
+.even
 	sla e
 	rl d
 	and a
-	jr nz, .loop
+	jr nz, .multiply
 	ret
 ; 8c728 (23:4728)
 
@@ -863,8 +859,7 @@ ENDM
 	ret
 ; 8c7c9 (23:47c9)
 
-Function8c7c9:
-; XXX
+Unreferenced_Function8c7c9:
 	ld a, $1
 	ld [hBGMapMode], a
 	call WaitBGMap

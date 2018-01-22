@@ -174,7 +174,7 @@ GetGender: ; 50bdd
 ; sBoxMon data is read directly from SRAM.
 	ld a, [MonType]
 	cp BOXMON
-	ld a, 1
+	ld a, BANK(sBox)
 	call z, GetSRAMBank
 
 ; Attack DV
@@ -324,8 +324,7 @@ ListMovePP: ; 50c50
 	jr nz, .load_loop
 	ret
 
-Function50cd0: ; 50cd0
-; XXX
+Unreferenced_Function50cd0: ; 50cd0
 .loop
 	ld [hl], $32
 	inc hl
@@ -336,7 +335,7 @@ Function50cd0: ; 50cd0
 	jr nz, .loop
 	ret
 
-Predef22: ; unreferenced predef
+Unused_PlaceEnemyHPLevel:
 	push hl
 	push hl
 	ld hl, PartyMonNicknames

@@ -1,4 +1,4 @@
-INCLUDE "includes.asm"
+INCLUDE "constants.asm"
 
 
 SECTION "NULL", ROM0
@@ -44,6 +44,7 @@ INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
 
 InexplicablyEmptyFunction:: ; 2d43
+; unused
 ; Inexplicably empty.
 ; Seen in PredefPointers.
 rept 16
@@ -57,8 +58,7 @@ INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
 INCLUDE "home/flag.asm"
 
-Function2ebb:: ; 2ebb
-; unreferenced
+Unreferenced_Function2ebb:: ; 2ebb
 	ld a, [wMonStatusFlags]
 	bit 1, a
 	ret z
@@ -79,8 +79,7 @@ xor_a_dec_a:: ; 2ec8
 	ret
 ; 2ecb
 
-Function2ecb:: ; 2ecb
-; unreferenced
+Unreferenced_Function2ecb:: ; 2ecb
 	push hl
 	ld hl, wMonStatusFlags
 	bit 1, [hl]
@@ -182,12 +181,12 @@ ClearSprites:: ; 300b
 
 HideSprites:: ; 3016
 ; Set all OAM y-positions to 160 to hide them offscreen
-	ld hl, Sprites
-	ld de, 4 ; length of an OAM struct
-	ld b, (SpritesEnd - Sprites) / 4 ; number of OAM structs
-	ld a, 160 ; y
+	ld hl, Sprite01YCoord
+	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld b, NUM_SPRITE_OAM_STRUCTS
+	ld a, SCREEN_WIDTH_PX
 .loop
-	ld [hl], a
+	ld [hl], a ; y
 	add hl, de
 	dec b
 	jr nz, .loop
@@ -552,7 +551,7 @@ CopyTilemapAtOnce:: ; 323d
 	jr .CopyTilemapAtOnce
 ; 323f
 
-; XXX
+; unused
 	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 ; 3246
@@ -712,7 +711,7 @@ GetSGBLayout:: ; 3340
 	ret z
 
 .sgb
-	predef_jump Predef_LoadSGBLayout ; LoadSGBLayout
+	predef_jump LoadSGBLayout
 ; 334e
 
 SetHPPal:: ; 334e
@@ -843,7 +842,7 @@ HandleStoneQueue:: ; 3567
 	ld a, [hROMBank]
 	push af
 
-	call SwitchToMapScriptHeaderBank
+	call SwitchToMapScriptsBank
 	call .WarpAction
 
 	pop bc
@@ -900,7 +899,7 @@ HandleStoneQueue:: ; 3567
 ; 35b0
 
 .check_on_warp ; 35b0
-	ld hl, wCurrMapWarpHeaderPointer
+	ld hl, wCurrMapWarpsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1127,8 +1126,7 @@ Print8BitNumRightAlign:: ; 3842
 	jp PrintNum
 ; 384d
 
-Function384d:: ; 384d
-; XXX
+Unreferenced_Function384d:: ; 384d
 ; GetNthMove
 	ld hl, wListMoves_MoveIndicesBuffer
 	ld c, a
@@ -1209,7 +1207,7 @@ GetNick:: ; 38a2
 	ld de, StringBuffer1
 
 	push de
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop de
 
@@ -1321,8 +1319,7 @@ GetPartyLocation:: ; 3927
 	jp AddNTimes
 ; 392d
 
-Function392d:: ; 392d
-; XXX
+Unreferenced_Function392d:: ; 392d
 ; GetDexNumber
 ; Probably used in gen 1 to convert index number to dex number
 ; Not required in gen 2 because index number == dex number

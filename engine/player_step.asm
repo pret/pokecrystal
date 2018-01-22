@@ -76,7 +76,7 @@ HandlePlayerStep: ; d4e5 (3:54e5)
 	ret
 
 .mobile ; d509 (3:5509)
-	farcall TrainerRankings_StepCount
+	farcall StubbedTrainerRankings_StepCount
 	ret
 
 .fail2 ; d510 (3:5510)
@@ -154,7 +154,7 @@ UpdateOverworldMap: ; d536 (3:5536)
 	jr nc, .not_overflowed
 	ld a, [wBGMapAnchor + 1]
 	inc a
-	and $3
+	and %11
 	or HIGH(vBGMap0)
 	ld [wBGMapAnchor + 1], a
 .not_overflowed
@@ -185,7 +185,7 @@ UpdateOverworldMap: ; d536 (3:5536)
 	jr nc, .not_underflowed
 	ld a, [wBGMapAnchor + 1]
 	dec a
-	and $3
+	and %11
 	or HIGH(vBGMap0)
 	ld [wBGMapAnchor + 1], a
 .not_underflowed

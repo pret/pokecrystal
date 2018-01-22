@@ -2,7 +2,7 @@ const_value set 2
 	const GOLDENRODMAGNETTRAINSTATION_OFFICER
 	const GOLDENRODMAGNETTRAINSTATION_GENTLEMAN
 
-GoldenrodMagnetTrainStation_MapScriptHeader:
+GoldenrodMagnetTrainStation_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -34,12 +34,12 @@ OfficerScript_0x550ec:
 	closetext
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, MovementData_0x55146
 	applymovement PLAYER, MovementData_0x5514f
-	writebyte $0
+	writebyte FALSE
 	special Special_MagnetTrain
 	warpcheck
 	newloadmap MAPSETUP_TRAIN
 	applymovement PLAYER, .MovementBoardTheTrain
-	wait $14
+	wait 20
 	end
 
 .MovementBoardTheTrain:
@@ -164,7 +164,7 @@ GoldenrodMagnetTrainStationGentlemanText:
 	cont "to KANTO."
 	done
 
-GoldenrodMagnetTrainStation_MapEventHeader:
+GoldenrodMagnetTrainStation_MapEvents:
 	; filler
 	db 0, 0
 
@@ -172,8 +172,8 @@ GoldenrodMagnetTrainStation_MapEventHeader:
 	db 4
 	warp_def 8, 17, 5, GOLDENROD_CITY
 	warp_def 9, 17, 5, GOLDENROD_CITY
-	warp_def 6, 5, 4, SAFFRON_TRAIN_STATION
-	warp_def 11, 5, 3, SAFFRON_TRAIN_STATION
+	warp_def 6, 5, 4, SAFFRON_MAGNET_TRAIN_STATION
+	warp_def 11, 5, 3, SAFFRON_MAGNET_TRAIN_STATION
 
 .CoordEvents:
 	db 1

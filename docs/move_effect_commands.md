@@ -1,6 +1,6 @@
 # Move Effect Commands
 
-Defined in [macros/scripts/battle_commands.asm](/macros/scripts/battle_commands.asm) and [data/battle_command_pointers.asm:BattleCommandPointers](/data/battle_command_pointers.asm).
+Defined in [macros/scripts/battle_commands.asm](/macros/scripts/battle_commands.asm) and [data/battle/effect_command_pointers.asm:BattleCommandPointers](/data/battle/effect_command_pointers.asm).
 
 
 ## `$01`: `checkturn`

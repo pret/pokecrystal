@@ -1,7 +1,7 @@
 const_value set 2
 	const BILLSHOUSE_GRAMPS
 
-BillsHouse_MapScriptHeader:
+BillsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -353,7 +353,7 @@ BillsGrandpaPichuText:
 	line "evolves."
 	done
 
-BillsHouse_MapEventHeader:
+BillsHouse_MapEvents:
 	; filler
 	db 0, 0
 

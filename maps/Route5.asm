@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE5_POKEFAN_M
 
-Route5_MapScriptHeader:
+Route5_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -39,15 +39,15 @@ HouseForSaleSignText:
 	line "Nobody lives here."
 	done
 
-Route5_MapEventHeader:
+Route5_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 4
 	warp_def 17, 15, 1, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
-	warp_def 8, 17, 1, ROUTE_5_SAFFRON_CITY_GATE
-	warp_def 9, 17, 2, ROUTE_5_SAFFRON_CITY_GATE
+	warp_def 8, 17, 1, ROUTE_5_SAFFRON_GATE
+	warp_def 9, 17, 2, ROUTE_5_SAFFRON_GATE
 	warp_def 10, 11, 1, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE
 
 .CoordEvents:

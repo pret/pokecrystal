@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE27SANDSTORMHOUSE_GRANNY
 
-Route27SandstormHouse_MapScriptHeader:
+Route27SandstormHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -13,10 +13,10 @@ SandstormHouseWoman:
 	opentext
 	checkevent EVENT_GOT_TM37_SANDSTORM
 	iftrue .AlreadyGotItem
-	special GetFirstPokemonHappiness
+	special Special_GetFirstPokemonHappiness
 	writetext SandstormHouseWomanText1
 	buttonsound
-	if_greater_than $95, .Loyal
+	if_greater_than 150 - 1, .Loyal
 	jump .Disloyal
 
 .Loyal:
@@ -93,7 +93,7 @@ SandstormHouseWomanDisloyalText:
 	cont "and trainers."
 	done
 
-Route27SandstormHouse_MapEventHeader:
+Route27SandstormHouse_MapEvents:
 	; filler
 	db 0, 0
 

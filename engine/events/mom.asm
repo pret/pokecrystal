@@ -146,7 +146,7 @@ Special_BankOfMom: ; 16218
 	ld [hli], a
 	ld [hl], a
 	ld a, $5
-	ld [wcf64], a
+	ld [wMomBankDigitCursorPosition], a
 	call LoadStandardMenuDataHeader
 	call Mom_SetUpDepositMenu
 	call Mom_Wait10Frames
@@ -213,7 +213,7 @@ Special_BankOfMom: ; 16218
 	ld [hli], a
 	ld [hl], a
 	ld a, $5
-	ld [wcf64], a
+	ld [wMomBankDigitCursorPosition], a
 	call LoadStandardMenuDataHeader
 	call Mom_SetUpWithdrawMenu
 	call Mom_Wait10Frames
@@ -728,15 +728,14 @@ Mom_HeldString: ; 166b0
 ; 166b5
 
 MenuDataHeader_0x166b5: ; 0x166b5
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 10, 10 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 10, 10
 	dw MenuData2_0x166bd
 	db 1 ; default option
 ; 0x166bd
 
 MenuData2_0x166bd: ; 0x166bd
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "GET@"
 	db "SAVE@"

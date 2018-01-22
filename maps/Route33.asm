@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE33_LASS
 	const ROUTE33_FRUIT_TREE
 
-Route33_MapScriptHeader:
+Route33_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -38,9 +38,9 @@ TrainerHikerAnthony:
 	scall .AskNumber2
 .AskForPhoneNumber:
 	askforphonenumber PHONE_HIKER_ANTHONY
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext HIKER, ANTHONY2, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext HIKER, ANTHONY2, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -194,7 +194,7 @@ Route33SignText:
 	text "ROUTE 33"
 	done
 
-Route33_MapEventHeader:
+Route33_MapEvents:
 	; filler
 	db 0, 0
 

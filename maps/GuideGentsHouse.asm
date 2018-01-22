@@ -1,7 +1,7 @@
 const_value set 2
 	const GUIDEGENTSHOUSE_GRAMPS
 
-GuideGentsHouse_MapScriptHeader:
+GuideGentsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -27,7 +27,7 @@ GuideGentsHouseGuideGentText:
 	line "with kindness!"
 	done
 
-GuideGentsHouse_MapEventHeader:
+GuideGentsHouse_MapEvents:
 	; filler
 	db 0, 0
 

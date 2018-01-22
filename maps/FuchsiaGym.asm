@@ -6,7 +6,7 @@ const_value set 2
 	const FUCHSIAGYM_FUCHSIA_GYM_4
 	const FUCHSIAGYM_GYM_GUY
 
-FuchsiaGym_MapScriptHeader:
+FuchsiaGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -23,7 +23,7 @@ FuchsiaGymJanineScript:
 	waitbutton
 	closetext
 	winlosstext JanineText_ToughOne, 0
-	loadtrainer JANINE, 1
+	loadtrainer JANINE, JANINE1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JANINE
@@ -35,7 +35,7 @@ FuchsiaGymJanineScript:
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	opentext
 	writetext Text_ReceivedSoulBadge
 	playsound SFX_GET_BADGE
@@ -65,7 +65,7 @@ LassAliceScript:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 .AliceUnmasked:
 	faceplayer
 	opentext
@@ -99,7 +99,7 @@ LassLindaScript:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 .LindaUnmasked:
 	faceplayer
 	opentext
@@ -133,7 +133,7 @@ PicnickerCindyScript:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 .CindyUnmasked:
 	faceplayer
 	opentext
@@ -167,7 +167,7 @@ CamperBarryScript:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 .BarryUnmasked:
 	faceplayer
 	opentext
@@ -216,7 +216,7 @@ FuchsiaGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext JANINE, 1, $1
+	trainertotext JANINE, JANINE1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 Movement_NinjaSpin:
@@ -380,7 +380,7 @@ FuchsiaGymGuyWinText:
 	cont "from JOHTO!"
 	done
 
-FuchsiaGym_MapEventHeader:
+FuchsiaGym_MapEvents:
 	; filler
 	db 0, 0
 

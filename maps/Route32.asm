@@ -14,7 +14,7 @@ const_value set 2
 	const ROUTE32_FRIEDA
 	const ROUTE32_POKE_BALL2
 
-Route32_MapScriptHeader:
+Route32_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -23,7 +23,7 @@ Route32_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Frieda
+	callback MAPCALLBACK_OBJECTS, .Frieda
 
 .DummyScene0:
 	end
@@ -59,7 +59,7 @@ Route32CooltrainerMContinueScene:
 	closetext
 	end
 
-.Unused:
+.Unreferenced:
 	writetext Route32CooltrainerMText_UnusedSproutTower
 	waitbutton
 	closetext
@@ -127,7 +127,7 @@ Route32WannaBuyASlowpokeTailScript:
 SlowpokeTailSalesmanScript:
 	faceplayer
 _OfferToSellSlowpokeTail:
-	setscene $2
+	setscene 2
 	opentext
 	writetext Text_MillionDollarSlowpokeTail
 	yesorno
@@ -190,9 +190,9 @@ TrainerFisherRalph1:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_RALPH
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext FISHER, RALPH1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext FISHER, RALPH1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -324,9 +324,9 @@ TrainerPicnickerLiz1:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_LIZ
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext PICNICKER, LIZ1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext PICNICKER, LIZ1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -506,12 +506,10 @@ Route32PokecenterSign:
 	jumpstd pokecentersign
 
 Route32HiddenGreatBall:
-	dwb EVENT_ROUTE_32_HIDDEN_GREAT_BALL, GREAT_BALL
-
+	hiddenitem EVENT_ROUTE_32_HIDDEN_GREAT_BALL, GREAT_BALL
 
 Route32HiddenSuperPotion:
-	dwb EVENT_ROUTE_32_HIDDEN_SUPER_POTION, SUPER_POTION
-
+	hiddenitem EVENT_ROUTE_32_HIDDEN_SUPER_POTION, SUPER_POTION
 
 Movement_Route32CooltrainerMPushesYouBackToViolet:
 	step UP
@@ -839,7 +837,7 @@ BirdKeeperPeterAfterText:
 	cont "in VIOLET CITY."
 	done
 
-; possibly unused
+; unused
 Route32UnusedText:
 	text "The fishermen"
 	line "yelled at me for"
@@ -930,7 +928,7 @@ Route32UnionCaveSignText:
 	line "AHEAD"
 	done
 
-Route32_MapEventHeader:
+Route32_MapEvents:
 	; filler
 	db 0, 0
 

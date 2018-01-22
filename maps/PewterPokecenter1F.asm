@@ -5,7 +5,7 @@ const_value set 2
 	const PEWTERPOKECENTER1F_BUG_CATCHER
 	const PEWTERPOKECENTER1F_CHRIS
 
-PewterPokecenter1F_MapScriptHeader:
+PewterPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -67,7 +67,7 @@ PewterPokecenter1FBugCatcherText:
 	line "#MON is asleep."
 	done
 
-PewterPokecenter1F_MapEventHeader:
+PewterPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

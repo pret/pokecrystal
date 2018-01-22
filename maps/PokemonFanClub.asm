@@ -6,7 +6,7 @@ const_value set 2
 	const POKEMONFANCLUB_FAIRY
 	const POKEMONFANCLUB_ODDISH
 
-PokemonFanClub_MapScriptHeader:
+PokemonFanClub_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -296,7 +296,7 @@ UnknownText_0x191e29:
 	line "brag right back!"
 	done
 
-PokemonFanClub_MapEventHeader:
+PokemonFanClub_MapEvents:
 	; filler
 	db 0, 0
 

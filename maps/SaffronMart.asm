@@ -3,7 +3,7 @@ const_value set 2
 	const SAFFRONMART_COOLTRAINER_M
 	const SAFFRONMART_COOLTRAINER_F
 
-SaffronMart_MapScriptHeader:
+SaffronMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -37,7 +37,7 @@ SaffronMartCooltrainerFText:
 	line "how sometime?"
 	done
 
-SaffronMart_MapEventHeader:
+SaffronMart_MapEvents:
 	; filler
 	db 0, 0
 

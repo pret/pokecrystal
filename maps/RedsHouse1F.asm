@@ -1,7 +1,7 @@
 const_value set 2
 	const REDSHOUSE1F_REDS_MOM
 
-RedsHouse1F_MapScriptHeader:
+RedsHouse1F_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -74,7 +74,7 @@ RedsHouse1FTVText:
 	cont "in JOHTO…"
 	done
 
-RedsHouse1F_MapEventHeader:
+RedsHouse1F_MapEvents:
 	; filler
 	db 0, 0
 

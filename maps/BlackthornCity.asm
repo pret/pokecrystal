@@ -9,14 +9,14 @@ const_value set 2
 	const BLACKTHORNCITY_SANTOS
 	const BLACKTHORNCITY_COOLTRAINER_F2
 
-BlackthornCity_MapScriptHeader:
+BlackthornCity_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
-	dbw MAPCALLBACK_OBJECTS, .Santos
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_OBJECTS, .Santos
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_BLACKTHORN
@@ -312,7 +312,7 @@ BlackthornCityTrainerTipsText:
 	cont "problem."
 	done
 
-BlackthornCity_MapEventHeader:
+BlackthornCity_MapEvents:
 	; filler
 	db 0, 0
 

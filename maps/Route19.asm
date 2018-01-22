@@ -6,23 +6,23 @@ const_value set 2
 	const ROUTE19_FISHER1
 	const ROUTE19_FISHER2
 
-Route19_MapScriptHeader:
+Route19_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .ClearRocks
+	callback MAPCALLBACK_TILES, .ClearRocks
 
 .ClearRocks:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue .Done
-	changeblock $6, $6, $7a
-	changeblock $8, $6, $7a
-	changeblock $a, $6, $7a
-	changeblock $c, $8, $7a
-	changeblock $4, $8, $7a
-	changeblock $a, $a, $7a
+	changeblock  6,  6, $7a ; rock
+	changeblock  8,  6, $7a ; rock
+	changeblock 10,  6, $7a ; rock
+	changeblock 12,  8, $7a ; rock
+	changeblock  4,  8, $7a ; rock
+	changeblock 10, 10, $7a ; rock
 .Done:
 	return
 
@@ -234,13 +234,13 @@ CarefulSwimmingSignText:
 	para "FUCHSIA POLICE"
 	done
 
-Route19_MapEventHeader:
+Route19_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 1
-	warp_def 7, 3, 3, ROUTE_19___FUCHSIA_GATE
+	warp_def 7, 3, 3, ROUTE_19_FUCHSIA_GATE
 
 .CoordEvents:
 	db 0

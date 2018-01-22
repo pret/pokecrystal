@@ -6,25 +6,25 @@ const_value set 2
 	const INDIGOPLATEAUPOKECENTER1F_GRAMPS
 	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
-IndigoPlateauPokecenter1F_MapScriptHeader:
+IndigoPlateauPokecenter1F_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .PrepareElite4
+	callback MAPCALLBACK_NEWMAP, .PrepareElite4
 
 .DummyScene:
 	end
 
 .PrepareElite4:
-	setmapscene WILLS_ROOM, $0
-	setmapscene KOGAS_ROOM, $0
-	setmapscene BRUNOS_ROOM, $0
-	setmapscene KARENS_ROOM, $0
-	setmapscene LANCES_ROOM, $0
-	setmapscene HALL_OF_FAME, $0
+	setmapscene WILLS_ROOM, 0
+	setmapscene KOGAS_ROOM, 0
+	setmapscene BRUNOS_ROOM, 0
+	setmapscene KARENS_ROOM, 0
+	setmapscene LANCES_ROOM, 0
+	setmapscene HALL_OF_FAME, 0
 	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
 	clearevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
@@ -54,7 +54,7 @@ PlateauRivalBattle1:
 	if_equal THURSDAY, PlateauRivalScriptDone
 	if_equal FRIDAY, PlateauRivalScriptDone
 	if_equal SATURDAY, PlateauRivalScriptDone
-	moveobject INDIGOPLATEAUPOKECENTER1F_SILVER, $11, $9
+	moveobject INDIGOPLATEAUPOKECENTER1F_SILVER, 17, 9
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -130,7 +130,7 @@ PlateauRivalPostBattle:
 	spriteface PLAYER, DOWN
 	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, PlateauRivalLeavesMovement
 	disappear INDIGOPLATEAUPOKECENTER1F_SILVER
-	setscene $0
+	setscene 0
 	playmapmusic
 	setflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 PlateauRivalScriptDone:
@@ -158,9 +158,9 @@ TeleportGuyScript:
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	waitsfx
-	warp NEW_BARK_TOWN, $d, $6
+	warp NEW_BARK_TOWN, 13, 6
 	end
 
 .No:
@@ -302,7 +302,7 @@ AbraText:
 	text "ABRA: Aabra…"
 	done
 
-IndigoPlateauPokecenter1F_MapEventHeader:
+IndigoPlateauPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

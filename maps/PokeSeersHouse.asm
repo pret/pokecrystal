@@ -1,7 +1,7 @@
 const_value set 2
 	const POKESEERSHOUSE_GRANNY
 
-PokeSeersHouse_MapScriptHeader:
+PokeSeersHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -11,12 +11,12 @@ PokeSeersHouse_MapScriptHeader:
 SeerScript:
 	faceplayer
 	opentext
-	special SpecialPokeSeer
+	special Special_PokeSeer
 	waitbutton
 	closetext
 	end
 
-PokeSeersHouse_MapEventHeader:
+PokeSeersHouse_MapEvents:
 	; filler
 	db 0, 0
 

@@ -7,13 +7,13 @@ const_value set 2
 	const ECRUTEAKCITY_YOUNGSTER
 	const ECRUTEAKCITY_GRAMPS3
 
-EcruteakCity_MapScriptHeader:
+EcruteakCity_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_ECRUTEAK
@@ -88,7 +88,7 @@ EcruteakCityMartSign:
 	jumpstd martsign
 
 EcruteakCityHiddenHyperPotion:
-	dwb EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
 
 UnusedMissingDaughterText:
 ; This text is neither used nor referenced in the final game.
@@ -259,7 +259,7 @@ BurnedTowerSignText:
 	line "as it is unsafe."
 	done
 
-EcruteakCity_MapEventHeader:
+EcruteakCity_MapEvents:
 	; filler
 	db 0, 0
 

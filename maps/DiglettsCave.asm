@@ -1,7 +1,7 @@
 const_value set 2
 	const DIGLETTSCAVE_POKEFAN_M
 
-DiglettsCave_MapScriptHeader:
+DiglettsCave_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -12,8 +12,7 @@ DiglettsCavePokefanMScript:
 	jumptextfaceplayer DiglettsCavePokefanMText
 
 DiglettsCaveHiddenMaxRevive:
-	dwb EVENT_DIGLETTS_CAVE_HIDDEN_MAX_REVIVE, MAX_REVIVE
-
+	hiddenitem EVENT_DIGLETTS_CAVE_HIDDEN_MAX_REVIVE, MAX_REVIVE
 
 DiglettsCavePokefanMText:
 	text "A bunch of DIGLETT"
@@ -23,7 +22,7 @@ DiglettsCavePokefanMText:
 	line "shocking."
 	done
 
-DiglettsCave_MapEventHeader:
+DiglettsCave_MapEvents:
 	; filler
 	db 0, 0
 

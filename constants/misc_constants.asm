@@ -16,6 +16,9 @@ HP_GREEN  EQU 0
 HP_YELLOW EQU 1
 HP_RED    EQU 2
 
+; G/S version ID: 0 = Gold, 1 = Silver (used by checkver)
+GS_VERSION EQU 0
+
 ; save file corruption check values
 SAVE_CHECK_VALUE_1 EQU 99
 SAVE_CHECK_VALUE_2 EQU 127
@@ -47,7 +50,7 @@ MONS_PER_BOX EQU 20
 NUM_BOXES    EQU 14
 
 ; hall of fame
-HOF_MON_LENGTH = 1 + 2 + 2 + 1 + (PKMN_NAME_LENGTH +- 1) ; species, id, dvs, level, nick
+HOF_MON_LENGTH = 1 + 2 + 2 + 1 + (MON_NAME_LENGTH +- 1) ; species, id, dvs, level, nick
 HOF_LENGTH = 1 + HOF_MON_LENGTH * PARTY_LENGTH + 1 ; win count, party, terminator
 NUM_HOF_TEAMS = 30
 
@@ -83,3 +86,10 @@ const_value = 1
 
 ; day-care
 MAX_DAY_CARE_EXP EQU $500000
+
+; bug-catching contest
+BUG_CONTEST_MINUTES EQU 20
+BUG_CONTEST_SECONDS EQU 0
+BUG_CONTEST_PLAYER EQU 1
+NUM_BUG_CONTESTANTS EQU 10 ; not counting the player
+BUG_CONTESTANT_SIZE EQU 4

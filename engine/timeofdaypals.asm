@@ -1,5 +1,5 @@
-Predef35: ; 8c000
-Predef36:
+DummyPredef35: ; 8c000
+DummyPredef36:
 	ret
 
 UpdateTimeOfDayPal:: ; 8c001
@@ -47,8 +47,8 @@ _TimeOfDayPals:: ; 8c011
 ; save wram bank
 	ld a, [rSVBK]
 	ld b, a
-; wram bank 5
-	ld a, $5
+
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 ; push palette
@@ -78,8 +78,8 @@ _TimeOfDayPals:: ; 8c011
 ; save wram bank
 	ld a, [rSVBK]
 	ld d, a
-; wram bank 5
-	ld a, 5
+
+	ld a, BANK(wOBPals1)
 	ld [rSVBK], a
 
 ; pop palette
@@ -119,7 +119,7 @@ _UpdateTimePals:: ; 8c070
 	ret
 ; 8c079
 
-FadeInPalettes:: ; 8c079
+Special_FadeInPalettes:: ; 8c079
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
@@ -127,7 +127,7 @@ FadeInPalettes:: ; 8c079
 	ret
 ; 8c084
 
-FadeOutPalettes:: ; 8c084
+Special_FadeOutPalettes:: ; 8c084
 	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
@@ -173,7 +173,7 @@ Special_FadeBlackQuickly: ; 8c0b6
 FillWhiteBGColor: ; 8c0c1
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, wBGPals1

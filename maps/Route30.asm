@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE30_COOLTRAINER_F
 	const ROUTE30_POKE_BALL
 
-Route30_MapScriptHeader:
+Route30_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -61,9 +61,9 @@ TrainerYoungsterJoey:
 	scall .AskNumber2
 .RequestNumber:
 	askforphonenumber PHONE_YOUNGSTER_JOEY
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext YOUNGSTER, JOEY1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext YOUNGSTER, JOEY1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -248,8 +248,7 @@ Route30FruitTree2:
 	fruittree FRUITTREE_ROUTE_30_2
 
 Route30HiddenPotion:
-	dwb EVENT_ROUTE_30_HIDDEN_POTION, POTION
-
+	hiddenitem EVENT_ROUTE_30_HIDDEN_POTION, POTION
 
 Route30_JoeysRattataAttacksMovement:
 	fix_facing
@@ -407,7 +406,7 @@ YoungsterJoeyText_GiveHPUpAfterBattle:
 	line "tougher too."
 	done
 
-Route30_MapEventHeader:
+Route30_MapEvents:
 	; filler
 	db 0, 0
 

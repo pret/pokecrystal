@@ -3,7 +3,7 @@ const_value set 2
 	const SILVERCAVEROOM2_POKE_BALL2
 	const SILVERCAVEROOM2_POKE_BALL3
 
-SilverCaveRoom2_MapScriptHeader:
+SilverCaveRoom2_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -20,10 +20,9 @@ SilverCaveRoom2PPUp:
 	itemball PP_UP
 
 SilverCaveRoom2HiddenMaxPotion:
-	dwb EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_SILVER_CAVE_ROOM_2_HIDDEN_MAX_POTION, MAX_POTION
 
-
-SilverCaveRoom2_MapEventHeader:
+SilverCaveRoom2_MapEvents:
 	; filler
 	db 0, 0
 

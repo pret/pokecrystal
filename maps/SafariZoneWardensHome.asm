@@ -1,7 +1,7 @@
 const_value set 2
 	const SAFARIZONEWARDENSHOME_LASS
 
-SafariZoneWardensHome_MapScriptHeader:
+SafariZoneWardensHome_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -76,7 +76,7 @@ SafariZonePhotoText:
 	line "frolicking in it."
 	done
 
-SafariZoneWardensHome_MapEventHeader:
+SafariZoneWardensHome_MapEvents:
 	; filler
 	db 0, 0
 

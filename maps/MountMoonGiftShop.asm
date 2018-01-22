@@ -4,7 +4,7 @@ const_value set 2
 	const MOUNTMOONGIFTSHOP_LASS1 ; morning only
 	const MOUNTMOONGIFTSHOP_LASS2 ; day only
 
-MountMoonGiftShop_MapScriptHeader:
+MountMoonGiftShop_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -27,7 +27,7 @@ MountMoonGiftShopLassText:
 	cont "come out to play."
 	done
 
-MountMoonGiftShop_MapEventHeader:
+MountMoonGiftShop_MapEvents:
 	; filler
 	db 0, 0
 

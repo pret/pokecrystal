@@ -5,7 +5,7 @@ const_value set 2
 	const ROUTE13_POKEFAN_M2
 	const ROUTE13_POKEFAN_M3
 
-Route13_MapScriptHeader:
+Route13_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -77,8 +77,7 @@ Route13DirectionsSign:
 	jumptext Route13DirectionsSignText
 
 Route13HiddenCalcium:
-	dwb EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
-
+	hiddenitem EVENT_ROUTE_13_HIDDEN_CALCIUM, CALCIUM
 
 PokefanmAlexSeenText:
 	text "Bow down before my"
@@ -192,7 +191,7 @@ Route13DirectionsSignText:
 	line "CITY"
 	done
 
-Route13_MapEventHeader:
+Route13_MapEvents:
 	; filler
 	db 0, 0
 

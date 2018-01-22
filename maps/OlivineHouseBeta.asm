@@ -2,7 +2,7 @@ const_value set 2
 	const OLIVINEHOUSEBETA_TEACHER
 	const OLIVINEHOUSEBETA_RHYDON
 
-OlivineHouseBeta_MapScriptHeader:
+OlivineHouseBeta_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -39,7 +39,7 @@ UnknownText_0x9c5f0:
 	text "RHYDON: Gugooh!"
 	done
 
-OlivineHouseBeta_MapEventHeader:
+OlivineHouseBeta_MapEvents:
 	; filler
 	db 0, 0
 

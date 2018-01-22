@@ -1,11 +1,11 @@
-CeladonPokecenter2FBeta_MapScriptHeader:
+CeladonPokecenter2FBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-CeladonPokecenter2FBeta_MapEventHeader:
+CeladonPokecenter2FBeta_MapEvents:
 	; filler
 	db 0, 0
 

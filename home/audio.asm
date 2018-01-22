@@ -141,7 +141,7 @@ PlayMusic2:: ; 3bbc
 ; 3be3
 
 
-PlayCryHeader:: ; 3be3
+PlayCry:: ; 3be3
 ; Play cry header de.
 
 	push hl
@@ -176,11 +176,11 @@ endr
 	ld a, [hl]
 	ld [CryLength + 1], a
 
-	ld a, BANK(_PlayCryHeader)
+	ld a, BANK(_PlayCry)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-	call _PlayCryHeader
+	call _PlayCry
 
 	pop af
 	ld [hROMBank], a
@@ -319,7 +319,7 @@ Unused_FadeOutMusic:: ; 3ca8
 ; 3cae
 
 FadeInMusic:: ; 3cae
-	ld a, 4 | 1 << 7
+	ld a, 4 | (1 << MUSIC_FADE_IN_F)
 	ld [MusicFade], a
 	ret
 ; 3cb4
@@ -340,7 +340,7 @@ FadeToMapMusic:: ; 3cbc
 	push bc
 	push af
 
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 	ld a, [wMapMusic]
 	cp e
 	jr z, .done
@@ -368,7 +368,7 @@ PlayMapMusic:: ; 3cdf
 	push bc
 	push af
 
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 	ld a, [wMapMusic]
 	cp e
 	jr z, .done
@@ -402,7 +402,7 @@ EnterMapMusic:: ; 3d03
 	ld a, [PlayerState]
 	cp PLAYER_BIKE
 	jr z, .play
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 .play
 	push de
 	ld de, MUSIC_NONE
@@ -495,27 +495,26 @@ SpecialMapMusic:: ; 3d62
 	ret
 ; 3d97
 
-GetMapMusic:: ; 3d97
+GetMapMusic_MaybeSpecial:: ; 3d97
 	call SpecialMapMusic
 	ret c
-	call GetMapHeaderMusic
+	call GetMapMusic
 	ret
 ; 3d9f
 
-Function3d9f:: ; 3d9f
+Unreferenced_Function3d9f:: ; 3d9f
 ; Places a BCD number at the
 ; upper center of the screen.
-; Unreferenced.
-	ld a, 4 * 8
-	ld [Sprites + 38 * 4], a
-	ld [Sprites + 39 * 4], a
-	ld a, 10 * 8
-	ld [Sprites + 38 * 4 + 1], a
-	ld a, 11 * 8
-	ld [Sprites + 39 * 4 + 1], a
+	ld a, 4 * TILE_WIDTH
+	ld [Sprite39YCoord], a
+	ld [Sprite40YCoord], a
+	ld a, 10 * TILE_WIDTH
+	ld [Sprite39XCoord], a
+	ld a, 11 * TILE_WIDTH
+	ld [Sprite40XCoord], a
 	xor a
-	ld [Sprites + 38 * 4 + 3], a
-	ld [Sprites + 39 * 4 + 3], a
+	ld [Sprite39Attributes], a
+	ld [Sprite40Attributes], a
 	ld a, [wc296]
 	cp 100
 	jr nc, .max
@@ -525,17 +524,17 @@ Function3d9f:: ; 3d9f
 	swap a
 	and $f
 	add "0"
-	ld [Sprites + 38 * 4 + 2], a
+	ld [Sprite39TileID], a
 	ld a, b
 	and $f
 	add "0"
-	ld [Sprites + 39 * 4 + 2], a
+	ld [Sprite40TileID], a
 	ret
 
 .max
 	ld a, "9"
-	ld [Sprites + 38 * 4 + 2], a
-	ld [Sprites + 39 * 4 + 2], a
+	ld [Sprite39TileID], a
+	ld [Sprite40TileID], a
 	ret
 ; 3dde
 

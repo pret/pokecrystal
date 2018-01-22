@@ -12,13 +12,13 @@ const_value set 2
 	const GOLDENRODGAMECORNER_POKEFAN_M2
 	const GOLDENRODGAMECORNER_POKEFAN_M3
 
-GoldenrodGameCorner_MapScriptHeader:
+GoldenrodGameCorner_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Callback
+	callback MAPCALLBACK_OBJECTS, .Callback
 
 .Callback:
 	checkevent EVENT_BEAT_ELITE_FOUR
@@ -64,15 +64,15 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 	loadmenudata GoldenrodGameCornerTMVendorMenuData
 	verticalmenu
 	closewindow
-	if_equal $1, .Thunder
-	if_equal $2, .Blizzard
-	if_equal $3, .FireBlast
+	if_equal 1, .Thunder
+	if_equal 2, .Blizzard
+	if_equal 3, .FireBlast
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
 	checkcoins 5500
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_THUNDER, $0
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	itemtotext TM_THUNDER, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_THUNDER
@@ -82,8 +82,8 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 
 .Blizzard:
 	checkcoins 5500
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_BLIZZARD, $0
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	itemtotext TM_BLIZZARD, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_BLIZZARD
@@ -93,8 +93,8 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 
 .FireBlast:
 	checkcoins 5500
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
-	itemtotext TM_FIRE_BLAST, $0
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	itemtotext TM_FIRE_BLAST, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	giveitem TM_FIRE_BLAST
@@ -138,22 +138,19 @@ GoldenrodGameCornerPrizeVendor_NoCoinCaseScript:
 	closetext
 	end
 
-
 GoldenrodGameCornerTMVendorMenuData:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 15 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 15, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "TM25    5500@"
 	db "TM14    5500@"
 	db "TM38    5500@"
 	db "CANCEL@"
-
 
 GoldenrodGameCornerPrizeMonVendorScript:
 	faceplayer
@@ -168,17 +165,17 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	loadmenudata .MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .abra
-	if_equal $2, .cubone
-	if_equal $3, .wobbuffet
+	if_equal 1, .abra
+	if_equal 2, .cubone
+	if_equal 3, .wobbuffet
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .abra
 	checkcoins 100
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem ABRA, $0
+	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	pokenamemem ABRA, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
@@ -193,10 +190,10 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 .cubone
 	checkcoins 800
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem CUBONE, $0
+	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	pokenamemem CUBONE, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
@@ -211,10 +208,10 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 .wobbuffet
 	checkcoins 1500
-	if_equal $2, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
-	pokenamemem WOBBUFFET, $0
+	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	pokenamemem WOBBUFFET, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 	waitsfx
@@ -227,22 +224,19 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	takecoins 1500
 	jump .loop
 
-
 .MenuDataHeader:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 17 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 17, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "ABRA        100@"
 	db "CUBONE      800@"
 	db "WOBBUFFET  1500@"
 	db "CANCEL@"
-
 
 GoldenrodGameCornerPharmacistScript:
 	faceplayer
@@ -301,21 +295,21 @@ GoldenrodGameCornerLeftTheirDrinkScript:
 GoldenrodGameCornerSlotsMachineScript:
 	random 6
 	if_equal 0, GoldenrodGameCornerLuckySlotsMachineScript
-	refreshscreen $0
+	refreshscreen
 	writebyte FALSE
 	special Special_SlotMachine
 	closetext
 	end
 
 GoldenrodGameCornerLuckySlotsMachineScript:
-	refreshscreen $0
+	refreshscreen
 	writebyte TRUE
 	special Special_SlotMachine
 	closetext
 	end
 
 GoldenrodGameCornerCardFlipMachineScript:
-	refreshscreen $0
+	refreshscreen
 	special Special_CardFlip
 	closetext
 	end
@@ -442,7 +436,7 @@ GoldenrodGameCornerLeftTheirDrinkText:
 	para "It smells sweet."
 	done
 
-GoldenrodGameCorner_MapEventHeader:
+GoldenrodGameCorner_MapEvents:
 	; filler
 	db 0, 0
 

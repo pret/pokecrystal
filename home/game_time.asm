@@ -16,7 +16,7 @@ GameTimer:: ; 209e
 
 	ld a, [rSVBK]
 	push af
-	ld a, 1
+	ld a, BANK(GameTime)
 	ld [rSVBK], a
 
 	call UpdateGameTimer

@@ -12,7 +12,7 @@ const_value set 2
 	const ROUTE36NATIONALPARKGATE_YOUNGSTER7
 	const ROUTE36NATIONALPARKGATE_OFFICER2
 
-Route36NationalParkGate_MapScriptHeader:
+Route36NationalParkGate_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -21,8 +21,8 @@ Route36NationalParkGate_MapScriptHeader:
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_NEWMAP, .CheckIfContestRunning
-	dbw MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
+	callback MAPCALLBACK_NEWMAP, .CheckIfContestRunning
+	callback MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
 
 .DummyScene0:
 	end
@@ -37,11 +37,11 @@ Route36NationalParkGate_MapScriptHeader:
 .CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
-	setscene $0
+	setscene 0
 	return
 
 .BugContestIsRunning:
-	setscene $2
+	setscene 2
 	return
 
 .CheckIfContestAvailable:
@@ -67,8 +67,8 @@ Route36NationalParkGate_MapScriptHeader:
 	spriteface PLAYER, UP
 	opentext
 	checkcode VAR_CONTESTMINUTES
-	addvar $1
-	RAM2MEM $0
+	addvar 1
+	vartomem MEM_BUFFER_0
 	writetext UnknownText_0x6b284
 	yesorno
 	iffalse .GoBackToContest
@@ -76,7 +76,7 @@ Route36NationalParkGate_MapScriptHeader:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	scall .CopyContestants
 	disappear ROUTE36NATIONALPARKGATE_OFFICER1
 	appear ROUTE36NATIONALPARKGATE_OFFICER2
@@ -91,9 +91,9 @@ Route36NationalParkGate_MapScriptHeader:
 	closetext
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	waitsfx
-	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, 33, 18
 	end
 
 .CopyContestants:
@@ -155,8 +155,8 @@ Route36OfficerScriptContest:
 	yesorno
 	iffalse .DecidedNotToJoinContest
 	checkcode VAR_PARTYCOUNT
-	if_greater_than $1, .LeaveMonsWithOfficer
-	special ContestDropOffMons
+	if_greater_than 1, .LeaveMonsWithOfficer
+	special Special_ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 .ResumeStartingContest:
 	setflag ENGINE_BUG_CONTEST_TIMER
@@ -174,24 +174,24 @@ Route36OfficerScriptContest:
 	special Special_GiveParkBalls
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	waitsfx
 	special Special_SelectRandomBugContestContestants
-	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, $21, $12
+	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, 33, 18
 	end
 
 .LeaveMonsWithOfficer:
 	checkcode VAR_PARTYCOUNT
-	if_less_than $6, .ContinueLeavingMons
+	if_less_than PARTY_LENGTH, .ContinueLeavingMons
 	checkcode VAR_BOXSPACE
-	if_equal $0, .BoxFull
+	if_equal 0, .BoxFull
 .ContinueLeavingMons:
-	special CheckFirstMonIsEgg
-	if_equal $1, .FirstMonIsEgg
+	special Special_CheckFirstMonIsEgg
+	if_equal TRUE, .FirstMonIsEgg
 	writetext UnknownText_0x6afb0
 	yesorno
 	iffalse .RefusedToLeaveMons
-	special ContestDropOffMons
+	special Special_ContestDropOffMons
 	iftrue .FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6b021
@@ -624,7 +624,7 @@ UnknownText_0x6b209:
 UnknownText_0x6b284:
 	text "You still have @"
 	text_from_ram StringBuffer3
-	text ""
+	text_start
 	line "minute(s) left."
 
 	para "Do you want to"
@@ -799,7 +799,6 @@ UnknownText_0x6b7af:
 ; This text is unused and unreferenced in the final game.
 ; The tree Pokémon is Sudowoodo.
 ; The Silph Scope 2 was later reworked into the Squirtbottle.
-
 UnusedSudowoodoText:
 	text "I hear there's a"
 	line "#MON that looks"
@@ -850,7 +849,7 @@ UnknownText_0x6b97f:
 	cont "for you."
 	done
 
-Route36NationalParkGate_MapEventHeader:
+Route36NationalParkGate_MapEvents:
 	; filler
 	db 0, 0
 

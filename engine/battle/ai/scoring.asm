@@ -68,7 +68,7 @@ AI_Basic: ; 38591
 	db EFFECT_TOXIC
 	db EFFECT_POISON
 	db EFFECT_PARALYZE
-	db $ff
+	db -1 ; end
 ; 385e0
 
 
@@ -400,7 +400,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_SOLARBEAM,        AI_Smart_Solarbeam
 	dbw EFFECT_THUNDER,          AI_Smart_Thunder
 	dbw EFFECT_FLY,              AI_Smart_Fly
-	db $ff
+	db -1 ; end
 ; 387e3
 
 
@@ -1553,7 +1553,7 @@ AI_Smart_Encore: ; 38c3b
 	db AEROBLAST
 	db COTTON_SPORE
 	db POWDER_SNOW
-	db $ff
+	db -1 ; end
 ; 38ca4
 
 
@@ -2214,7 +2214,7 @@ AI_Smart_Sandstorm: ; 38f7a
 	db ROCK
 	db GROUND
 	db STEEL
-	db $ff
+	db -1 ; end
 ; 38fac
 
 
@@ -2533,7 +2533,7 @@ RainDanceMoves: ; 390e7
 	db CRABHAMMER
 	db OCTAZOOKA
 	db WHIRLPOOL
-	db $ff
+	db -1 ; end
 ; 390f3
 
 
@@ -2622,7 +2622,7 @@ SunnyDayMoves: ; 39134
 	db SACRED_FIRE
 	db MORNING_SUN
 	db SYNTHESIS
-	db $ff
+	db -1 ; end
 ; 3913d
 
 
@@ -3125,7 +3125,7 @@ UsefulMoves: ; 39301
 	db FIRE_BLAST
 	db SOFTBOILED
 	db SUPER_FANG
-	db $ff
+	db -1 ; end
 ; 39315
 
 
@@ -3209,7 +3209,7 @@ AI_Opportunist: ; 39315
 	db CONVERSION
 	db SUBSTITUTE
 	db FLAME_WHEEL
-	db $ff
+	db -1 ; end
 ; 39369
 
 
@@ -3324,7 +3324,7 @@ AI_Aggressive: ; 39369
 	db EFFECT_RAMPAGE
 	db EFFECT_MULTI_HIT
 	db EFFECT_DOUBLE_HIT
-	db $ff
+	db -1 ; end
 ; 393e7
 
 
@@ -3350,7 +3350,7 @@ AIDamageCalc: ; 393e7
 	db EFFECT_STATIC_DAMAGE
 	db EFFECT_LEVEL_DAMAGE
 	db EFFECT_PSYWAVE
-	db $ff
+	db -1 ; end
 ; 39418
 
 
@@ -3406,7 +3406,7 @@ AI_Cautious: ; 39418
 	db CONVERSION
 	db SUBSTITUTE
 	db SPIKES
-	db $ff
+	db -1 ; end
 ; 39453
 
 
@@ -3544,7 +3544,7 @@ endr
 .RiskyMoves:
 	db EFFECT_SELFDESTRUCT
 	db EFFECT_OHKO
-	db $ff
+	db -1 ; end
 ; 39502
 
 

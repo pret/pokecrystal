@@ -5,28 +5,27 @@ const_value set 2
 	const ICEPATHB1F_BOULDER4
 	const ICEPATHB1F_POKE_BALL
 
-IcePathB1F_MapScriptHeader:
+IcePathB1F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
+	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
 
 .SetUpStoneTable:
 	writecmdqueue .CommandQueue
 	return
 
 .CommandQueue:
-	dbw CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
-	dw 0 ; filler
+	cmdqueue CMDQUEUE_STONETABLE, .StoneTable ; check if any stones are sitting on a warp
 
 .StoneTable:
 	stonetable 3, ICEPATHB1F_BOULDER1, .Boulder1
 	stonetable 4, ICEPATHB1F_BOULDER2, .Boulder2
 	stonetable 5, ICEPATHB1F_BOULDER3, .Boulder3
 	stonetable 6, ICEPATHB1F_BOULDER4, .Boulder4
-	db -1
+	db -1 ; end
 
 .Boulder1:
 	disappear ICEPATHB1F_BOULDER1
@@ -62,7 +61,6 @@ IcePathB1F_MapScriptHeader:
 	earthquake 80
 	end
 
-
 IcePathB1FBoulder:
 	jumpstd strengthboulder
 
@@ -70,16 +68,14 @@ IcePathB1FIron:
 	itemball IRON
 
 IcePathB1FHiddenMaxPotion:
-	dwb EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
-
+	hiddenitem EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
 IcePathBoulderFellThroughText:
 	text "The boulder fell"
 	line "through."
 	done
 
-
-IcePathB1F_MapEventHeader:
+IcePathB1F_MapEvents:
 	; filler
 	db 0, 0
 

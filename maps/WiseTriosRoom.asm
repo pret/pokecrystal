@@ -6,7 +6,7 @@ const_value set 2
 	const WISETRIOSROOM_SAGE5
 	const WISETRIOSROOM_SAGE6
 
-WiseTriosRoom_MapScriptHeader:
+WiseTriosRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -14,7 +14,7 @@ WiseTriosRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .WiseTrioCallback
+	callback MAPCALLBACK_OBJECTS, .WiseTrioCallback
 
 .DummyScene0:
 	end
@@ -105,7 +105,7 @@ TrainerSageKoji:
 	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
 	spriteface WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	setscene $1
+	setscene 1
 	end
 
 UnknownScript_0x9861b:
@@ -344,7 +344,7 @@ UnknownText_0x98db5:
 	line "you to the test."
 	done
 
-WiseTriosRoom_MapEventHeader:
+WiseTriosRoom_MapEvents:
 	; filler
 	db 0, 0
 

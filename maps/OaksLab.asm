@@ -4,7 +4,7 @@ const_value set 2
 	const OAKSLAB_SCIENTIST2
 	const OAKSLAB_SCIENTIST3
 
-OaksLab_MapScriptHeader:
+OaksLab_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -26,14 +26,14 @@ Oak:
 	setevent EVENT_TALKED_TO_OAK_IN_KANTO
 .CheckBadges:
 	checkcode VAR_BADGES
-	if_equal 16, .OpenMtSilver
-	if_equal  8, .Complain
+	if_equal NUM_BADGES, .OpenMtSilver
+	if_equal NUM_JOHTO_BADGES, .Complain
 	jump .AhGood
 
 .CheckPokedex:
 	writetext OakLabDexCheckText
 	waitbutton
-	special ProfOaksPCBoot
+	special Special_ProfOaksPCBoot
 	writetext OakLabGoodbyeText
 	waitbutton
 	closetext
@@ -256,7 +256,7 @@ OaksLabPCText:
 	line "TOWN 8-)"
 	done
 
-OaksLab_MapEventHeader:
+OaksLab_MapEvents:
 	; filler
 	db 0, 0
 

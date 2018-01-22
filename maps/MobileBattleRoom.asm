@@ -1,4 +1,4 @@
-MobileBattleRoom_MapScriptHeader:
+MobileBattleRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .InitializeMobileBattleRoom
@@ -15,15 +15,15 @@ MobileBattleRoom_MapScriptHeader:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	setscene $1
-	setmapscene POKECENTER_2F, $5
+	setscene 1
+	setmapscene POKECENTER_2F, 5
 	end
 
 MapMobileBattleRoomSignpost0Script:
-	refreshscreen $0
-	special Function1037c2
+	refreshscreen
+	special Special_Function1037c2
 	if_equal $1, .one
-	special Function1037eb
+	special Special_Function1037eb
 	iffalse .false
 	if_equal $1, .one_
 	if_equal $2, .two_
@@ -33,24 +33,24 @@ MapMobileBattleRoomSignpost0Script:
 	writetext MobileBattleRoom_HealText
 	pause 20
 	closetext
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	playmusic MUSIC_HEAL
-	special LoadMapPalettes
+	special Special_LoadMapPalettes
 	pause 60
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	special RestartMapMusic
-	refreshscreen $0
+	refreshscreen
 .two_
-	special TrainerRankings_Healings
+	special Special_StubbedTrainerRankings_Healings
 	special HealParty
-	special Function10383c
+	special Special_Function10383c
 	iftrue .false
 .one
-	special Function10387b
+	special Special_Function10387b
 	writetext MobileBattleRoom_EstablishingCommsText
 	waitbutton
 	reloadmappart
-	special Function101225
+	special Special_Function101225
 .false
 	closetext
 	end
@@ -66,7 +66,7 @@ MobileBattleRoom_HealText:
 	cont "before battle."
 	done
 
-MobileBattleRoom_MapEventHeader:
+MobileBattleRoom_MapEvents:
 	; filler
 	db 0, 0
 

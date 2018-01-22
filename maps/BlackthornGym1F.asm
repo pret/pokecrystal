@@ -5,26 +5,26 @@ const_value set 2
 	const BLACKTHORNGYM1F_COOLTRAINER_F
 	const BLACKTHORNGYM1F_GYM_GUY
 
-BlackthornGym1F_MapScriptHeader:
+BlackthornGym1F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .Boulders
+	callback MAPCALLBACK_TILES, .Boulders
 
 .Boulders:
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_1
 	iffalse .skip1
-	changeblock $8, $2, $3b
+	changeblock 8, 2, $3b ; fallen boulder 2
 .skip1
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_2
 	iffalse .skip2
-	changeblock $2, $4, $3a
+	changeblock 2, 4, $3a ; fallen boulder 1
 .skip2
 	checkevent EVENT_BOULDER_IN_BLACKTHORN_GYM_3
 	iffalse .skip3
-	changeblock $8, $6, $3b
+	changeblock 8, 6, $3b ; fallen boulder 2
 .skip3
 	return
 
@@ -39,7 +39,7 @@ BlackthornGymClairScript:
 	waitbutton
 	closetext
 	winlosstext ClairWinText, 0
-	loadtrainer CLAIR, 1
+	loadtrainer CLAIR, CLAIR1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CLAIR
@@ -70,7 +70,7 @@ BlackthornGymClairScript:
 	buttonsound
 	giveitem TM_DRAGONBREATH
 	iffalse .BagFull
-	itemtotext TM_DRAGONBREATH, $0
+	itemtotext TM_DRAGONBREATH, MEM_BUFFER_0
 	writetext BlackthornGymText_ReceivedTM24
 	playsound SFX_ITEM
 	waitsfx
@@ -146,7 +146,7 @@ BlackthornGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext CLAIR, 1, $1
+	trainertotext CLAIR, CLAIR1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 ClairIntroText:
@@ -386,7 +386,7 @@ BlackthornGymGuyWinText:
 	cont "#MON CHAMPION!"
 	done
 
-BlackthornGym1F_MapEventHeader:
+BlackthornGym1F_MapEvents:
 	; filler
 	db 0, 0
 

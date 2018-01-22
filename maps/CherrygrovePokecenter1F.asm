@@ -4,7 +4,7 @@ const_value set 2
 	const CHERRYGROVEPOKECENTER1F_GENTLEMAN
 	const CHERRYGROVEPOKECENTER1F_TEACHER
 
-CherrygrovePokecenter1F_MapScriptHeader:
+CherrygrovePokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -68,7 +68,7 @@ UnknownText_0x196a46:
 	line "there already!"
 	done
 
-CherrygrovePokecenter1F_MapEventHeader:
+CherrygrovePokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 
