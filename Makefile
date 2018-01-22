@@ -9,12 +9,7 @@ RGBFIX := rgbfix
 RGBGFX := rgbgfx
 RGBLINK := rgblink
 
-.SUFFIXES:
-.PHONY: all clean tools compare crystal crystal11
-.SECONDEXPANSION:
-.PRECIOUS:
-.SECONDARY:
-
+roms := pokecrystal.gbc pokecrystal11.gbc
 
 crystal_obj := \
 audio.o \
@@ -35,7 +30,13 @@ lib/mobile/main.o
 crystal11_obj := $(crystal_obj:.o=11.o)
 
 
-roms := pokecrystal.gbc pokecrystal11.gbc
+### Build targets
+
+.SUFFIXES:
+.PHONY: all crystal crystal11 clean compare tools
+.SECONDEXPANSION:
+.PRECIOUS:
+.SECONDARY:
 
 all: crystal
 crystal: pokecrystal.gbc
@@ -221,6 +222,8 @@ gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
 
 gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 
+
+### Catch-all graphics rules
 
 %.bin: ;
 %.blk: ;
