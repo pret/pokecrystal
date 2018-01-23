@@ -578,7 +578,7 @@ FlyFunction: ; ca3b
 .outdoors
 	xor a
 	ld [hMapAnims], a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearSprites
 	farcall _FlyMap
 	ld a, e

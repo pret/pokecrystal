@@ -1,8 +1,8 @@
 Special_BuenasPassword: ; 8af6b
 	xor a
 	ld [wWhichIndexSet], a
-	ld hl, .MenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, .MenuHeader
+	call CopyMenuHeader
 	ld a, [wBuenasPassword]
 	ld c, a
 	farcall GetBuenasPassword
@@ -28,16 +28,16 @@ Special_BuenasPassword: ; 8af6b
 	ret
 ; 8afa9
 
-.MenuDataHeader: ; 0x8afa9
+.MenuHeader: ; 0x8afa9
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, 7
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 0x8afb1
 
 	db 0
 
-.MenuData2: ; 0x8afb2
+.MenuData: ; 0x8afb2
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 0 ; items
 	dw .PasswordIndices
@@ -187,8 +187,8 @@ Special_BuenaPrize: ; 8afd4
 ; 0x8b090
 
 Buena_DisplayBlueCardBalance: ; 8b090
-	ld hl, BlueCardBalanceMenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, BlueCardBalanceMenuHeader
+	call LoadMenuHeader
 	ret
 ; 8b097
 
@@ -202,8 +202,8 @@ PrintBlueCardBalance: ; 8b097
 	push de
 	xor a
 	ld [hBGMapMode], a
-	ld hl, BlueCardBalanceMenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, BlueCardBalanceMenuHeader
+	call CopyMenuHeader
 	call MenuBox
 	call UpdateSprites
 	call MenuBoxCoord2Tile
@@ -227,25 +227,25 @@ PrintBlueCardBalance: ; 8b097
 	db "Points@"
 ; 8b0d1
 
-BlueCardBalanceMenuDataHeader: ; 0x8b0d1
+BlueCardBalanceMenuHeader: ; 0x8b0d1
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 11, 11, 13
 ; 8b0d6
 
 Buena_PlacePrizeMenuBox: ; 8b0d6
-	ld hl, .menudataheader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	ret
 ; 8b0dd
 
-.menudataheader ; 0x8b0dd
+.MenuHeader ; 0x8b0dd
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 17, TEXTBOX_Y - 1
 ; 8b0e2
 
 Buena_PrizeMenu: ; 8b0e2
-	ld hl, .MenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, .MenuHeader
+	call CopyMenuHeader
 	ld a, [MenuSelection]
 	ld [wMenuCursorBuffer], a
 	xor a
@@ -270,16 +270,16 @@ Buena_PrizeMenu: ; 8b0e2
 	ret
 ; 8b113
 
-.MenuDataHeader: ; 0x8b113
+.MenuHeader: ; 0x8b113
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 1, 16, 9
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 0x8b11b
 
 	db 0
 
-.MenuData2: ; 0x8b11c
+.MenuData: ; 0x8b11c
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 13 ; rows, columns
 	db 1 ; spacing

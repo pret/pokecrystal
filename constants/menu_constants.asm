@@ -1,4 +1,4 @@
-; MenuDataHeader flags
+; MenuHeader flags
 	const_def
 	shift_const MENU_RESTORE_TILES ; Will be set if MENU_BACKUP_TILES(_2) is set.
 	shift_const MENU_UNUSED_1
@@ -9,7 +9,7 @@
 	shift_const MENU_BACKUP_TILES
 	shift_const MENU_BACKUP_TILES_2
 
-; VerticalMenu/DoNthMenu/SetUpMenu/_2DMenu MenuDataHeader2 flags
+; VerticalMenu/DoNthMenu/SetUpMenu/_2DMenu MenuData flags
 ; Per flag the comment specifies which menus actually implement it
 	const_def
 	shift_const STATICMENU_DISABLE_B ; VerticalMenu/_2DMenu
@@ -21,7 +21,7 @@
 	shift_const STATICMENU_NO_TOP_SPACING ; VerticalMenu/_2DMenu
 	shift_const STATICMENU_CURSOR ; VerticalMenu/_2DMenu
 
-; ScrollingMenu MenuDataHeader2 flags
+; ScrollingMenu MenuData flags
 	const_def
 	shift_const SCROLLINGMENU_CALL_FUNCTION1_CANCEL
 	shift_const SCROLLINGMENU_CALL_FUNCTION3_NO_SWITCH

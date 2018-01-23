@@ -14,6 +14,6 @@ _ReturnToBattle_UseBall: ; 2715c
 	farcall _LoadBattleFontsHPBar
 	call GetMemSGBLayout
 	call CloseWindow
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call WaitBGMap
 	jp SetPalettes

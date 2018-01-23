@@ -267,7 +267,7 @@ NUM_FRUIT_TREES EQU const_value +- 1
 NUM_UNOWN_PUZZLES EQU const_value
 
 ; Special_DisplayUnownWords writebyte arguments
-; UnownWalls and MenuDataHeaders_UnownWalls indexes (see data/unown_walls.asm)
+; UnownWalls and MenuHeaders_UnownWalls indexes (see data/unown_walls.asm)
 	const_def
 	const UNOWNWORDS_ESCAPE ; 0
 	const UNOWNWORDS_LIGHT  ; 1

@@ -19,7 +19,7 @@ Function16d42e: ; 16d42e
 ; 16d43b
 
 Function16d43b: ; 16d43b
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -169,7 +169,7 @@ LinkTextbox: ; 16d6ca
 ; 16d6ce
 
 Function16d6ce: ; 16d6ce
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call Function16d6e1
 	farcall WaitLinkTransfer
 	call Call_ExitMenu

@@ -22,7 +22,7 @@ _BillsPC: ; e3fd
 .LogIn: ; e41c (3:641c)
 	xor a
 	ld [hBGMapMode], a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearPCItemScreen
 	ld hl, Options
 	ld a, [hl]
@@ -45,8 +45,8 @@ _BillsPC: ; e3fd
 	ret
 
 .UseBillsPC: ; e443 (3:6443)
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	ld a, $1
 .loop
 	ld [wMenuCursorBuffer], a
@@ -68,13 +68,13 @@ _BillsPC: ; e3fd
 	call CloseWindow
 	ret
 
-.MenuDataHeader: ; 0xe46f
+.MenuHeader: ; 0xe46f
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2: ; 0xe477
+.MenuData: ; 0xe477
 	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw .items
@@ -109,7 +109,7 @@ BillsPC_SeeYa: ; e4cb
 	ret
 
 BillsPC_MovePKMNMenu: ; e4cd
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall IsAnyMonHoldingMail
 	jr nc, .no_mail
 	ld hl, .Text_MonHoldingMail
@@ -134,7 +134,7 @@ BillsPC_MovePKMNMenu: ; e4cd
 	db "@"
 
 BillsPC_DepositMenu: ; e4fe (3:64fe)
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall _DepositPKMN
 	call ReturnToMapFromSubmenu
 	call ClearPCItemScreen
@@ -203,7 +203,7 @@ CheckCurPartyMonFainted: ; e538
 	ret
 
 BillsPC_WithdrawMenu: ; e559 (3:6559)
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall _WithdrawPKMN
 	call ReturnToMapFromSubmenu
 	call ClearPCItemScreen

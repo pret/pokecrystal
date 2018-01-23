@@ -165,7 +165,7 @@ Defined in [macros/scripts/events.asm](/macros/scripts/events.asm) and [engine/s
 
 ## `$4E`: `yesorno`
 
-## `$4F`: <code>loadmenudata <i>data_pointer</i></code>
+## `$4F`: <code>loadmenuheader <i>menu_header</i></code>
 
 ## `$50`: `closewindow`
 

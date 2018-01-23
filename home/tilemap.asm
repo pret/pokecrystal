@@ -79,17 +79,17 @@ GetMenuBoxDims:: ; 0x1c53
 	ret
 ; 0x1c66
 
-CopyMenuData2:: ; 1c66
+CopyMenuData:: ; 1c66
 	push hl
 	push de
 	push bc
 	push af
-	ld hl, wMenuData2Pointer
+	ld hl, wMenuDataPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wMenuData2Flags
-	ld bc, wMenuData2End - wMenuData2Flags
+	ld de, wMenuDataFlags
+	ld bc, wMenuDataEnd - wMenuDataFlags
 	call CopyBytes
 	pop af
 	pop bc
@@ -111,8 +111,8 @@ GetWindowStackTop:: ; 1c7e
 ; 1c89
 
 PlaceVerticalMenuItems:: ; 1c89
-	call CopyMenuData2
-	ld hl, wMenuData2Pointer
+	call CopyMenuData
+	ld hl, wMenuDataPointer
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -132,7 +132,7 @@ PlaceVerticalMenuItems:: ; 1c89
 	dec b
 	jr nz, .loop
 
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 4, a
 	ret z
 
@@ -161,14 +161,14 @@ GetMenuTextStartCoord:: ; 1cc6
 	ld c, a
 	inc c
 ; bit 6: if not set, leave extra room on top
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 6, a
 	jr nz, .bit_6_set
 	inc b
 
 .bit_6_set
 ; bit 7: if set, leave extra room on the left
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 7, a
 	jr z, .bit_7_clear
 	inc c

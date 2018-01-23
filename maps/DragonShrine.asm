@@ -30,7 +30,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
 	writetext DragonShrineQuestion1Text
 	buttonsound
-	loadmenudata DragonShrineQuestion1_MenuDataHeader
+	loadmenuheader DragonShrineQuestion1_MenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .RightAnswer
@@ -42,7 +42,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
 	writetext DragonShrineQuestion2Text
 	buttonsound
-	loadmenudata DragonShrineQuestion2_MenuDataHeader
+	loadmenuheader DragonShrineQuestion2_MenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .RightAnswer
@@ -52,7 +52,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_3
 	writetext DragonShrineQuestion3Text
 	buttonsound
-	loadmenudata DragonShrineQuestion3_MenuDataHeader
+	loadmenuheader DragonShrineQuestion3_MenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .WrongAnswer
@@ -62,7 +62,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_4
 	writetext DragonShrineQuestion4Text
 	buttonsound
-	loadmenudata DragonShrineQuestion4_MenuDataHeader
+	loadmenuheader DragonShrineQuestion4_MenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .RightAnswer
@@ -72,7 +72,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_5
 	writetext DragonShrineQuestion5Text
 	buttonsound
-	loadmenudata DragonShrineQuestion5_MenuDataHeader
+	loadmenuheader DragonShrineQuestion5_MenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .WrongAnswer
@@ -265,65 +265,65 @@ DragonShrineElder3Script:
 	closetext
 	end
 
-DragonShrineQuestion1_MenuDataHeader:
+DragonShrineQuestion1_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Pal@"
 	db "Underling@"
 	db "Friend@"
 
-DragonShrineQuestion2_MenuDataHeader:
+DragonShrineQuestion2_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Strategy@"
 	db "Raising@"
 	db "Cheating@"
 
-DragonShrineQuestion3_MenuDataHeader:
+DragonShrineQuestion3_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 5, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Weak person@"
 	db "Tough person@"
 	db "Anybody@"
 
-DragonShrineQuestion4_MenuDataHeader:
+DragonShrineQuestion4_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Love@"
 	db "Violence@"
 	db "Knowledge@"
 
-DragonShrineQuestion5_MenuDataHeader:
+DragonShrineQuestion5_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Tough@"

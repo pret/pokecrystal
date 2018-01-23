@@ -25,7 +25,7 @@ CeladonGameCornerPrizeRoomTMVendor:
 	writetext CeladonPrizeRoom_AskWhichPrizeText
 CeladonPrizeRoom_tmcounterloop:
 	special Special_DisplayCoinCaseBalance
-	loadmenudata CeladonPrizeRoom_TMMenuDataHeader
+	loadmenuheader CeladonPrizeRoom_TMMenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .doubleteam
@@ -102,13 +102,13 @@ CeladonPrizeRoom_NoCoinCase:
 	closetext
 	end
 
-CeladonPrizeRoom_TMMenuDataHeader:
+CeladonPrizeRoom_TMMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 15, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "TM32    1500@"
@@ -126,7 +126,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 .loop
 	writetext CeladonPrizeRoom_AskWhichPrizeText
 	special Special_DisplayCoinCaseBalance
-	loadmenudata .MenuDataHeader
+	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .pikachu
@@ -188,13 +188,13 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	takecoins 8888
 	jump .loop
 
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 17, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "PIKACHU    2222@"

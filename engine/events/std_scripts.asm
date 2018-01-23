@@ -1811,7 +1811,7 @@ CoinVendor_IntroScript: ; 0xbcde0
 
 .loop ; 0xbcde4
 	special Special_DisplayMoneyAndCoinBalance
-	loadmenudata .MenuDataHeader
+	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .Buy50
@@ -1869,13 +1869,13 @@ CoinVendor_IntroScript: ; 0xbcde0
 ; 0xbce54
 
 
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 4, 15, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db " 50 :  ¥1000@"

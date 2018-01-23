@@ -808,8 +808,8 @@ Function8b79e: ; 8b79e
 
 Function8b7bd: ; 8b7bd
 	call Function8b855
-	ld hl, MenuDataHeader_0x8b867
-	call CopyMenuDataHeader
+	ld hl, MenuHeader_0x8b867
+	call CopyMenuHeader
 	ld a, [wd030]
 	ld [wMenuCursorBuffer], a
 	ld a, [wd031]
@@ -871,7 +871,7 @@ Function8b7bd: ; 8b7bd
 
 Function8b832: ; 8b832
 	ld a, [wMenuScrollPosition]
-	ld hl, wMenuData2Items
+	ld hl, wMenuDataItems
 	sub [hl]
 	jr nc, Function8b84b
 	xor a
@@ -880,7 +880,7 @@ Function8b832: ; 8b832
 
 Function8b83e: ; 8b83e
 	ld a, [wMenuScrollPosition]
-	ld hl, wMenuData2Items
+	ld hl, wMenuDataItems
 	add [hl]
 	cp $24
 	jr c, Function8b84b
@@ -909,16 +909,16 @@ Function8b855: ; 8b855
 	ret
 ; 8b867
 
-MenuDataHeader_0x8b867: ; 0x8b867
+MenuHeader_0x8b867: ; 0x8b867
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 3, 18, 13
-	dw MenuData2_0x8b870
+	dw MenuData_0x8b870
 	db 1 ; default option
 ; 0x8b86f
 
 	db 0
 
-MenuData2_0x8b870: ; 0x8b870
+MenuData_0x8b870: ; 0x8b870
 	db SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT ; flags
 	db 5 ; items
 	db 3, 1
@@ -1035,22 +1035,22 @@ Function8b94a: ; 8b94a
 
 
 Function8b960: ; 8b960 (22:7960)
-	ld hl, MenuDataHeader_0x8b9ac
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x8b9ac
+	call LoadMenuHeader
 	call Function8b9e9
 	jr c, .asm_8b97a
 	hlcoord 11, 0
 	ld b, $6
 	ld c, $7
 	call Function8b703
-	ld hl, MenuDataHeader_0x8b9b1
+	ld hl, MenuHeader_0x8b9b1
 	jr .asm_8b987
 .asm_8b97a
 	hlcoord 11, 0
 	ld b, $a
 	ld c, $7
 	call Function8b703
-	ld hl, MenuDataHeader_0x8b9ca
+	ld hl, MenuHeader_0x8b9ca
 .asm_8b987
 	ld a, $1
 	call Function89d5e
@@ -1081,18 +1081,18 @@ Function8b9ab: ; 8b9ab
 	ret
 ; 8b9ac
 
-MenuDataHeader_0x8b9ac: ; 0x8b9ac
+MenuHeader_0x8b9ac: ; 0x8b9ac
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
-MenuDataHeader_0x8b9b1: ; 0x8b9b1
+MenuHeader_0x8b9b1: ; 0x8b9b1
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, 7
-	dw MenuData2_0x8b9b9
+	dw MenuData_0x8b9b9
 	db 1 ; default option
 ; 0x8b9b9
 
-MenuData2_0x8b9b9: ; 0x8b9b9
+MenuData_0x8b9b9: ; 0x8b9b9
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "へんしゅう@" ; EDIT
@@ -1100,14 +1100,14 @@ MenuData2_0x8b9b9: ; 0x8b9b9
 	db "やめる@"     ; QUIT
 ; 0x8b9ca
 
-MenuDataHeader_0x8b9ca: ; 0x8b9ca
+MenuHeader_0x8b9ca: ; 0x8b9ca
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw MenuData2_0x8b9d2
+	dw MenuData_0x8b9d2
 	db 1 ; default option
 ; 0x8b9d2
 
-MenuData2_0x8b9d2: ; 0x8b9d2
+MenuData_0x8b9d2: ; 0x8b9d2
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 5 ; items
 	db "みる@"       ; VIEW

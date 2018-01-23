@@ -22,12 +22,12 @@ StartMenu:: ; 125cd
 
 	ld hl, wStatusFlags2
 	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
-	ld hl, .MenuDataHeader
+	ld hl, .MenuHeader
 	jr z, .GotMenuData
-	ld hl, .ContestMenuDataHeader
+	ld hl, .ContestMenuHeader
 .GotMenuData:
 
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call .SetUpMenuItems
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
@@ -164,13 +164,13 @@ StartMenu:: ; 125cd
 ; 126d3
 
 
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default selection
 
-.ContestMenuDataHeader:
+.ContestMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 2, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
@@ -289,7 +289,7 @@ endr
 .GetMenuAccountTextPointer: ; 12819
 	ld e, a
 	ld d, 0
-	ld hl, wMenuData2PointerTableAddr
+	ld hl, wMenuDataPointerTableAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -813,7 +813,7 @@ GiveTakePartyMonItem: ; 12b60
 	jr z, .cancel
 
 	ld hl, GiveTakeItemMenuData
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	call ExitMenu
 	jr c, .cancel
@@ -827,7 +827,7 @@ GiveTakePartyMonItem: ; 12b60
 	cp 1
 	jr nz, .take
 
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearPalettes
 	call .GiveItem
 	call ClearPalettes
@@ -1121,8 +1121,8 @@ MonMailAction: ; 12d45
 	jr z, .read
 
 ; Show the READ/TAKE/QUIT menu.
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	call ExitMenu
 
@@ -1184,14 +1184,14 @@ MonMailAction: ; 12d45
 ; 12dc9
 
 
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 0x12dd1
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "READ@"
@@ -1238,7 +1238,7 @@ MonMailAction: ; 12d45
 
 
 OpenPartyStats: ; 12e00
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearSprites
 ; PartyMon
 	xor a

@@ -66,7 +66,7 @@ AcademyBlackboard:
 	opentext
 	writetext AcademyBlackboardText
 .Loop:
-	loadmenudata .BlackboardMenuData
+	loadmenuheader .BlackboardMenuHeader
 	_2dmenu
 	closewindow
 	if_equal 1, .Poison
@@ -102,13 +102,13 @@ AcademyBlackboard:
 	waitbutton
 	jump .Loop
 
-.BlackboardMenuData:
+.BlackboardMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 11, 8
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	dn 3, 2 ; rows, columns
 	db 5 ; spacing

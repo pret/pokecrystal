@@ -38,7 +38,7 @@ UnownWalls: ; 8aebc
 	unownwall "H", "O", "-", "O", "H"
 ; 8aed5
 
-MenuDataHeaders_UnownWalls: ; 0x8aed5
+MenuHeaders_UnownWalls: ; 0x8aed5
 ; UNOWNWORDS_ESCAPE
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 3, 4, 16, 9

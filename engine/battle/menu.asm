@@ -1,6 +1,6 @@
 LoadBattleMenu: ; 24ef2
-	ld hl, BattleMenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, BattleMenuHeader
+	call LoadMenuHeader
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call InterpretBattleMenu
@@ -12,14 +12,14 @@ LoadBattleMenu: ; 24ef2
 
 SafariBattleMenu: ; 24f0b
 ; untranslated
-	ld hl, MenuDataHeader_0x24f4e
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x24f4e
+	call LoadMenuHeader
 	jr Function24f19
 ; 24f13
 
 ContestBattleMenu: ; 24f13
-	ld hl, MenuDataHeader_0x24f89
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x24f89
+	call LoadMenuHeader
 ; 24f19
 
 Function24f19: ; 24f19
@@ -32,7 +32,7 @@ Function24f19: ; 24f19
 	ret
 ; 24f2c
 
-BattleMenuDataHeader: ; 24f2c
+BattleMenuHeader: ; 24f2c
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f34
@@ -54,7 +54,7 @@ Strings24f3d: ; 0x24f3d
 	db "RUN@"
 ; 24f4e
 
-MenuDataHeader_0x24f4e: ; 24f4e
+MenuHeader_0x24f4e: ; 24f4e
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f56
@@ -84,7 +84,7 @@ Function24f7c: ; 24f7c
 	ret
 ; 24f89
 
-MenuDataHeader_0x24f89: ; 24f89
+MenuHeader_0x24f89: ; 24f89
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 2, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24f91

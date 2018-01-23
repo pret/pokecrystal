@@ -19,7 +19,7 @@ Special_MoveDeletion:
 	jr z, .onlyonemove
 	ld hl, .AskWhichMoveText
 	call PrintText
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall ChooseMoveToDelete
 	push af
 	call ReturnToMapWithSpeechTextbox

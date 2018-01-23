@@ -1670,7 +1670,7 @@ LinkTrade: ; 28b87
 	ld hl, UnknownText_0x28eb8
 	bccoord 1, 14
 	call PlaceHLTextAtBC
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	hlcoord 10, 7
 	ld b, 3
 	ld c, 7

@@ -14,8 +14,8 @@ MainMenu: ; 49cdc
 	call MainMenu_GetWhichMenu
 	ld [wWhichIndexSet], a
 	call MainMenu_PrintCurrentTimeAndDay
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	call MainMenuJoypadLoop
 	call CloseWindow
 	jr c, .quit
@@ -29,14 +29,14 @@ MainMenu: ; 49cdc
 	ret
 ; 49d14
 
-.MenuDataHeader: ; 49d14
+.MenuHeader: ; 49d14
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 16, 7
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 49d1c
 
-.MenuData2: ; 49d1c
+.MenuData: ; 49d1c
 	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw MainMenuItems

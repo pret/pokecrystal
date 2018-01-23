@@ -898,8 +898,8 @@ Jumptable_100581: ; 100581
 ; 100585
 
 Function100585: ; 100585
-	ld hl, MenuDataHeader_1005b2
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1005b2
+	call LoadMenuHeader
 	ld a, 0
 	ld [wcd28], a
 	ld a, [wcd26]
@@ -923,14 +923,14 @@ Function100597: ; 100597
 	ret
 ; 1005b2
 
-MenuDataHeader_1005b2: ; 1005b2
+MenuHeader_1005b2: ; 1005b2
 	db MENU_BACKUP_TILES ; flags
 	db 6, 14
 	db 10, 19
-	dw MenuData2_1005ba
+	dw MenuData_1005ba
 	db 1 ; default option
 
-MenuData2_1005ba:
+MenuData_1005ba:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "はい@"
@@ -950,8 +950,8 @@ Jumptable_1005cb: ; 1005cb
 ; 1005cf
 
 Function1005cf: ; 1005cf
-	ld hl, MenuDataHeader_1005fc
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1005fc
+	call LoadMenuHeader
 	ld a, 0
 	ld [wcd28], a
 	ld a, [wcd26]
@@ -974,14 +974,14 @@ Function1005e1: ; 1005e1
 	ret
 ; 1005fc
 
-MenuDataHeader_1005fc: ; 1005fc
+MenuHeader_1005fc: ; 1005fc
 	db MENU_BACKUP_TILES ; flags
 	db 6, 14
 	db 10, 19
-	dw MenuData2_100604
+	dw MenuData_100604
 	db 1 ; default option
 
-MenuData2_100604: ; 100604
+MenuData_100604: ; 100604
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "かける@"
@@ -1800,12 +1800,12 @@ SECTION "bank40_2", ROMX
 Function100b12: ; 100b12
 	call Function100dd8
 	ret c
-	ld hl, BattleMenuDataHeader
-	ld a, BANK(BattleMenuDataHeader)
-	ld de, LoadMenuDataHeader
+	ld hl, BattleMenuHeader
+	ld a, BANK(BattleMenuHeader)
+	ld de, LoadMenuHeader
 	call FarCall_de
-	ld a, BANK(BattleMenuDataHeader)
-	ld [wMenuData2_2DMenuItemStringsBank], a
+	ld a, BANK(BattleMenuHeader)
+	ld [wMenuData_2DMenuItemStringsBank], a
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call Function100e72
@@ -1845,8 +1845,8 @@ Function100b45: ; 100b45
 ; 100b7a
 
 Function100b7a: ; 100b7a
-	ld hl, CopyMenuData2
-	ld a, [wMenuData2_2DMenuItemStringsBank]
+	ld hl, CopyMenuData
+	ld a, [wMenuData_2DMenuItemStringsBank]
 	rst FarCall
 	farcall Draw2DMenu
 	farcall MobileTextBorder
@@ -2103,28 +2103,28 @@ MobileBattleMonMenu: ; 100d22
 ; 100d67
 
 Function100d67: ; 100d67
-	ld hl, .MenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, .MenuHeader
+	call CopyMenuHeader
 	xor a
 	ld [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
 	call PlaceVerticalMenuItems
 	call WaitBGMap
-	call CopyMenuData2
+	call CopyMenuData
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	ret
 ; 100d88
 
-.MenuDataHeader: ; 100d88
+.MenuHeader: ; 100d88
 	db 0 ; flags
 	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2: ; 100d90
+.MenuData: ; 100d90
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
 	db "いれかえる@"  ; TRADE
@@ -4535,7 +4535,7 @@ Unknown_101d8d: ; 101d8d
 
 Function101d95: ; 101d95
 	call Function101ee2
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld e, $0e
 	call Function101ee4
 	ld hl, wcd29
@@ -6200,8 +6200,8 @@ Jumptable_10292f: ; 10292f
 ; 102933
 
 Function102933: ; 102933
-	ld hl, MenuDataHeader_1029bb
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1029bb
+	call LoadMenuHeader
 	call Function102e07
 	ld a, $32
 	ld [TextDelayFrames], a
@@ -6285,7 +6285,7 @@ Function1029af: ; 1029af
 	ret
 ; 1029bb
 
-MenuDataHeader_1029bb: ; 1029bb
+MenuHeader_1029bb: ; 1029bb
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 3, 10, 15, 12
 	dw NULL
@@ -6305,7 +6305,7 @@ Jumptable_1029cb: ; 1029cb
 ; 1029cf
 
 Function1029cf: ; 1029cf
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	hlcoord 10, 7
 	ld b, 3
 	ld c, 8
@@ -7756,8 +7756,8 @@ Unknown_103608: ; 103608
 ; 103612
 
 Special_AskMobileOrCable: ; 103612
-	ld hl, MenuDataHeader_103640
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_103640
+	call LoadMenuHeader
 	ld a, [wMobileOrCable_LastSelection]
 	and $0f
 	jr z, .skip_load
@@ -7782,13 +7782,13 @@ Special_AskMobileOrCable: ; 103612
 	ret
 ; 103640
 
-MenuDataHeader_103640: ; 103640
+MenuHeader_103640: ; 103640
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 6, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw MenuData2_103648
+	dw MenuData_103648
 	db 1 ; default option
 
-MenuData2_103648: ; 103648
+MenuData_103648: ; 103648
 	db STATICMENU_CURSOR ; flags
 	db 2
 	db "モバイル@"
@@ -7849,8 +7849,8 @@ Special_Mobile_SelectThreeMons: ; 10366e
 .asm_1036b5
 	call Function103700
 	jr c, .asm_1036f4
-	ld hl, MenuDataHeader_103747
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_103747
+	call LoadMenuHeader
 	call VerticalMenu
 	call ExitMenu
 	jr c, .asm_1036f4
@@ -7936,13 +7936,13 @@ Function103700: ; 103700
 	ret
 ; 103747
 
-MenuDataHeader_103747: ; 103747
+MenuHeader_103747: ; 103747
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw MenuData2_10374f
+	dw MenuData_10374f
 	db 1 ; default option
 
-MenuData2_10374f: ; 10374f
+MenuData_10374f: ; 10374f
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
 	db "はい@"

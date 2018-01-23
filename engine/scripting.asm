@@ -144,7 +144,7 @@ ScriptCommandTable:
 	dw Script_writetext                  ; 4c
 	dw Script_repeattext                 ; 4d
 	dw Script_yesorno                    ; 4e
-	dw Script_loadmenudata               ; 4f
+	dw Script_loadmenuheader             ; 4f
 	dw Script_closewindow                ; 50
 	dw Script_jumptextfaceplayer         ; 51
 if _CRYSTAL
@@ -432,15 +432,15 @@ Script_yesorno:
 	ld [ScriptVar], a
 	ret
 
-Script_loadmenudata:
+Script_loadmenuheader:
 ; script command 0x4f
-; parameters: data
+; parameters: menu_header
 
 	call GetScriptByte
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	ld de, LoadMenuDataHeader
+	ld de, LoadMenuHeader
 	ld a, [ScriptBank]
 	call Call_a_de
 	call UpdateSprites

@@ -105,7 +105,7 @@ SpecialKabutoChamber: ; 8ae4e
 
 Special_DisplayUnownWords: ; 8ae68
 	ld a, [ScriptVar]
-	ld hl, MenuDataHeaders_UnownWalls
+	ld hl, MenuHeaders_UnownWalls
 	and a
 	jr z, .load
 
@@ -117,7 +117,7 @@ Special_DisplayUnownWords: ; 8ae68
 	jr nz, .loop
 
 .load
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	xor a
 	ld [hBGMapMode], a
 	call MenuBox

@@ -426,7 +426,7 @@ Special_SetDayOfWeek: ; 90913
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, .WhatDayIsItText
 	call PrintText
 	hlcoord 9, 3

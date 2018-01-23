@@ -1405,52 +1405,52 @@ wWindowStackSize:: db ; cf78
 
 	ds 8
 
-; menu data header
-wMenuDataHeader:: ; cf81
+; menu header
+wMenuHeader:: ; cf81
 wMenuFlags:: db
 wMenuBorderTopCoord:: db
 wMenuBorderLeftCoord:: db
 wMenuBorderBottomCoord:: db
 wMenuBorderRightCoord:: db
-wMenuData2Pointer:: dw
+wMenuDataPointer:: dw
 wMenuCursorBuffer:: dw
 wMenuDataBank:: db
 	ds 6
-wMenuDataHeaderEnd::
+wMenuHeaderEnd::
 
-wMenuData2::
-; MenuData2
+wMenuData::
+; MenuData
 
-wMenuData2Flags:: db ; cf91
+wMenuDataFlags:: db ; cf91
 
 UNION ; cf92
 ; Vertical Menu/DoNthMenu/SetUpMenu
-wMenuData2Items:: db ; cf92
-wMenuData2IndicesPointer:: dw ; cf94
-wMenuData2DisplayFunctionPointer:: dw ; cf96
-wMenuData2PointerTableAddr:: dw ; cf97
+wMenuDataItems:: db ; cf92
+wMenuDataIndicesPointer:: dw ; cf94
+wMenuDataDisplayFunctionPointer:: dw ; cf96
+wMenuDataPointerTableAddr:: dw ; cf97
 
 NEXTU ; cf92
 ; 2D Menu
-wMenuData2_2DMenuDimensions:: db ; cf92
-wMenuData2_2DMenuSpacing:: db ; cf93
-wMenuData2_2DMenuItemStringsBank:: db ; cf94
-wMenuData2_2DMenuItemStringsAddr:: dw ; cf96
-wMenuData2_2DMenuFunctionBank:: db ; cf97
-wMenuData2_2DMenuFunctionAddr:: dw ; cf98
+wMenuData_2DMenuDimensions:: db ; cf92
+wMenuData_2DMenuSpacing:: db ; cf93
+wMenuData_2DMenuItemStringsBank:: db ; cf94
+wMenuData_2DMenuItemStringsAddr:: dw ; cf96
+wMenuData_2DMenuFunctionBank:: db ; cf97
+wMenuData_2DMenuFunctionAddr:: dw ; cf98
 
 NEXTU ; cf92
 ; Scrolling Menu
-wMenuData2_ScrollingMenuHeight:: db ; cf92
-wMenuData2_ScrollingMenuWidth:: db ; cf93
-wMenuData2_ScrollingMenuSpacing:: db ; cf94
-wMenuData2_ItemsPointerBank:: db ; cf95
-wMenuData2_ItemsPointerAddr:: dw ; cf97
-wMenuData2_ScrollingMenuFunction1:: ds 3 ; cf98
-wMenuData2_ScrollingMenuFunction2:: ds 3 ; cf9b
-wMenuData2_ScrollingMenuFunction3:: ds 3 ; cf9e
+wMenuData_ScrollingMenuHeight:: db ; cf92
+wMenuData_ScrollingMenuWidth:: db ; cf93
+wMenuData_ScrollingMenuSpacing:: db ; cf94
+wMenuData_ItemsPointerBank:: db ; cf95
+wMenuData_ItemsPointerAddr:: dw ; cf97
+wMenuData_ScrollingMenuFunction1:: ds 3 ; cf98
+wMenuData_ScrollingMenuFunction2:: ds 3 ; cf9b
+wMenuData_ScrollingMenuFunction3:: ds 3 ; cf9e
 ENDU ; cfa1
-wMenuData2End::
+wMenuDataEnd::
 
 wMenuData3::
 w2DMenuCursorInitY:: db ; cfa1

@@ -25,7 +25,7 @@ CeladonDeptStore6FVendingMachine:
 	writetext CeladonVendingText
 .Start:
 	special Special_PlaceMoneyTopRight
-	loadmenudata .MenuData
+	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow
 	if_equal 1, .FreshWater
@@ -79,13 +79,13 @@ CeladonDeptStore6FVendingMachine:
 	waitbutton
 	jump .Start
 
-.MenuData:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "FRESH WATER  ¥200@"

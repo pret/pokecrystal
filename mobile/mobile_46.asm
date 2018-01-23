@@ -1184,8 +1184,8 @@ BattleTowerRoomMenu_PlacePickLevelMenu:
 	ld a, [$c31a]
 	and a
 	ret nz
-	ld hl, MenuDataHeader_119cf7
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_119cf7
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
 	call ApplyTilemap
@@ -3953,7 +3953,7 @@ BattleTowerRoomMenu_UpdateYesNoMenu:
 	ret
 ; 119cf7
 
-MenuDataHeader_119cf7: ; 119cf7
+MenuHeader_119cf7: ; 119cf7
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
@@ -4635,8 +4635,8 @@ Function11a1ff: ; 11a1ff
 ; 11a207
 
 BattleTowerRoomMenu2_PlaceYesNoMenu: ; 11a207
-	ld hl, MenuDataHeader_11a2de
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_11a2de
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
 	call ApplyTilemap
@@ -4751,14 +4751,14 @@ String_11a2d3: ; 11a2d3
 	db "NO@"
 ; 11a2d6
 
-MenuDataHeader_11a2d6: ; 11a2d6
+MenuHeader_11a2d6: ; 11a2d6
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 6, SCREEN_WIDTH - 1, 10
 	dw NULL
 	db 0 ; default option
 ; 11a2de
 
-MenuDataHeader_11a2de: ; 11a2de
+MenuHeader_11a2de: ; 11a2de
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
@@ -5321,7 +5321,7 @@ String_11a7f4: ; 11a7f4
 	db   "　　　　　　　　　　　　　　　@"
 ; 11a804
 
-MenuDataHeader_11a804: ; 11a804
+MenuHeader_11a804: ; 11a804
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, 5
 	dw NULL
@@ -5900,8 +5900,8 @@ Function11ad8f: ; 11ad8f
 ; 11ad95
 
 Function11ad95: ; 11ad95
-	ld hl, MenuDataHeader_11ae38
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_11ae38
+	call LoadMenuHeader
 	call MenuBox
 	hlcoord 12, 12
 	ld de, String_11ae40
@@ -5992,7 +5992,7 @@ Function11adc4:
 	ret
 ; 11ae38
 
-MenuDataHeader_11ae38: ; 11ae38
+MenuHeader_11ae38: ; 11ae38
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 10, 17, SCREEN_HEIGHT - 1
 	dw NULL
@@ -6007,14 +6007,14 @@ String_11ae40: ; 11ae40
 ; 11ae4e
 
 Function11ae4e: ; 11ae4e
-	ld hl, MenuDataHeader_11afe8
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_11afe8
+	call LoadMenuHeader
 	call MenuBox
 	hlcoord 10, 14
 	ld de, String_11aff0
 	call PlaceString
-	ld hl, MenuDataHeader_11b013
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_11b013
+	call LoadMenuHeader
 	call MenuBox
 	hlcoord 16, 8
 	ld de, String_11b01b
@@ -6098,14 +6098,14 @@ Function11ae98:
 ; 11af04
 
 Function11af04: ; 11af04
-	ld hl, MenuDataHeader_11afe8
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_11afe8
+	call LoadMenuHeader
 	call MenuBox
 	hlcoord 10, 14
 	ld de, String_11b003
 	call PlaceString
-	ld hl, MenuDataHeader_11b013
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_11b013
+	call LoadMenuHeader
 	call MenuBox
 	hlcoord 16, 8
 	ld de, String_11b01b
@@ -6238,7 +6238,7 @@ Function11afd6: ; 11afd6
 	ret
 ; 11afe8
 
-MenuDataHeader_11afe8: ; 11afe8
+MenuHeader_11afe8: ; 11afe8
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
@@ -6255,7 +6255,7 @@ String_11b003: ; 11b003
 	next "ちゅうししますか？@"
 ; 11b013
 
-MenuDataHeader_11b013: ; 11b013
+MenuHeader_11b013: ; 11b013
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL

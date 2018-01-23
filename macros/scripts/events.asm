@@ -520,10 +520,10 @@ yesorno: MACRO
 	db yesorno_command
 ENDM
 
-	enum loadmenudata_command ; $4f
-loadmenudata: MACRO
-	db loadmenudata_command
-	dw \1 ; data
+	enum loadmenuheader_command ; $4f
+loadmenuheader: MACRO
+	db loadmenuheader_command
+	dw \1 ; menu_header
 ENDM
 
 	enum closewindow_command ; $50

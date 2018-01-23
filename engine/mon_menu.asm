@@ -5,8 +5,8 @@ MonSubmenu: ; 24d19
 	ld [hBGMapMode], a
 	call GetMonSubmenuItems
 	farcall FreezeMonIcons
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	call .GetTopCoord
 	call PopulateMonMenu
 
@@ -19,7 +19,7 @@ MonSubmenu: ; 24d19
 	ret
 ; 24d3f
 
-.MenuDataHeader: ; 24d3f
+.MenuHeader: ; 24d3f
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw 0
@@ -43,9 +43,9 @@ MonSubmenu: ; 24d19
 MonMenuLoop: ; 24d59
 .loop
 	ld a, MENU_UNUSED_3 | MENU_BACKUP_TILES_2 ; flags
-	ld [wMenuData2Flags], a
+	ld [wMenuDataFlags], a
 	ld a, [Buffer1] ; items
-	ld [wMenuData2Items], a
+	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
@@ -256,16 +256,16 @@ AddMonMenuItem: ; 24e83
 ; 24e99
 
 BattleMonMenu: ; 24e99
-	ld hl, MenuDataHeader_0x24ed4
-	call CopyMenuDataHeader
+	ld hl, MenuHeader_0x24ed4
+	call CopyMenuHeader
 	xor a
 	ld [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
 	call PlaceVerticalMenuItems
 	call WaitBGMap
-	call CopyMenuData2
-	ld a, [wMenuData2Flags]
+	call CopyMenuData
+	ld a, [wMenuDataFlags]
 	bit 7, a
 	jr z, .set_carry
 	call InitVerticalMenuCursor
@@ -288,14 +288,14 @@ BattleMonMenu: ; 24e99
 	ret
 ; 24ed4
 
-MenuDataHeader_0x24ed4: ; 24ed4
+MenuHeader_0x24ed4: ; 24ed4
 	db 0 ; flags
 	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw MenuData2_0x24edc
+	dw MenuData_0x24edc
 	db 1 ; default option
 ; 24edc
 
-MenuData2_0x24edc: ; 24edc
+MenuData_0x24edc: ; 24edc
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "SWITCH@"

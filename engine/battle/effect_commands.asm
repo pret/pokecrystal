@@ -8973,7 +8973,7 @@ BattleCommand_BatonPass: ; 379c9
 	call DelayFrames
 
 ; Transition into switchmon menu
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall SetUpBattlePartyMenu_NoLoop
 
 	farcall ForcePickSwitchMonInBattle
@@ -9048,7 +9048,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	ld a, 1
 	ld [wPlayerAction], a
 
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, LinkBattleSendReceiveAction
 	call CallBattleCore
 	call CloseWindow
@@ -9065,7 +9065,7 @@ BatonPass_LinkEnemySwitch: ; 37a82
 	and a
 	ret z
 
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, LinkBattleSendReceiveAction
 	call CallBattleCore
 

@@ -1983,7 +1983,7 @@ CheckCurrentMapCoordEvents:: ; 2ad4
 FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall Special_FadeOutPalettes
 	call ClearSprites
 	call DisableSpriteUpdates

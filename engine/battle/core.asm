@@ -2781,7 +2781,7 @@ AskUseNextPokemon: ; 3d1f8
 
 ForcePlayerMonChoice: ; 3d227
 	call EmptyBattleTextBox
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call SetUpBattlePartyMenu_NoLoop
 	call ForcePickPartyMonInBattle
 	ld a, [wLinkMode]
@@ -3300,7 +3300,7 @@ ResetEnemyBattleVars: ; 3d557
 	ld a, 8
 	call SlideBattlePicOut
 	call EmptyBattleTextBox
-	jp LoadStandardMenuDataHeader
+	jp LoadStandardMenuHeader
 ; 3d57a
 
 ResetBattleParticipants: ; 3d57a
@@ -5107,7 +5107,7 @@ BattleMenu_Pack: ; 3e1c7
 	and a
 	jp nz, .ItemsCantBeUsed
 
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 
 	ld a, [BattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -5202,10 +5202,10 @@ BattleMenu_Pack: ; 3e1c7
 ; 3e28d
 
 BattleMenu_PKMN: ; 3e28d
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 BattleMenuPKMN_ReturnFromStats:
 	call ExitMenu
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearBGPalettes
 BattleMenuPKMN_Loop:
 	call SetUpBattlePartyMenu
@@ -5345,7 +5345,7 @@ PlayerSwitch: ; 3e3ad
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call LinkBattleSendReceiveAction
 	call CloseWindow
 

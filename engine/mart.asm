@@ -36,7 +36,7 @@ MartDialog: ; 15a61
 
 HerbShop: ; 15a6e
 	call FarReadMart
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, Text_HerbShop_Intro
 	call MartTextBox
 	call BuyMenu
@@ -50,7 +50,7 @@ BargainShop: ; 15a84
 	ld de, BargainShopData
 	call LoadMartPointer
 	call ReadMart
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, Text_BargainShop_Intro
 	call MartTextBox
 	call BuyMenu
@@ -69,7 +69,7 @@ BargainShop: ; 15a84
 
 Pharmacist: ; 15aae
 	call FarReadMart
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, Text_Pharmacist_Intro
 	call MartTextBox
 	call BuyMenu
@@ -79,18 +79,18 @@ Pharmacist: ; 15aae
 ; 15ac4
 
 RooftopSale: ; 15ac4
-	ld b, BANK(RooftopSaleData1)
-	ld de, RooftopSaleData1
+	ld b, BANK(RooftopSaleMart1)
+	ld de, RooftopSaleMart1
 	ld hl, wStatusFlags
 	bit STATUSFLAGS_HALL_OF_FAME_F, [hl]
 	jr z, .ok
-	ld b, BANK(RooftopSaleData2)
-	ld de, RooftopSaleData2
+	ld b, BANK(RooftopSaleMart2)
+	ld de, RooftopSaleMart2
 
 .ok
 	call LoadMartPointer
 	call ReadMart
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, Text_Mart_HowMayIHelpYou
 	call MartTextBox
 	call BuyMenu
@@ -158,7 +158,7 @@ StandardMart: ; 15b47
 ; 15b62
 
 .HowMayIHelpYou: ; 15b62
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, Text_Mart_HowMayIHelpYou
 	call PrintText
 	ld a, $1 ; top menu
@@ -166,8 +166,8 @@ StandardMart: ; 15b47
 ; 15b6e
 
 .TopMenu: ; 15b6e
-	ld hl, MenuDataHeader_BuySell
-	call CopyMenuDataHeader
+	ld hl, MenuHeader_BuySell
+	call CopyMenuHeader
 	call VerticalMenu
 	jr c, .quit
 	ld a, [wMenuCursorY]
@@ -211,7 +211,7 @@ StandardMart: ; 15b47
 ; 15baf
 
 .AnythingElse: ; 15baf
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, Text_Mart_AnythingElse
 	call PrintText
 	ld a, $1 ; top menu
@@ -445,8 +445,8 @@ GetMartDialogGroup: ; 15ca3
 BuyMenuLoop: ; 15cef
 	farcall Special_PlaceMoneyTopRight
 	call UpdateSprites
-	ld hl, MenuDataHeader_Buy
-	call CopyMenuDataHeader
+	ld hl, MenuHeader_Buy
+	call CopyMenuHeader
 	ld a, [wMenuCursorBufferBackup]
 	ld [wMenuCursorBuffer], a
 	ld a, [wMenuScrollPositionBackup]
@@ -616,14 +616,14 @@ Text_Mart_CostsThisMuch: ; 0x15e13
 	db "@"
 ; 0x15e18
 
-MenuDataHeader_Buy: ; 0x15e18
+MenuHeader_Buy: ; 0x15e18
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .menudata2
+	dw .MenuData
 	db 1 ; default option
 ; 0x15e20
 
-.menudata2 ; 0x15e20
+.MenuData ; 0x15e20
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
@@ -900,14 +900,14 @@ Text_Mart_HowMayIHelpYou: ; 0x15f83
 	db "@"
 ; 0x15f88
 
-MenuDataHeader_BuySell: ; 0x15f88
+MenuHeader_BuySell: ; 0x15f88
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 7, 8
-	dw .menudata2
+	dw .MenuData
 	db 1 ; default option
 ; 0x15f90
 
-.menudata2 ; 0x15f90
+.MenuData ; 0x15f90
 	db STATICMENU_CURSOR ; strings
 	db 3 ; items
 	db "BUY@"

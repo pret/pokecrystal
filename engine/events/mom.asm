@@ -103,9 +103,9 @@ Special_BankOfMom: ; 16218
 .AccessBankOfMom: ; 162a8
 	ld hl, UnknownText_0x1665d
 	call PrintText
-	call LoadStandardMenuDataHeader
-	ld hl, MenuDataHeader_0x166b5
-	call CopyMenuDataHeader
+	call LoadStandardMenuHeader
+	ld hl, MenuHeader_0x166b5
+	call CopyMenuHeader
 	call VerticalMenu
 	call CloseWindow
 	jr c, .cancel
@@ -147,7 +147,7 @@ Special_BankOfMom: ; 16218
 	ld [hl], a
 	ld a, 5
 	ld [wMomBankDigitCursorPosition], a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call Mom_SetUpDepositMenu
 	call Mom_Wait10Frames
 	call Mom_WithdrawDepositMenuJoypad
@@ -214,7 +214,7 @@ Special_BankOfMom: ; 16218
 	ld [hl], a
 	ld a, 5
 	ld [wMomBankDigitCursorPosition], a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call Mom_SetUpWithdrawMenu
 	call Mom_Wait10Frames
 	call Mom_WithdrawDepositMenuJoypad
@@ -727,14 +727,14 @@ Mom_HeldString: ; 166b0
 	db "HELD@"
 ; 166b5
 
-MenuDataHeader_0x166b5: ; 0x166b5
+MenuHeader_0x166b5: ; 0x166b5
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, 10
-	dw MenuData2_0x166bd
+	dw MenuData_0x166bd
 	db 1 ; default option
 ; 0x166bd
 
-MenuData2_0x166bd: ; 0x166bd
+MenuData_0x166bd: ; 0x166bd
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "GET@"

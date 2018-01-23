@@ -65,7 +65,7 @@ MoveTutor:
 	checkcoins 4000
 	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x1990ce
-	loadmenudata .MoveMenuDataHeader
+	loadmenuheader .MoveMenuHeader
 	verticalmenu
 	closewindow
 	if_equal MOVETUTOR_FLAMETHROWER, .Flamethrower
@@ -94,13 +94,13 @@ MoveTutor:
 	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
-.MoveMenuDataHeader:
+.MoveMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 15, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "FLAMETHROWER@"

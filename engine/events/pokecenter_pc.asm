@@ -7,7 +7,7 @@ Special_PokemonCenterPC: ; 1559a
 	ld hl, PokecenterPCText_AccessWhosePC
 	call PC_DisplayTextWaitMenu
 	ld hl, .TopMenu
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 .loop
 	xor a
 	ld [hBGMapMode], a
@@ -29,10 +29,10 @@ Special_PokemonCenterPC: ; 1559a
 .TopMenu:
 	db MENU_BACKUP_TILES | MENU_NO_CLICK_SFX ; flags
 	menu_coords 0, 0, 15, 12
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw .WhichPC
@@ -213,7 +213,7 @@ Function15715: ; 15715
 	ld [wPCItemsCursor], a
 	ld [wPCItemsScrollPosition], a
 	ld hl, PlayersPCMenuData
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 .asm_15722
 	call UpdateTimePals
 	call DoNthMenu
@@ -234,10 +234,10 @@ PlayersPCMenuData: ; 0x15736
 	db MENU_BACKUP_TILES ; flags
 	db  0,  0 ; top left corner coords (y, x)
 	db 12, 15 ; bottom right corner coords (y, x)
-	dw .PlayersPCMenuData2
+	dw .PlayersPCMenuData
 	db 1 ; default selected option
 
-.PlayersPCMenuData2:
+.PlayersPCMenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; # items?
 	dw .PlayersPCMenuList1
@@ -306,7 +306,7 @@ UnknownText_0x157cc: ; 0x157cc
 ; 0x157d1
 
 PlayerWithdrawItemMenu: ; 0x157d1
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall ClearPCItemScreen
 .loop
 	call PCItemsJoypad
@@ -382,7 +382,7 @@ PlayerWithdrawItemMenu: ; 0x157d1
 	db "@"
 
 PlayerTossItemMenu: ; 0x1585f
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall ClearPCItemScreen
 .loop
 	call PCItemsJoypad
@@ -416,7 +416,7 @@ PlayerDepositItemMenu: ; 0x1588b
 	call .CheckItemsInBag
 	jr c, .nope
 	call DisableSpriteUpdates
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall DepositSellInitPackBuffers
 .loop
 	farcall DepositSellPack
@@ -558,7 +558,7 @@ PCItemsJoypad: ; 0x15985
 	ld a, $0
 	ld [wSpriteUpdatesEnabled], a
 	ld hl, .PCItemsMenuData
-	call CopyMenuDataHeader
+	call CopyMenuHeader
 	hlcoord 0, 0
 	ld b, 10
 	ld c, 18
@@ -621,10 +621,10 @@ PCItemsJoypad: ; 0x15985
 .PCItemsMenuData:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 4, 1, 18, 10
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db SCROLLINGMENU_ENABLE_SELECT | SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 8 ; rows/cols?
 	db 2 ; horizontal spacing?

@@ -1,5 +1,5 @@
 SaveMenu: ; 14a1a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall DisplaySaveInfoOnSave
 	call SpeechTextBox
 	call UpdateSprites

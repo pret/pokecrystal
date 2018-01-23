@@ -284,8 +284,8 @@ asm_4828d: ; 4828d (12:428d)
 	hlcoord 1, 16
 	ld de, MobileDesc_Gender
 	call PlaceString
-	ld hl, MenuDataHeader_0x484f1
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x484f1
+	call LoadMenuHeader
 	call Function4873c
 	hlcoord 11, 2
 	ld b, $4
@@ -336,10 +336,10 @@ Function48304: ; 48304 (12:4304)
 	hlcoord 1, 16
 	ld de, MobileDesc_Address
 	call PlaceString
-	ld hl, MenuDataHeader_0x48504
-	call LoadMenuDataHeader
-	ld hl, MenuDataHeader_0x48513
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x48504
+	call LoadMenuHeader
+	ld hl, MenuHeader_0x48513
+	call LoadMenuHeader
 	hlcoord 10, 0
 	ld b, $c
 	ld c, $8
@@ -562,14 +562,14 @@ MobileDesc_Address:          db "Where do you live?@"
 MobileDesc_ZipCode:          db "Your zip code?@"
 ; 484f1
 
-MenuDataHeader_0x484f1: ; 0x484f1
+MenuHeader_0x484f1: ; 0x484f1
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 2, SCREEN_WIDTH - 1, 7
-	dw MenuData2_0x484f9
+	dw MenuData_0x484f9
 	db 1 ; default option
 ; 0x484f9
 
-MenuData2_0x484f9: ; 0x484f9
+MenuData_0x484f9: ; 0x484f9
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 2 ; items
 Strings_484fb:
@@ -577,26 +577,26 @@ String_484fb: db "Boy@"
 String_484ff: db "Girl@"
 ; 0x48504
 
-MenuDataHeader_0x48504: ; 0x48504
+MenuHeader_0x48504: ; 0x48504
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 
-MenuDataHeader_0x48509: ; 0x48509
+MenuHeader_0x48509: ; 0x48509
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 5, SCREEN_WIDTH - 1, 7
 
-MenuDataHeader_0x4850e: ; 0x4850e
+MenuHeader_0x4850e: ; 0x4850e
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
-MenuDataHeader_0x48513: ; 0x48513
+MenuHeader_0x48513: ; 0x48513
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 1, 18, 12
-	dw MenuData2_0x4851b
+	dw MenuData_0x4851b
 	db 1 ; default option
 ; 0x4851b
 
-MenuData2_0x4851b: ; 0x4851b
+MenuData_0x4851b: ; 0x4851b
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_CALL_FUNCTION1_CANCEL ; flags
 	db 6 ; items
 
@@ -825,8 +825,8 @@ Function4876f: ; 4876f (12:476f)
 	hlcoord 1, 16
 	ld de, MobileDesc_Age
 	call PlaceString
-	ld hl, MenuDataHeader_0x48509
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x48509
+	call LoadMenuHeader
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -1028,8 +1028,8 @@ Function488d3: ; 488d3 (12:48d3)
 	call PlaceString
 	call Function48a3a
 	jp c, Function4840c
-	ld hl, MenuDataHeader_0x4850e
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x4850e
+	call LoadMenuHeader
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -1225,8 +1225,8 @@ String_48a38: ; 48a38
 ; 48a3a
 
 Function48a3a: ; 48a3a (12:4a3a)
-	ld hl, MenuDataHeader_0x48a9c
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x48a9c
+	call LoadMenuHeader
 	call Function4873c
 	ld a, $a
 	ld [w2DMenuCursorInitY], a
@@ -1271,7 +1271,7 @@ Function48a9a: ; 48a9a (12:4a9a)
 	ret
 ; 48a9c (12:4a9c)
 
-MenuDataHeader_0x48a9c: ; 0x48a9c
+MenuHeader_0x48a9c: ; 0x48a9c
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 8, SCREEN_WIDTH - 1, 13
 

@@ -202,7 +202,7 @@ DoEggStep:: ; 16f3e
 
 OverworldHatchEgg:: ; 16f5e
 	call RefreshScreen
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call HatchEggs
 	call ExitAllMenus
 	call RestartMapMusic

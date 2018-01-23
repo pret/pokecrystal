@@ -441,16 +441,16 @@ Special_Menu_ChallengeExplanationCancel: ; 17d224
 	jr nz, .English
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
+	ld hl, MenuHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
 	jr .Load_Interpret
 
 .English:
 	ld a, $4
 	ld [ScriptVar], a
-	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
+	ld hl, MenuHeader_ChallengeExplanationCancel ; English Menu
 
 .Load_Interpret:
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call Function17d246
 	call CloseWindow
 	ret
@@ -482,13 +482,13 @@ Function17d246: ; 17d246
 	ret
 ; 17d26a
 
-MenuDataHeader_17d26a: ; 17d26a
+MenuHeader_17d26a: ; 17d26a
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 14, 9
-	dw MenuData2_17d272
+	dw MenuData_17d272
 	db 1 ; default option
 
-MenuData2_17d272: ; 17d272
+MenuData_17d272: ; 17d272
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4
 	db "ニュース¯よみこむ@"
@@ -497,13 +497,13 @@ MenuData2_17d272: ; 17d272
 	db "やめる@"
 ; 17d28f
 
-MenuDataHeader_ChallengeExplanationCancel: ; 17d28f
+MenuHeader_ChallengeExplanationCancel: ; 17d28f
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 14, 7
-	dw MenuData2_ChallengeExplanationCancel
+	dw MenuData_ChallengeExplanationCancel
 	db 1 ; default option
 
-MenuData2_ChallengeExplanationCancel: ; 17d297
+MenuData_ChallengeExplanationCancel: ; 17d297
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3
 	db "Challenge@"
@@ -1907,7 +1907,7 @@ Function17dc1f: ; 17dc1f
 	ld a, $1
 	ld [$c70f], a
 	ld hl, $c708
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	jr nc, .asm_17dc6e
 	ld a, $2
@@ -1940,7 +1940,7 @@ Function17dc1f: ; 17dc1f
 	ret
 ; 17dc96
 
-MenuData2_17dc96:
+MenuData_17dc96:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2
 	db "はい@"

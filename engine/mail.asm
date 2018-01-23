@@ -313,7 +313,7 @@ IsAnyMonHoldingMail: ; 44781
 _PlayerMailBoxMenu: ; 0x447a0
 	call InitMail
 	jr z, .nomail
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call MailboxPC
 	jp CloseWindow
 
@@ -388,8 +388,8 @@ MailboxPC: ; 0x44806
 	ld [wCurMessageIndex], a
 .loop
 	call InitMail
-	ld hl, .TopMenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, .TopMenuHeader
+	call CopyMenuHeader
 	xor a
 	ld [hBGMapMode], a
 	call InitScrollingMenu
@@ -417,8 +417,8 @@ MailboxPC: ; 0x44806
 ; 0x4484a
 
 .Submenu: ; 0x4484a
-	ld hl, .SubMenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .SubMenuHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	call ExitMenu
 	jr c, .subexit
@@ -557,13 +557,13 @@ MailboxPC: ; 0x44806
 .Cancel:
 	ret
 
-.TopMenuDataHeader: ; 0x4494c
+.TopMenuHeader: ; 0x4494c
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 1, SCREEN_WIDTH - 2, 10
-	dw .TopMenuData2
+	dw .TopMenuData
 	db 1 ; default option
 
-.TopMenuData2:
+.TopMenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows/columns?
 	db 1 ; horizontal spacing?
@@ -572,13 +572,13 @@ MailboxPC: ; 0x44806
 	dba NULL
 	dba NULL
 
-.SubMenuDataHeader: ; 0x44964
+.SubMenuHeader: ; 0x44964
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 13, 9
-	dw .SubMenuData2
+	dw .SubMenuData
 	db 1 ; default option
 
-.SubMenuData2:
+.SubMenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "READ MAIL@"

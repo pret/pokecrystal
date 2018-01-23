@@ -25,7 +25,7 @@ PokecomCenterAdminRoomMobileSignpost0Script:
 	waitbutton
 UnknownScript_0x625df:
 	reloadmappart
-	loadmenudata MenuDataHeader_0x62602
+	loadmenuheader MenuHeader_0x62602
 	verticalmenu
 	closewindow
 	if_equal 1, UnknownScript_0x625f0
@@ -48,13 +48,13 @@ UnknownScript_0x62600:
 	closetext
 	end
 
-MenuDataHeader_0x62602:
+MenuHeader_0x62602:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 8
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "#　つうしん　クラブ@" ; # COM CLUB
@@ -67,7 +67,7 @@ PokecomCenterAdminRoomMobileSignpost1Script:
 	waitbutton
 UnknownScript_0x62629:
 	reloadmappart
-	loadmenudata MenuDataHeader_0x6264c
+	loadmenuheader MenuHeader_0x6264c
 	verticalmenu
 	closewindow
 	if_equal 1, UnknownScript_0x6263a
@@ -90,13 +90,13 @@ UnknownScript_0x6264a:
 	closetext
 	end
 
-MenuDataHeader_0x6264c:
+MenuHeader_0x6264c:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 8
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "でんわ<WO>つかうとき@" ; Use phone
