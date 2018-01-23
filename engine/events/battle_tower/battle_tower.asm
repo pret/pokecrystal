@@ -407,11 +407,11 @@ ValidateBTParty: ; 170394
 	ld c, l
 	ld a, [hl]
 	and a
-idx = $ff
+x = $ff
 rept ($ff +- NUM_POKEMON)
 	jr z, .invalid
-	cp idx
-idx = idx +- 1
+	cp x
+x = x +- 1
 endr
 	jr nz, .valid
 
