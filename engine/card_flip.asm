@@ -126,9 +126,9 @@ _CardFlip: ; e00ee (38:40ee)
 ; 0xe01d2
 
 .DeductCoins: ; e01d2
-	ld a, [Coins]
+	ld a, [wCoins]
 	ld h, a
-	ld a, [Coins + 1]
+	ld a, [wCoins + 1]
 	ld l, a
 	ld a, h
 	and a
@@ -146,9 +146,9 @@ _CardFlip: ; e00ee (38:40ee)
 	ld de, -3
 	add hl, de
 	ld a, h
-	ld [Coins], a
+	ld [wCoins], a
 	ld a, l
-	ld [Coins + 1], a
+	ld [wCoins + 1], a
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	xor a
@@ -535,7 +535,7 @@ CardFlip_PrintCoinBalance: ; e049c
 	ld de, .CoinStr
 	call PlaceString
 	hlcoord 15, 16
-	ld de, Coins
+	ld de, wCoins
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	ret
@@ -1174,29 +1174,29 @@ CardFlip_CheckWinCondition: ; e0637
 ; 0xe081b
 
 .AddCoinPlaySFX: ; e081b
-	ld a, [Coins]
+	ld a, [wCoins]
 	ld h, a
-	ld a, [Coins + 1]
+	ld a, [wCoins + 1]
 	ld l, a
 	inc hl
 	ld a, h
-	ld [Coins], a
+	ld [wCoins], a
 	ld a, l
-	ld [Coins + 1], a
+	ld [wCoins + 1], a
 	ld de, SFX_PAY_DAY
 	call PlaySFX
 	ret
 ; e0833
 
 .IsCoinCaseFull: ; e0833
-	ld a, [Coins]
+	ld a, [wCoins]
 	cp HIGH(MAX_COINS)
 	jr c, .less
 	jr z, .check_low
 	jr .more
 
 .check_low
-	ld a, [Coins + 1]
+	ld a, [wCoins + 1]
 	cp LOW(MAX_COINS)
 	jr c, .less
 

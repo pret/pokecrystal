@@ -4,7 +4,7 @@ DoBattle: ; 3c000
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wBattleParticipantsIncludingFainted], a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ld [BattleEnded], a
 	inc a
 	ld [wBattleHasJustStarted], a
@@ -455,7 +455,7 @@ DetermineMoveOrder: ; 3c314
 	jr z, .use_move
 	sub BATTLEACTION_SWITCH1
 	jr c, .use_move
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	cp $2
 	jr nz, .switch
 	ld a, [hSerialConnectionStatus]
@@ -480,7 +480,7 @@ DetermineMoveOrder: ; 3c314
 	jp .enemy_first
 
 .use_move
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	and a
 	jp nz, .player_first
 	call CompareMovePriority
@@ -623,7 +623,7 @@ ParsePlayerAction: ; 3c434
 	jr .encored
 
 .not_encored
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	cp $2
 	jr z, .reset_rage
 	and a
@@ -920,7 +920,7 @@ Battle_EnemyFirst: ; 3c5fe
 	jp z, HandlePlayerMonFaint
 	call RefreshBattleHuds
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ret
 ; 3c664
 
@@ -970,7 +970,7 @@ Battle_PlayerFirst: ; 3c664
 	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ret
 ; 3c6cf
 
@@ -1716,7 +1716,7 @@ HandleScreens: ; 3cb36
 ; 3cb9e
 
 HandleWeather: ; 3cb9e
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_NONE
 	ret z
 
@@ -1727,7 +1727,7 @@ HandleWeather: ; 3cb9e
 	ld hl, .WeatherMessages
 	call .PrintWeatherMessage
 
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SANDSTORM
 	ret nz
 
@@ -1790,11 +1790,11 @@ HandleWeather: ; 3cb9e
 	ld hl, .WeatherEndedMessages
 	call .PrintWeatherMessage
 	xor a
-	ld [Weather], a
+	ld [wBattleWeather], a
 	ret
 
 .PrintWeatherMessage:
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	dec a
 	ld c, a
 	ld b, 0
@@ -2099,18 +2099,18 @@ HandleEnemyMonFaint: ; 3cd55
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 
 	ld a, $1
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jr DoubleSwitch
 
 .player_mon_not_fainted
 	ld a, $1
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ret
 ; 3cdca
 
@@ -2140,7 +2140,7 @@ DoubleSwitch: ; 3cdca
 
 .done
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ret
 ; 3ce01
 
@@ -2173,7 +2173,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint: ; 3ce01
 .wild2
 	call StopDangerSound
 	ld a, $1
-	ld [wDanger], a
+	ld [wBattleLowHealthAlarm], a
 
 .trainer
 	ld hl, BattleMonHP
@@ -2293,7 +2293,7 @@ IsAnyMonHoldingExpShare: ; 3ceaa
 
 StopDangerSound: ; 3ceec
 	xor a
-	ld [Danger], a
+	ld [wLowHealthAlarm], a
 	ret
 ; 3cef1
 
@@ -2394,7 +2394,7 @@ EnemyPartyMonEntrance: ; 3cf78
 	call SpikesDamage
 	xor a
 	ld [wEnemyMoveStruct + MOVE_ANIM], a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	inc a
 	ret
 ; 3cfa4
@@ -2403,7 +2403,7 @@ WinTrainerBattle: ; 3cfa4
 ; Player won the battle
 	call StopDangerSound
 	ld a, $1
-	ld [wDanger], a
+	ld [wBattleLowHealthAlarm], a
 	ld [BattleEnded], a
 	ld a, [wLinkMode]
 	and a
@@ -2705,7 +2705,7 @@ HandlePlayerMonFaint: ; 3d14e
 	and a
 	ret nz
 	ld a, $1
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jp DoubleSwitch
@@ -2720,7 +2720,7 @@ PlayerMonFaintHappinessMod: ; 3d1aa
 	ld hl, EnemySubStatus3
 	res SUBSTATUS_IN_LOOP, [hl]
 	xor a
-	ld [Danger], a
+	ld [wLowHealthAlarm], a
 	ld hl, PlayerDamageTaken
 	ld [hli], a
 	ld [hl], a
@@ -2788,12 +2788,12 @@ ForcePlayerMonChoice: ; 3d227
 	and a
 	jr z, .skip_link
 	ld a, $1
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	call LinkBattleSendReceiveAction
 
 .skip_link
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	call CheckMobileBattleError
 	jr c, .enemy_fainted_mobile_error
 	ld hl, EnemyMonHP
@@ -3229,7 +3229,7 @@ EnemySwitch: ; 3d4e1
 	xor a
 	ld [wBattleParticipantsNotFainted], a
 	ld [wBattleParticipantsIncludingFainted], a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	inc a
 	ld [wEnemyIsSwitching], a
 	call LoadTileMapToTempTileMap
@@ -3883,7 +3883,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 	cp b
 	jr nc, .can_escape
 	ld a, $1
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ld hl, BattleText_CantEscape2
 	jr .print_inescapable_text
 
@@ -3909,7 +3909,7 @@ TryToRunAwayFromBattle: ; 3d8b3
 	jr z, .fled
 	call LoadTileMapToTempTileMap
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ld a, $f
 	ld [CurMoveNum], a
 	xor a
@@ -4769,7 +4769,7 @@ CheckDanger: ; 3df9e
 	ld a, [hli]
 	or [hl]
 	jr z, .no_danger
-	ld a, [wDanger]
+	ld a, [wBattleLowHealthAlarm]
 	and a
 	jr nz, .done
 	ld a, [PlayerHPPal]
@@ -4777,12 +4777,12 @@ CheckDanger: ; 3df9e
 	jr z, .danger
 
 .no_danger
-	ld hl, Danger
+	ld hl, wLowHealthAlarm
 	res DANGER_ON_F, [hl]
 	jr .done
 
 .danger
-	ld hl, Danger
+	ld hl, wLowHealthAlarm
 	set DANGER_ON_F, [hl]
 
 .done
@@ -5116,7 +5116,7 @@ BattleMenu_Pack: ; 3e1c7
 	jr z, .contest
 
 	farcall BattlePack
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	and a
 	jr z, .didnt_use_item
 	jr .got_item
@@ -5329,7 +5329,7 @@ TryPlayerSwitch: ; 3e358
 	ld a, [CurBattleMon]
 	ld [LastPlayerMon], a
 	ld a, $2
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	call ClearPalettes
 	call DelayFrame
 	call ClearSprites
@@ -5464,7 +5464,7 @@ BattleMenu_Run: ; 3e489
 	ld a, $0
 	ld [wFailedToFlee], a
 	ret c
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	and a
 	ret nz
 	jp BattleMenu
@@ -5955,7 +5955,7 @@ ParseEnemyAction: ; 3e7c1
 	jr z, .not_linked
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	and a
 	call z, LinkBattleSendReceiveAction
 	call Call_LoadTempTileMapToTileMap
@@ -8560,7 +8560,7 @@ ExitBattle: ; 3f69e
 CleanUpBattleRAM: ; 3f6d0
 	call BattleEnd_HandleRoamMons
 	xor a
-	ld [Danger], a
+	ld [wLowHealthAlarm], a
 	ld [wBattleMode], a
 	ld [BattleType], a
 	ld [AttackMissed], a

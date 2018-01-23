@@ -1029,7 +1029,7 @@ Function81f5e: ; 81f5e
 	ld [hl], $ed
 	ld b, $70
 	ld c, $5
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	ld de, wc608 + 10
 	call .asm_81fb7
 	ld de, wc608 + 11

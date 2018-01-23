@@ -296,19 +296,19 @@ IsSFXPlaying:: ; 3c74
 
 MaxVolume:: ; 3c97
 	ld a, MAX_VOLUME
-	ld [Volume], a
+	ld [wVolume], a
 	ret
 ; 3c9d
 
 LowVolume:: ; 3c9d
 	ld a, $33 ; 40%
-	ld [Volume], a
+	ld [wVolume], a
 	ret
 ; 3ca3
 
 VolumeOff:: ; 3ca3
 	xor a
-	ld [Volume], a
+	ld [wVolume], a
 	ret
 ; 3ca8
 

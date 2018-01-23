@@ -650,7 +650,7 @@ Function1144d1: ; 1144d1
 	ld a, [de]
 	ld [hl], a
 	xor a
-	ld [BigDoll], a
+	ld [wDecoBigDoll], a
 	ld [$dc17], a
 	ld a, $2
 	ld [$dc0e], a
@@ -691,7 +691,7 @@ Function1144d1: ; 1144d1
 	ld a, [$dc0d]
 	ld [de], a
 	ld b, $0
-	ld a, [BigDoll]
+	ld a, [wDecoBigDoll]
 	and a
 	jr z, .asm_114537
 	ld b, $1
@@ -753,7 +753,7 @@ Function114561: ; 114561
 
 Function114576: ; 114576
 	xor a
-	ld [Bed], a
+	ld [wDecoBed], a
 	ld b, $7
 	call Function1143f3
 	cp $2
@@ -802,7 +802,7 @@ Function114576: ; 114576
 
 .asm_1145bf
 	ld a, $1
-	ld [Bed], a
+	ld [wDecoBed], a
 	ret
 
 ; 1145c5
@@ -924,7 +924,7 @@ Function11463c: ; 11463c
 	cp $d
 	jr nz, .asm_11468a
 	xor a
-	ld [Carpet], a
+	ld [wDecoCarpet], a
 .asm_114662
 	inc e
 	call z, Function11469b
@@ -947,7 +947,7 @@ Function11463c: ; 11463c
 	inc e
 	call z, Function11469b
 	ld a, $1
-	ld [Carpet], a
+	ld [wDecoCarpet], a
 	ld a, [de]
 	cp $d
 	jr z, .asm_114662
@@ -959,7 +959,7 @@ Function11463c: ; 11463c
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	xor a
-	ld [Carpet], a
+	ld [wDecoCarpet], a
 	ld a, $1
 	ret
 
@@ -1021,7 +1021,7 @@ Function1146a4: ; 1146a4
 	and a
 	jr z, .asm_1146f5
 	ld a, $1
-	ld [BigDoll], a
+	ld [wDecoBigDoll], a
 	jr .asm_1146da
 
 .asm_1146f5
@@ -1057,7 +1057,7 @@ Function1146fa: ; 1146fa
 	ld [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, $1
-	ld [RightOrnament], a
+	ld [wDecoRightOrnament], a
 	call Function1147cd
 	and a
 	jp nz, .asm_1147b7
@@ -1069,13 +1069,13 @@ Function1146fa: ; 1146fa
 	and a
 	jr z, .asm_114794
 	ld a, $1
-	ld [BigDoll], a
+	ld [wDecoBigDoll], a
 
 .asm_114749
 	call Function11494d
 	and a
 	jr nz, .asm_11478a
-	ld a, [BigDoll]
+	ld a, [wDecoBigDoll]
 	and a
 	jr nz, .asm_114786
 	ld hl, $dc03
@@ -1102,7 +1102,7 @@ Function1146fa: ; 1146fa
 	ld a, [$dc0d]
 	inc a
 	ld [$dc0d], a
-	ld a, [BigDoll]
+	ld a, [wDecoBigDoll]
 	and a
 	jr z, .asm_114799
 
@@ -1127,7 +1127,7 @@ Function1146fa: ; 1146fa
 	ret
 
 .asm_114799
-	ld a, [Carpet]
+	ld a, [wDecoCarpet]
 	and a
 	jr z, .asm_114737
 	jr .asm_1147cb
@@ -1141,14 +1141,14 @@ Function1146fa: ; 1146fa
 	and a
 	jr z, .asm_1147cb
 	xor a
-	ld [BigDoll], a
+	ld [wDecoBigDoll], a
 
 .asm_1147b7
 	ld a, [$dc17]
 	and a
 	jr z, .asm_114794
 	ld a, $1
-	ld [BigDoll], a
+	ld [wDecoBigDoll], a
 	ld a, [$dc0d]
 	cp $1
 	jr nz, .asm_114773
@@ -1162,7 +1162,7 @@ Function1146fa: ; 1146fa
 
 Function1147cd: ; 1147cd
 	ld bc, NULL
-	ld a, [RightOrnament]
+	ld a, [wDecoRightOrnament]
 	and a
 	jr nz, .asm_11480c
 .asm_1147d6
@@ -1364,7 +1364,7 @@ Function1148c2: ; 1148c2
 	call z, Function114944
 	cp $3
 	jr nz, .asm_114904
-	ld hl, Plant
+	ld hl, wDecoPlant
 	ld a, [hli]
 	ld [de], a
 	inc e
@@ -1458,7 +1458,7 @@ Function11494d: ; 11494d
 	call z, Function1149c3
 	cp $3
 	jr nz, .asm_114983
-	ld hl, Plant
+	ld hl, wDecoPlant
 	ld a, [hli]
 	ld [de], a
 	inc e
@@ -1810,7 +1810,7 @@ Function114acf: ; 114acf
 	call z, Function114b4c
 
 .asm_114b26
-	ld hl, Plant
+	ld hl, wDecoPlant
 	ld a, [$dc00]
 	ld [hli], a
 	ld [hl], e
@@ -2703,7 +2703,7 @@ Function114f59: ; 114f59
 	ret
 
 .asm_114fa7
-	ld hl, Bed
+	ld hl, wDecoBed
 	ld c, [hl]
 	inc hl
 	ld a, [hli]
@@ -2842,7 +2842,7 @@ Function115059: ; 115059
 ; 115062
 
 Function115062: ; 115062
-	ld hl, Bed
+	ld hl, wDecoBed
 	ld a, [hli]
 	and a
 	jr z, .asm_1150ae
@@ -2948,9 +2948,9 @@ Function1150b3: ; 1150b3
 
 .asm_1150f8
 	ld a, l
-	ld [Console], a
+	ld [wDecoConsole], a
 	ld a, h
-	ld [LeftOrnament], a
+	ld [wDecoLeftOrnament], a
 	ld hl, String_114232
 .asm_115103
 	ld a, [hli]
@@ -2987,9 +2987,9 @@ Function1150b3: ; 1150b3
 	ld a, $3d
 	ld [de], a
 	inc de
-	ld a, [Console]
+	ld a, [wDecoConsole]
 	ld l, a
-	ld a, [LeftOrnament]
+	ld a, [wDecoLeftOrnament]
 	ld h, a
 	jr .asm_1150bb
 
@@ -3275,7 +3275,7 @@ Function115286: ; 115286
 ; 11528f
 
 Function11528f: ; 11528f
-	ld hl, Bed
+	ld hl, wDecoBed
 	ld c, [hl]
 	inc hl
 	ld a, [hli]
@@ -3458,7 +3458,7 @@ Function11537d: ; 11537d
 	ld a, b
 	ld [hli], a
 	inc de
-	ld hl, RightOrnament
+	ld hl, wDecoRightOrnament
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -3502,7 +3502,7 @@ Function1153b5: ; 1153b5
 	ld [hl], a
 	inc de
 	ld a, [de]
-	ld [Bed], a
+	ld [wDecoBed], a
 	inc de
 	ld hl, $dc0d
 	ld [hl], e
@@ -3522,9 +3522,9 @@ Function1153d2: ; 1153d2
 	ld [$dc03], a
 	ld [$dc04], a
 	ld a, $24
-	ld [Console], a
+	ld [wDecoConsole], a
 	ld a, $dc
-	ld [LeftOrnament], a
+	ld [wDecoLeftOrnament], a
 	push bc
 	jr .asm_1153f4
 
@@ -3548,9 +3548,9 @@ Function1153d2: ; 1153d2
 	ld c, [hl]
 	inc hl
 	push hl
-	ld a, [Console]
+	ld a, [wDecoConsole]
 	ld l, a
-	ld a, [LeftOrnament]
+	ld a, [wDecoLeftOrnament]
 	ld h, a
 	push bc
 	ld b, $0
@@ -3560,10 +3560,10 @@ Function1153d2: ; 1153d2
 	pop bc
 	ld a, l
 	ld e, a
-	ld [Console], a
+	ld [wDecoConsole], a
 	ld a, h
 	ld d, a
-	ld [LeftOrnament], a
+	ld [wDecoLeftOrnament], a
 	dec b
 	jr z, .asm_11542b
 	pop hl
@@ -3582,9 +3582,9 @@ Function1153d2: ; 1153d2
 
 .asm_115430
 	ld a, l
-	ld [Console], a
+	ld [wDecoConsole], a
 	ld a, h
-	ld [LeftOrnament], a
+	ld [wDecoLeftOrnament], a
 	xor a
 	ld [de], a
 	ld hl, $dc24
@@ -3670,7 +3670,7 @@ Function1153d2: ; 1153d2
 	inc de
 	ld a, h
 	ld [de], a
-	ld hl, RightOrnament
+	ld hl, wDecoRightOrnament
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
 	ld [hFF8C], a
@@ -3680,15 +3680,15 @@ Function1153d2: ; 1153d2
 	ld d, [hl]
 	ld hl, $ddc8
 	call Function115d6a
-	ld hl, RightOrnament
+	ld hl, wDecoRightOrnament
 	ld a, [wCurrMapBGEventCount]
 	ld [hli], a
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, [Console]
+	ld a, [wDecoConsole]
 	ld e, a
-	ld a, [LeftOrnament]
+	ld a, [wDecoLeftOrnament]
 	ld d, a
 	pop hl
 	ld a, h
@@ -3708,9 +3708,9 @@ Function1154d4: ; 1154d4
 	and a
 	jr nz, .asm_11552c
 	call Function1155d1
-	ld a, [RightOrnament]
+	ld a, [wDecoRightOrnament]
 	dec a
-	ld [RightOrnament], a
+	ld [wDecoRightOrnament], a
 	and a
 	jp z, .asm_115577
 	cp $1
@@ -3718,7 +3718,7 @@ Function1154d4: ; 1154d4
 	xor a
 	ld [wDailyResetTimer], a
 .asm_1154f7
-	ld a, [BigDoll]
+	ld a, [wDecoBigDoll]
 	cp $2
 	jr z, .asm_115502
 	cp $3
@@ -3822,9 +3822,9 @@ Function1154d4: ; 1154d4
 	jp Function11425c
 
 .asm_1155a0
-	ld a, [RightOrnament]
+	ld a, [wDecoRightOrnament]
 	dec a
-	ld [RightOrnament], a
+	ld [wDecoRightOrnament], a
 	and a
 	jr z, .asm_115560
 	call Function1155d1
@@ -3854,7 +3854,7 @@ Function1155af: ; 1155af
 	ld [hli], a
 	inc de
 	ld a, [de]
-	ld [RightOrnament], a
+	ld [wDecoRightOrnament], a
 	inc de
 	ld a, e
 	ld [hli], a
@@ -3870,10 +3870,10 @@ Function1155d1: ; 1155d1
 	ld a, [$dc0e]
 	ld h, a
 	ld a, [hli]
-	ld [BigDoll], a
+	ld [wDecoBigDoll], a
 	cp $3
 	jr nz, .asm_1155f0
-	ld de, Carpet
+	ld de, wDecoCarpet
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -3883,7 +3883,7 @@ Function1155d1: ; 1155d1
 	ld a, [hli]
 	ld [de], a
 	ld a, [hli]
-	ld [Bed], a
+	ld [wDecoBed], a
 
 .asm_1155f0
 	ld de, $dc17
@@ -4056,9 +4056,9 @@ Function1156cc: ; 1156cc
 	call Function115732
 	call Function11575c
 	ld a, h
-	ld [Poster], a
+	ld [wDecoPoster], a
 	ld a, l
-	ld [Plant], a
+	ld [wDecoPlant], a
 
 .asm_1156fa
 	call Function1157d0
@@ -4070,9 +4070,9 @@ Function1156cc: ; 1156cc
 	ld a, [wStartDay]
 	cp $5
 	jr z, .asm_115716
-	ld a, [Poster]
+	ld a, [wDecoPoster]
 	ld h, a
-	ld a, [Plant]
+	ld a, [wDecoPlant]
 	ld l, a
 	xor a
 	jp Function11425c
@@ -4240,7 +4240,7 @@ Function1157d0: ; 1157d0
 	ld l, a
 	ld a, [$dc0e]
 	ld c, a
-	ld a, [Bed]
+	ld a, [wDecoBed]
 	ld b, a
 	cp h
 	jr c, .asm_1157eb
@@ -4275,7 +4275,7 @@ Function1157d0: ; 1157d0
 	ld a, c
 	ld [$dc0e], a
 	ld a, b
-	ld [Bed], a
+	ld [wDecoBed], a
 	ld a, $4
 	ld [wStartDay], a
 	ret
@@ -4285,7 +4285,7 @@ Function1157d0: ; 1157d0
 	ld a, c
 	ld [$dc0e], a
 	ld a, b
-	ld [Bed], a
+	ld [wDecoBed], a
 	ld a, $3
 	ld [wStartDay], a
 	ret
@@ -4298,7 +4298,7 @@ Function11581e: ; 11581e
 	ret z
 	ld a, [$dc0e]
 	ld c, a
-	ld a, [Bed]
+	ld a, [wDecoBed]
 	ld b, a
 	ld hl, $dc02
 	ld a, [hli]
@@ -4659,9 +4659,9 @@ Function1159fb: ; 1159fb
 	call Function115732
 	call Function115a5f
 	ld a, h
-	ld [Plant], a
+	ld [wDecoPlant], a
 	ld a, l
-	ld [Poster], a
+	ld [wDecoPoster], a
 
 .asm_115a29
 	call Function115ab0
@@ -4673,9 +4673,9 @@ Function1159fb: ; 1159fb
 	ld a, [wStartDay]
 	cp $5
 	jr z, .asm_115a45
-	ld a, [Poster]
+	ld a, [wDecoPoster]
 	ld h, a
-	ld a, [Plant]
+	ld a, [wDecoPlant]
 	ld l, a
 	xor a
 	jp Function11425c
@@ -4771,7 +4771,7 @@ Function115ab0: ; 115ab0
 	ld l, a
 	ld a, [$dc0e]
 	ld c, a
-	ld a, [Bed]
+	ld a, [wDecoBed]
 	ld b, a
 	cp h
 	jr c, .asm_115acb
@@ -4806,7 +4806,7 @@ Function115ab0: ; 115ab0
 	ld a, c
 	ld [$dc0e], a
 	ld a, b
-	ld [Bed], a
+	ld [wDecoBed], a
 	ld a, $4
 	ld [wStartDay], a
 	xor a
@@ -4817,7 +4817,7 @@ Function115ab0: ; 115ab0
 	ld a, c
 	ld [$dc0e], a
 	ld a, b
-	ld [Bed], a
+	ld [wDecoBed], a
 	ld a, $3
 	ld [wStartDay], a
 	xor a
@@ -4831,7 +4831,7 @@ Function115b00: ; 115b00
 	ret z
 	ld a, [$dc0e]
 	ld c, a
-	ld a, [Bed]
+	ld a, [wDecoBed]
 	ld b, a
 	ld hl, $dc02
 	ld a, [hli]
@@ -4870,7 +4870,7 @@ Function115b00: ; 115b00
 	ret
 
 .asm_115b43
-	ld a, [Carpet]
+	ld a, [wDecoCarpet]
 	add a
 	cpl
 	ld c, a
@@ -4961,7 +4961,7 @@ Function115b00: ; 115b00
 
 Function115bc8: ; 115bc8
 	xor a
-	ld [Carpet], a
+	ld [wDecoCarpet], a
 .asm_115bcc
 	ld a, [de]
 	ld [hli], a
@@ -5009,9 +5009,9 @@ Function115bc8: ; 115bc8
 	ld a, b
 	or c
 	jr z, .asm_115c46
-	ld a, [Carpet]
+	ld a, [wDecoCarpet]
 	inc a
-	ld [Carpet], a
+	ld [wDecoCarpet], a
 	dec bc
 	ld a, b
 	or c

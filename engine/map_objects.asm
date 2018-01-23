@@ -2829,7 +2829,7 @@ _UpdateSprites:: ; 5920
 	cp b
 	ret nc
 	ld l, a
-	ld h, HIGH(Sprites)
+	ld h, HIGH(wVirtualOAM)
 	ld de, SPRITEOAMSTRUCT_LENGTH
 	ld a, b
 	ld c, SCREEN_HEIGHT_PX + 2 * TILE_WIDTH
@@ -3043,7 +3043,7 @@ InitSprites: ; 5991
 	ld l, a
 	ld a, [hUsedSpriteIndex]
 	ld c, a
-	ld b, HIGH(Sprites)
+	ld b, HIGH(wVirtualOAM)
 	ld a, [hli]
 	ld [hUsedSpriteTile], a
 	add c

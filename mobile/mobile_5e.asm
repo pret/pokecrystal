@@ -517,7 +517,7 @@ String_17a9b2: ; 17a9b2
 ; 17a9cb
 
 Function17a9cb: ; 17a9cb (5e:69cb)
-	ld de, Sprites ; $c400
+	ld de, wVirtualOAM ; $c400
 	ld hl, $d088
 	bit 6, [hl]
 	jr nz, .bit_6_set

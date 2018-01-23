@@ -271,8 +271,8 @@ endr
 	ret
 
 .delete
-	ld hl, Sprites
-	ld c, SpritesEnd - Sprites
+	ld hl, wVirtualOAM
+	ld c, SpritesEnd - wVirtualOAM
 	xor a
 .loop2
 	ld [hli], a
@@ -1499,7 +1499,7 @@ BattleAnim_UpdateOAM_All: ; cc96e
 	jr nz, .loop
 	ld a, [wBattleAnimOAMPointerLo]
 	ld l, a
-	ld h, HIGH(Sprites)
+	ld h, HIGH(wVirtualOAM)
 .loop2
 	ld a, l
 	cp LOW(SpritesEnd)

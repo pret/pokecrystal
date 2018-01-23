@@ -89,7 +89,7 @@ _GetVarAction:: ; 80648 (20:4648)
 
 .CountBadges: ; 806e1
 ; Number of owned badges.
-	ld hl, Badges
+	ld hl, wBadges
 	ld b, 2
 	call CountSetBits
 	ld a, [wd265]

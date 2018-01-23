@@ -360,7 +360,7 @@ Function11619d: ; 11619d
 	cp $2
 	jr c, .asm_1161b4
 	ld a, $a0
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	ld bc, 25 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 
@@ -667,7 +667,7 @@ Function11636e: ; 11636e
 	ld a, $1
 	ld [rSVBK], a
 	ld a, $a0
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ld a, $90
@@ -695,7 +695,7 @@ Function1163c0: ; 1163c0
 	ld a, $1
 	ld [rSVBK], a
 	ld a, $a0
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	call DelayFrame

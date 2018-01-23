@@ -76,7 +76,7 @@ Special_DisplayCoinCaseBalance: ; 24b25
 	hlcoord 17, 1
 	ld de, ShowMoney_TerminatorString
 	call PlaceString
-	ld de, Coins
+	ld de, wCoins
 	lb bc, 2, 4
 	hlcoord 13, 1
 	call PrintNum
@@ -98,7 +98,7 @@ Special_DisplayMoneyAndCoinBalance: ; 24b4e
 	ld de, CoinString
 	call PlaceString
 	hlcoord 15, 3
-	ld de, Coins
+	ld de, wCoins
 	lb bc, 2, 4
 	call PrintNum
 	ret

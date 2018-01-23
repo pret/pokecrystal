@@ -568,9 +568,9 @@ Function8942b: ; 8942b (22:542b)
 	ret
 
 Function89448: ; 89448 (22:5448)
-; Clears the Sprites array
+; Clears the sprite array
 	push af
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	ld d, 24 * SPRITEOAMSTRUCT_LENGTH
 	xor a
 .loop
@@ -2550,7 +2550,7 @@ Function89f77: ; 89f77 (22:5f77)
 
 Function89f9a: ; 89f9a (22:5f9a)
 	dec a
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	and a
 	ret z
 .asm_89fa0
@@ -3293,7 +3293,7 @@ asm_8a529: ; 8a529 (22:6529)
 	ld [hli], a
 	ld a, $ff
 	ld [hli], a
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	xor a
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill

@@ -1646,7 +1646,7 @@ _LinkBattleSendReceiveAction: ; 100a09
 ; 100a2e
 
 .StageForSend: ; 100a2e
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	and a
 	jr nz, .switch
 	ld a, [CurPlayerMove]
@@ -7143,7 +7143,7 @@ Function10306e: ; 10306e
 	ld a, $01
 	ld [hOAMUpdate], a
 	call ClearSprites
-	ld de, Sprites
+	ld de, wVirtualOAM
 	call Function1030cd
 	xor a
 	ld [hOAMUpdate], a

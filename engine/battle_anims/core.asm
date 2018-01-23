@@ -106,7 +106,7 @@ BattleAnimOAMUpdate: ; cca09
 	ld l, a
 	ld a, [wBattleAnimOAMPointerLo]
 	ld e, a
-	ld d, HIGH(Sprites)
+	ld d, HIGH(wVirtualOAM)
 .loop
 	ld a, [wBattleAnimTempYCoord]
 	ld b, a

@@ -106,8 +106,8 @@ ResetWRAM: ; 5ba7
 
 _ResetWRAM: ; 5bae
 
-	ld hl, Sprites
-	ld bc, Options - Sprites
+	ld hl, wVirtualOAM
+	ld bc, Options - wVirtualOAM
 	xor a
 	call ByteFill
 
@@ -196,8 +196,8 @@ _ResetWRAM: ; 5bae
 	ld [wJohtoBadges], a
 	ld [wKantoBadges], a
 
-	ld [Coins], a
-	ld [Coins + 1], a
+	ld [wCoins], a
+	ld [wCoins + 1], a
 
 if START_MONEY >= $10000
 	ld a, HIGH(START_MONEY >> 8)

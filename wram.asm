@@ -22,16 +22,16 @@ wMusic::
 MusicPlaying:: db ; c100
 
 Channels::
-Channel1:: channel_struct Channel1 ; c101
-Channel2:: channel_struct Channel2 ; c133
-Channel3:: channel_struct Channel3 ; c165
-Channel4:: channel_struct Channel4 ; c197
+wChannel1:: channel_struct Channel1 ; c101
+wChannel2:: channel_struct Channel2 ; c133
+wChannel3:: channel_struct Channel3 ; c165
+wChannel4:: channel_struct Channel4 ; c197
 
 SFXChannels::
-Channel5:: channel_struct Channel5 ; c1c9
-Channel6:: channel_struct Channel6 ; c1fb
-Channel7:: channel_struct Channel7 ; c22d
-Channel8:: channel_struct Channel8 ; c25f
+wChannel5:: channel_struct Channel5 ; c1c9
+wChannel6:: channel_struct Channel6 ; c1fb
+wChannel7:: channel_struct Channel7 ; c22d
+wChannel8:: channel_struct Channel8 ; c25f
 
 	ds 1 ; c291
 
@@ -43,7 +43,7 @@ wCurNoteDuration:: db ; used in MusicE0 and LoadNote
 
 CurMusicByte:: db ; c298
 CurChannel:: db ; c299
-Volume:: ; c29a
+wVolume:: ; c29a
 ; corresponds to $ff24
 ; Channel control / ON-OFF / Volume (R/W)
 ;   bit 7 - Vin->SO2 ON/OFF
@@ -73,7 +73,7 @@ wNoiseSampleDelay:: db ; c2a2
 MusicNoiseSampleSet:: db ; c2a4
 SFXNoiseSampleSet:: db ; c2a5
 
-Danger:: ; c2a6
+wLowHealthAlarm:: ; c2a6
 ; bit 7: on/off
 ; bit 4: pitch
 ; bit 0-3: counter
@@ -302,7 +302,7 @@ wc3fc:: ds 1
 
 SECTION "Sprites", WRAM0
 
-Sprites:: ; c400
+wVirtualOAM:: ; c400
 Sprite01:: sprite_oam_struct Sprite01
 Sprite02:: sprite_oam_struct Sprite02
 Sprite03:: sprite_oam_struct Sprite03
@@ -631,7 +631,7 @@ wEnemyMinimized:: db ; c6fa
 AlreadyFailed:: db ; c6fb
 
 wBattleParticipantsIncludingFainted:: db ; c6fc
-wDanger:: db ; c6fd
+wBattleLowHealthAlarm:: db ; c6fd
 wPlayerMinimized:: db ; c6fe
 PlayerScreens:: ; c6ff
 ; bit
@@ -659,7 +659,7 @@ EnemyLightScreenCount:: db ; c706
 EnemyReflectCount:: db ; c707
 	ds 2
 
-Weather:: ; c70a
+wBattleWeather:: ; c70a
 ; 00 normal
 ; 01 rain
 ; 02 sun
@@ -1871,7 +1871,7 @@ wNumMoves:: db
 
 wFieldMoveSucceeded::
 wItemEffectSucceeded::
-wPlayerAction::
+wBattlePlayerAction::
 ; 0 - use move
 ; 1 - use item
 ; 2 - switch
@@ -2439,9 +2439,9 @@ Money:: ds 3 ; d84e
 wMomsMoney:: ds 3 ; d851
 wMomSavingMoney:: db ; d854
 
-Coins:: dw ; d855
+wCoins:: dw ; d855
 
-Badges::
+wBadges::
 wJohtoBadges:: flag_array NUM_JOHTO_BADGES ; d857
 wKantoBadges:: flag_array NUM_KANTO_BADGES ; d858
 
@@ -2450,7 +2450,7 @@ TMsHMs:: ds NUM_TMS + NUM_HMS ; d859
 TMsHMsEnd::
 
 NumItems:: db ; d892
-Items:: ds MAX_ITEMS * 2 + 1 ; d893
+wItems:: ds MAX_ITEMS * 2 + 1 ; d893
 ItemsEnd::
 
 NumKeyItems:: db ; d8bc
@@ -2458,7 +2458,7 @@ KeyItems:: ds MAX_KEY_ITEMS + 1 ; d8bd
 KeyItemsEnd::
 
 NumBalls:: db ; d8d7
-Balls:: ds MAX_BALLS * 2 + 1 ; d8d8
+wBalls:: ds MAX_BALLS * 2 + 1 ; d8d8
 BallsEnd::
 
 PCItems:: ds MAX_PC_ITEMS * 2 + 1 ; d8f1
@@ -2649,14 +2649,14 @@ wCurrMapCallbacksPointer:: dw ; dc0b
 	ds 2
 
 ; Sprite id of each decoration
-Bed::           db ; dc0f
-Carpet::        db ; dc10
-Plant::         db ; dc11
-Poster::        db ; dc12
-Console::       db ; dc13
-LeftOrnament::  db ; dc14
-RightOrnament:: db ; dc15
-BigDoll::       db ; dc16
+wDecoBed::           db ; dc0f
+wDecoCarpet::        db ; dc10
+wDecoPlant::         db ; dc11
+wDecoPoster::        db ; dc12
+wDecoConsole::       db ; dc13
+wDecoLeftOrnament::  db ; dc14
+wDecoRightOrnament:: db ; dc15
+wDecoBigDoll::       db ; dc16
 
 ; Items bought from Mom
 wWhichMomItem:: db ; dc17

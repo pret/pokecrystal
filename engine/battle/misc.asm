@@ -53,7 +53,7 @@ GetPlayerBackpicCoords: ; fbd9d (3e:7d9d)
 DoWeatherModifiers: ; fbda4
 
 	ld de, .WeatherTypeModifiers
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	ld b, a
 	ld a, [wd265] ; move type
 	ld c, a

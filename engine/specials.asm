@@ -253,7 +253,7 @@ Special_StartGameCornerGame: ; c39a
 ; c3ae
 
 Special_CheckCoins: ; c3ae
-	ld hl, Coins
+	ld hl, wCoins
 	ld a, [hli]
 	or [hl]
 	jr z, .no_coins

@@ -564,7 +564,7 @@ Function16cb2e: ; 16cb2e
 	ret z
 	call Function16cb40
 	ld hl, Unknown_16cb86
-	ld de, Sprites
+	ld de, wVirtualOAM
 	call Function16cb5d
 	ret
 ; 16cb40

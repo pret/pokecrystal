@@ -44,7 +44,7 @@ EvolutionAnimation: ; 4e5e1
 	call Request2bpp
 
 	xor a
-	ld [Danger], a
+	ld [wLowHealthAlarm], a
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a

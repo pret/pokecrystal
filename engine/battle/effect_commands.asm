@@ -1,7 +1,7 @@
 DoPlayerTurn: ; 34000
 	call SetPlayerTurn
 
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	and a
 	ret nz
 
@@ -1908,7 +1908,7 @@ BattleCommand_CheckHit: ; 34d32
 	cp EFFECT_THUNDER
 	ret nz
 
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	ret
 
@@ -5394,7 +5394,7 @@ BattleCommand_FreezeTarget: ; 36102
 	ld a, [TypeModifier]
 	and $7f
 	ret z
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	ret z
 	call CheckMoveTypeMatchesTarget ; Don't freeze an Ice-type
@@ -9046,7 +9046,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	ret z
 
 	ld a, 1
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 
 	call LoadStandardMenuDataHeader
 	ld hl, LinkBattleSendReceiveAction
@@ -9054,7 +9054,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	call CloseWindow
 
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ret
 
 ; 37a82
@@ -9310,15 +9310,15 @@ BattleCommand_TimeBasedHealContinue: ; 37b7e
 ; Don't factor in time of day in link battles.
 	ld a, [wLinkMode]
 	and a
-	jr nz, .Weather
+	jr nz, .checkWeather
 
 	ld a, [TimeOfDay]
 	cp b
-	jr z, .Weather
+	jr z, .checkWeather
 	dec c ; double
 
-.Weather:
-	ld a, [Weather]
+.checkWeather:
+	ld a, [wBattleWeather]
 	and a
 	jr z, .Heal
 
@@ -9384,7 +9384,7 @@ BattleCommand_HiddenPower: ; 37be8
 BattleCommand_StartRain: ; 37bf4
 ; startrain
 	ld a, WEATHER_RAIN
-	ld [Weather], a
+	ld [wBattleWeather], a
 	ld a, 5
 	ld [WeatherCount], a
 	call AnimateCurrentMove
@@ -9397,7 +9397,7 @@ BattleCommand_StartRain: ; 37bf4
 BattleCommand_StartSun: ; 37c07
 ; startsun
 	ld a, WEATHER_SUN
-	ld [Weather], a
+	ld [wBattleWeather], a
 	ld a, 5
 	ld [WeatherCount], a
 	call AnimateCurrentMove
@@ -9588,7 +9588,7 @@ BattleCommand_DoubleMinimizeDamage: ; 37ce6
 
 BattleCommand_SkipSunCharge: ; 37d02
 ; mimicsuncharge
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	ret nz
 	ld b, charge_command
@@ -9690,7 +9690,7 @@ BattleCommand_ThunderAccuracy: ; 37d94
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
 	inc hl
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	jr z, .rain
 	cp WEATHER_SUN

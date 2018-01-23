@@ -1658,7 +1658,7 @@ RevivePokemon: ; f0d6
 
 .skip_to_revive
 	xor a
-	ld [Danger], a
+	ld [wLowHealthAlarm], a
 	ld a, [CurItem]
 	cp REVIVE
 	jr z, .revive_half_hp
@@ -1701,7 +1701,7 @@ FullRestore: ; f128
 
 .FullRestore: ; f144
 	xor a
-	ld [Danger], a
+	ld [wLowHealthAlarm], a
 	call ReviveFullHP
 	ld a, MON_STATUS
 	call GetPartyParamLocation
@@ -1798,7 +1798,7 @@ ItemRestoreHP: ; f1a9 (3:71a9)
 	ret nc
 
 	xor a
-	ld [Danger], a
+	ld [wLowHealthAlarm], a
 	call GetHealingItemAmount
 	call RestoreHealth
 	call BattlemonRestoreHealth
@@ -2357,7 +2357,7 @@ PokeFlute: ; f50c
 	ld hl, .PlayedTheFlute
 	call PrintText
 
-	ld a, [Danger]
+	ld a, [wLowHealthAlarm]
 	and 1 << DANGER_ON_F
 	jr nz, .dummy2
 .dummy2

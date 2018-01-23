@@ -1993,7 +1993,7 @@ Script_readcoins:
 
 	call ResetStringBuffer1
 	ld hl, StringBuffer1
-	ld de, Coins
+	ld de, wCoins
 	lb bc, PRINTNUM_RIGHTALIGN | 2, 6
 	call PrintNum
 	ld de, StringBuffer1

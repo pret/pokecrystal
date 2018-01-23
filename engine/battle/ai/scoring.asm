@@ -2842,7 +2842,7 @@ AI_Smart_Solarbeam: ; 3920b
 ; 80% chance to encourage this move when it's sunny.
 ; 90% chance to discourage this move when it's raining.
 
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	jr z, .asm_3921e
 
@@ -2870,7 +2870,7 @@ AI_Smart_Solarbeam: ; 3920b
 AI_Smart_Thunder: ; 39225
 ; 90% chance to discourage this move when it's sunny.
 
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	ret nz
 

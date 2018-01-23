@@ -2588,8 +2588,8 @@ Pokedex_GetArea: ; 91d11
 
 .copy_sprites
 	hlcoord 0, 0
-	ld de, Sprites
-	ld bc, SpritesEnd - Sprites
+	ld de, wVirtualOAM
+	ld bc, SpritesEnd - wVirtualOAM
 	call CopyBytes
 	ret
 
@@ -2654,9 +2654,9 @@ Pokedex_GetArea: ; 91d11
 	jr .nestloop
 
 .done_nest
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	decoord 0, 0
-	ld bc, SpritesEnd - Sprites
+	ld bc, SpritesEnd - wVirtualOAM
 	call CopyBytes
 	ret
 
@@ -2741,8 +2741,8 @@ Pokedex_GetArea: ; 91d11
 	ret
 
 .clear
-	ld hl, Sprites
-	ld bc, SpritesEnd - Sprites
+	ld hl, wVirtualOAM
+	ld bc, SpritesEnd - wVirtualOAM
 	xor a
 	call ByteFill
 	scf

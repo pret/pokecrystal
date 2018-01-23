@@ -135,7 +135,7 @@ AI_Redundant: ; 2c41a
 	ret
 
 .Sandstorm: ; 2c4f5
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SANDSTORM
 	jr z, .Redundant
 	jr .NotRedundant
@@ -153,13 +153,13 @@ AI_Redundant: ; 2c41a
 	ret
 
 .RainDance: ; 2c512
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	jr z, .Redundant
 	jr .NotRedundant
 
 .SunnyDay: ; 2c51b
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	jr z, .Redundant
 	jr .NotRedundant

@@ -214,7 +214,7 @@ SUBSTATUS_CURLED EQU 0
 	enum SCREENS_UNUSED
 	enum SCREENS_SPIKES
 
-; Weather values
+; values in wBattleWeather
 	const_def
 	const WEATHER_NONE
 	const WEATHER_RAIN

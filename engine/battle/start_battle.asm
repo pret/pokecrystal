@@ -150,7 +150,7 @@ PlayBattleMusic: ; 2ee6c
 
 ClearBattleRAM: ; 2ef18
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ld [wBattleResult], a
 
 	ld hl, wPartyMenuCursor

@@ -23,7 +23,7 @@ PlaySpriteAnimations: ; 8cf69
 	push bc
 	push af
 
-	ld a, LOW(Sprites)
+	ld a, LOW(wVirtualOAM)
 	ld [wCurrSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
 
@@ -60,9 +60,9 @@ DoNextFrameForAllSprites: ; 8cf7a
 
 	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
-	ld h, HIGH(Sprites)
+	ld h, HIGH(wVirtualOAM)
 
-.loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> SpritesEnd)
+.loop2 ; Clear (wVirtualOAM + [wCurrSpriteOAMAddr] --> SpritesEnd)
 	ld a, l
 	cp LOW(SpritesEnd)
 	jr nc, .done
@@ -102,7 +102,7 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 	ld l, a
 	ld h, HIGH(Sprite17)
 
-.loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> Sprites + $40)
+.loop2 ; Clear (wVirtualOAM + [wCurrSpriteOAMAddr] --> Sprites + $40)
 	ld a, l
 	cp LOW(Sprite17)
 	jr nc, .done
@@ -253,7 +253,7 @@ UpdateAnimFrame: ; 8d04c
 	push bc
 	ld a, [wCurrSpriteOAMAddr]
 	ld e, a
-	ld d, HIGH(Sprites)
+	ld d, HIGH(wVirtualOAM)
 	ld a, [hli]
 	ld c, a ; number of objects
 .loop
