@@ -145,7 +145,7 @@ ForgetMove: ; 65d3
 	ld a, SCREEN_WIDTH * 2
 	ld [Buffer1], a
 	predef ListMoves
-	; wMenuData3
+	; w2DMenuData
 	ld a, $4
 	ld [w2DMenuCursorInitY], a
 	ld a, $6

@@ -1419,8 +1419,6 @@ wMenuDataBank:: db
 wMenuHeaderEnd::
 
 wMenuData::
-; MenuData
-
 wMenuDataFlags:: db ; cf91
 
 UNION ; cf92
@@ -1452,7 +1450,7 @@ wMenuData_ScrollingMenuFunction3:: ds 3 ; cf9e
 ENDU ; cfa1
 wMenuDataEnd::
 
-wMenuData3::
+w2DMenuData::
 w2DMenuCursorInitY:: db ; cfa1
 w2DMenuCursorInitX:: db ; cfa2
 w2DMenuNumRows:: db ; cfa3
@@ -1470,7 +1468,7 @@ w2DMenuFlags1:: ; cfa5
 w2DMenuFlags2:: db ; cfa6
 w2DMenuCursorOffsets:: db ; cfa7
 wMenuJoypadFilter:: db ; cfa8
-wMenuData3End::
+w2DMenuDataEnd::
 
 wMenuCursorY:: db ; cfa9
 wMenuCursorX:: db ; cfaa
