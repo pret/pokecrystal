@@ -1,16 +1,16 @@
 const_value set 2
-	const GOLDENRODBILLSHOUSE_BILL
-	const GOLDENRODBILLSHOUSE_POKEFAN_F
-	const GOLDENRODBILLSHOUSE_TWIN
+	const BILLSFAMILYSHOUSE_BILL
+	const BILLSFAMILYSHOUSE_POKEFAN_F
+	const BILLSFAMILYSHOUSE_TWIN
 
-GoldenrodBillsHouse_MapScripts:
+BillsFamilysHouse_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-BillsHouseBill:
+BillScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_EEVEE
@@ -51,7 +51,7 @@ UnknownScript_0x54c1f:
 	closetext
 	end
 
-BillsMom:
+BillsMomScript:
 	faceplayer
 	opentext
 	checkevent EVENT_MET_BILL
@@ -67,7 +67,7 @@ UnknownScript_0x54c33:
 	closetext
 	end
 
-BillsSister:
+BillsSisterScript:
 	faceplayer
 	opentext
 	checkcellnum PHONE_BILL
@@ -242,7 +242,7 @@ UnknownText_0x55069:
 	line "system."
 	done
 
-GoldenrodBillsHouse_MapEvents:
+BillsFamilysHouse_MapEvents:
 	; filler
 	db 0, 0
 
@@ -262,6 +262,6 @@ GoldenrodBillsHouse_MapEvents:
 
 .ObjectEvents:
 	db 3
-	object_event 2, 3, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsHouseBill, EVENT_MET_BILL
-	object_event 5, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsMom, -1
-	object_event 5, 4, SPRITE_TWIN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSister, -1
+	object_event 2, 3, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillScript, EVENT_MET_BILL
+	object_event 5, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsMomScript, -1
+	object_event 5, 4, SPRITE_TWIN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSisterScript, -1

@@ -165,7 +165,7 @@ CharcoalKiln_Blocks:
 LakeOfRageHiddenPowerHouse_Blocks:
 LakeOfRageMagikarpHouse_Blocks:
 GoldenrodHappinessRater_Blocks:
-GoldenrodBillsHouse_Blocks:
+BillsFamilysHouse_Blocks:
 GoldenrodPPSpeechHouse_Blocks:
 GoldenrodNameRater_Blocks:
 VermilionFishingSpeechHouse_Blocks:
@@ -174,7 +174,7 @@ VermilionDiglettsCaveSpeechHouse_Blocks:
 BluesHouse_Blocks:
 PewterNidoranSpeechHouse_Blocks:
 PewterSnoozeSpeechHouse_Blocks:
-FuchsiaBillSpeechHouse_Blocks:
+BillsBrothersHouse_Blocks:
 LavenderSpeechHouse_Blocks:
 LavenderNameRater_Blocks:
 Route12SuperRodHouse_Blocks:
@@ -190,7 +190,7 @@ ViridianNicknameSpeechHouse_Blocks:
 Route2NuggetSpeechHouse_Blocks:
 PlayersNeighborsHouse_Blocks:
 Route26HealSpeechHouse_Blocks:
-Route26DayofWeekSiblingsHouse_Blocks:
+DayOfWeekSiblingsHouse_Blocks:
 Route27SandstormHouse_Blocks:
 MrPsychicsHouse_Blocks:
 Route5CleanseTagSpeechHouse_Blocks:
@@ -1022,8 +1022,8 @@ BattleTower1F_Blocks:
 BattleTowerBattleRoom_Blocks:
 	INCBIN "maps/BattleTowerBattleRoom.blk"
 
-GoldenrodPokeComCenter2FMobile_Blocks:
-	INCBIN "maps/GoldenrodPokeComCenter2FMobile.blk"
+PokecomCenterAdminRoomMobile_Blocks:
+	INCBIN "maps/PokecomCenterAdminRoomMobile.blk"
 
 MobileTradeRoomMobile_Blocks:
 	INCBIN "maps/MobileTradeRoomMobile.blk"

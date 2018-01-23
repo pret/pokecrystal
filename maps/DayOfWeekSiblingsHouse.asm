@@ -1,7 +1,7 @@
 const_value set 2
-	const ROUTE26DAYOFWEEKSIBLINGSHOUSE_POKEDEX
+	const DAYOFWEEKSIBLINGSHOUSE_POKEDEX
 
-Route26DayofWeekSiblingsHouse_MapScripts:
+DayOfWeekSiblingsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -70,7 +70,7 @@ UnknownText_0x7b2b9:
 	line "ROUTE 37"
 	done
 
-Route26DayofWeekSiblingsHouse_MapEvents:
+DayOfWeekSiblingsHouse_MapEvents:
 	; filler
 	db 0, 0
 

@@ -524,7 +524,7 @@ ENDM
 	map_data GoldenrodGym, GOLDENROD_GYM, $00, 0
 	map_data GoldenrodBikeShop, GOLDENROD_BIKE_SHOP, $00, 0
 	map_data GoldenrodHappinessRater, GOLDENROD_HAPPINESS_RATER, $00, 0
-	map_data GoldenrodBillsHouse, GOLDENROD_BILLS_HOUSE, $00, 0
+	map_data BillsFamilysHouse, BILLS_FAMILYS_HOUSE, $00, 0
 	map_data GoldenrodMagnetTrainStation, GOLDENROD_MAGNET_TRAIN_STATION, $00, 0
 	map_data GoldenrodFlowerShop, GOLDENROD_FLOWER_SHOP, $00, 0
 	map_data GoldenrodPPSpeechHouse, GOLDENROD_PP_SPEECH_HOUSE, $00, 0
@@ -539,7 +539,7 @@ ENDM
 	map_data GoldenrodDeptStoreRoof, GOLDENROD_DEPT_STORE_ROOF, $24, 0
 	map_data GoldenrodGameCorner, GOLDENROD_GAME_CORNER, $00, 0
 	map_data GoldenrodPokecenter1F, GOLDENROD_POKECENTER_1F, $00, 0
-	map_data GoldenrodPokeComCenter2FMobile, GOLDENROD_POKECOM_CENTER_2F_MOBILE, $00, 0
+	map_data PokecomCenterAdminRoomMobile, POKECOM_CENTER_ADMIN_ROOM_MOBILE, $00, 0
 	map_data IlexForestAzaleaGate, ILEX_FOREST_AZALEA_GATE, $00, 0
 	map_data Route34IlexForestGate, ROUTE_34_ILEX_FOREST_GATE, $00, 0
 	map_data DayCare, DAY_CARE, $00, 0
@@ -585,7 +585,7 @@ ENDM
 	map_data FuchsiaMart, FUCHSIA_MART, $00, 0
 	map_data SafariZoneMainOffice, SAFARI_ZONE_MAIN_OFFICE, $00, 0
 	map_data FuchsiaGym, FUCHSIA_GYM, $00, 0
-	map_data FuchsiaBillSpeechHouse, FUCHSIA_BILL_SPEECH_HOUSE, $00, 0
+	map_data BillsBrothersHouse, BILLS_BROTHERS_HOUSE, $00, 0
 	map_data FuchsiaPokecenter1F, FUCHSIA_POKECENTER_1F, $00, 0
 	map_data FuchsiaPokecenter2FBeta, FUCHSIA_POKECENTER_2F_BETA, $00, 0
 	map_data SafariZoneWardensHome, SAFARI_ZONE_WARDENS_HOME, $00, 0
@@ -659,7 +659,7 @@ ENDM
 	map_data PlayersNeighborsHouse, PLAYERS_NEIGHBORS_HOUSE, $00, 0
 	map_data ElmsHouse, ELMS_HOUSE, $00, 0
 	map_data Route26HealSpeechHouse, ROUTE_26_HEAL_SPEECH_HOUSE, $00, 0
-	map_data Route26DayofWeekSiblingsHouse, ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE, $00, 0
+	map_data DayOfWeekSiblingsHouse, DAY_OF_WEEK_SIBLINGS_HOUSE, $00, 0
 	map_data Route27SandstormHouse, ROUTE_27_SANDSTORM_HOUSE, $00, 0
 	map_data Route29Route46Gate, ROUTE_29_ROUTE_46_GATE, $00, 0
 	map_data FightingDojo, FIGHTING_DOJO, $00, 0

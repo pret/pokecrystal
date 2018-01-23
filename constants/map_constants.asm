@@ -245,7 +245,7 @@ ENDM
 	mapconst GOLDENROD_GYM,                                9, 10 ;  3
 	mapconst GOLDENROD_BIKE_SHOP,                          4,  4 ;  4
 	mapconst GOLDENROD_HAPPINESS_RATER,                    4,  4 ;  5
-	mapconst GOLDENROD_BILLS_HOUSE,                        4,  4 ;  6
+	mapconst BILLS_FAMILYS_HOUSE,                          4,  4 ;  6
 	mapconst GOLDENROD_MAGNET_TRAIN_STATION,               9, 10 ;  7
 	mapconst GOLDENROD_FLOWER_SHOP,                        4,  4 ;  8
 	mapconst GOLDENROD_PP_SPEECH_HOUSE,                    4,  4 ;  9
@@ -260,7 +260,7 @@ ENDM
 	mapconst GOLDENROD_DEPT_STORE_ROOF,                    4,  8 ; 18
 	mapconst GOLDENROD_GAME_CORNER,                        7, 10 ; 19
 	mapconst GOLDENROD_POKECENTER_1F,                      4,  5 ; 20
-	mapconst GOLDENROD_POKECOM_CENTER_2F_MOBILE,          16, 16 ; 21
+	mapconst POKECOM_CENTER_ADMIN_ROOM_MOBILE,            16, 16 ; 21
 	mapconst ILEX_FOREST_AZALEA_GATE,                      4,  5 ; 22
 	mapconst ROUTE_34_ILEX_FOREST_GATE,                    4,  5 ; 23
 	mapconst DAY_CARE,                                     4,  5 ; 24
@@ -337,7 +337,7 @@ ENDM
 	mapconst FUCHSIA_MART,                                 4,  6 ;  6
 	mapconst SAFARI_ZONE_MAIN_OFFICE,                      4,  4 ;  7
 	mapconst FUCHSIA_GYM,                                  9,  5 ;  8
-	mapconst FUCHSIA_BILL_SPEECH_HOUSE,                    4,  4 ;  9
+	mapconst BILLS_BROTHERS_HOUSE,                         4,  4 ;  9
 	mapconst FUCHSIA_POKECENTER_1F,                        4,  5 ; 10
 	mapconst FUCHSIA_POKECENTER_2F_BETA,                   4,  8 ; 11
 	mapconst SAFARI_ZONE_WARDENS_HOME,                     4,  5 ; 12
@@ -452,7 +452,7 @@ ENDM
 	mapconst PLAYERS_NEIGHBORS_HOUSE,                      4,  4 ;  8
 	mapconst ELMS_HOUSE,                                   4,  4 ;  9
 	mapconst ROUTE_26_HEAL_SPEECH_HOUSE,                   4,  4 ; 10
-	mapconst ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE,          4,  4 ; 11
+	mapconst DAY_OF_WEEK_SIBLINGS_HOUSE,                   4,  4 ; 11
 	mapconst ROUTE_27_SANDSTORM_HOUSE,                     4,  4 ; 12
 	mapconst ROUTE_29_ROUTE_46_GATE,                       4,  5 ; 13
 

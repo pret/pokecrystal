@@ -420,7 +420,7 @@ Route26_MapEvents:
 	db 3
 	warp_def 7, 5, 3, VICTORY_ROAD_GATE
 	warp_def 15, 57, 1, ROUTE_26_HEAL_SPEECH_HOUSE
-	warp_def 5, 71, 1, ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE
+	warp_def 5, 71, 1, DAY_OF_WEEK_SIBLINGS_HOUSE
 
 .CoordEvents:
 	db 0
