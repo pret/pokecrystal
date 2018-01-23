@@ -13,3 +13,7 @@ palblue  EQUS "(1 << 10) *"
 
 palettes EQUS "* 8"
 palette  EQUS "+ 8 *"
+color    EQUS "+ 2 *"
+
+tiles EQUS "* LEN_2BPP_TILE"
+tile  EQUS "+ LEN_2BPP_TILE *"

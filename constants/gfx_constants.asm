@@ -3,6 +3,7 @@ LEN_1BPP_TILE EQU 1 * TILE_WIDTH ; bytes
 LEN_2BPP_TILE EQU 2 * TILE_WIDTH ; bytes
 
 NUM_PAL_COLORS EQU 4
+PAL_COLOR_SIZE EQU 2
 
 PALRGB_WHITE EQUS "palred 31 + palgreen 31 + palblue 31" ; $7fff
 

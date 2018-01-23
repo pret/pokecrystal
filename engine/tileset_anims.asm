@@ -952,7 +952,7 @@ TileAnimationPalette: ; fc6d7
 	jr z, .color2
 
 .color1
-	ld hl, wBGPals1 palette PAL_BG_WATER + 2
+	ld hl, wBGPals1 palette PAL_BG_WATER color 1
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -960,7 +960,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 
 .color0
-	ld hl, wBGPals1 palette PAL_BG_WATER
+	ld hl, wBGPals1 palette PAL_BG_WATER color 0
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -968,7 +968,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 
 .color2
-	ld hl, wBGPals1 palette PAL_BG_WATER + 4
+	ld hl, wBGPals1 palette PAL_BG_WATER color 2
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -1009,7 +1009,7 @@ FlickeringCaveEntrancePalette: ; fc71e
 	jr .okay
 
 .bit1set
-	ld hl, wBGPals1 palette PAL_BG_YELLOW + 2
+	ld hl, wBGPals1 palette PAL_BG_YELLOW color 1
 
 .okay
 	ld a, [hli]
