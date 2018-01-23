@@ -33,8 +33,7 @@ Function11c075: ; 11c075
 	ret
 ; 11c082
 
-Function11c082: ; 11c082
-; XXX
+Unreferenced_Function11c082: ; 11c082
 	push de
 	ld a, c
 	call Function11c254
@@ -271,11 +270,11 @@ CopyMobileEZChatToC608: ; 11c156
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	jr .copy_string
 ; 11c1ab
 
-Function11c1ab: ; 11c1ab
+Special_Function11c1ab: ; 11c1ab
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -370,7 +369,7 @@ Function11c254: ; 11c254
 ; 11c277
 
 EZChat_ClearBottom12Rows: ; 11c277 (47:4277)
-	ld a, " "
+	ld a, "　"
 	hlcoord 0, 6
 	ld bc, (SCREEN_HEIGHT - 6) * SCREEN_WIDTH
 	call ByteFill
@@ -426,11 +425,11 @@ EZChat_MasterLoop: ; 11c283
 
 .SpawnObjects: ; 11c2e9 (47:42e9)
 	depixel 3, 1, 2, 5
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	depixel 8, 1, 2, 5
 
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -438,7 +437,7 @@ EZChat_MasterLoop: ; 11c283
 	ld [hl], a
 
 	depixel 9, 2, 2, 0
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -446,7 +445,7 @@ EZChat_MasterLoop: ; 11c283
 	ld [hl], a
 
 	depixel 10, 16
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -454,7 +453,7 @@ EZChat_MasterLoop: ; 11c283
 	ld [hl], a
 
 	depixel 10, 4
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -462,7 +461,7 @@ EZChat_MasterLoop: ; 11c283
 	ld [hl], a
 
 	depixel 10, 2
-	ld a, SPRITE_ANIM_INDEX_1D
+	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
@@ -724,15 +723,15 @@ Function11c4be: ; 11c4be (47:44be)
 ; 11c4db (47:44db)
 
 String_11c4db: ; 11c4db
-	db   "6つのことば¯くみあわせます"
-	next "かえたいところ¯えらぶと でてくる"
-	next "ことばのグループから いれかえたい"
+	db   "６つのことば¯くみあわせます"
+	next "かえたいところ¯えらぶと　でてくる"
+	next "ことばのグループから　いれかえたい"
 	next "たんご¯えらんでください"
 	db   "@"
 ; 11c51b
 
 String_11c51b: ; 11c51b
-	db "ぜんぶけす やめる   けってい@"
+	db "ぜんぶけす　やめる　　　けってい@"
 ; 11c52c
 
 Function11c52c: ; 11c52c (47:452c)
@@ -923,7 +922,7 @@ Function11c618: ; 11c618 (47:4618)
 ; 11c62a (47:462a)
 
 EZChatString_Stop_Mode_Cancel: ; 11c62a
-	db "けす    モード   やめる@"
+	db "けす　　　　モード　　　やめる@"
 ; 11c63a
 
 Coords_11c63a: ; 11c63a
@@ -1375,10 +1374,10 @@ BCD2String: ; 11c8c7
 	farcall Function11a80c
 	pop hl
 	ld a, [wcd63]
-	add "0"
+	add "０"
 	ld [hli], a
 	ld a, [wcd62]
-	add "0"
+	add "０"
 	ld [hli], a
 	ret
 ; 11c8ec
@@ -1625,8 +1624,8 @@ Function11ca19: ; 11ca19 (47:4a19)
 ; 11ca38 (47:4a38)
 
 String_11ca38: ; 11ca38
-	db   "とうろくちゅう", $25, "あいさつ¯ぜんぶ"
-	next "けしても よろしいですか?@"
+	db   "とうろくちゅう<NO>あいさつ¯ぜんぶ"
+	next "けしても　よろしいですか？@"
 ; 11ca57
 
 String_11ca57: ; 11ca57
@@ -1754,13 +1753,13 @@ Function11cab3: ; 11cab3 (47:4ab3)
 ; 11cb1c (47:4b1c)
 
 String_11cb1c: ; 11cb1c
-	db   "あいさつ", $25, "とうろく¯ちゅうし"
-	next "しますか?@"
+	db   "あいさつ<NO>とうろく¯ちゅうし"
+	next "しますか？@"
 ; 11cb31
 
 String_11cb31: ; 11cb31
-	db   "とうろくちゅう", $25, "あいさつ", $24, "ほぞん"
-	next "されません", $4a, "よろしい ですか?@"
+	db   "とうろくちゅう<NO>あいさつ<WA>ほぞん"
+	next "されません<GA>よろしい　ですか？@"
 ; 11cb52
 
 Function11cb52: ; 11cb52 (47:4b52)
@@ -1890,20 +1889,20 @@ Unknown_11cc01: ; 11cc01
 	dw String_11cc60
 
 String_11cc09: ; 11cc09
-	db   "じこしょうかい は"
-	next "この あいさつで いいですか?@"
+	db   "じこしょうかい　は"
+	next "この　あいさつで　いいですか？@"
 
 String_11cc23: ; 11cc23
-	db   "たいせん ", $4a, "はじまるとき は"
-	next "この あいさつで いいですか?@"
+	db   "たいせん　<GA>はじまるとき　は"
+	next "この　あいさつで　いいですか？@"
 
 String_11cc42: ; 11cc42
-	db   "たいせん ", $1d, "かったとき は"
-	next "この あいさつで いいですか?@"
+	db   "たいせん　<NI>かったとき　は"
+	next "この　あいさつで　いいですか？@"
 
 String_11cc60: ; 11cc60
-	db   "たいせん ", $1d, "まけたとき は"
-	next "この あいさつで いいですか?@"
+	db   "たいせん　<NI>まけたとき　は"
+	next "この　あいさつで　いいですか？@"
 ; 11cc7e
 
 Unknown_11cc7e: ; 11cc7e
@@ -1913,20 +1912,20 @@ Unknown_11cc7e: ; 11cc7e
 	dw String_11ccd4
 
 String_11cc86: ; 11cc86
-	db   "じこしょうかい の"
-	next "あいさつ¯とうろくした!@"
+	db   "じこしょうかい　の"
+	next "あいさつ¯とうろくした！@"
 
 String_11cc9d: ; 11cc9d
-	db   "たいせん ", $4a, "はじまるとき の"
-	next "あいさつ¯とうろくした!@"
+	db   "たいせん　<GA>はじまるとき　の"
+	next "あいさつ¯とうろくした！@"
 
 String_11ccb9: ; 11ccb9
-	db   "たいせん ", $1d, "かったとき の"
-	next "あいさつ¯とうろくした!@"
+	db   "たいせん　<NI>かったとき　の"
+	next "あいさつ¯とうろくした！@"
 
 String_11ccd4: ; 11ccd4
-	db   "たいせん ", $1d, "まけたとき の"
-	next "あいさつ¯とうろくした!@"
+	db   "たいせん　<NI>まけたとき　の"
+	next "あいさつ¯とうろくした！@"
 ; 11ccef
 
 Function11ccef: ; 11ccef (47:4cef)
@@ -1949,7 +1948,7 @@ Function11cd04: ; 11cd04 (47:4d04)
 ; 11cd10 (47:4d10)
 
 String_11cd10: ; 11cd10
-	db "なにか ことば¯いれてください@"
+	db "なにか　ことば¯いれてください@"
 ; 11cd20
 
 Function11cd20: ; 11cd20 (47:4d20)
@@ -2055,13 +2054,13 @@ String_11cdc7: ; 11cdc7
 
 String_11cdd9: ; 11cdd9
 ; Words will be displayed in alphabetical order
-	db   "ことば¯アイウエォ の"
-	next "じゅんばんで ひょうじ します@"
+	db   "ことば¯アイウエオ　の"
+	next "じゅんばんで　ひょうじ　します@"
 ; 11cdf5
 
 String_11cdf5: ; 11cdf5
-	db   "しゅるいべつ モード"  ; Category mode
-	next "アイウエォ  モード@" ; ABC mode
+	db   "しゅるいべつ　モード"  ; Category mode
+	next "アイウエオ　　モード@" ; ABC mode
 ; 11ce0b
 
 Function11ce0b: ; 11ce0b (47:4e0b)
@@ -2277,10 +2276,10 @@ Unknown_11ceb9: ; 11ceb9
 
 String_11cf79: ; 11cf79
 ; Hiragana table
-	db   "あいうえお なにぬねの や ゆ よ"
-	next "かきくけこ はひふへほ わ"
-	next "さしすせそ まみむめも そのた"
-	next "たちつてと らりるれろ"
+	db   "あいうえお　なにぬねの　や　ゆ　よ"
+	next "かきくけこ　はひふへほ　わ"
+	next "さしすせそ　まみむめも　そのた"
+	next "たちつてと　らりるれろ"
 	db   "@"
 ; 11cfb5
 
@@ -2561,7 +2560,7 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	jr .load
 
 .three ; 11d10f (47:510f)
-	ld a, SPRITE_ANIM_FRAMESET_27
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_2
 	call ReinitSpriteAnimFrame
 	ld a, [wMobileCommsJumptableIndex]
 	sla a
@@ -2587,7 +2586,7 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	ret
 
 .four ; 11d134 (47:5134)
-	ld a, SPRITE_ANIM_FRAMESET_27
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_2
 	call ReinitSpriteAnimFrame
 	ld a, [wcd2a]
 	sla a
@@ -2596,7 +2595,7 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	jr .load
 
 .five ; 11d145 (47:5145)
-	ld a, SPRITE_ANIM_FRAMESET_27
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_2
 	call ReinitSpriteAnimFrame
 	ld a, [wcd2c]
 	sla a
@@ -2605,7 +2604,7 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	jr .load
 
 .six ; 11d156 (47:5156)
-	ld a, SPRITE_ANIM_FRAMESET_2A
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_5
 	call ReinitSpriteAnimFrame
 	; X = [wcd4a] * 8 + 24
 	ld a, [wcd4a]
@@ -2628,12 +2627,12 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 .seven ; 11d175 (47:5175)
 	ld a, [wEZChatCursorYCoord]
 	cp $4
-	jr z, .frameset_26
-	ld a, SPRITE_ANIM_FRAMESET_28
+	jr z, .cursor0
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3
 	jr .got_frameset
 
-.frameset_26
-	ld a, SPRITE_ANIM_FRAMESET_26
+.cursor0
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1
 .got_frameset
 	call ReinitSpriteAnimFrame
 	ld a, [wEZChatCursorYCoord]
@@ -2685,12 +2684,12 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 
 .nine ; 11d1d1 (47:51d1)
 	ld d, -13 * 8
-	ld a, SPRITE_ANIM_FRAMESET_2C
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_7
 	jr .eight_nine_load
 
 .eight ; 11d1d7 (47:51d7)
 	ld d, 2 * 8
-	ld a, SPRITE_ANIM_FRAMESET_2B
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_6
 .eight_nine_load ; 11d1db (47:51db)
 	push de
 	call ReinitSpriteAnimFrame
@@ -2713,7 +2712,7 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	ret
 
 .ten ; 11d1fc (47:51fc)
-	ld a, SPRITE_ANIM_FRAMESET_26
+	ld a, SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1
 	call ReinitSpriteAnimFrame
 	ld a, $8
 	ld e, a
@@ -2825,54 +2824,54 @@ AnimateEZChatCursor: ; 11d0b6 (47:50b6)
 	dbpixel  4, 12
 
 .FramesetsIDs_Two: ; 11d2be
-	db SPRITE_ANIM_FRAMESET_28 ; 00
-	db SPRITE_ANIM_FRAMESET_28 ; 01
-	db SPRITE_ANIM_FRAMESET_28 ; 02
-	db SPRITE_ANIM_FRAMESET_28 ; 03
-	db SPRITE_ANIM_FRAMESET_28 ; 04
-	db SPRITE_ANIM_FRAMESET_28 ; 05
-	db SPRITE_ANIM_FRAMESET_28 ; 06
-	db SPRITE_ANIM_FRAMESET_28 ; 07
-	db SPRITE_ANIM_FRAMESET_28 ; 08
-	db SPRITE_ANIM_FRAMESET_28 ; 09
-	db SPRITE_ANIM_FRAMESET_28 ; 0a
-	db SPRITE_ANIM_FRAMESET_28 ; 0b
-	db SPRITE_ANIM_FRAMESET_28 ; 0c
-	db SPRITE_ANIM_FRAMESET_28 ; 0d
-	db SPRITE_ANIM_FRAMESET_28 ; 0e
-	db SPRITE_ANIM_FRAMESET_28 ; 0f
-	db SPRITE_ANIM_FRAMESET_28 ; 10
-	db SPRITE_ANIM_FRAMESET_28 ; 11
-	db SPRITE_ANIM_FRAMESET_28 ; 12
-	db SPRITE_ANIM_FRAMESET_28 ; 13
-	db SPRITE_ANIM_FRAMESET_28 ; 14
-	db SPRITE_ANIM_FRAMESET_28 ; 15
-	db SPRITE_ANIM_FRAMESET_28 ; 16
-	db SPRITE_ANIM_FRAMESET_28 ; 17
-	db SPRITE_ANIM_FRAMESET_28 ; 18
-	db SPRITE_ANIM_FRAMESET_28 ; 19
-	db SPRITE_ANIM_FRAMESET_28 ; 1a
-	db SPRITE_ANIM_FRAMESET_28 ; 1b
-	db SPRITE_ANIM_FRAMESET_28 ; 1c
-	db SPRITE_ANIM_FRAMESET_28 ; 1d
-	db SPRITE_ANIM_FRAMESET_28 ; 1e
-	db SPRITE_ANIM_FRAMESET_28 ; 1f
-	db SPRITE_ANIM_FRAMESET_28 ; 20
-	db SPRITE_ANIM_FRAMESET_28 ; 21
-	db SPRITE_ANIM_FRAMESET_28 ; 22
-	db SPRITE_ANIM_FRAMESET_28 ; 23
-	db SPRITE_ANIM_FRAMESET_28 ; 24
-	db SPRITE_ANIM_FRAMESET_28 ; 25
-	db SPRITE_ANIM_FRAMESET_28 ; 26
-	db SPRITE_ANIM_FRAMESET_28 ; 27
-	db SPRITE_ANIM_FRAMESET_28 ; 28
-	db SPRITE_ANIM_FRAMESET_28 ; 29
-	db SPRITE_ANIM_FRAMESET_28 ; 2a
-	db SPRITE_ANIM_FRAMESET_28 ; 2b
-	db SPRITE_ANIM_FRAMESET_29 ; 2c
-	db SPRITE_ANIM_FRAMESET_26 ; 2d
-	db SPRITE_ANIM_FRAMESET_26 ; 2e
-	db SPRITE_ANIM_FRAMESET_26 ; 2f
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 00
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 01
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 02
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 03
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 04
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 05
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 06
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 07
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 08
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 09
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0a
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0b
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0c
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0d
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0e
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 0f
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 10
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 11
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 12
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 13
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 14
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 15
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 16
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 17
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 18
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 19
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1a
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1b
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1c
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1d
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1e
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 1f
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 20
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 21
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 22
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 23
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 24
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 25
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 26
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 27
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 28
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 29
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 2a
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_3 ; 2b
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_4 ; 2c
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1 ; 2d
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1 ; 2e
+	db SPRITE_ANIM_FRAMESET_EZCHAT_CURSOR_1 ; 2f
 
 .UpdateObjectFlags: ; 11d2ee (47:52ee)
 	ld hl, wcd24
@@ -3022,9 +3021,9 @@ EZChat_GetSeenPokemonByKana: ; 11d3ba
 	ld [wcd2e], a
 	ld [hl], a
 
-	ld a, LOW(SortedPokemon)
+	ld a, LOW(EZChat_SortedPokemon)
 	ld [wcd2f], a
-	ld a, HIGH(SortedPokemon)
+	ld a, HIGH(EZChat_SortedPokemon)
 	ld [wcd30], a
 
 	ld a, LOW($c6a8)
@@ -3093,7 +3092,7 @@ EZChat_GetSeenPokemonByKana: ; 11d3ba
 	or b
 	jr nz, .loop1
 
-; recover the pointer from wcd2f (default: SortedPokemon)
+; recover the pointer from wcd2f (default: EZChat_SortedPokemon)
 	ld a, [wcd2f]
 	ld l, a
 	ld a, [wcd30]
@@ -3292,101 +3291,7 @@ EZChat_GetCategoryWordsByKana: ; 11d4aa
 	ret
 ; 11d4fe
 
-SortedPokemon:
-; Pokemon sorted by kana.
-; Notably, Rhydon is missing.
-	dw .a
-	dw .i
-	dw .u
-	dw .e
-	dw .o
-	dw .ka_ga
-	dw .ki_gi
-	dw .ku_gu
-	dw .ke_ge
-	dw .ko_go
-	dw .sa_za
-	dw .shi_ji
-	dw .su_zu
-	dw .se_ze
-	dw .so_zo
-	dw .ta_da
-	dw .chi_dhi
-	dw .tsu_du
-	dw .te_de
-	dw .to_do
-	dw .na
-	dw .ni
-	dw .nu
-	dw .ne
-	dw .no
-	dw .ha_ba_pa
-	dw .hi_bi_pi
-	dw .fu_bu_pu
-	dw .he_be_pe
-	dw .ho_bo_po
-	dw .ma
-	dw .mi
-	dw .mu
-	dw .me
-	dw .mo
-	dw .ya
-	dw .yu
-	dw .yo
-	dw .ra
-	dw .ri
-	dw .ru
-	dw .re
-	dw .ro
-	dw .wa
-	dw .end
-
-.a:		db EKANS, ARBOK, SEAKING, ARIADOS, CROCONAW, UNOWN, -1
-.i:		db EEVEE, GEODUDE, SPINARAK, PILOSWINE, ONIX, -1
-.u:		db ARCANINE, SUDOWOODO, WEEPINBELL, VICTREEBEL, WOOPER, SWINUB, -1
-.e:		db SKARMORY, AIPOM, ESPEON, HITMONCHAN, ELEKID, ELECTABUZZ, ENTEI, -1
-.o:		db FERALIGATR, FURRET, OCTILLERY, PRIMEAPE, SENTRET, STANTLER, SPEAROW, FEAROW, OMASTAR, OMANYTE, -1
-.ka_ga		db GROWLITHE, MACHAMP, DRAGONITE, PINSIR, SNORLAX, KABUTO, KABUTOPS, HITMONTOP, WARTORTLE, BLASTOISE, FARFETCH_D, CUBONE, MAROWAK, KANGASKHAN, -1
-.ki_gi		db SUNFLORA, CATERPIE, GYARADOS, RAPIDASH, NINETALES, GIRAFARIG, BELLOSSOM, KINGDRA, KINGLER, -1
-.ku_gu		db GLOOM, PINECO, GLIGAR, KRABBY, GRANBULL, CROBAT, -1
-.ke_ge		db ABRA, GENGAR, TAUROS, -1
-.ko_go		db MAGIKARP, MAGNEMITE, GASTLY, HAUNTER, MACHOKE, KAKUNA, PSYDUCK, PHANPY, RATTATA, GOLDUCK, GOLBAT, GOLEM, GRAVELER, VENONAT, -1
-.sa_za		db RHYHORN, PUPITAR, CORSOLA, HITMONLEE, ZAPDOS, JOLTEON, SANDSHREW, SANDSLASH, -1 ; RHYDON should lead this list
-.shi_ji		db SEADRA, SHELLDER, VAPOREON, DEWGONG, -1
-.su_zu		db SUICUNE, STARMIE, SCYTHER, ZUBAT, BEEDRILL, HYPNO, DROWZEE, -1
-.se_ze		db SQUIRTLE, CELEBI, -1
-.so_zo		db WOBBUFFET, -1
-.ta_da		db DUGTRIO, HORSEA, EXEGGCUTE, -1
-.chi_dhi	db CHIKORITA, CHINCHOU, -1
-.tsu_du		db SHUCKLE, -1
-.te_de		db DIGLETT, REMORAID, DELIBIRD, HOUNDOUR, AMPHAROS, -1
-.to_do		db DODUO, DODRIO, SMEARGLE, KOFFING, TENTACRUEL, TOGETIC, TOGEPI, GOLDEEN, METAPOD, DONPHAN, -1
-.na		db ODDISH, EXEGGUTOR, -1
-.ni		db NIDOKING, NIDOQUEEN, NIDORAN_M, NIDORAN_F, NIDORINA, NIDORINO, MEOWTH, SNEASEL, POLIWHIRL, POLITOED, POLIWRATH, POLIWAG, -1
-.nu		db QUAGSIRE, -1
-.ne		db NATU, XATU, -1
-.no		db DUNSPARCE, -1
-.ha_ba_pa	db SEEL, STEELIX, TYPHLOSION, DRAGONAIR, BUTTERFREE, SCIZOR, HOPPIP, BLISSEY, PARAS, PARASECT, QWILFISH, MR__MIME, TYROGUE, CLOYSTER, TYRANITAR, -1
-.hi_bi_pi	db CLEFFA, WEEDLE, PIKACHU, CLEFABLE, PIDGEOT, PIDGEOTTO, PICHU, CLEFAIRY, CHARMANDER, STARYU, CYNDAQUIL, SUNKERN, TEDDIURSA, VOLTORB, -1
-.fu_bu_pu	db MOLTRES, FLAREON, ALAKAZAM, MAGMAR, FORRETRESS, WIGGLYTUFF, IVYSAUR, BULBASAUR, VENUSAUR, AERODACTYL, MAGBY, IGGLYBUFF, UMBREON, ARTICUNO, JIGGLYPUFF, SNUBBULL, -1
-.he_be_pe	db BAYLEEF, GRIMER, MUK, HERACROSS, HOUNDOOM, PERSIAN, LICKITUNG, -1
-.ho_bo_po	db HO_OH, HOOTHOOT, PIDGEY, PONYTA, SKIPLOOM, PORYGON, PORYGON2, -1
-.ma		db MAGCARGO, SLUGMA, QUILAVA, BELLSPROUT, WEEZING, MARILL, AZUMARILL, ELECTRODE, MANKEY, MANTINE, -1
-.mi		db DRATINI, MEW, MEWTWO, MILTANK, -1
-.mu		db MISDREAVUS, SMOOCHUM, -1
-.me		db MEGANIUM, DITTO, TENTACOOL, MAREEP, -1
-.mo		db FLAAFFY, VENOMOTH, TANGELA, -1
-.ya		db SLOWKING, SLOWBRO, SLOWPOKE, MURKROW, YANMA, -1
-.yu		db KADABRA, -1
-.yo		db LARVITAR, NOCTOWL, -1
-.ra		db RAIKOU, RAICHU, CHANSEY, RATICATE, LAPRAS, VILEPLUME, LANTURN, -1
-.ri		db CHARMELEON, CHARIZARD, URSARING, -1
-.ru		db JYNX, LUGIA, -1
-.re		db MAGNETON, LEDIAN, LEDYBA, -1
-.ro		db VULPIX, -1
-.wa		db JUMPLUFF, TOTODILE, MACHOP;, -1
-.end		db -1
-; 11d67e
+INCLUDE "data/pokemon/ezchat_order.asm"
 
 GFX_11d67e:
 INCBIN "gfx/pokedex/select_start.2bpp"
@@ -3455,9 +3360,9 @@ MobileEZChatCategoryPointers: ; 11daac
 .Greetings: ; 11db58
 	db "ありがと@", $58, $0, $0
 	db "ありがとう", $5a, $0, $0
-	db "いくぜ!@", $80, $0, $0
-	db "いくよ!@", $82, $0, $0
-	db "いくわよ!", $84, $0, $0
+	db "いくぜ！@", $80, $0, $0
+	db "いくよ！@", $82, $0, $0
+	db "いくわよ！", $84, $0, $0
 	db "いやー@@", $a6, $0, $0
 	db "おっす@@", $a, $1, $0
 	db "おはつです", $22, $1, $0
@@ -3465,7 +3370,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "ごめん@@", $f8, $1, $0
 	db "ごめんよ@", $fa, $1, $0
 	db "こらっ@@", $fc, $1, $0
-	db "こんちは!", $a, $2, $0
+	db "こんちは！", $a, $2, $0
 	db "こんにちは", $10, $2, $0
 	db "さようなら", $28, $2, $0
 	db "サンキュー", $2e, $2, $0
@@ -3563,7 +3468,7 @@ MobileEZChatCategoryPointers: ; 11daac
 
 .Battle: ; 11dea0
 	db "あいしょう", $18, $0, $0
-	db "いけ!@@", $88, $0, $0
+	db "いけ！@@", $88, $0, $0
 	db "いちばん@", $96, $0, $0
 	db "かくご@@", $4c, $1, $0
 	db "かたせて@", $54, $1, $0
@@ -3579,7 +3484,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "きめた@@", $a8, $1, $0
 	db "きりふだ@", $b6, $1, $0
 	db "くらえ@@", $c2, $1, $0
-	db "こい!@@", $da, $1, $0
+	db "こい！@@", $da, $1, $0
 	db "こうげき@", $e0, $1, $0
 	db "こうさん@", $e2, $1, $0
 	db "こんじょう", $8, $2, $0
@@ -3612,7 +3517,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "ポイント@", $94, $4, $0
 	db "ポケモン@", $ac, $4, $0
 	db "ほんき@@", $bc, $4, $0
-	db "まいった!", $c4, $4, $0
+	db "まいった！", $c4, $4, $0
 	db "まけ@@@", $c8, $4, $0
 	db "まけたら@", $ca, $4, $0
 	db "まけて@@", $cc, $4, $0
@@ -3622,7 +3527,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "みとめない", $fe, $4, $0
 	db "みとめる@", $0, $5, $0
 	db "むてき@@", $16, $5, $0
-	db "もらった!", $3c, $5, $0
+	db "もらった！", $3c, $5, $0
 	db "よゆう@@", $7a, $5, $0
 	db "よわい@@", $82, $5, $0
 	db "よわすぎ@", $84, $5, $0
@@ -3633,13 +3538,13 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "わざ@@@", $be, $5, $0
 
 .Exclamations: ; 11e0c8
-	db "!@@@@", $0, $0, $0
-	db "!!@@@", $2, $0, $0
-	db "!?@@@", $4, $0, $0
-	db "?@@@@", $6, $0, $0
-	db "…@@@@", $8, $0, $0
-	db "…!@@@", $a, $0, $0
-	db "………@@", $c, $0, $0
+	db "！@@@@", $0, $0, $0
+	db "！！@@@", $2, $0, $0
+	db "！？@@@", $4, $0, $0
+	db "？@@@@", $6, $0, $0
+	db "⋯@@@@", $8, $0, $0
+	db "⋯！@@@", $a, $0, $0
+	db "⋯⋯⋯@@", $c, $0, $0
 	db "ー@@@@", $e, $0, $0
 	db "ーーー@@", $10, $0, $0
 	db "あーあ@@", $14, $0, $0
@@ -3650,7 +3555,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "イエス@@", $74, $0, $0
 	db "うう@@@", $ac, $0, $0
 	db "うーん@@", $ae, $0, $0
-	db "うおー!@", $b0, $0, $0
+	db "うおー！@", $b0, $0, $0
 	db "うおりゃー", $b2, $0, $0
 	db "うひょー@", $bc, $0, $0
 	db "うふふ@@", $be, $0, $0
@@ -3687,18 +3592,18 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "ほーほほほ", $9c, $4, $0
 	db "ほら@@@", $b6, $4, $0
 	db "まあ@@@", $c0, $4, $0
-	db "むきー!!", $10, $5, $0
+	db "むきー！！", $10, $5, $0
 	db "むふー@@", $18, $5, $0
 	db "むふふ@@", $1a, $5, $0
 	db "むむ@@@", $1c, $5, $0
 	db "よーし@@", $6a, $5, $0
-	db "よし!@@", $72, $5, $0
+	db "よし！@@", $72, $5, $0
 	db "ラララ@@", $98, $5, $0
 	db "わーい@@", $ac, $5, $0
-	db "わーん!!", $b0, $5, $0
-	db "ワォ@@@", $b2, $5, $0
-	db "わっ!!@", $ce, $5, $0
-	db "わははは!", $d0, $5, $0
+	db "わーん！！", $b0, $5, $0
+	db "ワオ@@@", $b2, $5, $0
+	db "わっ！！@", $ce, $5, $0
+	db "わははは！", $d0, $5, $0
 
 .Conversation: ; 11e2d8
 	db "あのね@@", $50, $0, $0
@@ -3778,7 +3683,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "エキサイト", $d8, $0, $0
 	db "えらい@@", $de, $0, $0
 	db "おかしい@", $ec, $0, $0
-	db "ォッケー@", $8, $1, $0
+	db "オッケー@", $8, $1, $0
 	db "かえりたい", $48, $1, $0
 	db "がっくし@", $5a, $1, $0
 	db "かなしい@", $6c, $1, $0
@@ -3945,7 +3850,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "もようがえ", $3a, $5, $0
 	db "ゆめ@@@", $5a, $5, $0
 	db "ようちえん", $66, $5, $0
-	db "ラジォ@@", $92, $5, $0
+	db "ラジオ@@", $92, $5, $0
 	db "ワールド@", $ae, $5, $0
 
 .Hobbies: ; 11ea58
@@ -4104,10 +4009,10 @@ MobileEZChatCategoryPointers: ; 11daac
 .Farewells: ; 11eef0
 	db "いたします", $92, $0, $0
 	db "おります@", $32, $1, $0
-	db "か!?@@", $3c, $1, $0
-	db "かい?@@", $44, $1, $0
-	db "かしら?@", $50, $1, $0
-	db "かな?@@", $6a, $1, $0
+	db "か！？@@", $3c, $1, $0
+	db "かい？@@", $44, $1, $0
+	db "かしら？@", $50, $1, $0
+	db "かな？@@", $6a, $1, $0
 	db "かも@@@", $76, $1, $0
 	db "くれ@@@", $ca, $1, $0
 	db "ございます", $e8, $1, $0
@@ -4116,8 +4021,8 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "じゃ@@@", $6a, $2, $0
 	db "じゃん@@", $6e, $2, $0
 	db "しよう@@", $7c, $2, $0
-	db "ぜ!@@@", $ac, $2, $0
-	db "ぞ!@@@", $bc, $2, $0
+	db "ぜ！@@@", $ac, $2, $0
+	db "ぞ！@@@", $bc, $2, $0
 	db "た@@@@", $d4, $2, $0
 	db "だ@@@@", $d6, $2, $0
 	db "だからね@", $ee, $2, $0
@@ -4125,7 +4030,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "だった@@", $fa, $2, $0
 	db "だね@@@", $fe, $2, $0
 	db "だよ@@@", $10, $3, $0
-	db "だよねー!", $12, $3, $0
+	db "だよねー！", $12, $3, $0
 	db "だわ@@@", $26, $3, $0
 	db "ッス@@@", $4c, $3, $0
 	db "ってかんじ", $52, $3, $0
@@ -4133,16 +4038,16 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "つもり@@", $56, $3, $0
 	db "ていない@", $64, $3, $0
 	db "ている@@", $66, $3, $0
-	db "でーす!@", $68, $3, $0
+	db "でーす！@", $68, $3, $0
 	db "でした@@", $74, $3, $0
-	db "でしょ?@", $76, $3, $0
-	db "でしょー!", $78, $3, $0
+	db "でしょ？@", $76, $3, $0
+	db "でしょー！", $78, $3, $0
 	db "です@@@", $7a, $3, $0
-	db "ですか?@", $7c, $3, $0
+	db "ですか？@", $7c, $3, $0
 	db "ですよ@@", $80, $3, $0
 	db "ですわ@@", $82, $3, $0
-	db "どうなの?", $a4, $3, $0
-	db "どうよ?@", $a8, $3, $0
+	db "どうなの？", $a4, $3, $0
+	db "どうよ？@", $a8, $3, $0
 	db "とかいって", $aa, $3, $0
 	db "なの@@@", $e0, $3, $0
 	db "なのか@@", $e2, $3, $0
@@ -4154,20 +4059,20 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "ね@@@@", $12, $4, $0
 	db "ねー@@@", $14, $4, $0
 	db "の@@@@", $1c, $4, $0
-	db "の?@@@", $1e, $4, $0
+	db "の？@@@", $1e, $4, $0
 	db "ばっかり@", $44, $4, $0
-	db "まーす!@", $c2, $4, $0
+	db "まーす！@", $c2, $4, $0
 	db "ます@@@", $d8, $4, $0
 	db "ますわ@@", $da, $4, $0
 	db "ません@@", $dc, $4, $0
 	db "みたいな@", $fa, $4, $0
-	db "よ!@@@", $60, $5, $0
+	db "よ！@@@", $60, $5, $0
 	db "よー@@@", $68, $5, $0
 	db "よーん@@", $6c, $5, $0
 	db "よね@@@", $78, $5, $0
 	db "るよ@@@", $a2, $5, $0
 	db "わけ@@@", $bc, $5, $0
-	db "わよ!@@", $d2, $5, $0
+	db "わよ！@@", $d2, $5, $0
 
 .ThisAndThat: ; 11f100
 	db "ああ@@@", $12, $0, $0
@@ -4182,7 +4087,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "この@@@", $f2, $1, $0
 	db "こりゃ@@", $fe, $1, $0
 	db "これ@@@", $0, $2, $0
-	db "これだ!@", $2, $2, $0
+	db "これだ！@", $2, $2, $0
 	db "これは@@", $4, $2, $0
 	db "こんな@@", $e, $2, $0
 	db "そう@@@", $be, $2, $0
@@ -4190,7 +4095,7 @@ MobileEZChatCategoryPointers: ; 11daac
 	db "その@@@", $c2, $2, $0
 	db "そりゃ@@", $c6, $2, $0
 	db "それ@@@", $c8, $2, $0
-	db "それだ!@", $cc, $2, $0
+	db "それだ！@", $cc, $2, $0
 	db "それは@@", $d0, $2, $0
 	db "そんな@@", $d2, $2, $0
 	db "どう@@@", $98, $3, $0

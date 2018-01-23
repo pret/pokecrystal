@@ -60,7 +60,7 @@ TryAddMonToParty: ; d88c
 	ld d, h
 	ld e, l
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skipnickname
@@ -397,7 +397,7 @@ AddTempmonToParty: ; da96
 	ld hl, OTPartyMonNicknames
 	ld a, [CurPartyMon]
 	call SkipNames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	ld a, [CurPartySpecies]
@@ -434,7 +434,7 @@ AddTempmonToParty: ; da96
 	and a
 	ret
 
-SentGetPkmnIntoFromBox: ; db3f
+SendGetPkmnIntoFromBox: ; db3f
 ; Sents/Gets Pkmn into/from Box depending on Parameter
 ; wPokemonWithdrawDepositParameter == 0: get Pkmn into Party
 ; wPokemonWithdrawDepositParameter == 1: sent Pkmn into Box
@@ -583,7 +583,7 @@ SentGetPkmnIntoFromBox: ; db3f
 	call SkipNames
 
 .okay12
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop hl
 
@@ -904,8 +904,8 @@ DepositBreedmon: ; de44
 	ld bc, BOXMON_STRUCT_LENGTH
 	jp CopyBytes
 
-SentPkmnIntoBox: ; de6e
-; Sents the Pkmn into one of Bills Boxes
+SendPkmnIntoBox: ; de6e
+; Sends the Pkmn into one of Bills Boxes
 ; the data comes mainly from 'EnemyMon:'
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -943,7 +943,7 @@ SentPkmnIntoBox: ; de6e
 
 	ld de, sBoxMonNicknames
 	ld hl, StringBuffer1
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	ld hl, EnemyMon
@@ -1044,7 +1044,7 @@ ShiftBoxMon: ; df47
 	call .shift
 
 	ld hl, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call .shift
 
 	ld hl, sBoxMons
@@ -1119,7 +1119,7 @@ GiveEgg:: ; df8c
 	ld d, $0
 	ld hl, PokedexCaught
 	ld b, RESET_FLAG
-	predef FlagPredef
+	predef SmallFarFlagAction
 
 .skip_caught_flag
 ; If we haven't seen this Pokemon before receiving
@@ -1135,7 +1135,7 @@ GiveEgg:: ; df8c
 	ld d, $0
 	ld hl, PokedexSeen
 	ld b, RESET_FLAG
-	predef FlagPredef
+	predef SmallFarFlagAction
 
 .skip_seen_flag
 	pop af
@@ -1240,7 +1240,7 @@ RemoveMonFromPartyOrBox: ; e039
 	; Shift the OT names
 	ld d, h
 	ld e, l
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld bc, PartyMonNicknames
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -1283,12 +1283,12 @@ RemoveMonFromPartyOrBox: ; e039
 	jr z, .party6
 	ld hl, sBoxMonNicknames
 .party6
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	ld bc, PartyMonNicknamesEnd
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -1626,7 +1626,7 @@ GivePoke:: ; e277
 	ld a, [CurPartySpecies]
 	ld [TempEnemyMonSpecies], a
 	callfar LoadEnemyMon
-	call SentPkmnIntoBox
+	call SendPkmnIntoBox
 	jp nc, .FailedToGiveMon
 	ld a, BOXMON
 	ld [MonType], a
@@ -1652,7 +1652,7 @@ GivePoke:: ; e277
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wMonOrItemNameBuffer
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop af
 	and a
@@ -1664,7 +1664,7 @@ GivePoke:: ; e277
 	push hl
 	ld a, [ScriptBank]
 	call GetFarHalfword
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop hl
@@ -1764,7 +1764,7 @@ GivePoke:: ; e277
 	call GetSRAMBank
 	ld hl, wMonOrItemNameBuffer
 	ld de, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call CloseSRAM
 	ld b, $1
@@ -1795,7 +1795,7 @@ InitNickname: ; e3de
 	pop hl
 	ld de, StringBuffer1
 	call InitName
-	ld a, $4 ; XXX could this be in bank 4 in pokered?
+	ld a, $4 ; ExitAllMenus is in bank 0, XXX could this be in bank 4 in pokered?
 	ld hl, ExitAllMenus
 	rst FarCall
 	ret

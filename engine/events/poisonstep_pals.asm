@@ -10,8 +10,8 @@ LoadPoisonBGPals: ; cbcdd
 	and a
 	jr nz, .cgb
 	ld a, [TimeOfDayPal]
-	and $3
-	cp $3
+	maskbits NUM_DAYTIMES
+	cp DARKNESS_F
 	ld a, %00000000
 	jr z, .convert_pals
 	ld a, %10101010
@@ -26,12 +26,11 @@ LoadPoisonBGPals: ; cbcdd
 .cgb
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
 	ld hl, wBGPals2
 	ld c, 4 palettes
 .loop
-; RGB 28, 21, 31
 	ld a, LOW(palred 28 + palgreen 21 + palblue 31)
 	ld [hli], a
 	ld a, HIGH(palred 28 + palgreen 21 + palblue 31)

@@ -1,4 +1,4 @@
-CorrectErrorsInPlayerParty: ; unreferenced
+Unreferenced_CorrectErrorsInPlayerParty:
 	ld hl, PartyCount
 	ld a, [hl]
 	and a
@@ -128,7 +128,7 @@ CorrectErrorsInPlayerParty: ; unreferenced
 	ld hl, StringBuffer1
 .got_nickname
 	pop de
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	pop bc
 

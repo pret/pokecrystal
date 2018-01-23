@@ -1,7 +1,7 @@
 const_value set 2
 	const CIANWOODPHARMACY_PHARMACIST
 
-CianwoodPharmacy_MapScriptHeader:
+CianwoodPharmacy_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -72,7 +72,7 @@ PharmacistDescribeSecretpotionText:
 	line "an emergency."
 	done
 
-CianwoodPharmacy_MapEventHeader:
+CianwoodPharmacy_MapEvents:
 	; filler
 	db 0, 0
 

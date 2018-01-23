@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE44_POKE_BALL2
 	const ROUTE44_POKE_BALL3
 
-Route44_MapScriptHeader:
+Route44_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -41,9 +41,9 @@ TrainerBirdKeeperVance1:
 	scall Route44AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_BIRDKEEPER_VANCE
-	if_equal $1, Route44PhoneFullM
-	if_equal $2, Route44NumberDeclinedM
-	trainertotext BIRD_KEEPER, VANCE1, $0
+	if_equal PHONE_CONTACTS_FULL, Route44PhoneFullM
+	if_equal PHONE_CONTACT_REFUSED, Route44NumberDeclinedM
+	trainertotext BIRD_KEEPER, VANCE1, MEM_BUFFER_0
 	scall Route44RegisteredNumberM
 	jump Route44NumberAcceptedM
 
@@ -168,9 +168,9 @@ TrainerFisherWilton1:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_WILTON
-	iftrue WiltonWantsBattle
+	iftrue .WantsBattle
 	checkflag ENGINE_WILTON_HAS_ITEM
-	iftrue WiltonHasItem
+	iftrue .HasItem
 	checkcellnum PHONE_FISHER_WILTON
 	iftrue Route44NumberAcceptedM
 	checkevent EVENT_WILTON_ASKED_FOR_PHONE_NUMBER
@@ -185,13 +185,13 @@ TrainerFisherWilton1:
 	scall Route44AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_WILTON
-	if_equal $1, Route44PhoneFullM
-	if_equal $2, Route44NumberDeclinedM
-	trainertotext FISHER, WILTON1, $0
+	if_equal PHONE_CONTACTS_FULL, Route44PhoneFullM
+	if_equal PHONE_CONTACT_REFUSED, Route44NumberDeclinedM
+	trainertotext FISHER, WILTON1, MEM_BUFFER_0
 	scall Route44RegisteredNumberM
 	jump Route44NumberAcceptedM
 
-WiltonWantsBattle:
+.WantsBattle:
 	scall Route44RematchM
 	winlosstext FisherWilton1BeatenText, 0
 	copybytetovar wWiltonFightCount
@@ -227,7 +227,7 @@ WiltonWantsBattle:
 	clearflag ENGINE_WILTON
 	end
 
-WiltonHasItem:
+.HasItem:
 	scall Route44GiftM
 	checkevent EVENT_WILTON_HAS_ULTRA_BALL
 	iftrue .UltraBall
@@ -318,8 +318,7 @@ Route44MaxRepel:
 	itemball MAX_REPEL
 
 Route44HiddenElixer:
-	dwb EVENT_ROUTE_44_HIDDEN_ELIXER, ELIXER
-
+	hiddenitem EVENT_ROUTE_44_HIDDEN_ELIXER, ELIXER
 
 FisherWilton1SeenText:
 	text "Aack! You made me"
@@ -507,7 +506,7 @@ Route44Sign2Text:
 	line "BLACKTHORN CITY"
 	done
 
-Route44_MapEventHeader:
+Route44_MapEvents:
 	; filler
 	db 0, 0
 

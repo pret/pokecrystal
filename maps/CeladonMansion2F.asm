@@ -1,4 +1,4 @@
-CeladonMansion2F_MapScriptHeader:
+CeladonMansion2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -49,7 +49,7 @@ CeladonMansion2FSignText:
 	line "MEETING ROOM"
 	done
 
-CeladonMansion2F_MapEventHeader:
+CeladonMansion2F_MapEvents:
 	; filler
 	db 0, 0
 

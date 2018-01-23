@@ -5,7 +5,7 @@ const_value set 2
 	const LAVRADIOTOWER1F_GENTLEMAN
 	const LAVRADIOTOWER1F_SUPER_NERD2
 
-LavRadioTower1F_MapScriptHeader:
+LavRadioTower1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -36,7 +36,7 @@ GentlemanScript_0x7ee6c:
 .UnknownScript_0x7ee80:
 	writetext UnknownText_0x7f0a1
 	buttonsound
-	stringtotext .expncardname, $1
+	stringtotext .expncardname, MEM_BUFFER_1
 	scall .UnknownScript_0x7ee94
 	setflag ENGINE_EXPN_CARD
 .UnknownScript_0x7ee8e:
@@ -221,7 +221,7 @@ UnknownText_0x7f36b:
 	line "reference library."
 	done
 
-LavRadioTower1F_MapEventHeader:
+LavRadioTower1F_MapEvents:
 	; filler
 	db 0, 0
 

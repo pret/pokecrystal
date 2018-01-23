@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE12SUPERRODHOUSE_FISHING_GURU
 
-Route12SuperRodHouse_MapScriptHeader:
+Route12SuperRodHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -79,7 +79,7 @@ UnknownText_0x7f5ec:
 	line "deceived me?"
 	done
 
-Route12SuperRodHouse_MapEventHeader:
+Route12SuperRodHouse_MapEvents:
 	; filler
 	db 0, 0
 

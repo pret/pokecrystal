@@ -1,4 +1,4 @@
-PokemonCenterPC: ; 1559a
+Special_PokemonCenterPC: ; 1559a
 	call PC_CheckPartyForPokemon
 	ret c
 	call PC_PlayBootSound
@@ -27,14 +27,13 @@ PokemonCenterPC: ; 1559a
 	ret
 
 .TopMenu:
-	db $48 ; flags
-	db 00, 00 ; start coords
-	db 12, 15 ; end coords
+	db MENU_BACKUP_TILES | MENU_NO_CLICK_SFX ; flags
+	menu_coords 0, 0, 15, 12
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw .WhichPC
 	dw PlaceNthMenuStrings
@@ -232,14 +231,14 @@ Function15715: ; 15715
 ; 15736
 
 KrissPCMenuData: ; 0x15736
-	db %01000000
+	db MENU_BACKUP_TILES ; flags
 	db  0,  0 ; top left corner coords (y, x)
 	db 12, 15 ; bottom right corner coords (y, x)
 	dw .KrissPCMenuData2
 	db 1 ; default selected option
 
 .KrissPCMenuData2:
-	db %10100000 ; bit7
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; # items?
 	dw .KrissPCMenuList1
 	dw PlaceNthMenuStrings
@@ -421,7 +420,7 @@ KrisDepositItemMenu: ; 0x1588b
 	farcall DepositSellInitPackBuffers
 .loop
 	farcall DepositSellPack
-	ld a, [wcf66]
+	ld a, [wPackUsedItem]
 	and a
 	jr z, .close
 	call .TryDepositItem
@@ -620,14 +619,13 @@ PCItemsJoypad: ; 0x15985
 	ret
 
 .PCItemsMenuData:
-	db %01000000
-	db  1,  4 ; start coords
-	db 10, 18 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 4, 1, 18, 10
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db %10110000
+	db SCROLLINGMENU_ENABLE_SELECT | SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 8 ; rows/cols?
 	db 2 ; horizontal spacing?
 	dbw 0, PCItems

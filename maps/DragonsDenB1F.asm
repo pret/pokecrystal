@@ -9,7 +9,7 @@ const_value set 2
 	const DRAGONSDENB1F_POKE_BALL2
 	const DRAGONSDENB1F_POKE_BALL3
 
-DragonsDenB1F_MapScriptHeader:
+DragonsDenB1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -17,7 +17,7 @@ DragonsDenB1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .CheckSilver
+	callback MAPCALLBACK_NEWMAP, .CheckSilver
 
 .DummyScene0:
 	end
@@ -57,7 +57,7 @@ DragonsDenB1F_ClairScene:
 	buttonsound
 	giveitem TM_DRAGONBREATH
 	iffalse .BagFull
-	itemtotext TM_DRAGONBREATH, $0
+	itemtotext TM_DRAGONBREATH, MEM_BUFFER_0
 	writetext NotifyReceiveDragonbreath
 	playsound SFX_ITEM
 	waitsfx
@@ -80,7 +80,7 @@ DragonsDenB1F_ClairScene:
 	pause 30
 	special RestartMapMusic
 	disappear DRAGONSDENB1F_CLAIR
-	setscene $0
+	setscene 0
 	end
 
 TrainerCooltrainermDarin:
@@ -135,7 +135,7 @@ PokeBallScript_0x18c95a:
 	iffalse .BagFull
 	disappear DRAGONSDENB1F_POKE_BALL1
 	opentext
-	itemtotext DRAGON_FANG, $0
+	itemtotext DRAGON_FANG, MEM_BUFFER_0
 	writetext Text_FoundDragonFang
 	playsound SFX_ITEM
 	waitsfx
@@ -145,7 +145,7 @@ PokeBallScript_0x18c95a:
 
 .BagFull:
 	opentext
-	itemtotext DRAGON_FANG, $0
+	itemtotext DRAGON_FANG, MEM_BUFFER_0
 	writetext Text_FoundDragonFang
 	buttonsound
 	writetext Text_NoRoomForDragonFang
@@ -183,13 +183,13 @@ DragonsDenB1FMaxElixer:
 	itemball MAX_ELIXER
 
 DragonsDenB1FHiddenRevive:
-	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_REVIVE, REVIVE
+	hiddenitem EVENT_DRAGONS_DEN_B1F_HIDDEN_REVIVE, REVIVE
 
 DragonsDenB1FHiddenMaxPotion:
-	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
 DragonsDenB1FHiddenMaxElixer:
-	dwb EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_ELIXER, MAX_ELIXER
+	hiddenitem EVENT_DRAGONS_DEN_B1F_HIDDEN_MAX_ELIXER, MAX_ELIXER
 
 MovementDragonsDen_ClairWalksToYou:
 	slow_step RIGHT
@@ -406,7 +406,7 @@ Text_NoRoomForDragonFang:
 	cont "items."
 	done
 
-DragonsDenB1F_MapEventHeader:
+DragonsDenB1F_MapEvents:
 	; filler
 	db 0, 0
 

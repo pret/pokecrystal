@@ -4,7 +4,7 @@ const_value set 2
 	const SILVERCAVEROOM1_POKE_BALL3
 	const SILVERCAVEROOM1_POKE_BALL4
 
-SilverCaveRoom1_MapScriptHeader:
+SilverCaveRoom1_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -24,14 +24,12 @@ SilverCaveRoom1UltraBall:
 	itemball ULTRA_BALL
 
 SilverCaveRoom1HiddenDireHit:
-	dwb EVENT_SILVER_CAVE_ROOM_1_HIDDEN_DIRE_HIT, DIRE_HIT
-
+	hiddenitem EVENT_SILVER_CAVE_ROOM_1_HIDDEN_DIRE_HIT, DIRE_HIT
 
 SilverCaveRoom1HiddenUltraBall:
-	dwb EVENT_SILVER_CAVE_ROOM_1_HIDDEN_ULTRA_BALL, ULTRA_BALL
+	hiddenitem EVENT_SILVER_CAVE_ROOM_1_HIDDEN_ULTRA_BALL, ULTRA_BALL
 
-
-SilverCaveRoom1_MapEventHeader:
+SilverCaveRoom1_MapEvents:
 	; filler
 	db 0, 0
 

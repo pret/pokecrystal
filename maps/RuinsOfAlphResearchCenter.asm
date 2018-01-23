@@ -3,7 +3,7 @@ const_value set 2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST2
 	const RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 
-RuinsOfAlphResearchCenter_MapScriptHeader:
+RuinsOfAlphResearchCenter_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -11,7 +11,7 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .ScientistCallback
+	callback MAPCALLBACK_OBJECTS, .ScientistCallback
 
 .DummyScene0:
 	end
@@ -22,11 +22,11 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 
 .ScientistCallback:
 	checkscene
-	if_equal $1, .ShowScientist
+	if_equal 1, .ShowScientist
 	return
 
 .ShowScientist:
-	moveobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, $3, $7
+	moveobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, 3, 7
 	appear RUINSOFALPHRESEARCHCENTER_SCIENTIST3
 	return
 
@@ -55,7 +55,7 @@ RuinsOfAlphResearchCenter_MapScriptHeader:
 	waitbutton
 	closetext
 	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59276
-	setscene $0
+	setscene 0
 	special RestartMapMusic
 	end
 
@@ -63,7 +63,7 @@ ScientistScript_0x591d1:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x591df
+	if_equal NUM_UNOWN, UnknownScript_0x591df
 	writetext UnknownText_0x59311
 	waitbutton
 	closetext
@@ -79,7 +79,7 @@ ScientistScript_0x591e5:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x5920b
+	if_equal NUM_UNOWN, UnknownScript_0x5920b
 	checkflag ENGINE_UNOWN_DEX
 	iftrue UnknownScript_0x59205
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
@@ -112,7 +112,7 @@ ScientistScript_0x59214:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x5922e
+	if_equal NUM_UNOWN, UnknownScript_0x5922e
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
 	writetext UnknownText_0x5954f
@@ -137,7 +137,7 @@ MapRuinsOfAlphResearchCenterSignpost1Script:
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x59241
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x59247
+	if_equal NUM_UNOWN, UnknownScript_0x59247
 UnknownScript_0x59241:
 	writetext UnknownText_0x597b6
 	waitbutton
@@ -155,7 +155,7 @@ MapRuinsOfAlphResearchCenterSignpost2Script:
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue UnknownScript_0x5925a
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x59260
+	if_equal NUM_UNOWN, UnknownScript_0x59260
 UnknownScript_0x5925a:
 	writetext UnknownText_0x5980e
 	waitbutton
@@ -169,8 +169,8 @@ UnknownScript_0x59260:
 	closetext
 	end
 
-UnknownScript_0x59269:
-	jumptext UnknownText_0x59848
+UnreferencedScript_0x59269:
+	jumptext UnusedText_0x59848
 
 MapRuinsOfAlphResearchCenterSignpost0Script:
 	jumptext UnknownText_0x59886
@@ -308,8 +308,8 @@ UnknownText_0x595cb:
 	cont "kinds of them…"
 	done
 
-; possibly unused
-UnknownText_0x59669:
+; unused
+UnusedText_0x59669:
 	text "We think something"
 	line "caused the cryptic"
 
@@ -320,8 +320,8 @@ UnknownText_0x59669:
 	line "studies on that."
 	done
 
-; possibly unused
-UnknownText_0x596d3:
+; unused
+UnusedText_0x596d3:
 	text "According to my"
 	line "research…"
 
@@ -374,8 +374,8 @@ UnknownText_0x5982d:
 	line "printed out."
 	done
 
-; possibly unused
-UnknownText_0x59848:
+; unused
+UnusedText_0x59848:
 	text "It's a photo of"
 	line "the RESEARCH"
 
@@ -392,7 +392,7 @@ UnknownText_0x59886:
 	cont "Ancients…"
 	done
 
-RuinsOfAlphResearchCenter_MapEventHeader:
+RuinsOfAlphResearchCenter_MapEvents:
 	; filler
 	db 0, 0
 

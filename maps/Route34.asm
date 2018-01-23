@@ -13,13 +13,13 @@ const_value set 2
 	const ROUTE34_COOLTRAINER_F3
 	const ROUTE34_POKE_BALL
 
-Route34_MapScriptHeader:
+Route34_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .EggCheckCallback
+	callback MAPCALLBACK_OBJECTS, .EggCheckCallback
 
 .EggCheckCallback:
 	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
@@ -59,7 +59,7 @@ DayCareManScript_Outside:
 	special Special_DayCareManOutside
 	waitbutton
 	closetext
-	if_equal $1, .end_fail
+	if_equal TRUE, .end_fail
 	clearflag ENGINE_DAY_CARE_MAN_HAS_EGG
 	checkcode VAR_FACING
 	if_equal RIGHT, .walk_around_player
@@ -112,9 +112,9 @@ TrainerCamperTodd1:
 	scall .AskNumber2
 .FinishAsk:
 	askforphonenumber PHONE_CAMPER_TODD
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext CAMPER, TODD1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext CAMPER, TODD1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -237,9 +237,9 @@ TrainerPicnickerGina1:
 	scall .AskNumber2
 .FinishAsk:
 	askforphonenumber PHONE_PICNICKER_GINA
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext PICNICKER, GINA1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext PICNICKER, GINA1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -488,12 +488,10 @@ Route34Nugget:
 	itemball NUGGET
 
 Route34HiddenRareCandy:
-	dwb EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
-
+	hiddenitem EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
 
 Route34HiddenSuperPotion:
-	dwb EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
-
+	hiddenitem EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
 
 Route34MovementData_DayCareManWalksBackInside:
 	slow_step LEFT
@@ -762,7 +760,7 @@ DayCareSignText:
 	line "#MON FOR YOU!"
 	done
 
-Route34_MapEventHeader:
+Route34_MapEvents:
 	; filler
 	db 0, 0
 

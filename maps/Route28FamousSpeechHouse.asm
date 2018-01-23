@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE28FAMOUSSPEECHHOUSE_CELEBRITY
 	const ROUTE28FAMOUSSPEECHHOUSE_FEAROW
 
-Route28FamousSpeechHouse_MapScriptHeader:
+Route28FamousSpeechHouse_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -70,7 +70,7 @@ CelebritysFearowText:
 	text "FEAROW: Feero!"
 	done
 
-Route28FamousSpeechHouse_MapEventHeader:
+Route28FamousSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,7 +3,7 @@ const_value set 2
 	const PEWTERGYM_YOUNGSTER
 	const PEWTERGYM_GYM_GUY
 
-PewterGym_MapScriptHeader:
+PewterGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ BrockScript_0x1a2864:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x1a29bb, 0
-	loadtrainer BROCK, 1
+	loadtrainer BROCK, BROCK1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK
@@ -72,7 +72,7 @@ PewterGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext BROCK, 1, $1
+	trainertotext BROCK, BROCK1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 UnknownText_0x1a28d0:
@@ -208,7 +208,7 @@ PewterGymGuyWinText:
 	line "that seriously."
 	done
 
-PewterGym_MapEventHeader:
+PewterGym_MapEvents:
 	; filler
 	db 0, 0
 

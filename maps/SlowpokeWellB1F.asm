@@ -9,7 +9,7 @@ const_value set 2
 	const SLOWPOKEWELLB1F_BOULDER
 	const SLOWPOKEWELLB1F_POKE_BALL
 
-SlowpokeWellB1F_MapScriptHeader:
+SlowpokeWellB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -39,7 +39,7 @@ TrainerGruntM1:
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear SLOWPOKEWELLB1F_ROCKET1
 	disappear SLOWPOKEWELLB1F_ROCKET2
 	disappear SLOWPOKEWELLB1F_ROCKET3
@@ -47,7 +47,7 @@ TrainerGruntM1:
 	pause 15
 	special Special_FadeInQuickly
 	disappear SLOWPOKEWELLB1F_KURT
-	moveobject SLOWPOKEWELLB1F_KURT, $b, $6
+	moveobject SLOWPOKEWELLB1F_KURT, 11, 6
 	appear SLOWPOKEWELLB1F_KURT
 	applymovement SLOWPOKEWELLB1F_KURT, KurtSlowpokeWellVictoryMovementData
 	spriteface PLAYER, RIGHT
@@ -57,7 +57,7 @@ TrainerGruntM1:
 	closetext
 	setevent EVENT_CLEARED_SLOWPOKE_WELL
 	variablesprite SPRITE_AZALEA_ROCKET, SPRITE_SILVER
-	setmapscene AZALEA_TOWN, $1
+	setmapscene AZALEA_TOWN, 1
 	clearevent EVENT_ILEX_FOREST_APPRENTICE
 	clearevent EVENT_ILEX_FOREST_FARFETCHD
 	setevent EVENT_CHARCOAL_KILN_FARFETCH_D
@@ -67,10 +67,10 @@ TrainerGruntM1:
 	clearevent EVENT_AZALEA_TOWN_SLOWPOKES
 	clearevent EVENT_KURTS_HOUSE_SLOWPOKE
 	clearevent EVENT_KURTS_HOUSE_KURT_1
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	special HealParty
 	pause 15
-	warp KURTS_HOUSE, $3, $3
+	warp KURTS_HOUSE, 3, 3
 	end
 
 TrainerGruntM2:
@@ -320,7 +320,7 @@ SlowpokeWellB1FTaillessSlowpokeText:
 	line "its TAIL cut off…"
 	done
 
-SlowpokeWellB1F_MapEventHeader:
+SlowpokeWellB1F_MapEvents:
 	; filler
 	db 0, 0
 

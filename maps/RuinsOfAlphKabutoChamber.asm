@@ -2,7 +2,7 @@ const_value set 2
 	const RUINSOFALPHKABUTOCHAMBER_RECEPTIONIST
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
-RuinsOfAlphKabutoChamber_MapScriptHeader:
+RuinsOfAlphKabutoChamber_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .CheckWall
@@ -10,7 +10,7 @@ RuinsOfAlphKabutoChamber_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .HiddenDoors
+	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
@@ -27,15 +27,15 @@ RuinsOfAlphKabutoChamber_MapScriptHeader:
 .HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue .WallOpen
-	changeblock $4, $0, $2e
+	changeblock 4, 0, $2e ; closed wall
 .WallOpen:
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
 	iffalse .FloorClosed
 	return
 
 .FloorClosed:
-	changeblock $2, $2, $1
-	changeblock $4, $2, $2
+	changeblock 2, 2, $01 ; left floor
+	changeblock 4, 2, $02 ; right floor
 	return
 
 .WallOpenScript:
@@ -44,10 +44,10 @@ RuinsOfAlphKabutoChamber_MapScriptHeader:
 	showemote EMOTE_SHOCK, PLAYER, 20
 	pause 30
 	playsound SFX_STRENGTH
-	changeblock $4, $0, $30
+	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene $1
+	setscene 1
 	closetext
 	end
 
@@ -55,8 +55,8 @@ RuinsOfAlphKabutoChamberReceptionistScript:
 	jumptextfaceplayer RuinsOfAlphKabutoChamberReceptionistText
 
 MapRuinsOfAlphKabutoChamberSignpost2Script:
-	refreshscreen $0
-	writebyte $0
+	refreshscreen
+	writebyte UNOWNPUZZLE_KABUTO
 	special Special_UnownPuzzle
 	closetext
 	iftrue UnknownScript_0x58778
@@ -67,11 +67,11 @@ UnknownScript_0x58778:
 	setevent EVENT_SOLVED_KABUTO_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_1
 	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, 1
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
-	changeblock $2, $2, $18
-	changeblock $4, $2, $19
+	changeblock 2, 2, $18 ; left hole
+	changeblock 4, 2, $19 ; right hole
 	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -86,7 +86,7 @@ ScientistScript_0x587a8:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	if_equal 26, UnknownScript_0x587cf
+	if_equal NUM_UNOWN, UnknownScript_0x587cf
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587c9
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
@@ -121,7 +121,7 @@ MapRuinsOfAlphKabutoChamberSignpost3Script:
 MapRuinsOfAlphKabutoChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58aa7
-	writebyte $0
+	writebyte UNOWNWORDS_ESCAPE
 	special Special_DisplayUnownWords
 	closetext
 	end
@@ -131,7 +131,7 @@ MapRuinsOfAlphKabutoChamberSignpost5Script:
 	iftrue UnknownScript_0x587f7
 	opentext
 	writetext UnknownText_0x58ad9
-	writebyte $0
+	writebyte UNOWNWORDS_ESCAPE
 	special Special_DisplayUnownWords
 	closetext
 	end
@@ -144,7 +144,7 @@ UnknownScript_0x587f7:
 	end
 
 MovementData_0x587fe:
-	db $59 ; movement
+	skyfall_top
 	step_end
 
 RuinsOfAlphKabutoChamberReceptionistText:
@@ -202,8 +202,8 @@ UnknownText_0x589b8:
 	cont "this wall here…"
 	done
 
-; possibly unused
-UnknownText_0x58a03:
+; unused
+UnusedText_0x58a03:
 	text "The patterns on"
 	line "the wall appear to"
 	cont "be words!"
@@ -226,8 +226,8 @@ UnknownText_0x58aa7:
 	line "on the walls…"
 	done
 
-; possibly unused
-UnknownText_0x58ac8:
+; unused
+UnusedText_0x58ac8:
 	text "It's UNOWN text!"
 	done
 
@@ -255,7 +255,7 @@ UnknownText_0x58b3f:
 	line "scanned the area."
 	done
 
-RuinsOfAlphKabutoChamber_MapEventHeader:
+RuinsOfAlphKabutoChamber_MapEvents:
 	; filler
 	db 0, 0
 

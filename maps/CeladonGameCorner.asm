@@ -9,7 +9,7 @@ const_value set 2
 	const CELADONGAMECORNER_GYM_GUY
 	const CELADONGAMECORNER_GRAMPS
 
-CeladonGameCorner_MapScriptHeader:
+CeladonGameCorner_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -59,8 +59,8 @@ CeladonGameCornerFisherScript:
 	checkitem COIN_CASE
 	iffalse .NoCoinCase
 	checkcoins MAX_COINS - 1
-	if_equal $0, .FullCoinCase
-	stringtotext .coinname, $1
+	if_equal HAVE_MORE, .FullCoinCase
+	stringtotext .coinname, MEM_BUFFER_1
 	scall .GiveCoins
 	givecoins 18
 	setevent EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
@@ -111,23 +111,23 @@ CeladonGameCornerPoster2Script:
 	jumptext CeladonGameCornerPoster2Text
 
 CeladonGameCornerLuckySlotMachineScript:
-	random $6
-	if_equal $0, CeladonGameCornerSlotMachineScript
-	refreshscreen $0
-	writebyte $0
+	random 6
+	if_equal 0, CeladonGameCornerSlotMachineScript
+	refreshscreen
+	writebyte FALSE
 	special Special_SlotMachine
 	closetext
 	end
 
 CeladonGameCornerSlotMachineScript:
-	refreshscreen $0
-	writebyte $1
+	refreshscreen
+	writebyte TRUE
 	special Special_SlotMachine
 	closetext
 	end
 
 CeladonGameCornerCardFlipScript:
-	refreshscreen $0
+	refreshscreen
 	special Special_CardFlip
 	closetext
 	end
@@ -144,7 +144,7 @@ MapCeladonGameCornerSignpost9Script:
 	end
 
 MovementData_0x721cd:
-; Unreferenced.
+; unused
 	step RIGHT
 	turn_head LEFT
 	step_end
@@ -281,7 +281,7 @@ UnknownText_0x72567:
 	para "Huh? It's empty!"
 	done
 
-CeladonGameCorner_MapEventHeader:
+CeladonGameCorner_MapEvents:
 	; filler
 	db 0, 0
 

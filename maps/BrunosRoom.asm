@@ -1,7 +1,7 @@
 const_value set 2
 	const BRUNOSROOM_BRUNO
 
-BrunosRoom_MapScriptHeader:
+BrunosRoom_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .LockDoor
@@ -9,7 +9,7 @@ BrunosRoom_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .BrunosRoomDoors
+	callback MAPCALLBACK_TILES, .BrunosRoomDoors
 
 .LockDoor:
 	priorityjump .BrunosDoorLocksBehindYou
@@ -20,24 +20,24 @@ BrunosRoom_MapScriptHeader:
 
 .BrunosRoomDoors:
 	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
-	iffalse .KeepDoorClosed
-	changeblock $4, $e, $2a
-.KeepDoorClosed:
+	iffalse .KeepEntranceOpen
+	changeblock 4, 14, $2a ; wall
+.KeepEntranceOpen:
 	checkevent EVENT_BRUNOS_ROOM_EXIT_OPEN
-	iffalse .OpenDoor
-	changeblock $4, $2, $16
-.OpenDoor:
+	iffalse .KeepExitClosed
+	changeblock 4, 2, $16 ; open door
+.KeepExitClosed:
 	return
 
 .BrunosDoorLocksBehindYou:
-	applymovement PLAYER, MovementData_0x1809f9
+	applymovement PLAYER, BrunosRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
-	changeblock $4, $e, $2a
+	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
-	setscene $1
+	setscene 1
 	setevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -46,12 +46,12 @@ BrunoScript_Battle:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
-	iftrue UnknownScript_0x1809f3
+	iftrue BrunoScript_AfterBattle
 	writetext BrunoScript_BrunoBeforeText
 	waitbutton
 	closetext
 	winlosstext BrunoScript_BrunoBeatenText, 0
-	loadtrainer BRUNO, 1
+	loadtrainer BRUNO, BRUNO1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ELITE_4_BRUNO
@@ -60,20 +60,20 @@ BrunoScript_Battle:
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
-	changeblock $4, $2, $16
+	changeblock 4, 2, $16 ; open door
 	reloadmappart
 	closetext
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	waitsfx
 	end
 
-UnknownScript_0x1809f3:
+BrunoScript_AfterBattle:
 	writetext BrunoScript_BrunoDefeatText
 	waitbutton
 	closetext
 	end
 
-MovementData_0x1809f9:
+BrunosRoom_EnterMovement:
 	step UP
 	step UP
 	step UP
@@ -124,7 +124,7 @@ BrunoScript_BrunoDefeatText:
 	line "challenge!"
 	done
 
-BrunosRoom_MapEventHeader:
+BrunosRoom_MapEvents:
 	; filler
 	db 0, 0
 

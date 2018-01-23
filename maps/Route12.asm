@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE12_POKE_BALL1
 	const ROUTE12_POKE_BALL2
 
-Route12_MapScriptHeader:
+Route12_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -70,8 +70,7 @@ Route12Nugget:
 	itemball NUGGET
 
 Route12HiddenElixer:
-	dwb EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
-
+	hiddenitem EVENT_ROUTE_12_HIDDEN_ELIXER, ELIXER
 
 FisherMartinSeenText:
 	text "Patience is the"
@@ -167,7 +166,7 @@ FishingSpotSignText:
 	text "FISHING SPOT"
 	done
 
-Route12_MapEventHeader:
+Route12_MapEvents:
 	; filler
 	db 0, 0
 

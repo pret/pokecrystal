@@ -2,6 +2,7 @@
 ; Maps with environment ROUTE or TOWN can only use these sprites.
 
 OutdoorSprites: ; 144b8
+; entries correspond to map groups
 	dw OlivineGroupSprites
 	dw MahoganyGroupSprites
 	dw DungeonsGroupSprites

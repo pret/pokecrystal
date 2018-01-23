@@ -7,7 +7,7 @@ PlayWhirlpoolSound: ; 8c7d4
 ; 8c7e1
 
 BlindingFlash: ; 8c7e1
-	farcall FadeOutPalettes
+	farcall Special_FadeOutPalettes
 	ld hl, wStatusFlags
 	set 2, [hl] ; Flash
 	farcall ReplaceTimeOfDayPals
@@ -15,7 +15,7 @@ BlindingFlash: ; 8c7e1
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
-	farcall FadeInPalettes
+	farcall Special_FadeInPalettes
 	ret
 ; 8c80a
 
@@ -39,13 +39,13 @@ ShakeHeadbuttTree: ; 8c80a
 	ld [wCurrSpriteOAMAddr], a
 	farcall DoNextFrameForAllSprites
 	call HideHeadbuttTree
-	ld a, $20
-	ld [wcf64], a
+	ld a, 32
+	ld [wFrameCounter], a
 	call WaitSFX
 	ld de, SFX_SANDSTORM
 	call PlaySFX
 .loop
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .done
@@ -62,8 +62,8 @@ ShakeHeadbuttTree: ; 8c80a
 	xor a
 	ld [hBGMapMode], a
 	farcall ClearSpriteAnims
-	ld hl, Sprites + 36 * 4
-	ld bc, SpritesEnd - (Sprites + 36 * 4)
+	ld hl, Sprite37
+	ld bc, SpritesEnd - Sprite37
 	xor a
 	call ByteFill
 	ld de, Font
@@ -188,7 +188,7 @@ Cut_SpawnAnimateTree: ; 8ca23 (23:4a23)
 	add hl, bc
 	ld [hl], $84
 	ld a, 32
-	ld [wcf64], a
+	ld [wFrameCounter], a
 ; Cut_StartWaiting
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -206,7 +206,7 @@ Cut_SpawnAnimateLeaves: ; 8ca3c (23:4a3c)
 	ld a, $30
 	call Cut_SpawnLeaf
 	ld a, 32 ; frames
-	ld [wcf64], a
+	ld [wFrameCounter], a
 ; Cut_StartWaiting
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -220,7 +220,7 @@ Cut_StartWaiting: ; 8ca5c (23:4a5c)
 	inc [hl]
 
 Cut_WaitAnimSFX: ; 8ca64 (23:4a64)
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .finished
@@ -336,7 +336,7 @@ FlyFromAnim: ; 8caed
 	add hl, bc
 	ld [hl], SPRITE_ANIM_SEQ_FLY_FROM
 	ld a, 128
-	ld [wcf64], a
+	ld [wFrameCounter], a
 .loop
 	ld a, [wJumptableIndex]
 	bit 7, a
@@ -374,7 +374,7 @@ FlyToAnim: ; 8cb33
 	add hl, bc
 	ld [hl], 11 * 8
 	ld a, 64
-	ld [wcf64], a
+	ld [wFrameCounter], a
 .loop
 	ld a, [wJumptableIndex]
 	bit 7, a
@@ -393,19 +393,19 @@ FlyToAnim: ; 8cb33
 	ret
 
 .RestorePlayerSprite_DespawnLeaves: ; 8cb82 (23:4b82)
-	ld hl, Sprites + 2 ; Tile ID
+	ld hl, Sprite01TileID
 	xor a
-	ld c, $4
-.loop2
-	ld [hli], a
+	ld c, 4
+.OAMloop
+	ld [hli], a ; tile id
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	inc a
 	dec c
-	jr nz, .loop2
-	ld hl, Sprites + 4 * 4
-	ld bc, SpritesEnd - (Sprites + 4 * 4)
+	jr nz, .OAMloop
+	ld hl, Sprite05
+	ld bc, SpritesEnd - Sprite05
 	xor a
 	call ByteFill
 	ret
@@ -431,7 +431,7 @@ FlyFunction_InitGFX: ; 8cb9b (23:4b9b)
 
 FlyFunction_FrameTimer: ; 8cbc8 (23:4bc8)
 	call .SpawnLeaf
-	ld hl, wcf64
+	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
 	jr z, .exit

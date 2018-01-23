@@ -1,4 +1,4 @@
-RuinsOfAlphHoOhChamber_MapScriptHeader:
+RuinsOfAlphHoOhChamber_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .CheckWall
@@ -6,10 +6,10 @@ RuinsOfAlphHoOhChamber_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .HiddenDoors
+	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
-	special SpecialHoOhChamber
+	special Special_HoOhChamber
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue .OpenWall
 	end
@@ -24,15 +24,15 @@ RuinsOfAlphHoOhChamber_MapScriptHeader:
 .HiddenDoors:
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue .WallOpen
-	changeblock $4, $0, $2e
+	changeblock 4, 0, $2e ; closed wall
 .WallOpen:
 	checkevent EVENT_SOLVED_HO_OH_PUZZLE
 	iffalse .FloorClosed
 	return
 
 .FloorClosed:
-	changeblock $2, $2, $1
-	changeblock $4, $2, $2
+	changeblock 2, 2, $01 ; left floor
+	changeblock 4, 2, $02 ; right floor
 	return
 
 .WallOpenScript:
@@ -41,16 +41,16 @@ RuinsOfAlphHoOhChamber_MapScriptHeader:
 	showemote EMOTE_SHOCK, PLAYER, 20
 	pause 30
 	playsound SFX_STRENGTH
-	changeblock $4, $0, $30
+	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene $1
+	setscene 1
 	closetext
 	end
 
 MapRuinsOfAlphHoOhChamberSignpost2Script:
-	refreshscreen $0
-	writebyte $3
+	refreshscreen
+	writebyte UNOWNPUZZLE_HO_OH
 	special Special_UnownPuzzle
 	closetext
 	iftrue UnknownScript_0x585ba
@@ -60,11 +60,11 @@ UnknownScript_0x585ba:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_HO_OH_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_4
-	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, 1
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
-	changeblock $2, $2, $18
-	changeblock $4, $2, $19
+	changeblock 2, 2, $18 ; left hole
+	changeblock 4, 2, $19 ; right hole
 	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -84,7 +84,7 @@ MapRuinsOfAlphHoOhChamberSignpost3Script:
 MapRuinsOfAlphHoOhChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58612
-	writebyte $3
+	writebyte UNOWNWORDS_HO_OH
 	special Special_DisplayUnownWords
 	closetext
 	end
@@ -94,7 +94,7 @@ MapRuinsOfAlphHoOhChamberSignpost5Script:
 	iftrue UnknownScript_0x58609
 	opentext
 	writetext UnknownText_0x58644
-	writebyte $3
+	writebyte UNOWNWORDS_HO_OH
 	special Special_DisplayUnownWords
 	closetext
 	end
@@ -107,7 +107,7 @@ UnknownScript_0x58609:
 	end
 
 MovementData_0x58610:
-	db $59 ; movement
+	skyfall_top
 	step_end
 
 UnknownText_0x58612:
@@ -115,8 +115,8 @@ UnknownText_0x58612:
 	line "on the walls…"
 	done
 
-; possibly unused
-UnknownText_0x58633:
+; unused
+UnusedText_0x58633:
 	text "It's UNOWN text!"
 	done
 
@@ -144,7 +144,7 @@ UnknownText_0x586aa:
 	line "wings."
 	done
 
-RuinsOfAlphHoOhChamber_MapEventHeader:
+RuinsOfAlphHoOhChamber_MapEvents:
 	; filler
 	db 0, 0
 

@@ -1,7 +1,7 @@
 const_value set 2
 	const MANIASHOUSE_ROCKER
 
-ManiasHouse_MapScriptHeader:
+ManiasHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -18,7 +18,7 @@ ManiaScript:
 	writetext ManiaText_AskLookAfterShuckle
 	yesorno
 	iffalse .refusetotakeshuckie
-	special SpecialGiveShuckle
+	special Special_GiveShuckle
 	iffalse .partyfull
 	writetext ManiaText_TakeCareOfShuckle
 	buttonsound
@@ -54,11 +54,12 @@ ManiaScript:
 	writetext ManiaText_CanIHaveMyMonBack
 	yesorno
 	iffalse .refused
-	special SpecialReturnShuckle
-	if_equal $0, .wrong
-	if_equal $1, .refused
-	if_equal $3, .superhappy
-	if_equal $4, .default_postevent
+	special Special_ReturnShuckle
+	if_equal SHUCKIE_WRONG_MON, .wrong
+	if_equal SHUCKIE_REFUSED, .refused
+	if_equal SHUCKIE_HAPPY, .superhappy
+	if_equal SHUCKIE_FAINTED, .default_postevent
+	; SHUCKIE_RETURNED
 	writetext ManiaText_ThankYou
 	waitbutton
 	closetext
@@ -198,7 +199,7 @@ ManiaText_ShuckleIsYourLastMon:
 	line "in battle?"
 	done
 
-ManiasHouse_MapEventHeader:
+ManiasHouse_MapEvents:
 	; filler
 	db 0, 0
 

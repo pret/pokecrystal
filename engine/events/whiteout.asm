@@ -4,13 +4,13 @@ Script_BattleWhiteout:: ; 0x124c1
 ; 0x124c8
 
 Script_OverworldWhiteout:: ; 0x124c8
-	refreshscreen $0
+	refreshscreen
 	callasm OverworldBGMap
 
 Script_Whiteout: ; 0x124ce
 	writetext .WhitedOutText
 	waitbutton
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	pause 40
 	special HealParty
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -18,7 +18,7 @@ Script_Whiteout: ; 0x124ce
 	callasm HalveMoney
 	callasm GetWhiteoutSpawn
 	farscall Script_AbortBugContest
-	special WarpToSpawnPoint
+	special Special_WarpToSpawnPoint
 	newloadmap MAPSETUP_WARP
 	end_all
 
@@ -49,7 +49,7 @@ BattleBGMap: ; 1250a
 ; 12513
 
 HalveMoney: ; 12513
-	farcall TrainerRankings_WhiteOuts
+	farcall StubbedTrainerRankings_WhiteOuts
 
 ; Halve the player's money.
 	ld hl, Money

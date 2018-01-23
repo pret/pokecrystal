@@ -1,7 +1,7 @@
 const_value set 2
 	const CERULEANGYMBADGESPEECHHOUSE_POKEFAN_M
 
-CeruleanGymBadgeSpeechHouse_MapScriptHeader:
+CeruleanGymBadgeSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -16,7 +16,7 @@ CeruleanGymBadgeSpeechHousePokefanMText:
 	line "KANTO GYM BADGES?"
 	done
 
-CeruleanGymBadgeSpeechHouse_MapEventHeader:
+CeruleanGymBadgeSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

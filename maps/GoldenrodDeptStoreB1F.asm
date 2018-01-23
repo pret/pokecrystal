@@ -8,14 +8,14 @@ const_value set 2
 	const GOLDENRODDEPTSTOREB1F_BLACK_BELT3
 	const GOLDENRODDEPTSTOREB1F_MACHOP
 
-GoldenrodDeptStoreB1F_MapScriptHeader:
+GoldenrodDeptStoreB1F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_TILES, UnknownScript_0x7d781
-	dbw MAPCALLBACK_NEWMAP, UnknownScript_0x7d7ac
+	callback MAPCALLBACK_TILES, UnknownScript_0x7d781
+	callback MAPCALLBACK_NEWMAP, UnknownScript_0x7d7ac
 
 UnknownScript_0x7d781:
 	checkevent EVENT_RECEIVED_CARD_KEY
@@ -23,7 +23,7 @@ UnknownScript_0x7d781:
 	jump UnknownScript_0x7d791
 
 UnknownScript_0x7d78a:
-	changeblock $10, $4, $d
+	changeblock 16, 4, $0d ; floor
 	jump UnknownScript_0x7d791
 
 UnknownScript_0x7d791:
@@ -31,15 +31,15 @@ UnknownScript_0x7d791:
 	iftrue .Layout2
 	checkevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
 	iftrue .Layout3
-	changeblock $a, $8, $d
+	changeblock 10, 8, $0d ; floor
 	return
 
 .Layout2:
-	changeblock $4, $a, $d
+	changeblock 4, 10, $0d ; floor
 	return
 
 .Layout3:
-	changeblock $a, $c, $d
+	changeblock 10, 12, $0d ; floor
 	return
 
 UnknownScript_0x7d7ac:
@@ -109,7 +109,7 @@ UnknownText_0x7d8bb:
 	text "MACHOKE: Maaacho!"
 	done
 
-GoldenrodDeptStoreB1F_MapEventHeader:
+GoldenrodDeptStoreB1F_MapEvents:
 	; filler
 	db 0, 0
 

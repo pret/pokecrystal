@@ -1,3 +1,5 @@
+INCLUDE "charmap.asm"
+
 INCLUDE "macros.asm"
 
 INCLUDE "hram.asm"
@@ -42,8 +44,9 @@ INCLUDE "constants/sprite_data_constants.asm"
 INCLUDE "constants/sprite_anim_constants.asm"
 INCLUDE "constants/tileset_constants.asm"
 INCLUDE "constants/collision_constants.asm"
-INCLUDE "constants/cgb_constants.asm"
+INCLUDE "constants/scgb_constants.asm"
 INCLUDE "constants/battle_tower_constants.asm"
 INCLUDE "constants/cry_constants.asm"
 INCLUDE "constants/audio_constants.asm"
 INCLUDE "constants/printer_constants.asm"
+INCLUDE "constants/menu_constants.asm"

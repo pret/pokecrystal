@@ -1,5 +1,6 @@
 BugContestantPointers: ; 13783
-	dw BugContestant_BugCatcherDon ; This reverts back to the player
+; there are NUM_BUG_CONTESTANTS + 1 entries
+	dw BugContestant_BugCatcherDon ; this reverts back to the player
 	dw BugContestant_BugCatcherDon
 	dw BugContestant_BugCatcherEd
 	dw BugContestant_CooltrainerMNick
@@ -11,6 +12,12 @@ BugContestantPointers: ; 13783
 	dw BugContestant_YoungsterSamuel
 	dw BugContestant_SchoolboyKipp
 ; 13799
+
+; contestant format:
+;   db class, id
+;   dbw 1st-place mon, score
+;   dbw 2nd-place mon, score
+;   dbw 3rd-place mon, score
 
 BugContestant_BugCatcherDon:
 	db BUG_CATCHER, DON

@@ -1,7 +1,7 @@
 const_value set 2
 	const OLIVINETIMSHOUSE_TIM
 
-OlivineTimsHouse_MapScriptHeader:
+OlivineTimsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ Tim:
 TimsHouseBookshelf:
 	jumpstd magazinebookshelf
 
-OlivineTimsHouse_MapEventHeader:
+OlivineTimsHouse_MapEvents:
 	; filler
 	db 0, 0
 

@@ -28,7 +28,7 @@ Special_CheckMagikarpLength: ; fbb32
 	ld c, l
 	call CalcMagikarpLength
 	call PrintMagikarpLength
-	farcall TrainerRankings_MagikarpLength
+	farcall StubbedTrainerRankings_MagikarpLength
 	ld hl, .MeasureItText
 	call PrintText
 
@@ -52,22 +52,22 @@ Special_CheckMagikarpLength: ; fbb32
 	ld hl, PartyMonOT
 	call SkipNames
 	call CopyBytes
-	ld a, 3
+	ld a, MAGIKARPLENGTH_BEAT_RECORD
 	ld [ScriptVar], a
 	ret
 
 .not_long_enough
-	ld a, 2
+	ld a, MAGIKARPLENGTH_TOO_SHORT
 	ld [ScriptVar], a
 	ret
 
 .declined
-	ld a, 1
+	ld a, MAGIKARPLENGTH_REFUSED
 	ld [ScriptVar], a
 	ret
 
 .not_magikarp
-	xor a
+	xor a ; MAGIKARPLENGTH_NOT_MAGIKARP
 	ld [ScriptVar], a
 	ret
 ; fbba9

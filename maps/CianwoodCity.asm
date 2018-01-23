@@ -12,7 +12,7 @@ const_value set 2
 	const CIANWOODCITY_EUSINE
 	const CIANWOODCITY_SUICUNE
 
-CianwoodCity_MapScriptHeader:
+CianwoodCity_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -20,7 +20,7 @@ CianwoodCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
+	callback MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
 
 .DummyScene0:
 	end
@@ -49,9 +49,9 @@ CianwoodCitySuicuneAndEusine:
 	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00e0
 	disappear CIANWOODCITY_SUICUNE
 	pause 10
-	setscene $0
+	setscene 0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_42
-	setmapscene ROUTE_42, $1
+	setmapscene ROUTE_42, 1
 	checkevent EVENT_FOUGHT_EUSINE
 	iftrue .Done
 	setevent EVENT_FOUGHT_EUSINE
@@ -145,26 +145,26 @@ CianwoodCityRock:
 	jumpstd smashrock
 
 CianwoodCityHiddenRevive:
-	dwb EVENT_CIANWOOD_CITY_HIDDEN_REVIVE, REVIVE
+	hiddenitem EVENT_CIANWOOD_CITY_HIDDEN_REVIVE, REVIVE
 
 CianwoodCityHiddenMaxEther:
-	dwb EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
+	hiddenitem EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
 
 MovementData_0x1a00da:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step DOWN
 	fast_jump_step DOWN
 	fast_jump_step RIGHT
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x1a00e0:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step RIGHT
 	fast_jump_step UP
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 MovementData_0x1a00e7:
@@ -380,7 +380,7 @@ CianwoodPokeSeerSignText:
 	line "AHEAD"
 	done
 
-CianwoodCity_MapEventHeader:
+CianwoodCity_MapEvents:
 	; filler
 	db 0, 0
 
@@ -390,7 +390,7 @@ CianwoodCity_MapEventHeader:
 	warp_def 8, 43, 1, CIANWOOD_GYM
 	warp_def 23, 43, 1, CIANWOOD_POKECENTER_1F
 	warp_def 15, 47, 1, CIANWOOD_PHARMACY
-	warp_def 9, 31, 1, CIANWOOD_CITY_PHOTO_STUDIO
+	warp_def 9, 31, 1, CIANWOOD_PHOTO_STUDIO
 	warp_def 15, 37, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
 	warp_def 5, 17, 1, POKE_SEERS_HOUSE
 

@@ -10,7 +10,7 @@ const_value set 2
 	const MOUNTMORTAR1FINSIDE_POKE_BALL6
 	const MOUNTMORTAR1FINSIDE_POKE_BALL7
 
-MountMortar1FInside_MapScriptHeader:
+MountMortar1FInside_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -64,8 +64,7 @@ MountMortar1FInsideUltraBall:
 	itemball ULTRA_BALL
 
 MountMortar1FInsideHiddenMaxRepel:
-	dwb EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL
-
+	hiddenitem EVENT_MOUNT_MORTAR_1F_INSIDE_HIDDEN_MAX_REPEL, MAX_REPEL
 
 PokemaniacMillerSeenText:
 	text "I'm not losing"
@@ -117,7 +116,7 @@ SupernerdMarkusAfterBattleText:
 	line "WATERFALL?"
 	done
 
-MountMortar1FInside_MapEventHeader:
+MountMortar1FInside_MapEvents:
 	; filler
 	db 0, 0
 

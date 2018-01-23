@@ -127,8 +127,7 @@ Timer:: ; 3e93
 	reti
 ; 3ed7
 
-Function3ed7:: ; 3ed7
-; unreferenced
+Unreferenced_Function3ed7:: ; 3ed7
 	ld [$dc02], a
 	ld a, [hROMBank]
 	push af
@@ -160,8 +159,7 @@ Function3eea:: ; 3eea
 	ret
 ; 3efd
 
-Function3efd:: ; 3efd
-; unreferenced
+Unreferenced_Function3efd:: ; 3efd
 	push hl
 	hlcoord 0, 12
 	ld b, 4

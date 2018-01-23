@@ -2,7 +2,7 @@ const_value set 2
 	const FIGHTINGDOJO_BLACK_BELT
 	const FIGHTINGDOJO_POKE_BALL
 
-FightingDojo_MapScriptHeader:
+FightingDojo_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -42,7 +42,7 @@ FightingDojoSign1Text:
 	line "side!"
 	done
 
-FightingDojo_MapEventHeader:
+FightingDojo_MapEvents:
 	; filler
 	db 0, 0
 

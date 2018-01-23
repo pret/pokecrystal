@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE10SOUTH_POKEFAN_M1
 	const ROUTE10SOUTH_POKEFAN_M2
 
-Route10South_MapScriptHeader:
+Route10South_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -75,7 +75,7 @@ Route10SignText:
 	line "LAVENDER TOWN"
 	done
 
-Route10South_MapEventHeader:
+Route10South_MapEvents:
 	; filler
 	db 0, 0
 

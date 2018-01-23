@@ -11,8 +11,7 @@ DefaultOptions: ; 14f7c
 	db GBPRINTER_NORMAL
 ; Options2: menu account on
 	db 1 << MENU_ACCOUNT
-; $cfd2: ??
+
 	db $00
-; $cfd3: ??
 	db $00
 ; 14f84

@@ -1,11 +1,11 @@
-SafariZoneMainOffice_MapScriptHeader:
+SafariZoneMainOffice_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-SafariZoneMainOffice_MapEventHeader:
+SafariZoneMainOffice_MapEvents:
 	; filler
 	db 0, 0
 

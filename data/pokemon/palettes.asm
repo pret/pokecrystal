@@ -518,12 +518,8 @@ INCLUDE "gfx/pokemon/celebi/shiny.pal"
 	RGB 30, 26, 11
 	RGB 23, 16, 00
 
-; Egg
-	RGB 30, 26, 11
-	RGB 23, 16, 00
-; Egg shiny
-	RGB 30, 26, 11
-	RGB 23, 16, 00
+INCLUDE "gfx/pokemon/egg/normal.pal"
+INCLUDE "gfx/pokemon/egg/shiny.pal"
 
 ; 254
 	RGB 30, 26, 11

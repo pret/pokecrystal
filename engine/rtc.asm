@@ -1,4 +1,4 @@
-StopRTC: ; Unreferenced???
+Unreferenced_StopRTC:
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
 	call LatchClock
@@ -58,7 +58,7 @@ TimesOfDay: ; 14044
 	db -1, MORN_F
 ; 1404e
 
-Unknown_1404e: ; unreferenced
+Unreferenced_1404e:
 	db 20, NITE_F
 	db 40, MORN_F
 	db 60, DAY_F
@@ -146,14 +146,14 @@ Function140ae: ; 140ae
 	farcall ClearDailyTimers
 	farcall Function170923
 ; mobile
-	ld a, $5
+	ld a, 5 ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call GetSRAMBank
-	ld a, [$aa8c]
+	ld a, [$aa8c] ; address of MBC30 bank
 	inc a
-	ld [$aa8c], a
-	ld a, [$b2fa]
+	ld [$aa8c], a ; address of MBC30 bank
+	ld a, [$b2fa] ; address of MBC30 bank
 	inc a
-	ld [$b2fa], a
+	ld [$b2fa], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 

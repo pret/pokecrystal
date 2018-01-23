@@ -2,7 +2,7 @@ const_value set 2
 	const ELMSHOUSE_ELMS_WIFE
 	const ELMSHOUSE_ELMS_SON
 
-ElmsHouse_MapScriptHeader:
+ElmsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -83,7 +83,7 @@ ElmsHousePCText:
 	cont "search papers."
 	done
 
-ElmsHouse_MapEventHeader:
+ElmsHouse_MapEvents:
 	; filler
 	db 0, 0
 

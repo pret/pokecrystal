@@ -9,7 +9,7 @@ const_value set 2
 	const ROUTE27_POKE_BALL2
 	const ROUTE27_FISHER
 
-Route27_MapScriptHeader:
+Route27_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -42,7 +42,7 @@ UnknownScript_0x1a088c:
 	writetext Route27FisherText
 	waitbutton
 	closetext
-	setscene $1
+	setscene 1
 	end
 
 Route27FisherScript:
@@ -84,9 +84,9 @@ TrainerBirdKeeperJose2:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_BIRDKEEPER_JOSE
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext BIRD_KEEPER, JOSE2, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext BIRD_KEEPER, JOSE2, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -217,9 +217,9 @@ TrainerCooltrainerfReena:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERF_REENA
-	if_equal $1, .PhoneFull
-	if_equal $2, .NumberDeclined
-	trainertotext COOLTRAINERF, REENA1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext COOLTRAINERF, REENA1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
 
@@ -467,7 +467,7 @@ TohjoFallsSignText:
 	line "KANTO AND JOHTO"
 	done
 
-Route27_MapEventHeader:
+Route27_MapEvents:
 	; filler
 	db 0, 0
 

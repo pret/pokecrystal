@@ -1,7 +1,7 @@
 const_value set 2
 	const TINTOWER3F_POKE_BALL
 
-TinTower3F_MapScriptHeader:
+TinTower3F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -11,7 +11,7 @@ TinTower3F_MapScriptHeader:
 TinTower3FFullHeal:
 	itemball FULL_HEAL
 
-TinTower3F_MapEventHeader:
+TinTower3F_MapEvents:
 	; filler
 	db 0, 0
 

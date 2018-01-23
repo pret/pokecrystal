@@ -1,4 +1,4 @@
-GoldenrodDeptStoreElevator_MapScriptHeader:
+GoldenrodDeptStoreElevator_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -43,7 +43,6 @@ MapGoldenrodDeptStoreElevatorSignpost0Script:
 .Done:
 	end
 
-
 Elevator_0x566e0:
 	db 7 ; floors
 	elevfloor FLOOR_B1F, 2, GOLDENROD_DEPT_STORE_B1F
@@ -55,8 +54,7 @@ Elevator_0x566e0:
 	elevfloor FLOOR_6F,  2, GOLDENROD_DEPT_STORE_6F
 	db -1 ; end
 
-
-GoldenrodDeptStoreElevator_MapEventHeader:
+GoldenrodDeptStoreElevator_MapEvents:
 	; filler
 	db 0, 0
 

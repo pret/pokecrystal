@@ -2,7 +2,7 @@ const_value set 2
 	const SLOWPOKEWELLB2F_GYM_GUY
 	const SLOWPOKEWELLB2F_POKE_BALL
 
-SlowpokeWellB2F_MapScriptHeader:
+SlowpokeWellB2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -61,7 +61,7 @@ UnknownText_0x5adf2:
 	cont "one evolve."
 	done
 
-SlowpokeWellB2F_MapEventHeader:
+SlowpokeWellB2F_MapEvents:
 	; filler
 	db 0, 0
 

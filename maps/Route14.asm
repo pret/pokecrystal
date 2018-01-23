@@ -4,7 +4,7 @@ const_value set 2
 	const ROUTE14_POKEFAN_M2
 	const ROUTE14_KIM
 
-Route14_MapScriptHeader:
+Route14_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -115,7 +115,7 @@ PokefanmTrevorAfterBattleText:
 	line "got my #MON…"
 	done
 
-Route14_MapEventHeader:
+Route14_MapEvents:
 	; filler
 	db 0, 0
 

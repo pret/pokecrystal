@@ -9,15 +9,15 @@ const_value set 2
 	const GOLDENRODUNDERGROUND_SUPER_NERD6
 	const GOLDENRODUNDERGROUND_GRANNY
 
-GoldenrodUnderground_MapScriptHeader:
+GoldenrodUnderground_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 3
-	dbw MAPCALLBACK_NEWMAP, .ResetSwitches
-	dbw MAPCALLBACK_TILES, .CheckBasementKey
-	dbw MAPCALLBACK_OBJECTS, .CheckDayOfWeek
+	callback MAPCALLBACK_NEWMAP, .ResetSwitches
+	callback MAPCALLBACK_TILES, .CheckBasementKey
+	callback MAPCALLBACK_OBJECTS, .CheckDayOfWeek
 
 .ResetSwitches:
 	clearevent EVENT_SWITCH_1
@@ -35,7 +35,7 @@ GoldenrodUnderground_MapScriptHeader:
 	clearevent EVENT_SWITCH_12
 	clearevent EVENT_SWITCH_13
 	clearevent EVENT_SWITCH_14
-	writebyte $0
+	writebyte 0
 	copyvartobyte UndergroundSwitchPositions
 	return
 
@@ -45,7 +45,7 @@ GoldenrodUnderground_MapScriptHeader:
 	return
 
 .LockBasementDoor:
-	changeblock $12, $6, $3d
+	changeblock 18, 6, $3d ; locked door
 	return
 
 .CheckDayOfWeek:
@@ -192,12 +192,12 @@ OlderHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
-	checkmoney $0, 500
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 500
+	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	buttonsound
 	special Special_YoungerHaircutBrother
@@ -227,15 +227,15 @@ OlderHaircutBrotherScript:
 	jump .then
 
 .then
-	takemoney $0, 500
-	special PlaceMoneyTopRight
+	takemoney YOUR_MONEY, 500
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7c6d8
@@ -275,12 +275,12 @@ YoungerHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
-	checkmoney $0, 300
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 300
+	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	buttonsound
 	special Special_OlderHaircutBrother
@@ -310,15 +310,15 @@ YoungerHaircutBrotherScript:
 	jump .then
 
 .then
-	takemoney $0, 300
-	special PlaceMoneyTopRight
+	takemoney YOUR_MONEY, 300
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special Special_FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7c82a
@@ -349,21 +349,21 @@ YoungerHaircutBrotherScript:
 
 UnknownScript_0x7c2bb:
 	writetext HaircutBrosText_SlightlyHappier
-	special PlayCurMonCry
+	special Special_PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x7c2c4:
 	writetext HaircutBrosText_Happier
-	special PlayCurMonCry
+	special Special_PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x7c2cd:
 	writetext HaircutBrosText_MuchHappier
-	special PlayCurMonCry
+	special Special_PlayCurMonCry
 	waitbutton
 	closetext
 	end
@@ -384,7 +384,7 @@ BasementDoorScript::
 	writetext UnknownText_0x7c5d6
 	waitbutton
 	closetext
-	changeblock $12, $6, $2e
+	changeblock 18, 6, $2e ; unlocked door
 	reloadmappart
 	closetext
 	setevent EVENT_USED_BASEMENT_KEY
@@ -409,13 +409,13 @@ MapGoldenrodUndergroundSignpost1Script:
 	jumptext UnknownText_0x7c91a
 
 GoldenrodUndergroundHiddenParlyzHeal:
-	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
 
 GoldenrodUndergroundHiddenSuperPotion:
-	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION, SUPER_POTION
 
 GoldenrodUndergroundHiddenAntidote:
-	dwb EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE, ANTIDOTE
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE, ANTIDOTE
 
 SupernerdEricSeenText:
 	text "I got booted out"
@@ -646,7 +646,7 @@ UnknownText_0x7c91a:
 	line "THIS POINT"
 	done
 
-GoldenrodUnderground_MapEventHeader:
+GoldenrodUnderground_MapEvents:
 	; filler
 	db 0, 0
 

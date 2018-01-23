@@ -43,7 +43,7 @@ GiveOddEgg: ; 1fb4b6
 	call AddNTimes
 
 	ld de, OddEggSpecies
-	ld bc, PARTYMON_STRUCT_LENGTH + 2 * PKMN_NAME_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH + 2 * MON_NAME_LENGTH
 	call CopyBytes
 
 	ld a, EGG_TICKET
@@ -73,7 +73,7 @@ GiveOddEgg: ; 1fb4b6
 	; load Odd Egg Name in wTempOddEggNickname
 	ld hl, .Odd
 	ld de, wTempOddEggNickname
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	; load pointer to wTempOddEggNickname in wMobileMonOTNamePointerBuffer

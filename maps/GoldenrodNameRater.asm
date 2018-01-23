@@ -1,7 +1,7 @@
 const_value set 2
 	const GOLDENRODNAMERATER_NAME_RATER
 
-GoldenrodNameRater_MapScriptHeader:
+GoldenrodNameRater_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -11,7 +11,7 @@ GoldenrodNameRater_MapScriptHeader:
 GoldenrodNameRater:
 	faceplayer
 	opentext
-	special SpecialNameRater
+	special Special_NameRater
 	waitbutton
 	closetext
 	end
@@ -22,9 +22,9 @@ GoldenrodNameRaterBookshelf:
 GoldenrodNameRaterRadio:
 	jumpstd radio2
 
-INCLUDE "text/unused_sweet_honey.asm"
+INCLUDE "data/unused/sweet_honey_text.asm"
 
-GoldenrodNameRater_MapEventHeader:
+GoldenrodNameRater_MapEvents:
 	; filler
 	db 0, 0
 

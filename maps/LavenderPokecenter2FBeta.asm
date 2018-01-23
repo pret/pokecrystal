@@ -1,11 +1,11 @@
-LavenderPokecenter2FBeta_MapScriptHeader:
+LavenderPokecenter2FBeta_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-LavenderPokecenter2FBeta_MapEventHeader:
+LavenderPokecenter2FBeta_MapEvents:
 	; filler
 	db 0, 0
 

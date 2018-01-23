@@ -6,7 +6,7 @@ const_value set 2
 	const RADIOTOWER1F_GENTLEMAN
 	const RADIOTOWER1F_COOLTRAINER_F
 
-RadioTower1F_MapScriptHeader:
+RadioTower1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -148,7 +148,7 @@ CooltrainerFScript_0x5cdd5:
 	waitsfx
 	writetext UnknownText_0x5d37b
 	buttonsound
-	stringtotext RadioCardText, $1
+	stringtotext RadioCardText, MEM_BUFFER_1
 	scall UnknownScript_0x5ce3e
 	writetext UnknownText_0x5d3c0
 	buttonsound
@@ -249,8 +249,8 @@ UnknownText_0x5cf5a:
 	done
 
 UnknownText_0x5cf79:
-	text $56
-	line $56
+	text "<……>"
+	line "<……>"
 	done
 
 UnknownText_0x5cf7e:
@@ -472,7 +472,7 @@ UnknownText_0x5d631:
 	cont "ent ID numbers!"
 	done
 
-RadioTower1F_MapEventHeader:
+RadioTower1F_MapEvents:
 	; filler
 	db 0, 0
 

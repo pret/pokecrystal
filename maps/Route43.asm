@@ -8,22 +8,22 @@ const_value set 2
 	const ROUTE43_FRUIT_TREE
 	const ROUTE43_POKE_BALL
 
-Route43_MapScriptHeader:
+Route43_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
+	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	setmapscene ROUTE_43_GATE, $0
+	setmapscene ROUTE_43_GATE, 0
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43_GATE, $1
+	setmapscene ROUTE_43_GATE, 1
 	return
 
 TrainerCamperSpencer:
@@ -58,27 +58,27 @@ TrainerPokemaniacBrent:
 	checkflag ENGINE_BRENT
 	iftrue .WantsBattle
 	checkcellnum PHONE_POKEMANIAC_BRENT
-	iftrue .NumberAcceptedM
+	iftrue .NumberAccepted
 	checkevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext PokemaniacBrentAfterBattleText
 	buttonsound
 	setevent EVENT_BRENT_ASKED_FOR_PHONE_NUMBER
-	scall .AskNumber1M
+	scall .AskNumber1
 	jump .AskForNumber
 
 .AskedAlready:
-	scall .AskNumber2M
+	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_POKEMANIAC_BRENT
-	if_equal $1, .PhoneFullM
-	if_equal $2, .NumberDeclinedM
-	trainertotext POKEMANIAC, BRENT1, $0
-	scall .RegisteredNumberM
-	jump .NumberAcceptedM
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext POKEMANIAC, BRENT1, MEM_BUFFER_0
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
 .WantsBattle:
-	scall .RematchM
+	scall .Rematch
 	winlosstext PokemaniacBrentBeatenText, 0
 	copybytetovar wBrentFightCount
 	if_equal 3, .Fight3
@@ -125,31 +125,31 @@ TrainerPokemaniacBrent:
 	clearflag ENGINE_BRENT
 	end
 
-.AskNumber1M:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-.AskNumber2M:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-.RegisteredNumberM:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-.NumberAcceptedM:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-.NumberDeclinedM:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-.PhoneFullM:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-.RematchM:
+.Rematch:
 	jumpstd rematchm
 	end
 
@@ -187,7 +187,7 @@ TrainerPicnickerTiffany:
 	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
 	iftrue .HasPinkBow
 	checkcellnum PHONE_PICNICKER_TIFFANY
-	iftrue .NumberAcceptedF
+	iftrue .NumberAccepted
 	checkpoke CLEFAIRY
 	iffalse .NoClefairy
 	checkevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
@@ -195,21 +195,21 @@ TrainerPicnickerTiffany:
 	writetext PicnickerTiffanyWantsPicnicText
 	buttonsound
 	setevent EVENT_TIFFANY_ASKED_FOR_PHONE_NUMBER
-	scall .AskNumber1F
+	scall .AskNumber1
 	jump .AskForNumber
 
 .AskedAlready:
-	scall .AskNumber2F
+	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_TIFFANY
-	if_equal $1, .PhoneFullF
-	if_equal $2, .NumberDeclinedF
-	trainertotext PICNICKER, TIFFANY3, $0
-	scall .RegisteredNumberF
-	jump .NumberAcceptedF
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext PICNICKER, TIFFANY3, MEM_BUFFER_0
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
 .WantsBattle:
-	scall .RematchF
+	scall .Rematch
 	winlosstext PicnickerTiffanyBeatenText, 0
 	copybytetovar wTiffanyFightCount
 	if_equal 3, .Fight3
@@ -257,15 +257,15 @@ TrainerPicnickerTiffany:
 	end
 
 .HasPinkBow:
-	scall .GiftF
+	scall .Gift
 	verbosegiveitem PINK_BOW
 	iffalse .NoRoom
 	clearflag ENGINE_TIFFANY_HAS_PINK_BOW
 	setevent EVENT_TIFFANY_GAVE_PINK_BOW
-	jump .NumberAcceptedF
+	jump .NumberAccepted
 
 .NoRoom:
-	jump .PackFullF
+	jump .PackFull
 
 .NoClefairy:
 	writetext PicnickerTiffanyClefairyText
@@ -273,39 +273,39 @@ TrainerPicnickerTiffany:
 	closetext
 	end
 
-.AskNumber1F:
+.AskNumber1:
 	jumpstd asknumber1f
 	end
 
-.AskNumber2F:
+.AskNumber2:
 	jumpstd asknumber2f
 	end
 
-.RegisteredNumberF:
+.RegisteredNumber:
 	jumpstd registerednumberf
 	end
 
-.NumberAcceptedF:
+.NumberAccepted:
 	jumpstd numberacceptedf
 	end
 
-.NumberDeclinedF:
+.NumberDeclined:
 	jumpstd numberdeclinedf
 	end
 
-.PhoneFullF:
+.PhoneFull:
 	jumpstd phonefullf
 	end
 
-.RematchF:
+.Rematch:
 	jumpstd rematchf
 	end
 
-.GiftF:
+.Gift:
 	jumpstd giftf
 	end
 
-.PackFullF:
+.PackFull:
 	jumpstd packfullf
 	end
 
@@ -500,7 +500,7 @@ Route43TrainerTipsText:
 	line "#MON's type."
 	done
 
-Route43_MapEventHeader:
+Route43_MapEvents:
 	; filler
 	db 0, 0
 

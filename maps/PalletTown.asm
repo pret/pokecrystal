@@ -2,13 +2,13 @@ const_value set 2
 	const PALLETTOWN_TEACHER
 	const PALLETTOWN_FISHER
 
-PalletTown_MapScriptHeader:
+PalletTown_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_PALLET
@@ -69,7 +69,7 @@ BluesHouseSignText:
 	text "BLUE'S HOUSE"
 	done
 
-PalletTown_MapEventHeader:
+PalletTown_MapEvents:
 	; filler
 	db 0, 0
 

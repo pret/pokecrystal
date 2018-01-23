@@ -7,7 +7,7 @@ const_value set 2
 	const FASTSHIPCABINS_NNW_NNE_NE_GENTLEMAN
 	const FASTSHIPCABINS_NNW_NNE_NE_PHARMACIST
 
-FastShipCabins_NNW_NNE_NE_MapScriptHeader:
+FastShipCabins_NNW_NNE_NE_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -98,9 +98,9 @@ SailorScript_0x755f1:
 	waitbutton
 	closetext
 	setevent EVENT_FAST_SHIP_LAZY_SAILOR
-	setmapscene FAST_SHIP_B1F, $1
+	setmapscene FAST_SHIP_B1F, 1
 	checkcode VAR_FACING
-	if_equal $3, UnknownScript_0x75629
+	if_equal RIGHT, UnknownScript_0x75629
 	applymovement FASTSHIPCABINS_NNW_NNE_NE_SAILOR, MovementData_0x75637
 	playsound SFX_EXIT_BUILDING
 	disappear FASTSHIPCABINS_NNW_NNE_NE_SAILOR
@@ -266,7 +266,7 @@ BurglarCoreyAfterBattleText:
 	line "lost it…"
 	done
 
-FastShipCabins_NNW_NNE_NE_MapEventHeader:
+FastShipCabins_NNW_NNE_NE_MapEvents:
 	; filler
 	db 0, 0
 

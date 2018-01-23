@@ -1,4 +1,4 @@
-RedsHouse2F_MapScriptHeader:
+RedsHouse2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -25,7 +25,7 @@ RedsHouse2FPCText:
 	cont "in a long time…"
 	done
 
-RedsHouse2F_MapEventHeader:
+RedsHouse2F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -7,7 +7,7 @@ const_value set 2
 	const ECRUTEAKGYM_GYM_GUY
 	const ECRUTEAKGYM_GRAMPS
 
-EcruteakGym_MapScriptHeader:
+EcruteakGym_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .ForcedToLeave
@@ -32,7 +32,7 @@ MortyScript_0x99d58:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x9a00a, 0
-	loadtrainer MORTY, 1
+	loadtrainer MORTY, MORTY1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MORTY
@@ -43,7 +43,7 @@ MortyScript_0x99d58:
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymActivateRockets
-	setmapscene ECRUTEAK_HOUSE, $1
+	setmapscene ECRUTEAK_HOUSE, 1
 	setevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone:
@@ -91,10 +91,10 @@ EcruteakGymClosed:
 	follow PLAYER, ECRUTEAKGYM_GRAMPS
 	applymovement PLAYER, MovementData_0x99e5f
 	stopfollow
-	special FadeOutPalettes
+	special Special_FadeOutPalettes
 	playsound SFX_ENTER_DOOR
 	waitsfx
-	warp ECRUTEAK_CITY, $6, $1b
+	warp ECRUTEAK_CITY, 6, 27
 	end
 
 TrainerSageJeffrey:
@@ -162,7 +162,7 @@ EcruteakGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext MORTY, 1, $1
+	trainertotext MORTY, MORTY1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 MovementData_0x99e5d:
@@ -386,7 +386,7 @@ UnknownText_0x9a49c:
 	para "Hohohoho."
 	done
 
-EcruteakGym_MapEventHeader:
+EcruteakGym_MapEvents:
 	; filler
 	db 0, 0
 

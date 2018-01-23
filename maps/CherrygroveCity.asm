@@ -5,7 +5,7 @@ const_value set 2
 	const CHERRYGROVECITY_YOUNGSTER
 	const CHERRYGROVECITY_FISHER
 
-CherrygroveCity_MapScriptHeader:
+CherrygroveCity_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -13,7 +13,7 @@ CherrygroveCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
 	end
@@ -69,7 +69,7 @@ CherrygroveCityGuideGent:
 	opentext
 	writetext GuideGentGiftText
 	buttonsound
-	stringtotext .mapcardname, $1
+	stringtotext .mapcardname, MEM_BUFFER_1
 	scall .JumpstdReceiveItem
 	setflag ENGINE_MAP_CARD
 	writetext GotMapCardText
@@ -101,7 +101,7 @@ CherrygroveCityGuideGent:
 	end
 
 CherrygroveSilverSceneSouth:
-	moveobject CHERRYGROVECITY_SILVER, $27, $7
+	moveobject CHERRYGROVECITY_SILVER, 39, 7
 CherrygroveSilverSceneNorth:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -171,7 +171,7 @@ CherrygroveSilverSceneNorth:
 	spriteface PLAYER, LEFT
 	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_SILVER
-	setscene $0
+	setscene 0
 	special HealParty
 	playmapmusic
 	end
@@ -433,7 +433,7 @@ GuideGentNoText:
 	done
 
 UnknownText_0x19c4e2:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "You got a #MON"
 	line "at the LAB."
@@ -441,7 +441,7 @@ UnknownText_0x19c4e2:
 	para "What a waste."
 	line "A wimp like you."
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 
 	para "Don't you get what"
 	line "I'm saying?"
@@ -459,7 +459,7 @@ SilverCherrygroveWinText:
 	done
 
 CherrygroveRivalText_YouLost:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "My name's ???."
 
@@ -475,7 +475,7 @@ SilverCherrygroveLossText:
 	done
 
 CherrygroveRivalText_YouWon:
-	text "<......> <......> <......>"
+	text "<……> <……> <……>"
 
 	para "My name's ???."
 
@@ -546,7 +546,7 @@ GuideGentsHouseSignText:
 	text "GUIDE GENT'S HOUSE"
 	done
 
-CherrygroveCity_MapEventHeader:
+CherrygroveCity_MapEvents:
 	; filler
 	db 0, 0
 

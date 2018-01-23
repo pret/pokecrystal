@@ -3,7 +3,7 @@ const_value set 2
 	const RUINSOFALPHINNERCHAMBER_TEACHER
 	const RUINSOFALPHINNERCHAMBER_GRAMPS
 
-RuinsOfAlphInnerChamber_MapScriptHeader:
+RuinsOfAlphInnerChamber_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -24,7 +24,7 @@ RuinsOfAlphInnerChamber_MapScriptHeader:
 	writetext RuinsOfAlphStrangePresenceText
 	waitbutton
 	closetext
-	setscene $0
+	setscene 0
 	setevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
 	end
@@ -76,7 +76,7 @@ RuinsOfAlphInnerChamberStatueText:
 	cont "MON."
 	done
 
-RuinsOfAlphInnerChamber_MapEventHeader:
+RuinsOfAlphInnerChamber_MapEvents:
 	; filler
 	db 0, 0
 

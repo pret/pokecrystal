@@ -17,8 +17,18 @@ MIN_NEUTRAL_DAMAGE EQU 2
 REST_SLEEP_TURNS EQU 2
 TREEMON_SLEEP_TURNS EQU 7
 
-; PlayerStatLevels and EnemyStatLevels indexes
-; used for GetStatName
+; default move priority
+BASE_PRIORITY EQU 1
+
+; type effectiveness factors, scaled by 10
+SUPER_EFFECTIVE    EQU 20
+MORE_EFFECTIVE     EQU 15
+EFFECTIVE          EQU 10
+NOT_VERY_EFFECTIVE EQU 05
+NO_EFFECT          EQU 00
+
+; PlayerStatLevels and EnemyStatLevels indexes (see wram.asm)
+; GetStatName arguments (see data/battle/stat_names.asm)
 	const_def
 	const ATTACK
 	const DEFENSE
@@ -53,6 +63,7 @@ const_value set 1
 	const STAT_SATK
 	const STAT_SDEF
 NUM_STATS EQU const_value
+STAT_SPC EQU STAT_SATK
 
 ; stat formula constants
 STAT_MIN_NORMAL EQU 5

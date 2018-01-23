@@ -2,7 +2,7 @@ const_value set 2
 	const KRISSNEIGHBORSHOUSE_COOLTRAINER_F
 	const KRISSNEIGHBORSHOUSE_POKEFAN_F
 
-KrissNeighborsHouse_MapScriptHeader:
+KrissNeighborsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -31,7 +31,7 @@ KrissNeighborsHouseRadio:
 	pause 45
 	writetext KrisNeighborRadioText3
 	pause 45
-	musicfadeout MUSIC_NEW_BARK_TOWN, $10
+	musicfadeout MUSIC_NEW_BARK_TOWN, 16
 	writetext KrisNeighborRadioText4
 	pause 45
 	closetext
@@ -98,7 +98,7 @@ KrisNeighborRadioText4:
 	line "#MON CHANNEL…"
 	done
 
-KrissNeighborsHouse_MapEventHeader:
+KrissNeighborsHouse_MapEvents:
 	; filler
 	db 0, 0
 

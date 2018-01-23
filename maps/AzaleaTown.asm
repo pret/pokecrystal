@@ -12,7 +12,7 @@ const_value set 2
 	const AZALEATOWN_AZALEA_ROCKET3
 	const AZALEATOWN_KURT_OUTSIDE
 
-AzaleaTown_MapScriptHeader:
+AzaleaTown_MapScripts:
 .SceneScripts:
 	db 3
 	scene_script .DummyScene0
@@ -21,7 +21,7 @@ AzaleaTown_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .Flypoint
+	callback MAPCALLBACK_NEWMAP, .Flypoint
 
 .DummyScene0:
 	end
@@ -37,7 +37,7 @@ AzaleaTown_MapScriptHeader:
 	return
 
 AzaleaTownRivalBattleScene1:
-	moveobject AZALEATOWN_SILVER, $b, $b
+	moveobject AZALEATOWN_SILVER, 11, 11
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
@@ -102,7 +102,7 @@ AzaleaTownRivalBattleScript:
 	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleExitMovement
 	playsound SFX_EXIT_BUILDING
 	disappear AZALEATOWN_SILVER
-	setscene $0
+	setscene 0
 	waitsfx
 	playmapmusic
 	end
@@ -170,7 +170,7 @@ AzaleaTownCelebiScene:
 	setflag ENGINE_HAVE_EXAMINED_GS_BALL
 	clearevent EVENT_ILEX_FOREST_LASS
 	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	setscene $0
+	setscene 0
 	closetext
 	end
 
@@ -211,7 +211,7 @@ WhiteApricornTree:
 	fruittree FRUITTREE_AZALEA_TOWN
 
 AzaleaTownHiddenFullHeal:
-	dwb EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL
 
 AzaleaTownRivalBattleApproachMovement1:
 	step LEFT
@@ -376,11 +376,11 @@ AzaleaTownYoungsterText:
 AzaleaTownSlowpokeText1:
 	text "SLOWPOKE: …"
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 	done
 
 AzaleaTownSlowpokeText2:
-	text "<......> <......>Yawn?"
+	text "<……> <……>Yawn?"
 	done
 
 WoosterText:
@@ -455,7 +455,7 @@ AzaleaTownIlexForestSignText:
 	line "gate."
 	done
 
-AzaleaTown_MapEventHeader:
+AzaleaTown_MapEvents:
 	; filler
 	db 0, 0
 

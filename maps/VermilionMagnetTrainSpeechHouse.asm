@@ -2,7 +2,7 @@ const_value set 2
 	const VERMILIONMAGNETTRAINSPEECHHOUSE_POKEFAN_F
 	const VERMILIONMAGNETTRAINSPEECHHOUSE_YOUNGSTER
 
-VermilionMagnetTrainSpeechHouse_MapScriptHeader:
+VermilionMagnetTrainSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -33,7 +33,7 @@ VermilionMagnetTrainSpeechHouseYoungsterText:
 	cont "the MAGNET TRAIN."
 	done
 
-VermilionMagnetTrainSpeechHouse_MapEventHeader:
+VermilionMagnetTrainSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

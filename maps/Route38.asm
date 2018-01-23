@@ -7,7 +7,7 @@ const_value set 2
 	const ROUTE38_FRUIT_TREE
 	const ROUTE38_BUENA2
 
-Route38_MapScriptHeader:
+Route38_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -61,9 +61,9 @@ TrainerLassDana1:
 	scall .AskNumber2F
 .AskForPhoneNumber:
 	askforphonenumber PHONE_LASS_DANA
-	if_equal $1, .PhoneFull
-	if_equal $2, .DeclinedPhoneNumber
-	trainertotext LASS, DANA1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .DeclinedPhoneNumber
+	trainertotext LASS, DANA1, MEM_BUFFER_0
 	scall .RegisteredPhoneNumber
 	jump .NumberAccepted
 
@@ -197,9 +197,9 @@ TrainerSchoolboyChad1:
 	scall .AskPhoneNumber2
 .AskToRegisterNumber:
 	askforphonenumber PHONE_SCHOOLBOY_CHAD
-	if_equal $1, .PhoneFull
-	if_equal $2, .SaidNo
-	trainertotext SCHOOLBOY, CHAD1, $0
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .SaidNo
+	trainertotext SCHOOLBOY, CHAD1, MEM_BUFFER_0
 	scall .RegisteredChad
 	jump .HaveChadsNumber
 
@@ -472,7 +472,7 @@ Route38TrainerTipsText:
 	cont "its evolution."
 	done
 
-Route38_MapEventHeader:
+Route38_MapEvents:
 	; filler
 	db 0, 0
 

@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE38ECRUTEAKGATE_OFFICER
 
-Route38EcruteakGate_MapScriptHeader:
+Route38EcruteakGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -24,7 +24,7 @@ Route38EcruteakGateOfficerText:
 	line "way to get here."
 	done
 
-Route38EcruteakGate_MapEventHeader:
+Route38EcruteakGate_MapEvents:
 	; filler
 	db 0, 0
 

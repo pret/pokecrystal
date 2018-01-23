@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE25_COOLTRAINER_M2
 	const ROUTE25_POKE_BALL
 
-Route25_MapScriptHeader:
+Route25_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -48,7 +48,7 @@ Route25MistyDate1Script:
 	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
-	setscene $0
+	setscene 0
 	special RestartMapMusic
 	end
 
@@ -74,7 +74,7 @@ Route25MistyDate2Script:
 	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
-	setscene $0
+	setscene 0
 	special RestartMapMusic
 	end
 
@@ -191,8 +191,7 @@ Route25Protein:
 	itemball PROTEIN
 
 Route25HiddenPotion:
-	dwb EVENT_ROUTE_25_HIDDEN_POTION, POTION
-
+	hiddenitem EVENT_ROUTE_25_HIDDEN_POTION, POTION
 
 MovementData_0x19efe8:
 	big_step DOWN
@@ -430,7 +429,7 @@ BillsHouseSignText:
 	text "BILL'S HOUSE"
 	done
 
-Route25_MapEventHeader:
+Route25_MapEvents:
 	; filler
 	db 0, 0
 

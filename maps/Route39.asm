@@ -10,7 +10,7 @@ const_value set 2
 	const ROUTE39_FRUIT_TREE
 	const ROUTE39_POKEFAN_F2
 
-Route39_MapScriptHeader:
+Route39_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -35,7 +35,7 @@ TrainerPokefanmDerek:
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue .HasNugget
 	checkcellnum PHONE_POKEFANM_DEREK
-	iftrue .NumberAcceptedM
+	iftrue .NumberAccepted
 	checkpoke PIKACHU
 	iffalse .WantsPikachu
 	checkevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
@@ -43,28 +43,28 @@ TrainerPokefanmDerek:
 	writetext PokefanMDerekText_NotBragging
 	buttonsound
 	setevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
-	scall .AskNumber1M
+	scall .AskNumber1
 	jump .AskForNumber
 
 .AskedAlready:
-	scall .AskNumber2M
+	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_POKEFANM_DEREK
-	if_equal $1, .PhoneFullM
-	if_equal $2, .NumberDeclinedM
-	trainertotext POKEFANM, DEREK1, $0
-	scall .RegisteredNumberM
-	jump .NumberAcceptedM
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
 .HasNugget:
-	scall .GiftM
+	scall .Gift
 	verbosegiveitem NUGGET
-	iffalse .PackFull
+	iffalse .NoRoom
 	clearflag ENGINE_DEREK_HAS_NUGGET
-	jump .NumberAcceptedM
+	jump .NumberAccepted
 
-.PackFull:
-	jump .PackFullM
+.NoRoom:
+	jump .PackFull
 
 .WantsPikachu:
 	writetext PokefanMDerekPikachuIsItText
@@ -72,35 +72,35 @@ TrainerPokefanmDerek:
 	closetext
 	end
 
-.AskNumber1M:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-.AskNumber2M:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-.RegisteredNumberM:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-.NumberAcceptedM:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-.NumberDeclinedM:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-.PhoneFullM:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-.GiftM:
+.Gift:
 	jumpstd giftm
 	end
 
-.PackFullM:
+.PackFull:
 	jumpstd packfullm
 	end
 
@@ -180,8 +180,7 @@ FruitTreeScript_0x1a5bf4:
 	fruittree FRUITTREE_ROUTE_39
 
 Route39HiddenNugget:
-	dwb EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
-
+	hiddenitem EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
 
 Route39MiltankText:
 	text "MILTANK: Mooo!"
@@ -344,7 +343,7 @@ Route39TrainerTipsText:
 	line "any tree you see!"
 	done
 
-Route39_MapEventHeader:
+Route39_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,7 +3,7 @@ const_value set 2
 	const LAVENDERMART_POKEFAN_M
 	const LAVENDERMART_ROCKER
 
-LavenderMart_MapScriptHeader:
+LavenderMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -47,7 +47,7 @@ LavenderMartRockerText:
 	line "I had some."
 	done
 
-LavenderMart_MapEventHeader:
+LavenderMart_MapEvents:
 	; filler
 	db 0, 0
 

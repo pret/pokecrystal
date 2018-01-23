@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE15FUCHSIAGATE_OFFICER
 
-Route15FuchsiaGate_MapScriptHeader:
+Route15FuchsiaGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ Route15FuchsiaGateOfficerText:
 	line "Don't give up!"
 	done
 
-Route15FuchsiaGate_MapEventHeader:
+Route15FuchsiaGate_MapEvents:
 	; filler
 	db 0, 0
 

@@ -3,33 +3,33 @@
 Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engine/movement.asm:MovementPointers](/engine/movement.asm).
 
 
-## `$00`−`$03`: `turn_head` *direction*
+## `$00`−`$03`: <code>turn_head <i>direction</i></code>
 
-## `$04`−`$07`: `turn_step` *direction*
+## `$04`−`$07`: <code>turn_step <i>direction</i></code>
 
-## `$08`−`$0B`: `slow_step` *direction*
+## `$08`−`$0B`: <code>slow_step <i>direction</i></code>
 
-## `$0C`−`$0F`: `step` *direction*
+## `$0C`−`$0F`: <code>step <i>direction</i></code>
 
-## `$10`−`$13`: `big_step` *direction*
+## `$10`−`$13`: <code>big_step <i>direction</i></code>
 
-## `$14`−`$17`: `slow_slide_step` *direction*
+## `$14`−`$17`: <code>slow_slide_step <i>direction</i></code>
 
-## `$18`−`$1B`: `slide_step` *direction*
+## `$18`−`$1B`: <code>slide_step <i>direction</i></code>
 
-## `$1C`−`$1F`: `fast_slide_step` *direction*
+## `$1C`−`$1F`: <code>fast_slide_step <i>direction</i></code>
 
-## `$20`−`$23`: `turn_away` *direction*
+## `$20`−`$23`: <code>turn_away <i>direction</i></code>
 
-## `$24`−`$27`: `turn_in` *direction*
+## `$24`−`$27`: <code>turn_in <i>direction</i></code>
 
-## `$28`−`$2B`: `turn_waterfall` *direction*
+## `$28`−`$2B`: <code>turn_waterfall <i>direction</i></code>
 
-## `$2C`−`$2F`: `slow_jump_step` *direction*
+## `$2C`−`$2F`: <code>slow_jump_step <i>direction</i></code>
 
-## `$30`−`$33`: `jump_step` *direction*
+## `$30`−`$33`: <code>jump_step <i>direction</i></code>
 
-## `$34`−`$37`: `fast_jump_step` *direction*
+## `$34`−`$37`: <code>fast_jump_step <i>direction</i></code>
 
 ## `$38`: `remove_sliding`
 
@@ -43,11 +43,11 @@ Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engi
 
 ## `$3D`: `hide_object`
 
-## `$3E`−`$46`: `step_sleep` *length*
+## `$3E`−`$46`: <code>step_sleep <i>length</i></code>
 
 ## `$47`: `step_end`
 
-## `$48`: `step_48` *param*
+## `$48`: <code>step_48 <i>param</i></code>
 
 ## `$49`: `remove_object`
 
@@ -61,7 +61,7 @@ Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engi
 
 ## `$4E`: `skyfall`
 
-## `$4F`: `step_dig` *length*
+## `$4F`: <code>step_dig <i>length</i></code>
 
 ## `$50`: `step_bump`
 
@@ -73,12 +73,12 @@ Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engi
 
 ## `$54`: `show_emote`
 
-## `$55`: `step_shake` *displacement*
+## `$55`: <code>step_shake <i>displacement</i></code>
 
 ## `$56`: `tree_shake`
 
-## `$57`: `rock_smash` *length*
+## `$57`: <code>rock_smash <i>length</i></code>
 
-## `$58`: `return_dig` *length*
+## `$58`: <code>return_dig <i>length</i></code>
 
 ## `$59`: `skyfall_top`

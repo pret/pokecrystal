@@ -5,7 +5,7 @@ const_value set 2
 	const MAHOGANYMART1F_DRAGON
 	const MAHOGANYMART1F_GRANNY
 
-MahoganyMart1F_MapScriptHeader:
+MahoganyMart1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -13,7 +13,7 @@ MahoganyMart1F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .MahoganyMart1FStaircase
+	callback MAPCALLBACK_TILES, .MahoganyMart1FStaircase
 
 .DummyScene0:
 	end
@@ -28,7 +28,7 @@ MahoganyMart1F_MapScriptHeader:
 	return
 
 .ShowStairs:
-	changeblock $6, $2, $1e
+	changeblock 6, 2, $1e ; stairs
 	return
 
 PharmacistScript_0x6c367:
@@ -89,7 +89,7 @@ UnknownScript_0x6c38f:
 	waitbutton
 	showemote EMOTE_SHOCK, MAHOGANYMART1F_PHARMACIST, 10
 	playsound SFX_FAINT
-	changeblock $6, $2, $1e
+	changeblock 6, 2, $1e ; stairs
 	reloadmappart
 	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
@@ -101,7 +101,7 @@ UnknownScript_0x6c38f:
 	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c412
 	playsound SFX_EXIT_BUILDING
 	disappear MAHOGANYMART1F_LANCE
-	setscene $0
+	setscene 0
 	waitsfx
 	end
 
@@ -220,7 +220,7 @@ UnknownText_0x6c5ba:
 	line "I'll go first."
 	done
 
-MahoganyMart1F_MapEventHeader:
+MahoganyMart1F_MapEvents:
 	; filler
 	db 0, 0
 

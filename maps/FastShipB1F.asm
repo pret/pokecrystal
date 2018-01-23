@@ -12,7 +12,7 @@ const_value set 2
 	const FASTSHIPB1F_YOUNGSTER1
 	const FASTSHIPB1F_YOUNGSTER2
 
-FastShipB1F_MapScriptHeader:
+FastShipB1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -31,7 +31,7 @@ UnknownScript_0x7673c:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	iftrue UnknownScript_0x76766
 	applymovement FASTSHIPB1F_SAILOR2, MovementData_0x76876
-	moveobject FASTSHIPB1F_SAILOR1, $1e, $6
+	moveobject FASTSHIPB1F_SAILOR1, 30, 6
 	appear FASTSHIPB1F_SAILOR1
 	pause 5
 	disappear FASTSHIPB1F_SAILOR2
@@ -41,7 +41,7 @@ UnknownScript_0x76751:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	iftrue UnknownScript_0x76766
 	applymovement FASTSHIPB1F_SAILOR1, MovementData_0x76871
-	moveobject FASTSHIPB1F_SAILOR2, $1f, $6
+	moveobject FASTSHIPB1F_SAILOR2, 31, 6
 	appear FASTSHIPB1F_SAILOR2
 	pause 5
 	disappear FASTSHIPB1F_SAILOR1
@@ -448,7 +448,7 @@ SchoolboyRickyAfterBattleText:
 	cont "stone panels."
 	done
 
-FastShipB1F_MapEventHeader:
+FastShipB1F_MapEvents:
 	; filler
 	db 0, 0
 

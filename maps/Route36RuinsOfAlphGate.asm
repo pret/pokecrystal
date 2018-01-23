@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE36RUINSOFALPHGATE_OFFICER
 	const ROUTE36RUINSOFALPHGATE_GRAMPS
 
-Route36RuinsOfAlphGate_MapScriptHeader:
+Route36RuinsOfAlphGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -34,7 +34,7 @@ Route36RuinsOfAlphGateGrampsText:
 	line "RUINS OF ALPH."
 	done
 
-Route36RuinsOfAlphGate_MapEventHeader:
+Route36RuinsOfAlphGate_MapEvents:
 	; filler
 	db 0, 0
 

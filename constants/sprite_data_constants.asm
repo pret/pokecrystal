@@ -1,4 +1,4 @@
-; overworld_sprite struct members (see gfx/sprite_data.asm)
+; overworld_sprite struct members (see data/sprites.asm)
 	const_def
 	const SPRITEDATA_ADDR    ; 0
 	const SPRITEDATA_ADDR_HI ; 1
@@ -26,6 +26,7 @@ const_value set 1
 	const PAL_OW_ROCK   ; 7
 
 ; object_events set bit 3 so as not to use the sprite's default palette
+; MapObjectPals indexes (see gfx/overworld/npc_sprites.pal)
 const_value set (1 << 3)
 	const PAL_NPC_RED    ; 8
 	const PAL_NPC_BLUE   ; 9
@@ -36,7 +37,7 @@ const_value set (1 << 3)
 	const PAL_NPC_TREE   ; e
 	const PAL_NPC_ROCK   ; f
 
-; SpriteMovementData indexes (see data/map_objects.asm)
+; SpriteMovementData indexes (see data/sprites/map_objects.asm)
 	const_def
 	const SPRITEMOVEDATA_00                   ; 00
 	const SPRITEMOVEDATA_ITEM_TREE            ; 01
@@ -158,7 +159,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const OBJECT_ACTION_GRASS_SHAKE  ; 0f
 	const OBJECT_ACTION_SKYFALL      ; 10
 
-; Facings indexes (see data/facings.asm)
+; Facings indexes (see data/sprites/facings.asm)
 	const_def
 	const FACING_STEP_DOWN_0    ; 00
 	const FACING_STEP_DOWN_1    ; 01

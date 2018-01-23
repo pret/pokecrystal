@@ -2,8 +2,8 @@ Sfx_PokeballsPlacedOnTable: ; f0941
 	musicheader 1, 5, Sfx_PokeballsPlacedOnTable_Ch5
 ; f0944
 
-Sfx_BallWiggle: ; f0944
-	musicheader 1, 5, Sfx_BallWiggle_Ch5
+Sfx_BallWobble: ; f0944
+	musicheader 1, 5, Sfx_BallWobble_Ch5
 ; f0947
 
 Sfx_Potion: ; f0947
@@ -4075,7 +4075,7 @@ Sfx_PokeballsPlacedOnTable_Ch5: ; f1d21
 	endchannel
 ; f1d32
 
-Sfx_BallWiggle_Ch5: ; f1d32
+Sfx_BallWobble_Ch5: ; f1d32
 	dutycycle $2
 	soundinput $3a
 	sound __,  5, $f2, $0400

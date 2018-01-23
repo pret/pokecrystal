@@ -4,7 +4,7 @@ const_value set 2
 	const ROUTE4_LASS2
 	const ROUTE4_POKE_BALL
 
-Route4_MapScriptHeader:
+Route4_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -51,8 +51,7 @@ Route4HPUp:
 	itemball HP_UP
 
 Route4HiddenUltraBall:
-	dwb EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
-
+	hiddenitem EVENT_ROUTE_4_HIDDEN_ULTRA_BALL, ULTRA_BALL
 
 BirdKeeperHankSeenText:
 	text "I'm raising my"
@@ -121,7 +120,7 @@ MtMoonSquareSignText:
 	line "stairs."
 	done
 
-Route4_MapEventHeader:
+Route4_MapEvents:
 	; filler
 	db 0, 0
 

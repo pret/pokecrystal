@@ -1,7 +1,7 @@
 const_value set 2
 	const OLIVINEPORTPASSAGE_POKEFAN_M
 
-OlivinePortPassage_MapScriptHeader:
+OlivinePortPassage_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ OlivinePortPassagePokefanMText:
 	line "days."
 	done
 
-OlivinePortPassage_MapEventHeader:
+OlivinePortPassage_MapEvents:
 	; filler
 	db 0, 0
 

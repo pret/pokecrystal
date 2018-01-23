@@ -20,8 +20,9 @@ crystal_obj := \
 audio.o \
 home.o \
 main.o \
-maps.o \
 wram.o \
+data/common_text/common_text.o \
+data/maps/maps.o \
 data/pokemon/dex_entries.o \
 data/pokemon/egg_moves.o \
 data/pokemon/evos_attacks.o \
@@ -29,8 +30,7 @@ engine/credits.o \
 engine/events.o \
 gfx/pics.o \
 gfx/sprites.o \
-lib/mobile/main.o \
-text/common_text.o
+lib/mobile/main.o
 
 crystal11_obj := $(crystal_obj:.o=11.o)
 
@@ -52,7 +52,8 @@ tools:
 	$(MAKE) -C tools/
 
 
-$(crystal11_obj): RGBASMFLAGS = -D CRYSTAL11
+$(crystal_obj):   RGBASMFLAGS = -D _CRYSTAL
+$(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL -D _CRYSTAL11
 
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
@@ -77,12 +78,12 @@ endif
 pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
 	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
-	sort pokecrystal11.sym -o pokecrystal11.sym
+	tools/sort_symfile.sh pokecrystal11.sym
 
 pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
 	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
-	sort pokecrystal.sym -o pokecrystal.sym
+	tools/sort_symfile.sh pokecrystal.sym
 
 
 # For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.
@@ -119,10 +120,12 @@ gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp g
 
 ### Pokemon pic graphics rules
 
-gfx/pokemon/%/normal.gbcpal: gfx/pokemon/%/front.png
-	$(RGBGFX) -p $@ $<
+gfx/pokemon/%/front.dimensions: gfx/pokemon/%/front.png
+	tools/png_dimensions $< $@
 gfx/pokemon/%/normal.pal: gfx/pokemon/%/normal.gbcpal
 	tools/palette -p $< > $@
+gfx/pokemon/%/normal.gbcpal: gfx/pokemon/%/front.png
+	$(RGBGFX) -p $@ $<
 gfx/pokemon/%/back.2bpp: gfx/pokemon/%/back.png
 	$(RGBGFX) -h -o $@ $<
 gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
@@ -133,19 +136,18 @@ gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.
 	tools/pokemon_animation_graphics -o $@ $^
 gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation_graphics -t $@ $^
-# Don't use -h, pokemon_animation_graphics takes care of it
-#gfx/pokemon/%/front.2bpp: gfx/pokemon/%/front.png
-#	$(RGBGFX) -o $@ $<
 
 
 ### Misc file-specific graphics rules
 
-gfx/shrink/shrink1.2bpp: rgbgfx += -h
-gfx/shrink/shrink2.2bpp: rgbgfx += -h
+gfx/new_game/shrink1.2bpp: rgbgfx += -h
+gfx/new_game/shrink2.2bpp: rgbgfx += -h
 
 gfx/trainers/%.2bpp: rgbgfx += -h
 gfx/trainers/%.pal: gfx/trainers/%.gbcpal
 	tools/palette -p $< > $@
+gfx/trainers/%.gbcpal: gfx/trainers/%.png
+	$(RGBGFX) -p $@ $<
 
 gfx/mail/dragonite.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/large_note.1bpp: tools/gfx += --remove-whitespace
@@ -156,6 +158,11 @@ gfx/mail/litebluemail_border.1bpp: tools/gfx += --remove-whitespace
 gfx/pokedex/pokedex.2bpp: tools/gfx += --trim-whitespace
 gfx/pokedex/sgb.2bpp: tools/gfx += --trim-whitespace
 gfx/pokedex/slowpoke.2bpp: tools/gfx += --trim-whitespace
+
+gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
+gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+
+gfx/mystery_gift/mystery_gift.2bpp: tools/gfx += --trim-whitespace
 
 gfx/title/crystal.2bpp: tools/gfx += --interleave --png=$<
 gfx/title/old_fg.2bpp: tools/gfx += --interleave --png=$<
@@ -194,17 +201,21 @@ gfx/player/kris_back.2bpp: rgbgfx += -h
 
 gfx/trainer_card/chris_card.2bpp: rgbgfx += -h
 gfx/trainer_card/kris_card.2bpp: rgbgfx += -h
+gfx/trainer_card/leaders.2bpp: tools/gfx += --trim-whitespace
+
+gfx/overworld/chris_fish.2bpp: tools/gfx += --trim-whitespace
+gfx/overworld/kris_fish.2bpp: tools/gfx += --trim-whitespace
 
 gfx/battle/dude.2bpp: rgbgfx += -h
 
 gfx/font/unused_bold_font.1bpp: tools/gfx += --trim-whitespace
 
-gfx/pokegear/pokegear.2bpp: rgbgfx += -x2
-gfx/pokegear/pokegear_sprites.2bpp: tools/gfx += --trim-whitespace
+gfx/sgb/sgb_border.2bpp: tools/gfx += --trim-whitespace
 
 gfx/mobile/ascii_font.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/electro_ball.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/electro_ball_nonmatching.2bpp: tools/gfx += --remove-duplicates --remove-xflip
+gfx/mobile/mobile_adapter.2bpp: tools/gfx += --trim-whitespace
 gfx/mobile/mobile_splash.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
 
@@ -228,7 +239,5 @@ gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 	$(RGBGFX) -t $@ $<
 %.gbcpal: %.png
 	$(RGBGFX) -p $@ $<
-%.pal: %.gbcpal
-	tools/palette $< > $@
 %.dimensions: %.png
 	tools/png_dimensions $< $@

@@ -3,7 +3,7 @@ const_value set 2
 	const VIOLETMART_GRANNY
 	const VIOLETMART_COOLTRAINER_M
 
-VioletMart_MapScriptHeader:
+VioletMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -48,7 +48,7 @@ VioletMartCooltrainerMText:
 	line "items."
 	done
 
-VioletMart_MapEventHeader:
+VioletMart_MapEvents:
 	; filler
 	db 0, 0
 

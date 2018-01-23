@@ -4,7 +4,7 @@ const_value set 2
 	const CERULEANTRADESPEECHHOUSE_RHYDON
 	const CERULEANTRADESPEECHHOUSE_ZUBAT
 
-CeruleanTradeSpeechHouse_MapScriptHeader:
+CeruleanTradeSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -53,7 +53,7 @@ UnknownText_0x1881b5:
 	text "ZUBAT: Zuba zubaa."
 	done
 
-CeruleanTradeSpeechHouse_MapEventHeader:
+CeruleanTradeSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

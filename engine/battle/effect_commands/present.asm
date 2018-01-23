@@ -31,7 +31,7 @@ BattleCommand_Present: ; 37874
 	ld c, 0
 .next
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .heal_effect ; 378a4 $11
 	cp b
 	jr nc, .got_power ; 378a7 $4
@@ -89,5 +89,5 @@ BattleCommand_Present: ; 37874
 	db 40 percent,     40
 	db 70 percent + 1, 80
 	db 80 percent,    120
-	db $ff
+	db -1 ; end
 ; 3790e

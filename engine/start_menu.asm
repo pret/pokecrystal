@@ -152,21 +152,19 @@ StartMenu:: ; 125cd
 
 
 .MenuDataHeader:
-	db $40 ; tile backup
-	db 0, 10 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default selection
 
 .ContestMenuDataHeader:
-	db $40 ; tile backup
-	db 2, 10 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 2, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default selection
 
 .MenuData:
-	db %10101000 ; x padding, wrap around, start can close
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_ENABLE_START ; flags
 	dn 0, 0 ; rows, columns
 	dw MenuItemsList
 	dw .MenuString
@@ -190,13 +188,13 @@ StartMenu:: ; 125cd
 .SaveString:    	db "SAVE@"
 .OptionString:  	db "OPTION@"
 .ExitString:    	db "EXIT@"
-.PokegearString:	db $24, "GEAR@"
+.PokegearString:	db "<POKE>GEAR@"
 .QuitString:    	db "QUIT@"
 
 .PokedexDesc:  db   "#MON"
 	next "database@"
 
-.PartyDesc:    db   "Party ", $4a
+.PartyDesc:    db   "Party <PKMN>"
 	next "status@"
 
 .PackDesc:     db   "Contains"
@@ -503,7 +501,7 @@ StartMenu_Pack: ; 1295b
 
 	call FadeToMenu
 	farcall Pack
-	ld a, [wcf66]
+	ld a, [wPackUsedItem]
 	and a
 	jr nz, .used_item
 	call CloseSubmenu
@@ -800,7 +798,7 @@ GiveTakePartyMonItem: ; 12b60
 	call GetCurNick
 	ld hl, StringBuffer1
 	ld de, wMonOrItemNameBuffer
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, [wMenuCursorY]
 	cp 1
@@ -976,14 +974,13 @@ TakePartyItem: ; 12c60
 
 
 GiveTakeItemMenuData: ; 12c9b
-	db %01010000
-	db 12, 12 ; start coords
-	db 17, 19 ; end coords
+	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
+	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .Items
 	db 1 ; default option
 
 .Items:
-	db %10000000 ; x padding
+	db STATICMENU_CURSOR ; flags
 	db 2 ; # items
 	db "GIVE@"
 	db "TAKE@"
@@ -1165,15 +1162,14 @@ MonMailAction: ; 12d45
 
 
 .MenuDataHeader:
-	db $40 ; flags
-	db 10, 12 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData2
 	db 1 ; default option
 ; 0x12dd1
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "READ@"
 	db "TAKE@"
@@ -1255,7 +1251,7 @@ MonMenu_Fly: ; 12e30
 	jr z, .Fail
 	cp $0
 	jr z, .Error
-	farcall TrainerRankings_Fly
+	farcall StubbedTrainerRankings_Fly
 	ld b, $4
 	ld a, $2
 	ret
@@ -1268,7 +1264,7 @@ MonMenu_Fly: ; 12e30
 	ld a, $0
 	ret
 
-.Unused:
+.Unreferenced:
 	ld a, $1
 	ret
 ; 12e55

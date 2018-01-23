@@ -1,10 +1,10 @@
-SilverCaveOutside_MapScriptHeader:
+SilverCaveOutside_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_SILVER_CAVE
@@ -17,13 +17,13 @@ MtSilverSign:
 	jumptext MtSilverSignText
 
 SilverCaveOutsideHiddenFullRestore:
-	dwb EVENT_SILVER_CAVE_OUTSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem EVENT_SILVER_CAVE_OUTSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE
 
 MtSilverSignText:
 	text "MT.SILVER"
 	done
 
-SilverCaveOutside_MapEventHeader:
+SilverCaveOutside_MapEvents:
 	; filler
 	db 0, 0
 

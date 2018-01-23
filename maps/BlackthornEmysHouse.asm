@@ -1,7 +1,7 @@
 const_value set 2
 	const BLACKTHORNEMYSHOUSE_EMY
 
-BlackthornEmysHouse_MapScriptHeader:
+BlackthornEmysHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -19,7 +19,7 @@ Emy:
 EmysHouseBookshelf:
 	jumpstd magazinebookshelf
 
-BlackthornEmysHouse_MapEventHeader:
+BlackthornEmysHouse_MapEvents:
 	; filler
 	db 0, 0
 

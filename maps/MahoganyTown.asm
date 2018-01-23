@@ -4,7 +4,7 @@ const_value set 2
 	const MAHOGANYTOWN_FISHER
 	const MAHOGANYTOWN_LASS
 
-MahoganyTown_MapScriptHeader:
+MahoganyTown_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -12,7 +12,7 @@ MahoganyTown_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
 	end
@@ -53,17 +53,17 @@ UnknownScript_0x190039:
 UnknownScript_0x190040:
 	opentext
 	writetext UnknownText_0x1900b0
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	yesorno
 	iffalse UnknownScript_0x190072
-	checkmoney $0, 300
-	if_equal $2, UnknownScript_0x19006c
+	checkmoney YOUR_MONEY, 300
+	if_equal HAVE_LESS, UnknownScript_0x19006c
 	giveitem RAGECANDYBAR
 	iffalse UnknownScript_0x190078
 	waitsfx
 	playsound SFX_TRANSACTION
-	takemoney $0, 300
-	special PlaceMoneyTopRight
+	takemoney YOUR_MONEY, 300
+	special Special_PlaceMoneyTopRight
 	writetext UnknownText_0x19014a
 	waitbutton
 	closetext
@@ -244,7 +244,7 @@ MahoganyGymSignText:
 	line "Winter's Harshness"
 	done
 
-MahoganyTown_MapEventHeader:
+MahoganyTown_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const GOLDENRODDEPTSTORE6F_LASS
 	const GOLDENRODDEPTSTORE6F_SUPER_NERD
 
-GoldenrodDeptStore6F_MapScriptHeader:
+GoldenrodDeptStore6F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -13,41 +13,41 @@ GoldenrodVendingMachine:
 	opentext
 	writetext GoldenrodVendingText
 .Start:
-	special PlaceMoneyTopRight
+	special Special_PlaceMoneyTopRight
 	loadmenudata .MenuData
 	verticalmenu
 	closewindow
-	if_equal $1, .FreshWater
-	if_equal $2, .SodaPop
-	if_equal $3, .Lemonade
+	if_equal 1, .FreshWater
+	if_equal 2, .SodaPop
+	if_equal 3, .Lemonade
 	closetext
 	end
 
 .FreshWater:
-	checkmoney $0, 200
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 200
+	if_equal HAVE_LESS, .NotEnoughMoney
 	giveitem FRESH_WATER
 	iffalse .NotEnoughSpace
-	takemoney $0, 200
-	itemtotext FRESH_WATER, $0
+	takemoney YOUR_MONEY, 200
+	itemtotext FRESH_WATER, MEM_BUFFER_0
 	jump .VendItem
 
 .SodaPop:
-	checkmoney $0, 300
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 300
+	if_equal HAVE_LESS, .NotEnoughMoney
 	giveitem SODA_POP
 	iffalse .NotEnoughSpace
-	takemoney $0, 300
-	itemtotext SODA_POP, $0
+	takemoney YOUR_MONEY, 300
+	itemtotext SODA_POP, MEM_BUFFER_0
 	jump .VendItem
 
 .Lemonade:
-	checkmoney $0, 350
-	if_equal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 350
+	if_equal HAVE_LESS, .NotEnoughMoney
 	giveitem LEMONADE
 	iffalse .NotEnoughSpace
-	takemoney $0, 350
-	itemtotext LEMONADE, $0
+	takemoney YOUR_MONEY, 350
+	itemtotext LEMONADE, MEM_BUFFER_0
 	jump .VendItem
 
 .VendItem:
@@ -69,20 +69,18 @@ GoldenrodVendingMachine:
 	jump .Start
 
 .MenuData:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "FRESH WATER  ¥200@"
 	db "SODA POP     ¥300@"
 	db "LEMONADE     ¥350@"
 	db "CANCEL@"
-
 
 GoldenrodDeptStore6FLassScript:
 	jumptextfaceplayer GoldenrodDeptStore6FLassText
@@ -105,8 +103,8 @@ GoldenrodClangText:
 	text "Clang! A can of"
 	line "@"
 	text_from_ram StringBuffer3
-	text $55
-	db "popped out!"
+	text_start
+	cont "popped out!"
 	done
 
 GoldenrodVendingNoMoneyText:
@@ -149,7 +147,7 @@ GoldenrodDeptStore6FDirectoryText:
 	para "6F TRANQUIL SQUARE"
 	done
 
-GoldenrodDeptStore6F_MapEventHeader:
+GoldenrodDeptStore6F_MapEvents:
 	; filler
 	db 0, 0
 

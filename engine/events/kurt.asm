@@ -76,7 +76,7 @@ Kurt_SelectApricorn: ; 88055
 	jr nz, .done
 
 .nope
-	xor a
+	xor a ; FALSE
 
 .done
 	ld c, a
@@ -84,17 +84,16 @@ Kurt_SelectApricorn: ; 88055
 ; 88086
 
 .MenuDataHeader: ; 0x88086
-	db $40 ; flags
-	db 01, 01 ; start coords
-	db 10, 13 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 1, 1, 13, 10
 	dw .MenuData2
 	db 1 ; default option
 ; 0x8808e
 
-	db 0
+	db 0 ; XXX
 
 .MenuData2: ; 0x8808f
-	db $10 ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 7
 	db 1
 	dbw 0, Buffer1
@@ -159,11 +158,11 @@ Kurt_SelectQuantity: ; 880c2
 ; 8810d
 
 .MenuDataHeader: ; 0x8810d
-	db $40 ; flags
-	db 09, 06 ; start coords
-	db 12, 19 ; end coords
-
-	db 0, 0, -1, 0 ; XXX
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 6, 9, SCREEN_WIDTH - 1, 12
+	dw NULL
+	db -1 ; default option
+	db 0
 
 .PlaceApricornName: ; 88116
 	call MenuBoxCoord2Tile

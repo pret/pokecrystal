@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE32POKECENTER1F_FISHING_GURU
 	const ROUTE32POKECENTER1F_COOLTRAINER_F
 
-Route32Pokecenter1F_MapScriptHeader:
+Route32Pokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -94,7 +94,7 @@ Route32Pokecenter1FCooltrainerFText:
 	cont "power…"
 	done
 
-Route32Pokecenter1F_MapEventHeader:
+Route32Pokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

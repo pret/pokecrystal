@@ -9,21 +9,15 @@
 	const ITEMATTR_HELP
 ITEMATTR_STRUCT_LENGTH EQU const_value
 
-
-; pack pockets
-ITEM     EQU 1
-KEY_ITEM EQU 2
-BALL     EQU 3
-TM_HM    EQU 4
-
-; pack pocket sizes
-MAX_ITEMS     EQU 20
-MAX_KEY_ITEMS EQU 25
-MAX_BALLS     EQU 12
-MAX_PC_ITEMS  EQU 50
-
+; item types
+const_value set 1
+	const ITEM     ; 1
+	const KEY_ITEM ; 2
+	const BALL     ; 3
+	const TM_HM    ; 4
 
 ; item menu types
+; UseItem.dw indexes (see engine/pack.asm)
 ITEMMENU_NOUSE   EQU 0
 ITEMMENU_CURRENT EQU 4
 ITEMMENU_PARTY   EQU 5
@@ -34,7 +28,22 @@ CANT_SELECT EQU 1 << 6
 CANT_TOSS   EQU 1 << 7
 
 
+; pack pockets
+	const_def
+	const ITEM_POCKET     ; 0
+	const BALL_POCKET     ; 1
+	const KEY_ITEM_POCKET ; 2
+	const TM_HM_POCKET    ; 3
+NUM_POCKETS EQU const_value +- 1
+
+MAX_ITEMS     EQU 20
+MAX_BALLS     EQU 12
+MAX_KEY_ITEMS EQU 25
+MAX_PC_ITEMS  EQU 50
+
+
 ; mail
+MAIL_LINE_LENGTH   EQU $10
 MAIL_MSG_LENGTH    EQU $20
 MAILBOX_CAPACITY   EQU 10
 MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
@@ -163,8 +172,7 @@ const_value set 70
 	const MART_UNDERGROUND
 
 
-; PartyMenuActionText values
-; GetPartyMenuTilemapPointers arguments (see engine/party_menu.asm)
+; PartyMenuQualityPointers indexes (see data/party_menu_qualities.asm)
 	const_def
 	const PARTYMENUACTION_CHOOSE_POKEMON
 	const PARTYMENUACTION_HEALING_ITEM

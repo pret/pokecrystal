@@ -1,4 +1,4 @@
-INCLUDE "includes.asm"
+INCLUDE "constants.asm"
 
 
 SECTION "Credits", ROMX
@@ -13,7 +13,7 @@ Credits:: ; 109847
 
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+	ld a, BANK(wPals)
 	ld [rSVBK], a
 
 	call ClearBGPalettes
@@ -34,17 +34,17 @@ Credits:: ; 109847
 
 	ld de, CreditsBorderGFX
 	ld hl, vTiles2 tile $20
-	lb bc, BANK(CreditsBorderGFX), $09
+	lb bc, BANK(CreditsBorderGFX), 9
 	call Request2bpp
 
 	ld de, CopyrightGFX
 	ld hl, vTiles2 tile $60
-	lb bc, BANK(CopyrightGFX), $1d
+	lb bc, BANK(CopyrightGFX), 29
 	call Request2bpp
 
 	ld de, TheEndGFX
 	ld hl, vTiles2 tile $40
-	lb bc, BANK(TheEndGFX), $10
+	lb bc, BANK(TheEndGFX), 16
 	call Request2bpp
 
 	ld a, $ff
@@ -504,7 +504,7 @@ GetCreditsPalette: ; 109b2c
 .GetPalAddress:
 ; Each set of palette data is 24 bytes long.
 	ld a, [wCreditsBorderMon] ; scene
-	and 3
+	and %11
 	add a
 	add a ; * 8
 	add a
@@ -540,7 +540,7 @@ GetCreditsPalette: ; 109b2c
 	ret
 
 CreditsPalettes:
-INCLUDE "data/palettes/credits.pal"
+INCLUDE "gfx/credits/credits.pal"
 ; 109bca
 
 Credits_LoadBorderGFX: ; 109bca (42:5bca)
@@ -549,13 +549,13 @@ Credits_LoadBorderGFX: ; 109bca (42:5bca)
 	cp $ff
 	jr z, .init
 
-	and 3
+	and %11
 	ld e, a
 	inc a
-	and 3
+	and %11
 	ld [hl], a
 	ld a, [wCreditsBorderMon]
-	and 3
+	and %11
 	add a
 	add a
 	add e

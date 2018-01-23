@@ -1,3 +1,4 @@
+; block ids
 UNDERGROUND_DOOR_CLOSED1 EQU $2a
 UNDERGROUND_DOOR_CLOSED2 EQU $3e
 UNDERGROUND_DOOR_CLOSED3 EQU $3f
@@ -43,7 +44,7 @@ const_value set 2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_POKE_BALL2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 
-GoldenrodUndergroundSwitchRoomEntrances_MapScriptHeader:
+GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -51,7 +52,7 @@ GoldenrodUndergroundSwitchRoomEntrances_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .UpdateDoorPositions
+	callback MAPCALLBACK_TILES, .UpdateDoorPositions
 
 .DummyScene0:
 	end
@@ -630,10 +631,10 @@ GoldenrodUndergroundSwitchRoomEntrancesFullHeal:
 	itemball FULL_HEAL
 
 GoldenrodUndergroundSwitchRoomEntrancesHiddenMaxPotion:
-	dwb EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
 
 GoldenrodUndergroundSwitchRoomEntrancesHiddenRevive:
-	dwb EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
+	hiddenitem EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
 
 UndergroundSilverApproachMovement1:
 	step DOWN
@@ -929,7 +930,7 @@ SwitchRoomText_Emergency:
 	line "EMERGENCY."
 	done
 
-GoldenrodUndergroundSwitchRoomEntrances_MapEventHeader:
+GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
 	; filler
 	db 0, 0
 

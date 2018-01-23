@@ -7,13 +7,13 @@ const_value set 2
 	const ROUTE37_FRUIT_TREE2
 	const ROUTE37_FRUIT_TREE3
 
-Route37_MapScriptHeader:
+Route37_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .Sunny
+	callback MAPCALLBACK_OBJECTS, .Sunny
 
 .Sunny:
 	checkcode VAR_WEEKDAY
@@ -114,8 +114,7 @@ FruitTreeScript_0x1a8e0d:
 	fruittree FRUITTREE_ROUTE_37_3
 
 Route37HiddenEther:
-	dwb EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
-
+	hiddenitem EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
 
 TwinsAnnandanne1SeenText:
 	text "ANN: ANNE and I"
@@ -238,7 +237,7 @@ Route37SignText:
 	text "ROUTE 37"
 	done
 
-Route37_MapEventHeader:
+Route37_MapEvents:
 	; filler
 	db 0, 0
 

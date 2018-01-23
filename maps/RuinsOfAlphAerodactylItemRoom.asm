@@ -4,7 +4,7 @@ const_value set 2
 	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL3
 	const RUINSOFALPHAERODACTYLITEMROOM_POKE_BALL4
 
-RuinsOfAlphAerodactylItemRoom_MapScriptHeader:
+RuinsOfAlphAerodactylItemRoom_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -32,7 +32,7 @@ UnknownText_0x59ac1:
 	cont "MON."
 	done
 
-RuinsOfAlphAerodactylItemRoom_MapEventHeader:
+RuinsOfAlphAerodactylItemRoom_MapEvents:
 	; filler
 	db 0, 0
 

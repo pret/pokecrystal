@@ -4,7 +4,7 @@ const_value set 2
 	const MAHOGANYPOKECENTER1F_YOUNGSTER
 	const MAHOGANYPOKECENTER1F_COOLTRAINER_F
 
-MahoganyPokecenter1F_MapScriptHeader:
+MahoganyPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -53,7 +53,7 @@ MahoganyPokecenter1FCooltrainerFText:
 	cont "more slowly."
 	done
 
-MahoganyPokecenter1F_MapEventHeader:
+MahoganyPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

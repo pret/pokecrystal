@@ -4,7 +4,7 @@ const_value set 2
 	const VIRIDIANNICKNAMESPEECHHOUSE_SPEARY
 	const VIRIDIANNICKNAMESPEECHHOUSE_RATTEY
 
-ViridianNicknameSpeechHouse_MapScriptHeader:
+ViridianNicknameSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -61,7 +61,7 @@ RatteyText:
 	text "RATTEY: Kikiii!"
 	done
 
-ViridianNicknameSpeechHouse_MapEventHeader:
+ViridianNicknameSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

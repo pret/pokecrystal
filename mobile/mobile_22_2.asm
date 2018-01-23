@@ -1,8 +1,8 @@
 Function8b342:: ; 8b342
-; Loads the secondary map header pointer, then runs through a
-; dw with three dummy functions.  Spends a lot of energy
+; Loads the map data pointer, then runs through a
+; dw with three dummy functions. Spends a lot of energy
 ; doing pretty much nothing.
-	call GetSecondaryMapHeaderPointer
+	call GetMapDataPointer
 	ld d, h
 	ld e, l
 
@@ -26,15 +26,15 @@ Function8b342:: ; 8b342
 ; 8b35a
 
 .zero ; 8b35a
-	mobile
+	ret
 ; 8b35b
 
 .one ; 8b35b
-	mobile
+	ret
 ; 8b35c
 
 .two ; 8b35c
-	mobile
+	ret
 ; 8b35d
 
 Function8b35d: ; 8b35d
@@ -910,9 +910,8 @@ Function8b855: ; 8b855
 ; 8b867
 
 MenuDataHeader_0x8b867: ; 0x8b867
-	db $40 ; flags
-	db 03, 01 ; start coords
-	db 13, 18 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 1, 3, 18, 13
 	dw MenuData2_0x8b870
 	db 1 ; default option
 ; 0x8b86f
@@ -920,7 +919,7 @@ MenuDataHeader_0x8b867: ; 0x8b867
 	db 0
 
 MenuData2_0x8b870: ; 0x8b870
-	db $3c ; flags
+	db SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT ; flags
 	db 5 ; items
 	db 3, 1
 	dbw 0, wd002
@@ -1016,10 +1015,10 @@ Unknown_8b903: ; 8b903
 	dw String_8b92a
 	dw String_8b938
 
-String_8b90b: db "めいしを えらんでください@"        ; Please select a noun.
-String_8b919: db "どの めいしと いれかえますか?@"    ; OK to swap with any noun?
-String_8b92a: db "あいてを えらんでください@"        ; Please select an opponent.
-String_8b938: db "いれる ところを えらんでください@" ; Please select a location.
+String_8b90b: db "めいしを　えらんでください@"        ; Please select a noun.
+String_8b919: db "どの　めいしと　いれかえますか？@"    ; OK to swap with any noun?
+String_8b92a: db "あいてを　えらんでください@"        ; Please select an opponent.
+String_8b938: db "いれる　ところを　えらんでください@" ; Please select a location.
 ; 8b94a
 
 Function8b94a: ; 8b94a
@@ -1083,20 +1082,18 @@ Function8b9ab: ; 8b9ab
 ; 8b9ac
 
 MenuDataHeader_0x8b9ac: ; 0x8b9ac
-	db $40 ; flags
-	db 00, 11 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
 MenuDataHeader_0x8b9b1: ; 0x8b9b1
-	db $40 ; flags
-	db 00, 11 ; start coords
-	db 07, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 0, SCREEN_WIDTH - 1, 7
 	dw MenuData2_0x8b9b9
 	db 1 ; default option
 ; 0x8b9b9
 
 MenuData2_0x8b9b9: ; 0x8b9b9
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "へんしゅう@" ; EDIT
 	db "いれかえ@"   ; REPLACE
@@ -1104,15 +1101,14 @@ MenuData2_0x8b9b9: ; 0x8b9b9
 ; 0x8b9ca
 
 MenuDataHeader_0x8b9ca: ; 0x8b9ca
-	db $40 ; flags
-	db 00, 11 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData2_0x8b9d2
 	db 1 ; default option
 ; 0x8b9d2
 
 MenuData2_0x8b9d2: ; 0x8b9d2
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 5 ; items
 	db "みる@"       ; VIEW
 	db "へんしゅう@" ; EDIT

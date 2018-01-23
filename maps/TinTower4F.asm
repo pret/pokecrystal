@@ -3,7 +3,7 @@ const_value set 2
 	const TINTOWER4F_POKE_BALL2
 	const TINTOWER4F_POKE_BALL3
 
-TinTower4F_MapScriptHeader:
+TinTower4F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -20,10 +20,9 @@ TinTower4FEscapeRope:
 	itemball ESCAPE_ROPE
 
 TinTower4FHiddenMaxPotion:
-	dwb EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION, MAX_POTION
 
-
-TinTower4F_MapEventHeader:
+TinTower4F_MapEvents:
 	; filler
 	db 0, 0
 

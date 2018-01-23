@@ -4,7 +4,7 @@ const_value set 2
 	const AZALEAPOKECENTER1F_FISHING_GURU
 	const AZALEAPOKECENTER1F_POKEFAN_F
 
-AzaleaPokecenter1F_MapScriptHeader:
+AzaleaPokecenter1F_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -76,7 +76,7 @@ AzaleaPokecenter1FPokefanFText:
 	line "APRICORNS."
 	done
 
-AzaleaPokecenter1F_MapEventHeader:
+AzaleaPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE16FUCHSIASPEECHHOUSE_SUPER_NERD
 
-Route16FuchsiaSpeechHouse_MapScriptHeader:
+Route16FuchsiaSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -22,7 +22,7 @@ Route16FuchsiaSpeechHouseSuperNerdText:
 	line "FUCHSIA CITY."
 	done
 
-Route16FuchsiaSpeechHouse_MapEventHeader:
+Route16FuchsiaSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

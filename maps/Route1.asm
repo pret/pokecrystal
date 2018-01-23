@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE1_COOLTRAINER_F
 	const ROUTE1_FRUIT_TREE
 
-Route1_MapScriptHeader:
+Route1_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -80,7 +80,7 @@ Route1SignText:
 	line "VIRIDIAN CITY"
 	done
 
-Route1_MapEventHeader:
+Route1_MapEvents:
 	; filler
 	db 0, 0
 

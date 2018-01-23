@@ -6,7 +6,7 @@ const_value set 2
 	const ROUTE46_FRUIT_TREE2
 	const ROUTE46_POKE_BALL
 
-Route46_MapScriptHeader:
+Route46_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -32,29 +32,29 @@ TrainerPicnickerErin1:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_ERIN
-	iftrue ErinWantsBattle
+	iftrue .WantsBattle
 	checkcellnum PHONE_PICNICKER_ERIN
-	iftrue Rt46NumberAcceptedF
+	iftrue Route46NumberAcceptedF
 	checkevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext PicnickerErinAfterBattleText
 	buttonsound
 	setevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
-	scall Rt46AskNumber1F
+	scall Route46AskNumber1F
 	jump .AskForNumber
 
 .AskedAlready:
-	scall Rt46AskNumber2F
+	scall Route46AskNumber2F
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_ERIN
-	if_equal $1, Rt46PhoneFullF
-	if_equal $2, Rt46NumberDeclinedF
-	trainertotext PICNICKER, ERIN1, $0
-	scall Rt46RegisteredNumberF
-	jump Rt46NumberAcceptedF
+	if_equal PHONE_CONTACTS_FULL, Route46PhoneFullF
+	if_equal PHONE_CONTACT_REFUSED, Route46NumberDeclinedF
+	trainertotext PICNICKER, ERIN1, MEM_BUFFER_0
+	scall Route46RegisteredNumberF
+	jump Route46NumberAcceptedF
 
-ErinWantsBattle:
-	scall Rt46RematchF
+.WantsBattle:
+	scall Route46RematchF
 	winlosstext PicnickerErin1BeatenText, 0
 	copybytetovar wErinFightCount
 	if_equal 2, .Fight2
@@ -91,11 +91,11 @@ ErinWantsBattle:
 	iftrue .HasCalcium
 	checkevent EVENT_GOT_CALCIUM_FROM_ERIN
 	iftrue .GotCalciumAlready
-	scall Rt46RematchGiftF
+	scall Route46RematchGiftF
 	verbosegiveitem CALCIUM
 	iffalse ErinNoRoomForCalcium
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
-	jump Rt46NumberAcceptedF
+	jump Route46NumberAcceptedF
 
 .GotCalciumAlready:
 	end
@@ -108,33 +108,33 @@ ErinWantsBattle:
 	iffalse ErinNoRoomForCalcium
 	clearevent EVENT_ERIN_CALCIUM
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
-	jump Rt46NumberAcceptedF
+	jump Route46NumberAcceptedF
 
-Rt46AskNumber1F:
+Route46AskNumber1F:
 	jumpstd asknumber1f
 	end
 
-Rt46AskNumber2F:
+Route46AskNumber2F:
 	jumpstd asknumber2f
 	end
 
-Rt46RegisteredNumberF:
+Route46RegisteredNumberF:
 	jumpstd registerednumberf
 	end
 
-Rt46NumberAcceptedF:
+Route46NumberAcceptedF:
 	jumpstd numberacceptedf
 	end
 
-Rt46NumberDeclinedF:
+Route46NumberDeclinedF:
 	jumpstd numberdeclinedf
 	end
 
-Rt46PhoneFullF:
+Route46PhoneFullF:
 	jumpstd phonefullf
 	end
 
-Rt46RematchF:
+Route46RematchF:
 	jumpstd rematchf
 	end
 
@@ -143,7 +143,7 @@ ErinNoRoomForCalcium:
 	jumpstd packfullf
 	end
 
-Rt46RematchGiftF:
+Route46RematchGiftF:
 	jumpstd rematchgiftf
 	end
 
@@ -250,14 +250,14 @@ Route46SignText:
 	line "MOUNTAIN RD. AHEAD"
 	done
 
-Route46_MapEventHeader:
+Route46_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 3
-	warp_def 7, 33, 1, ROUTE_29_46_GATE
-	warp_def 8, 33, 2, ROUTE_29_46_GATE
+	warp_def 7, 33, 1, ROUTE_29_ROUTE_46_GATE
+	warp_def 8, 33, 2, ROUTE_29_ROUTE_46_GATE
 	warp_def 14, 5, 3, DARK_CAVE_VIOLET_ENTRANCE
 
 .CoordEvents:

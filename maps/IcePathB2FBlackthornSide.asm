@@ -1,7 +1,7 @@
 const_value set 2
 	const ICEPATHB2FBLACKTHORNSIDE_POKE_BALL
 
-IcePathB2FBlackthornSide_MapScriptHeader:
+IcePathB2FBlackthornSide_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -12,10 +12,9 @@ IcePathB2FBlackthornSideTMRest:
 	itemball TM_REST
 
 IcePathB2FBlackthornSideHiddenIceHeal:
-	dwb EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL, ICE_HEAL
+	hiddenitem EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL, ICE_HEAL
 
-
-IcePathB2FBlackthornSide_MapEventHeader:
+IcePathB2FBlackthornSide_MapEvents:
 	; filler
 	db 0, 0
 

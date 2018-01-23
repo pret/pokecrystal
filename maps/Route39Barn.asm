@@ -3,7 +3,7 @@ const_value set 2
 	const ROUTE39BARN_TWIN2
 	const ROUTE39BARN_MOOMOO
 
-Route39Barn_MapScriptHeader:
+Route39Barn_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -52,7 +52,7 @@ MooMoo:
 	iftrue .HappyCow
 	writetext Text_WeakMoo
 	writebyte MILTANK
-	special PlaySlowCry
+	special Special_PlaySlowCry
 	buttonsound
 	writetext Text_ItsCryIsWeak
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
@@ -188,7 +188,7 @@ Text_RefusedToGiveBerry:
 	para "MILTANK looks sad."
 	done
 
-Route39Barn_MapEventHeader:
+Route39Barn_MapEvents:
 	; filler
 	db 0, 0
 

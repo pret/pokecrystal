@@ -21,7 +21,7 @@ InitList: ; 50db9
 	jr nz, .check_item_name
 	ld hl, CurMart
 	ld de, PokemonNames
-	ld a, PKMN_NAME
+	ld a, MON_NAME
 	jr .done
 
 .check_item_name

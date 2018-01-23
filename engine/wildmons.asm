@@ -212,7 +212,7 @@ TryWildEncounter:: ; 2a0e7
 GetMapEncounterRate: ; 2a111
 	ld hl, wMornEncounterRate
 	call CheckOnWater
-	ld a, 3
+	ld a, wWaterEncounterRate - wMornEncounterRate
 	jr z, .ok
 	ld a, [TimeOfDay]
 .ok
@@ -508,7 +508,7 @@ LookUpWildmonsForMapDE: ; 2a288
 ; 2a2a0
 
 
-InitRoamMons: ; 2a2a0
+Special_InitRoamMons: ; 2a2a0
 ; initialize wRoamMon structs
 
 ; species
@@ -571,7 +571,7 @@ CheckEncounterRoamMon: ; 2a2ce
 	ld hl, wRoamMon1MapGroup
 	ld c, a
 	ld b, 0
-	ld a, 7 ; length of the RoamMon struct
+	ld a, 7 ; length of the roam_struct
 	call AddNTimes
 	ld a, d
 	cp [hl]
@@ -678,9 +678,9 @@ UpdateRoamMons: ; 2a30d
 	ld l, e
 ; Choose which map to warp to.
 	call Random
-	and $1f ; 1/8n chance it moves to a completely random map, where n is the number of roaming connections from the current map.
+	and %00011111 ; 1/8n chance it moves to a completely random map, where n is the number of roaming connections from the current map.
 	jr z, JumpRoamMon
-	and 3
+	and %11
 	cp [hl]
 	jr nc, .update_loop ; invalid index, try again
 	inc hl
@@ -739,11 +739,11 @@ JumpRoamMons: ; 2a394
 JumpRoamMon: ; 2a3cd
 .loop
 	ld hl, RoamMaps
-.innerloop1 ; This loop is completely unnecessary.
-	call Random ; Choose a random number
-	and $f ; Take the lower nybble only.  This gives a number between 0 and 15.
-	cp $10 ; If the number is greater than or equal to 16, loop back and try again.
-	jr nc, .innerloop1 ; I'm sure you can guess why this check is bogus.
+.innerloop1                   ; This loop happens to be unnecessary.
+	call Random               ; Choose a random number.
+	maskbits NUM_ROAMMON_MAPS ; Mask the number to limit it between 0 and 15.
+	cp NUM_ROAMMON_MAPS       ; If the number is not less than 16, try again.
+	jr nc, .innerloop1        ; I'm sure you can guess why this check is bogus.
 	inc a
 	ld b, a
 .innerloop2 ; Loop to get hl to the address of the chosen roam map.
@@ -804,7 +804,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ; Finds a rare wild Pokemon in the route of the trainer calling, then checks if it's been Seen already.
 ; The trainer will then tell you about the Pokemon if you haven't seen it.
-RandomUnseenWildMon: ; 2a4ab
+Special_RandomUnseenWildMon: ; 2a4ab
 	farcall GetCallerLocation
 	ld d, b
 	ld e, c
@@ -821,11 +821,11 @@ RandomUnseenWildMon: ; 2a4ab
 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
 	add hl, bc
 	ld a, [TimeOfDay]
-	ld bc, 7 * 2
+	ld bc, NUM_GRASSMON * 2
 	call AddNTimes
 .randloop1
 	call Random
-	and $3
+	and %11
 	jr z, .randloop1
 	dec a
 	ld c, a
@@ -877,7 +877,7 @@ RandomUnseenWildMon: ; 2a4ab
 	db "@"
 ; 0x2a51f
 
-RandomPhoneWildMon: ; 2a51f
+Special_RandomPhoneWildMon: ; 2a51f
 	farcall GetCallerLocation
 	ld d, b
 	ld e, c
@@ -893,7 +893,7 @@ RandomPhoneWildMon: ; 2a51f
 	add hl, bc
 	ld a, [TimeOfDay]
 	inc a
-	ld bc, 7 * 2
+	ld bc, NUM_GRASSMON * 2
 .loop
 	dec a
 	jr z, .done
@@ -902,7 +902,7 @@ RandomPhoneWildMon: ; 2a51f
 
 .done
 	call Random
-	and $3
+	and %11
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -913,11 +913,11 @@ RandomPhoneWildMon: ; 2a51f
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 ; 2a567
 
-RandomPhoneMon: ; 2a567
+Special_RandomPhoneMon: ; 2a567
 ; Get a random monster owned by the trainer who's calling.
 	farcall GetCallerLocation
 	ld hl, TrainerGroups
@@ -952,16 +952,17 @@ RandomPhoneMon: ; 2a567
 	ld a, BANK(Trainers)
 	call GetFarByte
 	inc hl
-	ld bc, 2
-	cp 0
+	ld bc, 2 ; level, species
+	cp TRAINERTYPE_NORMAL
 	jr z, .got_mon_length
-	ld bc, 2 + NUM_MOVES
-	cp 1
+	ld bc, 2 + NUM_MOVES ; level, species, moves
+	cp TRAINERTYPE_MOVES
 	jr z, .got_mon_length
-	ld bc, 2 + 1
-	cp 2
+	ld bc, 2 + 1 ; level, species, item
+	cp TRAINERTYPE_ITEM
 	jr z, .got_mon_length
-	ld bc, 2 + 1 + NUM_MOVES
+	; TRAINERTYPE_ITEM_MOVES
+	ld bc, 2 + 1 + NUM_MOVES ; level, species, item, moves
 .got_mon_length
 
 	ld e, 0
@@ -977,7 +978,7 @@ RandomPhoneMon: ; 2a567
 
 .rand
 	call Random
-	and 7
+	maskbits PARTY_LENGTH
 	cp e
 	jr nc, .rand
 
@@ -996,7 +997,7 @@ RandomPhoneMon: ; 2a567
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, StringBuffer4
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 ; 2a5e9
 

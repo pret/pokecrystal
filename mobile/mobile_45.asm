@@ -61,7 +61,7 @@ String_114163: ; 114163
 ; 114165
 
 Jumptable_114165: ; 114165
-	dw Function114268
+	dw Stubbed_Function114268
 	dw Function114269
 	dw Function11433c
 	dw Function1143b7
@@ -159,7 +159,8 @@ Function11425c: ; 11425c
 
 ; 114268
 
-Function114268: mobile
+Stubbed_Function114268:
+	ret
 
 ; 114269
 
@@ -4328,7 +4329,7 @@ Function11581e: ; 11581e
 	push hl
 	ld a, [wCurrMapCallbackCount]
 	ld l, a
-	ld a, [wCurrMapCallbackHeaderPointer]
+	ld a, [wCurrMapCallbacksPointer]
 	ld h, a
 	cp b
 	jr c, .asm_1158bb
@@ -4350,7 +4351,7 @@ Function11581e: ; 11581e
 	ld a, l
 	ld [wCurrMapCallbackCount], a
 	ld a, h
-	ld [wCurrMapCallbackHeaderPointer], a
+	ld [wCurrMapCallbacksPointer], a
 	pop bc
 	pop hl
 	ld hl, wCurrMapSceneScriptCount
@@ -4895,7 +4896,7 @@ Function115b00: ; 115b00
 	push hl
 	ld a, [wCurrMapCallbackCount]
 	ld l, a
-	ld a, [wCurrMapCallbackHeaderPointer]
+	ld a, [wCurrMapCallbacksPointer]
 	ld h, a
 	cp b
 	jr c, .asm_115b36
@@ -4917,7 +4918,7 @@ Function115b00: ; 115b00
 	ld a, l
 	ld [wCurrMapCallbackCount], a
 	ld a, h
-	ld [wCurrMapCallbackHeaderPointer], a
+	ld [wCurrMapCallbacksPointer], a
 	pop bc
 	pop hl
 	ld hl, wCurrMapSceneScriptCount
@@ -5844,7 +5845,7 @@ Unknown_116815: ; 116815
 	db $c, $5
 	db $9, $8
 	db $8, $4
-	db $ff
+	db -1 ; end
 
 Unknown_11683e: ; 11683e
 	db $fd, $20
@@ -5867,7 +5868,7 @@ Unknown_11683e: ; 11683e
 	db $12, $5
 	db $f, $8
 	db $e, $4
-	db $ff
+	db -1 ; end
 
 Unknown_116867: ; 116867
 	db $14, $8
@@ -5910,7 +5911,7 @@ Unknown_116881: ; 116881
 	db $fd, $2
 	db $23, $2
 	db $fd, $40
-	db $ff
+	db -1 ; end
 
 Unknown_1168ae: ; 1168ae
 	db $24, $4
@@ -7297,17 +7298,15 @@ Function1179a7: ; 1179a7 (45:79a7)
 ; 1179b5 (45:79b5)
 
 MenuDataHeader_1179b5: ; 1179b5
-	db $40 ; flags
-	db 12,  0 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 1179bd
 
 MenuDataHeader_1179bd: ; 1179bd
-	db $40 ; flags
-	db  7, 14 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 1179c5
@@ -7319,13 +7318,13 @@ YessNoString_1179c5: ; 1179c5
 ; 1179cc
 
 AskSavePasswordString: ; 1179cc
-	db   "こ%パスワード¯ほぞんして"
-	line "おきますか?@"
+	db   "こ<NO>パスワード¯ほぞんして"
+	line "おきますか？@"
 ; 1179e1
 
 NotAPokemonPasswordString: ; 1179e1
 	db   "パスワード<PKMN>にゅうりょく"
-	line "されていません!@"
+	line "されていません！@"
 ; 1179f7
 
 SavedPasswordString: ; 1179f7
@@ -7350,7 +7349,7 @@ INCBIN "data/mobile/ascii-sym.txt"
 
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
-; XXX better function names
+; Needs better function names
 MobileStudium: ; 0x117a7f
 	ld a, [hInMenu]
 	push af
@@ -7612,9 +7611,9 @@ Function117c4a:
 	ld c, 8
 .loop
 	push hl
-	ld a, LOW(palred 31 + palgreen 31 + palblue 31)
+	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
-	ld a, HIGH(palred 31 + palgreen 31 + palblue 31)
+	ld a, HIGH(PALRGB_WHITE)
 	ld [hl], a
 	pop hl
 	add hl, de
@@ -7658,18 +7657,16 @@ Function117c89:
 	ret
 
 MenuDataHeader_117cbc: ; 0x117cbc
-	db $40    ; flags
-	db 12,  0 ; start coords
-	db 17, 19 ; end coords
-	dw NULL   ; menu data 2
-	db 0      ; default option
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
+	dw NULL
+	db 0 ; default option
 
 MenuDataHeader_117cc4: ; 0x117cc4
-	db $40    ; flags
-	db  7, 14 ; start coords
-	db 11, 19 ; end coords
-	dw NULL   ; menu data 2
-	db 0      ; default item
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	dw NULL
+	db 0 ; default item
 
 YesNo117ccc: ; 0x117ccc
 	db   "はい"

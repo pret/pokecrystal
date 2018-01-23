@@ -11,7 +11,7 @@ const_value set 2
 	const ROUTE35_FRUIT_TREE
 	const ROUTE35_POKE_BALL
 
-Route35_MapScriptHeader:
+Route35_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -50,9 +50,9 @@ TrainerJugglerIrwin:
 	scall UnknownScript_0x19c907
 .AskForNumber:
 	askforphonenumber PHONE_JUGGLER_IRWIN
-	if_equal $1, UnknownScript_0x19c917
-	if_equal $2, UnknownScript_0x19c913
-	trainertotext JUGGLER, IRWIN1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19c917
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19c913
+	trainertotext JUGGLER, IRWIN1, MEM_BUFFER_0
 	scall UnknownScript_0x19c90b
 	jump UnknownScript_0x19c90f
 
@@ -153,9 +153,9 @@ TrainerBugCatcherArnie:
 	scall UnknownScript_0x19c907
 .AskForNumber:
 	askforphonenumber PHONE_BUG_CATCHER_ARNIE
-	if_equal $1, UnknownScript_0x19c917
-	if_equal $2, UnknownScript_0x19c913
-	trainertotext BUG_CATCHER, ARNIE1, $0
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19c917
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19c913
+	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
 	scall UnknownScript_0x19c90b
 	jump UnknownScript_0x19c90f
 
@@ -462,7 +462,7 @@ Route35SignText:
 	text "ROUTE 35"
 	done
 
-Route35_MapEventHeader:
+Route35_MapEvents:
 	; filler
 	db 0, 0
 

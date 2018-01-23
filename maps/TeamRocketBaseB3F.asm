@@ -14,7 +14,7 @@ const_value set 2
 	const TEAMROCKETBASEB3F_POKE_BALL4
 	const TEAMROCKETBASEB3F_POKE_BALL5
 
-TeamRocketBaseB3F_MapScriptHeader:
+TeamRocketBaseB3F_MapScripts:
 .SceneScripts:
 	db 4
 	scene_script .LanceGetsPassword
@@ -24,7 +24,7 @@ TeamRocketBaseB3F_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_TILES, .CheckGiovanniDoor
+	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
 
 .LanceGetsPassword:
 	priorityjump LanceGetPasswordScript
@@ -45,7 +45,7 @@ TeamRocketBaseB3F_MapScriptHeader:
 	return
 
 .OpenSesame:
-	changeblock $a, $8, $7
+	changeblock 10, 8, $07 ; floor
 	return
 
 LanceGetPasswordScript:
@@ -60,7 +60,7 @@ LanceGetPasswordScript:
 	closetext
 	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12c
 	disappear TEAMROCKETBASEB3F_LANCE
-	setscene $1
+	setscene 1
 	end
 
 RocketBaseRival:
@@ -79,7 +79,7 @@ RocketBaseRival:
 	applymovement PLAYER, RocketBaseRivalShovesPlayerMovement
 	applymovement TEAMROCKETBASEB3F_SILVER, RocketBaseRivalLeaveMovement
 	disappear TEAMROCKETBASEB3F_SILVER
-	setscene $2
+	setscene 2
 	special RestartMapMusic
 	end
 
@@ -116,7 +116,7 @@ UnknownScript_0x6e056:
 	playsound SFX_TACKLE
 	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e147
 	disappear TEAMROCKETBASEB3F_ROCKET1
-	setscene $3
+	setscene 3
 	end
 
 RocketBaseMurkrow:
@@ -174,7 +174,7 @@ TrainerScientistMitch:
 	end
 
 TeamRocketBaseB3FLockedDoor:
-	dw EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE, .Script
+	conditional_event EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE, .Script
 
 .Script:
 	opentext
@@ -194,7 +194,7 @@ TeamRocketBaseB3FLockedDoor:
 	writetext UnknownText_0x6e9a3
 	waitbutton
 	playsound SFX_ENTER_DOOR
-	changeblock $a, $8, $7
+	changeblock 10, 8, $07 ; floor
 	reloadmappart
 	closetext
 	setevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
@@ -565,7 +565,7 @@ UnknownText_0x6e9a3:
 	para "The door opened!"
 	done
 
-TeamRocketBaseB3F_MapEventHeader:
+TeamRocketBaseB3F_MapEvents:
 	; filler
 	db 0, 0
 

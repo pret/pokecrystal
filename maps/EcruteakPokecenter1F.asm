@@ -5,7 +5,7 @@ const_value set 2
 	const ECRUTEAKPOKECENTER1F_GYM_GUY
 	const ECRUTEAKPOKECENTER1F_BILL
 
-EcruteakPokecenter1F_MapScriptHeader:
+EcruteakPokecenter1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .MeetBill
@@ -53,7 +53,7 @@ EcruteakPokecenter1F_MapScriptHeader:
 	disappear ECRUTEAKPOKECENTER1F_BILL
 	clearevent EVENT_MET_BILL
 	setflag ENGINE_TIME_CAPSULE
-	setscene $1
+	setscene 1
 	waitsfx
 	end
 
@@ -61,7 +61,7 @@ EcruteakPokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
 EcruteakPokecenter1FPokefanMScript:
-	special Mobile_DummyReturnFalse
+	special Special_Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer EcruteakPokecenter1FPokefanMText
 
@@ -206,7 +206,7 @@ EcruteakPokecenter1FGymGuyText:
 	line "acy. I know it!"
 	done
 
-EcruteakPokecenter1F_MapEventHeader:
+EcruteakPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

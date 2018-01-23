@@ -20,10 +20,10 @@ DMATransfer:: ; 15d8
 
 
 UpdateBGMapBuffer:: ; 15e3
-; Copy [hFFDC] 16x8 tiles from BGMapBuffer
+; Copy [hBGMapTileCount] 16x8 tiles from BGMapBuffer
 ; to bg map addresses in BGMapBufferPtrs.
 
-; [hFFDC] must be even since this is done in pairs.
+; [hBGMapTileCount] must be even since this is done in pairs.
 
 ; Return carry on success.
 
@@ -76,10 +76,10 @@ rept 2
 endr
 
 ; We've done 2 16x8 blocks
-	ld a, [hFFDC]
+	ld a, [hBGMapTileCount]
 	dec a
 	dec a
-	ld [hFFDC], a
+	ld [hBGMapTileCount], a
 
 	jr nz, .next
 
@@ -379,7 +379,7 @@ Serve2bppRequest:: ; 1769
 	jr _Serve2bppRequest
 
 
-Serve2bppRequest@VBlank:: ; 1778
+Serve2bppRequest_VBlank:: ; 1778
 
 	ld a, [Requested2bpp]
 	and a
@@ -466,7 +466,7 @@ AnimateTileset:: ; 17d3
 
 	ld a, [rSVBK]
 	push af
-	ld a, 1
+	ld a, BANK(TilesetAnim)
 	ld [rSVBK], a
 
 	ld a, [rVBK]

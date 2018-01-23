@@ -1,3 +1,5 @@
+; Pics are defined in gfx/pics.asm
+
 PokemonPicPointers::
 ; entries correspond to Pokémon species, two apiece
 	dba_pic BulbasaurFrontpic

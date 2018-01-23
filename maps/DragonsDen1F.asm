@@ -1,11 +1,11 @@
-DragonsDen1F_MapScriptHeader:
+DragonsDen1F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-DragonsDen1F_MapEventHeader:
+DragonsDen1F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -2,7 +2,7 @@ const_value set 2
 	const OLIVINELIGHTHOUSE4F_SAILOR
 	const OLIVINELIGHTHOUSE4F_LASS
 
-OlivineLighthouse4F_MapScriptHeader:
+OlivineLighthouse4F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -81,7 +81,7 @@ LassConnie1AfterBattleText:
 	line "back to the GYM."
 	done
 
-OlivineLighthouse4F_MapEventHeader:
+OlivineLighthouse4F_MapEvents:
 	; filler
 	db 0, 0
 

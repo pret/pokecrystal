@@ -1,7 +1,7 @@
 const_value set 2
 	const OLIVINEGOODRODHOUSE_FISHING_GURU
 
-OlivineGoodRodHouse_MapScriptHeader:
+OlivineGoodRodHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -82,7 +82,7 @@ HaveGoodRodText:
 	line "Land the big one?"
 	done
 
-OlivineGoodRodHouse_MapEventHeader:
+OlivineGoodRodHouse_MapEvents:
 	; filler
 	db 0, 0
 

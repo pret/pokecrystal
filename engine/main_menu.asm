@@ -30,15 +30,14 @@ MainMenu: ; 49cdc
 ; 49d14
 
 .MenuDataHeader: ; 49d14
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 07, 16 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 16, 7
 	dw .MenuData2
 	db 1 ; default option
 ; 49d1c
 
 .MenuData2: ; 49d1c
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw MainMenuItems
 	dw PlaceMenuStrings
@@ -279,7 +278,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	ret
 
 .min
-; unreferenced
+; unused
 	db "min.@"
 ; 49e75
 

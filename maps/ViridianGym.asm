@@ -2,7 +2,7 @@ const_value set 2
 	const VIRIDIANGYM_BLUE
 	const VIRIDIANGYM_GYM_GUY
 
-ViridianGym_MapScriptHeader:
+ViridianGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -18,7 +18,7 @@ ViridianGymBlueScript:
 	waitbutton
 	closetext
 	winlosstext LeaderBlueWinText, 0
-	loadtrainer BLUE, 1
+	loadtrainer BLUE, BLUE1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLUE
@@ -60,7 +60,7 @@ ViridianGymStatue:
 	jumpstd gymstatue1
 
 .Beaten:
-	trainertotext BLUE, 1, $1
+	trainertotext BLUE, BLUE1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 LeaderBlueBeforeText:
@@ -169,7 +169,7 @@ ViridianGymGuyWinText:
 	line "tears to my eyes."
 	done
 
-ViridianGym_MapEventHeader:
+ViridianGym_MapEvents:
 	; filler
 	db 0, 0
 

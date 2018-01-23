@@ -7,7 +7,7 @@ const_value set 2
 	const SPROUTTOWER3F_POKE_BALL2
 	const SPROUTTOWER3F_SILVER
 
-SproutTower3F_MapScriptHeader:
+SproutTower3F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -55,11 +55,11 @@ UnknownScript_0x184947:
 	closetext
 	playsound SFX_WARP_TO
 	special Special_FadeBlackQuickly
-	special Special_ReloadSpritesNoPalettes
+	special ReloadSpritesNoPalettes
 	disappear SPROUTTOWER3F_SILVER
 	waitsfx
 	special Special_FadeInQuickly
-	setscene $1
+	setscene 1
 	special RestartMapMusic
 	end
 
@@ -329,7 +329,7 @@ UnknownText_0x184f61:
 	line "distinguished."
 	done
 
-SproutTower3F_MapEventHeader:
+SproutTower3F_MapEvents:
 	; filler
 	db 0, 0
 

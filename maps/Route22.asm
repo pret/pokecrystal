@@ -1,4 +1,4 @@
-Route22_MapScriptHeader:
+Route22_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -15,7 +15,7 @@ VictoryRoadEntranceSignText:
 	line "ENTRANCE"
 	done
 
-Route22_MapEventHeader:
+Route22_MapEvents:
 	; filler
 	db 0, 0
 

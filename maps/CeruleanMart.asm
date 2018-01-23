@@ -3,7 +3,7 @@ const_value set 2
 	const CERULEANMART_COOLTRAINER_M
 	const CERULEANMART_COOLTRAINER_F
 
-CeruleanMart_MapScriptHeader:
+CeruleanMart_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -45,7 +45,7 @@ CeruleanMart_CooltrainerFText:
 	cont "CERULEAN's CAPE."
 	done
 
-CeruleanMart_MapEventHeader:
+CeruleanMart_MapEvents:
 	; filler
 	db 0, 0
 

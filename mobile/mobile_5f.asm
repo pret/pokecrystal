@@ -44,7 +44,7 @@ Function17c000: ; 17c000
 	ld a, [rSVBK]
 	push af
 
-	ld a, 5 ; BANK(wBGPals1)
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 	ld hl, HaveWantPals
@@ -236,17 +236,17 @@ CheckStringForErrors_IgnoreTerminator: ; 17d0b3
 	cp "@"
 	jr z, .next
 
-	cp $5
+	cp "ガ"
 	jr c, .end
 	cp "<PLAY_G>"
 	jr c, .next
-	cp $19
+	cp "<JP_18>" + 1
 	jr c, .end
-	cp $1d
+	cp "<NI>"
 	jr c, .next
-	cp "%" + 1
+	cp "<NO>" + 1
 	jr c, .end
-	cp $35
+	cp "<ROUTE>"
 	jr c, .next
 	cp "<GREEN>" + 1
 	jr c, .end
@@ -348,7 +348,7 @@ Mobile_CopyDefaultNickname: ; 17d199
 ; 17d1a6
 
 .DefaultNickname:
-	db "?????"
+	db "？？？？？"
 
 Mobile_CopyDefaultMail: ; 17d1ab
 	ld a, "@"
@@ -429,10 +429,10 @@ Function17d1f1: ; 17d1f1
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Parameter: [ScriptVar] = 0..1
 ;
-; if [ScriptVar] == 0
+; if [ScriptVar] == FALSE
 ;    Show japanese menu options
 ;    - News - News - ??? - Cancel
-; if [ScriptVar] == 1
+; if [ScriptVar] == TRUE
 ;    Show BattleTower-Menu with 3 options in english language
 ;    - Challenge - Explanation - Cancel
 Special_Menu_ChallengeExplanationCancel: ; 17d224
@@ -483,14 +483,13 @@ Function17d246: ; 17d246
 ; 17d26a
 
 MenuDataHeader_17d26a: ; 17d26a
-	db $40 ; flags
-	db  0,  0 ; start coords
-	db  9, 14 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 14, 9
 	dw MenuData2_17d272
 	db 1 ; default option
 
 MenuData2_17d272: ; 17d272
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4
 	db "ニュース¯よみこむ@"
 	db "ニュース¯みる@"
@@ -499,21 +498,20 @@ MenuData2_17d272: ; 17d272
 ; 17d28f
 
 MenuDataHeader_ChallengeExplanationCancel: ; 17d28f
-	db $40 ; flags
-	db  0,  0 ; start coords
-	db  7, 14 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 14, 7
 	dw MenuData2_ChallengeExplanationCancel
 	db 1 ; default option
 
 MenuData2_ChallengeExplanationCancel: ; 17d297
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3
 	db "Challenge@"
 	db "Explanation@"
 	db "Cancel@"
 ; 17d2b6
 
-Function17d2b6: ; 17d2b6
+Special_Function17d2b6: ; 17d2b6
 	call Function17d2c0
 	farcall Function1181da
 	ret
@@ -528,7 +526,7 @@ Function17d2c0: ; 17d2c0
 	ret
 ; 17d2ce
 
-Function17d2ce: ; 17d2ce
+Special_Function17d2ce: ; 17d2ce
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa72]
@@ -620,8 +618,8 @@ Function17d314: ; 17d314
 Function17d370: ; 17d370
 	xor a
 	ld [wcd77], a
-	ld [wcd78], a
-	ld [wcd79], a
+	ld [wMobileCrashCheckPointer], a
+	ld [wMobileCrashCheckPointer + 1], a
 	dec a
 	ld [wcd6c], a
 	call ClearBGPalettes
@@ -958,9 +956,9 @@ Function17d5c4:
 	ld h, a
 	add hl, bc
 	ld a, l
-	ld [wcd78], a
+	ld [wMobileCrashCheckPointer], a
 	ld a, h
-	ld [wcd79], a
+	ld [wMobileCrashCheckPointer + 1], a
 	ld a, $3
 	ld [wcd77], a
 	ret
@@ -1122,9 +1120,9 @@ Function17d6fd: ; 17d6fd
 	ld a, [wcd77]
 	bit 7, a
 	jr nz, asm_17d721
-	ld a, [wcd78]
+	ld a, [wMobileCrashCheckPointer]
 	ld l, a
-	ld a, [wcd79]
+	ld a, [wMobileCrashCheckPointer + 1]
 	ld h, a
 	ld a, [hl]
 	cp $ff
@@ -1193,11 +1191,11 @@ Jumptable17d72a: ; 17d72a
 	dw Function17e27f
 	dw Function17e293
 	dw Function17e2a7
-	dw Function17e367
-	dw Function17e37e
-	dw Function17e395
-	dw Function17e3ac
-	dw Function17e3c3
+	dw IncCrashCheckPointer_SaveGameData
+	dw IncCrashCheckPointer_SaveAfterLinkTrade
+	dw IncCrashCheckPointer_SaveBox
+	dw IncCrashCheckPointer_SaveChecksum
+	dw IncCrashCheckPointer_SaveTrainerRankingsChecksum
 	dw Function17e3e0
 	dw Function17e3f0
 	dw Function17e409
@@ -1208,12 +1206,12 @@ Function17d78c: ; 17d78c
 ; 17d78d
 
 Function17d78d: ; 17d78d
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld a, $6
 	call GetSRAMBank
 	ld hl, $a006
@@ -1229,40 +1227,40 @@ Function17d78d: ; 17d78d
 ; 17d7b4
 
 Function17d7b4: ; 17d7b4
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld d, $0
 	call PlayMusic2
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17d7c2
 
 Function17d7c2: ; 17d7c2
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld d, $0
 	call PlaySFX
 	call WaitSFX
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17d7d3
 
 Function17d7d3: ; 17d7d3
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	dec a
 	ld e, a
 	ld d, $0
-	call PlayCryHeader
+	call PlayCry
 	call WaitSFX
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17d7e5
 
 Function17d7e5: ; 17d7e5
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld [wcd4f], a
 	ld a, [hli]
@@ -1283,12 +1281,12 @@ Function17d7e5: ; 17d7e5
 	ld [wcd53], a
 	ld de, wcd4f
 	call Function17e691
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17d818
 
 Function17d818: ; 17d818
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -1297,7 +1295,7 @@ Function17d818: ; 17d818
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e447
 	ld e, l
 	ld d, h
@@ -1308,7 +1306,7 @@ Function17d818: ; 17d818
 ; 17d833
 
 Function17d833: ; 17d833
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -1317,7 +1315,7 @@ Function17d833: ; 17d833
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	push de
 	push bc
 	call Function17e32b
@@ -1336,7 +1334,7 @@ Function17d833: ; 17d833
 ; 17d85d
 
 Function17d85d: ; 17d85d
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -1406,7 +1404,7 @@ Function17d85d: ; 17d85d
 	jr .asm_17d878
 
 .asm_17d8c7
-	call Function17e41e
+	call HlToCrashCheckPointer
 	push bc
 	ld a, $3
 	ld [rSVBK], a
@@ -1437,13 +1435,13 @@ Function17d85d: ; 17d85d
 ; 17d902
 
 Function17d902: ; 17d902
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	push de
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e32b
 	pop de
 	ld hl, wBGPals1
@@ -1472,11 +1470,11 @@ Function17d902: ; 17d902
 ; 17d93a
 
 Function17d93a: ; 17d93a
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $5
 	call CopyBytes
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e32b
 	ld a, [rSVBK]
 	push af
@@ -1508,11 +1506,11 @@ Function17d93a: ; 17d93a
 ; 17d98b
 
 Function17d98b: ; 17d98b
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $4
 	call CopyBytes
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e32b
 	ld a, [rSVBK]
 	push af
@@ -1545,11 +1543,11 @@ Function17d98b: ; 17d98b
 ; 17d9e3
 
 Function17d9e3: ; 17d9e3
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $7
 	call CopyBytes
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld a, [$c70b]
 	push af
 	cp $c0
@@ -1591,11 +1589,11 @@ Function17d9e3: ; 17d9e3
 ; 17da31
 
 Function17da31: ; 17da31
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $4
 	call CopyBytes
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld a, [$c709]
 	push af
 	cp $c0
@@ -1681,7 +1679,7 @@ Function17da9c: ; 17da9c
 	call Function17e55b
 	call Function17e5af
 .asm_17daba
-	jp Function17e415
+	jp IncCrashCheckPointer
 
 .asm_17dabd
 	ld a, [wcd2f]
@@ -1723,7 +1721,7 @@ Function17dadc: ; 17dadc
 	call Function17e5af
 
 .asm_17db0e
-	jp Function17e415
+	jp IncCrashCheckPointer
 
 .asm_17db11
 	ld hl, wcd24
@@ -1758,7 +1756,7 @@ Function17db2d: ; 17db2d
 	call Function17e5af
 
 .asm_17db53
-	jp Function17e415
+	jp IncCrashCheckPointer
 ; 17db56
 
 Function17db56: ; 17db56
@@ -1776,7 +1774,7 @@ Function17db56: ; 17db56
 	call Function17e5af
 
 .asm_17db74
-	jp Function17e415
+	jp IncCrashCheckPointer
 ; 17db77
 
 Function17db77: ; 17db77
@@ -1808,7 +1806,7 @@ Function17db77: ; 17db77
 	call Function17e5af
 
 .asm_17dbae
-	jp Function17e415
+	jp IncCrashCheckPointer
 ; 17dbb1
 
 Function17dbb1: ; 17dbb1
@@ -1878,11 +1876,11 @@ Function17dbe9: ; 17dbe9
 	call Function17e451
 	call Function17e55b
 	call Function17e5af
-	jp Function17e415
+	jp IncCrashCheckPointer
 ; 17dc1f
 
 Function17dc1f: ; 17dc1f
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c688
 	ld bc, $6
 	call CopyBytes
@@ -1943,22 +1941,22 @@ Function17dc1f: ; 17dc1f
 ; 17dc96
 
 MenuData2_17dc96:
-	db $e0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2
 	db "はい@"
 	db "いいえ@"
 ; 17dc9f
 
 Function17dc9f: ; 17dc9f
-	call Function17e415
-	call Function17e41e
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer
 	call RotateFourPalettesLeft
 	ret
 ; 17dca9
 
 Function17dca9: ; 17dca9
-	call Function17e415
-	call Function17e41e
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer
 
 Function17dcaf:
 	ld a, $5
@@ -1983,7 +1981,7 @@ Function17dcaf:
 ; 17dccf
 
 Function17dccf: ; 17dccf
-	call Function17e415
+	call IncCrashCheckPointer
 	push hl
 	ld a, [wcd4b]
 	ld l, a
@@ -1999,11 +1997,11 @@ Function17dccf: ; 17dccf
 	ld a, [hl]
 	ld b, a
 	call Function17e43d
-	call Function17e41e
+	call HlToCrashCheckPointer
 .asm_17dced
-	ld a, [wcd78]
+	ld a, [wMobileCrashCheckPointer]
 	ld l, a
-	ld a, [wcd79]
+	ld a, [wMobileCrashCheckPointer + 1]
 	ld h, a
 	ld a, [hl]
 	cp $ff
@@ -2021,7 +2019,7 @@ Function17dccf: ; 17dccf
 
 .asm_17dd0d
 	pop hl
-	jp Function17e41e
+	jp HlToCrashCheckPointer
 
 .asm_17dd11
 	pop hl
@@ -2029,7 +2027,7 @@ Function17dccf: ; 17dccf
 ; 17dd13
 
 Function17dd13: ; 17dd13
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -2038,7 +2036,7 @@ Function17dd13: ; 17dd13
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	call Function17e447
 	push hl
 	hlcoord 0, 0
@@ -2051,7 +2049,7 @@ Function17dd13: ; 17dd13
 ; 17dd30
 
 Function17dd30: ; 17dd30
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2061,7 +2059,7 @@ Function17dd30: ; 17dd30
 	ld b, $0
 	ld a, [hli]
 	push af
-	call Function17e41e
+	call HlToCrashCheckPointer
 	pop af
 	hlcoord 0, 0
 	add hl, de
@@ -2070,7 +2068,7 @@ Function17dd30: ; 17dd30
 ; 17dd49
 
 Function17dd49: ; 17dd49
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $a
 	call CopyBytes
@@ -2151,7 +2149,7 @@ Function17dd49: ; 17dd49
 ; 17ddcd
 
 Function17ddcd: ; 17ddcd
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $8
 	call CopyBytes
@@ -2213,7 +2211,7 @@ Function17ddcd: ; 17ddcd
 ; 17de32
 
 Function17de32: ; 17de32
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $9
 	call CopyBytes
@@ -2272,7 +2270,7 @@ Function17de32: ; 17de32
 ; 17de91
 
 Function17de91: ; 17de91
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $7
 	call CopyBytes
@@ -2315,7 +2313,7 @@ Function17de91: ; 17de91
 ; 17ded9
 
 Function17ded9: ; 17ded9
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $1f
 	call CopyBytes
@@ -2533,7 +2531,7 @@ Function17e026: ; 17e026
 	push bc
 	push hl
 	farcall LoadEnemyMon
-	farcall SentPkmnIntoBox
+	farcall SendPkmnIntoBox
 	farcall SetBoxMonCaughtData
 	pop hl
 	pop bc
@@ -2656,7 +2654,7 @@ asm_17e0ee
 ; 17e0fd
 
 Function17e0fd: ; 17e0fd
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $6
 	call CopyBytes
@@ -2690,7 +2688,7 @@ Function17e0fd: ; 17e0fd
 ; 17e133
 
 Function17e133: ; 17e133
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $5
 	call CopyBytes
@@ -2721,7 +2719,7 @@ Function17e133: ; 17e133
 ; 17e165
 
 Function17e165: ; 17e165
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $5
 	call CopyBytes
@@ -2758,7 +2756,7 @@ Function17e165: ; 17e165
 ; 17e1a1
 
 Function17e1a1: ; 17e1a1
-	call Function17e415
+	call IncCrashCheckPointer
 	ld de, $c708
 	ld bc, $d
 	call CopyBytes
@@ -2867,19 +2865,19 @@ Function17e1a1: ; 17e1a1
 ; 17e254
 
 Function17e254: ; 17e254
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	ld a, [hli]
 	ld [de], a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17e261
 
 Function17e261: ; 17e261
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2888,12 +2886,12 @@ Function17e261: ; 17e261
 	add [hl]
 	ld [de], a
 	inc hl
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17e270
 
 Function17e270: ; 17e270
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2902,12 +2900,12 @@ Function17e270: ; 17e270
 	sub [hl]
 	ld [de], a
 	inc hl
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ret
 ; 17e27f
 
 Function17e27f: ; 17e27f
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2916,7 +2914,7 @@ Function17e27f: ; 17e27f
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld l, c
 	ld h, b
 	ld a, [de]
@@ -2926,7 +2924,7 @@ Function17e27f: ; 17e27f
 ; 17e293
 
 Function17e293: ; 17e293
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -2935,7 +2933,7 @@ Function17e293: ; 17e293
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld l, c
 	ld h, b
 	ld a, [de]
@@ -2945,8 +2943,8 @@ Function17e293: ; 17e293
 ; 17e2a7
 
 Function17e2a7: ; 17e2a7
-	call Function17e415
-	call Function17e41e
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer
 	call Function17e32b
 	xor a
 	ld [wcf66], a
@@ -3035,77 +3033,46 @@ Function17e349: ; 17e349
 	ret
 ; 17e367
 
-Function17e367: ; 17e367
-	call Function17e415
-	call Function17e41e
+inc_crash_check_pointer_farcall: MACRO
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer ; redundant
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	farcall SaveGameData_
+rept _NARG
+	farcall \1
+	shift
+endr
 	pop af
 	ld [rSVBK], a
 	ret
+ENDM
+
+IncCrashCheckPointer_SaveGameData: ; 17e367
+	inc_crash_check_pointer_farcall SaveGameData_
 ; 17e37e
 
-Function17e37e: ; 17e37e
-	call Function17e415
-	call Function17e41e
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	farcall SaveAfterLinkTrade
-	pop af
-	ld [rSVBK], a
-	ret
-; 17e395
+IncCrashCheckPointer_SaveAfterLinkTrade: ; 17e37e
+	inc_crash_check_pointer_farcall SaveAfterLinkTrade
 
-Function17e395: ; 17e395
-	call Function17e415
-	call Function17e41e
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	farcall SaveBox
-	pop af
-	ld [rSVBK], a
-	ret
+IncCrashCheckPointer_SaveBox: ; 17e395
+	inc_crash_check_pointer_farcall SaveBox
 ; 17e3ac
 
-Function17e3ac: ; 17e3ac
-	call Function17e415
-	call Function17e41e
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	farcall SaveChecksum
-	pop af
-	ld [rSVBK], a
-	ret
+IncCrashCheckPointer_SaveChecksum: ; 17e3ac
+	inc_crash_check_pointer_farcall SaveChecksum
 ; 17e3c3
 
-Function17e3c3: ; 17e3c3
-	call Function17e415
-	call Function17e41e
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	farcall UpdateTrainerRankingsChecksum2
-	farcall BackupMobileEventIndex
-	pop af
-	ld [rSVBK], a
-	ret
+IncCrashCheckPointer_SaveTrainerRankingsChecksum: ; 17e3c3
+	inc_crash_check_pointer_farcall UpdateTrainerRankingsChecksum2, BackupMobileEventIndex
 ; 17e3e0
 
 Function17e3e0: ; 17e3e0
-	call Function17e415
+	call IncCrashCheckPointer
 	ld a, [hli]
 	ld c, a
-	call Function17e41e
+	call HlToCrashCheckPointer
 	ld a, $1
 	ld [hBGMapMode], a
 	call DelayFrames
@@ -3113,8 +3080,8 @@ Function17e3e0: ; 17e3e0
 ; 17e3f0
 
 Function17e3f0: ; 17e3f0
-	call Function17e415
-	call Function17e41e
+	call IncCrashCheckPointer
+	call HlToCrashCheckPointer
 .asm_17e3f6
 	call JoyTextDelay
 	ld hl, hJoyPressed
@@ -3137,20 +3104,20 @@ Function17e409: ; 17e409
 Function17e40f: ; 17e40f
 	ld de, wBGPals1
 	add hl, de
-	jr Function17e41e
+	jr HlToCrashCheckPointer
 
-Function17e415:
-	ld a, [wcd78]
+IncCrashCheckPointer:
+	ld a, [wMobileCrashCheckPointer]
 	ld l, a
-	ld a, [wcd79]
+	ld a, [wMobileCrashCheckPointer + 1]
 	ld h, a
 	inc hl
 
-Function17e41e:
+HlToCrashCheckPointer:
 	ld a, l
-	ld [wcd78], a
+	ld [wMobileCrashCheckPointer], a
 	ld a, h
-	ld [wcd79], a
+	ld [wMobileCrashCheckPointer + 1], a
 	ret
 ; 17e427
 
@@ -4619,7 +4586,7 @@ Function17f524: ; 17f524
 	jr .asm_17f536
 ; 17f53d
 
-BattleTowerMobileError: ; 17f53d
+Special_BattleTowerMobileError: ; 17f53d
 	call FadeToMenu
 	xor a
 	ld [wc303], a
@@ -4880,13 +4847,13 @@ Function17f6b7: ; 17f6b7
 ; 17f6dc
 
 String_17f6dc: ; 17f6dc
-	db "つうしんエラー   ー@"
+	db "つうしんエラー　　　ー@"
 ; 17f6e8
 
 String_17f6e8: ; 17f6e8
-	db   "みていぎ", $25, "エラーです"
-	next "プログラム", $1f
-	next "かくにん してください"
+	db   "みていぎ<NO>エラーです"
+	next "プログラム<WO>"
+	next "かくにん　してください"
 	db   "@"
 ; 17f706
 
@@ -5043,223 +5010,223 @@ Unknown_17f844: db 19
 	dbbw $ff, $ff, String_17fa49
 
 String_17f891: ; 17f891
-	db   "モバイルアダプタが ただしく"
+	db   "モバイルアダプタが　ただしく"
 	next "さしこまれていません"
 	next "とりあつかいせつめいしょを"
-	next "ごらんのうえ しっかりと"
-	next "さしこんで ください"
+	next "ごらんのうえ　しっかりと"
+	next "さしこんで　ください"
 	db   "@"
 
 String_17f8d1: ; 17f8d1
-	db   "でんわが うまく かけられないか"
-	next "でんわかいせんが こんでいるので"
-	next "つうしん できません"
-	next "しばらく まって"
-	next "かけなおして ください"
+	db   "でんわが　うまく　かけられないか"
+	next "でんわかいせんが　こんでいるので"
+	next "つうしん　できません"
+	next "しばらく　まって"
+	next "かけなおして　ください"
 	db   "@"
 
 String_17f913: ; 17f913
-	db   "でんわかいせんが こんでいるため"
-	next "でんわが かけられません"
-	next "しばらく まって"
-	next "かけなおして ください"
+	db   "でんわかいせんが　こんでいるため"
+	next "でんわが　かけられません"
+	next "しばらく　まって"
+	next "かけなおして　ください"
 	db   "@"
 
 String_17f946: ; 17f946
-	db   "モバイルアダプタの エラーです"
-	next "しばらく まって"
-	next "かけなおして ください"
-	next "なおらない ときは"
+	db   "モバイルアダプタの　エラーです"
+	next "しばらく　まって"
+	next "かけなおして　ください"
+	next "なおらない　ときは"
 	next "モバイルサポートセンターへ"
 	next "おといあわせください"
 	db   "@"
 
 String_17f98e: ; 17f98e
 	db   "つうしんエラーです"
-	next "しばらく まって"
-	next "かけなおして ください"
-	next "なおらない ときは"
+	next "しばらく　まって"
+	next "かけなおして　ください"
+	next "なおらない　ときは"
 	next "モバイルサポートセンターへ"
 	next "おといあわせください"
 	db   "@"
 
 String_17f9d0: ; 17f9d0
 	db   "ログインパスワードか"
-	next "ログイン アイディーに"
+	next "ログイン　アイディーに"
 	next "まちがいがあります"
-	next "パスワードを かくにんして"
-	next "しばらく まって"
-	next "かけなおして ください"
+	next "パスワードを　かくにんして"
+	next "しばらく　まって"
+	next "かけなおして　ください"
 	db   "@"
 
 String_17fa14: ; 17fa14
-	db   "でんわが きれました"
+	db   "でんわが　きれました"
 	next "とりあつかいせつめいしょを"
 	next "ごらんのうえ"
-	next "しばらく まって"
-	next "かけなおして ください"
+	next "しばらく　まって"
+	next "かけなおして　ください"
 	db   "@"
 
 String_17fa49: ; 17fa49
 	db   "モバイルセンターの"
 	next "つうしんエラーです"
 	next "しばらくまって"
-	next "かけなおして ください"
+	next "かけなおして　ください"
 	db   "@"
 
 String_17fa71: ; 17fa71
 	db   "モバイルアダプタに"
-	next "とうろくされた じょうほうが"
-	next "ただしく ありません"
+	next "とうろくされた　じょうほうが"
+	next "ただしく　ありません"
 	next "モバイルトレーナーで"
-	next "しょきとうろくを してください"
+	next "しょきとうろくを　してください"
 	db   "@"
 
 String_17fab0: ; 17fab0
 	db   "モバイルセンターが"
-	next "こんでいて つながりません"
+	next "こんでいて　つながりません"
 	next "しばらくまって"
-	next "かけなおして ください"
-	next "くわしくは とりあつかい"
-	next "せつめいしょを ごらんください"
+	next "かけなおして　ください"
+	next "くわしくは　とりあつかい"
+	next "せつめいしょを　ごらんください"
 	db   "@"
 
 String_17faf9: ; 17faf9
-	db   "あてさき メールアドレスに"
+	db   "あてさき　メールアドレスに"
 	next "まちがいがあります"
-	next "ただしい メールアドレスを"
+	next "ただしい　メールアドレスを"
 	next "いれなおしてください"
 	db   "@"
 
 String_17fb2a: ; 17fb2a
 	db   "メールアドレスに"
-	next "まちがいが あります"
+	next "まちがいが　あります"
 	next "とりあつかいせつめいしょを"
 	next "ごらんのうえ"
 	next "モバイルトレーナーで"
-	next "しょきとうろくを してください"
+	next "しょきとうろくを　してください"
 	db   "@"
 
 String_17fb6e: ; 17fb6e
 	db   "ログインパスワードに"
-	next "まちがいが あるか"
-	next "モバイルセンターの エラーです"
-	next "パスワードを かくにんして"
-	next "しばらく まって"
-	next "かけなおして ください"
+	next "まちがいが　あるか"
+	next "モバイルセンターの　エラーです"
+	next "パスワードを　かくにんして"
+	next "しばらく　まって"
+	next "かけなおして　ください"
 	db   "@"
 
 String_17fbb6: ; 17fbb6
-	db   "データの よみこみが できません"
+	db   "データの　よみこみが　できません"
 	next "しばらくまって"
-	next "かけなおして ください"
-	next "なおらない ときは"
+	next "かけなおして　ください"
+	next "なおらない　ときは"
 	next "モバイルサポートセンターへ"
 	next "おといあわせください"
 	db   "@"
 
 String_17fbfe: ; 17fbfe
 	db   "じかんぎれです"
-	next "でんわが きれました"
-	next "でんわを かけなおしてください"
-	next "くわしくは とりあつかい"
-	next "せつめいしょを ごらんください"
+	next "でんわが　きれました"
+	next "でんわを　かけなおしてください"
+	next "くわしくは　とりあつかい"
+	next "せつめいしょを　ごらんください"
 	db   "@"
 
 String_17fc3e: ; 17fc3e
-	db   "ごりよう りょうきんの "
-	next "おしはらいが おくれたばあいには"
-	next "ごりようが できなくなります"
-	next "くわしくは とりあつかい"
-	next "せつめいしょを ごらんください"
+	db   "ごりよう　りょうきんの　"
+	next "おしはらいが　おくれたばあいには"
+	next "ごりようが　できなくなります"
+	next "くわしくは　とりあつかい"
+	next "せつめいしょを　ごらんください"
 	db   "@"
 
 String_17fc88: ; 17fc88
-	db   "おきゃくさまの ごつごうにより"
+	db   "おきゃくさまの　ごつごうにより"
 	next "ごりようできません"
-	next "くわしくは とりあつかい"
-	next "せつめいしょを ごらんください"
+	next "くわしくは　とりあつかい"
+	next "せつめいしょを　ごらんください"
 	db   "@"
 
 String_17fcbf: ; 17fcbf
-	db   "でんわかいせんが こんでいるか"
-	next "モバイルセンターの エラーで"
-	next "つうしんが できません"
-	next "しばらく まって"
-	next "かけなおして ください"
+	db   "でんわかいせんが　こんでいるか"
+	next "モバイルセンターの　エラーで"
+	next "つうしんが　できません"
+	next "しばらく　まって"
+	next "かけなおして　ください"
 	db   "@"
 
 String_17fcff: ; 17fcff
-	db   "ごりよう りょうきんが"
-	next "じょうげんを こえているため"
-	next "こんげつは ごりようできません"
-	next "くわしくは とりあつかい"
-	next "せつめいしょを ごらんください"
+	db   "ごりよう　りょうきんが"
+	next "じょうげんを　こえているため"
+	next "こんげつは　ごりようできません"
+	next "くわしくは　とりあつかい"
+	next "せつめいしょを　ごらんください"
 	db   "@"
 
 String_17fd47: ; 17fd47
-	db   "げんざい モバイルセンターの"
-	next "てんけんを しているので"
-	next "つうしんが できません"
-	next "しばらく まって"
-	next "かけなおして ください"
+	db   "げんざい　モバイルセンターの"
+	next "てんけんを　しているので"
+	next "つうしんが　できません"
+	next "しばらく　まって"
+	next "かけなおして　ください"
 	db   "@"
 
 String_17fd84: ; 17fd84
-	db   "データの よみこみが できません"
-	next "くわしくは とりあつかい"
-	next "せつめいしょを ごらんください"
+	db   "データの　よみこみが　できません"
+	next "くわしくは　とりあつかい"
+	next "せつめいしょを　ごらんください"
 	db   "@"
 
 
 String_17fdb2: ; 17fdb2
-	db   "3ぷん いじょう なにも"
-	next "にゅうりょく しなかったので"
-	next "でんわが きれました"
+	db   "３ぷん　いじょう　なにも"
+	next "にゅうりょく　しなかったので"
+	next "でんわが　きれました"
 	db   "@"
 
 String_17fdd9: ; 17fdd9
-	db   "つうしんが うまく"
+	db   "つうしんが　うまく"
 	next "できませんでした"
-	next "もういちど はじめから"
+	next "もういちど　はじめから"
 	next "やりなおしてください"
 	db   "@"
 
 String_17fe03: ; 17fe03
-	db   "データの よみこみが できません"
+	db   "データの　よみこみが　できません"
 	next "しばらくまって"
-	next "かけなおして ください"
-	next "なおらない ときは"
+	next "かけなおして　ください"
+	next "なおらない　ときは"
 	next "モバイルサポートセンターへ"
 	next "おといあわせください"
 	db   "@"
 
 String_17fe4b: ; 17fe4b
-	db   "まちじかんが ながいので"
-	next "でんわが きれました"
+	db   "まちじかんが　ながいので"
+	next "でんわが　きれました"
 	db   "@"
 
 String_17fe63: ; 17fe63
-	db   "あいての モバイルアダプタと"
-	next "タイプが ちがいます"
-	next "くわしくは とりあつかい"
-	next "せつめいしょを ごらんください"
+	db   "あいての　モバイルアダプタと"
+	next "タイプが　ちがいます"
+	next "くわしくは　とりあつかい"
+	next "せつめいしょを　ごらんください"
 	db   "@"
 
-String_17fe9a: ; 17fe9a ; unreferenced
+String_17fe9a: ; 17fe9a ; unused
 	db   "ポケモンニュースが"
 	next "あたらしくなっているので"
-	next "レポートを おくれません"
-	next "あたらしい ポケモンニュースの"
-	next "よみこみを さきに してください"
+	next "レポートを　おくれません"
+	next "あたらしい　ポケモンニュースの"
+	next "よみこみを　さきに　してください"
 	db   "@"
 
 String_17fedf: ; 17fedf
-	db   "つうしんの じょうきょうが"
-	next "よくないか かけるあいてが"
+	db   "つうしんの　じょうきょうが"
+	next "よくないか　かけるあいてが"
 	next "まちがっています"
-	next "もういちど かくにんをして"
-	next "でんわを かけなおして ください"
+	next "もういちど　かくにんをして"
+	next "でんわを　かけなおして　ください"
 	db   "@"
 ; 17ff23
 
@@ -5302,5 +5269,5 @@ Function17ff3c: ; 17ff3c
 ; 17ff68
 
 String_17ff68: ; 17ff68
-	db "101@"
+	db "１０１@"
 ; 17ff6c

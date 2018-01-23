@@ -8,7 +8,7 @@ GetPokeBallWobble: ; f971 (3:7971)
 	ld d, a
 	push de
 
-	ld a, 1 ; BANK(Buffer2)
+	ld a, BANK(Buffer2)
 	ld [rSVBK], a
 
 	ld a, [Buffer2]

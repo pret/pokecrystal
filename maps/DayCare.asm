@@ -2,13 +2,13 @@ const_value set 2
 	const DAYCARE_GRAMPS
 	const DAYCARE_GRANNY
 
-DayCare_MapScriptHeader:
+DayCare_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .EggCheckCallback
+	callback MAPCALLBACK_OBJECTS, .EggCheckCallback
 
 .EggCheckCallback:
 	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
@@ -155,7 +155,7 @@ DayCareText_PartyFull:
 	line "this."
 	done
 
-DayCare_MapEventHeader:
+DayCare_MapEvents:
 	; filler
 	db 0, 0
 

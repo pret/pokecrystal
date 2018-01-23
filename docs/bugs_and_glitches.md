@@ -567,7 +567,7 @@ This is a bug with `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2
 
 ```asm
 Text_ABoostedStringBuffer2ExpPoints::
-	text ""
+	text_start
 	line "a boosted"
 	cont "@"
 	deciram StringBuffer2, 2, 4
@@ -575,7 +575,7 @@ Text_ABoostedStringBuffer2ExpPoints::
 	prompt
 
 Text_StringBuffer2ExpPoints::
-	text ""
+	text_start
 	line "@"
 	deciram StringBuffer2, 2, 4
 	text " EXP. Points!"
@@ -746,7 +746,7 @@ Data_DaisyMassage: ; 746b
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, StringBuffer1
 	ld de, StringBuffer3
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 ```
 
@@ -993,7 +993,7 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](
 
 ([Video](https://www.youtube.com/watch?v=z305e4sIO24))
 
-The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex.asm](/engine/pokedex.asm):
+The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm):
 
 ```asm
 .Cry: ; 40340
@@ -1002,7 +1002,7 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 	call GetCryIndex
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 	ret
 ```
 
@@ -1011,7 +1011,7 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 ```asm
 .Cry: ; 40340
 	ld a, [CurPartySpecies]
-	call PlayCry
+	call PlayMonCry
 	ret
 ```
 

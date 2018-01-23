@@ -13,7 +13,7 @@ const_value set 2
 	const ROUTE45_POKE_BALL4
 	const ROUTE45_YOUNGSTER
 
-Route45_MapScriptHeader:
+Route45_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -42,15 +42,15 @@ TrainerBlackbeltKenji:
 	scall Route45AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_BLACKBELT_KENJI
-	if_equal $1, Route45PhoneFullM
-	if_equal $2, Route45NumberDeclinedM
-	trainertotext BLACKBELT_T, KENJI3, $0
+	if_equal PHONE_CONTACTS_FULL, Route45PhoneFullM
+	if_equal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
+	trainertotext BLACKBELT_T, KENJI3, MEM_BUFFER_0
 	scall Route45RegisteredNumberM
 	jump Route45NumberAcceptedM
 
 .Registered:
 	checkcode VAR_KENJI_BREAK
-	if_not_equal $1, Route45NumberAcceptedM
+	if_not_equal 1, Route45NumberAcceptedM
 	checkmorn
 	iftrue .Morning
 	checknite
@@ -169,9 +169,9 @@ TrainerHikerParry:
 	scall Route45AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_HIKER_PARRY
-	if_equal $1, Route45PhoneFullM
-	if_equal $2, Route45NumberDeclinedM
-	trainertotext HIKER, PARRY1, $0
+	if_equal PHONE_CONTACTS_FULL, Route45PhoneFullM
+	if_equal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
+	trainertotext HIKER, PARRY1, MEM_BUFFER_0
 	scall Route45RegisteredNumberM
 	jump Route45NumberAcceptedM
 
@@ -312,8 +312,7 @@ Route45MaxPotion:
 	itemball MAX_POTION
 
 Route45HiddenPpUp:
-	dwb EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
-
+	hiddenitem EVENT_ROUTE_45_HIDDEN_PP_UP, PP_UP
 
 HikerErikSeenText:
 	text "Be prepared for"
@@ -532,7 +531,7 @@ Route45SignText:
 	line "MOUNTAIN RD. AHEAD"
 	done
 
-Route45_MapEventHeader:
+Route45_MapEvents:
 	; filler
 	db 0, 0
 

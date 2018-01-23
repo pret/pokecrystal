@@ -7,7 +7,7 @@ const_value set 2
 	const UNIONCAVEB1F_BOULDER
 	const UNIONCAVEB1F_POKE_BALL2
 
-UnionCaveB1F_MapScriptHeader:
+UnionCaveB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -152,7 +152,7 @@ PokemaniacCalvinAfterBattleText:
 	cont "PROF.ELM."
 	done
 
-UnionCaveB1F_MapEventHeader:
+UnionCaveB1F_MapEvents:
 	; filler
 	db 0, 0
 

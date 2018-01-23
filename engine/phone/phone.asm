@@ -75,20 +75,20 @@ GetRemainingSpaceInPhoneList: ; 90040
 	cp -1
 	jr z, .done
 	cp c
-	jr z, .elm_or_mom
+	jr z, .continue
+
 	push bc
 	push hl
 	ld c, a
 	call _CheckCellNum
-	jr c, .elm_or_mom_in_list
+	jr c, .permanent
 	ld hl, Buffer1
 	inc [hl]
-
-.elm_or_mom_in_list
+.permanent
 	pop hl
 	pop bc
 
-.elm_or_mom
+.continue
 	jr .loop
 
 .done
@@ -98,9 +98,7 @@ GetRemainingSpaceInPhoneList: ; 90040
 	ret
 ; 90066
 
-PermanentNumbers: ; 90066
-	db PHONECONTACT_MOM, PHONECONTACT_ELM, -1
-; 90069
+INCLUDE "data/phone/permanent_numbers.asm"
 
 
 FarPlaceString: ; 90069
@@ -133,7 +131,7 @@ CheckPhoneCall:: ; 90074 (24:4074)
 	cp b
 	jr nz, .no_call
 
-	call GetMapHeaderPhoneServiceNybble
+	call GetMapPhoneService
 	and a
 	jr nz, .no_call
 
@@ -165,7 +163,7 @@ CheckPhoneContactTimeOfDay: ; 900ad (24:40ad)
 
 	farcall CheckTime
 	pop af
-	and MORN | DAY | NITE
+	and ANYTIME
 	and c
 
 	pop de
@@ -330,7 +328,7 @@ Function90199: ; 90199 (24:4199)
 	and a
 	jr nz, .OutOfArea
 	; If you're in an area without phone service, don't do the call
-	call GetMapHeaderPhoneServiceNybble
+	call GetMapPhoneService
 	and a
 	jr nz, .OutOfArea
 	; If the person can't take a call at that time, don't do the call
@@ -439,7 +437,7 @@ WrongNumber: ; 90233
 ; 90241
 
 Script_ReceivePhoneCall: ; 0x90241
-	refreshscreen $0
+	refreshscreen
 	callasm RingTwice_StartCall
 	ptcall wPhoneScriptPointer
 	waitbutton
@@ -471,7 +469,7 @@ UnknownScript_0x90261: ; 0x90261
 RingTwice_StartCall: ; 9026f
 	call .Ring
 	call .Ring
-	farcall TrainerRankings_PhoneCalls
+	farcall StubbedTrainerRankings_PhoneCalls
 	ret
 ; 9027c
 
@@ -500,7 +498,7 @@ PhoneCall:: ; 9029a
 	ld [PhoneCaller + 1], a
 	call Phone_FirstOfTwoRings
 	call Phone_FirstOfTwoRings
-	farcall TrainerRankings_PhoneCalls
+	farcall StubbedTrainerRankings_PhoneCalls
 	ret
 ; 902b3
 
@@ -518,7 +516,7 @@ Phone_FirstOfTwoRings: ; 902b3
 Phone_CallerTextboxWithName2: ; 902c9
 	call Phone_CallerTextbox
 	hlcoord 1, 2
-	ld [hl], "<PHONE>"
+	ld [hl], "☎"
 	inc hl
 	inc hl
 	ld a, [PhoneScriptBank]
@@ -618,7 +616,7 @@ Function90363: ; 90363 (24:4363)
 	push bc
 	call Phone_CallerTextbox
 	hlcoord 1, 1
-	ld [hl], "<PHONE>"
+	ld [hl], "☎"
 	inc hl
 	inc hl
 	ld d, h
@@ -719,7 +717,7 @@ NonTrainerCallerNames: ; 903d6
 .bill db "BILL:@"
 .elm db "PROF.ELM:@"
 .bikeshop db "BIKE SHOP:@"
-.buena db "BUENA:", $22, "   DISC JOCKEY@"
+.buena db "BUENA:<LNBRK>   DISC JOCKEY@"
 ; 90423
 
 Phone_GetTrainerName: ; 90423 (24:4423)
@@ -761,9 +759,9 @@ GetCallerLocation: ; 90439
 ; 9045f
 
 
-INCLUDE "data/phone_contacts.asm"
+INCLUDE "data/phone/phone_contacts.asm"
 
-INCLUDE "data/phone_special.asm"
+INCLUDE "data/phone/special_calls.asm"
 
 
 UnknownScript_0x90657: ; 0x90657

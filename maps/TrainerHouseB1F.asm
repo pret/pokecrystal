@@ -2,7 +2,7 @@ const_value set 2
 	const TRAINERHOUSEB1F_RECEPTIONIST
 	const TRAINERHOUSEB1F_CHRIS
 
-TrainerHouseB1F_MapScriptHeader:
+TrainerHouseB1F_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -20,13 +20,13 @@ TrainerHouseReceptionistScript:
 	iftrue .FoughtTooManyTimes
 	writetext TrainerHouseB1FIntroText
 	buttonsound
-	special SpecialTrainerHouse
+	special Special_TrainerHouse
 	iffalse .GetCal3Name
-	trainertotext CAL, CAL2, $0
+	trainertotext CAL, CAL2, MEM_BUFFER_0
 	jump .GotName
 
 .GetCal3Name:
-	trainertotext CAL, CAL3, $0
+	trainertotext CAL, CAL3, MEM_BUFFER_0
 .GotName:
 	writetext TrainerHouseB1FYourOpponentIsText
 	buttonsound
@@ -42,7 +42,7 @@ TrainerHouseReceptionistScript:
 	writetext TrainerHouseB1FCalBeforeText
 	waitbutton
 	closetext
-	special SpecialTrainerHouse
+	special Special_TrainerHouse
 	iffalse .NoSpecialBattle
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
@@ -169,7 +169,7 @@ TrainerHouseB1FCalBeforeText:
 	cont "could battle you."
 	done
 
-TrainerHouseB1F_MapEventHeader:
+TrainerHouseB1F_MapEvents:
 	; filler
 	db 0, 0
 

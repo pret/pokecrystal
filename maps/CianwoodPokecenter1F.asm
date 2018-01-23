@@ -4,7 +4,7 @@ const_value set 2
 	const CIANWOODPOKECENTER1F_GYM_GUY
 	const CIANWOODPOKECENTER1F_SUPER_NERD
 
-CianwoodPokecenter1F_MapScriptHeader:
+CianwoodPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -131,7 +131,7 @@ CianwoodPokecenter1FSuperNerdText:
 	line "off my #MON!"
 	done
 
-CianwoodPokecenter1F_MapEventHeader:
+CianwoodPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 

@@ -6,7 +6,7 @@ const_value set 2
 	const ELMSLAB_POKE_BALL3
 	const ELMSLAB_OFFICER
 
-ElmsLab_MapScriptHeader:
+ElmsLab_MapScripts:
 .SceneScripts:
 	db 6
 	scene_script .MeetElm
@@ -18,7 +18,7 @@ ElmsLab_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .MoveElmCallback
+	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
 
 .MeetElm:
 	priorityjump .WalkUpToElm
@@ -42,7 +42,7 @@ ElmsLab_MapScriptHeader:
 .MoveElmCallback:
 	checkscene
 	iftrue .Skip
-	moveobject ELMSLAB_ELM, $3, $4
+	moveobject ELMSLAB_ELM, 3, 4
 .Skip:
 	return
 
@@ -84,7 +84,7 @@ ElmsLab_MapScriptHeader:
 	opentext
 	writetext ElmText_ChooseAPokemon
 	waitbutton
-	setscene $1
+	setscene 1
 	closetext
 	end
 
@@ -161,7 +161,7 @@ CyndaquilPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface ELMSLAB_ELM, DOWN
-	refreshscreen $0
+	refreshscreen
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
 	waitbutton
@@ -175,7 +175,7 @@ CyndaquilPokeBallScript:
 	writetext ChoseStarterText
 	buttonsound
 	waitsfx
-	pokenamemem CYNDAQUIL, $0
+	pokenamemem CYNDAQUIL, MEM_BUFFER_0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -191,7 +191,7 @@ TotodilePokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface ELMSLAB_ELM, DOWN
-	refreshscreen $0
+	refreshscreen
 	pokepic TOTODILE
 	cry TOTODILE
 	waitbutton
@@ -205,7 +205,7 @@ TotodilePokeBallScript:
 	writetext ChoseStarterText
 	buttonsound
 	waitsfx
-	pokenamemem TOTODILE, $0
+	pokenamemem TOTODILE, MEM_BUFFER_0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -219,7 +219,7 @@ ChikoritaPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface ELMSLAB_ELM, DOWN
-	refreshscreen $0
+	refreshscreen
 	pokepic CHIKORITA
 	cry CHIKORITA
 	waitbutton
@@ -233,7 +233,7 @@ ChikoritaPokeBallScript:
 	writetext ChoseStarterText
 	buttonsound
 	waitsfx
-	pokenamemem CHIKORITA, $0
+	pokenamemem CHIKORITA, MEM_BUFFER_0
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -274,8 +274,8 @@ ElmDirectionsScript:
 	closetext
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
-	setscene $5
-	setmapscene NEW_BARK_TOWN, $1
+	setscene 5
+	setmapscene NEW_BARK_TOWN, 1
 	end
 
 ElmDescribesMrPokemonScript:
@@ -308,11 +308,11 @@ ElmsLabHealingMachine:
 	end
 
 ElmsLabHealingMachine_HealParty:
-	special TrainerRankings_Healings
+	special Special_StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_NONE
-	writebyte 1 ; Machine is in Elm's Lab
-	special HealMachineAnim
+	writebyte HEALMACHINE_ELMS_LAB
+	special Special_HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	closetext
@@ -341,13 +341,13 @@ ElmAfterTheftScript:
 	buttonsound
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
-	setmapscene ROUTE_29, $1
+	setmapscene ROUTE_29, 1
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
 	waitbutton
 	closetext
-	setscene $6
+	setscene 6
 	end
 
 ElmStudyingEggScript:
@@ -479,7 +479,7 @@ AideScript_GivePotions:
 	writetext AideText_AlwaysBusy
 	waitbutton
 	closetext
-	setscene $2
+	setscene 2
 	end
 
 AideScript_WalkBalls1:
@@ -500,14 +500,14 @@ AideScript_GiveYouBalls:
 	opentext
 	writetext AideText_GiveYouBalls
 	buttonsound
-	itemtotext POKE_BALL, $1
+	itemtotext POKE_BALL, MEM_BUFFER_1
 	scall AideScript_ReceiveTheBalls
 	giveitem POKE_BALL, 5
 	writetext AideText_ExplainBalls
 	buttonsound
 	itemnotify
 	closetext
-	setscene $2
+	setscene 2
 	end
 
 AideScript_ReceiveTheBalls:
@@ -556,13 +556,13 @@ CopScript:
 	opentext
 	writetext ElmsLabOfficerText1
 	buttonsound
-	special SpecialNameRival
+	special Special_NameRival
 	writetext ElmsLabOfficerText2
 	waitbutton
 	closetext
 	applymovement ELMSLAB_OFFICER, OfficerLeavesMovement
 	disappear ELMSLAB_OFFICER
-	setscene $2
+	setscene 2
 	end
 
 ElmsLabWindow:
@@ -794,7 +794,7 @@ ElmText_GotAnEmail:
 	text "Oh, hey! I got an"
 	line "e-mail!"
 
-	para $56, $56, $56
+	para "<……><……><……>"
 	line "Hm… Uh-huh…"
 
 	para "Okay…"
@@ -1370,7 +1370,7 @@ ElmsLabPCText:
 	line "screen…"
 	done
 
-ElmsLab_MapEventHeader:
+ElmsLab_MapEvents:
 	; filler
 	db 0, 0
 

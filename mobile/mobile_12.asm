@@ -563,15 +563,14 @@ MobileDesc_ZipCode:          db "Your zip code?@"
 ; 484f1
 
 MenuDataHeader_0x484f1: ; 0x484f1
-	db $40 ; flags
-	db 02, 11 ; start coords
-	db 07, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 2, SCREEN_WIDTH - 1, 7
 	dw MenuData2_0x484f9
 	db 1 ; default option
 ; 0x484f9
 
 MenuData2_0x484f9: ; 0x484f9
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 2 ; items
 Strings_484fb:
 String_484fb: db "Boy@"
@@ -579,30 +578,26 @@ String_484ff: db "Girl@"
 ; 0x48504
 
 MenuDataHeader_0x48504: ; 0x48504
-	db $40 ; flags
-	db 00, 10 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 
 MenuDataHeader_0x48509: ; 0x48509
-	db $40 ; flags
-	db 05, 10 ; start coords
-	db 07, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 5, SCREEN_WIDTH - 1, 7
 
 MenuDataHeader_0x4850e: ; 0x4850e
-	db $40 ; flags
-	db 09, 10 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
 MenuDataHeader_0x48513: ; 0x48513
-	db $40 ; flags
-	db 01, 11 ; start coords
-	db 12, 18 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 1, 18, 12
 	dw MenuData2_0x4851b
 	db 1 ; default option
 ; 0x4851b
 
 MenuData2_0x4851b: ; 0x4851b
-	db $1d ; flags
+	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_CALL_FUNCTION1_CANCEL ; flags
 	db 6 ; items
 
 Unknown_4851d: ; 4851d
@@ -728,7 +723,7 @@ Function486bf: ; 486bf (12:46bf)
 .got_num_rows_2
 	ld a, 1
 	ld [hli], a ; num cols
-	ld [hl], $0 ; flags 1
+	ld [hl], 0 ; flags 1
 	set 5, [hl]
 	inc hl
 	xor a
@@ -794,7 +789,7 @@ Function4873c: ; 4873c (12:473c)
 	ld [hli], a ; num rows
 	ld a, 1
 	ld [hli], a ; num cols
-	ld [hl], $0 ; flags 1
+	ld [hl], 0 ; flags 1
 	set 5, [hl]
 	inc hl
 	xor a
@@ -1277,9 +1272,8 @@ Function48a9a: ; 48a9a (12:4a9a)
 ; 48a9c (12:4a9c)
 
 MenuDataHeader_0x48a9c: ; 0x48a9c
-	db $40 ; flags
-	db 08, 10 ; start coords
-	db 13, 19 ; end coord
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 8, SCREEN_WIDTH - 1, 13
 
 String_48aa1: ; 48aa1
 	db   "Tell Now"
@@ -1621,9 +1615,8 @@ Function48c63: ; 48c63
 	ret
 ; 48c8e
 
-Function48c8e: ; 48c8e
-; unreferenced
-	ld hl, $d02a
+Unreferenced_Function48c8e: ; 48c8e
+	ld hl, wd019 + $11
 	ld d, h
 	ld e, l
 	farcall Function48c63

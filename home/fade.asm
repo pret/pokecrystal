@@ -1,8 +1,7 @@
 ; Functions to fade the screen in and out.
 
 
-Function48c:: ; 48c
-; XXX
+Unreferenced_Function48c:: ; 48c
 ; TimeOfDayFade
 	ld a, [TimeOfDayPal]
 	ld b, a

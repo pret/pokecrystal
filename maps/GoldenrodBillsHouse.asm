@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODBILLSHOUSE_POKEFAN_F
 	const GOLDENRODBILLSHOUSE_TWIN
 
-GoldenrodBillsHouse_MapScriptHeader:
+GoldenrodBillsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -22,7 +22,7 @@ BillsHouseBill:
 	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, UnknownScript_0x54c13
+	if_equal PARTY_LENGTH, UnknownScript_0x54c13
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -74,8 +74,8 @@ BillsSister:
 	iftrue UnknownScript_0x54c58
 	writetext UnknownText_0x54f9e
 	askforphonenumber PHONE_BILL
-	if_equal $1, UnknownScript_0x54c64
-	if_equal $2, UnknownScript_0x54c5e
+	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x54c64
+	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x54c5e
 	waitsfx
 	addcellnum PHONE_BILL
 	writetext UnknownText_0x54fd9
@@ -242,7 +242,7 @@ UnknownText_0x55069:
 	line "system."
 	done
 
-GoldenrodBillsHouse_MapEventHeader:
+GoldenrodBillsHouse_MapEvents:
 	; filler
 	db 0, 0
 

@@ -6,13 +6,13 @@ const_value set 2
 	const GOLDENRODDEPTSTORE5F_CARRIE
 	const GOLDENRODDEPTSTORE5F_RECEPTIONIST
 
-GoldenrodDeptStore5F_MapScriptHeader:
+GoldenrodDeptStore5F_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_OBJECTS, .CheckIfSunday
+	callback MAPCALLBACK_OBJECTS, .CheckIfSunday
 
 .CheckIfSunday:
 	checkcode VAR_WEEKDAY
@@ -65,11 +65,11 @@ ReceptionistScript_0x560ce:
 	if_not_equal SUNDAY, .EventIsOver
 	checkflag ENGINE_GOLDENROD_MALL_5F_HAPPINESS_EVENT
 	iftrue .EventIsOver
-	special GetFirstPokemonHappiness
+	special Special_GetFirstPokemonHappiness
 	writetext UnknownText_0x56143
 	buttonsound
-	if_greater_than $95, .VeryHappy
-	if_greater_than $31, .SomewhatHappy
+	if_greater_than 150 - 1, .VeryHappy
+	if_greater_than 50 - 1, .SomewhatHappy
 	jump .NotVeryHappy
 
 .VeryHappy:
@@ -106,8 +106,8 @@ ReceptionistScript_0x560ce:
 Carrie:
 	faceplayer
 	opentext
-	special SpecialGameboyCheck
-	if_not_equal $2, .NotGBC ; This is a dummy check from Gold and Silver.  In normal gameplay, this would not be checked.
+	special Special_GameboyCheck
+	if_not_equal GBCHECK_CGB, .NotGBC ; This is a dummy check from Gold/Silver
 	writetext UnknownText_0x56241
 	waitbutton
 	closetext
@@ -217,7 +217,7 @@ GoldenrodDeptStore5FDirectoryText:
 	para "5F TM CORNER"
 	done
 
-GoldenrodDeptStore5F_MapEventHeader:
+GoldenrodDeptStore5F_MapEvents:
 	; filler
 	db 0, 0
 

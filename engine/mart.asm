@@ -443,7 +443,7 @@ GetMartDialogGroup: ; 15ca3
 
 
 BuyMenuLoop: ; 15cef
-	farcall PlaceMoneyTopRight
+	farcall Special_PlaceMoneyTopRight
 	call UpdateSprites
 	ld hl, MenuDataHeader_Buy
 	call CopyMenuDataHeader
@@ -617,15 +617,14 @@ Text_Mart_CostsThisMuch: ; 0x15e13
 ; 0x15e18
 
 MenuDataHeader_Buy: ; 0x15e18
-	db $40 ; flags
-	db 03, 01 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 1, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .menudata2
 	db 1 ; default option
 ; 0x15e20
 
 .menudata2 ; 0x15e20
-	db $30 ; pointers
+	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, CurMart
@@ -785,7 +784,7 @@ SellMenu: ; 15eb3
 	farcall DepositSellInitPackBuffers
 .loop
 	farcall DepositSellPack
-	ld a, [wcf66]
+	ld a, [wPackUsedItem]
 	and a
 	jp z, .quit
 	call .TryToSellItem
@@ -797,7 +796,7 @@ SellMenu: ; 15eb3
 	ret
 ; 15ed3
 
-.NothingToSell: ; unreferenced
+.Unreferenced_NothingToSell:
 	ld hl, .NothingToSellText
 	call MenuTextBoxBackup
 	and a
@@ -892,8 +891,8 @@ Text_Mart_ICanPayThisMuch: ; 0x15f78
 	db "@"
 ; 0x15f7d
 
-DummyString ; 15f7d
-	db "!ダミー!@"
+.UnusedString15f7d: ; 15f7d
+	db "！ダミー！@"
 
 Text_Mart_HowMayIHelpYou: ; 0x15f83
 	; Welcome! How may I help you?
@@ -902,15 +901,14 @@ Text_Mart_HowMayIHelpYou: ; 0x15f83
 ; 0x15f88
 
 MenuDataHeader_BuySell: ; 0x15f88
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 07 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 7, 8
 	dw .menudata2
 	db 1 ; default option
 ; 0x15f90
 
 .menudata2 ; 0x15f90
-	db $80 ; strings
+	db STATICMENU_CURSOR ; strings
 	db 3 ; items
 	db "BUY@"
 	db "SELL@"

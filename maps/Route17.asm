@@ -4,13 +4,13 @@ const_value set 2
 	const ROUTE17_BIKER3
 	const ROUTE17_BIKER4
 
-Route17_MapScriptHeader:
+Route17_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .AlwaysOnBike
+	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
 
 .AlwaysOnBike:
 	setflag ENGINE_ALWAYS_ON_BIKE
@@ -62,12 +62,10 @@ TrainerBikerGlenn:
 	end
 
 Route17HiddenMaxEther:
-	dwb EVENT_ROUTE_17_HIDDEN_MAX_ETHER, MAX_ETHER
-
+	hiddenitem EVENT_ROUTE_17_HIDDEN_MAX_ETHER, MAX_ETHER
 
 Route17HiddenMaxElixer:
-	dwb EVENT_ROUTE_17_HIDDEN_MAX_ELIXER, MAX_ELIXER
-
+	hiddenitem EVENT_ROUTE_17_HIDDEN_MAX_ELIXER, MAX_ELIXER
 
 BikerRileySeenText:
 	text "Hey, you! You're"
@@ -134,14 +132,14 @@ BikerCharlesAfterBattleText:
 	cont "Take it easy!"
 	done
 
-Route17_MapEventHeader:
+Route17_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 2
-	warp_def 17, 82, 1, ROUTE_17_18_GATE
-	warp_def 17, 83, 2, ROUTE_17_18_GATE
+	warp_def 17, 82, 1, ROUTE_17_ROUTE_18_GATE
+	warp_def 17, 83, 2, ROUTE_17_ROUTE_18_GATE
 
 .CoordEvents:
 	db 0

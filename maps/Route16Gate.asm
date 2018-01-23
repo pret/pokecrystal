@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE16GATE_OFFICER
 
-Route16Gate_MapScriptHeader:
+Route16Gate_MapScripts:
 .SceneScripts:
 	db 1
 	scene_script .DummyScene
@@ -60,7 +60,7 @@ UnknownText_0x73496:
 	line "BICYCLE."
 	done
 
-Route16Gate_MapEventHeader:
+Route16Gate_MapEvents:
 	; filler
 	db 0, 0
 

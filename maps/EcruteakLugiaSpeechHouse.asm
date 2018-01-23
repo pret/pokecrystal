@@ -2,7 +2,7 @@ const_value set 2
 	const ECRUTEAKLUGIASPEECHHOUSE_GRAMPS
 	const ECRUTEAKLUGIASPEECHHOUSE_YOUNGSTER
 
-EcruteakLugiaSpeechHouse_MapScriptHeader:
+EcruteakLugiaSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -44,7 +44,7 @@ EcruteakLugiaSpeechHouseYoungsterText:
 	line "must be powerful."
 	done
 
-EcruteakLugiaSpeechHouse_MapEventHeader:
+EcruteakLugiaSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

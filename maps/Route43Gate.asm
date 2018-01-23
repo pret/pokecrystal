@@ -5,7 +5,7 @@ const_value set 2
 	const ROUTE43GATE_ROCKET1
 	const ROUTE43GATE_ROCKET2
 
-Route43Gate_MapScriptHeader:
+Route43Gate_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .RocketShakedown
@@ -13,7 +13,7 @@ Route43Gate_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .CheckIfRockets
+	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .RocketShakedown:
 	priorityjump .RocketTakeover
@@ -25,11 +25,11 @@ Route43Gate_MapScriptHeader:
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	setmapscene ROUTE_43, $0
+	setmapscene ROUTE_43, 0
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43, $1
+	setmapscene ROUTE_43, 1
 	return
 
 .RocketTakeover:
@@ -37,7 +37,7 @@ Route43Gate_MapScriptHeader:
 	checkcode VAR_FACING
 	if_equal DOWN, RocketScript_Southbound
 	if_equal UP, RocketScript_Northbound
-	setscene $1
+	setscene 1
 	end
 
 RocketScript_Southbound:
@@ -50,17 +50,17 @@ RocketScript_Southbound:
 	opentext
 	writetext RocketText_TollFee
 	buttonsound
-	checkmoney $0, ROUTE43GATE_TOLL - 1
-	if_equal $0, RocketScript_TollSouth
+	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
+	if_equal HAVE_MORE, RocketScript_TollSouth
 	jump RocketScript_YoureBrokeSouth
 
 RocketScript_TollSouth:
-	takemoney $0, ROUTE43GATE_TOLL
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_ThankYou
 	jump RocketScript_ShakeDownSouth
 
 RocketScript_YoureBrokeSouth:
-	takemoney $0, ROUTE43GATE_TOLL
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
 	jump RocketScript_ShakeDownSouth
 
@@ -69,7 +69,7 @@ RocketScript_ShakeDownSouth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
-	setscene $1
+	setscene 1
 	special RestartMapMusic
 	end
 
@@ -82,17 +82,17 @@ RocketScript_Northbound:
 	opentext
 	writetext RocketText_TollFee
 	buttonsound
-	checkmoney $0, ROUTE43GATE_TOLL - 1
-	if_equal $0, RocketScript_TollNorth
+	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
+	if_equal HAVE_MORE, RocketScript_TollNorth
 	jump RocketScript_YoureBrokeNorth
 
 RocketScript_TollNorth:
-	takemoney $0, ROUTE43GATE_TOLL
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_ThankYou
 	jump RocketScript_ShakeDownNorth
 
 RocketScript_YoureBrokeNorth:
-	takemoney $0, ROUTE43GATE_TOLL
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
 	jump RocketScript_ShakeDownNorth
 
@@ -101,7 +101,7 @@ RocketScript_ShakeDownNorth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
-	setscene $1
+	setscene 1
 	special RestartMapMusic
 	end
 
@@ -247,7 +247,7 @@ OfficerText_AvoidGrass:
 	cont "the grass."
 	done
 
-Route43Gate_MapEventHeader:
+Route43Gate_MapEvents:
 	; filler
 	db 0, 0
 

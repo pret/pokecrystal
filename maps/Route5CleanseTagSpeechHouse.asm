@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE5CLEANSETAGSPEECHHOUSE_GRANNY
 	const ROUTE5CLEANSETAGSPEECHHOUSE_TEACHER
 
-Route5CleanseTagSpeechHouse_MapScriptHeader:
+Route5CleanseTagSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -60,7 +60,7 @@ Route5CleanseTagSpeechHouseTeacherText:
 	line "startled you."
 	done
 
-Route5CleanseTagSpeechHouse_MapEventHeader:
+Route5CleanseTagSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

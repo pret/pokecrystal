@@ -50,23 +50,23 @@ WritePartyMenuTilemap: ; 0x5005f
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl] ; Disable text delay
+	set NO_TEXT_SCROLL, [hl]
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
 	call ByteFill ; blank the tilemap
-	call GetPartyMenuTilemapPointers ; This reads from a pointer table???
+	call GetPartyMenuQualityIndexes
 .loop
 	ld a, [hli]
-	cp $ff
-	jr z, .end ; 0x5007a $8
+	cp -1
+	jr z, .end
 	push hl
 	ld hl, .Jumptable
 	rst JumpTable
 	pop hl
-	jr .loop ; 0x50082 $f3
+	jr .loop
 .end
 	pop af
 	ld [Options], a
@@ -74,6 +74,7 @@ WritePartyMenuTilemap: ; 0x5005f
 ; 0x50089
 
 .Jumptable: ; 50089
+; entries correspond to PARTYMENUQUALITY_* constants
 	dw PlacePartyNicknames
 	dw PlacePartyHPBar
 	dw PlacePartyMenuHPDigits
@@ -523,7 +524,7 @@ PlacePartyMonMobileBattleSelection: ; 50307
 	dec c
 	jr nz, .loop
 	ld a, l
-	ld e, PKMN_NAME_LENGTH
+	ld e, MON_NAME_LENGTH
 	sub e
 	ld l, a
 	ld a, h
@@ -573,16 +574,16 @@ PlacePartyMonMobileBattleSelection: ; 50307
 ; 5036b
 
 .String_Banme: ; 5036b
-	db " ばんめ  @" ; Place
+	db "　ばんめ　　@" ; Place
 ; 50372
 .String_Sanka_Shinai: ; 50372
 	db "さんかしない@" ; Cancel
 ; 50379
 .String_Kettei_Yameru: ; 50379
-	db "けってい  やめる@" ; Quit
+	db "けってい　　やめる@" ; Quit
 ; 50383
 .Strings_1_2_3: ; 50383
-	db "1@", "2@", "3@" ; 1st, 2nd, 3rd
+	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
 ; 50389
 
 
@@ -598,7 +599,7 @@ PartyMenuCheckEgg: ; 50389
 	ret
 ; 50396
 
-GetPartyMenuTilemapPointers: ; 50396
+GetPartyMenuQualityIndexes: ; 50396
 	ld a, [PartyMenuActionText]
 	and $f0
 	jr nz, .skip
@@ -606,7 +607,7 @@ GetPartyMenuTilemapPointers: ; 50396
 	and $f
 	ld e, a
 	ld d, 0
-	ld hl, .Pointers
+	ld hl, PartyMenuQualityPointers
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -615,29 +616,11 @@ GetPartyMenuTilemapPointers: ; 50396
 	ret
 
 .skip
-	ld hl, .Default
+	ld hl, PartyMenuQualityPointers.Default
 	ret
 ; 503b2
 
-.Pointers: ; 503b2
-	dw .Default
-	dw .Default
-	dw .Default
-	dw .TMHM
-	dw .Default
-	dw .EvoStone
-	dw .Gender
-	dw .Gender
-	dw .Default
-	dw .Mobile
-; 503c6
-
-.Default: db 0, 1, 2, 3, 4, $ff
-.TMHM: db 0, 5, 3, 4, $ff
-.EvoStone: db 0, 6, 3, 4, $ff
-.Gender: db 0, 7, 3, 4, $ff
-.Mobile: db 0, 8, 3, 4, $ff
-; 503e0
+INCLUDE "data/party_menu_qualities.asm"
 
 
 InitPartyMenuGFX: ; 503e0
@@ -817,24 +800,32 @@ PartyMenuStrings: ; 0x504d2
 
 ChooseAMonString: ; 0x504e4
 	db "Choose a #MON.@"
+
 UseOnWhichPKMNString: ; 0x504f3
 	db "Use on which <PK><MN>?@"
+
 WhichPKMNString: ; 0x50504
 	db "Which <PK><MN>?@"
+
 TeachWhichPKMNString: ; 0x5050e
 	db "Teach which <PK><MN>?@"
+
 MoveToWhereString: ; 0x5051e
 	db "Move to where?@"
-ChooseAFemalePKMNString: ; 0x5052d  ; UNUSED
+
+ChooseAFemalePKMNString: ; 0x5052d
+; unused
 	db "Choose a ♀<PK><MN>.@"
-ChooseAMalePKMNString: ; 0x5053b    ; UNUSED
+
+ChooseAMalePKMNString: ; 0x5053b
+; unused
 	db "Choose a ♂<PK><MN>.@"
+
 ToWhichPKMNString: ; 0x50549
 	db "To which <PK><MN>?@"
 
 YouHaveNoPKMNString: ; 0x50556
 	db "You have no <PK><MN>!@"
-
 
 PrintPartyMenuActionText: ; 50566
 	ld a, [CurPartyMon]

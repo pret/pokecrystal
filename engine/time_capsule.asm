@@ -144,4 +144,4 @@ PlaceTradePartnerNamesAndParty: ; fb60d
 	jr .loop
 ; fb656
 
-INCLUDE "data/time_capsule/special_stats.asm"
+INCLUDE "data/pokemon/rby_base_special.asm"

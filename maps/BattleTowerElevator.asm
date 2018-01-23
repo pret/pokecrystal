@@ -1,7 +1,7 @@
 const_value set 2
 	const BATTLETOWERELEVATOR_RECEPTIONIST
 
-BattleTowerElevator_MapScriptHeader:
+BattleTowerElevator_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .Scene0
@@ -12,7 +12,7 @@ BattleTowerElevator_MapScriptHeader:
 
 .Scene0:
 	priorityjump .RideElevator
-	setscene $1
+	setscene 1
 
 .Scene1:
 	end
@@ -22,7 +22,7 @@ BattleTowerElevator_MapScriptHeader:
 	applymovement BATTLETOWERELEVATOR_RECEPTIONIST, MovementData_BattleTowerElevatorReceptionistWalksIn
 	applymovement PLAYER, MovementData_BattleTowerElevatorPlayerWalksIn
 	writebyte BATTLETOWERACTION_0A
-	special BattleTowerAction
+	special Special_BattleTowerAction
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitsfx
@@ -44,7 +44,7 @@ MovementData_BattleTowerElevatorPlayerWalksIn:
 	turn_head DOWN
 	step_end
 
-BattleTowerElevator_MapEventHeader:
+BattleTowerElevator_MapEvents:
 	; filler
 	db 0, 0
 

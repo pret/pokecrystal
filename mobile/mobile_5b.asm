@@ -1,11 +1,10 @@
-Function16c000: ; 16c000
-; unreferenced
+Unreferenced_Function16c000: ; 16c000
 	; Only for CGB
 	ld a, [hCGB]
 	and a
 	ret z
 	; Only do this once per boot cycle
-	ld a, [hFFEA]
+	ld a, [hSystemBooted]
 	and a
 	ret z
 	; Set some flag, preserving the old state
@@ -20,9 +19,9 @@ Function16c000: ; 16c000
 	call .RunJumptable
 	farcall DisableMobile
 	; Prevent this routine from running again
-	; until the next time the syatem is turned on
+	; until the next time the system is turned on
 	xor a
-	ld [hFFEA], a
+	ld [hSystemBooted], a
 	; Restore the flag state
 	pop af
 	ld [wcfbe], a
@@ -172,7 +171,7 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	call DisableLCD
 	ld hl, vTiles2
 	ld de, .Tiles
-	lb bc, BANK(.Tiles), $68
+	lb bc, BANK(.Tiles), 104
 	call Get2bpp
 	call .LoadPals
 	call .LoadTileMap
@@ -710,7 +709,7 @@ Function16cc02: ; 16cc02
 Function16cc18: ; 16cc18
 	ld hl, vTiles1
 	ld de, GFX_16cca3
-	lb bc, BANK(GFX_16cca3), $2e
+	lb bc, BANK(GFX_16cca3), 46
 	call Get2bpp
 	ret
 ; 16cc25

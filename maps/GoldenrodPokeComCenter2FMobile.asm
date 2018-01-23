@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODPOKECOMCENTER2FMOBILE_SCIENTIST2
 	const GOLDENRODPOKECOMCENTER2FMOBILE_SCIENTIST3
 
-GoldenrodPokeComCenter2FMobile_MapScriptHeader:
+GoldenrodPokeComCenter2FMobile_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -28,8 +28,8 @@ UnknownScript_0x625df:
 	loadmenudata MenuDataHeader_0x62602
 	verticalmenu
 	closewindow
-	if_equal $1, UnknownScript_0x625f0
-	if_equal $2, UnknownScript_0x625f8
+	if_equal 1, UnknownScript_0x625f0
+	if_equal 2, UnknownScript_0x625f8
 	jump UnknownScript_0x62600
 
 UnknownScript_0x625f0:
@@ -48,21 +48,18 @@ UnknownScript_0x62600:
 	closetext
 	end
 
-
 MenuDataHeader_0x62602:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 15 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 15, 8
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "# つうしん クラブ@" ; # COM CLUB
+	db "#　つうしん　クラブ@" ; # COM CLUB
 	db "モバイルセンター@" ; MOBILE CENTER
 	db "やめる@" ; QUIT
-
 
 MapGoldenrodPokeComCenter2FMobileSignpost1Script:
 	opentext
@@ -73,8 +70,8 @@ UnknownScript_0x62629:
 	loadmenudata MenuDataHeader_0x6264c
 	verticalmenu
 	closewindow
-	if_equal $1, UnknownScript_0x6263a
-	if_equal $2, UnknownScript_0x62642
+	if_equal 1, UnknownScript_0x6263a
+	if_equal 2, UnknownScript_0x62642
 	jump UnknownScript_0x6264a
 
 UnknownScript_0x6263a:
@@ -93,21 +90,18 @@ UnknownScript_0x6264a:
 	closetext
 	end
 
-
 MenuDataHeader_0x6264c:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 15 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, 15, 8
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "でんわ", $1f,"つかうとき@" ; Use phone
-	db "でんわ", $4a,"つながらないとき@" ; Don't use phone
+	db "でんわ<WO>つかうとき@" ; Use phone
+	db "でんわ<GA>つながらないとき@" ; Don't use phone
 	db "やめる@" ; QUIT
-
 
 MapGoldenrodPokeComCenter2FMobileSignpost2Script:
 	jumptext UnknownText_0x62b26
@@ -245,7 +239,7 @@ UnknownText_0x62b26:
 	line "OFFICE received an"
 	cont "e-mail. It says…"
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 
 	para "To the #COM"
 	line "CENTER staff…"
@@ -265,10 +259,10 @@ UnknownText_0x62b26:
 	para "the world can link"
 	line "without barriers!"
 
-	para "<......> <......> <......>"
+	para "<……> <……> <……>"
 	done
 
-GoldenrodPokeComCenter2FMobile_MapEventHeader:
+GoldenrodPokeComCenter2FMobile_MapEvents:
 	; filler
 	db 0, 0
 

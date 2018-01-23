@@ -1,4 +1,4 @@
-text   EQUS "db \"<START>\"," ; Start writing text.
+text   EQUS "db TX_START,"    ; Start writing text.
 next   EQUS "db \"<NEXT>\","  ; Move a line down.
 line   EQUS "db \"<LINE>\","  ; Start writing at the bottom line.
 page   EQUS "db \"@\","       ; Start a new Pokédex page.
@@ -8,7 +8,12 @@ done   EQUS "db \"<DONE>\""   ; End a text box.
 prompt EQUS "db \"<PROMPT>\"" ; Prompt the player to end a text box (initiating some other event).
 
 ; TextCommands indexes (see home/text.asm)
-	enum_start $01
+	enum_start
+
+	enum TX_START ; $00
+text_start: MACRO
+	db TX_START
+ENDM
 
 	enum TX_RAM ; $01
 text_from_ram: MACRO
@@ -68,9 +73,9 @@ interpret_data: MACRO
 	db TX_EXIT
 ENDM
 
-	enum TX_SOUND_0B ; $0b
+	enum TX_SOUND_DEX_FANFARE_50_79 ; $0b
 sound_dex_fanfare_50_79: MACRO
-	db TX_SOUND_0B
+	db TX_SOUND_DEX_FANFARE_50_79
 ENDM
 
 	enum TX_DOTS ; $0c
@@ -84,34 +89,34 @@ link_wait_button: MACRO
 	db TX_LINK_WAIT_BUTTON
 ENDM
 
-	enum TX_SOUND_0E ; $0e
+	enum TX_SOUND_DEX_FANFARE_20_49 ; $0e
 sound_dex_fanfare_20_49: MACRO
-	db TX_SOUND_0E
+	db TX_SOUND_DEX_FANFARE_20_49
 ENDM
 
-	enum TX_SOUND_0F ; $0f
+	enum TX_SOUND_ITEM ; $0f
 sound_item: MACRO
-	db TX_SOUND_0F
+	db TX_SOUND_ITEM
 ENDM
 
-	enum TX_SOUND_10 ; $10
+	enum TX_SOUND_CAUGHT_MON ; $10
 sound_caught_mon: MACRO
-	db TX_SOUND_10
+	db TX_SOUND_CAUGHT_MON
 ENDM
 
-	enum TX_SOUND_11 ; $11
+	enum TX_SOUND_DEX_FANFARE_80_109 ; $11
 sound_dex_fanfare_80_109: MACRO
-	db TX_SOUND_11
+	db TX_SOUND_DEX_FANFARE_80_109
 ENDM
 
-	enum TX_SOUND_12 ; $12
+	enum TX_SOUND_FANFARE ; $12
 sound_fanfare: MACRO
-	db TX_SOUND_12
+	db TX_SOUND_FANFARE
 ENDM
 
-	enum TX_SOUND_13 ; $13
+	enum TX_SOUND_SLOT_MACHINE_START ; $13
 sound_slot_machine_start: MACRO
-	db TX_SOUND_13
+	db TX_SOUND_SLOT_MACHINE_START
 ENDM
 
 	enum TX_STRINGBUFFER ; $14

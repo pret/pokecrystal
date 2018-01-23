@@ -1,6 +1,7 @@
-; Each trainer class has its own group. See trainers.asm.
+; Groups are defined in data/trainers/parties.asm.
 
 TrainerGroups: ; 0x39999
+; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	dw FalknerGroup
 	dw WhitneyGroup
 	dw BugsyGroup

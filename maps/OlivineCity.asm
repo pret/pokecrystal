@@ -4,7 +4,7 @@ const_value set 2
 	const OLIVINECITY_SAILOR2
 	const OLIVINECITY_OLIVINE_RIVAL
 
-OlivineCity_MapScriptHeader:
+OlivineCity_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -12,7 +12,7 @@ OlivineCity_MapScriptHeader:
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
 	end
@@ -41,11 +41,11 @@ UnknownScript_0x1a8833:
 	applymovement PLAYER, MovementData_0x1a88f4
 	spriteface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88db
-	setscene $1
+	setscene 1
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	end
 
 UnknownScript_0x1a886b:
@@ -66,10 +66,10 @@ UnknownScript_0x1a886b:
 	spriteface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88e8
 	disappear OLIVINECITY_OLIVINE_RIVAL
-	setscene $1
+	setscene 1
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special Special_LoadUsedSpritesGFX
 	end
 
 OlivineCitySailor1Script:
@@ -78,8 +78,8 @@ OlivineCitySailor1Script:
 StandingYoungsterScript_0x1a88a6:
 	faceplayer
 	opentext
-	random $2
-	if_equal $0, UnknownScript_0x1a88b4
+	random 2
+	if_equal 0, UnknownScript_0x1a88b4
 	writetext UnknownText_0x1a8b04
 	waitbutton
 	closetext
@@ -287,7 +287,7 @@ UnknownText_0x1a8cba:
 	text "BATTLE TOWER AHEAD"
 	done
 
-OlivineCity_MapEventHeader:
+OlivineCity_MapEvents:
 	; filler
 	db 0, 0
 

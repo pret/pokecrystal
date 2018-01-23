@@ -5,7 +5,7 @@ const_value set 2
 	const CELADONDEPTSTORE5F_SAILOR
 	const CELADONDEPTSTORE5F_TEACHER
 
-CeladonDeptStore5F_MapScriptHeader:
+CeladonDeptStore5F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -71,7 +71,7 @@ CeladonDeptStore5FDirectoryText:
 	text "5F: DRUG STORE"
 	done
 
-CeladonDeptStore5F_MapEventHeader:
+CeladonDeptStore5F_MapEvents:
 	; filler
 	db 0, 0
 

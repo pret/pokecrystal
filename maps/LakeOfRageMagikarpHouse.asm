@@ -1,7 +1,7 @@
 const_value set 2
 	const LAKEOFRAGEMAGIKARPHOUSE_FISHING_GURU
 
-LakeOfRageMagikarpHouse_MapScriptHeader:
+LakeOfRageMagikarpHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -45,9 +45,10 @@ UnknownScript_0x19a6e0:
 	writetext UnknownText_0x19a93e
 	waitbutton
 	special Special_CheckMagikarpLength
-	if_equal $0, UnknownScript_0x19a71c
-	if_equal $1, UnknownScript_0x19a722
-	if_equal $2, UnknownScript_0x19a716
+	if_equal MAGIKARPLENGTH_NOT_MAGIKARP, UnknownScript_0x19a71c
+	if_equal MAGIKARPLENGTH_REFUSED, UnknownScript_0x19a722
+	if_equal MAGIKARPLENGTH_TOO_SHORT, UnknownScript_0x19a716
+	; MAGIKARPLENGTH_BEAT_RECORD
 	jump UnknownScript_0x19a6fe
 
 UnknownScript_0x19a6fe:
@@ -205,7 +206,7 @@ UnknownText_0x19aabc:
 	text_from_ram StringBuffer4
 	db "@@"
 
-LakeOfRageMagikarpHouse_MapEventHeader:
+LakeOfRageMagikarpHouse_MapEvents:
 	; filler
 	db 0, 0
 

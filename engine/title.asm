@@ -139,7 +139,7 @@ _TitleScreen: ; 10ed67
 	ld a, [rSVBK]
 	push af
 ; WRAM bank 5
-	ld a, 5
+	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
 ; Update palette colors
@@ -162,13 +162,13 @@ _TitleScreen: ; 10ed67
 
 	ld a, [rSVBK]
 	push af
-	ld a, 5 ; BANK(LYOverrides)
+	ld a, BANK(LYOverrides)
 	ld [rSVBK], a
 
 ; Make alternating lines come in from opposite sides
 
-; ( This part is actually totally pointless, you can't
-;   see anything until these values are overwritten!  )
+; (This part is actually totally pointless, you can't
+;  see anything until these values are overwritten!)
 
 	ld b, 80 / 2 ; alternate for 80 lines
 	ld hl, LYOverrides
@@ -237,11 +237,11 @@ SuicuneFrameIterator: ; 10eea7
 	inc [hl]
 
 ; Only do this once every eight frames
-	and (1 << 3) - 1
+	and %111
 	ret nz
 
 	ld a, c
-	and 3 << 3
+	and %11000
 	sla a
 	swap a
 	ld e, a
@@ -323,7 +323,7 @@ DrawTitleGraphic: ; 10eeef
 ; 10ef06
 
 InitializeBackground: ; 10ef06
-	ld hl, Sprites
+	ld hl, Sprite01
 	ld d, -$22
 	ld e, $0
 	ld c, 5
@@ -344,17 +344,17 @@ InitializeBackground: ; 10ef06
 	ld b, $40
 .loop2
 	ld a, d
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, b
-	ld [hli], a
+	ld [hli], a ; x
 	add $8
 	ld b, a
 	ld a, e
-	ld [hli], a
+	ld [hli], a ; tile id
 	inc e
 	inc e
-	ld a, $80
-	ld [hli], a
+	ld a, 0 | PRIORITY
+	ld [hli], a ; attributes
 	dec c
 	jr nz, .loop2
 	ret
@@ -366,9 +366,9 @@ AnimateTitleCrystal: ; 10ef32
 
 ; Stop at y=6
 ; y is really from the bottom of the sprite, which is two tiles high
-	ld hl, Sprites
+	ld hl, Sprite01YCoord
 	ld a, [hl]
-	cp 6 + $10
+	cp 6 + 2 * TILE_WIDTH
 	ret z
 
 ; Move all 30 parts of the crystal down by 2
@@ -376,10 +376,10 @@ AnimateTitleCrystal: ; 10ef32
 .loop
 	ld a, [hl]
 	add 2
-	ld [hli], a
+	ld [hli], a ; y
+rept SPRITEOAMSTRUCT_LENGTH +- 1
 	inc hl
-	inc hl
-	inc hl
+endr
 	dec c
 	jr nz, .loop
 
@@ -399,4 +399,4 @@ INCBIN "gfx/title/crystal.2bpp.lz"
 ; 10fede
 
 TitleScreenPalettes:
-INCLUDE "data/palettes/title.pal"
+INCLUDE "gfx/title/title.pal"

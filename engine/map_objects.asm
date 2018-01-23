@@ -1,6 +1,6 @@
-INCLUDE "data/facings.asm"
+INCLUDE "data/sprites/facings.asm"
 
-INCLUDE "data/map_objects.asm"
+INCLUDE "data/sprites/map_objects.asm"
 
 
 ; 4357
@@ -392,6 +392,7 @@ StepVectors: ; 4700
 	db -4,  0,  4, 4
 	db  4,  0,  4, 4
 ; 4730
+
 GetStepVectorSign: ; 4730
 	add a
 	ret z  ; 0 or 128
@@ -400,6 +401,7 @@ GetStepVectorSign: ; 4730
 	ld a, -1
 	ret    ; 129 - 255
 ; 4738
+
 UpdatePlayerStep: ; 4738
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
@@ -418,8 +420,7 @@ UpdatePlayerStep: ; 4738
 	ret
 ; 4759
 
-Function4759: ; 4759
-; unreferenced
+Unreferenced_Function4759: ; 4759
 	push bc
 	ld e, a
 	ld d, 0
@@ -892,7 +893,7 @@ MapObjectMovementPattern: ; 47dd
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, de
 	ld a, [hl]
-	and 3
+	maskbits NUM_DIRECTIONS
 	ld d, 1 * 8 + 6
 	cp DOWN
 	jr z, .ok_13
@@ -1571,7 +1572,7 @@ StepType05: ; 4e0c
 	ld [hl], a
 	call IncrementObjectStructField1c
 StepType04: ; 4e21
-	call MobileFn_4fb2
+	call Stubbed_Function4fb2
 	ld hl, OBJECT_DIRECTION_WALKING
 	add hl, bc
 	ld [hl], STANDING
@@ -1579,7 +1580,7 @@ StepType04: ; 4e21
 ; 4e2b
 
 NPCStep: ; 4e2b
-	call MobileFn_4fb2
+	call Stubbed_Function4fb2
 	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1842,7 +1843,8 @@ SkyfallTop: ; 4f83
 	ret
 ; 4fb2
 
-MobileFn_4fb2: mobile
+Stubbed_Function4fb2:
+	ret
 	ld hl, OBJECT_1D
 	add hl, bc
 	inc [hl]
@@ -2087,6 +2089,7 @@ SpawnShadow: ; 5529
 	; vtile, palette, movement
 	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_SHADOW
 ; 5538
+
 SpawnStrengthBoulderDust: ; 5538
 	push bc
 	ld de, .BoulderDustObject
@@ -2098,6 +2101,7 @@ SpawnStrengthBoulderDust: ; 5538
 .BoulderDustObject:
 	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_BOULDERDUST
 ; 5547
+
 SpawnEmote: ; 5547
 	push bc
 	ld de, .EmoteObject
@@ -2109,6 +2113,7 @@ SpawnEmote: ; 5547
 .EmoteObject:
 	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_EMOTE
 ; 5556
+
 ShakeGrass: ; 5556
 	push bc
 	ld de, .data_5562
@@ -2120,6 +2125,7 @@ ShakeGrass: ; 5556
 .data_5562
 	db $00, PAL_OW_TREE, SPRITEMOVEDATA_GRASS
 ; 5565
+
 ShakeScreen: ; 5565
 	push bc
 	push af
@@ -2357,7 +2363,7 @@ Function56a3: ; 56a3
 	cp d
 	jr z, .equal_x
 	jr nc, .nope
-	add $b
+	add MAPOBJECT_SCREEN_WIDTH - 1
 	cp d
 	jr c, .nope
 .equal_x
@@ -2365,7 +2371,7 @@ Function56a3: ; 56a3
 	cp e
 	jr z, .equal_y
 	jr nc, .nope
-	add $a
+	add MAPOBJECT_SCREEN_HEIGHT - 1
 	cp e
 	jr c, .nope
 .equal_y
@@ -2404,7 +2410,7 @@ Function56cd: ; 56cd
 	srl a
 	cp SCREEN_WIDTH
 	jr c, .ok3
-	sub $20
+	sub BG_MAP_WIDTH
 .ok3
 	ld [hUsedSpriteIndex], a
 	ld a, [wPlayerBGMapOffsetY]
@@ -2431,9 +2437,9 @@ Function56cd: ; 56cd
 	srl a
 	srl a
 	srl a
-	cp $12
+	cp SCREEN_HEIGHT
 	jr c, .ok6
-	sub $20
+	sub BG_MAP_HEIGHT
 .ok6
 	ld [hUsedSpriteTile], a
 	ld hl, OBJECT_PALETTE
@@ -2455,21 +2461,23 @@ Function56cd: ; 56cd
 	ld a, [hUsedSpriteTile]
 	add e
 	dec a
-	cp $12
+	cp SCREEN_HEIGHT
 	jr nc, .ok9
 	ld b, a
 .next
 	ld a, [hUsedSpriteIndex]
 	add d
 	dec a
-	cp $14
+	cp SCREEN_WIDTH
 	jr nc, .ok8
 	ld c, a
 	push bc
 	call Coord2Tile
 	pop bc
+; NPCs disappear if standing on tile $60-$7f (or $e0-$ff),
+; since those IDs are for text characters and textbox frames.
 	ld a, [hl]
-	cp $60
+	cp FIRST_REGULAR_TEXT_CHAR
 	jr nc, .nope
 .ok8
 	dec d
@@ -2793,6 +2801,7 @@ Function5903: ; 5903
 	db SPRITEMOVEDATA_STANDING_LEFT
 	db SPRITEMOVEDATA_STANDING_RIGHT
 ; 5920
+
 _UpdateSprites:: ; 5920
 	ld a, [VramState]
 	bit 0, a
@@ -2814,18 +2823,18 @@ _UpdateSprites:: ; 5920
 	bit 1, a
 	ld b, LOW(SpritesEnd)
 	jr z, .ok
-	ld b, 28 * 4
+	ld b, 28 * SPRITEOAMSTRUCT_LENGTH
 .ok
 	ld a, [hUsedSpriteIndex]
 	cp b
 	ret nc
 	ld l, a
 	ld h, HIGH(Sprites)
-	ld de, 4
+	ld de, SPRITEOAMSTRUCT_LENGTH
 	ld a, b
-	ld c, SCREEN_HEIGHT_PX + 16
+	ld c, SCREEN_HEIGHT_PX + 2 * TILE_WIDTH
 .loop
-	ld [hl], c
+	ld [hl], c ; y
 	add hl, de
 	cp l
 	jr nz, .loop
@@ -2873,10 +2882,12 @@ ApplyBGMapAnchorToObjects: ; 5958
 	ret
 ; 5991
 
-InitSprites: ; 5991
+
 PRIORITY_LOW  EQU $10
 PRIORITY_NORM EQU $20
 PRIORITY_HIGH EQU $30
+
+InitSprites: ; 5991
 	call .DeterminePriorities
 	ld c, PRIORITY_HIGH
 	call .InitSpritesByPriority
@@ -3042,12 +3053,12 @@ PRIORITY_HIGH EQU $30
 	ld a, [hFFC0]
 	add [hl]
 	inc hl
-	ld [bc], a
+	ld [bc], a ; y
 	inc c
 	ld a, [hFFBF]
 	add [hl]
 	inc hl
-	ld [bc], a
+	ld [bc], a ; x
 	inc c
 	ld e, [hl]
 	inc hl
@@ -3058,7 +3069,7 @@ PRIORITY_HIGH EQU $30
 .nope1
 	add [hl]
 	inc hl
-	ld [bc], a
+	ld [bc], a ; tile id
 	inc c
 	ld a, e
 	bit 1, a
@@ -3066,9 +3077,9 @@ PRIORITY_HIGH EQU $30
 	ld a, [hFFC2]
 	or e
 .nope2
-	and %11110000
+	and OBP_NUM | X_FLIP | Y_FLIP | PRIORITY
 	or d
-	ld [bc], a
+	ld [bc], a ; attributes
 	inc c
 	ld a, [hUsedSpriteTile]
 	dec a

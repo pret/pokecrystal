@@ -2,7 +2,7 @@ const_value set 2
 	const ROUTE18_YOUNGSTER1
 	const ROUTE18_YOUNGSTER2
 
-Route18_MapScriptHeader:
+Route18_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -77,14 +77,14 @@ Route18SignText:
 	line "FUCHSIA CITY"
 	done
 
-Route18_MapEventHeader:
+Route18_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 2
-	warp_def 2, 6, 3, ROUTE_17_18_GATE
-	warp_def 2, 7, 4, ROUTE_17_18_GATE
+	warp_def 2, 6, 3, ROUTE_17_ROUTE_18_GATE
+	warp_def 2, 7, 4, ROUTE_17_ROUTE_18_GATE
 
 .CoordEvents:
 	db 0

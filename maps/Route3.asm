@@ -4,7 +4,7 @@ const_value set 2
 	const ROUTE3_YOUNGSTER2
 	const ROUTE3_FISHER2
 
-Route3_MapScriptHeader:
+Route3_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -132,7 +132,7 @@ UnknownText_0x1ae163:
 	line "stairs."
 	done
 
-Route3_MapEventHeader:
+Route3_MapEvents:
 	; filler
 	db 0, 0
 

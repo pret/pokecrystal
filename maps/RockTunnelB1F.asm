@@ -3,7 +3,7 @@ const_value set 2
 	const ROCKTUNNELB1F_POKE_BALL2
 	const ROCKTUNNELB1F_POKE_BALL3
 
-RockTunnelB1F_MapScriptHeader:
+RockTunnelB1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -20,10 +20,9 @@ RockTunnelB1FRevive:
 	itemball REVIVE
 
 RockTunnelB1FHiddenMaxPotion:
-	dwb EVENT_ROCK_TUNNEL_B1F_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem EVENT_ROCK_TUNNEL_B1F_HIDDEN_MAX_POTION, MAX_POTION
 
-
-RockTunnelB1F_MapEventHeader:
+RockTunnelB1F_MapEvents:
 	; filler
 	db 0, 0
 

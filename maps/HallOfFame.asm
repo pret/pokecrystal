@@ -1,7 +1,7 @@
 const_value set 2
 	const HALLOFFAME_LANCE
 
-HallOfFame_MapScriptHeader:
+HallOfFame_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .EnterHallOfFame
@@ -28,17 +28,17 @@ HallOfFame_MapScriptHeader:
 	closetext
 	spriteface HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
-	setscene $1
+	setscene 1
 	pause 15
-	writebyte 2 ; Machine is in the Hall of Fame
-	special HealMachineAnim
+	writebyte HEALMACHINE_HALL_OF_FAME
+	special Special_HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER
 	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	setmapscene SPROUT_TOWER_3F, $1
+	setmapscene SPROUT_TOWER_3F, 1
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue .SkipPhoneCall
@@ -110,7 +110,7 @@ HallOfFame_LanceText:
 	line "as CHAMPIONS!"
 	done
 
-HallOfFame_MapEventHeader:
+HallOfFame_MapEvents:
 	; filler
 	db 0, 0
 

@@ -157,7 +157,7 @@ PlaceStartCancelBoxBorder: ; e128d
 	ld a, $f3
 	ld [hli], a
 	ld bc, 10
-	ld a, $ef
+	ld a, PUZZLE_VOID
 	call ByteFill
 	hlcoord 15, 16
 	ld a, $f3
@@ -218,7 +218,7 @@ UnownPuzzleJumptable: ; e12ca
 	ld a, [hl]
 	cp 1 puzcoord 0
 	ret c
-	sub $6
+	sub 6
 	ld [hl], a
 	jr .done_joypad
 
@@ -235,7 +235,7 @@ UnownPuzzleJumptable: ; e12ca
 	ret z
 	cp 5 puzcoord 0
 	ret nc
-	add $6
+	add 6
 	ld [hl], a
 	jr .done_joypad
 
@@ -549,51 +549,51 @@ RedrawUnownPuzzlePieces: ; e14d9
 	ld hl, .OAM_NotHoldingPiece
 
 .load
-	ld de, Sprites
+	ld de, Sprite01
 .loop
 	ld a, [hli]
 	cp -1
 	ret z
 	add b
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
 	add c
-	ld [de], a
+	ld [de], a ; x
 	inc de
 	ld a, [wd002]
 	add [hl]
-	ld [de], a
+	ld [de], a ; tile id
 	inc hl
 	inc de
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; attributes
 	inc de
 	jr .loop
 ; e150f
 
 .OAM_HoldingPiece: ; e150f
-	dsprite -1, -4, -1, -4, $00, $00
-	dsprite -1, -4,  0, -4, $01, $00
-	dsprite -1, -4,  0,  4, $02, $00
-	dsprite  0, -4, -1, -4, $0c, $00
-	dsprite  0, -4,  0, -4, $0d, $00
-	dsprite  0, -4,  0,  4, $0e, $00
-	dsprite  0,  4, -1, -4, $18, $00
-	dsprite  0,  4,  0, -4, $19, $00
-	dsprite  0,  4,  0,  4, $1a, $00
+	dsprite -1, -4, -1, -4, $00, 0
+	dsprite -1, -4,  0, -4, $01, 0
+	dsprite -1, -4,  0,  4, $02, 0
+	dsprite  0, -4, -1, -4, $0c, 0
+	dsprite  0, -4,  0, -4, $0d, 0
+	dsprite  0, -4,  0,  4, $0e, 0
+	dsprite  0,  4, -1, -4, $18, 0
+	dsprite  0,  4,  0, -4, $19, 0
+	dsprite  0,  4,  0,  4, $1a, 0
 	db -1
 
 .OAM_NotHoldingPiece: ; e1534
-	dsprite -1, -4, -1, -4, $00, $00
-	dsprite -1, -4,  0, -4, $01, $00
-	dsprite -1, -4,  0,  4, $00, $20 ; xflip
-	dsprite  0, -4, -1, -4, $02, $00
-	dsprite  0, -4,  0, -4, $03, $00
-	dsprite  0, -4,  0,  4, $02, $20 ; xflip
-	dsprite  0,  4, -1, -4, $00, $40 ; yflip
-	dsprite  0,  4,  0, -4, $01, $40 ; yflip
-	dsprite  0,  4,  0,  4, $00, $60 ; xflip, yflip
+	dsprite -1, -4, -1, -4, $00, 0
+	dsprite -1, -4,  0, -4, $01, 0
+	dsprite -1, -4,  0,  4, $00, 0 | X_FLIP
+	dsprite  0, -4, -1, -4, $02, 0
+	dsprite  0, -4,  0, -4, $03, 0
+	dsprite  0, -4,  0,  4, $02, 0 | X_FLIP
+	dsprite  0,  4, -1, -4, $00, 0 | Y_FLIP
+	dsprite  0,  4,  0, -4, $01, 0 | Y_FLIP
+	dsprite  0,  4,  0,  4, $00, 0 | X_FLIP | Y_FLIP
 	db -1
 
 UnownPuzzleCoordData: ; e1559
@@ -763,7 +763,7 @@ endr
 ; e16c7
 
 UnownPuzzle_AddPuzzlePieceBorders: ; e16c7
-	ld hl, GFXHeaders
+	ld hl, PuzzlePieceBorderData
 	ld a, 8
 .loop
 	push af
@@ -819,7 +819,7 @@ endr
 	ret
 ; e1703
 
-GFXHeaders: ; e1703
+PuzzlePieceBorderData: ; e1703
 	dw .TileBordersGFX + 0 tiles, vTiles0 tile $00
 	dw .TileBordersGFX + 1 tiles, vTiles0 tile $01
 	dw .TileBordersGFX + 2 tiles, vTiles0 tile $02
@@ -835,7 +835,7 @@ INCBIN "gfx/unown_puzzle/tile_borders.2bpp"
 
 LoadUnownPuzzlePiecesGFX: ; e17a3
 	ld a, [ScriptVar]
-	and 3
+	maskbits NUM_UNOWN_PUZZLES
 	ld e, a
 	ld d, 0
 	ld hl, .LZPointers
@@ -851,6 +851,7 @@ LoadUnownPuzzlePiecesGFX: ; e17a3
 ; e17bd
 
 .LZPointers: ; e17bd
+; entries correspond to UNOWNPUZZLE_* constants
 	dw KabutoPuzzleLZ
 	dw OmanytePuzzleLZ
 	dw AerodactylPuzzleLZ

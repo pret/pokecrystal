@@ -1,7 +1,7 @@
 const_value set 2
 	const ROUTE7SAFFRONGATE_OFFICER
 
-Route7SaffronGate_MapScriptHeader:
+Route7SaffronGate_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -45,7 +45,7 @@ Route7SaffronGuardSeriousText:
 	line "through."
 	done
 
-Route7SaffronGate_MapEventHeader:
+Route7SaffronGate_MapEvents:
 	; filler
 	db 0, 0
 

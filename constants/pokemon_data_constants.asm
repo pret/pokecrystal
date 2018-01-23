@@ -63,6 +63,10 @@ const_value set 1
 	const NO_EGGS      ; f
 
 
+; pokedex entries (see data/pokemon/dex_entries.asm)
+NUM_DEX_ENTRY_BANKS EQU 4
+
+
 ; party_struct members (see macros/wram.asm)
 MON_SPECIES            EQUS "(PartyMon1Species - PartyMon1)"
 MON_ITEM               EQUS "(PartyMon1Item - PartyMon1)"
@@ -98,6 +102,21 @@ PARTYMON_STRUCT_LENGTH EQUS "(PartyMon1StatsEnd - PartyMon1)"
 REDMON_STRUCT_LENGTH EQU 44
 
 
+; caught data
+
+CAUGHT_TIME_MASK  EQU %11000000
+CAUGHT_LEVEL_MASK EQU %00111111
+
+CAUGHT_GENDER_MASK   EQU %10000000
+CAUGHT_LOCATION_MASK EQU %01111111
+
+CAUGHT_BY_UNKNOWN EQU 0
+CAUGHT_BY_GIRL    EQU 1
+CAUGHT_BY_BOY     EQU 2
+
+CAUGHT_EGG_LEVEL EQU 1
+
+
 ; maximum number of party pokemon
 PARTY_LENGTH EQU 6
 
@@ -123,32 +142,6 @@ const_value set 1
 	const ATK_EQ_DEF
 
 
-; significant happiness values
-BASE_HAPPINESS        EQU 70
-FRIEND_BALL_HAPPINESS EQU 200
-HAPPINESS_TO_EVOLVE   EQU 220
-HAPPINESS_THRESHOLD_1 EQU 100
-HAPPINESS_THRESHOLD_2 EQU 200
-
-
-; wild data
-
-NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
-NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
-
-GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2 + 1) * 3 + 2
-WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
-
-
-; swarms
-
-SWARM_DUNSPARCE EQU 0
-SWARM_YANMA     EQU 1
-
-FISHSWARM_QWILFISH EQU 1
-FISHSWARM_REMORAID EQU 2
-
-
 ; PokeAnims indexes (see engine/pic_animation.asm)
 	const_def
 	const ANIM_MON_SLOW
@@ -160,6 +153,7 @@ FISHSWARM_REMORAID EQU 2
 	const ANIM_MON_UNUSED
 	const ANIM_MON_EGG1
 	const ANIM_MON_EGG2
+
 
 ; MonMenuOptions indexes (see engine/mon_menu.asm)
 const_value set 1
@@ -192,3 +186,57 @@ MONMENU_FIELD_MOVE EQU 0
 MONMENU_MENUOPTION EQU 1
 
 NUM_MONMENU_ITEMS EQU 8
+
+
+; treemon sets
+; TreeMons indexes (see data/wild/treemons.asm)
+	const_def
+	const TREEMON_SET_CITY
+	const TREEMON_SET_CANYON
+	const TREEMON_SET_AZALEA
+	const TREEMON_SET_ROUTE
+	const TREEMON_SET_KANTO
+	const TREEMON_SET_LAKE
+	const TREEMON_SET_FOREST
+	const TREEMON_SET_ROCK
+NUM_TREEMON_SETS EQU const_value
+
+; treemon scores
+	const_def
+	const TREEMON_SCORE_BAD  ; 0
+	const TREEMON_SCORE_GOOD ; 1
+	const TREEMON_SCORE_RARE ; 2
+
+
+; wild data
+
+NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
+NUM_WATERMON EQU 3 ; data/wild/*_water.asm table size
+
+GRASS_WILDDATA_LENGTH EQU (NUM_GRASSMON * 2 + 1) * 3 + 2
+WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
+
+NUM_ROAMMON_MAPS EQU 16 ; RoamMaps table size (see data/wild/roammon_maps.asm)
+
+
+; swarms
+
+SWARM_DUNSPARCE EQU 0
+SWARM_YANMA     EQU 1
+
+FISHSWARM_QWILFISH EQU 1
+FISHSWARM_REMORAID EQU 2
+
+
+; significant happiness values
+BASE_HAPPINESS        EQU 70
+FRIEND_BALL_HAPPINESS EQU 200
+HAPPINESS_TO_EVOLVE   EQU 220
+HAPPINESS_THRESHOLD_1 EQU 100
+HAPPINESS_THRESHOLD_2 EQU 200
+
+
+; PP
+PP_UP_MASK EQU %11000000
+PP_UP_ONE  EQU %01000000
+PP_MASK    EQU %00111111

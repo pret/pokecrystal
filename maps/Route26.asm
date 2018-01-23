@@ -8,7 +8,7 @@ const_value set 2
 	const ROUTE26_FRUIT_TREE
 	const ROUTE26_POKE_BALL
 
-Route26_MapScriptHeader:
+Route26_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -36,27 +36,27 @@ TrainerCooltrainermGaven3:
 	checkflag ENGINE_GAVEN
 	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERM_GAVEN
-	iftrue .NumberAcceptedM
+	iftrue .NumberAccepted
 	checkevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext CooltrainermGavenAfterText
 	buttonsound
 	setevent EVENT_GAVEN_ASKED_FOR_PHONE_NUMBER
-	scall .AskNumber1M
+	scall .AskNumber1
 	jump .AskForNumber
 
 .AskedAlready:
-	scall .AskNumber2M
+	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERM_GAVEN
-	if_equal $1, .PhoneFullM
-	if_equal $2, .NumberDeclinedM
-	trainertotext COOLTRAINERM, GAVEN3, $0
-	scall .RegisteredNumberM
-	jump .NumberAcceptedM
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext COOLTRAINERM, GAVEN3, MEM_BUFFER_0
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
 .WantsBattle:
-	scall .RematchM
+	scall .Rematch
 	winlosstext CooltrainermGaven3BeatenText, 0
 	copybytetovar wGavenFightCount
 	if_equal 2, .Fight2
@@ -91,31 +91,31 @@ TrainerCooltrainermGaven3:
 	clearflag ENGINE_GAVEN
 	end
 
-.AskNumber1M:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-.AskNumber2M:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-.RegisteredNumberM:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-.NumberAcceptedM:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-.NumberDeclinedM:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-.PhoneFullM:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-.RematchM:
+.Rematch:
 	jumpstd rematchm
 	end
 
@@ -140,27 +140,27 @@ TrainerCooltrainerfBeth1:
 	checkflag ENGINE_BETH
 	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERF_BETH
-	iftrue .NumberAcceptedF
+	iftrue .NumberAccepted
 	checkevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext CooltrainerfBethAfterText
 	buttonsound
 	setevent EVENT_BETH_ASKED_FOR_PHONE_NUMBER
-	scall .AskNumber1F
+	scall .AskNumber1
 	jump .AskForNumber
 
 .AskedAlready:
-	scall .AskNumber2F
+	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERF_BETH
-	if_equal $1, .PhoneFullF
-	if_equal $2, .NumberDeclinedF
-	trainertotext COOLTRAINERF, BETH1, $0
-	scall .RegisteredNumberF
-	jump .NumberAcceptedF
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext COOLTRAINERF, BETH1, MEM_BUFFER_0
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
 .WantsBattle:
-	scall .RematchF
+	scall .Rematch
 	winlosstext CooltrainerfBeth1BeatenText, 0
 	copybytetovar wBethFightCount
 	if_equal 2, .Fight2
@@ -195,31 +195,31 @@ TrainerCooltrainerfBeth1:
 	clearflag ENGINE_BETH
 	end
 
-.AskNumber1F:
+.AskNumber1:
 	jumpstd asknumber1f
 	end
 
-.AskNumber2F:
+.AskNumber2:
 	jumpstd asknumber2f
 	end
 
-.RegisteredNumberF:
+.RegisteredNumber:
 	jumpstd registerednumberf
 	end
 
-.NumberAcceptedF:
+.NumberAccepted:
 	jumpstd numberacceptedf
 	end
 
-.NumberDeclinedF:
+.NumberDeclined:
 	jumpstd numberdeclinedf
 	end
 
-.PhoneFullF:
+.PhoneFull:
 	jumpstd phonefullf
 	end
 
-.RematchF:
+.Rematch:
 	jumpstd rematchf
 	end
 
@@ -412,7 +412,7 @@ Route26SignText:
 	line "RECEPTION GATE"
 	done
 
-Route26_MapEventHeader:
+Route26_MapEvents:
 	; filler
 	db 0, 0
 

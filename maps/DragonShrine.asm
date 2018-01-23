@@ -4,7 +4,7 @@ const_value set 2
 	const DRAGONSHRINE_ELDER3
 	const DRAGONSHRINE_CLAIR
 
-DragonShrine_MapScriptHeader:
+DragonShrine_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DragonShrineTest
@@ -21,67 +21,67 @@ DragonShrine_MapScriptHeader:
 	end
 
 .DragonShrineTestScript:
-	applymovement PLAYER, MovementData_0x18d2bf
-	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c7
+	applymovement PLAYER, DragonShrinePlayerWalkInMovement
+	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderStepDownMovement
 	opentext
-	writetext UnknownText_0x18d2ea
+	writetext DragonShrineElderGreetingText
 	buttonsound
 .Question1:
 	setevent EVENT_RECEIVED_BALLS_FROM_KURT
-	writetext UnknownText_0x18d3bc
+	writetext DragonShrineQuestion1Text
 	buttonsound
-	loadmenudata MenuDataHeader_0x18d215
+	loadmenudata DragonShrineQuestion1_MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .RightAnswer
-	if_equal $2, .WrongAnswer
-	if_equal $3, .RightAnswer
+	if_equal 1, .RightAnswer
+	if_equal 2, .WrongAnswer
+	if_equal 3, .RightAnswer
 	end
 
 .Question2:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_2
-	writetext UnknownText_0x18d3d3
+	writetext DragonShrineQuestion2Text
 	buttonsound
-	loadmenudata MenuDataHeader_0x18d234
+	loadmenudata DragonShrineQuestion2_MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .RightAnswer
-	if_equal $2, .RightAnswer
-	if_equal $3, .WrongAnswer
+	if_equal 1, .RightAnswer
+	if_equal 2, .RightAnswer
+	if_equal 3, .WrongAnswer
 .Question3:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_3
-	writetext UnknownText_0x18d3f3
+	writetext DragonShrineQuestion3Text
 	buttonsound
-	loadmenudata MenuDataHeader_0x18d258
+	loadmenudata DragonShrineQuestion3_MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .WrongAnswer
-	if_equal $2, .RightAnswer
-	if_equal $3, .RightAnswer
+	if_equal 1, .WrongAnswer
+	if_equal 2, .RightAnswer
+	if_equal 3, .RightAnswer
 .Question4:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_4
-	writetext UnknownText_0x18d420
+	writetext DragonShrineQuestion4Text
 	buttonsound
-	loadmenudata MenuDataHeader_0x18d283
+	loadmenudata DragonShrineQuestion4_MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .RightAnswer
-	if_equal $2, .WrongAnswer
-	if_equal $3, .RightAnswer
+	if_equal 1, .RightAnswer
+	if_equal 2, .WrongAnswer
+	if_equal 3, .RightAnswer
 .Question5:
 	setevent EVENT_DRAGON_SHRINE_QUESTION_5
-	writetext UnknownText_0x18d44a
+	writetext DragonShrineQuestion5Text
 	buttonsound
-	loadmenudata MenuDataHeader_0x18d2a5
+	loadmenudata DragonShrineQuestion5_MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .WrongAnswer
-	if_equal $2, .RightAnswer
-	if_equal $3, .WrongAnswer
+	if_equal 1, .WrongAnswer
+	if_equal 2, .RightAnswer
+	if_equal 3, .WrongAnswer
 .RightAnswer:
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
 	iftrue .PassedTheTest
-	writetext UnknownText_0x18d82d
+	writetext DragonShrineRightAnswerText
 	buttonsound
 	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
 	iftrue .Question5
@@ -95,12 +95,12 @@ DragonShrine_MapScriptHeader:
 	closetext
 	spriteface DRAGONSHRINE_ELDER1, LEFT
 	opentext
-	writetext UnknownText_0x18d7f6
+	writetext DragonShrineWrongAnswerText1
 	waitbutton
 	closetext
 	spriteface DRAGONSHRINE_ELDER1, DOWN
 	opentext
-	writetext UnknownText_0x18d816
+	writetext DragonShrineWrongAnswerText2
 	waitbutton
 	closetext
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
@@ -116,7 +116,7 @@ DragonShrine_MapScriptHeader:
 	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
 	iftrue .Question1
 .PassedTheTest:
-	writetext UnknownText_0x18d47c
+	writetext DragonShrinePassedTestText
 	waitbutton
 	closetext
 	playsound SFX_ENTER_DOOR
@@ -126,50 +126,50 @@ DragonShrine_MapScriptHeader:
 	waitsfx
 	spriteface PLAYER, DOWN
 	pause 30
-	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2d4
+	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairWalkInMovement
 	spriteface DRAGONSHRINE_CLAIR, RIGHT
 	spriteface PLAYER, LEFT
 	spriteface DRAGONSHRINE_ELDER1, LEFT
 	opentext
-	writetext UnknownText_0x18d916
+	writetext DragonShrineClairYouPassedText
 	waitbutton
 	closetext
 	special Special_FadeOutMusic
-	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2da
+	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairBigStepLeftMovement
 	opentext
-	writetext UnknownText_0x18d974
+	writetext DragonShrineClairThatCantBeText
 	waitbutton
 	closetext
-	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2dd
+	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairSlowStepLeftMovement
 	opentext
-	writetext UnknownText_0x18d983
+	writetext DragonShrineClairYoureLyingText
 	waitbutton
 	closetext
-	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2c9
+	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderWalkToClairMovement
 	spriteface DRAGONSHRINE_CLAIR, UP
 	opentext
-	writetext UnknownText_0x18d520
+	writetext DragonShrineMustIInformLanceText
 	waitbutton
 	closetext
 	showemote EMOTE_SHOCK, DRAGONSHRINE_CLAIR, 15
 	opentext
-	writetext UnknownText_0x18d9ae
+	writetext DragonShrineIUnderstandText
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e0
 	opentext
-	writetext UnknownText_0x18d9bf
+	writetext DragonShrineHereRisingBadgeText
 	waitbutton
 	setflag ENGINE_RISINGBADGE
 	playsound SFX_GET_BADGE
 	waitsfx
 	special RestartMapMusic
 	specialphonecall SPECIALCALL_MASTERBALL
-	setscene $1
-	setmapscene DRAGONS_DEN_B1F, $1
-	writetext UnknownText_0x18d9f2
+	setscene 1
+	setmapscene DRAGONS_DEN_B1F, 1
+	writetext DragonShrinePlayerReceivedRisingBadgeText
 	buttonsound
-	writetext UnknownText_0x18da0b
+	writetext DragonShrineRisingBadgeExplanationText
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2ce
@@ -177,11 +177,11 @@ DragonShrine_MapScriptHeader:
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2d1
 	spriteface PLAYER, UP
 	opentext
-	writetext UnknownText_0x18d5a3
+	writetext DragonShrineElderScoldsClairText
 	waitbutton
 	closetext
 	opentext
-	writetext UnknownText_0x18dab4
+	writetext DragonShrineSpeechlessText
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e3
@@ -191,7 +191,7 @@ DragonShrine_MapScriptHeader:
 	setevent EVENT_GAVE_KURT_APRICORNS
 	end
 
-ElderScript_0x18d1a5:
+DragonShrineElder1Script:
 	faceplayer
 	opentext
 	checkevent EVENT_GAVE_KURT_APRICORNS
@@ -202,146 +202,135 @@ ElderScript_0x18d1a5:
 	iffalse .GiveDratini
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue .BeatRivalInMtMoon
-	writetext UnknownText_0x18d724
+	writetext DragonShrineClairsGrandfatherText
 	waitbutton
 	closetext
 	end
 
 .GiveDratini:
-	writetext UnknownText_0x18d604
+	writetext DragonShrineTakeThisDratiniText
 	waitbutton
 	checkcode VAR_PARTYCOUNT
 	if_equal 6, .PartyFull
-	writetext UnknownText_0x18d697
+	writetext DragonShrinePlayerReceivedDratiniText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	givepoke DRATINI, 15
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
-	special SpecialDratini
+	special Special_Dratini
 	setevent EVENT_GOT_DRATINI
 	setevent EVENT_JUST_RECEIVED_DRATINI
-	writetext UnknownText_0x18d6ca
+	writetext DragonShrineSymbolicDragonText
 	waitbutton
 	closetext
 	end
 
 .PartyFull:
-	writetext UnknownText_0x18d6ac
+	writetext DragonShrinePartyFullText
 	waitbutton
 	closetext
 	end
 
 .BeatRivalInMtMoon:
-	writetext UnknownText_0x18d782
+	writetext DragonShrineSilverIsInTrainingText
 	waitbutton
 	closetext
 	end
 
 .DontGiveDratiniYet:
-	writetext UnknownText_0x18d5e5
+	writetext DragonShrineComeAgainText
 	waitbutton
 	closetext
 	end
 
 .ReceivedDratini:
-	writetext UnknownText_0x18d6ca
+	writetext DragonShrineSymbolicDragonText
 	waitbutton
 	closetext
 	end
 
-ElderScript_0x18d205:
+DragonShrineElder2Script:
 	faceplayer
 	opentext
-	writetext UnknownText_0x18d840
+	writetext DragonShrineElder2Text
 	waitbutton
 	closetext
 	end
 
-ElderScript_0x18d20d:
+DragonShrineElder3Script:
 	faceplayer
 	opentext
-	writetext UnknownText_0x18d8b1
+	writetext DragonShrineElder3Text
 	waitbutton
 	closetext
 	end
 
-
-MenuDataHeader_0x18d215:
-	db $40 ; flags
-	db 04, 08 ; start coords
-	db 11, 19 ; end coords
+DragonShrineQuestion1_MenuDataHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Pal@"
 	db "Underling@"
 	db "Friend@"
 
-
-MenuDataHeader_0x18d234:
-	db $40 ; flags
-	db 04, 09 ; start coords
-	db 11, 19 ; end coords
+DragonShrineQuestion2_MenuDataHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 9, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Strategy@"
 	db "Raising@"
 	db "Cheating@"
 
-
-MenuDataHeader_0x18d258:
-	db $40 ; flags
-	db 04, 05 ; start coords
-	db 11, 19 ; end coords
+DragonShrineQuestion3_MenuDataHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 5, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Weak person@"
 	db "Tough person@"
 	db "Anybody@"
 
-
-MenuDataHeader_0x18d283:
-	db $40 ; flags
-	db 04, 08 ; start coords
-	db 11, 19 ; end coords
+DragonShrineQuestion4_MenuDataHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Love@"
 	db "Violence@"
 	db "Knowledge@"
 
-
-MenuDataHeader_0x18d2a5:
-	db $40 ; flags
-	db 04, 12 ; start coords
-	db 11, 19 ; end coords
+DragonShrineQuestion5_MenuDataHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 12, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $81 ; flags
+	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Tough@"
 	db "Both@"
 	db "Weak@"
 
-
-MovementData_0x18d2bf:
+DragonShrinePlayerWalkInMovement:
 	slow_step UP
 	slow_step UP
 	slow_step UP
@@ -351,11 +340,11 @@ MovementData_0x18d2bf:
 	slow_step UP
 	step_end
 
-MovementData_0x18d2c7:
+DragonShrineElderStepDownMovement:
 	slow_step DOWN
 	step_end
 
-MovementData_0x18d2c9:
+DragonShrineElderWalkToClairMovement:
 	slow_step LEFT
 	slow_step LEFT
 	slow_step LEFT
@@ -372,7 +361,7 @@ MovementData_0x18d2d1:
 	turn_head DOWN
 	step_end
 
-MovementData_0x18d2d4:
+DragonShrineClairWalkInMovement:
 	slow_step UP
 	slow_step UP
 	slow_step UP
@@ -380,12 +369,12 @@ MovementData_0x18d2d4:
 	slow_step UP
 	step_end
 
-MovementData_0x18d2da:
+DragonShrineClairBigStepLeftMovement:
 	fix_facing
 	big_step LEFT
 	step_end
 
-MovementData_0x18d2dd:
+DragonShrineClairSlowStepLeftMovement:
 	slow_step LEFT
 	remove_fixed_facing
 	step_end
@@ -404,7 +393,7 @@ MovementData_0x18d2e3:
 	step DOWN
 	step_end
 
-UnknownText_0x18d2ea:
+DragonShrineElderGreetingText:
 	text "Hm… Good to see"
 	line "you here."
 
@@ -427,29 +416,29 @@ UnknownText_0x18d2ea:
 	para "Ready?"
 	done
 
-UnknownText_0x18d3bc:
+DragonShrineQuestion1Text:
 	text "What are #MON"
 	line "to you?"
 	done
 
-UnknownText_0x18d3d3:
+DragonShrineQuestion2Text:
 	text "What helps you to"
 	line "win battles?"
 	done
 
-UnknownText_0x18d3f3:
+DragonShrineQuestion3Text:
 	text "What kind of"
 	line "trainer do you"
 	cont "wish to battle?"
 	done
 
-UnknownText_0x18d420:
+DragonShrineQuestion4Text:
 	text "What is most"
 	line "important for"
 	cont "raising #MON?"
 	done
 
-UnknownText_0x18d44a:
+DragonShrineQuestion5Text:
 	text "Strong #MON."
 	line "Weak #MON."
 
@@ -457,7 +446,7 @@ UnknownText_0x18d44a:
 	line "important?"
 	done
 
-UnknownText_0x18d47c:
+DragonShrinePassedTestText:
 	text "Hm… I see…"
 
 	para "You care deeply"
@@ -476,7 +465,7 @@ UnknownText_0x18d47c:
 	cont "#MON LEAGUE."
 	done
 
-UnknownText_0x18d520:
+DragonShrineMustIInformLanceText:
 	text "CLAIR!"
 
 	para "This child is"
@@ -491,7 +480,7 @@ UnknownText_0x18d520:
 	line "LANCE of this?"
 	done
 
-UnknownText_0x18d5a3:
+DragonShrineElderScoldsClairText:
 	text "CLAIR…"
 
 	para "Reflect upon what"
@@ -501,12 +490,12 @@ UnknownText_0x18d5a3:
 	line "child has."
 	done
 
-UnknownText_0x18d5e5:
+DragonShrineComeAgainText:
 	text "Come again, if you"
 	line "so desire."
 	done
 
-UnknownText_0x18d604:
+DragonShrineTakeThisDratiniText:
 	text "Hm… Good to see"
 	line "you here."
 
@@ -523,17 +512,17 @@ UnknownText_0x18d604:
 	line "your worth."
 	done
 
-UnknownText_0x18d697:
+DragonShrinePlayerReceivedDratiniText:
 	text "<PLAYER> received"
 	line "DRATINI!"
 	done
 
-UnknownText_0x18d6ac:
+DragonShrinePartyFullText:
 	text "Hm? Your #MON"
 	line "party is full."
 	done
 
-UnknownText_0x18d6ca:
+DragonShrineSymbolicDragonText:
 	text "Dragon #MON are"
 	line "symbolic of our"
 	cont "clan."
@@ -545,7 +534,7 @@ UnknownText_0x18d6ca:
 	line "one."
 	done
 
-UnknownText_0x18d724:
+DragonShrineClairsGrandfatherText:
 	text "CLAIR appears to"
 	line "have learned an"
 
@@ -556,7 +545,7 @@ UnknownText_0x18d724:
 	line "grandfather."
 	done
 
-UnknownText_0x18d782:
+DragonShrineSilverIsInTrainingText:
 	text "A boy close to"
 	line "your age is in"
 	cont "training here."
@@ -568,21 +557,21 @@ UnknownText_0x18d782:
 	line "little worrisome…"
 	done
 
-UnknownText_0x18d7f6:
+DragonShrineWrongAnswerText1:
 	text "Hah? I didn't"
 	line "quite catch that…"
 	done
 
-UnknownText_0x18d816:
+DragonShrineWrongAnswerText2:
 	text "What was it you"
 	line "said?"
 	done
 
-UnknownText_0x18d82d:
+DragonShrineRightAnswerText:
 	text "Oh, I understand…"
 	done
 
-UnknownText_0x18d840:
+DragonShrineElder2Text:
 	text "It's been quite"
 	line "some time since a"
 
@@ -594,7 +583,7 @@ UnknownText_0x18d840:
 	line "Master LANCE."
 	done
 
-UnknownText_0x18d8b1:
+DragonShrineElder3Text:
 	text "You know young"
 	line "Master LANCE?"
 
@@ -606,7 +595,7 @@ UnknownText_0x18d8b1:
 	line "blood."
 	done
 
-UnknownText_0x18d916:
+DragonShrineClairYouPassedText:
 	text "So how did it go?"
 
 	para "I guess there's no"
@@ -614,39 +603,39 @@ UnknownText_0x18d916:
 
 	para "You did fail?"
 
-	para $56, $56, $56, $56, $56, $56
+	para "<……><……><……><……><……><……>"
 
 	para "…What? You passed?"
 	done
 
-UnknownText_0x18d974:
+DragonShrineClairThatCantBeText:
 	text "That can't be!"
 	done
 
-UnknownText_0x18d983:
+DragonShrineClairYoureLyingText:
 	text "You're lying!"
 
 	para "Even I haven't"
 	line "been approved!"
 	done
 
-UnknownText_0x18d9ae:
+DragonShrineIUnderstandText:
 	text "I-I understand…"
 	done
 
-UnknownText_0x18d9bf:
+DragonShrineHereRisingBadgeText:
 	text "Here, this is the"
 	line "RISINGBADGE…"
 
 	para "Hurry up! Take it!"
 	done
 
-UnknownText_0x18d9f2:
+DragonShrinePlayerReceivedRisingBadgeText:
 	text "<PLAYER> received"
 	line "RISINGBADGE."
 	done
 
-UnknownText_0x18da0b:
+DragonShrineRisingBadgeExplanationText:
 	text "RISINGBADGE will"
 	line "enable your"
 
@@ -664,11 +653,11 @@ UnknownText_0x18da0b:
 	line "question."
 	done
 
-UnknownText_0x18dab4:
-	text $56, $56, $56, $56, $56, $56
+DragonShrineSpeechlessText:
+	text "<……><……><……><……><……><……>"
 	done
 
-DragonShrine_MapEventHeader:
+DragonShrine_MapEvents:
 	; filler
 	db 0, 0
 
@@ -685,7 +674,7 @@ DragonShrine_MapEventHeader:
 
 .ObjectEvents:
 	db 4
-	object_event 5, 1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElderScript_0x18d1a5, EVENT_GAVE_KURT_APRICORNS
-	object_event 2, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElderScript_0x18d205, EVENT_GAVE_KURT_APRICORNS
-	object_event 7, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElderScript_0x18d20d, EVENT_GAVE_KURT_APRICORNS
+	object_event 5, 1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder1Script, EVENT_GAVE_KURT_APRICORNS
+	object_event 2, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder2Script, EVENT_GAVE_KURT_APRICORNS
+	object_event 7, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder3Script, EVENT_GAVE_KURT_APRICORNS
 	object_event 4, 8, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

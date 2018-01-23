@@ -24,7 +24,7 @@ dba_pic: MACRO ; dbw bank, address
 ENDM
 ```
 
-The offset is translated into a correct bank by `FixPicBank` in [gfx/load_pics.asm](/gfx/load_pics.asm):
+The offset is translated into a correct bank by `FixPicBank` in [engine/load_pics.asm](/engine/load_pics.asm):
 
 ```asm
 FixPicBank: ; 511c5
@@ -106,7 +106,7 @@ ROMX $49
 	"Pics 2"
 ```
 
-Two routines in [gfx/load_pics.asm](/gfx/load_pics.asm) make this assumption; `GetFrontpicPointer`:
+Two routines in [engine/load_pics.asm](/engine/load_pics.asm) make this assumption; `GetFrontpicPointer`:
 
 ```asm
 	ld a, [CurPartySpecies]
@@ -228,7 +228,7 @@ INCBIN "gfx/footprints/wartortle.1bpp",  footprint_bottom
 ...
 ```
 
-`Pokedex_LoadAnyFootprint` in [engine/pokedex.asm](/engine/pokedex.asm):
+`Pokedex_LoadAnyFootprint` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm):
 
 ```asm
 	push hl
@@ -282,7 +282,7 @@ Modify `Pokedex_LoadAnyFootprint`:
 
 `PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.asm](/data/pokemon/dex_entry_pointers.asm) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
 
-Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex_2.asm](/engine/pokedex_2.asm):
+Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](/engine/pokedex/pokedex_2.asm):
 
 ```asm
 GetDexEntryPointer: ; 44333
@@ -471,7 +471,7 @@ GetNumberedTMHM: ; d417
 
 ## `GetForestTreeFrame` works, but it's still bad
 
-In [tilesets/animations.asm](/tilesets/animations.asm):
+In [engine/tileset_anims.asm](/engine/tileset_anims.asm):
 
 ```asm
 GetForestTreeFrame: ; fc54c

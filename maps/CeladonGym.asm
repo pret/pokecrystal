@@ -6,7 +6,7 @@ const_value set 2
 	const CELADONGYM_TWIN1
 	const CELADONGYM_TWIN2
 
-CeladonGym_MapScriptHeader:
+CeladonGym_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -22,7 +22,7 @@ ErikaScript_0x72a6a:
 	waitbutton
 	closetext
 	winlosstext UnknownText_0x72c3e, 0
-	loadtrainer ERIKA, 1
+	loadtrainer ERIKA, ERIKA1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ERIKA
@@ -109,7 +109,7 @@ CeladonGymStatue:
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
-	trainertotext ERIKA, 1, $1
+	trainertotext ERIKA, ERIKA1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
 UnknownText_0x72b28:
@@ -267,7 +267,7 @@ TwinsJoandzoe2AfterBattleText:
 	line "much stronger!"
 	done
 
-CeladonGym_MapEventHeader:
+CeladonGym_MapEvents:
 	; filler
 	db 0, 0
 

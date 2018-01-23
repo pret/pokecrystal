@@ -9,13 +9,13 @@ const_value set 2
 	const CELADONCITY_TEACHER2
 	const CELADONCITY_LASS
 
-CeladonCity_MapScriptHeader:
+CeladonCity_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_CELADON
@@ -75,7 +75,7 @@ CeladonCityPokecenterSign:
 	jumpstd pokecentersign
 
 CeladonCityHiddenPpUp:
-	dwb EVENT_CELADON_CITY_HIDDEN_PP_UP, PP_UP
+	hiddenitem EVENT_CELADON_CITY_HIDDEN_PP_UP, PP_UP
 
 CeladonCityFisherText:
 	text "This POLIWRATH is"
@@ -234,7 +234,7 @@ CeladonCityTrainerTipsText:
 	cont "STORE!"
 	done
 
-CeladonCity_MapEventHeader:
+CeladonCity_MapEvents:
 	; filler
 	db 0, 0
 

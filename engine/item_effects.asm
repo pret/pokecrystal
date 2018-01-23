@@ -517,7 +517,7 @@ ParkBall: ; e8a2
 	cp BATTLETYPE_TUTORIAL
 	jp z, .FinishTutorial
 
-	farcall TrainerRankings_WildMonsCaught
+	farcall StubbedTrainerRankings_WildMonsCaught
 
 	ld hl, Text_GotchaMonWasCaught
 	call PrintText
@@ -599,7 +599,7 @@ ParkBall: ; e8a2
 	dec a
 	ld [CurPartyMon], a
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 
 	ld d, h
@@ -623,7 +623,7 @@ ParkBall: ; e8a2
 .SendToPC:
 	call ClearSprites
 
-	predef SentPkmnIntoBox
+	predef SendPkmnIntoBox
 
 	farcall SetBoxMonCaughtData
 
@@ -668,7 +668,7 @@ ParkBall: ; e8a2
 
 	ld hl, wMonOrItemNameBuffer
 	ld de, sBoxMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	ld hl, sBoxMonNicknames
@@ -683,7 +683,7 @@ ParkBall: ; e8a2
 
 	ld hl, sBoxMonNicknames
 	ld de, wMonOrItemNameBuffer
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 	call CloseSRAM
@@ -748,7 +748,7 @@ BallMultiplierFunctionTable:
 	dbw MOON_BALL,   MoonBallMultiplier
 	dbw LOVE_BALL,   LoveBallMultiplier
 	dbw PARK_BALL,   ParkBallMultiplier
-	db $ff
+	db -1 ; end
 
 UltraBallMultiplier:
 ; multiply catch rate by 2
@@ -775,7 +775,7 @@ GetPokedexEntryBank:
 	ld a, [EnemyMonSpecies]
 	rlca
 	rlca
-	and 3
+	maskbits NUM_DEX_ENTRY_BANKS
 	ld hl, .PokedexEntryBanks
 	ld d, 0
 	ld e, a
@@ -786,12 +786,6 @@ GetPokedexEntryBank:
 	ret
 
 .PokedexEntryBanks:
-
-GLOBAL PokedexEntries1
-GLOBAL PokedexEntries2
-GLOBAL PokedexEntries3
-GLOBAL PokedexEntries4
-
 	db BANK(PokedexEntries1)
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)
@@ -1436,7 +1430,7 @@ RareCandy: ; ef14
 	call TextBox
 
 	hlcoord 11, 1
-	ld bc, $0004
+	ld bc, 4
 	predef PrintTempMonStats
 
 	call WaitPressAorB_BlinkCursor
@@ -1576,7 +1570,7 @@ HealStatus: ; f030 (3:7030)
 GetItemHealingAction: ; f058 (3:7058)
 	push hl
 	ld a, [CurItem]
-	ld hl, .healingactions
+	ld hl, StatusHealingActions
 	ld bc, 3
 .next
 	cp [hl]
@@ -1595,24 +1589,7 @@ GetItemHealingAction: ; f058 (3:7058)
 	ret
 ; f071 (3:7071)
 
-.healingactions ; f071
-; item, party menu action text, status
-	db ANTIDOTE,     PARTYMENUTEXT_HEAL_PSN, 1 << PSN
-	db BURN_HEAL,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
-	db ICE_HEAL,     PARTYMENUTEXT_HEAL_FRZ, 1 << FRZ
-	db AWAKENING,    PARTYMENUTEXT_HEAL_SLP, SLP
-	db PARLYZ_HEAL,  PARTYMENUTEXT_HEAL_PAR, 1 << PAR
-	db FULL_HEAL,    PARTYMENUTEXT_HEAL_ALL, %11111111
-	db FULL_RESTORE, PARTYMENUTEXT_HEAL_ALL, %11111111
-	db HEAL_POWDER,  PARTYMENUTEXT_HEAL_ALL, %11111111
-	db PSNCUREBERRY, PARTYMENUTEXT_HEAL_PSN, 1 << PSN
-	db PRZCUREBERRY, PARTYMENUTEXT_HEAL_PAR, 1 << PAR
-	db BURNT_BERRY,  PARTYMENUTEXT_HEAL_FRZ, 1 << FRZ
-	db ICE_BERRY,    PARTYMENUTEXT_HEAL_BRN, 1 << BRN
-	db MINT_BERRY,   PARTYMENUTEXT_HEAL_SLP, SLP
-	db MIRACLEBERRY, PARTYMENUTEXT_HEAL_ALL, %11111111
-	db -1, 0, 0
-; f09e
+INCLUDE "data/items/heal_status.asm"
 
 StatusHealer_Jumptable: ; f09e (3:709e)
 	ld hl, .dw
@@ -1668,7 +1645,7 @@ RevivePokemon: ; f0d6
 	ld d, 0
 	ld hl, wBattleParticipantsIncludingFainted
 	ld b, CHECK_FLAG
-	predef FlagPredef
+	predef SmallFarFlagAction
 	ld a, c
 	and a
 	jr z, .skip_to_revive
@@ -1677,7 +1654,7 @@ RevivePokemon: ; f0d6
 	ld c, a
 	ld hl, wBattleParticipantsNotFainted
 	ld b, SET_FLAG
-	predef FlagPredef
+	predef SmallFarFlagAction
 
 .skip_to_revive
 	xor a
@@ -2118,7 +2095,7 @@ GetOneFifthMaxHP: ; f378 (3:7378)
 GetHealingItemAmount: ; f395 (3:7395)
 	push hl
 	ld a, [CurItem]
-	ld hl, .Healing
+	ld hl, HealingHPAmounts
 	ld d, a
 .next
 	ld a, [hli]
@@ -2140,24 +2117,7 @@ GetHealingItemAmount: ; f395 (3:7395)
 	ret
 ; f3af (3:73af)
 
-.Healing: ; f3af
-	dbw FRESH_WATER,   50
-	dbw SODA_POP,      60
-	dbw LEMONADE,      80
-	dbw HYPER_POTION, 200
-	dbw SUPER_POTION,  50
-	dbw POTION,        20
-	dbw MAX_POTION,   MAX_STAT_VALUE
-	dbw FULL_RESTORE, MAX_STAT_VALUE
-	dbw MOOMOO_MILK,  100
-	dbw BERRY,         10
-	dbw GOLD_BERRY,    30
-	dbw ENERGYPOWDER,  50
-	dbw ENERGY_ROOT,  200
-	dbw RAGECANDYBAR,  20
-	dbw BERRY_JUICE,   20
-	dbw -1,             0
-; f3df
+INCLUDE "data/items/heal_hp.asm"
 
 Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 ; Softboiled/Milk Drink in the field
@@ -2291,7 +2251,7 @@ PokeDoll: ; f48f
 	inc a
 	ld [wForcedSwitch], a
 	ld a, [wBattleResult]
-	and 3 << 6
+	and $c0
 	or $2
 	ld [wBattleResult], a
 	jp UseItemText
@@ -2328,7 +2288,7 @@ XSpecial: ; f4c5
 	call UseItemText
 
 	ld a, [CurItem]
-	ld hl, .x_item_table
+	ld hl, XItemStats
 
 .loop
 	cp [hl]
@@ -2357,12 +2317,7 @@ XSpecial: ; f4c5
 	ret
 ; f504
 
-.x_item_table ; f504
-	db X_ATTACK,  ATTACK
-	db X_DEFEND,  DEFENSE
-	db X_SPEED,   SPEED
-	db X_SPECIAL, SP_ATTACK
-; f50c
+INCLUDE "data/items/x_stats.asm"
 
 
 PokeFlute: ; f50c
@@ -2572,10 +2527,10 @@ Mysteryberry: ; f5bf
 	cp SKETCH
 	jr z, .CantUsePPUpOnSketch
 
-	ld bc, $0015
+	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	ld a, [hl]
-	cp 3 << 6 ; have 3 PP Ups already been used?
+	cp PP_UP_MASK
 	jr c, .do_ppup
 
 .CantUsePPUpOnSketch:
@@ -2586,7 +2541,7 @@ Mysteryberry: ; f5bf
 
 .do_ppup
 	ld a, [hl]
-	add 1 << 6 ; increase PP Up count by 1
+	add PP_UP_ONE
 	ld [hl], a
 	ld a, $1
 	ld [wd265], a
@@ -2714,7 +2669,7 @@ RestorePP: ; f6e8
 	ld a, [wd265]
 	ld b, a
 	ld a, [hl]
-	and (1 << 6) - 1
+	and PP_MASK
 	cp b
 	jr nc, .dont_restore
 
@@ -2732,7 +2687,7 @@ RestorePP: ; f6e8
 
 .restore_some
 	ld a, [hl]
-	and (1 << 6) - 1
+	and PP_MASK
 	add c
 	cp b
 	jr nc, .restore_all
@@ -2740,7 +2695,7 @@ RestorePP: ; f6e8
 
 .restore_all
 	ld a, [hl]
-	and 3 << 6
+	and PP_UP_MASK
 	or b
 	ld [hl], a
 	ret
@@ -3125,7 +3080,7 @@ ApplyPPUp: ; f84c
 
 .use
 	ld a, [hl]
-	and 3 << 6
+	and PP_UP_MASK
 	ld a, [de] ; wasted cycle
 	call nz, ComputeMaxPP
 
@@ -3209,7 +3164,7 @@ RestoreAllPP: ; f8b9
 	pop bc
 	pop de
 	ld a, [de]
-	and 3 << 6
+	and PP_UP_MASK
 	ld b, a
 	ld a, [wd265]
 	add b
@@ -3282,7 +3237,7 @@ GetMaxPPOfMove: ; f8ec
 .notwild
 	add hl, bc
 	ld a, [hl]
-	and 3 << 6
+	and PP_UP_MASK
 	pop bc
 
 	or b
@@ -3293,7 +3248,7 @@ GetMaxPPOfMove: ; f8ec
 	ld a, b ; this gets lost anyway
 	call ComputeMaxPP
 	ld a, [hl]
-	and (1 << 6) - 1
+	and PP_MASK
 	ld [wd265], a
 
 	pop af

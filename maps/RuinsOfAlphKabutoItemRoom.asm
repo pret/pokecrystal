@@ -4,7 +4,7 @@ const_value set 2
 	const RUINSOFALPHKABUTOITEMROOM_POKE_BALL3
 	const RUINSOFALPHKABUTOITEMROOM_POKE_BALL4
 
-RuinsOfAlphKabutoItemRoom_MapScriptHeader:
+RuinsOfAlphKabutoItemRoom_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -32,7 +32,7 @@ UnknownText_0x599ad:
 	cont "MON."
 	done
 
-RuinsOfAlphKabutoItemRoom_MapEventHeader:
+RuinsOfAlphKabutoItemRoom_MapEvents:
 	; filler
 	db 0, 0
 

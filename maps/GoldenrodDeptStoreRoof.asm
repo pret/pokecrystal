@@ -8,23 +8,23 @@ const_value set 2
 	const GOLDENRODDEPTSTOREROOF_TEACHER
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
 
-GoldenrodDeptStoreRoof_MapScriptHeader:
+GoldenrodDeptStoreRoof_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 2
-	dbw MAPCALLBACK_TILES, .CheckSaleChangeBlock
-	dbw MAPCALLBACK_OBJECTS, .CheckSaleChangeClerk
+	callback MAPCALLBACK_TILES, .CheckSaleChangeBlock
+	callback MAPCALLBACK_OBJECTS, .CheckSaleChangeClerk
 
 .CheckSaleChangeBlock:
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_SALE_IS_ON
-	iftrue .ChangeBlock
+	iftrue .SaleIsOn
 	return
 
-.ChangeBlock:
-	changeblock $0, $2, $3f
-	changeblock $0, $4, $f
+.SaleIsOn:
+	changeblock 0, 2, $3f ; cardboard boxes
+	changeblock 0, 4, $0f ; vendor booth
 	return
 
 .CheckSaleChangeClerk:
@@ -211,7 +211,7 @@ PokeDollVendingMachineText:
 	line "empty…"
 	done
 
-GoldenrodDeptStoreRoof_MapEventHeader:
+GoldenrodDeptStoreRoof_MapEvents:
 	; filler
 	db 0, 0
 

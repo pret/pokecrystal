@@ -487,7 +487,7 @@ BattleTowerRoomMenu_InitRAM: ; 1183cb
 	ld [hMobileReceive], a
 	ld [hMobile], a
 	ei
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	farcall Function115d99
 	farcall Function11615a
@@ -969,7 +969,7 @@ Function11878d: ; 11878d (46:478d)
 	set 0, [hl]
 	ld a, $6
 	ld [rSVBK], a
-	ld de, w3_d000
+	ld de, $d000
 	ld bc, $1000
 	ld a, [hl]
 	sla a
@@ -1559,8 +1559,7 @@ IndexDownloadURL: ; 0x118ce5
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
 
-Function118d35: ; 118d35
-; unreferenced
+Unreferenced_Function118d35: ; 118d35
 	ld hl, $d200
 	ld a, [wcd38]
 	and a
@@ -1673,7 +1672,7 @@ Function118ded: ; 118ded
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	farcall Function11b93b
+	farcall Special_Function11b93b
 	pop af
 	ld [rSVBK], a
 
@@ -2530,9 +2529,9 @@ Function1193a0:
 	ld [wcd3c], a
 	call BattleTowerRoomMenu2
 	ld hl, $c346
-	ld a, LOW(wd000)
+	ld a, LOW($d000)
 	ld [hli], a
-	ld a, HIGH(wd000)
+	ld a, HIGH($d000)
 	ld [hli], a
 	ld a, [wcd3b]
 	ld [hli], a
@@ -2602,7 +2601,7 @@ Function119413: ; 119413
 	jr z, .asm_119447
 	ld a, $6
 	ld [rSVBK], a
-	ld a, [wd000]
+	ld a, [w3_d000]
 	ld c, a
 	ld a, [w3_d000 + 1]
 	ld b, a
@@ -3468,10 +3467,10 @@ Function119987: ; 119987
 ; 1199b4
 
 Function1199b4: ; 1199b4
-	ld a, [wd000 + 130]
+	ld a, [w3_d081+1]
 	and a
 	jr nz, .asm_1199c7
-	ld a, [wd000 + 129]
+	ld a, [w3_d081]
 	cp $7
 	jr nc, .asm_1199c7
 	call BattleTowerRoomMenu_IncrementJumptable
@@ -3539,11 +3538,11 @@ Function1199e2: ; 1199e2
 	ld [w3_d8a1], a
 	ld [w3_d8a2], a
 	ld [w3_d8a3], a
-	ld hl, $d8a0
+	ld hl, w3_d8a0
 	ld bc, $d889
 	call Function119e98
 	call Function119e98
-	ld hl, $d8a0
+	ld hl, w3_d8a0
 	ld a, [wcd2d]
 	cp [hl]
 	jr nz, Function119ac9
@@ -3564,12 +3563,12 @@ Function1199e2: ; 1199e2
 	ld [w3_d8a1], a
 	ld [w3_d8a2], a
 	ld [w3_d8a3], a
-	ld hl, $d8a0
+	ld hl, w3_d8a0
 	ld bc, $d88e
 	call Function119e98
 	ld bc, $d893
 	call Function119e98
-	ld hl, $d8a0
+	ld hl, w3_d8a0
 	ld a, [wcd2f]
 	cp [hl]
 	jr nz, .asm_119aa7
@@ -3955,17 +3954,15 @@ BattleTowerRoomMenu_UpdateYesNoMenu:
 ; 119cf7
 
 MenuDataHeader_119cf7: ; 119cf7
-	db $40 ; flags
-	db  7, 12 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 12, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 119cff
 
 MenuData_119cff: ; 119cff
-	db $40 ; flags
-	db  7, 15 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 15, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 119d07
@@ -4087,7 +4084,7 @@ BattleTower_UbersCheck: ; 119dd1 (46:5dd1)
 	call GetPokemonName
 	ld hl, StringBuffer1
 	ld de, wcd49
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, $a
 	ld [wcf66], a
@@ -4462,7 +4459,7 @@ Function11a00e: ; 11a00e
 	call PushWindow
 	farcall Function11765d
 	farcall Function117ab4
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ExitMenu
 	farcall ReloadMapPart
@@ -4485,7 +4482,7 @@ Function11a0ca: ; 11a0ca
 	call PushWindow
 	farcall Function11765d
 	farcall Function17d3f6
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ExitMenu
 	farcall ReloadMapPart
@@ -4757,17 +4754,15 @@ String_11a2d3: ; 11a2d3
 ; 11a2d6
 
 MenuDataHeader_11a2d6: ; 11a2d6
-	db $40 ; flags
-	db  6, 14 ; start coords
-	db 10, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 14, 6, SCREEN_WIDTH - 1, 10
 	dw NULL
 	db 0 ; default option
 ; 11a2de
 
 MenuDataHeader_11a2de: ; 11a2de
-	db $40 ; flags
-	db  7, 14 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
 ; 11a2e6
@@ -5230,108 +5225,107 @@ Function11a63c: ; 11a63c
 ; 11a661
 
 String_11a661: ; 11a661
-	db   "これから モバイルセンターに"
-	next "でんわ", $1f, "かけます@"
+	db   "これから　モバイルセンターに"
+	next "でんわ<WO>かけます@"
 ; 11a679
 
 String_11a679: ; 11a679
-	db   "モバイルアダプタ", $25, "じゅんびは"
-	next "できて いますか?@"
+	db   "モバイルアダプタ<NO>じゅんびは"
+	next "できて　いますか？@"
 ; 11a692
 
 String_11a692: ; 11a692
-	db   "でんわ", $1f, "かけています"
-	next "しばらく おまちください@"
+	db   "でんわ<WO>かけています"
+	next "しばらく　おまちください@"
 ; 11a6aa
 
 String_11a6aa: ; 11a6aa
-	db   "でんわをかけると つうわりょう"
-	next "せつぞくりょう", $4a, "かかります@"
+	db   "でんわをかけると　つうわりょう"
+	next "せつぞくりょう<GA>かかります@"
 ; 11a6c8
 
 String_11a6c8: ; 11a6c8
-	db   "せつぞく しました@"
+	db   "せつぞく　しました@"
 ; 11a6d2
 
 String_11a6d2: ; 11a6d2
-	db   "つうしん ちゅう@"
+	db   "つうしん　ちゅう@"
 ; 11a6db
 
 String_11a6db: ; 11a6db
-	db   "つうしん ちゅう"
-	next "セレクト エーでちゅうし@"
+	db   "つうしん　ちゅう"
+	next "セレクト　エーでちゅうし@"
 ; 11a6f1
 
 String_11a6f1: ; 11a6f1
-	db   "この サービスには"
-	next "つうわりょう", $25, "ほかに@"
+	db   "この　サービスには"
+	next "つうわりょう<NO>ほかに@"
 ; 11a706
 
 String_11a706: ; 11a706
-	db   "おかね", $4a, "@"
+	db   "おかね<GA>@"
 ; 11a70b
 
 String_11a70b: ; 11a70b
 	db   "えん"
-	next "かかります よろしい ですか?@"
+	next "かかります　よろしい　ですか？@"
 ; 11a71e
 
 String_11a71e: ; 11a71e
-	db   "つうしん しゅうりょう@"
+	db   "つうしん　しゅうりょう@"
 ; 11a72a
 
 String_11a72a: ; 11a72a
-	db   "つないだ じかん"
-	next "  やく   ふん   びょう@"
+	db   "つないだ　じかん"
+	next "　　やく　　　ふん　　　びょう@"
 ; 11a743
 
 String_11a743: ; 11a743
-	db   "もっていない データが"
-	next "あります!@"
+	db   "もっていない　データが"
+	next "あります！@"
 ; 11a755
 
 String_11a755: ; 11a755
-	db   "データ", $1f, "よみこみますか?@"
+	db   "データ<WO>よみこみますか？@"
 ; 11a762
 
 String_11a762: ; 11a762
-	db   "おなじ データ", $1f, "よみこんだ"
-	next "こと", $4a, "ありますが@"
+	db   "おなじ　データ<WO>よみこんだ"
+	next "こと<GA>ありますが@"
 ; 11a779
 
 String_11a779: ; 11a779
-	db   "そのデータ", $24, "なくなっているか"
-	next "こわれて います@"
+	db   "そのデータ<WA>なくなっているか"
+	next "こわれて　います@"
 ; 11a791
 
 String_11a791: ; 11a791
-	db   "もっている データと"
-	next "おなじデータしか ありません!@"
+	db   "もっている　データと"
+	next "おなじデータしか　ありません！@"
 ; 11a7ac
 
 String_11a7ac: ; 11a7ac
-	db   "データ", $25, "よみこみを"
-	next "ちゅうし しますか?@"
+	db   "データ<NO>よみこみを"
+	next "ちゅうし　しますか？@"
 ; 11a7c1
 
 String_11a7c1: ; 11a7c1 ; new news?
-	db   "あたらしい ニュースは"
-	next "ありません でした@"
+	db   "あたらしい　ニュースは"
+	next "ありません　でした@"
 ; 11a7d7
 
 String_11a7d7: ; 11a7d7
-	db   "あたらしいニュース", $4a, "あります"
-	next "ニュース", $1f, "よみこみますか?@"
+	db   "あたらしいニュース<GA>あります"
+	next "ニュース<WO>よみこみますか？@"
 ; 11a7f4
 
 String_11a7f4: ; 11a7f4
-	db   "               @"
+	db   "　　　　　　　　　　　　　　　@"
 ; 11a804
 
 MenuDataHeader_11a804: ; 11a804
-	db $40 ; flags
-	db  0,  0 ; start coords
-	db  5, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 0, SCREEN_WIDTH - 1, 5
 	dw NULL
 	db 0 ; default option
 ; 11a80c
@@ -5578,7 +5572,7 @@ Function11a9ce: ; 11a9ce
 	call ClearBGPalettes
 	call ReloadTilesetAndPalettes
 	call Call_ExitMenu
-	farcall MobileFunc_106462
+	farcall Stubbed_Function106462
 	farcall Function106464
 	call ret_d90
 	farcall FinishExitMenu
@@ -5730,7 +5724,7 @@ Text_ThisBattleRoomPleaseWait: ; 0x11ac1f
 	done
 ; 0x11ac3e
 
-Function11ac3e: ; 11ac3e
+Special_Function11ac3e: ; 11ac3e
 	call SpeechTextBox
 	call FadeToMenu
 	callfar ClearSpriteAnims2
@@ -6001,16 +5995,15 @@ Function11adc4:
 ; 11ae38
 
 MenuDataHeader_11ae38: ; 11ae38
-	db $40 ; flags
-	db 10, 10 ; start coords
-	db 17, 17 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 10, 17, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 11ae40
 
 String_11ae40: ; 11ae40
 	db   "どちらでも"
-	next "♂ォス"
+	next "♂オス"
 	next "♀メス"
 	db   "@"
 ; 11ae4e
@@ -6248,27 +6241,25 @@ Function11afd6: ; 11afd6
 ; 11afe8
 
 MenuDataHeader_11afe8: ; 11afe8
-	db $40 ; flags
-	db 12,  9 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 9, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 11aff0
 
 String_11aff0: ; 11aff0
-	db   "この じょうけんで"
+	db   "この　じょうけんで"
 	next "よろしいですか?@"
 ; 11b003
 
 String_11b003: ; 11b003
 	db   "こうかんを"
-	next "ちゅうししますか?@"
+	next "ちゅうししますか？@"
 ; 11b013
 
 MenuDataHeader_11b013: ; 11b013
-	db $40 ; flags
-	db  7, 14 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 1 ; default option
 ; 11b01b
@@ -6347,8 +6338,8 @@ Function11b03d: ; 11b03d
 	ret
 ; 11b07a
 
-.MaleString: db "ォスの "
-.FemaleString: db "メスの "
+.MaleString: db "オスの　"
+.FemaleString: db "メスの　"
 
 Function11b082: ; 11b082
 	call Function11b242
@@ -6818,7 +6809,7 @@ String_11b303: ; 11b303
 ; 11b308
 
 String_11b308: ; 11b308
-	db "     @"
+	db "　　　　　@"
 ; 11b30e
 
 String_11b30e: ; 11b30e
@@ -6930,7 +6921,7 @@ Function11b31b: ; 11b31b
 	db $39 ; 13
 
 Function11b397: ; 11b397
-	ld de, Sprites
+	ld de, Sprite01
 .loop
 	ld a, [hl]
 	cp $ff
@@ -6939,26 +6930,25 @@ Function11b397: ; 11b397
 	and $7
 	swap a
 	add [hl]
-	inc hl ; 1
-	ld [de], a
+	inc hl
+	ld [de], a ; y
 	inc de
 
-	ld a, [hli] ; 2
-	ld [de], a
+	ld a, [hli]
+	ld [de], a ; x
 	inc de
 
 	ld a, [bc]
 	inc bc
-	ld [de], a
+	ld [de], a ; tile id
 	inc de
-	ld a, $5 ; OBPal 5
-	ld [de], a
+	ld a, $5
+	ld [de], a ; attributes
 	inc de
 	jr .loop
 ; 11b3b6
 
-Function11b3b6: ; 11b3b6
-; unreferenced
+Unreferenced_Function11b3b6: ; 11b3b6
 .loop
 	ld a, [hl]
 	cp -1
@@ -6989,7 +6979,7 @@ Function11b3b6: ; 11b3b6
 ; 11b3d9
 
 Function11b3d9: ; 11b3d9
-	ld de, Sprites + 28 * 4
+	ld de, Sprite29
 	push de
 	ld a, [wc7d2]
 	dec a
@@ -7062,7 +7052,7 @@ Function11b3d9: ; 11b3d9
 	ret
 ; 11b444
 
-Function11b444: ; 11b444
+Special_Function11b444: ; 11b444
 ; special
 	call Mobile46_InitJumptable
 	call Mobile46_RunJumptable
@@ -7223,7 +7213,7 @@ Function11b483: ; 11b483
 	jr .loop8
 
 .okay4
-	ld a, $0 ; BANK(sPartyMail)
+	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld a, MAIL_STRUCT_LENGTH
 .loop9
@@ -7351,7 +7341,7 @@ Function11b5e7: ; 11b5e7
 	ret
 ; 11b5e8
 
-Function11b5e8: ; 11b5e8
+Special_Function11b5e8: ; 11b5e8
 	ld a, $0
 	call GetSRAMBank
 	ld hl, wRTC
@@ -7587,7 +7577,7 @@ Function11b6b4: ; 11b6b4
 	ret
 ; 11b7e5
 
-Function11b7e5: ; 11b7e5
+Special_Function11b7e5: ; 11b7e5
 	ld a, [$c60d] ; species
 	ld [wOTTrademonSpecies], a
 	ld [CurPartySpecies], a
@@ -7646,7 +7636,7 @@ Function11b7e5: ; 11b7e5
 	ret
 ; 11b879
 
-Function11b879: ; 11b879
+Special_Function11b879: ; 11b879
 	farcall BattleTower_CheckSaveFileExistsAndIsYours
 	ld a, [ScriptVar]
 	and a
@@ -7739,7 +7729,7 @@ Function11b879: ; 11b879
 	ret
 ; 11b920
 
-Function11b920: ; 11b920
+Special_Function11b920: ; 11b920
 	call Mobile46_InitJumptable
 	ld a, $5
 	call GetSRAMBank
@@ -7752,7 +7742,7 @@ Function11b920: ; 11b920
 	ret
 ; 11b93b
 
-Function11b93b: ; 11b93b
+Special_Function11b93b: ; 11b93b
 	ld a, $5
 	call GetSRAMBank
 	xor a
@@ -7849,13 +7839,13 @@ AddMobileMonToParty: ; 11b98f
 	ld l, a
 	ld a, [wMobileMonOTNamePointerBuffer + 1]
 	ld h, a
-	ld bc, PKMN_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
 
 	ld hl, PartyMonNicknames
-	ld bc, PKMN_NAME_LENGTH
+	ld bc, MON_NAME_LENGTH
 	ld a, [wMobileMonSpeciesBuffer]
 .loop4
 	add hl, bc
@@ -7868,7 +7858,7 @@ AddMobileMonToParty: ; 11b98f
 	ld l, a
 	ld a, [wMobileMonNicknamePointerBuffer + 1]
 	ld h, a
-	ld bc, PKMN_NAME_LENGTH - 1
+	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
@@ -7896,7 +7886,7 @@ AddMobileMonToParty: ; 11b98f
 	ret
 ; 11ba38
 
-Function11ba38: ; 11ba38
+Special_Function11ba38: ; 11ba38
 	farcall CheckCurPartyMonFainted
 	ret c
 	xor a

@@ -10,7 +10,7 @@ Mobile_PrintOpponentBattleMessage: ; 4ea0a
 	call AddNTimes
 	ld de, wMobileOpponentBattleMessage
 	ld bc, $c
-	ld a, $5 ; BANK(w5_MobileOpponentBattleMessages)
+	ld a, BANK(w5_MobileOpponentBattleMessages)
 	call FarCopyWRAM
 
 	ld a, [rSVBK]

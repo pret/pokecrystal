@@ -9,7 +9,7 @@ const_value set 2
 	const ROUTE42_POKE_BALL2
 	const ROUTE42_SUICUNE
 
-Route42_MapScriptHeader:
+Route42_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -31,9 +31,9 @@ Route42SuicuneScript:
 	applymovement ROUTE42_SUICUNE, MovementData_0x1a9356
 	disappear ROUTE42_SUICUNE
 	pause 10
-	setscene $0
+	setscene 0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	setmapscene ROUTE_36, $1
+	setmapscene ROUTE_36, 1
 	end
 
 TrainerFisherTully:
@@ -48,27 +48,27 @@ TrainerFisherTully:
 	checkflag ENGINE_TULLY_HAS_WATER_STONE
 	iftrue .HasWaterStone
 	checkcellnum PHONE_FISHER_TULLY
-	iftrue .NumberAcceptedM
+	iftrue .NumberAccepted
 	checkevent EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext FisherTullyAfterBattleText
 	buttonsound
 	setevent EVENT_TULLY_ASKED_FOR_PHONE_NUMBER
-	scall .AskNumber1M
+	scall .AskNumber1
 	jump .AskForNumber
 
 .AskedAlready:
-	scall .AskNumber2M
+	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_TULLY
-	if_equal $1, .PhoneFullM
-	if_equal $2, .NumberDeclinedM
-	trainertotext FISHER, TULLY1, $0
-	scall .RegisteredNumberM
-	jump .NumberAcceptedM
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	trainertotext FISHER, TULLY1, MEM_BUFFER_0
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
 .WantsBattle:
-	scall .RematchM
+	scall .Rematch
 	winlosstext FisherTullyBeatenText, 0
 	copybytetovar wTullyFightCount
 	if_equal 3, .Fight3
@@ -116,49 +116,49 @@ TrainerFisherTully:
 	end
 
 .HasWaterStone:
-	scall .GiftM
+	scall .Gift
 	verbosegiveitem WATER_STONE
 	iffalse .NoRoom
 	clearflag ENGINE_TULLY_HAS_WATER_STONE
 	setevent EVENT_TULLY_GAVE_WATER_STONE
-	jump .NumberAcceptedM
+	jump .NumberAccepted
 
 .NoRoom:
-	jump .PackFullM
+	jump .PackFull
 
-.AskNumber1M:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-.AskNumber2M:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-.RegisteredNumberM:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-.NumberAcceptedM:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-.NumberDeclinedM:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-.PhoneFullM:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-.RematchM:
+.Rematch:
 	jumpstd rematchm
 	end
 
-.GiftM:
+.Gift:
 	jumpstd giftm
 	end
 
-.PackFullM:
+.PackFull:
 	jumpstd packfullm
 	end
 
@@ -212,18 +212,17 @@ FruitTreeScript_0x1a9351:
 	fruittree FRUITTREE_ROUTE_42_3
 
 Route42HiddenMaxPotion:
-	dwb EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
-
+	hiddenitem EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
 
 MovementData_0x1a9356:
-	db $39 ; movement
+	set_sliding
 	fast_jump_step UP
 	fast_jump_step UP
 	fast_jump_step UP
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
 	fast_jump_step RIGHT
-	db $38 ; movement
+	remove_sliding
 	step_end
 
 FisherTullySeenText:
@@ -319,7 +318,7 @@ Route42Sign2Text:
 	line "MAHOGANY TOWN"
 	done
 
-Route42_MapEventHeader:
+Route42_MapEvents:
 	; filler
 	db 0, 0
 

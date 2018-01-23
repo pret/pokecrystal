@@ -5,7 +5,7 @@ const_value set 2
 	const TRAINERHOUSE1F_YOUNGSTER
 	const TRAINERHOUSE1F_GENTLEMAN
 
-TrainerHouse1F_MapScriptHeader:
+TrainerHouse1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -137,7 +137,7 @@ UnknownText_0x9b2c1:
 	line "illegible…"
 	done
 
-TrainerHouse1F_MapEventHeader:
+TrainerHouse1F_MapEvents:
 	; filler
 	db 0, 0
 

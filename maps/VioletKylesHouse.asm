@@ -2,7 +2,7 @@ const_value set 2
 	const VIOLETKYLESHOUSE_POKEFAN_M
 	const VIOLETKYLESHOUSE_KYLE
 
-VioletKylesHouse_MapScriptHeader:
+VioletKylesHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -32,7 +32,7 @@ VioletKylesHousePokefanMText:
 	line "disobey you."
 	done
 
-VioletKylesHouse_MapEventHeader:
+VioletKylesHouse_MapEvents:
 	; filler
 	db 0, 0
 

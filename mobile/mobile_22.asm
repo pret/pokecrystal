@@ -2,17 +2,17 @@ String_89116:
 	db "-----@"
 
 String_8911c: ; 8911c
-	db   "でんわばんごうが ただしく"   ; Phone number is not
-	next "はいって いません!@"         ; entered correctly!
+	db   "でんわばんごうが　ただしく" ; Phone number is not
+	next "はいって　いません！@"   ; entered correctly!
 ; 89135
 
 String_89135: ; 89135
-	db   "データが かわって いますが"  ; The data has changed.
-	next "かきかえないで やめますか?@" ; Quit anyway?
+	db   "データが　かわって　いますが"  ; The data has changed.
+	next "かきかえないで　やめますか？@" ; Quit anyway?
 ; 89153
 
 String_89153: ; 89153
-	db   "メッセージは ありません@"    ; No message
+	db   "メッセージは　ありません@"    ; No message
 ; 89160
 
 OpenSRAMBank4: ; 89160
@@ -277,15 +277,14 @@ Function89261: ; 89261
 ; 892a3
 
 MenuDataHeader_0x892a3: ; 0x892a3
-	db $40 ; flags
-	db 05, 10 ; start coords
-	db 09, 15 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 5, 15, 9
 	dw MenuData2_0x892ab
 	db 1 ; default option
 ; 0x892ab
 
 MenuData2_0x892ab: ; 0x892ab
-	db $c0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "はい@"
 	db "いいえ@"
@@ -557,13 +556,13 @@ INCBIN "gfx/unknown/08940b.2bpp"
 
 Function8942b: ; 8942b (22:542b)
 	ld de, vTiles0 tile $02
-	ld hl, MobileAdapterGFX + $7d0
-	ld bc, $80
+	ld hl, MobileAdapterGFX + $7d tiles
+	ld bc, 8 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ld de, vTiles0 tile $0a
-	ld hl, MobileAdapterGFX + $c60
-	ld bc, $40
+	ld hl, MobileAdapterGFX + $c6 tiles
+	ld bc, 4 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
@@ -572,7 +571,7 @@ Function89448: ; 89448 (22:5448)
 ; Clears the Sprites array
 	push af
 	ld hl, Sprites
-	ld d, $10 * 6
+	ld d, 24 * SPRITEOAMSTRUCT_LENGTH
 	xor a
 .loop
 	ld [hli], a
@@ -582,9 +581,9 @@ Function89448: ; 89448 (22:5448)
 	ret
 
 Function89455: ; 89455 (22:5455)
-	ld hl, MobileAdapterGFX + $7d0
+	ld hl, MobileAdapterGFX + $7d tiles
 	ld de, vTiles2 tile $0c
-	ld bc, $490
+	ld bc, $49 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
@@ -592,12 +591,12 @@ Function89455: ; 89455 (22:5455)
 Function89464: ; 89464
 	ld hl, MobileAdapterGFX
 	ld de, vTiles2
-	ld bc, $200
+	ld bc, $20 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
-	ld hl, MobileAdapterGFX + $660
+	ld hl, MobileAdapterGFX + $66 tiles
 	ld de, vTiles2 tile $20
-	ld bc, $170
+	ld bc, $17 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
@@ -1268,15 +1267,15 @@ Function897d5: ; 897d5
 
 
 Function89807: ; 89807 (22:5807)
-	ld hl, MobileAdapterGFX + $200
+	ld hl, MobileAdapterGFX + $20 tiles
 	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .asm_89814
-	ld hl, MobileAdapterGFX + $200 + $230
+	ld hl, MobileAdapterGFX + $43 tiles
 .asm_89814
 	call DisableLCD
 	ld de, vTiles2 tile $37
-	ld bc, $230
+	ld bc, $23 tiles
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	call EnableLCD
@@ -1556,7 +1555,7 @@ Function8999c: ; 8999c (22:599c)
 ; 899ac (22:59ac)
 
 String_899ac: ; 899ac
-	db "の めいし@"
+	db "の　めいし@"
 ; 899b2
 
 Function899b2: ; 899b2 (22:59b2)
@@ -1924,7 +1923,7 @@ Function89b97: ; 89b97 (22:5b97)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, Sprites
+	ld de, Sprite01
 .asm_89bb4
 	ld a, [hli]
 	cp $ff
@@ -1934,19 +1933,19 @@ Function89b97: ; 89b97 (22:5b97)
 .asm_89bbb
 	push hl
 	ld a, [hli]
-	ld [de], a
+	ld [de], a ; y
 	inc de
 	ld a, [hli]
 	add b
-	ld [de], a
+	ld [de], a ; x
 	inc de
-	ld a, $8
+	ld a, $08
 	add b
 	ld b, a
-	ld a, [hli]
+	ld a, [hli] ; tile id
 	ld [de], a
 	inc de
-	ld a, [hli]
+	ld a, [hli] ; attributes
 	ld [de], a
 	inc de
 	pop hl
@@ -1966,32 +1965,32 @@ Unknown_89bd8: ; 89bd8
 ; 89be0
 
 Unknown_89be0: ; 89be0
-	db $01, $12, $4e, $01, $00
-	db $01, $19, $4e, $01, $40
-	db $01, $12, $72, $01, $20
-	db $01, $19, $72, $01, $60
-	db $ff
+	db $01, $12, $4e, $01, 0
+	db $01, $19, $4e, $01, 0 | Y_FLIP
+	db $01, $12, $72, $01, 0 | X_FLIP
+	db $01, $19, $72, $01, 0 | X_FLIP | Y_FLIP
+	db -1 ; end
 
 Unknown_89bf5: ; 89bf5
-	db $01, $60, $16, $01, $00
-	db $01, $62, $16, $01, $40
-	db $01, $60, $92, $01, $20
-	db $01, $62, $92, $01, $60
-	db $ff
+	db $01, $60, $16, $01, 0
+	db $01, $62, $16, $01, 0 | Y_FLIP
+	db $01, $60, $92, $01, 0 | X_FLIP
+	db $01, $62, $92, $01, 0 | X_FLIP | Y_FLIP
+	db -1 ; end
 
 Unknown_89c0a: ; 89c0a
-	db $01, $78, $66, $01, $00
-	db $01, $78, $66, $01, $40
-	db $01, $78, $92, $01, $20
-	db $01, $78, $92, $01, $60
-	db $ff
+	db $01, $78, $66, $01, 0
+	db $01, $78, $66, $01, 0 | Y_FLIP
+	db $01, $78, $92, $01, 0 | X_FLIP
+	db $01, $78, $92, $01, 0 | X_FLIP | Y_FLIP
+	db -1 ; end
 
 Unknown_89c1f: ; 89c1f
-	db $01, $80, $66, $01, $00
-	db $01, $80, $66, $01, $40
-	db $01, $80, $92, $01, $20
-	db $01, $80, $92, $01, $60
-	db $ff
+	db $01, $80, $66, $01, 0
+	db $01, $80, $66, $01, 0 | Y_FLIP
+	db $01, $80, $92, $01, 0 | X_FLIP
+	db $01, $80, $92, $01, 0 | X_FLIP | Y_FLIP
+	db -1 ; end
 ; 89c34
 
 Function89c34: ; 89c34 (22:5c34)
@@ -2014,10 +2013,10 @@ Function89c44: ; 89c44 (22:5c44)
 	pop de
 	ret
 .asm_89c4f
-	ld hl, Sprites
+	ld hl, Sprite01
 	push de
 	ld a, b
-	ld [hli], a
+	ld [hli], a ; y
 	ld d, $8
 	ld a, e
 	and a
@@ -2029,11 +2028,11 @@ Function89c44: ; 89c44 (22:5c44)
 	jr nz, .asm_89c5c
 .asm_89c60
 	pop de
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, d
-	ld [hli], a
+	ld [hli], a ; tile id
 	xor a
-	ld [hli], a
+	ld [hli], a ; attributes
 	ret
 
 Function89c67: ; 89c67 (22:5c67)
@@ -2124,20 +2123,20 @@ Function89cdf: ; 89cdf (22:5cdf)
 	ld c, a
 	ld e, $2
 	ld a, $2
-	ld hl, Sprites
+	ld hl, Sprite01
 .asm_89cee
 	push af
 	push bc
 	ld d, $4
 .asm_89cf2
 	ld a, b
-	ld [hli], a
+	ld [hli], a ; y
 	ld a, c
-	ld [hli], a
+	ld [hli], a ; x
 	ld a, e
-	ld [hli], a
+	ld [hli], a ; tile id
 	ld a, $1
-	ld [hli], a
+	ld [hli], a ; attributes
 	ld a, $8
 	add c
 	ld c, a
@@ -2832,9 +2831,8 @@ Function8a116: ; 8a116 (22:6116)
 ; 8a176 (22:6176)
 
 MenuDataHeader_0x8a176: ; 0x8a176
-	db $40 ; flags
-	db 00, 14 ; start coords
-	db 06, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
 ; 8a17b
 
 Function8a17b: ; 8a17b (22:617b)
@@ -2855,15 +2853,14 @@ Function8a17b: ; 8a17b (22:617b)
 ; 8a19a (22:619a)
 
 MenuDataHeader_0x8a19a: ; 0x8a19a
-	db $40 ; flags
-	db 00, 14 ; start coords
-	db 06, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
 	dw MenuData2_0x8a1a2
 	db 1 ; default option
 ; 0x8a1a2
 
 MenuData2_0x8a1a2: ; 0x8a1a2
-	db $e0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "ひらく@"
 	db "すてる@"
@@ -2886,15 +2883,15 @@ Function8a1b0: ; 8a1b0
 ; 8a1cc
 
 Strings_8a1cc: ; 8a1cc
-	db   "めいし", $25, "せいりと へんしゅうを"
+	db   "めいし<NO>せいりと　へんしゅうを"
 	next "おこないます"
 	db   "@"
 
-	db   "めいしフ,ルダー", $25, "めいしと"
-	next "あんしょうばんごう", $1f, "けします"
+	db   "めいしフォルダー<NO>めいしと"
+	next "あんしょうばんごう<WO>けします"
 	db   "@"
 
-	db   "まえ", $25, "がめん", $1d, "もどります"
+	db   "まえ<NO>がめん<NI>もどります"
 	db   "@"
 ; 8a20d
 
@@ -3015,9 +3012,8 @@ Function8a2aa: ; 8a2aa (22:62aa)
 ; 8a2ef (22:62ef)
 
 MenuDataHeader_0x8a2ef: ; 0x8a2ef
-	db $40 ; flags
-	db 12, 00 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 ; 8a2f4
 
 UnknownText_0x8a2f4: ; 0x8a2f4
@@ -3177,35 +3173,33 @@ Unknown_8a408: db 1, 2, -1
 Unknown_8a40b: db 1, 2, 3, -1
 
 MenuDataHeader_0x8a40f: ; 0x8a40f
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 10 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 10, TEXTBOX_Y - 1
 	dw MenuData2_0x8a417
 	db 1 ; default option
 ; 0x8a417
 
 MenuData2_0x8a417: ; 0x8a417
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
 	db "めいしりスト@"
-	db "じぶんの めいし@"
+	db "じぶんの　めいし@"
 	db "めいしこうかん@"
 	db "やめる@"
 ; 0x8a435
 
 MenuDataHeader_0x8a435: ; 0x8a435
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 09, 10 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 10, 9
 	dw MenuData2_0x8a43d
 	db 1 ; default option
 ; 0x8a43d
 
 MenuData2_0x8a43d: ; 0x8a43d
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "めいしりスト@"
-	db "じぶんの めいし@"
+	db "じぶんの　めいし@"
 	db "やめる@"
 ; 0x8a453
 
@@ -3229,18 +3223,18 @@ Function8a453: ; 8a453 (22:6453)
 ; 8a476 (22:6476)
 
 String_8a476: ; 8a476
-	db   "まえ", $25, "がめん", $1d, "もどります@"
+	db   "まえ<NO>がめん<NI>もどります@"
 ; 8a483
 
 Strings_8a483: ; 8a483
-	db   "おともだち", $25, "めいしは"
-	next "ここ", $1d, "いれておきます@"
+	db   "おともだち<NO>めいしは"
+	next "ここ<NI>いれておきます@"
 
-	db   "でんわばんごう", $1f, "いれると"
-	next "めいしこうかん", $4a, "できます@"
+	db   "でんわばんごう<WO>いれると"
+	next "めいしこうかん<GA>できます@"
 
-	db   "ともだちと じぶん", $25, "めいしを"
-	next "せきがいせんで こうかん します@"
+	db   "ともだちと　じぶん<NO>めいしを"
+	next "せきがいせんで　こうかん　します@"
 ; 8a4d3
 
 Function8a4d3: ; 8a4d3 (22:64d3)
@@ -3301,7 +3295,7 @@ asm_8a529: ; 8a529 (22:6529)
 	ld [hli], a
 	ld hl, Sprites
 	xor a
-	ld bc, $20
+	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ret
 
@@ -3752,7 +3746,7 @@ Function8a818: ; 8a818 (22:6818)
 ; 8a868 (22:6868)
 
 .string_8a868
-	db "めいし", $1f, "かきかえ まし", $22, "@"
+	db "めいし<WO>かきかえ　まし<TA!>@"
 
 .asm_8a875
 	ld de, String_8a88b
@@ -3769,8 +3763,8 @@ Function8a818: ; 8a818 (22:6818)
 ; 8a88b (22:688b)
 
 String_8a88b: ; 8a88b
-	db   "おともだち", $25, "なまえが"
-	next "かかれて いません!@"
+	db   "おともだち<NO>なまえが"
+	next "かかれて　いません！@"
 ; 8a8a1
 
 Function8a8a1: ; 8a8a1 (22:68a1)
@@ -3827,11 +3821,11 @@ Function8a8c3: ; 8a8c3 (22:68c3)
 ; 8a919 (22:6919)
 
 String_8a919: ; 8a919
-	db "このデータ", $1f, "けしますか?@"
+	db "このデータ<WO>けしますか？@"
 ; 8a926
 
 String_8a926: ; 8a926
-	db "データ", $1f, "けしまし", $22, "@"
+	db "データ<WO>けしまし<TA!>@"
 ; 8a930
 
 Function8a930: ; 8a930 (22:6930)
@@ -3920,9 +3914,8 @@ Jumptable_8a9c5: ; 8a9c5 (22:69c5)
 ; 8a9c9 (22:69c9)
 
 MenuDataHeader_0x8a9c9: ; 0x8a9c9
-	db $40 ; flags
-	db 04, 11 ; start coords
-	db 11, 18 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 4, 18, TEXTBOX_Y - 1
 ; 8a9ce
 
 Function8a9ce: ; 8a9ce (22:69ce)
@@ -3950,15 +3943,14 @@ Function8a9ce: ; 8a9ce (22:69ce)
 ; 8a9f2 (22:69f2)
 
 MenuDataHeader_0x8a9f2: ; 0x8a9f2
-	db $40 ; flags
-	db 04, 11 ; start coords
-	db 11, 18 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 11, 4, 18, TEXTBOX_Y - 1
 	dw MenuData2_0x8a9fa
 	db 1 ; default option
 ; 0x8a9fa
 
 MenuData2_0x8a9fa: ; 0x8a9fa
-	db $a0 ; flags
+	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "へんしゅう@"
 	db "みる@"
@@ -4078,7 +4070,7 @@ Function8aab6: ; 8aab6 (22:6ab6)
 ; 8aaf0 (22:6af0)
 
 String_8aaf0: ; 8aaf0
-	db "あたらしい めいし<PKMN>できまし<LNBRK>@"
+	db "あたらしい　めいし<PKMN>できまし<LNBRK>@"
 ; 8ab00
 
 Function8ab00: ; 8ab00
@@ -4234,8 +4226,8 @@ Function8aba9: ; 8aba9
 ; 8ac3b
 
 String_8ac3b: ; 8ac3b
-	db   "こ", $25, "ともだち", $1d, "でんわを"
-	next "かけますか?@"
+	db   "こ<NO>ともだち<NI>でんわを"
+	next "かけますか？@"
 ; 8ac4e
 
 Function8ac4e: ; 8ac4e
@@ -4412,13 +4404,13 @@ Function8ad0b: ; 8ad0b
 ; 8ad89
 
 String_8ad89: ; 8ad89
-	db   "こ", $25, "めいし", $1f, "けして"
-	next "いれかえますか?@"
+	db   "こ<NO>めいし<WO>けして"
+	next "いれかえますか？@"
 ; 8ad9c
 
 String_8ad9c: ; 8ad9c
-	db   "おともだち", $25, "なまえを"
-	next "のこして おきますか?@"
+	db   "おともだち<NO>なまえを"
+	next "のこして　おきますか？@"
 ; 8adb3
 
 Function8adb3: ; 8adb3

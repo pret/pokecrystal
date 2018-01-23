@@ -1,7 +1,7 @@
 const_value set 2
 	const VERMILIONHOUSEFISHINGSPEECHHOUSE_FISHING_GURU
 
-VermilionHouseFishingSpeechHouse_MapScriptHeader:
+VermilionHouseFishingSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -50,7 +50,7 @@ FishingDudesHousePhotoText:
 	line "great time…"
 	done
 
-VermilionHouseFishingSpeechHouse_MapEventHeader:
+VermilionHouseFishingSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

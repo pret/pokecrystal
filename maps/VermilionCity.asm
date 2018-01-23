@@ -6,13 +6,13 @@ const_value set 2
 	const VERMILIONCITY_BIG_SNORLAX
 	const VERMILIONCITY_POKEFAN_M
 
-VermilionCity_MapScriptHeader:
+VermilionCity_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 1
-	dbw MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
 	setflag ENGINE_FLYPOINT_VERMILION
@@ -42,7 +42,7 @@ VermilionCitySuperNerdScript:
 
 VermilionSnorlax:
 	opentext
-	special SpecialSnorlaxAwake
+	special Special_SnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
 	writetext UnknownText_0x1aab64
 	waitbutton
@@ -68,7 +68,7 @@ VermilionGymBadgeGuy:
 	checkevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	iftrue .AlreadyGotItem
 	checkcode VAR_BADGES
-	if_equal 16, .AllBadges
+	if_equal NUM_BADGES, .AllBadges
 	if_greater_than 13, .MostBadges
 	if_greater_than 9, .SomeBadges
 	writetext UnknownText_0x1aabc8
@@ -123,7 +123,7 @@ VermilionCityMartSign:
 	jumpstd martsign
 
 VermilionCityHiddenFullHeal:
-	dwb EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
 
 VermilionCityTeacherText:
 	text "VERMILION PORT is"
@@ -267,7 +267,7 @@ VermilionCityPortSignText:
 	line "ENTRANCE"
 	done
 
-VermilionCity_MapEventHeader:
+VermilionCity_MapEvents:
 	; filler
 	db 0, 0
 

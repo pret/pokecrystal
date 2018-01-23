@@ -291,7 +291,7 @@ AI_Items: ; 39196
 	dbw X_DEFEND,     .XDefend
 	dbw X_SPEED,      .XSpeed
 	dbw X_SPECIAL,    .XSpecial
-	db $ff
+	db -1 ; end
 ; 381be
 
 .FullHeal: ; 381be

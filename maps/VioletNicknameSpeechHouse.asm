@@ -3,7 +3,7 @@ const_value set 2
 	const VIOLETNICKNAMESPEECHHOUSE_LASS
 	const VIOLETNICKNAMESPEECHHOUSE_BIRD
 
-VioletNicknameSpeechHouse_MapScriptHeader:
+VioletNicknameSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -44,7 +44,7 @@ UnknownText_0x6947c:
 	text "STRAWBERRY: Pijji!"
 	done
 
-VioletNicknameSpeechHouse_MapEventHeader:
+VioletNicknameSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

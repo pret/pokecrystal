@@ -3,7 +3,7 @@ const_value set 2
 	const GOLDENRODHAPPINESSRATER_POKEFAN_M
 	const GOLDENRODHAPPINESSRATER_TWIN
 
-GoldenrodHappinessRater_MapScriptHeader:
+GoldenrodHappinessRater_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -13,14 +13,14 @@ GoldenrodHappinessRater_MapScriptHeader:
 TeacherScript_0x54953:
 	faceplayer
 	opentext
-	special GetFirstPokemonHappiness
+	special Special_GetFirstPokemonHappiness
 	writetext UnknownText_0x549a3
 	buttonsound
-	if_greater_than $f9, UnknownScript_0x54973
-	if_greater_than $c7, UnknownScript_0x54979
-	if_greater_than $95, UnknownScript_0x5497f
-	if_greater_than $63, UnknownScript_0x54985
-	if_greater_than $31, UnknownScript_0x5498b
+	if_greater_than 250 - 1, UnknownScript_0x54973
+	if_greater_than 200 - 1, UnknownScript_0x54979
+	if_greater_than 150 - 1, UnknownScript_0x5497f
+	if_greater_than 100 - 1, UnknownScript_0x54985
+	if_greater_than  50 - 1, UnknownScript_0x5498b
 	jump UnknownScript_0x54991
 
 UnknownScript_0x54973:
@@ -136,7 +136,7 @@ GoldenrodHappinessRaterTwinText:
 	cont "acts really glad!"
 	done
 
-GoldenrodHappinessRater_MapEventHeader:
+GoldenrodHappinessRater_MapEvents:
 	; filler
 	db 0, 0
 

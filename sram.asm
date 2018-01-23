@@ -83,7 +83,7 @@ sBackupCheckValue1:: db ; loaded with SAVE_CHECK_VALUE_1, used to check save cor
 
 sBackupGameData:: ; b209
 sBackupPlayerData::  ds wPlayerDataEnd - wPlayerData
-sBackupMapData::     ds wMapDataEnd - wMapData
+sBackupCurrMapData:: ds wCurrMapDataEnd - wCurrMapData
 sBackupPokemonData:: ds wPokemonDataEnd - wPokemonData
 sBackupGameDataEnd::
 
@@ -106,7 +106,7 @@ sCheckValue1:: db ; loaded with SAVE_CHECK_VALUE_1, used to check save corruptio
 
 sGameData:: ; a009
 sPlayerData::  ds wPlayerDataEnd - wPlayerData
-sMapData::     ds wMapDataEnd - wMapData
+sCurrMapData:: ds wCurrMapDataEnd - wCurrMapData
 sPokemonData:: ds wPokemonDataEnd - wPokemonData
 sGameDataEnd::
 
@@ -187,7 +187,8 @@ SECTION "SRAM Crystal Data", SRAM
 sMobileEventIndex:: db ; be3c
 
 sCrystalData:: ds wCrystalDataEnd - wCrystalData
-sMobileEventIndexBackup:: db
+
+sMobileEventIndexBackup:: db ; be44
 
 
 SECTION "SRAM Battle Tower", SRAM
@@ -202,7 +203,7 @@ sBattleTower:: ; be46
 sNrOfBeatenBattleTowerTrainers:: db
 sBTChoiceOfLevelGroup:: db
 ; Battle Tower trainers are saved here, so nobody appears more than once
-sBTTrainers:: ds BATTLETOWER_NROFTRAINERS ; sbe48
+sBTTrainers:: ds BATTLETOWER_STREAK_LENGTH ; sbe48
 sBattleTowerSaveFileFlags:: db
 sBattleTowerReward:: db
 
@@ -241,6 +242,7 @@ SECTION "Boxes 8-14", SRAM
 SECTION "SRAM Mobile", SRAM, BANK [5]
 
 	ds 1 ; former location for sMobileEventIndex, moved to 1:BE3C in English
+
 sTrainerRankings:: ; a001
 sTrainerRankingGameTimeHOF:: ds 4
 sTrainerRankingStepCountHOF:: ds 4
@@ -287,10 +289,11 @@ sTrainerRankingBugContestScore:: ds 2
 sTrainerRankingsChecksum:: ds 2
 sTrainerRankingsEnd:: ; a083
 
-ds 1 ; Former location for sMobileEventIndexBackup, moved to 1:BE44 in English
+	ds 1 ; Former location for sMobileEventIndexBackup, moved to 1:BE44 in English
+
 sTrainerRankingsBackup:: ds sTrainerRankingsEnd - sTrainerRankings
 
-ds $945
+	ds $945
 ; aa4b
 
 sMobileLoginPassword:: ds MOBILE_LOGIN_PASSWORD_LENGTH

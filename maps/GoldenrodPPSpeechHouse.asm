@@ -2,7 +2,7 @@ const_value set 2
 	const GOLDENRODPPSPEECHHOUSE_FISHER
 	const GOLDENRODPPSPEECHHOUSE_LASS
 
-GoldenrodPPSpeechHouse_MapScriptHeader:
+GoldenrodPPSpeechHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -51,7 +51,7 @@ GoldenrodPPSpeechHouseLassText:
 	cont "an item."
 	done
 
-GoldenrodPPSpeechHouse_MapEventHeader:
+GoldenrodPPSpeechHouse_MapEvents:
 	; filler
 	db 0, 0
 

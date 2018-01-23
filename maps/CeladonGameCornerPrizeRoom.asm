@@ -2,7 +2,7 @@ const_value set 2
 	const CELADONGAMECORNERPRIZEROOM_GENTLEMAN
 	const CELADONGAMECORNERPRIZEROOM_PHARMACIST
 
-CeladonGameCornerPrizeRoom_MapScriptHeader:
+CeladonGameCornerPrizeRoom_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -15,7 +15,7 @@ CeladonGameCornerPrizeRoomGentlemanScript:
 CeladonGameCornerPrizeRoomPharmacistScript:
 	jumptextfaceplayer CeladonGameCornerPrizeRoomPharmacistText
 
-GoldenrodGameCornerTMVendor:
+CeladonGameCornerPrizeRoomTMVendor:
 	faceplayer
 	opentext
 	writetext CeladonPrizeRoom_PrizeVendorIntroText
@@ -28,15 +28,15 @@ CeladonPrizeRoom_tmcounterloop:
 	loadmenudata CeladonPrizeRoom_TMMenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .doubleteam
-	if_equal $2, .psychic
-	if_equal $3, .hyperbeam
+	if_equal 1, .doubleteam
+	if_equal 2, .psychic
+	if_equal 3, .hyperbeam
 	jump CeladonPrizeRoom_cancel
 
 .doubleteam
 	checkcoins 1500
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_DOUBLE_TEAM, $0
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	itemtotext TM_DOUBLE_TEAM, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	giveitem TM_DOUBLE_TEAM
@@ -46,8 +46,8 @@ CeladonPrizeRoom_tmcounterloop:
 
 .psychic
 	checkcoins 3500
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_PSYCHIC_M, $0
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	itemtotext TM_PSYCHIC_M, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	giveitem TM_PSYCHIC_M
@@ -57,8 +57,8 @@ CeladonPrizeRoom_tmcounterloop:
 
 .hyperbeam
 	checkcoins 7500
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
-	itemtotext TM_HYPER_BEAM, $0
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	itemtotext TM_HYPER_BEAM, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	giveitem TM_HYPER_BEAM
@@ -102,24 +102,21 @@ CeladonPrizeRoom_NoCoinCase:
 	closetext
 	end
 
-
 CeladonPrizeRoom_TMMenuDataHeader:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 15 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 15, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "TM32    1500@"
 	db "TM29    3500@"
 	db "TM15    7500@"
 	db "CANCEL@"
 
-
-GoldenrodGameCornerPokemonVendor:
+CeladonGameCornerPrizeRoomPokemonVendor:
 	faceplayer
 	opentext
 	writetext CeladonPrizeRoom_PrizeVendorIntroText
@@ -132,17 +129,17 @@ GoldenrodGameCornerPokemonVendor:
 	loadmenudata .MenuDataHeader
 	verticalmenu
 	closewindow
-	if_equal $1, .pikachu
-	if_equal $2, .porygon
-	if_equal $3, .larvitar
+	if_equal 1, .pikachu
+	if_equal 2, .porygon
+	if_equal 3, .larvitar
 	jump CeladonPrizeRoom_cancel
 
 .pikachu
 	checkcoins 2222
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, CeladonPrizeRoom_notenoughroom
-	pokenamemem PIKACHU, $0
+	if_equal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
+	pokenamemem PIKACHU, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	waitsfx
@@ -157,10 +154,10 @@ GoldenrodGameCornerPokemonVendor:
 
 .porygon
 	checkcoins 5555
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, CeladonPrizeRoom_notenoughroom
-	pokenamemem PORYGON, $0
+	if_equal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
+	pokenamemem PORYGON, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	waitsfx
@@ -175,10 +172,10 @@ GoldenrodGameCornerPokemonVendor:
 
 .larvitar
 	checkcoins 8888
-	if_equal $2, CeladonPrizeRoom_notenoughcoins
+	if_equal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	checkcode VAR_PARTYCOUNT
-	if_equal $6, CeladonPrizeRoom_notenoughroom
-	pokenamemem LARVITAR, $0
+	if_equal PARTY_LENGTH, CeladonPrizeRoom_notenoughroom
+	pokenamemem LARVITAR, MEM_BUFFER_0
 	scall CeladonPrizeRoom_askbuy
 	iffalse CeladonPrizeRoom_cancel
 	waitsfx
@@ -191,22 +188,19 @@ GoldenrodGameCornerPokemonVendor:
 	takecoins 8888
 	jump .loop
 
-
 .MenuDataHeader:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 17 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, 17, TEXTBOX_Y - 1
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
-	db $80 ; flags
+	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "PIKACHU    2222@"
 	db "PORYGON    5555@"
 	db "LARVITAR   8888@"
 	db "CANCEL@"
-
 
 CeladonGameCornerPrizeRoomGentlemanText:
 	text "I wanted PORYGON,"
@@ -269,7 +263,7 @@ CeladonPrizeRoom_NoCoinCaseText:
 	line "a COIN CASE."
 	done
 
-CeladonGameCornerPrizeRoom_MapEventHeader:
+CeladonGameCornerPrizeRoom_MapEvents:
 	; filler
 	db 0, 0
 
@@ -283,8 +277,8 @@ CeladonGameCornerPrizeRoom_MapEventHeader:
 
 .BGEvents:
 	db 2
-	bg_event 2, 1, BGEVENT_READ, GoldenrodGameCornerTMVendor
-	bg_event 4, 1, BGEVENT_READ, GoldenrodGameCornerPokemonVendor
+	bg_event 2, 1, BGEVENT_READ, CeladonGameCornerPrizeRoomTMVendor
+	bg_event 4, 1, BGEVENT_READ, CeladonGameCornerPrizeRoomPokemonVendor
 
 .ObjectEvents:
 	db 2

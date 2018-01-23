@@ -3,7 +3,7 @@ const_value set 2
 	const CERULEANPOKECENTER1F_SUPER_NERD
 	const CERULEANPOKECENTER1F_GYM_GUY
 
-CeruleanPokecenter1F_MapScriptHeader:
+CeruleanPokecenter1F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -14,7 +14,7 @@ NurseScript_0x18820f:
 	jumpstd pokecenternurse
 
 SuperNerdScript_0x188212:
-	special Mobile_DummyReturnFalse
+	special Special_Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x188221
 
@@ -62,7 +62,7 @@ CeruleanPokecenter1FGymGuyText:
 	line "JOHTO accessible."
 	done
 
-CeruleanPokecenter1F_MapEventHeader:
+CeruleanPokecenter1F_MapEvents:
 	; filler
 	db 0, 0
 
