@@ -1,39 +1,4 @@
-MonMenuOptionStrings: ; 24caf
-	db "STATS@"
-	db "SWITCH@"
-	db "ITEM@"
-	db "CANCEL@"
-	db "MOVE@"
-	db "MAIL@"
-	db "ERROR!@"
-; 24cd9
-
-MonMenuOptions: ; 24cd9
-; moves
-	db MONMENU_FIELD_MOVE, MONMENU_CUT,        CUT
-	db MONMENU_FIELD_MOVE, MONMENU_FLY,        FLY
-	db MONMENU_FIELD_MOVE, MONMENU_SURF,       SURF
-	db MONMENU_FIELD_MOVE, MONMENU_STRENGTH,   STRENGTH
-	db MONMENU_FIELD_MOVE, MONMENU_FLASH,      FLASH
-	db MONMENU_FIELD_MOVE, MONMENU_WATERFALL,  WATERFALL
-	db MONMENU_FIELD_MOVE, MONMENU_WHIRLPOOL,  WHIRLPOOL
-	db MONMENU_FIELD_MOVE, MONMENU_DIG,        DIG
-	db MONMENU_FIELD_MOVE, MONMENU_TELEPORT,   TELEPORT
-	db MONMENU_FIELD_MOVE, MONMENU_SOFTBOILED, SOFTBOILED
-	db MONMENU_FIELD_MOVE, MONMENU_HEADBUTT,   HEADBUTT
-	db MONMENU_FIELD_MOVE, MONMENU_ROCKSMASH,  ROCK_SMASH
-	db MONMENU_FIELD_MOVE, MONMENU_MILKDRINK,  MILK_DRINK
-	db MONMENU_FIELD_MOVE, MONMENU_SWEETSCENT, SWEET_SCENT
-; options
-	db MONMENU_MENUOPTION, MONMENU_STATS,      1 ; STATS
-	db MONMENU_MENUOPTION, MONMENU_SWITCH,     2 ; SWITCH
-	db MONMENU_MENUOPTION, MONMENU_ITEM,       3 ; ITEM
-	db MONMENU_MENUOPTION, MONMENU_CANCEL,     4 ; CANCEL
-	db MONMENU_MENUOPTION, MONMENU_MOVE,       5 ; MOVE
-	db MONMENU_MENUOPTION, MONMENU_MAIL,       6 ; MAIL
-	db MONMENU_MENUOPTION, MONMENU_ERROR,      7 ; ERROR!
-	db -1
-; 24d19
+INCLUDE "data/mon_menu.asm"
 
 MonSubmenu: ; 24d19
 	xor a
@@ -95,7 +60,7 @@ MonMenuLoop: ; 24d59
 	jr .loop
 
 .cancel
-	ld a, MONMENU_CANCEL ; CANCEL
+	ld a, MONMENUITEM_CANCEL
 	ret
 
 .select
@@ -111,7 +76,7 @@ MonMenuLoop: ; 24d59
 
 PopulateMonMenu: ; 24d91
 	call MenuBoxCoord2Tile
-	ld bc, $2a ; 42
+	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
 	ld de, Buffer2
 .loop
@@ -124,7 +89,7 @@ PopulateMonMenu: ; 24d91
 	call GetMonMenuString
 	pop hl
 	call PlaceString
-	ld bc, $28 ; 40
+	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	pop de
 	jr .loop
@@ -136,7 +101,7 @@ GetMonMenuString: ; 24db0
 	call IsInArray
 	dec hl
 	ld a, [hli]
-	cp 1
+	cp MONMENU_MENUOPTION
 	jr z, .NotMove
 	inc hl
 	ld a, [hl]
@@ -188,11 +153,11 @@ GetMonSubmenuItems: ; 24dd4
 	jr nz, .loop
 
 .skip_moves
-	ld a, MONMENU_STATS
+	ld a, MONMENUITEM_STATS
 	call AddMonMenuItem
-	ld a, MONMENU_SWITCH
+	ld a, MONMENUITEM_SWITCH
 	call AddMonMenuItem
-	ld a, MONMENU_MOVE
+	ld a, MONMENUITEM_MOVE
 	call AddMonMenuItem
 	ld a, [wLinkMode]
 	and a
@@ -203,9 +168,9 @@ GetMonSubmenuItems: ; 24dd4
 	ld d, [hl]
 	farcall ItemIsMail
 	pop hl
-	ld a, MONMENU_MAIL
+	ld a, MONMENUITEM_MAIL
 	jr c, .ok
-	ld a, MONMENU_ITEM
+	ld a, MONMENUITEM_ITEM
 
 .ok
 	call AddMonMenuItem
@@ -214,7 +179,7 @@ GetMonSubmenuItems: ; 24dd4
 	ld a, [Buffer1]
 	cp NUM_MONMENU_ITEMS
 	jr z, .ok2
-	ld a, MONMENU_CANCEL
+	ld a, MONMENUITEM_CANCEL
 	call AddMonMenuItem
 
 .ok2
@@ -222,11 +187,11 @@ GetMonSubmenuItems: ; 24dd4
 	ret
 
 .egg
-	ld a, MONMENU_STATS
+	ld a, MONMENUITEM_STATS
 	call AddMonMenuItem
-	ld a, MONMENU_SWITCH
+	ld a, MONMENUITEM_SWITCH
 	call AddMonMenuItem
-	ld a, MONMENU_CANCEL
+	ld a, MONMENUITEM_CANCEL
 	call AddMonMenuItem
 	call TerminateMonSubmenu
 	ret
@@ -265,7 +230,7 @@ ResetMonSubmenu: ; 24e68
 TerminateMonSubmenu: ; 24e76
 	ld a, [Buffer1]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, Buffer2
 	add hl, de
 	ld [hl], -1
@@ -280,7 +245,7 @@ AddMonMenuItem: ; 24e83
 	ld e, a
 	inc a
 	ld [Buffer1], a
-	ld d, $0
+	ld d, 0
 	ld hl, Buffer2
 	add hl, de
 	pop af

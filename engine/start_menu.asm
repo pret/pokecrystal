@@ -729,26 +729,26 @@ PokemonActionSubmenu: ; 12a88
 	ret
 
 .Actions:
-	dbw MONMENU_CUT,        MonMenu_Cut
-	dbw MONMENU_FLY,        MonMenu_Fly
-	dbw MONMENU_SURF,       MonMenu_Surf
-	dbw MONMENU_STRENGTH,   MonMenu_Strength
-	dbw MONMENU_FLASH,      MonMenu_Flash
-	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool
-	dbw MONMENU_DIG,        MonMenu_Dig
-	dbw MONMENU_TELEPORT,   MonMenu_Teleport
-	dbw MONMENU_SOFTBOILED, MonMenu_Softboiled_MilkDrink
-	dbw MONMENU_MILKDRINK,  MonMenu_Softboiled_MilkDrink
-	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt
-	dbw MONMENU_WATERFALL,  MonMenu_Waterfall
-	dbw MONMENU_ROCKSMASH,  MonMenu_RockSmash
-	dbw MONMENU_SWEETSCENT, MonMenu_SweetScent
-	dbw MONMENU_STATS,      OpenPartyStats
-	dbw MONMENU_SWITCH,     SwitchPartyMons
-	dbw MONMENU_ITEM,       GiveTakePartyMonItem
-	dbw MONMENU_CANCEL,     CancelPokemonAction
-	dbw MONMENU_MOVE,       ManagePokemonMoves
-	dbw MONMENU_MAIL,       MonMailAction
+	dbw MONMENUITEM_CUT,        MonMenu_Cut
+	dbw MONMENUITEM_FLY,        MonMenu_Fly
+	dbw MONMENUITEM_SURF,       MonMenu_Surf
+	dbw MONMENUITEM_STRENGTH,   MonMenu_Strength
+	dbw MONMENUITEM_FLASH,      MonMenu_Flash
+	dbw MONMENUITEM_WHIRLPOOL,  MonMenu_Whirlpool
+	dbw MONMENUITEM_DIG,        MonMenu_Dig
+	dbw MONMENUITEM_TELEPORT,   MonMenu_Teleport
+	dbw MONMENUITEM_SOFTBOILED, MonMenu_Softboiled_MilkDrink
+	dbw MONMENUITEM_MILKDRINK,  MonMenu_Softboiled_MilkDrink
+	dbw MONMENUITEM_HEADBUTT,   MonMenu_Headbutt
+	dbw MONMENUITEM_WATERFALL,  MonMenu_Waterfall
+	dbw MONMENUITEM_ROCKSMASH,  MonMenu_RockSmash
+	dbw MONMENUITEM_SWEETSCENT, MonMenu_SweetScent
+	dbw MONMENUITEM_STATS,      OpenPartyStats
+	dbw MONMENUITEM_SWITCH,     SwitchPartyMons
+	dbw MONMENUITEM_ITEM,       GiveTakePartyMonItem
+	dbw MONMENUITEM_CANCEL,     CancelPokemonAction
+	dbw MONMENUITEM_MOVE,       ManagePokemonMoves
+	dbw MONMENUITEM_MAIL,       MonMailAction
 ; 12aec
 
 

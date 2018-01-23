@@ -31,3 +31,37 @@
 	shift_const SCROLLINGMENU_ENABLE_FUNCTION3
 	shift_const SCROLLINGMENU_ENABLE_START
 	shift_const SCROLLINGMENU_ENABLE_SELECT
+
+
+; MonMenuOptions indexes (see data/mon_menu.asm)
+; used by PokemonActionSubmenu (see engine/start_menu.asm)
+const_value set 1
+; moves
+	const MONMENUITEM_CUT        ; 1
+	const MONMENUITEM_FLY        ; 2
+	const MONMENUITEM_SURF       ; 3
+	const MONMENUITEM_STRENGTH   ; 4
+	const MONMENUITEM_WATERFALL  ; 5
+	const MONMENUITEM_FLASH      ; 6
+	const MONMENUITEM_WHIRLPOOL  ; 7
+	const MONMENUITEM_DIG        ; 8
+	const MONMENUITEM_TELEPORT   ; 9
+	const MONMENUITEM_SOFTBOILED ; 10
+	const MONMENUITEM_HEADBUTT   ; 11
+	const MONMENUITEM_ROCKSMASH  ; 12
+	const MONMENUITEM_MILKDRINK  ; 13
+	const MONMENUITEM_SWEETSCENT ; 14
+; options
+	const MONMENUITEM_STATS      ; 15
+	const MONMENUITEM_SWITCH     ; 16
+	const MONMENUITEM_ITEM       ; 17
+	const MONMENUITEM_CANCEL     ; 18
+	const MONMENUITEM_MOVE       ; 19
+	const MONMENUITEM_MAIL       ; 20
+	const MONMENUITEM_ERROR      ; 21
+
+; MonMenuOptions categories
+MONMENU_FIELD_MOVE EQU 0
+MONMENU_MENUOPTION EQU 1
+
+NUM_MONMENU_ITEMS EQU 8
