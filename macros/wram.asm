@@ -103,7 +103,6 @@ battle_struct: MACRO
 ENDM
 
 box: MACRO
-\1::
 \1Count::           db
 \1Species::         ds MONS_PER_BOX + 1
 \1Mons::
@@ -285,7 +284,6 @@ slot_reel: MACRO
 ENDM
 
 object_struct: MACRO
-\1Struct::
 \1Sprite::            db
 \1MapObjectIndex::    db
 \1SpriteTile::        db
@@ -323,7 +321,6 @@ object_struct: MACRO
 ENDM
 
 map_object: MACRO
-\1Object::
 \1ObjectStructID::  db
 \1ObjectSprite::    db
 \1ObjectYCoord::    db

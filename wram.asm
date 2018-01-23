@@ -2364,19 +2364,19 @@ wFollowerMovementQueueLength:: db
 wFollowMovementQueue:: ds 5
 
 ObjectStructs:: ; d4d6
-	object_struct Player
-	object_struct Object1
-	object_struct Object2
-	object_struct Object3
-	object_struct Object4
-	object_struct Object5
-	object_struct Object6
-	object_struct Object7
-	object_struct Object8
-	object_struct Object9
-	object_struct Object10
-	object_struct Object11
-	object_struct Object12
+PlayerStruct::   object_struct Player
+Object1Struct::  object_struct Object1
+Object2Struct::  object_struct Object2
+Object3Struct::  object_struct Object3
+Object4Struct::  object_struct Object4
+Object5Struct::  object_struct Object5
+Object6Struct::  object_struct Object6
+Object7Struct::  object_struct Object7
+Object8Struct::  object_struct Object8
+Object9Struct::  object_struct Object9
+Object10Struct:: object_struct Object10
+Object11Struct:: object_struct Object11
+Object12Struct:: object_struct Object12
 ObjectStructsEnd:: ; d6de
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
@@ -2384,22 +2384,22 @@ wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 	ds 40
 
 MapObjects:: ; d71e
-	map_object Player
-	map_object Map1
-	map_object Map2
-	map_object Map3
-	map_object Map4
-	map_object Map5
-	map_object Map6
-	map_object Map7
-	map_object Map8
-	map_object Map9
-	map_object Map10
-	map_object Map11
-	map_object Map12
-	map_object Map13
-	map_object Map14
-	map_object Map15
+PlayerObject:: map_object Player
+Map1Object::   map_object Map1
+Map2Object::   map_object Map2
+Map3Object::   map_object Map3
+Map4Object::   map_object Map4
+Map5Object::   map_object Map5
+Map6Object::   map_object Map6
+Map7Object::   map_object Map7
+Map8Object::   map_object Map8
+Map9Object::   map_object Map9
+Map10Object::  map_object Map10
+Map11Object::  map_object Map11
+Map12Object::  map_object Map12
+Map13Object::  map_object Map13
+Map14Object::  map_object Map14
+Map15Object::  map_object Map15
 MapObjectsEnd::
 
 wObjectMasks:: ds NUM_OBJECTS ; d81e
