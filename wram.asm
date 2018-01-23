@@ -9,7 +9,7 @@ SECTION "Stack", WRAM0
 
 StackBottom::
 	ds $100 - 1
-Stack::
+wStack::
 StackTop::
 	ds 1
 

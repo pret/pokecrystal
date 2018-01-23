@@ -332,7 +332,7 @@ UpdateStackTop: ; 14c6b
 FindStackTop: ; 14c90
 ; Find the furthest point that sp has traversed to.
 ; This is distinct from the current value of sp.
-	ld hl, Stack - $ff
+	ld hl, wStack - $ff
 .loop
 	ld a, [hl]
 	or a

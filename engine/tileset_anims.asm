@@ -481,7 +481,7 @@ AnimateWaterTile: ; fc402
 	adc HIGH(WaterTileFrames)
 	ld h, a
 
-; Stack now points to the start of the tile for this frame.
+; The stack now points to the start of the tile for this frame.
 	ld sp, hl
 
 	ld l, e
@@ -845,7 +845,7 @@ AnimateWhirlpoolTile: ; fc678
 	adc h
 	ld h, a
 
-; Stack now points to the desired frame.
+; The stack now points to the desired frame.
 	ld sp, hl
 
 	ld l, e
