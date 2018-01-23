@@ -1,7 +1,7 @@
 const_value set 2
-	const ROUTE30BERRYSPEECHHOUSE_POKEFAN_M
+	const ROUTE30BERRYHOUSE_POKEFAN_M
 
-Route30BerrySpeechHouse_MapScripts:
+Route30BerryHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -25,7 +25,7 @@ UnknownScript_0x196d7d:
 	closetext
 	end
 
-Route30BerrySpeechHouseBookshelf:
+Route30BerryHouseBookshelf:
 	jumpstd magazinebookshelf
 
 UnknownText_0x196d82:
@@ -46,7 +46,7 @@ UnknownText_0x196dec:
 	cont "drop right off."
 	done
 
-Route30BerrySpeechHouse_MapEvents:
+Route30BerryHouse_MapEvents:
 	; filler
 	db 0, 0
 
@@ -60,8 +60,8 @@ Route30BerrySpeechHouse_MapEvents:
 
 .BGEvents:
 	db 2
-	bg_event 0, 1, BGEVENT_READ, Route30BerrySpeechHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, Route30BerrySpeechHouseBookshelf
+	bg_event 0, 1, BGEVENT_READ, Route30BerryHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, Route30BerryHouseBookshelf
 
 .ObjectEvents:
 	db 1

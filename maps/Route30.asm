@@ -412,7 +412,7 @@ Route30_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 7, 39, 1, ROUTE_30_BERRY_SPEECH_HOUSE
+	warp_def 7, 39, 1, ROUTE_30_BERRY_HOUSE
 	warp_def 17, 5, 1, MR_POKEMONS_HOUSE
 
 .CoordEvents:

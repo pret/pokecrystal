@@ -1,8 +1,8 @@
 const_value set 2
-	const ROUTE5CLEANSETAGSPEECHHOUSE_GRANNY
-	const ROUTE5CLEANSETAGSPEECHHOUSE_TEACHER
+	const ROUTE5CLEANSETAGHOUSE_GRANNY
+	const ROUTE5CLEANSETAGHOUSE_TEACHER
 
-Route5CleanseTagSpeechHouse_MapScripts:
+Route5CleanseTagHouse_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -26,8 +26,8 @@ UnknownScript_0x18b64d:
 	closetext
 	end
 
-Route5CleanseTagSpeechHouseTeacherScript:
-	jumptextfaceplayer Route5CleanseTagSpeechHouseTeacherText
+Route5CleanseTagHouseTeacherScript:
+	jumptextfaceplayer Route5CleanseTagHouseTeacherText
 
 HouseForSaleBookshelf:
 	jumpstd difficultbookshelf
@@ -49,7 +49,7 @@ UnknownText_0x18b6a7:
 	cont "are protected now."
 	done
 
-Route5CleanseTagSpeechHouseTeacherText:
+Route5CleanseTagHouseTeacherText:
 	text "My grandma is into"
 	line "warding off what"
 
@@ -60,7 +60,7 @@ Route5CleanseTagSpeechHouseTeacherText:
 	line "startled you."
 	done
 
-Route5CleanseTagSpeechHouse_MapEvents:
+Route5CleanseTagHouse_MapEvents:
 	; filler
 	db 0, 0
 
@@ -80,4 +80,4 @@ Route5CleanseTagSpeechHouse_MapEvents:
 .ObjectEvents:
 	db 2
 	object_event 2, 5, SPRITE_GRANNY, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x18b634, -1
-	object_event 5, 3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5CleanseTagSpeechHouseTeacherScript, -1
+	object_event 5, 3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5CleanseTagHouseTeacherScript, -1

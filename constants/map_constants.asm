@@ -365,7 +365,7 @@ ENDM
 	mapconst ROUTE_28,                                     9, 20 ;  1
 	mapconst SILVER_CAVE_OUTSIDE,                         18, 20 ;  2
 	mapconst SILVER_CAVE_POKECENTER_1F,                    4,  5 ;  3
-	mapconst ROUTE_28_FAMOUS_SPEECH_HOUSE,                 4,  4 ;  4
+	mapconst ROUTE_28_STEEL_WING_HOUSE,                    4,  4 ;  4
 
 	newgroup                                                     ; 20
 
@@ -436,7 +436,7 @@ ENDM
 	mapconst VIRIDIAN_MART,                                4,  6 ;  8
 	mapconst VIRIDIAN_POKECENTER_1F,                       4,  5 ;  9
 	mapconst VIRIDIAN_POKECENTER_2F_BETA,                  4,  8 ; 10
-	mapconst ROUTE_2_NUGGET_SPEECH_HOUSE,                  4,  4 ; 11
+	mapconst ROUTE_2_NUGGET_HOUSE,                         4,  4 ; 11
 	mapconst ROUTE_2_GATE,                                 4,  5 ; 12
 	mapconst VICTORY_ROAD_GATE,                            9, 10 ; 13
 
@@ -451,7 +451,7 @@ ENDM
 	mapconst PLAYERS_HOUSE_2F,                             3,  4 ;  7
 	mapconst PLAYERS_NEIGHBORS_HOUSE,                      4,  4 ;  8
 	mapconst ELMS_HOUSE,                                   4,  4 ;  9
-	mapconst ROUTE_26_HEAL_SPEECH_HOUSE,                   4,  4 ; 10
+	mapconst ROUTE_26_HEAL_HOUSE,                          4,  4 ; 10
 	mapconst DAY_OF_WEEK_SIBLINGS_HOUSE,                   4,  4 ; 11
 	mapconst ROUTE_27_SANDSTORM_HOUSE,                     4,  4 ; 12
 	mapconst ROUTE_29_ROUTE_46_GATE,                       4,  5 ; 13
@@ -472,7 +472,7 @@ ENDM
 	mapconst COPYCATS_HOUSE_2F,                            3,  5 ; 12
 	mapconst ROUTE_5_UNDERGROUND_PATH_ENTRANCE,            4,  4 ; 13
 	mapconst ROUTE_5_SAFFRON_GATE,                         4,  5 ; 14
-	mapconst ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE,             4,  4 ; 15
+	mapconst ROUTE_5_CLEANSE_TAG_HOUSE,                    4,  4 ; 15
 
 	newgroup                                                     ; 26
 
@@ -484,6 +484,6 @@ ENDM
 	mapconst CHERRYGROVE_GYM_SPEECH_HOUSE,                 4,  4 ;  6
 	mapconst GUIDE_GENTS_HOUSE,                            4,  4 ;  7
 	mapconst CHERRYGROVE_EVOLUTION_SPEECH_HOUSE,           4,  4 ;  8
-	mapconst ROUTE_30_BERRY_SPEECH_HOUSE,                  4,  4 ;  9
+	mapconst ROUTE_30_BERRY_HOUSE,                         4,  4 ;  9
 	mapconst MR_POKEMONS_HOUSE,                            4,  4 ; 10
 	mapconst ROUTE_31_VIOLET_GATE,                         4,  5 ; 11

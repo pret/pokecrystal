@@ -601,7 +601,7 @@ ENDM
 	map_data Route8SaffronGate, ROUTE_8_SAFFRON_GATE, $00, 0
 	map_data Route12SuperRodHouse, ROUTE_12_SUPER_ROD_HOUSE, $00, 0
 	map_data SilverCavePokecenter1F, SILVER_CAVE_POKECENTER_1F, $00, 0
-	map_data Route28FamousSpeechHouse, ROUTE_28_FAMOUS_SPEECH_HOUSE, $00, 0
+	map_data Route28SteelWingHouse, ROUTE_28_STEEL_WING_HOUSE, $00, 0
 	map_data Pokecenter2F, POKECENTER_2F, $00, 0
 	map_data TradeCenter, TRADE_CENTER, $00, 0
 	map_data Colosseum, COLOSSEUM, $00, 0
@@ -650,7 +650,7 @@ ENDM
 	map_data ViridianMart, VIRIDIAN_MART, $00, 0
 	map_data ViridianPokecenter1F, VIRIDIAN_POKECENTER_1F, $00, 0
 	map_data ViridianPokecenter2FBeta, VIRIDIAN_POKECENTER_2F_BETA, $00, 0
-	map_data Route2NuggetSpeechHouse, ROUTE_2_NUGGET_SPEECH_HOUSE, $00, 0
+	map_data Route2NuggetHouse, ROUTE_2_NUGGET_HOUSE, $00, 0
 	map_data Route2Gate, ROUTE_2_GATE, $00, 0
 	map_data VictoryRoadGate, VICTORY_ROAD_GATE, $00, 0
 	map_data ElmsLab, ELMS_LAB, $00, 0
@@ -658,7 +658,7 @@ ENDM
 	map_data PlayersHouse2F, PLAYERS_HOUSE_2F, $00, 0
 	map_data PlayersNeighborsHouse, PLAYERS_NEIGHBORS_HOUSE, $00, 0
 	map_data ElmsHouse, ELMS_HOUSE, $00, 0
-	map_data Route26HealSpeechHouse, ROUTE_26_HEAL_SPEECH_HOUSE, $00, 0
+	map_data Route26HealHouse, ROUTE_26_HEAL_HOUSE, $00, 0
 	map_data DayOfWeekSiblingsHouse, DAY_OF_WEEK_SIBLINGS_HOUSE, $00, 0
 	map_data Route27SandstormHouse, ROUTE_27_SANDSTORM_HOUSE, $00, 0
 	map_data Route29Route46Gate, ROUTE_29_ROUTE_46_GATE, $00, 0
@@ -674,12 +674,12 @@ ENDM
 	map_data CopycatsHouse2F, COPYCATS_HOUSE_2F, $00, 0
 	map_data Route5UndergroundPathEntrance, ROUTE_5_UNDERGROUND_PATH_ENTRANCE, $00, 0
 	map_data Route5SaffronGate, ROUTE_5_SAFFRON_GATE, $00, 0
-	map_data Route5CleanseTagSpeechHouse, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE, $00, 0
+	map_data Route5CleanseTagHouse, ROUTE_5_CLEANSE_TAG_HOUSE, $00, 0
 	map_data CherrygroveMart, CHERRYGROVE_MART, $00, 0
 	map_data CherrygrovePokecenter1F, CHERRYGROVE_POKECENTER_1F, $00, 0
 	map_data CherrygroveGymSpeechHouse, CHERRYGROVE_GYM_SPEECH_HOUSE, $00, 0
 	map_data GuideGentsHouse, GUIDE_GENTS_HOUSE, $00, 0
 	map_data CherrygroveEvolutionSpeechHouse, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, $00, 0
-	map_data Route30BerrySpeechHouse, ROUTE_30_BERRY_SPEECH_HOUSE, $00, 0
+	map_data Route30BerryHouse, ROUTE_30_BERRY_HOUSE, $00, 0
 	map_data MrPokemonsHouse, MR_POKEMONS_HOUSE, $00, 0
 	map_data Route31VioletGate, ROUTE_31_VIOLET_GATE, $00, 0
