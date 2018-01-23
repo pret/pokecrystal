@@ -71,7 +71,7 @@ Function818f4: ; 818f4
 	ld hl, PokemonPalettes
 
 Function818fd: ; 818fd
-	ld de, OverworldMap
+	ld de, wOverworldMap
 	ld c, NUM_POKEMON + 1
 .asm_81902
 	push bc
@@ -87,7 +87,7 @@ Function818fd: ; 818fd
 
 Function81911: ; 81911
 	ld hl, TrainerPalettes
-	ld de, OverworldMap
+	ld de, wOverworldMap
 	ld c, NUM_TRAINER_CLASSES
 .asm_81919
 	push bc
@@ -138,7 +138,7 @@ Function81948: ; 81948
 	ld bc, sScratch - vTiles0
 	xor a
 	call ByteFill
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
@@ -320,7 +320,7 @@ Function81adb: ; 81adb
 	call Function81bf4
 	ld a, [wcf66]
 	inc a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld [wd265], a
 	hlcoord 0, 1
 	ld de, wd265
@@ -330,7 +330,7 @@ Function81adb: ; 81adb
 	and a
 	jr nz, .asm_81b7a
 	ld a, $1
-	ld [UnownLetter], a
+	ld [wUnownLetter], a
 	call GetPokemonName
 	hlcoord 4, 1
 	call PlaceString
@@ -364,15 +364,15 @@ Function81adb: ; 81adb
 
 .asm_81b7a
 	ld a, [wd265]
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 	callfar GetTrainerAttributes
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	hlcoord 4, 1
 	call PlaceString
 	ld de, vTiles2
 	callfar GetTrainerPic
 	xor a
-	ld [TempEnemyMonSpecies], a
+	ld [wTempEnemyMonSpecies], a
 	ld [hGraphicStartTile], a
 	hlcoord 2, 3
 	lb bc, 7, 7
@@ -390,15 +390,15 @@ String_81bb9: db DEBUGTEST_A, "きりかえ▶@" ; (A) switches
 ; 81bc0
 
 Function81bc0: ; 81bc0
-	decoord 0, 11, AttrMap
+	decoord 0, 11, wAttrMap
 	hlcoord 2, 11
 	ld a, $1
 	call Function81bde
-	decoord 0, 13, AttrMap
+	decoord 0, 13, wAttrMap
 	hlcoord 2, 13
 	ld a, $2
 	call Function81bde
-	decoord 0, 15, AttrMap
+	decoord 0, 15, wAttrMap
 	hlcoord 2, 15
 	ld a, $3
 
@@ -424,7 +424,7 @@ Function81bf4: ; 81bf4
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld de, OverworldMap
+	ld de, wOverworldMap
 	add hl, de
 	ld de, wc608
 	ld bc, 4
@@ -771,7 +771,7 @@ Function81df4: ; 81df4
 	call PlaceString
 	ld a, [wd004]
 	call Function81e55
-	ld [CurItem], a
+	ld [wCurItem], a
 	predef CanLearnTMHMMove
 	ld a, c
 	and a
@@ -876,7 +876,7 @@ Function81eca: ; 81eca
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld de, OverworldMap
+	ld de, wOverworldMap
 	add hl, de
 	ld e, l
 	ld d, h
@@ -1099,7 +1099,7 @@ TilesetColorTest:
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, DEBUGTEST_BLACK
 	call ByteFill
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $7
 	call ByteFill
@@ -1130,7 +1130,7 @@ Function821d2: ; 821d2
 
 Function821d8: ; 821d8
 	ld a, [wcf64]
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 
 Function821de: ; 821de
 	add hl, de

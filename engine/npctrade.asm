@@ -22,7 +22,7 @@ NPCTrade:: ; fcba8
 
 	ld e, TRADE_GIVEMON
 	call GetTradeAttribute
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp [hl]
 	ld a, TRADE_WRONG
 	jr nz, .done
@@ -70,7 +70,7 @@ NPCTrade:: ; fcba8
 
 CheckTradeGender: ; fcc23
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 
 	ld e, TRADE_GENDER
 	call GetTradeAttribute
@@ -136,29 +136,29 @@ DoNPCTrade: ; fcc63
 	call GetTradeMonName
 	call CopyTradeName
 
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
 	ld de, wPlayerTrademonOTName
 	call CopyTradeName
 
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld de, wPlayerTrademonSenderName
 	call CopyTradeName
 
-	ld hl, PartyMon1ID
+	ld hl, wPartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
 	ld de, wPlayerTrademonID
 	call Trade_CopyTwoBytes
 
-	ld hl, PartyMon1DVs
+	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
 	ld de, wPlayerTrademonDVs
 	call Trade_CopyTwoBytes
 
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
 	ld b, h
@@ -177,15 +177,15 @@ DoNPCTrade: ; fcc63
 .okay
 	ld [wOTTrademonCaughtData], a
 
-	ld hl, PartyMon1Level
+	ld hl, wPartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
 	ld a, [hl]
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld a, [wOTTrademonSpecies]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
 	predef TryAddMonToParty
@@ -205,7 +205,7 @@ DoNPCTrade: ; fcc63
 	ld de, wOTTrademonNickname
 	call CopyTradeName
 
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
 	call Trade_GetAttributeOfLastPartymon
 	ld hl, wOTTrademonNickname
@@ -220,7 +220,7 @@ DoNPCTrade: ; fcc63
 	ld de, wOTTrademonSenderName
 	call CopyTradeName
 
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	call Trade_GetAttributeOfLastPartymon
 	ld hl, wOTTrademonOTName
@@ -231,7 +231,7 @@ DoNPCTrade: ; fcc63
 	ld de, wOTTrademonDVs
 	call Trade_CopyTwoBytes
 
-	ld hl, PartyMon1DVs
+	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfLastPartymon
 	ld hl, wOTTrademonDVs
@@ -242,7 +242,7 @@ DoNPCTrade: ; fcc63
 	ld de, wOTTrademonID + 1
 	call Trade_CopyTwoBytesReverseEndian
 
-	ld hl, PartyMon1ID
+	ld hl, wPartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfLastPartymon
 	ld hl, wOTTrademonID
@@ -251,7 +251,7 @@ DoNPCTrade: ; fcc63
 	ld e, TRADE_ITEM
 	call GetTradeAttribute
 	push hl
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfLastPartymon
 	pop hl
@@ -262,14 +262,14 @@ DoNPCTrade: ; fcc63
 	push bc
 	push de
 	push hl
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	push af
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	farcall ComputeNPCTrademonStats
 	pop af
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	pop hl
 	pop de
 	pop bc
@@ -295,13 +295,13 @@ GetTradeAttribute: ; 0xfcdc2
 ; 0xfcdd7
 
 Trade_GetAttributeOfCurrentPartymon: ; fcdd7
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ret
 ; fcdde
 
 Trade_GetAttributeOfLastPartymon: ; fcdde
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
 	call AddNTimes
 	ld e, l
@@ -313,7 +313,7 @@ GetTradeMonName: ; fcde8
 	push de
 	ld [wd265], a
 	call GetBasePokemonName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	pop de
 	ret
 ; fcdf4
@@ -364,7 +364,7 @@ GetTradeMonNames: ; fce1b
 	ld a, [hl]
 	call GetTradeMonName
 
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	call CopyTradeName
 
 	ld e, TRADE_GIVEMON
@@ -375,7 +375,7 @@ GetTradeMonNames: ; fce1b
 	ld de, wMonOrItemNameBuffer
 	call CopyTradeName
 
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 .loop
 	ld a, [hli]
 	cp "@"

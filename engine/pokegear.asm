@@ -23,7 +23,7 @@ NUM_POKEGEAR_CARDS EQU const_value
 	const POKEGEARSTATE_RADIOJOYPAD     ; c
 
 PokeGear: ; 90b8d (24:4b8d)
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -31,10 +31,10 @@ PokeGear: ; 90b8d (24:4b8d)
 	push af
 	ld a, $1
 	ld [hInMenu], a
-	ld a, [VramState]
+	ld a, [wVramState]
 	push af
 	xor a
-	ld [VramState], a
+	ld [wVramState], a
 	call .InitTilemap
 	call DelayFrame
 .loop
@@ -53,11 +53,11 @@ PokeGear: ; 90b8d (24:4b8d)
 	call PlaySFX
 	call WaitSFX
 	pop af
-	ld [VramState], a
+	ld [wVramState], a
 	pop af
 	ld [hInMenu], a
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	call ClearBGPalettes
 	xor a ; LOW(vBGMap0)
 	ld [hBGMapAddress], a
@@ -123,9 +123,9 @@ Pokegear_LoadGFX: ; 90c4e
 	ld de, vTiles0
 	ld a, BANK(PokegearSpritesGFX)
 	call Decompress
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 	cp FAST_SHIP
@@ -194,16 +194,16 @@ AnimatePokegearModeIndicatorArrow: ; 90d41 (24:4d41)
 ; 90d56
 
 TownMap_GetCurrentLandmark: ; 90d56
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 	cp SPECIAL_MAP
 	ret nz
-	ld a, [BackupMapGroup]
+	ld a, [wBackupMapGroup]
 	ld b, a
-	ld a, [BackupMapNumber]
+	ld a, [wBackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 	ret
@@ -211,18 +211,18 @@ TownMap_GetCurrentLandmark: ; 90d56
 ; 90d70
 
 TownMap_InitCursorAndPlayerIconPositions: ; 90d70 (24:4d70)
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 	cp FAST_SHIP
 	jr z, .FastShip
 	cp SPECIAL_MAP
 	jr nz, .LoadLandmark
-	ld a, [BackupMapGroup]
+	ld a, [wBackupMapGroup]
 	ld b, a
-	ld a, [BackupMapNumber]
+	ld a, [wBackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 .LoadLandmark:
@@ -247,7 +247,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, TileMapEnd - TileMap
+	ld bc, wTileMapEnd - wTileMap
 	ld a, $4f
 	call ByteFill
 	ld a, [wPokegearCard]
@@ -929,7 +929,7 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 	call GetMapPhoneService
 	and a
 	jr nz, .no_service
-	ld hl, Options
+	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
 	xor a
 	ld [hInMenu], a
@@ -948,7 +948,7 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 	call Function90199
 	ld c, 10
 	call DelayFrames
-	ld hl, Options
+	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	ld a, $1
 	ld [hInMenu], a
@@ -1384,8 +1384,8 @@ ExitPokegearRadio_HandleMusic: ; 91492
 ; 914ab
 
 DeleteSpriteAnimStruct2ToEnd: ; 914ab (24:54ab)
-	ld hl, SpriteAnim2
-	ld bc, wSpriteAnimationStructsEnd - SpriteAnim2
+	ld hl, wSpriteAnim2
+	ld bc, wSpriteAnimationStructsEnd - wSpriteAnim2
 	xor a
 	call ByteFill
 	ld a, 2
@@ -1560,7 +1560,7 @@ RadioChannels:
 ; Oak's Pokémon Talk in the afternoon and evening
 	call .InJohto
 	jr nc, .NoSignal
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	and a
 	jp z, LoadStation_PokedexShow
 	jp LoadStation_OaksPokemonTalk
@@ -1858,7 +1858,7 @@ PokeFluteStationName: db "# FLUTE@"
 ; 9191c
 
 _TownMap: ; 9191c
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -1868,10 +1868,10 @@ _TownMap: ; 9191c
 	ld a, $1
 	ld [hInMenu], a
 
-	ld a, [VramState]
+	ld a, [wVramState]
 	push af
 	xor a
-	ld [VramState], a
+	ld [wVramState], a
 
 	call ClearBGPalettes
 	call ClearTileMap
@@ -1923,11 +1923,11 @@ _TownMap: ; 9191c
 
 .resume
 	pop af
-	ld [VramState], a
+	ld [wVramState], a
 	pop af
 	ld [hInMenu], a
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	call ClearBGPalettes
 	ret
 
@@ -2028,7 +2028,7 @@ _TownMap: ; 9191c
 ; 91a53
 
 PlayRadio: ; 91a53
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -2054,7 +2054,7 @@ PlayRadio: ; 91a53
 
 .stop
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	call ExitPokegearRadio_HandleMusic
 	ret
 
@@ -2111,7 +2111,7 @@ PlayRadio: ; 91a53
 	and a
 	jr nz, .kanto
 	call UpdateTime
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	and a
 	jp z, LoadStation_PokedexShow
 	jp LoadStation_OaksPokemonTalk
@@ -2202,9 +2202,9 @@ _FlyMap: ; 91af3
 ; 91b73
 
 FlyMapScroll: ; 91b73
-	ld a, [StartFlypoint]
+	ld a, [wStartFlypoint]
 	ld e, a
-	ld a, [EndFlypoint]
+	ld a, [wEndFlypoint]
 	ld d, a
 	ld hl, hJoyLast
 	ld a, [hl]
@@ -2308,7 +2308,7 @@ TownMapBubble: ; 91bb5
 	ld e, [hl]
 	farcall GetLandmarkName
 	hlcoord 2, 1
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	call PlaceString
 	ret
 
@@ -2376,18 +2376,18 @@ ret_91c8f: ; 91c8f
 ; 91c90
 
 FlyMap: ; 91c90
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 ; If we're not in a valid location, i.e. Pokecenter floor 2F,
 ; the backup map information is used.
 	cp SPECIAL_MAP
 	jr nz, .CheckRegion
-	ld a, [BackupMapGroup]
+	ld a, [wBackupMapGroup]
 	ld b, a
-	ld a, [BackupMapNumber]
+	ld a, [wBackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 .CheckRegion:
@@ -2401,10 +2401,10 @@ FlyMap: ; 91c90
 	ld a, FLY_NEW_BARK
 	ld [wTownMapPlayerIconLandmark], a
 ; Flypoints begin at New Bark Town...
-	ld [StartFlypoint], a
+	ld [wStartFlypoint], a
 ; ..and end at Silver Cave.
 	ld a, FLY_MT_SILVER
-	ld [EndFlypoint], a
+	ld [wEndFlypoint], a
 ; Fill out the map
 	call FillJohtoMap
 	call .MapHud
@@ -2430,10 +2430,10 @@ FlyMap: ; 91c90
 
 ; Flypoints begin at Pallet Town...
 	ld a, FLY_PALLET
-	ld [StartFlypoint], a
+	ld [wStartFlypoint], a
 ; ...and end at Indigo Plateau
 	ld a, FLY_INDIGO
-	ld [EndFlypoint], a
+	ld [wEndFlypoint], a
 ; Because Indigo Plateau is the first flypoint the player
 ; visits, it's made the default flypoint.
 	ld [wTownMapPlayerIconLandmark], a
@@ -2451,10 +2451,10 @@ FlyMap: ; 91c90
 	ld a, FLY_NEW_BARK
 	ld [wTownMapPlayerIconLandmark], a
 ; Flypoints begin at New Bark Town...
-	ld [StartFlypoint], a
+	ld [wStartFlypoint], a
 ; ..and end at Silver Cave
 	ld a, FLY_MT_SILVER
-	ld [EndFlypoint], a
+	ld [wEndFlypoint], a
 	call FillJohtoMap
 	pop af
 .MapHud:
@@ -2589,7 +2589,7 @@ Pokedex_GetArea: ; 91d11
 .copy_sprites
 	hlcoord 0, 0
 	ld de, wVirtualOAM
-	ld bc, SpritesEnd - wVirtualOAM
+	ld bc, wSpritesEnd - wVirtualOAM
 	call CopyBytes
 	ret
 
@@ -2625,9 +2625,9 @@ Pokedex_GetArea: ; 91d11
 .GetAndPlaceNest: ; 91e1e
 	ld [wTownMapCursorLandmark], a
 	ld e, a
-	farcall FindNest ; load nest landmarks into TileMap[0,0]
+	farcall FindNest ; load nest landmarks into wTileMap[0,0]
 	decoord 0, 0
-	ld hl, Sprite01
+	ld hl, wSprite01
 .nestloop
 	ld a, [de]
 	and a
@@ -2656,7 +2656,7 @@ Pokedex_GetArea: ; 91d11
 .done_nest
 	ld hl, wVirtualOAM
 	decoord 0, 0
-	ld bc, SpritesEnd - wVirtualOAM
+	ld bc, wSpritesEnd - wVirtualOAM
 	call CopyBytes
 	ret
 
@@ -2671,7 +2671,7 @@ Pokedex_GetArea: ; 91d11
 	ld c, e
 	ld b, d
 	ld de, .PlayerOAM
-	ld hl, Sprite01
+	ld hl, wSprite01
 .ShowPlayerLoop:
 	ld a, [de]
 	cp $80
@@ -2700,8 +2700,8 @@ Pokedex_GetArea: ; 91d11
 	jr .ShowPlayerLoop
 
 .clear_oam
-	ld hl, Sprite05
-	ld bc, SpritesEnd - Sprite05
+	ld hl, wSprite05
+	ld bc, wSpritesEnd - wSprite05
 	xor a
 	call ByteFill
 	ret
@@ -2742,7 +2742,7 @@ Pokedex_GetArea: ; 91d11
 
 .clear
 	ld hl, wVirtualOAM
-	ld bc, SpritesEnd - wVirtualOAM
+	ld bc, wSpritesEnd - wVirtualOAM
 	xor a
 	call ByteFill
 	scf
@@ -2816,7 +2816,7 @@ FillTownMap: ; 91f07
 TownMapPals: ; 91f13
 ; Assign palettes based on tile ids
 	hlcoord 0, 0
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 .loop
 ; Current tile
@@ -2872,8 +2872,8 @@ TownMapMon: ; 91f7b
 ; Draw the FlyMon icon at town map location
 
 ; Get FlyMon species
-	ld a, [CurPartyMon]
-	ld hl, PartySpecies
+	ld a, [wCurPartyMon]
+	ld hl, wPartySpecies
 	ld e, a
 	ld d, $0
 	add hl, de

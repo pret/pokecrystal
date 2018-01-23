@@ -79,7 +79,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	callfar GetDecorationName_c
 	ld h, d
 	ld l, e
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	ld bc, ITEM_NAME_LENGTH
 	call CopyBytes
 	ld hl, .Text_SentToHome ; sent decoration to home
@@ -394,7 +394,7 @@ Function104b88: ; 104b88 (41:4b88)
 	jp nz, Function104d32
 	call Function104d38
 	ret nz
-	ld hl, OverworldMap
+	ld hl, wOverworldMap
 	ld a, [wca02]
 	ld b, a
 	call Function104d4e
@@ -551,7 +551,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	jp nz, Function104d32
 	call Function104d38
 	ret nz
-	ld hl, OverworldMap
+	ld hl, wOverworldMap
 	ld a, [wca02]
 	ld b, a
 	call Function104d4e
@@ -1229,8 +1229,8 @@ StagePartyDataForMysteryGift: ; 10510b (41:510b)
 	ld a, BANK(sPokemonData)
 	call GetSRAMBank
 	ld de, wMysteryGiftStaging
-	ld bc, sPokemonData + PartyMons - wPokemonData
-	ld hl, sPokemonData + PartySpecies - wPokemonData
+	ld bc, sPokemonData + wPartyMons - wPokemonData
+	ld hl, sPokemonData + wPartySpecies - wPokemonData
 .loop
 	ld a, [hli]
 	cp -1
@@ -1458,7 +1458,7 @@ Function105688: ; 105688 (41:5688)
 Function1056eb: ; 1056eb (41:56eb)
 	ld c, 16
 .loop
-	ld hl, Sprite01YCoord
+	ld hl, wSprite01YCoord
 	ld b, 8
 .dec_y_loop
 	dec [hl]
@@ -1467,7 +1467,7 @@ rept SPRITEOAMSTRUCT_LENGTH
 endr
 	dec b
 	jr nz, .dec_y_loop
-	ld hl, Sprite09YCoord
+	ld hl, wSprite09YCoord
 	ld b, 8
 .inc_y_loop
 	inc [hl]
@@ -1543,13 +1543,13 @@ Function105777: ; 105777 (41:5777)
 	ret
 
 Function10578c: ; 10578c (41:578c)
-	ld de, OverworldMap
+	ld de, wOverworldMap
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, sPlayerData + PlayerName - wPlayerData
+	ld hl, sPlayerData + wPlayerName - wPlayerData
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld hl, sPlayerData + PlayerID - wPlayerData
+	ld hl, sPlayerData + wPlayerID - wPlayerData
 	ld bc, 2
 	call CopyBytes
 	ld hl, sPlayerData + wSecretID - wPlayerData
@@ -1656,7 +1656,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld [hl], $3c
 	hlcoord 17, 15
 	ld [hl], $3e
-	ld de, Sprite01
+	ld de, wSprite01
 	ld hl, .OAM_data
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call CopyBytes

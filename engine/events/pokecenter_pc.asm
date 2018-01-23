@@ -15,7 +15,7 @@ Special_PokemonCenterPC: ; 1559a
 	ld [wWhichIndexSet], a
 	call DoNthMenu
 	jr c, .shutdown
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld hl, .JumpTable
 	call MenuJumptable
 	jr nc, .loop
@@ -84,7 +84,7 @@ Special_PokemonCenterPC: ; 1559a
 ; 15650
 
 PC_CheckPartyForPokemon: ; 15650
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	ret nz
 	ld de, SFX_CHOOSE_PC_OPTION
@@ -289,13 +289,13 @@ LOG_OFF       EQU 6
 	db -1
 
 PC_DisplayTextWaitMenu: ; 157bb
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
 	set NO_TEXT_SCROLL, a
-	ld [Options], a
+	ld [wOptions], a
 	call MenuTextBox
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ret
 ; 157cc
 
@@ -341,17 +341,17 @@ KrisWithdrawItemMenu: ; 0x157d1
 
 .withdraw
 	ld a, [wItemQuantityChangeBuffer]
-	ld [Buffer1], a ; quantity
-	ld a, [CurItemQuantity]
-	ld [Buffer2], a
-	ld hl, NumItems
+	ld [wBuffer1], a ; quantity
+	ld a, [wCurItemQuantity]
+	ld [wBuffer2], a
+	ld hl, wNumItems
 	call ReceiveItem
 	jr nc, .PackFull
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	ld [wItemQuantityChangeBuffer], a
-	ld a, [Buffer2]
-	ld [CurItemQuantity], a
-	ld hl, PCItems
+	ld a, [wBuffer2]
+	ld [wCurItemQuantity], a
+	ld hl, wPCItems
 	call TossItem
 	predef PartyMonItemName
 	ld hl, .WithdrewText
@@ -387,7 +387,7 @@ KrisTossItemMenu: ; 0x1585f
 .loop
 	call PCItemsJoypad
 	jr c, .quit
-	ld de, PCItems
+	ld de, wPCItems
 	farcall TossItemFromPC
 	jr .loop
 
@@ -473,15 +473,15 @@ KrisDepositItemMenu: ; 0x1588b
 	ret
 
 .tossable
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	push af
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	push af
 	call .DepositItem_
 	pop af
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	pop af
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	ret
 
 .DepositItem_:
@@ -505,17 +505,17 @@ KrisDepositItemMenu: ; 0x1588b
 
 .DepositItem:
 	ld a, [wItemQuantityChangeBuffer]
-	ld [Buffer1], a
-	ld a, [CurItemQuantity]
-	ld [Buffer2], a
-	ld hl, PCItems
+	ld [wBuffer1], a
+	ld a, [wCurItemQuantity]
+	ld [wBuffer2], a
+	ld hl, wPCItems
 	call ReceiveItem
 	jr nc, .NoRoomInPC
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	ld [wItemQuantityChangeBuffer], a
-	ld a, [Buffer2]
-	ld [CurItemQuantity], a
-	ld hl, NumItems
+	ld a, [wBuffer2]
+	ld [wCurItemQuantity], a
+	ld hl, wNumItems
 	call TossItem
 	predef PartyMonItemName
 	ld hl, .DepositText
@@ -628,7 +628,7 @@ PCItemsJoypad: ; 0x15985
 	db SCROLLINGMENU_ENABLE_SELECT | SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 8 ; rows/cols?
 	db 2 ; horizontal spacing?
-	dbw 0, PCItems
+	dbw 0, wPCItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription

@@ -239,13 +239,13 @@ Unreferenced_Function8b81:
 	ret
 
 LoadTrainerClassPaletteAsNthBGPal:
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 	call GetTrainerPalettePointer
 	ld a, e
 	jr got_palette_pointer_8bd7
 
 LoadMonPaletteAsNthBGPal:
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	call GetMonPalettePointer
 	ld a, e
 	bit 7, a
@@ -278,14 +278,14 @@ Unreferenced_Function8bec:
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	ld hl, PlayerLightScreenCount
+	ld hl, wPlayerLightScreenCount
 	jp PushSGBPals_
 
 .cgb
-	ld a, [EnemyLightScreenCount] ; col
+	ld a, [wEnemyLightScreenCount] ; col
 	ld c, a
-	ld a, [EnemyReflectCount] ; row
-	hlcoord 0, 0, AttrMap
+	ld a, [wEnemyReflectCount] ; row
+	hlcoord 0, 0, wAttrMap
 	ld de, SCREEN_WIDTH
 .loop
 	and a
@@ -298,7 +298,7 @@ Unreferenced_Function8bec:
 	ld b, $0
 	add hl, bc
 	lb bc, 6, 4
-	ld a, [EnemySafeguardCount] ; value
+	ld a, [wEnemySafeguardCount] ; value
 	and $3
 	call FillBoxCGB
 	call CopyTilemapAtOnce
@@ -310,12 +310,12 @@ ApplyMonOrTrainerPals:
 	ld a, e
 	and a
 	jr z, .get_trainer
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	call GetMonPalettePointer_
 	jr .load_palettes
 
 .get_trainer
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 	call GetTrainerPalettePointer
 
 .load_palettes
@@ -360,9 +360,9 @@ ApplyHPBarPals:
 .PartyMenu:
 	ld e, c
 	inc e
-	hlcoord 11, 1, AttrMap
+	hlcoord 11, 1, wAttrMap
 	ld bc, 2 * SCREEN_WIDTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 .loop
 	and a
 	jr z, .done
@@ -592,7 +592,7 @@ ResetBGPals:
 	ret
 
 WipeAttrMap:
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
@@ -623,7 +623,7 @@ ApplyAttrMap:
 	ret
 
 .UpdateVBank1:
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	debgcoord 0, 0
 	ld b, SCREEN_HEIGHT
 	ld a, $1
@@ -660,7 +660,7 @@ CGB_ApplyPartyMenuHPPals: ; 96f3
 	ld a, [de]
 	inc a
 	ld e, a
-	hlcoord 11, 2, AttrMap
+	hlcoord 11, 2, wAttrMap
 	ld bc, 2 * SCREEN_WIDTH
 	ld a, [wSGBPals]
 .loop
@@ -688,7 +688,7 @@ GetBattlemonBackpicPalettePointer:
 	farcall GetPartyMonDVs
 	ld c, l
 	ld b, h
-	ld a, [TempBattleMonSpecies]
+	ld a, [wTempBattleMonSpecies]
 	call GetPlayerOrMonPalettePointer
 	pop de
 	ret
@@ -698,7 +698,7 @@ GetEnemyFrontpicPalettePointer:
 	farcall GetEnemyMonDVs
 	ld c, l
 	ld b, h
-	ld a, [TempEnemyMonSpecies]
+	ld a, [wTempEnemyMonSpecies]
 	call GetFrontpicPalettePointer
 	pop de
 	ret
@@ -716,13 +716,13 @@ GetPlayerOrMonPalettePointer:
 	ret
 
 .male
-	ld hl, PlayerPalette
+	ld hl, wPlayerPalette
 	ret
 
 GetFrontpicPalettePointer:
 	and a
 	jp nz, GetMonNormalOrShinyPalettePointer
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 
 GetTrainerPalettePointer:
 	ld l, a
@@ -1230,7 +1230,7 @@ LoadMapPals:
 	ld h, [hl]
 	ld l, a
 	; Futher refine by time of day
-	ld a, [TimeOfDayPal]
+	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
 	add a
 	add a
@@ -1276,7 +1276,7 @@ LoadMapPals:
 	ld [rSVBK], a
 
 .got_pals
-	ld a, [TimeOfDayPal]
+	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
 	ld bc, 8 palettes
 	ld hl, MapObjectPals
@@ -1292,7 +1292,7 @@ LoadMapPals:
 	cp ROUTE
 	ret nz
 .outside
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -1300,7 +1300,7 @@ LoadMapPals:
 	add hl, hl
 	ld de, RoofPals
 	add hl, de
-	ld a, [TimeOfDayPal]
+	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
 	cp NITE_F
 	jr c, .morn_day

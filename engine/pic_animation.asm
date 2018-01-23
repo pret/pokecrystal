@@ -267,7 +267,7 @@ PokeAnim_CryNoWait: ; d0188
 
 PokeAnim_StereoCry: ; d0196
 	ld a, $f
-	ld [CryTracks], a
+	ld [wCryTracks], a
 	ld a, [wPokeAnimSpecies]
 	call PlayStereoCry2
 	ld a, [wPokeAnimSceneIndex]
@@ -291,7 +291,7 @@ PokeAnim_DeinitFrames: ; d01a9
 ; d01c6
 
 AnimateMon_CheckIfPokemon: ; d01c6
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .fail
 	call IsAPokemon
@@ -326,7 +326,7 @@ PokeAnim_InitPicAttributes: ; d01d6
 	ld [wPokeAnimPointer], a
 	ld a, b
 	ld [wPokeAnimPointer + 1], a
-; hl contains TileMap coords
+; hl contains wTileMap coords
 	ld a, l
 	ld [wPokeAnimCoord], a
 	ld a, h
@@ -335,13 +335,13 @@ PokeAnim_InitPicAttributes: ; d01d6
 	ld a, d
 	ld [wPokeAnimGraphicStartTile], a
 
-	ld a, BANK(CurPartySpecies)
-	ld hl, CurPartySpecies
+	ld a, BANK(wCurPartySpecies)
+	ld hl, wCurPartySpecies
 	call GetFarWRAMByte
 	ld [wPokeAnimSpecies], a
 
-	ld a, BANK(UnownLetter)
-	ld hl, UnownLetter
+	ld a, BANK(wUnownLetter)
+	ld hl, wUnownLetter
 	call GetFarWRAMByte
 	ld [wPokeAnimUnownLetter], a
 
@@ -938,7 +938,7 @@ PokeAnim_GetAttrMapCoord: ; d0551
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	ret
 ; d055c
@@ -1001,12 +1001,12 @@ GetMonAnimPointer: ; d055c
 PokeAnim_GetFrontpicDims: ; d05b4
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(CurPartySpecies)
+	ld a, BANK(wCurPartySpecies)
 	ld [rSVBK], a
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
 	call GetBaseData
-	ld a, [BasePicSize]
+	ld a, [wBasePicSize]
 	and $f
 	ld c, a
 	pop af
@@ -1136,6 +1136,6 @@ HOF_AnimateFrontpic: ; d066e
 	xor a
 	ld [wBoxAlignment], a
 	inc a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ret
 ; d0695

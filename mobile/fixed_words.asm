@@ -269,7 +269,7 @@ CopyMobileEZChatToC608: ; 11c156
 	ld a, e
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld bc, MON_NAME_LENGTH - 1
 	jr .copy_string
 ; 11c1ab
@@ -337,7 +337,7 @@ Function11c1b9: ; 11c1b9
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, $c6d0
-	ld de, LYOverrides
+	ld de, wLYOverrides
 	ld bc, $100
 	call CopyBytes
 	pop af
@@ -711,11 +711,11 @@ Function11c4a5: ; 11c4a5 (47:44a5)
 
 Function11c4be: ; 11c4be (47:44be)
 	ld a, $1
-	hlcoord 0, 6, AttrMap
+	hlcoord 0, 6, wAttrMap
 	ld bc, $a0
 	call ByteFill
 	ld a, $7
-	hlcoord 0, 14, AttrMap
+	hlcoord 0, 14, wAttrMap
 	ld bc, $28
 	call ByteFill
 	farcall ReloadMapPart
@@ -914,7 +914,7 @@ EZChat_PlaceCategoryNames: ; 11c5f0 (47:45f0)
 
 Function11c618: ; 11c618 (47:4618)
 	ld a, $2
-	hlcoord 0, 6, AttrMap
+	hlcoord 0, 6, wAttrMap
 	ld bc, $c8
 	call ByteFill
 	farcall ReloadMapPart
@@ -1526,7 +1526,7 @@ Function11c992: ; 11c992 (47:4992)
 
 Function11c9ab: ; 11c9ab (47:49ab)
 	ld a, $7
-	hlcoord 0, 6, AttrMap
+	hlcoord 0, 6, wAttrMap
 	ld bc, $c8
 	call ByteFill
 	farcall ReloadMapPart
@@ -1583,7 +1583,7 @@ Function11c9c3: ; 11c9c3 (47:49c3)
 	ret
 
 Function11ca01: ; 11ca01 (47:4a01)
-	hlcoord 14, 7, AttrMap
+	hlcoord 14, 7, wAttrMap
 	ld de, $14
 	ld a, $5
 	ld c, a
@@ -1602,7 +1602,7 @@ Function11ca01: ; 11ca01 (47:4a01)
 	jr nz, .asm_11ca0a
 
 Function11ca19: ; 11ca19 (47:4a19)
-	hlcoord 0, 12, AttrMap
+	hlcoord 0, 12, wAttrMap
 	ld de, $14
 	ld a, $6
 	ld c, a
@@ -2035,11 +2035,11 @@ Function11cd54: ; 11cd54 (47:4d54)
 
 Function11cdaa: ; 11cdaa (47:4daa)
 	ld a, $2
-	hlcoord 0, 6, AttrMap
+	hlcoord 0, 6, wAttrMap
 	ld bc, 6 * SCREEN_WIDTH
 	call ByteFill
 	ld a, $7
-	hlcoord 0, 12, AttrMap
+	hlcoord 0, 12, wAttrMap
 	ld bc, 4 * SCREEN_WIDTH
 	call ByteFill
 	farcall ReloadMapPart

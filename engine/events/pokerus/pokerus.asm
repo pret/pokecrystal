@@ -1,7 +1,7 @@
 GivePokerusAndConvertBerries: ; 2ed44
 	call ConvertBerriesToBerryJuice
-	ld hl, PartyMon1PokerusStatus
-	ld a, [PartyCount]
+	ld hl, wPartyMon1PokerusStatus
+	ld a, [wPartyCount]
 	ld b, a
 	ld de, PARTYMON_STRUCT_LENGTH
 ; Check to see if any of your Pokemon already has Pokerus.
@@ -28,14 +28,14 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ld a, [hRandomSub]
 	cp $3
 	ret nc                 ; 3/65536 chance (00 00, 00 01 or 00 02)
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld b, a
 .randomMonSelectLoop
 	call Random
 	and $7
 	cp b
 	jr nc, .randomMonSelectLoop
-	ld hl, PartyMon1PokerusStatus
+	ld hl, wPartyMon1PokerusStatus
 	call GetPartyLocation  ; get pokerus byte of random mon
 	ld a, [hl]
 	and $f0
@@ -64,7 +64,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 	cp 1 + 33 percent
 	ret nc              ; 1/3 chance
 
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp 1
 	ret z               ; only one mon, nothing to do
 
@@ -91,7 +91,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ret
 
 .checkPreviousMonsLoop
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp b
 	ret z               ; no more mons
 	ld a, l
@@ -129,8 +129,8 @@ ConvertBerriesToBerryJuice: ; 2ede6
 	call Random
 	cp $10
 	ret nc              ; 1/16 chance
-	ld hl, PartyMons
-	ld a, [PartyCount]
+	ld hl, wPartyMons
+	ld a, [wPartyCount]
 .partyMonLoop
 	push af
 	push hl

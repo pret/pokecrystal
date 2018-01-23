@@ -1,5 +1,5 @@
 PrintMonTypes: ; 5090d
-; Print one or both types of [CurSpecies]
+; Print one or both types of [wCurSpecies]
 ; on the stats screen at hl.
 
 	push hl
@@ -7,14 +7,14 @@ PrintMonTypes: ; 5090d
 	pop hl
 
 	push hl
-	ld a, [BaseType1]
+	ld a, [wBaseType1]
 	call .Print
 
 	; Single-typed monsters really
 	; have two of the same type.
-	ld a, [BaseType1]
+	ld a, [wBaseType1]
 	ld b, a
-	ld a, [BaseType2]
+	ld a, [wBaseType2]
 	cp b
 	pop hl
 	jr z, .hide_type_2
@@ -49,10 +49,10 @@ PrintMoveType: ; 5093a
 	ld bc, MOVE_LENGTH
 	ld hl, Moves
 	call AddNTimes
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	ld a, BANK(Moves)
 	call FarCopyBytes
-	ld a, [StringBuffer1 + MOVE_TYPE]
+	ld a, [wStringBuffer1 + MOVE_TYPE]
 	pop hl
 
 	ld b, a
@@ -79,7 +79,7 @@ PrintType: ; 50953
 
 
 GetTypeName: ; 50964
-; Copy the name of type [wd265] to StringBuffer1.
+; Copy the name of type [wd265] to wStringBuffer1.
 
 	ld a, [wd265]
 	ld hl, TypeNames
@@ -90,7 +90,7 @@ GetTypeName: ; 50964
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	ld bc, MOVE_NAME_LENGTH
 	jp CopyBytes
 ; 5097b

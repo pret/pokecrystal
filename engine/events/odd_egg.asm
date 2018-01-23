@@ -42,17 +42,17 @@ GiveOddEgg: ; 1fb4b6
 	ld a, OddEgg2 - OddEgg1
 	call AddNTimes
 
-	ld de, OddEggSpecies
+	ld de, wOddEggSpecies
 	ld bc, PARTYMON_STRUCT_LENGTH + 2 * MON_NAME_LENGTH
 	call CopyBytes
 
 	ld a, EGG_TICKET
-	ld [CurItem], a
+	ld [wCurItem], a
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld a, -1
-	ld [CurItemQuantity], a
-	ld hl, NumItems
+	ld [wCurItemQuantity], a
+	ld hl, wNumItems
 	call TossItem
 
 	; load species in wcd2a
@@ -64,10 +64,10 @@ GiveOddEgg: ; 1fb4b6
 	ld [wMobileMonSpeciesPointerBuffer], a
 	ld a, HIGH(wMobileMonSpeciesBuffer - 1)
 	ld [wMobileMonSpeciesPointerBuffer + 1], a
-	; load pointer to OddEggSpecies in wMobileMonStructurePointerBuffer
-	ld a, LOW(OddEggSpecies)
+	; load pointer to wOddEggSpecies in wMobileMonStructurePointerBuffer
+	ld a, LOW(wOddEggSpecies)
 	ld [wMobileMonStructurePointerBuffer], a
-	ld a, HIGH(OddEggSpecies)
+	ld a, HIGH(wOddEggSpecies)
 	ld [wMobileMonStructurePointerBuffer + 1], a
 
 	; load Odd Egg Name in wTempOddEggNickname

@@ -11,7 +11,7 @@ Function17c000: ; 17c000
 
 	ld hl, HaveWantMap
 	decoord 0, 0
-	bccoord 0, 0, AttrMap
+	bccoord 0, 0, wAttrMap
 
 	ld a, SCREEN_HEIGHT
 .y
@@ -271,7 +271,7 @@ CheckStringForErrors_IgnoreTerminator: ; 17d0b3
 Function17d0f3: ; 17d0f3
 	ld a, [$c608 + 5]
 	ld [wOTTrademonSpecies], a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, [wcd81]
 	ld [$c74e], a
 	ld hl, $c63d
@@ -310,9 +310,9 @@ Function17d0f3: ; 17d0f3
 	ld a, $5
 	ld [$a800], a
 	call CloseSRAM
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetMapSceneID
 	ld a, d
@@ -399,16 +399,16 @@ CheckStringContainsLessThanBNextCharacters: ; 17d1e1
 ; 17d1f1
 
 Function17d1f1: ; 17d1f1
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	dec a
 	call SetSeenAndCaughtMon
 
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr nz, .asm_17d223
 
-	ld hl, PartyMon1DVs
-	ld a, [PartyCount]
+	ld hl, wPartyMon1DVs
+	ld a, [wPartyCount]
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -418,7 +418,7 @@ Function17d1f1: ; 17d1f1
 	and a
 	jr nz, .asm_17d223
 
-	ld a, [UnownLetter]
+	ld a, [wUnownLetter]
 	ld [wFirstUnownSeen], a
 
 .asm_17d223
@@ -427,26 +427,26 @@ Function17d1f1: ; 17d1f1
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Parameter: [ScriptVar] = 0..1
+; Parameter: [wScriptVar] = 0..1
 ;
-; if [ScriptVar] == FALSE
+; if [wScriptVar] == FALSE
 ;    Show japanese menu options
 ;    - News - News - ??? - Cancel
-; if [ScriptVar] == TRUE
+; if [wScriptVar] == TRUE
 ;    Show BattleTower-Menu with 3 options in english language
 ;    - Challenge - Explanation - Cancel
 Special_Menu_ChallengeExplanationCancel: ; 17d224
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr nz, .English
 	ld a, $4
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
 	jr .Load_Interpret
 
 .English:
 	ld a, $4
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
 
 .Load_Interpret:
@@ -459,7 +459,7 @@ Special_Menu_ChallengeExplanationCancel: ; 17d224
 Function17d246: ; 17d246
 	call VerticalMenu
 	jr c, .Exit
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	cp $5
 	jr nz, .UsewMenuCursorY
 	ld a, [wMenuCursorY]
@@ -473,12 +473,12 @@ Function17d246: ; 17d246
 	ld a, [wMenuCursorY]
 
 .LoadToScriptVar:
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .Exit:
 	ld a, $4
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 17d26a
 
@@ -534,7 +534,7 @@ Special_Function17d2ce: ; 17d2ce
 	and a
 	jr nz, .asm_17d2e2
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .asm_17d2e2
@@ -553,9 +553,9 @@ Special_Function17d2ce: ; 17d2ce
 	ld de, MUSIC_MOBILE_CENTER
 	ld a, e
 	ld [wMapMusic], a
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, d
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	call PlayMusic
 	call ReturnToMapFromSubmenu
 	call CloseSubmenu
@@ -610,7 +610,7 @@ Function17d314: ; 17d314
 	call ByteFill
 	call CloseSRAM
 	ld a, $2
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	scf
 	ret
 ; 17d370
@@ -654,7 +654,7 @@ Function17d370: ; 17d370
 	call EnableLCD
 	call Function17d60b
 	ld a, $0
-	ld [BGMapBuffer], a
+	ld [wBGMapBuffer], a
 	ld a, $d0
 	ld [wcd21], a
 	ld a, $6
@@ -722,7 +722,7 @@ Function17d45a: ; 17d45a
 
 .asm_17d46f
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 17d474
 
@@ -745,7 +745,7 @@ Function17d48d: ; 17d48d
 	call CopyBytes
 	ld hl, TileAttrmap_17eb8e
 	decoord 0, 0
-	bccoord 0, 0, AttrMap
+	bccoord 0, 0, wAttrMap
 	ld a, $12
 .asm_17d4a4
 	push af
@@ -775,7 +775,7 @@ Function17d48d: ; 17d48d
 	pop af
 	dec a
 	jr nz, .asm_17d4a4
-	ld a, [BGMapBuffer]
+	ld a, [wBGMapBuffer]
 	ld l, a
 	ld a, [wcd21]
 	ld h, a
@@ -869,7 +869,7 @@ Function17d48d: ; 17d48d
 	pop af
 	dec a
 	jr nz, .asm_17d53a
-	ld de, CreditsTimer
+	ld de, wCreditsTimer
 	ld bc, $c
 	call CopyBytes
 	xor a
@@ -1079,7 +1079,7 @@ Function17d6a1: ; 17d6a1
 	ld a, [hli]
 	ld [wcd47], a
 	ld a, [hl]
-	ld [BGMapPalBuffer], a
+	ld [wBGMapPalBuffer], a
 	ld hl, $b1b3
 	add hl, bc
 	add hl, bc
@@ -1483,7 +1483,7 @@ Function17d93a: ; 17d93a
 	ld a, [$c70c]
 	call Function17e6de
 	ld a, [$c70a]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, [$c70c]
 	ld e, a
 	farcall LoadMonPaletteAsNthBGPal
@@ -1519,7 +1519,7 @@ Function17d98b: ; 17d98b
 	ld a, [$c70b]
 	call Function17e6de
 	ld a, [$c70a]
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 	ld a, [$c70b]
 	ld e, a
 	farcall LoadTrainerClassPaletteAsNthBGPal
@@ -2324,17 +2324,17 @@ Function17ded9: ; 17ded9
 	ld [rSVBK], a
 	ld hl, $c708
 	ld a, [hli]
-	ld [CurPartySpecies], a
-	ld [TempEnemyMonSpecies], a
+	ld [wCurPartySpecies], a
+	ld [wTempEnemyMonSpecies], a
 	ld a, [hli]
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld a, [hli]
 	ld b, a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp $6
 	jp nc, Function17e026
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	push hl
 	push bc
 	predef TryAddMonToParty
@@ -2345,9 +2345,9 @@ Function17ded9: ; 17ded9
 	jr z, .asm_17df33
 	push bc
 	push hl
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	call SkipNames
 	ld d, h
 	ld e, l
@@ -2365,9 +2365,9 @@ Function17ded9: ; 17ded9
 	jr z, .asm_17df5a
 	push bc
 	push hl
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	call SkipNames
 	ld d, h
 	ld e, l
@@ -2390,9 +2390,9 @@ Function17ded9: ; 17ded9
 	jr z, .asm_17df79
 	push bc
 	push hl
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1ID
+	ld hl, wPartyMon1ID
 	call GetPartyLocation
 	ld d, h
 	ld e, l
@@ -2414,9 +2414,9 @@ Function17ded9: ; 17ded9
 	jr z, .asm_17dfd0
 	push bc
 	push hl
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1DVs
+	ld hl, wPartyMon1DVs
 	call GetPartyLocation
 	ld d, h
 	ld e, l
@@ -2427,25 +2427,25 @@ Function17ded9: ; 17ded9
 	ld a, [hli]
 	ld [de], a
 	push hl
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	call GetPartyLocation
 	ld a, [hl]
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1MaxHP
+	ld hl, wPartyMon1MaxHP
 	call GetPartyLocation
 	ld d, h
 	ld e, l
 	push hl
 	ld b, $0
 	farcall CalcPkmnStats
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	call GetPartyLocation
 	ld d, h
 	ld e, l
@@ -2468,9 +2468,9 @@ Function17ded9: ; 17ded9
 	jr z, .asm_17dfea
 	push bc
 	push hl
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 	call GetPartyLocation
 	ld d, h
 	ld e, l
@@ -2488,9 +2488,9 @@ Function17ded9: ; 17ded9
 	jr z, .asm_17e01f
 	push bc
 	push hl
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1Moves
+	ld hl, wPartyMon1Moves
 	call GetPartyLocation
 	ld d, h
 	ld e, l
@@ -2501,9 +2501,9 @@ Function17ded9: ; 17ded9
 	pop de
 	push hl
 	push de
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1PP
+	ld hl, wPartyMon1PP
 	call GetPartyLocation
 	ld d, h
 	ld e, l
@@ -2664,11 +2664,11 @@ Function17e0fd: ; 17e0fd
 	ld [rSVBK], a
 	ld hl, $c708
 	ld a, [hli]
-	ld [CurItem], a
+	ld [wCurItem], a
 	ld a, [hli]
 	ld [wItemQuantityChangeBuffer], a
 	push hl
-	ld hl, NumItems
+	ld hl, wNumItems
 	call ReceiveItem
 	pop hl
 	jr c, .asm_17e127
@@ -2698,7 +2698,7 @@ Function17e133: ; 17e133
 	ld [rSVBK], a
 	ld hl, $c708
 	ld a, [hli]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	push hl
 	farcall MobileCheckOwnMonAnywhere
 	pop hl
@@ -2729,14 +2729,14 @@ Function17e165: ; 17e165
 	ld [rSVBK], a
 	ld hl, $c708
 	ld a, [hli]
-	ld [CurItem], a
+	ld [wCurItem], a
 	push hl
-	ld hl, NumItems
+	ld hl, wNumItems
 	call CheckItem
 	pop hl
 	jr c, .asm_17e195
 	push hl
-	ld hl, PCItems
+	ld hl, wPCItems
 	call CheckItem
 	pop hl
 	jr c, .asm_17e195
@@ -3012,7 +3012,7 @@ Function17e32b: ; 17e32b
 	ld de, $b0b1
 	ld bc, $40
 	call CopyBytes
-	ld hl, BGMapBuffer
+	ld hl, wBGMapBuffer
 	ld bc, $5b
 	call CopyBytes
 	call CloseSRAM
@@ -3026,7 +3026,7 @@ Function17e349: ; 17e349
 	ld de, $c608
 	ld bc, $40
 	call CopyBytes
-	ld de, BGMapBuffer
+	ld de, wBGMapBuffer
 	ld bc, $5b
 	call CopyBytes
 	call CloseSRAM
@@ -3142,7 +3142,7 @@ Function17e438: ; 17e438
 ; 17e43d
 
 Function17e43d: ; 17e43d
-	ld a, [BGMapBuffer]
+	ld a, [wBGMapBuffer]
 	ld l, a
 	ld a, [wcd21]
 	ld h, a
@@ -3151,7 +3151,7 @@ Function17e43d: ; 17e43d
 ; 17e447
 
 Function17e447: ; 17e447
-	ld a, [BGMapBuffer]
+	ld a, [wBGMapBuffer]
 	ld l, a
 	ld a, [wcd21]
 	ld h, a
@@ -3182,7 +3182,7 @@ Function17e451: ; 17e451
 	ld bc, $14
 	ld a, [wcd23]
 	call AddNTimes
-	ld a, [CreditsTimer]
+	ld a, [wCreditsTimer]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -3203,7 +3203,7 @@ Function17e451: ; 17e451
 	ld d, a
 	push bc
 	push hl
-	ld a, [BGMapBuffer]
+	ld a, [wBGMapBuffer]
 	ld l, a
 	ld a, [wcd21]
 	ld h, a
@@ -3289,7 +3289,7 @@ Function17e4dd: ; 17e4dd
 
 Function17e51b: ; 17e51b
 	ld a, [wcd28]
-	ld hl, CreditsTimer
+	ld hl, wCreditsTimer
 	sub [hl]
 	inc a
 	ld [wcd4f], a
@@ -3298,7 +3298,7 @@ Function17e51b: ; 17e51b
 	ld a, [wcd23]
 	dec a
 	call AddNTimes
-	ld a, [CreditsTimer]
+	ld a, [wCreditsTimer]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -3347,7 +3347,7 @@ Function17e571: ; 17e571
 	ld bc, $14
 	ld a, [wcd23]
 	call AddNTimes
-	ld a, [CreditsTimer]
+	ld a, [wCreditsTimer]
 	ld c, a
 	ld b, $0
 	add hl, bc
@@ -3407,7 +3407,7 @@ Function17e5af: ; 17e5af
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld a, [BGMapBuffer]
+	ld a, [wBGMapBuffer]
 	ld l, a
 	ld a, [wcd21]
 	ld h, a
@@ -3590,7 +3590,7 @@ Function17e691: ; 17e691
 
 .asm_17e6c7
 	pop hl
-	bccoord 0, 0, AttrMap
+	bccoord 0, 0, wAttrMap
 	add hl, bc
 	ld [hl], a
 	pop hl
@@ -3614,7 +3614,7 @@ Function17e6de: ; 17e6de
 	ld l, a
 	ld a, [$c709]
 	ld h, a
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	add hl, de
 	pop af
 	ld b, $7
@@ -4197,7 +4197,7 @@ Function17f2ff: ; 17f2ff
 	push bc
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld de, $c608
 	ld bc, $6
 	call CopyBytes
@@ -4374,7 +4374,7 @@ Function17f41d: ; 17f41d
 	push af
 	ld l, c
 	ld h, b
-	ld bc, -TileMap + $10000
+	ld bc, -wTileMap + $10000
 	add hl, bc
 	ld de, -SCREEN_WIDTH
 	ld c, $1
@@ -4532,7 +4532,7 @@ Function17f4f6: ; 17f4f6
 	ld h, a
 	ld a, [wcd47]
 	ld c, a
-	ld a, [BGMapPalBuffer]
+	ld a, [wBGMapPalBuffer]
 	ld b, a
 	ld a, [wcd2e]
 .asm_17f509
@@ -4688,18 +4688,18 @@ Function17f5d2: ; 17f5d2
 
 Function17f5e4: ; 17f5e4
 	ld a, $8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, d
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld a, " "
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ld a, $6
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	hlcoord 2, 1
@@ -5235,11 +5235,11 @@ Function17ff23: ; 17ff23
 	and a
 	ret z
 	ld a, $8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, [wMapMusic]
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	xor a
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld hl, wc303
 	set 7, [hl]
 	ret

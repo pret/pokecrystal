@@ -41,7 +41,7 @@ AnimateDexSearchSlowpoke: ; 441cf
 DoDexSearchSlowpokeFrame: ; 44207
 	ld a, [wDexSearchSlowpokeFrame]
 	ld hl, .SlowpokeSpriteData
-	ld de, Sprite01
+	ld de, wSprite01
 .loop
 	ld a, [hli]
 	cp -1
@@ -107,8 +107,8 @@ DisplayDexEntry: ; 4424d
 	pop bc
 	ret z
 ; Get the height of the Pokemon.
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
 	inc hl
 	ld a, b
 	push af

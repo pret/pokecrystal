@@ -52,7 +52,7 @@ _LinkTextbox: ; 16d61d
 	pop hl
 	pop bc
 
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	inc b
 	inc b

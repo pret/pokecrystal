@@ -549,7 +549,7 @@ RedrawUnownPuzzlePieces: ; e14d9
 	ld hl, .OAM_NotHoldingPiece
 
 .load
-	ld de, Sprite01
+	ld de, wSprite01
 .loop
 	ld a, [hli]
 	cp -1
@@ -834,7 +834,7 @@ PuzzlePieceBorderData: ; e1703
 INCBIN "gfx/unown_puzzle/tile_borders.2bpp"
 
 LoadUnownPuzzlePiecesGFX: ; e17a3
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	maskbits NUM_UNOWN_PUZZLES
 	ld e, a
 	ld d, 0

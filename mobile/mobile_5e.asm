@@ -7,7 +7,7 @@ Function17a68f:: ; 17a68f (5e:668f)
 	ld hl, $d088
 	bit 5, [hl]
 	jr z, .asm_17a6a6
-	ld de, StringBuffer1 ; $d073
+	ld de, wStringBuffer1 ; $d073
 	push de
 	call Function17a721
 	pop de
@@ -21,11 +21,11 @@ Function17a68f:: ; 17a68f (5e:668f)
 Function17a6a8: ; 17a6a8 (5e:66a8)
 	push de
 	push bc
-	ld hl, StringBuffer2 ; $d086
+	ld hl, wStringBuffer2 ; $d086
 	ld bc, $a
 	xor a
 	call ByteFill
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	ld bc, $10
 	ld a, $ff
 	call ByteFill
@@ -50,7 +50,7 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	ret
 
 Function17a6f5: ; 17a6f5 (5e:66f5)
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	ld c, $0
 	ld b, $8
 .asm_17a6fc
@@ -91,7 +91,7 @@ Function17a721: ; 17a721 (5e:6721)
 	ld a, $ff
 	call ByteFill
 	pop de
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	ld b, $8
 .asm_17a732
 	ld c, $0
@@ -443,7 +443,7 @@ Function17a943: ; 17a943 (5e:6943)
 	ld [$d08c], a
 	ld c, a
 	ld b, $0
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	add hl, bc
 	ld [hl], $ff
 	ld a, $2
@@ -465,7 +465,7 @@ Function17a964: ; 17a964 (5e:6964)
 	ld b, $0
 	inc a
 	ld [$d08c], a
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	add hl, bc
 	ld [hl], e
 	and a
@@ -480,7 +480,7 @@ Function17a97b: ; 17a97b (5e:697b)
 	lb bc, 2, 18
 	call ClearBox
 	hlcoord 3, 2
-	ld de, Buffer1
+	ld de, wBuffer1
 	ld a, [$d08c]
 	and a
 	ret z
@@ -663,7 +663,7 @@ Function17aaa9: ; 17aaa9 (5e:6aa9)
 	call Function17aae3
 	ld c, a
 	ld b, $0
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	add hl, bc
 	push hl
 	ld a, $4
@@ -806,10 +806,10 @@ Function17ac1d: ; 17ac1d (5e:6c1d)
 
 Function17ac2a: ; 17ac2a (5e:6c2a)
 	ld hl, Tilemap_17ae3d
-	decoord 0, 4, AttrMap
+	decoord 0, 4, wAttrMap
 	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
 	call CopyBytes
-	hlcoord 0, 4, AttrMap
+	hlcoord 0, 4, wAttrMap
 	ld bc, (SCREEN_HEIGHT - 4) * SCREEN_WIDTH
 .loop
 	ld a, [hl]

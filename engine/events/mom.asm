@@ -141,7 +141,7 @@ Special_BankOfMom: ; 16218
 	ld hl, UnknownText_0x16662
 	call PrintText
 	xor a
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
@@ -153,28 +153,28 @@ Special_BankOfMom: ; 16218
 	call Mom_WithdrawDepositMenuJoypad
 	call CloseWindow
 	jr c, .CancelDeposit
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld a, [hli]
 	or [hl]
 	inc hl
 	or [hl]
 	jr z, .CancelDeposit
-	ld de, Money
-	ld bc, StringBuffer2
+	ld de, wMoney
+	ld bc, wStringBuffer2
 	farcall CompareMoney
 	jr c, .DontHaveThatMuchToDeposit
-	ld hl, StringBuffer2
-	ld de, StringBuffer2 + 3
+	ld hl, wStringBuffer2
+	ld de, wStringBuffer2 + 3
 	ld bc, 3
 	call CopyBytes
 	ld bc, wMomsMoney
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	farcall GiveMoney
 	jr c, .CantDepositThatMuch
-	ld bc, StringBuffer2 + 3
-	ld de, Money
+	ld bc, wStringBuffer2 + 3
+	ld de, wMoney
 	farcall TakeMoney
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld de, wMomsMoney
 	ld bc, 3
 	call CopyBytes
@@ -208,7 +208,7 @@ Special_BankOfMom: ; 16218
 	ld hl, UnknownText_0x16667
 	call PrintText
 	xor a
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
@@ -220,29 +220,29 @@ Special_BankOfMom: ; 16218
 	call Mom_WithdrawDepositMenuJoypad
 	call CloseWindow
 	jr c, .CancelWithdraw
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld a, [hli]
 	or [hl]
 	inc hl
 	or [hl]
 	jr z, .CancelWithdraw
-	ld hl, StringBuffer2
-	ld de, StringBuffer2 + 3
+	ld hl, wStringBuffer2
+	ld de, wStringBuffer2 + 3
 	ld bc, 3
 	call CopyBytes
 	ld de, wMomsMoney
-	ld bc, StringBuffer2
+	ld bc, wStringBuffer2
 	farcall CompareMoney
 	jr c, .InsufficientFundsInBank
-	ld bc, Money
-	ld de, StringBuffer2
+	ld bc, wMoney
+	ld de, wStringBuffer2
 	farcall GiveMoney
 	jr c, .NotEnoughRoomInWallet
-	ld bc, StringBuffer2 + 3
+	ld bc, wStringBuffer2 + 3
 	ld de, wMomsMoney
 	farcall TakeMoney
-	ld hl, StringBuffer2
-	ld de, Money
+	ld hl, wStringBuffer2
+	ld de, wMoney
 	ld bc, 3
 	call CopyBytes
 	ld de, SFX_TRANSACTION
@@ -367,33 +367,33 @@ DSTChecks: ; 16439
 ; 164b9
 
 .SetClockForward: ; 164b9
-	ld a, [StartHour]
+	ld a, [wStartHour]
 	add 1
 	sub 24
 	jr nc, .DontLoopHourForward
 	add 24
 .DontLoopHourForward:
-	ld [StartHour], a
+	ld [wStartHour], a
 	ccf
-	ld a, [StartDay]
+	ld a, [wStartDay]
 	adc 0
-	ld [StartDay], a
+	ld [wStartDay], a
 	ret
 ; 164d1
 
 .SetClockBack: ; 164d1
-	ld a, [StartHour]
+	ld a, [wStartHour]
 	sub 1
 	jr nc, .DontLoopHourBack
 	add 24
 .DontLoopHourBack:
-	ld [StartHour], a
-	ld a, [StartDay]
+	ld [wStartHour], a
+	ld a, [wStartDay]
 	sbc 0
 	jr nc, .DontLoopDayBack
 	add 7
 .DontLoopDayBack:
-	ld [StartDay], a
+	ld [wStartDay], a
 	ret
 ; 164ea
 
@@ -465,14 +465,14 @@ Mom_ContinueMenuSetup: ; 1651a
 	ld de, Mom_HeldString
 	call PlaceString
 	hlcoord 12, 4
-	ld de, Money
+	ld de, wMoney
 	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 1, 6
 	pop de
 	call PlaceString
 	hlcoord 12, 6
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
 	call UpdateSprites
@@ -504,7 +504,7 @@ Mom_WithdrawDepositMenuJoypad: ; 16571
 	ld a, " "
 	call ByteFill
 	hlcoord 12, 6
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
 	ld a, [hVBlankCounter]
@@ -567,7 +567,7 @@ Mom_WithdrawDepositMenuJoypad: ; 16571
 	call .getdigitquantity
 	ld c, l
 	ld b, h
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	farcall GiveMoney
 	ret
 
@@ -576,7 +576,7 @@ Mom_WithdrawDepositMenuJoypad: ; 16571
 	call .getdigitquantity
 	ld c, l
 	ld b, h
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	farcall TakeMoney
 	ret
 

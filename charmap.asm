@@ -7,10 +7,10 @@
 	charmap "<LNBRK>",   $22
 	charmap "<POKE>",    $24 ; "<PO><KE>"
 	charmap "%",         $25 ; soft linebreak in landmark names
-	charmap "<RED>",     $38 ; RedsName
-	charmap "<GREEN>",   $39 ; GreensName
+	charmap "<RED>",     $38 ; wRedsName
+	charmap "<GREEN>",   $39 ; wGreensName
 	charmap "<ENEMY>",   $3f
-	charmap "<MOM>",     $49 ; MomsName
+	charmap "<MOM>",     $49 ; wMomsName
 	charmap "<PKMN>",    $4a ; "<PK><MN>"
 	charmap "<_CONT>",   $4b ; implements "<CONT>"
 	charmap "<SCROLL>",  $4c
@@ -18,8 +18,8 @@
 	charmap "<LINE>",    $4f
 	charmap "@",         $50 ; string terminator
 	charmap "<PARA>",    $51
-	charmap "<PLAYER>",  $52 ; PlayerName
-	charmap "<RIVAL>",   $53 ; RivalName
+	charmap "<PLAYER>",  $52 ; wPlayerName
+	charmap "<RIVAL>",   $53 ; wRivalName
 	charmap "#",         $54 ; "POKé"
 	charmap "<CONT>",    $55
 	charmap "<……>",      $56 ; "……"

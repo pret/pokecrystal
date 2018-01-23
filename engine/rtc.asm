@@ -44,7 +44,7 @@ GetTimeOfDay:: ; 14032
 ; get time of day
 	inc hl
 	ld a, [hl]
-	ld [TimeOfDay], a
+	ld [wTimeOfDay], a
 	ret
 ; 14044
 
@@ -68,7 +68,7 @@ Unreferenced_1404e:
 StageRTCTimeForSave: ; 14056
 	call UpdateTime
 	ld hl, wRTC
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld [hli], a
 	ld a, [hHours]
 	ld [hli], a
@@ -138,7 +138,7 @@ Function140ae: ; 140ae
 	call UpdateTime
 	ld a, [wRTC + 0]
 	ld b, a
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	cp b
 	jr c, .dont_update
 
@@ -166,9 +166,9 @@ _InitTime:: ; 140ed
 	call GetClock
 	call FixDays
 	ld hl, hRTCSeconds
-	ld de, StartSecond
+	ld de, wStartSecond
 
-	ld a, [StringBuffer2 + 3]
+	ld a, [wStringBuffer2 + 3]
 	sub [hl]
 	dec hl
 	jr nc, .okay_secs
@@ -177,7 +177,7 @@ _InitTime:: ; 140ed
 	ld [de], a
 	dec de
 
-	ld a, [StringBuffer2 + 2]
+	ld a, [wStringBuffer2 + 2]
 	sbc [hl]
 	dec hl
 	jr nc, .okay_mins
@@ -186,7 +186,7 @@ _InitTime:: ; 140ed
 	ld [de], a
 	dec de
 
-	ld a, [StringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 1]
 	sbc [hl]
 	dec hl
 	jr nc, .okay_hrs
@@ -195,7 +195,7 @@ _InitTime:: ; 140ed
 	ld [de], a
 	dec de
 
-	ld a, [StringBuffer2]
+	ld a, [wStringBuffer2]
 	sbc [hl]
 	dec hl
 	jr nc, .okay_days

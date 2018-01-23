@@ -91,9 +91,9 @@ DisableSpriteUpdates:: ; 0x2ed3
 ; disables overworld sprite updating?
 	xor a
 	ld [hMapAnims], a
-	ld a, [VramState]
+	ld a, [wVramState]
 	res 0, a
-	ld [VramState], a
+	ld [wVramState], a
 	ld a, $0
 	ld [wSpriteUpdatesEnabled], a
 	ret
@@ -102,9 +102,9 @@ DisableSpriteUpdates:: ; 0x2ed3
 EnableSpriteUpdates:: ; 2ee4
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
-	ld a, [VramState]
+	ld a, [wVramState]
 	set 0, a
-	ld [VramState], a
+	ld [wVramState], a
 	ld a, $1
 	ld [hMapAnims], a
 	ret
@@ -115,9 +115,9 @@ INCLUDE "home/string.asm"
 IsInJohto:: ; 2f17
 ; Return 0 if the player is in Johto, and 1 in Kanto.
 
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 
@@ -127,9 +127,9 @@ IsInJohto:: ; 2f17
 	cp SPECIAL_MAP
 	jr nz, .CheckRegion
 
-	ld a, [BackupMapGroup]
+	ld a, [wBackupMapGroup]
 	ld b, a
-	ld a, [BackupMapNumber]
+	ld a, [wBackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 
@@ -170,7 +170,7 @@ INCLUDE "home/double_speed.asm"
 ClearSprites:: ; 300b
 ; Erase OAM data
 	ld hl, wVirtualOAM
-	ld b, SpritesEnd - wVirtualOAM
+	ld b, wSpritesEnd - wVirtualOAM
 	xor a
 .loop
 	ld [hli], a
@@ -181,7 +181,7 @@ ClearSprites:: ; 300b
 
 HideSprites:: ; 3016
 ; Set all OAM y-positions to 160 to hide them offscreen
-	ld hl, Sprite01YCoord
+	ld hl, wSprite01YCoord
 	ld de, SPRITEOAMSTRUCT_LENGTH
 	ld b, NUM_SPRITE_OAM_STRUCTS
 	ld a, SCREEN_WIDTH_PX
@@ -196,14 +196,14 @@ HideSprites:: ; 3016
 INCLUDE "home/copy2.asm"
 
 LoadTileMapToTempTileMap:: ; 309d
-; Load TileMap into TempTileMap
+; Load wTileMap into wTempTileMap
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(TempTileMap)
+	ld a, BANK(wTempTileMap)
 	ld [rSVBK], a
 	hlcoord 0, 0
-	decoord 0, 0, TempTileMap
-	ld bc, TileMapEnd - TileMap
+	decoord 0, 0, wTempTileMap
+	ld bc, wTileMapEnd - wTileMap
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -220,14 +220,14 @@ Call_LoadTempTileMapToTileMap:: ; 30b4
 ; 30bf
 
 LoadTempTileMapToTileMap:: ; 30bf
-; Load TempTileMap into TileMap
+; Load wTempTileMap into wTileMap
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(TempTileMap)
+	ld a, BANK(wTempTileMap)
 	ld [rSVBK], a
-	hlcoord 0, 0, TempTileMap
+	hlcoord 0, 0, wTempTileMap
 	decoord 0, 0
-	ld bc, TileMapEnd - TileMap
+	ld bc, wTileMapEnd - wTileMap
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -235,8 +235,8 @@ LoadTempTileMapToTileMap:: ; 30bf
 ; 30d6
 
 CopyName1:: ; 30d6
-; Copies the name from de to StringBuffer2
-	ld hl, StringBuffer2
+; Copies the name from de to wStringBuffer2
+	ld hl, wStringBuffer2
 
 CopyName2:: ; 30d9
 ; Copies the name from de to hl
@@ -291,20 +291,20 @@ INCLUDE "home/math.asm"
 PrintLetterDelay:: ; 313d
 ; Wait before printing the next letter.
 
-; The text speed setting in Options is actually a frame count:
+; The text speed setting in wOptions is actually a frame count:
 ; 	fast: 1 frame
 ; 	mid:  3 frames
 ; 	slow: 5 frames
 
-; TextBoxFlags[!0] and A or B override text speed with a one-frame delay.
-; Options[4] and TextBoxFlags[!1] disable the delay.
+; wTextBoxFlags[!0] and A or B override text speed with a one-frame delay.
+; wOptions[4] and wTextBoxFlags[!1] disable the delay.
 
-	ld a, [Options]
+	ld a, [wOptions]
 	bit NO_TEXT_SCROLL, a
 	ret nz
 
 ; non-scrolling text?
-	ld a, [TextBoxFlags]
+	ld a, [wTextBoxFlags]
 	bit NO_TEXT_DELAY_F, a
 	ret z
 
@@ -321,12 +321,12 @@ PrintLetterDelay:: ; 313d
 	ld [hl], a
 
 ; force fast scroll?
-	ld a, [TextBoxFlags]
+	ld a, [wTextBoxFlags]
 	bit FAST_TEXT_DELAY_F, a
 	jr z, .fast
 
 ; text speed
-	ld a, [Options]
+	ld a, [wOptions]
 	and %111
 	jr .updatedelay
 
@@ -334,7 +334,7 @@ PrintLetterDelay:: ; 313d
 	ld a, TEXT_DELAY_FAST
 
 .updatedelay
-	ld [TextDelayFrames], a
+	ld [wTextDelayFrames], a
 
 .checkjoypad
 	call GetJoypad
@@ -358,7 +358,7 @@ PrintLetterDelay:: ; 313d
 	jr .end
 
 .wait
-	ld a, [TextDelayFrames]
+	ld a, [wTextDelayFrames]
 	and a
 	jr nz, .checkjoypad
 
@@ -575,7 +575,7 @@ CopyTilemapAtOnce:: ; 323d
 	di
 	ld a, BANK(vTiles3)
 	ld [rVBK], a
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	call .StackPointerMagic
 	ld a, BANK(vTiles0)
 	ld [rVBK], a
@@ -760,7 +760,7 @@ CountSetBits:: ; 0x335f
 ; 0x3376
 
 GetWeekday:: ; 3376
-	ld a, [CurDay]
+	ld a, [wCurDay]
 .mod
 	sub 7
 	jr nc, .mod
@@ -792,7 +792,7 @@ ScrollingMenu:: ; 350c
 ; 3524
 
 .UpdatePalettes: ; 3524
-	ld hl, VramState
+	ld hl, wVramState
 	bit 0, [hl]
 	jp nz, UpdateTimePals
 	jp SetPalettes
@@ -1068,7 +1068,7 @@ PrepMonFrontpic:: ; 3786
 	ld [wBoxAlignment], a
 
 _PrepMonFrontpic:: ; 378b
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	call IsAPokemon
 	jr c, .not_pokemon
 
@@ -1088,16 +1088,16 @@ _PrepMonFrontpic:: ; 378b
 	xor a
 	ld [wBoxAlignment], a
 	inc a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ret
 ; 37b6
 
 INCLUDE "home/cry.asm"
 
 PrintLevel:: ; 382d
-; Print TempMonLevel at hl
+; Print wTempMonLevel at hl
 
-	ld a, [TempMonLevel]
+	ld a, [wTempMonLevel]
 	ld [hl], "<LV>"
 	inc hl
 
@@ -1146,7 +1146,7 @@ GetBaseData:: ; 3856
 	rst Bankswitch
 
 ; Egg doesn't have BaseData
-	ld a, [CurSpecies]
+	ld a, [wCurSpecies]
 	cp EGG
 	jr z, .egg
 
@@ -1155,7 +1155,7 @@ GetBaseData:: ; 3856
 	ld bc, BASE_DATA_SIZE
 	ld hl, BaseData
 	call AddNTimes
-	ld de, CurBaseData
+	ld de, wCurBaseData
 	ld bc, BASE_DATA_SIZE
 	call CopyBytes
 	jr .end
@@ -1166,11 +1166,11 @@ GetBaseData:: ; 3856
 
 ; Sprite dimensions
 	ld b, $55 ; 5x5
-	ld hl, BasePicSize
+	ld hl, wBasePicSize
 	ld [hl], b
 
 ; ????
-	ld hl, BasePadding
+	ld hl, wBasePadding
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -1182,8 +1182,8 @@ GetBaseData:: ; 3856
 
 .end
 ; Replace Pokedex # with species
-	ld a, [CurSpecies]
-	ld [BaseDexNo], a
+	ld a, [wCurSpecies]
+	ld [wBaseDexNo], a
 
 	pop af
 	rst Bankswitch
@@ -1194,8 +1194,8 @@ GetBaseData:: ; 3856
 ; 389c
 
 GetCurNick:: ; 389c
-	ld a, [CurPartyMon]
-	ld hl, PartyMonNicknames
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonNicknames
 
 GetNick:: ; 38a2
 ; Get nickname a from list hl.
@@ -1204,7 +1204,7 @@ GetNick:: ; 38a2
 	push bc
 
 	call SkipNames
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 
 	push de
 	ld bc, MON_NAME_LENGTH
@@ -1301,13 +1301,13 @@ PrintBCDDigit:: ; 38f2
 ; 0x3917
 
 GetPartyParamLocation:: ; 3917
-; Get the location of parameter a from CurPartyMon in hl
+; Get the location of parameter a from wCurPartyMon in hl
 	push bc
-	ld hl, PartyMons
+	ld hl, wPartyMons
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call GetPartyLocation
 	pop bc
 	ret
@@ -1347,18 +1347,18 @@ PushLYOverrides:: ; 3b0c
 	and a
 	ret z
 
-	ld a, LOW(LYOverridesBackup)
-	ld [Requested2bppSource], a
-	ld a, HIGH(LYOverridesBackup)
-	ld [Requested2bppSource + 1], a
+	ld a, LOW(wLYOverridesBackup)
+	ld [wRequested2bppSource], a
+	ld a, HIGH(wLYOverridesBackup)
+	ld [wRequested2bppSource + 1], a
 
-	ld a, LOW(LYOverrides)
-	ld [Requested2bppDest], a
-	ld a, HIGH(LYOverrides)
-	ld [Requested2bppDest + 1], a
+	ld a, LOW(wLYOverrides)
+	ld [wRequested2bppDest], a
+	ld a, HIGH(wLYOverrides)
+	ld [wRequested2bppDest + 1], a
 
-	ld a, (LYOverridesEnd - LYOverrides) / 16
-	ld [Requested2bpp], a
+	ld a, (wLYOverridesEnd - wLYOverrides) / 16
+	ld [wRequested2bpp], a
 	ret
 ; 3b2a
 

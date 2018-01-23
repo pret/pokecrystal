@@ -105,7 +105,7 @@ DoWeatherModifiers: ; fbda4
 .ApplyModifier:
 	xor a
 	ld [hMultiplicand + 0], a
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld [hMultiplicand + 1], a
 	ld a, [hl]
@@ -138,9 +138,9 @@ DoWeatherModifiers: ; fbda4
 
 .Update:
 	ld a, b
-	ld [CurDamage], a
+	ld [wCurDamage], a
 	ld a, c
-	ld [CurDamage + 1], a
+	ld [wCurDamage + 1], a
 
 .done
 	ret
@@ -163,7 +163,7 @@ DoBadgeTypeBoosts: ; fbe24
 	and a
 	ret nz
 
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	and a
 	ret nz
 
@@ -199,10 +199,10 @@ DoBadgeTypeBoosts: ; fbe24
 	jr .CheckBadge
 
 .ApplyBoost:
-	ld a, [CurDamage]
+	ld a, [wCurDamage]
 	ld h, a
 	ld d, a
-	ld a, [CurDamage + 1]
+	ld a, [wCurDamage + 1]
 	ld l, a
 	ld e, a
 
@@ -226,9 +226,9 @@ DoBadgeTypeBoosts: ; fbe24
 
 .Update:
 	ld a, h
-	ld [CurDamage], a
+	ld [wCurDamage], a
 	ld a, l
-	ld [CurDamage + 1], a
+	ld [wCurDamage + 1], a
 
 .done
 	pop bc

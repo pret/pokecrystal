@@ -1,8 +1,8 @@
 GetTrainerDVs: ; 270c4
-; Return the DVs of OtherTrainerClass in bc
+; Return the DVs of wOtherTrainerClass in bc
 
 	push hl
-	ld a, [OtherTrainerClass]
+	ld a, [wOtherTrainerClass]
 	dec a
 	ld c, a
 	ld b, 0

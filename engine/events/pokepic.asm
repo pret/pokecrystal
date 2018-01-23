@@ -8,8 +8,8 @@ Pokepic:: ; 244e3
 	call GetSGBLayout
 	xor a
 	ld [hBGMapMode], a
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
 	call GetBaseData
 	ld de, vTiles1
 	predef GetMonFrontpic

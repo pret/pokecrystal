@@ -158,25 +158,25 @@ PrintPartyMonPage1: ; 1dc381
 	call Get2bpp
 
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	farcall CopyPkmnToTempMon
 	hlcoord 0, 7
 	ld b, 9
 	ld c, 18
 	call TextBox
 	hlcoord 8, 2
-	ld a, [TempMonLevel]
+	ld a, [wTempMonLevel]
 	call PrintLevel_Force3Digits
 	hlcoord 12, 2
 	ld [hl], PRINTPARTY_HP
 	inc hl
-	ld de, TempMonMaxHP
+	ld de, wTempMonMaxHP
 	lb bc, 2, 3
 	call PrintNum
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld [wd265], a
-	ld [CurSpecies], a
-	ld hl, PartyMonNicknames
+	ld [wCurSpecies], a
+	ld hl, wPartyMonNicknames
 	call Function1dc50e
 	hlcoord 8, 4
 	call PlaceString
@@ -196,7 +196,7 @@ PrintPartyMonPage1: ; 1dc381
 	hlcoord 1, 9
 	ld de, String1dc550
 	call PlaceString
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	call Function1dc50e
 	hlcoord 4, 9
 	call PlaceString
@@ -204,22 +204,22 @@ PrintPartyMonPage1: ; 1dc381
 	ld de, String1dc559
 	call PlaceString
 	hlcoord 4, 11
-	ld de, TempMonID
+	ld de, wTempMonID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	hlcoord 1, 14
 	ld de, String1dc554
 	call PlaceString
 	hlcoord 7, 14
-	ld a, [TempMonMoves + 0]
+	ld a, [wTempMonMoves + 0]
 	call Function1dc51a
 	call Function1dc52c
-	ld hl, TempMonDVs
+	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	ld hl, wBoxAlignment
 	xor a
 	ld [hl], a
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr z, .asm_1dc469
 	inc [hl]
@@ -242,7 +242,7 @@ PrintPartyMonPage2: ; 1dc47b
 	ld [hBGMapMode], a
 	call LoadFontsBattleExtra
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	farcall CopyPkmnToTempMon
 	hlcoord 0, 0
 	ld b, 15
@@ -253,31 +253,31 @@ PrintPartyMonPage2: ; 1dc47b
 	hlcoord 0, 1
 	call CopyBytes
 	hlcoord 7, 0
-	ld a, [TempMonMoves + 1]
+	ld a, [wTempMonMoves + 1]
 	call Function1dc51a
 	hlcoord 7, 2
-	ld a, [TempMonMoves + 2]
+	ld a, [wTempMonMoves + 2]
 	call Function1dc51a
 	hlcoord 7, 4
-	ld a, [TempMonMoves + 3]
+	ld a, [wTempMonMoves + 3]
 	call Function1dc51a
 	hlcoord 7, 7
 	ld de, String1dc55d
 	call PlaceString
 	hlcoord 16, 7
-	ld de, TempMonAttack
+	ld de, wTempMonAttack
 	call .PrintTempMonStats
 	hlcoord 16, 9
-	ld de, TempMonDefense
+	ld de, wTempMonDefense
 	call .PrintTempMonStats
 	hlcoord 16, 11
-	ld de, TempMonSpclAtk
+	ld de, wTempMonSpclAtk
 	call .PrintTempMonStats
 	hlcoord 16, 13
-	ld de, TempMonSpclDef
+	ld de, wTempMonSpclDef
 	call .PrintTempMonStats
 	hlcoord 16, 15
-	ld de, TempMonSpeed
+	ld de, wTempMonSpeed
 	call .PrintTempMonStats
 	call WaitBGMap
 	ld b, SCGB_STATS_SCREEN_HP_PALS
@@ -294,7 +294,7 @@ PrintPartyMonPage2: ; 1dc47b
 
 Function1dc50e: ; 1dc50e
 	ld bc, NAME_LENGTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -328,7 +328,7 @@ Function1dc52c: ; 1dc52c
 .got_gender
 	hlcoord 17, 2
 	ld [hl], a
-	ld bc, TempMonDVs
+	ld bc, wTempMonDVs
 	farcall CheckShininess
 	ret nc
 	hlcoord 18, 2

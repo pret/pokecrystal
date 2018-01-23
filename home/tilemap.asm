@@ -117,7 +117,7 @@ PlaceVerticalMenuItems:: ; 1c89
 	inc hl
 	ld d, [hl]
 	call GetMenuTextStartCoord
-	call Coord2Tile ; hl now contains the TileMap address where we will start printing text.
+	call Coord2Tile ; hl now contains the wTileMap address where we will start printing text.
 	inc de
 	ld a, [de] ; Number of items
 	inc de
@@ -207,7 +207,7 @@ MenuBoxCoord2Tile:: ; 1cfd
 
 
 Coord2Tile:: ; 1d05
-; Return the address of TileMap(c, b) in hl.
+; Return the address of wTileMap(c, b) in hl.
 	xor a
 	ld h, a
 	ld l, b
@@ -235,7 +235,7 @@ MenuBoxCoord2Attr:: ; 1d19
 	ld b, a
 
 Coord2Attr:: ; 1d21
-; Return the address of AttrMap(c, b) in hl.
+; Return the address of wAttrMap(c, b) in hl.
 	xor a
 	ld h, a
 	ld l, b
@@ -251,7 +251,7 @@ Coord2Attr:: ; 1d21
 	xor a
 	ld b, a
 	add hl, bc
-	bccoord 0, 0, AttrMap
+	bccoord 0, 0, wAttrMap
 	add hl, bc
 	ret
 ; 1d35

@@ -1,5 +1,5 @@
 TownMap_ConvertLineBreakCharacters: ; 1de2c5
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 .loop
 	ld a, [hl]
 	cp "@"
@@ -15,7 +15,7 @@ TownMap_ConvertLineBreakCharacters: ; 1de2c5
 	ld [hl], "<LNBRK>"
 
 .end
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	hlcoord 9, 0
 	call PlaceString
 	ret

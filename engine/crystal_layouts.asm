@@ -2,7 +2,7 @@ GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
 	ld a, b
 	cp SCGB_RAM
 	jr nz, .not_ram
-	ld a, [SGBPredef]
+	ld a, [wSGBPredef]
 .not_ram
 	push af
 	farcall ResetBGPals
@@ -46,7 +46,7 @@ MG_Mobile_Layout_FillBox: ; 49336
 ; 49346
 
 MG_Mobile_Layout_WipeAttrMap: ; 49346 (12:5346)
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a
 	call ByteFill
@@ -74,7 +74,7 @@ MG_Mobile_Layout00: ; 4936e (12:536e)
 	ret
 
 MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	lb bc, 4, 1
 	ld a, $1
 	call MG_Mobile_Layout_FillBox
@@ -84,7 +84,7 @@ MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
 	lb bc, 6, 1
 	ld a, $3
 	call MG_Mobile_Layout_FillBox
-	hlcoord 1, 0, AttrMap
+	hlcoord 1, 0, wAttrMap
 	ld a, $1
 	lb bc, 3, 18
 	call MG_Mobile_Layout_FillBox
@@ -94,7 +94,7 @@ MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
 	lb bc, 12, 18
 	ld a, $3
 	call MG_Mobile_Layout_FillBox
-	hlcoord 19, 0, AttrMap
+	hlcoord 19, 0, wAttrMap
 	lb bc, 4, 1
 	ld a, $1
 	call MG_Mobile_Layout_FillBox
@@ -104,7 +104,7 @@ MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
 	lb bc, 6, 1
 	ld a, $3
 	call MG_Mobile_Layout_FillBox
-	hlcoord 0, 12, AttrMap
+	hlcoord 0, 12, wAttrMap
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, $7
 	call ByteFill
@@ -145,11 +145,11 @@ MG_Mobile_Layout01: ; 4942f
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call MG_Mobile_Layout_WipeAttrMap
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
-	hlcoord 0, 14, AttrMap
+	hlcoord 0, 14, wAttrMap
 	ld bc, 4 * SCREEN_WIDTH
 	ld a, $7
 	call ByteFill
@@ -178,27 +178,27 @@ MG_Mobile_Layout01: ; 4942f
 ; 49480
 
 Function49480: ; 49480
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	lb bc, 4, SCREEN_WIDTH
 	ld a, $7
 	call MG_Mobile_Layout_FillBox
-	hlcoord 0, 2, AttrMap
+	hlcoord 0, 2, wAttrMap
 	ld a, $4
 	ld [hl], a
-	hlcoord 19, 2, AttrMap
+	hlcoord 19, 2, wAttrMap
 	ld [hl], a
 	ret
 ; 49496
 
 Function49496: ; 49496
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	lb bc, 2, SCREEN_WIDTH
 	ld a, $7
 	call MG_Mobile_Layout_FillBox
-	hlcoord 0, 1, AttrMap
+	hlcoord 0, 1, wAttrMap
 	ld a, $4
 	ld [hl], a
-	hlcoord 19, 1, AttrMap
+	hlcoord 19, 1, wAttrMap
 	ld [hl], a
 	ret
 ; 494ac
@@ -251,43 +251,43 @@ INCLUDE "gfx/unknown/49757.pal"
 ; 49797
 
 _InitMG_Mobile_LinkTradePalMap: ; 49797
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	lb bc, 16, 2
 	ld a, $4
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
-	ldcoord_a 0, 1, AttrMap
-	ldcoord_a 0, 14, AttrMap
-	hlcoord 2, 0, AttrMap
+	ldcoord_a 0, 1, wAttrMap
+	ldcoord_a 0, 14, wAttrMap
+	hlcoord 2, 0, wAttrMap
 	lb bc, 8, 18
 	ld a, $5
 	call MG_Mobile_Layout_FillBox
-	hlcoord 2, 8, AttrMap
+	hlcoord 2, 8, wAttrMap
 	lb bc, 8, 18
 	ld a, $6
 	call MG_Mobile_Layout_FillBox
-	hlcoord 0, 16, AttrMap
+	hlcoord 0, 16, wAttrMap
 	lb bc, 2, SCREEN_WIDTH
 	ld a, $4
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
 	lb bc, 6, 1
-	hlcoord 6, 1, AttrMap
+	hlcoord 6, 1, wAttrMap
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
 	lb bc, 6, 1
-	hlcoord 17, 1, AttrMap
+	hlcoord 17, 1, wAttrMap
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
 	lb bc, 6, 1
-	hlcoord 6, 9, AttrMap
+	hlcoord 6, 9, wAttrMap
 	call MG_Mobile_Layout_FillBox
 	ld a, $3
 	lb bc, 6, 1
-	hlcoord 17, 9, AttrMap
+	hlcoord 17, 9, wAttrMap
 	call MG_Mobile_Layout_FillBox
 	ld a, $2
-	hlcoord 2, 16, AttrMap
+	hlcoord 2, 16, wAttrMap
 	ld [hli], a
 	ld a, $7
 	ld [hli], a
@@ -295,7 +295,7 @@ _InitMG_Mobile_LinkTradePalMap: ; 49797
 	ld [hli], a
 	ld a, $2
 	ld [hl], a
-	hlcoord 2, 17, AttrMap
+	hlcoord 2, 17, wAttrMap
 	ld a, $3
 	ld bc, 6
 	call ByteFill

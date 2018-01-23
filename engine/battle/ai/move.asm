@@ -1,5 +1,5 @@
 AIChooseMove: ; 440ce
-; Score each move in EnemyMonMoves starting from Buffer1. Lower is better.
+; Score each move in wEnemyMonMoves starting from wBuffer1. Lower is better.
 ; Pick the move with the lowest score.
 
 ; Wildmons attack at random.
@@ -18,18 +18,18 @@ AIChooseMove: ; 440ce
 
 ; The default score is 20. Unusable moves are given a score of 80.
 	ld a, 20
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 
 ; Don't pick disabled moves.
-	ld a, [EnemyDisabledMove]
+	ld a, [wEnemyDisabledMove]
 	and a
 	jr z, .CheckPP
 
-	ld hl, EnemyMonMoves
+	ld hl, wEnemyMonMoves
 	ld c, 0
 .CheckDisabledMove:
 	cp [hl]
@@ -38,20 +38,20 @@ AIChooseMove: ; 440ce
 	inc hl
 	jr .CheckDisabledMove
 .ScoreDisabledMove:
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	ld b, 0
 	add hl, bc
 	ld [hl], 80
 
 ; Don't pick moves with 0 PP.
 .CheckPP:
-	ld hl, Buffer1 - 1
-	ld de, EnemyMonPP
+	ld hl, wBuffer1 - 1
+	ld de, wEnemyMonPP
 	ld b, 0
 .CheckMovePP:
 	inc b
 	ld a, b
-	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	cp wEnemyMonMovesEnd - wEnemyMonMoves + 1
 	jr z, .ApplyLayers
 	inc hl
 	ld a, [de]
@@ -66,13 +66,13 @@ AIChooseMove: ; 440ce
 .ApplyLayers:
 	ld hl, TrainerClassAttributes + TRNATTR_AI_MOVE_WEIGHTS
 
-	; If we have a battle in BattleTower just load the Attributes of the first TrainerClass (Falkner)
+	; If we have a battle in BattleTower just load the Attributes of the first wTrainerClass (Falkner)
 	; so we have always the same AI, regardless of the loaded class of trainer
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	bit 0, a
 	jr nz, .battle_tower_skip
 
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 	dec a
 	ld bc, 7 ; Trainer2AI - Trainer1AI
 	call AddNTimes
@@ -119,9 +119,9 @@ AIChooseMove: ; 440ce
 
 ; Decrement the scores of all moves one by one until one reaches 0.
 .DecrementScores:
-	ld hl, Buffer1
-	ld de, EnemyMonMoves
-	ld c, EnemyMonMovesEnd - EnemyMonMoves
+	ld hl, wBuffer1
+	ld de, wEnemyMonMoves
+	ld c, wEnemyMonMovesEnd - wEnemyMonMoves
 
 .DecrementNextScore:
 	; If the enemy has no moves, this will infinite.
@@ -154,8 +154,8 @@ AIChooseMove: ; 440ce
 	cp NUM_MOVES + 1
 	jr nz, .move_loop
 
-	ld hl, Buffer1
-	ld de, EnemyMonMoves
+	ld hl, wBuffer1
+	ld de, wEnemyMonMoves
 	ld c, NUM_MOVES
 
 ; Give a score of 0 to a blank move
@@ -184,7 +184,7 @@ AIChooseMove: ; 440ce
 
 ; Randomly choose one of the moves with a score of 1
 .ChooseMove:
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	call Random
 	maskbits NUM_MOVES
 	ld c, a
@@ -194,9 +194,9 @@ AIChooseMove: ; 440ce
 	and a
 	jr z, .ChooseMove
 
-	ld [CurEnemyMove], a
+	ld [wCurEnemyMove], a
 	ld a, c
-	ld [CurEnemyMoveNum], a
+	ld [wCurEnemyMoveNum], a
 	ret
 ; 441af
 

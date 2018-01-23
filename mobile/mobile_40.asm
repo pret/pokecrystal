@@ -43,7 +43,7 @@ Function100022: ; 100022
 	farcall Stubbed_Function106462
 	farcall Function106464 ; load broken gfx
 	farcall Function11615a ; init RAM
-	ld hl, VramState
+	ld hl, wVramState
 	set 1, [hl]
 	ret
 ; 100057
@@ -51,14 +51,14 @@ Function100022: ; 100022
 Function100057: ; 100057
 	call DisableMobile
 	call ReturnToMapFromSubmenu
-	ld hl, VramState
+	ld hl, wVramState
 	res 1, [hl]
 	ret
 ; 100063
 
 SetRAMStateForMobile: ; 100063
 	xor a
-	ld hl, BGMapBuffer
+	ld hl, wBGMapBuffer
 	ld bc, $65
 	call ByteFill
 	xor a
@@ -66,7 +66,7 @@ SetRAMStateForMobile: ; 100063
 	ld bc, $100
 	call ByteFill
 	ld a, [rIE]
-	ld [BGMapBuffer], a
+	ld [wBGMapBuffer], a
 	xor a
 	ld [hMapAnims], a
 	ld [hLCDCPointer], a
@@ -75,8 +75,8 @@ SetRAMStateForMobile: ; 100063
 
 EnableMobile: ; 100082
 	xor a
-	ld hl, OverworldMap
-	ld bc, OverworldMapEnd - OverworldMap
+	ld hl, wOverworldMap
+	ld bc, wOverworldMapEnd - wOverworldMap
 	call ByteFill
 
 	di
@@ -106,7 +106,7 @@ DisableMobile: ; 1000a4
 	call NormalSpeed
 	xor a
 	ld [rIF], a
-	ld a, [BGMapBuffer]
+	ld a, [wBGMapBuffer]
 	ld [rIE], a
 	ei
 	ret
@@ -590,7 +590,7 @@ Function1003d8: ; 1003d8
 	ld b, 0
 	push hl
 	add hl, bc
-	ld a, [BGMapPalBuffer]
+	ld a, [wBGMapPalBuffer]
 	ld [hl], a
 	pop hl
 	inc bc
@@ -630,7 +630,7 @@ Function100406: ; 100406
 	cp d
 	jr nz, .asm_100426
 	dec hl
-	ld a, [BGMapPalBuffer]
+	ld a, [wBGMapPalBuffer]
 	cp [hl]
 	jr nz, .asm_10042d
 	xor a
@@ -692,7 +692,7 @@ Jumptable_10044e: ; 10044e (40:444e)
 	dw Function1004a4
 
 Function10046a: ; 10046a
-	ld hl, BGMapPalBuffer
+	ld hl, wBGMapPalBuffer
 	inc [hl]
 	call Function1003d8
 	call Function1003ba
@@ -1355,7 +1355,7 @@ Function100826: ; 100826
 .asm_100830
 	ld [hld], a
 	ccf
-	ld a, [BGMapBufferPtrs]
+	ld a, [wBGMapBufferPtrs]
 	adc [hl]
 	sub $3c
 	jr nc, .asm_10083c
@@ -1384,18 +1384,18 @@ Function100846: ; 100846
 	add $3c
 
 .asm_100858
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	ld a, [wcd6d]
 	ld c, a
 	ld a, $0a
 	sbc c
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	xor a
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	ld de, String_10088e
 	hlcoord 1, 14
 	call PlaceString
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	hlcoord 4, 16
 	call Function100697
 	ret
@@ -1425,13 +1425,13 @@ Function1008a6: ; 1008a6
 	ld hl, $a800
 	call GetSRAMBank
 	ld a, [hli]
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	ld a, [hli]
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	ld a, [hli]
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	call CloseSRAM
-	ld a, [StringBuffer2 + 2]
+	ld a, [wStringBuffer2 + 2]
 	ld b, a
 	ld a, 0
 	sub b
@@ -1440,13 +1440,13 @@ Function1008a6: ; 1008a6
 
 .asm_1008c8
 	ld b, a
-	ld a, [StringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 1]
 	ld c, a
 	ld a, $0a
 	sbc c
 	ld c, a
 	jr c, .asm_1008da
-	ld a, [StringBuffer2]
+	ld a, [wStringBuffer2]
 	and a
 	jr nz, .asm_1008da
 	ret
@@ -1489,14 +1489,14 @@ Function100902: ; 100902
 	ld c, a
 	ld a, $0a
 	sub c
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	jr z, .asm_10093f
 	ld de, .string_100966
 	hlcoord 4, 11
 	call PlaceString
 	hlcoord 8, 11
 	lb bc, 1, 2
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
 	call PlaySFX
@@ -1528,7 +1528,7 @@ Function100970: ; 100970
 	hlcoord 0, 0
 	ld de, w3_dc00
 	call Function1009a5
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld de, w3_dd68
 	call Function1009a5
 	call Function1009d2
@@ -1543,7 +1543,7 @@ Function100989: ; 100989
 	call Function1009ae
 	farcall ReloadMapPart
 	ld hl, w3_dd68
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	call Function1009a5
 	ret
 ; 1009a5
@@ -1562,7 +1562,7 @@ Function1009ae: ; 1009ae
 	ld [rSVBK], a
 
 	ld hl, w3_d800
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	ld c, SCREEN_WIDTH
 	ld b, SCREEN_HEIGHT
 .loop_row
@@ -1649,18 +1649,18 @@ _LinkBattleSendReceiveAction: ; 100a09
 	ld a, [wBattlePlayerAction]
 	and a
 	jr nz, .switch
-	ld a, [CurPlayerMove]
+	ld a, [wCurPlayerMove]
 	ld b, BATTLEACTION_E
 	cp STRUGGLE
 	jr z, .struggle
 	ld b, BATTLEACTION_D
 	cp $ff
 	jr z, .struggle
-	ld a, [CurMoveNum]
+	ld a, [wCurMoveNum]
 	jr .use_move
 
 .switch
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	add BATTLEACTION_SWITCH1
 	jr .use_move
 
@@ -1925,7 +1925,7 @@ MobileMoveSelectionScreen: ; 100b9f
 .b_button
 	ld a, [wMenuCursorY]
 	dec a
-	ld [CurMoveNum], a
+	ld [wCurMoveNum], a
 	ld a, $01
 	and a
 	ret
@@ -1933,17 +1933,17 @@ MobileMoveSelectionScreen: ; 100b9f
 .a_button
 	ld a, [wMenuCursorY]
 	dec a
-	ld [CurMoveNum], a
+	ld [wCurMoveNum], a
 	ld a, [wMenuCursorY]
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, BattleMonPP
+	ld hl, wBattleMonPP
 	add hl, bc
 	ld a, [hl]
 	and $3f
 	jr z, .no_pp_left
-	ld a, [PlayerDisableCount]
+	ld a, [wPlayerDisableCount]
 	swap a
 	and $0f
 	dec a
@@ -1953,10 +1953,10 @@ MobileMoveSelectionScreen: ; 100b9f
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, BattleMonMoves
+	ld hl, wBattleMonMoves
 	add hl, bc
 	ld a, [hl]
-	ld [CurPlayerMove], a
+	ld [wCurPlayerMove], a
 	xor a
 	ret
 
@@ -1978,12 +1978,12 @@ Function100c74: ; 100c74
 	ld b, 8
 	ld c, 8
 	call TextBox
-	ld hl, BattleMonMoves
+	ld hl, wBattleMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld a, SCREEN_WIDTH * 2
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	hlcoord 2, 10
 	predef ListMoves
 	ret
@@ -1995,7 +1995,7 @@ Function100c98: ; 100c98
 	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
-	ld a, [CurMoveNum]
+	ld a, [wCurMoveNum]
 	inc a
 	ld [wMenuCursorY], a
 	ret
@@ -2027,7 +2027,7 @@ Mobile_PartyMenuSelect: ; 100cb5
 	and c
 	jr z, .loop
 	call PlaceHollowCursor
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	inc a
 	ld b, a
 	ld a, [wMenuCursorY]
@@ -2040,13 +2040,13 @@ Mobile_PartyMenuSelect: ; 100cb5
 	jr nz, .done
 	ld a, [wMenuCursorY]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	ld c, a
 	ld b, 0
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	call WaitSFX
@@ -2173,7 +2173,7 @@ Function100dc0: ; 100dc0
 
 Mobile_SetOverworldDelay: ; 100dd2
 	ld a, 30
-	ld [OverworldDelay], a
+	ld [wOverworldDelay], a
 	ret
 ; 100dd8
 
@@ -2199,7 +2199,7 @@ Function100dd8: ; 100dd8
 ; 100dfd
 
 MobileComms_CheckInactivityTimer: ; 100dfd
-	ld a, [OverworldDelay]
+	ld a, [wOverworldDelay]
 	ld c, a
 	ld a, 30
 	sub c
@@ -2227,7 +2227,7 @@ MobileComms_CheckInactivityTimer: ; 100dfd
 ; 100e2d
 
 Function100e2d: ; 100e2d
-	ld a, [OverworldDelay]
+	ld a, [wOverworldDelay]
 	ld c, a
 	ld a, 30
 	sub c
@@ -2378,21 +2378,21 @@ Function100efb: ; 100efb
 
 asm_100f02:
 	ld a, c
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	; someting that was previously stored in de gets backed up to here
 	ld a, e
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	ld a, d
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	; empty this
 	xor a
-	ld [StringBuffer2 + 4], a
-	ld [StringBuffer2 + 5], a
+	ld [wStringBuffer2 + 4], a
+	ld [wStringBuffer2 + 5], a
 .loop
 	ld a, [hl]
 	cp $ff
 	jr z, .done
-	ld [StringBuffer2 + 3], a ; bank
+	ld [wStringBuffer2 + 3], a ; bank
 	push hl
 	inc hl
 	; addr 1
@@ -2418,16 +2418,16 @@ asm_100f02:
 
 .done
 	; recover the values into bc
-	ld a, [StringBuffer2 + 4]
+	ld a, [wStringBuffer2 + 4]
 	ld c, a
-	ld a, [StringBuffer2 + 5]
+	ld a, [wStringBuffer2 + 5]
 	ld b, a
 	ret
 ; 100f3d
 
 Function100f3d: ; 100f3d
 	; parameter
-	ld a, [StringBuffer2]
+	ld a, [wStringBuffer2]
 	cp $02
 	jr z, .two
 	cp $01
@@ -2440,15 +2440,15 @@ Function100f3d: ; 100f3d
 	; what was once in de gets copied to hl,
 	; modified by Function100f8d, and put back
 	; into this backup
-	ld a, [StringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 1]
 	ld l, a
-	ld a, [StringBuffer2 + 2]
+	ld a, [wStringBuffer2 + 2]
 	ld h, a
 	call Function100f8d
 	ld a, l
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	ld a, h
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	ret
 
 .two
@@ -2456,15 +2456,15 @@ Function100f3d: ; 100f3d
 	; do the same as in .three
 	ld d, h
 	ld e, l
-	ld a, [StringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 1]
 	ld l, a
-	ld a, [StringBuffer2 + 2]
+	ld a, [wStringBuffer2 + 2]
 	ld h, a
 	call Function100f8d
 	ld a, l
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	ld a, h
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	ret
 
 .one
@@ -2474,31 +2474,31 @@ Function100f3d: ; 100f3d
 	; and store the de result
 	ld h, d
 	ld l, e
-	ld a, [StringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 1]
 	ld e, a
-	ld a, [StringBuffer2 + 2]
+	ld a, [wStringBuffer2 + 2]
 	ld d, a
 	call Function100f8d
 	ld a, e
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	ld a, d
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	ret
 ; 100f8d
 
 Function100f8d: ; 100f8d
 	push hl
-	ld a, [StringBuffer2 + 4]
+	ld a, [wStringBuffer2 + 4]
 	ld l, a
-	ld a, [StringBuffer2 + 5]
+	ld a, [wStringBuffer2 + 5]
 	ld h, a
 	add hl, bc
 	ld a, l
-	ld [StringBuffer2 + 4], a
+	ld [wStringBuffer2 + 4], a
 	ld a, h
-	ld [StringBuffer2 + 5], a
+	ld [wStringBuffer2 + 5], a
 	pop hl
-	ld a, [StringBuffer2 + 3]
+	ld a, [wStringBuffer2 + 3]
 	bit 7, a
 	res 7, a
 	jr z, .sram
@@ -2524,12 +2524,12 @@ Unknown_100fc0: ; 100fc0
 	;     Bit 7 set: Not SRAM
 	;     Lower 7 bits: Bank
 	; Address, size (dw), address
-	dbwww $80, PlayerName, NAME_LENGTH, OTPlayerName
-	dbwww $80, PartyCount, 1 + PARTY_LENGTH + 1, OTPartyCount
-	dbwww $80, PlayerID, 2, OTPlayerID
-	dbwww $80, PartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, OTPartyMons
-	dbwww $80, PartyMonOT, NAME_LENGTH * PARTY_LENGTH, OTPartyMonOT
-	dbwww $80, PartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, OTPartyMonNicknames
+	dbwww $80, wPlayerName, NAME_LENGTH, wOTPlayerName
+	dbwww $80, wPartyCount, 1 + PARTY_LENGTH + 1, wOTPartyCount
+	dbwww $80, wPlayerID, 2, wOTPlayerID
+	dbwww $80, wPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, wOTPartyMons
+	dbwww $80, wPartyMonOT, NAME_LENGTH * PARTY_LENGTH, wOTPartyMonOT
+	dbwww $80, wPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, wOTPartyMonNicknames
 	db -1
 
 Unknown_100feb: ; 100feb
@@ -2538,9 +2538,9 @@ Unknown_100feb: ; 100feb
 
 Unknown_100ff3: ; 100ff3
 	dbwww $80, wdc41, 1, NULL
-	dbwww $80, PlayerName, NAME_LENGTH, NULL
-	dbwww $80, PlayerName, NAME_LENGTH, NULL
-	dbwww $80, PlayerID, 2, NULL
+	dbwww $80, wPlayerName, NAME_LENGTH, NULL
+	dbwww $80, wPlayerName, NAME_LENGTH, NULL
+	dbwww $80, wPlayerID, 2, NULL
 	dbwww $80, wSecretID, 2, NULL
 	dbwww $80, wPlayerGender, 1, NULL
 	dbwww $04, $a603, 8, NULL
@@ -2548,17 +2548,17 @@ Unknown_100ff3: ; 100ff3
 	db -1
 
 Unknown_10102c: ; 10102c
-	dbwww $80, OTPlayerName, NAME_LENGTH, NULL
-	dbwww $80, OTPlayerID, 2, NULL
-	dbwww $80, OTPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, NULL
-	dbwww $80, OTPartyMonOT, NAME_LENGTH * PARTY_LENGTH, NULL
-	dbwww $80, OTPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
+	dbwww $80, wOTPlayerName, NAME_LENGTH, NULL
+	dbwww $80, wOTPlayerID, 2, NULL
+	dbwww $80, wOTPartyMonNicknames, MON_NAME_LENGTH * PARTY_LENGTH, NULL
+	dbwww $80, wOTPartyMonOT, NAME_LENGTH * PARTY_LENGTH, NULL
+	dbwww $80, wOTPartyMons, PARTYMON_STRUCT_LENGTH * PARTY_LENGTH, NULL
 	db -1
 ; 10104f
 
 Function101050: ; 101050
 	call Function10107d
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 rept 2 ; ???
 	ld hl, wc608
 endr
@@ -2583,7 +2583,7 @@ Function10107d: ; 10107d
 	ld hl, wc608
 	ld bc, wc7bd - wc608
 	call ByteFill
-	ld hl, OTPlayerName
+	ld hl, wOTPlayerName
 	ld de, wc608
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -2592,15 +2592,15 @@ Function10107d: ; 10107d
 	ld [wc608 + 11], a
 	ld a, [hl]
 	ld [wc608 + 12], a
-	ld hl, OTPartyMonNicknames
+	ld hl, wOTPartyMonNicknames
 	ld de, wc608 + 13
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
-	ld hl, OTPartyMonOT
-	ld de, OTClassName + 1
+	ld hl, wOTPartyMonOT
+	ld de, wOTClassName + 1
 	ld bc, NAME_LENGTH
 	call .CopyAllFromOT
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	ld de, $c699
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call .CopyAllFromOT
@@ -2614,7 +2614,7 @@ Function10107d: ; 10107d
 .CopyAllFromOT: ; 1010cd
 	push hl
 	ld hl, 0
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	call AddNTimes
 	ld b, h
 	ld c, l
@@ -2645,32 +2645,32 @@ Function1010de: ; 1010de
 
 LoadSelectedPartiesForColosseum: ; 1010f2
 	xor a
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld bc, 9
 	call ByteFill
 	ld hl, wPlayerMonSelection
-	ld de, PartyCount
+	ld de, wPartyCount
 	call .CopyThreeSpecies
 	ld hl, wPlayerMonSelection
-	ld de, PartyMon1Species
+	ld de, wPartyMon1Species
 	call .CopyPartyStruct
 	ld hl, wPlayerMonSelection
-	ld de, PartyMonOT
+	ld de, wPartyMonOT
 	call .CopyName
 	ld hl, wPlayerMonSelection
-	ld de, PartyMonNicknames
+	ld de, wPartyMonNicknames
 	call .CopyName
 	ld hl, wOTMonSelection
-	ld de, OTPartyCount
+	ld de, wOTPartyCount
 	call .CopyThreeSpecies
 	ld hl, wOTMonSelection
-	ld de, OTPartyMon1Species
+	ld de, wOTPartyMon1Species
 	call .CopyPartyStruct
 	ld hl, wOTMonSelection
-	ld de, OTPartyMonOT
+	ld de, wOTPartyMonOT
 	call .CopyName
 	ld hl, wOTMonSelection
-	ld de, OTPartyMonNicknames
+	ld de, wOTPartyMonNicknames
 	call .CopyName
 	ret
 ; 101145
@@ -2678,7 +2678,7 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 .CopyThreeSpecies: ; 101145
 ; Load the 3 choices to the buffer
 	push de
-	ld bc, StringBuffer2 + NAME_LENGTH_JAPANESE
+	ld bc, wStringBuffer2 + NAME_LENGTH_JAPANESE
 	xor a
 .party_loop
 	push af
@@ -2694,7 +2694,7 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 	ld a, 3
 	ld [de], a
 	inc de
-	ld hl, StringBuffer2 + NAME_LENGTH_JAPANESE
+	ld hl, wStringBuffer2 + NAME_LENGTH_JAPANESE
 	ld bc, 3
 	call CopyBytes
 	ld a, $ff
@@ -2736,19 +2736,19 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 .ContinueCopy:
 	; Copy, via wc608...
 	ld a, LOW(wc608)
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	ld a, HIGH(wc608)
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	; ... bc bytes...
 	ld a, c
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	ld a, b
-	ld [StringBuffer2 + 3], a
+	ld [wStringBuffer2 + 3], a
 	; ... to de...
 	ld a, e
-	ld [StringBuffer2 + 4], a
+	ld [wStringBuffer2 + 4], a
 	ld a, d
-	ld [StringBuffer2 + 5], a
+	ld [wStringBuffer2 + 5], a
 	; ... 3 times.
 	ld a, 3
 .big_copy_loop
@@ -2760,15 +2760,15 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 	call .GetCopySize
 	pop af
 	call AddNTimes
-	ld a, [StringBuffer2]
+	ld a, [wStringBuffer2]
 	ld e, a
-	ld a, [StringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 1]
 	ld d, a
 	call CopyBytes
 	ld a, e
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	ld a, d
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	pop hl
 	pop af
 	dec a
@@ -2788,17 +2788,17 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 ; 1011df
 
 .GetDestinationAddress: ; 1011df
-	ld a, [StringBuffer2 + 4]
+	ld a, [wStringBuffer2 + 4]
 	ld l, a
-	ld a, [StringBuffer2 + 5]
+	ld a, [wStringBuffer2 + 5]
 	ld h, a
 	ret
 ; 1011e8
 
 .GetCopySize: ; 1011e8
-	ld a, [StringBuffer2 + 2]
+	ld a, [wStringBuffer2 + 2]
 	ld c, a
-	ld a, [StringBuffer2 + 3]
+	ld a, [wStringBuffer2 + 3]
 	ld b, a
 	ret
 ; 1011f1
@@ -2849,7 +2849,7 @@ Special_Function101231: ; 101231
 
 Function10123d: ; 10123d
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, c
 	ld hl, Jumptable_101247
 	rst JumpTable
@@ -3922,7 +3922,7 @@ Function1018fb: ; 1018fb
 	ld hl, wccb5
 
 .asm_101909
-	ld de, LinkBattleRNs
+	ld de, wLinkBattleRNs
 	ld bc, 10
 	call CopyBytes
 	ret
@@ -4045,9 +4045,9 @@ _StartMobileBattle: ; 1019ab
 	ld [rSVBK], a
 
 	ld a, c
-	ld [OtherTrainerClass], a
-	ld hl, OTPlayerName
-	ld de, OTClassName
+	ld [wOtherTrainerClass], a
+	ld hl, wOTPlayerName
+	ld de, wOTClassName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wcd2f]
@@ -4062,7 +4062,7 @@ _StartMobileBattle: ; 1019ab
 
 StartMobileBattle: ; 101a21
 	; force stereo and fast text speed
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	and (1 << STEREO)
@@ -4078,7 +4078,7 @@ StartMobileBattle: ; 101a21
 	ld a, CONNECTION_NOT_ESTABLISHED
 	ld [hSerialConnectionStatus], a
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ret
 ; 101a4f
 
@@ -5053,7 +5053,7 @@ Special_Function102142: ; 102142
 
 Function102180: ; 102180
 	ld hl, wc608 + 1
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	ld bc, 11
 	call CopyBytes
 	ret
@@ -5086,7 +5086,7 @@ Function1021b8: ; 1021b8
 	ld de, wPlayerMoveStruct
 	farcall Function8ac70
 	ld a, c
-	ld [StringBuffer1], a
+	ld [wStringBuffer1], a
 	push af
 	call Function1013aa
 	pop af
@@ -5215,7 +5215,7 @@ Function102274: ; 102274
 
 Function102283: ; 102283
 	ld a, $01
-	ld [AttrMapEnd], a
+	ld [wAttrMapEnd], a
 	ld hl, wcd4b
 	set 0, [hl]
 	ret
@@ -5223,7 +5223,7 @@ Function102283: ; 102283
 
 Function10228e: ; 10228e
 	xor a
-	ld [AttrMapEnd], a
+	ld [wAttrMapEnd], a
 	ld hl, wcd4b
 	res 0, [hl]
 	ret
@@ -5255,13 +5255,13 @@ Function102298: ; 102298
 .asm_1022c1
 	call Function10304f
 	ld a, $01
-	ld [AttrMapEnd], a
+	ld [wAttrMapEnd], a
 	ret
 ; 1022ca
 
 Function1022ca: ; 1022ca
 	ld a, 30
-	ld [OverworldDelay], a
+	ld [wOverworldDelay], a
 	ret
 ; 1022d0
 
@@ -5271,7 +5271,7 @@ Function1022d0: ; 1022d0
 	and a
 	jr nz, .asm_1022f3
 	call Function102298
-	ld a, [OverworldDelay]
+	ld a, [wOverworldDelay]
 	ld c, a
 	ld a, 30
 	sub c
@@ -5409,18 +5409,18 @@ Function1023c6: ; 1023c6
 	call Function102c87
 	ld a, [wcd4c]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	inc [hl]
 	ld a, [hli]
 	ld c, a
 	ld b, 0
 	add hl, bc
 	ld [hl], $ff
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld [wcd4c], a
 	call Function102c07
 	call Function102d48
@@ -5749,11 +5749,11 @@ Function1025ff: ; 1025ff
 .d_up
 	ld a, [wMenuCursorY]
 	ld b, a
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	cp b
 	ret nz
 	call HideCursor
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld [wMenuCursorY], a
 	ld a, $1d ; Function102652
 	ld [wcd49], a
@@ -5820,7 +5820,7 @@ Function10266b: ; 10266b
 .d_up
 	ld a, [wMenuCursorY]
 	ld b, a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp b
 	ret nz
 	ld a, $23 ; Function1026b7
@@ -5886,7 +5886,7 @@ Function1026f3: ; 1026f3
 .asm_102712
 	hlcoord 9, 17
 	ld [hl], " "
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	ld [wMenuCursorY], a
 	ld a, $1f ; Function1025e9
 	ld [wcd49], a
@@ -6128,7 +6128,7 @@ Function1028bf: ; 1028bf
 
 Function1028c6: ; 1028c6
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	call Function102bac
 	ld a, $1d ; Function102652
 	ld [wcd49], a
@@ -6142,7 +6142,7 @@ Function1028d3: ; 1028d3
 
 Function1028da: ; 1028da
 	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [wMonType], a
 	call Function102bac
 	ld a, $1f ; Function1025e9
 	ld [wcd49], a
@@ -6204,7 +6204,7 @@ Function102933: ; 102933
 	call LoadMenuDataHeader
 	call Function102e07
 	ld a, $32
-	ld [TextDelayFrames], a
+	ld [wTextDelayFrames], a
 	ld hl, wcd4b
 	set 1, [hl]
 	ld a, [wcd4a]
@@ -6215,7 +6215,7 @@ Function102933: ; 102933
 ; 10294f
 
 Function10294f: ; 10294f
-	ld a, [TextDelayFrames]
+	ld a, [wTextDelayFrames]
 	and a
 	ret nz
 	ld a, [wcd4a]
@@ -6367,7 +6367,7 @@ MenuData3_102a33:
 Function102a3b: ; 102a3b
 	ld a, [wcd30]
 	ld [wc74e], a
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld de, wPlayerTrademonSenderName
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -6375,20 +6375,20 @@ Function102a3b: ; 102a3b
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
 	ld [wPlayerTrademonSpecies], a
 	ld a, [wcd4c]
 	dec a
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	call SkipNames
 	ld de, wPlayerTrademonOTName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wcd4c]
 	dec a
-	ld hl, PartyMon1ID
+	ld hl, wPartyMon1ID
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wPlayerTrademonID], a
@@ -6396,7 +6396,7 @@ Function102a3b: ; 102a3b
 	ld [wPlayerTrademonID + 1], a
 	ld a, [wcd4c]
 	dec a
-	ld hl, PartyMon1DVs
+	ld hl, wPartyMon1DVs
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wPlayerTrademonDVs], a
@@ -6404,14 +6404,14 @@ Function102a3b: ; 102a3b
 	ld [wPlayerTrademonDVs + 1], a
 	ld a, [wcd4c]
 	dec a
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	call GetPartyLocation
 	ld b, h
 	ld c, l
 	farcall GetCaughtGender
 	ld a, c
 	ld [wPlayerTrademonCaughtData], a
-	ld hl, OTPlayerName
+	ld hl, wOTPlayerName
 	ld de, wOTTrademonSenderName
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -6420,20 +6420,20 @@ Function102a3b: ; 102a3b
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	add hl, bc
 	ld a, [hl]
 	ld [wOTTrademonSpecies], a
 	ld a, [wcd4d]
 	dec a
-	ld hl, OTPartyMonOT
+	ld hl, wOTPartyMonOT
 	call SkipNames
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wcd4d]
 	dec a
-	ld hl, OTPartyMon1ID
+	ld hl, wOTPartyMon1ID
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wOTTrademonID], a
@@ -6441,7 +6441,7 @@ Function102a3b: ; 102a3b
 	ld [wOTTrademonID + 1], a
 	ld a, [wcd4d]
 	dec a
-	ld hl, OTPartyMon1DVs
+	ld hl, wOTPartyMon1DVs
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
@@ -6449,7 +6449,7 @@ Function102a3b: ; 102a3b
 	ld [wOTTrademonDVs + 1], a
 	ld a, [wcd4d]
 	dec a
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	call GetPartyLocation
 	ld b, h
 	ld c, l
@@ -6480,7 +6480,7 @@ Function102b12: ; 102b12
 Function102b32: ; 102b32
 	ld a, [wcd4c]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	ld a, $01
 	ld [wForceEvolution], a
 	farcall EvolvePokemon
@@ -6492,14 +6492,14 @@ Function102b32: ; 102b32
 
 Function102b4e: ; 102b4e
 	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [wMonType], a
 	ld a, [wMenuCursorY]
 	push af
 	ld de, Unknown_102b73
 	call SetMenuAttributes
 	pop af
 	ld [wMenuCursorY], a
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	ld [w2DMenuNumRows], a
 	ret
 ; 102b68
@@ -6521,14 +6521,14 @@ Unknown_102b73:
 
 Function102b7b: ; 102b7b
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	ld a, [wMenuCursorY]
 	push af
 	ld de, Unknown_102b94
 	call SetMenuAttributes
 	pop af
 	ld [wMenuCursorY], a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld [w2DMenuNumRows], a
 	ret
 ; 102b94
@@ -6553,11 +6553,11 @@ Function102b9c: ; 102b9c
 Function102bac: ; 102bac
 	ld a, [wMenuCursorY]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	call LowVolume
 	call ClearSprites
 	farcall _MobileStatsScreenInit
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	inc a
 	ld [wMenuCursorY], a
 	call Function102d9a
@@ -6573,13 +6573,13 @@ Function102bac: ; 102bac
 Function102bdc: ; 102bdc
 	ld a, [wcd4d]
 	dec a
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	call GetPartyLocation
 	push hl
 	ld a, [wcd4d]
 	ld c, a
 	ld b, 0
-	ld hl, OTPartyCount
+	ld hl, wOTPartyCount
 	add hl, bc
 	ld a, [hl]
 	pop hl
@@ -6611,32 +6611,32 @@ Function102c07: ; 102c07
 ; 102c14
 
 Function102c14: ; 102c14
-	ld hl, PartySpecies
-	ld de, OTPartySpecies
+	ld hl, wPartySpecies
+	ld de, wOTPartySpecies
 	ld bc, 1
 	call Function102c71
 	ret
 ; 102c21
 
 Function102c21: ; 102c21
-	ld hl, PartyMonNicknames
-	ld de, OTPartyMonNicknames
+	ld hl, wPartyMonNicknames
+	ld de, wOTPartyMonNicknames
 	ld bc, 11
 	call Function102c71
 	ret
 ; 102c2e
 
 Function102c2e: ; 102c2e
-	ld hl, PartyMonOT
-	ld de, OTPartyMonOT
+	ld hl, wPartyMonOT
+	ld de, wOTPartyMonOT
 	ld bc, 11
 	call Function102c71
 	ret
 ; 102c3b
 
 Function102c3b: ; 102c3b
-	ld hl, PartyMon1
-	ld de, OTPartyMon1
+	ld hl, wPartyMon1
+	ld de, wOTPartyMon1
 	ld bc, $30
 	call Function102c71
 	ret
@@ -6681,7 +6681,7 @@ Function102c87: ; 102c87
 	push af
 	ld a, [wcd4c]
 	ld [wJumptableIndex], a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld [wcf64], a
 	ld a, 0
 	ld hl, $a600
@@ -6696,7 +6696,7 @@ Function102c87: ; 102c87
 	call Function102d3e
 	ld a, [wcd4d]
 	ld [wJumptableIndex], a
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	ld [wcf64], a
 	ld a, $05
 	ld hl, w5_da00
@@ -6770,7 +6770,7 @@ Function102d48: ; 102d48
 	ld a, [wcd4c]
 	ld e, a
 	ld d, 0
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
@@ -6781,7 +6781,7 @@ Function102d48: ; 102d48
 	ld a, [wcd4c]
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld hl, PartyMon1Happiness
+	ld hl, wPartyMon1Happiness
 	call AddNTimes
 	ld [hl], BASE_HAPPINESS
 
@@ -6792,14 +6792,14 @@ Function102d48: ; 102d48
 	ld a, [wcd4c]
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld hl, PartyMon1DVs
+	ld hl, wPartyMon1DVs
 	call AddNTimes
 	predef GetUnownLetter
 	farcall UpdateUnownDex
 	ld a, [wFirstUnownSeen]
 	and a
 	jr nz, .asm_102d98
-	ld a, [UnownLetter]
+	ld a, [wUnownLetter]
 	ld [wFirstUnownSeen], a
 
 .asm_102d98
@@ -6813,7 +6813,7 @@ Function102d9a: ; 102d9a
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ld a, $07
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
@@ -6905,21 +6905,21 @@ Function102e3e: ; 102e3e
 Function102e4f: ; 102e4f
 	farcall Function16d42e
 	farcall _InitMG_Mobile_LinkTradePalMap
-	ld de, PlayerName
+	ld de, wPlayerName
 	hlcoord 4, 0
 	call PlaceString
 	ld a, $14
 	ld [bc], a
-	ld de, OTPlayerName
+	ld de, wOTPlayerName
 	hlcoord 4, 8
 	call PlaceString
 	ld a, $14
 	ld [bc], a
 	hlcoord 7, 1
-	ld de, PartySpecies
+	ld de, wPartySpecies
 	call .PlaceSpeciesNames
 	hlcoord 7, 9
-	ld de, OTPartySpecies
+	ld de, wOTPartySpecies
 	call .PlaceSpeciesNames
 	ret
 ; 102e86
@@ -6956,20 +6956,20 @@ Function102ea8: ; 102ea8
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, StringBuffer1
-	ld de, StringBuffer2
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer2
 	ld bc, 11
 	call CopyBytes
 	ld a, [wcd4d]
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	add hl, bc
 	ld a, [hl]
 	ld [wd265], a
@@ -7049,7 +7049,7 @@ Function102f85: ; 102f85
 	ld a, [wd003]
 	ld c, a
 	ld b, 0
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	add hl, bc
 	ld a, [hl]
 	ld [wd265], a
@@ -7058,7 +7058,7 @@ Function102f85: ; 102f85
 	ld de, String_102fb2
 	hlcoord 1, 14
 	call PlaceString
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	hlcoord 13, 14
 	call PlaceString
 	ld de, String_102fcc
@@ -7120,7 +7120,7 @@ String_10302e: ; 10302e
 
 Function10304f: ; 10304f
 	xor a
-	ld [AttrMapEnd], a
+	ld [wAttrMapEnd], a
 	ld [wcf42], a
 	ld [wcf44], a
 	ld [wcf45], a
@@ -7129,7 +7129,7 @@ Function10304f: ; 10304f
 
 Function10305d: ; 10305d
 	nop
-	ld a, [AttrMapEnd]
+	ld a, [wAttrMapEnd]
 	and a
 	ret z
 	call Function10307f
@@ -7361,7 +7361,7 @@ Function103302: ; 103302
 Function103309: ; 103309
 	xor a
 	ld [hBGMapMode], a
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	ld bc, 10
 	xor a
 	call ByteFill
@@ -7369,7 +7369,7 @@ Function103309: ; 103309
 	call GetSRAMBank
 	ld a, [wdc41]
 	ld [$a60c], a
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	call CloseSRAM
 	call Function1035c6
 	ld a, [hli]
@@ -7412,15 +7412,15 @@ Function103362: ; 103362
 	call Function10339a
 	call Function10342c
 	farcall HDMATransferTileMapToWRAMBank3
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	bit 7, a
 	jr z, .asm_103362
-	ld hl, Buffer2
+	ld hl, wBuffer2
 	bit 6, [hl]
 	jr z, .asm_103398
 	ld a, $04
 	call GetSRAMBank
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	ld [$a60c], a
 	ld [wdc41], a
 	call CloseSRAM
@@ -7488,7 +7488,7 @@ Function1033af: ; 1033af
 
 .b
 	call PlayClickSFX
-	ld hl, Buffer2
+	ld hl, wBuffer2
 	set 7, [hl]
 	ret
 
@@ -7498,9 +7498,9 @@ Function1033af: ; 1033af
 	jr nz, .a_return
 	ld de, SFX_TRANSACTION
 	call PlaySFX
-	ld hl, Buffer2
+	ld hl, wBuffer2
 	set 7, [hl]
-	ld hl, Buffer2
+	ld hl, wBuffer2
 	set 6, [hl]
 	ret
 
@@ -7514,9 +7514,9 @@ Function1033af: ; 1033af
 	call PlaySFX
 	ld bc, 8
 	call Function10350f
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	xor e
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	ret
 ; 10342c
 
@@ -7554,7 +7554,7 @@ Function10343c: ; 10343c
 	call Function103487
 	ld bc, 8
 	call Function10350f
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	and e
 	ld bc, 2
 	jr z, .asm_10347d
@@ -7628,7 +7628,7 @@ Function1034e0: ; 1034e0
 	push hl
 	call ClearBox
 	pop hl
-	ld bc, AttrMap - TileMap
+	ld bc, wAttrMap - wTileMap
 	add hl, bc
 	pop bc
 	ld a, $06
@@ -7768,7 +7768,7 @@ Special_AskMobileOrCable: ; 103612
 	call CloseWindow
 	jr c, .pressed_b
 	ld a, [wMenuCursorY]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld c, a
 	ld a, [wMobileOrCable_LastSelection]
 	and $f0
@@ -7778,7 +7778,7 @@ Special_AskMobileOrCable: ; 103612
 
 .pressed_b
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 103640
 
@@ -7826,12 +7826,12 @@ Special_Mobile_SelectThreeMons: ; 10366e
 
 .asm_103690
 	ld a, $01
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .asm_103696
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .asm_10369b
@@ -7871,7 +7871,7 @@ Special_Mobile_SelectThreeMons: ; 10366e
 
 .asm_1036e6
 	ld a, $01
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .asm_1036ec
@@ -7881,7 +7881,7 @@ Special_Mobile_SelectThreeMons: ; 10366e
 
 .asm_1036f4
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 1036f9
 
@@ -7900,8 +7900,8 @@ Function103700: ; 103700
 
 .asm_10370f
 	ld a, c
-	ld [StringBuffer2], a
-	ld a, [StringBuffer2]
+	ld [wStringBuffer2], a
+	ld a, [wStringBuffer2]
 	cp $05
 	jr nc, .asm_103724
 	cp $02
@@ -8003,7 +8003,7 @@ Function10378c: ; 10378c
 	pop bc
 	jr c, .failed_to_save
 	ld a, $01
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, c
 	and a
 	ret z
@@ -8012,7 +8012,7 @@ Function10378c: ; 10378c
 
 .failed_to_save
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, c
 	and a
 	ret z
@@ -8032,13 +8032,13 @@ Special_Function1037c2: ; 1037c2
 	call YesNoBox
 	jr c, .nope
 	ld a, $01
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .nope
 	xor a
 	ld [wdc5f], a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 1037e6
 
@@ -8057,7 +8057,7 @@ Special_Function1037eb: ; 1037eb
 	call PrintText
 	call JoyWaitAorB
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .asm_103807
@@ -8065,12 +8065,12 @@ Special_Function1037eb: ; 1037eb
 	and a
 	jr nz, .asm_103813
 	ld a, $01
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .asm_103813
 	ld a, $02
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 103819
 
@@ -8121,12 +8121,12 @@ Special_Function10383c: ; 10383c
 	ld bc, 3
 	call CopyBytes
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .asm_103870
 	ld a, $01
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 103876
 
@@ -8141,7 +8141,7 @@ Special_Function10387b: ; 10387b
 	ret nz
 	farcall Function1008a6
 	ld a, c
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	ld hl, UnknownText_0x103898
 	call PrintText
 	call JoyWaitAorB

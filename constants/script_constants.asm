@@ -5,9 +5,9 @@ LAST_TALKED EQU -2
 
 ; memory constants
 	const_def
-	const MEM_BUFFER_0 ; use StringBuffer3
-	const MEM_BUFFER_1 ; use StringBuffer4
-	const MEM_BUFFER_2 ; use StringBuffer5
+	const MEM_BUFFER_0 ; use wStringBuffer3
+	const MEM_BUFFER_1 ; use wStringBuffer4
+	const MEM_BUFFER_2 ; use wStringBuffer5
 NUM_MEM_BUFFERS EQU const_value
 
 

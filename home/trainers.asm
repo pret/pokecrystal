@@ -16,7 +16,7 @@ CheckTrainerBattle:: ; 360d
 
 ; Skip the player object.
 	ld a, 1
-	ld de, MapObjects + OBJECT_LENGTH
+	ld de, wMapObjects + OBJECT_LENGTH
 
 .loop
 
@@ -97,32 +97,32 @@ CheckTrainerBattle:: ; 360d
 	pop af
 	ld [hLastTalked], a
 	ld a, b
-	ld [EngineBuffer2], a
+	ld [wEngineBuffer2], a
 	ld a, c
-	ld [EngineBuffer3], a
+	ld [wEngineBuffer3], a
 	jr LoadTrainer_continue
 ; 3674
 
 TalkToTrainer:: ; 3674
 	ld a, 1
-	ld [EngineBuffer2], a
+	ld [wEngineBuffer2], a
 	ld a, -1
-	ld [EngineBuffer3], a
+	ld [wEngineBuffer3], a
 
 LoadTrainer_continue:: ; 367e
 	call GetMapScriptsBank
-	ld [EngineBuffer1], a
+	ld [wEngineBuffer1], a
 
 	ld a, [hLastTalked]
 	call GetMapObject
 
 	ld hl, MAPOBJECT_SCRIPT_POINTER
 	add hl, bc
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	call GetFarHalfword
 	ld de, wTempTrainer
 	ld bc, wTempTrainerEnd - wTempTrainer
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	call FarCopyBytes
 	xor a
 	ld [wRunningTrainerBattleScript], a
@@ -152,11 +152,11 @@ FacingPlayerDistance:: ; 36ad
 	add hl, bc
 	ld e, [hl]
 
-	ld a, [PlayerStandingMapX]
+	ld a, [wPlayerStandingMapX]
 	cp d
 	jr z, .CheckY
 
-	ld a, [PlayerStandingMapY]
+	ld a, [wPlayerStandingMapY]
 	cp e
 	jr z, .CheckX
 
@@ -164,7 +164,7 @@ FacingPlayerDistance:: ; 36ad
 	ret
 
 .CheckY:
-	ld a, [PlayerStandingMapY]
+	ld a, [wPlayerStandingMapY]
 	sub e
 	jr z, .NotFacing
 	jr nc, .Above
@@ -182,7 +182,7 @@ FacingPlayerDistance:: ; 36ad
 	jr .CheckFacing
 
 .CheckX:
-	ld a, [PlayerStandingMapX]
+	ld a, [wPlayerStandingMapX]
 	sub d
 	jr z, .NotFacing
 	jr nc, .Left
@@ -236,7 +236,7 @@ CheckTrainerFlag:: ; 36f5
 ; 3718
 
 PrintWinLossText:: ; 3718
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	cp BATTLETYPE_CANLOSE
 	jr .canlose ; ??????????
 

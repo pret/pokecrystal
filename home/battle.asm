@@ -25,13 +25,13 @@ OpponentPartyAttr:: ; 3951
 
 
 BattlePartyAttr:: ; 395d
-; Get attribute a from the active BattleMon's party struct.
+; Get attribute a from the active wBattleMon's party struct.
 	push bc
 	ld c, a
 	ld b, 0
-	ld hl, PartyMons
+	ld hl, wPartyMons
 	add hl, bc
-	ld a, [CurBattleMon]
+	ld a, [wCurBattleMon]
 	call GetPartyLocation
 	pop bc
 	ret
@@ -39,13 +39,13 @@ BattlePartyAttr:: ; 395d
 
 
 OTPartyAttr:: ; 396d
-; Get attribute a from the active EnemyMon's party struct.
+; Get attribute a from the active wEnemyMon's party struct.
 	push bc
 	ld c, a
 	ld b, 0
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	add hl, bc
-	ld a, [CurOTMon]
+	ld a, [wCurOTMon]
 	call GetPartyLocation
 	pop bc
 	ret
@@ -54,8 +54,8 @@ OTPartyAttr:: ; 396d
 
 ResetDamage:: ; 397d
 	xor a
-	ld [CurDamage], a
-	ld [CurDamage + 1], a
+	ld [wCurDamage], a
+	ld [wCurDamage + 1], a
 	ret
 ; 3985
 
@@ -89,16 +89,16 @@ UpdateUserInParty:: ; 3995
 UpdateBattleMonInParty:: ; 399c
 ; Update level, status, current HP
 
-	ld a, [CurBattleMon]
+	ld a, [wCurBattleMon]
 
 UpdateBattleMon:: ; 399f
-	ld hl, PartyMon1Level
+	ld hl, wPartyMon1Level
 	call GetPartyLocation
 
 	ld d, h
 	ld e, l
-	ld hl, BattleMonLevel
-	ld bc, BattleMonMaxHP - BattleMonLevel
+	ld hl, wBattleMonLevel
+	ld bc, wBattleMonMaxHP - wBattleMonLevel
 	jp CopyBytes
 ; 39b0
 
@@ -110,14 +110,14 @@ UpdateEnemyMonInParty:: ; 39b0
 	dec a
 	ret z
 
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Level
+	ld a, [wCurOTMon]
+	ld hl, wOTPartyMon1Level
 	call GetPartyLocation
 
 	ld d, h
 	ld e, l
-	ld hl, EnemyMonLevel
-	ld bc, EnemyMonMaxHP - EnemyMonLevel
+	ld hl, wEnemyMonLevel
+	ld bc, wEnemyMonMaxHP - wEnemyMonLevel
 	jp CopyBytes
 ; 39c9
 
@@ -216,19 +216,19 @@ GetBattleVarAddr:: ; 39e7
 .lastmoveopp    db ENEMY_LAST_MOVE,       PLAYER_LAST_MOVE
 
 .vars
-	dw PlayerSubStatus1,             EnemySubStatus1
-	dw PlayerSubStatus2,             EnemySubStatus2
-	dw PlayerSubStatus3,             EnemySubStatus3
-	dw PlayerSubStatus4,             EnemySubStatus4
-	dw PlayerSubStatus5,             EnemySubStatus5
-	dw BattleMonStatus,              EnemyMonStatus
+	dw wPlayerSubStatus1,             wEnemySubStatus1
+	dw wPlayerSubStatus2,             wEnemySubStatus2
+	dw wPlayerSubStatus3,             wEnemySubStatus3
+	dw wPlayerSubStatus4,             wEnemySubStatus4
+	dw wPlayerSubStatus5,             wEnemySubStatus5
+	dw wBattleMonStatus,              wEnemyMonStatus
 	dw wPlayerMoveStructAnimation,   wEnemyMoveStructAnimation
 	dw wPlayerMoveStructEffect,      wEnemyMoveStructEffect
 	dw wPlayerMoveStructPower,       wEnemyMoveStructPower
 	dw wPlayerMoveStructType,        wEnemyMoveStructType
-	dw CurPlayerMove,                CurEnemyMove
-	dw LastPlayerCounterMove,        LastEnemyCounterMove
-	dw LastPlayerMove,               LastEnemyMove
+	dw wCurPlayerMove,                wCurEnemyMove
+	dw wLastPlayerCounterMove,        wLastEnemyCounterMove
+	dw wLastPlayerMove,               wLastEnemyMove
 ; 3a90
 
 
@@ -317,9 +317,9 @@ GLOBAL BattleAnimCommands
 	rst Bankswitch
 
 	ld a, [hli]
-	ld [BattleAnimAddress], a
+	ld [wBattleAnimAddress], a
 	ld a, [hl]
-	ld [BattleAnimAddress + 1], a
+	ld [wBattleAnimAddress + 1], a
 
 	ld a, BANK(BattleAnimCommands)
 	rst Bankswitch
@@ -332,7 +332,7 @@ GetBattleAnimByte:: ; 3af0
 	push hl
 	push de
 
-	ld hl, BattleAnimAddress
+	ld hl, wBattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -341,7 +341,7 @@ GetBattleAnimByte:: ; 3af0
 	rst Bankswitch
 
 	ld a, [de]
-	ld [BattleAnimByte], a
+	ld [wBattleAnimByte], a
 	inc de
 
 	ld a, BANK(BattleAnimCommands)
@@ -354,6 +354,6 @@ GetBattleAnimByte:: ; 3af0
 	pop de
 	pop hl
 
-	ld a, [BattleAnimByte]
+	ld a, [wBattleAnimByte]
 	ret
 ; 3b0c

@@ -1,6 +1,6 @@
 SwapTextboxPalettes:: ; 4c000
 	hlcoord 0, 0
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	ld b, SCREEN_HEIGHT
 .loop
 	push bc
@@ -10,10 +10,10 @@ SwapTextboxPalettes:: ; 4c000
 	push hl
 	srl a
 	jr c, .UpperNybble
-	ld hl, TilesetPalettes
+	ld hl, wTilesetPalettes
 	add [hl]
 	ld l, a
-	ld a, [TilesetPalettes + 1]
+	ld a, [wTilesetPalettes + 1]
 	adc $0
 	ld h, a
 	ld a, [hl]
@@ -21,10 +21,10 @@ SwapTextboxPalettes:: ; 4c000
 	jr .next
 
 .UpperNybble:
-	ld hl, TilesetPalettes
+	ld hl, wTilesetPalettes
 	add [hl]
 	ld l, a
-	ld a, [TilesetPalettes + 1]
+	ld a, [wTilesetPalettes + 1]
 	adc $0
 	ld h, a
 	ld a, [hl]
@@ -45,8 +45,8 @@ SwapTextboxPalettes:: ; 4c000
 	ret
 
 ScrollBGMapPalettes:: ; 4c03f
-	ld hl, BGMapBuffer
-	ld de, BGMapPalBuffer
+	ld hl, wBGMapBuffer
+	ld de, wBGMapPalBuffer
 .loop
 	ld a, [hl]
 	push hl
@@ -54,10 +54,10 @@ ScrollBGMapPalettes:: ; 4c03f
 	jr c, .UpperNybble
 
 ; .LowerNybble
-	ld hl, TilesetPalettes
+	ld hl, wTilesetPalettes
 	add [hl]
 	ld l, a
-	ld a, [TilesetPalettes + 1]
+	ld a, [wTilesetPalettes + 1]
 	adc $0
 	ld h, a
 	ld a, [hl]
@@ -65,10 +65,10 @@ ScrollBGMapPalettes:: ; 4c03f
 	jr .next
 
 .UpperNybble:
-	ld hl, TilesetPalettes
+	ld hl, wTilesetPalettes
 	add [hl]
 	ld l, a
-	ld a, [TilesetPalettes + 1]
+	ld a, [wTilesetPalettes + 1]
 	adc $0
 	ld h, a
 	ld a, [hl]

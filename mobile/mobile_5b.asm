@@ -83,7 +83,7 @@ Unreferenced_Function16c000: ; 16c000
 
 Function16c089: ; 16c089
 	ld a, $1
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld [wd1f1], a
 	xor a
 	ld [hWY], a
@@ -103,7 +103,7 @@ Function16c09e: ; 16c09e
 
 Function16c0a8: ; 16c0a8
 	xor a
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld [wd1f1], a
 	call ClearSprites
 	ld a, $90
@@ -200,7 +200,7 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	ld bc, 20
 	xor a
 	call ByteFill
-	ld hl, .TileMap
+	ld hl, .wTileMap
 	decoord 0, 1
 	ld bc, $0154
 	call CopyBytes
@@ -208,12 +208,12 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 ; 16c15c
 
 .LoadAttrMap: ; 16c15c
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH
 	xor a
 	call ByteFill
-	ld hl, .AttrMap
-	decoord 0, 1, AttrMap
+	ld hl, .wAttrMap
+	decoord 0, 1, wAttrMap
 	ld bc, 17 * SCREEN_WIDTH
 	call CopyBytes
 	ret
@@ -222,10 +222,10 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 .Tiles:
 INCBIN "gfx/mobile/mobile_splash.2bpp"
 
-.TileMap:
+.wTileMap:
 INCBIN "gfx/mobile/mobile_splash.tilemap"
 
-.AttrMap:
+.wAttrMap:
 INCBIN "gfx/mobile/mobile_splash.attrmap"
 
 UnknownMobilePalettes_16c903: ; 16c903
@@ -543,8 +543,8 @@ Function16cb08: ; 16cb08
 
 Function16cb0f: ; 16cb0f
 	xor a
-	ld [Buffer1], a
-	ld [Buffer2], a
+	ld [wBuffer1], a
+	ld [wBuffer2], a
 	xor a
 	ld [wd1ec], a
 	ld a, $70
@@ -559,7 +559,7 @@ Function16cb0f: ; 16cb0f
 ; 16cb2e
 
 Function16cb2e: ; 16cb2e
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	and a
 	ret z
 	call Function16cb40
@@ -754,7 +754,7 @@ Function16cc5a: ; 16cc5a
 ; 16cc62
 
 Function16cc62: ; 16cc62
-	hlcoord 0, 15, AttrMap
+	hlcoord 0, 15, wAttrMap
 	ld bc, $0028
 	ld a, $1
 	call ByteFill
@@ -776,7 +776,7 @@ Function16cc73:
 	pop hl
 	ld a, $1
 	ld [rVBK], a
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	call Function16cc90
 	pop af
 	ld [rVBK], a

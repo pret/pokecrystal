@@ -1,5 +1,5 @@
 Special_HoOhChamber: ; 0x8addb
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	ld a, [hl]
 	cp HO_OH ; is Ho-oh the first Pokémon in the party?
 	jr nz, .done ; if not, we're done
@@ -21,12 +21,12 @@ Special_OmanyteChamber: ; 8adef
 	jr nz, .nope
 
 	ld a, WATER_STONE
-	ld [CurItem], a
-	ld hl, NumItems
+	ld [wCurItem], a
+	ld hl, wNumItems
 	call CheckItem
 	jr c, .open
 
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld b, a
 	inc b
 .loop
@@ -34,7 +34,7 @@ Special_OmanyteChamber: ; 8adef
 	jr z, .nope
 	ld a, b
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	push bc
 	ld a, MON_ITEM
 	call GetPartyParamLocation
@@ -104,7 +104,7 @@ SpecialKabutoChamber: ; 8ae4e
 ; 8ae68
 
 Special_DisplayUnownWords: ; 8ae68
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	ld hl, MenuDataHeaders_UnownWalls
 	and a
 	jr z, .load
@@ -129,7 +129,7 @@ Special_DisplayUnownWords: ; 8ae68
 	ld e, SCREEN_WIDTH
 	add hl, de
 	add hl, de
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	ld c, a
 	ld de, UnownWalls
 	and a
@@ -143,7 +143,7 @@ Special_DisplayUnownWords: ; 8ae68
 	jr nz, .loop2
 .copy
 	call _DisplayUnownWords_CopyWord
-	ld bc, AttrMap - TileMap
+	ld bc, wAttrMap - wTileMap
 	add hl, bc
 	call _DisplayUnownWords_FillAttr
 	call WaitBGMap2

@@ -14,7 +14,7 @@ Special_BuenasPassword: ; 8af6b
 	call DoNthMenu ; menu
 	farcall Buena_ExitMenu
 	ld b, $0
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld c, a
 	ld a, [wBuenasPassword]
 	maskbits NUM_PASSWORDS_PER_CATEGORY
@@ -24,7 +24,7 @@ Special_BuenasPassword: ; 8af6b
 
 .wrong
 	ld a, b
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 8afa9
 
@@ -58,7 +58,7 @@ endr
 	ld a, [wBuenasPassword]
 	and $f0
 	ld c, a
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	add c
 	ld c, a
 	farcall GetBuenasPassword
@@ -71,7 +71,7 @@ Special_BuenaPrize: ; 8afd4
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $1
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call Buena_PlacePrizeMenuBox
 	call Buena_DisplayBlueCardBalance
 	ld hl, .Text_AskWhichPrize
@@ -88,7 +88,7 @@ Special_BuenaPrize: ; 8afd4
 	call PrintBlueCardBalance
 	call Buena_PrizeMenu
 	jr z, .done
-	ld [MenuSelectionQuantity], a
+	ld [wMenuSelectionQuantity], a
 	call Buena_getprize
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
@@ -98,7 +98,7 @@ Special_BuenaPrize: ; 8afd4
 	call YesNoBox
 	jr c, .loop
 
-	ld a, [MenuSelectionQuantity]
+	ld a, [wMenuSelectionQuantity]
 	call Buena_getprize
 	inc hl
 	ld a, [hld]
@@ -109,10 +109,10 @@ Special_BuenaPrize: ; 8afd4
 
 	ld a, [hli]
 	push hl
-	ld [CurItem], a
+	ld [wCurItem], a
 	ld a, $1
 	ld [wItemQuantityChangeBuffer], a
-	ld hl, NumItems
+	ld hl, wNumItems
 	call ReceiveItem
 	pop hl
 	jr nc, .BagFull
@@ -246,7 +246,7 @@ Buena_PlacePrizeMenuBox: ; 8b0d6
 Buena_PrizeMenu: ; 8b0e2
 	ld hl, .MenuDataHeader
 	call CopyMenuDataHeader
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld [wMenuCursorBuffer], a
 	xor a
 	ld [wWhichIndexSet], a
@@ -254,10 +254,10 @@ Buena_PrizeMenu: ; 8b0e2
 	call InitScrollingMenu
 	call UpdateSprites
 	call ScrollingMenu
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld c, a
 	ld a, [wMenuCursorY]
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	ld a, [wMenuJoypad]
 	cp $2
 	jr z, .cancel
@@ -301,7 +301,7 @@ endr
 ; 8b134
 
 .prizeitem ; 8b134
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	call Buena_getprize
 	ld a, [hl]
 	push de
@@ -313,7 +313,7 @@ endr
 ; 8b147
 
 .prizepoints ; 8b147
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	call Buena_getprize
 	inc hl
 	ld a, [hl]

@@ -9,7 +9,7 @@ InitDisplayForHallOfFame: ; 4e881
 	ld bc, vBGMap1 - vBGMap0
 	ld a, " "
 	call ByteFill
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill
@@ -39,7 +39,7 @@ InitDisplayForRedCredits: ; 4e8c2
 	ld bc, vBGMap1 - vBGMap0
 	ld a, " "
 	call ByteFill
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	xor a
 	call ByteFill

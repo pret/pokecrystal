@@ -27,7 +27,7 @@ EFFECTIVE          EQU 10
 NOT_VERY_EFFECTIVE EQU 05
 NO_EFFECT          EQU 00
 
-; PlayerStatLevels and EnemyStatLevels indexes (see wram.asm)
+; wPlayerStatLevels and wEnemyStatLevels indexes (see wram.asm)
 ; GetStatName arguments (see data/battle/stat_names.asm)
 	const_def
 	const ATTACK
@@ -53,7 +53,7 @@ MOVE_LENGTH EQU const_value
 
 ; stat constants
 ; indexes for:
-; - PlayerStats and EnemyStats (see wram.asm)
+; - wPlayerStats and wEnemyStats (see wram.asm)
 ; - party_struct and battle_struct members (see macros/wram.asm)
 const_value set 1
 	const STAT_HP
@@ -80,7 +80,7 @@ const_value set 1
 	const WILD_BATTLE
 	const TRAINER_BATTLE
 
-; battle types (BattleType values)
+; battle types (wBattleType values)
 	const_def
 	const BATTLETYPE_NORMAL
 	const BATTLETYPE_CANLOSE
@@ -159,7 +159,7 @@ const_value set 3
 
 ALL_STATUS EQU (1 << PSN) + (1 << BRN) + (1 << FRZ) + (1 << PAR) + SLP
 
-; PlayerSubStatus1 or EnemySubStatus1 bit flags
+; wPlayerSubStatus1 or wEnemySubStatus1 bit flags
 	enum_start 7, -1
 	enum SUBSTATUS_IN_LOVE
 	enum SUBSTATUS_ROLLOUT
@@ -170,10 +170,10 @@ ALL_STATUS EQU (1 << PSN) + (1 << BRN) + (1 << FRZ) + (1 << PAR) + SLP
 	enum SUBSTATUS_CURSE
 	enum SUBSTATUS_NIGHTMARE
 
-; PlayerSubStatus2 or EnemySubStatus2 bit flags
+; wPlayerSubStatus2 or wEnemySubStatus2 bit flags
 SUBSTATUS_CURLED EQU 0
 
-; PlayerSubStatus3 or EnemySubStatus3 bit flags
+; wPlayerSubStatus3 or wEnemySubStatus3 bit flags
 	enum_start 7, -1
 	enum SUBSTATUS_CONFUSED
 	enum SUBSTATUS_FLYING
@@ -184,7 +184,7 @@ SUBSTATUS_CURLED EQU 0
 	enum SUBSTATUS_RAMPAGE
 	enum SUBSTATUS_BIDE
 
-; PlayerSubStatus4 or EnemySubStatus4 bit flags
+; wPlayerSubStatus4 or wEnemySubStatus4 bit flags
 	enum_start 7, -1
 	enum SUBSTATUS_LEECH_SEED
 	enum SUBSTATUS_RAGE
@@ -195,7 +195,7 @@ SUBSTATUS_CURLED EQU 0
 	enum SUBSTATUS_MIST
 	enum SUBSTATUS_X_ACCURACY
 
-; PlayerSubStatus5 or EnemySubStatus5 bit flags
+; wPlayerSubStatus5 or wEnemySubStatus5 bit flags
 	enum_start 7, -1
 	enum SUBSTATUS_CANT_RUN
 	enum SUBSTATUS_DESTINY_BOND
@@ -206,7 +206,7 @@ SUBSTATUS_CURLED EQU 0
 	enum SUBSTATUS_UNKNOWN_3
 	enum SUBSTATUS_TOXIC
 
-; PlayerScreens or EnemyScreens bit flags
+; wPlayerScreens or wEnemyScreens bit flags
 	enum_start 4, -1
 	enum SCREENS_REFLECT
 	enum SCREENS_LIGHT_SCREEN

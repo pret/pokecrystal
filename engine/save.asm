@@ -165,7 +165,7 @@ AddHallOfFameEntry: ; 14b5f
 	ld a, c
 	or b
 	jr nz, .loop
-	ld hl, OverworldMap
+	ld hl, wOverworldMap
 	ld de, sHallOfFame
 	ld bc, HOF_LENGTH
 	call CopyBytes
@@ -226,15 +226,15 @@ SaveTheGame_yesorno: ; 14baf
 CompareLoadedAndSavedPlayerID: ; 14bcb
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, sPlayerData + (PlayerID - wPlayerData)
+	ld hl, sPlayerData + (wPlayerID - wPlayerData)
 	ld a, [hli]
 	ld c, [hl]
 	ld b, a
 	call CloseSRAM
-	ld a, [PlayerID]
+	ld a, [wPlayerID]
 	cp b
 	ret nz
-	ld a, [PlayerID + 1]
+	ld a, [wPlayerID + 1]
 	cp c
 	ret
 ; 14be3
@@ -247,17 +247,17 @@ SavedTheGame: ; 14be6
 	ld c, $20
 	call DelayFrames
 	; copy the original text speed setting to the stack
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
 	; set text speed super slow
 	ld a, 3
-	ld [Options], a
+	ld [wOptions], a
 	; <PLAYER> saved the game!
 	ld hl, Text_PlayerSavedTheGame
 	call PrintText
 	; restore the original text speed setting
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ld de, SFX_SAVE
 	call WaitPlaySFX
 	call WaitSFX
@@ -349,17 +349,17 @@ SavingDontTurnOffThePower: ; 14c99
 	ld [hJoypadSum], a
 	ld [hJoypadDown], a
 	; Save the text speed setting to the stack
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
 	; Set the text speed to super slow
 	ld a, $3
-	ld [Options], a
+	ld [wOptions], a
 	; SAVING... DON'T TURN OFF THE POWER.
 	ld hl, Text_SavingDontTurnOffThePower
 	call PrintText
 	; Restore the text speed setting
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	; Wait for 16 frames
 	ld c, $10
 	call DelayFrames
@@ -508,11 +508,11 @@ ValidateSave: ; 14da9
 SaveOptions: ; 14dbb
 	ld a, BANK(sOptions)
 	call GetSRAMBank
-	ld hl, Options
+	ld hl, wOptions
 	ld de, sOptions
-	ld bc, OptionsEnd - Options
+	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
-	ld a, [Options]
+	ld a, [wOptions]
 	and $ff ^ (1 << NO_TEXT_SCROLL)
 	ld [sOptions], a
 	jp CloseSRAM
@@ -577,9 +577,9 @@ ValidateBackupSave: ; 14e2d
 SaveBackupOptions: ; 14e40
 	ld a, BANK(sBackupOptions)
 	call GetSRAMBank
-	ld hl, Options
+	ld hl, wOptions
 	ld de, sBackupOptions
-	ld bc, OptionsEnd - Options
+	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -661,14 +661,14 @@ TryLoadSaveFile: ; 14ea5 (5:4ea5)
 	ret
 
 .corrupt
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
 	set NO_TEXT_SCROLL, a
-	ld [Options], a
+	ld [wOptions], a
 	ld hl, Text_SaveFileCorrupted
 	call PrintText
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	scf
 	ret
 
@@ -683,8 +683,8 @@ TryLoadSaveData: ; 14f1c
 
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, sPlayerData + StartDay - wPlayerData
-	ld de, StartDay
+	ld hl, sPlayerData + wStartDay - wPlayerData
+	ld de, wStartDay
 	ld bc, 8
 	call CopyBytes
 	ld hl, sPlayerData + wStatusFlags - wPlayerData
@@ -702,8 +702,8 @@ TryLoadSaveData: ; 14f1c
 
 	ld a, BANK(sBackupPlayerData)
 	call GetSRAMBank
-	ld hl, sBackupPlayerData + StartDay - wPlayerData
-	ld de, StartDay
+	ld hl, sBackupPlayerData + wStartDay - wPlayerData
+	ld de, wStartDay
 	ld bc, 8
 	call CopyBytes
 	ld hl, sBackupPlayerData + wStatusFlags - wPlayerData
@@ -715,8 +715,8 @@ TryLoadSaveData: ; 14f1c
 
 .corrupt
 	ld hl, DefaultOptions
-	ld de, Options
-	ld bc, OptionsEnd - Options
+	ld de, wOptions
+	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
 	call PanicResetClock
 	ret
@@ -736,8 +736,8 @@ CheckPrimarySaveFile: ; 14f84
 	cp SAVE_CHECK_VALUE_2
 	jr nz, .nope
 	ld hl, sOptions
-	ld de, Options
-	ld bc, OptionsEnd - Options
+	ld de, wOptions
+	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
 	call CloseSRAM
 	ld a, $1
@@ -758,8 +758,8 @@ CheckBackupSaveFile: ; 14faf
 	cp SAVE_CHECK_VALUE_2
 	jr nz, .nope
 	ld hl, sBackupOptions
-	ld de, Options
-	ld bc, OptionsEnd - Options
+	ld de, wOptions
+	ld bc, wOptionsEnd - wOptions
 	call CopyBytes
 	ld a, $2
 	ld [wSaveFileExists], a
@@ -882,7 +882,7 @@ _SaveData: ; 1509a
 	call CopyBytes
 
 	; This block originally had some mobile functionality, but since we're still in
-	; BANK(sCrystalData), it instead overwrites the sixteen EventFlags starting at 1:a603 with
+	; BANK(sCrystalData), it instead overwrites the sixteen wEventFlags starting at 1:a603 with
 	; garbage from wd479. This isn't an issue, since ErasePreviousSave is followed by a regular
 	; save that unwrites the garbage.
 
@@ -904,7 +904,7 @@ _LoadData: ; 150b9
 	call CopyBytes
 
 	; This block originally had some mobile functionality to mirror _SaveData above, but instead it
-	; (harmlessly) writes the aforementioned EventFlags to the unused wd479.
+	; (harmlessly) writes the aforementioned wEventFlags to the unused wd479.
 
 	ld hl, wd479
 	ld a, [$a60e + 0]

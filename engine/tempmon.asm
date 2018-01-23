@@ -1,20 +1,20 @@
 CopyPkmnToTempMon: ; 5084a
 ; gets the BaseData of a Pkmn
-; and copys the PkmnStructure to TempMon
+; and copys the PkmnStructure to wTempMon
 
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld e, a
 	call GetPkmnSpecies
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
 	call GetBaseData
 
-	ld a, [MonType]
-	ld hl, PartyMon1Species
+	ld a, [wMonType]
+	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	and a
 	jr z, .copywholestruct
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	cp OTPARTYMON
 	jr z, .copywholestruct
@@ -23,9 +23,9 @@ CopyPkmnToTempMon: ; 5084a
 	jr .done
 
 .copywholestruct
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
-	ld de, TempMon
+	ld de, wTempMon
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 
@@ -37,12 +37,12 @@ CalcwBufferMonStats: ; 5088b
 	jr _TempMonStatsCalculation
 
 CalcTempmonStats: ; 50890
-	ld bc, TempMon
+	ld bc, wTempMon
 _TempMonStatsCalculation: ; 50893
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld hl, MON_MAXHP
 	add hl, bc
 	ld d, h
@@ -57,7 +57,7 @@ _TempMonStatsCalculation: ; 50893
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr nz, .not_egg
 	xor a
@@ -83,10 +83,10 @@ _TempMonStatsCalculation: ; 50893
 	ret
 
 GetPkmnSpecies: ; 508d5
-; [MonType] has the type of the Pkmn
-; e = Nr. of Pkmn (i.e. [CurPartyMon])
+; [wMonType] has the type of the Pkmn
+; e = Nr. of Pkmn (i.e. [wCurPartyMon])
 
-	ld a, [MonType]
+	ld a, [wMonType]
 	and a ; PARTYMON
 	jr z, .partymon
 	cp OTPARTYMON
@@ -98,11 +98,11 @@ GetPkmnSpecies: ; 508d5
 	; WILDMON
 
 .partymon
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	jr .done
 
 .otpartymon
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	jr .done
 
 .boxmon
@@ -123,5 +123,5 @@ GetPkmnSpecies: ; 508d5
 	ld a, [hl]
 
 .done2
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ret

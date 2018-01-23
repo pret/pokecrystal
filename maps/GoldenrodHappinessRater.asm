@@ -80,7 +80,7 @@ UnknownText_0x549a3:
 
 	para "Oh? Let me see"
 	line "your @"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "…"
 	done
 

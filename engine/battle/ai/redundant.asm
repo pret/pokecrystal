@@ -47,90 +47,90 @@ AI_Redundant: ; 2c41a
 	db -1
 
 .LightScreen: ; 2c487
-	ld a, [EnemyScreens]
+	ld a, [wEnemyScreens]
 	bit SCREENS_LIGHT_SCREEN, a
 	ret
 
 .Mist: ; 2c48d
-	ld a, [EnemySubStatus4]
+	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_MIST, a
 	ret
 
 .FocusEnergy: ; 2c493
-	ld a, [EnemySubStatus4]
+	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_FOCUS_ENERGY, a
 	ret
 
 .Confuse: ; 2c499
-	ld a, [PlayerSubStatus3]
+	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_CONFUSED, a
 	ret nz
-	ld a, [PlayerScreens]
+	ld a, [wPlayerScreens]
 	bit SCREENS_SAFEGUARD, a
 	ret
 
 .Transform: ; 2c4a5
-	ld a, [EnemySubStatus5]
+	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	ret
 
 .Reflect: ; 2c4ab
-	ld a, [EnemyScreens]
+	ld a, [wEnemyScreens]
 	bit SCREENS_REFLECT, a
 	ret
 
 .Substitute: ; 2c4b1
-	ld a, [EnemySubStatus4]
+	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret
 
 .LeechSeed: ; 2c4b7
-	ld a, [PlayerSubStatus4]
+	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_LEECH_SEED, a
 	ret
 
 .Disable: ; 2c4bd
-	ld a, [PlayerDisableCount]
+	ld a, [wPlayerDisableCount]
 	and a
 	ret
 
 .Encore: ; 2c4c2
-	ld a, [PlayerSubStatus5]
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_ENCORED, a
 	ret
 
 .Snore:
 .SleepTalk: ; 2c4c8
-	ld a, [EnemyMonStatus]
+	ld a, [wEnemyMonStatus]
 	and SLP
 	jr z, .Redundant
 	jr .NotRedundant
 
 .MeanLook: ; 2c4d1
-	ld a, [EnemySubStatus5]
+	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	ret
 
 .Nightmare: ; 2c4d7
-	ld a, [BattleMonStatus]
+	ld a, [wBattleMonStatus]
 	and a
 	jr z, .Redundant
-	ld a, [PlayerSubStatus1]
+	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_NIGHTMARE, a
 	ret
 
 .Spikes: ; 2c4e3
-	ld a, [PlayerScreens]
+	ld a, [wPlayerScreens]
 	bit SCREENS_SPIKES, a
 	ret
 
 .Foresight: ; 2c4e9
-	ld a, [PlayerSubStatus1]
+	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_IDENTIFIED, a
 	ret
 
 .PerishSong: ; 2c4ef
-	ld a, [PlayerSubStatus1]
+	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_PERISH, a
 	ret
 
@@ -143,12 +143,12 @@ AI_Redundant: ; 2c41a
 .Attract: ; 2c4fe
 	farcall CheckOppositeGender
 	jr c, .Redundant
-	ld a, [PlayerSubStatus1]
+	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_IN_LOVE, a
 	ret
 
 .Safeguard: ; 2c50c
-	ld a, [EnemyScreens]
+	ld a, [wEnemyScreens]
 	bit SCREENS_SAFEGUARD, a
 	ret
 
@@ -165,18 +165,18 @@ AI_Redundant: ; 2c41a
 	jr .NotRedundant
 
 .DreamEater: ; 2c524
-	ld a, [BattleMonStatus]
+	ld a, [wBattleMonStatus]
 	and SLP
 	jr z, .Redundant
 	jr .NotRedundant
 
 .Swagger: ; 2c52d
-	ld a, [PlayerSubStatus3]
+	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_CONFUSED, a
 	ret
 
 .FutureSight: ; 2c533
-	ld a, [EnemyScreens]
+	ld a, [wEnemyScreens]
 	bit 5, a
 	ret
 

@@ -52,7 +52,7 @@ LoadScriptBDE:: ; 97c4f
 
 TryTileCollisionEvent:: ; 97c5f
 	call GetFacingTileCoord
-	ld [EngineBuffer1], a
+	ld [wEngineBuffer1], a
 	ld c, a
 	farcall CheckFacingTileForStdScript
 	jr c, .done
@@ -63,21 +63,21 @@ TryTileCollisionEvent:: ; 97c5f
 	jr .done
 
 .whirlpool
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	call CheckWhirlpoolTile
 	jr nz, .waterfall
 	farcall TryWhirlpoolOW
 	jr .done
 
 .waterfall
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	call CheckWaterfallTile
 	jr nz, .headbutt
 	farcall TryWaterfallOW
 	jr .done
 
 .headbutt
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	call CheckHeadbuttTreeTile
 	jr nz, .surf
 	farcall TryHeadbuttOW
@@ -161,7 +161,7 @@ CanUseSweetScent:: ; 97cfd
 	jr nc, .no
 
 .ice_check
-	ld a, [PlayerStandingTile]
+	ld a, [wPlayerStandingTile]
 	call CheckIceTile
 	jr z, .no
 	scf
@@ -202,7 +202,7 @@ ChooseWildEncounter_BugContest:: ; 97d31
 
 ; Species
 	ld a, [hli]
-	ld [TempWildMonSpecies], a
+	ld [wTempWildMonSpecies], a
 
 ; Min level
 	ld a, [hli]
@@ -228,14 +228,14 @@ ChooseWildEncounter_BugContest:: ; 97d31
 	add d
 
 .GotLevel:
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 
 	xor a
 	ret
 ; 97d64
 
 TryWildEncounter_BugContest: ; 97d64
-	ld a, [PlayerStandingTile]
+	ld a, [wPlayerStandingTile]
 	call CheckSuperTallGrassTile
 	ld b, 40 percent
 	jr z, .ok
@@ -268,7 +268,7 @@ DoBikeStep:: ; 97db3
 	jr z, .NoCall
 
 	; If we're not on the bike, we don't have to be here.
-	ld a, [PlayerState]
+	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr nz, .NoCall
 
@@ -594,7 +594,7 @@ CmdQueue_Type3: ; 97ef9
 
 .IsPlayerFacingDown: ; 97f38
 	push bc
-	ld bc, PlayerStruct
+	ld bc, wPlayerStruct
 	call GetSpriteDirection
 	and a
 	pop bc
@@ -602,7 +602,7 @@ CmdQueue_Type3: ; 97ef9
 ; 97f42
 
 CmdQueue_StoneTable: ; 97f42
-	ld de, PlayerStruct
+	ld de, wPlayerStruct
 	ld a, NUM_OBJECT_STRUCTS
 .loop
 	push af

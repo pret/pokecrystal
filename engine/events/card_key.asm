@@ -1,14 +1,14 @@
 _CardKey: ; 50779
 ; Are we even in the right map to use this?
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	cp GROUP_RADIO_TOWER_3F
 	jr nz, .nope
 
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	cp MAP_RADIO_TOWER_3F
 	jr nz, .nope
 ; Are we facing the slot?
-	ld a, [PlayerDirection]
+	ld a, [wPlayerDirection]
 	and %1100
 	cp OW_UP
 	jr nz, .nope

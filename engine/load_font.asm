@@ -81,7 +81,7 @@ _LoadFontsBattleExtra:: ; fb4be
 ; fb4cc
 
 LoadFrame: ; fb4cc
-	ld a, [TextBoxFrame]
+	ld a, [wTextBoxFrame]
 	maskbits NUM_FRAMES
 	ld bc, 6 * LEN_1BPP_TILE
 	ld hl, Frames

@@ -65,7 +65,7 @@ UnknownText_0x1c41b1::
 UnknownText_0x1c41e6::
 	text "Your friend's"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " appears"
 	cont "to be abnormal!"
 	prompt
@@ -75,7 +75,7 @@ UnknownText_0x1c4212::
 	text_from_ram wd004
 	text_start
 	line "for @"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "?"
 	done
 
@@ -124,7 +124,7 @@ UnknownText_0x1c4298::
 UnknownText_0x1c439c::
 	text "Today's remaining"
 	line "time is @"
-	deciram StringBuffer2, 1, 2
+	deciram wStringBuffer2, 1, 2
 	text " min."
 
 	para "Would you like to"
@@ -133,7 +133,7 @@ UnknownText_0x1c439c::
 
 UnknownText_0x1c43dc::
 	text "There are only @"
-	deciram StringBuffer2, 1, 2
+	deciram wStringBuffer2, 1, 2
 	text_start
 	line "min. left today."
 
@@ -180,7 +180,7 @@ UnknownText_0x1c4508::
 UnknownText_0x1c4525::
 	text "Today's remaining"
 	line "time is @"
-	deciram StringBuffer2, 1, 2
+	deciram wStringBuffer2, 1, 2
 	text " min."
 	done
 
@@ -257,23 +257,23 @@ UnknownText_0x1c4706::
 UnknownText_0x1c4719::
 	text "<PLAYER> received"
 	line "@"
-	text_from_ram StringBuffer4
+	text_from_ram wStringBuffer4
 	text "."
 	done
 
 UnknownText_0x1c472c::
 	text "<PLAYER> put the"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " in"
 	cont "the @"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "."
 	prompt
 
 UnknownText_0x1c474b::
 	text "The @"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text_start
 	line "is full…"
 	prompt
@@ -447,7 +447,7 @@ UnknownText_0x1c4ae5::
 UnknownText_0x1c4b92::
 	text "Congratulations!"
 	line "Your @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	db "@@"
 
 UnknownText_0x1c4baf::
@@ -455,20 +455,20 @@ UnknownText_0x1c4baf::
 
 	para "evolved into"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	done
 
 UnknownText_0x1c4bc5::
 	text "Huh? @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text_start
 	line "stopped evolving!"
 	prompt
 
 UnknownText_0x1c4be3::
 	text "What? @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text_start
 	line "is evolving!"
 	done
@@ -480,7 +480,7 @@ UnknownText_0x1c4bfd::
 UnknownText_0x1c4c08::
 	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "(S)"
 	line "will be ¥@"
 	deciram hMoneyTemp, 3, 6
@@ -509,7 +509,7 @@ UnknownText_0x1c4ca3::
 UnknownText_0x1c4cae::
 	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "(S)"
 	line "will be ¥@"
 	deciram hMoneyTemp, 3, 6
@@ -548,7 +548,7 @@ UnknownText_0x1c4d47::
 	done
 
 UnknownText_0x1c4db0::
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text " costs"
 	line "¥@"
 	deciram hMoneyTemp, 3, 6
@@ -592,7 +592,7 @@ UnknownText_0x1c4e7e::
 UnknownText_0x1c4e89::
 	deciram wItemQuantityChangeBuffer, 1, 2
 	text " @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "(S)"
 	line "will cost ¥@"
 	deciram hMoneyTemp, 3, 6
@@ -675,7 +675,7 @@ UnknownText_0x1c502e::
 	deciram hMoneyTemp, 3, 6
 	text " for"
 	line "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "(S)."
 	done
 
@@ -705,7 +705,7 @@ UnknownText_0x1c5092::
 UnknownText_0x1c509f::
 	text "lined up!"
 	line "Won @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text " coins!"
 	done
 
@@ -935,7 +935,7 @@ UnknownText_0x1c5660::
 	text_from_ram wMonOrItemNameBuffer
 	text " learned"
 	line "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "!@"
 	sound_dex_fanfare_50_79
 	text_waitbutton
@@ -949,7 +949,7 @@ UnknownText_0x1c5678::
 UnknownText_0x1c5699::
 	text "Stop learning"
 	line "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "?"
 	done
 
@@ -958,7 +958,7 @@ UnknownText_0x1c56af::
 	text_start
 	line "did not learn"
 	cont "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "."
 	prompt
 
@@ -967,7 +967,7 @@ UnknownText_0x1c56c9::
 	text " is"
 	line "trying to learn"
 	cont "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "."
 
 	para "But @"
@@ -979,7 +979,7 @@ UnknownText_0x1c56c9::
 	para "Delete an older"
 	line "move to make room"
 	cont "for @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "?"
 	done
 
@@ -997,7 +997,7 @@ UnknownText_0x1c574e::
 	text_from_ram wMonOrItemNameBuffer
 	text " forgot"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "."
 
 	para "And…"
@@ -1077,7 +1077,7 @@ UnknownText_0x1c589f::
 	done
 
 UnknownText_0x1c58bc::
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "?"
 	line "Is that right?"
 	done
@@ -1148,7 +1148,7 @@ Text_OnlyThreePkmnMayBeEntered::
 
 Text_ThePkmnMustAllBeDifferentKinds::
 	text "The @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text " #MON"
 	line "must all be"
 	cont "different kinds."
@@ -1158,7 +1158,7 @@ Text_ThePkmnMustAllBeDifferentKinds::
 
 Text_ThePkmnMustNotHoldTheSameItems::
 	text "The @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text " #MON"
 	line "must not hold the"
 	cont "same items."
@@ -1208,7 +1208,7 @@ UnknownText_0x1c5afa::
 
 UnknownText_0x1c5b17::
 	text "Gotcha! @"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	line "was caught!@"
 	sound_caught_mon
@@ -1225,7 +1225,7 @@ UnknownText_0x1c5b38::
 	prompt
 
 UnknownText_0x1c5b53::
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text "'s data"
 	line "was newly added to"
 	cont "the #DEX.@"
@@ -1236,15 +1236,15 @@ UnknownText_0x1c5b53::
 UnknownText_0x1c5b7f::
 	text "Give a nickname to"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "?"
 	done
 
 UnknownText_0x1c5b9a::
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "'s"
 	line "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text " rose."
 	prompt
 
@@ -1302,13 +1302,13 @@ Text_RestoreThePPOfWhichMove::
 	done
 
 Text_PPIsMaxedOut::
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "'s PP"
 	line "is maxed out."
 	prompt
 
 Text_PPsIncreased::
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "'s PP"
 	line "increased."
 	prompt
@@ -1324,7 +1324,7 @@ UnknownText_0x1c5d03::
 	text_start
 
 	para "@"
-	text_from_ram PlayerName
+	text_from_ram wPlayerName
 	text " sent the"
 	line "trophy home."
 	prompt
@@ -1371,7 +1371,7 @@ UnknownText_0x1c5e01::
 UnknownText_0x1c5e1d::
 	text "Can't get on your"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " now."
 	prompt
 
@@ -1384,14 +1384,14 @@ UnknownText_0x1c5e3a::
 UnknownText_0x1c5e68::
 	text "<PLAYER> used the@"
 	text_low
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "."
 	done
 
 UnknownText_0x1c5e7b::
 	text "<PLAYER> got on the@"
 	text_low
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "."
 	prompt
 
@@ -1399,15 +1399,15 @@ UnknownText_0x1c5e90::
 	text "<PLAYER> got off@"
 	text_low
 	text "the @"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "."
 	prompt
 
 UnknownText_0x1c5ea8::
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " knows"
 	line "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "."
 	prompt
 
@@ -1419,7 +1419,7 @@ UnknownText_0x1c5eba::
 UnknownText_0x1c5eda::
 	text "Oh, make it forget"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "?"
 	done
 

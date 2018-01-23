@@ -6,7 +6,7 @@ _BillsPC: ; e3fd
 	jp .LogOut
 
 .CheckCanUsePC: ; e40a (3:640a)
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	ret nz
 	ld hl, .Text_GottaHavePokemon
@@ -24,14 +24,14 @@ _BillsPC: ; e3fd
 	ld [hBGMapMode], a
 	call LoadStandardMenuDataHeader
 	call ClearPCItemScreen
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	ld hl, .Text_What
 	call PrintText
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	call LoadFontsBattleExtra
 	ret
 
@@ -58,7 +58,7 @@ _BillsPC: ; e3fd
 	jr c, .cancel
 	ld a, [wMenuCursorBuffer]
 	push af
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld hl, .Jumptable
 	rst JumpTable
 	pop bc
@@ -143,7 +143,7 @@ BillsPC_DepositMenu: ; e4fe (3:64fe)
 	ret
 
 Unreferenced_Functione512:
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	jr z, .no_pkmn
 	cp 2
@@ -174,11 +174,11 @@ Unreferenced_Functione512:
 	db "@"
 
 CheckCurPartyMonFainted: ; e538
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	ld de, PARTYMON_STRUCT_LENGTH
 	ld b, $0
 .loop
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	cp b
 	jr z, .skip
 	ld a, [hli]
@@ -188,7 +188,7 @@ CheckCurPartyMonFainted: ; e538
 
 .skip
 	inc b
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp b
 	jr z, .done
 	add hl, de
@@ -212,7 +212,7 @@ BillsPC_WithdrawMenu: ; e559 (3:6559)
 	ret
 
 Unreferenced_Functione56d:
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr nc, .asm_e576
 	and a
@@ -255,11 +255,11 @@ ClearPCItemScreen: ; e58b
 	ret
 
 CopyBoxmonToTempMon: ; e5bb
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld hl, sBoxMon1Species
 	ld bc, BOXMON_STRUCT_LENGTH
 	call AddNTimes
-	ld de, TempMonSpecies
+	ld de, wTempMonSpecies
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, BANK(sBoxMon1Species)
 	call GetSRAMBank
@@ -309,7 +309,7 @@ Unreferenced_Functione5d9:
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
 	pop bc
 	pop hl
@@ -352,7 +352,7 @@ Unreferenced_Functione5d9:
 	swap a
 	or b
 	ld b, a
-	ld a, [BaseGender]
+	ld a, [wBaseGender]
 	cp b
 	ld a, $1
 	jr c, .okay2

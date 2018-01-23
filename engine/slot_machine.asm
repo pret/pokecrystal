@@ -75,7 +75,7 @@ SLOTS_END_LOOP_F EQU 7
 	const REEL_ACTION_DROP_REEL
 
 _SlotMachine:
-	ld hl, Options
+	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call .InitGFX
 	call DelayFrame
@@ -88,7 +88,7 @@ _SlotMachine:
 	call WaitSFX
 	call ClearBGPalettes
 	farcall StubbedTrainerRankings_EndSlotsWinStreak
-	ld hl, Options
+	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC
 	res rLCDC_SPRITE_SIZE, [hl] ; 8x8
@@ -211,7 +211,7 @@ SlotsLoop: ; 927af (24:67af)
 	ret
 
 .matching_sevens
-	ld a, [TextDelayFrames]
+	ld a, [wTextDelayFrames]
 	and $7
 	ret nz
 	ld a, [rBGP]
@@ -261,7 +261,7 @@ Unreferenced_Function9282c: ; 9282c
 	inc [hl]
 	and $7
 	ret nz
-	ld hl, Sprite17TileID
+	ld hl, wSprite17TileID
 	ld c, NUM_SPRITE_OAM_STRUCTS - 16
 .loop
 	ld a, [hl]
@@ -671,7 +671,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel1
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprite17
+	ld de, wSprite17
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -689,7 +689,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel2
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprite25
+	ld de, wSprite25
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -707,7 +707,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel3
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprite33
+	ld de, wSprite33
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -1725,7 +1725,7 @@ Slots_InitBias: ; 93002 (24:7002)
 	and a
 	ret z
 	ld hl, .Normal
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr z, .okay
 	ld hl, .Lucky
@@ -1971,7 +1971,7 @@ Slots_PayoutText: ; 93158 (24:7158)
 	add hl, de
 	add hl, de
 	add hl, de
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	ld bc, 4
 	call CopyBytes
 	ld a, [hli]

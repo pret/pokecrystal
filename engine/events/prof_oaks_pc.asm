@@ -33,12 +33,12 @@ ProfOaksPCRating: ; 0x26601
 
 Rate: ; 0x26616
 ; calculate Seen/Owned
-	ld hl, PokedexSeen
-	ld b, EndPokedexSeen - PokedexSeen
+	ld hl, wPokedexSeen
+	ld b, wEndPokedexSeen - wPokedexSeen
 	call CountSetBits
 	ld [wd002], a
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
+	ld hl, wPokedexCaught
+	ld b, wEndPokedexCaught - wPokedexCaught
 	call CountSetBits
 	ld [wd003], a
 
@@ -56,10 +56,10 @@ Rate: ; 0x26616
 	ret
 
 .UpdateRatingBuffers: ; 0x26647
-	ld hl, StringBuffer3
+	ld hl, wStringBuffer3
 	ld de, wd002
 	call .UpdateRatingBuffer
-	ld hl, StringBuffer4
+	ld hl, wStringBuffer4
 	ld de, wd003
 	call .UpdateRatingBuffer
 	ret

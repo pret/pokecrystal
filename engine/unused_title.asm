@@ -49,7 +49,7 @@ UnusedTitleScreen: ; 10c000
 	jr nz, .copy
 
 	ld hl, UnusedTitleFG_OAM
-	ld de, Sprite01
+	ld de, wSprite01
 	ld bc, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
 	call CopyBytes
 

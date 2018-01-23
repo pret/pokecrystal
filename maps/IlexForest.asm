@@ -22,7 +22,7 @@ IlexForest_MapScripts:
 .FarfetchdCallback:
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .Static
-	copybytetovar FarfetchdPosition
+	copybytetovar wFarfetchdPosition
 	if_equal  1, .PositionOne
 	if_equal  2, .PositionTwo
 	if_equal  3, .PositionThree
@@ -103,7 +103,7 @@ IlexForestCharcoalApprenticeScript:
 	end
 
 IlexForestFarfetchdScript:
-	copybytetovar FarfetchdPosition
+	copybytetovar wFarfetchdPosition
 	if_equal  1, .Position1
 	if_equal  2, .Position2
 	if_equal  3, .Position3
@@ -128,7 +128,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 15, 25
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 2
+	loadvar wFarfetchdPosition, 2
 	end
 
 .Position2:
@@ -138,7 +138,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 20, 24
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 3
+	loadvar wFarfetchdPosition, 3
 	end
 
 .Position2_Down:
@@ -146,7 +146,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 15, 29
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 8
+	loadvar wFarfetchdPosition, 8
 	end
 
 .Position3:
@@ -156,7 +156,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 29, 22
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 4
+	loadvar wFarfetchdPosition, 4
 	end
 
 .Position3_Left:
@@ -164,7 +164,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 15, 25
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 2
+	loadvar wFarfetchdPosition, 2
 	end
 
 .Position4:
@@ -174,7 +174,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 28, 31
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 5
+	loadvar wFarfetchdPosition, 5
 	end
 
 .Position4_Up:
@@ -182,7 +182,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 20, 24
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 3
+	loadvar wFarfetchdPosition, 3
 	end
 
 .Position5:
@@ -194,7 +194,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 24, 35
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 6
+	loadvar wFarfetchdPosition, 6
 	end
 
 .Position5_Left:
@@ -202,7 +202,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 22, 31
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 7
+	loadvar wFarfetchdPosition, 7
 	end
 
 .Position5_Up:
@@ -210,7 +210,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 29, 22
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 4
+	loadvar wFarfetchdPosition, 4
 	end
 
 .Position5_Right:
@@ -218,7 +218,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 29, 22
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 4
+	loadvar wFarfetchdPosition, 4
 	end
 
 .Position6:
@@ -228,7 +228,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 22, 31
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 7
+	loadvar wFarfetchdPosition, 7
 	end
 
 .Position6_Right:
@@ -236,7 +236,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 28, 31
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 5
+	loadvar wFarfetchdPosition, 5
 	end
 
 .Position7:
@@ -247,7 +247,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 15, 29
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 8
+	loadvar wFarfetchdPosition, 8
 	end
 
 .Position7_Left:
@@ -255,7 +255,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 24, 35
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 6
+	loadvar wFarfetchdPosition, 6
 	end
 
 .Position7_Down:
@@ -263,7 +263,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 28, 31
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 5
+	loadvar wFarfetchdPosition, 5
 	end
 
 .Position8:
@@ -275,7 +275,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 10, 35
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 9
+	loadvar wFarfetchdPosition, 9
 	end
 
 .Position8_Right:
@@ -283,7 +283,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 22, 31
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 7
+	loadvar wFarfetchdPosition, 7
 	end
 
 .Position8_Up:
@@ -292,7 +292,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 15, 25
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 2
+	loadvar wFarfetchdPosition, 2
 	end
 
 .Position9:
@@ -303,7 +303,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 6, 28
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 10
+	loadvar wFarfetchdPosition, 10
 	appear ILEXFOREST_BLACK_BELT
 	setevent EVENT_CHARCOAL_KILN_BOSS
 	setevent EVENT_HERDED_FARFETCHD
@@ -314,7 +314,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 15, 29
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 8
+	loadvar wFarfetchdPosition, 8
 	end
 
 .Position9_Down:
@@ -322,7 +322,7 @@ IlexForestFarfetchdScript:
 	moveobject ILEXFOREST_FARFETCHD, 15, 29
 	disappear ILEXFOREST_FARFETCHD
 	appear ILEXFOREST_FARFETCHD
-	loadvar FarfetchdPosition, 8
+	loadvar wFarfetchdPosition, 8
 	end
 
 .Position10:

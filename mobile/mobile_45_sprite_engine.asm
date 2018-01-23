@@ -22,7 +22,7 @@ Function115dc3: ; 115dc3
 	xor a
 	ld [wc305], a
 	ld a, $a0
-	ld hl, Sprite32
+	ld hl, wSprite32
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ret
@@ -34,7 +34,7 @@ Function115dd3: ; 115dd3
 	and a
 	ret z
 	ld a, $a0
-	ld hl, Sprite32
+	ld hl, wSprite32
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	call Function115e22
@@ -50,7 +50,7 @@ Function115dd3: ; 115dd3
 	ld d, a
 	push de
 	pop hl
-	ld de, Sprite32
+	ld de, wSprite32
 	ld a, [wc307]
 	ld c, a
 	ld a, [wc308]
@@ -493,12 +493,12 @@ Function1161d5: ; 1161d5
 
 	farcall ReloadMapPart
 	ld a, $8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld de, MUSIC_MOBILE_ADAPTER
 	ld a, e
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, d
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld a, [$c319]
 	inc a
 	ld [$c319], a
@@ -585,7 +585,7 @@ Function1162f2: ; 1162f2
 	ld e, a
 	ld a, [hli]
 	sub e
-	ld de, Sprite10
+	ld de, wSprite10
 .asm_116321
 	push af
 	ld a, [hli]
@@ -626,7 +626,7 @@ Function1162f2: ; 1162f2
 	ld e, a
 	ld a, [hli]
 	sub e
-	ld de, Sprite01
+	ld de, wSprite01
 .asm_11635a
 	push af
 	ld a, [hli]
@@ -677,11 +677,11 @@ Function11636e: ; 11636e
 	ld [rSVBK], a
 	farcall ReloadMapPart
 	ld a, $8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, [wMapMusic]
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	xor a
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	xor a
 	ld [$c319], a
 	ld [wc30d], a
@@ -725,20 +725,20 @@ Function1163c0: ; 1163c0
 	cp $4
 	jr z, .asm_11642a
 	ld a, $8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, [wMapMusic]
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	xor a
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	jr .asm_116439
 
 .asm_11642a
 	ld a, $8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, $0
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, $0
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 
 .asm_116439
 	xor a
@@ -754,11 +754,11 @@ Function116441: ; 116441
 	ld [hWY], a
 	farcall ReloadMapPart
 	ld a, $8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, [wMapMusic]
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	xor a
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	xor a
 	ld [$c319], a
 	ld [wc30d], a

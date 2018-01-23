@@ -1,5 +1,5 @@
 GetUnownLetter: ; 51040
-; Return Unown letter in UnownLetter based on DVs at hl
+; Return Unown letter in wUnownLetter based on DVs at hl
 
 ; Take the middle 2 bits of each DV and place them in order:
 ;	atk  def  spd  spc
@@ -45,12 +45,12 @@ GetUnownLetter: ; 51040
 ; Increment to get 1-26
 	ld a, [hQuotient + 2]
 	inc a
-	ld [UnownLetter], a
+	ld [wUnownLetter], a
 	ret
 
 GetMonFrontpic: ; 51077
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
 	call IsAPokemon
 	ret c
 	ld a, [rSVBK]
@@ -61,8 +61,8 @@ GetMonFrontpic: ; 51077
 	ret
 
 GetAnimatedFrontpic: ; 5108b
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
+	ld a, [wCurPartySpecies]
+	ld [wCurSpecies], a
 	call IsAPokemon
 	ret c
 	ld a, [rSVBK]
@@ -78,7 +78,7 @@ GetAnimatedFrontpic: ; 5108b
 _GetFrontpic: ; 510a5
 	push de
 	call GetBaseData
-	ld a, [BasePicSize]
+	ld a, [wBasePicSize]
 	and $f
 	ld b, a
 	push bc
@@ -105,15 +105,15 @@ _GetFrontpic: ; 510a5
 GetFrontpicPointer: ; 510d7
 GLOBAL PokemonPicPointers, UnownPicPointers
 
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr z, .unown
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld d, BANK(PokemonPicPointers)
 	jr .ok
 
 .unown
-	ld a, [UnownLetter]
+	ld a, [wUnownLetter]
 	ld d, BANK(UnownPicPointers)
 
 .ok
@@ -144,8 +144,8 @@ GetAnimatedEnemyFrontpic: ; 51103
 	ld de, 7 * 7 tiles
 	add hl, de
 	push hl
-	ld a, BANK(BasePicSize)
-	ld hl, BasePicSize
+	ld a, BANK(wBasePicSize)
+	ld hl, wBasePicSize
 	call GetFarWRAMByte
 	pop hl
 	and $f
@@ -196,13 +196,13 @@ LoadFrontpicTiles: ; 5114f
 	ret
 
 GetMonBackpic: ; 5116c
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	call IsAPokemon
 	ret c
 
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld b, a
-	ld a, [UnownLetter]
+	ld a, [wUnownLetter]
 	ld c, a
 	ld a, [rSVBK]
 	push af
@@ -311,7 +311,7 @@ Function511ec: ; 511ec
 	ret
 
 GetTrainerPic: ; 5120d
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 	and a
 	ret z
 	cp NUM_TRAINER_CLASSES
@@ -320,7 +320,7 @@ GetTrainerPic: ; 5120d
 	xor a
 	ld [hBGMapMode], a
 	ld hl, TrainerPicPointers
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 	dec a
 	ld bc, 3
 	call AddNTimes

@@ -8,7 +8,7 @@ BattleCommand_StartSandstorm: ; 376f8
 	ld a, WEATHER_SANDSTORM
 	ld [wBattleWeather], a
 	ld a, 5
-	ld [WeatherCount], a
+	ld [wWeatherCount], a
 	call AnimateCurrentMove
 	ld hl, SandstormBrewedText
 	jp StdBattleTextBox

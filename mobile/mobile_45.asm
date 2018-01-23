@@ -895,7 +895,7 @@ Function1145c5: ; 1145c5
 
 .asm_114636
 	ld a, b
-	ld [PartyMon5Defense], a
+	ld [wPartyMon5Defense], a
 	xor a
 	ret
 
@@ -906,7 +906,7 @@ Function11463c: ; 11463c
 	push af
 	push de
 	ld hl, $ddc8
-	ld a, [PartyMon5Defense]
+	ld a, [wPartyMon5Defense]
 	ld b, a
 .asm_114648
 	ld a, [de]
@@ -2050,7 +2050,7 @@ Function114c55: ; 114c55
 ; 114c5e
 
 Function114c5e: ; 114c5e
-	ld de, PartyMon5Defense
+	ld de, wPartyMon5Defense
 	push hl
 .asm_114c62
 	ld a, [hli]
@@ -2133,7 +2133,7 @@ Function114c5e: ; 114c5e
 .asm_114cc6
 	ld [de], a
 	pop hl
-	ld de, PartyMon5Defense
+	ld de, wPartyMon5Defense
 	ld bc, NULL
 .asm_114cce
 	inc bc
@@ -2194,7 +2194,7 @@ endr
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	ld hl, PartyMon5Defense
+	ld hl, wPartyMon5Defense
 	call Function115d6a
 	xor a
 	jp Function11425c
@@ -2287,7 +2287,7 @@ Function114d39: ; 114d39
 ; 114d99
 
 Function114d99: ; 114d99
-	ld de, PartyMon5Defense
+	ld de, wPartyMon5Defense
 	xor a
 	ld [de], a
 .asm_114d9e
@@ -2321,17 +2321,17 @@ Function114d99: ; 114d99
 
 .asm_114dc4
 	pop hl
-	ld a, [PartyMon5Defense]
+	ld a, [wPartyMon5Defense]
 	and a
 	jr z, .asm_114dd2
 	ld a, $2c
 	inc de
 	ld [de], a
-	ld a, [PartyMon5Defense]
+	ld a, [wPartyMon5Defense]
 
 .asm_114dd2
 	inc a
-	ld [PartyMon5Defense], a
+	ld [wPartyMon5Defense], a
 .asm_114dd6
 	inc de
 	ld a, [hli]
@@ -2453,14 +2453,14 @@ Function114e62: ; 114e62
 	ld a, c
 	and a
 	jr nz, .asm_114e6f
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	and a
 	jp z, Function11425c
 	jr .asm_114e76
 
 .asm_114e6f
 	xor a
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	call Function114ee9
 
 .asm_114e76
@@ -2532,7 +2532,7 @@ Function114ea0: ; 114ea0
 	ld [hli], a
 	ld [hl], b
 	xor a
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 .asm_114edb
@@ -2656,7 +2656,7 @@ Function114f39: ; 114f39
 ; 114f59
 
 Function114f59: ; 114f59
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	and a
 	jr nz, .asm_114f7c
 	ld a, [$dc03]
@@ -2674,7 +2674,7 @@ Function114f59: ; 114f59
 	and a
 	jr nz, .asm_114fe7
 	ld a, $1
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 
 .asm_114f7c
 	ld a, [$dc03]
@@ -2856,7 +2856,7 @@ Function115062: ; 115062
 	ld d, [hl]
 	ld b, $0
 	ld hl, $dc24
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	cp $1
 	jr z, .asm_11509b
 	cp $2
@@ -2881,14 +2881,14 @@ Function115062: ; 115062
 	call Function115d53
 	call Function1150b3
 	call Function115136
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	inc a
 	cp $4
 	jr nz, .asm_1150ae
 	ld a, $2
 
 .asm_1150ae
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	xor a
 
 .asm_1150b2
@@ -2898,7 +2898,7 @@ Function115062: ; 115062
 
 Function1150b3: ; 1150b3
 	ld hl, $dc24
-	ld de, PartyMon5Defense
+	ld de, wPartyMon5Defense
 	ld b, $0
 .asm_1150bb
 	ld c, $0
@@ -3014,7 +3014,7 @@ Function115136: ; 115136
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld hl, PartyMon5Defense
+	ld hl, wPartyMon5Defense
 .asm_11514d
 	ld a, [hli]
 	and a
@@ -3383,7 +3383,7 @@ Function1152b8: ; 1152b8
 	call Function114ea0
 	and a
 	jr nz, .asm_1152f9
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ld a, [$dc03]
 	cp $6
 	jr nz, .asm_1152ca
@@ -3391,7 +3391,7 @@ Function1152b8: ; 1152b8
 .asm_115335
 	call Function1153b5
 	xor a
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	call Function114f59
 	and a
 	jr nz, .asm_1152f9
@@ -3409,7 +3409,7 @@ Function1152b8: ; 1152b8
 	jr z, .asm_11536b
 	call Function1153b5
 	xor a
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	call Function114f59
 	and a
 	jr nz, .asm_1152f9
@@ -3480,7 +3480,7 @@ Function11537d: ; 11537d
 	ld [hl], d
 	xor a
 	ld [$dc03], a
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 ; 1153b5
@@ -3702,7 +3702,7 @@ Function1153d2: ; 1153d2
 
 Function1154d4: ; 1154d4
 	xor a
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	call Function1155af
 	call Function11560a
 	and a
@@ -4038,7 +4038,7 @@ Function11560a: ; 11560a
 ; 1156cc
 
 Function1156cc: ; 1156cc
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	and a
 	jp z, Function11425c
 	cp $2
@@ -4067,7 +4067,7 @@ Function1156cc: ; 1156cc
 	call Function11581e
 	and a
 	jr nz, .asm_11572b
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	cp $5
 	jr z, .asm_115716
 	ld a, [wDecoPoster]
@@ -4091,7 +4091,7 @@ Function1156cc: ; 1156cc
 	ld l, a
 	add hl, de
 	xor a
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	jp Function11425c
 
 .asm_11572b
@@ -4228,7 +4228,7 @@ Function11575c: ; 11575c
 	pop hl
 	add hl, bc
 	ld a, $2
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 ; 1157d0
@@ -4277,7 +4277,7 @@ Function1157d0: ; 1157d0
 	ld a, b
 	ld [wDecoBed], a
 	ld a, $4
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 .asm_11580f
@@ -4287,13 +4287,13 @@ Function1157d0: ; 1157d0
 	ld a, b
 	ld [wDecoBed], a
 	ld a, $3
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 ; 11581e
 
 Function11581e: ; 11581e
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	and a
 	ret z
 	ld a, [$dc0e]
@@ -4319,9 +4319,9 @@ Function11581e: ; 11581e
 	inc hl
 	ld [hl], d
 	ld hl, $dc24
-	ld de, PartyMon5Defense
+	ld de, wPartyMon5Defense
 	call Function1158c2
-	ld hl, PartyMon5Defense
+	ld hl, wPartyMon5Defense
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -4362,7 +4362,7 @@ Function11581e: ; 11581e
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, PartyMon5Speed
+	ld hl, wPartyMon5Speed
 	call Function115d6a
 	ld hl, wCurrMapSceneScriptCount
 	ld a, [wCurrMapBGEventCount]
@@ -4370,7 +4370,7 @@ Function11581e: ; 11581e
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	cp $3
 	jr z, .asm_1158b4
 	cp $4
@@ -4379,12 +4379,12 @@ Function11581e: ; 11581e
 
 .asm_1158ad
 	ld a, $5
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	jr .asm_1158b9
 
 .asm_1158b4
 	ld a, $2
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 
 .asm_1158b9
 	xor a
@@ -4395,7 +4395,7 @@ Function11581e: ; 11581e
 
 .asm_1158bc
 	ld a, $ff
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 ; 1158c2
@@ -4641,7 +4641,7 @@ Function1159dc: ; 1159dc
 ; 1159fb
 
 Function1159fb: ; 1159fb
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	and a
 	jp z, Function11425c
 	cp $2
@@ -4670,7 +4670,7 @@ Function1159fb: ; 1159fb
 	call Function115b00
 	and a
 	jr nz, .asm_115a5a
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	cp $5
 	jr z, .asm_115a45
 	ld a, [wDecoPoster]
@@ -4694,7 +4694,7 @@ Function1159fb: ; 1159fb
 	ld l, a
 	add hl, de
 	xor a
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	jp Function11425c
 
 .asm_115a5a
@@ -4759,7 +4759,7 @@ Function115a5f: ; 115a5f
 	rl b
 	add hl, bc
 	ld a, $2
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 ; 115ab0
@@ -4808,7 +4808,7 @@ Function115ab0: ; 115ab0
 	ld a, b
 	ld [wDecoBed], a
 	ld a, $4
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	xor a
 	ret
 
@@ -4819,14 +4819,14 @@ Function115ab0: ; 115ab0
 	ld a, b
 	ld [wDecoBed], a
 	ld a, $3
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	xor a
 	ret
 
 ; 115b00
 
 Function115b00: ; 115b00
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	and a
 	ret z
 	ld a, [$dc0e]
@@ -4841,7 +4841,7 @@ Function115b00: ; 115b00
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, PartyMon5Defense
+	ld hl, wPartyMon5Defense
 	push bc
 	call Function115bc8
 	pop hl
@@ -4849,7 +4849,7 @@ Function115b00: ; 115b00
 	jr z, .asm_115b43
 	cp $2
 	jr z, .asm_115b3b
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	cp $4
 	jr z, .asm_115b43
 	inc hl
@@ -4866,7 +4866,7 @@ Function115b00: ; 115b00
 
 .asm_115b3d
 	ld a, $ff
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 .asm_115b43
@@ -4885,7 +4885,7 @@ Function115b00: ; 115b00
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, PartyMon5Defense
+	ld hl, wPartyMon5Defense
 	ld de, $dc24
 	call Function115c49
 	ld hl, $dc24
@@ -4937,7 +4937,7 @@ Function115b00: ; 115b00
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	cp $3
 	jr z, .asm_115bc1
 	cp $4
@@ -4946,12 +4946,12 @@ Function115b00: ; 115b00
 
 .asm_115bba
 	ld a, $5
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	jr .asm_115bc6
 
 .asm_115bc1
 	ld a, $2
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 
 .asm_115bc6
 	xor a
@@ -5018,7 +5018,7 @@ Function115bc8: ; 115bc8
 	jr nz, .asm_115bcc
 
 .asm_115c1b
-	ld a, [wStartDay]
+	ld a, [wTimerEventStartDay]
 	cp $4
 	jr z, .asm_115c33
 	ld a, [de]
@@ -5122,7 +5122,7 @@ endr
 
 .asm_115c99
 	ld a, $ff
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 .asm_115c9f
@@ -5226,7 +5226,7 @@ Function115cfd: ; 115cfd
 	pop hl
 	pop hl
 	ld a, $ff
-	ld [wStartDay], a
+	ld [wTimerEventStartDay], a
 	ret
 
 .asm_115d2f
@@ -7030,7 +7030,7 @@ Function1177b7: ; 1177b7 (45:77b7)
 Function1177cb: ; 1177cb (45:77cb)
 	ld a, $80
 	ld [wcd49], a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	jp MobilePassword_IncrementJumptable
 
 Function117764_b_button: ; 1177d6 (45:77d6)

@@ -26,7 +26,7 @@ CloseText:: ; 2dcf
 
 	pop af
 	ld [hOAMUpdate], a
-	ld hl, VramState
+	ld hl, wVramState
 	res 6, [hl]
 	ret
 ; 2de2

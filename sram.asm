@@ -77,7 +77,7 @@ sLuckyIDNumber::  dw
 
 SECTION "Backup Save", SRAM
 
-sBackupOptions:: ds OptionsEnd - Options
+sBackupOptions:: ds wOptionsEnd - wOptions
 
 sBackupCheckValue1:: db ; loaded with SAVE_CHECK_VALUE_1, used to check save corruption
 
@@ -100,7 +100,7 @@ sStackTop:: dw
 
 SECTION "Save", SRAM
 
-sOptions:: ds OptionsEnd - Options
+sOptions:: ds wOptionsEnd - wOptions
 
 sCheckValue1:: db ; loaded with SAVE_CHECK_VALUE_1, used to check save corruption
 

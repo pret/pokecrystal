@@ -1,23 +1,23 @@
 PrintItemDescription: ; 0x1c8955
-; Print the description for item [CurSpecies] at de.
+; Print the description for item [wCurSpecies] at de.
 
-	ld a, [CurSpecies]
+	ld a, [wCurSpecies]
 	cp TM01
 	jr c, .not_a_tm
 
-	ld [CurItem], a
+	ld [wCurItem], a
 	push de
 	farcall GetTMHMItemMove
 	pop hl
 	ld a, [wd265]
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	predef PrintMoveDesc
 	ret
 
 .not_a_tm
 	push de
 	ld hl, ItemDescriptions
-	ld a, [CurSpecies]
+	ld a, [wCurSpecies]
 	dec a
 	ld c, a
 	ld b, 0
