@@ -21,7 +21,7 @@ Route28_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 7, 3, 1, ROUTE_28_FAMOUS_SPEECH_HOUSE
+	warp_def 7, 3, 1, ROUTE_28_STEEL_WING_HOUSE
 	warp_def 33, 5, 7, VICTORY_ROAD_GATE
 
 .CoordEvents:
