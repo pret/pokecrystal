@@ -280,7 +280,7 @@ CopyPals:: ; d50
 	jr nz, .loop
 
 ; de += 8 (next pal)
-	ld a, NUM_PAL_COLORS * PAL_COLOR_SIZE
+	ld a, PALETTE_SIZE
 	add e
 	jr nc, .ok
 	inc d
