@@ -142,7 +142,7 @@ PlayMusic2:: ; 3bbc
 
 
 PlayCry:: ; 3be3
-; Play cry header de.
+; Play cry de.
 
 	push hl
 	push de

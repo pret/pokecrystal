@@ -15,7 +15,7 @@ map_def: MACRO
 ENDM
 
 MapGroupPointers::
-; pointers to the first map header of each map group
+; pointers to the first map_def of each map group
 	dw MapGroup_Olivine     ;  1
 	dw MapGroup_Mahogany    ;  2
 	dw MapGroup_Dungeons    ;  3

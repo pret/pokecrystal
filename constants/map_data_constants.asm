@@ -4,7 +4,7 @@ GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
 
-; map header struct members (see data/maps/definitions.asm)
+; map_def struct members (see data/maps/definitions.asm)
 	const_def
 	const MAPDEF_MAPDATA_BANK ; 0
 	const MAPDEF_TILESET      ; 1

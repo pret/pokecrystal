@@ -55,7 +55,7 @@ _PlayMonCry:: ; 37e2
 ; 37f3
 
 LoadCry:: ; 37f3
-; Load cry header bc.
+; Load cry bc.
 
 	call GetCryIndex
 	ret c
