@@ -122,10 +122,10 @@ EngineFlags: ; 80462
 	engine_flag wWeeklyFlags, WEEKLYFLAGS_DAILY_MOVE_TUTOR_F
 	engine_flag wWeeklyFlags, WEEKLYFLAGS_BUENAS_PASSWORD_F
 
-	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F
+	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F ; $60
 	engine_flag wSwarmFlags, SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F
 
-	engine_flag wGameTimerPause, 7 ; $62
+	engine_flag wGameTimerPause, GAMETIMERPAUSE_MOBILE_7_F
 
 	engine_flag wPlayerGender, PLAYERGENDER_FEMALE_F
 

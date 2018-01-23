@@ -2812,7 +2812,7 @@ Special_Function1011f1: ; 1011f1
 	ld hl, wdc41
 	res 4, [hl]
 	ld hl, wGameTimerPause
-	bit 7, [hl]
+	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	jr z, .skip
 	ld hl, wdc41
 	set 4, [hl]
@@ -4703,7 +4703,7 @@ Function101e98: ; 101e98
 	farcall Function8adb3
 	ret c
 	ld hl, wGameTimerPause
-	set 7, [hl]
+	set GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ld hl, wdc41
 	set 4, [hl]
 	ret
@@ -4711,7 +4711,7 @@ Function101e98: ; 101e98
 
 Function101ead: ; 101ead
 	ld hl, wGameTimerPause
-	bit 7, [hl]
+	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	jr nz, .asm_101ec8
 	ld hl, wdc41
 	bit 2, [hl]

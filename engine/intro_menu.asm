@@ -484,8 +484,8 @@ FinishContinueFunction: ; 5e5d
 	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
 	ld hl, wGameTimerPause
-	set 0, [hl]
-	res 7, [hl]
+	set GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
+	res GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ld hl, wEnteredMapFromContinue
 	set 1, [hl]
 	farcall OverworldLoop

@@ -16,6 +16,10 @@ AUTO_INPUT EQU $ff
 	const TEMPMON    ; 3
 	const WILDMON    ; 4
 
+; wGameTimerPause:: ; cfbc
+GAMETIMERPAUSE_TIMER_PAUSED_F EQU 0
+GAMETIMERPAUSE_MOBILE_7_F     EQU 7
+
 ; Options:: ; cfcc
 const_value set 4
 	const NO_TEXT_SCROLL ; 4

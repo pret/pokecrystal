@@ -1491,7 +1491,8 @@ wFarCallBCBuffer:: dw ; cfb9
 wcfbb:: db
 
 wGameTimerPause:: ; cfbc
-; bit 0
+; bit 0: game timer paused
+; bit 7: something mobile
 	db
 
 	ds 1

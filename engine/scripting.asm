@@ -2804,12 +2804,12 @@ Script_halloffame:
 ; script command 0xa1
 
 	ld hl, wGameTimerPause
-	res 0, [hl]
+	res GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
 	farcall StubbedTrainerRankings_HallOfFame
 	farcall StubbedTrainerRankings_HallOfFame2
 	farcall HallOfFame
 	ld hl, wGameTimerPause
-	set 0, [hl]
+	set GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
 	jr ReturnFromCredits
 
 Script_credits:

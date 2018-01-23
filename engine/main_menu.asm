@@ -10,7 +10,7 @@ MainMenu: ; 49cdc
 	call GetSGBLayout
 	call SetPalettes
 	ld hl, wGameTimerPause
-	res 0, [hl]
+	res GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
 	call MainMenu_GetWhichMenu
 	ld [wWhichIndexSet], a
 	call MainMenu_PrintCurrentTimeAndDay
