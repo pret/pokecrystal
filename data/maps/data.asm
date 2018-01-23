@@ -470,7 +470,7 @@ ENDM
 	map_data SafariZoneFuchsiaGateBeta, SAFARI_ZONE_FUCHSIA_GATE_BETA, $00, 0
 	map_data SafariZoneBeta, SAFARI_ZONE_BETA, $13, 0
 	map_data VictoryRoad, VICTORY_ROAD, $1d, 0
-	map_data EcruteakHouse, ECRUTEAK_HOUSE, $00, 0
+	map_data EcruteakTinTowerEntrance, ECRUTEAK_TIN_TOWER_ENTRANCE, $00, 0
 	map_data WiseTriosRoom, WISE_TRIOS_ROOM, $00, 0
 	map_data EcruteakPokecenter1F, ECRUTEAK_POKECENTER_1F, $00, 0
 	map_data EcruteakLugiaSpeechHouse, ECRUTEAK_LUGIA_SPEECH_HOUSE, $00, 0

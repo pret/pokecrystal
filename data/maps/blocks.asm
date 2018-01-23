@@ -806,8 +806,8 @@ GoldenrodBikeShop_Blocks:
 DanceTheatre_Blocks:
 	INCBIN "maps/DanceTheatre.blk"
 
-EcruteakHouse_Blocks:
-	INCBIN "maps/EcruteakHouse.blk"
+EcruteakTinTowerEntrance_Blocks:
+	INCBIN "maps/EcruteakTinTowerEntrance.blk"
 
 GoldenrodGameCorner_Blocks:
 	INCBIN "maps/GoldenrodGameCorner.blk"

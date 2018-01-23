@@ -43,7 +43,7 @@ MapScenes:: ; 4d01e
 	scene_def OLIVINE_CITY,                                wOlivineCitySceneID
 	scene_def ROUTE_34,                                    wRoute34SceneID
 	scene_def ROUTE_34_ILEX_FOREST_GATE,                   wRoute34IlexForestGateSceneID
-	scene_def ECRUTEAK_HOUSE,                              wEcruteakHouseSceneID
+	scene_def ECRUTEAK_TIN_TOWER_ENTRANCE,                 wEcruteakTinTowerEntranceSceneID
 	scene_def WISE_TRIOS_ROOM,                             wWiseTriosRoomSceneID
 	scene_def ECRUTEAK_POKECENTER_1F,                      wEcruteakPokecenter1FSceneID
 	scene_def ECRUTEAK_GYM,                                wEcruteakGymSceneID

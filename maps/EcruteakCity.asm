@@ -267,7 +267,7 @@ EcruteakCity_MapEvents:
 	db 15
 	warp_def 35, 26, 1, ROUTE_42_ECRUTEAK_GATE
 	warp_def 35, 27, 2, ROUTE_42_ECRUTEAK_GATE
-	warp_def 18, 11, 1, ECRUTEAK_HOUSE
+	warp_def 18, 11, 1, ECRUTEAK_TIN_TOWER_ENTRANCE
 	warp_def 20, 2, 1, WISE_TRIOS_ROOM
 	warp_def 20, 3, 2, WISE_TRIOS_ROOM
 	warp_def 23, 27, 1, ECRUTEAK_POKECENTER_1F

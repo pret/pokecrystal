@@ -127,7 +127,7 @@ RadioTower5FRocketBossScene:
 	waitbutton
 	closetext
 	setscene 2
-	setmapscene ECRUTEAK_HOUSE, 0
+	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, 0
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump .UselessJump

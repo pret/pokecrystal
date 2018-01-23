@@ -145,7 +145,7 @@ ENDM
 
 	newgroup                                                     ;  4
 
-	mapconst ECRUTEAK_HOUSE,                               9, 10 ;  1
+	mapconst ECRUTEAK_TIN_TOWER_ENTRANCE,                  9, 10 ;  1
 	mapconst WISE_TRIOS_ROOM,                              4,  4 ;  2
 	mapconst ECRUTEAK_POKECENTER_1F,                       4,  5 ;  3
 	mapconst ECRUTEAK_LUGIA_SPEECH_HOUSE,                  4,  4 ;  4

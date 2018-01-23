@@ -352,7 +352,7 @@ WiseTriosRoom_MapEvents:
 	db 3
 	warp_def 7, 4, 4, ECRUTEAK_CITY
 	warp_def 7, 5, 5, ECRUTEAK_CITY
-	warp_def 1, 4, 5, ECRUTEAK_HOUSE
+	warp_def 1, 4, 5, ECRUTEAK_TIN_TOWER_ENTRANCE
 
 .CoordEvents:
 	db 1

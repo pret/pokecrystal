@@ -1,10 +1,10 @@
 const_value set 2
-	const ECRUTEAKHOUSE_SAGE1
-	const ECRUTEAKHOUSE_SAGE2
-	const ECRUTEAKHOUSE_SAGE3
-	const ECRUTEAKHOUSE_GRAMPS
+	const ECRUTEAKTINTOWERENTRANCE_SAGE1
+	const ECRUTEAKTINTOWERENTRANCE_SAGE2
+	const ECRUTEAKTINTOWERENTRANCE_SAGE3
+	const ECRUTEAKTINTOWERENTRANCE_GRAMPS
 
-EcruteakHouse_MapScripts:
+EcruteakTinTowerEntrance_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -32,7 +32,7 @@ EcruteakHouse_MapScripts:
 .BlockTower:
 	clearevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
-	setevent EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	setevent EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
 	checkitem CLEAR_BELL
 	iftrue .NoClearBell
 	setscene 0
@@ -40,30 +40,30 @@ EcruteakHouse_MapScripts:
 	return
 
 .DontBlockTower:
-	clearevent EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	clearevent EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
 	return
 
-EcruteakHouse_CoordEvent1:
+EcruteakTinTowerEntrance_CoordEvent1:
 	checkevent EVENT_RANG_CLEAR_BELL_2
-	iftrue EcruteakHouse_CoordEvent_DontMove
-	applymovement ECRUTEAKHOUSE_SAGE2, MovementData_0x980c7
-	moveobject ECRUTEAKHOUSE_SAGE1, 4, 6
-	appear ECRUTEAKHOUSE_SAGE1
+	iftrue EcruteakTinTowerEntrance_CoordEvent_DontMove
+	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE2, MovementData_0x980c7
+	moveobject ECRUTEAKTINTOWERENTRANCE_SAGE1, 4, 6
+	appear ECRUTEAKTINTOWERENTRANCE_SAGE1
 	pause 5
-	disappear ECRUTEAKHOUSE_SAGE2
+	disappear ECRUTEAKTINTOWERENTRANCE_SAGE2
 	end
 
-EcruteakHouse_CoordEvent2:
+EcruteakTinTowerEntrance_CoordEvent2:
 	checkevent EVENT_RANG_CLEAR_BELL_1
-	iftrue EcruteakHouse_CoordEvent_DontMove
-	applymovement ECRUTEAKHOUSE_SAGE1, MovementData_0x980cc
-	moveobject ECRUTEAKHOUSE_SAGE2, 5, 6
-	appear ECRUTEAKHOUSE_SAGE2
+	iftrue EcruteakTinTowerEntrance_CoordEvent_DontMove
+	applymovement ECRUTEAKTINTOWERENTRANCE_SAGE1, MovementData_0x980cc
+	moveobject ECRUTEAKTINTOWERENTRANCE_SAGE2, 5, 6
+	appear ECRUTEAKTINTOWERENTRANCE_SAGE2
 	pause 5
-	disappear ECRUTEAKHOUSE_SAGE1
+	disappear ECRUTEAKTINTOWERENTRANCE_SAGE1
 	end
 
-EcruteakHouse_CoordEvent_DontMove:
+EcruteakTinTowerEntrance_CoordEvent_DontMove:
 	end
 
 SageScript_0x98062:
@@ -134,8 +134,8 @@ SageScript_0x980b0:
 	closetext
 	end
 
-EcruteakHouseGrampsScript:
-	jumptextfaceplayer EcruteakHouseGrampsText
+EcruteakTinTowerEntranceGrampsScript:
+	jumptextfaceplayer EcruteakTinTowerEntranceGrampsText
 
 MovementData_0x980c7:
 	fix_facing
@@ -266,7 +266,7 @@ UnknownText_0x9846f:
 	line "to the top!"
 	done
 
-EcruteakHouseGrampsText:
+EcruteakTinTowerEntranceGrampsText:
 	text "Two towers…"
 	line "Two #MON…"
 
@@ -277,7 +277,7 @@ EcruteakHouseGrampsText:
 	line "never to return."
 	done
 
-EcruteakHouse_MapEvents:
+EcruteakTinTowerEntrance_MapEvents:
 	; filler
 	db 0, 0
 
@@ -285,14 +285,14 @@ EcruteakHouse_MapEvents:
 	db 5
 	warp_def 4, 17, 3, ECRUTEAK_CITY
 	warp_def 5, 17, 3, ECRUTEAK_CITY
-	warp_def 5, 3, 4, ECRUTEAK_HOUSE
-	warp_def 17, 15, 3, ECRUTEAK_HOUSE
+	warp_def 5, 3, 4, ECRUTEAK_TIN_TOWER_ENTRANCE
+	warp_def 17, 15, 3, ECRUTEAK_TIN_TOWER_ENTRANCE
 	warp_def 17, 3, 3, WISE_TRIOS_ROOM
 
 .CoordEvents:
 	db 2
-	coord_event 4, 7, 0, EcruteakHouse_CoordEvent1
-	coord_event 5, 7, 0, EcruteakHouse_CoordEvent2
+	coord_event 4, 7, 0, EcruteakTinTowerEntrance_CoordEvent1
+	coord_event 5, 7, 0, EcruteakTinTowerEntrance_CoordEvent2
 
 .BGEvents:
 	db 0
@@ -301,5 +301,5 @@ EcruteakHouse_MapEvents:
 	db 4
 	object_event 4, 6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
 	object_event 5, 6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
-	object_event 6, 9, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
-	object_event 3, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHouseGrampsScript, EVENT_ECRUTEAK_HOUSE_WANDERING_SAGE
+	object_event 6, 9, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
+	object_event 3, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceGrampsScript, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE

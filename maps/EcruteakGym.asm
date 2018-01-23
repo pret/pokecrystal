@@ -43,7 +43,7 @@ MortyScript_0x99d58:
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymActivateRockets
-	setmapscene ECRUTEAK_HOUSE, 1
+	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, 1
 	setevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone:

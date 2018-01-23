@@ -2538,7 +2538,7 @@ wGoldenrodPokecenter1FSceneID::                   db ; d993
 wOlivineCitySceneID::                             db ; d994
 wRoute34SceneID::                                 db ; d995
 wRoute34IlexForestGateSceneID::                   db ; d996
-wEcruteakHouseSceneID::                           db ; d997
+wEcruteakTinTowerEntranceSceneID::                db ; d997
 wWiseTriosRoomSceneID::                           db ; d998
 wEcruteakPokecenter1FSceneID::                    db ; d999
 wEcruteakGymSceneID::                             db ; d99a
