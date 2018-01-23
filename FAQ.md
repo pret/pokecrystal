@@ -51,4 +51,4 @@ Try asking on IRC or Discord (see [README.md](README.md)).
 [cygwin]: https://cygwin.com/install.html
 [rgbds]: https://github.com/rednex/rgbds/releases
 [crowdmap]: https://github.com/yenatch/crowdmap/
-[polished-map]: https://github.com/roukaour/polished-map
+[polished-map]: https://github.com/Rangi42/polished-map
