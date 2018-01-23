@@ -81,7 +81,7 @@ const_value = 1
 	const HAPPINESS_BITTERPOWDER      ; 0f
 	const HAPPINESS_ENERGYROOT        ; 10
 	const HAPPINESS_REVIVALHERB       ; 11
-	const HAPPINESS_MASSAGE           ; 12
+	const HAPPINESS_GROOMING          ; 12
 	const HAPPINESS_GAINLEVELATHOME   ; 13
 
 ; day-care

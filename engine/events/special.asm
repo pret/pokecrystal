@@ -157,16 +157,17 @@ Special_BillsGrandfather: ; 73f7
 
 Special_YoungerHaircutBrother: ; 7413
 	ld hl, Data_YoungerHaircutBrother
-	jr MassageOrHaircut
+	jr HaircutOrGrooming
 
 Special_OlderHaircutBrother: ; 7418
 	ld hl, Data_OlderHaircutBrother
-	jr MassageOrHaircut
+	jr HaircutOrGrooming
 
-Special_DaisyMassage: ; 741d
-	ld hl, Data_DaisyMassage
+Special_DaisysGrooming: ; 741d
+	ld hl, Data_DaisysGrooming
+	; fallthrough
 
-MassageOrHaircut: ; 7420
+HaircutOrGrooming: ; 7420
 	push hl
 	farcall SelectMonFromParty
 	pop hl
@@ -181,7 +182,7 @@ MassageOrHaircut: ; 7420
 	call Random
 ; Bug: Subtracting $ff from $ff fails to set c.
 ; This can result in overflow into the next data array.
-; In the case of getting a massage from Daisy, we bleed
+; In the case of getting a grooming from Daisy, we bleed
 ; into CopyPokemonName_Buffer1_Buffer3, which passes
 ; $d0 to ChangeHappiness and returns $73 to the script.
 ; The end result is that there is a 0.4% chance your
@@ -222,8 +223,8 @@ Data_OlderHaircutBrother: ; 7462
 	db $4c, 3, HAPPINESS_OLDERCUT2 ; 10% chance
 	db $ff, 4, HAPPINESS_OLDERCUT3 ; 30% chance
 
-Data_DaisyMassage: ; 746b
-	db $ff, 2, HAPPINESS_MASSAGE ; 99.6% chance
+Data_DaisysGrooming: ; 746b
+	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, StringBuffer1

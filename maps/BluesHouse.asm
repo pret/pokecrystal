@@ -26,7 +26,7 @@ DaisyScript:
 	iffalse .Refused
 	writetext DaisyWhichMonText
 	waitbutton
-	special Special_DaisyMassage
+	special Special_DaisysGrooming
 	if_equal $0, .Refused
 	if_equal $1, .CantGroomEgg
 	setflag ENGINE_DAISYS_GROOMING

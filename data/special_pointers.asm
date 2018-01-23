@@ -110,7 +110,7 @@ SpecialsPointers:: ; c029
 	add_special Special_SnorlaxAwake
 	add_special Special_YoungerHaircutBrother
 	add_special Special_OlderHaircutBrother
-	add_special Special_DaisyMassage
+	add_special Special_DaisysGrooming
 	add_special Special_PlayCurMonCry
 	add_special Special_ProfOaksPCBoot
 	add_special Special_GameboyCheck

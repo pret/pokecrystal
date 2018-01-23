@@ -712,12 +712,12 @@ This is a bug with `ItemAttributes` in [items/attributes.asm](/items/attributes.
 
 ## Daisy's grooming doesn't always increase happiness
 
-This is a bug with `MassageOrHaircut` in [engine/events/special.asm](/engine/events/special.asm):
+This is a bug with `HaircutOrGrooming` in [engine/events/special.asm](/engine/events/special.asm):
 
 ```asm
 ; Bug: Subtracting $ff from $ff fails to set c.
 ; This can result in overflow into the next data array.
-; In the case of getting a massage from Daisy, we bleed
+; In the case of getting a grooming from Daisy, we bleed
 ; into CopyPokemonName_Buffer1_Buffer3, which passes
 ; $d0 to ChangeHappiness and returns $73 to the script.
 ; The end result is that there is a 0.4% chance your
@@ -740,8 +740,8 @@ This is a bug with `MassageOrHaircut` in [engine/events/special.asm](/engine/eve
 
 ...
 
-Data_DaisyMassage: ; 746b
-	db $ff, 2, HAPPINESS_MASSAGE ; 99.6% chance
+Data_DaisysGrooming: ; 746b
+	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, StringBuffer1
@@ -753,9 +753,9 @@ CopyPokemonName_Buffer1_Buffer3: ; 746e
 **Fix:**
 
 ```asm
-Data_DaisyMassage: ; 746b
-	db $80, 2, HAPPINESS_MASSAGE ; 50% chance
-	db $ff, 2, HAPPINESS_MASSAGE ; 50% chance
+Data_DaisysGrooming: ; 746b
+	db $80, 2, HAPPINESS_GROOMING ; 50% chance
+	db $ff, 2, HAPPINESS_GROOMING ; 50% chance
 ```
 
 
