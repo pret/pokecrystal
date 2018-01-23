@@ -68,7 +68,7 @@ IcePathB1FIron:
 	itemball IRON
 
 IcePathB1FHiddenMaxPotion:
-	hiddenitem EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem MAX_POTION, EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION
 
 IcePathBoulderFellThroughText:
 	text "The boulder fell"

@@ -88,7 +88,7 @@ EcruteakCityMartSign:
 	jumpstd martsign
 
 EcruteakCityHiddenHyperPotion:
-	hiddenitem EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem HYPER_POTION, EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION
 
 UnusedMissingDaughterText:
 ; This text is neither used nor referenced in the final game.

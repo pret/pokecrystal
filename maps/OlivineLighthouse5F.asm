@@ -44,7 +44,7 @@ OlivineLighthouse5FTMSwagger:
 	itemball TM_SWAGGER
 
 OlivineLighthouse5FHiddenHyperPotion:
-	hiddenitem EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem HYPER_POTION, EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION
 
 SailorErnestSeenText:
 	text "I wanted to battle"

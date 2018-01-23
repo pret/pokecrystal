@@ -16,7 +16,7 @@ MountMortar1FOutsideRevive:
 	itemball REVIVE
 
 MountMortar1FOutsideHiddenHyperPotion:
-	hiddenitem EVENT_MOUNT_MORTAR_1F_OUTSIDE_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem HYPER_POTION, EVENT_MOUNT_MORTAR_1F_OUTSIDE_HIDDEN_HYPER_POTION
 
 MountMortar1FOutside_MapEvents:
 	; filler

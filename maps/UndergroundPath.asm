@@ -6,10 +6,10 @@ UndergroundPath_MapScripts:
 	db 0
 
 UndergroundPathHiddenFullRestore:
-	hiddenitem EVENT_UNDERGROUND_PATH_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem FULL_RESTORE, EVENT_UNDERGROUND_PATH_HIDDEN_FULL_RESTORE
 
 UndergroundPathHiddenXSpecial:
-	hiddenitem EVENT_UNDERGROUND_PATH_HIDDEN_X_SPECIAL, X_SPECIAL
+	hiddenitem X_SPECIAL, EVENT_UNDERGROUND_PATH_HIDDEN_X_SPECIAL
 
 UndergroundPath_MapEvents:
 	; filler

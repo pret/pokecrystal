@@ -70,16 +70,16 @@ FruitTreeScript_0x1ac306:
 	fruittree FRUITTREE_ROUTE_2
 
 Route2HiddenMaxEther:
-	hiddenitem EVENT_ROUTE_2_HIDDEN_MAX_ETHER, MAX_ETHER
+	hiddenitem MAX_ETHER, EVENT_ROUTE_2_HIDDEN_MAX_ETHER
 
 Route2HiddenFullHeal:
-	hiddenitem EVENT_ROUTE_2_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem FULL_HEAL, EVENT_ROUTE_2_HIDDEN_FULL_HEAL
 
 Route2HiddenFullRestore:
-	hiddenitem EVENT_ROUTE_2_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem FULL_RESTORE, EVENT_ROUTE_2_HIDDEN_FULL_RESTORE
 
 Route2HiddenRevive:
-	hiddenitem EVENT_ROUTE_2_HIDDEN_REVIVE, REVIVE
+	hiddenitem REVIVE, EVENT_ROUTE_2_HIDDEN_REVIVE
 
 BugCatcherRobSeenText:
 	text "My bug #MON are"

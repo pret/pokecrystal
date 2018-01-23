@@ -35,7 +35,7 @@ CinnabarIslandPokecenterSign:
 	jumpstd pokecentersign
 
 CinnabarIslandHiddenRareCandy:
-	hiddenitem EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY, RARE_CANDY
+	hiddenitem RARE_CANDY, EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY
 
 CinnabarIslandBlueTeleport:
 	teleport_from

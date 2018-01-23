@@ -24,10 +24,10 @@ SilverCaveRoom1UltraBall:
 	itemball ULTRA_BALL
 
 SilverCaveRoom1HiddenDireHit:
-	hiddenitem EVENT_SILVER_CAVE_ROOM_1_HIDDEN_DIRE_HIT, DIRE_HIT
+	hiddenitem DIRE_HIT, EVENT_SILVER_CAVE_ROOM_1_HIDDEN_DIRE_HIT
 
 SilverCaveRoom1HiddenUltraBall:
-	hiddenitem EVENT_SILVER_CAVE_ROOM_1_HIDDEN_ULTRA_BALL, ULTRA_BALL
+	hiddenitem ULTRA_BALL, EVENT_SILVER_CAVE_ROOM_1_HIDDEN_ULTRA_BALL
 
 SilverCaveRoom1_MapEvents:
 	; filler

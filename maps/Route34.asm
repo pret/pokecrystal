@@ -488,10 +488,10 @@ Route34Nugget:
 	itemball NUGGET
 
 Route34HiddenRareCandy:
-	hiddenitem EVENT_ROUTE_34_HIDDEN_RARE_CANDY, RARE_CANDY
+	hiddenitem RARE_CANDY, EVENT_ROUTE_34_HIDDEN_RARE_CANDY
 
 Route34HiddenSuperPotion:
-	hiddenitem EVENT_ROUTE_34_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem SUPER_POTION, EVENT_ROUTE_34_HIDDEN_SUPER_POTION
 
 Route34MovementData_DayCareManWalksBackInside:
 	slow_step LEFT

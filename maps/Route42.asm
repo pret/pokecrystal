@@ -212,7 +212,7 @@ FruitTreeScript_0x1a9351:
 	fruittree FRUITTREE_ROUTE_42_3
 
 Route42HiddenMaxPotion:
-	hiddenitem EVENT_ROUTE_42_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem MAX_POTION, EVENT_ROUTE_42_HIDDEN_MAX_POTION
 
 MovementData_0x1a9356:
 	set_sliding

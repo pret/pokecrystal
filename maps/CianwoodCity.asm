@@ -145,10 +145,10 @@ CianwoodCityRock:
 	jumpstd smashrock
 
 CianwoodCityHiddenRevive:
-	hiddenitem EVENT_CIANWOOD_CITY_HIDDEN_REVIVE, REVIVE
+	hiddenitem REVIVE, EVENT_CIANWOOD_CITY_HIDDEN_REVIVE
 
 CianwoodCityHiddenMaxEther:
-	hiddenitem EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER, MAX_ETHER
+	hiddenitem MAX_ETHER, EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER
 
 MovementData_0x1a00da:
 	set_sliding

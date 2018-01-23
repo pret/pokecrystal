@@ -414,13 +414,13 @@ IlexForestEther:
 	itemball ETHER
 
 IlexForestHiddenEther:
-	hiddenitem EVENT_ILEX_FOREST_HIDDEN_ETHER, ETHER
+	hiddenitem ETHER, EVENT_ILEX_FOREST_HIDDEN_ETHER
 
 IlexForestHiddenSuperPotion:
-	hiddenitem EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem SUPER_POTION, EVENT_ILEX_FOREST_HIDDEN_SUPER_POTION
 
 IlexForestHiddenFullHeal:
-	hiddenitem EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem FULL_HEAL, EVENT_ILEX_FOREST_HIDDEN_FULL_HEAL
 
 IlexForestBoulder:
 ; unused

@@ -123,7 +123,7 @@ VermilionCityMartSign:
 	jumpstd martsign
 
 VermilionCityHiddenFullHeal:
-	hiddenitem EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem FULL_HEAL, EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL
 
 VermilionCityTeacherText:
 	text "VERMILION PORT is"

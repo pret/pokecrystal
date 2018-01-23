@@ -75,7 +75,7 @@ CeladonCityPokecenterSign:
 	jumpstd pokecentersign
 
 CeladonCityHiddenPpUp:
-	hiddenitem EVENT_CELADON_CITY_HIDDEN_PP_UP, PP_UP
+	hiddenitem PP_UP, EVENT_CELADON_CITY_HIDDEN_PP_UP
 
 CeladonCityFisherText:
 	text "This POLIWRATH is"

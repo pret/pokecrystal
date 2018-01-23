@@ -31,7 +31,7 @@ DarkCaveVioletEntranceRock:
 	jumpstd smashrock
 
 DarkCaveVioletEntranceHiddenElixer:
-	hiddenitem EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER, ELIXER
+	hiddenitem ELIXER, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER
 
 DarkCaveVioletEntrance_MapEvents:
 	; filler

@@ -83,7 +83,7 @@ Route9Sign:
 	jumptext Route9SignText
 
 Route9HiddenEther:
-	hiddenitem EVENT_ROUTE_9_HIDDEN_ETHER, ETHER
+	hiddenitem ETHER, EVENT_ROUTE_9_HIDDEN_ETHER
 
 CamperDeanSeenText:
 	text "I came to explore"

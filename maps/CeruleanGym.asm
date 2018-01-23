@@ -135,7 +135,7 @@ CeruleanGymGuyScript:
 	end
 
 CeruleanGymHiddenMachinePart:
-	hiddenitem EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM, MACHINE_PART
+	hiddenitem MACHINE_PART, EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 
 CeruleanGymStatue1:
 	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM

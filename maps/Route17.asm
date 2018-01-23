@@ -62,10 +62,10 @@ TrainerBikerGlenn:
 	end
 
 Route17HiddenMaxEther:
-	hiddenitem EVENT_ROUTE_17_HIDDEN_MAX_ETHER, MAX_ETHER
+	hiddenitem MAX_ETHER, EVENT_ROUTE_17_HIDDEN_MAX_ETHER
 
 Route17HiddenMaxElixer:
-	hiddenitem EVENT_ROUTE_17_HIDDEN_MAX_ELIXER, MAX_ELIXER
+	hiddenitem MAX_ELIXER, EVENT_ROUTE_17_HIDDEN_MAX_ELIXER
 
 BikerRileySeenText:
 	text "Hey, you! You're"

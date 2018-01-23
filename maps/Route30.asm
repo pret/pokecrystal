@@ -248,7 +248,7 @@ Route30FruitTree2:
 	fruittree FRUITTREE_ROUTE_30_2
 
 Route30HiddenPotion:
-	hiddenitem EVENT_ROUTE_30_HIDDEN_POTION, POTION
+	hiddenitem POTION, EVENT_ROUTE_30_HIDDEN_POTION
 
 Route30_JoeysRattataAttacksMovement:
 	fix_facing

@@ -147,7 +147,7 @@ CeruleanCityMartSign:
 	jumpstd martsign
 
 CeruleanCityHiddenBerserkGene:
-	hiddenitem EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY, BERSERK_GENE
+	hiddenitem BERSERK_GENE, EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 
 CeruleanCityCooltrainerMText1:
 	text "KANTO's POWER"

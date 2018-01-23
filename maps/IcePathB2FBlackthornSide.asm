@@ -12,7 +12,7 @@ IcePathB2FBlackthornSideTMRest:
 	itemball TM_REST
 
 IcePathB2FBlackthornSideHiddenIceHeal:
-	hiddenitem EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL, ICE_HEAL
+	hiddenitem ICE_HEAL, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_HIDDEN_ICE_HEAL
 
 IcePathB2FBlackthornSide_MapEvents:
 	; filler

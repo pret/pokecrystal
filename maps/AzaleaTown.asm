@@ -211,7 +211,7 @@ WhiteApricornTree:
 	fruittree FRUITTREE_AZALEA_TOWN
 
 AzaleaTownHiddenFullHeal:
-	hiddenitem EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem FULL_HEAL, EVENT_AZALEA_TOWN_HIDDEN_FULL_HEAL
 
 AzaleaTownRivalBattleApproachMovement1:
 	step LEFT

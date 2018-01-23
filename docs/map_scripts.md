@@ -110,7 +110,7 @@ BG event types:
 - `BGEVENT_ITEM`
 
 <pre>
-	hiddenitem <i>event_flag</i>, <i>item_id</i>
+	hiddenitem <i>item_id</i>, <i>event_flag</i>
 </pre>
 
 - `BGEVENT_COPY`
@@ -162,7 +162,7 @@ Object types:
 - `OBJECTTYPE_ITEMBALL`
 
 <pre>
-	itemball <i>item_id</i>
+	itemball <i>item_id</i>[, <i>quantity</i>=1]
 </pre>
 
 - `OBJECTTYPE_TRAINER`

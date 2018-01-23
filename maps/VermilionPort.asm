@@ -195,7 +195,7 @@ SuperNerdScript_0x74ee6:
 	end
 
 VermilionPortHiddenIron:
-	hiddenitem EVENT_VERMILION_PORT_HIDDEN_IRON, IRON
+	hiddenitem IRON, EVENT_VERMILION_PORT_HIDDEN_IRON
 
 MovementData_0x74ef1:
 	step DOWN

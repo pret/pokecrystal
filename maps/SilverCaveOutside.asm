@@ -17,7 +17,7 @@ MtSilverSign:
 	jumptext MtSilverSignText
 
 SilverCaveOutsideHiddenFullRestore:
-	hiddenitem EVENT_SILVER_CAVE_OUTSIDE_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem FULL_RESTORE, EVENT_SILVER_CAVE_OUTSIDE_HIDDEN_FULL_RESTORE
 
 MtSilverSignText:
 	text "MT.SILVER"

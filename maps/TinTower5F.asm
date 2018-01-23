@@ -12,10 +12,10 @@ TinTower5FRareCandy:
 	itemball RARE_CANDY
 
 TinTower5FHiddenFullRestore:
-	hiddenitem EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem FULL_RESTORE, EVENT_TIN_TOWER_5F_HIDDEN_FULL_RESTORE
 
 TinTower5FHiddenCarbos:
-	hiddenitem EVENT_TIN_TOWER_5F_HIDDEN_CARBOS, CARBOS
+	hiddenitem CARBOS, EVENT_TIN_TOWER_5F_HIDDEN_CARBOS
 
 TinTower5F_MapEvents:
 	; filler

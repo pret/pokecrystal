@@ -75,7 +75,7 @@ ClefairyDance:
 	end
 
 MountMoonSquareHiddenMoonStone:
-	hiddenitem EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
+	hiddenitem MOON_STONE, EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 
 DontLitterSign:
 	jumptext DontLitterSignText

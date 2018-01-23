@@ -135,7 +135,7 @@ Route40Rock:
 	jumpstd smashrock
 
 Route40HiddenHyperPotion:
-	hiddenitem EVENT_ROUTE_40_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem HYPER_POTION, EVENT_ROUTE_40_HIDDEN_HYPER_POTION
 
 MovementData_0x1a621c:
 	step RIGHT

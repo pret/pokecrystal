@@ -409,13 +409,13 @@ MapGoldenrodUndergroundSignpost1Script:
 	jumptext UnknownText_0x7c91a
 
 GoldenrodUndergroundHiddenParlyzHeal:
-	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
+	hiddenitem PARLYZ_HEAL, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL
 
 GoldenrodUndergroundHiddenSuperPotion:
-	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem SUPER_POTION, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION
 
 GoldenrodUndergroundHiddenAntidote:
-	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE, ANTIDOTE
+	hiddenitem ANTIDOTE, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE
 
 SupernerdEricSeenText:
 	text "I got booted out"

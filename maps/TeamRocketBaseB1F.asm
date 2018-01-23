@@ -540,7 +540,7 @@ TeamRocketBaseB1FGuardSpec:
 	itemball GUARD_SPEC
 
 TeamRocketBaseB1FHiddenRevive:
-	hiddenitem EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE, REVIVE
+	hiddenitem REVIVE, EVENT_TEAM_ROCKET_BASE_B1F_HIDDEN_REVIVE
 
 SecurityCameraMovement1:
 	big_step RIGHT

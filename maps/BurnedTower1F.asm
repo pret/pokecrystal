@@ -131,10 +131,10 @@ BurnedTower1FRock:
 	jumpstd smashrock
 
 BurnedTower1FHiddenEther:
-	hiddenitem EVENT_BURNED_TOWER_1F_HIDDEN_ETHER, ETHER
+	hiddenitem ETHER, EVENT_BURNED_TOWER_1F_HIDDEN_ETHER
 
 BurnedTower1FHiddenUltraBall:
-	hiddenitem EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL, ULTRA_BALL
+	hiddenitem ULTRA_BALL, EVENT_BURNED_TOWER_1F_HIDDEN_ULTRA_BALL
 
 BurnedTower1FHPUp:
 	itemball HP_UP

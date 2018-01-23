@@ -112,10 +112,10 @@ VictoryRoadHPUp:
 	itemball HP_UP
 
 VictoryRoadHiddenMaxPotion:
-	hiddenitem EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem MAX_POTION, EVENT_VICTORY_ROAD_HIDDEN_MAX_POTION
 
 VictoryRoadHiddenFullHeal:
-	hiddenitem EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem FULL_HEAL, EVENT_VICTORY_ROAD_HIDDEN_FULL_HEAL
 
 MovementData_0x74539:
 	step LEFT

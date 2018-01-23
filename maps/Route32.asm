@@ -506,10 +506,10 @@ Route32PokecenterSign:
 	jumpstd pokecentersign
 
 Route32HiddenGreatBall:
-	hiddenitem EVENT_ROUTE_32_HIDDEN_GREAT_BALL, GREAT_BALL
+	hiddenitem GREAT_BALL, EVENT_ROUTE_32_HIDDEN_GREAT_BALL
 
 Route32HiddenSuperPotion:
-	hiddenitem EVENT_ROUTE_32_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem SUPER_POTION, EVENT_ROUTE_32_HIDDEN_SUPER_POTION
 
 Movement_Route32CooltrainerMPushesYouBackToViolet:
 	step UP

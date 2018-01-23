@@ -20,7 +20,7 @@ TinTower4FEscapeRope:
 	itemball ESCAPE_ROPE
 
 TinTower4FHiddenMaxPotion:
-	hiddenitem EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem MAX_POTION, EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION
 
 TinTower4F_MapEvents:
 	; filler

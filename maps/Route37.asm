@@ -114,7 +114,7 @@ FruitTreeScript_0x1a8e0d:
 	fruittree FRUITTREE_ROUTE_37_3
 
 Route37HiddenEther:
-	hiddenitem EVENT_ROUTE_37_HIDDEN_ETHER, ETHER
+	hiddenitem ETHER, EVENT_ROUTE_37_HIDDEN_ETHER
 
 TwinsAnnandanne1SeenText:
 	text "ANN: ANNE and I"
