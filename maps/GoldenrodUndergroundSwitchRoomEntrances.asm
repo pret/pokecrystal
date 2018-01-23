@@ -207,7 +207,7 @@ UndergroundSilverBattleScript:
 	end
 
 TrainerGruntM11:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, GRUNTM_11, GruntM11SeenText, GruntM11BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_11, EVENT_BEAT_ROCKET_GRUNTM_11, GruntM11SeenText, GruntM11BeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -218,7 +218,7 @@ TrainerGruntM11:
 	end
 
 TrainerGruntM25:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, GRUNTM_25, GruntM25SeenText, GruntM25BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_25, EVENT_BEAT_ROCKET_GRUNTM_25, GruntM25SeenText, GruntM25BeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -229,7 +229,7 @@ TrainerGruntM25:
 	end
 
 TrainerBurglarDuncan:
-	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, 0, .Script
+	trainer BURGLAR, DUNCAN, EVENT_BEAT_BURGLAR_DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -240,7 +240,7 @@ TrainerBurglarDuncan:
 	end
 
 TrainerBurglarEddie:
-	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, 0, .Script
+	trainer BURGLAR, EDDIE, EVENT_BEAT_BURGLAR_EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -251,7 +251,7 @@ TrainerBurglarEddie:
 	end
 
 TrainerGruntM13:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, GRUNTM_13, GruntM13SeenText, GruntM13BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_13, EVENT_BEAT_ROCKET_GRUNTM_13, GruntM13SeenText, GruntM13BeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -262,7 +262,7 @@ TrainerGruntM13:
 	end
 
 TrainerGruntF3:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, GRUNTF_3, GruntF3SeenText, GruntF3BeatenText, 0, .Script
+	trainer GRUNTF, GRUNTF_3, EVENT_BEAT_ROCKET_GRUNTF_3, GruntF3SeenText, GruntF3BeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

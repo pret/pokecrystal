@@ -20,7 +20,7 @@ Kim:
 	end
 
 TrainerPokefanmCarter:
-	trainer EVENT_BEAT_POKEFANM_CARTER, POKEFANM, CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, 0, .Script
+	trainer POKEFANM, CARTER, EVENT_BEAT_POKEFANM_CARTER, PokefanmCarterSeenText, PokefanmCarterBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -31,7 +31,7 @@ TrainerPokefanmCarter:
 	end
 
 TrainerBirdKeeperRoy:
-	trainer EVENT_BEAT_BIRD_KEEPER_ROY, BIRD_KEEPER, ROY, BirdKeeperRoySeenText, BirdKeeperRoyBeatenText, 0, .Script
+	trainer BIRD_KEEPER, ROY, EVENT_BEAT_BIRD_KEEPER_ROY, BirdKeeperRoySeenText, BirdKeeperRoyBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -42,7 +42,7 @@ TrainerBirdKeeperRoy:
 	end
 
 TrainerPokefanmTrevor:
-	trainer EVENT_BEAT_POKEFANM_TREVOR, POKEFANM, TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, 0, .Script
+	trainer POKEFANM, TREVOR, EVENT_BEAT_POKEFANM_TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

@@ -25,7 +25,7 @@ Route31_MapScripts:
 	return
 
 TrainerBugCatcherWade1:
-	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, BugCatcherWade1SeenText, BugCatcherWade1BeatenText, 0, .Script
+	trainer BUG_CATCHER, WADE1, EVENT_BEAT_BUG_CATCHER_WADE, BugCatcherWade1SeenText, BugCatcherWade1BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE

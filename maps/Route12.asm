@@ -14,7 +14,7 @@ Route12_MapScripts:
 	db 0
 
 TrainerFisherKyle:
-	trainer EVENT_BEAT_FISHER_KYLE, FISHER, KYLE, FisherKyleSeenText, FisherKyleBeatenText, 0, .Script
+	trainer FISHER, KYLE, EVENT_BEAT_FISHER_KYLE, FisherKyleSeenText, FisherKyleBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -25,7 +25,7 @@ TrainerFisherKyle:
 	end
 
 TrainerFisherMartin:
-	trainer EVENT_BEAT_FISHER_MARTIN, FISHER, MARTIN, FisherMartinSeenText, FisherMartinBeatenText, 0, .Script
+	trainer FISHER, MARTIN, EVENT_BEAT_FISHER_MARTIN, FisherMartinSeenText, FisherMartinBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -36,7 +36,7 @@ TrainerFisherMartin:
 	end
 
 TrainerFisherStephen:
-	trainer EVENT_BEAT_FISHER_STEPHEN, FISHER, STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, 0, .Script
+	trainer FISHER, STEPHEN, EVENT_BEAT_FISHER_STEPHEN, FisherStephenSeenText, FisherStephenBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -47,7 +47,7 @@ TrainerFisherStephen:
 	end
 
 TrainerFisherBarney:
-	trainer EVENT_BEAT_FISHER_BARNEY, FISHER, BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, 0, .Script
+	trainer FISHER, BARNEY, EVENT_BEAT_FISHER_BARNEY, FisherBarneySeenText, FisherBarneyBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

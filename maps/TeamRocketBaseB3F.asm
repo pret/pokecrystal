@@ -128,7 +128,7 @@ RocketBaseMurkrow:
 	end
 
 SlowpokeTailGrunt:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_5, GRUNTF, GRUNTF_5, GruntF5SeenText, GruntF5BeatenText, 0, GruntF5Script
+	trainer GRUNTF, GRUNTF_5, EVENT_BEAT_ROCKET_GRUNTF_5, GruntF5SeenText, GruntF5BeatenText, 0, GruntF5Script
 
 GruntF5Script:
 	end_if_just_battled
@@ -140,7 +140,7 @@ GruntF5Script:
 	end
 
 RaticateTailGrunt:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_28, GRUNTM, GRUNTM_28, GruntM28SeenText, GruntM28BeatenText, 0, GruntM28Script
+	trainer GRUNTM, GRUNTM_28, EVENT_BEAT_ROCKET_GRUNTM_28, GruntM28SeenText, GruntM28BeatenText, 0, GruntM28Script
 
 GruntM28Script:
 	end_if_just_battled
@@ -152,7 +152,7 @@ GruntM28Script:
 	end
 
 TrainerScientistRoss:
-	trainer EVENT_BEAT_SCIENTIST_ROSS, SCIENTIST, ROSS, ScientistRossSeenText, ScientistRossBeatenText, 0, .Script
+	trainer SCIENTIST, ROSS, EVENT_BEAT_SCIENTIST_ROSS, ScientistRossSeenText, ScientistRossBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -163,7 +163,7 @@ TrainerScientistRoss:
 	end
 
 TrainerScientistMitch:
-	trainer EVENT_BEAT_SCIENTIST_MITCH, SCIENTIST, MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, 0, .Script
+	trainer SCIENTIST, MITCH, EVENT_BEAT_SCIENTIST_MITCH, ScientistMitchSeenText, ScientistMitchBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

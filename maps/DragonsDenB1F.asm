@@ -84,7 +84,7 @@ DragonsDenB1F_ClairScene:
 	end
 
 TrainerCooltrainermDarin:
-	trainer EVENT_BEAT_COOLTRAINERM_DARIN, COOLTRAINERM, DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, 0, .Script
+	trainer COOLTRAINERM, DARIN, EVENT_BEAT_COOLTRAINERM_DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -95,7 +95,7 @@ TrainerCooltrainermDarin:
 	end
 
 TrainerCooltrainerfCara:
-	trainer EVENT_BEAT_COOLTRAINERF_CARA, COOLTRAINERF, CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, 0, .Script
+	trainer COOLTRAINERF, CARA, EVENT_BEAT_COOLTRAINERF_CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -106,7 +106,7 @@ TrainerCooltrainerfCara:
 	end
 
 TrainerTwinsLeaandpia1:
-	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, 0, .Script
+	trainer TWINS, LEAANDPIA1, EVENT_BEAT_TWINS_LEA_AND_PIA, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -117,7 +117,7 @@ TrainerTwinsLeaandpia1:
 	end
 
 TrainerTwinsLeaandpia2:
-	trainer EVENT_BEAT_TWINS_LEA_AND_PIA, TWINS, LEAANDPIA1, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, 0, .Script
+	trainer TWINS, LEAANDPIA1, EVENT_BEAT_TWINS_LEA_AND_PIA, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

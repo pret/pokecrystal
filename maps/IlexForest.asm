@@ -388,7 +388,7 @@ IlexForestHeadbuttGuyScript:
 	end
 
 TrainerBugCatcherWayne:
-	trainer EVENT_BEAT_BUG_CATCHER_WAYNE, BUG_CATCHER, WAYNE, BugCatcherWayneSeenText, BugCatcherWayneBeatenText, 0, .Script
+	trainer BUG_CATCHER, WAYNE, EVENT_BEAT_BUG_CATCHER_WAYNE, BugCatcherWayneSeenText, BugCatcherWayneBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

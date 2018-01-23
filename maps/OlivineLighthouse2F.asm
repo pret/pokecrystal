@@ -10,7 +10,7 @@ OlivineLighthouse2F_MapScripts:
 	db 0
 
 TrainerGentlemanAlfred:
-	trainer EVENT_BEAT_GENTLEMAN_ALFRED, GENTLEMAN, ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, 0, .Script
+	trainer GENTLEMAN, ALFRED, EVENT_BEAT_GENTLEMAN_ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -21,7 +21,7 @@ TrainerGentlemanAlfred:
 	end
 
 TrainerSailorHuey1:
-	trainer EVENT_BEAT_SAILOR_HUEY, SAILOR, HUEY1, SailorHuey1SeenText, SailorHuey1BeatenText, 0, .Script
+	trainer SAILOR, HUEY1, EVENT_BEAT_SAILOR_HUEY, SailorHuey1SeenText, SailorHuey1BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_SAILOR_HUEY

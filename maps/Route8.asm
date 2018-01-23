@@ -14,7 +14,7 @@ Route8_MapScripts:
 	db 0
 
 TrainerBikerDwayne:
-	trainer EVENT_BEAT_BIKER_DWAYNE, BIKER, DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, 0, .Script
+	trainer BIKER, DWAYNE, EVENT_BEAT_BIKER_DWAYNE, BikerDwayneSeenText, BikerDwayneBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -25,7 +25,7 @@ TrainerBikerDwayne:
 	end
 
 TrainerBikerHarris:
-	trainer EVENT_BEAT_BIKER_HARRIS, BIKER, HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, 0, .Script
+	trainer BIKER, HARRIS, EVENT_BEAT_BIKER_HARRIS, BikerHarrisSeenText, BikerHarrisBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -36,7 +36,7 @@ TrainerBikerHarris:
 	end
 
 TrainerBikerZeke:
-	trainer EVENT_BEAT_BIKER_ZEKE, BIKER, ZEKE, BikerZekeSeenText, BikerZekeBeatenText, 0, .Script
+	trainer BIKER, ZEKE, EVENT_BEAT_BIKER_ZEKE, BikerZekeSeenText, BikerZekeBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -47,7 +47,7 @@ TrainerBikerZeke:
 	end
 
 TrainerSupernerdSam:
-	trainer EVENT_BEAT_SUPER_NERD_SAM, SUPER_NERD, SAM, SupernerdSamSeenText, SupernerdSamBeatenText, 0, .Script
+	trainer SUPER_NERD, SAM, EVENT_BEAT_SUPER_NERD_SAM, SupernerdSamSeenText, SupernerdSamBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -58,7 +58,7 @@ TrainerSupernerdSam:
 	end
 
 TrainerSupernerdTom:
-	trainer EVENT_BEAT_SUPER_NERD_TOM, SUPER_NERD, TOM, SupernerdTomSeenText, SupernerdTomBeatenText, 0, .Script
+	trainer SUPER_NERD, TOM, EVENT_BEAT_SUPER_NERD_TOM, SupernerdTomSeenText, SupernerdTomBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

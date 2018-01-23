@@ -16,7 +16,7 @@ Route2_MapScripts:
 	db 0
 
 TrainerBugCatcherRob:
-	trainer EVENT_BEAT_BUG_CATCHER_ROB, BUG_CATCHER, ROB, BugCatcherRobSeenText, BugCatcherRobBeatenText, 0, .Script
+	trainer BUG_CATCHER, ROB, EVENT_BEAT_BUG_CATCHER_ROB, BugCatcherRobSeenText, BugCatcherRobBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -27,7 +27,7 @@ TrainerBugCatcherRob:
 	end
 
 TrainerBugCatcherEd:
-	trainer EVENT_BEAT_BUG_CATCHER_ED, BUG_CATCHER, ED, BugCatcherEdSeenText, BugCatcherEdBeatenText, 0, .Script
+	trainer BUG_CATCHER, ED, EVENT_BEAT_BUG_CATCHER_ED, BugCatcherEdSeenText, BugCatcherEdBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -38,7 +38,7 @@ TrainerBugCatcherEd:
 	end
 
 TrainerBugCatcherDoug:
-	trainer EVENT_BEAT_BUG_CATCHER_DOUG, BUG_CATCHER, DOUG, BugCatcherDougSeenText, BugCatcherDougBeatenText, 0, .Script
+	trainer BUG_CATCHER, DOUG, EVENT_BEAT_BUG_CATCHER_DOUG, BugCatcherDougSeenText, BugCatcherDougBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

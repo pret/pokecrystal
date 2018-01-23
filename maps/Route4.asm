@@ -12,7 +12,7 @@ Route4_MapScripts:
 	db 0
 
 TrainerBirdKeeperHank:
-	trainer EVENT_BEAT_BIRD_KEEPER_HANK, BIRD_KEEPER, HANK, BirdKeeperHankSeenText, BirdKeeperHankBeatenText, 0, .Script
+	trainer BIRD_KEEPER, HANK, EVENT_BEAT_BIRD_KEEPER_HANK, BirdKeeperHankSeenText, BirdKeeperHankBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -23,7 +23,7 @@ TrainerBirdKeeperHank:
 	end
 
 TrainerPicnickerHope:
-	trainer EVENT_BEAT_PICNICKER_HOPE, PICNICKER, HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, 0, .Script
+	trainer PICNICKER, HOPE, EVENT_BEAT_PICNICKER_HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -34,7 +34,7 @@ TrainerPicnickerHope:
 	end
 
 TrainerPicnickerSharon:
-	trainer EVENT_BEAT_PICNICKER_SHARON, PICNICKER, SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, 0, .Script
+	trainer PICNICKER, SHARON, EVENT_BEAT_PICNICKER_SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

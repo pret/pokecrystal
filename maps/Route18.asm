@@ -10,7 +10,7 @@ Route18_MapScripts:
 	db 0
 
 TrainerBirdKeeperBoris:
-	trainer EVENT_BEAT_BIRD_KEEPER_BORIS, BIRD_KEEPER, BORIS, BirdKeeperBorisSeenText, BirdKeeperBorisBeatenText, 0, .Script
+	trainer BIRD_KEEPER, BORIS, EVENT_BEAT_BIRD_KEEPER_BORIS, BirdKeeperBorisSeenText, BirdKeeperBorisBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -21,7 +21,7 @@ TrainerBirdKeeperBoris:
 	end
 
 TrainerBirdKeeperBob:
-	trainer EVENT_BEAT_BIRD_KEEPER_BOB, BIRD_KEEPER, BOB, BirdKeeperBobSeenText, BirdKeeperBobBeatenText, 0, .Script
+	trainer BIRD_KEEPER, BOB, EVENT_BEAT_BIRD_KEEPER_BOB, BirdKeeperBobSeenText, BirdKeeperBobBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

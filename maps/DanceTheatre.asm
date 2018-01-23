@@ -17,7 +17,7 @@ DanceTheatre_MapScripts:
 	db 0
 
 TrainerKimonoGirlNaoko2:
-	trainer EVENT_BEAT_KIMONO_GIRL_NAOKO, KIMONO_GIRL, NAOKO2, KimonoGirlNaoko2SeenText, KimonoGirlNaoko2BeatenText, 0, .Script
+	trainer KIMONO_GIRL, NAOKO2, EVENT_BEAT_KIMONO_GIRL_NAOKO, KimonoGirlNaoko2SeenText, KimonoGirlNaoko2BeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -28,7 +28,7 @@ TrainerKimonoGirlNaoko2:
 	end
 
 TrainerKimonoGirlSayo:
-	trainer EVENT_BEAT_KIMONO_GIRL_SAYO, KIMONO_GIRL, SAYO, KimonoGirlSayoSeenText, KimonoGirlSayoBeatenText, 0, .Script
+	trainer KIMONO_GIRL, SAYO, EVENT_BEAT_KIMONO_GIRL_SAYO, KimonoGirlSayoSeenText, KimonoGirlSayoBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -39,7 +39,7 @@ TrainerKimonoGirlSayo:
 	end
 
 TrainerKimonoGirlZuki:
-	trainer EVENT_BEAT_KIMONO_GIRL_ZUKI, KIMONO_GIRL, ZUKI, KimonoGirlZukiSeenText, KimonoGirlZukiBeatenText, 0, .Script
+	trainer KIMONO_GIRL, ZUKI, EVENT_BEAT_KIMONO_GIRL_ZUKI, KimonoGirlZukiSeenText, KimonoGirlZukiBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -50,7 +50,7 @@ TrainerKimonoGirlZuki:
 	end
 
 TrainerKimonoGirlKuni:
-	trainer EVENT_BEAT_KIMONO_GIRL_KUNI, KIMONO_GIRL, KUNI, KimonoGirlKuniSeenText, KimonoGirlKuniBeatenText, 0, .Script
+	trainer KIMONO_GIRL, KUNI, EVENT_BEAT_KIMONO_GIRL_KUNI, KimonoGirlKuniSeenText, KimonoGirlKuniBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -61,7 +61,7 @@ TrainerKimonoGirlKuni:
 	end
 
 TrainerKimonoGirlMiki:
-	trainer EVENT_BEAT_KIMONO_GIRL_MIKI, KIMONO_GIRL, MIKI, KimonoGirlMikiSeenText, KimonoGirlMikiBeatenText, 0, .Script
+	trainer KIMONO_GIRL, MIKI, EVENT_BEAT_KIMONO_GIRL_MIKI, KimonoGirlMikiSeenText, KimonoGirlMikiBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

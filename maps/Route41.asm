@@ -18,7 +18,7 @@ Route41_MapScripts:
 	db 0
 
 TrainerSwimmerfKaylee:
-	trainer EVENT_BEAT_SWIMMERF_KAYLEE, SWIMMERF, KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, .Script
+	trainer SWIMMERF, KAYLEE, EVENT_BEAT_SWIMMERF_KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -29,7 +29,7 @@ TrainerSwimmerfKaylee:
 	end
 
 TrainerSwimmerfSusie:
-	trainer EVENT_BEAT_SWIMMERF_SUSIE, SWIMMERF, SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, 0, .Script
+	trainer SWIMMERF, SUSIE, EVENT_BEAT_SWIMMERF_SUSIE, SwimmerfSusieSeenText, SwimmerfSusieBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -40,7 +40,7 @@ TrainerSwimmerfSusie:
 	end
 
 TrainerSwimmerfDenise:
-	trainer EVENT_BEAT_SWIMMERF_DENISE, SWIMMERF, DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, 0, .Script
+	trainer SWIMMERF, DENISE, EVENT_BEAT_SWIMMERF_DENISE, SwimmerfDeniseSeenText, SwimmerfDeniseBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -51,7 +51,7 @@ TrainerSwimmerfDenise:
 	end
 
 TrainerSwimmerfKara:
-	trainer EVENT_BEAT_SWIMMERF_KARA, SWIMMERF, KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, 0, .Script
+	trainer SWIMMERF, KARA, EVENT_BEAT_SWIMMERF_KARA, SwimmerfKaraSeenText, SwimmerfKaraBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -62,7 +62,7 @@ TrainerSwimmerfKara:
 	end
 
 TrainerSwimmerfWendy:
-	trainer EVENT_BEAT_SWIMMERF_WENDY, SWIMMERF, WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, 0, .Script
+	trainer SWIMMERF, WENDY, EVENT_BEAT_SWIMMERF_WENDY, SwimmerfWendySeenText, SwimmerfWendyBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -73,7 +73,7 @@ TrainerSwimmerfWendy:
 	end
 
 TrainerSwimmermCharlie:
-	trainer EVENT_BEAT_SWIMMERM_CHARLIE, SWIMMERM, CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, 0, .Script
+	trainer SWIMMERM, CHARLIE, EVENT_BEAT_SWIMMERM_CHARLIE, SwimmermCharlieSeenText, SwimmermCharlieBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -84,7 +84,7 @@ TrainerSwimmermCharlie:
 	end
 
 TrainerSwimmermGeorge:
-	trainer EVENT_BEAT_SWIMMERM_GEORGE, SWIMMERM, GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, 0, .Script
+	trainer SWIMMERM, GEORGE, EVENT_BEAT_SWIMMERM_GEORGE, SwimmermGeorgeSeenText, SwimmermGeorgeBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -95,7 +95,7 @@ TrainerSwimmermGeorge:
 	end
 
 TrainerSwimmermBerke:
-	trainer EVENT_BEAT_SWIMMERM_BERKE, SWIMMERM, BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, 0, .Script
+	trainer SWIMMERM, BERKE, EVENT_BEAT_SWIMMERM_BERKE, SwimmermBerkeSeenText, SwimmermBerkeBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -106,7 +106,7 @@ TrainerSwimmermBerke:
 	end
 
 TrainerSwimmermKirk:
-	trainer EVENT_BEAT_SWIMMERM_KIRK, SWIMMERM, KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, 0, .Script
+	trainer SWIMMERM, KIRK, EVENT_BEAT_SWIMMERM_KIRK, SwimmermKirkSeenText, SwimmermKirkBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -117,7 +117,7 @@ TrainerSwimmermKirk:
 	end
 
 TrainerSwimmermMathew:
-	trainer EVENT_BEAT_SWIMMERM_MATHEW, SWIMMERM, MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, 0, .Script
+	trainer SWIMMERM, MATHEW, EVENT_BEAT_SWIMMERM_MATHEW, SwimmermMathewSeenText, SwimmermMathewBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

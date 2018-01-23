@@ -11,7 +11,7 @@ SproutTower2F_MapScripts:
 	db 0
 
 TrainerSageNico:
-	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, 0, .Script
+	trainer SAGE, NICO, EVENT_BEAT_SAGE_NICO, SageNicoSeenText, SageNicoBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -22,7 +22,7 @@ TrainerSageNico:
 	end
 
 TrainerSageEdmond:
-	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, 0, .Script
+	trainer SAGE, EDMOND, EVENT_BEAT_SAGE_EDMOND, SageEdmondSeenText, SageEdmondBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

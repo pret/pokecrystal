@@ -15,7 +15,7 @@ MountMortar2FInside_MapScripts:
 	db 0
 
 TrainerSupernerdHugh:
-	trainer EVENT_BEAT_SUPER_NERD_HUGH, SUPER_NERD, HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, 0, .Script
+	trainer SUPER_NERD, HUGH, EVENT_BEAT_SUPER_NERD_HUGH, SupernerdHughSeenText, SupernerdHughBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

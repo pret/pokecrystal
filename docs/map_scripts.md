@@ -168,5 +168,5 @@ Object types:
 - `OBJECTTYPE_TRAINER`
 
 <pre>
-	trainer <i>event_flag</i>, <i>group_id</i>, <i>trainer_id</i>, <i>seen_text</i>, <i>beaten_text</i>, <i>loss_text</i>, <i>script</i>
+	trainer <i>group_id</i>, <i>trainer_id</i>, <i>event_flag</i>, <i>seen_text</i>, <i>beaten_text</i>, <i>loss_text</i>, <i>script</i>
 </pre>

@@ -13,7 +13,7 @@ Route11_MapScripts:
 	db 0
 
 TrainerYoungsterOwen:
-	trainer EVENT_BEAT_YOUNGSTER_OWEN, YOUNGSTER, OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, 0, .Script
+	trainer YOUNGSTER, OWEN, EVENT_BEAT_YOUNGSTER_OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -24,7 +24,7 @@ TrainerYoungsterOwen:
 	end
 
 TrainerYoungsterJason:
-	trainer EVENT_BEAT_YOUNGSTER_JASON, YOUNGSTER, JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, 0, .Script
+	trainer YOUNGSTER, JASON, EVENT_BEAT_YOUNGSTER_JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -35,7 +35,7 @@ TrainerYoungsterJason:
 	end
 
 TrainerPsychicHerman:
-	trainer EVENT_BEAT_PSYCHIC_HERMAN, PSYCHIC_T, HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, 0, .Script
+	trainer PSYCHIC_T, HERMAN, EVENT_BEAT_PSYCHIC_HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -46,7 +46,7 @@ TrainerPsychicHerman:
 	end
 
 TrainerPsychicFidel:
-	trainer EVENT_BEAT_PSYCHIC_FIDEL, PSYCHIC_T, FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, 0, .Script
+	trainer PSYCHIC_T, FIDEL, EVENT_BEAT_PSYCHIC_FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

@@ -12,7 +12,7 @@ Route3_MapScripts:
 	db 0
 
 TrainerFirebreatherOtis:
-	trainer EVENT_BEAT_FIREBREATHER_OTIS, FIREBREATHER, OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, .Script
+	trainer FIREBREATHER, OTIS, EVENT_BEAT_FIREBREATHER_OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -23,7 +23,7 @@ TrainerFirebreatherOtis:
 	end
 
 TrainerYoungsterWarren:
-	trainer EVENT_BEAT_YOUNGSTER_WARREN, YOUNGSTER, WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, .Script
+	trainer YOUNGSTER, WARREN, EVENT_BEAT_YOUNGSTER_WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -34,7 +34,7 @@ TrainerYoungsterWarren:
 	end
 
 TrainerYoungsterJimmy:
-	trainer EVENT_BEAT_YOUNGSTER_JIMMY, YOUNGSTER, JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, .Script
+	trainer YOUNGSTER, JIMMY, EVENT_BEAT_YOUNGSTER_JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -45,7 +45,7 @@ TrainerYoungsterJimmy:
 	end
 
 TrainerFirebreatherBurt:
-	trainer EVENT_BEAT_FIREBREATHER_BURT, FIREBREATHER, BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, .Script
+	trainer FIREBREATHER, BURT, EVENT_BEAT_FIREBREATHER_BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

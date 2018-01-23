@@ -12,7 +12,7 @@ OlivineLighthouse3F_MapScripts:
 	db 0
 
 TrainerBirdKeeperTheo:
-	trainer EVENT_BEAT_BIRD_KEEPER_THEO, BIRD_KEEPER, THEO, BirdKeeperTheoSeenText, BirdKeeperTheoBeatenText, 0, .Script
+	trainer BIRD_KEEPER, THEO, EVENT_BEAT_BIRD_KEEPER_THEO, BirdKeeperTheoSeenText, BirdKeeperTheoBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -23,7 +23,7 @@ TrainerBirdKeeperTheo:
 	end
 
 TrainerGentlemanPreston:
-	trainer EVENT_BEAT_GENTLEMAN_PRESTON, GENTLEMAN, PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, 0, .Script
+	trainer GENTLEMAN, PRESTON, EVENT_BEAT_GENTLEMAN_PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -34,7 +34,7 @@ TrainerGentlemanPreston:
 	end
 
 TrainerSailorTerrell:
-	trainer EVENT_BEAT_SAILOR_TERRELL, SAILOR, TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, 0, .Script
+	trainer SAILOR, TERRELL, EVENT_BEAT_SAILOR_TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

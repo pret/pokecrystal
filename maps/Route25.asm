@@ -79,7 +79,7 @@ UnknownScript_0x19eee0:
 	end
 
 TrainerSchoolboyDudley:
-	trainer EVENT_BEAT_SCHOOLBOY_DUDLEY, SCHOOLBOY, DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, 0, .Script
+	trainer SCHOOLBOY, DUDLEY, EVENT_BEAT_SCHOOLBOY_DUDLEY, SchoolboyDudleySeenText, SchoolboyDudleyBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -90,7 +90,7 @@ TrainerSchoolboyDudley:
 	end
 
 TrainerLassEllen:
-	trainer EVENT_BEAT_LASS_ELLEN, LASS, ELLEN, LassEllenSeenText, LassEllenBeatenText, 0, .Script
+	trainer LASS, ELLEN, EVENT_BEAT_LASS_ELLEN, LassEllenSeenText, LassEllenBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -101,7 +101,7 @@ TrainerLassEllen:
 	end
 
 TrainerSchoolboyJoe:
-	trainer EVENT_BEAT_SCHOOLBOY_JOE, SCHOOLBOY, JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, 0, .Script
+	trainer SCHOOLBOY, JOE, EVENT_BEAT_SCHOOLBOY_JOE, SchoolboyJoeSeenText, SchoolboyJoeBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -112,7 +112,7 @@ TrainerSchoolboyJoe:
 	end
 
 TrainerLassLaura:
-	trainer EVENT_BEAT_LASS_LAURA, LASS, LAURA, LassLauraSeenText, LassLauraBeatenText, 0, .Script
+	trainer LASS, LAURA, EVENT_BEAT_LASS_LAURA, LassLauraSeenText, LassLauraBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -123,7 +123,7 @@ TrainerLassLaura:
 	end
 
 TrainerCamperLloyd:
-	trainer EVENT_BEAT_CAMPER_LLOYD, CAMPER, LLOYD, CamperLloydSeenText, CamperLloydBeatenText, 0, .Script
+	trainer CAMPER, LLOYD, EVENT_BEAT_CAMPER_LLOYD, CamperLloydSeenText, CamperLloydBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -134,7 +134,7 @@ TrainerCamperLloyd:
 	end
 
 TrainerLassShannon:
-	trainer EVENT_BEAT_LASS_SHANNON, LASS, SHANNON, LassShannonSeenText, LassShannonBeatenText, 0, .Script
+	trainer LASS, SHANNON, EVENT_BEAT_LASS_SHANNON, LassShannonSeenText, LassShannonBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -145,7 +145,7 @@ TrainerLassShannon:
 	end
 
 TrainerSupernerdPat:
-	trainer EVENT_BEAT_SUPER_NERD_PAT, SUPER_NERD, PAT, SupernerdPatSeenText, SupernerdPatBeatenText, 0, .Script
+	trainer SUPER_NERD, PAT, EVENT_BEAT_SUPER_NERD_PAT, SupernerdPatSeenText, SupernerdPatBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

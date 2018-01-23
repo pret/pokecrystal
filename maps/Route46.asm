@@ -14,7 +14,7 @@ Route46_MapScripts:
 	db 0
 
 TrainerCamperTed:
-	trainer EVENT_BEAT_CAMPER_TED, CAMPER, TED, CamperTedSeenText, CamperTedBeatenText, 0, .Script
+	trainer CAMPER, TED, EVENT_BEAT_CAMPER_TED, CamperTedSeenText, CamperTedBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -25,7 +25,7 @@ TrainerCamperTed:
 	end
 
 TrainerPicnickerErin1:
-	trainer EVENT_BEAT_PICNICKER_ERIN, PICNICKER, ERIN1, PicnickerErin1SeenText, PicnickerErin1BeatenText, 0, .Script
+	trainer PICNICKER, ERIN1, EVENT_BEAT_PICNICKER_ERIN, PicnickerErin1SeenText, PicnickerErin1BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_ERIN
@@ -148,7 +148,7 @@ UnknownScript_0x1a9772:
 	end
 
 TrainerHikerBailey:
-	trainer EVENT_BEAT_HIKER_BAILEY, HIKER, BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, 0, .Script
+	trainer HIKER, BAILEY, EVENT_BEAT_HIKER_BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled

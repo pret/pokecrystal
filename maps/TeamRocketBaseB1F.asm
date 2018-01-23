@@ -481,7 +481,7 @@ NoExplodingTrap:
 	end
 
 TrainerScientistJed:
-	trainer EVENT_BEAT_SCIENTIST_JED, SCIENTIST, JED, ScientistJedSeenText, ScientistJedBeatenText, 0, .Script
+	trainer SCIENTIST, JED, EVENT_BEAT_SCIENTIST_JED, ScientistJedSeenText, ScientistJedBeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
@@ -492,7 +492,7 @@ TrainerScientistJed:
 	end
 
 TrainerGruntM16:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_16, GRUNTM, GRUNTM_16, GruntM16SeenText, GruntM16BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_16, EVENT_BEAT_ROCKET_GRUNTM_16, GruntM16SeenText, GruntM16BeatenText, 0, .Script
 
 .Script:
 	end_if_just_battled
