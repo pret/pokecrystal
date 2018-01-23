@@ -559,16 +559,17 @@ INCLUDE "data/sprite_anims/framesets.asm"
 INCLUDE "data/sprite_anims/oam.asm"
 
 
-BrokenStdGFXPointers: ; Broken 2bpp pointers
-	dbbw $80, $01, .deleted ; 128-tile 2bpp at 1:672a (inside Multiply)
-	dbbw $80, $01, .deleted
-	dbbw $80, $01, .deleted
-	dbbw $80, $01, .deleted
-	dbbw $10, $37, .deleted ; 16-tile 2bpp at 37:672a (within TilesetTrainStationGFX)
-	dbbw $10, $11, .deleted ; 16-tile 2bpp at 11:672a (empty data)
-	dbbw $10, $39, .deleted ; 16-tile 2bpp at 39:672a (empty data)
-	dbbw $10, $24, .deleted ; 16-tile 2bpp at 24:672a (inside Function926f7)
-	dbbw $10, $21, .deleted ; 16-tile 2bpp at 21:672a (inside Function8671c)
+BrokenStdGFXPointers:
+	; tile count, bank, pointer
+	; (all pointers were dummied out to .deleted)
+rept 4
+	dbbw 128, $01, .deleted
+endr
+	dbbw 16, $37, .deleted
+	dbbw 16, $11, .deleted
+	dbbw 16, $39, .deleted
+	dbbw 16, $24, .deleted
+	dbbw 16, $21, .deleted
 
 .deleted
 ; 8e72a (23:672a)
