@@ -5,7 +5,7 @@ InitDecorations: ; 26751 (9:6751)
 	ld [Poster], a
 	ret
 
-_KrisDecorationMenu: ; 0x2675c
+_PlayerDecorationMenu: ; 0x2675c
 	ld a, [wWhichIndexSet]
 	push af
 	ld hl, .MenuDataHeader
@@ -1233,7 +1233,7 @@ SetPosterVisibility: ; 27027
 	ld b, RESET_FLAG
 
 .ok
-	ld de, EVENT_KRISS_ROOM_POSTER
+	ld de, EVENT_PLAYERS_ROOM_POSTER
 	jp EventFlagAction
 ; 27037
 
@@ -1249,19 +1249,19 @@ SetDecorationTile: ; 27037
 ; 27043
 
 Special_ToggleDecorationsVisibility: ; 27043
-	ld de, EVENT_KRISS_HOUSE_2F_CONSOLE
+	ld de, EVENT_PLAYERS_HOUSE_2F_CONSOLE
 	ld hl, VariableSprites + SPRITE_CONSOLE - SPRITE_VARS
 	ld a, [Console]
 	call ToggleDecorationVisibility
-	ld de, EVENT_KRISS_HOUSE_2F_DOLL_1
+	ld de, EVENT_PLAYERS_HOUSE_2F_DOLL_1
 	ld hl, VariableSprites + SPRITE_DOLL_1 - SPRITE_VARS
 	ld a, [LeftOrnament]
 	call ToggleDecorationVisibility
-	ld de, EVENT_KRISS_HOUSE_2F_DOLL_2
+	ld de, EVENT_PLAYERS_HOUSE_2F_DOLL_2
 	ld hl, VariableSprites + SPRITE_DOLL_2 - SPRITE_VARS
 	ld a, [RightOrnament]
 	call ToggleDecorationVisibility
-	ld de, EVENT_KRISS_HOUSE_2F_BIG_DOLL
+	ld de, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL
 	ld hl, VariableSprites + SPRITE_BIG_DOLL - SPRITE_VARS
 	ld a, [BigDoll]
 	call ToggleDecorationVisibility

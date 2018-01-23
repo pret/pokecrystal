@@ -1,11 +1,11 @@
 const_value set 2
-	const KRISSHOUSE1F_MOM1
-	const KRISSHOUSE1F_MOM2
-	const KRISSHOUSE1F_MOM3
-	const KRISSHOUSE1F_MOM4
-	const KRISSHOUSE1F_POKEFAN_F
+	const PLAYERSHOUSE1F_MOM1
+	const PLAYERSHOUSE1F_MOM2
+	const PLAYERSHOUSE1F_MOM3
+	const PLAYERSHOUSE1F_MOM4
+	const PLAYERSHOUSE1F_POKEFAN_F
 
-KrissHouse1F_MapScripts:
+PlayersHouse1F_MapScripts:
 .SceneScripts:
 	db 2
 	scene_script .DummyScene0
@@ -25,15 +25,15 @@ UnknownScript_0x7a4d8:
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
-	showemote EMOTE_SHOCK, KRISSHOUSE1F_MOM1, 15
+	showemote EMOTE_SHOCK, PLAYERSHOUSE1F_MOM1, 15
 	spriteface PLAYER, LEFT
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iffalse UnknownScript_0x7a4f2
-	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a5fc
+	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
 
 UnknownScript_0x7a4f2:
-	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a5fe
+	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a5fe
 UnknownScript_0x7a4f6:
 	opentext
 	writetext UnknownText_0x7a604
@@ -44,8 +44,8 @@ UnknownScript_0x7a4f6:
 	setflag ENGINE_PHONE_CARD
 	addcellnum PHONE_MOM
 	setscene 1
-	setevent EVENT_KRISS_HOUSE_MOM_1
-	clearevent EVENT_KRISS_HOUSE_MOM_2
+	setevent EVENT_PLAYERS_HOUSE_MOM_1
+	clearevent EVENT_PLAYERS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
 	buttonsound
 	special Special_SetDayOfWeek
@@ -89,16 +89,16 @@ UnknownScript_0x7a549:
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a55d:
-	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a600
+	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a600
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a564:
-	applymovement KRISSHOUSE1F_MOM1, MovementData_0x7a602
+	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a602
 	jump UnknownScript_0x7a56b
 
 UnknownScript_0x7a56b:
 	special RestartMapMusic
-	spriteface KRISSHOUSE1F_MOM1, LEFT
+	spriteface PLAYERSHOUSE1F_MOM1, LEFT
 	end
 
 UnknownScript_0x7a572:
@@ -181,7 +181,7 @@ NeighborScript:
 	writetext NeighborText
 	waitbutton
 	closetext
-	spriteface KRISSHOUSE1F_POKEFAN_F, RIGHT
+	spriteface PLAYERSHOUSE1F_POKEFAN_F, RIGHT
 	end
 
 TVScript:
@@ -385,7 +385,7 @@ TVText:
 	line "rolling too!"
 	done
 
-KrissHouse1F_MapEvents:
+PlayersHouse1F_MapEvents:
 	; filler
 	db 0, 0
 
@@ -393,7 +393,7 @@ KrissHouse1F_MapEvents:
 	db 3
 	warp_def 6, 7, 2, NEW_BARK_TOWN
 	warp_def 7, 7, 2, NEW_BARK_TOWN
-	warp_def 9, 0, 1, KRISS_HOUSE_2F
+	warp_def 9, 0, 1, PLAYERS_HOUSE_2F
 
 .CoordEvents:
 	db 2
@@ -409,8 +409,8 @@ KrissHouse1F_MapEvents:
 
 .ObjectEvents:
 	db 5
-	object_event 7, 4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_1
-	object_event 2, 2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	object_event 7, 4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	object_event 0, 2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_KRISS_HOUSE_MOM_2
-	object_event 4, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NeighborScript, EVENT_KRISS_HOUSE_1F_NEIGHBOR
+	object_event 7, 4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_1
+	object_event 2, 2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_2
+	object_event 7, 4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_2
+	object_event 0, 2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_2
+	object_event 4, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NeighborScript, EVENT_PLAYERS_HOUSE_1F_NEIGHBOR

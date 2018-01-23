@@ -188,7 +188,7 @@ CianwoodLugiaSpeechHouse_Blocks:
 PokeSeersHouse_Blocks:
 ViridianNicknameSpeechHouse_Blocks:
 Route2NuggetSpeechHouse_Blocks:
-KrissNeighborsHouse_Blocks:
+PlayersNeighborsHouse_Blocks:
 Route26HealSpeechHouse_Blocks:
 Route26DayofWeekSiblingsHouse_Blocks:
 Route27SandstormHouse_Blocks:
@@ -265,8 +265,8 @@ Route43_Blocks:
 Route39_Blocks:
 	INCBIN "maps/Route39.blk"
 
-KrissHouse1F_Blocks:
-	INCBIN "maps/KrissHouse1F.blk"
+PlayersHouse1F_Blocks:
+	INCBIN "maps/PlayersHouse1F.blk"
 
 Route38EcruteakGate_Blocks:
 Route42EcruteakGate_Blocks:
@@ -846,8 +846,8 @@ OlivineCafe_Blocks:
 SafariZoneMainOffice_Blocks:
 	INCBIN "maps/OlivineCafe.blk"
 
-KrissHouse2F_Blocks:
-	INCBIN "maps/KrissHouse2F.blk"
+PlayersHouse2F_Blocks:
+	INCBIN "maps/PlayersHouse2F.blk"
 
 SaffronMagnetTrainStation_Blocks:
 	INCBIN "maps/SaffronMagnetTrainStation.blk"

@@ -288,8 +288,8 @@ NewBarkTown_MapEvents:
 .Warps:
 	db 4
 	warp_def 6, 3, 1, ELMS_LAB
-	warp_def 13, 5, 1, KRISS_HOUSE_1F
-	warp_def 3, 11, 1, KRISS_NEIGHBORS_HOUSE
+	warp_def 13, 5, 1, PLAYERS_HOUSE_1F
+	warp_def 3, 11, 1, PLAYERS_NEIGHBORS_HOUSE
 	warp_def 11, 13, 1, ELMS_HOUSE
 
 .CoordEvents:

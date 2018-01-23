@@ -1,10 +1,10 @@
 const_value set 2
-	const KRISSHOUSE2F_CONSOLE
-	const KRISSHOUSE2F_DOLL_1
-	const KRISSHOUSE2F_DOLL_2
-	const KRISSHOUSE2F_BIG_DOLL
+	const PLAYERSHOUSE2F_CONSOLE
+	const PLAYERSHOUSE2F_DOLL_1
+	const PLAYERSHOUSE2F_DOLL_2
+	const PLAYERSHOUSE2F_BIG_DOLL
 
-KrissHouse2F_MapScripts:
+PlayersHouse2F_MapScripts:
 .SceneScripts:
 	db 0
 
@@ -46,27 +46,27 @@ BigDoll:
 GameConsole:
 	describedecoration DECODESC_CONSOLE
 
-KrissHousePoster:
-	conditional_event EVENT_KRISS_ROOM_POSTER, .Script
+PlayersHousePoster:
+	conditional_event EVENT_PLAYERS_ROOM_POSTER, .Script
 
 .Script:
 	describedecoration DECODESC_POSTER
 
-KrissHouseRadio:
+PlayersHouseRadio:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue .NormalRadio
 	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
 	iftrue .AbbreviatedRadio
 	playmusic MUSIC_POKEMON_TALK
 	opentext
-	writetext KrisRadioText1
+	writetext PlayersRadioText1
 	pause 45
-	writetext KrisRadioText2
+	writetext PlayersRadioText2
 	pause 45
-	writetext KrisRadioText3
+	writetext PlayersRadioText3
 	pause 45
 	musicfadeout MUSIC_NEW_BARK_TOWN, 16
-	writetext KrisRadioText4
+	writetext PlayersRadioText4
 	pause 45
 	closetext
 	setevent EVENT_LISTENED_TO_INITIAL_RADIO
@@ -77,17 +77,17 @@ KrissHouseRadio:
 
 .AbbreviatedRadio:
 	opentext
-	writetext KrisRadioText4
+	writetext PlayersRadioText4
 	pause 45
 	closetext
 	end
 
-KrissHouseBookshelf:
+PlayersHouseBookshelf:
 	jumpstd picturebookshelf
 
-KrissHousePC:
+PlayersHousePC:
 	opentext
-	special Special_KrissHousePC
+	special Special_PlayersHousePC
 	iftrue .Warp
 	closetext
 	end
@@ -95,47 +95,47 @@ KrissHousePC:
 	warp NONE, 0, 0
 	end
 
-KrisRadioText1:
+PlayersRadioText1:
 	text "PROF.OAK'S #MON"
 	line "TALK! Please tune"
 	cont "in next time!"
 	done
 
-KrisRadioText2:
+PlayersRadioText2:
 	text "#MON CHANNEL!"
 	done
 
-KrisRadioText3:
+PlayersRadioText3:
 	text "This is DJ MARY,"
 	line "your co-host!"
 	done
 
-KrisRadioText4:
+PlayersRadioText4:
 	text "#MON!"
 	line "#MON CHANNEL…"
 	done
 
-KrissHouse2F_MapEvents:
+PlayersHouse2F_MapEvents:
 	; filler
 	db 0, 0
 
 .Warps:
 	db 1
-	warp_def 7, 0, 3, KRISS_HOUSE_1F
+	warp_def 7, 0, 3, PLAYERS_HOUSE_1F
 
 .CoordEvents:
 	db 0
 
 .BGEvents:
 	db 4
-	bg_event 2, 1, BGEVENT_UP, KrissHousePC
-	bg_event 3, 1, BGEVENT_READ, KrissHouseRadio
-	bg_event 5, 1, BGEVENT_READ, KrissHouseBookshelf
-	bg_event 6, 0, BGEVENT_IFSET, KrissHousePoster
+	bg_event 2, 1, BGEVENT_UP, PlayersHousePC
+	bg_event 3, 1, BGEVENT_READ, PlayersHouseRadio
+	bg_event 5, 1, BGEVENT_READ, PlayersHouseBookshelf
+	bg_event 6, 0, BGEVENT_IFSET, PlayersHousePoster
 
 .ObjectEvents:
 	db 4
-	object_event 4, 2, SPRITE_CONSOLE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
-	object_event 4, 4, SPRITE_DOLL_1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
-	object_event 5, 4, SPRITE_DOLL_2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
-	object_event 0, 1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL
+	object_event 4, 2, SPRITE_CONSOLE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsole, EVENT_PLAYERS_HOUSE_2F_CONSOLE
+	object_event 4, 4, SPRITE_DOLL_1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1, EVENT_PLAYERS_HOUSE_2F_DOLL_1
+	object_event 5, 4, SPRITE_DOLL_2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2, EVENT_PLAYERS_HOUSE_2F_DOLL_2
+	object_event 0, 1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigDoll, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL

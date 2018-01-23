@@ -328,14 +328,14 @@ Function17d0f3: ; 17d0f3
 ; 17d187
 
 Mobile_CopyDefaultOTName: ; 17d187
-	ld hl, Mobile5F_KrissName
+	ld hl, Mobile5F_PlayersName
 	ld de, $c63d
 	ld bc, 5
 	call CopyBytes
 	ret
 ; 17d194
 
-Mobile5F_KrissName:
+Mobile5F_PlayersName:
 	db "クりス@@"
 ; 17d198
 
@@ -371,7 +371,7 @@ Mobile_CopyDefaultMailAuthor: ; 17d1c9
 	ld de, $c668
 	ld bc, 5
 	call ByteFill
-	ld hl, Mobile5F_KrissName
+	ld hl, Mobile5F_PlayersName
 	ld de, $c668
 	ld bc, 5
 	call CopyBytes

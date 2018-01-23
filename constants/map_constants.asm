@@ -447,9 +447,9 @@ ENDM
 	mapconst ROUTE_29,                                     9, 30 ;  3
 	mapconst NEW_BARK_TOWN,                                9, 10 ;  4
 	mapconst ELMS_LAB,                                     6,  5 ;  5
-	mapconst KRISS_HOUSE_1F,                               4,  5 ;  6
-	mapconst KRISS_HOUSE_2F,                               3,  4 ;  7
-	mapconst KRISS_NEIGHBORS_HOUSE,                        4,  4 ;  8
+	mapconst PLAYERS_HOUSE_1F,                             4,  5 ;  6
+	mapconst PLAYERS_HOUSE_2F,                             3,  4 ;  7
+	mapconst PLAYERS_NEIGHBORS_HOUSE,                      4,  4 ;  8
 	mapconst ELMS_HOUSE,                                   4,  4 ;  9
 	mapconst ROUTE_26_HEAL_SPEECH_HOUSE,                   4,  4 ; 10
 	mapconst ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE,          4,  4 ; 11

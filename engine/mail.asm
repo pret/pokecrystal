@@ -310,7 +310,7 @@ IsAnyMonHoldingMail: ; 44781
 	ret
 ; 447a0
 
-_KrisMailBoxMenu: ; 0x447a0
+_PlayerMailBoxMenu: ; 0x447a0
 	call InitMail
 	jr z, .nomail
 	call LoadStandardMenuDataHeader

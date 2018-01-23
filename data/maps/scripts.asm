@@ -151,9 +151,9 @@ SECTION "Map Scripts 9", ROMX
 
 INCLUDE "maps/Route34.asm"
 INCLUDE "maps/ElmsLab.asm"
-INCLUDE "maps/KrissHouse1F.asm"
-INCLUDE "maps/KrissHouse2F.asm"
-INCLUDE "maps/KrissNeighborsHouse.asm"
+INCLUDE "maps/PlayersHouse1F.asm"
+INCLUDE "maps/PlayersHouse2F.asm"
+INCLUDE "maps/PlayersNeighborsHouse.asm"
 INCLUDE "maps/ElmsHouse.asm"
 INCLUDE "maps/Route26HealSpeechHouse.asm"
 INCLUDE "maps/Route26DayofWeekSiblingsHouse.asm"

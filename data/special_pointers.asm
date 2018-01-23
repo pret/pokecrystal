@@ -40,7 +40,7 @@ SpecialsPointers:: ; c029
 	add_special Special_MagikarpHouseSign
 	add_special HealParty ; this is both a special and a predef
 	add_special Special_PokemonCenterPC
-	add_special Special_KrissHousePC
+	add_special Special_PlayersHousePC
 	add_special Special_DayCareMan
 	add_special Special_DayCareLady
 	add_special Special_DayCareManOutside

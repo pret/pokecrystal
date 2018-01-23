@@ -129,10 +129,10 @@ Special_DisplayLinkRecord: ; c2da
 	ret
 ; c2e7
 
-Special_KrissHousePC: ; c2e7
+Special_PlayersHousePC: ; c2e7
 	xor a
 	ld [ScriptVar], a
-	farcall _KrissHousePC
+	farcall _PlayersHousePC
 	ld a, c
 	ld [ScriptVar], a
 	ret

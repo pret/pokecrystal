@@ -1071,12 +1071,12 @@ UnknownText_0x1c1368::
 	line "to do?"
 	done
 
-_KrissPCHowManyWithdrawText::
+_PlayersPCHowManyWithdrawText::
 	text "How many do you"
 	line "want to withdraw?"
 	done
 
-_KrissPCWithdrewItemsText::
+_PlayersPCWithdrewItemsText::
 	text "Withdrew @"
 	deciram wItemQuantityChangeBuffer, 1, 2
 	text_start
@@ -1085,7 +1085,7 @@ _KrissPCWithdrewItemsText::
 	text "(S)."
 	prompt
 
-_KrissPCNoRoomWithdrawText::
+_PlayersPCNoRoomWithdrawText::
 	text "There's no room"
 	line "for more items."
 	prompt
@@ -1094,12 +1094,12 @@ UnknownText_0x1c13df::
 	text "No items here!"
 	prompt
 
-_KrissPCHowManyDepositText::
+_PlayersPCHowManyDepositText::
 	text "How many do you"
 	line "want to deposit?"
 	done
 
-_KrissPCDepositItemsText::
+_PlayersPCDepositItemsText::
 	text "Deposited @"
 	deciram wItemQuantityChangeBuffer, 1, 2
 	text_start
@@ -1108,7 +1108,7 @@ _KrissPCDepositItemsText::
 	text "(S)."
 	prompt
 
-_KrissPCNoRoomDepositText::
+_PlayersPCNoRoomDepositText::
 	text "There's no room to"
 	line "store items."
 	prompt

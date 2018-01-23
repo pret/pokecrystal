@@ -654,9 +654,9 @@ ENDM
 	map_data Route2Gate, ROUTE_2_GATE, $00, 0
 	map_data VictoryRoadGate, VICTORY_ROAD_GATE, $00, 0
 	map_data ElmsLab, ELMS_LAB, $00, 0
-	map_data KrissHouse1F, KRISS_HOUSE_1F, $00, 0
-	map_data KrissHouse2F, KRISS_HOUSE_2F, $00, 0
-	map_data KrissNeighborsHouse, KRISS_NEIGHBORS_HOUSE, $00, 0
+	map_data PlayersHouse1F, PLAYERS_HOUSE_1F, $00, 0
+	map_data PlayersHouse2F, PLAYERS_HOUSE_2F, $00, 0
+	map_data PlayersNeighborsHouse, PLAYERS_NEIGHBORS_HOUSE, $00, 0
 	map_data ElmsHouse, ELMS_HOUSE, $00, 0
 	map_data Route26HealSpeechHouse, ROUTE_26_HEAL_SPEECH_HOUSE, $00, 0
 	map_data Route26DayofWeekSiblingsHouse, ROUTE_26_DAY_OF_WEEK_SIBLINGS_HOUSE, $00, 0

@@ -1,38 +1,38 @@
 const_value set 2
-	const KRISSNEIGHBORSHOUSE_COOLTRAINER_F
-	const KRISSNEIGHBORSHOUSE_POKEFAN_F
+	const PLAYERSNEIGHBORSHOUSE_COOLTRAINER_F
+	const PLAYERSNEIGHBORSHOUSE_POKEFAN_F
 
-KrissNeighborsHouse_MapScripts:
+PlayersNeighborsHouse_MapScripts:
 .SceneScripts:
 	db 0
 
 .MapCallbacks:
 	db 0
 
-KrissNeighborsDaughter:
-	jumptextfaceplayer KrissNeighborsDaughterText
+PlayersNeighborsDaughter:
+	jumptextfaceplayer PlayersNeighborsDaughterText
 
-KrissNeighbor:
-	jumptextfaceplayer KrissNeighborText
+PlayersNeighbor:
+	jumptextfaceplayer PlayersNeighborText
 
-KrissNeighborsHouseBookshelf:
+PlayersNeighborsHouseBookshelf:
 	jumpstd magazinebookshelf
 
-KrissNeighborsHouseRadio:
+PlayersNeighborsHouseRadio:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue .NormalRadio
 	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
 	iftrue .AbbreviatedRadio
 	playmusic MUSIC_POKEMON_TALK
 	opentext
-	writetext KrisNeighborRadioText1
+	writetext PlayerNeighborRadioText1
 	pause 45
-	writetext KrisNeighborRadioText2
+	writetext PlayerNeighborRadioText2
 	pause 45
-	writetext KrisNeighborRadioText3
+	writetext PlayerNeighborRadioText3
 	pause 45
 	musicfadeout MUSIC_NEW_BARK_TOWN, 16
-	writetext KrisNeighborRadioText4
+	writetext PlayerNeighborRadioText4
 	pause 45
 	closetext
 	setevent EVENT_LISTENED_TO_INITIAL_RADIO
@@ -41,12 +41,12 @@ KrissNeighborsHouseRadio:
 	jumpstd radio1
 .AbbreviatedRadio:
 	opentext
-	writetext KrisNeighborRadioText4
+	writetext PlayerNeighborRadioText4
 	pause 45
 	closetext
 	end
 
-KrissNeighborsDaughterText:
+PlayersNeighborsDaughterText:
 	text "PIKACHU is an"
 	line "evolved #MON."
 
@@ -65,7 +65,7 @@ KrissNeighborsDaughterText:
 	cont "him…"
 	done
 
-KrissNeighborText:
+PlayersNeighborText:
 	text "My daughter is"
 	line "adamant about"
 
@@ -78,27 +78,27 @@ KrissNeighborText:
 	para "But then, so do I!"
 	done
 
-KrisNeighborRadioText1:
+PlayerNeighborRadioText1:
 	text "PROF.OAK'S #MON"
 	line "TALK! Please tune"
 	cont "in next time!"
 	done
 
-KrisNeighborRadioText2:
+PlayerNeighborRadioText2:
 	text "#MON CHANNEL!"
 	done
 
-KrisNeighborRadioText3:
+PlayerNeighborRadioText3:
 	text "This is DJ MARY,"
 	line "your co-host!"
 	done
 
-KrisNeighborRadioText4:
+PlayerNeighborRadioText4:
 	text "#MON!"
 	line "#MON CHANNEL…"
 	done
 
-KrissNeighborsHouse_MapEvents:
+PlayersNeighborsHouse_MapEvents:
 	; filler
 	db 0, 0
 
@@ -112,11 +112,11 @@ KrissNeighborsHouse_MapEvents:
 
 .BGEvents:
 	db 3
-	bg_event 0, 1, BGEVENT_READ, KrissNeighborsHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, KrissNeighborsHouseBookshelf
-	bg_event 7, 1, BGEVENT_READ, KrissNeighborsHouseRadio
+	bg_event 0, 1, BGEVENT_READ, PlayersNeighborsHouseBookshelf
+	bg_event 1, 1, BGEVENT_READ, PlayersNeighborsHouseBookshelf
+	bg_event 7, 1, BGEVENT_READ, PlayersNeighborsHouseRadio
 
 .ObjectEvents:
 	db 2
-	object_event 2, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KrissNeighborsDaughter, -1
-	object_event 5, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KrissNeighbor, EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
+	object_event 2, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighborsDaughter, -1
+	object_event 5, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighbor, EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR

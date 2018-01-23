@@ -7,7 +7,7 @@ ENDM
 SpawnPoints: ; 0x152ab
 ; entries correspond to SPAWN_* constants
 
-	spawn KRISS_HOUSE_2F,              3,  3
+	spawn PLAYERS_HOUSE_2F,            3,  3
 	spawn VIRIDIAN_POKECENTER_1F,      5,  3
 
 	spawn PALLET_TOWN,                 5,  6

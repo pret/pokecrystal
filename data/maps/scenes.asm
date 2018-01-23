@@ -28,7 +28,7 @@ MapScenes:: ; 4d01e
 	scene_def ROUTE_27,                                    wRoute27SceneID
 	scene_def NEW_BARK_TOWN,                               wNewBarkTownSceneID
 	scene_def ELMS_LAB,                                    wElmsLabSceneID
-	scene_def KRISS_HOUSE_1F,                              wKrissHouse1FSceneID
+	scene_def PLAYERS_HOUSE_1F,                            wPlayersHouse1FSceneID
 	scene_def ROUTE_29,                                    wRoute29SceneID
 	scene_def CHERRYGROVE_CITY,                            wCherrygroveCitySceneID
 	scene_def MR_POKEMONS_HOUSE,                           wMrPokemonsHouseSceneID

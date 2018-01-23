@@ -123,8 +123,8 @@ MrPokemonsHouse_OakScript:
 	waitbutton
 	closetext
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
-	setevent EVENT_KRISS_HOUSE_1F_NEIGHBOR
-	clearevent EVENT_KRISS_NEIGHBORS_HOUSE_NEIGHBOR
+	setevent EVENT_PLAYERS_HOUSE_1F_NEIGHBOR
+	clearevent EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR
 	setscene 1
 	setmapscene CHERRYGROVE_CITY, 1
 	setmapscene ELMS_LAB, 3
