@@ -44,12 +44,12 @@ LancesRoom_MapScripts:
 	end
 
 Script_ApproachLanceFromLeft:
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromLeft
 	jump LanceScript_0x180e7b
 
 Script_ApproachLanceFromRight:
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromRight
 LanceScript_0x180e7b:
 	spriteface LANCESROOM_LANCE, LEFT
@@ -125,7 +125,7 @@ LanceScript_0x180e7b:
 	pause 30
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRunsBackAndForth
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	pause 15
 	warpfacing UP, HALL_OF_FAME, 4, 13
 	end

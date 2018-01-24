@@ -20,7 +20,7 @@ TrainerHouseReceptionistScript:
 	iftrue .FoughtTooManyTimes
 	writetext TrainerHouseB1FIntroText
 	buttonsound
-	special Special_TrainerHouse
+	special TrainerHouse
 	iffalse .GetCal3Name
 	trainertotext CAL, CAL2, MEM_BUFFER_0
 	jump .GotName
@@ -42,7 +42,7 @@ TrainerHouseReceptionistScript:
 	writetext TrainerHouseB1FCalBeforeText
 	waitbutton
 	closetext
-	special Special_TrainerHouse
+	special TrainerHouse
 	iffalse .NoSpecialBattle
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS

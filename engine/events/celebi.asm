@@ -1,6 +1,6 @@
 SPECIALCELEBIEVENT_CELEBI EQU $84
 
-Special_CelebiShrineEvent: ; 4989a
+CelebiShrineEvent: ; 4989a
 	call DelayFrame
 	ld a, [VramState]
 	push af
@@ -362,7 +362,7 @@ CelebiEvent_SetBattleType: ; 49bf3
 
 ; 49bf9
 
-Special_CheckCaughtCelebi: ; 49bf9
+CheckCaughtCelebi: ; 49bf9
 	ld a, [wBattleResult]
 	bit 6, a
 	jr z, .false

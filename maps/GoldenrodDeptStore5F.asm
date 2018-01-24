@@ -65,7 +65,7 @@ ReceptionistScript_0x560ce:
 	if_not_equal SUNDAY, .EventIsOver
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	iftrue .EventIsOver
-	special Special_GetFirstPokemonHappiness
+	special GetFirstPokemonHappiness
 	writetext UnknownText_0x56143
 	buttonsound
 	if_greater_than 150 - 1, .VeryHappy
@@ -106,12 +106,12 @@ ReceptionistScript_0x560ce:
 Carrie:
 	faceplayer
 	opentext
-	special Special_GameboyCheck
+	special GameboyCheck
 	if_not_equal GBCHECK_CGB, .NotGBC ; This is a dummy check from Gold/Silver
 	writetext UnknownText_0x56241
 	waitbutton
 	closetext
-	special Special_UnlockMysteryGift
+	special UnlockMysteryGift
 	end
 
 .NotGBC:

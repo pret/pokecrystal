@@ -37,7 +37,7 @@ OfficerScript_0x18a81e:
 	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a898
 	writebyte TRUE
-	special Special_MagnetTrain
+	special MagnetTrain
 	warpcheck
 	newloadmap MAPSETUP_TRAIN
 	applymovement PLAYER, .MovementBoardTheTrain

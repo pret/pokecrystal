@@ -25,7 +25,7 @@ Colosseum_MapScripts:
 	end
 
 .SetWhichChris:
-	special Special_CableClubCheckWhichChris
+	special CableClubCheckWhichChris
 	iffalse .Chris2
 	disappear COLOSSEUM_CHRIS2
 	appear COLOSSEUM_CHRIS1
@@ -46,7 +46,7 @@ Colosseum_MapScripts:
 	end
 
 MapColosseumSignpost1Script:
-	special Special_Colosseum
+	special Colosseum
 	newloadmap MAPSETUP_LINKRETURN
 	end
 

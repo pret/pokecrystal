@@ -3,7 +3,7 @@ ProfOaksPC: ; 0x265d3
 	call MenuTextBox
 	call YesNoBox
 	jr c, .shutdown
-	call Special_ProfOaksPCBoot ; player chose "yes"?
+	call ProfOaksPCBoot ; player chose "yes"?
 .shutdown
 	ld hl, OakPCText4
 	call PrintText
@@ -11,7 +11,7 @@ ProfOaksPC: ; 0x265d3
 	call ExitMenu
 	ret
 
-Special_ProfOaksPCBoot ; 0x265ee
+ProfOaksPCBoot ; 0x265ee
 	ld hl, OakPCText2
 	call PrintText
 	call Rate

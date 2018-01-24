@@ -30,9 +30,9 @@ CeladonEusine:
 	writetext CeladonEusineText1
 	buttonsound
 	writebyte SUICUNE
-	special Special_MonCheck
+	special MonCheck
 	iffalse .NoSuicune
-	special Special_BeastsCheck
+	special BeastsCheck
 	iftrue .HoOh
 	writetext NoBeastsText
 	waitbutton

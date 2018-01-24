@@ -20,7 +20,7 @@ TimeCapsule_MapScripts:
 	end
 
 .SetWhichChris:
-	special Special_CableClubCheckWhichChris
+	special CableClubCheckWhichChris
 	iffalse .Chris2
 	disappear TIMECAPSULE_CHRIS2
 	appear TIMECAPSULE_CHRIS1
@@ -37,7 +37,7 @@ TimeCapsule_MapScripts:
 	end
 
 MapTimeCapsuleSignpost1Script:
-	special Special_TimeCapsule
+	special TimeCapsule
 	newloadmap MAPSETUP_LINKRETURN
 	end
 

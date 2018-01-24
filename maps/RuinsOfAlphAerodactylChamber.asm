@@ -50,7 +50,7 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 MapRuinsOfAlphAerodactylChamberSignpost2Script:
 	refreshscreen
 	writebyte UNOWNPUZZLE_AERODACTYL
-	special Special_UnownPuzzle
+	special UnownPuzzle
 	closetext
 	iftrue UnknownScript_0x58df7
 	end
@@ -84,7 +84,7 @@ MapRuinsOfAlphAerodactylChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58e4f
 	writebyte UNOWNWORDS_LIGHT
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -94,7 +94,7 @@ MapRuinsOfAlphAerodactylChamberSignpost5Script:
 	opentext
 	writetext UnknownText_0x58e81
 	writebyte UNOWNWORDS_LIGHT
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 

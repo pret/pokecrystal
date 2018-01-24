@@ -459,18 +459,18 @@ MapIlexForestSignpost4Script:
 	closetext
 	pause 20
 	showemote EMOTE_SHOCK, PLAYER, 20
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	applymovement PLAYER, MovementData_0x6ef58
 	pause 30
 	spriteface PLAYER, DOWN
 	pause 20
 	clearflag ENGINE_FOREST_IS_RESTLESS
-	special Special_CelebiShrineEvent
+	special CelebiShrineEvent
 	loadwildmon CELEBI, 30
 	startbattle
 	reloadmapafterbattle
 	pause 20
-	special Special_CheckCaughtCelebi
+	special CheckCaughtCelebi
 	iffalse .DidntCatchCelebi
 	appear ILEXFOREST_KURT
 	applymovement ILEXFOREST_KURT, MovementData_0x6ef4e

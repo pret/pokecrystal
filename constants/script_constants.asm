@@ -217,7 +217,7 @@ NUM_FRUIT_TREES EQU const_value +- 1
 	const SWARM_YANMA     ; 1
 
 
-; Special_ActivateFishingSwarm writebyte arguments
+; ActivateFishingSwarm writebyte arguments
 	const_def
 	const FISHSWARM_NONE     ; 0
 	const FISHSWARM_QWILFISH ; 1
@@ -229,7 +229,7 @@ NUM_FRUIT_TREES EQU const_value +- 1
 	const GBCHECK_SGB ; 1
 	const GBCHECK_CGB ; 2
 
-; Special_CheckMagikarpLength return values
+; CheckMagikarpLength return values
 	const_def
 	const MAGIKARPLENGTH_NOT_MAGIKARP ; 0
 	const MAGIKARPLENGTH_REFUSED      ; 1
@@ -257,7 +257,7 @@ NUM_FRUIT_TREES EQU const_value +- 1
 	const HEALMACHINE_ELMS_LAB     ; 1
 	const HEALMACHINE_HALL_OF_FAME ; 2
 
-; Special_UnownPuzzle writebyte arguments
+; UnownPuzzle writebyte arguments
 ; LoadUnownPuzzlePiecesGFX.LZPointers indexes (see engine/unown_puzzle.asm)
 	const_def
 	const UNOWNPUZZLE_KABUTO     ; 0
@@ -266,7 +266,7 @@ NUM_FRUIT_TREES EQU const_value +- 1
 	const UNOWNPUZZLE_HO_OH      ; 3
 NUM_UNOWN_PUZZLES EQU const_value
 
-; Special_DisplayUnownWords writebyte arguments
+; DisplayUnownWords writebyte arguments
 ; UnownWalls and MenuHeaders_UnownWalls indexes (see data/unown_walls.asm)
 	const_def
 	const UNOWNWORDS_ESCAPE ; 0
@@ -274,7 +274,7 @@ NUM_UNOWN_PUZZLES EQU const_value
 	const UNOWNWORDS_WATER  ; 2
 	const UNOWNWORDS_HO_OH  ; 3
 
-; Special_MoveTutor writebyte arguments
+; MoveTutor writebyte arguments
 const_value set 1
 	const MOVETUTOR_FLAMETHROWER ; 1
 	const MOVETUTOR_THUNDERBOLT  ; 2

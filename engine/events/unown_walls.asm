@@ -1,4 +1,4 @@
-Special_HoOhChamber: ; 0x8addb
+HoOhChamber: ; 0x8addb
 	ld hl, PartySpecies
 	ld a, [hl]
 	cp HO_OH ; is Ho-oh the first Pokémon in the party?
@@ -11,7 +11,7 @@ Special_HoOhChamber: ; 0x8addb
 	ret
 ; 0x8adef
 
-Special_OmanyteChamber: ; 8adef
+OmanyteChamber: ; 8adef
 	call GetMapDataPointer ; pointless?
 	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, CHECK_FLAG
@@ -103,7 +103,7 @@ SpecialKabutoChamber: ; 8ae4e
 	ret
 ; 8ae68
 
-Special_DisplayUnownWords: ; 8ae68
+DisplayUnownWords: ; 8ae68
 	ld a, [ScriptVar]
 	ld hl, MenuHeaders_UnownWalls
 	and a

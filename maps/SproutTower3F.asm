@@ -25,7 +25,7 @@ SproutTower3F_MapScripts:
 UnknownScript_0x184947:
 	spriteface PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	playsound SFX_TACKLE
 	playsound SFX_ELEVATOR
 	earthquake 79
@@ -54,11 +54,11 @@ UnknownScript_0x184947:
 	pause 15
 	closetext
 	playsound SFX_WARP_TO
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear SPROUTTOWER3F_SILVER
 	waitsfx
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	setscene 1
 	special RestartMapMusic
 	end

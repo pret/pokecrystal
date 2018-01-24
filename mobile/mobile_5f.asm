@@ -435,7 +435,7 @@ Function17d1f1: ; 17d1f1
 ; if [ScriptVar] == TRUE
 ;    Show BattleTower-Menu with 3 options in english language
 ;    - Challenge - Explanation - Cancel
-Special_Menu_ChallengeExplanationCancel: ; 17d224
+Menu_ChallengeExplanationCancel: ; 17d224
 	ld a, [ScriptVar]
 	and a
 	jr nz, .English
@@ -511,7 +511,7 @@ MenuData_ChallengeExplanationCancel: ; 17d297
 	db "Cancel@"
 ; 17d2b6
 
-Special_Function17d2b6: ; 17d2b6
+Function17d2b6: ; 17d2b6
 	call Function17d2c0
 	farcall Function1181da
 	ret
@@ -526,7 +526,7 @@ Function17d2c0: ; 17d2c0
 	ret
 ; 17d2ce
 
-Special_Function17d2ce: ; 17d2ce
+Function17d2ce: ; 17d2ce
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa72]
@@ -4586,7 +4586,7 @@ Function17f524: ; 17f524
 	jr .asm_17f536
 ; 17f53d
 
-Special_BattleTowerMobileError: ; 17f53d
+BattleTowerMobileError: ; 17f53d
 	call FadeToMenu
 	xor a
 	ld [wc303], a

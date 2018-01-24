@@ -1984,7 +1984,7 @@ FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call LoadStandardMenuHeader
-	farcall Special_FadeOutPalettes
+	farcall FadeOutPalettes
 	call ClearSprites
 	call DisableSpriteUpdates
 	ret
@@ -2010,7 +2010,7 @@ FinishExitMenu:: ; 2b5c
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
 	call WaitBGMap2
-	farcall Special_FadeInPalettes
+	farcall FadeInPalettes
 	call EnableSpriteUpdates
 	ret
 ; 2b74
@@ -2043,7 +2043,7 @@ ReturnToMapWithSpeechTextbox:: ; 0x2b74
 ReloadTilesetAndPalettes:: ; 2bae
 	call DisableLCD
 	call ClearSprites
-	farcall Special_RefreshSprites
+	farcall RefreshSprites
 	call LoadStandardFont
 	call LoadFontsExtra
 	ld a, [hROMBank]

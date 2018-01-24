@@ -42,7 +42,7 @@ RedCredits:: ; 86455
 	ld [MusicFadeID + 1], a
 	ld a, 10
 	ld [MusicFade], a
-	farcall Special_FadeOutPalettes
+	farcall FadeOutPalettes
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a
@@ -65,7 +65,7 @@ HallOfFame_FadeOutMusic: ; 8648e
 	ld [MusicFadeID + 1], a
 	ld a, 10
 	ld [MusicFade], a
-	farcall Special_FadeOutPalettes
+	farcall FadeOutPalettes
 	xor a
 	ld [VramState], a
 	ld [hMapAnims], a

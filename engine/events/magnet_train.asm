@@ -1,4 +1,4 @@
-Special_MagnetTrain: ; 8cc04
+MagnetTrain: ; 8cc04
 	ld a, [ScriptVar]
 	and a
 	jr nz, .ToGoldenrod

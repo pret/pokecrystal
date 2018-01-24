@@ -108,10 +108,10 @@ ElmCheckEverstone:
 	checkevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	iffalse ElmCheckTogepiEgg
 	writebyte TOGEPI
-	special Special_FindPartyMonThatSpeciesYourTrainerID
+	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special Special_FindPartyMonThatSpeciesYourTrainerID
+	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writetext UnknownText_0x79a40
 	waitbutton
@@ -120,10 +120,10 @@ ElmCheckEverstone:
 
 ElmEggHatchedScript:
 	writebyte TOGEPI
-	special Special_FindPartyMonThatSpeciesYourTrainerID
+	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special Special_FindPartyMonThatSpeciesYourTrainerID
+	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	jump ElmCheckGotEggAgain
 
@@ -308,11 +308,11 @@ ElmsLabHealingMachine:
 	end
 
 ElmsLabHealingMachine_HealParty:
-	special Special_StubbedTrainerRankings_Healings
+	special StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_NONE
 	writebyte HEALMACHINE_ELMS_LAB
-	special Special_HealMachineAnim
+	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	closetext
@@ -556,7 +556,7 @@ CopScript:
 	opentext
 	writetext ElmsLabOfficerText1
 	buttonsound
-	special Special_NameRival
+	special NameRival
 	writetext ElmsLabOfficerText2
 	waitbutton
 	closetext

@@ -13,7 +13,7 @@ SandstormHouseWoman:
 	opentext
 	checkevent EVENT_GOT_TM37_SANDSTORM
 	iftrue .AlreadyGotItem
-	special Special_GetFirstPokemonHappiness
+	special GetFirstPokemonHappiness
 	writetext SandstormHouseWomanText1
 	buttonsound
 	if_greater_than 150 - 1, .Loyal

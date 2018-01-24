@@ -6837,7 +6837,7 @@ Unknown_117356: ; 117356
 
 SECTION "Mobile Stadium", ROMX
 
-Special_GiveOddEgg: ; 117656
+GiveOddEgg: ; 117656
 	farcall _GiveOddEgg
 	ret
 

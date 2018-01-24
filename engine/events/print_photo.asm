@@ -1,4 +1,4 @@
-Special_PhotoStudio: ; 16dc7
+PhotoStudio: ; 16dc7
 	ld hl, .Text_AskWhichMon
 	call PrintText
 	farcall SelectMonFromParty

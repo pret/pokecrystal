@@ -1,4 +1,4 @@
-Special_BankOfMom: ; 16218
+BankOfMom: ; 16218
 	ld a, [hInMenu]
 	push af
 	ld a, $1

@@ -18,7 +18,7 @@ PlayersHouse2F_MapScripts:
 	end
 
 .InitializeRoom:
-	special Special_ToggleDecorationsVisibility
+	special ToggleDecorationsVisibility
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
 	checkevent EVENT_INITIALIZED_EVENTS
 	iftrue .SkipInitialization
@@ -29,7 +29,7 @@ PlayersHouse2F_MapScripts:
 	return
 
 .SetSpawn:
-	special Special_ToggleMaptileDecorations
+	special ToggleMaptileDecorations
 	return
 
 	db 0, 0, 0 ; filler
@@ -87,7 +87,7 @@ PlayersHouseBookshelfScript:
 
 PlayersHousePCScript:
 	opentext
-	special Special_PlayersHousePC
+	special PlayersHousePC
 	iftrue .Warp
 	closetext
 	end

@@ -33,7 +33,7 @@ TinTower1F_MapScripts:
 	iftrue .GotRainbowWing
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .FaceBeasts
-	special Special_BeastsCheck
+	special BeastsCheck
 	iffalse .FaceBeasts
 	clearevent EVENT_TIN_TOWER_1F_WISE_TRIO_2
 	setevent EVENT_TIN_TOWER_1F_WISE_TRIO_1
@@ -49,7 +49,7 @@ TinTower1F_MapScripts:
 	iftrue .FoughtSuicune
 	appear TINTOWER1F_SUICUNE
 	writebyte RAIKOU
-	special Special_MonCheck
+	special MonCheck
 	iftrue .NoRaikou
 	appear TINTOWER1F_RAIKOU
 	jump .CheckEntei
@@ -58,7 +58,7 @@ TinTower1F_MapScripts:
 	disappear TINTOWER1F_RAIKOU
 .CheckEntei:
 	writebyte ENTEI
-	special Special_MonCheck
+	special MonCheck
 	iftrue .NoEntei
 	appear TINTOWER1F_ENTEI
 	jump .BeastsDone
@@ -87,7 +87,7 @@ TinTower1F_MapScripts:
 	applymovement PLAYER, TinTowerPlayerMovement1
 	pause 15
 	writebyte RAIKOU
-	special Special_MonCheck
+	special MonCheck
 	iftrue .Next1 ; if player caught Raikou, he doesn't appear in Tin Tower
 	applymovement TINTOWER1F_RAIKOU, TinTowerRaikouMovement1
 	spriteface PLAYER, LEFT
@@ -100,7 +100,7 @@ TinTower1F_MapScripts:
 	waitsfx
 .Next1:
 	writebyte ENTEI
-	special Special_MonCheck
+	special MonCheck
 	iftrue .Next2 ; if player caught Entei, he doesn't appear in Tin Tower
 	applymovement TINTOWER1F_ENTEI, TinTowerEnteiMovement1
 	spriteface PLAYER, RIGHT
@@ -164,7 +164,7 @@ TinTower1F_MapScripts:
 	playsound SFX_EXIT_BUILDING
 	disappear TINTOWER1F_EUSINE
 	waitsfx
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 20
 	playmapmusic
 	end

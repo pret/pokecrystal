@@ -21,9 +21,9 @@ MobileBattleRoom_MapScripts:
 
 MapMobileBattleRoomSignpost0Script:
 	refreshscreen
-	special Special_Function1037c2
+	special Function1037c2
 	if_equal $1, .one
-	special Special_Function1037eb
+	special Function1037eb
 	iffalse .false
 	if_equal $1, .one_
 	if_equal $2, .two_
@@ -33,24 +33,24 @@ MapMobileBattleRoomSignpost0Script:
 	writetext MobileBattleRoom_HealText
 	pause 20
 	closetext
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
-	special Special_LoadMapPalettes
+	special LoadMapPalettes
 	pause 60
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	refreshscreen
 .two_
-	special Special_StubbedTrainerRankings_Healings
+	special StubbedTrainerRankings_Healings
 	special HealParty
-	special Special_Function10383c
+	special Function10383c
 	iftrue .false
 .one
-	special Special_Function10387b
+	special Function10387b
 	writetext MobileBattleRoom_EstablishingCommsText
 	waitbutton
 	reloadmappart
-	special Special_Function101225
+	special Function101225
 .false
 	closetext
 	end

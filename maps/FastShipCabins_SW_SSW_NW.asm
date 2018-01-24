@@ -49,7 +49,7 @@ TrainerGuitaristClyde:
 
 .Script:
 	end_if_just_battled
-	special Special_Mobile_DummyReturnFalse
+	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	opentext
 	writetext UnknownText_0x75d65
@@ -69,14 +69,14 @@ FastShipBed:
 	writetext FastShipBedText1
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
-	special Special_StubbedTrainerRankings_Healings
+	special StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_HEAL
 	pause 60
 	special RestartMapMusic
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	opentext
 	writetext FastShipBedText2
 	waitbutton

@@ -1,4 +1,4 @@
-Special_PokemonCenterPC: ; 1559a
+PokemonCenterPC: ; 1559a
 	call PC_CheckPartyForPokemon
 	ret c
 	call PC_PlayBootSound

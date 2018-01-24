@@ -577,7 +577,7 @@ TrainerWalkToPlayer: ; 831e
 	call ComputePathToWalkToPlayer
 	ret
 
-Special_SurfStartStep: ; 8379
+SurfStartStep: ; 8379
 	call InitMovementBuffer
 	call .GetMovementData
 	call AppendToMovementBuffer

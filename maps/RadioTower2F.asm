@@ -117,7 +117,7 @@ Buena:
 	if_equal 30, UnknownScript_0x5d87f
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
-	special Special_AskRememberPassword
+	special AskRememberPassword
 	iffalse UnknownScript_0x5d81e
 	writetext UnknownText_0x5de84
 	waitbutton
@@ -134,7 +134,7 @@ UnknownScript_0x5d7be:
 	closetext
 	spriteface RADIOTOWER2F_BUENA, DOWN
 	refreshscreen
-	special Special_BuenasPassword
+	special BuenasPassword
 	closetext
 	iffalse UnknownScript_0x5d845
 	opentext
@@ -153,7 +153,7 @@ UnknownScript_0x5d7be:
 	writetext UnknownText_0x5e054
 	waitbutton
 	closetext
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 20
 	special RestartMapMusic
 	checkcode VAR_BLUECARDBALANCE
@@ -182,7 +182,7 @@ UnknownScript_0x5d81e:
 	waitbutton
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 20
 	special RestartMapMusic
 	end
@@ -213,7 +213,7 @@ UnknownScript_0x5d845:
 	waitbutton
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 20
 	special RestartMapMusic
 	end
@@ -316,7 +316,7 @@ ReceptionistScript_0x5d8ff:
 	iffalse UnknownScript_0x5d90f
 	writetext UnknownText_0x5e392
 	buttonsound
-	special Special_BuenaPrize
+	special BuenaPrize
 	closetext
 	end
 

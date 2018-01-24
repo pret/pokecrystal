@@ -20,14 +20,14 @@ DummySpecial_c224: ; c224
 	ret
 ; c225
 
-Special_SetPlayerPalette: ; c225
+SetPlayerPalette: ; c225
 	ld a, [ScriptVar]
 	ld d, a
 	farcall _SetPlayerPalette
 	ret
 ; c230
 
-Special_GameCornerPrizeMonCheckDex: ; c230
+GameCornerPrizeMonCheckDex: ; c230
 	ld a, [ScriptVar]
 	dec a
 	call CheckCaughtMon
@@ -50,28 +50,28 @@ UnusedSpecial_SeenMon: ; c252
 	ret
 ; c25a
 
-Special_FindPartyMonGreaterThanThatLevel: ; c25a
+FindPartyMonGreaterThanThatLevel: ; c25a
 	ld a, [ScriptVar]
 	ld b, a
 	farcall _FindPartyMonGreaterThanThatLevel
 	jr z, FoundNone
 	jr FoundOne
 
-Special_FindPartyMonAtLeastThatHappy: ; c268
+FindPartyMonAtLeastThatHappy: ; c268
 	ld a, [ScriptVar]
 	ld b, a
 	farcall _FindPartyMonAtLeastThatHappy
 	jr z, FoundNone
 	jr FoundOne
 
-Special_FindPartyMonThatSpecies: ; c276
+FindPartyMonThatSpecies: ; c276
 	ld a, [ScriptVar]
 	ld b, a
 	farcall _FindPartyMonThatSpecies
 	jr z, FoundNone
 	jr FoundOne
 
-Special_FindPartyMonThatSpeciesYourTrainerID: ; c284
+FindPartyMonThatSpeciesYourTrainerID: ; c284
 	ld a, [ScriptVar]
 	ld b, a
 	farcall _FindPartyMonThatSpeciesYourTrainerID
@@ -89,7 +89,7 @@ FoundNone: ; c298
 	ret
 ; c29d
 
-Special_NameRival: ; 0xc29d
+NameRival: ; 0xc29d
 	ld b, $2 ; rival
 	ld de, RivalName
 	farcall _NamingScreen
@@ -103,33 +103,33 @@ Special_NameRival: ; 0xc29d
 DefaultRivalName: ; 0xc2b2
 	db "SILVER@"
 
-Special_NameRater: ; c2b9
+NameRater: ; c2b9
 	farcall _NameRater
 	ret
 ; c2c0
 
-Special_OverworldTownMap: ; c2c0
+OverworldTownMap: ; c2c0
 	call FadeToMenu
 	farcall _TownMap
 	call ExitAllMenus
 	ret
 ; c2cd
 
-Special_UnownPrinter: ; c2cd
+UnownPrinter: ; c2cd
 	call FadeToMenu
 	farcall _UnownPrinter
 	call ExitAllMenus
 	ret
 ; c2da
 
-Special_DisplayLinkRecord: ; c2da
+DisplayLinkRecord: ; c2da
 	call FadeToMenu
 	farcall _DisplayLinkRecord
 	call ExitAllMenus
 	ret
 ; c2e7
 
-Special_PlayersHousePC: ; c2e7
+PlayersHousePC: ; c2e7
 	xor a
 	ld [ScriptVar], a
 	farcall _PlayersHousePC
@@ -138,7 +138,7 @@ Special_PlayersHousePC: ; c2e7
 	ret
 ; c2f6
 
-Special_CheckMysteryGift: ; c2f6
+CheckMysteryGift: ; c2f6
 	ld a, BANK(sMysteryGiftItem)
 	call GetSRAMBank
 	ld a, [sMysteryGiftItem]
@@ -152,7 +152,7 @@ Special_CheckMysteryGift: ; c2f6
 	ret
 ; c309
 
-Special_GetMysteryGiftItem: ; c309
+GetMysteryGiftItem: ; c309
 	ld a, BANK(sMysteryGiftItem)
 	call GetSRAMBank
 	ld a, [sMysteryGiftItem]
@@ -187,21 +187,21 @@ Special_GetMysteryGiftItem: ; c309
 	db "@"
 ; 0xc34a
 
-Special_BugContestJudging: ; c34a
+BugContestJudging: ; c34a
 	farcall _BugContestJudging
 	ld a, b
 	ld [ScriptVar], a
 	ret
 ; c355
 
-Special_MapRadio: ; c355
+MapRadio: ; c355
 	ld a, [ScriptVar]
 	ld e, a
 	farcall PlayRadio
 	ret
 ; c360
 
-Special_UnownPuzzle: ; c360
+UnownPuzzle: ; c360
 	call FadeToMenu
 	farcall _UnownPuzzle
 	ld a, [wSolvedUnownPuzzle]
@@ -210,34 +210,34 @@ Special_UnownPuzzle: ; c360
 	ret
 ; c373
 
-Special_SlotMachine: ; c373
-	call Special_CheckCoins
+SlotMachine: ; c373
+	call CheckCoinsAndCoinCase
 	ret c
 	ld a, BANK(_SlotMachine)
 	ld hl, _SlotMachine
-	call Special_StartGameCornerGame
+	call StartGameCornerGame
 	ret
 ; c380
 
-Special_CardFlip: ; c380
-	call Special_CheckCoins
+CardFlip: ; c380
+	call CheckCoinsAndCoinCase
 	ret c
 	ld a, BANK(_CardFlip)
 	ld hl, _CardFlip
-	call Special_StartGameCornerGame
+	call StartGameCornerGame
 	ret
 ; c38d
 
-Special_DummyNonfunctionalGameCornerGame: ; c38d
-	call Special_CheckCoins
+DummyNonfunctionalGameCornerGame: ; c38d
+	call CheckCoinsAndCoinCase
 	ret c
 	ld a, BANK(_DummyGame)
 	ld hl, _DummyGame
-	call Special_StartGameCornerGame
+	call StartGameCornerGame
 	ret
 ; c39a
 
-Special_StartGameCornerGame: ; c39a
+StartGameCornerGame: ; c39a
 	call FarQueueScript
 	call FadeToMenu
 	ld hl, wQueuedScriptBank
@@ -252,7 +252,7 @@ Special_StartGameCornerGame: ; c39a
 	ret
 ; c3ae
 
-Special_CheckCoins: ; c3ae
+CheckCoinsAndCoinCase: ; c3ae
 	ld hl, Coins
 	ld a, [hli]
 	or [hl]
@@ -290,7 +290,7 @@ Special_CheckCoins: ; c3ae
 	db "@"
 ; 0xc3db
 
-Special_ClearBGPalettesBufferScreen: ; c3db
+ClearBGPalettesBufferScreen: ; c3db
 	call ClearBGPalettes
 	call BufferScreen
 	ret
@@ -314,7 +314,7 @@ UnusedSpecial_CheckUnusedTwoDayTimer: ; c3ef
 	ret
 ; c3fc
 
-Special_ActivateFishingSwarm: ; c3fc
+ActivateFishingSwarm: ; c3fc
 	ld a, [ScriptVar]
 	ld [wFishingSwarmFlag], a
 	ret
@@ -341,13 +341,13 @@ StoreSwarmMapIndices:: ; c403
 ; c419
 
 
-Special_CheckPokerus: ; c419
+CheckPokerus: ; c419
 ; Check if a monster in your party has Pokerus
 	farcall _CheckPokerus
 	jp ScriptReturnCarry
 ; c422
 
-Special_ResetLuckyNumberShowFlag: ; c422
+ResetLuckyNumberShowFlag: ; c422
 	farcall RestartLuckyNumberCountdown
 	ld hl, wLuckyNumberShowFlag
 	res LUCKYNUMBERSHOW_GAME_OVER_F, [hl]
@@ -355,12 +355,12 @@ Special_ResetLuckyNumberShowFlag: ; c422
 	ret
 ; c434
 
-Special_CheckLuckyNumberShowFlag: ; c434
+CheckLuckyNumberShowFlag: ; c434
 	farcall _CheckLuckyNumberShowFlag
 	jp ScriptReturnCarry
 ; c43d
 
-Special_SnorlaxAwake: ; 0xc43d
+SnorlaxAwake: ; 0xc43d
 ; Check if the Poké Flute channel is playing, and if the player is standing
 ; next to Snorlax.
 
@@ -411,13 +411,13 @@ Special_SnorlaxAwake: ; 0xc43d
 	db -1
 
 
-Special_PlayCurMonCry: ; c472
+PlayCurMonCry: ; c472
 	ld a, [CurPartySpecies]
 	jp PlayMonCry
 ; c478
 
 
-Special_GameboyCheck: ; c478
+GameboyCheck: ; c478
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
@@ -439,7 +439,7 @@ Special_GameboyCheck: ; c478
 	ret
 
 
-Special_FadeOutMusic: ; c48f
+FadeOutMusic: ; c48f
 	ld a, LOW(MUSIC_NONE)
 	ld [MusicFadeID], a
 	ld a, HIGH(MUSIC_NONE)
@@ -449,21 +449,21 @@ Special_FadeOutMusic: ; c48f
 	ret
 ; c49f
 
-Special_Diploma: ; c49f
+Diploma: ; c49f
 	call FadeToMenu
 	farcall _Diploma
 	call ExitAllMenus
 	ret
 ; c4ac
 
-Special_PrintDiploma: ; c4ac
+PrintDiploma: ; c4ac
 	call FadeToMenu
 	farcall _PrintDiploma
 	call ExitAllMenus
 	ret
 ; c4b9
 
-Special_TrainerHouse: ; 0xc4b9
+TrainerHouse: ; 0xc4b9
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)
 	call GetSRAMBank
 	ld a, [sMysteryGiftTrainerHouseFlag]

@@ -21,11 +21,11 @@ MobileTradeRoomMobile_MapScripts:
 
 MapMobileTradeRoomMobileSignpost0Script:
 	refreshscreen
-	special Special_Function1037c2
+	special Function1037c2
 	writetext MobileTradeRoomMobile_EstablishingCommsText
 	waitbutton
 	reloadmappart
-	special Special_Function101231
+	special Function101231
 	closetext
 	end
 

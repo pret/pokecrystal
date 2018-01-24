@@ -33,7 +33,7 @@ Oak:
 .CheckPokedex:
 	writetext OakLabDexCheckText
 	waitbutton
-	special Special_ProfOaksPCBoot
+	special ProfOaksPCBoot
 	writetext OakLabGoodbyeText
 	waitbutton
 	closetext

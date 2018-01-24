@@ -1,6 +1,6 @@
 MANIA_OT_ID EQU 00518
 
-Special_GiveShuckle: ; 7305
+GiveShuckle: ; 7305
 
 ; Adding to the party.
 	xor a
@@ -71,7 +71,7 @@ SpecialShuckleOT:
 SpecialShuckleNick:
 	db "SHUCKIE@"
 
-Special_ReturnShuckle: ; 737e
+ReturnShuckle: ; 737e
 	farcall SelectMonFromParty
 	jr c, .refused
 
@@ -141,7 +141,7 @@ Special_ReturnShuckle: ; 737e
 	ld [ScriptVar], a
 	ret
 
-Special_BillsGrandfather: ; 73f7
+BillsGrandfather: ; 73f7
 	farcall SelectMonFromParty
 	jr c, .cancel
 	ld a, [CurPartySpecies]
@@ -155,15 +155,15 @@ Special_BillsGrandfather: ; 73f7
 	ld [ScriptVar], a
 	ret
 
-Special_YoungerHaircutBrother: ; 7413
+YoungerHaircutBrother: ; 7413
 	ld hl, Data_YoungerHaircutBrother
 	jr HaircutOrGrooming
 
-Special_OlderHaircutBrother: ; 7418
+OlderHaircutBrother: ; 7418
 	ld hl, Data_OlderHaircutBrother
 	jr HaircutOrGrooming
 
-Special_DaisysGrooming: ; 741d
+DaisysGrooming: ; 741d
 	ld hl, Data_DaisysGrooming
 	; fallthrough
 

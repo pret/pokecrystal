@@ -108,13 +108,13 @@ PokecenterNurseScript:
 
 	farwritetext NurseTakePokemonText
 	pause 20
-	special Special_StubbedTrainerRankings_Healings
+	special StubbedTrainerRankings_Healings
 	spriteface LAST_TALKED, LEFT
 	pause 10
 	special HealParty
 	playmusic MUSIC_NONE
 	writebyte HEALMACHINE_POKECENTER
-	special Special_HealMachineAnim
+	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	spriteface LAST_TALKED, DOWN
@@ -124,7 +124,7 @@ PokecenterNurseScript:
 	iftrue .no
 	checkflag ENGINE_CAUGHT_POKERUS
 	iftrue .no
-	special Special_CheckPokerus
+	special CheckPokerus
 	iftrue .pokerus
 .no
 
@@ -184,7 +184,7 @@ TownMapScript:
 	opentext
 	farwritetext TownMapText
 	waitbutton
-	special Special_OverworldTownMap
+	special OverworldTownMap
 	closetext
 	end
 
@@ -204,7 +204,7 @@ HomepageScript:
 Radio1Script:
 	opentext
 	writebyte MAPRADIO_POKEMON_CHANNEL
-	special Special_MapRadio
+	special MapRadio
 	closetext
 	end
 
@@ -212,7 +212,7 @@ Radio2Script:
 ; Lucky Channel
 	opentext
 	writebyte MAPRADIO_LUCKY_CHANNEL
-	special Special_MapRadio
+	special MapRadio
 	closetext
 	end
 
@@ -221,7 +221,7 @@ TrashCanScript: ; 0xbc1a5
 
 PCScript:
 	opentext
-	special Special_PokemonCenterPC
+	special PokemonCenterPC
 	closetext
 	end
 
@@ -320,7 +320,7 @@ BugContestResultsScript:
 	opentext
 	farwritetext ContestResults_ReadyToJudgeText
 	waitbutton
-	special Special_BugContestJudging
+	special BugContestJudging
 	vartomem MEM_BUFFER_0
 	if_equal 1, BugContestResults_FirstPlace
 	if_equal 2, BugContestResults_SecondPlace
@@ -346,9 +346,9 @@ BugContestResults_FinishUp
 	iffalse BugContestResults_DidNotLeaveMons
 	farwritetext ContestResults_ReturnPartyText
 	waitbutton
-	special Special_ContestReturnMons
+	special ContestReturnMons
 BugContestResults_DidNotLeaveMons
-	special Special_CheckPartyFullAfterContest
+	special CheckPartyFullAfterContest
 	if_equal BUGCONTEST_CAUGHT_MON, BugContestResults_CleanUp
 	if_equal BUGCONTEST_NO_CATCH, BugContestResults_CleanUp
 	; BUGCONTEST_BOXED_MON
@@ -622,7 +622,7 @@ InitializeEventsScript:
 	return
 
 AskNumber1MScript:
-	special Special_RandomPhoneMon
+	special RandomPhoneMon
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -707,7 +707,7 @@ AskNumber1MScript:
 	end
 
 AskNumber2MScript:
-	special Special_RandomPhoneMon
+	special RandomPhoneMon
 	checkcode VAR_CALLERID
 	if_equal PHONE_SCHOOLBOY_JACK, .Jack
 	if_equal PHONE_SAILOR_HUEY, .Huey
@@ -1810,7 +1810,7 @@ CoinVendor_IntroScript: ; 0xbcde0
 	farwritetext CoinVendor_IntroText
 
 .loop ; 0xbcde4
-	special Special_DisplayMoneyAndCoinBalance
+	special DisplayMoneyAndCoinBalance
 	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow
@@ -1887,7 +1887,7 @@ CoinVendor_IntroScript: ; 0xbcde0
 HappinessCheckScript:
 	faceplayer
 	opentext
-	special Special_GetFirstPokemonHappiness
+	special GetFirstPokemonHappiness
 	if_less_than 50, .Unhappy
 	if_less_than 150, .KindaHappy
 	farwritetext HappinessText3

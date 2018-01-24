@@ -25,7 +25,7 @@ UnknownScript_0x74492:
 	moveobject VICTORYROAD_SILVER, 18, 11
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	appear VICTORYROAD_SILVER
 	applymovement VICTORYROAD_SILVER, MovementData_0x74539
@@ -39,7 +39,7 @@ UnknownScript_0x74492:
 UnknownScript_0x744b5:
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	appear VICTORYROAD_SILVER
 	applymovement VICTORYROAD_SILVER, MovementData_0x74542

@@ -1,4 +1,4 @@
-Special_CheckMagikarpLength: ; fbb32
+CheckMagikarpLength: ; fbb32
 	; Returns 3 if you select a Magikarp that beats the previous record.
 	; Returns 2 if you select a Magikarp, but the current record is longer.
 	; Returns 1 if you press B in the Pokemon selection menu.
@@ -331,7 +331,7 @@ CalcMagikarpLength: ; fbbfc
 
 
 
-Special_MagikarpHouseSign: ; fbcd2
+MagikarpHouseSign: ; fbcd2
 	ld a, [wBestMagikarpLengthFeet]
 	ld [wMagikarpLength], a
 	ld a, [wBestMagikarpLengthInches]

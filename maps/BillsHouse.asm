@@ -37,7 +37,7 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
 	if_not_equal LICKITUNG, .WrongPokemon
 	scall .CorrectPokemon
@@ -51,7 +51,7 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
 	if_not_equal ODDISH, .WrongPokemon
 	scall .CorrectPokemon
@@ -65,7 +65,7 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
 	if_not_equal STARYU, .WrongPokemon
 	scall .CorrectPokemon
@@ -81,7 +81,7 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
 	if_not_equal GROWLITHE, .WrongPokemon
 	scall .CorrectPokemon
@@ -95,7 +95,7 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
 	if_not_equal VULPIX, .WrongPokemon
 	scall .CorrectPokemon
@@ -109,7 +109,7 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
 	if_not_equal PICHU, .WrongPokemon
 	scall .CorrectPokemon

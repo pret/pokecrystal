@@ -134,7 +134,7 @@ DragonShrine_MapScripts:
 	writetext DragonShrineClairYouPassedText
 	waitbutton
 	closetext
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairBigStepLeftMovement
 	opentext
 	writetext DragonShrineClairThatCantBeText
@@ -217,7 +217,7 @@ DragonShrineElder1Script:
 	waitsfx
 	givepoke DRATINI, 15
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
-	special Special_Dratini
+	special Dratini
 	setevent EVENT_GOT_DRATINI
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	writetext DragonShrineSymbolicDragonText

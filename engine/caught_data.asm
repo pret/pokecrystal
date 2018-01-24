@@ -1,4 +1,4 @@
-Special_CheckPartyFullAfterContest: ; 4d9e5
+CheckPartyFullAfterContest: ; 4d9e5
 	ld a, [wContestMon]
 	and a
 	jp z, .DidntCatchAnything

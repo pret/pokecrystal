@@ -1,4 +1,4 @@
-Special_MoveTutor: ; 4925b
+MoveTutor: ; 4925b
 	call FadeToMenu
 	call ClearBGPalettes
 	call ClearScreen

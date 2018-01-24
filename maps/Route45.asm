@@ -31,7 +31,7 @@ TrainerBlackbeltKenji:
 	iftrue UnknownScript_0x19e0e4
 	checkevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x19e0cd
-	special Special_SampleKenjiBreakCountdown
+	special SampleKenjiBreakCountdown
 	writetext UnknownText_0x19e5e2
 	waitbutton
 	setevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
@@ -61,7 +61,7 @@ UnknownScript_0x19e0e4:
 	verbosegiveitem PP_UP
 	iffalse UnknownScript_0x19e118
 	clearevent EVENT_KENJI_ON_BREAK
-	special Special_SampleKenjiBreakCountdown
+	special SampleKenjiBreakCountdown
 	jump UnknownScript_0x19e127
 
 UnknownScript_0x19e10c:

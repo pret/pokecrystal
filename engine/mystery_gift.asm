@@ -1157,7 +1157,7 @@ MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
 	jr c, .loop
 	jp CloseSRAM
 
-Special_UnlockMysteryGift: ; 1050b9
+UnlockMysteryGift: ; 1050b9
 	call GetMysteryGiftBank
 	ld hl, sMysteryGiftUnlocked
 	ld a, [hl]

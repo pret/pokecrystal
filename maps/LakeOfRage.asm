@@ -141,7 +141,7 @@ MapLakeOfRageSignpost1Script:
 
 UnknownScript_0x700b8:
 	buttonsound
-	special Special_MagikarpHouseSign
+	special MagikarpHouseSign
 	closetext
 	end
 

@@ -192,7 +192,7 @@ OlderHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
@@ -200,7 +200,7 @@ OlderHaircutBrotherScript:
 	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	buttonsound
-	special Special_YoungerHaircutBrother
+	special YoungerHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -228,14 +228,14 @@ OlderHaircutBrotherScript:
 
 .then
 	takemoney YOUR_MONEY, 500
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
 	waitbutton
 	closetext
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7c6d8
@@ -275,7 +275,7 @@ YoungerHaircutBrotherScript:
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
@@ -283,7 +283,7 @@ YoungerHaircutBrotherScript:
 	if_equal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	buttonsound
-	special Special_OlderHaircutBrother
+	special OlderHaircutBrother
 	if_equal $0, .Refused
 	if_equal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
@@ -311,14 +311,14 @@ YoungerHaircutBrotherScript:
 
 .then
 	takemoney YOUR_MONEY, 300
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
 	waitbutton
 	closetext
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7c82a
@@ -349,21 +349,21 @@ YoungerHaircutBrotherScript:
 
 UnknownScript_0x7c2bb:
 	writetext HaircutBrosText_SlightlyHappier
-	special Special_PlayCurMonCry
+	special PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x7c2c4:
 	writetext HaircutBrosText_Happier
-	special Special_PlayCurMonCry
+	special PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x7c2cd:
 	writetext HaircutBrosText_MuchHappier
-	special Special_PlayCurMonCry
+	special PlayCurMonCry
 	waitbutton
 	closetext
 	end

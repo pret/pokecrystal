@@ -14,13 +14,13 @@ TeacherScript_0x7b125:
 	writetext UnknownText_0x7b14d
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
-	special Special_StubbedTrainerRankings_Healings
+	special StubbedTrainerRankings_Healings
 	playmusic MUSIC_HEAL
 	special HealParty
 	pause 60
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7b18b

@@ -13,7 +13,7 @@ GoldenrodHappinessRater_MapScripts:
 TeacherScript_0x54953:
 	faceplayer
 	opentext
-	special Special_GetFirstPokemonHappiness
+	special GetFirstPokemonHappiness
 	writetext UnknownText_0x549a3
 	buttonsound
 	if_greater_than 250 - 1, UnknownScript_0x54973

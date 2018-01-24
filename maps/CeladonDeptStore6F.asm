@@ -24,7 +24,7 @@ CeladonDeptStore6FVendingMachine:
 	opentext
 	writetext CeladonVendingText
 .Start:
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow

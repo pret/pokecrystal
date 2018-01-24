@@ -20,7 +20,7 @@ TradeCenter_MapScripts:
 	end
 
 .SetWhichChris:
-	special Special_CableClubCheckWhichChris
+	special CableClubCheckWhichChris
 	iffalse .Chris2
 	disappear TRADECENTER_CHRIS2
 	appear TRADECENTER_CHRIS1
@@ -37,7 +37,7 @@ TradeCenter_MapScripts:
 	end
 
 MapTradeCenterSignpost1Script:
-	special Special_TradeCenter
+	special TradeCenter
 	newloadmap MAPSETUP_LINKRETURN
 	end
 

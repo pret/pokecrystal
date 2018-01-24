@@ -32,7 +32,7 @@ DayCareManScript_Inside:
 	closetext
 	checkcode VAR_PARTYCOUNT
 	if_equal PARTY_LENGTH, .PartyFull
-	special Special_GiveOddEgg
+	special GiveOddEgg
 	opentext
 	writetext DayCareText_GotOddEgg
 	playsound SFX_KEY_ITEM
@@ -51,7 +51,7 @@ DayCareManScript_Inside:
 	end
 
 .AlreadyHaveOddEgg:
-	special Special_DayCareMan
+	special DayCareMan
 	waitbutton
 	closetext
 	end
@@ -61,7 +61,7 @@ DayCareLadyScript:
 	opentext
 	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
 	iftrue .HusbandWasLookingForYou
-	special Special_DayCareLady
+	special DayCareLady
 	waitbutton
 	closetext
 	end

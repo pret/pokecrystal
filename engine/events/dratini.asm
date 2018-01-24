@@ -1,4 +1,4 @@
-Special_Dratini: ; 0x8b170
+Dratini: ; 0x8b170
 ; if ScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
 ;  0: give it a special moveset with Extremespeed.
 ;  1: give it the normal moveset of a level 15 Dratini.

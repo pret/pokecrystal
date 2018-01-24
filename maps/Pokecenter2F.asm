@@ -18,7 +18,7 @@ Pokecenter2F_MapScripts:
 	db 0
 
 .Scene0:
-	special Special_CheckMysteryGift
+	special CheckMysteryGift
 	if_equal $0, .Scene0Done
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
@@ -76,28 +76,28 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Special_Mobile_DummyReturnFalse ; always returns false
+	special Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_TradeReceptionistMobile
-	special Special_AskMobileOrCable
+	special AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
-	special Special_SetBitsForLinkTradeRequest
+	special SetBitsForLinkTradeRequest
 	writetext Text_PleaseWait
-	special Special_WaitForLinkedFriend
+	special WaitForLinkedFriend
 	iffalse .FriendNotReady
 	writetext Text_MustSaveGame
 	yesorno
 	iffalse .DidNotSave
-	special Special_TryQuickSave
+	special TryQuickSave
 	iffalse .DidNotSave
 	writetext Text_PleaseWait
-	special Special_CheckLinkTimeout
+	special CheckLinkTimeout
 	iffalse .LinkTimedOut
 	copybytetovar wOtherPlayerLinkMode
 	iffalse .LinkedToFirstGen
-	special Special_CheckBothSelectedSameRoom
+	special CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
 	writetext Text_PleaseComeIn2
 	waitbutton
@@ -107,21 +107,21 @@ LinkReceptionistScript_Trade:
 	end
 
 .FriendNotReady:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
 	closetext
 	end
 
 .LinkedToFirstGen:
-	special Special_FailedLinkToPast
+	special FailedLinkToPast
 	writetext Text_CantLinkToThePast
-	special Special_CloseLink
+	special CloseLink
 	closetext
 	end
 
 .IncompatibleRooms:
 	writetext Text_IncompatibleRooms
-	special Special_CloseLink
+	special CloseLink
 	closetext
 	end
 
@@ -132,7 +132,7 @@ LinkReceptionistScript_Trade:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .AbortLink:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 .Cancel:
 	closetext
 	end
@@ -151,9 +151,9 @@ LinkReceptionistScript_Trade:
 	writetext Text_MustSaveGame
 	yesorno
 	iffalse .Mobile_DidNotSave
-	special Special_TryQuickSave
+	special TryQuickSave
 	iffalse .Mobile_DidNotSave
-	special Special_Function1011f1
+	special Function1011f1
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
@@ -178,28 +178,28 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Special_Mobile_DummyReturnFalse ; always returns false
+	special Mobile_DummyReturnFalse ; always returns false
 	iffalse .NoMobile
 	writetext Text_BattleReceptionistMobile
-	special Special_AskMobileOrCable
+	special AskMobileOrCable
 	iffalse .Cancel
 	if_equal $1, .Mobile
 .NoMobile:
-	special Special_SetBitsForBattleRequest
+	special SetBitsForBattleRequest
 	writetext Text_PleaseWait
-	special Special_WaitForLinkedFriend
+	special WaitForLinkedFriend
 	iffalse .FriendNotReady
 	writetext Text_MustSaveGame
 	yesorno
 	iffalse .DidNotSave
-	special Special_TryQuickSave
+	special TryQuickSave
 	iffalse .DidNotSave
 	writetext Text_PleaseWait
-	special Special_CheckLinkTimeout
+	special CheckLinkTimeout
 	iffalse .LinkTimedOut
 	copybytetovar wOtherPlayerLinkMode
 	iffalse .LinkedToFirstGen
-	special Special_CheckBothSelectedSameRoom
+	special CheckBothSelectedSameRoom
 	iffalse .IncompatibleRooms
 	writetext Text_PleaseComeIn2
 	waitbutton
@@ -209,21 +209,21 @@ LinkReceptionistScript_Battle:
 	end
 
 .FriendNotReady:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
 	closetext
 	end
 
 .LinkedToFirstGen:
-	special Special_FailedLinkToPast
+	special FailedLinkToPast
 	writetext Text_CantLinkToThePast
-	special Special_CloseLink
+	special CloseLink
 	closetext
 	end
 
 .IncompatibleRooms:
 	writetext Text_IncompatibleRooms
-	special Special_CloseLink
+	special CloseLink
 	closetext
 	end
 
@@ -234,7 +234,7 @@ LinkReceptionistScript_Battle:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .AbortLink:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 .Cancel:
 	closetext
 	end
@@ -255,9 +255,9 @@ LinkReceptionistScript_Battle:
 	writetext Text_MustSaveGame
 	yesorno
 	iffalse .Mobile_DidNotSave
-	special Special_Function103780
+	special Function103780
 	iffalse .Mobile_DidNotSave
-	special Special_Function1011f1
+	special Function1011f1
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
@@ -271,7 +271,7 @@ LinkReceptionistScript_Battle:
 	end
 
 .SelectThreeMons:
-	special Special_Mobile_SelectThreeMons
+	special Mobile_SelectThreeMons
 	iffalse .Mobile_DidNotSelect
 	if_equal $1, .Mobile_OK
 	if_equal $2, .Mobile_OK
@@ -303,37 +303,37 @@ LinkReceptionistScript_TimeCapsule:
 	iftrue Script_TimeCapsuleClosed
 	checkflag ENGINE_TIME_CAPSULE
 	iftrue Script_TimeCapsuleClosed
-	special Special_SetBitsForTimeCapsuleRequest
+	special SetBitsForTimeCapsuleRequest
 	faceplayer
 	opentext
 	writetext Text_TimeCapsuleReceptionistIntro
 	yesorno
 	iffalse .Cancel
-	special Special_CheckTimeCapsuleCompatibility
+	special CheckTimeCapsuleCompatibility
 	if_equal $1, .MonTooNew
 	if_equal $2, .MonMoveTooNew
 	if_equal $3, .MonHasMail
 	writetext Text_PleaseWait
-	special Special_WaitForLinkedFriend
+	special WaitForLinkedFriend
 	iffalse .FriendNotReady
 	writetext Text_MustSaveGame
 	yesorno
 	iffalse .DidNotSave
-	special Special_TryQuickSave
+	special TryQuickSave
 	iffalse .DidNotSave
 	writetext Text_PleaseWait
-	special Special_CheckLinkTimeout
+	special CheckLinkTimeout
 	iffalse .LinkTimedOut
 	copybytetovar wOtherPlayerLinkMode
 	iffalse .OK
-	special Special_CheckBothSelectedSameRoom
+	special CheckBothSelectedSameRoom
 	writetext Text_IncompatibleRooms
-	special Special_CloseLink
+	special CloseLink
 	closetext
 	end
 
 .OK:
-	special Special_EnterTimeCapsule
+	special EnterTimeCapsule
 	writetext Text_PleaseComeIn2
 	waitbutton
 	closetext
@@ -342,7 +342,7 @@ LinkReceptionistScript_TimeCapsule:
 	end
 
 .FriendNotReady:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 	writetext Text_FriendNotReady
 	closetext
 	end
@@ -354,7 +354,7 @@ LinkReceptionistScript_TimeCapsule:
 .DidNotSave:
 	writetext Text_PleaseComeAgain
 .Cancel:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 	closetext
 	end
 
@@ -374,14 +374,14 @@ LinkReceptionistScript_TimeCapsule:
 	end
 
 Script_LeftCableTradeCenter:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkTradeRoom
 	setscene 0
 	setmapscene TRADE_CENTER, 0
 	end
 
 Script_LeftMobileTradeRoom:
-	special Special_Function101220
+	special Function101220
 	scall Script_WalkOutOfMobileTradeRoom
 	setscene 0
 	setmapscene MOBILE_TRADE_ROOM_MOBILE, 0
@@ -394,14 +394,14 @@ Script_WalkOutOfMobileTradeRoom:
 	end
 
 Script_LeftCableColosseum:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 	scall Script_WalkOutOfLinkBattleRoom
 	setscene 0
 	setmapscene COLOSSEUM, 0
 	end
 
 Script_LeftMobileBattleRoom:
-	special Special_Function101220
+	special Function101220
 	scall Script_WalkOutOfMobileBattleRoom
 	setscene 0
 	setmapscene MOBILE_BATTLE_ROOM, 0
@@ -436,7 +436,7 @@ Pokecenter2F_CheckGender:
 	playsound SFX_TINGLE
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (PAL_NPC_RED << 4)
-	special Special_SetPlayerPalette
+	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
 	special ReplaceKrisSprite
@@ -463,7 +463,7 @@ Script_WalkOutOfLinkTradeRoom:
 	playsound SFX_TINGLE
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (PAL_NPC_BLUE << 4)
-	special Special_SetPlayerPalette
+	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	special ReplaceKrisSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2
@@ -485,7 +485,7 @@ Script_WalkOutOfLinkBattleRoom:
 	playsound SFX_TINGLE
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (PAL_NPC_BLUE << 4)
-	special Special_SetPlayerPalette
+	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	special ReplaceKrisSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsDown_2
@@ -544,7 +544,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	playsound SFX_TINGLE
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (PAL_NPC_RED << 4)
-	special Special_SetPlayerPalette
+	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingDown
 	faceobject PLAYER, POKECENTER2F_TIME_CAPSULE_RECEPTIONIST
 	setflag ENGINE_KRIS_IN_CABLE_CLUB
@@ -558,7 +558,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	end
 
 Script_LeftTimeCapsule:
-	special Special_WaitForOtherPlayerToExit
+	special WaitForOtherPlayerToExit
 	checkflag ENGINE_KRIS_IN_CABLE_CLUB
 	iftrue .Female
 	applymovement POKECENTER2F_TIME_CAPSULE_RECEPTIONIST, Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight
@@ -573,7 +573,7 @@ Script_LeftTimeCapsule:
 	playsound SFX_TINGLE
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingRight
 	writebyte (PAL_NPC_BLUE << 4)
-	special Special_SetPlayerPalette
+	special SetPlayerPalette
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerSpinsClockwiseEndsFacingLeft
 	special ReplaceKrisSprite
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepDown
@@ -585,7 +585,7 @@ Script_LeftTimeCapsule:
 
 MapPokecenter2FSignpost0Script:
 	refreshscreen
-	special Special_DisplayLinkRecord
+	special DisplayLinkRecord
 	closetext
 	end
 
@@ -600,7 +600,7 @@ OfficerScript_0x192c9a:
 	writetext Text_MysteryGiftDeliveryGuy_HereYouGo
 	buttonsound
 	waitsfx
-	special Special_GetMysteryGiftItem
+	special GetMysteryGiftItem
 	iffalse .BagIsFull
 	itemnotify
 	setevent EVENT_MYSTERY_GIFT_DELIVERY_GUY

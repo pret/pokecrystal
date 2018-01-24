@@ -1,7 +1,7 @@
 ; More overworld event handling.
 
 
-Special_WarpToSpawnPoint:: ; 97c28
+WarpToSpawnPoint:: ; 97c28
 	ld hl, wStatusFlags2
 	res STATUSFLAGS2_SAFARI_GAME_F, [hl]
 	res STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]

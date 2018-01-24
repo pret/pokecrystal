@@ -887,7 +887,7 @@ Hatch_ShellFragmentLoop: ; 17418 (5:7418)
 	jr nz, .loop
 	ret
 
-Special_DayCareMon1: ; 17421
+DayCareMon1: ; 17421
 	ld hl, DayCareMon1Text
 	call PrintText
 	ld a, [wBreedMon1Species]
@@ -900,7 +900,7 @@ Special_DayCareMon1: ; 17421
 	call DayCareMonCompatibilityText
 	jp PrintText
 
-Special_DayCareMon2: ; 17440
+DayCareMon2: ; 17440
 	ld hl, DayCareMon2Text
 	call PrintText
 	ld a, [wBreedMon2Species]

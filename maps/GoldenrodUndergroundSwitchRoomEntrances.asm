@@ -121,7 +121,7 @@ TeacherScript_0x7ca7d:
 UndergroundSilverScene1:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
@@ -140,7 +140,7 @@ UndergroundSilverScene1:
 UndergroundSilverScene2:
 	spriteface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER

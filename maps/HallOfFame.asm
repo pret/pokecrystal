@@ -31,7 +31,7 @@ HallOfFame_MapScripts:
 	setscene 1
 	pause 15
 	writebyte HEALMACHINE_HALL_OF_FAME
-	special Special_HealMachineAnim
+	special HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER

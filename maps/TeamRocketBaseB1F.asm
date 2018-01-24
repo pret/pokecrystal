@@ -448,9 +448,9 @@ ExplodingTrap22:
 	end
 
 VoltorbExplodingTrap:
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	cry VOLTORB
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	setlasttalked -1
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadwildmon VOLTORB, 23
@@ -458,9 +458,9 @@ VoltorbExplodingTrap:
 	end
 
 GeodudeExplodingTrap:
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	cry GEODUDE
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	setlasttalked -1
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadwildmon GEODUDE, 21
@@ -468,9 +468,9 @@ GeodudeExplodingTrap:
 	end
 
 KoffingExplodingTrap:
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	cry KOFFING
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	setlasttalked -1
 	writecode VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadwildmon KOFFING, 21

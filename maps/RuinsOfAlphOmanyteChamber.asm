@@ -9,7 +9,7 @@ RuinsOfAlphOmanyteChamber_MapScripts:
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
-	special Special_OmanyteChamber
+	special OmanyteChamber
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .OpenWall
 	end
@@ -51,7 +51,7 @@ RuinsOfAlphOmanyteChamber_MapScripts:
 MapRuinsOfAlphOmanyteChamberSignpost2Script:
 	refreshscreen
 	writebyte UNOWNPUZZLE_OMANYTE
-	special Special_UnownPuzzle
+	special UnownPuzzle
 	closetext
 	iftrue UnknownScript_0x58c36
 	end
@@ -85,7 +85,7 @@ MapRuinsOfAlphOmanyteChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58c8e
 	writebyte UNOWNWORDS_WATER
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -95,7 +95,7 @@ MapRuinsOfAlphOmanyteChamberSignpost5Script:
 	opentext
 	writetext UnknownText_0x58cc0
 	writebyte UNOWNWORDS_WATER
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 

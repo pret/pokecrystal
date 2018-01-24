@@ -51,7 +51,7 @@ BurnedTower1F_MapScripts:
 
 BurnedTowerRivalBattleScript:
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_SILVER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	spriteface BURNEDTOWER1F_SILVER, RIGHT
 	pause 15
@@ -100,7 +100,7 @@ BurnedTowerRivalBattleScript:
 	closetext
 	setscene 2
 	setevent EVENT_RIVAL_BURNED_TOWER
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	earthquake 50
 	showemote EMOTE_SHOCK, PLAYER, 15

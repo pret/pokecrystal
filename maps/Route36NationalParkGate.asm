@@ -75,14 +75,14 @@ Route36NationalParkGate_MapScripts:
 	writetext UnknownText_0x6b2c5
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	scall .CopyContestants
 	disappear ROUTE36NATIONALPARKGATE_OFFICER1
 	appear ROUTE36NATIONALPARKGATE_OFFICER2
 	applymovement PLAYER, MovementData_0x6add1
 	pause 15
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	jumpstd bugcontestresults
 
 .GoBackToContest:
@@ -91,7 +91,7 @@ Route36NationalParkGate_MapScripts:
 	closetext
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	waitsfx
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, 33, 18
 	end
@@ -156,7 +156,7 @@ Route36OfficerScriptContest:
 	iffalse .DecidedNotToJoinContest
 	checkcode VAR_PARTYCOUNT
 	if_greater_than 1, .LeaveMonsWithOfficer
-	special Special_ContestDropOffMons
+	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 .ResumeStartingContest:
 	setflag ENGINE_BUG_CONTEST_TIMER
@@ -171,12 +171,12 @@ Route36OfficerScriptContest:
 	waitbutton
 	closetext
 	setflag ENGINE_BUG_CONTEST_TIMER
-	special Special_GiveParkBalls
+	special GiveParkBalls
 	spriteface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	waitsfx
-	special Special_SelectRandomBugContestContestants
+	special SelectRandomBugContestContestants
 	warpfacing LEFT, NATIONAL_PARK_BUG_CONTEST, 33, 18
 	end
 
@@ -186,12 +186,12 @@ Route36OfficerScriptContest:
 	checkcode VAR_BOXSPACE
 	if_equal 0, .BoxFull
 .ContinueLeavingMons:
-	special Special_CheckFirstMonIsEgg
+	special CheckFirstMonIsEgg
 	if_equal TRUE, .FirstMonIsEgg
 	writetext UnknownText_0x6afb0
 	yesorno
 	iffalse .RefusedToLeaveMons
-	special Special_ContestDropOffMons
+	special ContestDropOffMons
 	iftrue .FirstMonIsFainted
 	setevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	writetext UnknownText_0x6b021

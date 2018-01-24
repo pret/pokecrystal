@@ -51,7 +51,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
 - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
 - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
-- [`Special_CheckBugContestContestantFlag` can read beyond its data table](#special_checkbugcontestcontestantflag-can-read-beyond-its-data-table)
+- [`CheckBugContestContestantFlag` can read beyond its data table](#checkbugcontestcontestantflag-can-read-beyond-its-data-table)
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
 
 
@@ -1417,12 +1417,12 @@ In [engine/events.asm](/engine/events.asm):
 **Fix:** Uncomment `pop bc`.
 
 
-## `Special_CheckBugContestContestantFlag` can read beyond its data table
+## `CheckBugContestContestantFlag` can read beyond its data table
 
 In [engine/events/bug_contest/contest_2.asm](/engine/events/bug_contest/contest_2.asm):
 
 ```asm
-Special_CheckBugContestContestantFlag: ; 139ed
+CheckBugContestContestantFlag: ; 139ed
 ; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
 
 ; Bug: If a >= 10 when this is called, it will read beyond the table.

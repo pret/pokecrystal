@@ -56,7 +56,7 @@ Route34_MapScripts:
 DayCareManScript_Outside:
 	faceplayer
 	opentext
-	special Special_DayCareManOutside
+	special DayCareManOutside
 	waitbutton
 	closetext
 	if_equal TRUE, .end_fail
@@ -77,13 +77,13 @@ DayCareManScript_Outside:
 
 DayCareMon1Script:
 	opentext
-	special Special_DayCareMon1
+	special DayCareMon1
 	closetext
 	end
 
 DayCareMon2Script:
 	opentext
-	special Special_DayCareMon2
+	special DayCareMon2
 	closetext
 	end
 

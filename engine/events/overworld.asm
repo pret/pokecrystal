@@ -422,7 +422,7 @@ UsedSurfScript: ; c986
 	special ReplaceKrisSprite
 	special PlayMapMusic
 ; step into the water
-	special Special_SurfStartStep ; (slow_step_x, step_end)
+	special SurfStartStep ; (slow_step_x, step_end)
 	applymovement PLAYER, MovementBuffer ; PLAYER, MovementBuffer
 	end
 
@@ -623,7 +623,7 @@ FlyFunction: ; ca3b
 	special UpdateTimePals
 	callasm FlyFromAnim
 	farscall Script_AbortBugContest
-	special Special_WarpToSpawnPoint
+	special WarpToSpawnPoint
 	callasm DelayLoadingNewSprites
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_FLY
@@ -871,7 +871,7 @@ dig_incave
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .DigOut
 	farscall Script_AbortBugContest
-	special Special_WarpToSpawnPoint
+	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_DOOR
 	playsound SFX_WARP_FROM
@@ -958,7 +958,7 @@ TeleportFunction: ; cc61
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .TeleportFrom
 	farscall Script_AbortBugContest
-	special Special_WarpToSpawnPoint
+	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_TELEPORT
 	playsound SFX_WARP_FROM

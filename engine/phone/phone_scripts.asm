@@ -392,7 +392,7 @@ HueyPhoneScript1:
 	iftrue HueyWednesdayNight
 
 .NotWednesday:
-	special Special_RandomPhoneMon
+	special RandomPhoneMon
 	farjump UnknownScript_0xa0908
 
 .WantsBattle:
@@ -629,7 +629,7 @@ JoeyPhoneScript1:
 	iftrue JoeyMondayAfternoon
 
 .NotMonday:
-	special Special_RandomPhoneMon
+	special RandomPhoneMon
 	farjump UnknownScript_0xa0930
 
 .WantsBattle:
@@ -830,7 +830,7 @@ Ralph_SetUpSwarm:
 	pokenamemem QWILFISH, MEM_BUFFER_1
 	landmarktotext ROUTE_32, MEM_BUFFER_2
 	writebyte FISHSWARM_QWILFISH
-	special Special_ActivateFishingSwarm
+	special ActivateFishingSwarm
 	farjump UnknownScript_0xa05d6
 
 .Generic:
@@ -851,7 +851,7 @@ LizPhoneScript1:
 	iftrue LizThursdayAfternoon
 
 .NotThursday:
-	special Special_RandomPhoneMon
+	special RandomPhoneMon
 	farjump UnknownScript_0xa0948
 
 .WantsBattle:

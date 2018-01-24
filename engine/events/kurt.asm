@@ -22,7 +22,7 @@ Kurt_PrintTextHowMany: ; 8800c
 	db "@"
 ; 0x88018
 
-Special_SelectApricornForKurt: ; 88018
+SelectApricornForKurt: ; 88018
 	call LoadStandardMenuHeader
 	ld c, $1
 	xor a

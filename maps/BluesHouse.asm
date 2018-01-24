@@ -26,21 +26,21 @@ DaisyScript:
 	iffalse .Refused
 	writetext DaisyWhichMonText
 	waitbutton
-	special Special_DaisysGrooming
+	special DaisysGrooming
 	if_equal $0, .Refused
 	if_equal $1, .CantGroomEgg
 	setflag ENGINE_DAISYS_GROOMING
 	writetext DaisyAlrightText
 	waitbutton
 	closetext
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext GroomedMonLooksContentText
-	special Special_PlayCurMonCry
+	special PlayCurMonCry
 	buttonsound
 	writetext DaisyAllDoneText
 	waitbutton

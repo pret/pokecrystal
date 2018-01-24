@@ -1,4 +1,4 @@
-Special_SelectRandomBugContestContestants: ; 139a8
+SelectRandomBugContestContestants: ; 139a8
 ; Select five random people to participate in the current contest.
 
 ; First we have to make sure that any old data is cleared away.
@@ -56,7 +56,7 @@ Special_SelectRandomBugContestContestants: ; 139a8
 	ret
 ; 139ed
 
-Special_CheckBugContestContestantFlag: ; 139ed
+CheckBugContestContestantFlag: ; 139ed
 ; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
 
 ; Bug: If a >= NUM_BUG_CONTESTANTS when this is called, it will read beyond the table.
@@ -76,7 +76,7 @@ Special_CheckBugContestContestantFlag: ; 139ed
 
 INCLUDE "data/bug_contest_flags.asm"
 
-Special_ContestDropOffMons: ; 13a12
+ContestDropOffMons: ; 13a12
 	ld hl, PartyMon1HP
 	ld a, [hli]
 	or [hl]
@@ -101,7 +101,7 @@ Special_ContestDropOffMons: ; 13a12
 	ret
 ; 13a31
 
-Special_ContestReturnMons: ; 13a31
+ContestReturnMons: ; 13a31
 ; Restore the species of the second mon.
 	ld hl, PartySpecies + 1
 	ld a, [wBugContestSecondPartySpecies]

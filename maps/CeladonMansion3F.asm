@@ -28,7 +28,7 @@ UnknownScript_0x7167e:
 	waitsfx
 	writetext UnknownText_0x71760
 	buttonsound
-	special Special_Diploma
+	special Diploma
 	writetext UnknownText_0x71763
 	waitbutton
 	closetext
@@ -49,7 +49,7 @@ UnknownScript_0x716a4:
 	writetext UnknownText_0x717d8
 	yesorno
 	iffalse UnknownScript_0x716b0
-	special Special_PrintDiploma
+	special PrintDiploma
 	closetext
 	end
 

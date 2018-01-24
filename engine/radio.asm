@@ -972,9 +972,9 @@ BenFernText3B:
 
 LuckyNumberShow1:
 	call StartRadioStation
-	callfar Special_CheckLuckyNumberShowFlag
+	callfar CheckLuckyNumberShowFlag
 	jr nc, .dontreset
-	callfar Special_ResetLuckyNumberShowFlag
+	callfar ResetLuckyNumberShowFlag
 .dontreset
 	ld hl, LC_Text1
 	ld a, LUCKY_NUMBER_SHOW_2

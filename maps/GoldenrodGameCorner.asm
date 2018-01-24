@@ -60,7 +60,7 @@ GoldenrodGmeCornerTMVendorScript:
 	iffalse GoldenrodGameCornerPrizeVendor_NoCoinCaseScript
 	writetext GoldenrodGameCornerPrizeVendorWhichPrizeText
 GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
-	special Special_DisplayCoinCaseBalance
+	special DisplayCoinCaseBalance
 	loadmenuheader GoldenrodGameCornerTMVendorMenuHeader
 	verticalmenu
 	closewindow
@@ -161,7 +161,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	iffalse GoldenrodGameCornerPrizeVendor_NoCoinCaseScript
 .loop
 	writetext GoldenrodGameCornerPrizeVendorWhichPrizeText
-	special Special_DisplayCoinCaseBalance
+	special DisplayCoinCaseBalance
 	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow
@@ -183,7 +183,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
 	writebyte ABRA
-	special Special_GameCornerPrizeMonCheckDex
+	special GameCornerPrizeMonCheckDex
 	givepoke ABRA, 5
 	takecoins 100
 	jump .loop
@@ -201,7 +201,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
 	writebyte CUBONE
-	special Special_GameCornerPrizeMonCheckDex
+	special GameCornerPrizeMonCheckDex
 	givepoke CUBONE, 15
 	takecoins 800
 	jump .loop
@@ -219,7 +219,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
 	waitbutton
 	writebyte WOBBUFFET
-	special Special_GameCornerPrizeMonCheckDex
+	special GameCornerPrizeMonCheckDex
 	givepoke WOBBUFFET, 15
 	takecoins 1500
 	jump .loop
@@ -297,20 +297,20 @@ GoldenrodGameCornerSlotsMachineScript:
 	if_equal 0, GoldenrodGameCornerLuckySlotsMachineScript
 	refreshscreen
 	writebyte FALSE
-	special Special_SlotMachine
+	special SlotMachine
 	closetext
 	end
 
 GoldenrodGameCornerLuckySlotsMachineScript:
 	refreshscreen
 	writebyte TRUE
-	special Special_SlotMachine
+	special SlotMachine
 	closetext
 	end
 
 GoldenrodGameCornerCardFlipMachineScript:
 	refreshscreen
-	special Special_CardFlip
+	special CardFlip
 	closetext
 	end
 

@@ -48,18 +48,18 @@ UnknownScript_0x7a4f6:
 	clearevent EVENT_PLAYERS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
 	buttonsound
-	special Special_SetDayOfWeek
+	special SetDayOfWeek
 UnknownScript_0x7a519:
 	writetext UnknownText_0x7a742
 	yesorno
 	iffalse UnknownScript_0x7a52a
-	special Special_InitialSetDSTFlag
+	special InitialSetDSTFlag
 	yesorno
 	iffalse UnknownScript_0x7a519
 	jump UnknownScript_0x7a531
 
 UnknownScript_0x7a52a:
-	special Special_InitialClearDSTFlag
+	special InitialClearDSTFlag
 	yesorno
 	iffalse UnknownScript_0x7a519
 UnknownScript_0x7a531:
@@ -147,7 +147,7 @@ UnknownScript_0x7a5b5:
 	setevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 UnknownScript_0x7a5b8:
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	special Special_BankOfMom
+	special BankOfMom
 	waitbutton
 	closetext
 	end

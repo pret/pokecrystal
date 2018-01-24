@@ -42,7 +42,7 @@ VermilionCitySuperNerdScript:
 
 VermilionSnorlax:
 	opentext
-	special Special_SnorlaxAwake
+	special SnorlaxAwake
 	iftrue UnknownScript_0x1aa9ab
 	writetext UnknownText_0x1aab64
 	waitbutton

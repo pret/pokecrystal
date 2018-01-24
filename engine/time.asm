@@ -125,12 +125,12 @@ endr
 	dec [hl]
 	jr nz, .DontRestartKenjiBreakCountdown
 .RestartKenjiBreakCountdown:
-	call Special_SampleKenjiBreakCountdown
+	call SampleKenjiBreakCountdown
 .DontRestartKenjiBreakCountdown:
 	jr RestartDailyResetTimer
 ; 11485
 
-Special_SampleKenjiBreakCountdown: ; 11485
+SampleKenjiBreakCountdown: ; 11485
 ; Generate a random number between 3 and 6
 	call Random
 	and %11

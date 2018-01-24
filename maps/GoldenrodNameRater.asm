@@ -11,7 +11,7 @@ GoldenrodNameRater_MapScripts:
 GoldenrodNameRater:
 	faceplayer
 	opentext
-	special Special_NameRater
+	special NameRater
 	waitbutton
 	closetext
 	end

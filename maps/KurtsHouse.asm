@@ -44,7 +44,7 @@ KurtScript_0x18e178:
 	writetext UnknownText_0x18e473
 	waitbutton
 	closetext
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
 	if_equal UP, .RunAround
@@ -131,7 +131,7 @@ KurtScript_0x18e178:
 	writetext UnknownText_0x18e736
 	buttonsound
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	special Special_SelectApricornForKurt
+	special SelectApricornForKurt
 	if_equal FALSE, .Cancel
 	if_equal BLU_APRICORN, .Blu
 	if_equal YLW_APRICORN, .Ylw
@@ -291,7 +291,7 @@ KurtScript_0x18e178:
 	setevent EVENT_FOREST_IS_RESTLESS
 	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	clearevent EVENT_GAVE_GS_BALL_TO_KURT
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 20
 	showemote EMOTE_SHOCK, KURTSHOUSE_KURT1, 30
 	checkcode VAR_FACING

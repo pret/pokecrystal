@@ -94,8 +94,8 @@ DidntCatchSudowoodo:
 	applymovement ROUTE36_WEIRD_TREE, WeirdTreeMovement_Flee
 	disappear ROUTE36_WEIRD_TREE
 	variablesprite SPRITE_WEIRD_TREE, SPRITE_TWIN
-	special Special_LoadUsedSpritesGFX
-	special Special_RefreshSprites
+	special LoadUsedSpritesGFX
+	special RefreshSprites
 	end
 
 Route36FloriaScript:

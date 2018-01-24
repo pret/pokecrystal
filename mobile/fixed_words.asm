@@ -274,7 +274,7 @@ CopyMobileEZChatToC608: ; 11c156
 	jr .copy_string
 ; 11c1ab
 
-Special_Function11c1ab: ; 11c1ab
+Function11c1ab: ; 11c1ab
 	ld a, [hInMenu]
 	push af
 	ld a, $1

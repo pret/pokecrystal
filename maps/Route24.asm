@@ -24,15 +24,15 @@ RocketScript_0x1adbfa:
 	opentext
 	writetext UnknownText_0x1addc0
 	buttonsound
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	writetext UnknownText_0x1adee1
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear ROUTE24_ROCKET
 	pause 25
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	playmapmusic
 	end
 

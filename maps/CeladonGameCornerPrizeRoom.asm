@@ -24,7 +24,7 @@ CeladonGameCornerPrizeRoomTMVendor:
 	iffalse CeladonPrizeRoom_NoCoinCase
 	writetext CeladonPrizeRoom_AskWhichPrizeText
 CeladonPrizeRoom_tmcounterloop:
-	special Special_DisplayCoinCaseBalance
+	special DisplayCoinCaseBalance
 	loadmenuheader CeladonPrizeRoom_TMMenuHeader
 	verticalmenu
 	closewindow
@@ -125,7 +125,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	iffalse CeladonPrizeRoom_NoCoinCase
 .loop
 	writetext CeladonPrizeRoom_AskWhichPrizeText
-	special Special_DisplayCoinCaseBalance
+	special DisplayCoinCaseBalance
 	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow
@@ -147,7 +147,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
 	writebyte PIKACHU
-	special Special_GameCornerPrizeMonCheckDex
+	special GameCornerPrizeMonCheckDex
 	givepoke PIKACHU, 25
 	takecoins 2222
 	jump .loop
@@ -165,7 +165,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
 	writebyte PORYGON
-	special Special_GameCornerPrizeMonCheckDex
+	special GameCornerPrizeMonCheckDex
 	givepoke PORYGON, 15
 	takecoins 5555
 	jump .loop
@@ -183,7 +183,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	writetext CeladonPrizeRoom_HereYouGoText
 	waitbutton
 	writebyte LARVITAR
-	special Special_GameCornerPrizeMonCheckDex
+	special GameCornerPrizeMonCheckDex
 	givepoke LARVITAR, 40
 	takecoins 8888
 	jump .loop

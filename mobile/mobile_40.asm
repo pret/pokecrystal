@@ -318,7 +318,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	farcall Special_FadeOutPalettes
+	farcall FadeOutPalettes
 	farcall Function106464
 	call HideSprites
 	call DelayFrame
@@ -2803,7 +2803,7 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 	ret
 ; 1011f1
 
-Special_Function1011f1: ; 1011f1
+Function1011f1: ; 1011f1
 	ld a, $04
 	call GetSRAMBank
 	ld a, [$a60c]
@@ -2827,20 +2827,20 @@ Special_Function1011f1: ; 1011f1
 	ret
 ; 101220
 
-Special_Function101220: ; 101220
+Function101220: ; 101220
 	xor a
 	ld [wLinkMode], a
 	ret
 ; 101225
 
-Special_Function101225: ; 101225
+Function101225: ; 101225
 	ld d, 1
 	ld e, BANK(Jumptable_101297)
 	ld bc, Jumptable_101297
 	call Function100000
 	jr Function10123d
 
-Special_Function101231: ; 101231
+Function101231: ; 101231
 	ld d, 2
 	ld e, BANK(Jumptable_101297)
 	ld bc, Jumptable_101297
@@ -2871,7 +2871,7 @@ Function101251: ; 101251
 	call Function1021e0
 	call Function1020ea
 	ret c
-	call Special_Function102142
+	call Function102142
 	ret
 ; 101265
 
@@ -5024,7 +5024,7 @@ Function102112: ; 102112
 	ret
 ; 102142
 
-Special_Function102142: ; 102142
+Function102142: ; 102142
 	call Function10218d
 	call Function102180
 	ld hl, UnknownText_0x1021d1
@@ -7722,9 +7722,9 @@ Unknown_1035d7: ; 1035d7
 	dw Unknown_103608
 	dw Unknown_103608
 	dw Unknown_1035fe
-	dw Special_AskMobileOrCable
-	dw Special_AskMobileOrCable
-	dw Special_AskMobileOrCable
+	dw AskMobileOrCable
+	dw AskMobileOrCable
+	dw AskMobileOrCable
 
 Unknown_1035e7: ; 1035e7
 	dwcoord 0, 6
@@ -7755,7 +7755,7 @@ Unknown_103608: ; 103608
 	db 2, 2, 3
 ; 103612
 
-Special_AskMobileOrCable: ; 103612
+AskMobileOrCable: ; 103612
 	ld hl, MenuHeader_103640
 	call LoadMenuHeader
 	ld a, [wMobileOrCable_LastSelection]
@@ -7811,7 +7811,7 @@ Function103654: ; 103654
 	ret
 ; 10366e
 
-Special_Mobile_SelectThreeMons: ; 10366e
+Mobile_SelectThreeMons: ; 10366e
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr z, .asm_10369b
@@ -7979,7 +7979,7 @@ UnknownText_0x10377b: ; 0x10377b
 	db "@"
 ; 0x103780
 
-Special_Function103780: ; 103780
+Function103780: ; 103780
 	ld a, [wd265]
 	push af
 	call Function10378c
@@ -8021,7 +8021,7 @@ Function10378c: ; 10378c
 	ret
 ; 1037c2
 
-Special_Function1037c2: ; 1037c2
+Function1037c2: ; 1037c2
 	call Function103823
 	jr c, .nope
 	ld a, [wdc5f]
@@ -8047,7 +8047,7 @@ UnknownText_0x1037e6: ; 0x1037e6
 	db "@"
 ; 0x1037eb
 
-Special_Function1037eb: ; 1037eb
+Function1037eb: ; 1037eb
 	call Function103823
 	jr nc, .asm_103807
 	ld hl, UnknownText_0x103819
@@ -8102,7 +8102,7 @@ Function103823: ; 103823
 	ret
 ; 10383c
 
-Special_Function10383c: ; 10383c
+Function10383c: ; 10383c
 	ld a, $01
 	ld [wdc60], a
 	xor a
@@ -8135,7 +8135,7 @@ UnknownText_0x103876: ; 0x103876
 	db "@"
 ; 0x10387b
 
-Special_Function10387b: ; 10387b
+Function10387b: ; 10387b
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	ret nz

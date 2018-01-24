@@ -109,7 +109,7 @@ UnknownScript_0x6cfac:
 	writetext UnknownText_0x6d4c6
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear TEAMROCKETBASEB2F_ROCKET1
 	disappear TEAMROCKETBASEB2F_ROCKET_GIRL
@@ -117,7 +117,7 @@ UnknownScript_0x6cfac:
 	disappear TEAMROCKETBASEB2F_ROCKET3
 	disappear TEAMROCKETBASEB2F_ROCKET4
 	pause 15
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	setscene 2
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	spriteface TEAMROCKETBASEB2F_LANCE, DOWN
@@ -166,11 +166,11 @@ LanceHealsCommon:
 	writetext LanceHealsText1
 	waitbutton
 	closetext
-	special Special_FadeOutPalettes
-	special Special_StubbedTrainerRankings_Healings
+	special FadeOutPalettes
+	special StubbedTrainerRankings_Healings
 	playsound SFX_FULL_HEAL
 	special HealParty
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	opentext
 	writetext LanceHealsText2
 	waitbutton

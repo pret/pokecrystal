@@ -407,7 +407,7 @@ TimeSetDownArrowGFX: ; 9090b
 INCBIN "gfx/new_game/down_arrow.1bpp"
 ; 90913
 
-Special_SetDayOfWeek: ; 90913
+SetDayOfWeek: ; 90913
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -573,7 +573,7 @@ Special_SetDayOfWeek: ; 90913
 	db "@"
 ; 0x90a54
 
-Special_InitialSetDSTFlag: ; 90a54
+InitialSetDSTFlag: ; 90a54
 	ld a, [wDST]
 	set 7, a
 	ld [wDST], a
@@ -604,7 +604,7 @@ Special_InitialSetDSTFlag: ; 90a54
 	db "@"
 ; 0x90a88
 
-Special_InitialClearDSTFlag: ; 90a88
+InitialClearDSTFlag: ; 90a88
 	ld a, [wDST]
 	res 7, a
 	ld [wDST], a

@@ -115,20 +115,20 @@ CeladonGameCornerLuckySlotMachineScript:
 	if_equal 0, CeladonGameCornerSlotMachineScript
 	refreshscreen
 	writebyte FALSE
-	special Special_SlotMachine
+	special SlotMachine
 	closetext
 	end
 
 CeladonGameCornerSlotMachineScript:
 	refreshscreen
 	writebyte TRUE
-	special Special_SlotMachine
+	special SlotMachine
 	closetext
 	end
 
 CeladonGameCornerCardFlipScript:
 	refreshscreen
-	special Special_CardFlip
+	special CardFlip
 	closetext
 	end
 
@@ -139,7 +139,7 @@ MapCeladonGameCornerSignpost9Script:
 	opentext
 	writetext UnknownText_0x72567
 	waitbutton
-	special Special_CardFlip
+	special CardFlip
 	closetext
 	end
 

@@ -443,7 +443,7 @@ GetMartDialogGroup: ; 15ca3
 
 
 BuyMenuLoop: ; 15cef
-	farcall Special_PlaceMoneyTopRight
+	farcall PlaceMoneyTopRight
 	call UpdateSprites
 	ld hl, MenuHeader_Buy
 	call CopyMenuHeader

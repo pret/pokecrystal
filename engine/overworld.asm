@@ -23,7 +23,7 @@ Function14146: ; mobile
 	push af
 	res 7, [hl]
 	set 6, [hl]
-	call Special_LoadUsedSpritesGFX
+	call LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
@@ -35,15 +35,15 @@ Function14157: ; mobile
 	push af
 	set 7, [hl]
 	res 6, [hl]
-	call Special_LoadUsedSpritesGFX
+	call LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
 ; 14168
 
-Special_RefreshSprites:: ; 14168
+RefreshSprites:: ; 14168
 	call .Refresh
-	call Special_LoadUsedSpritesGFX
+	call LoadUsedSpritesGFX
 	ret
 ; 1416f
 
@@ -164,7 +164,7 @@ AddOutdoorSprites: ; 141ee
 ; 14209
 
 
-Special_LoadUsedSpritesGFX: ; 14209
+LoadUsedSpritesGFX: ; 14209
 	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites

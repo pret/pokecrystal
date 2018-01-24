@@ -1240,7 +1240,7 @@ PhoneScript_Generic_Female:
 	end
 
 PhoneScript_MonFlavorText:
-	special Special_RandomPhoneMon
+	special RandomPhoneMon
 	farscall PhoneScript_Random2
 	if_equal $0, .TooEnergetic
 	farwritetext UnknownText_0x1b518b

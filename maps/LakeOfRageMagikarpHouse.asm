@@ -40,11 +40,11 @@ UnknownScript_0x19a6d7:
 
 UnknownScript_0x19a6e0:
 	writebyte MAGIKARP
-	special Special_FindPartyMonThatSpecies
+	special FindPartyMonThatSpecies
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
 	waitbutton
-	special Special_CheckMagikarpLength
+	special CheckMagikarpLength
 	if_equal MAGIKARPLENGTH_NOT_MAGIKARP, UnknownScript_0x19a71c
 	if_equal MAGIKARPLENGTH_REFUSED, UnknownScript_0x19a722
 	if_equal MAGIKARPLENGTH_TOO_SHORT, UnknownScript_0x19a716

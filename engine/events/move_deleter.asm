@@ -1,4 +1,4 @@
-Special_MoveDeletion:
+MoveDeletion:
 	ld hl, .IntroText
 	call PrintText
 	call YesNoBox

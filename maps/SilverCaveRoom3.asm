@@ -9,7 +9,7 @@ SilverCaveRoom3_MapScripts:
 	db 0
 
 Red:
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	faceplayer
 	opentext
 	writetext .Text1
@@ -20,16 +20,16 @@ Red:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	opentext
 	writetext .Text3
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear SILVERCAVEROOM3_RED
 	pause 15
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	pause 30
 	special HealParty
 	refreshscreen

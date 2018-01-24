@@ -10,7 +10,7 @@ Script_OverworldWhiteout:: ; 0x124c8
 Script_Whiteout: ; 0x124ce
 	writetext .WhitedOutText
 	waitbutton
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	pause 40
 	special HealParty
 	checkflag ENGINE_BUG_CONTEST_TIMER
@@ -18,7 +18,7 @@ Script_Whiteout: ; 0x124ce
 	callasm HalveMoney
 	callasm GetWhiteoutSpawn
 	farscall Script_AbortBugContest
-	special Special_WarpToSpawnPoint
+	special WarpToSpawnPoint
 	newloadmap MAPSETUP_WARP
 	end_all
 

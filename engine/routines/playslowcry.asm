@@ -1,4 +1,4 @@
-Special_PlaySlowCry: ; fb841
+PlaySlowCry: ; fb841
 	ld a, [ScriptVar]
 	call LoadCry
 	jr c, .done

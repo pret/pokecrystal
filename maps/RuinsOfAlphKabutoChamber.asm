@@ -57,7 +57,7 @@ RuinsOfAlphKabutoChamberReceptionistScript:
 MapRuinsOfAlphKabutoChamberSignpost2Script:
 	refreshscreen
 	writebyte UNOWNPUZZLE_KABUTO
-	special Special_UnownPuzzle
+	special UnownPuzzle
 	closetext
 	iftrue UnknownScript_0x58778
 	end
@@ -122,7 +122,7 @@ MapRuinsOfAlphKabutoChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58aa7
 	writebyte UNOWNWORDS_ESCAPE
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -132,7 +132,7 @@ MapRuinsOfAlphKabutoChamberSignpost5Script:
 	opentext
 	writetext UnknownText_0x58ad9
 	writebyte UNOWNWORDS_ESCAPE
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 

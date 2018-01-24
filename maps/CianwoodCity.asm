@@ -76,7 +76,7 @@ CianwoodCitySuicuneAndEusine:
 	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00ec
 	disappear CIANWOODCITY_EUSINE
 	pause 20
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	playmapmusic
 	pause 10
 .Done:

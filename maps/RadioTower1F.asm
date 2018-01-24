@@ -34,11 +34,11 @@ GentlemanScript_0x5cd3d:
 	opentext
 	writetext UnknownText_0x5ceba
 	buttonsound
-	special Special_CheckLuckyNumberShowFlag
+	special CheckLuckyNumberShowFlag
 	iffalse .skip
-	special Special_ResetLuckyNumberShowFlag
+	special ResetLuckyNumberShowFlag
 .skip
-	special Special_PrintTodaysLuckyNumber
+	special PrintTodaysLuckyNumber
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue .GameOver
 	writetext UnknownText_0x5cf3a
@@ -53,7 +53,7 @@ GentlemanScript_0x5cd3d:
 	playsound SFX_DEX_FANFARE_20_49
 	waitsfx
 	buttonsound
-	special Special_CheckForLuckyNumberWinners
+	special CheckForLuckyNumberWinners
 	closetext
 	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce74
 	opentext

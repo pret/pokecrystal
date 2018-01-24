@@ -9,7 +9,7 @@ RuinsOfAlphHoOhChamber_MapScripts:
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
-	special Special_HoOhChamber
+	special HoOhChamber
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue .OpenWall
 	end
@@ -51,7 +51,7 @@ RuinsOfAlphHoOhChamber_MapScripts:
 MapRuinsOfAlphHoOhChamberSignpost2Script:
 	refreshscreen
 	writebyte UNOWNPUZZLE_HO_OH
-	special Special_UnownPuzzle
+	special UnownPuzzle
 	closetext
 	iftrue UnknownScript_0x585ba
 	end
@@ -85,7 +85,7 @@ MapRuinsOfAlphHoOhChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58612
 	writebyte UNOWNWORDS_HO_OH
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -95,7 +95,7 @@ MapRuinsOfAlphHoOhChamberSignpost5Script:
 	opentext
 	writetext UnknownText_0x58644
 	writebyte UNOWNWORDS_HO_OH
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 

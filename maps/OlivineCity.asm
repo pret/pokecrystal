@@ -27,7 +27,7 @@ OlivineCity_MapScripts:
 UnknownScript_0x1a8833:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	playsound SFX_ENTER_DOOR
 	appear OLIVINECITY_OLIVINE_RIVAL
@@ -45,13 +45,13 @@ UnknownScript_0x1a8833:
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 	end
 
 UnknownScript_0x1a886b:
 	spriteface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	playsound SFX_ENTER_DOOR
 	appear OLIVINECITY_OLIVINE_RIVAL
@@ -69,7 +69,7 @@ UnknownScript_0x1a886b:
 	setscene 1
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 	end
 
 OlivineCitySailor1Script:

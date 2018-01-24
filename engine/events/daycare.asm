@@ -21,7 +21,7 @@
 	const DAYCARETEXT_OH_FINE
 	const DAYCARETEXT_COME_AGAIN
 
-Special_DayCareMan: ; 166d6
+DayCareMan: ; 166d6
 	ld hl, wDayCareMan
 	bit DAYCAREMAN_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
@@ -60,7 +60,7 @@ Special_DayCareMan: ; 166d6
 	ret
 ; 1672a
 
-Special_DayCareLady: ; 1672a
+DayCareLady: ; 1672a
 	ld hl, wDayCareLady
 	bit DAYCARELADY_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
@@ -427,7 +427,7 @@ PrintDayCareText: ; 1689b
 	db "@"
 ; 0x16936
 
-Special_DayCareManOutside: ; 16936
+DayCareManOutside: ; 16936
 	ld hl, wDayCareMan
 	bit DAYCAREMAN_HAS_EGG_F, [hl]
 	jr nz, .AskGiveEgg

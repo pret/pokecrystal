@@ -27,7 +27,7 @@ PlaceMenuItemQuantity: ; 0x24ac3
 .done
 	ret
 
-Special_PlaceMoneyTopRight: ; 24ae8
+PlaceMoneyTopRight: ; 24ae8
 	ld hl, MenuHeader_0x24b15
 	call CopyMenuHeader
 	jr PlaceMoneyTextBox
@@ -64,7 +64,7 @@ MenuHeader_0x24b1d: ; 0x24b1d
 	dw NULL
 	db 1 ; default option
 
-Special_DisplayCoinCaseBalance: ; 24b25
+DisplayCoinCaseBalance: ; 24b25
 	; Place a text box of size 1x7 at 11, 0.
 	hlcoord 11, 0
 	ld b, 1
@@ -82,7 +82,7 @@ Special_DisplayCoinCaseBalance: ; 24b25
 	call PrintNum
 	ret
 
-Special_DisplayMoneyAndCoinBalance: ; 24b4e
+DisplayMoneyAndCoinBalance: ; 24b4e
 	hlcoord 5, 0
 	ld b, 3
 	ld c, 13

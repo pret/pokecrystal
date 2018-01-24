@@ -76,7 +76,7 @@ DragonsDenB1F_ClairScene:
 	closetext
 .FinishClair:
 	applymovement DRAGONSDENB1F_CLAIR, MovementDragonsDen_ClairWalksAway
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 30
 	special RestartMapMusic
 	disappear DRAGONSDENB1F_CLAIR

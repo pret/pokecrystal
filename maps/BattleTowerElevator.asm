@@ -22,7 +22,7 @@ BattleTowerElevator_MapScripts:
 	applymovement BATTLETOWERELEVATOR_RECEPTIONIST, MovementData_BattleTowerElevatorReceptionistWalksIn
 	applymovement PLAYER, MovementData_BattleTowerElevatorPlayerWalksIn
 	writebyte BATTLETOWERACTION_0A
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitsfx

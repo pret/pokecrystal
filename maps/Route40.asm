@@ -79,7 +79,7 @@ Route40Lass1Script:
 	jumptextfaceplayer Route40Lass1Text
 
 PokefanMScript_0x1a61c7:
-	special Special_Mobile_DummyReturnFalse
+	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x1a646a
 

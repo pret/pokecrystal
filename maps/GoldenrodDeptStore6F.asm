@@ -13,7 +13,7 @@ GoldenrodVendingMachine:
 	opentext
 	writetext GoldenrodVendingText
 .Start:
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow

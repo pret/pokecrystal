@@ -58,7 +58,7 @@ MoveTutorScript:
 	writetext UnknownText_0x199042
 	yesorno
 	iffalse .Refused
-	special Special_DisplayCoinCaseBalance
+	special DisplayCoinCaseBalance
 	writetext UnknownText_0x199090
 	yesorno
 	iffalse .Refused2
@@ -76,21 +76,21 @@ MoveTutorScript:
 .Flamethrower:
 	writebyte MOVETUTOR_FLAMETHROWER
 	writetext UnknownText_0x1991cf
-	special Special_MoveTutor
+	special MoveTutor
 	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
 .Thunderbolt:
 	writebyte MOVETUTOR_THUNDERBOLT
 	writetext UnknownText_0x1991cf
-	special Special_MoveTutor
+	special MoveTutor
 	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
 .IceBeam:
 	writebyte MOVETUTOR_ICE_BEAM
 	writetext UnknownText_0x1991cf
-	special Special_MoveTutor
+	special MoveTutor
 	if_equal FALSE, .TeachMove
 	jump .Incompatible
 
@@ -126,7 +126,7 @@ MoveTutorScript:
 	takecoins 4000
 	waitsfx
 	playsound SFX_TRANSACTION
-	special Special_DisplayCoinCaseBalance
+	special DisplayCoinCaseBalance
 	writetext UnknownText_0x19918b
 	waitbutton
 	closetext

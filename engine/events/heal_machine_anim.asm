@@ -1,4 +1,4 @@
-; Special_HealMachineAnim.Jumptable indexes
+; HealMachineAnim.Jumptable indexes
 	const_def
 	const HEALMACHINESTATE_LOADGFX
 	const HEALMACHINESTATE_PCLOADBALLS
@@ -7,7 +7,7 @@
 	const HEALMACHINESTATE_HOFPLAYSFX
 	const HEALMACHINESTATE_FINISH
 
-Special_HealMachineAnim: ; 12324
+HealMachineAnim: ; 12324
 	; If you have no Pokemon, don't change the buffer.  This can lead to some glitchy effects if you have no Pokemon.
 	ld a, [PartyCount]
 	and a

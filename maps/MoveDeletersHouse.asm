@@ -11,7 +11,7 @@ MoveDeletersHouse_MapScripts:
 MoveDeleter:
 	faceplayer
 	opentext
-	special Special_MoveDeletion
+	special MoveDeletion
 	waitbutton
 	closetext
 	end
