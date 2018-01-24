@@ -37,50 +37,50 @@ TrainerJugglerIrwin:
 	end_if_just_battled
 	opentext
 	checkcellnum PHONE_JUGGLER_IRWIN
-	iftrue UnknownScript_0x19c90f
+	iftrue Route35NumberAcceptedM
 	checkevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
-	writetext UnknownText_0x19cd5a
+	writetext JugglerIrwinAfterBattleText
 	buttonsound
 	setevent EVENT_IRWIN_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x19c903
+	scall Route35AskNumber1M
 	jump .AskForNumber
 
 .AskedAlready:
-	scall UnknownScript_0x19c907
+	scall Route35AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_JUGGLER_IRWIN
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19c917
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19c913
+	if_equal PHONE_CONTACTS_FULL, Route35PhoneFullM
+	if_equal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
 	trainertotext JUGGLER, IRWIN1, MEM_BUFFER_0
-	scall UnknownScript_0x19c90b
-	jump UnknownScript_0x19c90f
+	scall Route35RegisteredNumberM
+	jump Route35NumberAcceptedM
 
-UnknownScript_0x19c903:
+Route35AskNumber1M:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x19c907:
+Route35AskNumber2M:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x19c90b:
+Route35RegisteredNumberM:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x19c90f:
+Route35NumberAcceptedM:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x19c913:
+Route35NumberDeclinedM:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x19c917:
+Route35PhoneFullM:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x19c91b:
+Route35RematchM:
 	jumpstd rematchm
 	end
 
@@ -140,27 +140,27 @@ TrainerBugCatcherArnie:
 	checkflag ENGINE_YANMA_SWARM
 	iftrue .YanmaSwarming
 	checkcellnum PHONE_BUG_CATCHER_ARNIE
-	iftrue UnknownScript_0x19c90f
+	iftrue Route35NumberAcceptedM
 	checkevent EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
 	iftrue .AskedAlready
 	writetext BugCatcherArnieAfterBattleText
 	buttonsound
 	setevent EVENT_ARNIE_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x19c903
+	scall Route35AskNumber1M
 	jump .AskForNumber
 
 .AskedAlready:
-	scall UnknownScript_0x19c907
+	scall Route35AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_BUG_CATCHER_ARNIE
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x19c917
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x19c913
+	if_equal PHONE_CONTACTS_FULL, Route35PhoneFullM
+	if_equal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
 	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
-	scall UnknownScript_0x19c90b
-	jump UnknownScript_0x19c90f
+	scall Route35RegisteredNumberM
+	jump Route35NumberAcceptedM
 
 .WantsBattle:
-	scall UnknownScript_0x19c91b
+	scall Route35RematchM
 	winlosstext BugCatcherArnieBeatenText, 0
 	copybytetovar wArnieFightCount
 	if_equal 4, .Fight4
@@ -380,7 +380,7 @@ JugglerIrwin1BeatenText:
 	line "jolt!"
 	done
 
-UnknownText_0x19cd5a:
+JugglerIrwinAfterBattleText:
 	text "I was going to"
 	line "dazzle you with my"
 	cont "prize #MON."
