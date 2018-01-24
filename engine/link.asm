@@ -35,7 +35,7 @@ LinkCommunications: ; 28000
 	cp LINK_TIMECAPSULE
 	jp nz, Gen2ToGen2LinkComms
 
-TimeCapsule: ; 2805d
+Gen2ToGen1LinkComms: ; 2805d
 	call ClearLinkData
 	call Link_PrepPartyData_Gen1
 	call FixDataForLinkTransfer
@@ -1970,7 +1970,7 @@ LinkTrade: ; 28b87
 	call DelayFrames
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
-	jp z, TimeCapsule
+	jp z, Gen2ToGen1LinkComms
 	jp Gen2ToGen2LinkComms
 ; 28ea3
 

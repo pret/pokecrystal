@@ -23,7 +23,7 @@ DummySpecial_c224: ; c224
 Special_SetPlayerPalette: ; c225
 	ld a, [ScriptVar]
 	ld d, a
-	farcall SetPlayerPalette
+	farcall _SetPlayerPalette
 	ret
 ; c230
 
@@ -50,31 +50,31 @@ UnusedSpecial_SeenMon: ; c252
 	ret
 ; c25a
 
-Special_FindGreaterThanThatLevel: ; c25a
+Special_FindPartyMonGreaterThanThatLevel: ; c25a
 	ld a, [ScriptVar]
 	ld b, a
-	farcall _FindGreaterThanThatLevel
+	farcall _FindPartyMonGreaterThanThatLevel
 	jr z, FoundNone
 	jr FoundOne
 
-Special_FindAtLeastThatHappy: ; c268
+Special_FindPartyMonAtLeastThatHappy: ; c268
 	ld a, [ScriptVar]
 	ld b, a
-	farcall _FindAtLeastThatHappy
+	farcall _FindPartyMonAtLeastThatHappy
 	jr z, FoundNone
 	jr FoundOne
 
-Special_FindThatSpecies: ; c276
+Special_FindPartyMonThatSpecies: ; c276
 	ld a, [ScriptVar]
 	ld b, a
-	farcall _FindThatSpecies
+	farcall _FindPartyMonThatSpecies
 	jr z, FoundNone
 	jr FoundOne
 
-Special_FindThatSpeciesYourTrainerID: ; c284
+Special_FindPartyMonThatSpeciesYourTrainerID: ; c284
 	ld a, [ScriptVar]
 	ld b, a
-	farcall _FindThatSpeciesYourTrainerID
+	farcall _FindPartyMonThatSpeciesYourTrainerID
 	jr z, FoundNone
 	jr FoundOne
 
@@ -104,11 +104,11 @@ DefaultRivalName: ; 0xc2b2
 	db "SILVER@"
 
 Special_NameRater: ; c2b9
-	farcall NameRater
+	farcall _NameRater
 	ret
 ; c2c0
 
-Special_TownMap: ; c2c0
+Special_OverworldTownMap: ; c2c0
 	call FadeToMenu
 	farcall _TownMap
 	call ExitAllMenus
@@ -117,14 +117,14 @@ Special_TownMap: ; c2c0
 
 Special_UnownPrinter: ; c2cd
 	call FadeToMenu
-	farcall UnownPrinter
+	farcall _UnownPrinter
 	call ExitAllMenus
 	ret
 ; c2da
 
 Special_DisplayLinkRecord: ; c2da
 	call FadeToMenu
-	farcall DisplayLinkRecord
+	farcall _DisplayLinkRecord
 	call ExitAllMenus
 	ret
 ; c2e7
@@ -203,7 +203,7 @@ Special_MapRadio: ; c355
 
 Special_UnownPuzzle: ; c360
 	call FadeToMenu
-	farcall UnownPuzzle
+	farcall _UnownPuzzle
 	ld a, [wSolvedUnownPuzzle]
 	ld [ScriptVar], a
 	call ExitAllMenus
@@ -343,7 +343,7 @@ StoreSwarmMapIndices:: ; c403
 
 Special_CheckPokerus: ; c419
 ; Check if a monster in your party has Pokerus
-	farcall CheckPokerus
+	farcall _CheckPokerus
 	jp ScriptReturnCarry
 ; c422
 
@@ -356,7 +356,7 @@ Special_ResetLuckyNumberShowFlag: ; c422
 ; c434
 
 Special_CheckLuckyNumberShowFlag: ; c434
-	farcall CheckLuckyNumberShowFlag
+	farcall _CheckLuckyNumberShowFlag
 	jp ScriptReturnCarry
 ; c43d
 

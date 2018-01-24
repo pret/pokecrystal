@@ -261,7 +261,7 @@ RestartLuckyNumberCountdown: ; 1152b
 	ret
 ; 11542
 
-CheckLuckyNumberShowFlag: ; 11542
+_CheckLuckyNumberShowFlag: ; 11542
 	ld hl, wLuckyNumberDayBuffer
 	jp CheckDayDependentEventHL
 ; 11548

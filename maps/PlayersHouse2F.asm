@@ -34,25 +34,25 @@ PlayersHouse2F_MapScripts:
 
 	db 0, 0, 0 ; filler
 
-Doll1:
+Doll1Script:
 	describedecoration DECODESC_LEFT_DOLL
 
-Doll2:
+Doll2Script:
 	describedecoration DECODESC_RIGHT_DOLL
 
-BigDoll:
+BigDollScript:
 	describedecoration DECODESC_BIG_DOLL
 
-GameConsole:
+GameConsoleScript:
 	describedecoration DECODESC_CONSOLE
 
-PlayersHousePoster:
+PlayersHousePosterScript:
 	conditional_event EVENT_PLAYERS_ROOM_POSTER, .Script
 
 .Script:
 	describedecoration DECODESC_POSTER
 
-PlayersHouseRadio:
+PlayersHouseRadioScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue .NormalRadio
 	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
@@ -82,10 +82,10 @@ PlayersHouseRadio:
 	closetext
 	end
 
-PlayersHouseBookshelf:
+PlayersHouseBookshelfScript:
 	jumpstd picturebookshelf
 
-PlayersHousePC:
+PlayersHousePCScript:
 	opentext
 	special Special_PlayersHousePC
 	iftrue .Warp
@@ -128,14 +128,14 @@ PlayersHouse2F_MapEvents:
 
 .BGEvents:
 	db 4
-	bg_event 2, 1, BGEVENT_UP, PlayersHousePC
-	bg_event 3, 1, BGEVENT_READ, PlayersHouseRadio
-	bg_event 5, 1, BGEVENT_READ, PlayersHouseBookshelf
-	bg_event 6, 0, BGEVENT_IFSET, PlayersHousePoster
+	bg_event 2, 1, BGEVENT_UP, PlayersHousePCScript
+	bg_event 3, 1, BGEVENT_READ, PlayersHouseRadioScript
+	bg_event 5, 1, BGEVENT_READ, PlayersHouseBookshelfScript
+	bg_event 6, 0, BGEVENT_IFSET, PlayersHousePosterScript
 
 .ObjectEvents:
 	db 4
-	object_event 4, 2, SPRITE_CONSOLE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsole, EVENT_PLAYERS_HOUSE_2F_CONSOLE
-	object_event 4, 4, SPRITE_DOLL_1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1, EVENT_PLAYERS_HOUSE_2F_DOLL_1
-	object_event 5, 4, SPRITE_DOLL_2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2, EVENT_PLAYERS_HOUSE_2F_DOLL_2
-	object_event 0, 1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigDoll, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL
+	object_event 4, 2, SPRITE_CONSOLE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsoleScript, EVENT_PLAYERS_HOUSE_2F_CONSOLE
+	object_event 4, 4, SPRITE_DOLL_1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1Script, EVENT_PLAYERS_HOUSE_2F_DOLL_1
+	object_event 5, 4, SPRITE_DOLL_2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2Script, EVENT_PLAYERS_HOUSE_2F_DOLL_2
+	object_event 0, 1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigDollScript, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL

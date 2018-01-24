@@ -8709,7 +8709,7 @@ IsMobileBattle2: ; 3f830
 	ret
 ; 3f836
 
-DisplayLinkRecord: ; 3f836
+_DisplayLinkRecord: ; 3f836
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 

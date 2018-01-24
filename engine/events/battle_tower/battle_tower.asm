@@ -1655,7 +1655,7 @@ DummySpecial_170bd2: ; 170bd2
 ; 170bd3
 
 Special_CheckForBattleTowerRules: ; 170bd3
-	farcall CheckForBattleTowerRules
+	farcall _CheckForBattleTowerRules
 	jr c, .asm_170bde
 	xor a ; FALSE
 	jr .asm_170be0

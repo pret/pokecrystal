@@ -1,4 +1,4 @@
-NameRater: ; fb6ed
+_NameRater: ; fb6ed
 ; Introduce himself
 	ld hl, NameRaterIntroText
 	call PrintText

@@ -9,16 +9,16 @@ PlayersNeighborsHouse_MapScripts:
 .MapCallbacks:
 	db 0
 
-PlayersNeighborsDaughter:
+PlayersNeighborsDaughterScript:
 	jumptextfaceplayer PlayersNeighborsDaughterText
 
-PlayersNeighbor:
+PlayersNeighborScript:
 	jumptextfaceplayer PlayersNeighborText
 
-PlayersNeighborsHouseBookshelf:
+PlayersNeighborsHouseBookshelfScript:
 	jumpstd magazinebookshelf
 
-PlayersNeighborsHouseRadio:
+PlayersNeighborsHouseRadioScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue .NormalRadio
 	checkevent EVENT_LISTENED_TO_INITIAL_RADIO
@@ -112,11 +112,11 @@ PlayersNeighborsHouse_MapEvents:
 
 .BGEvents:
 	db 3
-	bg_event 0, 1, BGEVENT_READ, PlayersNeighborsHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, PlayersNeighborsHouseBookshelf
-	bg_event 7, 1, BGEVENT_READ, PlayersNeighborsHouseRadio
+	bg_event 0, 1, BGEVENT_READ, PlayersNeighborsHouseBookshelfScript
+	bg_event 1, 1, BGEVENT_READ, PlayersNeighborsHouseBookshelfScript
+	bg_event 7, 1, BGEVENT_READ, PlayersNeighborsHouseRadioScript
 
 .ObjectEvents:
 	db 2
-	object_event 2, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighborsDaughter, -1
-	object_event 5, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighbor, EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR
+	object_event 2, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighborsDaughterScript, -1
+	object_event 5, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighborScript, EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR

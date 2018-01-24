@@ -184,7 +184,7 @@ TownMapScript:
 	opentext
 	farwritetext TownMapText
 	waitbutton
-	special Special_TownMap
+	special Special_OverworldTownMap
 	closetext
 	end
 

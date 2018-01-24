@@ -112,7 +112,7 @@ InitClock: ; 90672 (24:4672)
 	jr .HourIsSet
 
 .MinutesAreSet:
-	call SetTimeOfDay
+	call InitTimeOfDay
 	ld hl, OakText_ResponseToSetTime
 	call PrintText
 	call WaitPressAorB_BlinkCursor
@@ -454,7 +454,7 @@ Special_SetDayOfWeek: ; 90913
 	jr c, .loop
 	ld a, [wTempDayOfWeek]
 	ld [StringBuffer2], a
-	call SetDayOfWeek
+	call InitDayOfWeek
 	call LoadStandardFont
 	pop af
 	ld [hInMenu], a

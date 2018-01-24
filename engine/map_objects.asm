@@ -2572,7 +2572,7 @@ ContinueSpawnFacing: ; 57db
 	ret
 ; 57e2
 
-SetPlayerPalette: ; 57e2
+_SetPlayerPalette: ; 57e2
 	ld a, d
 	and %10000000
 	ret z

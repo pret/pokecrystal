@@ -49,7 +49,7 @@ SpecialsPointers:: ; c029
 	add_special Special_MagnetTrain
 	add_special Special_NameRival
 	add_special Special_SetDayOfWeek
-	add_special Special_TownMap
+	add_special Special_OverworldTownMap
 	add_special Special_UnownPrinter
 	add_special Special_MapRadio
 	add_special Special_UnownPuzzle
@@ -75,10 +75,10 @@ SpecialsPointers:: ; c029
 	add_special RestartMapMusic ; bank 0
 	add_special Special_HealMachineAnim
 	add_special Special_SurfStartStep
-	add_special Special_FindGreaterThanThatLevel
-	add_special Special_FindAtLeastThatHappy
-	add_special Special_FindThatSpecies
-	add_special Special_FindThatSpeciesYourTrainerID
+	add_special Special_FindPartyMonGreaterThanThatLevel
+	add_special Special_FindPartyMonAtLeastThatHappy
+	add_special Special_FindPartyMonThatSpecies
+	add_special Special_FindPartyMonThatSpeciesYourTrainerID
 	add_special UnusedSpecial_CheckUnusedTwoDayTimer
 	add_special Special_DayCareMon1
 	add_special Special_DayCareMon2

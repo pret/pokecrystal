@@ -1,4 +1,4 @@
-CheckPokerus: ; 4d860
+_CheckPokerus: ; 4d860
 ; Return carry if a monster in your party has Pokerus
 
 ; Get number of monsters to iterate over

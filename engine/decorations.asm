@@ -1102,7 +1102,7 @@ DecorationDesc_TownMapPoster: ; 0x26f91
 	opentext
 	writetext .TownMapText
 	waitbutton
-	special Special_TownMap
+	special Special_OverworldTownMap
 	closetext
 	end
 ; 0x26f9b

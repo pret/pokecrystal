@@ -1,18 +1,18 @@
-_FindGreaterThanThatLevel: ; 4dbd2
+_FindPartyMonGreaterThanThatLevel: ; 4dbd2
 	ld hl, PartyMon1Level
 	call FindGreaterThanThatLevel
 	ret
 
-_FindAtLeastThatHappy: ; 4dbd9
+_FindPartyMonAtLeastThatHappy: ; 4dbd9
 	ld hl, PartyMon1Happiness
 	call FindAtLeastThatHappy
 	ret
 
-_FindThatSpecies: ; 4dbe0
+_FindPartyMonThatSpecies: ; 4dbe0
 	ld hl, PartyMon1Species
 	jp FindThatSpecies
 
-_FindThatSpeciesYourTrainerID: ; 4dbe6
+_FindPartyMonThatSpeciesYourTrainerID: ; 4dbe6
 	ld hl, PartyMon1Species
 	call FindThatSpecies
 	ret z
