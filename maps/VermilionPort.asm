@@ -149,18 +149,18 @@ SailorScript_0x74e97:
 	checkevent EVENT_GAVE_KURT_APRICORNS
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, UnknownScript_0x74eda
-	if_equal TUESDAY, UnknownScript_0x74eda
-	if_equal THURSDAY, UnknownScript_0x74ee0
-	if_equal FRIDAY, UnknownScript_0x74ee0
-	if_equal SATURDAY, UnknownScript_0x74ee0
+	if_equal MONDAY, .NextShipWednesday
+	if_equal TUESDAY, .NextShipWednesday
+	if_equal THURSDAY, .NextShipSunday
+	if_equal FRIDAY, .NextShipSunday
+	if_equal SATURDAY, .NextShipSunday
 	writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e87
 	writetext UnknownText_0x74f8b
 	buttonsound
 	checkitem S_S_TICKET
-	iffalse UnknownScript_0x74ed4
+	iffalse .NoTicket
 	writetext UnknownText_0x74fc2
 	waitbutton
 	closetext
@@ -168,19 +168,19 @@ SailorScript_0x74e97:
 	applymovement PLAYER, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 
-UnknownScript_0x74ed4:
+.NoTicket:
 	writetext UnknownText_0x74ff2
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x74eda:
+.NextShipWednesday:
 	writetext UnknownText_0x75059
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x74ee0:
+.NextShipSunday:
 	writetext UnknownText_0x75080
 	waitbutton
 	closetext
