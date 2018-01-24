@@ -21,7 +21,7 @@ Pokecenter2F_MapScripts:
 	special Special_CheckMysteryGift
 	if_equal $0, .Scene0Done
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .Scene0Done
 	priorityjump Pokecenter2F_AppearMysteryGiftDeliveryGuy
 
@@ -50,7 +50,7 @@ Pokecenter2F_MapScripts:
 
 Pokecenter2F_AppearMysteryGiftDeliveryGuy:
 	appear POKECENTER2F_OFFICER
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	end
 
 Script_TradeCenterClosed:

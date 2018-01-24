@@ -27,14 +27,14 @@ OlivinePort_MapScripts:
 	applymovement PLAYER, MovementData_0x74a32
 	appear OLIVINEPORT_SAILOR1
 	setscene 0
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	blackoutmod OLIVINE_CITY
 	end
 
 SailorScript_0x748c0:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x74919
 	writetext UnknownText_0x74a55
 	waitbutton
@@ -76,9 +76,9 @@ UnknownScript_0x74919:
 
 UnknownScript_0x7491f:
 	spriteface OLIVINEPORT_SAILOR3, RIGHT
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x7498b
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue UnknownScript_0x7498b
 	spriteface PLAYER, LEFT
 	opentext
@@ -101,7 +101,7 @@ UnknownScript_0x7494e:
 	writetext UnknownText_0x74b11
 	waitbutton
 	closetext
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74a37
 	jump SailorScript_0x748c0
 
@@ -145,7 +145,7 @@ UnknownScript_0x74992:
 SailorScript_0x7499c:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x74919
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x749c0
@@ -166,7 +166,7 @@ UnknownScript_0x749c0:
 	writetext UnknownText_0x74b11
 	waitbutton
 	closetext
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	checkcode VAR_FACING
 	if_equal RIGHT, UnknownScript_0x749e5
 	applymovement PLAYER, MovementData_0x74a3f

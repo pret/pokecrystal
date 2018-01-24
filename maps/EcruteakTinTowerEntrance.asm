@@ -87,7 +87,7 @@ SageScript_0x98062:
 .CheckForClearBell:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue .AllowedThrough
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue .Event000
 	checkitem CLEAR_BELL
 	iftrue .RingClearBell
@@ -103,7 +103,7 @@ SageScript_0x98062:
 	setscene 1
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	end
 
 .AllowedThrough:

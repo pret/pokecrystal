@@ -308,7 +308,7 @@ Route36ParkGate_DayToText:
 YoungsterScript_0x6ad06:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6ad14
 	writetext UnknownText_0x6b399
 	waitbutton
@@ -324,7 +324,7 @@ UnknownScript_0x6ad14:
 YoungsterScript_0x6ad1a:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6ad28
 	writetext UnknownText_0x6b40f
 	waitbutton
@@ -340,7 +340,7 @@ UnknownScript_0x6ad28:
 RockerScript_0x6ad2e:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6ad3c
 	writetext UnknownText_0x6b462
 	waitbutton
@@ -356,7 +356,7 @@ UnknownScript_0x6ad3c:
 PokefanMScript_0x6ad42:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6ad50
 	writetext UnknownText_0x6b4da
 	waitbutton
@@ -372,7 +372,7 @@ UnknownScript_0x6ad50:
 YoungsterScript_0x6ad56:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6ad64
 	writetext UnknownText_0x6b54e
 	waitbutton
@@ -388,7 +388,7 @@ UnknownScript_0x6ad64:
 YoungsterScript_0x6ad6a:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6ad78
 	writetext UnknownText_0x6b5b0
 	waitbutton
@@ -404,7 +404,7 @@ UnknownScript_0x6ad78:
 LassScript_0x6ad7e:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6ad8c
 	writetext UnknownText_0x6b64b
 	waitbutton
@@ -420,7 +420,7 @@ UnknownScript_0x6ad8c:
 YoungsterScript_0x6ad92:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6ada0
 	writetext UnknownText_0x6b6b8
 	waitbutton
@@ -436,7 +436,7 @@ UnknownScript_0x6ada0:
 YoungsterScript_0x6ada6:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6adb4
 	writetext UnknownText_0x6b71b
 	waitbutton
@@ -452,7 +452,7 @@ UnknownScript_0x6adb4:
 YoungsterScript_0x6adba:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x6adc8
 	writetext UnknownText_0x6b76f
 	waitbutton

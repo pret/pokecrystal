@@ -16,7 +16,7 @@ MomPhoneScript: ; 0xbceaa
 	jump MomPhoneNoPokemonScript
 
 .bcec5 ; 0xbcec5
-	checkevent EVENT_IN_YOUR_ROOM
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
 	iftrue MomPhoneHangUpScript
 	farwritetext MomPhoneGreetingText
 	buttonsound

@@ -21,13 +21,13 @@ PlayersHouse1F_MapScripts:
 	end
 
 UnknownScript_0x7a4d8:
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
 	showemote EMOTE_SHOCK, PLAYERSHOUSE1F_MOM1, 15
 	spriteface PLAYER, LEFT
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x7a4f2
 	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a5fc
 	jump UnknownScript_0x7a4f6
@@ -82,9 +82,9 @@ UnknownScript_0x7a549:
 	writetext UnknownText_0x7a850
 	waitbutton
 	closetext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x7a55d
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iffalse UnknownScript_0x7a564
 	jump UnknownScript_0x7a56b
 
@@ -114,7 +114,7 @@ UnknownScript_0x7a57e:
 
 MomScript_0x7a582:
 	faceplayer
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	checkscene
 	iffalse UnknownScript_0x7a572
 	opentext

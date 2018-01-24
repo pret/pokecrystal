@@ -11,7 +11,7 @@ BillsHouse_MapScripts:
 BillsGrandpa:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue .JustShowedSomething
 	checkevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
 	iftrue .GotThunderstone
@@ -123,7 +123,7 @@ BillsGrandpa:
 	verbosegiveitem EVERSTONE
 	iffalse .BagFull
 	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	closetext
 	end
 
@@ -134,7 +134,7 @@ BillsGrandpa:
 	verbosegiveitem LEAF_STONE
 	iffalse .BagFull
 	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	closetext
 	end
 
@@ -145,7 +145,7 @@ BillsGrandpa:
 	verbosegiveitem WATER_STONE
 	iffalse .BagFull
 	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	closetext
 	end
 
@@ -156,7 +156,7 @@ BillsGrandpa:
 	verbosegiveitem FIRE_STONE
 	iffalse .BagFull
 	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	closetext
 	end
 

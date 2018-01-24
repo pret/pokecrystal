@@ -74,7 +74,7 @@ KurtScript_0x18e178:
 	iffalse .NoRoomForBall
 	setevent EVENT_KURT_GAVE_YOU_LURE_BALL
 .GotLureBall:
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue .WaitForApricorns
 	checkevent EVENT_GAVE_KURT_RED_APRICORN
 	iftrue .GiveLevelBall
@@ -93,9 +93,9 @@ KurtScript_0x18e178:
 	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	iftrue .CanGiveGSBallToKurt
 .NoGSBall:
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .CheckApricorns
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	iftrue .CheckApricorns
 	writetext UnknownText_0x18e6c9
 	waitbutton
@@ -114,9 +114,9 @@ KurtScript_0x18e178:
 	iftrue .AskApricorn
 	checkitem PNK_APRICORN
 	iftrue .AskApricorn
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .ThatTurnedOutGreat
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	iftrue .IMakeBallsFromApricorns
 	closetext
 	end
@@ -130,7 +130,7 @@ KurtScript_0x18e178:
 .AskApricorn:
 	writetext UnknownText_0x18e736
 	buttonsound
-	setevent EVENT_DRAGON_SHRINE_QUESTION_2
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	special Special_SelectApricornForKurt
 	if_equal FALSE, .Cancel
 	if_equal BLU_APRICORN, .Blu
@@ -168,7 +168,7 @@ KurtScript_0x18e178:
 	jump .GaveKurtApricorns
 
 .GaveKurtApricorns:
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	setflag ENGINE_KURT_MAKING_BALLS
 .WaitForApricorns:
 	writetext UnknownText_0x18e779
@@ -183,7 +183,7 @@ KurtScript_0x18e178:
 	end
 
 ._ThatTurnedOutGreat:
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 .ThatTurnedOutGreat:
 	writetext UnknownText_0x18e82a
 	waitbutton
@@ -347,9 +347,9 @@ KurtScript_ImCheckingItNow:
 
 KurtsGranddaughter1:
 	faceplayer
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue KurtsGranddaughter2Subscript
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue KurtsGranddaughterFunScript
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Lonely

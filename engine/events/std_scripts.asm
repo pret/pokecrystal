@@ -384,7 +384,7 @@ BugContestResults_CleanUp
 ; 0xbc31e
 
 BugContestResults_FirstPlace ; 0xbc31e
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	itemtotext SUN_STONE, MEM_BUFFER_1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton

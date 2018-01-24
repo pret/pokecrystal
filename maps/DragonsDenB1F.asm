@@ -157,12 +157,12 @@ SilverScript_0x18c97e:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue .SilverTalkAgain
 	writetext SilverText_Training1
 	waitbutton
 	closetext
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	special RestartMapMusic
 	end
 

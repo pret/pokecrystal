@@ -33,14 +33,14 @@ VermilionPort_MapScripts:
 	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	clearevent EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M
 	setevent EVENT_FAST_SHIP_FIRST_TIME
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	blackoutmod VERMILION_CITY
 	end
 
 SailorScript_0x74dc4:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x74e1a
 	writetext UnknownText_0x74f06
 	waitbutton
@@ -80,9 +80,9 @@ UnknownScript_0x74e1a:
 
 UnknownScript_0x74e20:
 	spriteface VERMILIONPORT_SAILOR2, RIGHT
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x74e86
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue UnknownScript_0x74e86
 	spriteface PLAYER, LEFT
 	opentext
@@ -102,7 +102,7 @@ UnknownScript_0x74e20:
 	writetext UnknownText_0x74fc2
 	waitbutton
 	closetext
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74ef8
 	jump SailorScript_0x74dc4
 
@@ -146,7 +146,7 @@ UnknownScript_0x74e8d:
 SailorScript_0x74e97:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
 	if_equal MONDAY, UnknownScript_0x74eda
@@ -164,7 +164,7 @@ SailorScript_0x74e97:
 	writetext UnknownText_0x74fc2
 	waitbutton
 	closetext
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74efe
 	jump SailorScript_0x74dc4
 

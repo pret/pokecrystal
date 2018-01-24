@@ -27,7 +27,7 @@ DragonShrine_MapScripts:
 	writetext DragonShrineElderGreetingText
 	buttonsound
 .Question1:
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	writetext DragonShrineQuestion1Text
 	buttonsound
 	loadmenuheader DragonShrineQuestion1_MenuHeader
@@ -39,7 +39,7 @@ DragonShrine_MapScripts:
 	end
 
 .Question2:
-	setevent EVENT_DRAGON_SHRINE_QUESTION_2
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	writetext DragonShrineQuestion2Text
 	buttonsound
 	loadmenuheader DragonShrineQuestion2_MenuHeader
@@ -49,7 +49,7 @@ DragonShrine_MapScripts:
 	if_equal 2, .RightAnswer
 	if_equal 3, .WrongAnswer
 .Question3:
-	setevent EVENT_DRAGON_SHRINE_QUESTION_3
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	writetext DragonShrineQuestion3Text
 	buttonsound
 	loadmenuheader DragonShrineQuestion3_MenuHeader
@@ -59,7 +59,7 @@ DragonShrine_MapScripts:
 	if_equal 2, .RightAnswer
 	if_equal 3, .RightAnswer
 .Question4:
-	setevent EVENT_DRAGON_SHRINE_QUESTION_4
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5
 	writetext DragonShrineQuestion4Text
 	buttonsound
 	loadmenuheader DragonShrineQuestion4_MenuHeader
@@ -69,7 +69,7 @@ DragonShrine_MapScripts:
 	if_equal 2, .WrongAnswer
 	if_equal 3, .RightAnswer
 .Question5:
-	setevent EVENT_DRAGON_SHRINE_QUESTION_5
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	writetext DragonShrineQuestion5Text
 	buttonsound
 	loadmenuheader DragonShrineQuestion5_MenuHeader
@@ -79,17 +79,17 @@ DragonShrine_MapScripts:
 	if_equal 2, .RightAnswer
 	if_equal 3, .WrongAnswer
 .RightAnswer:
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	iftrue .PassedTheTest
 	writetext DragonShrineRightAnswerText
 	buttonsound
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5
 	iftrue .Question5
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	iftrue .Question4
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	iftrue .Question3
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .Question2
 .WrongAnswer:
 	closetext
@@ -105,15 +105,15 @@ DragonShrine_MapScripts:
 	closetext
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	opentext
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	iftrue .Question5
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5
 	iftrue .Question4
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	iftrue .Question3
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	iftrue .Question2
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .Question1
 .PassedTheTest:
 	writetext DragonShrinePassedTestText
@@ -188,15 +188,15 @@ DragonShrine_MapScripts:
 	playsound SFX_ENTER_DOOR
 	disappear DRAGONSHRINE_CLAIR
 	waitsfx
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	end
 
 DragonShrineElder1Script:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue .DontGiveDratiniYet
-	checkevent EVENT_JUST_RECEIVED_DRATINI
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	iftrue .ReceivedDratini
 	checkevent EVENT_GOT_DRATINI
 	iffalse .GiveDratini
@@ -219,7 +219,7 @@ DragonShrineElder1Script:
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	special Special_Dratini
 	setevent EVENT_GOT_DRATINI
-	setevent EVENT_JUST_RECEIVED_DRATINI
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	writetext DragonShrineSymbolicDragonText
 	waitbutton
 	closetext
@@ -674,7 +674,7 @@ DragonShrine_MapEvents:
 
 .ObjectEvents:
 	db 4
-	object_event 5, 1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder1Script, EVENT_GAVE_KURT_APRICORNS
-	object_event 2, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder2Script, EVENT_GAVE_KURT_APRICORNS
-	object_event 7, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder3Script, EVENT_GAVE_KURT_APRICORNS
+	object_event 5, 1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder1Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event 2, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder2Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event 7, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder3Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	object_event 4, 8, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
