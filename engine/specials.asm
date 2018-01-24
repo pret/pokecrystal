@@ -43,7 +43,7 @@ GameCornerPrizeMonCheckDex: ; c230
 	ret
 ; c252
 
-UnusedSpecial_SeenMon: ; c252
+UnusedSetSeenMon: ; c252
 	ld a, [ScriptVar]
 	dec a
 	call SetSeenMon
@@ -307,7 +307,7 @@ ScriptReturnCarry: ; c3e2
 	ret
 ; c3ef
 
-UnusedSpecial_CheckUnusedTwoDayTimer: ; c3ef
+UnusedCheckUnusedTwoDayTimer: ; c3ef
 	farcall CheckUnusedTwoDayTimer
 	ld a, [wUnusedTwoDayTimer]
 	ld [ScriptVar], a

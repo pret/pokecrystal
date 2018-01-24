@@ -69,7 +69,7 @@ SpecialsPointers:: ; c029
 	add_special UpdateSprites ; bank 0
 	add_special ReplaceKrisSprite ; bank 0
 	add_special GameCornerPrizeMonCheckDex
-	add_special UnusedSpecial_SeenMon
+	add_special UnusedSetSeenMon
 	add_special WaitSFX ; bank 0
 	add_special PlayMapMusic ; bank 0
 	add_special RestartMapMusic ; bank 0
@@ -79,7 +79,7 @@ SpecialsPointers:: ; c029
 	add_special FindPartyMonAtLeastThatHappy
 	add_special FindPartyMonThatSpecies
 	add_special FindPartyMonThatSpeciesYourTrainerID
-	add_special UnusedSpecial_CheckUnusedTwoDayTimer
+	add_special UnusedCheckUnusedTwoDayTimer
 	add_special DayCareMon1
 	add_special DayCareMon2
 	add_special SelectRandomBugContestContestants
@@ -133,7 +133,7 @@ SpecialsPointers:: ; c029
 	add_special Function1700ba
 	add_special Function170114
 	add_special BattleTowerBattle
-	add_special UnusedSpecial_Function1704e1
+	add_special Function1704e1
 	add_special DummySpecial_17021d
 	add_special LoadOpponentTrainerAndPokemonWithOTSprite
 	add_special Function11ba38
@@ -178,7 +178,7 @@ SpecialsPointers:: ; c029
 	add_special Function10387b
 	add_special AskRememberPassword
 	add_special LoadMapPalettes
-	add_special UnusedSpecial_FindItemInPCOrBag
+	add_special UnusedFindItemInPCOrBag
 	add_special InitialSetDSTFlag
 	add_special InitialClearDSTFlag
 	add_special DummySpecial_c224

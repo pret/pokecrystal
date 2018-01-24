@@ -159,7 +159,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	ret
 ; 4a927
 
-UnusedSpecial_FindItemInPCOrBag: ; 4a927
+UnusedFindItemInPCOrBag: ; 4a927
 	ld a, [ScriptVar]
 	ld [CurItem], a
 	ld hl, PCItems
