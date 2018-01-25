@@ -1531,7 +1531,10 @@ Function1009f3:
 _LinkBattleSendReceiveAction:
 	call .StageForSend
 	ld [wd431], a
-	farcall PlaceWaitingText
+	ld a, BANK(PlaceWaitingText)
+	ld hl, PlaceWaitingText
+.VC_send_byt2::
+	rst FarCall
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .not_mobile
@@ -1585,20 +1588,33 @@ _LinkBattleSendReceiveAction:
 	inc a
 	jr z, .waiting
 
+.VC_send_byt2_ret:: ; hook
+.VC_send_byt2_wait:: ; patch
+if DEF(_CRYSTALVC)
+	ld b, 26
+else
 	ld b, 10
+endc
 .receive
 	call DelayFrame
 	call LinkTransfer
 	dec b
 	jr nz, .receive
 
+.VC_send_dummy:: ; hook
+.VC_send_dummy_wait:: ; patch
+if DEF(_CRYSTALVC)
+	ld b, 26
+else
 	ld b, 10
+endc
 .acknowledge
 	call DelayFrame
 	call LinkDataReceived
 	dec b
 	jr nz, .acknowledge
 
+.VC_send_dummy_end::
 	ld a, [wOtherPlayerLinkAction]
 	ld [wBattleAction], a
 	ret

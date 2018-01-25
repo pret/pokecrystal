@@ -52,7 +52,12 @@ ReadAnyMail:
 	ld a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON | START
 	jr z, .loop
+.VC_print_forbid_4::
+if DEF(_CRYSTALVC)
+	and 0
+else
 	and START
+endc
 	jr nz, .pressed_start
 	ret
 

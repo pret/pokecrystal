@@ -426,6 +426,7 @@ Script_yesorno:
 	ld a, TRUE
 .no
 	ld [wScriptVar], a
+.VC_E_YESNO::
 	ret
 
 Script_loadmenu:

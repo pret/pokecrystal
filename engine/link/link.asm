@@ -66,7 +66,12 @@ Gen2ToGen1LinkComms:
 .player_1
 	ld de, MUSIC_NONE
 	call PlayMusic
+.VC_NetworkDelay1::
+if DEF(_CRYSTALVC)
+	ld c, 26
+else
 	ld c, 3
+endc
 	call DelayFrames
 	xor a
 	ld [rIF], a
@@ -75,18 +80,21 @@ Gen2ToGen1LinkComms:
 	ld hl, wd1f3
 	ld de, wEnemyMonSpecies
 	ld bc, $11
+.VC_Network358::
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 	ld hl, wLinkData
 	ld de, wOTPlayerName
 	ld bc, $1a8
+.VC_Network359::
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 	ld hl, wLink_c608
 	ld de, wTrademons
 	ld bc, wTrademons - wLink_c608
+.VC_Network364::
 	call Serial_ExchangeBytes
 	xor a
 	ld [rIF], a
@@ -210,7 +218,12 @@ Gen2ToGen2LinkComms:
 .Player1:
 	ld de, MUSIC_NONE
 	call PlayMusic
+.VC_NetworkDelay4::
+if DEF(_CRYSTALVC)
+	ld c, 26
+else
 	ld c, 3
+endc
 	call DelayFrames
 	xor a
 	ld [rIF], a
@@ -219,18 +232,21 @@ Gen2ToGen2LinkComms:
 	ld hl, wd1f3
 	ld de, wEnemyMonSpecies
 	ld bc, $11
+.VC_Network360::
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 	ld hl, wLinkData
 	ld de, wOTPlayerName
 	ld bc, $1c2
+.VC_Network361::
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 	ld hl, wLink_c608
 	ld de, wTrademons
 	ld bc, wTrademons - wLink_c608
+.VC_Network362::
 	call Serial_ExchangeBytes
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
@@ -238,6 +254,7 @@ Gen2ToGen2LinkComms:
 	ld hl, wc9f4
 	ld de, wcb84
 	ld bc, $186
+.VC_Network363::
 	call ExchangeBytes
 
 .not_trading
@@ -1562,6 +1579,7 @@ Function28b22:
 	ld [rSC], a
 	ld a, (1 << rSC_ON) | 1
 	ld [rSC], a
+.VC_ret_heya::
 	ret
 
 Unreferenced_Function28b42:
@@ -1932,6 +1950,7 @@ LinkTrade:
 	ld de, String28ebd
 	call PlaceString
 	farcall Link_WaitBGMap
+.VC_save_game_end::
 	ld c, 50
 	call DelayFrames
 	ld a, [wLinkMode]
@@ -2084,7 +2103,12 @@ Function29c67:
 	ret
 
 EnterTimeCapsule:
+.VC_NetworkDelay2::
+if DEF(_CRYSTALVC)
+	ld c, 26
+else
 	ld c, 10
+endc
 	call DelayFrames
 	ld a, $4
 	call Link_EnsureSync
@@ -2141,6 +2165,7 @@ WaitForOtherPlayerToExit:
 	ld [hl], a
 	ld [hVBlank], a
 	ld [wLinkMode], a
+.VC_term_exit::
 	ret
 
 SetBitsForLinkTradeRequest:
@@ -2205,6 +2230,7 @@ WaitForLinkedFriend:
 	ld a, (0 << rSC_ON) | 0
 	ld [rSC], a
 	ld a, (1 << rSC_ON) | 0
+.VC_linkCable_fake_begin::
 	ld [rSC], a
 	ld a, [wLinkTimeoutFrames]
 	dec a
@@ -2290,7 +2316,12 @@ Function29dba:
 	ld a, $6
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
+.VC_NetworkDelay6::
+if DEF(_CRYSTALVC)
+	ld a, $3
+else
 	ld a, $1
+endc
 	ld [hli], a
 	ld [hl], $32
 	call Link_CheckCommunicationError
@@ -2311,6 +2342,7 @@ Function29dba:
 Link_CheckCommunicationError:
 	xor a
 	ld [hSerialReceivedNewData], a
+.VC_linkCable_fake_end::
 	ld a, [wLinkTimeoutFrames]
 	ld h, a
 	ld a, [wLinkTimeoutFrames + 1]
@@ -2341,6 +2373,7 @@ Link_CheckCommunicationError:
 .CheckConnected:
 	call WaitLinkTransfer
 	ld hl, wLinkTimeoutFrames
+.VC_Network_RECHECK::
 	ld a, [hli]
 	inc a
 	ret nz
@@ -2349,7 +2382,12 @@ Link_CheckCommunicationError:
 	ret
 
 .AcknowledgeSerial:
+.VC_NetworkDelay3::
+if DEF(_CRYSTALVC)
+	ld b, 26
+else
 	ld b, 10
+endc
 .loop
 	call DelayFrame
 	call LinkDataReceived
@@ -2376,8 +2414,10 @@ TryQuickSave:
 	ld a, [wd265]
 	push af
 	farcall Link_SaveGame
+.VC_linkCable_block_input::
 	ld a, TRUE
 	jr nc, .return_result
+.VC_linkCable_block_input2::
 	xor a ; FALSE
 .return_result
 	ld [wScriptVar], a
@@ -2414,6 +2454,7 @@ CheckBothSelectedSameRoom:
 	ret
 
 TimeCapsule:
+.VC_to_play2_mons1::
 	ld a, LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2424,6 +2465,7 @@ TimeCapsule:
 	ret
 
 TradeCenter:
+.VC_to_play2_trade::
 	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2434,6 +2476,7 @@ TradeCenter:
 	ret
 
 Colosseum:
+.VC_to_play2_battle::
 	ld a, LINK_COLOSSEUM
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2448,6 +2491,7 @@ CloseLink:
 	ld [wLinkMode], a
 	ld c, 3
 	call DelayFrames
+.VC_room_check::
 	jp Link_ResetSerialRegistersAfterLinkClosure
 
 FailedLinkToPast:

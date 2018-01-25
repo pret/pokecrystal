@@ -286,6 +286,7 @@ Serial_SyncAndExchangeNybble::
 ; One "giant" leap for machinekind
 
 WaitLinkTransfer::
+.VC_send_send_buf2::
 	ld a, $ff
 	ld [wOtherPlayerLinkAction], a
 .loop
@@ -313,14 +314,24 @@ WaitLinkTransfer::
 	inc a
 	jr z, .loop
 
+.VC_Network10::
+if DEF(_CRYSTALVC)
+	ld b, 26
+else
 	ld b, 10
+endc
 .receive
 	call DelayFrame
 	call LinkTransfer
 	dec b
 	jr nz, .receive
 
+.VC_Network11::
+if DEF(_CRYSTALVC)
+	ld b, 26
+else
 	ld b, 10
+endc
 .acknowledge
 	call DelayFrame
 	call LinkDataReceived
@@ -329,6 +340,7 @@ WaitLinkTransfer::
 
 	ld a, [wOtherPlayerLinkAction]
 	ld [wOtherPlayerLinkMode], a
+.VC_send_send_buf2_ret::
 	ret
 
 LinkTransfer::

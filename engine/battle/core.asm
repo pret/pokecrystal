@@ -8924,6 +8924,7 @@ InitBattleDisplay:
 	predef PlaceGraphic
 	xor a
 	ld [hWY], a
+.VC_fight_begin::
 	ld [rWY], a
 	call WaitBGMap
 	call HideSprites

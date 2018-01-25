@@ -74,7 +74,12 @@ _UnownPrinter:
 	jr nz, .pressed_b
 
 	ld a, [hJoyPressed]
+.VC_print_forbid_1::
+if DEF(_CRYSTALVC)
+	and 0
+else
 	and A_BUTTON
+endc
 	jr nz, .pressed_a
 
 	call .LeftRight
