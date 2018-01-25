@@ -279,7 +279,7 @@ SECTION "bank20", ROMX
 INCLUDE "engine/player_movement.asm"
 INCLUDE "engine/engine_flags.asm"
 INCLUDE "engine/variables.asm"
-INCLUDE "data/text/battle_text.asm"
+INCLUDE "data/text/battle.asm"
 INCLUDE "engine/debug.asm"
 
 
@@ -539,7 +539,7 @@ SECTION "Mobile 5F", ROMX
 INCLUDE "mobile/mobile_5f.asm"
 
 
-SECTION "Common Text 1", ROMX
+SECTION "Phone Text 2", ROMX
 
 INCLUDE "data/text/std_text.asm"
 INCLUDE "data/phone/text/jack_overworld.asm"
