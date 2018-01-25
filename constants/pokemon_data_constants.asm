@@ -182,6 +182,28 @@ NUM_TREEMON_SETS EQU const_value
 	const TREEMON_SCORE_RARE ; 2
 
 
+; ChangeHappiness arguments (see data/happiness_changes.asm)
+const_value = 1
+	const HAPPINESS_GAINLEVEL         ; 01
+	const HAPPINESS_USEDITEM          ; 02
+	const HAPPINESS_USEDXITEM         ; 03
+	const HAPPINESS_GYMBATTLE         ; 04
+	const HAPPINESS_LEARNMOVE         ; 05
+	const HAPPINESS_FAINTED           ; 06
+	const HAPPINESS_POISONFAINT       ; 07
+	const HAPPINESS_BEATENBYSTRONGFOE ; 08
+	const HAPPINESS_YOUNGCUT1         ; 09
+	const HAPPINESS_YOUNGCUT2         ; 0a
+	const HAPPINESS_YOUNGCUT3         ; 0b
+	const HAPPINESS_OLDERCUT1         ; 0c
+	const HAPPINESS_OLDERCUT2         ; 0d
+	const HAPPINESS_OLDERCUT3         ; 0e
+	const HAPPINESS_BITTERPOWDER      ; 0f
+	const HAPPINESS_ENERGYROOT        ; 10
+	const HAPPINESS_REVIVALHERB       ; 11
+	const HAPPINESS_GROOMING          ; 12
+	const HAPPINESS_GAINLEVELATHOME   ; 13
+
 ; significant happiness values
 BASE_HAPPINESS        EQU 70
 FRIEND_BALL_HAPPINESS EQU 200

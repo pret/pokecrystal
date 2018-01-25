@@ -183,3 +183,14 @@ INVISIBLE    EQU 0
 FIXED_FACING EQU 2
 SLIDING      EQU 3
 EMOTE_OBJECT EQU 7
+
+; DoPlayerMovement.DoStep arguments (see engine/player_movement.asm)
+	const_def
+	const STEP_SLOW          ; 0
+	const STEP_WALK          ; 1
+	const STEP_BIKE          ; 2
+	const STEP_LEDGE         ; 3
+	const STEP_ICE           ; 4
+	const STEP_TURN          ; 5
+	const STEP_BACK_LEDGE    ; 6
+	const STEP_WALK_IN_PLACE ; 7
