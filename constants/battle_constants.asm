@@ -96,7 +96,7 @@ const_value set 1
 	const BATTLETYPE_CELEBI
 	const BATTLETYPE_SUICUNE
 
-; GetBattleVar and GetBattleVarAddr arguments (see home/battle.asm)
+; BattleVarPairs indexes (see home/battle.asm)
 	const_def
 	const BATTLE_VARS_SUBSTATUS1
 	const BATTLE_VARS_SUBSTATUS2
@@ -120,7 +120,7 @@ const_value set 1
 	const BATTLE_VARS_LAST_MOVE
 	const BATTLE_VARS_LAST_MOVE_OPP
 
-; GetBattleVar and GetBattleVarAddr internal indexes (see home/battle.asm)
+; BattleVarLocations indexes (see home/battle.asm)
 	const_def
 	const PLAYER_SUBSTATUS_1
 	const ENEMY_SUBSTATUS_1

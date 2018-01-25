@@ -276,7 +276,10 @@ CheckObjectTime:: ; 18f5
 	ret
 
 .TimeOfDayValues_191e:
-	db MORN, DAY, NITE
+; entries correspond to TimeOfDay values
+	db MORN
+	db DAY
+	db NITE
 
 .check_hour
 	ld hl, MAPOBJECT_HOUR
