@@ -120,6 +120,15 @@ CAUGHT_EGG_LEVEL EQU 1
 ; maximum number of party pokemon
 PARTY_LENGTH EQU 6
 
+; boxes
+MONS_PER_BOX EQU 20
+NUM_BOXES    EQU 14
+
+; hall of fame
+HOF_MON_LENGTH = 1 + 2 + 2 + 1 + (MON_NAME_LENGTH +- 1) ; species, id, dvs, level, nick
+HOF_LENGTH = 1 + HOF_MON_LENGTH * PARTY_LENGTH + 1 ; win count, party, terminator
+NUM_HOF_TEAMS = 30
+
 
 ; evolution types (used in data/pokemon/evos_attacks.asm)
 const_value set 1
