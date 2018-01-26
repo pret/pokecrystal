@@ -114,6 +114,7 @@ MoveNameText: ; 105e23
 ; 105e39
 
 .endusedmovetexts ; 105e39
+; entries correspond to MoveGrammar sets
 	dw EndUsedMove1Text
 	dw EndUsedMove2Text
 	dw EndUsedMove3Text

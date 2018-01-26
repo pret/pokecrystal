@@ -52,7 +52,7 @@ GetPlayerBackpicCoords: ; fbd9d (3e:7d9d)
 
 DoWeatherModifiers: ; fbda4
 
-	ld de, .WeatherTypeModifiers
+	ld de, WeatherTypeModifiers
 	ld a, [Weather]
 	ld b, a
 	ld a, [wd265] ; move type
@@ -78,7 +78,7 @@ DoWeatherModifiers: ; fbda4
 
 
 .done_weather_types
-	ld de, .WeatherMoveModifiers
+	ld de, WeatherMoveModifiers
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
@@ -145,17 +145,7 @@ DoWeatherModifiers: ; fbda4
 .done
 	ret
 
-.WeatherTypeModifiers:
-	db WEATHER_RAIN, WATER, MORE_EFFECTIVE
-	db WEATHER_RAIN, FIRE,  NOT_VERY_EFFECTIVE
-	db WEATHER_SUN,  FIRE,  MORE_EFFECTIVE
-	db WEATHER_SUN,  WATER, NOT_VERY_EFFECTIVE
-	db -1 ; end
-
-.WeatherMoveModifiers:
-	db WEATHER_RAIN, EFFECT_SOLARBEAM, NOT_VERY_EFFECTIVE
-	db -1 ; end
-; fbe24
+INCLUDE "data/battle/weather_modifiers.asm"
 
 
 DoBadgeTypeBoosts: ; fbe24
@@ -174,7 +164,7 @@ DoBadgeTypeBoosts: ; fbe24
 	push de
 	push bc
 
-	ld hl, .BadgeTypes
+	ld hl, BadgeTypeBoosts
 
 	ld a, [wKantoBadges]
 	ld b, a
@@ -235,25 +225,4 @@ DoBadgeTypeBoosts: ; fbe24
 	pop de
 	ret
 
-.BadgeTypes:
-; entries correspond to wJohtoBadges constants
-	db FLYING   ; ZEPHYRBADGE
-	db BUG      ; HIVEBADGE
-	db NORMAL   ; PLAINBADGE
-	db GHOST    ; FOGBADGE
-	db STEEL    ; MINERALBADGE
-	db FIGHTING ; STORMBADGE
-	db ICE      ; GLACIERBADGE
-	db DRAGON   ; RISINGBADGE
-	; fallthrough
-; entries correspond to wKantoBadges constants
-	db ROCK     ; BOULDERBADGE
-	db WATER    ; CASCADEBADGE
-	db ELECTRIC ; THUNDERBADGE
-	db GRASS    ; RAINBOWBADGE
-	db POISON   ; SOULBADGE
-	db PSYCHIC  ; MARSHBADGE
-	db FIRE     ; VOLCANOBADGE
-	db GROUND   ; EARTHBADGE
-	db -1 ; end
-; fbe91
+INCLUDE "data/battle/badge_type_boosts.asm"

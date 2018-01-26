@@ -1,10 +1,10 @@
 ; Multiplier ratios for all stats from modifier -6 to +6
 ; (except accuracy, see data/battle/accuracy_multipliers.asm).
 
-; This table is identical to data/battle/stat_multipliers_2.asm.
-; This one is used by CalcStats.
+; This table is identical to data/battle/stat_multipliers.asm.
+; This one is used by ApplyStatLevelMultiplier.
 
-StatLevelMultipliers:
+StatLevelMultipliers_Applied:
 	db  25, 100 ; -6 =  25%
 	db  28, 100 ; -5 =  28%
 	db  33, 100 ; -4 =  33%

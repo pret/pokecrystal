@@ -2713,7 +2713,7 @@ BattleCommand_RageDamage: ; 3527b
 	dec a
 	add hl, bc
 	jr nc, .rage_loop
-	ld hl, -1
+	ld hl, $ffff
 .done
 	ld a, h
 	ld [CurDamage], a
@@ -3766,11 +3766,11 @@ BattleCommand_ConstantDamage: ; 35726
 	ld [hDividend + 2], a
 
 .skip_to_divide
-	ld b, $4
+	ld b, 4
 	call Divide
 	ld a, [hQuotient + 2]
 	ld b, a
-	ld hl, .FlailPower
+	ld hl, FlailReversalPower
 
 .reversal_loop
 	ld a, [hli]
@@ -3803,15 +3803,7 @@ BattleCommand_ConstantDamage: ; 35726
 	ld [hl], 1
 	ret
 
-.FlailPower:
-	;  px,  bp
-	db  1, 200
-	db  4, 150
-	db  9, 100
-	db 16,  80
-	db 32,  40
-	db 48,  20
-; 35813
+INCLUDE "data/battle/flail_reversal_power.asm"
 
 
 BattleCommand_Counter: ; 35813
@@ -8920,7 +8912,7 @@ BattleCommand_GetMagnitude: ; 37991
 	push bc
 	call BattleRandom
 	ld b, a
-	ld hl, .Magnitudes
+	ld hl, MagnitudePower
 .loop
 	ld a, [hli]
 	cp b
@@ -8942,16 +8934,7 @@ BattleCommand_GetMagnitude: ; 37991
 	pop bc
 	ret
 
-.Magnitudes:
-	;  /255, BP, magnitude
-	db  13,  10,  4
-	db  38,  30,  5
-	db  89,  50,  6
-	db 166,  70,  7
-	db 217,  90,  8
-	db 242, 110,  9
-	db 255, 150, 10
-; 379c9
+INCLUDE "data/battle/magnitude_power.asm"
 
 
 BattleCommand_BatonPass: ; 379c9

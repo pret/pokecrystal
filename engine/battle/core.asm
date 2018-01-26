@@ -1807,10 +1807,13 @@ HandleWeather: ; 3cb9e
 ; 3cc2d
 
 .WeatherMessages:
+; entries correspond to WEATHER_* constants
 	dw BattleText_RainContinuesToFall
 	dw BattleText_TheSunlightIsStrong
 	dw BattleText_TheSandstormRages
+
 .WeatherEndedMessages:
+; entries correspond to WEATHER_* constants
 	dw BattleText_TheRainStopped
 	dw BattleText_TheSunlightFaded
 	dw BattleText_TheSandstormSubsided
@@ -2557,9 +2560,10 @@ WinTrainerBattle: ; 3cfa4
 ; 3d0ab
 
 .SentToMomTexts: ; 3d0ab
-	dw SentSomeToMomText ; MOM_SAVING_SOME_MONEY_F
-	dw SentHalfToMomText ; MOM_SAVING_HALF_MONEY_F
-	dw SentAllToMomText  ; MOM_SAVING_ALL_MONEY_F
+; entries correspond to MOM_SAVING_* constants
+	dw SentSomeToMomText
+	dw SentHalfToMomText
+	dw SentAllToMomText
 ; 3d0b1
 
 .CheckMaxedOutMomMoney: ; 3d0b1
@@ -4488,7 +4492,7 @@ ItemRecoveryAnim: ; 3ddc8
 
 UseHeldStatusHealingItem: ; 3dde9
 	callfar GetOpponentItem
-	ld hl, .Statuses
+	ld hl, HeldStatusHealingEffects
 .loop
 	ld a, [hli]
 	cp $ff
@@ -4541,15 +4545,7 @@ UseHeldStatusHealingItem: ; 3dde9
 	ret
 ; 3de44
 
-.Statuses: ; 3de44
-	db HELD_HEAL_POISON,   1 << PSN
-	db HELD_HEAL_FREEZE,   1 << FRZ
-	db HELD_HEAL_BURN,     1 << BRN
-	db HELD_HEAL_SLEEP,    SLP
-	db HELD_HEAL_PARALYZE, 1 << PAR
-	db HELD_HEAL_STATUS,   ALL_STATUS
-	db -1 ; end
-; 3de51
+INCLUDE "data/battle/held_heal_status.asm"
 
 UseConfusionHealingItem: ; 3de51
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
@@ -4624,10 +4620,10 @@ HandleStatBoostingHeldItems: ; 3de97
 	ld a, [bc]
 	ld b, a
 	callfar GetItemHeldEffect
-	ld hl, .StatUpItems
+	ld hl, HeldStatUpItems
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .finish
 	inc hl
 	inc hl
@@ -4664,16 +4660,7 @@ HandleStatBoostingHeldItems: ; 3de97
 	ret
 ; 3defc
 
-.StatUpItems:
-	dbw HELD_ATTACK_UP,     BattleCommand_AttackUp
-	dbw HELD_DEFENSE_UP,    BattleCommand_DefenseUp
-	dbw HELD_SPEED_UP,      BattleCommand_SpeedUp
-	dbw HELD_SP_ATTACK_UP,  BattleCommand_SpecialAttackUp
-	dbw HELD_SP_DEFENSE_UP, BattleCommand_SpecialDefenseUp
-	dbw HELD_ACCURACY_UP,   BattleCommand_AccuracyUp
-	dbw HELD_EVASION_UP,    BattleCommand_EvasionUp
-	db -1 ; end
-; 3df12
+INCLUDE "data/battle/held_stat_up.asm"
 
 GetPartymonItem: ; 3df12
 	ld hl, PartyMon1Item
@@ -6902,7 +6889,7 @@ ApplyStatLevelMultiplier: ; 3ecb7
 .okay2
 	pop bc
 	push hl
-	ld hl, .StatLevelMultipliers
+	ld hl, StatLevelMultipliers_Applied
 	dec b
 	sla b
 	ld c, b
@@ -6951,24 +6938,7 @@ ApplyStatLevelMultiplier: ; 3ecb7
 	ret
 ; 3ed2b
 
-.StatLevelMultipliers:
-;	      /
-	db 25, 100 ; 25%
-	db 28, 100 ; 28%
-	db 33, 100 ; 33%
-	db 40, 100 ; 40%
-	db 50, 100 ; 50%
-	db 66, 100 ; 66%
-
-	db  1,  1 ; 100%
-
-	db 15, 10 ; 150%
-	db  2,  1 ; 200%
-	db 25, 10 ; 250%
-	db  3,  1 ; 300%
-	db 35, 10 ; 350%
-	db  4,  1 ; 400%
-; 3ed45
+INCLUDE "data/battle/stat_multipliers_2.asm"
 
 BadgeStatBoosts: ; 3ed45
 ; Raise BattleMon stats depending on which badges have been obtained.

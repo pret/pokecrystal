@@ -1749,6 +1749,7 @@ Functioncd9f4: ; cd9f4 (33:59f4)
 Unknown_cda01: ; cda01
 	db 8, 6, 5, 4, 5, 6, 8, 12, 16
 ; cda0a
+
 BattleAnimFunction_1C: ; cda0a (33:5a0a)
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -2476,6 +2477,7 @@ Functioncde21: ; cde21 (33:5e21)
 Unknown_cde25: ; cde25
 	db $ec, $f8, $00
 ; cde28
+
 BattleAnimFunction_25: ; cde28 (33:5e28)
 	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
@@ -3279,6 +3281,7 @@ Unknown_ce2c4: ; ce2c4
 Unknown_ce2c8: ; ce2c8
 	db $ff, $ff, $00, $00
 ; ce2cc
+
 BattleAnimFunction_33: ; ce2cc (33:62cc)
 	ld hl, BATTLEANIMSTRUCT_0B
 	add hl, bc

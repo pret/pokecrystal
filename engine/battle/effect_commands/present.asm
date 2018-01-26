@@ -27,7 +27,7 @@ BattleCommand_Present: ; 37874
 	push bc
 	call BattleRandom
 	ld b, a
-	ld hl, .PresentPower
+	ld hl, PresentPower
 	ld c, 0
 .next
 	ld a, [hli]
@@ -49,7 +49,7 @@ BattleCommand_Present: ; 37874
 
 .heal_effect
 	pop bc
-	ld a, $3
+	ld a, 3
 	ld [wPresentPower], a
 	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn
@@ -85,9 +85,4 @@ BattleCommand_Present: ; 37874
 .do_animation
 	jp EndMoveEffect
 
-.PresentPower:
-	db 40 percent,     40
-	db 70 percent + 1, 80
-	db 80 percent,    120
-	db -1 ; end
-; 3790e
+INCLUDE "data/battle/present_power.asm"
