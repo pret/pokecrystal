@@ -59,7 +59,8 @@ SelectRandomBugContestContestants: ; 139a8
 CheckBugContestContestantFlag: ; 139ed
 ; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
 
-; Bug: If a >= NUM_BUG_CONTESTANTS when this is called, it will read beyond the table.
+; Bug: If a >= NUM_BUG_CONTESTANTS when this is called,
+; it will read beyond the table.
 
 	ld hl, BugCatchingContestantEventFlagTable
 	ld e, a

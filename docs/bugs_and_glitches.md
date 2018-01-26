@@ -740,8 +740,7 @@ This is a bug with `HaircutOrGrooming` in [engine/events/special.asm](/engine/ev
 
 ...
 
-Data_DaisysGrooming: ; 746b
-	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
+INCLUDE "data/events/happiness_chances.asm"
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, StringBuffer1
@@ -750,10 +749,17 @@ CopyPokemonName_Buffer1_Buffer3: ; 746e
 	jp CopyBytes
 ```
 
+In [data/events/happiness_chances.asm](/data/events/happiness_chances.asm):
+
+```asm
+HappinessData_DaisysGrooming: ; 746b
+	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
+```
+
 **Fix:**
 
 ```asm
-Data_DaisysGrooming: ; 746b
+HappinessData_DaisysGrooming: ; 746b
 	db $80, 2, HAPPINESS_GROOMING ; 50% chance
 	db $ff, 2, HAPPINESS_GROOMING ; 50% chance
 ```
@@ -863,10 +869,10 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	jr nc, .okay
 	set 0, e
 .okay
-	ld a, [wPermission]
+	ld a, [wEnvironment]
 	cp CAVE
 	jr z, .okay2
-	cp PERM_5
+	cp ENVIRONMENT_5
 	jr z, .okay2
 	cp DUNGEON
 	jr z, .okay2
@@ -1268,11 +1274,11 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 	ld l, a
 	ld de, StringBuffer1
 	ld a, BANK(EvosAttacks)
-	ld bc, $a
+	ld bc, 10
 	call FarCopyBytes
 ```
 
-**Fix:** Change `ld bc, $a` to `ld bc, $10` to support up to five Stone entries.
+**Fix:** Change `ld bc, 10` to `ld bc, StringBuffer2 - StringBuffer1` to support up to six Stone entries.
 
 
 ## `ScriptCall` can overflow `wScriptStack` and crash
@@ -1311,6 +1317,8 @@ ScriptCall:
 	ld [ScriptPos + 1], a
 	ret
 ```
+
+*To do:* Fix this bug.
 
 
 ## `LoadSpriteGFX` does not limit the capacity of `UsedSprites`
@@ -1425,7 +1433,8 @@ In [engine/events/bug_contest/contest_2.asm](/engine/events/bug_contest/contest_
 CheckBugContestContestantFlag: ; 139ed
 ; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
 
-; Bug: If a >= 10 when this is called, it will read beyond the table.
+; Bug: If a >= NUM_BUG_CONTESTANTS when this is called,
+; it will read beyond the table.
 
 	ld hl, BugCatchingContestantEventFlagTable
 	ld e, a
@@ -1440,19 +1449,10 @@ CheckBugContestContestantFlag: ; 139ed
 	ret
 ; 139fe
 
-BugCatchingContestantEventFlagTable: ; 139fe
-	dw EVENT_BUG_CATCHING_CONTESTANT_1A
-	dw EVENT_BUG_CATCHING_CONTESTANT_2A
-	dw EVENT_BUG_CATCHING_CONTESTANT_3A
-	dw EVENT_BUG_CATCHING_CONTESTANT_4A
-	dw EVENT_BUG_CATCHING_CONTESTANT_5A
-	dw EVENT_BUG_CATCHING_CONTESTANT_6A
-	dw EVENT_BUG_CATCHING_CONTESTANT_7A
-	dw EVENT_BUG_CATCHING_CONTESTANT_8A
-	dw EVENT_BUG_CATCHING_CONTESTANT_9A
-	dw EVENT_BUG_CATCHING_CONTESTANT_10A
-; 13a12
+INCLUDE "data/events/bug_contest_flags.asm"
 ```
+
+However, `a < NUM_BUG_CONTESTANTS` should always be true, so in practice this is not a problem.
 
 
 ## `ClearWRAM` only clears WRAM bank 1
