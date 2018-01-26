@@ -93,4 +93,4 @@ _GiveOddEgg: ; 1fb4b6
 .Odd:
 	db "ODD@@@@@@@@@"
 
-INCLUDE "data/odd_eggs.asm"
+INCLUDE "data/events/odd_eggs.asm"

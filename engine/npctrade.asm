@@ -401,7 +401,7 @@ GetTradeMonNames: ; fce1b
 ; fce58
 
 
-INCLUDE "data/npc_trades.asm"
+INCLUDE "data/events/npc_trades.asm"
 
 
 PrintTradeText: ; fcf38

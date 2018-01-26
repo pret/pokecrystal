@@ -156,15 +156,15 @@ BillsGrandfather: ; 73f7
 	ret
 
 YoungerHaircutBrother: ; 7413
-	ld hl, Data_YoungerHaircutBrother
+	ld hl, HappinessData_YoungerHaircutBrother
 	jr HaircutOrGrooming
 
 OlderHaircutBrother: ; 7418
-	ld hl, Data_OlderHaircutBrother
+	ld hl, HappinessData_OlderHaircutBrother
 	jr HaircutOrGrooming
 
 DaisysGrooming: ; 741d
-	ld hl, Data_DaisysGrooming
+	ld hl, HappinessData_DaisysGrooming
 	; fallthrough
 
 HaircutOrGrooming: ; 7420
@@ -213,18 +213,7 @@ HaircutOrGrooming: ; 7420
 	ld [ScriptVar], a
 	ret
 
-Data_YoungerHaircutBrother: ; 7459
-	db $4c, 2, HAPPINESS_YOUNGCUT1 ; 30% chance
-	db $80, 3, HAPPINESS_YOUNGCUT2 ; 20% chance
-	db $ff, 4, HAPPINESS_YOUNGCUT3 ; 50% chance
-
-Data_OlderHaircutBrother: ; 7462
-	db $9a, 2, HAPPINESS_OLDERCUT1 ; 60% chance
-	db $4c, 3, HAPPINESS_OLDERCUT2 ; 10% chance
-	db $ff, 4, HAPPINESS_OLDERCUT3 ; 30% chance
-
-Data_DaisysGrooming: ; 746b
-	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
+INCLUDE "data/events/happiness_chances.asm"
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, StringBuffer1

@@ -74,7 +74,7 @@ CheckBugContestContestantFlag: ; 139ed
 	ret
 ; 139fe
 
-INCLUDE "data/bug_contest_flags.asm"
+INCLUDE "data/events/bug_contest_flags.asm"
 
 ContestDropOffMons: ; 13a12
 	ld hl, PartyMon1HP

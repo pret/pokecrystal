@@ -103,7 +103,7 @@ ChangeHappiness: ; 71c2
 	ret
 
 
-INCLUDE "data/happiness_changes.asm"
+INCLUDE "data/events/happiness_changes.asm"
 
 
 StepHappiness:: ; 725a

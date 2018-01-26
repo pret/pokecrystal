@@ -704,21 +704,7 @@ GetCallerName: ; 903a9 (24:43a9)
 	ret
 ; 903d6 (24:43d6)
 
-NonTrainerCallerNames: ; 903d6
-	dw .none
-	dw .mom
-	dw .bikeshop
-	dw .bill
-	dw .elm
-	dw .buena
-
-.none db "----------@"
-.mom db "MOM:@"
-.bill db "BILL:@"
-.elm db "PROF.ELM:@"
-.bikeshop db "BIKE SHOP:@"
-.buena db "BUENA:<LNBRK>   DISC JOCKEY@"
-; 90423
+INCLUDE "data/phone/non_trainer_names.asm"
 
 Phone_GetTrainerName: ; 90423 (24:4423)
 	push hl

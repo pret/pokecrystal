@@ -153,7 +153,7 @@ DisplayUnownWords: ; 8ae68
 	ret
 ; 8aebc
 
-INCLUDE "data/unown_walls.asm"
+INCLUDE "data/events/unown_walls.asm"
 
 _DisplayUnownWords_FillAttr: ; 8aee9
 	ld a, [de]

@@ -134,7 +134,7 @@ LoadContestantName: ; 13730
 ; 13783
 
 
-INCLUDE "data/bug_contest_winners.asm"
+INCLUDE "data/events/bug_contest_winners.asm"
 ; 13807
 
 

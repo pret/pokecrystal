@@ -60,14 +60,14 @@ RefreshSprites:: ; 14168
 
 GetPlayerSprite: ; 14183
 ; Get Chris or Kris's sprite.
-	ld hl, .Chris
+	ld hl, ChrisStateSprites
 	ld a, [wPlayerSpriteSetupFlags]
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .go
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .go
-	ld hl, .Kris
+	ld hl, KrisStateSprites
 
 .go
 	ld a, [PlayerState]
@@ -95,20 +95,7 @@ GetPlayerSprite: ; 14183
 	ld [PlayerObjectSprite], a
 	ret
 
-.Chris:
-	db PLAYER_NORMAL,    SPRITE_CHRIS
-	db PLAYER_BIKE,      SPRITE_CHRIS_BIKE
-	db PLAYER_SURF,      SPRITE_SURF
-	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
-	db -1 ; end
-
-.Kris:
-	db PLAYER_NORMAL,    SPRITE_KRIS
-	db PLAYER_BIKE,      SPRITE_KRIS_BIKE
-	db PLAYER_SURF,      SPRITE_SURF
-	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
-	db -1 ; end
-; 141c9
+INCLUDE "data/sprites/player_sprites.asm"
 
 
 AddMapSprites: ; 141c9

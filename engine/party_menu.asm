@@ -839,6 +839,7 @@ PrintPartyMenuActionText: ; 50566
 ; 5057b
 
 .MenuActionTexts: ; 5057b
+; entries correspond to PARTYMENUTEXT_* constants
 	dw .Text_CuredOfPoison
 	dw .Text_BurnWasHealed
 	dw .Text_Defrosted

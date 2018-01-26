@@ -33,6 +33,7 @@ CheckRegisteredItem: ; 13345
 	ret
 
 .Pockets:
+; entries correspond to *_POCKET constants
 	dw .CheckItem
 	dw .CheckBall
 	dw .CheckKeyItem
@@ -127,6 +128,7 @@ UseRegisteredItem: ; 133c3
 	ret
 
 .SwitchTo:
+; entries correspond to ITEMMENU_* constants
 	dw .CantUse
 	dw .NoFunction
 	dw .NoFunction

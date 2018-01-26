@@ -18,14 +18,18 @@ const_value set 1
 
 ; item menu types
 ; UseItem.dw indexes (see engine/pack.asm)
+; UseRegisteredItem.SwitchTo indexes (see engine/select_menu.asm)
 ITEMMENU_NOUSE   EQU 0
 ITEMMENU_CURRENT EQU 4
 ITEMMENU_PARTY   EQU 5
 ITEMMENU_CLOSE   EQU 6
 
 ; item actions
-CANT_SELECT EQU 1 << 6
-CANT_TOSS   EQU 1 << 7
+CANT_SELECT_F EQU 6
+CANT_TOSS_F   EQU 7
+
+CANT_SELECT EQU 1 << CANT_SELECT_F
+CANT_TOSS   EQU 1 << CANT_TOSS_F
 
 
 ; pack pockets
@@ -34,7 +38,7 @@ CANT_TOSS   EQU 1 << 7
 	const BALL_POCKET     ; 1
 	const KEY_ITEM_POCKET ; 2
 	const TM_HM_POCKET    ; 3
-NUM_POCKETS EQU const_value +- 1
+NUM_POCKETS EQU const_value
 
 MAX_ITEMS     EQU 20
 MAX_BALLS     EQU 12
@@ -170,29 +174,3 @@ const_value set 70
 	const MART_MT_MOON
 	const MART_INDIGO_PLATEAU
 	const MART_UNDERGROUND
-
-
-; PartyMenuQualityPointers indexes (see data/party_menu_qualities.asm)
-	const_def
-	const PARTYMENUACTION_CHOOSE_POKEMON
-	const PARTYMENUACTION_HEALING_ITEM
-	const PARTYMENUACTION_SWITCH
-	const PARTYMENUACTION_TEACH_TMHM
-	const PARTYMENUACTION_MOVE
-	const PARTYMENUACTION_EVO_STONE
-	const PARTYMENUACTION_GIVE_MON
-	const PARTYMENUACTION_GIVE_MON_FEMALE ; unused
-	const PARTYMENUACTION_GIVE_ITEM
-	const PARTYMENUACTION_MOBILE ; mobile
-; PrintPartyMenuActionText arguments (see engine/party_menu.asm)
-const_value set $f0
-	const PARTYMENUTEXT_HEAL_PSN
-	const PARTYMENUTEXT_HEAL_BRN
-	const PARTYMENUTEXT_HEAL_FRZ
-	const PARTYMENUTEXT_HEAL_SLP
-	const PARTYMENUTEXT_HEAL_PAR
-	const PARTYMENUTEXT_HEAL_HP
-	const PARTYMENUTEXT_HEAL_ALL
-	const PARTYMENUTEXT_REVIVE
-	const PARTYMENUTEXT_LEVEL_UP
-	const PARTYMENUTEXT_HEAL_CONFUSION

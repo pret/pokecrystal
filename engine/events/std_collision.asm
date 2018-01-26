@@ -23,7 +23,7 @@ CheckFacingTileForStdScript:: ; 1365b
 	xor a
 	ret
 
-INCLUDE "data/collision_stdscripts.asm"
+INCLUDE "data/events/collision_stdscripts.asm"
 
 Script_JumpStdFromRAM: ; 0x1369a
 	jump wJumpStdScriptBuffer
