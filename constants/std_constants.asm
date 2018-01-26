@@ -1,5 +1,5 @@
 ; StdScripts indexes (see engine/events/std_scripts.asm)
-; also used in TileCollisionStdScripts (see data/collision_stdscripts.asm)
+; also used in TileCollisionStdScripts (see data/events/collision_stdscripts.asm)
 	enum_start
 	enum pokecenternurse
 	enum difficultbookshelf

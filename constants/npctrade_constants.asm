@@ -1,4 +1,4 @@
-; npctrade struct members (see data/npc_trades.asm)
+; npctrade struct members (see data/events/npc_trades.asm)
 TRADE_DIALOG  EQU 0
 TRADE_GIVEMON EQU 1
 TRADE_GETMON  EQU 2
@@ -10,7 +10,7 @@ TRADE_OT_NAME EQU 19
 TRADE_GENDER  EQU 30
 TRADE_PADDING EQU 31
 
-; NPCTrades indexes (see data/npc_trades.asm)
+; NPCTrades indexes (see data/events/npc_trades.asm)
 	const_def
 	const NPCTRADE_MIKE   ; 0
 	const NPCTRADE_KYLE   ; 1

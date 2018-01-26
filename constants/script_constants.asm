@@ -129,7 +129,7 @@ CMDQUEUE_STONETABLE EQU 2
 
 
 ; elevfloor macro values
-; ElevatorFloorNames indexes (see data/elevator_floors.asm)
+; ElevatorFloorNames indexes (see data/events/elevator_floors.asm)
 	const_def
 	const FLOOR_B4F
 	const FLOOR_B3F
@@ -267,7 +267,7 @@ NUM_FRUIT_TREES EQU const_value +- 1
 NUM_UNOWN_PUZZLES EQU const_value
 
 ; DisplayUnownWords writebyte arguments
-; UnownWalls and MenuHeaders_UnownWalls indexes (see data/unown_walls.asm)
+; UnownWalls and MenuHeaders_UnownWalls indexes (see data/events/unown_walls.asm)
 	const_def
 	const UNOWNWORDS_ESCAPE ; 0
 	const UNOWNWORDS_LIGHT  ; 1
