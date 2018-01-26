@@ -85,4 +85,4 @@ BattleCommand_Present: ; 37874
 .do_animation
 	jp EndMoveEffect
 
-INCLUDE "data/battle/present_power.asm"
+INCLUDE "data/moves/present_power.asm"

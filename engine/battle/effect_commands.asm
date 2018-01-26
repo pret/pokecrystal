@@ -3803,7 +3803,7 @@ BattleCommand_ConstantDamage: ; 35726
 	ld [hl], 1
 	ret
 
-INCLUDE "data/battle/flail_reversal_power.asm"
+INCLUDE "data/moves/flail_reversal_power.asm"
 
 
 BattleCommand_Counter: ; 35813
@@ -8934,7 +8934,7 @@ BattleCommand_GetMagnitude: ; 37991
 	pop bc
 	ret
 
-INCLUDE "data/battle/magnitude_power.asm"
+INCLUDE "data/moves/magnitude_power.asm"
 
 
 BattleCommand_BatonPass: ; 379c9
