@@ -233,7 +233,7 @@ Function462a: ; 462a
 UpdateTallGrassFlags: ; 463f
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 3, [hl] ; is current tile grass?
+	bit OVERHEAD, [hl]
 	jr z, .ok
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
@@ -260,13 +260,13 @@ SetTallGrassFlags: ; 4661
 .set
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 3, [hl]
+	set OVERHEAD, [hl]
 	ret
 
 .reset
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 3, [hl]
+	res OVERHEAD, [hl]
 	ret
 ; 4679
 
@@ -2918,10 +2918,10 @@ InitSprites: ; 5991
 	ld e, PRIORITY_LOW
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 0, [hl]
+	bit LOW_PRIORITY, [hl]
 	jr nz, .add
 	ld e, PRIORITY_NORM
-	bit 1, [hl]
+	bit HIGH_PRIORITY, [hl]
 	jr z, .add
 	ld e, PRIORITY_HIGH
 	jr .add

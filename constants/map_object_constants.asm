@@ -52,6 +52,11 @@ FIXED_FACING EQU 2
 SLIDING      EQU 3
 EMOTE_OBJECT EQU 7
 
+; object_struct OBJECT_FLAGS2 bit flags
+LOW_PRIORITY  EQU 0
+HIGH_PRIORITY EQU 1
+OVERHEAD      EQU 3
+
 
 ; map_object struct members (see macros/wram.asm)
 	const_def
