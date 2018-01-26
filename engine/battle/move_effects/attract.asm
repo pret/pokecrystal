@@ -20,7 +20,7 @@ BattleCommand_Attract: ; 377ce
 	jp StdBattleTextBox
 
 .failed
-	jp FailAttract
+	jp FailMove
 ; 377f5
 
 

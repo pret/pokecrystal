@@ -23,5 +23,5 @@ BattleCommand_Spikes: ; 37683
 	jp StdBattleTextBox
 
 .failed
-	jp FailSpikes
+	jp FailMove
 ; 376a0

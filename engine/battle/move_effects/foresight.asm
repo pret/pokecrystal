@@ -19,5 +19,5 @@ BattleCommand_Foresight: ; 376a0
 	jp StdBattleTextBox
 
 .failed
-	jp FailForesight
+	jp FailMove
 ; 376c2

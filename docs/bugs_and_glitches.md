@@ -155,7 +155,7 @@ This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/en
 
 ([Video](https://www.youtube.com/watch?v=zuCLMikWo4Y))
 
-This is a bug with `BattleCommand_BellyDrum` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
+This is a bug with `BattleCommand_BellyDrum` in [engine/battle/move_effects/belly_drum.asm](/engine/battle/move_effects/belly_drum.asm):
 
 ```asm
 BattleCommand_BellyDrum: ; 37c1a
@@ -307,7 +307,7 @@ CheckHiddenOpponent: ; 37daa
 
 ([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
 
-This is a bug with `BattleCommand_BeatUp` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
+This is a bug with `BattleCommand_BeatUp` in [engine/battle/move_effects/beat_up.asm](/engine/battle/move_effects/beat_up.asm):
 
 ```asm
 .got_mon
@@ -346,7 +346,7 @@ This is a bug with `BattleCommand_BeatUp` in [engine/battle/effect_commands.asm]
 
 This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
 
-This is a bug with `BattleCommand_Present` in [engine/battle/effect_commands/present.asm](/engine/battle/effect_commands/present.asm):
+This is a bug with `BattleCommand_Present` in [engine/battle/move_effects/present.asm](/engine/battle/move_effects/present.asm):
 
 ```asm
 BattleCommand_Present: ; 37874
