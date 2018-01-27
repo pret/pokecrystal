@@ -37,9 +37,6 @@
 OBJECT_STRUCT_LENGTH EQU 40
 NUM_OBJECT_STRUCTS EQU 13 ; see ObjectStructs
 
-MAPOBJECT_SCREEN_HEIGHT EQU 11
-MAPOBJECT_SCREEN_WIDTH EQU 12
-
 ; object_struct OBJECT_FACING values
 OW_DOWN  EQU DOWN  << 2
 OW_UP    EQU UP    << 2
@@ -77,6 +74,10 @@ OVERHEAD      EQU 3
 	const MAPOBJECT_E ; unused
 	const MAPOBJECT_F ; unused
 OBJECT_LENGTH EQU const_value
+
+MAPOBJECT_SCREEN_HEIGHT EQU 11
+MAPOBJECT_SCREEN_WIDTH EQU 12
+
 
 ; SpriteMovementData indexes (see data/sprites/map_objects.asm)
 	const_def
