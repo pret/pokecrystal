@@ -497,7 +497,7 @@ LoadHLPaletteIntoDE:
 	push af
 	ld a, BANK(wOBPals1)
 	ld [rSVBK], a
-	ld c, PALETTE_SIZE
+	ld c, 1 palettes
 .loop
 	ld a, [hli]
 	ld [de], a
