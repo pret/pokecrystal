@@ -225,4 +225,4 @@ DoBadgeTypeBoosts: ; fbe24
 	pop de
 	ret
 
-INCLUDE "data/battle/badge_type_boosts.asm"
+INCLUDE "data/types/badge_type_boosts.asm"
