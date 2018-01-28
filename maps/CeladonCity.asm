@@ -240,15 +240,15 @@ CeladonCity_MapEvents:
 
 .Warps:
 	db 9
-	warp_def 4, 9, 1, CELADON_DEPT_STORE_1F
-	warp_def 16, 9, 1, CELADON_MANSION_1F
-	warp_def 16, 3, 3, CELADON_MANSION_1F
-	warp_def 17, 3, 3, CELADON_MANSION_1F
-	warp_def 29, 9, 1, CELADON_POKECENTER_1F
-	warp_def 18, 19, 1, CELADON_GAME_CORNER
-	warp_def 23, 19, 1, CELADON_GAME_CORNER_PRIZE_ROOM
-	warp_def 10, 29, 1, CELADON_GYM
-	warp_def 25, 29, 1, CELADON_CAFE
+	warp_event 4, 9, 1, CELADON_DEPT_STORE_1F
+	warp_event 16, 9, 1, CELADON_MANSION_1F
+	warp_event 16, 3, 3, CELADON_MANSION_1F
+	warp_event 17, 3, 3, CELADON_MANSION_1F
+	warp_event 29, 9, 1, CELADON_POKECENTER_1F
+	warp_event 18, 19, 1, CELADON_GAME_CORNER
+	warp_event 23, 19, 1, CELADON_GAME_CORNER_PRIZE_ROOM
+	warp_event 10, 29, 1, CELADON_GYM
+	warp_event 25, 29, 1, CELADON_CAFE
 
 .CoordEvents:
 	db 0

@@ -318,14 +318,14 @@ BlackthornCity_MapEvents:
 
 .Warps:
 	db 8
-	warp_def 18, 11, 1, BLACKTHORN_GYM_1F
-	warp_def 13, 21, 1, BLACKTHORN_DRAGON_SPEECH_HOUSE
-	warp_def 29, 23, 1, BLACKTHORN_EMYS_HOUSE
-	warp_def 15, 29, 2, BLACKTHORN_MART
-	warp_def 21, 29, 1, BLACKTHORN_POKECENTER_1F
-	warp_def 9, 31, 1, MOVE_DELETERS_HOUSE
-	warp_def 36, 9, 2, ICE_PATH_1F
-	warp_def 20, 1, 1, DRAGONS_DEN_1F
+	warp_event 18, 11, 1, BLACKTHORN_GYM_1F
+	warp_event 13, 21, 1, BLACKTHORN_DRAGON_SPEECH_HOUSE
+	warp_event 29, 23, 1, BLACKTHORN_EMYS_HOUSE
+	warp_event 15, 29, 2, BLACKTHORN_MART
+	warp_event 21, 29, 1, BLACKTHORN_POKECENTER_1F
+	warp_event 9, 31, 1, MOVE_DELETERS_HOUSE
+	warp_event 36, 9, 2, ICE_PATH_1F
+	warp_event 20, 1, 1, DRAGONS_DEN_1F
 
 .CoordEvents:
 	db 0

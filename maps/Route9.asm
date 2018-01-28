@@ -211,7 +211,7 @@ Route9_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 48, 15, 1, ROCK_TUNNEL_1F
+	warp_event 48, 15, 1, ROCK_TUNNEL_1F
 
 .CoordEvents:
 	db 0

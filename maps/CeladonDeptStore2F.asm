@@ -74,9 +74,9 @@ CeladonDeptStore2F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 12, 0, 1, CELADON_DEPT_STORE_3F
-	warp_def 15, 0, 3, CELADON_DEPT_STORE_1F
-	warp_def 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
+	warp_event 12, 0, 1, CELADON_DEPT_STORE_3F
+	warp_event 15, 0, 3, CELADON_DEPT_STORE_1F
+	warp_event 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
 
 .CoordEvents:
 	db 0

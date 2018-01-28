@@ -137,9 +137,9 @@ CianwoodPokecenter1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 3, 7, 3, CIANWOOD_CITY
-	warp_def 4, 7, 3, CIANWOOD_CITY
-	warp_def 0, 7, 1, POKECENTER_2F
+	warp_event 3, 7, 3, CIANWOOD_CITY
+	warp_event 4, 7, 3, CIANWOOD_CITY
+	warp_event 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 0

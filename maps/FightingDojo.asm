@@ -48,8 +48,8 @@ FightingDojo_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 11, 1, SAFFRON_CITY
-	warp_def 5, 11, 1, SAFFRON_CITY
+	warp_event 4, 11, 1, SAFFRON_CITY
+	warp_event 5, 11, 1, SAFFRON_CITY
 
 .CoordEvents:
 	db 0

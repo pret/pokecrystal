@@ -241,12 +241,12 @@ BurnedTowerB1F_MapEvents:
 
 .Warps:
 	db 6
-	warp_def 10, 9, 3, BURNED_TOWER_1F
-	warp_def 17, 7, 7, BURNED_TOWER_1F
-	warp_def 10, 8, 9, BURNED_TOWER_1F
-	warp_def 3, 13, 10, BURNED_TOWER_1F
-	warp_def 17, 14, 12, BURNED_TOWER_1F
-	warp_def 7, 15, 14, BURNED_TOWER_1F
+	warp_event 10, 9, 3, BURNED_TOWER_1F
+	warp_event 17, 7, 7, BURNED_TOWER_1F
+	warp_event 10, 8, 9, BURNED_TOWER_1F
+	warp_event 3, 13, 10, BURNED_TOWER_1F
+	warp_event 17, 14, 12, BURNED_TOWER_1F
+	warp_event 7, 15, 14, BURNED_TOWER_1F
 
 .CoordEvents:
 	db 1

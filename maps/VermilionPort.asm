@@ -304,8 +304,8 @@ VermilionPort_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 9, 5, 5, VERMILION_PORT_PASSAGE
-	warp_def 7, 17, 1, FAST_SHIP_1F
+	warp_event 9, 5, 5, VERMILION_PORT_PASSAGE
+	warp_event 7, 17, 1, FAST_SHIP_1F
 
 .CoordEvents:
 	db 1

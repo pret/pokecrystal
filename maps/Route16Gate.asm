@@ -66,10 +66,10 @@ Route16Gate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 4, 4, ROUTE_16
-	warp_def 0, 5, 5, ROUTE_16
-	warp_def 9, 4, 2, ROUTE_16
-	warp_def 9, 5, 3, ROUTE_16
+	warp_event 0, 4, 4, ROUTE_16
+	warp_event 0, 5, 5, ROUTE_16
+	warp_event 9, 4, 2, ROUTE_16
+	warp_event 9, 5, 3, ROUTE_16
 
 .CoordEvents:
 	db 2

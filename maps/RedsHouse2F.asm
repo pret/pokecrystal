@@ -31,7 +31,7 @@ RedsHouse2F_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 7, 0, 3, REDS_HOUSE_1F
+	warp_event 7, 0, 3, REDS_HOUSE_1F
 
 .CoordEvents:
 	db 0

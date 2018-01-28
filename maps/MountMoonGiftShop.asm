@@ -33,8 +33,8 @@ MountMoonGiftShop_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 7, 3, MOUNT_MOON_SQUARE
-	warp_def 4, 7, 3, MOUNT_MOON_SQUARE
+	warp_event 3, 7, 3, MOUNT_MOON_SQUARE
+	warp_event 4, 7, 3, MOUNT_MOON_SQUARE
 
 .CoordEvents:
 	db 0

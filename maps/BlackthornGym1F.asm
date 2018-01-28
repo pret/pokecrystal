@@ -392,13 +392,13 @@ BlackthornGym1F_MapEvents:
 
 .Warps:
 	db 7
-	warp_def 4, 17, 1, BLACKTHORN_CITY
-	warp_def 5, 17, 1, BLACKTHORN_CITY
-	warp_def 1, 7, 1, BLACKTHORN_GYM_2F
-	warp_def 7, 9, 2, BLACKTHORN_GYM_2F
-	warp_def 2, 6, 3, BLACKTHORN_GYM_2F
-	warp_def 7, 7, 4, BLACKTHORN_GYM_2F
-	warp_def 7, 6, 5, BLACKTHORN_GYM_2F
+	warp_event 4, 17, 1, BLACKTHORN_CITY
+	warp_event 5, 17, 1, BLACKTHORN_CITY
+	warp_event 1, 7, 1, BLACKTHORN_GYM_2F
+	warp_event 7, 9, 2, BLACKTHORN_GYM_2F
+	warp_event 2, 6, 3, BLACKTHORN_GYM_2F
+	warp_event 7, 7, 4, BLACKTHORN_GYM_2F
+	warp_event 7, 6, 5, BLACKTHORN_GYM_2F
 
 .CoordEvents:
 	db 0

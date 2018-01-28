@@ -25,10 +25,10 @@ Route42EcruteakGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 4, 1, ECRUTEAK_CITY
-	warp_def 0, 5, 2, ECRUTEAK_CITY
-	warp_def 9, 4, 1, ROUTE_42
-	warp_def 9, 5, 2, ROUTE_42
+	warp_event 0, 4, 1, ECRUTEAK_CITY
+	warp_event 0, 5, 2, ECRUTEAK_CITY
+	warp_event 9, 4, 1, ROUTE_42
+	warp_event 9, 5, 2, ROUTE_42
 
 .CoordEvents:
 	db 0

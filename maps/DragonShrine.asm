@@ -663,8 +663,8 @@ DragonShrine_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 9, 2, DRAGONS_DEN_B1F
-	warp_def 5, 9, 2, DRAGONS_DEN_B1F
+	warp_event 4, 9, 2, DRAGONS_DEN_B1F
+	warp_event 5, 9, 2, DRAGONS_DEN_B1F
 
 .CoordEvents:
 	db 0

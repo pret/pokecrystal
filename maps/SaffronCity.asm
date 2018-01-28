@@ -271,21 +271,21 @@ SaffronCity_MapEvents:
 
 .Warps:
 	db 15
-	warp_def 26, 3, 1, FIGHTING_DOJO
-	warp_def 34, 3, 1, SAFFRON_GYM
-	warp_def 25, 11, 2, SAFFRON_MART
-	warp_def 9, 29, 1, SAFFRON_POKECENTER_1F
-	warp_def 27, 29, 1, MR_PSYCHICS_HOUSE
-	warp_def 8, 3, 2, SAFFRON_MAGNET_TRAIN_STATION
-	warp_def 18, 21, 1, SILPH_CO_1F
-	warp_def 9, 11, 1, COPYCATS_HOUSE_1F
-	warp_def 18, 3, 3, ROUTE_5_SAFFRON_GATE
-	warp_def 0, 24, 3, ROUTE_7_SAFFRON_GATE
-	warp_def 0, 25, 4, ROUTE_7_SAFFRON_GATE
-	warp_def 16, 33, 1, ROUTE_6_SAFFRON_GATE
-	warp_def 17, 33, 2, ROUTE_6_SAFFRON_GATE
-	warp_def 39, 22, 1, ROUTE_8_SAFFRON_GATE
-	warp_def 39, 23, 2, ROUTE_8_SAFFRON_GATE
+	warp_event 26, 3, 1, FIGHTING_DOJO
+	warp_event 34, 3, 1, SAFFRON_GYM
+	warp_event 25, 11, 2, SAFFRON_MART
+	warp_event 9, 29, 1, SAFFRON_POKECENTER_1F
+	warp_event 27, 29, 1, MR_PSYCHICS_HOUSE
+	warp_event 8, 3, 2, SAFFRON_MAGNET_TRAIN_STATION
+	warp_event 18, 21, 1, SILPH_CO_1F
+	warp_event 9, 11, 1, COPYCATS_HOUSE_1F
+	warp_event 18, 3, 3, ROUTE_5_SAFFRON_GATE
+	warp_event 0, 24, 3, ROUTE_7_SAFFRON_GATE
+	warp_event 0, 25, 4, ROUTE_7_SAFFRON_GATE
+	warp_event 16, 33, 1, ROUTE_6_SAFFRON_GATE
+	warp_event 17, 33, 2, ROUTE_6_SAFFRON_GATE
+	warp_event 39, 22, 1, ROUTE_8_SAFFRON_GATE
+	warp_event 39, 23, 2, ROUTE_8_SAFFRON_GATE
 
 .CoordEvents:
 	db 0

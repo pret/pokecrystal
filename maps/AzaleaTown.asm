@@ -461,14 +461,14 @@ AzaleaTown_MapEvents:
 
 .Warps:
 	db 8
-	warp_def 15, 9, 1, AZALEA_POKECENTER_1F
-	warp_def 21, 13, 1, CHARCOAL_KILN
-	warp_def 21, 5, 2, AZALEA_MART
-	warp_def 9, 5, 1, KURTS_HOUSE
-	warp_def 10, 15, 1, AZALEA_GYM
-	warp_def 31, 7, 1, SLOWPOKE_WELL_B1F
-	warp_def 2, 10, 3, ILEX_FOREST_AZALEA_GATE
-	warp_def 2, 11, 4, ILEX_FOREST_AZALEA_GATE
+	warp_event 15, 9, 1, AZALEA_POKECENTER_1F
+	warp_event 21, 13, 1, CHARCOAL_KILN
+	warp_event 21, 5, 2, AZALEA_MART
+	warp_event 9, 5, 1, KURTS_HOUSE
+	warp_event 10, 15, 1, AZALEA_GYM
+	warp_event 31, 7, 1, SLOWPOKE_WELL_B1F
+	warp_event 2, 10, 3, ILEX_FOREST_AZALEA_GATE
+	warp_event 2, 11, 4, ILEX_FOREST_AZALEA_GATE
 
 .CoordEvents:
 	db 3

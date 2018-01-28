@@ -308,10 +308,10 @@ IndigoPlateauPokecenter1F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 5, 13, 1, ROUTE_23
-	warp_def 6, 13, 2, ROUTE_23
-	warp_def 0, 13, 1, POKECENTER_2F
-	warp_def 14, 3, 1, WILLS_ROOM
+	warp_event 5, 13, 1, ROUTE_23
+	warp_event 6, 13, 2, ROUTE_23
+	warp_event 0, 13, 1, POKECENTER_2F
+	warp_event 14, 3, 1, WILLS_ROOM
 
 .CoordEvents:
 	db 2

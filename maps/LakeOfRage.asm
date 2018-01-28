@@ -499,8 +499,8 @@ LakeOfRage_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 7, 3, 1, LAKE_OF_RAGE_HIDDEN_POWER_HOUSE
-	warp_def 27, 31, 1, LAKE_OF_RAGE_MAGIKARP_HOUSE
+	warp_event 7, 3, 1, LAKE_OF_RAGE_HIDDEN_POWER_HOUSE
+	warp_event 27, 31, 1, LAKE_OF_RAGE_MAGIKARP_HOUSE
 
 .CoordEvents:
 	db 0

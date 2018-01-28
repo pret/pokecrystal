@@ -528,9 +528,9 @@ TinTower1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 9, 15, 12, ECRUTEAK_CITY
-	warp_def 10, 15, 12, ECRUTEAK_CITY
-	warp_def 10, 2, 2, TIN_TOWER_2F
+	warp_event 9, 15, 12, ECRUTEAK_CITY
+	warp_event 10, 15, 12, ECRUTEAK_CITY
+	warp_event 10, 2, 2, TIN_TOWER_2F
 
 .CoordEvents:
 	db 0

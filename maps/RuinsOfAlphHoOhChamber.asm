@@ -150,11 +150,11 @@ RuinsOfAlphHoOhChamber_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 3, 9, 1, RUINS_OF_ALPH_OUTSIDE
-	warp_def 4, 9, 1, RUINS_OF_ALPH_OUTSIDE
-	warp_def 3, 3, 2, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 3, 3, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 0, 1, RUINS_OF_ALPH_HO_OH_ITEM_ROOM
+	warp_event 3, 9, 1, RUINS_OF_ALPH_OUTSIDE
+	warp_event 4, 9, 1, RUINS_OF_ALPH_OUTSIDE
+	warp_event 3, 3, 2, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_event 4, 3, 3, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_event 4, 0, 1, RUINS_OF_ALPH_HO_OH_ITEM_ROOM
 
 .CoordEvents:
 	db 0

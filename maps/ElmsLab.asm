@@ -1376,8 +1376,8 @@ ElmsLab_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 11, 1, NEW_BARK_TOWN
-	warp_def 5, 11, 1, NEW_BARK_TOWN
+	warp_event 4, 11, 1, NEW_BARK_TOWN
+	warp_event 5, 11, 1, NEW_BARK_TOWN
 
 .CoordEvents:
 	db 8

@@ -417,8 +417,8 @@ EarlsPokemonAcademy_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 15, 3, VIOLET_CITY
-	warp_def 4, 15, 3, VIOLET_CITY
+	warp_event 3, 15, 3, VIOLET_CITY
+	warp_event 4, 15, 3, VIOLET_CITY
 
 .CoordEvents:
 	db 0

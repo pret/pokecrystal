@@ -178,8 +178,8 @@ Route8_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 4, 3, ROUTE_8_SAFFRON_GATE
-	warp_def 4, 5, 4, ROUTE_8_SAFFRON_GATE
+	warp_event 4, 4, 3, ROUTE_8_SAFFRON_GATE
+	warp_event 4, 5, 4, ROUTE_8_SAFFRON_GATE
 
 .CoordEvents:
 	db 0

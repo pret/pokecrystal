@@ -21,7 +21,7 @@ Route22_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 13, 5, 1, VICTORY_ROAD_GATE
+	warp_event 13, 5, 1, VICTORY_ROAD_GATE
 
 .CoordEvents:
 	db 0

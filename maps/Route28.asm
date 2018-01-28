@@ -21,8 +21,8 @@ Route28_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 7, 3, 1, ROUTE_28_STEEL_WING_HOUSE
-	warp_def 33, 5, 7, VICTORY_ROAD_GATE
+	warp_event 7, 3, 1, ROUTE_28_STEEL_WING_HOUSE
+	warp_event 33, 5, 7, VICTORY_ROAD_GATE
 
 .CoordEvents:
 	db 0

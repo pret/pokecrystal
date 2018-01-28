@@ -261,11 +261,11 @@ RuinsOfAlphKabutoChamber_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 3, 9, 2, RUINS_OF_ALPH_OUTSIDE
-	warp_def 4, 9, 2, RUINS_OF_ALPH_OUTSIDE
-	warp_def 3, 3, 4, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 3, 5, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 0, 1, RUINS_OF_ALPH_KABUTO_ITEM_ROOM
+	warp_event 3, 9, 2, RUINS_OF_ALPH_OUTSIDE
+	warp_event 4, 9, 2, RUINS_OF_ALPH_OUTSIDE
+	warp_event 3, 3, 4, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_event 4, 3, 5, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_event 4, 0, 1, RUINS_OF_ALPH_KABUTO_ITEM_ROOM
 
 .CoordEvents:
 	db 0

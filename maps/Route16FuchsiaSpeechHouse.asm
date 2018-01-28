@@ -28,8 +28,8 @@ Route16FuchsiaSpeechHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 1, ROUTE_16
-	warp_def 3, 7, 1, ROUTE_16
+	warp_event 2, 7, 1, ROUTE_16
+	warp_event 3, 7, 1, ROUTE_16
 
 .CoordEvents:
 	db 0

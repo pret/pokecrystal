@@ -111,13 +111,13 @@ LavenderTown_MapEvents:
 
 .Warps:
 	db 7
-	warp_def 5, 5, 1, LAVENDER_POKECENTER_1F
-	warp_def 5, 9, 1, MR_FUJIS_HOUSE
-	warp_def 3, 13, 1, LAVENDER_SPEECH_HOUSE
-	warp_def 7, 13, 1, LAVENDER_NAME_RATER
-	warp_def 1, 5, 2, LAVENDER_MART
-	warp_def 13, 11, 1, SOUL_HOUSE
-	warp_def 14, 5, 1, LAV_RADIO_TOWER_1F
+	warp_event 5, 5, 1, LAVENDER_POKECENTER_1F
+	warp_event 5, 9, 1, MR_FUJIS_HOUSE
+	warp_event 3, 13, 1, LAVENDER_SPEECH_HOUSE
+	warp_event 7, 13, 1, LAVENDER_NAME_RATER
+	warp_event 1, 5, 2, LAVENDER_MART
+	warp_event 13, 11, 1, SOUL_HOUSE
+	warp_event 14, 5, 1, LAV_RADIO_TOWER_1F
 
 .CoordEvents:
 	db 0

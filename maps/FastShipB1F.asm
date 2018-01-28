@@ -454,8 +454,8 @@ FastShipB1F_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 5, 11, 11, FAST_SHIP_1F
-	warp_def 31, 13, 12, FAST_SHIP_1F
+	warp_event 5, 11, 11, FAST_SHIP_1F
+	warp_event 31, 13, 12, FAST_SHIP_1F
 
 .CoordEvents:
 	db 2

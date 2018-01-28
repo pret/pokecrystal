@@ -214,8 +214,8 @@ PewterGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 13, 2, PEWTER_CITY
-	warp_def 5, 13, 2, PEWTER_CITY
+	warp_event 4, 13, 2, PEWTER_CITY
+	warp_event 5, 13, 2, PEWTER_CITY
 
 .CoordEvents:
 	db 0

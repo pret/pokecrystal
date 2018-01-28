@@ -67,8 +67,8 @@ DarkCaveBlackthornEntrance_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 23, 3, 1, ROUTE_45
-	warp_def 3, 25, 2, DARK_CAVE_VIOLET_ENTRANCE
+	warp_event 23, 3, 1, ROUTE_45
+	warp_event 3, 25, 2, DARK_CAVE_VIOLET_ENTRANCE
 
 .CoordEvents:
 	db 0

@@ -281,12 +281,12 @@ CeruleanCity_MapEvents:
 
 .Warps:
 	db 6
-	warp_def 7, 15, 1, CERULEAN_GYM_BADGE_SPEECH_HOUSE
-	warp_def 28, 17, 1, CERULEAN_POLICE_STATION
-	warp_def 13, 19, 1, CERULEAN_TRADE_SPEECH_HOUSE
-	warp_def 19, 21, 1, CERULEAN_POKECENTER_1F
-	warp_def 30, 23, 1, CERULEAN_GYM
-	warp_def 25, 29, 2, CERULEAN_MART
+	warp_event 7, 15, 1, CERULEAN_GYM_BADGE_SPEECH_HOUSE
+	warp_event 28, 17, 1, CERULEAN_POLICE_STATION
+	warp_event 13, 19, 1, CERULEAN_TRADE_SPEECH_HOUSE
+	warp_event 19, 21, 1, CERULEAN_POKECENTER_1F
+	warp_event 30, 23, 1, CERULEAN_GYM
+	warp_event 25, 29, 2, CERULEAN_MART
 
 .CoordEvents:
 	db 0

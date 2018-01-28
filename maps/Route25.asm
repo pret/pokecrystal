@@ -435,7 +435,7 @@ Route25_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 47, 5, 1, BILLS_HOUSE
+	warp_event 47, 5, 1, BILLS_HOUSE
 
 .CoordEvents:
 	db 2

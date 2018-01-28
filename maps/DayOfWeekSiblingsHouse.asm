@@ -76,8 +76,8 @@ DayOfWeekSiblingsHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 3, ROUTE_26
-	warp_def 3, 7, 3, ROUTE_26
+	warp_event 2, 7, 3, ROUTE_26
+	warp_event 3, 7, 3, ROUTE_26
 
 .CoordEvents:
 	db 0

@@ -131,11 +131,11 @@ BlackthornGym2F_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 1, 7, 3, BLACKTHORN_GYM_1F
-	warp_def 7, 9, 4, BLACKTHORN_GYM_1F
-	warp_def 2, 5, 5, BLACKTHORN_GYM_1F ; hole
-	warp_def 8, 7, 6, BLACKTHORN_GYM_1F ; hole
-	warp_def 8, 3, 7, BLACKTHORN_GYM_1F ; hole
+	warp_event 1, 7, 3, BLACKTHORN_GYM_1F
+	warp_event 7, 9, 4, BLACKTHORN_GYM_1F
+	warp_event 2, 5, 5, BLACKTHORN_GYM_1F ; hole
+	warp_event 8, 7, 6, BLACKTHORN_GYM_1F ; hole
+	warp_event 8, 3, 7, BLACKTHORN_GYM_1F ; hole
 
 .CoordEvents:
 	db 0

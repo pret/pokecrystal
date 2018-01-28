@@ -287,8 +287,8 @@ VioletGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 15, 2, VIOLET_CITY
-	warp_def 5, 15, 2, VIOLET_CITY
+	warp_event 4, 15, 2, VIOLET_CITY
+	warp_event 5, 15, 2, VIOLET_CITY
 
 .CoordEvents:
 	db 0

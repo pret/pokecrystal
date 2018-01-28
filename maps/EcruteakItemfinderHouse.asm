@@ -168,8 +168,8 @@ EcruteakItemfinderHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 7, 11, ECRUTEAK_CITY
-	warp_def 4, 7, 11, ECRUTEAK_CITY
+	warp_event 3, 7, 11, ECRUTEAK_CITY
+	warp_event 4, 7, 11, ECRUTEAK_CITY
 
 .CoordEvents:
 	db 0

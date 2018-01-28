@@ -52,8 +52,8 @@ Route30BerryHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 1, ROUTE_30
-	warp_def 3, 7, 1, ROUTE_30
+	warp_event 2, 7, 1, ROUTE_30
+	warp_event 3, 7, 1, ROUTE_30
 
 .CoordEvents:
 	db 0

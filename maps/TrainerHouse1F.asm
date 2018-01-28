@@ -143,9 +143,9 @@ TrainerHouse1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 2, 13, 3, VIRIDIAN_CITY
-	warp_def 3, 13, 3, VIRIDIAN_CITY
-	warp_def 8, 2, 1, TRAINER_HOUSE_B1F
+	warp_event 2, 13, 3, VIRIDIAN_CITY
+	warp_event 3, 13, 3, VIRIDIAN_CITY
+	warp_event 8, 2, 1, TRAINER_HOUSE_B1F
 
 .CoordEvents:
 	db 0

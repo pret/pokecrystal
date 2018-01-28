@@ -263,9 +263,9 @@ OlivineLighthouse6F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 9, 15, 1, OLIVINE_LIGHTHOUSE_5F
-	warp_def 16, 5, 6, OLIVINE_LIGHTHOUSE_5F
-	warp_def 17, 5, 7, OLIVINE_LIGHTHOUSE_5F
+	warp_event 9, 15, 1, OLIVINE_LIGHTHOUSE_5F
+	warp_event 16, 5, 6, OLIVINE_LIGHTHOUSE_5F
+	warp_event 17, 5, 7, OLIVINE_LIGHTHOUSE_5F
 
 .CoordEvents:
 	db 0

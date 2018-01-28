@@ -682,8 +682,8 @@ KurtsHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 7, 4, AZALEA_TOWN
-	warp_def 4, 7, 4, AZALEA_TOWN
+	warp_event 3, 7, 4, AZALEA_TOWN
+	warp_event 4, 7, 4, AZALEA_TOWN
 
 .CoordEvents:
 	db 0

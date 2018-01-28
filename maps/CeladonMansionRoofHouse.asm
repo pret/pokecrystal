@@ -122,8 +122,8 @@ CeladonMansionRoofHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 3, CELADON_MANSION_ROOF
-	warp_def 3, 7, 3, CELADON_MANSION_ROOF
+	warp_event 2, 7, 3, CELADON_MANSION_ROOF
+	warp_event 3, 7, 3, CELADON_MANSION_ROOF
 
 .CoordEvents:
 	db 0

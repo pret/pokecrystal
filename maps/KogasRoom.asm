@@ -135,10 +135,10 @@ KogasRoom_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 17, 2, WILLS_ROOM
-	warp_def 5, 17, 3, WILLS_ROOM
-	warp_def 4, 2, 1, BRUNOS_ROOM
-	warp_def 5, 2, 2, BRUNOS_ROOM
+	warp_event 4, 17, 2, WILLS_ROOM
+	warp_event 5, 17, 3, WILLS_ROOM
+	warp_event 4, 2, 1, BRUNOS_ROOM
+	warp_event 5, 2, 2, BRUNOS_ROOM
 
 .CoordEvents:
 	db 0

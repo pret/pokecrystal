@@ -335,7 +335,7 @@ SproutTower3F_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 10, 14, 4, SPROUT_TOWER_2F
+	warp_event 10, 14, 4, SPROUT_TOWER_2F
 
 .CoordEvents:
 	db 1

@@ -36,12 +36,12 @@ IcePathB2FMahoganySide_MapEvents:
 
 .Warps:
 	db 6
-	warp_def 17, 1, 2, ICE_PATH_B1F
-	warp_def 9, 11, 1, ICE_PATH_B3F
-	warp_def 11, 4, 3, ICE_PATH_B1F
-	warp_def 4, 6, 4, ICE_PATH_B1F
-	warp_def 4, 12, 5, ICE_PATH_B1F
-	warp_def 12, 12, 6, ICE_PATH_B1F
+	warp_event 17, 1, 2, ICE_PATH_B1F
+	warp_event 9, 11, 1, ICE_PATH_B3F
+	warp_event 11, 4, 3, ICE_PATH_B1F
+	warp_event 4, 6, 4, ICE_PATH_B1F
+	warp_event 4, 12, 5, ICE_PATH_B1F
+	warp_event 12, 12, 6, ICE_PATH_B1F
 
 .CoordEvents:
 	db 0

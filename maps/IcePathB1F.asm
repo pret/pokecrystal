@@ -81,14 +81,14 @@ IcePathB1F_MapEvents:
 
 .Warps:
 	db 8
-	warp_def 3, 15, 3, ICE_PATH_1F
-	warp_def 17, 3, 1, ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def 11, 2, 3, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
-	warp_def 4, 7, 4, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
-	warp_def 5, 12, 5, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
-	warp_def 12, 13, 6, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
-	warp_def 5, 25, 4, ICE_PATH_1F
-	warp_def 11, 27, 1, ICE_PATH_B2F_BLACKTHORN_SIDE
+	warp_event 3, 15, 3, ICE_PATH_1F
+	warp_event 17, 3, 1, ICE_PATH_B2F_MAHOGANY_SIDE
+	warp_event 11, 2, 3, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
+	warp_event 4, 7, 4, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
+	warp_event 5, 12, 5, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
+	warp_event 12, 13, 6, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
+	warp_event 5, 25, 4, ICE_PATH_1F
+	warp_event 11, 27, 1, ICE_PATH_B2F_BLACKTHORN_SIDE
 
 .CoordEvents:
 	db 0

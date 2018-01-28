@@ -161,10 +161,10 @@ DayCare_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 5, 3, ROUTE_34
-	warp_def 0, 6, 4, ROUTE_34
-	warp_def 2, 7, 5, ROUTE_34
-	warp_def 3, 7, 5, ROUTE_34
+	warp_event 0, 5, 3, ROUTE_34
+	warp_event 0, 6, 4, ROUTE_34
+	warp_event 2, 7, 5, ROUTE_34
+	warp_event 3, 7, 5, ROUTE_34
 
 .CoordEvents:
 	db 0

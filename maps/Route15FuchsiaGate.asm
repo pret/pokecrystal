@@ -25,10 +25,10 @@ Route15FuchsiaGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 4, 8, FUCHSIA_CITY
-	warp_def 0, 5, 9, FUCHSIA_CITY
-	warp_def 9, 4, 1, ROUTE_15
-	warp_def 9, 5, 2, ROUTE_15
+	warp_event 0, 4, 8, FUCHSIA_CITY
+	warp_event 0, 5, 9, FUCHSIA_CITY
+	warp_event 9, 4, 1, ROUTE_15
+	warp_event 9, 5, 2, ROUTE_15
 
 .CoordEvents:
 	db 0

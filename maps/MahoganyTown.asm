@@ -250,11 +250,11 @@ MahoganyTown_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 11, 7, 1, MAHOGANY_MART_1F
-	warp_def 17, 7, 1, MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
-	warp_def 6, 13, 1, MAHOGANY_GYM
-	warp_def 15, 13, 1, MAHOGANY_POKECENTER_1F
-	warp_def 9, 1, 3, ROUTE_43_MAHOGANY_GATE
+	warp_event 11, 7, 1, MAHOGANY_MART_1F
+	warp_event 17, 7, 1, MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
+	warp_event 6, 13, 1, MAHOGANY_GYM
+	warp_event 15, 13, 1, MAHOGANY_POKECENTER_1F
+	warp_event 9, 1, 3, ROUTE_43_MAHOGANY_GATE
 
 .CoordEvents:
 	db 2

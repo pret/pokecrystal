@@ -293,17 +293,17 @@ OlivineCity_MapEvents:
 
 .Warps:
 	db 11
-	warp_def 13, 21, 1, OLIVINE_POKECENTER_1F
-	warp_def 10, 11, 1, OLIVINE_GYM
-	warp_def 25, 11, 1, OLIVINE_TIMS_HOUSE
-	warp_def 0, 0, 1, OLIVINE_HOUSE_BETA
-	warp_def 29, 11, 1, OLIVINE_PUNISHMENT_SPEECH_HOUSE
-	warp_def 13, 15, 1, OLIVINE_GOOD_ROD_HOUSE
-	warp_def 7, 21, 1, OLIVINE_CAFE
-	warp_def 19, 17, 2, OLIVINE_MART
-	warp_def 29, 27, 1, OLIVINE_LIGHTHOUSE_1F
-	warp_def 19, 27, 1, OLIVINE_PORT_PASSAGE
-	warp_def 20, 27, 2, OLIVINE_PORT_PASSAGE
+	warp_event 13, 21, 1, OLIVINE_POKECENTER_1F
+	warp_event 10, 11, 1, OLIVINE_GYM
+	warp_event 25, 11, 1, OLIVINE_TIMS_HOUSE
+	warp_event 0, 0, 1, OLIVINE_HOUSE_BETA
+	warp_event 29, 11, 1, OLIVINE_PUNISHMENT_SPEECH_HOUSE
+	warp_event 13, 15, 1, OLIVINE_GOOD_ROD_HOUSE
+	warp_event 7, 21, 1, OLIVINE_CAFE
+	warp_event 19, 17, 2, OLIVINE_MART
+	warp_event 29, 27, 1, OLIVINE_LIGHTHOUSE_1F
+	warp_event 19, 27, 1, OLIVINE_PORT_PASSAGE
+	warp_event 20, 27, 2, OLIVINE_PORT_PASSAGE
 
 .CoordEvents:
 	db 2

@@ -144,8 +144,8 @@ BattleTowerBattleRoom_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 7, 4, BATTLE_TOWER_HALLWAY
-	warp_def 4, 7, 4, BATTLE_TOWER_HALLWAY
+	warp_event 3, 7, 4, BATTLE_TOWER_HALLWAY
+	warp_event 4, 7, 4, BATTLE_TOWER_HALLWAY
 
 .CoordEvents:
 	db 0

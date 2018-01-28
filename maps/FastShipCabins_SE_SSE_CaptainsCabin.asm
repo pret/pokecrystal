@@ -468,12 +468,12 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEvents:
 
 .Warps:
 	db 6
-	warp_def 2, 7, 8, FAST_SHIP_1F
-	warp_def 3, 7, 8, FAST_SHIP_1F
-	warp_def 2, 19, 9, FAST_SHIP_1F
-	warp_def 3, 19, 9, FAST_SHIP_1F
-	warp_def 2, 33, 10, FAST_SHIP_1F
-	warp_def 3, 33, 10, FAST_SHIP_1F
+	warp_event 2, 7, 8, FAST_SHIP_1F
+	warp_event 3, 7, 8, FAST_SHIP_1F
+	warp_event 2, 19, 9, FAST_SHIP_1F
+	warp_event 3, 19, 9, FAST_SHIP_1F
+	warp_event 2, 33, 10, FAST_SHIP_1F
+	warp_event 3, 33, 10, FAST_SHIP_1F
 
 .CoordEvents:
 	db 0

@@ -76,10 +76,10 @@ Route40BattleTowerGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 7, 1, ROUTE_40
-	warp_def 5, 7, 1, ROUTE_40
-	warp_def 4, 0, 1, BATTLE_TOWER_OUTSIDE
-	warp_def 5, 0, 2, BATTLE_TOWER_OUTSIDE
+	warp_event 4, 7, 1, ROUTE_40
+	warp_event 5, 7, 1, ROUTE_40
+	warp_event 4, 0, 1, BATTLE_TOWER_OUTSIDE
+	warp_event 5, 0, 2, BATTLE_TOWER_OUTSIDE
 
 .CoordEvents:
 	db 0

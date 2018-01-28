@@ -50,8 +50,8 @@ BattleTowerElevator_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 1, 3, 1, BATTLE_TOWER_HALLWAY
-	warp_def 2, 3, 1, BATTLE_TOWER_HALLWAY
+	warp_event 1, 3, 1, BATTLE_TOWER_HALLWAY
+	warp_event 2, 3, 1, BATTLE_TOWER_HALLWAY
 
 .CoordEvents:
 	db 0

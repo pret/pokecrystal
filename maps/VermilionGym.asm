@@ -266,8 +266,8 @@ VermilionGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 17, 7, VERMILION_CITY
-	warp_def 5, 17, 7, VERMILION_CITY
+	warp_event 4, 17, 7, VERMILION_CITY
+	warp_event 5, 17, 7, VERMILION_CITY
 
 .CoordEvents:
 	db 0

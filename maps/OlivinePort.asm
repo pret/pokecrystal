@@ -390,8 +390,8 @@ OlivinePort_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 11, 7, 5, OLIVINE_PORT_PASSAGE
-	warp_def 7, 23, 1, FAST_SHIP_1F
+	warp_event 11, 7, 5, OLIVINE_PORT_PASSAGE
+	warp_event 7, 23, 1, FAST_SHIP_1F
 
 .CoordEvents:
 	db 1

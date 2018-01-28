@@ -213,8 +213,8 @@ CeladonCafe_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 6, 7, 9, CELADON_CITY
-	warp_def 7, 7, 9, CELADON_CITY
+	warp_event 6, 7, 9, CELADON_CITY
+	warp_event 7, 7, 9, CELADON_CITY
 
 .CoordEvents:
 	db 0

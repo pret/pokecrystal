@@ -326,8 +326,8 @@ SlowpokeWellB1F_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 17, 15, 6, AZALEA_TOWN
-	warp_def 7, 11, 1, SLOWPOKE_WELL_B2F
+	warp_event 17, 15, 6, AZALEA_TOWN
+	warp_event 7, 11, 1, SLOWPOKE_WELL_B2F
 
 .CoordEvents:
 	db 0

@@ -25,10 +25,10 @@ IcePath1F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 19, 1, ROUTE_44
-	warp_def 36, 27, 7, BLACKTHORN_CITY
-	warp_def 37, 5, 1, ICE_PATH_B1F
-	warp_def 37, 13, 7, ICE_PATH_B1F
+	warp_event 4, 19, 1, ROUTE_44
+	warp_event 36, 27, 7, BLACKTHORN_CITY
+	warp_event 37, 5, 1, ICE_PATH_B1F
+	warp_event 37, 13, 7, ICE_PATH_B1F
 
 .CoordEvents:
 	db 0

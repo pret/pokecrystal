@@ -217,7 +217,7 @@ GoldenrodDeptStoreRoof_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 13, 1, 3, GOLDENROD_DEPT_STORE_6F
+	warp_event 13, 1, 3, GOLDENROD_DEPT_STORE_6F
 
 .CoordEvents:
 	db 0

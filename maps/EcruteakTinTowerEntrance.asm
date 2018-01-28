@@ -283,11 +283,11 @@ EcruteakTinTowerEntrance_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 4, 17, 3, ECRUTEAK_CITY
-	warp_def 5, 17, 3, ECRUTEAK_CITY
-	warp_def 5, 3, 4, ECRUTEAK_TIN_TOWER_ENTRANCE
-	warp_def 17, 15, 3, ECRUTEAK_TIN_TOWER_ENTRANCE
-	warp_def 17, 3, 3, WISE_TRIOS_ROOM
+	warp_event 4, 17, 3, ECRUTEAK_CITY
+	warp_event 5, 17, 3, ECRUTEAK_CITY
+	warp_event 5, 3, 4, ECRUTEAK_TIN_TOWER_ENTRANCE
+	warp_event 17, 15, 3, ECRUTEAK_TIN_TOWER_ENTRANCE
+	warp_event 17, 3, 3, WISE_TRIOS_ROOM
 
 .CoordEvents:
 	db 2

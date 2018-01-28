@@ -153,9 +153,9 @@ GoldenrodDeptStore6F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 15, 0, 2, GOLDENROD_DEPT_STORE_5F
-	warp_def 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
-	warp_def 13, 0, 1, GOLDENROD_DEPT_STORE_ROOF
+	warp_event 15, 0, 2, GOLDENROD_DEPT_STORE_5F
+	warp_event 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_event 13, 0, 1, GOLDENROD_DEPT_STORE_ROOF
 
 .CoordEvents:
 	db 0

@@ -108,11 +108,11 @@ SproutTower1F_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 9, 15, 7, VIOLET_CITY
-	warp_def 10, 15, 7, VIOLET_CITY
-	warp_def 6, 4, 1, SPROUT_TOWER_2F
-	warp_def 2, 6, 2, SPROUT_TOWER_2F
-	warp_def 17, 3, 3, SPROUT_TOWER_2F
+	warp_event 9, 15, 7, VIOLET_CITY
+	warp_event 10, 15, 7, VIOLET_CITY
+	warp_event 6, 4, 1, SPROUT_TOWER_2F
+	warp_event 2, 6, 2, SPROUT_TOWER_2F
+	warp_event 17, 3, 3, SPROUT_TOWER_2F
 
 .CoordEvents:
 	db 0

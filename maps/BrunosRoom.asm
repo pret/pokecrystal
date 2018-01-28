@@ -130,10 +130,10 @@ BrunosRoom_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 17, 3, KOGAS_ROOM
-	warp_def 5, 17, 4, KOGAS_ROOM
-	warp_def 4, 2, 1, KARENS_ROOM
-	warp_def 5, 2, 2, KARENS_ROOM
+	warp_event 4, 17, 3, KOGAS_ROOM
+	warp_event 5, 17, 4, KOGAS_ROOM
+	warp_event 4, 2, 1, KARENS_ROOM
+	warp_event 5, 2, 2, KARENS_ROOM
 
 .CoordEvents:
 	db 0

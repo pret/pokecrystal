@@ -283,20 +283,20 @@ BurnedTower1F_MapEvents:
 
 .Warps:
 	db 14
-	warp_def 9, 15, 13, ECRUTEAK_CITY
-	warp_def 10, 15, 13, ECRUTEAK_CITY
-	warp_def 10, 9,  1, BURNED_TOWER_B1F
-	warp_def 5, 5,  1, BURNED_TOWER_B1F
-	warp_def 5, 6,  1, BURNED_TOWER_B1F
-	warp_def 4, 6,  1, BURNED_TOWER_B1F
-	warp_def 15, 4,  2, BURNED_TOWER_B1F
-	warp_def 15, 5,  2, BURNED_TOWER_B1F
-	warp_def 10, 7,  3, BURNED_TOWER_B1F
-	warp_def 5, 14,  4, BURNED_TOWER_B1F
-	warp_def 4, 14,  4, BURNED_TOWER_B1F
-	warp_def 14, 14,  5, BURNED_TOWER_B1F
-	warp_def 15, 14,  5, BURNED_TOWER_B1F
-	warp_def 7, 15,  6, BURNED_TOWER_B1F
+	warp_event 9, 15, 13, ECRUTEAK_CITY
+	warp_event 10, 15, 13, ECRUTEAK_CITY
+	warp_event 10, 9,  1, BURNED_TOWER_B1F
+	warp_event 5, 5,  1, BURNED_TOWER_B1F
+	warp_event 5, 6,  1, BURNED_TOWER_B1F
+	warp_event 4, 6,  1, BURNED_TOWER_B1F
+	warp_event 15, 4,  2, BURNED_TOWER_B1F
+	warp_event 15, 5,  2, BURNED_TOWER_B1F
+	warp_event 10, 7,  3, BURNED_TOWER_B1F
+	warp_event 5, 14,  4, BURNED_TOWER_B1F
+	warp_event 4, 14,  4, BURNED_TOWER_B1F
+	warp_event 14, 14,  5, BURNED_TOWER_B1F
+	warp_event 15, 14,  5, BURNED_TOWER_B1F
+	warp_event 7, 15,  6, BURNED_TOWER_B1F
 
 .CoordEvents:
 	db 1

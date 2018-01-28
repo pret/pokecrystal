@@ -130,17 +130,17 @@ FuchsiaCity_MapEvents:
 
 .Warps:
 	db 11
-	warp_def 5, 13, 2, FUCHSIA_MART
-	warp_def 22, 13, 1, SAFARI_ZONE_MAIN_OFFICE
-	warp_def 8, 27, 1, FUCHSIA_GYM
-	warp_def 11, 27, 1, BILLS_BROTHERS_HOUSE
-	warp_def 19, 27, 1, FUCHSIA_POKECENTER_1F
-	warp_def 27, 27, 1, SAFARI_ZONE_WARDENS_HOME
-	warp_def 18, 3, 3, SAFARI_ZONE_FUCHSIA_GATE_BETA
-	warp_def 37, 22, 1, ROUTE_15_FUCHSIA_GATE
-	warp_def 37, 23, 2, ROUTE_15_FUCHSIA_GATE
-	warp_def 7, 35, 1, ROUTE_19_FUCHSIA_GATE
-	warp_def 8, 35, 2, ROUTE_19_FUCHSIA_GATE
+	warp_event 5, 13, 2, FUCHSIA_MART
+	warp_event 22, 13, 1, SAFARI_ZONE_MAIN_OFFICE
+	warp_event 8, 27, 1, FUCHSIA_GYM
+	warp_event 11, 27, 1, BILLS_BROTHERS_HOUSE
+	warp_event 19, 27, 1, FUCHSIA_POKECENTER_1F
+	warp_event 27, 27, 1, SAFARI_ZONE_WARDENS_HOME
+	warp_event 18, 3, 3, SAFARI_ZONE_FUCHSIA_GATE_BETA
+	warp_event 37, 22, 1, ROUTE_15_FUCHSIA_GATE
+	warp_event 37, 23, 2, ROUTE_15_FUCHSIA_GATE
+	warp_event 7, 35, 1, ROUTE_19_FUCHSIA_GATE
+	warp_event 8, 35, 2, ROUTE_19_FUCHSIA_GATE
 
 .CoordEvents:
 	db 0

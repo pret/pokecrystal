@@ -90,10 +90,10 @@ SproutTower2F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 6, 4, 3, SPROUT_TOWER_1F
-	warp_def 2, 6, 4, SPROUT_TOWER_1F
-	warp_def 17, 3, 5, SPROUT_TOWER_1F
-	warp_def 10, 14, 1, SPROUT_TOWER_3F
+	warp_event 6, 4, 3, SPROUT_TOWER_1F
+	warp_event 2, 6, 4, SPROUT_TOWER_1F
+	warp_event 17, 3, 5, SPROUT_TOWER_1F
+	warp_event 10, 14, 1, SPROUT_TOWER_3F
 
 .CoordEvents:
 	db 0

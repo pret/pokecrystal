@@ -943,9 +943,9 @@ IlexForest_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 1, 5, 3, ROUTE_34_ILEX_FOREST_GATE
-	warp_def 3, 42, 1, ILEX_FOREST_AZALEA_GATE
-	warp_def 3, 43, 2, ILEX_FOREST_AZALEA_GATE
+	warp_event 1, 5, 3, ROUTE_34_ILEX_FOREST_GATE
+	warp_event 3, 42, 1, ILEX_FOREST_AZALEA_GATE
+	warp_event 3, 43, 2, ILEX_FOREST_AZALEA_GATE
 
 .CoordEvents:
 	db 0

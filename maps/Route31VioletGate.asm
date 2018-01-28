@@ -33,10 +33,10 @@ Route31VioletGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 4, 8, VIOLET_CITY
-	warp_def 0, 5, 9, VIOLET_CITY
-	warp_def 9, 4, 1, ROUTE_31
-	warp_def 9, 5, 2, ROUTE_31
+	warp_event 0, 4, 8, VIOLET_CITY
+	warp_event 0, 5, 9, VIOLET_CITY
+	warp_event 9, 4, 1, ROUTE_31
+	warp_event 9, 5, 2, ROUTE_31
 
 .CoordEvents:
 	db 0

@@ -11,10 +11,10 @@ WhirlIslandNW_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 5, 7, 1, ROUTE_41
-	warp_def 5, 3, 1, WHIRL_ISLAND_B1F
-	warp_def 3, 15, 4, WHIRL_ISLAND_SW
-	warp_def 7, 15, 2, WHIRL_ISLAND_CAVE
+	warp_event 5, 7, 1, ROUTE_41
+	warp_event 5, 3, 1, WHIRL_ISLAND_B1F
+	warp_event 3, 15, 4, WHIRL_ISLAND_SW
+	warp_event 7, 15, 2, WHIRL_ISLAND_CAVE
 
 .CoordEvents:
 	db 0

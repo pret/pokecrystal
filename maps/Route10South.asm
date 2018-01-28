@@ -81,7 +81,7 @@ Route10South_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 6, 1, 2, ROCK_TUNNEL_1F
+	warp_event 6, 1, 2, ROCK_TUNNEL_1F
 
 .CoordEvents:
 	db 0

@@ -56,7 +56,7 @@ SilverCaveRoom3_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 9, 33, 2, SILVER_CAVE_ROOM_2
+	warp_event 9, 33, 2, SILVER_CAVE_ROOM_2
 
 .CoordEvents:
 	db 0

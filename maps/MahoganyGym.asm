@@ -378,8 +378,8 @@ MahoganyGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 17, 3, MAHOGANY_TOWN
-	warp_def 5, 17, 3, MAHOGANY_TOWN
+	warp_event 4, 17, 3, MAHOGANY_TOWN
+	warp_event 5, 17, 3, MAHOGANY_TOWN
 
 .CoordEvents:
 	db 0

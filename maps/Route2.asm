@@ -152,11 +152,11 @@ Route2_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 15, 15, 1, ROUTE_2_NUGGET_HOUSE
-	warp_def 15, 31, 3, ROUTE_2_GATE
-	warp_def 16, 27, 1, ROUTE_2_GATE
-	warp_def 17, 27, 2, ROUTE_2_GATE
-	warp_def 12, 7, 3, DIGLETTS_CAVE
+	warp_event 15, 15, 1, ROUTE_2_NUGGET_HOUSE
+	warp_event 15, 31, 3, ROUTE_2_GATE
+	warp_event 16, 27, 1, ROUTE_2_GATE
+	warp_event 17, 27, 2, ROUTE_2_GATE
+	warp_event 12, 7, 3, DIGLETTS_CAVE
 
 .CoordEvents:
 	db 0

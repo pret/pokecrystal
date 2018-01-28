@@ -39,9 +39,9 @@ CeladonMansionRoof_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 1, 1, 1, CELADON_MANSION_3F
-	warp_def 6, 1, 4, CELADON_MANSION_3F
-	warp_def 2, 5, 1, CELADON_MANSION_ROOF_HOUSE
+	warp_event 1, 1, 1, CELADON_MANSION_3F
+	warp_event 6, 1, 4, CELADON_MANSION_3F
+	warp_event 2, 5, 1, CELADON_MANSION_ROOF_HOUSE
 
 .CoordEvents:
 	db 0

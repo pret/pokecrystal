@@ -118,7 +118,7 @@ Route20_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 38, 7, 1, SEAFOAM_GYM
+	warp_event 38, 7, 1, SEAFOAM_GYM
 
 .CoordEvents:
 	db 0

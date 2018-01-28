@@ -571,10 +571,10 @@ TeamRocketBaseB3F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 3, 2, 2, TEAM_ROCKET_BASE_B2F
-	warp_def 27, 2, 3, TEAM_ROCKET_BASE_B2F
-	warp_def 3, 6, 4, TEAM_ROCKET_BASE_B2F
-	warp_def 27, 14, 5, TEAM_ROCKET_BASE_B2F
+	warp_event 3, 2, 2, TEAM_ROCKET_BASE_B2F
+	warp_event 27, 2, 3, TEAM_ROCKET_BASE_B2F
+	warp_event 3, 6, 4, TEAM_ROCKET_BASE_B2F
+	warp_event 27, 14, 5, TEAM_ROCKET_BASE_B2F
 
 .CoordEvents:
 	db 3

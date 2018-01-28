@@ -51,10 +51,10 @@ Route7SaffronGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 4, 1, ROUTE_7
-	warp_def 0, 5, 2, ROUTE_7
-	warp_def 9, 4, 10, SAFFRON_CITY
-	warp_def 9, 5, 11, SAFFRON_CITY
+	warp_event 0, 4, 1, ROUTE_7
+	warp_event 0, 5, 2, ROUTE_7
+	warp_event 9, 4, 10, SAFFRON_CITY
+	warp_event 9, 5, 11, SAFFRON_CITY
 
 .CoordEvents:
 	db 0

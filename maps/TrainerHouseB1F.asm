@@ -175,7 +175,7 @@ TrainerHouseB1F_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 9, 4, 3, TRAINER_HOUSE_1F
+	warp_event 9, 4, 3, TRAINER_HOUSE_1F
 
 .CoordEvents:
 	db 1

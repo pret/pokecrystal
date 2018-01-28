@@ -133,7 +133,7 @@ CinnabarIsland_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 11, 11, 1, CINNABAR_POKECENTER_1F
+	warp_event 11, 11, 1, CINNABAR_POKECENTER_1F
 
 .CoordEvents:
 	db 0

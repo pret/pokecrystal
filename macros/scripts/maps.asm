@@ -15,7 +15,7 @@ callback: MACRO
 	dbw \1, \2
 ENDM
 
-warp_def: MACRO
+warp_event: MACRO
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
 ;\3: warp destination: starts at 1

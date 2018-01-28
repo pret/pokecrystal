@@ -80,9 +80,9 @@ RedsHouse1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 2, 7, 1, PALLET_TOWN
-	warp_def 3, 7, 1, PALLET_TOWN
-	warp_def 7, 0, 1, REDS_HOUSE_2F
+	warp_event 2, 7, 1, PALLET_TOWN
+	warp_event 3, 7, 1, PALLET_TOWN
+	warp_event 7, 0, 1, REDS_HOUSE_2F
 
 .CoordEvents:
 	db 0

@@ -296,38 +296,38 @@ SaffronGym_MapEvents:
 
 .Warps:
 	db 32
-	warp_def 8, 17, 2, SAFFRON_CITY
-	warp_def 9, 17, 2, SAFFRON_CITY
-	warp_def 11, 15, 18, SAFFRON_GYM
-	warp_def 19, 15, 19, SAFFRON_GYM
-	warp_def 19, 11, 20, SAFFRON_GYM
-	warp_def 1, 11, 21, SAFFRON_GYM
-	warp_def 5, 3, 22, SAFFRON_GYM
-	warp_def 11, 5, 23, SAFFRON_GYM
-	warp_def 1, 15, 24, SAFFRON_GYM
-	warp_def 19, 3, 25, SAFFRON_GYM
-	warp_def 15, 17, 26, SAFFRON_GYM
-	warp_def 5, 17, 27, SAFFRON_GYM
-	warp_def 5, 9, 28, SAFFRON_GYM
-	warp_def 9, 3, 29, SAFFRON_GYM
-	warp_def 15, 9, 30, SAFFRON_GYM
-	warp_def 15, 5, 31, SAFFRON_GYM
-	warp_def 1, 5, 32, SAFFRON_GYM
-	warp_def 19, 17, 3, SAFFRON_GYM
-	warp_def 19, 9, 4, SAFFRON_GYM
-	warp_def 1, 9, 5, SAFFRON_GYM
-	warp_def 5, 5, 6, SAFFRON_GYM
-	warp_def 11, 3, 7, SAFFRON_GYM
-	warp_def 1, 17, 8, SAFFRON_GYM
-	warp_def 19, 5, 9, SAFFRON_GYM
-	warp_def 15, 15, 10, SAFFRON_GYM
-	warp_def 5, 15, 11, SAFFRON_GYM
-	warp_def 5, 11, 12, SAFFRON_GYM
-	warp_def 9, 5, 13, SAFFRON_GYM
-	warp_def 15, 11, 14, SAFFRON_GYM
-	warp_def 15, 3, 15, SAFFRON_GYM
-	warp_def 1, 3, 16, SAFFRON_GYM
-	warp_def 11, 9, 17, SAFFRON_GYM
+	warp_event 8, 17, 2, SAFFRON_CITY
+	warp_event 9, 17, 2, SAFFRON_CITY
+	warp_event 11, 15, 18, SAFFRON_GYM
+	warp_event 19, 15, 19, SAFFRON_GYM
+	warp_event 19, 11, 20, SAFFRON_GYM
+	warp_event 1, 11, 21, SAFFRON_GYM
+	warp_event 5, 3, 22, SAFFRON_GYM
+	warp_event 11, 5, 23, SAFFRON_GYM
+	warp_event 1, 15, 24, SAFFRON_GYM
+	warp_event 19, 3, 25, SAFFRON_GYM
+	warp_event 15, 17, 26, SAFFRON_GYM
+	warp_event 5, 17, 27, SAFFRON_GYM
+	warp_event 5, 9, 28, SAFFRON_GYM
+	warp_event 9, 3, 29, SAFFRON_GYM
+	warp_event 15, 9, 30, SAFFRON_GYM
+	warp_event 15, 5, 31, SAFFRON_GYM
+	warp_event 1, 5, 32, SAFFRON_GYM
+	warp_event 19, 17, 3, SAFFRON_GYM
+	warp_event 19, 9, 4, SAFFRON_GYM
+	warp_event 1, 9, 5, SAFFRON_GYM
+	warp_event 5, 5, 6, SAFFRON_GYM
+	warp_event 11, 3, 7, SAFFRON_GYM
+	warp_event 1, 17, 8, SAFFRON_GYM
+	warp_event 19, 5, 9, SAFFRON_GYM
+	warp_event 15, 15, 10, SAFFRON_GYM
+	warp_event 5, 15, 11, SAFFRON_GYM
+	warp_event 5, 11, 12, SAFFRON_GYM
+	warp_event 9, 5, 13, SAFFRON_GYM
+	warp_event 15, 11, 14, SAFFRON_GYM
+	warp_event 15, 3, 15, SAFFRON_GYM
+	warp_event 1, 3, 16, SAFFRON_GYM
+	warp_event 11, 9, 17, SAFFRON_GYM
 
 .CoordEvents:
 	db 0

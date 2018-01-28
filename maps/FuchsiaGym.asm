@@ -386,8 +386,8 @@ FuchsiaGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 17, 3, FUCHSIA_CITY
-	warp_def 5, 17, 3, FUCHSIA_CITY
+	warp_event 4, 17, 3, FUCHSIA_CITY
+	warp_event 5, 17, 3, FUCHSIA_CITY
 
 .CoordEvents:
 	db 0

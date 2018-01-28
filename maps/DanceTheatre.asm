@@ -343,8 +343,8 @@ DanceTheatre_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 5, 13, 8, ECRUTEAK_CITY
-	warp_def 6, 13, 8, ECRUTEAK_CITY
+	warp_event 5, 13, 8, ECRUTEAK_CITY
+	warp_event 6, 13, 8, ECRUTEAK_CITY
 
 .CoordEvents:
 	db 0

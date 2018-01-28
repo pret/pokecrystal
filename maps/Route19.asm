@@ -240,7 +240,7 @@ Route19_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 7, 3, 3, ROUTE_19_FUCHSIA_GATE
+	warp_event 7, 3, 3, ROUTE_19_FUCHSIA_GATE
 
 .CoordEvents:
 	db 0

@@ -244,16 +244,16 @@ VictoryRoad_MapEvents:
 
 .Warps:
 	db 10
-	warp_def 9, 67, 5, VICTORY_ROAD_GATE
-	warp_def 1, 49, 3, VICTORY_ROAD
-	warp_def 1, 35, 2, VICTORY_ROAD
-	warp_def 13, 31, 5, VICTORY_ROAD
-	warp_def 13, 17, 4, VICTORY_ROAD
-	warp_def 17, 33, 7, VICTORY_ROAD
-	warp_def 17, 19, 6, VICTORY_ROAD
-	warp_def 0, 11, 9, VICTORY_ROAD
-	warp_def 0, 27, 8, VICTORY_ROAD
-	warp_def 13, 5, 3, ROUTE_23
+	warp_event 9, 67, 5, VICTORY_ROAD_GATE
+	warp_event 1, 49, 3, VICTORY_ROAD
+	warp_event 1, 35, 2, VICTORY_ROAD
+	warp_event 13, 31, 5, VICTORY_ROAD
+	warp_event 13, 17, 4, VICTORY_ROAD
+	warp_event 17, 33, 7, VICTORY_ROAD
+	warp_event 17, 19, 6, VICTORY_ROAD
+	warp_event 0, 11, 9, VICTORY_ROAD
+	warp_event 0, 27, 8, VICTORY_ROAD
+	warp_event 13, 5, 3, ROUTE_23
 
 .CoordEvents:
 	db 2

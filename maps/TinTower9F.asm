@@ -27,13 +27,13 @@ TinTower9F_MapEvents:
 
 .Warps:
 	db 7
-	warp_def 12, 3, 2, TIN_TOWER_8F
-	warp_def 2, 5, 3, TIN_TOWER_8F
-	warp_def 12, 7, 4, TIN_TOWER_8F
-	warp_def 7, 9, 1, TIN_TOWER_ROOF
-	warp_def 16, 7, 5, TIN_TOWER_7F
-	warp_def 6, 13, 5, TIN_TOWER_8F
-	warp_def 8, 13, 6, TIN_TOWER_8F
+	warp_event 12, 3, 2, TIN_TOWER_8F
+	warp_event 2, 5, 3, TIN_TOWER_8F
+	warp_event 12, 7, 4, TIN_TOWER_8F
+	warp_event 7, 9, 1, TIN_TOWER_ROOF
+	warp_event 16, 7, 5, TIN_TOWER_7F
+	warp_event 6, 13, 5, TIN_TOWER_8F
+	warp_event 8, 13, 6, TIN_TOWER_8F
 
 .CoordEvents:
 	db 0

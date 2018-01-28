@@ -28,10 +28,10 @@ RockTunnelB1F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 3, 3, 6, ROCK_TUNNEL_1F
-	warp_def 17, 9, 4, ROCK_TUNNEL_1F
-	warp_def 23, 3, 3, ROCK_TUNNEL_1F
-	warp_def 25, 23, 5, ROCK_TUNNEL_1F
+	warp_event 3, 3, 6, ROCK_TUNNEL_1F
+	warp_event 17, 9, 4, ROCK_TUNNEL_1F
+	warp_event 23, 3, 3, ROCK_TUNNEL_1F
+	warp_event 25, 23, 5, ROCK_TUNNEL_1F
 
 .CoordEvents:
 	db 0

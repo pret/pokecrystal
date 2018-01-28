@@ -253,10 +253,10 @@ Route43Gate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 0, 4, ROUTE_43
-	warp_def 5, 0, 5, ROUTE_43
-	warp_def 4, 7, 3, ROUTE_43
-	warp_def 5, 7, 3, ROUTE_43
+	warp_event 4, 0, 4, ROUTE_43
+	warp_event 5, 0, 5, ROUTE_43
+	warp_event 4, 7, 3, ROUTE_43
+	warp_event 5, 7, 3, ROUTE_43
 
 .CoordEvents:
 	db 0

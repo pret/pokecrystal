@@ -141,10 +141,10 @@ Route34IlexForestGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 0, 1, ROUTE_34
-	warp_def 5, 0, 2, ROUTE_34
-	warp_def 4, 7, 1, ILEX_FOREST
-	warp_def 5, 7, 1, ILEX_FOREST
+	warp_event 4, 0, 1, ROUTE_34
+	warp_event 5, 0, 2, ROUTE_34
+	warp_event 4, 7, 1, ILEX_FOREST
+	warp_event 5, 7, 1, ILEX_FOREST
 
 .CoordEvents:
 	db 1

@@ -512,7 +512,7 @@ Route44_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 56, 7, 1, ICE_PATH_1F
+	warp_event 56, 7, 1, ICE_PATH_1F
 
 .CoordEvents:
 	db 0

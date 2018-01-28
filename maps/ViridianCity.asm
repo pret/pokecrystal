@@ -221,11 +221,11 @@ ViridianCity_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 32, 7, 1, VIRIDIAN_GYM
-	warp_def 21, 9, 1, VIRIDIAN_NICKNAME_SPEECH_HOUSE
-	warp_def 23, 15, 1, TRAINER_HOUSE_1F
-	warp_def 29, 19, 2, VIRIDIAN_MART
-	warp_def 23, 25, 1, VIRIDIAN_POKECENTER_1F
+	warp_event 32, 7, 1, VIRIDIAN_GYM
+	warp_event 21, 9, 1, VIRIDIAN_NICKNAME_SPEECH_HOUSE
+	warp_event 23, 15, 1, TRAINER_HOUSE_1F
+	warp_event 29, 19, 2, VIRIDIAN_MART
+	warp_event 23, 25, 1, VIRIDIAN_POKECENTER_1F
 
 .CoordEvents:
 	db 0

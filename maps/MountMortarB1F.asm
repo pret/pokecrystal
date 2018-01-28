@@ -140,8 +140,8 @@ MountMortarB1F_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 3, 5, MOUNT_MORTAR_1F_INSIDE
-	warp_def 19, 29, 7, MOUNT_MORTAR_1F_OUTSIDE
+	warp_event 3, 3, 5, MOUNT_MORTAR_1F_INSIDE
+	warp_event 19, 29, 7, MOUNT_MORTAR_1F_OUTSIDE
 
 .CoordEvents:
 	db 0

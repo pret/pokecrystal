@@ -442,8 +442,8 @@ GoldenrodGameCorner_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 13, 10, GOLDENROD_CITY
-	warp_def 3, 13, 10, GOLDENROD_CITY
+	warp_event 2, 13, 10, GOLDENROD_CITY
+	warp_event 3, 13, 10, GOLDENROD_CITY
 
 .CoordEvents:
 	db 0

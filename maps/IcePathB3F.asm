@@ -21,8 +21,8 @@ IcePathB3F_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 5, 2, ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def 15, 5, 2, ICE_PATH_B2F_BLACKTHORN_SIDE
+	warp_event 3, 5, 2, ICE_PATH_B2F_MAHOGANY_SIDE
+	warp_event 15, 5, 2, ICE_PATH_B2F_BLACKTHORN_SIDE
 
 .CoordEvents:
 	db 0

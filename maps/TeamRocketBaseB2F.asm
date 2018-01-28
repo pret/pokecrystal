@@ -914,11 +914,11 @@ TeamRocketBaseB2F_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 3, 14, 2, TEAM_ROCKET_BASE_B1F
-	warp_def 3, 2, 1, TEAM_ROCKET_BASE_B3F
-	warp_def 27, 2, 2, TEAM_ROCKET_BASE_B3F
-	warp_def 3, 6, 3, TEAM_ROCKET_BASE_B3F
-	warp_def 27, 14, 4, TEAM_ROCKET_BASE_B3F
+	warp_event 3, 14, 2, TEAM_ROCKET_BASE_B1F
+	warp_event 3, 2, 1, TEAM_ROCKET_BASE_B3F
+	warp_event 27, 2, 2, TEAM_ROCKET_BASE_B3F
+	warp_event 3, 6, 3, TEAM_ROCKET_BASE_B3F
+	warp_event 27, 14, 4, TEAM_ROCKET_BASE_B3F
 
 .CoordEvents:
 	db 9

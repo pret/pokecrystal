@@ -163,7 +163,7 @@ SeafoamGym_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 5, 5, 1, ROUTE_20
+	warp_event 5, 5, 1, ROUTE_20
 
 .CoordEvents:
 	db 0

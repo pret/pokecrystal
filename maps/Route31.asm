@@ -423,9 +423,9 @@ Route31_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 4, 6, 3, ROUTE_31_VIOLET_GATE
-	warp_def 4, 7, 4, ROUTE_31_VIOLET_GATE
-	warp_def 34, 5, 1, DARK_CAVE_VIOLET_ENTRANCE
+	warp_event 4, 6, 3, ROUTE_31_VIOLET_GATE
+	warp_event 4, 7, 4, ROUTE_31_VIOLET_GATE
+	warp_event 34, 5, 1, DARK_CAVE_VIOLET_ENTRANCE
 
 .CoordEvents:
 	db 0

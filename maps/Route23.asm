@@ -28,10 +28,10 @@ Route23_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 9, 5, 1, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def 10, 5, 2, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def 9, 13, 10, VICTORY_ROAD
-	warp_def 10, 13, 10, VICTORY_ROAD
+	warp_event 9, 5, 1, INDIGO_PLATEAU_POKECENTER_1F
+	warp_event 10, 5, 2, INDIGO_PLATEAU_POKECENTER_1F
+	warp_event 9, 13, 10, VICTORY_ROAD
+	warp_event 10, 13, 10, VICTORY_ROAD
 
 .CoordEvents:
 	db 0

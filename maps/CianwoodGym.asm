@@ -311,8 +311,8 @@ CianwoodGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 17, 2, CIANWOOD_CITY
-	warp_def 5, 17, 2, CIANWOOD_CITY
+	warp_event 4, 17, 2, CIANWOOD_CITY
+	warp_event 5, 17, 2, CIANWOOD_CITY
 
 .CoordEvents:
 	db 0

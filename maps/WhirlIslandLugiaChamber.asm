@@ -49,7 +49,7 @@ WhirlIslandLugiaChamber_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 9, 13, 3, WHIRL_ISLAND_B2F
+	warp_event 9, 13, 3, WHIRL_ISLAND_B2F
 
 .CoordEvents:
 	db 0

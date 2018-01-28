@@ -132,10 +132,10 @@ BattleTowerOutside_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 8, 21, 3, ROUTE_40_BATTLE_TOWER_GATE
-	warp_def 9, 21, 4, ROUTE_40_BATTLE_TOWER_GATE
-	warp_def 8, 9, 1, BATTLE_TOWER_1F
-	warp_def 9, 9, 2, BATTLE_TOWER_1F
+	warp_event 8, 21, 3, ROUTE_40_BATTLE_TOWER_GATE
+	warp_event 9, 21, 4, ROUTE_40_BATTLE_TOWER_GATE
+	warp_event 8, 9, 1, BATTLE_TOWER_1F
+	warp_event 9, 9, 2, BATTLE_TOWER_1F
 
 .CoordEvents:
 	db 0

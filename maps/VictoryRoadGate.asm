@@ -103,14 +103,14 @@ VictoryRoadGate_MapEvents:
 
 .Warps:
 	db 8
-	warp_def 17, 7, 1, ROUTE_22
-	warp_def 18, 7, 1, ROUTE_22
-	warp_def 9, 17, 1, ROUTE_26
-	warp_def 10, 17, 1, ROUTE_26
-	warp_def 9, 0, 1, VICTORY_ROAD
-	warp_def 10, 0, 1, VICTORY_ROAD
-	warp_def 1, 7, 2, ROUTE_28
-	warp_def 2, 7, 2, ROUTE_28
+	warp_event 17, 7, 1, ROUTE_22
+	warp_event 18, 7, 1, ROUTE_22
+	warp_event 9, 17, 1, ROUTE_26
+	warp_event 10, 17, 1, ROUTE_26
+	warp_event 9, 0, 1, VICTORY_ROAD
+	warp_event 10, 0, 1, VICTORY_ROAD
+	warp_event 1, 7, 2, ROUTE_28
+	warp_event 2, 7, 2, ROUTE_28
 
 .CoordEvents:
 	db 1

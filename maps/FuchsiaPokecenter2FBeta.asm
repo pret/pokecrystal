@@ -11,7 +11,7 @@ FuchsiaPokecenter2FBeta_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 0, 7, 3, FUCHSIA_POKECENTER_1F
+	warp_event 0, 7, 3, FUCHSIA_POKECENTER_1F
 
 .CoordEvents:
 	db 0

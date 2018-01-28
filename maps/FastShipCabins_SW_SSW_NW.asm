@@ -228,11 +228,11 @@ FastShipCabins_SW_SSW_NW_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 2, 0, 5, FAST_SHIP_1F
-	warp_def 2, 19, 6, FAST_SHIP_1F
-	warp_def 3, 19, 6, FAST_SHIP_1F
-	warp_def 2, 31, 7, FAST_SHIP_1F
-	warp_def 3, 31, 7, FAST_SHIP_1F
+	warp_event 2, 0, 5, FAST_SHIP_1F
+	warp_event 2, 19, 6, FAST_SHIP_1F
+	warp_event 3, 19, 6, FAST_SHIP_1F
+	warp_event 2, 31, 7, FAST_SHIP_1F
+	warp_event 3, 31, 7, FAST_SHIP_1F
 
 .CoordEvents:
 	db 0

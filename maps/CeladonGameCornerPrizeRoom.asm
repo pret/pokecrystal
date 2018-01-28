@@ -269,8 +269,8 @@ CeladonGameCornerPrizeRoom_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 5, 7, CELADON_CITY
-	warp_def 3, 5, 7, CELADON_CITY
+	warp_event 2, 5, 7, CELADON_CITY
+	warp_event 3, 5, 7, CELADON_CITY
 
 .CoordEvents:
 	db 0

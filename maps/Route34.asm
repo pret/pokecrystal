@@ -766,11 +766,11 @@ Route34_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 13, 37, 1, ROUTE_34_ILEX_FOREST_GATE
-	warp_def 14, 37, 2, ROUTE_34_ILEX_FOREST_GATE
-	warp_def 11, 14, 1, DAY_CARE
-	warp_def 11, 15, 2, DAY_CARE
-	warp_def 13, 15, 3, DAY_CARE
+	warp_event 13, 37, 1, ROUTE_34_ILEX_FOREST_GATE
+	warp_event 14, 37, 2, ROUTE_34_ILEX_FOREST_GATE
+	warp_event 11, 14, 1, DAY_CARE
+	warp_event 11, 15, 2, DAY_CARE
+	warp_event 13, 15, 3, DAY_CARE
 
 .CoordEvents:
 	db 0

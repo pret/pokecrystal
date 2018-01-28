@@ -368,8 +368,8 @@ CeruleanGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 15, 5, CERULEAN_CITY
-	warp_def 5, 15, 5, CERULEAN_CITY
+	warp_event 4, 15, 5, CERULEAN_CITY
+	warp_event 5, 15, 5, CERULEAN_CITY
 
 .CoordEvents:
 	db 0

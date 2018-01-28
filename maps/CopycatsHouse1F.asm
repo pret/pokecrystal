@@ -78,9 +78,9 @@ CopycatsHouse1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 2, 7, 8, SAFFRON_CITY
-	warp_def 3, 7, 8, SAFFRON_CITY
-	warp_def 2, 0, 1, COPYCATS_HOUSE_2F
+	warp_event 2, 7, 8, SAFFRON_CITY
+	warp_event 3, 7, 8, SAFFRON_CITY
+	warp_event 2, 0, 1, COPYCATS_HOUSE_2F
 
 .CoordEvents:
 	db 0

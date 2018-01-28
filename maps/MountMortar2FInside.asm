@@ -72,8 +72,8 @@ MountMortar2FInside_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 17, 33, 4, MOUNT_MORTAR_1F_OUTSIDE
-	warp_def 3, 5, 6, MOUNT_MORTAR_1F_INSIDE
+	warp_event 17, 33, 4, MOUNT_MORTAR_1F_OUTSIDE
+	warp_event 3, 5, 6, MOUNT_MORTAR_1F_INSIDE
 
 .CoordEvents:
 	db 0

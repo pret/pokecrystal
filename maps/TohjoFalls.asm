@@ -17,8 +17,8 @@ TohjoFalls_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 13, 15, 2, ROUTE_27
-	warp_def 25, 15, 3, ROUTE_27
+	warp_event 13, 15, 2, ROUTE_27
+	warp_event 25, 15, 3, ROUTE_27
 
 .CoordEvents:
 	db 0

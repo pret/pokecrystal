@@ -251,10 +251,10 @@ RadioTower4F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 0, 1, RADIO_TOWER_5F
-	warp_def 9, 0, 2, RADIO_TOWER_3F
-	warp_def 12, 0, 2, RADIO_TOWER_5F
-	warp_def 17, 0, 3, RADIO_TOWER_3F
+	warp_event 0, 0, 1, RADIO_TOWER_5F
+	warp_event 9, 0, 2, RADIO_TOWER_3F
+	warp_event 12, 0, 2, RADIO_TOWER_5F
+	warp_event 17, 0, 3, RADIO_TOWER_3F
 
 .CoordEvents:
 	db 0

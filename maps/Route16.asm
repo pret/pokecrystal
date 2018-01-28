@@ -34,11 +34,11 @@ Route16_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 3, 1, 1, ROUTE_16_FUCHSIA_SPEECH_HOUSE
-	warp_def 14, 6, 3, ROUTE_16_GATE
-	warp_def 14, 7, 4, ROUTE_16_GATE
-	warp_def 9, 6, 1, ROUTE_16_GATE
-	warp_def 9, 7, 2, ROUTE_16_GATE
+	warp_event 3, 1, 1, ROUTE_16_FUCHSIA_SPEECH_HOUSE
+	warp_event 14, 6, 3, ROUTE_16_GATE
+	warp_event 14, 7, 4, ROUTE_16_GATE
+	warp_event 9, 6, 1, ROUTE_16_GATE
+	warp_event 9, 7, 2, ROUTE_16_GATE
 
 .CoordEvents:
 	db 0

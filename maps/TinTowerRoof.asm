@@ -50,7 +50,7 @@ TinTowerRoof_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 9, 13, 4, TIN_TOWER_9F
+	warp_event 9, 13, 4, TIN_TOWER_9F
 
 .CoordEvents:
 	db 0

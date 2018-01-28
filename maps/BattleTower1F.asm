@@ -799,9 +799,9 @@ BattleTower1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 7, 9, 3, BATTLE_TOWER_OUTSIDE
-	warp_def 8, 9, 4, BATTLE_TOWER_OUTSIDE
-	warp_def 7, 0, 1, BATTLE_TOWER_ELEVATOR
+	warp_event 7, 9, 3, BATTLE_TOWER_OUTSIDE
+	warp_event 8, 9, 4, BATTLE_TOWER_OUTSIDE
+	warp_event 7, 0, 1, BATTLE_TOWER_ELEVATOR
 
 .CoordEvents:
 	db 0

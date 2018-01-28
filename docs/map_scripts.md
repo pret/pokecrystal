@@ -78,7 +78,7 @@ Callback types:
 ### <code>.Warps: db <i>N</i></code>
 
 <pre>
-	warp_def <i>x</i>, <i>y</i>, <i>warp_id</i>, <i>map</i>
+	warp_event <i>x</i>, <i>y</i>, <i>warp_id</i>, <i>map</i>
 </pre>
 
 

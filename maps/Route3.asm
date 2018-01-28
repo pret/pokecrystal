@@ -138,7 +138,7 @@ Route3_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 52, 1, 1, MOUNT_MOON
+	warp_event 52, 1, 1, MOUNT_MOON
 
 .CoordEvents:
 	db 0

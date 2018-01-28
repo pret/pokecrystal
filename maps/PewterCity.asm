@@ -158,11 +158,11 @@ PewterCity_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 29, 13, 1, PEWTER_NIDORAN_SPEECH_HOUSE
-	warp_def 16, 17, 1, PEWTER_GYM
-	warp_def 23, 17, 2, PEWTER_MART
-	warp_def 13, 25, 1, PEWTER_POKECENTER_1F
-	warp_def 7, 29, 1, PEWTER_SNOOZE_SPEECH_HOUSE
+	warp_event 29, 13, 1, PEWTER_NIDORAN_SPEECH_HOUSE
+	warp_event 16, 17, 1, PEWTER_GYM
+	warp_event 23, 17, 2, PEWTER_MART
+	warp_event 13, 25, 1, PEWTER_POKECENTER_1F
+	warp_event 7, 29, 1, PEWTER_SNOOZE_SPEECH_HOUSE
 
 .CoordEvents:
 	db 0

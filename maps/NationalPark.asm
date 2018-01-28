@@ -519,10 +519,10 @@ NationalPark_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 33, 18, 1, ROUTE_36_NATIONAL_PARK_GATE
-	warp_def 33, 19, 2, ROUTE_36_NATIONAL_PARK_GATE
-	warp_def 10, 47, 1, ROUTE_35_NATIONAL_PARK_GATE
-	warp_def 11, 47, 2, ROUTE_35_NATIONAL_PARK_GATE
+	warp_event 33, 18, 1, ROUTE_36_NATIONAL_PARK_GATE
+	warp_event 33, 19, 2, ROUTE_36_NATIONAL_PARK_GATE
+	warp_event 10, 47, 1, ROUTE_35_NATIONAL_PARK_GATE
+	warp_event 11, 47, 2, ROUTE_35_NATIONAL_PARK_GATE
 
 .CoordEvents:
 	db 0

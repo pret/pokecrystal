@@ -170,10 +170,10 @@ GoldenrodMagnetTrainStation_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 8, 17, 5, GOLDENROD_CITY
-	warp_def 9, 17, 5, GOLDENROD_CITY
-	warp_def 6, 5, 4, SAFFRON_MAGNET_TRAIN_STATION
-	warp_def 11, 5, 3, SAFFRON_MAGNET_TRAIN_STATION
+	warp_event 8, 17, 5, GOLDENROD_CITY
+	warp_event 9, 17, 5, GOLDENROD_CITY
+	warp_event 6, 5, 4, SAFFRON_MAGNET_TRAIN_STATION
+	warp_event 11, 5, 3, SAFFRON_MAGNET_TRAIN_STATION
 
 .CoordEvents:
 	db 1

@@ -200,7 +200,7 @@ Route33_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 11, 9, 3, UNION_CAVE_1F
+	warp_event 11, 9, 3, UNION_CAVE_1F
 
 .CoordEvents:
 	db 0

@@ -201,10 +201,10 @@ Route35GoldenrodGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 0, 1, ROUTE_35
-	warp_def 5, 0, 2, ROUTE_35
-	warp_def 4, 7, 12, GOLDENROD_CITY
-	warp_def 5, 7, 12, GOLDENROD_CITY
+	warp_event 4, 0, 1, ROUTE_35
+	warp_event 5, 0, 2, ROUTE_35
+	warp_event 4, 7, 12, GOLDENROD_CITY
+	warp_event 5, 7, 12, GOLDENROD_CITY
 
 .CoordEvents:
 	db 0

@@ -11,9 +11,9 @@ RuinsOfAlphAerodactylWordRoom_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 9, 5, 3, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM
-	warp_def 10, 5, 4, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM
-	warp_def 17, 11, 8, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_event 9, 5, 3, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM
+	warp_event 10, 5, 4, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM
+	warp_event 17, 11, 8, RUINS_OF_ALPH_INNER_CHAMBER
 
 .CoordEvents:
 	db 0

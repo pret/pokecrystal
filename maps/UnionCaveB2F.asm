@@ -147,7 +147,7 @@ UnionCaveB2F_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 5, 3, 5, UNION_CAVE_B1F
+	warp_event 5, 3, 5, UNION_CAVE_B1F
 
 .CoordEvents:
 	db 0

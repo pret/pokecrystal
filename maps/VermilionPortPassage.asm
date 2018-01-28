@@ -24,11 +24,11 @@ VermilionPortPassage_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 15, 0, 8, VERMILION_CITY
-	warp_def 16, 0, 9, VERMILION_CITY
-	warp_def 15, 4, 4, VERMILION_PORT_PASSAGE
-	warp_def 3, 2, 3, VERMILION_PORT_PASSAGE
-	warp_def 3, 14, 1, VERMILION_PORT
+	warp_event 15, 0, 8, VERMILION_CITY
+	warp_event 16, 0, 9, VERMILION_CITY
+	warp_event 15, 4, 4, VERMILION_PORT_PASSAGE
+	warp_event 3, 2, 3, VERMILION_PORT_PASSAGE
+	warp_event 3, 14, 1, VERMILION_PORT
 
 .CoordEvents:
 	db 0

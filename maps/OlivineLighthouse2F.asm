@@ -210,12 +210,12 @@ OlivineLighthouse2F_MapEvents:
 
 .Warps:
 	db 6
-	warp_def 3, 11, 3, OLIVINE_LIGHTHOUSE_1F
-	warp_def 5, 3, 2, OLIVINE_LIGHTHOUSE_3F
-	warp_def 16, 13, 4, OLIVINE_LIGHTHOUSE_1F
-	warp_def 17, 13, 5, OLIVINE_LIGHTHOUSE_1F
-	warp_def 16, 11, 4, OLIVINE_LIGHTHOUSE_3F
-	warp_def 17, 11, 5, OLIVINE_LIGHTHOUSE_3F
+	warp_event 3, 11, 3, OLIVINE_LIGHTHOUSE_1F
+	warp_event 5, 3, 2, OLIVINE_LIGHTHOUSE_3F
+	warp_event 16, 13, 4, OLIVINE_LIGHTHOUSE_1F
+	warp_event 17, 13, 5, OLIVINE_LIGHTHOUSE_1F
+	warp_event 16, 11, 4, OLIVINE_LIGHTHOUSE_3F
+	warp_event 17, 11, 5, OLIVINE_LIGHTHOUSE_3F
 
 .CoordEvents:
 	db 0

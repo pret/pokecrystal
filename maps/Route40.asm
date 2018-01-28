@@ -343,7 +343,7 @@ Route40_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 9, 5, 1, ROUTE_40_BATTLE_TOWER_GATE
+	warp_event 9, 5, 1, ROUTE_40_BATTLE_TOWER_GATE
 
 .CoordEvents:
 	db 0

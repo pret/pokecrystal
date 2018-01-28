@@ -49,8 +49,8 @@ CeruleanPoliceStation_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 2, CERULEAN_CITY
-	warp_def 3, 7, 2, CERULEAN_CITY
+	warp_event 2, 7, 2, CERULEAN_CITY
+	warp_event 3, 7, 2, CERULEAN_CITY
 
 .CoordEvents:
 	db 0

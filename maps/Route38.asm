@@ -478,8 +478,8 @@ Route38_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 35, 8, 1, ROUTE_38_ECRUTEAK_GATE
-	warp_def 35, 9, 2, ROUTE_38_ECRUTEAK_GATE
+	warp_event 35, 8, 1, ROUTE_38_ECRUTEAK_GATE
+	warp_event 35, 9, 2, ROUTE_38_ECRUTEAK_GATE
 
 .CoordEvents:
 	db 0

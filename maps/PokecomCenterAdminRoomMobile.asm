@@ -268,8 +268,8 @@ PokecomCenterAdminRoomMobile_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 0, 31, 3, GOLDENROD_POKECENTER_1F
-	warp_def 1, 31, 3, GOLDENROD_POKECENTER_1F
+	warp_event 0, 31, 3, GOLDENROD_POKECENTER_1F
+	warp_event 1, 31, 3, GOLDENROD_POKECENTER_1F
 
 .CoordEvents:
 	db 0

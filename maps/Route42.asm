@@ -324,11 +324,11 @@ Route42_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 0, 8, 3, ROUTE_42_ECRUTEAK_GATE
-	warp_def 0, 9, 4, ROUTE_42_ECRUTEAK_GATE
-	warp_def 10, 5, 1, MOUNT_MORTAR_1F_OUTSIDE
-	warp_def 28, 9, 2, MOUNT_MORTAR_1F_OUTSIDE
-	warp_def 46, 7, 3, MOUNT_MORTAR_1F_OUTSIDE
+	warp_event 0, 8, 3, ROUTE_42_ECRUTEAK_GATE
+	warp_event 0, 9, 4, ROUTE_42_ECRUTEAK_GATE
+	warp_event 10, 5, 1, MOUNT_MORTAR_1F_OUTSIDE
+	warp_event 28, 9, 2, MOUNT_MORTAR_1F_OUTSIDE
+	warp_event 46, 7, 3, MOUNT_MORTAR_1F_OUTSIDE
 
 .CoordEvents:
 	db 1

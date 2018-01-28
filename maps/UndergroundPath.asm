@@ -17,8 +17,8 @@ UndergroundPath_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 2, 3, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
-	warp_def 3, 24, 3, ROUTE_6_UNDERGROUND_PATH_ENTRANCE
+	warp_event 3, 2, 3, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
+	warp_event 3, 24, 3, ROUTE_6_UNDERGROUND_PATH_ENTRANCE
 
 .CoordEvents:
 	db 0

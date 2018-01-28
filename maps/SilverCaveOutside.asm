@@ -29,8 +29,8 @@ SilverCaveOutside_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 23, 19, 1, SILVER_CAVE_POKECENTER_1F
-	warp_def 18, 11, 1, SILVER_CAVE_ROOM_1
+	warp_event 23, 19, 1, SILVER_CAVE_POKECENTER_1F
+	warp_event 18, 11, 1, SILVER_CAVE_ROOM_1
 
 .CoordEvents:
 	db 0

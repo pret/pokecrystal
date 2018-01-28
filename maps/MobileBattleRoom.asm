@@ -72,8 +72,8 @@ MobileBattleRoom_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 7, 6, POKECENTER_2F
-	warp_def 5, 7, 6, POKECENTER_2F
+	warp_event 4, 7, 6, POKECENTER_2F
+	warp_event 5, 7, 6, POKECENTER_2F
 
 .CoordEvents:
 	db 0

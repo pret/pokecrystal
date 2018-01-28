@@ -226,9 +226,9 @@ MahoganyMart1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 3, 7, 1, MAHOGANY_TOWN
-	warp_def 4, 7, 1, MAHOGANY_TOWN
-	warp_def 7, 3, 1, TEAM_ROCKET_BASE_B1F
+	warp_event 3, 7, 1, MAHOGANY_TOWN
+	warp_event 4, 7, 1, MAHOGANY_TOWN
+	warp_event 7, 3, 1, TEAM_ROCKET_BASE_B1F
 
 .CoordEvents:
 	db 0

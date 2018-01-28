@@ -391,9 +391,9 @@ PlayersHouse1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 6, 7, 2, NEW_BARK_TOWN
-	warp_def 7, 7, 2, NEW_BARK_TOWN
-	warp_def 9, 0, 1, PLAYERS_HOUSE_2F
+	warp_event 6, 7, 2, NEW_BARK_TOWN
+	warp_event 7, 7, 2, NEW_BARK_TOWN
+	warp_event 9, 0, 1, PLAYERS_HOUSE_2F
 
 .CoordEvents:
 	db 2

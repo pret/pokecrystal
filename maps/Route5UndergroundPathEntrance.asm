@@ -25,9 +25,9 @@ Route5UndergroundPathEntrance_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 3, 7, 1, ROUTE_5
-	warp_def 4, 7, 1, ROUTE_5
-	warp_def 4, 3, 1, UNDERGROUND_PATH
+	warp_event 3, 7, 1, ROUTE_5
+	warp_event 4, 7, 1, ROUTE_5
+	warp_event 4, 3, 1, UNDERGROUND_PATH
 
 .CoordEvents:
 	db 0

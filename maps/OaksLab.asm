@@ -262,8 +262,8 @@ OaksLab_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 11, 3, PALLET_TOWN
-	warp_def 5, 11, 3, PALLET_TOWN
+	warp_event 4, 11, 3, PALLET_TOWN
+	warp_event 5, 11, 3, PALLET_TOWN
 
 .CoordEvents:
 	db 0

@@ -265,21 +265,21 @@ EcruteakCity_MapEvents:
 
 .Warps:
 	db 15
-	warp_def 35, 26, 1, ROUTE_42_ECRUTEAK_GATE
-	warp_def 35, 27, 2, ROUTE_42_ECRUTEAK_GATE
-	warp_def 18, 11, 1, ECRUTEAK_TIN_TOWER_ENTRANCE
-	warp_def 20, 2, 1, WISE_TRIOS_ROOM
-	warp_def 20, 3, 2, WISE_TRIOS_ROOM
-	warp_def 23, 27, 1, ECRUTEAK_POKECENTER_1F
-	warp_def 5, 21, 1, ECRUTEAK_LUGIA_SPEECH_HOUSE
-	warp_def 23, 21, 1, DANCE_THEATRE
-	warp_def 29, 21, 2, ECRUTEAK_MART
-	warp_def 6, 27, 1, ECRUTEAK_GYM
-	warp_def 13, 27, 1, ECRUTEAK_ITEMFINDER_HOUSE
-	warp_def 37, 7, 1, TIN_TOWER_1F
-	warp_def 5, 5, 1, BURNED_TOWER_1F
-	warp_def 0, 18, 3, ROUTE_38_ECRUTEAK_GATE
-	warp_def 0, 19, 4, ROUTE_38_ECRUTEAK_GATE
+	warp_event 35, 26, 1, ROUTE_42_ECRUTEAK_GATE
+	warp_event 35, 27, 2, ROUTE_42_ECRUTEAK_GATE
+	warp_event 18, 11, 1, ECRUTEAK_TIN_TOWER_ENTRANCE
+	warp_event 20, 2, 1, WISE_TRIOS_ROOM
+	warp_event 20, 3, 2, WISE_TRIOS_ROOM
+	warp_event 23, 27, 1, ECRUTEAK_POKECENTER_1F
+	warp_event 5, 21, 1, ECRUTEAK_LUGIA_SPEECH_HOUSE
+	warp_event 23, 21, 1, DANCE_THEATRE
+	warp_event 29, 21, 2, ECRUTEAK_MART
+	warp_event 6, 27, 1, ECRUTEAK_GYM
+	warp_event 13, 27, 1, ECRUTEAK_ITEMFINDER_HOUSE
+	warp_event 37, 7, 1, TIN_TOWER_1F
+	warp_event 5, 5, 1, BURNED_TOWER_1F
+	warp_event 0, 18, 3, ROUTE_38_ECRUTEAK_GATE
+	warp_event 0, 19, 4, ROUTE_38_ECRUTEAK_GATE
 
 .CoordEvents:
 	db 0

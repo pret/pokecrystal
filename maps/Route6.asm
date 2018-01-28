@@ -97,8 +97,8 @@ Route6_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 17, 3, 1, ROUTE_6_UNDERGROUND_PATH_ENTRANCE
-	warp_def 6, 1, 3, ROUTE_6_SAFFRON_GATE
+	warp_event 17, 3, 1, ROUTE_6_UNDERGROUND_PATH_ENTRANCE
+	warp_event 6, 1, 3, ROUTE_6_SAFFRON_GATE
 
 .CoordEvents:
 	db 0

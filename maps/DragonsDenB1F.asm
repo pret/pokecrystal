@@ -412,8 +412,8 @@ DragonsDenB1F_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 20, 3, 3, DRAGONS_DEN_1F
-	warp_def 19, 29, 1, DRAGON_SHRINE
+	warp_event 20, 3, 3, DRAGONS_DEN_1F
+	warp_event 19, 29, 1, DRAGON_SHRINE
 
 .CoordEvents:
 	db 1

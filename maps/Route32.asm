@@ -934,10 +934,10 @@ Route32_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 11, 73, 1, ROUTE_32_POKECENTER_1F
-	warp_def 4, 2, 3, ROUTE_32_RUINS_OF_ALPH_GATE
-	warp_def 4, 3, 4, ROUTE_32_RUINS_OF_ALPH_GATE
-	warp_def 6, 79, 4, UNION_CAVE_1F
+	warp_event 11, 73, 1, ROUTE_32_POKECENTER_1F
+	warp_event 4, 2, 3, ROUTE_32_RUINS_OF_ALPH_GATE
+	warp_event 4, 3, 4, ROUTE_32_RUINS_OF_ALPH_GATE
+	warp_event 6, 79, 4, UNION_CAVE_1F
 
 .CoordEvents:
 	db 2

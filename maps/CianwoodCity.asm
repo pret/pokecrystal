@@ -386,13 +386,13 @@ CianwoodCity_MapEvents:
 
 .Warps:
 	db 7
-	warp_def 17, 41, 1, MANIAS_HOUSE
-	warp_def 8, 43, 1, CIANWOOD_GYM
-	warp_def 23, 43, 1, CIANWOOD_POKECENTER_1F
-	warp_def 15, 47, 1, CIANWOOD_PHARMACY
-	warp_def 9, 31, 1, CIANWOOD_PHOTO_STUDIO
-	warp_def 15, 37, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
-	warp_def 5, 17, 1, POKE_SEERS_HOUSE
+	warp_event 17, 41, 1, MANIAS_HOUSE
+	warp_event 8, 43, 1, CIANWOOD_GYM
+	warp_event 23, 43, 1, CIANWOOD_POKECENTER_1F
+	warp_event 15, 47, 1, CIANWOOD_PHARMACY
+	warp_event 9, 31, 1, CIANWOOD_PHOTO_STUDIO
+	warp_event 15, 37, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
+	warp_event 5, 17, 1, POKE_SEERS_HOUSE
 
 .CoordEvents:
 	db 1

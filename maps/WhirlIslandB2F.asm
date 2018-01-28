@@ -25,10 +25,10 @@ WhirlIslandB2F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 11, 5, 7, WHIRL_ISLAND_B1F
-	warp_def 7, 11, 8, WHIRL_ISLAND_B1F
-	warp_def 7, 25, 1, WHIRL_ISLAND_LUGIA_CHAMBER
-	warp_def 13, 31, 5, WHIRL_ISLAND_SW
+	warp_event 11, 5, 7, WHIRL_ISLAND_B1F
+	warp_event 7, 11, 8, WHIRL_ISLAND_B1F
+	warp_event 7, 25, 1, WHIRL_ISLAND_LUGIA_CHAMBER
+	warp_event 13, 31, 5, WHIRL_ISLAND_SW
 
 .CoordEvents:
 	db 0

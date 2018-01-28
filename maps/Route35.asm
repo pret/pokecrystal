@@ -468,9 +468,9 @@ Route35_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 9, 33, 1, ROUTE_35_GOLDENROD_GATE
-	warp_def 10, 33, 2, ROUTE_35_GOLDENROD_GATE
-	warp_def 3, 5, 3, ROUTE_35_NATIONAL_PARK_GATE
+	warp_event 9, 33, 1, ROUTE_35_GOLDENROD_GATE
+	warp_event 10, 33, 2, ROUTE_35_GOLDENROD_GATE
+	warp_event 3, 5, 3, ROUTE_35_NATIONAL_PARK_GATE
 
 .CoordEvents:
 	db 0

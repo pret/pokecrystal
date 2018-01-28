@@ -44,10 +44,10 @@ Route43MahoganyGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 0, 1, ROUTE_43
-	warp_def 5, 0, 2, ROUTE_43
-	warp_def 4, 7, 5, MAHOGANY_TOWN
-	warp_def 5, 7, 5, MAHOGANY_TOWN
+	warp_event 4, 0, 1, ROUTE_43
+	warp_event 5, 0, 2, ROUTE_43
+	warp_event 4, 7, 5, MAHOGANY_TOWN
+	warp_event 5, 7, 5, MAHOGANY_TOWN
 
 .CoordEvents:
 	db 0

@@ -116,8 +116,8 @@ HallOfFame_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 13, 3, LANCES_ROOM
-	warp_def 5, 13, 4, LANCES_ROOM
+	warp_event 4, 13, 3, LANCES_ROOM
+	warp_event 5, 13, 4, LANCES_ROOM
 
 .CoordEvents:
 	db 0

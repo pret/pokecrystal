@@ -172,7 +172,7 @@ Route12_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 11, 33, 1, ROUTE_12_SUPER_ROD_HOUSE
+	warp_event 11, 33, 1, ROUTE_12_SUPER_ROD_HOUSE
 
 .CoordEvents:
 	db 0

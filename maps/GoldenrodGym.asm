@@ -385,8 +385,8 @@ GoldenrodGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 17, 1, GOLDENROD_CITY
-	warp_def 3, 17, 1, GOLDENROD_CITY
+	warp_event 2, 17, 1, GOLDENROD_CITY
+	warp_event 3, 17, 1, GOLDENROD_CITY
 
 .CoordEvents:
 	db 1

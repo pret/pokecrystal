@@ -40,8 +40,8 @@ Route7_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 15, 6, 1, ROUTE_7_SAFFRON_GATE
-	warp_def 15, 7, 2, ROUTE_7_SAFFRON_GATE
+	warp_event 15, 6, 1, ROUTE_7_SAFFRON_GATE
+	warp_event 15, 7, 2, ROUTE_7_SAFFRON_GATE
 
 .CoordEvents:
 	db 0

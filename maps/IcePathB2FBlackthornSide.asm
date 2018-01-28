@@ -20,8 +20,8 @@ IcePathB2FBlackthornSide_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 15, 8, ICE_PATH_B1F
-	warp_def 3, 3, 2, ICE_PATH_B3F
+	warp_event 3, 15, 8, ICE_PATH_B1F
+	warp_event 3, 3, 2, ICE_PATH_B3F
 
 .CoordEvents:
 	db 0

@@ -11,9 +11,9 @@ RuinsOfAlphOmanyteWordRoom_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 9, 7, 3, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
-	warp_def 10, 7, 4, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
-	warp_def 17, 13, 6, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_event 9, 7, 3, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
+	warp_event 10, 7, 4, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
+	warp_event 17, 13, 6, RUINS_OF_ALPH_INNER_CHAMBER
 
 .CoordEvents:
 	db 0

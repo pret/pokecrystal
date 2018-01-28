@@ -349,8 +349,8 @@ Route39_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 1, 3, 1, ROUTE_39_BARN
-	warp_def 5, 3, 1, ROUTE_39_FARMHOUSE
+	warp_event 1, 3, 1, ROUTE_39_BARN
+	warp_event 5, 3, 1, ROUTE_39_FARMHOUSE
 
 .CoordEvents:
 	db 0

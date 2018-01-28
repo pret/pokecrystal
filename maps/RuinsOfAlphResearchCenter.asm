@@ -398,8 +398,8 @@ RuinsOfAlphResearchCenter_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 6, RUINS_OF_ALPH_OUTSIDE
-	warp_def 3, 7, 6, RUINS_OF_ALPH_OUTSIDE
+	warp_event 2, 7, 6, RUINS_OF_ALPH_OUTSIDE
+	warp_event 3, 7, 6, RUINS_OF_ALPH_OUTSIDE
 
 .CoordEvents:
 	db 0

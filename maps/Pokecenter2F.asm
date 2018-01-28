@@ -1028,12 +1028,12 @@ Pokecenter2F_MapEvents:
 
 .Warps:
 	db 6
-	warp_def 0, 7, -1, POKECENTER_2F
-	warp_def 5, 0, 1, TRADE_CENTER
-	warp_def 9, 0, 1, COLOSSEUM
-	warp_def 13, 2, 1, TIME_CAPSULE
-	warp_def 6, 0, 1, MOBILE_TRADE_ROOM_MOBILE
-	warp_def 10, 0, 1, MOBILE_BATTLE_ROOM
+	warp_event 0, 7, -1, POKECENTER_2F
+	warp_event 5, 0, 1, TRADE_CENTER
+	warp_event 9, 0, 1, COLOSSEUM
+	warp_event 13, 2, 1, TIME_CAPSULE
+	warp_event 6, 0, 1, MOBILE_TRADE_ROOM_MOBILE
+	warp_event 10, 0, 1, MOBILE_BATTLE_ROOM
 
 .CoordEvents:
 	db 0

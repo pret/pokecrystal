@@ -36,10 +36,10 @@ IlexForestAzaleaGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 4, 2, ILEX_FOREST
-	warp_def 0, 5, 3, ILEX_FOREST
-	warp_def 9, 4, 7, AZALEA_TOWN
-	warp_def 9, 5, 8, AZALEA_TOWN
+	warp_event 0, 4, 2, ILEX_FOREST
+	warp_event 0, 5, 3, ILEX_FOREST
+	warp_event 9, 4, 7, AZALEA_TOWN
+	warp_event 9, 5, 8, AZALEA_TOWN
 
 .CoordEvents:
 	db 0

@@ -40,10 +40,10 @@ Route36RuinsOfAlphGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 0, 3, ROUTE_36
-	warp_def 5, 0, 4, ROUTE_36
-	warp_def 4, 7, 9, RUINS_OF_ALPH_OUTSIDE
-	warp_def 5, 7, 9, RUINS_OF_ALPH_OUTSIDE
+	warp_event 4, 0, 3, ROUTE_36
+	warp_event 5, 0, 4, ROUTE_36
+	warp_event 4, 7, 9, RUINS_OF_ALPH_OUTSIDE
+	warp_event 5, 7, 9, RUINS_OF_ALPH_OUTSIDE
 
 .CoordEvents:
 	db 0

@@ -134,9 +134,9 @@ WillsRoom_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 5, 17, 4, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def 4, 2, 1, KOGAS_ROOM
-	warp_def 5, 2, 2, KOGAS_ROOM
+	warp_event 5, 17, 4, INDIGO_PLATEAU_POKECENTER_1F
+	warp_event 4, 2, 1, KOGAS_ROOM
+	warp_event 5, 2, 2, KOGAS_ROOM
 
 .CoordEvents:
 	db 0

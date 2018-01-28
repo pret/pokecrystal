@@ -78,8 +78,8 @@ SoulHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 7, 6, LAVENDER_TOWN
-	warp_def 5, 7, 6, LAVENDER_TOWN
+	warp_event 4, 7, 6, LAVENDER_TOWN
+	warp_event 5, 7, 6, LAVENDER_TOWN
 
 .CoordEvents:
 	db 0

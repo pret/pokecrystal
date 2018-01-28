@@ -506,11 +506,11 @@ Route43_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 9, 51, 1, ROUTE_43_MAHOGANY_GATE
-	warp_def 10, 51, 2, ROUTE_43_MAHOGANY_GATE
-	warp_def 17, 35, 3, ROUTE_43_GATE
-	warp_def 17, 31, 1, ROUTE_43_GATE
-	warp_def 18, 31, 2, ROUTE_43_GATE
+	warp_event 9, 51, 1, ROUTE_43_MAHOGANY_GATE
+	warp_event 10, 51, 2, ROUTE_43_MAHOGANY_GATE
+	warp_event 17, 35, 3, ROUTE_43_GATE
+	warp_event 17, 31, 1, ROUTE_43_GATE
+	warp_event 18, 31, 2, ROUTE_43_GATE
 
 .CoordEvents:
 	db 0

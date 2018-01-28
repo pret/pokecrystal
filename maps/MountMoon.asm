@@ -166,14 +166,14 @@ MountMoon_MapEvents:
 
 .Warps:
 	db 8
-	warp_def 3, 3, 1, ROUTE_3
-	warp_def 15, 15, 1, ROUTE_4
-	warp_def 13, 3, 7, MOUNT_MOON
-	warp_def 15, 11, 8, MOUNT_MOON
-	warp_def 25, 5, 1, MOUNT_MOON_SQUARE
-	warp_def 25, 15, 2, MOUNT_MOON_SQUARE
-	warp_def 25, 3, 3, MOUNT_MOON
-	warp_def 25, 13, 4, MOUNT_MOON
+	warp_event 3, 3, 1, ROUTE_3
+	warp_event 15, 15, 1, ROUTE_4
+	warp_event 13, 3, 7, MOUNT_MOON
+	warp_event 15, 11, 8, MOUNT_MOON
+	warp_event 25, 5, 1, MOUNT_MOON_SQUARE
+	warp_event 25, 15, 2, MOUNT_MOON_SQUARE
+	warp_event 25, 3, 3, MOUNT_MOON
+	warp_event 25, 13, 4, MOUNT_MOON
 
 .CoordEvents:
 	db 0

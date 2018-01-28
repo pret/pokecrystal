@@ -394,8 +394,8 @@ PowerPlant_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 17, 2, ROUTE_10_NORTH
-	warp_def 3, 17, 2, ROUTE_10_NORTH
+	warp_event 2, 17, 2, ROUTE_10_NORTH
+	warp_event 3, 17, 2, ROUTE_10_NORTH
 
 .CoordEvents:
 	db 1

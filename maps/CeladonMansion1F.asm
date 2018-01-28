@@ -80,11 +80,11 @@ CeladonMansion1F_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 6, 9, 2, CELADON_CITY
-	warp_def 7, 9, 2, CELADON_CITY
-	warp_def 3, 0, 3, CELADON_CITY
-	warp_def 0, 0, 1, CELADON_MANSION_2F
-	warp_def 7, 0, 4, CELADON_MANSION_2F
+	warp_event 6, 9, 2, CELADON_CITY
+	warp_event 7, 9, 2, CELADON_CITY
+	warp_event 3, 0, 3, CELADON_CITY
+	warp_event 0, 0, 1, CELADON_MANSION_2F
+	warp_event 7, 0, 4, CELADON_MANSION_2F
 
 .CoordEvents:
 	db 0

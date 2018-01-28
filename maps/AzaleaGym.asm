@@ -367,8 +367,8 @@ AzaleaGym_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 4, 15, 5, AZALEA_TOWN
-	warp_def 5, 15, 5, AZALEA_TOWN
+	warp_event 4, 15, 5, AZALEA_TOWN
+	warp_event 5, 15, 5, AZALEA_TOWN
 
 .CoordEvents:
 	db 0

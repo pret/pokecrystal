@@ -936,15 +936,15 @@ GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
 
 .Warps:
 	db 9
-	warp_def 23, 3, 6, GOLDENROD_UNDERGROUND
-	warp_def 22, 10, 1, GOLDENROD_UNDERGROUND_WAREHOUSE
-	warp_def 23, 10, 2, GOLDENROD_UNDERGROUND_WAREHOUSE
-	warp_def 5, 25, 2, GOLDENROD_UNDERGROUND
-	warp_def 4, 29, 14, GOLDENROD_CITY
-	warp_def 5, 29, 14, GOLDENROD_CITY
-	warp_def 21, 25, 1, GOLDENROD_UNDERGROUND
-	warp_def 20, 29, 13, GOLDENROD_CITY
-	warp_def 21, 29, 13, GOLDENROD_CITY
+	warp_event 23, 3, 6, GOLDENROD_UNDERGROUND
+	warp_event 22, 10, 1, GOLDENROD_UNDERGROUND_WAREHOUSE
+	warp_event 23, 10, 2, GOLDENROD_UNDERGROUND_WAREHOUSE
+	warp_event 5, 25, 2, GOLDENROD_UNDERGROUND
+	warp_event 4, 29, 14, GOLDENROD_CITY
+	warp_event 5, 29, 14, GOLDENROD_CITY
+	warp_event 21, 25, 1, GOLDENROD_UNDERGROUND
+	warp_event 20, 29, 13, GOLDENROD_CITY
+	warp_event 21, 29, 13, GOLDENROD_CITY
 
 .CoordEvents:
 	db 2

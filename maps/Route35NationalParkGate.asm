@@ -443,10 +443,10 @@ Route35NationalParkGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 3, 0, 3, NATIONAL_PARK
-	warp_def 4, 0, 4, NATIONAL_PARK
-	warp_def 3, 7, 3, ROUTE_35
-	warp_def 4, 7, 3, ROUTE_35
+	warp_event 3, 0, 3, NATIONAL_PARK
+	warp_event 4, 0, 4, NATIONAL_PARK
+	warp_event 3, 7, 3, ROUTE_35
+	warp_event 4, 7, 3, ROUTE_35
 
 .CoordEvents:
 	db 0

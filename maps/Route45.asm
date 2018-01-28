@@ -537,7 +537,7 @@ Route45_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 2, 5, 1, DARK_CAVE_BLACKTHORN_ENTRANCE
+	warp_event 2, 5, 1, DARK_CAVE_BLACKTHORN_ENTRANCE
 
 .CoordEvents:
 	db 0

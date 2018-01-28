@@ -82,12 +82,12 @@ BattleTowerHallway_MapEvents:
 
 .Warps:
 	db 6
-	warp_def 11, 1, 1, BATTLE_TOWER_ELEVATOR
-	warp_def 5, 0, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def 7, 0, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def 9, 0, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def 13, 0, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def 15, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_event 11, 1, 1, BATTLE_TOWER_ELEVATOR
+	warp_event 5, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_event 7, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_event 9, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_event 13, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	warp_event 15, 0, 1, BATTLE_TOWER_BATTLE_ROOM
 
 .CoordEvents:
 	db 0

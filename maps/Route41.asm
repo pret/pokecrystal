@@ -347,10 +347,10 @@ Route41_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 12, 17, 1, WHIRL_ISLAND_NW
-	warp_def 36, 19, 1, WHIRL_ISLAND_NE
-	warp_def 12, 37, 1, WHIRL_ISLAND_SW
-	warp_def 36, 45, 1, WHIRL_ISLAND_SE
+	warp_event 12, 17, 1, WHIRL_ISLAND_NW
+	warp_event 36, 19, 1, WHIRL_ISLAND_NE
+	warp_event 12, 37, 1, WHIRL_ISLAND_SW
+	warp_event 36, 45, 1, WHIRL_ISLAND_SE
 
 .CoordEvents:
 	db 0

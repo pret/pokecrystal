@@ -25,11 +25,11 @@ OlivinePortPassage_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 15, 0, 10, OLIVINE_CITY
-	warp_def 16, 0, 11, OLIVINE_CITY
-	warp_def 15, 4, 4, OLIVINE_PORT_PASSAGE
-	warp_def 3, 2, 3, OLIVINE_PORT_PASSAGE
-	warp_def 3, 14, 1, OLIVINE_PORT
+	warp_event 15, 0, 10, OLIVINE_CITY
+	warp_event 16, 0, 11, OLIVINE_CITY
+	warp_event 15, 4, 4, OLIVINE_PORT_PASSAGE
+	warp_event 3, 2, 3, OLIVINE_PORT_PASSAGE
+	warp_event 3, 14, 1, OLIVINE_PORT
 
 .CoordEvents:
 	db 0

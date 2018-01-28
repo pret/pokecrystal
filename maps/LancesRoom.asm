@@ -343,10 +343,10 @@ LancesRoom_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 23, 3, KARENS_ROOM
-	warp_def 5, 23, 4, KARENS_ROOM
-	warp_def 4, 1, 1, HALL_OF_FAME
-	warp_def 5, 1, 2, HALL_OF_FAME
+	warp_event 4, 23, 3, KARENS_ROOM
+	warp_event 5, 23, 4, KARENS_ROOM
+	warp_event 4, 1, 1, HALL_OF_FAME
+	warp_event 5, 1, 2, HALL_OF_FAME
 
 .CoordEvents:
 	db 2

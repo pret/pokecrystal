@@ -287,8 +287,8 @@ CeladonGameCorner_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 14, 13, 6, CELADON_CITY
-	warp_def 15, 13, 6, CELADON_CITY
+	warp_event 14, 13, 6, CELADON_CITY
+	warp_event 15, 13, 6, CELADON_CITY
 
 .CoordEvents:
 	db 0

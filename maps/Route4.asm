@@ -126,7 +126,7 @@ Route4_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 2, 5, 2, MOUNT_MOON
+	warp_event 2, 5, 2, MOUNT_MOON
 
 .CoordEvents:
 	db 0

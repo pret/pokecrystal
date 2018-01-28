@@ -24,15 +24,15 @@ MountMortar1FOutside_MapEvents:
 
 .Warps:
 	db 9
-	warp_def 3, 33, 3, ROUTE_42
-	warp_def 17, 33, 4, ROUTE_42
-	warp_def 37, 33, 5, ROUTE_42
-	warp_def 17, 5, 1, MOUNT_MORTAR_2F_INSIDE
-	warp_def 11, 21, 1, MOUNT_MORTAR_1F_INSIDE
-	warp_def 29, 21, 2, MOUNT_MORTAR_1F_INSIDE
-	warp_def 17, 29, 2, MOUNT_MORTAR_B1F
-	warp_def 7, 13, 3, MOUNT_MORTAR_1F_INSIDE
-	warp_def 33, 13, 4, MOUNT_MORTAR_1F_INSIDE
+	warp_event 3, 33, 3, ROUTE_42
+	warp_event 17, 33, 4, ROUTE_42
+	warp_event 37, 33, 5, ROUTE_42
+	warp_event 17, 5, 1, MOUNT_MORTAR_2F_INSIDE
+	warp_event 11, 21, 1, MOUNT_MORTAR_1F_INSIDE
+	warp_event 29, 21, 2, MOUNT_MORTAR_1F_INSIDE
+	warp_event 17, 29, 2, MOUNT_MORTAR_B1F
+	warp_event 7, 13, 3, MOUNT_MORTAR_1F_INSIDE
+	warp_event 33, 13, 4, MOUNT_MORTAR_1F_INSIDE
 
 .CoordEvents:
 	db 0

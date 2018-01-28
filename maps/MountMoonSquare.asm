@@ -138,9 +138,9 @@ MountMoonSquare_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 20, 5, 5, MOUNT_MOON
-	warp_def 22, 11, 6, MOUNT_MOON
-	warp_def 13, 7, 1, MOUNT_MOON_GIFT_SHOP
+	warp_event 20, 5, 5, MOUNT_MOON
+	warp_event 22, 11, 6, MOUNT_MOON
+	warp_event 13, 7, 1, MOUNT_MOON_GIFT_SHOP
 
 .CoordEvents:
 	db 1

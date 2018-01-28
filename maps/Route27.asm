@@ -473,9 +473,9 @@ Route27_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 33, 7, 1, ROUTE_27_SANDSTORM_HOUSE
-	warp_def 26, 5, 1, TOHJO_FALLS
-	warp_def 36, 5, 2, TOHJO_FALLS
+	warp_event 33, 7, 1, ROUTE_27_SANDSTORM_HOUSE
+	warp_event 26, 5, 1, TOHJO_FALLS
+	warp_event 36, 5, 2, TOHJO_FALLS
 
 .CoordEvents:
 	db 2

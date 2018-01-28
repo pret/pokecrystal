@@ -732,10 +732,10 @@ TeamRocketBaseB1F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 27, 2, 3, MAHOGANY_MART_1F
-	warp_def 3, 14, 1, TEAM_ROCKET_BASE_B2F
-	warp_def 5, 15, 4, TEAM_ROCKET_BASE_B1F
-	warp_def 25, 2, 3, TEAM_ROCKET_BASE_B1F
+	warp_event 27, 2, 3, MAHOGANY_MART_1F
+	warp_event 3, 14, 1, TEAM_ROCKET_BASE_B2F
+	warp_event 5, 15, 4, TEAM_ROCKET_BASE_B1F
+	warp_event 25, 2, 3, TEAM_ROCKET_BASE_B1F
 
 .CoordEvents:
 	db 30

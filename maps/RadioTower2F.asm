@@ -716,8 +716,8 @@ RadioTower2F_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 0, 0, 1, RADIO_TOWER_3F
-	warp_def 15, 0, 3, RADIO_TOWER_1F
+	warp_event 0, 0, 1, RADIO_TOWER_3F
+	warp_event 15, 0, 3, RADIO_TOWER_1F
 
 .CoordEvents:
 	db 0

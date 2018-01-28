@@ -207,8 +207,8 @@ Route15_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 4, 3, ROUTE_15_FUCHSIA_GATE
-	warp_def 2, 5, 4, ROUTE_15_FUCHSIA_GATE
+	warp_event 2, 4, 3, ROUTE_15_FUCHSIA_GATE
+	warp_event 2, 5, 4, ROUTE_15_FUCHSIA_GATE
 
 .CoordEvents:
 	db 0

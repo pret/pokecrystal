@@ -42,8 +42,8 @@ ViridianMart_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 4, VIRIDIAN_CITY
-	warp_def 3, 7, 4, VIRIDIAN_CITY
+	warp_event 2, 7, 4, VIRIDIAN_CITY
+	warp_event 3, 7, 4, VIRIDIAN_CITY
 
 .CoordEvents:
 	db 0

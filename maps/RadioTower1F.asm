@@ -478,9 +478,9 @@ RadioTower1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 2, 7, 11, GOLDENROD_CITY
-	warp_def 3, 7, 11, GOLDENROD_CITY
-	warp_def 15, 0, 2, RADIO_TOWER_2F
+	warp_event 2, 7, 11, GOLDENROD_CITY
+	warp_event 3, 7, 11, GOLDENROD_CITY
+	warp_event 15, 0, 2, RADIO_TOWER_2F
 
 .CoordEvents:
 	db 0

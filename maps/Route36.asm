@@ -665,10 +665,10 @@ Route36_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 18, 8, 3, ROUTE_36_NATIONAL_PARK_GATE
-	warp_def 18, 9, 4, ROUTE_36_NATIONAL_PARK_GATE
-	warp_def 47, 13, 1, ROUTE_36_RUINS_OF_ALPH_GATE
-	warp_def 48, 13, 2, ROUTE_36_RUINS_OF_ALPH_GATE
+	warp_event 18, 8, 3, ROUTE_36_NATIONAL_PARK_GATE
+	warp_event 18, 9, 4, ROUTE_36_NATIONAL_PARK_GATE
+	warp_event 47, 13, 1, ROUTE_36_RUINS_OF_ALPH_GATE
+	warp_event 48, 13, 2, ROUTE_36_RUINS_OF_ALPH_GATE
 
 .CoordEvents:
 	db 2

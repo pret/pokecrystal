@@ -86,9 +86,9 @@ LavenderPokecenter1F_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 3, 7, 1, LAVENDER_TOWN
-	warp_def 4, 7, 1, LAVENDER_TOWN
-	warp_def 0, 7, 1, POKECENTER_2F
+	warp_event 3, 7, 1, LAVENDER_TOWN
+	warp_event 4, 7, 1, LAVENDER_TOWN
+	warp_event 0, 7, 1, POKECENTER_2F
 
 .CoordEvents:
 	db 0

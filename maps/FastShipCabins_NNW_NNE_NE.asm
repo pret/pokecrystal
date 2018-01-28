@@ -272,9 +272,9 @@ FastShipCabins_NNW_NNE_NE_MapEvents:
 
 .Warps:
 	db 3
-	warp_def 2, 0, 2, FAST_SHIP_1F
-	warp_def 2, 12, 3, FAST_SHIP_1F
-	warp_def 2, 24, 4, FAST_SHIP_1F
+	warp_event 2, 0, 2, FAST_SHIP_1F
+	warp_event 2, 12, 3, FAST_SHIP_1F
+	warp_event 2, 24, 4, FAST_SHIP_1F
 
 .CoordEvents:
 	db 0

@@ -366,7 +366,7 @@ CopycatsHouse2F_MapEvents:
 
 .Warps:
 	db 1
-	warp_def 3, 0, 3, COPYCATS_HOUSE_1F
+	warp_event 3, 0, 3, COPYCATS_HOUSE_1F
 
 .CoordEvents:
 	db 0

@@ -38,10 +38,10 @@ RuinsOfAlphKabutoItemRoom_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 3, 9, 5, RUINS_OF_ALPH_KABUTO_CHAMBER
-	warp_def 4, 9, 5, RUINS_OF_ALPH_KABUTO_CHAMBER
-	warp_def 3, 1, 1, RUINS_OF_ALPH_KABUTO_WORD_ROOM
-	warp_def 4, 1, 2, RUINS_OF_ALPH_KABUTO_WORD_ROOM
+	warp_event 3, 9, 5, RUINS_OF_ALPH_KABUTO_CHAMBER
+	warp_event 4, 9, 5, RUINS_OF_ALPH_KABUTO_CHAMBER
+	warp_event 3, 1, 1, RUINS_OF_ALPH_KABUTO_WORD_ROOM
+	warp_event 4, 1, 2, RUINS_OF_ALPH_KABUTO_WORD_ROOM
 
 .CoordEvents:
 	db 0

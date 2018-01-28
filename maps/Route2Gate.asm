@@ -31,10 +31,10 @@ Route2Gate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 4, 0, 3, ROUTE_2
-	warp_def 5, 0, 4, ROUTE_2
-	warp_def 4, 7, 2, ROUTE_2
-	warp_def 5, 7, 2, ROUTE_2
+	warp_event 4, 0, 3, ROUTE_2
+	warp_event 5, 0, 4, ROUTE_2
+	warp_event 4, 7, 2, ROUTE_2
+	warp_event 5, 7, 2, ROUTE_2
 
 .CoordEvents:
 	db 0

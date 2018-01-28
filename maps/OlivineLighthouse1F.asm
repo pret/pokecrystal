@@ -42,11 +42,11 @@ OlivineLighthouse1F_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 10, 17, 9, OLIVINE_CITY
-	warp_def 11, 17, 9, OLIVINE_CITY
-	warp_def 3, 11, 1, OLIVINE_LIGHTHOUSE_2F
-	warp_def 16, 13, 3, OLIVINE_LIGHTHOUSE_2F
-	warp_def 17, 13, 4, OLIVINE_LIGHTHOUSE_2F
+	warp_event 10, 17, 9, OLIVINE_CITY
+	warp_event 11, 17, 9, OLIVINE_CITY
+	warp_event 3, 11, 1, OLIVINE_LIGHTHOUSE_2F
+	warp_event 16, 13, 3, OLIVINE_LIGHTHOUSE_2F
+	warp_event 17, 13, 4, OLIVINE_LIGHTHOUSE_2F
 
 .CoordEvents:
 	db 0

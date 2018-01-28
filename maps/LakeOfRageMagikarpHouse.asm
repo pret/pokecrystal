@@ -212,8 +212,8 @@ LakeOfRageMagikarpHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 2, LAKE_OF_RAGE
-	warp_def 3, 7, 2, LAKE_OF_RAGE
+	warp_event 2, 7, 2, LAKE_OF_RAGE
+	warp_event 3, 7, 2, LAKE_OF_RAGE
 
 .CoordEvents:
 	db 0

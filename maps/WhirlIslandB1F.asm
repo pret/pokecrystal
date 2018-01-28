@@ -46,15 +46,15 @@ WhirlIslandB1F_MapEvents:
 
 .Warps:
 	db 9
-	warp_def 5, 5, 2, WHIRL_ISLAND_NW
-	warp_def 35, 3, 2, WHIRL_ISLAND_NE
-	warp_def 29, 9, 3, WHIRL_ISLAND_NE
-	warp_def 9, 31, 3, WHIRL_ISLAND_SW
-	warp_def 23, 31, 2, WHIRL_ISLAND_SW
-	warp_def 31, 29, 2, WHIRL_ISLAND_SE
-	warp_def 25, 21, 1, WHIRL_ISLAND_B2F
-	warp_def 13, 27, 2, WHIRL_ISLAND_B2F
-	warp_def 17, 21, 1, WHIRL_ISLAND_CAVE
+	warp_event 5, 5, 2, WHIRL_ISLAND_NW
+	warp_event 35, 3, 2, WHIRL_ISLAND_NE
+	warp_event 29, 9, 3, WHIRL_ISLAND_NE
+	warp_event 9, 31, 3, WHIRL_ISLAND_SW
+	warp_event 23, 31, 2, WHIRL_ISLAND_SW
+	warp_event 31, 29, 2, WHIRL_ISLAND_SE
+	warp_event 25, 21, 1, WHIRL_ISLAND_B2F
+	warp_event 13, 27, 2, WHIRL_ISLAND_B2F
+	warp_event 17, 21, 1, WHIRL_ISLAND_CAVE
 
 .CoordEvents:
 	db 0

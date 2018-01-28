@@ -158,11 +158,11 @@ UnionCaveB1F_MapEvents:
 
 .Warps:
 	db 5
-	warp_def 3, 3, 7, RUINS_OF_ALPH_OUTSIDE
-	warp_def 3, 11, 8, RUINS_OF_ALPH_OUTSIDE
-	warp_def 7, 19, 1, UNION_CAVE_1F
-	warp_def 3, 33, 2, UNION_CAVE_1F
-	warp_def 17, 31, 1, UNION_CAVE_B2F
+	warp_event 3, 3, 7, RUINS_OF_ALPH_OUTSIDE
+	warp_event 3, 11, 8, RUINS_OF_ALPH_OUTSIDE
+	warp_event 7, 19, 1, UNION_CAVE_1F
+	warp_event 3, 33, 2, UNION_CAVE_1F
+	warp_event 17, 31, 1, UNION_CAVE_B2F
 
 .CoordEvents:
 	db 0

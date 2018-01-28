@@ -17,8 +17,8 @@ TinTower6F_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 3, 9, 1, TIN_TOWER_7F
-	warp_def 11, 15, 1, TIN_TOWER_5F
+	warp_event 3, 9, 1, TIN_TOWER_7F
+	warp_event 11, 15, 1, TIN_TOWER_5F
 
 .CoordEvents:
 	db 0

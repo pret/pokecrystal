@@ -205,10 +205,10 @@ UnionCave1F_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 5, 19, 3, UNION_CAVE_B1F
-	warp_def 3, 33, 4, UNION_CAVE_B1F
-	warp_def 17, 31, 1, ROUTE_33
-	warp_def 17, 3, 4, ROUTE_32
+	warp_event 5, 19, 3, UNION_CAVE_B1F
+	warp_event 3, 33, 4, UNION_CAVE_B1F
+	warp_event 17, 31, 1, ROUTE_33
+	warp_event 17, 3, 4, ROUTE_32
 
 .CoordEvents:
 	db 0

@@ -21,8 +21,8 @@ Route10North_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 11, 1, 1, ROUTE_10_POKECENTER_1F
-	warp_def 3, 9, 1, POWER_PLANT
+	warp_event 11, 1, 1, ROUTE_10_POKECENTER_1F
+	warp_event 3, 9, 1, POWER_PLANT
 
 .CoordEvents:
 	db 0

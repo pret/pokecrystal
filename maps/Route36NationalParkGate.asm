@@ -855,10 +855,10 @@ Route36NationalParkGate_MapEvents:
 
 .Warps:
 	db 4
-	warp_def 0, 4, 1, NATIONAL_PARK
-	warp_def 0, 5, 2, NATIONAL_PARK
-	warp_def 9, 4, 1, ROUTE_36
-	warp_def 9, 5, 2, ROUTE_36
+	warp_event 0, 4, 1, NATIONAL_PARK
+	warp_event 0, 5, 2, NATIONAL_PARK
+	warp_event 9, 4, 1, ROUTE_36
+	warp_event 9, 5, 2, ROUTE_36
 
 .CoordEvents:
 	db 0

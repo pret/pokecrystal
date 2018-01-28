@@ -66,8 +66,8 @@ Route5CleanseTagHouse_MapEvents:
 
 .Warps:
 	db 2
-	warp_def 2, 7, 4, ROUTE_5
-	warp_def 3, 7, 4, ROUTE_5
+	warp_event 2, 7, 4, ROUTE_5
+	warp_event 3, 7, 4, ROUTE_5
 
 .CoordEvents:
 	db 0
