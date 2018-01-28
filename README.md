@@ -13,9 +13,9 @@ To set up the repository, see [INSTALL.md](INSTALL.md).
 
 - [**FAQ**](FAQ.md)
 - [**Documentation**](docs/)
-- [**Wiki**](wiki/) (includes [**tutorials**](wiki/Tutorials))
-- Discord: [**pret**][Discord]
-- irc: [freenode#pret][irc]
+- [**Wiki**][wiki] (includes [tutorials][tutorials])
+- **Discord:** [pret][discord]
+- **IRC:** [freenode#pret][irc]
 
 Other disassembly projects:
 
@@ -36,7 +36,9 @@ Other disassembly projects:
 [pokeruby]: https://github.com/pret/pokeruby
 [pokefirered]: https://github.com/pret/pokefirered
 [pokeemerald]: https://github.com/pret/pokeemerald
-[Discord]: https://discord.gg/cJxDDVP
+[wiki]: https://github.com/pret/pokecrystal/wiki
+[tutorials]: https://github.com/pret/pokecrystal/wiki/Tutorials
+[discord]: https://discord.gg/cJxDDVP
 [irc]: https://kiwiirc.com/client/irc.freenode.net/?#pret
 [travis]: https://travis-ci.org/pret/pokecrystal
 [travis-badge]: https://travis-ci.org/pret/pokecrystal.svg?branch=master
