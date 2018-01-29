@@ -3,20 +3,19 @@
 	db  40,  30,  50, 100,  55,  55
 	;   hp  atk  def  spd  sat  sdf
 
-	db ELECTRIC, ELECTRIC
+	db ELECTRIC, ELECTRIC ; type
 	db 190 ; catch rate
 	db 103 ; base exp
-	db NO_ITEM ; item 1
-	db NO_ITEM ; item 2
-	db GENDERLESS ; gender
-	db 100 ; unknown
+	db NO_ITEM, NO_ITEM; items
+	db GENDERLESS ; gender ratio
+	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
-	db 5 ; unknown
+	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/voltorb/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
 	dn INANIMATE, INANIMATE ; egg groups
 
-	; tmhm
+	; tm/hm learnset
 	tmhm HEADBUTT, CURSE, ROLLOUT, TOXIC, ZAP_CANNON, HIDDEN_POWER, SNORE, PROTECT, RAIN_DANCE, ENDURE, FRUSTRATION, THUNDER, RETURN, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, SWIFT, REST, FLASH, THUNDERBOLT
 	; end
