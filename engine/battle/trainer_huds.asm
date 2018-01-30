@@ -28,7 +28,7 @@ ShowPlayerMonsRemaining: ; 2c01c
 	ld [hl], a
 	ld a, 8
 	ld [wPlaceBallsDirection], a
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 	jp LoadTrainerHudOAM
 ; 2c03a
 
@@ -44,7 +44,7 @@ ShowOTTrainerMonsRemaining: ; 2c03a
 	ld [hl], 4 * 8
 	ld a, -8
 	ld [wPlaceBallsDirection], a
-	ld hl, wSprite01 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wVirtualOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
 	jp LoadTrainerHudOAM
 ; 2c059
 
@@ -193,7 +193,7 @@ LinkBattle_TrainerHuds: ; 2c10d
 	ld [hl], 8 * 8
 	ld a, $8
 	ld [wPlaceBallsDirection], a
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 	call LoadTrainerHudOAM
 
 	ld hl, wOTPartyMon1HP
@@ -203,7 +203,7 @@ LinkBattle_TrainerHuds: ; 2c10d
 	ld a, 10 * 8
 	ld [hli], a
 	ld [hl], 13 * 8
-	ld hl, wSprite01 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wVirtualOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
 	jp LoadTrainerHudOAM
 ; 2c143
 

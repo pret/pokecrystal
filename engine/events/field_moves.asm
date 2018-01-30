@@ -62,8 +62,8 @@ ShakeHeadbuttTree: ; 8c80a
 	xor a
 	ld [hBGMapMode], a
 	farcall ClearSpriteAnims
-	ld hl, wSprite37
-	ld bc, wSpritesEnd - wSprite37
+	ld hl, wVirtualOAMSprite36
+	ld bc, wSpritesEnd - wVirtualOAMSprite36
 	xor a
 	call ByteFill
 	ld de, Font
@@ -393,7 +393,7 @@ FlyToAnim: ; 8cb33
 	ret
 
 .RestorePlayerSprite_DespawnLeaves: ; 8cb82 (23:4b82)
-	ld hl, wSprite01TileID
+	ld hl, wVirtualOAMSprite00TileID
 	xor a
 	ld c, 4
 .OAMloop
@@ -404,8 +404,8 @@ endr
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, wSprite05
-	ld bc, wSpritesEnd - wSprite05
+	ld hl, wVirtualOAMSprite04
+	ld bc, wSpritesEnd - wVirtualOAMSprite04
 	xor a
 	call ByteFill
 	ret

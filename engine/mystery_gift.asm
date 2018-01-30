@@ -1458,7 +1458,7 @@ Function105688: ; 105688 (41:5688)
 Function1056eb: ; 1056eb (41:56eb)
 	ld c, 16
 .loop
-	ld hl, wSprite01YCoord
+	ld hl, wVirtualOAMSprite00YCoord
 	ld b, 8
 .dec_y_loop
 	dec [hl]
@@ -1467,7 +1467,7 @@ rept SPRITEOAMSTRUCT_LENGTH
 endr
 	dec b
 	jr nz, .dec_y_loop
-	ld hl, wSprite09YCoord
+	ld hl, wVirtualOAMSprite08YCoord
 	ld b, 8
 .inc_y_loop
 	inc [hl]
@@ -1656,7 +1656,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	ld [hl], $3c
 	hlcoord 17, 15
 	ld [hl], $3e
-	ld de, wSprite01
+	ld de, wVirtualOAMSprite00
 	ld hl, .OAM_data
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call CopyBytes

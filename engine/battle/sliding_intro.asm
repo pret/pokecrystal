@@ -60,7 +60,7 @@ BattleIntroSlidingPics: ; 4e980
 ; 4e9d6
 
 .subfunction3 ; 4e9d6
-	ld hl, wSprite01XCoord
+	ld hl, wVirtualOAMSprite00XCoord
 	ld c, $12 ; 18
 	ld de, SPRITEOAMSTRUCT_LENGTH
 .loop3

@@ -257,7 +257,7 @@ BattleAnim_ClearCGB_OAMFlags: ; cc23d
 	bit 3, a
 	jr z, .delete
 
-	ld hl, wSprite01Attributes
+	ld hl, wVirtualOAMSprite00Attributes
 	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop
 	ld a, [hl]

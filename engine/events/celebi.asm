@@ -52,7 +52,7 @@ Special_CelebiShrineEvent: ; 4989a
 ; 498f9
 
 .RestorePlayerSprite_DespawnLeaves: ; 498f9
-	ld hl, wSprite01TileID
+	ld hl, wVirtualOAMSprite00TileID
 	xor a
 	ld c, 4
 .OAMloop:
@@ -63,8 +63,8 @@ endr
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, wSprite05
-	ld bc, wSpritesEnd - wSprite05
+	ld hl, wVirtualOAMSprite04
+	ld bc, wSpritesEnd - wVirtualOAMSprite04
 	xor a
 	call ByteFill
 	ret

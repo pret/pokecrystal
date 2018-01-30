@@ -261,7 +261,7 @@ Unreferenced_Function9282c: ; 9282c
 	inc [hl]
 	and $7
 	ret nz
-	ld hl, wSprite17TileID
+	ld hl, wVirtualOAMSprite16TileID
 	ld c, NUM_SPRITE_OAM_STRUCTS - 16
 .loop
 	ld a, [hl]
@@ -671,7 +671,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel1
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wSprite17
+	ld de, wVirtualOAMSprite16
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -689,7 +689,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel2
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wSprite25
+	ld de, wVirtualOAMSprite24
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -707,7 +707,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel3
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wSprite33
+	ld de, wVirtualOAMSprite32
 	ld [hl], e
 	inc hl
 	ld [hl], d

@@ -506,15 +506,15 @@ Unreferenced_Function3d9f:: ; 3d9f
 ; Places a BCD number at the
 ; upper center of the screen.
 	ld a, 4 * TILE_WIDTH
-	ld [wSprite39YCoord], a
-	ld [wSprite40YCoord], a
+	ld [wVirtualOAMSprite38YCoord], a
+	ld [wVirtualOAMSprite39YCoord], a
 	ld a, 10 * TILE_WIDTH
-	ld [wSprite39XCoord], a
+	ld [wVirtualOAMSprite38XCoord], a
 	ld a, 11 * TILE_WIDTH
-	ld [wSprite40XCoord], a
+	ld [wVirtualOAMSprite39XCoord], a
 	xor a
-	ld [wSprite39Attributes], a
-	ld [wSprite40Attributes], a
+	ld [wVirtualOAMSprite38Attributes], a
+	ld [wVirtualOAMSprite39Attributes], a
 	ld a, [wc296]
 	cp 100
 	jr nc, .max
@@ -524,17 +524,17 @@ Unreferenced_Function3d9f:: ; 3d9f
 	swap a
 	and $f
 	add "0"
-	ld [wSprite39TileID], a
+	ld [wVirtualOAMSprite38TileID], a
 	ld a, b
 	and $f
 	add "0"
-	ld [wSprite40TileID], a
+	ld [wVirtualOAMSprite39TileID], a
 	ret
 
 .max
 	ld a, "9"
-	ld [wSprite39TileID], a
-	ld [wSprite40TileID], a
+	ld [wVirtualOAMSprite38TileID], a
+	ld [wVirtualOAMSprite39TileID], a
 	ret
 ; 3dde
 

@@ -9327,7 +9327,7 @@ CopyBackpic: ; 3fc30
 ; 3fc5b
 
 .LoadTrainerBackpicAsOAM: ; 3fc5b
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 	xor a
 	ld [hMapObjectIndexBuffer], a
 	ld b, 6

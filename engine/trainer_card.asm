@@ -479,7 +479,7 @@ TrainerCard_Page2_3_OAMUpdate: ; 25448 (9:5448)
 	ld d, a
 	ld a, [de]
 	ld c, a
-	ld de, wSprite01
+	ld de, wVirtualOAMSprite00
 	ld b, NUM_JOHTO_BADGES
 .loop
 	srl c

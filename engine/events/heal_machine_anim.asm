@@ -97,14 +97,14 @@ ENDM
 ; 12393
 
 .PC_LoadBallsOntoMachine: ; 12393
-	ld hl, wSprite33
+	ld hl, wVirtualOAMSprite32
 	ld de, .PC_ElmsLab_OAM
 	call .PlaceHealingMachineTile
 	call .PlaceHealingMachineTile
 	jr .LoadBallsOntoMachine
 
 .HOF_LoadBallsOntoMachine: ; 123a1
-	ld hl, wSprite33
+	ld hl, wVirtualOAMSprite32
 	ld de, .HOF_OAM
 
 .LoadBallsOntoMachine: ; 123a7

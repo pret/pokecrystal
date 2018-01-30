@@ -346,7 +346,7 @@ EvolutionAnimation: ; 4e5e1
 	inc a
 	and $7
 	ld b, a
-	ld hl, wSprite01Attributes
+	ld hl, wVirtualOAMSprite00Attributes
 	ld c, NUM_SPRITE_OAM_STRUCTS
 .loop6
 	ld a, [hl]

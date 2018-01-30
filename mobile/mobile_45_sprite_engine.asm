@@ -22,7 +22,7 @@ Function115dc3: ; 115dc3
 	xor a
 	ld [wc305], a
 	ld a, $a0
-	ld hl, wSprite32
+	ld hl, wVirtualOAMSprite31
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ret
@@ -34,7 +34,7 @@ Function115dd3: ; 115dd3
 	and a
 	ret z
 	ld a, $a0
-	ld hl, wSprite32
+	ld hl, wVirtualOAMSprite31
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	call Function115e22
@@ -50,7 +50,7 @@ Function115dd3: ; 115dd3
 	ld d, a
 	push de
 	pop hl
-	ld de, wSprite32
+	ld de, wVirtualOAMSprite31
 	ld a, [wc307]
 	ld c, a
 	ld a, [wc308]
@@ -585,7 +585,7 @@ Function1162f2: ; 1162f2
 	ld e, a
 	ld a, [hli]
 	sub e
-	ld de, wSprite10
+	ld de, wVirtualOAMSprite09
 .asm_116321
 	push af
 	ld a, [hli]
@@ -626,7 +626,7 @@ Function1162f2: ; 1162f2
 	ld e, a
 	ld a, [hli]
 	sub e
-	ld de, wSprite01
+	ld de, wVirtualOAMSprite00
 .asm_11635a
 	push af
 	ld a, [hli]

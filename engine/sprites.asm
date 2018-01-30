@@ -100,11 +100,11 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 
 	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
-	ld h, HIGH(wSprite17)
+	ld h, HIGH(wVirtualOAMSprite16)
 
 .loop2 ; Clear (wVirtualOAM + [wCurrSpriteOAMAddr] --> Sprites + $40)
 	ld a, l
-	cp LOW(wSprite17)
+	cp LOW(wVirtualOAMSprite16)
 	jr nc, .done
 	xor a
 	ld [hli], a
@@ -649,7 +649,7 @@ AnimateEndOfExpBar: ; 8e79d
 ; 8e7c6
 
 .AnimateFrame: ; 8e7c6
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 	ld c, 8 ; number of animated circles
 .anim_loop
 	ld a, c

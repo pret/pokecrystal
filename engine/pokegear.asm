@@ -2627,7 +2627,7 @@ Pokedex_GetArea: ; 91d11
 	ld e, a
 	farcall FindNest ; load nest landmarks into wTileMap[0,0]
 	decoord 0, 0
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 .nestloop
 	ld a, [de]
 	and a
@@ -2671,7 +2671,7 @@ Pokedex_GetArea: ; 91d11
 	ld c, e
 	ld b, d
 	ld de, .PlayerOAM
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 .ShowPlayerLoop:
 	ld a, [de]
 	cp $80
@@ -2700,8 +2700,8 @@ Pokedex_GetArea: ; 91d11
 	jr .ShowPlayerLoop
 
 .clear_oam
-	ld hl, wSprite05
-	ld bc, wSpritesEnd - wSprite05
+	ld hl, wVirtualOAMSprite04
+	ld bc, wSpritesEnd - wVirtualOAMSprite04
 	xor a
 	call ByteFill
 	ret

@@ -1923,7 +1923,7 @@ Function89b97: ; 89b97 (22:5b97)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wSprite01
+	ld de, wVirtualOAMSprite00
 .asm_89bb4
 	ld a, [hli]
 	cp $ff
@@ -2013,7 +2013,7 @@ Function89c44: ; 89c44 (22:5c44)
 	pop de
 	ret
 .asm_89c4f
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 	push de
 	ld a, b
 	ld [hli], a ; y
@@ -2123,7 +2123,7 @@ Function89cdf: ; 89cdf (22:5cdf)
 	ld c, a
 	ld e, $2
 	ld a, $2
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 .asm_89cee
 	push af
 	push bc

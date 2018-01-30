@@ -969,7 +969,7 @@ Intro_PlacePlayerSprite: ; 61cd
 	ld hl, vTiles0
 	call Request2bpp
 
-	ld hl, wSprite01
+	ld hl, wVirtualOAMSprite00
 	ld de, .sprites
 	ld a, [de]
 	inc de

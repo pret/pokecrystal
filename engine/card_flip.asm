@@ -601,7 +601,7 @@ CardFlip_CopyToBox: ; e04f7 (38:44f7)
 ; e0509 (38:4509)
 
 CardFlip_CopyOAM: ; e0509
-	ld de, wSprite01
+	ld de, wVirtualOAMSprite00
 	ld a, [hli]
 .loop
 	push af

@@ -2117,7 +2117,7 @@ Pokedex_UpdateSearchResultsCursorOAM: ; 41281 (10:5281)
 	db -1
 
 Pokedex_LoadCursorOAM: ; 412f1 (10:52f1)
-	ld de, wSprite01
+	ld de, wVirtualOAMSprite00
 .loop
 	ld a, [hl]
 	cp -1

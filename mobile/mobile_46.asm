@@ -6921,7 +6921,7 @@ Function11b31b: ; 11b31b
 	db $39 ; 13
 
 Function11b397: ; 11b397
-	ld de, wSprite01
+	ld de, wVirtualOAMSprite00
 .loop
 	ld a, [hl]
 	cp $ff
@@ -6979,7 +6979,7 @@ Unreferenced_Function11b3b6: ; 11b3b6
 ; 11b3d9
 
 Function11b3d9: ; 11b3d9
-	ld de, wSprite29
+	ld de, wVirtualOAMSprite28
 	push de
 	ld a, [wc7d2]
 	dec a
