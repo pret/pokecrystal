@@ -209,13 +209,13 @@ DragonShrineElder1Script:
 	writetext DragonShrineTakeThisDratiniText
 	waitbutton
 	checkcode VAR_PARTYCOUNT
-	if_equal 6, .PartyFull
+	if_equal PARTY_LENGTH, .PartyFull
 	writetext DragonShrinePlayerReceivedDratiniText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	givepoke DRATINI, 15
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
-	special Dratini
+	special GiveDratini
 	setevent EVENT_GOT_DRATINI
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	writetext DragonShrineSymbolicDragonText
