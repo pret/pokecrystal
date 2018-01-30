@@ -10,11 +10,9 @@ const_value set 2
 	const GOLDENRODUNDERGROUND_GRANNY
 
 GoldenrodUnderground_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 3
+	db 3 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .ResetSwitches
 	callback MAPCALLBACK_TILES, .CheckBasementKey
 	callback MAPCALLBACK_OBJECTS, .CheckDayOfWeek
@@ -647,11 +645,9 @@ UnknownText_0x7c91a:
 	done
 
 GoldenrodUnderground_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 3, 2, 7, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
 	warp_event 3, 34, 4, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
 	warp_event 18, 6, 4, GOLDENROD_UNDERGROUND
@@ -659,19 +655,16 @@ GoldenrodUnderground_MapEvents:
 	warp_event 22, 31, 3, GOLDENROD_UNDERGROUND
 	warp_event 22, 27, 1, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 5
+	db 5 ; bg events
 	bg_event 18, 6, BGEVENT_READ, BasementDoorScript
 	bg_event 19, 6, BGEVENT_READ, MapGoldenrodUndergroundSignpost1Script
 	bg_event 6, 13, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
 	bg_event 4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
 	bg_event 17, 8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 5, 31, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerSupernerdEric, -1
 	object_event 6, 9, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
 	object_event 3, 27, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1

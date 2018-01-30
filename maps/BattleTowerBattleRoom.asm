@@ -3,13 +3,11 @@ const_value set 2
 	const BATTLETOWERBATTLEROOM_RECEPTIONIST
 
 BattleTowerBattleRoom_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .EnterBattleRoom
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .EnterBattleRoom: ; 0x9f419
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
@@ -139,21 +137,16 @@ Text_ReturnedAfterSave_Mobile:
 	done
 
 BattleTowerBattleRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 3, 7, 4, BATTLE_TOWER_HALLWAY
 	warp_event 4, 7, 4, BATTLE_TOWER_HALLWAY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 4, 0, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
 	object_event 1, 6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

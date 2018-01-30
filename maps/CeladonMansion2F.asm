@@ -1,9 +1,7 @@
 CeladonMansion2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 CeladonMansion2FComputer:
 	jumptext CeladonMansion2FComputerText
@@ -50,24 +48,19 @@ CeladonMansion2FSignText:
 	done
 
 CeladonMansion2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 0, 0, 4, CELADON_MANSION_1F
 	warp_event 1, 0, 2, CELADON_MANSION_3F
 	warp_event 6, 0, 3, CELADON_MANSION_3F
 	warp_event 7, 0, 5, CELADON_MANSION_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 0, 3, BGEVENT_READ, CeladonMansion2FComputer
 	bg_event 5, 8, BGEVENT_UP, CeladonMansion2FSign
 	bg_event 2, 3, BGEVENT_READ, CeladonMansion2FBookshelf
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

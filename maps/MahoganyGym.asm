@@ -8,11 +8,9 @@ const_value set 2
 	const MAHOGANYGYM_GYM_GUY
 
 MahoganyGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 PryceScript_0x199a9e:
 	faceplayer
@@ -373,24 +371,19 @@ MahoganyGymGuyWinText:
 	done
 
 MahoganyGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 17, 3, MAHOGANY_TOWN
 	warp_event 5, 17, 3, MAHOGANY_TOWN
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 15, BGEVENT_READ, MahoganyGymStatue
 	bg_event 6, 15, BGEVENT_READ, MahoganyGymStatue
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 5, 3, SPRITE_PRYCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PryceScript_0x199a9e, -1
 	object_event 4, 6, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerSkierRoxanne, -1
 	object_event 0, 17, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBoarderRonald, -1

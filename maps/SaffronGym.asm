@@ -7,11 +7,9 @@ const_value set 2
 	const SAFFRONGYM_GYM_GUY
 
 SaffronGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 SabrinaScript_0x189c2e:
 	faceplayer
@@ -291,11 +289,9 @@ SaffronGymGuyWinText:
 	done
 
 SaffronGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 32
+	db 32 ; warp events
 	warp_event 8, 17, 2, SAFFRON_CITY
 	warp_event 9, 17, 2, SAFFRON_CITY
 	warp_event 11, 15, 18, SAFFRON_GYM
@@ -329,15 +325,12 @@ SaffronGym_MapEvents:
 	warp_event 1, 3, 16, SAFFRON_GYM
 	warp_event 11, 9, 17, SAFFRON_GYM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 8, 15, BGEVENT_READ, SaffronGymStatue
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 9, 8, SPRITE_SABRINA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SabrinaScript_0x189c2e, -1
 	object_event 17, 16, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerMediumRebecca, -1
 	object_event 3, 16, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFranklin, -1

@@ -4,11 +4,9 @@ const_value set 2
 	const ROUTE33_FRUIT_TREE
 
 Route33_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route33LassScript:
 	jumptextfaceplayer Route33LassText
@@ -195,22 +193,17 @@ Route33SignText:
 	done
 
 Route33_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
+	db 1 ; warp events
 	warp_event 11, 9, 3, UNION_CAVE_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 11, 11, BGEVENT_READ, Route33Sign
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 6, 13, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerHikerAnthony, -1
 	object_event 13, 16, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route33LassScript, -1
 	object_event 14, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route33FruitTreeScript, -1

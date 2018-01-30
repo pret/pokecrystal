@@ -6,11 +6,9 @@ const_value set 2
 	const KURTSHOUSE_TWIN2
 
 KurtsHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .KurtCallback
 
 .KurtCallback:
@@ -677,19 +675,15 @@ KurtsHouseCelebiStatueText:
 	done
 
 KurtsHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 3, 7, 4, AZALEA_TOWN
 	warp_event 4, 7, 4, AZALEA_TOWN
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 7
+	db 7 ; bg events
 	bg_event 6, 1, BGEVENT_READ, KurtsHouseRadio
 	bg_event 8, 0, BGEVENT_READ, KurtsHouseOakPhoto
 	bg_event 9, 0, BGEVENT_READ, KurtsHouseOakPhoto
@@ -698,8 +692,7 @@ KurtsHouse_MapEvents:
 	bg_event 3, 1, BGEVENT_READ, KurtsHouseBookshelf
 	bg_event 4, 1, BGEVENT_READ, KurtsHouseCelebiStatue
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 3, 2, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
 	object_event 5, 3, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
 	object_event 6, 3, SPRITE_SLOWPOKE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE

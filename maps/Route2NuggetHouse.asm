@@ -2,11 +2,9 @@ const_value set 2
 	const ROUTE2NUGGETHOUSE_FISHER
 
 Route2NuggetHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 FisherScript_0x9b847:
 	faceplayer
@@ -53,20 +51,15 @@ UnknownText_0x9b8e5:
 	done
 
 Route2NuggetHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 1, ROUTE_2
 	warp_event 3, 7, 1, ROUTE_2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 2, 4, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FisherScript_0x9b847, -1

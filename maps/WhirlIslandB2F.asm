@@ -4,11 +4,9 @@ const_value set 2
 	const WHIRLISLANDB2F_POKE_BALL3
 
 WhirlIslandB2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 WhirlIslandB2FFullRestore:
 	itemball FULL_RESTORE
@@ -20,24 +18,19 @@ WhirlIslandB2FMaxElixer:
 	itemball MAX_ELIXER
 
 WhirlIslandB2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 11, 5, 7, WHIRL_ISLAND_B1F
 	warp_event 7, 11, 8, WHIRL_ISLAND_B1F
 	warp_event 7, 25, 1, WHIRL_ISLAND_LUGIA_CHAMBER
 	warp_event 13, 31, 5, WHIRL_ISLAND_SW
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 10, 11, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WhirlIslandB2FFullRestore, EVENT_WHIRL_ISLAND_B2F_FULL_RESTORE
 	object_event 6, 4, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WhirlIslandB2FMaxRevive, EVENT_WHIRL_ISLAND_B2F_MAX_REVIVE
 	object_event 5, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, WhirlIslandB2FMaxElixer, EVENT_WHIRL_ISLAND_B2F_MAX_ELIXER

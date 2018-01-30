@@ -5,11 +5,9 @@ const_value set 2
 	const ROUTE10POKECENTER1F_COOLTRAINER_F
 
 Route10Pokecenter1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 NurseScript_0x188bd4:
 	jumpstd pokecenternurse
@@ -81,23 +79,18 @@ Route10Pokecenter1FCooltrainerFText:
 	done
 
 Route10Pokecenter1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 3, 7, 1, ROUTE_10_NORTH
 	warp_event 4, 7, 1, ROUTE_10_NORTH
 	warp_event 0, 7, 1, POKECENTER_2F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x188bd4, -1
 	object_event 7, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FGentlemanScript, -1
 	object_event 7, 2, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188bda, -1

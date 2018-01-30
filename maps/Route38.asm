@@ -8,11 +8,9 @@ const_value set 2
 	const ROUTE38_BUENA2
 
 Route38_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerBirdKeeperToby:
 	trainer BIRD_KEEPER, TOBY, EVENT_BEAT_BIRD_KEEPER_TOBY, BirdKeeperTobySeenText, BirdKeeperTobyBeatenText, 0, .Script
@@ -473,24 +471,19 @@ Route38TrainerTipsText:
 	done
 
 Route38_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 35, 8, 1, ROUTE_38_ECRUTEAK_GATE
 	warp_event 35, 9, 2, ROUTE_38_ECRUTEAK_GATE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 33, 7, BGEVENT_READ, Route38Sign
 	bg_event 5, 13, BGEVENT_READ, Route38TrainerTips
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 4, 1, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyChad1, -1
 	object_event 15, 3, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassDana1, -1
 	object_event 12, 15, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBirdKeeperToby, -1

@@ -3,11 +3,9 @@ const_value set 2
 	const OLIVINEPUNISHMENTSPEECHHOUSE_LASS
 
 OlivinePunishmentSpeechHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 OlivinePunishmentSpeechHouseDad:
 	jumptextfaceplayer OlivinePunishmentSpeechHouseDadText
@@ -40,23 +38,18 @@ OlivinePunishmentSpeechHouseDaughterText:
 	done
 
 OlivinePunishmentSpeechHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 5, OLIVINE_CITY
 	warp_event 3, 7, 5, OLIVINE_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, OlivinePunishmentSpeechHouseBookshelf1
 	bg_event 1, 1, BGEVENT_READ, OlivinePunishmentSpeechHouseBookshelf2
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 1, 2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDad, -1
 	object_event 5, 5, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePunishmentSpeechHouseDaughter, -1

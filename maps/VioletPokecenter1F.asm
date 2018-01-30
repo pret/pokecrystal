@@ -6,11 +6,9 @@ const_value set 2
 	const VIOLETPOKECENTER1F_SCIENTIST
 
 VioletPokecenter1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 VioletPokecenterNurse:
 	jumpstd pokecenternurse
@@ -216,23 +214,18 @@ VioletPokecenter1FYoungsterText:
 	done
 
 VioletPokecenter1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 3, 7, 5, VIOLET_CITY
 	warp_event 4, 7, 5, VIOLET_CITY
 	warp_event 0, 7, 1, POKECENTER_2F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletPokecenterNurse, -1
 	object_event 7, 6, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VioletPokecenter1FGameboyKidScript, -1
 	object_event 1, 4, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletPokecenter1FGentlemanScript, -1

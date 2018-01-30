@@ -6,14 +6,12 @@ const_value set 2
 	const RADIOTOWER5F_POKE_BALL
 
 RadioTower5F_MapScripts:
-.SceneScripts:
-	db 3
+	db 3 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 	scene_script .DummyScene2
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -421,29 +419,24 @@ SignpostRadioTower5FStudio:
 	done
 
 RadioTower5F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 0, 0, 1, RADIO_TOWER_4F
 	warp_event 12, 0, 3, RADIO_TOWER_4F
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 0, 3, 0, FakeDirectorScript
 	coord_event 16, 5, 1, RadioTower5FRocketBossScene
 
-.BGEvents:
-	db 5
+	db 5 ; bg events
 	bg_event 3, 0, BGEVENT_READ, MapRadioTower5FSignpost0Script
 	bg_event 11, 0, BGEVENT_READ, MapRadioTower5FSignpost2Script
 	bg_event 15, 0, BGEVENT_READ, MapRadioTower5FSignpost2Script
 	bg_event 16, 1, BGEVENT_READ, RadioTower5FBookshelf
 	bg_event 17, 1, BGEVENT_READ, RadioTower5FBookshelf
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 3, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
 	object_event 13, 5, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 17, 2, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

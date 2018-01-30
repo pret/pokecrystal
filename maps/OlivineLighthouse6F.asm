@@ -4,11 +4,9 @@ const_value set 2
 	const OLIVINELIGHTHOUSE6F_POKE_BALL
 
 OlivineLighthouse6F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 JasmineScript_0x60b91:
 	faceplayer
@@ -258,23 +256,18 @@ UnknownText_0x60f3d:
 	done
 
 OlivineLighthouse6F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 9, 15, 1, OLIVINE_LIGHTHOUSE_5F
 	warp_event 16, 5, 6, OLIVINE_LIGHTHOUSE_5F
 	warp_event 17, 5, 7, OLIVINE_LIGHTHOUSE_5F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 8, 8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, JasmineScript_0x60b91, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
 	object_event 9, 8, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MonsterScript_0x60c3a, -1
 	object_event 3, 4, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

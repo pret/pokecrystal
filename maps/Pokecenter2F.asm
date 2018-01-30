@@ -5,8 +5,7 @@ const_value set 2
 	const POKECENTER2F_OFFICER
 
 Pokecenter2F_MapScripts:
-.SceneScripts:
-	db 6
+	db 6 ; scene scripts
 	scene_script .Scene0
 	scene_script .Scene1
 	scene_script .Scene2
@@ -14,8 +13,7 @@ Pokecenter2F_MapScripts:
 	scene_script .Scene4
 	scene_script .Scene5
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .Scene0:
 	special CheckMysteryGift
@@ -1023,11 +1021,9 @@ Text_BrokeStadiumRules:
 	done
 
 Pokecenter2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 0, 7, -1, POKECENTER_2F
 	warp_event 5, 0, 1, TRADE_CENTER
 	warp_event 9, 0, 1, COLOSSEUM
@@ -1035,15 +1031,12 @@ Pokecenter2F_MapEvents:
 	warp_event 6, 0, 1, MOBILE_TRADE_ROOM_MOBILE
 	warp_event 10, 0, 1, MOBILE_BATTLE_ROOM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 7, 3, BGEVENT_READ, MapPokecenter2FSignpost0Script
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 5, 2, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_Trade, -1
 	object_event 9, 2, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_Battle, -1
 	object_event 13, 3, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LinkReceptionistScript_TimeCapsule, -1

@@ -2,13 +2,11 @@ const_value set 2
 	const BATTLETOWERHALLWAY_RECEPTIONIST
 
 BattleTowerHallway_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .Scene0
 	scene_script .Scene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .Scene0:
 	priorityjump .ChooseBattleRoom
@@ -77,11 +75,9 @@ BattleTowerHallway_MapScripts:
 	end
 
 BattleTowerHallway_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 11, 1, 1, BATTLE_TOWER_ELEVATOR
 	warp_event 5, 0, 1, BATTLE_TOWER_BATTLE_ROOM
 	warp_event 7, 0, 1, BATTLE_TOWER_BATTLE_ROOM
@@ -89,12 +85,9 @@ BattleTowerHallway_MapEvents:
 	warp_event 13, 0, 1, BATTLE_TOWER_BATTLE_ROOM
 	warp_event 15, 0, 1, BATTLE_TOWER_BATTLE_ROOM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 11, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEvents, -1

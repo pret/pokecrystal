@@ -13,13 +13,11 @@ const_value set 2
 	const CIANWOODCITY_SUICUNE
 
 CianwoodCity_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
 
 .DummyScene0:
@@ -381,11 +379,9 @@ CianwoodPokeSeerSignText:
 	done
 
 CianwoodCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 7
+	db 7 ; warp events
 	warp_event 17, 41, 1, MANIAS_HOUSE
 	warp_event 8, 43, 1, CIANWOOD_GYM
 	warp_event 23, 43, 1, CIANWOOD_POKECENTER_1F
@@ -394,12 +390,10 @@ CianwoodCity_MapEvents:
 	warp_event 15, 37, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
 	warp_event 5, 17, 1, POKE_SEERS_HOUSE
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 11, 16, 1, CianwoodCitySuicuneAndEusine
 
-.BGEvents:
-	db 8
+	db 8 ; bg events
 	bg_event 20, 34, BGEVENT_READ, CianwoodCitySign
 	bg_event 7, 45, BGEVENT_READ, CianwoodGymSign
 	bg_event 24, 43, BGEVENT_READ, CianwoodPokecenterSign
@@ -409,8 +403,7 @@ CianwoodCity_MapEvents:
 	bg_event 4, 19, BGEVENT_ITEM, CianwoodCityHiddenRevive
 	bg_event 5, 29, BGEVENT_ITEM, CianwoodCityHiddenMaxEther
 
-.ObjectEvents:
-	db 12
+	db 12 ; object events
 	object_event 21, 37, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodCityYoungster, -1
 	object_event 17, 33, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityPokefanM, -1
 	object_event 14, 42, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodCityLass, -1

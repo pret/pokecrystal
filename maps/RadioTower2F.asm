@@ -12,11 +12,9 @@ const_value set 2
 	const RADIOTOWER2F_RECEPTIONIST
 
 RadioTower2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 UnknownScript_0x5d6fd:
 	end
@@ -711,19 +709,15 @@ UnknownText_0x5e463:
 	done
 
 RadioTower2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 0, 0, 1, RADIO_TOWER_3F
 	warp_event 15, 0, 3, RADIO_TOWER_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
+	db 6 ; bg events
 	bg_event 3, 0, BGEVENT_READ, MapRadioTower2FSignpost0Script
 	bg_event 5, 0, BGEVENT_READ, MapRadioTower2FSignpost1Script
 	bg_event 9, 1, BGEVENT_READ, RadioTower2FBookshelf
@@ -731,8 +725,7 @@ RadioTower2F_MapEvents:
 	bg_event 11, 1, BGEVENT_READ, RadioTower2FBookshelf
 	bg_event 13, 0, BGEVENT_READ, MapRadioTower2FSignpost5Script
 
-.ObjectEvents:
-	db 11
+	db 11 ; object events
 	object_event 6, 6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower2FSuperNerdScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 17, 2, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5d701, -1
 	object_event 1, 4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

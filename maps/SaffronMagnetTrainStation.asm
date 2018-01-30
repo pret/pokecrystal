@@ -5,12 +5,10 @@ const_value set 2
 	const SAFFRONMAGNETTRAINSTATION_LASS
 
 SaffronMagnetTrainStation_MapScripts:
-.SceneScripts:
-	db 1
+	db 1 ; scene scripts
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene:
 	end
@@ -216,25 +214,20 @@ SaffronMagnetTrainStationLassText:
 	done
 
 SaffronMagnetTrainStation_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 8, 17, 6, SAFFRON_CITY
 	warp_event 9, 17, 6, SAFFRON_CITY
 	warp_event 6, 5, 4, GOLDENROD_MAGNET_TRAIN_STATION
 	warp_event 11, 5, 3, GOLDENROD_MAGNET_TRAIN_STATION
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 11, 6, 0, Script_ArriveFromGoldenrod
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 9, 9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
 	object_event 10, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x18a875, -1
 	object_event 6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION

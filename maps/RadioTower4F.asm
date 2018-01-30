@@ -8,11 +8,9 @@ const_value set 2
 	const RADIOTOWER4F_SCIENTIST
 
 RadioTower4F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 RadioTower4FFisherScript:
 	jumptextfaceplayer RadioTower4FFisherText
@@ -246,26 +244,21 @@ UnknownText_0x5f00d:
 	done
 
 RadioTower4F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 0, 0, 1, RADIO_TOWER_5F
 	warp_event 9, 0, 2, RADIO_TOWER_3F
 	warp_event 12, 0, 2, RADIO_TOWER_5F
 	warp_event 17, 0, 3, RADIO_TOWER_3F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 7, 0, BGEVENT_READ, MapRadioTower4FSignpost0Script
 	bg_event 15, 0, BGEVENT_READ, MapRadioTower4FSignpost1Script
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 6, 4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower4FFisherScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event 14, 6, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5eb85, -1
 	object_event 12, 7, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTowerMeowth, -1

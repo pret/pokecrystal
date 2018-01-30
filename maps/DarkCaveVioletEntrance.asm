@@ -9,11 +9,9 @@ const_value set 2
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL4
 
 DarkCaveVioletEntrance_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 DarkCaveVioletEntrancePotion:
 	itemball POTION
@@ -34,24 +32,19 @@ DarkCaveVioletEntranceHiddenElixer:
 	hiddenitem ELIXER, EVENT_DARK_CAVE_VIOLET_ENTRANCE_HIDDEN_ELIXER
 
 DarkCaveVioletEntrance_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 3, 15, 3, ROUTE_31
 	warp_event 17, 1, 2, DARK_CAVE_BLACKTHORN_ENTRANCE
 	warp_event 35, 33, 3, ROUTE_46
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 26, 3, BGEVENT_ITEM, DarkCaveVioletEntranceHiddenElixer
 
-.ObjectEvents:
-	db 8
+	db 8 ; object events
 	object_event 6, 8, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, DarkCaveVioletEntrancePotion, EVENT_DARK_CAVE_VIOLET_ENTRANCE_POTION
 	object_event 16, 14, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DarkCaveVioletEntranceRock, -1
 	object_event 27, 6, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DarkCaveVioletEntranceRock, -1

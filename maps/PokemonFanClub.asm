@@ -7,11 +7,9 @@ const_value set 2
 	const POKEMONFANCLUB_ODDISH
 
 PokemonFanClub_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 GentlemanScript_0x1917e9:
 	faceplayer
@@ -297,24 +295,19 @@ UnknownText_0x191e29:
 	done
 
 PokemonFanClub_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 3, VERMILION_CITY
 	warp_event 3, 7, 3, VERMILION_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 7, 0, BGEVENT_READ, MapPokemonFanClubSignpost0Script
 	bg_event 9, 0, BGEVENT_READ, MapPokemonFanClubSignpost1Script
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 3, 1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x1917e9, -1
 	object_event 4, 1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokemonFanClubReceptionistScript, -1
 	object_event 2, 3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FisherScript_0x191824, -1

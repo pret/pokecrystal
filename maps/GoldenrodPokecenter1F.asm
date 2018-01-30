@@ -6,11 +6,9 @@ const_value set 2
 	const GOLDENRODPOKECENTER1F_POKEFAN_F
 
 GoldenrodPokecenter1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 NurseScript_0x60f91:
 	jumpstd pokecenternurse
@@ -805,26 +803,21 @@ UnknownText_0x62549:
 	done
 
 GoldenrodPokecenter1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 3, 7, 15, GOLDENROD_CITY
 	warp_event 4, 7, 15, GOLDENROD_CITY
 	warp_event 0, 6, 1, POKECOM_CENTER_ADMIN_ROOM_MOBILE
 	warp_event 0, 7, 1, POKECENTER_2F
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 3, 7, 0, GoldenrodPokecenter1F_GSBallSceneLeft
 	coord_event 4, 7, 0, GoldenrodPokecenter1F_GSBallSceneRight
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x60f91, -1
 	object_event 16, 8, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 	object_event 6, 1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1

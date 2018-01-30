@@ -7,11 +7,9 @@ const_value set 2
 	const GOLDENRODDEPTSTORE5F_RECEPTIONIST
 
 GoldenrodDeptStore5F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .CheckIfSunday
 
 .CheckIfSunday:
@@ -218,25 +216,20 @@ GoldenrodDeptStore5FDirectoryText:
 	done
 
 GoldenrodDeptStore5F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 12, 0, 1, GOLDENROD_DEPT_STORE_4F
 	warp_event 15, 0, 1, GOLDENROD_DEPT_STORE_6F
 	warp_event 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 14, 0, BGEVENT_READ, GoldenrodDeptStore5FDirectory
 	bg_event 3, 0, BGEVENT_READ, GoldenrodDeptStore5FElevatorButton
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 8, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x5609c, -1
 	object_event 3, 6, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore5FLassScript, -1
 	object_event 6, 3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Mike, -1

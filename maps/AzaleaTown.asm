@@ -13,14 +13,12 @@ const_value set 2
 	const AZALEATOWN_KURT_OUTSIDE
 
 AzaleaTown_MapScripts:
-.SceneScripts:
-	db 3
+	db 3 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 	scene_script .DummyScene2
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .Flypoint
 
 .DummyScene0:
@@ -456,11 +454,9 @@ AzaleaTownIlexForestSignText:
 	done
 
 AzaleaTown_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 8
+	db 8 ; warp events
 	warp_event 15, 9, 1, AZALEA_POKECENTER_1F
 	warp_event 21, 13, 1, CHARCOAL_KILN
 	warp_event 21, 5, 2, AZALEA_MART
@@ -470,14 +466,12 @@ AzaleaTown_MapEvents:
 	warp_event 2, 10, 3, ILEX_FOREST_AZALEA_GATE
 	warp_event 2, 11, 4, ILEX_FOREST_AZALEA_GATE
 
-.CoordEvents:
-	db 3
+	db 3 ; coord events
 	coord_event 5, 10, 1, AzaleaTownRivalBattleScene1
 	coord_event 5, 11, 1, AzaleaTownRivalBattleScene2
 	coord_event 9, 6, 2, AzaleaTownCelebiScene
 
-.BGEvents:
-	db 9
+	db 9 ; bg events
 	bg_event 19, 9, BGEVENT_READ, AzaleaTownSign
 	bg_event 10, 9, BGEVENT_READ, KurtsHouseSign
 	bg_event 14, 15, BGEVENT_READ, AzaleaGymSign
@@ -488,8 +482,7 @@ AzaleaTown_MapEvents:
 	bg_event 3, 9, BGEVENT_READ, AzaleaTownIlextForestSign
 	bg_event 31, 6, BGEVENT_ITEM, AzaleaTownHiddenFullHeal
 
-.ObjectEvents:
-	db 12
+	db 12 ; object events
 	object_event 31, 9, SPRITE_AZALEA_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownRocket1Script, EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	object_event 21, 9, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownGrampsScript, -1
 	object_event 15, 13, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, AzaleaTownTeacherScript, -1

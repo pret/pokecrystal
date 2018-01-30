@@ -10,13 +10,11 @@ const_value set 2
 	const DRAGONSDENB1F_POKE_BALL3
 
 DragonsDenB1F_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckSilver
 
 .DummyScene0:
@@ -407,27 +405,22 @@ Text_NoRoomForDragonFang:
 	done
 
 DragonsDenB1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 20, 3, 3, DRAGONS_DEN_1F
 	warp_event 19, 29, 1, DRAGON_SHRINE
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 19, 30, 1, DragonsDenB1F_ClairScene
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 18, 24, BGEVENT_READ, MapDragonsDenB1FSignpost0Script
 	bg_event 33, 29, BGEVENT_ITEM, DragonsDenB1FHiddenRevive
 	bg_event 21, 17, BGEVENT_ITEM, DragonsDenB1FHiddenMaxPotion
 	bg_event 31, 15, BGEVENT_ITEM, DragonsDenB1FHiddenMaxElixer
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 35, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokeBallScript_0x18c95a, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
 	object_event 14, 30, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
 	object_event 20, 23, SPRITE_SILVER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SilverScript_0x18c97e, EVENT_RIVAL_DRAGONS_DEN

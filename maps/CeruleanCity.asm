@@ -7,11 +7,9 @@ const_value set 2
 	const CERULEANCITY_YOUNGSTER
 
 CeruleanCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -276,11 +274,9 @@ CeruleanLockedDoorText:
 	done
 
 CeruleanCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 7, 15, 1, CERULEAN_GYM_BADGE_SPEECH_HOUSE
 	warp_event 28, 17, 1, CERULEAN_POLICE_STATION
 	warp_event 13, 19, 1, CERULEAN_TRADE_SPEECH_HOUSE
@@ -288,11 +284,9 @@ CeruleanCity_MapEvents:
 	warp_event 30, 23, 1, CERULEAN_GYM
 	warp_event 25, 29, 2, CERULEAN_MART
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 9
+	db 9 ; bg events
 	bg_event 23, 23, BGEVENT_READ, CeruleanCitySign
 	bg_event 27, 25, BGEVENT_READ, CeruleanGymSign
 	bg_event 11, 29, BGEVENT_READ, CeruleanBikeShopSign
@@ -303,8 +297,7 @@ CeruleanCity_MapEvents:
 	bg_event 26, 29, BGEVENT_READ, CeruleanCityMartSign
 	bg_event 2, 12, BGEVENT_ITEM, CeruleanCityHiddenBerserkGene
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 15, 23, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCityCooltrainerMScript, -1
 	object_event 23, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCitySuperNerdScript, -1
 	object_event 20, 24, SPRITE_SLOWPOKE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanCitySlowbro, -1

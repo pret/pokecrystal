@@ -7,12 +7,10 @@ const_value set 2
 	const TEAMROCKETBASEB1F_POKE_BALL3
 
 TeamRocketBaseB1F_MapScripts:
-.SceneScripts:
-	db 1
+	db 1 ; scene scripts
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .HideSecurityGrunt
 
 .DummyScene:
@@ -727,18 +725,15 @@ UnknownText_0x6cdd0:
 	done
 
 TeamRocketBaseB1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 27, 2, 3, MAHOGANY_MART_1F
 	warp_event 3, 14, 1, TEAM_ROCKET_BASE_B2F
 	warp_event 5, 15, 4, TEAM_ROCKET_BASE_B1F
 	warp_event 25, 2, 3, TEAM_ROCKET_BASE_B1F
 
-.CoordEvents:
-	db 30
+	db 30 ; coord events
 	; There are five security cameras in the base.
 	; Walking in front of one triggers two Rocket Grunts.
 	coord_event 24, 2, 0, SecurityCamera1a
@@ -774,8 +769,7 @@ TeamRocketBaseB1F_MapEvents:
 	coord_event 4, 13, 0, ExplodingTrap21
 	coord_event 5, 13, 0, ExplodingTrap22
 
-.BGEvents:
-	db 9
+	db 9 ; bg events
 	bg_event 19, 11, BGEVENT_READ, MapTeamRocketBaseB1FSignpost0Script
 	bg_event 24, 1, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
 	bg_event 6, 1, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
@@ -786,8 +780,7 @@ TeamRocketBaseB1F_MapEvents:
 	bg_event 21, 11, BGEVENT_READ, MapTeamRocketBaseB1FSignpost7Script
 	bg_event 3, 11, BGEVENT_ITEM, TeamRocketBaseB1FHiddenRevive
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 0, 0, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_SECURITY_GRUNTS
 	object_event 2, 4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM16, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event 18, 12, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerScientistJed, EVENT_TEAM_ROCKET_BASE_POPULATION

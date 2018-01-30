@@ -6,13 +6,11 @@ const_value set 2
 	const PLAYERSHOUSE1F_POKEFAN_F
 
 PlayersHouse1F_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -386,29 +384,24 @@ TVText:
 	done
 
 PlayersHouse1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 6, 7, 2, NEW_BARK_TOWN
 	warp_event 7, 7, 2, NEW_BARK_TOWN
 	warp_event 9, 0, 1, PLAYERS_HOUSE_2F
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 8, 4, 0, UnknownScript_0x7a4d8
 	coord_event 9, 4, 0, UnknownScript_0x7a4db
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 0, 1, BGEVENT_READ, StoveScript
 	bg_event 1, 1, BGEVENT_READ, SinkScript
 	bg_event 2, 1, BGEVENT_READ, FridgeScript
 	bg_event 4, 1, BGEVENT_READ, TVScript
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 7, 4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_1
 	object_event 2, 2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_2
 	object_event 7, 4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_2

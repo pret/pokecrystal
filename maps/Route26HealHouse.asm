@@ -2,11 +2,9 @@ const_value set 2
 	const ROUTE26HEALHOUSE_TEACHER
 
 Route26HealHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TeacherScript_0x7b125:
 	faceplayer
@@ -49,22 +47,17 @@ UnknownText_0x7b18b:
 	done
 
 Route26HealHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 2, ROUTE_26
 	warp_event 3, 7, 2, ROUTE_26
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, Route26HealHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, Route26HealHouseBookshelf
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 2, 3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x7b125, -1

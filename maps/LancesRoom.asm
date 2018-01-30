@@ -4,13 +4,11 @@ const_value set 2
 	const LANCESROOM_OAK
 
 LancesRoom_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .LockDoor
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .LancesRoomDoors
 
 .LockDoor:
@@ -338,26 +336,21 @@ UnknownText_0x1813c5:
 	done
 
 LancesRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 4, 23, 3, KARENS_ROOM
 	warp_event 5, 23, 4, KARENS_ROOM
 	warp_event 4, 1, 1, HALL_OF_FAME
 	warp_event 5, 1, 2, HALL_OF_FAME
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 4, 5, 1, Script_ApproachLanceFromLeft
 	coord_event 5, 5, 1, Script_ApproachLanceFromRight
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 5, 3, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceScript_0x180e7b, -1
 	object_event 4, 7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
 	object_event 4, 7, SPRITE_OAK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

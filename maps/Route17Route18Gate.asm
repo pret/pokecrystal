@@ -2,12 +2,10 @@ const_value set 2
 	const ROUTE17ROUTE18GATE_OFFICER
 
 Route17Route18Gate_MapScripts:
-.SceneScripts:
-	db 1
+	db 1 ; scene scripts
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene:
 	end
@@ -52,24 +50,19 @@ UnknownText_0x7364d:
 	done
 
 Route17Route18Gate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 0, 4, 1, ROUTE_17
 	warp_event 0, 5, 2, ROUTE_17
 	warp_event 9, 4, 1, ROUTE_18
 	warp_event 9, 5, 2, ROUTE_18
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 5, 4, 0, UnknownScript_0x73611
 	coord_event 5, 5, 0, UnknownScript_0x73611
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route17Route18GateOfficerScript, -1

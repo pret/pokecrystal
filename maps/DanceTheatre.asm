@@ -10,11 +10,9 @@ const_value set 2
 	const DANCETHEATRE_GRANNY
 
 DanceTheatre_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerKimonoGirlNaoko2:
 	trainer KIMONO_GIRL, NAOKO2, EVENT_BEAT_KIMONO_GIRL_NAOKO, KimonoGirlNaoko2SeenText, KimonoGirlNaoko2BeatenText, 0, .Script
@@ -338,24 +336,19 @@ FancyPanelText:
 	done
 
 DanceTheatre_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 5, 13, 8, ECRUTEAK_CITY
 	warp_event 6, 13, 8, ECRUTEAK_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 5, 6, BGEVENT_UP, MapDanceTheatreSignpost1Script
 	bg_event 6, 6, BGEVENT_UP, MapDanceTheatreSignpost1Script
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 0, 2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko2, -1
 	object_event 2, 1, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlSayo, -1
 	object_event 6, 2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlZuki, -1

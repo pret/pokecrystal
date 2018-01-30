@@ -3,11 +3,9 @@ const_value set 2
 	const OLIVINEHOUSEBETA_RHYDON
 
 OlivineHouseBeta_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 OlivineHouseBetaTeacherScript:
 	jumptextfaceplayer OlivineHouseBetaTeacherText
@@ -40,23 +38,18 @@ UnknownText_0x9c5f0:
 	done
 
 OlivineHouseBeta_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 4, OLIVINE_CITY
 	warp_event 3, 7, 4, OLIVINE_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, OlivineHouseBetaBookshelf1
 	bg_event 1, 1, BGEVENT_READ, OlivineHouseBetaBookshelf2
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 2, 3, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
 	object_event 6, 4, SPRITE_RHYDON, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RhydonScript_0x9c592, -1

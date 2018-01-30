@@ -5,11 +5,9 @@ const_value set 2
 	const VIOLETGYM_GYM_GUY
 
 VioletGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 FalknerScript_0x683c2:
 	faceplayer
@@ -282,24 +280,19 @@ VioletGymGuyWinText:
 	done
 
 VioletGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 15, 2, VIOLET_CITY
 	warp_event 5, 15, 2, VIOLET_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 13, BGEVENT_READ, VioletGymStatue
 	bg_event 6, 13, BGEVENT_READ, VioletGymStatue
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 5, 1, SPRITE_FALKNER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FalknerScript_0x683c2, -1
 	object_event 7, 6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperRod, -1
 	object_event 2, 10, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperAbe, -1

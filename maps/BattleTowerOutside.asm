@@ -5,11 +5,9 @@ const_value set 2
 	const BATTLETOWEROUTSIDE_LASS
 
 BattleTowerOutside_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_TILES, .Callback1
 	callback MAPCALLBACK_OBJECTS, .Callback2
 
@@ -127,25 +125,20 @@ BattleTowerOutsideText_DoorsOpen:
 	done
 
 BattleTowerOutside_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 8, 21, 3, ROUTE_40_BATTLE_TOWER_GATE
 	warp_event 9, 21, 4, ROUTE_40_BATTLE_TOWER_GATE
 	warp_event 8, 9, 1, BATTLE_TOWER_1F
 	warp_event 9, 9, 2, BATTLE_TOWER_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 10, 10, BGEVENT_READ, MapBattleTowerOutsideSignpost0Script
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 6, 12, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideYoungsterScript, -1
 	object_event 13, 11, SPRITE_BUENA, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideBuenaScript, -1
 	object_event 12, 18, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideSailorScript, EVENT_BATTLE_TOWER_OUTSIDE_SAILOR

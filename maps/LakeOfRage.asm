@@ -13,13 +13,11 @@ const_value set 2
 	const LAKEOFRAGE_POKE_BALL2
 
 LakeOfRage_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 	callback MAPCALLBACK_OBJECTS, .Wesley
 
@@ -494,27 +492,22 @@ UnknownText_0x70903:
 	done
 
 LakeOfRage_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 7, 3, 1, LAKE_OF_RAGE_HIDDEN_POWER_HOUSE
 	warp_event 27, 31, 1, LAKE_OF_RAGE_MAGIKARP_HOUSE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 5
+	db 5 ; bg events
 	bg_event 21, 27, BGEVENT_READ, MapLakeOfRageSignpost0Script
 	bg_event 25, 31, BGEVENT_READ, MapLakeOfRageSignpost1Script
 	bg_event 11, 28, BGEVENT_ITEM, LakeOfRageHiddenFullRestore
 	bg_event 4, 4, BGEVENT_ITEM, LakeOfRageHiddenRareCandy
 	bg_event 35, 5, BGEVENT_ITEM, LakeOfRageHiddenMaxPotion
 
-.ObjectEvents:
-	db 12
+	db 12 ; object events
 	object_event 21, 28, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
 	object_event 20, 26, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x7008e, -1
 	object_event 36, 13, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageSuperNerdScript, -1

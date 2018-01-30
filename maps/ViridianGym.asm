@@ -3,11 +3,9 @@ const_value set 2
 	const VIRIDIANGYM_GYM_GUY
 
 ViridianGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ViridianGymBlueScript:
 	faceplayer
@@ -170,23 +168,18 @@ ViridianGymGuyWinText:
 	done
 
 ViridianGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 17, 1, VIRIDIAN_CITY
 	warp_event 5, 17, 1, VIRIDIAN_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 13, BGEVENT_READ, ViridianGymStatue
 	bg_event 6, 13, BGEVENT_READ, ViridianGymStatue
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 5, 3, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
 	object_event 7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE

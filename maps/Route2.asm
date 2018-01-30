@@ -9,11 +9,9 @@ const_value set 2
 	const ROUTE2_FRUIT_TREE
 
 Route2_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerBugCatcherRob:
 	trainer BUG_CATCHER, ROB, EVENT_BEAT_BUG_CATCHER_ROB, BugCatcherRobSeenText, BugCatcherRobBeatenText, 0, .Script
@@ -147,22 +145,18 @@ UnknownText_0x1ac49f:
 	done
 
 Route2_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 15, 15, 1, ROUTE_2_NUGGET_HOUSE
 	warp_event 15, 31, 3, ROUTE_2_GATE
 	warp_event 16, 27, 1, ROUTE_2_GATE
 	warp_event 17, 27, 2, ROUTE_2_GATE
 	warp_event 12, 7, 3, DIGLETTS_CAVE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
+	db 6 ; bg events
 	bg_event 7, 51, BGEVENT_READ, Route2Sign
 	bg_event 11, 9, BGEVENT_READ, MapRoute2Signpost1Script
 	bg_event 7, 23, BGEVENT_ITEM, Route2HiddenMaxEther
@@ -170,8 +164,7 @@ Route2_MapEvents:
 	bg_event 4, 27, BGEVENT_ITEM, Route2HiddenFullRestore
 	bg_event 11, 30, BGEVENT_ITEM, Route2HiddenRevive
 
-.ObjectEvents:
-	db 8
+	db 8 ; object events
 	object_event 10, 45, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1
 	object_event 6, 4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherEd, -1
 	object_event 0, 40, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherDoug, -1

@@ -5,11 +5,9 @@ const_value set 2
 	const PLAYERSHOUSE2F_BIG_DOLL
 
 PlayersHouse2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .InitializeRoom
 	callback MAPCALLBACK_TILES, .SetSpawn
 
@@ -116,25 +114,20 @@ PlayersRadioText4:
 	done
 
 PlayersHouse2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
+	db 1 ; warp events
 	warp_event 7, 0, 3, PLAYERS_HOUSE_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 2, 1, BGEVENT_UP, PlayersHousePCScript
 	bg_event 3, 1, BGEVENT_READ, PlayersHouseRadioScript
 	bg_event 5, 1, BGEVENT_READ, PlayersHouseBookshelfScript
 	bg_event 6, 0, BGEVENT_IFSET, PlayersHousePosterScript
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 4, 2, SPRITE_CONSOLE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsoleScript, EVENT_PLAYERS_HOUSE_2F_CONSOLE
 	object_event 4, 4, SPRITE_DOLL_1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1Script, EVENT_PLAYERS_HOUSE_2F_DOLL_1
 	object_event 5, 4, SPRITE_DOLL_2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2Script, EVENT_PLAYERS_HOUSE_2F_DOLL_2

@@ -3,14 +3,12 @@ const_value set 2
 	const COLOSSEUM_CHRIS2
 
 Colosseum_MapScripts:
-.SceneScripts:
-	db 3
+	db 3 ; scene scripts
 	scene_script .InitializeColosseum
 	scene_script .DummyScene1
 	scene_script .DummyScene2
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .SetWhichChris
 	callback MAPCALLBACK_NEWMAP, .PreparePokecenter2F
 
@@ -63,23 +61,18 @@ ChrisScript_0x193499:
 	done
 
 Colosseum_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 7, 3, POKECENTER_2F
 	warp_event 5, 7, 3, POKECENTER_2F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 4, 4, BGEVENT_RIGHT, MapColosseumSignpost1Script
 	bg_event 5, 4, BGEVENT_LEFT, MapColosseumSignpost1Script
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 3, 4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	object_event 6, 4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2

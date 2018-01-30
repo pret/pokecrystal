@@ -7,13 +7,11 @@ const_value set 2
 	const GOLDENRODGYM_GYM_GUY
 
 GoldenrodGym_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -380,25 +378,20 @@ GoldenrodGymGuyWinText:
 	done
 
 GoldenrodGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 17, 1, GOLDENROD_CITY
 	warp_event 3, 17, 1, GOLDENROD_CITY
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 8, 5, 1, WhitneyCriesScript
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 1, 15, BGEVENT_READ, GoldenrodGymStatue
 	bg_event 4, 15, BGEVENT_READ, GoldenrodGymStatue
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 8, 3, SPRITE_WHITNEY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WhitneyScript_0x5400c, -1
 	object_event 9, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerLassCarrie, -1
 	object_event 9, 6, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerLassBridget, -1

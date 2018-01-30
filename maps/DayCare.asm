@@ -3,11 +3,9 @@ const_value set 2
 	const DAYCARE_GRANNY
 
 DayCare_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .EggCheckCallback
 
 .EggCheckCallback:
@@ -156,25 +154,20 @@ DayCareText_PartyFull:
 	done
 
 DayCare_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 0, 5, 3, ROUTE_34
 	warp_event 0, 6, 4, ROUTE_34
 	warp_event 2, 7, 5, ROUTE_34
 	warp_event 3, 7, 5, ROUTE_34
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, DayCareBookshelf
 	bg_event 1, 1, BGEVENT_READ, DayCareBookshelf
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 2, 3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
 	object_event 5, 3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1

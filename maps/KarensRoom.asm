@@ -2,13 +2,11 @@ const_value set 2
 	const KARENSROOM_KAREN
 
 KarensRoom_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .LockDoor
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .KarensRoomDoors
 
 .LockDoor:
@@ -133,22 +131,17 @@ KarenScript_KarenDefeatText:
 	done
 
 KarensRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 4, 17, 3, BRUNOS_ROOM
 	warp_event 5, 17, 4, BRUNOS_ROOM
 	warp_event 4, 2, 1, LANCES_ROOM
 	warp_event 5, 2, 2, LANCES_ROOM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 5, 7, SPRITE_KAREN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, KarenScript_Battle, -1

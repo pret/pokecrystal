@@ -10,13 +10,11 @@ const_value set 2
 	const ROUTE42_SUICUNE
 
 Route42_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -319,31 +317,26 @@ Route42Sign2Text:
 	done
 
 Route42_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 0, 8, 3, ROUTE_42_ECRUTEAK_GATE
 	warp_event 0, 9, 4, ROUTE_42_ECRUTEAK_GATE
 	warp_event 10, 5, 1, MOUNT_MORTAR_1F_OUTSIDE
 	warp_event 28, 9, 2, MOUNT_MORTAR_1F_OUTSIDE
 	warp_event 46, 7, 3, MOUNT_MORTAR_1F_OUTSIDE
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 24, 14, 1, Route42SuicuneScript
 
-.BGEvents:
-	db 5
+	db 5 ; bg events
 	bg_event 4, 10, BGEVENT_READ, Route42Sign1
 	bg_event 7, 5, BGEVENT_READ, MtMortarSign1
 	bg_event 45, 9, BGEVENT_READ, MtMortarSign2
 	bg_event 54, 8, BGEVENT_READ, Route42Sign2
 	bg_event 16, 11, BGEVENT_ITEM, Route42HiddenMaxPotion
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 40, 10, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherTully1, -1
 	object_event 51, 9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
 	object_event 47, 8, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacShane, -1

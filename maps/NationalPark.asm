@@ -15,11 +15,9 @@ const_value set 2
 	const NATIONALPARK_POKE_BALL2
 
 NationalPark_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 NationalParkLassScript:
 	jumptextfaceplayer NationalParkLassText
@@ -514,28 +512,23 @@ UnknownText_0x5c7c6:
 	done
 
 NationalPark_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 33, 18, 1, ROUTE_36_NATIONAL_PARK_GATE
 	warp_event 33, 19, 2, ROUTE_36_NATIONAL_PARK_GATE
 	warp_event 10, 47, 1, ROUTE_35_NATIONAL_PARK_GATE
 	warp_event 11, 47, 2, ROUTE_35_NATIONAL_PARK_GATE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 14, 44, BGEVENT_READ, MapNationalParkSignpost0Script
 	bg_event 27, 31, BGEVENT_READ, MapNationalParkSignpost1Script
 	bg_event 6, 47, BGEVENT_ITEM, NationalParkHiddenFullHeal
 	bg_event 12, 4, BGEVENT_READ, MapNationalParkSignpost3Script
 
-.ObjectEvents:
-	db 14
+	db 14 ; object events
 	object_event 15, 24, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NationalParkLassScript, -1
 	object_event 14, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPokefanFScript, -1
 	object_event 27, 40, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5c008, -1

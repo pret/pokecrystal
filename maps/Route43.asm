@@ -9,11 +9,9 @@ const_value set 2
 	const ROUTE43_POKE_BALL
 
 Route43_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .CheckIfRockets:
@@ -501,28 +499,23 @@ Route43TrainerTipsText:
 	done
 
 Route43_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 9, 51, 1, ROUTE_43_MAHOGANY_GATE
 	warp_event 10, 51, 2, ROUTE_43_MAHOGANY_GATE
 	warp_event 17, 35, 3, ROUTE_43_GATE
 	warp_event 17, 31, 1, ROUTE_43_GATE
 	warp_event 18, 31, 2, ROUTE_43_GATE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 13, 3, BGEVENT_READ, Route43Sign1
 	bg_event 11, 49, BGEVENT_READ, Route43Sign2
 	bg_event 16, 38, BGEVENT_READ, Route43TrainerTips
 
-.ObjectEvents:
-	db 8
+	db 8 ; object events
 	object_event 13, 5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacBen, -1
 	object_event 13, 20, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacBrent1, -1
 	object_event 14, 7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacRon, -1

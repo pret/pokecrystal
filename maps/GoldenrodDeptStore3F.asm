@@ -4,11 +4,9 @@ const_value set 2
 	const GOLDENRODDEPTSTORE3F_ROCKER
 
 GoldenrodDeptStore3F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ClerkScript_0x55db8:
 	faceplayer
@@ -57,25 +55,20 @@ GoldenrodDeptStore3FDirectoryText:
 	done
 
 GoldenrodDeptStore3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 12, 0, 1, GOLDENROD_DEPT_STORE_2F
 	warp_event 15, 0, 2, GOLDENROD_DEPT_STORE_4F
 	warp_event 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 14, 0, BGEVENT_READ, GoldenrodDeptStore3FDirectory
 	bg_event 3, 0, BGEVENT_READ, GoldenrodDeptStore3FElevatorButton
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 6, 1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x55db8, -1
 	object_event 12, 5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FSuperNerdScript, -1
 	object_event 2, 5, SPRITE_ROCKER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FRockerScript, -1

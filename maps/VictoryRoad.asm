@@ -7,13 +7,11 @@ const_value set 2
 	const VICTORYROAD_POKE_BALL5
 
 VictoryRoad_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -239,11 +237,9 @@ UnknownText_0x747aa:
 	done
 
 VictoryRoad_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 10
+	db 10 ; warp events
 	warp_event 9, 67, 5, VICTORY_ROAD_GATE
 	warp_event 1, 49, 3, VICTORY_ROAD
 	warp_event 1, 35, 2, VICTORY_ROAD
@@ -255,18 +251,15 @@ VictoryRoad_MapEvents:
 	warp_event 0, 27, 8, VICTORY_ROAD
 	warp_event 13, 5, 3, ROUTE_23
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 12, 8, 0, UnknownScript_0x74492
 	coord_event 13, 8, 0, UnknownScript_0x744b5
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 29, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion
 	bg_event 3, 65, BGEVENT_ITEM, VictoryRoadHiddenFullHeal
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 18, 13, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_VICTORY_ROAD
 	object_event 3, 28, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadTMEarthquake, EVENT_VICTORY_ROAD_TM_EARTHQUAKE
 	object_event 12, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, VictoryRoadMaxRevive, EVENT_VICTORY_ROAD_MAX_REVIVE

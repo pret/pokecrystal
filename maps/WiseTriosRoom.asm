@@ -7,13 +7,11 @@ const_value set 2
 	const WISETRIOSROOM_SAGE6
 
 WiseTriosRoom_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .WiseTrioCallback
 
 .DummyScene0:
@@ -345,24 +343,19 @@ UnknownText_0x98db5:
 	done
 
 WiseTriosRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 7, 4, 4, ECRUTEAK_CITY
 	warp_event 7, 5, 5, ECRUTEAK_CITY
 	warp_event 1, 4, 5, ECRUTEAK_TIN_TOWER_ENTRANCE
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 7, 4, 0, UnknownScript_0x985a3
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 6, 2, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WiseTriosRoomSage1Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	object_event 6, 7, SPRITE_SAGE, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WiseTriosRoomSage2Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1
 	object_event 7, 5, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WiseTriosRoomSage3Script, EVENT_WISE_TRIOS_ROOM_WISE_TRIO_1

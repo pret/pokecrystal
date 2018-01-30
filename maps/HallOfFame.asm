@@ -2,13 +2,11 @@ const_value set 2
 	const HALLOFFAME_LANCE
 
 HallOfFame_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .EnterHallOfFame
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .EnterHallOfFame:
 	priorityjump .EnterHallOfFameScript
@@ -111,20 +109,15 @@ HallOfFame_LanceText:
 	done
 
 HallOfFame_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 13, 3, LANCES_ROOM
 	warp_event 5, 13, 4, LANCES_ROOM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 4, 12, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

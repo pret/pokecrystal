@@ -2,11 +2,9 @@ const_value set 2
 	const VERMILIONFISHINGSPEECHHOUSE_FISHING_GURU
 
 VermilionFishingSpeechHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 FishingDude:
 	jumptextfaceplayer FishingDudeText
@@ -51,21 +49,16 @@ FishingDudesHousePhotoText:
 	done
 
 VermilionFishingSpeechHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 1, VERMILION_CITY
 	warp_event 3, 7, 1, VERMILION_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 3, 0, BGEVENT_READ, FishingDudesHousePhoto
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 2, 4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FishingDude, -1

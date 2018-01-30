@@ -8,11 +8,9 @@ const_value set 2
 	const ECRUTEAKCITY_GRAMPS3
 
 EcruteakCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -260,11 +258,9 @@ BurnedTowerSignText:
 	done
 
 EcruteakCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 15
+	db 15 ; warp events
 	warp_event 35, 26, 1, ROUTE_42_ECRUTEAK_GATE
 	warp_event 35, 27, 2, ROUTE_42_ECRUTEAK_GATE
 	warp_event 18, 11, 1, ECRUTEAK_TIN_TOWER_ENTRANCE
@@ -281,11 +277,9 @@ EcruteakCity_MapEvents:
 	warp_event 0, 18, 3, ROUTE_38_ECRUTEAK_GATE
 	warp_event 0, 19, 4, ROUTE_38_ECRUTEAK_GATE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 8
+	db 8 ; bg events
 	bg_event 15, 21, BGEVENT_READ, EcruteakCitySign
 	bg_event 38, 10, BGEVENT_READ, TinTowerSign
 	bg_event 8, 28, BGEVENT_READ, EcruteakGymSign
@@ -295,8 +289,7 @@ EcruteakCity_MapEvents:
 	bg_event 30, 21, BGEVENT_READ, EcruteakCityMartSign
 	bg_event 23, 14, BGEVENT_ITEM, EcruteakCityHiddenHyperPotion
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 18, 15, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1
 	object_event 20, 21, SPRITE_GRAMPS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps2Script, -1
 	object_event 21, 29, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakCityLassScript, -1

@@ -11,14 +11,14 @@
 ## <code>MapName_MapScripts:</code>
 
 
-### <code>.SceneScripts: db <i>N</i></code>
+### <code>db <i>N</i> ; scene scripts</code>
 
 <pre>
 	scene_script <i>script</i>
 </pre>
 
 
-### <code>.MapCallbacks: db <i>N</i></code>
+### <code>db <i>N</i> ; callbacks</code>
 
 <pre>
 	callback <i>type</i>, <i>script</i>
@@ -70,26 +70,25 @@ Callback types:
 ## <code>MapName_MapEvents:</code>
 
 ```asm
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 ```
 
 
-### <code>.Warps: db <i>N</i></code>
+### <code>db <i>N</i> ; warp events</code>
 
 <pre>
 	warp_event <i>x</i>, <i>y</i>, <i>warp_id</i>, <i>map</i>
 </pre>
 
 
-### <code>.CoordEvents: db <i>N</i></code>
+### <code>db <i>N</i> ; coord events</code>
 
 <pre>
 	coord_event <i>x</i>, <i>y</i>, <i>scene_id</i>, <i>script</i>
 </pre>
 
 
-### <code>.BGEvents: db <i>N</i></code>
+### <code>db <i>N</i> ; bg events</code>
 
 <pre>
 	bg_event <i>x</i>, <i>y</i>, <i>type</i>, <i>script</i>
@@ -115,7 +114,7 @@ BG event types:
 
 - `BGEVENT_COPY`
 
-### <code>.ObjectEvents: db <i>N</i></code>
+### <code>db <i>N</i> ; object events</code>
 
 <pre>
 	object_event <i>x</i>, <i>y</i>, <i>sprite</i>, <i>movement</i>, <i>rx</i>, <i>ry</i>, <i>h1</i>, <i>h2</i>, <i>palette</i>, <i>type</i>, <i>range</i>, <i>script</i>, <i>event_flag</i>

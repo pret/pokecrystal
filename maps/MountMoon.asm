@@ -2,13 +2,11 @@ const_value set 2
 	const MOUNTMOON_SILVER
 
 MountMoon_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .RivalEncounter
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .RivalEncounter:
 	priorityjump .RivalBattle
@@ -161,11 +159,9 @@ MountMoonSilverTextLoss:
 	done
 
 MountMoon_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 8
+	db 8 ; warp events
 	warp_event 3, 3, 1, ROUTE_3
 	warp_event 15, 15, 1, ROUTE_4
 	warp_event 13, 3, 7, MOUNT_MOON
@@ -175,12 +171,9 @@ MountMoon_MapEvents:
 	warp_event 25, 3, 3, MOUNT_MOON
 	warp_event 25, 13, 4, MOUNT_MOON
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 7, 3, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

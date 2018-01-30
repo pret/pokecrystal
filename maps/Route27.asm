@@ -10,13 +10,11 @@ const_value set 2
 	const ROUTE27_FISHER
 
 Route27_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -468,26 +466,21 @@ TohjoFallsSignText:
 	done
 
 Route27_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 33, 7, 1, ROUTE_27_SANDSTORM_HOUSE
 	warp_event 26, 5, 1, TOHJO_FALLS
 	warp_event 36, 5, 2, TOHJO_FALLS
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 18, 10, 0, UnknownScript_0x1a0873
 	coord_event 19, 10, 0, UnknownScript_0x1a0881
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 25, 7, BGEVENT_READ, TohjoFallsSign
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 48, 7, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermBlake, -1
 	object_event 58, 6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainermBrian, -1
 	object_event 72, 10, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainerfReena, -1

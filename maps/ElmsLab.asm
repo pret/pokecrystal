@@ -7,8 +7,7 @@ const_value set 2
 	const ELMSLAB_OFFICER
 
 ElmsLab_MapScripts:
-.SceneScripts:
-	db 6
+	db 6 ; scene scripts
 	scene_script .MeetElm
 	scene_script .DummyScene1
 	scene_script .DummyScene2
@@ -16,8 +15,7 @@ ElmsLab_MapScripts:
 	scene_script .DummyScene4
 	scene_script .DummyScene5
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
 
 .MeetElm:
@@ -1371,16 +1369,13 @@ ElmsLabPCText:
 	done
 
 ElmsLab_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 11, 1, NEW_BARK_TOWN
 	warp_event 5, 11, 1, NEW_BARK_TOWN
 
-.CoordEvents:
-	db 8
+	db 8 ; coord events
 	coord_event 4, 6, 1, LabTryToLeaveScript
 	coord_event 5, 6, 1, LabTryToLeaveScript
 	coord_event 4, 5, 3, MeetCopScript
@@ -1390,8 +1385,7 @@ ElmsLab_MapEvents:
 	coord_event 4, 8, 6, AideScript_WalkBalls1
 	coord_event 5, 8, 6, AideScript_WalkBalls2
 
-.BGEvents:
-	db 16
+	db 16 ; bg events
 	bg_event 2, 1, BGEVENT_READ, ElmsLabHealingMachine
 	bg_event 6, 1, BGEVENT_READ, ElmsLabBookshelf
 	bg_event 7, 1, BGEVENT_READ, ElmsLabBookshelf
@@ -1409,8 +1403,7 @@ ElmsLab_MapEvents:
 	bg_event 5, 0, BGEVENT_READ, ElmsLabWindow
 	bg_event 3, 5, BGEVENT_DOWN, ElmsLabPC
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 5, 2, SPRITE_ELM, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
 	object_event 2, 9, SPRITE_SCIENTIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
 	object_event 6, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB

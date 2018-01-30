@@ -8,13 +8,11 @@ const_value set 2
 	const POWERPLANT_FOREST
 
 PowerPlant_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -389,25 +387,20 @@ UnknownText_0x189475:
 	done
 
 PowerPlant_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 17, 2, ROUTE_10_NORTH
 	warp_event 3, 17, 2, ROUTE_10_NORTH
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 5, 12, 1, PowerPlantGuardPhoneScript
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, PowerPlantBookshelf
 	bg_event 1, 1, BGEVENT_READ, PowerPlantBookshelf
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 4, 14, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x188df5, -1
 	object_event 2, 9, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188e15, -1
 	object_event 6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188e29, -1

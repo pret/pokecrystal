@@ -1,9 +1,7 @@
 SilverCaveOutside_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -24,22 +22,17 @@ MtSilverSignText:
 	done
 
 SilverCaveOutside_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 23, 19, 1, SILVER_CAVE_POKECENTER_1F
 	warp_event 18, 11, 1, SILVER_CAVE_ROOM_1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 24, 19, BGEVENT_READ, MtSilverPokecenterSign
 	bg_event 17, 13, BGEVENT_READ, MtSilverSign
 	bg_event 9, 25, BGEVENT_ITEM, SilverCaveOutsideHiddenFullRestore
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

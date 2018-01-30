@@ -9,13 +9,11 @@ const_value set 2
 	const ROUTE29_POKE_BALL
 
 Route29_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .Tuscany
 
 .DummyScene0:
@@ -416,25 +414,20 @@ Route29Sign2Text:
 	done
 
 Route29_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
+	db 1 ; warp events
 	warp_event 27, 1, 3, ROUTE_29_ROUTE_46_GATE
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 53, 8, 1, Route29Tutorial1
 	coord_event 53, 9, 1, Route29Tutorial2
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 51, 7, BGEVENT_READ, Route29Sign1
 	bg_event 3, 5, BGEVENT_READ, Route29Sign2
 
-.ObjectEvents:
-	db 8
+	db 8 ; object events
 	object_event 50, 12, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CatchingTutorialDudeScript, -1
 	object_event 27, 16, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route29YoungsterScript, -1
 	object_event 15, 11, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route29TeacherScript, -1

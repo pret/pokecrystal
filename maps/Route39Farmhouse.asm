@@ -3,11 +3,9 @@ const_value set 2
 	const ROUTE39FARMHOUSE_POKEFAN_F
 
 Route39Farmhouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 PokefanM_DairyFarmer:
 	faceplayer
@@ -193,23 +191,18 @@ FarmerFText_SnoreSpeech:
 	done
 
 Route39Farmhouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 2, ROUTE_39
 	warp_event 3, 7, 2, ROUTE_39
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, FarmhouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, FarmhouseBookshelf
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 3, 2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokefanM_DairyFarmer, -1
 	object_event 5, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanF_SnoreFarmer, -1

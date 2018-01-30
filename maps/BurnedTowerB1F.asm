@@ -10,13 +10,11 @@ const_value set 2
 	const BURNEDTOWERB1F_EUSINE
 
 BurnedTowerB1F_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .LadderCallback
 
 .DummyScene0:
@@ -236,11 +234,9 @@ BurnedTowerB1FEusineText:
 	done
 
 BurnedTowerB1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 10, 9, 3, BURNED_TOWER_1F
 	warp_event 17, 7, 7, BURNED_TOWER_1F
 	warp_event 10, 8, 9, BURNED_TOWER_1F
@@ -248,15 +244,12 @@ BurnedTowerB1F_MapEvents:
 	warp_event 17, 14, 12, BURNED_TOWER_1F
 	warp_event 7, 15, 14, BURNED_TOWER_1F
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 10, 6, 0, ReleaseTheBeasts
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 17, 8, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTowerB1FBoulder, -1
 	object_event 7, 3, SPRITE_RAIKOU, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1
 	object_event 12, 3, SPRITE_ENTEI, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BURNED_TOWER_B1F_BEASTS_1

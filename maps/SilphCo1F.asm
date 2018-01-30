@@ -3,11 +3,9 @@ const_value set 2
 	const SILPHCO1F_OFFICER
 
 SilphCo1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 SilphCoReceptionist:
 	jumptextfaceplayer SilphCoReceptionistText
@@ -56,21 +54,16 @@ UnknownText_0x18aca8:
 	done
 
 SilphCo1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 7, SAFFRON_CITY
 	warp_event 3, 7, 7, SAFFRON_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 4, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SilphCoReceptionist, -1
 	object_event 13, 1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18abe8, -1

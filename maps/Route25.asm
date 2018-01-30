@@ -12,13 +12,11 @@ const_value set 2
 	const ROUTE25_POKE_BALL
 
 Route25_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -430,25 +428,20 @@ BillsHouseSignText:
 	done
 
 Route25_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
+	db 1 ; warp events
 	warp_event 47, 5, 1, BILLS_HOUSE
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 42, 6, 1, UnknownScript_0x19eea0
 	coord_event 42, 7, 1, UnknownScript_0x19eee0
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 45, 5, BGEVENT_READ, BillsHouseSign
 	bg_event 4, 5, BGEVENT_ITEM, Route25HiddenPotion
 
-.ObjectEvents:
-	db 11
+	db 11 ; object events
 	object_event 46, 9, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 46, 10, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_25_MISTY_BOYFRIEND
 	object_event 12, 8, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyDudley, -1

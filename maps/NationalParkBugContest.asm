@@ -13,11 +13,9 @@ const_value set 2
 	const NATIONALPARKBUGCONTEST_POKE_BALL2
 
 NationalParkBugContest_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 YoungsterScript_0x5c8ec:
 	faceplayer
@@ -221,28 +219,23 @@ UnknownText_0x5cc1d:
 	done
 
 NationalParkBugContest_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 33, 18, 1, ROUTE_36_NATIONAL_PARK_GATE
 	warp_event 33, 19, 1, ROUTE_36_NATIONAL_PARK_GATE
 	warp_event 10, 47, 1, ROUTE_35_NATIONAL_PARK_GATE
 	warp_event 11, 47, 1, ROUTE_35_NATIONAL_PARK_GATE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 14, 44, BGEVENT_READ, MapNationalParkBugContestSignpost0Script
 	bg_event 27, 31, BGEVENT_READ, MapNationalParkBugContestSignpost1Script
 	bg_event 6, 47, BGEVENT_ITEM, NationalParkBugContestHiddenFullHeal
 	bg_event 12, 4, BGEVENT_READ, MapNationalParkBugContestSignpost3Script
 
-.ObjectEvents:
-	db 12
+	db 12 ; object events
 	object_event 19, 29, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x5c8ec, EVENT_BUG_CATCHING_CONTESTANT_1A
 	object_event 28, 22, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x5c8f4, EVENT_BUG_CATCHING_CONTESTANT_2A
 	object_event 9, 18, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RockerScript_0x5c8fc, EVENT_BUG_CATCHING_CONTESTANT_3A

@@ -4,13 +4,11 @@ const_value set 2
 	const VERMILIONPORT_SUPER_NERD
 
 VermilionPort_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .LeaveFastShip
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
@@ -299,24 +297,19 @@ UnknownText_0x750a6:
 	done
 
 VermilionPort_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 9, 5, 5, VERMILION_PORT_PASSAGE
 	warp_event 7, 17, 1, FAST_SHIP_1F
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 7, 11, 0, UnknownScript_0x74e20
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 16, 13, BGEVENT_ITEM, VermilionPortHiddenIron
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 7, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	object_event 6, 11, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x74e97, -1
 	object_event 11, 11, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x74ee6, -1

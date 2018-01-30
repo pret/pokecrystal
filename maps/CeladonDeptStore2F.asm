@@ -5,11 +5,9 @@ const_value set 2
 	const CELADONDEPTSTORE2F_YOUNGSTER
 
 CeladonDeptStore2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ClerkScript_0x70bad:
 	faceplayer
@@ -69,25 +67,20 @@ CeladonDeptStore2FDirectoryText:
 	done
 
 CeladonDeptStore2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 12, 0, 1, CELADON_DEPT_STORE_3F
 	warp_event 15, 0, 3, CELADON_DEPT_STORE_1F
 	warp_event 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore2FDirectory
 	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore2FElevatorButton
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 13, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70bad, -1
 	object_event 14, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70bb5, -1
 	object_event 5, 2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FPokefanMScript, -1

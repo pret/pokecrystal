@@ -11,11 +11,9 @@ const_value set 2
 	const ROUTE39_POKEFAN_F2
 
 Route39_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route39Miltank:
 	opentext
@@ -344,26 +342,21 @@ Route39TrainerTipsText:
 	done
 
 Route39_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 1, 3, 1, ROUTE_39_BARN
 	warp_event 5, 3, 1, ROUTE_39_FARMHOUSE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 5, 31, BGEVENT_READ, Route39TrainerTips
 	bg_event 9, 5, BGEVENT_READ, MoomooFarmSign
 	bg_event 15, 7, BGEVENT_READ, Route39Sign
 	bg_event 5, 13, BGEVENT_ITEM, Route39HiddenNugget
 
-.ObjectEvents:
-	db 10
+	db 10 ; object events
 	object_event 13, 29, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSailorEugene, -1
 	object_event 10, 22, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanmDerek1, -1
 	object_event 11, 19, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanfRuth, -1

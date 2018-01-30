@@ -6,11 +6,9 @@ const_value set 2
 	const LAVRADIOTOWER1F_SUPER_NERD2
 
 LavRadioTower1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 LavRadioTower1FReceptionistScript:
 	jumptextfaceplayer LavRadioTower1FReceptionistText
@@ -222,24 +220,19 @@ UnknownText_0x7f36b:
 	done
 
 LavRadioTower1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 7, LAVENDER_TOWN
 	warp_event 3, 7, 7, LAVENDER_TOWN
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 11, 0, BGEVENT_READ, MapLavRadioTower1FSignpost0Script
 	bg_event 5, 0, BGEVENT_READ, MapLavRadioTower1FSignpost1Script
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 6, 6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FReceptionistScript, -1
 	object_event 15, 1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FOfficerScript, -1
 	object_event 1, 3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerdScript, -1

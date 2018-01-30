@@ -5,13 +5,11 @@ const_value set 2
 	const ECRUTEAKTINTOWERENTRANCE_GRAMPS
 
 EcruteakTinTowerEntrance_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .InitializeSages
 
 .DummyScene0:
@@ -278,27 +276,22 @@ EcruteakTinTowerEntranceGrampsText:
 	done
 
 EcruteakTinTowerEntrance_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 4, 17, 3, ECRUTEAK_CITY
 	warp_event 5, 17, 3, ECRUTEAK_CITY
 	warp_event 5, 3, 4, ECRUTEAK_TIN_TOWER_ENTRANCE
 	warp_event 17, 15, 3, ECRUTEAK_TIN_TOWER_ENTRANCE
 	warp_event 17, 3, 3, WISE_TRIOS_ROOM
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 4, 7, 0, EcruteakTinTowerEntrance_CoordEvent1
 	coord_event 5, 7, 0, EcruteakTinTowerEntrance_CoordEvent2
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 4, 6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
 	object_event 5, 6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
 	object_event 6, 9, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE

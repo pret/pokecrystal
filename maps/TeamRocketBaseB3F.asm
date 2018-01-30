@@ -15,15 +15,13 @@ const_value set 2
 	const TEAMROCKETBASEB3F_POKE_BALL5
 
 TeamRocketBaseB3F_MapScripts:
-.SceneScripts:
-	db 4
+	db 4 ; scene scripts
 	scene_script .LanceGetsPassword
 	scene_script .DummyScene1
 	scene_script .DummyScene2
 	scene_script .DummyScene3
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
 
 .LanceGetsPassword:
@@ -566,24 +564,20 @@ UnknownText_0x6e9a3:
 	done
 
 TeamRocketBaseB3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 3, 2, 2, TEAM_ROCKET_BASE_B2F
 	warp_event 27, 2, 3, TEAM_ROCKET_BASE_B2F
 	warp_event 3, 6, 4, TEAM_ROCKET_BASE_B2F
 	warp_event 27, 14, 5, TEAM_ROCKET_BASE_B2F
 
-.CoordEvents:
-	db 3
+	db 3 ; coord events
 	coord_event 10, 8, 2, UnknownScript_0x6e04b
 	coord_event 11, 8, 2, UnknownScript_0x6e052
 	coord_event 8, 10, 1, RocketBaseRival
 
-.BGEvents:
-	db 10
+	db 10 ; bg events
 	bg_event 10, 9, BGEVENT_IFNOTSET, TeamRocketBaseB3FLockedDoor
 	bg_event 11, 9, BGEVENT_IFNOTSET, TeamRocketBaseB3FLockedDoor
 	bg_event 10, 1, BGEVENT_READ, TeamRocketBaseB3FOathScript
@@ -595,8 +589,7 @@ TeamRocketBaseB3F_MapEvents:
 	bg_event 6, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
 	bg_event 7, 13, BGEVENT_READ, TeamRocketBaseB3FOathScript
 
-.ObjectEvents:
-	db 14
+	db 14 ; object events
 	object_event 25, 14, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceGetPasswordScript, EVENT_TEAM_ROCKET_BASE_B3F_LANCE_PASSWORDS
 	object_event 8, 3, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_TEAM_ROCKET_BASE_B3F_EXECUTIVE
 	object_event 7, 2, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RocketBaseMurkrow, EVENT_TEAM_ROCKET_BASE_POPULATION

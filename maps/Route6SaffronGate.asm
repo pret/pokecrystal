@@ -2,12 +2,10 @@ const_value set 2
 	const ROUTE6SAFFRONGATE_OFFICER
 
 Route6SaffronGate_MapScripts:
-.SceneScripts:
-	db 1
+	db 1 ; scene scripts
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene:
 	end
@@ -58,22 +56,17 @@ UnknownText_0x1927cb:
 	done
 
 Route6SaffronGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 4, 0, 12, SAFFRON_CITY
 	warp_event 5, 0, 13, SAFFRON_CITY
 	warp_event 4, 7, 2, ROUTE_6
 	warp_event 5, 7, 2, ROUTE_6
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x1926ea, -1

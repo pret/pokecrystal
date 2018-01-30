@@ -4,11 +4,9 @@ const_value set 2
 	const GOLDENRODHAPPINESSRATER_TWIN
 
 GoldenrodHappinessRater_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TeacherScript_0x54953:
 	faceplayer
@@ -137,25 +135,20 @@ GoldenrodHappinessRaterTwinText:
 	done
 
 GoldenrodHappinessRater_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 3, GOLDENROD_CITY
 	warp_event 3, 7, 3, GOLDENROD_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 0, 1, BGEVENT_READ, HappinessRatersHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, HappinessRatersHouseBookshelf
 	bg_event 7, 1, BGEVENT_READ, HappinessRatersHouseRadio
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 2, 4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x54953, -1
 	object_event 5, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterPokefanMScript, -1
 	object_event 5, 6, SPRITE_TWIN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterTwinScript, -1

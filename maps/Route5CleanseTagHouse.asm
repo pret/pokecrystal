@@ -3,11 +3,9 @@ const_value set 2
 	const ROUTE5CLEANSETAGHOUSE_TEACHER
 
 Route5CleanseTagHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 GrannyScript_0x18b634:
 	faceplayer
@@ -61,23 +59,18 @@ Route5CleanseTagHouseTeacherText:
 	done
 
 Route5CleanseTagHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 4, ROUTE_5
 	warp_event 3, 7, 4, ROUTE_5
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, HouseForSaleBookshelf
 	bg_event 1, 1, BGEVENT_READ, HouseForSaleBookshelf
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 2, 5, SPRITE_GRANNY, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x18b634, -1
 	object_event 5, 3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5CleanseTagHouseTeacherScript, -1

@@ -6,13 +6,11 @@ const_value set 2
 	const CHERRYGROVECITY_FISHER
 
 CherrygroveCity_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
@@ -547,31 +545,26 @@ GuideGentsHouseSignText:
 	done
 
 CherrygroveCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 23, 3, 2, CHERRYGROVE_MART
 	warp_event 29, 3, 1, CHERRYGROVE_POKECENTER_1F
 	warp_event 17, 7, 1, CHERRYGROVE_GYM_SPEECH_HOUSE
 	warp_event 25, 9, 1, GUIDE_GENTS_HOUSE
 	warp_event 31, 11, 1, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 33, 6, 1, CherrygroveSilverSceneNorth
 	coord_event 33, 7, 1, CherrygroveSilverSceneSouth
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 30, 8, BGEVENT_READ, CherrygroveCitySign
 	bg_event 23, 9, BGEVENT_READ, GuideGentsHouseSign
 	bg_event 24, 3, BGEVENT_READ, CherrygroveCityMartSign
 	bg_event 30, 3, BGEVENT_READ, CherrygroveCityPokecenterSign
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 32, 6, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveCityGuideGent, EVENT_GUIDE_GENT_IN_HIS_HOUSE
 	object_event 39, 6, SPRITE_SILVER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_CHERRYGROVE_CITY
 	object_event 27, 12, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CherrygroveTeacherScript, -1

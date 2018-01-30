@@ -7,11 +7,9 @@ const_value set 2
 	const ICEPATHB2FMAHOGANYSIDE_POKE_BALL2
 
 IcePathB2FMahoganySide_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 IcePathB2FMahoganySideBoulder:
 	jumptext IcePathB2FMahoganySideBoulderText
@@ -31,11 +29,9 @@ IcePathB2FMahoganySideBoulderText:
 	done
 
 IcePathB2FMahoganySide_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 17, 1, 2, ICE_PATH_B1F
 	warp_event 9, 11, 1, ICE_PATH_B3F
 	warp_event 11, 4, 3, ICE_PATH_B1F
@@ -43,15 +39,12 @@ IcePathB2FMahoganySide_MapEvents:
 	warp_event 4, 12, 5, ICE_PATH_B1F
 	warp_event 12, 12, 6, ICE_PATH_B1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 0, 17, BGEVENT_ITEM, IcePathB2FMahoganySideHiddenCarbos
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 11, 3, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_1A
 	object_event 4, 7, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_2A
 	object_event 3, 12, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_3A

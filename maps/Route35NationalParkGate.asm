@@ -4,14 +4,12 @@ const_value set 2
 	const ROUTE35NATIONALPARKGATE_OFFICER2
 
 Route35NationalParkGate_MapScripts:
-.SceneScripts:
-	db 3
+	db 3 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 	scene_script .LeaveContestEarly
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckIfContestRunning
 	callback MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
 
@@ -438,25 +436,20 @@ UnknownText_0x6a90e:
 	done
 
 Route35NationalParkGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 3, 0, 3, NATIONAL_PARK
 	warp_event 4, 0, 4, NATIONAL_PARK
 	warp_event 3, 7, 3, ROUTE_35
 	warp_event 4, 7, 3, ROUTE_35
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 5, 0, BGEVENT_READ, MapRoute36NationalParkGateSignpost0Script
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 2, 1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	object_event 6, 5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route35NationalParkGateYoungsterScript, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
 	object_event 0, 3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

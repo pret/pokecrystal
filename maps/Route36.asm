@@ -10,13 +10,11 @@ const_value set 2
 	const ROUTE36_SUICUNE
 
 Route36_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .ArthurCallback
 
 .DummyScene0:
@@ -660,30 +658,25 @@ Route36TrainerTips2Text:
 	done
 
 Route36_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 18, 8, 3, ROUTE_36_NATIONAL_PARK_GATE
 	warp_event 18, 9, 4, ROUTE_36_NATIONAL_PARK_GATE
 	warp_event 47, 13, 1, ROUTE_36_RUINS_OF_ALPH_GATE
 	warp_event 48, 13, 2, ROUTE_36_RUINS_OF_ALPH_GATE
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 20, 7, 1, Route36SuicuneScript
 	coord_event 22, 7, 1, Route36SuicuneScript
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 29, 1, BGEVENT_READ, Route36TrainerTips2
 	bg_event 45, 11, BGEVENT_READ, RuinsOfAlphNorthSign
 	bg_event 55, 7, BGEVENT_READ, Route36Sign
 	bg_event 21, 7, BGEVENT_READ, Route36TrainerTips1
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 20, 13, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicMark, -1
 	object_event 31, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSchoolboyAlan1, -1
 	object_event 35, 9, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SudowoodoScript, EVENT_ROUTE_36_SUDOWOODO

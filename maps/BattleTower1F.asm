@@ -6,13 +6,11 @@ const_value set 2
 	const BATTLETOWER1F_GRANNY
 
 BattleTower1F_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .Scene0
 	scene_script .Scene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .Scene0:
 	writebyte BATTLETOWERACTION_CHECKSAVEFILEISYOURS
@@ -794,24 +792,19 @@ Text_BattleTowerBugCatcher: ; 0x9f35b
 	done
 
 BattleTower1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 7, 9, 3, BATTLE_TOWER_OUTSIDE
 	warp_event 8, 9, 4, BATTLE_TOWER_OUTSIDE
 	warp_event 7, 0, 1, BATTLE_TOWER_ELEVATOR
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 6, 6, BGEVENT_READ, MapBattleTower1FSignpost0Script
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 7, 6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x9e3e2, -1
 	object_event 14, 9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x9e55d, -1
 	object_event 4, 9, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerFScript_0x9e568, -1

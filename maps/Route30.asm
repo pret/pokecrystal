@@ -12,11 +12,9 @@ const_value set 2
 	const ROUTE30_POKE_BALL
 
 Route30_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 YoungsterJoey_ImportantBattleScript:
 	waitsfx
@@ -407,27 +405,22 @@ YoungsterJoeyText_GiveHPUpAfterBattle:
 	done
 
 Route30_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 7, 39, 1, ROUTE_30_BERRY_HOUSE
 	warp_event 17, 5, 1, MR_POKEMONS_HOUSE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 5
+	db 5 ; bg events
 	bg_event 9, 43, BGEVENT_READ, Route30Sign
 	bg_event 13, 29, BGEVENT_READ, MrPokemonsHouseDirectionsSign
 	bg_event 15, 5, BGEVENT_READ, MrPokemonsHouseSign
 	bg_event 3, 21, BGEVENT_READ, Route30TrainerTips
 	bg_event 14, 9, BGEVENT_ITEM, Route30HiddenPotion
 
-.ObjectEvents:
-	db 11
+	db 11 ; object events
 	object_event 5, 26, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, YoungsterJoey_ImportantBattleScript, EVENT_ROUTE_30_BATTLE
 	object_event 2, 28, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterJoey, EVENT_ROUTE_30_YOUNGSTER_JOEY
 	object_event 5, 23, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerYoungsterMikey, -1

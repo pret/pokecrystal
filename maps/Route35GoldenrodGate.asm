@@ -4,11 +4,9 @@ const_value set 2
 	const ROUTE35GOLDENRODGATE_FISHER
 
 Route35GoldenrodGate_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 OfficerScript_0x69d37:
 	faceplayer
@@ -196,24 +194,19 @@ Route35GoldenrodGateFisherText:
 	done
 
 Route35GoldenrodGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 4, 0, 1, ROUTE_35
 	warp_event 5, 0, 2, ROUTE_35
 	warp_event 4, 7, 12, GOLDENROD_CITY
 	warp_event 5, 7, 12, GOLDENROD_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x69d37, -1
 	object_event 6, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x69dc6, -1
 	object_event 3, 2, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route35GoldenrodGateFisherScript, -1

@@ -3,13 +3,11 @@ const_value set 2
 	const MRPOKEMONSHOUSE_OAK
 
 MrPokemonsHouse_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .MeetMrPokemon
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .MeetMrPokemon:
 	priorityjump .MrPokemonEvent
@@ -373,26 +371,21 @@ MrPokemonsHouse_StrangeCoinsText:
 	done
 
 MrPokemonsHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 2, ROUTE_30
 	warp_event 3, 7, 2, ROUTE_30
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 5
+	db 5 ; bg events
 	bg_event 0, 1, BGEVENT_READ, MapMrPokemonsHouseSignpost1Script
 	bg_event 1, 1, BGEVENT_READ, MapMrPokemonsHouseSignpost1Script
 	bg_event 6, 1, BGEVENT_READ, MapMrPokemonsHouseSignpost3Script
 	bg_event 7, 1, BGEVENT_READ, MapMrPokemonsHouseSignpost3Script
 	bg_event 6, 4, BGEVENT_READ, MapMrPokemonsHouseSignpost4Script
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 3, 5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MrPokemonsHouse_MrPokemonScript, -1
 	object_event 6, 5, SPRITE_OAK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MR_POKEMONS_HOUSE_OAK

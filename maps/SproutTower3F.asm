@@ -8,13 +8,11 @@ const_value set 2
 	const SPROUTTOWER3F_SILVER
 
 SproutTower3F_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -330,19 +328,15 @@ UnknownText_0x184f61:
 	done
 
 SproutTower3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
+	db 1 ; warp events
 	warp_event 10, 14, 4, SPROUT_TOWER_2F
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 11, 9, 0, UnknownScript_0x184947
 
-.BGEvents:
-	db 6
+	db 6 ; bg events
 	bg_event 8, 1, BGEVENT_READ, MapSproutTower3FSignpost5Script
 	bg_event 11, 1, BGEVENT_READ, MapSproutTower3FSignpost5Script
 	bg_event 9, 0, BGEVENT_READ, MapSproutTower3FSignpost3Script
@@ -350,8 +344,7 @@ SproutTower3F_MapEvents:
 	bg_event 5, 15, BGEVENT_READ, MapSproutTower3FSignpost5Script
 	bg_event 14, 15, BGEVENT_READ, MapSproutTower3FSignpost5Script
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1
 	object_event 8, 8, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSageTroy, -1
 	object_event 10, 2, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SageLiScript, -1

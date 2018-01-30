@@ -3,11 +3,9 @@ const_value set 2
 	const GOLDENRODPPSPEECHHOUSE_LASS
 
 GoldenrodPPSpeechHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 GoldenrodPPSpeechHouseFisherScript:
 	jumptextfaceplayer GoldenrodPPSpeechHouseFisherText
@@ -52,24 +50,19 @@ GoldenrodPPSpeechHouseLassText:
 	done
 
 GoldenrodPPSpeechHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 7, GOLDENROD_CITY
 	warp_event 3, 7, 7, GOLDENROD_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 0, 1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf1
 	bg_event 1, 1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf2
 	bg_event 7, 1, BGEVENT_READ, GoldenrodPPSpeechHouseRadio
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 2, 4, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
 	object_event 5, 3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1

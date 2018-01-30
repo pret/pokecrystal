@@ -4,11 +4,9 @@ const_value set 2
 	const PEWTERGYM_GYM_GUY
 
 PewterGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 BrockScript_0x1a2864:
 	faceplayer
@@ -209,24 +207,19 @@ PewterGymGuyWinText:
 	done
 
 PewterGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 13, 2, PEWTER_CITY
 	warp_event 5, 13, 2, PEWTER_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 2, 11, BGEVENT_READ, PewterGymStatue
 	bg_event 7, 11, BGEVENT_READ, PewterGymStatue
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 5, 1, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BrockScript_0x1a2864, -1
 	object_event 2, 5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperJerry, -1
 	object_event 6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, PewterGymGuyScript, -1

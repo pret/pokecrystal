@@ -3,13 +3,11 @@ const_value set 2
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
 RuinsOfAlphKabutoChamber_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .CheckWall
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
@@ -256,22 +254,18 @@ UnknownText_0x58b3f:
 	done
 
 RuinsOfAlphKabutoChamber_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 3, 9, 2, RUINS_OF_ALPH_OUTSIDE
 	warp_event 4, 9, 2, RUINS_OF_ALPH_OUTSIDE
 	warp_event 3, 3, 4, RUINS_OF_ALPH_INNER_CHAMBER
 	warp_event 4, 3, 5, RUINS_OF_ALPH_INNER_CHAMBER
 	warp_event 4, 0, 1, RUINS_OF_ALPH_KABUTO_ITEM_ROOM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
+	db 6 ; bg events
 	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
 	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
 	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
@@ -279,7 +273,6 @@ RuinsOfAlphKabutoChamber_MapEvents:
 	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
 	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 5, 5, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	object_event 3, 1, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1

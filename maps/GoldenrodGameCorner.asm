@@ -13,11 +13,9 @@ const_value set 2
 	const GOLDENRODGAMECORNER_POKEFAN_M3
 
 GoldenrodGameCorner_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .Callback
 
 .Callback:
@@ -437,19 +435,15 @@ GoldenrodGameCornerLeftTheirDrinkText:
 	done
 
 GoldenrodGameCorner_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 13, 10, GOLDENROD_CITY
 	warp_event 3, 13, 10, GOLDENROD_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 31
+	db 31 ; bg events
 	bg_event 6, 6, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event 6, 7, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
 	bg_event 6, 8, BGEVENT_READ, GoldenrodGameCornerSlotsMachineScript
@@ -482,8 +476,7 @@ GoldenrodGameCorner_MapEvents:
 	bg_event 18, 11, BGEVENT_RIGHT, GoldenrodGameCornerCardFlipMachineScript
 	bg_event 12, 1, BGEVENT_LEFT, GoldenrodGameCornerLeftTheirDrinkScript
 
-.ObjectEvents:
-	db 12
+	db 12 ; object events
 	object_event 3, 2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGmeCornerCoinVendorScript, -1
 	object_event 16, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGmeCornerTMVendorScript, -1
 	object_event 18, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPrizeMonVendorScript, -1

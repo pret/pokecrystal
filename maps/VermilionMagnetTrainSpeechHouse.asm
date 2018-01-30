@@ -3,11 +3,9 @@ const_value set 2
 	const VERMILIONMAGNETTRAINSPEECHHOUSE_YOUNGSTER
 
 VermilionMagnetTrainSpeechHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 VermilionMagnetTrainSpeechHousePokefanFScript:
 	jumptextfaceplayer VermilionMagnetTrainSpeechHousePokefanFText
@@ -34,23 +32,18 @@ VermilionMagnetTrainSpeechHouseYoungsterText:
 	done
 
 VermilionMagnetTrainSpeechHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 4, VERMILION_CITY
 	warp_event 3, 7, 4, VERMILION_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, VermilionMagnetTrainSpeechHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, VermilionMagnetTrainSpeechHouseBookshelf
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 2, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionMagnetTrainSpeechHousePokefanFScript, -1
 	object_event 0, 3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionMagnetTrainSpeechHouseYoungsterScript, -1

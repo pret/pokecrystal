@@ -16,11 +16,9 @@ const_value set 2
 	const GOLDENRODCITY_POKEFAN_M2
 
 GoldenrodCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPointAndFloria
 	callback MAPCALLBACK_OBJECTS, .MoveTutor
 
@@ -552,11 +550,9 @@ UnknownText_0x1991cf:
 	done
 
 GoldenrodCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 15
+	db 15 ; warp events
 	warp_event 24, 7, 1, GOLDENROD_GYM
 	warp_event 29, 29, 1, GOLDENROD_BIKE_SHOP
 	warp_event 31, 21, 1, GOLDENROD_HAPPINESS_RATER
@@ -573,11 +569,9 @@ GoldenrodCity_MapEvents:
 	warp_event 11, 29, 5, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
 	warp_event 15, 27, 1, GOLDENROD_POKECENTER_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 12
+	db 12 ; bg events
 	bg_event 10, 14, BGEVENT_READ, GoldenrodCityStationSign
 	bg_event 4, 17, BGEVENT_READ, GoldenrodCityRadioTowerSign
 	bg_event 26, 27, BGEVENT_READ, GoldenrodDeptStoreSign
@@ -591,8 +585,7 @@ GoldenrodCity_MapEvents:
 	bg_event 16, 27, BGEVENT_UP, GoldenrodCityPokecenterSign
 	bg_event 30, 6, BGEVENT_READ, GoldenrodCityFlowerShopSign
 
-.ObjectEvents:
-	db 15
+	db 15 ; object events
 	object_event 7, 18, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityPokefanMScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 30, 17, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodCityYoungster1Script, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 12, 16, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CooltrainerFScript_0x1989e9, EVENT_GOLDENROD_CITY_CIVILIANS

@@ -12,11 +12,9 @@ const_value set 2
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_SUPER_NERD2
 
 FastShipCabins_SE_SSE_CaptainsCabin_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Unreferenced_0x75ea6:
 	end
@@ -463,11 +461,9 @@ SSAquaHasArrivedVermilionText:
 	done
 
 FastShipCabins_SE_SSE_CaptainsCabin_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 2, 7, 8, FAST_SHIP_1F
 	warp_event 3, 7, 8, FAST_SHIP_1F
 	warp_event 2, 19, 9, FAST_SHIP_1F
@@ -475,15 +471,12 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEvents:
 	warp_event 2, 33, 10, FAST_SHIP_1F
 	warp_event 3, 33, 10, FAST_SHIP_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 4, 25, BGEVENT_READ, FastShipCaptainsCabinTrashcan
 
-.ObjectEvents:
-	db 11
+	db 11 ; object events
 	object_event 3, 25, SPRITE_CAPTAIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SSAquaCaptain, -1
 	object_event 2, 17, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SSAquaGrandpa, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
 	object_event 3, 17, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SSAquaGranddaughterAfter, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1

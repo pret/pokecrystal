@@ -10,11 +10,9 @@ const_value set 2
 	const BLACKTHORNCITY_COOLTRAINER_F2
 
 BlackthornCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 	callback MAPCALLBACK_OBJECTS, .Santos
 
@@ -313,11 +311,9 @@ BlackthornCityTrainerTipsText:
 	done
 
 BlackthornCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 8
+	db 8 ; warp events
 	warp_event 18, 11, 1, BLACKTHORN_GYM_1F
 	warp_event 13, 21, 1, BLACKTHORN_DRAGON_SPEECH_HOUSE
 	warp_event 29, 23, 1, BLACKTHORN_EMYS_HOUSE
@@ -327,11 +323,9 @@ BlackthornCity_MapEvents:
 	warp_event 36, 9, 2, ICE_PATH_1F
 	warp_event 20, 1, 1, DRAGONS_DEN_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 7
+	db 7 ; bg events
 	bg_event 34, 24, BGEVENT_READ, BlackthornCitySign
 	bg_event 17, 13, BGEVENT_READ, BlackthornGymSign
 	bg_event 7, 31, BGEVENT_READ, MoveDeletersHouseSign
@@ -340,8 +334,7 @@ BlackthornCity_MapEvents:
 	bg_event 16, 29, BGEVENT_READ, BlackthornCityMartSign
 	bg_event 22, 29, BGEVENT_READ, BlackthornCityPokecenterSign
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 18, 12, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornSuperNerdScript, EVENT_BLACKTHORN_CITY_SUPER_NERD_BLOCKS_GYM
 	object_event 19, 12, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornSuperNerdScript, EVENT_BLACKTHORN_CITY_SUPER_NERD_DOES_NOT_BLOCK_GYM
 	object_event 20, 2, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornGramps1Script, EVENT_BLACKTHORN_CITY_GRAMPS_BLOCKS_DRAGONS_DEN

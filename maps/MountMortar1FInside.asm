@@ -11,11 +11,9 @@ const_value set 2
 	const MOUNTMORTAR1FINSIDE_POKE_BALL7
 
 MountMortar1FInside_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerPokemaniacMiller:
 	trainer POKEMANIAC, MILLER, EVENT_BEAT_POKEMANIAC_MILLER, PokemaniacMillerSeenText, PokemaniacMillerBeatenText, 0, .Script
@@ -117,11 +115,9 @@ SupernerdMarkusAfterBattleText:
 	done
 
 MountMortar1FInside_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 11, 47, 5, MOUNT_MORTAR_1F_OUTSIDE
 	warp_event 29, 47, 6, MOUNT_MORTAR_1F_OUTSIDE
 	warp_event 5, 39, 8, MOUNT_MORTAR_1F_OUTSIDE
@@ -129,15 +125,12 @@ MountMortar1FInside_MapEvents:
 	warp_event 3, 19, 1, MOUNT_MORTAR_B1F
 	warp_event 9, 9, 2, MOUNT_MORTAR_2F_INSIDE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 30, 11, BGEVENT_ITEM, MountMortar1FInsideHiddenMaxRepel
 
-.ObjectEvents:
-	db 10
+	db 10 ; object events
 	object_event 21, 43, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortar1FBoulder, -1
 	object_event 35, 38, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FInsideEscapeRope, EVENT_MOUNT_MORTAR_1F_INSIDE_ESCAPE_ROPE
 	object_event 16, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortar1FInsideMaxRevive, EVENT_MOUNT_MORTAR_1F_INSIDE_MAX_REVIVE

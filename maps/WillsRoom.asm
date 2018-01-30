@@ -2,13 +2,11 @@ const_value set 2
 	const WILLSROOM_WILL
 
 WillsRoom_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .LockDoor
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .WillsRoomDoors
 
 .LockDoor:
@@ -129,21 +127,16 @@ WillScript_WillDefeatText:
 	done
 
 WillsRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 5, 17, 4, INDIGO_PLATEAU_POKECENTER_1F
 	warp_event 4, 2, 1, KOGAS_ROOM
 	warp_event 5, 2, 2, KOGAS_ROOM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 5, 7, SPRITE_WILL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WillScript_Battle, -1

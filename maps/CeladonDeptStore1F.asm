@@ -4,11 +4,9 @@ const_value set 2
 	const CELADONDEPTSTORE1F_TEACHER
 
 CeladonDeptStore1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 CeladonDeptStore1FReceptionistScript:
 	jumptextfaceplayer CeladonDeptStore1FReceptionistText
@@ -74,26 +72,21 @@ CeladonDeptStore1FDirectoryText:
 	done
 
 CeladonDeptStore1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 7, 7, 1, CELADON_CITY
 	warp_event 8, 7, 1, CELADON_CITY
 	warp_event 15, 0, 2, CELADON_DEPT_STORE_2F
 	warp_event 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore1FDirectory
 	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore1FElevatorButton
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 10, 1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FReceptionistScript, -1
 	object_event 11, 4, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FGentlemanScript, -1
 	object_event 5, 3, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore1FTeacherScript, -1

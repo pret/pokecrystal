@@ -2,11 +2,9 @@ const_value set 2
 	const ROUTE30BERRYHOUSE_POKEFAN_M
 
 Route30BerryHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 PokefanMScript_0x196d64:
 	faceplayer
@@ -47,22 +45,17 @@ UnknownText_0x196dec:
 	done
 
 Route30BerryHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 1, ROUTE_30
 	warp_event 3, 7, 1, ROUTE_30
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, Route30BerryHouseBookshelf
 	bg_event 1, 1, BGEVENT_READ, Route30BerryHouseBookshelf
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 2, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x196d64, -1

@@ -6,11 +6,9 @@ const_value set 2
 	const BLACKTHORNGYM1F_GYM_GUY
 
 BlackthornGym1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .Boulders
 
 .Boulders:
@@ -387,11 +385,9 @@ BlackthornGymGuyWinText:
 	done
 
 BlackthornGym1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 7
+	db 7 ; warp events
 	warp_event 4, 17, 1, BLACKTHORN_CITY
 	warp_event 5, 17, 1, BLACKTHORN_CITY
 	warp_event 1, 7, 1, BLACKTHORN_GYM_2F
@@ -400,16 +396,13 @@ BlackthornGym1F_MapEvents:
 	warp_event 7, 7, 4, BLACKTHORN_GYM_2F
 	warp_event 7, 6, 5, BLACKTHORN_GYM_2F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 15, BGEVENT_READ, BlackthornGymStatue
 	bg_event 6, 15, BGEVENT_READ, BlackthornGymStatue
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 5, 3, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BlackthornGymClairScript, -1
 	object_event 6, 6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermMike, -1
 	object_event 1, 14, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermPaul, -1

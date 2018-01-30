@@ -5,11 +5,9 @@ const_value set 2
 	const FASTSHIPCABINS_SW_SSW_NW_ROCKER
 
 FastShipCabins_SW_SSW_NW_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerFirebreatherLyle:
 	trainer FIREBREATHER, LYLE, EVENT_BEAT_FIREBREATHER_LYLE, FirebreatherLyleSeenText, FirebreatherLyleBeatenText, 0, .Script
@@ -223,28 +221,23 @@ FastShipArrivedVermilionText:
 	done
 
 FastShipCabins_SW_SSW_NW_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 2, 0, 5, FAST_SHIP_1F
 	warp_event 2, 19, 6, FAST_SHIP_1F
 	warp_event 3, 19, 6, FAST_SHIP_1F
 	warp_event 2, 31, 7, FAST_SHIP_1F
 	warp_event 3, 31, 7, FAST_SHIP_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 7, 1, BGEVENT_READ, FastShipBed
 	bg_event 7, 2, BGEVENT_READ, FastShipBed
 	bg_event 7, 7, BGEVENT_READ, FastShipCabinsNorthwestCabinTrashcan
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 1, 15, SPRITE_FISHER, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherLyle, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event 6, 15, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBugCatcherKen, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
 	object_event 1, 26, SPRITE_BUENA, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautyCassie, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND

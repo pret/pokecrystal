@@ -10,11 +10,9 @@ const_value set 2
 	const CIANWOODGYM_BOULDER4
 
 CianwoodGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ChuckScript_0x9d60f:
 	faceplayer
@@ -306,24 +304,19 @@ BlackbeltLungAfterText:
 	done
 
 CianwoodGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 17, 2, CIANWOOD_CITY
 	warp_event 5, 17, 2, CIANWOOD_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 15, BGEVENT_READ, CianwoodGymStatue
 	bg_event 6, 15, BGEVENT_READ, CianwoodGymStatue
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 4, 1, SPRITE_CHUCK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ChuckScript_0x9d60f, -1
 	object_event 2, 12, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBlackbeltYoshi, -1
 	object_event 7, 12, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBlackbeltLao, -1

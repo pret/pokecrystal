@@ -9,11 +9,9 @@ const_value set 2
 	const BLACKTHORNGYM2F_BOULDER6
 
 BlackthornGym2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
 
 .SetUpStoneTable:
@@ -126,25 +124,20 @@ BlackthornGym2FBoulderFellText:
 	done
 
 BlackthornGym2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 1, 7, 3, BLACKTHORN_GYM_1F
 	warp_event 7, 9, 4, BLACKTHORN_GYM_1F
 	warp_event 2, 5, 5, BLACKTHORN_GYM_1F ; hole
 	warp_event 8, 7, 6, BLACKTHORN_GYM_1F ; hole
 	warp_event 8, 3, 7, BLACKTHORN_GYM_1F ; hole
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 8
+	db 8 ; object events
 	object_event 4, 1, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainermCody, -1
 	object_event 4, 11, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainerfFran, -1
 	object_event 8, 2, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornGymBoulder, EVENT_BOULDER_IN_BLACKTHORN_GYM_1

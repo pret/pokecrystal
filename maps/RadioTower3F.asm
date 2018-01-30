@@ -8,11 +8,9 @@ const_value set 2
 	const RADIOTOWER3F_SCIENTIST
 
 RadioTower3F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .CardKeyShutterCallback
 
 .CardKeyShutterCallback:
@@ -329,26 +327,21 @@ UnknownText_0x5eae4:
 	done
 
 RadioTower3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 0, 0, 1, RADIO_TOWER_2F
 	warp_event 7, 0, 2, RADIO_TOWER_4F
 	warp_event 17, 0, 4, RADIO_TOWER_4F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 3, 0, BGEVENT_READ, MapRadioTower3FSignpost0Script
 	bg_event 9, 0, BGEVENT_READ, MapRadioTower3FSignpost1Script
 	bg_event 14, 2, BGEVENT_UP, MapRadioTower3FSignpost2Script
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 7, 4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower3FSuperNerdScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event 3, 4, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x5e556, -1
 	object_event 11, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CooltrainerFScript_0x5e56a, -1

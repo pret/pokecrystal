@@ -3,11 +3,9 @@ const_value set 2
 	const PALLETTOWN_FISHER
 
 PalletTown_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -70,26 +68,21 @@ BluesHouseSignText:
 	done
 
 PalletTown_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 5, 5, 1, REDS_HOUSE_1F
 	warp_event 13, 5, 1, BLUES_HOUSE
 	warp_event 12, 11, 1, OAKS_LAB
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 7, 9, BGEVENT_READ, PalletTownSign
 	bg_event 3, 5, BGEVENT_READ, RedsHouseSign
 	bg_event 13, 13, BGEVENT_READ, OaksLabSign
 	bg_event 11, 5, BGEVENT_READ, BluesHouseSign
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 3, 8, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PalletTownTeacherScript, -1
 	object_event 12, 14, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PalletTownFisherScript, -1

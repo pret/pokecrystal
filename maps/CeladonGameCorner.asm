@@ -10,11 +10,9 @@ const_value set 2
 	const CELADONGAMECORNER_GRAMPS
 
 CeladonGameCorner_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 CeladonGameCornerClerkScript:
 	jumpstd gamecornercoinvendor
@@ -282,19 +280,15 @@ UnknownText_0x72567:
 	done
 
 CeladonGameCorner_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 14, 13, 6, CELADON_CITY
 	warp_event 15, 13, 6, CELADON_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 38
+	db 38 ; bg events
 	bg_event 1, 6, BGEVENT_READ, CeladonGameCornerCardFlipScript
 	bg_event 1, 7, BGEVENT_READ, CeladonGameCornerCardFlipScript
 	bg_event 1, 8, BGEVENT_READ, CeladonGameCornerCardFlipScript
@@ -334,8 +328,7 @@ CeladonGameCorner_MapEvents:
 	bg_event 15, 0, BGEVENT_READ, CeladonGameCornerPoster1Script
 	bg_event 9, 0, BGEVENT_READ, CeladonGameCornerPoster2Script
 
-.ObjectEvents:
-	db 9
+	db 9 ; object events
 	object_event 5, 2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerClerkScript, -1
 	object_event 3, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerReceptionistScript, -1
 	object_event 14, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPokefanMScript, -1

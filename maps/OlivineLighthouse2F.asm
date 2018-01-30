@@ -3,11 +3,9 @@ const_value set 2
 	const OLIVINELIGHTHOUSE2F_GENTLEMAN
 
 OlivineLighthouse2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerGentlemanAlfred:
 	trainer GENTLEMAN, ALFRED, EVENT_BEAT_GENTLEMAN_ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, 0, .Script
@@ -205,11 +203,9 @@ UnknownText_0x5b1b6:
 	done
 
 OlivineLighthouse2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
+	db 6 ; warp events
 	warp_event 3, 11, 3, OLIVINE_LIGHTHOUSE_1F
 	warp_event 5, 3, 2, OLIVINE_LIGHTHOUSE_3F
 	warp_event 16, 13, 4, OLIVINE_LIGHTHOUSE_1F
@@ -217,13 +213,10 @@ OlivineLighthouse2F_MapEvents:
 	warp_event 16, 11, 4, OLIVINE_LIGHTHOUSE_3F
 	warp_event 17, 11, 5, OLIVINE_LIGHTHOUSE_3F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 9, 3, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorHuey1, -1
 	object_event 17, 8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerGentlemanAlfred, -1

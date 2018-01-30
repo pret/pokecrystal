@@ -7,11 +7,9 @@ const_value set 2
 	const FUCHSIAGYM_GYM_GUY
 
 FuchsiaGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 FuchsiaGymJanineScript:
 	checkflag ENGINE_SOULBADGE
@@ -381,24 +379,19 @@ FuchsiaGymGuyWinText:
 	done
 
 FuchsiaGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 17, 3, FUCHSIA_CITY
 	warp_event 5, 17, 3, FUCHSIA_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 15, BGEVENT_READ, FuchsiaGymStatue
 	bg_event 6, 15, BGEVENT_READ, FuchsiaGymStatue
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 1, 10, SPRITE_JANINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
 	object_event 5, 7, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassAliceScript, -1
 	object_event 5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1

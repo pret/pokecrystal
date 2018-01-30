@@ -7,12 +7,10 @@ const_value set 2
 	const INDIGOPLATEAUPOKECENTER1F_ABRA
 
 IndigoPlateauPokecenter1F_MapScripts:
-.SceneScripts:
-	db 1
+	db 1 ; scene scripts
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .PrepareElite4
 
 .DummyScene:
@@ -303,26 +301,21 @@ AbraText:
 	done
 
 IndigoPlateauPokecenter1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 5, 13, 1, ROUTE_23
 	warp_event 6, 13, 2, ROUTE_23
 	warp_event 0, 13, 1, POKECENTER_2F
 	warp_event 14, 3, 1, WILLS_ROOM
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 16, 4, 0, PlateauRivalBattle1
 	coord_event 17, 4, 0, PlateauRivalBattle2
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 3, 7, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x18012c, -1
 	object_event 11, 7, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x18012f, -1
 	object_event 11, 11, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FCooltrainerMScript, -1

@@ -3,11 +3,9 @@ const_value set 2
 	const OLIVINELIGHTHOUSE4F_LASS
 
 OlivineLighthouse4F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerLassConnie:
 	trainer LASS, CONNIE1, EVENT_BEAT_LASS_CONNIE, LassConnie1SeenText, LassConnie1BeatenText, 0, .Script
@@ -82,11 +80,9 @@ LassConnie1AfterBattleText:
 	done
 
 OlivineLighthouse4F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 10
+	db 10 ; warp events
 	warp_event 13, 3, 1, OLIVINE_LIGHTHOUSE_3F
 	warp_event 3, 5, 2, OLIVINE_LIGHTHOUSE_5F
 	warp_event 9, 7, 3, OLIVINE_LIGHTHOUSE_5F
@@ -98,13 +94,10 @@ OlivineLighthouse4F_MapEvents:
 	warp_event 16, 7, 4, OLIVINE_LIGHTHOUSE_5F
 	warp_event 17, 7, 5, OLIVINE_LIGHTHOUSE_5F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 7, 14, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorKent, -1
 	object_event 11, 2, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerLassConnie, -1

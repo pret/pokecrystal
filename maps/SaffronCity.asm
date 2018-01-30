@@ -9,11 +9,9 @@ const_value set 2
 	const SAFFRONCITY_LASS2
 
 SaffronCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -266,11 +264,9 @@ SaffronCityMagnetTrainStationSignText:
 	done
 
 SaffronCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 15
+	db 15 ; warp events
 	warp_event 26, 3, 1, FIGHTING_DOJO
 	warp_event 34, 3, 1, SAFFRON_GYM
 	warp_event 25, 11, 2, SAFFRON_MART
@@ -287,11 +283,9 @@ SaffronCity_MapEvents:
 	warp_event 39, 22, 1, ROUTE_8_SAFFRON_GATE
 	warp_event 39, 23, 2, ROUTE_8_SAFFRON_GATE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 8
+	db 8 ; bg events
 	bg_event 21, 5, BGEVENT_READ, SaffronCitySign
 	bg_event 33, 5, BGEVENT_READ, SaffronGymSign
 	bg_event 25, 5, BGEVENT_READ, FightingDojoSign
@@ -301,8 +295,7 @@ SaffronCity_MapEvents:
 	bg_event 10, 29, BGEVENT_READ, SaffronCityPokecenterSign
 	bg_event 26, 11, BGEVENT_READ, SaffronCityMartSign
 
-.ObjectEvents:
-	db 8
+	db 8 ; object events
 	object_event 7, 14, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LassScript_0x19932a, -1
 	object_event 19, 30, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x19933e, -1
 	object_event 32, 7, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityCooltrainerMScript, -1

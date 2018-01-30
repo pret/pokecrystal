@@ -3,11 +3,9 @@ const_value set 2
 	const ECRUTEAKITEMFINDERHOUSE_POKEDEX
 
 EcruteakItemfinderHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 EcruteakItemfinderGuy:
 	faceplayer
@@ -163,22 +161,17 @@ EcruteakThreeMonText:
 	done
 
 EcruteakItemfinderHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 3, 7, 11, ECRUTEAK_CITY
 	warp_event 4, 7, 11, ECRUTEAK_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 2, 1, BGEVENT_READ, ItemFinderHouseRadio
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 2, 3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakItemfinderGuy, -1
 	object_event 3, 3, SPRITE_POKEDEX, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHistoryBook, -1

@@ -3,11 +3,9 @@ const_value set 2
 	const CELADONDEPTSTORE6F_YOUNGSTER
 
 CeladonDeptStore6F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HideRooftopStairs
 
 .HideRooftopStairs:
@@ -146,19 +144,15 @@ CeladonDeptStore6FDirectoryText:
 	done
 
 CeladonDeptStore6F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 15, 0, 2, CELADON_DEPT_STORE_5F
 	warp_event 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
+	db 6 ; bg events
 	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore6FDirectory
 	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore1FElevatorButton
 	bg_event 8, 1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
@@ -166,7 +160,6 @@ CeladonDeptStore6F_MapEvents:
 	bg_event 10, 1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
 	bg_event 11, 1, BGEVENT_UP, CeladonDeptStore6FVendingMachine
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 9, 2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FSuperNerdScript, -1
 	object_event 12, 5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FYoungsterScript, -1

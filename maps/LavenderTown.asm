@@ -5,11 +5,9 @@ const_value set 2
 	const LAVENDERTOWN_YOUNGSTER
 
 LavenderTown_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -106,11 +104,9 @@ SoulHouseSignText:
 	done
 
 LavenderTown_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 7
+	db 7 ; warp events
 	warp_event 5, 5, 1, LAVENDER_POKECENTER_1F
 	warp_event 5, 9, 1, MR_FUJIS_HOUSE
 	warp_event 3, 13, 1, LAVENDER_SPEECH_HOUSE
@@ -119,11 +115,9 @@ LavenderTown_MapEvents:
 	warp_event 13, 11, 1, SOUL_HOUSE
 	warp_event 14, 5, 1, LAV_RADIO_TOWER_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
+	db 6 ; bg events
 	bg_event 11, 3, BGEVENT_READ, LavenderTownSign
 	bg_event 15, 7, BGEVENT_READ, KantoRadioStationSign
 	bg_event 3, 9, BGEVENT_READ, VolunteerPokemonHouseSign
@@ -131,8 +125,7 @@ LavenderTown_MapEvents:
 	bg_event 6, 5, BGEVENT_READ, LavenderPokecenterSignText
 	bg_event 2, 5, BGEVENT_READ, LavenderMartSignText
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 12, 7, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderTownPokefanMScript, -1
 	object_event 2, 15, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LavenderTownTeacherScript, -1
 	object_event 14, 12, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavenderTownGrampsScript, -1

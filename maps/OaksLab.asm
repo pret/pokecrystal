@@ -5,11 +5,9 @@ const_value set 2
 	const OAKSLAB_SCIENTIST3
 
 OaksLab_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene:
 	end
@@ -257,19 +255,15 @@ OaksLabPCText:
 	done
 
 OaksLab_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 11, 3, PALLET_TOWN
 	warp_event 5, 11, 3, PALLET_TOWN
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 16
+	db 16 ; bg events
 	bg_event 6, 1, BGEVENT_READ, OaksLabBookshelf
 	bg_event 7, 1, BGEVENT_READ, OaksLabBookshelf
 	bg_event 8, 1, BGEVENT_READ, OaksLabBookshelf
@@ -287,8 +281,7 @@ OaksLab_MapEvents:
 	bg_event 9, 3, BGEVENT_READ, OaksLabTrashcan
 	bg_event 0, 1, BGEVENT_READ, OaksLabPC
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 4, 2, SPRITE_OAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Oak, -1
 	object_event 1, 8, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OaksAssistant1Script, -1
 	object_event 8, 9, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OaksAssistant2Script, -1

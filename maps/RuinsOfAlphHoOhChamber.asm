@@ -1,11 +1,9 @@
 RuinsOfAlphHoOhChamber_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .CheckWall
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
@@ -145,22 +143,18 @@ UnknownText_0x586aa:
 	done
 
 RuinsOfAlphHoOhChamber_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 3, 9, 1, RUINS_OF_ALPH_OUTSIDE
 	warp_event 4, 9, 1, RUINS_OF_ALPH_OUTSIDE
 	warp_event 3, 3, 2, RUINS_OF_ALPH_INNER_CHAMBER
 	warp_event 4, 3, 3, RUINS_OF_ALPH_INNER_CHAMBER
 	warp_event 4, 0, 1, RUINS_OF_ALPH_HO_OH_ITEM_ROOM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
+	db 6 ; bg events
 	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
 	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
 	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost2Script
@@ -168,5 +162,4 @@ RuinsOfAlphHoOhChamber_MapEvents:
 	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost4Script
 	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost5Script
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

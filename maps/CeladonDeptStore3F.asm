@@ -6,11 +6,9 @@ const_value set 2
 	const CELADONDEPTSTORE3F_SUPER_NERD
 
 CeladonDeptStore3F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ClerkScript_0x70d29:
 	faceplayer
@@ -95,25 +93,20 @@ CeladonDeptStore3FDirectoryText:
 	done
 
 CeladonDeptStore3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 12, 0, 1, CELADON_DEPT_STORE_2F
 	warp_event 15, 0, 2, CELADON_DEPT_STORE_4F
 	warp_event 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore3FDirectory
 	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore3FElevatorButton
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 7, 1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70d29, -1
 	object_event 6, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FYoungsterScript, -1
 	object_event 9, 1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid1Script, -1

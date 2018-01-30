@@ -45,13 +45,11 @@ const_value set 2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 
 GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .UpdateDoorPositions
 
 .DummyScene0:
@@ -931,11 +929,9 @@ SwitchRoomText_Emergency:
 	done
 
 GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 9
+	db 9 ; warp events
 	warp_event 23, 3, 6, GOLDENROD_UNDERGROUND
 	warp_event 22, 10, 1, GOLDENROD_UNDERGROUND_WAREHOUSE
 	warp_event 23, 10, 2, GOLDENROD_UNDERGROUND_WAREHOUSE
@@ -946,13 +942,11 @@ GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
 	warp_event 20, 29, 13, GOLDENROD_CITY
 	warp_event 21, 29, 13, GOLDENROD_CITY
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 19, 4, 0, UndergroundSilverScene1
 	coord_event 19, 5, 0, UndergroundSilverScene2
 
-.BGEvents:
-	db 6
+	db 6 ; bg events
 	bg_event 16, 1, BGEVENT_READ, Switch1Script
 	bg_event 10, 1, BGEVENT_READ, Switch2Script
 	bg_event 2, 1, BGEVENT_READ, Switch3Script
@@ -960,8 +954,7 @@ GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
 	bg_event 8, 9, BGEVENT_ITEM, GoldenrodUndergroundSwitchRoomEntrancesHiddenMaxPotion
 	bg_event 1, 8, BGEVENT_ITEM, GoldenrodUndergroundSwitchRoomEntrancesHiddenRevive
 
-.ObjectEvents:
-	db 11
+	db 11 ; object events
 	object_event 9, 12, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 4, 8, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 17, 2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

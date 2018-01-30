@@ -1,25 +1,18 @@
 RuinsOfAlphHoOhWordRoom_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 RuinsOfAlphHoOhWordRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 9, 9, 3, RUINS_OF_ALPH_HO_OH_ITEM_ROOM
 	warp_event 10, 9, 4, RUINS_OF_ALPH_HO_OH_ITEM_ROOM
 	warp_event 17, 21, 2, RUINS_OF_ALPH_INNER_CHAMBER
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

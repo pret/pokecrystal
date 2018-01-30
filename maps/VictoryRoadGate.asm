@@ -4,13 +4,11 @@ const_value set 2
 	const VICTORYROADGATE_BLACK_BELT2
 
 VictoryRoadGate_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -98,11 +96,9 @@ VictoryRoadGateRightBlackBeltText:
 	done
 
 VictoryRoadGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 8
+	db 8 ; warp events
 	warp_event 17, 7, 1, ROUTE_22
 	warp_event 18, 7, 1, ROUTE_22
 	warp_event 9, 17, 1, ROUTE_26
@@ -112,15 +108,12 @@ VictoryRoadGate_MapEvents:
 	warp_event 1, 7, 2, ROUTE_28
 	warp_event 2, 7, 2, ROUTE_28
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 10, 11, 0, VictoryRoadGateBadgeCheckScene
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 8, 11, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
 	object_event 7, 5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
 	object_event 12, 5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX

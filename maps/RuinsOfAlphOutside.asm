@@ -6,13 +6,11 @@ const_value set 2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
 RuinsOfAlphOutside_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .ScientistCallback
 
 .DummyScene0:
@@ -281,11 +279,9 @@ UnknownText_0x5848e:
 	done
 
 RuinsOfAlphOutside_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 11
+	db 11 ; warp events
 	warp_event 2, 17, 1, RUINS_OF_ALPH_HO_OH_CHAMBER
 	warp_event 14, 7, 1, RUINS_OF_ALPH_KABUTO_CHAMBER
 	warp_event 2, 29, 1, RUINS_OF_ALPH_OMANYTE_CHAMBER
@@ -298,19 +294,16 @@ RuinsOfAlphOutside_MapEvents:
 	warp_event 13, 20, 1, ROUTE_32_RUINS_OF_ALPH_GATE
 	warp_event 13, 21, 2, ROUTE_32_RUINS_OF_ALPH_GATE
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 11, 14, 1, RuinsOfAlphOutsideScientistScene1
 	coord_event 10, 15, 1, RuinsOfAlphOutsideScientistScene2
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 16, 8, BGEVENT_READ, RuinsOfAlphOutsideSignpost0Script
 	bg_event 12, 16, BGEVENT_READ, RuinsOfAlphOutsideSignpost1Script
 	bg_event 18, 12, BGEVENT_READ, RuinsOfAlphOutsideSignpost2Script
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 4, 20, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerPsychicNathan, -1
 	object_event 11, 15, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
 	object_event 13, 17, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER

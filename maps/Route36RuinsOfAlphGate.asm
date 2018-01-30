@@ -3,11 +3,9 @@ const_value set 2
 	const ROUTE36RUINSOFALPHGATE_GRAMPS
 
 Route36RuinsOfAlphGate_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route36RuinsOfAlphGateOfficerScript:
 	jumptextfaceplayer Route36RuinsOfAlphGateOfficerText
@@ -35,23 +33,18 @@ Route36RuinsOfAlphGateGrampsText:
 	done
 
 Route36RuinsOfAlphGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 4, 0, 3, ROUTE_36
 	warp_event 5, 0, 4, ROUTE_36
 	warp_event 4, 7, 9, RUINS_OF_ALPH_OUTSIDE
 	warp_event 5, 7, 9, RUINS_OF_ALPH_OUTSIDE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
+	db 2 ; object events
 	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route36RuinsOfAlphGateOfficerScript, -1
 	object_event 7, 5, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route36RuinsOfAlphGateGrampsScript, -1

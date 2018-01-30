@@ -5,11 +5,9 @@ const_value set 2
 	const OLIVINELIGHTHOUSE3F_POKE_BALL
 
 OlivineLighthouse3F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerBirdKeeperTheo:
 	trainer BIRD_KEEPER, THEO, EVENT_BEAT_BIRD_KEEPER_THEO, BirdKeeperTheoSeenText, BirdKeeperTheoBeatenText, 0, .Script
@@ -113,11 +111,9 @@ GentlemanPrestonAfterBattleText:
 	done
 
 OlivineLighthouse3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 9
+	db 9 ; warp events
 	warp_event 13, 3, 1, OLIVINE_LIGHTHOUSE_4F
 	warp_event 5, 3, 2, OLIVINE_LIGHTHOUSE_2F
 	warp_event 9, 5, 4, OLIVINE_LIGHTHOUSE_4F
@@ -128,14 +124,11 @@ OlivineLighthouse3F_MapEvents:
 	warp_event 8, 3, 7, OLIVINE_LIGHTHOUSE_4F
 	warp_event 9, 3, 8, OLIVINE_LIGHTHOUSE_4F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 9, 2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSailorTerrell, -1
 	object_event 13, 5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanPreston, -1
 	object_event 3, 9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperTheo, -1

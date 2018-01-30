@@ -11,11 +11,9 @@ const_value set 2
 	const ROUTE41_SWIMMER_GIRL5
 
 Route41_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerSwimmerfKaylee:
 	trainer SWIMMERF, KAYLEE, EVENT_BEAT_SWIMMERF_KAYLEE, SwimmerfKayleeSeenText, SwimmerfKayleeBeatenText, 0, .Script
@@ -342,25 +340,20 @@ SwimmerfWendyAfterBattleText:
 	done
 
 Route41_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 12, 17, 1, WHIRL_ISLAND_NW
 	warp_event 36, 19, 1, WHIRL_ISLAND_NE
 	warp_event 12, 37, 1, WHIRL_ISLAND_SW
 	warp_event 36, 45, 1, WHIRL_ISLAND_SE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 9, 35, BGEVENT_ITEM, Route41HiddenMaxEther
 
-.ObjectEvents:
-	db 10
+	db 10 ; object events
 	object_event 32, 6, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCharlie, -1
 	object_event 46, 8, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermGeorge, -1
 	object_event 20, 26, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermBerke, -1

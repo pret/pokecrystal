@@ -8,11 +8,9 @@ const_value set 2
 	const AZALEAGYM_GYM_GUY
 
 AzaleaGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 AzaleaGymBugsyScript:
 	faceplayer
@@ -362,24 +360,19 @@ AzaleaGymGuyWinText:
 	done
 
 AzaleaGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 4, 15, 5, AZALEA_TOWN
 	warp_event 5, 15, 5, AZALEA_TOWN
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 13, BGEVENT_READ, AzaleaGymStatue
 	bg_event 6, 13, BGEVENT_READ, AzaleaGymStatue
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 5, 7, SPRITE_BUGSY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, AzaleaGymBugsyScript, -1
 	object_event 5, 3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerBugCatcherBenny, -1
 	object_event 8, 8, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherAl, -1

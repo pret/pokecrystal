@@ -4,13 +4,11 @@ const_value set 2
 	const NEWBARKTOWN_SILVER
 
 NewBarkTown_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
@@ -282,30 +280,25 @@ ElmsHouseSignText:
 	done
 
 NewBarkTown_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 6, 3, 1, ELMS_LAB
 	warp_event 13, 5, 1, PLAYERS_HOUSE_1F
 	warp_event 3, 11, 1, PLAYERS_NEIGHBORS_HOUSE
 	warp_event 11, 13, 1, ELMS_HOUSE
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 1, 8, 0, NewBarkTown_TeacherStopsYouScene1
 	coord_event 1, 9, 0, NewBarkTown_TeacherStopsYouScene2
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 8, 8, BGEVENT_READ, NewBarkTownSign
 	bg_event 11, 5, BGEVENT_READ, MapNewBarkTownSignpost1Script
 	bg_event 3, 3, BGEVENT_READ, MapNewBarkTownSignpost2Script
 	bg_event 9, 13, BGEVENT_READ, MapNewBarkTownSignpost3Script
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 6, 8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
 	object_event 12, 9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
 	object_event 3, 2, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownSilverScript, EVENT_RIVAL_NEW_BARK_TOWN

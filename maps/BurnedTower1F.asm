@@ -6,14 +6,12 @@ const_value set 2
 	const BURNEDTOWER1F_POKE_BALL
 
 BurnedTower1F_MapScripts:
-.SceneScripts:
-	db 3
+	db 3 ; scene scripts
 	scene_script .EusineScene
 	scene_script .DummyScene1
 	scene_script .DummyScene2
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HoleAndLadder
 
 .EusineScene:
@@ -278,11 +276,9 @@ BurnedTower1FMortyText:
 	done
 
 BurnedTower1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 14
+	db 14 ; warp events
 	warp_event 9, 15, 13, ECRUTEAK_CITY
 	warp_event 10, 15, 13, ECRUTEAK_CITY
 	warp_event 10, 9,  1, BURNED_TOWER_B1F
@@ -298,17 +294,14 @@ BurnedTower1F_MapEvents:
 	warp_event 15, 14,  5, BURNED_TOWER_B1F
 	warp_event 7, 15,  6, BURNED_TOWER_B1F
 
-.CoordEvents:
-	db 1
+	db 1 ; coord events
 	coord_event 11, 9, 1, BurnedTowerRivalBattleScript
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 8, 7, BGEVENT_ITEM, BurnedTower1FHiddenEther
 	bg_event 13, 11, BGEVENT_ITEM, BurnedTower1FHiddenUltraBall
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 15, 4, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BurnedTower1FRock, -1
 	object_event 12, 12, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BurnedTower1FEusineScript, EVENT_BURNED_TOWER_1F_EUSINE
 	object_event 8, 9, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER

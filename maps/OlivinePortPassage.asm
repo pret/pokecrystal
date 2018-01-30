@@ -2,11 +2,9 @@ const_value set 2
 	const OLIVINEPORTPASSAGE_POKEFAN_M
 
 OlivinePortPassage_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 OlivinePortPassagePokefanMScript:
 	jumptextfaceplayer OlivinePortPassagePokefanMText
@@ -20,23 +18,18 @@ OlivinePortPassagePokefanMText:
 	done
 
 OlivinePortPassage_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 15, 0, 10, OLIVINE_CITY
 	warp_event 16, 0, 11, OLIVINE_CITY
 	warp_event 15, 4, 4, OLIVINE_PORT_PASSAGE
 	warp_event 3, 2, 3, OLIVINE_PORT_PASSAGE
 	warp_event 3, 14, 1, OLIVINE_PORT
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 17, 1, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePortPassagePokefanMScript, EVENT_OLIVINE_PORT_PASSAGE_POKEFAN_M

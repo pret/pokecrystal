@@ -9,11 +9,9 @@ const_value set 2
 	const GOLDENRODDEPTSTOREROOF_BUG_CATCHER
 
 GoldenrodDeptStoreRoof_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_TILES, .CheckSaleChangeBlock
 	callback MAPCALLBACK_OBJECTS, .CheckSaleChangeClerk
 
@@ -212,25 +210,20 @@ PokeDollVendingMachineText:
 	done
 
 GoldenrodDeptStoreRoof_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
+	db 1 ; warp events
 	warp_event 13, 1, 3, GOLDENROD_DEPT_STORE_6F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 15, 3, BGEVENT_RIGHT, Binoculars1
 	bg_event 15, 5, BGEVENT_RIGHT, Binoculars2
 	bg_event 15, 6, BGEVENT_RIGHT, Binoculars3
 	bg_event 3, 0, BGEVENT_UP, PokeDollVendingMachine
 
-.ObjectEvents:
-	db 8
+	db 8 ; object events
 	object_event 1, 4, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
 	object_event 10, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanFScript, -1
 	object_event 2, 1, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FisherScript_0x56749, -1

@@ -13,13 +13,11 @@ const_value set 2
 	const FASTSHIPB1F_YOUNGSTER2
 
 FastShipB1F_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .DummyScene0
 	scene_script .DummyScene1
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -449,25 +447,20 @@ SchoolboyRickyAfterBattleText:
 	done
 
 FastShipB1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 5, 11, 11, FAST_SHIP_1F
 	warp_event 31, 13, 12, FAST_SHIP_1F
 
-.CoordEvents:
-	db 2
+	db 2 ; coord events
 	coord_event 30, 7, 0, UnknownScript_0x7673c
 	coord_event 31, 7, 0, UnknownScript_0x76751
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 27, 9, BGEVENT_READ, FashShipB1FTrashcan
 
-.ObjectEvents:
-	db 12
+	db 12 ; object events
 	object_event 30, 6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	object_event 31, 6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	object_event 9, 11, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP

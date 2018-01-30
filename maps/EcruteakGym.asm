@@ -8,13 +8,11 @@ const_value set 2
 	const ECRUTEAKGYM_GRAMPS
 
 EcruteakGym_MapScripts:
-.SceneScripts:
-	db 2
+	db 2 ; scene scripts
 	scene_script .ForcedToLeave
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .ForcedToLeave:
 	priorityjump EcruteakGymClosed
@@ -387,11 +385,9 @@ UnknownText_0x9a49c:
 	done
 
 EcruteakGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 33
+	db 33 ; warp events
 	warp_event 4, 17, 10, ECRUTEAK_CITY
 	warp_event 5, 17, 10, ECRUTEAK_CITY
 	warp_event 4, 14, 4, ECRUTEAK_GYM
@@ -426,16 +422,13 @@ EcruteakGym_MapEvents:
 	warp_event 7, 12, 3, ECRUTEAK_GYM
 	warp_event 7, 13, 3, ECRUTEAK_GYM
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 15, BGEVENT_READ, EcruteakGymStatue
 	bg_event 6, 15, BGEVENT_READ, EcruteakGymStatue
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 5, 1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MortyScript_0x99d58, -1
 	object_event 2, 7, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSageJeffrey, -1
 	object_event 3, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSagePing, -1

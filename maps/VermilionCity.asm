@@ -7,11 +7,9 @@ const_value set 2
 	const VERMILIONCITY_POKEFAN_M
 
 VermilionCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -268,11 +266,9 @@ VermilionCityPortSignText:
 	done
 
 VermilionCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 10
+	db 10 ; warp events
 	warp_event 5, 5, 1, VERMILION_FISHING_SPEECH_HOUSE
 	warp_event 9, 5, 1, VERMILION_POKECENTER_1F
 	warp_event 7, 13, 1, POKEMON_FAN_CLUB
@@ -284,11 +280,9 @@ VermilionCity_MapEvents:
 	warp_event 20, 31, 2, VERMILION_PORT_PASSAGE
 	warp_event 34, 7, 1, DIGLETTS_CAVE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 8
+	db 8 ; bg events
 	bg_event 25, 3, BGEVENT_READ, VermilionCitySign
 	bg_event 5, 19, BGEVENT_READ, VermilionGymSign
 	bg_event 5, 13, BGEVENT_READ, PokemonFanClubSign
@@ -298,8 +292,7 @@ VermilionCity_MapEvents:
 	bg_event 22, 13, BGEVENT_READ, VermilionCityMartSign
 	bg_event 12, 19, BGEVENT_ITEM, VermilionCityHiddenFullHeal
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 18, 9, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionCityTeacherScript, -1
 	object_event 23, 6, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionMachopOwner, -1
 	object_event 26, 7, SPRITE_MACHOP, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VermilionMachop, -1

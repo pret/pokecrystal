@@ -2,11 +2,9 @@ const_value set 2
 	const DAYOFWEEKSIBLINGSHOUSE_POKEDEX
 
 DayOfWeekSiblingsHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 PokedexScript_0x7b1e4:
 	opentext
@@ -71,20 +69,15 @@ UnknownText_0x7b2b9:
 	done
 
 DayOfWeekSiblingsHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 3, ROUTE_26
 	warp_event 3, 7, 3, ROUTE_26
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 3, 3, SPRITE_POKEDEX, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokedexScript_0x7b1e4, -1

@@ -12,11 +12,9 @@ const_value set 2
 	const ILEXFOREST_POKE_BALL4
 
 IlexForest_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .FarfetchdCallback
 
 .FarfetchdCallback:
@@ -938,28 +936,23 @@ BugCatcherWayneAfterBattleText:
 	done
 
 IlexForest_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 1, 5, 3, ROUTE_34_ILEX_FOREST_GATE
 	warp_event 3, 42, 1, ILEX_FOREST_AZALEA_GATE
 	warp_event 3, 43, 2, ILEX_FOREST_AZALEA_GATE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 5
+	db 5 ; bg events
 	bg_event 3, 17, BGEVENT_READ, MapIlexForestSignpost0Script
 	bg_event 11, 7, BGEVENT_ITEM, IlexForestHiddenEther
 	bg_event 22, 14, BGEVENT_ITEM, IlexForestHiddenSuperPotion
 	bg_event 1, 17, BGEVENT_ITEM, IlexForestHiddenFullHeal
 	bg_event 8, 22, BGEVENT_UP, MapIlexForestSignpost4Script
 
-.ObjectEvents:
-	db 11
+	db 11 ; object events
 	object_event 14, 31, SPRITE_BIRD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD
 	object_event 7, 28, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, IlexForestCharcoalApprenticeScript, EVENT_ILEX_FOREST_APPRENTICE
 	object_event 5, 28, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IlexForestCharcoalMasterScript, EVENT_ILEX_FOREST_CHARCOAL_MASTER

@@ -2,11 +2,9 @@ const_value set 2
 	const TINTOWER9F_POKE_BALL
 
 TinTower9F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TinTower9FHPUp:
 	itemball HP_UP
@@ -22,11 +20,9 @@ TinTower9FUnusedLugiaText:
 	done
 
 TinTower9F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 7
+	db 7 ; warp events
 	warp_event 12, 3, 2, TIN_TOWER_8F
 	warp_event 2, 5, 3, TIN_TOWER_8F
 	warp_event 12, 7, 4, TIN_TOWER_8F
@@ -35,12 +31,9 @@ TinTower9F_MapEvents:
 	warp_event 6, 13, 5, TIN_TOWER_8F
 	warp_event 8, 13, 6, TIN_TOWER_8F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 9, 1, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower9FHPUp, EVENT_TIN_TOWER_9F_HP_UP

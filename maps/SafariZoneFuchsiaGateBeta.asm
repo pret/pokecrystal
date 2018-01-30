@@ -1,26 +1,19 @@
 SafariZoneFuchsiaGateBeta_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 SafariZoneFuchsiaGateBeta_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
+	db 4 ; warp events
 	warp_event 4, 0, 1, SAFARI_ZONE_BETA
 	warp_event 5, 0, 2, SAFARI_ZONE_BETA
 	warp_event 4, 7, 7, FUCHSIA_CITY
 	warp_event 5, 7, 7, FUCHSIA_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

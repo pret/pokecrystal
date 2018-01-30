@@ -4,11 +4,9 @@ const_value set 2
 	const POKECOMCENTERADMINROOMMOBILE_SCIENTIST3
 
 PokecomCenterAdminRoomMobile_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 PokecomCenterAdminRoomMobileScientist1Script:
 	jumptextfaceplayer PokecomCenterAdminRoomMobileScientist1Text
@@ -263,25 +261,20 @@ UnknownText_0x62b26:
 	done
 
 PokecomCenterAdminRoomMobile_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 0, 31, 3, GOLDENROD_POKECENTER_1F
 	warp_event 1, 31, 3, GOLDENROD_POKECENTER_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 6, 26, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost0Script
 	bg_event 6, 28, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost1Script
 	bg_event 3, 26, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost2Script
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 4, 28, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist1Script, -1
 	object_event 7, 27, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist2Script, -1
 	object_event 7, 29, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist3Script, -1

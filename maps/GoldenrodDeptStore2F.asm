@@ -6,11 +6,9 @@ const_value set 2
 	const GOLDENRODDEPTSTORE2F_GENTLEMAN
 
 GoldenrodDeptStore2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ClerkScript_0x55b5d:
 	faceplayer
@@ -101,25 +99,20 @@ GoldenrodDeptStore2FDirectoryText:
 	done
 
 GoldenrodDeptStore2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 12, 0, 1, GOLDENROD_DEPT_STORE_3F
 	warp_event 15, 0, 3, GOLDENROD_DEPT_STORE_1F
 	warp_event 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 14, 0, BGEVENT_READ, GoldenrodDeptStore2FDirectory
 	bg_event 3, 0, BGEVENT_READ, GoldenrodDeptStore2FElevatorButton
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 13, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x55b5d, -1
 	object_event 13, 6, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x55b65, -1
 	object_event 9, 6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore2FYoungsterScript, -1

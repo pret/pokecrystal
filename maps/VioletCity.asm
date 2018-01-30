@@ -9,11 +9,9 @@ const_value set 2
 	const VIOLETCITY_POKE_BALL2
 
 VioletCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -279,11 +277,9 @@ EarlsPokemonAcademySignText:
 	done
 
 VioletCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 9
+	db 9 ; warp events
 	warp_event 9, 17, 2, VIOLET_MART
 	warp_event 18, 17, 1, VIOLET_GYM
 	warp_event 30, 17, 1, EARLS_POKEMON_ACADEMY
@@ -294,11 +290,9 @@ VioletCity_MapEvents:
 	warp_event 39, 24, 1, ROUTE_31_VIOLET_GATE
 	warp_event 39, 25, 2, ROUTE_31_VIOLET_GATE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 7
+	db 7 ; bg events
 	bg_event 24, 20, BGEVENT_READ, VioletCitySign
 	bg_event 15, 17, BGEVENT_READ, VioletGymSign
 	bg_event 24, 8, BGEVENT_READ, SproutTowerSign
@@ -307,8 +301,7 @@ VioletCity_MapEvents:
 	bg_event 10, 17, BGEVENT_READ, VioletCityMartSign
 	bg_event 37, 14, BGEVENT_ITEM, VioletCityHiddenHyperPotion
 
-.ObjectEvents:
-	db 8
+	db 8 ; object events
 	object_event 13, 16, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VioletCityEarlScript, EVENT_VIOLET_CITY_EARL
 	object_event 28, 28, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VioletCityLassScript, -1
 	object_event 24, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletCitySuperNerdScript, -1

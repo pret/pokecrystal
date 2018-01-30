@@ -7,11 +7,9 @@ const_value set 2
 	const RADIOTOWER1F_COOLTRAINER_F
 
 RadioTower1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ReceptionistScript_0x5cd29:
 	faceplayer
@@ -473,25 +471,20 @@ UnknownText_0x5d631:
 	done
 
 RadioTower1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
+	db 3 ; warp events
 	warp_event 2, 7, 11, GOLDENROD_CITY
 	warp_event 3, 7, 11, GOLDENROD_CITY
 	warp_event 15, 0, 2, RADIO_TOWER_2F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 3, 0, BGEVENT_READ, MapRadioTower1FSignpost0Script
 	bg_event 13, 0, BGEVENT_READ, MapRadioTower1FSignpost1Script
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 5, 6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x5cd29, -1
 	object_event 16, 4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FLassScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 15, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower1FYoungsterScript, EVENT_GOLDENROD_CITY_CIVILIANS

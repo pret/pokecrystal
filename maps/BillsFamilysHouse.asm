@@ -4,11 +4,9 @@ const_value set 2
 	const BILLSFAMILYSHOUSE_TWIN
 
 BillsFamilysHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 BillScript:
 	faceplayer
@@ -243,25 +241,20 @@ UnknownText_0x55069:
 	done
 
 BillsFamilysHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 2, 7, 4, GOLDENROD_CITY
 	warp_event 3, 7, 4, GOLDENROD_CITY
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 0, 1, BGEVENT_READ, BillsHouseBookshelf2
 	bg_event 1, 1, BGEVENT_READ, BillsHouseBookshelf1
 	bg_event 7, 1, BGEVENT_READ, BillsHouseRadio
 
-.ObjectEvents:
-	db 3
+	db 3 ; object events
 	object_event 2, 3, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillScript, EVENT_MET_BILL
 	object_event 5, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsMomScript, -1
 	object_event 5, 4, SPRITE_TWIN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSisterScript, -1

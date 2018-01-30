@@ -8,11 +8,9 @@ const_value set 2
 	const MOUNTMORTARB1F_POKE_BALL5
 
 MountMortarB1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 BlackBeltScript_0x7e1f6:
 	faceplayer
@@ -135,23 +133,18 @@ UnknownText_0x7e3df:
 	done
 
 MountMortarB1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
+	db 2 ; warp events
 	warp_event 3, 3, 5, MOUNT_MORTAR_1F_INSIDE
 	warp_event 19, 29, 7, MOUNT_MORTAR_1F_OUTSIDE
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 4, 6, BGEVENT_ITEM, MountMortarB1FHiddenMaxRevive
 
-.ObjectEvents:
-	db 7
+	db 7 ; object events
 	object_event 29, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FHyperPotion, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
 	object_event 4, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FCarbos, EVENT_MOUNT_MORTAR_B1F_CARBOS
 	object_event 9, 10, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortarB1FBoulder, -1

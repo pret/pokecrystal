@@ -2,11 +2,9 @@ const_value set 2
 	const CINNABARISLAND_BLUE
 
 CinnabarIsland_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -128,23 +126,18 @@ CinnabarIslandSignText:
 	done
 
 CinnabarIsland_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
+	db 1 ; warp events
 	warp_event 11, 11, 1, CINNABAR_POKECENTER_1F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 12, 11, BGEVENT_READ, CinnabarIslandPokecenterSign
 	bg_event 9, 11, BGEVENT_READ, CinnabarIslandGymSign
 	bg_event 7, 7, BGEVENT_READ, CinnabarIslandSign
 	bg_event 9, 1, BGEVENT_ITEM, CinnabarIslandHiddenRareCandy
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 9, 6, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR

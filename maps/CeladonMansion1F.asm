@@ -5,11 +5,9 @@ const_value set 2
 	const CELADONMANSION1F_GROWLITHE2
 
 CeladonMansion1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 CeladonMansionManager:
 	jumptextfaceplayer CeladonMansionManagerText
@@ -75,28 +73,23 @@ CeladonMansionManagersSuiteSignText:
 	done
 
 CeladonMansion1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
+	db 5 ; warp events
 	warp_event 6, 9, 2, CELADON_CITY
 	warp_event 7, 9, 2, CELADON_CITY
 	warp_event 3, 0, 3, CELADON_CITY
 	warp_event 0, 0, 1, CELADON_MANSION_2F
 	warp_event 7, 0, 4, CELADON_MANSION_2F
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
+	db 3 ; bg events
 	bg_event 5, 8, BGEVENT_UP, CeladonMansionManagersSuiteSign
 	bg_event 0, 3, BGEVENT_READ, CeladonMansion1fBookshelf
 	bg_event 2, 3, BGEVENT_READ, CeladonMansion1fBookshelf
 
-.ObjectEvents:
-	db 4
+	db 4 ; object events
 	object_event 1, 5, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonMansionManager, -1
 	object_event 2, 6, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonMansion1FMeowth, -1
 	object_event 3, 4, SPRITE_CLEFAIRY, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonMansion1FClefairy, -1
