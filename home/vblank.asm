@@ -113,7 +113,7 @@ VBlank0:: ; 2b1
 	ld a, [hOAMUpdate]
 	and a
 	jr nz, .done_oam
-	call hPushOAM
+	call hTransferVirtualOAM
 .done_oam
 
 
@@ -192,7 +192,7 @@ VBlank1:: ; 337
 	call UpdateBGMap
 	call Serve2bppRequest_VBlank
 
-	call hPushOAM
+	call hTransferVirtualOAM
 .done
 
 	xor a
@@ -282,7 +282,7 @@ VBlank3:: ; 396
 	call UpdateBGMap
 	call Serve2bppRequest_VBlank
 
-	call hPushOAM
+	call hTransferVirtualOAM
 .done
 
 	xor a
@@ -338,7 +338,7 @@ VBlank4:: ; 3df
 	call UpdateBGMap
 	call Serve2bppRequest
 
-	call hPushOAM
+	call hTransferVirtualOAM
 
 	call Joypad
 

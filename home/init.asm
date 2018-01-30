@@ -103,10 +103,10 @@ Init:: ; 17d
 	call ClearsScratch
 
 
-	ld a, BANK(LoadPushOAM)
+	ld a, BANK(WriteOAMDMACodeToHRAM)
 	rst Bankswitch
 
-	call LoadPushOAM
+	call WriteOAMDMACodeToHRAM
 
 	xor a
 	ld [hMapAnims], a

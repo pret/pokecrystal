@@ -1,5 +1,5 @@
-LoadPushOAM:: ; 4031
-	ld c, hPushOAM - $ff00
+WriteOAMDMACodeToHRAM:: ; 4031
+	ld c, hTransferVirtualOAM - $ff00
 	ld b, .PushOAMEnd - .PushOAM
 	ld hl, .PushOAM
 .loop
