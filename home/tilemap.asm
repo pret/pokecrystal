@@ -117,7 +117,7 @@ PlaceVerticalMenuItems:: ; 1c89
 	inc hl
 	ld d, [hl]
 	call GetMenuTextStartCoord
-	call Coord2Tile ; hl now contains the wTileMap address where we will start printing text.
+	call Coord2Tile ; hl now contains the tilemap address where we will start printing text.
 	inc de
 	ld a, [de] ; Number of items
 	inc de

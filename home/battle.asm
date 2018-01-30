@@ -25,7 +25,7 @@ OpponentPartyAttr:: ; 3951
 
 
 BattlePartyAttr:: ; 395d
-; Get attribute a from the active wBattleMon's party struct.
+; Get attribute a from the party struct of the active battle mon. 
 	push bc
 	ld c, a
 	ld b, 0
@@ -39,7 +39,7 @@ BattlePartyAttr:: ; 395d
 
 
 OTPartyAttr:: ; 396d
-; Get attribute a from the active wEnemyMon's party struct.
+; Get attribute a from the party struct of the active enemy mon.
 	push bc
 	ld c, a
 	ld b, 0
@@ -136,100 +136,7 @@ UpdateBattleHuds:: ; 39d4
 ; 39e1
 
 
-GetBattleVar:: ; 39e1
-; Preserves hl.
-	push hl
-	call GetBattleVarAddr
-	pop hl
-	ret
-; 39e7
-
-GetBattleVarAddr:: ; 39e7
-; Get variable from pair a, depending on whose turn it is.
-; There are 21 variable pairs.
-
-	push bc
-
-	ld hl, .battlevarpairs
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-; Enemy turn uses the second byte instead.
-; This lets battle variable calls be side-neutral.
-	ld a, [hBattleTurn]
-	and a
-	jr z, .getvar
-	inc hl
-
-.getvar
-; var id
-	ld a, [hl]
-	ld c, a
-	ld b, 0
-
-	ld hl, .vars
-	add hl, bc
-	add hl, bc
-
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	ld a, [hl]
-
-	pop bc
-	ret
-
-.battlevarpairs
-	dw .substatus1, .substatus2, .substatus3, .substatus4, .substatus5
-	dw .substatus1opp, .substatus2opp, .substatus3opp, .substatus4opp, .substatus5opp
-	dw .status, .statusopp, .animation, .effect, .power, .type
-	dw .curmove, .lastcounter, .lastcounteropp, .lastmove, .lastmoveopp
-
-;                       player                     enemy
-.substatus1     db PLAYER_SUBSTATUS_1,    ENEMY_SUBSTATUS_1
-.substatus1opp  db ENEMY_SUBSTATUS_1,     PLAYER_SUBSTATUS_1
-.substatus2     db PLAYER_SUBSTATUS_2,    ENEMY_SUBSTATUS_2
-.substatus2opp  db ENEMY_SUBSTATUS_2,     PLAYER_SUBSTATUS_2
-.substatus3     db PLAYER_SUBSTATUS_3,    ENEMY_SUBSTATUS_3
-.substatus3opp  db ENEMY_SUBSTATUS_3,     PLAYER_SUBSTATUS_3
-.substatus4     db PLAYER_SUBSTATUS_4,    ENEMY_SUBSTATUS_4
-.substatus4opp  db ENEMY_SUBSTATUS_4,     PLAYER_SUBSTATUS_4
-.substatus5     db PLAYER_SUBSTATUS_5,    ENEMY_SUBSTATUS_5
-.substatus5opp  db ENEMY_SUBSTATUS_5,     PLAYER_SUBSTATUS_5
-.status         db PLAYER_STATUS,         ENEMY_STATUS
-.statusopp      db ENEMY_STATUS,          PLAYER_STATUS
-.animation      db PLAYER_MOVE_ANIMATION, ENEMY_MOVE_ANIMATION
-.effect         db PLAYER_MOVE_EFFECT,    ENEMY_MOVE_EFFECT
-.power          db PLAYER_MOVE_POWER,     ENEMY_MOVE_POWER
-.type           db PLAYER_MOVE_TYPE,      ENEMY_MOVE_TYPE
-.curmove        db PLAYER_CUR_MOVE,       ENEMY_CUR_MOVE
-.lastcounter    db PLAYER_COUNTER_MOVE,   ENEMY_COUNTER_MOVE
-.lastcounteropp db ENEMY_COUNTER_MOVE,    PLAYER_COUNTER_MOVE
-.lastmove       db PLAYER_LAST_MOVE,      ENEMY_LAST_MOVE
-.lastmoveopp    db ENEMY_LAST_MOVE,       PLAYER_LAST_MOVE
-
-.vars
-	dw wPlayerSubStatus1,             wEnemySubStatus1
-	dw wPlayerSubStatus2,             wEnemySubStatus2
-	dw wPlayerSubStatus3,             wEnemySubStatus3
-	dw wPlayerSubStatus4,             wEnemySubStatus4
-	dw wPlayerSubStatus5,             wEnemySubStatus5
-	dw wBattleMonStatus,              wEnemyMonStatus
-	dw wPlayerMoveStructAnimation,   wEnemyMoveStructAnimation
-	dw wPlayerMoveStructEffect,      wEnemyMoveStructEffect
-	dw wPlayerMoveStructPower,       wEnemyMoveStructPower
-	dw wPlayerMoveStructType,        wEnemyMoveStructType
-	dw wCurPlayerMove,                wCurEnemyMove
-	dw wLastPlayerCounterMove,        wLastEnemyCounterMove
-	dw wLastPlayerMove,               wLastEnemyMove
-; 3a90
+INCLUDE "home/battle_vars.asm"
 
 
 FarCopyRadioText:: ; 3a90
@@ -293,8 +200,6 @@ BattleTextBox:: ; 3ac3
 StdBattleTextBox:: ; 3ad5
 ; Open a textbox and print battle text at 20:hl.
 
-GLOBAL BattleText
-
 	ld a, [hROMBank]
 	push af
 
@@ -309,9 +214,6 @@ GLOBAL BattleText
 ; 3ae1
 
 GetBattleAnimPointer:: ; 3ae1
-
-GLOBAL BattleAnimations
-GLOBAL BattleAnimCommands
 
 	ld a, BANK(BattleAnimations)
 	rst Bankswitch

@@ -6133,7 +6133,7 @@ LoadEnemyMon: ; 3e8eb
 ; Notes:
 ;   BattleRandom is used to ensure sync between Game Boys
 
-; Clear the whole wEnemyMon struct
+; Clear the whole enemy mon struct (wEnemyMon)
 	xor a
 	ld hl, wEnemyMonSpecies
 	ld bc, wEnemyMonEnd - wEnemyMon
@@ -6989,7 +6989,8 @@ ApplyStatLevelMultiplier: ; 3ecb7
 ; 3ed45
 
 BadgeStatBoosts: ; 3ed45
-; Raise wBattleMon stats depending on which badges have been obtained.
+; Raise the stats of the battle mon in wBattleMon
+; depending on which badges have been obtained.
 
 ; Every other badge boosts a stat, starting from the first.
 

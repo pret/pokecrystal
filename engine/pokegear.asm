@@ -247,7 +247,7 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, wTileMapEnd - wTileMap
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $4f
 	call ByteFill
 	ld a, [wPokegearCard]

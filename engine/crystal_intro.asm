@@ -352,7 +352,7 @@ INCBIN "gfx/splash/logo2.1bpp"
 CrystalIntro: ; e48ac
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(wPals)
+	ld a, BANK(wGBCPalettes)
 	ld [rSVBK], a
 	ld a, [hInMenu]
 	push af

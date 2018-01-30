@@ -66,7 +66,7 @@ AIChooseMove: ; 440ce
 .ApplyLayers:
 	ld hl, TrainerClassAttributes + TRNATTR_AI_MOVE_WEIGHTS
 
-	; If we have a battle in BattleTower just load the Attributes of the first wTrainerClass (Falkner)
+	; If we have a battle in BattleTower just load the Attributes of the first trainer class in wTrainerClass (Falkner)
 	; so we have always the same AI, regardless of the loaded class of trainer
 	ld a, [wInBattleTowerBattle]
 	bit 0, a

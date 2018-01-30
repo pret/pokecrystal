@@ -21,7 +21,7 @@ AI_SwitchOrTryItem: ; 38000
 	jr nz, DontSwitch
 
 	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
-	ld a, [wInBattleTowerBattle] ; Load always the first wTrainerClass for BattleTower-Trainers
+	ld a, [wInBattleTowerBattle] ; always load the first trainer class in wTrainerClass for BattleTower-Trainers
 	and a
 	jr nz, .ok
 

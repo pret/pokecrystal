@@ -326,7 +326,7 @@ PokeAnim_InitPicAttributes: ; d01d6
 	ld [wPokeAnimPointer], a
 	ld a, b
 	ld [wPokeAnimPointer + 1], a
-; hl contains wTileMap coords
+; hl contains tilemap coords
 	ld a, l
 	ld [wPokeAnimCoord], a
 	ld a, h

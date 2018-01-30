@@ -602,7 +602,7 @@ ApplyPals:
 	ld hl, wBGPals1
 	ld de, wBGPals2
 	ld bc, 16 palettes
-	ld a, BANK(wPals)
+	ld a, BANK(wGBCPalettes)
 	call FarCopyWRAM
 	ret
 
