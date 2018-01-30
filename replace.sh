@@ -1,1 +1,0 @@
-sed -i 's/\<'$1'\>/'$2'/' $(grep -lwr --include="*.asm" --exclude-dir=".git" --exclude-dir="tools" --exclude-dir="extras" --exclude-dir="crowdmap" $1)
