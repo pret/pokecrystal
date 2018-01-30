@@ -170,7 +170,7 @@ INCLUDE "home/double_speed.asm"
 ClearSprites:: ; 300b
 ; Erase OAM data
 	ld hl, wVirtualOAM
-	ld b, wSpritesEnd - wVirtualOAM
+	ld b, wVirtualOAMEnd - wVirtualOAM
 	xor a
 .loop
 	ld [hli], a

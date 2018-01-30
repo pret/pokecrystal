@@ -62,9 +62,9 @@ DoNextFrameForAllSprites: ; 8cf7a
 	ld l, a
 	ld h, HIGH(wVirtualOAM)
 
-.loop2 ; Clear (wVirtualOAM + [wCurrSpriteOAMAddr] --> wSpritesEnd)
+.loop2 ; Clear (wVirtualOAM + [wCurrSpriteOAMAddr] --> wVirtualOAMEnd)
 	ld a, l
-	cp LOW(wSpritesEnd)
+	cp LOW(wVirtualOAMEnd)
 	jr nc, .done
 	xor a
 	ld [hli], a
@@ -302,7 +302,7 @@ UpdateAnimFrame: ; 8d04c
 	inc de
 	ld a, e
 	ld [wCurrSpriteOAMAddr], a
-	cp LOW(wSpritesEnd)
+	cp LOW(wVirtualOAMEnd)
 	jr nc, .reached_the_end
 	dec c
 	jr nz, .loop

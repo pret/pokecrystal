@@ -343,7 +343,7 @@ wVirtualOAMSprite36:: sprite_oam_struct wVirtualOAMSprite36
 wVirtualOAMSprite37:: sprite_oam_struct wVirtualOAMSprite37
 wVirtualOAMSprite38:: sprite_oam_struct wVirtualOAMSprite38
 wVirtualOAMSprite39:: sprite_oam_struct wVirtualOAMSprite39
-wSpritesEnd::
+wVirtualOAMEnd::
 
 
 SECTION "Tilemap", WRAM0

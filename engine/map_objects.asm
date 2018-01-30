@@ -2821,7 +2821,7 @@ _UpdateSprites:: ; 5920
 .fill
 	ld a, [wVramState]
 	bit 1, a
-	ld b, LOW(wSpritesEnd)
+	ld b, LOW(wVirtualOAMEnd)
 	jr z, .ok
 	ld b, 28 * SPRITEOAMSTRUCT_LENGTH
 .ok
@@ -3047,7 +3047,7 @@ InitSprites: ; 5991
 	ld a, [hli]
 	ld [hUsedSpriteTile], a
 	add c
-	cp LOW(wSpritesEnd)
+	cp LOW(wVirtualOAMEnd)
 	jr nc, .full
 .addsprite
 	ld a, [hFFC0]
