@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE17_BIKER1
 	const ROUTE17_BIKER2
 	const ROUTE17_BIKER3

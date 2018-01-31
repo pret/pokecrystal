@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE8SAFFRONGATE_OFFICER
 
 Route8SaffronGate_MapScripts:

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const NATIONALPARK_LASS1
 	const NATIONALPARK_POKEFAN_F1
 	const NATIONALPARK_TEACHER1

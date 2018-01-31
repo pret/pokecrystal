@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const COLOSSEUM_CHRIS1
 	const COLOSSEUM_CHRIS2
 

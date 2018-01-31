@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const WISETRIOSROOM_SAGE1
 	const WISETRIOSROOM_SAGE2
 	const WISETRIOSROOM_SAGE3

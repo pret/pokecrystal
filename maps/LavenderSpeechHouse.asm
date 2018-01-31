@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const LAVENDERSPEECHHOUSE_POKEFAN_F
 
 LavenderSpeechHouse_MapScripts:

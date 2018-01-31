@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CERULEANMART_CLERK
 	const CERULEANMART_COOLTRAINER_M
 	const CERULEANMART_COOLTRAINER_F

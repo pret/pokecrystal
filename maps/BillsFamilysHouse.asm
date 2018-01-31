@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const BILLSFAMILYSHOUSE_BILL
 	const BILLSFAMILYSHOUSE_POKEFAN_F
 	const BILLSFAMILYSHOUSE_TWIN

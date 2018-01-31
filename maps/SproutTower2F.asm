@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const SPROUTTOWER2F_SAGE1
 	const SPROUTTOWER2F_SAGE2
 	const SPROUTTOWER2F_POKE_BALL

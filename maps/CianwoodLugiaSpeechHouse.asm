@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CIANWOODLUGIASPEECHHOUSE_TEACHER
 	const CIANWOODLUGIASPEECHHOUSE_LASS
 	const CIANWOODLUGIASPEECHHOUSE_TWIN

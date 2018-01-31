@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ECRUTEAKTINTOWERENTRANCE_SAGE1
 	const ECRUTEAKTINTOWERENTRANCE_SAGE2
 	const ECRUTEAKTINTOWERENTRANCE_SAGE3

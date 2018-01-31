@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const TINTOWER7F_POKE_BALL
 
 TinTower7F_MapScripts:

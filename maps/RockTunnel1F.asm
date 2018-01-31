@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROCKTUNNEL1F_POKE_BALL1
 	const ROCKTUNNEL1F_POKE_BALL2
 

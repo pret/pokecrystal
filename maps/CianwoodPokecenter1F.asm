@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CIANWOODPOKECENTER1F_NURSE
 	const CIANWOODPOKECENTER1F_LASS
 	const CIANWOODPOKECENTER1F_GYM_GUY

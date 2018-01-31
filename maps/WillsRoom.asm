@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const WILLSROOM_WILL
 
 WillsRoom_MapScripts:

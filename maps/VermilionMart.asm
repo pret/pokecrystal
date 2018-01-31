@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const VERMILIONMART_CLERK
 	const VERMILIONMART_SUPER_NERD
 	const VERMILIONMART_BUENA

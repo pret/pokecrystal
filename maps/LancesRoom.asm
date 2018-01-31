@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const LANCESROOM_LANCE
 	const LANCESROOM_MARY
 	const LANCESROOM_OAK

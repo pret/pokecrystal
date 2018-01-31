@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const SILVERCAVEITEMROOMS_POKE_BALL1
 	const SILVERCAVEITEMROOMS_POKE_BALL2
 

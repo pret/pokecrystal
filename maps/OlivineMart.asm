@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const OLIVINEMART_CLERK
 	const OLIVINEMART_COOLTRAINER_F
 	const OLIVINEMART_LASS

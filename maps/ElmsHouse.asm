@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ELMSHOUSE_ELMS_WIFE
 	const ELMSHOUSE_ELMS_SON
 

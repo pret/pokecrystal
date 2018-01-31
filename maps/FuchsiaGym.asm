@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const FUCHSIAGYM_JANINE
 	const FUCHSIAGYM_FUCHSIA_GYM_1
 	const FUCHSIAGYM_FUCHSIA_GYM_2

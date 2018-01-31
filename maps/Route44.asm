@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE44_FISHER1
 	const ROUTE44_FISHER2
 	const ROUTE44_YOUNGSTER1

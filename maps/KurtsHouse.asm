@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const KURTSHOUSE_KURT1
 	const KURTSHOUSE_TWIN1
 	const KURTSHOUSE_SLOWPOKE

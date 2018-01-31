@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const VIRIDIANCITY_GRAMPS1
 	const VIRIDIANCITY_GRAMPS2
 	const VIRIDIANCITY_FISHER

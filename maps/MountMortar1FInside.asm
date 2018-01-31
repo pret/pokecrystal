@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const MOUNTMORTAR1FINSIDE_BOULDER
 	const MOUNTMORTAR1FINSIDE_POKE_BALL1
 	const MOUNTMORTAR1FINSIDE_POKE_BALL2

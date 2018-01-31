@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const BLACKTHORNGYM1F_CLAIR
 	const BLACKTHORNGYM1F_COOLTRAINER_M1
 	const BLACKTHORNGYM1F_COOLTRAINER_M2

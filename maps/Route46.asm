@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE46_POKEFAN_M
 	const ROUTE46_YOUNGSTER
 	const ROUTE46_LASS

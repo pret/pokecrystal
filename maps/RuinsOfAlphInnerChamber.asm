@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const RUINSOFALPHINNERCHAMBER_FISHER
 	const RUINSOFALPHINNERCHAMBER_TEACHER
 	const RUINSOFALPHINNERCHAMBER_GRAMPS

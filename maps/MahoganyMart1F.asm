@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const MAHOGANYMART1F_PHARMACIST
 	const MAHOGANYMART1F_BLACK_BELT
 	const MAHOGANYMART1F_LANCE

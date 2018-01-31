@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const MOUNTMOONSQUARE_FAIRY1
 	const MOUNTMOONSQUARE_FAIRY2
 	const MOUNTMOONSQUARE_ROCK

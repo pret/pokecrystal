@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const GOLDENRODGYM_WHITNEY
 	const GOLDENRODGYM_LASS1
 	const GOLDENRODGYM_LASS2

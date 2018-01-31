@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const FUCHSIAMART_CLERK
 	const FUCHSIAMART_FISHER
 	const FUCHSIAMART_COOLTRAINER_F

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const RADIOTOWER5F_DIRECTOR
 	const RADIOTOWER5F_ROCKET
 	const RADIOTOWER5F_ROCKET_GIRL

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const VERMILIONFISHINGSPEECHHOUSE_FISHING_GURU
 
 VermilionFishingSpeechHouse_MapScripts:

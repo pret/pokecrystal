@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CERULEANGYM_ROCKET
 	const CERULEANGYM_MISTY
 	const CERULEANGYM_SWIMMER_GIRL1

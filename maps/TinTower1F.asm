@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const TINTOWER1F_SUICUNE
 	const TINTOWER1F_RAIKOU
 	const TINTOWER1F_ENTEI

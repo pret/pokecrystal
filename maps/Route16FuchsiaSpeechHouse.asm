@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE16FUCHSIASPEECHHOUSE_SUPER_NERD
 
 Route16FuchsiaSpeechHouse_MapScripts:

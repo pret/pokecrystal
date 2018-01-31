@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE32RUINSOFALPHGATE_OFFICER
 	const ROUTE32RUINSOFALPHGATE_POKEFAN_M
 	const ROUTE32RUINSOFALPHGATE_YOUNGSTER

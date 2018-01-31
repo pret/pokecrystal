@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const POKEMONFANCLUB_GENTLEMAN
 	const POKEMONFANCLUB_RECEPTIONIST
 	const POKEMONFANCLUB_FISHER

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const BATTLETOWEROUTSIDE_STANDING_YOUNGSTER
 	const BATTLETOWEROUTSIDE_BUENA
 	const BATTLETOWEROUTSIDE_SAILOR

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const MAHOGANYTOWN_POKEFAN_M
 	const MAHOGANYTOWN_GRAMPS
 	const MAHOGANYTOWN_FISHER

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const SPROUTTOWER3F_SAGE1
 	const SPROUTTOWER3F_SAGE2
 	const SPROUTTOWER3F_SAGE3

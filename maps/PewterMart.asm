@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const PEWTERMART_CLERK
 	const PEWTERMART_YOUNGSTER
 	const PEWTERMART_SUPER_NERD

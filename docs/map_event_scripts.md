@@ -4,7 +4,7 @@
 ## Person constants
 
 <pre>
-const_value set 2
+const_value set 2 ; person constants
 	const <i>MAPNAME</i>_<i>OBJECTNAME</i>
 </pre>
 

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CELADONCITY_FISHER
 	const CELADONCITY_POLIWAG
 	const CELADONCITY_TEACHER1

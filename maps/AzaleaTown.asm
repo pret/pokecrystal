@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const AZALEATOWN_AZALEA_ROCKET1
 	const AZALEATOWN_GRAMPS
 	const AZALEATOWN_TEACHER

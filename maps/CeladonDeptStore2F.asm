@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CELADONDEPTSTORE2F_CLERK1
 	const CELADONDEPTSTORE2F_CLERK2
 	const CELADONDEPTSTORE2F_POKEFAN_M

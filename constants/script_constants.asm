@@ -1,4 +1,4 @@
-; script vars
+; person constants
 PLAYER      EQU  0
 LAST_TALKED EQU -2
 

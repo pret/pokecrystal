@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const GOLDENRODBIKESHOP_CLERK
 
 GoldenrodBikeShop_MapScripts:

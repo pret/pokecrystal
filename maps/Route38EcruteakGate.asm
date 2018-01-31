@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE38ECRUTEAKGATE_OFFICER
 
 Route38EcruteakGate_MapScripts:

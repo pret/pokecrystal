@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CHERRYGROVEGYMSPEECHHOUSE_POKEFAN_M
 	const CHERRYGROVEGYMSPEECHHOUSE_BUG_CATCHER
 

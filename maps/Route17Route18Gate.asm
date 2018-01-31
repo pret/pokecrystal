@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE17ROUTE18GATE_OFFICER
 
 Route17Route18Gate_MapScripts:

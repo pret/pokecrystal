@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const VIOLETGYM_FALKNER
 	const VIOLETGYM_YOUNGSTER1
 	const VIOLETGYM_YOUNGSTER2

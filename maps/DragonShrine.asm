@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const DRAGONSHRINE_ELDER1
 	const DRAGONSHRINE_ELDER2
 	const DRAGONSHRINE_ELDER3

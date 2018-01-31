@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CELADONMANSION1F_GRANNY
 	const CELADONMANSION1F_GROWLITHE1
 	const CELADONMANSION1F_CLEFAIRY

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const BLACKTHORNPOKECENTER1F_NURSE
 	const BLACKTHORNPOKECENTER1F_GENTLEMAN
 	const BLACKTHORNPOKECENTER1F_TWIN

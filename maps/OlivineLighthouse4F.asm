@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const OLIVINELIGHTHOUSE4F_SAILOR
 	const OLIVINELIGHTHOUSE4F_LASS
 

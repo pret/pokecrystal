@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CELADONGAMECORNER_CLERK
 	const CELADONGAMECORNER_RECEPTIONIST
 	const CELADONGAMECORNER_POKEFAN_M

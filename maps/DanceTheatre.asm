@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const DANCETHEATRE_KIMONO_GIRL1
 	const DANCETHEATRE_KIMONO_GIRL2
 	const DANCETHEATRE_KIMONO_GIRL3

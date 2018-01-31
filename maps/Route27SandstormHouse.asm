@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE27SANDSTORMHOUSE_GRANNY
 
 Route27SandstormHouse_MapScripts:

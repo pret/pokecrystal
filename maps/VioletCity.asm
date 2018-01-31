@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const VIOLETCITY_EARL
 	const VIOLETCITY_LASS
 	const VIOLETCITY_SUPER_NERD

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE29ROUTE46GATE_OFFICER
 	const ROUTE29ROUTE46GATE_YOUNGSTER
 

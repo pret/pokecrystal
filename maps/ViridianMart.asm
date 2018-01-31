@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const VIRIDIANMART_CLERK
 	const VIRIDIANMART_LASS
 	const VIRIDIANMART_COOLTRAINER_M

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const PLAYERSHOUSE1F_MOM1
 	const PLAYERSHOUSE1F_MOM2
 	const PLAYERSHOUSE1F_MOM3

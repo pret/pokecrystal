@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const CERULEANTRADESPEECHHOUSE_GRANNY
 	const CERULEANTRADESPEECHHOUSE_GRAMPS
 	const CERULEANTRADESPEECHHOUSE_RHYDON

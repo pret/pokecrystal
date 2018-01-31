@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ROUTE12SUPERRODHOUSE_FISHING_GURU
 
 Route12SuperRodHouse_MapScripts:

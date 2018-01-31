@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const TEAMROCKETBASEB3F_LANCE
 	const TEAMROCKETBASEB3F_ROCKET1
 	const TEAMROCKETBASEB3F_MOLTRES

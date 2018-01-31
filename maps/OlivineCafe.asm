@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const OLIVINECAFE_SAILOR1
 	const OLIVINECAFE_FISHING_GURU
 	const OLIVINECAFE_SAILOR2

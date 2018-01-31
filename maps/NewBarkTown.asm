@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const NEWBARKTOWN_TEACHER
 	const NEWBARKTOWN_FISHER
 	const NEWBARKTOWN_SILVER

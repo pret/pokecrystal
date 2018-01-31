@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const VIRIDIANGYM_BLUE
 	const VIRIDIANGYM_GYM_GUY
 

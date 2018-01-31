@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const GOLDENRODDEPTSTORE1F_RECEPTIONIST
 	const GOLDENRODDEPTSTORE1F_POKEFAN_F
 	const GOLDENRODDEPTSTORE1F_BUG_CATCHER

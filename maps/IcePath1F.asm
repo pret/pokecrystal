@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const ICEPATH1F_POKE_BALL1
 	const ICEPATH1F_POKE_BALL2
 	const ICEPATH1F_POKE_BALL3

@@ -1,4 +1,4 @@
-const_value set 2
+const_value set 2 ; person constants
 	const FASTSHIPB1F_SAILOR1
 	const FASTSHIPB1F_SAILOR2
 	const FASTSHIPB1F_SAILOR3
