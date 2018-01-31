@@ -496,7 +496,7 @@ Unreferenced_Function7113:
 	ld hl, OBJECT_MOVEMENTTYPE
 	add hl, bc
 	ld a, [hl]
-	cp SPRITEMOVEDATA_SNORLAX
+	cp SPRITEMOVEDATA_BIGDOLLSYM
 	jr nz, .not_snorlax
 	call Function7171
 	jr c, .yes

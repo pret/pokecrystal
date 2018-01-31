@@ -792,7 +792,7 @@ MapObjectMovementPattern: ; 47dd
 	ld [hl], STANDING
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], OBJECT_ACTION_BIG_SNORLAX
+	ld [hl], OBJECT_ACTION_BIG_DOLL_SYM
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_04
@@ -1103,20 +1103,20 @@ SetRandomStepDuration: ; 4b2d
 StepTypesJumptable: ; 4b45
 ; entries correspond to STEP_TYPE_* constants
 	dw ObjectMovementReset ; 00
-	dw MapObjectMovementPattern ; unused
-	dw NPCStep ; 02 npc walk
+	dw MapObjectMovementPattern ; 01
+	dw NPCStep ; 02
 	dw StepType03 ; 03
 	dw StepType04 ; 04
 	dw StepType05 ; 05
-	dw PlayerStep ; 06 player walk
+	dw PlayerStep ; 06
 	dw StepType07 ; 07
-	dw NPCJump ; 08 npc jump step
-	dw PlayerJump ; 09 player jump step
-	dw PlayerOrNPCTurnStep ; 0a half step
+	dw NPCJump ; 08
+	dw PlayerJump ; 09
+	dw PlayerOrNPCTurnStep ; 0a
 	dw StepTypeBump ; 0b
-	dw TeleportFrom ; 0c teleport from
-	dw TeleportTo ; 0d teleport to
-	dw Skyfall ; 0e skyfall
+	dw TeleportFrom ; 0c
+	dw TeleportTo ; 0d
+	dw Skyfall ; 0e
 	dw StepType0f ; 0f
 	dw GotBiteStep ; 10
 	dw RockSmashStep ; 11

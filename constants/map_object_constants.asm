@@ -102,7 +102,7 @@ MAPOBJECT_SCREEN_WIDTH EQU 12
 	const SPRITEMOVEDATA_12                   ; 12
 	const SPRITEMOVEDATA_FOLLOWING            ; 13
 	const SPRITEMOVEDATA_SCRIPTED             ; 14
-	const SPRITEMOVEDATA_SNORLAX              ; 15
+	const SPRITEMOVEDATA_BIGDOLLSYM           ; 15
 	const SPRITEMOVEDATA_POKEMON              ; 16
 	const SPRITEMOVEDATA_SUDOWOODO            ; 17
 	const SPRITEMOVEDATA_SMASHABLE_ROCK       ; 18
@@ -113,7 +113,7 @@ MAPOBJECT_SCREEN_WIDTH EQU 12
 	const SPRITEMOVEDATA_SCREENSHAKE          ; 1d
 	const SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE ; 1e
 	const SPRITEMOVEDATA_SPINCLOCKWISE        ; 1f
-	const SPRITEMOVEDATA_20                   ; 20
+	const SPRITEMOVEDATA_BIGDOLLASYM          ; 20
 	const SPRITEMOVEDATA_BIGDOLL              ; 21
 	const SPRITEMOVEDATA_BOULDERDUST          ; 22
 	const SPRITEMOVEDATA_GRASS                ; 23
@@ -183,23 +183,23 @@ SPRITEMOVEDATA_FIELDS EQU 6
 
 ; ObjectActionPairPointers indexes (see engine/map_object_action.asm)
 	const_def
-	const OBJECT_ACTION_00           ; 00
-	const OBJECT_ACTION_STAND        ; 01
-	const OBJECT_ACTION_STEP         ; 02
-	const OBJECT_ACTION_BUMP         ; 03
-	const OBJECT_ACTION_SPIN         ; 04
-	const OBJECT_ACTION_SPIN_FLICKER ; 05
-	const OBJECT_ACTION_FISHING      ; 06
-	const OBJECT_ACTION_SHADOW       ; 07
-	const OBJECT_ACTION_EMOTE        ; 08
-	const OBJECT_ACTION_BIG_SNORLAX  ; 09
-	const OBJECT_ACTION_BOUNCE       ; 0a
-	const OBJECT_ACTION_WEIRD_TREE   ; 0b
-	const OBJECT_ACTION_BIG_LAPRAS   ; 0c
-	const OBJECT_ACTION_BIG_DOLL     ; 0d
-	const OBJECT_ACTION_BOULDER_DUST ; 0e
-	const OBJECT_ACTION_GRASS_SHAKE  ; 0f
-	const OBJECT_ACTION_SKYFALL      ; 10
+	const OBJECT_ACTION_00            ; 00
+	const OBJECT_ACTION_STAND         ; 01
+	const OBJECT_ACTION_STEP          ; 02
+	const OBJECT_ACTION_BUMP          ; 03
+	const OBJECT_ACTION_SPIN          ; 04
+	const OBJECT_ACTION_SPIN_FLICKER  ; 05
+	const OBJECT_ACTION_FISHING       ; 06
+	const OBJECT_ACTION_SHADOW        ; 07
+	const OBJECT_ACTION_EMOTE         ; 08
+	const OBJECT_ACTION_BIG_DOLL_SYM  ; 09
+	const OBJECT_ACTION_BOUNCE        ; 0a
+	const OBJECT_ACTION_WEIRD_TREE    ; 0b
+	const OBJECT_ACTION_BIG_DOLL_ASYM ; 0c
+	const OBJECT_ACTION_BIG_DOLL      ; 0d
+	const OBJECT_ACTION_BOULDER_DUST  ; 0e
+	const OBJECT_ACTION_GRASS_SHAKE   ; 0f
+	const OBJECT_ACTION_SKYFALL       ; 10
 
 ; Facings indexes (see data/sprites/facings.asm)
 	const_def
