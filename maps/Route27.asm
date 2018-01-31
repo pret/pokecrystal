@@ -35,7 +35,7 @@ UnknownScript_0x1a0881:
 UnknownScript_0x1a088c:
 	spriteface PLAYER, RIGHT
 	opentext
-	writetext UnknownText_0x1a0a6b
+	writetext Route27FisherHeyText
 	buttonsound
 	writetext Route27FisherText
 	waitbutton
@@ -65,31 +65,31 @@ TrainerBirdKeeperJose2:
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_JOSE
-	iftrue UnknownScript_0x1a08ff
+	iftrue .WantsBattle
 	checkflag ENGINE_JOSE_HAS_STAR_PIECE
-	iftrue UnknownScript_0x1a0945
+	iftrue .HasStarPiece
 	checkcellnum PHONE_BIRDKEEPER_JOSE
-	iftrue UnknownScript_0x1a0963
+	iftrue .NumberAccepted
 	checkevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a08e8
-	writetext UnknownText_0x1a0e42
+	iftrue .AskedAlready
+	writetext BirdKeeperJose2AfterBattleText
 	buttonsound
 	setevent EVENT_JOSE_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1a0957
-	jump UnknownScript_0x1a08eb
+	scall .AskNumber1
+	jump .AskForNumber
 
-UnknownScript_0x1a08e8:
-	scall UnknownScript_0x1a095b
-UnknownScript_0x1a08eb:
+.AskedAlready:
+	scall .AskNumber2
+.AskForNumber:
 	askforphonenumber PHONE_BIRDKEEPER_JOSE
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a096b
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a0967
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext BIRD_KEEPER, JOSE2, MEM_BUFFER_0
-	scall UnknownScript_0x1a095f
-	jump UnknownScript_0x1a0963
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
-UnknownScript_0x1a08ff:
-	scall UnknownScript_0x1a096f
+.WantsBattle:
+	scall .Rematch
 	winlosstext BirdKeeperJose2BeatenText, 0
 	copybytetovar wJoseFightCount
 	if_equal 2, .Fight2
@@ -124,49 +124,49 @@ UnknownScript_0x1a08ff:
 	clearflag ENGINE_JOSE
 	end
 
-UnknownScript_0x1a0945:
-	scall UnknownScript_0x1a0973
+.HasStarPiece:
+	scall .Gift
 	verbosegiveitem STAR_PIECE
-	iffalse UnknownScript_0x1a0954
+	iffalse .NoRoom
 	clearflag ENGINE_JOSE_HAS_STAR_PIECE
-	jump UnknownScript_0x1a0963
+	jump .NumberAccepted
 
-UnknownScript_0x1a0954:
-	jump UnknownScript_0x1a0977
+.NoRoom:
+	jump .PackFull
 
-UnknownScript_0x1a0957:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x1a095b:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x1a095f:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x1a0963:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x1a0967:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x1a096b:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x1a096f:
+.Rematch:
 	jumpstd rematchm
 	end
 
-UnknownScript_0x1a0973:
+.Gift:
 	jumpstd giftm
 	end
 
-UnknownScript_0x1a0977:
+.PackFull:
 	jumpstd packfullm
 	end
 
@@ -193,37 +193,37 @@ TrainerCooltrainermBrian:
 	end
 
 TrainerCooltrainerfReena:
-	trainer COOLTRAINERF, REENA1, EVENT_BEAT_COOLTRAINERF_REENA, CooltrainerfReena1SeenText, CooltrainerfReena1BeatenText, 0, .Script
+	trainer COOLTRAINERF, REENA1, EVENT_BEAT_COOLTRAINERF_REENA, CooltrainerfReenaSeenText, CooltrainerfReenaBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_REENA
-	iftrue UnknownScript_0x1a09e9
+	iftrue .WantsBattle
 	checkcellnum PHONE_COOLTRAINERF_REENA
-	iftrue UnknownScript_0x1a0a3b
+	iftrue .NumberAccepted
 	checkevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a09d2
-	writetext UnknownText_0x1a0c35
+	iftrue .AskedAlready
+	writetext CooltrainerfReenaAfterBattleText
 	buttonsound
 	setevent EVENT_REENA_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x1a0a2f
-	jump UnknownScript_0x1a09d5
+	scall .AskNumber1
+	jump .AskForNumber
 
-UnknownScript_0x1a09d2:
-	scall UnknownScript_0x1a0a33
-UnknownScript_0x1a09d5:
+.AskedAlready:
+	scall .AskNumber2
+.AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERF_REENA
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x1a0a43
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x1a0a3f
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext COOLTRAINERF, REENA1, MEM_BUFFER_0
-	scall UnknownScript_0x1a0a37
-	jump UnknownScript_0x1a0a3b
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
-UnknownScript_0x1a09e9:
-	scall UnknownScript_0x1a0a47
-	winlosstext CooltrainerfReena1BeatenText, 0
+.WantsBattle:
+	scall .Rematch
+	winlosstext CooltrainerfReenaBeatenText, 0
 	copybytetovar wReenaFightCount
 	if_equal 2, .Fight2
 	if_equal 1, .Fight1
@@ -257,31 +257,31 @@ UnknownScript_0x1a09e9:
 	clearflag ENGINE_REENA
 	end
 
-UnknownScript_0x1a0a2f:
+.AskNumber1:
 	jumpstd asknumber1f
 	end
 
-UnknownScript_0x1a0a33:
+.AskNumber2:
 	jumpstd asknumber2f
 	end
 
-UnknownScript_0x1a0a37:
+.RegisteredNumber:
 	jumpstd registerednumberf
 	end
 
-UnknownScript_0x1a0a3b:
+.NumberAccepted:
 	jumpstd numberacceptedf
 	end
 
-UnknownScript_0x1a0a3f:
+.NumberDeclined:
 	jumpstd numberdeclinedf
 	end
 
-UnknownScript_0x1a0a43:
+.PhoneFull:
 	jumpstd phonefullf
 	end
 
-UnknownScript_0x1a0a47:
+.Rematch:
 	jumpstd rematchf
 	end
 
@@ -314,7 +314,7 @@ MovementData_0x1a0a69:
 	step LEFT
 	step_end
 
-UnknownText_0x1a0a6b:
+Route27FisherHeyText:
 	text "Hey!"
 	done
 
@@ -367,7 +367,7 @@ CooltrainermBrianAfterBattleText:
 	cont "good trainers."
 	done
 
-CooltrainerfReena1SeenText:
+CooltrainerfReenaSeenText:
 	text "You shouldn't"
 	line "underestimate the"
 
@@ -375,12 +375,12 @@ CooltrainerfReena1SeenText:
 	line "these parts."
 	done
 
-CooltrainerfReena1BeatenText:
+CooltrainerfReenaBeatenText:
 	text "Oh! You're much"
 	line "too strong!"
 	done
 
-UnknownText_0x1a0c35:
+CooltrainerfReenaAfterBattleText:
 	text "You're just a kid,"
 	line "but you're not to"
 
@@ -450,7 +450,7 @@ BirdKeeperJose2BeatenText:
 	text "Tweet!"
 	done
 
-UnknownText_0x1a0e42:
+BirdKeeperJose2AfterBattleText:
 	text "BIRD KEEPERS like"
 	line "me mimic bird"
 

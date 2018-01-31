@@ -94,9 +94,9 @@ MonicaScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
-	iftrue MonicaMondayScript
+	iftrue .Monday
 	checkcode VAR_WEEKDAY
-	if_not_equal MONDAY, MonicaNotMondayScript
+	if_not_equal MONDAY, .NotMonday
 	checkevent EVENT_MET_MONICA_OF_MONDAY
 	iftrue .MetMonica
 	writetext MeetMonicaText
@@ -106,21 +106,21 @@ MonicaScript:
 	writetext MonicaGivesGiftText
 	buttonsound
 	verbosegiveitem SHARP_BEAK
-	iffalse MonicaDoneScript
+	iffalse .done
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	writetext MonicaGaveGiftText
 	waitbutton
 	closetext
 	end
 
-MonicaMondayScript:
+.Monday:
 	writetext MonicaMondayText
 	waitbutton
-MonicaDoneScript:
+.done:
 	closetext
 	end
 
-MonicaNotMondayScript:
+.NotMonday:
 	writetext MonicaNotMondayText
 	waitbutton
 	closetext

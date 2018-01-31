@@ -6,23 +6,23 @@ Route7SaffronGate_MapScripts:
 
 	db 0 ; callbacks
 
-OfficerScript_0x73518:
+Route7SaffronGuardScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x73526
-	writetext UnknownText_0x7352c
+	iftrue .ReturnedPart
+	writetext Route7SaffronGuardPowerPlantText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x73526:
-	writetext UnknownText_0x73592
+.ReturnedPart:
+	writetext Route7SaffronGuardSeriousText
 	waitbutton
 	closetext
 	end
 
-UnknownText_0x7352c:
+Route7SaffronGuardPowerPlantText:
 	text "Did you hear about"
 	line "the accident at"
 	cont "the POWER PLANT?"
@@ -32,7 +32,7 @@ UnknownText_0x7352c:
 	cont "LAVENDER TOWN."
 	done
 
-UnknownText_0x73592:
+Route7SaffronGuardSeriousText:
 	text "I take my GUARD"
 	line "job seriously."
 
@@ -57,4 +57,4 @@ Route7SaffronGate_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x73518, -1
+	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route7SaffronGuardScript, -1

@@ -176,12 +176,12 @@ LanceHealsCommon:
 	setscene 1
 	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	checkcode VAR_FACING
-	if_equal RIGHT, UnknownScript_0x6d0be
+	if_equal RIGHT, .FacingRight
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d212
 	disappear TEAMROCKETBASEB2F_LANCE
 	end
 
-UnknownScript_0x6d0be:
+.FacingRight:
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d219
 	disappear TEAMROCKETBASEB2F_LANCE
 	end
@@ -223,15 +223,15 @@ RocketElectrode1:
 	cry ELECTRODE
 	loadwildmon ELECTRODE, 23
 	startbattle
-	iftrue UnknownScript_0x6d182
+	iftrue TeamRocketBaseB2FReloadMap
 	disappear TEAMROCKETBASEB2F_ELECTRODE1
 	disappear TEAMROCKETBASEB2F_ELECTRODE4
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d28c
@@ -241,15 +241,15 @@ RocketElectrode2:
 	cry ELECTRODE
 	loadwildmon ELECTRODE, 23
 	startbattle
-	iftrue UnknownScript_0x6d182
+	iftrue TeamRocketBaseB2FReloadMap
 	disappear TEAMROCKETBASEB2F_ELECTRODE2
 	disappear TEAMROCKETBASEB2F_ELECTRODE5
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d299
@@ -259,21 +259,21 @@ RocketElectrode3:
 	cry ELECTRODE
 	loadwildmon ELECTRODE, 23
 	startbattle
-	iftrue UnknownScript_0x6d182
+	iftrue TeamRocketBaseB2FReloadMap
 	disappear TEAMROCKETBASEB2F_ELECTRODE3
 	disappear TEAMROCKETBASEB2F_ELECTRODE6
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_1
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_2
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	checkevent EVENT_TEAM_ROCKET_BASE_B2F_ELECTRODE_3
-	iffalse UnknownScript_0x6d182
+	iffalse TeamRocketBaseB2FReloadMap
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d2a4
 	jump UnknownScript_0x6d184
 
-UnknownScript_0x6d182:
+TeamRocketBaseB2FReloadMap:
 	reloadmapafterbattle
 	end
 
@@ -318,13 +318,13 @@ TeamRocketBaseB2FLockedDoor:
 .Script:
 	opentext
 	checkevent EVENT_LEARNED_HAIL_GIOVANNI
-	iftrue UnknownScript_0x6d1e8
+	iftrue .KnowsPassword
 	writetext UnknownText_0x6dd39
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6d1e8:
+.KnowsPassword:
 	writetext UnknownText_0x6dd6b
 	waitbutton
 	playsound SFX_ENTER_DOOR
