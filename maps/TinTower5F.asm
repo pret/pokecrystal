@@ -31,4 +31,4 @@ TinTower5F_MapEvents:
 	bg_event 3, 15, BGEVENT_ITEM, TinTower5FHiddenCarbos
 
 	db 1 ; object events
-	object_event 9, 9, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower5FRareCandy, EVENT_TIN_TOWER_5F_RARE_CANDY
+	object_event 9, 9, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower5FRareCandy, EVENT_TIN_TOWER_5F_RARE_CANDY

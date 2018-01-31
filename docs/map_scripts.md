@@ -122,7 +122,7 @@ BG event types:
 
 Movement types:
 
-- `SPRITEMOVEDATA_ITEM_TREE`
+- `SPRITEMOVEDATA_STILL`
 
 - `SPRITEMOVEDATA_WANDER`
 

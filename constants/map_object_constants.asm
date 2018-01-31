@@ -82,7 +82,7 @@ MAPOBJECT_SCREEN_WIDTH EQU 12
 ; SpriteMovementData indexes (see data/sprites/map_objects.asm)
 	const_def
 	const SPRITEMOVEDATA_00                   ; 00
-	const SPRITEMOVEDATA_ITEM_TREE            ; 01
+	const SPRITEMOVEDATA_STILL                ; 01
 	const SPRITEMOVEDATA_WANDER               ; 02
 	const SPRITEMOVEDATA_SPINRANDOM_SLOW      ; 03
 	const SPRITEMOVEDATA_WALK_UP_DOWN         ; 04

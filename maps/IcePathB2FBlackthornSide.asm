@@ -25,4 +25,4 @@ IcePathB2FBlackthornSide_MapEvents:
 	bg_event 2, 10, BGEVENT_ITEM, IcePathB2FBlackthornSideHiddenIceHeal
 
 	db 1 ; object events
-	object_event 8, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FBlackthornSideTMRest, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST
+	object_event 8, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FBlackthornSideTMRest, EVENT_ICE_PATH_B2F_BLACKTHORN_SIDE_TM_REST
