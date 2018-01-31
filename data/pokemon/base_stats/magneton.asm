@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/magneton/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
-	dn INANIMATE, INANIMATE ; egg groups
+	dn MINERAL, MINERAL ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, ROLLOUT, TOXIC, ZAP_CANNON, HIDDEN_POWER, SNORE, HYPER_BEAM, PROTECT, RAIN_DANCE, ENDURE, FRUSTRATION, THUNDER, RETURN, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, SWIFT, REST, FLASH, THUNDERBOLT

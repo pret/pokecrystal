@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/ditto/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db MEDIUM_FAST ; growth rate
-	dn LADIES_MAN, LADIES_MAN ; egg groups
+	dn POLY, POLY ; egg groups
 
 	; tm/hm learnset
 	tmhm

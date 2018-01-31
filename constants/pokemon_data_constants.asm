@@ -27,12 +27,12 @@ BASE_DATA_SIZE   EQUS "(CurBaseDataEnd - CurBaseData)"
 
 ; gender ratio constants
 GENDER_F0    EQU 0 percent
-GENDER_F12_5 EQU 31 ; 12.5 percent
+GENDER_F12_5 EQU 12 percent + 1
 GENDER_F25   EQU 25 percent
 GENDER_F50   EQU 50 percent
 GENDER_F75   EQU 75 percent
-GENDER_F100  EQU 254 ; 100 percent
-GENDERLESS   EQU 255
+GENDER_F100  EQU 100 percent - 1
+GENDERLESS   EQU -1
 
 ; BaseGrowthRate values
 ; GrowthRates indexes (see data/growth_rates.asm)
@@ -55,10 +55,10 @@ GENDERLESS   EQU 255
 	const PLANT        ; 7
 	const HUMANSHAPE   ; 8
 	const INVERTEBRATE ; 9
-	const INANIMATE    ; a
+	const MINERAL      ; a
 	const AMORPHOUS    ; b
 	const FISH         ; c
-	const LADIES_MAN   ; d
+	const POLY         ; d
 	const REPTILE      ; e
 	const NO_EGGS      ; f
 
