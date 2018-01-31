@@ -25,82 +25,82 @@ Route39Miltank:
 	closetext
 	end
 
-TrainerPokefanmDerek1:
-	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerek1SeenText, PokefanmDerek1BeatenText, 0, .Script
+TrainerPokefanmDerek:
+	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerekSeenText, PokefanmDerekBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
 	end_if_just_battled
 	opentext
 	checkflag ENGINE_DEREK_HAS_NUGGET
-	iftrue PokefanMDerekHasNugget
+	iftrue .HasNugget
 	checkcellnum PHONE_POKEFANM_DEREK
-	iftrue PokefanMDerekAccepted
+	iftrue .NumberAccepted
 	checkpoke PIKACHU
-	iffalse PokefanMDerekWantsPikachu
+	iffalse .WantsPikachu
 	checkevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
-	iftrue PokefanMDerekWantsYourNumber
+	iftrue .AskedAlready
 	writetext PokefanMDerekText_NotBragging
 	buttonsound
 	setevent EVENT_DEREK_ASKED_FOR_PHONE_NUMBER
-	scall PokefanMDerekAsksNumber1
-	jump PokefanMDerekAsksForPhoneNumber
+	scall .AskNumber1
+	jump .AskForNumber
 
-PokefanMDerekWantsYourNumber:
-	scall PokefanMDerekAsksNumber2
-PokefanMDerekAsksForPhoneNumber:
+.AskedAlready:
+	scall .AskNumber2
+.AskForNumber:
 	askforphonenumber PHONE_POKEFANM_DEREK
-	if_equal PHONE_CONTACTS_FULL, PokefanMDerekPhoneFull
-	if_equal PHONE_CONTACT_REFUSED, PokefanMDerekDeclined
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
-	scall PokefanMDerekRegistered
-	jump PokefanMDerekAccepted
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
-PokefanMDerekHasNugget:
-	scall PokefanMDerekGift
+.HasNugget:
+	scall .Gift
 	verbosegiveitem NUGGET
-	iffalse .PackFull
+	iffalse .NoRoom
 	clearflag ENGINE_DEREK_HAS_NUGGET
-	jump PokefanMDerekAccepted
+	jump .NumberAccepted
 
-.PackFull:
-	jump PackIsFull
+.NoRoom:
+	jump .PackFull
 
-PokefanMDerekWantsPikachu:
-	writetext PokefanMDerekText_PikachuIsIt
+.WantsPikachu:
+	writetext PokefanMDerekPikachuIsItText
 	waitbutton
 	closetext
 	end
 
-PokefanMDerekAsksNumber1:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-PokefanMDerekAsksNumber2:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-PokefanMDerekRegistered:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-PokefanMDerekAccepted:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-PokefanMDerekDeclined:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-PokefanMDerekPhoneFull:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-PokefanMDerekGift:
+.Gift:
 	jumpstd giftm
 	end
 
-PackIsFull:
+.PackFull:
 	jumpstd packfullm
 	end
 
@@ -137,17 +137,17 @@ TrainerPsychicNorman:
 	closetext
 	end
 
-PokefanFScript_0x1a5bbe:
+TrainerPokefanfJaime:
 	faceplayer
 	opentext
 	checknite
-	iffalse UnknownScript_0x1a5be5
+	iffalse .NotNight
 	checkevent EVENT_BEAT_POKEFANF_JAIME
-	iftrue UnknownScript_0x1a5bdf
-	writetext UnknownText_0x1a5ee8
+	iftrue .Beaten
+	writetext PokefanfJaimeSeenText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x1a5f17, 0
+	winlosstext PokefanfJaimeBeatenText, 0
 	loadtrainer POKEFANF, JAIME
 	startbattle
 	reloadmapafterbattle
@@ -155,14 +155,14 @@ PokefanFScript_0x1a5bbe:
 	closetext
 	end
 
-UnknownScript_0x1a5bdf:
-	writetext UnknownText_0x1a5f31
+.Beaten:
+	writetext PokefanfJaimeAfterBattleText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1a5be5:
-	writetext UnknownText_0x1a5ec4
+.NotNight:
+	writetext PokefanfJaimeHopeItGetsDarkText
 	waitbutton
 	closetext
 	end
@@ -208,13 +208,13 @@ SailorEugeneAfterBattleText:
 	cont "voyages."
 	done
 
-PokefanmDerek1SeenText:
+PokefanmDerekSeenText:
 	text "This is a good"
 	line "time to brag about"
 	cont "my PIKACHU!"
 	done
 
-PokefanmDerek1BeatenText:
+PokefanmDerekBeatenText:
 	text "I had no time to"
 	line "show off PIKACHU…"
 	done
@@ -252,7 +252,7 @@ PokefanfRuthAfterBattleText:
 	line "adorable!"
 	done
 
-PokefanMDerekText_PikachuIsIt:
+PokefanMDerekPikachuIsItText:
 	text "PIKACHU is it!"
 	line "Don't you agree?"
 	done
@@ -279,24 +279,24 @@ PsychicNormanAfterBattleText:
 	cont "potential."
 	done
 
-UnknownText_0x1a5ec4:
+PokefanfJaimeHopeItGetsDarkText:
 	text "Ufufufu… I hope it"
 	line "gets dark soon."
 	done
 
-UnknownText_0x1a5ee8:
+PokefanfJaimeSeenText:
 	text "You came at just"
 	line "the right time."
 
 	para "Let's battle."
 	done
 
-UnknownText_0x1a5f17:
+PokefanfJaimeBeatenText:
 	text "Oh, how disap-"
 	line "pointing…"
 	done
 
-UnknownText_0x1a5f31:
+PokefanfJaimeAfterBattleText:
 	text "I met my MEOWTH at"
 	line "night, right here"
 	cont "on ROUTE 39."
@@ -365,7 +365,7 @@ Route39_MapEvents:
 .ObjectEvents:
 	db 10
 	object_event 13, 29, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSailorEugene, -1
-	object_event 10, 22, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanmDerek1, -1
+	object_event 10, 22, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanmDerek, -1
 	object_event 11, 19, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanfRuth, -1
 	object_event 3, 12, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
 	object_event 6, 11, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
@@ -373,4 +373,4 @@ Route39_MapEvents:
 	object_event 8, 13, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
 	object_event 13, 7, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicNorman, -1
 	object_event 9, 3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a5bf4, -1
-	object_event 4, 22, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x1a5bbe, -1
+	object_event 4, 22, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerPokefanfJaime, -1

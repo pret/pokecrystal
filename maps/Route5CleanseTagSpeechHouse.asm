@@ -9,20 +9,20 @@ Route5CleanseTagSpeechHouse_MapScripts:
 .MapCallbacks:
 	db 0
 
-GrannyScript_0x18b634:
+Route5CleanseTagGrannyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_CLEANSE_TAG
-	iftrue UnknownScript_0x18b649
-	writetext UnknownText_0x18b655
+	iftrue .GotCleanseTag
+	writetext Route5CleanseTagGrannySinisterShadowText
 	buttonsound
 	verbosegiveitem CLEANSE_TAG
-	iffalse UnknownScript_0x18b64d
+	iffalse .NoRoom
 	setevent EVENT_GOT_CLEANSE_TAG
-UnknownScript_0x18b649:
-	writetext UnknownText_0x18b6a7
+.GotCleanseTag:
+	writetext Route5CleanseTagGrannyProtectedText
 	waitbutton
-UnknownScript_0x18b64d:
+.NoRoom:
 	closetext
 	end
 
@@ -32,7 +32,7 @@ Route5CleanseTagSpeechHouseTeacherScript:
 HouseForSaleBookshelf:
 	jumpstd difficultbookshelf
 
-UnknownText_0x18b655:
+Route5CleanseTagGrannySinisterShadowText:
 	text "Eeyaaaah!"
 
 	para "I sense a sinister"
@@ -43,7 +43,7 @@ UnknownText_0x18b655:
 	line "it off!"
 	done
 
-UnknownText_0x18b6a7:
+Route5CleanseTagGrannyProtectedText:
 	text "You were in mortal"
 	line "danger, but you"
 	cont "are protected now."
@@ -79,5 +79,5 @@ Route5CleanseTagSpeechHouse_MapEvents:
 
 .ObjectEvents:
 	db 2
-	object_event 2, 5, SPRITE_GRANNY, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x18b634, -1
+	object_event 2, 5, SPRITE_GRANNY, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route5CleanseTagGrannyScript, -1
 	object_event 5, 3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5CleanseTagSpeechHouseTeacherScript, -1
