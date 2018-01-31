@@ -36,7 +36,7 @@ If you added or changed any code, it has to fit in the **memory banks**. The 2MB
 
 ## How do I edit maps?
 
-For `asm` scripts, read [docs/map_scripts.md](docs/map_scripts.md). For `blk` layouts, try [crowdmap][crowdmap] or [Polished Map][polished-map].
+For `asm` scripts, read [docs/map_event_scripts.md](docs/map_event_scripts.md). For `blk` layouts, try [crowdmap][crowdmap] or [Polished Map][polished-map].
 
 
 ## How do I write new features?

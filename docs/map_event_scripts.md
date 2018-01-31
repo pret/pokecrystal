@@ -1,4 +1,4 @@
-# Map Scripts
+# Map Event Scripts
 
 
 ## Person constants
