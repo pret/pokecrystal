@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const ROUTE5CLEANSETAGHOUSE_GRANNY
 	const ROUTE5CLEANSETAGHOUSE_TEACHER
 

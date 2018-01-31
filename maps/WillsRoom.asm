@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const WILLSROOM_WILL
 
 WillsRoom_MapScripts:

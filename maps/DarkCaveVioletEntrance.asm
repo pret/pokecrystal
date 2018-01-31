@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const DARKCAVEVIOLETENTRANCE_POKE_BALL1
 	const DARKCAVEVIOLETENTRANCE_ROCK1
 	const DARKCAVEVIOLETENTRANCE_ROCK2

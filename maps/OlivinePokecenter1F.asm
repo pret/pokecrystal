@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const OLIVINEPOKECENTER1F_NURSE
 	const OLIVINEPOKECENTER1F_FISHING_GURU
 	const OLIVINEPOKECENTER1F_FISHER

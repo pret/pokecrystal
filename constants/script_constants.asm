@@ -76,7 +76,7 @@ RETVAR_EXECUTE EQU (2 << 6)
 
 
 ; PlayerEventScriptPointers indexes (see engine/events.asm)
-const_value set -1
+	const_def -1
 	const PLAYEREVENT_MAPSCRIPT
 	const PLAYEREVENT_NONE
 	const PLAYEREVENT_SEENBYTRAINER
@@ -168,7 +168,7 @@ EMOTE_MEM EQU -1
 
 ; fruittree arguments
 ; FruitTreeItems indexes (see data/items/fruit_trees.asm)
-const_value set 1
+	const_def 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02
 	const FRUITTREE_ROUTE_38      ; 03
@@ -275,7 +275,7 @@ NUM_UNOWN_PUZZLES EQU const_value
 	const UNOWNWORDS_HO_OH  ; 3
 
 ; MoveTutor writebyte arguments
-const_value set 1
+	const_def 1
 	const MOVETUTOR_FLAMETHROWER ; 1
 	const MOVETUTOR_THUNDERBOLT  ; 2
 	const MOVETUTOR_ICE_BEAM     ; 3

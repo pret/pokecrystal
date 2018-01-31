@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const VICTORYROAD_SILVER
 	const VICTORYROAD_POKE_BALL1
 	const VICTORYROAD_POKE_BALL2

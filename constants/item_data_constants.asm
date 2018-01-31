@@ -10,7 +10,7 @@
 ITEMATTR_STRUCT_LENGTH EQU const_value
 
 ; item types
-const_value set 1
+	const_def 1
 	const ITEM     ; 1
 	const KEY_ITEM ; 2
 	const BALL     ; 3
@@ -65,7 +65,7 @@ MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 	const HELD_7
 	const HELD_CLEANSE_TAG
 
-const_value set 10
+	const_def 10
 	const HELD_HEAL_POISON
 	const HELD_HEAL_FREEZE
 	const HELD_HEAL_BURN
@@ -74,7 +74,7 @@ const_value set 10
 	const HELD_HEAL_STATUS
 	const HELD_HEAL_CONFUSION
 
-const_value set 20
+	const_def 20
 	const HELD_PREVENT_POISON
 	const HELD_PREVENT_BURN
 	const HELD_PREVENT_FREEZE
@@ -82,7 +82,7 @@ const_value set 20
 	const HELD_PREVENT_PARALYZE
 	const HELD_PREVENT_CONFUSE
 
-const_value set 30
+	const_def 30
 	const HELD_30
 	const HELD_ATTACK_UP
 	const HELD_DEFENSE_UP
@@ -93,12 +93,12 @@ const_value set 30
 	const HELD_EVASION_UP
 	const HELD_38
 
-const_value set 40
+	const_def 40
 	const HELD_40
 	const HELD_41
 	const HELD_METAL_POWDER
 
-const_value set 50
+	const_def 50
 	const HELD_NORMAL_BOOST
 	const HELD_FIGHTING_BOOST
 	const HELD_FLYING_BOOST
@@ -117,7 +117,7 @@ const_value set 50
 	const HELD_DARK_BOOST
 	const HELD_STEEL_BOOST
 
-const_value set 70
+	const_def 70
 	const HELD_CATCH_CHANCE
 	const HELD_71
 	const HELD_ESCAPE

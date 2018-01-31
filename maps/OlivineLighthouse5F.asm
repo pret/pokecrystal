@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const OLIVINELIGHTHOUSE5F_SAILOR
 	const OLIVINELIGHTHOUSE5F_YOUNGSTER
 	const OLIVINELIGHTHOUSE5F_POKE_BALL1

@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const ROUTE14_POKEFAN_M1
 	const ROUTE14_YOUNGSTER
 	const ROUTE14_POKEFAN_M2

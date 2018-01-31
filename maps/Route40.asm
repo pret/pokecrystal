@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const ROUTE40_OLIVINE_RIVAL1
 	const ROUTE40_OLIVINE_RIVAL2
 	const ROUTE40_SWIMMER_GIRL1

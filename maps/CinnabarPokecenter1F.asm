@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const CINNABARPOKECENTER1F_NURSE
 	const CINNABARPOKECENTER1F_COOLTRAINER_F
 	const CINNABARPOKECENTER1F_FISHER

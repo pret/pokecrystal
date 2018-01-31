@@ -21,7 +21,7 @@ GAMETIMERPAUSE_TIMER_PAUSED_F EQU 0
 GAMETIMERPAUSE_MOBILE_7_F     EQU 7
 
 ; Options:: ; cfcc
-const_value set 4
+	const_def 4
 	const NO_TEXT_SCROLL ; 4
 	const STEREO         ; 5
 	const BATTLE_SHIFT   ; 6
@@ -60,7 +60,7 @@ GBPRINTER_DARKEST  EQU $7f
 	const MENU_ACCOUNT ; 0
 
 ; WalkingDirection:: ; d043
-const_value set -1
+	const_def -1
 	const STANDING ; -1
 	const DOWN     ; 0
 	const UP       ; 1

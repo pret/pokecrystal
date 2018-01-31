@@ -35,8 +35,8 @@
 
 ; MonMenuOptions indexes (see data/mon_menu.asm)
 ; used by PokemonActionSubmenu (see engine/start_menu.asm)
-const_value set 1
-; moves
+	const_def 1
+	; moves
 	const MONMENUITEM_CUT        ; 1
 	const MONMENUITEM_FLY        ; 2
 	const MONMENUITEM_SURF       ; 3
@@ -51,7 +51,7 @@ const_value set 1
 	const MONMENUITEM_ROCKSMASH  ; 12
 	const MONMENUITEM_MILKDRINK  ; 13
 	const MONMENUITEM_SWEETSCENT ; 14
-; options
+	; options
 	const MONMENUITEM_STATS      ; 15
 	const MONMENUITEM_SWITCH     ; 16
 	const MONMENUITEM_ITEM       ; 17
@@ -84,7 +84,7 @@ HMENURETURN_ASM    EQU %11111111
 	const PARTYMENUACTION_GIVE_ITEM
 	const PARTYMENUACTION_MOBILE ; mobile
 ; PrintPartyMenuActionText arguments (see engine/party_menu.asm)
-const_value set $f0
+	const_def $f0
 	const PARTYMENUTEXT_HEAL_PSN
 	const PARTYMENUTEXT_HEAL_BRN
 	const PARTYMENUTEXT_HEAL_FRZ

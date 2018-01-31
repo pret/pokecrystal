@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const LAVENDERPOKECENTER1F_NURSE
 	const LAVENDERPOKECENTER1F_GENTLEMAN
 	const LAVENDERPOKECENTER1F_TEACHER

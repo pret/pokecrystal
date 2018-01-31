@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const CELADONDEPTSTORE5F_CLERK1
 	const CELADONDEPTSTORE5F_CLERK2
 	const CELADONDEPTSTORE5F_GENTLEMAN

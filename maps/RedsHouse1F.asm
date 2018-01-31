@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const REDSHOUSE1F_REDS_MOM
 
 RedsHouse1F_MapScripts:

@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const ICEPATHB3F_POKE_BALL
 	const ICEPATHB3F_ROCK
 

@@ -45,7 +45,7 @@ GENDERLESS   EQU 255
 	const SLOW
 
 ; BaseEggGroups values
-const_value set 1
+	const_def 1
 	const MONSTER      ; 1
 	const AMPHIBIAN    ; 2
 	const INSECT       ; 3
@@ -131,7 +131,7 @@ NUM_HOF_TEAMS = 30
 
 
 ; evolution types (used in data/pokemon/evos_attacks.asm)
-const_value set 1
+	const_def 1
 	const EVOLVE_LEVEL
 	const EVOLVE_ITEM
 	const EVOLVE_TRADE
@@ -139,13 +139,13 @@ const_value set 1
 	const EVOLVE_STAT
 
 ; EVOLVE_HAPPINESS triggers
-const_value set 1
+	const_def 1
 	const TR_ANYTIME
 	const TR_MORNDAY
 	const TR_NITE
 
 ; EVOLVE_STAT triggers
-const_value set 1
+	const_def 1
 	const ATK_GT_DEF
 	const ATK_LT_DEF
 	const ATK_EQ_DEF

@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const RADIOTOWER3F_SUPER_NERD
 	const RADIOTOWER3F_GYM_GUY
 	const RADIOTOWER3F_COOLTRAINER_F

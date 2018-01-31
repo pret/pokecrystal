@@ -18,7 +18,7 @@
 ; - BitmasksPointers (see gfx/pokemon/bitmask_pointers.asm)
 ; - FramesPointers (see gfx/pokemon/frame_pointers.asm)
 ; - Footprints (see gfx/footprints.asm)
-const_value set 1
+	const_def 1
 	const BULBASAUR  ; 01
 	const IVYSAUR    ; 02
 	const VENUSAUR   ; 03
@@ -284,7 +284,7 @@ NUM_POKEMON EQU const_value +- 1
 ; - UnownAnimationIdlePointers (see gfx/pokemon/unown_idle_pointers.asm)
 ; - UnownBitmasksPointers (see gfx/pokemon/unown_bitmask_pointers.asm)
 ; - UnownFramesPointers (see gfx/pokemon/unown_frame_pointers.asm)
-const_value set 1
+	const_def 1
 	const UNOWN_A ;  1
 	const UNOWN_B ;  2
 	const UNOWN_C ;  3

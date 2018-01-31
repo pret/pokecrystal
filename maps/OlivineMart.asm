@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const OLIVINEMART_CLERK
 	const OLIVINEMART_COOLTRAINER_F
 	const OLIVINEMART_LASS

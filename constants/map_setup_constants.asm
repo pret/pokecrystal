@@ -1,6 +1,6 @@
 ; hMapEntryMethod values
 ; MapSetupScripts indexes (see data/maps/setup_scripts.asm)
-const_value set $f1
+	const_def $f1
 	const MAPSETUP_WARP       ; f1
 	const MAPSETUP_CONTINUE   ; f2
 	const MAPSETUP_RELOADMAP  ; f3
@@ -67,7 +67,7 @@ const_value set $f1
 map_end EQU -1
 
 ; callback types
-const_value set 1
+	const_def 1
 	const MAPCALLBACK_TILES
 	const MAPCALLBACK_OBJECTS
 	const MAPCALLBACK_CMDQUEUE

@@ -1,5 +1,5 @@
 ; wPrinterStatus
-const_value set 1
+	const_def 1
 	const PRINTER_STATUS_CHECKING
 	const PRINTER_STATUS_TRANSMITTING
 	const PRINTER_STATUS_PRINTING

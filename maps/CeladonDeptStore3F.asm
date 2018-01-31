@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const CELADONDEPTSTORE3F_CLERK
 	const CELADONDEPTSTORE3F_YOUNGSTER
 	const CELADONDEPTSTORE3F_GAMEBOY_KID1

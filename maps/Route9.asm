@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const ROUTE9_YOUNGSTER1
 	const ROUTE9_LASS1
 	const ROUTE9_YOUNGSTER2

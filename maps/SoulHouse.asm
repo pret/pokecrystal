@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const SOULHOUSE_MRFUJI
 	const SOULHOUSE_TEACHER
 	const SOULHOUSE_LASS

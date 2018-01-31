@@ -55,7 +55,7 @@ MOVE_LENGTH EQU const_value
 ; indexes for:
 ; - PlayerStats and EnemyStats (see wram.asm)
 ; - party_struct and battle_struct members (see macros/wram.asm)
-const_value set 1
+	const_def 1
 	const STAT_HP
 	const STAT_ATK
 	const STAT_DEF
@@ -76,7 +76,7 @@ ATKDEFDV_SHINY EQU $EA
 SPDSPCDV_SHINY EQU $AA
 
 ; battle classes (wBattleMode values)
-const_value set 1
+	const_def 1
 	const WILD_BATTLE
 	const TRAINER_BATTLE
 
@@ -151,7 +151,7 @@ const_value set 1
 
 ; status condition bit flags
 SLP EQU %111 ; 0-7 turns
-const_value set 3
+	const_def 3
 	const PSN
 	const BRN
 	const FRZ

@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const OLIVINEPORTPASSAGE_POKEFAN_M
 
 OlivinePortPassage_MapScripts:

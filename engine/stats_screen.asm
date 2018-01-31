@@ -1,4 +1,4 @@
-const_value set 1
+	const_def 1
 	const PINK_PAGE  ; 1
 	const GREEN_PAGE ; 2
 	const BLUE_PAGE  ; 3

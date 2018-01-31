@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const SLOWPOKEWELLB2F_GYM_GUY
 	const SLOWPOKEWELLB2F_POKE_BALL
 

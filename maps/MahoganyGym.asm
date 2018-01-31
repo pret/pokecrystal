@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const MAHOGANYGYM_PRYCE
 	const MAHOGANYGYM_BUENA1
 	const MAHOGANYGYM_ROCKER1

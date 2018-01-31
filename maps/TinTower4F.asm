@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const TINTOWER4F_POKE_BALL1
 	const TINTOWER4F_POKE_BALL2
 	const TINTOWER4F_POKE_BALL3

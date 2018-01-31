@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const ROUTE36RUINSOFALPHGATE_OFFICER
 	const ROUTE36RUINSOFALPHGATE_GRAMPS
 

@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const CERULEANPOLICESTATION_FISHING_GURU
 	const CERULEANPOLICESTATION_POKEFAN_F
 	const CERULEANPOLICESTATION_DIGLETT

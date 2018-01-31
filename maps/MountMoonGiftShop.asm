@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const MOUNTMOONGIFTSHOP_GRAMPS1 ; morning only
 	const MOUNTMOONGIFTSHOP_GRAMPS2 ; day only
 	const MOUNTMOONGIFTSHOP_LASS1 ; morning only

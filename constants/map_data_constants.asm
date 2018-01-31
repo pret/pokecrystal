@@ -18,7 +18,7 @@ MAP_NONE   EQU 0
 NUM_MAPDEF_ATTRIBUTES EQU const_value
 
 ; map environments (wEnvironment)
-const_value set 1
+	const_def 1
 	const TOWN
 	const ROUTE
 	const INDOOR

@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const ROUTE8_BIKER1
 	const ROUTE8_BIKER2
 	const ROUTE8_BIKER3

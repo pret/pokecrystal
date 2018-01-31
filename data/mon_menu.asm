@@ -1,5 +1,5 @@
 ; MonMenuOptionStrings indexes
-const_value set 1
+	const_def 1
 	const MONMENUVALUE_STATS  ; 1
 	const MONMENUVALUE_SWITCH ; 2
 	const MONMENUVALUE_ITEM   ; 3

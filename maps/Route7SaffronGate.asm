@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const ROUTE7SAFFRONGATE_OFFICER
 
 Route7SaffronGate_MapScripts:

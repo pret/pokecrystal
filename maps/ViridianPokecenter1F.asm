@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const VIRIDIANPOKECENTER1F_NURSE
 	const VIRIDIANPOKECENTER1F_COOLTRAINER_M
 	const VIRIDIANPOKECENTER1F_COOLTRAINER_F

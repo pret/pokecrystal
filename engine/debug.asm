@@ -1,4 +1,4 @@
-const_value set $6a
+	const_def $6a
 	const DEBUGTEST_UP_ARROW ; $6a
 	const DEBUGTEST_TICKS    ; $6b
 	const DEBUGTEST_WHITE    ; $6c

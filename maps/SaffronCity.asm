@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const SAFFRONCITY_LASS1
 	const SAFFRONCITY_POKEFAN_M
 	const SAFFRONCITY_COOLTRAINER_M

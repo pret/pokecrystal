@@ -24,7 +24,7 @@
 ## Object constants
 
 <pre>
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const <i>MAPNAME</i>_<i>OBJECTNAME</i>
 </pre>
 

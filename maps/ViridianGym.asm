@@ -1,4 +1,4 @@
-const_value set 2 ; object constants
+	const_def 2 ; object constants
 	const VIRIDIANGYM_BLUE
 	const VIRIDIANGYM_GYM_GUY
 
