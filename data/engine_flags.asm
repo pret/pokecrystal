@@ -35,7 +35,7 @@ EngineFlags: ; 80462
 	engine_flag wStatusFlags2, STATUSFLAGS2_SAFARI_GAME_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_BIKE_SHOP_CALL_F
-	engine_flag wStatusFlags2, STATUSFLAGS2_CAN_USE_SWEET_SCENT_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_5_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_REACHED_GOLDENROD_F
 	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F
 
@@ -102,7 +102,7 @@ EngineFlags: ; 80462
 
 	engine_flag wLuckyNumberShowFlag, LUCKYNUMBERSHOW_GAME_OVER_F
 
-	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_3_F
 
 	engine_flag wDailyFlags, DAILYFLAGS_KURT_MAKING_BALLS_F ; $50
 	engine_flag wDailyFlags, DAILYFLAGS_BUG_CONTEST_F

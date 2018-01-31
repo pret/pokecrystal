@@ -150,7 +150,7 @@ WildBattleScript: ; 97cf9
 
 CanUseSweetScent:: ; 97cfd
 	ld hl, wStatusFlags
-	bit STATUSFLAGS2_CAN_USE_SWEET_SCENT_F, [hl]
+	bit STATUSFLAGS_NO_WILD_ENCOUNTERS_F, [hl]
 	jr nz, .no
 	ld a, [wEnvironment]
 	cp CAVE
