@@ -42,6 +42,6 @@ SpriteMovementData:: ; 4273
 	sprite_movement_data SPRITEMOVEFN_STRENGTH,              DOWN,   OBJECT_ACTION_BIG_DOLL,      $2e,    $01,    %1100 ; SPRITEMOVEDATA_BIGDOLL
 	sprite_movement_data SPRITEMOVEFN_BOULDERDUST,           DOWN,   OBJECT_ACTION_BOULDER_DUST,  $8e,    $01,    %0000 ; SPRITEMOVEDATA_BOULDERDUST
 	sprite_movement_data SPRITEMOVEFN_GRASS,                 DOWN,   OBJECT_ACTION_GRASS_SHAKE,   $8e,    $02,    %0000 ; SPRITEMOVEDATA_GRASS
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   OBJECT_ACTION_STAND,         $00,    $00,    %0010 ; SPRITEMOVEDATA_LAPRAS
+	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   OBJECT_ACTION_STAND,         $00,    $00,    %0010 ; SPRITEMOVEDATA_SWIM_WANDER
 	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   OBJECT_ACTION_STAND,         $00,    $00,    %0000 ; 25
 ; 4357

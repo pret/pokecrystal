@@ -1081,7 +1081,7 @@ In [home/map.asm](/home/map.asm):
 
 ## `Function6ec1` does not correctly limit object movement
 
-This bug is why the Lapras in Union Cave, which uses `SPRITEMOVEDATA_LAPRAS`, is not restricted by its `1, 1` movement radius.
+This bug is why the Lapras in Union Cave, which uses `SPRITEMOVEDATA_SWIM_WANDER`, is not restricted by its `1, 1` movement radius.
 
 In [engine/npc_movement.asm](/engine/npc_movement.asm):
 
