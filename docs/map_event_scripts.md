@@ -1,6 +1,26 @@
 # Map Event Scripts
 
 
+## Contents
+
+- [Object constants](#object-constants)
+- [Map scripts](#map-scripts)
+  - [Scene scripts](#scene-scripts)
+  - [Callbacks](#callbacks)
+    - [Callback types](#callback-types)
+- [Event scripts](#event-scripts)
+- [Text](#text)
+- [Movement data](#movement-data)
+- [Map events](#map-events)
+  - [Warp events](#warp-events)
+  - [Coord events](#coord-events)
+  - [BG events](#bg-events)
+    - [BG event types](#bg-event-types)
+  - [Object events](#object-events)
+    - [Movement types](#movement-types)
+    - [Object types](#object-types)
+
+
 ## Object constants
 
 <pre>
@@ -31,7 +51,7 @@ const_value set 2 ; object constants
 	callback <i>type</i>, <i>script</i>
 </pre>
 
-Callback types:
+#### Callback types
 
 - `MAPCALLBACK_NEWMAP`
 
@@ -105,7 +125,7 @@ Callback types:
 	bg_event <i>x</i>, <i>y</i>, <i>type</i>, <i>script</i>
 </pre>
 
-BG event types:
+#### BG event types
 
 - `BGEVENT_READ`
 
@@ -132,7 +152,7 @@ BG event types:
 	object_event <i>x</i>, <i>y</i>, <i>sprite</i>, <i>movement</i>, <i>rx</i>, <i>ry</i>, <i>h1</i>, <i>h2</i>, <i>palette</i>, <i>type</i>, <i>range</i>, <i>script</i>, <i>event_flag</i>
 </pre>
 
-Movement types:
+#### Movement types
 
 - `SPRITEMOVEDATA_STILL`
 
@@ -168,7 +188,7 @@ Movement types:
 
 - `SPRITEMOVEDATA_SWIM_WANDER`
 
-Object types:
+#### Object types
 
 - `OBJECTTYPE_SCRIPT`
 
