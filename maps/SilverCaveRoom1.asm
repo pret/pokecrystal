@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const SILVERCAVEROOM1_POKE_BALL1
 	const SILVERCAVEROOM1_POKE_BALL2
 	const SILVERCAVEROOM1_POKE_BALL3

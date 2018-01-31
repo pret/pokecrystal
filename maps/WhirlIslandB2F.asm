@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const WHIRLISLANDB2F_POKE_BALL1
 	const WHIRLISLANDB2F_POKE_BALL2
 	const WHIRLISLANDB2F_POKE_BALL3

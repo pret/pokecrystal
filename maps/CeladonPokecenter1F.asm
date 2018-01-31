@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const CELADONPOKECENTER1F_NURSE
 	const CELADONPOKECENTER1F_GENTLEMAN
 	const CELADONPOKECENTER1F_PHARMACIST

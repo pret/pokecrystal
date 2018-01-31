@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ECRUTEAKGYM_MORTY
 	const ECRUTEAKGYM_SAGE1
 	const ECRUTEAKGYM_SAGE2

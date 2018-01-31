@@ -1,6 +1,6 @@
 ROUTE43GATE_TOLL EQU 1000
 
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ROUTE43GATE_OFFICER
 	const ROUTE43GATE_ROCKET1
 	const ROUTE43GATE_ROCKET2

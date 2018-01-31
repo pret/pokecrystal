@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const LAKEOFRAGE_LANCE
 	const LAKEOFRAGE_GRAMPS
 	const LAKEOFRAGE_SUPER_NERD1

@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const TRAINERHOUSE1F_RECEPTIONIST
 	const TRAINERHOUSE1F_COOLTRAINER_M
 	const TRAINERHOUSE1F_COOLTRAINER_F

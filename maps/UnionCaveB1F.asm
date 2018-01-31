@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const UNIONCAVEB1F_POKEFAN_M1
 	const UNIONCAVEB1F_POKEFAN_M2
 	const UNIONCAVEB1F_SUPER_NERD1

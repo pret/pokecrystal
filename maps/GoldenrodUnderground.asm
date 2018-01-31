@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const GOLDENRODUNDERGROUND_SUPER_NERD1
 	const GOLDENRODUNDERGROUND_SUPER_NERD2
 	const GOLDENRODUNDERGROUND_SUPER_NERD3

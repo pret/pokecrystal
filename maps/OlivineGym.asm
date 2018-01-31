@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const OLIVINEGYM_JASMINE
 	const OLIVINEGYM_GYM_GUY
 

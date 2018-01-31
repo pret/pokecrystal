@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const SILPHCO1F_RECEPTIONIST
 	const SILPHCO1F_OFFICER
 

@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const CIANWOODGYM_CHUCK
 	const CIANWOODGYM_BLACK_BELT1
 	const CIANWOODGYM_BLACK_BELT2

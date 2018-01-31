@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const RUINSOFALPHOUTSIDE_YOUNGSTER1
 	const RUINSOFALPHOUTSIDE_SCIENTIST
 	const RUINSOFALPHOUTSIDE_FISHER

@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const NATIONALPARKBUGCONTEST_YOUNGSTER1
 	const NATIONALPARKBUGCONTEST_YOUNGSTER2
 	const NATIONALPARKBUGCONTEST_ROCKER

@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ROUTE2_BUG_CATCHER1
 	const ROUTE2_BUG_CATCHER2
 	const ROUTE2_BUG_CATCHER3

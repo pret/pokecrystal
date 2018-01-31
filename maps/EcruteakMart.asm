@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ECRUTEAKMART_CLERK
 	const ECRUTEAKMART_SUPER_NERD
 	const ECRUTEAKMART_GRANNY

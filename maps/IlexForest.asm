@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ILEXFOREST_FARFETCHD
 	const ILEXFOREST_YOUNGSTER1
 	const ILEXFOREST_BLACK_BELT

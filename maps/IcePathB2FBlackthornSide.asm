@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ICEPATHB2FBLACKTHORNSIDE_POKE_BALL
 
 IcePathB2FBlackthornSide_MapScripts:

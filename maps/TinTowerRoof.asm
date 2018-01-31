@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const TINTOWERROOF_HO_OH
 
 TinTowerRoof_MapScripts:

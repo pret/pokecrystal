@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const CELADONCAFE_SUPER_NERD
 	const CELADONCAFE_FISHER1
 	const CELADONCAFE_FISHER2

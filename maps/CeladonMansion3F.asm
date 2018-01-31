@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const CELADONMANSION3F_COOLTRAINER_M
 	const CELADONMANSION3F_GYM_GUY
 	const CELADONMANSION3F_SUPER_NERD

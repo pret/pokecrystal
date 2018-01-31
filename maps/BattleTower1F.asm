@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const BATTLETOWER1F_RECEPTIONIST
 	const BATTLETOWER1F_YOUNGSTER
 	const BATTLETOWER1F_COOLTRAINER_F

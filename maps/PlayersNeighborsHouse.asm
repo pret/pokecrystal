@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const PLAYERSNEIGHBORSHOUSE_COOLTRAINER_F
 	const PLAYERSNEIGHBORSHOUSE_POKEFAN_F
 

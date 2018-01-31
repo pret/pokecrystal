@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const OLIVINEPORT_SAILOR1
 	const OLIVINEPORT_SAILOR2
 	const OLIVINEPORT_SAILOR3

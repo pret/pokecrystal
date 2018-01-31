@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const VERMILIONPOKECENTER1F_NURSE
 	const VERMILIONPOKECENTER1F_FISHING_GURU
 	const VERMILIONPOKECENTER1F_SAILOR

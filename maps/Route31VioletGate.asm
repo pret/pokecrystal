@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ROUTE31VIOLETGATE_OFFICER
 	const ROUTE31VIOLETGATE_COOLTRAINER_F
 

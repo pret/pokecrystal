@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const SAFFRONMART_CLERK
 	const SAFFRONMART_COOLTRAINER_M
 	const SAFFRONMART_COOLTRAINER_F

@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const PEWTERNIDORANSPEECHHOUSE_SUPER_NERD
 	const PEWTERNIDORANSPEECHHOUSE_NIDORAN_M
 

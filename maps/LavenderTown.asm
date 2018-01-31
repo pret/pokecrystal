@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const LAVENDERTOWN_POKEFAN_M
 	const LAVENDERTOWN_TEACHER
 	const LAVENDERTOWN_GRAMPS

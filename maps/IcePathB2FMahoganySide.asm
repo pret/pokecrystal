@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ICEPATHB2FMAHOGANYSIDE_BOULDER1
 	const ICEPATHB2FMAHOGANYSIDE_BOULDER2
 	const ICEPATHB2FMAHOGANYSIDE_BOULDER3

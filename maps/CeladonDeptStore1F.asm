@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const CELADONDEPTSTORE1F_RECEPTIONIST
 	const CELADONDEPTSTORE1F_GENTLEMAN
 	const CELADONDEPTSTORE1F_TEACHER

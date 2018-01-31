@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const LAVENDERMART_CLERK
 	const LAVENDERMART_POKEFAN_M
 	const LAVENDERMART_ROCKER

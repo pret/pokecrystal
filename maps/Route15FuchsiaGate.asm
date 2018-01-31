@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ROUTE15FUCHSIAGATE_OFFICER
 
 Route15FuchsiaGate_MapScripts:

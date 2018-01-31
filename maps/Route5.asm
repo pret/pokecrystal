@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ROUTE5_POKEFAN_M
 
 Route5_MapScripts:

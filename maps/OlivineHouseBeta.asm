@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const OLIVINEHOUSEBETA_TEACHER
 	const OLIVINEHOUSEBETA_RHYDON
 

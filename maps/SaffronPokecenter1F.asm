@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const SAFFRONPOKECENTER1F_NURSE
 	const SAFFRONPOKECENTER1F_TEACHER
 	const SAFFRONPOKECENTER1F_FISHER

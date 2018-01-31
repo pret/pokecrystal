@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const CELADONGYM_ERIKA
 	const CELADONGYM_LASS1
 	const CELADONGYM_LASS2

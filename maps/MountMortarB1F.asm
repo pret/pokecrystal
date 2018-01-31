@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const MOUNTMORTARB1F_POKE_BALL1
 	const MOUNTMORTARB1F_POKE_BALL2
 	const MOUNTMORTARB1F_BOULDER

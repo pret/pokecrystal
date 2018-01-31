@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const VIOLETMART_CLERK
 	const VIOLETMART_GRANNY
 	const VIOLETMART_COOLTRAINER_M

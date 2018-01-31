@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const ECRUTEAKCITY_GRAMPS1
 	const ECRUTEAKCITY_GRAMPS2
 	const ECRUTEAKCITY_LASS1

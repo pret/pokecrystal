@@ -1,4 +1,4 @@
-const_value set 2 ; person constants
+const_value set 2 ; object constants
 	const PEWTERGYM_BROCK
 	const PEWTERGYM_YOUNGSTER
 	const PEWTERGYM_GYM_GUY
