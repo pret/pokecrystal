@@ -13,8 +13,8 @@
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/tyrogue/front.dimensions"
 	db 0, 0, 0, 0 ; padding
-	db MEDIUM_FAST ; growth rate
-	dn NO_EGGS, NO_EGGS ; egg groups
+	db GROWTH_MEDIUM_FAST ; growth rate
+	dn EGG_UNDISCOVERED, EGG_UNDISCOVERED ; egg groups
 
 	; tm/hm learnset
 	tmhm HEADBUTT, CURSE, TOXIC, ROCK_SMASH, HIDDEN_POWER, SUNNY_DAY, SNORE, PROTECT, ENDURE, FRUSTRATION, RETURN, MUD_SLAP, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, SWIFT, DETECT, REST, ATTRACT, THIEF, STRENGTH

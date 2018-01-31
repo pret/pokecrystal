@@ -13,8 +13,8 @@
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/smeargle/front.dimensions"
 	db 0, 0, 0, 0 ; padding
-	db FAST ; growth rate
-	dn FIELD, FIELD ; egg groups
+	db GROWTH_FAST ; growth rate
+	dn EGG_FIELD, EGG_FIELD ; egg groups
 
 	; tm/hm learnset
 	tmhm

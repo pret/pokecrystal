@@ -13,8 +13,8 @@
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/exeggcute/front.dimensions"
 	db 0, 0, 0, 0 ; padding
-	db SLOW ; growth rate
-	dn PLANT, PLANT ; egg groups
+	db GROWTH_SLOW ; growth rate
+	dn EGG_GRASS, EGG_GRASS ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, ROLLOUT, TOXIC, PSYCH_UP, HIDDEN_POWER, SUNNY_DAY, SNORE, PROTECT, GIGA_DRAIN, ENDURE, FRUSTRATION, SOLARBEAM, RETURN, PSYCHIC_M, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, SLUDGE_BOMB, DREAM_EATER, REST, ATTRACT, THIEF, NIGHTMARE, STRENGTH, FLASH

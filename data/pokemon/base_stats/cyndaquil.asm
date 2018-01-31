@@ -13,8 +13,8 @@
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/cyndaquil/front.dimensions"
 	db 0, 0, 0, 0 ; padding
-	db MEDIUM_SLOW ; growth rate
-	dn FIELD, FIELD ; egg groups
+	db GROWTH_MEDIUM_SLOW ; growth rate
+	dn EGG_FIELD, EGG_FIELD ; egg groups
 
 	; tm/hm learnset
 	tmhm HEADBUTT, CURSE, ROLLOUT, TOXIC, HIDDEN_POWER, SUNNY_DAY, SNORE, PROTECT, ENDURE, FRUSTRATION, IRON_TAIL, RETURN, DIG, MUD_SLAP, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, FIRE_BLAST, SWIFT, DEFENSE_CURL, DETECT, REST, ATTRACT, CUT, FLAMETHROWER

@@ -13,8 +13,8 @@
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/chinchou/front.dimensions"
 	db 0, 0, 0, 0 ; padding
-	db SLOW ; growth rate
-	dn FISH, FISH ; egg groups
+	db GROWTH_SLOW ; growth rate
+	dn EGG_WATER_2, EGG_WATER_2 ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, TOXIC, ZAP_CANNON, HIDDEN_POWER, SNORE, PROTECT, RAIN_DANCE, ENDURE, FRUSTRATION, THUNDER, RETURN, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, REST, ATTRACT, SURF, FLASH, WHIRLPOOL, WATERFALL, THUNDERBOLT, ICE_BEAM

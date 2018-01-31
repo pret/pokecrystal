@@ -37,30 +37,30 @@ GENDERLESS   EQU -1
 ; BaseGrowthRate values
 ; GrowthRates indexes (see data/growth_rates.asm)
 	const_def
-	const MEDIUM_FAST
-	const SLIGHTLY_FAST
-	const SLIGHTLY_SLOW
-	const MEDIUM_SLOW
-	const FAST
-	const SLOW
+	const GROWTH_MEDIUM_FAST
+	const GROWTH_SLIGHTLY_FAST
+	const GROWTH_SLIGHTLY_SLOW
+	const GROWTH_MEDIUM_SLOW
+	const GROWTH_FAST
+	const GROWTH_SLOW
 
 ; BaseEggGroups values
 	const_def 1
-	const MONSTER      ; 1
-	const AMPHIBIAN    ; 2
-	const INSECT       ; 3
-	const AVIAN        ; 4
-	const FIELD        ; 5
-	const FAIRY        ; 6
-	const PLANT        ; 7
-	const HUMANSHAPE   ; 8
-	const INVERTEBRATE ; 9
-	const MINERAL      ; a
-	const AMORPHOUS    ; b
-	const FISH         ; c
-	const POLY         ; d
-	const REPTILE      ; e
-	const NO_EGGS      ; f
+	const EGG_MONSTER      ; 1
+	const EGG_WATER_1      ; 2
+	const EGG_BUG          ; 3
+	const EGG_FLYING       ; 4
+	const EGG_FIELD        ; 5
+	const EGG_FAIRY        ; 6
+	const EGG_GRASS        ; 7
+	const EGG_HUMANLIKE    ; 8
+	const EGG_WATER_3      ; 9
+	const EGG_MINERAL      ; a
+	const EGG_AMORPHOUS    ; b
+	const EGG_WATER_2      ; c
+	const EGG_DITTO        ; d
+	const EGG_DRAGON       ; e
+	const EGG_UNDISCOVERED ; f
 
 
 ; pokedex entries (see data/pokemon/dex_entries.asm)

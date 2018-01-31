@@ -13,8 +13,8 @@
 	db 5 ; unknown 2
 	INCBIN "gfx/pokemon/wobbuffet/front.dimensions"
 	db 0, 0, 0, 0 ; padding
-	db MEDIUM_FAST ; growth rate
-	dn AMORPHOUS, AMORPHOUS ; egg groups
+	db GROWTH_MEDIUM_FAST ; growth rate
+	dn EGG_AMORPHOUS, EGG_AMORPHOUS ; egg groups
 
 	; tm/hm learnset
 	tmhm
