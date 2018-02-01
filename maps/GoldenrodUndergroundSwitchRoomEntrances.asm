@@ -47,7 +47,7 @@ ENDM
 GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOTHING
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .UpdateDoorPositions
@@ -130,7 +130,7 @@ UndergroundSilverScene1:
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
-	setscene SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOTHING
+	setscene SCENE_FINISHED
 	waitsfx
 	playmapmusic
 	end
@@ -149,7 +149,7 @@ UndergroundSilverScene2:
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
-	setscene SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOTHING
+	setscene SCENE_FINISHED
 	waitsfx
 	playmapmusic
 	end

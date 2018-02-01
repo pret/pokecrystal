@@ -13,7 +13,7 @@
 TinTower1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .FaceSuicune ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_TINTOWER1F_NOTHING
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 2 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .NPCsCallback
@@ -128,7 +128,7 @@ TinTower1F_MapScripts:
 	setmapscene ROUTE_36, SCENE_ROUTE36_NOTHING
 	setevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	setmapscene CIANWOOD_CITY, SCENE_CIANWOODCITY_NOTHING
-	setscene SCENE_TINTOWER1F_NOTHING
+	setscene SCENE_FINISHED
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	reloadmapafterbattle
 	pause 20

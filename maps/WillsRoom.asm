@@ -4,7 +4,7 @@
 WillsRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_WILLSROOM_NOTHING
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .WillsRoomDoors
@@ -35,7 +35,7 @@ WillsRoom_MapScripts:
 	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
-	setscene SCENE_WILLSROOM_NOTHING
+	setscene SCENE_FINISHED
 	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end

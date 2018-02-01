@@ -4,13 +4,13 @@
 BattleTowerElevator_MapScripts:
 	db 2 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT
-	scene_script .Scene1 ; SCENE_BATTLETOWERELEVATOR_NOTHING
+	scene_script .Scene1 ; SCENE_FINISHED
 
 	db 0 ; callbacks
 
 .Scene0:
 	priorityjump .RideElevator
-	setscene SCENE_BATTLETOWERELEVATOR_NOTHING
+	setscene SCENE_FINISHED
 .Scene1:
 	end
 

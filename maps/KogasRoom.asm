@@ -4,7 +4,7 @@
 KogasRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .LockDoor ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_KOGASROOM_NOTHING
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .KogasRoomDoors
@@ -35,7 +35,7 @@ KogasRoom_MapScripts:
 	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
-	setscene SCENE_KOGASROOM_NOTHING
+	setscene SCENE_FINISHED
 	setevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end

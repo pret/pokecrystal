@@ -4,7 +4,7 @@
 HallOfFame_MapScripts:
 	db 2 ; scene scripts
 	scene_script .EnterHallOfFame ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_HALLOFFAME_NOTHING
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 0 ; callbacks
 
@@ -26,7 +26,7 @@ HallOfFame_MapScripts:
 	closetext
 	spriteface HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
-	setscene SCENE_HALLOFFAME_NOTHING
+	setscene SCENE_FINISHED
 	pause 15
 	writebyte HEALMACHINE_HALL_OF_FAME
 	special HealMachineAnim
@@ -36,7 +36,7 @@ HallOfFame_MapScripts:
 	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	setmapscene SPROUT_TOWER_3F, SCENE_SPROUTTOWER3F_NOTHING
+	setmapscene SPROUT_TOWER_3F, SCENE_FINISHED
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue .SkipPhoneCall

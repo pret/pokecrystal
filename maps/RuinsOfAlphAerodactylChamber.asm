@@ -1,7 +1,7 @@
 RuinsOfAlphAerodactylChamber_MapScripts:
 	db 2 ; scene scripts
 	scene_script .CheckWall ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_RUINSOFALPHAERODACTYLCHAMBER_NOTHING
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
@@ -41,7 +41,7 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene SCENE_RUINSOFALPHAERODACTYLCHAMBER_NOTHING
+	setscene SCENE_FINISHED
 	closetext
 	end
 

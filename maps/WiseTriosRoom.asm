@@ -9,7 +9,7 @@
 WiseTriosRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_WISETRIOSROOM_NOTHING
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .WiseTrioCallback
@@ -103,7 +103,7 @@ TrainerSageKoji:
 	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
 	spriteface WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	setscene SCENE_WISETRIOSROOM_NOTHING
+	setscene SCENE_FINISHED
 	end
 
 UnknownScript_0x9861b:

@@ -9,7 +9,7 @@
 VictoryRoad_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_VICTORYROAD_NOTHING
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 0 ; callbacks
 
@@ -30,7 +30,7 @@ UnknownScript_0x74492:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x7454c
 	disappear VICTORYROAD_SILVER
-	setscene SCENE_VICTORYROAD_NOTHING
+	setscene SCENE_FINISHED
 	playmapmusic
 	end
 
@@ -44,7 +44,7 @@ UnknownScript_0x744b5:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x74555
 	disappear VICTORYROAD_SILVER
-	setscene SCENE_VICTORYROAD_NOTHING
+	setscene SCENE_FINISHED
 	playmapmusic
 	end
 

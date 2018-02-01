@@ -6,7 +6,7 @@
 VictoryRoadGate_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_VICTORYROADGATE_NOTHING
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 0 ; callbacks
 
@@ -38,7 +38,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateEightBadgesText
 	waitbutton
 	closetext
-	setscene SCENE_VICTORYROADGATE_NOTHING
+	setscene SCENE_FINISHED
 	end
 
 VictoryRoadGateLeftBlackBeltScript:

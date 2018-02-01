@@ -5,7 +5,7 @@
 RuinsOfAlphKabutoChamber_MapScripts:
 	db 2 ; scene scripts
 	scene_script .CheckWall ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_RUINSOFALPHKABUTOCHAMBER_NOTHING
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
@@ -45,7 +45,7 @@ RuinsOfAlphKabutoChamber_MapScripts:
 	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene SCENE_RUINSOFALPHKABUTOCHAMBER_NOTHING
+	setscene SCENE_FINISHED
 	closetext
 	end
 

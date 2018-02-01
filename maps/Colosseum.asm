@@ -5,8 +5,8 @@
 Colosseum_MapScripts:
 	db 3 ; scene scripts
 	scene_script .InitializeColosseum ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_COLOSSEUM_NOTHING
-	scene_script .DummyScene2 ; SCENE_COLOSSEUM_UNUSED
+	scene_script .DummyScene1 ; SCENE_FINISHED
+	scene_script .DummyScene2 ; unused
 
 	db 2 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .SetWhichChris
@@ -39,7 +39,7 @@ Colosseum_MapScripts:
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene SCENE_COLOSSEUM_NOTHING
+	setscene SCENE_FINISHED
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_COLOSSEUM
 	end
 

@@ -5,7 +5,7 @@
 TradeCenter_MapScripts:
 	db 2 ; scene scripts
 	scene_script .InitializeTradeCenter ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_TRADECENTER_NOTHING
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .SetWhichChris
@@ -30,7 +30,7 @@ TradeCenter_MapScripts:
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene SCENE_TRADECENTER_NOTHING
+	setscene SCENE_FINISHED
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_TRADE_CENTER
 	end
 

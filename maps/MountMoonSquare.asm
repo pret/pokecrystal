@@ -5,11 +5,11 @@
 
 MountMoonSquare_MapScripts:
 	db 1 ; scene scripts
-	scene_script .DummyScene
+	scene_script .DummyScene ; SCENE_DEFAULT
 
 	db 2 ; callbacks
-	callback MAPCALLBACK_NEWMAP, .DisappearMoonStone ; SCENE_DEFAULT
-	callback MAPCALLBACK_OBJECTS, .DisappearRock ; SCENE_MOUNTMOONSQUARE_UNUSED
+	callback MAPCALLBACK_NEWMAP, .DisappearMoonStone
+	callback MAPCALLBACK_OBJECTS, .DisappearRock
 
 .DummyScene:
 	end

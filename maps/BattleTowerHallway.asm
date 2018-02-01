@@ -4,13 +4,13 @@
 BattleTowerHallway_MapScripts:
 	db 2 ; scene scripts
 	scene_script .Scene0 ; SCENE_DEFAULT
-	scene_script .Scene1 ; SCENE_BATTLETOWERHALLWAY_NOTHING
+	scene_script .Scene1 ; SCENE_FINISHED
 
 	db 0 ; callbacks
 
 .Scene0:
 	priorityjump .ChooseBattleRoom
-	setscene SCENE_BATTLETOWERHALLWAY_NOTHING
+	setscene SCENE_FINISHED
 .Scene1:
 	end
 

@@ -7,7 +7,7 @@
 MahoganyTown_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_MAHOGANYTOWN_NOTHING
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint

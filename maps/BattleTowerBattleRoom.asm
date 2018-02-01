@@ -5,14 +5,14 @@
 BattleTowerBattleRoom_MapScripts:
 	db 2 ; scene scripts
 	scene_script .EnterBattleRoom ; SCENE_DEFAULT
-	scene_script .DummyScene ; SCENE_BATTLETOWERBATTLEROOM_NOTHING
+	scene_script .DummyScene ; SCENE_FINISHED
 
 	db 0 ; callbacks
 
 .EnterBattleRoom: ; 0x9f419
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
 	priorityjump Script_BattleRoom
-	setscene SCENE_BATTLETOWERBATTLEROOM_NOTHING
+	setscene SCENE_FINISHED
 .DummyScene:
 	end
 

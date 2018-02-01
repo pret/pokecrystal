@@ -10,7 +10,7 @@
 SproutTower3F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_SPROUTTOWER3F_NOTHING
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 0 ; callbacks
 
@@ -57,7 +57,7 @@ UnknownScript_0x184947:
 	disappear SPROUTTOWER3F_SILVER
 	waitsfx
 	special FadeInQuickly
-	setscene SCENE_SPROUTTOWER3F_NOTHING
+	setscene SCENE_FINISHED
 	special RestartMapMusic
 	end
 

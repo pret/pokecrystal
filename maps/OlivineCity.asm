@@ -7,7 +7,7 @@
 OlivineCity_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_OLIVINECITY_NOTHING
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -39,7 +39,7 @@ UnknownScript_0x1a8833:
 	applymovement PLAYER, MovementData_0x1a88f4
 	spriteface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88db
-	setscene SCENE_OLIVINECITY_NOTHING
+	setscene SCENE_FINISHED
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
@@ -64,7 +64,7 @@ UnknownScript_0x1a886b:
 	spriteface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88e8
 	disappear OLIVINECITY_OLIVINE_RIVAL
-	setscene SCENE_OLIVINECITY_NOTHING
+	setscene SCENE_FINISHED
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
 	special LoadUsedSpritesGFX

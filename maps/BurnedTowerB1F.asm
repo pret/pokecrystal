@@ -12,7 +12,7 @@
 BurnedTowerB1F_MapScripts:
 	db 2 ; scene scripts
 	scene_script .DummyScene0 ; SCENE_DEFAULT
-	scene_script .DummyScene1 ; SCENE_BURNEDTOWERB1F_NOTHING
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .LadderCallback
@@ -79,10 +79,10 @@ ReleaseTheBeasts:
 	disappear BURNEDTOWERB1F_SUICUNE1
 	waitsfx
 	special RestartMapMusic
-	setscene SCENE_BURNEDTOWERB1F_NOTHING
+	setscene SCENE_FINISHED
 	setevent EVENT_RELEASED_THE_BEASTS
 	special InitRoamMons
-	setmapscene ECRUTEAK_GYM, SCENE_ECRUTEAKGYM_NOTHING
+	setmapscene ECRUTEAK_GYM, SCENE_FINISHED
 	setmapscene CIANWOOD_CITY, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	setevent EVENT_ECRUTEAK_GYM_GRAMPS
@@ -94,7 +94,7 @@ ReleaseTheBeasts:
 	changeblock 6, 14, $1b ; ladder
 	reloadmappart
 	closetext
-	setscene SCENE_BURNEDTOWERB1F_NOTHING
+	setscene SCENE_FINISHED
 	end
 
 BurnedTowerB1FEusine:

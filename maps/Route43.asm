@@ -21,7 +21,7 @@ Route43_MapScripts:
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43_GATE, SCENE_ROUTE43GATE_NOTHING
+	setmapscene ROUTE_43_GATE, SCENE_FINISHED
 	return
 
 TrainerCamperSpencer:

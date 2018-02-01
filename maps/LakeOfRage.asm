@@ -14,8 +14,8 @@
 
 LakeOfRage_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	scene_script .DummyScene0 ; unusable
+	scene_script .DummyScene1 ; unusable
 
 	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
