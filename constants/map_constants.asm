@@ -373,7 +373,7 @@ ENDM
 	mapconst TRADE_CENTER,                                 4,  5 ;  2
 	mapconst COLOSSEUM,                                    4,  5 ;  3
 	mapconst TIME_CAPSULE,                                 4,  5 ;  4
-	mapconst MOBILE_TRADE_ROOM_MOBILE,                     4,  5 ;  5
+	mapconst MOBILE_TRADE_ROOM,                            4,  5 ;  5
 	mapconst MOBILE_BATTLE_ROOM,                           4,  5 ;  6
 
 	newgroup                                                     ; 21

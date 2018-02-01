@@ -382,7 +382,7 @@ Script_LeftMobileTradeRoom:
 	special Function101220
 	scall Script_WalkOutOfMobileTradeRoom
 	setscene SCENE_POKECENTER2F_0
-	setmapscene MOBILE_TRADE_ROOM_MOBILE, SCENE_MOBILETRADEROOMMOBILE_0
+	setmapscene MOBILE_TRADE_ROOM, SCENE_MOBILETRADEROOM_0
 	end
 
 Script_WalkOutOfMobileTradeRoom:
@@ -1028,7 +1028,7 @@ Pokecenter2F_MapEvents:
 	warp_event 5, 0, 1, TRADE_CENTER
 	warp_event 9, 0, 1, COLOSSEUM
 	warp_event 13, 2, 1, TIME_CAPSULE
-	warp_event 6, 0, 1, MOBILE_TRADE_ROOM_MOBILE
+	warp_event 6, 0, 1, MOBILE_TRADE_ROOM
 	warp_event 10, 0, 1, MOBILE_BATTLE_ROOM
 
 	db 0 ; coord events

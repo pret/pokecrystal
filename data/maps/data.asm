@@ -584,7 +584,7 @@ ENDM
 	map_data TradeCenter, TRADE_CENTER, $00, 0
 	map_data Colosseum, COLOSSEUM, $00, 0
 	map_data TimeCapsule, TIME_CAPSULE, $00, 0
-	map_data MobileTradeRoomMobile, MOBILE_TRADE_ROOM_MOBILE, $00, 0
+	map_data MobileTradeRoom, MOBILE_TRADE_ROOM, $00, 0
 	map_data MobileBattleRoom, MOBILE_BATTLE_ROOM, $00, 0
 	map_data CeladonDeptStore1F, CELADON_DEPT_STORE_1F, $00, 0
 	map_data CeladonDeptStore2F, CELADON_DEPT_STORE_2F, $00, 0

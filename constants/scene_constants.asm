@@ -377,10 +377,10 @@
 	const SCENE_MOUNTMOONSQUARE_0
 	const SCENE_MOUNTMOONSQUARE_1
 
-; wMobileTradeRoomMobileSceneID
+; wMobileTradeRoomSceneID
 	const_def
-	const SCENE_MOBILETRADEROOMMOBILE_0
-	const SCENE_MOBILETRADEROOMMOBILE_1
+	const SCENE_MOBILETRADEROOM_0
+	const SCENE_MOBILETRADEROOM_1
 
 ; wMobileBattleRoomSceneID
 	const_def

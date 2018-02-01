@@ -2577,7 +2577,7 @@ wVermilionPortSceneID::                           db ; d9bb
 wFastShip1FSceneID::                              db ; d9bc
 wFastShipB1FSceneID::                             db ; d9bd
 wMountMoonSquareSceneID::                         db ; d9be
-wMobileTradeRoomMobileSceneID::                   db ; d9bf
+wMobileTradeRoomSceneID::                         db ; d9bf
 wMobileBattleRoomSceneID::                        db ; d9c0
 
 	ds 49

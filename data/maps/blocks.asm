@@ -1025,8 +1025,8 @@ BattleTowerBattleRoom_Blocks:
 PokecomCenterAdminRoomMobile_Blocks:
 	INCBIN "maps/PokecomCenterAdminRoomMobile.blk"
 
-MobileTradeRoomMobile_Blocks:
-	INCBIN "maps/MobileTradeRoomMobile.blk"
+MobileTradeRoom_Blocks:
+	INCBIN "maps/MobileTradeRoom.blk"
 
 MobileBattleRoom_Blocks:
 	INCBIN "maps/MobileBattleRoom.blk"

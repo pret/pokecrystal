@@ -83,7 +83,7 @@ MapScenes:: ; 4d01e
 	scene_def FAST_SHIP_1F,                                wFastShip1FSceneID
 	scene_def FAST_SHIP_B1F,                               wFastShipB1FSceneID
 	scene_def MOUNT_MOON_SQUARE,                           wMountMoonSquareSceneID
-	scene_def MOBILE_TRADE_ROOM_MOBILE,                    wMobileTradeRoomMobileSceneID
+	scene_def MOBILE_TRADE_ROOM,                           wMobileTradeRoomSceneID
 	scene_def MOBILE_BATTLE_ROOM,                          wMobileBattleRoomSceneID
 	db -1
 ; 4d15b

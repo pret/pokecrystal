@@ -1,11 +1,11 @@
-MobileTradeRoomMobile_MapScripts:
+MobileTradeRoom_MapScripts:
 	db 2 ; scene scripts
-	scene_script .InitializeMobileTradeRoomMobile ; SCENE_MOBILETRADEROOMMOBILE_0
-	scene_script .DummyScene ; SCENE_MOBILETRADEROOMMOBILE_1
+	scene_script .InitializeMobileTradeRoom ; SCENE_MOBILETRADEROOM_0
+	scene_script .DummyScene ; SCENE_MOBILETRADEROOM_1
 
 	db 0 ; callbacks
 
-.InitializeMobileTradeRoomMobile:
+.InitializeMobileTradeRoom:
 	priorityjump .InitializeAndPreparePokecenter2F
 	end
 
@@ -13,26 +13,26 @@ MobileTradeRoomMobile_MapScripts:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	setscene SCENE_MOBILETRADEROOMMOBILE_1
+	setscene SCENE_MOBILETRADEROOM_1
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_4
 	end
 
-MapMobileTradeRoomMobileSignpost0Script:
+MapMobileTradeRoomSignpost0Script:
 	refreshscreen
 	special Function1037c2
-	writetext MobileTradeRoomMobile_EstablishingCommsText
+	writetext MobileTradeRoom_EstablishingCommsText
 	waitbutton
 	reloadmappart
 	special Function101231
 	closetext
 	end
 
-MobileTradeRoomMobile_EstablishingCommsText:
+MobileTradeRoom_EstablishingCommsText:
 	text "Establishing"
 	line "communications…"
 	done
 
-MobileTradeRoomMobile_MapEvents:
+MobileTradeRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
@@ -42,6 +42,6 @@ MobileTradeRoomMobile_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 4, 2, BGEVENT_UP, MapMobileTradeRoomMobileSignpost0Script
+	bg_event 4, 2, BGEVENT_UP, MapMobileTradeRoomSignpost0Script
 
 	db 0 ; object events
