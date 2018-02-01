@@ -7,8 +7,8 @@
 
 RuinsOfAlphOutside_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	scene_script .DummyScene0 ; SCENE_RUINSOFALPHOUTSIDE_0
+	scene_script .DummyScene1 ; SCENE_RUINSOFALPHOUTSIDE_1
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .ScientistCallback
@@ -33,12 +33,12 @@ RuinsOfAlphOutside_MapScripts:
 
 .YesScientist:
 	appear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene 1
+	setscene SCENE_RUINSOFALPHOUTSIDE_1
 	return
 
 .NoScientist:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene 0
+	setscene SCENE_RUINSOFALPHOUTSIDE_0
 	return
 
 RuinsOfAlphOutsideScientistScene1:
@@ -64,7 +64,7 @@ UnknownScript_0x58044:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	stopfollow
 	applymovement PLAYER, MovementData_0x580c5
-	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, 1
+	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, SCENE_RUINSOFALPHRESEARCHCENTER_1
 	warpcheck
 	end
 
@@ -295,8 +295,8 @@ RuinsOfAlphOutside_MapEvents:
 	warp_event 13, 21, 2, ROUTE_32_RUINS_OF_ALPH_GATE
 
 	db 2 ; coord events
-	coord_event 11, 14, 1, RuinsOfAlphOutsideScientistScene1
-	coord_event 10, 15, 1, RuinsOfAlphOutsideScientistScene2
+	coord_event 11, 14, SCENE_RUINSOFALPHOUTSIDE_1, RuinsOfAlphOutsideScientistScene1
+	coord_event 10, 15, SCENE_RUINSOFALPHOUTSIDE_1, RuinsOfAlphOutsideScientistScene2
 
 	db 3 ; bg events
 	bg_event 16, 8, BGEVENT_READ, RuinsOfAlphOutsideSignpost0Script

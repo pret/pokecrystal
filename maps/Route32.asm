@@ -16,9 +16,9 @@
 
 Route32_MapScripts:
 	db 3 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
-	scene_script .DummyScene2
+	scene_script .DummyScene0 ; SCENE_ROUTE32_0
+	scene_script .DummyScene1 ; SCENE_ROUTE32_1
+	scene_script .DummyScene2 ; SCENE_ROUTE32_2
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .Frieda
@@ -125,7 +125,7 @@ Route32WannaBuyASlowpokeTailScript:
 SlowpokeTailSalesmanScript:
 	faceplayer
 _OfferToSellSlowpokeTail:
-	setscene 2
+	setscene SCENE_ROUTE32_2
 	opentext
 	writetext Text_MillionDollarSlowpokeTail
 	yesorno
@@ -936,8 +936,8 @@ Route32_MapEvents:
 	warp_event 6, 79, 4, UNION_CAVE_1F
 
 	db 2 ; coord events
-	coord_event 18, 8, 0, Route32CooltrainerMStopsYouScene
-	coord_event 7, 71, 1, Route32WannaBuyASlowpokeTailScript
+	coord_event 18, 8, SCENE_ROUTE32_0, Route32CooltrainerMStopsYouScene
+	coord_event 7, 71, SCENE_ROUTE32_1, Route32WannaBuyASlowpokeTailScript
 
 	db 6 ; bg events
 	bg_event 13, 5, BGEVENT_READ, Route32Sign

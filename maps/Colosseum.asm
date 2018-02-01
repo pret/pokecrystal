@@ -4,9 +4,9 @@
 
 Colosseum_MapScripts:
 	db 3 ; scene scripts
-	scene_script .InitializeColosseum
-	scene_script .DummyScene1
-	scene_script .DummyScene2
+	scene_script .InitializeColosseum ; SCENE_COLOSSEUM_0
+	scene_script .DummyScene1 ; SCENE_COLOSSEUM_1
+	scene_script .DummyScene2 ; SCENE_COLOSSEUM_2
 
 	db 2 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .SetWhichChris
@@ -35,12 +35,12 @@ Colosseum_MapScripts:
 	return
 
 .PreparePokecenter2F:
-	setmapscene POKECENTER_2F, 2
+	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_2
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene 1
-	setmapscene POKECENTER_2F, 2
+	setscene SCENE_COLOSSEUM_1
+	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_2
 	end
 
 MapColosseumSignpost1Script:

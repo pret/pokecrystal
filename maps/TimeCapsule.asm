@@ -4,8 +4,8 @@
 
 TimeCapsule_MapScripts:
 	db 2 ; scene scripts
-	scene_script .InitializeTimeCapsule
-	scene_script .DummyScene
+	scene_script .InitializeTimeCapsule ; SCENE_TIMECAPSULE_0
+	scene_script .DummyScene ; SCENE_TIMECAPSULE_1
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .SetWhichChris
@@ -30,8 +30,8 @@ TimeCapsule_MapScripts:
 	return
 
 .InitializeAndPreparePokecenter2F:
-	setscene 1
-	setmapscene POKECENTER_2F, 3
+	setscene SCENE_TIMECAPSULE_1
+	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_3
 	end
 
 MapTimeCapsuleSignpost1Script:

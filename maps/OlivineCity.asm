@@ -6,8 +6,8 @@
 
 OlivineCity_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	scene_script .DummyScene0 ; SCENE_OLIVINECITY_0
+	scene_script .DummyScene1 ; SCENE_OLIVINECITY_1
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -39,7 +39,7 @@ UnknownScript_0x1a8833:
 	applymovement PLAYER, MovementData_0x1a88f4
 	spriteface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88db
-	setscene 1
+	setscene SCENE_OLIVINECITY_1
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
@@ -64,7 +64,7 @@ UnknownScript_0x1a886b:
 	spriteface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88e8
 	disappear OLIVINECITY_OLIVINE_RIVAL
-	setscene 1
+	setscene SCENE_OLIVINECITY_1
 	special RestartMapMusic
 	variablesprite SPRITE_OLIVINE_RIVAL, SPRITE_SWIMMER_GUY
 	special LoadUsedSpritesGFX
@@ -302,8 +302,8 @@ OlivineCity_MapEvents:
 	warp_event 20, 27, 2, OLIVINE_PORT_PASSAGE
 
 	db 2 ; coord events
-	coord_event 13, 12, 0, UnknownScript_0x1a8833
-	coord_event 13, 13, 0, UnknownScript_0x1a886b
+	coord_event 13, 12, SCENE_OLIVINECITY_0, UnknownScript_0x1a8833
+	coord_event 13, 13, SCENE_OLIVINECITY_0, UnknownScript_0x1a886b
 
 	db 7 ; bg events
 	bg_event 17, 11, BGEVENT_READ, OlivineCitySign

@@ -5,8 +5,8 @@
 
 RuinsOfAlphInnerChamber_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .UnownAppear
+	scene_script .DummyScene0 ; SCENE_RUINSOFALPHINNERCHAMBER_0
+	scene_script .UnownAppear ; SCENE_RUINSOFALPHINNERCHAMBER_1
 
 	db 0 ; callbacks
 
@@ -22,7 +22,7 @@ RuinsOfAlphInnerChamber_MapScripts:
 	writetext RuinsOfAlphStrangePresenceText
 	waitbutton
 	closetext
-	setscene 0
+	setscene SCENE_RUINSOFALPHINNERCHAMBER_0
 	setevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
 	end

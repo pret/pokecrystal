@@ -356,7 +356,7 @@ BugContestResults_DidNotLeaveMons
 	waitbutton
 BugContestResults_CleanUp
 	closetext
-	setscene 0
+	setscene SCENE_ROUTE36NATIONALPARKGATE_0
 	setmapscene ROUTE_35_NATIONAL_PARK_GATE, 0
 	setevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	setevent EVENT_BUG_CATCHING_CONTESTANT_2A

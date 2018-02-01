@@ -1,7 +1,7 @@
 RuinsOfAlphHoOhChamber_MapScripts:
 	db 2 ; scene scripts
-	scene_script .CheckWall
-	scene_script .DummyScene
+	scene_script .CheckWall ; SCENE_RUINSOFALPHHOOHCHAMBER_0
+	scene_script .DummyScene ; SCENE_RUINSOFALPHHOOHCHAMBER_1
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
@@ -42,7 +42,7 @@ RuinsOfAlphHoOhChamber_MapScripts:
 	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene 1
+	setscene SCENE_RUINSOFALPHHOOHCHAMBER_1
 	closetext
 	end
 
@@ -58,7 +58,7 @@ UnknownScript_0x585ba:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_HO_OH_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_X_TO_Z
-	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, 1
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_1
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $18 ; left hole

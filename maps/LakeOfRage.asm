@@ -60,7 +60,7 @@ UnknownScript_0x70035:
 	disappear LAKEOFRAGE_LANCE
 	clearevent EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	setevent EVENT_DECIDED_TO_HELP_LANCE
-	setmapscene MAHOGANY_MART_1F, 1
+	setmapscene MAHOGANY_MART_1F, SCENE_MAHOGANYMART1F_1
 	end
 
 UnknownScript_0x7004e:
@@ -99,7 +99,7 @@ UnknownScript_0x7007a:
 	waitsfx
 	itemnotify
 	closetext
-	setscene 0
+	setscene 0 ; Lake of Rage does not have a scene variable
 	appear LAKEOFRAGE_LANCE
 	end
 

@@ -14,9 +14,9 @@
 
 Route36NationalParkGate_MapScripts:
 	db 3 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
-	scene_script .LeaveContestEarly
+	scene_script .DummyScene0 ; SCENE_ROUTE36NATIONALPARKGATE_0
+	scene_script .DummyScene1 ; SCENE_ROUTE36NATIONALPARKGATE_1
+	scene_script .LeaveContestEarly ; SCENE_ROUTE36NATIONALPARKGATE_2
 
 	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckIfContestRunning
@@ -35,11 +35,11 @@ Route36NationalParkGate_MapScripts:
 .CheckIfContestRunning:
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
-	setscene 0
+	setscene SCENE_ROUTE36NATIONALPARKGATE_0
 	return
 
 .BugContestIsRunning:
-	setscene 2
+	setscene SCENE_ROUTE36NATIONALPARKGATE_2
 	return
 
 .CheckIfContestAvailable:

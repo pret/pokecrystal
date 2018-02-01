@@ -6,8 +6,8 @@
 
 MahoganyTown_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	scene_script .DummyScene0 ; SCENE_MAHOGANYTOWN_0
+	scene_script .DummyScene1 ; SCENE_MAHOGANYTOWN_1
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -253,8 +253,8 @@ MahoganyTown_MapEvents:
 	warp_event 9, 1, 3, ROUTE_43_MAHOGANY_GATE
 
 	db 2 ; coord events
-	coord_event 19, 8, 0, UnknownScript_0x190013
-	coord_event 19, 9, 0, UnknownScript_0x190013
+	coord_event 19, 8, SCENE_MAHOGANYTOWN_0, UnknownScript_0x190013
+	coord_event 19, 9, SCENE_MAHOGANYTOWN_0, UnknownScript_0x190013
 
 	db 4 ; bg events
 	bg_event 1, 5, BGEVENT_READ, MahoganyTownSign

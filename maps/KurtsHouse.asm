@@ -309,7 +309,7 @@ KurtScript_0x18e178:
 	clearevent EVENT_AZALEA_TOWN_KURT
 	waitsfx
 	special RestartMapMusic
-	setmapscene AZALEA_TOWN, 2
+	setmapscene AZALEA_TOWN, SCENE_AZALEATOWN_2
 	end
 
 KurtScript_0x18e3bd:

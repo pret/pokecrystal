@@ -6,9 +6,9 @@
 
 FastShip1F_MapScripts:
 	db 3 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .EnterFastShip
-	scene_script .DummyScene2
+	scene_script .DummyScene0 ; SCENE_FASTSHIP1F_0
+	scene_script .EnterFastShip ; SCENE_FASTSHIP1F_1
+	scene_script .DummyScene2 ; SCENE_FASTSHIP1F_2
 
 	db 0 ; callbacks
 
@@ -33,11 +33,11 @@ FastShip1F_MapScripts:
 	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .SkipGrandpa
-	setscene 2
+	setscene SCENE_FASTSHIP1F_2
 	end
 
 .SkipGrandpa:
-	setscene 0
+	setscene SCENE_FASTSHIP1F_0
 	end
 
 SailorScript_0x75160:
@@ -69,7 +69,7 @@ SailorScript_0x75160:
 	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	setmapscene VERMILION_PORT, 1
+	setmapscene VERMILION_PORT, SCENE_VERMILIONPORT_1
 	warp VERMILION_PORT, 7, 17
 	end
 
@@ -82,7 +82,7 @@ SailorScript_0x75160:
 	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	setmapscene OLIVINE_PORT, 1
+	setmapscene OLIVINE_PORT, SCENE_OLIVINEPORT_1
 	warp OLIVINE_PORT, 7, 23
 	end
 
@@ -133,7 +133,7 @@ WorriedGrandpaSceneLeft:
 	spriteface PLAYER, RIGHT
 	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75222
 	disappear FASTSHIP1F_GENTLEMAN
-	setscene 0
+	setscene SCENE_FASTSHIP1F_0
 	end
 
 MovementData_0x7520e:
@@ -301,8 +301,8 @@ FastShip1F_MapEvents:
 	warp_event 30, 14, 2, FAST_SHIP_B1F
 
 	db 2 ; coord events
-	coord_event 24, 6, 2, WorriedGrandpaSceneLeft
-	coord_event 25, 6, 2, WorriedGrandpaSceneRight
+	coord_event 24, 6, SCENE_FASTSHIP1F_2, WorriedGrandpaSceneLeft
+	coord_event 25, 6, SCENE_FASTSHIP1F_2, WorriedGrandpaSceneRight
 
 	db 0 ; bg events
 

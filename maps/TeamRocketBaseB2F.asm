@@ -16,10 +16,10 @@
 
 TeamRocketBaseB2F_MapScripts:
 	db 4 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
-	scene_script .DummyScene2
-	scene_script .DummyScene3
+	scene_script .DummyScene0 ; SCENE_TEAMROCKETBASEB2F_0
+	scene_script .DummyScene1 ; SCENE_TEAMROCKETBASEB2F_1
+	scene_script .DummyScene2 ; SCENE_TEAMROCKETBASEB2F_2
+	scene_script .DummyScene3 ; SCENE_TEAMROCKETBASEB2F_3
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .TransmitterDoorCallback
@@ -116,7 +116,7 @@ UnknownScript_0x6cfac:
 	disappear TEAMROCKETBASEB2F_ROCKET4
 	pause 15
 	special FadeInQuickly
-	setscene 2
+	setscene SCENE_TEAMROCKETBASEB2F_2
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	spriteface TEAMROCKETBASEB2F_LANCE, DOWN
 	opentext
@@ -173,7 +173,7 @@ LanceHealsCommon:
 	writetext LanceHealsText2
 	waitbutton
 	closetext
-	setscene 1
+	setscene SCENE_TEAMROCKETBASEB2F_1
 	setevent EVENT_LANCE_HEALED_YOU_IN_TEAM_ROCKET_BASE
 	checkcode VAR_FACING
 	if_equal RIGHT, .FacingRight
@@ -302,7 +302,7 @@ UnknownScript_0x6d184:
 	clearflag ENGINE_ROCKET_SIGNAL_ON_CH20
 	setevent EVENT_ROUTE_43_GATE_ROCKETS
 	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	setscene 3
+	setscene SCENE_TEAMROCKETBASEB2F_3
 	clearevent EVENT_LAKE_OF_RAGE_CIVILIANS
 	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
 	setevent EVENT_SECURITY_CAMERA_1
@@ -917,15 +917,15 @@ TeamRocketBaseB2F_MapEvents:
 	warp_event 27, 14, 4, TEAM_ROCKET_BASE_B3F
 
 	db 9 ; coord events
-	coord_event 5, 14, 0, LanceHealsScript1
-	coord_event 4, 13, 0, LanceHealsScript2
-	coord_event 14, 11, 1, UnknownScript_0x6cf95
-	coord_event 15, 11, 1, UnknownScript_0x6cf9c
-	coord_event 14, 12, 2, UnknownScript_0x6d075
-	coord_event 15, 12, 2, UnknownScript_0x6d075
-	coord_event 12, 3, 2, UnknownScript_0x6d07a
-	coord_event 12, 10, 2, UnknownScript_0x6d07a
-	coord_event 12, 11, 2, UnknownScript_0x6d07a
+	coord_event 5, 14, SCENE_TEAMROCKETBASEB2F_0, LanceHealsScript1
+	coord_event 4, 13, SCENE_TEAMROCKETBASEB2F_0, LanceHealsScript2
+	coord_event 14, 11, SCENE_TEAMROCKETBASEB2F_1, UnknownScript_0x6cf95
+	coord_event 15, 11, SCENE_TEAMROCKETBASEB2F_1, UnknownScript_0x6cf9c
+	coord_event 14, 12, SCENE_TEAMROCKETBASEB2F_2, UnknownScript_0x6d075
+	coord_event 15, 12, SCENE_TEAMROCKETBASEB2F_2, UnknownScript_0x6d075
+	coord_event 12, 3, SCENE_TEAMROCKETBASEB2F_2, UnknownScript_0x6d07a
+	coord_event 12, 10, SCENE_TEAMROCKETBASEB2F_2, UnknownScript_0x6d07a
+	coord_event 12, 11, SCENE_TEAMROCKETBASEB2F_2, UnknownScript_0x6d07a
 
 	db 23 ; bg events
 	bg_event 14, 12, BGEVENT_IFNOTSET, TeamRocketBaseB2FLockedDoor

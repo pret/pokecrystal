@@ -9,8 +9,8 @@
 
 SproutTower3F_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	scene_script .DummyScene0 ; SCENE_SPROUTTOWER3F_0
+	scene_script .DummyScene1 ; SCENE_SPROUTTOWER3F_1
 
 	db 0 ; callbacks
 
@@ -57,7 +57,7 @@ UnknownScript_0x184947:
 	disappear SPROUTTOWER3F_SILVER
 	waitsfx
 	special FadeInQuickly
-	setscene 1
+	setscene SCENE_SPROUTTOWER3F_1
 	special RestartMapMusic
 	end
 
@@ -334,7 +334,7 @@ SproutTower3F_MapEvents:
 	warp_event 10, 14, 4, SPROUT_TOWER_2F
 
 	db 1 ; coord events
-	coord_event 11, 9, 0, UnknownScript_0x184947
+	coord_event 11, 9, SCENE_SPROUTTOWER3F_0, UnknownScript_0x184947
 
 	db 6 ; bg events
 	bg_event 8, 1, BGEVENT_READ, MapSproutTower3FSignpost5Script

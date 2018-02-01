@@ -14,8 +14,8 @@
 
 CianwoodCity_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	scene_script .DummyScene0 ; SCENE_CIANWOODCITY_0
+	scene_script .DummyScene1 ; SCENE_CIANWOODCITY_1
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPointAndSuicune
@@ -47,9 +47,9 @@ CianwoodCitySuicuneAndEusine:
 	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00e0
 	disappear CIANWOODCITY_SUICUNE
 	pause 10
-	setscene 0
+	setscene SCENE_CIANWOODCITY_0
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_42
-	setmapscene ROUTE_42, 1
+	setmapscene ROUTE_42, SCENE_ROUTE42_1
 	checkevent EVENT_FOUGHT_EUSINE
 	iftrue .Done
 	setevent EVENT_FOUGHT_EUSINE
@@ -391,7 +391,7 @@ CianwoodCity_MapEvents:
 	warp_event 5, 17, 1, POKE_SEERS_HOUSE
 
 	db 1 ; coord events
-	coord_event 11, 16, 1, CianwoodCitySuicuneAndEusine
+	coord_event 11, 16, SCENE_CIANWOODCITY_1, CianwoodCitySuicuneAndEusine
 
 	db 8 ; bg events
 	bg_event 20, 34, BGEVENT_READ, CianwoodCitySign

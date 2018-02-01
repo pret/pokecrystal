@@ -4,7 +4,7 @@
 
 GoldenrodMagnetTrainStation_MapScripts:
 	db 1 ; scene scripts
-	scene_script .DummyScene
+	scene_script .DummyScene ; SCENE_GOLDENRODMAGNETTRAINSTATION_0
 
 	db 0 ; callbacks
 
@@ -172,7 +172,7 @@ GoldenrodMagnetTrainStation_MapEvents:
 	warp_event 11, 5, 3, SAFFRON_MAGNET_TRAIN_STATION
 
 	db 1 ; coord events
-	coord_event 11, 6, 0, Script_ArriveFromSaffron
+	coord_event 11, 6, SCENE_GOLDENRODMAGNETTRAINSTATION_0, Script_ArriveFromSaffron
 
 	db 0 ; bg events
 

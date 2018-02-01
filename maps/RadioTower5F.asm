@@ -7,9 +7,9 @@
 
 RadioTower5F_MapScripts:
 	db 3 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
-	scene_script .DummyScene2
+	scene_script .DummyScene0 ; SCENE_RADIOTOWER5F_0
+	scene_script .DummyScene1 ; SCENE_RADIOTOWER5F_1
+	scene_script .DummyScene2 ; SCENE_RADIOTOWER5F_2
 
 	db 0 ; callbacks
 
@@ -45,7 +45,7 @@ FakeDirectorScript:
 	buttonsound
 	verbosegiveitem BASEMENT_KEY
 	closetext
-	setscene 1
+	setscene SCENE_RADIOTOWER5F_1
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
 	end
 
@@ -124,8 +124,8 @@ RadioTower5FRocketBossScene:
 	writetext RadioTower5FDirectorDescribeClearBellText
 	waitbutton
 	closetext
-	setscene 2
-	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, 0
+	setscene SCENE_RADIOTOWER5F_2
+	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, SCENE_ECRUTEAKTINTOWERENTRANCE_0
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump .UselessJump
@@ -426,8 +426,8 @@ RadioTower5F_MapEvents:
 	warp_event 12, 0, 3, RADIO_TOWER_4F
 
 	db 2 ; coord events
-	coord_event 0, 3, 0, FakeDirectorScript
-	coord_event 16, 5, 1, RadioTower5FRocketBossScene
+	coord_event 0, 3, SCENE_RADIOTOWER5F_0, FakeDirectorScript
+	coord_event 16, 5, SCENE_RADIOTOWER5F_1, RadioTower5FRocketBossScene
 
 	db 5 ; bg events
 	bg_event 3, 0, BGEVENT_READ, MapRadioTower5FSignpost0Script

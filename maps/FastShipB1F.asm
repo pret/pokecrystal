@@ -14,8 +14,8 @@
 
 FastShipB1F_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	scene_script .DummyScene0 ; SCENE_FASTSHIPB1F_0
+	scene_script .DummyScene1 ; SCENE_FASTSHIPB1F_1
 
 	db 0 ; callbacks
 
@@ -454,8 +454,8 @@ FastShipB1F_MapEvents:
 	warp_event 31, 13, 12, FAST_SHIP_1F
 
 	db 2 ; coord events
-	coord_event 30, 7, 0, UnknownScript_0x7673c
-	coord_event 31, 7, 0, UnknownScript_0x76751
+	coord_event 30, 7, SCENE_FASTSHIPB1F_0, UnknownScript_0x7673c
+	coord_event 31, 7, SCENE_FASTSHIPB1F_0, UnknownScript_0x76751
 
 	db 1 ; bg events
 	bg_event 27, 9, BGEVENT_READ, FashShipB1FTrashcan

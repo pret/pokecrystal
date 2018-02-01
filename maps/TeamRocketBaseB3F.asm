@@ -16,10 +16,10 @@
 
 TeamRocketBaseB3F_MapScripts:
 	db 4 ; scene scripts
-	scene_script .LanceGetsPassword
-	scene_script .DummyScene1
-	scene_script .DummyScene2
-	scene_script .DummyScene3
+	scene_script .LanceGetsPassword ; SCENE_TEAMROCKETBASEB3F_0
+	scene_script .DummyScene1 ; SCENE_TEAMROCKETBASEB3F_1
+	scene_script .DummyScene2 ; SCENE_TEAMROCKETBASEB3F_2
+	scene_script .DummyScene3 ; SCENE_TEAMROCKETBASEB3F_3
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .CheckGiovanniDoor
@@ -58,7 +58,7 @@ LanceGetPasswordScript:
 	closetext
 	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12c
 	disappear TEAMROCKETBASEB3F_LANCE
-	setscene 1
+	setscene SCENE_TEAMROCKETBASEB3F_1
 	end
 
 RocketBaseRival:
@@ -77,7 +77,7 @@ RocketBaseRival:
 	applymovement PLAYER, RocketBaseRivalShovesPlayerMovement
 	applymovement TEAMROCKETBASEB3F_SILVER, RocketBaseRivalLeaveMovement
 	disappear TEAMROCKETBASEB3F_SILVER
-	setscene 2
+	setscene SCENE_TEAMROCKETBASEB3F_2
 	special RestartMapMusic
 	end
 
@@ -114,7 +114,7 @@ UnknownScript_0x6e056:
 	playsound SFX_TACKLE
 	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e147
 	disappear TEAMROCKETBASEB3F_ROCKET1
-	setscene 3
+	setscene SCENE_TEAMROCKETBASEB3F_3
 	end
 
 RocketBaseMurkrow:
@@ -573,9 +573,9 @@ TeamRocketBaseB3F_MapEvents:
 	warp_event 27, 14, 5, TEAM_ROCKET_BASE_B2F
 
 	db 3 ; coord events
-	coord_event 10, 8, 2, UnknownScript_0x6e04b
-	coord_event 11, 8, 2, UnknownScript_0x6e052
-	coord_event 8, 10, 1, RocketBaseRival
+	coord_event 10, 8, SCENE_TEAMROCKETBASEB3F_2, UnknownScript_0x6e04b
+	coord_event 11, 8, SCENE_TEAMROCKETBASEB3F_2, UnknownScript_0x6e052
+	coord_event 8, 10, SCENE_TEAMROCKETBASEB3F_1, RocketBaseRival
 
 	db 10 ; bg events
 	bg_event 10, 9, BGEVENT_IFNOTSET, TeamRocketBaseB3FLockedDoor

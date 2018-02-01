@@ -3,7 +3,7 @@
 
 Route17Route18Gate_MapScripts:
 	db 1 ; scene scripts
-	scene_script .DummyScene
+	scene_script .DummyScene ; SCENE_ROUTE17ROUTE18GATE_0
 
 	db 0 ; callbacks
 
@@ -59,8 +59,8 @@ Route17Route18Gate_MapEvents:
 	warp_event 9, 5, 2, ROUTE_18
 
 	db 2 ; coord events
-	coord_event 5, 4, 0, UnknownScript_0x73611
-	coord_event 5, 5, 0, UnknownScript_0x73611
+	coord_event 5, 4, SCENE_ROUTE17ROUTE18GATE_0, UnknownScript_0x73611
+	coord_event 5, 5, SCENE_ROUTE17ROUTE18GATE_0, UnknownScript_0x73611
 
 	db 0 ; bg events
 

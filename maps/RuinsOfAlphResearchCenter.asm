@@ -5,8 +5,8 @@
 
 RuinsOfAlphResearchCenter_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .GetUnownDex
+	scene_script .DummyScene0 ; SCENE_RUINSOFALPHRESEARCHCENTER_0
+	scene_script .GetUnownDex ; SCENE_RUINSOFALPHRESEARCHCENTER_1
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .ScientistCallback
@@ -20,7 +20,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 
 .ScientistCallback:
 	checkscene
-	if_equal 1, .ShowScientist
+	if_equal SCENE_RUINSOFALPHRESEARCHCENTER_1, .ShowScientist
 	return
 
 .ShowScientist:
@@ -53,7 +53,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 	waitbutton
 	closetext
 	applymovement RUINSOFALPHRESEARCHCENTER_SCIENTIST3, MovementData_0x59276
-	setscene 0
+	setscene SCENE_RUINSOFALPHRESEARCHCENTER_0
 	special RestartMapMusic
 	end
 

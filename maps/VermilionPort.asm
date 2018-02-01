@@ -5,8 +5,8 @@
 
 VermilionPort_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .LeaveFastShip
+	scene_script .DummyScene0 ; SCENE_VERMILIONPORT_0
+	scene_script .LeaveFastShip ; SCENE_VERMILIONPORT_1
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -25,7 +25,7 @@ VermilionPort_MapScripts:
 .LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74ef3
 	appear VERMILIONPORT_SAILOR1
-	setscene 0
+	setscene SCENE_VERMILIONPORT_0
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
 	setevent EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
 	setevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
@@ -66,7 +66,7 @@ SailorScript_0x74dc4:
 	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
 	setevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear VERMILIONPORT_SAILOR1
-	setmapscene FAST_SHIP_1F, 1
+	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_1
 	warp FAST_SHIP_1F, 25, 1
 	end
 
@@ -304,7 +304,7 @@ VermilionPort_MapEvents:
 	warp_event 7, 17, 1, FAST_SHIP_1F
 
 	db 1 ; coord events
-	coord_event 7, 11, 0, UnknownScript_0x74e20
+	coord_event 7, 11, SCENE_VERMILIONPORT_0, UnknownScript_0x74e20
 
 	db 1 ; bg events
 	bg_event 16, 13, BGEVENT_ITEM, VermilionPortHiddenIron

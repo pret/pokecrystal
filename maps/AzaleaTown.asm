@@ -14,9 +14,9 @@
 
 AzaleaTown_MapScripts:
 	db 3 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
-	scene_script .DummyScene2
+	scene_script .DummyScene0 ; SCENE_AZALEATOWN_0
+	scene_script .DummyScene1 ; SCENE_AZALEATOWN_1
+	scene_script .DummyScene2 ; SCENE_AZALEATOWN_2
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .Flypoint
@@ -100,7 +100,7 @@ AzaleaTownRivalBattleScript:
 	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleExitMovement
 	playsound SFX_EXIT_BUILDING
 	disappear AZALEATOWN_SILVER
-	setscene 0
+	setscene SCENE_AZALEATOWN_0
 	waitsfx
 	playmapmusic
 	end
@@ -168,7 +168,7 @@ AzaleaTownCelebiScene:
 	setflag ENGINE_FOREST_IS_RESTLESS
 	clearevent EVENT_ILEX_FOREST_LASS
 	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	setscene 0
+	setscene SCENE_AZALEATOWN_0
 	closetext
 	end
 
@@ -467,9 +467,9 @@ AzaleaTown_MapEvents:
 	warp_event 2, 11, 4, ILEX_FOREST_AZALEA_GATE
 
 	db 3 ; coord events
-	coord_event 5, 10, 1, AzaleaTownRivalBattleScene1
-	coord_event 5, 11, 1, AzaleaTownRivalBattleScene2
-	coord_event 9, 6, 2, AzaleaTownCelebiScene
+	coord_event 5, 10, SCENE_AZALEATOWN_1, AzaleaTownRivalBattleScene1
+	coord_event 5, 11, SCENE_AZALEATOWN_1, AzaleaTownRivalBattleScene2
+	coord_event 9, 6, SCENE_AZALEATOWN_2, AzaleaTownCelebiScene
 
 	db 9 ; bg events
 	bg_event 19, 9, BGEVENT_READ, AzaleaTownSign

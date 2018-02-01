@@ -41,8 +41,8 @@ MapScenes:: ; 4d01e
 	scene_def GOLDENROD_MAGNET_TRAIN_STATION,              wGoldenrodMagnetTrainStationSceneID
 	scene_def GOLDENROD_POKECENTER_1F,                     wGoldenrodPokecenter1FSceneID
 	scene_def OLIVINE_CITY,                                wOlivineCitySceneID
-	scene_def ROUTE_34,                                    wRoute34SceneID
-	scene_def ROUTE_34_ILEX_FOREST_GATE,                   wRoute34IlexForestGateSceneID
+	scene_def ROUTE_34,                                    wRoute34SceneID ; unused
+	scene_def ROUTE_34_ILEX_FOREST_GATE,                   wRoute34IlexForestGateSceneID ; unused
 	scene_def ECRUTEAK_TIN_TOWER_ENTRANCE,                 wEcruteakTinTowerEntranceSceneID
 	scene_def WISE_TRIOS_ROOM,                             wWiseTriosRoomSceneID
 	scene_def ECRUTEAK_POKECENTER_1F,                      wEcruteakPokecenter1FSceneID
@@ -54,7 +54,7 @@ MapScenes:: ; 4d01e
 	scene_def BATTLE_TOWER_BATTLE_ROOM,                    wBattleTowerBattleRoomSceneID
 	scene_def BATTLE_TOWER_ELEVATOR,                       wBattleTowerElevatorSceneID
 	scene_def BATTLE_TOWER_HALLWAY,                        wBattleTowerHallwaySceneID
-	scene_def BATTLE_TOWER_OUTSIDE,                        wBattleTowerOutsideSceneID
+	scene_def BATTLE_TOWER_OUTSIDE,                        wBattleTowerOutsideSceneID ; unused
 	scene_def ROUTE_43_GATE,                               wRoute43GateSceneID
 	scene_def MOUNT_MOON,                                  wMountMoonSceneID
 	scene_def SPROUT_TOWER_3F,                             wSproutTower3FSceneID
@@ -74,7 +74,7 @@ MapScenes:: ; 4d01e
 	scene_def TEAM_ROCKET_BASE_B2F,                        wTeamRocketBaseB2FSceneID
 	scene_def TEAM_ROCKET_BASE_B3F,                        wTeamRocketBaseB3FSceneID
 	scene_def GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, wGoldenrodUndergroundSwitchRoomEntrancesSceneID
-	scene_def SILVER_CAVE_ROOM_3,                          wSilverCaveRoom3SceneID
+	scene_def SILVER_CAVE_ROOM_3,                          wSilverCaveRoom3SceneID ; unused
 	scene_def VICTORY_ROAD,                                wVictoryRoadSceneID
 	scene_def DRAGONS_DEN_B1F,                             wDragonsDenB1FSceneID
 	scene_def DRAGON_SHRINE,                               wDragonShrineSceneID

@@ -8,8 +8,8 @@
 
 GoldenrodGym_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	scene_script .DummyScene0 ; SCENE_GOLDENRODGYM_0
+	scene_script .DummyScene1 ; SCENE_GOLDENRODGYM_1
 
 	db 0 ; callbacks
 
@@ -33,7 +33,7 @@ WhitneyScript_0x5400c:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_WHITNEY
 	setevent EVENT_MADE_WHITNEY_CRY
-	setscene 1
+	setscene SCENE_GOLDENRODGYM_1
 	setevent EVENT_BEAT_BEAUTY_VICTORIA
 	setevent EVENT_BEAT_BEAUTY_SAMANTHA
 	setevent EVENT_BEAT_LASS_CARRIE
@@ -110,7 +110,7 @@ WhitneyCriesScript:
 	waitbutton
 	closetext
 	applymovement GOLDENRODGYM_LASS2, BridgetWalksAwayMovement
-	setscene 0
+	setscene SCENE_GOLDENRODGYM_0
 	clearevent EVENT_MADE_WHITNEY_CRY
 	end
 
@@ -385,7 +385,7 @@ GoldenrodGym_MapEvents:
 	warp_event 3, 17, 1, GOLDENROD_CITY
 
 	db 1 ; coord events
-	coord_event 8, 5, 1, WhitneyCriesScript
+	coord_event 8, 5, SCENE_GOLDENRODGYM_1, WhitneyCriesScript
 
 	db 2 ; bg events
 	bg_event 1, 15, BGEVENT_READ, GoldenrodGymStatue
