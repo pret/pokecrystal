@@ -6,7 +6,8 @@ ENDM
 
 scene_script: MACRO
 ;\1: script pointer
-	dw \1, 0
+	dw \1
+	dw 0 ; filler
 ENDM
 
 callback: MACRO
@@ -27,7 +28,7 @@ ENDM
 coord_event: MACRO
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
-;\3: scene id: controlled by setscene/setmapscene
+;\3: scene id: a SCENE_* constant; controlled by setscene/setmapscene
 ;\4: script pointer
 	db \3, \2, \1
 	db 0 ; filler

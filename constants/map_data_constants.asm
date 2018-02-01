@@ -35,7 +35,7 @@ NUM_MAPDEF_ATTRIBUTES EQU const_value
 	const PALETTE_MORN
 	const PALETTE_DARK
 
-; fish groups
+; FishGroups indexes (see data/wild/fish.asm)
 	const_def
 	const FISHGROUP_NONE
 	const FISHGROUP_SHORE
