@@ -11,8 +11,8 @@
 
 Route42_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE42_0
-	scene_script .DummyScene1 ; SCENE_ROUTE42_1
+	scene_script .DummyScene0 ; SCENE_ROUTE42_NOTHING
+	scene_script .DummyScene1 ; SCENE_ROUTE42_SUICUNE
 
 	db 0 ; callbacks
 
@@ -29,9 +29,9 @@ Route42SuicuneScript:
 	applymovement ROUTE42_SUICUNE, MovementData_0x1a9356
 	disappear ROUTE42_SUICUNE
 	pause 10
-	setscene SCENE_ROUTE42_0
+	setscene SCENE_ROUTE42_NOTHING
 	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
-	setmapscene ROUTE_36, SCENE_ROUTE36_1
+	setmapscene ROUTE_36, SCENE_ROUTE36_SUICUNE
 	end
 
 TrainerFisherTully:
@@ -327,7 +327,7 @@ Route42_MapEvents:
 	warp_event 46, 7, 3, MOUNT_MORTAR_1F_OUTSIDE
 
 	db 1 ; coord events
-	coord_event 24, 14, SCENE_ROUTE42_1, Route42SuicuneScript
+	coord_event 24, 14, SCENE_ROUTE42_SUICUNE, Route42SuicuneScript
 
 	db 5 ; bg events
 	bg_event 4, 10, BGEVENT_READ, Route42Sign1

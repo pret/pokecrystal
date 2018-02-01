@@ -7,9 +7,9 @@
 
 BurnedTower1F_MapScripts:
 	db 3 ; scene scripts
-	scene_script .EusineScene ; SCENE_BURNEDTOWER1F_0
-	scene_script .DummyScene1 ; SCENE_BURNEDTOWER1F_1
-	scene_script .DummyScene2 ; SCENE_BURNEDTOWER1F_2
+	scene_script .EusineScene ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_BURNEDTOWER1F_RIVAL_BATTLE
+	scene_script .DummyScene2 ; SCENE_BURNEDTOWER1F_NOTHING
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HoleAndLadder
@@ -44,7 +44,7 @@ BurnedTower1F_MapScripts:
 	waitbutton
 	closetext
 	moveobject BURNEDTOWER1F_EUSINE, 9, 14
-	setscene SCENE_BURNEDTOWER1F_1
+	setscene SCENE_BURNEDTOWER1F_RIVAL_BATTLE
 	end
 
 BurnedTowerRivalBattleScript:
@@ -96,7 +96,7 @@ BurnedTowerRivalBattleScript:
 	writetext BurnedTowerSilver_AfterText1
 	waitbutton
 	closetext
-	setscene SCENE_BURNEDTOWER1F_2
+	setscene SCENE_BURNEDTOWER1F_NOTHING
 	setevent EVENT_RIVAL_BURNED_TOWER
 	special FadeOutMusic
 	pause 15
@@ -295,7 +295,7 @@ BurnedTower1F_MapEvents:
 	warp_event 7, 15, 6, BURNED_TOWER_B1F
 
 	db 1 ; coord events
-	coord_event 11, 9, SCENE_BURNEDTOWER1F_1, BurnedTowerRivalBattleScript
+	coord_event 11, 9, SCENE_BURNEDTOWER1F_RIVAL_BATTLE, BurnedTowerRivalBattleScript
 
 	db 2 ; bg events
 	bg_event 8, 7, BGEVENT_ITEM, BurnedTower1FHiddenEther

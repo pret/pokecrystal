@@ -1,7 +1,7 @@
 MobileBattleRoom_MapScripts:
 	db 2 ; scene scripts
-	scene_script .InitializeMobileBattleRoom ; SCENE_MOBILEBATTLEROOM_0
-	scene_script .DummyScene ; SCENE_MOBILEBATTLEROOM_1
+	scene_script .InitializeMobileBattleRoom ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_MOBILEBATTLEROOM_NOTHING
 
 	db 0 ; callbacks
 
@@ -13,8 +13,8 @@ MobileBattleRoom_MapScripts:
 	end
 
 .InitializeAndPreparePokecenter2F:
-	setscene SCENE_MOBILEBATTLEROOM_1
-	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_5
+	setscene SCENE_MOBILEBATTLEROOM_NOTHING
+	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_MOBILE_BATTLE_ROOM
 	end
 
 MapMobileBattleRoomSignpost0Script:

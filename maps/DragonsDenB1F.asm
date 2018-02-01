@@ -11,8 +11,8 @@
 
 DragonsDenB1F_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_DRAGONSDENB1F_0
-	scene_script .DummyScene1 ; SCENE_DRAGONSDENB1F_1
+	scene_script .DummyScene0 ; SCENE_DRAGONSDENB1F_NOTHING
+	scene_script .DummyScene1 ; SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckSilver
@@ -78,7 +78,7 @@ DragonsDenB1F_ClairScene:
 	pause 30
 	special RestartMapMusic
 	disappear DRAGONSDENB1F_CLAIR
-	setscene SCENE_DRAGONSDENB1F_0
+	setscene SCENE_DRAGONSDENB1F_NOTHING
 	end
 
 TrainerCooltrainermDarin:
@@ -412,7 +412,7 @@ DragonsDenB1F_MapEvents:
 	warp_event 19, 29, 1, DRAGON_SHRINE
 
 	db 1 ; coord events
-	coord_event 19, 30, SCENE_DRAGONSDENB1F_1, DragonsDenB1F_ClairScene
+	coord_event 19, 30, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM, DragonsDenB1F_ClairScene
 
 	db 4 ; bg events
 	bg_event 18, 24, BGEVENT_READ, MapDragonsDenB1FSignpost0Script

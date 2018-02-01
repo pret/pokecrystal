@@ -7,8 +7,8 @@
 
 PlayersHouse1F_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_PLAYERSHOUSE1F_0
-	scene_script .DummyScene1 ; SCENE_PLAYERSHOUSE1F_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_PLAYERSHOUSE1F_NOTHING
 
 	db 0 ; callbacks
 
@@ -41,7 +41,7 @@ UnknownScript_0x7a4f6:
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD
 	addcellnum PHONE_MOM
-	setscene SCENE_PLAYERSHOUSE1F_1
+	setscene SCENE_PLAYERSHOUSE1F_NOTHING
 	setevent EVENT_PLAYERS_HOUSE_MOM_1
 	clearevent EVENT_PLAYERS_HOUSE_MOM_2
 	writetext UnknownText_0x7a6bd
@@ -114,7 +114,7 @@ MomScript_0x7a582:
 	faceplayer
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	checkscene
-	iffalse UnknownScript_0x7a572 ; SCENE_PLAYERSHOUSE1F_0
+	iffalse UnknownScript_0x7a572 ; SCENE_DEFAULT
 	opentext
 	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
 	iftrue UnknownScript_0x7a5af
@@ -392,8 +392,8 @@ PlayersHouse1F_MapEvents:
 	warp_event 9, 0, 1, PLAYERS_HOUSE_2F
 
 	db 2 ; coord events
-	coord_event 8, 4, SCENE_PLAYERSHOUSE1F_0, UnknownScript_0x7a4d8
-	coord_event 9, 4, SCENE_PLAYERSHOUSE1F_0, UnknownScript_0x7a4db
+	coord_event 8, 4, SCENE_DEFAULT, UnknownScript_0x7a4d8
+	coord_event 9, 4, SCENE_DEFAULT, UnknownScript_0x7a4db
 
 	db 4 ; bg events
 	bg_event 0, 1, BGEVENT_READ, StoveScript

@@ -8,12 +8,12 @@
 
 ElmsLab_MapScripts:
 	db 6 ; scene scripts
-	scene_script .MeetElm ; SCENE_ELMSLAB_0
-	scene_script .DummyScene1 ; SCENE_ELMSLAB_1
-	scene_script .DummyScene2 ; SCENE_ELMSLAB_2
-	scene_script .DummyScene3 ; SCENE_ELMSLAB_3
-	scene_script .DummyScene4 ; SCENE_ELMSLAB_4
-	scene_script .DummyScene5 ; SCENE_ELMSLAB_5
+	scene_script .MeetElm ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_ELMSLAB_CANT_LEAVE
+	scene_script .DummyScene2 ; SCENE_ELMSLAB_NOTHING
+	scene_script .DummyScene3 ; SCENE_ELMSLAB_MEET_OFFICER
+	scene_script .DummyScene4 ; SCENE_ELMSLAB_UNUSED
+	scene_script .DummyScene5 ; SCENE_ELMSLAB_AIDE_GIVES_POTION
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
@@ -39,7 +39,7 @@ ElmsLab_MapScripts:
 
 .MoveElmCallback:
 	checkscene
-	iftrue .Skip ; not SCENE_ELMSLAB_0
+	iftrue .Skip ; not SCENE_DEFAULT
 	moveobject ELMSLAB_ELM, 3, 4
 .Skip:
 	return
@@ -82,7 +82,7 @@ ElmsLab_MapScripts:
 	opentext
 	writetext ElmText_ChooseAPokemon
 	waitbutton
-	setscene SCENE_ELMSLAB_1
+	setscene SCENE_ELMSLAB_CANT_LEAVE
 	closetext
 	end
 
@@ -272,8 +272,8 @@ ElmDirectionsScript:
 	closetext
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
-	setscene SCENE_ELMSLAB_5
-	setmapscene NEW_BARK_TOWN, SCENE_NEWBARKTOWN_1
+	setscene SCENE_ELMSLAB_AIDE_GIVES_POTION
+	setmapscene NEW_BARK_TOWN, SCENE_NEWBARKTOWN_NOTHING
 	end
 
 ElmDescribesMrPokemonScript:
@@ -339,13 +339,13 @@ ElmAfterTheftScript:
 	buttonsound
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setflag ENGINE_BUG_CONTEST_ON
-	setmapscene ROUTE_29, SCENE_ROUTE29_1
+	setmapscene ROUTE_29, SCENE_ROUTE29_CATCH_TUTORIAL
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
 	waitbutton
 	closetext
-	setscene SCENE_ELMSLAB_6
+	setscene SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS
 	end
 
 ElmStudyingEggScript:
@@ -455,29 +455,29 @@ ElmJumpRightScript:
 	opentext
 	end
 
-AideScript_WalkPotions1:
+AideScript_WalkPotion1:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight1
 	spriteface PLAYER, DOWN
-	scall AideScript_GivePotions
+	scall AideScript_GivePotion
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft1
 	end
 
-AideScript_WalkPotions2:
+AideScript_WalkPotion2:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight2
 	spriteface PLAYER, DOWN
-	scall AideScript_GivePotions
+	scall AideScript_GivePotion
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft2
 	end
 
-AideScript_GivePotions:
+AideScript_GivePotion:
 	opentext
-	writetext AideText_GiveYouPotions
+	writetext AideText_GiveYouPotion
 	buttonsound
 	verbosegiveitem POTION
 	writetext AideText_AlwaysBusy
 	waitbutton
 	closetext
-	setscene SCENE_ELMSLAB_2
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 AideScript_WalkBalls1:
@@ -505,7 +505,7 @@ AideScript_GiveYouBalls:
 	buttonsound
 	itemnotify
 	closetext
-	setscene SCENE_ELMSLAB_2
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 AideScript_ReceiveTheBalls:
@@ -560,7 +560,7 @@ CopScript:
 	closetext
 	applymovement ELMSLAB_OFFICER, OfficerLeavesMovement
 	disappear ELMSLAB_OFFICER
-	setscene SCENE_ELMSLAB_2
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 ElmsLabWindow:
@@ -1215,7 +1215,7 @@ ElmsLabSignpostText_Egg:
 	cont "by PROF.ELM."
 	done
 
-AideText_GiveYouPotions:
+AideText_GiveYouPotion:
 	text "<PLAY_G>, I want"
 	line "you to have this"
 	cont "for your errand."
@@ -1376,14 +1376,14 @@ ElmsLab_MapEvents:
 	warp_event 5, 11, 1, NEW_BARK_TOWN
 
 	db 8 ; coord events
-	coord_event 4, 6, SCENE_ELMSLAB_1, LabTryToLeaveScript
-	coord_event 5, 6, SCENE_ELMSLAB_1, LabTryToLeaveScript
-	coord_event 4, 5, SCENE_ELMSLAB_3, MeetCopScript
-	coord_event 5, 5, SCENE_ELMSLAB_3, MeetCopScript2
-	coord_event 4, 8, SCENE_ELMSLAB_5, AideScript_WalkPotions1
-	coord_event 5, 8, SCENE_ELMSLAB_5, AideScript_WalkPotions2
-	coord_event 4, 8, SCENE_ELMSLAB_6, AideScript_WalkBalls1
-	coord_event 5, 8, SCENE_ELMSLAB_6, AideScript_WalkBalls2
+	coord_event 4, 6, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
+	coord_event 5, 6, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
+	coord_event 4, 5, SCENE_ELMSLAB_MEET_OFFICER, MeetCopScript
+	coord_event 5, 5, SCENE_ELMSLAB_MEET_OFFICER, MeetCopScript2
+	coord_event 4, 8, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion1
+	coord_event 5, 8, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion2
+	coord_event 4, 8, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls1
+	coord_event 5, 8, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls2
 
 	db 16 ; bg events
 	bg_event 2, 1, BGEVENT_READ, ElmsLabHealingMachine

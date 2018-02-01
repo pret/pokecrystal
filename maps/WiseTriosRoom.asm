@@ -8,8 +8,8 @@
 
 WiseTriosRoom_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_WISETRIOSROOM_0
-	scene_script .DummyScene1 ; SCENE_WISETRIOSROOM_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_WISETRIOSROOM_NOTHING
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .WiseTrioCallback
@@ -103,7 +103,7 @@ TrainerSageKoji:
 	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
 	spriteface WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	setscene SCENE_WISETRIOSROOM_1
+	setscene SCENE_WISETRIOSROOM_NOTHING
 	end
 
 UnknownScript_0x9861b:
@@ -351,7 +351,7 @@ WiseTriosRoom_MapEvents:
 	warp_event 1, 4, 5, ECRUTEAK_TIN_TOWER_ENTRANCE
 
 	db 1 ; coord events
-	coord_event 7, 4, SCENE_WISETRIOSROOM_0, UnknownScript_0x985a3
+	coord_event 7, 4, SCENE_DEFAULT, UnknownScript_0x985a3
 
 	db 0 ; bg events
 

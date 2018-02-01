@@ -11,8 +11,8 @@
 
 Route36_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE36_0
-	scene_script .DummyScene1 ; SCENE_ROUTE36_1
+	scene_script .DummyScene0 ; SCENE_ROUTE36_NOTHING
+	scene_script .DummyScene1 ; SCENE_ROUTE36_SUICUNE
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .ArthurCallback
@@ -42,9 +42,9 @@ Route36SuicuneScript:
 	disappear ROUTE36_SUICUNE
 	spriteface PLAYER, DOWN
 	pause 10
-	setscene SCENE_ROUTE36_0
+	setscene SCENE_ROUTE36_NOTHING
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
-	setmapscene CIANWOOD_CITY, SCENE_CIANWOODCITY_1
+	setmapscene CIANWOOD_CITY, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE
 	end
 
 SudowoodoScript:
@@ -667,8 +667,8 @@ Route36_MapEvents:
 	warp_event 48, 13, 2, ROUTE_36_RUINS_OF_ALPH_GATE
 
 	db 2 ; coord events
-	coord_event 20, 7, SCENE_ROUTE36_1, Route36SuicuneScript
-	coord_event 22, 7, SCENE_ROUTE36_1, Route36SuicuneScript
+	coord_event 20, 7, SCENE_ROUTE36_SUICUNE, Route36SuicuneScript
+	coord_event 22, 7, SCENE_ROUTE36_SUICUNE, Route36SuicuneScript
 
 	db 4 ; bg events
 	bg_event 29, 1, BGEVENT_READ, Route36TrainerTips2

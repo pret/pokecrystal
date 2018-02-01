@@ -5,8 +5,8 @@
 
 LancesRoom_MapScripts:
 	db 2 ; scene scripts
-	scene_script .LockDoor ; SCENE_LANCESROOM_0
-	scene_script .DummyScene ; SCENE_LANCESROOM_1
+	scene_script .LockDoor ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_LANCESROOM_APPROACH_LANCE
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .LancesRoomDoors
@@ -37,7 +37,7 @@ LancesRoom_MapScripts:
 	changeblock 4, 22, $34 ; wall
 	reloadmappart
 	closetext
-	setscene SCENE_LANCESROOM_1
+	setscene SCENE_LANCESROOM_APPROACH_LANCE
 	setevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	end
 
@@ -345,8 +345,8 @@ LancesRoom_MapEvents:
 	warp_event 5, 1, 2, HALL_OF_FAME
 
 	db 2 ; coord events
-	coord_event 4, 5, SCENE_LANCESROOM_1, Script_ApproachLanceFromLeft
-	coord_event 5, 5, SCENE_LANCESROOM_1, Script_ApproachLanceFromRight
+	coord_event 4, 5, SCENE_LANCESROOM_APPROACH_LANCE, Script_ApproachLanceFromLeft
+	coord_event 5, 5, SCENE_LANCESROOM_APPROACH_LANCE, Script_ApproachLanceFromRight
 
 	db 0 ; bg events
 

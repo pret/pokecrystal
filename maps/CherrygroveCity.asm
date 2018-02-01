@@ -7,8 +7,8 @@
 
 CherrygroveCity_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_CHERRYGROVECITY_0
-	scene_script .DummyScene1 ; SCENE_CHERRYGROVECITY_1
+	scene_script .DummyScene0 ; SCENE_CHERRYGROVECITY_NOTHING
+	scene_script .DummyScene1 ; SCENE_CHERRYGROVECITY_MEET_RIVAL
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -169,7 +169,7 @@ CherrygroveSilverSceneNorth:
 	spriteface PLAYER, LEFT
 	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_SILVER
-	setscene SCENE_CHERRYGROVECITY_0
+	setscene SCENE_CHERRYGROVECITY_NOTHING
 	special HealParty
 	playmapmusic
 	end
@@ -555,8 +555,8 @@ CherrygroveCity_MapEvents:
 	warp_event 31, 11, 1, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE
 
 	db 2 ; coord events
-	coord_event 33, 6, SCENE_CHERRYGROVECITY_1, CherrygroveSilverSceneNorth
-	coord_event 33, 7, SCENE_CHERRYGROVECITY_1, CherrygroveSilverSceneSouth
+	coord_event 33, 6, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveSilverSceneNorth
+	coord_event 33, 7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveSilverSceneSouth
 
 	db 4 ; bg events
 	bg_event 30, 8, BGEVENT_READ, CherrygroveCitySign

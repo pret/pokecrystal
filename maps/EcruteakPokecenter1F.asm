@@ -7,8 +7,8 @@
 
 EcruteakPokecenter1F_MapScripts:
 	db 2 ; scene scripts
-	scene_script .MeetBill ; SCENE_ECRUTEAKPOKECENTER1F_0
-	scene_script .DummyScene ; SCENE_ECRUTEAKPOKECENTER1F_1
+	scene_script .MeetBill ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_ECRUTEAKPOKECENTER1F_NOTHING
 
 	db 0 ; callbacks
 
@@ -51,7 +51,7 @@ EcruteakPokecenter1F_MapScripts:
 	disappear ECRUTEAKPOKECENTER1F_BILL
 	clearevent EVENT_MET_BILL
 	setflag ENGINE_TIME_CAPSULE
-	setscene SCENE_ECRUTEAKPOKECENTER1F_1
+	setscene SCENE_ECRUTEAKPOKECENTER1F_NOTHING
 	waitsfx
 	end
 

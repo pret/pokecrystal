@@ -96,7 +96,7 @@ SailorScript_0x755f1:
 	waitbutton
 	closetext
 	setevent EVENT_FAST_SHIP_LAZY_SAILOR
-	setmapscene FAST_SHIP_B1F, SCENE_FASTSHIPB1F_1
+	setmapscene FAST_SHIP_B1F, SCENE_FASTSHIPB1F_NOTHING
 	checkcode VAR_FACING
 	if_equal RIGHT, UnknownScript_0x75629
 	applymovement FASTSHIPCABINS_NNW_NNE_NE_SAILOR, MovementData_0x75637

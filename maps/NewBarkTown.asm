@@ -5,8 +5,8 @@
 
 NewBarkTown_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_NEWBARKTOWN_0
-	scene_script .DummyScene1 ; SCENE_NEWBARKTOWN_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_NEWBARKTOWN_NOTHING
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
@@ -289,8 +289,8 @@ NewBarkTown_MapEvents:
 	warp_event 11, 13, 1, ELMS_HOUSE
 
 	db 2 ; coord events
-	coord_event 1, 8, SCENE_NEWBARKTOWN_0, NewBarkTown_TeacherStopsYouScene1
-	coord_event 1, 9, SCENE_NEWBARKTOWN_0, NewBarkTown_TeacherStopsYouScene2
+	coord_event 1, 8, SCENE_DEFAULT, NewBarkTown_TeacherStopsYouScene1
+	coord_event 1, 9, SCENE_DEFAULT, NewBarkTown_TeacherStopsYouScene2
 
 	db 4 ; bg events
 	bg_event 8, 8, BGEVENT_READ, NewBarkTownSign

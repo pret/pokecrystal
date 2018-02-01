@@ -9,8 +9,8 @@
 
 EcruteakGym_MapScripts:
 	db 2 ; scene scripts
-	scene_script .ForcedToLeave ; SCENE_ECRUTEAKGYM_0
-	scene_script .DummyScene ; SCENE_ECRUTEAKGYM_1
+	scene_script .ForcedToLeave ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_ECRUTEAKGYM_NOTHING
 
 	db 0 ; callbacks
 
@@ -41,7 +41,7 @@ MortyScript_0x99d58:
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymActivateRockets
-	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, SCENE_ECRUTEAKTINTOWERENTRANCE_1
+	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, SCENE_ECRUTEAKTINTOWERENTRANCE_NOTHING
 	setevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone:

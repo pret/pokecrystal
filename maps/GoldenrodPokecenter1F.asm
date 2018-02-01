@@ -812,8 +812,8 @@ GoldenrodPokecenter1F_MapEvents:
 	warp_event 0, 7, 1, POKECENTER_2F
 
 	db 2 ; coord events
-	coord_event 3, 7, SCENE_GOLDENRODPOKECENTER1F_0, GoldenrodPokecenter1F_GSBallSceneLeft
-	coord_event 4, 7, SCENE_GOLDENRODPOKECENTER1F_0, GoldenrodPokecenter1F_GSBallSceneRight
+	coord_event 3, 7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneLeft
+	coord_event 4, 7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneRight
 
 	db 0 ; bg events
 

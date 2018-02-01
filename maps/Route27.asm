@@ -11,8 +11,8 @@
 
 Route27_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE27_0
-	scene_script .DummyScene1 ; SCENE_ROUTE27_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_ROUTE27_NOTHING
 
 	db 0 ; callbacks
 
@@ -40,7 +40,7 @@ UnknownScript_0x1a088c:
 	writetext Route27FisherText
 	waitbutton
 	closetext
-	setscene SCENE_ROUTE27_1
+	setscene SCENE_ROUTE27_NOTHING
 	end
 
 Route27FisherScript:
@@ -474,8 +474,8 @@ Route27_MapEvents:
 	warp_event 36, 5, 2, TOHJO_FALLS
 
 	db 2 ; coord events
-	coord_event 18, 10, SCENE_ROUTE27_0, UnknownScript_0x1a0873
-	coord_event 19, 10, SCENE_ROUTE27_0, UnknownScript_0x1a0881
+	coord_event 18, 10, SCENE_DEFAULT, UnknownScript_0x1a0873
+	coord_event 19, 10, SCENE_DEFAULT, UnknownScript_0x1a0881
 
 	db 1 ; bg events
 	bg_event 25, 7, BGEVENT_READ, TohjoFallsSign

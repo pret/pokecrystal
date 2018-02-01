@@ -6,8 +6,8 @@
 
 EcruteakTinTowerEntrance_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_ECRUTEAKTINTOWERENTRANCE_0
-	scene_script .DummyScene1 ; SCENE_ECRUTEAKTINTOWERENTRANCE_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_ECRUTEAKTINTOWERENTRANCE_NOTHING
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .InitializeSages
@@ -33,7 +33,7 @@ EcruteakTinTowerEntrance_MapScripts:
 	setevent EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
 	checkitem CLEAR_BELL
 	iftrue .NoClearBell
-	setscene SCENE_ECRUTEAKTINTOWERENTRANCE_0
+	setscene SCENE_DEFAULT
 .NoClearBell:
 	return
 
@@ -98,7 +98,7 @@ SageScript_0x98062:
 	writetext UnknownText_0x98250
 	waitbutton
 	closetext
-	setscene SCENE_ECRUTEAKTINTOWERENTRANCE_1
+	setscene SCENE_ECRUTEAKTINTOWERENTRANCE_NOTHING
 	setevent EVENT_RANG_CLEAR_BELL_2
 	clearevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -286,8 +286,8 @@ EcruteakTinTowerEntrance_MapEvents:
 	warp_event 17, 3, 3, WISE_TRIOS_ROOM
 
 	db 2 ; coord events
-	coord_event 4, 7, SCENE_ECRUTEAKTINTOWERENTRANCE_0, EcruteakTinTowerEntrance_CoordEvent1
-	coord_event 5, 7, SCENE_ECRUTEAKTINTOWERENTRANCE_0, EcruteakTinTowerEntrance_CoordEvent2
+	coord_event 4, 7, SCENE_DEFAULT, EcruteakTinTowerEntrance_CoordEvent1
+	coord_event 5, 7, SCENE_DEFAULT, EcruteakTinTowerEntrance_CoordEvent2
 
 	db 0 ; bg events
 

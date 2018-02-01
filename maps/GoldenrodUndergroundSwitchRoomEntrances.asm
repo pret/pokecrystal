@@ -46,8 +46,8 @@ ENDM
 
 GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_0
-	scene_script .DummyScene1 ; SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOTHING
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .UpdateDoorPositions
@@ -130,7 +130,7 @@ UndergroundSilverScene1:
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
-	setscene SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_1
+	setscene SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOTHING
 	waitsfx
 	playmapmusic
 	end
@@ -149,7 +149,7 @@ UndergroundSilverScene2:
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
-	setscene SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_1
+	setscene SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_NOTHING
 	waitsfx
 	playmapmusic
 	end
@@ -158,7 +158,7 @@ UndergroundSilverBattleScript:
 	checkevent EVENT_RIVAL_BURNED_TOWER
 	iftrue .Continue
 	setevent EVENT_RIVAL_BURNED_TOWER
-	setmapscene BURNED_TOWER_1F, SCENE_BURNEDTOWER1F_1
+	setmapscene BURNED_TOWER_1F, SCENE_BURNEDTOWER1F_RIVAL_BATTLE
 .Continue:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
@@ -943,8 +943,8 @@ GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
 	warp_event 21, 29, 13, GOLDENROD_CITY
 
 	db 2 ; coord events
-	coord_event 19, 4, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_0, UndergroundSilverScene1
-	coord_event 19, 5, SCENE_GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_0, UndergroundSilverScene2
+	coord_event 19, 4, SCENE_DEFAULT, UndergroundSilverScene1
+	coord_event 19, 5, SCENE_DEFAULT, UndergroundSilverScene2
 
 	db 6 ; bg events
 	bg_event 16, 1, BGEVENT_READ, Switch1Script

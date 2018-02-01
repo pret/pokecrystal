@@ -9,8 +9,8 @@
 
 PowerPlant_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_POWERPLANT_0
-	scene_script .DummyScene1 ; SCENE_POWERPLANT_1
+	scene_script .DummyScene0 ; SCENE_POWERPLANT_NOTHING
+	scene_script .DummyScene1 ; SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 
 	db 0 ; callbacks
 
@@ -40,7 +40,7 @@ PowerPlantGuardPhoneScript:
 	closetext
 	spriteface PLAYER, DOWN
 	applymovement POWERPLANT_OFFICER1, MovementData_0x188eda
-	setscene SCENE_POWERPLANT_0
+	setscene SCENE_POWERPLANT_NOTHING
 	end
 
 OfficerScript_0x188df5:
@@ -146,8 +146,8 @@ PowerPlantManager:
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	clearevent EVENT_CERULEAN_GYM_ROCKET
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
-	setmapscene CERULEAN_GYM, SCENE_CERULEANGYM_1
-	setscene SCENE_POWERPLANT_1
+	setmapscene CERULEAN_GYM, SCENE_CERULEANGYM_GRUNT_RUNS_OUT
+	setscene SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 	end
 
 UnknownScript_0x188e8d:
@@ -394,7 +394,7 @@ PowerPlant_MapEvents:
 	warp_event 3, 17, 2, ROUTE_10_NORTH
 
 	db 1 ; coord events
-	coord_event 5, 12, SCENE_POWERPLANT_1, PowerPlantGuardPhoneScript
+	coord_event 5, 12, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL, PowerPlantGuardPhoneScript
 
 	db 2 ; bg events
 	bg_event 0, 1, BGEVENT_READ, PowerPlantBookshelf

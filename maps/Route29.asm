@@ -10,8 +10,8 @@
 
 Route29_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE29_0
-	scene_script .DummyScene1 ; SCENE_ROUTE29_1
+	scene_script .DummyScene0 ; SCENE_ROUTE29_NOTHING
+	scene_script .DummyScene1 ; SCENE_ROUTE29_CATCH_TUTORIAL
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .Tuscany
@@ -57,7 +57,7 @@ Route29Tutorial1:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	setscene SCENE_ROUTE29_0
+	setscene SCENE_ROUTE29_NOTHING
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -82,7 +82,7 @@ Route29Tutorial2:
 	writetext CatchingTutorialDebriefText
 	waitbutton
 	closetext
-	setscene SCENE_ROUTE29_0
+	setscene SCENE_ROUTE29_NOTHING
 	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 
@@ -91,7 +91,7 @@ Script_RefusedTutorial1:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1b
-	setscene SCENE_ROUTE29_0
+	setscene SCENE_ROUTE29_NOTHING
 	end
 
 Script_RefusedTutorial2:
@@ -99,7 +99,7 @@ Script_RefusedTutorial2:
 	waitbutton
 	closetext
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2b
-	setscene SCENE_ROUTE29_0
+	setscene SCENE_ROUTE29_NOTHING
 	end
 
 CatchingTutorialDudeScript:
@@ -420,8 +420,8 @@ Route29_MapEvents:
 	warp_event 27, 1, 3, ROUTE_29_ROUTE_46_GATE
 
 	db 2 ; coord events
-	coord_event 53, 8, SCENE_ROUTE29_1, Route29Tutorial1
-	coord_event 53, 9, SCENE_ROUTE29_1, Route29Tutorial2
+	coord_event 53, 8, SCENE_ROUTE29_CATCH_TUTORIAL, Route29Tutorial1
+	coord_event 53, 9, SCENE_ROUTE29_CATCH_TUTORIAL, Route29Tutorial2
 
 	db 2 ; bg events
 	bg_event 51, 7, BGEVENT_READ, Route29Sign1

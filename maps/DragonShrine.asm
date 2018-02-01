@@ -6,8 +6,8 @@
 
 DragonShrine_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DragonShrineTest ; SCENE_DRAGONSHRINE_0
-	scene_script .DummyScene ; SCENE_DRAGONSHRINE_1
+	scene_script .DragonShrineTest ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_DRAGONSHRINE_NOTHING
 
 	db 0 ; callbacks
 
@@ -163,8 +163,8 @@ DragonShrine_MapScripts:
 	waitsfx
 	special RestartMapMusic
 	specialphonecall SPECIALCALL_MASTERBALL
-	setscene SCENE_DRAGONSHRINE_1
-	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_1
+	setscene SCENE_DRAGONSHRINE_NOTHING
+	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 	writetext DragonShrinePlayerReceivedRisingBadgeText
 	buttonsound
 	writetext DragonShrineRisingBadgeExplanationText

@@ -17,11 +17,11 @@ Route43_MapScripts:
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	setmapscene ROUTE_43_GATE, SCENE_ROUTE43GATE_0
+	setmapscene ROUTE_43_GATE, SCENE_DEFAULT
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43_GATE, SCENE_ROUTE43GATE_1
+	setmapscene ROUTE_43_GATE, SCENE_ROUTE43GATE_NOTHING
 	return
 
 TrainerCamperSpencer:

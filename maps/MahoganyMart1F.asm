@@ -7,8 +7,8 @@
 
 MahoganyMart1F_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_MAHOGANYMART1F_0
-	scene_script .LanceUncoversStaircase ; SCENE_MAHOGANYMART1F_1
+	scene_script .DummyScene0 ; SCENE_MAHOGANYMART1F_NOTHING
+	scene_script .LanceUncoversStaircase ; SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .MahoganyMart1FStaircase
@@ -99,7 +99,7 @@ UnknownScript_0x6c38f:
 	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c412
 	playsound SFX_EXIT_BUILDING
 	disappear MAHOGANYMART1F_LANCE
-	setscene SCENE_MAHOGANYMART1F_0
+	setscene SCENE_MAHOGANYMART1F_NOTHING
 	waitsfx
 	end
 

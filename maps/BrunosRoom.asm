@@ -3,8 +3,8 @@
 
 BrunosRoom_MapScripts:
 	db 2 ; scene scripts
-	scene_script .LockDoor ; SCENE_BRUNOSROOM_0
-	scene_script .DummyScene ; SCENE_BRUNOSROOM_1
+	scene_script .LockDoor ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_BRUNOSROOM_NOTHING
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .BrunosRoomDoors
@@ -35,7 +35,7 @@ BrunosRoom_MapScripts:
 	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
-	setscene SCENE_BRUNOSROOM_1
+	setscene SCENE_BRUNOSROOM_NOTHING
 	setevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end

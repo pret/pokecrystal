@@ -7,8 +7,8 @@
 
 BattleTower1F_MapScripts:
 	db 2 ; scene scripts
-	scene_script .Scene0 ; SCENE_BATTLETOWER1F_0
-	scene_script .Scene1 ; SCENE_BATTLETOWER1F_1
+	scene_script .Scene0 ; SCENE_DEFAULT
+	scene_script .Scene1 ; SCENE_BATTLETOWER1F_NOTHING
 
 	db 0 ; callbacks
 
@@ -36,7 +36,7 @@ BattleTower1F_MapScripts:
 	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
 .SkipEverything:
-	setscene SCENE_BATTLETOWER1F_1
+	setscene SCENE_BATTLETOWER1F_NOTHING
 .Scene1:
 	end
 
@@ -79,10 +79,10 @@ Script_ChooseChallenge: ; 0x9e40f
 	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene SCENE_BATTLETOWER1F_0
+	setscene SCENE_DEFAULT
 	special TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene SCENE_BATTLETOWER1F_1
+	setscene SCENE_BATTLETOWER1F_NOTHING
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ ; set 1, [sBattleTowerSaveFileFlags]
 	special BattleTowerAction
 	special BattleTowerRoomMenu
@@ -103,9 +103,9 @@ Script_ResumeBattleTowerChallenge:
 	special BattleTowerAction
 Script_WalkToBattleTowerElevator:
 	musicfadeout MUSIC_NONE, 8
-	setmapscene BATTLE_TOWER_BATTLE_ROOM, SCENE_BATTLETOWERBATTLEROOM_0
-	setmapscene BATTLE_TOWER_ELEVATOR, SCENE_BATTLETOWERELEVATOR_0
-	setmapscene BATTLE_TOWER_HALLWAY, SCENE_BATTLETOWERHALLWAY_0
+	setmapscene BATTLE_TOWER_BATTLE_ROOM, SCENE_DEFAULT
+	setmapscene BATTLE_TOWER_ELEVATOR, SCENE_DEFAULT
+	setmapscene BATTLE_TOWER_HALLWAY, SCENE_DEFAULT
 	follow BATTLETOWER1F_RECEPTIONIST, PLAYER
 	applymovement BATTLETOWER1F_RECEPTIONIST, MovementData_BattleTower1FWalkToElevator
 	writebyte BATTLETOWERACTION_0A
@@ -206,10 +206,10 @@ continue:
 	writetext Text_SaveBeforeReentry
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene SCENE_BATTLETOWER1F_0
+	setscene SCENE_DEFAULT
 	special TryQuickSave
 	iffalse Script_Menu_ChallengeExplanationCancel
-	setscene SCENE_BATTLETOWER1F_1
+	setscene SCENE_BATTLETOWER1F_NOTHING
 	writebyte BATTLETOWERACTION_06
 	special BattleTowerAction
 	writebyte BATTLETOWERACTION_12

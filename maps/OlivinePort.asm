@@ -9,8 +9,8 @@
 
 OlivinePort_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_OLIVINEPORT_0
-	scene_script .LeaveFastShip ; SCENE_OLIVINEPORT_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .LeaveFastShip ; SCENE_OLIVINEPORT_LEAVE_SHIP
 
 	db 0 ; callbacks
 
@@ -24,7 +24,7 @@ OlivinePort_MapScripts:
 .LeaveFastShipScript:
 	applymovement PLAYER, MovementData_0x74a32
 	appear OLIVINEPORT_SAILOR1
-	setscene SCENE_OLIVINEPORT_0
+	setscene SCENE_DEFAULT
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	blackoutmod OLIVINE_CITY
 	end
@@ -62,7 +62,7 @@ SailorScript_0x748c0:
 UnknownScript_0x7490a:
 	clearevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	appear OLIVINEPORT_SAILOR1
-	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_1
+	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_ENTER_SHIP
 	warp FAST_SHIP_1F, 25, 1
 	end
 
@@ -390,7 +390,7 @@ OlivinePort_MapEvents:
 	warp_event 7, 23, 1, FAST_SHIP_1F
 
 	db 1 ; coord events
-	coord_event 7, 15, SCENE_OLIVINEPORT_0, UnknownScript_0x7491f
+	coord_event 7, 15, SCENE_DEFAULT, UnknownScript_0x7491f
 
 	db 1 ; bg events
 	bg_event 1, 22, BGEVENT_ITEM, OlivinePortHiddenProtein

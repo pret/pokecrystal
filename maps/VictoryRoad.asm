@@ -8,8 +8,8 @@
 
 VictoryRoad_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_VICTORYROAD_0
-	scene_script .DummyScene1 ; SCENE_VICTORYROAD_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_VICTORYROAD_NOTHING
 
 	db 0 ; callbacks
 
@@ -30,7 +30,7 @@ UnknownScript_0x74492:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x7454c
 	disappear VICTORYROAD_SILVER
-	setscene SCENE_VICTORYROAD_1
+	setscene SCENE_VICTORYROAD_NOTHING
 	playmapmusic
 	end
 
@@ -44,7 +44,7 @@ UnknownScript_0x744b5:
 	scall UnknownScript_0x744d4
 	applymovement VICTORYROAD_SILVER, MovementData_0x74555
 	disappear VICTORYROAD_SILVER
-	setscene SCENE_VICTORYROAD_1
+	setscene SCENE_VICTORYROAD_NOTHING
 	playmapmusic
 	end
 
@@ -252,8 +252,8 @@ VictoryRoad_MapEvents:
 	warp_event 13, 5, 3, ROUTE_23
 
 	db 2 ; coord events
-	coord_event 12, 8, SCENE_VICTORYROAD_0, UnknownScript_0x74492
-	coord_event 13, 8, SCENE_VICTORYROAD_0, UnknownScript_0x744b5
+	coord_event 12, 8, SCENE_DEFAULT, UnknownScript_0x74492
+	coord_event 13, 8, SCENE_DEFAULT, UnknownScript_0x744b5
 
 	db 2 ; bg events
 	bg_event 3, 29, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion

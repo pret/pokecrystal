@@ -8,8 +8,8 @@ MountMoonSquare_MapScripts:
 	scene_script .DummyScene
 
 	db 2 ; callbacks
-	callback MAPCALLBACK_NEWMAP, .DisappearMoonStone ; SCENE_MOUNTMOONSQUARE_0
-	callback MAPCALLBACK_OBJECTS, .DisappearRock ; SCENE_MOUNTMOONSQUARE_1
+	callback MAPCALLBACK_NEWMAP, .DisappearMoonStone ; SCENE_DEFAULT
+	callback MAPCALLBACK_OBJECTS, .DisappearRock ; SCENE_MOUNTMOONSQUARE_UNUSED
 
 .DummyScene:
 	end
@@ -139,7 +139,7 @@ MountMoonSquare_MapEvents:
 	warp_event 13, 7, 1, MOUNT_MOON_GIFT_SHOP
 
 	db 1 ; coord events
-	coord_event 7, 11, SCENE_MOUNTMOONSQUARE_0, ClefairyDance
+	coord_event 7, 11, SCENE_DEFAULT, ClefairyDance
 
 	db 2 ; bg events
 	bg_event 7, 7, BGEVENT_ITEM, MountMoonSquareHiddenMoonStone

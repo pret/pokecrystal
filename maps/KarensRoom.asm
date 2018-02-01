@@ -3,8 +3,8 @@
 
 KarensRoom_MapScripts:
 	db 2 ; scene scripts
-	scene_script .LockDoor ; SCENE_KARENSROOM_0
-	scene_script .DummyScene ; SCENE_KARENSROOM_1
+	scene_script .LockDoor ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_KARENSROOM_NOTHING
 
 	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .KarensRoomDoors
@@ -35,7 +35,7 @@ KarensRoom_MapScripts:
 	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
-	setscene SCENE_KARENSROOM_1
+	setscene SCENE_KARENSROOM_NOTHING
 	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end

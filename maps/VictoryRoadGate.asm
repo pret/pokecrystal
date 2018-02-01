@@ -5,8 +5,8 @@
 
 VictoryRoadGate_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_VICTORYROADGATE_0
-	scene_script .DummyScene1 ; SCENE_VICTORYROADGATE_1
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_VICTORYROADGATE_NOTHING
 
 	db 0 ; callbacks
 
@@ -38,7 +38,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateEightBadgesText
 	waitbutton
 	closetext
-	setscene SCENE_VICTORYROADGATE_1
+	setscene SCENE_VICTORYROADGATE_NOTHING
 	end
 
 VictoryRoadGateLeftBlackBeltScript:
@@ -109,7 +109,7 @@ VictoryRoadGate_MapEvents:
 	warp_event 2, 7, 2, ROUTE_28
 
 	db 1 ; coord events
-	coord_event 10, 11, SCENE_VICTORYROADGATE_0, VictoryRoadGateBadgeCheckScene
+	coord_event 10, 11, SCENE_DEFAULT, VictoryRoadGateBadgeCheckScene
 
 	db 0 ; bg events
 

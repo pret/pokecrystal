@@ -4,8 +4,8 @@
 
 MrPokemonsHouse_MapScripts:
 	db 2 ; scene scripts
-	scene_script .MeetMrPokemon ; SCENE_MRPOKEMONSHOUSE_0
-	scene_script .DummyScene ; SCENE_MRPOKEMONSHOUSE_1
+	scene_script .MeetMrPokemon ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_MRPOKEMONSHOUSE_NOTHING
 
 	db 0 ; callbacks
 
@@ -123,9 +123,9 @@ MrPokemonsHouse_OakScript:
 	setevent EVENT_RIVAL_NEW_BARK_TOWN
 	setevent EVENT_PLAYERS_HOUSE_1F_NEIGHBOR
 	clearevent EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR
-	setscene SCENE_MRPOKEMONSHOUSE_1
-	setmapscene CHERRYGROVE_CITY, SCENE_CHERRYGROVECITY_1
-	setmapscene ELMS_LAB, SCENE_ELMSLAB_3
+	setscene SCENE_MRPOKEMONSHOUSE_NOTHING
+	setmapscene CHERRYGROVE_CITY, SCENE_CHERRYGROVECITY_MEET_RIVAL
+	setmapscene ELMS_LAB, SCENE_ELMSLAB_MEET_OFFICER
 	specialphonecall SPECIALCALL_ROBBED
 	clearevent EVENT_COP_IN_ELMS_LAB
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM

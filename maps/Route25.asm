@@ -13,8 +13,8 @@
 
 Route25_MapScripts:
 	db 2 ; scene scripts
-	scene_script .DummyScene0 ; SCENE_ROUTE25_0
-	scene_script .DummyScene1 ; SCENE_ROUTE25_1
+	scene_script .DummyScene0 ; SCENE_ROUTE25_NOTHING
+	scene_script .DummyScene1 ; SCENE_ROUTE25_MISTYS_DATE
 
 	db 0 ; callbacks
 
@@ -46,7 +46,7 @@ Route25MistyDate1Script:
 	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
-	setscene SCENE_ROUTE25_0
+	setscene SCENE_ROUTE25_NOTHING
 	special RestartMapMusic
 	end
 
@@ -72,7 +72,7 @@ Route25MistyDate2Script:
 	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
-	setscene SCENE_ROUTE25_0
+	setscene SCENE_ROUTE25_NOTHING
 	special RestartMapMusic
 	end
 
@@ -434,8 +434,8 @@ Route25_MapEvents:
 	warp_event 47, 5, 1, BILLS_HOUSE
 
 	db 2 ; coord events
-	coord_event 42, 6, SCENE_ROUTE25_1, Route25MistyDate1Script
-	coord_event 42, 7, SCENE_ROUTE25_1, Route25MistyDate2Script
+	coord_event 42, 6, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate1Script
+	coord_event 42, 7, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate2Script
 
 	db 2 ; bg events
 	bg_event 45, 5, BGEVENT_READ, BillsHouseSign
