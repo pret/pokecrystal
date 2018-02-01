@@ -1,3 +1,7 @@
+; See data/maps/scenes.asm for which maps have scene variables.
+; Values default to 0 and can be changed with setscene or setmapscene.
+; Each scene_script and coord_event goes with a single scene ID.
+
 SCENE_DEFAULT EQU 0
 
 ; wPokecenter2FSceneID
