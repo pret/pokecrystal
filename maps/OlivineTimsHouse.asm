@@ -9,7 +9,7 @@ OlivineTimsHouse_MapScripts:
 Tim:
 	faceplayer
 	opentext
-	trade NPCTRADE_TIM
+	trade NPC_TRADE_TIM
 	waitbutton
 	closetext
 	end

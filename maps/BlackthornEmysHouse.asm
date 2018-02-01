@@ -9,7 +9,7 @@ BlackthornEmysHouse_MapScripts:
 Emy:
 	faceplayer
 	opentext
-	trade NPCTRADE_EMY
+	trade NPC_TRADE_EMY
 	waitbutton
 	closetext
 	end

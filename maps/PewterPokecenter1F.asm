@@ -30,7 +30,7 @@ PewterPokecenter1FBugCatcherScript:
 Chris:
 	faceplayer
 	opentext
-	trade NPCTRADE_CHRIS
+	trade NPC_TRADE_CHRIS
 	waitbutton
 	closetext
 	end

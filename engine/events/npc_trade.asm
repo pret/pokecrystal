@@ -4,31 +4,31 @@ NPCTrade:: ; fcba8
 	call Trade_GetDialog
 	ld b, CHECK_FLAG
 	call TradeFlagAction
-	ld a, TRADE_AFTER
+	ld a, TRADE_DIALOG_AFTER
 	jr nz, .done
 
-	ld a, TRADE_INTRO
+	ld a, TRADE_DIALOG_INTRO
 	call PrintTradeText
 
 	call YesNoBox
-	ld a, TRADE_CANCEL
+	ld a, TRADE_DIALOG_CANCEL
 	jr c, .done
 
 ; Select givemon from party
 	ld b, PARTYMENUACTION_GIVE_MON
 	farcall SelectTradeOrDayCareMon
-	ld a, TRADE_CANCEL
+	ld a, TRADE_DIALOG_CANCEL
 	jr c, .done
 
-	ld e, TRADE_GIVEMON
+	ld e, NPCTRADE_GIVEMON
 	call GetTradeAttribute
 	ld a, [CurPartySpecies]
 	cp [hl]
-	ld a, TRADE_WRONG
+	ld a, TRADE_DIALOG_WRONG
 	jr nz, .done
 
 	call CheckTradeGender
-	ld a, TRADE_WRONG
+	ld a, TRADE_DIALOG_WRONG
 	jr c, .done
 
 	ld b, SET_FLAG
@@ -46,7 +46,7 @@ NPCTrade:: ; fcba8
 
 	call RestartMapMusic
 
-	ld a, TRADE_COMPLETE
+	ld a, TRADE_DIALOG_COMPLETE
 
 .done
 	call PrintTradeText
@@ -72,14 +72,14 @@ CheckTradeGender: ; fcc23
 	xor a
 	ld [MonType], a
 
-	ld e, TRADE_GENDER
+	ld e, NPCTRADE_GENDER
 	call GetTradeAttribute
 	ld a, [hl]
-	and a ; TRADE_EITHER_GENDER
+	and a ; TRADE_GENDER_EITHER
 	jr z, .matching
-	cp TRADE_MALE_ONLY
+	cp TRADE_GENDER_MALE
 	jr z, .check_male
-
+	; TRADE_GENDER_FEMALE
 	farcall GetGender
 	jr nz, .not_matching
 	jr .matching
@@ -108,7 +108,7 @@ TradeFlagAction: ; fcc4a
 ; fcc59
 
 Trade_GetDialog: ; fcc59
-	ld e, TRADE_DIALOG
+	ld e, NPCTRADE_DIALOG
 	call GetTradeAttribute
 	ld a, [hl]
 	ld [wcf64], a
@@ -116,12 +116,12 @@ Trade_GetDialog: ; fcc59
 ; fcc63
 
 DoNPCTrade: ; fcc63
-	ld e, TRADE_GIVEMON
+	ld e, NPCTRADE_GIVEMON
 	call GetTradeAttribute
 	ld a, [hl]
 	ld [wPlayerTrademonSpecies], a
 
-	ld e, TRADE_GETMON
+	ld e, NPCTRADE_GETMON
 	call GetTradeAttribute
 	ld a, [hl]
 	ld [wOTTrademonSpecies], a
@@ -167,10 +167,10 @@ DoNPCTrade: ; fcc63
 	ld a, c
 	ld [wPlayerTrademonCaughtData], a
 
-	ld e, TRADE_DIALOG
+	ld e, NPCTRADE_DIALOG
 	call GetTradeAttribute
 	ld a, [hl]
-	cp TRADE_DIALOG_GIRL
+	cp TRADE_DIALOGSET_GIRL
 	ld a, CAUGHT_BY_GIRL
 	jr c, .okay
 	ld a, CAUGHT_BY_BOY
@@ -190,17 +190,17 @@ DoNPCTrade: ; fcc63
 	callfar RemoveMonFromPartyOrBox
 	predef TryAddMonToParty
 
-	ld e, TRADE_DIALOG
+	ld e, NPCTRADE_DIALOG
 	call GetTradeAttribute
 	ld a, [hl]
-	cp TRADE_COMPLETE
+	cp TRADE_DIALOG_COMPLETE
 	ld b, RESET_FLAG
 	jr c, .incomplete
 	ld b, SET_FLAG
 .incomplete
 	farcall SetGiftPartyMonCaughtData
 
-	ld e, TRADE_NICK
+	ld e, NPCTRADE_NICK
 	call GetTradeAttribute
 	ld de, wOTTrademonNickname
 	call CopyTradeName
@@ -211,7 +211,7 @@ DoNPCTrade: ; fcc63
 	ld hl, wOTTrademonNickname
 	call CopyTradeName
 
-	ld e, TRADE_OT_NAME
+	ld e, NPCTRADE_OT_NAME
 	call GetTradeAttribute
 	push hl
 	ld de, wOTTrademonOTName
@@ -226,7 +226,7 @@ DoNPCTrade: ; fcc63
 	ld hl, wOTTrademonOTName
 	call CopyTradeName
 
-	ld e, TRADE_DVS
+	ld e, NPCTRADE_DVS
 	call GetTradeAttribute
 	ld de, wOTTrademonDVs
 	call Trade_CopyTwoBytes
@@ -237,7 +237,7 @@ DoNPCTrade: ; fcc63
 	ld hl, wOTTrademonDVs
 	call Trade_CopyTwoBytes
 
-	ld e, TRADE_OT_ID
+	ld e, NPCTRADE_OT_ID
 	call GetTradeAttribute
 	ld de, wOTTrademonID + 1
 	call Trade_CopyTwoBytesReverseEndian
@@ -248,7 +248,7 @@ DoNPCTrade: ; fcc63
 	ld hl, wOTTrademonID
 	call Trade_CopyTwoBytes
 
-	ld e, TRADE_ITEM
+	ld e, NPCTRADE_ITEM
 	call GetTradeAttribute
 	push hl
 	ld hl, PartyMon1Item
@@ -359,7 +359,7 @@ Trade_CopyTwoBytesReverseEndian: ; fce15
 ; fce1b
 
 GetTradeMonNames: ; fce1b
-	ld e, TRADE_GETMON
+	ld e, NPCTRADE_GETMON
 	call GetTradeAttribute
 	ld a, [hl]
 	call GetTradeMonName
@@ -367,7 +367,7 @@ GetTradeMonNames: ; fce1b
 	ld de, StringBuffer2
 	call CopyTradeName
 
-	ld e, TRADE_GIVEMON
+	ld e, NPCTRADE_GIVEMON
 	call GetTradeAttribute
 	ld a, [hl]
 	call GetTradeMonName
@@ -383,16 +383,16 @@ GetTradeMonNames: ; fce1b
 
 	dec hl
 	push hl
-	ld e, TRADE_GENDER
+	ld e, NPCTRADE_GENDER
 	call GetTradeAttribute
 	ld a, [hl]
 	pop hl
-	and a
+	and a ; TRADE_GENDER_EITHER
 	ret z
-
-	cp TRADE_MALE_ONLY
+	cp TRADE_GENDER_MALE
 	ld a, "♂"
 	jr z, .done
+	; TRADE_GENDER_FEMALE
 	ld a, "♀"
 .done
 	ld [hli], a
@@ -423,28 +423,28 @@ PrintTradeText: ; fcf38
 ; fcf53
 
 TradeTexts: ; fcf53
-; entries correspond to TRADE_* × TRADE_DIALOG_* constants
-; TRADE_INTRO
+; entries correspond to TRADE_DIALOG_* × TRADE_DIALOGSET_* constants
+; TRADE_DIALOG_INTRO
 	dw TradeIntroText1
 	dw TradeIntroText2
 	dw TradeIntroText3
 	dw TradeIntroText4
-; TRADE_CANCEL
+; TRADE_DIALOG_CANCEL
 	dw TradeCancelText1
 	dw TradeCancelText2
 	dw TradeCancelText3
 	dw TradeCancelText4
-; TRADE_WRONG
+; TRADE_DIALOG_WRONG
 	dw TradeWrongText1
 	dw TradeWrongText2
 	dw TradeWrongText3
 	dw TradeWrongText4
-; TRADE_COMPLETE
+; TRADE_DIALOG_COMPLETE
 	dw TradeCompleteText1
 	dw TradeCompleteText2
 	dw TradeCompleteText3
 	dw TradeCompleteText4
-; TRADE_AFTER
+; TRADE_DIALOG_AFTER
 	dw TradeAfterText1
 	dw TradeAfterText2
 	dw TradeAfterText3

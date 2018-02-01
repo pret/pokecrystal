@@ -91,6 +91,7 @@ RETVAR_EXECUTE EQU (2 << 6)
 NUM_PLAYER_EVENTS EQU const_value
 
 
+; bg_event types
 ; TryBGEvent arguments (see engine/events.asm)
 	const_def
 	const BGEVENT_READ

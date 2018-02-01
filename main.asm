@@ -462,7 +462,7 @@ INCLUDE "engine/battle/misc.asm"
 SECTION "bank3F", ROMX
 
 INCLUDE "engine/tileset_anims.asm"
-INCLUDE "engine/npctrade.asm"
+INCLUDE "engine/events/npc_trade.asm"
 INCLUDE "engine/events/mom_phone.asm"
 
 

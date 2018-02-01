@@ -12,7 +12,7 @@ Route14_MapScripts:
 Kim:
 	faceplayer
 	opentext
-	trade NPCTRADE_KIM
+	trade NPC_TRADE_KIM
 	waitbutton
 	closetext
 	end

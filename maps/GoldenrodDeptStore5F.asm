@@ -124,7 +124,7 @@ GoldenrodDeptStore5FLassScript:
 Mike:
 	faceplayer
 	opentext
-	trade NPCTRADE_MIKE
+	trade NPC_TRADE_MIKE
 	waitbutton
 	closetext
 	end

@@ -189,7 +189,7 @@ UnknownScript_0x188ec5:
 Forest:
 	faceplayer
 	opentext
-	trade NPCTRADE_FOREST
+	trade NPC_TRADE_FOREST
 	waitbutton
 	closetext
 	end
