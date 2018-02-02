@@ -146,20 +146,20 @@ RuinsOfAlphHoOhChamber_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 3, 9, RUINS_OF_ALPH_OUTSIDE, 1
-	warp_event 4, 9, RUINS_OF_ALPH_OUTSIDE, 1
-	warp_event 3, 3, RUINS_OF_ALPH_INNER_CHAMBER, 2
-	warp_event 4, 3, RUINS_OF_ALPH_INNER_CHAMBER, 3
-	warp_event 4, 0, RUINS_OF_ALPH_HO_OH_ITEM_ROOM, 1
+	warp_event  3,  9, RUINS_OF_ALPH_OUTSIDE, 1
+	warp_event  4,  9, RUINS_OF_ALPH_OUTSIDE, 1
+	warp_event  3,  3, RUINS_OF_ALPH_INNER_CHAMBER, 2
+	warp_event  4,  3, RUINS_OF_ALPH_INNER_CHAMBER, 3
+	warp_event  4,  0, RUINS_OF_ALPH_HO_OH_ITEM_ROOM, 1
 
 	db 0 ; coord events
 
 	db 6 ; bg events
-	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
-	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
-	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost2Script
-	bg_event 4, 2, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost3Script
-	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost4Script
-	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost5Script
+	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
+	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
+	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost2Script
+	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost3Script
+	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost4Script
+	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost5Script
 
 	db 0 ; object events

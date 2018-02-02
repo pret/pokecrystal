@@ -194,15 +194,15 @@ Route39Farmhouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 7, ROUTE_39, 2
-	warp_event 3, 7, ROUTE_39, 2
+	warp_event  2,  7, ROUTE_39, 2
+	warp_event  3,  7, ROUTE_39, 2
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 0, 1, BGEVENT_READ, FarmhouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, FarmhouseBookshelf
+	bg_event  0,  1, BGEVENT_READ, FarmhouseBookshelf
+	bg_event  1,  1, BGEVENT_READ, FarmhouseBookshelf
 
 	db 2 ; object events
-	object_event 3, 2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokefanM_DairyFarmer, -1
-	object_event 5, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanF_SnoreFarmer, -1
+	object_event  3,  2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokefanM_DairyFarmer, -1
+	object_event  5,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanF_SnoreFarmer, -1

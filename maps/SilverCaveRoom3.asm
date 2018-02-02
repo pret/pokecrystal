@@ -52,11 +52,11 @@ SilverCaveRoom3_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 9, 33, SILVER_CAVE_ROOM_2, 2
+	warp_event  9, 33, SILVER_CAVE_ROOM_2, 2
 
 	db 0 ; coord events
 
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event 9, 10, SPRITE_RED, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER
+	object_event  9, 10, SPRITE_RED, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER

@@ -265,15 +265,15 @@ CeladonGameCornerPrizeRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 5, CELADON_CITY, 7
-	warp_event 3, 5, CELADON_CITY, 7
+	warp_event  2,  5, CELADON_CITY, 7
+	warp_event  3,  5, CELADON_CITY, 7
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 2, 1, BGEVENT_READ, CeladonGameCornerPrizeRoomTMVendor
-	bg_event 4, 1, BGEVENT_READ, CeladonGameCornerPrizeRoomPokemonVendor
+	bg_event  2,  1, BGEVENT_READ, CeladonGameCornerPrizeRoomTMVendor
+	bg_event  4,  1, BGEVENT_READ, CeladonGameCornerPrizeRoomPokemonVendor
 
 	db 2 ; object events
-	object_event 0, 2, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomGentlemanScript, -1
-	object_event 4, 4, SPRITE_PHARMACIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomPharmacistScript, -1
+	object_event  0,  2, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomGentlemanScript, -1
+	object_event  4,  4, SPRITE_PHARMACIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPrizeRoomPharmacistScript, -1

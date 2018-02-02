@@ -7,7 +7,7 @@ CeruleanPokecenter2FBeta_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 0, 7, CERULEAN_POKECENTER_1F, 1
+	warp_event  0,  7, CERULEAN_POKECENTER_1F, 1
 
 	db 0 ; coord events
 

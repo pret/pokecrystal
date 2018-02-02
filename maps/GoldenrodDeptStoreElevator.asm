@@ -56,12 +56,12 @@ GoldenrodDeptStoreElevator_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 1, 3, GOLDENROD_DEPT_STORE_1F, -1
-	warp_event 2, 3, GOLDENROD_DEPT_STORE_1F, -1
+	warp_event  1,  3, GOLDENROD_DEPT_STORE_1F, -1
+	warp_event  2,  3, GOLDENROD_DEPT_STORE_1F, -1
 
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 3, 0, BGEVENT_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
+	bg_event  3,  0, BGEVENT_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
 
 	db 0 ; object events

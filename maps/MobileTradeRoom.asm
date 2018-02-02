@@ -36,12 +36,12 @@ MobileTradeRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 7, POKECENTER_2F, 5
-	warp_event 5, 7, POKECENTER_2F, 5
+	warp_event  4,  7, POKECENTER_2F, 5
+	warp_event  5,  7, POKECENTER_2F, 5
 
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 4, 2, BGEVENT_UP, MapMobileTradeRoomSignpost0Script
+	bg_event  4,  2, BGEVENT_UP, MapMobileTradeRoomSignpost0Script
 
 	db 0 ; object events

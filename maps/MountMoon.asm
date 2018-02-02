@@ -162,13 +162,13 @@ MountMoon_MapEvents:
 	db 0, 0 ; filler
 
 	db 8 ; warp events
-	warp_event 3, 3, ROUTE_3, 1
+	warp_event  3,  3, ROUTE_3, 1
 	warp_event 15, 15, ROUTE_4, 1
-	warp_event 13, 3, MOUNT_MOON, 7
+	warp_event 13,  3, MOUNT_MOON, 7
 	warp_event 15, 11, MOUNT_MOON, 8
-	warp_event 25, 5, MOUNT_MOON_SQUARE, 1
+	warp_event 25,  5, MOUNT_MOON_SQUARE, 1
 	warp_event 25, 15, MOUNT_MOON_SQUARE, 2
-	warp_event 25, 3, MOUNT_MOON, 3
+	warp_event 25,  3, MOUNT_MOON, 3
 	warp_event 25, 13, MOUNT_MOON, 4
 
 	db 0 ; coord events
@@ -176,4 +176,4 @@ MountMoon_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event 7, 3, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	object_event  7,  3, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

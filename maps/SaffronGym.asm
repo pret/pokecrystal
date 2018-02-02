@@ -292,48 +292,48 @@ SaffronGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 32 ; warp events
-	warp_event 8, 17, SAFFRON_CITY, 2
-	warp_event 9, 17, SAFFRON_CITY, 2
+	warp_event  8, 17, SAFFRON_CITY, 2
+	warp_event  9, 17, SAFFRON_CITY, 2
 	warp_event 11, 15, SAFFRON_GYM, 18
 	warp_event 19, 15, SAFFRON_GYM, 19
 	warp_event 19, 11, SAFFRON_GYM, 20
-	warp_event 1, 11, SAFFRON_GYM, 21
-	warp_event 5, 3, SAFFRON_GYM, 22
-	warp_event 11, 5, SAFFRON_GYM, 23
-	warp_event 1, 15, SAFFRON_GYM, 24
-	warp_event 19, 3, SAFFRON_GYM, 25
+	warp_event  1, 11, SAFFRON_GYM, 21
+	warp_event  5,  3, SAFFRON_GYM, 22
+	warp_event 11,  5, SAFFRON_GYM, 23
+	warp_event  1, 15, SAFFRON_GYM, 24
+	warp_event 19,  3, SAFFRON_GYM, 25
 	warp_event 15, 17, SAFFRON_GYM, 26
-	warp_event 5, 17, SAFFRON_GYM, 27
-	warp_event 5, 9, SAFFRON_GYM, 28
-	warp_event 9, 3, SAFFRON_GYM, 29
-	warp_event 15, 9, SAFFRON_GYM, 30
-	warp_event 15, 5, SAFFRON_GYM, 31
-	warp_event 1, 5, SAFFRON_GYM, 32
+	warp_event  5, 17, SAFFRON_GYM, 27
+	warp_event  5,  9, SAFFRON_GYM, 28
+	warp_event  9,  3, SAFFRON_GYM, 29
+	warp_event 15,  9, SAFFRON_GYM, 30
+	warp_event 15,  5, SAFFRON_GYM, 31
+	warp_event  1,  5, SAFFRON_GYM, 32
 	warp_event 19, 17, SAFFRON_GYM, 3
-	warp_event 19, 9, SAFFRON_GYM, 4
-	warp_event 1, 9, SAFFRON_GYM, 5
-	warp_event 5, 5, SAFFRON_GYM, 6
-	warp_event 11, 3, SAFFRON_GYM, 7
-	warp_event 1, 17, SAFFRON_GYM, 8
-	warp_event 19, 5, SAFFRON_GYM, 9
+	warp_event 19,  9, SAFFRON_GYM, 4
+	warp_event  1,  9, SAFFRON_GYM, 5
+	warp_event  5,  5, SAFFRON_GYM, 6
+	warp_event 11,  3, SAFFRON_GYM, 7
+	warp_event  1, 17, SAFFRON_GYM, 8
+	warp_event 19,  5, SAFFRON_GYM, 9
 	warp_event 15, 15, SAFFRON_GYM, 10
-	warp_event 5, 15, SAFFRON_GYM, 11
-	warp_event 5, 11, SAFFRON_GYM, 12
-	warp_event 9, 5, SAFFRON_GYM, 13
+	warp_event  5, 15, SAFFRON_GYM, 11
+	warp_event  5, 11, SAFFRON_GYM, 12
+	warp_event  9,  5, SAFFRON_GYM, 13
 	warp_event 15, 11, SAFFRON_GYM, 14
-	warp_event 15, 3, SAFFRON_GYM, 15
-	warp_event 1, 3, SAFFRON_GYM, 16
-	warp_event 11, 9, SAFFRON_GYM, 17
+	warp_event 15,  3, SAFFRON_GYM, 15
+	warp_event  1,  3, SAFFRON_GYM, 16
+	warp_event 11,  9, SAFFRON_GYM, 17
 
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 8, 15, BGEVENT_READ, SaffronGymStatue
+	bg_event  8, 15, BGEVENT_READ, SaffronGymStatue
 
 	db 6 ; object events
-	object_event 9, 8, SPRITE_SABRINA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SabrinaScript_0x189c2e, -1
+	object_event  9,  8, SPRITE_SABRINA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SabrinaScript_0x189c2e, -1
 	object_event 17, 16, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerMediumRebecca, -1
-	object_event 3, 16, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
-	object_event 3, 4, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerMediumDoris, -1
-	object_event 17, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicJared, -1
-	object_event 9, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuyScript, -1
+	object_event  3, 16, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicFranklin, -1
+	object_event  3,  4, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerMediumDoris, -1
+	object_event 17,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicJared, -1
+	object_event  9, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuyScript, -1

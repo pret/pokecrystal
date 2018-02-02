@@ -64,15 +64,15 @@ Colosseum_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 7, POKECENTER_2F, 3
-	warp_event 5, 7, POKECENTER_2F, 3
+	warp_event  4,  7, POKECENTER_2F, 3
+	warp_event  5,  7, POKECENTER_2F, 3
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 4, 4, BGEVENT_RIGHT, MapColosseumSignpost1Script
-	bg_event 5, 4, BGEVENT_LEFT, MapColosseumSignpost1Script
+	bg_event  4,  4, BGEVENT_RIGHT, MapColosseumSignpost1Script
+	bg_event  5,  4, BGEVENT_LEFT, MapColosseumSignpost1Script
 
 	db 2 ; object events
-	object_event 3, 4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event 6, 4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	object_event  3,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  6,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2

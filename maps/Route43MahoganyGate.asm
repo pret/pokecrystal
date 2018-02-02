@@ -40,14 +40,14 @@ Route43MahoganyGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 4, 0, ROUTE_43, 1
-	warp_event 5, 0, ROUTE_43, 2
-	warp_event 4, 7, MAHOGANY_TOWN, 5
-	warp_event 5, 7, MAHOGANY_TOWN, 5
+	warp_event  4,  0, ROUTE_43, 1
+	warp_event  5,  0, ROUTE_43, 2
+	warp_event  4,  7, MAHOGANY_TOWN, 5
+	warp_event  5,  7, MAHOGANY_TOWN, 5
 
 	db 0 ; coord events
 
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route43MahoganyGateOfficer, -1
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route43MahoganyGateOfficer, -1

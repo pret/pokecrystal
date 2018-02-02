@@ -388,51 +388,51 @@ EcruteakGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 33 ; warp events
-	warp_event 4, 17, ECRUTEAK_CITY, 10
-	warp_event 5, 17, ECRUTEAK_CITY, 10
-	warp_event 4, 14, ECRUTEAK_GYM, 4
-	warp_event 2, 4, ECRUTEAK_GYM, 3
-	warp_event 3, 4, ECRUTEAK_GYM, 3
-	warp_event 4, 4, ECRUTEAK_GYM, 3
-	warp_event 4, 5, ECRUTEAK_GYM, 3
-	warp_event 6, 7, ECRUTEAK_GYM, 3
-	warp_event 7, 4, ECRUTEAK_GYM, 3
-	warp_event 2, 6, ECRUTEAK_GYM, 3
-	warp_event 3, 6, ECRUTEAK_GYM, 3
-	warp_event 4, 6, ECRUTEAK_GYM, 3
-	warp_event 5, 6, ECRUTEAK_GYM, 3
-	warp_event 7, 6, ECRUTEAK_GYM, 3
-	warp_event 7, 7, ECRUTEAK_GYM, 3
-	warp_event 4, 8, ECRUTEAK_GYM, 3
-	warp_event 5, 8, ECRUTEAK_GYM, 3
-	warp_event 6, 8, ECRUTEAK_GYM, 3
-	warp_event 7, 8, ECRUTEAK_GYM, 3
-	warp_event 2, 8, ECRUTEAK_GYM, 3
-	warp_event 2, 9, ECRUTEAK_GYM, 3
-	warp_event 2, 10, ECRUTEAK_GYM, 3
-	warp_event 2, 11, ECRUTEAK_GYM, 3
-	warp_event 4, 10, ECRUTEAK_GYM, 3
-	warp_event 5, 10, ECRUTEAK_GYM, 3
-	warp_event 2, 12, ECRUTEAK_GYM, 3
-	warp_event 3, 12, ECRUTEAK_GYM, 3
-	warp_event 4, 12, ECRUTEAK_GYM, 3
-	warp_event 5, 12, ECRUTEAK_GYM, 3
-	warp_event 7, 10, ECRUTEAK_GYM, 3
-	warp_event 7, 11, ECRUTEAK_GYM, 3
-	warp_event 7, 12, ECRUTEAK_GYM, 3
-	warp_event 7, 13, ECRUTEAK_GYM, 3
+	warp_event  4, 17, ECRUTEAK_CITY, 10
+	warp_event  5, 17, ECRUTEAK_CITY, 10
+	warp_event  4, 14, ECRUTEAK_GYM, 4
+	warp_event  2,  4, ECRUTEAK_GYM, 3
+	warp_event  3,  4, ECRUTEAK_GYM, 3
+	warp_event  4,  4, ECRUTEAK_GYM, 3
+	warp_event  4,  5, ECRUTEAK_GYM, 3
+	warp_event  6,  7, ECRUTEAK_GYM, 3
+	warp_event  7,  4, ECRUTEAK_GYM, 3
+	warp_event  2,  6, ECRUTEAK_GYM, 3
+	warp_event  3,  6, ECRUTEAK_GYM, 3
+	warp_event  4,  6, ECRUTEAK_GYM, 3
+	warp_event  5,  6, ECRUTEAK_GYM, 3
+	warp_event  7,  6, ECRUTEAK_GYM, 3
+	warp_event  7,  7, ECRUTEAK_GYM, 3
+	warp_event  4,  8, ECRUTEAK_GYM, 3
+	warp_event  5,  8, ECRUTEAK_GYM, 3
+	warp_event  6,  8, ECRUTEAK_GYM, 3
+	warp_event  7,  8, ECRUTEAK_GYM, 3
+	warp_event  2,  8, ECRUTEAK_GYM, 3
+	warp_event  2,  9, ECRUTEAK_GYM, 3
+	warp_event  2, 10, ECRUTEAK_GYM, 3
+	warp_event  2, 11, ECRUTEAK_GYM, 3
+	warp_event  4, 10, ECRUTEAK_GYM, 3
+	warp_event  5, 10, ECRUTEAK_GYM, 3
+	warp_event  2, 12, ECRUTEAK_GYM, 3
+	warp_event  3, 12, ECRUTEAK_GYM, 3
+	warp_event  4, 12, ECRUTEAK_GYM, 3
+	warp_event  5, 12, ECRUTEAK_GYM, 3
+	warp_event  7, 10, ECRUTEAK_GYM, 3
+	warp_event  7, 11, ECRUTEAK_GYM, 3
+	warp_event  7, 12, ECRUTEAK_GYM, 3
+	warp_event  7, 13, ECRUTEAK_GYM, 3
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 3, 15, BGEVENT_READ, EcruteakGymStatue
-	bg_event 6, 15, BGEVENT_READ, EcruteakGymStatue
+	bg_event  3, 15, BGEVENT_READ, EcruteakGymStatue
+	bg_event  6, 15, BGEVENT_READ, EcruteakGymStatue
 
 	db 7 ; object events
-	object_event 5, 1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MortyScript_0x99d58, -1
-	object_event 2, 7, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSageJeffrey, -1
-	object_event 3, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSagePing, -1
-	object_event 7, 5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumMartha, -1
-	object_event 7, 9, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumGrace, -1
-	object_event 7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakGymGuyScript, -1
-	object_event 4, 14, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS
+	object_event  5,  1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MortyScript_0x99d58, -1
+	object_event  2,  7, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSageJeffrey, -1
+	object_event  3, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSagePing, -1
+	object_event  7,  5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumMartha, -1
+	object_event  7,  9, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumGrace, -1
+	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakGymGuyScript, -1
+	object_event  4, 14, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS

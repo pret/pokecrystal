@@ -262,33 +262,33 @@ VermilionGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 17, VERMILION_CITY, 7
-	warp_event 5, 17, VERMILION_CITY, 7
+	warp_event  4, 17, VERMILION_CITY, 7
+	warp_event  5, 17, VERMILION_CITY, 7
 
 	db 0 ; coord events
 
 	db 17 ; bg events
-	bg_event 1, 7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 3, 7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 5, 7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 7, 7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 9, 7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 1, 9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 3, 9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 5, 9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 7, 9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 9, 9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 1, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 3, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 5, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 7, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 9, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event 3, 15, BGEVENT_READ, VermilionGymStatue
-	bg_event 6, 15, BGEVENT_READ, VermilionGymStatue
+	bg_event  1,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  3,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  5,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  7,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  9,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  1,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  3,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  5,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  7,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  9,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  1, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  3, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  5, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  7, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  9, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  3, 15, BGEVENT_READ, VermilionGymStatue
+	bg_event  6, 15, BGEVENT_READ, VermilionGymStatue
 
 	db 5 ; object events
-	object_event 5, 2, SPRITE_SURGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SurgeScript_0x1920a5, -1
-	object_event 8, 8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanGregory, -1
-	object_event 4, 7, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 3, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGuitaristVincent, -1
-	object_event 0, 10, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerJugglerHorton, -1
-	object_event 7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, VermilionGymGuyScript, -1
+	object_event  5,  2, SPRITE_SURGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SurgeScript_0x1920a5, -1
+	object_event  8,  8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanGregory, -1
+	object_event  4,  7, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 3, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerGuitaristVincent, -1
+	object_event  0, 10, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerJugglerHorton, -1
+	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, VermilionGymGuyScript, -1

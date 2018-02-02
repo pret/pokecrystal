@@ -138,17 +138,17 @@ GoldenrodHappinessRater_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 7, GOLDENROD_CITY, 3
-	warp_event 3, 7, GOLDENROD_CITY, 3
+	warp_event  2,  7, GOLDENROD_CITY, 3
+	warp_event  3,  7, GOLDENROD_CITY, 3
 
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event 0, 1, BGEVENT_READ, HappinessRatersHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, HappinessRatersHouseBookshelf
-	bg_event 7, 1, BGEVENT_READ, HappinessRatersHouseRadio
+	bg_event  0,  1, BGEVENT_READ, HappinessRatersHouseBookshelf
+	bg_event  1,  1, BGEVENT_READ, HappinessRatersHouseBookshelf
+	bg_event  7,  1, BGEVENT_READ, HappinessRatersHouseRadio
 
 	db 3 ; object events
-	object_event 2, 4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x54953, -1
-	object_event 5, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterPokefanMScript, -1
-	object_event 5, 6, SPRITE_TWIN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterTwinScript, -1
+	object_event  2,  4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x54953, -1
+	object_event  5,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterPokefanMScript, -1
+	object_event  5,  6, SPRITE_TWIN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterTwinScript, -1

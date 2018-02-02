@@ -53,16 +53,16 @@ GoldenrodPPSpeechHouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 7, GOLDENROD_CITY, 7
-	warp_event 3, 7, GOLDENROD_CITY, 7
+	warp_event  2,  7, GOLDENROD_CITY, 7
+	warp_event  3,  7, GOLDENROD_CITY, 7
 
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event 0, 1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf1
-	bg_event 1, 1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf2
-	bg_event 7, 1, BGEVENT_READ, GoldenrodPPSpeechHouseRadio
+	bg_event  0,  1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf1
+	bg_event  1,  1, BGEVENT_READ, GoldenrodPPSpeechHouseBookshelf2
+	bg_event  7,  1, BGEVENT_READ, GoldenrodPPSpeechHouseRadio
 
 	db 2 ; object events
-	object_event 2, 4, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
-	object_event 5, 3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1
+	object_event  2,  4, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseFisherScript, -1
+	object_event  5,  3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPPSpeechHouseLassScript, -1

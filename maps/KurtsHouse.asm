@@ -678,23 +678,23 @@ KurtsHouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 3, 7, AZALEA_TOWN, 4
-	warp_event 4, 7, AZALEA_TOWN, 4
+	warp_event  3,  7, AZALEA_TOWN, 4
+	warp_event  4,  7, AZALEA_TOWN, 4
 
 	db 0 ; coord events
 
 	db 7 ; bg events
-	bg_event 6, 1, BGEVENT_READ, KurtsHouseRadio
-	bg_event 8, 0, BGEVENT_READ, KurtsHouseOakPhoto
-	bg_event 9, 0, BGEVENT_READ, KurtsHouseOakPhoto
-	bg_event 5, 1, BGEVENT_READ, KurtsHouseBookshelf
-	bg_event 2, 1, BGEVENT_READ, KurtsHouseBookshelf
-	bg_event 3, 1, BGEVENT_READ, KurtsHouseBookshelf
-	bg_event 4, 1, BGEVENT_READ, KurtsHouseCelebiStatue
+	bg_event  6,  1, BGEVENT_READ, KurtsHouseRadio
+	bg_event  8,  0, BGEVENT_READ, KurtsHouseOakPhoto
+	bg_event  9,  0, BGEVENT_READ, KurtsHouseOakPhoto
+	bg_event  5,  1, BGEVENT_READ, KurtsHouseBookshelf
+	bg_event  2,  1, BGEVENT_READ, KurtsHouseBookshelf
+	bg_event  3,  1, BGEVENT_READ, KurtsHouseBookshelf
+	bg_event  4,  1, BGEVENT_READ, KurtsHouseCelebiStatue
 
 	db 5 ; object events
-	object_event 3, 2, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
-	object_event 5, 3, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
-	object_event 6, 3, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
-	object_event 14, 3, SPRITE_KURT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
-	object_event 11, 4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2
+	object_event  3,  2, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtScript_0x18e178, EVENT_KURTS_HOUSE_KURT_1
+	object_event  5,  3, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
+	object_event  6,  3, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsHouseSlowpoke, EVENT_KURTS_HOUSE_SLOWPOKE
+	object_event 14,  3, SPRITE_KURT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtScript_0x18e3bd, EVENT_KURTS_HOUSE_KURT_2
+	object_event 11,  4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2

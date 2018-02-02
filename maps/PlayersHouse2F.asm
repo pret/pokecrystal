@@ -117,18 +117,18 @@ PlayersHouse2F_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 7, 0, PLAYERS_HOUSE_1F, 3
+	warp_event  7,  0, PLAYERS_HOUSE_1F, 3
 
 	db 0 ; coord events
 
 	db 4 ; bg events
-	bg_event 2, 1, BGEVENT_UP, PlayersHousePCScript
-	bg_event 3, 1, BGEVENT_READ, PlayersHouseRadioScript
-	bg_event 5, 1, BGEVENT_READ, PlayersHouseBookshelfScript
-	bg_event 6, 0, BGEVENT_IFSET, PlayersHousePosterScript
+	bg_event  2,  1, BGEVENT_UP, PlayersHousePCScript
+	bg_event  3,  1, BGEVENT_READ, PlayersHouseRadioScript
+	bg_event  5,  1, BGEVENT_READ, PlayersHouseBookshelfScript
+	bg_event  6,  0, BGEVENT_IFSET, PlayersHousePosterScript
 
 	db 4 ; object events
-	object_event 4, 2, SPRITE_CONSOLE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsoleScript, EVENT_PLAYERS_HOUSE_2F_CONSOLE
-	object_event 4, 4, SPRITE_DOLL_1, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1Script, EVENT_PLAYERS_HOUSE_2F_DOLL_1
-	object_event 5, 4, SPRITE_DOLL_2, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2Script, EVENT_PLAYERS_HOUSE_2F_DOLL_2
-	object_event 0, 1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigDollScript, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL
+	object_event  4,  2, SPRITE_CONSOLE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsoleScript, EVENT_PLAYERS_HOUSE_2F_CONSOLE
+	object_event  4,  4, SPRITE_DOLL_1, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1Script, EVENT_PLAYERS_HOUSE_2F_DOLL_1
+	object_event  5,  4, SPRITE_DOLL_2, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2Script, EVENT_PLAYERS_HOUSE_2F_DOLL_2
+	object_event  0,  1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigDollScript, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL

@@ -279,20 +279,20 @@ EcruteakTinTowerEntrance_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 4, 17, ECRUTEAK_CITY, 3
-	warp_event 5, 17, ECRUTEAK_CITY, 3
-	warp_event 5, 3, ECRUTEAK_TIN_TOWER_ENTRANCE, 4
+	warp_event  4, 17, ECRUTEAK_CITY, 3
+	warp_event  5, 17, ECRUTEAK_CITY, 3
+	warp_event  5,  3, ECRUTEAK_TIN_TOWER_ENTRANCE, 4
 	warp_event 17, 15, ECRUTEAK_TIN_TOWER_ENTRANCE, 3
-	warp_event 17, 3, WISE_TRIOS_ROOM, 3
+	warp_event 17,  3, WISE_TRIOS_ROOM, 3
 
 	db 2 ; coord events
-	coord_event 4, 7, SCENE_DEFAULT, EcruteakTinTowerEntrance_CoordEvent1
-	coord_event 5, 7, SCENE_DEFAULT, EcruteakTinTowerEntrance_CoordEvent2
+	coord_event  4,  7, SCENE_DEFAULT, EcruteakTinTowerEntrance_CoordEvent1
+	coord_event  5,  7, SCENE_DEFAULT, EcruteakTinTowerEntrance_CoordEvent2
 
 	db 0 ; bg events
 
 	db 4 ; object events
-	object_event 4, 6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
-	object_event 5, 6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
-	object_event 6, 9, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
-	object_event 3, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceGrampsScript, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
+	object_event  4,  6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_1
+	object_event  5,  6, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x98062, EVENT_RANG_CLEAR_BELL_2
+	object_event  6,  9, SPRITE_SAGE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SageScript_0x980b0, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE
+	object_event  3, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakTinTowerEntranceGrampsScript, EVENT_ECRUTEAK_TIN_TOWER_ENTRANCE_WANDERING_SAGE

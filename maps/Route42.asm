@@ -320,29 +320,29 @@ Route42_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 0, 8, ROUTE_42_ECRUTEAK_GATE, 3
-	warp_event 0, 9, ROUTE_42_ECRUTEAK_GATE, 4
-	warp_event 10, 5, MOUNT_MORTAR_1F_OUTSIDE, 1
-	warp_event 28, 9, MOUNT_MORTAR_1F_OUTSIDE, 2
-	warp_event 46, 7, MOUNT_MORTAR_1F_OUTSIDE, 3
+	warp_event  0,  8, ROUTE_42_ECRUTEAK_GATE, 3
+	warp_event  0,  9, ROUTE_42_ECRUTEAK_GATE, 4
+	warp_event 10,  5, MOUNT_MORTAR_1F_OUTSIDE, 1
+	warp_event 28,  9, MOUNT_MORTAR_1F_OUTSIDE, 2
+	warp_event 46,  7, MOUNT_MORTAR_1F_OUTSIDE, 3
 
 	db 1 ; coord events
 	coord_event 24, 14, SCENE_ROUTE42_SUICUNE, Route42SuicuneScript
 
 	db 5 ; bg events
-	bg_event 4, 10, BGEVENT_READ, Route42Sign1
-	bg_event 7, 5, BGEVENT_READ, MtMortarSign1
-	bg_event 45, 9, BGEVENT_READ, MtMortarSign2
-	bg_event 54, 8, BGEVENT_READ, Route42Sign2
+	bg_event  4, 10, BGEVENT_READ, Route42Sign1
+	bg_event  7,  5, BGEVENT_READ, MtMortarSign1
+	bg_event 45,  9, BGEVENT_READ, MtMortarSign2
+	bg_event 54,  8, BGEVENT_READ, Route42Sign2
 	bg_event 16, 11, BGEVENT_ITEM, Route42HiddenMaxPotion
 
 	db 9 ; object events
 	object_event 40, 10, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherTully, -1
-	object_event 51, 9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
-	object_event 47, 8, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
+	object_event 51,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
+	object_event 47,  8, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
 	object_event 27, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a934d, -1
 	object_event 28, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a934f, -1
 	object_event 29, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a9351, -1
-	object_event 6, 4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
-	object_event 33, 8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
+	object_event  6,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
+	object_event 33,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
 	object_event 26, 16, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

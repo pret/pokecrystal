@@ -264,17 +264,17 @@ PokecomCenterAdminRoomMobile_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 0, 31, GOLDENROD_POKECENTER_1F, 3
-	warp_event 1, 31, GOLDENROD_POKECENTER_1F, 3
+	warp_event  0, 31, GOLDENROD_POKECENTER_1F, 3
+	warp_event  1, 31, GOLDENROD_POKECENTER_1F, 3
 
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event 6, 26, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost0Script
-	bg_event 6, 28, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost1Script
-	bg_event 3, 26, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost2Script
+	bg_event  6, 26, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost0Script
+	bg_event  6, 28, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost1Script
+	bg_event  3, 26, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost2Script
 
 	db 3 ; object events
-	object_event 4, 28, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist1Script, -1
-	object_event 7, 27, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist2Script, -1
-	object_event 7, 29, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist3Script, -1
+	object_event  4, 28, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist1Script, -1
+	object_event  7, 27, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist2Script, -1
+	object_event  7, 29, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist3Script, -1

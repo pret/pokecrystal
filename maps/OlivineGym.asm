@@ -199,15 +199,15 @@ OlivineGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 15, OLIVINE_CITY, 2
-	warp_event 5, 15, OLIVINE_CITY, 2
+	warp_event  4, 15, OLIVINE_CITY, 2
+	warp_event  5, 15, OLIVINE_CITY, 2
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 3, 13, BGEVENT_READ, OlivineGymStatue
-	bg_event 6, 13, BGEVENT_READ, OlivineGymStatue
+	bg_event  3, 13, BGEVENT_READ, OlivineGymStatue
+	bg_event  6, 13, BGEVENT_READ, OlivineGymStatue
 
 	db 2 ; object events
-	object_event 5, 3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
-	object_event 7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1
+	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
+	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1

@@ -100,16 +100,16 @@ PlayersNeighborsHouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 7, NEW_BARK_TOWN, 3
-	warp_event 3, 7, NEW_BARK_TOWN, 3
+	warp_event  2,  7, NEW_BARK_TOWN, 3
+	warp_event  3,  7, NEW_BARK_TOWN, 3
 
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event 0, 1, BGEVENT_READ, PlayersNeighborsHouseBookshelfScript
-	bg_event 1, 1, BGEVENT_READ, PlayersNeighborsHouseBookshelfScript
-	bg_event 7, 1, BGEVENT_READ, PlayersNeighborsHouseRadioScript
+	bg_event  0,  1, BGEVENT_READ, PlayersNeighborsHouseBookshelfScript
+	bg_event  1,  1, BGEVENT_READ, PlayersNeighborsHouseBookshelfScript
+	bg_event  7,  1, BGEVENT_READ, PlayersNeighborsHouseRadioScript
 
 	db 2 ; object events
-	object_event 2, 3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighborsDaughterScript, -1
-	object_event 5, 3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighborScript, EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR
+	object_event  2,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighborsDaughterScript, -1
+	object_event  5,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PlayersNeighborScript, EVENT_PLAYERS_NEIGHBORS_HOUSE_NEIGHBOR

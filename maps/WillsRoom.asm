@@ -130,13 +130,13 @@ WillsRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 5, 17, INDIGO_PLATEAU_POKECENTER_1F, 4
-	warp_event 4, 2, KOGAS_ROOM, 1
-	warp_event 5, 2, KOGAS_ROOM, 2
+	warp_event  5, 17, INDIGO_PLATEAU_POKECENTER_1F, 4
+	warp_event  4,  2, KOGAS_ROOM, 1
+	warp_event  5,  2, KOGAS_ROOM, 2
 
 	db 0 ; coord events
 
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event 5, 7, SPRITE_WILL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WillScript_Battle, -1
+	object_event  5,  7, SPRITE_WILL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WillScript_Battle, -1

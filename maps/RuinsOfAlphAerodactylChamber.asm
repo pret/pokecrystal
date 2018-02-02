@@ -145,20 +145,20 @@ RuinsOfAlphAerodactylChamber_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 3, 9, RUINS_OF_ALPH_OUTSIDE, 4
-	warp_event 4, 9, RUINS_OF_ALPH_OUTSIDE, 4
-	warp_event 3, 3, RUINS_OF_ALPH_INNER_CHAMBER, 8
-	warp_event 4, 3, RUINS_OF_ALPH_INNER_CHAMBER, 9
-	warp_event 4, 0, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM, 1
+	warp_event  3,  9, RUINS_OF_ALPH_OUTSIDE, 4
+	warp_event  4,  9, RUINS_OF_ALPH_OUTSIDE, 4
+	warp_event  3,  3, RUINS_OF_ALPH_INNER_CHAMBER, 8
+	warp_event  4,  3, RUINS_OF_ALPH_INNER_CHAMBER, 9
+	warp_event  4,  0, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM, 1
 
 	db 0 ; coord events
 
 	db 6 ; bg events
-	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
-	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
-	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost2Script
-	bg_event 4, 2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost3Script
-	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost4Script
-	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost5Script
+	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
+	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
+	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost2Script
+	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost3Script
+	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost4Script
+	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost5Script
 
 	db 0 ; object events

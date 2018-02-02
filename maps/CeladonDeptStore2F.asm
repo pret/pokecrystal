@@ -70,18 +70,18 @@ CeladonDeptStore2F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 12, 0, CELADON_DEPT_STORE_3F, 1
-	warp_event 15, 0, CELADON_DEPT_STORE_1F, 3
-	warp_event 2, 0, CELADON_DEPT_STORE_ELEVATOR, 1
+	warp_event 12,  0, CELADON_DEPT_STORE_3F, 1
+	warp_event 15,  0, CELADON_DEPT_STORE_1F, 3
+	warp_event  2,  0, CELADON_DEPT_STORE_ELEVATOR, 1
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore2FDirectory
-	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore2FElevatorButton
+	bg_event 14,  0, BGEVENT_READ, CeladonDeptStore2FDirectory
+	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore2FElevatorButton
 
 	db 4 ; object events
-	object_event 13, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70bad, -1
-	object_event 14, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70bb5, -1
-	object_event 5, 2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FPokefanMScript, -1
-	object_event 6, 2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FYoungsterScript, -1
+	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70bad, -1
+	object_event 14,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70bb5, -1
+	object_event  5,  2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FPokefanMScript, -1
+	object_event  6,  2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FYoungsterScript, -1

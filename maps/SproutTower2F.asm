@@ -86,9 +86,9 @@ SproutTower2F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 6, 4, SPROUT_TOWER_1F, 3
-	warp_event 2, 6, SPROUT_TOWER_1F, 4
-	warp_event 17, 3, SPROUT_TOWER_1F, 5
+	warp_event  6,  4, SPROUT_TOWER_1F, 3
+	warp_event  2,  6, SPROUT_TOWER_1F, 4
+	warp_event 17,  3, SPROUT_TOWER_1F, 5
 	warp_event 10, 14, SPROUT_TOWER_3F, 1
 
 	db 0 ; coord events
@@ -97,6 +97,6 @@ SproutTower2F_MapEvents:
 	bg_event 12, 15, BGEVENT_READ, MapSproutTower2FSignpost0Script
 
 	db 3 ; object events
-	object_event 12, 3, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageNico, -1
-	object_event 9, 14, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSageEdmond, -1
-	object_event 3, 1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower2FXAccuracy, EVENT_SPROUT_TOWER2F_X_ACCURACY
+	object_event 12,  3, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageNico, -1
+	object_event  9, 14, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSageEdmond, -1
+	object_event  3,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower2FXAccuracy, EVENT_SPROUT_TOWER2F_X_ACCURACY

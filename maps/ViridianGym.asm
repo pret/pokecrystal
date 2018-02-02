@@ -171,15 +171,15 @@ ViridianGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 17, VIRIDIAN_CITY, 1
-	warp_event 5, 17, VIRIDIAN_CITY, 1
+	warp_event  4, 17, VIRIDIAN_CITY, 1
+	warp_event  5, 17, VIRIDIAN_CITY, 1
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 3, 13, BGEVENT_READ, ViridianGymStatue
-	bg_event 6, 13, BGEVENT_READ, ViridianGymStatue
+	bg_event  3, 13, BGEVENT_READ, ViridianGymStatue
+	bg_event  6, 13, BGEVENT_READ, ViridianGymStatue
 
 	db 2 ; object events
-	object_event 5, 3, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
-	object_event 7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  5,  3, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE

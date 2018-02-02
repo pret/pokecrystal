@@ -114,7 +114,7 @@ Route20_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 38, 7, SEAFOAM_GYM, 1
+	warp_event 38,  7, SEAFOAM_GYM, 1
 
 	db 0 ; coord events
 
@@ -122,6 +122,6 @@ Route20_MapEvents:
 	bg_event 37, 11, BGEVENT_READ, CinnabarGymSign
 
 	db 3 ; object events
-	object_event 52, 8, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
+	object_event 52,  8, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfNicole, -1
 	object_event 45, 13, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfLori, -1
 	object_event 12, 13, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermCameron, -1

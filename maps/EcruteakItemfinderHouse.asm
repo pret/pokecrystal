@@ -164,14 +164,14 @@ EcruteakItemfinderHouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 3, 7, ECRUTEAK_CITY, 11
-	warp_event 4, 7, ECRUTEAK_CITY, 11
+	warp_event  3,  7, ECRUTEAK_CITY, 11
+	warp_event  4,  7, ECRUTEAK_CITY, 11
 
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 2, 1, BGEVENT_READ, ItemFinderHouseRadio
+	bg_event  2,  1, BGEVENT_READ, ItemFinderHouseRadio
 
 	db 2 ; object events
-	object_event 2, 3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakItemfinderGuy, -1
-	object_event 3, 3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHistoryBook, -1
+	object_event  2,  3, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakItemfinderGuy, -1
+	object_event  3,  3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakHistoryBook, -1

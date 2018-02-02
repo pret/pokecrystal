@@ -191,21 +191,21 @@ CeladonMansion3F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 0, 0, CELADON_MANSION_ROOF, 1
-	warp_event 1, 0, CELADON_MANSION_2F, 2
-	warp_event 6, 0, CELADON_MANSION_2F, 3
-	warp_event 7, 0, CELADON_MANSION_ROOF, 2
+	warp_event  0,  0, CELADON_MANSION_ROOF, 1
+	warp_event  1,  0, CELADON_MANSION_2F, 2
+	warp_event  6,  0, CELADON_MANSION_2F, 3
+	warp_event  7,  0, CELADON_MANSION_ROOF, 2
 
 	db 0 ; coord events
 
 	db 4 ; bg events
-	bg_event 5, 8, BGEVENT_UP, MapCeladonMansion3FSignpost0Script
-	bg_event 4, 3, BGEVENT_UP, MapCeladonMansion3FSignpost1Script
-	bg_event 1, 6, BGEVENT_UP, MapCeladonMansion3FSignpost2Script
-	bg_event 1, 3, BGEVENT_UP, MapCeladonMansion3FSignpost3Script
+	bg_event  5,  8, BGEVENT_UP, MapCeladonMansion3FSignpost0Script
+	bg_event  4,  3, BGEVENT_UP, MapCeladonMansion3FSignpost1Script
+	bg_event  1,  6, BGEVENT_UP, MapCeladonMansion3FSignpost2Script
+	bg_event  1,  3, BGEVENT_UP, MapCeladonMansion3FSignpost3Script
 
 	db 4 ; object events
-	object_event 3, 6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x71670, -1
-	object_event 3, 4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x71696, -1
-	object_event 0, 7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FSuperNerdScript, -1
-	object_event 0, 4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FFisherScript, -1
+	object_event  3,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x71670, -1
+	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x71696, -1
+	object_event  0,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FSuperNerdScript, -1
+	object_event  0,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FFisherScript, -1

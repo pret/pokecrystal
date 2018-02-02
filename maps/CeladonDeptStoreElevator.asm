@@ -29,12 +29,12 @@ CeladonDeptStoreElevator_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 1, 3, CELADON_DEPT_STORE_1F, -1
-	warp_event 2, 3, CELADON_DEPT_STORE_1F, -1
+	warp_event  1,  3, CELADON_DEPT_STORE_1F, -1
+	warp_event  2,  3, CELADON_DEPT_STORE_1F, -1
 
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 3, 0, BGEVENT_READ, CeladonDeptStoreElevatorScript
+	bg_event  3,  0, BGEVENT_READ, CeladonDeptStoreElevatorScript
 
 	db 0 ; object events

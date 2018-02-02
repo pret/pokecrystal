@@ -44,15 +44,15 @@ FightingDojo_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 11, SAFFRON_CITY, 1
-	warp_event 5, 11, SAFFRON_CITY, 1
+	warp_event  4, 11, SAFFRON_CITY, 1
+	warp_event  5, 11, SAFFRON_CITY, 1
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 4, 0, BGEVENT_READ, MapFightingDojoSignpost0Script
-	bg_event 5, 0, BGEVENT_READ, MapFightingDojoSignpost1Script
+	bg_event  4,  0, BGEVENT_READ, MapFightingDojoSignpost0Script
+	bg_event  5,  0, BGEVENT_READ, MapFightingDojoSignpost1Script
 
 	db 2 ; object events
-	object_event 4, 4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FightingDojoBlackBelt, -1
-	object_event 3, 1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, FightingDojoFocusBand, EVENT_PICKED_UP_FOCUS_BAND
+	object_event  4,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FightingDojoBlackBelt, -1
+	object_event  3,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, FightingDojoFocusBand, EVENT_PICKED_UP_FOCUS_BAND

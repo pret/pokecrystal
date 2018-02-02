@@ -33,6 +33,6 @@ SilverCaveOutside_MapEvents:
 	db 3 ; bg events
 	bg_event 24, 19, BGEVENT_READ, MtSilverPokecenterSign
 	bg_event 17, 13, BGEVENT_READ, MtSilverSign
-	bg_event 9, 25, BGEVENT_ITEM, SilverCaveOutsideHiddenFullRestore
+	bg_event  9, 25, BGEVENT_ITEM, SilverCaveOutsideHiddenFullRestore
 
 	db 0 ; object events

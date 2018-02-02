@@ -287,27 +287,27 @@ FastShip1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 12 ; warp events
-	warp_event 25, 1, FAST_SHIP_1F, -1
-	warp_event 27, 8, FAST_SHIP_CABINS_NNW_NNE_NE, 1
-	warp_event 23, 8, FAST_SHIP_CABINS_NNW_NNE_NE, 2
-	warp_event 19, 8, FAST_SHIP_CABINS_NNW_NNE_NE, 3
-	warp_event 15, 8, FAST_SHIP_CABINS_SW_SSW_NW, 1
+	warp_event 25,  1, FAST_SHIP_1F, -1
+	warp_event 27,  8, FAST_SHIP_CABINS_NNW_NNE_NE, 1
+	warp_event 23,  8, FAST_SHIP_CABINS_NNW_NNE_NE, 2
+	warp_event 19,  8, FAST_SHIP_CABINS_NNW_NNE_NE, 3
+	warp_event 15,  8, FAST_SHIP_CABINS_SW_SSW_NW, 1
 	warp_event 15, 15, FAST_SHIP_CABINS_SW_SSW_NW, 2
 	warp_event 19, 15, FAST_SHIP_CABINS_SW_SSW_NW, 4
 	warp_event 23, 15, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN, 1
 	warp_event 27, 15, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN, 3
-	warp_event 3, 13, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN, 5
-	warp_event 6, 12, FAST_SHIP_B1F, 1
+	warp_event  3, 13, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN, 5
+	warp_event  6, 12, FAST_SHIP_B1F, 1
 	warp_event 30, 14, FAST_SHIP_B1F, 2
 
 	db 2 ; coord events
-	coord_event 24, 6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneLeft
-	coord_event 25, 6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneRight
+	coord_event 24,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneLeft
+	coord_event 25,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneRight
 
 	db 0 ; bg events
 
 	db 4 ; object events
-	object_event 25, 2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x75160, -1
-	object_event 14, 7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
+	object_event 25,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x75160, -1
+	object_event 14,  7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
 	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailorScript, -1
-	object_event 19, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
+	object_event 19,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

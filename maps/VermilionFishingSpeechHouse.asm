@@ -52,13 +52,13 @@ VermilionFishingSpeechHouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 7, VERMILION_CITY, 1
-	warp_event 3, 7, VERMILION_CITY, 1
+	warp_event  2,  7, VERMILION_CITY, 1
+	warp_event  3,  7, VERMILION_CITY, 1
 
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 3, 0, BGEVENT_READ, FishingDudesHousePhoto
+	bg_event  3,  0, BGEVENT_READ, FishingDudesHousePhoto
 
 	db 1 ; object events
-	object_event 2, 4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FishingDude, -1
+	object_event  2,  4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FishingDude, -1

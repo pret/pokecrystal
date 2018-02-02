@@ -166,16 +166,16 @@ GoldenrodMagnetTrainStation_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 8, 17, GOLDENROD_CITY, 5
-	warp_event 9, 17, GOLDENROD_CITY, 5
-	warp_event 6, 5, SAFFRON_MAGNET_TRAIN_STATION, 4
-	warp_event 11, 5, SAFFRON_MAGNET_TRAIN_STATION, 3
+	warp_event  8, 17, GOLDENROD_CITY, 5
+	warp_event  9, 17, GOLDENROD_CITY, 5
+	warp_event  6,  5, SAFFRON_MAGNET_TRAIN_STATION, 4
+	warp_event 11,  5, SAFFRON_MAGNET_TRAIN_STATION, 3
 
 	db 1 ; coord events
-	coord_event 11, 6, SCENE_DEFAULT, Script_ArriveFromSaffron
+	coord_event 11,  6, SCENE_DEFAULT, Script_ArriveFromSaffron
 
 	db 0 ; bg events
 
 	db 2 ; object events
-	object_event 9, 9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x550ec, -1
+	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x550ec, -1
 	object_event 11, 14, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationGentlemanScript, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
