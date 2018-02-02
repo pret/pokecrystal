@@ -736,14 +736,14 @@ TeamRocketBaseB1F_MapEvents:
 	db 30 ; coord events
 	; There are five security cameras in the base.
 	; Walking in front of one triggers two Rocket Grunts.
-	coord_event 24,  2, 0, SecurityCamera1a
-	coord_event 24,  3, 0, SecurityCamera1b
-	coord_event  6,  2, 0, SecurityCamera2a
-	coord_event  6,  3, 0, SecurityCamera2b
-	coord_event 24,  6, 0, SecurityCamera3a
-	coord_event 24,  7, 0, SecurityCamera3b
-	coord_event 22, 16, 0, SecurityCamera4
-	coord_event  8, 16, 0, SecurityCamera5
+	coord_event 24,  2, SCENE_DEFAULT, SecurityCamera1a
+	coord_event 24,  3, SCENE_DEFAULT, SecurityCamera1b
+	coord_event  6,  2, SCENE_DEFAULT, SecurityCamera2a
+	coord_event  6,  3, SCENE_DEFAULT, SecurityCamera2b
+	coord_event 24,  6, SCENE_DEFAULT, SecurityCamera3a
+	coord_event 24,  7, SCENE_DEFAULT, SecurityCamera3b
+	coord_event 22, 16, SCENE_DEFAULT, SecurityCamera4
+	coord_event  8, 16, SCENE_DEFAULT, SecurityCamera5
 	; There are spots on the floor that trigger a Pokémon battle.
 	; Each Pokémon (Voltorb, Koffing, Geodude) knows Selfdestruct.
 	coord_event  2,  7, SCENE_DEFAULT, ExplodingTrap1

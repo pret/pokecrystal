@@ -143,7 +143,7 @@ Route34IlexForestGate_MapEvents:
 	warp_event  5,  7, ILEX_FOREST, 1
 
 	db 1 ; coord events
-	coord_event  4,  7, 0, UnknownScript_0x62d3d
+	coord_event  4,  7, SCENE_DEFAULT, UnknownScript_0x62d3d
 
 	db 0 ; bg events
 
