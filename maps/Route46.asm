@@ -252,9 +252,9 @@ Route46_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 7, 33, 1, ROUTE_29_ROUTE_46_GATE
-	warp_event 8, 33, 2, ROUTE_29_ROUTE_46_GATE
-	warp_event 14, 5, 3, DARK_CAVE_VIOLET_ENTRANCE
+	warp_event 7, 33, ROUTE_29_ROUTE_46_GATE, 1
+	warp_event 8, 33, ROUTE_29_ROUTE_46_GATE, 2
+	warp_event 14, 5, DARK_CAVE_VIOLET_ENTRANCE, 3
 
 	db 0 ; coord events
 

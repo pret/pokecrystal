@@ -728,10 +728,10 @@ TeamRocketBaseB1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 27, 2, 3, MAHOGANY_MART_1F
-	warp_event 3, 14, 1, TEAM_ROCKET_BASE_B2F
-	warp_event 5, 15, 4, TEAM_ROCKET_BASE_B1F
-	warp_event 25, 2, 3, TEAM_ROCKET_BASE_B1F
+	warp_event 27, 2, MAHOGANY_MART_1F, 3
+	warp_event 3, 14, TEAM_ROCKET_BASE_B2F, 1
+	warp_event 5, 15, TEAM_ROCKET_BASE_B1F, 4
+	warp_event 25, 2, TEAM_ROCKET_BASE_B1F, 3
 
 	db 30 ; coord events
 	; There are five security cameras in the base.

@@ -307,8 +307,8 @@ CianwoodGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 17, 2, CIANWOOD_CITY
-	warp_event 5, 17, 2, CIANWOOD_CITY
+	warp_event 4, 17, CIANWOOD_CITY, 2
+	warp_event 5, 17, CIANWOOD_CITY, 2
 
 	db 0 ; coord events
 

@@ -279,20 +279,20 @@ BurnedTower1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 14 ; warp events
-	warp_event 9, 15, 13, ECRUTEAK_CITY
-	warp_event 10, 15, 13, ECRUTEAK_CITY
-	warp_event 10, 9, 1, BURNED_TOWER_B1F
-	warp_event 5, 5, 1, BURNED_TOWER_B1F
-	warp_event 5, 6, 1, BURNED_TOWER_B1F
-	warp_event 4, 6, 1, BURNED_TOWER_B1F
-	warp_event 15, 4, 2, BURNED_TOWER_B1F
-	warp_event 15, 5, 2, BURNED_TOWER_B1F
-	warp_event 10, 7, 3, BURNED_TOWER_B1F
-	warp_event 5, 14, 4, BURNED_TOWER_B1F
-	warp_event 4, 14, 4, BURNED_TOWER_B1F
-	warp_event 14, 14, 5, BURNED_TOWER_B1F
-	warp_event 15, 14, 5, BURNED_TOWER_B1F
-	warp_event 7, 15, 6, BURNED_TOWER_B1F
+	warp_event 9, 15, ECRUTEAK_CITY, 13
+	warp_event 10, 15, ECRUTEAK_CITY, 13
+	warp_event 10, 9, BURNED_TOWER_B1F, 1
+	warp_event 5, 5, BURNED_TOWER_B1F, 1
+	warp_event 5, 6, BURNED_TOWER_B1F, 1
+	warp_event 4, 6, BURNED_TOWER_B1F, 1
+	warp_event 15, 4, BURNED_TOWER_B1F, 2
+	warp_event 15, 5, BURNED_TOWER_B1F, 2
+	warp_event 10, 7, BURNED_TOWER_B1F, 3
+	warp_event 5, 14, BURNED_TOWER_B1F, 4
+	warp_event 4, 14, BURNED_TOWER_B1F, 4
+	warp_event 14, 14, BURNED_TOWER_B1F, 5
+	warp_event 15, 14, BURNED_TOWER_B1F, 5
+	warp_event 7, 15, BURNED_TOWER_B1F, 6
 
 	db 1 ; coord events
 	coord_event 11, 9, SCENE_BURNEDTOWER1F_RIVAL_BATTLE, BurnedTowerRivalBattleScript

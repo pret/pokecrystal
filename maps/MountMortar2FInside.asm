@@ -68,8 +68,8 @@ MountMortar2FInside_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 17, 33, 4, MOUNT_MORTAR_1F_OUTSIDE
-	warp_event 3, 5, 6, MOUNT_MORTAR_1F_INSIDE
+	warp_event 17, 33, MOUNT_MORTAR_1F_OUTSIDE, 4
+	warp_event 3, 5, MOUNT_MORTAR_1F_INSIDE, 6
 
 	db 0 ; coord events
 

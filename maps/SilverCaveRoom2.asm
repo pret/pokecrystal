@@ -24,10 +24,10 @@ SilverCaveRoom2_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 17, 31, 2, SILVER_CAVE_ROOM_1
-	warp_event 11, 5, 1, SILVER_CAVE_ROOM_3
-	warp_event 13, 21, 1, SILVER_CAVE_ITEM_ROOMS
-	warp_event 23, 3, 2, SILVER_CAVE_ITEM_ROOMS
+	warp_event 17, 31, SILVER_CAVE_ROOM_1, 2
+	warp_event 11, 5, SILVER_CAVE_ROOM_3, 1
+	warp_event 13, 21, SILVER_CAVE_ITEM_ROOMS, 1
+	warp_event 23, 3, SILVER_CAVE_ITEM_ROOMS, 2
 
 	db 0 ; coord events
 

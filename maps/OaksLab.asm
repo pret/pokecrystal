@@ -258,8 +258,8 @@ OaksLab_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 11, 3, PALLET_TOWN
-	warp_event 5, 11, 3, PALLET_TOWN
+	warp_event 4, 11, PALLET_TOWN, 3
+	warp_event 5, 11, PALLET_TOWN, 3
 
 	db 0 ; coord events
 

@@ -408,8 +408,8 @@ DragonsDenB1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 20, 3, 3, DRAGONS_DEN_1F
-	warp_event 19, 29, 1, DRAGON_SHRINE
+	warp_event 20, 3, DRAGONS_DEN_1F, 3
+	warp_event 19, 29, DRAGON_SHRINE, 1
 
 	db 1 ; coord events
 	coord_event 19, 30, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM, DragonsDenB1F_ClairScene

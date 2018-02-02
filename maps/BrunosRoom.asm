@@ -126,10 +126,10 @@ BrunosRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 4, 17, 3, KOGAS_ROOM
-	warp_event 5, 17, 4, KOGAS_ROOM
-	warp_event 4, 2, 1, KARENS_ROOM
-	warp_event 5, 2, 2, KARENS_ROOM
+	warp_event 4, 17, KOGAS_ROOM, 3
+	warp_event 5, 17, KOGAS_ROOM, 4
+	warp_event 4, 2, KARENS_ROOM, 1
+	warp_event 5, 2, KARENS_ROOM, 2
 
 	db 0 ; coord events
 

@@ -508,7 +508,7 @@ Route44_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 56, 7, 1, ICE_PATH_1F
+	warp_event 56, 7, ICE_PATH_1F, 1
 
 	db 0 ; coord events
 

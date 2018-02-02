@@ -21,10 +21,10 @@ Route8SaffronGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 0, 4, 14, SAFFRON_CITY
-	warp_event 0, 5, 15, SAFFRON_CITY
-	warp_event 9, 4, 1, ROUTE_8
-	warp_event 9, 5, 2, ROUTE_8
+	warp_event 0, 4, SAFFRON_CITY, 14
+	warp_event 0, 5, SAFFRON_CITY, 15
+	warp_event 9, 4, ROUTE_8, 1
+	warp_event 9, 5, ROUTE_8, 2
 
 	db 0 ; coord events
 

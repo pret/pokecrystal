@@ -762,11 +762,11 @@ Route34_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 13, 37, 1, ROUTE_34_ILEX_FOREST_GATE
-	warp_event 14, 37, 2, ROUTE_34_ILEX_FOREST_GATE
-	warp_event 11, 14, 1, DAY_CARE
-	warp_event 11, 15, 2, DAY_CARE
-	warp_event 13, 15, 3, DAY_CARE
+	warp_event 13, 37, ROUTE_34_ILEX_FOREST_GATE, 1
+	warp_event 14, 37, ROUTE_34_ILEX_FOREST_GATE, 2
+	warp_event 11, 14, DAY_CARE, 1
+	warp_event 11, 15, DAY_CARE, 2
+	warp_event 13, 15, DAY_CARE, 3
 
 	db 0 ; coord events
 

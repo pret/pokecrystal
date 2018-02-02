@@ -16,8 +16,8 @@ IcePathB2FBlackthornSide_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 3, 15, 8, ICE_PATH_B1F
-	warp_event 3, 3, 2, ICE_PATH_B3F
+	warp_event 3, 15, ICE_PATH_B1F, 8
+	warp_event 3, 3, ICE_PATH_B3F, 2
 
 	db 0 ; coord events
 

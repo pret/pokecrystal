@@ -524,9 +524,9 @@ TinTower1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 9, 15, 12, ECRUTEAK_CITY
-	warp_event 10, 15, 12, ECRUTEAK_CITY
-	warp_event 10, 2, 2, TIN_TOWER_2F
+	warp_event 9, 15, ECRUTEAK_CITY, 12
+	warp_event 10, 15, ECRUTEAK_CITY, 12
+	warp_event 10, 2, TIN_TOWER_2F, 2
 
 	db 0 ; coord events
 

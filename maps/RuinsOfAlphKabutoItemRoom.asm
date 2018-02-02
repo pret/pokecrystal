@@ -34,10 +34,10 @@ RuinsOfAlphKabutoItemRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 3, 9, 5, RUINS_OF_ALPH_KABUTO_CHAMBER
-	warp_event 4, 9, 5, RUINS_OF_ALPH_KABUTO_CHAMBER
-	warp_event 3, 1, 1, RUINS_OF_ALPH_KABUTO_WORD_ROOM
-	warp_event 4, 1, 2, RUINS_OF_ALPH_KABUTO_WORD_ROOM
+	warp_event 3, 9, RUINS_OF_ALPH_KABUTO_CHAMBER, 5
+	warp_event 4, 9, RUINS_OF_ALPH_KABUTO_CHAMBER, 5
+	warp_event 3, 1, RUINS_OF_ALPH_KABUTO_WORD_ROOM, 1
+	warp_event 4, 1, RUINS_OF_ALPH_KABUTO_WORD_ROOM, 2
 
 	db 0 ; coord events
 

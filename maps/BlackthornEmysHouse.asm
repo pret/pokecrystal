@@ -21,8 +21,8 @@ BlackthornEmysHouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 7, 3, BLACKTHORN_CITY
-	warp_event 3, 7, 3, BLACKTHORN_CITY
+	warp_event 2, 7, BLACKTHORN_CITY, 3
+	warp_event 3, 7, BLACKTHORN_CITY, 3
 
 	db 0 ; coord events
 

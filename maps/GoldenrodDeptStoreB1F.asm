@@ -111,9 +111,9 @@ GoldenrodDeptStoreB1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 17, 2, 3, GOLDENROD_UNDERGROUND_WAREHOUSE
-	warp_event 9, 4, 1, GOLDENROD_DEPT_STORE_ELEVATOR
-	warp_event 10, 4, 2, GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_event 17, 2, GOLDENROD_UNDERGROUND_WAREHOUSE, 3
+	warp_event 9, 4, GOLDENROD_DEPT_STORE_ELEVATOR, 1
+	warp_event 10, 4, GOLDENROD_DEPT_STORE_ELEVATOR, 2
 
 	db 0 ; coord events
 

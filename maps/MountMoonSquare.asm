@@ -134,9 +134,9 @@ MountMoonSquare_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 20, 5, 5, MOUNT_MOON
-	warp_event 22, 11, 6, MOUNT_MOON
-	warp_event 13, 7, 1, MOUNT_MOON_GIFT_SHOP
+	warp_event 20, 5, MOUNT_MOON, 5
+	warp_event 22, 11, MOUNT_MOON, 6
+	warp_event 13, 7, MOUNT_MOON_GIFT_SHOP, 1
 
 	db 1 ; coord events
 	coord_event 7, 11, SCENE_DEFAULT, ClefairyDance

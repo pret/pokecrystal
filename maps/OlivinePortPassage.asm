@@ -21,11 +21,11 @@ OlivinePortPassage_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 15, 0, 10, OLIVINE_CITY
-	warp_event 16, 0, 11, OLIVINE_CITY
-	warp_event 15, 4, 4, OLIVINE_PORT_PASSAGE
-	warp_event 3, 2, 3, OLIVINE_PORT_PASSAGE
-	warp_event 3, 14, 1, OLIVINE_PORT
+	warp_event 15, 0, OLIVINE_CITY, 10
+	warp_event 16, 0, OLIVINE_CITY, 11
+	warp_event 15, 4, OLIVINE_PORT_PASSAGE, 4
+	warp_event 3, 2, OLIVINE_PORT_PASSAGE, 3
+	warp_event 3, 14, OLIVINE_PORT, 1
 
 	db 0 ; coord events
 

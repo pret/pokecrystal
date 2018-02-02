@@ -7,9 +7,9 @@ RuinsOfAlphOmanyteWordRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 9, 7, 3, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
-	warp_event 10, 7, 4, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
-	warp_event 17, 13, 6, RUINS_OF_ALPH_INNER_CHAMBER
+	warp_event 9, 7, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM, 3
+	warp_event 10, 7, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM, 4
+	warp_event 17, 13, RUINS_OF_ALPH_INNER_CHAMBER, 6
 
 	db 0 ; coord events
 

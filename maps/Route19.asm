@@ -236,7 +236,7 @@ Route19_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 7, 3, 3, ROUTE_19_FUCHSIA_GATE
+	warp_event 7, 3, ROUTE_19_FUCHSIA_GATE, 3
 
 	db 0 ; coord events
 

@@ -40,10 +40,10 @@ Route43MahoganyGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 4, 0, 1, ROUTE_43
-	warp_event 5, 0, 2, ROUTE_43
-	warp_event 4, 7, 5, MAHOGANY_TOWN
-	warp_event 5, 7, 5, MAHOGANY_TOWN
+	warp_event 4, 0, ROUTE_43, 1
+	warp_event 5, 0, ROUTE_43, 2
+	warp_event 4, 7, MAHOGANY_TOWN, 5
+	warp_event 5, 7, MAHOGANY_TOWN, 5
 
 	db 0 ; coord events
 

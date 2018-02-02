@@ -388,13 +388,13 @@ BlackthornGym1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 7 ; warp events
-	warp_event 4, 17, 1, BLACKTHORN_CITY
-	warp_event 5, 17, 1, BLACKTHORN_CITY
-	warp_event 1, 7, 1, BLACKTHORN_GYM_2F
-	warp_event 7, 9, 2, BLACKTHORN_GYM_2F
-	warp_event 2, 6, 3, BLACKTHORN_GYM_2F
-	warp_event 7, 7, 4, BLACKTHORN_GYM_2F
-	warp_event 7, 6, 5, BLACKTHORN_GYM_2F
+	warp_event 4, 17, BLACKTHORN_CITY, 1
+	warp_event 5, 17, BLACKTHORN_CITY, 1
+	warp_event 1, 7, BLACKTHORN_GYM_2F, 1
+	warp_event 7, 9, BLACKTHORN_GYM_2F, 2
+	warp_event 2, 6, BLACKTHORN_GYM_2F, 3
+	warp_event 7, 7, BLACKTHORN_GYM_2F, 4
+	warp_event 7, 6, BLACKTHORN_GYM_2F, 5
 
 	db 0 ; coord events
 

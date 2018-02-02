@@ -17,8 +17,8 @@ IcePathB3F_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 3, 5, 2, ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_event 15, 5, 2, ICE_PATH_B2F_BLACKTHORN_SIDE
+	warp_event 3, 5, ICE_PATH_B2F_MAHOGANY_SIDE, 2
+	warp_event 15, 5, ICE_PATH_B2F_BLACKTHORN_SIDE, 2
 
 	db 0 ; coord events
 

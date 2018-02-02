@@ -851,10 +851,10 @@ Route36NationalParkGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 0, 4, 1, NATIONAL_PARK
-	warp_event 0, 5, 2, NATIONAL_PARK
-	warp_event 9, 4, 1, ROUTE_36
-	warp_event 9, 5, 2, ROUTE_36
+	warp_event 0, 4, NATIONAL_PARK, 1
+	warp_event 0, 5, NATIONAL_PARK, 2
+	warp_event 9, 4, ROUTE_36, 1
+	warp_event 9, 5, ROUTE_36, 2
 
 	db 0 ; coord events
 

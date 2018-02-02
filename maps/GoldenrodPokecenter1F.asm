@@ -806,10 +806,10 @@ GoldenrodPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 3, 7, 15, GOLDENROD_CITY
-	warp_event 4, 7, 15, GOLDENROD_CITY
-	warp_event 0, 6, 1, POKECOM_CENTER_ADMIN_ROOM_MOBILE
-	warp_event 0, 7, 1, POKECENTER_2F
+	warp_event 3, 7, GOLDENROD_CITY, 15
+	warp_event 4, 7, GOLDENROD_CITY, 15
+	warp_event 0, 6, POKECOM_CENTER_ADMIN_ROOM_MOBILE, 1
+	warp_event 0, 7, POKECENTER_2F, 1
 
 	db 2 ; coord events
 	coord_event 3, 7, SCENE_DEFAULT, GoldenrodPokecenter1F_GSBallSceneLeft

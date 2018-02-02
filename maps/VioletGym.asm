@@ -283,8 +283,8 @@ VioletGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 15, 2, VIOLET_CITY
-	warp_event 5, 15, 2, VIOLET_CITY
+	warp_event 4, 15, VIOLET_CITY, 2
+	warp_event 5, 15, VIOLET_CITY, 2
 
 	db 0 ; coord events
 

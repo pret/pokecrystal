@@ -300,8 +300,8 @@ VermilionPort_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 9, 5, 5, VERMILION_PORT_PASSAGE
-	warp_event 7, 17, 1, FAST_SHIP_1F
+	warp_event 9, 5, VERMILION_PORT_PASSAGE, 5
+	warp_event 7, 17, FAST_SHIP_1F, 1
 
 	db 1 ; coord events
 	coord_event 7, 11, SCENE_DEFAULT, UnknownScript_0x74e20

@@ -201,10 +201,10 @@ UnionCave1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 5, 19, 3, UNION_CAVE_B1F
-	warp_event 3, 33, 4, UNION_CAVE_B1F
-	warp_event 17, 31, 1, ROUTE_33
-	warp_event 17, 3, 4, ROUTE_32
+	warp_event 5, 19, UNION_CAVE_B1F, 3
+	warp_event 3, 33, UNION_CAVE_B1F, 4
+	warp_event 17, 31, ROUTE_33, 1
+	warp_event 17, 3, ROUTE_32, 4
 
 	db 0 ; coord events
 

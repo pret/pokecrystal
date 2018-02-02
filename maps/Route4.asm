@@ -122,7 +122,7 @@ Route4_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 2, 5, 2, MOUNT_MOON
+	warp_event 2, 5, MOUNT_MOON, 2
 
 	db 0 ; coord events
 

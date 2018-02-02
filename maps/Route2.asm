@@ -148,11 +148,11 @@ Route2_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 15, 15, 1, ROUTE_2_NUGGET_HOUSE
-	warp_event 15, 31, 3, ROUTE_2_GATE
-	warp_event 16, 27, 1, ROUTE_2_GATE
-	warp_event 17, 27, 2, ROUTE_2_GATE
-	warp_event 12, 7, 3, DIGLETTS_CAVE
+	warp_event 15, 15, ROUTE_2_NUGGET_HOUSE, 1
+	warp_event 15, 31, ROUTE_2_GATE, 3
+	warp_event 16, 27, ROUTE_2_GATE, 1
+	warp_event 17, 27, ROUTE_2_GATE, 2
+	warp_event 12, 7, DIGLETTS_CAVE, 3
 
 	db 0 ; coord events
 

@@ -114,15 +114,15 @@ OlivineLighthouse3F_MapEvents:
 	db 0, 0 ; filler
 
 	db 9 ; warp events
-	warp_event 13, 3, 1, OLIVINE_LIGHTHOUSE_4F
-	warp_event 5, 3, 2, OLIVINE_LIGHTHOUSE_2F
-	warp_event 9, 5, 4, OLIVINE_LIGHTHOUSE_4F
-	warp_event 16, 11, 5, OLIVINE_LIGHTHOUSE_2F
-	warp_event 17, 11, 6, OLIVINE_LIGHTHOUSE_2F
-	warp_event 16, 9, 5, OLIVINE_LIGHTHOUSE_4F
-	warp_event 17, 9, 6, OLIVINE_LIGHTHOUSE_4F
-	warp_event 8, 3, 7, OLIVINE_LIGHTHOUSE_4F
-	warp_event 9, 3, 8, OLIVINE_LIGHTHOUSE_4F
+	warp_event 13, 3, OLIVINE_LIGHTHOUSE_4F, 1
+	warp_event 5, 3, OLIVINE_LIGHTHOUSE_2F, 2
+	warp_event 9, 5, OLIVINE_LIGHTHOUSE_4F, 4
+	warp_event 16, 11, OLIVINE_LIGHTHOUSE_2F, 5
+	warp_event 17, 11, OLIVINE_LIGHTHOUSE_2F, 6
+	warp_event 16, 9, OLIVINE_LIGHTHOUSE_4F, 5
+	warp_event 17, 9, OLIVINE_LIGHTHOUSE_4F, 6
+	warp_event 8, 3, OLIVINE_LIGHTHOUSE_4F, 7
+	warp_event 9, 3, OLIVINE_LIGHTHOUSE_4F, 8
 
 	db 0 ; coord events
 

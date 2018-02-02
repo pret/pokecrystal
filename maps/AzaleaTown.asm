@@ -457,14 +457,14 @@ AzaleaTown_MapEvents:
 	db 0, 0 ; filler
 
 	db 8 ; warp events
-	warp_event 15, 9, 1, AZALEA_POKECENTER_1F
-	warp_event 21, 13, 1, CHARCOAL_KILN
-	warp_event 21, 5, 2, AZALEA_MART
-	warp_event 9, 5, 1, KURTS_HOUSE
-	warp_event 10, 15, 1, AZALEA_GYM
-	warp_event 31, 7, 1, SLOWPOKE_WELL_B1F
-	warp_event 2, 10, 3, ILEX_FOREST_AZALEA_GATE
-	warp_event 2, 11, 4, ILEX_FOREST_AZALEA_GATE
+	warp_event 15, 9, AZALEA_POKECENTER_1F, 1
+	warp_event 21, 13, CHARCOAL_KILN, 1
+	warp_event 21, 5, AZALEA_MART, 2
+	warp_event 9, 5, KURTS_HOUSE, 1
+	warp_event 10, 15, AZALEA_GYM, 1
+	warp_event 31, 7, SLOWPOKE_WELL_B1F, 1
+	warp_event 2, 10, ILEX_FOREST_AZALEA_GATE, 3
+	warp_event 2, 11, ILEX_FOREST_AZALEA_GATE, 4
 
 	db 3 ; coord events
 	coord_event 5, 10, SCENE_AZALEATOWN_RIVAL_BATTLE, AzaleaTownRivalBattleScene1

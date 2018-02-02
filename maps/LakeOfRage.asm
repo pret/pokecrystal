@@ -495,8 +495,8 @@ LakeOfRage_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 7, 3, 1, LAKE_OF_RAGE_HIDDEN_POWER_HOUSE
-	warp_event 27, 31, 1, LAKE_OF_RAGE_MAGIKARP_HOUSE
+	warp_event 7, 3, LAKE_OF_RAGE_HIDDEN_POWER_HOUSE, 1
+	warp_event 27, 31, LAKE_OF_RAGE_MAGIKARP_HOUSE, 1
 
 	db 0 ; coord events
 

@@ -21,10 +21,10 @@ Route15FuchsiaGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 0, 4, 8, FUCHSIA_CITY
-	warp_event 0, 5, 9, FUCHSIA_CITY
-	warp_event 9, 4, 1, ROUTE_15
-	warp_event 9, 5, 2, ROUTE_15
+	warp_event 0, 4, FUCHSIA_CITY, 8
+	warp_event 0, 5, FUCHSIA_CITY, 9
+	warp_event 9, 4, ROUTE_15, 1
+	warp_event 9, 5, ROUTE_15, 2
 
 	db 0 ; coord events
 

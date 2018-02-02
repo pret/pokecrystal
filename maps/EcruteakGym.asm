@@ -388,39 +388,39 @@ EcruteakGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 33 ; warp events
-	warp_event 4, 17, 10, ECRUTEAK_CITY
-	warp_event 5, 17, 10, ECRUTEAK_CITY
-	warp_event 4, 14, 4, ECRUTEAK_GYM
-	warp_event 2, 4, 3, ECRUTEAK_GYM
-	warp_event 3, 4, 3, ECRUTEAK_GYM
-	warp_event 4, 4, 3, ECRUTEAK_GYM
-	warp_event 4, 5, 3, ECRUTEAK_GYM
-	warp_event 6, 7, 3, ECRUTEAK_GYM
-	warp_event 7, 4, 3, ECRUTEAK_GYM
-	warp_event 2, 6, 3, ECRUTEAK_GYM
-	warp_event 3, 6, 3, ECRUTEAK_GYM
-	warp_event 4, 6, 3, ECRUTEAK_GYM
-	warp_event 5, 6, 3, ECRUTEAK_GYM
-	warp_event 7, 6, 3, ECRUTEAK_GYM
-	warp_event 7, 7, 3, ECRUTEAK_GYM
-	warp_event 4, 8, 3, ECRUTEAK_GYM
-	warp_event 5, 8, 3, ECRUTEAK_GYM
-	warp_event 6, 8, 3, ECRUTEAK_GYM
-	warp_event 7, 8, 3, ECRUTEAK_GYM
-	warp_event 2, 8, 3, ECRUTEAK_GYM
-	warp_event 2, 9, 3, ECRUTEAK_GYM
-	warp_event 2, 10, 3, ECRUTEAK_GYM
-	warp_event 2, 11, 3, ECRUTEAK_GYM
-	warp_event 4, 10, 3, ECRUTEAK_GYM
-	warp_event 5, 10, 3, ECRUTEAK_GYM
-	warp_event 2, 12, 3, ECRUTEAK_GYM
-	warp_event 3, 12, 3, ECRUTEAK_GYM
-	warp_event 4, 12, 3, ECRUTEAK_GYM
-	warp_event 5, 12, 3, ECRUTEAK_GYM
-	warp_event 7, 10, 3, ECRUTEAK_GYM
-	warp_event 7, 11, 3, ECRUTEAK_GYM
-	warp_event 7, 12, 3, ECRUTEAK_GYM
-	warp_event 7, 13, 3, ECRUTEAK_GYM
+	warp_event 4, 17, ECRUTEAK_CITY, 10
+	warp_event 5, 17, ECRUTEAK_CITY, 10
+	warp_event 4, 14, ECRUTEAK_GYM, 4
+	warp_event 2, 4, ECRUTEAK_GYM, 3
+	warp_event 3, 4, ECRUTEAK_GYM, 3
+	warp_event 4, 4, ECRUTEAK_GYM, 3
+	warp_event 4, 5, ECRUTEAK_GYM, 3
+	warp_event 6, 7, ECRUTEAK_GYM, 3
+	warp_event 7, 4, ECRUTEAK_GYM, 3
+	warp_event 2, 6, ECRUTEAK_GYM, 3
+	warp_event 3, 6, ECRUTEAK_GYM, 3
+	warp_event 4, 6, ECRUTEAK_GYM, 3
+	warp_event 5, 6, ECRUTEAK_GYM, 3
+	warp_event 7, 6, ECRUTEAK_GYM, 3
+	warp_event 7, 7, ECRUTEAK_GYM, 3
+	warp_event 4, 8, ECRUTEAK_GYM, 3
+	warp_event 5, 8, ECRUTEAK_GYM, 3
+	warp_event 6, 8, ECRUTEAK_GYM, 3
+	warp_event 7, 8, ECRUTEAK_GYM, 3
+	warp_event 2, 8, ECRUTEAK_GYM, 3
+	warp_event 2, 9, ECRUTEAK_GYM, 3
+	warp_event 2, 10, ECRUTEAK_GYM, 3
+	warp_event 2, 11, ECRUTEAK_GYM, 3
+	warp_event 4, 10, ECRUTEAK_GYM, 3
+	warp_event 5, 10, ECRUTEAK_GYM, 3
+	warp_event 2, 12, ECRUTEAK_GYM, 3
+	warp_event 3, 12, ECRUTEAK_GYM, 3
+	warp_event 4, 12, ECRUTEAK_GYM, 3
+	warp_event 5, 12, ECRUTEAK_GYM, 3
+	warp_event 7, 10, ECRUTEAK_GYM, 3
+	warp_event 7, 11, ECRUTEAK_GYM, 3
+	warp_event 7, 12, ECRUTEAK_GYM, 3
+	warp_event 7, 13, ECRUTEAK_GYM, 3
 
 	db 0 ; coord events
 

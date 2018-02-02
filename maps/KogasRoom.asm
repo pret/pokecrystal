@@ -131,10 +131,10 @@ KogasRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 4, 17, 2, WILLS_ROOM
-	warp_event 5, 17, 3, WILLS_ROOM
-	warp_event 4, 2, 1, BRUNOS_ROOM
-	warp_event 5, 2, 2, BRUNOS_ROOM
+	warp_event 4, 17, WILLS_ROOM, 2
+	warp_event 5, 17, WILLS_ROOM, 3
+	warp_event 4, 2, BRUNOS_ROOM, 1
+	warp_event 5, 2, BRUNOS_ROOM, 2
 
 	db 0 ; coord events
 

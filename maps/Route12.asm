@@ -168,7 +168,7 @@ Route12_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 11, 33, 1, ROUTE_12_SUPER_ROD_HOUSE
+	warp_event 11, 33, ROUTE_12_SUPER_ROD_HOUSE, 1
 
 	db 0 ; coord events
 

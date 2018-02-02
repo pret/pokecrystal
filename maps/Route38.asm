@@ -474,8 +474,8 @@ Route38_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 35, 8, 1, ROUTE_38_ECRUTEAK_GATE
-	warp_event 35, 9, 2, ROUTE_38_ECRUTEAK_GATE
+	warp_event 35, 8, ROUTE_38_ECRUTEAK_GATE, 1
+	warp_event 35, 9, ROUTE_38_ECRUTEAK_GATE, 2
 
 	db 0 ; coord events
 

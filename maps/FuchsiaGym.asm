@@ -382,8 +382,8 @@ FuchsiaGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 17, 3, FUCHSIA_CITY
-	warp_event 5, 17, 3, FUCHSIA_CITY
+	warp_event 4, 17, FUCHSIA_CITY, 3
+	warp_event 5, 17, FUCHSIA_CITY, 3
 
 	db 0 ; coord events
 

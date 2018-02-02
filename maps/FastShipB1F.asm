@@ -450,8 +450,8 @@ FastShipB1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 5, 11, 11, FAST_SHIP_1F
-	warp_event 31, 13, 12, FAST_SHIP_1F
+	warp_event 5, 11, FAST_SHIP_1F, 11
+	warp_event 31, 13, FAST_SHIP_1F, 12
 
 	db 2 ; coord events
 	coord_event 30, 7, SCENE_DEFAULT, UnknownScript_0x7673c

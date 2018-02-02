@@ -62,10 +62,10 @@ Route16Gate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 0, 4, 4, ROUTE_16
-	warp_event 0, 5, 5, ROUTE_16
-	warp_event 9, 4, 2, ROUTE_16
-	warp_event 9, 5, 3, ROUTE_16
+	warp_event 0, 4, ROUTE_16, 4
+	warp_event 0, 5, ROUTE_16, 5
+	warp_event 9, 4, ROUTE_16, 2
+	warp_event 9, 5, ROUTE_16, 3
 
 	db 2 ; coord events
 	coord_event 5, 4, SCENE_DEFAULT, UnknownScript_0x733ed

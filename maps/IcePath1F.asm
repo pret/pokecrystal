@@ -21,10 +21,10 @@ IcePath1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 4, 19, 1, ROUTE_44
-	warp_event 36, 27, 7, BLACKTHORN_CITY
-	warp_event 37, 5, 1, ICE_PATH_B1F
-	warp_event 37, 13, 7, ICE_PATH_B1F
+	warp_event 4, 19, ROUTE_44, 1
+	warp_event 36, 27, BLACKTHORN_CITY, 7
+	warp_event 37, 5, ICE_PATH_B1F, 1
+	warp_event 37, 13, ICE_PATH_B1F, 7
 
 	db 0 ; coord events
 

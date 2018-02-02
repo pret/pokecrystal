@@ -217,11 +217,11 @@ ViridianCity_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 32, 7, 1, VIRIDIAN_GYM
-	warp_event 21, 9, 1, VIRIDIAN_NICKNAME_SPEECH_HOUSE
-	warp_event 23, 15, 1, TRAINER_HOUSE_1F
-	warp_event 29, 19, 2, VIRIDIAN_MART
-	warp_event 23, 25, 1, VIRIDIAN_POKECENTER_1F
+	warp_event 32, 7, VIRIDIAN_GYM, 1
+	warp_event 21, 9, VIRIDIAN_NICKNAME_SPEECH_HOUSE, 1
+	warp_event 23, 15, TRAINER_HOUSE_1F, 1
+	warp_event 29, 19, VIRIDIAN_MART, 2
+	warp_event 23, 25, VIRIDIAN_POKECENTER_1F, 1
 
 	db 0 ; coord events
 

@@ -387,9 +387,9 @@ PlayersHouse1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 6, 7, 2, NEW_BARK_TOWN
-	warp_event 7, 7, 2, NEW_BARK_TOWN
-	warp_event 9, 0, 1, PLAYERS_HOUSE_2F
+	warp_event 6, 7, NEW_BARK_TOWN, 2
+	warp_event 7, 7, NEW_BARK_TOWN, 2
+	warp_event 9, 0, PLAYERS_HOUSE_2F, 1
 
 	db 2 ; coord events
 	coord_event 8, 4, SCENE_DEFAULT, UnknownScript_0x7a4d8

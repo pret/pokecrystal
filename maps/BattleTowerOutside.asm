@@ -128,10 +128,10 @@ BattleTowerOutside_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 8, 21, 3, ROUTE_40_BATTLE_TOWER_GATE
-	warp_event 9, 21, 4, ROUTE_40_BATTLE_TOWER_GATE
-	warp_event 8, 9, 1, BATTLE_TOWER_1F
-	warp_event 9, 9, 2, BATTLE_TOWER_1F
+	warp_event 8, 21, ROUTE_40_BATTLE_TOWER_GATE, 3
+	warp_event 9, 21, ROUTE_40_BATTLE_TOWER_GATE, 4
+	warp_event 8, 9, BATTLE_TOWER_1F, 1
+	warp_event 9, 9, BATTLE_TOWER_1F, 2
 
 	db 0 ; coord events
 

@@ -44,8 +44,8 @@ FightingDojo_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 11, 1, SAFFRON_CITY
-	warp_event 5, 11, 1, SAFFRON_CITY
+	warp_event 4, 11, SAFFRON_CITY, 1
+	warp_event 5, 11, SAFFRON_CITY, 1
 
 	db 0 ; coord events
 

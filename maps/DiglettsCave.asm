@@ -24,12 +24,12 @@ DiglettsCave_MapEvents:
 	db 0, 0 ; filler
 
 	db 6 ; warp events
-	warp_event 3, 33, 10, VERMILION_CITY
-	warp_event 5, 31, 5, DIGLETTS_CAVE
-	warp_event 15, 5, 5, ROUTE_2
-	warp_event 17, 3, 6, DIGLETTS_CAVE
-	warp_event 17, 33, 2, DIGLETTS_CAVE
-	warp_event 3, 3, 4, DIGLETTS_CAVE
+	warp_event 3, 33, VERMILION_CITY, 10
+	warp_event 5, 31, DIGLETTS_CAVE, 5
+	warp_event 15, 5, ROUTE_2, 5
+	warp_event 17, 3, DIGLETTS_CAVE, 6
+	warp_event 17, 33, DIGLETTS_CAVE, 2
+	warp_event 3, 3, DIGLETTS_CAVE, 4
 
 	db 0 ; coord events
 

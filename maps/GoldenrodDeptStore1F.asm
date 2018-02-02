@@ -80,10 +80,10 @@ GoldenrodDeptStore1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 7, 7, 9, GOLDENROD_CITY
-	warp_event 8, 7, 9, GOLDENROD_CITY
-	warp_event 15, 0, 2, GOLDENROD_DEPT_STORE_2F
-	warp_event 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
+	warp_event 7, 7, GOLDENROD_CITY, 9
+	warp_event 8, 7, GOLDENROD_CITY, 9
+	warp_event 15, 0, GOLDENROD_DEPT_STORE_2F, 2
+	warp_event 2, 0, GOLDENROD_DEPT_STORE_ELEVATOR, 1
 
 	db 0 ; coord events
 

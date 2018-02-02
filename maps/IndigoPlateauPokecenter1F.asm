@@ -304,10 +304,10 @@ IndigoPlateauPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 5, 13, 1, ROUTE_23
-	warp_event 6, 13, 2, ROUTE_23
-	warp_event 0, 13, 1, POKECENTER_2F
-	warp_event 14, 3, 1, WILLS_ROOM
+	warp_event 5, 13, ROUTE_23, 1
+	warp_event 6, 13, ROUTE_23, 2
+	warp_event 0, 13, POKECENTER_2F, 1
+	warp_event 14, 3, WILLS_ROOM, 1
 
 	db 2 ; coord events
 	coord_event 16, 4, SCENE_DEFAULT, PlateauRivalBattle1

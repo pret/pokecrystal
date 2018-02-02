@@ -137,10 +137,10 @@ Route34IlexForestGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 4, 0, 1, ROUTE_34
-	warp_event 5, 0, 2, ROUTE_34
-	warp_event 4, 7, 1, ILEX_FOREST
-	warp_event 5, 7, 1, ILEX_FOREST
+	warp_event 4, 0, ROUTE_34, 1
+	warp_event 5, 0, ROUTE_34, 2
+	warp_event 4, 7, ILEX_FOREST, 1
+	warp_event 5, 7, ILEX_FOREST, 1
 
 	db 1 ; coord events
 	coord_event 4, 7, 0, UnknownScript_0x62d3d

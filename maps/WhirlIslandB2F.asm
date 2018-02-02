@@ -21,10 +21,10 @@ WhirlIslandB2F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 11, 5, 7, WHIRL_ISLAND_B1F
-	warp_event 7, 11, 8, WHIRL_ISLAND_B1F
-	warp_event 7, 25, 1, WHIRL_ISLAND_LUGIA_CHAMBER
-	warp_event 13, 31, 5, WHIRL_ISLAND_SW
+	warp_event 11, 5, WHIRL_ISLAND_B1F, 7
+	warp_event 7, 11, WHIRL_ISLAND_B1F, 8
+	warp_event 7, 25, WHIRL_ISLAND_LUGIA_CHAMBER, 1
+	warp_event 13, 31, WHIRL_ISLAND_SW, 5
 
 	db 0 ; coord events
 

@@ -712,8 +712,8 @@ RadioTower2F_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 0, 0, 1, RADIO_TOWER_3F
-	warp_event 15, 0, 3, RADIO_TOWER_1F
+	warp_event 0, 0, RADIO_TOWER_3F, 1
+	warp_event 15, 0, RADIO_TOWER_1F, 3
 
 	db 0 ; coord events
 

@@ -382,13 +382,13 @@ CianwoodCity_MapEvents:
 	db 0, 0 ; filler
 
 	db 7 ; warp events
-	warp_event 17, 41, 1, MANIAS_HOUSE
-	warp_event 8, 43, 1, CIANWOOD_GYM
-	warp_event 23, 43, 1, CIANWOOD_POKECENTER_1F
-	warp_event 15, 47, 1, CIANWOOD_PHARMACY
-	warp_event 9, 31, 1, CIANWOOD_PHOTO_STUDIO
-	warp_event 15, 37, 1, CIANWOOD_LUGIA_SPEECH_HOUSE
-	warp_event 5, 17, 1, POKE_SEERS_HOUSE
+	warp_event 17, 41, MANIAS_HOUSE, 1
+	warp_event 8, 43, CIANWOOD_GYM, 1
+	warp_event 23, 43, CIANWOOD_POKECENTER_1F, 1
+	warp_event 15, 47, CIANWOOD_PHARMACY, 1
+	warp_event 9, 31, CIANWOOD_PHOTO_STUDIO, 1
+	warp_event 15, 37, CIANWOOD_LUGIA_SPEECH_HOUSE, 1
+	warp_event 5, 17, POKE_SEERS_HOUSE, 1
 
 	db 1 ; coord events
 	coord_event 11, 16, SCENE_CIANWOODCITY_SUICUNE_AND_EUSINE, CianwoodCitySuicuneAndEusine

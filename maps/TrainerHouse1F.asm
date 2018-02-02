@@ -139,9 +139,9 @@ TrainerHouse1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 2, 13, 3, VIRIDIAN_CITY
-	warp_event 3, 13, 3, VIRIDIAN_CITY
-	warp_event 8, 2, 1, TRAINER_HOUSE_B1F
+	warp_event 2, 13, VIRIDIAN_CITY, 3
+	warp_event 3, 13, VIRIDIAN_CITY, 3
+	warp_event 8, 2, TRAINER_HOUSE_B1F, 1
 
 	db 0 ; coord events
 

@@ -930,10 +930,10 @@ Route32_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 11, 73, 1, ROUTE_32_POKECENTER_1F
-	warp_event 4, 2, 3, ROUTE_32_RUINS_OF_ALPH_GATE
-	warp_event 4, 3, 4, ROUTE_32_RUINS_OF_ALPH_GATE
-	warp_event 6, 79, 4, UNION_CAVE_1F
+	warp_event 11, 73, ROUTE_32_POKECENTER_1F, 1
+	warp_event 4, 2, ROUTE_32_RUINS_OF_ALPH_GATE, 3
+	warp_event 4, 3, ROUTE_32_RUINS_OF_ALPH_GATE, 4
+	warp_event 6, 79, UNION_CAVE_1F, 4
 
 	db 2 ; coord events
 	coord_event 18, 8, SCENE_DEFAULT, Route32CooltrainerMStopsYouScene

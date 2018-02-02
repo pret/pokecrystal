@@ -289,17 +289,17 @@ OlivineCity_MapEvents:
 	db 0, 0 ; filler
 
 	db 11 ; warp events
-	warp_event 13, 21, 1, OLIVINE_POKECENTER_1F
-	warp_event 10, 11, 1, OLIVINE_GYM
-	warp_event 25, 11, 1, OLIVINE_TIMS_HOUSE
-	warp_event 0, 0, 1, OLIVINE_HOUSE_BETA
-	warp_event 29, 11, 1, OLIVINE_PUNISHMENT_SPEECH_HOUSE
-	warp_event 13, 15, 1, OLIVINE_GOOD_ROD_HOUSE
-	warp_event 7, 21, 1, OLIVINE_CAFE
-	warp_event 19, 17, 2, OLIVINE_MART
-	warp_event 29, 27, 1, OLIVINE_LIGHTHOUSE_1F
-	warp_event 19, 27, 1, OLIVINE_PORT_PASSAGE
-	warp_event 20, 27, 2, OLIVINE_PORT_PASSAGE
+	warp_event 13, 21, OLIVINE_POKECENTER_1F, 1
+	warp_event 10, 11, OLIVINE_GYM, 1
+	warp_event 25, 11, OLIVINE_TIMS_HOUSE, 1
+	warp_event 0, 0, OLIVINE_HOUSE_BETA, 1
+	warp_event 29, 11, OLIVINE_PUNISHMENT_SPEECH_HOUSE, 1
+	warp_event 13, 15, OLIVINE_GOOD_ROD_HOUSE, 1
+	warp_event 7, 21, OLIVINE_CAFE, 1
+	warp_event 19, 17, OLIVINE_MART, 2
+	warp_event 29, 27, OLIVINE_LIGHTHOUSE_1F, 1
+	warp_event 19, 27, OLIVINE_PORT_PASSAGE, 1
+	warp_event 20, 27, OLIVINE_PORT_PASSAGE, 2
 
 	db 2 ; coord events
 	coord_event 13, 12, SCENE_DEFAULT, UnknownScript_0x1a8833

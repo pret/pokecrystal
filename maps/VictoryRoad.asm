@@ -240,16 +240,16 @@ VictoryRoad_MapEvents:
 	db 0, 0 ; filler
 
 	db 10 ; warp events
-	warp_event 9, 67, 5, VICTORY_ROAD_GATE
-	warp_event 1, 49, 3, VICTORY_ROAD
-	warp_event 1, 35, 2, VICTORY_ROAD
-	warp_event 13, 31, 5, VICTORY_ROAD
-	warp_event 13, 17, 4, VICTORY_ROAD
-	warp_event 17, 33, 7, VICTORY_ROAD
-	warp_event 17, 19, 6, VICTORY_ROAD
-	warp_event 0, 11, 9, VICTORY_ROAD
-	warp_event 0, 27, 8, VICTORY_ROAD
-	warp_event 13, 5, 3, ROUTE_23
+	warp_event 9, 67, VICTORY_ROAD_GATE, 5
+	warp_event 1, 49, VICTORY_ROAD, 3
+	warp_event 1, 35, VICTORY_ROAD, 2
+	warp_event 13, 31, VICTORY_ROAD, 5
+	warp_event 13, 17, VICTORY_ROAD, 4
+	warp_event 17, 33, VICTORY_ROAD, 7
+	warp_event 17, 19, VICTORY_ROAD, 6
+	warp_event 0, 11, VICTORY_ROAD, 9
+	warp_event 0, 27, VICTORY_ROAD, 8
+	warp_event 13, 5, ROUTE_23, 3
 
 	db 2 ; coord events
 	coord_event 12, 8, SCENE_DEFAULT, UnknownScript_0x74492

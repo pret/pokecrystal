@@ -222,9 +222,9 @@ MahoganyMart1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 3, 7, 1, MAHOGANY_TOWN
-	warp_event 4, 7, 1, MAHOGANY_TOWN
-	warp_event 7, 3, 1, TEAM_ROCKET_BASE_B1F
+	warp_event 3, 7, MAHOGANY_TOWN, 1
+	warp_event 4, 7, MAHOGANY_TOWN, 1
+	warp_event 7, 3, TEAM_ROCKET_BASE_B1F, 1
 
 	db 0 ; coord events
 

@@ -414,9 +414,9 @@ Route26_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 7, 5, 3, VICTORY_ROAD_GATE
-	warp_event 15, 57, 1, ROUTE_26_HEAL_HOUSE
-	warp_event 5, 71, 1, DAY_OF_WEEK_SIBLINGS_HOUSE
+	warp_event 7, 5, VICTORY_ROAD_GATE, 3
+	warp_event 15, 57, ROUTE_26_HEAL_HOUSE, 1
+	warp_event 5, 71, DAY_OF_WEEK_SIBLINGS_HOUSE, 1
 
 	db 0 ; coord events
 

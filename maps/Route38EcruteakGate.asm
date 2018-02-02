@@ -26,10 +26,10 @@ Route38EcruteakGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 0, 4, 1, ROUTE_38
-	warp_event 0, 5, 2, ROUTE_38
-	warp_event 9, 4, 14, ECRUTEAK_CITY
-	warp_event 9, 5, 15, ECRUTEAK_CITY
+	warp_event 0, 4, ROUTE_38, 1
+	warp_event 0, 5, ROUTE_38, 2
+	warp_event 9, 4, ECRUTEAK_CITY, 14
+	warp_event 9, 5, ECRUTEAK_CITY, 15
 
 	db 0 ; coord events
 

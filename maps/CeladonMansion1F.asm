@@ -76,11 +76,11 @@ CeladonMansion1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 6, 9, 2, CELADON_CITY
-	warp_event 7, 9, 2, CELADON_CITY
-	warp_event 3, 0, 3, CELADON_CITY
-	warp_event 0, 0, 1, CELADON_MANSION_2F
-	warp_event 7, 0, 4, CELADON_MANSION_2F
+	warp_event 6, 9, CELADON_CITY, 2
+	warp_event 7, 9, CELADON_CITY, 2
+	warp_event 3, 0, CELADON_CITY, 3
+	warp_event 0, 0, CELADON_MANSION_2F, 1
+	warp_event 7, 0, CELADON_MANSION_2F, 4
 
 	db 0 ; coord events
 

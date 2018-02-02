@@ -75,10 +75,10 @@ CeladonDeptStore1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 7, 7, 1, CELADON_CITY
-	warp_event 8, 7, 1, CELADON_CITY
-	warp_event 15, 0, 2, CELADON_DEPT_STORE_2F
-	warp_event 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
+	warp_event 7, 7, CELADON_CITY, 1
+	warp_event 8, 7, CELADON_CITY, 1
+	warp_event 15, 0, CELADON_DEPT_STORE_2F, 2
+	warp_event 2, 0, CELADON_DEPT_STORE_ELEVATOR, 1
 
 	db 0 ; coord events
 

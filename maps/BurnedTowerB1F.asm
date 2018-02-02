@@ -237,12 +237,12 @@ BurnedTowerB1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 6 ; warp events
-	warp_event 10, 9, 3, BURNED_TOWER_1F
-	warp_event 17, 7, 7, BURNED_TOWER_1F
-	warp_event 10, 8, 9, BURNED_TOWER_1F
-	warp_event 3, 13, 10, BURNED_TOWER_1F
-	warp_event 17, 14, 12, BURNED_TOWER_1F
-	warp_event 7, 15, 14, BURNED_TOWER_1F
+	warp_event 10, 9, BURNED_TOWER_1F, 3
+	warp_event 17, 7, BURNED_TOWER_1F, 7
+	warp_event 10, 8, BURNED_TOWER_1F, 9
+	warp_event 3, 13, BURNED_TOWER_1F, 10
+	warp_event 17, 14, BURNED_TOWER_1F, 12
+	warp_event 7, 15, BURNED_TOWER_1F, 14
 
 	db 1 ; coord events
 	coord_event 10, 6, SCENE_DEFAULT, ReleaseTheBeasts

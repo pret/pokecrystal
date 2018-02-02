@@ -417,7 +417,7 @@ Route29_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 27, 1, 3, ROUTE_29_ROUTE_46_GATE
+	warp_event 27, 1, ROUTE_29_ROUTE_46_GATE, 3
 
 	db 2 ; coord events
 	coord_event 53, 8, SCENE_ROUTE29_CATCH_TUTORIAL, Route29Tutorial1

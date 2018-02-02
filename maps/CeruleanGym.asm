@@ -364,8 +364,8 @@ CeruleanGym_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 4, 15, 5, CERULEAN_CITY
-	warp_event 5, 15, 5, CERULEAN_CITY
+	warp_event 4, 15, CERULEAN_CITY, 5
+	warp_event 5, 15, CERULEAN_CITY, 5
 
 	db 0 ; coord events
 

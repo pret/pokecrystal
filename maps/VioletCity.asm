@@ -280,15 +280,15 @@ VioletCity_MapEvents:
 	db 0, 0 ; filler
 
 	db 9 ; warp events
-	warp_event 9, 17, 2, VIOLET_MART
-	warp_event 18, 17, 1, VIOLET_GYM
-	warp_event 30, 17, 1, EARLS_POKEMON_ACADEMY
-	warp_event 3, 15, 1, VIOLET_NICKNAME_SPEECH_HOUSE
-	warp_event 31, 25, 1, VIOLET_POKECENTER_1F
-	warp_event 21, 29, 1, VIOLET_KYLES_HOUSE
-	warp_event 23, 5, 1, SPROUT_TOWER_1F
-	warp_event 39, 24, 1, ROUTE_31_VIOLET_GATE
-	warp_event 39, 25, 2, ROUTE_31_VIOLET_GATE
+	warp_event 9, 17, VIOLET_MART, 2
+	warp_event 18, 17, VIOLET_GYM, 1
+	warp_event 30, 17, EARLS_POKEMON_ACADEMY, 1
+	warp_event 3, 15, VIOLET_NICKNAME_SPEECH_HOUSE, 1
+	warp_event 31, 25, VIOLET_POKECENTER_1F, 1
+	warp_event 21, 29, VIOLET_KYLES_HOUSE, 1
+	warp_event 23, 5, SPROUT_TOWER_1F, 1
+	warp_event 39, 24, ROUTE_31_VIOLET_GATE, 1
+	warp_event 39, 25, ROUTE_31_VIOLET_GATE, 2
 
 	db 0 ; coord events
 

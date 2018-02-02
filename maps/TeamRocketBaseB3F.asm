@@ -567,10 +567,10 @@ TeamRocketBaseB3F_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 3, 2, 2, TEAM_ROCKET_BASE_B2F
-	warp_event 27, 2, 3, TEAM_ROCKET_BASE_B2F
-	warp_event 3, 6, 4, TEAM_ROCKET_BASE_B2F
-	warp_event 27, 14, 5, TEAM_ROCKET_BASE_B2F
+	warp_event 3, 2, TEAM_ROCKET_BASE_B2F, 2
+	warp_event 27, 2, TEAM_ROCKET_BASE_B2F, 3
+	warp_event 3, 6, TEAM_ROCKET_BASE_B2F, 4
+	warp_event 27, 14, TEAM_ROCKET_BASE_B2F, 5
 
 	db 3 ; coord events
 	coord_event 10, 8, SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS, UnknownScript_0x6e04b

@@ -45,8 +45,8 @@ BattleTowerElevator_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 1, 3, 1, BATTLE_TOWER_HALLWAY
-	warp_event 2, 3, 1, BATTLE_TOWER_HALLWAY
+	warp_event 1, 3, BATTLE_TOWER_HALLWAY, 1
+	warp_event 2, 3, BATTLE_TOWER_HALLWAY, 1
 
 	db 0 ; coord events
 

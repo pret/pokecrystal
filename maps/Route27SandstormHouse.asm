@@ -95,8 +95,8 @@ Route27SandstormHouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 7, 1, ROUTE_27
-	warp_event 3, 7, 1, ROUTE_27
+	warp_event 2, 7, ROUTE_27, 1
+	warp_event 3, 7, ROUTE_27, 1
 
 	db 0 ; coord events
 

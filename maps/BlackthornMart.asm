@@ -48,8 +48,8 @@ BlackthornMart_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 7, 4, BLACKTHORN_CITY
-	warp_event 3, 7, 4, BLACKTHORN_CITY
+	warp_event 2, 7, BLACKTHORN_CITY, 4
+	warp_event 3, 7, BLACKTHORN_CITY, 4
 
 	db 0 ; coord events
 

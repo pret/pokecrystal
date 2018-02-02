@@ -469,9 +469,9 @@ Route27_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 33, 7, 1, ROUTE_27_SANDSTORM_HOUSE
-	warp_event 26, 5, 1, TOHJO_FALLS
-	warp_event 36, 5, 2, TOHJO_FALLS
+	warp_event 33, 7, ROUTE_27_SANDSTORM_HOUSE, 1
+	warp_event 26, 5, TOHJO_FALLS, 1
+	warp_event 36, 5, TOHJO_FALLS, 2
 
 	db 2 ; coord events
 	coord_event 18, 10, SCENE_DEFAULT, UnknownScript_0x1a0873

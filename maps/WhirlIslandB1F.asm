@@ -42,15 +42,15 @@ WhirlIslandB1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 9 ; warp events
-	warp_event 5, 5, 2, WHIRL_ISLAND_NW
-	warp_event 35, 3, 2, WHIRL_ISLAND_NE
-	warp_event 29, 9, 3, WHIRL_ISLAND_NE
-	warp_event 9, 31, 3, WHIRL_ISLAND_SW
-	warp_event 23, 31, 2, WHIRL_ISLAND_SW
-	warp_event 31, 29, 2, WHIRL_ISLAND_SE
-	warp_event 25, 21, 1, WHIRL_ISLAND_B2F
-	warp_event 13, 27, 2, WHIRL_ISLAND_B2F
-	warp_event 17, 21, 1, WHIRL_ISLAND_CAVE
+	warp_event 5, 5, WHIRL_ISLAND_NW, 2
+	warp_event 35, 3, WHIRL_ISLAND_NE, 2
+	warp_event 29, 9, WHIRL_ISLAND_NE, 3
+	warp_event 9, 31, WHIRL_ISLAND_SW, 3
+	warp_event 23, 31, WHIRL_ISLAND_SW, 2
+	warp_event 31, 29, WHIRL_ISLAND_SE, 2
+	warp_event 25, 21, WHIRL_ISLAND_B2F, 1
+	warp_event 13, 27, WHIRL_ISLAND_B2F, 2
+	warp_event 17, 21, WHIRL_ISLAND_CAVE, 1
 
 	db 0 ; coord events
 

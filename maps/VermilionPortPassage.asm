@@ -20,11 +20,11 @@ VermilionPortPassage_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 15, 0, 8, VERMILION_CITY
-	warp_event 16, 0, 9, VERMILION_CITY
-	warp_event 15, 4, 4, VERMILION_PORT_PASSAGE
-	warp_event 3, 2, 3, VERMILION_PORT_PASSAGE
-	warp_event 3, 14, 1, VERMILION_PORT
+	warp_event 15, 0, VERMILION_CITY, 8
+	warp_event 16, 0, VERMILION_CITY, 9
+	warp_event 15, 4, VERMILION_PORT_PASSAGE, 4
+	warp_event 3, 2, VERMILION_PORT_PASSAGE, 3
+	warp_event 3, 14, VERMILION_PORT, 1
 
 	db 0 ; coord events
 

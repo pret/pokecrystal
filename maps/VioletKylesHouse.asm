@@ -34,8 +34,8 @@ VioletKylesHouse_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 3, 7, 6, VIOLET_CITY
-	warp_event 4, 7, 6, VIOLET_CITY
+	warp_event 3, 7, VIOLET_CITY, 6
+	warp_event 4, 7, VIOLET_CITY, 6
 
 	db 0 ; coord events
 

@@ -269,16 +269,16 @@ VermilionCity_MapEvents:
 	db 0, 0 ; filler
 
 	db 10 ; warp events
-	warp_event 5, 5, 1, VERMILION_FISHING_SPEECH_HOUSE
-	warp_event 9, 5, 1, VERMILION_POKECENTER_1F
-	warp_event 7, 13, 1, POKEMON_FAN_CLUB
-	warp_event 13, 13, 1, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE
-	warp_event 21, 13, 2, VERMILION_MART
-	warp_event 21, 17, 1, VERMILION_DIGLETTS_CAVE_SPEECH_HOUSE
-	warp_event 10, 19, 1, VERMILION_GYM
-	warp_event 19, 31, 1, VERMILION_PORT_PASSAGE
-	warp_event 20, 31, 2, VERMILION_PORT_PASSAGE
-	warp_event 34, 7, 1, DIGLETTS_CAVE
+	warp_event 5, 5, VERMILION_FISHING_SPEECH_HOUSE, 1
+	warp_event 9, 5, VERMILION_POKECENTER_1F, 1
+	warp_event 7, 13, POKEMON_FAN_CLUB, 1
+	warp_event 13, 13, VERMILION_MAGNET_TRAIN_SPEECH_HOUSE, 1
+	warp_event 21, 13, VERMILION_MART, 2
+	warp_event 21, 17, VERMILION_DIGLETTS_CAVE_SPEECH_HOUSE, 1
+	warp_event 10, 19, VERMILION_GYM, 1
+	warp_event 19, 31, VERMILION_PORT_PASSAGE, 1
+	warp_event 20, 31, VERMILION_PORT_PASSAGE, 2
+	warp_event 34, 7, DIGLETTS_CAVE, 1
 
 	db 0 ; coord events
 

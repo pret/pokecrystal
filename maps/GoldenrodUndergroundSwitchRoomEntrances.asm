@@ -932,15 +932,15 @@ GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
 	db 0, 0 ; filler
 
 	db 9 ; warp events
-	warp_event 23, 3, 6, GOLDENROD_UNDERGROUND
-	warp_event 22, 10, 1, GOLDENROD_UNDERGROUND_WAREHOUSE
-	warp_event 23, 10, 2, GOLDENROD_UNDERGROUND_WAREHOUSE
-	warp_event 5, 25, 2, GOLDENROD_UNDERGROUND
-	warp_event 4, 29, 14, GOLDENROD_CITY
-	warp_event 5, 29, 14, GOLDENROD_CITY
-	warp_event 21, 25, 1, GOLDENROD_UNDERGROUND
-	warp_event 20, 29, 13, GOLDENROD_CITY
-	warp_event 21, 29, 13, GOLDENROD_CITY
+	warp_event 23, 3, GOLDENROD_UNDERGROUND, 6
+	warp_event 22, 10, GOLDENROD_UNDERGROUND_WAREHOUSE, 1
+	warp_event 23, 10, GOLDENROD_UNDERGROUND_WAREHOUSE, 2
+	warp_event 5, 25, GOLDENROD_UNDERGROUND, 2
+	warp_event 4, 29, GOLDENROD_CITY, 14
+	warp_event 5, 29, GOLDENROD_CITY, 14
+	warp_event 21, 25, GOLDENROD_UNDERGROUND, 1
+	warp_event 20, 29, GOLDENROD_CITY, 13
+	warp_event 21, 29, GOLDENROD_CITY, 13
 
 	db 2 ; coord events
 	coord_event 19, 4, SCENE_DEFAULT, UndergroundSilverScene1

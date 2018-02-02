@@ -19,10 +19,10 @@ ENDM
 warp_event: MACRO
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
-;\3: warp destination: starts at 1
-;\4: map id: from constants/map_constants.asm
-	db \2, \1, \3
-	map \4
+;\3: map id: from constants/map_constants.asm
+;\4: warp destination: starts at 1
+	db \2, \1, \4
+	map \3
 ENDM
 
 coord_event: MACRO

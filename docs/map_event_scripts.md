@@ -106,7 +106,7 @@
 
 <pre>
 	db <i>N</i> ; warp events
-	warp_event <i>x</i>, <i>y</i>, <i>warp_id</i>, <i>map</i>
+	warp_event <i>x</i>, <i>y</i>, <i>map</i>, <i>warp_id</i>
 </pre>
 
 

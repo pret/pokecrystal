@@ -55,9 +55,9 @@ MahoganyPokecenter1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 3, 7, 4, MAHOGANY_TOWN
-	warp_event 4, 7, 4, MAHOGANY_TOWN
-	warp_event 0, 7, 1, POKECENTER_2F
+	warp_event 3, 7, MAHOGANY_TOWN, 4
+	warp_event 4, 7, MAHOGANY_TOWN, 4
+	warp_event 0, 7, POKECENTER_2F, 1
 
 	db 0 ; coord events
 

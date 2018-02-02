@@ -265,8 +265,8 @@ CeladonGameCornerPrizeRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 2, 5, 7, CELADON_CITY
-	warp_event 3, 5, 7, CELADON_CITY
+	warp_event 2, 5, CELADON_CITY, 7
+	warp_event 3, 5, CELADON_CITY, 7
 
 	db 0 ; coord events
 

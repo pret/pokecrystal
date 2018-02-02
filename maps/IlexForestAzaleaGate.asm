@@ -32,10 +32,10 @@ IlexForestAzaleaGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 0, 4, 2, ILEX_FOREST
-	warp_event 0, 5, 3, ILEX_FOREST
-	warp_event 9, 4, 7, AZALEA_TOWN
-	warp_event 9, 5, 8, AZALEA_TOWN
+	warp_event 0, 4, ILEX_FOREST, 2
+	warp_event 0, 5, ILEX_FOREST, 3
+	warp_event 9, 4, AZALEA_TOWN, 7
+	warp_event 9, 5, AZALEA_TOWN, 8
 
 	db 0 ; coord events
 

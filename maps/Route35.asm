@@ -464,9 +464,9 @@ Route35_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 9, 33, 1, ROUTE_35_GOLDENROD_GATE
-	warp_event 10, 33, 2, ROUTE_35_GOLDENROD_GATE
-	warp_event 3, 5, 3, ROUTE_35_NATIONAL_PARK_GATE
+	warp_event 9, 33, ROUTE_35_GOLDENROD_GATE, 1
+	warp_event 10, 33, ROUTE_35_GOLDENROD_GATE, 2
+	warp_event 3, 5, ROUTE_35_NATIONAL_PARK_GATE, 3
 
 	db 0 ; coord events
 

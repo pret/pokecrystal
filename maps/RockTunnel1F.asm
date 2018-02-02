@@ -23,12 +23,12 @@ RockTunnel1F_MapEvents:
 	db 0, 0 ; filler
 
 	db 6 ; warp events
-	warp_event 15, 3, 1, ROUTE_9
-	warp_event 11, 25, 1, ROUTE_10_SOUTH
-	warp_event 5, 3, 3, ROCK_TUNNEL_B1F
-	warp_event 15, 9, 2, ROCK_TUNNEL_B1F
-	warp_event 27, 3, 4, ROCK_TUNNEL_B1F
-	warp_event 27, 13, 1, ROCK_TUNNEL_B1F
+	warp_event 15, 3, ROUTE_9, 1
+	warp_event 11, 25, ROUTE_10_SOUTH, 1
+	warp_event 5, 3, ROCK_TUNNEL_B1F, 3
+	warp_event 15, 9, ROCK_TUNNEL_B1F, 2
+	warp_event 27, 3, ROCK_TUNNEL_B1F, 4
+	warp_event 27, 13, ROCK_TUNNEL_B1F, 1
 
 	db 0 ; coord events
 

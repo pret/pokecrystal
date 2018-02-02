@@ -259,9 +259,9 @@ OlivineLighthouse6F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 9, 15, 1, OLIVINE_LIGHTHOUSE_5F
-	warp_event 16, 5, 6, OLIVINE_LIGHTHOUSE_5F
-	warp_event 17, 5, 7, OLIVINE_LIGHTHOUSE_5F
+	warp_event 9, 15, OLIVINE_LIGHTHOUSE_5F, 1
+	warp_event 16, 5, OLIVINE_LIGHTHOUSE_5F, 6
+	warp_event 17, 5, OLIVINE_LIGHTHOUSE_5F, 7
 
 	db 0 ; coord events
 

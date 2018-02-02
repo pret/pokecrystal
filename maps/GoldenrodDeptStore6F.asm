@@ -149,9 +149,9 @@ GoldenrodDeptStore6F_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 15, 0, 2, GOLDENROD_DEPT_STORE_5F
-	warp_event 2, 0, 1, GOLDENROD_DEPT_STORE_ELEVATOR
-	warp_event 13, 0, 1, GOLDENROD_DEPT_STORE_ROOF
+	warp_event 15, 0, GOLDENROD_DEPT_STORE_5F, 2
+	warp_event 2, 0, GOLDENROD_DEPT_STORE_ELEVATOR, 1
+	warp_event 13, 0, GOLDENROD_DEPT_STORE_ROOF, 1
 
 	db 0 ; coord events
 

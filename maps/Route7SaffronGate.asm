@@ -47,10 +47,10 @@ Route7SaffronGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 0, 4, 1, ROUTE_7
-	warp_event 0, 5, 2, ROUTE_7
-	warp_event 9, 4, 10, SAFFRON_CITY
-	warp_event 9, 5, 11, SAFFRON_CITY
+	warp_event 0, 4, ROUTE_7, 1
+	warp_event 0, 5, ROUTE_7, 2
+	warp_event 9, 4, SAFFRON_CITY, 10
+	warp_event 9, 5, SAFFRON_CITY, 11
 
 	db 0 ; coord events
 

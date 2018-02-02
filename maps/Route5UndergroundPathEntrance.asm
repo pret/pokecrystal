@@ -21,9 +21,9 @@ Route5UndergroundPathEntrance_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 3, 7, 1, ROUTE_5
-	warp_event 4, 7, 1, ROUTE_5
-	warp_event 4, 3, 1, UNDERGROUND_PATH
+	warp_event 3, 7, ROUTE_5, 1
+	warp_event 4, 7, ROUTE_5, 1
+	warp_event 4, 3, UNDERGROUND_PATH, 1
 
 	db 0 ; coord events
 

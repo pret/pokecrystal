@@ -346,9 +346,9 @@ WiseTriosRoom_MapEvents:
 	db 0, 0 ; filler
 
 	db 3 ; warp events
-	warp_event 7, 4, 4, ECRUTEAK_CITY
-	warp_event 7, 5, 5, ECRUTEAK_CITY
-	warp_event 1, 4, 5, ECRUTEAK_TIN_TOWER_ENTRANCE
+	warp_event 7, 4, ECRUTEAK_CITY, 4
+	warp_event 7, 5, ECRUTEAK_CITY, 5
+	warp_event 1, 4, ECRUTEAK_TIN_TOWER_ENTRANCE, 5
 
 	db 1 ; coord events
 	coord_event 7, 4, SCENE_DEFAULT, UnknownScript_0x985a3

@@ -41,10 +41,10 @@ Route5_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 17, 15, 1, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
-	warp_event 8, 17, 1, ROUTE_5_SAFFRON_GATE
-	warp_event 9, 17, 2, ROUTE_5_SAFFRON_GATE
-	warp_event 10, 11, 1, ROUTE_5_CLEANSE_TAG_HOUSE
+	warp_event 17, 15, ROUTE_5_UNDERGROUND_PATH_ENTRANCE, 1
+	warp_event 8, 17, ROUTE_5_SAFFRON_GATE, 1
+	warp_event 9, 17, ROUTE_5_SAFFRON_GATE, 2
+	warp_event 10, 11, ROUTE_5_CLEANSE_TAG_HOUSE, 1
 
 	db 0 ; coord events
 

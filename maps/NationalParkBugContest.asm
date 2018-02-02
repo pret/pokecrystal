@@ -222,10 +222,10 @@ NationalParkBugContest_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 33, 18, 1, ROUTE_36_NATIONAL_PARK_GATE
-	warp_event 33, 19, 1, ROUTE_36_NATIONAL_PARK_GATE
-	warp_event 10, 47, 1, ROUTE_35_NATIONAL_PARK_GATE
-	warp_event 11, 47, 1, ROUTE_35_NATIONAL_PARK_GATE
+	warp_event 33, 18, ROUTE_36_NATIONAL_PARK_GATE, 1
+	warp_event 33, 19, ROUTE_36_NATIONAL_PARK_GATE, 1
+	warp_event 10, 47, ROUTE_35_NATIONAL_PARK_GATE, 1
+	warp_event 11, 47, ROUTE_35_NATIONAL_PARK_GATE, 1
 
 	db 0 ; coord events
 

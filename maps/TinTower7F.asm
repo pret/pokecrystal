@@ -13,11 +13,11 @@ TinTower7F_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 3, 9, 1, TIN_TOWER_6F
-	warp_event 10, 15, 1, TIN_TOWER_8F
-	warp_event 12, 7, 4, TIN_TOWER_7F
-	warp_event 8, 3, 3, TIN_TOWER_7F
-	warp_event 6, 9, 5, TIN_TOWER_9F
+	warp_event 3, 9, TIN_TOWER_6F, 1
+	warp_event 10, 15, TIN_TOWER_8F, 1
+	warp_event 12, 7, TIN_TOWER_7F, 4
+	warp_event 8, 3, TIN_TOWER_7F, 3
+	warp_event 6, 9, TIN_TOWER_9F, 5
 
 	db 0 ; coord events
 

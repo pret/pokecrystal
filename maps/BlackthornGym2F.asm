@@ -127,11 +127,11 @@ BlackthornGym2F_MapEvents:
 	db 0, 0 ; filler
 
 	db 5 ; warp events
-	warp_event 1, 7, 3, BLACKTHORN_GYM_1F
-	warp_event 7, 9, 4, BLACKTHORN_GYM_1F
-	warp_event 2, 5, 5, BLACKTHORN_GYM_1F ; hole
-	warp_event 8, 7, 6, BLACKTHORN_GYM_1F ; hole
-	warp_event 8, 3, 7, BLACKTHORN_GYM_1F ; hole
+	warp_event 1, 7, BLACKTHORN_GYM_1F, 3
+	warp_event 7, 9, BLACKTHORN_GYM_1F, 4
+	warp_event 2, 5, BLACKTHORN_GYM_1F, 5 ; hole
+	warp_event 8, 7, BLACKTHORN_GYM_1F, 6 ; hole
+	warp_event 8, 3, BLACKTHORN_GYM_1F, 7 ; hole
 
 	db 0 ; coord events
 

@@ -431,7 +431,7 @@ Route25_MapEvents:
 	db 0, 0 ; filler
 
 	db 1 ; warp events
-	warp_event 47, 5, 1, BILLS_HOUSE
+	warp_event 47, 5, BILLS_HOUSE, 1
 
 	db 2 ; coord events
 	coord_event 42, 6, SCENE_ROUTE25_MISTYS_DATE, Route25MistyDate1Script

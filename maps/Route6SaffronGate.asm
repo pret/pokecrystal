@@ -59,10 +59,10 @@ Route6SaffronGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 4, 0, 12, SAFFRON_CITY
-	warp_event 5, 0, 13, SAFFRON_CITY
-	warp_event 4, 7, 2, ROUTE_6
-	warp_event 5, 7, 2, ROUTE_6
+	warp_event 4, 0, SAFFRON_CITY, 12
+	warp_event 5, 0, SAFFRON_CITY, 13
+	warp_event 4, 7, ROUTE_6, 2
+	warp_event 5, 7, ROUTE_6, 2
 
 	db 0 ; coord events
 

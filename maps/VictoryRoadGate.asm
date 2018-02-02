@@ -99,14 +99,14 @@ VictoryRoadGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 8 ; warp events
-	warp_event 17, 7, 1, ROUTE_22
-	warp_event 18, 7, 1, ROUTE_22
-	warp_event 9, 17, 1, ROUTE_26
-	warp_event 10, 17, 1, ROUTE_26
-	warp_event 9, 0, 1, VICTORY_ROAD
-	warp_event 10, 0, 1, VICTORY_ROAD
-	warp_event 1, 7, 2, ROUTE_28
-	warp_event 2, 7, 2, ROUTE_28
+	warp_event 17, 7, ROUTE_22, 1
+	warp_event 18, 7, ROUTE_22, 1
+	warp_event 9, 17, ROUTE_26, 1
+	warp_event 10, 17, ROUTE_26, 1
+	warp_event 9, 0, VICTORY_ROAD, 1
+	warp_event 10, 0, VICTORY_ROAD, 1
+	warp_event 1, 7, ROUTE_28, 2
+	warp_event 2, 7, ROUTE_28, 2
 
 	db 1 ; coord events
 	coord_event 10, 11, SCENE_DEFAULT, VictoryRoadGateBadgeCheckScene

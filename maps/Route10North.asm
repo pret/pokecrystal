@@ -17,8 +17,8 @@ Route10North_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
-	warp_event 11, 1, 1, ROUTE_10_POKECENTER_1F
-	warp_event 3, 9, 1, POWER_PLANT
+	warp_event 11, 1, ROUTE_10_POKECENTER_1F, 1
+	warp_event 3, 9, POWER_PLANT, 1
 
 	db 0 ; coord events
 

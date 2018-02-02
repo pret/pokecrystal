@@ -197,10 +197,10 @@ Route35GoldenrodGate_MapEvents:
 	db 0, 0 ; filler
 
 	db 4 ; warp events
-	warp_event 4, 0, 1, ROUTE_35
-	warp_event 5, 0, 2, ROUTE_35
-	warp_event 4, 7, 12, GOLDENROD_CITY
-	warp_event 5, 7, 12, GOLDENROD_CITY
+	warp_event 4, 0, ROUTE_35, 1
+	warp_event 5, 0, ROUTE_35, 2
+	warp_event 4, 7, GOLDENROD_CITY, 12
+	warp_event 5, 7, GOLDENROD_CITY, 12
 
 	db 0 ; coord events
 
