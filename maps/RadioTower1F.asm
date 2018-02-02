@@ -13,17 +13,17 @@ RadioTower1F_MapScripts:
 .MapCallbacks:
 	db 0
 
-ReceptionistScript_0x5cd29:
+RadioTower1FReceptionist:
 	faceplayer
 	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	iftrue UnknownScript_0x5cd37
+	iftrue .Rockets
 	writetext UnknownText_0x5ce77
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5cd37:
+.Rockets:
 	writetext UnknownText_0x5ce81
 	waitbutton
 	closetext
@@ -113,67 +113,67 @@ GentlemanScript_0x5cd3d:
 	closetext
 	end
 
-CooltrainerFScript_0x5cdd5:
+RadioTower1FRadioCardWoman:
 	faceplayer
 	opentext
 	checkflag ENGINE_RADIO_CARD
-	iftrue UnknownScript_0x5ce2d
+	iftrue .GotCard
 	writetext UnknownText_0x5d12d
 	yesorno
-	iffalse UnknownScript_0x5ce4b
+	iffalse .NoQuiz
 	writetext UnknownText_0x5d1f2
 	yesorno
-	iffalse UnknownScript_0x5ce42
+	iffalse .WrongAnswer
 	playsound SFX_ELEVATOR_END
 	waitsfx
 	writetext UnknownText_0x5d231
 	yesorno
-	iffalse UnknownScript_0x5ce42
+	iffalse .WrongAnswer
 	playsound SFX_ELEVATOR_END
 	waitsfx
 	writetext UnknownText_0x5d282
 	yesorno
-	iftrue UnknownScript_0x5ce42
+	iftrue .WrongAnswer
 	playsound SFX_ELEVATOR_END
 	waitsfx
 	writetext UnknownText_0x5d2bc
 	yesorno
-	iffalse UnknownScript_0x5ce42
+	iffalse .WrongAnswer
 	playsound SFX_ELEVATOR_END
 	waitsfx
 	writetext UnknownText_0x5d30e
 	yesorno
-	iftrue UnknownScript_0x5ce42
+	iftrue .WrongAnswer
 	playsound SFX_ELEVATOR_END
 	waitsfx
 	writetext UnknownText_0x5d37b
 	buttonsound
-	stringtotext RadioCardText, MEM_BUFFER_1
-	scall UnknownScript_0x5ce3e
+	stringtotext .RadioCardText, MEM_BUFFER_1
+	scall .ReceiveItem
 	writetext UnknownText_0x5d3c0
 	buttonsound
 	setflag ENGINE_RADIO_CARD
-UnknownScript_0x5ce2d:
+.GotCard:
 	writetext UnknownText_0x5d3e5
 	waitbutton
 	closetext
 	end
 
-RadioCardText:
+.RadioCardText:
 	db "RADIO CARD@"
 
-UnknownScript_0x5ce3e:
+.ReceiveItem:
 	jumpstd receiveitem
 	end
 
-UnknownScript_0x5ce42:
+.WrongAnswer:
 	playsound SFX_WRONG
 	writetext UnknownText_0x5d409
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5ce4b:
+.NoQuiz:
 	writetext UnknownText_0x5d443
 	waitbutton
 	closetext
@@ -492,9 +492,9 @@ RadioTower1F_MapEvents:
 
 .ObjectEvents:
 	db 6
-	object_event 5, 6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x5cd29, -1
+	object_event 5, 6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FReceptionist, -1
 	object_event 16, 4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FLassScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 15, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower1FYoungsterScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 14, 1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 8, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
-	object_event 12, 6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CooltrainerFScript_0x5cdd5, EVENT_GOLDENROD_CITY_CIVILIANS
+	object_event 12, 6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower1FRadioCardWoman, EVENT_GOLDENROD_CITY_CIVILIANS
