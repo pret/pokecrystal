@@ -52,10 +52,10 @@ MapRuinsOfAlphAerodactylChamberSignpost2Script:
 	writebyte UNOWNPUZZLE_AERODACTYL
 	special Special_UnownPuzzle
 	closetext
-	iftrue UnknownScript_0x58df7
+	iftrue .PuzzleComplete
 	end
 
-UnknownScript_0x58df7:
+.PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_AERODACTYL_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_3
@@ -90,7 +90,7 @@ MapRuinsOfAlphAerodactylChamberSignpost4Script:
 
 MapRuinsOfAlphAerodactylChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
-	iftrue UnknownScript_0x58e46
+	iftrue .WallOpen
 	opentext
 	writetext UnknownText_0x58e81
 	writebyte UNOWNWORDS_LIGHT
@@ -98,7 +98,7 @@ MapRuinsOfAlphAerodactylChamberSignpost5Script:
 	closetext
 	end
 
-UnknownScript_0x58e46:
+.WallOpen:
 	opentext
 	writetext UnknownText_0x58ea2
 	waitbutton
