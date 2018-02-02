@@ -32,13 +32,13 @@ GymGuyScript_0x5e556:
 	faceplayer
 	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x5e564
+	iftrue .NoRockets
 	writetext UnknownText_0x5e682
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5e564:
+.NoRockets:
 	writetext UnknownText_0x5e6eb
 	waitbutton
 	closetext
@@ -48,37 +48,37 @@ CooltrainerFScript_0x5e56a:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
-	iftrue UnknownScript_0x5e59d
+	iftrue .GotSunnyDay
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x5e58a
+	iftrue .NoRockets
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
-	iftrue UnknownScript_0x5e584
+	iftrue .UsedCardKey
 	writetext UnknownText_0x5e754
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5e584:
+.UsedCardKey:
 	writetext UnknownText_0x5e7cb
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5e58a:
+.NoRockets:
 	writetext UnknownText_0x5e7e2
 	buttonsound
 	verbosegiveitem TM_SUNNY_DAY
-	iffalse UnknownScript_0x5e5a1
+	iffalse .NoRoom
 	writetext UnknownText_0x5e821
 	waitbutton
 	closetext
 	setevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
 	end
 
-UnknownScript_0x5e59d:
+.GotSunnyDay:
 	writetext UnknownText_0x5e85c
 	waitbutton
-UnknownScript_0x5e5a1:
+.NoRoom:
 	closetext
 	end
 
@@ -131,10 +131,10 @@ MapRadioTower3FSignpost2Script::
 	writetext UnknownText_0x5eaa4
 	waitbutton
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
-	iftrue UnknownScript_0x5e603
+	iftrue .UsedCardKey
 	checkitem CARD_KEY
 	iftrue UnknownScript_0x5e605
-UnknownScript_0x5e603:
+.UsedCardKey:
 	closetext
 	end
 

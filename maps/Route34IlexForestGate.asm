@@ -24,9 +24,9 @@ Route34IlexForestGate_MapScripts:
 	appear ROUTE34ILEXFORESTGATE_TEACHER1
 	return
 
-UnknownScript_0x62d3d:
+Route34IlexForestGateCelebiEvent:
 	checkevent EVENT_FOREST_IS_RESTLESS
-	iffalse UnknownScript_0x62d62
+	iffalse .skip
 	showemote EMOTE_SHOCK, ROUTE34ILEXFORESTGATE_TEACHER2, 20
 	spriteface ROUTE34ILEXFORESTGATE_TEACHER2, LEFT
 	spriteface PLAYER, RIGHT
@@ -39,29 +39,29 @@ UnknownScript_0x62d3d:
 	waitbutton
 	closetext
 	applymovement ROUTE34ILEXFORESTGATE_TEACHER2, MovementData_0x62d9a
-UnknownScript_0x62d62:
+.skip:
 	end
 
 TeacherScript_0x62d63:
 	faceplayer
 	opentext
 	checkevent EVENT_FOREST_IS_RESTLESS
-	iftrue UnknownScript_0x62d84
+	iftrue .ForestIsRestless
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
-	iftrue UnknownScript_0x62d7e
+	iftrue .GotSweetScent
 	writetext UnknownText_0x62d9d
 	buttonsound
 	verbosegiveitem TM_SWEET_SCENT
-	iffalse UnknownScript_0x62d82
+	iffalse .NoRoom
 	setevent EVENT_GOT_TM12_SWEET_SCENT
-UnknownScript_0x62d7e:
+.GotSweetScent:
 	writetext UnknownText_0x62df6
 	waitbutton
-UnknownScript_0x62d82:
+.NoRoom:
 	closetext
 	end
 
-UnknownScript_0x62d84:
+.ForestIsRestless:
 	writetext UnknownText_0x62e41
 	buttonsound
 	closetext
@@ -148,7 +148,7 @@ Route34IlexForestGate_MapEvents:
 
 .CoordEvents:
 	db 1
-	coord_event 4, 7, 0, UnknownScript_0x62d3d
+	coord_event 4, 7, 0, Route34IlexForestGateCelebiEvent
 
 .BGEvents:
 	db 0
