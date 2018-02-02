@@ -355,33 +355,25 @@ ParkBall: ; e8a2
 	ld a, $ff
 .max_1
 
+	; BUG: farcall overwrites a, and GetItemHeldEffect takes b anyway.
+	; This is probably the reason the HELD_CATCH_CHANCE effect is never used.
+	; Uncomment the line below to fix.
 	ld d, a
 	push de
-
-	; BUG: farcall overwrites a,
-	; and GetItemHeldEffect takes b anyway.
-
-	; This is probably the reason
-	; the HELD_CATCH_CHANCE effect
-	; is never used.
-
-	; Uncomment the line below to fix.
-
 	ld a, [BattleMonItem]
 ;	ld b, a
 	farcall GetItemHeldEffect
 	ld a, b
 	cp HELD_CATCH_CHANCE
-
 	pop de
 	ld a, d
-
-	jr nz, .skip_hp_calc
+	jr nz, .max_2
 	add c
-	jr nc, .skip_hp_calc
+	jr nc, .max_2
 	ld a, $ff
-.skip_hp_calc
+.max_2
 
+.skip_hp_calc
 	ld b, a
 	ld [Buffer1], a
 	call Random
