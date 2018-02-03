@@ -2,7 +2,7 @@ BuenaPhoneScript1:
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue BuenaPhoneScript_Rocket
 	checkcode VAR_HOUR
-	if_greater_than 17, BuenaPhoneScript_AfterMidnight1
+	ifgreater 17, BuenaPhoneScript_AfterMidnight1
 	scall BuenaPhoneScript_CheckTimeOfDay1
 	jump BuenaPhoneScript_Random1
 
@@ -37,7 +37,7 @@ BuenaPhoneScript_AfterMidnight1:
 
 BuenaPhoneScript_CheckTimeOfDay2:
 	checkcode VAR_HOUR
-	if_greater_than 17, BuenaPhoneScript_AfterMidnight2
+	ifgreater 17, BuenaPhoneScript_AfterMidnight2
 	checkmorn
 	iftrue .morn
 	checkday
@@ -75,20 +75,20 @@ BuenaPhoneScript_Random2:
 	random 14
 
 .Jumptable:
-	if_equal 0, .zero
-	if_equal 1, .one
-	if_equal 2, .two
-	if_equal 3, .three
-	if_equal 4, .four
-	if_equal 5, .five
-	if_equal 6, .six
-	if_equal 7, .seven
-	if_equal 8, .eight
-	if_equal 9, .nine
-	if_equal 10, .ten
-	if_equal 11, .eleven
-	if_equal 12, .twelve
-	if_equal 13, .thirteen
+	ifequal 0, .zero
+	ifequal 1, .one
+	ifequal 2, .two
+	ifequal 3, .three
+	ifequal 4, .four
+	ifequal 5, .five
+	ifequal 6, .six
+	ifequal 7, .seven
+	ifequal 8, .eight
+	ifequal 9, .nine
+	ifequal 10, .ten
+	ifequal 11, .eleven
+	ifequal 12, .twelve
+	ifequal 13, .thirteen
 
 .zero
 	writetext UnknownText_0xa0efb
@@ -150,9 +150,9 @@ BuenaPhoneScript_Random2:
 
 BuenaPhoneScript_Random1:
 	random 3
-	if_equal 0, .zero
-	if_equal 1, .one
-	if_equal 2, .two
+	ifequal 0, .zero
+	ifequal 1, .one
+	ifequal 2, .two
 
 .zero
 	writetext UnknownText_0xa1c88

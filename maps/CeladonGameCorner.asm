@@ -57,7 +57,7 @@ CeladonGameCornerFisherScript:
 	checkitem COIN_CASE
 	iffalse .NoCoinCase
 	checkcoins MAX_COINS - 1
-	if_equal HAVE_MORE, .FullCoinCase
+	ifequal HAVE_MORE, .FullCoinCase
 	stringtotext .coinname, MEM_BUFFER_1
 	scall .GiveCoins
 	givecoins 18
@@ -110,7 +110,7 @@ CeladonGameCornerPoster2Script:
 
 CeladonGameCornerLuckySlotMachineScript:
 	random 6
-	if_equal 0, CeladonGameCornerSlotMachineScript
+	ifequal 0, CeladonGameCornerSlotMachineScript
 	refreshscreen
 	writebyte FALSE
 	special SlotMachine

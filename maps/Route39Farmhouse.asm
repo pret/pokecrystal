@@ -26,7 +26,7 @@ FarmerMScript_SellMilk:
 	yesorno
 	iffalse FarmerMScript_NoSale
 	checkmoney YOUR_MONEY, 500
-	if_equal HAVE_LESS, FarmerMScript_NoMoney
+	ifequal HAVE_LESS, FarmerMScript_NoMoney
 	giveitem MOOMOO_MILK
 	iffalse FarmerMScript_NoRoom
 	takemoney YOUR_MONEY, 500

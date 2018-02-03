@@ -27,7 +27,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateOfficerText
 	buttonsound
 	checkcode VAR_BADGES
-	if_greater_than NUM_JOHTO_BADGES - 1, .AllEightBadges
+	ifgreater NUM_JOHTO_BADGES - 1, .AllEightBadges
 	writetext VictoryRoadGateNotEnoughBadgesText
 	waitbutton
 	closetext

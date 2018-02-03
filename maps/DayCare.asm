@@ -29,7 +29,7 @@ DayCareManScript_Inside:
 	buttonsound
 	closetext
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, .PartyFull
+	ifequal PARTY_LENGTH, .PartyFull
 	special GiveOddEgg
 	opentext
 	writetext DayCareText_GotOddEgg

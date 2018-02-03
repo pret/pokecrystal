@@ -14,7 +14,7 @@ GoldenrodDeptStore5F_MapScripts:
 
 .CheckIfSunday:
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, .yes
+	ifequal SUNDAY, .yes
 	disappear GOLDENRODDEPTSTORE5F_RECEPTIONIST
 	return
 
@@ -60,14 +60,14 @@ ReceptionistScript_0x560ce:
 	faceplayer
 	opentext
 	checkcode VAR_WEEKDAY
-	if_not_equal SUNDAY, .EventIsOver
+	ifnotequal SUNDAY, .EventIsOver
 	checkflag ENGINE_GOLDENROD_DEPT_STORE_TM27_RETURN
 	iftrue .EventIsOver
 	special GetFirstPokemonHappiness
 	writetext UnknownText_0x56143
 	buttonsound
-	if_greater_than 150 - 1, .VeryHappy
-	if_greater_than 50 - 1, .SomewhatHappy
+	ifgreater 150 - 1, .VeryHappy
+	ifgreater 50 - 1, .SomewhatHappy
 	jump .NotVeryHappy
 
 .VeryHappy:
@@ -105,7 +105,7 @@ Carrie:
 	faceplayer
 	opentext
 	special GameboyCheck
-	if_not_equal GBCHECK_CGB, .NotGBC ; This is a dummy check from Gold/Silver
+	ifnotequal GBCHECK_CGB, .NotGBC ; This is a dummy check from Gold/Silver
 	writetext UnknownText_0x56241
 	waitbutton
 	closetext

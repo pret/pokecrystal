@@ -17,7 +17,7 @@ TrainerCooltrainermJake:
 	trainer COOLTRAINERM, JAKE, EVENT_BEAT_COOLTRAINERM_JAKE, CooltrainermJakeSeenText, CooltrainermJakeBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainermJakeAfterBattleText
 	waitbutton
@@ -29,7 +29,7 @@ TrainerCooltrainermGaven3:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_GAVEN
 	iftrue .WantsBattle
@@ -47,8 +47,8 @@ TrainerCooltrainermGaven3:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERM_GAVEN
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext COOLTRAINERM, GAVEN3, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -57,9 +57,9 @@ TrainerCooltrainermGaven3:
 	scall .Rematch
 	winlosstext CooltrainermGaven3BeatenText, 0
 	copybytetovar wGavenFightCount
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
@@ -121,7 +121,7 @@ TrainerCooltrainerfJoyce:
 	trainer COOLTRAINERF, JOYCE, EVENT_BEAT_COOLTRAINERF_JOYCE, CooltrainerfJoyceSeenText, CooltrainerfJoyceBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainerfJoyceAfterBattleText
 	waitbutton
@@ -133,7 +133,7 @@ TrainerCooltrainerfBeth1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_BETH
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_BETH
 	iftrue .WantsBattle
@@ -151,8 +151,8 @@ TrainerCooltrainerfBeth1:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERF_BETH
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext COOLTRAINERF, BETH1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -161,9 +161,9 @@ TrainerCooltrainerfBeth1:
 	scall .Rematch
 	winlosstext CooltrainerfBeth1BeatenText, 0
 	copybytetovar wBethFightCount
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
@@ -225,7 +225,7 @@ TrainerPsychicRichard:
 	trainer PSYCHIC_T, RICHARD, EVENT_BEAT_PSYCHIC_RICHARD, PsychicRichardSeenText, PsychicRichardBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PsychicRichardAfterBattleText
 	waitbutton
@@ -236,7 +236,7 @@ TrainerFisherScott:
 	trainer FISHER, SCOTT, EVENT_BEAT_FISHER_SCOTT, FisherScottSeenText, FisherScottBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherScottAfterBattleText
 	waitbutton

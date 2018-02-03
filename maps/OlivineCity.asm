@@ -77,7 +77,7 @@ StandingYoungsterScript_0x1a88a6:
 	faceplayer
 	opentext
 	random 2
-	if_equal 0, UnknownScript_0x1a88b4
+	ifequal 0, UnknownScript_0x1a88b4
 	writetext UnknownText_0x1a8b04
 	waitbutton
 	closetext

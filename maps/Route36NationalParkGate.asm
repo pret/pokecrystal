@@ -46,9 +46,9 @@ Route36NationalParkGate_MapScripts:
 	checkevent EVENT_WARPED_FROM_ROUTE_35_NATIONAL_PARK_GATE
 	iftrue .Return
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, .SetContestOfficer
-	if_equal THURSDAY, .SetContestOfficer
-	if_equal SATURDAY, .SetContestOfficer
+	ifequal TUESDAY, .SetContestOfficer
+	ifequal THURSDAY, .SetContestOfficer
+	ifequal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .SetContestOfficer
 	disappear ROUTE36NATIONALPARKGATE_OFFICER1
@@ -140,10 +140,10 @@ Route36NationalParkGate_MapScripts:
 
 Route36OfficerScriptContest:
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, _ContestNotOn
-	if_equal MONDAY, _ContestNotOn
-	if_equal WEDNESDAY, _ContestNotOn
-	if_equal FRIDAY, _ContestNotOn
+	ifequal SUNDAY, _ContestNotOn
+	ifequal MONDAY, _ContestNotOn
+	ifequal WEDNESDAY, _ContestNotOn
+	ifequal FRIDAY, _ContestNotOn
 	faceplayer
 	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
@@ -153,7 +153,7 @@ Route36OfficerScriptContest:
 	yesorno
 	iffalse .DecidedNotToJoinContest
 	checkcode VAR_PARTYCOUNT
-	if_greater_than 1, .LeaveMonsWithOfficer
+	ifgreater 1, .LeaveMonsWithOfficer
 	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 .ResumeStartingContest:
@@ -180,12 +180,12 @@ Route36OfficerScriptContest:
 
 .LeaveMonsWithOfficer:
 	checkcode VAR_PARTYCOUNT
-	if_less_than PARTY_LENGTH, .ContinueLeavingMons
+	ifless PARTY_LENGTH, .ContinueLeavingMons
 	checkcode VAR_BOXSPACE
-	if_equal 0, .BoxFull
+	ifequal 0, .BoxFull
 .ContinueLeavingMons:
 	special CheckFirstMonIsEgg
-	if_equal TRUE, .FirstMonIsEgg
+	ifequal TRUE, .FirstMonIsEgg
 	writetext UnknownText_0x6afb0
 	yesorno
 	iffalse .RefusedToLeaveMons

@@ -55,7 +55,7 @@ UnknownScript_0x190040:
 	yesorno
 	iffalse UnknownScript_0x190072
 	checkmoney YOUR_MONEY, 300
-	if_equal HAVE_LESS, UnknownScript_0x19006c
+	ifequal HAVE_LESS, UnknownScript_0x19006c
 	giveitem RAGECANDYBAR
 	iffalse UnknownScript_0x190078
 	waitsfx

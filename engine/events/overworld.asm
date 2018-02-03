@@ -1044,7 +1044,7 @@ Script_UsedStrength: ; 0xcd2d
 AskStrengthScript:
 	callasm TryStrengthOW
 	iffalse .AskStrength
-	if_equal $1, .DontMeetRequirements
+	ifequal $1, .DontMeetRequirements
 	jump .AlreadyUsedStrength
 
 .DontMeetRequirements: ; 0xcd59
@@ -1413,7 +1413,7 @@ UnknownText_0xcf58: ; 0xcf58
 
 AskRockSmashScript: ; 0xcf5d
 	callasm HasRockSmash
-	if_equal 1, .no
+	ifequal 1, .no
 
 	opentext
 	writetext UnknownText_0xcf77

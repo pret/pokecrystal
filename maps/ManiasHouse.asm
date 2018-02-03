@@ -53,10 +53,10 @@ ManiaScript:
 	yesorno
 	iffalse .refused
 	special ReturnShuckle
-	if_equal SHUCKIE_WRONG_MON, .wrong
-	if_equal SHUCKIE_REFUSED, .refused
-	if_equal SHUCKIE_HAPPY, .superhappy
-	if_equal SHUCKIE_FAINTED, .default_postevent
+	ifequal SHUCKIE_WRONG_MON, .wrong
+	ifequal SHUCKIE_REFUSED, .refused
+	ifequal SHUCKIE_HAPPY, .superhappy
+	ifequal SHUCKIE_FAINTED, .default_postevent
 	; SHUCKIE_RETURNED
 	writetext ManiaText_ThankYou
 	waitbutton

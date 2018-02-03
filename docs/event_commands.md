@@ -17,17 +17,17 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 
 ## `$05`: <code>ptjump <i>script</i></code>
 
-## `$06`: <code>if_equal <i>byte</i>, <i>script</i></code>
+## `$06`: <code>ifequal <i>byte</i>, <i>script</i></code>
 
-## `$07`: <code>if_not_equal <i>byte</i>, <i>script</i></code>
+## `$07`: <code>ifnotequal <i>byte</i>, <i>script</i></code>
 
 ## `$08`: <code>iffalse <i>script</i></code>
 
 ## `$09`: <code>iftrue <i>script</i></code>
 
-## `$0A`: <code>if_greater_than <i>byte</i>, <i>script</i></code>
+## `$0A`: <code>ifgreater <i>byte</i>, <i>script</i></code>
 
-## `$0B`: <code>if_less_than <i>byte</i>, <i>script</i></code>
+## `$0B`: <code>ifless <i>byte</i>, <i>script</i></code>
 
 ## `$0C`: <code>jumpstd <i>std_script</i></code>
 
@@ -213,9 +213,9 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 
 ## `$65`: `scripttalkafter`
 
-## `$66`: `end_if_just_battled`
+## `$66`: `endifjustbattled`
 
-## `$67`: `check_just_battled`
+## `$67`: `checkjustbattled`
 
 ## `$68`: <code>setlasttalked <i>object_id</i></code>
 
@@ -303,7 +303,7 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 
 ## `$92`: <code>reloadandreturn <i>which_method</i></code>
 
-## `$93`: `end_all`
+## `$93`: `endall`
 
 ## `$94`: <code>pokemart <i>dialog_id</i>, <i>mart_id</i></code>
 
@@ -347,4 +347,4 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 
 ## `$A8`: <code>wait <i>duration</i></code>
 
-## `$A9`: `check_save`
+## `$A9`: `checksave`

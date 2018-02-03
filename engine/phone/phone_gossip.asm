@@ -1,16 +1,16 @@
 JackTriviaScript:
 	random 11
-	if_equal  0, .Thunder
-	if_equal  1, .Rollout
-	if_equal  2, .Solarbeam
-	if_equal  3, .Stomp
-	if_equal  4, .Gust
-	if_equal  5, .Twister
-	if_equal  6, .Earthquake
-	if_equal  7, .Magnitude
-	if_equal  8, .Sandstorm
-	if_equal  9, .SunnyDay
-	if_equal 10, .RainDance
+	ifequal  0, .Thunder
+	ifequal  1, .Rollout
+	ifequal  2, .Solarbeam
+	ifequal  3, .Stomp
+	ifequal  4, .Gust
+	ifequal  5, .Twister
+	ifequal  6, .Earthquake
+	ifequal  7, .Magnitude
+	ifequal  8, .Sandstorm
+	ifequal  9, .SunnyDay
+	ifequal 10, .RainDance
 
 .Thunder:
 	farwritetext JackThunderTriviaText
@@ -69,16 +69,16 @@ JackTriviaScript:
 
 UnknownScript_0xa06da:
 	random 10
-	if_equal 0, .RuinsOfAlph
-	if_equal 1, .Falkner
-	if_equal 2, .Earl
-	if_equal 3, .SurfPikachu
-	if_equal 4, .MooMooMilk
-	if_equal 5, .Salon
-	if_equal 6, .Whitney
-	if_equal 7, .BugCatchingContest
-	if_equal 8, .BeautifulMon
-	if_equal 9, .Forgot
+	ifequal 0, .RuinsOfAlph
+	ifequal 1, .Falkner
+	ifequal 2, .Earl
+	ifequal 3, .SurfPikachu
+	ifequal 4, .MooMooMilk
+	ifequal 5, .Salon
+	ifequal 6, .Whitney
+	ifequal 7, .BugCatchingContest
+	ifequal 8, .BeautifulMon
+	ifequal 9, .Forgot
 
 .RuinsOfAlph:
 	farwritetext UnknownText_0x176223
@@ -132,16 +132,16 @@ UnknownScript_0xa06da:
 
 ChadOakGossipScript:
 	random 10
-	if_equal 0, .Blue
-	if_equal 1, .Daisy
-	if_equal 2, .ProfElm
-	if_equal 3, .Dream
-	if_equal 4, .Kurt
-	if_equal 5, .League
-	if_equal 6, .RadioShow
-	if_equal 7, .Battling
-	if_equal 8, .DaisyTea
-	if_equal 9, .Traveled
+	ifequal 0, .Blue
+	ifequal 1, .Daisy
+	ifequal 2, .ProfElm
+	ifequal 3, .Dream
+	ifequal 4, .Kurt
+	ifequal 5, .League
+	ifequal 6, .RadioShow
+	ifequal 7, .Battling
+	ifequal 8, .DaisyTea
+	ifequal 9, .Traveled
 
 .Blue:
 	farwritetext ChadBlueGossipText
@@ -195,16 +195,16 @@ ChadOakGossipScript:
 
 BrentBillTriviaScript:
 	random 10
-	if_equal 0, .Father
-	if_equal 1, .Grandpa
-	if_equal 2, .Goldenrod
-	if_equal 3, .Route25
-	if_equal 4, .Abra
-	if_equal 5, .Sister
-	if_equal 6, .Milk
-	if_equal 7, .Battling
-	if_equal 8, .FlowerShop
-	if_equal 9, .KimonoGirl
+	ifequal 0, .Father
+	ifequal 1, .Grandpa
+	ifequal 2, .Goldenrod
+	ifequal 3, .Route25
+	ifequal 4, .Abra
+	ifequal 5, .Sister
+	ifequal 6, .Milk
+	ifequal 7, .Battling
+	ifequal 8, .FlowerShop
+	ifequal 9, .KimonoGirl
 
 .Father:
 	farwritetext UnknownText_0x662bc
@@ -477,9 +477,9 @@ ErinWorkingHardScript:
 
 UnknownScript_0xa09c8:
 	random 3
-	if_equal 0, UnknownScript_0xa09d6
-	if_equal 1, UnknownScript_0xa09de
-	if_equal 2, UnknownScript_0xa09e6
+	ifequal 0, UnknownScript_0xa09d6
+	ifequal 1, UnknownScript_0xa09de
+	ifequal 2, UnknownScript_0xa09e6
 
 UnknownScript_0xa09d6:
 	farwritetext UnknownText_0x64846
@@ -498,8 +498,8 @@ UnknownScript_0xa09e6:
 
 KenjiAnswerPhoneScript:
 	checkcode VAR_KENJI_BREAK
-	if_equal 2, .Training
-	if_equal 1, .OnBreak
+	ifequal 2, .Training
+	ifequal 1, .OnBreak
 	farwritetext UnknownText_0x66e17
 	buttonsound
 	jump PhoneScript_HangupText_Male

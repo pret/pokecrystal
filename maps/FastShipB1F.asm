@@ -95,7 +95,7 @@ TrainerSailorJeff:
 	trainer SAILOR, JEFF, EVENT_BEAT_SAILOR_JEFF, SailorJeffSeenText, SailorJeffBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorJeffAfterBattleText
 	waitbutton
@@ -106,7 +106,7 @@ TrainerPicnickerDebra:
 	trainer PICNICKER, DEBRA, EVENT_BEAT_PICNICKER_DEBRA, PicnickerDebraSeenText, PicnickerDebraBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PicnickerDebraAfterBattleText
 	waitbutton
@@ -117,7 +117,7 @@ TrainerJugglerFritz:
 	trainer JUGGLER, FRITZ, EVENT_BEAT_JUGGLER_FRITZ, JugglerFritzSeenText, JugglerFritzBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext JugglerFritzAfterBattleText
 	waitbutton
@@ -128,7 +128,7 @@ TrainerSailorGarrett:
 	trainer SAILOR, GARRETT, EVENT_BEAT_SAILOR_GARRETT, SailorGarrettSeenText, SailorGarrettBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorGarrettAfterBattleText
 	waitbutton
@@ -139,7 +139,7 @@ TrainerFisherJonah:
 	trainer FISHER, JONAH, EVENT_BEAT_FISHER_JONAH, FisherJonahSeenText, FisherJonahBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherJonahAfterBattleText
 	waitbutton
@@ -150,7 +150,7 @@ TrainerBlackbeltWai:
 	trainer BLACKBELT_T, WAI, EVENT_BEAT_BLACKBELT_WAI, BlackbeltWaiSeenText, BlackbeltWaiBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BlackbeltWaiAfterBattleText
 	waitbutton
@@ -161,7 +161,7 @@ TrainerSailorKenneth:
 	trainer SAILOR, KENNETH, EVENT_BEAT_SAILOR_KENNETH, SailorKennethSeenText, SailorKennethBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorKennethAfterBattleText
 	waitbutton
@@ -172,7 +172,7 @@ TrainerTeacherShirley:
 	trainer TEACHER, SHIRLEY, EVENT_BEAT_TEACHER_SHIRLEY, TeacherShirleySeenText, TeacherShirleyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext TeacherShirleyAfterBattleText
 	waitbutton
@@ -183,7 +183,7 @@ TrainerSchoolboyNate:
 	trainer SCHOOLBOY, NATE, EVENT_BEAT_SCHOOLBOY_NATE, SchoolboyNateSeenText, SchoolboyNateBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SchoolboyNateAfterBattleText
 	waitbutton
@@ -194,7 +194,7 @@ TrainerSchoolboyRicky:
 	trainer SCHOOLBOY, RICKY, EVENT_BEAT_SCHOOLBOY_RICKY, SchoolboyRickySeenText, SchoolboyRickyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SchoolboyRickyAfterBattleText
 	waitbutton

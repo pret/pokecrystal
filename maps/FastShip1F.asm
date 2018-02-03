@@ -88,7 +88,7 @@ SailorScript_0x75160:
 
 .LetThePlayerOut:
 	checkcode VAR_FACING
-	if_equal RIGHT, .YouAreFacingRight
+	ifequal RIGHT, .YouAreFacingRight
 	applymovement FASTSHIP1F_SAILOR1, MovementData_0x7520e
 	applymovement PLAYER, MovementData_0x75235
 	end

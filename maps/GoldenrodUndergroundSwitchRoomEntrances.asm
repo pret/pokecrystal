@@ -208,7 +208,7 @@ TrainerGruntM11:
 	trainer GRUNTM, GRUNTM_11, EVENT_BEAT_ROCKET_GRUNTM_11, GruntM11SeenText, GruntM11BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM11AfterBattleText
 	waitbutton
@@ -219,7 +219,7 @@ TrainerGruntM25:
 	trainer GRUNTM, GRUNTM_25, EVENT_BEAT_ROCKET_GRUNTM_25, GruntM25SeenText, GruntM25BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM25AfterBattleText
 	waitbutton
@@ -230,7 +230,7 @@ TrainerBurglarDuncan:
 	trainer BURGLAR, DUNCAN, EVENT_BEAT_BURGLAR_DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BurglarDuncanAfterBattleText
 	waitbutton
@@ -241,7 +241,7 @@ TrainerBurglarEddie:
 	trainer BURGLAR, EDDIE, EVENT_BEAT_BURGLAR_EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BurglarEddieAfterBattleText
 	waitbutton
@@ -252,7 +252,7 @@ TrainerGruntM13:
 	trainer GRUNTM, GRUNTM_13, EVENT_BEAT_ROCKET_GRUNTM_13, GruntM13SeenText, GruntM13BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM13AfterBattleText
 	waitbutton
@@ -263,7 +263,7 @@ TrainerGruntF3:
 	trainer GRUNTF, GRUNTF_3, EVENT_BEAT_ROCKET_GRUNTF_3, GruntF3SeenText, GruntF3BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntF3AfterBattleText
 	waitbutton
@@ -380,14 +380,14 @@ GoldenrodUndergroundSwitchRoomEntrances_DontToggle:
 
 GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors:
 	copybytetovar UndergroundSwitchPositions
-	if_equal 0, .Position0
-	if_equal 1, .Position1
-	if_equal 2, .Position2
-	if_equal 3, .Position3
-	if_equal 4, .Position4
-	if_equal 5, .Position5
-	if_equal 6, .Position6
-	if_equal 7, .EmergencyPosition
+	ifequal 0, .Position0
+	ifequal 1, .Position1
+	ifequal 2, .Position2
+	ifequal 3, .Position3
+	ifequal 4, .Position4
+	ifequal 5, .Position5
+	ifequal 6, .Position6
+	ifequal 7, .EmergencyPosition
 .Position0:
 	playsound SFX_ENTER_DOOR
 	scall .Clear4

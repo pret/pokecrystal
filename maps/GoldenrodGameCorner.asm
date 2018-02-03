@@ -24,8 +24,8 @@ GoldenrodGameCorner_MapScripts:
 	checkitem COIN_CASE
 	iffalse .move_tutor_inside
 	checkcode VAR_WEEKDAY
-	if_equal WEDNESDAY, .move_tutor_outside
-	if_equal SATURDAY, .move_tutor_outside
+	ifequal WEDNESDAY, .move_tutor_outside
+	ifequal SATURDAY, .move_tutor_outside
 .move_tutor_inside
 	appear GOLDENRODGAMECORNER_POKEFAN_M3
 	return
@@ -62,14 +62,14 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 	loadmenuheader GoldenrodGameCornerTMVendorMenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .Thunder
-	if_equal 2, .Blizzard
-	if_equal 3, .FireBlast
+	ifequal 1, .Thunder
+	ifequal 2, .Blizzard
+	ifequal 3, .FireBlast
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
 	checkcoins 5500
-	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_THUNDER, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
@@ -80,7 +80,7 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 
 .Blizzard:
 	checkcoins 5500
-	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_BLIZZARD, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
@@ -91,7 +91,7 @@ GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 
 .FireBlast:
 	checkcoins 5500
-	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	itemtotext TM_FIRE_BLAST, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
@@ -163,16 +163,16 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .abra
-	if_equal 2, .cubone
-	if_equal 3, .wobbuffet
+	ifequal 1, .abra
+	ifequal 2, .cubone
+	ifequal 3, .wobbuffet
 	jump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .abra
 	checkcoins 100
-	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	pokenamemem ABRA, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
@@ -188,9 +188,9 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 .cubone
 	checkcoins 800
-	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	pokenamemem CUBONE, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
@@ -206,9 +206,9 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 .wobbuffet
 	checkcoins 1500
-	if_equal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	pokenamemem WOBBUFFET, MEM_BUFFER_0
 	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
 	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
@@ -292,7 +292,7 @@ GoldenrodGameCornerLeftTheirDrinkScript:
 
 GoldenrodGameCornerSlotsMachineScript:
 	random 6
-	if_equal 0, GoldenrodGameCornerLuckySlotsMachineScript
+	ifequal 0, GoldenrodGameCornerLuckySlotsMachineScript
 	refreshscreen
 	writebyte FALSE
 	special SlotMachine

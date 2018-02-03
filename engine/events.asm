@@ -914,8 +914,8 @@ SelectMenuScript: ; 96b5f
 StartMenuCallback:
 SelectMenuCallback: ; 96b66
 	copybytetovar hMenuReturn
-	if_equal HMENURETURN_SCRIPT, .Script
-	if_equal HMENURETURN_ASM, .Asm
+	ifequal HMENURETURN_SCRIPT, .Script
+	ifequal HMENURETURN_ASM, .Asm
 	end
 ; 96b72
 

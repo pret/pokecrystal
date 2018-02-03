@@ -15,7 +15,7 @@ TrainerCamperTed:
 	trainer CAMPER, TED, EVENT_BEAT_CAMPER_TED, CamperTedSeenText, CamperTedBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CamperTedAfterBattleText
 	waitbutton
@@ -27,7 +27,7 @@ TrainerPicnickerErin1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_ERIN
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_ERIN
 	iftrue .WantsBattle
@@ -45,8 +45,8 @@ TrainerPicnickerErin1:
 	scall Route46AskNumber2F
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_ERIN
-	if_equal PHONE_CONTACTS_FULL, Route46PhoneFullF
-	if_equal PHONE_CONTACT_REFUSED, Route46NumberDeclinedF
+	ifequal PHONE_CONTACTS_FULL, Route46PhoneFullF
+	ifequal PHONE_CONTACT_REFUSED, Route46NumberDeclinedF
 	trainertotext PICNICKER, ERIN1, MEM_BUFFER_0
 	scall Route46RegisteredNumberF
 	jump Route46NumberAcceptedF
@@ -55,9 +55,9 @@ TrainerPicnickerErin1:
 	scall Route46RematchF
 	winlosstext PicnickerErin1BeatenText, 0
 	copybytetovar wErinFightCount
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
@@ -149,7 +149,7 @@ TrainerHikerBailey:
 	trainer HIKER, BAILEY, EVENT_BEAT_HIKER_BAILEY, HikerBaileySeenText, HikerBaileyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext HikerBaileyAfterBattleText
 	waitbutton

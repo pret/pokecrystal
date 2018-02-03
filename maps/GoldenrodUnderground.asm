@@ -48,12 +48,12 @@ GoldenrodUnderground_MapScripts:
 
 .CheckDayOfWeek:
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, .Monday
-	if_equal TUESDAY, .Tuesday
-	if_equal WEDNESDAY, .Wednesday
-	if_equal THURSDAY, .Thursday
-	if_equal FRIDAY, .Friday
-	if_equal SATURDAY, .Saturday
+	ifequal MONDAY, .Monday
+	ifequal TUESDAY, .Tuesday
+	ifequal WEDNESDAY, .Wednesday
+	ifequal THURSDAY, .Thursday
+	ifequal FRIDAY, .Friday
+	ifequal SATURDAY, .Saturday
 
 .Sunday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
@@ -112,7 +112,7 @@ TrainerSupernerdEric:
 	trainer SUPER_NERD, ERIC, EVENT_BEAT_SUPER_NERD_ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SupernerdEricAfterBattleText
 	waitbutton
@@ -123,7 +123,7 @@ TrainerSupernerdTeru:
 	trainer SUPER_NERD, TERU, EVENT_BEAT_SUPER_NERD_TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SupernerdTeruAfterBattleText
 	waitbutton
@@ -134,7 +134,7 @@ TrainerPokemaniacIssac:
 	trainer POKEMANIAC, ISSAC, EVENT_BEAT_POKEMANIAC_ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacIssacAfterBattleText
 	waitbutton
@@ -145,7 +145,7 @@ TrainerPokemaniacDonald:
 	trainer POKEMANIAC, DONALD, EVENT_BEAT_POKEMANIAC_DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacDonaldAfterBattleText
 	waitbutton
@@ -155,8 +155,8 @@ TrainerPokemaniacDonald:
 GrannyScript_0x7c132:
 	opentext
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, .Open
-	if_equal SATURDAY, .Open
+	ifequal SUNDAY, .Open
+	ifequal SATURDAY, .Open
 	jump GoldenrodUndergroundScript_ShopClosed
 
 .Open:
@@ -169,7 +169,7 @@ GrampsScript_0x7c146:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
 	iftrue GoldenrodUndergroundScript_ShopClosed
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, .CheckMorn
+	ifequal MONDAY, .CheckMorn
 	jump GoldenrodUndergroundScript_ShopClosed
 
 .CheckMorn:
@@ -182,9 +182,9 @@ GrampsScript_0x7c146:
 OlderHaircutBrotherScript:
 	opentext
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, .DoHaircut
-	if_equal THURSDAY, .DoHaircut
-	if_equal SATURDAY, .DoHaircut
+	ifequal TUESDAY, .DoHaircut
+	ifequal THURSDAY, .DoHaircut
+	ifequal SATURDAY, .DoHaircut
 	jump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:
@@ -195,15 +195,15 @@ OlderHaircutBrotherScript:
 	yesorno
 	iffalse .Refused
 	checkmoney YOUR_MONEY, 500
-	if_equal HAVE_LESS, .NotEnoughMoney
+	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	buttonsound
 	special YoungerHaircutBrother
-	if_equal $0, .Refused
-	if_equal $1, .Refused
+	ifequal $0, .Refused
+	ifequal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
-	if_equal $2, .two
-	if_equal $3, .three
+	ifequal $2, .two
+	ifequal $3, .three
 	jump .else
 
 .two
@@ -265,9 +265,9 @@ OlderHaircutBrotherScript:
 YoungerHaircutBrotherScript:
 	opentext
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, .DoHaircut
-	if_equal WEDNESDAY, .DoHaircut
-	if_equal FRIDAY, .DoHaircut
+	ifequal SUNDAY, .DoHaircut
+	ifequal WEDNESDAY, .DoHaircut
+	ifequal FRIDAY, .DoHaircut
 	jump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:
@@ -278,15 +278,15 @@ YoungerHaircutBrotherScript:
 	yesorno
 	iffalse .Refused
 	checkmoney YOUR_MONEY, 300
-	if_equal HAVE_LESS, .NotEnoughMoney
+	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	buttonsound
 	special OlderHaircutBrother
-	if_equal $0, .Refused
-	if_equal $1, .Refused
+	ifequal $0, .Refused
+	ifequal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
-	if_equal $2, .two
-	if_equal $3, .three
+	ifequal $2, .two
+	ifequal $3, .three
 	jump .else
 
 .two

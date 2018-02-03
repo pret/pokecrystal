@@ -24,7 +24,7 @@ OfficerScript_0x69d37:
 	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, .partyfull
+	ifequal PARTY_LENGTH, .partyfull
 	writetext UnknownText_0x69eb8
 	playsound SFX_KEY_ITEM
 	waitsfx

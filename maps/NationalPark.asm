@@ -74,7 +74,7 @@ TrainerSchoolboyJack1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0x5c088
@@ -92,8 +92,8 @@ UnknownScript_0x5c071:
 	scall UnknownScript_0x5c100
 UnknownScript_0x5c074:
 	askforphonenumber PHONE_SCHOOLBOY_JACK
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5c110
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5c10c
+	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5c110
+	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5c10c
 	trainertotext SCHOOLBOY, JACK1, MEM_BUFFER_0
 	scall UnknownScript_0x5c104
 	jump UnknownScript_0x5c108
@@ -102,11 +102,11 @@ UnknownScript_0x5c088:
 	scall UnknownScript_0x5c114
 	winlosstext SchoolboyJack1BeatenText, 0
 	copybytetovar wJackFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
@@ -190,7 +190,7 @@ TrainerPokefanmWilliam:
 	trainer POKEFANM, WILLIAM, EVENT_BEAT_POKEFANM_WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokefanmWilliamAfterBattleText
 	waitbutton
@@ -202,7 +202,7 @@ TrainerPokefanfBeverly1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0x5c177
@@ -222,8 +222,8 @@ UnknownScript_0x5c160:
 	scall UnknownScript_0x5c193
 UnknownScript_0x5c163:
 	askforphonenumber PHONE_POKEFAN_BEVERLY
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5c1a3
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5c19f
+	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5c1a3
+	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5c19f
 	trainertotext POKEFANF, BEVERLY1, MEM_BUFFER_0
 	scall UnknownScript_0x5c197
 	jump UnknownScript_0x5c19b
@@ -280,7 +280,7 @@ TrainerLassKrise:
 	trainer LASS, KRISE, EVENT_BEAT_LASS_KRISE, LassKriseSeenText, LassKriseBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext LassKriseAfterBattleText
 	waitbutton

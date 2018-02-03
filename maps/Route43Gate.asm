@@ -33,8 +33,8 @@ Route43Gate_MapScripts:
 .RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	checkcode VAR_FACING
-	if_equal DOWN, RocketScript_Southbound
-	if_equal UP, RocketScript_Northbound
+	ifequal DOWN, RocketScript_Southbound
+	ifequal UP, RocketScript_Northbound
 	setscene SCENE_FINISHED
 	end
 
@@ -49,7 +49,7 @@ RocketScript_Southbound:
 	writetext RocketText_TollFee
 	buttonsound
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
-	if_equal HAVE_MORE, RocketScript_TollSouth
+	ifequal HAVE_MORE, RocketScript_TollSouth
 	jump RocketScript_YoureBrokeSouth
 
 RocketScript_TollSouth:
@@ -81,7 +81,7 @@ RocketScript_Northbound:
 	writetext RocketText_TollFee
 	buttonsound
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
-	if_equal HAVE_MORE, RocketScript_TollNorth
+	ifequal HAVE_MORE, RocketScript_TollNorth
 	jump RocketScript_YoureBrokeNorth
 
 RocketScript_TollNorth:

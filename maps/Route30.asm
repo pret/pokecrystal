@@ -41,7 +41,7 @@ TrainerYoungsterJoey:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_YOUNGSTER_JOEY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_JOEY
 	iftrue .Rematch
@@ -59,8 +59,8 @@ TrainerYoungsterJoey:
 	scall .AskNumber2
 .RequestNumber:
 	askforphonenumber PHONE_YOUNGSTER_JOEY
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext YOUNGSTER, JOEY1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -69,11 +69,11 @@ TrainerYoungsterJoey:
 	scall .RematchStd
 	winlosstext YoungsterJoey1BeatenText, 0
 	copybytetovar wJoeyFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight4
@@ -187,7 +187,7 @@ TrainerYoungsterMikey:
 	trainer YOUNGSTER, MIKEY, EVENT_BEAT_YOUNGSTER_MIKEY, YoungsterMikeySeenText, YoungsterMikeyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext YoungsterMikeyAfterText
 	waitbutton
@@ -198,7 +198,7 @@ TrainerBugCatcherDon:
 	trainer BUG_CATCHER, DON, EVENT_BEAT_BUG_CATCHER_DON, BugCatcherDonSeenText, BugCatcherDonBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BugCatcherDonAfterText
 	waitbutton

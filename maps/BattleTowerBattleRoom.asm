@@ -33,9 +33,9 @@ Script_BattleRoomLoop: ; 0x9f425
 	special BattleTowerBattle ; calls predef startbattle
 	special FadeOutPalettes
 	reloadmap
-	if_not_equal $0, Script_FailedBattleTowerChallenge
+	ifnotequal $0, Script_FailedBattleTowerChallenge
 	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
-	if_equal BATTLETOWER_STREAK_LENGTH, Script_BeatenAllTrainers
+	ifequal BATTLETOWER_STREAK_LENGTH, Script_BeatenAllTrainers
 	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksOut
 	warpsound
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER

@@ -26,8 +26,8 @@ UnknownScript_0x625df:
 	loadmenuheader MenuHeader_0x62602
 	verticalmenu
 	closewindow
-	if_equal 1, UnknownScript_0x625f0
-	if_equal 2, UnknownScript_0x625f8
+	ifequal 1, UnknownScript_0x625f0
+	ifequal 2, UnknownScript_0x625f8
 	jump UnknownScript_0x62600
 
 UnknownScript_0x625f0:
@@ -68,8 +68,8 @@ UnknownScript_0x62629:
 	loadmenuheader MenuHeader_0x6264c
 	verticalmenu
 	closewindow
-	if_equal 1, UnknownScript_0x6263a
-	if_equal 2, UnknownScript_0x62642
+	ifequal 1, UnknownScript_0x6263a
+	ifequal 2, UnknownScript_0x62642
 	jump UnknownScript_0x6264a
 
 UnknownScript_0x6263a:

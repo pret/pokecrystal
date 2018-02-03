@@ -26,15 +26,15 @@ CeladonDeptStore6FVendingMachine:
 	loadmenuheader .MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .FreshWater
-	if_equal 2, .SodaPop
-	if_equal 3, .Lemonade
+	ifequal 1, .FreshWater
+	ifequal 2, .SodaPop
+	ifequal 3, .Lemonade
 	closetext
 	end
 
 .FreshWater:
 	checkmoney YOUR_MONEY, 200
-	if_equal HAVE_LESS, .NotEnoughMoney
+	ifequal HAVE_LESS, .NotEnoughMoney
 	giveitem FRESH_WATER
 	iffalse .NotEnoughSpace
 	takemoney YOUR_MONEY, 200
@@ -43,7 +43,7 @@ CeladonDeptStore6FVendingMachine:
 
 .SodaPop:
 	checkmoney YOUR_MONEY, 300
-	if_equal HAVE_LESS, .NotEnoughMoney
+	ifequal HAVE_LESS, .NotEnoughMoney
 	giveitem SODA_POP
 	iffalse .NotEnoughSpace
 	takemoney YOUR_MONEY, 300
@@ -52,7 +52,7 @@ CeladonDeptStore6FVendingMachine:
 
 .Lemonade:
 	checkmoney YOUR_MONEY, 350
-	if_equal HAVE_LESS, .NotEnoughMoney
+	ifequal HAVE_LESS, .NotEnoughMoney
 	giveitem LEMONADE
 	iffalse .NotEnoughSpace
 	takemoney YOUR_MONEY, 350

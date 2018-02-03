@@ -11,7 +11,7 @@ TrainerGentlemanAlfred:
 	trainer GENTLEMAN, ALFRED, EVENT_BEAT_GENTLEMAN_ALFRED, GentlemanAlfredSeenText, GentlemanAlfredBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GentlemanAlfredAfterBattleText
 	waitbutton
@@ -23,7 +23,7 @@ TrainerSailorHuey1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_HUEY
 	iftrue UnknownScript_0x5afc7
@@ -39,8 +39,8 @@ UnknownScript_0x5afb0:
 	scall UnknownScript_0x5b057
 UnknownScript_0x5afb3:
 	askforphonenumber PHONE_SAILOR_HUEY
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5b067
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5b063
+	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5b067
+	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5b063
 	trainertotext SAILOR, HUEY1, MEM_BUFFER_0
 	scall UnknownScript_0x5b05b
 	jump UnknownScript_0x5b05f
@@ -49,10 +49,10 @@ UnknownScript_0x5afc7:
 	scall UnknownScript_0x5b06b
 	winlosstext SailorHuey1BeatenText, 0
 	copybytetovar wHueyFightCount
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3

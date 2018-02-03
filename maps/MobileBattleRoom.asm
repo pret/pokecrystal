@@ -20,11 +20,11 @@ MobileBattleRoom_MapScripts:
 MapMobileBattleRoomSignpost0Script:
 	refreshscreen
 	special Function1037c2
-	if_equal $1, .one
+	ifequal $1, .one
 	special Function1037eb
 	iffalse .false
-	if_equal $1, .one_
-	if_equal $2, .two_
+	ifequal $1, .one_
+	ifequal $2, .two_
 	jump .false
 
 .one_

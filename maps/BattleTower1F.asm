@@ -18,10 +18,10 @@ BattleTower1F_MapScripts:
 	iffalse .SkipEverything
 	writebyte BATTLETOWERACTION_GET_CHALLENGE_STATE ; copybytetovar sBattleTowerChallengeState
 	special BattleTowerAction
-	if_equal $0, .SkipEverything
-	if_equal $2, .priorityjump1
-	if_equal $3, .SkipEverything
-	if_equal $4, .SkipEverything
+	ifequal $0, .SkipEverything
+	ifequal $2, .priorityjump1
+	ifequal $3, .SkipEverything
+	ifequal $4, .SkipEverything
 	opentext
 	writetext Text_WeveBeenWaitingForYou
 	waitbutton
@@ -54,28 +54,28 @@ UnknownScript_0x9e3e0:
 ReceptionistScript_0x9e3e2:
 	writebyte BATTLETOWERACTION_GET_CHALLENGE_STATE ; copybytetovar sBattleTowerChallengeState
 	special BattleTowerAction
-	if_equal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
+	ifequal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
 	opentext
 	writetext Text_BattleTowerWelcomesYou
 	buttonsound
 	writebyte BATTLETOWERACTION_CHECK_EXPLANATION_READ ; if new save file: bit 1, [sBattleTowerSaveFileFlags]
 	special BattleTowerAction
-	if_not_equal $0, Script_Menu_ChallengeExplanationCancel
+	ifnotequal $0, Script_Menu_ChallengeExplanationCancel
 	jump Script_BattleTowerIntroductionYesNo
 
 Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 	writetext Text_WantToGoIntoABattleRoom
 	writebyte TRUE
 	special Menu_ChallengeExplanationCancel
-	if_equal 1, Script_ChooseChallenge
-	if_equal 2, Script_BattleTowerExplanation
+	ifequal 1, Script_ChooseChallenge
+	ifequal 2, Script_BattleTowerExplanation
 	jump Script_BattleTowerHopeToServeYouAgain
 
 Script_ChooseChallenge: ; 0x9e40f
 	writebyte BATTLETOWERACTION_RESETDATA ; ResetBattleTowerTrainerSRAM
 	special BattleTowerAction
 	special CheckForBattleTowerRules
-	if_not_equal FALSE, Script_WaitButton
+	ifnotequal FALSE, Script_WaitButton
 	writetext Text_SaveBeforeEnteringBattleRoom
 	yesorno
 	iffalse Script_Menu_ChallengeExplanationCancel
@@ -86,8 +86,8 @@ Script_ChooseChallenge: ; 0x9e40f
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ ; set 1, [sBattleTowerSaveFileFlags]
 	special BattleTowerAction
 	special BattleTowerRoomMenu
-	if_equal $a, Script_Menu_ChallengeExplanationCancel
-	if_not_equal $0, Script_MobileError
+	ifequal $a, Script_Menu_ChallengeExplanationCancel
+	ifnotequal $0, Script_MobileError
 	writebyte BATTLETOWERACTION_11
 	special BattleTowerAction
 	writetext Text_RightThisWayToYourBattleRoom
@@ -122,7 +122,7 @@ Script_GivePlayerHisPrize: ; 0x9e47a
 	special BattleTowerAction
 	writebyte BATTLETOWERACTION_GIVEREWARD
 	special BattleTowerAction
-	if_equal POTION, Script_YourPackIsStuffedFull
+	ifequal POTION, Script_YourPackIsStuffedFull
 	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_1
 	giveitem ITEM_FROM_MEM, 5
 	writetext Text_PlayerGotFive
@@ -173,8 +173,8 @@ UnreferencedScript_0x9e4be:
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ
 	special BattleTowerAction
 	special Function1700ba
-	if_equal $a, Script_Menu_ChallengeExplanationCancel
-	if_not_equal $0, Script_MobileError
+	ifequal $a, Script_Menu_ChallengeExplanationCancel
+	ifnotequal $0, Script_MobileError
 	writetext Text_ReceivedAListOfLeadersOnTheHonorRoll
 	spriteface BATTLETOWER1F_RECEPTIONIST, LEFT
 	writetext Text_PleaseConfirmOnThisMonitor
@@ -186,15 +186,15 @@ UnreferencedScript_0x9e4be:
 UnreferencedScript_0x9e4ea:
 	writebyte BATTLETOWERACTION_LEVEL_CHECK
 	special BattleTowerAction
-	if_not_equal $0, Script_APkmnLevelExceeds
+	ifnotequal $0, Script_APkmnLevelExceeds
 	writebyte BATTLETOWERACTION_UBERS_CHECK
 	special BattleTowerAction
-	if_not_equal $0, Script_MayNotEnterABattleRoomUnderL70
+	ifnotequal $0, Script_MayNotEnterABattleRoomUnderL70
 	special CheckForBattleTowerRules
-	if_not_equal FALSE, Script_WaitButton
+	ifnotequal FALSE, Script_WaitButton
 	writebyte BATTLETOWERACTION_05
 	special BattleTowerAction
-	if_equal $0, .zero
+	ifequal $0, .zero
 	writetext Text_CantBeRegistered_PreviousRecordDeleted
 	jump continue
 

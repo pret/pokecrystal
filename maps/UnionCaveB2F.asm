@@ -16,7 +16,7 @@ UnionCaveB2F_MapScripts:
 	checkflag ENGINE_UNION_CAVE_LAPRAS
 	iftrue .NoAppear
 	checkcode VAR_WEEKDAY
-	if_equal FRIDAY, .Appear
+	ifequal FRIDAY, .Appear
 .NoAppear:
 	disappear UNIONCAVEB2F_LAPRAS
 	return
@@ -39,7 +39,7 @@ TrainerCooltrainermNick:
 	trainer COOLTRAINERM, NICK, EVENT_BEAT_COOLTRAINERM_NICK, CooltrainermNickSeenText, CooltrainermNickBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainermNickAfterBattleText
 	waitbutton
@@ -50,7 +50,7 @@ TrainerCooltrainerfGwen:
 	trainer COOLTRAINERF, GWEN, EVENT_BEAT_COOLTRAINERF_GWEN, CooltrainerfGwenSeenText, CooltrainerfGwenBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainerfGwenAfterBattleText
 	waitbutton
@@ -61,7 +61,7 @@ TrainerCooltrainerfEmma:
 	trainer COOLTRAINERF, EMMA, EVENT_BEAT_COOLTRAINERF_EMMA, CooltrainerfEmmaSeenText, CooltrainerfEmmaBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainerfEmmaAfterBattleText
 	waitbutton

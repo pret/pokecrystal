@@ -66,9 +66,9 @@ VermilionGymBadgeGuy:
 	checkevent EVENT_GOT_HP_UP_FROM_VERMILION_GUY
 	iftrue .AlreadyGotItem
 	checkcode VAR_BADGES
-	if_equal NUM_BADGES, .AllBadges
-	if_greater_than 13, .MostBadges
-	if_greater_than 9, .SomeBadges
+	ifequal NUM_BADGES, .AllBadges
+	ifgreater 13, .MostBadges
+	ifgreater 9, .SomeBadges
 	writetext UnknownText_0x1aabc8
 	waitbutton
 	closetext

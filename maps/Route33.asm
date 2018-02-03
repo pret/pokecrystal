@@ -16,7 +16,7 @@ TrainerHikerAnthony:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_HIKER_ANTHONY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_ANTHONY
 	iftrue .Rematch
@@ -36,8 +36,8 @@ TrainerHikerAnthony:
 	scall .AskNumber2
 .AskForPhoneNumber:
 	askforphonenumber PHONE_HIKER_ANTHONY
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext HIKER, ANTHONY2, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -46,11 +46,11 @@ TrainerHikerAnthony:
 	scall .RematchStd
 	winlosstext HikerAnthony2BeatenText, 0
 	copybytetovar wAnthonyFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4

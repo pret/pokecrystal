@@ -16,7 +16,7 @@ TrainerBirdKeeperToby:
 	trainer BIRD_KEEPER, TOBY, EVENT_BEAT_BIRD_KEEPER_TOBY, BirdKeeperTobySeenText, BirdKeeperTobyBeatenText, 0, .Script
 
 .Script
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BirdKeeperTobyAfterBattleText
 	waitbutton
@@ -27,7 +27,7 @@ TrainerSailorHarry:
 	trainer SAILOR, HARRY, EVENT_BEAT_SAILOR_HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .Script
 
 .Script
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorHarryAfterBattleText
 	waitbutton
@@ -39,7 +39,7 @@ TrainerLassDana1:
 
 .Script
 	writecode VAR_CALLERID, PHONE_LASS_DANA
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_DANA
 	iftrue .DanaRematch
@@ -59,8 +59,8 @@ TrainerLassDana1:
 	scall .AskNumber2F
 .AskForPhoneNumber:
 	askforphonenumber PHONE_LASS_DANA
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .DeclinedPhoneNumber
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .DeclinedPhoneNumber
 	trainertotext LASS, DANA1, MEM_BUFFER_0
 	scall .RegisteredPhoneNumber
 	jump .NumberAccepted
@@ -69,11 +69,11 @@ TrainerLassDana1:
 	scall .Rematch
 	winlosstext LassDana1BeatenText, 0
 	copybytetovar wDanaFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
@@ -177,7 +177,7 @@ TrainerSchoolboyChad1:
 
 .Script
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_CHAD
 	iftrue .ChadRematch
@@ -195,8 +195,8 @@ TrainerSchoolboyChad1:
 	scall .AskPhoneNumber2
 .AskToRegisterNumber:
 	askforphonenumber PHONE_SCHOOLBOY_CHAD
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .SaidNo
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .SaidNo
 	trainertotext SCHOOLBOY, CHAD1, MEM_BUFFER_0
 	scall .RegisteredChad
 	jump .HaveChadsNumber
@@ -205,11 +205,11 @@ TrainerSchoolboyChad1:
 	scall .Rematch
 	winlosstext SchoolboyChad1BeatenText, 0
 	copybytetovar wChadFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
@@ -293,7 +293,7 @@ TrainerBeautyValerie:
 	trainer BEAUTY, VALERIE, EVENT_BEAT_BEAUTY_VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .Script
 
 .Script
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BeautyValerieAfterBattleText
 	waitbutton
@@ -304,7 +304,7 @@ TrainerBeautyOlivia:
 	trainer BEAUTY, OLIVIA, EVENT_BEAT_BEAUTY_OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .Script
 
 .Script
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BeautyOliviaAfterBattleText
 	waitbutton

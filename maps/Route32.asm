@@ -34,7 +34,7 @@ Route32_MapScripts:
 
 .Frieda:
 	checkcode VAR_WEEKDAY
-	if_equal FRIDAY, .FriedaAppears
+	ifequal FRIDAY, .FriedaAppears
 	disappear ROUTE32_FRIEDA
 	return
 
@@ -145,7 +145,7 @@ TrainerCamperRoland:
 	trainer CAMPER, ROLAND, EVENT_BEAT_CAMPER_ROLAND, CamperRolandSeenText, CamperRolandBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CamperRolandAfterText
 	waitbutton
@@ -156,7 +156,7 @@ TrainerFisherJustin:
 	trainer FISHER, JUSTIN, EVENT_BEAT_FISHER_JUSTIN, FisherJustinSeenText, FisherJustinBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherJustinAfterText
 	waitbutton
@@ -168,7 +168,7 @@ TrainerFisherRalph1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_FISHER_RALPH
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_RALPH
 	iftrue .Rematch
@@ -188,8 +188,8 @@ TrainerFisherRalph1:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_RALPH
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext FISHER, RALPH1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -198,11 +198,11 @@ TrainerFisherRalph1:
 	scall .RematchStd
 	winlosstext FisherRalph1BeatenText, 0
 	copybytetovar wRalphFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
@@ -292,7 +292,7 @@ TrainerFisherHenry:
 	trainer FISHER, HENRY, EVENT_BEAT_FISHER_HENRY, FisherHenrySeenText, FisherHenryBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherHenryAfterText
 	waitbutton
@@ -304,7 +304,7 @@ TrainerPicnickerLiz1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_LIZ
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_LIZ
 	iftrue .Rematch
@@ -322,8 +322,8 @@ TrainerPicnickerLiz1:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_LIZ
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext PICNICKER, LIZ1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -332,11 +332,11 @@ TrainerPicnickerLiz1:
 	scall .RematchStd
 	winlosstext PicnickerLiz1BeatenText, 0
 	copybytetovar wLizFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight4
@@ -420,7 +420,7 @@ TrainerYoungsterAlbert:
 	trainer YOUNGSTER, ALBERT, EVENT_BEAT_YOUNGSTER_ALBERT, YoungsterAlbertSeenText, YoungsterAlbertBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext YoungsterAlbertAfterText
 	waitbutton
@@ -431,7 +431,7 @@ TrainerYoungsterGordon:
 	trainer YOUNGSTER, GORDON, EVENT_BEAT_YOUNGSTER_GORDON, YoungsterGordonSeenText, YoungsterGordonBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext YoungsterGordonAfterText
 	waitbutton
@@ -442,7 +442,7 @@ TrainerBirdKeeperPeter:
 	trainer BIRD_KEEPER, PETER, EVENT_BEAT_BIRD_KEEPER_PETER, BirdKeeperPeterSeenText, BirdKeeperPeterBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BirdKeeperPeterAfterText
 	waitbutton
@@ -455,7 +455,7 @@ FriedaScript:
 	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	iftrue .Friday
 	checkcode VAR_WEEKDAY
-	if_not_equal FRIDAY, .NotFriday
+	ifnotequal FRIDAY, .NotFriday
 	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue .MetFrieda
 	writetext MeetFriedaText

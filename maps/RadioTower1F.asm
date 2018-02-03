@@ -55,9 +55,9 @@ GentlemanScript_0x5cd3d:
 	closetext
 	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce74
 	opentext
-	if_equal 1, .FirstPlace
-	if_equal 2, .SecondPlace
-	if_equal 3, .ThirdPlace
+	ifequal 1, .FirstPlace
+	ifequal 2, .SecondPlace
+	ifequal 3, .ThirdPlace
 	jump .NoPrize
 
 .GameOver:
@@ -187,7 +187,7 @@ TrainerGruntM3:
 	trainer GRUNTM, GRUNTM_3, EVENT_BEAT_ROCKET_GRUNTM_3, GruntM3SeenText, GruntM3BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM3AfterBattleText
 	waitbutton

@@ -31,8 +31,8 @@ DragonsDenB1F_MapScripts:
 
 .CheckDay:
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, .AppearSilver
-	if_equal THURSDAY, .AppearSilver
+	ifequal TUESDAY, .AppearSilver
+	ifequal THURSDAY, .AppearSilver
 	disappear DRAGONSDENB1F_SILVER
 	return
 
@@ -85,7 +85,7 @@ TrainerCooltrainermDarin:
 	trainer COOLTRAINERM, DARIN, EVENT_BEAT_COOLTRAINERM_DARIN, CooltrainermDarinSeenText, CooltrainermDarinBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainermDarinAfterBattleText
 	waitbutton
@@ -96,7 +96,7 @@ TrainerCooltrainerfCara:
 	trainer COOLTRAINERF, CARA, EVENT_BEAT_COOLTRAINERF_CARA, CooltrainerfCaraSeenText, CooltrainerfCaraBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainerfCaraAfterBattleText
 	waitbutton
@@ -107,7 +107,7 @@ TrainerTwinsLeaandpia1:
 	trainer TWINS, LEAANDPIA1, EVENT_BEAT_TWINS_LEA_AND_PIA, TwinsLeaandpia1SeenText, TwinsLeaandpia1BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext TwinsLeaandpia1AfterBattleText
 	waitbutton
@@ -118,7 +118,7 @@ TrainerTwinsLeaandpia2:
 	trainer TWINS, LEAANDPIA1, EVENT_BEAT_TWINS_LEA_AND_PIA, TwinsLeaandpia2SeenText, TwinsLeaandpia2BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext TwinsLeaandpia2AfterBattleText
 	waitbutton

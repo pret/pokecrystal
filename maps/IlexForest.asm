@@ -21,16 +21,16 @@ IlexForest_MapScripts:
 	checkevent EVENT_GOT_HM01_CUT
 	iftrue .Static
 	copybytetovar FarfetchdPosition
-	if_equal  1, .PositionOne
-	if_equal  2, .PositionTwo
-	if_equal  3, .PositionThree
-	if_equal  4, .PositionFour
-	if_equal  5, .PositionFive
-	if_equal  6, .PositionSix
-	if_equal  7, .PositionSeven
-	if_equal  8, .PositionEight
-	if_equal  9, .PositionNine
-	if_equal 10, .PositionTen
+	ifequal  1, .PositionOne
+	ifequal  2, .PositionTwo
+	ifequal  3, .PositionThree
+	ifequal  4, .PositionFour
+	ifequal  5, .PositionFive
+	ifequal  6, .PositionSix
+	ifequal  7, .PositionSeven
+	ifequal  8, .PositionEight
+	ifequal  9, .PositionNine
+	ifequal 10, .PositionTen
 .Static:
 	return
 
@@ -102,16 +102,16 @@ IlexForestCharcoalApprenticeScript:
 
 IlexForestFarfetchdScript:
 	copybytetovar FarfetchdPosition
-	if_equal  1, .Position1
-	if_equal  2, .Position2
-	if_equal  3, .Position3
-	if_equal  4, .Position4
-	if_equal  5, .Position5
-	if_equal  6, .Position6
-	if_equal  7, .Position7
-	if_equal  8, .Position8
-	if_equal  9, .Position9
-	if_equal 10, .Position10
+	ifequal  1, .Position1
+	ifequal  2, .Position2
+	ifequal  3, .Position3
+	ifequal  4, .Position4
+	ifequal  5, .Position5
+	ifequal  6, .Position6
+	ifequal  7, .Position7
+	ifequal  8, .Position8
+	ifequal  9, .Position9
+	ifequal 10, .Position10
 
 .Position1:
 	faceplayer
@@ -131,7 +131,7 @@ IlexForestFarfetchdScript:
 
 .Position2:
 	scall .CryAndCheckFacing
-	if_equal DOWN, .Position2_Down
+	ifequal DOWN, .Position2_Down
 	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos2_Pos3
 	moveobject ILEXFOREST_FARFETCHD, 20, 24
 	disappear ILEXFOREST_FARFETCHD
@@ -149,7 +149,7 @@ IlexForestFarfetchdScript:
 
 .Position3:
 	scall .CryAndCheckFacing
-	if_equal LEFT, .Position3_Left
+	ifequal LEFT, .Position3_Left
 	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos3_Pos4
 	moveobject ILEXFOREST_FARFETCHD, 29, 22
 	disappear ILEXFOREST_FARFETCHD
@@ -167,7 +167,7 @@ IlexForestFarfetchdScript:
 
 .Position4:
 	scall .CryAndCheckFacing
-	if_equal UP, .Position4_Up
+	ifequal UP, .Position4_Up
 	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos4_Pos5
 	moveobject ILEXFOREST_FARFETCHD, 28, 31
 	disappear ILEXFOREST_FARFETCHD
@@ -185,9 +185,9 @@ IlexForestFarfetchdScript:
 
 .Position5:
 	scall .CryAndCheckFacing
-	if_equal UP, .Position5_Up
-	if_equal LEFT, .Position5_Left
-	if_equal RIGHT, .Position5_Right
+	ifequal UP, .Position5_Up
+	ifequal LEFT, .Position5_Left
+	ifequal RIGHT, .Position5_Right
 	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetchd_Pos5_Pos6
 	moveobject ILEXFOREST_FARFETCHD, 24, 35
 	disappear ILEXFOREST_FARFETCHD
@@ -221,7 +221,7 @@ IlexForestFarfetchdScript:
 
 .Position6:
 	scall .CryAndCheckFacing
-	if_equal RIGHT, .Position6_Right
+	ifequal RIGHT, .Position6_Right
 	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos6_Pos7
 	moveobject ILEXFOREST_FARFETCHD, 22, 31
 	disappear ILEXFOREST_FARFETCHD
@@ -239,8 +239,8 @@ IlexForestFarfetchdScript:
 
 .Position7:
 	scall .CryAndCheckFacing
-	if_equal DOWN, .Position7_Down
-	if_equal LEFT, .Position7_Left
+	ifequal DOWN, .Position7_Down
+	ifequal LEFT, .Position7_Left
 	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos7_Pos8
 	moveobject ILEXFOREST_FARFETCHD, 15, 29
 	disappear ILEXFOREST_FARFETCHD
@@ -266,9 +266,9 @@ IlexForestFarfetchdScript:
 
 .Position8:
 	scall .CryAndCheckFacing
-	if_equal UP, .Position8_Up
-	if_equal LEFT, .Position8_Left
-	if_equal RIGHT, .Position8_Right
+	ifequal UP, .Position8_Up
+	ifequal LEFT, .Position8_Left
+	ifequal RIGHT, .Position8_Right
 	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos8_Pos9
 	moveobject ILEXFOREST_FARFETCHD, 10, 35
 	disappear ILEXFOREST_FARFETCHD
@@ -295,8 +295,8 @@ IlexForestFarfetchdScript:
 
 .Position9:
 	scall .CryAndCheckFacing
-	if_equal DOWN, .Position9_Down
-	if_equal RIGHT, .Position9_Right
+	ifequal DOWN, .Position9_Down
+	ifequal RIGHT, .Position9_Right
 	applymovement ILEXFOREST_FARFETCHD, MovementData_Farfetched_Pos9_Pos10
 	moveobject ILEXFOREST_FARFETCHD, 6, 28
 	disappear ILEXFOREST_FARFETCHD
@@ -389,7 +389,7 @@ TrainerBugCatcherWayne:
 	trainer BUG_CATCHER, WAYNE, EVENT_BEAT_BUG_CATCHER_WAYNE, BugCatcherWayneSeenText, BugCatcherWayneBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BugCatcherWayneAfterBattleText
 	waitbutton

@@ -14,11 +14,11 @@ TeacherScript_0x54953:
 	special GetFirstPokemonHappiness
 	writetext UnknownText_0x549a3
 	buttonsound
-	if_greater_than 250 - 1, UnknownScript_0x54973
-	if_greater_than 200 - 1, UnknownScript_0x54979
-	if_greater_than 150 - 1, UnknownScript_0x5497f
-	if_greater_than 100 - 1, UnknownScript_0x54985
-	if_greater_than  50 - 1, UnknownScript_0x5498b
+	ifgreater 250 - 1, UnknownScript_0x54973
+	ifgreater 200 - 1, UnknownScript_0x54979
+	ifgreater 150 - 1, UnknownScript_0x5497f
+	ifgreater 100 - 1, UnknownScript_0x54985
+	ifgreater  50 - 1, UnknownScript_0x5498b
 	jump UnknownScript_0x54991
 
 UnknownScript_0x54973:

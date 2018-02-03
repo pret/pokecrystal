@@ -10,7 +10,7 @@ DaisyScript:
 	faceplayer
 	opentext
 	checkcode VAR_HOUR
-	if_equal 15, .ThreePM
+	ifequal 15, .ThreePM
 	writetext DaisyHelloText
 	waitbutton
 	closetext
@@ -25,8 +25,8 @@ DaisyScript:
 	writetext DaisyWhichMonText
 	waitbutton
 	special DaisysGrooming
-	if_equal $0, .Refused
-	if_equal $1, .CantGroomEgg
+	ifequal $0, .Refused
+	ifequal $1, .CantGroomEgg
 	setflag ENGINE_DAISYS_GROOMING
 	writetext DaisyAlrightText
 	waitbutton

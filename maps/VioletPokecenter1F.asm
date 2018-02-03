@@ -23,7 +23,7 @@ VioletPokecenter1F_ElmsAideScript:
 	yesorno
 	iffalse .RefusedEgg
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, .PartyFull
+	ifequal PARTY_LENGTH, .PartyFull
 	giveegg TOGEPI, 5
 	stringtotext .eggname, MEM_BUFFER_1
 	scall .AideGivesEgg
@@ -35,7 +35,7 @@ VioletPokecenter1F_ElmsAideScript:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal UP, .AideWalksAroundPlayer
+	ifequal UP, .AideWalksAroundPlayer
 	spriteface PLAYER, DOWN
 	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideWalksStraightOutOfPokecenter
 	playsound SFX_EXIT_BUILDING

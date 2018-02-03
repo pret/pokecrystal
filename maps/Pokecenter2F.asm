@@ -17,7 +17,7 @@ Pokecenter2F_MapScripts:
 
 .Scene0:
 	special CheckMysteryGift
-	if_equal $0, .Scene0Done
+	ifequal $0, .Scene0Done
 	clearevent EVENT_MYSTERY_GIFT_DELIVERY_GUY
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .Scene0Done
@@ -79,7 +79,7 @@ LinkReceptionistScript_Trade:
 	writetext Text_TradeReceptionistMobile
 	special AskMobileOrCable
 	iffalse .Cancel
-	if_equal $1, .Mobile
+	ifequal $1, .Mobile
 .NoMobile:
 	special SetBitsForLinkTradeRequest
 	writetext Text_PleaseWait
@@ -181,7 +181,7 @@ LinkReceptionistScript_Battle:
 	writetext Text_BattleReceptionistMobile
 	special AskMobileOrCable
 	iffalse .Cancel
-	if_equal $1, .Mobile
+	ifequal $1, .Mobile
 .NoMobile:
 	special SetBitsForBattleRequest
 	writetext Text_PleaseWait
@@ -271,9 +271,9 @@ LinkReceptionistScript_Battle:
 .SelectThreeMons:
 	special Mobile_SelectThreeMons
 	iffalse .Mobile_DidNotSelect
-	if_equal $1, .Mobile_OK
-	if_equal $2, .Mobile_OK
-	if_equal $3, .Mobile_InvalidParty
+	ifequal $1, .Mobile_OK
+	ifequal $2, .Mobile_OK
+	ifequal $3, .Mobile_InvalidParty
 	jump .Mobile_DidNotSelect
 
 .Mobile_InvalidParty:
@@ -308,9 +308,9 @@ LinkReceptionistScript_TimeCapsule:
 	yesorno
 	iffalse .Cancel
 	special CheckTimeCapsuleCompatibility
-	if_equal $1, .MonTooNew
-	if_equal $2, .MonMoveTooNew
-	if_equal $3, .MonHasMail
+	ifequal $1, .MonTooNew
+	ifequal $2, .MonMoveTooNew
+	ifequal $3, .MonHasMail
 	writetext Text_PleaseWait
 	special WaitForLinkedFriend
 	iffalse .FriendNotReady
@@ -494,8 +494,8 @@ TimeCapsuleScript_CheckPlayerGender:
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Female
 	checkcode VAR_FACING
-	if_equal LEFT, .MaleFacingLeft
-	if_equal RIGHT, .MaleFacingRight
+	ifequal LEFT, .MaleFacingLeft
+	ifequal RIGHT, .MaleFacingRight
 	applymovement2 Pokecenter2FMovementData_ReceptionistStepsLeftLooksDown
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesTwoStepsUp_2
 	end
@@ -512,8 +512,8 @@ TimeCapsuleScript_CheckPlayerGender:
 
 .Female:
 	checkcode VAR_FACING
-	if_equal RIGHT, .FemaleFacingRight
-	if_equal LEFT, .FemaleFacingLeft
+	ifequal RIGHT, .FemaleFacingRight
+	ifequal LEFT, .FemaleFacingLeft
 	applymovement2 Pokecenter2FMovementData_ReceptionistStepsLeftLooksRight_2
 	applymovement PLAYER, Pokecenter2FMovementData_PlayerTakesOneStepUp_2
 	jump .FemaleContinue
@@ -532,7 +532,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_not_equal UP, .FemaleChangeApperance
+	ifnotequal UP, .FemaleChangeApperance
 	spriteface PLAYER, LEFT
 .FemaleChangeApperance:
 	opentext

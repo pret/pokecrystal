@@ -32,7 +32,7 @@ Route29_MapScripts:
 
 .DoesTuscanyAppear:
 	checkcode VAR_WEEKDAY
-	if_not_equal TUESDAY, .TuscanyDisappears
+	ifnotequal TUESDAY, .TuscanyDisappears
 	appear ROUTE29_TUSCANY
 	return
 
@@ -106,7 +106,7 @@ CatchingTutorialDudeScript:
 	faceplayer
 	opentext
 	checkcode VAR_BOXSPACE
-	if_equal 0, .BoxFull
+	ifequal 0, .BoxFull
 	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
 	iftrue .BoxFull
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
@@ -170,7 +170,7 @@ TuscanyScript:
 	checkevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	iftrue TuscanyTuesdayScript
 	checkcode VAR_WEEKDAY
-	if_not_equal TUESDAY, TuscanyNotTuesdayScript
+	ifnotequal TUESDAY, TuscanyNotTuesdayScript
 	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
 	iftrue .MetTuscany
 	writetext MeetTuscanyText

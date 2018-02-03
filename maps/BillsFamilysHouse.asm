@@ -20,7 +20,7 @@ BillScript:
 	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, UnknownScript_0x54c13
+	ifequal PARTY_LENGTH, UnknownScript_0x54c13
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -72,8 +72,8 @@ BillsSisterScript:
 	iftrue UnknownScript_0x54c58
 	writetext UnknownText_0x54f9e
 	askforphonenumber PHONE_BILL
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x54c64
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x54c5e
+	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x54c64
+	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x54c5e
 	waitsfx
 	addcellnum PHONE_BILL
 	writetext UnknownText_0x54fd9

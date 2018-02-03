@@ -71,12 +71,12 @@ ScriptCommandTable:
 	dw Script_jump                       ; 03
 	dw Script_farjump                    ; 04
 	dw Script_ptjump                     ; 05
-	dw Script_if_equal                   ; 06
-	dw Script_if_not_equal               ; 07
+	dw Script_ifequal                    ; 06
+	dw Script_ifnotequal                 ; 07
 	dw Script_iffalse                    ; 08
 	dw Script_iftrue                     ; 09
-	dw Script_if_greater_than            ; 0a
-	dw Script_if_less_than               ; 0b
+	dw Script_ifgreater                  ; 0a
+	dw Script_ifless                     ; 0b
 	dw Script_jumpstd                    ; 0c
 	dw Script_callstd                    ; 0d
 	dw Script_callasm                    ; 0e
@@ -136,7 +136,7 @@ ScriptCommandTable:
 	dw Script_stringtotext               ; 44
 	dw Script_itemnotify                 ; 45
 	dw Script_pocketisfull               ; 46
-	dw Script_textbox                    ; 47
+	dw Script_opentext                   ; 47
 	dw Script_refreshscreen              ; 48
 	dw Script_closetext                  ; 49
 	dw Script_loadbytec2cf               ; 4a
@@ -169,8 +169,8 @@ endc
 	dw Script_trainerflagaction          ; 63
 	dw Script_winlosstext                ; 64
 	dw Script_scripttalkafter            ; 65
-	dw Script_end_if_just_battled        ; 66
-	dw Script_check_just_battled         ; 67
+	dw Script_endifjustbattled           ; 66
+	dw Script_checkjustbattled           ; 67
 	dw Script_setlasttalked              ; 68
 	dw Script_applymovement              ; 69
 	dw Script_applymovement2             ; 6a
@@ -214,7 +214,7 @@ endc
 	dw Script_return                     ; 90
 	dw Script_end                        ; 91
 	dw Script_reloadandreturn            ; 92
-	dw Script_end_all                    ; 93
+	dw Script_endall                     ; 93
 	dw Script_pokemart                   ; 94
 	dw Script_elevator                   ; 95
 	dw Script_trade                      ; 96
@@ -236,7 +236,7 @@ endc
 	dw Script_trainerclassname           ; a6
 	dw Script_name                       ; a7
 	dw Script_wait                       ; a8
-	dw Script_check_save                 ; a9
+	dw Script_checksave                  ; a9
 
 StartScript:
 	ld hl, ScriptFlags
@@ -839,7 +839,7 @@ Script_winlosstext:
 	ld [hli], a
 	ret
 
-Script_end_if_just_battled:
+Script_endifjustbattled:
 ; script command 0x66
 
 	ld a, [wRunningTrainerBattleScript]
@@ -847,7 +847,7 @@ Script_end_if_just_battled:
 	ret z
 	jp Script_end
 
-Script_check_just_battled:
+Script_checkjustbattled:
 ; script command 0x67
 
 	ld a, TRUE
@@ -1561,7 +1561,7 @@ Script_iftrue:
 	jp nz, Script_jump
 	jp SkipTwoScriptBytes
 
-Script_if_equal:
+Script_ifequal:
 ; script command 0x6
 ; parameters: byte, pointer
 
@@ -1571,7 +1571,7 @@ Script_if_equal:
 	jr z, Script_jump
 	jr SkipTwoScriptBytes
 
-Script_if_not_equal:
+Script_ifnotequal:
 ; script command 0x7
 ; parameters: byte, pointer
 
@@ -1581,7 +1581,7 @@ Script_if_not_equal:
 	jr nz, Script_jump
 	jr SkipTwoScriptBytes
 
-Script_if_greater_than:
+Script_ifgreater:
 ; script command 0xa
 ; parameters: byte, pointer
 
@@ -1592,7 +1592,7 @@ Script_if_greater_than:
 	jr c, Script_jump
 	jr SkipTwoScriptBytes
 
-Script_if_less_than:
+Script_ifless:
 ; script command 0xb
 ; parameters: byte, pointer
 
@@ -2646,7 +2646,7 @@ Script_reloadandreturn:
 	call Script_newloadmap
 	jp Script_end
 
-Script_textbox:
+Script_opentext:
 ; script command 0x47
 
 	call OpenText
@@ -2787,7 +2787,7 @@ ExitScriptSubroutine:
 	scf
 	ret
 
-Script_end_all:
+Script_endall:
 ; script command 0x93
 
 	xor a
@@ -2817,7 +2817,7 @@ Script_credits:
 
 	farcall RedCredits
 ReturnFromCredits:
-	call Script_end_all
+	call Script_endall
 	ld a, $3
 	call LoadMapStatus
 	call StopScript
@@ -2839,7 +2839,7 @@ Script_wait:
 	pop bc
 	ret
 
-Script_check_save:
+Script_checksave:
 ; script command 0xa9
 
 	farcall CheckSave

@@ -28,7 +28,7 @@ TrainerPokefanmDerek:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue .HasNugget
@@ -48,8 +48,8 @@ TrainerPokefanmDerek:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_POKEFANM_DEREK
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -106,7 +106,7 @@ TrainerPokefanfRuth:
 	trainer POKEFANF, RUTH, EVENT_BEAT_POKEFANF_RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokefanfRuthAfterBattleText
 	waitbutton
@@ -117,7 +117,7 @@ TrainerSailorEugene:
 	trainer SAILOR, EUGENE, EVENT_BEAT_SAILOR_EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorEugeneAfterBattleText
 	waitbutton
@@ -128,7 +128,7 @@ TrainerPsychicNorman:
 	trainer PSYCHIC_T, NORMAN, EVENT_BEAT_PSYCHIC_NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PsychicNormanAfterBattleText
 	waitbutton

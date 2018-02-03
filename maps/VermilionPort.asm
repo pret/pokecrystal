@@ -85,11 +85,11 @@ UnknownScript_0x74e20:
 	spriteface PLAYER, LEFT
 	opentext
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, UnknownScript_0x74e72
-	if_equal TUESDAY, UnknownScript_0x74e72
-	if_equal THURSDAY, UnknownScript_0x74e7c
-	if_equal FRIDAY, UnknownScript_0x74e7c
-	if_equal SATURDAY, UnknownScript_0x74e7c
+	ifequal MONDAY, UnknownScript_0x74e72
+	ifequal TUESDAY, UnknownScript_0x74e72
+	ifequal THURSDAY, UnknownScript_0x74e7c
+	ifequal FRIDAY, UnknownScript_0x74e7c
+	ifequal SATURDAY, UnknownScript_0x74e7c
 	writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e8d
@@ -147,11 +147,11 @@ SailorScript_0x74e97:
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x74e1a
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, .NextShipWednesday
-	if_equal TUESDAY, .NextShipWednesday
-	if_equal THURSDAY, .NextShipSunday
-	if_equal FRIDAY, .NextShipSunday
-	if_equal SATURDAY, .NextShipSunday
+	ifequal MONDAY, .NextShipWednesday
+	ifequal TUESDAY, .NextShipWednesday
+	ifequal THURSDAY, .NextShipSunday
+	ifequal FRIDAY, .NextShipSunday
+	ifequal SATURDAY, .NextShipSunday
 	writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e87

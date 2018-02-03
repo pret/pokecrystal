@@ -13,7 +13,7 @@ TrainerFirebreatherOtis:
 	trainer FIREBREATHER, OTIS, EVENT_BEAT_FIREBREATHER_OTIS, FirebreatherOtisSeenText, FirebreatherOtisBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FirebreatherOtisAfterBattleText
 	waitbutton
@@ -24,7 +24,7 @@ TrainerYoungsterWarren:
 	trainer YOUNGSTER, WARREN, EVENT_BEAT_YOUNGSTER_WARREN, YoungsterWarrenSeenText, YoungsterWarrenBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext YoungsterWarrenAfterBattleText
 	waitbutton
@@ -35,7 +35,7 @@ TrainerYoungsterJimmy:
 	trainer YOUNGSTER, JIMMY, EVENT_BEAT_YOUNGSTER_JIMMY, YoungsterJimmySeenText, YoungsterJimmyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext YoungsterJimmyAfterBattleText
 	waitbutton
@@ -46,7 +46,7 @@ TrainerFirebreatherBurt:
 	trainer FIREBREATHER, BURT, EVENT_BEAT_FIREBREATHER_BURT, FirebreatherBurtSeenText, FirebreatherBurtBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FirebreatherBurtAfterBattleText
 	waitbutton

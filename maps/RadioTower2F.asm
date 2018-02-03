@@ -56,7 +56,7 @@ TrainerGruntM4:
 	trainer GRUNTM, GRUNTM_4, EVENT_BEAT_ROCKET_GRUNTM_4, GruntM4SeenText, GruntM4BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM4AfterBattleText
 	waitbutton
@@ -67,7 +67,7 @@ TrainerGruntM5:
 	trainer GRUNTM, GRUNTM_5, EVENT_BEAT_ROCKET_GRUNTM_5, GruntM5SeenText, GruntM5BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM5AfterBattleText
 	waitbutton
@@ -78,7 +78,7 @@ TrainerGruntM6:
 	trainer GRUNTM, GRUNTM_6, EVENT_BEAT_ROCKET_GRUNTM_6, GruntM6SeenText, GruntM6BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM6AfterBattleText
 	waitbutton
@@ -89,7 +89,7 @@ TrainerGruntF2:
 	trainer GRUNTF, GRUNTF_2, EVENT_BEAT_ROCKET_GRUNTF_2, GruntF2SeenText, GruntF2BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntF2AfterBattleText
 	waitbutton
@@ -106,13 +106,13 @@ Buena:
 	checkflag ENGINE_BUENAS_PASSWORD_2
 	iftrue UnknownScript_0x5d82f
 	checkcode VAR_HOUR
-	if_less_than 18, UnknownScript_0x5d893
+	ifless 18, UnknownScript_0x5d893
 	checkflag ENGINE_BUENAS_PASSWORD
 	iffalse UnknownScript_0x5d80a
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d86b
 	checkcode VAR_BLUECARDBALANCE
-	if_equal 30, UnknownScript_0x5d87f
+	ifequal 30, UnknownScript_0x5d87f
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
 	special AskRememberPassword
@@ -122,7 +122,7 @@ Buena:
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	checkcode VAR_FACING
-	if_not_equal RIGHT, UnknownScript_0x5d7be
+	ifnotequal RIGHT, UnknownScript_0x5d7be
 	applymovement PLAYER, MovementData_0x5d921
 UnknownScript_0x5d7be:
 	spriteface PLAYER, RIGHT
@@ -155,7 +155,7 @@ UnknownScript_0x5d7be:
 	pause 20
 	special RestartMapMusic
 	checkcode VAR_BLUECARDBALANCE
-	if_equal 30, UnknownScript_0x5d8a4
+	ifequal 30, UnknownScript_0x5d8a4
 	end
 
 UnknownScript_0x5d800:
@@ -279,8 +279,8 @@ UnknownScript_0x5d8cc:
 	writetext UnknownText_0x5e2bf
 UnknownScript_0x5d8d0:
 	askforphonenumber PHONE_BUENA
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5d8f6
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5d8ed
+	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5d8f6
+	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5d8ed
 	writetext UnknownText_0x5e2f3
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx

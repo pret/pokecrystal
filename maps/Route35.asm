@@ -20,7 +20,7 @@ TrainerBirdKeeperBryan:
 	trainer BIRD_KEEPER, BRYAN, EVENT_BEAT_BIRD_KEEPER_BRYAN, BirdKeeperBryanSeenText, BirdKeeperBryanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BirdKeeperBryanAfterBattleText
 	waitbutton
@@ -32,7 +32,7 @@ TrainerJugglerIrwin:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_JUGGLER_IRWIN
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkcellnum PHONE_JUGGLER_IRWIN
 	iftrue Route35NumberAcceptedM
@@ -48,8 +48,8 @@ TrainerJugglerIrwin:
 	scall Route35AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_JUGGLER_IRWIN
-	if_equal PHONE_CONTACTS_FULL, Route35PhoneFullM
-	if_equal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
+	ifequal PHONE_CONTACTS_FULL, Route35PhoneFullM
+	ifequal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
 	trainertotext JUGGLER, IRWIN1, MEM_BUFFER_0
 	scall Route35RegisteredNumberM
 	jump Route35NumberAcceptedM
@@ -86,7 +86,7 @@ TrainerCamperIvan:
 	trainer CAMPER, IVAN, EVENT_BEAT_CAMPER_IVAN, CamperIvanSeenText, CamperIvanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CamperIvanAfterBattleText
 	waitbutton
@@ -97,7 +97,7 @@ TrainerCamperElliot:
 	trainer CAMPER, ELLIOT, EVENT_BEAT_CAMPER_ELLIOT, CamperElliotSeenText, CamperElliotBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CamperElliotAfterBattleText
 	waitbutton
@@ -108,7 +108,7 @@ TrainerPicnickerBrooke:
 	trainer PICNICKER, BROOKE, EVENT_BEAT_PICNICKER_BROOKE, PicnickerBrookeSeenText, PicnickerBrookeBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PicnickerBrookeAfterBattleText
 	waitbutton
@@ -119,7 +119,7 @@ TrainerPicnickerKim:
 	trainer PICNICKER, KIM, EVENT_BEAT_PICNICKER_KIM, PicnickerKimSeenText, PicnickerKimBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PicnickerKimAfterBattleText
 	waitbutton
@@ -131,7 +131,7 @@ TrainerBugCatcherArnie:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_ARNIE
 	iftrue .WantsBattle
@@ -151,8 +151,8 @@ TrainerBugCatcherArnie:
 	scall Route35AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_BUG_CATCHER_ARNIE
-	if_equal PHONE_CONTACTS_FULL, Route35PhoneFullM
-	if_equal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
+	ifequal PHONE_CONTACTS_FULL, Route35PhoneFullM
+	ifequal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
 	trainertotext BUG_CATCHER, ARNIE1, MEM_BUFFER_0
 	scall Route35RegisteredNumberM
 	jump Route35NumberAcceptedM
@@ -161,11 +161,11 @@ TrainerBugCatcherArnie:
 	scall Route35RematchM
 	winlosstext BugCatcherArnieBeatenText, 0
 	copybytetovar wArnieFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
@@ -227,7 +227,7 @@ TrainerFirebreatherWalt:
 	trainer FIREBREATHER, WALT, EVENT_BEAT_FIREBREATHER_WALT, FirebreatherWaltSeenText, FirebreatherWaltBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FirebreatherWaltAfterBattleText
 	waitbutton

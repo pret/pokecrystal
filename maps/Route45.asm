@@ -23,7 +23,7 @@ TrainerBlackbeltKenji:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_BLACKBELT_KENJI
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkcellnum PHONE_BLACKBELT_KENJI
 	iftrue .Registered
@@ -40,15 +40,15 @@ TrainerBlackbeltKenji:
 	scall Route45AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_BLACKBELT_KENJI
-	if_equal PHONE_CONTACTS_FULL, Route45PhoneFullM
-	if_equal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
+	ifequal PHONE_CONTACTS_FULL, Route45PhoneFullM
+	ifequal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
 	trainertotext BLACKBELT_T, KENJI3, MEM_BUFFER_0
 	scall Route45RegisteredNumberM
 	jump Route45NumberAcceptedM
 
 .Registered:
 	checkcode VAR_KENJI_BREAK
-	if_not_equal 1, Route45NumberAcceptedM
+	ifnotequal 1, Route45NumberAcceptedM
 	checkmorn
 	iftrue .Morning
 	checknite
@@ -126,7 +126,7 @@ TrainerHikerErik:
 	trainer HIKER, ERIK, EVENT_BEAT_HIKER_ERIK, HikerErikSeenText, HikerErikBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext HikerErikAfterBattleText
 	waitbutton
@@ -137,7 +137,7 @@ TrainerHikerMichael:
 	trainer HIKER, MICHAEL, EVENT_BEAT_HIKER_MICHAEL, HikerMichaelSeenText, HikerMichaelBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext HikerMichaelAfterBattleText
 	waitbutton
@@ -149,7 +149,7 @@ TrainerHikerParry:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_HIKER_PARRY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_PARRY
 	iftrue .WantsBattle
@@ -167,8 +167,8 @@ TrainerHikerParry:
 	scall Route45AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_HIKER_PARRY
-	if_equal PHONE_CONTACTS_FULL, Route45PhoneFullM
-	if_equal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
+	ifequal PHONE_CONTACTS_FULL, Route45PhoneFullM
+	ifequal PHONE_CONTACT_REFUSED, Route45NumberDeclinedM
 	trainertotext HIKER, PARRY1, MEM_BUFFER_0
 	scall Route45RegisteredNumberM
 	jump Route45NumberAcceptedM
@@ -177,9 +177,9 @@ TrainerHikerParry:
 	scall Route45RematchM
 	winlosstext HikerParry3BeatenText, 0
 	copybytetovar wParryFightCount
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
@@ -234,7 +234,7 @@ TrainerHikerTimothy:
 	trainer HIKER, TIMOTHY, EVENT_BEAT_HIKER_TIMOTHY, HikerTimothySeenText, HikerTimothyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext HikerTimothyAfterBattleText
 	waitbutton
@@ -245,7 +245,7 @@ TrainerCooltrainermRyan:
 	trainer COOLTRAINERM, RYAN, EVENT_BEAT_COOLTRAINERM_RYAN, CooltrainermRyanSeenText, CooltrainermRyanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainermRyanAfterBattleText
 	waitbutton
@@ -256,7 +256,7 @@ TrainerCooltrainerfKelly:
 	trainer COOLTRAINERF, KELLY, EVENT_BEAT_COOLTRAINERF_KELLY, CooltrainerfKellySeenText, CooltrainerfKellyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainerfKellyAfterBattleText
 	waitbutton

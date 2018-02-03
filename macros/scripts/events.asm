@@ -37,16 +37,16 @@ ptjump: MACRO
 	dw \1 ; pointer
 ENDM
 
-	enum if_equal_command ; $06
-if_equal: MACRO
-	db if_equal_command
+	enum ifequal_command ; $06
+ifequal: MACRO
+	db ifequal_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
 
-	enum if_not_equal_command ; $07
-if_not_equal: MACRO
-	db if_not_equal_command
+	enum ifnotequal_command ; $07
+ifnotequal: MACRO
+	db ifnotequal_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
@@ -63,16 +63,16 @@ iftrue: MACRO
 	dw \1 ; pointer
 ENDM
 
-	enum if_greater_than_command ; $0a
-if_greater_than: MACRO
-	db if_greater_than_command
+	enum ifgreater_command ; $0a
+ifgreater: MACRO
+	db ifgreater_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
 
-	enum if_less_than_command ; $0b
-if_less_than: MACRO
-	db if_less_than_command
+	enum ifless_command ; $0b
+ifless: MACRO
+	db ifless_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
@@ -298,20 +298,20 @@ givepoke: MACRO
 	db givepoke_command
 	db \1 ; pokemon
 	db \2 ; level
-	if _NARG >= 3
+if _NARG >= 3
 	db \3 ; item
-	if _NARG >= 4
+if _NARG >= 4
 	db \4 ; trainer
-	if \4
+if \4
 	dw \5 ; trainer_name_pointer
 	dw \6 ; pkmn_nickname
-	endc
-	else
+endc
+else
 	db 0
-	endc
-	else
+endc
+else
 	db 0, 0
-	endc
+endc
 ENDM
 
 	enum giveegg_command ; $2e
@@ -651,14 +651,14 @@ scripttalkafter: MACRO
 	db scripttalkafter_command
 ENDM
 
-	enum end_if_just_battled_command ; $66
-end_if_just_battled: MACRO
-	db end_if_just_battled_command
+	enum endifjustbattled_command ; $66
+endifjustbattled: MACRO
+	db endifjustbattled_command
 ENDM
 
-	enum check_just_battled_command ; $67
-check_just_battled: MACRO
-	db check_just_battled_command
+	enum checkjustbattled_command ; $67
+checkjustbattled: MACRO
+	db checkjustbattled_command
 ENDM
 
 	enum setlasttalked_command ; $68
@@ -920,9 +920,9 @@ reloadandreturn: MACRO
 	db \1 ; which_method
 ENDM
 
-	enum end_all_command ; $93
-end_all: MACRO
-	db end_all_command
+	enum endall_command ; $93
+endall: MACRO
+	db endall_command
 ENDM
 
 	enum pokemart_command ; $94
@@ -1062,7 +1062,7 @@ wait: MACRO
 	db \1 ; duration
 ENDM
 
-	enum check_save_command ; $a9
-check_save: MACRO
-	db check_save_command
+	enum checksave_command ; $a9
+checksave: MACRO
+	db checksave_command
 ENDM

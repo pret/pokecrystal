@@ -35,9 +35,9 @@ Route35NationalParkGate_MapScripts:
 
 .CheckIfContestAvailable:
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, .SetContestOfficer
-	if_equal THURSDAY, .SetContestOfficer
-	if_equal SATURDAY, .SetContestOfficer
+	ifequal TUESDAY, .SetContestOfficer
+	ifequal THURSDAY, .SetContestOfficer
+	ifequal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
 	iftrue .BugContestIsRunning
 	disappear ROUTE35NATIONALPARKGATE_OFFICER1
@@ -79,10 +79,10 @@ Route35NationalParkGate_MapScripts:
 
 OfficerScript_0x6a204:
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, Route35NationalParkGate_NoContestToday
-	if_equal MONDAY, Route35NationalParkGate_NoContestToday
-	if_equal WEDNESDAY, Route35NationalParkGate_NoContestToday
-	if_equal FRIDAY, Route35NationalParkGate_NoContestToday
+	ifequal SUNDAY, Route35NationalParkGate_NoContestToday
+	ifequal MONDAY, Route35NationalParkGate_NoContestToday
+	ifequal WEDNESDAY, Route35NationalParkGate_NoContestToday
+	ifequal FRIDAY, Route35NationalParkGate_NoContestToday
 	faceplayer
 	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
@@ -92,7 +92,7 @@ OfficerScript_0x6a204:
 	yesorno
 	iffalse Route35NationalParkGate_DeclinedToParticipate
 	checkcode VAR_PARTYCOUNT
-	if_greater_than 1, Route35NationalParkGate_LeaveTheRestBehind
+	ifgreater 1, Route35NationalParkGate_LeaveTheRestBehind
 	special ContestDropOffMons
 	clearevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 Route35NationalParkGate_OkayToProceed:
@@ -117,7 +117,7 @@ Route35NationalParkGate_OkayToProceed:
 
 Route35NationalParkGate_EnterContest:
 	checkcode VAR_FACING
-	if_equal LEFT, Route35NationalParkGate_FacingLeft
+	ifequal LEFT, Route35NationalParkGate_FacingLeft
 	applymovement PLAYER, MovementData_0x6a2e5
 	end
 
@@ -127,13 +127,13 @@ Route35NationalParkGate_FacingLeft:
 
 Route35NationalParkGate_LeaveTheRestBehind:
 	checkcode VAR_PARTYCOUNT
-	if_less_than PARTY_LENGTH, Route35NationalParkGate_LessThanFullParty
+	ifless PARTY_LENGTH, Route35NationalParkGate_LessThanFullParty
 	checkcode VAR_BOXSPACE
-	if_equal 0, Route35NationalParkGate_NoRoomInBox
+	ifequal 0, Route35NationalParkGate_NoRoomInBox
 
 Route35NationalParkGate_LessThanFullParty: ; 6a27d
 	special CheckFirstMonIsEgg
-	if_equal TRUE, Route35NationalParkGate_FirstMonIsEgg
+	ifequal TRUE, Route35NationalParkGate_FirstMonIsEgg
 	writetext UnknownText_0x6a4c6
 	yesorno
 	iffalse Route35NationalParkGate_DeclinedToLeaveMonsBehind

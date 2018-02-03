@@ -45,7 +45,7 @@ KurtScript_0x18e178:
 	special FadeOutMusic
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
-	if_equal UP, .RunAround
+	ifequal UP, .RunAround
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
@@ -130,13 +130,13 @@ KurtScript_0x18e178:
 	buttonsound
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	special SelectApricornForKurt
-	if_equal FALSE, .Cancel
-	if_equal BLU_APRICORN, .Blu
-	if_equal YLW_APRICORN, .Ylw
-	if_equal GRN_APRICORN, .Grn
-	if_equal WHT_APRICORN, .Wht
-	if_equal BLK_APRICORN, .Blk
-	if_equal PNK_APRICORN, .Pnk
+	ifequal FALSE, .Cancel
+	ifequal BLU_APRICORN, .Blu
+	ifequal YLW_APRICORN, .Ylw
+	ifequal GRN_APRICORN, .Grn
+	ifequal WHT_APRICORN, .Wht
+	ifequal BLK_APRICORN, .Blk
+	ifequal PNK_APRICORN, .Pnk
 ; .Red
 	setevent EVENT_GAVE_KURT_RED_APRICORN
 	jump .GaveKurtApricorns
@@ -293,7 +293,7 @@ KurtScript_0x18e178:
 	pause 20
 	showemote EMOTE_SHOCK, KURTSHOUSE_KURT1, 30
 	checkcode VAR_FACING
-	if_equal UP, .GSBallRunAround
+	ifequal UP, .GSBallRunAround
 	spriteface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466

@@ -14,7 +14,7 @@ SandstormHouseWoman:
 	special GetFirstPokemonHappiness
 	writetext SandstormHouseWomanText1
 	buttonsound
-	if_greater_than 150 - 1, .Loyal
+	ifgreater 150 - 1, .Loyal
 	jump .Disloyal
 
 .Loyal:

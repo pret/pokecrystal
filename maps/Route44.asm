@@ -21,7 +21,7 @@ TrainerBirdKeeperVance1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_VANCE
 	iftrue .WantsBattle
@@ -39,8 +39,8 @@ TrainerBirdKeeperVance1:
 	scall Route44AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_BIRDKEEPER_VANCE
-	if_equal PHONE_CONTACTS_FULL, Route44PhoneFullM
-	if_equal PHONE_CONTACT_REFUSED, Route44NumberDeclinedM
+	ifequal PHONE_CONTACTS_FULL, Route44PhoneFullM
+	ifequal PHONE_CONTACT_REFUSED, Route44NumberDeclinedM
 	trainertotext BIRD_KEEPER, VANCE1, MEM_BUFFER_0
 	scall Route44RegisteredNumberM
 	jump Route44NumberAcceptedM
@@ -49,9 +49,9 @@ TrainerBirdKeeperVance1:
 	scall Route44RematchM
 	winlosstext BirdKeeperVance1BeatenText, 0
 	copybytetovar wVanceFightCount
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
@@ -151,7 +151,7 @@ TrainerPsychicPhil:
 	trainer PSYCHIC_T, PHIL, EVENT_BEAT_PSYCHIC_PHIL, PsychicPhilSeenText, PsychicPhilBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PsychicPhilAfterBattleText
 	waitbutton
@@ -163,7 +163,7 @@ TrainerFisherWilton1:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_FISHER_WILTON
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_WILTON
 	iftrue .WantsBattle
@@ -183,8 +183,8 @@ TrainerFisherWilton1:
 	scall Route44AskNumber2M
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_WILTON
-	if_equal PHONE_CONTACTS_FULL, Route44PhoneFullM
-	if_equal PHONE_CONTACT_REFUSED, Route44NumberDeclinedM
+	ifequal PHONE_CONTACTS_FULL, Route44PhoneFullM
+	ifequal PHONE_CONTACT_REFUSED, Route44NumberDeclinedM
 	trainertotext FISHER, WILTON1, MEM_BUFFER_0
 	scall Route44RegisteredNumberM
 	jump Route44NumberAcceptedM
@@ -193,9 +193,9 @@ TrainerFisherWilton1:
 	scall Route44RematchM
 	winlosstext FisherWilton1BeatenText, 0
 	copybytetovar wWiltonFightCount
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
@@ -257,7 +257,7 @@ TrainerFisherEdgar:
 	trainer FISHER, EDGAR, EVENT_BEAT_FISHER_EDGAR, FisherEdgarSeenText, FisherEdgarBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherEdgarAfterBattleText
 	waitbutton
@@ -268,7 +268,7 @@ TrainerCooltrainerfCybil:
 	trainer COOLTRAINERF, CYBIL, EVENT_BEAT_COOLTRAINERF_CYBIL, CooltrainerfCybilSeenText, CooltrainerfCybilBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainerfCybilAfterBattleText
 	waitbutton
@@ -279,7 +279,7 @@ TrainerPokemaniacZach:
 	trainer POKEMANIAC, ZACH, EVENT_BEAT_POKEMANIAC_ZACH, PokemaniacZachSeenText, PokemaniacZachBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacZachAfterBattleText
 	waitbutton
@@ -290,7 +290,7 @@ TrainerCooltrainermAllen:
 	trainer COOLTRAINERM, ALLEN, EVENT_BEAT_COOLTRAINERM_ALLEN, CooltrainermAllenSeenText, CooltrainermAllenBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainermAllenAfterBattleText
 	waitbutton

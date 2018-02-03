@@ -31,9 +31,9 @@ DragonShrine_MapScripts:
 	loadmenuheader DragonShrineQuestion1_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .RightAnswer
-	if_equal 2, .WrongAnswer
-	if_equal 3, .RightAnswer
+	ifequal 1, .RightAnswer
+	ifequal 2, .WrongAnswer
+	ifequal 3, .RightAnswer
 	end
 
 .Question2:
@@ -43,9 +43,9 @@ DragonShrine_MapScripts:
 	loadmenuheader DragonShrineQuestion2_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .RightAnswer
-	if_equal 2, .RightAnswer
-	if_equal 3, .WrongAnswer
+	ifequal 1, .RightAnswer
+	ifequal 2, .RightAnswer
+	ifequal 3, .WrongAnswer
 .Question3:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	writetext DragonShrineQuestion3Text
@@ -53,9 +53,9 @@ DragonShrine_MapScripts:
 	loadmenuheader DragonShrineQuestion3_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .WrongAnswer
-	if_equal 2, .RightAnswer
-	if_equal 3, .RightAnswer
+	ifequal 1, .WrongAnswer
+	ifequal 2, .RightAnswer
+	ifequal 3, .RightAnswer
 .Question4:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5
 	writetext DragonShrineQuestion4Text
@@ -63,9 +63,9 @@ DragonShrine_MapScripts:
 	loadmenuheader DragonShrineQuestion4_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .RightAnswer
-	if_equal 2, .WrongAnswer
-	if_equal 3, .RightAnswer
+	ifequal 1, .RightAnswer
+	ifequal 2, .WrongAnswer
+	ifequal 3, .RightAnswer
 .Question5:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	writetext DragonShrineQuestion5Text
@@ -73,9 +73,9 @@ DragonShrine_MapScripts:
 	loadmenuheader DragonShrineQuestion5_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .WrongAnswer
-	if_equal 2, .RightAnswer
-	if_equal 3, .WrongAnswer
+	ifequal 1, .WrongAnswer
+	ifequal 2, .RightAnswer
+	ifequal 3, .WrongAnswer
 .RightAnswer:
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	iftrue .PassedTheTest
@@ -209,7 +209,7 @@ DragonShrineElder1Script:
 	writetext DragonShrineTakeThisDratiniText
 	waitbutton
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, .PartyFull
+	ifequal PARTY_LENGTH, .PartyFull
 	writetext DragonShrinePlayerReceivedDratiniText
 	playsound SFX_CAUGHT_MON
 	waitsfx

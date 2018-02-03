@@ -39,7 +39,7 @@ TrainerFisherTully:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_FISHER_TULLY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_TULLY
 	iftrue .WantsBattle
@@ -59,8 +59,8 @@ TrainerFisherTully:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_FISHER_TULLY
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext FISHER, TULLY1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -69,10 +69,10 @@ TrainerFisherTully:
 	scall .Rematch
 	winlosstext FisherTullyBeatenText, 0
 	copybytetovar wTullyFightCount
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3
@@ -164,7 +164,7 @@ TrainerPokemaniacShane:
 	trainer POKEMANIAC, SHANE, EVENT_BEAT_POKEMANIAC_SHANE, PokemaniacShaneSeenText, PokemaniacShaneBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacShaneAfterBattleText
 	waitbutton
@@ -175,7 +175,7 @@ TrainerHikerBenjamin:
 	trainer HIKER, BENJAMIN, EVENT_BEAT_HIKER_BENJAMIN, HikerBenjaminSeenText, HikerBenjaminBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext HikerBenjaminAfterBattleText
 	waitbutton

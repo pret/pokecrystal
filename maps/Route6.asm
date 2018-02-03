@@ -12,7 +12,7 @@ TrainerPokefanmRex:
 	trainer POKEFANM, REX, EVENT_BEAT_POKEFANM_REX, PokefanmRexSeenText, PokefanmRexBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokefanmRexAfterBattleText
 	waitbutton
@@ -23,7 +23,7 @@ TrainerPokefanmAllan:
 	trainer POKEFANM, ALLAN, EVENT_BEAT_POKEFANM_ALLAN, PokefanmAllanSeenText, PokefanmAllanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokefanmAllanAfterBattleText
 	waitbutton

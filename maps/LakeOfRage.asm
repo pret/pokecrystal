@@ -33,7 +33,7 @@ LakeOfRage_MapScripts:
 
 .Wesley:
 	checkcode VAR_WEEKDAY
-	if_equal WEDNESDAY, .WesleyAppears
+	ifequal WEDNESDAY, .WesleyAppears
 	disappear LAKEOFRAGE_WESLEY
 	return
 
@@ -87,7 +87,7 @@ GyaradosScript_0x70063:
 	loadwildmon GYARADOS, 30
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
-	if_equal $1, UnknownScript_0x7007a
+	ifequal $1, UnknownScript_0x7007a
 	disappear LAKEOFRAGE_GYARADOS
 UnknownScript_0x7007a:
 	reloadmapafterbattle
@@ -147,7 +147,7 @@ TrainerFisherAndre:
 	trainer FISHER, ANDRE, EVENT_BEAT_FISHER_ANDRE, FisherAndreSeenText, FisherAndreBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherAndreAfterBattleText
 	waitbutton
@@ -158,7 +158,7 @@ TrainerFisherRaymond:
 	trainer FISHER, RAYMOND, EVENT_BEAT_FISHER_RAYMOND, FisherRaymondSeenText, FisherRaymondBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherRaymondAfterBattleText
 	waitbutton
@@ -169,7 +169,7 @@ TrainerCooltrainermAaron:
 	trainer COOLTRAINERM, AARON, EVENT_BEAT_COOLTRAINERM_AARON, CooltrainermAaronSeenText, CooltrainermAaronBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainermAaronAfterBattleText
 	waitbutton
@@ -180,7 +180,7 @@ TrainerCooltrainerfLois:
 	trainer COOLTRAINERF, LOIS, EVENT_BEAT_COOLTRAINERF_LOIS, CooltrainerfLoisSeenText, CooltrainerfLoisBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainerfLoisAfterBattleText
 	waitbutton
@@ -193,7 +193,7 @@ WesleyScript:
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue WesleyWednesdayScript
 	checkcode VAR_WEEKDAY
-	if_not_equal WEDNESDAY, WesleyNotWednesdayScript
+	ifnotequal WEDNESDAY, WesleyNotWednesdayScript
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
 	writetext MeetWesleyText

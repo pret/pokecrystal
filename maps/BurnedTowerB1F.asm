@@ -104,7 +104,7 @@ BurnedTowerB1FEusine:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal UP, .Movement
+	ifequal UP, .Movement
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement1
 	jump UnknownScript_0x18622a
 

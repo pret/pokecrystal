@@ -37,8 +37,8 @@ GoldenrodCity_MapScripts:
 	checkitem COIN_CASE
 	iffalse .MoveTutorDisappear
 	checkcode VAR_WEEKDAY
-	if_equal WEDNESDAY, .MoveTutorAppear
-	if_equal SATURDAY, .MoveTutorAppear
+	ifequal WEDNESDAY, .MoveTutorAppear
+	ifequal SATURDAY, .MoveTutorAppear
 .MoveTutorDisappear:
 	disappear GOLDENRODCITY_POKEFAN_M2
 	return
@@ -61,35 +61,35 @@ MoveTutorScript:
 	yesorno
 	iffalse .Refused2
 	checkcoins 4000
-	if_equal HAVE_LESS, .NotEnoughMoney
+	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x1990ce
 	loadmenuheader .MoveMenuHeader
 	verticalmenu
 	closewindow
-	if_equal MOVETUTOR_FLAMETHROWER, .Flamethrower
-	if_equal MOVETUTOR_THUNDERBOLT, .Thunderbolt
-	if_equal MOVETUTOR_ICE_BEAM, .IceBeam
+	ifequal MOVETUTOR_FLAMETHROWER, .Flamethrower
+	ifequal MOVETUTOR_THUNDERBOLT, .Thunderbolt
+	ifequal MOVETUTOR_ICE_BEAM, .IceBeam
 	jump .Incompatible
 
 .Flamethrower:
 	writebyte MOVETUTOR_FLAMETHROWER
 	writetext UnknownText_0x1991cf
 	special MoveTutor
-	if_equal FALSE, .TeachMove
+	ifequal FALSE, .TeachMove
 	jump .Incompatible
 
 .Thunderbolt:
 	writebyte MOVETUTOR_THUNDERBOLT
 	writetext UnknownText_0x1991cf
 	special MoveTutor
-	if_equal FALSE, .TeachMove
+	ifequal FALSE, .TeachMove
 	jump .Incompatible
 
 .IceBeam:
 	writebyte MOVETUTOR_ICE_BEAM
 	writetext UnknownText_0x1991cf
 	special MoveTutor
-	if_equal FALSE, .TeachMove
+	ifequal FALSE, .TeachMove
 	jump .Incompatible
 
 .MoveMenuHeader:
@@ -129,7 +129,7 @@ MoveTutorScript:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	if_equal LEFT, .WalkAroundPlayer
+	ifequal LEFT, .WalkAroundPlayer
 	applymovement GOLDENRODCITY_POKEFAN_M2, MovementData_0x198a5f
 	jump .GoInside
 

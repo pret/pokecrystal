@@ -28,7 +28,7 @@ TrainerCamperSpencer:
 	trainer CAMPER, SPENCER, EVENT_BEAT_CAMPER_SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CamperSpencerAfterBattleText
 	waitbutton
@@ -39,7 +39,7 @@ TrainerPokemaniacBen:
 	trainer POKEMANIAC, BEN, EVENT_BEAT_POKEMANIAC_BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacBenAfterBattleText
 	waitbutton
@@ -51,7 +51,7 @@ TrainerPokemaniacBrent:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_BRENT
 	iftrue .WantsBattle
@@ -69,8 +69,8 @@ TrainerPokemaniacBrent:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_POKEMANIAC_BRENT
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext POKEMANIAC, BRENT1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -79,10 +79,10 @@ TrainerPokemaniacBrent:
 	scall .Rematch
 	winlosstext PokemaniacBrentBeatenText, 0
 	copybytetovar wBrentFightCount
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3
@@ -155,7 +155,7 @@ TrainerPokemaniacRon:
 	trainer POKEMANIAC, RON, EVENT_BEAT_POKEMANIAC_RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacRonAfterBattleText
 	waitbutton
@@ -166,7 +166,7 @@ TrainerFisherMarvin:
 	trainer FISHER, MARVIN, EVENT_BEAT_FISHER_MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherMarvinAfterBattleText
 	waitbutton
@@ -178,7 +178,7 @@ TrainerPicnickerTiffany:
 
 .Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_TIFFANY
 	iftrue .WantsBattle
@@ -200,8 +200,8 @@ TrainerPicnickerTiffany:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_TIFFANY
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext PICNICKER, TIFFANY3, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -210,10 +210,10 @@ TrainerPicnickerTiffany:
 	scall .Rematch
 	winlosstext PicnickerTiffanyBeatenText, 0
 	copybytetovar wTiffanyFightCount
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3

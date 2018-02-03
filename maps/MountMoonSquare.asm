@@ -26,7 +26,7 @@ ClefairyDance:
 	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	iftrue .NoDancing
 	checkcode VAR_WEEKDAY
-	if_not_equal MONDAY, .NoDancing
+	ifnotequal MONDAY, .NoDancing
 	checknite
 	iffalse .NoDancing
 	appear MOUNTMOONSQUARE_FAIRY1

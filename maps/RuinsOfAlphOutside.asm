@@ -28,7 +28,7 @@ RuinsOfAlphOutside_MapScripts:
 
 .MaybeScientist:
 	checkcode VAR_UNOWNCOUNT
-	if_greater_than 2, .YesScientist
+	ifgreater 2, .YesScientist
 	jump .NoScientist
 
 .YesScientist:
@@ -103,7 +103,7 @@ TrainerPsychicNathan:
 	trainer PSYCHIC_T, NATHAN, EVENT_BEAT_PSYCHIC_NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PsychicNathanAfterBattleText
 	waitbutton
@@ -114,7 +114,7 @@ TrainerSuperNerdStan:
 	trainer SUPER_NERD, STAN, EVENT_BEAT_SUPER_NERD_STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SuperNerdStanAfterBattleText
 	waitbutton

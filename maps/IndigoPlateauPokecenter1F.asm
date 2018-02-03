@@ -47,11 +47,11 @@ PlateauRivalBattle1:
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue PlateauRivalScriptDone
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, PlateauRivalScriptDone
-	if_equal TUESDAY, PlateauRivalScriptDone
-	if_equal THURSDAY, PlateauRivalScriptDone
-	if_equal FRIDAY, PlateauRivalScriptDone
-	if_equal SATURDAY, PlateauRivalScriptDone
+	ifequal SUNDAY, PlateauRivalScriptDone
+	ifequal TUESDAY, PlateauRivalScriptDone
+	ifequal THURSDAY, PlateauRivalScriptDone
+	ifequal FRIDAY, PlateauRivalScriptDone
+	ifequal SATURDAY, PlateauRivalScriptDone
 	moveobject INDIGOPLATEAUPOKECENTER1F_SILVER, 17, 9
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
@@ -69,11 +69,11 @@ PlateauRivalBattle2:
 	checkflag ENGINE_INDIGO_PLATEAU_RIVAL_FIGHT
 	iftrue PlateauRivalScriptDone
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, PlateauRivalScriptDone
-	if_equal TUESDAY, PlateauRivalScriptDone
-	if_equal THURSDAY, PlateauRivalScriptDone
-	if_equal FRIDAY, PlateauRivalScriptDone
-	if_equal SATURDAY, PlateauRivalScriptDone
+	ifequal SUNDAY, PlateauRivalScriptDone
+	ifequal TUESDAY, PlateauRivalScriptDone
+	ifequal THURSDAY, PlateauRivalScriptDone
+	ifequal FRIDAY, PlateauRivalScriptDone
+	ifequal SATURDAY, PlateauRivalScriptDone
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
 	spriteface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15

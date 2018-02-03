@@ -6,9 +6,9 @@ Route16_MapScripts:
 
 .AlwaysOnBike:
 	checkcode VAR_YCOORD
-	if_less_than 5, .CanWalk
+	ifless 5, .CanWalk
 	checkcode VAR_XCOORD
-	if_greater_than 13, .CanWalk
+	ifgreater 13, .CanWalk
 	setflag ENGINE_ALWAYS_ON_BIKE
 	return
 
