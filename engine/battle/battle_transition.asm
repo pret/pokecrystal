@@ -789,7 +789,7 @@ StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
 ; 8c728 (23:4728)
 
 .sinewave ; 8c728
-	sine_wave $100
+	sine_wave 32
 ; 8c768
 
 StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)

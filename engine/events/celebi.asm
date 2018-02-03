@@ -281,7 +281,7 @@ CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 ; 49b6e (12:5b6e)
 
 .sinewave ; 49b6e
-	sine_wave $100
+	sine_wave 32
 ; 49bae
 
 GetCelebiSpriteTile: ; 49bae

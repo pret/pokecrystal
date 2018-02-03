@@ -4157,5 +4157,5 @@ BattleAnim_AbsCosinePrecise: ; ce778
 
 ; ce77f
 BattleAnimSineWave: ; ce77f
-	sine_wave $100
+	sine_wave 32
 ; ce7bf

@@ -620,7 +620,7 @@ Sprites_Sine: ; 8e72c
 ; 8e75d
 
 .sinewave ; 8e75d
-	sine_wave $100
+	sine_wave 32
 
 
 AnimateEndOfExpBar: ; 8e79d

@@ -45,4 +45,4 @@ _Sine:: ; 84d9
 .sinewave ; 850b
 ; A $20-word table representing a sine wave.
 ; 90 degrees is index $10 at a base amplitude of $100.
-	sine_wave $100
+	sine_wave 32
