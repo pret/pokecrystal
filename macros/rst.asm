@@ -14,10 +14,6 @@ callfar: MACRO ; address, bank
 	rst FarCall
 ENDM
 
-; legacy support for pre-2018 pokecrystal
-callba EQUS "farcall"
-callab EQUS "callfar"
-
 homecall: MACRO
 	ld a, [hROMBank]
 	push af

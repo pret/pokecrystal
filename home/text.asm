@@ -568,7 +568,7 @@ ContText:: ; 1345
 
 
 PlaceDexEnd:: ; 1356
-; Legacy: ends a Pokédex entry (Red).
+; Ends a Pokédex entry in Gen 1.
 ; Dex entries are now regular strings.
 	ld [hl], "."
 	pop hl

@@ -940,9 +940,9 @@ wLinkDataEnd::
 NEXTU ; c800
 ; link data members
 wLinkPlayerName:: ds NAME_LENGTH
-wLinkPartyCount:: db
+wLinkPartyCount::   db
 wLinkPartySpecies:: ds PARTY_LENGTH
-wLinkPartySpeciesEnd:: db ; legacy scripts don't check PartyCount
+wLinkPartyEnd::     db ; Gen 1 scripts don't check PartyCount
 
 UNION ; c813
 ; time capsule party data
@@ -2198,11 +2198,11 @@ NEXTU ; d26b
 OTPlayerName:: ds NAME_LENGTH ; d26b
 ENDU ; d276
 
-OTPlayerID:: ds 2 ; d276
+OTPlayerID:: dw ; d276
 	ds 8
-OTPartyCount::   ds 1 ; d280
+OTPartyCount::   db ; d280
 OTPartySpecies:: ds PARTY_LENGTH ; d281
-OTPartyEnd::     ds 1 ; legacy scripts don't check PartyCount
+OTPartyEnd::     db ; Gen 1 scripts don't check PartyCount
 
 UNION ; d288
 ; ot party mons
@@ -2767,9 +2767,9 @@ SECTION "Party", WRAMX
 
 wPokemonData::
 
-PartyCount:: db ; dcd7 ; number of Pokémon in party
+PartyCount::   db ; dcd7 ; number of Pokémon in party
 PartySpecies:: ds PARTY_LENGTH ; dcd8 ; species of each Pokémon in party
-PartyEnd:: db ; dcde ; legacy scripts don't check PartyCount
+PartyEnd::     db ; dcde ; Gen 1 scripts don't check PartyCount
 
 PartyMons::
 PartyMon1:: party_struct PartyMon1 ; dcdf
