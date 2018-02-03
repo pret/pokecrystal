@@ -110,13 +110,13 @@ ENDM
 	enum checkmapscene_command ; $11
 checkmapscene: MACRO
 	db checkmapscene_command
-	map \1 ; map
+	map_id \1 ; map
 ENDM
 
 	enum setmapscene_command ; $12
 setmapscene: MACRO
 	db setmapscene_command
-	map \1 ; map
+	map_id \1 ; map
 	db \2 ; scene_id
 ENDM
 
@@ -385,19 +385,19 @@ ENDM
 warpmod: MACRO
 	db warpmod_command
 	db \1 ; warp_id
-	map \2 ; map
+	map_id \2 ; map
 ENDM
 
 	enum blackoutmod_command ; $3b
 blackoutmod: MACRO
 	db blackoutmod_command
-	map \1 ; map
+	map_id \1 ; map
 ENDM
 
 	enum warp_command ; $3c
 warp: MACRO
 	db warp_command
-	map \1 ; map
+	map_id \1 ; map
 	db \2 ; x
 	db \3 ; y
 ENDM
@@ -1002,7 +1002,7 @@ ENDM
 swarm: MACRO
 	db swarm_command
 	db \1 ; flag
-	map \2 ; map
+	map_id \2 ; map
 ENDM
 
 	enum halloffame_command ; $a1
@@ -1019,7 +1019,7 @@ ENDM
 warpfacing: MACRO
 	db warpfacing_command
 	db \1 ; facing
-	map \2 ; map
+	map_id \2 ; map
 	db \3 ; x
 	db \4 ; y
 ENDM

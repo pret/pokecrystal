@@ -1,6 +1,6 @@
 scene_var: MACRO
 ; map, variable
-	map \1
+	map_id \1
 	dw \2
 ENDM
 

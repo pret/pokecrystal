@@ -44,8 +44,8 @@
 	const map_load_spawn          ; 17
 	const map_load_connection     ; 18
 	const map_load_warp           ; 19
-	const map_attributes          ; 1a
-	const map_attributes_2        ; 1b
+	const map_load_attributes     ; 1a
+	const map_load_attributes_2   ; 1b
 	const map_clear_bg_palettes   ; 1c
 	const map_fade_out_palettes   ; 1d
 	const map_fade_in_palettes    ; 1e

@@ -4,18 +4,17 @@ GROUP_NONE EQU 0
 MAP_NONE   EQU 0
 
 
-; map_def struct members (see data/maps/definitions.asm)
+; map struct members (see data/maps/maps.asm)
 	const_def
-	const MAPDEF_MAPDATA_BANK ; 0
-	const MAPDEF_TILESET      ; 1
-	const MAPDEF_ENVIRONMENT  ; 2
-	const MAPDEF_MAPDATA      ; 3
-	const MAPDEF_MAPDATA_HI   ; 4
-	const MAPDEF_LOCATION     ; 5
-	const MAPDEF_MUSIC        ; 6
-	const MAPDEF_PALETTE      ; 7
-	const MAPDEF_FISHGROUP    ; 8
-NUM_MAPDEF_ATTRIBUTES EQU const_value
+	const MAP_MAPATTRIBUTES_BANK ; 0
+	const MAP_TILESET            ; 1
+	const MAP_ENVIRONMENT        ; 2
+	const MAP_MAPATTRIBUTES      ; 3
+	const MAP_MAPATTRIBUTES_HI   ; 4
+	const MAP_LOCATION           ; 5
+	const MAP_MUSIC              ; 6
+	const MAP_PALETTE            ; 7
+	const MAP_FISHGROUP          ; 8
 
 ; map environments (wEnvironment)
 	const_def 1

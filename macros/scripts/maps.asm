@@ -1,4 +1,4 @@
-map: MACRO
+map_id: MACRO
 ;\1: map id
 	db GROUP_\1, MAP_\1
 ENDM
@@ -22,7 +22,7 @@ warp_event: MACRO
 ;\3: map id: from constants/map_constants.asm
 ;\4: warp destination: starts at 1
 	db \2, \1, \4
-	map \3
+	map_id \3
 ENDM
 
 coord_event: MACRO
@@ -110,7 +110,7 @@ elevfloor: MACRO
 ;\2: warp destination: starts at 1
 ;\3: map id
 	db \1, \2
-	map \3
+	map_id \3
 ENDM
 
 conditional_event: MACRO

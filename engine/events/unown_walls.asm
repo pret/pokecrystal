@@ -3,7 +3,7 @@ HoOhChamber: ; 0x8addb
 	ld a, [hl]
 	cp HO_OH ; is Ho-oh the first Pokémon in the party?
 	jr nz, .done ; if not, we're done
-	call GetMapDataPointer ; pointless?
+	call GetMapAttributesPointer ; pointless?
 	ld de, EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	ld b, SET_FLAG
 	call EventFlagAction
@@ -12,7 +12,7 @@ HoOhChamber: ; 0x8addb
 ; 0x8adef
 
 OmanyteChamber: ; 8adef
-	call GetMapDataPointer ; pointless?
+	call GetMapAttributesPointer ; pointless?
 	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, CHECK_FLAG
 	call EventFlagAction
@@ -44,7 +44,7 @@ OmanyteChamber: ; 8adef
 	jr nz, .loop
 
 .open
-	call GetMapDataPointer ; pointless?
+	call GetMapAttributesPointer ; pointless?
 	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, SET_FLAG
 	call EventFlagAction
@@ -57,12 +57,12 @@ SpecialAerodactylChamber: ; 8ae30
 	push de
 	push bc
 
-	call GetMapDataPointer
+	call GetMapAttributesPointer
 	ld a, h
-	cp HIGH(RuinsOfAlphAerodactylChamber_MapData)
+	cp HIGH(RuinsOfAlphAerodactylChamber_MapAttributes)
 	jr nz, .nope
 	ld a, l
-	cp LOW(RuinsOfAlphAerodactylChamber_MapData)
+	cp LOW(RuinsOfAlphAerodactylChamber_MapAttributes)
 	jr nz, .nope
 
 	ld de, EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
@@ -85,12 +85,12 @@ SpecialKabutoChamber: ; 8ae4e
 	push hl
 	push de
 
-	call GetMapDataPointer
+	call GetMapAttributesPointer
 	ld a, h
-	cp HIGH(RuinsOfAlphKabutoChamber_MapData)
+	cp HIGH(RuinsOfAlphKabutoChamber_MapAttributes)
 	jr nz, .done
 	ld a, l
-	cp LOW(RuinsOfAlphKabutoChamber_MapData)
+	cp LOW(RuinsOfAlphKabutoChamber_MapAttributes)
 	jr nz, .done
 
 	ld de, EVENT_WALL_OPENED_IN_KABUTO_CHAMBER

@@ -1992,14 +1992,14 @@ wOverworldMapAnchor:: dw ; d194
 wMetatileStandingY:: db ; d196
 wMetatileStandingX:: db ; d197
 
-wPartialMapDef::
-wMapDataBank:: db ; d198
+wMapPartial::
+wMapAttributesBank:: db ; d198
 wTileset:: db ; d199
 wEnvironment:: db ; d19a
-wMapDataPointer:: dw ; d19b
-wPartialMapDefEnd::
+wMapAttributesPointer:: dw ; d19b
+wMapPartialEnd::
 
-wMapData:: ; d19d
+wMapAttributes:: ; d19d
 MapBorderBlock:: db ; d19d
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 MapHeight:: db ; d19e
@@ -2011,7 +2011,7 @@ MapScriptsPointer:: dw ; d1a4
 MapEventsPointer:: dw ; d1a6
 ; bit set
 MapConnections:: db ; d1a8
-wMapDataEnd::
+wMapAttributesEnd::
 
 NorthMapConnection:: map_connection_struct North ; d1a9
 SouthMapConnection:: map_connection_struct South ; d1b5

@@ -23,7 +23,7 @@ MapSetupScript_Warp: ; 15392
 	db map_lcd_off
 	db map_sound_off
 	db map_load_spawn
-	db map_attributes
+	db map_load_attributes
 	db map_change_callback
 	db map_spawn_coord
 	db map_player_coord
@@ -46,7 +46,7 @@ MapSetupScript_Warp: ; 15392
 
 MapSetupScript_BadWarp: ; 153a9
 	db map_load_spawn
-	db map_attributes
+	db map_load_attributes
 	db map_change_callback
 	db map_spawn_coord
 	db map_player_coord
@@ -71,7 +71,7 @@ MapSetupScript_BadWarp: ; 153a9
 MapSetupScript_Connection: ; 153bf
 	db map_animations_off
 	db map_load_connection
-	db map_attributes
+	db map_load_attributes
 	db map_change_callback
 	db map_player_coord
 	db map_load_blocks
@@ -93,7 +93,7 @@ MapSetupScript_Door: ; 153d1
 	db map_fade_out_palettes
 MapSetupScript_Train: ; 153d2
 	db map_load_warp
-	db map_attributes
+	db map_load_attributes
 	db map_warp_face
 	db map_change_callback
 	db map_player_coord
@@ -154,7 +154,7 @@ MapSetupScript_LinkReturn: ; 153f7
 MapSetupScript_Continue: ; 15408
 	db map_lcd_off
 	db map_sound_off
-	db map_attributes_2
+	db map_load_attributes_2
 	db map_anchor_screen
 	db map_start_callback
 	db map_load_blocks
