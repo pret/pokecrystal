@@ -27,7 +27,7 @@ ClefairyDance:
 	iftrue .NoDancing
 	checkcode VAR_WEEKDAY
 	ifnotequal MONDAY, .NoDancing
-	checknite
+	checktime NITE
 	iffalse .NoDancing
 	appear MOUNTMOONSQUARE_FAIRY1
 	appear MOUNTMOONSQUARE_FAIRY2

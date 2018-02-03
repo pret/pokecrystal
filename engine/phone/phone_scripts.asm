@@ -150,9 +150,9 @@ MomPhoneLectureScript: ; 0xbcfb1
 ; Bill
 
 BillPhoneScript1: ; 0xbcfc5
-	checkday
+	checktime DAY
 	iftrue .daygreet
-	checknite
+	checktime NITE
 	iftrue .nitegreet
 	farwritetext BillPhoneMornGreetingText
 	buttonsound
@@ -307,7 +307,7 @@ JackPhoneScript1:
 	iftrue .NotMonday
 	checkcode VAR_WEEKDAY
 	ifnotequal MONDAY, .NotMonday
-	checkmorn
+	checktime MORN
 	iftrue JackMondayMorning
 
 .NotMonday:
@@ -388,7 +388,7 @@ HueyPhoneScript1:
 	iftrue .NotWednesday
 	checkcode VAR_WEEKDAY
 	ifnotequal WEDNESDAY, .NotWednesday
-	checknite
+	checktime NITE
 	iftrue HueyWednesdayNight
 
 .NotWednesday:
@@ -432,7 +432,7 @@ GavenPhoneScript1:
 	iftrue .NotThursday
 	checkcode VAR_WEEKDAY
 	ifnotequal THURSDAY, .NotThursday
-	checkmorn
+	checktime MORN
 	iftrue GavenThursdayMorning
 
 .NotThursday:
@@ -479,7 +479,7 @@ BethPhoneScript1:
 	iftrue .NotFriday
 	checkcode VAR_WEEKDAY
 	ifnotequal FRIDAY, .NotFriday
-	checkday
+	checktime DAY
 	iftrue BethFridayAfternoon
 
 .NotFriday:
@@ -523,7 +523,7 @@ JosePhoneScript1:
 	iftrue .HasItem
 	checkcode VAR_WEEKDAY
 	ifnotequal SATURDAY, .NotSaturday
-	checknite
+	checktime NITE
 	iftrue JoseSaturdayNight
 
 .NotSaturday:
@@ -583,7 +583,7 @@ ReenaPhoneScript1:
 	iftrue .NotSunday
 	checkcode VAR_WEEKDAY
 	ifnotequal SUNDAY, .NotSunday
-	checkmorn
+	checktime MORN
 	iftrue ReenaSundayMorning
 
 .NotSunday:
@@ -625,7 +625,7 @@ JoeyPhoneScript1:
 	iftrue .NotMonday
 	checkcode VAR_WEEKDAY
 	ifnotequal MONDAY, .NotMonday
-	checkday
+	checktime DAY
 	iftrue JoeyMondayAfternoon
 
 .NotMonday:
@@ -671,7 +671,7 @@ WadePhoneScript1:
 	iftrue WadeHasItem
 	checkcode VAR_WEEKDAY
 	ifnotequal TUESDAY, .NotTuesday
-	checknite
+	checktime NITE
 	iftrue WadeTuesdayNight
 
 .NotTuesday:
@@ -785,7 +785,7 @@ RalphPhoneScript1:
 	iftrue Ralph_CheckSwarm
 	checkcode VAR_WEEKDAY
 	ifnotequal WEDNESDAY, Ralph_CheckSwarm
-	checkmorn
+	checktime MORN
 	iftrue Ralph_WednesdayMorning
 Ralph_CheckSwarm:
 	checkflag ENGINE_FISH_SWARM
@@ -847,7 +847,7 @@ LizPhoneScript1:
 	iftrue .NotThursday
 	checkcode VAR_WEEKDAY
 	ifnotequal THURSDAY, .NotThursday
-	checkday
+	checktime DAY
 	iftrue LizThursdayAfternoon
 
 .NotThursday:
@@ -952,7 +952,7 @@ AnthonyPhoneScript1:
 	iftrue .NotFriday
 	checkcode VAR_WEEKDAY
 	ifnotequal FRIDAY, .NotFriday
-	checknite
+	checktime NITE
 	iftrue AnthonyFridayNight
 
 .NotFriday:
@@ -1016,7 +1016,7 @@ ToddPhoneScript1:
 	iftrue .NotSaturday
 	checkcode VAR_WEEKDAY
 	ifnotequal SATURDAY, .NotSaturday
-	checkmorn
+	checktime MORN
 	iftrue ToddSaturdayMorning
 
 .NotSaturday:
@@ -1080,7 +1080,7 @@ GinaPhoneScript1:
 	iftrue .HasLeafStone
 	checkcode VAR_WEEKDAY
 	ifnotequal SUNDAY, .NotSunday
-	checkday
+	checktime DAY
 	iftrue GinaSundayDay
 
 .NotSunday:
@@ -1175,7 +1175,7 @@ ArniePhoneScript1:
 	iftrue .NotTuesday
 	checkcode VAR_WEEKDAY
 	ifnotequal TUESDAY, .NotTuesday
-	checkmorn
+	checktime MORN
 	iftrue ArnieTuesdayMorning
 
 .NotTuesday:
@@ -1244,7 +1244,7 @@ AlanPhoneScript1:
 	iftrue .FireStone
 	checkcode VAR_WEEKDAY
 	ifnotequal WEDNESDAY, .NotWednesday
-	checkday
+	checktime DAY
 	iftrue AlanWednesdayDay
 
 .NotWednesday:
@@ -1307,7 +1307,7 @@ DanaPhoneScript1:
 	iftrue .HasThunderstone
 	checkcode VAR_WEEKDAY
 	ifnotequal THURSDAY, .NotThursday
-	checknite
+	checktime NITE
 	iftrue DanaThursdayNight
 
 .NotThursday:
@@ -1373,7 +1373,7 @@ ChadPhoneScript1:
 	iftrue .NotFriday
 	checkcode VAR_WEEKDAY
 	ifnotequal FRIDAY, .NotFriday
-	checkmorn
+	checktime MORN
 	iftrue ChadFridayMorning
 
 .NotFriday:
@@ -1474,7 +1474,7 @@ TullyPhoneScript1:
 	iftrue TullyHasWaterStone
 	checkcode VAR_WEEKDAY
 	ifnotequal SUNDAY, .NotSunday
-	checknite
+	checktime NITE
 	iftrue TullySundayNight
 
 .NotSunday:
@@ -1533,7 +1533,7 @@ BrentPhoneScript1:
 	iftrue .NotMonday
 	checkcode VAR_WEEKDAY
 	ifnotequal MONDAY, .NotMonday
-	checkmorn
+	checktime MORN
 	iftrue BrentMondayMorning
 
 .NotMonday:
@@ -1580,7 +1580,7 @@ TiffanyPhoneScript1:
 	iftrue .HasItem
 	checkcode VAR_WEEKDAY
 	ifnotequal TUESDAY, .NotTuesday
-	checkday
+	checktime DAY
 	iftrue TiffanyTuesdayAfternoon
 
 .NotTuesday:
@@ -1679,7 +1679,7 @@ VancePhoneScript1:
 	iftrue .NotWednesday
 	checkcode VAR_WEEKDAY
 	ifnotequal WEDNESDAY, .NotWednesday
-	checknite
+	checktime NITE
 	iftrue VanceWednesdayNight
 
 .NotWednesday:
@@ -1722,7 +1722,7 @@ WiltonPhoneScript1:
 	iftrue .HasItem
 	checkcode VAR_WEEKDAY
 	ifnotequal THURSDAY, .NotThursday
-	checkmorn
+	checktime MORN
 	iftrue WiltonThursdayMorning
 
 .NotThursday:
@@ -1810,7 +1810,7 @@ ParryPhoneScript1:
 	iftrue .WantsRematch
 	checkcode VAR_WEEKDAY
 	ifnotequal FRIDAY, .WantsRematch
-	checkday
+	checktime DAY
 	iftrue ParryFridayDay
 
 .WantsRematch:
@@ -1853,7 +1853,7 @@ ErinPhoneScript1:
 	iftrue .NotSaturday
 	checkcode VAR_WEEKDAY
 	ifnotequal SATURDAY, .NotSaturday
-	checknite
+	checktime NITE
 	iftrue ErinSaturdayNight
 
 .NotSaturday:

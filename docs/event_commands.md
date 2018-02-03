@@ -93,10 +93,6 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 
 ## `$2B`: <code>checktime <i>time</i></code>
 
-- **`checkmorn`:** `checktime MORN`
-- **`checkday`:** `checktime DAY`
-- **`checknite`:** `checktime NITE`
-
 ## `$2C`: <code>checkpoke <i>mon_id</i></code>
 
 ## `$2D`: <code>givepoke <i>mon_id</i>, <i>level</i>[, <i>item</i>=0[, <i>trainer</i>=0, <i>ot_name</i>, <i>nickname</i>]]</code>

@@ -138,7 +138,7 @@ TrainerPsychicNorman:
 TrainerPokefanfJaime:
 	faceplayer
 	opentext
-	checknite
+	checktime NITE
 	iffalse .NotNight
 	checkevent EVENT_BEAT_POKEFANF_JAIME
 	iftrue .Beaten

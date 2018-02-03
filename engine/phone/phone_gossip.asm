@@ -510,9 +510,9 @@ KenjiAnswerPhoneScript:
 	jump PhoneScript_HangupText_Male
 
 .OnBreak:
-	checkmorn
+	checktime MORN
 	iftrue .Morning
-	checknite
+	checktime NITE
 	iftrue .Night
 	setevent EVENT_KENJI_ON_BREAK
 	farwritetext KenjiBreakText

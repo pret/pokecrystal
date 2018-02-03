@@ -153,11 +153,11 @@ UnknownScript_0x7a5b8:
 NeighborScript:
 	faceplayer
 	opentext
-	checkmorn
+	checktime MORN
 	iftrue .MornScript
-	checkday
+	checktime DAY
 	iftrue .DayScript
-	checknite
+	checktime NITE
 	iftrue .NiteScript
 
 .MornScript:

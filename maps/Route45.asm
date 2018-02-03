@@ -49,9 +49,9 @@ TrainerBlackbeltKenji:
 .Registered:
 	checkcode VAR_KENJI_BREAK
 	ifnotequal 1, Route45NumberAcceptedM
-	checkmorn
+	checktime MORN
 	iftrue .Morning
-	checknite
+	checktime NITE
 	iftrue .Night
 	checkevent EVENT_KENJI_ON_BREAK
 	iffalse Route45NumberAcceptedM

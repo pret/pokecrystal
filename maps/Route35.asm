@@ -237,7 +237,7 @@ TrainerFirebreatherWalt:
 TrainerOfficerDirk:
 	faceplayer
 	opentext
-	checknite
+	checktime NITE
 	iffalse .NotNight
 	checkevent EVENT_BEAT_OFFICER_DIRK
 	iftrue .AfterBattle

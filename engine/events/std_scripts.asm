@@ -57,11 +57,11 @@ PokecenterNurseScript:
 ; EVENT_WELCOMED_TO_POKECOM_CENTER is never set
 
 	opentext
-	checkmorn
+	checktime MORN
 	iftrue .morn
-	checkday
+	checktime DAY
 	iftrue .day
-	checknite
+	checktime NITE
 	iftrue .nite
 	jump .ok
 

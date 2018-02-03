@@ -148,9 +148,9 @@ Route29FisherScript:
 CooltrainerMScript_0x1a1031:
 	faceplayer
 	opentext
-	checkday
+	checktime DAY
 	iftrue .day_morn
-	checknite
+	checktime NITE
 	iftrue .nite
 .day_morn
 	writetext Text_WaitingForNight

@@ -351,7 +351,7 @@ TrainerPicnickerGina1:
 OfficerKeithScript:
 	faceplayer
 	opentext
-	checknite
+	checktime NITE
 	iffalse .NoFight
 	checkevent EVENT_BEAT_OFFICER_KEITH
 	iftrue .AfterScript

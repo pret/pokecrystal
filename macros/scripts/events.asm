@@ -283,10 +283,6 @@ checktime: MACRO
 	db \1 ; time
 ENDM
 
-checkmorn EQUS "checktime MORN"
-checkday  EQUS "checktime DAY"
-checknite EQUS "checktime NITE"
-
 	enum checkpoke_command ; $2c
 checkpoke: MACRO
 	db checkpoke_command
