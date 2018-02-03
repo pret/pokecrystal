@@ -96,9 +96,9 @@ Function170139: ; 170139
 	ld a, l
 	ld [wMisc + 1], a
 	ld hl, wBT_OTTempPkmn1DVs
-	ld a, [PlayerID]
+	ld a, [wPlayerID]
 	ld [hli], a
-	ld a, [PlayerID + 1]
+	ld a, [wPlayerID + 1]
 	ld [hli], a
 	ld a, [wSecretID]
 	ld [hli], a
@@ -106,23 +106,23 @@ Function170139: ; 170139
 	ld [hli], a
 	ld e, l
 	ld d, h
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld bc, PlayerID
+	ld bc, wPlayerID
 	ld de, wPlayerGender
 	farcall GetMobileOTTrainerClass
 	ld de, wBT_OTTempPkmn1CaughtGender
 	ld a, c
 	ld [de], a
 	inc de
-	ld a, LOW(PartyMons)
+	ld a, LOW(wPartyMons)
 	ld [wcd49], a
-	ld a, HIGH(PartyMons)
+	ld a, HIGH(wPartyMons)
 	ld [wcd4a], a
-	ld a, LOW(PartyMonNicknames)
+	ld a, LOW(wPartyMonNicknames)
 	ld [wcd4b], a
-	ld a, HIGH(PartyMonNicknames)
+	ld a, HIGH(wPartyMonNicknames)
 	ld [wcd4c], a
 	ld a, 3
 .CopyLoop:
@@ -231,15 +231,15 @@ _BattleTowerBattle: ; 17022c
 ; 17024d
 
 RunBattleTowerTrainer: ; 17024d
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
-	ld hl, Options
+	ld hl, wOptions
 	set BATTLE_SHIFT, [hl] ; SET MODE
 
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	push af
 	or $1
-	ld [InBattleTowerBattle], a
+	ld [wInBattleTowerBattle], a
 
 	xor a
 	ld [wLinkMode], a
@@ -253,7 +253,7 @@ RunBattleTowerTrainer: ; 17024d
 	farcall LoadPokemonData
 	farcall HealParty
 	ld a, [wBattleResult]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	and a
 	jr nz, .lost
 	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
@@ -261,7 +261,7 @@ RunBattleTowerTrainer: ; 17024d
 	ld a, [sNrOfBeatenBattleTowerTrainers]
 	ld [wNrOfBeatenBattleTowerTrainers], a
 	call CloseSRAM
-	ld hl, StringBuffer3
+	ld hl, wStringBuffer3
 	ld a, [wNrOfBeatenBattleTowerTrainers]
 	add "1"
 	ld [hli], a
@@ -270,9 +270,9 @@ RunBattleTowerTrainer: ; 17024d
 
 .lost
 	pop af
-	ld [InBattleTowerBattle], a
+	ld [wInBattleTowerBattle], a
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ld a, $1
 	ld [wBattleTowerBattleEnded], a
 	ret
@@ -334,7 +334,7 @@ ReadBTTrainerParty: ; 1702b7
 	ld [wBT_OTTempPkmn3NameEnd - 1], a ; $c68a + 57 = $c6c3
 ; Fix errors in the movesets
 	call CheckBTMonMovesForErrors
-; Repair the trainer name if needed, then copy it to OTPlayerName
+; Repair the trainer name if needed, then copy it to wOTPlayerName
 	ld de, wBT_OTTempName
 	ld c, NAME_LENGTH - 1
 	farcall CheckStringForErrors
@@ -346,7 +346,7 @@ ReadBTTrainerParty: ; 1702b7
 	ld hl, wBT_OTTempName ; 0xc608
 
 .done_trainer_name
-	ld de, OTPlayerName
+	ld de, wOTPlayerName
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
@@ -354,15 +354,15 @@ ReadBTTrainerParty: ; 1702b7
 
 	ld hl, wBT_OTTempTrainerClass
 	ld a, [hli]
-	ld [OtherTrainerClass], a
-	ld a, LOW(OTPartyMonNicknames)
-	ld [BGMapBuffer], a
-	ld a, HIGH(OTPartyMonNicknames)
-	ld [BGMapBuffer + 1], a
+	ld [wOtherTrainerClass], a
+	ld a, LOW(wOTPartyMonNicknames)
+	ld [wBGMapBuffer], a
+	ld a, HIGH(wOTPartyMonNicknames)
+	ld [wBGMapBuffer + 1], a
 
 	; Copy Pkmn into Memory from the address in hl
-	ld de, OTPartyMon1Species
-	ld bc, OTPartyCount
+	ld de, wOTPartyMon1Species
+	ld bc, wOTPartyCount
 	ld a, BATTLETOWER_PARTY_LENGTH
 	ld [bc], a
 	inc bc
@@ -375,16 +375,16 @@ ReadBTTrainerParty: ; 1702b7
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	push de
-	ld a, [BGMapBuffer]
+	ld a, [wBGMapBuffer]
 	ld e, a
-	ld a, [BGMapBuffer + 1]
+	ld a, [wBGMapBuffer + 1]
 	ld d, a
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, e
-	ld [BGMapBuffer], a
+	ld [wBGMapBuffer], a
 	ld a, d
-	ld [BGMapBuffer + 1], a
+	ld [wBGMapBuffer + 1], a
 	pop de
 	pop bc
 	pop af
@@ -420,7 +420,7 @@ endr
 	ld [hl], a
 
 .valid
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, $5
 	call GetSRAMBank
@@ -442,7 +442,7 @@ endr
 	ld [hl], a
 
 .dont_load
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld hl, MON_MOVES
 	add hl, bc
 	ld d, NUM_MOVES - 1
@@ -574,13 +574,13 @@ INCLUDE "data/battle_tower/unknown_levels.asm"
 
 
 CopyBTTrainer_FromBT_OT_TowBT_OTTemp: ; 1704a2
-; copy the BattleTower-Trainer data that lies at 'BT_OTTrainer' to 'wBT_OTTemp'
+; copy the BattleTower-Trainer data that lies at 'wBT_OTTrainer' to 'wBT_OTTemp'
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(BT_OTTrainer)
+	ld a, BANK(wBT_OTTrainer)
 	ld [rSVBK], a
 
-	ld hl, BT_OTTrainer
+	ld hl, wBT_OTTrainer
 	ld de, wBT_OTTemp
 	ld bc, BATTLE_TOWER_STRUCT_LENGTH
 	call CopyBytes
@@ -669,7 +669,7 @@ Function1704e1: ; 1704e1
 	call GetSRAMBank
 
 	ld hl, $a89c
-	ld de, StringBuffer3
+	ld de, wStringBuffer3
 	ld bc, $16
 	call CopyBytes
 
@@ -680,13 +680,13 @@ Function1704e1: ; 1704e1
 
 	call CloseSRAM
 	hlcoord 1, 1
-	ld de, StringBuffer3
+	ld de, wStringBuffer3
 	call PlaceString
 	hlcoord 1, 3
 	ld de, .String_Mail
 	call PlaceString
 	hlcoord 4, 3
-	ld de, StringBuffer4
+	ld de, wStringBuffer4
 	call PlaceString
 	hlcoord 8, 3
 	ld de, .String_PastReaders
@@ -901,7 +901,7 @@ Function1704e1: ; 1704e1
 ; 170687
 
 BattleTowerAction: ; 170687
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	ld e, a
 	ld d, 0
 	ld hl, .dw
@@ -972,13 +972,13 @@ BattleTower_GiveReward: ; 1706ee (5c:46ee) BattleTowerAction $1b
 
 	ld a, [sBattleTowerReward]
 	call CloseSRAM
-	ld [ScriptVar], a
-	ld hl, NumItems
+	ld [wScriptVar], a
+	ld hl, wNumItems
 	ld a, [hli]
 	cp MAX_ITEMS
 	ret c
 	ld b, MAX_ITEMS
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	ld c, a
 .loop
 	ld a, [hli]
@@ -992,7 +992,7 @@ BattleTower_GiveReward: ; 1706ee (5c:46ee) BattleTowerAction $1b
 	dec b
 	jr nz, .loop
 	ld a, POTION
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 Function17071b: ; 17071b (5c:471b) BattleTowerAction $1c
@@ -1038,7 +1038,7 @@ BattleTower_RandomlyChooseReward: ; 17073e (5c:473e) BattleTowerAction $1e
 
 BattleTowerAction_CheckExplanationRead: ; 17075f (5c:475f) BattleTowerAction $00
 	call BattleTower_CheckSaveFileExistsAndIsYours
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	ret z
 
@@ -1046,7 +1046,7 @@ BattleTowerAction_CheckExplanationRead: ; 17075f (5c:475f) BattleTowerAction $00
 	call GetSRAMBank
 	ld a, [sBattleTowerSaveFileFlags]
 	and $2
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call CloseSRAM
 	ret
 
@@ -1055,7 +1055,7 @@ BattleTowerAction_GetChallengeState: ; 170778 (5c:4778) BattleTowerAction $02
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
 	ld a, [hl]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call CloseSRAM
 	ret
 
@@ -1088,7 +1088,7 @@ Function1707ac: ; 1707ac (5c:47ac) BattleTowerAction $05
 	ld a, [$aa8c]
 	ld b, a
 	ld a, [$be46]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call CloseSRAM
 	and a
 	ret z
@@ -1103,7 +1103,7 @@ Function1707ac: ; 1707ac (5c:47ac) BattleTowerAction $05
 	ld a, [$aa8b]
 	call CloseSRAM
 	ld c, a
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	sub c
 	jr c, .asm_1707e5
 	cp $8
@@ -1113,7 +1113,7 @@ Function1707ac: ; 1707ac (5c:47ac) BattleTowerAction $05
 	jr nz, .asm_1707ef
 	ret
 .asm_1707e5
-	ld hl, CurDay
+	ld hl, wCurDay
 	ld a, $8c
 	sub c
 	add [hl]
@@ -1121,7 +1121,7 @@ Function1707ac: ; 1707ac (5c:47ac) BattleTowerAction $05
 	ret c
 .asm_1707ef
 	ld a, $8
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 
 Function1707f4: ; 1707f4 (5c:47f4) BattleTowerAction $06
 	ld a, $5
@@ -1137,7 +1137,7 @@ Function170807: ; 170807 (5c:4807) BattleTowerAction $16
 	call UpdateTime
 	ld a, $5
 	call GetSRAMBank
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld [$b2f9], a
 	xor a
 	ld [$b2fa], a
@@ -1146,7 +1146,7 @@ Function170807: ; 170807 (5c:4807) BattleTowerAction $16
 
 Function17081d: ; 17081d (5c:481d) BattleTowerAction $17
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$b2f9]
@@ -1159,7 +1159,7 @@ Function17081d: ; 17081d (5c:481d) BattleTowerAction $17
 	push bc
 	call UpdateTime
 	pop bc
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	sub c
 	jr c, .asm_170849
 	cp $b
@@ -1170,7 +1170,7 @@ Function17081d: ; 17081d (5c:481d) BattleTowerAction $17
 	ret
 
 .asm_170849
-	ld hl, CurDay
+	ld hl, wCurDay
 	ld a, 140
 	sub c
 	add [hl]
@@ -1178,7 +1178,7 @@ Function17081d: ; 17081d (5c:481d) BattleTowerAction $17
 	ret c
 .asm_170853
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, $5
 	call GetSRAMBank
 	xor a
@@ -1228,14 +1228,14 @@ BattleTower_CheckSaveFileExistsAndIsYours: ; 17089a BattleTowerAction $09
 	ld a, $1
 
 .nope
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 1708b1
 
 
 Function1708b1: ; 1708b1 (5c:48b1) BattleTowerAction $0a
 	xor a
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	call MaxVolume
 	ret
 
@@ -1243,7 +1243,7 @@ CheckMobileEventIndex: ; 1708b9 (5c:48b9) BattleTowerAction $0b something to do 
 	ld a, BANK(sMobileEventIndex)
 	call GetSRAMBank
 	ld a, [sMobileEventIndex]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call CloseSRAM
 	ret
 
@@ -1251,14 +1251,14 @@ Function1708c8: ; 1708c8 (5c:48c8) BattleTowerAction $0c
 	call UpdateTime
 	ld a, $5
 	call GetSRAMBank
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld [$aa8b], a
 	xor a
 	ld [$aa8c], a
 	ld a, [$aa5d]
 	cp $2
 	jr nc, .asm_1708ec
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld [$aa48], a
 	ld a, $1
 	ld [$aa47], a
@@ -1268,7 +1268,7 @@ Function1708c8: ; 1708c8 (5c:48c8) BattleTowerAction $0c
 
 Function1708f0: ; 1708f0 (5c:48f0) BattleTowerAction $0d
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call UpdateTime
 	ld a, $5
 	call GetSRAMBank
@@ -1278,7 +1278,7 @@ Function1708f0: ; 1708f0 (5c:48f0) BattleTowerAction $0d
 	call CloseSRAM
 	and a
 	ret z
-	ld hl, CurDay
+	ld hl, wCurDay
 	ld a, c
 	cp [hl]
 	jr nz, Function170923
@@ -1289,7 +1289,7 @@ Function1708f0: ; 1708f0 (5c:48f0) BattleTowerAction $0d
 	cp $5
 	ret c
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 
@@ -1309,22 +1309,22 @@ Function170923: ; 170923
 
 BattleTowerAction_EggTicket: ; 17093c (5c:493c) BattleTowerAction $0e
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, EGG_TICKET
-	ld [CurItem], a
-	ld hl, NumItems
+	ld [wCurItem], a
+	ld hl, wNumItems
 	call CheckItem
 	ret nc
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld b, 0
 	ld c, a
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 .loop
 	ld a, [hli]
 	cp EGG
 	jr nz, .not_egg
 	push hl
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	ld de, NAME_LENGTH_JAPANESE
 	ld a, b
 	and a
@@ -1354,15 +1354,15 @@ endr
 	ld [hli], a
 	pop hl
 	ld a, EGG_TICKET
-	ld [CurItem], a
+	ld [wCurItem], a
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld a, -1
-	ld [CurItemQuantity], a
-	ld hl, NumItems
+	ld [wCurItemQuantity], a
+	ld hl, wNumItems
 	call TossItem
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .different
@@ -1384,14 +1384,14 @@ Function1709aa: ; 1709aa (5c:49aa) BattleTowerAction $0f
 	ld a, BANK(w3_d090)
 	ld [rSVBK], a
 	ld a, [w3_d090]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	pop af
 	ld [rSVBK], a
 	ret
 
 Function1709bb: ; 1709bb (5c:49bb) BattleTowerAction $10
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$a800]
@@ -1452,7 +1452,7 @@ Jumptable_1709e7: ; 1709e7
 	farcall Function11b6b4
 	farcall Function17d0f3
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 170a33
 
@@ -1478,9 +1478,9 @@ Jumptable_1709e7: ; 1709e7
 	dec c
 	jr nz, .compare_loop
 	call CloseSRAM
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetMapSceneID
 	ld a, d
@@ -1492,7 +1492,7 @@ Jumptable_1709e7: ; 1709e7
 
 .no_scene
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .different
@@ -1502,10 +1502,10 @@ Jumptable_1709e7: ; 1709e7
 	xor a
 	ld [$a800], a
 	call CloseSRAM
-	ld [ScriptVar], a
-	ld a, [MapGroup]
+	ld [wScriptVar], a
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetMapSceneID
 	ld a, d
@@ -1536,13 +1536,13 @@ Function170aaf: ; 170aaf (5c:4aaf) BattleTowerAction $13
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa8d]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call CloseSRAM
 	ret
 
 Function170abe: ; 170abe (5c:4abe) BattleTowerAction $14
 	call BattleTower_CheckSaveFileExistsAndIsYours
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	ret z
 
@@ -1550,7 +1550,7 @@ Function170abe: ; 170abe (5c:4abe) BattleTowerAction $14
 	call GetSRAMBank
 	ld a, [sBattleTowerSaveFileFlags]
 	and $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call CloseSRAM
 	ret
 
@@ -1573,14 +1573,14 @@ BattleTowerAction_LevelCheck: ; 170ae8 (5c:4ae8) BattleTowerAction $18
 	ld a, b
 	ld [wcd4f], a
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	farcall BattleTower_LevelCheck ; level check
 	ret nc
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$b2fb]
 	call CloseSRAM
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 BattleTowerAction_UbersCheck: ; 170b16 (5c:4b16) BattleTowerAction $19
@@ -1593,14 +1593,14 @@ BattleTowerAction_UbersCheck: ; 170b16 (5c:4b16) BattleTowerAction $19
 	ld a, b
 	ld [wcd4f], a
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	farcall BattleTower_UbersCheck
 	ret nc
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$b2fb]
 	call CloseSRAM
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
@@ -1609,7 +1609,7 @@ LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
 	push af
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, BT_OTTrainerClass
+	ld hl, wBT_OTTrainerClass
 	ld a, [hl]
 	dec a
 	ld c, a
@@ -1623,7 +1623,7 @@ LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
 
 ; Load sprite of the opponent trainer
 ; because s/he is chosen randomly and appears out of nowhere
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	dec a
 	sla a
 	ld e, a
@@ -1633,12 +1633,12 @@ LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
 	ld c, a
 	ld b, 0
 	ld d, 0
-	ld hl, MapObjects
+	ld hl, wMapObjects
 	add hl, bc
 	inc hl
 	ld a, [wBTTempOTSprite]
 	ld [hl], a
-	ld hl, UsedSprites
+	ld hl, wUsedSprites
 	add hl, de
 	ld [hli], a
 	ld [hUsedSpriteIndex], a
@@ -1664,6 +1664,6 @@ CheckForBattleTowerRules: ; 170bd3
 	ld a, TRUE
 
 .asm_170be0
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 170be4

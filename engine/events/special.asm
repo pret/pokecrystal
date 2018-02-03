@@ -4,13 +4,13 @@ GiveShuckle: ; 7305
 
 ; Adding to the party.
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 
 ; Level 15 Shuckle.
 	ld a, SHUCKLE
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, 15
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 
 	predef TryAddMonToParty
 	jr nc, .NotGiven
@@ -21,35 +21,35 @@ GiveShuckle: ; 7305
 
 ; Holding a Berry.
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
 	push af
 	push bc
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 	call AddNTimes
 	ld [hl], BERRY
 	pop bc
 	pop af
 
 ; OT ID.
-	ld hl, PartyMon1ID
+	ld hl, wPartyMon1ID
 	call AddNTimes
 	ld a, HIGH(MANIA_OT_ID)
 	ld [hli], a
 	ld [hl], LOW(MANIA_OT_ID)
 
 ; Nickname.
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	call SkipNames
 	ld de, SpecialShuckleNick
 	call CopyName2
 
 ; OT.
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	call SkipNames
 	ld de, SpecialShuckleOT
 	call CopyName2
@@ -58,12 +58,12 @@ GiveShuckle: ; 7305
 	ld hl, wDailyFlags
 	set DAILYFLAGS_GOT_SHUCKIE_TODAY_F, [hl]
 	ld a, 1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .NotGiven:
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 SpecialShuckleOT:
@@ -75,12 +75,12 @@ ReturnShuckle: ; 737e
 	farcall SelectMonFromParty
 	jr c, .refused
 
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp SHUCKLE
 	jr nz, .DontReturn
 
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1ID
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 
@@ -93,8 +93,8 @@ ReturnShuckle: ; 737e
 	jr nz, .DontReturn
 
 ; OT
-	ld a, [CurPartyMon]
-	ld hl, PartyMonOT
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonOT
 	call SkipNames
 	ld de, SpecialShuckleOT
 .CheckOT:
@@ -110,8 +110,8 @@ ReturnShuckle: ; 737e
 .done
 	farcall CheckCurPartyMonFainted
 	jr c, .fainted
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Happiness
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1Happiness
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
@@ -123,36 +123,36 @@ ReturnShuckle: ; 737e
 	callfar RemoveMonFromPartyOrBox
 	ld a, SHUCKIE_RETURNED
 .HappyToStayWithYou:
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .refused
 	ld a, SHUCKIE_REFUSED
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .DontReturn:
 	xor a ; SHUCKIE_WRONG_MON
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .fainted
 	ld a, SHUCKIE_FAINTED
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 BillsGrandfather: ; 73f7
 	farcall SelectMonFromParty
 	jr c, .cancel
-	ld a, [CurPartySpecies]
-	ld [ScriptVar], a
+	ld a, [wCurPartySpecies]
+	ld [wScriptVar], a
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
 .cancel
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 YoungerHaircutBrother: ; 7413
@@ -172,7 +172,7 @@ HaircutOrGrooming: ; 7420
 	farcall SelectMonFromParty
 	pop hl
 	jr c, .nope
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
 	push hl
@@ -198,26 +198,26 @@ HaircutOrGrooming: ; 7420
 .ok
 	inc hl
 	ld a, [hli]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld c, [hl]
 	call ChangeHappiness
 	ret
 
 .nope
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .egg
 	ld a, 1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 INCLUDE "data/events/happiness_chances.asm"
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
-	ld hl, StringBuffer1
-	ld de, StringBuffer3
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer3
 	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 

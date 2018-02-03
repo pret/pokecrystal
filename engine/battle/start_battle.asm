@@ -17,7 +17,7 @@ FindFirstAliveMonAndStartBattle: ; 2ee2f
 	ld [hMapAnims], a
 	call DelayFrame
 	ld b, 6
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	ld de, PARTYMON_STRUCT_LENGTH - 1
 
 .loop
@@ -32,7 +32,7 @@ FindFirstAliveMonAndStartBattle: ; 2ee2f
 	ld de, MON_LEVEL - MON_HP
 	add hl, de
 	ld a, [hl]
-	ld [BattleMonLevel], a
+	ld [wBattleMonLevel], a
 	predef DoBattleTransition
 	farcall _LoadBattleFontsHPBar
 	ld a, 1
@@ -52,13 +52,13 @@ PlayBattleMusic: ; 2ee6c
 	push bc
 
 	xor a
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	call MaxVolume
 
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	cp BATTLETYPE_SUICUNE
 	ld de, MUSIC_SUICUNE_BATTLE
 	jp z, .done
@@ -66,7 +66,7 @@ PlayBattleMusic: ; 2ee6c
 	jp z, .done
 
 	; Are we fighting a trainer?
-	ld a, [OtherTrainerClass]
+	ld a, [wOtherTrainerClass]
 	and a
 	jr nz, .trainermusic
 
@@ -76,7 +76,7 @@ PlayBattleMusic: ; 2ee6c
 	jr nz, .kantowild
 
 	ld de, MUSIC_JOHTO_WILD_BATTLE
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	cp NITE_F
 	jr nz, .done
 	ld de, MUSIC_JOHTO_WILD_BATTLE_NIGHT
@@ -111,13 +111,13 @@ PlayBattleMusic: ; 2ee6c
 	jr c, .done
 
 	ld de, MUSIC_RIVAL_BATTLE
-	ld a, [OtherTrainerClass]
+	ld a, [wOtherTrainerClass]
 	cp RIVAL1
 	jr z, .done
 	cp RIVAL2
 	jr nz, .othertrainer
 
-	ld a, [OtherTrainerID]
+	ld a, [wOtherTrainerID]
 	cp RIVAL2_2_CHIKORITA ; Rival in Indigo Plateau
 	jr c, .done
 	ld de, MUSIC_CHAMPION_BATTLE
@@ -150,7 +150,7 @@ PlayBattleMusic: ; 2ee6c
 
 ClearBattleRAM: ; 2ef18
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ld [wBattleResult], a
 
 	ld hl, wPartyMenuCursor
@@ -160,25 +160,25 @@ ClearBattleRAM: ; 2ef18
 	ld [hl], a
 
 	ld [wMenuScrollPosition], a
-	ld [CriticalHit], a
-	ld [BattleMonSpecies], a
+	ld [wCriticalHit], a
+	ld [wBattleMonSpecies], a
 	ld [wBattleParticipantsNotFainted], a
-	ld [CurBattleMon], a
+	ld [wCurBattleMon], a
 	ld [wForcedSwitch], a
-	ld [TimeOfDayPal], a
-	ld [PlayerTurnsTaken], a
-	ld [EnemyTurnsTaken], a
-	ld [EvolvableFlags], a
+	ld [wTimeOfDayPal], a
+	ld [wPlayerTurnsTaken], a
+	ld [wEnemyTurnsTaken], a
+	ld [wEvolvableFlags], a
 
-	ld hl, PlayerHPPal
+	ld hl, wPlayerHPPal
 	ld [hli], a
 	ld [hl], a
 
-	ld hl, BattleMonDVs
+	ld hl, wBattleMonDVs
 	ld [hli], a
 	ld [hl], a
 
-	ld hl, EnemyMonDVs
+	ld hl, wEnemyMonDVs
 	ld [hli], a
 	ld [hl], a
 

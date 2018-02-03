@@ -78,12 +78,12 @@ CheckBugContestContestantFlag: ; 139ed
 INCLUDE "data/events/bug_contest_flags.asm"
 
 ContestDropOffMons: ; 13a12
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	ld a, [hli]
 	or [hl]
 	jr z, .fainted
 ; Mask the rest of your party by setting the count to 1...
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	ld a, 1
 	ld [hli], a
 	inc hl
@@ -93,18 +93,18 @@ ContestDropOffMons: ; 13a12
 ; ... and replacing it with the terminator byte
 	ld [hl], -1
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .fainted
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 13a31
 
 ContestReturnMons: ; 13a31
 ; Restore the species of the second mon.
-	ld hl, PartySpecies + 1
+	ld hl, wPartySpecies + 1
 	ld a, [wBugContestSecondPartySpecies]
 	ld [hl], a
 ; Restore the party count, which must be recomputed.
@@ -118,6 +118,6 @@ ContestReturnMons: ; 13a31
 
 .done
 	ld a, b
-	ld [PartyCount], a
+	ld [wPartyCount], a
 	ret
 ; 13a47

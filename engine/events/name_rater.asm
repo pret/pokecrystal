@@ -10,7 +10,7 @@ _NameRater: ; fb6ed
 	farcall SelectMonFromParty
 	jr c, .cancel
 ; He can't rename an egg...
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
 ; ... or a Pokemon you got from a trade.
@@ -25,15 +25,15 @@ _NameRater: ; fb6ed
 ; What name shall I give it then?
 	ld hl, NameRaterWhichNameText
 	call PrintText
-; Load the new nickname into StringBuffer2
+; Load the new nickname into wStringBuffer2
 	xor a ; PARTYMON
-	ld [MonType], a
-	ld a, [CurPartySpecies]
+	ld [wMonType], a
+	ld a, [wCurPartySpecies]
 	ld [wd265], a
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
 	ld b, 0
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	farcall _NamingScreen
 ; If the new name is empty, treat it as unchanged.
 	call IsNewNameEmpty
@@ -43,14 +43,14 @@ _NameRater: ; fb6ed
 	call CompareNewToOld
 	ld hl, NameRaterSameAsBeforeText
 	jr c, .samename
-; Copy the new name from StringBuffer2
-	ld hl, PartyMonNicknames
+; Copy the new name from wStringBuffer2
+	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld hl, NameRaterEvenBetterText
@@ -80,21 +80,21 @@ _NameRater: ; fb6ed
 ; fb78a
 
 CheckIfMonIsYourOT: ; fb78a
-; Checks to see if the partymon loaded in [CurPartyMon] has the different OT as you.  Returns carry if not.
-	ld hl, PartyMonOT
+; Checks to see if the partymon loaded in [wCurPartyMon] has the different OT as you.  Returns carry if not.
+	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
-	ld de, PlayerName
+	ld de, wPlayerName
 	ld c, NAME_LENGTH
 	call .loop
 	jr c, .nope
 
-	ld hl, PartyMon1ID
+	ld hl, wPartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
-	ld de, PlayerID
+	ld de, wPlayerID
 	ld c, 2 ; number of bytes in which your ID is stored
 .loop
 	ld a, [de]
@@ -113,8 +113,8 @@ CheckIfMonIsYourOT: ; fb78a
 ; fb7be
 
 IsNewNameEmpty: ; fb7be
-; Checks to see if the nickname loaded in StringBuffer2 is empty.  If so, return carry.
-	ld hl, StringBuffer2
+; Checks to see if the nickname loaded in wStringBuffer2 is empty.  If so, return carry.
+	ld hl, wStringBuffer2
 	ld c, MON_NAME_LENGTH - 1
 .loop
 	ld a, [hli]
@@ -135,21 +135,21 @@ IsNewNameEmpty: ; fb7be
 ; fb7d3
 
 CompareNewToOld: ; fb7d3
-; Compares the nickname in StringBuffer2 to the previous nickname.  If they are the same, return carry.
-	ld hl, PartyMonNicknames
+; Compares the nickname in wStringBuffer2 to the previous nickname.  If they are the same, return carry.
+	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	push hl
 	call GetNicknameLength
 	ld b, c
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	call GetNicknameLength
 	pop hl
 	ld a, c
 	cp b
 	jr nz, .different
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 .loop
 	ld a, [de]
 	cp "@"

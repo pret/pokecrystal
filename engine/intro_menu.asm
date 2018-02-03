@@ -78,7 +78,7 @@ NewGame: ; 5b6b
 	ld [wPreviousLandmark], a
 
 	ld a, SPAWN_HOME
-	ld [DefaultSpawnpoint], a
+	ld [wDefaultSpawnpoint], a
 
 	ld a, MAPSETUP_WARP
 	ld [hMapEntryMethod], a
@@ -106,8 +106,8 @@ ResetWRAM: ; 5ba7
 
 _ResetWRAM: ; 5bae
 
-	ld hl, Sprites
-	ld bc, Options - Sprites
+	ld hl, wVirtualOAM
+	ld bc, wOptions - wVirtualOAM
 	xor a
 	call ByteFill
 
@@ -125,13 +125,13 @@ _ResetWRAM: ; 5bae
 	ld [hSecondsBackup], a
 	call DelayFrame
 	ld a, [hRandomSub]
-	ld [PlayerID], a
+	ld [wPlayerID], a
 
 	ld a, [rLY]
 	ld [hSecondsBackup], a
 	call DelayFrame
 	ld a, [hRandomAdd]
-	ld [PlayerID + 1], a
+	ld [wPlayerID + 1], a
 
 	call Random
 	ld [wSecretID], a
@@ -139,7 +139,7 @@ _ResetWRAM: ; 5bae
 	call Random
 	ld [wSecretID + 1], a
 
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	call .InitList
 
 	xor a
@@ -154,16 +154,16 @@ _ResetWRAM: ; 5bae
 	call .InitList
 	call CloseSRAM
 
-	ld hl, NumItems
+	ld hl, wNumItems
 	call .InitList
 
-	ld hl, NumKeyItems
+	ld hl, wNumKeyItems
 	call .InitList
 
-	ld hl, NumBalls
+	ld hl, wNumBalls
 	call .InitList
 
-	ld hl, PCItems
+	ld hl, wPCItems
 	call .InitList
 
 	xor a
@@ -191,27 +191,27 @@ _ResetWRAM: ; 5bae
 	call InitializeMagikarpHouse
 
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 
 	ld [wJohtoBadges], a
 	ld [wKantoBadges], a
 
-	ld [Coins], a
-	ld [Coins + 1], a
+	ld [wCoins], a
+	ld [wCoins + 1], a
 
 if START_MONEY >= $10000
 	ld a, HIGH(START_MONEY >> 8)
 endc
-	ld [Money], a
+	ld [wMoney], a
 	ld a, HIGH(START_MONEY) ; mid
-	ld [Money + 1], a
+	ld [wMoney + 1], a
 	ld a, LOW(START_MONEY)
-	ld [Money + 2], a
+	ld [wMoney + 2], a
 
 	xor a
 	ld [wWhichMomItem], a
 
-	ld hl, MomItemTriggerBalance
+	ld hl, wMomItemTriggerBalance
 	ld [hl], HIGH(MOM_MONEY >> 8)
 	inc hl
 	ld [hl], HIGH(MOM_MONEY) ; mid
@@ -289,19 +289,19 @@ InitializeMagikarpHouse: ; 5cd3
 
 InitializeNPCNames: ; 5ce9
 	ld hl, .Rival
-	ld de, RivalName
+	ld de, wRivalName
 	call .Copy
 
 	ld hl, .Mom
-	ld de, MomsName
+	ld de, wMomsName
 	call .Copy
 
 	ld hl, .Red
-	ld de, RedsName
+	ld de, wRedsName
 	call .Copy
 
 	ld hl, .Green
-	ld de, GreensName
+	ld de, wGreensName
 
 .Copy:
 	ld bc, NAME_LENGTH
@@ -324,7 +324,7 @@ InitializeWorld: ; 5d23
 LoadOrRegenerateLuckyIDNumber: ; 5d33
 	ld a, BANK(sLuckyIDNumber)
 	call GetSRAMBank
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	inc a
 	ld b, a
 	ld a, [sLuckyNumberDay]
@@ -371,11 +371,11 @@ Continue: ; 5d65
 
 .Check2Pass:
 	ld a, $8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, LOW(MUSIC_NONE)
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_NONE)
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	call ClearBGPalettes
 	call Continue_MobileAdapterMenu
 	call CloseWindow
@@ -397,14 +397,14 @@ Continue: ; 5d65
 
 .SpawnAfterE4:
 	ld a, SPAWN_NEW_BARK
-	ld [DefaultSpawnpoint], a
+	ld [wDefaultSpawnpoint], a
 	call PostCreditsSpawn
 	jp FinishContinueFunction
 ; 5de2
 
 SpawnAfterRed: ; 5de2
 	ld a, SPAWN_MT_SILVER
-	ld [DefaultSpawnpoint], a
+	ld [wDefaultSpawnpoint], a
 ; 5de7
 
 PostCreditsSpawn: ; 5de7
@@ -425,22 +425,22 @@ Continue_MobileAdapterMenu: ; 5df0
 	bit 1, [hl]
 	ret nz
 	ld a, 5
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, LOW(MUSIC_MOBILE_ADAPTER_MENU)
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_MOBILE_ADAPTER_MENU)
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames
 	ld c, $1
 	farcall InitMobileProfile ; mobile
 	farcall _SaveData
 	ld a, 8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, LOW(MUSIC_NONE)
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_NONE)
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld c, 35
 	call DelayFrames
 	ret
@@ -643,7 +643,7 @@ Continue_DisplayPokedexNumCaught: ; 5f6b
 	bit STATUSFLAGS_POKEDEX_F, a
 	ret z
 	push hl
-	ld hl, PokedexCaught
+	ld hl, wPokedexCaught
 if NUM_POKEMON % 8
 	ld b, NUM_POKEMON / 8 + 1
 else
@@ -657,12 +657,12 @@ endc
 ; 5f84
 
 Continue_DisplayGameTime: ; 5f84
-	ld de, GameTimeHours
+	ld de, wGameTimeHours
 	lb bc, 2, 3
 	call PrintNum
 	ld [hl], "<COLON>"
 	inc hl
-	ld de, GameTimeMinutes
+	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
 ; 5f99
@@ -679,9 +679,9 @@ OakSpeech: ; 0x5f99
 	call RotateFourPalettesRight
 	call RotateThreePalettesRight
 	xor a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, POKEMON_PROF
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
 	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
@@ -694,16 +694,16 @@ OakSpeech: ; 0x5f99
 	call ClearTileMap
 
 	ld a, WOOPER
-	ld [CurSpecies], a
-	ld [CurPartySpecies], a
+	ld [wCurSpecies], a
+	ld [wCurPartySpecies], a
 	call GetBaseData
 
 	hlcoord 6, 4
 	call PrepMonFrontpic
 
 	xor a
-	ld [TempMonDVs], a
-	ld [TempMonDVs + 1], a
+	ld [wTempMonDVs], a
+	ld [wTempMonDVs + 1], a
 
 	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
@@ -717,9 +717,9 @@ OakSpeech: ; 0x5f99
 	call ClearTileMap
 
 	xor a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, POKEMON_PROF
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
 	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
@@ -732,7 +732,7 @@ OakSpeech: ; 0x5f99
 	call ClearTileMap
 
 	xor a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	farcall DrawIntroPlayerPic
 
 	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
@@ -792,7 +792,7 @@ NamePlayer: ; 0x6074
 
 .NewName:
 	ld b, 1
-	ld de, PlayerName
+	ld de, wPlayerName
 	farcall NamingScreen
 
 	call RotateThreePalettesRight
@@ -802,14 +802,14 @@ NamePlayer: ; 0x6074
 	call WaitBGMap
 
 	xor a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	farcall DrawIntroPlayerPic
 
 	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call RotateThreePalettesLeft
 
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld de, .Chris
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -838,10 +838,10 @@ Unreferenced_Function60e9:
 StorePlayerName: ; 60fa
 	ld a, "@"
 	ld bc, NAME_LENGTH
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	call ByteFill
-	ld hl, PlayerName
-	ld de, StringBuffer2
+	ld hl, wPlayerName
+	ld de, wStringBuffer2
 	call CopyName2
 	ret
 ; 610f
@@ -852,12 +852,12 @@ ShrinkPlayer: ; 610f
 	push af
 
 	ld a, 32 ; fade time
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, d
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 
 	ld de, SFX_ESCAPE_ROPE
 	call PlaySFX
@@ -969,7 +969,7 @@ Intro_PlacePlayerSprite: ; 61cd
 	ld hl, vTiles0
 	call Request2bpp
 
-	ld hl, Sprite01
+	ld hl, wVirtualOAMSprite00
 	ld de, .sprites
 	ld a, [de]
 	inc de
@@ -1097,7 +1097,7 @@ Unreferenced_Function6292: ; 6292
 	ld a, [hVBlankCounter]
 	and $7
 	ret nz
-	ld hl, LYOverrides + $5f
+	ld hl, wLYOverrides + $5f
 	ld a, [hl]
 	dec a
 	ld bc, 2 * SCREEN_WIDTH
@@ -1143,7 +1143,7 @@ TitleScreenEntrance: ; 62bc
 
 ; Lay out a base (all lines scrolling together).
 	ld e, a
-	ld hl, LYOverrides
+	ld hl, wLYOverrides
 	ld bc, 8 * 10 ; logo height
 	call ByteFill
 
@@ -1154,7 +1154,7 @@ TitleScreenEntrance: ; 62bc
 	inc a
 
 	ld b, 8 * 10 / 2 ; logo height / 2
-	ld hl, LYOverrides + 1
+	ld hl, wLYOverrides + 1
 .loop
 	ld [hli], a
 	inc hl
@@ -1279,9 +1279,9 @@ TitleScreenMain: ; 6304
 
 ; Fade out the title screen music
 	xor a
-	ld [MusicFadeID], a
-	ld [MusicFadeID + 1], a
-	ld hl, MusicFade
+	ld [wMusicFadeID], a
+	ld [wMusicFadeID + 1], a
+	ld hl, wMusicFade
 	ld [hl], 8 ; 1 second
 
 	ld hl, wTitleScreenTimer
@@ -1305,7 +1305,7 @@ TitleScreenEnd: ; 6375
 	ld hl, wTitleScreenTimer
 	inc [hl]
 
-	ld a, [MusicFade]
+	ld a, [wMusicFade]
 	and a
 	ret nz
 
@@ -1333,7 +1333,7 @@ Unreferenced_Function639b:
 	ld a, [wTitleScreenTimer]
 	and %00000011
 	ret nz
-	ld bc, SpriteAnim10
+	ld bc, wSpriteAnim10
 	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc ; over-the-top compicated way to load wc3ae into hl
 	ld l, [hl]

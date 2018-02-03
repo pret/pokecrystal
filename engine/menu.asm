@@ -725,7 +725,7 @@ _ExitMenu:: ; 243e8
 ; 24423
 
 Unreferenced_Function24423: ; 24423
-	ld a, [VramState]
+	ld a, [wVramState]
 	bit 0, a
 	ret z
 	xor a ; sScratch

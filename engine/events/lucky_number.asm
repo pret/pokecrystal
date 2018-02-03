@@ -1,13 +1,13 @@
 CheckForLuckyNumberWinners: ; 4d87a
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld [wFoundMatchingIDInParty], a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	ret z
 	ld d, a
-	ld hl, PartyMon1ID
-	ld bc, PartySpecies
+	ld hl, wPartyMon1ID
+	ld bc, wPartySpecies
 .PartyLoop:
 	ld a, [bc]
 	inc bc
@@ -79,7 +79,7 @@ CheckForLuckyNumberWinners: ; 4d87a
 	cp EGG
 	jr z, .SkipBoxMon
 
-	call .CompareLuckyNumberToMonID ; sets ScriptVar and CurPartySpecies appropriately
+	call .CompareLuckyNumberToMonID ; sets wScriptVar and wCurPartySpecies appropriately
 	jr nc, .SkipBoxMon
 	ld a, 1
 	ld [wFoundMatchingIDInParty], a
@@ -100,14 +100,14 @@ CheckForLuckyNumberWinners: ; 4d87a
 	jr c, .BoxesLoop
 
 	call CloseSRAM
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	ret z ; found nothing
 	farcall StubbedTrainerRankings_LuckyNumberShow
 	ld a, [wFoundMatchingIDInParty]
 	and a
 	push af
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, .FoundPartymonText
@@ -124,17 +124,17 @@ CheckForLuckyNumberWinners: ; 4d87a
 	push hl
 	ld d, h
 	ld e, l
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
-	ld hl, LuckyNumberDigit1Buffer
+	ld hl, wLuckyNumberDigit1Buffer
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ld b, 5
 	ld c, 0
-	ld hl, LuckyNumberDigit5Buffer
-	ld de, Buffer5
+	ld hl, wLuckyNumberDigit5Buffer
+	ld de, wBuffer5
 .loop
 	ld a, [de]
 	cp [hl]
@@ -167,7 +167,7 @@ CheckForLuckyNumberWinners: ; 4d87a
 
 .okay
 	inc b
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr z, .bettermatch
 	cp b
@@ -176,10 +176,10 @@ CheckForLuckyNumberWinners: ; 4d87a
 .bettermatch
 	dec b
 	ld a, b
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	pop bc
 	ld a, b
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	pop bc
 	scf
 	ret
@@ -217,10 +217,10 @@ CheckForLuckyNumberWinners: ; 4d87a
 	db "@"
 
 PrintTodaysLuckyNumber: ; 4d9d3
-	ld hl, StringBuffer3
+	ld hl, wStringBuffer3
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ld a, "@"
-	ld [StringBuffer3 + 5], a
+	ld [wStringBuffer3 + 5], a
 	ret

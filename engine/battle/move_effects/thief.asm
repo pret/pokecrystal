@@ -26,7 +26,7 @@ BattleCommand_Thief: ; 37492
 	farcall ItemIsMail
 	ret c
 
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	ret nz
 
@@ -74,7 +74,7 @@ BattleCommand_Thief: ; 37492
 	farcall ItemIsMail
 	ret c
 
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	ret nz
 
@@ -103,7 +103,7 @@ BattleCommand_Thief: ; 37492
 	call BattlePartyAttr
 	ld d, h
 	ld e, l
-	ld hl, BattleMonItem
+	ld hl, wBattleMonItem
 	ret
 
 .enemyitem
@@ -111,6 +111,6 @@ BattleCommand_Thief: ; 37492
 	call OTPartyAttr
 	ld d, h
 	ld e, l
-	ld hl, EnemyMonItem
+	ld hl, wEnemyMonItem
 	ret
 ; 37517

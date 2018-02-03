@@ -19,9 +19,9 @@ BattleCommand_CheckFutureSight: ; 37d0d
 	ld [hl], 0
 	ld a, [de]
 	inc de
-	ld [CurDamage], a
+	ld [wCurDamage], a
 	ld a, [de]
-	ld [CurDamage + 1], a
+	ld [wCurDamage + 1], a
 	ld b, futuresight_command
 	jp SkipToBattleCommand
 
@@ -64,7 +64,7 @@ BattleCommand_FutureSight: ; 37d34
 	jr z, .StoreDamage
 	ld de, wEnemyFutureSightDamage
 .StoreDamage:
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hl]
 	ld [de], a
 	ld [hl], 0

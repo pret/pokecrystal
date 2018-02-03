@@ -1,4 +1,4 @@
-; EventFlags bit flags
+; wEventFlags bit flags
 	const_def
 ; The first eight flags are reset upon reloading the map
 	const EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1 ; 000

@@ -1,6 +1,6 @@
 ResetMapBufferEventFlags:: ; 2e50
 	xor a
-	ld hl, EventFlags
+	ld hl, wEventFlags
 	ld [hli], a
 	ret
 ; 2e56
@@ -29,7 +29,7 @@ ResetFlashIfOutOfCave:: ; 2e5d
 
 
 EventFlagAction:: ; 0x2e6f
-	ld hl, EventFlags
+	ld hl, wEventFlags
 	call FlagAction
 	ret
 

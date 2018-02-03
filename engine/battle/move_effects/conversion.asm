@@ -1,17 +1,17 @@
 BattleCommand_Conversion: ; 3707f
 ; conversion
 
-	ld hl, BattleMonMoves
-	ld de, BattleMonType1
+	ld hl, wBattleMonMoves
+	ld de, wBattleMonType1
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_moves
-	ld hl, EnemyMonMoves
-	ld de, EnemyMonType1
+	ld hl, wEnemyMonMoves
+	ld de, wEnemyMonType1
 .got_moves
 	push de
 	ld c, 0
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 .loop
 	push hl
 	ld b, 0
@@ -41,7 +41,7 @@ BattleCommand_Conversion: ; 3707f
 	inc de
 	ld [de], a
 	pop de
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 .loop2
 	ld a, [hl]
 	cp -1
@@ -70,7 +70,7 @@ BattleCommand_Conversion: ; 3707f
 	maskbits NUM_MOVES
 	ld c, a
 	ld b, 0
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	add hl, bc
 	ld a, [hl]
 	cp -1

@@ -11,7 +11,7 @@ BattleCommand_Transform: ; 371cd
 	jp nz, BattleEffect_ButItFailed
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 	ld a, $1
 	ld [wKickCounter], a
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -28,15 +28,15 @@ BattleCommand_Transform: ; 371cd
 	call GetBattleVarAddr
 	set SUBSTATUS_TRANSFORMED, [hl]
 	call ResetActorDisable
-	ld hl, BattleMonSpecies
-	ld de, EnemyMonSpecies
+	ld hl, wBattleMonSpecies
+	ld de, wEnemyMonSpecies
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .got_mon_species
-	ld hl, EnemyMonSpecies
-	ld de, BattleMonSpecies
+	ld hl, wEnemyMonSpecies
+	ld de, wBattleMonSpecies
 	xor a
-	ld [CurMoveNum], a
+	ld [wCurMoveNum], a
 .got_mon_species
 	push hl
 	ld a, [hli]
@@ -64,7 +64,7 @@ BattleCommand_Transform: ; 371cd
 	ld [de], a
 	inc de
 ; move pointer to stats
-	ld bc, BattleMonStats - BattleMonPP
+	ld bc, wBattleMonStats - wBattleMonPP
 	add hl, bc
 	push hl
 	ld h, d
@@ -73,16 +73,16 @@ BattleCommand_Transform: ; 371cd
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, BattleMonStructEnd - BattleMonStats
+	ld bc, wBattleMonStructEnd - wBattleMonStats
 	call CopyBytes
 ; init the power points
-	ld bc, BattleMonMoves - BattleMonStructEnd
+	ld bc, wBattleMonMoves - wBattleMonStructEnd
 	add hl, bc
 	push de
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, BattleMonPP - BattleMonStructEnd
+	ld bc, wBattleMonPP - wBattleMonStructEnd
 	add hl, bc
 	ld b, NUM_MOVES
 .pp_loop
@@ -102,12 +102,12 @@ BattleCommand_Transform: ; 371cd
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, EnemyStats
-	ld de, PlayerStats
+	ld hl, wEnemyStats
+	ld de, wPlayerStats
 	ld bc, 2 * 5
 	call BattleSideCopy
-	ld hl, EnemyStatLevels
-	ld de, PlayerStatLevels
+	ld hl, wEnemyStatLevels
+	ld de, wPlayerStatLevels
 	ld bc, 8
 	call BattleSideCopy
 	call _CheckBattleScene
@@ -129,7 +129,7 @@ BattleCommand_Transform: ; 371cd
 .after_anim
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 	ld a, $2
 	ld [wKickCounter], a
 	pop af

@@ -1,16 +1,16 @@
 BattleCommand_LeechSeed: ; 36f9d
 ; leechseed
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .evaded
 	call CheckSubstituteOpp
 	jr nz, .evaded
 
-	ld de, EnemyMonType1
+	ld de, wEnemyMonType1
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld de, BattleMonType1
+	ld de, wBattleMonType1
 .ok
 
 	ld a, [de]

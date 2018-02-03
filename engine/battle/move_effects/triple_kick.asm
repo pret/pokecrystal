@@ -4,7 +4,7 @@ BattleCommand_TripleKick: ; 346b2
 	ld a, [wKickCounter]
 	ld b, a
 	inc b
-	ld hl, CurDamage + 1
+	ld hl, wCurDamage + 1
 	ld a, [hld]
 	ld e, a
 	ld a, [hli]

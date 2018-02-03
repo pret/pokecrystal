@@ -38,7 +38,7 @@ HP_RED    EQU 2
 	const SPRITEOAMSTRUCT_TILE_ID    ; 2
 	const SPRITEOAMSTRUCT_ATTRIBUTES ; 3
 SPRITEOAMSTRUCT_LENGTH EQU const_value
-NUM_SPRITE_OAM_STRUCTS EQU 40 ; see Sprites
+NUM_SPRITE_OAM_STRUCTS EQU 40 ; see wVirtualOAM
 
 
 ; PokeAnims indexes (see engine/pic_animation.asm)

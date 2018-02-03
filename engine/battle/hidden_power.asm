@@ -1,11 +1,11 @@
 HiddenPowerDamage: ; fbced
 ; Override Hidden Power's type and power based on the user's DVs.
 
-	ld hl, BattleMonDVs
+	ld hl, wBattleMonDVs
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_dvs
-	ld hl, EnemyMonDVs
+	ld hl, wEnemyMonDVs
 .got_dvs
 
 

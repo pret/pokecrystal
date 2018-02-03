@@ -62,8 +62,8 @@ ShakeHeadbuttTree: ; 8c80a
 	xor a
 	ld [hBGMapMode], a
 	farcall ClearSpriteAnims
-	ld hl, Sprite37
-	ld bc, SpritesEnd - Sprite37
+	ld hl, wVirtualOAMSprite36
+	ld bc, wVirtualOAMEnd - wVirtualOAMSprite36
 	xor a
 	call ByteFill
 	ld de, Font
@@ -81,7 +81,7 @@ INCBIN "gfx/overworld/headbutt_tree.2bpp"
 HideHeadbuttTree: ; 8c913
 	xor a
 	ld [hBGMapMode], a
-	ld a, [PlayerDirection]
+	ld a, [wPlayerDirection]
 	and %00001100
 	srl a
 	ld e, a
@@ -262,7 +262,7 @@ Cut_GetLeafSpawnCoords: ; 8ca8e (23:4a8e)
 	jr z, .top_side
 	set 1, e
 .top_side
-	ld a, [PlayerDirection]
+	ld a, [wPlayerDirection]
 	and %00001100
 	add e
 	ld e, a
@@ -298,7 +298,7 @@ Cut_GetLeafSpawnCoords: ; 8ca8e (23:4a8e)
 ; 8cad3
 
 Cut_Headbutt_GetPixelFacing: ; 8cad3 (23:4ad3)
-	ld a, [PlayerDirection]
+	ld a, [wPlayerDirection]
 	and %00001100
 	srl a
 	ld e, a
@@ -321,10 +321,10 @@ Cut_Headbutt_GetPixelFacing: ; 8cad3 (23:4ad3)
 
 FlyFromAnim: ; 8caed
 	call DelayFrame
-	ld a, [VramState]
+	ld a, [wVramState]
 	push af
 	xor a
-	ld [VramState], a
+	ld [wVramState], a
 	call FlyFunction_InitGFX
 	depixel 10, 10, 4, 0
 	ld a, SPRITE_ANIM_INDEX_RED_WALK
@@ -350,16 +350,16 @@ FlyFromAnim: ; 8caed
 
 .exit
 	pop af
-	ld [VramState], a
+	ld [wVramState], a
 	ret
 ; 8cb33
 
 FlyToAnim: ; 8cb33
 	call DelayFrame
-	ld a, [VramState]
+	ld a, [wVramState]
 	push af
 	xor a
-	ld [VramState], a
+	ld [wVramState], a
 	call FlyFunction_InitGFX
 	depixel 31, 10, 4, 0
 	ld a, SPRITE_ANIM_INDEX_RED_WALK
@@ -388,12 +388,12 @@ FlyToAnim: ; 8cb33
 
 .exit
 	pop af
-	ld [VramState], a
+	ld [wVramState], a
 	call .RestorePlayerSprite_DespawnLeaves
 	ret
 
 .RestorePlayerSprite_DespawnLeaves: ; 8cb82 (23:4b82)
-	ld hl, Sprite01TileID
+	ld hl, wVirtualOAMSprite00TileID
 	xor a
 	ld c, 4
 .OAMloop
@@ -404,8 +404,8 @@ endr
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, Sprite05
-	ld bc, SpritesEnd - Sprite05
+	ld hl, wVirtualOAMSprite04
+	ld bc, wVirtualOAMEnd - wVirtualOAMSprite04
 	xor a
 	call ByteFill
 	ret
@@ -416,8 +416,8 @@ FlyFunction_InitGFX: ; 8cb9b (23:4b9b)
 	ld hl, vTiles1 tile $00
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
-	ld a, [CurPartyMon]
-	ld hl, PartySpecies
+	ld a, [wCurPartyMon]
+	ld hl, wPartySpecies
 	ld e, a
 	ld d, 0
 	add hl, de

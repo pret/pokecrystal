@@ -5,7 +5,7 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 	inc de ; wc801
 	ld a, BANK(sGameData)
 	call GetSRAMBank
-	ld hl, sPlayerData + PlayerID - wPlayerData
+	ld hl, sPlayerData + wPlayerID - wPlayerData
 	ld a, [hli]
 	ld [de], a
 	ld b, a
@@ -15,12 +15,12 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 	ld c, a
 	inc de ; wc803
 	push bc
-	ld hl, sPlayerData + PlayerName - wPlayerData
+	ld hl, sPlayerData + wPlayerName - wPlayerData
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	push de ; wc80e
-	ld hl, sPokemonData + PokedexCaught - wPokemonData
-	ld b, EndPokedexCaught - PokedexCaught
+	ld hl, sPokemonData + wPokedexCaught - wPokemonData
+	ld b, wEndPokedexCaught - wPokedexCaught
 	call CountSetBits
 	pop de
 	pop bc

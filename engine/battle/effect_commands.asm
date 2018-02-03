@@ -1,7 +1,7 @@
 DoPlayerTurn: ; 34000
 	call SetPlayerTurn
 
-	ld a, [wPlayerAction]
+	ld a, [wBattlePlayerAction]
 	and a
 	ret nz
 
@@ -56,7 +56,7 @@ DoMove: ; 3402c
 	ld a, BANK(MoveEffectsPointers)
 	call GetFarHalfword
 
-	ld de, BattleScriptBuffer
+	ld de, wBattleScriptBuffer
 
 .GetMoveEffect:
 	ld a, BANK(MoveEffects)
@@ -68,27 +68,27 @@ DoMove: ; 3402c
 	jr nz, .GetMoveEffect
 
 ; Start at the first command.
-	ld hl, BattleScriptBuffer
+	ld hl, wBattleScriptBuffer
 	ld a, l
-	ld [BattleScriptBufferAddress], a
+	ld [wBattleScriptBufferAddress], a
 	ld a, h
-	ld [BattleScriptBufferAddress + 1], a
+	ld [wBattleScriptBufferAddress + 1], a
 
 .ReadMoveEffectCommand:
 
-; ld a, [BattleScriptBufferAddress++]
-	ld a, [BattleScriptBufferAddress]
+; ld a, [wBattleScriptBufferAddress++]
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
-	ld a, [BattleScriptBufferAddress + 1]
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
 
 	ld a, [hli]
 
 	push af
 	ld a, l
-	ld [BattleScriptBufferAddress], a
+	ld [wBattleScriptBufferAddress], a
 	ld a, h
-	ld [BattleScriptBufferAddress + 1], a
+	ld [wBattleScriptBufferAddress + 1], a
 	pop af
 
 ; endturn_command (-2) is used to terminate branches without ending the read cycle.
@@ -131,15 +131,15 @@ BattleCommand_CheckTurn: ; 34084
 	jp z, EndTurn
 
 	xor a
-	ld [AttackMissed], a
-	ld [EffectFailed], a
+	ld [wAttackMissed], a
+	ld [wEffectFailed], a
 	ld [wKickCounter], a
-	ld [AlreadyDisobeyed], a
-	ld [AlreadyFailed], a
+	ld [wAlreadyDisobeyed], a
+	ld [wAlreadyFailed], a
 	ld [wSomeoneIsRampaging], a
 
 	ld a, EFFECTIVE
-	ld [TypeModifier], a
+	ld [wTypeModifier], a
 
 	ld a, [hBattleTurn]
 	and a
@@ -148,7 +148,7 @@ BattleCommand_CheckTurn: ; 34084
 
 CheckPlayerTurn:
 
-	ld hl, PlayerSubStatus4
+	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
 	jr z, .no_recharge
 
@@ -161,13 +161,13 @@ CheckPlayerTurn:
 .no_recharge
 
 
-	ld hl, BattleMonStatus
+	ld hl, wBattleMonStatus
 	ld a, [hl]
 	and SLP
 	jr z, .not_asleep
 
 	dec a
-	ld [BattleMonStatus], a
+	ld [wBattleMonStatus], a
 	and SLP
 	jr z, .woke_up
 
@@ -186,7 +186,7 @@ CheckPlayerTurn:
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
-	ld hl, PlayerSubStatus1
+	ld hl, wPlayerSubStatus1
 	res SUBSTATUS_NIGHTMARE, [hl]
 	jr .not_asleep
 
@@ -195,7 +195,7 @@ CheckPlayerTurn:
 	call StdBattleTextBox
 
 	; Snore and Sleep Talk bypass sleep.
-	ld a, [CurPlayerMove]
+	ld a, [wCurPlayerMove]
 	cp SNORE
 	jr z, .not_asleep
 	cp SLEEP_TALK
@@ -207,12 +207,12 @@ CheckPlayerTurn:
 .not_asleep
 
 
-	ld hl, BattleMonStatus
+	ld hl, wBattleMonStatus
 	bit FRZ, [hl]
 	jr z, .not_frozen
 
 	; Flame Wheel and Sacred Fire thaw the user.
-	ld a, [CurPlayerMove]
+	ld a, [wCurPlayerMove]
 	cp FLAME_WHEEL
 	jr z, .not_frozen
 	cp SACRED_FIRE
@@ -227,7 +227,7 @@ CheckPlayerTurn:
 .not_frozen
 
 
-	ld hl, PlayerSubStatus3
+	ld hl, wPlayerSubStatus3
 	bit SUBSTATUS_FLINCHED, [hl]
 	jr z, .not_flinched
 
@@ -241,7 +241,7 @@ CheckPlayerTurn:
 .not_flinched
 
 
-	ld hl, PlayerDisableCount
+	ld hl, wPlayerDisableCount
 	ld a, [hl]
 	and a
 	jr z, .not_disabled
@@ -252,21 +252,21 @@ CheckPlayerTurn:
 	jr nz, .not_disabled
 
 	ld [hl], a
-	ld [DisabledMove], a
+	ld [wDisabledMove], a
 	ld hl, DisabledNoMoreText
 	call StdBattleTextBox
 
 .not_disabled
 
 
-	ld a, [PlayerSubStatus3]
+	ld a, [wPlayerSubStatus3]
 	add a
 	jr nc, .not_confused
-	ld hl, PlayerConfuseCount
+	ld hl, wPlayerConfuseCount
 	dec [hl]
 	jr nz, .confused
 
-	ld hl, PlayerSubStatus3
+	ld hl, wPlayerSubStatus3
 	res SUBSTATUS_CONFUSED, [hl]
 	ld hl, ConfusedNoMoreText
 	call StdBattleTextBox
@@ -286,7 +286,7 @@ CheckPlayerTurn:
 	jr nc, .not_confused
 
 	; clear confusion-dependent substatus
-	ld hl, PlayerSubStatus3
+	ld hl, wPlayerSubStatus3
 	ld a, [hl]
 	and 1 << SUBSTATUS_CONFUSED
 	ld [hl], a
@@ -298,7 +298,7 @@ CheckPlayerTurn:
 .not_confused
 
 
-	ld a, [PlayerSubStatus1]
+	ld a, [wPlayerSubStatus1]
 	add a ; bit SUBSTATUS_ATTRACT
 	jr nc, .not_infatuated
 
@@ -323,12 +323,12 @@ CheckPlayerTurn:
 
 
 	; We can't disable a move that doesn't exist.
-	ld a, [DisabledMove]
+	ld a, [wDisabledMove]
 	and a
 	jr z, .no_disabled_move
 
 	; Are we using the disabled move?
-	ld hl, CurPlayerMove
+	ld hl, wCurPlayerMove
 	cp [hl]
 	jr nz, .no_disabled_move
 
@@ -339,7 +339,7 @@ CheckPlayerTurn:
 .no_disabled_move
 
 
-	ld hl, BattleMonStatus
+	ld hl, wBattleMonStatus
 	bit PAR, [hl]
 	ret z
 
@@ -397,7 +397,7 @@ OpponentCantMove: ; 34216
 
 CheckEnemyTurn: ; 3421f
 
-	ld hl, EnemySubStatus4
+	ld hl, wEnemySubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
 	jr z, .no_recharge
 
@@ -410,13 +410,13 @@ CheckEnemyTurn: ; 3421f
 .no_recharge
 
 
-	ld hl, EnemyMonStatus
+	ld hl, wEnemyMonStatus
 	ld a, [hl]
 	and SLP
 	jr z, .not_asleep
 
 	dec a
-	ld [EnemyMonStatus], a
+	ld [wEnemyMonStatus], a
 	and a
 	jr z, .woke_up
 
@@ -437,13 +437,13 @@ CheckEnemyTurn: ; 3421f
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
-	ld hl, EnemySubStatus1
+	ld hl, wEnemySubStatus1
 	res SUBSTATUS_NIGHTMARE, [hl]
 	jr .not_asleep
 
 .fast_asleep
 	; Snore and Sleep Talk bypass sleep.
-	ld a, [CurEnemyMove]
+	ld a, [wCurEnemyMove]
 	cp SNORE
 	jr z, .not_asleep
 	cp SLEEP_TALK
@@ -454,12 +454,12 @@ CheckEnemyTurn: ; 3421f
 .not_asleep
 
 
-	ld hl, EnemyMonStatus
+	ld hl, wEnemyMonStatus
 	bit FRZ, [hl]
 	jr z, .not_frozen
 
 	; Flame Wheel and Sacred Fire thaw the user.
-	ld a, [CurEnemyMove]
+	ld a, [wCurEnemyMove]
 	cp FLAME_WHEEL
 	jr z, .not_frozen
 	cp SACRED_FIRE
@@ -473,7 +473,7 @@ CheckEnemyTurn: ; 3421f
 .not_frozen
 
 
-	ld hl, EnemySubStatus3
+	ld hl, wEnemySubStatus3
 	bit SUBSTATUS_FLINCHED, [hl]
 	jr z, .not_flinched
 
@@ -487,7 +487,7 @@ CheckEnemyTurn: ; 3421f
 .not_flinched
 
 
-	ld hl, EnemyDisableCount
+	ld hl, wEnemyDisableCount
 	ld a, [hl]
 	and a
 	jr z, .not_disabled
@@ -498,7 +498,7 @@ CheckEnemyTurn: ; 3421f
 	jr nz, .not_disabled
 
 	ld [hl], a
-	ld [EnemyDisabledMove], a
+	ld [wEnemyDisabledMove], a
 
 	ld hl, DisabledNoMoreText
 	call StdBattleTextBox
@@ -506,15 +506,15 @@ CheckEnemyTurn: ; 3421f
 .not_disabled
 
 
-	ld a, [EnemySubStatus3]
+	ld a, [wEnemySubStatus3]
 	add a ; bit SUBSTATUS_CONFUSED
 	jr nc, .not_confused
 
-	ld hl, EnemyConfuseCount
+	ld hl, wEnemyConfuseCount
 	dec [hl]
 	jr nz, .confused
 
-	ld hl, EnemySubStatus3
+	ld hl, wEnemySubStatus3
 	res SUBSTATUS_CONFUSED, [hl]
 	ld hl, ConfusedNoMoreText
 	call StdBattleTextBox
@@ -536,7 +536,7 @@ CheckEnemyTurn: ; 3421f
 	jr nc, .not_confused
 
 	; clear confusion-dependent substatus
-	ld hl, EnemySubStatus3
+	ld hl, wEnemySubStatus3
 	ld a, [hl]
 	and 1 << SUBSTATUS_CONFUSED
 	ld [hl], a
@@ -565,7 +565,7 @@ CheckEnemyTurn: ; 3421f
 .not_confused
 
 
-	ld a, [EnemySubStatus1]
+	ld a, [wEnemySubStatus1]
 	add a ; bit SUBSTATUS_ATTRACT
 	jr nc, .not_infatuated
 
@@ -590,12 +590,12 @@ CheckEnemyTurn: ; 3421f
 
 
 	; We can't disable a move that doesn't exist.
-	ld a, [EnemyDisabledMove]
+	ld a, [wEnemyDisabledMove]
 	and a
 	jr z, .no_disabled_move
 
 	; Are we using the disabled move?
-	ld hl, CurEnemyMove
+	ld hl, wCurEnemyMove
 	cp [hl]
 	jr nz, .no_disabled_move
 
@@ -607,7 +607,7 @@ CheckEnemyTurn: ; 3421f
 .no_disabled_move
 
 
-	ld hl, EnemyMonStatus
+	ld hl, wEnemyMonStatus
 	bit PAR, [hl]
 	ret z
 
@@ -656,7 +656,7 @@ HitConfusion: ; 343a5
 	call StdBattleTextBox
 
 	xor a
-	ld [CriticalHit], a
+	ld [wCriticalHit], a
 
 	call HitSelfInConfusion
 	call BattleCommand_DamageCalc
@@ -695,12 +695,12 @@ BattleCommand_CheckObedience: ; 343db
 	ret nz
 
 	; If we've already checked this turn
-	ld a, [AlreadyDisobeyed]
+	ld a, [wAlreadyDisobeyed]
 	and a
 	ret nz
 
 	xor a
-	ld [AlreadyDisobeyed], a
+	ld [wAlreadyDisobeyed], a
 
 	; No obedience in link battles
 	; (since no handling exists for enemy)
@@ -708,7 +708,7 @@ BattleCommand_CheckObedience: ; 343db
 	and a
 	ret nz
 
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	and a
 	ret nz
 
@@ -717,11 +717,11 @@ BattleCommand_CheckObedience: ; 343db
 	ld a, MON_ID
 	call BattlePartyAttr
 
-	ld a, [PlayerID]
+	ld a, [wPlayerID]
 	cp [hl]
 	jr nz, .obeylevel
 	inc hl
-	ld a, [PlayerID + 1]
+	ld a, [wPlayerID + 1]
 	cp [hl]
 	ret z
 
@@ -762,7 +762,7 @@ BattleCommand_CheckObedience: ; 343db
 	ld b, a
 	ld c, a
 
-	ld a, [BattleMonLevel]
+	ld a, [wBattleMonLevel]
 	ld d, a
 
 	add b
@@ -839,7 +839,7 @@ BattleCommand_CheckObedience: ; 343db
 	and SLP
 	jr z, .Nap
 
-	ld [BattleMonStatus], a
+	ld [wBattleMonStatus], a
 
 	ld hl, BeganToNapText
 	jr .Print
@@ -872,18 +872,18 @@ BattleCommand_CheckObedience: ; 343db
 .UseInstead:
 
 ; Can't use another move if the monster only has one!
-	ld a, [BattleMonMoves + 1]
+	ld a, [wBattleMonMoves + 1]
 	and a
 	jr z, .DoNothing
 
 ; Don't bother trying to handle Disable.
-	ld a, [DisabledMove]
+	ld a, [wDisabledMove]
 	and a
 	jr nz, .DoNothing
 
 
-	ld hl, BattleMonPP
-	ld de, BattleMonMoves
+	ld hl, wBattleMonPP
+	ld de, wBattleMonMoves
 	ld b, 0
 	ld c, NUM_MOVES
 
@@ -904,8 +904,8 @@ BattleCommand_CheckObedience: ; 343db
 
 
 .CheckMovePP:
-	ld hl, BattleMonPP
-	ld a, [CurMoveNum]
+	ld hl, wBattleMonPP
+	ld a, [wCurMoveNum]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -919,13 +919,13 @@ BattleCommand_CheckObedience: ; 343db
 
 ; Make sure we can actually use the move once we get there.
 	ld a, 1
-	ld [AlreadyDisobeyed], a
+	ld [wAlreadyDisobeyed], a
 
 	ld a, [w2DMenuNumRows]
 	ld b, a
 
 ; Save the move we originally picked for afterward.
-	ld a, [CurMoveNum]
+	ld a, [wCurMoveNum]
 	ld c, a
 	push af
 
@@ -942,8 +942,8 @@ BattleCommand_CheckObedience: ; 343db
 	jr z, .RandomMove
 
 ; Make sure it has PP.
-	ld [CurMoveNum], a
-	ld hl, BattleMonPP
+	ld [wCurMoveNum], a
+	ld hl, wBattleMonPP
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -953,13 +953,13 @@ BattleCommand_CheckObedience: ; 343db
 
 
 ; Use it.
-	ld a, [CurMoveNum]
+	ld a, [wCurMoveNum]
 	ld c, a
 	ld b, 0
-	ld hl, BattleMonMoves
+	ld hl, wBattleMonMoves
 	add hl, bc
 	ld a, [hl]
-	ld [CurPlayerMove], a
+	ld [wCurPlayerMove], a
 
 	call SetPlayerTurn
 	call UpdateMoveData
@@ -968,19 +968,19 @@ BattleCommand_CheckObedience: ; 343db
 
 ; Restore original move choice.
 	pop af
-	ld [CurMoveNum], a
+	ld [wCurMoveNum], a
 
 
 .EndDisobedience:
 	xor a
-	ld [LastPlayerMove], a
-	ld [LastPlayerCounterMove], a
+	ld [wLastPlayerMove], a
+	ld [wLastPlayerCounterMove], a
 
 	; Break Encore too.
-	ld hl, PlayerSubStatus5
+	ld hl, wPlayerSubStatus5
 	res SUBSTATUS_ENCORED, [hl]
 	xor a
-	ld [PlayerEncoreCount], a
+	ld [wPlayerEncoreCount], a
 
 	jp EndMoveEffect
 
@@ -1044,17 +1044,17 @@ BattleCommand_DoTurn: ; 34555
 	call CheckUserIsCharging
 	ret nz
 
-	ld hl, BattleMonPP
-	ld de, PlayerSubStatus3
-	ld bc, PlayerTurnsTaken
+	ld hl, wBattleMonPP
+	ld de, wPlayerSubStatus3
+	ld bc, wPlayerTurnsTaken
 
 	ld a, [hBattleTurn]
 	and a
 	jr z, .proceed
 
-	ld hl, EnemyMonPP
-	ld de, EnemySubStatus3
-	ld bc, EnemyTurnsTaken
+	ld hl, wEnemyMonPP
+	ld de, wEnemySubStatus3
+	ld bc, wEnemyTurnsTaken
 
 .proceed
 
@@ -1088,8 +1088,8 @@ BattleCommand_DoTurn: ; 34555
 	ld a, [hBattleTurn]
 	and a
 
-	ld hl, PartyMon1PP
-	ld a, [CurBattleMon]
+	ld hl, wPartyMon1PP
+	ld a, [wCurBattleMon]
 	jr z, .player
 
 ; mimic this part entirely if wildbattle
@@ -1097,8 +1097,8 @@ BattleCommand_DoTurn: ; 34555
 	dec a
 	jr z, .wild
 
-	ld hl, OTPartyMon1PP
-	ld a, [CurOTMon]
+	ld hl, wOTPartyMon1PP
+	ld a, [wCurOTMon]
 
 .player
 	call GetPartyLocation
@@ -1110,9 +1110,9 @@ BattleCommand_DoTurn: ; 34555
 .consume_pp
 	ld a, [hBattleTurn]
 	and a
-	ld a, [CurMoveNum]
+	ld a, [wCurMoveNum]
 	jr z, .okay
-	ld a, [CurEnemyMoveNum]
+	ld a, [wCurEnemyMoveNum]
 
 .okay
 	ld c, a
@@ -1126,8 +1126,8 @@ BattleCommand_DoTurn: ; 34555
 	ret
 
 .wild
-	ld hl, EnemyMonMoves
-	ld a, [CurEnemyMoveNum]
+	ld hl, wEnemyMonMoves
+	ld a, [wCurEnemyMoveNum]
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -1182,9 +1182,9 @@ BattleCommand_DoTurn: ; 34555
 CheckMimicUsed: ; 3460b
 	ld a, [hBattleTurn]
 	and a
-	ld a, [CurMoveNum]
+	ld a, [wCurMoveNum]
 	jr z, .player
-	ld a, [CurEnemyMoveNum]
+	ld a, [wCurEnemyMoveNum]
 
 .player
 	ld c, a
@@ -1218,7 +1218,7 @@ BattleCommand_Critical: ; 34631
 ; Determine whether this attack's hit will be critical.
 
 	xor a
-	ld [CriticalHit], a
+	ld [wCriticalHit], a
 
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
@@ -1227,11 +1227,11 @@ BattleCommand_Critical: ; 34631
 
 	ld a, [hBattleTurn]
 	and a
-	ld hl, EnemyMonItem
-	ld a, [EnemyMonSpecies]
+	ld hl, wEnemyMonItem
+	ld a, [wEnemyMonSpecies]
 	jr nz, .Item
-	ld hl, BattleMonItem
-	ld a, [BattleMonSpecies]
+	ld hl, wBattleMonItem
+	ld a, [wBattleMonSpecies]
 
 .Item:
 	ld c, 0
@@ -1299,7 +1299,7 @@ BattleCommand_Critical: ; 34631
 	cp [hl]
 	ret nc
 	ld a, 1
-	ld [CriticalHit], a
+	ld [wCriticalHit], a
 	ret
 
 INCLUDE "data/battle/critical_hits.asm"
@@ -1316,11 +1316,11 @@ BattleCommand_Stab: ; 346d2
 	cp STRUGGLE
 	ret z
 
-	ld hl, BattleMonType1
+	ld hl, wBattleMonType1
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, EnemyMonType1
+	ld hl, wEnemyMonType1
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
@@ -1329,11 +1329,11 @@ BattleCommand_Stab: ; 346d2
 	and a
 	jr z, .go ; Who Attacks and who Defends
 
-	ld hl, EnemyMonType1
+	ld hl, wEnemyMonType1
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, BattleMonType1
+	ld hl, wBattleMonType1
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
@@ -1366,7 +1366,7 @@ BattleCommand_Stab: ; 346d2
 	jr .SkipStab
 
 .stab
-	ld hl, CurDamage + 1
+	ld hl, wCurDamage + 1
 	ld a, [hld]
 	ld h, [hl]
 	ld l, a
@@ -1378,11 +1378,11 @@ BattleCommand_Stab: ; 346d2
 	add hl, bc
 
 	ld a, h
-	ld [CurDamage], a
+	ld [wCurDamage], a
 	ld a, l
-	ld [CurDamage + 1], a
+	ld [wCurDamage + 1], a
 
-	ld hl, TypeModifier
+	ld hl, wTypeModifier
 	set 7, [hl]
 
 .SkipStab:
@@ -1421,7 +1421,7 @@ BattleCommand_Stab: ; 346d2
 	push hl
 	push bc
 	inc hl
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and %10000000
 	ld b, a
 ; If the target is immune to the move, treat it as a miss and calculate the damage as 0
@@ -1429,17 +1429,17 @@ BattleCommand_Stab: ; 346d2
 	and a
 	jr nz, .NotImmune
 	inc a
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	xor a
 .NotImmune:
 	ld [hMultiplier], a
 	add b
-	ld [TypeModifier], a
+	ld [wTypeModifier], a
 
 	xor a
 	ld [hMultiplicand + 0], a
 
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld [hMultiplicand + 1], a
 	ld a, [hld]
@@ -1487,21 +1487,21 @@ BattleCommand_Stab: ; 346d2
 	call BattleCheckTypeMatchup
 	ld a, [wTypeMatchup]
 	ld b, a
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and %10000000
 	or b
-	ld [TypeModifier], a
+	ld [wTypeModifier], a
 	ret
 
 ; 347c8
 
 
 BattleCheckTypeMatchup: ; 347c8
-	ld hl, EnemyMonType1
+	ld hl, wEnemyMonType1
 	ld a, [hBattleTurn]
 	and a
 	jr z, CheckTypeMatchup
-	ld hl, BattleMonType1
+	ld hl, wBattleMonType1
 CheckTypeMatchup: ; 347d3
 ; There is an incorrect assumption about this function made in the AI related code: when
 ; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing
@@ -1588,9 +1588,9 @@ BattleCommand_ResetTypeMatchup: ; 34833
 	jr nz, .reset
 	call ResetDamage
 	xor a
-	ld [TypeModifier], a
+	ld [wTypeModifier], a
 	inc a
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 .reset
@@ -1616,7 +1616,7 @@ BattleCommand_DamageVariation: ; 34cfd
 
 
 ; No point in reducing 1 or 0 damage.
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	and a
 	jr nz, .go
@@ -1652,7 +1652,7 @@ BattleCommand_DamageVariation: ; 34cfd
 
 ; ...to get .85-1.00x damage.
 	ld a, [hQuotient + 1]
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld [hli], a
 	ld a, [hQuotient + 2]
 	ld [hl], a
@@ -1740,7 +1740,7 @@ BattleCommand_CheckHit: ; 34d32
 
 .Missed:
 	ld a, 1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 
@@ -1872,7 +1872,7 @@ BattleCommand_CheckHit: ; 34d32
 	cp EFFECT_THUNDER
 	ret nz
 
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	ret
 
@@ -1891,17 +1891,17 @@ BattleCommand_CheckHit: ; 34d32
 
 	; load the user's accuracy into b and the opponent's evasion into c.
 	ld hl, wPlayerMoveStruct + MOVE_ACC
-	ld a, [PlayerAccLevel]
+	ld a, [wPlayerAccLevel]
 	ld b, a
-	ld a, [EnemyEvaLevel]
+	ld a, [wEnemyEvaLevel]
 	ld c, a
 
 	jr z, .got_acc_eva
 
 	ld hl, wEnemyMoveStruct + MOVE_ACC
-	ld a, [EnemyAccLevel]
+	ld a, [wEnemyAccLevel]
 	ld b, a
-	ld a, [PlayerEvaLevel]
+	ld a, [wPlayerEvaLevel]
 	ld c, a
 
 .got_acc_eva
@@ -1984,7 +1984,7 @@ BattleCommand_EffectChance: ; 34ecc
 ; effectchance
 
 	xor a
-	ld [EffectFailed], a
+	ld [wEffectFailed], a
 	call CheckSubstituteOpp
 	jr nz, .failed
 
@@ -2003,7 +2003,7 @@ BattleCommand_EffectChance: ; 34ecc
 
 .failed
 	ld a, 1
-	ld [EffectFailed], a
+	ld [wEffectFailed], a
 	and a
 	ret
 
@@ -2049,7 +2049,7 @@ BattleCommand_LowerSub: ; 34eee
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 	inc a
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
@@ -2091,16 +2091,16 @@ BattleCommand_HitTarget: ; 34f57
 
 
 BattleCommand_HitTargetNoSub: ; 34f60
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, BattleCommand_MoveDelay
 
 	ld a, [hBattleTurn]
 	and a
-	ld de, PlayerRolloutCount
+	ld de, wPlayerRolloutCount
 	ld a, BATTLEANIM_ENEMY_DAMAGE
 	jr z, .got_rollout_count
-	ld de, EnemyRolloutCount
+	ld de, wEnemyRolloutCount
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 
 .got_rollout_count
@@ -2158,7 +2158,7 @@ BattleCommand_HitTargetNoSub: ; 34f60
 
 
 BattleCommand_StatUpAnim: ; 34fd1
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, BattleCommand_MoveDelay
 
@@ -2169,7 +2169,7 @@ BattleCommand_StatUpAnim: ; 34fd1
 
 
 BattleCommand_StatDownAnim: ; 34fdb
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, BattleCommand_MoveDelay
 
@@ -2220,7 +2220,7 @@ BattleCommand_RaiseSub: ; 35004
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 	ld a, $2
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
@@ -2234,7 +2234,7 @@ BattleCommand_FailureText: ; 35023
 ; If the move missed or failed, load the appropriate
 ; text, and end the effects of multi-turn or multi-
 ; hit moves.
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	ret z
 
@@ -2338,20 +2338,20 @@ BattleCommand_CheckFaint: ; 3505e
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 
-	ld de, PlayerDamageTaken + 1
+	ld de, wPlayerDamageTaken + 1
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .damage_taken
-	ld de, EnemyDamageTaken + 1
+	ld de, wEnemyDamageTaken + 1
 
 .damage_taken
-	ld a, [CurDamage + 1]
+	ld a, [wCurDamage + 1]
 	ld b, a
 	ld a, [de]
 	add b
 	ld [de], a
 	dec de
-	ld a, [CurDamage]
+	ld a, [wCurDamage]
 	ld b, a
 	ld a, [de]
 	adc b
@@ -2369,7 +2369,7 @@ BattleCommand_CheckFaint: ; 3505e
 GetFailureResultText: ; 350e4
 	ld hl, DoesntAffectText
 	ld de, DoesntAffectText
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	jr z, .got_text
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -2380,25 +2380,25 @@ GetFailureResultText: ; 350e4
 	jr z, .got_text
 	ld hl, AttackMissedText
 	ld de, AttackMissed2Text
-	ld a, [CriticalHit]
+	ld a, [wCriticalHit]
 	cp -1
 	jr nz, .got_text
 	ld hl, UnaffectedText
 .got_text
 	call FailText_CheckOpponentProtect
 	xor a
-	ld [CriticalHit], a
+	ld [wCriticalHit], a
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_JUMP_KICK
 	ret nz
 
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	ret z
 
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, [hl]
 	rept 3
@@ -2438,11 +2438,11 @@ FailText_CheckOpponentProtect: ; 35157
 
 
 BattleCommanda5: ; 35165
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	ret z
 
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	jp z, PrintDoesntAffect
 	jp PrintButItFailed
@@ -2455,7 +2455,7 @@ BattleCommand_CriticalText: ; 35175
 ; Prints the message for critical hits or one-hit KOs.
 
 ; If there is no message to be printed, wait 20 frames.
-	ld a, [CriticalHit]
+	ld a, [wCriticalHit]
 	and a
 	jr z, .wait
 
@@ -2471,7 +2471,7 @@ BattleCommand_CriticalText: ; 35175
 	call StdBattleTextBox
 
 	xor a
-	ld [CriticalHit], a
+	ld [wCriticalHit], a
 
 .wait
 	ld c, 20
@@ -2486,11 +2486,11 @@ BattleCommand_CriticalText: ; 35175
 BattleCommand_StartLoop: ; 35197
 ; startloop
 
-	ld hl, PlayerRolloutCount
+	ld hl, wPlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld hl, EnemyRolloutCount
+	ld hl, wEnemyRolloutCount
 .ok
 	xor a
 	ld [hl], a
@@ -2514,7 +2514,7 @@ BattleCommand_SuperEffectiveLoopText: ; 351a5
 BattleCommand_SuperEffectiveText: ; 351ad
 ; supereffectivetext
 
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	cp 10 ; 1.0
 	ret z
@@ -2532,11 +2532,11 @@ BattleCommand_CheckDestinyBond: ; 351c0
 
 ; Faint the user if it fainted an opponent using Destiny Bond.
 
-	ld hl, EnemyMonHP
+	ld hl, wEnemyMonHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_hp
-	ld hl, BattleMonHP
+	ld hl, wBattleMonHP
 
 .got_hp
 	ld a, [hli]
@@ -2553,30 +2553,30 @@ BattleCommand_CheckDestinyBond: ; 351c0
 
 	ld a, [hBattleTurn]
 	and a
-	ld hl, EnemyMonMaxHP + 1
+	ld hl, wEnemyMonMaxHP + 1
 	bccoord 2, 2 ; hp bar
 	ld a, 0
 	jr nz, .got_max_hp
-	ld hl, BattleMonMaxHP + 1
+	ld hl, wBattleMonMaxHP + 1
 	bccoord 10, 9 ; hp bar
 	ld a, 1
 
 .got_max_hp
 	ld [wWhichHPBar], a
 	ld a, [hld]
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	ld a, [hld]
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld a, [hl]
-	ld [Buffer3], a
+	ld [wBuffer3], a
 	xor a
 	ld [hld], a
 	ld a, [hl]
-	ld [Buffer4], a
+	ld [wBuffer4], a
 	xor a
 	ld [hl], a
-	ld [Buffer5], a
-	ld [Buffer6], a
+	ld [wBuffer5], a
+	ld [wBuffer6], a
 	ld h, b
 	ld l, c
 	predef AnimateHPBar
@@ -2585,7 +2585,7 @@ BattleCommand_CheckDestinyBond: ; 351c0
 	call BattleCommand_SwitchTurn
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 	inc a
 	ld [wKickCounter], a
 	ld a, DESTINY_BOND
@@ -2623,7 +2623,7 @@ BattleCommand_BuildOpponentRage: ; 35250
 	jp .start
 
 .start
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	ret nz
 
@@ -2654,10 +2654,10 @@ BattleCommand_BuildOpponentRage: ; 35250
 BattleCommand_RageDamage: ; 3527b
 ; ragedamage
 
-	ld a, [CurDamage]
+	ld a, [wCurDamage]
 	ld h, a
 	ld b, a
-	ld a, [CurDamage + 1]
+	ld a, [wCurDamage + 1]
 	ld l, a
 	ld c, a
 	ld a, [hBattleTurn]
@@ -2674,18 +2674,18 @@ BattleCommand_RageDamage: ; 3527b
 	ld hl, $ffff
 .done
 	ld a, h
-	ld [CurDamage], a
+	ld [wCurDamage], a
 	ld a, l
-	ld [CurDamage + 1], a
+	ld [wCurDamage + 1], a
 	ret
 
 ; 352a3
 
 
 EndMoveEffect: ; 352a3
-	ld a, [BattleScriptBufferAddress]
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
-	ld a, [BattleScriptBufferAddress + 1]
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
 	ld a, $ff
 	ld [hli], a
@@ -2703,7 +2703,7 @@ DittoMetalPowder: ; 352b1
 	and a
 	ld a, [hl]
 	jr nz, .Ditto
-	ld a, [TempEnemyMonSpecies]
+	ld a, [wTempEnemyMonSpecies]
 
 .Ditto:
 	cp DITTO
@@ -2762,51 +2762,51 @@ PlayerAttackDamage: ; 352e2
 	jr nc, .special
 
 .physical
-	ld hl, EnemyMonDefense
+	ld hl, wEnemyMonDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 
-	ld a, [EnemyScreens]
+	ld a, [wEnemyScreens]
 	bit SCREENS_REFLECT, a
 	jr z, .physicalcrit
 	sla c
 	rl b
 
 .physicalcrit
-	ld hl, BattleMonAttack
+	ld hl, wBattleMonAttack
 	call GetDamageStatsCritical
 	jr c, .thickclub
 
-	ld hl, EnemyDefense
+	ld hl, wEnemyDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, PlayerAttack
+	ld hl, wPlayerAttack
 	jr .thickclub
 
 .special
-	ld hl, EnemyMonSpclDef
+	ld hl, wEnemyMonSpclDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 
-	ld a, [EnemyScreens]
+	ld a, [wEnemyScreens]
 	bit SCREENS_LIGHT_SCREEN, a
 	jr z, .specialcrit
 	sla c
 	rl b
 
 .specialcrit
-	ld hl, BattleMonSpclAtk
+	ld hl, wBattleMonSpclAtk
 	call GetDamageStatsCritical
 	jr c, .lightball
 
-	ld hl, EnemySpDef
+	ld hl, wEnemySpDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, PlayerSpAtk
+	ld hl, wPlayerSpAtk
 
 .lightball
 ; Note: Returns player special attack at hl in hl.
@@ -2820,7 +2820,7 @@ PlayerAttackDamage: ; 352e2
 .done
 	call TruncateHL_BC
 
-	ld a, [BattleMonLevel]
+	ld a, [wBattleMonLevel]
 	ld e, a
 	call DittoMetalPowder
 
@@ -2882,7 +2882,7 @@ TruncateHL_BC: ; 3534d
 GetDamageStatsCritical: ; 35378
 ; Return carry if non-critical.
 
-	ld a, [CriticalHit]
+	ld a, [wCriticalHit]
 	and a
 	scf
 	ret z
@@ -2903,28 +2903,28 @@ GetDamageStats: ; 3537e
 	ld a, [wPlayerMoveStructType]
 	cp SPECIAL
 ; special
-	ld a, [PlayerSAtkLevel]
+	ld a, [wPlayerSAtkLevel]
 	ld b, a
-	ld a, [EnemySDefLevel]
+	ld a, [wEnemySDefLevel]
 	jr nc, .end
 ; physical
-	ld a, [PlayerAtkLevel]
+	ld a, [wPlayerAtkLevel]
 	ld b, a
-	ld a, [EnemyDefLevel]
+	ld a, [wEnemyDefLevel]
 	jr .end
 
 .enemy
 	ld a, [wEnemyMoveStructType]
 	cp SPECIAL
 ; special
-	ld a, [EnemySAtkLevel]
+	ld a, [wEnemySAtkLevel]
 	ld b, a
-	ld a, [PlayerSDefLevel]
+	ld a, [wPlayerSDefLevel]
 	jr nc, .end
 ; physical
-	ld a, [EnemyAtkLevel]
+	ld a, [wEnemyAtkLevel]
 	ld b, a
-	ld a, [PlayerDefLevel]
+	ld a, [wPlayerDefLevel]
 .end
 	cp b
 	pop bc
@@ -2988,7 +2988,7 @@ SpeciesItemBoost: ; 353d1
 	and a
 	ld a, [hl]
 	jr z, .CompareSpecies
-	ld a, [TempEnemyMonSpecies]
+	ld a, [wTempEnemyMonSpecies]
 .CompareSpecies:
 	pop hl
 
@@ -3028,50 +3028,50 @@ EnemyAttackDamage: ; 353f6
 	jr nc, .Special
 
 .physical
-	ld hl, BattleMonDefense
+	ld hl, wBattleMonDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 
-	ld a, [PlayerScreens]
+	ld a, [wPlayerScreens]
 	bit SCREENS_REFLECT, a
 	jr z, .physicalcrit
 	sla c
 	rl b
 
 .physicalcrit
-	ld hl, EnemyMonAttack
+	ld hl, wEnemyMonAttack
 	call GetDamageStatsCritical
 	jr c, .thickclub
 
-	ld hl, PlayerDefense
+	ld hl, wPlayerDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, EnemyAttack
+	ld hl, wEnemyAttack
 	jr .thickclub
 
 .Special:
-	ld hl, BattleMonSpclDef
+	ld hl, wBattleMonSpclDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 
-	ld a, [PlayerScreens]
+	ld a, [wPlayerScreens]
 	bit SCREENS_LIGHT_SCREEN, a
 	jr z, .specialcrit
 	sla c
 	rl b
 
 .specialcrit
-	ld hl, EnemyMonSpclAtk
+	ld hl, wEnemyMonSpclAtk
 	call GetDamageStatsCritical
 	jr c, .lightball
-	ld hl, PlayerSpDef
+	ld hl, wPlayerSpDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, EnemySpAtk
+	ld hl, wEnemySpAtk
 
 .lightball
 	call LightBallBoost
@@ -3083,7 +3083,7 @@ EnemyAttackDamage: ; 353f6
 .done
 	call TruncateHL_BC
 
-	ld a, [EnemyMonLevel]
+	ld a, [wEnemyMonLevel]
 	ld e, a
 	call DittoMetalPowder
 
@@ -3099,7 +3099,7 @@ INCLUDE "engine/battle/move_effects/beat_up.asm"
 
 BattleCommand_ClearMissDamage: ; 355d5
 ; clearmissdamage
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	ret z
 
@@ -3112,14 +3112,14 @@ HitSelfInConfusion: ; 355dd
 	call ResetDamage
 	ld a, [hBattleTurn]
 	and a
-	ld hl, BattleMonDefense
-	ld de, PlayerScreens
-	ld a, [BattleMonLevel]
+	ld hl, wBattleMonDefense
+	ld de, wPlayerScreens
+	ld a, [wBattleMonLevel]
 	jr z, .got_it
 
-	ld hl, EnemyMonDefense
-	ld de, EnemyScreens
-	ld a, [EnemyMonLevel]
+	ld hl, wEnemyMonDefense
+	ld de, wEnemyScreens
+	ld a, [wEnemyMonLevel]
 .got_it
 	push af
 	ld a, [hli]
@@ -3276,8 +3276,8 @@ BattleCommand_DamageCalc: ; 35612
 	call .CriticalMultiplier
 
 
-; Update CurDamage (capped at 997).
-	ld hl, CurDamage
+; Update wCurDamage (capped at 997).
+	ld hl, wCurDamage
 	ld b, [hl]
 	ld a, [hProduct + 3]
 	add b
@@ -3357,7 +3357,7 @@ BattleCommand_DamageCalc: ; 35612
 
 
 .CriticalMultiplier:
-	ld a, [CriticalHit]
+	ld a, [wCriticalHit]
 	and a
 	ret z
 
@@ -3388,11 +3388,11 @@ INCLUDE "data/types/type_boost_items.asm"
 BattleCommand_ConstantDamage: ; 35726
 ; constantdamage
 
-	ld hl, BattleMonLevel
+	ld hl, wBattleMonLevel
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_turn
-	ld hl, EnemyMonLevel
+	ld hl, wEnemyMonLevel
 
 .got_turn
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -3435,11 +3435,11 @@ BattleCommand_ConstantDamage: ; 35726
 	jr .got_power
 
 .super_fang
-	ld hl, EnemyMonHP
+	ld hl, wEnemyMonHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_hp
-	ld hl, BattleMonHP
+	ld hl, wBattleMonHP
 .got_hp
 	ld a, [hli]
 	srl a
@@ -3458,17 +3458,17 @@ BattleCommand_ConstantDamage: ; 35726
 	jr .got_power
 
 .got_power
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld [hli], a
 	ld [hl], b
 	ret
 
 .reversal
-	ld hl, BattleMonHP
+	ld hl, wBattleMonHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .reversal_got_hp
-	ld hl, EnemyMonHP
+	ld hl, wEnemyMonHP
 .reversal_got_hp
 	xor a
 	ld [hDividend], a
@@ -3614,9 +3614,9 @@ FarPlayBattleAnimation: ; 35d00
 
 PlayFXAnimID: ; 35d08
 	ld a, e
-	ld [FXAnimID], a
+	ld [wFXAnimID], a
 	ld a, d
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 
 	ld c, 3
 	call DelayFrames
@@ -3629,7 +3629,7 @@ PlayFXAnimID: ; 35d08
 
 
 EnemyHurtItself: ; 35d1c
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -3640,46 +3640,46 @@ EnemyHurtItself: ; 35d1c
 	and a
 	jr nz, .mimic_sub_check
 
-	ld a, [EnemySubStatus4]
+	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	jp nz, SelfInflictDamageToSubstitute
 
 .mimic_sub_check
 	ld a, [hld]
 	ld b, a
-	ld a, [EnemyMonHP + 1]
-	ld [Buffer3], a
+	ld a, [wEnemyMonHP + 1]
+	ld [wBuffer3], a
 	sub b
-	ld [EnemyMonHP + 1], a
+	ld [wEnemyMonHP + 1], a
 	ld a, [hl]
 	ld b, a
-	ld a, [EnemyMonHP]
-	ld [Buffer4], a
+	ld a, [wEnemyMonHP]
+	ld [wBuffer4], a
 	sbc b
-	ld [EnemyMonHP], a
+	ld [wEnemyMonHP], a
 	jr nc, .mimic_faint
 
-	ld a, [Buffer4]
+	ld a, [wBuffer4]
 	ld [hli], a
-	ld a, [Buffer3]
+	ld a, [wBuffer3]
 	ld [hl], a
 
 	xor a
-	ld hl, EnemyMonHP
+	ld hl, wEnemyMonHP
 	ld [hli], a
 	ld [hl], a
 
 .mimic_faint
-	ld hl, EnemyMonMaxHP
+	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld a, [hl]
-	ld [Buffer1], a
-	ld hl, EnemyMonHP
+	ld [wBuffer1], a
+	ld hl, wEnemyMonHP
 	ld a, [hli]
-	ld [Buffer6], a
+	ld [wBuffer6], a
 	ld a, [hl]
-	ld [Buffer5], a
+	ld [wBuffer5], a
 	hlcoord 2, 2
 	xor a
 	ld [wWhichHPBar], a
@@ -3691,7 +3691,7 @@ EnemyHurtItself: ; 35d1c
 
 
 PlayerHurtItself: ; 35d7e
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -3702,44 +3702,44 @@ PlayerHurtItself: ; 35d7e
 	and a
 	jr nz, .mimic_sub_check
 
-	ld a, [PlayerSubStatus4]
+	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
 	jp nz, SelfInflictDamageToSubstitute
 .mimic_sub_check
 	ld a, [hld]
 	ld b, a
-	ld a, [BattleMonHP + 1]
-	ld [Buffer3], a
+	ld a, [wBattleMonHP + 1]
+	ld [wBuffer3], a
 	sub b
-	ld [BattleMonHP + 1], a
-	ld [Buffer5], a
+	ld [wBattleMonHP + 1], a
+	ld [wBuffer5], a
 	ld b, [hl]
-	ld a, [BattleMonHP]
-	ld [Buffer4], a
+	ld a, [wBattleMonHP]
+	ld [wBuffer4], a
 	sbc b
-	ld [BattleMonHP], a
-	ld [Buffer6], a
+	ld [wBattleMonHP], a
+	ld [wBuffer6], a
 	jr nc, .mimic_faint
 
-	ld a, [Buffer4]
+	ld a, [wBuffer4]
 	ld [hli], a
-	ld a, [Buffer3]
+	ld a, [wBuffer3]
 	ld [hl], a
 	xor a
 
-	ld hl, BattleMonHP
+	ld hl, wBattleMonHP
 	ld [hli], a
 	ld [hl], a
-	ld hl, Buffer5
+	ld hl, wBuffer5
 	ld [hli], a
 	ld [hl], a
 
 .mimic_faint
-	ld hl, BattleMonMaxHP
+	ld hl, wBattleMonMaxHP
 	ld a, [hli]
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld a, [hl]
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	hlcoord 10, 9
 	ld a, $1
 	ld [wWhichHPBar], a
@@ -3755,14 +3755,14 @@ SelfInflictDamageToSubstitute: ; 35de0
 	ld hl, SubTookDamageText
 	call StdBattleTextBox
 
-	ld de, EnemySubstituteHP
+	ld de, wEnemySubstituteHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_hp
-	ld de, PlayerSubstituteHP
+	ld de, wPlayerSubstituteHP
 .got_hp
 
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	and a
 	jr nz, .broke
@@ -3820,7 +3820,7 @@ UpdateMoveData: ; 35e40
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
-	ld [CurMove], a
+	ld [wCurMove], a
 	ld [wNamedObjectIndexBuffer], a
 
 	dec a
@@ -3855,7 +3855,7 @@ BattleCommand_SleepTarget: ; 35e5c
 	ld hl, AlreadyAsleepText
 	jr nz, .fail
 
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, PrintDidntAffect2
 
@@ -3872,7 +3872,7 @@ BattleCommand_SleepTarget: ; 35e5c
 
 	call AnimateCurrentMove
 	ld b, $7
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	and a
 	jr z, .random_loop
 	ld b, $3
@@ -3916,12 +3916,12 @@ BattleCommand_SleepTarget: ; 35e5c
 	and a
 	jr nz, .dont_fail
 
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	and a
 	jr nz, .dont_fail
 
 	; Not locked-on by the enemy
-	ld a, [PlayerSubStatus5]
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .dont_fail
 
@@ -3945,7 +3945,7 @@ BattleCommand_PoisonTarget: ; 35eee
 	call GetBattleVarAddr
 	and a
 	ret nz
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	ret z
 	call CheckIfTargetIsPoisonType
@@ -3954,7 +3954,7 @@ BattleCommand_PoisonTarget: ; 35eee
 	ld a, b
 	cp HELD_PREVENT_POISON
 	ret z
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	ret nz
 	call SafeCheckSafeguard
@@ -3978,7 +3978,7 @@ BattleCommand_Poison: ; 35f2c
 ; poison
 
 	ld hl, DoesntAffectText
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	jp z, .failed
 
@@ -4017,11 +4017,11 @@ BattleCommand_Poison: ; 35f2c
 	and a
 	jr nz, .mimic_random
 
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	and a
 	jr nz, .mimic_random
 
-	ld a, [PlayerSubStatus5]
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .mimic_random
 
@@ -4032,7 +4032,7 @@ BattleCommand_Poison: ; 35f2c
 .mimic_random
 	call CheckSubstituteOpp
 	jr nz, .failed
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
 	call .check_toxic
@@ -4078,9 +4078,9 @@ BattleCommand_Poison: ; 35f2c
 	call GetBattleVarAddr
 	ld a, [hBattleTurn]
 	and a
-	ld de, EnemyToxicCount
+	ld de, wEnemyToxicCount
 	jr z, .ok
-	ld de, PlayerToxicCount
+	ld de, wPlayerToxicCount
 .ok
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
@@ -4091,11 +4091,11 @@ BattleCommand_Poison: ; 35f2c
 
 
 CheckIfTargetIsPoisonType: ; 35fe1
-	ld de, EnemyMonType1
+	ld de, wEnemyMonType1
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld de, BattleMonType1
+	ld de, wBattleMonType1
 .ok
 	ld a, [de]
 	inc de
@@ -4136,7 +4136,7 @@ BattleCommand_EatDream: ; 36008
 
 
 SapHealth: ; 36011
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	srl a
 	ld [hDividend], a
@@ -4149,15 +4149,15 @@ SapHealth: ; 36011
 	ld a, $1
 	ld [hDividend + 1], a
 .ok1
-	ld hl, BattleMonHP
-	ld de, BattleMonMaxHP
+	ld hl, wBattleMonHP
+	ld de, wBattleMonMaxHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .battlemonhp
-	ld hl, EnemyMonHP
-	ld de, EnemyMonMaxHP
+	ld hl, wEnemyMonHP
+	ld de, wEnemyMonMaxHP
 .battlemonhp
-	ld bc, Buffer4
+	ld bc, wBuffer4
 	ld a, [hli]
 	ld [bc], a
 	ld a, [hl]
@@ -4174,12 +4174,12 @@ SapHealth: ; 36011
 	ld b, [hl]
 	add b
 	ld [hld], a
-	ld [Buffer5], a
+	ld [wBuffer5], a
 	ld a, [hDividend]
 	ld b, [hl]
 	adc b
 	ld [hli], a
-	ld [Buffer6], a
+	ld [wBuffer6], a
 	jr c, .okay2
 	ld a, [hld]
 	ld b, a
@@ -4195,11 +4195,11 @@ SapHealth: ; 36011
 .okay2
 	ld a, [de]
 	ld [hld], a
-	ld [Buffer5], a
+	ld [wBuffer5], a
 	dec de
 	ld a, [de]
 	ld [hli], a
-	ld [Buffer6], a
+	ld [wBuffer6], a
 	inc de
 .okay3
 	ld a, [hBattleTurn]
@@ -4229,7 +4229,7 @@ BattleCommand_BurnTarget: ; 3608c
 	call GetBattleVarAddr
 	and a
 	jp nz, Defrost
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	ret z
 	call CheckMoveTypeMatchesTarget ; Don't burn a Fire-type
@@ -4238,7 +4238,7 @@ BattleCommand_BurnTarget: ; 3608c
 	ld a, b
 	cp HELD_PREVENT_BURN
 	ret z
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	ret nz
 	call SafeCheckSafeguard
@@ -4272,11 +4272,11 @@ Defrost: ; 360dd
 
 	ld a, [hBattleTurn]
 	and a
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Status
+	ld a, [wCurOTMon]
+	ld hl, wOTPartyMon1Status
 	jr z, .ok
-	ld hl, PartyMon1Status
-	ld a, [CurBattleMon]
+	ld hl, wPartyMon1Status
+	ld a, [wCurBattleMon]
 .ok
 
 	call GetPartyLocation
@@ -4301,10 +4301,10 @@ BattleCommand_FreezeTarget: ; 36102
 	call GetBattleVarAddr
 	and a
 	ret nz
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	ret z
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	ret z
 	call CheckMoveTypeMatchesTarget ; Don't freeze an Ice-type
@@ -4313,7 +4313,7 @@ BattleCommand_FreezeTarget: ; 36102
 	ld a, b
 	cp HELD_PREVENT_FREEZE
 	ret z
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	ret nz
 	call SafeCheckSafeguard
@@ -4357,14 +4357,14 @@ BattleCommand_ParalyzeTarget: ; 36165
 	call GetBattleVarAddr
 	and a
 	ret nz
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	ret z
 	call GetOpponentItem
 	ld a, b
 	cp HELD_PREVENT_PARALYZE
 	ret z
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	ret nz
 	call SafeCheckSafeguard
@@ -4458,7 +4458,7 @@ BattleCommand_EvasionUp2: ; 361e0
 BattleCommand_StatUp: ; 361e4
 ; statup
 	call CheckIfStatCanBeRaised
-	ld a, [FailedMessage]
+	ld a, [wFailedMessage]
 	and a
 	ret nz
 	jp StatUpAnimation
@@ -4468,20 +4468,20 @@ BattleCommand_StatUp: ; 361e4
 
 CheckIfStatCanBeRaised: ; 361ef
 	ld a, b
-	ld [LoweredStat], a
-	ld hl, PlayerStatLevels
+	ld [wLoweredStat], a
+	ld hl, wPlayerStatLevels
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_stat_levels
-	ld hl, EnemyStatLevels
+	ld hl, wEnemyStatLevels
 .got_stat_levels
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, .stat_raise_failed
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	jp nz, .stat_raise_failed
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f
 	ld c, a
 	ld b, 0
@@ -4491,7 +4491,7 @@ CheckIfStatCanBeRaised: ; 361ef
 	ld a, $d
 	cp b
 	jp c, .cant_raise_stat
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f0
 	jr z, .got_num_stages
 	inc b
@@ -4505,13 +4505,13 @@ CheckIfStatCanBeRaised: ; 361ef
 	ld a, c
 	cp $5
 	jr nc, .done_calcing_stats
-	ld hl, BattleMonStats + 1
-	ld de, PlayerStats
+	ld hl, wBattleMonStats + 1
+	ld de, wPlayerStats
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_stats_pointer
-	ld hl, EnemyMonStats + 1
-	ld de, EnemyStats
+	ld hl, wEnemyMonStats + 1
+	ld de, wEnemyStats
 .got_stats_pointer
 	push bc
 	sla c
@@ -4542,7 +4542,7 @@ CheckIfStatCanBeRaised: ; 361ef
 .done_calcing_stats
 	pop hl
 	xor a
-	ld [FailedMessage], a
+	ld [wFailedMessage], a
 	ret
 
 ; 3626e
@@ -4557,9 +4557,9 @@ CheckIfStatCanBeRaised: ; 361ef
 
 .cant_raise_stat ; 36270
 	ld a, $2
-	ld [FailedMessage], a
+	ld [wFailedMessage], a
 	ld a, $1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 ; 3627b
@@ -4567,7 +4567,7 @@ CheckIfStatCanBeRaised: ; 361ef
 
 .stat_raise_failed ; 3627b
 	ld a, $1
-	ld [FailedMessage], a
+	ld [wFailedMessage], a
 	ret
 
 ; 36281
@@ -4673,20 +4673,20 @@ BattleCommand_EvasionDown2: ; 362e1
 BattleCommand_StatDown: ; 362e3
 ; statdown
 
-	ld [LoweredStat], a
+	ld [wLoweredStat], a
 
 	call CheckMist
 	jp nz, .Mist
 
-	ld hl, EnemyStatLevels
+	ld hl, wEnemyStatLevels
 	ld a, [hBattleTurn]
 	and a
 	jr z, .GetStatLevel
-	ld hl, PlayerStatLevels
+	ld hl, wPlayerStatLevels
 
 .GetStatLevel:
 ; Attempt to lower the stat.
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f
 	ld c, a
 	ld b, 0
@@ -4696,7 +4696,7 @@ BattleCommand_StatDown: ; 362e3
 	jp z, .CantLower
 
 ; Sharply lower the stat if applicable.
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f0
 	jr z, .ComputerMiss
 	dec b
@@ -4713,12 +4713,12 @@ BattleCommand_StatDown: ; 362e3
 	and a
 	jr nz, .DidntMiss
 
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	and a
 	jr nz, .DidntMiss
 
 ; Lock-On still always works.
-	ld a, [PlayerSubStatus5]
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .DidntMiss
 
@@ -4736,11 +4736,11 @@ BattleCommand_StatDown: ; 362e3
 	call CheckSubstituteOpp
 	jr nz, .Failed
 
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .Failed
 
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	jr nz, .Failed
 
@@ -4754,13 +4754,13 @@ BattleCommand_StatDown: ; 362e3
 	jr nc, .Hit
 
 	push hl
-	ld hl, EnemyMonAttack + 1
-	ld de, EnemyStats
+	ld hl, wEnemyMonAttack + 1
+	ld de, wEnemyStats
 	ld a, [hBattleTurn]
 	and a
 	jr z, .do_enemy
-	ld hl, BattleMonAttack + 1
-	ld de, PlayerStats
+	ld hl, wBattleMonAttack + 1
+	ld de, wPlayerStats
 .do_enemy
 	call TryLowerStat
 	pop hl
@@ -4768,29 +4768,29 @@ BattleCommand_StatDown: ; 362e3
 
 .Hit:
 	xor a
-	ld [FailedMessage], a
+	ld [wFailedMessage], a
 	ret
 
 .CouldntLower:
 	inc [hl]
 .CantLower:
 	ld a, 3
-	ld [FailedMessage], a
+	ld [wFailedMessage], a
 	ld a, 1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 .Failed:
 	ld a, 1
-	ld [FailedMessage], a
-	ld [AttackMissed], a
+	ld [wFailedMessage], a
+	ld [wAttackMissed], a
 	ret
 
 .Mist:
 	ld a, 2
-	ld [FailedMessage], a
+	ld [wFailedMessage], a
 	ld a, 1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 ; 36391
@@ -4825,10 +4825,10 @@ CheckMist: ; 36391
 
 
 BattleCommand_StatUpMessage: ; 363b8
-	ld a, [FailedMessage]
+	ld a, [wFailedMessage]
 	and a
 	ret nz
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f
 	ld b, a
 	inc b
@@ -4840,7 +4840,7 @@ BattleCommand_StatUpMessage: ; 363b8
 	text_jump UnknownText_0x1c0cc6
 	start_asm
 	ld hl, .up
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f0
 	ret z
 	ld hl, .wayup
@@ -4858,10 +4858,10 @@ BattleCommand_StatUpMessage: ; 363b8
 
 
 BattleCommand_StatDownMessage: ; 363e9
-	ld a, [FailedMessage]
+	ld a, [wFailedMessage]
 	and a
 	ret nz
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f
 	ld b, a
 	inc b
@@ -4873,7 +4873,7 @@ BattleCommand_StatDownMessage: ; 363e9
 	text_jump UnknownText_0x1c0ceb
 	start_asm
 	ld hl, .fell
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f0
 	ret z
 	ld hl, .sharplyfell
@@ -4937,7 +4937,7 @@ TryLowerStat: ; 3641a
 
 BattleCommand_StatUpFailText: ; 3644c
 ; statupfailtext
-	ld a, [FailedMessage]
+	ld a, [wFailedMessage]
 	and a
 	ret z
 	push af
@@ -4945,7 +4945,7 @@ BattleCommand_StatUpFailText: ; 3644c
 	pop af
 	dec a
 	jp z, TryPrintButItFailed
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f
 	ld b, a
 	inc b
@@ -4958,7 +4958,7 @@ BattleCommand_StatUpFailText: ; 3644c
 
 BattleCommand_StatDownFailText: ; 3646a
 ; statdownfailtext
-	ld a, [FailedMessage]
+	ld a, [wFailedMessage]
 	and a
 	ret z
 	push af
@@ -4969,7 +4969,7 @@ BattleCommand_StatDownFailText: ; 3646a
 	dec a
 	ld hl, ProtectedByMistText
 	jp z, StdBattleTextBox
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f
 	ld b, a
 	inc b
@@ -4993,8 +4993,8 @@ GetStatName: ; 3648f
 	jr .GetName
 
 .Copy:
-	ld de, StringBuffer2
-	ld bc, StringBuffer3 - StringBuffer2
+	ld de, wStringBuffer2
+	ld bc, wStringBuffer3 - wStringBuffer2
 	jp CopyBytes
 
 INCLUDE "data/battle/stat_names.asm"
@@ -5035,23 +5035,23 @@ BattleCommand_AllStatsUp: ; 36500
 
 ResetMiss: ; 3652d
 	xor a
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 ; 36532
 
 
 LowerStat: ; 36532
-	ld [LoweredStat], a
+	ld [wLoweredStat], a
 
-	ld hl, PlayerStatLevels
+	ld hl, wPlayerStatLevels
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_target
-	ld hl, EnemyStatLevels
+	ld hl, wEnemyStatLevels
 
 .got_target
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f
 	ld c, a
 	ld b, 0
@@ -5060,7 +5060,7 @@ LowerStat: ; 36532
 	dec b
 	jr z, .cant_lower_anymore
 
-	ld a, [LoweredStat]
+	ld a, [wLoweredStat]
 	and $f0
 	jr z, .got_num_stages
 	dec b
@@ -5074,13 +5074,13 @@ LowerStat: ; 36532
 	jr nc, .accuracy_evasion
 
 	push hl
-	ld hl, BattleMonStats + 1
-	ld de, PlayerStats
+	ld hl, wBattleMonStats + 1
+	ld de, wPlayerStats
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_target_2
-	ld hl, EnemyMonStats + 1
-	ld de, EnemyStats
+	ld hl, wEnemyMonStats + 1
+	ld de, wEnemyStats
 
 .got_target_2
 	call TryLowerStat
@@ -5101,7 +5101,7 @@ LowerStat: ; 36532
 
 .finish
 	xor a
-	ld [FailedMessage], a
+	ld [wFailedMessage], a
 	ret
 
 .failed
@@ -5109,7 +5109,7 @@ LowerStat: ; 36532
 
 .cant_lower_anymore
 	ld a, 2
-	ld [FailedMessage], a
+	ld [wFailedMessage], a
 	ret
 
 ; 3658f
@@ -5179,9 +5179,9 @@ BattleCommand_LowerSubNoAnim: ; 365c3
 
 
 CalcPlayerStats: ; 365d7
-	ld hl, PlayerAtkLevel
-	ld de, PlayerStats
-	ld bc, BattleMonAttack
+	ld hl, wPlayerAtkLevel
+	ld de, wPlayerStats
+	ld bc, wBattleMonAttack
 
 	ld a, 5
 	call CalcStats
@@ -5203,9 +5203,9 @@ CalcPlayerStats: ; 365d7
 
 
 CalcEnemyStats: ; 365fd
-	ld hl, EnemyAtkLevel
-	ld de, EnemyStats
-	ld bc, EnemyMonAttack
+	ld hl, wEnemyAtkLevel
+	ld de, wEnemyStats
+	ld bc, wEnemyMonAttack
 
 	ld a, 5
 	call CalcStats
@@ -5301,11 +5301,11 @@ INCLUDE "engine/battle/move_effects/bide.asm"
 BattleCommand_CheckRampage: ; 3671a
 ; checkrampage
 
-	ld de, PlayerRolloutCount
+	ld de, wPlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player
-	ld de, EnemyRolloutCount
+	ld de, wEnemyRolloutCount
 .player
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
@@ -5347,11 +5347,11 @@ BattleCommand_Rampage: ; 36751
 	and SLP
 	ret nz
 
-	ld de, PlayerRolloutCount
+	ld de, wPlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld de, EnemyRolloutCount
+	ld de, wEnemyRolloutCount
 .ok
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
@@ -5384,7 +5384,7 @@ SetBattleDraw: ; 36804
 BattleCommand_ForceSwitch: ; 3680f
 ; forceswitch
 
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	cp BATTLETYPE_SHINY
 	jp z, .fail
 	cp BATTLETYPE_TRAP
@@ -5396,15 +5396,15 @@ BattleCommand_ForceSwitch: ; 3680f
 	ld a, [hBattleTurn]
 	and a
 	jp nz, .force_player_switch
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .missed
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .trainer
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	ld b, a
-	ld a, [BattleMonLevel]
+	ld a, [wBattleMonLevel]
 	cp b
 	jr nc, .wild_force_flee
 	add b
@@ -5448,9 +5448,9 @@ BattleCommand_ForceSwitch: ; 3680f
 	call ClearBox
 	ld c, 20
 	call DelayFrames
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	ld b, a
-	ld a, [CurOTMon]
+	ld a, [wCurOTMon]
 	ld c, a
 ; select a random enemy mon to switch to
 .random_loop_trainer
@@ -5462,7 +5462,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	jr z, .random_loop_trainer
 	push af
 	push bc
-	ld hl, OTPartyMon1HP
+	ld hl, wOTPartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]
 	or [hl]
@@ -5484,7 +5484,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	jp .fail
 
 .force_player_switch
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .player_miss
 
@@ -5492,9 +5492,9 @@ BattleCommand_ForceSwitch: ; 3680f
 	dec a
 	jr nz, .vs_trainer
 
-	ld a, [BattleMonLevel]
+	ld a, [wBattleMonLevel]
 	ld b, a
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	cp b
 	jr nc, .wild_succeed_playeristarget
 
@@ -5543,9 +5543,9 @@ BattleCommand_ForceSwitch: ; 3680f
 	call ClearBox
 	ld c, 20
 	call DelayFrames
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld b, a
-	ld a, [CurBattleMon]
+	ld a, [wCurBattleMon]
 	ld c, a
 .random_loop_trainer_playeristarget
 	call BattleRandom
@@ -5558,7 +5558,7 @@ BattleCommand_ForceSwitch: ; 3680f
 
 	push af
 	push bc
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]
 	or [hl]
@@ -5567,7 +5567,7 @@ BattleCommand_ForceSwitch: ; 3680f
 	jr z, .random_loop_trainer_playeristarget
 
 	ld a, d
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	ld hl, SwitchPlayerMon
 	call CallBattleCore
 
@@ -5604,17 +5604,17 @@ BattleCommand_ForceSwitch: ; 3680f
 
 
 CheckPlayerHasMonToSwitchTo: ; 36994
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld d, a
 	ld e, 0
 	ld bc, PARTYMON_STRUCT_LENGTH
 .loop
-	ld a, [CurBattleMon]
+	ld a, [wCurBattleMon]
 	cp e
 	jr z, .next
 
 	ld a, e
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	call AddNTimes
 	ld a, [hli]
 	or [hl]
@@ -5640,13 +5640,13 @@ BattleCommand_EndLoop: ; 369b6
 
 ; Loop back to the command before 'critical'.
 
-	ld de, PlayerRolloutCount
-	ld bc, PlayerDamageTaken
+	ld de, wPlayerRolloutCount
+	ld bc, wPlayerDamageTaken
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_addrs
-	ld de, EnemyRolloutCount
-	ld bc, EnemyDamageTaken
+	ld de, wEnemyRolloutCount
+	ld bc, wEnemyDamageTaken
 .got_addrs
 
 	ld a, BATTLE_VARS_SUBSTATUS3
@@ -5681,7 +5681,7 @@ BattleCommand_EndLoop: ; 369b6
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .check_ot_beat_up
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp 1
 	jp z, .only_one_beatup
 	dec a
@@ -5691,7 +5691,7 @@ BattleCommand_EndLoop: ; 369b6
 	ld a, [wBattleMode]
 	cp WILD_BATTLE
 	jp z, .only_one_beatup
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	cp 1
 	jp z, .only_one_beatup
 	dec a
@@ -5755,9 +5755,9 @@ BattleCommand_EndLoop: ; 369b6
 
 ; Loop back to the command before 'critical'.
 .loop_back_to_critical
-	ld a, [BattleScriptBufferAddress + 1]
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [BattleScriptBufferAddress]
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
 .not_critical
 	ld a, [hld]
@@ -5765,16 +5765,16 @@ BattleCommand_EndLoop: ; 369b6
 	jr nz, .not_critical
 	inc hl
 	ld a, h
-	ld [BattleScriptBufferAddress + 1], a
+	ld [wBattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [BattleScriptBufferAddress], a
+	ld [wBattleScriptBufferAddress], a
 	ret
 
 ; 36a82
 
 
 BattleCommand_FakeOut: ; 36a82
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	ret nz
 
@@ -5791,7 +5791,7 @@ BattleCommand_FakeOut: ; 36a82
 
 .fail
 	ld a, 1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 ; 36aa0
@@ -5809,7 +5809,7 @@ BattleCommand_FlinchTarget: ; 36aa0
 	call CheckOpponentWentFirst
 	ret nz
 
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	ret nz
 
@@ -5843,7 +5843,7 @@ CheckOpponentWentFirst: ; 36abf
 BattleCommand_HeldFlinch: ; 36ac9
 ; kingsrock
 
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	ret nz
 
@@ -5875,11 +5875,11 @@ BattleCommand_OHKO: ; 36af3
 ; ohko
 
 	call ResetDamage
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	jr z, .no_effect
-	ld hl, EnemyMonLevel
-	ld de, BattleMonLevel
+	ld hl, wEnemyMonLevel
+	ld de, wBattleMonLevel
 	ld bc, wPlayerMoveStruct + MOVE_ACC
 	ld a, [hBattleTurn]
 	and a
@@ -5902,19 +5902,19 @@ BattleCommand_OHKO: ; 36af3
 .finish_ohko
 	ld [bc], a
 	call BattleCommand_CheckHit
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
 	ld a, $2
-	ld [CriticalHit], a
+	ld [wCriticalHit], a
 	ret
 
 .no_effect
 	ld a, $ff
-	ld [CriticalHit], a
+	ld [wCriticalHit], a
 	ld a, $1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 ; 36b3a
@@ -5956,7 +5956,7 @@ BattleCommand_Charge: ; 36b4d
 	set SUBSTATUS_CHARGED, [hl]
 
 	ld hl, IgnoredOrders2Text
-	ld a, [AlreadyDisobeyed]
+	ld a, [wAlreadyDisobeyed]
 	and a
 	call nz, StdBattleTextBox
 
@@ -6017,7 +6017,7 @@ BattleCommand_Charge: ; 36b4d
 	jp EndMoveEffect
 
 .UsedText:
-	text_jump UnknownText_0x1c0d0e ; "[USER]"
+	text_jump UnknownText_0x1c0d0e ; "<USER>"
 	start_asm
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -6089,7 +6089,7 @@ BattleCommand3c: ; 36c2c
 BattleCommand_TrapTarget: ; 36c2d
 ; traptarget
 
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	ret nz
 	ld hl, wEnemyWrapCount
@@ -6152,19 +6152,19 @@ INCLUDE "engine/battle/move_effects/focus_energy.asm"
 BattleCommand_Recoil: ; 36cb2
 ; recoil
 
-	ld hl, BattleMonMaxHP
+	ld hl, wBattleMonMaxHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_hp
-	ld hl, EnemyMonMaxHP
+	ld hl, wEnemyMonMaxHP
 .got_hp
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld d, a
 ; get 1/4 damage or 1 HP, whichever is higher
-	ld a, [CurDamage]
+	ld a, [wCurDamage]
 	ld b, a
-	ld a, [CurDamage + 1]
+	ld a, [wCurDamage + 1]
 	ld c, a
 	srl b
 	rr c
@@ -6176,26 +6176,26 @@ BattleCommand_Recoil: ; 36cb2
 	inc c
 .min_damage
 	ld a, [hli]
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld a, [hl]
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	dec hl
 	dec hl
 	ld a, [hl]
-	ld [Buffer3], a
+	ld [wBuffer3], a
 	sub c
 	ld [hld], a
-	ld [Buffer5], a
+	ld [wBuffer5], a
 	ld a, [hl]
-	ld [Buffer4], a
+	ld [wBuffer4], a
 	sbc b
 	ld [hl], a
-	ld [Buffer6], a
+	ld [wBuffer6], a
 	jr nc, .dont_ko
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld hl, Buffer5
+	ld hl, wBuffer5
 	ld [hli], a
 	ld [hl], a
 .dont_ko
@@ -6223,7 +6223,7 @@ BattleCommand_ConfuseTarget: ; 36d1d
 	ld a, b
 	cp HELD_PREVENT_CONFUSE
 	ret z
-	ld a, [EffectFailed]
+	ld a, [wEffectFailed]
 	and a
 	ret nz
 	call SafeCheckSafeguard
@@ -6263,15 +6263,15 @@ BattleCommand_Confuse: ; 36d3b
 .not_already_confused
 	call CheckSubstituteOpp
 	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
 BattleCommand_FinishConfusingTarget: ; 36d70
-	ld bc, EnemyConfuseCount
+	ld bc, wEnemyConfuseCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_confuse_count
-	ld bc, PlayerConfuseCount
+	ld bc, wPlayerConfuseCount
 
 .got_confuse_count
 	set SUBSTATUS_CONFUSED, [hl]
@@ -6332,7 +6332,7 @@ BattleCommand_Paralyze: ; 36dc7
 	call GetBattleVar
 	bit PAR, a
 	jr nz, .paralyzed
-	ld a, [TypeModifier]
+	ld a, [wTypeModifier]
 	and $7f
 	jr z, .didnt_affect
 	call GetOpponentItem
@@ -6355,11 +6355,11 @@ BattleCommand_Paralyze: ; 36dc7
 	and a
 	jr nz, .dont_sample_failure
 
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	and a
 	jr nz, .dont_sample_failure
 
-	ld a, [PlayerSubStatus5]
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .dont_sample_failure
 
@@ -6372,7 +6372,7 @@ BattleCommand_Paralyze: ; 36dc7
 	call GetBattleVarAddr
 	and a
 	jr nz, .failed
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
 	call CheckSubstituteOpp
@@ -6415,11 +6415,11 @@ CheckMoveTypeMatchesTarget: ; 36e5b
 
 	push hl
 
-	ld hl, EnemyMonType1
+	ld hl, wEnemyMonType1
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld hl, BattleMonType1
+	ld hl, wBattleMonType1
 .ok
 
 	ld a, BATTLE_VARS_MOVE_TYPE
@@ -6496,7 +6496,7 @@ BattleCommand_DoubleUndergroundDamage: ; 36f2f
 
 
 DoubleDamage: ; 36f37
-	ld hl, CurDamage + 1
+	ld hl, wCurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -6528,9 +6528,9 @@ BattleCommand_ResetStats: ; 3710e
 ; resetstats
 
 	ld a, 7 ; neutral
-	ld hl, PlayerStatLevels
+	ld hl, wPlayerStatLevels
 	call .Fill
-	ld hl, EnemyStatLevels
+	ld hl, wEnemyStatLevels
 	call .Fill
 
 	ld a, [hBattleTurn]
@@ -6550,7 +6550,7 @@ BattleCommand_ResetStats: ; 3710e
 	jp StdBattleTextBox
 
 .Fill:
-	ld b, PlayerStatLevelsEnd - PlayerStatLevels
+	ld b, wPlayerStatLevelsEnd - wPlayerStatLevels
 .next
 	ld [hli], a
 	dec b
@@ -6563,13 +6563,13 @@ BattleCommand_ResetStats: ; 3710e
 BattleCommand_Heal: ; 3713e
 ; heal
 
-	ld de, BattleMonHP
-	ld hl, BattleMonMaxHP
+	ld de, wBattleMonHP
+	ld hl, wBattleMonMaxHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_hp
-	ld de, EnemyMonHP
-	ld hl, EnemyMonMaxHP
+	ld de, wEnemyMonHP
+	ld hl, wEnemyMonMaxHP
 .got_hp
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -6694,14 +6694,14 @@ ResetActorDisable: ; 372e7
 	jr z, .player
 
 	xor a
-	ld [EnemyDisableCount], a
-	ld [EnemyDisabledMove], a
+	ld [wEnemyDisableCount], a
+	ld [wEnemyDisabledMove], a
 	ret
 
 .player
 	xor a
-	ld [PlayerDisableCount], a
-	ld [DisabledMove], a
+	ld [wPlayerDisableCount], a
+	ld [wDisabledMove], a
 	ret
 
 ; 372fc
@@ -6710,13 +6710,13 @@ ResetActorDisable: ; 372e7
 BattleCommand_Screen: ; 372fc
 ; screen
 
-	ld hl, PlayerScreens
-	ld bc, PlayerLightScreenCount
+	ld hl, wPlayerScreens
+	ld bc, wPlayerLightScreenCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_screens_pointer
-	ld hl, EnemyScreens
-	ld bc, EnemyLightScreenCount
+	ld hl, wEnemyScreens
+	ld bc, wEnemyLightScreenCount
 
 .got_screens_pointer
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -6772,7 +6772,7 @@ PrintNothingHappened: ; 37343
 
 
 TryPrintButItFailed: ; 37349
-	ld a, [AlreadyFailed]
+	ld a, [wAlreadyFailed]
 	and a
 	ret nz
 
@@ -6845,11 +6845,11 @@ INCLUDE "engine/battle/move_effects/metronome.asm"
 CheckUserMove: ; 37462
 ; Return z if the user has move a.
 	ld b, a
-	ld de, BattleMonMoves
+	ld de, wBattleMonMoves
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld de, EnemyMonMoves
+	ld de, wEnemyMonMoves
 .ok
 
 	ld c, NUM_MOVES
@@ -6879,7 +6879,7 @@ ResetTurn: ; 3747b
 .player
 	ld [hl], 1
 	xor a
-	ld [AlreadyDisobeyed], a
+	ld [wAlreadyDisobeyed], a
 	call DoMove
 	jp EndMoveEffect
 
@@ -6994,11 +6994,11 @@ INCLUDE "engine/battle/move_effects/safeguard.asm"
 
 SafeCheckSafeguard: ; 37962
 	push hl
-	ld hl, EnemyScreens
+	ld hl, wEnemyScreens
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_turn
-	ld hl, PlayerScreens
+	ld hl, wPlayerScreens
 
 .got_turn
 	bit SCREENS_SAFEGUARD, [hl]
@@ -7010,16 +7010,16 @@ SafeCheckSafeguard: ; 37962
 
 BattleCommand_CheckSafeguard: ; 37972
 ; checksafeguard
-	ld hl, EnemyScreens
+	ld hl, wEnemyScreens
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_turn
-	ld hl, PlayerScreens
+	ld hl, wPlayerScreens
 .got_turn
 	bit SCREENS_SAFEGUARD, [hl]
 	ret z
 	ld a, 1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	call BattleCommand_MoveDelay
 	ld hl, SafeguardProtectText
 	call StdBattleTextBox
@@ -7060,13 +7060,13 @@ BattleCommand_HealNite: ; 37b7c
 BattleCommand_TimeBasedHealContinue: ; 37b7e
 ; Time- and weather-sensitive heal.
 
-	ld hl, BattleMonMaxHP
-	ld de, BattleMonHP
+	ld hl, wBattleMonMaxHP
+	ld de, wBattleMonHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .start
-	ld hl, EnemyMonMaxHP
-	ld de, EnemyMonHP
+	ld hl, wEnemyMonMaxHP
+	ld de, wEnemyMonHP
 
 .start
 ; Index for .Multipliers
@@ -7084,13 +7084,13 @@ BattleCommand_TimeBasedHealContinue: ; 37b7e
 	and a
 	jr nz, .Weather
 
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	cp b
 	jr z, .Weather
 	dec c ; double
 
 .Weather:
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	and a
 	jr z, .Heal
 
@@ -7166,7 +7166,7 @@ BattleCommand_DoubleMinimizeDamage: ; 37ce6
 	ld a, [hl]
 	and a
 	ret z
-	ld hl, CurDamage + 1
+	ld hl, wCurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -7181,7 +7181,7 @@ BattleCommand_DoubleMinimizeDamage: ; 37ce6
 
 BattleCommand_SkipSunCharge: ; 37d02
 ; mimicsuncharge
-	ld a, [Weather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	ret nz
 	ld b, charge_command
@@ -7207,11 +7207,11 @@ CheckHiddenOpponent: ; 37daa
 
 GetUserItem: ; 37db2
 ; Return the effect of the user's item in bc, and its id at hl.
-	ld hl, BattleMonItem
+	ld hl, wBattleMonItem
 	ld a, [hBattleTurn]
 	and a
 	jr z, .go
-	ld hl, EnemyMonItem
+	ld hl, wEnemyMonItem
 .go
 	ld b, [hl]
 	jp GetItemHeldEffect
@@ -7221,11 +7221,11 @@ GetUserItem: ; 37db2
 
 GetOpponentItem: ; 37dc1
 ; Return the effect of the opponent's item in bc, and its id at hl.
-	ld hl, EnemyMonItem
+	ld hl, wEnemyMonItem
 	ld a, [hBattleTurn]
 	and a
 	jr z, .go
-	ld hl, BattleMonItem
+	ld hl, wBattleMonItem
 .go
 	ld b, [hl]
 	jp GetItemHeldEffect
@@ -7296,14 +7296,14 @@ AnimateCurrentMove: ; 37e01
 
 PlayDamageAnim: ; 37e19
 	xor a
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	and a
 	ret z
 
-	ld [FXAnimID], a
+	ld [wFXAnimID], a
 
 	ld a, [hBattleTurn]
 	and a
@@ -7322,7 +7322,7 @@ PlayDamageAnim: ; 37e19
 LoadMoveAnim: ; 37e36
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -7334,7 +7334,7 @@ LoadMoveAnim: ; 37e36
 
 
 LoadAnim: ; 37e44
-	ld [FXAnimID], a
+	ld [wFXAnimID], a
 
 	; fallthrough
 ; 37e47
@@ -7355,9 +7355,9 @@ PlayUserBattleAnim: ; 37e47
 
 PlayOpponentBattleAnim: ; 37e54
 	ld a, e
-	ld [FXAnimID], a
+	ld [wFXAnimID], a
 	ld a, d
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 	xor a
 	ld [wNumHits], a
 
@@ -7416,9 +7416,9 @@ BattleCommand_ClearText: ; 37e85
 
 SkipToBattleCommand: ; 37e8c
 ; Skip over commands until reaching command b.
-	ld a, [BattleScriptBufferAddress + 1]
+	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
-	ld a, [BattleScriptBufferAddress]
+	ld a, [wBattleScriptBufferAddress]
 	ld l, a
 .loop
 	ld a, [hli]
@@ -7426,9 +7426,9 @@ SkipToBattleCommand: ; 37e8c
 	jr nz, .loop
 
 	ld a, h
-	ld [BattleScriptBufferAddress + 1], a
+	ld [wBattleScriptBufferAddress + 1], a
 	ld a, l
-	ld [BattleScriptBufferAddress], a
+	ld [wBattleScriptBufferAddress], a
 	ret
 
 ; 37ea1

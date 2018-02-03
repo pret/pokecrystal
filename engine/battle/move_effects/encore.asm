@@ -1,13 +1,13 @@
 BattleCommand_Encore: ; 35864
 ; encore
 
-	ld hl, EnemyMonMoves
-	ld de, EnemyEncoreCount
+	ld hl, wEnemyMonMoves
+	ld de, wEnemyEncoreCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld hl, BattleMonMoves
-	ld de, PlayerEncoreCount
+	ld hl, wBattleMonMoves
+	ld de, wPlayerEncoreCount
 .ok
 	ld a, BATTLE_VARS_LAST_MOVE_OPP
 	call GetBattleVar
@@ -26,12 +26,12 @@ BattleCommand_Encore: ; 35864
 	cp b
 	jr nz, .got_move
 
-	ld bc, BattleMonPP - BattleMonMoves - 1
+	ld bc, wBattleMonPP - wBattleMonMoves - 1
 	add hl, bc
 	ld a, [hl]
 	and PP_MASK
 	jp z, .failed
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, .failed
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
@@ -52,10 +52,10 @@ BattleCommand_Encore: ; 35864
 	jr z, .force_last_enemy_move
 
 	push hl
-	ld a, [LastPlayerMove]
+	ld a, [wLastPlayerMove]
 	ld b, a
 	ld c, 0
-	ld hl, BattleMonMoves
+	ld hl, wBattleMonMoves
 .find_player_move
 	ld a, [hli]
 	cp b
@@ -73,9 +73,9 @@ BattleCommand_Encore: ; 35864
 .got_player_move
 	pop hl
 	ld a, c
-	ld [CurMoveNum], a
+	ld [wCurMoveNum], a
 	ld a, b
-	ld [CurPlayerMove], a
+	ld [wCurPlayerMove], a
 	dec a
 	ld de, wPlayerMoveStruct
 	call GetMoveData
@@ -83,10 +83,10 @@ BattleCommand_Encore: ; 35864
 
 .force_last_enemy_move
 	push hl
-	ld a, [LastEnemyMove]
+	ld a, [wLastEnemyMove]
 	ld b, a
 	ld c, 0
-	ld hl, EnemyMonMoves
+	ld hl, wEnemyMonMoves
 .find_enemy_move
 	ld a, [hli]
 	cp b
@@ -104,9 +104,9 @@ BattleCommand_Encore: ; 35864
 .got_enemy_move
 	pop hl
 	ld a, c
-	ld [CurEnemyMoveNum], a
+	ld [wCurEnemyMoveNum], a
 	ld a, b
-	ld [CurEnemyMove], a
+	ld [wCurEnemyMove], a
 	dec a
 	ld de, wEnemyMoveStruct
 	call GetMoveData

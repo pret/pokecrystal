@@ -231,18 +231,18 @@ ContestResults_ReadyToJudgeText:
 
 ContestResults_PlayerWonAPrizeText:
 	text "<PLAYER>, the No.@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text_start
 	line "finisher, wins"
 	cont "@"
-	text_from_ram StringBuffer4
+	text_from_ram wStringBuffer4
 	text "!"
 	done
 
 ReceivedItemText:
 	text "<PLAYER> received"
 	line "@"
-	text_from_ram StringBuffer4
+	text_from_ram wStringBuffer4
 	text "."
 	done
 
@@ -279,14 +279,14 @@ ContestResults_PartyFullText:
 	done
 
 GymStatue_CityGymText:
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text_start
 	line "#MON GYM"
 	done
 
 GymStatue_WinningTrainersText:
 	text "LEADER: @"
-	text_from_ram StringBuffer4
+	text_from_ram wStringBuffer4
 	text_start
 	para "WINNING TRAINERS:"
 	line "<PLAYER>"
@@ -376,13 +376,13 @@ HappinessText1:
 RegisteredNumber1Text:
 	text "<PLAYER> registered"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "'s number."
 	done
 
 RegisteredNumber2Text:
 	text "<PLAYER> registered"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "'s number."
 	done

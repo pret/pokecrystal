@@ -9,9 +9,9 @@ SelectQuantityToBuy: ; 24fc9
 	farcall GetItemPrice
 RooftopSale_SelectQuantityToBuy: ; 24fcf
 	ld a, d
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	ld a, e
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld hl, BuyItem_MenuHeader
 	call LoadMenuHeader
 	call Toss_Sell_Loop
@@ -21,9 +21,9 @@ RooftopSale_SelectQuantityToBuy: ; 24fcf
 SelectQuantityToSell: ; 24fe1
 	farcall GetItemPrice
 	ld a, d
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	ld a, e
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld hl, SellItem_MenuHeader
 	call LoadMenuHeader
 	call Toss_Sell_Loop
@@ -167,9 +167,9 @@ DisplaySellingPrice: ; 2509f
 BuySell_MultiplyPrice: ; 250a9
 	xor a
 	ld [hMultiplicand + 0], a
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	ld [hMultiplicand + 1], a
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	ld [hMultiplicand + 2], a
 	ld a, [wItemQuantityChangeBuffer]
 	ld [hMultiplier], a

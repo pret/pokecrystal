@@ -3,14 +3,14 @@ BattleCommand_Mimic: ; 36f46
 
 	call ClearLastMove
 	call BattleCommand_MoveDelay
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .fail
-	ld hl, BattleMonMoves
+	ld hl, wBattleMonMoves
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player_turn
-	ld hl, EnemyMonMoves
+	ld hl, wEnemyMonMoves
 .player_turn
 	call CheckHiddenOpponent
 	jr nz, .fail
@@ -38,7 +38,7 @@ BattleCommand_Mimic: ; 36f46
 	call GetBattleVar
 	ld [hl], a
 	ld [wNamedObjectIndexBuffer], a
-	ld bc, BattleMonPP - BattleMonMoves
+	ld bc, wBattleMonPP - wBattleMonMoves
 	add hl, bc
 	ld [hl], 5
 	call GetMoveName

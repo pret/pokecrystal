@@ -23,18 +23,18 @@ MoveTutor: ; 4925b
 	call CheckCanLearnMoveTutorMove
 	jr nc, .loop
 	xor a ; FALSE
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	jr .quit
 
 .cancel
 	ld a, -1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 .quit
 	call CloseSubmenu
 	ret
 
 .GetMoveTutorMove: ; 492a5
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	cp MOVETUTOR_FLAMETHROWER
 	jr z, .flamethrower
 	cp MOVETUTOR_THUNDERBOLT
@@ -58,8 +58,8 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	predef CanLearnTMHMMove
 
 	push bc
-	ld a, [CurPartyMon]
-	ld hl, PartyMonNicknames
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonNicknames
 	call GetNick
 	pop bc
 

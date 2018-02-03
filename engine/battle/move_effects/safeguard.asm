@@ -1,13 +1,13 @@
 BattleCommand_Safeguard: ; 37939
 ; safeguard
 
-	ld hl, PlayerScreens
-	ld de, PlayerSafeguardCount
+	ld hl, wPlayerScreens
+	ld de, wPlayerSafeguardCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld hl, EnemyScreens
-	ld de, EnemySafeguardCount
+	ld hl, wEnemyScreens
+	ld de, wEnemySafeguardCount
 .ok
 	bit SCREENS_SAFEGUARD, [hl]
 	jr nz, .failed

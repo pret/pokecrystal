@@ -1,13 +1,13 @@
 BattleCommand_FalseSwipe: ; 35c94
 ; falseswipe
 
-	ld hl, EnemyMonHP
+	ld hl, wEnemyMonHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_hp
-	ld hl, BattleMonHP
+	ld hl, wBattleMonHP
 .got_hp
-	ld de, CurDamage
+	ld de, wCurDamage
 	ld c, 2
 	push hl
 	push de
@@ -28,11 +28,11 @@ BattleCommand_FalseSwipe: ; 35c94
 	dec a
 	ld [de], a
 .okay
-	ld a, [CriticalHit]
+	ld a, [wCriticalHit]
 	cp 2
 	jr nz, .carry
 	xor a
-	ld [CriticalHit], a
+	ld [wCriticalHit], a
 .carry
 	scf
 	ret

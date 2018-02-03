@@ -1,7 +1,7 @@
 BattleCommand_Teleport: ; 36778
 ; teleport
 
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	cp BATTLETYPE_SHINY
 	jr z, .failed
 	cp BATTLETYPE_TRAP
@@ -24,9 +24,9 @@ BattleCommand_Teleport: ; 36778
 	dec a
 	jr nz, .failed
 ; If your level is greater than the opponent's, you run without fail.
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	ld b, a
-	ld a, [BattleMonLevel]
+	ld a, [wBattleMonLevel]
 	cp b
 	jr nc, .run_away
 ; Generate a number between 0 and (YourLevel + TheirLevel).
@@ -51,9 +51,9 @@ BattleCommand_Teleport: ; 36778
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .failed
-	ld a, [BattleMonLevel]
+	ld a, [wBattleMonLevel]
 	ld b, a
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	cp b
 	jr nc, .run_away
 	add b

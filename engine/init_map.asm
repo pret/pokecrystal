@@ -16,7 +16,7 @@ ReanchorBGMap_NoOAMUpdate:: ; 6454
 	ld [hBGMapMode], a
 	pop af
 	ld [hOAMUpdate], a
-	ld hl, VramState
+	ld hl, wVramState
 	set 6, [hl]
 	ret
 

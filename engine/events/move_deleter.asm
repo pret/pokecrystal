@@ -7,11 +7,11 @@ MoveDeletion:
 	call PrintText
 	farcall SelectMonFromParty
 	jr c, .declined
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Moves + 1
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1Moves + 1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
@@ -27,7 +27,7 @@ MoveDeletion:
 	jr c, .declined
 	ld a, [wMenuCursorY]
 	push af
-	ld a, [CurSpecies]
+	ld a, [wCurSpecies]
 	ld [wd265], a
 	call GetMoveName
 	ld hl, .ConfirmDeleteText
@@ -113,9 +113,9 @@ MoveDeletion:
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, PartyMon1Moves
+	ld hl, wPartyMon1Moves
 	add hl, bc
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
@@ -142,9 +142,9 @@ MoveDeletion:
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, PartyMon1PP
+	ld hl, wPartyMon1PP
 	add hl, bc
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc

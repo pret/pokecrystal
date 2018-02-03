@@ -1,9 +1,9 @@
 _UpdateBattleHUDs:
 	farcall DrawPlayerHUD
-	ld hl, PlayerHPPal
+	ld hl, wPlayerHPPal
 	call SetHPPal
 	farcall DrawEnemyHUD
-	ld hl, EnemyHPPal
+	ld hl, wEnemyHPPal
 	call SetHPPal
 	farcall FinishBattleAnim
 	ret

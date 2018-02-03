@@ -2,13 +2,13 @@ BattleCommand_Substitute: ; 36e7c
 ; substitute
 
 	call BattleCommand_MoveDelay
-	ld hl, BattleMonMaxHP
-	ld de, PlayerSubstituteHP
+	ld hl, wBattleMonMaxHP
+	ld de, wPlayerSubstituteHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_hp
-	ld hl, EnemyMonMaxHP
-	ld de, EnemySubstituteHP
+	ld hl, wEnemyMonMaxHP
+	ld de, wEnemySubstituteHP
 .got_hp
 
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -61,7 +61,7 @@ BattleCommand_Substitute: ; 36e7c
 
 	xor a
 	ld [wNumHits], a
-	ld [FXAnimID + 1], a
+	ld [wFXAnimID + 1], a
 	ld [wKickCounter], a
 	ld a, SUBSTITUTE
 	call LoadAnim

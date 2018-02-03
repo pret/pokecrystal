@@ -1,17 +1,17 @@
 BattleCommand_Disable: ; 36fed
 ; disable
 
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
 
-	ld de, EnemyDisableCount
-	ld hl, EnemyMonMoves
+	ld de, wEnemyDisableCount
+	ld hl, wEnemyMonMoves
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_moves
-	ld de, PlayerDisableCount
-	ld hl, BattleMonMoves
+	ld de, wPlayerDisableCount
+	ld hl, wBattleMonMoves
 .got_moves
 
 	ld a, [de]
@@ -35,9 +35,9 @@ BattleCommand_Disable: ; 36fed
 
 	ld a, [hBattleTurn]
 	and a
-	ld hl, EnemyMonPP
+	ld hl, wEnemyMonPP
 	jr z, .got_pp
-	ld hl, BattleMonPP
+	ld hl, wBattleMonPP
 .got_pp
 	ld b, 0
 	add hl, bc
@@ -54,7 +54,7 @@ BattleCommand_Disable: ; 36fed
 	add c
 	ld [de], a
 	call AnimateCurrentMove
-	ld hl, DisabledMove
+	ld hl, wDisabledMove
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .got_disabled_move_pointer

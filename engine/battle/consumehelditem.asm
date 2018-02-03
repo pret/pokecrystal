@@ -4,13 +4,13 @@ ConsumeHeldItem: ; 27192
 	push bc
 	ld a, [hBattleTurn]
 	and a
-	ld hl, OTPartyMon1Item
-	ld de, EnemyMonItem
-	ld a, [CurOTMon]
+	ld hl, wOTPartyMon1Item
+	ld de, wEnemyMonItem
+	ld a, [wCurOTMon]
 	jr z, .theirturn
-	ld hl, PartyMon1Item
-	ld de, BattleMonItem
-	ld a, [CurBattleMon]
+	ld hl, wPartyMon1Item
+	ld de, wBattleMonItem
+	ld a, [wCurBattleMon]
 
 .theirturn
 	push hl

@@ -1,14 +1,14 @@
 BattleCommand_FuryCutter: ; 37792
 ; furycutter
 
-	ld hl, PlayerFuryCutterCount
+	ld hl, wPlayerFuryCutterCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .go
-	ld hl, EnemyFuryCutterCount
+	ld hl, wEnemyFuryCutterCount
 
 .go
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, ResetFuryCutterCount
 
@@ -26,7 +26,7 @@ BattleCommand_FuryCutter: ; 37792
 	ret z
 
 ; Double the damage
-	ld hl, CurDamage + 1
+	ld hl, wCurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]
@@ -45,11 +45,11 @@ ResetFuryCutterCount: ; 377be
 
 	push hl
 
-	ld hl, PlayerFuryCutterCount
+	ld hl, wPlayerFuryCutterCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .reset
-	ld hl, EnemyFuryCutterCount
+	ld hl, wEnemyFuryCutterCount
 
 .reset
 	xor a

@@ -59,7 +59,7 @@ MAP_NONE   EQU 0
 	const SOUTH_F
 	const NORTH_F
 
-; MapConnections
+; wMapConnections
 	const_def
 	shift_const EAST
 	shift_const WEST

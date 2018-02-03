@@ -149,7 +149,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_DAY_CARE_MON_1 ; e0
 	const SPRITE_DAY_CARE_MON_2 ; e1
 
-; VariableSprites indexes (see wram.asm)
+; wVariableSprites indexes (see wram.asm)
 	const_def $f0
 SPRITE_VARS EQU const_value
 	const SPRITE_CONSOLE ; f0

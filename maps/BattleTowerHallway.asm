@@ -26,7 +26,7 @@ BattleTowerHallway_MapScripts:
 	ld a, BANK(wBTChoiceOfLvlGroup)
 	ld [rSVBK], a
 	ld a, [wBTChoiceOfLvlGroup]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 
 	pop af
 	ld [rSVBK], a

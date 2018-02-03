@@ -12,7 +12,7 @@ BattleCommand_Pursuit: ; 37b1d
 	and a
 	ret z
 
-	ld hl, CurDamage + 1
+	ld hl, wCurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]

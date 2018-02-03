@@ -133,7 +133,7 @@ Function891d3: ; 891d3 (22:51d3)
 Function891de: ; 891de
 	call Mobile22_SetBGMapMode0
 	call ClearPalettes
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld a, $7
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
@@ -169,7 +169,7 @@ Function8920f: ; 8920f
 Function89215: ; 89215
 	push hl
 	push bc
-	ld bc, AttrMap - TileMap
+	ld bc, wAttrMap - wTileMap
 	add hl, bc
 	ld [hl], a
 	pop bc
@@ -345,12 +345,12 @@ Function892b7: ; 892b7
 
 Function89305: ; 89305 (22:5305)
 	xor a
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	ld c, 40
 .loop
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	inc a
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	push bc
 	call Function892b4
 	pop bc
@@ -361,7 +361,7 @@ Function89305: ; 89305 (22:5305)
 Function8931b: ; 8931b
 	push hl
 	ld hl, $a03b ; 4:a03b
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	dec a
 	ld bc, 37
 	call AddNTimes
@@ -568,9 +568,9 @@ Function8942b: ; 8942b (22:542b)
 	ret
 
 Function89448: ; 89448 (22:5448)
-; Clears the Sprites array
+; Clears the sprite array
 	push af
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	ld d, 24 * SPRITEOAMSTRUCT_LENGTH
 	xor a
 .loop
@@ -778,7 +778,7 @@ Function8956f: ; 8956f
 	ld c, l
 	farcall GetMobileOTTrainerClass
 	ld a, c
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 	ld a, [rSVBK]
 	push af
 	ld a, 5
@@ -790,7 +790,7 @@ Function8956f: ; 8956f
 	ld [hl], a
 	pop af
 	ld [rSVBK], a
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 	ld h, 0
 	ld l, a
 	add hl, hl
@@ -845,7 +845,7 @@ Palette_895de: ; 895de
 
 Function895e6: ; 895e6
 	ld a, 7
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ret
@@ -854,7 +854,7 @@ Function895e6: ; 895e6
 Function895f2: ; 895f2
 	push bc
 	xor a
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	call Function89605
@@ -864,7 +864,7 @@ Function895f2: ; 895f2
 ; 89605
 
 Function89605: ; 89605
-	hlcoord 19, 2, AttrMap
+	hlcoord 19, 2, wAttrMap
 	ld a, 1
 	ld de, SCREEN_WIDTH
 	ld c, 14
@@ -881,7 +881,7 @@ Function89605: ; 89605
 	jr nz, .loop
 
 .done
-	hlcoord 0, 16, AttrMap
+	hlcoord 0, 16, wAttrMap
 	ld c, 10
 	ld a, 2
 .loop2
@@ -891,7 +891,7 @@ Function89605: ; 89605
 	inc a
 	dec c
 	jr nz, .loop2
-	hlcoord 1, 11, AttrMap
+	hlcoord 1, 11, wAttrMap
 	ld a, 4
 	ld bc, 4
 	call ByteFill
@@ -902,7 +902,7 @@ Function89605: ; 89605
 ; 8963d
 
 Function8963d: ; 8963d
-	hlcoord 12, 3, AttrMap
+	hlcoord 12, 3, wAttrMap
 	ld a, 6
 	ld de, SCREEN_WIDTH
 	lb bc, 7, 7
@@ -921,7 +921,7 @@ Function8963d: ; 8963d
 ; 89655
 
 Function89655: ; 89655
-	hlcoord 1, 12, AttrMap
+	hlcoord 1, 12, wAttrMap
 	ld de, SCREEN_WIDTH
 	ld a, 5
 	ld b, 4
@@ -1223,9 +1223,9 @@ Function897af: ; 897af
 	ld c, l
 	farcall GetMobileOTTrainerClass
 	ld a, c
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 	xor a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld de, vTiles2 tile $37
 	farcall GetTrainerPic
 	pop bc
@@ -1236,7 +1236,7 @@ Function897d5: ; 897d5
 	push bc
 	call Function8934a
 	jr nc, .asm_897f3
-	hlcoord 12, 3, AttrMap
+	hlcoord 12, 3, wAttrMap
 	xor a
 	ld de, SCREEN_WIDTH
 	lb bc, 7, 7
@@ -1354,12 +1354,12 @@ Function8987f: ; 8987f (22:587f)
 	ret
 
 Function898aa: ; 898aa
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	and a
 	ret z
 	push bc
 	hlcoord 6, 1
-	ld de, MenuSelection
+	ld de, wMenuSelection
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	pop bc
@@ -1376,7 +1376,7 @@ Function898be: ; 898be
 
 .asm_898cd
 	hlcoord 9, 1
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	and a
 	jr nz, .asm_898d7
 	dec hl
@@ -1544,7 +1544,7 @@ Function8998b: ; 8998b
 
 
 Function8999c: ; 8999c (22:599c)
-	ld de, PlayerName
+	ld de, wPlayerName
 	call PlaceString
 	inc bc
 	ld h, b
@@ -1559,10 +1559,10 @@ String_899ac: ; 899ac
 ; 899b2
 
 Function899b2: ; 899b2 (22:59b2)
-	ld bc, PlayerName
+	ld bc, wPlayerName
 	call Function89346
 	jr c, .asm_899bf
-	ld de, PlayerName
+	ld de, wPlayerName
 	jr .asm_899c2
 .asm_899bf
 	ld de, String_89116
@@ -1572,7 +1572,7 @@ Function899b2: ; 899b2 (22:59b2)
 	ret
 
 Function899c9: ; 899c9 (22:59c9)
-	ld de, PlayerID
+	ld de, wPlayerID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
@@ -1716,11 +1716,11 @@ Function89a57: ; 89a57
 ; 89aa3
 
 .ApplyCursorMovement: ; 89aa3
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld c, a
 	push bc
 .loop
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	cp d
 	jr z, .equal_to_d
 	add e
@@ -1728,10 +1728,10 @@ Function89a57: ; 89a57
 	inc a
 
 .not_zero
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call .Function89ac7 ; BCD conversion of data in SRAM?
 	jr nc, .loop
-	call .Function89ae6 ; split [MenuSelection] into [wd030] + [wd031] where [wd030] <= 5
+	call .Function89ae6 ; split [wMenuSelection] into [wd030] + [wd031] where [wd030] <= 5
 	pop bc
 	and a
 	ret
@@ -1739,7 +1739,7 @@ Function89a57: ; 89a57
 .equal_to_d
 	pop bc
 	ld a, c
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	scf
 	ret
 ; 89ac7
@@ -1773,7 +1773,7 @@ Function89a57: ; 89a57
 	ld hl, wd031
 	xor a
 	ld [hl], a
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 .loop2
 	cp 6
 	jr c, .load_and_ret
@@ -1923,7 +1923,7 @@ Function89b97: ; 89b97 (22:5b97)
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, Sprite01
+	ld de, wVirtualOAMSprite00
 .asm_89bb4
 	ld a, [hli]
 	cp $ff
@@ -2013,7 +2013,7 @@ Function89c44: ; 89c44 (22:5c44)
 	pop de
 	ret
 .asm_89c4f
-	ld hl, Sprite01
+	ld hl, wVirtualOAMSprite00
 	push de
 	ld a, b
 	ld [hli], a ; y
@@ -2123,7 +2123,7 @@ Function89cdf: ; 89cdf (22:5cdf)
 	ld c, a
 	ld e, $2
 	ld a, $2
-	ld hl, Sprite01
+	ld hl, wVirtualOAMSprite00
 .asm_89cee
 	push af
 	push bc
@@ -2378,10 +2378,10 @@ Function89e6f: ; 89e6f (22:5e6f)
 	hlcoord 7, 4
 	call Function8a58d
 	ld a, $5
-	hlcoord 7, 4, AttrMap
+	hlcoord 7, 4, wAttrMap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 10, 4, AttrMap
+	hlcoord 10, 4, wAttrMap
 	call Function8a5a3
 	call Function891ab
 	call SetPalettes
@@ -2415,10 +2415,10 @@ Function89eb9: ; 89eb9 (22:5eb9)
 	hlcoord 7, 4
 	call Function8a58d
 	ld a, $5
-	hlcoord 7, 4, AttrMap
+	hlcoord 7, 4, wAttrMap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 10, 4, AttrMap
+	hlcoord 10, 4, wAttrMap
 	call Function8a5a3
 	call Function891ab
 	call SetPalettes
@@ -2550,7 +2550,7 @@ Function89f77: ; 89f77 (22:5f77)
 
 Function89f9a: ; 89f9a (22:5f9a)
 	dec a
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	and a
 	ret z
 .asm_89fa0
@@ -2595,10 +2595,10 @@ Function89fa5: ; 89fa5 (22:5fa5)
 Function89fce: ; 89fce (22:5fce)
 	call Function8a5b6
 	ld a, $5
-	hlcoord 7, 4, AttrMap
+	hlcoord 7, 4, wAttrMap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 10, 4, AttrMap
+	hlcoord 10, 4, wAttrMap
 	call Function8a5a3
 	call Function89448
 	call SetPalettes
@@ -2678,11 +2678,11 @@ Function8a055: ; 8a055 (22:6055)
 	hlcoord 12, 4
 	call Function8a58d
 	ld a, $5
-	hlcoord 12, 4, AttrMap
+	hlcoord 12, 4, wAttrMap
 	call Function8a5a3
 	pop hl
 	ld a, $6
-	hlcoord 15, 4, AttrMap
+	hlcoord 15, 4, wAttrMap
 	call Function8a5a3
 	call CGBOnly_CopyTilemapAtOnce
 	jp Function89e36
@@ -2710,7 +2710,7 @@ Function8a0a1: ; 8a0a1 (22:60a1)
 
 Function8a0c1: ; 8a0c1 (22:60c1)
 	push hl
-	ld bc, AttrMap - TileMap
+	ld bc, wAttrMap - wTileMap
 	add hl, bc
 	ld a, [hl]
 	pop hl
@@ -2736,7 +2736,7 @@ Function8a0c9: ; 8a0c9 (22:60c9)
 
 Function8a0de: ; 8a0de (22:60de)
 	call Function8a0c9
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	ret
 
@@ -2962,10 +2962,10 @@ Function8a262: ; 8a262 (22:6262)
 	hlcoord 12, 4
 	call Function8a58d
 	ld a, $5
-	hlcoord 12, 4, AttrMap
+	hlcoord 12, 4, wAttrMap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 15, 4, AttrMap
+	hlcoord 15, 4, wAttrMap
 	call Function8a5a3
 	xor a
 	ld [wd02e], a
@@ -3058,7 +3058,7 @@ Function8a31c: ; 8a31c (22:631c)
 	pop bc
 	ld a, c
 	ld [wMenuCursorBuffer], a
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call PlaceVerticalMenuItems
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
@@ -3083,7 +3083,7 @@ Function8a31c: ; 8a31c (22:631c)
 	call Function89448
 	call PlaceHollowCursor
 	call Function8a3a2
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	cp $ff
 	jr z, .asm_8a36a
 	ld e, a
@@ -3118,12 +3118,12 @@ Function8a3a2: ; 8a3a2 (22:63a2)
 	ld d, $0
 	add hl, de
 	ld a, [hl]
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	ret
 
 Function8a3b2: ; 8a3b2 (22:63b2)
 	ld a, $1
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call Function8a4fc
 	call Function8a3df
 	jr nc, .asm_8a3ce
@@ -3210,7 +3210,7 @@ Function8a453: ; 8a453 (22:6453)
 	call TextBox
 	hlcoord 1, 14
 	ld de, String_8a476
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	cp $ff
 	jr z, .asm_8a472
 	ld de, Strings_8a483
@@ -3238,27 +3238,27 @@ Strings_8a483: ; 8a483
 ; 8a4d3
 
 Function8a4d3: ; 8a4d3 (22:64d3)
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	cp $1
 	jr nz, .asm_8a4eb
 	ld a, $5
-	hlcoord 12, 4, AttrMap
+	hlcoord 12, 4, wAttrMap
 	call Function8a5a3
 	ld a, $7
-	hlcoord 15, 4, AttrMap
+	hlcoord 15, 4, wAttrMap
 	call Function8a5a3
 	ret
 .asm_8a4eb
 	ld a, $7
-	hlcoord 12, 4, AttrMap
+	hlcoord 12, 4, wAttrMap
 	call Function8a5a3
 	ld a, $6
-	hlcoord 15, 4, AttrMap
+	hlcoord 15, 4, wAttrMap
 	call Function8a5a3
 	ret
 
 Function8a4fc: ; 8a4fc (22:64fc)
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	cp $3
 	jr nz, asm_8a529
 	ld hl, wd012
@@ -3293,7 +3293,7 @@ asm_8a529: ; 8a529 (22:6529)
 	ld [hli], a
 	ld a, $ff
 	ld [hli], a
-	ld hl, Sprites
+	ld hl, wVirtualOAM
 	xor a
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
@@ -3476,7 +3476,7 @@ Function8a62c: ; 8a62c (22:662c)
 	ld a, c
 	and a
 	jr z, .asm_8a66a
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	ld b, a
 	ld a, [wScrollingMenuCursorPosition]
 	inc a
@@ -3489,7 +3489,7 @@ Function8a62c: ; 8a62c (22:662c)
 	ld c, a
 	ld hl, Jumptable_8a671
 	ld a, b
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	ld a, c
 	dec a
 	rst JumpTable
@@ -3674,7 +3674,7 @@ Function8a78c: ; 8a78c (22:678c)
 	ret
 
 Function8a7cb: ; 8a7cb (22:67cb)
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	push af
 	call Function891de
 	ld de, wd008
@@ -3692,7 +3692,7 @@ Function8a7cb: ; 8a7cb (22:67cb)
 	call Function89193
 .asm_8a7f4
 	pop af
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call Function891de
 	call ClearBGPalettes
 	call Function893cc
@@ -3829,7 +3829,7 @@ String_8a926: ; 8a926
 ; 8a930
 
 Function8a930: ; 8a930 (22:6930)
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	push af
 	xor a
 	ld [wd032], a
@@ -3853,7 +3853,7 @@ Function8a930: ; 8a930 (22:6930)
 	cp c
 	jr z, .asm_8a995
 	push bc
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call Function8931b
 	push bc
 	ld h, b
@@ -3864,7 +3864,7 @@ Function8a930: ; 8a930 (22:6930)
 	pop de
 	pop bc
 	ld a, c
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call Function8931b
 	push bc
 	ld h, b
@@ -4013,7 +4013,7 @@ Jumptable_8aa6d: ; 8aa6d (22:6a6d)
 
 
 Function8aa73: ; 8aa73 (22:6a73)
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld e, a
 	push de
 	call Function891de
@@ -4039,7 +4039,7 @@ Function8aa73: ; 8aa73 (22:6a73)
 	call Function894ca
 	pop de
 	ld a, e
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	and a
 	ret
 
@@ -4168,7 +4168,7 @@ Function8aba9: ; 8aba9
 	call Function8b7bd
 	jr z, .asm_8abdf
 	ld a, c
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call OpenSRAMBank4
 	call Function8931b
 	ld hl, $0011
@@ -4220,7 +4220,7 @@ Function8aba9: ; 8aba9
 	ld a, $1
 	call Function8925e
 	jp c, .asm_8abb3
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld c, a
 	ret
 ; 8ac3b
@@ -4232,7 +4232,7 @@ String_8ac3b: ; 8ac3b
 
 Function8ac4e: ; 8ac4e
 	xor a
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	push de
 	call Function891de
 	call ClearBGPalettes
@@ -4261,7 +4261,7 @@ Function8ac7c: ; 8ac7c
 	jr z, .asm_8acf0
 	ld a, c
 	ld [wd02f], a
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 	call OpenSRAMBank4
 	call Function8931b
 	call Function8932d
@@ -4341,7 +4341,7 @@ UnknownText_0x8ad06: ; 0x8ad06
 
 Function8ad0b: ; 8ad0b
 .asm_8ad0b
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld [wd02f], a
 	call Function891de
 	call ClearBGPalettes

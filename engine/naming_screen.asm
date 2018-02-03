@@ -19,7 +19,7 @@ NamingScreen: ; 116c1
 	ld [hl], d
 	ld hl, wNamingScreenType
 	ld [hl], b
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -41,7 +41,7 @@ NamingScreen: ; 116c1
 	pop af
 	ld [hMapAnims], a
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	call ClearJoypad
 	ret
 
@@ -91,13 +91,13 @@ NamingScreen: ; 116c1
 	dw .Pokemon
 
 .Pokemon: ; 1173e (4:573e)
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld [wd265], a
 	ld hl, LoadMenuMonIcon
 	ld a, BANK(LoadMenuMonIcon)
 	ld e, $1
 	rst FarCall ;  ; indirect jump to LoadMenuMonIcon (8e83f (23:683f))
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
 	hlcoord 5, 2

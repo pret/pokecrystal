@@ -4,7 +4,7 @@ BattleCommand_LockOn: ; 35a53
 	call CheckSubstituteOpp
 	jr nz, .fail
 
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .fail
 

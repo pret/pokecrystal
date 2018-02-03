@@ -26,11 +26,11 @@ BattleCommand_Sketch: ; 35a74
 	ld d, h
 	ld e, l
 ; Get the battle move structs.
-	ld hl, BattleMonMoves
+	ld hl, wBattleMonMoves
 	ld a, [hBattleTurn]
 	and a
 	jr z, .get_last_move
-	ld hl, EnemyMonMoves
+	ld hl, wEnemyMonMoves
 .get_last_move
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
@@ -69,7 +69,7 @@ BattleCommand_Sketch: ; 35a74
 	ld hl, Moves + MOVE_PP
 	call GetMoveAttr
 	pop hl
-	ld bc, BattleMonPP - BattleMonMoves
+	ld bc, wBattleMonPP - wBattleMonMoves
 	add hl, bc
 	ld [hl], a
 	pop bc

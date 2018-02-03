@@ -645,11 +645,11 @@ Palette_8b6d5: ; 8b6d5
 ; 8b6ed
 
 Function8b6ed: ; 8b6ed
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, $012c
 	xor a
 	call ByteFill
-	hlcoord 0, 14, AttrMap
+	hlcoord 0, 14, wAttrMap
 	ld bc, $0050
 	ld a, $7
 	call ByteFill
@@ -709,7 +709,7 @@ Function8b73e: ; 8b73e
 ; 8b744
 
 Function8b744: ; 8b744
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	inc b
 	inc b
@@ -781,10 +781,10 @@ Function8b788: ; 8b788
 ; 8b79e
 
 Function8b79e: ; 8b79e
-	hlcoord 0, 1, AttrMap
+	hlcoord 0, 1, wAttrMap
 	ld a, $1
 	ld [hli], a
-	hlcoord 9, 1, AttrMap
+	hlcoord 9, 1, wAttrMap
 	ld e, $b
 .asm_8b7a9
 	ld a, $2
@@ -853,7 +853,7 @@ Function8b7bd: ; 8b7bd
 	jr .asm_8b7ea
 
 .asm_8b81c
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	cp $ff
 	jr nz, .asm_8b824
 
@@ -931,7 +931,7 @@ MenuData_0x8b870: ; 0x8b870
 Function8b880: ; 8b880
 	ld h, d
 	ld l, e
-	ld de, MenuSelection
+	ld de, wMenuSelection
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret

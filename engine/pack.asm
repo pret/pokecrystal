@@ -13,7 +13,7 @@
 	const PACKSTATE_QUITRUNSCRIPT      ; 10
 
 Pack: ; 10000
-	ld hl, Options
+	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call InitPackBuffers
 .loop
@@ -28,7 +28,7 @@ Pack: ; 10000
 .done
 	ld a, [wCurrPocket]
 	ld [wLastPocket], a
-	ld hl, Options
+	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
 	ret
 ; 10026
@@ -207,13 +207,13 @@ Pack: ; 10000
 	ret c
 	farcall ChooseMonToLearnTMHM
 	jr c, .declined
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	res NO_TEXT_SCROLL, [hl]
 	farcall TeachTMHM
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 .declined
 	xor a
 	ld [hBGMapMode], a
@@ -482,7 +482,7 @@ UseItem: ; 10311
 	ret
 
 .Party: ; 10338 (4:4338)
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	jr z, .NoPokemon
 	call DoItemEffect
@@ -524,8 +524,8 @@ TossMenu: ; 10364
 	call ExitMenu
 	pop af
 	jr c, .finish
-	ld hl, NumItems
-	ld a, [CurItemQuantity]
+	ld hl, wNumItems
+	ld a, [wCurItemQuantity]
 	call TossItem
 	call Pack_GetItemName
 	ld hl, Text_ThrewAway
@@ -573,13 +573,13 @@ RegisterItem: ; 103c2
 	rrca
 	and $c0
 	ld b, a
-	ld a, [CurItemQuantity]
+	ld a, [wCurItemQuantity]
 	inc a
 	and $3f
 	or b
-	ld [WhichRegisteredItem], a
-	ld a, [CurItem]
-	ld [RegisteredItem], a
+	ld [wWhichRegisteredItem], a
+	ld a, [wCurItem]
+	ld [wRegisteredItem], a
 	call Pack_GetItemName
 	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
@@ -594,15 +594,15 @@ RegisterItem: ; 103c2
 ; 103fd
 
 GiveItem: ; 103fd
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	jp z, .NoPokemon
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
 	res NO_TEXT_SCROLL, a
-	ld [Options], a
+	ld [wOptions], a
 	ld a, PARTYMENUACTION_GIVE_ITEM
-	ld [PartyMenuActionText], a
+	ld [wPartyMenuActionText], a
 	call ClearBGPalettes
 	farcall LoadPartyMenuGFX
 	farcall InitPartyMenuWithCancel
@@ -615,7 +615,7 @@ GiveItem: ; 103fd
 	call DelayFrame
 	farcall PartyMenuSelect
 	jr c, .finish
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr nz, .give
 	ld hl, .Egg
@@ -628,7 +628,7 @@ GiveItem: ; 103fd
 	ld a, [wPackJumptableIndex]
 	push af
 	call GetCurNick
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
@@ -639,7 +639,7 @@ GiveItem: ; 103fd
 	ld [wJumptableIndex], a
 .finish
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	xor a
 	ld [hBGMapMode], a
 	call Pack_InitGFX
@@ -663,7 +663,7 @@ QuitItemSubmenu: ; 10492
 ; 10493
 
 BattlePack: ; 10493
-	ld hl, Options
+	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call InitPackBuffers
 .loop
@@ -678,7 +678,7 @@ BattlePack: ; 10493
 .end
 	ld a, [wCurrPocket]
 	ld [wLastPocket], a
-	ld hl, Options
+	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
 	ret
 ; 104b9
@@ -1040,8 +1040,8 @@ DepositSellPack: ; 106be
 	call InitPocket
 	call WaitBGMap_DrawPackGFX
 	farcall TMHMPocket
-	ld a, [CurItem]
-	ld [CurItem], a
+	ld a, [wCurItem]
+	ld [wCurItem], a
 	ret
 
 .BallsPocket: ; 1073b (4:473b)
@@ -1123,7 +1123,7 @@ DepositSellTutorial_InterpretJoypad: ; 1076f
 
 TutorialPack: ; 107bb
 	call DepositSellInitPackBuffers
-	ld a, [InputType]
+	ld a, [wInputType]
 	or a
 	jr z, .loop
 	farcall _DudeAutoInput_RightA
@@ -1148,7 +1148,7 @@ TutorialPack: ; 107bb
 ; entries correspond to *_POCKET constants
 	dw .Items
 	dw .Balls
-	dw .KeyItems
+	dw .wKeyItems
 	dw .TMHM
 
 .Items: ; 107e9 (4:47e9)
@@ -1174,7 +1174,7 @@ TutorialPack: ; 107bb
 	dba UpdateItemDescription
 ; 10807
 
-.KeyItems: ; 10807 (4:4807)
+.wKeyItems: ; 10807 (4:4807)
 	ld a, KEY_ITEM_POCKET
 	ld hl, .KeyItemsMenuHeader
 	jr .DisplayPocket
@@ -1202,8 +1202,8 @@ TutorialPack: ; 107bb
 	call InitPocket
 	call WaitBGMap_DrawPackGFX
 	farcall TMHMPocket
-	ld a, [CurItem]
-	ld [CurItem], a
+	ld a, [wCurItem]
+	ld [wCurItem], a
 	ret
 
 .Balls: ; 1083b (4:483b)
@@ -1268,13 +1268,13 @@ Pack_QuitRunScript: ; 1087e (4:487e)
 	ret
 
 Pack_PrintTextNoScroll: ; 10889 (4:4889)
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
 	set NO_TEXT_SCROLL, a
-	ld [Options], a
+	ld [wOptions], a
 	call PrintText
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ret
 
 WaitBGMap_DrawPackGFX: ; 1089a (4:489a)
@@ -1284,7 +1284,7 @@ DrawPackGFX: ; 1089d
 	maskbits NUM_POCKETS
 	ld e, a
 	ld d, $0
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .male_dude
 	ld a, [wPlayerGender]
@@ -1506,7 +1506,7 @@ DrawPocketName: ; 109bb
 ; 10a1d
 
 Pack_GetItemName: ; 10a1d
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	call CopyName1
@@ -1547,7 +1547,7 @@ ItemsPocketMenuHeader: ; 0x10a4f
 	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
-	dbw 0, NumItems
+	dbw 0, wNumItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
@@ -1564,7 +1564,7 @@ PC_Mart_ItemsPocketMenuHeader: ; 0x10a67
 	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
-	dbw 0, NumItems
+	dbw 0, wNumItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
@@ -1581,7 +1581,7 @@ KeyItemsPocketMenuHeader: ; 0x10a7f
 	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
-	dbw 0, NumKeyItems
+	dbw 0, wNumKeyItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
@@ -1598,7 +1598,7 @@ PC_Mart_KeyItemsPocketMenuHeader: ; 0x10a97
 	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP ; flags
 	db 5, 8 ; rows, columns
 	db 1 ; horizontal spacing
-	dbw 0, NumKeyItems
+	dbw 0, wNumKeyItems
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
@@ -1615,7 +1615,7 @@ BallsPocketMenuHeader: ; 0x10aaf
 	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP | STATICMENU_CURSOR ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
-	dbw 0, NumBalls
+	dbw 0, wNumBalls
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
@@ -1632,7 +1632,7 @@ PC_Mart_BallsPocketMenuHeader: ; 0x10ac7
 	db STATICMENU_ENABLE_SELECT | STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP ; flags
 	db 5, 8 ; rows, columns
 	db 2 ; horizontal spacing
-	dbw 0, NumBalls
+	dbw 0, wNumBalls
 	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription

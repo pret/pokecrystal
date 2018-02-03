@@ -61,12 +61,12 @@ _ResetClock: ; 4d3b1
 ClockResetPassword: ; 4d41e
 	call .CalculatePassword
 	push de
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld bc, 5
 	xor a
 	call ByteFill
 	ld a, $4
-	ld [StringBuffer2 + 5], a
+	ld [wStringBuffer2 + 5], a
 	ld hl, .pleaseenterpasswordtext
 	call PrintText
 .loop
@@ -108,7 +108,7 @@ ClockResetPassword: ; 4d41e
 
 .updateIDdisplay ; 4d468
 	hlcoord 14, 15
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	ld c, 5
 .loop3
 	ld a, [de]
@@ -122,7 +122,7 @@ ClockResetPassword: ; 4d41e
 	ld a, " "
 	call ByteFill
 	hlcoord 14, 16
-	ld a, [StringBuffer2 + 5]
+	ld a, [wStringBuffer2 + 5]
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -145,19 +145,19 @@ ClockResetPassword: ; 4d41e
 	ret
 
 .left
-	ld a, [StringBuffer2 + 5]
+	ld a, [wStringBuffer2 + 5]
 	and a
 	ret z
 	dec a
-	ld [StringBuffer2 + 5], a
+	ld [wStringBuffer2 + 5], a
 	ret
 
 .right
-	ld a, [StringBuffer2 + 5]
+	ld a, [wStringBuffer2 + 5]
 	cp $4
 	ret z
 	inc a
-	ld [StringBuffer2 + 5], a
+	ld [wStringBuffer2 + 5], a
 	ret
 
 .up
@@ -187,16 +187,16 @@ ClockResetPassword: ; 4d41e
 	ret
 
 .getcurrentdigit ; 4d4d5
-	ld a, [StringBuffer2 + 5]
+	ld a, [wStringBuffer2 + 5]
 	ld e, a
 	ld d, $0
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	add hl, de
 	ret
 
 .ConvertDecIDToBytes: ; 4d4e0
 	ld hl, 0
-	ld de, StringBuffer2 + 4
+	ld de, wStringBuffer2 + 4
 	ld bc, 1
 	call .ConvertToBytes
 	ld bc, 10
@@ -222,13 +222,13 @@ ClockResetPassword: ; 4d41e
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld de, 0
-	ld hl, sPlayerData + (PlayerID - wPlayerData)
+	ld hl, sPlayerData + (wPlayerID - wPlayerData)
 	ld c, $2
 	call .ComponentFromNumber
-	ld hl, sPlayerData + (PlayerName - wPlayerData)
+	ld hl, sPlayerData + (wPlayerName - wPlayerData)
 	ld c, NAME_LENGTH_JAPANESE - 1
 	call .ComponentFromString
-	ld hl, sPlayerData + (Money - wPlayerData)
+	ld hl, sPlayerData + (wMoney - wPlayerData)
 	ld c, $3
 	call .ComponentFromNumber
 	call CloseSRAM

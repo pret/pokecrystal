@@ -4,11 +4,11 @@ BattleCommand_HealBell: ; 35cc9
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
 	res SUBSTATUS_NIGHTMARE, [hl]
-	ld de, PartyMon1Status
+	ld de, wPartyMon1Status
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_status
-	ld de, OTPartyMon1Status
+	ld de, wOTPartyMon1Status
 .got_status
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr

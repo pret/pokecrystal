@@ -215,7 +215,7 @@ Movement_step_end: ; 51c1
 	add hl, bc
 	ld [hl], $0
 
-	ld hl, VramState
+	ld hl, wVramState
 	res 7, [hl]
 
 	ld hl, OBJECT_STEP_TYPE
@@ -243,7 +243,7 @@ Movement_48: ; 51db
 	add hl, bc
 	ld [hl], STEP_TYPE_03
 
-	ld hl, VramState
+	ld hl, wVramState
 	res 7, [hl]
 	ret
 ; 51fd
@@ -257,7 +257,7 @@ Movement_remove_object: ; 51fd
 	ld [hl], -1
 
 .not_leading
-	ld hl, VramState
+	ld hl, wVramState
 	res 7, [hl]
 	ret
 ; 5210
@@ -271,7 +271,7 @@ Movement_4b: ; 5210
 	add hl, bc
 	ld [hl], STEP_TYPE_04
 
-	ld hl, VramState
+	ld hl, wVramState
 	res 7, [hl]
 	ret
 ; 5222

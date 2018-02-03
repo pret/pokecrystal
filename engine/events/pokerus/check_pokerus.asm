@@ -2,12 +2,12 @@ _CheckPokerus: ; 4d860
 ; Return carry if a monster in your party has Pokerus
 
 ; Get number of monsters to iterate over
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	jr z, .NoPokerus
 	ld b, a
 ; Check each monster in the party for Pokerus
-	ld hl, PartyMon1PokerusStatus
+	ld hl, wPartyMon1PokerusStatus
 	ld de, PARTYMON_STRUCT_LENGTH
 .Check:
 	ld a, [hl]

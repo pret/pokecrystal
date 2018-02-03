@@ -352,7 +352,7 @@ INCBIN "gfx/splash/logo2.1bpp"
 CrystalIntro: ; e48ac
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(wPals)
+	ld a, BANK(wGBCPalettes)
 	ld [rSVBK], a
 	ld a, [hInMenu]
 	push af
@@ -796,7 +796,7 @@ IntroScene9: ; e4c04 (39:4c04)
 	xor a
 	ld [hLCDCPointer], a
 	call ClearSprites
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	; first 12 rows have palette 1
 	ld bc, 12 * SCREEN_WIDTH
 	ld a, $1
@@ -1918,15 +1918,15 @@ Intro_RustleGrass: ; e546d (39:546d)
 	ld hl, .RustlingGrassPointers
 	add hl, de
 	ld a, [hli]
-	ld [Requested2bppSource], a
+	ld [wRequested2bppSource], a
 	ld a, [hli]
-	ld [Requested2bppSource + 1], a
+	ld [wRequested2bppSource + 1], a
 	ld a, LOW(vTiles2 tile $09)
-	ld [Requested2bppDest], a
+	ld [wRequested2bppDest], a
 	ld a, HIGH(vTiles2 tile $09)
-	ld [Requested2bppDest + 1], a
+	ld [wRequested2bppDest + 1], a
 	ld a, 4
-	ld [Requested2bppSize], a
+	ld [wRequested2bppSize], a
 	ret
 ; e5496 (39:5496)
 
@@ -2021,11 +2021,11 @@ Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
 Intro_ResetLYOverrides: ; e5516 (39:5516)
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(LYOverrides)
+	ld a, BANK(wLYOverrides)
 	ld [rSVBK], a
 
-	ld hl, LYOverrides
-	ld bc, LYOverridesEnd - LYOverrides
+	ld hl, wLYOverrides
+	ld bc, wLYOverridesEnd - wLYOverrides
 	xor a
 	call ByteFill
 
@@ -2038,7 +2038,7 @@ Intro_ResetLYOverrides: ; e5516 (39:5516)
 Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(LYOverrides)
+	ld a, BANK(wLYOverrides)
 	ld [rSVBK], a
 	; Scroll the grass every frame.
 	; Scroll the trees every other frame and at half speed.
@@ -2047,20 +2047,20 @@ Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	and $1
 	jr z, .skip
 	; trees in the back
-	ld hl, LYOverrides
+	ld hl, wLYOverrides
 	ld a, [hl]
 	inc a
 	ld bc, $5f
 	call ByteFill
 .skip
 	; grass in the front
-	ld hl, LYOverrides + $5f
+	ld hl, wLYOverrides + $5f
 	ld a, [hl]
 	inc a
 	inc a
 	ld bc, $31
 	call ByteFill
-	ld a, [LYOverrides + 0]
+	ld a, [wLYOverrides + 0]
 	ld [hSCX], a
 	pop af
 	ld [rSVBK], a

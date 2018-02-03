@@ -1,7 +1,7 @@
 FruitTreeScript:: ; 44000
 	callasm GetCurTreeFruit
 	opentext
-	copybytetovar CurFruit
+	copybytetovar wCurFruit
 	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_0
 	writetext FruitBearingTreeText
 	buttonsound
@@ -14,7 +14,7 @@ FruitTreeScript:: ; 44000
 
 .fruit
 	writetext HeyItsFruitText
-	copybytetovar CurFruit
+	copybytetovar wCurFruit
 	giveitem ITEM_FROM_MEM
 	iffalse .packisfull
 	buttonsound
@@ -35,10 +35,10 @@ FruitTreeScript:: ; 44000
 ; 44041
 
 GetCurTreeFruit: ; 44041
-	ld a, [CurFruitTree]
+	ld a, [wCurFruitTree]
 	dec a
 	call GetFruitTreeItem
-	ld [CurFruit], a
+	ld [wCurFruit], a
 	ret
 ; 4404c
 
@@ -53,7 +53,7 @@ CheckFruitTree: ; 44055
 	ld b, 2
 	call GetFruitTreeFlag
 	ld a, c
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 4405f
 
@@ -65,7 +65,7 @@ PickedFruitTree: ; 4405f
 
 ResetFruitTrees: ; 4406a
 	xor a
-	ld hl, FruitTreeFlags
+	ld hl, wFruitTreeFlags
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -78,11 +78,11 @@ ResetFruitTrees: ; 4406a
 GetFruitTreeFlag: ; 44078
 	push hl
 	push de
-	ld a, [CurFruitTree]
+	ld a, [wCurFruitTree]
 	dec a
 	ld e, a
 	ld d, 0
-	ld hl, FruitTreeFlags
+	ld hl, wFruitTreeFlags
 	call FlagAction
 	pop de
 	pop hl

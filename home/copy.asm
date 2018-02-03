@@ -235,23 +235,23 @@ Request2bpp:: ; eba
 
 .NotMobile:
 	ld a, e
-	ld [Requested2bppSource], a
+	ld [wRequested2bppSource], a
 	ld a, d
-	ld [Requested2bppSource + 1], a
+	ld [wRequested2bppSource + 1], a
 	ld a, l
-	ld [Requested2bppDest], a
+	ld [wRequested2bppDest], a
 	ld a, h
-	ld [Requested2bppDest + 1], a
+	ld [wRequested2bppDest + 1], a
 .loop
 	ld a, c
 	ld hl, hTilesPerCycle
 	cp [hl]
 	jr nc, .iterate
 
-	ld [Requested2bpp], a
+	ld [wRequested2bpp], a
 .wait
 	call DelayFrame
-	ld a, [Requested2bpp]
+	ld a, [wRequested2bpp]
 	and a
 	jr nz, .wait
 
@@ -267,11 +267,11 @@ Request2bpp:: ; eba
 
 .iterate
 	ld a, [hTilesPerCycle]
-	ld [Requested2bpp], a
+	ld [wRequested2bpp], a
 
 .wait2
 	call DelayFrame
-	ld a, [Requested2bpp]
+	ld a, [wRequested2bpp]
 	and a
 	jr nz, .wait2
 
@@ -311,23 +311,23 @@ Request1bpp:: ; f1e
 
 .NotMobile:
 	ld a, e
-	ld [Requested1bppSource], a
+	ld [wRequested1bppSource], a
 	ld a, d
-	ld [Requested1bppSource + 1], a
+	ld [wRequested1bppSource + 1], a
 	ld a, l
-	ld [Requested1bppDest], a
+	ld [wRequested1bppDest], a
 	ld a, h
-	ld [Requested1bppDest + 1], a
+	ld [wRequested1bppDest + 1], a
 .loop
 	ld a, c
 	ld hl, hTilesPerCycle
 	cp [hl]
 	jr nc, .iterate
 
-	ld [Requested1bpp], a
+	ld [wRequested1bpp], a
 .wait
 	call DelayFrame
-	ld a, [Requested1bpp]
+	ld a, [wRequested1bpp]
 	and a
 	jr nz, .wait
 
@@ -343,11 +343,11 @@ Request1bpp:: ; f1e
 
 .iterate
 	ld a, [hTilesPerCycle]
-	ld [Requested1bpp], a
+	ld [wRequested1bpp], a
 
 .wait2
 	call DelayFrame
-	ld a, [Requested1bpp]
+	ld a, [wRequested1bpp]
 	and a
 	jr nz, .wait2
 

@@ -12,7 +12,7 @@ SendMailToPC: ; 4456e
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld bc, MAIL_STRUCT_LENGTH
 	ld hl, sPartyMail
 	call AddNTimes
@@ -92,7 +92,7 @@ MoveMailFromPCToParty: ; 44607
 	ld hl, sMailbox
 	call AddNTimes
 	push hl
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld bc, MAIL_STRUCT_LENGTH
 	ld hl, sPartyMail
 	call AddNTimes
@@ -106,8 +106,8 @@ MoveMailFromPCToParty: ; 44607
 	ld de, PARTYMON_STRUCT_LENGTH - MON_MOVES
 	add hl, de
 	ld d, [hl]
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Item
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld [hl], d
@@ -131,8 +131,8 @@ CheckPokeItem:: ; 44654
 	ld a, POKEMAIL_REFUSED
 	jr c, .pop_return
 
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Item
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, [hl]
@@ -142,7 +142,7 @@ CheckPokeItem:: ; 44654
 
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
@@ -189,17 +189,17 @@ CheckPokeItem:: ; 44654
 	pop bc
 
 .return
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 446cc
 
 
 GivePokeItem:: ; 446cc
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
 	push af
 	push bc
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
@@ -219,13 +219,13 @@ GivePokeItem:: ; 446cc
 	call CopyBytes
 	pop af
 	push af
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	call AddNTimes
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	pop af
-	ld hl, PartyMon1ID
+	ld hl, wPartyMon1ID
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hli]
@@ -234,7 +234,7 @@ GivePokeItem:: ; 446cc
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld [de], a
 	inc de
 	pop bc
@@ -287,11 +287,11 @@ DeletePartyMonMail: ; 44765 (11:4765)
 
 
 IsAnyMonHoldingMail: ; 44781
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	jr z, .no_mons
 	ld e, a
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 .loop
 	ld d, [hl]
 	push hl
@@ -362,7 +362,7 @@ MailboxPC_GetMailAuthor: ; 0x447da
 	call AddNTimes
 	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	push de
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
@@ -375,7 +375,7 @@ MailboxPC_GetMailAuthor: ; 0x447da
 
 MailboxPC_PrintMailAuthor: ; 0x447fb
 	push de
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	call MailboxPC_GetMailAuthor
 	pop hl
 	jp PlaceString
@@ -439,7 +439,7 @@ MailboxPC: ; 0x44806
 
 .ReadMail: ; 0x44869
 	call FadeToMenu
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	dec a
 	ld b, a
 	call ReadMailMessage
@@ -452,19 +452,19 @@ MailboxPC: ; 0x44806
 	call YesNoBox
 	call ExitMenu
 	ret c
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	dec a
 	call .GetMailType
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
-	ld hl, NumItems
+	ld hl, wNumItems
 	call ReceiveItem
 	jr c, .put_in_bag
 	ld hl, .PackFullText
 	jp MenuTextBoxBackup
 
 .put_in_bag
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	dec a
 	ld b, a
 	call DeleteMailFromPC
@@ -493,14 +493,14 @@ MailboxPC: ; 0x44806
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld a, [hl]
-	ld [CurItem], a
+	ld [wCurItem], a
 	jp CloseSRAM
 ; 0x448d2
 
 .AttachMail: ; 0x448d2
 	call FadeToMenu
 	xor a
-	ld [PartyMenuActionText], a
+	ld [wPartyMenuActionText], a
 	call ClearBGPalettes
 .try_again
 	farcall LoadPartyMenuGFX
@@ -513,7 +513,7 @@ MailboxPC: ; 0x44806
 	call DelayFrame
 	farcall PartyMenuSelect
 	jr c, .exit2
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
 	ld a, MON_ITEM
@@ -531,7 +531,7 @@ MailboxPC: ; 0x44806
 	jr .try_again
 
 .attach_mail
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	dec a
 	ld b, a
 	call MoveMailFromPCToParty

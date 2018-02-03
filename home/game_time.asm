@@ -1,11 +1,11 @@
 ResetGameTime:: ; 208a
 	xor a
-	ld [GameTimeCap], a
-	ld [GameTimeHours], a
-	ld [GameTimeHours + 1], a
-	ld [GameTimeMinutes], a
-	ld [GameTimeSeconds], a
-	ld [GameTimeFrames], a
+	ld [wGameTimeCap], a
+	ld [wGameTimeHours], a
+	ld [wGameTimeHours + 1], a
+	ld [wGameTimeMinutes], a
+	ld [wGameTimeSeconds], a
+	ld [wGameTimeFrames], a
 	ret
 ; 209e
 
@@ -16,7 +16,7 @@ GameTimer:: ; 209e
 
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(GameTime)
+	ld a, BANK(wGameTime)
 	ld [rSVBK], a
 
 	call UpdateGameTimer
@@ -43,13 +43,13 @@ UpdateGameTimer:: ; 20ad
 	ret z
 
 ; Is the timer already capped?
-	ld hl, GameTimeCap
+	ld hl, wGameTimeCap
 	bit 0, [hl]
 	ret nz
 
 
 ; +1 frame
-	ld hl, GameTimeFrames
+	ld hl, wGameTimeFrames
 	ld a, [hl]
 	inc a
 
@@ -65,7 +65,7 @@ UpdateGameTimer:: ; 20ad
 	ld [hl], a
 
 ; +1 second
-	ld hl, GameTimeSeconds
+	ld hl, wGameTimeSeconds
 	ld a, [hl]
 	inc a
 
@@ -81,7 +81,7 @@ UpdateGameTimer:: ; 20ad
 	ld [hl], a
 
 ; +1 minute
-	ld hl, GameTimeMinutes
+	ld hl, wGameTimeMinutes
 	ld a, [hl]
 	inc a
 
@@ -97,9 +97,9 @@ UpdateGameTimer:: ; 20ad
 	ld [hl], a
 
 ; +1 hour
-	ld a, [GameTimeHours]
+	ld a, [wGameTimeHours]
 	ld h, a
-	ld a, [GameTimeHours + 1]
+	ld a, [wGameTimeHours + 1]
 	ld l, a
 	inc hl
 
@@ -113,19 +113,19 @@ UpdateGameTimer:: ; 20ad
 	cp LOW(1000)
 	jr c, .ok
 
-	ld hl, GameTimeCap
+	ld hl, wGameTimeCap
 	set 0, [hl]
 
 	ld a, 59 ; 999:59:59.00
-	ld [GameTimeMinutes], a
-	ld [GameTimeSeconds], a
+	ld [wGameTimeMinutes], a
+	ld [wGameTimeSeconds], a
 	ret
 
 
 .ok
 	ld a, h
-	ld [GameTimeHours], a
+	ld [wGameTimeHours], a
 	ld a, l
-	ld [GameTimeHours + 1], a
+	ld [wGameTimeHours + 1], a
 	ret
 ; 210f

@@ -2,17 +2,17 @@ BattleCommand_SleepTalk: ; 35b33
 ; sleeptalk
 
 	call ClearLastMove
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .fail
 	ld a, [hBattleTurn]
 	and a
-	ld hl, BattleMonMoves + 1
-	ld a, [DisabledMove]
+	ld hl, wBattleMonMoves + 1
+	ld a, [wDisabledMove]
 	ld d, a
 	jr z, .got_moves
-	ld hl, EnemyMonMoves + 1
-	ld a, [EnemyDisabledMove]
+	ld hl, wEnemyMonMoves + 1
+	ld a, [wEnemyDisabledMove]
 	ld d, a
 .got_moves
 	ld a, BATTLE_VARS_STATUS
@@ -79,10 +79,10 @@ BattleCommand_SleepTalk: ; 35b33
 .check_has_usable_move
 	ld a, [hBattleTurn]
 	and a
-	ld a, [DisabledMove]
+	ld a, [wDisabledMove]
 	jr z, .got_move_2
 
-	ld a, [EnemyDisabledMove]
+	ld a, [wEnemyDisabledMove]
 .got_move_2
 	ld b, a
 	ld a, BATTLE_VARS_MOVE

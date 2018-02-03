@@ -139,10 +139,10 @@ Options_TextSpeed: ; e42f5
 
 .Save:
 	ld b, a
-	ld a, [Options]
+	ld a, [wOptions]
 	and $f0
 	or b
-	ld [Options], a
+	ld [wOptions], a
 
 .NonePressed:
 	ld b, 0
@@ -173,7 +173,7 @@ Options_TextSpeed: ; e42f5
 GetTextSpeed: ; e4346
 ; converts TEXT_DELAY_* value in a to OPT_TEXT_SPEED_* value in c,
 ; with previous/next TEXT_DELAY_* values in d/e
-	ld a, [Options]
+	ld a, [wOptions]
 	and $7
 	cp TEXT_DELAY_SLOW
 	jr z, .slow
@@ -197,7 +197,7 @@ GetTextSpeed: ; e4346
 
 
 Options_BattleScene: ; e4365
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
@@ -239,7 +239,7 @@ Options_BattleScene: ; e4365
 
 
 Options_BattleStyle: ; e43a0
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
@@ -280,7 +280,7 @@ Options_BattleStyle: ; e43a0
 
 
 Options_Sound: ; e43dd
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
@@ -363,7 +363,7 @@ Options_Print: ; e4424
 
 .Save:
 	ld b, a
-	ld [GBPrinter], a
+	ld [wGBPrinter], a
 
 .NonePressed:
 	ld b, $0
@@ -398,7 +398,7 @@ Options_Print: ; e4424
 GetPrinterSetting: ; e4491
 ; converts GBPRINTER_* value in a to OPT_PRINT_* value in c,
 ; with previous/next GBPRINTER_* values in d/e
-	ld a, [GBPrinter]
+	ld a, [wGBPrinter]
 	and a
 	jr z, .IsLightest
 	cp GBPRINTER_LIGHTER
@@ -434,7 +434,7 @@ GetPrinterSetting: ; e4491
 ; e44c1
 
 Options_MenuAccount: ; e44c1
-	ld hl, Options2
+	ld hl, wOptions2
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
@@ -475,7 +475,7 @@ Options_MenuAccount: ; e44c1
 
 
 Options_Frame: ; e44fa
-	ld hl, TextBoxFrame
+	ld hl, wTextBoxFrame
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
@@ -497,7 +497,7 @@ Options_Frame: ; e44fa
 	and $7
 	ld [hl], a
 UpdateFrame: ; e4512
-	ld a, [TextBoxFrame]
+	ld a, [wTextBoxFrame]
 	hlcoord 16, 15 ; where on the screen the number is drawn
 	add "1"
 	ld [hl], a

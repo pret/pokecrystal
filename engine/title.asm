@@ -162,7 +162,7 @@ _TitleScreen: ; 10ed67
 
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(LYOverrides)
+	ld a, BANK(wLYOverrides)
 	ld [rSVBK], a
 
 ; Make alternating lines come in from opposite sides
@@ -171,7 +171,7 @@ _TitleScreen: ; 10ed67
 ;  see anything until these values are overwritten!)
 
 	ld b, 80 / 2 ; alternate for 80 lines
-	ld hl, LYOverrides
+	ld hl, wLYOverrides
 .loop
 ; $00 is the middle position
 	ld [hl], +112 ; coming from the left
@@ -182,9 +182,9 @@ _TitleScreen: ; 10ed67
 	jr nz, .loop
 
 ; Make sure the rest of the buffer is empty
-	ld hl, LYOverrides + 80
+	ld hl, wLYOverrides + 80
 	xor a
-	ld bc, LYOverridesEnd - (LYOverrides + 80)
+	ld bc, wLYOverridesEnd - (wLYOverrides + 80)
 	call ByteFill
 
 ; Let LCD Stat know we're messing around with SCX
@@ -323,7 +323,7 @@ DrawTitleGraphic: ; 10eeef
 ; 10ef06
 
 InitializeBackground: ; 10ef06
-	ld hl, Sprite01
+	ld hl, wVirtualOAMSprite00
 	ld d, -$22
 	ld e, $0
 	ld c, 5
@@ -366,7 +366,7 @@ AnimateTitleCrystal: ; 10ef32
 
 ; Stop at y=6
 ; y is really from the bottom of the sprite, which is two tiles high
-	ld hl, Sprite01YCoord
+	ld hl, wVirtualOAMSprite00YCoord
 	ld a, [hl]
 	cp 6 + 2 * TILE_WIDTH
 	ret z

@@ -11,7 +11,7 @@ ret_e00ed: ; e00ed (38:40ed)
 	ret
 
 _CardFlip: ; e00ee (38:40ee)
-	ld hl, Options
+	ld hl, wOptions
 	set 4, [hl]
 	call ClearBGPalettes
 	call ClearTileMap
@@ -70,7 +70,7 @@ _CardFlip: ; e00ee (38:40ee)
 	call PlaySFX
 	call WaitSFX
 	call ClearBGPalettes
-	ld hl, Options
+	ld hl, wOptions
 	res 4, [hl]
 	ret
 
@@ -126,9 +126,9 @@ _CardFlip: ; e00ee (38:40ee)
 ; 0xe01d2
 
 .DeductCoins: ; e01d2
-	ld a, [Coins]
+	ld a, [wCoins]
 	ld h, a
-	ld a, [Coins + 1]
+	ld a, [wCoins + 1]
 	ld l, a
 	ld a, h
 	and a
@@ -146,9 +146,9 @@ _CardFlip: ; e00ee (38:40ee)
 	ld de, -3
 	add hl, de
 	ld a, h
-	ld [Coins], a
+	ld [wCoins], a
 	ld a, l
-	ld [Coins + 1], a
+	ld [wCoins + 1], a
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	xor a
@@ -485,7 +485,7 @@ CardFlip_DisplayCardFaceUp: ; e03ec
 	ret z
 
 	; Set the attributes
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	ld a, [wCardFlipFaceUpCard]
 	and 3
@@ -535,7 +535,7 @@ CardFlip_PrintCoinBalance: ; e049c
 	ld de, .CoinStr
 	call PlaceString
 	hlcoord 15, 16
-	ld de, Coins
+	ld de, wCoins
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	ret
@@ -601,7 +601,7 @@ CardFlip_CopyToBox: ; e04f7 (38:44f7)
 ; e0509 (38:4509)
 
 CardFlip_CopyOAM: ; e0509
-	ld de, Sprite01
+	ld de, wVirtualOAMSprite00
 	ld a, [hli]
 .loop
 	push af
@@ -1174,29 +1174,29 @@ CardFlip_CheckWinCondition: ; e0637
 ; 0xe081b
 
 .AddCoinPlaySFX: ; e081b
-	ld a, [Coins]
+	ld a, [wCoins]
 	ld h, a
-	ld a, [Coins + 1]
+	ld a, [wCoins + 1]
 	ld l, a
 	inc hl
 	ld a, h
-	ld [Coins], a
+	ld [wCoins], a
 	ld a, l
-	ld [Coins + 1], a
+	ld [wCoins + 1], a
 	ld de, SFX_PAY_DAY
 	call PlaySFX
 	ret
 ; e0833
 
 .IsCoinCaseFull: ; e0833
-	ld a, [Coins]
+	ld a, [wCoins]
 	cp HIGH(MAX_COINS)
 	jr c, .less
 	jr z, .check_low
 	jr .more
 
 .check_low
-	ld a, [Coins + 1]
+	ld a, [wCoins + 1]
 	cp LOW(MAX_COINS)
 	jr c, .less
 
@@ -1625,32 +1625,32 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 	and a
 	ret z
 
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a
 	call ByteFill
 
-	hlcoord 12, 1, AttrMap
+	hlcoord 12, 1, wAttrMap
 	lb bc, 2, 2
 	ld a, $1
 	call CardFlip_FillBox
 
-	hlcoord 14, 1, AttrMap
+	hlcoord 14, 1, wAttrMap
 	lb bc, 2, 2
 	ld a, $2
 	call CardFlip_FillBox
 
-	hlcoord 16, 1, AttrMap
+	hlcoord 16, 1, wAttrMap
 	lb bc, 2, 2
 	ld a, $3
 	call CardFlip_FillBox
 
-	hlcoord 18, 1, AttrMap
+	hlcoord 18, 1, wAttrMap
 	lb bc, 2, 2
 	ld a, $4
 	call CardFlip_FillBox
 
-	hlcoord 9, 0, AttrMap
+	hlcoord 9, 0, wAttrMap
 	lb bc, 12, 1
 	ld a, $1
 	call CardFlip_FillBox

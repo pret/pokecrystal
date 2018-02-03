@@ -7,7 +7,7 @@ StubbedTrainerRankings_HallOfFame2:: ; 0x105ef6
 	ld a, BANK(sTrainerRankingGameTimeHOF)
 	call GetSRAMBank
 
-	ld hl, GameTimeHours
+	ld hl, wGameTimeHours
 	ld de, sTrainerRankingGameTimeHOF
 	ld bc, 4
 	call CopyBytes
@@ -38,7 +38,7 @@ StubbedTrainerRankings_MagikarpLength: ; 105f33
 	ret
 	ld a, BANK(sTrainerRankingLongestMagikarp)
 	call GetSRAMBank
-	ld de, Buffer1
+	ld de, wBuffer1
 	ld hl, sTrainerRankingLongestMagikarp
 
 	; Is this Magikarp the longest measured?
@@ -270,7 +270,7 @@ StubbedTrainerRankings_TMsHMsTaught: ; 106049
 
 StubbedTrainerRankings_Battles: ; 106050
 	ret
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL ; Exclude the Dude’s tutorial battle
 	ret z
 	ld hl, sTrainerRankingBattles
@@ -278,7 +278,7 @@ StubbedTrainerRankings_Battles: ; 106050
 
 StubbedTrainerRankings_WildBattles: ; 10605d
 	ret
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL ; Exclude the Dude’s tutorial battle
 	ret z
 	ld hl, sTrainerRankingWildBattles
@@ -814,7 +814,7 @@ endr
 
 Mobile_DummyReturnFalse: ; 10630f
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 106314
 
@@ -1071,7 +1071,7 @@ Function106464:: ; 106464
 ; 10649b
 
 Function10649b: ; 10649b
-	ld a, [TextBoxFrame]
+	ld a, [wTextBoxFrame]
 	maskbits NUM_FRAMES
 	ld bc, 6 * LEN_1BPP_TILE
 	ld hl, Frames

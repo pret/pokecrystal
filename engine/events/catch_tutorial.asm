@@ -1,5 +1,5 @@
 CatchTutorial:: ; 4e554
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	dec a
 	ld c, a
 	ld hl, .dw
@@ -18,13 +18,13 @@ CatchTutorial:: ; 4e554
 
 .DudeTutorial: ; 4e56a (13:656a)
 ; Back up your name to your Mom's name.
-	ld hl, PlayerName
-	ld de, MomsName
+	ld hl, wPlayerName
+	ld de, wMomsName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 ; Copy Dude's name to your name
 	ld hl, .Dude
-	ld de, PlayerName
+	ld de, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 
@@ -33,11 +33,11 @@ CatchTutorial:: ; 4e554
 	xor a
 	ld [hJoyDown], a
 	ld [hJoyPressed], a
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
 	and $f8
 	add $3
-	ld [Options], a
+	ld [wOptions], a
 	ld hl, .AutoInput
 	ld a, BANK(.AutoInput)
 	call StartAutoInput
@@ -45,9 +45,9 @@ CatchTutorial:: ; 4e554
 	call StopAutoInput
 	pop af
 
-	ld [Options], a
-	ld hl, MomsName
-	ld de, PlayerName
+	ld [wOptions], a
+	ld hl, wMomsName
+	ld de, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret

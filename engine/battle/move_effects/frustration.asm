@@ -2,11 +2,11 @@ BattleCommand_FrustrationPower: ; 3790e
 ; frustrationpower
 
 	push bc
-	ld hl, BattleMonHappiness
+	ld hl, wBattleMonHappiness
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_happiness
-	ld hl, EnemyMonHappiness
+	ld hl, wEnemyMonHappiness
 .got_happiness
 	ld a, $ff
 	sub [hl]

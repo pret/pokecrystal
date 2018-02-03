@@ -7,7 +7,7 @@ Unreferenced_Function88248: ; 88248
 
 .okay
 	ld a, c
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 	ret
 
 MovePlayerPicRight: ; 88258
@@ -73,7 +73,7 @@ ShowPlayerNamingChoices: ; 88297
 INCLUDE "data/player_names.asm"
 
 GetPlayerNameArray: ; 88318 This Function is never called
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld de, MalePlayerNameArray
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -156,7 +156,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 
 .GotClass:
 	ld a, e
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -184,7 +184,7 @@ DrawIntroPlayerPic: ; 88874
 	ld e, KRIS
 .GotClass:
 	ld a, e
-	ld [TrainerClass], a
+	ld [wTrainerClass], a
 
 ; Load pic
 	ld de, ChrisPic

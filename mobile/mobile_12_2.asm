@@ -2,14 +2,14 @@ MobileCheckOwnMonAnywhere: ; 4a843
 ; Like CheckOwnMonAnywhere, but only check for species.
 ; OT/ID don't matter.
 
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	ret z
 
 	ld d, a
 	ld e, 0
-	ld hl, PartyMon1Species
-	ld bc, PartyMonOT
+	ld hl, wPartyMon1Species
+	ld bc, wPartyMonOT
 .asm_4a851
 	call .CheckMatch
 	ret c
@@ -111,7 +111,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	push de
 	ld d, b
 	ld e, c
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	ld b, [hl]
 	cp b
 	jr nz, .no_match
@@ -160,25 +160,25 @@ MobileCheckOwnMonAnywhere: ; 4a843
 ; 4a927
 
 UnusedFindItemInPCOrBag: ; 4a927
-	ld a, [ScriptVar]
-	ld [CurItem], a
-	ld hl, PCItems
+	ld a, [wScriptVar]
+	ld [wCurItem], a
+	ld hl, wPCItems
 	call CheckItem
 	jr c, .found
 
-	ld a, [ScriptVar]
-	ld [CurItem], a
-	ld hl, NumItems
+	ld a, [wScriptVar]
+	ld [wCurItem], a
+	ld hl, wNumItems
 	call CheckItem
 	jr c, .found
 
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .found
 	ld a, 1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 4a94e
 
@@ -272,15 +272,15 @@ Function4a9c3: ; 4a9c3
 
 Function4a9d7: ; 4a9d7
 	ld a, [wd002]
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	call GetNick
 	ld h, d
 	ld l, e
-	ld de, EndFlypoint
+	ld de, wEndFlypoint
 	ld bc, 6
 	call CopyBytes
 	ld a, [wd003]
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	call GetNick
 	ld h, d
 	ld l, e
@@ -288,7 +288,7 @@ Function4a9d7: ; 4a9d7
 	ld bc, 6
 	call CopyBytes
 	ld a, [wd004]
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	call GetNick
 	ld h, d
 	ld l, e
@@ -317,10 +317,10 @@ Function4aa25: ; 4aa25
 
 Function4aa34: ; 4aa34
 	ld a, PARTYMENUACTION_MOBILE
-	ld [PartyMenuActionText], a
+	ld [wPartyMenuActionText], a
 	farcall WritePartyMenuTilemap
 	xor a
-	ld [PartyMenuActionText], a
+	ld [wPartyMenuActionText], a
 	farcall PrintPartyMenuText
 	call Function4aab6
 	call WaitBGMap
@@ -431,7 +431,7 @@ Function4aab6: ; 4aab6
 ; 4aad3
 
 Function4aad3: ; 4aad3
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	ld a, [hli]
 	and a
 	ret z ; Nothing in your party
@@ -458,7 +458,7 @@ Function4aad3: ; 4aad3
 ; 4aafb
 
 Function4aafb: ; 4aafb
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
 	and a
@@ -470,9 +470,9 @@ Function4aafb: ; 4aafb
 ; 4ab06
 
 Function4ab06: ; 4ab06
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
@@ -503,7 +503,7 @@ Function4ab1a: ; 4ab1a
 	pop af
 	bit 1, a
 	jr nz, .asm_4ab6d
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	inc a
 	ld b, a
 	ld a, [wMenuCursorY]
@@ -512,13 +512,13 @@ Function4ab1a: ; 4ab1a
 	jr z, .asm_4ab7e
 	ld a, [wMenuCursorY]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	ld c, a
 	ld b, $0
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	call WaitSFX
@@ -591,7 +591,7 @@ Function4aba8: ; 4aba8
 Function4abc3: ; 4abc3
 	bit 3, a
 	jr z, .asm_4abd5
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	inc a
 	ld [wMenuCursorY], a
 	ld a, $1
@@ -605,7 +605,7 @@ Function4abc3: ; 4abc3
 	ld [wMenuCursorY], a
 	and a
 	jr nz, .asm_4ac29
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	inc a
 	ld [wMenuCursorY], a
 	jr .asm_4ac29
@@ -615,7 +615,7 @@ Function4abc3: ; 4abc3
 	jr z, .asm_4ac08
 	ld a, [wMenuCursorY]
 	ld [wMenuCursorY], a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	inc a
 	inc a
 	ld b, a
@@ -635,7 +635,7 @@ Function4abc3: ; 4abc3
 .asm_4ac10
 	ld a, [wMenuCursorY]
 	ld b, a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	inc a
 	cp b
 	jr nz, .asm_4ac29
@@ -653,7 +653,7 @@ Function4abc3: ; 4abc3
 	lb bc, 13, 1
 	call ClearBox
 	call Function4aab6
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	hlcoord 6, 1
 .asm_4ac3b
 	ld bc, $28
@@ -663,7 +663,7 @@ Function4abc3: ; 4abc3
 	ld [hl], $7f
 	ld a, [wMenuCursorY]
 	ld b, a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	inc a
 	cp b
 	jr z, .asm_4ac54
@@ -800,7 +800,7 @@ Function4ad17: ; 4ad17
 	ret
 
 .asm_4ad39
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld [hl], a
 	call Function4a9c3
 	ret c
@@ -876,7 +876,7 @@ String_4ada7: ; 4ada7
 
 Function4adb2: ; 4adb2
 	ld hl, wd002
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	cp [hl]
 	ret z
 	inc hl
@@ -923,7 +923,7 @@ Function4adf7: ; 4adf7
 	ld a, [wd019]
 	bit 0, a
 	ret z
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	inc a
 	ld [wMenuCursorY], a
 	ld a, $1

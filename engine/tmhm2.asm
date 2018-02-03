@@ -7,10 +7,10 @@ TMHMPocket: ; 2c76f (b:476f)
 	ret nc
 	call PlaceHollowCursor
 	call WaitBGMap
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	dec a
-	ld [CurItemQuantity], a
-	ld hl, TMsHMs
+	ld [wCurItemQuantity], a
+	ld hl, wTMsHMs
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -21,15 +21,15 @@ TMHMPocket: ; 2c76f (b:476f)
 	ret
 
 .ConvertItemToTMHMNumber: ; 2c798 (b:4798)
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	ld c, a
 	callfar GetNumberedTMHM
 	ld a, c
-	ld [CurItem], a
+	ld [wCurItem], a
 	ret
 
 ConvertCurItemIntoCurTMHM: ; 2c7a7 (b:47a7)
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	ld c, a
 	callfar GetTMHMNumber
 	ld a, c
@@ -42,11 +42,11 @@ GetTMHMItemMove: ; 2c7b6 (b:47b6)
 	ret
 
 AskTeachTMHM: ; 2c7bf (b:47bf)
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	res NO_TEXT_SCROLL, [hl]
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	cp TM01
 	jr c, .NotTMHM
 	call GetTMHMItemMove
@@ -55,7 +55,7 @@ AskTeachTMHM: ; 2c7bf (b:47bf)
 	call GetMoveName
 	call CopyName1
 	ld hl, Text_BootedTM ; Booted up a TM
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	cp HM01
 	jr c, .TM
 	ld hl, Text_BootedHM ; Booted up an HM
@@ -67,11 +67,11 @@ AskTeachTMHM: ; 2c7bf (b:47bf)
 .NotTMHM:
 	pop bc
 	ld a, b
-	ld [Options], a
+	ld [wOptions], a
 	ret
 
 ChooseMonToLearnTMHM: ; 2c7fb
-	ld hl, StringBuffer2
+	ld hl, wStringBuffer2
 	ld de, wTMHMMoveNameBackup
 	ld bc, 12
 	call CopyBytes
@@ -81,7 +81,7 @@ ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
 	farcall InitPartyMenuWithCancel
 	farcall InitPartyMenuGFX
 	ld a, PARTYMENUACTION_TEACH_TMHM
-	ld [PartyMenuActionText], a
+	ld [wPartyMenuActionText], a
 .loopback
 	farcall WritePartyMenuTilemap
 	farcall PrintPartyMenuText
@@ -90,13 +90,13 @@ ChooseMonToLearnTMHM_NoRefresh: ; 2c80a
 	call DelayFrame
 	farcall PartyMenuSelect
 	push af
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	pop bc ; now contains the former contents of af
 	jr z, .egg
 	push bc
 	ld hl, wTMHMMoveNameBackup
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	ld bc, 12
 	call CopyBytes
 	pop af ; now contains the original contents of af
@@ -121,8 +121,8 @@ TeachTMHM: ; 2c867
 	predef CanLearnTMHMMove
 
 	push bc
-	ld a, [CurPartyMon]
-	ld hl, PartyMonNicknames
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonNicknames
 	call GetNick
 	pop bc
 
@@ -147,7 +147,7 @@ TeachTMHM: ; 2c867
 	jr z, .nope
 
 	farcall StubbedTrainerRankings_TMsHMsTaught
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	call IsHM
 	ret c
 
@@ -254,13 +254,13 @@ TMHM_ShowTMMoveDescription: ; 2c946 (b:4946)
 	ld b, 4
 	ld c, SCREEN_WIDTH - 2
 	call TextBox
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	cp NUM_TMS + NUM_HMS + 1
 	jr nc, TMHM_JoypadLoop
 	ld [wd265], a
 	predef GetTMHMMove
 	ld a, [wd265]
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	hlcoord 1, 14
 	call PrintMoveDesc
 	jp TMHM_JoypadLoop
@@ -293,7 +293,7 @@ TMHM_CheckHoveringOverCancel: ; 2c98a (b:498a)
 	jr nz, .loop
 	ld a, c
 .okay
-	ld [CurItem], a
+	ld [wCurItem], a
 	cp -1
 	ret
 
@@ -340,7 +340,7 @@ TMHM_ScrollPocket: ; 2c9b1 (b:49b1)
 	jp TMHM_ShowTMMoveDescription
 
 TMHM_DisplayPocketItems: ; 2c9e2 (b:49e2)
-	ld a, [BattleType]
+	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
 	jp z, Tutorial_TMHMPocket
 
@@ -466,7 +466,7 @@ TMHM_String_Cancel: ; 2caae
 ; 2cab5
 
 TMHM_GetCurrentPocketPosition: ; 2cab5 (b:4ab5)
-	ld hl, TMsHMs
+	ld hl, wTMsHMs
 	ld a, [wTMHMPocketScrollPosition]
 	ld b, a
 	inc b
@@ -523,7 +523,7 @@ Unreferenced_Function2cadf: ; 2cadf
 .CheckHaveRoomForTMHM: ; 2cafa
 	ld a, [wd265]
 	dec a
-	ld hl, TMsHMs
+	ld hl, wTMsHMs
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -539,7 +539,7 @@ ConsumeTM: ; 2cb0c (b:4b0c)
 	call ConvertCurItemIntoCurTMHM
 	ld a, [wd265]
 	dec a
-	ld hl, TMsHMs
+	ld hl, wTMsHMs
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -559,7 +559,7 @@ ConsumeTM: ; 2cb0c (b:4b0c)
 CountTMsHMs: ; 2cb2a (b:4b2a)
 	ld b, 0
 	ld c, NUM_TMS + NUM_HMS
-	ld hl, TMsHMs
+	ld hl, wTMsHMs
 .loop
 	ld a, [hli]
 	and a
@@ -575,7 +575,7 @@ CountTMsHMs: ; 2cb2a (b:4b2a)
 PrintMoveDesc: ; 2cb3e
 	push hl
 	ld hl, MoveDescriptions
-	ld a, [CurSpecies]
+	ld a, [wCurSpecies]
 	dec a
 	ld c, a
 	ld b, 0

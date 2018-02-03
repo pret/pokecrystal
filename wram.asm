@@ -7,10 +7,10 @@ INCLUDE "vram.asm"
 
 SECTION "Stack", WRAM0
 
-StackBottom::
+wStackBottom::
 	ds $100 - 1
-Stack::
-StackTop::
+wStack::
+wStackTop::
 	ds 1
 
 
@@ -19,19 +19,19 @@ SECTION "Audio RAM", WRAM0
 wMusic::
 
 ; nonzero if playing
-MusicPlaying:: db ; c100
+wMusicPlaying:: db ; c100
 
-Channels::
-Channel1:: channel_struct Channel1 ; c101
-Channel2:: channel_struct Channel2 ; c133
-Channel3:: channel_struct Channel3 ; c165
-Channel4:: channel_struct Channel4 ; c197
+wChannels::
+wChannel1:: channel_struct wChannel1 ; c101
+wChannel2:: channel_struct wChannel2 ; c133
+wChannel3:: channel_struct wChannel3 ; c165
+wChannel4:: channel_struct wChannel4 ; c197
 
-SFXChannels::
-Channel5:: channel_struct Channel5 ; c1c9
-Channel6:: channel_struct Channel6 ; c1fb
-Channel7:: channel_struct Channel7 ; c22d
-Channel8:: channel_struct Channel8 ; c25f
+wSFXChannels::
+wChannel5:: channel_struct wChannel5 ; c1c9
+wChannel6:: channel_struct wChannel6 ; c1fb
+wChannel7:: channel_struct wChannel7 ; c22d
+wChannel8:: channel_struct wChannel8 ; c25f
 
 	ds 1 ; c291
 
@@ -41,9 +41,9 @@ wCurTrackFrequency:: dw
 wc296:: db ; BCD value, dummied out
 wCurNoteDuration:: db ; used in MusicE0 and LoadNote
 
-CurMusicByte:: db ; c298
-CurChannel:: db ; c299
-Volume:: ; c29a
+wCurMusicByte:: db ; c298
+wCurChannel:: db ; c299
+wVolume:: ; c29a
 ; corresponds to $ff24
 ; Channel control / ON-OFF / Volume (R/W)
 ;   bit 7 - Vin->SO2 ON/OFF
@@ -51,12 +51,12 @@ Volume:: ; c29a
 ;   bit 3 - Vin->SO1 ON/OFF
 ;   bit 2-0 - SO1 output level (volume) (# 0-7)
 	db
-SoundOutput:: ; c29b
+wSoundOutput:: ; c29b
 ; corresponds to $ff25
 ; bit 4-7: ch1-4 so2 on/off
 ; bit 0-3: ch1-4 so1 on/off
 	db
-SoundInput:: ; c29c
+wSoundInput:: ; c29c
 ; corresponds to $ff26
 ; bit 7: global on/off
 ; bit 0: ch1 on/off
@@ -65,60 +65,60 @@ SoundInput:: ; c29c
 ; bit 3: ch4 on/off
 	db
 
-MusicID:: dw ; c29d
-MusicBank:: db ; c29f
-NoiseSampleAddress:: dw ; c2a0
+wMusicID:: dw ; c29d
+wMusicBank:: db ; c29f
+wNoiseSampleAddress:: dw ; c2a0
 wNoiseSampleDelay:: db ; c2a2
 	ds 1 ; c2a3
-MusicNoiseSampleSet:: db ; c2a4
-SFXNoiseSampleSet:: db ; c2a5
+wMusicNoiseSampleSet:: db ; c2a4
+wSFXNoiseSampleSet:: db ; c2a5
 
-Danger:: ; c2a6
+wLowHealthAlarm:: ; c2a6
 ; bit 7: on/off
 ; bit 4: pitch
 ; bit 0-3: counter
 	db
 
-MusicFade:: ; c2a7
+wMusicFade:: ; c2a7
 ; fades volume over x frames
 ; bit 7: fade in/out
 ; bit 0-5: number of frames for each volume level
 ; $00 = none (default)
 	db
-MusicFadeCount:: db ; c2a8
-MusicFadeID:: dw ; c2a9
+wMusicFadeCount:: db ; c2a8
+wMusicFadeID:: dw ; c2a9
 
 	ds 5
 
-CryPitch:: dw ; c2b0
-CryLength:: dw ; c2b2
+wCryPitch:: dw ; c2b0
+wCryLength:: dw ; c2b2
 
-LastVolume:: db ; c2b4
+wLastVolume:: db ; c2b4
 wc2b5:: db ; c2b5
 
-SFXPriority:: ; c2b6
+wSFXPriority:: ; c2b6
 ; if nonzero, turn off music when playing sfx
 	db
 
 	ds 1
 
-Channel1JumpCondition:: db
-Channel2JumpCondition:: db
-Channel3JumpCondition:: db
-Channel4JumpCondition:: db
+wChannel1JumpCondition:: db
+wChannel2JumpCondition:: db
+wChannel3JumpCondition:: db
+wChannel4JumpCondition:: db
 
 wStereoPanningMask:: db ; c2bc
 
-CryTracks:: ; c2bd
+wCryTracks:: ; c2bd
 ; plays only in left or right track depending on what side the monster is on
 ; both tracks active outside of battle
 	db
 
 wSFXDuration:: db
-CurSFX:: ; c2bf
+wCurSFX:: ; c2bf
 ; id of sfx currently playing
 	db
-ChannelsEnd::
+wChannelsEnd::
 
 wMapMusic:: db ; c2c0
 
@@ -135,10 +135,10 @@ wLZBank::    db ; c2c4
 
 wBoxAlignment:: db
 
-InputType::        db ; c2c7
-AutoInputAddress:: dw ; c2c8
-AutoInputBank::    db ; c2ca
-AutoInputLength::  db ; c2cb
+wInputType::        db ; c2c7
+wAutoInputAddress:: dw ; c2c8
+wAutoInputBank::    db ; c2ca
+wAutoInputLength::  db ; c2cb
 
 wMonStatusFlags:: db
 wGameLogicPaused:: db ; c2cd
@@ -163,7 +163,7 @@ wLinkMode:: ; c2dc
 ; 4 mobile battle
 	db
 
-ScriptVar:: db ; c2dd
+wScriptVar:: db ; c2dd
 
 wPlayerNextMovement:: db
 wPlayerMovement:: db
@@ -190,12 +190,12 @@ wTempObjectCopyRadius:: db ; c2f8
 
 	ds 1
 
-TileDown::  db ; c2fa
-TileUp::    db ; c2fb
-TileLeft::  db ; c2fc
-TileRight:: db ; c2fd
+wTileDown::  db ; c2fa
+wTileUp::    db ; c2fb
+wTileLeft::  db ; c2fc
+wTileRight:: db ; c2fd
 
-TilePermissions:: ; c2fe
+wTilePermissions:: ; c2fe
 ; set if tile behavior prevents
 ; you from walking in that direction
 ; bit 3: down
@@ -218,16 +218,16 @@ wSpriteAnimDict:: ds 10 * 2
 wSpriteAnimationStructs::
 ; field  0:   index
 ; fields 1-3: loaded from SpriteAnimSeqData
-SpriteAnim1::  sprite_anim_struct SpriteAnim1
-SpriteAnim2::  sprite_anim_struct SpriteAnim2
-SpriteAnim3::  sprite_anim_struct SpriteAnim3
-SpriteAnim4::  sprite_anim_struct SpriteAnim4
-SpriteAnim5::  sprite_anim_struct SpriteAnim5
-SpriteAnim6::  sprite_anim_struct SpriteAnim6
-SpriteAnim7::  sprite_anim_struct SpriteAnim7
-SpriteAnim8::  sprite_anim_struct SpriteAnim8
-SpriteAnim9::  sprite_anim_struct SpriteAnim9
-SpriteAnim10:: sprite_anim_struct SpriteAnim10
+wSpriteAnim1::  sprite_anim_struct wSpriteAnim1
+wSpriteAnim2::  sprite_anim_struct wSpriteAnim2
+wSpriteAnim3::  sprite_anim_struct wSpriteAnim3
+wSpriteAnim4::  sprite_anim_struct wSpriteAnim4
+wSpriteAnim5::  sprite_anim_struct wSpriteAnim5
+wSpriteAnim6::  sprite_anim_struct wSpriteAnim6
+wSpriteAnim7::  sprite_anim_struct wSpriteAnim7
+wSpriteAnim8::  sprite_anim_struct wSpriteAnim8
+wSpriteAnim9::  sprite_anim_struct wSpriteAnim9
+wSpriteAnim10:: sprite_anim_struct wSpriteAnim10
 wSpriteAnimationStructsEnd::
 
 NEXTU ; c300
@@ -258,7 +258,7 @@ ENDU ; c3b4
 wSpriteAnimCount:: db
 wCurrSpriteOAMAddr:: db
 
-CurIcon:: db ; c3b6
+wCurIcon:: db ; c3b6
 
 wCurIconTile:: db
 wSpriteAnimAddrBackup::
@@ -302,56 +302,56 @@ wc3fc:: ds 1
 
 SECTION "Sprites", WRAM0
 
-Sprites:: ; c400
-Sprite01:: sprite_oam_struct Sprite01
-Sprite02:: sprite_oam_struct Sprite02
-Sprite03:: sprite_oam_struct Sprite03
-Sprite04:: sprite_oam_struct Sprite04
-Sprite05:: sprite_oam_struct Sprite05
-Sprite06:: sprite_oam_struct Sprite06
-Sprite07:: sprite_oam_struct Sprite07
-Sprite08:: sprite_oam_struct Sprite08
-Sprite09:: sprite_oam_struct Sprite09
-Sprite10:: sprite_oam_struct Sprite10
-Sprite11:: sprite_oam_struct Sprite11
-Sprite12:: sprite_oam_struct Sprite12
-Sprite13:: sprite_oam_struct Sprite13
-Sprite14:: sprite_oam_struct Sprite14
-Sprite15:: sprite_oam_struct Sprite15
-Sprite16:: sprite_oam_struct Sprite16
-Sprite17:: sprite_oam_struct Sprite17
-Sprite18:: sprite_oam_struct Sprite18
-Sprite19:: sprite_oam_struct Sprite19
-Sprite20:: sprite_oam_struct Sprite20
-Sprite21:: sprite_oam_struct Sprite21
-Sprite22:: sprite_oam_struct Sprite22
-Sprite23:: sprite_oam_struct Sprite23
-Sprite24:: sprite_oam_struct Sprite24
-Sprite25:: sprite_oam_struct Sprite25
-Sprite26:: sprite_oam_struct Sprite26
-Sprite27:: sprite_oam_struct Sprite27
-Sprite28:: sprite_oam_struct Sprite28
-Sprite29:: sprite_oam_struct Sprite29
-Sprite30:: sprite_oam_struct Sprite30
-Sprite31:: sprite_oam_struct Sprite31
-Sprite32:: sprite_oam_struct Sprite32
-Sprite33:: sprite_oam_struct Sprite33
-Sprite34:: sprite_oam_struct Sprite34
-Sprite35:: sprite_oam_struct Sprite35
-Sprite36:: sprite_oam_struct Sprite36
-Sprite37:: sprite_oam_struct Sprite37
-Sprite38:: sprite_oam_struct Sprite38
-Sprite39:: sprite_oam_struct Sprite39
-Sprite40:: sprite_oam_struct Sprite40
-SpritesEnd::
+wVirtualOAM:: ; c400
+wVirtualOAMSprite00:: sprite_oam_struct wVirtualOAMSprite00
+wVirtualOAMSprite01:: sprite_oam_struct wVirtualOAMSprite01
+wVirtualOAMSprite02:: sprite_oam_struct wVirtualOAMSprite02
+wVirtualOAMSprite03:: sprite_oam_struct wVirtualOAMSprite03
+wVirtualOAMSprite04:: sprite_oam_struct wVirtualOAMSprite04
+wVirtualOAMSprite05:: sprite_oam_struct wVirtualOAMSprite05
+wVirtualOAMSprite06:: sprite_oam_struct wVirtualOAMSprite06
+wVirtualOAMSprite07:: sprite_oam_struct wVirtualOAMSprite07
+wVirtualOAMSprite08:: sprite_oam_struct wVirtualOAMSprite08
+wVirtualOAMSprite09:: sprite_oam_struct wVirtualOAMSprite09
+wVirtualOAMSprite10:: sprite_oam_struct wVirtualOAMSprite10
+wVirtualOAMSprite11:: sprite_oam_struct wVirtualOAMSprite11
+wVirtualOAMSprite12:: sprite_oam_struct wVirtualOAMSprite12
+wVirtualOAMSprite13:: sprite_oam_struct wVirtualOAMSprite13
+wVirtualOAMSprite14:: sprite_oam_struct wVirtualOAMSprite14
+wVirtualOAMSprite15:: sprite_oam_struct wVirtualOAMSprite15
+wVirtualOAMSprite16:: sprite_oam_struct wVirtualOAMSprite16
+wVirtualOAMSprite17:: sprite_oam_struct wVirtualOAMSprite17
+wVirtualOAMSprite18:: sprite_oam_struct wVirtualOAMSprite18
+wVirtualOAMSprite19:: sprite_oam_struct wVirtualOAMSprite19
+wVirtualOAMSprite20:: sprite_oam_struct wVirtualOAMSprite20
+wVirtualOAMSprite21:: sprite_oam_struct wVirtualOAMSprite21
+wVirtualOAMSprite22:: sprite_oam_struct wVirtualOAMSprite22
+wVirtualOAMSprite23:: sprite_oam_struct wVirtualOAMSprite23
+wVirtualOAMSprite24:: sprite_oam_struct wVirtualOAMSprite24
+wVirtualOAMSprite25:: sprite_oam_struct wVirtualOAMSprite25
+wVirtualOAMSprite26:: sprite_oam_struct wVirtualOAMSprite26
+wVirtualOAMSprite27:: sprite_oam_struct wVirtualOAMSprite27
+wVirtualOAMSprite28:: sprite_oam_struct wVirtualOAMSprite28
+wVirtualOAMSprite29:: sprite_oam_struct wVirtualOAMSprite29
+wVirtualOAMSprite30:: sprite_oam_struct wVirtualOAMSprite30
+wVirtualOAMSprite31:: sprite_oam_struct wVirtualOAMSprite31
+wVirtualOAMSprite32:: sprite_oam_struct wVirtualOAMSprite32
+wVirtualOAMSprite33:: sprite_oam_struct wVirtualOAMSprite33
+wVirtualOAMSprite34:: sprite_oam_struct wVirtualOAMSprite34
+wVirtualOAMSprite35:: sprite_oam_struct wVirtualOAMSprite35
+wVirtualOAMSprite36:: sprite_oam_struct wVirtualOAMSprite36
+wVirtualOAMSprite37:: sprite_oam_struct wVirtualOAMSprite37
+wVirtualOAMSprite38:: sprite_oam_struct wVirtualOAMSprite38
+wVirtualOAMSprite39:: sprite_oam_struct wVirtualOAMSprite39
+wVirtualOAMEnd::
 
 
 SECTION "Tilemap", WRAM0
 
-TileMap:: ; c4a0
+wTileMap:: ; c4a0
 ; 20x18 grid of 8x8 tiles
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
-TileMapEnd::
+wTileMapEnd::
 
 
 SECTION "Battle", WRAM0
@@ -367,7 +367,7 @@ wMiscEnd::
 
 NEXTU ; c608
 ; odd egg
-wOddEgg:: party_struct OddEgg
+wOddEgg:: party_struct wOddEgg
 wOddEggName:: ds MON_NAME_LENGTH
 wOddEggOTName:: ds MON_NAME_LENGTH
 
@@ -398,10 +398,10 @@ wBattle::
 wEnemyMoveStruct::  move_struct wEnemyMoveStruct ; c608
 wPlayerMoveStruct:: move_struct wPlayerMoveStruct ; c60f
 
-EnemyMonNick::  ds MON_NAME_LENGTH ; c616
-BattleMonNick:: ds MON_NAME_LENGTH ; c621
+wEnemyMonNick::  ds MON_NAME_LENGTH ; c616
+wBattleMonNick:: ds MON_NAME_LENGTH ; c621
 
-BattleMon:: battle_struct BattleMon ; c62c
+wBattleMon:: battle_struct wBattleMon ; c62c
 
 	ds 2
 
@@ -411,9 +411,9 @@ wEnemyTrainerItem1:: db ; c650
 wEnemyTrainerItem2:: db ; c651
 wEnemyTrainerBaseReward:: db ; c652
 wEnemyTrainerAIFlags:: ds 3 ; c653
-OTClassName:: ds TRAINER_CLASS_NAME_LENGTH ; c656
+wOTClassName:: ds TRAINER_CLASS_NAME_LENGTH ; c656
 
-CurOTMon:: db ; c663
+wCurOTMon:: db ; c663
 
 wBattleParticipantsNotFainted::
 ; Bit array.  Bits 0 - 5 correspond to party members 1 - 6.
@@ -423,24 +423,24 @@ wBattleParticipantsNotFainted::
 ; All bits cleared if the enemy faints.
 	db
 
-TypeModifier:: ; c665
+wTypeModifier:: ; c665
 ; >10: super-effective
 ;  10: normal
 ; <10: not very effective
 ; bit 7: stab
 	db
 
-CriticalHit:: ; c666
+wCriticalHit:: ; c666
 ; 0 if not critical
 ; 1 for a critical hit
 ; 2 for a OHKO
 	db
 
-AttackMissed:: ; c667
+wAttackMissed:: ; c667
 ; nonzero for a miss
 	db
 
-PlayerSubStatus1:: ; c668
+wPlayerSubStatus1:: ; c668
 ; bit
 ; 7 in love
 ; 6 rollout
@@ -451,7 +451,7 @@ PlayerSubStatus1:: ; c668
 ; 1 curse
 ; 0 nightmare
 	db
-PlayerSubStatus2:: ; c669
+wPlayerSubStatus2:: ; c669
 ; bit
 ; 7
 ; 6
@@ -462,7 +462,7 @@ PlayerSubStatus2:: ; c669
 ; 1
 ; 0 curled
 	db
-PlayerSubStatus3:: ; c66a
+wPlayerSubStatus3:: ; c66a
 ; bit
 ; 7 confused
 ; 6 flying
@@ -473,7 +473,7 @@ PlayerSubStatus3:: ; c66a
 ; 1 rampage
 ; 0 bide
 	db
-PlayerSubStatus4:: ; c66b
+wPlayerSubStatus4:: ; c66b
 ; bit
 ; 7 leech seed
 ; 6 rage
@@ -484,7 +484,7 @@ PlayerSubStatus4:: ; c66b
 ; 1 mist
 ; 0 x accuracy
 	db
-PlayerSubStatus5:: ; c66c
+wPlayerSubStatus5:: ; c66c
 ; bit
 ; 7 can't run
 ; 6 destiny bond
@@ -496,118 +496,118 @@ PlayerSubStatus5:: ; c66c
 ; 0 toxic
 	db
 
-EnemySubStatus1:: ; c66d
-; see PlayerSubStatus1
+wEnemySubStatus1:: ; c66d
+; see wPlayerSubStatus1
 	db
-EnemySubStatus2:: ; c66e
-; see PlayerSubStatus2
+wEnemySubStatus2:: ; c66e
+; see wPlayerSubStatus2
 	db
-EnemySubStatus3:: ; c66f
-; see PlayerSubStatus3
+wEnemySubStatus3:: ; c66f
+; see wPlayerSubStatus3
 	db
-EnemySubStatus4:: ; c670
-; see PlayerSubStatus4
+wEnemySubStatus4:: ; c670
+; see wPlayerSubStatus4
 	db
-EnemySubStatus5:: ; c671
-; see PlayerSubStatus5
+wEnemySubStatus5:: ; c671
+; see wPlayerSubStatus5
 	db
 
-PlayerRolloutCount:: db ; c672
-PlayerConfuseCount:: db ; c673
-PlayerToxicCount:: db ; c674
-PlayerDisableCount:: db ; c675
-PlayerEncoreCount:: db ; c676
-PlayerPerishCount:: db ; c677
-PlayerFuryCutterCount:: db ; c678
-PlayerProtectCount:: db ; c679
+wPlayerRolloutCount:: db ; c672
+wPlayerConfuseCount:: db ; c673
+wPlayerToxicCount:: db ; c674
+wPlayerDisableCount:: db ; c675
+wPlayerEncoreCount:: db ; c676
+wPlayerPerishCount:: db ; c677
+wPlayerFuryCutterCount:: db ; c678
+wPlayerProtectCount:: db ; c679
 
-EnemyRolloutCount:: db ; c67a
-EnemyConfuseCount:: db ; c67b
-EnemyToxicCount:: db ; c67c
-EnemyDisableCount:: db ; c67d
-EnemyEncoreCount:: db ; c67e
-EnemyPerishCount:: db ; c67f
-EnemyFuryCutterCount:: db ; c680
-EnemyProtectCount:: db ; c681
+wEnemyRolloutCount:: db ; c67a
+wEnemyConfuseCount:: db ; c67b
+wEnemyToxicCount:: db ; c67c
+wEnemyDisableCount:: db ; c67d
+wEnemyEncoreCount:: db ; c67e
+wEnemyPerishCount:: db ; c67f
+wEnemyFuryCutterCount:: db ; c680
+wEnemyProtectCount:: db ; c681
 
-PlayerDamageTaken:: dw ; c682
-EnemyDamageTaken:: dw ; c684
+wPlayerDamageTaken:: dw ; c682
+wEnemyDamageTaken:: dw ; c684
 
 wBattleReward:: ds 3 ; c686
 wBattleAnimParam::
 wKickCounter::
 wPresentPower::
 	db ; c689
-BattleScriptBuffer:: ds 40 ; c68a
+wBattleScriptBuffer:: ds 40 ; c68a
 
-BattleScriptBufferAddress:: dw ; c6b2
+wBattleScriptBufferAddress:: dw ; c6b2
 
 wTurnEnded:: db ; c6b4
 
 	ds 1
 
-PlayerStats:: ; c6b6
-PlayerAttack:: dw
-PlayerDefense:: dw
-PlayerSpeed:: dw
-PlayerSpAtk:: dw
-PlayerSpDef:: dw
+wPlayerStats:: ; c6b6
+wPlayerAttack:: dw
+wPlayerDefense:: dw
+wPlayerSpeed:: dw
+wPlayerSpAtk:: dw
+wPlayerSpDef:: dw
 	ds 1
 
-EnemyStats:: ; c6c1
-EnemyAttack:: dw
-EnemyDefense:: dw
-EnemySpeed:: dw
-EnemySpAtk:: dw
-EnemySpDef:: dw
+wEnemyStats:: ; c6c1
+wEnemyAttack:: dw
+wEnemyDefense:: dw
+wEnemySpeed:: dw
+wEnemySpAtk:: dw
+wEnemySpDef:: dw
 	ds 1
 
-PlayerStatLevels:: ; c6cc
+wPlayerStatLevels:: ; c6cc
 ; 07 neutral
-PlayerAtkLevel:: db ; c6cc
-PlayerDefLevel:: db ; c6cd
-PlayerSpdLevel:: db ; c6ce
-PlayerSAtkLevel:: db ; c6cf
+wPlayerAtkLevel:: db ; c6cc
+wPlayerDefLevel:: db ; c6cd
+wPlayerSpdLevel:: db ; c6ce
+wPlayerSAtkLevel:: db ; c6cf
 
 UNION ; c6d0
 ; finish battle RAM
-PlayerSDefLevel:: db ; c6d0
-PlayerAccLevel:: db ; c6d1
-PlayerEvaLevel:: db ; c6d2
+wPlayerSDefLevel:: db ; c6d0
+wPlayerAccLevel:: db ; c6d1
+wPlayerEvaLevel:: db ; c6d2
 	ds 1 ; c6d3
-PlayerStatLevelsEnd::
+wPlayerStatLevelsEnd::
 
-EnemyStatLevels:: ; c6d4
+wEnemyStatLevels:: ; c6d4
 ; 07 neutral
-EnemyAtkLevel:: db ; c6d4
-EnemyDefLevel:: db ; c6d5
-EnemySpdLevel:: db ; c6d6
-EnemySAtkLevel:: db ; c6d7
-EnemySDefLevel:: db ; c6d8
-EnemyAccLevel:: db ; c6d9
-EnemyEvaLevel:: db ; c6da
+wEnemyAtkLevel:: db ; c6d4
+wEnemyDefLevel:: db ; c6d5
+wEnemySpdLevel:: db ; c6d6
+wEnemySAtkLevel:: db ; c6d7
+wEnemySDefLevel:: db ; c6d8
+wEnemyAccLevel:: db ; c6d9
+wEnemyEvaLevel:: db ; c6da
 	ds 1
 
-EnemyTurnsTaken:: db ; c6dc
-PlayerTurnsTaken:: db ; c6dd
+wEnemyTurnsTaken:: db ; c6dc
+wPlayerTurnsTaken:: db ; c6dd
 	ds 1
 
-PlayerSubstituteHP:: db ; c6df
-EnemySubstituteHP:: db ; c6e0
+wPlayerSubstituteHP:: db ; c6df
+wEnemySubstituteHP:: db ; c6e0
 
 wUnusedPlayerLockedMove:: db ; c6e1
 	ds 1
 
-CurPlayerMove:: db ; c6e3
-CurEnemyMove:: db ; c6e4
+wCurPlayerMove:: db ; c6e3
+wCurEnemyMove:: db ; c6e4
 
-LinkBattleRNCount:: ; c6e5
+wLinkBattleRNCount:: ; c6e5
 ; how far through the prng stream
 	db
 
 wEnemyItemState:: db ; c6e6
 	ds 2
-CurEnemyMoveNum:: db ; c6e9
+wCurEnemyMoveNum:: db ; c6e9
 
 wEnemyHPAtTimeOfPlayerSwitch:: dw ; c6ea
 wPayDayMoney:: ds 3 ; c6ec
@@ -616,24 +616,24 @@ wSafariMonAngerCount:: db
 wSafariMonEating:: db
 	ds 1
 wEnemyBackupDVs:: dw ; used when enemy is transformed
-AlreadyDisobeyed:: db ; c6f4
+wAlreadyDisobeyed:: db ; c6f4
 
-DisabledMove:: db ; c6f5
-EnemyDisabledMove:: db ; c6f6
+wDisabledMove:: db ; c6f5
+wEnemyDisabledMove:: db ; c6f6
 wWhichMonFaintedFirst:: db
 
 ; exists so you can't counter on switch
-LastPlayerCounterMove:: db ; c6f8
-LastEnemyCounterMove:: db ; c6f9
+wLastPlayerCounterMove:: db ; c6f8
+wLastEnemyCounterMove:: db ; c6f9
 
 wEnemyMinimized:: db ; c6fa
 
-AlreadyFailed:: db ; c6fb
+wAlreadyFailed:: db ; c6fb
 
 wBattleParticipantsIncludingFainted:: db ; c6fc
-wDanger:: db ; c6fd
+wBattleLowHealthAlarm:: db ; c6fd
 wPlayerMinimized:: db ; c6fe
-PlayerScreens:: ; c6ff
+wPlayerScreens:: ; c6ff
 ; bit
 ; 7
 ; 6
@@ -645,21 +645,21 @@ PlayerScreens:: ; c6ff
 ; 0 spikes
 	db
 
-EnemyScreens:: ; c700
-; see PlayerScreens
+wEnemyScreens:: ; c700
+; see wPlayerScreens
 	db
 
-PlayerSafeguardCount:: db ; c701
-PlayerLightScreenCount:: db ; c702
-PlayerReflectCount:: db ; c703
+wPlayerSafeguardCount:: db ; c701
+wPlayerLightScreenCount:: db ; c702
+wPlayerReflectCount:: db ; c703
 	ds 1
 
-EnemySafeguardCount:: db ; c705
-EnemyLightScreenCount:: db ; c706
-EnemyReflectCount:: db ; c707
+wEnemySafeguardCount:: db ; c705
+wEnemyLightScreenCount:: db ; c706
+wEnemyReflectCount:: db ; c707
 	ds 2
 
-Weather:: ; c70a
+wBattleWeather:: ; c70a
 ; 00 normal
 ; 01 rain
 ; 02 sun
@@ -669,19 +669,19 @@ Weather:: ; c70a
 ; 06 sandstorm subsided
 	db
 
-WeatherCount:: ; c70b
+wWeatherCount:: ; c70b
 ; # turns remaining
 	db
 
-LoweredStat:: db ; c70c
-EffectFailed:: db ; c70d
-FailedMessage:: db ; c70e
+wLoweredStat:: db ; c70c
+wEffectFailed:: db ; c70d
+wFailedMessage:: db ; c70e
 wEnemyGoesFirst:: db ; c70f
 
 wPlayerIsSwitching:: db ; c710
 wEnemyIsSwitching::  db ; c711
 
-PlayerUsedMoves:: ; c712
+wPlayerUsedMoves:: ; c712
 ; add a move that has been used once by the player
 ; added in order of use
 	ds NUM_MOVES
@@ -690,9 +690,9 @@ wEnemyAISwitchScore:: db ; c716
 wEnemySwitchMonParam:: db ; c717
 wEnemySwitchMonIndex:: db ; c718
 wTempLevel:: db ; c719
-LastPlayerMon:: db ; c71a
-LastPlayerMove:: db ; c71b
-LastEnemyMove:: db ; c71c
+wLastPlayerMon:: db ; c71a
+wLastPlayerMove:: db ; c71b
+wLastEnemyMove:: db ; c71c
 
 wPlayerFutureSightCount:: db ; c71d
 wEnemyFutureSightCount:: db ; c71e
@@ -717,7 +717,7 @@ wEnemyWrapCount:: db ; c731
 wPlayerCharging:: db ; c732
 wEnemyCharging:: db ; c733
 
-BattleEnded:: db ; c734
+wBattleEnded:: db ; c734
 
 wWildMonMoves:: ds NUM_MOVES ; c735
 wWildMonPP:: ds NUM_MOVES ; c739
@@ -884,8 +884,8 @@ wc7e8_End::
 SECTION "Overworld Map", WRAM0
 
 UNION ; c800
-OverworldMap:: ds 1300 ; c800
-OverworldMapEnd::
+wOverworldMap:: ds 1300 ; c800
+wOverworldMapEnd::
 
 NEXTU ; c800
 ; GB Printer screen RAM
@@ -942,7 +942,7 @@ NEXTU ; c800
 wLinkPlayerName:: ds NAME_LENGTH
 wLinkPartyCount::   db
 wLinkPartySpecies:: ds PARTY_LENGTH
-wLinkPartyEnd::     db ; Gen 1 scripts don't check PartyCount
+wLinkPartyEnd::     db ; older code doesn't check PartyCount
 
 UNION ; c813
 ; time capsule party data
@@ -1101,17 +1101,17 @@ ENDU ; cd20
 SECTION "Video", WRAM0
 
 UNION ; cd20
-; BGMapBuffer
-BGMapBuffer::     ds 40 ; cd20
-BGMapPalBuffer::  ds 40 ; cd48
-BGMapBufferPtrs:: ds 40 ; cd70 ; 20 bg map addresses (16x8 tiles)
-BGMapBufferEnd::
+; wBGMapBuffer
+wBGMapBuffer::     ds 40 ; cd20
+wBGMapPalBuffer::  ds 40 ; cd48
+wBGMapBufferPtrs:: ds 40 ; cd70 ; 20 bg map addresses (16x8 tiles)
+wBGMapBufferEnd::
 
 NEXTU ; cd20
 ; credits
-CreditsPos:: db
-CreditsUnusedCD21:: db
-CreditsTimer:: db
+wCreditsPos:: db
+wCreditsUnusedCD21:: db
+wCreditsTimer:: db
 
 NEXTU ; cd20
 ; mobile data
@@ -1246,10 +1246,10 @@ wcd8c:: ds 1
 wcd8d:: ds 11
 ENDU ; cd98
 
-SGBPredef:: db ; cd98
+wSGBPredef:: db ; cd98
 
-PlayerHPPal:: db ; cd99
-EnemyHPPal:: db ; cd9a
+wPlayerHPPal:: db ; cd99
+wEnemyHPPal:: db ; cd9a
 
 wHPPals:: ds PARTY_LENGTH
 wCurHPPal:: db
@@ -1258,7 +1258,7 @@ wCurHPPal:: db
 
 wSGBPals:: ds 48 ; cda9
 
-AttrMap:: ; cdd9
+wAttrMap:: ; cdd9
 ; 20x18 grid of bg tile attributes for 8x8 tiles
 ; read horizontally from the top row
 ;		bit 7: priority
@@ -1268,7 +1268,7 @@ AttrMap:: ; cdd9
 ;		bit 3: vram bank (cgb only)
 ;		bit 2-0: pal # (cgb only)
 	ds SCREEN_WIDTH * SCREEN_HEIGHT
-AttrMapEnd::
+wAttrMapEnd::
 
 UNION ; cf41
 ; addresses dealing with serial comms
@@ -1292,10 +1292,10 @@ wcf57:: db
 wLinkTimeoutFrames:: dw ; cf5b
 wcf5d:: dw
 
-MonType:: db ; cf5f
+wMonType:: db ; cf5f
 
-CurSpecies::
-CurMove::
+wCurSpecies::
+wCurMove::
 	db ; cf60
 
 wNamedObjectTypeBuffer:: db
@@ -1385,20 +1385,20 @@ wPrinterQueueLength::
 	db
 ENDU ; cf67
 
-Requested2bpp::
-Requested2bppSize:: db ; cf67
-Requested2bppSource:: dw ; cf68
-Requested2bppDest:: dw ; cf6a
+wRequested2bpp::
+wRequested2bppSize:: db ; cf67
+wRequested2bppSource:: dw ; cf68
+wRequested2bppDest:: dw ; cf6a
 
-Requested1bpp::
-Requested1bppSize:: db ; cf6c
-Requested1bppSource:: dw ; cf6d
-Requested1bppDest:: dw ; cf6f
+wRequested1bpp::
+wRequested1bppSize:: db ; cf6c
+wRequested1bppSource:: dw ; cf6d
+wRequested1bppDest:: dw ; cf6f
 
 wWindowStackPointer:: dw ; cf71
 wMenuJoypad:: db ; cf73
-MenuSelection:: db ; cf74
-MenuSelectionQuantity:: db ; cf75
+wMenuSelection:: db ; cf74
+wMenuSelectionQuantity:: db ; cf75
 wWhichIndexSet:: db ; cf76
 wScrollingMenuCursorPosition:: db ; cf77
 wWindowStackSize:: db ; cf78
@@ -1477,13 +1477,13 @@ wCursorCurrentTile:: dw ; cfac
 
 	ds 3
 
-OverworldDelay:: db ; cfb1
-TextDelayFrames:: db ; cfb2
-VBlankOccurred:: db ; cfb3
+wOverworldDelay:: db ; cfb1
+wTextDelayFrames:: db ; cfb2
+wVBlankOccurred:: db ; cfb3
 
-PredefID:: db ; cfb4
-PredefTemp:: dw ; cfb5
-PredefAddress:: dw ; cfb7
+wPredefID:: db ; cfb4
+wPredefTemp:: dw ; cfb5
+wPredefAddress:: dw ; cfb7
 wFarCallBCBuffer:: dw ; cfb9
 
 wcfbb:: db
@@ -1501,19 +1501,19 @@ wcfbe:: ; SGB flags?
 
 	ds 1
 
-InBattleTowerBattle:: ; cfc0
+wInBattleTowerBattle:: ; cfc0
 ; 0 not in BattleTower-Battle
 ; 1 BattleTower-Battle
 	db
 
 	ds 1
 
-FXAnimID:: dw ; cfc2
+wFXAnimID:: dw ; cfc2
 
 wPlaceBallsX:: db ; cfc4
 wPlaceBallsY:: db ; cfc5
 
-TileAnimationTimer:: db ; cfc6
+wTileAnimationTimer:: db ; cfc6
 
 ; palette backups?
 wBGP:: db
@@ -1524,7 +1524,7 @@ wNumHits:: db
 
 	ds 1
 
-Options:: ; cfcc
+wOptions:: ; cfcc
 ; bit 0-2: number of frames to delay when printing text
 ;   fast 1; mid 3; slow 5
 ; bit 3: ?
@@ -1534,14 +1534,14 @@ Options:: ; cfcc
 ; bit 7: battle scene off/on
 	db
 wSaveFileExists:: db
-TextBoxFrame:: ; cfce
+wTextBoxFrame:: ; cfce
 ; bits 0-2: textbox frame 0-7
 	db
-TextBoxFlags::
+wTextBoxFlags::
 ; bit 0: 1-frame text delay
 ; bit 4: no text delay
 	db
-GBPrinter:: ; cfd0
+wGBPrinter:: ; cfd0
 ; bit 0-6: brightness
 ;   lightest: $00
 ;   lighter:  $20
@@ -1549,11 +1549,11 @@ GBPrinter:: ; cfd0
 ;   darker:   $60
 ;   darkest:  $7F
 	db
-Options2:: ; cfd1
+wOptions2:: ; cfd1
 ; bit 1: menu account off/on
 	db
 	ds 2
-OptionsEnd::
+wOptionsEnd::
 
 ; Time buffer, for counting the amount of time since
 ; an event began.
@@ -1567,7 +1567,7 @@ SECTION "WRAM 1", WRAMX
 
 wGBCOnlyDecompressBuffer:: ds 1 ; also uses the next $53f bytes for $540 total
 
-DefaultSpawnpoint:: db
+wDefaultSpawnpoint:: db
 
 UNION ; d002
 ; mail temp storage
@@ -1631,8 +1631,8 @@ ENDU
 
 NEXTU ; d002
 ; phone call data
-PhoneScriptBank:: db
-PhoneCaller:: dw
+wPhoneScriptBank:: db
+wPhoneCaller:: dw
 
 NEXTU ; d002
 ; radio data
@@ -1647,11 +1647,11 @@ wRadioTextEnd::
 
 NEXTU ; d002
 ; lucky number show
-LuckyNumberDigit1Buffer:: db
-LuckyNumberDigit2Buffer:: db
-LuckyNumberDigit3Buffer:: db
-LuckyNumberDigit4Buffer:: db
-LuckyNumberDigit5Buffer:: db
+wLuckyNumberDigit1Buffer:: db
+wLuckyNumberDigit2Buffer:: db
+wLuckyNumberDigit3Buffer:: db
+wLuckyNumberDigit4Buffer:: db
+wLuckyNumberDigit5Buffer:: db
 
 NEXTU ; d002
 ; movement buffer data
@@ -1659,7 +1659,7 @@ wMovementBufferCount:: db
 wMovementBufferObject:: db
 wUnusedMovementBufferBank:: db
 wUnusedMovementBufferPointer:: dw
-MovementBuffer:: ds 55
+wMovementBuffer:: ds 55
 
 NEXTU ; d002
 ; box printing
@@ -1693,8 +1693,8 @@ wApricorns::
 wKeepSevenBiasChance:: ; used in the slots to handle the favoring of 7 symbol streaks
 	db
 	ds 2
-StartFlypoint:: db
-EndFlypoint:: db
+wStartFlypoint:: db
+wEndFlypoint:: db
 
 NEXTU ; d002
 ; unidentified
@@ -1733,21 +1733,21 @@ wd036:: ds 2
 
 UNION ; d03e
 ; engine buffers
-EngineBuffer1:: db
-EngineBuffer2:: db
-EngineBuffer3:: db
-EngineBuffer4:: db
-EngineBuffer5:: db
+wEngineBuffer1:: db
+wEngineBuffer2:: db
+wEngineBuffer3:: db
+wEngineBuffer4:: db
+wEngineBuffer5:: db
 
 NEXTU ; d03e
 ; menu items list
-MenuItemsList:: ds 16
-MenuItemsListEnd::
+wMenuItemsList:: ds 16
+wMenuItemsListEnd::
 
 NEXTU ; d03e
 ; fruit tree data
-CurFruitTree:: db
-CurFruit:: db
+wCurFruitTree:: db
+wCurFruit:: db
 
 NEXTU ; d03e
 ; elevator data
@@ -1773,8 +1773,8 @@ wCurBGEventScriptAddr:: dw
 NEXTU ; d03e
 ; mart data
 	ds 1
-MartPointerBank:: db
-MartPointer:: dw
+wMartPointerBank:: db
+wMartPointer:: dw
 	ds 1
 wBargainShopFlags:: db
 
@@ -1794,16 +1794,16 @@ wTempTrainerEnd::
 
 NEXTU ; d03e
 ; player movement data
-CurInput:: db
+wCurInput:: db
 wd03f:: db
 wd040:: db
 wd041:: db
-MovementAnimation:: db
-WalkingDirection:: db
-FacingDirection:: db
-WalkingX:: db
-WalkingY:: db
-WalkingTile:: db
+wMovementAnimation:: db
+wWalkingDirection:: db
+wFacingDirection:: db
+wWalkingX:: db
+wWalkingY:: db
+wWalkingTile:: db
 	ds 6
 wPlayerTurningDirection:: db
 
@@ -1828,16 +1828,16 @@ ENDU ; d066
 
 wTMHMMoveNameBackup:: ds MOVE_NAME_LENGTH ; d066
 
-StringBuffer1:: ds 19 ; d073
-StringBuffer2:: ds 19 ; d086
-StringBuffer3:: ds 19 ; d099
-StringBuffer4:: ds 19 ; d0ac
-StringBuffer5:: ds 19 ; d0bf
+wStringBuffer1:: ds 19 ; d073
+wStringBuffer2:: ds 19 ; d086
+wStringBuffer3:: ds 19 ; d099
+wStringBuffer4:: ds 19 ; d0ac
+wStringBuffer5:: ds 19 ; d0bf
 
 wBattleMenuCursorBuffer:: dw ; d0d2
 
-CurBattleMon:: db ; d0d4
-CurMoveNum:: db ; d0d5
+wCurBattleMon:: db ; d0d4
+wCurMoveNum:: db ; d0d5
 
 wLastPocket:: db
 
@@ -1870,14 +1870,14 @@ wNumMoves:: db
 
 wFieldMoveSucceeded::
 wItemEffectSucceeded::
-wPlayerAction::
+wBattlePlayerAction::
 ; 0 - use move
 ; 1 - use item
 ; 2 - switch
 wSolvedUnownPuzzle::
 	db ; d0ec
 
-VramState:: ; d0ed
+wVramState:: ; d0ed
 ; bit 0: overworld sprite updating on/off
 ; bit 6: something to do with text
 ; bit 7: on when surf initiates
@@ -1889,13 +1889,13 @@ wUsingItemWithSelect:: db ; d0ef
 
 UNION ; d0f0
 ; mart data
-CurMart:: ds 16
-CurMartEnd::
+wCurMart:: ds 16
+wCurMartEnd::
 
 NEXTU ; d0f0
 ; elevator data
-CurElevator:: db
-CurElevatorFloors:: db
+wCurElevator:: db
+wCurElevatorFloors:: db
 
 NEXTU ; d0f0
 ; mailbox data
@@ -1910,14 +1910,14 @@ wListPointer:: dw ; d100
 wUnusedD102:: dw ; d102
 wItemAttributesPtr:: dw ; d104
 
-CurItem:: db ; d106
-CurItemQuantity:: ; d107
+wCurItem:: db ; d106
+wCurItemQuantity:: ; d107
 wMartItemID::
 	db
 
-CurPartySpecies:: db ; d108
+wCurPartySpecies:: db ; d108
 
-CurPartyMon:: ; d109
+wCurPartyMon:: ; d109
 ; contains which monster in a party
 ; is being dealt with at the moment
 ; 0-5
@@ -1938,17 +1938,17 @@ wPokemonWithdrawDepositParameter::
 wItemQuantityChangeBuffer:: db
 wItemQuantityBuffer:: db
 
-TempMon:: party_struct TempMon ; d10e
+wTempMon:: party_struct wTempMon ; d10e
 
 wSpriteFlags:: db ; d13e
 
 wHandlePlayerStep:: dw ; d13f
 
-PartyMenuActionText:: db ; d141
+wPartyMenuActionText:: db ; d141
 
 wItemAttributeParamBuffer:: db ; d142
 
-CurPartyLevel:: db ; d143
+wCurPartyLevel:: db ; d143
 
 wScrollingMenuListSize:: dw
 
@@ -1980,8 +1980,8 @@ wPlayerStepDirection::  ; d151
 wBGMapAnchor:: dw ; d152
 
 UNION ; d154
-UsedSprites:: ds 64
-UsedSpritesEnd::
+wUsedSprites:: ds 64
+wUsedSpritesEnd::
 
 NEXTU ; d154
 	ds 31
@@ -1994,54 +1994,54 @@ wMetatileStandingX:: db ; d197
 
 wMapPartial::
 wMapAttributesBank:: db ; d198
-wTileset:: db ; d199
+wMapTileset:: db ; d199
 wEnvironment:: db ; d19a
 wMapAttributesPointer:: dw ; d19b
 wMapPartialEnd::
 
 wMapAttributes:: ; d19d
-MapBorderBlock:: db ; d19d
+wMapBorderBlock:: db ; d19d
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
-MapHeight:: db ; d19e
-MapWidth:: db ; d19f
-MapBlocksBank:: db; d1a0
-MapBlocksPointer:: dw ; d1a1
-MapScriptsBank:: db ; d1a3
-MapScriptsPointer:: dw ; d1a4
-MapEventsPointer:: dw ; d1a6
+wMapHeight:: db ; d19e
+wMapWidth:: db ; d19f
+wMapBlocksBank:: db; d1a0
+wMapBlocksPointer:: dw ; d1a1
+wMapScriptsBank:: db ; d1a3
+wMapScriptsPointer:: dw ; d1a4
+wMapEventsPointer:: dw ; d1a6
 ; bit set
-MapConnections:: db ; d1a8
+wMapConnections:: db ; d1a8
 wMapAttributesEnd::
 
-NorthMapConnection:: map_connection_struct North ; d1a9
-SouthMapConnection:: map_connection_struct South ; d1b5
-WestMapConnection::  map_connection_struct West ; d1c1
-EastMapConnection::  map_connection_struct East ; d1cd
+wNorthMapConnection:: map_connection_struct wNorth ; d1a9
+wSouthMapConnection:: map_connection_struct wSouth ; d1b5
+wWestMapConnection::  map_connection_struct wWest ; d1c1
+wEastMapConnection::  map_connection_struct wEast ; d1cd
 
-Tileset::
-TilesetBank:: db ; d1d9
-TilesetAddress:: dw ; d1da
-TilesetBlocksBank:: db ; d1dc
-TilesetBlocksAddress:: dw ; d1dd
-TilesetCollisionBank:: db ; d1df
-TilesetCollisionAddress:: dw ; d1e0
-TilesetAnim:: dw ; bank 3f ; d1e2
+wTileset::
+wTilesetBank:: db ; d1d9
+wTilesetAddress:: dw ; d1da
+wTilesetBlocksBank:: db ; d1dc
+wTilesetBlocksAddress:: dw ; d1dd
+wTilesetCollisionBank:: db ; d1df
+wTilesetCollisionAddress:: dw ; d1e0
+wTilesetAnim:: dw ; bank 3f ; d1e2
 	ds 2  ; unused ; d1e4
-TilesetPalettes:: dw ; bank 3f ; d1e6
-TilesetEnd::
+wTilesetPalettes:: dw ; bank 3f ; d1e6
+wTilesetEnd::
 
-EvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
+wEvolvableFlags:: flag_array PARTY_LENGTH ; d1e8
 
 wForceEvolution:: db ; d1e9
 
 UNION ; d1ea
 ; general-purpose buffers
-Buffer1:: db ; d1ea
-Buffer2:: db ; d1eb
-Buffer3:: db ; d1ec
-Buffer4:: db ; d1ed
-Buffer5:: db ; d1ee
-Buffer6:: db ; d1ef
+wBuffer1:: db ; d1ea
+wBuffer2:: db ; d1eb
+wBuffer3:: db ; d1ec
+wBuffer4:: db ; d1ed
+wBuffer5:: db ; d1ee
+wBuffer6:: db ; d1ef
 
 NEXTU ; d1ea
 ; HP bar animations
@@ -2080,21 +2080,21 @@ wMagikarpLength:: dw
 wSelectedDecoration:: db
 wOtherDecoration::    db
 	ds 3
-CurEnemyItem:: db
+wCurEnemyItem:: db
 ENDU ; d1f7
 
 	ds 3
 
-LinkBattleRNs:: ds 10 ; d1fa
+wLinkBattleRNs:: ds 10 ; d1fa
 
-TempEnemyMonSpecies::  db ; d204
-TempBattleMonSpecies:: db ; d205
+wTempEnemyMonSpecies::  db ; d204
+wTempBattleMonSpecies:: db ; d205
 
-EnemyMon:: battle_struct EnemyMon ; d206
-EnemyMonBaseStats:: ds 5 ; d226
-EnemyMonCatchRate:: db ; d22b
-EnemyMonBaseExp::   db ; d22c
-EnemyMonEnd::
+wEnemyMon:: battle_struct wEnemyMon ; d206
+wEnemyMonBaseStats:: ds 5 ; d226
+wEnemyMonCatchRate:: db ; d22b
+wEnemyMonBaseExp::   db ; d22c
+wEnemyMonEnd::
 
 
 wBattleMode:: ; d22d
@@ -2103,59 +2103,59 @@ wBattleMode:: ; d22d
 ; 2: trainer battle
 	db
 
-TempWildMonSpecies:: db
+wTempWildMonSpecies:: db
 
-OtherTrainerClass:: ; d22f
+wOtherTrainerClass:: ; d22f
 ; class (Youngster, Bug Catcher, etc.) of opposing trainer
 ; 0 if opponent is a wild Pokémon, not a trainer
 	db
 
 ; BATTLETYPE_* values
-BattleType:: db ; d230
+wBattleType:: db ; d230
 
-OtherTrainerID:: ; d231
+wOtherTrainerID:: ; d231
 ; which trainer of the class that you're fighting
 ; (Joey, Mikey, Albert, etc.)
 	db
 
 wForcedSwitch:: db
 
-TrainerClass:: db ; d233
+wTrainerClass:: db ; d233
 
-UnownLetter:: db ; d234
+wUnownLetter:: db ; d234
 
 wMoveSelectionMenuType:: db
 
 ; corresponds to the data/pokemon/base_stats/*.asm contents
-CurBaseData:: ; d236
-BaseDexNo:: db ; d236
-BaseStats:: ; d237
-BaseHP:: db ; d237
-BaseAttack:: db ; d238
-BaseDefense:: db ; d239
-BaseSpeed:: db ; d23a
-BaseSpecialAttack:: db ; d23b
-BaseSpecialDefense:: db ; d23c
-BaseType:: ; d23d
-BaseType1:: db ; d23d
-BaseType2:: db ; d23e
-BaseCatchRate:: db ; d23f
-BaseExp:: db ; d240
-BaseItems:: ; d241
-BaseItem1:: db ; d241
-BaseItem2:: db ; d242
-BaseGender:: db ; d243
-BaseUnknown1:: db ; d244
-BaseEggSteps:: db ; d245
-BaseUnknown2:: db ; d246
-BasePicSize:: db ; d247
-BasePadding:: ds 4 ; d248
-BaseGrowthRate:: db ; d24c
-BaseEggGroups:: db ; d24d
-BaseTMHM:: flag_array NUM_TM_HM_TUTOR ; d24e
-CurBaseDataEnd::
+wCurBaseData:: ; d236
+wBaseDexNo:: db ; d236
+wBaseStats:: ; d237
+wBaseHP:: db ; d237
+wBaseAttack:: db ; d238
+wBaseDefense:: db ; d239
+wBaseSpeed:: db ; d23a
+wBaseSpecialAttack:: db ; d23b
+wBaseSpecialDefense:: db ; d23c
+wBaseType:: ; d23d
+wBaseType1:: db ; d23d
+wBaseType2:: db ; d23e
+wBaseCatchRate:: db ; d23f
+wBaseExp:: db ; d240
+wBaseItems:: ; d241
+wBaseItem1:: db ; d241
+wBaseItem2:: db ; d242
+wBaseGender:: db ; d243
+wBaseUnknown1:: db ; d244
+wBaseEggSteps:: db ; d245
+wBaseUnknown2:: db ; d246
+wBasePicSize:: db ; d247
+wBasePadding:: ds 4 ; d248
+wBaseGrowthRate:: db ; d24c
+wBaseEggGroups:: db ; d24d
+wBaseTMHM:: flag_array NUM_TM_HM_TUTOR ; d24e
+wCurBaseDataEnd::
 
-CurDamage:: dw ; d256
+wCurDamage:: dw ; d256
 
 	ds 2
 
@@ -2179,7 +2179,7 @@ wFailedToFlee:: db
 wNumFleeAttempts:: db
 wMonTriedToEvolve:: db
 
-TimeOfDay:: db ; d269
+wTimeOfDay:: db ; d269
 
 	ds 1
 
@@ -2195,29 +2195,29 @@ wd271:: ds 5
 
 NEXTU ; d26b
 ; enemy party
-OTPlayerName:: ds NAME_LENGTH ; d26b
+wOTPlayerName:: ds NAME_LENGTH ; d26b
 ENDU ; d276
 
-OTPlayerID:: dw ; d276
+wOTPlayerID:: dw ; d276
 	ds 8
-OTPartyCount::   db ; d280
-OTPartySpecies:: ds PARTY_LENGTH ; d281
-OTPartyEnd::     db ; Gen 1 scripts don't check PartyCount
+wOTPartyCount::   db ; d280
+wOTPartySpecies:: ds PARTY_LENGTH ; d281
+wOTPartyEnd::     db ; older code doesn't check PartyCount
 
 UNION ; d288
 ; ot party mons
-OTPartyMons::
-OTPartyMon1:: party_struct OTPartyMon1 ; d288
-OTPartyMon2:: party_struct OTPartyMon2 ; d2b8
-OTPartyMon3:: party_struct OTPartyMon3 ; d2e8
-OTPartyMon4:: party_struct OTPartyMon4 ; d318
-OTPartyMon5:: party_struct OTPartyMon5 ; d348
-OTPartyMon6:: party_struct OTPartyMon6 ; d378
-OTPartyMonsEnd::
+wOTPartyMons::
+wOTPartyMon1:: party_struct wOTPartyMon1 ; d288
+wOTPartyMon2:: party_struct wOTPartyMon2 ; d2b8
+wOTPartyMon3:: party_struct wOTPartyMon3 ; d2e8
+wOTPartyMon4:: party_struct wOTPartyMon4 ; d318
+wOTPartyMon5:: party_struct wOTPartyMon5 ; d348
+wOTPartyMon6:: party_struct wOTPartyMon6 ; d378
+wOTPartyMonsEnd::
 
-OTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
-OTPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH ; d3ea
-OTPartyDataEnd::
+wOTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; d3a8
+wOTPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH ; d3ea
+wOTPartyDataEnd::
 	ds 4
 
 NEXTU ; d288
@@ -2241,18 +2241,18 @@ wd430::
 wBattleAction:: db ; d430
 
 wd431:: db
-MapStatus:: db ; d432
-MapEventStatus:: ; d433
+wMapStatus:: db ; d432
+wMapEventStatus:: ; d433
 ; 0: do map events
 ; 1: do background events
 	db
 
-ScriptFlags:: ; d434
+wScriptFlags:: ; d434
 ; bit 3: priority jump
 	db
-ScriptFlags2:: ; d435
+wScriptFlags2:: ; d435
 	db
-ScriptFlags3:: ; d436
+wScriptFlags3:: ; d436
 ; bit 0: count steps
 ; bit 1: coord events
 ; bit 2: warps and connections
@@ -2260,15 +2260,15 @@ ScriptFlags3:: ; d436
 ; bit 5: unknown
 	db
 
-ScriptMode:: db ; d437
-ScriptRunning:: db ; d438
-ScriptBank:: db ; d439
-ScriptPos:: dw ; d43a
+wScriptMode:: db ; d437
+wScriptRunning:: db ; d438
+wScriptBank:: db ; d439
+wScriptPos:: dw ; d43a
 
 wScriptStackSize:: db
 wScriptStack:: ds 3 * 5
 	ds 1
-ScriptDelay:: db ; d44d
+wScriptDelay:: db ; d44d
 
 wPriorityScriptBank::
 wScriptTextBank::
@@ -2283,7 +2283,7 @@ wXYComparePointer:: dw ; d453
 
 wBattleScriptFlags:: dw ; d459
 wPlayerSpriteSetupFlags:: ; d45b
-; bit 7: if set, cancel PlayerAction
+; bit 7: if set, cancel wPlayerAction
 ; bit 6: RefreshMapSprites doesn't reload player sprite
 ; bit 5: if set, set facing according to bits 0-1
 ; bit 2: female player has been transformed into male
@@ -2320,39 +2320,39 @@ wd479:: ds 2
 
 wGameData::
 wPlayerData::
-PlayerID:: ; d47b
+wPlayerID:: ; d47b
 	dw
 
-PlayerName:: ds NAME_LENGTH ; d47d
-MomsName::   ds NAME_LENGTH ; d488
-RivalName::  ds NAME_LENGTH ; d493
-RedsName::   ds NAME_LENGTH ; d49e
-GreensName:: ds NAME_LENGTH ; d4a9
+wPlayerName:: ds NAME_LENGTH ; d47d
+wMomsName::   ds NAME_LENGTH ; d488
+wRivalName::  ds NAME_LENGTH ; d493
+wRedsName::   ds NAME_LENGTH ; d49e
+wGreensName:: ds NAME_LENGTH ; d4a9
 
 wSavedAtLeastOnce:: db
 wSpawnAfterChampion:: db
 
 ; init time set at newgame
-StartDay:: db ; d4b6
-StartHour:: db ; d4b7
-StartMinute:: db ; d4b8
-StartSecond:: db ; d4b9
+wStartDay:: db ; d4b6
+wStartHour:: db ; d4b7
+wStartMinute:: db ; d4b8
+wStartSecond:: db ; d4b9
 
 wRTC:: ds 8 ; d4ba
 wDST:: ; d4c2
 ; bit 7: dst
 	db
 
-GameTime::
-GameTimeCap::     db ; d4c3
-GameTimeHours::   dw ; d4c4
-GameTimeMinutes:: db ; d4c6
-GameTimeSeconds:: db ; d4c7
-GameTimeFrames::  db ; d4c8
+wGameTime::
+wGameTimeCap::     db ; d4c3
+wGameTimeHours::   dw ; d4c4
+wGameTimeMinutes:: db ; d4c6
+wGameTimeSeconds:: db ; d4c7
+wGameTimeFrames::  db ; d4c8
 
 	ds 2
 
-CurDay:: db ; d4cb
+wCurDay:: db ; d4cb
 
 	ds 1
 
@@ -2362,56 +2362,56 @@ wCenteredObject:: db
 wFollowerMovementQueueLength:: db
 wFollowMovementQueue:: ds 5
 
-ObjectStructs:: ; d4d6
-PlayerStruct::   object_struct Player
-Object1Struct::  object_struct Object1
-Object2Struct::  object_struct Object2
-Object3Struct::  object_struct Object3
-Object4Struct::  object_struct Object4
-Object5Struct::  object_struct Object5
-Object6Struct::  object_struct Object6
-Object7Struct::  object_struct Object7
-Object8Struct::  object_struct Object8
-Object9Struct::  object_struct Object9
-Object10Struct:: object_struct Object10
-Object11Struct:: object_struct Object11
-Object12Struct:: object_struct Object12
-ObjectStructsEnd:: ; d6de
+wObjectStructs:: ; d4d6
+wPlayerStruct::   object_struct wPlayer
+wObject1Struct::  object_struct wObject1
+wObject2Struct::  object_struct wObject2
+wObject3Struct::  object_struct wObject3
+wObject4Struct::  object_struct wObject4
+wObject5Struct::  object_struct wObject5
+wObject6Struct::  object_struct wObject6
+wObject7Struct::  object_struct wObject7
+wObject8Struct::  object_struct wObject8
+wObject9Struct::  object_struct wObject9
+wObject10Struct:: object_struct wObject10
+wObject11Struct:: object_struct wObject11
+wObject12Struct:: object_struct wObject12
+wObjectStructsEnd:: ; d6de
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 
 	ds 40
 
-MapObjects:: ; d71e
-PlayerObject:: map_object Player
-Map1Object::   map_object Map1
-Map2Object::   map_object Map2
-Map3Object::   map_object Map3
-Map4Object::   map_object Map4
-Map5Object::   map_object Map5
-Map6Object::   map_object Map6
-Map7Object::   map_object Map7
-Map8Object::   map_object Map8
-Map9Object::   map_object Map9
-Map10Object::  map_object Map10
-Map11Object::  map_object Map11
-Map12Object::  map_object Map12
-Map13Object::  map_object Map13
-Map14Object::  map_object Map14
-Map15Object::  map_object Map15
-MapObjectsEnd::
+wMapObjects:: ; d71e
+wPlayerObject:: map_object wPlayer
+wMap1Object::   map_object wMap1
+wMap2Object::   map_object wMap2
+wMap3Object::   map_object wMap3
+wMap4Object::   map_object wMap4
+wMap5Object::   map_object wMap5
+wMap6Object::   map_object wMap6
+wMap7Object::   map_object wMap7
+wMap8Object::   map_object wMap8
+wMap9Object::   map_object wMap9
+wMap10Object::  map_object wMap10
+wMap11Object::  map_object wMap11
+wMap12Object::  map_object wMap12
+wMap13Object::  map_object wMap13
+wMap14Object::  map_object wMap14
+wMap15Object::  map_object wMap15
+wMapObjectsEnd::
 
 wObjectMasks:: ds NUM_OBJECTS ; d81e
 
-VariableSprites:: ds 16; d82e
+wVariableSprites:: ds 16; d82e
 
 wEnteredMapFromContinue:: db ; d83e
 	ds 2
-TimeOfDayPal:: db ; d841
+wTimeOfDayPal:: db ; d841
 	ds 4
 wTimeOfDayPalFlags:: db ; d846
 wTimeOfDayPalset:: db
-CurTimeOfDay:: db ; d848
+wCurTimeOfDay:: db ; d848
 
 	ds 1
 
@@ -2438,7 +2438,7 @@ wStatusFlags2:: ; d84d
 ; bit 7: rockets in mahogany
 	db
 
-Money:: ds 3 ; d84e
+wMoney:: ds 3 ; d84e
 wMomsMoney:: ds 3 ; d851
 
 wMomSavingMoney:: ; d854
@@ -2448,30 +2448,30 @@ wMomSavingMoney:: ; d854
 ; bit 7: active
 	db
 
-Coins:: dw ; d855
+wCoins:: dw ; d855
 
-Badges::
+wBadges::
 wJohtoBadges:: flag_array NUM_JOHTO_BADGES ; d857
 wKantoBadges:: flag_array NUM_KANTO_BADGES ; d858
 
 
-TMsHMs:: ds NUM_TMS + NUM_HMS ; d859
-TMsHMsEnd::
+wTMsHMs:: ds NUM_TMS + NUM_HMS ; d859
+wTMsHMsEnd::
 
-NumItems:: db ; d892
-Items:: ds MAX_ITEMS * 2 + 1 ; d893
-ItemsEnd::
+wNumItems:: db ; d892
+wItems:: ds MAX_ITEMS * 2 + 1 ; d893
+wItemsEnd::
 
-NumKeyItems:: db ; d8bc
-KeyItems:: ds MAX_KEY_ITEMS + 1 ; d8bd
-KeyItemsEnd::
+wNumKeyItems:: db ; d8bc
+wKeyItems:: ds MAX_KEY_ITEMS + 1 ; d8bd
+wKeyItemsEnd::
 
-NumBalls:: db ; d8d7
-Balls:: ds MAX_BALLS * 2 + 1 ; d8d8
-BallsEnd::
+wNumBalls:: db ; d8d7
+wBalls:: ds MAX_BALLS * 2 + 1 ; d8d8
+wBallsEnd::
 
-PCItems:: ds MAX_PC_ITEMS * 2 + 1 ; d8f1
-PCItemsEnd::
+wPCItems:: ds MAX_PC_ITEMS * 2 + 1 ; d8f1
+wPCItemsEnd::
 
 	ds 1
 
@@ -2485,17 +2485,17 @@ wPokegearFlags::
 wRadioTuningKnob:: db
 wLastDexMode:: db
 	ds 1
-WhichRegisteredItem:: db ; d95b
-RegisteredItem:: db ; d95c
+wWhichRegisteredItem:: db ; d95b
+wRegisteredItem:: db ; d95c
 
-PlayerState:: db ; d95d
+wPlayerState:: db ; d95d
 
 wHallOfFameCount:: dw
 wTradeFlags:: flag_array PARTY_LENGTH ; d960
 	ds 1
-MooMooBerries:: db ; d962
-UndergroundSwitchPositions:: db ; d963
-FarfetchdPosition:: db ; d964
+wMooMooBerries:: db ; d962
+wUndergroundSwitchPositions:: db ; d963
+wFarfetchdPosition:: db ; d964
 
 	ds 13
 
@@ -2615,7 +2615,7 @@ wErinFightCount::    db
 
 	ds 100
 
-EventFlags:: flag_array NUM_EVENTS ; da72
+wEventFlags:: flag_array NUM_EVENTS ; da72
 ; db6c
 
 	ds 6
@@ -2659,29 +2659,29 @@ wCurrMapCallbacksPointer:: dw ; dc0b
 	ds 2
 
 ; Sprite id of each decoration
-Bed::           db ; dc0f
-Carpet::        db ; dc10
-Plant::         db ; dc11
-Poster::        db ; dc12
-Console::       db ; dc13
-LeftOrnament::  db ; dc14
-RightOrnament:: db ; dc15
-BigDoll::       db ; dc16
+wDecoBed::           db ; dc0f
+wDecoCarpet::        db ; dc10
+wDecoPlant::         db ; dc11
+wDecoPoster::        db ; dc12
+wDecoConsole::       db ; dc13
+wDecoLeftOrnament::  db ; dc14
+wDecoRightOrnament:: db ; dc15
+wDecoBigDoll::       db ; dc16
 
 ; Items bought from Mom
 wWhichMomItem:: db ; dc17
 wWhichMomItemSet:: db ; dc18
-MomItemTriggerBalance:: ds 3 ; dc19
+wMomItemTriggerBalance:: ds 3 ; dc19
 
 wDailyResetTimer:: dw ; dc1c
 wDailyFlags:: db
 wWeeklyFlags:: db
 wSwarmFlags:: db
 	ds 2
-wStartDay:: db
+wTimerEventStartDay:: db
 	ds 3
 
-FruitTreeFlags:: flag_array NUM_FRUIT_TREES ; dc27
+wFruitTreeFlags:: flag_array NUM_FRUIT_TREES ; dc27
 
 	ds 2
 
@@ -2709,8 +2709,8 @@ wPlayerMonSelection:: ds 3
 wdc5f:: ds 1
 wdc60:: ds 19
 
-StepCount:: db ; dc73
-PoisonStepCount:: db ; dc74
+wStepCount:: db ; dc73
+wPoisonStepCount:: db ; dc74
 	ds 2
 wHappinessStepCount:: db
 	ds 1
@@ -2744,20 +2744,20 @@ wDigMapNumber::  db ; dcac
 
 ; used on maps like second floor pokécenter, which are reused, so we know which
 ; map to return to
-BackupWarpNumber:: db ; dcad
-BackupMapGroup::   db ; dcae
-BackupMapNumber::  db ; dcaf
+wBackupWarpNumber:: db ; dcad
+wBackupMapGroup::   db ; dcae
+wBackupMapNumber::  db ; dcaf
 
 	ds 3
 
 wLastSpawnMapGroup:: db
 wLastSpawnMapNumber:: db
 
-WarpNumber:: db ; dcb4
-MapGroup:: db ; dcb5 ; map group of current map
-MapNumber:: db ; dcb6 ; map number of current map
-YCoord:: db ; dcb7 ; current y coordinate relative to top-left corner of current map
-XCoord:: db ; dcb8 ; current x coordinate relative to top-left corner of current map
+wWarpNumber:: db ; dcb4
+wMapGroup:: db ; dcb5 ; map group of current map
+wMapNumber:: db ; dcb6 ; map number of current map
+wYCoord:: db ; dcb7 ; current y coordinate relative to top-left corner of current map
+wXCoord:: db ; dcb8 ; current x coordinate relative to top-left corner of current map
 wScreenSave:: ds 6 * 5
 
 wCurrMapDataEnd::
@@ -2767,32 +2767,32 @@ SECTION "Party", WRAMX
 
 wPokemonData::
 
-PartyCount::   db ; dcd7 ; number of Pokémon in party
-PartySpecies:: ds PARTY_LENGTH ; dcd8 ; species of each Pokémon in party
-PartyEnd::     db ; dcde ; Gen 1 scripts don't check PartyCount
+wPartyCount::   db ; dcd7 ; number of Pokémon in party
+wPartySpecies:: ds PARTY_LENGTH ; dcd8 ; species of each Pokémon in party
+wPartyEnd::     db ; dcde ; older code doesn't check wPartyCount
 
-PartyMons::
-PartyMon1:: party_struct PartyMon1 ; dcdf
-PartyMon2:: party_struct PartyMon2 ; dd0f
-PartyMon3:: party_struct PartyMon3 ; dd3f
-PartyMon4:: party_struct PartyMon4 ; dd6f
-PartyMon5:: party_struct PartyMon5 ; dd9f
-PartyMon6:: party_struct PartyMon6 ; ddcf
+wPartyMons::
+wPartyMon1:: party_struct wPartyMon1 ; dcdf
+wPartyMon2:: party_struct wPartyMon2 ; dd0f
+wPartyMon3:: party_struct wPartyMon3 ; dd3f
+wPartyMon4:: party_struct wPartyMon4 ; dd6f
+wPartyMon5:: party_struct wPartyMon5 ; dd9f
+wPartyMon6:: party_struct wPartyMon6 ; ddcf
 
-PartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; ddff
+wPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH ; ddff
 
-PartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH ; de41
-PartyMonNicknamesEnd::
+wPartyMonNicknames:: ds MON_NAME_LENGTH * PARTY_LENGTH ; de41
+wPartyMonNicknamesEnd::
 
 	ds 22
 
-PokedexCaught:: flag_array NUM_POKEMON ; de99
-EndPokedexCaught::
+wPokedexCaught:: flag_array NUM_POKEMON ; de99
+wEndPokedexCaught::
 
-PokedexSeen:: flag_array NUM_POKEMON ; deb9
-EndPokedexSeen::
+wPokedexSeen:: flag_array NUM_POKEMON ; deb9
+wEndPokedexSeen::
 
-UnownDex:: ds NUM_UNOWN ; ded9
+wUnownDex:: ds NUM_UNOWN ; ded9
 wUnlockedUnowns:: db ; def3
 wFirstUnownSeen:: db
 
@@ -2856,7 +2856,7 @@ wGameDataEnd::
 
 SECTION "Pic Animations", WRAMX
 
-TempTileMap::
+wTempTileMap::
 ; 20x18 grid of 8x8 tiles
 	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
 
@@ -2904,9 +2904,9 @@ w3_d081:: ds $f
 w3_d090:: ds $70
 
 w3_d100::
-BT_OTTrainer:: battle_tower_struct BT_OT
+wBT_OTTrainer:: battle_tower_struct wBT_OT
 	ds $20
-BT_TrainerTextIndex:: db ; d200
+wBT_TrainerTextIndex:: db ; d200
 	ds 1
 w3_d202:: battle_tower_struct w3_d202
 w3_d2e2:: battle_tower_struct w3_d2e2
@@ -2954,14 +2954,14 @@ w3_dffc:: ds 4
 SECTION "GBC Video", WRAMX
 
 ; eight 4-color palettes each
-wPals::
+wGBCPalettes::
 wBGPals1:: ds 8 palettes ; d000
 wOBPals1:: ds 8 palettes ; d040
 wBGPals2:: ds 8 palettes ; d080
 wOBPals2:: ds 8 palettes ; d0c0
 
-LYOverrides:: ds SCREEN_HEIGHT_PX ; d100
-LYOverridesEnd:: ; d190
+wLYOverrides:: ds SCREEN_HEIGHT_PX ; d100
+wLYOverridesEnd:: ; d190
 
 	ds 1
 
@@ -2974,44 +2974,44 @@ wMagnetTrainPlayerSpriteInitX:: db
 
 	ds 106
 
-LYOverridesBackup:: ds SCREEN_HEIGHT_PX ; d200
-LYOverridesBackupEnd::
+wLYOverridesBackup:: ds SCREEN_HEIGHT_PX ; d200
+wLYOverridesBackupEnd::
 
 
 SECTION "Battle Animations", WRAMX
 
 wBattleAnimTileDict:: ds 10
 
-ActiveAnimObjects:: ; d30a
-AnimObject01:: battle_anim_struct AnimObject01
-AnimObject02:: battle_anim_struct AnimObject02
-AnimObject03:: battle_anim_struct AnimObject03
-AnimObject04:: battle_anim_struct AnimObject04
-AnimObject05:: battle_anim_struct AnimObject05
-AnimObject06:: battle_anim_struct AnimObject06
-AnimObject07:: battle_anim_struct AnimObject07
-AnimObject08:: battle_anim_struct AnimObject08
-AnimObject09:: battle_anim_struct AnimObject09
-AnimObject10:: battle_anim_struct AnimObject10
-ActiveAnimObjectsEnd:: ; d3aa
+wActiveAnimObjects:: ; d30a
+wAnimObject01:: battle_anim_struct wAnimObject01
+wAnimObject02:: battle_anim_struct wAnimObject02
+wAnimObject03:: battle_anim_struct wAnimObject03
+wAnimObject04:: battle_anim_struct wAnimObject04
+wAnimObject05:: battle_anim_struct wAnimObject05
+wAnimObject06:: battle_anim_struct wAnimObject06
+wAnimObject07:: battle_anim_struct wAnimObject07
+wAnimObject08:: battle_anim_struct wAnimObject08
+wAnimObject09:: battle_anim_struct wAnimObject09
+wAnimObject10:: battle_anim_struct wAnimObject10
+wActiveAnimObjectsEnd:: ; d3aa
 
-ActiveBGEffects:: ; d3fa
-BGEffect1:: battle_bg_effect BGEffect1
-BGEffect2:: battle_bg_effect BGEffect2
-BGEffect3:: battle_bg_effect BGEffect3
-BGEffect4:: battle_bg_effect BGEffect4
-BGEffect5:: battle_bg_effect BGEffect5
-ActiveBGEffectsEnd::
+wActiveBGEffects:: ; d3fa
+wBGEffect1:: battle_bg_effect wBGEffect1
+wBGEffect2:: battle_bg_effect wBGEffect2
+wBGEffect3:: battle_bg_effect wBGEffect3
+wBGEffect4:: battle_bg_effect wBGEffect4
+wBGEffect5:: battle_bg_effect wBGEffect5
+wActiveBGEffectsEnd::
 
 wNumActiveBattleAnims:: db ; d40e
 
-BattleAnimFlags:: db ; d40f
-BattleAnimAddress:: dw ; d410
-BattleAnimDuration:: db ; d412
-BattleAnimParent:: dw ; d413
-BattleAnimLoops:: db ; d415
-BattleAnimVar:: db ; d416
-BattleAnimByte:: db ; d417
+wBattleAnimFlags:: db ; d40f
+wBattleAnimAddress:: dw ; d410
+wBattleAnimDuration:: db ; d412
+wBattleAnimParent:: dw ; d413
+wBattleAnimLoops:: db ; d415
+wBattleAnimVar:: db ; d416
+wBattleAnimByte:: db ; d417
 wBattleAnimOAMPointerLo:: db ; d418
 
 UNION ; d419

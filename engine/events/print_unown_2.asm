@@ -30,7 +30,7 @@ RotateUnownFrontpic: ; e0000
 	cp 7 * 7
 	jr c, .loop
 
-	ld hl, OverworldMap
+	ld hl, wOverworldMap
 	ld de, sScratch
 	ld bc, 7 * 7 tiles
 	call CopyBytes
@@ -100,7 +100,7 @@ y = 0
 rept \1
 x = \1 * (\2 + -1) + y
 rept \2
-	dw OverworldMap tile x
+	dw wOverworldMap tile x
 x = x + -\2
 endr
 y = y + 1

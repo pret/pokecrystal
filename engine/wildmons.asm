@@ -193,8 +193,8 @@ TryWildEncounter:: ; 2a0e7
 
 .no_battle
 	xor a ; BATTLETYPE_NORMAL
-	ld [TempWildMonSpecies], a
-	ld [BattleType], a
+	ld [wTempWildMonSpecies], a
+	ld [wBattleType], a
 	ld a, 1
 	and a
 	ret
@@ -214,7 +214,7 @@ GetMapEncounterRate: ; 2a111
 	call CheckOnWater
 	ld a, wWaterEncounterRate - wMornEncounterRate
 	jr z, .ok
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 .ok
 	ld c, a
 	ld b, 0
@@ -243,9 +243,9 @@ ApplyMusicEffectOnEncounterRate:: ; 2a124
 
 ApplyCleanseTagEffectOnEncounterRate:: ; 2a138
 ; Cleanse Tag halves encounter rate.
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 	ld de, PARTYMON_STRUCT_LENGTH
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld c, a
 .loop
 	ld a, [hl]
@@ -275,7 +275,7 @@ ChooseWildEncounter: ; 2a14f
 	jr z, .watermon
 	inc hl
 	inc hl
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	ld bc, $e
 	call AddNTimes
 	ld de, GrassMonProbTable
@@ -326,7 +326,7 @@ ChooseWildEncounter: ; 2a14f
 ; Store the level
 .ok
 	ld a, b
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld b, [hl]
 	; ld a, b
 	call ValidateTempWildMonSpecies
@@ -350,7 +350,7 @@ ChooseWildEncounter: ; 2a14f
 
 .loadwildmon
 	ld a, b
-	ld [TempWildMonSpecies], a
+	ld [wTempWildMonSpecies], a
 
 .startwildbattle
 	xor a
@@ -365,7 +365,7 @@ CheckRepelEffect:: ; 2a1df
 	and a
 	jr z, .encounter
 ; Get the first Pokemon in your party that isn't fainted.
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	ld bc, PARTYMON_STRUCT_LENGTH - 1
 .loop
 	ld a, [hli]
@@ -380,7 +380,7 @@ rept 4
 	dec hl
 endr
 
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	cp [hl]
 	jr nc, .encounter
 	and a
@@ -470,9 +470,9 @@ _NormalWildmonOK
 ; 2a27f
 
 CopyCurrMapDE: ; 2a27f
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld d, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld e, a
 	ret
 ; 2a288
@@ -585,11 +585,11 @@ CheckEncounterRoamMon: ; 2a2ce
 	dec hl
 	dec hl
 	ld a, [hli]
-	ld [TempWildMonSpecies], a
+	ld [wTempWildMonSpecies], a
 	ld a, [hl]
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld a, BATTLETYPE_ROAMING
-	ld [BattleType], a
+	ld [wBattleType], a
 
 	pop hl
 	scf
@@ -756,11 +756,11 @@ JumpRoamMon: ; 2a3cd
 	jr .innerloop2
 ; Check to see if the selected map is the one the player is currently in.  If so, try again.
 .ok
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	cp [hl]
 	jr nz, .done
 	inc hl
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	cp [hl]
 	jr z, .loop
 	dec hl
@@ -777,9 +777,9 @@ _BackUpMapIndices: ; 2a3f6
 	ld [wRoamMons_LastMapNumber], a
 	ld a, [wRoamMons_CurrentMapGroup]
 	ld [wRoamMons_LastMapGroup], a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld [wRoamMons_CurrentMapNumber], a
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld [wRoamMons_CurrentMapGroup], a
 	ret
 ; 2a40f
@@ -820,7 +820,7 @@ RandomUnseenWildMon: ; 2a4ab
 	push hl
 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
 	add hl, bc
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	ld bc, NUM_GRASSMON * 2
 	call AddNTimes
 .randloop1
@@ -855,7 +855,7 @@ RandomUnseenWildMon: ; 2a4ab
 	pop bc
 	jr nz, .done
 ; Since we haven't seen it, have the caller tell us about it.
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	call CopyName1
 	ld a, c
 	ld [wNamedObjectIndexBuffer], a
@@ -863,12 +863,12 @@ RandomUnseenWildMon: ; 2a4ab
 	ld hl, .SawRareMonText
 	call PrintText
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .done
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .SawRareMonText:
@@ -891,7 +891,7 @@ RandomPhoneWildMon: ; 2a51f
 .ok
 	ld bc, 5 + 0 * 2
 	add hl, bc
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	inc a
 	ld bc, NUM_GRASSMON * 2
 .loop
@@ -911,8 +911,8 @@ RandomPhoneWildMon: ; 2a51f
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, StringBuffer1
-	ld de, StringBuffer4
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer4
 	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 ; 2a567
@@ -995,8 +995,8 @@ RandomPhoneMon: ; 2a567
 	call GetFarByte
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
-	ld hl, StringBuffer1
-	ld de, StringBuffer4
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer4
 	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 ; 2a5e9

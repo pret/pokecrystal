@@ -190,8 +190,8 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	call MenuClickSound
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
-	ld hl, sPlayerData + PlayerName - wPlayerData
-	ld de, PlayerName
+	ld hl, sPlayerData + wPlayerName - wPlayerData
+	ld de, wPlayerName
 	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
 	call CloseSRAM
@@ -637,13 +637,13 @@ Function4a492: ; 4a492 (12:6492)
 
 
 MainMenu_MobileStudium: ; 4a496
-	ld a, [StartDay]
+	ld a, [wStartDay]
 	ld b, a
-	ld a, [StartHour]
+	ld a, [wStartHour]
 	ld c, a
-	ld a, [StartMinute]
+	ld a, [wStartMinute]
 	ld d, a
-	ld a, [StartSecond]
+	ld a, [wStartSecond]
 	ld e, a
 	push bc
 	push de
@@ -652,13 +652,13 @@ MainMenu_MobileStudium: ; 4a496
 	pop de
 	pop bc
 	ld a, b
-	ld [StartDay], a
+	ld [wStartDay], a
 	ld a, c
-	ld [StartHour], a
+	ld [wStartHour], a
 	ld a, d
-	ld [StartMinute], a
+	ld [wStartMinute], a
 	ld a, e
-	ld [StartSecond], a
+	ld [wStartSecond], a
 	ret
 ; 4a4c4
 
@@ -852,11 +852,11 @@ Function4a6ab: ; 4a6ab (12:66ab)
 
 Function4a6c5: ; 4a6c5 (12:66c5)
 	ld a, $5
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, e
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, d
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld c, 22
 	call DelayFrames
 	ret

@@ -29,7 +29,7 @@ Elevator:: ; 1342d
 ; 1345a
 
 .LoadFloors: ; 1345a
-	ld de, CurElevator
+	ld de, wCurElevator
 	ld bc, 4
 	ld hl, wElevatorPointer
 	ld a, [hli]
@@ -60,9 +60,9 @@ Elevator:: ; 1342d
 	call GetFarByte
 	ld c, a
 	inc hl
-	ld a, [BackupMapGroup]
+	ld a, [wBackupMapGroup]
 	ld d, a
-	ld a, [BackupMapNumber]
+	ld a, [wBackupMapNumber]
 	ld e, a
 	ld b, 0
 .loop2
@@ -111,7 +111,7 @@ Elevator_GoToFloor: ; 134c0
 	ld bc, 4
 	call AddNTimes
 	inc hl
-	ld de, BackupWarpNumber
+	ld de, wBackupWarpNumber
 	ld a, [wElevatorPointerBank]
 	ld bc, 3
 	call FarCopyBytes
@@ -151,7 +151,7 @@ Elevator_WhichFloorText: ; 0x1350d
 
 
 Elevator_GetCurrentFloorText: ; 13512
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -165,7 +165,7 @@ Elevator_GetCurrentFloorText: ; 13512
 	hlcoord 4, 4
 	call Elevator_GetCurrentFloorString
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ret
 ; 13537
 
@@ -179,7 +179,7 @@ Elevator_GetCurrentFloorString: ; 1353f
 	ld a, [wElevatorOriginFloor]
 	ld e, a
 	ld d, 0
-	ld hl, CurElevatorFloors
+	ld hl, wCurElevatorFloors
 	add hl, de
 	ld a, [hl]
 	pop de
@@ -198,14 +198,14 @@ Elevator_MenuData: ; 0x13558
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows, columns
 	db 1 ; horizontal spacing
-	dbw 0, CurElevator
+	dbw 0, wCurElevator
 	dba GetElevatorFloorStrings
 	dba NULL
 	dba NULL
 ; 13568
 
 GetElevatorFloorStrings: ; 13568
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 GetFloorString: ; 1356b
 	push de
 	call FloorToString

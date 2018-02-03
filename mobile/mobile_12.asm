@@ -38,11 +38,11 @@ InitMobileProfile: ; 4802f (12:402f)
 	jr .asm_480d7
 .asm_4808a
 	ld a, $5
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, LOW(MUSIC_MOBILE_ADAPTER_MENU)
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_MOBILE_ADAPTER_MENU)
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld c, 20
 	call DelayFrames
 	ld b, $1
@@ -459,7 +459,7 @@ Function483bb: ; 483bb (12:43bb)
 Function483e8: ; 483e8
 	push de
 	ld hl, Prefectures
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	cp $ff
 	jr nz, .asm_483f8
 	ld hl, Wakayama ; last string
@@ -1681,7 +1681,7 @@ Function48cdc: ; 48cdc (12:4cdc)
 	call Function48cfd
 	pop hl
 	pop bc
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	inc b
 	inc b

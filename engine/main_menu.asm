@@ -20,7 +20,7 @@ MainMenu: ; 49cdc
 	call CloseWindow
 	jr c, .quit
 	call ClearTileMap
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld hl, .Jumptable
 	rst JumpTable
 	jr MainMenu
@@ -227,13 +227,13 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	xor a
 	ld [hBGMapMode], a
 	call .PlaceBox
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	call .PlaceTime
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ld a, $1
 	ld [hBGMapMode], a
 	ret

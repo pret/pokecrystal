@@ -1,28 +1,28 @@
 BattleCommand_PainSplit: ; 35926
 ; painsplit
 
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, .ButItFailed
 	call CheckSubstituteOpp
 	jp nz, .ButItFailed
 	call AnimateCurrentMove
-	ld hl, BattleMonMaxHP + 1
-	ld de, EnemyMonMaxHP + 1
+	ld hl, wBattleMonMaxHP + 1
+	ld de, wEnemyMonMaxHP + 1
 	call .PlayerShareHP
 	ld a, $1
 	ld [wWhichHPBar], a
 	hlcoord 10, 9
 	predef AnimateHPBar
-	ld hl, EnemyMonHP
+	ld hl, wEnemyMonHP
 	ld a, [hli]
-	ld [Buffer4], a
+	ld [wBuffer4], a
 	ld a, [hli]
-	ld [Buffer3], a
+	ld [wBuffer3], a
 	ld a, [hli]
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld a, [hl]
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	call .EnemyShareHP
 	xor a
 	ld [wWhichHPBar], a
@@ -36,28 +36,28 @@ BattleCommand_PainSplit: ; 35926
 
 .PlayerShareHP:
 	ld a, [hld]
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	ld a, [hld]
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	ld a, [hld]
 	ld b, a
-	ld [Buffer3], a
+	ld [wBuffer3], a
 	ld a, [hl]
-	ld [Buffer4], a
+	ld [wBuffer4], a
 	dec de
 	dec de
 	ld a, [de]
 	dec de
 	add b
-	ld [CurDamage + 1], a
+	ld [wCurDamage + 1], a
 	ld b, [hl]
 	ld a, [de]
 	adc b
 	srl a
-	ld [CurDamage], a
-	ld a, [CurDamage + 1]
+	ld [wCurDamage], a
+	ld a, [wCurDamage + 1]
 	rr a
-	ld [CurDamage + 1], a
+	ld [wCurDamage + 1], a
 	inc hl
 	inc hl
 	inc hl
@@ -68,25 +68,25 @@ BattleCommand_PainSplit: ; 35926
 .EnemyShareHP: ; 359ac
 	ld c, [hl]
 	dec hl
-	ld a, [CurDamage + 1]
+	ld a, [wCurDamage + 1]
 	sub c
 	ld b, [hl]
 	dec hl
-	ld a, [CurDamage]
+	ld a, [wCurDamage]
 	sbc b
 	jr nc, .skip
 
-	ld a, [CurDamage]
+	ld a, [wCurDamage]
 	ld b, a
-	ld a, [CurDamage + 1]
+	ld a, [wCurDamage + 1]
 	ld c, a
 .skip
 	ld a, c
 	ld [hld], a
-	ld [Buffer5], a
+	ld [wBuffer5], a
 	ld a, b
 	ld [hli], a
-	ld [Buffer6], a
+	ld [wBuffer6], a
 	ret
 
 ; 359cd

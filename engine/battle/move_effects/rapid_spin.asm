@@ -10,12 +10,12 @@ BattleCommand_ClearHazards: ; 37b39
 	call StdBattleTextBox
 .not_leeched
 
-	ld hl, PlayerScreens
+	ld hl, wPlayerScreens
 	ld de, wPlayerWrapCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_screens_wrap
-	ld hl, EnemyScreens
+	ld hl, wEnemyScreens
 	ld de, wEnemyWrapCount
 .got_screens_wrap
 	bit SCREENS_SPIKES, [hl]

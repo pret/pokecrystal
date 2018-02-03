@@ -8,12 +8,12 @@ GetPokeBallWobble: ; f971 (3:7971)
 	ld d, a
 	push de
 
-	ld a, BANK(Buffer2)
+	ld a, BANK(wBuffer2)
 	ld [rSVBK], a
 
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	inc a
-	ld [Buffer2], a
+	ld [wBuffer2], a
 
 ; Wobble up to 3 times.
 	cp 3 + 1
@@ -25,7 +25,7 @@ GetPokeBallWobble: ; f971 (3:7971)
 	jr nz, .done
 
 	ld hl, WobbleProbabilities
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	ld b, a
 .loop
 	ld a, [hli]

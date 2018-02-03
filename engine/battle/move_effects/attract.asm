@@ -1,6 +1,6 @@
 BattleCommand_Attract: ; 377ce
 ; attract
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
 	call CheckOppositeGender
@@ -28,12 +28,12 @@ CheckOppositeGender: ; 377f5
 	ld a, MON_SPECIES
 	call BattlePartyAttr
 	ld a, [hl]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 
-	ld a, [CurBattleMon]
-	ld [CurPartyMon], a
+	ld a, [wCurBattleMon]
+	ld [wCurPartyMon], a
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 
 	farcall GetGender
 	jr c, .genderless_samegender
@@ -44,20 +44,20 @@ CheckOppositeGender: ; 377f5
 
 .got_gender
 	push bc
-	ld a, [TempEnemyMonSpecies]
-	ld [CurPartySpecies], a
-	ld hl, EnemyMonDVs
-	ld a, [EnemySubStatus5]
+	ld a, [wTempEnemyMonSpecies]
+	ld [wCurPartySpecies], a
+	ld hl, wEnemyMonDVs
+	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	jr z, .not_transformed
 	ld hl, wEnemyBackupDVs
 .not_transformed
 	ld a, [hli]
-	ld [TempMonDVs], a
+	ld [wTempMonDVs], a
 	ld a, [hl]
-	ld [TempMonDVs + 1], a
+	ld [wTempMonDVs + 1], a
 	ld a, 3
-	ld [MonType], a
+	ld [wMonType], a
 	farcall GetGender
 	pop bc
 	jr c, .genderless_samegender

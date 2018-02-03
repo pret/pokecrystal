@@ -13,7 +13,7 @@ MonSubmenu: ; 24d19
 	ld a, 1
 	ld [hBGMapMode], a
 	call MonMenuLoop
-	ld [MenuSelection], a
+	ld [wMenuSelection], a
 
 	call ExitMenu
 	ret
@@ -28,7 +28,7 @@ MonSubmenu: ; 24d19
 
 .GetTopCoord: ; 24d47
 ; TopCoord = 1 + BottomCoord - 2 * (NumSubmenuItems + 1)
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	inc a
 	add a
 	ld b, a
@@ -44,7 +44,7 @@ MonMenuLoop: ; 24d59
 .loop
 	ld a, MENU_UNUSED_3 | MENU_BACKUP_TILES_2 ; flags
 	ld [wMenuDataFlags], a
-	ld a, [Buffer1] ; items
+	ld a, [wBuffer1] ; items
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
@@ -68,7 +68,7 @@ MonMenuLoop: ; 24d59
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, Buffer2
+	ld hl, wBuffer2
 	add hl, bc
 	ld a, [hl]
 	ret
@@ -78,7 +78,7 @@ PopulateMonMenu: ; 24d91
 	call MenuBoxCoord2Tile
 	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
-	ld de, Buffer2
+	ld de, wBuffer2
 .loop
 	ld a, [de]
 	inc de
@@ -122,7 +122,7 @@ GetMonMenuString: ; 24db0
 
 GetMonSubmenuItems: ; 24dd4
 	call ResetMonSubmenu
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
 	ld a, [wLinkMode]
@@ -176,7 +176,7 @@ GetMonSubmenuItems: ; 24dd4
 	call AddMonMenuItem
 
 .skip2
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	cp NUM_MONMENU_ITEMS
 	jr z, .ok2
 	ld a, MONMENUITEM_CANCEL
@@ -220,18 +220,18 @@ IsFieldMove: ; 24e52
 
 ResetMonSubmenu: ; 24e68
 	xor a
-	ld [Buffer1], a
-	ld hl, Buffer2
+	ld [wBuffer1], a
+	ld hl, wBuffer2
 	ld bc, NUM_MONMENU_ITEMS + 1
 	call ByteFill
 	ret
 ; 24e76
 
 TerminateMonSubmenu: ; 24e76
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	ld e, a
 	ld d, 0
-	ld hl, Buffer2
+	ld hl, wBuffer2
 	add hl, de
 	ld [hl], -1
 	ret
@@ -241,12 +241,12 @@ AddMonMenuItem: ; 24e83
 	push hl
 	push de
 	push af
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	ld e, a
 	inc a
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	ld d, 0
-	ld hl, Buffer2
+	ld hl, wBuffer2
 	add hl, de
 	pop af
 	ld [hl], a

@@ -1,6 +1,6 @@
 PlaceMenuItemName: ; 0x24ab4
 	push de
-	ld a, [MenuSelection]
+	ld a, [wMenuSelection]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	pop hl
@@ -9,8 +9,8 @@ PlaceMenuItemName: ; 0x24ab4
 
 PlaceMenuItemQuantity: ; 0x24ac3
 	push de
-	ld a, [MenuSelection]
-	ld [CurItem], a
+	ld a, [wMenuSelection]
+	ld [wCurItem], a
 	farcall _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	pop hl
@@ -20,7 +20,7 @@ PlaceMenuItemQuantity: ; 0x24ac3
 	add hl, de
 	ld [hl], "×"
 	inc hl
-	ld de, MenuSelectionQuantity
+	ld de, wMenuSelectionQuantity
 	lb bc, 1, 2
 	call PrintNum
 
@@ -47,7 +47,7 @@ PlaceMoneyTextBox: ; 24b01
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
-	ld de, Money
+	ld de, wMoney
 	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	ret
@@ -76,7 +76,7 @@ DisplayCoinCaseBalance: ; 24b25
 	hlcoord 17, 1
 	ld de, ShowMoney_TerminatorString
 	call PlaceString
-	ld de, Coins
+	ld de, wCoins
 	lb bc, 2, 4
 	hlcoord 13, 1
 	call PrintNum
@@ -91,14 +91,14 @@ DisplayMoneyAndCoinBalance: ; 24b4e
 	ld de, MoneyString
 	call PlaceString
 	hlcoord 12, 1
-	ld de, Money
+	ld de, wMoney
 	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 6, 3
 	ld de, CoinString
 	call PlaceString
 	hlcoord 15, 3
-	ld de, Coins
+	ld de, wCoins
 	lb bc, 2, 4
 	call PrintNum
 	ret
@@ -112,7 +112,7 @@ ShowMoney_TerminatorString: ; 24b8e
 
 Unreferenced_Function24b8f: ; 24b8f
 ; related to safari?
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -135,7 +135,7 @@ Unreferenced_Function24b8f: ; 24b8f
 	lb bc, 1, 2
 	call PrintNum
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ret
 
 .slash_500 ; 24bcf
@@ -151,7 +151,7 @@ StartMenu_DrawBugContestStatusBox: ; 24bdc
 	ret
 
 StartMenu_PrintBugContestStatus: ; 24be7
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -191,7 +191,7 @@ StartMenu_PrintBugContestStatus: ; 24be7
 
 .skip_level
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ret
 
 .Balls_JP: ; 24c43
@@ -207,7 +207,7 @@ StartMenu_PrintBugContestStatus: ; 24be7
 
 FindApricornsInBag: ; 24c64
 ; Checks the bag for Apricorns.
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	xor a
 	ld [hli], a
 	dec a
@@ -220,8 +220,8 @@ FindApricornsInBag: ; 24c64
 	cp -1
 	jr z, .done
 	push hl
-	ld [CurItem], a
-	ld hl, NumItems
+	ld [wCurItem], a
+	ld hl, wNumItems
 	call CheckItem
 	pop hl
 	jr nc, .nope
@@ -233,7 +233,7 @@ FindApricornsInBag: ; 24c64
 	jr .loop
 
 .done
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	and a
 	ret nz
 	scf
@@ -241,7 +241,7 @@ FindApricornsInBag: ; 24c64
 
 .addtobuffer ; 24c94
 	push hl
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	inc [hl]
 	ld e, [hl]
 	ld d, 0

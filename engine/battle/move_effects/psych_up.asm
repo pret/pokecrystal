@@ -1,8 +1,8 @@
 BattleCommand_PsychUp: ; 37c55
 ; psychup
 
-	ld hl, EnemyStatLevels
-	ld de, PlayerStatLevels
+	ld hl, wEnemyStatLevels
+	ld de, wPlayerStatLevels
 	ld a, [hBattleTurn]
 	and a
 	jr z, .pointers_correct

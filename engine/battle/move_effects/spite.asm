@@ -1,15 +1,15 @@
 BattleCommand_Spite: ; 35c0f
 ; spite
 
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jp nz, .failed
 	ld bc, PARTYMON_STRUCT_LENGTH ; ????
-	ld hl, EnemyMonMoves
+	ld hl, wEnemyMonMoves
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_moves
-	ld hl, BattleMonMoves
+	ld hl, wBattleMonMoves
 .got_moves
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
@@ -28,7 +28,7 @@ BattleCommand_Spite: ; 35c0f
 	dec hl
 	ld b, 0
 	push bc
-	ld c, BattleMonPP - BattleMonMoves
+	ld c, wBattleMonPP - wBattleMonMoves
 	add hl, bc
 	pop bc
 	ld a, [hl]

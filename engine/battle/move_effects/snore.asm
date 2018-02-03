@@ -6,7 +6,7 @@ BattleCommand_Snore: ; 359d0
 	ret nz
 	call ResetDamage
 	ld a, $1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	call FailMove
 	jp EndMoveEffect
 

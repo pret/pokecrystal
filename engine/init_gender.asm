@@ -65,11 +65,11 @@ TextJump_AreYouABoyOrAreYouAGirl: ; 0x48e0f
 
 InitGenderScreen: ; 48e14 (12:4e14)
 	ld a, $10
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, MUSIC_NONE
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, $0
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld c, 8
 	call DelayFrames
 	call ClearBGPalettes
@@ -79,7 +79,7 @@ InitGenderScreen: ; 48e14 (12:4e14)
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	ld a, $0
 	call ByteFill
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a
 	call ByteFill

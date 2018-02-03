@@ -67,9 +67,9 @@ MooMoo:
 	checkitem BERRY
 	iffalse .NoBerriesInBag
 	takeitem BERRY
-	copybytetovar MooMooBerries
+	copybytetovar wMooMooBerries
 	addvar 1
-	copyvartobyte MooMooBerries
+	copyvartobyte wMooMooBerries
 	ifequal 3, .ThreeBerries
 	ifequal 5, .FiveBerries
 	ifequal 7, .SevenBerries

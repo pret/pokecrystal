@@ -14,9 +14,9 @@ _SacredAsh: ; 507e6
 
 CheckAnyFaintedMon: ; 507fb
 	ld de, PARTYMON_STRUCT_LENGTH
-	ld bc, PartySpecies
-	ld hl, PartyMon1HP
-	ld a, [PartyCount]
+	ld bc, wPartySpecies
+	ld hl, wPartyMon1HP
+	ld a, [wPartyCount]
 	and a
 	ret z
 

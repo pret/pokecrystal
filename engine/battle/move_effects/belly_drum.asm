@@ -4,7 +4,7 @@ BattleCommand_BellyDrum: ; 37c1a
 ; before checking that it has enough HP to use the move.
 ; Swap the order of these two blocks to fix.
 	call BattleCommand_AttackUp2
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
 

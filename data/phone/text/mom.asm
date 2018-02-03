@@ -8,12 +8,12 @@ MomPhoneGreetingText: ; 0x1b4000
 MomPhoneLandmarkText: ; 0x1b4021
 	text "Oh, so you're in"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "…"
 
 	para "Isn't that where"
 	line "@"
-	text_from_ram StringBuffer4
+	text_from_ram wStringBuffer4
 	text_start
 	para "is? Did you go"
 	line "take a look?"
@@ -22,7 +22,7 @@ MomPhoneLandmarkText: ; 0x1b4021
 MomPhoneGenericAreaText: ; 0x1b406b
 	text "Really, you're in"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "?"
 
 	para "I've never gone"
@@ -33,7 +33,7 @@ MomPhoneGenericAreaText: ; 0x1b406b
 MomPhoneNewBarkText: ; 0x1b40b1
 	text "What? You're in"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "?"
 
 	para "Come see your MOM"
@@ -43,7 +43,7 @@ MomPhoneNewBarkText: ; 0x1b40b1
 MomPhoneCherrygroveText: ; 0x1b40e4
 	text "You're visiting"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "?"
 
 	para "How about coming"
@@ -53,7 +53,7 @@ MomPhoneCherrygroveText: ; 0x1b40e4
 MomOtherAreaText: ; 0x1b411c
 	text "Wow, you're in"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "?"
 
 	para "Good luck on your"
@@ -74,7 +74,7 @@ MomDeterminedText: ; 0x1b4150
 MomCheckBalanceText: ; 0x1b41a7
 	text "By the way, you've"
 	line "saved up ¥@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "."
 
 	para "Do you want to"
@@ -97,7 +97,7 @@ MomYoureNotSavingText: ; 0x1b420d
 MomYouveSavedText: ; 0x1b4249
 	text "By the way, you've"
 	line "saved up ¥@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "."
 
 	para "Want to start"

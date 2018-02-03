@@ -43,20 +43,20 @@ FindItemInBallScript:: ; 0x122ce
 
 .TryReceiveItem: ; 122f8
 	xor a
-	ld [ScriptVar], a
-	ld a, [EngineBuffer1]
+	ld [wScriptVar], a
+	ld a, [wEngineBuffer1]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-	ld hl, StringBuffer3
+	ld hl, wStringBuffer3
 	call CopyName2
-	ld a, [EngineBuffer1]
-	ld [CurItem], a
-	ld a, [CurFruit]
+	ld a, [wEngineBuffer1]
+	ld [wCurItem], a
+	ld a, [wCurFruit]
 	ld [wItemQuantityChangeBuffer], a
-	ld hl, NumItems
+	ld hl, wNumItems
 	call ReceiveItem
 	ret nc
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 12324

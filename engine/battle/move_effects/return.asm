@@ -1,11 +1,11 @@
 BattleCommand_HappinessPower: ; 3784b
 ; happinesspower
 	push bc
-	ld hl, BattleMonHappiness
+	ld hl, wBattleMonHappiness
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld hl, EnemyMonHappiness
+	ld hl, wEnemyMonHappiness
 .ok
 	xor a
 	ld [hMultiplicand + 0], a

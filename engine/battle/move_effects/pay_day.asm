@@ -2,14 +2,14 @@ BattleCommand_PayDay: ; 3705c
 ; payday
 
 	xor a
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld [hli], a
 
 	ld a, [hBattleTurn]
 	and a
-	ld a, [BattleMonLevel]
+	ld a, [wBattleMonLevel]
 	jr z, .ok
-	ld a, [EnemyMonLevel]
+	ld a, [wEnemyMonLevel]
 .ok
 
 	add a

@@ -5,7 +5,7 @@ AskRememberPassword: ; 4ae12
 	ld a, $1
 
 .okay
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .DoMenu: ; 4ae1f

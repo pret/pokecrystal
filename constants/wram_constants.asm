@@ -1,4 +1,4 @@
-; InputType:: ; c2c7
+; wInputType:: ; c2c7
 AUTO_INPUT EQU $ff
 
 ; wCurrentDexMode:: ; c7d4
@@ -8,7 +8,7 @@ AUTO_INPUT EQU $ff
 	const DEXMODE_ABC
 	const DEXMODE_UNOWN
 
-; MonType:: ; cf5f
+; wMonType:: ; cf5f
 	const_def
 	const PARTYMON   ; 0
 	const OTPARTYMON ; 1
@@ -20,18 +20,19 @@ AUTO_INPUT EQU $ff
 GAMETIMERPAUSE_TIMER_PAUSED_F EQU 0
 GAMETIMERPAUSE_MOBILE_7_F     EQU 7
 
-; Options:: ; cfcc
+; wOptions:: (bits 4-7) ; cfcc
 	const_def 4
 	const NO_TEXT_SCROLL ; 4
 	const STEREO         ; 5
 	const BATTLE_SHIFT   ; 6
 	const BATTLE_SCENE   ; 7
 
+; wOptions:: (bits 0-2) ; cfcc
 TEXT_DELAY_FAST EQU 1
 TEXT_DELAY_MED  EQU 3
 TEXT_DELAY_SLOW EQU 5
 
-; TextBoxFrame:: ; cfce
+; wTextBoxFrame:: ; cfce
 	const_def
 	const FRAME_1 ; 0
 	const FRAME_2 ; 1
@@ -43,23 +44,23 @@ TEXT_DELAY_SLOW EQU 5
 	const FRAME_8 ; 7
 NUM_FRAMES EQU const_value
 
-; TextBoxFlags:: ; cfcf
+; wTextBoxFlags:: ; cfcf
 	const_def
 	const FAST_TEXT_DELAY_F ; 0
 	const NO_TEXT_DELAY_F   ; 1
 
-; GBPrinter:: ; cfd0
+; wGBPrinter:: ; cfd0
 GBPRINTER_LIGHTEST EQU $00
 GBPRINTER_LIGHTER  EQU $20
 GBPRINTER_NORMAL   EQU $40
 GBPRINTER_DARKER   EQU $60
 GBPRINTER_DARKEST  EQU $7f
 
-; Options2:: ; cfd1
+; wOptions2:: ; cfd1
 	const_def
 	const MENU_ACCOUNT ; 0
 
-; WalkingDirection:: ; d043
+; wWalkingDirection:: ; d043
 	const_def -1
 	const STANDING ; -1
 	const DOWN     ; 0
@@ -73,7 +74,7 @@ UP_MASK    EQU 1 << UP
 LEFT_MASK  EQU 1 << LEFT
 RIGHT_MASK EQU 1 << RIGHT
 
-; FacingDirection:: ; d044
+; wFacingDirection:: ; d044
 FACE_CURRENT EQU 0
 FACE_DOWN    EQU 8
 FACE_UP      EQU 4
@@ -93,7 +94,7 @@ INIT_OTHER_ITEM_LIST EQU 3
 INIT_PLAYEROT_LIST   EQU 4
 INIT_MON_LIST        EQU 5
 
-; TimeOfDay:: ; d269
+; wTimeOfDay:: ; d269
 	const_def
 	const MORN_F     ; 0
 	const DAY_F      ; 1
@@ -118,10 +119,10 @@ PLAYERSPRITESETUP_RESET_ACTION_F    EQU 7
 ; wPlayerGender:: ; d472
 PLAYERGENDER_FEMALE_F EQU 0
 
-; ScriptFlags:: ; d434
+; wScriptFlags:: ; d434
 SCRIPT_RUNNING EQU 2
 
-; ScriptMode:: ; d437
+; wScriptMode:: ; d437
 SCRIPT_OFF EQU 0
 SCRIPT_READ EQU 1
 SCRIPT_WAIT_MOVEMENT EQU 2
@@ -131,7 +132,7 @@ SCRIPT_WAIT EQU 3
 SPAWN_LANCE EQU 1
 SPAWN_RED   EQU 2
 
-; CurDay:: ; d4cb
+; wCurDay:: ; d4cb
 	const_def
 	const SUNDAY    ; 0
 	const MONDAY    ; 1
@@ -141,7 +142,7 @@ SPAWN_RED   EQU 2
 	const FRIDAY    ; 5
 	const SATURDAY  ; 6
 
-; MapObjects:: ; d71e
+; wMapObjects:: ; d71e
 PLAYER_OBJECT EQU 0
 NUM_OBJECTS   EQU $10
 
@@ -209,11 +210,11 @@ NUM_BADGES EQU NUM_JOHTO_BADGES + NUM_KANTO_BADGES
 
 POKEGEAR_OBTAINED_F EQU 7
 
-; WhichRegisteredItem:: ; d95b
+; wWhichRegisteredItem:: ; d95b
 REGISTERED_POCKET EQU %11000000
 REGISTERED_NUMBER EQU %00111111
 
-; PlayerState:: ; d95d
+; wPlayerState:: ; d95d
 PLAYER_NORMAL    EQU 0
 PLAYER_BIKE      EQU 1
 PLAYER_SKATE     EQU 2

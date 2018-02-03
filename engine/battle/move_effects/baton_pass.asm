@@ -90,7 +90,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	ret z
 
 	ld a, 1
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 
 	call LoadStandardMenuHeader
 	ld hl, LinkBattleSendReceiveAction
@@ -98,7 +98,7 @@ BatonPass_LinkPlayerSwitch: ; 37a67
 	call CloseWindow
 
 	xor a
-	ld [wPlayerAction], a
+	ld [wBattlePlayerAction], a
 	ret
 
 ; 37a82
@@ -113,7 +113,7 @@ BatonPass_LinkEnemySwitch: ; 37a82
 	ld hl, LinkBattleSendReceiveAction
 	call CallBattleCore
 
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	add BATTLEACTION_SWITCH1
 	ld b, a
 	ld a, [wBattleAction]
@@ -123,7 +123,7 @@ BatonPass_LinkEnemySwitch: ; 37a82
 	jr c, .switch
 
 .baton_pass
-	ld a, [CurOTMon]
+	ld a, [wCurOTMon]
 	add BATTLEACTION_SWITCH1
 	ld [wBattleAction], a
 .switch
@@ -157,11 +157,11 @@ ResetBatonPassStatus: ; 37ab1
 	call ResetActorDisable
 
 	; Attraction isn't passed.
-	ld hl, PlayerSubStatus1
+	ld hl, wPlayerSubStatus1
 	res SUBSTATUS_IN_LOVE, [hl]
-	ld hl, EnemySubStatus1
+	ld hl, wEnemySubStatus1
 	res SUBSTATUS_IN_LOVE, [hl]
-	ld hl, PlayerSubStatus5
+	ld hl, wPlayerSubStatus5
 
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
@@ -182,10 +182,10 @@ ResetBatonPassStatus: ; 37ab1
 
 
 CheckAnyOtherAlivePartyMons: ; 37ae9
-	ld hl, PartyMon1HP
-	ld a, [PartyCount]
+	ld hl, wPartyMon1HP
+	ld a, [wPartyCount]
 	ld d, a
-	ld a, [CurBattleMon]
+	ld a, [wCurBattleMon]
 	ld e, a
 	jr CheckAnyOtherAliveMons
 
@@ -193,10 +193,10 @@ CheckAnyOtherAlivePartyMons: ; 37ae9
 
 
 CheckAnyOtherAliveEnemyMons: ; 37af6
-	ld hl, OTPartyMon1HP
-	ld a, [OTPartyCount]
+	ld hl, wOTPartyMon1HP
+	ld a, [wOTPartyCount]
 	ld d, a
-	ld a, [CurOTMon]
+	ld a, [wCurOTMon]
 	ld e, a
 
 	; fallthrough

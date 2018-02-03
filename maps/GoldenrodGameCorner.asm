@@ -326,7 +326,7 @@ GoldenrodGameCornerPrizeVendorWhichPrizeText:
 	done
 
 GoldenrodGameCornerPrizeVendorConfirmPrizeText:
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "."
 	line "Is that right?"
 	done

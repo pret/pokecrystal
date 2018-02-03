@@ -891,7 +891,7 @@ ChoseStarterText:
 ReceivedStarterText:
 	text "<PLAYER> received"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "!"
 	done
 

@@ -16,7 +16,7 @@ GetLandmarkCoords: ; 0x1ca896
 
 
 GetLandmarkName:: ; 0x1ca8a5
-; Copy the name of landmark e to StringBuffer1.
+; Copy the name of landmark e to wStringBuffer1.
 	push hl
 	push de
 	push bc
@@ -31,7 +31,7 @@ GetLandmarkName:: ; 0x1ca8a5
 	ld h, [hl]
 	ld l, a
 
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	ld c, 18
 .copy
 	ld a, [hli]
@@ -54,9 +54,9 @@ RegionCheck: ; 0x1caea1
 ; Checks if the player is in Kanto or Johto.
 ; If in Johto, returns 0 in e.
 ; If in Kanto, returns 1 in e.
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 	cp FAST_SHIP ; S.S. Aqua
@@ -65,9 +65,9 @@ RegionCheck: ; 0x1caea1
 	jr nz, .checkagain
 
 ; In a special map, get the backup map group / map id
-	ld a, [BackupMapGroup]
+	ld a, [wBackupMapGroup]
 	ld b, a
-	ld a, [BackupMapNumber]
+	ld a, [wBackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 

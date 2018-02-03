@@ -7,13 +7,13 @@ CheckMagikarpLength: ; fbb32
 	; Let's start by selecting a Magikarp.
 	farcall SelectMonFromParty
 	jr c, .declined
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp MAGIKARP
 	jr nz, .not_magikarp
 
 	; Now let's compute its length based on its DVs and ID.
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Species
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -48,27 +48,27 @@ CheckMagikarpLength: ; fbb32
 	ld a, [hl]
 	ld [de], a
 	inc de
-	ld a, [CurPartyMon]
-	ld hl, PartyMonOT
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonOT
 	call SkipNames
 	call CopyBytes
 	ld a, MAGIKARPLENGTH_BEAT_RECORD
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .not_long_enough
 	ld a, MAGIKARPLENGTH_TOO_SHORT
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .declined
 	ld a, MAGIKARPLENGTH_REFUSED
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .not_magikarp
 	xor a ; MAGIKARPLENGTH_NOT_MAGIKARP
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; fbba9
 
@@ -92,7 +92,7 @@ INCBIN "gfx/font/feet_inches.2bpp"
 
 PrintMagikarpLength: ; fbbdb
 	call Magikarp_LoadFeetInchesChars
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld de, wMagikarpLength
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
@@ -111,8 +111,8 @@ CalcMagikarpLength: ; fbbfc
 ; Return Magikarp's length (in feet and inches) at wMagikarpLength (big endian).
 ;
 ; input:
-;   de: EnemyMonDVs
-;   bc: PlayerID
+;   de: wEnemyMonDVs
+;   bc: wPlayerID
 
 ; This function is poorly commented.
 

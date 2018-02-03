@@ -2,7 +2,7 @@ BattleCommand_MirrorCoat: ; 37c95
 ; mirrorcoat
 
 	ld a, 1
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
@@ -26,18 +26,18 @@ BattleCommand_MirrorCoat: ; 37c95
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	dec a
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	call GetMoveData
 
-	ld a, [StringBuffer1 + 2]
+	ld a, [wStringBuffer1 + 2]
 	and a
 	ret z
 
-	ld a, [StringBuffer1 + 3]
+	ld a, [wStringBuffer1 + 3]
 	cp SPECIAL
 	ret c
 
-	ld hl, CurDamage
+	ld hl, wCurDamage
 	ld a, [hli]
 	or [hl]
 	ret z
@@ -55,7 +55,7 @@ BattleCommand_MirrorCoat: ; 37c95
 .capped
 
 	xor a
-	ld [AttackMissed], a
+	ld [wAttackMissed], a
 	ret
 
 ; 37ce6
