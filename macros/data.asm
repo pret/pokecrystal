@@ -1,3 +1,8 @@
+; Value macros
+
+percent EQUS "* $ff / 100"
+
+
 ; Constant data (db, dw, dl) macros
 
 dwb: MACRO
