@@ -107,7 +107,7 @@ box: MACRO
 \1Species::         ds MONS_PER_BOX + 1
 \1Mons::
 \1Mon1::            box_struct \1Mon1
-\1Mon2::            ds BOXMON_STRUCT_LENGTH * (MONS_PER_BOX +- 1)
+\1Mon2::            ds BOXMON_STRUCT_LENGTH * (MONS_PER_BOX + -1)
 \1MonOT::           ds NAME_LENGTH * MONS_PER_BOX
 \1MonNicknames::    ds MON_NAME_LENGTH * MONS_PER_BOX
 \1MonNicknamesEnd::
@@ -175,7 +175,7 @@ channel_struct: MACRO
 ENDM
 
 battle_tower_struct: MACRO
-\1Name:: ds NAME_LENGTH +- 1
+\1Name:: ds NAME_LENGTH + -1
 \1TrainerClass:: ds 1
 \1Pkmn1:: party_struct \1Pkmn1
 \1Pkmn1Name:: ds MON_NAME_LENGTH
@@ -221,7 +221,7 @@ hof_mon: MACRO
 \1ID::       dw
 \1DVs::      dw
 \1Level::    db
-\1Nickname:: ds MON_NAME_LENGTH +- 1
+\1Nickname:: ds MON_NAME_LENGTH + -1
 \1End::
 ENDM
 
@@ -237,7 +237,7 @@ hall_of_fame: MACRO
 ENDM
 
 link_battle_record: MACRO
-\1Name::   ds NAME_LENGTH +- 1
+\1Name::   ds NAME_LENGTH + -1
 \1ID::     dw
 \1Wins::   dw
 \1Losses:: dw

@@ -267,7 +267,7 @@ Unreferenced_Function9282c: ; 9282c
 	ld a, [hl]
 	xor %00100000
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH +- 1
+rept SPRITEOAMSTRUCT_LENGTH + -1
 	inc hl
 endr
 	dec c

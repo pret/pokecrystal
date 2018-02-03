@@ -1110,7 +1110,7 @@ In [engine/search.asm](/engine/search.asm):
 
 	ld hl, PlayerName
 
-rept NAME_LENGTH_JAPANESE +- 2 ; should be PLAYER_NAME_LENGTH +- 2
+rept NAME_LENGTH_JAPANESE + -2 ; should be PLAYER_NAME_LENGTH + -2
 	ld a, [de]
 	cp [hl]
 	jr nz, .notfound
@@ -1132,7 +1132,7 @@ endr
 	ret
 ```
 
-**Fix:** Change `rept NAME_LENGTH_JAPANESE +- 2` to `rept PLAYER_NAME_LENGTH +- 2`.
+**Fix:** Change `rept NAME_LENGTH_JAPANESE + -2` to `rept PLAYER_NAME_LENGTH + -2`.
 
 
 ## Catching a Transformed Pokémon always catches a Ditto

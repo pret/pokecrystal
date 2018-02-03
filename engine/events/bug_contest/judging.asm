@@ -229,7 +229,7 @@ DetermineContestWinners: ; 1383e
 CopyTempContestant: ; 138a0
 ; Could've just called CopyBytes.
 	ld de, wBugContestTempWinnerID
-rept BUG_CONTESTANT_SIZE +- 1
+rept BUG_CONTESTANT_SIZE + -1
 	ld a, [de]
 	inc de
 	ld [hli], a

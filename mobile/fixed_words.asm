@@ -4120,7 +4120,7 @@ macro_11f220: MACRO
 ; 12 words per page (0-based indexing)
 x = \1 / 12
 if \1 % 12 == 0
-x = x +- 1
+x = x + -1
 endc
 	db x
 ENDM

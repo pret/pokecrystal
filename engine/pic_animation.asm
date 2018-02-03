@@ -579,7 +579,7 @@ PokeAnim_CopyBitmaskToBuffer: ; d033b
 poke_anim_box: MACRO
 y = 7
 rept \1
-x = 7 +- \1
+x = 7 + -\1
 rept \1
 	db x + y
 x = x + 1

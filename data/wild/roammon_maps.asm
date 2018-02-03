@@ -4,7 +4,7 @@
 roam_map: MACRO
 	map \1
 	db _NARG - 1
-rept _NARG +- 1
+rept _NARG + -1
 	map \2
 	shift
 endr

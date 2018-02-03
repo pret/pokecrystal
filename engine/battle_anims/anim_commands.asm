@@ -263,7 +263,7 @@ BattleAnim_ClearCGB_OAMFlags: ; cc23d
 	ld a, [hl]
 	and $f0
 	ld [hli], a
-rept SPRITEOAMSTRUCT_LENGTH +- 1
+rept SPRITEOAMSTRUCT_LENGTH + -1
 	inc hl
 endr
 	dec c

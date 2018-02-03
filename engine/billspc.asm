@@ -1510,7 +1510,7 @@ BillsPC_UpdateSelectionCursor: ; e2e01 (38:6e01)
 	inc hl
 	ld [de], a ; y
 	inc de
-rept SPRITEOAMSTRUCT_LENGTH +- 1
+rept SPRITEOAMSTRUCT_LENGTH + -1
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -1560,7 +1560,7 @@ BillsPC_UpdateInsertCursor: ; e2e8c
 	inc hl
 	ld [de], a ; y
 	inc de
-rept SPRITEOAMSTRUCT_LENGTH +- 1
+rept SPRITEOAMSTRUCT_LENGTH + -1
 	ld a, [hli]
 	ld [de], a
 	inc de
