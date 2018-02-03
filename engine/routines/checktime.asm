@@ -1,5 +1,5 @@
 CheckTime:: ; c000
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	ld hl, .TimeOfDayTable
 	ld de, 2
 	call IsInArray

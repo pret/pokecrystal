@@ -188,13 +188,13 @@ CheckBugContestTimer:: ; 114a4 (4:54a4)
 
 InitializeStartDay: ; 114dd
 	call UpdateTime
-	ld hl, wStartDay
+	ld hl, wTimerEventStartDay
 	call CopyDayToHL
 	ret
 ; 114e7
 
 CheckPokerusTick:: ; 114e7
-	ld hl, wStartDay
+	ld hl, wTimerEventStartDay
 	call CalcDaysSince
 	call GetDaysSince
 	and a
@@ -271,15 +271,15 @@ DoMysteryGiftIfDayHasPassed: ; 11548
 	call GetSRAMBank
 	ld hl, sMysteryGiftTimer
 	ld a, [hli]
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	ld a, [hl]
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	call CloseSRAM
 
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	call CheckDayDependentEventHL
 	jr nc, .not_timed_out
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	call InitOneDayCountdown
 	call CloseSRAM
 	farcall Function1050c8
@@ -287,7 +287,7 @@ DoMysteryGiftIfDayHasPassed: ; 11548
 .not_timed_out
 	ld a, BANK(sMysteryGiftTimer)
 	call GetSRAMBank
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	ld a, [hli]
 	ld [sMysteryGiftTimer], a
 	ld a, [hl]
@@ -417,7 +417,7 @@ _CalcHoursDaysSince: ; 115f8
 	ld [wHoursSince], a ; hours since
 
 _CalcDaysSince:
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld c, a
 	sbc [hl]
 	jr nc, .skip
@@ -429,7 +429,7 @@ _CalcDaysSince:
 ; 11613
 
 CopyDayHourMinSecToHL: ; 11613
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld [hli], a
 	ld a, [hHours]
 	ld [hli], a
@@ -441,13 +441,13 @@ CopyDayHourMinSecToHL: ; 11613
 ; 11621
 
 CopyDayToHL: ; 11621
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld [hl], a
 	ret
 ; 11626
 
 CopyDayHourToHL: ; 11626
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld [hli], a
 	ld a, [hHours]
 	ld [hli], a
@@ -455,7 +455,7 @@ CopyDayHourToHL: ; 11626
 ; 1162e
 
 CopyDayHourMinToHL: ; 1162e
-	ld a, [CurDay]
+	ld a, [wCurDay]
 	ld [hli], a
 	ld a, [hHours]
 	ld [hli], a

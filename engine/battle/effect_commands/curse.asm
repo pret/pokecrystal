@@ -1,13 +1,13 @@
 BattleCommand_Curse: ; 37588
 ; curse
 
-	ld de, BattleMonType1
-	ld bc, PlayerStatLevels
+	ld de, wBattleMonType1
+	ld bc, wPlayerStatLevels
 	ld a, [hBattleTurn]
 	and a
 	jr z, .go
-	ld de, EnemyMonType1
-	ld bc, EnemyStatLevels
+	ld de, wEnemyMonType1
+	ld bc, wEnemyStatLevels
 
 .go
 

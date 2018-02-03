@@ -5,7 +5,7 @@ LoadSGBLayout: ; 864c
 	ld a, b
 	cp SCGB_RAM
 	jr nz, .not_ram
-	ld a, [SGBPredef]
+	ld a, [wSGBPredef]
 .not_ram
 	cp SCGB_PARTY_MENU_HP_PALS
 	jp z, SGB_ApplyPartyMenuHPPals
@@ -71,7 +71,7 @@ LoadSGBLayout: ; 864c
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 
-	ld a, [PlayerHPPal]
+	ld a, [wPlayerHPPal]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -88,7 +88,7 @@ LoadSGBLayout: ; 864c
 	ld a, [hl]
 	ld [wSGBPals + 6], a
 
-	ld a, [EnemyHPPal]
+	ld a, [wEnemyHPPal]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -133,7 +133,7 @@ LoadSGBLayout: ; 864c
 	ld hl, wSGBPals
 	ld de, wSGBPals + PALPACKET_LENGTH
 	ld a, SCGB_BATTLE_COLORS
-	ld [SGBPredef], a
+	ld [wSGBPredef], a
 	ret
 ; 873c
 
@@ -148,7 +148,7 @@ LoadSGBLayout: ; 864c
 	inc hl
 	inc hl
 
-	ld a, [PlayerHPPal]
+	ld a, [wPlayerHPPal]
 	add PREDEFPAL_HP_GREEN
 	ld [hl], a
 	ld hl, wSGBPals
@@ -182,8 +182,8 @@ LoadSGBLayout: ; 864c
 	ld [wSGBPals + 5], a
 	ld a, [hl]
 	ld [wSGBPals + 6], a
-	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
+	ld a, [wCurPartySpecies]
+	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
 	ld [wSGBPals + 9], a
@@ -217,7 +217,7 @@ LoadSGBLayout: ; 864c
 	ld [hl], LOW(palred 26 + palgreen 10 + palblue 6)
 	inc hl
 	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	call GetMonPalettePointer_
 	ld a, [hli]
 	ld [wSGBPals + 9], a
@@ -245,8 +245,8 @@ LoadSGBLayout: ; 864c
 	ld [hl], LOW(palred 26 + palgreen 10 + palblue 6)
 	inc hl
 	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
-	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
+	ld a, [wCurPartySpecies]
+	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
 	ld [wSGBPals + 9], a
@@ -336,7 +336,7 @@ endr
 	ld hl, PalPacket_GSTitleScreen
 	ld de, BlkPacket_GSTitleScreen
 	ld a, SCGB_DIPLOMA
-	ld [SGBPredef], a
+	ld [wSGBPredef], a
 	ret
 ; 8890
 
@@ -354,7 +354,7 @@ endr
 
 .SGB11: ; 889e
 	ld hl, BlkPacket_9a86
-	ld de, PlayerLightScreenCount ; ???
+	ld de, wPlayerLightScreenCount ; ???
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	ld hl, PalPacket_SCGB_11
@@ -372,7 +372,7 @@ endr
 	ld [hld], a
 	ld de, BlkPacket_9a86
 	ld a, SCGB_MAPPALS
-	ld [SGBPredef], a
+	ld [wSGBPredef], a
 	ret
 ; 88cd
 
@@ -398,13 +398,13 @@ endr
 	jr .done
 
 .partymon
-	ld hl, PartyMon1DVs
+	ld hl, wPartyMon1DVs
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld c, l
 	ld b, h
-	ld a, [PlayerHPPal]
+	ld a, [wPlayerHPPal]
 	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
 	ld [wSGBPals + 3], a
@@ -469,7 +469,7 @@ endr
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld l, a
 	ld h, 0
 	add hl, hl
@@ -508,8 +508,8 @@ endr
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
+	ld a, [wCurPartySpecies]
+	ld bc, wTempMonDVs
 	call GetPlayerOrMonPalettePointer
 	ld a, [hli]
 	ld [wSGBPals + 3], a
@@ -535,8 +535,8 @@ endr
 	ld de, wSGBPals
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
+	ld a, [wCurPartySpecies]
+	ld bc, wTempMonDVs
 	call GetFrontpicPalettePointer
 	ld a, [hli]
 	ld [wSGBPals + 3], a
@@ -552,7 +552,7 @@ endr
 ; 8a0c
 
 .GetMapPalsIndex: ; 8a0c
-	ld a, [TimeOfDayPal]
+	ld a, [wTimeOfDayPal]
 	cp NITE_F
 	jr c, .morn_day
 	ld a, PREDEFPAL_NITE
@@ -570,7 +570,7 @@ endr
 	jr z, .perm5
 	cp GATE
 	jr z, .gate
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld e, a
 	ld d, 0
 	ld hl, MapGroupRoofSGBPalInds

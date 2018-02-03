@@ -3,7 +3,7 @@
 
 Unreferenced_Function48c:: ; 48c
 ; TimeOfDayFade
-	ld a, [TimeOfDayPal]
+	ld a, [wTimeOfDayPal]
 	ld b, a
 	ld hl, IncGradGBPalTable_11
 	ld a, l

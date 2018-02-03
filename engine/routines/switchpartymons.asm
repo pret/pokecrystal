@@ -1,17 +1,17 @@
 _SwitchPartyMons:
 	ld a, [wd0e3]
 	dec a
-	ld [Buffer3], a
+	ld [wBuffer3], a
 	ld b, a
 	ld a, [wMenuCursorY]
 	dec a
-	ld [Buffer2], a
+	ld [wBuffer2], a
 	cp b
 	jr z, .skip
 	call .SwapMonAndMail
-	ld a, [Buffer3]
+	ld a, [wBuffer3]
 	call .ClearSprite
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	call .ClearSprite
 .skip
 	ret
@@ -25,7 +25,7 @@ _SwitchPartyMons:
 	ld a, " "
 	call ByteFill
 	pop af
-	ld hl, Sprite01
+	ld hl, wVirtualOAMSprite00
 	ld bc, 4 * SPRITEOAMSTRUCT_LENGTH
 	call AddNTimes
 	ld de, SPRITEOAMSTRUCT_LENGTH
@@ -43,14 +43,14 @@ _SwitchPartyMons:
 	push hl
 	push de
 	push bc
-	ld bc, PartySpecies
-	ld a, [Buffer2]
+	ld bc, wPartySpecies
+	ld a, [wBuffer2]
 	ld l, a
 	ld h, $0
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld a, [Buffer3]
+	ld a, [wBuffer3]
 	ld l, a
 	ld h, $0
 	add hl, bc
@@ -60,16 +60,16 @@ _SwitchPartyMons:
 	ld [hl], a
 	pop af
 	ld [de], a
-	ld a, [Buffer2]
-	ld hl, PartyMon1Species
+	ld a, [wBuffer2]
+	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	push hl
 	ld de, wd002
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [Buffer3]
-	ld hl, PartyMon1
+	ld a, [wBuffer3]
+	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop de
@@ -80,13 +80,13 @@ _SwitchPartyMons:
 	ld hl, wd002
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [Buffer2]
-	ld hl, PartyMonOT
+	ld a, [wBuffer2]
+	ld hl, wPartyMonOT
 	call SkipNames
 	push hl
 	call .CopyNameTowd002
-	ld a, [Buffer3]
-	ld hl, PartyMonOT
+	ld a, [wBuffer3]
+	ld hl, wPartyMonOT
 	call SkipNames
 	pop de
 	push hl
@@ -94,13 +94,13 @@ _SwitchPartyMons:
 	pop de
 	ld hl, wd002
 	call .CopyName
-	ld hl, PartyMonNicknames
-	ld a, [Buffer2]
+	ld hl, wPartyMonNicknames
+	ld a, [wBuffer2]
 	call SkipNames
 	push hl
 	call .CopyNameTowd002
-	ld hl, PartyMonNicknames
-	ld a, [Buffer3]
+	ld hl, wPartyMonNicknames
+	ld a, [wBuffer3]
 	call SkipNames
 	pop de
 	push hl
@@ -109,7 +109,7 @@ _SwitchPartyMons:
 	ld hl, wd002
 	call .CopyName
 	ld hl, sPartyMail
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl
@@ -119,7 +119,7 @@ _SwitchPartyMons:
 	call GetSRAMBank
 	call CopyBytes
 	ld hl, sPartyMail
-	ld a, [Buffer3]
+	ld a, [wBuffer3]
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	pop de

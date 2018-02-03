@@ -75,7 +75,7 @@ SLOTS_END_LOOP_F EQU 7
 	const REEL_ACTION_DROP_REEL
 
 _SlotMachine:
-	ld hl, Options
+	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call .InitGFX
 	call DelayFrame
@@ -88,7 +88,7 @@ _SlotMachine:
 	call WaitSFX
 	call ClearBGPalettes
 	farcall StubbedTrainerRankings_EndSlotsWinStreak
-	ld hl, Options
+	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
 	ld hl, rLCDC
 	res rLCDC_SPRITE_SIZE, [hl] ; 8x8
@@ -211,7 +211,7 @@ SlotsLoop: ; 927af (24:67af)
 	ret
 
 .matching_sevens
-	ld a, [TextDelayFrames]
+	ld a, [wTextDelayFrames]
 	and $7
 	ret nz
 	ld a, [rBGP]
@@ -223,7 +223,7 @@ SlotsLoop: ; 927af (24:67af)
 
 .PrintCoinsAndPayout: ; 927f8 (24:67f8)
 	hlcoord 5, 1
-	ld de, Coins
+	ld de, wCoins
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	hlcoord 11, 1
@@ -261,7 +261,7 @@ Unreferenced_Function9282c: ; 9282c
 	inc [hl]
 	and $7
 	ret nz
-	ld hl, Sprite17TileID
+	ld hl, wVirtualOAMSprite16TileID
 	ld c, NUM_SPRITE_OAM_STRUCTS - 16
 .loop
 	ld a, [hl]
@@ -480,7 +480,7 @@ SlotsAction_PayoutAnim: ; 929a4 (24:69a4)
 	ld [hl], e
 	dec hl
 	ld [hl], d
-	ld hl, Coins
+	ld hl, wCoins
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
@@ -671,7 +671,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel1
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprite17
+	ld de, wVirtualOAMSprite16
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -689,7 +689,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel2
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprite25
+	ld de, wVirtualOAMSprite24
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -707,7 +707,7 @@ Slots_InitReelTiles: ; 92a98 (24:6a98)
 	ld bc, wReel3
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, Sprite33
+	ld de, wVirtualOAMSprite32
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -1725,7 +1725,7 @@ Slots_InitBias: ; 93002 (24:7002)
 	and a
 	ret z
 	ld hl, .Normal
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr z, .okay
 	ld hl, .Lucky
@@ -1819,7 +1819,7 @@ Slots_AskBet: ; 9307c (24:707c)
 	ld a, 4
 	sub b
 	ld [wSlotBet], a
-	ld hl, Coins
+	ld hl, wCoins
 	ld c, a
 	ld a, [hli]
 	and a
@@ -1832,7 +1832,7 @@ Slots_AskBet: ; 9307c (24:707c)
 	jr .loop
 
 .Start:
-	ld hl, Coins + 1
+	ld hl, wCoins + 1
 	ld a, [hl]
 	sub c
 	ld [hld], a
@@ -1883,7 +1883,7 @@ Slots_AskBet: ; 9307c (24:707c)
 ; 0x930e9
 
 Slots_AskPlayAgain: ; 930e9 (24:70e9)
-	ld hl, Coins
+	ld hl, wCoins
 	ld a, [hli]
 	or [hl]
 	jr nz, .you_have_coins
@@ -1971,7 +1971,7 @@ Slots_PayoutText: ; 93158 (24:7158)
 	add hl, de
 	add hl, de
 	add hl, de
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	ld bc, 4
 	call CopyBytes
 	ld a, [hli]

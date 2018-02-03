@@ -5,11 +5,11 @@ BlankScreen: ; 8000
 	call ClearBGPalettes
 	call ClearSprites
 	hlcoord 0, 0
-	ld bc, TileMapEnd - TileMap
+	ld bc, wTileMapEnd - wTileMap
 	ld a, " "
 	call ByteFill
-	hlcoord 0, 0, AttrMap
-	ld bc, AttrMapEnd - AttrMap
+	hlcoord 0, 0, wAttrMap
+	ld bc, wAttrMapEnd - wAttrMap
 	ld a, $7
 	call ByteFill
 	call WaitBGMap2
@@ -42,10 +42,10 @@ SpawnPlayer: ; 8029
 	ld [hl], e
 	ld a, $0
 	ld [hMapObjectIndexBuffer], a
-	ld bc, MapObjects
+	ld bc, wMapObjects
 	ld a, $0
 	ld [hObjectStructIndexBuffer], a
-	ld de, ObjectStructs
+	ld de, wObjectStructs
 	call CopyMapObjectToObjectStruct
 	ld a, PLAYER
 	ld [wCenteredObject], a
@@ -72,10 +72,10 @@ CopyDECoordsToMapObject:: ; 807e
 
 PlayerSpawn_ConvertCoords: ; 808f
 	push bc
-	ld a, [XCoord]
+	ld a, [wXCoord]
 	add 4
 	ld d, a
-	ld a, [YCoord]
+	ld a, [wYCoord]
 	add 4
 	ld e, a
 	pop bc
@@ -100,26 +100,26 @@ WriteObjectXY:: ; 80a1
 	ret
 
 RefreshPlayerCoords: ; 80b8
-	ld a, [XCoord]
+	ld a, [wXCoord]
 	add 4
 	ld d, a
-	ld hl, PlayerStandingMapX
+	ld hl, wPlayerStandingMapX
 	sub [hl]
 	ld [hl], d
-	ld hl, MapObjects + MAPOBJECT_X_COORD
+	ld hl, wMapObjects + MAPOBJECT_X_COORD
 	ld [hl], d
-	ld hl, PlayerLastMapX
+	ld hl, wPlayerLastMapX
 	ld [hl], d
 	ld d, a
-	ld a, [YCoord]
+	ld a, [wYCoord]
 	add 4
 	ld e, a
-	ld hl, PlayerStandingMapY
+	ld hl, wPlayerStandingMapY
 	sub [hl]
 	ld [hl], e
-	ld hl, MapObjects + MAPOBJECT_Y_COORD
+	ld hl, wMapObjects + MAPOBJECT_Y_COORD
 	ld [hl], e
-	ld hl, PlayerLastMapY
+	ld hl, wPlayerLastMapY
 	ld [hl], e
 	ld e, a
 	ld a, [wObjectFollow_Leader]
@@ -132,7 +132,7 @@ CopyObjectStruct:: ; 80e7
 	and a
 	ret nz ; masked
 
-	ld hl, ObjectStructs + OBJECT_STRUCT_LENGTH * 1
+	ld hl, wObjectStructs + OBJECT_STRUCT_LENGTH * 1
 	ld a, 1
 	ld de, OBJECT_STRUCT_LENGTH
 .loop
@@ -152,7 +152,7 @@ CopyObjectStruct:: ; 80e7
 	ld d, h
 	ld e, l
 	call CopyMapObjectToObjectStruct
-	ld hl, VramState
+	ld hl, wVramState
 	bit 7, [hl]
 	ret z
 
@@ -224,7 +224,7 @@ CopyMapObjectToObjectStruct: ; 8116
 	ret
 
 InitializeVisibleSprites: ; 8177
-	ld bc, MapObjects + OBJECT_LENGTH
+	ld bc, wMapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop
 	ld [hMapObjectIndexBuffer], a
@@ -240,9 +240,9 @@ InitializeVisibleSprites: ; 8177
 	cp -1
 	jr nz, .next
 
-	ld a, [XCoord]
+	ld a, [wXCoord]
 	ld d, a
-	ld a, [YCoord]
+	ld a, [wYCoord]
 	ld e, a
 
 	ld hl, MAPOBJECT_X_COORD
@@ -300,18 +300,18 @@ CheckObjectEnteringVisibleRange:: ; 81ca
 	dw .Right
 
 .Up: ; 81de
-	ld a, [YCoord]
+	ld a, [wYCoord]
 	sub 1
 	jr .Vertical
 
 .Down: ; 81e5
-	ld a, [YCoord]
+	ld a, [wYCoord]
 	add 9
 .Vertical: ; 81ea
 	ld d, a
-	ld a, [XCoord]
+	ld a, [wXCoord]
 	ld e, a
-	ld bc, MapObjects + OBJECT_LENGTH
+	ld bc, wMapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop_v
 	ld [hMapObjectIndexBuffer], a
@@ -356,18 +356,18 @@ CheckObjectEnteringVisibleRange:: ; 81ca
 	ret
 
 .Left: ; 8232
-	ld a, [XCoord]
+	ld a, [wXCoord]
 	sub 1
 	jr .Horizontal
 
 .Right: ; 8239
-	ld a, [XCoord]
+	ld a, [wXCoord]
 	add 10
 .Horizontal: ; 823e
 	ld e, a
-	ld a, [YCoord]
+	ld a, [wYCoord]
 	ld d, a
-	ld bc, MapObjects + OBJECT_LENGTH
+	ld bc, wMapObjects + OBJECT_LENGTH
 	ld a, 1
 .loop_h
 	ld [hMapObjectIndexBuffer], a
@@ -470,7 +470,7 @@ CopyTempObjectToObjectStruct: ; 8286
 	add hl, de
 	ld [hl], a
 
-	ld hl, YCoord
+	ld hl, wYCoord
 	sub [hl]
 	and $f
 	swap a
@@ -488,7 +488,7 @@ CopyTempObjectToObjectStruct: ; 8286
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, de
 	ld [hl], a
-	ld hl, XCoord
+	ld hl, wXCoord
 	sub [hl]
 	and $f
 	swap a
@@ -586,7 +586,7 @@ Special_SurfStartStep: ; 8379
 	ret
 
 .GetMovementData: ; 8388
-	ld a, [PlayerDirection]
+	ld a, [wPlayerDirection]
 	srl a
 	srl a
 	maskbits NUM_DIRECTIONS
@@ -656,7 +656,7 @@ FollowNotExact:: ; 839e
 	add hl, de
 	ld [hl], b
 	ld a, b
-	ld hl, XCoord
+	ld hl, wXCoord
 	sub [hl]
 	and $f
 	swap a
@@ -669,7 +669,7 @@ FollowNotExact:: ; 839e
 	add hl, de
 	ld [hl], c
 	ld a, c
-	ld hl, YCoord
+	ld hl, wYCoord
 	sub [hl]
 	and $f
 	swap a

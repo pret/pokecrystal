@@ -428,9 +428,9 @@ GetBallAnimPal: ; cd249 (33:5249)
 	ld hl, BallColors
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(CurItem)
+	ld a, BANK(wCurItem)
 	ld [rSVBK], a
-	ld a, [CurItem]
+	ld a, [wCurItem]
 	ld e, a
 	pop af
 	ld [rSVBK], a
@@ -1611,7 +1611,7 @@ Functioncd913: ; cd913 (33:5913)
 	ld hl, BATTLEANIMSTRUCT_10
 	add hl, bc
 	ld e, [hl]
-	ld hl, hPushOAM ; $ff80
+	ld hl, hTransferVirtualOAM ; $ff80
 	add hl, de
 	ld e, l
 	ld d, h
@@ -2104,7 +2104,7 @@ asm_cdbfa: ; cdbfa (33:5bfa)
 	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
-	ld hl, hPushOAM ; $ff80
+	ld hl, hTransferVirtualOAM ; $ff80
 	add hl, de
 	ld e, l
 	ld d, h
@@ -3332,7 +3332,7 @@ Functionce306: ; ce306 (33:6306)
 	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
-	ld hl, hPushOAM ; $ff80
+	ld hl, hTransferVirtualOAM ; $ff80
 	add hl, de
 	ld e, l
 	ld d, h

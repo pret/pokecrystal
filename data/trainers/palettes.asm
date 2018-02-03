@@ -1,7 +1,7 @@
 TrainerPalettes: ; b0ce
 ; entries correspond to trainer classes
 
-PlayerPalette: ; Chris uses the same colors as Cal
+wPlayerPalette: ; Chris uses the same colors as Cal
 INCLUDE "gfx/trainers/cal.pal"
 KrisPalette: ; Kris shares Falkner's palette
 INCLUDE "gfx/trainers/falkner.pal"

@@ -171,7 +171,7 @@ AddFunds: ; 16055
 
 GiveCoins:: ; 1606f
 	ld a, 2
-	ld de, Coins
+	ld de, wCoins
 	call AddFunds
 	ld a, 2
 	ld bc, .maxcoins
@@ -198,7 +198,7 @@ GiveCoins:: ; 1606f
 
 TakeCoins:: ; 1608f
 	ld a, 2
-	ld de, Coins
+	ld de, wCoins
 	call SubtractFunds
 	jr nc, .okay
 	; leave with 0 coins
@@ -216,6 +216,6 @@ TakeCoins:: ; 1608f
 
 CheckCoins:: ; 160a1
 	ld a, 2
-	ld de, Coins
+	ld de, wCoins
 	jp CompareFunds
 ; 160a9

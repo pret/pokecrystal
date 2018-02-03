@@ -9,7 +9,7 @@ LoadPoisonBGPals: ; cbcdd
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
-	ld a, [TimeOfDayPal]
+	ld a, [wTimeOfDayPal]
 	maskbits NUM_DAYTIMES
 	cp DARKNESS_F
 	ld a, %00000000

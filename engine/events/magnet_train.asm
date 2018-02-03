@@ -1,5 +1,5 @@
 Special_MagnetTrain: ; 8cc04
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr nz, .ToGoldenrod
 	ld a, 1 ; forwards
@@ -65,11 +65,11 @@ Special_MagnetTrain: ; 8cc04
 	ld [hLYOverrideStart], a
 	ld [hLYOverrideEnd], a
 	ld [hSCX], a
-	ld [Requested2bppSource], a
-	ld [Requested2bppSource + 1], a
-	ld [Requested2bppDest], a
-	ld [Requested2bppDest + 1], a
-	ld [Requested2bpp], a
+	ld [wRequested2bppSource], a
+	ld [wRequested2bppSource + 1], a
+	ld [wRequested2bppDest], a
+	ld [wRequested2bppDest + 1], a
+	ld [wRequested2bpp], a
 	call ClearTileMap
 
 	pop af
@@ -84,7 +84,7 @@ Special_MagnetTrain: ; 8cc04
 ; 8cc99
 
 MagnetTrain_UpdateLYOverrides: ; 8cc99
-	ld hl, LYOverridesBackup
+	ld hl, wLYOverridesBackup
 	ld c, $2f
 	ld a, [wMagnetTrainOffset]
 	add a
@@ -242,12 +242,12 @@ MagnetTrainBGTiles: ; 8cd82
 ; 8cda6
 
 MagnetTrain_InitLYOverrides: ; 8cda6
-	ld hl, LYOverrides
-	ld bc, LYOverridesEnd - LYOverrides
+	ld hl, wLYOverrides
+	ld bc, wLYOverridesEnd - wLYOverrides
 	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
-	ld hl, LYOverridesBackup
-	ld bc, LYOverridesBackupEnd - LYOverridesBackup
+	ld hl, wLYOverridesBackup
+	ld bc, wLYOverridesBackupEnd - wLYOverridesBackup
 	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
 	ld a, rSCX - $ff00
@@ -430,13 +430,13 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	push af
 	ld a, BANK(wEnvironment)
 	ld [rSVBK], a
-	ld a, [TimeOfDayPal]
+	ld a, [wTimeOfDayPal]
 	push af
 	ld a, [wEnvironment]
 	push af
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	maskbits NUM_DAYTIMES
-	ld [TimeOfDayPal], a
+	ld [wTimeOfDayPal], a
 	ld a, $1
 	ld [wEnvironment], a
 	ld b, SCGB_MAPPALS
@@ -451,7 +451,7 @@ MagnetTrain_Jumptable_FirstRunThrough: ; 8ceae
 	pop af
 	ld [wEnvironment], a
 	pop af
-	ld [TimeOfDayPal], a
+	ld [wTimeOfDayPal], a
 	pop af
 	ld [rSVBK], a
 	ret

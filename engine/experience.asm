@@ -1,6 +1,6 @@
 CalcLevel: ; 50e1b
-	ld a, [TempMonSpecies]
-	ld [CurSpecies], a
+	ld a, [wTempMonSpecies]
+	ld [wCurSpecies], a
 	call GetBaseData
 	ld d, 1
 .next_level
@@ -10,7 +10,7 @@ CalcLevel: ; 50e1b
 	jr z, .got_level
 	call CalcExpAtLevel
 	push hl
-	ld hl, TempMonExp + 2
+	ld hl, wTempMonExp + 2
 	ld a, [hProduct + 3]
 	ld c, a
 	ld a, [hld]
@@ -32,7 +32,7 @@ CalcLevel: ; 50e1b
 
 CalcExpAtLevel: ; 50e47
 ; (a/b)*n**3 + c*n**2 + d*n - e
-	ld a, [BaseGrowthRate]
+	ld a, [wBaseGrowthRate]
 	add a
 	add a
 	ld c, a

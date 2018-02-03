@@ -9,11 +9,11 @@
 	const TRAINERCARDSTATE_QUIT          ; 6
 
 TrainerCard: ; 25105
-	ld a, [VramState]
+	ld a, [wVramState]
 	push af
 	xor a
-	ld [VramState], a
-	ld hl, Options
+	ld [wVramState], a
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -33,9 +33,9 @@ TrainerCard: ; 25105
 
 .quit
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	pop af
-	ld [VramState], a
+	ld [wVramState], a
 	ret
 
 .InitRAM: ; 2513b (9:513b)
@@ -237,14 +237,14 @@ TrainerCard_PrintTopHalfOfCard: ; 25299 (9:5299)
 	ld de, .ID_No
 	call TrainerCardSetup_PlaceTilemapString
 	hlcoord 7, 2
-	ld de, PlayerName
+	ld de, wPlayerName
 	call PlaceString
 	hlcoord 5, 4
-	ld de, PlayerID
+	ld de, wPlayerID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	hlcoord 7, 6
-	ld de, Money
+	ld de, wMoney
 	lb bc, PRINTNUM_MONEY | 3, 6
 	call PrintNum
 	hlcoord 1, 3
@@ -278,8 +278,8 @@ TrainerCard_Page1_PrintDexCaught_GameTime: ; 2530a (9:530a)
 	hlcoord 10, 15
 	ld de, .Badges
 	call PlaceString
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
+	ld hl, wPokedexCaught
+	ld b, wEndPokedexCaught - wPokedexCaught
 	call CountSetBits
 	ld de, wd265
 	hlcoord 15, 10
@@ -444,11 +444,11 @@ TrainerCard_Page2_3_PlaceLeadersFaces: ; 253f4 (9:53f4)
 
 TrainerCard_Page1_PrintGameTime: ; 25415 (9:5415)
 	hlcoord 11, 12
-	ld de, GameTimeHours
+	ld de, wGameTimeHours
 	lb bc, 2, 4
 	call PrintNum
 	inc hl
-	ld de, GameTimeMinutes
+	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ld a, [hVBlankCounter]
@@ -479,7 +479,7 @@ TrainerCard_Page2_3_OAMUpdate: ; 25448 (9:5448)
 	ld d, a
 	ld a, [de]
 	ld c, a
-	ld de, Sprite01
+	ld de, wVirtualOAMSprite00
 	ld b, NUM_JOHTO_BADGES
 .loop
 	srl c

@@ -1,17 +1,17 @@
 LearnMove: ; 6508
 	call LoadTileMapToTempTileMap
-	ld a, [CurPartyMon]
-	ld hl, PartyMonNicknames
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonNicknames
 	call GetNick
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .loop
-	ld hl, PartyMon1Moves
+	ld hl, wPartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
@@ -42,12 +42,12 @@ LearnMove: ; 6508
 	ld a, [wBattleMode]
 	and a
 	jr z, .not_disabled
-	ld a, [DisabledMove]
+	ld a, [wDisabledMove]
 	cp b
 	jr nz, .not_disabled
 	xor a
-	ld [DisabledMove], a
-	ld [PlayerDisableCount], a
+	ld [wDisabledMove], a
+	ld [wPlayerDisableCount], a
 .not_disabled
 
 	call GetMoveName
@@ -79,24 +79,24 @@ LearnMove: ; 6508
 	and a
 	jp z, .learned
 
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld b, a
-	ld a, [CurBattleMon]
+	ld a, [wCurBattleMon]
 	cp b
 	jp nz, .learned
 
-	ld a, [PlayerSubStatus5]
+	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
 	jp nz, .learned
 
 	ld h, d
 	ld l, e
-	ld de, BattleMonMoves
+	ld de, wBattleMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
-	ld bc, PartyMon1PP - (PartyMon1Moves + NUM_MOVES)
+	ld bc, wPartyMon1PP - (wPartyMon1Moves + NUM_MOVES)
 	add hl, bc
-	ld de, BattleMonPP
+	ld de, wBattleMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
 	jp .learned
@@ -143,7 +143,7 @@ ForgetMove: ; 65d3
 	call TextBox
 	hlcoord 5 + 2, 2 + 2
 	ld a, SCREEN_WIDTH * 2
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	predef ListMoves
 	; wMenuData3
 	ld a, $4

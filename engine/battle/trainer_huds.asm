@@ -18,8 +18,8 @@ EnemySwitch_TrainerHud: ; 2c012
 
 ShowPlayerMonsRemaining: ; 2c01c
 	call DrawPlayerPartyIconHUDBorder
-	ld hl, PartyMon1HP
-	ld de, PartyCount
+	ld hl, wPartyMon1HP
+	ld de, wPartyCount
 	call StageBallTilesData
 	; ldpixel wPlaceBallsX, 12, 12
 	ld a, 12 * 8
@@ -28,14 +28,14 @@ ShowPlayerMonsRemaining: ; 2c01c
 	ld [hl], a
 	ld a, 8
 	ld [wPlaceBallsDirection], a
-	ld hl, Sprite01
+	ld hl, wVirtualOAMSprite00
 	jp LoadTrainerHudOAM
 ; 2c03a
 
 ShowOTTrainerMonsRemaining: ; 2c03a
 	call DrawEnemyHUDBorder
-	ld hl, OTPartyMon1HP
-	ld de, OTPartyCount
+	ld hl, wOTPartyMon1HP
+	ld de, wOTPartyCount
 	call StageBallTilesData
 	; ldpixel wPlaceBallsX, 9, 4
 	ld hl, wPlaceBallsX
@@ -44,14 +44,14 @@ ShowOTTrainerMonsRemaining: ; 2c03a
 	ld [hl], 4 * 8
 	ld a, -8
 	ld [wPlaceBallsDirection], a
-	ld hl, Sprite01 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wVirtualOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
 	jp LoadTrainerHudOAM
 ; 2c059
 
 StageBallTilesData: ; 2c059
 	ld a, [de]
 	push af
-	ld de, Buffer1
+	ld de, wBuffer1
 	ld c, PARTY_LENGTH
 	ld a, $34 ; empty slot
 .loop1
@@ -60,7 +60,7 @@ StageBallTilesData: ; 2c059
 	dec c
 	jr nz, .loop1
 	pop af
-	ld de, Buffer1
+	ld de, wBuffer1
 .loop2
 	push af
 	call .GetHUDTile
@@ -147,7 +147,7 @@ DrawEnemyHUDBorder: ; 2c0c5
 	ld a, [wBattleMode]
 	dec a
 	ret nz
-	ld a, [TempEnemyMonSpecies]
+	ld a, [wTempEnemyMonSpecies]
 	dec a
 	call CheckCaughtMon
 	ret z
@@ -167,25 +167,25 @@ PlaceHUDBorderTiles: ; 2c0f1
 	ld [hl], a
 	ld bc, SCREEN_WIDTH
 	add hl, bc
-	ld a, [StartFlypoint]
+	ld a, [wStartFlypoint]
 	ld [hl], a
 	ld b, $8
 .loop
 	add hl, de
-	ld a, [MovementBuffer]
+	ld a, [wMovementBuffer]
 	ld [hl], a
 	dec b
 	jr nz, .loop
 	add hl, de
-	ld a, [EndFlypoint]
+	ld a, [wEndFlypoint]
 	ld [hl], a
 	ret
 ; 2c10d
 
 LinkBattle_TrainerHuds: ; 2c10d
 	call LoadBallIconGFX
-	ld hl, PartyMon1HP
-	ld de, PartyCount
+	ld hl, wPartyMon1HP
+	ld de, wPartyCount
 	call StageBallTilesData
 	ld hl, wPlaceBallsX
 	ld a, 10 * 8
@@ -193,22 +193,22 @@ LinkBattle_TrainerHuds: ; 2c10d
 	ld [hl], 8 * 8
 	ld a, $8
 	ld [wPlaceBallsDirection], a
-	ld hl, Sprite01
+	ld hl, wVirtualOAMSprite00
 	call LoadTrainerHudOAM
 
-	ld hl, OTPartyMon1HP
-	ld de, OTPartyCount
+	ld hl, wOTPartyMon1HP
+	ld de, wOTPartyCount
 	call StageBallTilesData
 	ld hl, wPlaceBallsX
 	ld a, 10 * 8
 	ld [hli], a
 	ld [hl], 13 * 8
-	ld hl, Sprite01 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wVirtualOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
 	jp LoadTrainerHudOAM
 ; 2c143
 
 LoadTrainerHudOAM: ; 2c143
-	ld de, Buffer1
+	ld de, wBuffer1
 	ld c, PARTY_LENGTH
 .loop
 	ld a, [wPlaceBallsY]
@@ -250,10 +250,10 @@ _ShowLinkBattleParticipants: ; 2c1b2
 	ld c, 14
 	call TextBox
 	hlcoord 4, 5
-	ld de, PlayerName
+	ld de, wPlayerName
 	call PlaceString
 	hlcoord 4, 10
-	ld de, OTPlayerName
+	ld de, wOTPlayerName
 	call PlaceString
 	hlcoord 9, 8
 	ld a, "<BOLD_V>"

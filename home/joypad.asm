@@ -129,7 +129,7 @@ GetJoypad:: ; 984
 
 ; The player input can be automated using an input stream.
 ; See more below.
-	ld a, [InputType]
+	ld a, [wInputType]
 	cp AUTO_INPUT
 	jr z, .auto
 
@@ -173,22 +173,22 @@ GetJoypad:: ; 984
 ; Read from the input stream.
 	ld a, [hROMBank]
 	push af
-	ld a, [AutoInputBank]
+	ld a, [wAutoInputBank]
 	rst Bankswitch
 
-	ld hl, AutoInputAddress
+	ld hl, wAutoInputAddress
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
 ; We only update when the input duration has expired.
-	ld a, [AutoInputLength]
+	ld a, [wAutoInputLength]
 	and a
 	jr z, .updateauto
 
 ; Until then, don't change anything.
 	dec a
-	ld [AutoInputLength], a
+	ld [wAutoInputLength], a
 	pop af
 	rst Bankswitch
 	jr .quit
@@ -203,7 +203,7 @@ GetJoypad:: ; 984
 
 ; A duration of $ff will end the stream indefinitely.
 	ld a, [hli]
-	ld [AutoInputLength], a
+	ld [wAutoInputLength], a
 	cp -1
 	jr nz, .next
 
@@ -216,9 +216,9 @@ GetJoypad:: ; 984
 .next
 ; On to the next input...
 	ld a, l
-	ld [AutoInputAddress], a
+	ld [wAutoInputAddress], a
 	ld a, h
-	ld [AutoInputAddress+1], a
+	ld [wAutoInputAddress+1], a
 	jr .finishauto
 
 .stopauto
@@ -238,14 +238,14 @@ GetJoypad:: ; 984
 StartAutoInput:: ; 9ee
 ; Start reading automated input stream at a:hl.
 
-	ld [AutoInputBank], a
+	ld [wAutoInputBank], a
 	ld a, l
-	ld [AutoInputAddress], a
+	ld [wAutoInputAddress], a
 	ld a, h
-	ld [AutoInputAddress+1], a
+	ld [wAutoInputAddress+1], a
 ; Start reading the stream immediately.
 	xor a
-	ld [AutoInputLength], a
+	ld [wAutoInputLength], a
 ; Reset input mirrors.
 	xor a
 	ld [hJoyPressed], a ; pressed this frame
@@ -253,7 +253,7 @@ StartAutoInput:: ; 9ee
 	ld [hJoyDown], a ; currently pressed
 
 	ld a, AUTO_INPUT
-	ld [InputType], a
+	ld [wInputType], a
 	ret
 ; a0a
 
@@ -261,12 +261,12 @@ StartAutoInput:: ; 9ee
 StopAutoInput:: ; a0a
 ; Clear variables related to automated input.
 	xor a
-	ld [AutoInputBank], a
-	ld [AutoInputAddress], a
-	ld [AutoInputAddress+1], a
-	ld [AutoInputLength], a
+	ld [wAutoInputBank], a
+	ld [wAutoInputAddress], a
+	ld [wAutoInputAddress+1], a
+	ld [wAutoInputLength], a
 ; Back to normal input.
-	ld [InputType], a
+	ld [wInputType], a
 	ret
 ; a1b
 
@@ -336,11 +336,11 @@ JoyTextDelay:: ; a57
 	and a
 	jr z, .checkframedelay
 	ld a, 15
-	ld [TextDelayFrames], a
+	ld [wTextDelayFrames], a
 	ret
 
 .checkframedelay
-	ld a, [TextDelayFrames]
+	ld a, [wTextDelayFrames]
 	and a
 	jr z, .restartframedelay
 	xor a
@@ -349,7 +349,7 @@ JoyTextDelay:: ; a57
 
 .restartframedelay
 	ld a, 5
-	ld [TextDelayFrames], a
+	ld [wTextDelayFrames], a
 	ret
 ; a80
 
@@ -411,7 +411,7 @@ ButtonSound:: ; aaf
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
-	ld a, [InputType]
+	ld a, [wInputType]
 	or a
 	jr z, .input_wait_loop
 	farcall _DudeAutoInput_A

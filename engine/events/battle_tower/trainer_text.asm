@@ -1,14 +1,14 @@
 BattleTowerText:: ; 11c000
-; Print text c for trainer [BT_OTTrainerClass]
+; Print text c for trainer [wBT_OTTrainerClass]
 ; 1: Intro text
 ; 2: Player lost
 ; 3: Player won
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(BT_OTTrainerClass)
+	ld a, BANK(wBT_OTTrainerClass)
 	ld [rSVBK], a
 if DEF(_CRYSTAL11)
-	ld hl, BT_OTTrainerClass
+	ld hl, wBT_OTTrainerClass
 else
 ; BUG ALERT
 ; Instead of loading the Trainer Class, this routine
@@ -16,7 +16,7 @@ else
 ; uses it to get the gender of the trainer.
 ; As a consequence, the enemy trainer's dialog will
 ; always be sampled from the female array.
-	ld hl, BT_OTName + NAME_LENGTH_JAPANESE - 1
+	ld hl, wBT_OTName + NAME_LENGTH_JAPANESE - 1
 endc
 	ld a, [hl]
 	dec a
@@ -53,11 +53,11 @@ endc
 	ld b, 0
 	dec c
 	jr nz, .restore
-	ld [BT_TrainerTextIndex], a
+	ld [wBT_TrainerTextIndex], a
 	jr .okay2
 
 .restore
-	ld a, [BT_TrainerTextIndex]
+	ld a, [wBT_TrainerTextIndex]
 
 .okay2
 	push af

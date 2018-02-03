@@ -275,10 +275,10 @@ HPBarAnim_UpdateHPRemaining: ; d784
 	ld [hld], a
 	dec hl
 	ld a, [wCurHPAnimOldHP]
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	ld a, [wCurHPAnimOldHP + 1]
-	ld [StringBuffer2], a
-	ld de, StringBuffer2
+	ld [wStringBuffer2], a
+	ld de, wStringBuffer2
 	lb bc, 2, 3
 	call PrintNum
 	pop hl
@@ -311,7 +311,7 @@ HPBarAnim_BGMapUpdate: ; d7c9
 	jr z, .load_0
 	cp $1
 	jr z, .load_1
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	cp $3
 	jr nc, .bottom_half_of_screen
 	ld c, $0

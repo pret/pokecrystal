@@ -1,44 +1,44 @@
 DoPoisonStep:: ; 505da
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	and a
 	jr z, .no_faint
 
 	xor a
 	ld c, 7
-	ld hl, EngineBuffer1
+	ld hl, wEngineBuffer1
 .loop_clearEngineBuffer1
 	ld [hli], a
 	dec c
 	jr nz, .loop_clearEngineBuffer1
 
 	xor a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 .loop_check_poison
 	call .DamageMonIfPoisoned
 	jr nc, .not_poisoned
-; the output flag is stored in c, copy it to the ([CurPartyMon] + 2)nd EngineBuffer
-; and set the corresponding flag in EngineBuffer1
-	ld a, [CurPartyMon]
+; the output flag is stored in c, copy it to the ([wCurPartyMon] + 2)nd EngineBuffer
+; and set the corresponding flag in wEngineBuffer1
+	ld a, [wCurPartyMon]
 	ld e, a
 	ld d, 0
-	ld hl, EngineBuffer2
+	ld hl, wEngineBuffer2
 	add hl, de
 	ld [hl], c
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	or c
-	ld [EngineBuffer1], a
+	ld [wEngineBuffer1], a
 
 .not_poisoned
-	ld a, [PartyCount]
-	ld hl, CurPartyMon
+	ld a, [wPartyCount]
+	ld hl, wCurPartyMon
 	inc [hl]
 	cp [hl]
 	jr nz, .loop_check_poison
 
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	and %10
 	jr nz, .someone_has_fainted
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	and %01
 	jr z, .no_faint
 	call .PlayPoisonSFX
@@ -124,8 +124,8 @@ DoPoisonStep:: ; 505da
 
 .CheckWhitedOut: ; 5067b
 	xor a
-	ld [CurPartyMon], a
-	ld de, EngineBuffer2
+	ld [wCurPartyMon], a
+	ld de, wEngineBuffer2
 .party_loop
 	push de
 	ld a, [de]
@@ -140,14 +140,14 @@ DoPoisonStep:: ; 505da
 .mon_not_fainted
 	pop de
 	inc de
-	ld hl, CurPartyMon
+	ld hl, wCurPartyMon
 	inc [hl]
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp [hl]
 	jr nz, .party_loop
 	predef CheckPlayerPartyForFitPkmn
 	ld a, d
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 506b2
 

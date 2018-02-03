@@ -1,10 +1,10 @@
 _BasementKey: ; 507b4
 ; Are we even in the right map to use this?
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	cp GROUP_GOLDENROD_UNDERGROUND
 	jr nz, .nope
 
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	cp MAP_GOLDENROD_UNDERGROUND
 	jr nz, .nope
 ; Are we on the tile in front of the door?

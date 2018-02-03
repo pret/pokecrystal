@@ -37,14 +37,14 @@ HallOfFame:: ; 0x8640e
 
 RedCredits:: ; 86455
 	ld a, LOW(MUSIC_NONE)
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_NONE)
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld a, 10
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	farcall Special_FadeOutPalettes
 	xor a
-	ld [VramState], a
+	ld [wVramState], a
 	ld [hMapAnims], a
 	farcall InitDisplayForRedCredits
 	ld c, 8
@@ -60,14 +60,14 @@ RedCredits:: ; 86455
 
 HallOfFame_FadeOutMusic: ; 8648e
 	ld a, LOW(MUSIC_NONE)
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_NONE)
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld a, 10
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	farcall Special_FadeOutPalettes
 	xor a
-	ld [VramState], a
+	ld [wVramState], a
 	ld [hMapAnims], a
 	farcall InitDisplayForHallOfFame
 	ld c, 100
@@ -115,7 +115,7 @@ AnimateHallOfFame: ; 864c3
 .done
 	call HOF_AnimatePlayerPic
 	ld a, $4
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	call RotateThreePalettesRight
 	ld c, 8
 	call DelayFrames
@@ -143,15 +143,15 @@ AnimateHallOfFame: ; 864c3
 
 
 GetHallOfFameParty: ; 8653f
-	ld hl, OverworldMap
+	ld hl, wOverworldMap
 	ld bc, HOF_LENGTH
 	xor a
 	call ByteFill
 	ld a, [wHallOfFameCount]
-	ld de, OverworldMap
+	ld de, wOverworldMap
 	ld [de], a
 	inc de
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	ld c, 0
 .next
 	ld a, [hli]
@@ -168,7 +168,7 @@ GetHallOfFameParty: ; 8653f
 	push bc
 
 	ld a, c
-	ld hl, PartyMons
+	ld hl, wPartyMons
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld c, l
@@ -207,7 +207,7 @@ GetHallOfFameParty: ; 8653f
 	pop bc
 	push bc
 	ld a, c
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	ld bc, MON_NAME_LENGTH - 1
@@ -235,15 +235,15 @@ AnimateHOFMonEntrance: ; 865b5
 	farcall ResetDisplayBetweenHallOfFameMons
 	pop hl
 	ld a, [hli]
-	ld [TempMonSpecies], a
-	ld [CurPartySpecies], a
+	ld [wTempMonSpecies], a
+	ld [wCurPartySpecies], a
 	inc hl
 	inc hl
 	ld a, [hli]
-	ld [TempMonDVs], a
+	ld [wTempMonDVs], a
 	ld a, [hli]
-	ld [TempMonDVs + 1], a
-	ld hl, TempMonDVs
+	ld [wTempMonDVs + 1], a
+	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -448,22 +448,22 @@ DisplayHOFMon: ; 86748
 	xor a
 	ld [hBGMapMode], a
 	ld a, [hli]
-	ld [TempMonSpecies], a
+	ld [wTempMonSpecies], a
 	ld a, [hli]
-	ld [TempMonID], a
+	ld [wTempMonID], a
 	ld a, [hli]
-	ld [TempMonID + 1], a
+	ld [wTempMonID + 1], a
 	ld a, [hli]
-	ld [TempMonDVs], a
+	ld [wTempMonDVs], a
 	ld a, [hli]
-	ld [TempMonDVs + 1], a
+	ld [wTempMonDVs + 1], a
 	ld a, [hli]
-	ld [TempMonLevel], a
-	ld de, StringBuffer2
+	ld [wTempMonLevel], a
+	ld de, wStringBuffer2
 	ld bc, MON_NAME_LENGTH - 1
 	call CopyBytes
 	ld a, "@"
-	ld [StringBuffer2 + 10], a
+	ld [wStringBuffer2 + 10], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
@@ -474,16 +474,16 @@ DisplayHOFMon: ; 86748
 	hlcoord 0, 12
 	lb bc, 4, SCREEN_WIDTH - 2
 	call TextBox
-	ld a, [TempMonSpecies]
-	ld [CurPartySpecies], a
+	ld a, [wTempMonSpecies]
+	ld [wCurPartySpecies], a
 	ld [wd265], a
-	ld hl, TempMonDVs
+	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	xor a
 	ld [wBoxAlignment], a
 	hlcoord 6, 5
 	call _PrepMonFrontpic
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .print_id_no
 	hlcoord 1, 13
@@ -498,7 +498,7 @@ DisplayHOFMon: ; 86748
 	hlcoord 7, 13
 	call PlaceString
 	ld a, TEMPMON
-	ld [MonType], a
+	ld [wMonType], a
 	farcall GetGender
 	ld a, " "
 	jr c, .got_gender
@@ -512,7 +512,7 @@ DisplayHOFMon: ; 86748
 	hlcoord 8, 14
 	ld a, "/"
 	ld [hli], a
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	call PlaceString
 	hlcoord 1, 16
 	call PrintLevel
@@ -525,7 +525,7 @@ DisplayHOFMon: ; 86748
 	ld [hli], a
 	ld [hl], "/"
 	hlcoord 10, 16
-	ld de, TempMonID
+	ld de, wTempMonID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
@@ -554,7 +554,7 @@ HOF_AnimatePlayerPic: ; 86810
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call SetPalettes
@@ -587,7 +587,7 @@ HOF_AnimatePlayerPic: ; 86810
 	lb bc, 4, 18
 	call TextBox
 	hlcoord 2, 4
-	ld de, PlayerName
+	ld de, wPlayerName
 	call PlaceString
 	hlcoord 1, 6
 	ld a, "<ID>"
@@ -596,19 +596,19 @@ HOF_AnimatePlayerPic: ; 86810
 	ld [hli], a
 	ld [hl], "/"
 	hlcoord 4, 6
-	ld de, PlayerID
+	ld de, wPlayerID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	hlcoord 1, 8
 	ld de, .PlayTime
 	call PlaceString
 	hlcoord 3, 9
-	ld de, GameTimeHours
+	ld de, wGameTimeHours
 	lb bc, 2, 3
 	call PrintNum
 	ld [hl], HALLOFFAME_COLON
 	inc hl
-	ld de, GameTimeMinutes
+	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	call WaitBGMap

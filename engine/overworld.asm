@@ -9,9 +9,9 @@ GetEmote2bpp: ; 1412a
 
 _ReplaceKrisSprite:: ; 14135
 	call GetPlayerSprite
-	ld a, [UsedSprites]
+	ld a, [wUsedSprites]
 	ld [hUsedSpriteIndex], a
-	ld a, [UsedSprites + 1]
+	ld a, [wUsedSprites + 1]
 	ld [hUsedSpriteTile], a
 	call GetUsedSprite
 	ret
@@ -49,8 +49,8 @@ Special_RefreshSprites:: ; 14168
 
 .Refresh: ; 1416f
 	xor a
-	ld bc, UsedSpritesEnd - UsedSprites
-	ld hl, UsedSprites
+	ld bc, wUsedSpritesEnd - wUsedSprites
+	ld hl, wUsedSprites
 	call ByteFill
 	call GetPlayerSprite
 	call AddMapSprites
@@ -70,7 +70,7 @@ GetPlayerSprite: ; 14183
 	ld hl, .Kris
 
 .go
-	ld a, [PlayerState]
+	ld a, [wPlayerState]
 	ld c, a
 .loop
 	ld a, [hli]
@@ -82,7 +82,7 @@ GetPlayerSprite: ; 14183
 
 ; Any player state not in the array defaults to Chris's sprite.
 	xor a ; ld a, PLAYER_NORMAL
-	ld [PlayerState], a
+	ld [wPlayerState], a
 	ld a, SPRITE_CHRIS
 	jr .finish
 
@@ -90,9 +90,9 @@ GetPlayerSprite: ; 14183
 	ld a, [hl]
 
 .finish
-	ld [UsedSprites + 0], a
-	ld [PlayerSprite], a
-	ld [PlayerObjectSprite], a
+	ld [wUsedSprites + 0], a
+	ld [wPlayerSprite], a
+	ld [wPlayerObjectSprite], a
 	ret
 
 .Chris:
@@ -125,7 +125,7 @@ AddMapSprites: ; 141c9
 
 
 AddIndoorSprites: ; 141d9
-	ld hl, Map1ObjectSprite
+	ld hl, wMap1ObjectSprite
 	ld a, 1
 .loop
 	push af
@@ -142,7 +142,7 @@ AddIndoorSprites: ; 141d9
 
 
 AddOutdoorSprites: ; 141ee
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	dec a
 	ld c, a
 	ld b, 0
@@ -276,7 +276,7 @@ GetMonSprite: ; 14259
 	sub SPRITE_VARS
 	ld e, a
 	ld d, 0
-	ld hl, VariableSprites
+	ld hl, wVariableSprites
 	add hl, de
 	ld a, [hl]
 	and a
@@ -355,7 +355,7 @@ AddSpriteGFX: ; 142e5
 	push hl
 	push bc
 	ld b, a
-	ld hl, UsedSprites + 2
+	ld hl, wUsedSprites + 2
 	ld c, SPRITE_GFX_LIST_CAPACITY - 1
 .loop
 	ld a, [hl]
@@ -392,7 +392,7 @@ LoadSpriteGFX: ; 14306
 ; Bug: b is not preserved, so it's useless as a next count.
 ; Uncomment the lines below to fix.
 
-	ld hl, UsedSprites
+	ld hl, wUsedSprites
 	ld b, SPRITE_GFX_LIST_CAPACITY
 .loop
 	ld a, [hli]
@@ -420,10 +420,10 @@ LoadSpriteGFX: ; 14306
 SortUsedSprites: ; 1431e
 ; Bubble-sort sprites by type.
 
-; Run backwards through UsedSprites to find the last one.
+; Run backwards through wUsedSprites to find the last one.
 
 	ld c, SPRITE_GFX_LIST_CAPACITY
-	ld de, UsedSprites + (SPRITE_GFX_LIST_CAPACITY - 1) * 2
+	ld de, wUsedSprites + (SPRITE_GFX_LIST_CAPACITY - 1) * 2
 .FindLastSprite:
 	ld a, [de]
 	and a
@@ -440,7 +440,7 @@ SortUsedSprites: ; 1431e
 ; higher than a later one, swap them.
 
 	inc de
-	ld hl, UsedSprites + 1
+	ld hl, wUsedSprites + 1
 
 .CheckSprite:
 	push bc
@@ -493,7 +493,7 @@ ArrangeUsedSprites: ; 14355
 ; Get the length of each sprite and space them out in VRAM.
 ; Crystal introduces a second table in VRAM bank 0.
 
-	ld hl, UsedSprites
+	ld hl, wUsedSprites
 	ld c, SPRITE_GFX_LIST_CAPACITY
 	ld b, 0
 .FirstTableLength:
@@ -573,7 +573,7 @@ GetSpriteLength: ; 14386
 
 
 GetUsedSprites: ; 1439b
-	ld hl, UsedSprites
+	ld hl, wUsedSprites
 	ld c, SPRITE_GFX_LIST_CAPACITY
 
 .loop

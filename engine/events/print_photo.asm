@@ -3,7 +3,7 @@ Special_PhotoStudio: ; 16dc7
 	call PrintText
 	farcall SelectMonFromParty
 	jr c, .cancel
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
 

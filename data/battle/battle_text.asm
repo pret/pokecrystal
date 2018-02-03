@@ -10,7 +10,7 @@ BattleText_PlayerPickedUpPayDayMoney: ; 0x80730
 
 WildPokemonAppearedText: ; 0x80746
 	text "Wild @"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	line "appeared!"
 	prompt
@@ -19,14 +19,14 @@ WildPokemonAppearedText: ; 0x80746
 HookedPokemonAttackedText: ; 0x8075c
 	text "The hooked"
 	line "@"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	cont "attacked!"
 	prompt
 ; 0x80778
 
 PokemonFellFromTreeText: ; 0x80778
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text " fell"
 	line "out of the tree!"
 	prompt
@@ -34,7 +34,7 @@ PokemonFellFromTreeText: ; 0x80778
 
 WildCelebiAppearedText: ; 0x80793
 	text "Wild @"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	line "appeared!"
 	prompt
@@ -48,7 +48,7 @@ WantsToBattleText:: ; 0x807a9
 
 BattleText_WildFled: ; 0x807bd
 	text "Wild @"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	line "fled!"
 	prompt
@@ -56,7 +56,7 @@ BattleText_WildFled: ; 0x807bd
 
 BattleText_EnemyFled: ; 0x807cf
 	text "Enemy @"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	line "fled!"
 	prompt
@@ -110,7 +110,7 @@ BattleText_TargetRecoveredWithItem: ; 0x80880
 	text "<TARGET>"
 	line "recovered with"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "."
 	prompt
 ; 0x80899
@@ -119,7 +119,7 @@ BattleText_UserRecoveredPPUsing: ; 0x80899
 	text "<USER>"
 	line "recovered PP using"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "."
 	prompt
 ; 0x808b6
@@ -138,14 +138,14 @@ BattleText_SafeguardFaded: ; 0x808d2
 ; 0x808e7
 
 BattleText_PkmnLightScreenFell: ; 0x808e7
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " #MON's"
 	line "LIGHT SCREEN fell!"
 	prompt
 ; 0x80905
 
 BattleText_PkmnReflectFaded: ; 0x80905
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " #MON's"
 	line "REFLECT faded!"
 	prompt
@@ -188,7 +188,7 @@ BattleText_TheSandstormSubsided: ; 0x8098f
 
 BattleText_EnemyPkmnFainted: ; 0x809a8
 	text "Enemy @"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	line "fainted!"
 	prompt
@@ -237,7 +237,7 @@ BattleText_0x80a4f: ; 0x80a4f
 ; 0x80a75
 
 BattleText_PkmnFainted: ; 0x80a75
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text_start
 	line "fainted!"
 	prompt
@@ -265,7 +265,7 @@ BattleText_EnemyIsAboutToUseWillPlayerChangePkmn: ; 0x80aca
 	text "<ENEMY>"
 	line "is about to use"
 	cont "@"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text "."
 
 	para "Will <PLAYER>"
@@ -277,7 +277,7 @@ BattleText_EnemySentOut: ; 0x80af8
 	text "<ENEMY>"
 	line "sent out"
 	cont "@"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text "!"
 	done
 ; 0x80b0b
@@ -313,7 +313,7 @@ BattleText_UserFledUsingAStringBuffer1: ; 0x80b89
 	text "<USER>"
 	line "fled using a"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x80ba0
@@ -333,7 +333,7 @@ RecoveredUsingText: ; 0x80bc2
 	text "<TARGET>"
 	line "recovered using a"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x80bde
@@ -341,7 +341,7 @@ RecoveredUsingText: ; 0x80bc2
 BattleText_UsersStringBuffer1Activated: ; 0x80bde
 	text "<USER>'s"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text_start
 	cont "activated!"
 	prompt
@@ -354,14 +354,14 @@ BattleText_ItemsCantBeUsedHere: ; 0x80bf3
 ; 0x80c0d
 
 BattleText_PkmnIsAlreadyOut: ; 0x80c0d
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text_start
 	line "is already out."
 	prompt
 ; 0x80c22
 
 BattleText_PkmnCantBeRecalled: ; 0x80c22
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text_start
 	line "can't be recalled!"
 	prompt
@@ -380,7 +380,7 @@ BattleText_TheMoveIsDisabled: ; 0x80c5b
 ; 0x80c72
 
 BattleText_PkmnHasNoMovesLeft: ; 0x80c72
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text_start
 	line "has no moves left!"
 	done
@@ -393,10 +393,10 @@ BattleText_TargetsEncoreEnded: ; 0x80c8a
 ; 0x80c9c
 
 BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " grew to"
 	line "level @"
-	deciram CurPartyLevel, 1, 3
+	deciram wCurPartyLevel, 1, 3
 	text "!@"
 	sound_dex_fanfare_50_79
 	db "@@"
@@ -404,7 +404,7 @@ BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 
 BattleText_WildPkmnIsEating: ; 0x80cba
 	text "Wild @"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	line "is eating!"
 	prompt
@@ -412,7 +412,7 @@ BattleText_WildPkmnIsEating: ; 0x80cba
 
 BattleText_WildPkmnIsAngry: ; 0x80cd1
 	text "Wild @"
-	text_from_ram EnemyMonNick
+	text_from_ram wEnemyMonNick
 	text_start
 	line "is angry!"
 	prompt
@@ -480,7 +480,7 @@ BecameConfusedText: ; 0x80d97
 
 BattleText_ItemHealedConfusion: ; ItemHealedConfusion
 	text "A @"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " rid"
 	line "<TARGET>"
 	cont "of its confusion."
@@ -497,7 +497,7 @@ BattleText_UsersHurtByStringBuffer1: ; 0x80de2
 	text "<USER>'s"
 	line "hurt by"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x80df5
@@ -506,7 +506,7 @@ BattleText_UserWasReleasedFromStringBuffer1: ; 0x80df5
 	text "<USER>"
 	line "was released from"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x80e11
@@ -560,7 +560,7 @@ HungOnText: ; 0x80e99
 	text "<TARGET>"
 	line "hung on with"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x80eb0
@@ -588,49 +588,49 @@ InfatuationText: ; 0x80eda
 DisabledMoveText: ; 0x80f02
 	text "<USER>'s"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " is"
 	cont "DISABLED!"
 	prompt
 ; 0x80f19
 
 LoafingAroundText: ; 0x80f19
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text " is"
 	line "loafing around."
 	prompt
 ; 0x80f31
 
 BeganToNapText: ; 0x80f31
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text " began"
 	line "to nap!"
 	prompt
 ; 0x80f44
 
 WontObeyText: ; 0x80f44
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text " won't"
 	line "obey!"
 	prompt
 ; 0x80f54
 
 TurnedAwayText: ; 0x80f54
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text " turned"
 	line "away!"
 	prompt
 ; 0x80f66
 
 IgnoredOrdersText: ; 0x80f66
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text " ignored"
 	line "orders!"
 	prompt
 ; 0x80f7b
 
 IgnoredSleepingText: ; 0x80f7b
-	text_from_ram BattleMonNick
+	text_from_ram wBattleMonNick
 	text " ignored"
 	line "orders…sleeping!"
 	prompt
@@ -646,7 +646,7 @@ HasNoPPLeftText: ; 0x80fba
 	text "<USER>"
 	line "has no PP left for"
 	cont "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text "!"
 	prompt
 ; 0x80fd7
@@ -758,7 +758,7 @@ SketchedText: ; 0x81143
 	text "<USER>"
 	line "SKETCHED"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x81156
@@ -773,7 +773,7 @@ DestinyBondEffectText: ; 0x81156
 SpiteEffectText: ; 0x8117f
 	text "<TARGET>'s"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " was"
 	cont "reduced by @"
 	deciram wd265, 1, 1
@@ -850,7 +850,7 @@ WasFrozenText: ; 0x8125d
 WontRiseAnymoreText: ; 0x81272
 	text "<USER>'s"
 	line "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text " won't"
 	cont "rise anymore!"
 	prompt
@@ -859,7 +859,7 @@ WontRiseAnymoreText: ; 0x81272
 WontDropAnymoreText: ; 0x8128f
 	text "<TARGET>'s"
 	line "@"
-	text_from_ram StringBuffer2
+	text_from_ram wStringBuffer2
 	text " won't"
 	cont "drop anymore!"
 	prompt
@@ -885,14 +885,14 @@ BlownAwayText: ; 0x812d2
 
 PlayerHitTimesText: ; 0x812e5
 	text "Hit @"
-	deciram PlayerDamageTaken, 1, 1
+	deciram wPlayerDamageTaken, 1, 1
 	text " times!"
 	prompt
 ; 0x812f8
 
 EnemyHitTimesText: ; 0x812f8
 	text "Hit @"
-	deciram EnemyDamageTaken, 1, 1
+	deciram wEnemyDamageTaken, 1, 1
 	text " times!"
 	prompt
 ; 0x8130b
@@ -957,7 +957,7 @@ LearnedMoveText: ; 0x813e6
 	text "<USER>"
 	line "learned"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x813f8
@@ -977,7 +977,7 @@ EvadedText: ; 0x81407
 WasDisabledText: ; 0x8141d
 	text "<TARGET>'s"
 	line "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text " was"
 	cont "DISABLED!"
 	prompt
@@ -993,7 +993,7 @@ TransformedTypeText: ; 0x81452
 	text "<USER>"
 	line "transformed into"
 	cont "the @"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "-type!"
 	prompt
 ; 0x81476
@@ -1008,7 +1008,7 @@ TransformedText: ; 0x81499
 	text "<USER>"
 	line "TRANSFORMED into"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x814b4
@@ -1088,7 +1088,7 @@ ProtectedByText: ; 0x815a9
 	text "<TARGET>'s"
 	line "protected by"
 	cont "@"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "!"
 	prompt
 ; 0x815c1
@@ -1102,7 +1102,7 @@ MirrorMoveFailedText: ; 0x815c1
 StoleText: ; 0x815da
 	text "<USER>"
 	line "stole @"
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text_start
 	cont "from its foe!"
 	prompt
@@ -1260,7 +1260,7 @@ ForesawAttackText: ; 0x81817
 ; 0x8182d
 
 BeatUpAttackText: ; 0x8182d
-	text_from_ram StringBuffer1
+	text_from_ram wStringBuffer1
 	text "'s"
 	line "attack!"
 	done

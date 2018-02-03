@@ -1,8 +1,8 @@
 UpdateUnownDex: ; fba18
-	ld a, [UnownLetter]
+	ld a, [wUnownLetter]
 	ld c, a
 	ld b, NUM_UNOWN
-	ld hl, UnownDex
+	ld hl, wUnownDex
 .loop
 	ld a, [hli]
 	and a
@@ -27,7 +27,7 @@ PrintUnownWord: ; fba2e (3e:7a2e)
 	ld a, [wDexCurrentUnownIndex]
 	ld e, a
 	ld d, 0
-	ld hl, UnownDex
+	ld hl, wUnownDex
 	add hl, de
 	ld a, [hl]
 	ld e, a

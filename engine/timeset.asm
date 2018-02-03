@@ -11,11 +11,11 @@ InitClock: ; 90672 (24:4672)
 	ld a, $0
 	ld [wSpriteUpdatesEnabled], a
 	ld a, $10
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, LOW(MUSIC_NONE)
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_NONE)
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld c, 8
 	call DelayFrames
 	call RotateFourPalettesLeft
@@ -72,7 +72,7 @@ InitClock: ; 90672 (24:4672)
 	jr nc, .SetHourLoop
 
 	ld a, [wInitHourBuffer]
-	ld [StringBuffer2 + 1], a
+	ld [wStringBuffer2 + 1], a
 	call .ClearScreen
 	ld hl, Text_WhatHrs
 	call PrintText
@@ -102,7 +102,7 @@ InitClock: ; 90672 (24:4672)
 	jr nc, .SetMinutesLoop
 
 	ld a, [wInitMinuteBuffer]
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	call .ClearScreen
 	ld hl, Text_WhoaMins
 	call PrintText
@@ -453,7 +453,7 @@ Special_SetDayOfWeek: ; 90913
 	call YesNoBox
 	jr c, .loop
 	ld a, [wTempDayOfWeek]
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	call SetDayOfWeek
 	call LoadStandardFont
 	pop af
@@ -534,7 +534,7 @@ Special_SetDayOfWeek: ; 90913
 ; 909f2
 
 .WeekdayStrings: ; 909f2
-; entries correspond to CurDay constants (see constants/wram_constants.asm)
+; entries correspond to wCurDay constants (see constants/wram_constants.asm)
 	dw .Sunday
 	dw .Monday
 	dw .Tuesday
@@ -667,7 +667,7 @@ DebugDisplayTime: ; 90abc
 	ld [hl], " "
 	inc hl
 
-	ld de, StartDay
+	ld de, wStartDay
 	call .PrintTime
 
 	ld [hl], " "

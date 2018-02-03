@@ -9,7 +9,7 @@ Printer_StartTransmission: ; 84000
 	ld [wPrinterOpcode], a
 	ld hl, wPrinterConnectionOpen
 	set 0, [hl]
-	ld a, [GBPrinter]
+	ld a, [wGBPrinter]
 	ld [wGBPrinterSettings], a
 	xor a
 	ld [wJumptableIndex], a

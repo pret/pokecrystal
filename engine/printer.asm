@@ -751,7 +751,7 @@ Printer_PrintBoxListSegment: ; 848e7 (21:48e7)
 	cp $ff
 	jp z, .finish
 	ld [wd265], a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 
 	push bc
 	push hl
@@ -769,7 +769,7 @@ Printer_PrintBoxListSegment: ; 848e7 (21:48e7)
 
 	push hl
 	call PlaceString
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	pop hl
 	jr z, .ok2
@@ -850,16 +850,16 @@ Printer_GetMonGender: ; 8498a (21:498a)
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, [wWhichBoxMonToPrint]
 	call AddNTimes
-	ld de, TempMonDVs
+	ld de, wTempMonDVs
 	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, [hli]
 	ld [de], a
 	ld a, [wWhichBoxMonToPrint]
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	ld a, TEMPMON
-	ld [MonType], a
+	ld [wMonType], a
 	farcall GetGender
 	ld a, " "
 	jr c, .got_gender

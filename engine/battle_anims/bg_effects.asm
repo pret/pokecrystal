@@ -9,7 +9,7 @@
 ; BG effects for use in battle animations.
 
 ExecuteBGEffects: ; c8000 (32:4000)
-	ld hl, ActiveBGEffects
+	ld hl, wActiveBGEffects
 	ld e, 5
 .loop
 	ld a, [hl]
@@ -30,7 +30,7 @@ ExecuteBGEffects: ; c8000 (32:4000)
 	ret
 
 QueueBGEffect: ; c801a (32:401a)
-	ld hl, ActiveBGEffects
+	ld hl, wActiveBGEffects
 	ld e, 5
 .loop
 	ld a, [hl]
@@ -960,7 +960,7 @@ BattleBGEffect_Surf: ; c8545 (32:4545)
 	jr nz, .loop
 	pop af
 	ld [hl], a
-	ld de, LYOverridesBackup
+	ld de, wLYOverridesBackup
 	ld hl, wSurfWaveBGEffect
 	ld bc, $0
 .loop2
@@ -1224,7 +1224,7 @@ BattleBGEffect_DoubleTeam: ; c8689 (32:4689)
 	xor $ff
 	inc a
 	ld d, a
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 	ld a, [hLYOverrideStart]
 	ld l, a
 	ld a, [hLYOverrideEnd]
@@ -1265,7 +1265,7 @@ BattleBGEffect_AcidArmor: ; c8709 (32:4709)
 	ld e, [hl]
 	ld d, 2
 	call Functionc8f2e
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 	ld a, [hLYOverrideEnd]
 	ld l, a
 	ld [hl], $0
@@ -1276,7 +1276,7 @@ BattleBGEffect_AcidArmor: ; c8709 (32:4709)
 .one
 	ld a, [hLYOverrideEnd]
 	ld l, a
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 	ld e, l
 	ld d, h
 	dec de
@@ -1539,10 +1539,10 @@ Tackle_BGEffect25_2d_two:
 
 Functionc88a5: ; c88a5 (32:48a5)
 	push af
-	ld a, [FXAnimID + 1] ; FXAnimID + 1
+	ld a, [wFXAnimID + 1] ; FXAnimID + 1
 	or a
 	jr nz, .not_rollout
-	ld a, [FXAnimID] ; FXAnimID
+	ld a, [wFXAnimID] ; FXAnimID
 	cp ROLLOUT
 	jr z, .rollout
 .not_rollout
@@ -1555,7 +1555,7 @@ Functionc88a5: ; c88a5 (32:48a5)
 	ld a, [hLYOverrideEnd]
 	sub d
 	ld d, a
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 	ld a, [hSCY]
 	or a
 	jr nz, .skip1
@@ -1847,7 +1847,7 @@ BattleBGEffect_2a: ; c8a3a (32:4a3a)
 	ld [hLYOverrideEnd], a
 	ld a, [hLYOverrideStart]
 	ld l, a
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 .loop
 	ld a, [hLYOverrideEnd]
 	cp l
@@ -1901,7 +1901,7 @@ BattleBGEffect_2a: ; c8a3a (32:4a3a)
 	ld a, [hLYOverrideEnd]
 	sub l
 	srl a
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 .loop2
 	ld [hl], e
 	inc hl
@@ -2044,7 +2044,7 @@ BattleBGEffect_1c: ; c8b00 (32:4b00)
 	ret
 
 .DMG_LYOverrideLoads:
-	ld hl, LYOverridesBackup
+	ld hl, wLYOverridesBackup
 .loop1
 	ld [hl], d
 	inc hl
@@ -2314,7 +2314,7 @@ BattleBGEffect_2e: ; c8ce1 (32:4ce1)
 	ld [hSCY], a
 	xor $ff
 	inc a
-	ld [AnimObject01YOffset], a
+	ld [wAnimObject01YOffset], a
 	ret
 
 BattleBGEffect_1f: ; c8cf9 (32:4cf9)
@@ -2657,13 +2657,13 @@ BattleBGEffect_GetNextDMGPal: ; c8eb2 (32:4eb2)
 BattleBGEffects_ClearLYOverrides: ; c8eca (32:4eca)
 	xor a
 BattleBGEffects_SetLYOverrides: ; c8ecb (32:4ecb)
-	ld hl, LYOverrides ; wListPointer
+	ld hl, wLYOverrides ; wListPointer
 	ld e, $99
 .loop1
 	ld [hli], a
 	dec e
 	jr nz, .loop1
-	ld hl, LYOverridesBackup
+	ld hl, wLYOverridesBackup
 	ld e, $91
 .loop2
 	ld [hli], a
@@ -2735,7 +2735,7 @@ Functionc8f2e: ; c8f2e (32:4f2e)
 	ld [wBattleAnimTemp2], a
 	ld a, $80
 	ld [wBattleAnimTemp3], a
-	ld bc, LYOverridesBackup
+	ld bc, wLYOverridesBackup
 .loop
 	ld a, [hLYOverrideStart]
 	cp c
@@ -2796,7 +2796,7 @@ Functionc8f9a: ; c8f9a (32:4f9a)
 	ld a, d
 	ld [wBattleAnimTemp2], a
 	call .GetLYOverrideBackupAddrOffset
-	ld hl, LYOverridesBackup
+	ld hl, wLYOverridesBackup
 	add hl, de
 	ld c, l
 	ld b, h
@@ -2853,7 +2853,7 @@ BattleBGEffect_WavyScreenFX: ; c8fef (32:4fef)
 	ld l, a
 	inc a
 	ld e, a
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 	ld d, h
 	ld a, [hLYOverrideEnd]
 	sub l
@@ -2876,7 +2876,7 @@ BattleBGEffect_WavyScreenFX: ; c8fef (32:4fef)
 
 BGEffect_FillLYOverridesBackup: ; c900b (32:500b)
 	push af
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 	ld a, [hLYOverrideStart]
 	ld l, a
 	ld a, [hLYOverrideEnd]
@@ -2899,7 +2899,7 @@ BGEffect_DisplaceLYOverridesBackup: ; c901b (32:501b)
 	sub l
 	sub e
 	ld d, a
-	ld h, HIGH(LYOverridesBackup)
+	ld h, HIGH(wLYOverridesBackup)
 	ld a, [hLYOverrideStart]
 	ld l, a
 	ld a, $90
@@ -2930,12 +2930,12 @@ BGEffect_CheckFlyDigStatus: ; c9042 (32:5042)
 	and $1
 	xor [hl]
 	jr nz, .player
-	ld a, [EnemySubStatus3] ; EnemySubStatus3
+	ld a, [wEnemySubStatus3] ; EnemySubStatus3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 
 .player
-	ld a, [PlayerSubStatus3] ; PlayerSubStatus3
+	ld a, [wPlayerSubStatus3] ; PlayerSubStatus3
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 

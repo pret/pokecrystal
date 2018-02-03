@@ -476,7 +476,7 @@ MovementData_0x6add1:
 
 UnknownText_0x6add5:
 	text "Today's @"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "."
 	line "That means the"
 
@@ -539,7 +539,7 @@ UnknownText_0x6afb0:
 
 	para "You'll have to use"
 	line "@"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text ", the"
 
 	para "first #MON in"
@@ -623,7 +623,7 @@ UnknownText_0x6b209:
 
 UnknownText_0x6b284:
 	text "You still have @"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text_start
 	line "minute(s) left."
 

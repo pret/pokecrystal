@@ -9,9 +9,9 @@ ReturnFromMapSetupScript:: ; b8000
 
 ; should have just been a fallthrough
 .inefficient_farcall ; b800a
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 	ld [wCurrentLandmark], a
@@ -91,10 +91,10 @@ ReturnFromMapSetupScript:: ; b8000
 ; b8089
 
 .CheckNationalParkGate: ; b8089
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	cp GROUP_ROUTE_35_NATIONAL_PARK_GATE
 	ret nz
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	cp MAP_ROUTE_35_NATIONAL_PARK_GATE
 	ret z
 	cp MAP_ROUTE_36_NATIONAL_PARK_GATE
@@ -161,14 +161,14 @@ PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
 	ld c, a
 	hlcoord 0, 2
 	add hl, bc
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	call PlaceString
 	ret
 
 .GetNameLength: ; b8101 (2e:4101)
 	ld c, 0
 	push hl
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 .loop
 	ld a, [hli]
 	cp "@"
@@ -183,7 +183,7 @@ PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
 
 
 InitMapSignAttrMap: ; b8115
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	inc b
 	inc b

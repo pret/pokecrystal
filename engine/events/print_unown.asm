@@ -1,5 +1,5 @@
 UnownPrinter: ; 16be4
-	ld a, [UnownDex]
+	ld a, [wUnownDex]
 	and a
 	ret z
 
@@ -7,10 +7,10 @@ UnownPrinter: ; 16be4
 	push af
 	ld a, $1
 	ld [hInMenu], a
-	ld a, [Options]
+	ld a, [wOptions]
 	push af
 	set NO_TEXT_SCROLL, a
-	ld [Options], a
+	ld [wOptions], a
 	call ClearBGPalettes
 	call ClearTileMap
 
@@ -54,10 +54,10 @@ UnownPrinter: ; 16be4
 	call WaitBGMap
 
 	ld a, UNOWN
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	xor a
-	ld [TempMonDVs], a
-	ld [TempMonDVs + 1], a
+	ld [wTempMonDVs], a
+	ld [wTempMonDVs + 1], a
 
 	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
@@ -89,7 +89,7 @@ UnownPrinter: ; 16be4
 
 .pressed_b
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	pop af
 	ld [hInMenu], a
 	call ReturnToMapFromSubmenu
@@ -134,9 +134,9 @@ UnownPrinter: ; 16be4
 	cp 26
 	jr z, .vacant
 	inc a
-	ld [UnownLetter], a
+	ld [wUnownLetter], a
 	ld a, UNOWN
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	xor a
 	ld [wBoxAlignment], a
 	ld de, vTiles2

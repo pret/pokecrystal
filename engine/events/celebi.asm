@@ -2,10 +2,10 @@ SPECIALCELEBIEVENT_CELEBI EQU $84
 
 Special_CelebiShrineEvent: ; 4989a
 	call DelayFrame
-	ld a, [VramState]
+	ld a, [wVramState]
 	push af
 	xor a
-	ld [VramState], a
+	ld [wVramState], a
 	call LoadCelebiGFX
 	depixel 0, 10, 7, 0
 	ld a, SPRITE_ANIM_INDEX_CELEBI
@@ -44,7 +44,7 @@ Special_CelebiShrineEvent: ; 4989a
 
 .done
 	pop af
-	ld [VramState], a
+	ld [wVramState], a
 	call .RestorePlayerSprite_DespawnLeaves
 	call CelebiEvent_SetBattleType
 	ret
@@ -52,7 +52,7 @@ Special_CelebiShrineEvent: ; 4989a
 ; 498f9
 
 .RestorePlayerSprite_DespawnLeaves: ; 498f9
-	ld hl, Sprite01TileID
+	ld hl, wVirtualOAMSprite00TileID
 	xor a
 	ld c, 4
 .OAMloop:
@@ -63,8 +63,8 @@ endr
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, Sprite05
-	ld bc, SpritesEnd - Sprite05
+	ld hl, wVirtualOAMSprite04
+	ld bc, wVirtualOAMEnd - wVirtualOAMSprite04
 	xor a
 	call ByteFill
 	ret
@@ -357,7 +357,7 @@ GetCelebiSpriteTile: ; 49bae
 
 CelebiEvent_SetBattleType: ; 49bf3
 	ld a, BATTLETYPE_CELEBI
-	ld [BattleType], a
+	ld [wBattleType], a
 	ret
 
 ; 49bf9
@@ -367,13 +367,13 @@ Special_CheckCaughtCelebi: ; 49bf9
 	bit 6, a
 	jr z, .false
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	jr .done
 
 
 .false
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 
 .done
 	ret

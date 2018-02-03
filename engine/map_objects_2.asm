@@ -4,7 +4,7 @@ LoadObjectMasks: ; 2454f
 	ld bc, NUM_OBJECTS
 	call ByteFill
 	nop
-	ld bc, MapObjects
+	ld bc, wMapObjects
 	ld de, wObjectMasks
 	xor a
 .loop

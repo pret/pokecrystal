@@ -52,13 +52,13 @@ SweetScentEncounter: ; 506ef
 
 .start_battle
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .no_battle
 	xor a
-	ld [ScriptVar], a
-	ld [BattleType], a
+	ld [wScriptVar], a
+	ld [wBattleType], a
 	ret
 ; 50726
 

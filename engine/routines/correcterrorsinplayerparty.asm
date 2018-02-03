@@ -1,5 +1,5 @@
 Unreferenced_CorrectErrorsInPlayerParty:
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	ld a, [hl]
 	and a
 	ret z
@@ -27,7 +27,7 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	push hl
 	push bc
 	ld a, c
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	call GetPartyLocation
 	ld [hl], SMEARGLE
 	pop bc
@@ -40,8 +40,8 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	jr nz, .loop1
 	ld [hl], $ff
 
-	ld hl, PartyMon1
-	ld a, [PartyCount]
+	ld hl, wPartyMon1
+	ld a, [wPartyCount]
 	ld d, a
 	ld e, 0
 .loop2
@@ -59,14 +59,14 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	ld [hl], SMEARGLE
 	push de
 	ld d, 0
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	add hl, de
 	pop de
 	ld a, SMEARGLE
 	ld [hl], a
 
 .check_level
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
 	ld hl, MON_LEVEL
 	add hl, bc
@@ -81,7 +81,7 @@ Unreferenced_CorrectErrorsInPlayerParty:
 .invalid_level
 	ld [hl], a
 .load_level
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 
 	ld hl, MON_MAXHP
 	add hl, bc
@@ -99,8 +99,8 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	dec d
 	jr nz, .loop2
 
-	ld de, PartyMonNicknames
-	ld a, [PartyCount]
+	ld de, wPartyMonNicknames
+	ld a, [wPartyCount]
 	ld b, a
 	ld c, 0
 .loop3
@@ -114,7 +114,7 @@ Unreferenced_CorrectErrorsInPlayerParty:
 
 	push bc
 	push hl
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	push bc
 	ld b, 0
 	add hl, bc
@@ -125,7 +125,7 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	jr z, .got_nickname
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 .got_nickname
 	pop de
 	ld bc, MON_NAME_LENGTH
@@ -137,8 +137,8 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	dec b
 	jr nz, .loop3
 
-	ld de, PartyMonOT
-	ld a, [PartyCount]
+	ld de, wPartyMonOT
+	ld a, [wPartyCount]
 	ld b, a
 	ld c, 0
 .loop4
@@ -150,7 +150,7 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	jr nc, .valid_ot_name
 	ld d, h
 	ld e, l
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 .valid_ot_name
@@ -159,8 +159,8 @@ Unreferenced_CorrectErrorsInPlayerParty:
 	dec b
 	jr nz, .loop4
 
-	ld hl, PartyMon1Moves
-	ld a, [PartyCount]
+	ld hl, wPartyMon1Moves
+	ld a, [wPartyCount]
 	ld b, a
 .loop5
 	push hl

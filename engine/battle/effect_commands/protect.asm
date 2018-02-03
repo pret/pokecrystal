@@ -16,11 +16,11 @@ BattleCommand_Protect: ; 37618
 
 ProtectChance: ; 3762c
 
-	ld de, PlayerProtectCount
+	ld de, wPlayerProtectCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37637
-	ld de, EnemyProtectCount
+	ld de, wEnemyProtectCount
 .asm_37637
 
 	call CheckOpponentWentFirst

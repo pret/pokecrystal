@@ -22,7 +22,7 @@ PlaceDiplomaOnScreen: ; 1dd709
 	ld de, .EmptyString
 	hlcoord 15, 5
 	call PlaceString
-	ld de, PlayerName
+	ld de, wPlayerName
 	hlcoord 9, 5
 	call PlaceString
 	ld de, .Certification
@@ -68,12 +68,12 @@ PrintDiplomaPage2: ; 1dd7ae
 	hlcoord 3, 15
 	call PlaceString
 	hlcoord 12, 15
-	ld de, GameTimeHours
+	ld de, wGameTimeHours
 	lb bc, 2, 4
 	call PrintNum
 	ld [hl], $67 ; colon
 	inc hl
-	ld de, GameTimeMinutes
+	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret

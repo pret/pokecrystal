@@ -1,5 +1,5 @@
 ReadTrainerParty: ; 39771
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	bit 0, a
 	ret nz
 
@@ -7,24 +7,24 @@ ReadTrainerParty: ; 39771
 	and a
 	ret nz
 
-	ld hl, OTPartyCount
+	ld hl, wOTPartyCount
 	xor a
 	ld [hli], a
 	dec a
 	ld [hl], a
 
-	ld hl, OTPartyMons
-	ld bc, OTPartyMonsEnd - OTPartyMons
+	ld hl, wOTPartyMons
+	ld bc, wOTPartyMonsEnd - wOTPartyMons
 	xor a
 	call ByteFill
 
-	ld a, [OtherTrainerClass]
+	ld a, [wOtherTrainerClass]
 	cp CAL
 	jr nz, .not_cal2
-	ld a, [OtherTrainerID]
+	ld a, [wOtherTrainerID]
 	cp CAL2
 	jr z, .cal2
-	ld a, [OtherTrainerClass]
+	ld a, [wOtherTrainerClass]
 .not_cal2
 
 	dec a
@@ -37,7 +37,7 @@ ReadTrainerParty: ; 39771
 	ld h, [hl]
 	ld l, a
 
-	ld a, [OtherTrainerID]
+	ld a, [wOtherTrainerID]
 	ld b, a
 .skip_trainer
 	dec b
@@ -97,11 +97,11 @@ TrainerType1: ; 397eb
 	cp $ff
 	ret z
 
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld a, [hli]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [wMonType], a
 	push hl
 	predef TryAddMonToParty
 	pop hl
@@ -117,17 +117,17 @@ TrainerType2: ; 39806
 	cp $ff
 	ret z
 
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld a, [hli]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [wMonType], a
 
 	push hl
 	predef TryAddMonToParty
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	dec a
-	ld hl, OTPartyMon1Moves
+	ld hl, wOTPartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
@@ -144,9 +144,9 @@ TrainerType2: ; 39806
 
 	push hl
 
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	dec a
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
@@ -194,16 +194,16 @@ TrainerType3: ; 39871
 	cp $ff
 	ret z
 
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld a, [hli]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [wMonType], a
 	push hl
 	predef TryAddMonToParty
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	dec a
-	ld hl, OTPartyMon1Item
+	ld hl, wOTPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
@@ -223,18 +223,18 @@ TrainerType4: ; 3989d
 	cp $ff
 	ret z
 
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld a, [hli]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 
 	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [wMonType], a
 
 	push hl
 	predef TryAddMonToParty
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	dec a
-	ld hl, OTPartyMon1Item
+	ld hl, wOTPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
@@ -245,9 +245,9 @@ TrainerType4: ; 3989d
 	ld [de], a
 
 	push hl
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	dec a
-	ld hl, OTPartyMon1Moves
+	ld hl, wOTPartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
@@ -264,9 +264,9 @@ TrainerType4: ; 3989d
 
 	push hl
 
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	dec a
-	ld hl, OTPartyMon1
+	ld hl, wOTPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
@@ -314,7 +314,7 @@ ComputeTrainerReward: ; 3991b (e:591b)
 	ld [hli], a
 	ld a, [wEnemyTrainerBaseReward]
 	ld [hli], a
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	ld [hl], a
 	call Multiply
 	ld hl, wBattleReward
@@ -328,14 +328,14 @@ ComputeTrainerReward: ; 3991b (e:591b)
 
 
 Battle_GetTrainerName:: ; 39939
-	ld a, [InBattleTowerBattle]
+	ld a, [wInBattleTowerBattle]
 	bit 0, a
-	ld hl, OTPlayerName
+	ld hl, wOTPlayerName
 	jp nz, CopyTrainerName
 
-	ld a, [OtherTrainerID]
+	ld a, [wOtherTrainerID]
 	ld b, a
-	ld a, [OtherTrainerClass]
+	ld a, [wOtherTrainerClass]
 	ld c, a
 
 GetTrainerName:: ; 3994c
@@ -379,7 +379,7 @@ GetTrainerName:: ; 3994c
 	jr .loop
 
 CopyTrainerName: ; 39984
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	push de
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -389,7 +389,7 @@ CopyTrainerName: ; 39984
 
 Function39990: ; 39990
 ; This function is useless.
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	push de
 	ld bc, NAME_LENGTH
 	pop de

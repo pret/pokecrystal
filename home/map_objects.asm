@@ -18,7 +18,7 @@ GetSpritePalette:: ; 17ff
 GetSpriteVTile:: ; 180e
 	push hl
 	push bc
-	ld hl, UsedSprites + 2
+	ld hl, wUsedSprites + 2
 	ld c, SPRITE_GFX_LIST_CAPACITY - 1
 	ld b, a
 	ld a, [hMapObjectIndexBuffer]
@@ -32,12 +32,12 @@ GetSpriteVTile:: ; 180e
 	inc hl
 	dec c
 	jr nz, .loop
-	ld a, [UsedSprites + 1]
+	ld a, [wUsedSprites + 1]
 	scf
 	jr .done
 
 .nope
-	ld a, [UsedSprites + 1]
+	ld a, [wUsedSprites + 1]
 	jr .done
 
 .found
@@ -75,14 +75,14 @@ DoesSpriteHaveFacings:: ; 1836
 ; 184a
 
 GetPlayerStandingTile:: ; 184a
-	ld a, [PlayerStandingTile]
+	ld a, [wPlayerStandingTile]
 	call GetTileCollision
 	ld b, a
 	ret
 ; 1852
 
 CheckOnWater:: ; 1852
-	ld a, [PlayerStandingTile]
+	ld a, [wPlayerStandingTile]
 	call GetTileCollision
 	sub WATERTILE
 	ret z
@@ -204,7 +204,7 @@ CheckWaterfallTile:: ; 18bd
 ; 18c3
 
 CheckStandingOnEntrance:: ; 18c3
-	ld a, [PlayerStandingTile]
+	ld a, [wPlayerStandingTile]
 	cp COLL_DOOR
 	ret z
 	cp COLL_DOOR_79
@@ -217,7 +217,7 @@ CheckStandingOnEntrance:: ; 18c3
 
 GetMapObject:: ; 18d2
 ; Return the location of map object a in bc.
-	ld hl, MapObjects
+	ld hl, wMapObjects
 	ld bc, OBJECT_LENGTH
 	call AddNTimes
 	ld b, h
@@ -256,7 +256,7 @@ CheckObjectTime:: ; 18f5
 	cp -1
 	jr z, .timeofday_always
 	ld hl, .TimeOfDayValues_191e
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	add l
 	ld l, a
 	jr nc, .ok
@@ -434,7 +434,7 @@ LoadMovementDataPointer:: ; 19e9
 	add hl, bc
 	ld [hl], STEP_TYPE_00
 
-	ld hl, VramState
+	ld hl, wVramState
 	set 7, [hl]
 	and a
 	ret
@@ -446,7 +446,7 @@ FindFirstEmptyObjectStruct:: ; 1a13
 ; Preserves BC and DE.
 	push bc
 	push de
-	ld hl, ObjectStructs
+	ld hl, wObjectStructs
 	ld de, OBJECT_STRUCT_LENGTH
 	ld c, NUM_OBJECT_STRUCTS
 .loop
@@ -604,19 +604,19 @@ _GetMovementByte:: ; 1aae
 ; 1ac6
 
 SetVramState_Bit0:: ; 1ac6
-	ld hl, VramState
+	ld hl, wVramState
 	set 0, [hl]
 	ret
 ; 1acc
 
 ResetVramState_Bit0:: ; 1acc
-	ld hl, VramState
+	ld hl, wVramState
 	res 0, [hl]
 	ret
 ; 1ad2
 
 UpdateSprites:: ; 1ad2
-	ld a, [VramState]
+	ld a, [wVramState]
 	bit 0, a
 	ret z
 
@@ -627,7 +627,7 @@ UpdateSprites:: ; 1ad2
 
 GetObjectStruct:: ; 1ae5
 	ld bc, OBJECT_STRUCT_LENGTH
-	ld hl, ObjectStructs
+	ld hl, wObjectStructs
 	call AddNTimes
 	ld b, h
 	ld c, l

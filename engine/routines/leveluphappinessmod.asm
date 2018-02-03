@@ -1,13 +1,13 @@
 LevelUpHappinessMod: ; 2709e
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1CaughtLocation
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1CaughtLocation
 	call GetPartyLocation
 	ld a, [hl]
 	and $7f
 	ld d, a
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 	cp d

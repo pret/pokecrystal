@@ -29,36 +29,36 @@ _GetVarAction:: ; 80648 (20:4648)
 	ret
 
 .loadstringbuffer2 ; 8066c (20:466c)
-	ld de, StringBuffer2
+	ld de, wStringBuffer2
 	ld [de], a
 	ret
 ; 80671 (20:4671)
 
 .VarActionTable: ; 80671
 ; entries correspond to VAR_* constants
-	; RETVAR_STRBUF2: copy [de] to StringBuffer2
+	; RETVAR_STRBUF2: copy [de] to wStringBuffer2
 	; RETVAR_ADDR_DE: return address in de
 	; RETVAR_EXECUTE: call function
-	dwb StringBuffer2,                  RETVAR_STRBUF2
-	dwb PartyCount,                     RETVAR_STRBUF2
+	dwb wStringBuffer2,                 RETVAR_STRBUF2
+	dwb wPartyCount,                    RETVAR_STRBUF2
 	dwb .BattleResult,                  RETVAR_EXECUTE
-	dwb BattleType,                     RETVAR_ADDR_DE
-	dwb TimeOfDay,                      RETVAR_STRBUF2
+	dwb wBattleType,                    RETVAR_ADDR_DE
+	dwb wTimeOfDay,                     RETVAR_STRBUF2
 	dwb .CountCaughtMons,               RETVAR_EXECUTE
 	dwb .CountSeenMons,                 RETVAR_EXECUTE
 	dwb .CountBadges,                   RETVAR_EXECUTE
-	dwb PlayerState,                    RETVAR_ADDR_DE
+	dwb wPlayerState,                   RETVAR_ADDR_DE
 	dwb .PlayerFacing,                  RETVAR_EXECUTE
 	dwb hHours,                         RETVAR_STRBUF2
 	dwb .DayOfWeek,                     RETVAR_EXECUTE
-	dwb MapGroup,                       RETVAR_STRBUF2
-	dwb MapNumber,                      RETVAR_STRBUF2
+	dwb wMapGroup,                      RETVAR_STRBUF2
+	dwb wMapNumber,                     RETVAR_STRBUF2
 	dwb .UnownCaught,                   RETVAR_EXECUTE
-	dwb wEnvironment,                    RETVAR_STRBUF2
+	dwb wEnvironment,                   RETVAR_STRBUF2
 	dwb .BoxFreeSpace,                  RETVAR_EXECUTE
 	dwb wBugContestMinsRemaining,       RETVAR_STRBUF2
-	dwb XCoord,                         RETVAR_STRBUF2
-	dwb YCoord,                         RETVAR_STRBUF2
+	dwb wXCoord,                        RETVAR_STRBUF2
+	dwb wYCoord,                        RETVAR_STRBUF2
 	dwb wSpecialPhoneCallID,            RETVAR_STRBUF2
 	dwb wNrOfBeatenBattleTowerTrainers, RETVAR_STRBUF2
 	dwb wKurtApricornQuantity,          RETVAR_STRBUF2
@@ -71,8 +71,8 @@ _GetVarAction:: ; 80648 (20:4648)
 
 .CountCaughtMons: ; 806c5
 ; Caught mons.
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
+	ld hl, wPokedexCaught
+	ld b, wEndPokedexCaught - wPokedexCaught
 	call CountSetBits
 	ld a, [wd265]
 	jp .loadstringbuffer2
@@ -80,8 +80,8 @@ _GetVarAction:: ; 80648 (20:4648)
 
 .CountSeenMons: ; 806d3
 ; Seen mons.
-	ld hl, PokedexSeen
-	ld b, EndPokedexSeen - PokedexSeen
+	ld hl, wPokedexSeen
+	ld b, wEndPokedexSeen - wPokedexSeen
 	call CountSetBits
 	ld a, [wd265]
 	jp .loadstringbuffer2
@@ -89,7 +89,7 @@ _GetVarAction:: ; 80648 (20:4648)
 
 .CountBadges: ; 806e1
 ; Number of owned badges.
-	ld hl, Badges
+	ld hl, wBadges
 	ld b, 2
 	call CountSetBits
 	ld a, [wd265]
@@ -98,7 +98,7 @@ _GetVarAction:: ; 80648 (20:4648)
 
 .PlayerFacing: ; 806ef
 ; The direction the player is facing.
-	ld a, [PlayerDirection]
+	ld a, [wPlayerDirection]
 	and $c
 	rrca
 	rrca
@@ -118,7 +118,7 @@ _GetVarAction:: ; 80648 (20:4648)
 	jp .loadstringbuffer2
 
 .count
-	ld hl, UnownDex
+	ld hl, wUnownDex
 	ld b, 0
 .loop
 	ld a, [hli]

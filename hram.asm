@@ -2,7 +2,7 @@
 ; "ld a, [hAddress]" and "ld [hAddress], a" will
 ; use the more efficient "ldh" instruction.
 
-hPushOAM           EQU $ff80 ; 10 bytes
+hTransferVirtualOAM           EQU $ff80 ; 10 bytes
 
 hROMBankBackup     EQU $ff8a
 hBuffer            EQU $ff8b

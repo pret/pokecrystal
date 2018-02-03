@@ -1,12 +1,12 @@
 DelayFrame:: ; 45a
 ; Wait for one frame
 	ld a, 1
-	ld [VBlankOccurred], a
+	ld [wVBlankOccurred], a
 
 ; Wait for the next VBlank, halting to conserve battery
 .halt
 	halt ; rgbasm adds a nop after this instruction by default
-	ld a, [VBlankOccurred]
+	ld a, [wVBlankOccurred]
 	and a
 	jr nz, .halt
 	ret

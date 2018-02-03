@@ -1,5 +1,5 @@
-LoadPushOAM:: ; 4031
-	ld c, hPushOAM - $ff00
+WriteOAMDMACodeToHRAM:: ; 4031
+	ld c, hTransferVirtualOAM - $ff00
 	ld b, .PushOAMEnd - .PushOAM
 	ld hl, .PushOAM
 .loop
@@ -11,7 +11,7 @@ LoadPushOAM:: ; 4031
 	ret
 
 .PushOAM: ; 403f
-	ld a, HIGH(Sprites)
+	ld a, HIGH(wVirtualOAM)
 	ld [rDMA], a
 	ld a, NUM_SPRITE_OAM_STRUCTS
 .pushoam_loop

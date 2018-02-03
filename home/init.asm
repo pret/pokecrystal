@@ -79,7 +79,7 @@ Init:: ; 17d
 	or c
 	jr nz, .ByteFill
 
-	ld sp, Stack
+	ld sp, wStack
 
 ; Clear HRAM
 	ld a, [hCGB]
@@ -103,10 +103,10 @@ Init:: ; 17d
 	call ClearsScratch
 
 
-	ld a, BANK(LoadPushOAM)
+	ld a, BANK(WriteOAMDMACodeToHRAM)
 	rst Bankswitch
 
-	call LoadPushOAM
+	call WriteOAMDMACodeToHRAM
 
 	xor a
 	ld [hMapAnims], a

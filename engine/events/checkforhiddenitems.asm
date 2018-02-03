@@ -1,14 +1,14 @@
 CheckForHiddenItems: ; b8172
 ; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.
 	call GetMapScriptsBank
-	ld [Buffer1], a
-; Get the coordinate of the bottom right corner of the screen, and load it in Buffer3/Buffer4.
-	ld a, [XCoord]
+	ld [wBuffer1], a
+; Get the coordinate of the bottom right corner of the screen, and load it in wBuffer3/wBuffer4.
+	ld a, [wXCoord]
 	add SCREEN_WIDTH / 4
-	ld [Buffer4], a
-	ld a, [YCoord]
+	ld [wBuffer4], a
+	ld a, [wYCoord]
 	add SCREEN_HEIGHT / 4
-	ld [Buffer3], a
+	ld [wBuffer3], a
 ; Get the pointer for the first bg_event in the map...
 	ld hl, wCurrMapBGEventsPointer
 	ld a, [hli]
@@ -20,14 +20,14 @@ CheckForHiddenItems: ; b8172
 	jr z, .nobgeventitems
 ; For i = 1:wCurrMapBGEventCount...
 .loop
-; Store the counter in Buffer2, and store the bg_event pointer in the stack.
-	ld [Buffer2], a
+; Store the counter in wBuffer2, and store the bg_event pointer in the stack.
+	ld [wBuffer2], a
 	push hl
 ; Get the Y coordinate of the BG event.
 	call .GetFarByte
 	ld e, a
 ; Is the Y coordinate of the BG event on the screen?  If not, go to the next BG event.
-	ld a, [Buffer3]
+	ld a, [wBuffer3]
 	sub e
 	jr c, .next
 	cp SCREEN_HEIGHT / 2
@@ -35,7 +35,7 @@ CheckForHiddenItems: ; b8172
 ; Is the X coordinate of the BG event on the screen?  If not, go to the next BG event.
 	call .GetFarByte
 	ld d, a
-	ld a, [Buffer4]
+	ld a, [wBuffer4]
 	sub d
 	jr c, .next
 	cp SCREEN_WIDTH / 2
@@ -45,9 +45,9 @@ CheckForHiddenItems: ; b8172
 	cp BGEVENT_ITEM
 	jr nz, .next
 ; Has this item already been found?  If not, set off the Itemfinder.
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	call GetFarHalfword
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	call GetFarHalfword
 	ld d, h
 	ld e, l
@@ -63,7 +63,7 @@ CheckForHiddenItems: ; b8172
 	ld bc, 5
 	add hl, bc
 ; Restore the BG event counter and decrement it.  If it hits zero, there are no hidden items in range.
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	dec a
 	jr nz, .loop
 
@@ -78,7 +78,7 @@ CheckForHiddenItems: ; b8172
 ; b81e2
 
 .GetFarByte: ; b81e2
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	call GetFarByte
 	inc hl
 	ret
