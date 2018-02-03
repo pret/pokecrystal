@@ -89,7 +89,7 @@ PERSONTYPE_TRAINER  EQUS "OBJECTTYPE_TRAINER"
 ; macros/scripts/movement.asm
 
 show_person   EQUS "show_object"
-hide_person   EQUS "hide_person"
+hide_person   EQUS "hide_object"
 remove_person EQUS "remove_object"
 
 turn_head_down        EQUS "turn_head DOWN"
