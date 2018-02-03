@@ -115,7 +115,7 @@ sine_wave: MACRO
 x = 0.0
 rept \1
 	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-x = x + (32768.0 / \1) ; a circle has 65536.0 "degrees"
+x = x + 1024.0 ; a circle has 65536.0 "degrees"
 endr
 ENDM
 
