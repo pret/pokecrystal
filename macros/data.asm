@@ -112,10 +112,11 @@ ENDM
 
 
 sine_wave: MACRO
-x = 0.0
+; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
+x = 0
 rept \1
 	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
-x = x + 1024.0 ; a circle has 65536.0 "degrees"
+x = x + DIV(32768, \1) ; a circle has 65536 "degrees"
 endr
 ENDM
 

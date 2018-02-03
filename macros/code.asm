@@ -41,8 +41,8 @@ maskbits: MACRO
 ; example usage in rejection sampling:
 ; .loop
 ; 	call Random
-; 	maskbits 30
-; 	cp 30
+; 	maskbits 26
+; 	cp 26
 ; 	jr nc, .loop
 x = 1
 rept 8
