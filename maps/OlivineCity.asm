@@ -23,7 +23,7 @@ OlivineCity_MapScripts:
 	return
 
 UnknownScript_0x1a8833:
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
@@ -37,7 +37,7 @@ UnknownScript_0x1a8833:
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x1a88f4
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88db
 	setscene SCENE_FINISHED
 	disappear OLIVINECITY_OLIVINE_RIVAL
@@ -47,7 +47,7 @@ UnknownScript_0x1a8833:
 	end
 
 UnknownScript_0x1a886b:
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
@@ -61,7 +61,7 @@ UnknownScript_0x1a886b:
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x1a88f7
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88e8
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	setscene SCENE_FINISHED

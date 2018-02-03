@@ -43,7 +43,7 @@ GoldenrodGameCornerPokefanM3Script:
 	writetext GoldenrodGameCornerPokefanM3Text
 	waitbutton
 	closetext
-	spriteface GOLDENRODGAMECORNER_POKEFAN_M3, RIGHT
+	objectface GOLDENRODGAMECORNER_POKEFAN_M3, RIGHT
 	end
 
 GoldenrodGmeCornerCoinVendorScript:
@@ -242,7 +242,7 @@ GoldenrodGameCornerPharmacistScript:
 	writetext GoldenrodGameCornerPharmacistText
 	waitbutton
 	closetext
-	spriteface LAST_TALKED, LEFT
+	objectface LAST_TALKED, LEFT
 	end
 
 GoldenrodGameCornerPokefanM1Script:
@@ -251,7 +251,7 @@ GoldenrodGameCornerPokefanM1Script:
 	writetext GoldenrodGameCornerPokefanM1Text
 	waitbutton
 	closetext
-	spriteface GOLDENRODGAMECORNER_POKEFAN_M1, RIGHT
+	objectface GOLDENRODGAMECORNER_POKEFAN_M1, RIGHT
 	end
 
 GoldenrodGameCornerCooltrainerMScript:
@@ -260,7 +260,7 @@ GoldenrodGameCornerCooltrainerMScript:
 	writetext GoldenrodGameCornerCooltrainerMText
 	waitbutton
 	closetext
-	spriteface GOLDENRODGAMECORNER_COOLTRAINER_M, LEFT
+	objectface GOLDENRODGAMECORNER_COOLTRAINER_M, LEFT
 	end
 
 GoldenrodGameCornerPokefanFScript:
@@ -269,7 +269,7 @@ GoldenrodGameCornerPokefanFScript:
 	writetext GoldenrodGameCornerPokefanFText
 	waitbutton
 	closetext
-	spriteface GOLDENRODGAMECORNER_POKEFAN_F, RIGHT
+	objectface GOLDENRODGAMECORNER_POKEFAN_F, RIGHT
 	end
 
 GoldenrodGameCornerCooltrainerFScript:
@@ -281,7 +281,7 @@ GoldenrodGameCornerGentlemanScript:
 	writetext GoldenrodGameCornerGentlemanText
 	waitbutton
 	closetext
-	spriteface GOLDENRODGAMECORNER_GENTLEMAN, RIGHT
+	objectface GOLDENRODGAMECORNER_GENTLEMAN, RIGHT
 	end
 
 GoldenrodGameCornerPokefanM2Script:

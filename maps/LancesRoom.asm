@@ -50,7 +50,7 @@ Script_ApproachLanceFromRight:
 	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromRight
 LanceScript_0x180e7b:
-	spriteface LANCESROOM_LANCE, LEFT
+	objectface LANCESROOM_LANCE, LEFT
 	opentext
 	writetext LanceBattleIntroText
 	waitbutton
@@ -74,9 +74,9 @@ LanceScript_0x180e7b:
 	musicfadeout MUSIC_BEAUTY_ENCOUNTER, 16
 	pause 30
 	showemote EMOTE_SHOCK, LANCESROOM_LANCE, 15
-	spriteface LANCESROOM_LANCE, DOWN
+	objectface LANCESROOM_LANCE, DOWN
 	pause 10
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	appear LANCESROOM_MARY
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryRushesIn
 	opentext
@@ -88,27 +88,27 @@ LanceScript_0x180e7b:
 	follow LANCESROOM_MARY, LANCESROOM_OAK
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryYieldsToOak
 	stopfollow
-	spriteface LANCESROOM_OAK, UP
-	spriteface LANCESROOM_LANCE, LEFT
+	objectface LANCESROOM_OAK, UP
+	objectface LANCESROOM_LANCE, LEFT
 	opentext
 	writetext UnknownText_0x18121b
 	waitbutton
 	closetext
 	applymovement LANCESROOM_MARY, LancesRoomMovementData_MaryInterviewChampion
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	opentext
 	writetext UnknownText_0x18134b
 	waitbutton
 	closetext
 	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LancePositionsSelfToGuidePlayerAway
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	writetext UnknownText_0x18137b
 	waitbutton
 	closetext
 	follow LANCESROOM_LANCE, PLAYER
-	spriteface LANCESROOM_MARY, UP
-	spriteface LANCESROOM_OAK, UP
+	objectface LANCESROOM_MARY, UP
+	objectface LANCESROOM_OAK, UP
 	applymovement LANCESROOM_LANCE, LancesRoomMovementData_LanceLeadsPlayerToHallOfFame
 	stopfollow
 	playsound SFX_EXIT_BUILDING

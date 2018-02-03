@@ -109,7 +109,7 @@ PokecenterNurseScript:
 	farwritetext NurseTakePokemonText
 	pause 20
 	special StubbedTrainerRankings_Healings
-	spriteface LAST_TALKED, LEFT
+	objectface LAST_TALKED, LEFT
 	pause 10
 	special HealParty
 	playmusic MUSIC_NONE
@@ -117,7 +117,7 @@ PokecenterNurseScript:
 	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
-	spriteface LAST_TALKED, DOWN
+	objectface LAST_TALKED, DOWN
 	pause 10
 
 	checkphonecall ; elm already called about pokerus
@@ -134,9 +134,9 @@ PokecenterNurseScript:
 .done
 	farwritetext NurseGoodbyeText
 
-	spriteface LAST_TALKED, UP
+	objectface LAST_TALKED, UP
 	pause 10
-	spriteface LAST_TALKED, DOWN
+	objectface LAST_TALKED, DOWN
 	pause 10
 
 	waitbutton

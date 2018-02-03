@@ -26,7 +26,7 @@ CeladonGameCornerPokefanMScript:
 	writetext CeladonGameCornerPokefanMText
 	waitbutton
 	closetext
-	spriteface CELADONGAMECORNER_POKEFAN_M, LEFT
+	objectface CELADONGAMECORNER_POKEFAN_M, LEFT
 	end
 
 CeladonGameCornerTeacherScript:
@@ -35,7 +35,7 @@ CeladonGameCornerTeacherScript:
 	writetext CeladonGameCornerTeacherText
 	waitbutton
 	closetext
-	spriteface CELADONGAMECORNER_TEACHER, RIGHT
+	objectface CELADONGAMECORNER_TEACHER, RIGHT
 	end
 
 CeladonGameCornerFishingGuruScript:
@@ -44,7 +44,7 @@ CeladonGameCornerFishingGuruScript:
 	writetext CeladonGameCornerFishingGuruText
 	waitbutton
 	closetext
-	spriteface CELADONGAMECORNER_FISHING_GURU, RIGHT
+	objectface CELADONGAMECORNER_FISHING_GURU, RIGHT
 	end
 
 CeladonGameCornerFisherScript:
@@ -66,7 +66,7 @@ CeladonGameCornerFisherScript:
 	writetext CeladonGameCornerFisherText2
 	waitbutton
 	closetext
-	spriteface LAST_TALKED, LEFT
+	objectface LAST_TALKED, LEFT
 	end
 
 .GiveCoins:
@@ -80,14 +80,14 @@ CeladonGameCornerFisherScript:
 	writetext CeladonGameCornerFisherNoCoinCaseText
 	waitbutton
 	closetext
-	spriteface LAST_TALKED, LEFT
+	objectface LAST_TALKED, LEFT
 	end
 
 .FullCoinCase:
 	writetext CeladonGameCornerFisherFullCoinCaseText
 	waitbutton
 	closetext
-	spriteface LAST_TALKED, LEFT
+	objectface LAST_TALKED, LEFT
 	end
 
 CeladonGymGuyScript:
@@ -99,7 +99,7 @@ CeladonGameCornerGrampsScript:
 	writetext CeladonGameCornerGrampsText
 	waitbutton
 	closetext
-	spriteface CELADONGAMECORNER_GRAMPS, LEFT
+	objectface CELADONGAMECORNER_GRAMPS, LEFT
 	end
 
 CeladonGameCornerPoster1Script:

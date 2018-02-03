@@ -49,7 +49,7 @@ CeruleanCityCooltrainerFScript:
 	writetext CeruleanCityCooltrainerFText1
 	waitbutton
 	closetext
-	spriteface CERULEANCITY_COOLTRAINER_F, LEFT
+	objectface CERULEANCITY_COOLTRAINER_F, LEFT
 	opentext
 	writetext CeruleanCityCooltrainerFText2
 	waitbutton
@@ -113,7 +113,7 @@ CeruleanCityYoungsterScript:
 	playsound SFX_TRANSACTION
 	waitsfx
 	showemote EMOTE_SHOCK, CERULEANCITY_YOUNGSTER, 15
-	spriteface CERULEANCITY_YOUNGSTER, LEFT
+	objectface CERULEANCITY_YOUNGSTER, LEFT
 	opentext
 	writetext CeruleanCityYoungsterText2
 	waitbutton

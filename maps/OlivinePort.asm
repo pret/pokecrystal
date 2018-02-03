@@ -37,7 +37,7 @@ SailorScript_0x748c0:
 	writetext UnknownText_0x74a55
 	waitbutton
 	closetext
-	spriteface OLIVINEPORT_SAILOR1, DOWN
+	objectface OLIVINEPORT_SAILOR1, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
 	disappear OLIVINEPORT_SAILOR1
@@ -73,12 +73,12 @@ UnknownScript_0x74919:
 	end
 
 UnknownScript_0x7491f:
-	spriteface OLIVINEPORT_SAILOR3, RIGHT
+	objectface OLIVINEPORT_SAILOR3, RIGHT
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x7498b
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue UnknownScript_0x7498b
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse UnknownScript_0x7494e
@@ -201,7 +201,7 @@ FishingGuruScript_0x74a01:
 	writetext UnknownText_0x74bf4
 	waitbutton
 	closetext
-	spriteface OLIVINEPORT_FISHING_GURU1, UP
+	objectface OLIVINEPORT_FISHING_GURU1, UP
 	end
 
 FishingGuruScript_0x74a0c:
@@ -210,7 +210,7 @@ FishingGuruScript_0x74a0c:
 	writetext UnknownText_0x74c35
 	waitbutton
 	closetext
-	spriteface OLIVINEPORT_FISHING_GURU2, UP
+	objectface OLIVINEPORT_FISHING_GURU2, UP
 	end
 
 YoungsterScript_0x74a17:
@@ -219,7 +219,7 @@ YoungsterScript_0x74a17:
 	writetext UnknownText_0x74c76
 	waitbutton
 	closetext
-	spriteface OLIVINEPORT_YOUNGSTER, DOWN
+	objectface OLIVINEPORT_YOUNGSTER, DOWN
 	end
 
 CooltrainerFScript_0x74a22:
@@ -228,7 +228,7 @@ CooltrainerFScript_0x74a22:
 	writetext UnknownText_0x74ca2
 	waitbutton
 	closetext
-	spriteface OLIVINEPORT_COOLTRAINER_F, DOWN
+	objectface OLIVINEPORT_COOLTRAINER_F, DOWN
 	end
 
 OlivinePortHiddenProtein:

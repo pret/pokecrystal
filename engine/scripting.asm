@@ -185,7 +185,7 @@ endc
 	dw Script_writeobjectxy              ; 73
 	dw Script_loademote                  ; 74
 	dw Script_showemote                  ; 75
-	dw Script_spriteface                 ; 76
+	dw Script_objectface                 ; 76
 	dw Script_follownotexact             ; 77
 	dw Script_earthquake                 ; 78
 	dw Script_changemap                  ; 79
@@ -1052,7 +1052,7 @@ Script_faceobject:
 	call ApplyObjectFacing
 	ret
 
-Script_spriteface:
+Script_objectface:
 ; script command 0x76
 ; parameters: object_id, facing
 

@@ -45,7 +45,7 @@ EarlsPokemonAcademyGameboyKid1Script:
 	writetext EarlsPokemonAcademyGameboyKid1Text
 	waitbutton
 	closetext
-	spriteface EARLSPOKEMONACADEMY_GAMEBOY_KID1, DOWN
+	objectface EARLSPOKEMONACADEMY_GAMEBOY_KID1, DOWN
 	end
 
 EarlsPokemonAcademyGameboyKid2Script:
@@ -54,7 +54,7 @@ EarlsPokemonAcademyGameboyKid2Script:
 	writetext EarlsPokemonAcademyGameboyKid2Text
 	waitbutton
 	closetext
-	spriteface EARLSPOKEMONACADEMY_GAMEBOY_KID2, DOWN
+	objectface EARLSPOKEMONACADEMY_GAMEBOY_KID2, DOWN
 	end
 
 EarlsPokemonAcademyYoungster2Script:

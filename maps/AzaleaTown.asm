@@ -36,23 +36,23 @@ AzaleaTown_MapScripts:
 
 AzaleaTownRivalBattleScene1:
 	moveobject AZALEATOWN_SILVER, 11, 11
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
 	appear AZALEATOWN_SILVER
 	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleApproachMovement1
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	jump AzaleaTownRivalBattleScript
 
 AzaleaTownRivalBattleScene2:
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
 	appear AZALEATOWN_SILVER
 	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleApproachMovement2
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 AzaleaTownRivalBattleScript:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
@@ -96,7 +96,7 @@ AzaleaTownRivalBattleScript:
 	writetext AzaleaTownRivalAfterText
 	waitbutton
 	closetext
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleExitMovement
 	playsound SFX_EXIT_BUILDING
 	disappear AZALEATOWN_SILVER
@@ -158,13 +158,13 @@ AzaleaTownCelebiScene:
 	opentext
 	writetext AzaleaTownKurtText1
 	buttonsound
-	spriteface AZALEATOWN_KURT_OUTSIDE, RIGHT
+	objectface AZALEATOWN_KURT_OUTSIDE, RIGHT
 	writetext AzaleaTownKurtText2
 	buttonsound
 	writetext AzaleaTownKurtText3
 	waitbutton
 	verbosegiveitem GS_BALL
-	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT
+	objectface AZALEATOWN_KURT_OUTSIDE, LEFT
 	setflag ENGINE_FOREST_IS_RESTLESS
 	clearevent EVENT_ILEX_FOREST_LASS
 	setevent EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
@@ -177,7 +177,7 @@ AzaleaTownKurtScript:
 	opentext
 	writetext AzaleaTownKurtText3
 	waitbutton
-	spriteface AZALEATOWN_KURT_OUTSIDE, LEFT
+	objectface AZALEATOWN_KURT_OUTSIDE, LEFT
 	closetext
 	end
 

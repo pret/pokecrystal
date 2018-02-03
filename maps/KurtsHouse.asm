@@ -46,7 +46,7 @@ KurtScript_0x18e178:
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	checkcode VAR_FACING
 	ifequal UP, .RunAround
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
 	playsound SFX_EXIT_BUILDING
@@ -56,7 +56,7 @@ KurtScript_0x18e178:
 	end
 
 .RunAround:
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, MovementData_0x18e46c
 	playsound SFX_EXIT_BUILDING
@@ -294,13 +294,13 @@ KurtScript_0x18e178:
 	showemote EMOTE_SHOCK, KURTSHOUSE_KURT1, 30
 	checkcode VAR_FACING
 	ifequal UP, .GSBallRunAround
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, MovementData_0x18e466
 	jump .KurtHasLeftTheBuilding
 
 .GSBallRunAround:
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, MovementData_0x18e46c
 .KurtHasLeftTheBuilding:
@@ -323,21 +323,21 @@ KurtMakingBallsScript:
 	writetext UnknownText_0x18e7d8
 	waitbutton
 	closetext
-	spriteface KURTSHOUSE_KURT2, UP
+	objectface KURTSHOUSE_KURT2, UP
 	end
 
 Script_FirstTimeBuggingKurt:
 	writetext UnknownText_0x18e863
 	waitbutton
 	closetext
-	spriteface KURTSHOUSE_KURT2, UP
+	objectface KURTSHOUSE_KURT2, UP
 	setevent EVENT_BUGGING_KURT_TOO_MUCH
 	end
 
 KurtScript_ImCheckingItNow:
 	writetext UnknownText_0x18e934
 	waitbutton
-	spriteface KURTSHOUSE_KURT2, UP
+	objectface KURTSHOUSE_KURT2, UP
 	writetext UnknownText_0x18e949
 	waitbutton
 	closetext
@@ -393,14 +393,14 @@ KurtsGranddaughter2Subscript:
 	writetext KurtsGranddaughterHelpText
 	waitbutton
 	closetext
-	spriteface KURTSHOUSE_TWIN2, RIGHT
+	objectface KURTSHOUSE_TWIN2, RIGHT
 	end
 
 .GSBall:
 	writetext KurtsGranddaughterGSBallText
 	waitbutton
 	closetext
-	spriteface KURTSHOUSE_TWIN2, RIGHT
+	objectface KURTSHOUSE_TWIN2, RIGHT
 	end
 
 KurtsGranddaughterFunScript:

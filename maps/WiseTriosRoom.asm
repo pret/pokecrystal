@@ -51,19 +51,19 @@ WiseTriosRoomSage3Script:
 	jumptextfaceplayer WiseTriosRoomSage3Text
 
 UnknownScript_0x985a3:
-	spriteface WISETRIOSROOM_SAGE3, UP
-	spriteface PLAYER, DOWN
+	objectface WISETRIOSROOM_SAGE3, UP
+	objectface PLAYER, DOWN
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE3, 20
 	follow PLAYER, WISETRIOSROOM_SAGE3
 	applymovement PLAYER, MovementData_0x98622
 	stopfollow
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	opentext
 	writetext UnknownText_0x98712
 	waitbutton
 	closetext
 	applymovement WISETRIOSROOM_SAGE3, MovementData_0x98625
-	spriteface WISETRIOSROOM_SAGE3, LEFT
+	objectface WISETRIOSROOM_SAGE3, LEFT
 	end
 
 TrainerSageGaku:
@@ -101,7 +101,7 @@ TrainerSageKoji:
 	waitbutton
 	closetext
 	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
-	spriteface WISETRIOSROOM_SAGE6, UP
+	objectface WISETRIOSROOM_SAGE6, UP
 	setevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	setscene SCENE_FINISHED
 	end

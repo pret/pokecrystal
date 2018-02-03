@@ -26,7 +26,7 @@ CeladonDeptStore3FGameboyKid1Script:
 	writetext CeladonDeptStore3FGameboyKid1Text
 	waitbutton
 	closetext
-	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID1, DOWN
+	objectface CELADONDEPTSTORE3F_GAMEBOY_KID1, DOWN
 	end
 
 CeladonDeptStore3FGameboyKid2Script:
@@ -35,7 +35,7 @@ CeladonDeptStore3FGameboyKid2Script:
 	writetext CeladonDeptStore3FGameboyKid2Text
 	waitbutton
 	closetext
-	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID2, DOWN
+	objectface CELADONDEPTSTORE3F_GAMEBOY_KID2, DOWN
 	end
 
 CeladonDeptStore3FSuperNerdScript:

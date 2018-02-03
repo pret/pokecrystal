@@ -747,9 +747,9 @@ showemote: MACRO
 	db \3 ; time
 ENDM
 
-	enum spriteface_command ; $76
-spriteface: MACRO
-	db spriteface_command
+	enum objectface_command ; $76
+objectface: MACRO
+	db objectface_command
 	db \1 ; object id
 	db \2 ; facing
 ENDM

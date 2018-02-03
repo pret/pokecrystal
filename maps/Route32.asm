@@ -85,8 +85,8 @@ Route32CooltrainerMContinueScene:
 	end
 
 Route32CooltrainerMStopsYouScene:
-	spriteface ROUTE32_COOLTRAINER_M, LEFT
-	spriteface PLAYER, RIGHT
+	objectface ROUTE32_COOLTRAINER_M, LEFT
+	objectface PLAYER, RIGHT
 	opentext
 	writetext Route32CooltrainerMText_WhatsTheHurry
 	waitbutton
@@ -94,7 +94,7 @@ Route32CooltrainerMStopsYouScene:
 	follow PLAYER, ROUTE32_COOLTRAINER_M
 	applymovement PLAYER, Movement_Route32CooltrainerMPushesYouBackToViolet
 	stopfollow
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	scall Route32CooltrainerMContinueScene
 	applymovement ROUTE32_COOLTRAINER_M, Movement_Route32CooltrainerMReset1
 	applymovement ROUTE32_COOLTRAINER_M, Movement_Route32CooltrainerMReset2
@@ -118,8 +118,8 @@ Route32RoarTMGuyScript:
 	end
 
 Route32WannaBuyASlowpokeTailScript:
-	spriteface ROUTE32_FISHER4, DOWN
-	spriteface PLAYER, UP
+	objectface ROUTE32_FISHER4, DOWN
+	objectface PLAYER, UP
 	jump _OfferToSellSlowpokeTail
 
 SlowpokeTailSalesmanScript:

@@ -18,7 +18,7 @@ MrPokemonsHouse_MapScripts:
 
 .MrPokemonEvent:
 	showemote EMOTE_SHOCK, MRPOKEMONSHOUSE_GENTLEMAN, 15
-	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
+	objectface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
 	opentext
 	writetext MrPokemonIntroText1
 	waitbutton
@@ -37,11 +37,11 @@ MrPokemonsHouse_MapScripts:
 	blackoutmod CHERRYGROVE_CITY
 	writetext MrPokemonIntroText3
 	buttonsound
-	spriteface MRPOKEMONSHOUSE_GENTLEMAN, RIGHT
+	objectface MRPOKEMONSHOUSE_GENTLEMAN, RIGHT
 	writetext MrPokemonIntroText4
 	buttonsound
-	spriteface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
-	spriteface MRPOKEMONSHOUSE_OAK, LEFT
+	objectface MRPOKEMONSHOUSE_GENTLEMAN, DOWN
+	objectface MRPOKEMONSHOUSE_OAK, LEFT
 	writetext MrPokemonIntroText5
 	waitbutton
 	closetext
@@ -84,7 +84,7 @@ MrPokemonsHouse_MrPokemonScript:
 MrPokemonsHouse_OakScript:
 	playmusic MUSIC_PROF_OAK
 	applymovement MRPOKEMONSHOUSE_OAK, MrPokemonsHouse_OakWalksToPlayer
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	opentext
 	writetext MrPokemonsHouse_OakText1
 	buttonsound
@@ -96,14 +96,14 @@ MrPokemonsHouse_OakScript:
 	writetext MrPokemonsHouse_OakText2
 	waitbutton
 	closetext
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	applymovement MRPOKEMONSHOUSE_OAK, MrPokemonsHouse_OakExits
 	playsound SFX_EXIT_BUILDING
 	disappear MRPOKEMONSHOUSE_OAK
 	waitsfx
 	special RestartMapMusic
 	pause 15
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	writetext MrPokemonsHouse_MrPokemonHealText
 	waitbutton

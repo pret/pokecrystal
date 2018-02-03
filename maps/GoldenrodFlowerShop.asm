@@ -30,7 +30,7 @@ FlowerShopTeacherScript:
 	end
 
 .Lalala:
-	spriteface GOLDENRODFLOWERSHOP_TEACHER, LEFT
+	objectface GOLDENRODFLOWERSHOP_TEACHER, LEFT
 	opentext
 	writetext UnknownText_0x5552e
 	waitbutton

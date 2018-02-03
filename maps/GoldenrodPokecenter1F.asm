@@ -28,7 +28,7 @@ GoldenrodPokecenter1F_GSBallSceneLeft:
 	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
 	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x6105a
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	writetext UnknownText_0x622f0
 	waitbutton
@@ -60,7 +60,7 @@ GoldenrodPokecenter1F_GSBallSceneRight:
 	appear GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST
 	playmusic MUSIC_SHOW_ME_AROUND
 	applymovement GOLDENRODPOKECENTER1F_LINK_RECEPTIONIST, MovementData_0x61065
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	writetext UnknownText_0x622f0
 	waitbutton

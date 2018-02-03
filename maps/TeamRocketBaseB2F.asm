@@ -61,20 +61,20 @@ UnknownScript_0x6cfac:
 	writetext UnknownText_0x6d2ad
 	waitbutton
 	closetext
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	applymovement PLAYER, MovementData_0x6d21f
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d224
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	applymovement TEAMROCKETBASEB2F_ROCKET1, MovementData_0x6d22f
 	opentext
 	writetext UnknownText_0x6d2c3
 	waitbutton
 	closetext
 	cry DRAGONITE
-	spriteface TEAMROCKETBASEB2F_ROCKET_GIRL, LEFT
-	spriteface PLAYER, LEFT
+	objectface TEAMROCKETBASEB2F_ROCKET_GIRL, LEFT
+	objectface PLAYER, LEFT
 	appear TEAMROCKETBASEB2F_DRAGON
 	applymovement TEAMROCKETBASEB2F_DRAGON, MovementData_0x6d236
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d23b
@@ -85,7 +85,7 @@ UnknownScript_0x6cfac:
 	writetext UnknownText_0x6d38c
 	waitbutton
 	closetext
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	applymovement TEAMROCKETBASEB2F_ROCKET_GIRL, MovementData_0x6d241
 	opentext
 	writetext UnknownText_0x6d3bd
@@ -118,13 +118,13 @@ UnknownScript_0x6cfac:
 	special FadeInQuickly
 	setscene SCENE_TEAMROCKETBASEB2F_ELECTRODES
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
-	spriteface TEAMROCKETBASEB2F_LANCE, DOWN
+	objectface TEAMROCKETBASEB2F_LANCE, DOWN
 	opentext
 	writetext UnknownText_0x6d5d8
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d250
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	writetext UnknownText_0x6d64e
 	waitbutton
@@ -153,12 +153,12 @@ UnknownScript_0x6d07a:
 	end
 
 LanceHealsScript1:
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	jump LanceHealsCommon
 
 LanceHealsScript2:
-	spriteface PLAYER, RIGHT
-	spriteface TEAMROCKETBASEB2F_LANCE, LEFT
+	objectface PLAYER, RIGHT
+	objectface TEAMROCKETBASEB2F_LANCE, LEFT
 LanceHealsCommon:
 	opentext
 	writetext LanceHealsText1
@@ -281,7 +281,7 @@ UnknownScript_0x6d184:
 	moveobject TEAMROCKETBASEB2F_LANCE, 18, 6
 	appear TEAMROCKETBASEB2F_LANCE
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d27a
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	opentext
 	writetext UnknownText_0x6d809
 	buttonsound
@@ -290,12 +290,12 @@ UnknownScript_0x6d184:
 	writetext UnknownText_0x6d8f8
 	waitbutton
 	closetext
-	spriteface TEAMROCKETBASEB2F_LANCE, DOWN
+	objectface TEAMROCKETBASEB2F_LANCE, DOWN
 	opentext
 	writetext UnknownText_0x6d994
 	waitbutton
 	closetext
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d283
 	disappear TEAMROCKETBASEB2F_LANCE
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT

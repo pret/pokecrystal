@@ -241,7 +241,7 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 
 ## `$75`: <code>showemote <i>emote_id</i>, <i>object_id</i>, <i>length</i></code>
 
-## `$76`: <code>spriteface <i>object_id</i>, <i>facing</i></code>
+## `$76`: <code>objectface <i>object_id</i>, <i>facing</i></code>
 
 ## `$77`: <code>follownotexact <i>object2</i>, <i>object1</i></code>
 

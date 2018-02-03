@@ -117,7 +117,7 @@ TeacherScript_0x7ca7d:
 	jumptextfaceplayer GoldenrodUndergroundSwitchRoomEntrances_TeacherText
 
 UndergroundSilverScene1:
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
@@ -125,7 +125,7 @@ UndergroundSilverScene1:
 	appear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	waitsfx
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement1
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	scall UndergroundSilverBattleScript
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
 	playsound SFX_EXIT_BUILDING
@@ -136,7 +136,7 @@ UndergroundSilverScene1:
 	end
 
 UndergroundSilverScene2:
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
@@ -144,7 +144,7 @@ UndergroundSilverScene2:
 	appear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	waitsfx
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement2
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	scall UndergroundSilverBattleScript
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
 	playsound SFX_EXIT_BUILDING

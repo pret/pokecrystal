@@ -54,13 +54,13 @@ PlateauRivalBattle1:
 	ifequal SATURDAY, PlateauRivalScriptDone
 	moveobject INDIGOPLATEAUPOKECENTER1F_SILVER, 17, 9
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
 	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, PlateauRivalMovement1
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	spriteface PLAYER, RIGHT
+	objectface PLAYER, RIGHT
 	jump PlateauRivalBattleCommon
 
 PlateauRivalBattle2:
@@ -75,13 +75,13 @@ PlateauRivalBattle2:
 	ifequal FRIDAY, PlateauRivalScriptDone
 	ifequal SATURDAY, PlateauRivalScriptDone
 	appear INDIGOPLATEAUPOKECENTER1F_SILVER
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
 	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, PlateauRivalMovement2
 	playmusic MUSIC_RIVAL_ENCOUNTER
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 PlateauRivalBattleCommon:
 	opentext
 	writetext PlateauRivalText1
@@ -125,7 +125,7 @@ PlateauRivalPostBattle:
 	writetext PlateauRivalText2
 	waitbutton
 	closetext
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	applymovement INDIGOPLATEAUPOKECENTER1F_SILVER, PlateauRivalLeavesMovement
 	disappear INDIGOPLATEAUPOKECENTER1F_SILVER
 	setscene SCENE_DEFAULT

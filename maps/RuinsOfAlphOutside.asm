@@ -42,13 +42,13 @@ RuinsOfAlphOutside_MapScripts:
 	return
 
 RuinsOfAlphOutsideScientistScene1:
-	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, UP
-	spriteface PLAYER, DOWN
+	objectface RUINSOFALPHOUTSIDE_SCIENTIST, UP
+	objectface PLAYER, DOWN
 	jump UnknownScript_0x58044
 
 RuinsOfAlphOutsideScientistScene2:
-	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, LEFT
-	spriteface PLAYER, RIGHT
+	objectface RUINSOFALPHOUTSIDE_SCIENTIST, LEFT
+	objectface PLAYER, RIGHT
 	jump UnknownScript_0x58044
 
 ScientistScript_0x58043:
@@ -96,7 +96,7 @@ YoungsterScript_0x5807e:
 	writetext UnknownText_0x5848e
 	waitbutton
 	closetext
-	spriteface RUINSOFALPHOUTSIDE_YOUNGSTER3, UP
+	objectface RUINSOFALPHOUTSIDE_YOUNGSTER3, UP
 	end
 
 TrainerPsychicNathan:

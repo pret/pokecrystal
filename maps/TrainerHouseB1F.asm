@@ -12,7 +12,7 @@ TrainerHouseB1F_MapScripts:
 	end
 
 TrainerHouseReceptionistScript:
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue .FoughtTooManyTimes

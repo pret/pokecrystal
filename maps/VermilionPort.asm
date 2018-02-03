@@ -43,7 +43,7 @@ SailorScript_0x74dc4:
 	writetext UnknownText_0x74f06
 	waitbutton
 	closetext
-	spriteface VERMILIONPORT_SAILOR1, DOWN
+	objectface VERMILIONPORT_SAILOR1, DOWN
 	pause 10
 	playsound SFX_EXIT_BUILDING
 	disappear VERMILIONPORT_SAILOR1
@@ -77,12 +77,12 @@ UnknownScript_0x74e1a:
 	end
 
 UnknownScript_0x74e20:
-	spriteface VERMILIONPORT_SAILOR2, RIGHT
+	objectface VERMILIONPORT_SAILOR2, RIGHT
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x74e86
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue UnknownScript_0x74e86
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	opentext
 	checkcode VAR_WEEKDAY
 	ifequal MONDAY, UnknownScript_0x74e72

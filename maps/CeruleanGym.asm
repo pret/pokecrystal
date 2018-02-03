@@ -52,7 +52,7 @@ CeruleanGym_MapScripts:
 	waitsfx
 	special RestartMapMusic
 	pause 15
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	pause 15
 	end
 

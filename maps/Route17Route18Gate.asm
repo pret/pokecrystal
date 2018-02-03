@@ -20,7 +20,7 @@ UnknownScript_0x73611:
 
 UnknownScript_0x73617:
 	showemote EMOTE_SHOCK, ROUTE17ROUTE18GATE_OFFICER, 15
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	writetext UnknownText_0x7364d
 	waitbutton

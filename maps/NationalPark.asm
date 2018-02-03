@@ -66,7 +66,7 @@ GameboyKidScript_0x5c037:
 	writetext UnknownText_0x5c42a
 	waitbutton
 	closetext
-	spriteface NATIONALPARK_GAMEBOY_KID, DOWN
+	objectface NATIONALPARK_GAMEBOY_KID, DOWN
 	end
 
 TrainerSchoolboyJack1:

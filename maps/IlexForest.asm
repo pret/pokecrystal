@@ -460,7 +460,7 @@ MapIlexForestSignpost4Script:
 	special FadeOutMusic
 	applymovement PLAYER, MovementData_0x6ef58
 	pause 30
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	pause 20
 	clearflag ENGINE_FOREST_IS_RESTLESS
 	special CelebiShrineEvent

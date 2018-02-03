@@ -17,7 +17,7 @@ VictoryRoadGate_MapScripts:
 	end
 
 VictoryRoadGateBadgeCheckScene:
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	jump VictoryRoadGateBadgeCheckScript
 
 VictoryRoadGateOfficerScript:

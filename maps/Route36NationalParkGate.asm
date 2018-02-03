@@ -62,7 +62,7 @@ Route36NationalParkGate_MapScripts:
 	return
 
 .LeavingContestEarly:
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	checkcode VAR_CONTESTMINUTES
 	addvar 1
@@ -87,7 +87,7 @@ Route36NationalParkGate_MapScripts:
 	writetext UnknownText_0x6b300
 	waitbutton
 	closetext
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
 	waitsfx
@@ -170,7 +170,7 @@ Route36OfficerScriptContest:
 	closetext
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special GiveParkBalls
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
 	waitsfx

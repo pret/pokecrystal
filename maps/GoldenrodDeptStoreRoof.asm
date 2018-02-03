@@ -52,7 +52,7 @@ FisherScript_0x56749:
 	writetext UnknownText_0x567d2
 	waitbutton
 	closetext
-	spriteface GOLDENRODDEPTSTOREROOF_FISHER, UP
+	objectface GOLDENRODDEPTSTOREROOF_FISHER, UP
 	end
 
 GoldenrodDeptStoreRoofTwinScript:
@@ -63,12 +63,12 @@ SuperNerdScript_0x56757:
 	writetext UnknownText_0x56867
 	waitbutton
 	closetext
-	spriteface GOLDENRODDEPTSTOREROOF_SUPER_NERD, UP
+	objectface GOLDENRODDEPTSTOREROOF_SUPER_NERD, UP
 	opentext
 	writetext UnknownText_0x56871
 	waitbutton
 	closetext
-	spriteface GOLDENRODDEPTSTOREROOF_SUPER_NERD, RIGHT
+	objectface GOLDENRODDEPTSTOREROOF_SUPER_NERD, RIGHT
 	end
 
 GoldenrodDeptStoreRoofPokefanMScript:

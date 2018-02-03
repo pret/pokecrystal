@@ -210,7 +210,7 @@ GoldenrodCityRocketScoutScript:
 	writetext GoldenrodCityRocketScoutText2
 	waitbutton
 	closetext
-	spriteface GOLDENRODCITY_ROCKETSCOUT, UP
+	objectface GOLDENRODCITY_ROCKETSCOUT, UP
 	end
 
 GoldenrodCityRocket1Script:

@@ -28,21 +28,21 @@ Route25MistyDate1Script:
 	showemote EMOTE_HEART, ROUTE25_MISTY, 15
 	pause 30
 	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
-	spriteface ROUTE25_MISTY, DOWN
+	objectface ROUTE25_MISTY, DOWN
 	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efe8
 	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
-	spriteface ROUTE25_MISTY, UP
+	objectface ROUTE25_MISTY, UP
 	pause 10
 	applymovement ROUTE25_MISTY, MovementData_0x19efed
 	opentext
 	writetext Route25MistyDateText
 	waitbutton
 	closetext
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	applymovement ROUTE25_MISTY, MovementData_0x19effa
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM
@@ -54,21 +54,21 @@ Route25MistyDate2Script:
 	showemote EMOTE_HEART, ROUTE25_MISTY, 15
 	pause 30
 	showemote EMOTE_SHOCK, ROUTE25_COOLTRAINER_M1, 10
-	spriteface ROUTE25_MISTY, DOWN
+	objectface ROUTE25_MISTY, DOWN
 	applymovement ROUTE25_COOLTRAINER_M1, MovementData_0x19efea
 	disappear ROUTE25_COOLTRAINER_M1
 	pause 15
 	playmusic MUSIC_BEAUTY_ENCOUNTER
-	spriteface ROUTE25_MISTY, UP
+	objectface ROUTE25_MISTY, UP
 	pause 10
 	applymovement ROUTE25_MISTY, MovementData_0x19eff4
 	opentext
 	writetext Route25MistyDateText
 	waitbutton
 	closetext
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	applymovement ROUTE25_MISTY, MovementData_0x19effd
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	applymovement ROUTE25_MISTY, MovementData_0x19f000
 	disappear ROUTE25_MISTY
 	clearevent EVENT_TRAINERS_IN_CERULEAN_GYM

@@ -426,7 +426,7 @@ Pokecenter2F_CheckGender:
 	waitbutton
 	closetext
 	applymovement2 Pokecenter2FMovementData_ReceptionistLooksRight
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	opentext
 	writetext Text_ChangeTheLook
 	waitbutton
@@ -533,7 +533,7 @@ TimeCapsuleScript_CheckPlayerGender:
 	closetext
 	checkcode VAR_FACING
 	ifnotequal UP, .FemaleChangeApperance
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 .FemaleChangeApperance:
 	opentext
 	writetext Text_ChangeTheLook

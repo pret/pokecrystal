@@ -36,12 +36,12 @@ CianwoodCity_MapScripts:
 	return
 
 CianwoodCitySuicuneAndEusine:
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
 	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00da
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	pause 15
 	playsound SFX_WARP_FROM
 	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00e0

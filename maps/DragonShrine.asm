@@ -91,12 +91,12 @@ DragonShrine_MapScripts:
 	iftrue .Question2
 .WrongAnswer:
 	closetext
-	spriteface DRAGONSHRINE_ELDER1, LEFT
+	objectface DRAGONSHRINE_ELDER1, LEFT
 	opentext
 	writetext DragonShrineWrongAnswerText1
 	waitbutton
 	closetext
-	spriteface DRAGONSHRINE_ELDER1, DOWN
+	objectface DRAGONSHRINE_ELDER1, DOWN
 	opentext
 	writetext DragonShrineWrongAnswerText2
 	waitbutton
@@ -122,12 +122,12 @@ DragonShrine_MapScripts:
 	playmusic MUSIC_CLAIR
 	appear DRAGONSHRINE_CLAIR
 	waitsfx
-	spriteface PLAYER, DOWN
+	objectface PLAYER, DOWN
 	pause 30
 	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairWalkInMovement
-	spriteface DRAGONSHRINE_CLAIR, RIGHT
-	spriteface PLAYER, LEFT
-	spriteface DRAGONSHRINE_ELDER1, LEFT
+	objectface DRAGONSHRINE_CLAIR, RIGHT
+	objectface PLAYER, LEFT
+	objectface DRAGONSHRINE_ELDER1, LEFT
 	opentext
 	writetext DragonShrineClairYouPassedText
 	waitbutton
@@ -144,7 +144,7 @@ DragonShrine_MapScripts:
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderWalkToClairMovement
-	spriteface DRAGONSHRINE_CLAIR, UP
+	objectface DRAGONSHRINE_CLAIR, UP
 	opentext
 	writetext DragonShrineMustIInformLanceText
 	waitbutton
@@ -171,9 +171,9 @@ DragonShrine_MapScripts:
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2ce
-	spriteface DRAGONSHRINE_CLAIR, UP
+	objectface DRAGONSHRINE_CLAIR, UP
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2d1
-	spriteface PLAYER, UP
+	objectface PLAYER, UP
 	opentext
 	writetext DragonShrineElderScoldsClairText
 	waitbutton

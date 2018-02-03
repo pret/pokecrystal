@@ -37,10 +37,10 @@ Route29_MapScripts:
 	return
 
 Route29Tutorial1:
-	spriteface ROUTE29_COOLTRAINER_M1, UP
+	objectface ROUTE29_COOLTRAINER_M1, UP
 	showemote EMOTE_SHOCK, ROUTE29_COOLTRAINER_M1, 15
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData1a
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	opentext
 	writetext CatchingTutorialIntroText
@@ -52,7 +52,7 @@ Route29Tutorial1:
 	stopfollow
 	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
-	spriteface ROUTE29_COOLTRAINER_M1, UP
+	objectface ROUTE29_COOLTRAINER_M1, UP
 	opentext
 	writetext CatchingTutorialDebriefText
 	waitbutton
@@ -62,10 +62,10 @@ Route29Tutorial1:
 	end
 
 Route29Tutorial2:
-	spriteface ROUTE29_COOLTRAINER_M1, UP
+	objectface ROUTE29_COOLTRAINER_M1, UP
 	showemote EMOTE_SHOCK, ROUTE29_COOLTRAINER_M1, 15
 	applymovement ROUTE29_COOLTRAINER_M1, DudeMovementData2a
-	spriteface PLAYER, LEFT
+	objectface PLAYER, LEFT
 	setevent EVENT_DUDE_TALKED_TO_YOU
 	opentext
 	writetext CatchingTutorialIntroText
@@ -77,7 +77,7 @@ Route29Tutorial2:
 	stopfollow
 	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
-	spriteface ROUTE29_COOLTRAINER_M1, UP
+	objectface ROUTE29_COOLTRAINER_M1, UP
 	opentext
 	writetext CatchingTutorialDebriefText
 	waitbutton

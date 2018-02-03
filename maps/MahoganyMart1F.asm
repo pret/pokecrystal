@@ -91,7 +91,7 @@ UnknownScript_0x6c38f:
 	reloadmappart
 	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
-	spriteface MAHOGANYMART1F_LANCE, LEFT
+	objectface MAHOGANYMART1F_LANCE, LEFT
 	opentext
 	writetext UnknownText_0x6c5ba
 	waitbutton
