@@ -577,50 +577,11 @@ endr
 
 Sprites_Cosine: ; 8e72a
 ; a = d * cos(a * pi/32)
-	add %010000
+	add %010000 ; cos(x) = sin(x + pi/2)
+	; fallthrough
 Sprites_Sine: ; 8e72c
 ; a = d * sin(a * pi/32)
-	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-; 8e741
-
-.ApplySineWave: ; 8e741
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, .sinewave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
-; 8e75d
-
-.sinewave ; 8e75d
-	sine_wave 32
+	calc_sine_wave
 
 
 AnimateEndOfExpBar: ; 8e79d

@@ -4125,45 +4125,11 @@ BattleAnim_IncAnonJumptableIndex: ; ce72c (33:672c)
 
 BattleAnim_Cosine: ; ce732 (33:6732)
 ; a = d * cos(a * pi/32)
-	add %010000
+	add %010000 ; cos(x) = sin(x + pi/2)
+	; fallthrough
 BattleAnim_Sine: ; ce734 (33:6734)
 ; a = d * sin(a * pi/32)
-	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-
-.ApplySineWave:
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, BattleAnimSineWave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
+	calc_sine_wave BattleAnimSineWave
 
 BattleAnim_Sine_e: ; ce765 (33:6765)
 	ld a, e
@@ -4195,5 +4161,5 @@ BattleAnim_AbsCosinePrecise: ; ce778
 ; ce77f
 
 BattleAnimSineWave: ; ce77f
-	sine_wave 32
+	sine_table 32
 ; ce7bf

@@ -461,53 +461,9 @@ PokedexShow_GetDexEntryBank:
 
 ```asm
 _Sine:: ; 84d9
-; A simple sine function.
-; Return d * sin(e) in hl.
-
-; e is a signed 6-bit value.
+; a = d * sin(e * pi/32)
 	ld a, e
-	and %111111
-	cp  %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-
-.ApplySineWave: ; 84ef
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, .sinewave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-; Factor amplitude
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
-
-.sinewave ; 850b
-; A 32-word table representing a sine wave.
-; sin(90 degrees) is index $10 with an amplitude of $100.
-	sine_wave 32
+	calc_sine_wave
 ```
 
 `Sprites_Cosine` and `Sprites_Sine` in [engine/sprites.asm](/engine/sprites.asm):
@@ -515,50 +471,11 @@ _Sine:: ; 84d9
 ```asm
 Sprites_Cosine: ; 8e72a
 ; a = d * cos(a * pi/32)
-	add %010000
+	add %010000 ; cos(x) = sin(x + pi/2)
+	; fallthrough
 Sprites_Sine: ; 8e72c
 ; a = d * sin(a * pi/32)
-	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-; 8e741
-
-.ApplySineWave: ; 8e741
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, .sinewave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
-; 8e75d
-
-.sinewave ; 8e75d
-	sine_wave 32
+	calc_sine_wave
 ```
 
 `BattleAnim_Cosine` and `BattleAnim_Sine` in [engine/battle_anims/functions.asm](/engine/battle_anims/functions.asm):
@@ -566,50 +483,16 @@ Sprites_Sine: ; 8e72c
 ```asm
 BattleAnim_Cosine: ; ce732 (33:6732)
 ; a = d * cos(a * pi/32)
-	add %010000
+	add %010000 ; cos(x) = sin(x + pi/2)
+	; fallthrough
 BattleAnim_Sine: ; ce734 (33:6734)
 ; a = d * sin(a * pi/32)
-	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-
-.ApplySineWave:
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, BattleAnimSineWave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
+	calc_sine_wave BattleAnimSineWave
 
 ...
 
 BattleAnimSineWave: ; ce77f
-	sine_wave 32
+	sine_table 32
 ; ce7bf
 ```
 
@@ -617,47 +500,7 @@ BattleAnimSineWave: ; ce77f
 
 ```asm
 StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
-; a = d * sin(a * pi/32)
-	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-
-.ApplySineWave: ; 8c70c (23:470c)
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, .sinewave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
-; 8c728 (23:4728)
-
-.sinewave ; 8c728
-	sine_wave 32
+	calc_sine_wave
 ; 8c768
 ```
 
@@ -666,51 +509,76 @@ And `CelebiEvent_Cosine` in [engine/events/celebi.asm](/engine/events/celebi.asm
 ```asm
 CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 ; a = d * cos(a * pi/32)
-	add %010000
+	add %010000 ; cos(x) = sin(x + pi/2)
+	calc_sine_wave
+; 49bae
+```
+
+They all rely on `calc_sine_wave` in [macros/code.asm](/macros/code.asm):
+
+```asm
+calc_sine_wave: MACRO
+; input: a = a signed 6-bit value
+; output: a = d * sin(a * pi/32)
 	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
+	cp  %100000
+	jr nc, .negative\@
+	call .apply\@
 	ld a, h
 	ret
-
-.negative
+.negative\@
 	and %011111
-	call .ApplySineWave
+	call .apply\@
 	ld a, h
 	xor $ff
 	inc a
 	ret
-
-.ApplySineWave: ; 49b52 (12:5b52)
+.apply\@
 	ld e, a
 	ld a, d
 	ld d, 0
-	ld hl, .sinewave
+if _NARG == 1
+	ld hl, \1
+else
+	ld hl, .sinetable\@
+endc
 	add hl, de
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-.multiply
+.multiply\@ ; factor amplitude
 	srl a
-	jr nc, .even
+	jr nc, .even\@
 	add hl, de
-.even
+.even\@
 	sla e
 	rl d
 	and a
-	jr nz, .multiply
+	jr nz, .multiply\@
 	ret
-; 49b6e (12:5b6e)
-
-.sinewave ; 49b6e
-	sine_wave 32
-; 49bae
+if _NARG == 0
+.sinetable\@
+	sine_table 32
+endc
+ENDM
 ```
 
-**Fix:** Call a single shared copy of the (co)sine code in bank 0.
+And on `sine_table` in [macros/data.asm](/macros/data.asm):
+
+```asm
+sine_table: MACRO
+; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
+x = 0
+rept \1
+	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+x = x + DIV(32768, \1) ; a circle has 65536 "degrees"
+endr
+ENDM
+```
+
+**Fix:** Edit [home/sine.asm](/home/sine.asm) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
 
 
 ## `GetForestTreeFrame` works, but it's still bad
