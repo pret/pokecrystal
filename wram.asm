@@ -1226,7 +1226,7 @@ wcd72:: ds 1
 wcd73:: ds 1
 wcd74:: ds 1
 
-wOTMonSelection:: ds 2 ; ds 3
+wOTMonSelection:: ds 2 ; ds BATTLETOWER_PARTY_LENGTH
 wcd77:: ds 1
 
 wMobileCrashCheckPointer:: dw
@@ -1621,12 +1621,12 @@ wMartItemBCDEnd::
 
 NEXTU ; d002
 ; town map data
-wTownMapPlayerIconLandmark:: ds 1
+wTownMapPlayerIconLandmark:: db
 UNION
-wTownMapCursorLandmark:: ds 1
-wTownMapCursorObjectPointer:: ds 2
+wTownMapCursorLandmark:: db
+wTownMapCursorObjectPointer:: dw
 NEXTU
-wTownMapCursorCoordinates:: ds 2
+wTownMapCursorCoordinates:: dw
 ENDU
 
 NEXTU ; d002
@@ -1903,7 +1903,7 @@ wCurMessageScrollPosition:: db
 wCurMessageIndex:: db
 wMailboxCount:: db
 wMailboxItems:: ds MAILBOX_CAPACITY
-wMailboxEnd:: ds 1 ; d0fe
+wMailboxEnd:: ; d0fe
 ENDU ; d100
 
 wListPointer:: dw ; d100
@@ -2026,7 +2026,7 @@ wTilesetBlocksAddress:: dw ; d1dd
 wTilesetCollisionBank:: db ; d1df
 wTilesetCollisionAddress:: dw ; d1e0
 wTilesetAnim:: dw ; bank 3f ; d1e2
-	ds 2  ; unused ; d1e4
+	ds 2 ; unused ; d1e4
 wTilesetPalettes:: dw ; bank 3f ; d1e6
 wTilesetEnd::
 
@@ -2300,7 +2300,9 @@ wReceiveCallDelay_StartTime:: ds 3 ; d466
 wBugContestMinsRemaining:: db ; d46c
 wBugContestSecsRemaining:: db ; d46d
 	ds 2
-wMapStatusEnd:: ds 2 ; d470
+wMapStatusEnd:: ; d470
+
+	ds 2
 
 wCrystalData::
 wPlayerGender:: ; d472
@@ -2638,7 +2640,7 @@ wBikeFlags:: ; dbf5
 ; bit 1: always on bike
 ; bit 2: downhill
 	db
-	ds 1 ; also cleared by ResetBikeFlags
+	ds 1 ; cleared along with wBikeFlags by ResetBikeFlags
 
 wCurrMapSceneScriptPointer:: dw ; dbf7
 
