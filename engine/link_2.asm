@@ -1,10 +1,10 @@
 LinkMonStatsScreen: ; 4d319
 	ld a, [wMenuCursorY]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	call LowVolume
 	predef StatsScreenInit
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	inc a
 	ld [wMenuCursorY], a
 	call ClearScreen
@@ -31,7 +31,7 @@ LinkTextbox2: ; 4d35b
 	pop hl
 	pop bc
 
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	inc b
 	inc b

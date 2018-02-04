@@ -20,8 +20,8 @@ DMATransfer:: ; 15d8
 
 
 UpdateBGMapBuffer:: ; 15e3
-; Copy [hBGMapTileCount] 16x8 tiles from BGMapBuffer
-; to bg map addresses in BGMapBufferPtrs.
+; Copy [hBGMapTileCount] 16x8 tiles from wBGMapBuffer
+; to bg map addresses in wBGMapBufferPtrs.
 
 ; [hBGMapTileCount] must be even since this is done in pairs.
 
@@ -35,13 +35,13 @@ UpdateBGMapBuffer:: ; 15e3
 	push af
 	ld [hSPBuffer], sp
 
-	ld hl, BGMapBufferPtrs
+	ld hl, wBGMapBufferPtrs
 	ld sp, hl
 
 ; We can now pop the addresses of affected spots on the BG Map
 
-	ld hl, BGMapPalBuffer
-	ld de, BGMapBuffer
+	ld hl, wBGMapPalBuffer
+	ld de, wBGMapBuffer
 
 
 .next
@@ -122,7 +122,7 @@ WaitTop:: ; 163a
 
 
 UpdateBGMap:: ; 164c
-; Update the BG Map, in thirds, from TileMap and AttrMap.
+; Update the BG Map, in thirds, from wTileMap and wAttrMap.
 
 	ld a, [hBGMapMode]
 	and a
@@ -168,7 +168,7 @@ UpdateBGMap:: ; 164c
 	ld a, 1
 	ld [rVBK], a
 
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	call .update
 
 	ld a, 0
@@ -250,7 +250,7 @@ THIRD_HEIGHT EQU SCREEN_HEIGHT / 3
 ; Rows of tiles in a third
 	ld a, SCREEN_HEIGHT / 3
 
-; Discrepancy between TileMap and BGMap
+; Discrepancy between wTileMap and BGMap
 	ld bc, BG_MAP_WIDTH - (SCREEN_WIDTH - 1)
 
 
@@ -285,7 +285,7 @@ endr
 Serve1bppRequest:: ; 170a
 ; Only call during the first fifth of VBlank
 
-	ld a, [Requested1bpp]
+	ld a, [wRequested1bpp]
 	and a
 	ret z
 
@@ -296,29 +296,29 @@ Serve1bppRequest:: ; 170a
 	cp LY_VBLANK + 2
 	ret nc
 
-; Copy [Requested1bpp] 1bpp tiles from [Requested1bppSource] to [Requested1bppDest]
+; Copy [wRequested1bpp] 1bpp tiles from [wRequested1bppSource] to [wRequested1bppDest]
 
 	ld [hSPBuffer], sp
 
 ; Source
-	ld hl, Requested1bppSource
+	ld hl, wRequested1bppSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 
 ; Destination
-	ld hl, Requested1bppDest
+	ld hl, wRequested1bppDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
 ; # tiles to copy
-	ld a, [Requested1bpp]
+	ld a, [wRequested1bpp]
 	ld b, a
 
 	xor a
-	ld [Requested1bpp], a
+	ld [wRequested1bpp], a
 
 .next
 
@@ -348,11 +348,11 @@ endr
 
 
 	ld a, l
-	ld [Requested1bppDest], a
+	ld [wRequested1bppDest], a
 	ld a, h
-	ld [Requested1bppDest + 1], a
+	ld [wRequested1bppDest + 1], a
 
-	ld [Requested1bppSource], sp
+	ld [wRequested1bppSource], sp
 
 	ld a, [hSPBuffer]
 	ld l, a
@@ -366,7 +366,7 @@ endr
 Serve2bppRequest:: ; 1769
 ; Only call during the first fifth of VBlank
 
-	ld a, [Requested2bpp]
+	ld a, [wRequested2bpp]
 	and a
 	ret z
 
@@ -381,34 +381,34 @@ Serve2bppRequest:: ; 1769
 
 Serve2bppRequest_VBlank:: ; 1778
 
-	ld a, [Requested2bpp]
+	ld a, [wRequested2bpp]
 	and a
 	ret z
 
 _Serve2bppRequest:: ; 177d
-; Copy [Requested2bpp] 2bpp tiles from [Requested2bppSource] to [Requested2bppDest]
+; Copy [wRequested2bpp] 2bpp tiles from [wRequested2bppSource] to [wRequested2bppDest]
 
 	ld [hSPBuffer], sp
 
 ; Source
-	ld hl, Requested2bppSource
+	ld hl, wRequested2bppSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 
 ; Destination
-	ld hl, Requested2bppDest
+	ld hl, wRequested2bppDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
 ; # tiles to copy
-	ld a, [Requested2bpp]
+	ld a, [wRequested2bpp]
 	ld b, a
 
 	xor a
-	ld [Requested2bpp], a
+	ld [wRequested2bpp], a
 
 .next
 
@@ -430,11 +430,11 @@ endr
 
 
 	ld a, l
-	ld [Requested2bppDest], a
+	ld [wRequested2bppDest], a
 	ld a, h
-	ld [Requested2bppDest + 1], a
+	ld [wRequested2bppDest + 1], a
 
-	ld [Requested2bppSource], sp
+	ld [wRequested2bppSource], sp
 
 	ld a, [hSPBuffer]
 	ld l, a
@@ -466,7 +466,7 @@ AnimateTileset:: ; 17d3
 
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(TilesetAnim)
+	ld a, BANK(wTilesetAnim)
 	ld [rSVBK], a
 
 	ld a, [rVBK]

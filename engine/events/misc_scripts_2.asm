@@ -12,7 +12,7 @@ RepelWoreOffScript:: ; 0x13619
 
 HiddenItemScript:: ; 0x13625
 	opentext
-	copybytetovar EngineBuffer3
+	copybytetovar wEngineBuffer3
 	itemtotext USE_SCRIPT_VAR, MEM_BUFFER_0
 	writetext .found_text
 	giveitem ITEM_FROM_MEM
@@ -42,7 +42,7 @@ HiddenItemScript:: ; 0x13625
 	db "@"
 
 SetMemEvent: ; 1364f
-	ld hl, EngineBuffer1
+	ld hl, wEngineBuffer1
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a

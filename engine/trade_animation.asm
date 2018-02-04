@@ -119,11 +119,11 @@ RunTradeAnimScript: ; 28fa1
 	push af
 	xor a
 	ld [hMapAnims], a
-	ld hl, VramState
+	ld hl, wVramState
 	ld a, [hl]
 	push af
 	res 0, [hl]
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set 4, [hl]
@@ -137,9 +137,9 @@ RunTradeAnimScript: ; 28fa1
 	call DoTradeAnimation
 	jr nc, .anim_loop
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	pop af
-	ld [VramState], a
+	ld [wVramState], a
 	pop af
 	ld [hMapAnims], a
 	ret
@@ -831,11 +831,11 @@ TradeAnim_ScrollOutRight2: ; 2940c
 TradeAnim_ShowGivemonData: ; 2942e
 	call ShowPlayerTrademonStats
 	ld a, [wPlayerTrademonSpecies]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, [wPlayerTrademonDVs]
-	ld [TempMonDVs], a
+	ld [wTempMonDVs], a
 	ld a, [wPlayerTrademonDVs + 1]
-	ld [TempMonDVs + 1], a
+	ld [wTempMonDVs + 1], a
 	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
@@ -858,11 +858,11 @@ TradeAnim_ShowGivemonData: ; 2942e
 TradeAnim_ShowGetmonData: ; 29461
 	call ShowOTTrademonStats
 	ld a, [wOTTrademonSpecies]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, [wOTTrademonDVs]
-	ld [TempMonDVs], a
+	ld [wTempMonDVs], a
 	ld a, [wOTTrademonDVs + 1]
-	ld [TempMonDVs + 1], a
+	ld [wTempMonDVs + 1], a
 	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	ld a, %11100100 ; 3,2,1,0
@@ -885,8 +885,8 @@ TradeAnim_GetFrontpic: ; 29491
 	push af
 	predef GetUnownLetter
 	pop af
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
 	pop de
 	predef GetMonFrontpic
@@ -898,7 +898,7 @@ TradeAnim_GetNickname: ; 294a9
 	push de
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	pop de
 	ld bc, NAME_LENGTH
 	call CopyBytes

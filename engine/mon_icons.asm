@@ -55,7 +55,7 @@ LoadMenuMonIcon: ; 8e83f
 .GetPartyMonItemGFX: ; 8e86c (23:686c)
 	push bc
 	ld a, [hObjectStructIndexBuffer]
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
@@ -129,7 +129,7 @@ PartyMenu_InitAnimatedMonIcon: ; 8e8d5 (23:68d5)
 .SpawnItemIcon: ; 8e8df (23:68df)
 	push bc
 	ld a, [hObjectStructIndexBuffer]
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	pop bc
@@ -158,13 +158,13 @@ InitPartyMenuIcon: ; 8e908 (23:6908)
 	ld a, [wCurIconTile]
 	push af
 	ld a, [hObjectStructIndexBuffer]
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	ld e, a
 	ld d, $0
 	add hl, de
 	ld a, [hl]
 	call ReadMonMenuIcon
-	ld [CurIcon], a
+	ld [wCurIcon], a
 	call GetMemIconGFX
 	ld a, [hObjectStructIndexBuffer]
 ; y coord
@@ -222,7 +222,7 @@ SetPartyMonIconAnimSpeed: ; 8e936 (23:6936)
 NamingScreen_InitAnimatedMonIcon: ; 8e961 (23:6961)
 	ld a, [wd265]
 	call ReadMonMenuIcon
-	ld [CurIcon], a
+	ld [wCurIcon], a
 	xor a
 	call GetIconGFX
 	depixel 4, 4, 4, 0
@@ -236,7 +236,7 @@ NamingScreen_InitAnimatedMonIcon: ; 8e961 (23:6961)
 MoveList_InitAnimatedMonIcon: ; 8e97d (23:697d)
 	ld a, [wd265]
 	call ReadMonMenuIcon
-	ld [CurIcon], a
+	ld [wCurIcon], a
 	xor a
 	call GetIconGFX
 	ld d, 3 * 8 + 2 ; depixel 3, 4, 2, 4
@@ -251,7 +251,7 @@ MoveList_InitAnimatedMonIcon: ; 8e97d (23:697d)
 Trade_LoadMonIconGFX: ; 8e99a (23:699a)
 	ld a, [wd265]
 	call ReadMonMenuIcon
-	ld [CurIcon], a
+	ld [wCurIcon], a
 	ld a, $62
 	ld [wCurIconTile], a
 	call GetMemIconGFX
@@ -262,7 +262,7 @@ GetSpeciesIcon: ; 8e9ac
 	push de
 	ld a, [wd265]
 	call ReadMonMenuIcon
-	ld [CurIcon], a
+	ld [wCurIcon], a
 	pop de
 	ld a, e
 	call GetIconGFX
@@ -274,7 +274,7 @@ FlyFunction_GetMonIcon: ; 8e9bc (23:69bc)
 	push de
 	ld a, [wd265]
 	call ReadMonMenuIcon
-	ld [CurIcon], a
+	ld [wCurIcon], a
 	pop de
 	ld a, e
 	call GetIcon_a
@@ -285,7 +285,7 @@ Unreferenced_GetMonIcon2: ; 8e9cc
 	push de
 	ld a, [wd265]
 	call ReadMonMenuIcon
-	ld [CurIcon], a
+	ld [wCurIcon], a
 	pop de
 	call GetIcon_de
 	ret
@@ -335,7 +335,7 @@ endr
 
 ; The icons are contiguous, in order and of the same
 ; size, so the pointer table is somewhat redundant.
-	ld a, [CurIcon]
+	ld a, [wCurIcon]
 	push hl
 	ld l, a
 	ld h, 0

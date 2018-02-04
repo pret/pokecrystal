@@ -55,14 +55,14 @@ UpdateSound:: ; 3b6a
 
 
 _LoadMusicByte:: ; 3b86
-; CurMusicByte = [a:de]
+; wCurMusicByte = [a:de]
 GLOBAL LoadMusicByte
 
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
 	ld a, [de]
-	ld [CurMusicByte], a
+	ld [wCurMusicByte], a
 	ld a, BANK(LoadMusicByte)
 
 	ld [hROMBank], a
@@ -168,13 +168,13 @@ endr
 	inc hl
 
 	ld a, [hli]
-	ld [CryPitch], a
+	ld [wCryPitch], a
 	ld a, [hli]
-	ld [CryPitch + 1], a
+	ld [wCryPitch + 1], a
 	ld a, [hli]
-	ld [CryLength], a
+	ld [wCryLength], a
 	ld a, [hl]
-	ld [CryLength + 1], a
+	ld [wCryLength + 1], a
 
 	ld a, BANK(_PlayCry)
 	ld [hROMBank], a
@@ -208,7 +208,7 @@ PlaySFX:: ; 3c23
 	jr nc, .play
 
 	; Does it have priority?
-	ld a, [CurSFX]
+	ld a, [wCurSFX]
 	cp e
 	jr c, .done
 
@@ -220,7 +220,7 @@ PlaySFX:: ; 3c23
 	ld [MBC3RomBank], a
 
 	ld a, e
-	ld [CurSFX], a
+	ld [wCurSFX], a
 	call _PlaySFX
 
 	pop af
@@ -249,16 +249,16 @@ WaitSFX:: ; 3c55
 	push hl
 
 .wait
-	ld hl, Channel5Flags
+	ld hl, wChannel5Flags
 	bit 0, [hl]
 	jr nz, .wait
-	ld hl, Channel6Flags
+	ld hl, wChannel6Flags
 	bit 0, [hl]
 	jr nz, .wait
-	ld hl, Channel7Flags
+	ld hl, wChannel7Flags
 	bit 0, [hl]
 	jr nz, .wait
-	ld hl, Channel8Flags
+	ld hl, wChannel8Flags
 	bit 0, [hl]
 	jr nz, .wait
 
@@ -271,16 +271,16 @@ IsSFXPlaying:: ; 3c74
 ; The inverse of CheckSFX.
 	push hl
 
-	ld hl, Channel5Flags
+	ld hl, wChannel5Flags
 	bit 0, [hl]
 	jr nz, .playing
-	ld hl, Channel6Flags
+	ld hl, wChannel6Flags
 	bit 0, [hl]
 	jr nz, .playing
-	ld hl, Channel7Flags
+	ld hl, wChannel7Flags
 	bit 0, [hl]
 	jr nz, .playing
-	ld hl, Channel8Flags
+	ld hl, wChannel8Flags
 	bit 0, [hl]
 	jr nz, .playing
 
@@ -296,31 +296,31 @@ IsSFXPlaying:: ; 3c74
 
 MaxVolume:: ; 3c97
 	ld a, MAX_VOLUME
-	ld [Volume], a
+	ld [wVolume], a
 	ret
 ; 3c9d
 
 LowVolume:: ; 3c9d
 	ld a, $33 ; 40%
-	ld [Volume], a
+	ld [wVolume], a
 	ret
 ; 3ca3
 
 VolumeOff:: ; 3ca3
 	xor a
-	ld [Volume], a
+	ld [wVolume], a
 	ret
 ; 3ca8
 
 Unused_FadeOutMusic:: ; 3ca8
 	ld a, 4
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ret
 ; 3cae
 
 FadeInMusic:: ; 3cae
 	ld a, 4 | (1 << MUSIC_FADE_IN_F)
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ret
 ; 3cb4
 
@@ -346,11 +346,11 @@ FadeToMapMusic:: ; 3cbc
 	jr z, .done
 
 	ld a, 8
-	ld [MusicFade], a
+	ld [wMusicFade], a
 	ld a, e
-	ld [MusicFadeID], a
+	ld [wMusicFadeID], a
 	ld a, d
-	ld [MusicFadeID + 1], a
+	ld [wMusicFadeID + 1], a
 	ld a, e
 	ld [wMapMusic], a
 
@@ -399,7 +399,7 @@ EnterMapMusic:: ; 3d03
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
 	ld de, MUSIC_BICYCLE
-	ld a, [PlayerState]
+	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr z, .play
 	call GetMapMusic_MaybeSpecial
@@ -455,7 +455,7 @@ RestartMapMusic:: ; 3d47
 ; 3d62
 
 SpecialMapMusic:: ; 3d62
-	ld a, [PlayerState]
+	ld a, [wPlayerState]
 	cp PLAYER_SURF
 	jr z, .surf
 	cp PLAYER_SURF_PIKA
@@ -480,10 +480,10 @@ SpecialMapMusic:: ; 3d62
 	ret
 
 .contest
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	cp GROUP_ROUTE_35_NATIONAL_PARK_GATE
 	jr nz, .no
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	cp MAP_ROUTE_35_NATIONAL_PARK_GATE
 	jr z, .ranking
 	cp MAP_ROUTE_36_NATIONAL_PARK_GATE
@@ -506,15 +506,15 @@ Unreferenced_Function3d9f:: ; 3d9f
 ; Places a BCD number at the
 ; upper center of the screen.
 	ld a, 4 * TILE_WIDTH
-	ld [Sprite39YCoord], a
-	ld [Sprite40YCoord], a
+	ld [wVirtualOAMSprite38YCoord], a
+	ld [wVirtualOAMSprite39YCoord], a
 	ld a, 10 * TILE_WIDTH
-	ld [Sprite39XCoord], a
+	ld [wVirtualOAMSprite38XCoord], a
 	ld a, 11 * TILE_WIDTH
-	ld [Sprite40XCoord], a
+	ld [wVirtualOAMSprite39XCoord], a
 	xor a
-	ld [Sprite39Attributes], a
-	ld [Sprite40Attributes], a
+	ld [wVirtualOAMSprite38Attributes], a
+	ld [wVirtualOAMSprite39Attributes], a
 	ld a, [wc296]
 	cp 100
 	jr nc, .max
@@ -524,32 +524,32 @@ Unreferenced_Function3d9f:: ; 3d9f
 	swap a
 	and $f
 	add "0"
-	ld [Sprite39TileID], a
+	ld [wVirtualOAMSprite38TileID], a
 	ld a, b
 	and $f
 	add "0"
-	ld [Sprite40TileID], a
+	ld [wVirtualOAMSprite39TileID], a
 	ret
 
 .max
 	ld a, "9"
-	ld [Sprite39TileID], a
-	ld [Sprite40TileID], a
+	ld [wVirtualOAMSprite38TileID], a
+	ld [wVirtualOAMSprite39TileID], a
 	ret
 ; 3dde
 
 CheckSFX:: ; 3dde
 ; Return carry if any SFX channels are active.
-	ld a, [Channel5Flags]
+	ld a, [wChannel5Flags]
 	bit 0, a
 	jr nz, .playing
-	ld a, [Channel6Flags]
+	ld a, [wChannel6Flags]
 	bit 0, a
 	jr nz, .playing
-	ld a, [Channel7Flags]
+	ld a, [wChannel7Flags]
 	bit 0, a
 	jr nz, .playing
-	ld a, [Channel8Flags]
+	ld a, [wChannel8Flags]
 	bit 0, a
 	jr nz, .playing
 	and a
@@ -561,8 +561,8 @@ CheckSFX:: ; 3dde
 
 TerminateExpBarSound:: ; 3dfe
 	xor a
-	ld [Channel5Flags], a
-	ld [SoundInput], a
+	ld [wChannel5Flags], a
+	ld [wSoundInput], a
 	ld [rNR10], a
 	ld [rNR11], a
 	ld [rNR12], a
@@ -575,21 +575,21 @@ TerminateExpBarSound:: ; 3dfe
 ChannelsOff:: ; 3e10
 ; Quickly turn off music channels
 	xor a
-	ld [Channel1Flags], a
-	ld [Channel2Flags], a
-	ld [Channel3Flags], a
-	ld [Channel4Flags], a
-	ld [SoundInput], a
+	ld [wChannel1Flags], a
+	ld [wChannel2Flags], a
+	ld [wChannel3Flags], a
+	ld [wChannel4Flags], a
+	ld [wSoundInput], a
 	ret
 ; 3e21
 
 SFXChannelsOff:: ; 3e21
 ; Quickly turn off sound effect channels
 	xor a
-	ld [Channel5Flags], a
-	ld [Channel6Flags], a
-	ld [Channel7Flags], a
-	ld [Channel8Flags], a
-	ld [SoundInput], a
+	ld [wChannel5Flags], a
+	ld [wChannel6Flags], a
+	ld [wChannel7Flags], a
+	ld [wChannel8Flags], a
+	ld [wSoundInput], a
 	ret
 ; 3e32

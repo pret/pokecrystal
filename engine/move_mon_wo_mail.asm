@@ -25,39 +25,39 @@ InsertPokemonIntoBox: ; 51322
 	ld de, wBufferMon
 	call InsertDataIntoBoxOrParty
 	ld hl, wBufferMonMoves
-	ld de, TempMonMoves
+	ld de, wTempMonMoves
 	ld bc, NUM_MOVES
 	call CopyBytes
 	ld hl, wBufferMonPP
-	ld de, TempMonPP
+	ld de, wTempMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld b, a
 	farcall RestorePPofDepositedPokemon
 	jp CloseSRAM
 
 InsertPokemonIntoParty: ; 5138b
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	call InsertSpeciesIntoBoxOrParty
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
 	ld [wd265], a
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
 	ld de, wBufferMonNick
 	call InsertDataIntoBoxOrParty
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
 	ld [wd265], a
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	ld de, wBufferMonOT
 	call InsertDataIntoBoxOrParty
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
 	ld [wd265], a
-	ld hl, PartyMons
+	ld hl, wPartyMons
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wBufferMon
 	call InsertDataIntoBoxOrParty
@@ -66,11 +66,11 @@ InsertPokemonIntoParty: ; 5138b
 InsertSpeciesIntoBoxOrParty: ; 513cb
 	inc [hl]
 	inc hl
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld c, a
 .loop
 	ld a, [hl]
@@ -97,7 +97,7 @@ InsertDataIntoBoxOrParty: ; 513e0
 	push bc
 	ld a, [wd265]
 	ld b, a
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	cp b
 	pop bc
 	jr z, .insert
@@ -124,7 +124,7 @@ InsertDataIntoBoxOrParty: ; 513e0
 .insert
 	pop bc
 	pop hl
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l

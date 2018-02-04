@@ -119,7 +119,7 @@ DayCareManIntroText: ; 1678f
 ; 16798
 
 DayCareAskDepositPokemon: ; 16798
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp 2
 	jr c, .OnlyOneMon
 	ld a, DAYCARETEXT_WHICH_ONE
@@ -127,20 +127,20 @@ DayCareAskDepositPokemon: ; 16798
 	ld b, PARTYMENUACTION_GIVE_MON
 	farcall SelectTradeOrDayCareMon
 	jr c, .Declined
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .Egg
 	farcall CheckCurPartyMonFainted
 	jr c, .OutOfUsableMons
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [CurPartyMon]
+	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld d, [hl]
 	farcall ItemIsMail
 	jr c, .HoldingMail
-	ld hl, PartyMonNicknames
-	ld a, [CurPartyMon]
+	ld hl, wPartyMonNicknames
+	ld a, [wCurPartyMon]
 	call GetNick
 	and a
 	ret
@@ -180,7 +180,7 @@ DayCareAskDepositPokemon: ; 16798
 DayCare_DepositPokemonText: ; 167f6
 	ld a, DAYCARETEXT_DEPOSIT
 	call PrintDayCareText
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	call PlayMonCry
 	ld a, DAYCARETEXT_COME_BACK_LATER
 	call PrintDayCareText
@@ -188,7 +188,7 @@ DayCare_DepositPokemonText: ; 167f6
 ; 16807
 
 DayCare_AskWithdrawBreedMon: ; 16807
-	ld a, [StringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 1]
 	and a
 	jr nz, .grew_at_least_one_level
 	ld a, DAYCARETEXT_TOO_SOON
@@ -208,11 +208,11 @@ DayCare_AskWithdrawBreedMon: ; 16807
 	jr c, .refused
 
 .check_money
-	ld de, Money
-	ld bc, StringBuffer2 + 2
+	ld de, wMoney
+	ld bc, wStringBuffer2 + 2
 	farcall CompareMoney
 	jr c, .not_enough_money
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr nc, .PartyFull
 	and a
@@ -235,12 +235,12 @@ DayCare_AskWithdrawBreedMon: ; 16807
 ; 16850
 
 DayCare_GetBackMonForMoney: ; 16850
-	ld bc, StringBuffer2 + 2
-	ld de, Money
+	ld bc, wStringBuffer2 + 2
+	ld de, wMoney
 	farcall TakeMoney
 	ld a, DAYCARETEXT_WITHDRAW
 	call PrintDayCareText
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	call PlayMonCry
 	ld a, DAYCARETEXT_GOT_BACK
 	call PrintDayCareText
@@ -249,24 +249,24 @@ DayCare_GetBackMonForMoney: ; 16850
 
 GetPriceToRetrieveBreedmon: ; 1686d
 	ld a, b
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	ld a, d
-	ld [StringBuffer2 + 1], a
-	ld de, StringBuffer1
+	ld [wStringBuffer2 + 1], a
+	ld de, wStringBuffer1
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld hl, 0
 	ld bc, 100
-	ld a, [StringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 1]
 	call AddNTimes
 	ld de, 100
 	add hl, de
 	xor a
-	ld [StringBuffer2 + 2], a
+	ld [wStringBuffer2 + 2], a
 	ld a, h
-	ld [StringBuffer2 + 3], a
+	ld [wStringBuffer2 + 3], a
 	ld a, l
-	ld [StringBuffer2 + 4], a
+	ld [wStringBuffer2 + 4], a
 	ret
 ; 1689b
 
@@ -446,7 +446,7 @@ Special_DayCareManOutside: ; 16936
 	call PrintText
 	call YesNoBox
 	jr c, .Declined
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr nc, .PartyFull
 	call DayCare_GiveEgg
@@ -468,14 +468,14 @@ Special_DayCareManOutside: ; 16936
 .Load0:
 	call PrintText
 	xor a ; FALSE
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .PartyFull:
 	ld hl, .PartyFullText
 	call PrintText
 	ld a, TRUE
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 16993
 
@@ -511,8 +511,8 @@ Special_DayCareManOutside: ; 16936
 
 DayCare_GiveEgg: ; 169ac
 	ld a, [wEggMonLevel]
-	ld [CurPartyLevel], a
-	ld hl, PartyCount
+	ld [wCurPartyLevel], a
+	ld hl, wPartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
 	jr nc, .PartyFull
@@ -525,24 +525,24 @@ DayCare_GiveEgg: ; 169ac
 	ld a, EGG
 	ld [hli], a
 	ld a, [wEggMonSpecies]
-	ld [CurSpecies], a
-	ld [CurPartySpecies], a
+	ld [wCurSpecies], a
+	ld [wCurPartySpecies], a
 	ld a, -1
 	ld [hl], a
 
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
 	call DayCare_GetCurrentPartyMember
 	ld hl, wEggNick
 	call CopyBytes
 
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	call DayCare_GetCurrentPartyMember
 	ld hl, wEggOT
 	call CopyBytes
 
-	ld hl, PartyMon1
+	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call DayCare_GetCurrentPartyMember
 	ld hl, wEggMon
@@ -550,9 +550,9 @@ DayCare_GiveEgg: ; 169ac
 	call CopyBytes
 
 	call GetBaseData
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1
+	ld hl, wPartyMon1
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld b, h
@@ -583,7 +583,7 @@ DayCare_GiveEgg: ; 169ac
 ; 16a31
 
 DayCare_GetCurrentPartyMember: ; 16a31
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
 	call AddNTimes
 	ld d, h
@@ -626,13 +626,13 @@ DayCare_InitBreeding: ; 16a3b
 	ld bc, NAME_LENGTH
 	call ByteFill
 	ld a, [wBreedMon1DVs]
-	ld [TempMonDVs], a
+	ld [wTempMonDVs], a
 	ld a, [wBreedMon1DVs + 1]
-	ld [TempMonDVs + 1], a
+	ld [wTempMonDVs + 1], a
 	ld a, [wBreedMon1Species]
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, $3
-	ld [MonType], a
+	ld [wMonType], a
 	ld a, [wBreedMon1Species]
 	cp DITTO
 	ld a, $1
@@ -654,13 +654,13 @@ DayCare_InitBreeding: ; 16a3b
 	ld a, [wBreedMon2Species]
 
 .GotMother:
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	callfar GetPreEvolution
 	callfar GetPreEvolution
 	ld a, EGG_LEVEL
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp NIDORAN_F
 	jr nz, .GotEggSpecies
 	call Random
@@ -669,15 +669,15 @@ DayCare_InitBreeding: ; 16a3b
 	jr c, .GotEggSpecies
 	ld a, NIDORAN_M
 .GotEggSpecies:
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
 	ld [wEggMonSpecies], a
 
 	call GetBaseData
 	ld hl, wEggNick
 	ld de, .String_EGG
 	call CopyName2
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld de, wEggOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -685,15 +685,15 @@ DayCare_InitBreeding: ; 16a3b
 	ld [wEggMonItem], a
 	ld de, wEggMonMoves
 	xor a
-	ld [Buffer1], a
+	ld [wBuffer1], a
 	predef FillMoves
 	farcall InitEggMoves
 	ld hl, wEggMonID
-	ld a, [PlayerID]
+	ld a, [wPlayerID]
 	ld [hli], a
-	ld a, [PlayerID + 1]
+	ld a, [wPlayerID + 1]
 	ld [hl], a
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	ld d, a
 	callfar CalcExpAtLevel
 	ld hl, wEggMonExp
@@ -713,10 +713,10 @@ DayCare_InitBreeding: ; 16a3b
 	ld hl, wEggMonDVs
 	call Random
 	ld [hli], a
-	ld [TempMonDVs], a
+	ld [wTempMonDVs], a
 	call Random
 	ld [hld], a
-	ld [TempMonDVs + 1], a
+	ld [wTempMonDVs + 1], a
 	ld de, wBreedMon1DVs
 	ld a, [wBreedMon1Species]
 	cp DITTO
@@ -726,7 +726,7 @@ DayCare_InitBreeding: ; 16a3b
 	cp DITTO
 	jr z, .GotDVs
 	ld a, TEMPMON
-	ld [MonType], a
+	ld [wMonType], a
 	push hl
 	farcall GetGender
 	pop hl
@@ -766,7 +766,7 @@ DayCare_InitBreeding: ; 16a3b
 	ld [hl], a
 
 .SkipDVs:
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld de, wMonOrItemNameBuffer
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -774,17 +774,17 @@ DayCare_InitBreeding: ; 16a3b
 	ld de, wEggMonPP
 	predef FillPP
 	ld hl, wMonOrItemNameBuffer
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld a, [BaseEggSteps]
+	ld a, [wBaseEggSteps]
 	ld hl, wEggMonHappiness
 	ld [hli], a
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	ld [wEggMonLevel], a
 	ret
 ; 16be0

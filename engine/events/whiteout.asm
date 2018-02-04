@@ -52,7 +52,7 @@ HalveMoney: ; 12513
 	farcall StubbedTrainerRankings_WhiteOuts
 
 ; Halve the player's money.
-	ld hl, Money
+	ld hl, wMoney
 	ld a, [hl]
 	srl a
 	ld [hli], a
@@ -77,6 +77,6 @@ GetWhiteoutSpawn: ; 12527
 	xor a ; SPAWN_HOME
 
 .yes
-	ld [DefaultSpawnpoint], a
+	ld [wDefaultSpawnpoint], a
 	ret
 ; 1253d

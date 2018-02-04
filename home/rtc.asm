@@ -9,7 +9,7 @@ RTC:: ; 46f
 	call UpdateTime
 
 ; obj update on?
-	ld a, [VramState]
+	ld a, [wVramState]
 	bit 0, a ; obj update
 	ret z
 

@@ -1,29 +1,29 @@
 ; base data struct members (see data/pokemon/base_stats/*.asm)
-BASE_DEX_NO      EQUS "(BaseDexNo - CurBaseData)"
-BASE_STATS       EQUS "(BaseStats - CurBaseData)"
-BASE_HP          EQUS "(BaseHP - CurBaseData)"
-BASE_ATK         EQUS "(BaseAttack - CurBaseData)"
-BASE_SPD         EQUS "(BaseSpeed - CurBaseData)"
-BASE_SAT         EQUS "(BaseSpecialAttack - CurBaseData)"
-BASE_SDF         EQUS "(BaseSpecialDefense - CurBaseData)"
-BASE_TYPES       EQUS "(BaseType - CurBaseData)"
-BASE_TYPE_1      EQUS "(BaseType1 - CurBaseData)"
-BASE_TYPE_2      EQUS "(BaseType2 - CurBaseData)"
-BASE_CATCH_RATE  EQUS "(BaseCatchRate - CurBaseData)"
-BASE_EXP         EQUS "(BaseExp - CurBaseData)"
-BASE_ITEMS       EQUS "(BaseItems - CurBaseData)"
-BASE_ITEM_1      EQUS "(BaseItem1 - CurBaseData)"
-BASE_ITEM_2      EQUS "(BaseItem2 - CurBaseData)"
-BASE_GENDER      EQUS "(BaseGender - CurBaseData)"
-BASE_UNKNOWN_1   EQUS "(BaseUnknown1 - CurBaseData)"
-BASE_EGG_STEPS   EQUS "(BaseEggSteps - CurBaseData)"
-BASE_UNKNOWN_2   EQUS "(BaseUnknown2 - CurBaseData)"
-BASE_PIC_SIZE    EQUS "(BasePicSize - CurBaseData)"
-BASE_PADDING     EQUS "(BasePadding - CurBaseData)"
-BASE_GROWTH_RATE EQUS "(BaseGrowthRate - CurBaseData)"
-BASE_EGG_GROUPS  EQUS "(BaseEggGroups - CurBaseData)"
-BASE_TMHM        EQUS "(BaseTMHM - CurBaseData)"
-BASE_DATA_SIZE   EQUS "(CurBaseDataEnd - CurBaseData)"
+BASE_DEX_NO      EQUS "(wBaseDexNo - wCurBaseData)"
+BASE_STATS       EQUS "(wBaseStats - wCurBaseData)"
+BASE_HP          EQUS "(wBaseHP - wCurBaseData)"
+BASE_ATK         EQUS "(wBaseAttack - wCurBaseData)"
+BASE_SPD         EQUS "(wBaseSpeed - wCurBaseData)"
+BASE_SAT         EQUS "(wBaseSpecialAttack - wCurBaseData)"
+BASE_SDF         EQUS "(wBaseSpecialDefense - wCurBaseData)"
+BASE_TYPES       EQUS "(wBaseType - wCurBaseData)"
+BASE_TYPE_1      EQUS "(wBaseType1 - wCurBaseData)"
+BASE_TYPE_2      EQUS "(wBaseType2 - wCurBaseData)"
+BASE_CATCH_RATE  EQUS "(wBaseCatchRate - wCurBaseData)"
+BASE_EXP         EQUS "(wBaseExp - wCurBaseData)"
+BASE_ITEMS       EQUS "(wBaseItems - wCurBaseData)"
+BASE_ITEM_1      EQUS "(wBaseItem1 - wCurBaseData)"
+BASE_ITEM_2      EQUS "(wBaseItem2 - wCurBaseData)"
+BASE_GENDER      EQUS "(wBaseGender - wCurBaseData)"
+BASE_UNKNOWN_1   EQUS "(wBaseUnknown1 - wCurBaseData)"
+BASE_EGG_STEPS   EQUS "(wBaseEggSteps - wCurBaseData)"
+BASE_UNKNOWN_2   EQUS "(wBaseUnknown2 - wCurBaseData)"
+BASE_PIC_SIZE    EQUS "(wBasePicSize - wCurBaseData)"
+BASE_PADDING     EQUS "(wBasePadding - wCurBaseData)"
+BASE_GROWTH_RATE EQUS "(wBaseGrowthRate - wCurBaseData)"
+BASE_EGG_GROUPS  EQUS "(wBaseEggGroups - wCurBaseData)"
+BASE_TMHM        EQUS "(wBaseTMHM - wCurBaseData)"
+BASE_DATA_SIZE   EQUS "(wCurBaseDataEnd - wCurBaseData)"
 
 ; gender ratio constants
 GENDER_F0    EQU 0 percent
@@ -34,7 +34,7 @@ GENDER_F75   EQU 75 percent
 GENDER_F100  EQU 254 ; 100 percent
 GENDERLESS   EQU 255
 
-; BaseGrowthRate values
+; wBaseGrowthRate values
 ; GrowthRates indexes (see data/growth_rates.asm)
 	const_def
 	const MEDIUM_FAST
@@ -44,7 +44,7 @@ GENDERLESS   EQU 255
 	const FAST
 	const SLOW
 
-; BaseEggGroups values
+; wBaseEggGroups values
 const_value set 1
 	const MONSTER      ; 1
 	const AMPHIBIAN    ; 2
@@ -68,37 +68,37 @@ NUM_DEX_ENTRY_BANKS EQU 4
 
 
 ; party_struct members (see macros/wram.asm)
-MON_SPECIES            EQUS "(PartyMon1Species - PartyMon1)"
-MON_ITEM               EQUS "(PartyMon1Item - PartyMon1)"
-MON_MOVES              EQUS "(PartyMon1Moves - PartyMon1)"
-MON_ID                 EQUS "(PartyMon1ID - PartyMon1)"
-MON_EXP                EQUS "(PartyMon1Exp - PartyMon1)"
-MON_STAT_EXP           EQUS "(PartyMon1StatExp - PartyMon1)"
-MON_HP_EXP             EQUS "(PartyMon1HPExp - PartyMon1)"
-MON_ATK_EXP            EQUS "(PartyMon1AtkExp - PartyMon1)"
-MON_DEF_EXP            EQUS "(PartyMon1DefExp - PartyMon1)"
-MON_SPD_EXP            EQUS "(PartyMon1SpdExp - PartyMon1)"
-MON_SPC_EXP            EQUS "(PartyMon1SpcExp - PartyMon1)"
-MON_DVS                EQUS "(PartyMon1DVs - PartyMon1)"
-MON_PP                 EQUS "(PartyMon1PP - PartyMon1)"
-MON_HAPPINESS          EQUS "(PartyMon1Happiness - PartyMon1)"
-MON_PKRUS              EQUS "(PartyMon1PokerusStatus - PartyMon1)"
-MON_CAUGHTDATA         EQUS "(PartyMon1CaughtData - PartyMon1)"
-MON_CAUGHTLEVEL        EQUS "(PartyMon1CaughtLevel - PartyMon1)"
-MON_CAUGHTTIME         EQUS "(PartyMon1CaughtTime - PartyMon1)"
-MON_CAUGHTGENDER       EQUS "(PartyMon1CaughtGender - PartyMon1)"
-MON_CAUGHTLOCATION     EQUS "(PartyMon1CaughtLocation - PartyMon1)"
-MON_LEVEL              EQUS "(PartyMon1Level - PartyMon1)"
-MON_STATUS             EQUS "(PartyMon1Status - PartyMon1)"
-MON_HP                 EQUS "(PartyMon1HP - PartyMon1)"
-MON_MAXHP              EQUS "(PartyMon1MaxHP - PartyMon1)"
-MON_ATK                EQUS "(PartyMon1Attack - PartyMon1)"
-MON_DEF                EQUS "(PartyMon1Defense - PartyMon1)"
-MON_SPD                EQUS "(PartyMon1Speed - PartyMon1)"
-MON_SAT                EQUS "(PartyMon1SpclAtk - PartyMon1)"
-MON_SDF                EQUS "(PartyMon1SpclDef - PartyMon1)"
-BOXMON_STRUCT_LENGTH   EQUS "(PartyMon1End - PartyMon1)"
-PARTYMON_STRUCT_LENGTH EQUS "(PartyMon1StatsEnd - PartyMon1)"
+MON_SPECIES            EQUS "(wPartyMon1Species - wPartyMon1)"
+MON_ITEM               EQUS "(wPartyMon1Item - wPartyMon1)"
+MON_MOVES              EQUS "(wPartyMon1Moves - wPartyMon1)"
+MON_ID                 EQUS "(wPartyMon1ID - wPartyMon1)"
+MON_EXP                EQUS "(wPartyMon1Exp - wPartyMon1)"
+MON_STAT_EXP           EQUS "(wPartyMon1StatExp - wPartyMon1)"
+MON_HP_EXP             EQUS "(wPartyMon1HPExp - wPartyMon1)"
+MON_ATK_EXP            EQUS "(wPartyMon1AtkExp - wPartyMon1)"
+MON_DEF_EXP            EQUS "(wPartyMon1DefExp - wPartyMon1)"
+MON_SPD_EXP            EQUS "(wPartyMon1SpdExp - wPartyMon1)"
+MON_SPC_EXP            EQUS "(wPartyMon1SpcExp - wPartyMon1)"
+MON_DVS                EQUS "(wPartyMon1DVs - wPartyMon1)"
+MON_PP                 EQUS "(wPartyMon1PP - wPartyMon1)"
+MON_HAPPINESS          EQUS "(wPartyMon1Happiness - wPartyMon1)"
+MON_PKRUS              EQUS "(wPartyMon1PokerusStatus - wPartyMon1)"
+MON_CAUGHTDATA         EQUS "(wPartyMon1CaughtData - wPartyMon1)"
+MON_CAUGHTLEVEL        EQUS "(wPartyMon1CaughtLevel - wPartyMon1)"
+MON_CAUGHTTIME         EQUS "(wPartyMon1CaughtTime - wPartyMon1)"
+MON_CAUGHTGENDER       EQUS "(wPartyMon1CaughtGender - wPartyMon1)"
+MON_CAUGHTLOCATION     EQUS "(wPartyMon1CaughtLocation - wPartyMon1)"
+MON_LEVEL              EQUS "(wPartyMon1Level - wPartyMon1)"
+MON_STATUS             EQUS "(wPartyMon1Status - wPartyMon1)"
+MON_HP                 EQUS "(wPartyMon1HP - wPartyMon1)"
+MON_MAXHP              EQUS "(wPartyMon1MaxHP - wPartyMon1)"
+MON_ATK                EQUS "(wPartyMon1Attack - wPartyMon1)"
+MON_DEF                EQUS "(wPartyMon1Defense - wPartyMon1)"
+MON_SPD                EQUS "(wPartyMon1Speed - wPartyMon1)"
+MON_SAT                EQUS "(wPartyMon1SpclAtk - wPartyMon1)"
+MON_SDF                EQUS "(wPartyMon1SpclDef - wPartyMon1)"
+BOXMON_STRUCT_LENGTH   EQUS "(wPartyMon1End - wPartyMon1)"
+PARTYMON_STRUCT_LENGTH EQUS "(wPartyMon1StatsEnd - wPartyMon1)"
 REDMON_STRUCT_LENGTH EQU 44
 
 

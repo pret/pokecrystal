@@ -4,7 +4,7 @@ DisplayCaughtContestMonStats: ; cc000
 	call ClearSprites
 	call LoadFontsBattleExtra
 
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set 4, [hl]
@@ -38,24 +38,24 @@ DisplayCaughtContestMonStats: ; cc000
 	ld a, [wContestMon]
 	ld [wd265], a
 	call GetPokemonName
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	hlcoord 1, 2
 	call PlaceString
 
 	ld h, b
 	ld l, c
 	ld a, [wContestMonLevel]
-	ld [TempMonLevel], a
+	ld [wTempMonLevel], a
 	call PrintLevel
 
-	ld de, EnemyMonNick
+	ld de, wEnemyMonNick
 	hlcoord 1, 8
 	call PlaceString
 
 	ld h, b
 	ld l, c
-	ld a, [EnemyMonLevel]
-	ld [TempMonLevel], a
+	ld a, [wEnemyMonLevel]
+	ld [wTempMonLevel], a
 	call PrintLevel
 
 	hlcoord 11, 4
@@ -64,14 +64,14 @@ DisplayCaughtContestMonStats: ; cc000
 	call PrintNum
 
 	hlcoord 11, 10
-	ld de, EnemyMonMaxHP
+	ld de, wEnemyMonMaxHP
 	call PrintNum
 
 	ld hl, SwitchMonText
 	call PrintText
 
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 
 	call WaitBGMap
 	ld b, SCGB_DIPLOMA

@@ -60,7 +60,7 @@ const_value set 1
 	const SOUTH_F
 	const NORTH_F
 
-; MapConnections
+; wMapConnections
 	const_def
 	shift_const EAST
 	shift_const WEST
@@ -170,7 +170,7 @@ MAPOBJECT_SCREEN_WIDTH EQU 12
 	const OBJECT_RANGE               ; 20
 	; 21-27 are not used
 OBJECT_STRUCT_LENGTH EQU 40
-NUM_OBJECT_STRUCTS EQU 13 ; see ObjectStructs
+NUM_OBJECT_STRUCTS EQU 13 ; see wObjectStructs
 
 ; object_struct OBJECT_FACING values
 OW_DOWN  EQU DOWN  << 2

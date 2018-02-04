@@ -2,10 +2,10 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	ld a, [wContestMon]
 	and a
 	jp z, .DidntCatchAnything
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
 	jp nc, .TryAddToBox
@@ -16,11 +16,11 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	add hl, bc
 	ld a, [wContestMon]
 	ld [hli], a
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	ld a, -1
 	ld [hl], a
-	ld hl, PartyMon1Species
-	ld a, [PartyCount]
+	ld hl, wPartyMon1Species
+	ld a, [wPartyCount]
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -29,50 +29,50 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	ld hl, wContestMon
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	call SkipNames
 	ld d, h
 	ld e, l
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	call CopyBytes
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld de, wMonOrItemNameBuffer
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	call GiveANickname_YesNo
 	jr c, .Party_SkipNickname
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	ld de, wMonOrItemNameBuffer
 	callfar InitNickname
 
 .Party_SkipNickname:
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	call SkipNames
 	ld d, h
 	ld e, l
 	ld hl, wMonOrItemNameBuffer
 	call CopyBytes
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1Level
+	ld hl, wPartyMon1Level
 	call GetPartyLocation
 	ld a, [hl]
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	call SetCaughtData
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1CaughtLocation
+	ld hl, wPartyMon1CaughtLocation
 	call GetPartyLocation
 	ld a, [hl]
 	and CAUGHT_GENDER_MASK
@@ -82,7 +82,7 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	xor a
 	ld [wContestMon], a
 	and a ; BUGCONTEST_CAUGHT_MON
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .TryAddToBox: ; 4daa3
@@ -94,24 +94,24 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	call CloseSRAM
 	jr nc, .BoxFull
 	xor a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	ld hl, wContestMon
 	ld de, wBufferMon
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld de, wBufferMonOT
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	callfar InsertPokemonIntoBox
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld [wd265], a
 	call GetPokemonName
 	call GiveANickname_YesNo
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	jr c, .Box_SkipNickname
 	ld a, BOXMON
-	ld [MonType], a
+	ld [wMonType], a
 	ld de, wMonOrItemNameBuffer
 	callfar InitNickname
 	ld hl, wMonOrItemNameBuffer
@@ -128,7 +128,7 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	ld a, BANK(sBoxMon1Level)
 	call GetSRAMBank
 	ld a, [sBoxMon1Level]
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	call CloseSRAM
 	call SetBoxMonCaughtData
 	ld a, BANK(sBoxMon1CaughtLocation)
@@ -143,12 +143,12 @@ Special_CheckPartyFullAfterContest: ; 4d9e5
 	xor a
 	ld [wContestMon], a
 	ld a, BUGCONTEST_BOXED_MON
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .DidntCatchAnything: ; 4db35
 	ld a, BUGCONTEST_NO_CATCH
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 GiveANickname_YesNo: ; 4db3b
@@ -162,22 +162,22 @@ TextJump_GiveANickname: ; 0x4db44
 	db "@"
 
 SetCaughtData: ; 4db49
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1CaughtLevel
+	ld hl, wPartyMon1CaughtLevel
 	call GetPartyLocation
 SetBoxmonOrEggmonCaughtData: ; 4db53
-	ld a, [TimeOfDay]
+	ld a, [wTimeOfDay]
 	inc a
 	rrca
 	rrca
 	ld b, a
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	or b
 	ld [hli], a
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	cp MAP_POKECENTER_2F
 	jr nz, .NotPokecenter2F
@@ -185,9 +185,9 @@ SetBoxmonOrEggmonCaughtData: ; 4db53
 	cp GROUP_POKECENTER_2F
 	jr nz, .NotPokecenter2F
 
-	ld a, [BackupMapGroup]
+	ld a, [wBackupMapGroup]
 	ld b, a
-	ld a, [BackupMapNumber]
+	ld a, [wBackupMapNumber]
 	ld c, a
 
 .NotPokecenter2F:
@@ -218,9 +218,9 @@ SetGiftBoxMonCaughtData: ; 4db92
 	ret
 
 SetGiftPartyMonCaughtData: ; 4dba3
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld hl, PartyMon1CaughtLevel
+	ld hl, wPartyMon1CaughtLevel
 	push bc
 	call GetPartyLocation
 	pop bc
@@ -234,14 +234,14 @@ SetGiftMonCaughtData: ; 4dbaf
 	ret
 
 SetEggMonCaughtData: ; 4dbb8 (13:5bb8)
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1CaughtLevel
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1CaughtLevel
 	call GetPartyLocation
-	ld a, [CurPartyLevel]
+	ld a, [wCurPartyLevel]
 	push af
 	ld a, CAUGHT_EGG_LEVEL
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	call SetBoxmonOrEggmonCaughtData
 	pop af
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ret

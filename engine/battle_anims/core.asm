@@ -1,5 +1,5 @@
 QueueBattleAnimation: ; cc9a1 (33:49a1)
-	ld hl, ActiveAnimObjects
+	ld hl, wActiveAnimObjects
 	ld e, 10
 .loop
 	ld a, [hl]
@@ -106,7 +106,7 @@ BattleAnimOAMUpdate: ; cca09
 	ld l, a
 	ld a, [wBattleAnimOAMPointerLo]
 	ld e, a
-	ld d, HIGH(Sprites)
+	ld d, HIGH(wVirtualOAM)
 .loop
 	ld a, [wBattleAnimTempYCoord]
 	ld b, a
@@ -249,10 +249,10 @@ InitBattleAnimBuffer: ; ccaaa
 .check_kinesis_softboiled_milkdrink
 	sub d
 	push af
-	ld a, [FXAnimID + 1]
+	ld a, [wFXAnimID + 1]
 	or a
 	jr nz, .no_sub
-	ld a, [FXAnimID]
+	ld a, [wFXAnimID]
 	cp KINESIS
 	jr z, .kinesis
 	cp SOFTBOILED

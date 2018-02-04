@@ -73,13 +73,13 @@ TimeCapsule: ; 2805d
 	ld a, $8
 	ld [rIE], a
 	ld hl, wd1f3
-	ld de, EnemyMonSpecies
+	ld de, wEnemyMonSpecies
 	ld bc, $11
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 	ld hl, wLinkData
-	ld de, OTPlayerName
+	ld de, wOTPlayerName
 	ld bc, $1a8
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
@@ -93,7 +93,7 @@ TimeCapsule: ; 2805d
 	ld a, $1d
 	ld [rIE], a
 	call Link_CopyRandomNumbers
-	ld hl, OTPlayerName
+	ld hl, wOTPlayerName
 	call Link_FindFirstNonControlCharacter_SkipZero
 	push hl
 	ld bc, NAME_LENGTH
@@ -138,10 +138,10 @@ TimeCapsule: ; 2805d
 	dec c
 	jr nz, .loop
 	ld hl, wLinkPlayerName
-	ld de, OTPlayerName
+	ld de, wOTPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld de, OTPartyCount
+	ld de, wOTPartyCount
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -164,9 +164,9 @@ TimeCapsule: ; 2805d
 	ld [de], a
 	ld hl, wTimeCapsulePartyMon1Species
 	call Function2868a
-	ld a, LOW(OTPartyMonOT)
+	ld a, LOW(wOTPartyMonOT)
 	ld [wUnusedD102], a
-	ld a, HIGH(OTPartyMonOT)
+	ld a, HIGH(wOTPartyMonOT)
 	ld [wUnusedD102 + 1], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -184,7 +184,7 @@ Gen2ToGen2LinkComms: ; 28177
 	call Link_PrepPartyData_Gen2
 	call FixDataForLinkTransfer
 	call Function29dba
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jp z, LinkTimeout
 	ld a, [hSerialConnectionStatus]
@@ -218,13 +218,13 @@ Gen2ToGen2LinkComms: ; 28177
 	ld a, $8
 	ld [rIE], a
 	ld hl, wd1f3
-	ld de, EnemyMonSpecies
+	ld de, wEnemyMonSpecies
 	ld bc, $11
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 	ld hl, wLinkData
-	ld de, OTPlayerName
+	ld de, wOTPlayerName
 	ld bc, $1c2
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
@@ -249,7 +249,7 @@ Gen2ToGen2LinkComms: ; 28177
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call Link_CopyRandomNumbers
-	ld hl, OTPlayerName
+	ld hl, wOTPlayerName
 	call Link_FindFirstNonControlCharacter_SkipZero
 	ld de, wLinkData
 	ld bc, $1b9
@@ -395,21 +395,21 @@ Gen2ToGen2LinkComms: ; 28177
 
 .skip_mail
 	ld hl, wLinkPlayerName
-	ld de, OTPlayerName
+	ld de, wOTPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld de, OTPartyCount
+	ld de, wOTPartyCount
 	ld bc, 1 + PARTY_LENGTH + 1
 	call CopyBytes
-	ld de, OTPlayerID
+	ld de, wOTPlayerID
 	ld bc, 2
 	call CopyBytes
-	ld de, OTPartyMons
-	ld bc, OTPartyDataEnd - OTPartyMons
+	ld de, wOTPartyMons
+	ld bc, wOTPartyDataEnd - wOTPartyMons
 	call CopyBytes
-	ld a, LOW(OTPartyMonOT)
+	ld a, LOW(wOTPartyMonOT)
 	ld [wUnusedD102], a
-	ld a, HIGH(OTPartyMonOT)
+	ld a, HIGH(wOTPartyMonOT)
 	ld [wUnusedD102 + 1], a
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -421,17 +421,17 @@ Gen2ToGen2LinkComms: ; 28177
 	cp LINK_COLOSSEUM
 	jr nz, .ready_to_trade
 	ld a, CAL
-	ld [OtherTrainerClass], a
+	ld [wOtherTrainerClass], a
 	call ClearScreen
 	farcall Link_WaitBGMap
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	and 1 << STEREO
 	or TEXT_DELAY_MED
 	ld [hl], a
-	ld hl, OTPlayerName
-	ld de, OTClassName
+	ld hl, wOTPlayerName
+	ld de, wOTClassName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	call ReturnToMapFromSubmenu
@@ -466,7 +466,7 @@ Gen2ToGen2LinkComms: ; 28177
 	pop af
 	ld [wDisableTextAcceleration], a
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	farcall LoadPokemonData
 	jp Function28b22
 
@@ -568,12 +568,12 @@ ClearLinkData: ; 28426
 FixDataForLinkTransfer: ; 28434
 	ld hl, wd1f3
 	ld a, SERIAL_PREAMBLE_BYTE
-	ld b, LinkBattleRNs - wd1f3
+	ld b, wLinkBattleRNs - wd1f3
 .loop1
 	ld [hli], a
 	dec b
 	jr nz, .loop1
-	ld b, TempEnemyMonSpecies - LinkBattleRNs
+	ld b, wTempEnemyMonSpecies - wLinkBattleRNs
 .loop2
 	call Random
 	cp SERIAL_PREAMBLE_BYTE
@@ -647,11 +647,11 @@ Link_PrepPartyData_Gen1: ; 28499
 	inc de
 	dec b
 	jr nz, .loop1
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	push de
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -677,7 +677,7 @@ Link_PrepPartyData_Gen1: ; 28499
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	ld c, PARTY_LENGTH
 .mon_loop
 	push bc
@@ -687,9 +687,9 @@ Link_PrepPartyData_Gen1: ; 28499
 	pop bc
 	dec c
 	jr nz, .mon_loop
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	call .copy_ot_nicks
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 .copy_ot_nicks
 	ld bc, PARTY_LENGTH * NAME_LENGTH
 	jp CopyBytes
@@ -761,7 +761,7 @@ Link_PrepPartyData_Gen1: ; 28499
 	add hl, bc
 	ld a, [hl]
 	ld [de], a
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	inc de
 
 	push bc
@@ -783,7 +783,7 @@ Link_PrepPartyData_Gen1: ; 28499
 	add hl, bc
 	ld a, BANK(KantoMonSpecials)
 	call GetFarByte
-	ld [BaseSpecialAttack], a
+	ld [wBaseSpecialAttack], a
 	pop bc
 
 	ld hl, MON_STAT_EXP - 1
@@ -815,22 +815,22 @@ Link_PrepPartyData_Gen2: ; 28595
 	inc de
 	dec b
 	jr nz, .loop1
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	ld bc, 1 + PARTY_LENGTH + 1
 	call CopyBytes
-	ld hl, PlayerID
+	ld hl, wPlayerID
 	ld bc, 2
 	call CopyBytes
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	ld bc, PARTY_LENGTH * PARTYMON_STRUCT_LENGTH
 	call CopyBytes
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	ld bc, PARTY_LENGTH * NAME_LENGTH
 	call CopyBytes
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	ld bc, PARTY_LENGTH * MON_NAME_LENGTH
 	call CopyBytes
 
@@ -963,7 +963,7 @@ Function2868a: ; 2868a
 	ld a, c
 	ld [hli], a
 	ld [hl], b
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	ld c, PARTY_LENGTH
 .loop
 	push bc
@@ -974,10 +974,10 @@ Function2868a: ; 2868a
 	pop hl
 	ld bc, PARTY_LENGTH * REDMON_STRUCT_LENGTH
 	add hl, bc
-	ld de, OTPartyMonOT
+	ld de, wOTPartyMonOT
 	ld bc, PARTY_LENGTH * NAME_LENGTH
 	call CopyBytes
-	ld de, OTPartyMonNicknames
+	ld de, wOTPartyMonNicknames
 	ld bc, PARTY_LENGTH * MON_NAME_LENGTH
 	jp CopyBytes
 ; 286ba
@@ -995,7 +995,7 @@ Function2868a: ; 2868a
 	pop bc
 	ld a, [wd265]
 	ld [bc], a
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	ld hl, MON_HP
 	add hl, bc
 	ld a, [de]
@@ -1049,7 +1049,7 @@ Function2868a: ; 2868a
 	ld a, [de]
 	inc de
 	ld [hl], a
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	push bc
 	ld hl, $24
 	add hl, bc
@@ -1148,9 +1148,9 @@ Link_CopyRandomNumbers: ; 287ab
 	ld a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ret z
-	ld hl, EnemyMonSpecies
+	ld hl, wEnemyMonSpecies
 	call Link_FindFirstNonControlCharacter_AllowZero
-	ld de, LinkBattleRNs
+	ld de, wLinkBattleRNs
 	ld c, 10
 .loop
 	ld a, [hli]
@@ -1208,10 +1208,10 @@ InitTradeMenuDisplay: ; 287e3
 
 LinkTrade_OTPartyMenu: ; 28803
 	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [wMonType], a
 	ld a, A_BUTTON | D_UP | D_DOWN
 	ld [wMenuJoypadFilter], a
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	ld [w2DMenuNumRows], a
 	ld a, 1
 	ld [w2DMenuNumCols], a
@@ -1238,7 +1238,7 @@ LinkTradeOTPartymonMenuLoop: ; 28835
 	ld a, INIT_ENEMYOT_LIST
 	ld [wInitListType], a
 	callfar InitList
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	farcall LinkMonStatsScreen
 	jp LinkTradePartiesMenuMasterLoop
 
@@ -1247,11 +1247,11 @@ LinkTradeOTPartymonMenuLoop: ; 28835
 	jr z, .not_d_up
 	ld a, [wMenuCursorY]
 	ld b, a
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	cp b
 	jp nz, LinkTradePartiesMenuMasterLoop
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	call HideCursor
 	push hl
 	push bc
@@ -1260,7 +1260,7 @@ LinkTradeOTPartymonMenuLoop: ; 28835
 	ld [hl], " "
 	pop bc
 	pop hl
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld [wMenuCursorY], a
 	jr LinkTrade_PlayerPartyMenu
 
@@ -1273,10 +1273,10 @@ LinkTradeOTPartymonMenuLoop: ; 28835
 LinkTrade_PlayerPartyMenu: ; 2888b
 	farcall InitMG_Mobile_LinkTradePalMap
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	ld a, A_BUTTON | D_UP | D_DOWN
 	ld [wMenuJoypadFilter], a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld [w2DMenuNumRows], a
 	ld a, 1
 	ld [w2DMenuNumCols], a
@@ -1313,7 +1313,7 @@ LinkTradePartymonMenuLoop: ; 288c5
 	dec a
 	jp nz, LinkTradePartiesMenuMasterLoop
 	ld a, OTPARTYMON
-	ld [MonType], a
+	ld [wMonType], a
 	call HideCursor
 	push hl
 	push bc
@@ -1331,7 +1331,7 @@ LinkTradePartymonMenuLoop: ; 288c5
 	jr z, LinkTradePartiesMenuMasterLoop
 	ld a, [wMenuCursorY]
 	ld b, a
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	cp b
 	jr nz, LinkTradePartiesMenuMasterLoop
 	call HideCursor
@@ -1346,7 +1346,7 @@ LinkTradePartymonMenuLoop: ; 288c5
 ; 2891c
 
 LinkTradePartiesMenuMasterLoop: ; 2891c
-	ld a, [MonType]
+	ld a, [wMonType]
 	and a
 	jp z, LinkTradePartymonMenuLoop ; PARTYMON
 	jp LinkTradeOTPartymonMenuLoop  ; OTPARTYMON
@@ -1480,7 +1480,7 @@ Function28926: ; 28926
 	ld [wcf57], a
 	ld [wOtherPlayerLinkAction], a
 	ld a, [wd003]
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -1558,7 +1558,7 @@ Function28ade: ; 28ade
 	pop af
 	bit D_UP_F, a
 	jr z, .d_up
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	ld [wMenuCursorY], a
 	jp LinkTrade_OTPartyMenu
 
@@ -1648,19 +1648,19 @@ LinkTrade: ; 28b87
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
 	ld a, [wd002]
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	ld c, a
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld de, wd004
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, [wd003]
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -1763,7 +1763,7 @@ LinkTrade: ; 28b87
 
 .asm_28ca6
 	ld hl, sPartyMail
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
@@ -1776,12 +1776,12 @@ LinkTrade: ; 28b87
 	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld de, wPlayerTrademonSenderName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wd002]
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -1789,19 +1789,19 @@ LinkTrade: ; 28b87
 	ld [wPlayerTrademonSpecies], a
 	push af
 	ld a, [wd002]
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	call SkipNames
 	ld de, wPlayerTrademonOTName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld hl, PartyMon1ID
+	ld hl, wPartyMon1ID
 	ld a, [wd002]
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wPlayerTrademonID], a
 	ld a, [hl]
 	ld [wPlayerTrademonID + 1], a
-	ld hl, PartyMon1DVs
+	ld hl, wPartyMon1DVs
 	ld a, [wd002]
 	call GetPartyLocation
 	ld a, [hli]
@@ -1809,38 +1809,38 @@ LinkTrade: ; 28b87
 	ld a, [hl]
 	ld [wPlayerTrademonDVs + 1], a
 	ld a, [wd002]
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	call GetPartyLocation
 	ld b, h
 	ld c, l
 	farcall GetCaughtGender
 	ld a, c
 	ld [wPlayerTrademonCaughtData], a
-	ld hl, OTPlayerName
+	ld hl, wOTPlayerName
 	ld de, wOTTrademonSenderName
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ld a, [wd003]
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	ld b, 0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
 	ld [wOTTrademonSpecies], a
 	ld a, [wd003]
-	ld hl, OTPartyMonOT
+	ld hl, wOTPartyMonOT
 	call SkipNames
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	ld hl, OTPartyMon1ID
+	ld hl, wOTPartyMon1ID
 	ld a, [wd003]
 	call GetPartyLocation
 	ld a, [hli]
 	ld [wOTTrademonID], a
 	ld a, [hl]
 	ld [wOTTrademonID + 1], a
-	ld hl, OTPartyMon1DVs
+	ld hl, wOTPartyMon1DVs
 	ld a, [wd003]
 	call GetPartyLocation
 	ld a, [hli]
@@ -1848,7 +1848,7 @@ LinkTrade: ; 28b87
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
 	ld a, [wd003]
-	ld hl, OTPartyMon1Species
+	ld hl, wOTPartyMon1Species
 	call GetPartyLocation
 	ld b, h
 	ld c, l
@@ -1856,8 +1856,8 @@ LinkTrade: ; 28b87
 	ld a, c
 	ld [wOTTrademonCaughtData], a
 	ld a, [wd002]
-	ld [CurPartyMon], a
-	ld hl, PartySpecies
+	ld [wCurPartyMon], a
+	ld hl, wPartySpecies
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -1866,14 +1866,14 @@ LinkTrade: ; 28b87
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	ld a, TRUE
 	ld [wForceEvolution], a
 	ld a, [wd003]
 	push af
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -1897,23 +1897,23 @@ LinkTrade: ; 28b87
 .done_animation
 	pop af
 	ld c, a
-	ld [CurPartyMon], a
-	ld hl, OTPartySpecies
+	ld [wCurPartyMon], a
+	ld hl, wOTPartySpecies
 	ld d, 0
 	ld e, a
 	add hl, de
 	ld a, [hl]
-	ld [CurPartySpecies], a
-	ld hl, OTPartyMon1Species
+	ld [wCurPartySpecies], a
+	ld hl, wOTPartyMon1Species
 	ld a, c
 	call GetPartyLocation
-	ld de, TempMonSpecies
+	ld de, wTempMonSpecies
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	predef AddTempmonToParty
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	callfar EvolvePokemon
 	call ClearScreen
 	call LoadTradeScreenBorder
@@ -1924,14 +1924,14 @@ LinkTrade: ; 28b87
 	ld c, a
 	cp MEW
 	jr z, .loop
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp MEW
 	jr z, .loop
 	ld b, $2
 	ld a, c
 	cp CELEBI
 	jr z, .loop
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp CELEBI
 	jr z, .loop
 	ld b, $0
@@ -2032,14 +2032,14 @@ Unreferenced_Function28f09: ; 28f09
 INCLUDE "engine/trade_animation.asm"
 
 Special_CheckTimeCapsuleCompatibility: ; 29bfb
-; Checks to see if your Party is compatible with the generation 1 games.  Returns the following in ScriptVar:
+; Checks to see if your Party is compatible with the generation 1 games.  Returns the following in wScriptVar:
 ; 0: Party is okay
 ; 1: At least one Pokemon was introduced in GS
 ; 2: At least one Pokemon has a move that was introduced in GS
 ; 3: At least one Pokemon is holding mail
 
 ; If any party Pokemon was introduced in the generation 2 games, don't let it in.
-	ld hl, PartySpecies
+	ld hl, wPartySpecies
 	ld b, PARTY_LENGTH
 .loop
 	ld a, [hli]
@@ -2052,9 +2052,9 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 
 ; If any party Pokemon is holding mail, don't let it in.
 .checkitem
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	ld b, a
-	ld hl, PartyMon1Item
+	ld hl, wPartyMon1Item
 .itemloop
 	push hl
 	push bc
@@ -2069,8 +2069,8 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 	jr nz, .itemloop
 
 ; If any party Pokemon has a move that was introduced in the generation 2 games, don't let it in.
-	ld hl, PartyMon1Moves
-	ld a, [PartyCount]
+	ld hl, wPartyMon1Moves
+	ld a, [wPartyCount]
 	ld b, a
 .move_loop
 	ld c, NUM_MOVES
@@ -2080,7 +2080,7 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 	jr nc, .move_too_new
 	dec c
 	jr nz, .move_next
-	ld de, PartyMon2 - (PartyMon1 + NUM_MOVES)
+	ld de, wPartyMon2 - (wPartyMon1 + NUM_MOVES)
 	add hl, de
 	dec b
 	jr nz, .move_loop
@@ -2108,17 +2108,17 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 	ld a, $3
 
 .done
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 29c67
 
 Function29c67: ; 29c67
-	ld a, [PartyCount]
+	ld a, [wPartyCount]
 	sub b
 	ld c, a
 	inc c
 	ld b, 0
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	add hl, bc
 	ld a, [hl]
 	ld [wd265], a
@@ -2280,12 +2280,12 @@ Special_WaitForLinkedFriend: ; 29d11
 	ld c, 50
 	call DelayFrames
 	ld a, $1
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .done
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 29d92
 
@@ -2305,7 +2305,7 @@ Special_CheckLinkTimeout: ; 29d92
 	call Link_CheckCommunicationError
 	xor a
 	ld [hVBlank], a
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	ret nz
 	jp Link_ResetSerialRegistersAfterLinkClosure
@@ -2325,7 +2325,7 @@ Function29dba: ; 29dba
 	call DelayFrame
 	call DelayFrame
 	call Link_CheckCommunicationError
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr z, .vblank
 	ld bc, -1
@@ -2350,7 +2350,7 @@ Function29dba: ; 29dba
 
 .script_var
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .vblank
@@ -2382,7 +2382,7 @@ Link_CheckCommunicationError: ; 29e0c
 	ld a, $1
 
 .load_scriptvar
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld hl, wLinkTimeoutFrames
 	xor a
 	ld [hli], a
@@ -2435,7 +2435,7 @@ Special_TryQuickSave: ; 29e66
 	jr nc, .return_result
 	xor a ; FALSE
 .return_result
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld c, 30
 	call DelayFrames
 	pop af
@@ -2461,12 +2461,12 @@ Special_CheckBothSelectedSameRoom: ; 29e82
 	xor a
 	ld [hVBlank], a
 	ld a, TRUE
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 
 .fail
 	xor a ; FALSE
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 29eaf
 
@@ -2568,7 +2568,7 @@ Special_CableClubCheckWhichChris: ; 29f47
 	dec a ; FALSE
 
 .yes
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 29f54
 

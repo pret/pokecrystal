@@ -23,7 +23,7 @@ PlaySpriteAnimations: ; 8cf69
 	push bc
 	push af
 
-	ld a, LOW(Sprites)
+	ld a, LOW(wVirtualOAM)
 	ld [wCurrSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
 
@@ -60,11 +60,11 @@ DoNextFrameForAllSprites: ; 8cf7a
 
 	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
-	ld h, HIGH(Sprites)
+	ld h, HIGH(wVirtualOAM)
 
-.loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> SpritesEnd)
+.loop2 ; Clear (wVirtualOAM + [wCurrSpriteOAMAddr] --> wVirtualOAMEnd)
 	ld a, l
-	cp LOW(SpritesEnd)
+	cp LOW(wVirtualOAMEnd)
 	jr nc, .done
 	xor a
 	ld [hli], a
@@ -100,11 +100,11 @@ DoNextFrameForFirst16Sprites: ; 8cfa8 (23:4fa8)
 
 	ld a, [wCurrSpriteOAMAddr]
 	ld l, a
-	ld h, HIGH(Sprite17)
+	ld h, HIGH(wVirtualOAMSprite16)
 
-.loop2 ; Clear (Sprites + [wCurrSpriteOAMAddr] --> Sprites + $40)
+.loop2 ; Clear (wVirtualOAM + [wCurrSpriteOAMAddr] --> Sprites + $40)
 	ld a, l
-	cp LOW(Sprite17)
+	cp LOW(wVirtualOAMSprite16)
 	jr nc, .done
 	xor a
 	ld [hli], a
@@ -253,7 +253,7 @@ UpdateAnimFrame: ; 8d04c
 	push bc
 	ld a, [wCurrSpriteOAMAddr]
 	ld e, a
-	ld d, HIGH(Sprites)
+	ld d, HIGH(wVirtualOAM)
 	ld a, [hli]
 	ld c, a ; number of objects
 .loop
@@ -302,7 +302,7 @@ UpdateAnimFrame: ; 8d04c
 	inc de
 	ld a, e
 	ld [wCurrSpriteOAMAddr], a
-	cp LOW(SpritesEnd)
+	cp LOW(wVirtualOAMEnd)
 	jr nc, .reached_the_end
 	dec c
 	jr nz, .loop
@@ -649,7 +649,7 @@ AnimateEndOfExpBar: ; 8e79d
 ; 8e7c6
 
 .AnimateFrame: ; 8e7c6
-	ld hl, Sprite01
+	ld hl, wVirtualOAMSprite00
 	ld c, 8 ; number of animated circles
 .anim_loop
 	ld a, c

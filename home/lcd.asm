@@ -6,7 +6,7 @@ Unreferenced_Function547:: ; 547
 	cp rSCX - $ff00
 	ret nz
 	ld c, a
-	ld a, [LYOverrides]
+	ld a, [wLYOverrides]
 	ld [$ff00+c], a
 	ret
 ; 552
@@ -22,7 +22,7 @@ LCD:: ; 552
 	push bc
 	ld a, [rLY]
 	ld c, a
-	ld b, HIGH(LYOverrides)
+	ld b, HIGH(wLYOverrides)
 	ld a, [bc]
 	ld b, a
 	ld a, [hLCDCPointer]

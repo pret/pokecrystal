@@ -1,11 +1,11 @@
 BattleCommand_Spikes: ; 37683
 ; spikes
 
-	ld hl, EnemyScreens
+	ld hl, wEnemyScreens
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3768e
-	ld hl, PlayerScreens
+	ld hl, wPlayerScreens
 .asm_3768e
 
 ; Fails if spikes are already down!

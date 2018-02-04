@@ -22,7 +22,7 @@ ItemMayBeRegisteredText: ; 13340
 
 CheckRegisteredItem: ; 13345
 
-	ld a, [WhichRegisteredItem]
+	ld a, [wWhichRegisteredItem]
 	and a
 	jr z, .NoRegisteredItem
 	and REGISTERED_POCKET
@@ -39,7 +39,7 @@ CheckRegisteredItem: ; 13345
 	dw .CheckTMHM
 
 .CheckItem:
-	ld hl, NumItems
+	ld hl, wNumItems
 	call .CheckRegisteredNo
 	jr c, .NoRegisteredItem
 	inc hl
@@ -53,18 +53,18 @@ CheckRegisteredItem: ; 13345
 	ret
 
 .CheckKeyItem:
-	ld a, [RegisteredItem]
-	ld hl, KeyItems
+	ld a, [wRegisteredItem]
+	ld hl, wKeyItems
 	ld de, 1
 	call IsInArray
 	jr nc, .NoRegisteredItem
-	ld a, [RegisteredItem]
-	ld [CurItem], a
+	ld a, [wRegisteredItem]
+	ld [wCurItem], a
 	and a
 	ret
 
 .CheckBall:
-	ld hl, NumBalls
+	ld hl, wNumBalls
 	call .CheckRegisteredNo
 	jr nc, .NoRegisteredItem
 	inc hl
@@ -81,20 +81,20 @@ CheckRegisteredItem: ; 13345
 
 .NoRegisteredItem:
 	xor a
-	ld [WhichRegisteredItem], a
-	ld [RegisteredItem], a
+	ld [wWhichRegisteredItem], a
+	ld [wRegisteredItem], a
 	scf
 	ret
 ; 133a6
 
 
 .CheckRegisteredNo: ; 133a6
-	ld a, [WhichRegisteredItem]
+	ld a, [wWhichRegisteredItem]
 	and REGISTERED_NUMBER
 	dec a
 	cp [hl]
 	jr nc, .NotEnoughItems
-	ld [CurItemQuantity], a
+	ld [wCurItemQuantity], a
 	and a
 	ret
 
@@ -105,10 +105,10 @@ CheckRegisteredItem: ; 13345
 
 
 .IsSameItem: ; 133b6
-	ld a, [RegisteredItem]
+	ld a, [wRegisteredItem]
 	cp [hl]
 	jr nz, .NotSameItem
-	ld [CurItem], a
+	ld [wCurItem], a
 	and a
 	ret
 

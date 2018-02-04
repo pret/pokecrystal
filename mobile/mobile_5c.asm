@@ -131,7 +131,7 @@ Function170c06: ; 170c06
 	xor a
 	ld [wd265], a
 .asm_170c30
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	ld a, [wd265]
 	call GetPartyLocation
 	ld a, [hli]
@@ -181,7 +181,7 @@ Function170c06: ; 170c06
 	ld b, $0
 	ld c, $0
 .asm_170c6f
-	ld hl, PartyMon1HP
+	ld hl, wPartyMon1HP
 	ld a, b
 	push bc
 	call GetPartyLocation
@@ -206,7 +206,7 @@ Function170c06: ; 170c06
 ; 170c8b
 
 Function170c8b: ; 170c8b
-	ld hl, LastEnemyCounterMove
+	ld hl, wLastEnemyCounterMove
 	ld b, $5
 .asm_170c90
 	ld a, [hl]
@@ -698,7 +698,7 @@ Function171c87: ; 171c87 (5c:5c87)
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_1727ed
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	ld bc, $168
 	call CopyBytes
 	hlcoord 3, 2
@@ -718,7 +718,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
-	ld hl, EngineBuffer5
+	ld hl, wEngineBuffer5
 	ld a, $ff
 	ld [hli], a
 	ld a, $7f
@@ -770,7 +770,7 @@ Function171d2b: ; 171d2b (5c:5d2b)
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_172955
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	ld bc, $168
 	call CopyBytes
 	hlcoord 2, 2
@@ -856,7 +856,7 @@ Function172e78: ; 172e78 (5c:6e78)
 	ld bc, $168
 	call ByteFill
 	ld a, $7
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld bc, $168
 	call ByteFill
 	call DisableLCD
@@ -870,7 +870,7 @@ Function172e78: ; 172e78 (5c:6e78)
 	ld bc, $168
 	call CopyBytes
 	ld hl, Attrmap_173517
-	decoord 0, 0, AttrMap
+	decoord 0, 0, wAttrMap
 	ld bc, $168
 	call CopyBytes
 	ret

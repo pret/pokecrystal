@@ -7,7 +7,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 	push bc
 	ld a, 10
 	ld [wEnemyAISwitchScore], a
-	ld hl, PlayerUsedMoves
+	ld hl, wPlayerUsedMoves
 	ld a, [hl]
 	and a
 	jr z, .unknown_moves
@@ -27,7 +27,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 
 	inc hl
 	call GetMoveByte
-	ld hl, EnemyMonType
+	ld hl, wEnemyMonType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1 ; 1.0 + 0.1
@@ -70,16 +70,16 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 	jr .done
 
 .unknown_moves
-	ld a, [BattleMonType1]
+	ld a, [wBattleMonType1]
 	ld b, a
-	ld hl, EnemyMonType1
+	ld hl, wEnemyMonType1
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1 ; 1.0 + 0.1
 	jr c, .ok
 	call .DecreaseScore
 .ok
-	ld a, [BattleMonType2]
+	ld a, [wBattleMonType2]
 	cp b
 	jr z, .ok2
 	call CheckTypeMatchup
@@ -99,7 +99,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 
 
 .CheckEnemyMoveMatchups: ; 348de
-	ld de, EnemyMonMoves
+	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
 	ld c, 0
 
@@ -122,7 +122,7 @@ CheckPlayerMoveTypeMatchups: ; 3484e
 
 	inc hl
 	call GetMoveByte
-	ld hl, BattleMonType1
+	ld hl, wBattleMonType1
 	call CheckTypeMatchup
 
 	ld a, [wTypeMatchup]
@@ -183,11 +183,11 @@ CheckAbleToSwitch: ; 34941
 	call FindAliveEnemyMons
 	ret c
 
-	ld a, [EnemySubStatus1]
+	ld a, [wEnemySubStatus1]
 	bit SUBSTATUS_PERISH, a
 	jr z, .no_perish
 
-	ld a, [EnemyPerishCount]
+	ld a, [wEnemyPerishCount]
 	cp 1
 	jr nz, .no_perish
 
@@ -229,7 +229,7 @@ CheckAbleToSwitch: ; 34941
 	cp 11
 	ret nc
 
-	ld a, [LastPlayerCounterMove]
+	ld a, [wLastPlayerCounterMove]
 	and a
 	jr z, .no_last_counter_move
 
@@ -296,7 +296,7 @@ CheckAbleToSwitch: ; 34941
 
 
 FindAliveEnemyMons: ; 349f4
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	cp 2
 	jr c, .only_one
 
@@ -304,10 +304,10 @@ FindAliveEnemyMons: ; 349f4
 	ld e, 0
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
-	ld hl, OTPartyMon1HP
+	ld hl, wOTPartyMon1HP
 
 .loop
-	ld a, [CurOTMon]
+	ld a, [wCurOTMon]
 	cp e
 	jr z, .next
 
@@ -348,8 +348,8 @@ FindAliveEnemyMons: ; 349f4
 
 
 FindEnemyMonsImmuneToLastCounterMove: ; 34a2a
-	ld hl, OTPartyMon1
-	ld a, [OTPartyCount]
+	ld hl, wOTPartyMon1
+	ld a, [wOTPartyCount]
 	ld b, a
 	ld c, 1 << (PARTY_LENGTH - 1)
 	ld d, 0
@@ -357,7 +357,7 @@ FindEnemyMonsImmuneToLastCounterMove: ; 34a2a
 	ld [wEnemyAISwitchScore], a
 
 .loop
-	ld a, [CurOTMon]
+	ld a, [wCurOTMon]
 	cp d
 	push hl
 	jr z, .next
@@ -375,11 +375,11 @@ FindEnemyMonsImmuneToLastCounterMove: ; 34a2a
 	jr z, .next
 
 	ld a, [hl]
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
 
 	; the player's last move is damaging...
-	ld a, [LastPlayerCounterMove]
+	ld a, [wLastPlayerCounterMove]
 	dec a
 	ld hl, Moves + MOVE_POWER
 	call GetMoveAttr
@@ -389,7 +389,7 @@ FindEnemyMonsImmuneToLastCounterMove: ; 34a2a
 	; and the Pokemon is immune to it...
 	inc hl
 	call GetMoveByte
-	ld hl, BaseType
+	ld hl, wBaseType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	and a
@@ -417,9 +417,9 @@ FindEnemyMonsImmuneToLastCounterMove: ; 34a2a
 
 FindAliveEnemyMonsWithASuperEffectiveMove: ; 34a85
 	push bc
-	ld a, [OTPartyCount]
+	ld a, [wOTPartyCount]
 	ld e, a
-	ld hl, OTPartyMon1HP
+	ld hl, wOTPartyMon1HP
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
 .loop
@@ -434,7 +434,7 @@ FindAliveEnemyMonsWithASuperEffectiveMove: ; 34a85
 .next
 	srl b
 	push bc
-	ld bc, PartyMon2HP - (PartyMon1HP + 1)
+	ld bc, wPartyMon2HP - (wPartyMon1HP + 1)
 	add hl, bc
 	pop bc
 	dec e
@@ -449,7 +449,7 @@ FindEnemyMonsWithASuperEffectiveMove: ; 34aa7
 
 	ld a, -1
 	ld [wEnemyAISwitchScore], a
-	ld hl, OTPartyMon1Moves
+	ld hl, wOTPartyMon1Moves
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld d, 0
 	ld e, 0
@@ -480,7 +480,7 @@ FindEnemyMonsWithASuperEffectiveMove: ; 34aa7
 	; check type matchups
 	inc hl
 	call GetMoveByte
-	ld hl, BattleMonType1
+	ld hl, wBattleMonType1
 	call CheckTypeMatchup
 
 	; if immune or not very effective: continue
@@ -556,7 +556,7 @@ FindEnemyMonsWithASuperEffectiveMove: ; 34aa7
 
 FindEnemyMonsThatResistPlayer: ; 34b20
 	push bc
-	ld hl, OTPartySpecies
+	ld hl, wOTPartySpecies
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
 
@@ -566,9 +566,9 @@ FindEnemyMonsThatResistPlayer: ; 34b20
 	jr z, .done
 
 	push hl
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
-	ld a, [LastPlayerCounterMove]
+	ld a, [wLastPlayerCounterMove]
 	and a
 	jr z, .skip_move
 
@@ -583,16 +583,16 @@ FindEnemyMonsThatResistPlayer: ; 34b20
 	jr .check_type
 
 .skip_move
-	ld a, [BattleMonType1]
-	ld hl, BaseType
+	ld a, [wBattleMonType1]
+	ld hl, wBaseType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1
 	jr nc, .dont_choose_mon
-	ld a, [BattleMonType2]
+	ld a, [wBattleMonType2]
 
 .check_type
-	ld hl, BaseType
+	ld hl, wBaseType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp 10 + 1
@@ -618,10 +618,10 @@ FindEnemyMonsThatResistPlayer: ; 34b20
 
 FindEnemyMonsWithAtLeastQuarterMaxHP: ; 34b77
 	push bc
-	ld de, OTPartySpecies
+	ld de, wOTPartySpecies
 	ld b, 1 << (PARTY_LENGTH - 1)
 	ld c, 0
-	ld hl, OTPartyMon1HP
+	ld hl, wOTPartyMon1HP
 
 .loop
 	ld a, [de]

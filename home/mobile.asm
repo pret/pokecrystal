@@ -146,7 +146,7 @@ Unreferenced_Function3ed7:: ; 3ed7
 Function3eea:: ; 3eea
 	push hl
 	push bc
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	inc b
 	inc b
@@ -173,7 +173,7 @@ Unreferenced_Function3efd:: ; 3efd
 .fill_attr
 	push hl
 	push bc
-	ld de, AttrMap - TileMap
+	ld de, wAttrMap - wTileMap
 	add hl, de
 	inc b
 	inc b
@@ -187,7 +187,7 @@ Unreferenced_Function3efd:: ; 3efd
 ; 3f20
 
 Function3f20:: ; 3f20
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld b,  6
 	ld c, 20
 	call Function3f35

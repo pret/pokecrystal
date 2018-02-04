@@ -24,7 +24,7 @@ Special_PokeSeer: ; 4f0bc
 	farcall SelectMonFromParty
 	jr c, .cancel
 
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
 
@@ -118,12 +118,12 @@ ReadCaughtData: ; 4f134
 
 	ld a, MON_ID
 	call GetPartyParamLocation
-	ld a, [PlayerID]
+	ld a, [wPlayerID]
 	cp [hl]
 	jr nz, .traded
 
 	inc hl
-	ld a, [PlayerID + 1]
+	ld a, [wPlayerID + 1]
 	; cp [hl]
 	jr nz, .traded
 
@@ -146,8 +146,8 @@ ReadCaughtData: ; 4f134
 ; 4f176
 
 GetCaughtName: ; 4f176
-	ld a, [CurPartyMon]
-	ld hl, PartyMonNicknames
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	ld de, wSeerNickname
@@ -241,7 +241,7 @@ GetCaughtLocation: ; 4f20a
 	jr z, .fail
 	ld e, a
 	farcall GetLandmarkName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld de, wSeerCaughtLocation
 	ld bc, 17
 	call CopyBytes
@@ -266,8 +266,8 @@ GetCaughtLocation: ; 4f20a
 ; 4f242
 
 GetCaughtOT: ; 4f242
-	ld a, [CurPartyMon]
-	ld hl, PartyMonOT
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	call AddNTimes
 	ld de, wSeerOTName

@@ -11,7 +11,7 @@ BugContest_SetCaughtContestMon: ; e6ce
 
 .firstcatch
 	call .generatestats
-	ld a, [TempEnemyMonSpecies]
+	ld a, [wTempEnemyMonSpecies]
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, .caughttext
@@ -19,16 +19,16 @@ BugContest_SetCaughtContestMon: ; e6ce
 	ret
 
 .generatestats ; e6fd
-	ld a, [TempEnemyMonSpecies]
-	ld [CurSpecies], a
-	ld [CurPartySpecies], a
+	ld a, [wTempEnemyMonSpecies]
+	ld [wCurSpecies], a
+	ld [wCurPartySpecies], a
 	call GetBaseData
 	xor a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wContestMon
 	call ByteFill
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	ld hl, wContestMon
 	jp GeneratePartyMonStats
 

@@ -9,9 +9,9 @@
 OpenMartDialog:: ; 15a45
 	call GetMart
 	ld a, c
-	ld [EngineBuffer1], a
+	ld [wEngineBuffer1], a
 	call LoadMartPointer
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	ld hl, .dialogs
 	rst JumpTable
 	ret
@@ -27,9 +27,9 @@ OpenMartDialog:: ; 15a45
 
 MartDialog: ; 15a61
 	ld a, 0
-	ld [EngineBuffer1], a
+	ld [wEngineBuffer1], a
 	xor a
-	ld [EngineBuffer5], a
+	ld [wEngineBuffer5], a
 	call StandardMart
 	ret
 ; 15a6e
@@ -103,19 +103,19 @@ INCLUDE "data/items/rooftop_sale.asm"
 
 LoadMartPointer: ; 15b10
 	ld a, b
-	ld [MartPointerBank], a
+	ld [wMartPointerBank], a
 	ld a, e
-	ld [MartPointer], a
+	ld [wMartPointer], a
 	ld a, d
-	ld [MartPointer + 1], a
-	ld hl, CurMart
+	ld [wMartPointer + 1], a
+	ld hl, wCurMart
 	xor a
 	ld bc, 16
 	call ByteFill
 	xor a
-	ld [EngineBuffer5], a
+	ld [wEngineBuffer5], a
 	ld [wBargainShopFlags], a
-	ld [FacingDirection], a
+	ld [wFacingDirection], a
 	ret
 ; 15b31
 
@@ -140,10 +140,10 @@ GetMart: ; 15b31
 
 StandardMart: ; 15b47
 .loop
-	ld a, [EngineBuffer5]
+	ld a, [wEngineBuffer5]
 	ld hl, .MartFunctions
 	rst JumpTable
-	ld [EngineBuffer5], a
+	ld [wEngineBuffer5], a
 	cp $ff
 	jr nz, .loop
 	ret
@@ -219,13 +219,13 @@ StandardMart: ; 15b47
 ; 15bbb
 
 FarReadMart: ; 15bbb
-	ld hl, MartPointer
+	ld hl, wMartPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, CurMart
+	ld de, wCurMart
 .CopyMart:
-	ld a, [MartPointerBank]
+	ld a, [wMartPointerBank]
 	call GetFarByte
 	ld [de], a
 	inc hl
@@ -233,7 +233,7 @@ FarReadMart: ; 15bbb
 	cp -1
 	jr nz, .CopyMart
 	ld hl, wMartItem1BCD
-	ld de, CurMart + 1
+	ld de, wCurMart + 1
 .ReadMartItem:
 	ld a, [de]
 	inc de
@@ -249,26 +249,26 @@ FarReadMart: ; 15bbb
 ; 15be5
 
 GetMartItemPrice: ; 15be5
-; Return the price of item a in BCD at hl and in tiles at StringBuffer1.
+; Return the price of item a in BCD at hl and in tiles at wStringBuffer1.
 	push hl
-	ld [CurItem], a
+	ld [wCurItem], a
 	farcall GetItemPrice
 	pop hl
 
 GetMartPrice: ; 15bf0
-; Return price de in BCD at hl and in tiles at StringBuffer1.
+; Return price de in BCD at hl and in tiles at wStringBuffer1.
 	push hl
 	ld a, d
-	ld [StringBuffer2], a
+	ld [wStringBuffer2], a
 	ld a, e
-	ld [StringBuffer2 + 1], a
-	ld hl, StringBuffer1
-	ld de, StringBuffer2
+	ld [wStringBuffer2 + 1], a
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer2
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 6 ; 6 digits
 	call PrintNum
 	pop hl
 
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	ld c, 6 / 2 ; 6 digits
 .loop
 	call .CharToNybble
@@ -296,7 +296,7 @@ GetMartPrice: ; 15bf0
 
 ReadMart: ; 15c25
 ; Load the mart pointer.  Mart data is local (no need for bank).
-	ld hl, MartPointer
+	ld hl, wMartPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -304,9 +304,9 @@ ReadMart: ; 15c25
 ; set hl to the first item
 	inc hl
 	ld bc, wMartItem1BCD
-	ld de, CurMart + 1
+	ld de, wCurMart + 1
 .loop
-; copy the item to CurMart + (ItemIndex)
+; copy the item to wCurMart + (ItemIndex)
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -335,7 +335,7 @@ ReadMart: ; 15c25
 .done
 	pop hl
 	ld a, [hl]
-	ld [CurMart], a
+	ld [wCurMart], a
 	ret
 ; 15c51
 
@@ -358,7 +358,7 @@ BuyMenu: ; 15c62
 
 LoadBuyMenuText: ; 15c7d
 ; load text from a nested table
-; which table is in EngineBuffer1
+; which table is in wEngineBuffer1
 ; which entry is in register a
 	push af
 	call GetMartDialogGroup ; gets a pointer from GetMartDialogGroup.MartTextFunctionPointers
@@ -390,7 +390,7 @@ MartAskPurchaseQuantity: ; 15c91
 ; 15ca3
 
 GetMartDialogGroup: ; 15ca3
-	ld a, [EngineBuffer1]
+	ld a, [wEngineBuffer1]
 	ld e, a
 	ld d, 0
 	ld hl, .MartTextFunctionPointers
@@ -468,12 +468,12 @@ BuyMenuLoop: ; 15cef
 	jr c, .cancel
 	call MartConfirmPurchase
 	jr c, .cancel
-	ld de, Money
+	ld de, wMoney
 	ld bc, hMoneyTemp
 	ld a, $3 ; useless load
 	call CompareMoney
 	jr c, .insufficient_funds
-	ld hl, NumItems
+	ld hl, wNumItems
 	call ReceiveItem
 	jr nc, .insufficient_bag_space
 	ld a, [wMartItemID]
@@ -483,7 +483,7 @@ BuyMenuLoop: ; 15cef
 	ld hl, wBargainShopFlags
 	call FlagAction
 	call PlayTransactionSound
-	ld de, Money
+	ld de, wMoney
 	ld bc, hMoneyTemp
 	call TakeMoney
 	ld a, MARTTEXT_HERE_YOU_GO
@@ -547,7 +547,7 @@ BargainShopAskPurchaseQuantity:
 	ld a, [wMartItemID]
 	ld e, a
 	ld d, $0
-	ld hl, MartPointer
+	ld hl, wMartPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -588,7 +588,7 @@ RooftopSaleAskPurchaseQuantity:
 	ld a, [wMartItemID]
 	ld e, a
 	ld d, 0
-	ld hl, MartPointer
+	ld hl, wMartPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -627,7 +627,7 @@ MenuDataHeader_Buy: ; 0x15e18
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_FUNCTION3 ; flags
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
-	dbw 0, CurMart
+	dbw 0, wCurMart
 	dba PlaceMenuItemName
 	dba .PrintBCDPrices
 	dba UpdateItemDescription
@@ -857,11 +857,11 @@ SellMenu: ; 15eb3
 	call PrintTextBoxText
 	call YesNoBox
 	jr c, .declined
-	ld de, Money
+	ld de, wMoney
 	ld bc, hMoneyTemp
 	call GiveMoney
 	ld a, [wMartItemID]
-	ld hl, NumItems
+	ld hl, wNumItems
 	call TossItem
 	predef PartyMonItemName
 	hlcoord 1, 14

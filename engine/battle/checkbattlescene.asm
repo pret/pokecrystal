@@ -7,7 +7,7 @@ CheckBattleScene: ; 4ea44
 	cp LINK_MOBILE
 	jr z, .mobile
 
-	ld a, [Options]
+	ld a, [wOptions]
 	bit BATTLE_SCENE, a
 	jr nz, .off
 

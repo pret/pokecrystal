@@ -1,18 +1,18 @@
 GetTrainerClassName: ; 3952d
-	ld hl, RivalName
+	ld hl, wRivalName
 	ld a, c
 	cp RIVAL1
 	jr z, .rival
 
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	ld a, TRAINER_NAME
 	ld [wNamedObjectTypeBuffer], a
 	call GetName
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	ret
 
 .rival
-	ld de, StringBuffer1
+	ld de, wStringBuffer1
 	push de
 	ld bc, NAME_LENGTH
 	call CopyBytes
@@ -20,35 +20,35 @@ GetTrainerClassName: ; 3952d
 	ret
 
 GetOTName: ; 39550
-	ld hl, OTPlayerName
+	ld hl, wOTPlayerName
 	ld a, [wLinkMode]
 	and a
 	jr nz, .ok
 
-	ld hl, RivalName
+	ld hl, wRivalName
 	ld a, c
 	cp RIVAL1
 	jr z, .ok
 
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	ld a, TRAINER_NAME
 	ld [wNamedObjectTypeBuffer], a
 	call GetName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 
 .ok
 	ld bc, TRAINER_CLASS_NAME_LENGTH
-	ld de, OTClassName
+	ld de, wOTClassName
 	push de
 	call CopyBytes
 	pop de
 	ret
 
 GetTrainerAttributes: ; 3957b
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 	ld c, a
 	call GetOTName
-	ld a, [TrainerClass]
+	ld a, [wTrainerClass]
 	dec a
 	ld hl, TrainerClassAttributes + TRNATTR_ITEM1
 	ld bc, NUM_TRAINER_ATTRIBUTES

@@ -20,13 +20,13 @@ endr
 ; 20015 (8:4015)
 
 .WrapAroundTimes: ; 20015
-	dw Buffer4
+	dw wBuffer4
 	db 7, 4
 
-	dw Buffer5
+	dw wBuffer5
 	db 24, 12
 
-	dw Buffer6
+	dw wBuffer6
 	db 60, 15
 ; 20021
 
@@ -34,7 +34,7 @@ RestartClock: ; 20021 (8:4021)
 ; If we're here, we had an RTC overflow.
 	ld hl, .Text_ClockTimeMayBeWrong
 	call PrintText
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
@@ -45,7 +45,7 @@ RestartClock: ; 20021 (8:4021)
 	call .SetClock
 	call ExitMenu
 	pop bc
-	ld hl, Options
+	ld hl, wOptions
 	ld [hl], b
 	ld c, a
 	ret
@@ -65,17 +65,17 @@ RestartClock: ; 20021 (8:4021)
 
 .SetClock: ; 20051 (8:4051)
 	ld a, 1
-	ld [Buffer1], a ; which digit
-	ld [Buffer2], a
+	ld [wBuffer1], a ; which digit
+	ld [wBuffer2], a
 	ld a, 8
-	ld [Buffer3], a
+	ld [wBuffer3], a
 	call UpdateTime
 	call GetWeekday
-	ld [Buffer4], a
+	ld [wBuffer4], a
 	ld a, [hHours]
-	ld [Buffer5], a
+	ld [wBuffer5], a
 	ld a, [hMinutes]
-	ld [Buffer6], a
+	ld [wBuffer6], a
 
 .loop
 	call .joy_loop
@@ -87,14 +87,14 @@ RestartClock: ; 20021 (8:4021)
 	call PrintText
 	call YesNoBox
 	jr c, .cancel
-	ld a, [Buffer4]
-	ld [StringBuffer2], a
-	ld a, [Buffer5]
-	ld [StringBuffer2 + 1], a
-	ld a, [Buffer6]
-	ld [StringBuffer2 + 2], a
+	ld a, [wBuffer4]
+	ld [wStringBuffer2], a
+	ld a, [wBuffer5]
+	ld [wStringBuffer2 + 1], a
+	ld a, [wBuffer6]
+	ld [wStringBuffer2 + 2], a
 	xor a
-	ld [StringBuffer2 + 3], a
+	ld [wStringBuffer2 + 3], a
 	call InitTime
 	call .PrintTime
 	ld hl, .Text_ClockReset
@@ -151,7 +151,7 @@ RestartClock: ; 20021 (8:4021)
 	ret
 
 .pressed_up
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	call ResetClock_GetWraparoundTime
 	ld a, [de]
 	inc a
@@ -163,7 +163,7 @@ RestartClock: ; 20021 (8:4021)
 	jr .done_scroll
 
 .pressed_down
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	call ResetClock_GetWraparoundTime
 	ld a, [de]
 	dec a
@@ -176,14 +176,14 @@ RestartClock: ; 20021 (8:4021)
 	jr .done_scroll
 
 .pressed_left
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	dec [hl]
 	jr nz, .done_scroll
 	ld [hl], $3
 	jr .done_scroll
 
 .pressed_right
-	ld hl, Buffer1
+	ld hl, wBuffer1
 	inc [hl]
 	ld a, [hl]
 	cp $4
@@ -200,29 +200,29 @@ RestartClock: ; 20021 (8:4021)
 	ld c, 18
 	call TextBox
 	decoord 1, 8
-	ld a, [Buffer4]
+	ld a, [wBuffer4]
 	ld b, a
 	farcall PrintDayOfWeek
-	ld a, [Buffer5]
+	ld a, [wBuffer5]
 	ld b, a
-	ld a, [Buffer6]
+	ld a, [wBuffer6]
 	ld c, a
 	decoord 11, 8
 	farcall PrintHoursMins
-	ld a, [Buffer2]
+	ld a, [wBuffer2]
 	lb de, " ", " "
 	call .PlaceChars
-	ld a, [Buffer1]
+	ld a, [wBuffer1]
 	lb de, "▲", "▼"
 	call .PlaceChars
-	ld a, [Buffer1]
-	ld [Buffer2], a
+	ld a, [wBuffer1]
+	ld [wBuffer2], a
 	ret
 ; 20160 (8:4160)
 
 ; unused
 .unreferenced ; 20160
-	ld a, [Buffer3]
+	ld a, [wBuffer3]
 	ld b, a
 	call Coord2Tile
 	ret
@@ -231,7 +231,7 @@ RestartClock: ; 20021 (8:4021)
 .PlaceChars: ; 20168 (8:4168)
 	push de
 	call ResetClock_GetWraparoundTime
-	ld a, [Buffer3]
+	ld a, [wBuffer3]
 	dec a
 	ld b, a
 	call Coord2Tile

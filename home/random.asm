@@ -42,10 +42,10 @@ BattleRandom:: ; 2f9f
 
 	call _BattleRandom
 
-	ld [PredefTemp + 1], a
+	ld [wPredefTemp + 1], a
 	pop af
 	rst Bankswitch
-	ld a, [PredefTemp + 1]
+	ld a, [wPredefTemp + 1]
 	ret
 ; 2fb1
 

@@ -3,23 +3,23 @@ InitList: ; 50db9
 
 	cp INIT_ENEMYOT_LIST
 	jr nz, .check_party_ot_name
-	ld hl, OTPartyCount
-	ld de, OTPartyMonOT
+	ld hl, wOTPartyCount
+	ld de, wOTPartyMonOT
 	ld a, ENEMY_OT_NAME
 	jr .done
 
 .check_party_ot_name
 	cp INIT_PLAYEROT_LIST
 	jr nz, .check_mon_name
-	ld hl, PartyCount
-	ld de, PartyMonOT
+	ld hl, wPartyCount
+	ld de, wPartyMonOT
 	ld a, PARTY_OT_NAME
 	jr .done
 
 .check_mon_name
 	cp INIT_MON_LIST
 	jr nz, .check_item_name
-	ld hl, CurMart
+	ld hl, wCurMart
 	ld de, PokemonNames
 	ld a, MON_NAME
 	jr .done
@@ -27,13 +27,13 @@ InitList: ; 50db9
 .check_item_name
 	cp INIT_BAG_ITEM_LIST
 	jr nz, .check_ob_item_name
-	ld hl, NumItems
+	ld hl, wNumItems
 	ld de, ItemNames
 	ld a, ITEM_NAME
 	jr .done
 
 .check_ob_item_name
-	ld hl, CurMart
+	ld hl, wCurMart
 	ld de, ItemNames
 	ld a, ITEM_NAME
 .done

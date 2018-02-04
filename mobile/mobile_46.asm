@@ -183,7 +183,7 @@ Function118125: ; 118125
 ; 118180
 
 Function118180: ; 118180
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	ret nz
 	ld a, [wcd38]
@@ -224,7 +224,7 @@ Function118180: ; 118180
 .return_d3
 	ld a, $d3
 	ld [wc300], a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	jr .reset_banks
 ; 1181da
 
@@ -477,7 +477,7 @@ BattleTowerRoomMenu_InitRAM: ; 1183cb
 	ld [wc3ed], a
 	ld [wc3ee], a
 	ld [wc3ef], a
-	ld hl, VramState
+	ld hl, wVramState
 	ld a, [hl]
 	ld [wcd7f], a
 	set 1, [hl]
@@ -524,9 +524,9 @@ BattleTowerRoomMenu_Cleanup: ; 118452
 	ld [rIE], a
 	ei
 	ld a, [wcd7f]
-	ld [VramState], a
+	ld [wVramState], a
 	ld a, [wc300]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 118473
 
@@ -1062,7 +1062,7 @@ Function11886e:
 	xor a
 
 asm_11886f
-	ld [BGMapPalBuffer], a
+	ld [wBGMapPalBuffer], a
 	ld a, $0
 	ld [wcd3c], a
 	call BattleTowerRoomMenu_IncrementJumptable
@@ -1189,7 +1189,7 @@ BattleTowerRoomMenu_PlacePickLevelMenu:
 	call MenuBox
 	call MenuBoxCoord2Tile
 	call ApplyTilemap
-	hlcoord 16, 8, AttrMap
+	hlcoord 16, 8, wAttrMap
 	ld a, $40
 	or [hl]
 	ld [hl], a
@@ -1246,7 +1246,7 @@ BattleTowerRoomMenu_UpdatePickLevelMenu:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld bc, StringBuffer3
+	ld bc, wStringBuffer3
 .asm_1189b5
 	ld a, [hli]
 	cp $50
@@ -1799,7 +1799,7 @@ Function118e92: ; 118e92
 Function118eb0: ; 118eb0
 	call Function118440
 	ld hl, $d802
-	ld de, BGMapBuffer
+	ld de, wBGMapBuffer
 	ld bc, $000c
 	call CopyBytes
 	call Function1192cc
@@ -2045,7 +2045,7 @@ Function119054: ; 119054
 	ld [$b1b3], a
 	ld a, [wcd50]
 	ld [$b1b4], a
-	ld hl, BGMapBuffer
+	ld hl, wBGMapBuffer
 	ld de, $aa7f
 	ld bc, $000c
 	call CopyBytes
@@ -2083,7 +2083,7 @@ Function1190d0: ; 1190d0
 Function1190ec: ; 1190ec
 	ld a, $5
 	call GetSRAMBank
-	ld hl, BGMapBuffer
+	ld hl, wBGMapBuffer
 	ld de, $aa73
 	ld bc, $000c
 	call CopyBytes
@@ -2137,12 +2137,12 @@ Function11914e: ; 11914e
 
 Function11915d: ; 11915d
 	ld hl, $d802
-	ld de, BGMapBuffer
+	ld de, wBGMapBuffer
 	ld bc, $000c
 	call CopyBytes
 	ld a, $5
 	call GetSRAMBank
-	ld hl, BGMapBuffer
+	ld hl, wBGMapBuffer
 	ld de, $aa7f
 	ld c, $c
 .asm_119176
@@ -2393,7 +2393,7 @@ Function1192cc: ; 1192cc
 	call CopyBytes
 	call CloseSRAM
 	ld hl, $c608
-	ld de, BGMapBuffer
+	ld de, wBGMapBuffer
 	ld c, $c
 .asm_1192e8
 	ld a, [de]
@@ -4005,8 +4005,8 @@ BattleTower_LevelCheck: ; 119d93 (46:5d93)
 	ld hl, wcd50
 	ld [hl], a
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld de, PartyMon1Level
-	ld a, [PartyCount]
+	ld de, wPartyMon1Level
+	ld a, [wPartyCount]
 .party_loop
 	push af
 	ld a, [de]
@@ -4046,10 +4046,10 @@ BattleTower_UbersCheck: ; 119dd1 (46:5dd1)
 	jr nc, .level_70_or_more
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, PartyMon1Level
+	ld hl, wPartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
-	ld de, PartySpecies
-	ld a, [PartyCount]
+	ld de, wPartySpecies
+	ld a, [wPartyCount]
 .loop
 	push af
 	ld a, [de]
@@ -4082,7 +4082,7 @@ BattleTower_UbersCheck: ; 119dd1 (46:5dd1)
 	ld a, [de]
 	ld [wd265], a
 	call GetPokemonName
-	ld hl, StringBuffer1
+	ld hl, wStringBuffer1
 	ld de, wcd49
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
@@ -4357,9 +4357,9 @@ Function119f98: ; 119f98
 	call ExitMenu
 	call Function11a63c
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call Function11a00e
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr z, .asm_119fd4
 	call ExitMenu
@@ -4414,7 +4414,7 @@ Function11a00e: ; 11a00e
 
 .asm_11a02a
 	call CloseSRAM
-	ld a, [BGMapPalBuffer]
+	ld a, [wBGMapPalBuffer]
 	and a
 	jr z, .asm_11a039
 	dec a
@@ -5162,7 +5162,7 @@ Function11a5b9: ; 11a5b9
 	ld a, $5
 	ld [wMenuBorderBottomCoord], a
 	call PushWindow
-	hlcoord 0, 0, AttrMap
+	hlcoord 0, 0, wAttrMap
 	ld b, $6
 	ld c, $14
 	hlcoord 0, 0
@@ -5188,7 +5188,7 @@ Function11a5f5: ; 11a5f5
 	ld a, $a
 	ld [wMenuBorderBottomCoord], a
 	call PushWindow
-	hlcoord 14, 6, AttrMap
+	hlcoord 14, 6, wAttrMap
 	ld b, $5
 	ld c, $6
 	hlcoord 14, 6
@@ -5521,7 +5521,7 @@ Function11a971: ; 11a971
 	ret
 
 .asm_11a97f
-	ld a, [Options]
+	ld a, [wOptions]
 	and $7
 	ld [hl], a
 	ld hl, wcd8d
@@ -5715,10 +5715,10 @@ Text_WhichBattleRoom: ; 0x11ac0b
 ; 0x11ac1f
 
 Text_ThisBattleRoomPleaseWait: ; 0x11ac1f
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "'s ROOM"
 	line "@"
-	text_from_ram StringBuffer4
+	text_from_ram wStringBuffer4
 	text "?"
 	cont "Please wait…"
 	done
@@ -5736,14 +5736,14 @@ Special_Function11ac3e: ; 11ac3e
 Function11ac51: ; 11ac51
 	xor a
 	ld [hBGMapMode], a
-	ld hl, Options
+	ld hl, wOptions
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	ld a, [VramState]
+	ld a, [wVramState]
 	push af
 	xor a
-	ld [VramState], a
+	ld [wVramState], a
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -5776,9 +5776,9 @@ Function11ac51: ; 11ac51
 	pop af
 	ld [hInMenu], a
 	pop af
-	ld [VramState], a
+	ld [wVramState], a
 	pop af
-	ld [Options], a
+	ld [wOptions], a
 	ret
 ; 11acb7
 
@@ -5908,7 +5908,7 @@ Function11ad95: ; 11ad95
 	hlcoord 12, 12
 	ld de, String_11ae40
 	call PlaceString
-	hlcoord 10, 10, AttrMap
+	hlcoord 10, 10, wAttrMap
 	lb bc, 8, 8
 	call Function11afd6
 	farcall ReloadMapPart
@@ -6021,10 +6021,10 @@ Function11ae4e: ; 11ae4e
 	hlcoord 16, 8
 	ld de, String_11b01b
 	call PlaceString
-	hlcoord 14, 7, AttrMap
+	hlcoord 14, 7, wAttrMap
 	lb bc, 5, 6
 	call Function11afd6
-	hlcoord 9, 12, AttrMap
+	hlcoord 9, 12, wAttrMap
 	lb bc, 6, 11
 	call Function11afd6
 	farcall ReloadMapPart
@@ -6088,7 +6088,7 @@ Function11ae98:
 	cp $2
 	jr z, .asm_11aeb4
 	ld a, [wcd4b]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	call Function11b022
 	call Function11ad8a
 
@@ -6112,10 +6112,10 @@ Function11af04: ; 11af04
 	hlcoord 16, 8
 	ld de, String_11b01b
 	call PlaceString
-	hlcoord 14, 7, AttrMap
+	hlcoord 14, 7, wAttrMap
 	lb bc, 5, 6
 	call Function11afd6
-	hlcoord 9, 12, AttrMap
+	hlcoord 9, 12, wAttrMap
 	lb bc, 6, 11
 	call Function11afd6
 	farcall ReloadMapPart
@@ -6181,7 +6181,7 @@ Function11af4e:
 	ld a, $6
 	ld [wJumptableIndex], a
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 
 .asm_11afaa
 	call ExitMenu
@@ -6273,7 +6273,7 @@ Function11b022: ; 11b022
 	ld a, [wcd2e]
 	and a
 	jr z, .asm_11b02e
-	ld hl, StringBuffer3
+	ld hl, wStringBuffer3
 	call Function11b03d
 
 .asm_11b02e
@@ -6282,7 +6282,7 @@ Function11b022: ; 11b022
 	ret z
 	cp $3
 	ret z
-	ld hl, StringBuffer4
+	ld hl, wStringBuffer4
 	call Function11b03d
 	ret
 ; 11b03d
@@ -6684,13 +6684,13 @@ Function11b239: ; 11b239
 
 Function11b242: ; 11b242
 	hlcoord 3, 4
-	ld de, StringBuffer3
+	ld de, wStringBuffer3
 	call PlaceString
 	xor a
-	ld [MonType], a
+	ld [wMonType], a
 	farcall GetGender
 	hlcoord 1, 4
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld bc, wcd2f
 	ld [bc], a
 	dec bc
@@ -6725,11 +6725,11 @@ Function11b275: ; 11b275
 
 Function11b279: ; 11b279
 	ld a, [wd265]
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call CheckSeenMemMon
 	jr z, .asm_11b28f
 	call GetBaseData
-	ld a, [BaseGender]
+	ld a, [wBaseGender]
 	ld [wcf65], a
 	jr .asm_11b294
 
@@ -6783,7 +6783,7 @@ Function11b295: ; 11b295
 
 .asm_11b2e7
 	ld a, $6
-	ld bc, StringBuffer4
+	ld bc, wStringBuffer4
 .asm_11b2ec
 	push af
 	ld a, [de]
@@ -6795,7 +6795,7 @@ Function11b295: ; 11b295
 	and a
 	jr nz, .asm_11b2ec
 	pop hl
-	ld de, StringBuffer4
+	ld de, wStringBuffer4
 	call PlaceString
 	ret
 ; 11b2fe
@@ -6921,7 +6921,7 @@ Function11b31b: ; 11b31b
 	db $39 ; 13
 
 Function11b397: ; 11b397
-	ld de, Sprite01
+	ld de, wVirtualOAMSprite00
 .loop
 	ld a, [hl]
 	cp $ff
@@ -6979,7 +6979,7 @@ Unreferenced_Function11b3b6: ; 11b3b6
 ; 11b3d9
 
 Function11b3d9: ; 11b3d9
-	ld de, Sprite29
+	ld de, wVirtualOAMSprite28
 	push de
 	ld a, [wc7d2]
 	dec a
@@ -7092,7 +7092,7 @@ Mobile46_RunJumptable: ; 11b45c
 
 Function11b483: ; 11b483
 	call .InitRAM
-	ld hl, PlayerName
+	ld hl, wPlayerName
 	ld a, NAME_LENGTH_JAPANESE - 1
 .loop1
 	push af
@@ -7105,7 +7105,7 @@ Function11b483: ; 11b483
 	jr nz, .loop1
 
 	ld de, PARTYMON_STRUCT_LENGTH
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	ld a, [wcd82]
 	dec a
 	push af
@@ -7132,12 +7132,12 @@ Function11b483: ; 11b483
 	pop de
 	push bc
 	ld a, [de]
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
 	ld hl, MON_LEVEL
 	add hl, de
 	ld a, [hl]
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 	ld hl, MON_MAXHP
 	add hl, de
 	push hl
@@ -7159,7 +7159,7 @@ Function11b483: ; 11b483
 	ld [hl], a
 	pop bc
 	ld de, NAME_LENGTH
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	pop af
 	push af
 .loop4
@@ -7181,7 +7181,7 @@ Function11b483: ; 11b483
 	and a
 	jr nz, .loop5
 	ld de, NAME_LENGTH
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	pop af
 	push af
 .loop6
@@ -7230,12 +7230,12 @@ Function11b483: ; 11b483
 
 .InitRAM:
 	ld bc, $c626
-	ld a, [PlayerID]
+	ld a, [wPlayerID]
 	ld [wcd2a], a
 	ld [bc], a
 	inc bc
 
-	ld a, [PlayerID + 1]
+	ld a, [wPlayerID + 1]
 	ld [wcd2b], a
 	ld [bc], a
 	inc bc
@@ -7270,7 +7270,7 @@ Function11b483: ; 11b483
 
 Function11b570: ; 11b570
 	call Function118007
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr nz, .exit
 	call .SaveData
@@ -7322,7 +7322,7 @@ Function11b570: ; 11b570
 Function11b5c0: ; 11b5c0
 	ld a, [wcd82]
 	dec a
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
@@ -7333,7 +7333,7 @@ Function11b5c0: ; 11b5c0
 
 Function11b5e0: ; 11b5e0
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	jp Function11ad8a
 ; 11b5e7
 
@@ -7396,7 +7396,7 @@ Special_Function11b5e8: ; 11b5e8
 
 Function11b66d: ; 11b66d
 	call Function1180b8
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr nz, .asm_11b6b0
 	ld a, [rSVBK]
@@ -7417,11 +7417,11 @@ Function11b66d: ; 11b66d
 
 .asm_11b691
 	farcall Function17081d
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	jr z, .asm_11b6b0
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, [rSVBK]
 	push af
 	ld a, $3
@@ -7545,7 +7545,7 @@ Function11b6b4: ; 11b6b4
 .item_okay
 	ld a, [wcd31]
 	ld [$c60d], a
-	ld [CurSpecies], a
+	ld [wCurSpecies], a
 	call GetBaseData
 
 	ld hl, $c60d + MON_LEVEL
@@ -7560,7 +7560,7 @@ Function11b6b4: ; 11b6b4
 .replace_level
 	ld [hl], a
 .done_level
-	ld [CurPartyLevel], a
+	ld [wCurPartyLevel], a
 
 	ld hl, $c60d + MON_STAT_EXP - 1
 	ld de, $c60d + MON_MAXHP
@@ -7580,7 +7580,7 @@ Function11b6b4: ; 11b6b4
 Special_Function11b7e5: ; 11b7e5
 	ld a, [$c60d] ; species
 	ld [wOTTrademonSpecies], a
-	ld [CurPartySpecies], a
+	ld [wCurPartySpecies], a
 	ld a, [wcd81]
 	ld [wc74e], a
 	ld hl, $c63d ; OT
@@ -7619,9 +7619,9 @@ Special_Function11b7e5: ; 11b7e5
 	ld a, $5
 	ld [$a800], a
 	call CloseSRAM
-	ld a, [MapGroup]
+	ld a, [wMapGroup]
 	ld b, a
-	ld a, [MapNumber]
+	ld a, [wMapNumber]
 	ld c, a
 	call GetMapSceneID
 	ld a, d
@@ -7638,13 +7638,13 @@ Special_Function11b7e5: ; 11b7e5
 
 Special_Function11b879: ; 11b879
 	farcall BattleTower_CheckSaveFileExistsAndIsYours
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	ret z
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$a800]
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ld a, [$a890]
 	ld [wcd49], a
 	ld a, [$a891]
@@ -7654,7 +7654,7 @@ Special_Function11b879: ; 11b879
 	ld a, [$a893]
 	ld [wcd4c], a
 	call CloseSRAM
-	ld a, [ScriptVar]
+	ld a, [wScriptVar]
 	and a
 	ret z
 	ld hl, wcd4c
@@ -7725,7 +7725,7 @@ Special_Function11b879: ; 11b879
 	bit 7, h
 	ret z
 	ld a, $2
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 11b920
 
@@ -7783,7 +7783,7 @@ Special_Function11b93b: ; 11b93b
 ; 11b98f
 
 AddMobileMonToParty: ; 11b98f
-	ld hl, PartyCount
+	ld hl, wPartyCount
 	ld a, [hl]
 	ld e, a
 	inc [hl]
@@ -7793,21 +7793,21 @@ AddMobileMonToParty: ; 11b98f
 	ld a, [wMobileMonSpeciesPointerBuffer + 1]
 	ld h, a
 	inc hl
-	ld bc, PartySpecies
+	ld bc, wPartySpecies
 	ld d, e
 .loop1
 	inc bc
 	dec d
 	jr nz, .loop1
 	ld a, e
-	ld [CurPartyMon], a
+	ld [wCurPartyMon], a
 	ld a, [hl]
 	ld [bc], a
 	inc bc
 	ld a, -1
 	ld [bc], a
 
-	ld hl, PartyMon1Species
+	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
 	ld [wMobileMonSpeciesBuffer], a
@@ -7825,7 +7825,7 @@ AddMobileMonToParty: ; 11b98f
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 
-	ld hl, PartyMonOT
+	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	ld a, [wMobileMonSpeciesBuffer]
 .loop3
@@ -7844,7 +7844,7 @@ AddMobileMonToParty: ; 11b98f
 	ld a, "@"
 	ld [de], a
 
-	ld hl, PartyMonNicknames
+	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
 	ld a, [wMobileMonSpeciesBuffer]
 .loop4
@@ -7890,7 +7890,7 @@ Special_Function11ba38: ; 11ba38
 	farcall CheckCurPartyMonFainted
 	ret c
 	xor a
-	ld [ScriptVar], a
+	ld [wScriptVar], a
 	ret
 ; 11ba44
 

@@ -4,11 +4,11 @@ MAX_ROLLOUT_COUNT EQU 5
 BattleCommand_CheckCurl: ; 37718
 ; checkcurl
 
-	ld de, PlayerRolloutCount
+	ld de, wPlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .ok
-	ld de, EnemyRolloutCount
+	ld de, wEnemyRolloutCount
 .ok
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVar
@@ -33,11 +33,11 @@ BattleCommand_RolloutPower: ; 37734
 	and SLP
 	ret nz
 
-	ld hl, PlayerRolloutCount
+	ld hl, wPlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_rollout_count
-	ld hl, EnemyRolloutCount
+	ld hl, wEnemyRolloutCount
 
 .got_rollout_count
 	ld a, [hl]
@@ -47,7 +47,7 @@ BattleCommand_RolloutPower: ; 37734
 	ld [wSomeoneIsRampaging], a
 
 .skip_set_rampage
-	ld a, [AttackMissed]
+	ld a, [wAttackMissed]
 	and a
 	jr z, .hit
 
@@ -84,7 +84,7 @@ BattleCommand_RolloutPower: ; 37734
 	dec b
 	jr z, .done_damage
 
-	ld hl, CurDamage + 1
+	ld hl, wCurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]

@@ -235,7 +235,7 @@ CeladonPrizeRoom_AskWhichPrizeText:
 CeladonPrizeRoom_ConfirmPurchaseText:
 	text "OK, so you wanted"
 	line "a @"
-	text_from_ram StringBuffer3
+	text_from_ram wStringBuffer3
 	text "?"
 	done
 

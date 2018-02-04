@@ -3,50 +3,50 @@ Gen1TrainerClassNames: ; 50a42
 	dw .Youngster
 	dw .BugCatcher
 	dw .Lass
-	dw OTClassName ; sailor
+	dw wOTClassName ; sailor
 	dw .JrTrainerM
 	dw .JrTrainerF
 	dw .Pokemaniac
 	dw .SuperNerd
-	dw OTClassName ; hiker
-	dw OTClassName ; biker
+	dw wOTClassName ; hiker
+	dw wOTClassName ; biker
 	dw .Burglar
 	dw .Engineer
 	dw .Jack
-	dw OTClassName ; fisher
+	dw wOTClassName ; fisher
 	dw .Swimmer
-	dw OTClassName ; cue ball
-	dw OTClassName ; gambler
+	dw wOTClassName ; cue ball
+	dw wOTClassName ; gambler
 	dw .Beauty
-	dw OTClassName ; psychic
+	dw wOTClassName ; psychic
 	dw .Rocker
 	dw .Juggler
-	dw OTClassName ; tamer
-	dw OTClassName ; bird keeper
+	dw wOTClassName ; tamer
+	dw wOTClassName ; bird keeper
 	dw .Blackbelt
-	dw OTClassName ; rival1
+	dw wOTClassName ; rival1
 	dw .ProfOak
 	dw .Chief
 	dw .Scientist
-	dw OTClassName ; giovanni
+	dw wOTClassName ; giovanni
 	dw .Rocket
 	dw .CooltrainerM
 	dw .CooltrainerF
-	dw OTClassName ; bruno
-	dw OTClassName ; brock
-	dw OTClassName ; misty
-	dw OTClassName ; lt.surge
-	dw OTClassName ; erika
-	dw OTClassName ; koga
-	dw OTClassName ; blaine
-	dw OTClassName ; sabrina
-	dw OTClassName ; gentleman
-	dw OTClassName ; rival2
-	dw OTClassName ; rival3
-	dw OTClassName ; lorelei
-	dw OTClassName ; channeler
-	dw OTClassName ; agatha
-	dw OTClassName ; lance
+	dw wOTClassName ; bruno
+	dw wOTClassName ; brock
+	dw wOTClassName ; misty
+	dw wOTClassName ; lt.surge
+	dw wOTClassName ; erika
+	dw wOTClassName ; koga
+	dw wOTClassName ; blaine
+	dw wOTClassName ; sabrina
+	dw wOTClassName ; gentleman
+	dw wOTClassName ; rival2
+	dw wOTClassName ; rival3
+	dw wOTClassName ; lorelei
+	dw wOTClassName ; channeler
+	dw wOTClassName ; agatha
+	dw wOTClassName ; lance
 
 .Youngster:    db "たんパン@"
 .BugCatcher:   db "むしとり@"

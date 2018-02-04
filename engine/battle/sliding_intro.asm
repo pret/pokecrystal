@@ -1,7 +1,7 @@
 BattleIntroSlidingPics: ; 4e980
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(LYOverrides)
+	ld a, BANK(wLYOverrides)
 	ld [rSVBK], a
 	call .subfunction1
 	ld a, rSCX - $ff00
@@ -60,7 +60,7 @@ BattleIntroSlidingPics: ; 4e980
 ; 4e9d6
 
 .subfunction3 ; 4e9d6
-	ld hl, Sprite01XCoord
+	ld hl, wVirtualOAMSprite00XCoord
 	ld c, $12 ; 18
 	ld de, SPRITEOAMSTRUCT_LENGTH
 .loop3
@@ -73,7 +73,7 @@ BattleIntroSlidingPics: ; 4e980
 ; 4e9e5
 
 .subfunction4 ; 4e9e5
-	ld hl, LYOverrides
+	ld hl, wLYOverrides
 	ld a, $90
 	ld bc, SCREEN_HEIGHT_PX
 	call ByteFill
@@ -81,7 +81,7 @@ BattleIntroSlidingPics: ; 4e980
 ; 4e9f1
 
 .subfunction5 ; 4e9f1
-	ld hl, LYOverrides
+	ld hl, wLYOverrides
 	ld a, d
 	ld c, $3e ; 62
 .loop4
