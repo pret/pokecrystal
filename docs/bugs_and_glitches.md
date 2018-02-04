@@ -739,7 +739,7 @@ This is a bug with `HaircutOrGrooming` in [engine/events/special.asm](/engine/ev
 
 ...
 
-INCLUDE "data/events/happiness_chances.asm"
+INCLUDE "data/events/happiness_probabilities.asm"
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, wStringBuffer1
@@ -748,7 +748,7 @@ CopyPokemonName_Buffer1_Buffer3: ; 746e
 	jp CopyBytes
 ```
 
-In [data/events/happiness_chances.asm](/data/events/happiness_chances.asm):
+In [data/events/happiness_probabilities.asm](/data/events/happiness_probabilities.asm):
 
 ```asm
 HappinessData_DaisysGrooming: ; 746b

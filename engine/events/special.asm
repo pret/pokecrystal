@@ -213,7 +213,7 @@ HaircutOrGrooming: ; 7420
 	ld [wScriptVar], a
 	ret
 
-INCLUDE "data/events/happiness_chances.asm"
+INCLUDE "data/events/happiness_probabilities.asm"
 
 CopyPokemonName_Buffer1_Buffer3: ; 746e
 	ld hl, wStringBuffer1
