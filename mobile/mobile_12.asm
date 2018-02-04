@@ -1798,7 +1798,7 @@ Function48d4a: ; 48d4a (12:4d4a)
 	add e
 	ld c, a
 	ld a, b
-	adc $0
+	adc 0
 	ld b, a
 	ld a, c
 	ld [hld], a

@@ -60,7 +60,7 @@ Function11000f: ; 11000f
 	add c
 	ld c, a
 	ld a, b
-	adc $0
+	adc 0
 	ld b, a
 	ret
 ; 110029
@@ -1667,7 +1667,7 @@ Function110af4: ; 110af4
 	add c
 	ld [hli], a
 	ld a, b
-	adc $0
+	adc 0
 	ld [hl], a
 	xor a
 	ld [$c993], a
@@ -1708,8 +1708,8 @@ Function110af4: ; 110af4
 	ld a, [$c993]
 	add e
 	ld [hli], a
-	ld a, $0
-	adc $0
+	ld a, 0
+	adc 0
 	ld [hl], a
 	xor a
 	ld [$c993], a
@@ -2495,8 +2495,8 @@ Function111044: ; 111044
 	ld a, [$c991]
 	add e
 	ld [hli], a
-	ld a, $0
-	adc $0
+	ld a, 0
+	adc 0
 	ld [hl], a
 	xor a
 	ld [$c991], a
@@ -6829,7 +6829,7 @@ Function112bec: ; 112bec
 	add c
 	ld [$c82d], a
 	ld a, [$c82e]
-	adc $0
+	adc 0
 	ld [$c82e], a
 	ld hl, $c829
 	ld a, e
@@ -7549,7 +7549,7 @@ Function113095: ; 113095
 	add b
 	ld [hli], a
 	ld a, [hl]
-	adc $0
+	adc 0
 	ld [hl], a
 	ld c, b
 	pop hl

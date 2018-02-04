@@ -7714,7 +7714,7 @@ Function11b879: ; 11b879
 	ld e, a
 	ld a, h
 	cpl
-	adc $0
+	adc 0
 	ld d, a
 	pop hl
 	add hl, de

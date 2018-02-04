@@ -85,7 +85,7 @@ ReturnFromMapSetupScript:: ; b8000
 	ret z
 	cp POWER_PLANT
 	ret z
-	ld a, $1
+	ld a, 1
 	and a
 	ret
 ; b8089

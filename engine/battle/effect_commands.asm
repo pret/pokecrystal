@@ -4011,25 +4011,25 @@ BattleCommand_Poison: ; 35f2c
 
 	ld a, [hBattleTurn]
 	and a
-	jr z, .mimic_random
+	jr z, .dont_sample_failure
 
 	ld a, [wLinkMode]
 	and a
-	jr nz, .mimic_random
+	jr nz, .dont_sample_failure
 
 	ld a, [wInBattleTowerBattle]
 	and a
-	jr nz, .mimic_random
+	jr nz, .dont_sample_failure
 
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .mimic_random
+	jr nz, .dont_sample_failure
 
 	call BattleRandom
 	cp 25 percent + 1 ; 25% chance AI fails
 	jr c, .failed
 
-.mimic_random
+.dont_sample_failure
 	call CheckSubstituteOpp
 	jr nz, .failed
 	ld a, [wAttackMissed]
@@ -6364,7 +6364,7 @@ BattleCommand_Paralyze: ; 36dc7
 	jr nz, .dont_sample_failure
 
 	call BattleRandom
-	cp 1 + 25 percent
+	cp 25 percent + 1 ; 25% chance AI fails
 	jr c, .failed
 
 .dont_sample_failure

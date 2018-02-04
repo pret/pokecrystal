@@ -618,7 +618,7 @@ HDMATransfer_OnlyTopFourRows: ; 104303
 	add BG_MAP_WIDTH - SCREEN_WIDTH
 	ld l, a
 	ld a, h
-	adc $0
+	adc 0
 	ld h, a
 	dec b
 	jr nz, .outer_loop

@@ -4431,7 +4431,7 @@ HandleHPHealingItem: ; 3dd2f
 	ld c, a
 	dec de
 	ld a, [de]
-	adc $0
+	adc 0
 	ld [wBuffer6], a
 	ld b, a
 	ld a, [hld]
