@@ -697,16 +697,16 @@ FastBallMultiplier:
 This is a bug with `ItemAttributes` in [data/items/attributes.asm](/data/items/attributes.asm):
 
 ```asm
-; DRAGON FANG
+; DRAGON_FANG
 	item_attribute 100, 0, 0, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 
 ...
 
-; DRAGON SCALE
+; DRAGON_SCALE
 	item_attribute 2100, HELD_DRAGON_BOOST, 10, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 ```
 
-**Fix:** Move `HELD_DRAGON_BOOST` to the `DRAGON FANG` attributes and `0` to `DRAGON SCALE`.
+**Fix:** Move `HELD_DRAGON_BOOST` to the `DRAGON_FANG` attributes and `0` to `DRAGON_SCALE`.
 
 
 ## Daisy's grooming doesn't always increase happiness
