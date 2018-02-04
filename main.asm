@@ -14,7 +14,7 @@ INCLUDE "engine/math.asm"
 INCLUDE "data/items/attributes.asm"
 INCLUDE "engine/npc_movement.asm"
 INCLUDE "engine/events/happiness_egg.asm"
-INCLUDE "engine/events/special.asm"
+INCLUDE "engine/events/specials_2.asm"
 
 
 SECTION "bank2", ROMX
@@ -28,7 +28,7 @@ INCLUDE "engine/color.asm"
 SECTION "bank3", ROMX
 
 INCLUDE "engine/routines/checktime.asm"
-INCLUDE "engine/specials.asm"
+INCLUDE "engine/events/specials.asm"
 INCLUDE "engine/printnum.asm"
 INCLUDE "engine/health.asm"
 INCLUDE "engine/events/overworld.asm"
