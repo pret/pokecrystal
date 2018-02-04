@@ -702,7 +702,7 @@ PokedexShow_GetDexEntryBank:
 	pop hl
 	ret
 
-.PokedexEntryBanks
+.PokedexEntryBanks:
 	db BANK(PokedexEntries1)
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)

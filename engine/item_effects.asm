@@ -361,7 +361,7 @@ ParkBall: ; e8a2
 	ld d, a
 	push de
 	ld a, [wBattleMonItem]
-;	ld b, a
+	; ld b, a
 	farcall GetItemHeldEffect
 	ld a, b
 	cp HELD_CATCH_CHANCE
@@ -905,10 +905,6 @@ MoonBallMultiplier:
 ; This function is buggy.
 ; Intent:  multiply catch rate by 4 if mon evolves with moon stone
 ; Reality: no boost
-
-GLOBAL EvosAttacks
-GLOBAL EvosAttacksPointers
-
 	push bc
 	ld a, [wTempEnemyMonSpecies]
 	dec a

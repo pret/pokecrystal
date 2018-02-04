@@ -1504,8 +1504,8 @@ BattleCheckTypeMatchup: ; 347c8
 	ld hl, wBattleMonType1
 CheckTypeMatchup: ; 347d3
 ; There is an incorrect assumption about this function made in the AI related code: when
-; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing
-; the offensive type in a will make this function do the right thing. Since a is overwritten,
+; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
+; offensive type in a will make this function do the right thing. Since a is overwritten,
 ; this assumption is incorrect. A simple fix would be to load the move type for the
 ; current move into a in BattleCheckTypeMatchup, before falling through, which is
 ; consistent with how the rest of the code assumes this code works like.

@@ -103,8 +103,6 @@ _GetFrontpic: ; 510a5
 	ret
 
 GetFrontpicPointer: ; 510d7
-GLOBAL PokemonPicPointers, UnownPicPointers
-
 	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr z, .unown
@@ -211,7 +209,6 @@ GetMonBackpic: ; 5116c
 	push de
 
 	; These are assumed to be at the same address in their respective banks.
-	GLOBAL PokemonPicPointers,  UnownPicPointers
 	ld hl, PokemonPicPointers ; UnownPicPointers
 	ld a, b
 	ld d, BANK(PokemonPicPointers)

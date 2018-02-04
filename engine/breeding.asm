@@ -434,8 +434,6 @@ InitEggMoves: ; 170bf
 ; 170e4
 
 GetEggMove: ; 170e4
-GLOBAL EggMoves
-
 	push bc
 	ld a, [wEggMonSpecies]
 	dec a
