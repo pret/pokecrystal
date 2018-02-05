@@ -532,7 +532,7 @@ CheckEnemyTurn: ; 3421f
 
 	; 50% chance of hitting itself
 	call BattleRandom
-	cp 1 + 50 percent
+	cp 50 percent + 1
 	jr nc, .not_confused
 
 	; clear confusion-dependent substatus
@@ -578,7 +578,7 @@ CheckEnemyTurn: ; 3421f
 
 	; 50% chance of infatuation
 	call BattleRandom
-	cp 1 + 50 percent
+	cp 50 percent + 1
 	jr c, .not_infatuated
 
 	ld hl, InfatuationText

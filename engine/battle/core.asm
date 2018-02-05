@@ -463,13 +463,13 @@ DetermineMoveOrder: ; 3c314
 	jr z, .player_2
 
 	call BattleRandom
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jp c, .player_first
 	jp .enemy_first
 
 .player_2
 	call BattleRandom
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jp c, .enemy_first
 	jp .player_first
 
@@ -549,13 +549,13 @@ DetermineMoveOrder: ; 3c314
 	cp USING_INTERNAL_CLOCK
 	jr z, .player_2c
 	call BattleRandom
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jp c, .player_first
 	jp .enemy_first
 
 .player_2c
 	call BattleRandom
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jp c, .enemy_first
 .player_first
 	scf
@@ -791,7 +791,7 @@ TryEnemyFlee: ; 3c543
 
 	call BattleRandom
 	ld b, a
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jr nc, .Stay
 
 	push bc
@@ -803,7 +803,7 @@ TryEnemyFlee: ; 3c543
 	jr c, .Flee
 
 	ld a, b
-	cp 1 + (10 percent)
+	cp 10 percent + 1
 	jr nc, .Stay
 
 	ld a, [wTempEnemyMonSpecies]
@@ -6177,7 +6177,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; 25% chance of getting an item
 	call BattleRandom
-	cp 1 + (75 percent)
+	cp 75 percent + 1
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 

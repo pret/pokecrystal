@@ -665,7 +665,7 @@ DayCare_InitBreeding: ; 16a3b
 	cp NIDORAN_F
 	jr nz, .GotEggSpecies
 	call Random
-	cp 1 + 50 percent
+	cp 50 percent + 1
 	ld a, NIDORAN_F
 	jr c, .GotEggSpecies
 	ld a, NIDORAN_M
