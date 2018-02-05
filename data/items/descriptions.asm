@@ -1,4 +1,5 @@
 ItemDescriptions:
+; entries correspond to item ids
 	dw MasterBallDesc
 	dw UltraBallDesc
 	dw BrightpowderDesc

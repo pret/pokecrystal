@@ -587,7 +587,7 @@ Text_StringBuffer2ExpPoints::
 
 ## BRN/PSN/PAR do not affect catch rate
 
-This is a bug with `PokeBall` in [engine/item_effects.asm](/engine/item_effects.asm):
+This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_effects.asm):
 
 ```asm
 ; This routine is buggy. It was intended that SLP and FRZ provide a higher
@@ -1135,7 +1135,7 @@ endr
 
 This bug can affect Mew or Pokémon other than Ditto that used Transform via Mirror Move or Sketch.
 
-This is a bug with `PokeBall` in [engine/item_effects.asm](/engine/item_effects.asm):
+This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_effects.asm):
 
 ```asm
 	ld hl, wEnemySubStatus5
@@ -1207,7 +1207,7 @@ This is a bug with `PokeBall` in [engine/item_effects.asm](/engine/item_effects.
 
 ([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
 
-This is a bug with `ParkBall` in [engine/item_effects.asm](/engine/item_effects.asm):
+This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_effects.asm):
 
 ```asm
 .room_in_party
@@ -1232,7 +1232,7 @@ This is a bug with `ParkBall` in [engine/item_effects.asm](/engine/item_effects.
 
 ## `HELD_CATCH_CHANCE` has no effect
 
-This is a bug with `PokeBall` in [engine/item_effects.asm](/engine/item_effects.asm):
+This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_effects.asm):
 
 ```asm
 	; BUG: farcall overwrites a, and GetItemHeldEffect takes b anyway.
