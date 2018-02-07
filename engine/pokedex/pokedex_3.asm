@@ -21,7 +21,7 @@ LoadQuestionMarkPic: ; 1de0d7
 	ret
 
 .QuestionMarkLZ: ; 1de0e1
-INCBIN "gfx/pokemon/questionmark/front.2bpp.lz"
+INCBIN "gfx/pokedex/question_mark.2bpp.lz"
 
 DrawPokedexListWindow: ; 1de171 (77:6171)
 	ld a, $32
