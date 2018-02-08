@@ -47,6 +47,7 @@ TryAddMonToParty: ; d88c
 	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+	; Only initialize the nickname for party mon
 	ld a, [wMonType]
 	and a
 	jr nz, .skipnickname
@@ -76,24 +77,34 @@ TryAddMonToParty: ; d88c
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 GeneratePartyMonStats: ; d906
+; wBattleMode specifies whether it's a wild mon or not.
+; wMonType specifies whether it's an opposing mon or not.
+; wCurPartySpecies/wCurPartyLevel specify the species and level.
+; hl points to the wPartyMon struct to fill.
+
 	ld e, l
 	ld d, h
 	push hl
+
+	; Initialize the species
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wBaseDexNo]
 	ld [de], a
 	inc de
+
+	; Copy the item if it's a wild mon
 	ld a, [wBattleMode]
 	and a
 	ld a, $0
 	jr z, .skipitem
 	ld a, [wEnemyMonItem]
-
 .skipitem
 	ld [de], a
 	inc de
+
+	; Copy the moves if it's a wild mon
 	push de
 	ld h, d
 	ld l, e
@@ -124,15 +135,19 @@ GeneratePartyMonStats: ; d906
 
 .next
 	pop de
-rept 4
+rept NUM_MOVES
 	inc de
 endr
+
+	; Initialize ID.
 	ld a, [wPlayerID]
 	ld [de], a
 	inc de
 	ld a, [wPlayerID + 1]
 	ld [de], a
 	inc de
+
+	; Initialize Exp.
 	push de
 	ld a, [wCurPartyLevel]
 	ld d, a
@@ -147,24 +162,28 @@ endr
 	ld a, [hProduct + 3]
 	ld [de], a
 	inc de
+
+	; Initialize stat experience.
 	xor a
-	ld b, $a
+	ld b, MON_DVS - MON_STAT_EXP
 .loop
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .loop
+
 	pop hl
 	push hl
 	ld a, [wMonType]
 	and $f
-	jr z, .generateDVs
+	jr z, .registerpokedex
+
 	push hl
 	farcall GetTrainerDVs
 	pop hl
-	jr .initializetrainermonstats
+	jr .initializeDVs
 
-.generateDVs
+.registerpokedex
 	ld a, [wCurPartySpecies]
 	ld [wd265], a
 	dec a
@@ -174,23 +193,26 @@ endr
 	dec a
 	call SetSeenAndCaughtMon
 	pop de
+
 	pop hl
 	push hl
 	ld a, [wBattleMode]
 	and a
-	jr nz, .copywildmonstats
+	jr nz, .copywildmonDVs
+
 	call Random
 	ld b, a
 	call Random
 	ld c, a
-
-.initializetrainermonstats
+.initializeDVs
 	ld a, b
 	ld [de], a
 	inc de
 	ld a, c
 	ld [de], a
 	inc de
+
+	; Initialize PP.
 	push hl
 	push de
 	inc hl
@@ -201,24 +223,37 @@ endr
 rept 4
 	inc de
 endr
-	ld a, 70
+
+	; Initialize happiness.
+	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
+
 	xor a
+	; PokerusStatus
 	ld [de], a
 	inc de
+	; CaughtData/CaughtTime/CaughtLevel
 	ld [de], a
 	inc de
+	; CaughtGender/CaughtLocation
 	ld [de], a
 	inc de
+
+	; Initialize level.
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	inc de
+
 	xor a
+	; Status
 	ld [de], a
 	inc de
+	; Unused
 	ld [de], a
 	inc de
+
+	; Initialize HP.
 	ld bc, 10
 	add hl, bc
 	ld a, $1
@@ -231,9 +266,9 @@ endr
 	ld a, [hProduct + 3]
 	ld [de], a
 	inc de
-	jr .next2
+	jr .initstats
 
-.copywildmonstats
+.copywildmonDVs
 	ld a, [wEnemyMonDVs]
 	ld [de], a
 	inc de
@@ -252,19 +287,27 @@ endr
 	jr nz, .wildmonpploop
 	pop hl
 
+	; Initialize happiness.
 	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
+
 	xor a
+	; PokerusStatus
 	ld [de], a
 	inc de
+	; CaughtData/CaughtTime/CaughtLevel
 	ld [de], a
 	inc de
+	; CaughtGender/CaughtLocation
 	ld [de], a
 	inc de
+
+	; Initialize level.
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	inc de
+
 	ld hl, wEnemyMonStatus
 	; Copy wEnemyMonStatus
 	ld a, [hli]
@@ -282,15 +325,15 @@ endr
 	ld [de], a
 	inc de
 
-.next2
+.initstats
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .generatestats
 	ld hl, wEnemyMonMaxHP
-	ld bc, 2 * 6 ; MaxHP + 5 Stats
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_MAXHP
 	call CopyBytes
 	pop hl
-	jr .next3
+	jr .registerunowndex
 
 .generatestats
 	pop hl
@@ -299,7 +342,7 @@ endr
 	ld b, $0 ; if b = 1, then stat calculation takes stat exp into account.
 	call CalcPkmnStats
 
-.next3
+.registerunowndex
 	ld a, [wMonType]
 	and $f
 	jr nz, .done
