@@ -206,7 +206,7 @@ INCLUDE "engine/events/buena_menu.asm"
 SECTION "bank13", ROMX
 
 INCLUDE "engine/map_palettes.asm"
-INCLUDE "gfx/tilesets/palette_maps.asm"
+INCLUDE "gfx/tileset_palette_maps.asm"
 INCLUDE "data/collision_permissions.asm"
 INCLUDE "engine/routines/emptyallsrambanks.asm"
 INCLUDE "engine/routines/savemenu_copytilemapatonce.asm"
