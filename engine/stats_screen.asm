@@ -230,7 +230,7 @@ StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 	ld a, [wMonType]
 	cp TEMPMON
 	jr nz, .breedmon
-	ld a, [wBufferMon]
+	ld a, [wBufferMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld hl, wBufferMon

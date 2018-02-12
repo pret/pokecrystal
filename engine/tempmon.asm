@@ -1,6 +1,6 @@
 CopyPkmnToTempMon: ; 5084a
 ; gets the BaseData of a Pkmn
-; and copys the PkmnStructure to wTempMon
+; and copies the party_struct to wTempMon
 
 	ld a, [wCurPartyMon]
 	ld e, a
@@ -32,7 +32,7 @@ CopyPkmnToTempMon: ; 5084a
 .done
 	ret
 
-CalcwBufferMonStats: ; 5088b
+CalcBufferMonStats: ; 5088b
 	ld bc, wBufferMon
 	jr _TempMonStatsCalculation
 

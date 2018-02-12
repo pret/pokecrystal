@@ -1763,7 +1763,7 @@ BillsPC_CopyMon: ; e2fd6 (38:6fd6)
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	call CloseSRAM
-	farcall CalcwBufferMonStats
+	farcall CalcBufferMonStats
 	ret
 
 .party
@@ -1806,7 +1806,7 @@ BillsPC_CopyMon: ; e2fd6 (38:6fd6)
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyMonToTemp
 	call CloseSRAM
-	farcall CalcwBufferMonStats
+	farcall CalcBufferMonStats
 	ret
 
 DepositPokemon: ; e307c (38:707c)
@@ -2112,7 +2112,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyMonToTemp
 	call CloseSRAM
-	farcall CalcwBufferMonStats
+	farcall CalcBufferMonStats
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
