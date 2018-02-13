@@ -254,9 +254,9 @@ endr
 	inc de
 
 	; Initialize HP.
-	ld bc, 10
+	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld a, $1
+	ld a, 1
 	ld c, a
 	ld b, FALSE
 	call CalcPkmnStatC
@@ -339,7 +339,7 @@ endr
 	pop hl
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld b, $0 ; if b = 1, then stat calculation takes stat exp into account.
+	ld b, FALSE
 	call CalcPkmnStats
 
 .registerunowndex
