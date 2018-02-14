@@ -775,7 +775,7 @@ RestorePPofDepositedPokemon: ; dcb6
 	ret
 ; dd21
 
-RetrievePokemonFromDayCareMan: ; dd21
+RetrieveMonFromDayCareMan: ; dd21
 	ld a, [wBreedMon1Species]
 	ld [wCurPartySpecies], a
 	ld de, SFX_TRANSACTION
@@ -788,10 +788,10 @@ RetrievePokemonFromDayCareMan: ; dd21
 	ld [wCurPartyLevel], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	jp Functiondd64
+	jp RetrieveBreedmon
 ; dd42
 
-RetrievePokemonFromDayCareLady: ; dd42
+RetrieveMonFromDayCareLady: ; dd42
 	ld a, [wBreedMon2Species]
 	ld [wCurPartySpecies], a
 	ld de, SFX_TRANSACTION
@@ -804,10 +804,10 @@ RetrievePokemonFromDayCareLady: ; dd42
 	ld [wCurPartyLevel], a
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
-	jp Functiondd64
+	jp RetrieveBreedmon
 ; dd64
 
-Functiondd64: ; dd64
+RetrieveBreedmon: ; dd64
 	ld hl, wPartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
@@ -853,12 +853,12 @@ Functiondd64: ; dd64
 	pop hl
 	call CopyBytes
 	push hl
-	call Functionde1a
+	call GetLastPartyMon
 	pop hl
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	call GetBaseData
-	call Functionde1a
+	call GetLastPartyMon
 	ld b, d
 	ld c, e
 	ld hl, MON_LEVEL
@@ -904,7 +904,7 @@ Functiondd64: ; dd64
 	ret
 ; de1a
 
-Functionde1a: ; de1a
+GetLastPartyMon: ; de1a
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1Species
