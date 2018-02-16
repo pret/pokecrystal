@@ -34,19 +34,19 @@ KrissHouse2F_MapScripts:
 
 	db 0, 0, 0 ; filler
 
-Doll1:
+DecoDoll1Script:
 	describedecoration DECODESC_LEFT_DOLL
 
-Doll2:
+DecoDoll2Script:
 	describedecoration DECODESC_RIGHT_DOLL
 
-wDecoBigDoll:
+DecoBigDollScript:
 	describedecoration DECODESC_BIG_DOLL
 
-GameConsole:
+DecoGameConsoleScript:
 	describedecoration DECODESC_CONSOLE
 
-KrissHousePoster:
+DecoPosterScript:
 	conditional_event EVENT_KRISS_ROOM_POSTER, .Script
 
 .Script:
@@ -131,11 +131,11 @@ KrissHouse2F_MapEvents:
 	bg_event 2, 1, BGEVENT_UP, KrissHousePC
 	bg_event 3, 1, BGEVENT_READ, KrissHouseRadio
 	bg_event 5, 1, BGEVENT_READ, KrissHouseBookshelf
-	bg_event 6, 0, BGEVENT_IFSET, KrissHousePoster
+	bg_event 6, 0, BGEVENT_IFSET, DecoPosterScript
 
 .ObjectEvents:
 	db 4
-	object_event 4, 2, SPRITE_CONSOLE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameConsole, EVENT_KRISS_HOUSE_2F_CONSOLE
-	object_event 4, 4, SPRITE_DOLL_1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll1, EVENT_KRISS_HOUSE_2F_DOLL_1
-	object_event 5, 4, SPRITE_DOLL_2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Doll2, EVENT_KRISS_HOUSE_2F_DOLL_2
-	object_event 0, 1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, wDecoBigDoll, EVENT_KRISS_HOUSE_2F_BIG_DOLL
+	object_event 4, 2, SPRITE_CONSOLE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DecoGameConsoleScript, EVENT_KRISS_HOUSE_2F_CONSOLE
+	object_event 4, 4, SPRITE_DOLL_1, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DecoDoll1Script, EVENT_KRISS_HOUSE_2F_DOLL_1
+	object_event 5, 4, SPRITE_DOLL_2, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DecoDoll2Script, EVENT_KRISS_HOUSE_2F_DOLL_2
+	object_event 0, 1, SPRITE_BIG_DOLL, SPRITEMOVEDATA_BIGDOLL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DecoBigDollScript, EVENT_KRISS_HOUSE_2F_BIG_DOLL

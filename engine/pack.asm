@@ -1148,7 +1148,7 @@ TutorialPack: ; 107bb
 ; entries correspond to *_POCKET constants
 	dw .Items
 	dw .Balls
-	dw .wKeyItems
+	dw .KeyItems
 	dw .TMHM
 
 .Items: ; 107e9 (4:47e9)
@@ -1174,7 +1174,7 @@ TutorialPack: ; 107bb
 	dba UpdateItemDescription
 ; 10807
 
-.wKeyItems: ; 10807 (4:4807)
+.KeyItems: ; 10807 (4:4807)
 	ld a, KEY_ITEM_POCKET
 	ld hl, .KeyItemsMenuDataHeader
 	jr .DisplayPocket
