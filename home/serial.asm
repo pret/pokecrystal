@@ -200,7 +200,7 @@ Serial_ExchangeByte:: ; 78a
 	cp SERIAL_NO_DATA_BYTE
 	ret nz
 	call CheckwLinkTimeoutFramesNonzero
-	jr z, .wLinkTimeoutFrames_zero
+	jr z, .linkTimeoutFrames_zero
 	push hl
 	ld hl, wLinkTimeoutFrames + 1
 	ld a, [hl]
@@ -215,7 +215,7 @@ Serial_ExchangeByte:: ; 78a
 	call CheckwLinkTimeoutFramesNonzero
 	jr z, SerialDisconnected
 
-.wLinkTimeoutFrames_zero
+.linkTimeoutFrames_zero
 	ld a, [rIE]
 	and (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
 	cp 1 << SERIAL

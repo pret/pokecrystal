@@ -716,7 +716,7 @@ GetPlayerOrMonPalettePointer:
 	ret
 
 .male
-	ld hl, wPlayerPalette
+	ld hl, PlayerPalette
 	ret
 
 GetFrontpicPalettePointer:

@@ -200,7 +200,7 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	ld bc, 20
 	xor a
 	call ByteFill
-	ld hl, .wTileMap
+	ld hl, .TileMap
 	decoord 0, 1
 	ld bc, $0154
 	call CopyBytes
@@ -212,7 +212,7 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	ld bc, SCREEN_WIDTH
 	xor a
 	call ByteFill
-	ld hl, .wAttrMap
+	ld hl, .AttrMap
 	decoord 0, 1, wAttrMap
 	ld bc, 17 * SCREEN_WIDTH
 	call CopyBytes
@@ -222,10 +222,10 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 .Tiles:
 INCBIN "gfx/mobile/mobile_splash.2bpp"
 
-.wTileMap:
+.TileMap:
 INCBIN "gfx/mobile/mobile_splash.tilemap"
 
-.wAttrMap:
+.AttrMap:
 INCBIN "gfx/mobile/mobile_splash.attrmap"
 
 UnknownMobilePalettes_16c903: ; 16c903
