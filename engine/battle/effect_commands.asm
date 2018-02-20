@@ -9711,7 +9711,7 @@ CheckHiddenOpponent: ; 37daa
 ; Uncomment the lines below to fix.
 	; ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	; call GetBattleVar
-    ; bit SUBSTATUS_LOCK_ON, a
+    ; and 1 << SUBSTATUS_LOCK_ON
     ; ret z
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
