@@ -27,7 +27,7 @@ BattleCommand_Conversion2: ; 359e6
 
 .loop
 	call BattleRandom
-	and $1f
+	maskbits NUM_TYPES
 	cp UNUSED_TYPES
 	jr c, .okay
 	cp UNUSED_TYPES_END
