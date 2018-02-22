@@ -203,7 +203,7 @@ BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	ld hl, wBillsPC_ScrollPosition
 	add [hl]
 	ld [wCurPartyMon], a
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	call ReleasePKMN_ByePKMN
@@ -463,7 +463,7 @@ BillsPC_Withdraw: ; e2675 (38:6675)
 	ld hl, wBillsPC_ScrollPosition
 	add [hl]
 	ld [wCurPartyMon], a
-	ld a, PC_DEPOSIT
+	ld a, REMOVE_BOX
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	call ReleasePKMN_ByePKMN
@@ -1821,7 +1821,7 @@ DepositPokemon: ; e307c (38:707c)
 	ld [wPokemonWithdrawDepositParameter], a
 	predef SendGetMonIntoFromBox
 	jr c, .asm_boxisfull
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	ld a, [wCurPartySpecies]
@@ -1876,7 +1876,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	ld [wPokemonWithdrawDepositParameter], a
 	predef SendGetMonIntoFromBox
 	jr c, .PartyFull
-	ld a, PC_DEPOSIT
+	ld a, REMOVE_BOX
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	ld a, [wCurPartySpecies]
@@ -2113,7 +2113,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 	call CopyMonToTemp
 	call CloseSRAM
 	farcall CalcBufferMonStats
-	ld a, PC_DEPOSIT
+	ld a, REMOVE_BOX
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	ret
@@ -2146,7 +2146,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyMonToTemp
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	ret

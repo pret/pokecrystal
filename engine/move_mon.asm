@@ -918,7 +918,7 @@ GetLastPartyMon: ; de1a
 DepositMonWithDayCareMan: ; de2a
 	ld de, wBreedMon1Nick
 	call DepositBreedmon
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	jp RemoveMonFromPartyOrBox
 ; de37
@@ -926,7 +926,7 @@ DepositMonWithDayCareMan: ; de2a
 DepositMonWithDayCareLady: ; de37
 	ld de, wBreedMon2Nick
 	call DepositBreedmon
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	jp RemoveMonFromPartyOrBox
 ; de44

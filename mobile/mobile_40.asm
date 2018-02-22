@@ -5410,7 +5410,7 @@ Function1023c6: ; 1023c6
 	ld a, [wcd4c]
 	dec a
 	ld [wCurPartyMon], a
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	ld hl, wPartyCount

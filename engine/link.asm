@@ -1863,7 +1863,7 @@ LinkTrade: ; 28b87
 	add hl, bc
 	ld a, [hl]
 	ld [wd002], a
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
 	ld a, [wPartyCount]

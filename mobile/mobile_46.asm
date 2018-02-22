@@ -7323,7 +7323,7 @@ Function11b5c0: ; 11b5c0
 	ld a, [wcd82]
 	dec a
 	ld [wCurPartyMon], a
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	farcall Function170807
