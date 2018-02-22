@@ -117,7 +117,7 @@ BillsPC_MovePKMNMenu: ; e4cd
 	jr .quit
 
 .no_mail
-	farcall StartMovePkmnWOMail_SaveGame
+	farcall StartMoveMonWOMail_SaveGame
 	jr c, .quit
 	farcall _MovePKMNWithoutMail
 	call ReturnToMapFromSubmenu
@@ -145,30 +145,30 @@ BillsPC_DepositMenu: ; e4fe (3:64fe)
 Unreferenced_Functione512:
 	ld a, [wPartyCount]
 	and a
-	jr z, .no_pkmn
+	jr z, .no_mon
 	cp 2
-	jr c, .only_one_pkmn
+	jr c, .only_one_mon
 	and a
 	ret
 
-.no_pkmn
-	ld hl, .Text_NoPKMN
+.no_mon
+	ld hl, .Text_NoMon
 	call MenuTextBoxBackup
 	scf
 	ret
 
-.only_one_pkmn
-	ld hl, .Text_ItsYourLastPKMN
+.only_one_mon
+	ld hl, .Text_ItsYourLastMon
 	call MenuTextBoxBackup
 	scf
 	ret
 
-.Text_NoPKMN: ; 0xe52e
+.Text_NoMon: ; 0xe52e
 	; You don't have a single #MON!
 	text_jump UnknownText_0x1c1062
 	db "@"
 
-.Text_ItsYourLastPKMN: ; 0xe533
+.Text_ItsYourLastMon: ; 0xe533
 	; You can't deposit your last #MON!
 	text_jump UnknownText_0x1c1080
 	db "@"

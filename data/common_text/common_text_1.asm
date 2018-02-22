@@ -1121,7 +1121,7 @@ Text_RemainingTime::
 	text "Remaining Time"
 	done
 
-Text_YourPkmnsHPWasHealed::
+Text_YourMonsHPWasHealed::
 	text "Your #MON's HP"
 	line "was healed."
 	prompt

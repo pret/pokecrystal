@@ -289,7 +289,7 @@ HatchEggs: ; 16f70 (5:6f70)
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, $0
-	predef CalcPkmnStats
+	predef CalcMonStats
 	pop bc
 	ld hl, MON_MAXHP
 	add hl, bc

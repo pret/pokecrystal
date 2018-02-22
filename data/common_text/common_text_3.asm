@@ -1139,14 +1139,14 @@ UnknownText_0x1c59a3::
 	para ""
 	done
 
-Text_OnlyThreePkmnMayBeEntered::
+Text_OnlyThreeMonMayBeEntered::
 	text "Only three #MON"
 	line "may be entered."
 
 	para ""
 	done
 
-Text_ThePkmnMustAllBeDifferentKinds::
+Text_TheMonMustAllBeDifferentKinds::
 	text "The @"
 	text_from_ram wStringBuffer2
 	text " #MON"
@@ -1156,7 +1156,7 @@ Text_ThePkmnMustAllBeDifferentKinds::
 	para ""
 	done
 
-Text_ThePkmnMustNotHoldTheSameItems::
+Text_TheMonMustNotHoldTheSameItems::
 	text "The @"
 	text_from_ram wStringBuffer2
 	text " #MON"

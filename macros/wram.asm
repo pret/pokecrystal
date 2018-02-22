@@ -178,15 +178,15 @@ ENDM
 battle_tower_struct: MACRO
 \1Name:: ds NAME_LENGTH +- 1
 \1TrainerClass:: ds 1
-\1Pkmn1:: party_struct \1Pkmn1
-\1Pkmn1Name:: ds MON_NAME_LENGTH
-\1Pkmn1NameEnd::
-\1Pkmn2:: party_struct \1Pkmn2
-\1Pkmn2Name:: ds MON_NAME_LENGTH
-\1Pkmn2NameEnd::
-\1Pkmn3:: party_struct \1Pkmn3
-\1Pkmn3Name:: ds MON_NAME_LENGTH
-\1Pkmn3NameEnd::
+\1Mon1:: party_struct \1Mon1
+\1Mon1Name:: ds MON_NAME_LENGTH
+\1Mon1NameEnd::
+\1Mon2:: party_struct \1Mon2
+\1Mon2Name:: ds MON_NAME_LENGTH
+\1Mon2NameEnd::
+\1Mon3:: party_struct \1Mon3
+\1Mon3Name:: ds MON_NAME_LENGTH
+\1Mon3NameEnd::
 \1TrainerData:: ds BATTLETOWER_TRAINERDATALENGTH
 \1TrainerEnd::
 ENDM

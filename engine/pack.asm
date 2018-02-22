@@ -494,7 +494,7 @@ UseItem: ; 10311
 	ret
 
 .NoPokemon:
-	ld hl, TextJump_YouDontHaveAPkmn
+	ld hl, TextJump_YouDontHaveAMon
 	call Pack_PrintTextNoScroll
 	ret
 
@@ -648,7 +648,7 @@ GiveItem: ; 103fd
 	ret
 
 .NoPokemon: ; 10486 (4:4486)
-	ld hl, TextJump_YouDontHaveAPkmn
+	ld hl, TextJump_YouDontHaveAMon
 	call Pack_PrintTextNoScroll
 	ret
 ; 1048d (4:448d)
@@ -1668,9 +1668,9 @@ Text_ThisIsntTheTime: ; 0x10af3
 	db "@"
 ; 0x10af8
 
-TextJump_YouDontHaveAPkmn: ; 0x10af8
+TextJump_YouDontHaveAMon: ; 0x10af8
 	; You don't have a #MON!
-	text_jump Text_YouDontHaveAPkmn
+	text_jump Text_YouDontHaveAMon
 	db "@"
 ; 0x10afd
 

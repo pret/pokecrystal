@@ -97,7 +97,7 @@
 ; PlayRadio.StationPointers indexes (see engine/pokegear.asm)
 	const_def
 	const MAPRADIO_POKEMON_CHANNEL
-	const MAPRADIO_OAKS_MON_TALK
+	const MAPRADIO_OAKS_POKEMON_TALK
 	const MAPRADIO_POKEDEX_SHOW
 	const MAPRADIO_POKEMON_MUSIC
 	const MAPRADIO_LUCKY_CHANNEL
@@ -108,8 +108,8 @@
 
 ; These tables in engine/radio.asm are all sized to a power of 2
 ; so there's no need for a rejection sampling loop
-NUM_OAKS_MON_TALK_ADVERBS    EQU 16 ; OaksPkmnTalk8.Adverbs
-NUM_OAKS_MON_TALK_ADJECTIVES EQU 16 ; OaksPkmnTalk9.Adjectives
+NUM_OAKS_POKEMON_TALK_ADVERBS    EQU 16 ; OaksPKMNTalk8.Adverbs
+NUM_OAKS_POKEMON_TALK_ADJECTIVES EQU 16 ; OaksPKMNTalk9.Adjectives
 NUM_PNP_PEOPLE_ADJECTIVES    EQU 16 ; PeoplePlaces5.Adjectives
 NUM_PNP_PLACES_ADJECTIVES    EQU 16 ; PeoplePlaces7.Adjectives
 

@@ -74,7 +74,7 @@ Link_SaveGame: ; 14ab2
 	ret
 ; 14ac2
 
-MovePkmnWOMail_SaveGame: ; 14ac2
+MoveMonWOMail_SaveGame: ; 14ac2
 	call PauseGameLogic
 	push de
 	call SaveBox
@@ -86,7 +86,7 @@ MovePkmnWOMail_SaveGame: ; 14ac2
 	ret
 ; 14ad5
 
-MovePkmnWOMail_InsertMon_SaveGame: ; 14ad5
+MoveMonWOMail_InsertMon_SaveGame: ; 14ad5
 	call PauseGameLogic
 	push de
 	call SaveBox
@@ -119,8 +119,8 @@ MovePkmnWOMail_InsertMon_SaveGame: ; 14ad5
 	ret
 ; 14b34
 
-StartMovePkmnWOMail_SaveGame: ; 14b34
-	ld hl, Text_SaveOnMovePkmnWOMail
+StartMoveMonWOMail_SaveGame: ; 14b34
+	ld hl, Text_SaveOnMoveMonWOMail
 	call MenuTextBox
 	call YesNoBox
 	call ExitMenu
@@ -1203,7 +1203,7 @@ Text_SaveOnBoxSwitch: ; 0x152a1
 	db "@"
 ; 0x152a6
 
-Text_SaveOnMovePkmnWOMail: ; 0x152a6
+Text_SaveOnMoveMonWOMail: ; 0x152a6
 	; Each time you move a #MON, data will be saved. OK?
 	text_jump UnknownText_0x1c465f
 	db "@"

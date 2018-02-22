@@ -240,7 +240,7 @@ StatsScreen_CopyToTempMon: ; 4ddf2 (13:5df2)
 	jr .done
 
 .breedmon
-	farcall CopyPkmnToTempMon
+	farcall CopyMonToTempMon
 	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .done

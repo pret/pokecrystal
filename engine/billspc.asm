@@ -591,7 +591,7 @@ _MovePKMNWithoutMail: ; e2759
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .a_button
-	call MovePkmnWithoutMail_DPad
+	call MoveMonWithoutMail_DPad
 	jr c, .d_pad
 	and a
 	ret z
@@ -750,7 +750,7 @@ _MovePKMNWithoutMail: ; e2759
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .a_button_2
-	call MovePkmnWithoutMail_DPad_2
+	call MoveMonWithoutMail_DPad_2
 	jr c, .dpad_2
 	and a
 	ret z
@@ -862,7 +862,7 @@ Withdraw_UpDown: ; e29b5 (38:69b5)
 	jp BillsPC_JoypadDidNothing
 ; e29d0 (38:69d0)
 
-MovePkmnWithoutMail_DPad: ; e29d0
+MoveMonWithoutMail_DPad: ; e29d0
 	ld hl, hJoyLast
 	ld a, [wBillsPC_NumMonsOnScreen]
 	ld d, a
@@ -886,7 +886,7 @@ MovePkmnWithoutMail_DPad: ; e29d0
 	jr nz, BillsPC_PressRight
 	jr BillsPC_JoypadDidNothing
 
-MovePkmnWithoutMail_DPad_2: ; e29f4
+MoveMonWithoutMail_DPad_2: ; e29f4
 	ld hl, hJoyLast
 	ld a, [wBillsPC_NumMonsOnScreen]
 	ld d, a
@@ -1819,7 +1819,7 @@ DepositPokemon: ; e307c (38:707c)
 	call GetNick
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
-	predef SendGetPkmnIntoFromBox
+	predef SendGetMonIntoFromBox
 	jr c, .asm_boxisfull
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
@@ -1874,7 +1874,7 @@ TryWithdrawPokemon: ; e30fa (38:70fa)
 	call CloseSRAM
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	predef SendGetPkmnIntoFromBox
+	predef SendGetMonIntoFromBox
 	jr c, .PartyFull
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
@@ -2010,7 +2010,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 .dw_return ; e322a
 	pop af
 	ld e, a
-	farcall MovePkmnWOMail_InsertMon_SaveGame
+	farcall MoveMonWOMail_InsertMon_SaveGame
 	ret
 ; e3233
 
@@ -2095,7 +2095,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 	ld a, [wBillsPC_BackupLoadedBox]
 	dec a
 	ld e, a
-	farcall MovePkmnWOMail_SaveGame
+	farcall MoveMonWOMail_SaveGame
 	ld a, [wBillsPC_BackupCursorPosition]
 	ld hl, wBillsPC_BackupScrollPosition
 	add [hl]
@@ -2123,7 +2123,7 @@ MovePKMNWitoutMail_InsertMon: ; e31e7
 	ld a, [wBillsPC_LoadedBox]
 	dec a
 	ld e, a
-	farcall MovePkmnWOMail_SaveGame
+	farcall MoveMonWOMail_SaveGame
 	ld a, [wBillsPC_CursorPosition]
 	ld hl, wBillsPC_ScrollPosition
 	add [hl]

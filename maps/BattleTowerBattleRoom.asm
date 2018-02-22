@@ -44,7 +44,7 @@ Script_BattleRoomLoop: ; 0x9f425
 	applymovement BATTLETOWERBATTLEROOM_RECEPTIONIST, MovementData_BattleTowerBattleRoomReceptionistWalksToPlayer
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceReceptionist
 	opentext
-	writetext Text_YourPkmnWillBeHealedToFullHealth
+	writetext Text_YourMonWillBeHealedToFullHealth
 	waitbutton
 	closetext
 	playmusic MUSIC_HEAL

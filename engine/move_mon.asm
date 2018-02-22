@@ -1,5 +1,5 @@
 TryAddMonToParty: ; d88c
-; Check if to copy wild Pkmn or generate new Pkmn
+; Check if to copy wild mon or generate a new one
 	; Whose is it?
 	ld de, wPartyCount
 	ld a, [wMonType]
@@ -259,7 +259,7 @@ endr
 	ld a, 1
 	ld c, a
 	ld b, FALSE
-	call CalcPkmnStatC
+	call CalcMonStatC
 	ld a, [hProduct + 2]
 	ld [de], a
 	inc de
@@ -340,7 +340,7 @@ endr
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
 	ld b, FALSE
-	call CalcPkmnStats
+	call CalcMonStats
 
 .registerunowndex
 	ld a, [wMonType]
@@ -477,12 +477,12 @@ AddTempmonToParty: ; da96
 	and a
 	ret
 
-SendGetPkmnIntoFromBox: ; db3f
-; Sents/Gets Pkmn into/from Box depending on Parameter
-; wPokemonWithdrawDepositParameter == 0: get Pkmn into Party
-; wPokemonWithdrawDepositParameter == 1: sent Pkmn into Box
-; wPokemonWithdrawDepositParameter == 2: get Pkmn from DayCare
-; wPokemonWithdrawDepositParameter == 3: put Pkmn into DayCare
+SendGetMonIntoFromBox: ; db3f
+; Sents/Gets mon into/from Box depending on Parameter
+; wPokemonWithdrawDepositParameter == 0: get mon into Party
+; wPokemonWithdrawDepositParameter == 1: sent mon into Box
+; wPokemonWithdrawDepositParameter == 2: get mon from DayCare
+; wPokemonWithdrawDepositParameter == 3: put mon into DayCare
 
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -495,7 +495,7 @@ SendGetPkmnIntoFromBox: ; db3f
 	ld hl, wBreedMon1Species
 	jr z, .breedmon
 
-	; we want to sent a Pkmn into the Box
+	; we want to sent a mon into the Box
 	; so check if there's enough space
 	ld hl, sBoxCount
 	ld a, [hl]
@@ -640,7 +640,7 @@ SendGetPkmnIntoFromBox: ; db3f
 	srl a
 	add $2
 	ld [wMonType], a
-	predef CopyPkmnToTempMon
+	predef CopyMonToTempMon
 	callfar CalcLevel
 	ld a, d
 	ld [wCurPartyLevel], a
@@ -659,8 +659,8 @@ SendGetPkmnIntoFromBox: ; db3f
 	add hl, bc
 
 	push bc
-	ld b, $1
-	call CalcPkmnStats
+	ld b, TRUE
+	call CalcMonStats
 	pop bc
 
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -872,8 +872,8 @@ RetrieveBreedmon: ; dd64
 	ld hl, $a
 	add hl, bc
 	push bc
-	ld b, $1
-	call CalcPkmnStats
+	ld b, TRUE
+	call CalcMonStats
 	ld hl, wPartyMon1Moves
 	ld a, [wPartyCount]
 	dec a
@@ -947,8 +947,8 @@ DepositBreedmon: ; de44
 	ld bc, BOXMON_STRUCT_LENGTH
 	jp CopyBytes
 
-SendPkmnIntoBox: ; de6e
-; Sends the Pkmn into one of Bills Boxes
+SendMonIntoBox: ; de6e
+; Sends the mon into one of Bills Boxes
 ; the data comes mainly from 'wEnemyMon:'
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -1402,8 +1402,8 @@ ComputeNPCTrademonStats: ; e134
 	push de
 	ld a, MON_STAT_EXP - 1
 	call GetPartyParamLocation
-	ld b, $1
-	call CalcPkmnStats
+	ld b, TRUE
+	call CalcMonStats
 	pop de
 	ld a, MON_HP
 	call GetPartyParamLocation
@@ -1415,17 +1415,17 @@ ComputeNPCTrademonStats: ; e134
 	ret
 ; e167
 
-CalcPkmnStats: ; e167
-; Calculates all 6 Stats of a Pkmn
+CalcMonStats: ; e167
+; Calculates all 6 Stats of a mon
 ; b: Take into account stat EXP if TRUE
 ; 'c' counts from 1-6 and points with 'wBaseStats' to the base value
 ; hl is the path to the Stat EXP
-; results in $ffb5 and $ffb6 are saved in [de]
+; de points to where the final stats will be saved
 
 	ld c, $0
 .loop
 	inc c
-	call CalcPkmnStatC
+	call CalcMonStatC
 	ld a, [hMultiplicand + 1]
 	ld [de], a
 	inc de
@@ -1438,7 +1438,7 @@ CalcPkmnStats: ; e167
 	ret
 ; e17b
 
-CalcPkmnStatC: ; e17b
+CalcMonStatC: ; e17b
 ; 'c' is 1-6 and points to the BaseStat
 ; 1: HP
 ; 2: Attack
@@ -1669,7 +1669,7 @@ GivePoke:: ; e277
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
 	callfar LoadEnemyMon
-	call SendPkmnIntoBox
+	call SendMonIntoBox
 	jp nc, .FailedToGiveMon
 	ld a, BOXMON
 	ld [wMonType], a
