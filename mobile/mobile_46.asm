@@ -7145,7 +7145,7 @@ Function11b483: ; 11b483
 	add hl, de
 	pop de
 	push de
-	ld b, OTPARTYMON
+	ld b, TRUE
 	predef CalcMonStats
 	pop de
 	ld h, d
@@ -7564,7 +7564,7 @@ Function11b6b4: ; 11b6b4
 
 	ld hl, $c60d + MON_STAT_EXP - 1
 	ld de, $c60d + MON_MAXHP
-	ld b, $1
+	ld b, TRUE
 	predef CalcMonStats
 	ld de, $c60d + MON_MAXHP
 	ld hl, $c60d + MON_HP

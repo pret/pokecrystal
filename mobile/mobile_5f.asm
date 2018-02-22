@@ -2441,7 +2441,7 @@ Function17ded9: ; 17ded9
 	ld d, h
 	ld e, l
 	push hl
-	ld b, $0
+	ld b, FALSE
 	farcall CalcMonStats
 	ld a, [wPartyCount]
 	dec a

@@ -566,7 +566,7 @@ DayCare_GiveEgg: ; 169ac
 	ld e, l
 	pop hl
 	push bc
-	ld b, $0
+	ld b, FALSE
 	predef CalcMonStats
 	pop bc
 	ld hl, MON_HP

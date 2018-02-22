@@ -1282,7 +1282,7 @@ UpdateStatsAfterItem: ; ee8c
 	ld e, l
 	ld a, MON_STAT_EXP - 1
 	call GetPartyParamLocation
-	ld b, $1
+	ld b, TRUE
 	predef_jump CalcMonStats
 ; ee9f
 

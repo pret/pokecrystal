@@ -483,7 +483,7 @@ endr
 	push de
 	ld hl, MON_STAT_EXP - 1
 	add hl, bc
-	ld b, $1
+	ld b, TRUE
 	predef CalcMonStats
 	pop de
 	pop hl
