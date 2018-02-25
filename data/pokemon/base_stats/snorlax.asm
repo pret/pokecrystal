@@ -6,7 +6,7 @@
 	db NORMAL, NORMAL ; type
 	db 25 ; catch rate
 	db 154 ; base exp
-	db LEFTOVERS, LEFTOVERS; items
+	db LEFTOVERS, LEFTOVERS ; items
 	db GENDER_F12_5 ; gender ratio
 	db 100 ; unknown 1
 	db 40 ; step cycles to hatch

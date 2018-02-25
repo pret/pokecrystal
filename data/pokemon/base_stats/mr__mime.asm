@@ -6,7 +6,7 @@
 	db PSYCHIC, PSYCHIC ; type
 	db 45 ; catch rate
 	db 136 ; base exp
-	db NO_ITEM, MYSTERYBERRY; items
+	db NO_ITEM, MYSTERYBERRY ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 25 ; step cycles to hatch

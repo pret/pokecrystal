@@ -6,7 +6,7 @@
 	db ROCK, ROCK ; type
 	db 65 ; catch rate
 	db 135 ; base exp
-	db NO_ITEM, NO_ITEM; items
+	db NO_ITEM, NO_ITEM ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch

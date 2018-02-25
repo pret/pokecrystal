@@ -6,7 +6,7 @@
 	db ELECTRIC, ELECTRIC ; type
 	db 75 ; catch rate
 	db 122 ; base exp
-	db NO_ITEM, BERRY; items
+	db NO_ITEM, BERRY ; items
 	db GENDER_F50 ; gender ratio
 	db 100 ; unknown 1
 	db 10 ; step cycles to hatch

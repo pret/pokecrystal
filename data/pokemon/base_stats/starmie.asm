@@ -6,7 +6,7 @@
 	db WATER, PSYCHIC ; type
 	db 60 ; catch rate
 	db 207 ; base exp
-	db STARDUST, STAR_PIECE; items
+	db STARDUST, STAR_PIECE ; items
 	db GENDERLESS ; gender ratio
 	db 100 ; unknown 1
 	db 20 ; step cycles to hatch
