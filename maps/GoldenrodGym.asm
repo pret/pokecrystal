@@ -104,7 +104,7 @@ TrainerLassCarrie:
 WhitneyCriesScript:
 	showemote EMOTE_SHOCK, GOLDENRODGYM_LASS2, 15
 	applymovement GOLDENRODGYM_LASS2, BridgetWalksUpMovement
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	opentext
 	writetext BridgetWhitneyCriesText
 	waitbutton

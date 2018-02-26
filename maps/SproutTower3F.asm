@@ -21,7 +21,7 @@ SproutTower3F_MapScripts:
 	end
 
 UnknownScript_0x184947:
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	playsound SFX_TACKLE
@@ -38,7 +38,7 @@ UnknownScript_0x184947:
 	waitbutton
 	closetext
 	showemote EMOTE_SHOCK, SPROUTTOWER3F_SILVER, 15
-	objectface SPROUTTOWER3F_SILVER, DOWN
+	turnobject SPROUTTOWER3F_SILVER, DOWN
 	pause 15
 	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a24
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -46,7 +46,7 @@ UnknownScript_0x184947:
 	writetext UnknownText_0x184aec
 	waitbutton
 	closetext
-	objectface SPROUTTOWER3F_SILVER, UP
+	turnobject SPROUTTOWER3F_SILVER, UP
 	opentext
 	writetext UnknownText_0x184bc8
 	pause 15

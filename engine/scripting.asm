@@ -144,7 +144,7 @@ ScriptCommandTable:
 	dw Script_writetext                  ; 4c
 	dw Script_repeattext                 ; 4d
 	dw Script_yesorno                    ; 4e
-	dw Script_loadmenuheader             ; 4f
+	dw Script_loadmenu                   ; 4f
 	dw Script_closewindow                ; 50
 	dw Script_jumptextfaceplayer         ; 51
 if _CRYSTAL
@@ -185,7 +185,7 @@ endc
 	dw Script_writeobjectxy              ; 73
 	dw Script_loademote                  ; 74
 	dw Script_showemote                  ; 75
-	dw Script_objectface                 ; 76
+	dw Script_turnobject                 ; 76
 	dw Script_follownotexact             ; 77
 	dw Script_earthquake                 ; 78
 	dw Script_changemap                  ; 79
@@ -432,7 +432,7 @@ Script_yesorno:
 	ld [wScriptVar], a
 	ret
 
-Script_loadmenuheader:
+Script_loadmenu:
 ; script command 0x4f
 ; parameters: menu_header
 
@@ -1052,7 +1052,7 @@ Script_faceobject:
 	call ApplyObjectFacing
 	ret
 
-Script_objectface:
+Script_turnobject:
 ; script command 0x76
 ; parameters: object_id, facing
 

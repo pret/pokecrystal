@@ -22,7 +22,7 @@ ChuckScript_0x9d60f:
 	writetext ChuckIntroText1
 	waitbutton
 	closetext
-	objectface CIANWOODGYM_CHUCK, RIGHT
+	turnobject CIANWOODGYM_CHUCK, RIGHT
 	opentext
 	writetext ChuckIntroText2
 	waitbutton

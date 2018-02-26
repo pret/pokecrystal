@@ -23,17 +23,17 @@ Route27_MapScripts:
 	end
 
 UnknownScript_0x1a0873:
-	objectface ROUTE27_FISHER, LEFT
+	turnobject ROUTE27_FISHER, LEFT
 	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
 	applymovement ROUTE27_FISHER, MovementData_0x1a0a66
 	jump UnknownScript_0x1a088c
 
 UnknownScript_0x1a0881:
-	objectface ROUTE27_FISHER, LEFT
+	turnobject ROUTE27_FISHER, LEFT
 	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
 	applymovement ROUTE27_FISHER, MovementData_0x1a0a69
 UnknownScript_0x1a088c:
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext Route27FisherHeyText
 	buttonsound

@@ -176,10 +176,10 @@ UnreferencedScript_0x9e4be:
 	ifequal $a, Script_Menu_ChallengeExplanationCancel
 	ifnotequal $0, Script_MobileError
 	writetext Text_ReceivedAListOfLeadersOnTheHonorRoll
-	objectface BATTLETOWER1F_RECEPTIONIST, LEFT
+	turnobject BATTLETOWER1F_RECEPTIONIST, LEFT
 	writetext Text_PleaseConfirmOnThisMonitor
 	waitbutton
-	objectface BATTLETOWER1F_RECEPTIONIST, DOWN
+	turnobject BATTLETOWER1F_RECEPTIONIST, DOWN
 	closetext
 	end
 
@@ -250,7 +250,7 @@ YoungsterScript_0x9e55d:
 	writetext Text_BattleTowerYoungster
 	waitbutton
 	closetext
-	objectface BATTLETOWER1F_YOUNGSTER, RIGHT
+	turnobject BATTLETOWER1F_YOUNGSTER, RIGHT
 	end
 
 CooltrainerFScript_0x9e568:

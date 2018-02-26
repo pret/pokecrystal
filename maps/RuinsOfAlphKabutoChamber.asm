@@ -95,7 +95,7 @@ UnknownScript_0x587c0:
 	writetext UnknownText_0x588f5
 	waitbutton
 	closetext
-	objectface RUINSOFALPHKABUTOCHAMBER_SCIENTIST, UP
+	turnobject RUINSOFALPHKABUTOCHAMBER_SCIENTIST, UP
 	end
 
 UnknownScript_0x587c9:

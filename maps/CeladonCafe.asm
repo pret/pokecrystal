@@ -28,7 +28,7 @@ CeladonCafeFisher1:
 	writetext Fisher1Text_Concentration
 	waitbutton
 	closetext
-	objectface CELADONCAFE_FISHER1, LEFT
+	turnobject CELADONCAFE_FISHER1, LEFT
 	end
 
 CeladonCafeFisher2:
@@ -41,7 +41,7 @@ CeladonCafeFisher2:
 	writetext Fisher2Text_Quantity
 	waitbutton
 	closetext
-	objectface CELADONCAFE_FISHER2, RIGHT
+	turnobject CELADONCAFE_FISHER2, RIGHT
 	end
 
 CeladonCafeFisher3:
@@ -54,7 +54,7 @@ CeladonCafeFisher3:
 	writetext Fisher3Text_GoldenrodIsBest
 	waitbutton
 	closetext
-	objectface CELADONCAFE_FISHER3, RIGHT
+	turnobject CELADONCAFE_FISHER3, RIGHT
 	end
 
 CeladonCafeTeacher:
@@ -69,7 +69,7 @@ CeladonCafeTeacher:
 	writetext TeacherText_NoCoinCase
 	waitbutton
 	closetext
-	objectface CELADONCAFE_TEACHER, LEFT
+	turnobject CELADONCAFE_TEACHER, LEFT
 	end
 
 .HasCoinCase:
@@ -77,12 +77,12 @@ CeladonCafeTeacher:
 	writetext TeacherText_KeepEating
 	waitbutton
 	closetext
-	objectface CELADONCAFE_TEACHER, RIGHT
+	turnobject CELADONCAFE_TEACHER, RIGHT
 	opentext
 	writetext TeacherText_MoreChef
 	waitbutton
 	closetext
-	objectface CELADONCAFE_TEACHER, LEFT
+	turnobject CELADONCAFE_TEACHER, LEFT
 	end
 
 EatathonContestPoster:

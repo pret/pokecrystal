@@ -34,9 +34,9 @@ UnknownScript_0x60bab:
 	writetext UnknownText_0x60dea
 	waitbutton
 	closetext
-	objectface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	objectface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	opentext
 	playmusic MUSIC_HEAL
 	writetext UnknownText_0x60e44
@@ -52,13 +52,13 @@ UnknownScript_0x60bab:
 	writetext UnknownText_0x60f3d
 	waitbutton
 	closetext
-	objectface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
 	pause 10
-	objectface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
-	objectface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
 	pause 10
-	objectface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
 	faceplayer
 	opentext
@@ -88,9 +88,9 @@ UnknownScript_0x60c25:
 	writetext UnknownText_0x60edf
 	waitbutton
 	closetext
-	objectface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	objectface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	opentext
 	writetext UnknownText_0x60ef1
 	waitbutton

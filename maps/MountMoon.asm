@@ -16,7 +16,7 @@ MountMoon_MapScripts:
 	end
 
 .RivalBattle:
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15

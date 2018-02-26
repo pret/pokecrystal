@@ -24,12 +24,12 @@ NewBarkTown_MapScripts:
 
 NewBarkTown_TeacherStopsYouScene1:
 	playmusic MUSIC_MOM
-	objectface NEWBARKTOWN_TEACHER, LEFT
+	turnobject NEWBARKTOWN_TEACHER, LEFT
 	opentext
 	writetext Text_WaitPlayer
 	waitbutton
 	closetext
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou1_NBT
 	opentext
 	writetext Text_WhatDoYouThinkYoureDoing
@@ -47,14 +47,14 @@ NewBarkTown_TeacherStopsYouScene1:
 
 NewBarkTown_TeacherStopsYouScene2:
 	playmusic MUSIC_MOM
-	objectface NEWBARKTOWN_TEACHER, LEFT
+	turnobject NEWBARKTOWN_TEACHER, LEFT
 	opentext
 	writetext Text_WaitPlayer
 	waitbutton
 	closetext
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou2_NBT
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext Text_WhatDoYouThinkYoureDoing
 	waitbutton
@@ -109,7 +109,7 @@ NewBarkTownSilverScript:
 	writetext NewBarkTownRivalText1
 	waitbutton
 	closetext
-	objectface NEWBARKTOWN_SILVER, LEFT
+	turnobject NEWBARKTOWN_SILVER, LEFT
 	opentext
 	writetext NewBarkTownRivalText2
 	waitbutton
@@ -118,7 +118,7 @@ NewBarkTownSilverScript:
 	applymovement PLAYER, Movement_SilverPushesYouAway_NBT
 	stopfollow
 	pause 5
-	objectface NEWBARKTOWN_SILVER, DOWN
+	turnobject NEWBARKTOWN_SILVER, DOWN
 	pause 5
 	playsound SFX_TACKLE
 	applymovement PLAYER, Movement_SilverShovesYouOut_NBT

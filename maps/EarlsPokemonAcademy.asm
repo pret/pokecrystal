@@ -45,7 +45,7 @@ EarlsPokemonAcademyGameboyKid1Script:
 	writetext EarlsPokemonAcademyGameboyKid1Text
 	waitbutton
 	closetext
-	objectface EARLSPOKEMONACADEMY_GAMEBOY_KID1, DOWN
+	turnobject EARLSPOKEMONACADEMY_GAMEBOY_KID1, DOWN
 	end
 
 EarlsPokemonAcademyGameboyKid2Script:
@@ -54,7 +54,7 @@ EarlsPokemonAcademyGameboyKid2Script:
 	writetext EarlsPokemonAcademyGameboyKid2Text
 	waitbutton
 	closetext
-	objectface EARLSPOKEMONACADEMY_GAMEBOY_KID2, DOWN
+	turnobject EARLSPOKEMONACADEMY_GAMEBOY_KID2, DOWN
 	end
 
 EarlsPokemonAcademyYoungster2Script:
@@ -64,7 +64,7 @@ AcademyBlackboard:
 	opentext
 	writetext AcademyBlackboardText
 .Loop:
-	loadmenuheader .BlackboardMenuHeader
+	loadmenu .BlackboardMenuHeader
 	_2dmenu
 	closewindow
 	ifequal 1, .Poison

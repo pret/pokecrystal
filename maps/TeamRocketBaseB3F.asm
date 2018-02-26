@@ -47,9 +47,9 @@ TeamRocketBaseB3F_MapScripts:
 	return
 
 LanceGetPasswordScript:
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	pause 5
-	objectface TEAMROCKETBASEB3F_MOLTRES, RIGHT
+	turnobject TEAMROCKETBASEB3F_MOLTRES, RIGHT
 	pause 20
 	applymovement TEAMROCKETBASEB3F_LANCE, MovementData_0x6e12a
 	opentext
@@ -62,12 +62,12 @@ LanceGetPasswordScript:
 	end
 
 RocketBaseRival:
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	appear TEAMROCKETBASEB3F_SILVER
 	applymovement TEAMROCKETBASEB3F_SILVER, RocketBaseRivalEnterMovement
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
 	writetext RocketBaseRivalText
@@ -94,7 +94,7 @@ UnknownScript_0x6e056:
 	pause 30
 	showemote EMOTE_SHOCK, TEAMROCKETBASEB3F_ROCKET1, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	objectface TEAMROCKETBASEB3F_ROCKET1, DOWN
+	turnobject TEAMROCKETBASEB3F_ROCKET1, DOWN
 	opentext
 	writetext UnknownText_0x6e400
 	waitbutton

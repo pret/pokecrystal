@@ -30,7 +30,7 @@ SecurityCamera1a:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 19, 2
 	appear TEAMROCKETBASEB1F_ROCKET1
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	ifequal TRUE, NoSecurityCamera
@@ -55,7 +55,7 @@ SecurityCamera1b:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 19, 3
 	appear TEAMROCKETBASEB1F_ROCKET1
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	ifequal TRUE, NoSecurityCamera
@@ -80,14 +80,14 @@ SecurityCamera2a:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 4, 7
 	appear TEAMROCKETBASEB1F_ROCKET1
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement2
 	scall TrainerCameraGrunt1
 	ifequal TRUE, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 12, 5
 	appear TEAMROCKETBASEB1F_ROCKET1
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement3
@@ -106,14 +106,14 @@ SecurityCamera2b:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 4, 8
 	appear TEAMROCKETBASEB1F_ROCKET1
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement4
 	scall TrainerCameraGrunt1
 	ifequal TRUE, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 12, 5
 	appear TEAMROCKETBASEB1F_ROCKET1
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement5
@@ -132,14 +132,14 @@ SecurityCamera3a:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 19, 6
 	appear TEAMROCKETBASEB1F_ROCKET1
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	ifequal TRUE, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 25, 11
 	appear TEAMROCKETBASEB1F_ROCKET1
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement6
@@ -158,14 +158,14 @@ SecurityCamera3b:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 19, 7
 	appear TEAMROCKETBASEB1F_ROCKET1
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	ifequal TRUE, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 25, 12
 	appear TEAMROCKETBASEB1F_ROCKET1
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement7
@@ -184,14 +184,14 @@ SecurityCamera4:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 17, 16
 	appear TEAMROCKETBASEB1F_ROCKET1
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	ifequal TRUE, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 25, 11
 	appear TEAMROCKETBASEB1F_ROCKET1
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement8
@@ -210,14 +210,14 @@ SecurityCamera5:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 3, 16
 	appear TEAMROCKETBASEB1F_ROCKET1
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement1
 	scall TrainerCameraGrunt1
 	ifequal TRUE, NoSecurityCamera
 	scall PlaySecurityCameraSounds
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	moveobject TEAMROCKETBASEB1F_ROCKET1, 14, 16
 	appear TEAMROCKETBASEB1F_ROCKET1
 	applymovement TEAMROCKETBASEB1F_ROCKET1, SecurityCameraMovement9

@@ -1,6 +1,6 @@
 anim_wait: MACRO
 if \1 >= $d0
-	flip out
+	fail "anim_wait argument must be less than $d0."
 endc
 	db \1
 ENDM

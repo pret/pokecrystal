@@ -28,7 +28,7 @@ GameboyKidScript_0x55ef7:
 	writetext UnknownText_0x55f74
 	waitbutton
 	closetext
-	objectface GOLDENRODDEPTSTORE4F_GAMEBOY_KID, DOWN
+	turnobject GOLDENRODDEPTSTORE4F_GAMEBOY_KID, DOWN
 	end
 
 GoldenrodDeptStore4FDirectory:

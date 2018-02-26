@@ -21,7 +21,7 @@ VictoryRoad_MapScripts:
 
 UnknownScript_0x74492:
 	moveobject VICTORYROAD_SILVER, 18, 11
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
@@ -35,7 +35,7 @@ UnknownScript_0x74492:
 	end
 
 UnknownScript_0x744b5:
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
@@ -49,7 +49,7 @@ UnknownScript_0x744b5:
 	end
 
 UnknownScript_0x744d4:
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
 	writetext UnknownText_0x7455f

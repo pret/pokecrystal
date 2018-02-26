@@ -23,7 +23,7 @@ RadioTower5F_MapScripts:
 	end
 
 FakeDirectorScript:
-	objectface RADIOTOWER5F_DIRECTOR, UP
+	turnobject RADIOTOWER5F_DIRECTOR, UP
 	showemote EMOTE_SHOCK, RADIOTOWER5F_DIRECTOR, 15
 	opentext
 	writetext FakeDirectorTextBefore1
@@ -79,7 +79,7 @@ TrainerExecutivef1:
 RadioTower5FRocketBossScene:
 	applymovement PLAYER, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	objectface RADIOTOWER5F_ROCKET, RIGHT
+	turnobject RADIOTOWER5F_ROCKET, RIGHT
 	opentext
 	writetext RadioTower5FRocketBossBeforeText
 	waitbutton
@@ -116,7 +116,7 @@ RadioTower5FRocketBossScene:
 	moveobject RADIOTOWER5F_DIRECTOR, 12, 0
 	appear RADIOTOWER5F_DIRECTOR
 	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksIn
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext RadioTower5FDirectorThankYouText
 	buttonsound

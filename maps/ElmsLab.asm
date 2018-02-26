@@ -47,7 +47,7 @@ ElmsLab_MapScripts:
 .WalkUpToElm:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
-	objectface ELMSLAB_ELM, RIGHT
+	turnobject ELMSLAB_ELM, RIGHT
 	opentext
 	writetext ElmText_Intro
 .MustSayYes:
@@ -65,20 +65,20 @@ ElmsLab_MapScripts:
 	playsound SFX_GLASS_TING
 	pause 30
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 10
-	objectface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	opentext
 	writetext ElmText_GotAnEmail
 	waitbutton
 	closetext
 	opentext
-	objectface ELMSLAB_ELM, RIGHT
+	turnobject ELMSLAB_ELM, RIGHT
 	writetext ElmText_MissionFromMrPokemon
 	waitbutton
 	closetext
 	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement1
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement2
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext ElmText_ChooseAPokemon
 	waitbutton
@@ -147,7 +147,7 @@ ElmCheckGotEggAgain:
 	end
 
 LabTryToLeaveScript:
-	objectface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	opentext
 	writetext LabWhereGoingText
 	waitbutton
@@ -158,7 +158,7 @@ LabTryToLeaveScript:
 CyndaquilPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	objectface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
@@ -188,7 +188,7 @@ CyndaquilPokeBallScript:
 TotodilePokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	objectface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
 	pokepic TOTODILE
 	cry TOTODILE
@@ -216,7 +216,7 @@ TotodilePokeBallScript:
 ChikoritaPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	objectface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
 	pokepic CHIKORITA
 	cry CHIKORITA
@@ -248,7 +248,7 @@ DidntChooseStarterScript:
 	end
 
 ElmDirectionsScript:
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext ElmDirectionsText1
 	waitbutton
@@ -260,12 +260,12 @@ ElmDirectionsScript:
 	waitsfx
 	waitbutton
 	closetext
-	objectface ELMSLAB_ELM, LEFT
+	turnobject ELMSLAB_ELM, LEFT
 	opentext
 	writetext ElmDirectionsText2
 	waitbutton
 	closetext
-	objectface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	opentext
 	writetext ElmDirectionsText3
 	waitbutton
@@ -457,14 +457,14 @@ ElmJumpRightScript:
 
 AideScript_WalkPotion1:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight1
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	scall AideScript_GivePotion
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft1
 	end
 
 AideScript_WalkPotion2:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight2
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	scall AideScript_GivePotion
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft2
 	end
@@ -482,14 +482,14 @@ AideScript_GivePotion:
 
 AideScript_WalkBalls1:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight1
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	scall AideScript_GiveYouBalls
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft1
 	end
 
 AideScript_WalkBalls2:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight2
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	scall AideScript_GiveYouBalls
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft2
 	end
@@ -550,7 +550,7 @@ MeetCopScript2:
 MeetCopScript:
 	applymovement PLAYER, MeetCopScript_WalkUp
 CopScript:
-	objectface ELMSLAB_OFFICER, LEFT
+	turnobject ELMSLAB_OFFICER, LEFT
 	opentext
 	writetext ElmsLabOfficerText1
 	buttonsound

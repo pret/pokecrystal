@@ -516,9 +516,9 @@ yesorno: MACRO
 	db yesorno_command
 ENDM
 
-	enum loadmenuheader_command ; $4f
-loadmenuheader: MACRO
-	db loadmenuheader_command
+	enum loadmenu_command ; $4f
+loadmenu: MACRO
+	db loadmenu_command
 	dw \1 ; menu_header
 ENDM
 
@@ -747,9 +747,9 @@ showemote: MACRO
 	db \3 ; time
 ENDM
 
-	enum objectface_command ; $76
-objectface: MACRO
-	db objectface_command
+	enum turnobject_command ; $76
+turnobject: MACRO
+	db turnobject_command
 	db \1 ; object id
 	db \2 ; facing
 ENDM

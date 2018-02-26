@@ -40,7 +40,7 @@ VioletCityEarlScript:
 	playmusic MUSIC_SHOW_ME_AROUND
 	follow VIOLETCITY_EARL, PLAYER
 	applymovement VIOLETCITY_EARL, VioletCityFollowEarl_MovementData
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	applymovement VIOLETCITY_EARL, VioletCitySpinningEarl_MovementData
 	stopfollow
 	special RestartMapMusic

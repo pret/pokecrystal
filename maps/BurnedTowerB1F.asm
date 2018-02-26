@@ -34,48 +34,48 @@ ReleaseTheBeasts:
 	playmusic MUSIC_NONE
 	pause 30
 	appear BURNEDTOWERB1F_RAIKOU1
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	pause 5
 	disappear BURNEDTOWERB1F_RAIKOU2
 	pause 15
 	cry RAIKOU
 	appear BURNEDTOWERB1F_ENTEI1
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	pause 5
 	disappear BURNEDTOWERB1F_ENTEI2
 	pause 15
 	cry ENTEI
 	appear BURNEDTOWERB1F_SUICUNE1
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	pause 5
 	disappear BURNEDTOWERB1F_SUICUNE2
 	pause 15
 	cry SUICUNE
 	pause 15
 	playsound SFX_WARP_FROM
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement BURNEDTOWERB1F_RAIKOU1, BurnedTowerRaikouMovement
 	disappear BURNEDTOWERB1F_RAIKOU1
 	waitsfx
 	playsound SFX_WARP_FROM
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	applymovement BURNEDTOWERB1F_ENTEI1, BurnedTowerEnteiMovement
 	disappear BURNEDTOWERB1F_ENTEI1
 	waitsfx
 	pause 15
 	playsound SFX_WARP_FROM
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	applymovement BURNEDTOWERB1F_SUICUNE1, BurnedTowerSuicuneMovement1
 	playsound SFX_WARP_FROM
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	applymovement BURNEDTOWERB1F_SUICUNE1, BurnedTowerSuicuneMovement2
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	pause 20
 	cry SUICUNE
 	pause 30
 	playsound SFX_WARP_FROM
 	applymovement BURNEDTOWERB1F_SUICUNE1, BurnedTowerSuicuneMovement3
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	disappear BURNEDTOWERB1F_SUICUNE1
 	waitsfx
 	special RestartMapMusic

@@ -24,7 +24,7 @@ UnknownScript_0x7a4d8:
 UnknownScript_0x7a4db:
 	playmusic MUSIC_MOM
 	showemote EMOTE_SHOCK, PLAYERSHOUSE1F_MOM1, 15
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse UnknownScript_0x7a4f2
 	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a5fc
@@ -96,7 +96,7 @@ UnknownScript_0x7a564:
 
 UnknownScript_0x7a56b:
 	special RestartMapMusic
-	objectface PLAYERSHOUSE1F_MOM1, LEFT
+	turnobject PLAYERSHOUSE1F_MOM1, LEFT
 	end
 
 UnknownScript_0x7a572:
@@ -179,7 +179,7 @@ NeighborScript:
 	writetext NeighborText
 	waitbutton
 	closetext
-	objectface PLAYERSHOUSE1F_POKEFAN_F, RIGHT
+	turnobject PLAYERSHOUSE1F_POKEFAN_F, RIGHT
 	end
 
 TVScript:

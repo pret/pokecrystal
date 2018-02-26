@@ -38,7 +38,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 	pause 30
 	playsound SFX_TRANSACTION
 	pause 30
-	objectface RUINSOFALPHRESEARCHCENTER_SCIENTIST3, DOWN
+	turnobject RUINSOFALPHRESEARCHCENTER_SCIENTIST3, DOWN
 	opentext
 	writetext UnknownText_0x59278
 	waitbutton

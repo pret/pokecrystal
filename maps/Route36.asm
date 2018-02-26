@@ -37,10 +37,10 @@ Route36SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	applymovement ROUTE36_SUICUNE, Route36SuicuneMovement
 	disappear ROUTE36_SUICUNE
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	pause 10
 	setscene SCENE_ROUTE36_NOTHING
 	clearevent EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY

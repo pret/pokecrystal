@@ -28,7 +28,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	writetext DragonShrineQuestion1Text
 	buttonsound
-	loadmenuheader DragonShrineQuestion1_MenuHeader
+	loadmenu DragonShrineQuestion1_MenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .RightAnswer
@@ -40,7 +40,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	writetext DragonShrineQuestion2Text
 	buttonsound
-	loadmenuheader DragonShrineQuestion2_MenuHeader
+	loadmenu DragonShrineQuestion2_MenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .RightAnswer
@@ -50,7 +50,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	writetext DragonShrineQuestion3Text
 	buttonsound
-	loadmenuheader DragonShrineQuestion3_MenuHeader
+	loadmenu DragonShrineQuestion3_MenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .WrongAnswer
@@ -60,7 +60,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5
 	writetext DragonShrineQuestion4Text
 	buttonsound
-	loadmenuheader DragonShrineQuestion4_MenuHeader
+	loadmenu DragonShrineQuestion4_MenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .RightAnswer
@@ -70,7 +70,7 @@ DragonShrine_MapScripts:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	writetext DragonShrineQuestion5Text
 	buttonsound
-	loadmenuheader DragonShrineQuestion5_MenuHeader
+	loadmenu DragonShrineQuestion5_MenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .WrongAnswer
@@ -91,12 +91,12 @@ DragonShrine_MapScripts:
 	iftrue .Question2
 .WrongAnswer:
 	closetext
-	objectface DRAGONSHRINE_ELDER1, LEFT
+	turnobject DRAGONSHRINE_ELDER1, LEFT
 	opentext
 	writetext DragonShrineWrongAnswerText1
 	waitbutton
 	closetext
-	objectface DRAGONSHRINE_ELDER1, DOWN
+	turnobject DRAGONSHRINE_ELDER1, DOWN
 	opentext
 	writetext DragonShrineWrongAnswerText2
 	waitbutton
@@ -122,12 +122,12 @@ DragonShrine_MapScripts:
 	playmusic MUSIC_CLAIR
 	appear DRAGONSHRINE_CLAIR
 	waitsfx
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	pause 30
 	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairWalkInMovement
-	objectface DRAGONSHRINE_CLAIR, RIGHT
-	objectface PLAYER, LEFT
-	objectface DRAGONSHRINE_ELDER1, LEFT
+	turnobject DRAGONSHRINE_CLAIR, RIGHT
+	turnobject PLAYER, LEFT
+	turnobject DRAGONSHRINE_ELDER1, LEFT
 	opentext
 	writetext DragonShrineClairYouPassedText
 	waitbutton
@@ -144,7 +144,7 @@ DragonShrine_MapScripts:
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderWalkToClairMovement
-	objectface DRAGONSHRINE_CLAIR, UP
+	turnobject DRAGONSHRINE_CLAIR, UP
 	opentext
 	writetext DragonShrineMustIInformLanceText
 	waitbutton
@@ -171,9 +171,9 @@ DragonShrine_MapScripts:
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2ce
-	objectface DRAGONSHRINE_CLAIR, UP
+	turnobject DRAGONSHRINE_CLAIR, UP
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2d1
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext DragonShrineElderScoldsClairText
 	waitbutton

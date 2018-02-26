@@ -36,7 +36,7 @@ VioletPokecenter1F_ElmsAideScript:
 	closetext
 	checkcode VAR_FACING
 	ifequal UP, .AideWalksAroundPlayer
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideWalksStraightOutOfPokecenter
 	playsound SFX_EXIT_BUILDING
 	disappear VIOLETPOKECENTER1F_SCIENTIST
@@ -45,7 +45,7 @@ VioletPokecenter1F_ElmsAideScript:
 
 .AideWalksAroundPlayer:
 	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideWalksLeftToExitPokecenter
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	applymovement VIOLETPOKECENTER1F_SCIENTIST, MovementData_AideFinishesLeavingPokecenter
 	playsound SFX_EXIT_BUILDING
 	disappear VIOLETPOKECENTER1F_SCIENTIST

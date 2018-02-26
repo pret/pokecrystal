@@ -53,7 +53,7 @@ Route35NationalParkGate_MapScripts:
 
 .LeavingContestEarly:
 	applymovement PLAYER, MovementData_0x6a2e2
-	objectface ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
+	turnobject ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
 	opentext
 	checkcode VAR_CONTESTMINUTES
 	addvar 1

@@ -16,14 +16,14 @@ TwinScript_0x9cc76:
 	writetext Text_MoomooIsSick
 	waitbutton
 	closetext
-	objectface ROUTE39BARN_TWIN1, RIGHT
+	turnobject ROUTE39BARN_TWIN1, RIGHT
 	end
 
 .FeedingMooMoo:
 	writetext Text_WereFeedingMoomoo
 	waitbutton
 	closetext
-	objectface ROUTE39BARN_TWIN1, RIGHT
+	turnobject ROUTE39BARN_TWIN1, RIGHT
 	end
 
 TwinScript_0x9cc90:
@@ -34,14 +34,14 @@ TwinScript_0x9cc90:
 	writetext Text_MoomooIsSick
 	waitbutton
 	closetext
-	objectface ROUTE39BARN_TWIN2, LEFT
+	turnobject ROUTE39BARN_TWIN2, LEFT
 	end
 
 .FeedingMooMoo:
 	writetext Text_WereFeedingMoomoo
 	waitbutton
 	closetext
-	objectface ROUTE39BARN_TWIN2, LEFT
+	turnobject ROUTE39BARN_TWIN2, LEFT
 	end
 
 MooMoo:

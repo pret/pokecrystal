@@ -23,7 +23,7 @@ CeladonDeptStore6FVendingMachine:
 	writetext CeladonVendingText
 .Start:
 	special PlaceMoneyTopRight
-	loadmenuheader .MenuHeader
+	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .FreshWater

@@ -26,15 +26,15 @@ EcruteakPokecenter1F_MapScripts:
 	waitsfx
 	applymovement ECRUTEAKPOKECENTER1F_BILL, EcruteakPokecenter1FBillMovement1
 	applymovement PLAYER, EcruteakPokecenter1FPlayerMovement1
-	objectface ECRUTEAKPOKECENTER1F_NURSE, UP
+	turnobject ECRUTEAKPOKECENTER1F_NURSE, UP
 	pause 10
-	objectface ECRUTEAKPOKECENTER1F_NURSE, DOWN
+	turnobject ECRUTEAKPOKECENTER1F_NURSE, DOWN
 	pause 30
-	objectface ECRUTEAKPOKECENTER1F_NURSE, UP
+	turnobject ECRUTEAKPOKECENTER1F_NURSE, UP
 	pause 10
-	objectface ECRUTEAKPOKECENTER1F_NURSE, DOWN
+	turnobject ECRUTEAKPOKECENTER1F_NURSE, DOWN
 	pause 20
-	objectface ECRUTEAKPOKECENTER1F_BILL, DOWN
+	turnobject ECRUTEAKPOKECENTER1F_BILL, DOWN
 	pause 10
 	opentext
 	writetext EcruteakPokecenter1F_BillText1
@@ -45,7 +45,7 @@ EcruteakPokecenter1F_MapScripts:
 	writetext EcruteakPokecenter1F_BillText2
 	waitbutton
 	closetext
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	applymovement ECRUTEAKPOKECENTER1F_BILL, EcruteakPokecenter1FBillMovement2
 	playsound SFX_EXIT_BUILDING
 	disappear ECRUTEAKPOKECENTER1F_BILL

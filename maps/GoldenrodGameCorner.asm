@@ -43,7 +43,7 @@ GoldenrodGameCornerPokefanM3Script:
 	writetext GoldenrodGameCornerPokefanM3Text
 	waitbutton
 	closetext
-	objectface GOLDENRODGAMECORNER_POKEFAN_M3, RIGHT
+	turnobject GOLDENRODGAMECORNER_POKEFAN_M3, RIGHT
 	end
 
 GoldenrodGmeCornerCoinVendorScript:
@@ -59,7 +59,7 @@ GoldenrodGmeCornerTMVendorScript:
 	writetext GoldenrodGameCornerPrizeVendorWhichPrizeText
 GoldenrodGmeCornerTMVendor_LoopScript: ; 056c36
 	special DisplayCoinCaseBalance
-	loadmenuheader GoldenrodGameCornerTMVendorMenuHeader
+	loadmenu GoldenrodGameCornerTMVendorMenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .Thunder
@@ -160,7 +160,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 .loop
 	writetext GoldenrodGameCornerPrizeVendorWhichPrizeText
 	special DisplayCoinCaseBalance
-	loadmenuheader .MenuHeader
+	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .abra
@@ -242,7 +242,7 @@ GoldenrodGameCornerPharmacistScript:
 	writetext GoldenrodGameCornerPharmacistText
 	waitbutton
 	closetext
-	objectface LAST_TALKED, LEFT
+	turnobject LAST_TALKED, LEFT
 	end
 
 GoldenrodGameCornerPokefanM1Script:
@@ -251,7 +251,7 @@ GoldenrodGameCornerPokefanM1Script:
 	writetext GoldenrodGameCornerPokefanM1Text
 	waitbutton
 	closetext
-	objectface GOLDENRODGAMECORNER_POKEFAN_M1, RIGHT
+	turnobject GOLDENRODGAMECORNER_POKEFAN_M1, RIGHT
 	end
 
 GoldenrodGameCornerCooltrainerMScript:
@@ -260,7 +260,7 @@ GoldenrodGameCornerCooltrainerMScript:
 	writetext GoldenrodGameCornerCooltrainerMText
 	waitbutton
 	closetext
-	objectface GOLDENRODGAMECORNER_COOLTRAINER_M, LEFT
+	turnobject GOLDENRODGAMECORNER_COOLTRAINER_M, LEFT
 	end
 
 GoldenrodGameCornerPokefanFScript:
@@ -269,7 +269,7 @@ GoldenrodGameCornerPokefanFScript:
 	writetext GoldenrodGameCornerPokefanFText
 	waitbutton
 	closetext
-	objectface GOLDENRODGAMECORNER_POKEFAN_F, RIGHT
+	turnobject GOLDENRODGAMECORNER_POKEFAN_F, RIGHT
 	end
 
 GoldenrodGameCornerCooltrainerFScript:
@@ -281,7 +281,7 @@ GoldenrodGameCornerGentlemanScript:
 	writetext GoldenrodGameCornerGentlemanText
 	waitbutton
 	closetext
-	objectface GOLDENRODGAMECORNER_GENTLEMAN, RIGHT
+	turnobject GOLDENRODGAMECORNER_GENTLEMAN, RIGHT
 	end
 
 GoldenrodGameCornerPokefanM2Script:

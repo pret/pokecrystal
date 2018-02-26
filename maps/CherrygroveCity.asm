@@ -42,28 +42,28 @@ CherrygroveCityGuideGent:
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext GuideGentMartText
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement3
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext GuideGentRoute30Text
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement4
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	opentext
 	writetext GuideGentSeaText
 	waitbutton
 	closetext
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement5
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	pause 60
-	objectface CHERRYGROVECITY_GRAMPS, LEFT
-	objectface PLAYER, RIGHT
+	turnobject CHERRYGROVECITY_GRAMPS, LEFT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext GuideGentGiftText
 	buttonsound
@@ -77,7 +77,7 @@ CherrygroveCityGuideGent:
 	closetext
 	stopfollow
 	special RestartMapMusic
-	objectface PLAYER, UP
+	turnobject PLAYER, UP
 	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
 	playsound SFX_ENTER_DOOR
 	disappear CHERRYGROVECITY_GRAMPS
@@ -101,13 +101,13 @@ CherrygroveCityGuideGent:
 CherrygroveSilverSceneSouth:
 	moveobject CHERRYGROVECITY_SILVER, 39, 7
 CherrygroveSilverSceneNorth:
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
 	appear CHERRYGROVECITY_SILVER
 	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalWalksToYou
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
 	writetext UnknownText_0x19c4e2
@@ -166,7 +166,7 @@ CherrygroveSilverSceneNorth:
 .FinishRival:
 	playsound SFX_TACKLE
 	applymovement PLAYER, CherrygroveCity_RivalPushesYouOutOfTheWay
-	objectface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	applymovement CHERRYGROVECITY_SILVER, CherrygroveCity_RivalExitsStageLeft
 	disappear CHERRYGROVECITY_SILVER
 	setscene SCENE_CHERRYGROVECITY_NOTHING

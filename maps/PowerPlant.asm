@@ -26,19 +26,19 @@ PowerPlantGuardPhoneScript:
 	waitsfx
 	pause 30
 	applymovement POWERPLANT_OFFICER1, MovementData_0x188ed5
-	objectface POWERPLANT_GYM_GUY1, DOWN
-	objectface POWERPLANT_GYM_GUY2, DOWN
+	turnobject POWERPLANT_GYM_GUY1, DOWN
+	turnobject POWERPLANT_GYM_GUY2, DOWN
 	opentext
 	writetext UnknownText_0x188f22
 	waitbutton
 	closetext
-	objectface POWERPLANT_OFFICER1, LEFT
-	objectface PLAYER, RIGHT
+	turnobject POWERPLANT_OFFICER1, LEFT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext UnknownText_0x188f7f
 	waitbutton
 	closetext
-	objectface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	applymovement POWERPLANT_OFFICER1, MovementData_0x188eda
 	setscene SCENE_POWERPLANT_NOTHING
 	end

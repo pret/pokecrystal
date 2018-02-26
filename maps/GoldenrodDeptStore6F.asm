@@ -12,7 +12,7 @@ GoldenrodVendingMachine:
 	writetext GoldenrodVendingText
 .Start:
 	special PlaceMoneyTopRight
-	loadmenuheader .MenuHeader
+	loadmenu .MenuHeader
 	verticalmenu
 	closewindow
 	ifequal 1, .FreshWater

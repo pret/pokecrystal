@@ -23,7 +23,7 @@ PokecomCenterAdminRoomMobileSignpost0Script:
 	waitbutton
 UnknownScript_0x625df:
 	reloadmappart
-	loadmenuheader MenuHeader_0x62602
+	loadmenu MenuHeader_0x62602
 	verticalmenu
 	closewindow
 	ifequal 1, UnknownScript_0x625f0
@@ -65,7 +65,7 @@ PokecomCenterAdminRoomMobileSignpost1Script:
 	waitbutton
 UnknownScript_0x62629:
 	reloadmappart
-	loadmenuheader MenuHeader_0x6264c
+	loadmenu MenuHeader_0x6264c
 	verticalmenu
 	closewindow
 	ifequal 1, UnknownScript_0x6263a

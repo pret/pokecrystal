@@ -63,7 +63,7 @@ MoveTutorScript:
 	checkcoins 4000
 	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x1990ce
-	loadmenuheader .MoveMenuHeader
+	loadmenu .MoveMenuHeader
 	verticalmenu
 	closewindow
 	ifequal MOVETUTOR_FLAMETHROWER, .Flamethrower
@@ -210,7 +210,7 @@ GoldenrodCityRocketScoutScript:
 	writetext GoldenrodCityRocketScoutText2
 	waitbutton
 	closetext
-	objectface GOLDENRODCITY_ROCKETSCOUT, UP
+	turnobject GOLDENRODCITY_ROCKETSCOUT, UP
 	end
 
 GoldenrodCityRocket1Script:

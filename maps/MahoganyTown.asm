@@ -28,7 +28,7 @@ UnknownScript_0x190013:
 	follow PLAYER, MAHOGANYTOWN_POKEFAN_M
 	applymovement PLAYER, MovementData_0x1900a7
 	stopfollow
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	scall UnknownScript_0x19002f
 	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900ad
 	end

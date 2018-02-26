@@ -19,12 +19,12 @@ HallOfFame_MapScripts:
 	follow HALLOFFAME_LANCE, PLAYER
 	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext HallOfFame_LanceText
 	waitbutton
 	closetext
-	objectface HALLOFFAME_LANCE, UP
+	turnobject HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
 	setscene SCENE_FINISHED
 	pause 15

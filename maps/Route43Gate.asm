@@ -42,7 +42,7 @@ RocketScript_Southbound:
 	applymovement PLAYER, PlayerStepsIn
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_BlocksYouSouth
-	objectface ROUTE43GATE_ROCKET1, UP
+	turnobject ROUTE43GATE_ROCKET1, UP
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_BlocksYouSouth
 	opentext
@@ -74,7 +74,7 @@ RocketScript_ShakeDownSouth:
 RocketScript_Northbound:
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_BlocksYouNorth
-	objectface ROUTE43GATE_ROCKET2, DOWN
+	turnobject ROUTE43GATE_ROCKET2, DOWN
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_BlocksYouNorth
 	opentext

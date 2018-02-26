@@ -29,7 +29,7 @@ YoungsterJoey_ImportantBattleScript:
 	faceplayer
 	writetext Text_ThisIsABigBattle
 	waitbutton
-	objectface ROUTE30_YOUNGSTER1, UP
+	turnobject ROUTE30_YOUNGSTER1, UP
 	closetext
 	playsound SFX_TACKLE
 	applymovement ROUTE30_MONSTER1, Route30_MikeysRattataAttacksMovement

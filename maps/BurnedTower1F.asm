@@ -36,7 +36,7 @@ BurnedTower1F_MapScripts:
 	return
 
 .MeetEusine:
-	objectface BURNEDTOWER1F_EUSINE, DOWN
+	turnobject BURNEDTOWER1F_EUSINE, DOWN
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_EUSINE, 15
 	applymovement BURNEDTOWER1F_EUSINE, BurnedTower1FEusineMovement
 	opentext
@@ -51,7 +51,7 @@ BurnedTowerRivalBattleScript:
 	showemote EMOTE_SHOCK, BURNEDTOWER1F_SILVER, 15
 	special FadeOutMusic
 	pause 15
-	objectface BURNEDTOWER1F_SILVER, RIGHT
+	turnobject BURNEDTOWER1F_SILVER, RIGHT
 	pause 15
 	applymovement PLAYER, BurnedTowerMovement_PlayerWalksToSilver
 	applymovement BURNEDTOWER1F_SILVER, BurnedTowerMovement_SilverWalksToPlayer

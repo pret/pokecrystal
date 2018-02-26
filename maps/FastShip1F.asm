@@ -130,7 +130,7 @@ WorriedGrandpaSceneLeft:
 	writetext UnknownText_0x75412
 	waitbutton
 	closetext
-	objectface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75222
 	disappear FASTSHIP1F_GENTLEMAN
 	setscene SCENE_DEFAULT
