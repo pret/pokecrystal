@@ -1,3 +1,6 @@
 [submodule "extras"]
 	path = extras
 	url = git://github.com/pret/pokemon-reverse-engineering-tools.git
+[submodule "wiki"]
+	path = wiki
+	url = https://github.com/pret/pokecrystal.wiki
