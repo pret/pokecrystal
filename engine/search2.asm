@@ -1,6 +1,6 @@
-_FindPartyMonGreaterThanThatLevel: ; 4dbd2
+_FindPartyMonAboveLevel: ; 4dbd2
 	ld hl, wPartyMon1Level
-	call FindGreaterThanThatLevel
+	call FindAboveLevel
 	ret
 
 _FindPartyMonAtLeastThatHappy: ; 4dbd9
@@ -69,7 +69,7 @@ FindAtLeastThatHappy: ; 4dc0a
 	and a
 	ret
 
-FindGreaterThanThatLevel: ; 4dc31
+FindAboveLevel: ; 4dc31
 	ld c, $0
 	ld a, [wPartyCount]
 	ld d, a

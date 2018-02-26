@@ -562,9 +562,10 @@ INCLUDE "data/sprite_anims/oam.asm"
 BrokenStdGFXPointers:
 	; tile count, bank, pointer
 	; (all pointers were dummied out to .deleted)
-rept 4
 	dbbw 128, $01, .deleted
-endr
+	dbbw 128, $01, .deleted
+	dbbw 128, $01, .deleted
+	dbbw 128, $01, .deleted
 	dbbw 16, $37, .deleted
 	dbbw 16, $11, .deleted
 	dbbw 16, $39, .deleted

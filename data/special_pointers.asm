@@ -75,7 +75,7 @@ SpecialsPointers:: ; c029
 	add_special RestartMapMusic ; bank 0
 	add_special HealMachineAnim
 	add_special SurfStartStep
-	add_special FindPartyMonGreaterThanThatLevel ; $40
+	add_special FindPartyMonAboveLevel ; $40
 	add_special FindPartyMonAtLeastThatHappy
 	add_special FindPartyMonThatSpecies
 	add_special FindPartyMonThatSpeciesYourTrainerID

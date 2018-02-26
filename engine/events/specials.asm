@@ -50,10 +50,10 @@ UnusedSetSeenMon: ; c252
 	ret
 ; c25a
 
-FindPartyMonGreaterThanThatLevel: ; c25a
+FindPartyMonAboveLevel: ; c25a
 	ld a, [wScriptVar]
 	ld b, a
-	farcall _FindPartyMonGreaterThanThatLevel
+	farcall _FindPartyMonAboveLevel
 	jr z, FoundNone
 	jr FoundOne
 
