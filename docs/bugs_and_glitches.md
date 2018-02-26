@@ -48,6 +48,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
 - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
 - [Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evosattacks-evolution-entries-can-have-stone-compatibility-reported-correctly)
+- [`EVOLVE_STAT` can break Stone compatibility reporting](#evolve_stat-can-break-stone-compatibility-reporting)
 - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
 - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
@@ -1297,6 +1298,39 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 ```
 
 **Fix:** Change `ld bc, 10` to `ld bc, wStringBuffer2 - wStringBuffer1` to support up to six Stone entries.
+
+
+## `EVOLVE_STAT` can break Stone compatibility reporting
+
+This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/party_menu.asm](/engine/party_menu.asm):
+
+```asm
+.loop2
+	ld a, [hli]
+	and a
+	jr z, .nope
+	inc hl
+	inc hl
+	cp EVOLVE_ITEM
+	jr nz, .loop2
+```
+
+**Fix:**
+
+```asm
+.loop2
+	ld a, [hli]
+	and a
+	jr z, .nope
+	cp EVOLVE_STAT
+	jr nz, .not_four_bytes
+	inc hl
+.not_four_bytes
+	inc hl
+	inc hl
+	cp EVOLVE_ITEM
+	jr nz, .loop2
+```
 
 
 ## `ScriptCall` can overflow `wScriptStack` and crash

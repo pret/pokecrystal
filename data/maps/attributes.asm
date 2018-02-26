@@ -16,6 +16,7 @@ CURRENT_MAP_HEIGHT = \2_HEIGHT
 	db \4
 ENDM
 
+; Connections go in order: north, south, west, east
 connection: MACRO
 ;\1: direction
 ;\2: map name
