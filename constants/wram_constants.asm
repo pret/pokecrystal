@@ -150,14 +150,14 @@ NUM_OBJECTS   EQU $10
 
 ; wStatusFlags:: ; d84c
 	const_def
-	const STATUSFLAGS_POKEDEX_F            ; 0
-	const STATUSFLAGS_UNOWN_DEX_F          ; 1
-	const STATUSFLAGS_FLASH_F              ; 2
-	const STATUSFLAGS_CAUGHT_POKERUS_F     ; 3
-	const STATUSFLAGS_ROCKET_SIGNAL_F      ; 4
-	const STATUSFLAGS_NO_WILD_ENCOUNTERS_F ; 5
-	const STATUSFLAGS_HALL_OF_FAME_F       ; 6
-	const STATUSFLAGS_BUG_CONTEST_ON_F     ; 7
+	const STATUSFLAGS_POKEDEX_F                  ; 0
+	const STATUSFLAGS_UNOWN_DEX_F                ; 1
+	const STATUSFLAGS_FLASH_F                    ; 2
+	const STATUSFLAGS_CAUGHT_POKERUS_F           ; 3
+	const STATUSFLAGS_ROCKET_SIGNAL_F            ; 4
+	const STATUSFLAGS_NO_WILD_ENCOUNTERS_F       ; 5
+	const STATUSFLAGS_HALL_OF_FAME_F             ; 6
+	const STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F ; 7
 
 ; wStatusFlags2:: ; d84d
 	const_def

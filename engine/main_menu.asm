@@ -168,7 +168,7 @@ MainMenu_GetWhichMenu: ; 49da4
 	jr nz, .mystery_gift
 	; This check makes no difference.
 	ld a, [wStatusFlags]
-	bit STATUSFLAGS_BUG_CONTEST_ON_F, a
+	bit STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F, a
 	ld a, $1 ; Continue
 	jr z, .ok
 	jr .ok
@@ -183,7 +183,7 @@ MainMenu_GetWhichMenu: ; 49da4
 .mystery_gift
 	; This check makes no difference.
 	ld a, [wStatusFlags]
-	bit STATUSFLAGS_BUG_CONTEST_ON_F, a
+	bit STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F, a
 	jr z, .ok3
 	jr .ok3
 
