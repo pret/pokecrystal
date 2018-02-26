@@ -46,10 +46,10 @@ MapBattleTower1FSignpost0Script:
 	opentext
 	writetext Text_ReadBattleTowerRules
 	yesorno
-	iffalse UnknownScript_0x9e3e0
+	iffalse .skip
 	writetext Text_BattleTowerRules
 	waitbutton
-UnknownScript_0x9e3e0:
+.skip:
 	closetext
 	end
 

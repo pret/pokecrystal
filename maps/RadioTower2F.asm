@@ -102,31 +102,31 @@ Buena:
 	faceplayer
 	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
-	iftrue UnknownScript_0x5d865
+	iftrue .MidRocketTakeover
 	checkevent EVENT_MET_BUENA
-	iffalse UnknownScript_0x5d800
+	iffalse .Introduction
 	checkflag ENGINE_BUENAS_PASSWORD_2
-	iftrue UnknownScript_0x5d82f
+	iftrue .PlayedAlready
 	checkcode VAR_HOUR
-	if_less_than 18, UnknownScript_0x5d893
+	if_less_than 18, .TooEarly
 	checkflag ENGINE_BUENAS_PASSWORD
-	iffalse UnknownScript_0x5d80a
+	iffalse .TuneIn
 	checkitem BLUE_CARD
-	iffalse UnknownScript_0x5d86b
+	iffalse .NoBlueCard
 	checkcode VAR_BLUECARDBALANCE
-	if_equal 30, UnknownScript_0x5d87f
+	if_equal 30, .BlueCardCapped0
 	playmusic MUSIC_BUENAS_PASSWORD
 	writetext UnknownText_0x5de35
 	special Special_AskRememberPassword
-	iffalse UnknownScript_0x5d81e
+	iffalse .ForgotPassword
 	writetext UnknownText_0x5de84
 	waitbutton
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	checkcode VAR_FACING
-	if_not_equal RIGHT, UnknownScript_0x5d7be
+	if_not_equal RIGHT, .DontNeedToMove
 	applymovement PLAYER, MovementData_0x5d921
-UnknownScript_0x5d7be:
+.DontNeedToMove:
 	spriteface PLAYER, RIGHT
 	opentext
 	writetext UnknownText_0x5dedd
@@ -136,7 +136,7 @@ UnknownScript_0x5d7be:
 	refreshscreen
 	special Special_BuenasPassword
 	closetext
-	iffalse UnknownScript_0x5d845
+	iffalse .WrongAnswer
 	opentext
 	writetext UnknownText_0x5dfc1
 	waitbutton
@@ -157,27 +157,27 @@ UnknownScript_0x5d7be:
 	pause 20
 	special RestartMapMusic
 	checkcode VAR_BLUECARDBALANCE
-	if_equal 30, UnknownScript_0x5d8a4
+	if_equal 30, .BlueCardCapped1
 	end
 
-UnknownScript_0x5d800:
+.Introduction:
 	writetext UnknownText_0x5dcf4
 	buttonsound
 	setevent EVENT_MET_BUENA
 	verbosegiveitem BLUE_CARD
-UnknownScript_0x5d80a:
+.TuneIn:
 	writetext UnknownText_0x5de10
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
-	iftrue UnknownScript_0x5d81a
+	iftrue .Registered0
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
-	iftrue UnknownScript_0x5d8cc
-UnknownScript_0x5d81a:
+	iftrue .OfferedNumberBefore
+.Registered0:
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	end
 
-UnknownScript_0x5d81e:
+.ForgotPassword:
 	writetext UnknownText_0x5df29
 	waitbutton
 	closetext
@@ -187,20 +187,20 @@ UnknownScript_0x5d81e:
 	special RestartMapMusic
 	end
 
-UnknownScript_0x5d82f:
+.PlayedAlready:
 	writetext UnknownText_0x5df6c
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
-	iftrue UnknownScript_0x5d83f
+	iftrue .Registered1
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
-	iftrue UnknownScript_0x5d8cc
-UnknownScript_0x5d83f:
+	iftrue .OfferedNumberBefore
+.Registered1:
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	pause 10
 	end
 
-UnknownScript_0x5d845:
+.WrongAnswer:
 	setflag ENGINE_BUENAS_PASSWORD_2
 	opentext
 	writetext UnknownText_0x5e01c
@@ -218,71 +218,71 @@ UnknownScript_0x5d845:
 	special RestartMapMusic
 	end
 
-UnknownScript_0x5d865:
+.MidRocketTakeover:
 	writetext UnknownText_0x5e0c2
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5d86b:
+.NoBlueCard:
 	writetext UnknownText_0x5e192
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
-	iftrue UnknownScript_0x5d87b
+	iftrue .Registered2
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
-	iftrue UnknownScript_0x5d8cc
-UnknownScript_0x5d87b:
+	iftrue .OfferedNumberBefore
+.Registered2:
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	end
 
-UnknownScript_0x5d87f:
+.BlueCardCapped0:
 	writetext UnknownText_0x5e0f1
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
-	iftrue UnknownScript_0x5d88f
+	iftrue .Registered3
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
-	iftrue UnknownScript_0x5d8cc
-UnknownScript_0x5d88f:
+	iftrue .OfferedNumberBefore
+.Registered3:
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	end
 
-UnknownScript_0x5d893:
+.TooEarly:
 	writetext UnknownText_0x5e131
 	waitbutton
 	closetext
 	checkcellnum PHONE_BUENA
-	iftrue UnknownScript_0x5d8a3
+	iftrue .Registered4
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
-	iftrue UnknownScript_0x5d8cc
-UnknownScript_0x5d8a3:
+	iftrue .OfferedNumberBefore
+.Registered4:
 	end
 
-UnknownScript_0x5d8a4:
+.BlueCardCapped1:
 	checkcellnum PHONE_BUENA
-	iftrue UnknownScript_0x5d8fe
+	iftrue .HasNumber
 	pause 20
 	spriteface RADIOTOWER2F_BUENA, DOWN
 	pause 15
 	spriteface PLAYER, UP
 	pause 15
 	checkevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
-	iftrue UnknownScript_0x5d8cc
+	iftrue .OfferedNumberBefore
 	showemote EMOTE_SHOCK, RADIOTOWER2F_BUENA, 15
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	setevent EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	opentext
 	writetext UnknownText_0x5e1ee
-	jump UnknownScript_0x5d8d0
+	jump .AskForNumber
 
-UnknownScript_0x5d8cc:
+.OfferedNumberBefore:
 	opentext
 	writetext UnknownText_0x5e2bf
-UnknownScript_0x5d8d0:
+.AskForNumber:
 	askforphonenumber PHONE_BUENA
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5d8f6
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5d8ed
+	if_equal PHONE_CONTACTS_FULL, .PhoneFull
+	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
 	writetext UnknownText_0x5e2f3
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
@@ -294,33 +294,33 @@ UnknownScript_0x5d8d0:
 	addcellnum PHONE_BUENA
 	end
 
-UnknownScript_0x5d8ed:
+.NumberDeclined:
 	writetext UnknownText_0x5e33c
 	waitbutton
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
 	end
 
-UnknownScript_0x5d8f6:
+.PhoneFull:
 	writetext UnknownText_0x5e35e
 	waitbutton
 	closetext
 	spriteface RADIOTOWER2F_BUENA, RIGHT
-UnknownScript_0x5d8fe:
+.HasNumber:
 	end
 
-ReceptionistScript_0x5d8ff:
+RadioTowerBuenaPrizeReceptionist:
 	faceplayer
 	opentext
 	checkitem BLUE_CARD
-	iffalse UnknownScript_0x5d90f
+	iffalse .NoCard
 	writetext UnknownText_0x5e392
 	buttonsound
 	special Special_BuenaPrize
 	closetext
 	end
 
-UnknownScript_0x5d90f:
+.NoCard:
 	writetext UnknownText_0x5e3d8
 	buttonsound
 	closetext
@@ -743,4 +743,4 @@ RadioTower2F_MapEvents:
 	object_event 1, 1, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RadioTower2FBlackBelt2Script, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event 12, 1, SPRITE_JIGGLYPUFF, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RadioTowerJigglypuff, -1
 	object_event 14, 5, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Buena, -1
-	object_event 12, 7, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x5d8ff, EVENT_GOLDENROD_CITY_CIVILIANS
+	object_event 12, 7, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTowerBuenaPrizeReceptionist, EVENT_GOLDENROD_CITY_CIVILIANS

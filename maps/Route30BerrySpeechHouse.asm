@@ -8,27 +8,27 @@ Route30BerrySpeechHouse_MapScripts:
 .MapCallbacks:
 	db 0
 
-PokefanMScript_0x196d64:
+Route30BerrySpeechPokefanM:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
-	iftrue UnknownScript_0x196d79
-	writetext UnknownText_0x196d82
+	iftrue .GotBerry
+	writetext Route30BerrySpeechHouseMonEatBerriesText
 	buttonsound
 	verbosegiveitem BERRY
-	iffalse UnknownScript_0x196d7d
+	iffalse .NoRoom
 	setevent EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
-UnknownScript_0x196d79:
-	writetext UnknownText_0x196dec
+.GotBerry:
+	writetext Route30BerrySpeechHouseCheckTreesText
 	waitbutton
-UnknownScript_0x196d7d:
+.NoRoom:
 	closetext
 	end
 
 Route30BerrySpeechHouseBookshelf:
 	jumpstd magazinebookshelf
 
-UnknownText_0x196d82:
+Route30BerrySpeechHouseMonEatBerriesText:
 	text "You know, #MON"
 	line "eat BERRIES."
 
@@ -40,7 +40,7 @@ UnknownText_0x196d82:
 	line "one with you!"
 	done
 
-UnknownText_0x196dec:
+Route30BerrySpeechHouseCheckTreesText:
 	text "Check trees for"
 	line "BERRIES. They just"
 	cont "drop right off."
@@ -65,4 +65,4 @@ Route30BerrySpeechHouse_MapEvents:
 
 .ObjectEvents:
 	db 1
-	object_event 2, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x196d64, -1
+	object_event 2, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route30BerrySpeechPokefanM, -1

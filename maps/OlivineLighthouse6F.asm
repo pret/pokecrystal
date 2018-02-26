@@ -10,30 +10,30 @@ OlivineLighthouse6F_MapScripts:
 .MapCallbacks:
 	db 0
 
-JasmineScript_0x60b91:
+OlivineLighthouseJasmine:
 	faceplayer
 	opentext
 	checkitem SECRETPOTION
-	iftrue UnknownScript_0x60bab
+	iftrue .BroughtSecretpotion
 	checkevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
-	iftrue UnknownScript_0x60ba5
-	writetext UnknownText_0x60c81
+	iftrue .ExplainedSickness
+	writetext JasmineCianwoodPharmacyText
 	buttonsound
 	setevent EVENT_JASMINE_EXPLAINED_AMPHYS_SICKNESS
-UnknownScript_0x60ba5:
-	writetext UnknownText_0x60d64
+.ExplainedSickness:
+	writetext JasmineGetSomeMedicineText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x60bab:
-	writetext UnknownText_0x60d99
+.BroughtSecretpotion:
+	writetext JasmineCureAmphyText
 	yesorno
-	iffalse UnknownScript_0x60c25
-	writetext UnknownText_0x60dc3
+	iffalse .no
+	writetext PlayerHandedSecretpotionText
 	buttonsound
 	takeitem SECRETPOTION
-	writetext UnknownText_0x60dea
+	writetext JasmineDontBeOffendedText
 	waitbutton
 	closetext
 	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
@@ -41,7 +41,7 @@ UnknownScript_0x60bab:
 	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	opentext
 	playmusic MUSIC_HEAL
-	writetext UnknownText_0x60e44
+	writetext JasmineAmphyHowAreYouFeelingText
 	pause 60
 	buttonsound
 	closetext
@@ -51,7 +51,7 @@ UnknownScript_0x60bab:
 	pause 10
 	special Special_FadeInPalettes
 	opentext
-	writetext UnknownText_0x60f3d
+	writetext AmphyPaluPaluluText
 	waitbutton
 	closetext
 	spriteface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
@@ -64,37 +64,37 @@ UnknownScript_0x60bab:
 	pause 10
 	faceplayer
 	opentext
-	writetext UnknownText_0x60e6c
+	writetext JasmineThankYouText
 	waitbutton
 	closetext
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
 	clearevent EVENT_OLIVINE_GYM_JASMINE
 	checkcode VAR_FACING
-	if_equal DOWN, UnknownScript_0x60c17
-	if_equal RIGHT, UnknownScript_0x60c1e
+	if_equal DOWN, .FacingDown
+	if_equal RIGHT, .FacingRight
 	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c68
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
-UnknownScript_0x60c17:
+.FacingDown:
 	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c70
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
-UnknownScript_0x60c1e:
+.FacingRight:
 	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c79
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
 
-UnknownScript_0x60c25:
-	writetext UnknownText_0x60edf
+.no:
+	writetext JasmineISeeText
 	waitbutton
 	closetext
 	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
 	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	opentext
-	writetext UnknownText_0x60ef1
+	writetext JasmineAmphyHangOnText
 	waitbutton
 	closetext
 	end
@@ -102,22 +102,22 @@ UnknownScript_0x60c25:
 UnknownScript_0x60c39:
 	end
 
-MonsterScript_0x60c3a:
+OlivineLighthouseAmphy:
 	faceplayer
 	opentext
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
-	iftrue UnknownScript_0x60c51
-	writetext UnknownText_0x60f03
+	iftrue .HealthyNow
+	writetext AmphyPalPalooText
 	writebyte AMPHAROS
 	special Special_PlaySlowCry
 	buttonsound
-	writetext UnknownText_0x60f19
+	writetext AmphyBreathingLaboredText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x60c51:
-	writetext UnknownText_0x60f3d
+.HealthyNow:
+	writetext AmphyPaluPaluluText
 	cry AMPHAROS
 	waitbutton
 	closetext
@@ -161,7 +161,7 @@ MovementData_0x60c79:
 	step_sleep 8
 	step_end
 
-UnknownText_0x60c81:
+JasmineCianwoodPharmacyText:
 	text "JASMINE: … This"
 	line "#MON always"
 
@@ -185,25 +185,25 @@ UnknownText_0x60c81:
 	line "AMPHY unattended…"
 	done
 
-UnknownText_0x60d64:
+JasmineGetSomeMedicineText:
 	text "…May I ask you to"
 	line "get some medicine"
 	cont "for me? Please?"
 	done
 
-UnknownText_0x60d99:
+JasmineCureAmphyText:
 	text "JASMINE: …Will"
 	line "that medicine cure"
 	cont "AMPHY?"
 	done
 
-UnknownText_0x60dc3:
+PlayerHandedSecretpotionText:
 	text "<PLAYER> handed the"
 	line "SECRETPOTION to"
 	cont "JASMINE."
 	done
 
-UnknownText_0x60dea:
+JasmineDontBeOffendedText:
 	text "JASMINE: …Um,"
 	line "please don't be"
 	cont "offended…"
@@ -213,14 +213,14 @@ UnknownText_0x60dea:
 	cont "anyone but me…"
 	done
 
-UnknownText_0x60e44:
+JasmineAmphyHowAreYouFeelingText:
 	text "JASMINE: …"
 
 	para "AMPHY, how are you"
 	line "feeling?"
 	done
 
-UnknownText_0x60e6c:
+JasmineThankYouText:
 	text "JASMINE: …Oh, I'm"
 	line "so relieved…"
 
@@ -234,25 +234,25 @@ UnknownText_0x60e6c:
 	line "the GYM…"
 	done
 
-UnknownText_0x60edf:
+JasmineISeeText:
 	text "JASMINE: …I see…"
 	done
 
-UnknownText_0x60ef1:
+JasmineAmphyHangOnText:
 	text "…AMPHY, hang on!"
 	done
 
-UnknownText_0x60f03:
+AmphyPalPalooText:
 	text "AMPHY: …"
 	line "…Pa… paloo…"
 	done
 
-UnknownText_0x60f19:
+AmphyBreathingLaboredText:
 	text "Its breathing is"
 	line "terribly labored…"
 	done
 
-UnknownText_0x60f3d:
+AmphyPaluPaluluText:
 	text "AMPHY: Palu!"
 	line "Palulu!"
 	done
@@ -275,6 +275,6 @@ OlivineLighthouse6F_MapEvents:
 
 .ObjectEvents:
 	db 3
-	object_event 8, 8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, JasmineScript_0x60b91, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
-	object_event 9, 8, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MonsterScript_0x60c3a, -1
+	object_event 8, 8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseJasmine, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
+	object_event 9, 8, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
 	object_event 3, 4, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION
