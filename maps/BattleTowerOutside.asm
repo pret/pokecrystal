@@ -105,6 +105,7 @@ BattleTowerOutsideSailorText:
 	done
 
 BattleTowerOutsideText_BattleTower:
+; unused; originally shown when the Battle Tower was closed
 	text "BATTLE TOWER"
 	done
 
@@ -116,11 +117,13 @@ BattleTowerOutsideText_UltimateChallenge:
 	done
 
 BattleTowerOutsideText_DoorsClosed:
+; unused; originally shown when the Battle Tower was closed
 	text "The BATTLE TOWER's"
 	line "doors are closed…"
 	done
 
 BattleTowerOutsideText_DoorsOpen:
+; unused; originally shown after the Battle Tower opened
 	text "It's open!"
 	done
 
