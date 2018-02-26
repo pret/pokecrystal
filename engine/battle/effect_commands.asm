@@ -9708,11 +9708,6 @@ BattleCommand_ThunderAccuracy: ; 37d94
 
 CheckHiddenOpponent: ; 37daa
 ; BUG: This routine should account for Lock-On and Mind Reader.
-; Uncomment the lines below to fix.
-	; ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	; call GetBattleVar
-    ; and 1 << SUBSTATUS_LOCK_ON
-    ; ret z
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
