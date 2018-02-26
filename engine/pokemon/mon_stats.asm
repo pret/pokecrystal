@@ -209,7 +209,7 @@ GetGender: ; 50bdd
 
 ; The higher the ratio, the more likely the monster is to be female.
 
-	cp GENDERLESS
+	cp GENDER_UNKNOWN
 	jr z, .Genderless
 
 	and a ; GENDER_F0?
