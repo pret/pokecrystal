@@ -9,7 +9,7 @@ TRAINER_CLASS_NAME_LENGTH EQU 13
 NAME_LENGTH_JAPANESE EQU 6
 
 ; GetName types (see home/names.asm)
-const_value set 1
+	const_def 1
 	const MON_NAME              ; 1
 	const MOVE_NAME             ; 2
 	const DUMMY_NAME            ; 3
@@ -31,7 +31,7 @@ TEXTBOX_Y      EQU SCREEN_HEIGHT - TEXTBOX_HEIGHT
 TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 
 ; PrintNum bit flags
-const_value set 5
+	const_def 5
 	const PRINTNUM_MONEY_F        ; 5
 	const PRINTNUM_RIGHTALIGN_F   ; 6
 	const PRINTNUM_LEADINGZEROS_F ; 7

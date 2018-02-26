@@ -5,7 +5,7 @@ PlayRadioShow:
 	jr nc, .ok
 ; If Team Rocket is not occupying the radio tower, we don't need to be here.
 	ld a, [wStatusFlags2]
-	bit 0, a ; checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
+	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
 	jr z, .ok
 ; If we're in Kanto, we don't need to be here.
 	call IsInJohto
@@ -205,7 +205,7 @@ OaksPKMNTalk4:
 .sample
 	call Random
 	and %11111
-	cp (OaksPKMNTalkRoutesEnd - OaksPKMNTalkRoutes) / 2
+	cp (OaksPKMNTalkRoutes.End - OaksPKMNTalkRoutes) / 2
 	jr nc, .sample
 	; We now have a number between 0 and 14.
 	ld hl, OaksPKMNTalkRoutes
@@ -702,7 +702,7 @@ PokedexShow_GetDexEntryBank:
 	pop hl
 	ret
 
-.PokedexEntryBanks
+.PokedexEntryBanks:
 	db BANK(PokedexEntries1)
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)
@@ -972,9 +972,9 @@ BenFernText3B:
 
 LuckyNumberShow1:
 	call StartRadioStation
-	callfar Special_CheckLuckyNumberShowFlag
+	callfar CheckLuckyNumberShowFlag
 	jr nc, .dontreset
-	callfar Special_ResetLuckyNumberShowFlag
+	callfar ResetLuckyNumberShowFlag
 .dontreset
 	ld hl, LC_Text1
 	ld a, LUCKY_NUMBER_SHOW_2
@@ -1171,7 +1171,7 @@ PeoplePlaces4: ; People
 	push af
 	ld hl, PnP_HiddenPeople
 	ld a, [wStatusFlags]
-	bit 6, a ; ENGINE_CREDITS_SKIP
+	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr z, .ok
 	ld hl, PnP_HiddenPeople_BeatE4
 	ld a, [wKantoBadges]
@@ -1330,7 +1330,7 @@ PnP_odd:
 
 PeoplePlaces6: ; Places
 	call Random
-	cp (PnP_HiddenPlacesEnd - PnP_HiddenPlaces) / 2
+	cp (PnP_HiddenPlaces.End - PnP_HiddenPlaces) / 2
 	jr nc, PeoplePlaces6
 	ld hl, PnP_HiddenPlaces
 	ld c, a
@@ -1560,7 +1560,7 @@ BuenasPassword4:
 	ld a, [wBuenasPassword]
 ; If we already generated the password today, we don't need to generate a new one.
 	ld hl, wWeeklyFlags
-	bit 7, [hl] ; ENGINE_BUENAS_PASSWORD
+	bit WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 	jr nz, .AlreadyGotIt
 ; There are only 11 groups to choose from.
 .greater_than_11
@@ -1582,7 +1582,7 @@ BuenasPassword4:
 	ld [wBuenasPassword], a
 ; Set the flag so that we don't generate a new password this week.
 	ld hl, wWeeklyFlags
-	set 7, [hl] ; ENGINE_BUENAS_PASSWORD
+	set WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 .AlreadyGotIt:
 	ld c, a
 	call GetBuenasPassword
@@ -1703,14 +1703,14 @@ BuenasPassword7:
 BuenasPasswordAfterMidnight:
 	push hl
 	ld hl, wWeeklyFlags
-	res 7, [hl] ; ENGINE_BUENAS_PASSWORD
+	res WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 	pop hl
 	ld a, BUENAS_PASSWORD_8
 	jp NextRadioLine
 
 BuenasPassword8:
 	ld hl, wWeeklyFlags
-	res 7, [hl] ; ENGINE_BUENAS_PASSWORD
+	res WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 	ld hl, BuenaRadioMidnightText10
 	ld a, BUENAS_PASSWORD_9
 	jp NextRadioLine
@@ -1778,7 +1778,7 @@ BuenasPassword20:
 	pop af
 	ld [hBGMapMode], a
 	ld hl, wWeeklyFlags
-	res 7, [hl]
+	res WEEKLYFLAGS_BUENAS_PASSWORD_F, [hl]
 	ld a, BUENAS_PASSWORD
 	ld [wCurrentRadioLine], a
 	xor a

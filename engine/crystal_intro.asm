@@ -1860,11 +1860,10 @@ Intro_LoadTilemap: ; e541b (39:541b)
 	inc de
 	dec c
 	jr nz, .col
-	; add hl, $20 - SCREEN_WIDTH
-	ld a, $20 - SCREEN_WIDTH
+	ld a, BG_MAP_WIDTH - SCREEN_WIDTH
 	add l
 	ld l, a
-	ld a, $0
+	ld a, 0
 	adc h
 	ld h, a
 	dec b

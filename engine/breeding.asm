@@ -112,14 +112,14 @@ CheckBreedmonCompatibility: ; 16e1d
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wBaseEggGroups]
-	cp NO_EGGS * $11
+	cp EGG_NONE * $11
 	jr z, .Incompatible
 
 	ld a, [wBreedMon1Species]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wBaseEggGroups]
-	cp NO_EGGS * $11
+	cp EGG_NONE * $11
 	jr z, .Incompatible
 
 ; Ditto is automatically compatible with everything.
@@ -202,7 +202,7 @@ DoEggStep:: ; 16f3e
 
 OverworldHatchEgg:: ; 16f5e
 	call RefreshScreen
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call HatchEggs
 	call ExitAllMenus
 	call RestartMapMusic
@@ -434,8 +434,6 @@ InitEggMoves: ; 170bf
 ; 170e4
 
 GetEggMove: ; 170e4
-GLOBAL EggMoves
-
 	push bc
 	ld a, [wEggMonSpecies]
 	dec a
@@ -705,7 +703,7 @@ EggHatch_AnimationSequence: ; 1728f (5:728f)
 	call DisableLCD
 	ld hl, EggHatchGFX
 	ld de, vTiles0 tile $00
-	ld bc, $20
+	ld bc, 2 tiles
 	ld a, BANK(EggHatchGFX)
 	call FarCopyBytes
 	farcall ClearSpriteAnims
@@ -887,26 +885,26 @@ Hatch_ShellFragmentLoop: ; 17418 (5:7418)
 	jr nz, .loop
 	ret
 
-Special_DayCareMon1: ; 17421
+DayCareMon1: ; 17421
 	ld hl, DayCareMon1Text
 	call PrintText
 	ld a, [wBreedMon1Species]
 	call PlayMonCry
 	ld a, [wDayCareLady]
-	bit 0, a
+	bit DAYCARELADY_HAS_MON_F, a
 	jr z, DayCareMonCursor
 	call ButtonSound
 	ld hl, wBreedMon2Nick
 	call DayCareMonCompatibilityText
 	jp PrintText
 
-Special_DayCareMon2: ; 17440
+DayCareMon2: ; 17440
 	ld hl, DayCareMon2Text
 	call PrintText
 	ld a, [wBreedMon2Species]
 	call PlayMonCry
 	ld a, [wDayCareMan]
-	bit 0, a
+	bit DAYCAREMAN_HAS_MON_F, a
 	jr z, DayCareMonCursor
 	call ButtonSound
 	ld hl, wBreedMon1Nick

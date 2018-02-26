@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const MAHOGANYMART1F_PHARMACIST
 	const MAHOGANYMART1F_BLACK_BELT
 	const MAHOGANYMART1F_LANCE
@@ -6,13 +6,11 @@ const_value set 2
 	const MAHOGANYMART1F_GRANNY
 
 MahoganyMart1F_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DummyScene0
-	scene_script .LanceUncoversStaircase
+	db 2 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_MAHOGANYMART1F_NOTHING
+	scene_script .LanceUncoversStaircase ; SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .MahoganyMart1FStaircase
 
 .DummyScene0:
@@ -93,7 +91,7 @@ UnknownScript_0x6c38f:
 	reloadmappart
 	closetext
 	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
-	spriteface MAHOGANYMART1F_LANCE, LEFT
+	turnobject MAHOGANYMART1F_LANCE, LEFT
 	opentext
 	writetext UnknownText_0x6c5ba
 	waitbutton
@@ -101,7 +99,7 @@ UnknownScript_0x6c38f:
 	applymovement MAHOGANYMART1F_LANCE, MovementData_0x6c412
 	playsound SFX_EXIT_BUILDING
 	disappear MAHOGANYMART1F_LANCE
-	setscene 0
+	setscene SCENE_MAHOGANYMART1F_NOTHING
 	waitsfx
 	end
 
@@ -221,25 +219,20 @@ UnknownText_0x6c5ba:
 	done
 
 MahoganyMart1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 3, 7, 1, MAHOGANY_TOWN
-	warp_def 4, 7, 1, MAHOGANY_TOWN
-	warp_def 7, 3, 1, TEAM_ROCKET_BASE_B1F
+	db 3 ; warp events
+	warp_event  3,  7, MAHOGANY_TOWN, 1
+	warp_event  4,  7, MAHOGANY_TOWN, 1
+	warp_event  7,  3, TEAM_ROCKET_BASE_B1F, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 5
-	object_event 4, 3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event 1, 6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event 4, 6, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	object_event 3, 6, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	object_event 1, 3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS
+	db 5 ; object events
+	object_event  4,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event  1,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event  4,  6, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	object_event  3,  6, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
+	object_event  1,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS

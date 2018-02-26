@@ -1,20 +1,18 @@
-const_value set 2
+	const_def 2 ; object constants
 	const BATTLETOWERBATTLEROOM_YOUNGSTER
 	const BATTLETOWERBATTLEROOM_RECEPTIONIST
 
 BattleTowerBattleRoom_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .EnterBattleRoom
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .EnterBattleRoom ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .EnterBattleRoom: ; 0x9f419
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
 	priorityjump Script_BattleRoom
-	setscene 1
+	setscene SCENE_FINISHED
 .DummyScene:
 	end
 
@@ -23,7 +21,7 @@ Script_BattleRoom: ; 0x9f421
 ; beat all 7 opponents in a row
 Script_BattleRoomLoop: ; 0x9f425
 	writebyte BATTLETOWERBATTLEROOM_YOUNGSTER
-	special Special_LoadOpponentTrainerAndPokemonWithOTSprite
+	special LoadOpponentTrainerAndPokemonWithOTSprite
 	appear BATTLETOWERBATTLEROOM_YOUNGSTER
 	warpsound
 	waitsfx
@@ -32,12 +30,12 @@ Script_BattleRoomLoop: ; 0x9f425
 	battletowertext BATTLETOWERTEXT_INTRO
 	buttonsound
 	closetext
-	special Special_BattleTowerBattle ; calls predef startbattle
-	special Special_FadeOutPalettes
+	special BattleTowerBattle ; calls predef startbattle
+	special FadeOutPalettes
 	reloadmap
-	if_not_equal $0, Script_FailedBattleTowerChallenge
+	ifnotequal $0, Script_FailedBattleTowerChallenge
 	copybytetovar wNrOfBeatenBattleTowerTrainers ; wcf64
-	if_equal BATTLETOWER_STREAK_LENGTH, Script_BeatenAllTrainers
+	ifequal BATTLETOWER_STREAK_LENGTH, Script_BeatenAllTrainers
 	applymovement BATTLETOWERBATTLEROOM_YOUNGSTER, MovementData_BattleTowerBattleRoomOpponentWalksOut
 	warpsound
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
@@ -48,10 +46,10 @@ Script_BattleRoomLoop: ; 0x9f425
 	waitbutton
 	closetext
 	playmusic MUSIC_HEAL
-	special Special_FadeOutPalettes
-	special Special_LoadMapPalettes
+	special FadeOutPalettes
+	special LoadMapPalettes
 	pause 60
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext Text_NextUpOpponentNo
@@ -68,35 +66,35 @@ Script_DontBattleNextOpponent: ; 0x9f483
 	yesorno
 	iffalse Script_DontSaveAndEndTheSession
 	writebyte BATTLETOWERACTION_SAVELEVELGROUP ; save level group
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	writebyte BATTLETOWERACTION_SAVEOPTIONS ; choose reward
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	writebyte BATTLETOWERACTION_SAVE_AND_QUIT ; quicksave
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	playsound SFX_SAVE
 	waitsfx
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	special Reset
 Script_DontSaveAndEndTheSession: ; 0x9f4a3
 	writetext Text_CancelYourBattleRoomChallenge
 	yesorno
 	iffalse Script_ContinueAndBattleNextOpponent
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	writebyte BATTLETOWERACTION_06
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	closetext
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 	opentext
 	jump Script_BattleTowerHopeToServeYouAgain
 
 Script_FailedBattleTowerChallenge:
 	pause 60
-	special Special_BattleTowerFade
+	special BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	opentext
 	writetext Text_ThanksForVisiting
 	waitbutton
@@ -105,7 +103,7 @@ Script_FailedBattleTowerChallenge:
 
 Script_BeatenAllTrainers: ; 0x9f4d9
 	pause 60
-	special Special_BattleTowerFade
+	special BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7
 Script_BeatenAllTrainers2:
 	opentext
@@ -114,7 +112,7 @@ Script_BeatenAllTrainers2:
 
 UnreferencedScript_0x9f4eb:
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	opentext
 	writetext Text_TooMuchTimeElapsedNoRegister
 	waitbutton
@@ -123,9 +121,9 @@ UnreferencedScript_0x9f4eb:
 
 UnreferencedScript_0x9f4f7:
 	writebyte BATTLETOWERACTION_CHALLENGECANCELED
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	writebyte BATTLETOWERACTION_06
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	opentext
 	writetext Text_ThanksForVisiting
 	writetext Text_WeHopeToServeYouAgain
@@ -139,21 +137,16 @@ Text_ReturnedAfterSave_Mobile:
 	done
 
 BattleTowerBattleRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 3, 7, 4, BATTLE_TOWER_HALLWAY
-	warp_def 4, 7, 4, BATTLE_TOWER_HALLWAY
+	db 2 ; warp events
+	warp_event  3,  7, BATTLE_TOWER_HALLWAY, 4
+	warp_event  4,  7, BATTLE_TOWER_HALLWAY, 4
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
-	object_event 4, 0, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	object_event 1, 6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	db 2 ; object events
+	object_event  4,  0, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	object_event  1,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

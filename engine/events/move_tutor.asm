@@ -1,4 +1,4 @@
-Special_MoveTutor: ; 4925b
+MoveTutor: ; 4925b
 	call FadeToMenu
 	call ClearBGPalettes
 	call ClearScreen
@@ -52,8 +52,8 @@ Special_MoveTutor: ; 4925b
 	ret
 
 CheckCanLearnMoveTutorMove: ; 492b9
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 
 	predef CanLearnTMHMMove
 
@@ -98,6 +98,6 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	scf
 	ret
 
-.MenuDataHeader: ; 0x4930a
+.MenuHeader: ; 0x4930a
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1

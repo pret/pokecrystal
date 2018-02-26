@@ -187,14 +187,14 @@ FixTime:: ; 61d
 	ret
 ; 658
 
-SetTimeOfDay:: ; 658
+InitTimeOfDay:: ; 658
 	xor a
 	ld [wStringBuffer2], a
 	ld a, $0 ; useless
 	ld [wStringBuffer2 + 3], a
 	jr InitTime
 
-SetDayOfWeek:: ; 663
+InitDayOfWeek:: ; 663
 	call UpdateTime
 	ld a, [hHours]
 	ld [wStringBuffer2 + 1], a

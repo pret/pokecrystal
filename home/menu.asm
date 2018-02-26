@@ -1,14 +1,14 @@
 ; Functions used in displaying and handling menus.
 
 
-LoadMenuDataHeader::
-	call CopyMenuDataHeader
+LoadMenuHeader::
+	call CopyMenuHeader
 	call PushWindow
 	ret
 
-CopyMenuDataHeader::
-	ld de, wMenuDataHeader
-	ld bc, wMenuDataHeaderEnd - wMenuDataHeader
+CopyMenuHeader::
+	ld de, wMenuHeader
+	ld bc, wMenuHeaderEnd - wMenuHeader
 	call CopyBytes
 	ld a, [hROMBank]
 	ld [wMenuDataBank], a
@@ -33,12 +33,12 @@ MenuTextBox:: ; 1d4f
 ; 1d58
 
 LoadMenuTextBox:: ; 1d58
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	ret
 ; 1d5f
 
-.MenuDataHeader: ; 1d5f
+.MenuHeader: ; 1d5f
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw vTiles0
@@ -51,13 +51,13 @@ MenuTextBoxBackup:: ; 1d67
 	ret
 ; 1d6e
 
-LoadStandardMenuDataHeader:: ; 1d6e
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+LoadStandardMenuHeader:: ; 1d6e
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	ret
 ; 1d75
 
-.MenuDataHeader: ; 1d75
+.MenuHeader: ; 1d75
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw 0
@@ -76,8 +76,8 @@ VerticalMenu::
 	call UpdateSprites
 	call PlaceVerticalMenuItems
 	call ApplyTilemap
-	call CopyMenuData2
-	ld a, [wMenuData2Flags]
+	call CopyMenuData
+	ld a, [wMenuDataFlags]
 	bit 7, a
 	jr z, .cancel
 	call InitVerticalMenuCursor
@@ -95,7 +95,7 @@ VerticalMenu::
 ; 0x1dab
 
 GetMenu2:: ; 1dab
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	call CloseWindow
 	ld a, [wMenuCursorY]
@@ -106,7 +106,7 @@ CopyNameFromMenu::
 	push hl
 	push bc
 	push af
-	ld hl, wMenuData2Pointer
+	ld hl, wMenuDataPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -130,14 +130,14 @@ PlaceYesNoBox:: ; 1dd2
 	jr _YesNoBox
 
 PlaceGenericTwoOptionBox:: ; 1dd4
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	jr InterpretTwoOptionMenu
 
 _YesNoBox:: ; 1dd9
 ; Return nc (yes) or c (no).
 	push bc
-	ld hl, YesNoMenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, YesNoMenuHeader
+	call CopyMenuHeader
 	pop bc
 ; This seems to be an overflow prevention, but
 ; it was coded wrong.
@@ -179,29 +179,29 @@ InterpretTwoOptionMenu:: ; 1dfe
 	ret
 ; 1e1d
 
-YesNoMenuDataHeader:: ; 1e1d
+YesNoMenuHeader:: ; 1e1d
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 5, 15, 9
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 1e25
 
-.MenuData2: ; 1e25
+.MenuData: ; 1e25
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "YES@"
 	db "NO@"
 ; 1e2e
 
-OffsetMenuDataHeader:: ; 1e2e
-	call _OffsetMenuDataHeader
+OffsetMenuHeader:: ; 1e2e
+	call _OffsetMenuHeader
 	call PushWindow
 	ret
 ; 1e35
 
-_OffsetMenuDataHeader:: ; 1e35
+_OffsetMenuHeader:: ; 1e35
 	push de
-	call CopyMenuDataHeader
+	call CopyMenuHeader
 	pop de
 	ld a, [wMenuBorderLeftCoord]
 	ld h, a
@@ -243,7 +243,7 @@ SetUpMenu:: ; 1e70
 	ret
 
 DrawVariableLengthMenuBox::
-	call CopyMenuData2
+	call CopyMenuData
 	call GetMenuIndexSet
 	call AutomaticGetMenuBottomCoord
 	call MenuBox
@@ -271,7 +271,7 @@ AutomaticGetMenuBottomCoord:: ; 1ea6
 	ld a, [wMenuBorderRightCoord]
 	sub c
 	ld c, a
-	ld a, [wMenuData2Items]
+	ld a, [wMenuDataItems]
 	add a
 	inc a
 	ld b, a
@@ -282,7 +282,7 @@ AutomaticGetMenuBottomCoord:: ; 1ea6
 ; 1ebd
 
 GetMenuIndexSet:: ; 1ebd
-	ld hl, wMenuData2IndicesPointer
+	ld hl, wMenuDataIndicesPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -302,7 +302,7 @@ GetMenuIndexSet:: ; 1ebd
 	ld d, h
 	ld e, l
 	ld a, [hl]
-	ld [wMenuData2Items], a
+	ld [wMenuDataItems], a
 	ret
 ; 1eda
 
@@ -320,7 +320,7 @@ RunMenuItemPrintingFunction:: ; 1eda
 	push hl
 	ld d, h
 	ld e, l
-	ld hl, wMenuData2DisplayFunctionPointer
+	ld hl, wMenuDataDisplayFunctionPointer
 	call ._hl_
 	pop hl
 	ld de, 2 * SCREEN_WIDTH
@@ -339,13 +339,13 @@ RunMenuItemPrintingFunction:: ; 1eda
 InitMenuCursorAndButtonPermissions:: ; 1eff
 	call InitVerticalMenuCursor
 	ld hl, wMenuJoypadFilter
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 3, a
 	jr z, .disallow_select
 	set START_F, [hl]
 
 .disallow_select
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 2, a
 	jr z, .disallow_left_right
 	set D_LEFT_F, [hl]
@@ -422,7 +422,7 @@ ContinueGettingMenuJoypad:
 
 PlaceMenuStrings:: ; 1f79
 	push de
-	ld hl, wMenuData2PointerTableAddr
+	ld hl, wMenuDataPointerTableAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -471,7 +471,7 @@ MenuJumptable:: ; 1fa7
 GetMenuDataPointerTableEntry:: ; 1fb1
 	ld e, a
 	ld d, $0
-	ld hl, wMenuData2PointerTableAddr
+	ld hl, wMenuDataPointerTableAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -485,9 +485,9 @@ GetMenuDataPointerTableEntry:: ; 1fb1
 ClearWindowData:: ; 1fbf
 	ld hl, wWindowStackPointer
 	call .bytefill
-	ld hl, wMenuDataHeader
+	ld hl, wMenuHeader
 	call .bytefill
-	ld hl, wMenuData2Flags
+	ld hl, wMenuDataFlags
 	call .bytefill
 	ld hl, w2DMenuCursorInitY
 	call .bytefill
@@ -563,7 +563,7 @@ Place2DMenuItemName:: ; 201c
 
 _2DMenu:: ; 202a
 	ld a, [hROMBank]
-	ld [wMenuData2_2DMenuItemStringsBank], a
+	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _2DMenu_
 	ld a, [wMenuCursorBuffer]
 	ret
@@ -571,7 +571,7 @@ _2DMenu:: ; 202a
 
 InterpretBattleMenu:: ; 2039
 	ld a, [hROMBank]
-	ld [wMenuData2_2DMenuItemStringsBank], a
+	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _InterpretBattleMenu
 	ld a, [wMenuCursorBuffer]
 	ret
@@ -579,7 +579,7 @@ InterpretBattleMenu:: ; 2039
 
 InterpretMobileMenu:: ; 2048
 	ld a, [hROMBank]
-	ld [wMenuData2_2DMenuItemStringsBank], a
+	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _InterpretMobileMenu
 	ld a, [wMenuCursorBuffer]
 	ret

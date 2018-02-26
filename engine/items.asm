@@ -11,6 +11,7 @@ _ReceiveItem:: ; d1d5
 	ret
 
 .Pockets: ; d1e9
+; entries correspond to item types
 	dw .Item
 	dw .KeyItem
 	dw .Ball
@@ -51,6 +52,7 @@ _TossItem:: ; d20d
 	ret
 
 .Pockets:
+; entries correspond to item types
 	dw .Item
 	dw .KeyItem
 	dw .Ball
@@ -93,6 +95,7 @@ _CheckItem:: ; d244
 	ret
 
 .Pockets:
+; entries correspond to item types
 	dw .Item
 	dw .KeyItem
 	dw .Ball
@@ -492,7 +495,7 @@ _CheckTossableItem:: ; d427
 ; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be removed from the bag.
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
-	bit 7, a
+	bit CANT_TOSS_F, a
 	jr nz, ItemAttr_ReturnCarry
 	and a
 	ret
@@ -501,7 +504,7 @@ CheckSelectableItem: ; d432
 ; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be selected.
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
-	bit 6, a
+	bit CANT_SELECT_F, a
 	jr nz, ItemAttr_ReturnCarry
 	and a
 	ret

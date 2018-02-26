@@ -1,24 +1,17 @@
 WhirlIslandCave_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 WhirlIslandCave_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 7, 5, 9, WHIRL_ISLAND_B1F
-	warp_def 3, 13, 4, WHIRL_ISLAND_NW
+	db 2 ; warp events
+	warp_event  7,  5, WHIRL_ISLAND_B1F, 9
+	warp_event  3, 13, WHIRL_ISLAND_NW, 4
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

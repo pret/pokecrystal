@@ -867,7 +867,7 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	add e
 	ld [hPrintNum5], a
 	ld a, [hPrintNum6]
-	adc $0
+	adc 0
 	ld [hPrintNum6], a
 .asm_104f02
 	xor a
@@ -1045,7 +1045,7 @@ Function104faf: ; 104faf (41:4faf)
 	add e
 	ld [hPrintNum5], a
 	ld a, [hPrintNum6]
-	adc $0
+	adc 0
 	ld [hPrintNum6], a
 	jr .asm_104fd2
 .asm_10501a
@@ -1157,7 +1157,7 @@ MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
 	jr c, .loop
 	jp CloseSRAM
 
-Special_UnlockMysteryGift: ; 1050b9
+UnlockMysteryGift: ; 1050b9
 	call GetMysteryGiftBank
 	ld hl, sMysteryGiftUnlocked
 	ld a, [hl]
@@ -1279,7 +1279,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	ld hl, MysteryGiftGFX
 	ld de, vTiles2 tile $00
 	ld a, BANK(MysteryGiftGFX)
-	ld bc, MysteryGiftGFXEnd - MysteryGiftGFX
+	ld bc, MysteryGiftGFX.End - MysteryGiftGFX
 	call FarCopyBytes
 	hlcoord 0, 0
 	ld a, $42
@@ -1412,7 +1412,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 
 MysteryGiftGFX: ; 105258
 INCBIN "gfx/mystery_gift/mystery_gift.2bpp"
-MysteryGiftGFXEnd:
+.End
 
 Function105688: ; 105688 (41:5688)
 	call ClearTileMap

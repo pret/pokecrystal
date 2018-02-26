@@ -3,7 +3,7 @@ PUZZLE_VOID   EQU $ef
 
 puzcoord EQUS "* 6 +"
 
-UnownPuzzle: ; e1190
+_UnownPuzzle: ; e1190
 	ld a, [hInMenu]
 	push af
 	ld a, $1

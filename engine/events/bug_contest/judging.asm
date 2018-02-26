@@ -134,7 +134,7 @@ LoadContestantName: ; 13730
 ; 13783
 
 
-INCLUDE "data/bug_contest_winners.asm"
+INCLUDE "data/events/bug_contest_winners.asm"
 ; 13807
 
 
@@ -229,7 +229,7 @@ DetermineContestWinners: ; 1383e
 CopyTempContestant: ; 138a0
 ; Could've just called CopyBytes.
 	ld de, wBugContestTempWinnerID
-rept BUG_CONTESTANT_SIZE +- 1
+rept BUG_CONTESTANT_SIZE + -1
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -244,7 +244,7 @@ ComputeAIContestantScores: ; 138b0
 	ld e, 0
 .loop
 	push de
-	call Special_CheckBugContestContestantFlag
+	call CheckBugContestContestantFlag
 	pop de
 	jr nz, .done
 	ld a, e

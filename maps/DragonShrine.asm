@@ -1,17 +1,15 @@
-const_value set 2
+	const_def 2 ; object constants
 	const DRAGONSHRINE_ELDER1
 	const DRAGONSHRINE_ELDER2
 	const DRAGONSHRINE_ELDER3
 	const DRAGONSHRINE_CLAIR
 
 DragonShrine_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DragonShrineTest
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .DragonShrineTest ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DragonShrineTest:
 	priorityjump .DragonShrineTestScript
@@ -27,93 +25,93 @@ DragonShrine_MapScripts:
 	writetext DragonShrineElderGreetingText
 	buttonsound
 .Question1:
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	writetext DragonShrineQuestion1Text
 	buttonsound
-	loadmenudata DragonShrineQuestion1_MenuDataHeader
+	loadmenu DragonShrineQuestion1_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .RightAnswer
-	if_equal 2, .WrongAnswer
-	if_equal 3, .RightAnswer
+	ifequal 1, .RightAnswer
+	ifequal 2, .WrongAnswer
+	ifequal 3, .RightAnswer
 	end
 
 .Question2:
-	setevent EVENT_DRAGON_SHRINE_QUESTION_2
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	writetext DragonShrineQuestion2Text
 	buttonsound
-	loadmenudata DragonShrineQuestion2_MenuDataHeader
+	loadmenu DragonShrineQuestion2_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .RightAnswer
-	if_equal 2, .RightAnswer
-	if_equal 3, .WrongAnswer
+	ifequal 1, .RightAnswer
+	ifequal 2, .RightAnswer
+	ifequal 3, .WrongAnswer
 .Question3:
-	setevent EVENT_DRAGON_SHRINE_QUESTION_3
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	writetext DragonShrineQuestion3Text
 	buttonsound
-	loadmenudata DragonShrineQuestion3_MenuDataHeader
+	loadmenu DragonShrineQuestion3_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .WrongAnswer
-	if_equal 2, .RightAnswer
-	if_equal 3, .RightAnswer
+	ifequal 1, .WrongAnswer
+	ifequal 2, .RightAnswer
+	ifequal 3, .RightAnswer
 .Question4:
-	setevent EVENT_DRAGON_SHRINE_QUESTION_4
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5
 	writetext DragonShrineQuestion4Text
 	buttonsound
-	loadmenudata DragonShrineQuestion4_MenuDataHeader
+	loadmenu DragonShrineQuestion4_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .RightAnswer
-	if_equal 2, .WrongAnswer
-	if_equal 3, .RightAnswer
+	ifequal 1, .RightAnswer
+	ifequal 2, .WrongAnswer
+	ifequal 3, .RightAnswer
 .Question5:
-	setevent EVENT_DRAGON_SHRINE_QUESTION_5
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	writetext DragonShrineQuestion5Text
 	buttonsound
-	loadmenudata DragonShrineQuestion5_MenuDataHeader
+	loadmenu DragonShrineQuestion5_MenuHeader
 	verticalmenu
 	closewindow
-	if_equal 1, .WrongAnswer
-	if_equal 2, .RightAnswer
-	if_equal 3, .WrongAnswer
+	ifequal 1, .WrongAnswer
+	ifequal 2, .RightAnswer
+	ifequal 3, .WrongAnswer
 .RightAnswer:
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	iftrue .PassedTheTest
 	writetext DragonShrineRightAnswerText
 	buttonsound
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5
 	iftrue .Question5
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	iftrue .Question4
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	iftrue .Question3
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .Question2
 .WrongAnswer:
 	closetext
-	spriteface DRAGONSHRINE_ELDER1, LEFT
+	turnobject DRAGONSHRINE_ELDER1, LEFT
 	opentext
 	writetext DragonShrineWrongAnswerText1
 	waitbutton
 	closetext
-	spriteface DRAGONSHRINE_ELDER1, DOWN
+	turnobject DRAGONSHRINE_ELDER1, DOWN
 	opentext
 	writetext DragonShrineWrongAnswerText2
 	waitbutton
 	closetext
 	setevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
 	opentext
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_5
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_6
 	iftrue .Question5
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_4
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_5
 	iftrue .Question4
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_3
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	iftrue .Question3
-	checkevent EVENT_DRAGON_SHRINE_QUESTION_2
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	iftrue .Question2
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .Question1
 .PassedTheTest:
 	writetext DragonShrinePassedTestText
@@ -124,17 +122,17 @@ DragonShrine_MapScripts:
 	playmusic MUSIC_CLAIR
 	appear DRAGONSHRINE_CLAIR
 	waitsfx
-	spriteface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	pause 30
 	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairWalkInMovement
-	spriteface DRAGONSHRINE_CLAIR, RIGHT
-	spriteface PLAYER, LEFT
-	spriteface DRAGONSHRINE_ELDER1, LEFT
+	turnobject DRAGONSHRINE_CLAIR, RIGHT
+	turnobject PLAYER, LEFT
+	turnobject DRAGONSHRINE_ELDER1, LEFT
 	opentext
 	writetext DragonShrineClairYouPassedText
 	waitbutton
 	closetext
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairBigStepLeftMovement
 	opentext
 	writetext DragonShrineClairThatCantBeText
@@ -146,7 +144,7 @@ DragonShrine_MapScripts:
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderWalkToClairMovement
-	spriteface DRAGONSHRINE_CLAIR, UP
+	turnobject DRAGONSHRINE_CLAIR, UP
 	opentext
 	writetext DragonShrineMustIInformLanceText
 	waitbutton
@@ -165,17 +163,17 @@ DragonShrine_MapScripts:
 	waitsfx
 	special RestartMapMusic
 	specialphonecall SPECIALCALL_MASTERBALL
-	setscene 1
-	setmapscene DRAGONS_DEN_B1F, 1
+	setscene SCENE_FINISHED
+	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 	writetext DragonShrinePlayerReceivedRisingBadgeText
 	buttonsound
 	writetext DragonShrineRisingBadgeExplanationText
 	waitbutton
 	closetext
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2ce
-	spriteface DRAGONSHRINE_CLAIR, UP
+	turnobject DRAGONSHRINE_CLAIR, UP
 	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2d1
-	spriteface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext DragonShrineElderScoldsClairText
 	waitbutton
@@ -188,15 +186,15 @@ DragonShrine_MapScripts:
 	playsound SFX_ENTER_DOOR
 	disappear DRAGONSHRINE_CLAIR
 	waitsfx
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	end
 
 DragonShrineElder1Script:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue .DontGiveDratiniYet
-	checkevent EVENT_JUST_RECEIVED_DRATINI
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	iftrue .ReceivedDratini
 	checkevent EVENT_GOT_DRATINI
 	iffalse .GiveDratini
@@ -211,15 +209,15 @@ DragonShrineElder1Script:
 	writetext DragonShrineTakeThisDratiniText
 	waitbutton
 	checkcode VAR_PARTYCOUNT
-	if_equal 6, .PartyFull
+	ifequal PARTY_LENGTH, .PartyFull
 	writetext DragonShrinePlayerReceivedDratiniText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	givepoke DRATINI, 15
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
-	special Special_Dratini
+	special GiveDratini
 	setevent EVENT_GOT_DRATINI
-	setevent EVENT_JUST_RECEIVED_DRATINI
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	writetext DragonShrineSymbolicDragonText
 	waitbutton
 	closetext
@@ -265,65 +263,65 @@ DragonShrineElder3Script:
 	closetext
 	end
 
-DragonShrineQuestion1_MenuDataHeader:
+DragonShrineQuestion1_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Pal@"
 	db "Underling@"
 	db "Friend@"
 
-DragonShrineQuestion2_MenuDataHeader:
+DragonShrineQuestion2_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Strategy@"
 	db "Raising@"
 	db "Cheating@"
 
-DragonShrineQuestion3_MenuDataHeader:
+DragonShrineQuestion3_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 5, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Weak person@"
 	db "Tough person@"
 	db "Anybody@"
 
-DragonShrineQuestion4_MenuDataHeader:
+DragonShrineQuestion4_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Love@"
 	db "Violence@"
 	db "Knowledge@"
 
-DragonShrineQuestion5_MenuDataHeader:
+DragonShrineQuestion5_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 4, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Tough@"
@@ -658,23 +656,18 @@ DragonShrineSpeechlessText:
 	done
 
 DragonShrine_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 4, 9, 2, DRAGONS_DEN_B1F
-	warp_def 5, 9, 2, DRAGONS_DEN_B1F
+	db 2 ; warp events
+	warp_event  4,  9, DRAGONS_DEN_B1F, 2
+	warp_event  5,  9, DRAGONS_DEN_B1F, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
-	object_event 5, 1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder1Script, EVENT_GAVE_KURT_APRICORNS
-	object_event 2, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder2Script, EVENT_GAVE_KURT_APRICORNS
-	object_event 7, 4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder3Script, EVENT_GAVE_KURT_APRICORNS
-	object_event 4, 8, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR
+	db 4 ; object events
+	object_event  5,  1, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder1Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  2,  4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder2Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  7,  4, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonShrineElder3Script, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  4,  8, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGON_SHRINE_CLAIR

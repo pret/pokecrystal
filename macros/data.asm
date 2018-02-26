@@ -1,3 +1,8 @@
+; Value macros
+
+percent EQUS "* $ff / 100"
+
+
 ; Constant data (db, dw, dl) macros
 
 dwb: MACRO
@@ -26,29 +31,29 @@ dbwww: MACRO
 ENDM
 
 dn: MACRO ; nybbles
-	rept _NARG / 2
+rept _NARG / 2
 	db ((\1) << 4) | (\2)
 	shift
 	shift
-	endr
+endr
 ENDM
 
 dc: MACRO ; "crumbs"
-	rept _NARG / 4
+rept _NARG / 4
 	db ((\1) << 6) | ((\2) << 4) | ((\3) << 2) | (\4)
 	shift
 	shift
 	shift
 	shift
-	endr
+endr
 ENDM
 
 dx: MACRO
 x = 8 * ((\1) - 1)
-	rept \1
+rept \1
 	db ((\2) >> x) & $ff
 x = x + -8
-	endr
+endr
 ENDM
 
 dt: MACRO ; three-byte (big-endian)
@@ -64,17 +69,17 @@ bigdw: MACRO ; big-endian word
 ENDM
 
 dba: MACRO ; dbw bank, address
-	rept _NARG
+rept _NARG
 	dbw BANK(\1), \1
 	shift
-	endr
+endr
 ENDM
 
 dab: MACRO ; dwb address, bank
-	rept _NARG
+rept _NARG
 	dwb \1, BANK(\1)
 	shift
-	endr
+endr
 ENDM
 
 dba_pic: MACRO ; dbw bank, address
@@ -106,20 +111,19 @@ menu_coords: MACRO
 ENDM
 
 
-sine_wave: MACRO
-; \1: amplitude
-x = 0
-	rept $20
-	; Round up.
-	dw (sin(x) + (sin(x) & $ff)) >> 8
-x = x + (\1) * $40000
-	endr
+bcd: MACRO
+rept _NARG
+	dn ((\1) % 100) / 10, (\1) % 10
+	shift
+endr
 ENDM
 
 
-bcd: MACRO
-	rept _NARG
-	dn ((\1) % 100) / 10, (\1) % 10
-	shift
-	endr
+sine_table: MACRO
+; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
+x = 0
+rept \1
+	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+x = x + DIV(32768, \1) ; a circle has 65536 "degrees"
+endr
 ENDM

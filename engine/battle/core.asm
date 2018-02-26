@@ -463,13 +463,13 @@ DetermineMoveOrder: ; 3c314
 	jr z, .player_2
 
 	call BattleRandom
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jp c, .player_first
 	jp .enemy_first
 
 .player_2
 	call BattleRandom
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jp c, .enemy_first
 	jp .player_first
 
@@ -549,13 +549,13 @@ DetermineMoveOrder: ; 3c314
 	cp USING_INTERNAL_CLOCK
 	jr z, .player_2c
 	call BattleRandom
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jp c, .player_first
 	jp .enemy_first
 
 .player_2c
 	call BattleRandom
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jp c, .enemy_first
 .player_first
 	scf
@@ -791,7 +791,7 @@ TryEnemyFlee: ; 3c543
 
 	call BattleRandom
 	ld b, a
-	cp 1 + (50 percent)
+	cp 50 percent + 1
 	jr nc, .Stay
 
 	push bc
@@ -803,7 +803,7 @@ TryEnemyFlee: ; 3c543
 	jr c, .Flee
 
 	ld a, b
-	cp 1 + (10 percent)
+	cp 10 percent + 1
 	jr nc, .Stay
 
 	ld a, [wTempEnemyMonSpecies]
@@ -1807,10 +1807,13 @@ HandleWeather: ; 3cb9e
 ; 3cc2d
 
 .WeatherMessages:
+; entries correspond to WEATHER_* constants
 	dw BattleText_RainContinuesToFall
 	dw BattleText_TheSunlightIsStrong
 	dw BattleText_TheSandstormRages
+
 .WeatherEndedMessages:
+; entries correspond to WEATHER_* constants
 	dw BattleText_TheRainStopped
 	dw BattleText_TheSunlightFaded
 	dw BattleText_TheSandstormSubsided
@@ -2471,22 +2474,22 @@ WinTrainerBattle: ; 3cfa4
 	call nz, .DoubleReward
 	call .CheckMaxedOutMomMoney
 	push af
-	ld a, $0
+	ld a, FALSE
 	jr nc, .okay
 	ld a, [wMomSavingMoney]
-	and $7
-	cp $3
+	and MOM_SAVING_MONEY_MASK
+	cp (1 << MOM_SAVING_SOME_MONEY_F) | (1 << MOM_SAVING_HALF_MONEY_F)
 	jr nz, .okay
-	inc a
+	inc a ; TRUE
 
 .okay
 	ld b, a
-	ld c, $4
+	ld c, 4
 .loop
 	ld a, b
 	and a
 	jr z, .loop2
-	call .SendMoneyToMom
+	call .AddMoneyToMom
 	dec c
 	dec b
 	jr .loop
@@ -2505,7 +2508,7 @@ WinTrainerBattle: ; 3cfa4
 	pop af
 	jr nc, .KeepItAll
 	ld a, [wMomSavingMoney]
-	and $7
+	and MOM_SAVING_MONEY_MASK
 	jr z, .KeepItAll
 	ld hl, .SentToMomTexts
 	dec a
@@ -2523,7 +2526,7 @@ WinTrainerBattle: ; 3cfa4
 	jp StdBattleTextBox
 ; 3d081
 
-.SendMoneyToMom: ; 3d081
+.AddMoneyToMom: ; 3d081
 	push bc
 	ld hl, wBattleReward + 2
 	ld de, wMomsMoney + 2
@@ -2557,6 +2560,7 @@ WinTrainerBattle: ; 3cfa4
 ; 3d0ab
 
 .SentToMomTexts: ; 3d0ab
+; entries correspond to MOM_SAVING_* constants
 	dw SentSomeToMomText
 	dw SentHalfToMomText
 	dw SentAllToMomText
@@ -2574,7 +2578,7 @@ WinTrainerBattle: ; 3cfa4
 ; 3d0be
 
 AddBattleMoneyToAccount: ; 3d0be
-	ld c, $3
+	ld c, 3
 	and a
 	push de
 	push hl
@@ -2653,7 +2657,7 @@ IsGymLeader: ; 0x3d128
 IsGymLeaderCommon:
 	push de
 	ld a, [wOtherTrainerClass]
-	ld de, $1
+	ld de, 1
 	call IsInArray
 	pop de
 	ret
@@ -2781,7 +2785,7 @@ AskUseNextPokemon: ; 3d1f8
 
 ForcePlayerMonChoice: ; 3d227
 	call EmptyBattleTextBox
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call SetUpBattlePartyMenu_NoLoop
 	call ForcePickPartyMonInBattle
 	ld a, [wLinkMode]
@@ -3300,7 +3304,7 @@ ResetEnemyBattleVars: ; 3d557
 	ld a, 8
 	call SlideBattlePicOut
 	call EmptyBattleTextBox
-	jp LoadStandardMenuDataHeader
+	jp LoadStandardMenuHeader
 ; 3d57a
 
 ResetBattleParticipants: ; 3d57a
@@ -3320,7 +3324,7 @@ AddBattleParticipant: ; 3d581
 ; 3d599
 
 FindMonInOTPartyToSwitchIntoBattle: ; 3d599
-	ld b, $ff
+	ld b, -1
 	ld a, $1
 	ld [wBuffer1], a
 	ld [wBuffer2], a
@@ -3464,7 +3468,7 @@ ScoreMonTypeMatchups: ; 3d672
 	ld a, [wBuffer1]
 	and a
 	jr z, .okay2
-	ld b, $ff
+	ld b, -1
 	ld c, a
 .loop3
 	inc b
@@ -3473,7 +3477,7 @@ ScoreMonTypeMatchups: ; 3d672
 	jr .quit
 
 .okay2
-	ld b, $ff
+	ld b, -1
 	ld a, [wBuffer2]
 	ld c, a
 .loop4
@@ -4427,7 +4431,7 @@ HandleHPHealingItem: ; 3dd2f
 	ld c, a
 	dec de
 	ld a, [de]
-	adc $0
+	adc 0
 	ld [wBuffer6], a
 	ld b, a
 	ld a, [hld]
@@ -4488,7 +4492,7 @@ ItemRecoveryAnim: ; 3ddc8
 
 UseHeldStatusHealingItem: ; 3dde9
 	callfar GetOpponentItem
-	ld hl, .Statuses
+	ld hl, HeldStatusHealingEffects
 .loop
 	ld a, [hli]
 	cp $ff
@@ -4541,15 +4545,7 @@ UseHeldStatusHealingItem: ; 3dde9
 	ret
 ; 3de44
 
-.Statuses: ; 3de44
-	db HELD_HEAL_POISON,   1 << PSN
-	db HELD_HEAL_FREEZE,   1 << FRZ
-	db HELD_HEAL_BURN,     1 << BRN
-	db HELD_HEAL_SLEEP,    SLP
-	db HELD_HEAL_PARALYZE, 1 << PAR
-	db HELD_HEAL_STATUS,   ALL_STATUS
-	db -1 ; end
-; 3de51
+INCLUDE "data/battle/held_heal_status.asm"
 
 UseConfusionHealingItem: ; 3de51
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
@@ -4624,10 +4620,10 @@ HandleStatBoostingHeldItems: ; 3de97
 	ld a, [bc]
 	ld b, a
 	callfar GetItemHeldEffect
-	ld hl, .StatUpItems
+	ld hl, HeldStatUpItems
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .finish
 	inc hl
 	inc hl
@@ -4664,16 +4660,7 @@ HandleStatBoostingHeldItems: ; 3de97
 	ret
 ; 3defc
 
-.StatUpItems:
-	dbw HELD_ATTACK_UP,     BattleCommand_AttackUp
-	dbw HELD_DEFENSE_UP,    BattleCommand_DefenseUp
-	dbw HELD_SPEED_UP,      BattleCommand_SpeedUp
-	dbw HELD_SP_ATTACK_UP,  BattleCommand_SpecialAttackUp
-	dbw HELD_SP_DEFENSE_UP, BattleCommand_SpecialDefenseUp
-	dbw HELD_ACCURACY_UP,   BattleCommand_AccuracyUp
-	dbw HELD_EVASION_UP,    BattleCommand_EvasionUp
-	db -1 ; end
-; 3df12
+INCLUDE "data/battle/held_stat_up.asm"
 
 GetPartymonItem: ; 3df12
 	ld hl, wPartyMon1Item
@@ -5107,7 +5094,7 @@ BattleMenu_Pack: ; 3e1c7
 	and a
 	jp nz, .ItemsCantBeUsed
 
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -5202,10 +5189,10 @@ BattleMenu_Pack: ; 3e1c7
 ; 3e28d
 
 BattleMenu_PKMN: ; 3e28d
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 BattleMenuPKMN_ReturnFromStats:
 	call ExitMenu
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearBGPalettes
 BattleMenuPKMN_Loop:
 	call SetUpBattlePartyMenu
@@ -5345,7 +5332,7 @@ PlayerSwitch: ; 3e3ad
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call LinkBattleSendReceiveAction
 	call CloseWindow
 
@@ -6190,7 +6177,7 @@ LoadEnemyMon: ; 3e8eb
 
 ; 25% chance of getting an item
 	call BattleRandom
-	cp 1 + (75 percent)
+	cp 75 percent + 1
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 
@@ -6642,7 +6629,7 @@ CheckUnownLetter: ; 3eb75
 	jr nc, .next
 
 ; Is our letter in the set?
-	ld hl, .LetterSets
+	ld hl, UnlockedUnownLetterSets
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -6663,7 +6650,7 @@ CheckUnownLetter: ; 3eb75
 	inc e
 	inc e
 	ld a, e
-	cp .Set1 - .LetterSets
+	cp UnlockedUnownLetterSets.End - UnlockedUnownLetterSets
 	jr c, .loop
 
 ; Hasn't been unlocked, or the letter is invalid
@@ -6675,26 +6662,8 @@ CheckUnownLetter: ; 3eb75
 	and a
 	ret
 
-.LetterSets:
-	dw .Set1
-	dw .Set2
-	dw .Set3
-	dw .Set4
+INCLUDE "data/wild/unlocked_unowns.asm"
 
-.Set1:
-	;  A   B   C   D   E   F   G   H   I   J   K
-	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
-.Set2:
-	;  L   M   N   O   P   Q   R
-	db 12, 13, 14, 15, 16, 17, 18, $ff
-.Set3:
-	;  S   T   U   V   W
-	db 19, 20, 21, 22, 23, $ff
-.Set4:
-	;  X   Y   Z
-	db 24, 25, 26, $ff
-
-; 3ebc7
 
 Unreferenced_SwapBattlerLevels: ; 3ebc7
 	push bc
@@ -6920,7 +6889,7 @@ ApplyStatLevelMultiplier: ; 3ecb7
 .okay2
 	pop bc
 	push hl
-	ld hl, .StatLevelMultipliers
+	ld hl, StatLevelMultipliers_Applied
 	dec b
 	sla b
 	ld c, b
@@ -6969,24 +6938,7 @@ ApplyStatLevelMultiplier: ; 3ecb7
 	ret
 ; 3ed2b
 
-.StatLevelMultipliers:
-;	      /
-	db 25, 100 ; 25%
-	db 28, 100 ; 28%
-	db 33, 100 ; 33%
-	db 40, 100 ; 40%
-	db 50, 100 ; 50%
-	db 66, 100 ; 66%
-
-	db  1,  1 ; 100%
-
-	db 15, 10 ; 150%
-	db  2,  1 ; 200%
-	db 25, 10 ; 250%
-	db  3,  1 ; 300%
-	db 35, 10 ; 350%
-	db  4,  1 ; 400%
-; 3ed45
+INCLUDE "data/battle/stat_multipliers_2.asm"
 
 BadgeStatBoosts: ; 3ed45
 ; Raise the stats of the battle mon in wBattleMon
@@ -8728,7 +8680,7 @@ IsMobileBattle2: ; 3f830
 	ret
 ; 3f836
 
-DisplayLinkRecord: ; 3f836
+_DisplayLinkRecord: ; 3f836
 	ld a, BANK(sLinkBattleStats)
 	call GetSRAMBank
 
@@ -8897,13 +8849,13 @@ BattleEnd_HandleRoamMons: ; 3f998
 
 .caught_or_defeated_roam_mon
 	call GetRoamMonHP
-	ld [hl], $0
+	ld [hl], 0
 	call GetRoamMonMapGroup
-	ld [hl], $ff
+	ld [hl], GROUP_N_A
 	call GetRoamMonMapNumber
-	ld [hl], $ff
+	ld [hl], MAP_N_A
 	call GetRoamMonSpecies
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
 .not_roaming
@@ -9282,10 +9234,10 @@ GetTrainerBackpic: ; 3fbff
 
 ; What gender are we?
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a ; transformed to male
+	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .Chris
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .Chris
 
 ; It's a girl.

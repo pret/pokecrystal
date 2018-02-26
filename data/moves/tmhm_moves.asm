@@ -1,4 +1,5 @@
 TMHMMoves: ; 1167a
+; entries correspond to *_TMNUM enums (see constants/item_constants.asm)
 ; TMs
 	db DYNAMICPUNCH
 	db HEADBUTT

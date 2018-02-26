@@ -6,7 +6,7 @@ item_attribute: MACRO
 ENDM
 
 ItemAttributes: ; 67c1
-; entries correspond to constants/item_constants.asm
+; entries correspond to item ids
 ; MASTER_BALL
 	item_attribute 0, 0, 0, CANT_SELECT, BALL, ITEMMENU_NOUSE, ITEMMENU_CLOSE
 ; ULTRA_BALL

@@ -86,7 +86,7 @@
 	charmap "▲",         $61 ; gfx/font/up_arrow.png
 	charmap "☎",         $62 ; gfx/font/phone_icon.2bpp
 
-	; needed for Special_MagikarpHouseSign (see engine/events/magikarp.asm)
+	; needed for MagikarpHouseSign (see engine/events/magikarp.asm)
 	charmap "′",         $6e ; gfx/font/feet_inches.png
 	charmap "″",         $6f ; gfx/font/feet_inches.png
 

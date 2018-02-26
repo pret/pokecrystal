@@ -233,7 +233,7 @@ Function462a: ; 462a
 UpdateTallGrassFlags: ; 463f
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 3, [hl] ; is current tile grass?
+	bit OVERHEAD, [hl]
 	jr z, .ok
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
@@ -260,13 +260,13 @@ SetTallGrassFlags: ; 4661
 .set
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set 3, [hl]
+	set OVERHEAD, [hl]
 	ret
 
 .reset
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 3, [hl]
+	res OVERHEAD, [hl]
 	ret
 ; 4679
 
@@ -792,7 +792,7 @@ MapObjectMovementPattern: ; 47dd
 	ld [hl], STANDING
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], OBJECT_ACTION_BIG_SNORLAX
+	ld [hl], OBJECT_ACTION_BIG_DOLL_SYM
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_04
@@ -1103,20 +1103,20 @@ SetRandomStepDuration: ; 4b2d
 StepTypesJumptable: ; 4b45
 ; entries correspond to STEP_TYPE_* constants
 	dw ObjectMovementReset ; 00
-	dw MapObjectMovementPattern ; unused
-	dw NPCStep ; 02 npc walk
+	dw MapObjectMovementPattern ; 01
+	dw NPCStep ; 02
 	dw StepType03 ; 03
 	dw StepType04 ; 04
 	dw StepType05 ; 05
-	dw PlayerStep ; 06 player walk
+	dw PlayerStep ; 06
 	dw StepType07 ; 07
-	dw NPCJump ; 08 npc jump step
-	dw PlayerJump ; 09 player jump step
-	dw PlayerOrNPCTurnStep ; 0a half step
+	dw NPCJump ; 08
+	dw PlayerJump ; 09
+	dw PlayerOrNPCTurnStep ; 0a
 	dw StepTypeBump ; 0b
-	dw TeleportFrom ; 0c teleport from
-	dw TeleportTo ; 0d teleport to
-	dw Skyfall ; 0e skyfall
+	dw TeleportFrom ; 0c
+	dw TeleportTo ; 0d
+	dw Skyfall ; 0e
 	dw StepType0f ; 0f
 	dw GotBiteStep ; 10
 	dw RockSmashStep ; 11
@@ -2543,7 +2543,7 @@ RefreshPlayerSprite: ; 579d
 
 .TryResetPlayerAction: ; 57bc
 	ld hl, wPlayerSpriteSetupFlags
-	bit 7, [hl]
+	bit PLAYERSPRITESETUP_RESET_ACTION_F, [hl]
 	jr nz, .ok
 	ret
 
@@ -2555,10 +2555,10 @@ RefreshPlayerSprite: ; 579d
 
 .SpawnInCustomFacing: ; 57ca
 	ld hl, wPlayerSpriteSetupFlags
-	bit 5, [hl]
+	bit PLAYERSPRITESETUP_CUSTOM_FACING_F, [hl]
 	ret z
 	ld a, [wPlayerSpriteSetupFlags]
-	and 3
+	and PLAYERSPRITESETUP_FACING_MASK
 	add a
 	add a
 	jr ContinueSpawnFacing
@@ -2572,7 +2572,7 @@ ContinueSpawnFacing: ; 57db
 	ret
 ; 57e2
 
-SetPlayerPalette: ; 57e2
+_SetPlayerPalette: ; 57e2
 	ld a, d
 	and %10000000
 	ret z
@@ -2918,10 +2918,10 @@ InitSprites: ; 5991
 	ld e, PRIORITY_LOW
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit 0, [hl]
+	bit LOW_PRIORITY, [hl]
 	jr nz, .add
 	ld e, PRIORITY_NORM
-	bit 1, [hl]
+	bit HIGH_PRIORITY, [hl]
 	jr z, .add
 	ld e, PRIORITY_HIGH
 	jr .add

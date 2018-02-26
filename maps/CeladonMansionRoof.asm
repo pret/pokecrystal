@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const CELADONMANSIONROOF_FISHER
 
 CeladonMansionRoof_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 CeladonMansionRoofFisherScript:
 	jumptextfaceplayer CeladonMansionRoofFisherText
@@ -34,22 +32,17 @@ UnknownText_0x71aa1:
 	done
 
 CeladonMansionRoof_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 1, 1, 1, CELADON_MANSION_3F
-	warp_def 6, 1, 4, CELADON_MANSION_3F
-	warp_def 2, 5, 1, CELADON_MANSION_ROOF_HOUSE
+	db 3 ; warp events
+	warp_event  1,  1, CELADON_MANSION_3F, 1
+	warp_event  6,  1, CELADON_MANSION_3F, 4
+	warp_event  2,  5, CELADON_MANSION_ROOF_HOUSE, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
-	bg_event 6, 1, BGEVENT_LEFT, MapCeladonMansionRoofSignpost0Script
+	db 1 ; bg events
+	bg_event  6,  1, BGEVENT_LEFT, MapCeladonMansionRoofSignpost0Script
 
-.ObjectEvents:
-	db 1
-	object_event 7, 5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofFisherScript, -1
+	db 1 ; object events
+	object_event  7,  5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofFisherScript, -1

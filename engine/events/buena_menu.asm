@@ -1,4 +1,4 @@
-Special_AskRememberPassword: ; 4ae12
+AskRememberPassword: ; 4ae12
 	call .DoMenu
 	ld a, $0
 	jr c, .okay
@@ -11,8 +11,8 @@ Special_AskRememberPassword: ; 4ae12
 .DoMenu: ; 4ae1f
 	lb bc, 14, 7
 	push bc
-	ld hl, YesNoMenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, YesNoMenuHeader
+	call CopyMenuHeader
 	pop bc
 	ld a, b
 	ld [wMenuBorderLeftCoord], a

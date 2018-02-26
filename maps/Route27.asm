@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE27_COOLTRAINER_M1
 	const ROUTE27_COOLTRAINER_M2
 	const ROUTE27_COOLTRAINER_F1
@@ -10,13 +10,11 @@ const_value set 2
 	const ROUTE27_FISHER
 
 Route27_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	db 2 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -25,34 +23,34 @@ Route27_MapScripts:
 	end
 
 UnknownScript_0x1a0873:
-	spriteface ROUTE27_FISHER, LEFT
+	turnobject ROUTE27_FISHER, LEFT
 	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
 	applymovement ROUTE27_FISHER, MovementData_0x1a0a66
 	jump UnknownScript_0x1a088c
 
 UnknownScript_0x1a0881:
-	spriteface ROUTE27_FISHER, LEFT
+	turnobject ROUTE27_FISHER, LEFT
 	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
 	applymovement ROUTE27_FISHER, MovementData_0x1a0a69
 UnknownScript_0x1a088c:
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext Route27FisherHeyText
 	buttonsound
 	writetext Route27FisherText
 	waitbutton
 	closetext
-	setscene 1
+	setscene SCENE_FINISHED
 	end
 
 Route27FisherScript:
 	jumptextfaceplayer Route27FisherText
 
 TrainerPsychicGilbert:
-	trainer EVENT_BEAT_PSYCHIC_GILBERT, PSYCHIC_T, GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, .Script
+	trainer PSYCHIC_T, GILBERT, EVENT_BEAT_PSYCHIC_GILBERT, PsychicGilbertSeenText, PsychicGilbertBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PsychicGilbertAfterBattleText
 	waitbutton
@@ -60,11 +58,11 @@ TrainerPsychicGilbert:
 	end
 
 TrainerBirdKeeperJose2:
-	trainer EVENT_BEAT_BIRD_KEEPER_JOSE2, BIRD_KEEPER, JOSE2, BirdKeeperJose2SeenText, BirdKeeperJose2BeatenText, 0, .Script
+	trainer BIRD_KEEPER, JOSE2, EVENT_BEAT_BIRD_KEEPER_JOSE2, BirdKeeperJose2SeenText, BirdKeeperJose2BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_JOSE
 	iftrue .WantsBattle
@@ -84,8 +82,8 @@ TrainerBirdKeeperJose2:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_BIRDKEEPER_JOSE
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext BIRD_KEEPER, JOSE2, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -94,9 +92,9 @@ TrainerBirdKeeperJose2:
 	scall .Rematch
 	winlosstext BirdKeeperJose2BeatenText, 0
 	copybytetovar wJoseFightCount
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
@@ -173,10 +171,10 @@ TrainerBirdKeeperJose2:
 	end
 
 TrainerCooltrainermBlake:
-	trainer EVENT_BEAT_COOLTRAINERM_BLAKE, COOLTRAINERM, BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, .Script
+	trainer COOLTRAINERM, BLAKE, EVENT_BEAT_COOLTRAINERM_BLAKE, CooltrainermBlakeSeenText, CooltrainermBlakeBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainermBlakeAfterBattleText
 	waitbutton
@@ -184,10 +182,10 @@ TrainerCooltrainermBlake:
 	end
 
 TrainerCooltrainermBrian:
-	trainer EVENT_BEAT_COOLTRAINERM_BRIAN, COOLTRAINERM, BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, .Script
+	trainer COOLTRAINERM, BRIAN, EVENT_BEAT_COOLTRAINERM_BRIAN, CooltrainermBrianSeenText, CooltrainermBrianBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainermBrianAfterBattleText
 	waitbutton
@@ -195,11 +193,11 @@ TrainerCooltrainermBrian:
 	end
 
 TrainerCooltrainerfReena:
-	trainer EVENT_BEAT_COOLTRAINERF_REENA, COOLTRAINERF, REENA1, CooltrainerfReenaSeenText, CooltrainerfReenaBeatenText, 0, .Script
+	trainer COOLTRAINERF, REENA1, EVENT_BEAT_COOLTRAINERF_REENA, CooltrainerfReenaSeenText, CooltrainerfReenaBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_COOLTRAINERF_REENA
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_REENA
 	iftrue .WantsBattle
@@ -217,8 +215,8 @@ TrainerCooltrainerfReena:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_COOLTRAINERF_REENA
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext COOLTRAINERF, REENA1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -227,9 +225,9 @@ TrainerCooltrainerfReena:
 	scall .Rematch
 	winlosstext CooltrainerfReenaBeatenText, 0
 	copybytetovar wReenaFightCount
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
@@ -288,10 +286,10 @@ TrainerCooltrainerfReena:
 	end
 
 TrainerCooltrainerfMegan:
-	trainer EVENT_BEAT_COOLTRAINERF_MEGAN, COOLTRAINERF, MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, .Script
+	trainer COOLTRAINERF, MEGAN, EVENT_BEAT_COOLTRAINERF_MEGAN, CooltrainerfMeganSeenText, CooltrainerfMeganBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CooltrainerfMeganAfterBattleText
 	waitbutton
@@ -468,32 +466,27 @@ TohjoFallsSignText:
 	done
 
 Route27_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 33, 7, 1, ROUTE_27_SANDSTORM_HOUSE
-	warp_def 26, 5, 1, TOHJO_FALLS
-	warp_def 36, 5, 2, TOHJO_FALLS
+	db 3 ; warp events
+	warp_event 33,  7, ROUTE_27_SANDSTORM_HOUSE, 1
+	warp_event 26,  5, TOHJO_FALLS, 1
+	warp_event 36,  5, TOHJO_FALLS, 2
 
-.CoordEvents:
-	db 2
-	coord_event 18, 10, 0, UnknownScript_0x1a0873
-	coord_event 19, 10, 0, UnknownScript_0x1a0881
+	db 2 ; coord events
+	coord_event 18, 10, SCENE_DEFAULT, UnknownScript_0x1a0873
+	coord_event 19, 10, SCENE_DEFAULT, UnknownScript_0x1a0881
 
-.BGEvents:
-	db 1
-	bg_event 25, 7, BGEVENT_READ, TohjoFallsSign
+	db 1 ; bg events
+	bg_event 25,  7, BGEVENT_READ, TohjoFallsSign
 
-.ObjectEvents:
-	db 9
-	object_event 48, 7, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermBlake, -1
-	object_event 58, 6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainermBrian, -1
+	db 9 ; object events
+	object_event 48,  7, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermBlake, -1
+	object_event 58,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainermBrian, -1
 	object_event 72, 10, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainerfReena, -1
-	object_event 37, 6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerCooltrainerfMegan, -1
-	object_event 65, 7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicGilbert, -1
+	object_event 37,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerCooltrainerfMegan, -1
+	object_event 65,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicGilbert, -1
 	object_event 58, 13, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperJose2, -1
-	object_event 60, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route27TMSolarbeam, EVENT_ROUTE_27_TM_SOLARBEAM
-	object_event 53, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route27RareCandy, EVENT_ROUTE_27_RARE_CANDY
+	object_event 60, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route27TMSolarbeam, EVENT_ROUTE_27_TM_SOLARBEAM
+	object_event 53, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route27RareCandy, EVENT_ROUTE_27_RARE_CANDY
 	object_event 21, 10, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 3, Route27FisherScript, -1

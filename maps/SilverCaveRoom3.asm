@@ -1,15 +1,13 @@
-const_value set 2
+	const_def 2 ; object constants
 	const SILVERCAVEROOM3_RED
 
 SilverCaveRoom3_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Red:
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	faceplayer
 	opentext
 	writetext .Text1
@@ -20,16 +18,16 @@ Red:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	opentext
 	writetext .Text3
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear SILVERCAVEROOM3_RED
 	pause 15
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	pause 30
 	special HealParty
 	refreshscreen
@@ -51,19 +49,14 @@ Red:
 	done
 
 SilverCaveRoom3_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
-	warp_def 9, 33, 2, SILVER_CAVE_ROOM_2
+	db 1 ; warp events
+	warp_event  9, 33, SILVER_CAVE_ROOM_2, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 9, 10, SPRITE_RED, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER
+	db 1 ; object events
+	object_event  9, 10, SPRITE_RED, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER

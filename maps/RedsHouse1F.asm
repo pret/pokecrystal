@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const REDSHOUSE1F_REDS_MOM
 
 RedsHouse1F_MapScripts:
-.SceneScripts:
-	db 1
+	db 1 ; scene scripts
 	scene_script .DummyScene
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene:
 	end
@@ -75,24 +73,19 @@ RedsHouse1FTVText:
 	done
 
 RedsHouse1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 2, 7, 1, PALLET_TOWN
-	warp_def 3, 7, 1, PALLET_TOWN
-	warp_def 7, 0, 1, REDS_HOUSE_2F
+	db 3 ; warp events
+	warp_event  2,  7, PALLET_TOWN, 1
+	warp_event  3,  7, PALLET_TOWN, 1
+	warp_event  7,  0, REDS_HOUSE_2F, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
-	bg_event 0, 1, BGEVENT_READ, RedsHouse1FBookshelf
-	bg_event 1, 1, BGEVENT_READ, RedsHouse1FBookshelf
-	bg_event 2, 1, BGEVENT_READ, RedsHouse1FTV
+	db 3 ; bg events
+	bg_event  0,  1, BGEVENT_READ, RedsHouse1FBookshelf
+	bg_event  1,  1, BGEVENT_READ, RedsHouse1FBookshelf
+	bg_event  2,  1, BGEVENT_READ, RedsHouse1FTV
 
-.ObjectEvents:
-	db 1
-	object_event 5, 3, SPRITE_REDS_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RedsMom, -1
+	db 1 ; object events
+	object_event  5,  3, SPRITE_REDS_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RedsMom, -1

@@ -159,7 +159,7 @@ MobileCheckOwnMonAnywhere: ; 4a843
 	ret
 ; 4a927
 
-UnusedSpecial_FindItemInPCOrBag: ; 4a927
+UnusedFindItemInPCOrBag: ; 4a927
 	ld a, [wScriptVar]
 	ld [wCurItem], a
 	ld hl, wPCItems
@@ -684,8 +684,8 @@ Function4ac58: ; 4ac58
 	hlcoord 1, 15
 	call ClearBox
 	farcall FreezeMonIcons
-	ld hl, MenuDataHeader_0x4aca2
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x4aca2
+	call LoadMenuHeader
 	ld hl, wd019
 	bit 1, [hl]
 	jr z, .asm_4ac89
@@ -714,7 +714,7 @@ Function4ac58: ; 4ac58
 	ret
 ; 4aca2
 
-MenuDataHeader_0x4aca2: ; 0x4aca2
+MenuHeader_0x4aca2: ; 0x4aca2
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 9, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
@@ -724,19 +724,19 @@ MenuDataHeader_0x4aca2: ; 0x4aca2
 Function4acaa: ; 4acaa
 .asm_4acaa
 	ld a, $a0
-	ld [wMenuData2Flags], a
+	ld [wMenuDataFlags], a
 	ld a, [wd019]
 	bit 1, a
 	jr z, .asm_4acc2
 	ld a, $2
-	ld [wMenuData2Items], a
+	ld [wMenuDataItems], a
 	ld a, $c
 	ld [wMenuBorderTopCoord], a
 	jr .asm_4accc
 
 .asm_4acc2
 	ld a, $4
-	ld [wMenuData2Items], a
+	ld [wMenuDataItems], a
 	ld a, $8
 	ld [wMenuBorderTopCoord], a
 

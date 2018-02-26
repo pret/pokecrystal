@@ -1,32 +1,25 @@
 UndergroundPath_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 UndergroundPathHiddenFullRestore:
-	hiddenitem EVENT_UNDERGROUND_PATH_HIDDEN_FULL_RESTORE, FULL_RESTORE
+	hiddenitem FULL_RESTORE, EVENT_UNDERGROUND_PATH_HIDDEN_FULL_RESTORE
 
 UndergroundPathHiddenXSpecial:
-	hiddenitem EVENT_UNDERGROUND_PATH_HIDDEN_X_SPECIAL, X_SPECIAL
+	hiddenitem X_SPECIAL, EVENT_UNDERGROUND_PATH_HIDDEN_X_SPECIAL
 
 UndergroundPath_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 3, 2, 3, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
-	warp_def 3, 24, 3, ROUTE_6_UNDERGROUND_PATH_ENTRANCE
+	db 2 ; warp events
+	warp_event  3,  2, ROUTE_5_UNDERGROUND_PATH_ENTRANCE, 3
+	warp_event  3, 24, ROUTE_6_UNDERGROUND_PATH_ENTRANCE, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 3, 9, BGEVENT_ITEM, UndergroundPathHiddenFullRestore
-	bg_event 1, 19, BGEVENT_ITEM, UndergroundPathHiddenXSpecial
+	db 2 ; bg events
+	bg_event  3,  9, BGEVENT_ITEM, UndergroundPathHiddenFullRestore
+	bg_event  1, 19, BGEVENT_ITEM, UndergroundPathHiddenXSpecial
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

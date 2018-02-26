@@ -37,7 +37,7 @@ SweetScentEncounter: ; 506ef
 	farcall CanUseSweetScent
 	jr nc, .no_battle
 	ld hl, wStatusFlags2
-	bit 2, [hl]
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	jr nz, .not_in_bug_contest
 	farcall GetMapEncounterRate
 	ld a, b

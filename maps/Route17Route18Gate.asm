@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE17ROUTE18GATE_OFFICER
 
 Route17Route18Gate_MapScripts:
-.SceneScripts:
-	db 1
-	scene_script .DummyScene
+	db 1 ; scene scripts
+	scene_script .DummyScene ; SCENE_DEFAULT
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene:
 	end
@@ -22,7 +20,7 @@ UnknownScript_0x73611:
 
 UnknownScript_0x73617:
 	showemote EMOTE_SHOCK, ROUTE17ROUTE18GATE_OFFICER, 15
-	spriteface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext UnknownText_0x7364d
 	waitbutton
@@ -52,24 +50,19 @@ UnknownText_0x7364d:
 	done
 
 Route17Route18Gate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 0, 4, 1, ROUTE_17
-	warp_def 0, 5, 2, ROUTE_17
-	warp_def 9, 4, 1, ROUTE_18
-	warp_def 9, 5, 2, ROUTE_18
+	db 4 ; warp events
+	warp_event  0,  4, ROUTE_17, 1
+	warp_event  0,  5, ROUTE_17, 2
+	warp_event  9,  4, ROUTE_18, 1
+	warp_event  9,  5, ROUTE_18, 2
 
-.CoordEvents:
-	db 2
-	coord_event 5, 4, 0, UnknownScript_0x73611
-	coord_event 5, 5, 0, UnknownScript_0x73611
+	db 2 ; coord events
+	coord_event  5,  4, SCENE_DEFAULT, UnknownScript_0x73611
+	coord_event  5,  5, SCENE_DEFAULT, UnknownScript_0x73611
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route17Route18GateOfficerScript, -1
+	db 1 ; object events
+	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route17Route18GateOfficerScript, -1

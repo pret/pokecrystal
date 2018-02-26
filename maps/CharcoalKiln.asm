@@ -1,14 +1,12 @@
-const_value set 2
+	const_def 2 ; object constants
 	const CHARCOALKILN_BLACK_BELT
 	const CHARCOALKILN_YOUNGSTER
 	const CHARCOALKILN_MOLTRES
 
 CharcoalKiln_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 CharcoalKilnBoss:
 	faceplayer
@@ -149,25 +147,20 @@ FarfetchdText:
 	done
 
 CharcoalKiln_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 2, AZALEA_TOWN
-	warp_def 3, 7, 2, AZALEA_TOWN
+	db 2 ; warp events
+	warp_event  2,  7, AZALEA_TOWN, 2
+	warp_event  3,  7, AZALEA_TOWN, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
-	bg_event 0, 1, BGEVENT_READ, CharcoalKilnBookshelf
-	bg_event 1, 1, BGEVENT_READ, CharcoalKilnBookshelf
-	bg_event 7, 1, BGEVENT_READ, CharcoalKilnRadio
+	db 3 ; bg events
+	bg_event  0,  1, BGEVENT_READ, CharcoalKilnBookshelf
+	bg_event  1,  1, BGEVENT_READ, CharcoalKilnBookshelf
+	bg_event  7,  1, BGEVENT_READ, CharcoalKilnRadio
 
-.ObjectEvents:
-	db 3
-	object_event 2, 3, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CharcoalKilnBoss, EVENT_CHARCOAL_KILN_BOSS
-	object_event 5, 3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CharcoalKilnApprentice, EVENT_CHARCOAL_KILN_APPRENTICE
-	object_event 5, 6, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 2, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CharcoalKilnFarfetchd, EVENT_CHARCOAL_KILN_FARFETCH_D
+	db 3 ; object events
+	object_event  2,  3, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CharcoalKilnBoss, EVENT_CHARCOAL_KILN_BOSS
+	object_event  5,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CharcoalKilnApprentice, EVENT_CHARCOAL_KILN_APPRENTICE
+	object_event  5,  6, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 2, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CharcoalKilnFarfetchd, EVENT_CHARCOAL_KILN_FARFETCH_D

@@ -1,4 +1,4 @@
-Special_GetFirstPokemonHappiness: ; 718d
+GetFirstPokemonHappiness: ; 718d
 	ld hl, wPartyMon1Happiness
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wPartySpecies
@@ -17,7 +17,7 @@ Special_GetFirstPokemonHappiness: ; 718d
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
-Special_CheckFirstMonIsEgg: ; 71ac
+CheckFirstMonIsEgg: ; 71ac
 	ld a, [wPartySpecies]
 	ld [wd265], a
 	cp EGG
@@ -103,7 +103,7 @@ ChangeHappiness: ; 71c2
 	ret
 
 
-INCLUDE "data/happiness_changes.asm"
+INCLUDE "data/events/happiness_changes.asm"
 
 
 StepHappiness:: ; 725a
@@ -146,7 +146,7 @@ DayCareStep:: ; 7282
 ; Raise the experience of Day-Care Pokémon every step cycle.
 
 	ld a, [wDayCareMan]
-	bit 0, a
+	bit DAYCAREMAN_HAS_MON_F, a
 	jr z, .day_care_lady
 
 	ld a, [wBreedMon1Level] ; level
@@ -168,7 +168,7 @@ DayCareStep:: ; 7282
 
 .day_care_lady
 	ld a, [wDayCareLady]
-	bit 0, a
+	bit DAYCARELADY_HAS_MON_F, a
 	jr z, .check_egg
 
 	ld a, [wBreedMon2Level] ; level
@@ -190,7 +190,7 @@ DayCareStep:: ; 7282
 
 .check_egg
 	ld hl, wDayCareMan
-	bit 5, [hl] ; egg
+	bit DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 	ret z
 	ld hl, wStepsToEgg
 	dec [hl]
@@ -218,6 +218,6 @@ DayCareStep:: ; 7282
 	cp b
 	ret nc
 	ld hl, wDayCareMan
-	res 5, [hl]
-	set 6, [hl]
+	res DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
+	set DAYCAREMAN_HAS_EGG_F, [hl]
 	ret

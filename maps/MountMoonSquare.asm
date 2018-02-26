@@ -1,15 +1,13 @@
-const_value set 2
+	const_def 2 ; object constants
 	const MOUNTMOONSQUARE_FAIRY1
 	const MOUNTMOONSQUARE_FAIRY2
 	const MOUNTMOONSQUARE_ROCK
 
 MountMoonSquare_MapScripts:
-.SceneScripts:
-	db 1
-	scene_script .DummyScene
+	db 1 ; scene scripts
+	scene_script .DummyScene ; SCENE_DEFAULT
 
-.MapCallbacks:
-	db 2
+	db 2 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .DisappearMoonStone
 	callback MAPCALLBACK_OBJECTS, .DisappearRock
 
@@ -28,15 +26,15 @@ ClefairyDance:
 	checkflag ENGINE_MT_MOON_SQUARE_CLEFAIRY
 	iftrue .NoDancing
 	checkcode VAR_WEEKDAY
-	if_not_equal MONDAY, .NoDancing
-	checknite
+	ifnotequal MONDAY, .NoDancing
+	checktime NITE
 	iffalse .NoDancing
 	appear MOUNTMOONSQUARE_FAIRY1
 	appear MOUNTMOONSQUARE_FAIRY2
 	applymovement PLAYER, PlayerWalksUpToDancingClefairies
 	pause 15
 	appear MOUNTMOONSQUARE_ROCK
-	spriteface MOUNTMOONSQUARE_FAIRY1, RIGHT
+	turnobject MOUNTMOONSQUARE_FAIRY1, RIGHT
 	cry CLEFAIRY
 	waitsfx
 	pause 30
@@ -56,10 +54,10 @@ ClefairyDance:
 	follow MOUNTMOONSQUARE_FAIRY1, MOUNTMOONSQUARE_FAIRY2
 	applymovement MOUNTMOONSQUARE_FAIRY1, ClefairyDanceStep7
 	stopfollow
-	spriteface MOUNTMOONSQUARE_FAIRY1, DOWN
+	turnobject MOUNTMOONSQUARE_FAIRY1, DOWN
 	pause 10
 	showemote EMOTE_SHOCK, MOUNTMOONSQUARE_FAIRY1, 15
-	spriteface MOUNTMOONSQUARE_FAIRY1, DOWN
+	turnobject MOUNTMOONSQUARE_FAIRY1, DOWN
 	cry CLEFAIRY
 	pause 15
 	follow MOUNTMOONSQUARE_FAIRY1, MOUNTMOONSQUARE_FAIRY2
@@ -75,7 +73,7 @@ ClefairyDance:
 	end
 
 MountMoonSquareHiddenMoonStone:
-	hiddenitem EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE, MOON_STONE
+	hiddenitem MOON_STONE, EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 
 DontLitterSign:
 	jumptext DontLitterSignText
@@ -133,26 +131,21 @@ DontLitterSignText:
 	done
 
 MountMoonSquare_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 20, 5, 5, MOUNT_MOON
-	warp_def 22, 11, 6, MOUNT_MOON
-	warp_def 13, 7, 1, MOUNT_MOON_GIFT_SHOP
+	db 3 ; warp events
+	warp_event 20,  5, MOUNT_MOON, 5
+	warp_event 22, 11, MOUNT_MOON, 6
+	warp_event 13,  7, MOUNT_MOON_GIFT_SHOP, 1
 
-.CoordEvents:
-	db 1
-	coord_event 7, 11, 0, ClefairyDance
+	db 1 ; coord events
+	coord_event  7, 11, SCENE_DEFAULT, ClefairyDance
 
-.BGEvents:
-	db 2
-	bg_event 7, 7, BGEVENT_ITEM, MountMoonSquareHiddenMoonStone
-	bg_event 17, 7, BGEVENT_READ, DontLitterSign
+	db 2 ; bg events
+	bg_event  7,  7, BGEVENT_ITEM, MountMoonSquareHiddenMoonStone
+	bg_event 17,  7, BGEVENT_READ, DontLitterSign
 
-.ObjectEvents:
-	db 3
-	object_event 6, 6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	object_event 7, 6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	object_event 7, 7, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK
+	db 3 ; object events
+	object_event  6,  6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	object_event  7,  6, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	object_event  7,  7, SPRITE_ROCK, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MtMoonSquareRock, EVENT_MT_MOON_SQUARE_ROCK

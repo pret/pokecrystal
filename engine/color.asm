@@ -337,11 +337,11 @@ ApplyHPBarPals:
 	ret
 
 .Enemy:
-	ld de, wBGPals2 palette PAL_BATTLE_BG_ENEMY_HP + 2
+	ld de, wBGPals2 palette PAL_BATTLE_BG_ENEMY_HP color 1
 	jr .okay
 
 .Player:
-	ld de, wBGPals2 palette PAL_BATTLE_BG_PLAYER_HP + 2
+	ld de, wBGPals2 palette PAL_BATTLE_BG_PLAYER_HP color 1
 
 .okay
 	ld l, c
@@ -497,7 +497,7 @@ LoadHLPaletteIntoDE:
 	push af
 	ld a, BANK(wOBPals1)
 	ld [rSVBK], a
-	ld c, $8
+	ld c, 1 palettes
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -521,7 +521,7 @@ LoadPalette_White_Col1_Col2_Black:
 	ld [de], a
 	inc de
 
-	ld c, 2 * 2
+	ld c, 2 * PAL_COLOR_SIZE
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -707,7 +707,7 @@ GetPlayerOrMonPalettePointer:
 	and a
 	jp nz, GetMonNormalOrShinyPalettePointer
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a ; transformed to male
+	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .male
 	ld a, [wPlayerGender]
 	and a
@@ -1308,7 +1308,7 @@ rept 4
 	inc hl
 endr
 .morn_day
-	ld de, wBGPals1 palette PAL_BG_ROOF + 2
+	ld de, wBGPals1 palette PAL_BG_ROOF color 1
 	ld bc, 4
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM

@@ -1,7 +1,7 @@
 Unreferenced_Function88248: ; 88248
 	ld c, CAL
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .okay
 	ld c, KAREN
 
@@ -56,13 +56,13 @@ MovePlayerPic: ; 88266
 	jr .loop
 
 ShowPlayerNamingChoices: ; 88297
-	ld hl, ChrisNameMenuDataHeader
+	ld hl, ChrisNameMenuHeader
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotGender
-	ld hl, KrisNameMenuDataHeader
+	ld hl, KrisNameMenuHeader
 .GotGender:
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	ld a, [wMenuCursorY]
 	dec a
@@ -76,7 +76,7 @@ GetPlayerNameArray: ; 88318 This Function is never called
 	ld hl, wPlayerName
 	ld de, MalePlayerNameArray
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .done
 	ld de, FemalePlayerNameArray
 
@@ -92,7 +92,7 @@ GetPlayerIcon: ; 8832c
 	ld b, BANK(ChrisSpriteGFX)
 
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .done
 
 ; Female
@@ -105,7 +105,7 @@ GetPlayerIcon: ; 8832c
 GetCardPic: ; 8833e
 	ld hl, ChrisCardPic
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotClass
 	ld hl, KrisCardPic
 .GotClass:
@@ -131,7 +131,7 @@ INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 GetPlayerBackpic: ; 88825
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, GetChrisBackpic
 	call GetKrisBackpic
 	ret
@@ -150,7 +150,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	ld [hBGMapMode], a
 	ld e, 0
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotClass
 	ld e, 1
 
@@ -159,7 +159,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	ld [wTrainerClass], a
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotPic
 	ld de, KrisPic
 
@@ -179,7 +179,7 @@ DrawIntroPlayerPic: ; 88874
 ; Get class
 	ld e, CHRIS
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotClass
 	ld e, KRIS
 .GotClass:
@@ -189,7 +189,7 @@ DrawIntroPlayerPic: ; 88874
 ; Load pic
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .GotPic
 	ld de, KrisPic
 .GotPic:

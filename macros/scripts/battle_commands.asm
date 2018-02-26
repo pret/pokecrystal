@@ -181,7 +181,6 @@ ENDM
 	command startloop               ; ae
 	command curl                    ; af
 
-__enum__ set $fe
-
+	enum_start $fe
 	command endturn                 ; fe
 	command endmove                 ; ff

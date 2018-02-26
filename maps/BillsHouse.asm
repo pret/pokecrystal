@@ -1,17 +1,15 @@
-const_value set 2
+	const_def 2 ; object constants
 	const BILLSHOUSE_GRAMPS
 
 BillsHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 BillsGrandpa:
 	faceplayer
 	opentext
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue .JustShowedSomething
 	checkevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
 	iftrue .GotThunderstone
@@ -37,9 +35,9 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
-	if_not_equal LICKITUNG, .WrongPokemon
+	ifnotequal LICKITUNG, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
 	jump .ShowedLickitung
@@ -51,9 +49,9 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
-	if_not_equal ODDISH, .WrongPokemon
+	ifnotequal ODDISH, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
 	jump .ShowedOddish
@@ -65,9 +63,9 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
-	if_not_equal STARYU, .WrongPokemon
+	ifnotequal STARYU, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
 	jump .ShowedStaryu
@@ -81,9 +79,9 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
-	if_not_equal GROWLITHE, .WrongPokemon
+	ifnotequal GROWLITHE, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
 	jump .ShowedGrowlitheVulpix
@@ -95,9 +93,9 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
-	if_not_equal VULPIX, .WrongPokemon
+	ifnotequal VULPIX, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
 	jump .ShowedGrowlitheVulpix
@@ -109,9 +107,9 @@ BillsGrandpa:
 	yesorno
 	iffalse .SaidNo
 	scall .ExcitedToSee
-	special Special_BillsGrandfather
+	special BillsGrandfather
 	iffalse .SaidNo
-	if_not_equal PICHU, .WrongPokemon
+	ifnotequal PICHU, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
 	jump .ShowedPichu
@@ -123,7 +121,7 @@ BillsGrandpa:
 	verbosegiveitem EVERSTONE
 	iffalse .BagFull
 	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	closetext
 	end
 
@@ -134,7 +132,7 @@ BillsGrandpa:
 	verbosegiveitem LEAF_STONE
 	iffalse .BagFull
 	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	closetext
 	end
 
@@ -145,7 +143,7 @@ BillsGrandpa:
 	verbosegiveitem WATER_STONE
 	iffalse .BagFull
 	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	closetext
 	end
 
@@ -156,7 +154,7 @@ BillsGrandpa:
 	verbosegiveitem FIRE_STONE
 	iffalse .BagFull
 	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
-	setevent EVENT_GAVE_KURT_APRICORNS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	closetext
 	end
 
@@ -354,20 +352,15 @@ BillsGrandpaPichuText:
 	done
 
 BillsHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 1, ROUTE_25
-	warp_def 3, 7, 1, ROUTE_25
+	db 2 ; warp events
+	warp_event  2,  7, ROUTE_25, 1
+	warp_event  3,  7, ROUTE_25, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 2, 3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BillsGrandpa, -1
+	db 1 ; object events
+	object_event  2,  3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BillsGrandpa, -1

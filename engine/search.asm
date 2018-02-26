@@ -1,4 +1,4 @@
-Special_BeastsCheck: ; 0x4a6e8
+BeastsCheck: ; 0x4a6e8
 ; Check if the player owns all three legendary beasts.
 ; They must exist in either party or PC, and have the player's OT and ID.
 ; Return the result in wScriptVar.
@@ -29,8 +29,8 @@ Special_BeastsCheck: ; 0x4a6e8
 	ret
 
 
-Special_MonCheck: ; 0x4a711
-; Check if the player owns any monsters of the species in wScriptVar.
+MonCheck: ; 0x4a711
+; Check if the player owns any Pokémon of the species in wScriptVar.
 ; Return the result in wScriptVar.
 
 	call CheckOwnMonAnywhere
@@ -219,7 +219,7 @@ CheckOwnMon: ; 0x4a7ba
 
 	ld hl, wPlayerName
 
-rept NAME_LENGTH_JAPANESE +- 2 ; should be PLAYER_NAME_LENGTH +- 2
+rept NAME_LENGTH_JAPANESE + -2 ; should be PLAYER_NAME_LENGTH + -2
 	ld a, [de]
 	cp [hl]
 	jr nz, .notfound

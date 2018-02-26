@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const CERULEANCITY_COOLTRAINER_M
 	const CERULEANCITY_SUPER_NERD
 	const CERULEANCITY_SLOWPOKE
@@ -7,11 +7,9 @@ const_value set 2
 	const CERULEANCITY_YOUNGSTER
 
 CeruleanCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -51,7 +49,7 @@ CeruleanCityCooltrainerFScript:
 	writetext CeruleanCityCooltrainerFText1
 	waitbutton
 	closetext
-	spriteface CERULEANCITY_COOLTRAINER_F, LEFT
+	turnobject CERULEANCITY_COOLTRAINER_F, LEFT
 	opentext
 	writetext CeruleanCityCooltrainerFText2
 	waitbutton
@@ -115,7 +113,7 @@ CeruleanCityYoungsterScript:
 	playsound SFX_TRANSACTION
 	waitsfx
 	showemote EMOTE_SHOCK, CERULEANCITY_YOUNGSTER, 15
-	spriteface CERULEANCITY_YOUNGSTER, LEFT
+	turnobject CERULEANCITY_YOUNGSTER, LEFT
 	opentext
 	writetext CeruleanCityYoungsterText2
 	waitbutton
@@ -147,7 +145,7 @@ CeruleanCityMartSign:
 	jumpstd martsign
 
 CeruleanCityHiddenBerserkGene:
-	hiddenitem EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY, BERSERK_GENE
+	hiddenitem BERSERK_GENE, EVENT_FOUND_BERSERK_GENE_IN_CERULEAN_CITY
 
 CeruleanCityCooltrainerMText1:
 	text "KANTO's POWER"
@@ -276,38 +274,33 @@ CeruleanLockedDoorText:
 	done
 
 CeruleanCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
-	warp_def 7, 15, 1, CERULEAN_GYM_BADGE_SPEECH_HOUSE
-	warp_def 28, 17, 1, CERULEAN_POLICE_STATION
-	warp_def 13, 19, 1, CERULEAN_TRADE_SPEECH_HOUSE
-	warp_def 19, 21, 1, CERULEAN_POKECENTER_1F
-	warp_def 30, 23, 1, CERULEAN_GYM
-	warp_def 25, 29, 2, CERULEAN_MART
+	db 6 ; warp events
+	warp_event  7, 15, CERULEAN_GYM_BADGE_SPEECH_HOUSE, 1
+	warp_event 28, 17, CERULEAN_POLICE_STATION, 1
+	warp_event 13, 19, CERULEAN_TRADE_SPEECH_HOUSE, 1
+	warp_event 19, 21, CERULEAN_POKECENTER_1F, 1
+	warp_event 30, 23, CERULEAN_GYM, 1
+	warp_event 25, 29, CERULEAN_MART, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 9
+	db 9 ; bg events
 	bg_event 23, 23, BGEVENT_READ, CeruleanCitySign
 	bg_event 27, 25, BGEVENT_READ, CeruleanGymSign
 	bg_event 11, 29, BGEVENT_READ, CeruleanBikeShopSign
 	bg_event 25, 17, BGEVENT_READ, CeruleanPoliceSign
-	bg_event 23, 7, BGEVENT_READ, CeruleanCapeSign
+	bg_event 23,  7, BGEVENT_READ, CeruleanCapeSign
 	bg_event 14, 29, BGEVENT_READ, CeruleanLockedDoor
 	bg_event 20, 21, BGEVENT_READ, CeruleanCityPokecenterSign
 	bg_event 26, 29, BGEVENT_READ, CeruleanCityMartSign
-	bg_event 2, 12, BGEVENT_ITEM, CeruleanCityHiddenBerserkGene
+	bg_event  2, 12, BGEVENT_ITEM, CeruleanCityHiddenBerserkGene
 
-.ObjectEvents:
-	db 6
+	db 6 ; object events
 	object_event 15, 23, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCityCooltrainerMScript, -1
 	object_event 23, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeruleanCitySuperNerdScript, -1
-	object_event 20, 24, SPRITE_SLOWPOKE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanCitySlowbro, -1
+	object_event 20, 24, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanCitySlowbro, -1
 	object_event 21, 24, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanCityCooltrainerFScript, -1
 	object_event 30, 26, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityFisherScript, -1
-	object_event 6, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityYoungsterScript, -1
+	object_event  6, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanCityYoungsterScript, -1

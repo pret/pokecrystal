@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const NATIONALPARK_LASS1
 	const NATIONALPARK_POKEFAN_F1
 	const NATIONALPARK_TEACHER1
@@ -15,11 +15,9 @@ const_value set 2
 	const NATIONALPARK_POKE_BALL2
 
 NationalPark_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 NationalParkLassScript:
 	jumptextfaceplayer NationalParkLassText
@@ -68,15 +66,15 @@ GameboyKidScript_0x5c037:
 	writetext UnknownText_0x5c42a
 	waitbutton
 	closetext
-	spriteface NATIONALPARK_GAMEBOY_KID, DOWN
+	turnobject NATIONALPARK_GAMEBOY_KID, DOWN
 	end
 
 TrainerSchoolboyJack1:
-	trainer EVENT_BEAT_SCHOOLBOY_JACK, SCHOOLBOY, JACK1, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, .Script
+	trainer SCHOOLBOY, JACK1, EVENT_BEAT_SCHOOLBOY_JACK, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_JACK
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_JACK
 	iftrue UnknownScript_0x5c088
@@ -94,8 +92,8 @@ UnknownScript_0x5c071:
 	scall UnknownScript_0x5c100
 UnknownScript_0x5c074:
 	askforphonenumber PHONE_SCHOOLBOY_JACK
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5c110
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5c10c
+	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5c110
+	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5c10c
 	trainertotext SCHOOLBOY, JACK1, MEM_BUFFER_0
 	scall UnknownScript_0x5c104
 	jump UnknownScript_0x5c108
@@ -104,11 +102,11 @@ UnknownScript_0x5c088:
 	scall UnknownScript_0x5c114
 	winlosstext SchoolboyJack1BeatenText, 0
 	copybytetovar wJackFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
@@ -189,10 +187,10 @@ UnknownScript_0x5c114:
 	end
 
 TrainerPokefanmWilliam:
-	trainer EVENT_BEAT_POKEFANM_WILLIAM, POKEFANM, WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, 0, .Script
+	trainer POKEFANM, WILLIAM, EVENT_BEAT_POKEFANM_WILLIAM, PokefanmWilliamSeenText, PokefanmWilliamBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokefanmWilliamAfterBattleText
 	waitbutton
@@ -200,11 +198,11 @@ TrainerPokefanmWilliam:
 	end
 
 TrainerPokefanfBeverly1:
-	trainer EVENT_BEAT_POKEFANF_BEVERLY, POKEFANF, BEVERLY1, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, .Script
+	trainer POKEFANF, BEVERLY1, EVENT_BEAT_POKEFANF_BEVERLY, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_POKEFAN_BEVERLY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue UnknownScript_0x5c177
@@ -224,8 +222,8 @@ UnknownScript_0x5c160:
 	scall UnknownScript_0x5c193
 UnknownScript_0x5c163:
 	askforphonenumber PHONE_POKEFAN_BEVERLY
-	if_equal PHONE_CONTACTS_FULL, UnknownScript_0x5c1a3
-	if_equal PHONE_CONTACT_REFUSED, UnknownScript_0x5c19f
+	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5c1a3
+	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5c19f
 	trainertotext POKEFANF, BEVERLY1, MEM_BUFFER_0
 	scall UnknownScript_0x5c197
 	jump UnknownScript_0x5c19b
@@ -279,10 +277,10 @@ UnknownScript_0x5c1ab:
 	end
 
 TrainerLassKrise:
-	trainer EVENT_BEAT_LASS_KRISE, LASS, KRISE, LassKriseSeenText, LassKriseBeatenText, 0, .Script
+	trainer LASS, KRISE, EVENT_BEAT_LASS_KRISE, LassKriseSeenText, LassKriseBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext LassKriseAfterBattleText
 	waitbutton
@@ -305,7 +303,7 @@ NationalParkTMDig:
 	itemball TM_DIG
 
 NationalParkHiddenFullHeal:
-	hiddenitem EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL, FULL_HEAL
+	hiddenitem FULL_HEAL, EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL
 
 NationalParkLassText:
 	text "Look! Check out my"
@@ -514,30 +512,25 @@ UnknownText_0x5c7c6:
 	done
 
 NationalPark_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 33, 18, 1, ROUTE_36_NATIONAL_PARK_GATE
-	warp_def 33, 19, 2, ROUTE_36_NATIONAL_PARK_GATE
-	warp_def 10, 47, 1, ROUTE_35_NATIONAL_PARK_GATE
-	warp_def 11, 47, 2, ROUTE_35_NATIONAL_PARK_GATE
+	db 4 ; warp events
+	warp_event 33, 18, ROUTE_36_NATIONAL_PARK_GATE, 1
+	warp_event 33, 19, ROUTE_36_NATIONAL_PARK_GATE, 2
+	warp_event 10, 47, ROUTE_35_NATIONAL_PARK_GATE, 1
+	warp_event 11, 47, ROUTE_35_NATIONAL_PARK_GATE, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
+	db 4 ; bg events
 	bg_event 14, 44, BGEVENT_READ, MapNationalParkSignpost0Script
 	bg_event 27, 31, BGEVENT_READ, MapNationalParkSignpost1Script
-	bg_event 6, 47, BGEVENT_ITEM, NationalParkHiddenFullHeal
-	bg_event 12, 4, BGEVENT_READ, MapNationalParkSignpost3Script
+	bg_event  6, 47, BGEVENT_ITEM, NationalParkHiddenFullHeal
+	bg_event 12,  4, BGEVENT_READ, MapNationalParkSignpost3Script
 
-.ObjectEvents:
-	db 14
+	db 14 ; object events
 	object_event 15, 24, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NationalParkLassScript, -1
-	object_event 14, 4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPokefanFScript, -1
+	object_event 14,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPokefanFScript, -1
 	object_event 27, 40, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5c008, -1
 	object_event 11, 41, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster1Script, -1
 	object_event 10, 41, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster2Script, -1
@@ -545,8 +538,8 @@ NationalPark_MapEvents:
 	object_event 26, 40, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPersian, -1
 	object_event 27, 23, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
 	object_event 18, 29, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
-	object_event 16, 9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
-	object_event 8, 14, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassKrise, -1
-	object_event 35, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkParlyzHeal, EVENT_NATIONAL_PARK_PARLYZ_HEAL
-	object_event 26, 6, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameboyKidScript_0x5c037, -1
-	object_event 1, 43, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkTMDig, EVENT_NATIONAL_PARK_TM_DIG
+	object_event 16,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
+	object_event  8, 14, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassKrise, -1
+	object_event 35, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkParlyzHeal, EVENT_NATIONAL_PARK_PARLYZ_HEAL
+	object_event 26,  6, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameboyKidScript_0x5c037, -1
+	object_event  1, 43, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkTMDig, EVENT_NATIONAL_PARK_TM_DIG

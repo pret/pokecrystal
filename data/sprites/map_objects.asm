@@ -1,47 +1,308 @@
-sprite_movement_data: MACRO
-	db \1, \2, \3, \4, \5
-	dn \6, 0
-ENDM
-
 SpriteMovementData:: ; 4273
 ; entries correspond to SPRITEMOVEDATA_* constants
-	; function,                                              facing, action,                  flags1, flags2, palette flags
-	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   OBJECT_ACTION_STAND,        $02,    $00,    %0000 ; SPRITEMOVEDATA_00
-	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   OBJECT_ACTION_STAND,        $0c,    $00,    %0000 ; SPRITEMOVEDATA_ITEM_TREE
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_WANDER
-	sprite_movement_data SPRITEMOVEFN_SLOW_RANDOM_SPIN,      DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_SPINRANDOM_SLOW
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_Y,         DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_WALK_UP_DOWN
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_X,         DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_WALK_LEFT_RIGHT
-	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_STANDING_DOWN
-	sprite_movement_data SPRITEMOVEFN_STANDING,              UP,     OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_STANDING_UP
-	sprite_movement_data SPRITEMOVEFN_STANDING,              LEFT,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_STANDING_LEFT
-	sprite_movement_data SPRITEMOVEFN_STANDING,              RIGHT,  OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_STANDING_RIGHT
-	sprite_movement_data SPRITEMOVEFN_FAST_RANDOM_SPIN,      DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_SPINRANDOM_FAST
-	sprite_movement_data SPRITEMOVEFN_OBEY_DPAD,             DOWN,   OBJECT_ACTION_STAND,        $02,    $00,    %0000 ; SPRITEMOVEDATA_PLAYER
-	sprite_movement_data SPRITEMOVEFN_08,                    DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_0C
-	sprite_movement_data SPRITEMOVEFN_09,                    DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_0D
-	sprite_movement_data SPRITEMOVEFN_0A,                    DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_0E
-	sprite_movement_data SPRITEMOVEFN_0B,                    DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_0F
-	sprite_movement_data SPRITEMOVEFN_0C,                    DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_10
-	sprite_movement_data SPRITEMOVEFN_0D,                    DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_11
-	sprite_movement_data SPRITEMOVEFN_0E,                    DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_12
-	sprite_movement_data SPRITEMOVEFN_FOLLOW,                DOWN,   OBJECT_ACTION_STAND,        $02,    $00,    %0000 ; SPRITEMOVEDATA_FOLLOWING
-	sprite_movement_data SPRITEMOVEFN_SCRIPTED,              DOWN,   OBJECT_ACTION_STAND,        $02,    $00,    %0000 ; SPRITEMOVEDATA_SCRIPTED
-	sprite_movement_data SPRITEMOVEFN_BIG_SNORLAX,           DOWN,   OBJECT_ACTION_BIG_SNORLAX,  $2e,    $01,    %1100 ; SPRITEMOVEDATA_SNORLAX
-	sprite_movement_data SPRITEMOVEFN_BOUNCE,                DOWN,   OBJECT_ACTION_BOUNCE,       $2e,    $00,    %0000 ; SPRITEMOVEDATA_POKEMON
-	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   OBJECT_ACTION_STAND,        $0c,    $00,    %0000 ; SPRITEMOVEDATA_SUDOWOODO
-	sprite_movement_data SPRITEMOVEFN_STANDING,              DOWN,   OBJECT_ACTION_STAND,        $2e,    $10,    %0000 ; SPRITEMOVEDATA_SMASHABLE_ROCK
-	sprite_movement_data SPRITEMOVEFN_STRENGTH,              DOWN,   OBJECT_ACTION_STAND,        $2e,    $00,    %0100 ; SPRITEMOVEDATA_STRENGTH_BOULDER
-	sprite_movement_data SPRITEMOVEFN_FOLLOWNOTEXACT,        DOWN,   OBJECT_ACTION_STAND,        $02,    $00,    %0000 ; SPRITEMOVEDATA_FOLLOWNOTEXACT
-	sprite_movement_data SPRITEMOVEFN_SHADOW,                DOWN,   OBJECT_ACTION_00,           $8e,    $01,    %0000 ; SPRITEMOVEDATA_SHADOW
-	sprite_movement_data SPRITEMOVEFN_EMOTE,                 DOWN,   OBJECT_ACTION_EMOTE,        $8e,    $02,    %0000 ; SPRITEMOVEDATA_EMOTE
-	sprite_movement_data SPRITEMOVEFN_SCREENSHAKE,           DOWN,   OBJECT_ACTION_00,           $82,    $00,    %0000 ; SPRITEMOVEDATA_SCREENSHAKE
-	sprite_movement_data SPRITEMOVEFN_SPIN_COUNTERCLOCKWISE, LEFT,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE
-	sprite_movement_data SPRITEMOVEFN_SPIN_CLOCKWISE,        RIGHT,  OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; SPRITEMOVEDATA_SPINCLOCKWISE
-	sprite_movement_data SPRITEMOVEFN_STRENGTH,              DOWN,   OBJECT_ACTION_BIG_LAPRAS,   $2e,    $01,    %1100 ; SPRITEMOVEDATA_20
-	sprite_movement_data SPRITEMOVEFN_STRENGTH,              DOWN,   OBJECT_ACTION_BIG_DOLL,     $2e,    $01,    %1100 ; SPRITEMOVEDATA_BIGDOLL
-	sprite_movement_data SPRITEMOVEFN_BOULDERDUST,           DOWN,   OBJECT_ACTION_BOULDER_DUST, $8e,    $01,    %0000 ; SPRITEMOVEDATA_BOULDERDUST
-	sprite_movement_data SPRITEMOVEFN_GRASS,                 DOWN,   OBJECT_ACTION_GRASS_SHAKE,  $8e,    $02,    %0000 ; SPRITEMOVEDATA_GRASS
-	sprite_movement_data SPRITEMOVEFN_RANDOM_WALK_XY,        DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0010 ; SPRITEMOVEDATA_LAPRAS
-	sprite_movement_data SPRITEMOVEFN_00,                    DOWN,   OBJECT_ACTION_STAND,        $00,    $00,    %0000 ; 25
+
+; SPRITEMOVEDATA_00
+	db SPRITEMOVEFN_00 ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000010 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_STILL
+	db SPRITEMOVEFN_STANDING ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00001100 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_WANDER
+	db SPRITEMOVEFN_RANDOM_WALK_XY ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SPINRANDOM_SLOW
+	db SPRITEMOVEFN_SLOW_RANDOM_SPIN ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_WALK_UP_DOWN
+	db SPRITEMOVEFN_RANDOM_WALK_Y ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_WALK_LEFT_RIGHT
+	db SPRITEMOVEFN_RANDOM_WALK_X ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_STANDING_DOWN
+	db SPRITEMOVEFN_STANDING ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_STANDING_UP
+	db SPRITEMOVEFN_STANDING ; movement function
+	db UP ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_STANDING_LEFT
+	db SPRITEMOVEFN_STANDING ; movement function
+	db LEFT ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_STANDING_RIGHT
+	db SPRITEMOVEFN_STANDING ; movement function
+	db RIGHT ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SPINRANDOM_FAST
+	db SPRITEMOVEFN_FAST_RANDOM_SPIN ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_PLAYER
+	db SPRITEMOVEFN_OBEY_DPAD ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000010 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_0C
+	db SPRITEMOVEFN_08 ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_0D
+	db SPRITEMOVEFN_09 ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_0E
+	db SPRITEMOVEFN_0A ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_0F
+	db SPRITEMOVEFN_0B ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_10
+	db SPRITEMOVEFN_0C ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_11
+	db SPRITEMOVEFN_0D ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_12
+	db SPRITEMOVEFN_0E ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_FOLLOWING
+	db SPRITEMOVEFN_FOLLOW ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000010 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SCRIPTED
+	db SPRITEMOVEFN_SCRIPTED ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000010 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_BIGDOLLSYM
+	db SPRITEMOVEFN_BIG_SNORLAX ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_BIG_DOLL_SYM ; action
+	db %00101110 ; flags1
+	db %00000001 ; flags2
+	db %11000000 ; palette flags
+
+; SPRITEMOVEDATA_POKEMON
+	db SPRITEMOVEFN_BOUNCE ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_BOUNCE ; action
+	db %00101110 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SUDOWOODO
+	db SPRITEMOVEFN_STANDING ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00001100 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SMASHABLE_ROCK
+	db SPRITEMOVEFN_STANDING ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00101110 ; flags1
+	db %00010000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_STRENGTH_BOULDER
+	db SPRITEMOVEFN_STRENGTH ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00101110 ; flags1
+	db %00000000 ; flags2
+	db %01000000 ; palette flags
+
+; SPRITEMOVEDATA_FOLLOWNOTEXACT
+	db SPRITEMOVEFN_FOLLOWNOTEXACT ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000010 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SHADOW
+	db SPRITEMOVEFN_SHADOW ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_00 ; action
+	db %10001110 ; flags1
+	db %00000001 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_EMOTE
+	db SPRITEMOVEFN_EMOTE ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_EMOTE ; action
+	db %10001110 ; flags1
+	db %00000010 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SCREENSHAKE
+	db SPRITEMOVEFN_SCREENSHAKE ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_00 ; action
+	db %10000010 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE
+	db SPRITEMOVEFN_SPIN_COUNTERCLOCKWISE ; movement function
+	db LEFT ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SPINCLOCKWISE
+	db SPRITEMOVEFN_SPIN_CLOCKWISE ; movement function
+	db RIGHT ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_BIGDOLLASYM
+	db SPRITEMOVEFN_STRENGTH ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_BIG_DOLL_ASYM ; action
+	db %00101110 ; flags1
+	db %00000001 ; flags2
+	db %11000000 ; palette flags
+
+; SPRITEMOVEDATA_BIGDOLL
+	db SPRITEMOVEFN_STRENGTH ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_BIG_DOLL ; action
+	db %00101110 ; flags1
+	db %00000001 ; flags2
+	db %11000000 ; palette flags
+
+; SPRITEMOVEDATA_BOULDERDUST
+	db SPRITEMOVEFN_BOULDERDUST ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_BOULDER_DUST ; action
+	db %10001110 ; flags1
+	db %00000001 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_GRASS
+	db SPRITEMOVEFN_GRASS ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_GRASS_SHAKE ; action
+	db %10001110 ; flags1
+	db %00000010 ; flags2
+	db %00000000 ; palette flags
+
+; SPRITEMOVEDATA_SWIM_WANDER
+	db SPRITEMOVEFN_RANDOM_WALK_XY ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00100000 ; palette flags
+
+; 25
+	db SPRITEMOVEFN_00 ; movement function
+	db DOWN ; facing
+	db OBJECT_ACTION_STAND ; action
+	db %00000000 ; flags1
+	db %00000000 ; flags2
+	db %00000000 ; palette flags
+
 ; 4357

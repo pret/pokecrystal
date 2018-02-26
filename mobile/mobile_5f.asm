@@ -328,14 +328,14 @@ Function17d0f3: ; 17d0f3
 ; 17d187
 
 Mobile_CopyDefaultOTName: ; 17d187
-	ld hl, Mobile5F_KrissName
+	ld hl, Mobile5F_PlayersName
 	ld de, $c63d
 	ld bc, 5
 	call CopyBytes
 	ret
 ; 17d194
 
-Mobile5F_KrissName:
+Mobile5F_PlayersName:
 	db "クりス@@"
 ; 17d198
 
@@ -371,7 +371,7 @@ Mobile_CopyDefaultMailAuthor: ; 17d1c9
 	ld de, $c668
 	ld bc, 5
 	call ByteFill
-	ld hl, Mobile5F_KrissName
+	ld hl, Mobile5F_PlayersName
 	ld de, $c668
 	ld bc, 5
 	call CopyBytes
@@ -435,22 +435,22 @@ Function17d1f1: ; 17d1f1
 ; if [wScriptVar] == TRUE
 ;    Show BattleTower-Menu with 3 options in english language
 ;    - Challenge - Explanation - Cancel
-Special_Menu_ChallengeExplanationCancel: ; 17d224
+Menu_ChallengeExplanationCancel: ; 17d224
 	ld a, [wScriptVar]
 	and a
 	jr nz, .English
 	ld a, $4
 	ld [wScriptVar], a
-	ld hl, MenuDataHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
+	ld hl, MenuHeader_17d26a ; Japanese Menu, where you can choose 'News' as an option
 	jr .Load_Interpret
 
 .English:
 	ld a, $4
 	ld [wScriptVar], a
-	ld hl, MenuDataHeader_ChallengeExplanationCancel ; English Menu
+	ld hl, MenuHeader_ChallengeExplanationCancel ; English Menu
 
 .Load_Interpret:
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call Function17d246
 	call CloseWindow
 	ret
@@ -482,13 +482,13 @@ Function17d246: ; 17d246
 	ret
 ; 17d26a
 
-MenuDataHeader_17d26a: ; 17d26a
+MenuHeader_17d26a: ; 17d26a
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 14, 9
-	dw MenuData2_17d272
+	dw MenuData_17d272
 	db 1 ; default option
 
-MenuData2_17d272: ; 17d272
+MenuData_17d272: ; 17d272
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4
 	db "ニュース¯よみこむ@"
@@ -497,13 +497,13 @@ MenuData2_17d272: ; 17d272
 	db "やめる@"
 ; 17d28f
 
-MenuDataHeader_ChallengeExplanationCancel: ; 17d28f
+MenuHeader_ChallengeExplanationCancel: ; 17d28f
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 14, 7
-	dw MenuData2_ChallengeExplanationCancel
+	dw MenuData_ChallengeExplanationCancel
 	db 1 ; default option
 
-MenuData2_ChallengeExplanationCancel: ; 17d297
+MenuData_ChallengeExplanationCancel: ; 17d297
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3
 	db "Challenge@"
@@ -511,7 +511,7 @@ MenuData2_ChallengeExplanationCancel: ; 17d297
 	db "Cancel@"
 ; 17d2b6
 
-Special_Function17d2b6: ; 17d2b6
+Function17d2b6: ; 17d2b6
 	call Function17d2c0
 	farcall Function1181da
 	ret
@@ -526,7 +526,7 @@ Function17d2c0: ; 17d2c0
 	ret
 ; 17d2ce
 
-Special_Function17d2ce: ; 17d2ce
+Function17d2ce: ; 17d2ce
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa72]
@@ -1907,7 +1907,7 @@ Function17dc1f: ; 17dc1f
 	ld a, $1
 	ld [$c70f], a
 	ld hl, $c708
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	jr nc, .asm_17dc6e
 	ld a, $2
@@ -1940,7 +1940,7 @@ Function17dc1f: ; 17dc1f
 	ret
 ; 17dc96
 
-MenuData2_17dc96:
+MenuData_17dc96:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2
 	db "はい@"
@@ -4586,7 +4586,7 @@ Function17f524: ; 17f524
 	jr .asm_17f536
 ; 17f53d
 
-Special_BattleTowerMobileError: ; 17f53d
+BattleTowerMobileError: ; 17f53d
 	call FadeToMenu
 	xor a
 	ld [wc303], a

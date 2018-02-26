@@ -1320,7 +1320,7 @@ GetNoiseSample: ; e86c5
 ; load ptr to sample header in wNoiseSampleAddress
 	; are we on the last channel?
 	ld a, [wCurChannel]
-	and NUM_MUSIC_CHANS +- 1
+	and NUM_MUSIC_CHANS + -1
 	cp CHAN4
 	; ret if not
 	ret nz
@@ -2102,7 +2102,7 @@ Music_Volume: ; e89d2
 ; e89e1
 
 Music_TempoRelative: ; e89e1
-; set global tempo to current channel tempo +- param
+; set global tempo to current channel tempo +/- param
 ; params: 1 signed
 	call GetMusicByte
 	ld e, a

@@ -1,4 +1,4 @@
-GiveOddEgg: ; 1fb4b6
+_GiveOddEgg: ; 1fb4b6
 	; Figure out which egg to give.
 
 	; Compare a random word to
@@ -93,4 +93,4 @@ GiveOddEgg: ; 1fb4b6
 .Odd:
 	db "ODD@@@@@@@@@"
 
-INCLUDE "data/odd_eggs.asm"
+INCLUDE "data/events/odd_eggs.asm"

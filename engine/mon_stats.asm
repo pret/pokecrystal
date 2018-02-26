@@ -122,7 +122,7 @@ PrintTempMonStats: ; 50b7b
 	next "@"
 
 GetGender: ; 50bdd
-; Return the gender of a given monster (wCurPartyMon/wCurOTMon/CurWildMon).
+; Return the gender of a given monster (wCurPartyMon/wCurOTMon/wCurWildMon).
 ; When calling this function, a should be set to an appropriate wMonType value.
 
 ; return values:

@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const RADIOTOWER4F_FISHER
 	const RADIOTOWER4F_TEACHER
 	const RADIOTOWER4F_GROWLITHE
@@ -8,11 +8,9 @@ const_value set 2
 	const RADIOTOWER4F_SCIENTIST
 
 RadioTower4F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 RadioTower4FFisherScript:
 	jumptextfaceplayer RadioTower4FFisherText
@@ -56,10 +54,10 @@ RadioTowerMeowth:
 	end
 
 TrainerGruntM10:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_10, GRUNTM, GRUNTM_10, GruntM10SeenText, GruntM10BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_10, EVENT_BEAT_ROCKET_GRUNTM_10, GruntM10SeenText, GruntM10BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM10AfterBattleText
 	waitbutton
@@ -67,10 +65,10 @@ TrainerGruntM10:
 	end
 
 TrainerExecutivem2:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEM_2, EXECUTIVEM, EXECUTIVEM_2, Executivem2SeenText, Executivem2BeatenText, 0, .Script
+	trainer EXECUTIVEM, EXECUTIVEM_2, EVENT_BEAT_ROCKET_EXECUTIVEM_2, Executivem2SeenText, Executivem2BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext Executivem2AfterBattleText
 	waitbutton
@@ -78,10 +76,10 @@ TrainerExecutivem2:
 	end
 
 TrainerGruntF4:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_4, GRUNTF, GRUNTF_4, GruntF4SeenText, GruntF4BeatenText, 0, .Script
+	trainer GRUNTF, GRUNTF_4, EVENT_BEAT_ROCKET_GRUNTF_4, GruntF4SeenText, GruntF4BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntF4AfterBattleText
 	waitbutton
@@ -89,10 +87,10 @@ TrainerGruntF4:
 	end
 
 TrainerScientistRich:
-	trainer EVENT_BEAT_SCIENTIST_RICH, SCIENTIST, RICH, ScientistRichSeenText, ScientistRichBeatenText, 0, .Script
+	trainer SCIENTIST, RICH, EVENT_BEAT_SCIENTIST_RICH, ScientistRichSeenText, ScientistRichBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext ScientistRichAfterBattleText
 	waitbutton
@@ -246,30 +244,25 @@ UnknownText_0x5f00d:
 	done
 
 RadioTower4F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 0, 0, 1, RADIO_TOWER_5F
-	warp_def 9, 0, 2, RADIO_TOWER_3F
-	warp_def 12, 0, 2, RADIO_TOWER_5F
-	warp_def 17, 0, 3, RADIO_TOWER_3F
+	db 4 ; warp events
+	warp_event  0,  0, RADIO_TOWER_5F, 1
+	warp_event  9,  0, RADIO_TOWER_3F, 2
+	warp_event 12,  0, RADIO_TOWER_5F, 2
+	warp_event 17,  0, RADIO_TOWER_3F, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 7, 0, BGEVENT_READ, MapRadioTower4FSignpost0Script
-	bg_event 15, 0, BGEVENT_READ, MapRadioTower4FSignpost1Script
+	db 2 ; bg events
+	bg_event  7,  0, BGEVENT_READ, MapRadioTower4FSignpost0Script
+	bg_event 15,  0, BGEVENT_READ, MapRadioTower4FSignpost1Script
 
-.ObjectEvents:
-	db 7
-	object_event 6, 4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower4FFisherScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	object_event 14, 6, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5eb85, -1
-	object_event 12, 7, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTowerMeowth, -1
-	object_event 5, 6, SPRITE_ROCKET, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 14, 1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 12, 4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerGruntF4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 4, 2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerScientistRich, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	db 7 ; object events
+	object_event  6,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower4FFisherScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	object_event 14,  6, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5eb85, -1
+	object_event 12,  7, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTowerMeowth, -1
+	object_event  5,  6, SPRITE_ROCKET, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 14,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 12,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerGruntF4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  4,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerScientistRich, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

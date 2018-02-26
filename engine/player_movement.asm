@@ -19,7 +19,7 @@ DoPlayerMovement:: ; 80000
 ; Standing downhill instead moves down.
 
 	ld hl, wBikeFlags
-	bit 2, [hl] ; downhill
+	bit BIKEFLAGS_DOWNHILL_F, [hl]
 	ret z
 
 	ld c, a
@@ -286,7 +286,7 @@ DoPlayerMovement:: ; 80000
 	jr nz, .walk
 
 	ld hl, wBikeFlags
-	bit 2, [hl] ; downhill
+	bit BIKEFLAGS_DOWNHILL_F, [hl]
 	jr z, .fast
 
 	ld a, [wWalkingDirection]
@@ -673,7 +673,7 @@ DoPlayerMovement:: ; 80000
 .CheckStrengthBoulder: ; 8036f
 
 	ld hl, wBikeFlags
-	bit 0, [hl] ; using strength
+	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	jr z, .not_boulder
 
 	ld hl, OBJECT_DIRECTION_WALKING

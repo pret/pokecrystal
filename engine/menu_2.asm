@@ -27,22 +27,22 @@ PlaceMenuItemQuantity: ; 0x24ac3
 .done
 	ret
 
-Special_PlaceMoneyTopRight: ; 24ae8
-	ld hl, MenuDataHeader_0x24b15
-	call CopyMenuDataHeader
-	jr PlaceMoneyDataHeader
+PlaceMoneyTopRight: ; 24ae8
+	ld hl, MenuHeader_0x24b15
+	call CopyMenuHeader
+	jr PlaceMoneyTextBox
 
 PlaceMoneyBottomLeft: ; 24af0
-	ld hl, MenuDataHeader_0x24b1d
-	call CopyMenuDataHeader
-	jr PlaceMoneyDataHeader
+	ld hl, MenuHeader_0x24b1d
+	call CopyMenuHeader
+	jr PlaceMoneyTextBox
 
 PlaceMoneyAtTopLeftOfTextbox: ; 24af8
-	ld hl, MenuDataHeader_0x24b15
+	ld hl, MenuHeader_0x24b15
 	lb de, 0, 11
-	call OffsetMenuDataHeader
+	call OffsetMenuHeader
 
-PlaceMoneyDataHeader: ; 24b01
+PlaceMoneyTextBox: ; 24b01
 	call MenuBox
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
@@ -52,19 +52,19 @@ PlaceMoneyDataHeader: ; 24b01
 	call PrintNum
 	ret
 
-MenuDataHeader_0x24b15: ; 0x24b15
+MenuHeader_0x24b15: ; 0x24b15
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, 2
 	dw NULL
 	db 1 ; default option
 
-MenuDataHeader_0x24b1d: ; 0x24b1d
+MenuHeader_0x24b1d: ; 0x24b1d
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 11, 8, 13
 	dw NULL
 	db 1 ; default option
 
-Special_DisplayCoinCaseBalance: ; 24b25
+DisplayCoinCaseBalance: ; 24b25
 	; Place a text box of size 1x7 at 11, 0.
 	hlcoord 11, 0
 	ld b, 1
@@ -82,7 +82,7 @@ Special_DisplayCoinCaseBalance: ; 24b25
 	call PrintNum
 	ret
 
-Special_DisplayMoneyAndCoinBalance: ; 24b4e
+DisplayMoneyAndCoinBalance: ; 24b4e
 	hlcoord 5, 0
 	ld b, 3
 	ld c, 13

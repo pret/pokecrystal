@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE43_SUPER_NERD1
 	const ROUTE43_SUPER_NERD2
 	const ROUTE43_SUPER_NERD3
@@ -9,28 +9,26 @@ const_value set 2
 	const ROUTE43_POKE_BALL
 
 Route43_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	setmapscene ROUTE_43_GATE, 0
+	setmapscene ROUTE_43_GATE, SCENE_DEFAULT
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43_GATE, 1
+	setmapscene ROUTE_43_GATE, SCENE_FINISHED
 	return
 
 TrainerCamperSpencer:
-	trainer EVENT_BEAT_CAMPER_SPENCER, CAMPER, SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, .Script
+	trainer CAMPER, SPENCER, EVENT_BEAT_CAMPER_SPENCER, CamperSpencerSeenText, CamperSpencerBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext CamperSpencerAfterBattleText
 	waitbutton
@@ -38,10 +36,10 @@ TrainerCamperSpencer:
 	end
 
 TrainerPokemaniacBen:
-	trainer EVENT_BEAT_POKEMANIAC_BEN, POKEMANIAC, BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, .Script
+	trainer POKEMANIAC, BEN, EVENT_BEAT_POKEMANIAC_BEN, PokemaniacBenSeenText, PokemaniacBenBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacBenAfterBattleText
 	waitbutton
@@ -49,11 +47,11 @@ TrainerPokemaniacBen:
 	end
 
 TrainerPokemaniacBrent:
-	trainer EVENT_BEAT_POKEMANIAC_BRENT, POKEMANIAC, BRENT1, PokemaniacBrentSeenText, PokemaniacBrentBeatenText, 0, .Script
+	trainer POKEMANIAC, BRENT1, EVENT_BEAT_POKEMANIAC_BRENT, PokemaniacBrentSeenText, PokemaniacBrentBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_POKEMANIAC_BRENT
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_BRENT
 	iftrue .WantsBattle
@@ -71,8 +69,8 @@ TrainerPokemaniacBrent:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_POKEMANIAC_BRENT
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext POKEMANIAC, BRENT1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -81,10 +79,10 @@ TrainerPokemaniacBrent:
 	scall .Rematch
 	winlosstext PokemaniacBrentBeatenText, 0
 	copybytetovar wBrentFightCount
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3
@@ -154,10 +152,10 @@ TrainerPokemaniacBrent:
 	end
 
 TrainerPokemaniacRon:
-	trainer EVENT_BEAT_POKEMANIAC_RON, POKEMANIAC, RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, .Script
+	trainer POKEMANIAC, RON, EVENT_BEAT_POKEMANIAC_RON, PokemaniacRonSeenText, PokemaniacRonBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacRonAfterBattleText
 	waitbutton
@@ -165,10 +163,10 @@ TrainerPokemaniacRon:
 	end
 
 TrainerFisherMarvin:
-	trainer EVENT_BEAT_FISHER_MARVIN, FISHER, MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, .Script
+	trainer FISHER, MARVIN, EVENT_BEAT_FISHER_MARVIN, FisherMarvinSeenText, FisherMarvinBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext FisherMarvinAfterBattleText
 	waitbutton
@@ -176,11 +174,11 @@ TrainerFisherMarvin:
 	end
 
 TrainerPicnickerTiffany:
-	trainer EVENT_BEAT_PICNICKER_TIFFANY, PICNICKER, TIFFANY3, PicnickerTiffanySeenText, PicnickerTiffanyBeatenText, 0, .Script
+	trainer PICNICKER, TIFFANY3, EVENT_BEAT_PICNICKER_TIFFANY, PicnickerTiffanySeenText, PicnickerTiffanyBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_PICNICKER_TIFFANY
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_TIFFANY
 	iftrue .WantsBattle
@@ -202,8 +200,8 @@ TrainerPicnickerTiffany:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_PICNICKER_TIFFANY
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext PICNICKER, TIFFANY3, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -212,10 +210,10 @@ TrainerPicnickerTiffany:
 	scall .Rematch
 	winlosstext PicnickerTiffanyBeatenText, 0
 	copybytetovar wTiffanyFightCount
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight3:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight3
@@ -501,33 +499,28 @@ Route43TrainerTipsText:
 	done
 
 Route43_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
-	warp_def 9, 51, 1, ROUTE_43_MAHOGANY_GATE
-	warp_def 10, 51, 2, ROUTE_43_MAHOGANY_GATE
-	warp_def 17, 35, 3, ROUTE_43_GATE
-	warp_def 17, 31, 1, ROUTE_43_GATE
-	warp_def 18, 31, 2, ROUTE_43_GATE
+	db 5 ; warp events
+	warp_event  9, 51, ROUTE_43_MAHOGANY_GATE, 1
+	warp_event 10, 51, ROUTE_43_MAHOGANY_GATE, 2
+	warp_event 17, 35, ROUTE_43_GATE, 3
+	warp_event 17, 31, ROUTE_43_GATE, 1
+	warp_event 18, 31, ROUTE_43_GATE, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
-	bg_event 13, 3, BGEVENT_READ, Route43Sign1
+	db 3 ; bg events
+	bg_event 13,  3, BGEVENT_READ, Route43Sign1
 	bg_event 11, 49, BGEVENT_READ, Route43Sign2
 	bg_event 16, 38, BGEVENT_READ, Route43TrainerTips
 
-.ObjectEvents:
-	db 8
-	object_event 13, 5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacBen, -1
+	db 8 ; object events
+	object_event 13,  5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacBen, -1
 	object_event 13, 20, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacBrent, -1
-	object_event 14, 7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacRon, -1
-	object_event 4, 16, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerFisherMarvin, -1
-	object_event 9, 25, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTiffany, -1
+	object_event 14,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacRon, -1
+	object_event  4, 16, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 4, TrainerFisherMarvin, -1
+	object_event  9, 25, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTiffany, -1
 	object_event 13, 40, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerCamperSpencer, -1
-	object_event 1, 26, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x19d266, -1
-	object_event 12, 32, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route43MaxEther, EVENT_ROUTE_43_MAX_ETHER
+	object_event  1, 26, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x19d266, -1
+	object_event 12, 32, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route43MaxEther, EVENT_ROUTE_43_MAX_ETHER

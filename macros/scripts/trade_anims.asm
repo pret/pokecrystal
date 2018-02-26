@@ -21,7 +21,7 @@ tradeanim_enter_link_tube: MACRO
 	db tradeanim_enter_link_tube_command
 ENDM
 
-__enum__ set $5
+	enum_start $05
 
 	enum tradeanim_exit_link_tube_command ; $05
 tradeanim_exit_link_tube: MACRO
@@ -33,14 +33,14 @@ tradeanim_tube_to_ot: MACRO
 	db tradeanim_tube_to_ot_command
 ENDM
 
-__enum__ set $0e
+	enum_start $0e
 
 	enum tradeanim_tube_to_player_command ; $0e
 tradeanim_tube_to_player: MACRO
 	db tradeanim_tube_to_player_command
 ENDM
 
-__enum__ set $16
+	enum_start $16
 
 	enum tradeanim_sent_to_ot_text_command ; $16
 tradeanim_sent_to_ot_text: MACRO
@@ -92,7 +92,7 @@ tradeanim_scroll_out_right: MACRO
 	db tradeanim_scroll_out_right_command
 ENDM
 
-__enum__ set $21
+	enum_start $21
 
 	enum tradeanim_wait_80_command ; $21
 tradeanim_wait_80: MACRO
@@ -119,7 +119,7 @@ tradeanim_wait_anim: MACRO
 	db tradeanim_wait_anim_command
 ENDM
 
-__enum__ set $27
+	enum_start $27
 
 	enum tradeanim_poof_command ; $27
 tradeanim_poof: MACRO
@@ -185,7 +185,7 @@ mobiletradeanim_sendmon: MACRO
 	db mobiletradeanim_sendmon_command
 ENDM
 
-__enum__ set $05
+	enum_start $05
 
 	enum mobiletradeanim_05_command ; $05
 mobiletradeanim_05: MACRO
@@ -207,7 +207,7 @@ mobiletradeanim_receivemon: MACRO
 	db mobiletradeanim_receivemon_command
 ENDM
 
-__enum__ set $0b
+	enum_start $0b
 
 	enum mobiletradeanim_showgetmon_command ; $0b
 mobiletradeanim_showgetmon: MACRO

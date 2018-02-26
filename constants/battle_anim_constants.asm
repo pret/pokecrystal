@@ -708,7 +708,7 @@ BATTLEANIMSTRUCT_LENGTH EQU const_value
 	const BATTLEANIMOAMSET_D7
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
-const_value set 1
+	const_def 1
 	const ANIM_BG_FLASH_INVERTED
 	const ANIM_BG_FLASH_WHITE
 	const ANIM_BG_WHITE_HUES
@@ -764,7 +764,7 @@ const_value set 1
 	const ANIM_BG_35
 
 ; AnimObjGFX indexes (see data/battle_anims/object_gfx.asm)
-const_value set 1
+	const_def 1
 	const ANIM_GFX_HIT
 	const ANIM_GFX_CUT
 	const ANIM_GFX_FIRE

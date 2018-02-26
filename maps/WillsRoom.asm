@@ -1,14 +1,12 @@
-const_value set 2
+	const_def 2 ; object constants
 	const WILLSROOM_WILL
 
 WillsRoom_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .LockDoor
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .LockDoor ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .WillsRoomDoors
 
 .LockDoor:
@@ -37,7 +35,7 @@ WillsRoom_MapScripts:
 	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
-	setscene 1
+	setscene SCENE_FINISHED
 	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -129,21 +127,16 @@ WillScript_WillDefeatText:
 	done
 
 WillsRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 5, 17, 4, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def 4, 2, 1, KOGAS_ROOM
-	warp_def 5, 2, 2, KOGAS_ROOM
+	db 3 ; warp events
+	warp_event  5, 17, INDIGO_PLATEAU_POKECENTER_1F, 4
+	warp_event  4,  2, KOGAS_ROOM, 1
+	warp_event  5,  2, KOGAS_ROOM, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 5, 7, SPRITE_WILL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WillScript_Battle, -1
+	db 1 ; object events
+	object_event  5,  7, SPRITE_WILL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WillScript_Battle, -1

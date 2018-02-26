@@ -1,4 +1,4 @@
-RooftopSaleData1: ; 15aee
+RooftopSaleMart1: ; 15aee
 	db 5
 	dbw POKE_BALL,     150
 	dbw GREAT_BALL,    500
@@ -7,7 +7,7 @@ RooftopSaleData1: ; 15aee
 	dbw REVIVE,       1200
 	db -1
 
-RooftopSaleData2: ; 15aff
+RooftopSaleMart2: ; 15aff
 	db 5
 	dbw HYPER_POTION, 1000
 	dbw FULL_RESTORE, 2000

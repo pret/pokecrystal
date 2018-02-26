@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const TINTOWER9F_POKE_BALL
 
 TinTower9F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TinTower9FHPUp:
 	itemball HP_UP
@@ -22,25 +20,20 @@ TinTower9FUnusedLugiaText:
 	done
 
 TinTower9F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 7
-	warp_def 12, 3, 2, TIN_TOWER_8F
-	warp_def 2, 5, 3, TIN_TOWER_8F
-	warp_def 12, 7, 4, TIN_TOWER_8F
-	warp_def 7, 9, 1, TIN_TOWER_ROOF
-	warp_def 16, 7, 5, TIN_TOWER_7F
-	warp_def 6, 13, 5, TIN_TOWER_8F
-	warp_def 8, 13, 6, TIN_TOWER_8F
+	db 7 ; warp events
+	warp_event 12,  3, TIN_TOWER_8F, 2
+	warp_event  2,  5, TIN_TOWER_8F, 3
+	warp_event 12,  7, TIN_TOWER_8F, 4
+	warp_event  7,  9, TIN_TOWER_ROOF, 1
+	warp_event 16,  7, TIN_TOWER_7F, 5
+	warp_event  6, 13, TIN_TOWER_8F, 5
+	warp_event  8, 13, TIN_TOWER_8F, 6
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 9, 1, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower9FHPUp, EVENT_TIN_TOWER_9F_HP_UP
+	db 1 ; object events
+	object_event  9,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower9FHPUp, EVENT_TIN_TOWER_9F_HP_UP

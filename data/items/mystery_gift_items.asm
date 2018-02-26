@@ -36,5 +36,5 @@ MysteryGiftItems: ; 2c725
 	db RARE_CANDY
 	db BLUESKY_MAIL
 	db MIRAGE_MAIL
-MysteryGiftItemsEnd:
+.End
 ; 2c74a

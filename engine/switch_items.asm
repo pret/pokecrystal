@@ -145,7 +145,7 @@ Function249d1: ; 249d1 (9:49d1)
 	inc hl
 	pop af
 	ld [hl], a
-	ld hl, wMenuData2_ItemsPointerAddr
+	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -199,7 +199,7 @@ Function24a4d: ; 24a4d (9:4a4d)
 ItemSwitch_GetNthItem: ; 24a5c (9:4a5c)
 	push af
 	call ItemSwitch_ConvertSpacingToDW
-	ld hl, wMenuData2_ItemsPointerAddr
+	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -227,7 +227,7 @@ Function24a6c: ; 24a6c (9:4a6c)
 ItemSwitch_ConvertSpacingToDW: ; 24a80 (9:4a80)
 ; This function is absolutely idiotic.
 	push hl
-	ld a, [wMenuData2_ScrollingMenuSpacing]
+	ld a, [wMenuData_ScrollingMenuSpacing]
 	ld c, a
 	ld b, 0
 	ld hl, .spacing_dws

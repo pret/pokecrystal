@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const RUINSOFALPHOUTSIDE_YOUNGSTER1
 	const RUINSOFALPHOUTSIDE_SCIENTIST
 	const RUINSOFALPHOUTSIDE_FISHER
@@ -6,13 +6,11 @@ const_value set 2
 	const RUINSOFALPHOUTSIDE_YOUNGSTER3
 
 RuinsOfAlphOutside_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	db 2 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_RUINSOFALPHOUTSIDE_NOTHING
+	scene_script .DummyScene1 ; SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .ScientistCallback
 
 .DummyScene0:
@@ -30,27 +28,27 @@ RuinsOfAlphOutside_MapScripts:
 
 .MaybeScientist:
 	checkcode VAR_UNOWNCOUNT
-	if_greater_than 2, .YesScientist
+	ifgreater 2, .YesScientist
 	jump .NoScientist
 
 .YesScientist:
 	appear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene 1
+	setscene SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX
 	return
 
 .NoScientist:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
-	setscene 0
+	setscene SCENE_RUINSOFALPHOUTSIDE_NOTHING
 	return
 
 RuinsOfAlphOutsideScientistScene1:
-	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, UP
-	spriteface PLAYER, DOWN
+	turnobject RUINSOFALPHOUTSIDE_SCIENTIST, UP
+	turnobject PLAYER, DOWN
 	jump UnknownScript_0x58044
 
 RuinsOfAlphOutsideScientistScene2:
-	spriteface RUINSOFALPHOUTSIDE_SCIENTIST, LEFT
-	spriteface PLAYER, RIGHT
+	turnobject RUINSOFALPHOUTSIDE_SCIENTIST, LEFT
+	turnobject PLAYER, RIGHT
 	jump UnknownScript_0x58044
 
 ScientistScript_0x58043:
@@ -66,7 +64,7 @@ UnknownScript_0x58044:
 	disappear RUINSOFALPHOUTSIDE_SCIENTIST
 	stopfollow
 	applymovement PLAYER, MovementData_0x580c5
-	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, 1
+	setmapscene RUINS_OF_ALPH_RESEARCH_CENTER, SCENE_RUINSOFALPHRESEARCHCENTER_GET_UNOWN_DEX
 	warpcheck
 	end
 
@@ -98,14 +96,14 @@ YoungsterScript_0x5807e:
 	writetext UnknownText_0x5848e
 	waitbutton
 	closetext
-	spriteface RUINSOFALPHOUTSIDE_YOUNGSTER3, UP
+	turnobject RUINSOFALPHOUTSIDE_YOUNGSTER3, UP
 	end
 
 TrainerPsychicNathan:
-	trainer EVENT_BEAT_PSYCHIC_NATHAN, PSYCHIC_T, NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, .Script
+	trainer PSYCHIC_T, NATHAN, EVENT_BEAT_PSYCHIC_NATHAN, PsychicNathanSeenText, PsychicNathanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PsychicNathanAfterBattleText
 	waitbutton
@@ -113,10 +111,10 @@ TrainerPsychicNathan:
 	end
 
 TrainerSuperNerdStan:
-	trainer EVENT_BEAT_SUPER_NERD_STAN, SUPER_NERD, STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, .Script
+	trainer SUPER_NERD, STAN, EVENT_BEAT_SUPER_NERD_STAN, UnknownText_0x581e5, UnknownText_0x58217, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SuperNerdStanAfterBattleText
 	waitbutton
@@ -281,38 +279,33 @@ UnknownText_0x5848e:
 	done
 
 RuinsOfAlphOutside_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 11
-	warp_def 2, 17, 1, RUINS_OF_ALPH_HO_OH_CHAMBER
-	warp_def 14, 7, 1, RUINS_OF_ALPH_KABUTO_CHAMBER
-	warp_def 2, 29, 1, RUINS_OF_ALPH_OMANYTE_CHAMBER
-	warp_def 16, 33, 1, RUINS_OF_ALPH_AERODACTYL_CHAMBER
-	warp_def 10, 13, 1, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 17, 11, 1, RUINS_OF_ALPH_RESEARCH_CENTER
-	warp_def 6, 19, 1, UNION_CAVE_B1F
-	warp_def 6, 27, 2, UNION_CAVE_B1F
-	warp_def 7, 5, 3, ROUTE_36_RUINS_OF_ALPH_GATE
-	warp_def 13, 20, 1, ROUTE_32_RUINS_OF_ALPH_GATE
-	warp_def 13, 21, 2, ROUTE_32_RUINS_OF_ALPH_GATE
+	db 11 ; warp events
+	warp_event  2, 17, RUINS_OF_ALPH_HO_OH_CHAMBER, 1
+	warp_event 14,  7, RUINS_OF_ALPH_KABUTO_CHAMBER, 1
+	warp_event  2, 29, RUINS_OF_ALPH_OMANYTE_CHAMBER, 1
+	warp_event 16, 33, RUINS_OF_ALPH_AERODACTYL_CHAMBER, 1
+	warp_event 10, 13, RUINS_OF_ALPH_INNER_CHAMBER, 1
+	warp_event 17, 11, RUINS_OF_ALPH_RESEARCH_CENTER, 1
+	warp_event  6, 19, UNION_CAVE_B1F, 1
+	warp_event  6, 27, UNION_CAVE_B1F, 2
+	warp_event  7,  5, ROUTE_36_RUINS_OF_ALPH_GATE, 3
+	warp_event 13, 20, ROUTE_32_RUINS_OF_ALPH_GATE, 1
+	warp_event 13, 21, ROUTE_32_RUINS_OF_ALPH_GATE, 2
 
-.CoordEvents:
-	db 2
-	coord_event 11, 14, 1, RuinsOfAlphOutsideScientistScene1
-	coord_event 10, 15, 1, RuinsOfAlphOutsideScientistScene2
+	db 2 ; coord events
+	coord_event 11, 14, SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX, RuinsOfAlphOutsideScientistScene1
+	coord_event 10, 15, SCENE_RUINSOFALPHOUTSIDE_GET_UNOWN_DEX, RuinsOfAlphOutsideScientistScene2
 
-.BGEvents:
-	db 3
-	bg_event 16, 8, BGEVENT_READ, RuinsOfAlphOutsideSignpost0Script
+	db 3 ; bg events
+	bg_event 16,  8, BGEVENT_READ, RuinsOfAlphOutsideSignpost0Script
 	bg_event 12, 16, BGEVENT_READ, RuinsOfAlphOutsideSignpost1Script
 	bg_event 18, 12, BGEVENT_READ, RuinsOfAlphOutsideSignpost2Script
 
-.ObjectEvents:
-	db 5
-	object_event 4, 20, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerPsychicNathan, -1
+	db 5 ; object events
+	object_event  4, 20, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerPsychicNathan, -1
 	object_event 11, 15, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x58043, EVENT_RUINS_OF_ALPH_OUTSIDE_SCIENTIST
 	object_event 13, 17, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FisherScript_0x58061, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_FISHER
 	object_event 14, 11, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x58076, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
-	object_event 12, 8, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
+	object_event 12,  8, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x5807e, EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS

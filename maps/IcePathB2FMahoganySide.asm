@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ICEPATHB2FMAHOGANYSIDE_BOULDER1
 	const ICEPATHB2FMAHOGANYSIDE_BOULDER2
 	const ICEPATHB2FMAHOGANYSIDE_BOULDER3
@@ -7,11 +7,9 @@ const_value set 2
 	const ICEPATHB2FMAHOGANYSIDE_POKE_BALL2
 
 IcePathB2FMahoganySide_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 IcePathB2FMahoganySideBoulder:
 	jumptext IcePathB2FMahoganySideBoulderText
@@ -23,7 +21,7 @@ IcePathB2FMahoganySideMaxPotion:
 	itemball MAX_POTION
 
 IcePathB2FMahoganySideHiddenCarbos:
-	hiddenitem EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS, CARBOS
+	hiddenitem CARBOS, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_HIDDEN_CARBOS
 
 IcePathB2FMahoganySideBoulderText:
 	text "It's immovably"
@@ -31,30 +29,25 @@ IcePathB2FMahoganySideBoulderText:
 	done
 
 IcePathB2FMahoganySide_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
-	warp_def 17, 1, 2, ICE_PATH_B1F
-	warp_def 9, 11, 1, ICE_PATH_B3F
-	warp_def 11, 4, 3, ICE_PATH_B1F
-	warp_def 4, 6, 4, ICE_PATH_B1F
-	warp_def 4, 12, 5, ICE_PATH_B1F
-	warp_def 12, 12, 6, ICE_PATH_B1F
+	db 6 ; warp events
+	warp_event 17,  1, ICE_PATH_B1F, 2
+	warp_event  9, 11, ICE_PATH_B3F, 1
+	warp_event 11,  4, ICE_PATH_B1F, 3
+	warp_event  4,  6, ICE_PATH_B1F, 4
+	warp_event  4, 12, ICE_PATH_B1F, 5
+	warp_event 12, 12, ICE_PATH_B1F, 6
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
-	bg_event 0, 17, BGEVENT_ITEM, IcePathB2FMahoganySideHiddenCarbos
+	db 1 ; bg events
+	bg_event  0, 17, BGEVENT_ITEM, IcePathB2FMahoganySideHiddenCarbos
 
-.ObjectEvents:
-	db 6
-	object_event 11, 3, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_1A
-	object_event 4, 7, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_2A
-	object_event 3, 12, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_3A
-	object_event 12, 13, SPRITE_BOULDER, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_4A
-	object_event 8, 9, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FMahoganySideFullHeal, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_FULL_HEAL
-	object_event 0, 2, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FMahoganySideMaxPotion, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_MAX_POTION
+	db 6 ; object events
+	object_event 11,  3, SPRITE_BOULDER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_1A
+	object_event  4,  7, SPRITE_BOULDER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_2A
+	object_event  3, 12, SPRITE_BOULDER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_3A
+	object_event 12, 13, SPRITE_BOULDER, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB2FMahoganySideBoulder, EVENT_BOULDER_IN_ICE_PATH_4A
+	object_event  8,  9, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FMahoganySideFullHeal, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_FULL_HEAL
+	object_event  0,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB2FMahoganySideMaxPotion, EVENT_ICE_PATH_B2F_MAHOGANY_SIDE_MAX_POTION

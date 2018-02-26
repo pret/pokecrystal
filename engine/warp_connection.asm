@@ -305,12 +305,12 @@ LoadGraphics: ; 1047cf
 	ld [hMapAnims], a
 	xor a
 	ld [hTileAnimFrame], a
-	farcall Special_RefreshSprites
+	farcall RefreshSprites
 	call LoadFontsExtra
 	farcall LoadOverworldFont
 	ret
 
-Special_LoadMapPalettes: ; 1047eb
+LoadMapPalettes: ; 1047eb
 	ld b, SCGB_MAPPALS
 	jp GetSGBLayout
 ; 1047f0
@@ -322,7 +322,7 @@ RefreshMapSprites: ; 1047f0
 	farcall RefreshPlayerSprite
 	farcall CheckReplaceKrisSprite
 	ld hl, wPlayerSpriteSetupFlags
-	bit 6, [hl]
+	bit PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	jr nz, .skip
 	ld hl, wVramState
 	set 0, [hl]

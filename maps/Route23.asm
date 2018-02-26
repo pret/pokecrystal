@@ -1,9 +1,7 @@
 Route23_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -23,22 +21,17 @@ IndigoPlateauSignText:
 	done
 
 Route23_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 9, 5, 1, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def 10, 5, 2, INDIGO_PLATEAU_POKECENTER_1F
-	warp_def 9, 13, 10, VICTORY_ROAD
-	warp_def 10, 13, 10, VICTORY_ROAD
+	db 4 ; warp events
+	warp_event  9,  5, INDIGO_PLATEAU_POKECENTER_1F, 1
+	warp_event 10,  5, INDIGO_PLATEAU_POKECENTER_1F, 2
+	warp_event  9, 13, VICTORY_ROAD, 10
+	warp_event 10, 13, VICTORY_ROAD, 10
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
-	bg_event 11, 7, BGEVENT_READ, IndigoPlateauSign
+	db 1 ; bg events
+	bg_event 11,  7, BGEVENT_READ, IndigoPlateauSign
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

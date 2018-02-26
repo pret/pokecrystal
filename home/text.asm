@@ -399,7 +399,7 @@ PlaceGenderedPlayerName:: ; 1252
 	ld h, b
 	ld l, c
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	ld de, KunSuffixText
 	jr z, PlaceCommandCharacter
 	ld de, ChanSuffixText
@@ -568,7 +568,7 @@ ContText:: ; 1345
 
 
 PlaceDexEnd:: ; 1356
-; Legacy: ends a Pokédex entry (Red).
+; Ends a Pokédex entry in Gen 1.
 ; Dex entries are now regular strings.
 	ld [hl], "."
 	pop hl

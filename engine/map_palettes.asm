@@ -14,7 +14,7 @@ SwapTextboxPalettes:: ; 4c000
 	add [hl]
 	ld l, a
 	ld a, [wTilesetPalettes + 1]
-	adc $0
+	adc 0
 	ld h, a
 	ld a, [hl]
 	and $f
@@ -25,7 +25,7 @@ SwapTextboxPalettes:: ; 4c000
 	add [hl]
 	ld l, a
 	ld a, [wTilesetPalettes + 1]
-	adc $0
+	adc 0
 	ld h, a
 	ld a, [hl]
 	swap a
@@ -58,7 +58,7 @@ ScrollBGMapPalettes:: ; 4c03f
 	add [hl]
 	ld l, a
 	ld a, [wTilesetPalettes + 1]
-	adc $0
+	adc 0
 	ld h, a
 	ld a, [hl]
 	and $f
@@ -69,7 +69,7 @@ ScrollBGMapPalettes:: ; 4c03f
 	add [hl]
 	ld l, a
 	ld a, [wTilesetPalettes + 1]
-	adc $0
+	adc 0
 	ld h, a
 	ld a, [hl]
 	swap a

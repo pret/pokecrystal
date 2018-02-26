@@ -171,7 +171,7 @@ Function4a098: ; 4a098 (12:6098)
 	call MenuClickSound
 	call PlaceHollowCursor
 	call WaitBGMap
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall Function89de0
 	call Call_ExitMenu
 	call MG_Mobile_Layout_LoadPals
@@ -389,7 +389,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call Function4a6d8
 	call PlaceHollowCursor
 	call WaitBGMap
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$aa4b]
@@ -433,8 +433,8 @@ Function4a28a: ; 4a28a (12:628a)
 	ld c, 4
 	call TextBox
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
-	ld hl, DeletePassword_YesNo_MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, DeletePassword_YesNo_MenuHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	bit B_BUTTON_F, a
 	jr nz, .dont_delete_password
@@ -460,7 +460,7 @@ Function4a28a: ; 4a28a (12:628a)
 	ret
 ; 4a346 (12:6346)
 
-MenuDataHeader_0x4a346: ; 0x4a346
+MenuHeader_0x4a346: ; 0x4a346
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 0, SCREEN_WIDTH - 1, 6
 
@@ -482,14 +482,14 @@ UnknownText_0x4a35d: ; 0x4a35d
 	db "@"
 ; 0x4a362
 
-DeletePassword_YesNo_MenuDataHeader: ; 0x4a362
+DeletePassword_YesNo_MenuHeader: ; 0x4a362
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw MenuData2_0x4a36a
+	dw MenuData_0x4a36a
 	db 2 ; default option
 ; 0x4a36a
 
-MenuData2_0x4a36a: ; 0x4a36a
+MenuData_0x4a36a: ; 0x4a36a
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2 ; items
 	db "はい@"
@@ -845,7 +845,7 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	call ClearBGPalettes
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	farcall Special_Function11c1ab
+	farcall Function11c1ab
 	pop bc
 	call LoadFontsExtra
 	jp Function4a4c4

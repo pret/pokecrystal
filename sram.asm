@@ -122,7 +122,7 @@ sCheckValue2:: db ; loaded with SAVE_CHECK_VALUE_2, used to check save corruptio
 SECTION "Active Box", SRAM
 
 ; ad10
-	box sBox
+sBox:: box sBox
 ; b160
 
 	ds $f4
@@ -220,24 +220,25 @@ sBTMonPrevPrevTrainer3:: db
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]
 
-	box sBox1
-	box sBox2
-	box sBox3
-	box sBox4
-	box sBox5
-	box sBox6
-	box sBox7
+sBox1::  box sBox1
+sBox2::  box sBox2
+sBox3::  box sBox3
+sBox4::  box sBox4
+sBox5::  box sBox5
+sBox6::  box sBox6
+sBox7::  box sBox7
 
 
 SECTION "Boxes 8-14", SRAM
 
-	box sBox8
-	box sBox9
-	box sBox10
-	box sBox11
-	box sBox12
-	box sBox13
-	box sBox14
+sBox8::  box sBox8
+sBox9::  box sBox9
+sBox10:: box sBox10
+sBox11:: box sBox11
+sBox12:: box sBox12
+sBox13:: box sBox13
+sBox14:: box sBox14
+
 
 SECTION "SRAM Mobile", SRAM, BANK [5]
 

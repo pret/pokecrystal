@@ -8,8 +8,8 @@ _ResetClock: ; 4d3b1
 	call PlayMusic
 	ld hl, .text_askreset
 	call PrintText
-	ld hl, .NoYes_MenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, .NoYes_MenuHeader
+	call CopyMenuHeader
 	call VerticalMenu
 	ret c
 	ld a, [wMenuCursorY]
@@ -46,13 +46,13 @@ _ResetClock: ; 4d3b1
 	text_jump UnknownText_0x1c561c
 	db "@"
 
-.NoYes_MenuDataHeader: ; 0x4d40d
+.NoYes_MenuHeader: ; 0x4d40d
 	db 0 ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .NoYes_MenuData2
+	dw .NoYes_MenuData
 	db 1 ; default option
 
-.NoYes_MenuData2: ; 0x4d415
+.NoYes_MenuData: ; 0x4d415
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "NO@"
@@ -268,8 +268,8 @@ _DeleteSaveData: ; 4d54c
 	call PlayMusic
 	ld hl, .Text_ClearAllSaveData
 	call PrintText
-	ld hl, .NoYesMenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, .NoYesMenuHeader
+	call CopyMenuHeader
 	call VerticalMenu
 	ret c
 	ld a, [wMenuCursorY]
@@ -283,13 +283,13 @@ _DeleteSaveData: ; 4d54c
 	text_jump UnknownText_0x1c564a
 	db "@"
 
-.NoYesMenuDataHeader: ; 0x4d585
+.NoYesMenuHeader: ; 0x4d585
 	db 0 ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2: ; 0x4d58d
+.MenuData: ; 0x4d58d
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "NO@"

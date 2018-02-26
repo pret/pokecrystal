@@ -1,21 +1,19 @@
-const_value set 2
+	const_def 2 ; object constants
 	const OLIVINELIGHTHOUSE3F_SAILOR
 	const OLIVINELIGHTHOUSE3F_GENTLEMAN
 	const OLIVINELIGHTHOUSE3F_YOUNGSTER
 	const OLIVINELIGHTHOUSE3F_POKE_BALL
 
 OlivineLighthouse3F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerBirdKeeperTheo:
-	trainer EVENT_BEAT_BIRD_KEEPER_THEO, BIRD_KEEPER, THEO, BirdKeeperTheoSeenText, BirdKeeperTheoBeatenText, 0, .Script
+	trainer BIRD_KEEPER, THEO, EVENT_BEAT_BIRD_KEEPER_THEO, BirdKeeperTheoSeenText, BirdKeeperTheoBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BirdKeeperTheoAfterBattleText
 	waitbutton
@@ -23,10 +21,10 @@ TrainerBirdKeeperTheo:
 	end
 
 TrainerGentlemanPreston:
-	trainer EVENT_BEAT_GENTLEMAN_PRESTON, GENTLEMAN, PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, 0, .Script
+	trainer GENTLEMAN, PRESTON, EVENT_BEAT_GENTLEMAN_PRESTON, GentlemanPrestonSeenText, GentlemanPrestonBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GentlemanPrestonAfterBattleText
 	waitbutton
@@ -34,10 +32,10 @@ TrainerGentlemanPreston:
 	end
 
 TrainerSailorTerrell:
-	trainer EVENT_BEAT_SAILOR_TERRELL, SAILOR, TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, 0, .Script
+	trainer SAILOR, TERRELL, EVENT_BEAT_SAILOR_TERRELL, SailorTerrellSeenText, SailorTerrellBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorTerrellAfterBattleText
 	waitbutton
@@ -113,30 +111,25 @@ GentlemanPrestonAfterBattleText:
 	done
 
 OlivineLighthouse3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 9
-	warp_def 13, 3, 1, OLIVINE_LIGHTHOUSE_4F
-	warp_def 5, 3, 2, OLIVINE_LIGHTHOUSE_2F
-	warp_def 9, 5, 4, OLIVINE_LIGHTHOUSE_4F
-	warp_def 16, 11, 5, OLIVINE_LIGHTHOUSE_2F
-	warp_def 17, 11, 6, OLIVINE_LIGHTHOUSE_2F
-	warp_def 16, 9, 5, OLIVINE_LIGHTHOUSE_4F
-	warp_def 17, 9, 6, OLIVINE_LIGHTHOUSE_4F
-	warp_def 8, 3, 7, OLIVINE_LIGHTHOUSE_4F
-	warp_def 9, 3, 8, OLIVINE_LIGHTHOUSE_4F
+	db 9 ; warp events
+	warp_event 13,  3, OLIVINE_LIGHTHOUSE_4F, 1
+	warp_event  5,  3, OLIVINE_LIGHTHOUSE_2F, 2
+	warp_event  9,  5, OLIVINE_LIGHTHOUSE_4F, 4
+	warp_event 16, 11, OLIVINE_LIGHTHOUSE_2F, 5
+	warp_event 17, 11, OLIVINE_LIGHTHOUSE_2F, 6
+	warp_event 16,  9, OLIVINE_LIGHTHOUSE_4F, 5
+	warp_event 17,  9, OLIVINE_LIGHTHOUSE_4F, 6
+	warp_event  8,  3, OLIVINE_LIGHTHOUSE_4F, 7
+	warp_event  9,  3, OLIVINE_LIGHTHOUSE_4F, 8
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
-	object_event 9, 2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSailorTerrell, -1
-	object_event 13, 5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanPreston, -1
-	object_event 3, 9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperTheo, -1
-	object_event 8, 2, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse3FEther, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER
+	db 4 ; object events
+	object_event  9,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSailorTerrell, -1
+	object_event 13,  5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerGentlemanPreston, -1
+	object_event  3,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperTheo, -1
+	object_event  8,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse3FEther, EVENT_OLIVINE_LIGHTHOUSE_3F_ETHER

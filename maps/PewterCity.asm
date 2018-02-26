@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const PEWTERCITY_COOLTRAINER_F
 	const PEWTERCITY_BUG_CATCHER
 	const PEWTERCITY_GRAMPS
@@ -6,11 +6,9 @@ const_value set 2
 	const PEWTERCITY_FRUIT_TREE2
 
 PewterCity_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .FlyPoint:
@@ -153,34 +151,29 @@ PewterCityWelcomeSignText:
 	done
 
 PewterCity_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
-	warp_def 29, 13, 1, PEWTER_NIDORAN_SPEECH_HOUSE
-	warp_def 16, 17, 1, PEWTER_GYM
-	warp_def 23, 17, 2, PEWTER_MART
-	warp_def 13, 25, 1, PEWTER_POKECENTER_1F
-	warp_def 7, 29, 1, PEWTER_SNOOZE_SPEECH_HOUSE
+	db 5 ; warp events
+	warp_event 29, 13, PEWTER_NIDORAN_SPEECH_HOUSE, 1
+	warp_event 16, 17, PEWTER_GYM, 1
+	warp_event 23, 17, PEWTER_MART, 2
+	warp_event 13, 25, PEWTER_POKECENTER_1F, 1
+	warp_event  7, 29, PEWTER_SNOOZE_SPEECH_HOUSE, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 7
+	db 7 ; bg events
 	bg_event 25, 23, BGEVENT_READ, PewterCitySign
 	bg_event 11, 17, BGEVENT_READ, PewterGymSign
-	bg_event 15, 9, BGEVENT_READ, PewterMuseumSign
+	bg_event 15,  9, BGEVENT_READ, PewterMuseumSign
 	bg_event 33, 19, BGEVENT_READ, PewterCityMtMoonGiftShopSign
 	bg_event 19, 29, BGEVENT_READ, PewterCityWelcomeSign
 	bg_event 14, 25, BGEVENT_READ, PewterCityPokecenterSign
 	bg_event 24, 17, BGEVENT_READ, PewterCityMartSign
 
-.ObjectEvents:
-	db 5
+	db 5 ; object events
 	object_event 19, 11, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PewterCityCooltrainerFScript, -1
 	object_event 14, 29, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCityBugCatcherScript, -1
 	object_event 29, 17, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x18c00f, -1
-	object_event 32, 3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x18c03e, -1
-	object_event 30, 3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x18c040, -1
+	object_event 32,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x18c03e, -1
+	object_event 30,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x18c040, -1

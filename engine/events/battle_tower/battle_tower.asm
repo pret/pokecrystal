@@ -1,11 +1,11 @@
-Special_BattleTowerRoomMenu: ; 1700b0
+BattleTowerRoomMenu: ; 1700b0
 ; special
 	call InitBattleTowerChallengeRAM
 	farcall _BattleTowerRoomMenu
 	ret
 ; 1700ba
 
-Special_Function1700ba: ; 1700ba
+Function1700ba: ; 1700ba
 	call InitBattleTowerChallengeRAM
 	farcall Function11811a
 	ret
@@ -53,7 +53,7 @@ Function1700c4: ; 1700c4
 	ret
 ; 170114
 
-Special_Function170114: ; 170114
+Function170114: ; 170114
 	call InitBattleTowerChallengeRAM
 	call .Function170121
 	farcall Function11805f
@@ -182,7 +182,7 @@ Function170139: ; 170139
 	ret
 ; 170215
 
-Special_BattleTowerBattle: ; 170215
+BattleTowerBattle: ; 170215
 	xor a
 	ld [wBattleTowerBattleEnded], a
 	call _BattleTowerBattle
@@ -243,7 +243,7 @@ RunBattleTowerTrainer: ; 17024d
 
 	xor a
 	ld [wLinkMode], a
-	farcall Special_StubbedTrainerRankings_Healings
+	farcall StubbedTrainerRankings_Healings
 	farcall HealParty
 	call ReadBTTrainerParty
 	call Clears5_a89a
@@ -407,11 +407,11 @@ ValidateBTParty: ; 170394
 	ld c, l
 	ld a, [hl]
 	and a
-idx = $ff
-rept ($ff +- NUM_POKEMON)
+x = $ff
+rept ($ff + -NUM_POKEMON)
 	jr z, .invalid
-	cp idx
-idx = idx +- 1
+	cp x
+x = x + -1
 endr
 	jr nz, .valid
 
@@ -619,7 +619,7 @@ Unreferenced_Function1704ca: ; 1704ca
 	ret
 ; 1704e1
 
-UnusedSpecial_Function1704e1: ; 1704e1
+Function1704e1: ; 1704e1
 	call SpeechTextBox
 	call FadeToMenu
 	call InitBattleTowerChallengeRAM
@@ -900,7 +900,7 @@ UnusedSpecial_Function1704e1: ; 1704e1
 	db "れきだいりーダーいちらん@"
 ; 170687
 
-Special_BattleTowerAction: ; 170687
+BattleTowerAction: ; 170687
 	ld a, [wScriptVar]
 	ld e, a
 	ld d, 0
@@ -1603,7 +1603,7 @@ BattleTowerAction_UbersCheck: ; 170b16 (5c:4b16) BattleTowerAction $19
 	ld [wScriptVar], a
 	ret
 
-Special_LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
+LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
 	farcall Function_LoadOpponentTrainerAndPokemons
 	ld a, [rSVBK]
 	push af
@@ -1654,8 +1654,8 @@ DummySpecial_170bd2: ; 170bd2
 	ret
 ; 170bd3
 
-Special_CheckForBattleTowerRules: ; 170bd3
-	farcall CheckForBattleTowerRules
+CheckForBattleTowerRules: ; 170bd3
+	farcall _CheckForBattleTowerRules
 	jr c, .asm_170bde
 	xor a ; FALSE
 	jr .asm_170be0

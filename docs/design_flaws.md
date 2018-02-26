@@ -8,8 +8,9 @@ These are parts of the code that do not work *incorrectly*, like [bugs and glitc
 - [Pic banks are offset by `PICS_FIX`](#pic-banks-are-offset-by-pics_fix)
 - [`PokemonPicPointers` and `UnownPicPointers` are assumed to start at the same address](#pokemonpicpointers-and-unownpicpointers-are-assumed-to-start-at-the-same-address)
 - [Footprints are split into top and bottom halves](#footprints-are-split-into-top-and-bottom-halves)
-- [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
 - [`ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items](#item_c3-and-item_dc-break-up-the-continuous-sequence-of-tm-items)
+- [Pokédex entry banks are derived from their species IDs](#pokédex-entry-banks-are-derived-from-their-species-ids)
+- [Identical sine wave code and data is repeated five times](#identical-sine-wave-code-and-data-is-repeated-five-times)
 - [`GetForestTreeFrame` works, but it's still bad](#getforesttreeframe-works-but-its-still-bad)
 
 
@@ -109,15 +110,15 @@ ROMX $49
 Two routines in [engine/load_pics.asm](/engine/load_pics.asm) make this assumption; `GetFrontpicPointer`:
 
 ```asm
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr z, .unown
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld d, BANK(PokemonPicPointers)
 	jr .ok
 
 .unown
-	ld a, [UnownLetter]
+	ld a, [wUnownLetter]
 	ld d, BANK(UnownPicPointers)
 
 .ok
@@ -130,9 +131,7 @@ Two routines in [engine/load_pics.asm](/engine/load_pics.asm) make this assumpti
 And `GetMonBackpic`:
 
 ```asm
-	; These are assumed to be at the same
-	; address in their respective banks.
-	GLOBAL PokemonPicPointers,  UnownPicPointers
+	; These are assumed to be at the same address in their respective banks.
 	ld hl, PokemonPicPointers ; UnownPicPointers
 	ld a, b
 	ld d, BANK(PokemonPicPointers)
@@ -153,16 +152,16 @@ Don't enforce `org $4000` in pokecrystal.link.
 Modify `GetFrontpicPointer`:
 
 ```asm
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr z, .unown
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	ld hl, PokemonPicPointers
 	ld d, BANK(PokemonPicPointers)
 	jr .ok
 
 .unown
-	ld a, [UnownLetter]
+	ld a, [wUnownLetter]
 	ld hl, UnownPicPointers
 	ld d, BANK(UnownPicPointers)
 
@@ -175,7 +174,6 @@ Modify `GetFrontpicPointer`:
 And `GetMonBackpic`:
 
 ```asm
-	GLOBAL PokemonPicPointers, UnownPicPointers
 	ld a, b
 	ld hl, PokemonPicPointers
 	ld d, BANK(PokemonPicPointers)
@@ -234,7 +232,7 @@ INCBIN "gfx/footprints/wartortle.1bpp",  footprint_bottom
 	push hl
 	ld e, l
 	ld d, h
-	ld hl, VTiles2 tile $62
+	ld hl, vTiles2 tile $62
 	lb bc, BANK(Footprints), 2
 	call Request1bpp
 	pop hl
@@ -246,7 +244,7 @@ INCBIN "gfx/footprints/wartortle.1bpp",  footprint_bottom
 
 	ld e, l
 	ld d, h
-	ld hl, VTiles2 tile $64
+	ld hl, vTiles2 tile $64
 	lb bc, BANK(Footprints), 2
 	call Request1bpp
 ```
@@ -272,118 +270,10 @@ Modify `Pokedex_LoadAnyFootprint`:
 ```asm
 	ld e, l
 	ld d, h
-	ld hl, VTiles2 tile $62
+	ld hl, vTiles2 tile $62
 	lb bc, BANK(Footprints), 4
 	call Request1bpp
 ```
-
-
-## Pokédex entry banks are derived from their species IDs
-
-`PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.asm](/data/pokemon/dex_entry_pointers.asm) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
-
-Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](/engine/pokedex/pokedex_2.asm):
-
-```asm
-GetDexEntryPointer: ; 44333
-; return dex entry pointer b:de
-	push hl
-	ld hl, PokedexDataPointerTable
-	ld a, b
-	dec a
-	ld d, 0
-	ld e, a
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	push de
-	rlca
-	rlca
-	and $3
-	ld hl, .PokedexEntryBanks
-	ld d, 0
-	ld e, a
-	add hl, de
-	ld b, [hl]
-	pop de
-	pop hl
-	ret
-
-.PokedexEntryBanks: ; 44351
-
-GLOBAL PokedexEntries1
-GLOBAL PokedexEntries2
-GLOBAL PokedexEntries3
-GLOBAL PokedexEntries4
-
-	db BANK(PokedexEntries1)
-	db BANK(PokedexEntries2)
-	db BANK(PokedexEntries3)
-	db BANK(PokedexEntries4)
-```
-
-`GetPokedexEntryBank` in [engine/item_effects.asm](/engine/item_effects.asm):
-
-```asm
-GetPokedexEntryBank:
-	push hl
-	push de
-	ld a, [EnemyMonSpecies]
-	rlca
-	rlca
-	and 3
-	ld hl, .PokedexEntryBanks
-	ld d, 0
-	ld e, a
-	add hl, de
-	ld a, [hl]
-	pop de
-	pop hl
-	ret
-
-.PokedexEntryBanks:
-
-GLOBAL PokedexEntries1
-GLOBAL PokedexEntries2
-GLOBAL PokedexEntries3
-GLOBAL PokedexEntries4
-
-	db BANK(PokedexEntries1)
-	db BANK(PokedexEntries2)
-	db BANK(PokedexEntries3)
-	db BANK(PokedexEntries4)
-```
-
-And `PokedexShow_GetDexEntryBank` in [engine/radio.asm](/engine/radio.asm):
-
-```asm
-PokedexShow_GetDexEntryBank:
-	push hl
-	push de
-	ld a, [CurPartySpecies]
-	dec a
-	rlca
-	rlca
-	and 3
-	ld hl, .pokedexbanks
-	ld d, 0
-	ld e, a
-	add hl, de
-	ld a, [hl]
-	pop de
-	pop hl
-	ret
-
-.pokedexbanks
-	db BANK(PokedexEntries1)
-	db BANK(PokedexEntries2)
-	db BANK(PokedexEntries3)
-	db BANK(PokedexEntries4)
-```
-
-**Fix:** Use `dba` instead of `dw` in `PokedexDataPointerTable`, and modify the code that accesses it to match.
 
 
 ## `ITEM_C3` and `ITEM_DC` break up the continuous sequence of TM items
@@ -391,17 +281,17 @@ PokedexShow_GetDexEntryBank:
 [constants/item_constants.asm](/constants/item_constants.asm) defined the 50 TMs in order with `add_tm`, but `ITEM_C3` and `ITEM_DC` break up that sequence.
 
 ```asm
-	add_tm DYNAMICPUNCH ; $BF
+	add_tm DYNAMICPUNCH ; bf
 	...
-	add_tm ROLLOUT      ; $C2
-	const ITEM_C3       ; $C3
-	add_tm ROAR         ; $C4
+	add_tm ROLLOUT      ; c2
+	const ITEM_C3       ; c3
+	add_tm ROAR         ; c4
 	...
-	add_tm DIG          ; $DB
-	const ITEM_DC       ; $DC
-	add_tm PSYCHIC_M    ; $DD
+	add_tm DIG          ; db
+	const ITEM_DC       ; dc
+	add_tm PSYCHIC_M    ; dd
 	...
-	add_tm NIGHTMARE    ; $F2
+	add_tm NIGHTMARE    ; f2
 NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 ```
 
@@ -467,6 +357,228 @@ GetNumberedTMHM: ; d417
 	ld c, a
 	ret
 ```
+
+
+## Pokédex entry banks are derived from their species IDs
+
+`PokedexDataPointerTable` in [data/pokemon/dex_entry_pointers.asm](/data/pokemon/dex_entry_pointers.asm) is a table of `dw`, not `dba`, yet there are four banks used for Pokédex entries. The correct bank is derived from the species ID at the beginning of each Pokémon's base stats. (This is the only use the base stat species ID has.)
+
+Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](/engine/pokedex/pokedex_2.asm):
+
+```asm
+GetDexEntryPointer: ; 44333
+; return dex entry pointer b:de
+	push hl
+	ld hl, PokedexDataPointerTable
+	ld a, b
+	dec a
+	ld d, 0
+	ld e, a
+	add hl, de
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	push de
+	rlca
+	rlca
+	maskbits NUM_DEX_ENTRY_BANKS
+	ld hl, .PokedexEntryBanks
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld b, [hl]
+	pop de
+	pop hl
+	ret
+
+.PokedexEntryBanks:
+	db BANK(PokedexEntries1)
+	db BANK(PokedexEntries2)
+	db BANK(PokedexEntries3)
+	db BANK(PokedexEntries4)
+```
+
+`GetPokedexEntryBank` in [engine/item_effects.asm](/engine/item_effects.asm):
+
+```asm
+GetPokedexEntryBank:
+	push hl
+	push de
+	ld a, [wEnemyMonSpecies]
+	rlca
+	rlca
+	maskbits NUM_DEX_ENTRY_BANKS
+	ld hl, .PokedexEntryBanks
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
+
+.PokedexEntryBanks:
+	db BANK(PokedexEntries1)
+	db BANK(PokedexEntries2)
+	db BANK(PokedexEntries3)
+	db BANK(PokedexEntries4)
+```
+
+And `PokedexShow_GetDexEntryBank` in [engine/radio.asm](/engine/radio.asm):
+
+```asm
+PokedexShow_GetDexEntryBank:
+	push hl
+	push de
+	ld a, [wCurPartySpecies]
+	dec a
+	rlca
+	rlca
+	maskbits NUM_DEX_ENTRY_BANKS
+	ld hl, .PokedexEntryBanks
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
+
+.PokedexEntryBanks:
+	db BANK(PokedexEntries1)
+	db BANK(PokedexEntries2)
+	db BANK(PokedexEntries3)
+	db BANK(PokedexEntries4)
+```
+
+**Fix:** Use `dba` instead of `dw` in `PokedexDataPointerTable`, and modify the code that accesses it to match.
+
+
+## Identical sine wave code and data is repeated five times
+
+`_Sine` in [engine/routines/sine.asm](/engine/routines/sine.asm):
+
+```asm
+_Sine:: ; 84d9
+; a = d * sin(e * pi/32)
+	ld a, e
+	calc_sine_wave
+```
+
+`Sprites_Cosine` and `Sprites_Sine` in [engine/sprites.asm](/engine/sprites.asm):
+
+```asm
+Sprites_Cosine: ; 8e72a
+; a = d * cos(a * pi/32)
+	add %010000 ; cos(x) = sin(x + pi/2)
+	; fallthrough
+Sprites_Sine: ; 8e72c
+; a = d * sin(a * pi/32)
+	calc_sine_wave
+```
+
+`BattleAnim_Cosine` and `BattleAnim_Sine` in [engine/battle_anims/functions.asm](/engine/battle_anims/functions.asm):
+
+```asm
+BattleAnim_Cosine: ; ce732 (33:6732)
+; a = d * cos(a * pi/32)
+	add %010000 ; cos(x) = sin(x + pi/2)
+	; fallthrough
+BattleAnim_Sine: ; ce734 (33:6734)
+; a = d * sin(a * pi/32)
+	calc_sine_wave BattleAnimSineWave
+
+...
+
+BattleAnimSineWave: ; ce77f
+	sine_table 32
+; ce7bf
+```
+
+`StartTrainerBattle_DrawSineWave` in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm):
+
+```asm
+StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
+	calc_sine_wave
+; 8c768
+```
+
+And `CelebiEvent_Cosine` in [engine/events/celebi.asm](/engine/events/celebi.asm):
+
+```asm
+CelebiEvent_Cosine: ; 49b3b (12:5b3b)
+; a = d * cos(a * pi/32)
+	add %010000 ; cos(x) = sin(x + pi/2)
+	calc_sine_wave
+; 49bae
+```
+
+They all rely on `calc_sine_wave` in [macros/code.asm](/macros/code.asm):
+
+```asm
+calc_sine_wave: MACRO
+; input: a = a signed 6-bit value
+; output: a = d * sin(a * pi/32)
+	and %111111
+	cp  %100000
+	jr nc, .negative\@
+	call .apply\@
+	ld a, h
+	ret
+.negative\@
+	and %011111
+	call .apply\@
+	ld a, h
+	xor $ff
+	inc a
+	ret
+.apply\@
+	ld e, a
+	ld a, d
+	ld d, 0
+if _NARG == 1
+	ld hl, \1
+else
+	ld hl, .sinetable\@
+endc
+	add hl, de
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, 0
+.multiply\@ ; factor amplitude
+	srl a
+	jr nc, .even\@
+	add hl, de
+.even\@
+	sla e
+	rl d
+	and a
+	jr nz, .multiply\@
+	ret
+if _NARG == 0
+.sinetable\@
+	sine_table 32
+endc
+ENDM
+```
+
+And on `sine_table` in [macros/data.asm](/macros/data.asm):
+
+```asm
+sine_table: MACRO
+; \1 samples of sin(x) from x=0 to x<32768 (pi radians)
+x = 0
+rept \1
+	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+x = x + DIV(32768, \1) ; a circle has 65536 "degrees"
+endr
+ENDM
+```
+
+**Fix:** Edit [home/sine.asm](/home/sine.asm) to contain a single copy of the (co)sine code in bank 0, and call it from those five sites.
 
 
 ## `GetForestTreeFrame` works, but it's still bad

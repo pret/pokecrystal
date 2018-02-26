@@ -1,16 +1,14 @@
-const_value set 2
+	const_def 2 ; object constants
 	const SAFFRONMAGNETTRAINSTATION_OFFICER
 	const SAFFRONMAGNETTRAINSTATION_GYM_GUY
 	const SAFFRONMAGNETTRAINSTATION_TEACHER
 	const SAFFRONMAGNETTRAINSTATION_LASS
 
 SaffronMagnetTrainStation_MapScripts:
-.SceneScripts:
-	db 1
-	scene_script .DummyScene
+	db 1 ; scene scripts
+	scene_script .DummyScene ; SCENE_DEFAULT
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene:
 	end
@@ -37,7 +35,7 @@ OfficerScript_0x18a81e:
 	applymovement SAFFRONMAGNETTRAINSTATION_OFFICER, MovementData_0x18a88f
 	applymovement PLAYER, MovementData_0x18a898
 	writebyte TRUE
-	special Special_MagnetTrain
+	special MagnetTrain
 	warpcheck
 	newloadmap MAPSETUP_TRAIN
 	applymovement PLAYER, .MovementBoardTheTrain
@@ -216,26 +214,21 @@ SaffronMagnetTrainStationLassText:
 	done
 
 SaffronMagnetTrainStation_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 8, 17, 6, SAFFRON_CITY
-	warp_def 9, 17, 6, SAFFRON_CITY
-	warp_def 6, 5, 4, GOLDENROD_MAGNET_TRAIN_STATION
-	warp_def 11, 5, 3, GOLDENROD_MAGNET_TRAIN_STATION
+	db 4 ; warp events
+	warp_event  8, 17, SAFFRON_CITY, 6
+	warp_event  9, 17, SAFFRON_CITY, 6
+	warp_event  6,  5, GOLDENROD_MAGNET_TRAIN_STATION, 4
+	warp_event 11,  5, GOLDENROD_MAGNET_TRAIN_STATION, 3
 
-.CoordEvents:
-	db 1
-	coord_event 11, 6, 0, Script_ArriveFromGoldenrod
+	db 1 ; coord events
+	coord_event 11,  6, SCENE_DEFAULT, Script_ArriveFromGoldenrod
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
-	object_event 9, 9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
+	db 4 ; object events
+	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
 	object_event 10, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x18a875, -1
-	object_event 6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
-	object_event 6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event  6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event  6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION

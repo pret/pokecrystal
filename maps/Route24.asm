@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE24_ROCKET
 
 Route24_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 RocketScript_0x1adbfa:
 	faceplayer
@@ -24,15 +22,15 @@ RocketScript_0x1adbfa:
 	opentext
 	writetext UnknownText_0x1addc0
 	buttonsound
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	writetext UnknownText_0x1adee1
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear ROUTE24_ROCKET
 	pause 25
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	playmapmusic
 	end
 
@@ -119,18 +117,13 @@ UnknownText_0x1adee1:
 	done
 
 Route24_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 0
+	db 0 ; warp events
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 8, 7, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET
+	db 1 ; object events
+	object_event  8,  7, SPRITE_ROCKET, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_0x1adbfa, EVENT_ROUTE_24_ROCKET

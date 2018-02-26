@@ -1,18 +1,16 @@
-const_value set 2
+	const_def 2 ; object constants
 	const FASTSHIP1F_SAILOR1
 	const FASTSHIP1F_SAILOR2
 	const FASTSHIP1F_SAILOR3
 	const FASTSHIP1F_GENTLEMAN
 
 FastShip1F_MapScripts:
-.SceneScripts:
-	db 3
-	scene_script .DummyScene0
-	scene_script .EnterFastShip
-	scene_script .DummyScene2
+	db 3 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .EnterFastShip ; SCENE_FASTSHIP1F_ENTER_SHIP
+	scene_script .DummyScene2 ; SCENE_FASTSHIP1F_MEET_GRANDPA
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -35,11 +33,11 @@ FastShip1F_MapScripts:
 	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .SkipGrandpa
-	setscene 2
+	setscene SCENE_FASTSHIP1F_MEET_GRANDPA
 	end
 
 .SkipGrandpa:
-	setscene 0
+	setscene SCENE_DEFAULT
 	end
 
 SailorScript_0x75160:
@@ -68,10 +66,10 @@ SailorScript_0x75160:
 	closetext
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	setmapscene VERMILION_PORT, 1
+	setmapscene VERMILION_PORT, SCENE_VERMILIONPORT_LEAVE_SHIP
 	warp VERMILION_PORT, 7, 17
 	end
 
@@ -81,16 +79,16 @@ SailorScript_0x75160:
 	closetext
 	scall .LetThePlayerOut
 	playsound SFX_EXIT_BUILDING
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	setmapscene OLIVINE_PORT, 1
+	setmapscene OLIVINE_PORT, SCENE_OLIVINEPORT_LEAVE_SHIP
 	warp OLIVINE_PORT, 7, 23
 	end
 
 .LetThePlayerOut:
 	checkcode VAR_FACING
-	if_equal RIGHT, .YouAreFacingRight
+	ifequal RIGHT, .YouAreFacingRight
 	applymovement FASTSHIP1F_SAILOR1, MovementData_0x7520e
 	applymovement PLAYER, MovementData_0x75235
 	end
@@ -132,10 +130,10 @@ WorriedGrandpaSceneLeft:
 	writetext UnknownText_0x75412
 	waitbutton
 	closetext
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75222
 	disappear FASTSHIP1F_GENTLEMAN
-	setscene 0
+	setscene SCENE_DEFAULT
 	end
 
 MovementData_0x7520e:
@@ -286,35 +284,30 @@ UnknownText_0x754be:
 	done
 
 FastShip1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 12
-	warp_def 25, 1, -1, FAST_SHIP_1F
-	warp_def 27, 8, 1, FAST_SHIP_CABINS_NNW_NNE_NE
-	warp_def 23, 8, 2, FAST_SHIP_CABINS_NNW_NNE_NE
-	warp_def 19, 8, 3, FAST_SHIP_CABINS_NNW_NNE_NE
-	warp_def 15, 8, 1, FAST_SHIP_CABINS_SW_SSW_NW
-	warp_def 15, 15, 2, FAST_SHIP_CABINS_SW_SSW_NW
-	warp_def 19, 15, 4, FAST_SHIP_CABINS_SW_SSW_NW
-	warp_def 23, 15, 1, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
-	warp_def 27, 15, 3, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
-	warp_def 3, 13, 5, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN
-	warp_def 6, 12, 1, FAST_SHIP_B1F
-	warp_def 30, 14, 2, FAST_SHIP_B1F
+	db 12 ; warp events
+	warp_event 25,  1, FAST_SHIP_1F, -1
+	warp_event 27,  8, FAST_SHIP_CABINS_NNW_NNE_NE, 1
+	warp_event 23,  8, FAST_SHIP_CABINS_NNW_NNE_NE, 2
+	warp_event 19,  8, FAST_SHIP_CABINS_NNW_NNE_NE, 3
+	warp_event 15,  8, FAST_SHIP_CABINS_SW_SSW_NW, 1
+	warp_event 15, 15, FAST_SHIP_CABINS_SW_SSW_NW, 2
+	warp_event 19, 15, FAST_SHIP_CABINS_SW_SSW_NW, 4
+	warp_event 23, 15, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN, 1
+	warp_event 27, 15, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN, 3
+	warp_event  3, 13, FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN, 5
+	warp_event  6, 12, FAST_SHIP_B1F, 1
+	warp_event 30, 14, FAST_SHIP_B1F, 2
 
-.CoordEvents:
-	db 2
-	coord_event 24, 6, 2, WorriedGrandpaSceneLeft
-	coord_event 25, 6, 2, WorriedGrandpaSceneRight
+	db 2 ; coord events
+	coord_event 24,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneLeft
+	coord_event 25,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaSceneRight
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
-	object_event 25, 2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x75160, -1
-	object_event 14, 7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
+	db 4 ; object events
+	object_event 25,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x75160, -1
+	object_event 14,  7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
 	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailorScript, -1
-	object_event 19, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
+	object_event 19,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

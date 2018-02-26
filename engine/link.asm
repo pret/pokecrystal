@@ -35,7 +35,7 @@ LinkCommunications: ; 28000
 	cp LINK_TIMECAPSULE
 	jp nz, Gen2ToGen2LinkComms
 
-TimeCapsule: ; 2805d
+Gen2ToGen1LinkComms: ; 2805d
 	call ClearLinkData
 	call Link_PrepPartyData_Gen1
 	call FixDataForLinkTransfer
@@ -1670,7 +1670,7 @@ LinkTrade: ; 28b87
 	ld hl, UnknownText_0x28eb8
 	bccoord 1, 14
 	call PlaceHLTextAtBC
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	hlcoord 10, 7
 	ld b, 3
 	ld c, 7
@@ -1970,7 +1970,7 @@ LinkTrade: ; 28b87
 	call DelayFrames
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
-	jp z, TimeCapsule
+	jp z, Gen2ToGen1LinkComms
 	jp Gen2ToGen2LinkComms
 ; 28ea3
 
@@ -2031,14 +2031,15 @@ Unreferenced_Function28f09: ; 28f09
 
 INCLUDE "engine/trade_animation.asm"
 
-Special_CheckTimeCapsuleCompatibility: ; 29bfb
-; Checks to see if your Party is compatible with the generation 1 games.  Returns the following in wScriptVar:
+CheckTimeCapsuleCompatibility: ; 29bfb
+; Checks to see if your party is compatible with the Gen 1 games.
+; Returns the following in wScriptVar:
 ; 0: Party is okay
-; 1: At least one Pokemon was introduced in GS
-; 2: At least one Pokemon has a move that was introduced in GS
-; 3: At least one Pokemon is holding mail
+; 1: At least one Pokémon was introduced in Gen 2
+; 2: At least one Pokémon has a move that was introduced in Gen 2
+; 3: At least one Pokémon is holding mail
 
-; If any party Pokemon was introduced in the generation 2 games, don't let it in.
+; If any party Pokémon was introduced in the Gen 2 games, don't let it in.
 	ld hl, wPartySpecies
 	ld b, PARTY_LENGTH
 .loop
@@ -2050,7 +2051,7 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 	dec b
 	jr nz, .loop
 
-; If any party Pokemon is holding mail, don't let it in.
+; If any party Pokémon is holding mail, don't let it in.
 .checkitem
 	ld a, [wPartyCount]
 	ld b, a
@@ -2068,7 +2069,7 @@ Special_CheckTimeCapsuleCompatibility: ; 29bfb
 	dec b
 	jr nz, .itemloop
 
-; If any party Pokemon has a move that was introduced in the generation 2 games, don't let it in.
+; If any party Pokémon has a move that was introduced in the Gen 2 games, don't let it in.
 	ld hl, wPartyMon1Moves
 	ld a, [wPartyCount]
 	ld b, a
@@ -2126,7 +2127,7 @@ Function29c67: ; 29c67
 	ret
 ; 29c7b
 
-Special_EnterTimeCapsule: ; 29c7b
+EnterTimeCapsule: ; 29c7b
 	ld c, 10
 	call DelayFrames
 	ld a, $4
@@ -2140,7 +2141,7 @@ Special_EnterTimeCapsule: ; 29c7b
 	ret
 ; 29c92
 
-Special_WaitForOtherPlayerToExit: ; 29c92
+WaitForOtherPlayerToExit: ; 29c92
 	ld c, 3
 	call DelayFrames
 	ld a, CONNECTION_NOT_ESTABLISHED
@@ -2188,21 +2189,21 @@ Special_WaitForOtherPlayerToExit: ; 29c92
 	ret
 ; 29ce8
 
-Special_SetBitsForLinkTradeRequest: ; 29ce8
+SetBitsForLinkTradeRequest: ; 29ce8
 	ld a, LINK_TRADECENTER - 1
 	ld [wPlayerLinkAction], a
 	ld [wd265], a
 	ret
 ; 29cf1
 
-Special_SetBitsForBattleRequest: ; 29cf1
+SetBitsForBattleRequest: ; 29cf1
 	ld a, LINK_COLOSSEUM - 1
 	ld [wPlayerLinkAction], a
 	ld [wd265], a
 	ret
 ; 29cfa
 
-Special_SetBitsForTimeCapsuleRequest: ; 29cfa
+SetBitsForTimeCapsuleRequest: ; 29cfa
 	ld a, $2
 	ld [rSB], a
 	xor a
@@ -2217,7 +2218,7 @@ Special_SetBitsForTimeCapsuleRequest: ; 29cfa
 	ret
 ; 29d11
 
-Special_WaitForLinkedFriend: ; 29d11
+WaitForLinkedFriend: ; 29d11
 	ld a, [wPlayerLinkAction]
 	and a
 	jr z, .no_link_action
@@ -2289,7 +2290,7 @@ Special_WaitForLinkedFriend: ; 29d11
 	ret
 ; 29d92
 
-Special_CheckLinkTimeout: ; 29d92
+CheckLinkTimeout: ; 29d92
 	ld a, $1
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
@@ -2427,7 +2428,7 @@ Link_CheckCommunicationError: ; 29e0c
 	ret
 ; 29e66
 
-Special_TryQuickSave: ; 29e66
+TryQuickSave: ; 29e66
 	ld a, [wd265]
 	push af
 	farcall Link_SaveGame
@@ -2443,7 +2444,7 @@ Special_TryQuickSave: ; 29e66
 	ret
 ; 29e82
 
-Special_CheckBothSelectedSameRoom: ; 29e82
+CheckBothSelectedSameRoom: ; 29e82
 	ld a, [wd265]
 	call Link_EnsureSync
 	push af
@@ -2470,7 +2471,7 @@ Special_CheckBothSelectedSameRoom: ; 29e82
 	ret
 ; 29eaf
 
-Special_TimeCapsule: ; 29eaf
+TimeCapsule: ; 29eaf
 	ld a, LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2481,7 +2482,7 @@ Special_TimeCapsule: ; 29eaf
 	ret
 ; 29ec4
 
-Special_TradeCenter: ; 29ec4
+TradeCenter: ; 29ec4
 	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2492,7 +2493,7 @@ Special_TradeCenter: ; 29ec4
 	ret
 ; 29ed9
 
-Special_Colosseum: ; 29ed9
+Colosseum: ; 29ed9
 	ld a, LINK_COLOSSEUM
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2503,7 +2504,7 @@ Special_Colosseum: ; 29ed9
 	ret
 ; 29eee
 
-Special_CloseLink: ; 29eee
+CloseLink: ; 29eee
 	xor a
 	ld [wLinkMode], a
 	ld c, 3
@@ -2511,7 +2512,7 @@ Special_CloseLink: ; 29eee
 	jp Link_ResetSerialRegistersAfterLinkClosure
 ; 29efa
 
-Special_FailedLinkToPast: ; 29efa
+FailedLinkToPast: ; 29efa
 	ld c, 40
 	call DelayFrames
 	ld a, $e
@@ -2560,7 +2561,7 @@ Link_EnsureSync: ; 29f17
 	ret
 ; 29f47
 
-Special_CableClubCheckWhichChris: ; 29f47
+CableClubCheckWhichChris: ; 29f47
 	ld a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	ld a, TRUE

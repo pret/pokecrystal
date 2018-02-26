@@ -1,4 +1,4 @@
-Special_CheckMagikarpLength: ; fbb32
+CheckMagikarpLength: ; fbb32
 	; Returns 3 if you select a Magikarp that beats the previous record.
 	; Returns 2 if you select a Magikarp, but the current record is longer.
 	; Returns 1 if you press B in the Pokemon selection menu.
@@ -189,7 +189,7 @@ CalcMagikarpLength: ; fbbfc
 
 .no
 
-	ld hl, .Lengths
+	ld hl, MagikarpLengths
 	ld a, 2
 	ld [wd265], a
 
@@ -308,30 +308,11 @@ CalcMagikarpLength: ; fbbfc
 	ret
 ; fbca8
 
-.Lengths: ; fbca8
-; [wMagikarpLength] = z * 100 + (bc - x) / y
-; First argument is the bc threshold as well as x.
-; Second argument is y.
-; In reality, due to the bug at .BCLessThanDE, the threshold is determined by only register b.
-	dwb   110, 1 ; not used unless the bug is fixed
-	dwb   310, 2
-	dwb   710, 4
-	dwb  2710, 20
-	dwb  7710, 50
-	dwb 17710, 100
-	dwb 32710, 150
-	dwb 47710, 150
-	dwb 57710, 100
-	dwb 62710, 50
-	dwb 64710, 20
-	dwb 65210, 5
-	dwb 65410, 2
-	dwb 65510, 1 ; not used
-; fbcd2
+INCLUDE "data/events/magikarp_lengths.asm"
 
 
 
-Special_MagikarpHouseSign: ; fbcd2
+MagikarpHouseSign: ; fbcd2
 	ld a, [wBestMagikarpLengthFeet]
 	ld [wMagikarpLength], a
 	ld a, [wBestMagikarpLengthInches]

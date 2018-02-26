@@ -29,7 +29,7 @@ CheckForMobileBattleRules: ; 8b1e1
 	db "@"
 ; 0x8b201
 
-CheckForBattleTowerRules: ; 8b201
+_CheckForBattleTowerRules: ; 8b201
 	ld hl, wStringBuffer2
 	ld [hl], "3"
 	inc hl

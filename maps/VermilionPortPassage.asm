@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const VERMILIONPORTPASSAGE_TEACHER
 
 VermilionPortPassage_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 VermilionPortPassageTeacherScript:
 	jumptextfaceplayer VermilionPortPassageTeacherText
@@ -19,23 +17,18 @@ VermilionPortPassageTeacherText:
 	done
 
 VermilionPortPassage_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
-	warp_def 15, 0, 8, VERMILION_CITY
-	warp_def 16, 0, 9, VERMILION_CITY
-	warp_def 15, 4, 4, VERMILION_PORT_PASSAGE
-	warp_def 3, 2, 3, VERMILION_PORT_PASSAGE
-	warp_def 3, 14, 1, VERMILION_PORT
+	db 5 ; warp events
+	warp_event 15,  0, VERMILION_CITY, 8
+	warp_event 16,  0, VERMILION_CITY, 9
+	warp_event 15,  4, VERMILION_PORT_PASSAGE, 4
+	warp_event  3,  2, VERMILION_PORT_PASSAGE, 3
+	warp_event  3, 14, VERMILION_PORT, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 17, 1, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionPortPassageTeacherScript, -1
+	db 1 ; object events
+	object_event 17,  1, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionPortPassageTeacherScript, -1

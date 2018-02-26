@@ -1,31 +1,24 @@
-const_value set 2
+	const_def 2 ; object constants
 	const TINTOWER3F_POKE_BALL
 
 TinTower3F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TinTower3FFullHeal:
 	itemball FULL_HEAL
 
 TinTower3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 10, 14, 1, TIN_TOWER_2F
-	warp_def 16, 2, 2, TIN_TOWER_4F
+	db 2 ; warp events
+	warp_event 10, 14, TIN_TOWER_2F, 1
+	warp_event 16,  2, TIN_TOWER_4F, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 3, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower3FFullHeal, EVENT_TIN_TOWER_3F_FULL_HEAL
+	db 1 ; object events
+	object_event  3, 14, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, TinTower3FFullHeal, EVENT_TIN_TOWER_3F_FULL_HEAL

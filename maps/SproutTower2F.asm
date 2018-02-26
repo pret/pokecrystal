@@ -1,20 +1,18 @@
-const_value set 2
+	const_def 2 ; object constants
 	const SPROUTTOWER2F_SAGE1
 	const SPROUTTOWER2F_SAGE2
 	const SPROUTTOWER2F_POKE_BALL
 
 SproutTower2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerSageNico:
-	trainer EVENT_BEAT_SAGE_NICO, SAGE, NICO, SageNicoSeenText, SageNicoBeatenText, 0, .Script
+	trainer SAGE, NICO, EVENT_BEAT_SAGE_NICO, SageNicoSeenText, SageNicoBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SageNicoAfterBattleText
 	waitbutton
@@ -22,10 +20,10 @@ TrainerSageNico:
 	end
 
 TrainerSageEdmond:
-	trainer EVENT_BEAT_SAGE_EDMOND, SAGE, EDMOND, SageEdmondSeenText, SageEdmondBeatenText, 0, .Script
+	trainer SAGE, EDMOND, EVENT_BEAT_SAGE_EDMOND, SageEdmondSeenText, SageEdmondBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SageEdmondAfterBattleText
 	waitbutton
@@ -85,25 +83,20 @@ UnknownText_0x1848c8:
 	done
 
 SproutTower2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 6, 4, 3, SPROUT_TOWER_1F
-	warp_def 2, 6, 4, SPROUT_TOWER_1F
-	warp_def 17, 3, 5, SPROUT_TOWER_1F
-	warp_def 10, 14, 1, SPROUT_TOWER_3F
+	db 4 ; warp events
+	warp_event  6,  4, SPROUT_TOWER_1F, 3
+	warp_event  2,  6, SPROUT_TOWER_1F, 4
+	warp_event 17,  3, SPROUT_TOWER_1F, 5
+	warp_event 10, 14, SPROUT_TOWER_3F, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 12, 15, BGEVENT_READ, MapSproutTower2FSignpost0Script
 
-.ObjectEvents:
-	db 3
-	object_event 12, 3, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageNico, -1
-	object_event 9, 14, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSageEdmond, -1
-	object_event 3, 1, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower2FXAccuracy, EVENT_SPROUT_TOWER2F_X_ACCURACY
+	db 3 ; object events
+	object_event 12,  3, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageNico, -1
+	object_event  9, 14, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSageEdmond, -1
+	object_event  3,  1, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, SproutTower2FXAccuracy, EVENT_SPROUT_TOWER2F_X_ACCURACY

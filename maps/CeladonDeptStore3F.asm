@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const CELADONDEPTSTORE3F_CLERK
 	const CELADONDEPTSTORE3F_YOUNGSTER
 	const CELADONDEPTSTORE3F_GAMEBOY_KID1
@@ -6,11 +6,9 @@ const_value set 2
 	const CELADONDEPTSTORE3F_SUPER_NERD
 
 CeladonDeptStore3F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ClerkScript_0x70d29:
 	faceplayer
@@ -28,7 +26,7 @@ CeladonDeptStore3FGameboyKid1Script:
 	writetext CeladonDeptStore3FGameboyKid1Text
 	waitbutton
 	closetext
-	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID1, DOWN
+	turnobject CELADONDEPTSTORE3F_GAMEBOY_KID1, DOWN
 	end
 
 CeladonDeptStore3FGameboyKid2Script:
@@ -37,7 +35,7 @@ CeladonDeptStore3FGameboyKid2Script:
 	writetext CeladonDeptStore3FGameboyKid2Text
 	waitbutton
 	closetext
-	spriteface CELADONDEPTSTORE3F_GAMEBOY_KID2, DOWN
+	turnobject CELADONDEPTSTORE3F_GAMEBOY_KID2, DOWN
 	end
 
 CeladonDeptStore3FSuperNerdScript:
@@ -95,27 +93,22 @@ CeladonDeptStore3FDirectoryText:
 	done
 
 CeladonDeptStore3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 12, 0, 1, CELADON_DEPT_STORE_2F
-	warp_def 15, 0, 2, CELADON_DEPT_STORE_4F
-	warp_def 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
+	db 3 ; warp events
+	warp_event 12,  0, CELADON_DEPT_STORE_2F, 1
+	warp_event 15,  0, CELADON_DEPT_STORE_4F, 2
+	warp_event  2,  0, CELADON_DEPT_STORE_ELEVATOR, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore3FDirectory
-	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore3FElevatorButton
+	db 2 ; bg events
+	bg_event 14,  0, BGEVENT_READ, CeladonDeptStore3FDirectory
+	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore3FElevatorButton
 
-.ObjectEvents:
-	db 5
-	object_event 7, 1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70d29, -1
-	object_event 6, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FYoungsterScript, -1
-	object_event 9, 1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid1Script, -1
-	object_event 10, 1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid2Script, -1
-	object_event 13, 4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FSuperNerdScript, -1
+	db 5 ; object events
+	object_event  7,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70d29, -1
+	object_event  6,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FYoungsterScript, -1
+	object_event  9,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid1Script, -1
+	object_event 10,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameboyKid2Script, -1
+	object_event 13,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FSuperNerdScript, -1

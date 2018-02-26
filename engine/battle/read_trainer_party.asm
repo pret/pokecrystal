@@ -44,7 +44,7 @@ ReadTrainerParty: ; 39771
 	jr z, .got_trainer
 .loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr nz, .loop
 	jr .skip_trainer
 .got_trainer
@@ -82,6 +82,7 @@ ReadTrainerParty: ; 39771
 ; 397e3
 
 TrainerTypes: ; 397e3
+; entries correspond to TRAINERTYPE_* constants
 	dw TrainerType1 ; level, species
 	dw TrainerType2 ; level, species, moves
 	dw TrainerType3 ; level, species, item

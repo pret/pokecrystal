@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const GOLDENRODUNDERGROUND_SUPER_NERD1
 	const GOLDENRODUNDERGROUND_SUPER_NERD2
 	const GOLDENRODUNDERGROUND_SUPER_NERD3
@@ -10,11 +10,9 @@ const_value set 2
 	const GOLDENRODUNDERGROUND_GRANNY
 
 GoldenrodUnderground_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 3
+	db 3 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .ResetSwitches
 	callback MAPCALLBACK_TILES, .CheckBasementKey
 	callback MAPCALLBACK_OBJECTS, .CheckDayOfWeek
@@ -50,12 +48,12 @@ GoldenrodUnderground_MapScripts:
 
 .CheckDayOfWeek:
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, .Monday
-	if_equal TUESDAY, .Tuesday
-	if_equal WEDNESDAY, .Wednesday
-	if_equal THURSDAY, .Thursday
-	if_equal FRIDAY, .Friday
-	if_equal SATURDAY, .Saturday
+	ifequal MONDAY, .Monday
+	ifequal TUESDAY, .Tuesday
+	ifequal WEDNESDAY, .Wednesday
+	ifequal THURSDAY, .Thursday
+	ifequal FRIDAY, .Friday
+	ifequal SATURDAY, .Saturday
 
 .Sunday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
@@ -66,7 +64,7 @@ GoldenrodUnderground_MapScripts:
 
 .Monday:
 	disappear GOLDENRODUNDERGROUND_GRAMPS
-	checkmorn
+	checktime MORN
 	iffalse .NotMondayMorning
 	appear GOLDENRODUNDERGROUND_GRAMPS
 .NotMondayMorning:
@@ -111,10 +109,10 @@ GoldenrodUnderground_MapScripts:
 	return
 
 TrainerSupernerdEric:
-	trainer EVENT_BEAT_SUPER_NERD_ERIC, SUPER_NERD, ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, .Script
+	trainer SUPER_NERD, ERIC, EVENT_BEAT_SUPER_NERD_ERIC, SupernerdEricSeenText, SupernerdEricBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SupernerdEricAfterBattleText
 	waitbutton
@@ -122,10 +120,10 @@ TrainerSupernerdEric:
 	end
 
 TrainerSupernerdTeru:
-	trainer EVENT_BEAT_SUPER_NERD_TERU, SUPER_NERD, TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, 0, .Script
+	trainer SUPER_NERD, TERU, EVENT_BEAT_SUPER_NERD_TERU, SupernerdTeruSeenText, SupernerdTeruBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SupernerdTeruAfterBattleText
 	waitbutton
@@ -133,10 +131,10 @@ TrainerSupernerdTeru:
 	end
 
 TrainerPokemaniacIssac:
-	trainer EVENT_BEAT_POKEMANIAC_ISSAC, POKEMANIAC, ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, 0, .Script
+	trainer POKEMANIAC, ISSAC, EVENT_BEAT_POKEMANIAC_ISSAC, PokemaniacIssacSeenText, PokemaniacIssacBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacIssacAfterBattleText
 	waitbutton
@@ -144,10 +142,10 @@ TrainerPokemaniacIssac:
 	end
 
 TrainerPokemaniacDonald:
-	trainer EVENT_BEAT_POKEMANIAC_DONALD, POKEMANIAC, DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, 0, .Script
+	trainer POKEMANIAC, DONALD, EVENT_BEAT_POKEMANIAC_DONALD, PokemaniacDonaldSeenText, PokemaniacDonaldBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokemaniacDonaldAfterBattleText
 	waitbutton
@@ -157,8 +155,8 @@ TrainerPokemaniacDonald:
 GrannyScript_0x7c132:
 	opentext
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, .Open
-	if_equal SATURDAY, .Open
+	ifequal SUNDAY, .Open
+	ifequal SATURDAY, .Open
 	jump GoldenrodUndergroundScript_ShopClosed
 
 .Open:
@@ -171,11 +169,11 @@ GrampsScript_0x7c146:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
 	iftrue GoldenrodUndergroundScript_ShopClosed
 	checkcode VAR_WEEKDAY
-	if_equal MONDAY, .CheckMorn
+	ifequal MONDAY, .CheckMorn
 	jump GoldenrodUndergroundScript_ShopClosed
 
 .CheckMorn:
-	checkmorn
+	checktime MORN
 	iffalse GoldenrodUndergroundScript_ShopClosed
 	pokemart MARTTYPE_BARGAIN, 0
 	closetext
@@ -184,65 +182,65 @@ GrampsScript_0x7c146:
 OlderHaircutBrotherScript:
 	opentext
 	checkcode VAR_WEEKDAY
-	if_equal TUESDAY, .DoHaircut
-	if_equal THURSDAY, .DoHaircut
-	if_equal SATURDAY, .DoHaircut
+	ifequal TUESDAY, .DoHaircut
+	ifequal THURSDAY, .DoHaircut
+	ifequal SATURDAY, .DoHaircut
 	jump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c5f9
 	yesorno
 	iffalse .Refused
 	checkmoney YOUR_MONEY, 500
-	if_equal HAVE_LESS, .NotEnoughMoney
+	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c69a
 	buttonsound
-	special Special_YoungerHaircutBrother
-	if_equal $0, .Refused
-	if_equal $1, .Refused
+	special YoungerHaircutBrother
+	ifequal $0, .Refused
+	ifequal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
-	if_equal $2, .two
-	if_equal $3, .three
+	ifequal $2, .two
+	ifequal $3, .three
 	jump .else
 
 .two
-	setevent EVENT_GAVE_KURT_APRICORNS
-	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
-	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	jump .then
 
 .three
-	clearevent EVENT_GAVE_KURT_APRICORNS
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
-	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	jump .then
 
 .else
-	clearevent EVENT_GAVE_KURT_APRICORNS
-	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
-	setevent EVENT_DRAGON_SHRINE_QUESTION_2
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	jump .then
 
 .then
 	takemoney YOUR_MONEY, 500
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c6b8
 	waitbutton
 	closetext
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7c6d8
 	waitbutton
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x7c2bb
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
@@ -267,65 +265,65 @@ OlderHaircutBrotherScript:
 YoungerHaircutBrotherScript:
 	opentext
 	checkcode VAR_WEEKDAY
-	if_equal SUNDAY, .DoHaircut
-	if_equal WEDNESDAY, .DoHaircut
-	if_equal FRIDAY, .DoHaircut
+	ifequal SUNDAY, .DoHaircut
+	ifequal WEDNESDAY, .DoHaircut
+	ifequal FRIDAY, .DoHaircut
 	jump GoldenrodUndergroundScript_ShopClosed
 
 .DoHaircut:
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
 	iftrue .AlreadyGotHaircut
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c75c
 	yesorno
 	iffalse .Refused
 	checkmoney YOUR_MONEY, 300
-	if_equal HAVE_LESS, .NotEnoughMoney
+	ifequal HAVE_LESS, .NotEnoughMoney
 	writetext UnknownText_0x7c7f1
 	buttonsound
-	special Special_OlderHaircutBrother
-	if_equal $0, .Refused
-	if_equal $1, .Refused
+	special OlderHaircutBrother
+	ifequal $0, .Refused
+	ifequal $1, .Refused
 	setflag ENGINE_GOLDENROD_UNDERGROUND_GOT_HAIRCUT
-	if_equal $2, .two
-	if_equal $3, .three
+	ifequal $2, .two
+	ifequal $3, .three
 	jump .else
 
 .two
-	setevent EVENT_GAVE_KURT_APRICORNS
-	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
-	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	jump .then
 
 .three
-	clearevent EVENT_GAVE_KURT_APRICORNS
-	setevent EVENT_RECEIVED_BALLS_FROM_KURT
-	clearevent EVENT_DRAGON_SHRINE_QUESTION_2
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	jump .then
 
 .else
-	clearevent EVENT_GAVE_KURT_APRICORNS
-	clearevent EVENT_RECEIVED_BALLS_FROM_KURT
-	setevent EVENT_DRAGON_SHRINE_QUESTION_2
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	clearevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	jump .then
 
 .then
 	takemoney YOUR_MONEY, 300
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x7c80e
 	waitbutton
 	closetext
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext UnknownText_0x7c82a
 	waitbutton
-	checkevent EVENT_GAVE_KURT_APRICORNS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iftrue UnknownScript_0x7c2bb
-	checkevent EVENT_RECEIVED_BALLS_FROM_KURT
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue UnknownScript_0x7c2c4
 	jump UnknownScript_0x7c2cd
 
@@ -349,21 +347,21 @@ YoungerHaircutBrotherScript:
 
 UnknownScript_0x7c2bb:
 	writetext HaircutBrosText_SlightlyHappier
-	special Special_PlayCurMonCry
+	special PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x7c2c4:
 	writetext HaircutBrosText_Happier
-	special Special_PlayCurMonCry
+	special PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
 UnknownScript_0x7c2cd:
 	writetext HaircutBrosText_MuchHappier
-	special Special_PlayCurMonCry
+	special PlayCurMonCry
 	waitbutton
 	closetext
 	end
@@ -409,13 +407,13 @@ MapGoldenrodUndergroundSignpost1Script:
 	jumptext UnknownText_0x7c91a
 
 GoldenrodUndergroundHiddenParlyzHeal:
-	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL, PARLYZ_HEAL
+	hiddenitem PARLYZ_HEAL, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL
 
 GoldenrodUndergroundHiddenSuperPotion:
-	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION, SUPER_POTION
+	hiddenitem SUPER_POTION, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_SUPER_POTION
 
 GoldenrodUndergroundHiddenAntidote:
-	hiddenitem EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE, ANTIDOTE
+	hiddenitem ANTIDOTE, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_ANTIDOTE
 
 SupernerdEricSeenText:
 	text "I got booted out"
@@ -647,37 +645,32 @@ UnknownText_0x7c91a:
 	done
 
 GoldenrodUnderground_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
-	warp_def 3, 2, 7, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
-	warp_def 3, 34, 4, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
-	warp_def 18, 6, 4, GOLDENROD_UNDERGROUND
-	warp_def 21, 31, 3, GOLDENROD_UNDERGROUND
-	warp_def 22, 31, 3, GOLDENROD_UNDERGROUND
-	warp_def 22, 27, 1, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES
+	db 6 ; warp events
+	warp_event  3,  2, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 7
+	warp_event  3, 34, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 4
+	warp_event 18,  6, GOLDENROD_UNDERGROUND, 4
+	warp_event 21, 31, GOLDENROD_UNDERGROUND, 3
+	warp_event 22, 31, GOLDENROD_UNDERGROUND, 3
+	warp_event 22, 27, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 5
-	bg_event 18, 6, BGEVENT_READ, BasementDoorScript
-	bg_event 19, 6, BGEVENT_READ, MapGoldenrodUndergroundSignpost1Script
-	bg_event 6, 13, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
-	bg_event 4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
-	bg_event 17, 8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
+	db 5 ; bg events
+	bg_event 18,  6, BGEVENT_READ, BasementDoorScript
+	bg_event 19,  6, BGEVENT_READ, MapGoldenrodUndergroundSignpost1Script
+	bg_event  6, 13, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
+	bg_event  4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
+	bg_event 17,  8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
 
-.ObjectEvents:
-	db 9
-	object_event 5, 31, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerSupernerdEric, -1
-	object_event 6, 9, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
-	object_event 3, 27, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
-	object_event 2, 6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacDonald, -1
-	object_event 7, 25, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundCoinCase, EVENT_GOLDENROD_UNDERGROUND_COIN_CASE
-	object_event 7, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x7c146, EVENT_GOLDENROD_UNDERGROUND_GRAMPS
-	object_event 7, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_OLDER_HAIRCUT_BROTHER
-	object_event 7, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
-	object_event 7, 21, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x7c132, EVENT_GOLDENROD_UNDERGROUND_GRANNY
+	db 9 ; object events
+	object_event  5, 31, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerSupernerdEric, -1
+	object_event  6,  9, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 2, TrainerSupernerdTeru, -1
+	object_event  3, 27, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
+	object_event  2,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacDonald, -1
+	object_event  7, 25, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundCoinCase, EVENT_GOLDENROD_UNDERGROUND_COIN_CASE
+	object_event  7, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x7c146, EVENT_GOLDENROD_UNDERGROUND_GRAMPS
+	object_event  7, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_OLDER_HAIRCUT_BROTHER
+	object_event  7, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
+	object_event  7, 21, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x7c132, EVENT_GOLDENROD_UNDERGROUND_GRANNY

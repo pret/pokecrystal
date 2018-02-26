@@ -411,13 +411,13 @@ Pokegear_FinishTilemap: ; 90eb0 (24:4eb0)
 	call ByteFill
 	ld de, wPokegearFlags
 	ld a, [de]
-	bit 0, a ; ENGINE_MAP_CARD
+	bit POKEGEAR_MAP_CARD_F, a
 	call nz, .PlaceMapIcon
 	ld a, [de]
-	bit 2, a ; ENGINE_PHONE_CARD
+	bit POKEGEAR_PHONE_CARD_F, a
 	call nz, .PlacePhoneIcon
 	ld a, [de]
-	bit 1, a ; ENGINE_RADIO_CARD
+	bit POKEGEAR_RADIO_CARD_F, a
 	call nz, .PlaceRadioIcon
 	hlcoord 0, 0
 	ld a, $46
@@ -496,7 +496,7 @@ PokegearClock_Joypad: ; 90f3e (24:4f3e)
 	and D_RIGHT
 	ret z
 	ld a, [wPokegearFlags]
-	bit 0, a ; ENGINE_MAP_CARD
+	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map_card
 	ld c, POKEGEARSTATE_MAPCHECKREGION
 	ld b, POKEGEARCARD_MAP
@@ -504,7 +504,7 @@ PokegearClock_Joypad: ; 90f3e (24:4f3e)
 
 .no_map_card
 	ld a, [wPokegearFlags]
-	bit 2, a ; ENGINE_PHONE_CARD
+	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone_card
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
@@ -512,7 +512,7 @@ PokegearClock_Joypad: ; 90f3e (24:4f3e)
 
 .no_phone_card
 	ld a, [wPokegearFlags]
-	bit 1, a ; ENGINE_RADIO_CARD
+	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
@@ -613,7 +613,7 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 
 .right
 	ld a, [wPokegearFlags]
-	bit 2, a ; ENGINE_PHONE_CARD
+	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
@@ -621,7 +621,7 @@ PokegearMap_ContinueMap: ; 90ff2 (24:4ff2)
 
 .no_phone
 	ld a, [wPokegearFlags]
-	bit 1, a ; ENGINE_RADIO_CARD
+	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
@@ -687,7 +687,7 @@ PokegearMap_InitPlayerIcon: ; 9106a
 	depixel 0, 0
 	ld b, SPRITE_ANIM_INDEX_RED_WALK
 	ld a, [wPlayerGender]
-	bit 0, a ; ENGINE_PLAYER_IS_FEMALE
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK
 .got_gender
@@ -764,7 +764,7 @@ PokegearMap_UpdateCursorPosition: ; 910d4
 
 TownMap_GetKantoLandmarkLimits: ; 910e8
 	ld a, [wStatusFlags]
-	bit 6, a ; ENGINE_CREDITS_SKIP
+	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	jr z, .not_hof
 	ld d, ROUTE_28
 	ld e, PALLET_TOWN
@@ -810,7 +810,7 @@ PokegearRadio_Joypad: ; 91112 (24:5112)
 
 .left
 	ld a, [wPokegearFlags]
-	bit 2, a ; ENGINE_PHONE_CARD
+	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone
 	ld c, POKEGEARSTATE_PHONEINIT
 	ld b, POKEGEARCARD_PHONE
@@ -818,7 +818,7 @@ PokegearRadio_Joypad: ; 91112 (24:5112)
 
 .no_phone
 	ld a, [wPokegearFlags]
-	bit 0, a ; ENGINE_MAP_CARD
+	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map
 	ld c, POKEGEARSTATE_MAPCHECKREGION
 	ld b, POKEGEARCARD_MAP
@@ -869,7 +869,7 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 
 .left
 	ld a, [wPokegearFlags]
-	bit 0, a ; ENGINE_MAP_CARD
+	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map
 	ld c, POKEGEARSTATE_MAPCHECKREGION
 	ld b, POKEGEARCARD_MAP
@@ -882,7 +882,7 @@ PokegearPhone_Joypad: ; 91171 (24:5171)
 
 .right
 	ld a, [wPokegearFlags]
-	bit 1, a ; ENGINE_RADIO_CARD
+	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
@@ -1590,7 +1590,7 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a ; ENGINE_EXPN_CARD
+	bit POKEGEAR_EXPN_CARD_F, a
 	jr z, .NoSignal
 	jp LoadStation_PlacesAndPeople
 
@@ -1598,7 +1598,7 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a ; ENGINE_EXPN_CARD
+	bit POKEGEAR_EXPN_CARD_F, a
 	jr z, .NoSignal
 	jp LoadStation_LetsAllSing
 
@@ -1606,14 +1606,14 @@ RadioChannels:
 	call .InJohto
 	jr c, .NoSignal
 	ld a, [wPokegearFlags]
-	bit 3, a ; ENGINE_EXPN_CARD
+	bit POKEGEAR_EXPN_CARD_F, a
 	jr z, .NoSignal
 	jp LoadStation_PokeFluteRadio
 
 .EvolutionRadio:
 ; This station airs in the Lake of Rage area when Rocket are still in Mahogany.
 	ld a, [wStatusFlags]
-	bit 4, a ; ENGINE_ROCKET_SIGNAL_ON_CH20
+	bit STATUSFLAGS_ROCKET_SIGNAL_F, a
 	jr z, .NoSignal
 	ld a, [wPokegearMapPlayerIconLandmark]
 	cp MAHOGANY_TOWN
@@ -1699,7 +1699,7 @@ LoadStation_BuenasPassword: ; 917a5 (24:57a5)
 	call Radio_BackUpFarCallParams
 	ld de, NotBuenasPasswordName
 	ld a, [wStatusFlags2]
-	bit 0, a ; ENGINE_ROCKETS_IN_RADIO_TOWER
+	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
 	ret z
 	ld de, BuenasPasswordName
 	ret
@@ -2561,7 +2561,7 @@ Pokedex_GetArea: ; 91d11
 
 .right
 	ld a, [wStatusFlags]
-	bit 6, a ; ENGINE_CREDITS_SKIP
+	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	ret z
 	ld a, [hWY]
 	and a
@@ -2690,7 +2690,7 @@ Pokedex_GetArea: ; 91d11
 	push bc
 	ld c, PAL_OW_RED
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .male
 	inc c ; PAL_OW_BLUE
 .male
@@ -2917,7 +2917,7 @@ TownMapPlayerIcon: ; 91fa6
 	depixel 0, 0
 	ld b, SPRITE_ANIM_INDEX_RED_WALK ; Male
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK ; Female
 .got_gender

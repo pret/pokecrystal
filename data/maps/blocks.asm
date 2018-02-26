@@ -165,20 +165,20 @@ CharcoalKiln_Blocks:
 LakeOfRageHiddenPowerHouse_Blocks:
 LakeOfRageMagikarpHouse_Blocks:
 GoldenrodHappinessRater_Blocks:
-GoldenrodBillsHouse_Blocks:
+BillsFamilysHouse_Blocks:
 GoldenrodPPSpeechHouse_Blocks:
 GoldenrodNameRater_Blocks:
-VermilionHouseFishingSpeechHouse_Blocks:
+VermilionFishingSpeechHouse_Blocks:
 VermilionMagnetTrainSpeechHouse_Blocks:
-VermilionHouseDiglettsCaveSpeechHouse_Blocks:
+VermilionDiglettsCaveSpeechHouse_Blocks:
 BluesHouse_Blocks:
 PewterNidoranSpeechHouse_Blocks:
 PewterSnoozeSpeechHouse_Blocks:
-FuchsiaBillSpeechHouse_Blocks:
+BillsBrothersHouse_Blocks:
 LavenderSpeechHouse_Blocks:
 LavenderNameRater_Blocks:
 Route12SuperRodHouse_Blocks:
-Route28FamousSpeechHouse_Blocks:
+Route28SteelWingHouse_Blocks:
 CeladonMansionRoofHouse_Blocks:
 Route16FuchsiaSpeechHouse_Blocks:
 ManiasHouse_Blocks:
@@ -187,17 +187,17 @@ CianwoodPhotoStudio_Blocks:
 CianwoodLugiaSpeechHouse_Blocks:
 PokeSeersHouse_Blocks:
 ViridianNicknameSpeechHouse_Blocks:
-Route2NuggetSpeechHouse_Blocks:
-KrissNeighborsHouse_Blocks:
-Route26HealSpeechHouse_Blocks:
-Route26DayofWeekSiblingsHouse_Blocks:
+Route2NuggetHouse_Blocks:
+PlayersNeighborsHouse_Blocks:
+Route26HealHouse_Blocks:
+DayOfWeekSiblingsHouse_Blocks:
 Route27SandstormHouse_Blocks:
 MrPsychicsHouse_Blocks:
-Route5CleanseTagSpeechHouse_Blocks:
+Route5CleanseTagHouse_Blocks:
 CherrygroveGymSpeechHouse_Blocks:
 GuideGentsHouse_Blocks:
 CherrygroveEvolutionSpeechHouse_Blocks:
-Route30BerrySpeechHouse_Blocks:
+Route30BerryHouse_Blocks:
 	INCBIN "maps/House1.blk"
 
 SafariZoneFuchsiaGateBeta_Blocks:
@@ -265,8 +265,8 @@ Route43_Blocks:
 Route39_Blocks:
 	INCBIN "maps/Route39.blk"
 
-KrissHouse1F_Blocks:
-	INCBIN "maps/KrissHouse1F.blk"
+PlayersHouse1F_Blocks:
+	INCBIN "maps/PlayersHouse1F.blk"
 
 Route38EcruteakGate_Blocks:
 Route42EcruteakGate_Blocks:
@@ -806,8 +806,8 @@ GoldenrodBikeShop_Blocks:
 DanceTheatre_Blocks:
 	INCBIN "maps/DanceTheatre.blk"
 
-EcruteakHouse_Blocks:
-	INCBIN "maps/EcruteakHouse.blk"
+EcruteakTinTowerEntrance_Blocks:
+	INCBIN "maps/EcruteakTinTowerEntrance.blk"
 
 GoldenrodGameCorner_Blocks:
 	INCBIN "maps/GoldenrodGameCorner.blk"
@@ -846,8 +846,8 @@ OlivineCafe_Blocks:
 SafariZoneMainOffice_Blocks:
 	INCBIN "maps/OlivineCafe.blk"
 
-KrissHouse2F_Blocks:
-	INCBIN "maps/KrissHouse2F.blk"
+PlayersHouse2F_Blocks:
+	INCBIN "maps/PlayersHouse2F.blk"
 
 SaffronMagnetTrainStation_Blocks:
 	INCBIN "maps/SaffronMagnetTrainStation.blk"
@@ -1022,11 +1022,11 @@ BattleTower1F_Blocks:
 BattleTowerBattleRoom_Blocks:
 	INCBIN "maps/BattleTowerBattleRoom.blk"
 
-GoldenrodPokeComCenter2FMobile_Blocks:
-	INCBIN "maps/GoldenrodPokeComCenter2FMobile.blk"
+PokecomCenterAdminOfficeMobile_Blocks:
+	INCBIN "maps/PokecomCenterAdminOfficeMobile.blk"
 
-MobileTradeRoomMobile_Blocks:
-	INCBIN "maps/MobileTradeRoomMobile.blk"
+MobileTradeRoom_Blocks:
+	INCBIN "maps/MobileTradeRoom.blk"
 
 MobileBattleRoom_Blocks:
 	INCBIN "maps/MobileBattleRoom.blk"

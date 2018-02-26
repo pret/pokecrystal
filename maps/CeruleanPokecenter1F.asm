@@ -1,20 +1,18 @@
-const_value set 2
+	const_def 2 ; object constants
 	const CERULEANPOKECENTER1F_NURSE
 	const CERULEANPOKECENTER1F_SUPER_NERD
 	const CERULEANPOKECENTER1F_GYM_GUY
 
 CeruleanPokecenter1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 NurseScript_0x18820f:
 	jumpstd pokecenternurse
 
 SuperNerdScript_0x188212:
-	special Special_Mobile_DummyReturnFalse
+	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x188221
 
@@ -63,23 +61,18 @@ CeruleanPokecenter1FGymGuyText:
 	done
 
 CeruleanPokecenter1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 3, 7, 4, CERULEAN_CITY
-	warp_def 4, 7, 4, CERULEAN_CITY
-	warp_def 0, 7, 1, POKECENTER_2F
+	db 3 ; warp events
+	warp_event  3,  7, CERULEAN_CITY, 4
+	warp_event  4,  7, CERULEAN_CITY, 4
+	warp_event  0,  7, POKECENTER_2F, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
-	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x18820f, -1
-	object_event 8, 4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x188212, -1
-	object_event 1, 5, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FGymGuyScript, -1
+	db 3 ; object events
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x18820f, -1
+	object_event  8,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x188212, -1
+	object_event  1,  5, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FGymGuyScript, -1

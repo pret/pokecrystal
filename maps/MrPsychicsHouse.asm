@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const MRPSYCHICSHOUSE_FISHING_GURU
 
 MrPsychicsHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 MrPsychic:
 	faceplayer
@@ -48,22 +46,17 @@ MrPsychicText2:
 	done
 
 MrPsychicsHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 5, SAFFRON_CITY
-	warp_def 3, 7, 5, SAFFRON_CITY
+	db 2 ; warp events
+	warp_event  2,  7, SAFFRON_CITY, 5
+	warp_event  3,  7, SAFFRON_CITY, 5
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 0, 1, BGEVENT_READ, MrPsychicsHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, MrPsychicsHouseBookshelf
+	db 2 ; bg events
+	bg_event  0,  1, BGEVENT_READ, MrPsychicsHouseBookshelf
+	bg_event  1,  1, BGEVENT_READ, MrPsychicsHouseBookshelf
 
-.ObjectEvents:
-	db 1
-	object_event 5, 3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MrPsychic, -1
+	db 1 ; object events
+	object_event  5,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MrPsychic, -1

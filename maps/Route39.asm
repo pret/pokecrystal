@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE39_SAILOR
 	const ROUTE39_POKEFAN_M
 	const ROUTE39_POKEFAN_F1
@@ -11,11 +11,9 @@ const_value set 2
 	const ROUTE39_POKEFAN_F2
 
 Route39_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route39Miltank:
 	opentext
@@ -26,11 +24,11 @@ Route39Miltank:
 	end
 
 TrainerPokefanmDerek:
-	trainer EVENT_BEAT_POKEFANM_DEREK, POKEFANM, DEREK1, PokefanmDerekSeenText, PokefanmDerekBeatenText, 0, .Script
+	trainer POKEFANM, DEREK1, EVENT_BEAT_POKEFANM_DEREK, PokefanmDerekSeenText, PokefanmDerekBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_POKEFANM_DEREK
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue .HasNugget
@@ -50,8 +48,8 @@ TrainerPokefanmDerek:
 	scall .AskNumber2
 .AskForNumber:
 	askforphonenumber PHONE_POKEFANM_DEREK
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .NumberDeclined
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext POKEFANM, DEREK1, MEM_BUFFER_0
 	scall .RegisteredNumber
 	jump .NumberAccepted
@@ -105,10 +103,10 @@ TrainerPokefanmDerek:
 	end
 
 TrainerPokefanfRuth:
-	trainer EVENT_BEAT_POKEFANF_RUTH, POKEFANF, RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, 0, .Script
+	trainer POKEFANF, RUTH, EVENT_BEAT_POKEFANF_RUTH, PokefanfRuthSeenText, PokefanfRuthBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PokefanfRuthAfterBattleText
 	waitbutton
@@ -116,10 +114,10 @@ TrainerPokefanfRuth:
 	end
 
 TrainerSailorEugene:
-	trainer EVENT_BEAT_SAILOR_EUGENE, SAILOR, EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, 0, .Script
+	trainer SAILOR, EUGENE, EVENT_BEAT_SAILOR_EUGENE, SailorEugeneSeenText, SailorEugeneBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorEugeneAfterBattleText
 	waitbutton
@@ -127,10 +125,10 @@ TrainerSailorEugene:
 	end
 
 TrainerPsychicNorman:
-	trainer EVENT_BEAT_PSYCHIC_NORMAN, PSYCHIC_T, NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, 0, .Script
+	trainer PSYCHIC_T, NORMAN, EVENT_BEAT_PSYCHIC_NORMAN, PsychicNormanSeenText, PsychicNormanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext PsychicNormanAfterBattleText
 	waitbutton
@@ -140,7 +138,7 @@ TrainerPsychicNorman:
 TrainerPokefanfJaime:
 	faceplayer
 	opentext
-	checknite
+	checktime NITE
 	iffalse .NotNight
 	checkevent EVENT_BEAT_POKEFANF_JAIME
 	iftrue .Beaten
@@ -180,7 +178,7 @@ FruitTreeScript_0x1a5bf4:
 	fruittree FRUITTREE_ROUTE_39
 
 Route39HiddenNugget:
-	hiddenitem EVENT_ROUTE_39_HIDDEN_NUGGET, NUGGET
+	hiddenitem NUGGET, EVENT_ROUTE_39_HIDDEN_NUGGET
 
 Route39MiltankText:
 	text "MILTANK: Mooo!"
@@ -344,33 +342,28 @@ Route39TrainerTipsText:
 	done
 
 Route39_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 1, 3, 1, ROUTE_39_BARN
-	warp_def 5, 3, 1, ROUTE_39_FARMHOUSE
+	db 2 ; warp events
+	warp_event  1,  3, ROUTE_39_BARN, 1
+	warp_event  5,  3, ROUTE_39_FARMHOUSE, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
-	bg_event 5, 31, BGEVENT_READ, Route39TrainerTips
-	bg_event 9, 5, BGEVENT_READ, MoomooFarmSign
-	bg_event 15, 7, BGEVENT_READ, Route39Sign
-	bg_event 5, 13, BGEVENT_ITEM, Route39HiddenNugget
+	db 4 ; bg events
+	bg_event  5, 31, BGEVENT_READ, Route39TrainerTips
+	bg_event  9,  5, BGEVENT_READ, MoomooFarmSign
+	bg_event 15,  7, BGEVENT_READ, Route39Sign
+	bg_event  5, 13, BGEVENT_ITEM, Route39HiddenNugget
 
-.ObjectEvents:
-	db 10
+	db 10 ; object events
 	object_event 13, 29, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSailorEugene, -1
 	object_event 10, 22, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanmDerek, -1
 	object_event 11, 19, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerPokefanfRuth, -1
-	object_event 3, 12, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
-	object_event 6, 11, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
-	object_event 4, 15, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
-	object_event 8, 13, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
-	object_event 13, 7, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicNorman, -1
-	object_event 9, 3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a5bf4, -1
-	object_event 4, 22, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerPokefanfJaime, -1
+	object_event  3, 12, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
+	object_event  6, 11, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
+	object_event  4, 15, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
+	object_event  8, 13, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route39Miltank, -1
+	object_event 13,  7, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerPsychicNorman, -1
+	object_event  9,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a5bf4, -1
+	object_event  4, 22, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TrainerPokefanfJaime, -1

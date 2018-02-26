@@ -1,22 +1,20 @@
-const_value set 2
+	const_def 2 ; object constants
 	const CELADONMANSION3F_COOLTRAINER_M
 	const CELADONMANSION3F_GYM_GUY
 	const CELADONMANSION3F_SUPER_NERD
 	const CELADONMANSION3F_FISHER
 
 CeladonMansion3F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 CooltrainerMScript_0x71670:
 	faceplayer
 	opentext
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
-	if_greater_than NUM_POKEMON - 2 - 1, UnknownScript_0x7167e ; ignore Mew and Celebi
+	ifgreater NUM_POKEMON - 2 - 1, UnknownScript_0x7167e ; ignore Mew and Celebi
 	waitbutton
 	closetext
 	end
@@ -28,7 +26,7 @@ UnknownScript_0x7167e:
 	waitsfx
 	writetext UnknownText_0x71760
 	buttonsound
-	special Special_Diploma
+	special Diploma
 	writetext UnknownText_0x71763
 	waitbutton
 	closetext
@@ -49,7 +47,7 @@ UnknownScript_0x716a4:
 	writetext UnknownText_0x717d8
 	yesorno
 	iffalse UnknownScript_0x716b0
-	special Special_PrintDiploma
+	special PrintDiploma
 	closetext
 	end
 
@@ -190,29 +188,24 @@ UnknownText_0x71996:
 	done
 
 CeladonMansion3F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 0, 0, 1, CELADON_MANSION_ROOF
-	warp_def 1, 0, 2, CELADON_MANSION_2F
-	warp_def 6, 0, 3, CELADON_MANSION_2F
-	warp_def 7, 0, 2, CELADON_MANSION_ROOF
+	db 4 ; warp events
+	warp_event  0,  0, CELADON_MANSION_ROOF, 1
+	warp_event  1,  0, CELADON_MANSION_2F, 2
+	warp_event  6,  0, CELADON_MANSION_2F, 3
+	warp_event  7,  0, CELADON_MANSION_ROOF, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 4
-	bg_event 5, 8, BGEVENT_UP, MapCeladonMansion3FSignpost0Script
-	bg_event 4, 3, BGEVENT_UP, MapCeladonMansion3FSignpost1Script
-	bg_event 1, 6, BGEVENT_UP, MapCeladonMansion3FSignpost2Script
-	bg_event 1, 3, BGEVENT_UP, MapCeladonMansion3FSignpost3Script
+	db 4 ; bg events
+	bg_event  5,  8, BGEVENT_UP, MapCeladonMansion3FSignpost0Script
+	bg_event  4,  3, BGEVENT_UP, MapCeladonMansion3FSignpost1Script
+	bg_event  1,  6, BGEVENT_UP, MapCeladonMansion3FSignpost2Script
+	bg_event  1,  3, BGEVENT_UP, MapCeladonMansion3FSignpost3Script
 
-.ObjectEvents:
-	db 4
-	object_event 3, 6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x71670, -1
-	object_event 3, 4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x71696, -1
-	object_event 0, 7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FSuperNerdScript, -1
-	object_event 0, 4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FFisherScript, -1
+	db 4 ; object events
+	object_event  3,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x71670, -1
+	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x71696, -1
+	object_event  0,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FSuperNerdScript, -1
+	object_event  0,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FFisherScript, -1

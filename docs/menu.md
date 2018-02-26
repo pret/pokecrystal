@@ -19,13 +19,13 @@ This is the only menu that does scrolling. It doesn't draw any `TextBox` around 
 Structure:
 
 ```asm
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 2, 4, SCREEN_WIDTH - 1, 13
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db 0 ; flags
 	db 5, 0 ; rows, columns
 	db 1 ; horizontal spacing
@@ -35,7 +35,7 @@ Structure:
 	dba Function3
 ```
 
-`wMenuData2Flags`:
+`wMenuDataFlags`:
 
 ```
 7: Select is functional
@@ -48,9 +48,9 @@ Structure:
 0: Call Function1 to display the cancel entry
 ```
 
-If the columns entry in `MenuDataHeader2` of a scrolling menu is 0, `Function2` isn't called either. It doesn't affect the position of the arrows.
+If the columns entry in `MenuData` of a scrolling menu is 0, `Function2` isn't called either. It doesn't affect the position of the arrows.
 
-Call state for functions in `MenuDataHeader2` of `ScrollingMenu`:
+Call state for functions in `MenuData` of `ScrollingMenu`:
 
 ```
 All of them:
@@ -68,7 +68,7 @@ Function3: Called to display anything else, whenever the cursor is moved.
 
 There is no register of importance that should be preserved in any of these functions.
 
-The `; horizontal spacing` item in each `MenuData2` is a misnomer. It changes how the `Items` struct looks.
+The `; horizontal spacing` item in each `MenuData` is a misnomer. It changes how the `Items` struct looks.
 
 If it's 1:
 
@@ -99,14 +99,14 @@ This, like is implied by the name, is a 2-dimensional menu, where you can move y
 Structure:
 
 ```asm
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	db 12, 08 ; start coords
 	db 17, 19 ; end coords
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	dn 2, 2 ; rows, columns
 	db 6 ; spacing
@@ -114,7 +114,7 @@ Structure:
 	dba Function
 ```
 
-`wMenuData2Flags`:
+`wMenuDataFlags`:
 
 ```
 7: Leave one tile of spacing between the left textbox border and the text, enabling the cursor.
@@ -141,13 +141,13 @@ These are like the regular `VerticalMenu`, except they allow for creating slight
 Structure:
 
 ```
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, 7
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 0 ; items
 	dw Items
@@ -155,7 +155,7 @@ Structure:
 	dw StringPointers
 ```
 
-`wMenuData2Flags`:
+`wMenuDataFlags`:
 
 ```
 7: Unused
@@ -219,20 +219,20 @@ This is the simplest menu. Like, the most boring. Nothing special. Just normal. 
 Structure:
 
 ```asm
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
 	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 2 ; # items
 	db "GIVE@"
 	db "TAKE@"
 ```
 
-`wMenuData2Flags`:
+`wMenuDataFlags`:
 
 ```
 7: Leave one tile of spacing between the left textbox border and the text
@@ -259,7 +259,7 @@ This is used in the menu for selecting the character's name.
 
 ## Misc/Generic
 
-`MenuDataHeader` flags (`wMenuFlags`):
+`MenuHeader` flags (`wMenuFlags`):
 
 ```
 7: Save a backup of the tiles

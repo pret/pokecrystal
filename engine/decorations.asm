@@ -5,11 +5,11 @@ InitDecorations: ; 26751 (9:6751)
 	ld [wDecoPoster], a
 	ret
 
-_KrisDecorationMenu: ; 0x2675c
+_PlayerDecorationMenu: ; 0x2675c
 	ld a, [wWhichIndexSet]
 	push af
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	xor a
 	ld [wBuffer5], a
 	ld a, $1
@@ -36,14 +36,14 @@ _KrisDecorationMenu: ; 0x2675c
 	ret
 ; 0x2679a
 
-.MenuDataHeader: ; 0x2679a
+.MenuHeader: ; 0x2679a
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 5, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 0x267a2
 
-.MenuData2: ; 0x267a2
+.MenuData: ; 0x267a2
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw wd002
@@ -374,8 +374,8 @@ PopulateDecoCategoryMenu: ; 2695b
 	jr nc, .beyond_eight
 	xor a
 	ld [wWhichIndexSet], a
-	ld hl, .NonscrollingMenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .NonscrollingMenuHeader
+	call LoadMenuHeader
 	call DoNthMenu
 	jr c, .no_action_1
 	call DoDecorationAction2
@@ -391,9 +391,9 @@ PopulateDecoCategoryMenu: ; 2695b
 	ld d, 0
 	add hl, de
 	ld [hl], -1
-	call LoadStandardMenuDataHeader
-	ld hl, .ScrollingMenuDataHeader
-	call CopyMenuDataHeader
+	call LoadStandardMenuHeader
+	ld hl, .ScrollingMenuHeader
+	call CopyMenuHeader
 	xor a
 	ld [hBGMapMode], a
 	call InitScrollingMenu
@@ -421,14 +421,14 @@ PopulateDecoCategoryMenu: ; 2695b
 	db "@"
 ; 0x269b5
 
-.NonscrollingMenuDataHeader: ; 0x269b5
+.NonscrollingMenuHeader: ; 0x269b5
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .NonscrollingMenuData2
+	dw .NonscrollingMenuData
 	db 1 ; default option
 ; 0x269bd
 
-.NonscrollingMenuData2: ; 0x269bd
+.NonscrollingMenuData: ; 0x269bd
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw wd002
@@ -436,14 +436,14 @@ PopulateDecoCategoryMenu: ; 2695b
 	dw DecorationAttributes
 ; 0x269c5
 
-.ScrollingMenuDataHeader: ; 0x269c5
+.ScrollingMenuHeader: ; 0x269c5
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 1, SCREEN_WIDTH - 2, SCREEN_HEIGHT - 2
-	dw .ScrollingMenuData2
+	dw .ScrollingMenuData
 	db 1 ; default option
 ; 0x269cd
 
-.ScrollingMenuData2: ; 0x269cd
+.ScrollingMenuData: ; 0x269cd
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 8, 0 ; rows, columns
 	db 1 ; horizontal spacing
@@ -912,10 +912,10 @@ DecoText_WhichSide: ; 0x26e6b
 
 DecoAction_AskWhichSide: ; 26e70
 	call MenuTextBox
-	ld hl, MenuDataHeader_0x26eab
+	ld hl, MenuHeader_0x26eab
 	call GetMenu2
 	call ExitMenu
-	call CopyMenuData2
+	call CopyMenuData
 	jr c, .nope
 	ld a, [wMenuCursorY]
 	cp 3
@@ -947,14 +947,14 @@ QueryWhichSide: ; 26e9a
 	ret
 ; 26eab
 
-MenuDataHeader_0x26eab: ; 0x26eab
+MenuHeader_0x26eab: ; 0x26eab
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 13, 7
-	dw MenuData2_0x26eb3
+	dw MenuData_0x26eb3
 	db 1 ; default option
 ; 0x26eb3
 
-MenuData2_0x26eb3: ; 0x26eb3
+MenuData_0x26eb3: ; 0x26eb3
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "RIGHT SIDE@"
@@ -1102,7 +1102,7 @@ DecorationDesc_TownMapPoster: ; 0x26f91
 	opentext
 	writetext .TownMapText
 	waitbutton
-	special Special_TownMap
+	special OverworldTownMap
 	closetext
 	end
 ; 0x26f9b
@@ -1194,7 +1194,7 @@ DecorationDesc_GiantOrnament: ; 26fdd
 	db "@"
 ; 0x26feb
 
-Special_ToggleMaptileDecorations: ; 26feb
+ToggleMaptileDecorations: ; 26feb
 	lb de, 0, 4
 	ld a, [wDecoBed]
 	call SetDecorationTile
@@ -1233,7 +1233,7 @@ SetPosterVisibility: ; 27027
 	ld b, RESET_FLAG
 
 .ok
-	ld de, EVENT_KRISS_ROOM_POSTER
+	ld de, EVENT_PLAYERS_ROOM_POSTER
 	jp EventFlagAction
 ; 27037
 
@@ -1248,20 +1248,20 @@ SetDecorationTile: ; 27037
 	ret
 ; 27043
 
-Special_ToggleDecorationsVisibility: ; 27043
-	ld de, EVENT_KRISS_HOUSE_2F_CONSOLE
+ToggleDecorationsVisibility: ; 27043
+	ld de, EVENT_PLAYERS_HOUSE_2F_CONSOLE
 	ld hl, wVariableSprites + SPRITE_CONSOLE - SPRITE_VARS
 	ld a, [wDecoConsole]
 	call ToggleDecorationVisibility
-	ld de, EVENT_KRISS_HOUSE_2F_DOLL_1
+	ld de, EVENT_PLAYERS_HOUSE_2F_DOLL_1
 	ld hl, wVariableSprites + SPRITE_DOLL_1 - SPRITE_VARS
 	ld a, [wDecoLeftOrnament]
 	call ToggleDecorationVisibility
-	ld de, EVENT_KRISS_HOUSE_2F_DOLL_2
+	ld de, EVENT_PLAYERS_HOUSE_2F_DOLL_2
 	ld hl, wVariableSprites + SPRITE_DOLL_2 - SPRITE_VARS
 	ld a, [wDecoRightOrnament]
 	call ToggleDecorationVisibility
-	ld de, EVENT_KRISS_HOUSE_2F_BIG_DOLL
+	ld de, EVENT_PLAYERS_HOUSE_2F_BIG_DOLL
 	ld hl, wVariableSprites + SPRITE_BIG_DOLL - SPRITE_VARS
 	ld a, [wDecoBigDoll]
 	call ToggleDecorationVisibility

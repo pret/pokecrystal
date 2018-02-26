@@ -37,16 +37,16 @@ ptjump: MACRO
 	dw \1 ; pointer
 ENDM
 
-	enum if_equal_command ; $06
-if_equal: MACRO
-	db if_equal_command
+	enum ifequal_command ; $06
+ifequal: MACRO
+	db ifequal_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
 
-	enum if_not_equal_command ; $07
-if_not_equal: MACRO
-	db if_not_equal_command
+	enum ifnotequal_command ; $07
+ifnotequal: MACRO
+	db ifnotequal_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
@@ -63,16 +63,16 @@ iftrue: MACRO
 	dw \1 ; pointer
 ENDM
 
-	enum if_greater_than_command ; $0a
-if_greater_than: MACRO
-	db if_greater_than_command
+	enum ifgreater_command ; $0a
+ifgreater: MACRO
+	db ifgreater_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
 
-	enum if_less_than_command ; $0b
-if_less_than: MACRO
-	db if_less_than_command
+	enum ifless_command ; $0b
+ifless: MACRO
+	db ifless_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
@@ -110,13 +110,13 @@ ENDM
 	enum checkmapscene_command ; $11
 checkmapscene: MACRO
 	db checkmapscene_command
-	map \1 ; map
+	map_id \1 ; map
 ENDM
 
 	enum setmapscene_command ; $12
 setmapscene: MACRO
 	db setmapscene_command
-	map \1 ; map
+	map_id \1 ; map
 	db \2 ; scene_id
 ENDM
 
@@ -194,23 +194,23 @@ ENDM
 
 	enum giveitem_command ; $1f
 giveitem: MACRO
+if _NARG == 1
+	giveitem \1, 1
+else
 	db giveitem_command
 	db \1 ; item
-if _NARG == 2
 	db \2 ; quantity
-else
-	db 1
 endc
 ENDM
 
 	enum takeitem_command ; $20
 takeitem: MACRO
+if _NARG == 1
+	takeitem \1, 1
+else
 	db takeitem_command
 	db \1 ; item
-if _NARG == 2
 	db \2 ; quantity
-else
-	db 1
 endc
 ENDM
 
@@ -283,10 +283,6 @@ checktime: MACRO
 	db \1 ; time
 ENDM
 
-checkmorn EQUS "checktime MORN"
-checkday  EQUS "checktime DAY"
-checknite EQUS "checktime NITE"
-
 	enum checkpoke_command ; $2c
 checkpoke: MACRO
 	db checkpoke_command
@@ -295,23 +291,21 @@ ENDM
 
 	enum givepoke_command ; $2d
 givepoke: MACRO
+if _NARG == 2
+	givepoke \1, \2, NO_ITEM, FALSE
+elif _NARG == 3
+	givepoke \1, \2, \3, FALSE
+else
 	db givepoke_command
 	db \1 ; pokemon
 	db \2 ; level
-	if _NARG >= 3
 	db \3 ; item
-	if _NARG >= 4
 	db \4 ; trainer
-	if \4
+if \4
 	dw \5 ; trainer_name_pointer
 	dw \6 ; pkmn_nickname
-	endc
-	else
-	db 0
-	endc
-	else
-	db 0, 0
-	endc
+endc
+endc
 ENDM
 
 	enum giveegg_command ; $2e
@@ -389,19 +383,19 @@ ENDM
 warpmod: MACRO
 	db warpmod_command
 	db \1 ; warp_id
-	map \2 ; map
+	map_id \2 ; map
 ENDM
 
 	enum blackoutmod_command ; $3b
 blackoutmod: MACRO
 	db blackoutmod_command
-	map \1 ; map
+	map_id \1 ; map
 ENDM
 
 	enum warp_command ; $3c
 warp: MACRO
 	db warp_command
-	map \1 ; map
+	map_id \1 ; map
 	db \2 ; x
 	db \3 ; y
 ENDM
@@ -477,11 +471,11 @@ ENDM
 
 	enum refreshscreen_command ; $48
 refreshscreen: MACRO
-	db refreshscreen_command
-if _NARG == 1
-	db \1 ; dummy
+if _NARG == 0
+	refreshscreen 0
 else
-	db 0
+	db refreshscreen_command
+	db \1 ; dummy
 endc
 ENDM
 
@@ -520,10 +514,10 @@ yesorno: MACRO
 	db yesorno_command
 ENDM
 
-	enum loadmenudata_command ; $4f
-loadmenudata: MACRO
-	db loadmenudata_command
-	dw \1 ; data
+	enum loadmenu_command ; $4f
+loadmenu: MACRO
+	db loadmenu_command
+	dw \1 ; menu_header
 ENDM
 
 	enum closewindow_command ; $50
@@ -651,14 +645,14 @@ scripttalkafter: MACRO
 	db scripttalkafter_command
 ENDM
 
-	enum end_if_just_battled_command ; $66
-end_if_just_battled: MACRO
-	db end_if_just_battled_command
+	enum endifjustbattled_command ; $66
+endifjustbattled: MACRO
+	db endifjustbattled_command
 ENDM
 
-	enum check_just_battled_command ; $67
-check_just_battled: MACRO
-	db check_just_battled_command
+	enum checkjustbattled_command ; $67
+checkjustbattled: MACRO
+	db checkjustbattled_command
 ENDM
 
 	enum setlasttalked_command ; $68
@@ -751,9 +745,9 @@ showemote: MACRO
 	db \3 ; time
 ENDM
 
-	enum spriteface_command ; $76
-spriteface: MACRO
-	db spriteface_command
+	enum turnobject_command ; $76
+turnobject: MACRO
+	db turnobject_command
 	db \1 ; object id
 	db \2 ; facing
 ENDM
@@ -920,9 +914,9 @@ reloadandreturn: MACRO
 	db \1 ; which_method
 ENDM
 
-	enum end_all_command ; $93
-end_all: MACRO
-	db end_all_command
+	enum endall_command ; $93
+endall: MACRO
+	db endall_command
 ENDM
 
 	enum pokemart_command ; $94
@@ -986,12 +980,12 @@ ENDM
 
 	enum verbosegiveitem_command ; $9e
 verbosegiveitem: MACRO
+if _NARG == 1
+	verbosegiveitem \1, 1
+else
 	db verbosegiveitem_command
 	db \1 ; item
-if _NARG == 2
 	db \2 ; quantity
-else
-	db 1
 endc
 ENDM
 
@@ -1006,7 +1000,7 @@ ENDM
 swarm: MACRO
 	db swarm_command
 	db \1 ; flag
-	map \2 ; map
+	map_id \2 ; map
 ENDM
 
 	enum halloffame_command ; $a1
@@ -1023,7 +1017,7 @@ ENDM
 warpfacing: MACRO
 	db warpfacing_command
 	db \1 ; facing
-	map \2 ; map
+	map_id \2 ; map
 	db \3 ; x
 	db \4 ; y
 ENDM
@@ -1062,7 +1056,7 @@ wait: MACRO
 	db \1 ; duration
 ENDM
 
-	enum check_save_command ; $a9
-check_save: MACRO
-	db check_save_command
+	enum checksave_command ; $a9
+checksave: MACRO
+	db checksave_command
 ENDM

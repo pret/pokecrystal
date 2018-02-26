@@ -34,7 +34,7 @@ Marts: ; 160a9
 	dw MartMtMoon
 	dw MartIndigoPlateau
 	dw MartUnderground
-MartsEnd
+.End
 ; 160ed
 
 

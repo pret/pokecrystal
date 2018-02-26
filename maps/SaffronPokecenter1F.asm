@@ -1,21 +1,19 @@
-const_value set 2
+	const_def 2 ; object constants
 	const SAFFRONPOKECENTER1F_NURSE
 	const SAFFRONPOKECENTER1F_TEACHER
 	const SAFFRONPOKECENTER1F_FISHER
 	const SAFFRONPOKECENTER1F_YOUNGSTER
 
 SaffronPokecenter1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 NurseScript_0x18a47d:
 	jumpstd pokecenternurse
 
 TeacherScript_0x18a480:
-	special Special_Mobile_DummyReturnFalse
+	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer UnknownText_0x18a4a3
 
@@ -112,24 +110,19 @@ SaffronPokecenter1FYoungsterText:
 	done
 
 SaffronPokecenter1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 3, 7, 4, SAFFRON_CITY
-	warp_def 4, 7, 4, SAFFRON_CITY
-	warp_def 0, 7, 1, POKECENTER_2F
+	db 3 ; warp events
+	warp_event  3,  7, SAFFRON_CITY, 4
+	warp_event  4,  7, SAFFRON_CITY, 4
+	warp_event  0,  7, POKECENTER_2F, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 4
-	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x18a47d, -1
-	object_event 7, 2, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x18a480, -1
-	object_event 8, 6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FisherScript_0x18a48c, -1
-	object_event 1, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FYoungsterScript, -1
+	db 4 ; object events
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x18a47d, -1
+	object_event  7,  2, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x18a480, -1
+	object_event  8,  6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FisherScript_0x18a48c, -1
+	object_event  1,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FYoungsterScript, -1

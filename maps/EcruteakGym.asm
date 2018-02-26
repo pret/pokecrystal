@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ECRUTEAKGYM_MORTY
 	const ECRUTEAKGYM_SAGE1
 	const ECRUTEAKGYM_SAGE2
@@ -8,13 +8,11 @@ const_value set 2
 	const ECRUTEAKGYM_GRAMPS
 
 EcruteakGym_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .ForcedToLeave
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .ForcedToLeave ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .ForcedToLeave:
 	priorityjump EcruteakGymClosed
@@ -43,7 +41,7 @@ MortyScript_0x99d58:
 	setflag ENGINE_FOGBADGE
 	checkcode VAR_BADGES
 	scall EcruteakGymActivateRockets
-	setmapscene ECRUTEAK_HOUSE, 1
+	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, SCENE_FINISHED
 	setevent EVENT_RANG_CLEAR_BELL_1
 	setevent EVENT_RANG_CLEAR_BELL_2
 .FightDone:
@@ -71,8 +69,8 @@ MortyScript_0x99d58:
 	end
 
 EcruteakGymActivateRockets:
-	if_equal 7, .RadioTowerRockets
-	if_equal 6, .GoldenrodRockets
+	ifequal 7, .RadioTowerRockets
+	ifequal 6, .GoldenrodRockets
 	end
 
 .GoldenrodRockets:
@@ -91,17 +89,17 @@ EcruteakGymClosed:
 	follow PLAYER, ECRUTEAKGYM_GRAMPS
 	applymovement PLAYER, MovementData_0x99e5f
 	stopfollow
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	playsound SFX_ENTER_DOOR
 	waitsfx
 	warp ECRUTEAK_CITY, 6, 27
 	end
 
 TrainerSageJeffrey:
-	trainer EVENT_BEAT_SAGE_JEFFREY, SAGE, JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, 0, .Script
+	trainer SAGE, JEFFREY, EVENT_BEAT_SAGE_JEFFREY, SageJeffreySeenText, SageJeffreyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SageJeffreyAfterBattleText
 	waitbutton
@@ -109,10 +107,10 @@ TrainerSageJeffrey:
 	end
 
 TrainerSagePing:
-	trainer EVENT_BEAT_SAGE_PING, SAGE, PING, SagePingSeenText, SagePingBeatenText, 0, .Script
+	trainer SAGE, PING, EVENT_BEAT_SAGE_PING, SagePingSeenText, SagePingBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SagePingAfterBattleText
 	waitbutton
@@ -120,10 +118,10 @@ TrainerSagePing:
 	end
 
 TrainerMediumMartha:
-	trainer EVENT_BEAT_MEDIUM_MARTHA, MEDIUM, MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, 0, .Script
+	trainer MEDIUM, MARTHA, EVENT_BEAT_MEDIUM_MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext MediumMarthaAfterBattleText
 	waitbutton
@@ -131,10 +129,10 @@ TrainerMediumMartha:
 	end
 
 TrainerMediumGrace:
-	trainer EVENT_BEAT_MEDIUM_GRACE, MEDIUM, GRACE, MediumGraceSeenText, MediumGraceBeatenText, 0, .Script
+	trainer MEDIUM, GRACE, EVENT_BEAT_MEDIUM_GRACE, MediumGraceSeenText, MediumGraceBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext MediumGraceAfterBattleText
 	waitbutton
@@ -387,59 +385,54 @@ UnknownText_0x9a49c:
 	done
 
 EcruteakGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 33
-	warp_def 4, 17, 10, ECRUTEAK_CITY
-	warp_def 5, 17, 10, ECRUTEAK_CITY
-	warp_def 4, 14, 4, ECRUTEAK_GYM
-	warp_def 2, 4, 3, ECRUTEAK_GYM
-	warp_def 3, 4, 3, ECRUTEAK_GYM
-	warp_def 4, 4, 3, ECRUTEAK_GYM
-	warp_def 4, 5, 3, ECRUTEAK_GYM
-	warp_def 6, 7, 3, ECRUTEAK_GYM
-	warp_def 7, 4, 3, ECRUTEAK_GYM
-	warp_def 2, 6, 3, ECRUTEAK_GYM
-	warp_def 3, 6, 3, ECRUTEAK_GYM
-	warp_def 4, 6, 3, ECRUTEAK_GYM
-	warp_def 5, 6, 3, ECRUTEAK_GYM
-	warp_def 7, 6, 3, ECRUTEAK_GYM
-	warp_def 7, 7, 3, ECRUTEAK_GYM
-	warp_def 4, 8, 3, ECRUTEAK_GYM
-	warp_def 5, 8, 3, ECRUTEAK_GYM
-	warp_def 6, 8, 3, ECRUTEAK_GYM
-	warp_def 7, 8, 3, ECRUTEAK_GYM
-	warp_def 2, 8, 3, ECRUTEAK_GYM
-	warp_def 2, 9, 3, ECRUTEAK_GYM
-	warp_def 2, 10, 3, ECRUTEAK_GYM
-	warp_def 2, 11, 3, ECRUTEAK_GYM
-	warp_def 4, 10, 3, ECRUTEAK_GYM
-	warp_def 5, 10, 3, ECRUTEAK_GYM
-	warp_def 2, 12, 3, ECRUTEAK_GYM
-	warp_def 3, 12, 3, ECRUTEAK_GYM
-	warp_def 4, 12, 3, ECRUTEAK_GYM
-	warp_def 5, 12, 3, ECRUTEAK_GYM
-	warp_def 7, 10, 3, ECRUTEAK_GYM
-	warp_def 7, 11, 3, ECRUTEAK_GYM
-	warp_def 7, 12, 3, ECRUTEAK_GYM
-	warp_def 7, 13, 3, ECRUTEAK_GYM
+	db 33 ; warp events
+	warp_event  4, 17, ECRUTEAK_CITY, 10
+	warp_event  5, 17, ECRUTEAK_CITY, 10
+	warp_event  4, 14, ECRUTEAK_GYM, 4
+	warp_event  2,  4, ECRUTEAK_GYM, 3
+	warp_event  3,  4, ECRUTEAK_GYM, 3
+	warp_event  4,  4, ECRUTEAK_GYM, 3
+	warp_event  4,  5, ECRUTEAK_GYM, 3
+	warp_event  6,  7, ECRUTEAK_GYM, 3
+	warp_event  7,  4, ECRUTEAK_GYM, 3
+	warp_event  2,  6, ECRUTEAK_GYM, 3
+	warp_event  3,  6, ECRUTEAK_GYM, 3
+	warp_event  4,  6, ECRUTEAK_GYM, 3
+	warp_event  5,  6, ECRUTEAK_GYM, 3
+	warp_event  7,  6, ECRUTEAK_GYM, 3
+	warp_event  7,  7, ECRUTEAK_GYM, 3
+	warp_event  4,  8, ECRUTEAK_GYM, 3
+	warp_event  5,  8, ECRUTEAK_GYM, 3
+	warp_event  6,  8, ECRUTEAK_GYM, 3
+	warp_event  7,  8, ECRUTEAK_GYM, 3
+	warp_event  2,  8, ECRUTEAK_GYM, 3
+	warp_event  2,  9, ECRUTEAK_GYM, 3
+	warp_event  2, 10, ECRUTEAK_GYM, 3
+	warp_event  2, 11, ECRUTEAK_GYM, 3
+	warp_event  4, 10, ECRUTEAK_GYM, 3
+	warp_event  5, 10, ECRUTEAK_GYM, 3
+	warp_event  2, 12, ECRUTEAK_GYM, 3
+	warp_event  3, 12, ECRUTEAK_GYM, 3
+	warp_event  4, 12, ECRUTEAK_GYM, 3
+	warp_event  5, 12, ECRUTEAK_GYM, 3
+	warp_event  7, 10, ECRUTEAK_GYM, 3
+	warp_event  7, 11, ECRUTEAK_GYM, 3
+	warp_event  7, 12, ECRUTEAK_GYM, 3
+	warp_event  7, 13, ECRUTEAK_GYM, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 3, 15, BGEVENT_READ, EcruteakGymStatue
-	bg_event 6, 15, BGEVENT_READ, EcruteakGymStatue
+	db 2 ; bg events
+	bg_event  3, 15, BGEVENT_READ, EcruteakGymStatue
+	bg_event  6, 15, BGEVENT_READ, EcruteakGymStatue
 
-.ObjectEvents:
-	db 7
-	object_event 5, 1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MortyScript_0x99d58, -1
-	object_event 2, 7, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSageJeffrey, -1
-	object_event 3, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSagePing, -1
-	object_event 7, 5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumMartha, -1
-	object_event 7, 9, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumGrace, -1
-	object_event 7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakGymGuyScript, -1
-	object_event 4, 14, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS
+	db 7 ; object events
+	object_event  5,  1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MortyScript_0x99d58, -1
+	object_event  2,  7, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSageJeffrey, -1
+	object_event  3, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSagePing, -1
+	object_event  7,  5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumMartha, -1
+	object_event  7,  9, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumGrace, -1
+	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakGymGuyScript, -1
+	object_event  4, 14, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_GYM_GRAMPS

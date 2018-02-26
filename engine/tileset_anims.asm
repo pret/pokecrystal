@@ -502,7 +502,7 @@ ForestTreeLeftAnimation: ; fc45c
 
 ; Only during the Celebi event.
 	ld a, [wCelebiEvent]
-	bit 2, a
+	bit CELEBIEVENT_FOREST_IS_RESTLESS_F, a
 	jr nz, .asm_fc46c
 	ld hl, ForestTreeLeftFrames
 	jr .asm_fc47d
@@ -544,7 +544,7 @@ ForestTreeRightAnimation: ; fc4c4
 
 ; Only during the Celebi event.
 	ld a, [wCelebiEvent]
-	bit 2, a
+	bit CELEBIEVENT_FOREST_IS_RESTLESS_F, a
 	jr nz, .asm_fc4d4
 	ld hl, ForestTreeRightFrames
 	jr .asm_fc4eb
@@ -579,7 +579,7 @@ ForestTreeLeftAnimation2: ; fc4f2
 
 ; Only during the Celebi event.
 	ld a, [wCelebiEvent]
-	bit 2, a
+	bit CELEBIEVENT_FOREST_IS_RESTLESS_F, a
 	jr nz, .asm_fc502
 	ld hl, ForestTreeLeftFrames
 	jr .asm_fc515
@@ -611,7 +611,7 @@ ForestTreeRightAnimation2: ; fc51c
 
 ; Only during the Celebi event.
 	ld a, [wCelebiEvent]
-	bit 2, a
+	bit CELEBIEVENT_FOREST_IS_RESTLESS_F, a
 	jr nz, .asm_fc52c
 	ld hl, ForestTreeRightFrames
 	jr .asm_fc545
@@ -952,7 +952,7 @@ TileAnimationPalette: ; fc6d7
 	jr z, .color2
 
 .color1
-	ld hl, wBGPals1 palette PAL_BG_WATER + 2
+	ld hl, wBGPals1 palette PAL_BG_WATER color 1
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -960,7 +960,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 
 .color0
-	ld hl, wBGPals1 palette PAL_BG_WATER
+	ld hl, wBGPals1 palette PAL_BG_WATER color 0
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -968,7 +968,7 @@ TileAnimationPalette: ; fc6d7
 	jr .end
 
 .color2
-	ld hl, wBGPals1 palette PAL_BG_WATER + 4
+	ld hl, wBGPals1 palette PAL_BG_WATER color 2
 	ld a, [hli]
 	ld [rBGPD], a
 	ld a, [hli]
@@ -1009,7 +1009,7 @@ FlickeringCaveEntrancePalette: ; fc71e
 	jr .okay
 
 .bit1set
-	ld hl, wBGPals1 palette PAL_BG_YELLOW + 2
+	ld hl, wBGPals1 palette PAL_BG_YELLOW color 1
 
 .okay
 	ld a, [hli]

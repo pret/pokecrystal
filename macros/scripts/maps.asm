@@ -1,4 +1,4 @@
-map: MACRO
+map_id: MACRO
 ;\1: map id
 	db GROUP_\1, MAP_\1
 ENDM
@@ -6,7 +6,8 @@ ENDM
 
 scene_script: MACRO
 ;\1: script pointer
-	dw \1, 0
+	dw \1
+	dw 0 ; filler
 ENDM
 
 callback: MACRO
@@ -15,19 +16,19 @@ callback: MACRO
 	dbw \1, \2
 ENDM
 
-warp_def: MACRO
+warp_event: MACRO
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
-;\3: warp destination: starts at 1
-;\4: map id: from constants/map_constants.asm
-	db \2, \1, \3
-	map \4
+;\3: map id: from constants/map_constants.asm
+;\4: warp destination: starts at 1
+	db \2, \1, \4
+	map_id \3
 ENDM
 
 coord_event: MACRO
 ;\1: x: left to right, starts at 0
 ;\2: y: top to bottom, starts at 0
-;\3: scene id: controlled by setscene/setmapscene
+;\3: scene id: a SCENE_* constant; controlled by setscene/setmapscene
 ;\4: script pointer
 	db \3, \2, \1
 	db 0 ; filler
@@ -76,32 +77,32 @@ ENDM
 
 
 trainer: MACRO
-;\1: flag: an EVENT_BEAT_* constant
-;\2: trainer group
-;\3: trainer id
+;\1: trainer group
+;\2: trainer id
+;\3: flag: an EVENT_BEAT_* constant
 ;\4: seen text
 ;\5: win text
 ;\6: loss text
 ;\7: after-battle text
-	dw \1
-	db \2, \3
+	dw \3
+	db \1, \2
 	dw \4, \5, \6, \7
 ENDM
 
 itemball: MACRO
 ;\1: item: from constants/item_constants.asm
 ;\2: quantity: default 1
-if _NARG == 2
-	db \1, \2
+if _NARG == 1
+	itemball \1, 1
 else
-	db \1, 1
+	db \1, \2
 endc
 ENDM
 
 hiddenitem: MACRO
-;\1: flag: an EVENT_* constant
-;\2: item: from constants/item_constants.asm
-	dwb \1, \2
+;\1: item: from constants/item_constants.asm
+;\2: flag: an EVENT_* constant
+	dwb \2, \1
 ENDM
 
 elevfloor: MACRO
@@ -109,7 +110,7 @@ elevfloor: MACRO
 ;\2: warp destination: starts at 1
 ;\3: map id
 	db \1, \2
-	map \3
+	map_id \3
 ENDM
 
 conditional_event: MACRO

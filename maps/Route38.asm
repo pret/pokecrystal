@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE38_STANDING_YOUNGSTER1
 	const ROUTE38_LASS
 	const ROUTE38_STANDING_YOUNGSTER2
@@ -8,17 +8,15 @@ const_value set 2
 	const ROUTE38_BUENA2
 
 Route38_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerBirdKeeperToby:
-	trainer EVENT_BEAT_BIRD_KEEPER_TOBY, BIRD_KEEPER, TOBY, BirdKeeperTobySeenText, BirdKeeperTobyBeatenText, 0, .Script
+	trainer BIRD_KEEPER, TOBY, EVENT_BEAT_BIRD_KEEPER_TOBY, BirdKeeperTobySeenText, BirdKeeperTobyBeatenText, 0, .Script
 
 .Script
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BirdKeeperTobyAfterBattleText
 	waitbutton
@@ -26,10 +24,10 @@ TrainerBirdKeeperToby:
 	end
 
 TrainerSailorHarry:
-	trainer EVENT_BEAT_SAILOR_HARRY, SAILOR, HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .Script
+	trainer SAILOR, HARRY, EVENT_BEAT_SAILOR_HARRY, SailorHarrySeenText, SailorHarryBeatenText, 0, .Script
 
 .Script
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorHarryAfterBattleText
 	waitbutton
@@ -37,11 +35,11 @@ TrainerSailorHarry:
 	end
 
 TrainerLassDana1:
-	trainer EVENT_BEAT_LASS_DANA, LASS, DANA1, LassDana1SeenText, LassDana1BeatenText, 0, .Script
+	trainer LASS, DANA1, EVENT_BEAT_LASS_DANA, LassDana1SeenText, LassDana1BeatenText, 0, .Script
 
 .Script
 	writecode VAR_CALLERID, PHONE_LASS_DANA
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_DANA
 	iftrue .DanaRematch
@@ -61,8 +59,8 @@ TrainerLassDana1:
 	scall .AskNumber2F
 .AskForPhoneNumber:
 	askforphonenumber PHONE_LASS_DANA
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .DeclinedPhoneNumber
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .DeclinedPhoneNumber
 	trainertotext LASS, DANA1, MEM_BUFFER_0
 	scall .RegisteredPhoneNumber
 	jump .NumberAccepted
@@ -71,11 +69,11 @@ TrainerLassDana1:
 	scall .Rematch
 	winlosstext LassDana1BeatenText, 0
 	copybytetovar wDanaFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
@@ -175,11 +173,11 @@ TrainerLassDana1:
 	end
 
 TrainerSchoolboyChad1:
-	trainer EVENT_BEAT_SCHOOLBOY_CHAD, SCHOOLBOY, CHAD1, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .Script
+	trainer SCHOOLBOY, CHAD1, EVENT_BEAT_SCHOOLBOY_CHAD, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .Script
 
 .Script
 	writecode VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_CHAD
 	iftrue .ChadRematch
@@ -197,8 +195,8 @@ TrainerSchoolboyChad1:
 	scall .AskPhoneNumber2
 .AskToRegisterNumber:
 	askforphonenumber PHONE_SCHOOLBOY_CHAD
-	if_equal PHONE_CONTACTS_FULL, .PhoneFull
-	if_equal PHONE_CONTACT_REFUSED, .SaidNo
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .SaidNo
 	trainertotext SCHOOLBOY, CHAD1, MEM_BUFFER_0
 	scall .RegisteredChad
 	jump .HaveChadsNumber
@@ -207,11 +205,11 @@ TrainerSchoolboyChad1:
 	scall .Rematch
 	winlosstext SchoolboyChad1BeatenText, 0
 	copybytetovar wChadFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight4
@@ -292,10 +290,10 @@ TrainerSchoolboyChad1:
 	end
 
 TrainerBeautyValerie:
-	trainer EVENT_BEAT_BEAUTY_VALERIE, BEAUTY, VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .Script
+	trainer BEAUTY, VALERIE, EVENT_BEAT_BEAUTY_VALERIE, BeautyValerieSeenText, BeautyValerieBeatenText, 0, .Script
 
 .Script
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BeautyValerieAfterBattleText
 	waitbutton
@@ -303,10 +301,10 @@ TrainerBeautyValerie:
 	end
 
 TrainerBeautyOlivia:
-	trainer EVENT_BEAT_BEAUTY_OLIVIA, BEAUTY, OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .Script
+	trainer BEAUTY, OLIVIA, EVENT_BEAT_BEAUTY_OLIVIA, BeautyOliviaSeenText, BeautyOliviaBeatenText, 0, .Script
 
 .Script
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BeautyOliviaAfterBattleText
 	waitbutton
@@ -473,28 +471,23 @@ Route38TrainerTipsText:
 	done
 
 Route38_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 35, 8, 1, ROUTE_38_ECRUTEAK_GATE
-	warp_def 35, 9, 2, ROUTE_38_ECRUTEAK_GATE
+	db 2 ; warp events
+	warp_event 35,  8, ROUTE_38_ECRUTEAK_GATE, 1
+	warp_event 35,  9, ROUTE_38_ECRUTEAK_GATE, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 33, 7, BGEVENT_READ, Route38Sign
-	bg_event 5, 13, BGEVENT_READ, Route38TrainerTips
+	db 2 ; bg events
+	bg_event 33,  7, BGEVENT_READ, Route38Sign
+	bg_event  5, 13, BGEVENT_READ, Route38TrainerTips
 
-.ObjectEvents:
-	db 7
-	object_event 4, 1, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyChad1, -1
-	object_event 15, 3, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassDana1, -1
+	db 7 ; object events
+	object_event  4,  1, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyChad1, -1
+	object_event 15,  3, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassDana1, -1
 	object_event 12, 15, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBirdKeeperToby, -1
-	object_event 19, 9, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyValerie, -1
-	object_event 24, 5, SPRITE_SAILOR, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSailorHarry, -1
-	object_event 12, 10, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a1f33, -1
-	object_event 5, 8, SPRITE_BUENA, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyOlivia, -1
+	object_event 19,  9, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyValerie, -1
+	object_event 24,  5, SPRITE_SAILOR, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSailorHarry, -1
+	object_event 12, 10, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a1f33, -1
+	object_event  5,  8, SPRITE_BUENA, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyOlivia, -1

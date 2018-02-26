@@ -1,17 +1,15 @@
-const_value set 2
+	const_def 2 ; object constants
 	const MOVEDELETERSHOUSE_SUPER_NERD
 
 MoveDeletersHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 MoveDeleter:
 	faceplayer
 	opentext
-	special Special_MoveDeletion
+	special MoveDeletion
 	waitbutton
 	closetext
 	end
@@ -20,22 +18,17 @@ MoveDeletersHouseBookshelf:
 	jumpstd difficultbookshelf
 
 MoveDeletersHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 6, BLACKTHORN_CITY
-	warp_def 3, 7, 6, BLACKTHORN_CITY
+	db 2 ; warp events
+	warp_event  2,  7, BLACKTHORN_CITY, 6
+	warp_event  3,  7, BLACKTHORN_CITY, 6
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 0, 1, BGEVENT_READ, MoveDeletersHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, MoveDeletersHouseBookshelf
+	db 2 ; bg events
+	bg_event  0,  1, BGEVENT_READ, MoveDeletersHouseBookshelf
+	bg_event  1,  1, BGEVENT_READ, MoveDeletersHouseBookshelf
 
-.ObjectEvents:
-	db 1
-	object_event 2, 3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoveDeleter, -1
+	db 1 ; object events
+	object_event  2,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoveDeleter, -1

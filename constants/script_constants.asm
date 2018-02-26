@@ -1,4 +1,4 @@
-; script vars
+; person constants
 PLAYER      EQU  0
 LAST_TALKED EQU -2
 
@@ -76,7 +76,7 @@ RETVAR_EXECUTE EQU (2 << 6)
 
 
 ; PlayerEventScriptPointers indexes (see engine/events.asm)
-const_value set -1
+	const_def -1
 	const PLAYEREVENT_MAPSCRIPT
 	const PLAYEREVENT_NONE
 	const PLAYEREVENT_SEENBYTRAINER
@@ -91,6 +91,7 @@ const_value set -1
 NUM_PLAYER_EVENTS EQU const_value
 
 
+; bg_event types
 ; TryBGEvent arguments (see engine/events.asm)
 	const_def
 	const BGEVENT_READ
@@ -115,6 +116,40 @@ NUM_PLAYER_EVENTS EQU const_value
 	const OBJECTTYPE_6
 
 
+; command queue members
+CMDQUEUE_TYPE  EQU 0
+CMDQUEUE_ADDR  EQU 1
+CMDQUEUE_03    EQU 3
+CMDQUEUE_04    EQU 4
+CMDQUEUE_05    EQU 5
+CMDQUEUE_ENTRY_SIZE EQU 6
+CMDQUEUE_CAPACITY EQU 4
+
+; command queue types
+CMDQUEUE_STONETABLE EQU 2
+
+
+; elevfloor macro values
+; ElevatorFloorNames indexes (see data/events/elevator_floors.asm)
+	const_def
+	const FLOOR_B4F
+	const FLOOR_B3F
+	const FLOOR_B2F
+	const FLOOR_B1F
+	const FLOOR_1F
+	const FLOOR_2F
+	const FLOOR_3F
+	const FLOOR_4F
+	const FLOOR_5F
+	const FLOOR_6F
+	const FLOOR_7F
+	const FLOOR_8F
+	const FLOOR_9F
+	const FLOOR_10F
+	const FLOOR_11F
+	const FLOOR_ROOF
+
+
 ; showemote arguments
 ; Emotes indexes (see data/sprites/emotes.asm)
 	const_def
@@ -132,10 +167,9 @@ NUM_PLAYER_EVENTS EQU const_value
 	const EMOTE_GRASS_RUSTLE ; 11
 EMOTE_MEM EQU -1
 
-
 ; fruittree arguments
 ; FruitTreeItems indexes (see data/items/fruit_trees.asm)
-const_value set 1
+	const_def 1
 	const FRUITTREE_ROUTE_29      ; 01
 	const FRUITTREE_ROUTE_30_1    ; 02
 	const FRUITTREE_ROUTE_38      ; 03
@@ -166,8 +200,7 @@ const_value set 1
 	const FRUITTREE_PEWTER_CITY_1 ; 1c
 	const FRUITTREE_PEWTER_CITY_2 ; 1d
 	const FRUITTREE_FUCHSIA_CITY  ; 1e
-NUM_FRUIT_TREES EQU const_value +- 1
-
+NUM_FRUIT_TREES EQU const_value + -1
 
 ; describedecoration arguments
 ; DescribeDecoration.JumpTable indexes (see engine/decorations.asm)
@@ -178,40 +211,18 @@ NUM_FRUIT_TREES EQU const_value +- 1
 	const DECODESC_BIG_DOLL   ; 3
 	const DECODESC_CONSOLE    ; 4
 
-
-; elevfloor macro values
-; ElevatorFloorNames indexes (see data/elevator_floors.asm)
+; swarm arguments
+; StoreSwarmMapIndices arguments
 	const_def
-	const FLOOR_B4F
-	const FLOOR_B3F
-	const FLOOR_B2F
-	const FLOOR_B1F
-	const FLOOR_1F
-	const FLOOR_2F
-	const FLOOR_3F
-	const FLOOR_4F
-	const FLOOR_5F
-	const FLOOR_6F
-	const FLOOR_7F
-	const FLOOR_8F
-	const FLOOR_9F
-	const FLOOR_10F
-	const FLOOR_11F
-	const FLOOR_ROOF
+	const SWARM_DUNSPARCE ; 0
+	const SWARM_YANMA     ; 1
 
 
-; command queue members
-CMDQUEUE_TYPE  EQU 0
-CMDQUEUE_ADDR  EQU 1
-CMDQUEUE_03    EQU 3
-CMDQUEUE_04    EQU 4
-CMDQUEUE_05    EQU 5
-CMDQUEUE_ENTRY_SIZE EQU 6
-CMDQUEUE_CAPACITY EQU 4
-
-; command queue types
-CMDQUEUE_STONETABLE EQU 2
-
+; ActivateFishingSwarm writebyte arguments
+	const_def
+	const FISHSWARM_NONE     ; 0
+	const FISHSWARM_QWILFISH ; 1
+	const FISHSWARM_REMORAID ; 2
 
 ; SpecialGameboyCheck return values
 	const_def
@@ -219,7 +230,7 @@ CMDQUEUE_STONETABLE EQU 2
 	const GBCHECK_SGB ; 1
 	const GBCHECK_CGB ; 2
 
-; Special_CheckMagikarpLength return values
+; CheckMagikarpLength return values
 	const_def
 	const MAGIKARPLENGTH_NOT_MAGIKARP ; 0
 	const MAGIKARPLENGTH_REFUSED      ; 1
@@ -247,7 +258,7 @@ CMDQUEUE_STONETABLE EQU 2
 	const HEALMACHINE_ELMS_LAB     ; 1
 	const HEALMACHINE_HALL_OF_FAME ; 2
 
-; Special_UnownPuzzle writebyte arguments
+; UnownPuzzle writebyte arguments
 ; LoadUnownPuzzlePiecesGFX.LZPointers indexes (see engine/unown_puzzle.asm)
 	const_def
 	const UNOWNPUZZLE_KABUTO     ; 0
@@ -256,16 +267,16 @@ CMDQUEUE_STONETABLE EQU 2
 	const UNOWNPUZZLE_HO_OH      ; 3
 NUM_UNOWN_PUZZLES EQU const_value
 
-; Special_DisplayUnownWords writebyte arguments
-; UnownWalls and MenuDataHeaders_UnownWalls indexes (see data/unown_walls.asm)
+; DisplayUnownWords writebyte arguments
+; UnownWalls and MenuHeaders_UnownWalls indexes (see data/events/unown_walls.asm)
 	const_def
 	const UNOWNWORDS_ESCAPE ; 0
 	const UNOWNWORDS_LIGHT  ; 1
 	const UNOWNWORDS_WATER  ; 2
 	const UNOWNWORDS_HO_OH  ; 3
 
-; Special_MoveTutor writebyte arguments
-const_value set 1
+; MoveTutor writebyte arguments
+	const_def 1
 	const MOVETUTOR_FLAMETHROWER ; 1
 	const MOVETUTOR_THUNDERBOLT  ; 2
 	const MOVETUTOR_ICE_BEAM     ; 3

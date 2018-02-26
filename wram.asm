@@ -940,9 +940,9 @@ wLinkDataEnd::
 NEXTU ; c800
 ; link data members
 wLinkPlayerName:: ds NAME_LENGTH
-wLinkPartyCount:: db
+wLinkPartyCount::   db
 wLinkPartySpecies:: ds PARTY_LENGTH
-wLinkPartySpeciesEnd:: db ; legacy scripts don't check wPartyCount
+wLinkPartyEnd::     db ; older code doesn't check PartyCount
 
 UNION ; c813
 ; time capsule party data
@@ -1226,7 +1226,7 @@ wcd72:: ds 1
 wcd73:: ds 1
 wcd74:: ds 1
 
-wOTMonSelection:: ds 2 ; ds 3
+wOTMonSelection:: ds 2 ; ds BATTLETOWER_PARTY_LENGTH
 wcd77:: ds 1
 
 wMobileCrashCheckPointer:: dw
@@ -1405,54 +1405,52 @@ wWindowStackSize:: db ; cf78
 
 	ds 8
 
-; menu data header
-wMenuDataHeader:: ; cf81
+; menu header
+wMenuHeader:: ; cf81
 wMenuFlags:: db
 wMenuBorderTopCoord:: db
 wMenuBorderLeftCoord:: db
 wMenuBorderBottomCoord:: db
 wMenuBorderRightCoord:: db
-wMenuData2Pointer:: dw
+wMenuDataPointer:: dw
 wMenuCursorBuffer:: dw
 wMenuDataBank:: db
 	ds 6
-wMenuDataHeaderEnd::
+wMenuHeaderEnd::
 
-wMenuData2::
-; MenuData2
-
-wMenuData2Flags:: db ; cf91
+wMenuData::
+wMenuDataFlags:: db ; cf91
 
 UNION ; cf92
 ; Vertical Menu/DoNthMenu/SetUpMenu
-wMenuData2Items:: db ; cf92
-wMenuData2IndicesPointer:: dw ; cf94
-wMenuData2DisplayFunctionPointer:: dw ; cf96
-wMenuData2PointerTableAddr:: dw ; cf97
+wMenuDataItems:: db ; cf92
+wMenuDataIndicesPointer:: dw ; cf94
+wMenuDataDisplayFunctionPointer:: dw ; cf96
+wMenuDataPointerTableAddr:: dw ; cf97
 
 NEXTU ; cf92
 ; 2D Menu
-wMenuData2_2DMenuDimensions:: db ; cf92
-wMenuData2_2DMenuSpacing:: db ; cf93
-wMenuData2_2DMenuItemStringsBank:: db ; cf94
-wMenuData2_2DMenuItemStringsAddr:: dw ; cf96
-wMenuData2_2DMenuFunctionBank:: db ; cf97
-wMenuData2_2DMenuFunctionAddr:: dw ; cf98
+wMenuData_2DMenuDimensions:: db ; cf92
+wMenuData_2DMenuSpacing:: db ; cf93
+wMenuData_2DMenuItemStringsBank:: db ; cf94
+wMenuData_2DMenuItemStringsAddr:: dw ; cf96
+wMenuData_2DMenuFunctionBank:: db ; cf97
+wMenuData_2DMenuFunctionAddr:: dw ; cf98
 
 NEXTU ; cf92
 ; Scrolling Menu
-wMenuData2_ScrollingMenuHeight:: db ; cf92
-wMenuData2_ScrollingMenuWidth:: db ; cf93
-wMenuData2_ScrollingMenuSpacing:: db ; cf94
-wMenuData2_ItemsPointerBank:: db ; cf95
-wMenuData2_ItemsPointerAddr:: dw ; cf97
-wMenuData2_ScrollingMenuFunction1:: ds 3 ; cf98
-wMenuData2_ScrollingMenuFunction2:: ds 3 ; cf9b
-wMenuData2_ScrollingMenuFunction3:: ds 3 ; cf9e
+wMenuData_ScrollingMenuHeight:: db ; cf92
+wMenuData_ScrollingMenuWidth:: db ; cf93
+wMenuData_ScrollingMenuSpacing:: db ; cf94
+wMenuData_ItemsPointerBank:: db ; cf95
+wMenuData_ItemsPointerAddr:: dw ; cf97
+wMenuData_ScrollingMenuFunction1:: ds 3 ; cf98
+wMenuData_ScrollingMenuFunction2:: ds 3 ; cf9b
+wMenuData_ScrollingMenuFunction3:: ds 3 ; cf9e
 ENDU ; cfa1
-wMenuData2End::
+wMenuDataEnd::
 
-wMenuData3::
+w2DMenuData::
 w2DMenuCursorInitY:: db ; cfa1
 w2DMenuCursorInitX:: db ; cfa2
 w2DMenuNumRows:: db ; cfa3
@@ -1470,7 +1468,7 @@ w2DMenuFlags1:: ; cfa5
 w2DMenuFlags2:: db ; cfa6
 w2DMenuCursorOffsets:: db ; cfa7
 wMenuJoypadFilter:: db ; cfa8
-wMenuData3End::
+w2DMenuDataEnd::
 
 wMenuCursorY:: db ; cfa9
 wMenuCursorX:: db ; cfaa
@@ -1491,7 +1489,8 @@ wFarCallBCBuffer:: dw ; cfb9
 wcfbb:: db
 
 wGameTimerPause:: ; cfbc
-; bit 0
+; bit 0: game timer paused
+; bit 7: something mobile
 	db
 
 	ds 1
@@ -1622,12 +1621,12 @@ wMartItemBCDEnd::
 
 NEXTU ; d002
 ; town map data
-wTownMapPlayerIconLandmark:: ds 1
+wTownMapPlayerIconLandmark:: db
 UNION
-wTownMapCursorLandmark:: ds 1
-wTownMapCursorObjectPointer:: ds 2
+wTownMapCursorLandmark:: db
+wTownMapCursorObjectPointer:: dw
 NEXTU
-wTownMapCursorCoordinates:: ds 2
+wTownMapCursorCoordinates:: dw
 ENDU
 
 NEXTU ; d002
@@ -1904,7 +1903,7 @@ wCurMessageScrollPosition:: db
 wCurMessageIndex:: db
 wMailboxCount:: db
 wMailboxItems:: ds MAILBOX_CAPACITY
-wMailboxEnd:: ds 1 ; d0fe
+wMailboxEnd:: ; d0fe
 ENDU ; d100
 
 wListPointer:: dw ; d100
@@ -1993,14 +1992,14 @@ wOverworldMapAnchor:: dw ; d194
 wMetatileStandingY:: db ; d196
 wMetatileStandingX:: db ; d197
 
-wPartialMapDef::
-wMapDataBank:: db ; d198
+wMapPartial::
+wMapAttributesBank:: db ; d198
 wMapTileset:: db ; d199
 wEnvironment:: db ; d19a
-wMapDataPointer:: dw ; d19b
-wPartialMapDefEnd::
+wMapAttributesPointer:: dw ; d19b
+wMapPartialEnd::
 
-wMapData:: ; d19d
+wMapAttributes:: ; d19d
 wMapBorderBlock:: db ; d19d
 ; width/height are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
 wMapHeight:: db ; d19e
@@ -2012,7 +2011,7 @@ wMapScriptsPointer:: dw ; d1a4
 wMapEventsPointer:: dw ; d1a6
 ; bit set
 wMapConnections:: db ; d1a8
-wMapDataEnd::
+wMapAttributesEnd::
 
 wNorthMapConnection:: map_connection_struct wNorth ; d1a9
 wSouthMapConnection:: map_connection_struct wSouth ; d1b5
@@ -2027,7 +2026,7 @@ wTilesetBlocksAddress:: dw ; d1dd
 wTilesetCollisionBank:: db ; d1df
 wTilesetCollisionAddress:: dw ; d1e0
 wTilesetAnim:: dw ; bank 3f ; d1e2
-	ds 2  ; unused ; d1e4
+	ds 2 ; unused ; d1e4
 wTilesetPalettes:: dw ; bank 3f ; d1e6
 wTilesetEnd::
 
@@ -2199,11 +2198,11 @@ NEXTU ; d26b
 wOTPlayerName:: ds NAME_LENGTH ; d26b
 ENDU ; d276
 
-wOTPlayerID:: ds 2 ; d276
+wOTPlayerID:: dw ; d276
 	ds 8
-wOTPartyCount::   ds 1 ; d280
+wOTPartyCount::   db ; d280
 wOTPartySpecies:: ds PARTY_LENGTH ; d281
-wOTPartyEnd::     ds 1 ; legacy scripts don't check wPartyCount
+wOTPartyEnd::     db ; older code doesn't check PartyCount
 
 UNION ; d288
 ; ot party mons
@@ -2285,7 +2284,9 @@ wXYComparePointer:: dw ; d453
 wBattleScriptFlags:: dw ; d459
 wPlayerSpriteSetupFlags:: ; d45b
 ; bit 7: if set, cancel wPlayerAction
+; bit 6: RefreshMapSprites doesn't reload player sprite
 ; bit 5: if set, set facing according to bits 0-1
+; bit 2: female player has been transformed into male
 ; bits 0-1: direction facing
 	db
 wMapReentryScriptQueueFlag:: db ; d45c MemScriptFlag
@@ -2299,7 +2300,9 @@ wReceiveCallDelay_StartTime:: ds 3 ; d466
 wBugContestMinsRemaining:: db ; d46c
 wBugContestSecsRemaining:: db ; d46d
 	ds 2
-wMapStatusEnd:: ds 2 ; d470
+wMapStatusEnd:: ; d470
+
+	ds 2
 
 wCrystalData::
 wPlayerGender:: ; d472
@@ -2338,7 +2341,9 @@ wStartMinute:: db ; d4b8
 wStartSecond:: db ; d4b9
 
 wRTC:: ds 8 ; d4ba
-wDST:: db ; d4c2
+wDST:: ; d4c2
+; bit 7: dst
+	db
 
 wGameTime::
 wGameTimeCap::     db ; d4c3
@@ -2360,19 +2365,19 @@ wFollowerMovementQueueLength:: db
 wFollowMovementQueue:: ds 5
 
 wObjectStructs:: ; d4d6
-	object_struct wPlayer
-	object_struct wObject1
-	object_struct wObject2
-	object_struct wObject3
-	object_struct wObject4
-	object_struct wObject5
-	object_struct wObject6
-	object_struct wObject7
-	object_struct wObject8
-	object_struct wObject9
-	object_struct wObject10
-	object_struct wObject11
-	object_struct wObject12
+wPlayerStruct::   object_struct wPlayer
+wObject1Struct::  object_struct wObject1
+wObject2Struct::  object_struct wObject2
+wObject3Struct::  object_struct wObject3
+wObject4Struct::  object_struct wObject4
+wObject5Struct::  object_struct wObject5
+wObject6Struct::  object_struct wObject6
+wObject7Struct::  object_struct wObject7
+wObject8Struct::  object_struct wObject8
+wObject9Struct::  object_struct wObject9
+wObject10Struct:: object_struct wObject10
+wObject11Struct:: object_struct wObject11
+wObject12Struct:: object_struct wObject12
 wObjectStructsEnd:: ; d6de
 
 wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
@@ -2380,22 +2385,22 @@ wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
 	ds 40
 
 wMapObjects:: ; d71e
-	map_object wPlayer
-	map_object wMap1
-	map_object wMap2
-	map_object wMap3
-	map_object wMap4
-	map_object wMap5
-	map_object wMap6
-	map_object wMap7
-	map_object wMap8
-	map_object wMap9
-	map_object wMap10
-	map_object wMap11
-	map_object wMap12
-	map_object wMap13
-	map_object wMap14
-	map_object wMap15
+wPlayerObject:: map_object wPlayer
+wMap1Object::   map_object wMap1
+wMap2Object::   map_object wMap2
+wMap3Object::   map_object wMap3
+wMap4Object::   map_object wMap4
+wMap5Object::   map_object wMap5
+wMap6Object::   map_object wMap6
+wMap7Object::   map_object wMap7
+wMap8Object::   map_object wMap8
+wMap9Object::   map_object wMap9
+wMap10Object::  map_object wMap10
+wMap11Object::  map_object wMap11
+wMap12Object::  map_object wMap12
+wMap13Object::  map_object wMap13
+wMap14Object::  map_object wMap14
+wMap15Object::  map_object wMap15
 wMapObjectsEnd::
 
 wObjectMasks:: ds NUM_OBJECTS ; d81e
@@ -2414,30 +2419,36 @@ wCurTimeOfDay:: db ; d848
 
 wSecretID:: dw
 wStatusFlags:: ; d84c
-	; 0 - pokedex
-	; 1 - unown dex
-	; 2 -
-	; 3 - pokerus
-	; 4 - rocket signal
-	; 5 - wild encounters on/off
-	; 6 - hall of fame
-	; 7 - bug contest on
+; bit 0: pokedex
+; bit 1: unown dex
+; bit 2: flash
+; bit 3: caught pokerus
+; bit 4: rocket signal
+; bit 5: wild encounters on/off
+; bit 6: hall of fame
+; bit 7: bug contest on
 	db
 
 wStatusFlags2:: ; d84d
-	; 0 - rockets
-	; 1 -
-	; 2 - bug contest timer
-	; 3 -
-	; 4 - bike shop call
-	; 5 - pokerus
-	; 6 - berry juice?
-	; 7 - rockets in mahogany
+; bit 0: rockets
+; bit 1: safari game (unused)
+; bit 2: bug contest timer
+; bit 3: unused
+; bit 4: bike shop call
+; bit 5: can use sweet scent
+; bit 6: reached goldenrod
+; bit 7: rockets in mahogany
 	db
 
 wMoney:: ds 3 ; d84e
 wMomsMoney:: ds 3 ; d851
-wMomSavingMoney:: db ; d854
+
+wMomSavingMoney:: ; d854
+; bit 0: saving some money
+; bit 1: saving half money (unused)
+; bit 2: saving all money (unused)
+; bit 7: active
+	db
 
 wCoins:: dw ; d855
 
@@ -2513,7 +2524,7 @@ wHallOfFameSceneID::                              db ; d984
 wRoute27SceneID::                                 db ; d985
 wNewBarkTownSceneID::                             db ; d986
 wElmsLabSceneID::                                 db ; d987
-wKrissHouse1FSceneID::                            db ; d988
+wPlayersHouse1FSceneID::                          db ; d988
 wRoute29SceneID::                                 db ; d989
 wCherrygroveCitySceneID::                         db ; d98a
 wMrPokemonsHouseSceneID::                         db ; d98b
@@ -2528,7 +2539,7 @@ wGoldenrodPokecenter1FSceneID::                   db ; d993
 wOlivineCitySceneID::                             db ; d994
 wRoute34SceneID::                                 db ; d995
 wRoute34IlexForestGateSceneID::                   db ; d996
-wEcruteakHouseSceneID::                           db ; d997
+wEcruteakTinTowerEntranceSceneID::                db ; d997
 wWiseTriosRoomSceneID::                           db ; d998
 wEcruteakPokecenter1FSceneID::                    db ; d999
 wEcruteakGymSceneID::                             db ; d99a
@@ -2568,7 +2579,7 @@ wVermilionPortSceneID::                           db ; d9bb
 wFastShip1FSceneID::                              db ; d9bc
 wFastShipB1FSceneID::                             db ; d9bd
 wMountMoonSquareSceneID::                         db ; d9be
-wMobileTradeRoomMobileSceneID::                   db ; d9bf
+wMobileTradeRoomSceneID::                         db ; d9bf
 wMobileBattleRoomSceneID::                        db ; d9c0
 
 	ds 49
@@ -2618,7 +2629,9 @@ wCurBox:: db ; db72
 ; 8 chars + $50
 wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES ; db75
 
-wCelebiEvent:: db
+wCelebiEvent:: ; dbf3
+; bit 2: forest is restless
+	db
 
 	ds 1
 
@@ -2627,8 +2640,7 @@ wBikeFlags:: ; dbf5
 ; bit 1: always on bike
 ; bit 2: downhill
 	db
-
-	ds 1
+	ds 1 ; cleared along with wBikeFlags by ResetBikeFlags
 
 wCurrMapSceneScriptPointer:: dw ; dbf7
 
@@ -2713,7 +2725,8 @@ wPhoneList:: ds CONTACT_LIST_SIZE ; dc7c
 ; dc86
 	ds 23
 
-wLuckyNumberShowFlag:: dw ; dc9d
+wLuckyNumberShowFlag:: db ; dc9d
+	ds 1
 wLuckyIDNumber:: dw ; dc9f
 
 wRepelEffect:: db ; If a Repel is in use, it contains the nr of steps it's still active
@@ -2756,9 +2769,9 @@ SECTION "Party", WRAMX
 
 wPokemonData::
 
-wPartyCount:: db ; dcd7 ; number of Pokémon in party
+wPartyCount::   db ; dcd7 ; number of Pokémon in party
 wPartySpecies:: ds PARTY_LENGTH ; dcd8 ; species of each Pokémon in party
-wPartyEnd:: db ; dcde ; legacy scripts don't check wPartyCount
+wPartyEnd::     db ; dcde ; older code doesn't check wPartyCount
 
 wPartyMons::
 wPartyMon1:: party_struct wPartyMon1 ; dcdf
@@ -2787,8 +2800,8 @@ wFirstUnownSeen:: db
 
 wDayCareMan:: ; def5
 ; bit 7: active
-; bit 6: monsters are compatible
-; bit 5: egg ready
+; bit 6: egg ready
+; bit 5: monsters are compatible
 ; bit 0: monster 1 in day-care
 	db
 

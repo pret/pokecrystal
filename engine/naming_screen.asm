@@ -771,7 +771,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString: ; 11b27
 
 ; 11b56
 
-INCLUDE "data/unused/dakutens.asm"
+INCLUDE "data/text/unused_dakutens.asm"
 
 ; 11bbc
 
@@ -945,7 +945,7 @@ NamingScreenGFX_Cursor: ; 11cc7
 INCBIN "gfx/naming_screen/cursor.2bpp"
 ; 11ce7
 
-INCLUDE "data/name_input_chars.asm"
+INCLUDE "data/text/name_input_chars.asm"
 ; 11e5d
 
 NamingScreenGFX_End: ; unused
@@ -1462,6 +1462,6 @@ MailComposition_TryAddLastCharacter: ; 121ac (4:61ac)
 
 ; 121dd
 
-INCLUDE "data/mail_input_chars.asm"
+INCLUDE "data/text/mail_input_chars.asm"
 
 ; 122c1

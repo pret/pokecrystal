@@ -429,7 +429,7 @@ _SwarmWildmonCheck
 	call CopyCurrMapDE
 	push hl
 	ld hl, wSwarmFlags
-	bit 2, [hl]
+	bit SWARMFLAGS_DUNSPARCE_SWARM_F, [hl]
 	pop hl
 	jr z, .CheckYanma
 	ld a, [wDunsparceMapGroup]
@@ -446,7 +446,7 @@ _SwarmWildmonCheck
 .CheckYanma:
 	push hl
 	ld hl, wSwarmFlags
-	bit 3, [hl]
+	bit SWARMFLAGS_YANMA_SWARM_F, [hl]
 	pop hl
 	jr z, _NoSwarmWildmon
 	ld a, [wYanmaMapGroup]
@@ -508,7 +508,7 @@ LookUpWildmonsForMapDE: ; 2a288
 ; 2a2a0
 
 
-Special_InitRoamMons: ; 2a2a0
+InitRoamMons: ; 2a2a0
 ; initialize wRoamMon structs
 
 ; species
@@ -516,14 +516,11 @@ Special_InitRoamMons: ; 2a2a0
 	ld [wRoamMon1Species], a
 	ld a, ENTEI
 	ld [wRoamMon2Species], a
-;	ld a, SUICUNE
-;	ld [wRoamMon3Species], a
 
 ; level
 	ld a, 40
 	ld [wRoamMon1Level], a
 	ld [wRoamMon2Level], a
-;	ld [wRoamMon3Level], a
 
 ; raikou starting map
 	ld a, GROUP_ROUTE_42
@@ -537,17 +534,10 @@ Special_InitRoamMons: ; 2a2a0
 	ld a, MAP_ROUTE_37
 	ld [wRoamMon2MapNumber], a
 
-; suicune starting map
-;	ld a, GROUP_ROUTE_38
-;	ld [wRoamMon3MapGroup], a
-;	ld a, MAP_ROUTE_38
-;	ld [wRoamMon3MapNumber], a
-
 ; hp
 	xor a ; generate new stats
 	ld [wRoamMon1HP], a
 	ld [wRoamMon2HP], a
-;	ld [wRoamMon3HP], a
 
 	ret
 ; 2a2ce
@@ -631,7 +621,7 @@ UpdateRoamMons: ; 2a30d
 .SkipEntei:
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
-	jr z, .SkipSuicune
+	jr z, .Finished
 	ld b, a
 	ld a, [wRoamMon3MapNumber]
 	ld c, a
@@ -641,7 +631,7 @@ UpdateRoamMons: ; 2a30d
 	ld a, c
 	ld [wRoamMon3MapNumber], a
 
-.SkipSuicune:
+.Finished:
 	jp _BackUpMapIndices
 ; 2a355
 
@@ -712,8 +702,8 @@ JumpRoamMons: ; 2a394
 	ld [wRoamMon1MapGroup], a
 	ld a, c
 	ld [wRoamMon1MapNumber], a
-.SkipRaikou:
 
+.SkipRaikou:
 	ld a, [wRoamMon2MapGroup]
 	cp GROUP_N_A
 	jr z, .SkipEntei
@@ -722,18 +712,18 @@ JumpRoamMons: ; 2a394
 	ld [wRoamMon2MapGroup], a
 	ld a, c
 	ld [wRoamMon2MapNumber], a
-.SkipEntei:
 
+.SkipEntei:
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
-	jr z, .SkipSuicune
+	jr z, .Finished
 	call JumpRoamMon
 	ld a, b
 	ld [wRoamMon3MapGroup], a
 	ld a, c
 	ld [wRoamMon3MapNumber], a
-.SkipSuicune:
 
+.Finished:
 	jp _BackUpMapIndices
 
 JumpRoamMon: ; 2a3cd
@@ -804,7 +794,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ; Finds a rare wild Pokemon in the route of the trainer calling, then checks if it's been Seen already.
 ; The trainer will then tell you about the Pokemon if you haven't seen it.
-Special_RandomUnseenWildMon: ; 2a4ab
+RandomUnseenWildMon: ; 2a4ab
 	farcall GetCallerLocation
 	ld d, b
 	ld e, c
@@ -877,7 +867,7 @@ Special_RandomUnseenWildMon: ; 2a4ab
 	db "@"
 ; 0x2a51f
 
-Special_RandomPhoneWildMon: ; 2a51f
+RandomPhoneWildMon: ; 2a51f
 	farcall GetCallerLocation
 	ld d, b
 	ld e, c
@@ -917,7 +907,7 @@ Special_RandomPhoneWildMon: ; 2a51f
 	jp CopyBytes
 ; 2a567
 
-Special_RandomPhoneMon: ; 2a567
+RandomPhoneMon: ; 2a567
 ; Get a random monster owned by the trainer who's calling.
 	farcall GetCallerLocation
 	ld hl, TrainerGroups

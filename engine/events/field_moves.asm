@@ -7,15 +7,15 @@ PlayWhirlpoolSound: ; 8c7d4
 ; 8c7e1
 
 BlindingFlash: ; 8c7e1
-	farcall Special_FadeOutPalettes
+	farcall FadeOutPalettes
 	ld hl, wStatusFlags
-	set 2, [hl] ; Flash
+	set STATUSFLAGS_FLASH_F, [hl]
 	farcall ReplaceTimeOfDayPals
 	farcall UpdateTimeOfDayPal
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	farcall LoadOW_BGPal7
-	farcall Special_FadeInPalettes
+	farcall FadeInPalettes
 	ret
 ; 8c80a
 
@@ -398,7 +398,7 @@ FlyToAnim: ; 8cb33
 	ld c, 4
 .OAMloop
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH +- 1
+rept SPRITEOAMSTRUCT_LENGTH + -1
 	inc hl
 endr
 	inc a

@@ -142,7 +142,7 @@ PlayMusic2:: ; 3bbc
 
 
 PlayCry:: ; 3be3
-; Play cry header de.
+; Play cry de.
 
 	push hl
 	push de
@@ -462,7 +462,7 @@ SpecialMapMusic:: ; 3d62
 	jr z, .surf
 
 	ld a, [wStatusFlags2]
-	bit 2, a
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, a
 	jr nz, .contest
 
 .no

@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE38ECRUTEAKGATE_OFFICER
 
 Route38EcruteakGate_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route38EcruteakGateOfficerScript:
 	jumptextfaceplayer Route38EcruteakGateOfficerText
@@ -25,22 +23,17 @@ Route38EcruteakGateOfficerText:
 	done
 
 Route38EcruteakGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 0, 4, 1, ROUTE_38
-	warp_def 0, 5, 2, ROUTE_38
-	warp_def 9, 4, 14, ECRUTEAK_CITY
-	warp_def 9, 5, 15, ECRUTEAK_CITY
+	db 4 ; warp events
+	warp_event  0,  4, ROUTE_38, 1
+	warp_event  0,  5, ROUTE_38, 2
+	warp_event  9,  4, ECRUTEAK_CITY, 14
+	warp_event  9,  5, ECRUTEAK_CITY, 15
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerScript, -1
+	db 1 ; object events
+	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route38EcruteakGateOfficerScript, -1

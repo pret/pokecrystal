@@ -31,7 +31,7 @@ doorstate: MACRO
 	changeblock UGDOOR_\1_YCOORD, UGDOOR_\1_XCOORD, UNDERGROUND_DOOR_\2
 ENDM
 
-const_value set 2
+	const_def 2 ; object constants
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_PHARMACIST1
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_PHARMACIST2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_ROCKET1
@@ -45,13 +45,11 @@ const_value set 2
 	const GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 
 GoldenrodUndergroundSwitchRoomEntrances_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	db 2 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .UpdateDoorPositions
 
 .DummyScene0:
@@ -119,39 +117,39 @@ TeacherScript_0x7ca7d:
 	jumptextfaceplayer GoldenrodUndergroundSwitchRoomEntrances_TeacherText
 
 UndergroundSilverScene1:
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	waitsfx
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement1
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	scall UndergroundSilverBattleScript
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement1
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
-	setscene 1
+	setscene SCENE_FINISHED
 	waitsfx
 	playmapmusic
 	end
 
 UndergroundSilverScene2:
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
+	special FadeOutMusic
 	pause 15
 	playsound SFX_EXIT_BUILDING
 	appear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
 	waitsfx
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverApproachMovement2
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	scall UndergroundSilverBattleScript
 	applymovement GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER, UndergroundSilverRetreatMovement2
 	playsound SFX_EXIT_BUILDING
 	disappear GOLDENRODUNDERGROUNDSWITCHROOMENTRANCES_SILVER
-	setscene 1
+	setscene SCENE_FINISHED
 	waitsfx
 	playmapmusic
 	end
@@ -160,7 +158,7 @@ UndergroundSilverBattleScript:
 	checkevent EVENT_RIVAL_BURNED_TOWER
 	iftrue .Continue
 	setevent EVENT_RIVAL_BURNED_TOWER
-	setmapscene BURNED_TOWER_1F, 1
+	setmapscene BURNED_TOWER_1F, SCENE_BURNEDTOWER1F_RIVAL_BATTLE
 .Continue:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
@@ -207,10 +205,10 @@ UndergroundSilverBattleScript:
 	end
 
 TrainerGruntM11:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_11, GRUNTM, GRUNTM_11, GruntM11SeenText, GruntM11BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_11, EVENT_BEAT_ROCKET_GRUNTM_11, GruntM11SeenText, GruntM11BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM11AfterBattleText
 	waitbutton
@@ -218,10 +216,10 @@ TrainerGruntM11:
 	end
 
 TrainerGruntM25:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_25, GRUNTM, GRUNTM_25, GruntM25SeenText, GruntM25BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_25, EVENT_BEAT_ROCKET_GRUNTM_25, GruntM25SeenText, GruntM25BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM25AfterBattleText
 	waitbutton
@@ -229,10 +227,10 @@ TrainerGruntM25:
 	end
 
 TrainerBurglarDuncan:
-	trainer EVENT_BEAT_BURGLAR_DUNCAN, BURGLAR, DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, 0, .Script
+	trainer BURGLAR, DUNCAN, EVENT_BEAT_BURGLAR_DUNCAN, BurglarDuncanSeenText, BurglarDuncanBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BurglarDuncanAfterBattleText
 	waitbutton
@@ -240,10 +238,10 @@ TrainerBurglarDuncan:
 	end
 
 TrainerBurglarEddie:
-	trainer EVENT_BEAT_BURGLAR_EDDIE, BURGLAR, EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, 0, .Script
+	trainer BURGLAR, EDDIE, EVENT_BEAT_BURGLAR_EDDIE, BurglarEddieSeenText, BurglarEddieBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BurglarEddieAfterBattleText
 	waitbutton
@@ -251,10 +249,10 @@ TrainerBurglarEddie:
 	end
 
 TrainerGruntM13:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_13, GRUNTM, GRUNTM_13, GruntM13SeenText, GruntM13BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_13, EVENT_BEAT_ROCKET_GRUNTM_13, GruntM13SeenText, GruntM13BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM13AfterBattleText
 	waitbutton
@@ -262,10 +260,10 @@ TrainerGruntM13:
 	end
 
 TrainerGruntF3:
-	trainer EVENT_BEAT_ROCKET_GRUNTF_3, GRUNTF, GRUNTF_3, GruntF3SeenText, GruntF3BeatenText, 0, .Script
+	trainer GRUNTF, GRUNTF_3, EVENT_BEAT_ROCKET_GRUNTF_3, GruntF3SeenText, GruntF3BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntF3AfterBattleText
 	waitbutton
@@ -382,14 +380,14 @@ GoldenrodUndergroundSwitchRoomEntrances_DontToggle:
 
 GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors:
 	copybytetovar wUndergroundSwitchPositions
-	if_equal 0, .Position0
-	if_equal 1, .Position1
-	if_equal 2, .Position2
-	if_equal 3, .Position3
-	if_equal 4, .Position4
-	if_equal 5, .Position5
-	if_equal 6, .Position6
-	if_equal 7, .EmergencyPosition
+	ifequal 0, .Position0
+	ifequal 1, .Position1
+	ifequal 2, .Position2
+	ifequal 3, .Position3
+	ifequal 4, .Position4
+	ifequal 5, .Position5
+	ifequal 6, .Position6
+	ifequal 7, .EmergencyPosition
 .Position0:
 	playsound SFX_ENTER_DOOR
 	scall .Clear4
@@ -631,10 +629,10 @@ GoldenrodUndergroundSwitchRoomEntrancesFullHeal:
 	itemball FULL_HEAL
 
 GoldenrodUndergroundSwitchRoomEntrancesHiddenMaxPotion:
-	hiddenitem EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem MAX_POTION, EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_MAX_POTION
 
 GoldenrodUndergroundSwitchRoomEntrancesHiddenRevive:
-	hiddenitem EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE, REVIVE
+	hiddenitem REVIVE, EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_HIDDEN_REVIVE
 
 UndergroundSilverApproachMovement1:
 	step DOWN
@@ -931,45 +929,40 @@ SwitchRoomText_Emergency:
 	done
 
 GoldenrodUndergroundSwitchRoomEntrances_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 9
-	warp_def 23, 3, 6, GOLDENROD_UNDERGROUND
-	warp_def 22, 10, 1, GOLDENROD_UNDERGROUND_WAREHOUSE
-	warp_def 23, 10, 2, GOLDENROD_UNDERGROUND_WAREHOUSE
-	warp_def 5, 25, 2, GOLDENROD_UNDERGROUND
-	warp_def 4, 29, 14, GOLDENROD_CITY
-	warp_def 5, 29, 14, GOLDENROD_CITY
-	warp_def 21, 25, 1, GOLDENROD_UNDERGROUND
-	warp_def 20, 29, 13, GOLDENROD_CITY
-	warp_def 21, 29, 13, GOLDENROD_CITY
+	db 9 ; warp events
+	warp_event 23,  3, GOLDENROD_UNDERGROUND, 6
+	warp_event 22, 10, GOLDENROD_UNDERGROUND_WAREHOUSE, 1
+	warp_event 23, 10, GOLDENROD_UNDERGROUND_WAREHOUSE, 2
+	warp_event  5, 25, GOLDENROD_UNDERGROUND, 2
+	warp_event  4, 29, GOLDENROD_CITY, 14
+	warp_event  5, 29, GOLDENROD_CITY, 14
+	warp_event 21, 25, GOLDENROD_UNDERGROUND, 1
+	warp_event 20, 29, GOLDENROD_CITY, 13
+	warp_event 21, 29, GOLDENROD_CITY, 13
 
-.CoordEvents:
-	db 2
-	coord_event 19, 4, 0, UndergroundSilverScene1
-	coord_event 19, 5, 0, UndergroundSilverScene2
+	db 2 ; coord events
+	coord_event 19,  4, SCENE_DEFAULT, UndergroundSilverScene1
+	coord_event 19,  5, SCENE_DEFAULT, UndergroundSilverScene2
 
-.BGEvents:
-	db 6
-	bg_event 16, 1, BGEVENT_READ, Switch1Script
-	bg_event 10, 1, BGEVENT_READ, Switch2Script
-	bg_event 2, 1, BGEVENT_READ, Switch3Script
+	db 6 ; bg events
+	bg_event 16,  1, BGEVENT_READ, Switch1Script
+	bg_event 10,  1, BGEVENT_READ, Switch2Script
+	bg_event  2,  1, BGEVENT_READ, Switch3Script
 	bg_event 20, 11, BGEVENT_READ, EmergencySwitchScript
-	bg_event 8, 9, BGEVENT_ITEM, GoldenrodUndergroundSwitchRoomEntrancesHiddenMaxPotion
-	bg_event 1, 8, BGEVENT_ITEM, GoldenrodUndergroundSwitchRoomEntrancesHiddenRevive
+	bg_event  8,  9, BGEVENT_ITEM, GoldenrodUndergroundSwitchRoomEntrancesHiddenMaxPotion
+	bg_event  1,  8, BGEVENT_ITEM, GoldenrodUndergroundSwitchRoomEntrancesHiddenRevive
 
-.ObjectEvents:
-	db 11
-	object_event 9, 12, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 4, 8, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 17, 2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 11, 2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 3, 2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	db 11 ; object events
+	object_event  9, 12, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBurglarDuncan, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  4,  8, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerBurglarEddie, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 17,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM13, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 11,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM11, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  3,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM25, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 19, 12, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerGruntF3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 3, 27, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x7ca7d, -1
+	object_event  3, 27, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x7ca7d, -1
 	object_event 19, 27, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x7ca7a, -1
-	object_event 1, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundSwitchRoomEntrancesSmokeBall, EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
-	object_event 14, 9, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundSwitchRoomEntrancesFullHeal, EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_FULL_HEAL
-	object_event 23, 3, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_GOLDENROD_UNDERGROUND
+	object_event  1, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundSwitchRoomEntrancesSmokeBall, EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_SMOKE_BALL
+	object_event 14,  9, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundSwitchRoomEntrancesFullHeal, EVENT_GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES_FULL_HEAL
+	object_event 23,  3, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_GOLDENROD_UNDERGROUND

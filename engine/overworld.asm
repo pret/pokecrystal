@@ -23,7 +23,7 @@ Function14146: ; mobile
 	push af
 	res 7, [hl]
 	set 6, [hl]
-	call Special_LoadUsedSpritesGFX
+	call LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
@@ -35,15 +35,15 @@ Function14157: ; mobile
 	push af
 	set 7, [hl]
 	res 6, [hl]
-	call Special_LoadUsedSpritesGFX
+	call LoadUsedSpritesGFX
 	pop af
 	ld [wSpriteFlags], a
 	ret
 ; 14168
 
-Special_RefreshSprites:: ; 14168
+RefreshSprites:: ; 14168
 	call .Refresh
-	call Special_LoadUsedSpritesGFX
+	call LoadUsedSpritesGFX
 	ret
 ; 1416f
 
@@ -60,14 +60,14 @@ Special_RefreshSprites:: ; 14168
 
 GetPlayerSprite: ; 14183
 ; Get Chris or Kris's sprite.
-	ld hl, .Chris
+	ld hl, ChrisStateSprites
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a
+	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .go
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .go
-	ld hl, .Kris
+	ld hl, KrisStateSprites
 
 .go
 	ld a, [wPlayerState]
@@ -95,20 +95,7 @@ GetPlayerSprite: ; 14183
 	ld [wPlayerObjectSprite], a
 	ret
 
-.Chris:
-	db PLAYER_NORMAL,    SPRITE_CHRIS
-	db PLAYER_BIKE,      SPRITE_CHRIS_BIKE
-	db PLAYER_SURF,      SPRITE_SURF
-	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
-	db -1 ; end
-
-.Kris:
-	db PLAYER_NORMAL,    SPRITE_KRIS
-	db PLAYER_BIKE,      SPRITE_KRIS_BIKE
-	db PLAYER_SURF,      SPRITE_SURF
-	db PLAYER_SURF_PIKA, SPRITE_SURFING_PIKACHU
-	db -1 ; end
-; 141c9
+INCLUDE "data/sprites/player_sprites.asm"
 
 
 AddMapSprites: ; 141c9
@@ -164,7 +151,7 @@ AddOutdoorSprites: ; 141ee
 ; 14209
 
 
-Special_LoadUsedSpritesGFX: ; 14209
+LoadUsedSpritesGFX: ; 14209
 	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites

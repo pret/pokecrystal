@@ -2,7 +2,7 @@ TreeMons: ; b82e8
 ; entries correspond to TREEMON_SET_* constants
 	dw TreeMonSet_City
 	dw TreeMonSet_Canyon
-	dw TreeMonSet_Azalea
+	dw TreeMonSet_Town
 	dw TreeMonSet_Route
 	dw TreeMonSet_Kanto
 	dw TreeMonSet_Lake
@@ -33,7 +33,7 @@ TreeMonSet_Canyon: ; b82fa
 	db  5, AIPOM,      10
 	db -1
 
-TreeMonSet_Azalea: ; b8320
+TreeMonSet_Town: ; b8320
 ; common
 	db 50, SPEAROW,    10
 	db 15, EKANS,      10

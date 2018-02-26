@@ -98,10 +98,10 @@ RotateUnownFrontpic: ; e0000
 overworldmaprect: MACRO
 y = 0
 rept \1
-x = \1 * (\2 +- 1) + y
+x = \1 * (\2 + -1) + y
 rept \2
 	dw wOverworldMap tile x
-x = x +- \2
+x = x + -\2
 endr
 y = y + 1
 endr

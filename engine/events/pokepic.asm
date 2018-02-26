@@ -1,6 +1,6 @@
 Pokepic:: ; 244e3
-	ld hl, PokepicMenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, PokepicMenuHeader
+	call CopyMenuHeader
 	call MenuBox
 	call UpdateSprites
 	call ApplyTilemap
@@ -28,8 +28,8 @@ Pokepic:: ; 244e3
 	ret
 
 ClosePokepic:: ; 24528
-	ld hl, PokepicMenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, PokepicMenuHeader
+	call CopyMenuHeader
 	call ClearMenuBoxInterior
 	call WaitBGMap
 	call GetMemSGBLayout
@@ -41,7 +41,7 @@ ClosePokepic:: ; 24528
 	call LoadStandardFont
 	ret
 
-PokepicMenuDataHeader: ; 0x24547
+PokepicMenuHeader: ; 0x24547
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 4, 14, 13
 	dw NULL

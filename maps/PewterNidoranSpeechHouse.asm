@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const PEWTERNIDORANSPEECHHOUSE_SUPER_NERD
 	const PEWTERNIDORANSPEECHHOUSE_NIDORAN_M
 
 PewterNidoranSpeechHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 PewterNidoranSpeechHouseSuperNerdScript:
 	jumptextfaceplayer PewterNidoranSpeechHouseSuperNerdText
@@ -29,21 +27,16 @@ PewterNidoranText:
 	done
 
 PewterNidoranSpeechHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 1, PEWTER_CITY
-	warp_def 3, 7, 1, PEWTER_CITY
+	db 2 ; warp events
+	warp_event  2,  7, PEWTER_CITY, 1
+	warp_event  3,  7, PEWTER_CITY, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
-	object_event 3, 5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PewterNidoranSpeechHouseSuperNerdScript, -1
-	object_event 4, 5, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterNidoran, -1
+	db 2 ; object events
+	object_event  3,  5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PewterNidoranSpeechHouseSuperNerdScript, -1
+	object_event  4,  5, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterNidoran, -1

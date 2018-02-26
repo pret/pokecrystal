@@ -1,15 +1,13 @@
 RuinsOfAlphOmanyteChamber_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .CheckWall
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .CheckWall ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
-	special Special_OmanyteChamber
+	special OmanyteChamber
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .OpenWall
 	end
@@ -44,14 +42,14 @@ RuinsOfAlphOmanyteChamber_MapScripts:
 	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene 1
+	setscene SCENE_FINISHED
 	closetext
 	end
 
 MapRuinsOfAlphOmanyteChamberSignpost2Script:
 	refreshscreen
 	writebyte UNOWNPUZZLE_OMANYTE
-	special Special_UnownPuzzle
+	special UnownPuzzle
 	closetext
 	iftrue .PuzzleComplete
 	end
@@ -59,8 +57,8 @@ MapRuinsOfAlphOmanyteChamberSignpost2Script:
 .PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_OMANYTE_PUZZLE
-	setflag ENGINE_UNLOCKED_UNOWNS_2
-	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, 1
+	setflag ENGINE_UNLOCKED_UNOWNS_L_TO_R
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $18 ; left hole
@@ -85,7 +83,7 @@ MapRuinsOfAlphOmanyteChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58c8e
 	writebyte UNOWNWORDS_WATER
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -95,7 +93,7 @@ MapRuinsOfAlphOmanyteChamberSignpost5Script:
 	opentext
 	writetext UnknownText_0x58cc0
 	writebyte UNOWNWORDS_WATER
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -145,28 +143,23 @@ UnknownText_0x58d26:
 	done
 
 RuinsOfAlphOmanyteChamber_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
-	warp_def 3, 9, 3, RUINS_OF_ALPH_OUTSIDE
-	warp_def 4, 9, 3, RUINS_OF_ALPH_OUTSIDE
-	warp_def 3, 3, 6, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 3, 7, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 0, 1, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM
+	db 5 ; warp events
+	warp_event  3,  9, RUINS_OF_ALPH_OUTSIDE, 3
+	warp_event  4,  9, RUINS_OF_ALPH_OUTSIDE, 3
+	warp_event  3,  3, RUINS_OF_ALPH_INNER_CHAMBER, 6
+	warp_event  4,  3, RUINS_OF_ALPH_INNER_CHAMBER, 7
+	warp_event  4,  0, RUINS_OF_ALPH_OMANYTE_ITEM_ROOM, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
-	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
-	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
-	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost2Script
-	bg_event 4, 2, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost3Script
-	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost4Script
-	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost5Script
+	db 6 ; bg events
+	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
+	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
+	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost2Script
+	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost3Script
+	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost4Script
+	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost5Script
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

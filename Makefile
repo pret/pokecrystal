@@ -9,20 +9,15 @@ RGBFIX := rgbfix
 RGBGFX := rgbgfx
 RGBLINK := rgblink
 
-.SUFFIXES:
-.PHONY: all clean tools compare crystal crystal11
-.SECONDEXPANSION:
-.PRECIOUS:
-.SECONDARY:
-
+roms := pokecrystal.gbc pokecrystal11.gbc
 
 crystal_obj := \
 audio.o \
 home.o \
 main.o \
 wram.o \
-data/common_text/common_text.o \
-data/maps/maps.o \
+data/text/common.o \
+data/maps/map_data.o \
 data/pokemon/dex_entries.o \
 data/pokemon/egg_moves.o \
 data/pokemon/evos_attacks.o \
@@ -35,7 +30,13 @@ lib/mobile/main.o
 crystal11_obj := $(crystal_obj:.o=11.o)
 
 
-roms := pokecrystal.gbc pokecrystal11.gbc
+### Build targets
+
+.SUFFIXES:
+.PHONY: all crystal crystal11 clean compare tools
+.SECONDEXPANSION:
+.PRECIOUS:
+.SECONDARY:
 
 all: crystal
 crystal: pokecrystal.gbc
@@ -75,15 +76,15 @@ $(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
 endif
 
 
-pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
-	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
-	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
-	tools/sort_symfile.sh pokecrystal11.sym
-
 pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
 	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 	tools/sort_symfile.sh pokecrystal.sym
+
+pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
+	$(RGBLINK) -n pokecrystal11.sym -m pokecrystal11.map -l pokecrystal.link -o $@ $(crystal11_obj)
+	$(RGBFIX) -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -n 1 -p 0 -r 3 -t PM_CRYSTAL $@
+	tools/sort_symfile.sh pokecrystal11.sym
 
 
 # For files that the compressor can't match, there will be a .lz file suffixed with the md5 hash of the correct uncompressed file.
@@ -221,6 +222,8 @@ gfx/mobile/pichu_animated.2bpp: tools/gfx += --trim-whitespace
 
 gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 
+
+### Catch-all graphics rules
 
 %.bin: ;
 %.blk: ;

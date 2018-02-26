@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const POKEMONFANCLUB_GENTLEMAN
 	const POKEMONFANCLUB_RECEPTIONIST
 	const POKEMONFANCLUB_FISHER
@@ -7,13 +7,11 @@ const_value set 2
 	const POKEMONFANCLUB_ODDISH
 
 PokemonFanClub_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
-PokemonFanClubPresident:
+PokemonFanClubPresidentScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
@@ -52,7 +50,7 @@ PokemonFanClubPresident:
 PokemonFanClubReceptionistScript:
 	jumptextfaceplayer PokemonFanClubReceptionistText
 
-PokemonFanClubClefairyGuy:
+PokemonFanClubClefairyGuyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB
@@ -103,10 +101,10 @@ PokemonFanClubClefairyGuy:
 PokemonFanClubTeacherScript:
 	jumptextfaceplayer PokemonFanClubTeacherText
 
-ClefairyDoll:
+PokemonFanClubClefairyDollScript:
 	jumptext ClefairyDollText
 
-FanClubBayleef:
+PokemonFanClubBayleefScript:
 	opentext
 	writetext FanClubBayleefText
 	cry BAYLEEF
@@ -297,27 +295,22 @@ PokemonFanClubBraggingSignText:
 	done
 
 PokemonFanClub_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 3, VERMILION_CITY
-	warp_def 3, 7, 3, VERMILION_CITY
+	db 2 ; warp events
+	warp_event  2,  7, VERMILION_CITY, 3
+	warp_event  3,  7, VERMILION_CITY, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 7, 0, BGEVENT_READ, MapPokemonFanClubSignpost0Script
-	bg_event 9, 0, BGEVENT_READ, MapPokemonFanClubSignpost1Script
+	db 2 ; bg events
+	bg_event  7,  0, BGEVENT_READ, MapPokemonFanClubSignpost0Script
+	bg_event  9,  0, BGEVENT_READ, MapPokemonFanClubSignpost1Script
 
-.ObjectEvents:
-	db 6
-	object_event 3, 1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubPresident, -1
-	object_event 4, 1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokemonFanClubReceptionistScript, -1
-	object_event 2, 3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubClefairyGuy, -1
-	object_event 7, 2, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubTeacherScript, -1
-	object_event 2, 4, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClefairyDoll, EVENT_VERMILION_FAN_CLUB_DOLL
-	object_event 7, 3, SPRITE_ODDISH, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FanClubBayleef, -1
+	db 6 ; object events
+	object_event  3,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubPresidentScript, -1
+	object_event  4,  1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokemonFanClubReceptionistScript, -1
+	object_event  2,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubClefairyGuyScript, -1
+	object_event  7,  2, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubTeacherScript, -1
+	object_event  2,  4, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubClefairyDollScript, EVENT_VERMILION_FAN_CLUB_DOLL
+	object_event  7,  3, SPRITE_ODDISH, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokemonFanClubBayleefScript, -1

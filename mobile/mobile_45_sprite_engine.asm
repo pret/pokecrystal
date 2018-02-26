@@ -506,7 +506,7 @@ Function1161d5: ; 1161d5
 
 ; 11628c
 
-MenuDataHeader_11628c: ; 11628c
+MenuHeader_11628c: ; 11628c
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 6, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL

@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE5_POKEFAN_M
 
 Route5_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route5PokefanMScript:
 	jumptextfaceplayer Route5PokefanMText
@@ -40,24 +38,19 @@ HouseForSaleSignText:
 	done
 
 Route5_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 17, 15, 1, ROUTE_5_UNDERGROUND_PATH_ENTRANCE
-	warp_def 8, 17, 1, ROUTE_5_SAFFRON_GATE
-	warp_def 9, 17, 2, ROUTE_5_SAFFRON_GATE
-	warp_def 10, 11, 1, ROUTE_5_CLEANSE_TAG_SPEECH_HOUSE
+	db 4 ; warp events
+	warp_event 17, 15, ROUTE_5_UNDERGROUND_PATH_ENTRANCE, 1
+	warp_event  8, 17, ROUTE_5_SAFFRON_GATE, 1
+	warp_event  9, 17, ROUTE_5_SAFFRON_GATE, 2
+	warp_event 10, 11, ROUTE_5_CLEANSE_TAG_HOUSE, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
+	db 2 ; bg events
 	bg_event 17, 17, BGEVENT_READ, Route5UndergroundPathSign
 	bg_event 10, 11, BGEVENT_READ, HouseForSaleSign
 
-.ObjectEvents:
-	db 1
+	db 1 ; object events
 	object_event 17, 16, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route5PokefanMScript, EVENT_ROUTE_5_6_POKEFAN_M_BLOCKS_UNDERGROUND_PATH

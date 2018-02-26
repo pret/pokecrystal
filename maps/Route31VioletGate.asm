@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE31VIOLETGATE_OFFICER
 	const ROUTE31VIOLETGATE_COOLTRAINER_F
 
 Route31VioletGate_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route31VioletGateOfficerScript:
 	jumptextfaceplayer Route31VioletGateOfficerText
@@ -28,23 +26,18 @@ Route31VioletGateCooltrainerFText:
 	done
 
 Route31VioletGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 0, 4, 8, VIOLET_CITY
-	warp_def 0, 5, 9, VIOLET_CITY
-	warp_def 9, 4, 1, ROUTE_31
-	warp_def 9, 5, 2, ROUTE_31
+	db 4 ; warp events
+	warp_event  0,  4, VIOLET_CITY, 8
+	warp_event  0,  5, VIOLET_CITY, 9
+	warp_event  9,  4, ROUTE_31, 1
+	warp_event  9,  5, ROUTE_31, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
-	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route31VioletGateOfficerScript, -1
-	object_event 1, 2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route31VioletGateCooltrainerFScript, -1
+	db 2 ; object events
+	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route31VioletGateOfficerScript, -1
+	object_event  1,  2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route31VioletGateCooltrainerFScript, -1

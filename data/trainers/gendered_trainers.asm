@@ -26,7 +26,7 @@ MaleTrainers: ; 4e95d
 	db SAGE
 	db BIKER
 	db SCIENTIST
-MaleTrainersEnd
+.End
 
 FemaleTrainers: ; 4e976
 	db MEDIUM
@@ -39,4 +39,4 @@ FemaleTrainers: ; 4e976
 	db KIMONO_GIRL
 	db POKEFANF
 	db COOLTRAINERF
-FemaleTrainersEnd
+.End

@@ -10,6 +10,7 @@
 NUM_TRAINER_ATTRIBUTES EQU const_value
 
 ; TRNATTR_AI_MOVE_WEIGHTS bit flags (wEnemyTrainerAIFlags)
+; AIScoringPointers indexes (see engine/battle/ai/move.asm)
 	const_def
 	const       NO_AI
 const_value = 0

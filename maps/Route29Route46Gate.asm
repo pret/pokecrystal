@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE29ROUTE46GATE_OFFICER
 	const ROUTE29ROUTE46GATE_YOUNGSTER
 
 Route29Route46Gate_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route29Route46GateOfficerScript:
 	jumptextfaceplayer Route29Route46GateOfficerText
@@ -37,23 +35,18 @@ Route29Route46GateYoungsterText:
 	done
 
 Route29Route46Gate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 4, 0, 1, ROUTE_46
-	warp_def 5, 0, 2, ROUTE_46
-	warp_def 4, 7, 1, ROUTE_29
-	warp_def 5, 7, 1, ROUTE_29
+	db 4 ; warp events
+	warp_event  4,  0, ROUTE_46, 1
+	warp_event  5,  0, ROUTE_46, 2
+	warp_event  4,  7, ROUTE_29, 1
+	warp_event  5,  7, ROUTE_29, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
-	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route29Route46GateOfficerScript, -1
-	object_event 6, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route29Route46GateYoungsterScript, -1
+	db 2 ; object events
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route29Route46GateOfficerScript, -1
+	object_event  6,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route29Route46GateYoungsterScript, -1

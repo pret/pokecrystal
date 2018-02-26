@@ -749,47 +749,7 @@ WipeLYOverrides: ; 8c6d8
 
 
 StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
-; a = d * sin(a * pi/32)
-	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-
-.ApplySineWave: ; 8c70c (23:470c)
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, .sinewave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
-; 8c728 (23:4728)
-
-.sinewave ; 8c728
-	sine_wave $100
+	calc_sine_wave
 ; 8c768
 
 StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)

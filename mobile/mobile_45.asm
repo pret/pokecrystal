@@ -6837,8 +6837,8 @@ Unknown_117356: ; 117356
 
 SECTION "Mobile Stadium", ROMX
 
-Special_GiveOddEgg: ; 117656
-	farcall GiveOddEgg
+GiveOddEgg: ; 117656
+	farcall _GiveOddEgg
 	ret
 
 ; 11765d
@@ -7168,12 +7168,12 @@ Function117764_a_button: ; 11784c (45:784c)
 	jp Function117764_start
 
 Function1178aa: ; 1178aa (45:78aa)
-	ld hl, MenuDataHeader_1179b5
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1179b5
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	ld hl, MenuDataHeader_1179bd
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1179bd
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
 	farcall ReloadMapPart
@@ -7274,8 +7274,8 @@ asm_11797e: ; 11797e (45:797e)
 	ret
 
 Function117984: ; 117984 (45:7984)
-	ld hl, MenuDataHeader_1179b5
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1179b5
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
 	farcall ReloadMapPart
@@ -7297,14 +7297,14 @@ Function1179a7: ; 1179a7 (45:79a7)
 
 ; 1179b5 (45:79b5)
 
-MenuDataHeader_1179b5: ; 1179b5
+MenuHeader_1179b5: ; 1179b5
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 ; 1179bd
 
-MenuDataHeader_1179bd: ; 1179bd
+MenuHeader_1179bd: ; 1179bd
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
@@ -7438,8 +7438,8 @@ Function117b14:
 	ld hl, wcf64
 	dec [hl]
 	ret nz
-	ld hl, MenuDataHeader_117cbc
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_117cbc
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
 	jp MobileStudium_JumptableIncrement
@@ -7450,8 +7450,8 @@ Function117b28:
 	jp MobileStudium_JumptableIncrement
 
 Function117b31:
-	ld hl, MenuDataHeader_117cc4
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_117cc4
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
 	hlcoord 16, 8
@@ -7595,8 +7595,8 @@ Function117bb6:
 	jp MobileStudium_JumptableIncrement
 
 Function117c4a:
-	ld hl, MenuDataHeader_117cbc
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_117cbc
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
 	farcall ReloadMapPart
@@ -7656,13 +7656,13 @@ Function117c89:
 	call CloseSRAM
 	ret
 
-MenuDataHeader_117cbc: ; 0x117cbc
+MenuHeader_117cbc: ; 0x117cbc
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 
-MenuDataHeader_117cc4: ; 0x117cc4
+MenuHeader_117cc4: ; 0x117cc4
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL

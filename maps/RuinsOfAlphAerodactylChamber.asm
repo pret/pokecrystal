@@ -1,11 +1,9 @@
 RuinsOfAlphAerodactylChamber_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .CheckWall
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .CheckWall ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
@@ -43,14 +41,14 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene 1
+	setscene SCENE_FINISHED
 	closetext
 	end
 
 MapRuinsOfAlphAerodactylChamberSignpost2Script:
 	refreshscreen
 	writebyte UNOWNPUZZLE_AERODACTYL
-	special Special_UnownPuzzle
+	special UnownPuzzle
 	closetext
 	iftrue .PuzzleComplete
 	end
@@ -58,8 +56,8 @@ MapRuinsOfAlphAerodactylChamberSignpost2Script:
 .PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_AERODACTYL_PUZZLE
-	setflag ENGINE_UNLOCKED_UNOWNS_3
-	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, 1
+	setflag ENGINE_UNLOCKED_UNOWNS_S_TO_W
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $18 ; left hole
@@ -84,7 +82,7 @@ MapRuinsOfAlphAerodactylChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58e4f
 	writebyte UNOWNWORDS_LIGHT
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -94,7 +92,7 @@ MapRuinsOfAlphAerodactylChamberSignpost5Script:
 	opentext
 	writetext UnknownText_0x58e81
 	writebyte UNOWNWORDS_LIGHT
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -144,28 +142,23 @@ UnknownText_0x58ee7:
 	done
 
 RuinsOfAlphAerodactylChamber_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
-	warp_def 3, 9, 4, RUINS_OF_ALPH_OUTSIDE
-	warp_def 4, 9, 4, RUINS_OF_ALPH_OUTSIDE
-	warp_def 3, 3, 8, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 3, 9, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 0, 1, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM
+	db 5 ; warp events
+	warp_event  3,  9, RUINS_OF_ALPH_OUTSIDE, 4
+	warp_event  4,  9, RUINS_OF_ALPH_OUTSIDE, 4
+	warp_event  3,  3, RUINS_OF_ALPH_INNER_CHAMBER, 8
+	warp_event  4,  3, RUINS_OF_ALPH_INNER_CHAMBER, 9
+	warp_event  4,  0, RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
-	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
-	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
-	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost2Script
-	bg_event 4, 2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost3Script
-	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost4Script
-	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost5Script
+	db 6 ; bg events
+	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
+	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
+	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost2Script
+	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost3Script
+	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost4Script
+	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost5Script
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

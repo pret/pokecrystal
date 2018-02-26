@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ILEXFORESTAZALEAGATE_OFFICER
 	const ILEXFORESTAZALEAGATE_GRANNY
 
 IlexForestAzaleaGate_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 IlexForestAzaleaGateOfficerScript:
 	jumptextfaceplayer IlexForestAzaleaGateOfficerText
@@ -31,23 +29,18 @@ IlexForestAzaleaGateGrannyText:
 	done
 
 IlexForestAzaleaGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 0, 4, 2, ILEX_FOREST
-	warp_def 0, 5, 3, ILEX_FOREST
-	warp_def 9, 4, 7, AZALEA_TOWN
-	warp_def 9, 5, 8, AZALEA_TOWN
+	db 4 ; warp events
+	warp_event  0,  4, ILEX_FOREST, 2
+	warp_event  0,  5, ILEX_FOREST, 3
+	warp_event  9,  4, AZALEA_TOWN, 7
+	warp_event  9,  5, AZALEA_TOWN, 8
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
-	object_event 5, 2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, IlexForestAzaleaGateOfficerScript, -1
-	object_event 1, 3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestAzaleaGateGrannyScript, -1
+	db 2 ; object events
+	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, IlexForestAzaleaGateOfficerScript, -1
+	object_event  1,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestAzaleaGateGrannyScript, -1

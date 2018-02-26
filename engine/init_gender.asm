@@ -30,8 +30,8 @@ InitGender: ; 48dcb (12:4dcb)
 	call SetPalettes
 	ld hl, TextJump_AreYouABoyOrAreYouAGirl
 	call PrintText
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	call WaitBGMap2
 	call VerticalMenu
 	call CloseWindow
@@ -43,14 +43,14 @@ InitGender: ; 48dcb (12:4dcb)
 	ret
 ; 48dfc (12:4dfc)
 
-.MenuDataHeader: ; 0x48dfc
+.MenuHeader: ; 0x48dfc
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 4, 12, 9
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 0x48e04
 
-.MenuData2: ; 0x48e04
+.MenuData: ; 0x48e04
 	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
 	db 2 ; items
 	db "Boy@"

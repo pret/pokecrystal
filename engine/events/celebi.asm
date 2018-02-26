@@ -1,6 +1,6 @@
 SPECIALCELEBIEVENT_CELEBI EQU $84
 
-Special_CelebiShrineEvent: ; 4989a
+CelebiShrineEvent: ; 4989a
 	call DelayFrame
 	ld a, [wVramState]
 	push af
@@ -57,7 +57,7 @@ Special_CelebiShrineEvent: ; 4989a
 	ld c, 4
 .OAMloop:
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH +- 1
+rept SPRITEOAMSTRUCT_LENGTH + -1
 	inc hl
 endr
 	inc a
@@ -241,47 +241,8 @@ UpdateCelebiPosition: ; 49aa2 (12:5aa2)
 
 CelebiEvent_Cosine: ; 49b3b (12:5b3b)
 ; a = d * cos(a * pi/32)
-	add %010000
-	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-
-.ApplySineWave: ; 49b52 (12:5b52)
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, .sinewave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
-; 49b6e (12:5b6e)
-
-.sinewave ; 49b6e
-	sine_wave $100
+	add %010000 ; cos(x) = sin(x + pi/2)
+	calc_sine_wave
 ; 49bae
 
 GetCelebiSpriteTile: ; 49bae
@@ -362,7 +323,7 @@ CelebiEvent_SetBattleType: ; 49bf3
 
 ; 49bf9
 
-Special_CheckCaughtCelebi: ; 49bf9
+CheckCaughtCelebi: ; 49bf9
 	ld a, [wBattleResult]
 	bit 6, a
 	jr z, .false

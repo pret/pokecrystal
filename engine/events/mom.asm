@@ -1,4 +1,4 @@
-Special_BankOfMom: ; 16218
+BankOfMom: ; 16218
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -46,9 +46,9 @@ Special_BankOfMom: ; 16218
 
 .CheckIfBankInitialized: ; 16254
 	ld a, [wMomSavingMoney]
-	bit 7, a
+	bit MOM_ACTIVE_F, a
 	jr nz, .savingmoneyalready
-	set 7, a
+	set MOM_ACTIVE_F, a
 	ld [wMomSavingMoney], a
 	ld a, $1
 	jr .done_0
@@ -68,11 +68,11 @@ Special_BankOfMom: ; 16218
 	jr c, .DontSaveMoney
 	ld hl, UnknownText_0x1664e
 	call PrintText
-	ld a, %10000001
+	ld a, (1 << MOM_ACTIVE_F) | (1 << MOM_SAVING_SOME_MONEY_F)
 	jr .done_1
 
 .DontSaveMoney:
-	ld a, %10000000
+	ld a, 1 << MOM_ACTIVE_F
 
 .done_1
 	ld [wMomSavingMoney], a
@@ -103,9 +103,9 @@ Special_BankOfMom: ; 16218
 .AccessBankOfMom: ; 162a8
 	ld hl, UnknownText_0x1665d
 	call PrintText
-	call LoadStandardMenuDataHeader
-	ld hl, MenuDataHeader_0x166b5
-	call CopyMenuDataHeader
+	call LoadStandardMenuHeader
+	ld hl, MenuHeader_0x166b5
+	call CopyMenuHeader
 	call VerticalMenu
 	call CloseWindow
 	jr c, .cancel
@@ -145,9 +145,9 @@ Special_BankOfMom: ; 16218
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ld a, $5
+	ld a, 5
 	ld [wMomBankDigitCursorPosition], a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call Mom_SetUpDepositMenu
 	call Mom_Wait10Frames
 	call Mom_WithdrawDepositMenuJoypad
@@ -212,9 +212,9 @@ Special_BankOfMom: ; 16218
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	ld a, $5
+	ld a, 5
 	ld [wMomBankDigitCursorPosition], a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call Mom_SetUpWithdrawMenu
 	call Mom_Wait10Frames
 	call Mom_WithdrawDepositMenuJoypad
@@ -276,7 +276,7 @@ Special_BankOfMom: ; 16218
 	call PrintText
 	call YesNoBox
 	jr c, .StopSavingMoney
-	ld a, $81
+	ld a, (1 << MOM_ACTIVE_F) | (1 << MOM_SAVING_SOME_MONEY_F)
 	ld [wMomSavingMoney], a
 	ld hl, UnknownText_0x16685
 	call PrintText
@@ -285,7 +285,7 @@ Special_BankOfMom: ; 16218
 	ret
 
 .StopSavingMoney:
-	ld a, $80
+	ld a, 1 << MOM_ACTIVE_F
 	ld [wMomSavingMoney], a
 	ld a, $7
 	ld [wJumptableIndex], a
@@ -727,14 +727,14 @@ Mom_HeldString: ; 166b0
 	db "HELD@"
 ; 166b5
 
-MenuDataHeader_0x166b5: ; 0x166b5
+MenuHeader_0x166b5: ; 0x166b5
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, 10
-	dw MenuData2_0x166bd
+	dw MenuData_0x166bd
 	db 1 ; default option
 ; 0x166bd
 
-MenuData2_0x166bd: ; 0x166bd
+MenuData_0x166bd: ; 0x166bd
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "GET@"

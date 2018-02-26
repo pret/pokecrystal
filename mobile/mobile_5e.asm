@@ -424,7 +424,7 @@ Function17a91e: ; 17a91e (5e:691e)
 	ret
 
 .asm_17a92c
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call Function17a99e
 	ld hl, $d088
 	set 7, [hl]

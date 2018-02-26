@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const OLIVINELIGHTHOUSE5F_SAILOR
 	const OLIVINELIGHTHOUSE5F_YOUNGSTER
 	const OLIVINELIGHTHOUSE5F_POKE_BALL1
@@ -6,17 +6,15 @@ const_value set 2
 	const OLIVINELIGHTHOUSE5F_POKE_BALL3
 
 OlivineLighthouse5F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TrainerBirdKeeperDenis:
-	trainer EVENT_BEAT_BIRD_KEEPER_DENIS, BIRD_KEEPER, DENIS, BirdKeeperDenisSeenText, BirdKeeperDenisBeatenText, 0, .Script
+	trainer BIRD_KEEPER, DENIS, EVENT_BEAT_BIRD_KEEPER_DENIS, BirdKeeperDenisSeenText, BirdKeeperDenisBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BirdKeeperDenisAfterBattleText
 	waitbutton
@@ -24,10 +22,10 @@ TrainerBirdKeeperDenis:
 	end
 
 TrainerSailorErnest:
-	trainer EVENT_BEAT_SAILOR_ERNEST, SAILOR, ERNEST, SailorErnestSeenText, SailorErnestBeatenText, 0, .Script
+	trainer SAILOR, ERNEST, EVENT_BEAT_SAILOR_ERNEST, SailorErnestSeenText, SailorErnestBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext SailorErnestAfterBattleText
 	waitbutton
@@ -44,7 +42,7 @@ OlivineLighthouse5FTMSwagger:
 	itemball TM_SWAGGER
 
 OlivineLighthouse5FHiddenHyperPotion:
-	hiddenitem EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION, HYPER_POTION
+	hiddenitem HYPER_POTION, EVENT_OLIVINE_LIGHTHOUSE_5F_HIDDEN_HYPER_POTION
 
 SailorErnestSeenText:
 	text "I wanted to battle"
@@ -91,30 +89,25 @@ BirdKeeperDenisAfterBattleText:
 	done
 
 OlivineLighthouse5F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 7
-	warp_def 9, 15, 1, OLIVINE_LIGHTHOUSE_6F
-	warp_def 3, 5, 2, OLIVINE_LIGHTHOUSE_4F
-	warp_def 9, 7, 3, OLIVINE_LIGHTHOUSE_4F
-	warp_def 16, 7, 9, OLIVINE_LIGHTHOUSE_4F
-	warp_def 17, 7, 10, OLIVINE_LIGHTHOUSE_4F
-	warp_def 16, 5, 2, OLIVINE_LIGHTHOUSE_6F
-	warp_def 17, 5, 3, OLIVINE_LIGHTHOUSE_6F
+	db 7 ; warp events
+	warp_event  9, 15, OLIVINE_LIGHTHOUSE_6F, 1
+	warp_event  3,  5, OLIVINE_LIGHTHOUSE_4F, 2
+	warp_event  9,  7, OLIVINE_LIGHTHOUSE_4F, 3
+	warp_event 16,  7, OLIVINE_LIGHTHOUSE_4F, 9
+	warp_event 17,  7, OLIVINE_LIGHTHOUSE_4F, 10
+	warp_event 16,  5, OLIVINE_LIGHTHOUSE_6F, 2
+	warp_event 17,  5, OLIVINE_LIGHTHOUSE_6F, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
-	bg_event 3, 13, BGEVENT_ITEM, OlivineLighthouse5FHiddenHyperPotion
+	db 1 ; bg events
+	bg_event  3, 13, BGEVENT_ITEM, OlivineLighthouse5FHiddenHyperPotion
 
-.ObjectEvents:
-	db 5
-	object_event 8, 11, SPRITE_SAILOR, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorErnest, -1
-	object_event 8, 3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerBirdKeeperDenis, -1
-	object_event 15, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FRareCandy, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
-	object_event 6, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FSuperRepel, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
-	object_event 2, 13, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FTMSwagger, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER
+	db 5 ; object events
+	object_event  8, 11, SPRITE_SAILOR, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorErnest, -1
+	object_event  8,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerBirdKeeperDenis, -1
+	object_event 15, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FRareCandy, EVENT_OLIVINE_LIGHTHOUSE_5F_RARE_CANDY
+	object_event  6, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FSuperRepel, EVENT_OLIVINE_LIGHTHOUSE_5F_SUPER_REPEL
+	object_event  2, 13, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse5FTMSwagger, EVENT_OLIVINE_LIGHTHOUSE_5F_TM_SWAGGER

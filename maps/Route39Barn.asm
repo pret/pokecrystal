@@ -1,14 +1,12 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE39BARN_TWIN1
 	const ROUTE39BARN_TWIN2
 	const ROUTE39BARN_MOOMOO
 
 Route39Barn_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TwinScript_0x9cc76:
 	faceplayer
@@ -18,14 +16,14 @@ TwinScript_0x9cc76:
 	writetext Text_MoomooIsSick
 	waitbutton
 	closetext
-	spriteface ROUTE39BARN_TWIN1, RIGHT
+	turnobject ROUTE39BARN_TWIN1, RIGHT
 	end
 
 .FeedingMooMoo:
 	writetext Text_WereFeedingMoomoo
 	waitbutton
 	closetext
-	spriteface ROUTE39BARN_TWIN1, RIGHT
+	turnobject ROUTE39BARN_TWIN1, RIGHT
 	end
 
 TwinScript_0x9cc90:
@@ -36,14 +34,14 @@ TwinScript_0x9cc90:
 	writetext Text_MoomooIsSick
 	waitbutton
 	closetext
-	spriteface ROUTE39BARN_TWIN2, LEFT
+	turnobject ROUTE39BARN_TWIN2, LEFT
 	end
 
 .FeedingMooMoo:
 	writetext Text_WereFeedingMoomoo
 	waitbutton
 	closetext
-	spriteface ROUTE39BARN_TWIN2, LEFT
+	turnobject ROUTE39BARN_TWIN2, LEFT
 	end
 
 MooMoo:
@@ -52,7 +50,7 @@ MooMoo:
 	iftrue .HappyCow
 	writetext Text_WeakMoo
 	writebyte MILTANK
-	special Special_PlaySlowCry
+	special PlaySlowCry
 	buttonsound
 	writetext Text_ItsCryIsWeak
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
@@ -72,9 +70,9 @@ MooMoo:
 	copybytetovar wMooMooBerries
 	addvar 1
 	copyvartobyte wMooMooBerries
-	if_equal 3, .ThreeBerries
-	if_equal 5, .FiveBerries
-	if_equal 7, .SevenBerries
+	ifequal 3, .ThreeBerries
+	ifequal 5, .FiveBerries
+	ifequal 7, .SevenBerries
 	writetext Text_GaveBerry
 	waitbutton
 	closetext
@@ -189,22 +187,17 @@ Text_RefusedToGiveBerry:
 	done
 
 Route39Barn_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 3, 7, 1, ROUTE_39
-	warp_def 4, 7, 1, ROUTE_39
+	db 2 ; warp events
+	warp_event  3,  7, ROUTE_39, 1
+	warp_event  4,  7, ROUTE_39, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
-	object_event 2, 3, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TwinScript_0x9cc76, -1
-	object_event 4, 3, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TwinScript_0x9cc90, -1
-	object_event 3, 3, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MooMoo, -1
+	db 3 ; object events
+	object_event  2,  3, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TwinScript_0x9cc76, -1
+	object_event  4,  3, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TwinScript_0x9cc90, -1
+	object_event  3,  3, SPRITE_TAUROS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MooMoo, -1

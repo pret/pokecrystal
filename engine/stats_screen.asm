@@ -1,8 +1,8 @@
-const_value set 1
+	const_def 1
 	const PINK_PAGE  ; 1
 	const GREEN_PAGE ; 2
 	const BLUE_PAGE  ; 3
-NUM_STAT_PAGES EQU const_value +- 1
+NUM_STAT_PAGES EQU const_value + -1
 
 BattleStatsScreenInit: ; 4dc7b (13:5c7b)
 	ld a, [wLinkMode]

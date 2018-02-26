@@ -26,17 +26,17 @@ OpenSRAMBank4: ; 89160
 
 Function89168: ; 89168 (22:5168)
 	ld hl, wGameTimerPause
-	set 7, [hl]
+	set GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ret
 
 Function8916e: ; 8916e (22:516e)
 	ld hl, wGameTimerPause
-	res 7, [hl]
+	res GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ret
 
 Function89174: ; 89174 (22:5174)
 	ld hl, wGameTimerPause
-	bit 7, [hl]
+	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ret
 
 Function8917a: ; 8917a (22:517a)
@@ -238,8 +238,8 @@ Function8925e: ; 8925e
 Function89261: ; 89261
 	push af
 	push bc
-	ld hl, MenuDataHeader_0x892a3
-	call CopyMenuDataHeader
+	ld hl, MenuHeader_0x892a3
+	call CopyMenuHeader
 	pop bc
 	ld hl, wMenuBorderTopCoord
 	ld a, c
@@ -276,14 +276,14 @@ Function89261: ; 89261
 	ret
 ; 892a3
 
-MenuDataHeader_0x892a3: ; 0x892a3
+MenuHeader_0x892a3: ; 0x892a3
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 5, 15, 9
-	dw MenuData2_0x892ab
+	dw MenuData_0x892ab
 	db 1 ; default option
 ; 0x892ab
 
-MenuData2_0x892ab: ; 0x892ab
+MenuData_0x892ab: ; 0x892ab
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "はい@"
@@ -619,7 +619,7 @@ Function89481: ; 89481
 Function89492: ; 89492 (22:5492)
 	ld d, 0
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	ret z
 	inc d
 	ret
@@ -1269,7 +1269,7 @@ Function897d5: ; 897d5
 Function89807: ; 89807 (22:5807)
 	ld hl, MobileAdapterGFX + $20 tiles
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .asm_89814
 	ld hl, MobileAdapterGFX + $43 tiles
 .asm_89814
@@ -2203,7 +2203,7 @@ Function89d0d: ; 89d0d (22:5d0d)
 
 Function89d5e: ; 89d5e (22:5d5e)
 	push af
-	call CopyMenuDataHeader
+	call CopyMenuHeader
 	pop af
 	ld [wMenuCursorBuffer], a
 	call Mobile22_SetBGMapMode0
@@ -2786,8 +2786,8 @@ UnknownText_0x8a111: ; 0x8a111
 Function8a116: ; 8a116 (22:6116)
 	ld a, $1
 	ld [wd030], a
-	ld hl, MenuDataHeader_0x8a176
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x8a176
+	call LoadMenuHeader
 .asm_8a121
 	call Mobile22_SetBGMapMode0
 	call Function8a17b
@@ -2830,7 +2830,7 @@ Function8a116: ; 8a116 (22:6116)
 	ret
 ; 8a176 (22:6176)
 
-MenuDataHeader_0x8a176: ; 0x8a176
+MenuHeader_0x8a176: ; 0x8a176
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
 ; 8a17b
@@ -2840,7 +2840,7 @@ Function8a17b: ; 8a17b (22:617b)
 	ld b, $5
 	ld c, $4
 	call Function89b3b
-	ld hl, MenuDataHeader_0x8a19a
+	ld hl, MenuHeader_0x8a19a
 	ld a, [wd030]
 	call Function89d5e
 	ld hl, Function8a1b0
@@ -2852,14 +2852,14 @@ Function8a17b: ; 8a17b (22:617b)
 	ret
 ; 8a19a (22:619a)
 
-MenuDataHeader_0x8a19a: ; 0x8a19a
+MenuHeader_0x8a19a: ; 0x8a19a
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
-	dw MenuData2_0x8a1a2
+	dw MenuData_0x8a1a2
 	db 1 ; default option
 ; 0x8a1a2
 
-MenuData2_0x8a1a2: ; 0x8a1a2
+MenuData_0x8a1a2: ; 0x8a1a2
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "ひらく@"
@@ -2935,7 +2935,7 @@ UnknownText_0x8a23c: ; 0x8a23c
 ; 0x8a241
 
 Function8a241: ; 8a241 (22:6241)
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call Function891fe
 	call Function8a262
 	jr nc, .asm_8a254
@@ -2978,8 +2978,8 @@ Function8a262: ; 8a262 (22:6262)
 	ret
 
 Function8a2aa: ; 8a2aa (22:62aa)
-	ld hl, MenuDataHeader_0x8a2ef
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x8a2ef
+	call LoadMenuHeader
 	ld hl, UnknownText_0x8a2f4
 	call PrintText
 	ld a, $1
@@ -3011,7 +3011,7 @@ Function8a2aa: ; 8a2aa (22:62aa)
 	ret
 ; 8a2ef (22:62ef)
 
-MenuDataHeader_0x8a2ef: ; 0x8a2ef
+MenuHeader_0x8a2ef: ; 0x8a2ef
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 ; 8a2f4
@@ -3131,16 +3131,16 @@ Function8a3b2: ; 8a3b2 (22:63b2)
 	ld b, $6
 	ld c, $9
 	call Function89b3b
-	ld hl, MenuDataHeader_0x8a435
+	ld hl, MenuHeader_0x8a435
 	jr .asm_8a3db
 .asm_8a3ce
 	decoord 0, 2
 	ld b, $8
 	ld c, $9
 	call Function89b3b
-	ld hl, MenuDataHeader_0x8a40f
+	ld hl, MenuHeader_0x8a40f
 .asm_8a3db
-	call CopyMenuDataHeader
+	call CopyMenuHeader
 	ret
 
 Function8a3df: ; 8a3df (22:63df)
@@ -3172,14 +3172,14 @@ Function8a400: ; 8a400 (22:6400)
 Unknown_8a408: db 1, 2, -1
 Unknown_8a40b: db 1, 2, 3, -1
 
-MenuDataHeader_0x8a40f: ; 0x8a40f
+MenuHeader_0x8a40f: ; 0x8a40f
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 10, TEXTBOX_Y - 1
-	dw MenuData2_0x8a417
+	dw MenuData_0x8a417
 	db 1 ; default option
 ; 0x8a417
 
-MenuData2_0x8a417: ; 0x8a417
+MenuData_0x8a417: ; 0x8a417
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
 	db "めいしりスト@"
@@ -3188,14 +3188,14 @@ MenuData2_0x8a417: ; 0x8a417
 	db "やめる@"
 ; 0x8a435
 
-MenuDataHeader_0x8a435: ; 0x8a435
+MenuHeader_0x8a435: ; 0x8a435
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 10, 9
-	dw MenuData2_0x8a43d
+	dw MenuData_0x8a43d
 	db 1 ; default option
 ; 0x8a43d
 
-MenuData2_0x8a43d: ; 0x8a43d
+MenuData_0x8a43d: ; 0x8a43d
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "めいしりスト@"
@@ -3462,7 +3462,7 @@ Palette_8a624: ; 8a624
 ; 8a62c
 
 Function8a62c: ; 8a62c (22:662c)
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call Function891fe
 	xor a
 	call Function8b94a
@@ -3884,15 +3884,15 @@ Function8a930: ; 8a930 (22:6930)
 	ret
 
 Function8a999: ; 8a999 (22:6999)
-	ld hl, MenuDataHeader_0x8a9c9
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_0x8a9c9
+	call LoadMenuHeader
 	ld c, $1
 .asm_8a9a1
 	call Function8a9ce
 	jr c, .asm_8a9bb
 	push bc
 	push de
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	pop de
 	dec e
 	ld a, e
@@ -3913,7 +3913,7 @@ Jumptable_8a9c5: ; 8a9c5 (22:69c5)
 	dw Function8ab3b
 ; 8a9c9 (22:69c9)
 
-MenuDataHeader_0x8a9c9: ; 0x8a9c9
+MenuHeader_0x8a9c9: ; 0x8a9c9
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 4, 18, TEXTBOX_Y - 1
 ; 8a9ce
@@ -3926,7 +3926,7 @@ Function8a9ce: ; 8a9ce (22:69ce)
 	call Function89b3b
 	pop bc
 	ld a, c
-	ld hl, MenuDataHeader_0x8a9f2
+	ld hl, MenuHeader_0x8a9f2
 	call Function89d5e
 	ld hl, Function8aa09
 	call Function89d85
@@ -3942,14 +3942,14 @@ Function8a9ce: ; 8a9ce (22:69ce)
 	ret
 ; 8a9f2 (22:69f2)
 
-MenuDataHeader_0x8a9f2: ; 0x8a9f2
+MenuHeader_0x8a9f2: ; 0x8a9f2
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 4, 18, TEXTBOX_Y - 1
-	dw MenuData2_0x8a9fa
+	dw MenuData_0x8a9fa
 	db 1 ; default option
 ; 0x8a9fa
 
-MenuData2_0x8a9fa: ; 0x8a9fa
+MenuData_0x8a9fa: ; 0x8a9fa
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "へんしゅう@"
@@ -4148,7 +4148,7 @@ Function8ab3b: ; 8ab3b (22:6b3b)
 
 Function8ab93: ; 8ab93 (22:6b93)
 	call ClearBGPalettes
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall Function105688
 	call ClearSprites
 	call Function891fe

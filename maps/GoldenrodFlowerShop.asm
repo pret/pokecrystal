@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const GOLDENRODFLOWERSHOP_TEACHER
 	const GOLDENRODFLOWERSHOP_FLORIA
 
 GoldenrodFlowerShop_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 FlowerShopTeacherScript:
 	checkevent EVENT_FOUGHT_SUDOWOODO
@@ -32,7 +30,7 @@ FlowerShopTeacherScript:
 	end
 
 .Lalala:
-	spriteface GOLDENRODFLOWERSHOP_TEACHER, LEFT
+	turnobject GOLDENRODFLOWERSHOP_TEACHER, LEFT
 	opentext
 	writetext UnknownText_0x5552e
 	waitbutton
@@ -160,21 +158,16 @@ UnknownText_0x55604:
 	done
 
 GoldenrodFlowerShop_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 6, GOLDENROD_CITY
-	warp_def 3, 7, 6, GOLDENROD_CITY
+	db 2 ; warp events
+	warp_event  2,  7, GOLDENROD_CITY, 6
+	warp_event  3,  7, GOLDENROD_CITY, 6
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 2
-	object_event 2, 4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FlowerShopTeacherScript, -1
-	object_event 5, 6, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FlowerShopFloriaScript, EVENT_FLORIA_AT_FLOWER_SHOP
+	db 2 ; object events
+	object_event  2,  4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FlowerShopTeacherScript, -1
+	object_event  5,  6, SPRITE_LASS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FlowerShopFloriaScript, EVENT_FLORIA_AT_FLOWER_SHOP

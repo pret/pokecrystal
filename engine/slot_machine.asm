@@ -267,7 +267,7 @@ Unreferenced_Function9282c: ; 9282c
 	ld a, [hl]
 	xor %00100000
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH +- 1
+rept SPRITEOAMSTRUCT_LENGTH + -1
 	inc hl
 endr
 	dec c
@@ -1809,8 +1809,8 @@ Slots_AskBet: ; 9307c (24:707c)
 .loop
 	ld hl, .Text_BetHowManyCoins
 	call PrintText
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	call CloseWindow
 	ret c
@@ -1867,14 +1867,14 @@ Slots_AskBet: ; 9307c (24:707c)
 	db "@"
 ; 0x930d6
 
-.MenuDataHeader: ; 0x930d6
+.MenuHeader: ; 0x930d6
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 0x930de
 
-.MenuData2: ; 0x930de
+.MenuData: ; 0x930de
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db " 3@"

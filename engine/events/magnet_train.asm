@@ -1,4 +1,4 @@
-Special_MagnetTrain: ; 8cc04
+MagnetTrain: ; 8cc04
 	ld a, [wScriptVar]
 	and a
 	jr nz, .ToGoldenrod
@@ -327,7 +327,7 @@ MagnetTrain_Jumptable: ; 8cdf7
 	ld a, BANK(wPlayerGender)
 	ld [rSVBK], a
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_MAGNET_TRAIN_BLUE
 

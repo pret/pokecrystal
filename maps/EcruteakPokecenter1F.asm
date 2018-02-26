@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ECRUTEAKPOKECENTER1F_NURSE
 	const ECRUTEAKPOKECENTER1F_POKEFAN_M
 	const ECRUTEAKPOKECENTER1F_COOLTRAINER_F
@@ -6,13 +6,11 @@ const_value set 2
 	const ECRUTEAKPOKECENTER1F_BILL
 
 EcruteakPokecenter1F_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .MeetBill
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .MeetBill ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .MeetBill:
 	priorityjump .BillActivatesTimeCapsule
@@ -28,15 +26,15 @@ EcruteakPokecenter1F_MapScripts:
 	waitsfx
 	applymovement ECRUTEAKPOKECENTER1F_BILL, EcruteakPokecenter1FBillMovement1
 	applymovement PLAYER, EcruteakPokecenter1FPlayerMovement1
-	spriteface ECRUTEAKPOKECENTER1F_NURSE, UP
+	turnobject ECRUTEAKPOKECENTER1F_NURSE, UP
 	pause 10
-	spriteface ECRUTEAKPOKECENTER1F_NURSE, DOWN
+	turnobject ECRUTEAKPOKECENTER1F_NURSE, DOWN
 	pause 30
-	spriteface ECRUTEAKPOKECENTER1F_NURSE, UP
+	turnobject ECRUTEAKPOKECENTER1F_NURSE, UP
 	pause 10
-	spriteface ECRUTEAKPOKECENTER1F_NURSE, DOWN
+	turnobject ECRUTEAKPOKECENTER1F_NURSE, DOWN
 	pause 20
-	spriteface ECRUTEAKPOKECENTER1F_BILL, DOWN
+	turnobject ECRUTEAKPOKECENTER1F_BILL, DOWN
 	pause 10
 	opentext
 	writetext EcruteakPokecenter1F_BillText1
@@ -47,13 +45,13 @@ EcruteakPokecenter1F_MapScripts:
 	writetext EcruteakPokecenter1F_BillText2
 	waitbutton
 	closetext
-	spriteface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	applymovement ECRUTEAKPOKECENTER1F_BILL, EcruteakPokecenter1FBillMovement2
 	playsound SFX_EXIT_BUILDING
 	disappear ECRUTEAKPOKECENTER1F_BILL
 	clearevent EVENT_MET_BILL
 	setflag ENGINE_TIME_CAPSULE
-	setscene 1
+	setscene SCENE_FINISHED
 	waitsfx
 	end
 
@@ -61,7 +59,7 @@ EcruteakPokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
 EcruteakPokecenter1FPokefanMScript:
-	special Special_Mobile_DummyReturnFalse
+	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	jumptextfaceplayer EcruteakPokecenter1FPokefanMText
 
@@ -207,25 +205,20 @@ EcruteakPokecenter1FGymGuyText:
 	done
 
 EcruteakPokecenter1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 3, 7, 6, ECRUTEAK_CITY
-	warp_def 4, 7, 6, ECRUTEAK_CITY
-	warp_def 0, 7, 1, POKECENTER_2F
+	db 3 ; warp events
+	warp_event  3,  7, ECRUTEAK_CITY, 6
+	warp_event  4,  7, ECRUTEAK_CITY, 6
+	warp_event  0,  7, POKECENTER_2F, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 5
-	object_event 3, 1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FNurseScript, -1
-	object_event 7, 6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FPokefanMScript, -1
-	object_event 1, 4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FCooltrainerFScript, -1
-	object_event 7, 1, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FGymGuyScript, -1
-	object_event 0, 7, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL
+	db 5 ; object events
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FNurseScript, -1
+	object_event  7,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FPokefanMScript, -1
+	object_event  1,  4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FCooltrainerFScript, -1
+	object_event  7,  1, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FGymGuyScript, -1
+	object_event  0,  7, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL

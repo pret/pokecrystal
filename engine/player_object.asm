@@ -25,25 +25,25 @@ SpawnPlayer: ; 8029
 	call CopyPlayerObjectTemplate
 	ld b, $0
 	call PlayerSpawn_ConvertCoords
-	ld a, $0
+	ld a, PLAYER_OBJECT
 	call GetMapObject
 	ld hl, MAPOBJECT_COLOR
 	add hl, bc
 	ln e, PAL_NPC_RED, OBJECTTYPE_SCRIPT
 	ld a, [wPlayerSpriteSetupFlags]
-	bit 2, a
+	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .ok
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .ok
 	ln e, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT
 
 .ok
 	ld [hl], e
-	ld a, $0
+	ld a, PLAYER_OBJECT
 	ld [hMapObjectIndexBuffer], a
 	ld bc, wMapObjects
-	ld a, $0
+	ld a, PLAYER_OBJECT
 	ld [hObjectStructIndexBuffer], a
 	ld de, wObjectStructs
 	call CopyMapObjectToObjectStruct
@@ -577,7 +577,7 @@ TrainerWalkToPlayer: ; 831e
 	call ComputePathToWalkToPlayer
 	ret
 
-Special_SurfStartStep: ; 8379
+SurfStartStep: ; 8379
 	call InitMovementBuffer
 	call .GetMovementData
 	call AppendToMovementBuffer

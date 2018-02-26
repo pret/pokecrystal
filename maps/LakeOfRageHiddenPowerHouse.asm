@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const LAKEOFRAGEHIDDENPOWERHOUSE_FISHER
 
 LakeOfRageHiddenPowerHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 HiddenPowerGuy:
 	faceplayer
@@ -68,22 +66,17 @@ HiddenPowerGuyText3:
 	done
 
 LakeOfRageHiddenPowerHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 1, LAKE_OF_RAGE
-	warp_def 3, 7, 1, LAKE_OF_RAGE
+	db 2 ; warp events
+	warp_event  2,  7, LAKE_OF_RAGE, 1
+	warp_event  3,  7, LAKE_OF_RAGE, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 0, 1, BGEVENT_READ, HiddenPowerHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, HiddenPowerHouseBookshelf
+	db 2 ; bg events
+	bg_event  0,  1, BGEVENT_READ, HiddenPowerHouseBookshelf
+	bg_event  1,  1, BGEVENT_READ, HiddenPowerHouseBookshelf
 
-.ObjectEvents:
-	db 1
-	object_event 2, 3, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, HiddenPowerGuy, -1
+	db 1 ; object events
+	object_event  2,  3, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, HiddenPowerGuy, -1

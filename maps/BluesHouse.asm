@@ -1,46 +1,44 @@
-const_value set 2
+	const_def 2 ; object constants
 	const BLUESHOUSE_DAISY
 
 BluesHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 DaisyScript:
 	faceplayer
 	opentext
 	checkcode VAR_HOUR
-	if_equal 15, .ThreePM
+	ifequal 15, .ThreePM
 	writetext DaisyHelloText
 	waitbutton
 	closetext
 	end
 
 .ThreePM:
-	checkflag ENGINE_TEA_IN_BLUES_HOUSE
+	checkflag ENGINE_DAISYS_GROOMING
 	iftrue .AlreadyGroomedMon
 	writetext DaisyOfferGroomingText
 	yesorno
 	iffalse .Refused
 	writetext DaisyWhichMonText
 	waitbutton
-	special Special_DaisyMassage
-	if_equal $0, .Refused
-	if_equal $1, .CantGroomEgg
-	setflag ENGINE_TEA_IN_BLUES_HOUSE
+	special DaisysGrooming
+	ifequal $0, .Refused
+	ifequal $1, .CantGroomEgg
+	setflag ENGINE_DAISYS_GROOMING
 	writetext DaisyAlrightText
 	waitbutton
 	closetext
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	playmusic MUSIC_HEAL
 	pause 60
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	special RestartMapMusic
 	opentext
 	writetext GroomedMonLooksContentText
-	special Special_PlayCurMonCry
+	special PlayCurMonCry
 	buttonsound
 	writetext DaisyAllDoneText
 	waitbutton
@@ -145,20 +143,15 @@ DaisyCantGroomEggText:
 	done
 
 BluesHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 2, PALLET_TOWN
-	warp_def 3, 7, 2, PALLET_TOWN
+	db 2 ; warp events
+	warp_event  2,  7, PALLET_TOWN, 2
+	warp_event  3,  7, PALLET_TOWN, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 2, 3, SPRITE_DAISY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DaisyScript, -1
+	db 1 ; object events
+	object_event  2,  3, SPRITE_DAISY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DaisyScript, -1

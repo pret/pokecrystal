@@ -1,4 +1,4 @@
-Special_CheckForLuckyNumberWinners: ; 4d87a
+CheckForLuckyNumberWinners: ; 4d87a
 	xor a
 	ld [wScriptVar], a
 	ld [wFoundMatchingIDInParty], a
@@ -216,7 +216,7 @@ Special_CheckForLuckyNumberWinners: ; 4d87a
 	text_jump UnknownText_0x1c12ae
 	db "@"
 
-Special_PrintTodaysLuckyNumber: ; 4d9d3
+PrintTodaysLuckyNumber: ; 4d9d3
 	ld hl, wStringBuffer3
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5

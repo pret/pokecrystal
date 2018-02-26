@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE19FUCHSIAGATE_OFFICER
 
 Route19FuchsiaGate_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 OfficerScript_0x1ab3f6:
 	faceplayer
@@ -46,22 +44,17 @@ UnknownText_0x1ab48a:
 	done
 
 Route19FuchsiaGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 4, 0, 10, FUCHSIA_CITY
-	warp_def 5, 0, 11, FUCHSIA_CITY
-	warp_def 4, 7, 1, ROUTE_19
-	warp_def 5, 7, 1, ROUTE_19
+	db 4 ; warp events
+	warp_event  4,  0, FUCHSIA_CITY, 10
+	warp_event  5,  0, FUCHSIA_CITY, 11
+	warp_event  4,  7, ROUTE_19, 1
+	warp_event  5,  7, ROUTE_19, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x1ab3f6, -1
+	db 1 ; object events
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x1ab3f6, -1

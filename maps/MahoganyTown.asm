@@ -1,17 +1,15 @@
-const_value set 2
+	const_def 2 ; object constants
 	const MAHOGANYTOWN_POKEFAN_M
 	const MAHOGANYTOWN_GRAMPS
 	const MAHOGANYTOWN_FISHER
 	const MAHOGANYTOWN_LASS
 
 MahoganyTown_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	db 2 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
@@ -30,7 +28,7 @@ UnknownScript_0x190013:
 	follow PLAYER, MAHOGANYTOWN_POKEFAN_M
 	applymovement PLAYER, MovementData_0x1900a7
 	stopfollow
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	scall UnknownScript_0x19002f
 	applymovement MAHOGANYTOWN_POKEFAN_M, MovementData_0x1900ad
 	end
@@ -53,17 +51,17 @@ UnknownScript_0x190039:
 UnknownScript_0x190040:
 	opentext
 	writetext UnknownText_0x1900b0
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	yesorno
 	iffalse UnknownScript_0x190072
 	checkmoney YOUR_MONEY, 300
-	if_equal HAVE_LESS, UnknownScript_0x19006c
+	ifequal HAVE_LESS, UnknownScript_0x19006c
 	giveitem RAGECANDYBAR
 	iffalse UnknownScript_0x190078
 	waitsfx
 	playsound SFX_TRANSACTION
 	takemoney YOUR_MONEY, 300
-	special Special_PlaceMoneyTopRight
+	special PlaceMoneyTopRight
 	writetext UnknownText_0x19014a
 	waitbutton
 	closetext
@@ -245,32 +243,27 @@ MahoganyGymSignText:
 	done
 
 MahoganyTown_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
-	warp_def 11, 7, 1, MAHOGANY_MART_1F
-	warp_def 17, 7, 1, MAHOGANY_RED_GYARADOS_SPEECH_HOUSE
-	warp_def 6, 13, 1, MAHOGANY_GYM
-	warp_def 15, 13, 1, MAHOGANY_POKECENTER_1F
-	warp_def 9, 1, 3, ROUTE_43_MAHOGANY_GATE
+	db 5 ; warp events
+	warp_event 11,  7, MAHOGANY_MART_1F, 1
+	warp_event 17,  7, MAHOGANY_RED_GYARADOS_SPEECH_HOUSE, 1
+	warp_event  6, 13, MAHOGANY_GYM, 1
+	warp_event 15, 13, MAHOGANY_POKECENTER_1F, 1
+	warp_event  9,  1, ROUTE_43_MAHOGANY_GATE, 3
 
-.CoordEvents:
-	db 2
-	coord_event 19, 8, 0, UnknownScript_0x190013
-	coord_event 19, 9, 0, UnknownScript_0x190013
+	db 2 ; coord events
+	coord_event 19,  8, SCENE_DEFAULT, UnknownScript_0x190013
+	coord_event 19,  9, SCENE_DEFAULT, UnknownScript_0x190013
 
-.BGEvents:
-	db 4
-	bg_event 1, 5, BGEVENT_READ, MahoganyTownSign
-	bg_event 9, 7, BGEVENT_READ, MahoganyTownRagecandybarSign
-	bg_event 3, 13, BGEVENT_READ, MahoganyGymSign
+	db 4 ; bg events
+	bg_event  1,  5, BGEVENT_READ, MahoganyTownSign
+	bg_event  9,  7, BGEVENT_READ, MahoganyTownRagecandybarSign
+	bg_event  3, 13, BGEVENT_READ, MahoganyGymSign
 	bg_event 16, 13, BGEVENT_READ, MahoganyTownPokecenterSign
 
-.ObjectEvents:
-	db 4
-	object_event 19, 8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
-	object_event 6, 9, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x19007e, -1
-	object_event 6, 14, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MahoganyTownFisherScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
-	object_event 12, 8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownLassScript, EVENT_MAHOGANY_MART_OWNERS
+	db 4 ; object events
+	object_event 19,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x19002e, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
+	object_event  6,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x19007e, -1
+	object_event  6, 14, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MahoganyTownFisherScript, EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_GYM
+	object_event 12,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyTownLassScript, EVENT_MAHOGANY_MART_OWNERS

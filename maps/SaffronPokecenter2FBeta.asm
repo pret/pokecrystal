@@ -1,23 +1,16 @@
 SaffronPokecenter2FBeta_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 SaffronPokecenter2FBeta_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
-	warp_def 0, 7, 3, SAFFRON_POKECENTER_1F
+	db 1 ; warp events
+	warp_event  0,  7, SAFFRON_POKECENTER_1F, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

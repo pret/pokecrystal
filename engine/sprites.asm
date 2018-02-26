@@ -559,16 +559,18 @@ INCLUDE "data/sprite_anims/framesets.asm"
 INCLUDE "data/sprite_anims/oam.asm"
 
 
-BrokenStdGFXPointers: ; Broken 2bpp pointers
-	dbbw $80, $01, .deleted ; 128-tile 2bpp at 1:672a (inside Multiply)
-	dbbw $80, $01, .deleted
-	dbbw $80, $01, .deleted
-	dbbw $80, $01, .deleted
-	dbbw $10, $37, .deleted ; 16-tile 2bpp at 37:672a (within TilesetTrainStationGFX)
-	dbbw $10, $11, .deleted ; 16-tile 2bpp at 11:672a (empty data)
-	dbbw $10, $39, .deleted ; 16-tile 2bpp at 39:672a (empty data)
-	dbbw $10, $24, .deleted ; 16-tile 2bpp at 24:672a (inside Function926f7)
-	dbbw $10, $21, .deleted ; 16-tile 2bpp at 21:672a (inside Function8671c)
+BrokenStdGFXPointers:
+	; tile count, bank, pointer
+	; (all pointers were dummied out to .deleted)
+	dbbw 128, $01, .deleted
+	dbbw 128, $01, .deleted
+	dbbw 128, $01, .deleted
+	dbbw 128, $01, .deleted
+	dbbw 16, $37, .deleted
+	dbbw 16, $11, .deleted
+	dbbw 16, $39, .deleted
+	dbbw 16, $24, .deleted
+	dbbw 16, $21, .deleted
 
 .deleted
 ; 8e72a (23:672a)
@@ -576,50 +578,11 @@ BrokenStdGFXPointers: ; Broken 2bpp pointers
 
 Sprites_Cosine: ; 8e72a
 ; a = d * cos(a * pi/32)
-	add %010000
+	add %010000 ; cos(x) = sin(x + pi/2)
+	; fallthrough
 Sprites_Sine: ; 8e72c
 ; a = d * sin(a * pi/32)
-	and %111111
-	cp %100000
-	jr nc, .negative
-	call .ApplySineWave
-	ld a, h
-	ret
-
-.negative
-	and %011111
-	call .ApplySineWave
-	ld a, h
-	xor $ff
-	inc a
-	ret
-; 8e741
-
-.ApplySineWave: ; 8e741
-	ld e, a
-	ld a, d
-	ld d, 0
-	ld hl, .sinewave
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, 0
-.multiply
-	srl a
-	jr nc, .even
-	add hl, de
-.even
-	sla e
-	rl d
-	and a
-	jr nz, .multiply
-	ret
-; 8e75d
-
-.sinewave ; 8e75d
-	sine_wave $100
+	calc_sine_wave
 
 
 AnimateEndOfExpBar: ; 8e79d

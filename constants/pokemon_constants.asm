@@ -12,13 +12,13 @@
 ; - AlphabeticalPokedexOrder (see data/pokemon/dex_order_alpha.asm)
 ; - EZChat_SortedPokemon (see data/pokemon/ezchat_order.asm)
 ; - NewPokedexOrder (see data/pokemon/dex_order_new.asm)
-; - Pokered_MonIndices (see data/pokemon/rby_order.asm)
+; - Pokered_MonIndices (see data/pokemon/gen1_order.asm)
 ; - AnimationPointers (see gfx/pokemon/anim_pointers.asm)
 ; - AnimationIdlePointers (see gfx/pokemon/idle_pointers.asm)
 ; - BitmasksPointers (see gfx/pokemon/bitmask_pointers.asm)
 ; - FramesPointers (see gfx/pokemon/frame_pointers.asm)
 ; - Footprints (see gfx/footprints.asm)
-const_value set 1
+	const_def 1
 	const BULBASAUR  ; 01
 	const IVYSAUR    ; 02
 	const VENUSAUR   ; 03
@@ -271,10 +271,44 @@ JOHTO_POKEMON EQU const_value
 	const LUGIA      ; f9
 	const HO_OH      ; fa
 	const CELEBI     ; fb
-NUM_POKEMON EQU const_value +- 1
+NUM_POKEMON EQU const_value + -1
 	const MON_FC     ; fc
 	const EGG        ; fd
 	const MON_FE     ; fe
 
-; number of Unown forms
-NUM_UNOWN EQU 26
+; Unown forms
+; indexes for:
+; - UnownWords (see data/pokemon/unown_words.asm)
+; - UnownPicPointers (see data/pokemon/unown_pic_pointers.asm)
+; - UnownAnimationPointers (see gfx/pokemon/unown_anim_pointers.asm)
+; - UnownAnimationIdlePointers (see gfx/pokemon/unown_idle_pointers.asm)
+; - UnownBitmasksPointers (see gfx/pokemon/unown_bitmask_pointers.asm)
+; - UnownFramesPointers (see gfx/pokemon/unown_frame_pointers.asm)
+	const_def 1
+	const UNOWN_A ;  1
+	const UNOWN_B ;  2
+	const UNOWN_C ;  3
+	const UNOWN_D ;  4
+	const UNOWN_E ;  5
+	const UNOWN_F ;  6
+	const UNOWN_G ;  7
+	const UNOWN_H ;  8
+	const UNOWN_I ;  9
+	const UNOWN_J ; 10
+	const UNOWN_K ; 11
+	const UNOWN_L ; 12
+	const UNOWN_M ; 13
+	const UNOWN_N ; 14
+	const UNOWN_O ; 15
+	const UNOWN_P ; 16
+	const UNOWN_Q ; 17
+	const UNOWN_R ; 18
+	const UNOWN_S ; 19
+	const UNOWN_T ; 20
+	const UNOWN_U ; 21
+	const UNOWN_V ; 22
+	const UNOWN_W ; 23
+	const UNOWN_X ; 24
+	const UNOWN_Y ; 25
+	const UNOWN_Z ; 26
+NUM_UNOWN EQU const_value + -1 ; 26

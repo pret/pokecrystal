@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const GOLDENRODBIKESHOP_CLERK
 
 GoldenrodBikeShop_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 UnknownScript_0x5474f:
 	end
@@ -103,29 +101,24 @@ UnknownText_0x548ed:
 	done
 
 GoldenrodBikeShop_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 2, GOLDENROD_CITY
-	warp_def 3, 7, 2, GOLDENROD_CITY
+	db 2 ; warp events
+	warp_event  2,  7, GOLDENROD_CITY, 2
+	warp_event  3,  7, GOLDENROD_CITY, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 9
-	bg_event 1, 2, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 0, 3, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 1, 3, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 0, 5, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 1, 5, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 0, 6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 1, 6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 6, 6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event 7, 6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	db 9 ; bg events
+	bg_event  1,  2, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  0,  3, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  1,  3, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  0,  5, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  1,  5, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  0,  6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  1,  6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  6,  6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  7,  6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
 
-.ObjectEvents:
-	db 1
-	object_event 7, 2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x54750, -1
+	db 1 ; object events
+	object_event  7,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x54750, -1

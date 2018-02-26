@@ -773,7 +773,7 @@ INCLUDE "home/pokedex_flags.asm"
 INCLUDE "home/names.asm"
 
 ScrollingMenu:: ; 350c
-	call CopyMenuData2
+	call CopyMenuData
 	ld a, [hROMBank]
 	push af
 

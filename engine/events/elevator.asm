@@ -119,12 +119,12 @@ Elevator_GoToFloor: ; 134c0
 ; 134dd
 
 Elevator_AskWhichFloor: ; 134dd
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, Elevator_WhichFloorText
 	call PrintText
 	call Elevator_GetCurrentFloorText
-	ld hl, Elevator_MenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, Elevator_MenuHeader
+	call CopyMenuHeader
 	call InitScrollingMenu
 	call UpdateSprites
 	xor a
@@ -187,14 +187,14 @@ Elevator_GetCurrentFloorString: ; 1353f
 	ret
 ; 13550
 
-Elevator_MenuDataHeader: ; 0x13550
+Elevator_MenuHeader: ; 0x13550
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 1, 18, 9
-	dw Elevator_MenuData2
+	dw Elevator_MenuData
 	db 1 ; default option
 ; 0x13558
 
-Elevator_MenuData2: ; 0x13558
+Elevator_MenuData: ; 0x13558
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows, columns
 	db 1 ; horizontal spacing
@@ -229,4 +229,4 @@ FloorToString: ; 13575
 	ret
 ; 13583
 
-INCLUDE "data/elevator_floors.asm"
+INCLUDE "data/events/elevator_floors.asm"

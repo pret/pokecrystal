@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const RADIOTOWER1F_RECEPTIONIST
 	const RADIOTOWER1F_LASS
 	const RADIOTOWER1F_YOUNGSTER
@@ -7,13 +7,11 @@ const_value set 2
 	const RADIOTOWER1F_COOLTRAINER_F
 
 RadioTower1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
-RadioTower1FReceptionist:
+RadioTower1FReceptionistScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
@@ -34,11 +32,11 @@ GentlemanScript_0x5cd3d:
 	opentext
 	writetext UnknownText_0x5ceba
 	buttonsound
-	special Special_CheckLuckyNumberShowFlag
+	special CheckLuckyNumberShowFlag
 	iffalse .skip
-	special Special_ResetLuckyNumberShowFlag
+	special ResetLuckyNumberShowFlag
 .skip
-	special Special_PrintTodaysLuckyNumber
+	special PrintTodaysLuckyNumber
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 	iftrue .GameOver
 	writetext UnknownText_0x5cf3a
@@ -53,13 +51,13 @@ GentlemanScript_0x5cd3d:
 	playsound SFX_DEX_FANFARE_20_49
 	waitsfx
 	buttonsound
-	special Special_CheckForLuckyNumberWinners
+	special CheckForLuckyNumberWinners
 	closetext
 	applymovement RADIOTOWER1F_GENTLEMAN, MovementData_0x5ce74
 	opentext
-	if_equal 1, .FirstPlace
-	if_equal 2, .SecondPlace
-	if_equal 3, .ThirdPlace
+	ifequal 1, .FirstPlace
+	ifequal 2, .SecondPlace
+	ifequal 3, .ThirdPlace
 	jump .NoPrize
 
 .GameOver:
@@ -113,7 +111,7 @@ GentlemanScript_0x5cd3d:
 	closetext
 	end
 
-RadioTower1FRadioCardWoman:
+RadioTower1FRadioCardWomanScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_RADIO_CARD
@@ -186,10 +184,10 @@ RadioTower1FYoungsterScript:
 	jumptextfaceplayer RadioTower1FYoungsterText
 
 TrainerGruntM3:
-	trainer EVENT_BEAT_ROCKET_GRUNTM_3, GRUNTM, GRUNTM_3, GruntM3SeenText, GruntM3BeatenText, 0, .Script
+	trainer GRUNTM, GRUNTM_3, EVENT_BEAT_ROCKET_GRUNTM_3, GruntM3SeenText, GruntM3BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext GruntM3AfterBattleText
 	waitbutton
@@ -473,28 +471,23 @@ UnknownText_0x5d631:
 	done
 
 RadioTower1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 2, 7, 11, GOLDENROD_CITY
-	warp_def 3, 7, 11, GOLDENROD_CITY
-	warp_def 15, 0, 2, RADIO_TOWER_2F
+	db 3 ; warp events
+	warp_event  2,  7, GOLDENROD_CITY, 11
+	warp_event  3,  7, GOLDENROD_CITY, 11
+	warp_event 15,  0, RADIO_TOWER_2F, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 3, 0, BGEVENT_READ, MapRadioTower1FSignpost0Script
-	bg_event 13, 0, BGEVENT_READ, MapRadioTower1FSignpost1Script
+	db 2 ; bg events
+	bg_event  3,  0, BGEVENT_READ, MapRadioTower1FSignpost0Script
+	bg_event 13,  0, BGEVENT_READ, MapRadioTower1FSignpost1Script
 
-.ObjectEvents:
-	db 6
-	object_event 5, 6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FReceptionist, -1
-	object_event 16, 4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FLassScript, EVENT_GOLDENROD_CITY_CIVILIANS
-	object_event 15, 4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower1FYoungsterScript, EVENT_GOLDENROD_CITY_CIVILIANS
-	object_event 14, 1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 8, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
-	object_event 12, 6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower1FRadioCardWoman, EVENT_GOLDENROD_CITY_CIVILIANS
+	db 6 ; object events
+	object_event  5,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FReceptionistScript, -1
+	object_event 16,  4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FLassScript, EVENT_GOLDENROD_CITY_CIVILIANS
+	object_event 15,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower1FYoungsterScript, EVENT_GOLDENROD_CITY_CIVILIANS
+	object_event 14,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  8,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
+	object_event 12,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower1FRadioCardWomanScript, EVENT_GOLDENROD_CITY_CIVILIANS

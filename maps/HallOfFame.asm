@@ -1,14 +1,12 @@
-const_value set 2
+	const_def 2 ; object constants
 	const HALLOFFAME_LANCE
 
 HallOfFame_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .EnterHallOfFame
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .EnterHallOfFame ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .EnterHallOfFame:
 	priorityjump .EnterHallOfFameScript
@@ -21,24 +19,24 @@ HallOfFame_MapScripts:
 	follow HALLOFFAME_LANCE, PLAYER
 	applymovement HALLOFFAME_LANCE, HallOfFame_WalkUpWithLance
 	stopfollow
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext HallOfFame_LanceText
 	waitbutton
 	closetext
-	spriteface HALLOFFAME_LANCE, UP
+	turnobject HALLOFFAME_LANCE, UP
 	applymovement PLAYER, HallOfFame_SlowlyApproachMachine
-	setscene 1
+	setscene SCENE_FINISHED
 	pause 15
 	writebyte HEALMACHINE_HALL_OF_FAME
-	special Special_HealMachineAnim
+	special HealMachineAnim
 	setevent EVENT_BEAT_ELITE_FOUR
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER
 	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
-	setmapscene SPROUT_TOWER_3F, 1
+	setmapscene SPROUT_TOWER_3F, SCENE_FINISHED
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue .SkipPhoneCall
@@ -111,20 +109,15 @@ HallOfFame_LanceText:
 	done
 
 HallOfFame_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 4, 13, 3, LANCES_ROOM
-	warp_def 5, 13, 4, LANCES_ROOM
+	db 2 ; warp events
+	warp_event  4, 13, LANCES_ROOM, 3
+	warp_event  5, 13, LANCES_ROOM, 4
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 4, 12, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	db 1 ; object events
+	object_event  4, 12, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

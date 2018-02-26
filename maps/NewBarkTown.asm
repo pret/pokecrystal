@@ -1,16 +1,14 @@
-const_value set 2
+	const_def 2 ; object constants
 	const NEWBARKTOWN_TEACHER
 	const NEWBARKTOWN_FISHER
 	const NEWBARKTOWN_SILVER
 
 NewBarkTown_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	db 2 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
@@ -26,12 +24,12 @@ NewBarkTown_MapScripts:
 
 NewBarkTown_TeacherStopsYouScene1:
 	playmusic MUSIC_MOM
-	spriteface NEWBARKTOWN_TEACHER, LEFT
+	turnobject NEWBARKTOWN_TEACHER, LEFT
 	opentext
 	writetext Text_WaitPlayer
 	waitbutton
 	closetext
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou1_NBT
 	opentext
 	writetext Text_WhatDoYouThinkYoureDoing
@@ -49,14 +47,14 @@ NewBarkTown_TeacherStopsYouScene1:
 
 NewBarkTown_TeacherStopsYouScene2:
 	playmusic MUSIC_MOM
-	spriteface NEWBARKTOWN_TEACHER, LEFT
+	turnobject NEWBARKTOWN_TEACHER, LEFT
 	opentext
 	writetext Text_WaitPlayer
 	waitbutton
 	closetext
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	applymovement NEWBARKTOWN_TEACHER, Movement_TeacherRunsToYou2_NBT
-	spriteface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext Text_WhatDoYouThinkYoureDoing
 	waitbutton
@@ -111,7 +109,7 @@ NewBarkTownSilverScript:
 	writetext NewBarkTownRivalText1
 	waitbutton
 	closetext
-	spriteface NEWBARKTOWN_SILVER, LEFT
+	turnobject NEWBARKTOWN_SILVER, LEFT
 	opentext
 	writetext NewBarkTownRivalText2
 	waitbutton
@@ -120,7 +118,7 @@ NewBarkTownSilverScript:
 	applymovement PLAYER, Movement_SilverPushesYouAway_NBT
 	stopfollow
 	pause 5
-	spriteface NEWBARKTOWN_SILVER, DOWN
+	turnobject NEWBARKTOWN_SILVER, DOWN
 	pause 5
 	playsound SFX_TACKLE
 	applymovement PLAYER, Movement_SilverShovesYouOut_NBT
@@ -282,30 +280,25 @@ ElmsHouseSignText:
 	done
 
 NewBarkTown_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 6, 3, 1, ELMS_LAB
-	warp_def 13, 5, 1, KRISS_HOUSE_1F
-	warp_def 3, 11, 1, KRISS_NEIGHBORS_HOUSE
-	warp_def 11, 13, 1, ELMS_HOUSE
+	db 4 ; warp events
+	warp_event  6,  3, ELMS_LAB, 1
+	warp_event 13,  5, PLAYERS_HOUSE_1F, 1
+	warp_event  3, 11, PLAYERS_NEIGHBORS_HOUSE, 1
+	warp_event 11, 13, ELMS_HOUSE, 1
 
-.CoordEvents:
-	db 2
-	coord_event 1, 8, 0, NewBarkTown_TeacherStopsYouScene1
-	coord_event 1, 9, 0, NewBarkTown_TeacherStopsYouScene2
+	db 2 ; coord events
+	coord_event  1,  8, SCENE_DEFAULT, NewBarkTown_TeacherStopsYouScene1
+	coord_event  1,  9, SCENE_DEFAULT, NewBarkTown_TeacherStopsYouScene2
 
-.BGEvents:
-	db 4
-	bg_event 8, 8, BGEVENT_READ, NewBarkTownSign
-	bg_event 11, 5, BGEVENT_READ, MapNewBarkTownSignpost1Script
-	bg_event 3, 3, BGEVENT_READ, MapNewBarkTownSignpost2Script
-	bg_event 9, 13, BGEVENT_READ, MapNewBarkTownSignpost3Script
+	db 4 ; bg events
+	bg_event  8,  8, BGEVENT_READ, NewBarkTownSign
+	bg_event 11,  5, BGEVENT_READ, MapNewBarkTownSignpost1Script
+	bg_event  3,  3, BGEVENT_READ, MapNewBarkTownSignpost2Script
+	bg_event  9, 13, BGEVENT_READ, MapNewBarkTownSignpost3Script
 
-.ObjectEvents:
-	db 3
-	object_event 6, 8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
-	object_event 12, 9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
-	object_event 3, 2, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownSilverScript, EVENT_RIVAL_NEW_BARK_TOWN
+	db 3 ; object events
+	object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
+	object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
+	object_event  3,  2, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownSilverScript, EVENT_RIVAL_NEW_BARK_TOWN

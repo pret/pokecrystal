@@ -1,5 +1,5 @@
 ; Multiplier ratios for accuracy from modifier -6 to +6
-; (for other stats, see data/battle/stat_multipliers.asm)
+; (for other stats, see data/battle/stat_multipliers.asm).
 
 AccuracyLevelMultipliers:
 	db  33, 100 ; -6 =  33%

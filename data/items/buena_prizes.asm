@@ -9,5 +9,5 @@ BuenaPrizeItems: ; 8b15e
 	db CARBOS,       5
 	db CALCIUM,      5
 	db HP_UP,        5
-BuenaPrizeItemsEnd:
+.End
 ; 8b170

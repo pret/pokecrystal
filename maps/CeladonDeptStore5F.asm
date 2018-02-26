@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const CELADONDEPTSTORE5F_CLERK1
 	const CELADONDEPTSTORE5F_CLERK2
 	const CELADONDEPTSTORE5F_GENTLEMAN
@@ -6,11 +6,9 @@ const_value set 2
 	const CELADONDEPTSTORE5F_TEACHER
 
 CeladonDeptStore5F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ClerkScript_0x71004:
 	faceplayer
@@ -72,27 +70,22 @@ CeladonDeptStore5FDirectoryText:
 	done
 
 CeladonDeptStore5F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 12, 0, 1, CELADON_DEPT_STORE_4F
-	warp_def 15, 0, 1, CELADON_DEPT_STORE_6F
-	warp_def 2, 0, 1, CELADON_DEPT_STORE_ELEVATOR
+	db 3 ; warp events
+	warp_event 12,  0, CELADON_DEPT_STORE_4F, 1
+	warp_event 15,  0, CELADON_DEPT_STORE_6F, 1
+	warp_event  2,  0, CELADON_DEPT_STORE_ELEVATOR, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 14, 0, BGEVENT_READ, CeladonDeptStore5FDirectory
-	bg_event 3, 0, BGEVENT_READ, CeladonDeptStore5FElevatorButton
+	db 2 ; bg events
+	bg_event 14,  0, BGEVENT_READ, CeladonDeptStore5FDirectory
+	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore5FElevatorButton
 
-.ObjectEvents:
-	db 5
-	object_event 7, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x71004, -1
-	object_event 8, 5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x7100c, -1
-	object_event 13, 5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FGentlemanScript, -1
-	object_event 3, 4, SPRITE_SAILOR, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FSailorScript, -1
-	object_event 1, 7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FTeacherScript, -1
+	db 5 ; object events
+	object_event  7,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x71004, -1
+	object_event  8,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x7100c, -1
+	object_event 13,  5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FGentlemanScript, -1
+	object_event  3,  4, SPRITE_SAILOR, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FSailorScript, -1
+	object_event  1,  7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore5FTeacherScript, -1

@@ -118,7 +118,7 @@ ScrollingMenuJoyAction: ; 24609
 ; 24673
 
 .select ; 24673
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 7, a
 	jp z, xor_a_dec_a
 	ld a, [wMenuCursorY]
@@ -136,7 +136,7 @@ ScrollingMenuJoyAction: ; 24609
 ; 24695
 
 .start ; 24695
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 6, a
 	jp z, xor_a_dec_a
 	ld a, START
@@ -148,7 +148,7 @@ ScrollingMenuJoyAction: ; 24609
 	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, xor_a_dec_a
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 3, a
 	jp z, xor_a_dec_a
 	ld a, D_LEFT
@@ -160,7 +160,7 @@ ScrollingMenuJoyAction: ; 24609
 	ld hl, w2DMenuFlags2
 	bit 7, [hl]
 	jp z, xor_a_dec_a
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 2, a
 	jp z, xor_a_dec_a
 	ld a, D_RIGHT
@@ -188,7 +188,7 @@ ScrollingMenuJoyAction: ; 24609
 	bit 7, [hl]
 	jp z, xor_a
 	ld hl, wMenuScrollPosition
-	ld a, [wMenuData2_ScrollingMenuHeight]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	add [hl]
 	ld b, a
 	ld a, [wScrollingMenuListSize]
@@ -215,7 +215,7 @@ ScrollingMenu_ClearLeftColumn: ; 24706 (9:4706)
 	ld de, SCREEN_WIDTH
 	add hl, de
 	ld de, 2 * SCREEN_WIDTH
-	ld a, [wMenuData2_ScrollingMenuHeight]
+	ld a, [wMenuData_ScrollingMenuHeight]
 .loop
 	ld [hl], " "
 	add hl, de
@@ -224,14 +224,14 @@ ScrollingMenu_ClearLeftColumn: ; 24706 (9:4706)
 	ret
 
 InitScrollingMenuCursor: ; 2471a
-	ld hl, wMenuData2_ItemsPointerAddr
+	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wMenuData2_ItemsPointerBank]
+	ld a, [wMenuData_ItemsPointerBank]
 	call GetFarByte
 	ld [wScrollingMenuListSize], a
-	ld a, [wMenuData2_ScrollingMenuHeight]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	ld c, a
 	ld a, [wMenuScrollPosition]
 	add c
@@ -240,7 +240,7 @@ InitScrollingMenuCursor: ; 2471a
 	inc a
 	cp c
 	jr nc, .skip
-	ld a, [wMenuData2_ScrollingMenuHeight]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	ld c, a
 	ld a, [wScrollingMenuListSize]
 	inc a
@@ -274,7 +274,7 @@ InitScrollingMenuCursor: ; 2471a
 ; 24764
 
 ScrollingMenu_InitFlags: ; 24764
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	ld c, a
 	ld a, [wScrollingMenuListSize]
 	ld b, a
@@ -284,7 +284,7 @@ ScrollingMenu_InitFlags: ; 24764
 	ld a, [wMenuBorderLeftCoord]
 	add 0
 	ld [w2DMenuCursorInitX], a
-	ld a, [wMenuData2_ScrollingMenuHeight]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	cp b
 	jr c, .no_extra_row
 	jr z, .no_extra_row
@@ -363,7 +363,7 @@ ScrollingMenu_ValidateSwitchItem: ; 247dd
 
 ScrollingMenu_UpdateDisplay: ; 247f0
 	call ClearWholeMenuBox
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 4, a ; place arrows
 	jr z, .okay
 	ld a, [wMenuScrollPosition]
@@ -380,7 +380,7 @@ ScrollingMenu_UpdateDisplay: ; 247f0
 	call MenuBoxCoord2Tile
 	ld bc, SCREEN_WIDTH + 1
 	add hl, bc
-	ld a, [wMenuData2_ScrollingMenuHeight]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	ld b, a
 	ld c, $0
 .loop
@@ -403,7 +403,7 @@ ScrollingMenu_UpdateDisplay: ; 247f0
 	ld a, c
 	cp b
 	jr nz, .loop
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 4, a ; place arrows
 	jr z, .done
 	ld a, [wMenuBorderBottomCoord]
@@ -417,7 +417,7 @@ ScrollingMenu_UpdateDisplay: ; 247f0
 	ret
 
 .cancel
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 0, a ; call function on cancel
 	jr nz, .call_function
 	ld de, .string_2485f
@@ -430,7 +430,7 @@ ScrollingMenu_UpdateDisplay: ; 247f0
 .call_function
 	ld d, h
 	ld e, l
-	ld hl, wMenuData2_ScrollingMenuFunction1
+	ld hl, wMenuData_ScrollingMenuFunction1
 	jp CallPointerAt
 ; 2486e
 
@@ -438,10 +438,10 @@ ScrollingMenu_CallFunctions1and2: ; 2486e
 	push hl
 	ld d, h
 	ld e, l
-	ld hl, wMenuData2_ScrollingMenuFunction1
+	ld hl, wMenuData_ScrollingMenuFunction1
 	call CallPointerAt
 	pop hl
-	ld a, [wMenuData2_ScrollingMenuWidth]
+	ld a, [wMenuData_ScrollingMenuWidth]
 	and a
 	jr z, .done
 	ld e, a
@@ -449,7 +449,7 @@ ScrollingMenu_CallFunctions1and2: ; 2486e
 	add hl, de
 	ld d, h
 	ld e, l
-	ld hl, wMenuData2_ScrollingMenuFunction2
+	ld hl, wMenuData_ScrollingMenuFunction2
 	call CallPointerAt
 
 .done
@@ -465,7 +465,7 @@ ScrollingMenu_PlaceCursor: ; 2488b
 	cp b
 	jr nc, .done
 	ld c, a
-	ld a, [wMenuData2_ScrollingMenuHeight]
+	ld a, [wMenuData_ScrollingMenuHeight]
 	add c
 	cp b
 	jr c, .done
@@ -489,7 +489,7 @@ ScrollingMenu_PlaceCursor: ; 2488b
 ; 248b8
 
 ScrollingMenu_CheckCallFunction3: ; 248b8
-	ld a, [wMenuData2Flags]
+	ld a, [wMenuDataFlags]
 	bit 5, a ; call function 3
 	ret z
 	bit 1, a ; call function 3 if not switching items
@@ -502,7 +502,7 @@ ScrollingMenu_CheckCallFunction3: ; 248b8
 	ld a, [wMenuCursorY]
 	dec a
 	call ScrollingMenu_GetListItemCoordAndFunctionArgs
-	ld hl, wMenuData2_ScrollingMenuFunction3
+	ld hl, wMenuData_ScrollingMenuFunction3
 	call CallPointerAt
 	ret
 ; 248d5
@@ -515,12 +515,12 @@ ScrollingMenu_GetListItemCoordAndFunctionArgs: ; 248d5
 	add e
 	ld e, a
 	ld d, $0
-	ld hl, wMenuData2_ItemsPointerAddr
+	ld hl, wMenuData_ItemsPointerAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	inc hl ; items
-	ld a, [wMenuData2_ScrollingMenuSpacing]
+	ld a, [wMenuData_ScrollingMenuSpacing]
 	cp 1
 	jr z, .got_spacing
 	cp 2
@@ -529,12 +529,12 @@ ScrollingMenu_GetListItemCoordAndFunctionArgs: ; 248d5
 	add hl, de
 .got_spacing
 	add hl, de
-	ld a, [wMenuData2_ItemsPointerBank]
+	ld a, [wMenuData_ItemsPointerBank]
 	call GetFarByte
 	ld [wMenuSelection], a
 	ld [wCurItem], a
 	inc hl
-	ld a, [wMenuData2_ItemsPointerBank]
+	ld a, [wMenuData_ItemsPointerBank]
 	call GetFarByte
 	ld [wMenuSelectionQuantity], a
 	pop hl

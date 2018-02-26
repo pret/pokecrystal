@@ -1,14 +1,12 @@
-const_value set 2
+	const_def 2 ; object constants
 	const OLIVINELIGHTHOUSE6F_JASMINE
 	const OLIVINELIGHTHOUSE6F_MONSTER
 	const OLIVINELIGHTHOUSE6F_POKE_BALL
 
 OlivineLighthouse6F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 OlivineLighthouseJasmine:
 	faceplayer
@@ -36,9 +34,9 @@ OlivineLighthouseJasmine:
 	writetext JasmineDontBeOffendedText
 	waitbutton
 	closetext
-	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	opentext
 	playmusic MUSIC_HEAL
 	writetext JasmineAmphyHowAreYouFeelingText
@@ -47,20 +45,20 @@ OlivineLighthouseJasmine:
 	closetext
 	special RestartMapMusic
 	cry AMPHAROS
-	special Special_FadeOutPalettes
+	special FadeOutPalettes
 	pause 10
-	special Special_FadeInPalettes
+	special FadeInPalettes
 	opentext
 	writetext AmphyPaluPaluluText
 	waitbutton
 	closetext
-	spriteface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
 	pause 10
-	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
-	spriteface OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, RIGHT
 	pause 10
-	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	pause 10
 	faceplayer
 	opentext
@@ -70,8 +68,8 @@ OlivineLighthouseJasmine:
 	setevent EVENT_JASMINE_RETURNED_TO_GYM
 	clearevent EVENT_OLIVINE_GYM_JASMINE
 	checkcode VAR_FACING
-	if_equal DOWN, .FacingDown
-	if_equal RIGHT, .FacingRight
+	ifequal DOWN, .FacingDown
+	ifequal RIGHT, .FacingRight
 	applymovement OLIVINELIGHTHOUSE6F_JASMINE, MovementData_0x60c68
 	disappear OLIVINELIGHTHOUSE6F_JASMINE
 	end
@@ -90,9 +88,9 @@ OlivineLighthouseJasmine:
 	writetext JasmineISeeText
 	waitbutton
 	closetext
-	spriteface OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
+	turnobject OLIVINELIGHTHOUSE6F_JASMINE, RIGHT
 	pause 15
-	spriteface OLIVINELIGHTHOUSE6F_MONSTER, LEFT
+	turnobject OLIVINELIGHTHOUSE6F_MONSTER, LEFT
 	opentext
 	writetext JasmineAmphyHangOnText
 	waitbutton
@@ -109,7 +107,7 @@ OlivineLighthouseAmphy:
 	iftrue .HealthyNow
 	writetext AmphyPalPalooText
 	writebyte AMPHAROS
-	special Special_PlaySlowCry
+	special PlaySlowCry
 	buttonsound
 	writetext AmphyBreathingLaboredText
 	waitbutton
@@ -121,10 +119,10 @@ OlivineLighthouseAmphy:
 	cry AMPHAROS
 	waitbutton
 	closetext
-	special Special_FadeOutPalettes
-	special Special_FadeInPalettes
-	special Special_FadeOutPalettes
-	special Special_FadeInPalettes
+	special FadeOutPalettes
+	special FadeInPalettes
+	special FadeOutPalettes
+	special FadeInPalettes
 	end
 
 OlivineLighthouse6FSuperPotion:
@@ -258,23 +256,18 @@ AmphyPaluPaluluText:
 	done
 
 OlivineLighthouse6F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 9, 15, 1, OLIVINE_LIGHTHOUSE_5F
-	warp_def 16, 5, 6, OLIVINE_LIGHTHOUSE_5F
-	warp_def 17, 5, 7, OLIVINE_LIGHTHOUSE_5F
+	db 3 ; warp events
+	warp_event  9, 15, OLIVINE_LIGHTHOUSE_5F, 1
+	warp_event 16,  5, OLIVINE_LIGHTHOUSE_5F, 6
+	warp_event 17,  5, OLIVINE_LIGHTHOUSE_5F, 7
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
-	object_event 8, 8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseJasmine, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
-	object_event 9, 8, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
-	object_event 3, 4, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION
+	db 3 ; object events
+	object_event  8,  8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseJasmine, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
+	object_event  9,  8, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
+	object_event  3,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

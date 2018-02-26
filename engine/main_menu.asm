@@ -10,12 +10,12 @@ MainMenu: ; 49cdc
 	call GetSGBLayout
 	call SetPalettes
 	ld hl, wGameTimerPause
-	res 0, [hl]
+	res GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
 	call MainMenu_GetWhichMenu
 	ld [wWhichIndexSet], a
 	call MainMenu_PrintCurrentTimeAndDay
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	call MainMenuJoypadLoop
 	call CloseWindow
 	jr c, .quit
@@ -29,14 +29,14 @@ MainMenu: ; 49cdc
 	ret
 ; 49d14
 
-.MenuDataHeader: ; 49d14
+.MenuHeader: ; 49d14
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 16, 7
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 49d1c
 
-.MenuData2: ; 49d1c
+.MenuData: ; 49d1c
 	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw MainMenuItems
@@ -166,8 +166,9 @@ MainMenu_GetWhichMenu: ; 49da4
 	cp -1
 	call CloseSRAM
 	jr nz, .mystery_gift
+	; This check makes no difference.
 	ld a, [wStatusFlags]
-	bit 7, a
+	bit STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F, a
 	ld a, $1 ; Continue
 	jr z, .ok
 	jr .ok
@@ -180,8 +181,9 @@ MainMenu_GetWhichMenu: ; 49da4
 	ret
 
 .mystery_gift
+	; This check makes no difference.
 	ld a, [wStatusFlags]
-	bit 7, a
+	bit STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F, a
 	jr z, .ok3
 	jr .ok3
 

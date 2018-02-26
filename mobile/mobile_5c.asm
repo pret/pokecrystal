@@ -615,8 +615,8 @@ Function171beb: ; 171beb (5c:5beb)
 	ld a, [wcd4a]
 	ld [$aa4a], a
 	call CloseSRAM
-	ld hl, MenuDataHeader_171c6b
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_171c6b
+	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
 	farcall ReloadMapPart
@@ -671,7 +671,7 @@ Function171c66: ; 171c66 (5c:5c66)
 
 ; 171c6b (5c:5c6b)
 
-MenuDataHeader_171c6b: ; 171c6b
+MenuHeader_171c6b: ; 171c6b
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL

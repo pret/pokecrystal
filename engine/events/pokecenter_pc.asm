@@ -1,4 +1,4 @@
-Special_PokemonCenterPC: ; 1559a
+PokemonCenterPC: ; 1559a
 	call PC_CheckPartyForPokemon
 	ret c
 	call PC_PlayBootSound
@@ -7,7 +7,7 @@ Special_PokemonCenterPC: ; 1559a
 	ld hl, PokecenterPCText_AccessWhosePC
 	call PC_DisplayTextWaitMenu
 	ld hl, .TopMenu
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 .loop
 	xor a
 	ld [hBGMapMode], a
@@ -29,10 +29,10 @@ Special_PokemonCenterPC: ; 1559a
 .TopMenu:
 	db MENU_BACKUP_TILES | MENU_NO_CLICK_SFX ; flags
 	menu_coords 0, 0, 15, 12
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw .WhichPC
@@ -171,7 +171,7 @@ PC_WaitPlaySFX: ; 156d0
 	ret
 ; 156d9
 
-_KrissHousePC: ; 156d9
+_PlayersHousePC: ; 156d9
 	call PC_PlayBootSound
 	ld hl, UnknownText_0x156ff
 	call PC_DisplayText
@@ -212,8 +212,8 @@ Function15715: ; 15715
 	xor a
 	ld [wPCItemsCursor], a
 	ld [wPCItemsScrollPosition], a
-	ld hl, KrissPCMenuData
-	call LoadMenuDataHeader
+	ld hl, PlayersPCMenuData
+	call LoadMenuHeader
 .asm_15722
 	call UpdateTimePals
 	call DoNthMenu
@@ -230,28 +230,28 @@ Function15715: ; 15715
 	ret
 ; 15736
 
-KrissPCMenuData: ; 0x15736
+PlayersPCMenuData: ; 0x15736
 	db MENU_BACKUP_TILES ; flags
 	db  0,  0 ; top left corner coords (y, x)
 	db 12, 15 ; bottom right corner coords (y, x)
-	dw .KrissPCMenuData2
+	dw .PlayersPCMenuData
 	db 1 ; default selected option
 
-.KrissPCMenuData2:
+.PlayersPCMenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; # items?
-	dw .KrissPCMenuList1
+	dw .PlayersPCMenuList1
 	dw PlaceNthMenuStrings
-	dw .KrissPCMenuPointers
+	dw .PlayersPCMenuPointers
 
-.KrissPCMenuPointers: ; 0x15746
-	dw KrisWithdrawItemMenu, .WithdrawItem
-	dw KrisDepositItemMenu,  .DepositItem
-	dw KrisTossItemMenu,     .TossItem
-	dw KrisMailBoxMenu,      .MailBox
-	dw KrisDecorationMenu,   .Decoration
-	dw KrisLogOffMenu,       .LogOff
-	dw KrisLogOffMenu,       .TurnOff
+.PlayersPCMenuPointers: ; 0x15746
+	dw PlayerWithdrawItemMenu, .WithdrawItem
+	dw PlayerDepositItemMenu,  .DepositItem
+	dw PlayerTossItemMenu,     .TossItem
+	dw PlayerMailBoxMenu,      .MailBox
+	dw PlayerDecorationMenu,   .Decoration
+	dw PlayerLogOffMenu,       .LogOff
+	dw PlayerLogOffMenu,       .TurnOff
 
 .WithdrawItem: db "WITHDRAW ITEM@"
 .DepositItem:  db "DEPOSIT ITEM@"
@@ -269,7 +269,7 @@ DECORATION    EQU 4
 TURN_OFF      EQU 5
 LOG_OFF       EQU 6
 
-.KrissPCMenuList1:
+.PlayersPCMenuList1:
 	db 5
 	db WITHDRAW_ITEM
 	db DEPOSIT_ITEM
@@ -278,7 +278,7 @@ LOG_OFF       EQU 6
 	db TURN_OFF
 	db -1
 
-.KrissPCMenuList2:
+.PlayersPCMenuList2:
 	db 6
 	db WITHDRAW_ITEM
 	db DEPOSIT_ITEM
@@ -305,8 +305,8 @@ UnknownText_0x157cc: ; 0x157cc
 	db "@"
 ; 0x157d1
 
-KrisWithdrawItemMenu: ; 0x157d1
-	call LoadStandardMenuDataHeader
+PlayerWithdrawItemMenu: ; 0x157d1
+	call LoadStandardMenuHeader
 	farcall ClearPCItemScreen
 .loop
 	call PCItemsJoypad
@@ -370,19 +370,19 @@ KrisWithdrawItemMenu: ; 0x157d1
 	ret
 
 .HowManyText: ; 0x15850
-	text_jump _KrissPCHowManyWithdrawText
+	text_jump _PlayersPCHowManyWithdrawText
 	db "@"
 
 .WithdrewText: ; 0x15855
-	text_jump _KrissPCWithdrewItemsText
+	text_jump _PlayersPCWithdrewItemsText
 	db "@"
 
 .NoRoomText: ; 0x1585a
-	text_jump _KrissPCNoRoomWithdrawText
+	text_jump _PlayersPCNoRoomWithdrawText
 	db "@"
 
-KrisTossItemMenu: ; 0x1585f
-	call LoadStandardMenuDataHeader
+PlayerTossItemMenu: ; 0x1585f
+	call LoadStandardMenuHeader
 	farcall ClearPCItemScreen
 .loop
 	call PCItemsJoypad
@@ -397,8 +397,8 @@ KrisTossItemMenu: ; 0x1585f
 	ret
 ; 0x1587d
 
-KrisDecorationMenu: ; 0x1587d
-	farcall _KrisDecorationMenu
+PlayerDecorationMenu: ; 0x1587d
+	farcall _PlayerDecorationMenu
 	ld a, c
 	and a
 	ret z
@@ -406,17 +406,17 @@ KrisDecorationMenu: ; 0x1587d
 	ret
 ; 0x15888
 
-KrisLogOffMenu: ; 0x15888
+PlayerLogOffMenu: ; 0x15888
 	xor a
 	scf
 	ret
 ; 0x1588b
 
-KrisDepositItemMenu: ; 0x1588b
+PlayerDepositItemMenu: ; 0x1588b
 	call .CheckItemsInBag
 	jr c, .nope
 	call DisableSpriteUpdates
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	farcall DepositSellInitPackBuffers
 .loop
 	farcall DepositSellPack
@@ -532,19 +532,19 @@ KrisDepositItemMenu: ; 0x1588b
 	ret
 
 .HowManyText: ; 0x1596e
-	text_jump _KrissPCHowManyDepositText
+	text_jump _PlayersPCHowManyDepositText
 	db "@"
 
 .DepositText: ; 0x15973
-	text_jump _KrissPCDepositItemsText
+	text_jump _PlayersPCDepositItemsText
 	db "@"
 
 .NoRoomText: ; 0x15978
-	text_jump _KrissPCNoRoomDepositText
+	text_jump _PlayersPCNoRoomDepositText
 	db "@"
 
-KrisMailBoxMenu: ; 0x1597d
-	farcall _KrisMailBoxMenu
+PlayerMailBoxMenu: ; 0x1597d
+	farcall _PlayerMailBoxMenu
 	xor a
 	ret
 ; 0x15985
@@ -558,7 +558,7 @@ PCItemsJoypad: ; 0x15985
 	ld a, $0
 	ld [wSpriteUpdatesEnabled], a
 	ld hl, .PCItemsMenuData
-	call CopyMenuDataHeader
+	call CopyMenuHeader
 	hlcoord 0, 0
 	ld b, 10
 	ld c, 18
@@ -621,10 +621,10 @@ PCItemsJoypad: ; 0x15985
 .PCItemsMenuData:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 4, 1, 18, 10
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2:
+.MenuData:
 	db SCROLLINGMENU_ENABLE_SELECT | SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 8 ; rows/cols?
 	db 2 ; horizontal spacing?

@@ -1,9 +1,7 @@
 Route7_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 Route7UndergroundPathSign:
 	jumptext Route7UndergroundPathSignText
@@ -35,21 +33,16 @@ Route7LockedDoorText:
 	done
 
 Route7_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 15, 6, 1, ROUTE_7_SAFFRON_GATE
-	warp_def 15, 7, 2, ROUTE_7_SAFFRON_GATE
+	db 2 ; warp events
+	warp_event 15,  6, ROUTE_7_SAFFRON_GATE, 1
+	warp_event 15,  7, ROUTE_7_SAFFRON_GATE, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 5, 11, BGEVENT_READ, Route7UndergroundPathSign
-	bg_event 6, 9, BGEVENT_READ, Route7LockedDoor
+	db 2 ; bg events
+	bg_event  5, 11, BGEVENT_READ, Route7UndergroundPathSign
+	bg_event  6,  9, BGEVENT_READ, Route7LockedDoor
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

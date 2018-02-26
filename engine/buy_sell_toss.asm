@@ -1,6 +1,6 @@
 SelectQuantityToToss: ; 24fbf
-	ld hl, TossItem_MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, TossItem_MenuHeader
+	call LoadMenuHeader
 	call Toss_Sell_Loop
 	ret
 ; 24fc9
@@ -12,8 +12,8 @@ RooftopSale_SelectQuantityToBuy: ; 24fcf
 	ld [wBuffer1], a
 	ld a, e
 	ld [wBuffer2], a
-	ld hl, BuyItem_MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, BuyItem_MenuHeader
+	call LoadMenuHeader
 	call Toss_Sell_Loop
 	ret
 ; 24fe1
@@ -24,8 +24,8 @@ SelectQuantityToSell: ; 24fe1
 	ld [wBuffer1], a
 	ld a, e
 	ld [wBuffer2], a
-	ld hl, SellItem_MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, SellItem_MenuHeader
+	call LoadMenuHeader
 	call Toss_Sell_Loop
 	ret
 ; 24ff9
@@ -138,9 +138,9 @@ BuySellToss_UpdateQuantityDisplay: ; 25072
 	ld de, wItemQuantityChangeBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
-	ld a, [wMenuData2Pointer]
+	ld a, [wMenuDataPointer]
 	ld e, a
-	ld a, [wMenuData2Pointer + 1]
+	ld a, [wMenuDataPointer + 1]
 	ld d, a
 	ld a, [wMenuDataBank]
 	call FarCall_de
@@ -213,21 +213,21 @@ BuySell_DisplaySubtotal: ; 250d1
 	ret
 ; 250ed
 
-TossItem_MenuDataHeader: ; 0x250ed
+TossItem_MenuHeader: ; 0x250ed
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 15, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw ret_25097
 	db 0 ; default option
 ; 0x250f5
 
-BuyItem_MenuDataHeader: ; 0x250f5
+BuyItem_MenuHeader: ; 0x250f5
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw DisplayPurchasePrice
 	db -1 ; default option
 ; 0x250fd
 
-SellItem_MenuDataHeader: ; 0x250fd
+SellItem_MenuHeader: ; 0x250fd
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw DisplaySellingPrice

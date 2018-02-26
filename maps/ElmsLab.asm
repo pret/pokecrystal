@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ELMSLAB_ELM
 	const ELMSLAB_ELMS_AIDE
 	const ELMSLAB_POKE_BALL1
@@ -7,17 +7,15 @@ const_value set 2
 	const ELMSLAB_OFFICER
 
 ElmsLab_MapScripts:
-.SceneScripts:
-	db 6
-	scene_script .MeetElm
-	scene_script .DummyScene1
-	scene_script .DummyScene2
-	scene_script .DummyScene3
-	scene_script .DummyScene4
-	scene_script .DummyScene5
+	db 6 ; scene scripts
+	scene_script .MeetElm ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_ELMSLAB_CANT_LEAVE
+	scene_script .DummyScene2 ; SCENE_ELMSLAB_NOTHING
+	scene_script .DummyScene3 ; SCENE_ELMSLAB_MEET_OFFICER
+	scene_script .DummyScene4 ; SCENE_ELMSLAB_UNUSED
+	scene_script .DummyScene5 ; SCENE_ELMSLAB_AIDE_GIVES_POTION
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .MoveElmCallback
 
 .MeetElm:
@@ -41,7 +39,7 @@ ElmsLab_MapScripts:
 
 .MoveElmCallback:
 	checkscene
-	iftrue .Skip
+	iftrue .Skip ; not SCENE_DEFAULT
 	moveobject ELMSLAB_ELM, 3, 4
 .Skip:
 	return
@@ -49,7 +47,7 @@ ElmsLab_MapScripts:
 .WalkUpToElm:
 	applymovement PLAYER, ElmsLab_WalkUpToElmMovement
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 15
-	spriteface ELMSLAB_ELM, RIGHT
+	turnobject ELMSLAB_ELM, RIGHT
 	opentext
 	writetext ElmText_Intro
 .MustSayYes:
@@ -67,24 +65,24 @@ ElmsLab_MapScripts:
 	playsound SFX_GLASS_TING
 	pause 30
 	showemote EMOTE_SHOCK, ELMSLAB_ELM, 10
-	spriteface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	opentext
 	writetext ElmText_GotAnEmail
 	waitbutton
 	closetext
 	opentext
-	spriteface ELMSLAB_ELM, RIGHT
+	turnobject ELMSLAB_ELM, RIGHT
 	writetext ElmText_MissionFromMrPokemon
 	waitbutton
 	closetext
 	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement1
-	spriteface PLAYER, UP
+	turnobject PLAYER, UP
 	applymovement ELMSLAB_ELM, ElmsLab_ElmToDefaultPositionMovement2
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext ElmText_ChooseAPokemon
 	waitbutton
-	setscene 1
+	setscene SCENE_ELMSLAB_CANT_LEAVE
 	closetext
 	end
 
@@ -108,10 +106,10 @@ ElmCheckEverstone:
 	checkevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	iffalse ElmCheckTogepiEgg
 	writebyte TOGEPI
-	special Special_FindThatSpeciesYourTrainerID
+	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special Special_FindThatSpeciesYourTrainerID
+	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writetext UnknownText_0x79a40
 	waitbutton
@@ -120,10 +118,10 @@ ElmCheckEverstone:
 
 ElmEggHatchedScript:
 	writebyte TOGEPI
-	special Special_FindThatSpeciesYourTrainerID
+	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
-	special Special_FindThatSpeciesYourTrainerID
+	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	jump ElmCheckGotEggAgain
 
@@ -149,7 +147,7 @@ ElmCheckGotEggAgain:
 	end
 
 LabTryToLeaveScript:
-	spriteface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	opentext
 	writetext LabWhereGoingText
 	waitbutton
@@ -160,7 +158,7 @@ LabTryToLeaveScript:
 CyndaquilPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
 	pokepic CYNDAQUIL
 	cry CYNDAQUIL
@@ -183,14 +181,14 @@ CyndaquilPokeBallScript:
 	givepoke CYNDAQUIL, 5, BERRY
 	closetext
 	checkcode VAR_FACING
-	if_equal RIGHT, ElmDirectionsScript
+	ifequal RIGHT, ElmDirectionsScript
 	applymovement PLAYER, AfterCyndaquilMovement
 	jump ElmDirectionsScript
 
 TotodilePokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
 	pokepic TOTODILE
 	cry TOTODILE
@@ -218,7 +216,7 @@ TotodilePokeBallScript:
 ChikoritaPokeBallScript:
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
-	spriteface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	refreshscreen
 	pokepic CHIKORITA
 	cry CHIKORITA
@@ -250,7 +248,7 @@ DidntChooseStarterScript:
 	end
 
 ElmDirectionsScript:
-	spriteface PLAYER, UP
+	turnobject PLAYER, UP
 	opentext
 	writetext ElmDirectionsText1
 	waitbutton
@@ -262,20 +260,20 @@ ElmDirectionsScript:
 	waitsfx
 	waitbutton
 	closetext
-	spriteface ELMSLAB_ELM, LEFT
+	turnobject ELMSLAB_ELM, LEFT
 	opentext
 	writetext ElmDirectionsText2
 	waitbutton
 	closetext
-	spriteface ELMSLAB_ELM, DOWN
+	turnobject ELMSLAB_ELM, DOWN
 	opentext
 	writetext ElmDirectionsText3
 	waitbutton
 	closetext
 	setevent EVENT_GOT_A_POKEMON_FROM_ELM
 	setevent EVENT_RIVAL_CHERRYGROVE_CITY
-	setscene 5
-	setmapscene NEW_BARK_TOWN, 1
+	setscene SCENE_ELMSLAB_AIDE_GIVES_POTION
+	setmapscene NEW_BARK_TOWN, SCENE_FINISHED
 	end
 
 ElmDescribesMrPokemonScript:
@@ -308,11 +306,11 @@ ElmsLabHealingMachine:
 	end
 
 ElmsLabHealingMachine_HealParty:
-	special Special_StubbedTrainerRankings_Healings
+	special StubbedTrainerRankings_Healings
 	special HealParty
 	playmusic MUSIC_NONE
 	writebyte HEALMACHINE_ELMS_LAB
-	special Special_HealMachineAnim
+	special HealMachineAnim
 	pause 30
 	special RestartMapMusic
 	closetext
@@ -340,14 +338,14 @@ ElmAfterTheftScript:
 	writetext ElmAfterTheftText5
 	buttonsound
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	setflag ENGINE_BUG_CONTEST_ON
-	setmapscene ROUTE_29, 1
+	setflag ENGINE_MAIN_MENU_MOBILE_CHOICES
+	setmapscene ROUTE_29, SCENE_ROUTE29_CATCH_TUTORIAL
 	clearevent EVENT_ROUTE_30_YOUNGSTER_JOEY
 	setevent EVENT_ROUTE_30_BATTLE
 	writetext ElmAfterTheftText6
 	waitbutton
 	closetext
-	setscene 6
+	setscene SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS
 	end
 
 ElmStudyingEggScript:
@@ -422,19 +420,19 @@ ElmGiveTicketScript:
 ElmJumpBackScript1:
 	closetext
 	checkcode VAR_FACING
-	if_equal DOWN, ElmJumpDownScript
-	if_equal UP, ElmJumpUpScript
-	if_equal LEFT, ElmJumpLeftScript
-	if_equal RIGHT, ElmJumpRightScript
+	ifequal DOWN, ElmJumpDownScript
+	ifequal UP, ElmJumpUpScript
+	ifequal LEFT, ElmJumpLeftScript
+	ifequal RIGHT, ElmJumpRightScript
 	end
 
 ElmJumpBackScript2:
 	closetext
 	checkcode VAR_FACING
-	if_equal DOWN, ElmJumpUpScript
-	if_equal UP, ElmJumpDownScript
-	if_equal LEFT, ElmJumpRightScript
-	if_equal RIGHT, ElmJumpLeftScript
+	ifequal DOWN, ElmJumpUpScript
+	ifequal UP, ElmJumpDownScript
+	ifequal LEFT, ElmJumpRightScript
+	ifequal RIGHT, ElmJumpLeftScript
 	end
 
 ElmJumpUpScript:
@@ -457,41 +455,41 @@ ElmJumpRightScript:
 	opentext
 	end
 
-AideScript_WalkPotions1:
+AideScript_WalkPotion1:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight1
-	spriteface PLAYER, DOWN
-	scall AideScript_GivePotions
+	turnobject PLAYER, DOWN
+	scall AideScript_GivePotion
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft1
 	end
 
-AideScript_WalkPotions2:
+AideScript_WalkPotion2:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight2
-	spriteface PLAYER, DOWN
-	scall AideScript_GivePotions
+	turnobject PLAYER, DOWN
+	scall AideScript_GivePotion
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft2
 	end
 
-AideScript_GivePotions:
+AideScript_GivePotion:
 	opentext
-	writetext AideText_GiveYouPotions
+	writetext AideText_GiveYouPotion
 	buttonsound
 	verbosegiveitem POTION
 	writetext AideText_AlwaysBusy
 	waitbutton
 	closetext
-	setscene 2
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 AideScript_WalkBalls1:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight1
-	spriteface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	scall AideScript_GiveYouBalls
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft1
 	end
 
 AideScript_WalkBalls2:
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksRight2
-	spriteface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	scall AideScript_GiveYouBalls
 	applymovement ELMSLAB_ELMS_AIDE, AideWalksLeft2
 	end
@@ -507,7 +505,7 @@ AideScript_GiveYouBalls:
 	buttonsound
 	itemnotify
 	closetext
-	setscene 2
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 AideScript_ReceiveTheBalls:
@@ -552,17 +550,17 @@ MeetCopScript2:
 MeetCopScript:
 	applymovement PLAYER, MeetCopScript_WalkUp
 CopScript:
-	spriteface ELMSLAB_OFFICER, LEFT
+	turnobject ELMSLAB_OFFICER, LEFT
 	opentext
 	writetext ElmsLabOfficerText1
 	buttonsound
-	special Special_NameRival
+	special NameRival
 	writetext ElmsLabOfficerText2
 	waitbutton
 	closetext
 	applymovement ELMSLAB_OFFICER, OfficerLeavesMovement
 	disappear ELMSLAB_OFFICER
-	setscene 2
+	setscene SCENE_ELMSLAB_NOTHING
 	end
 
 ElmsLabWindow:
@@ -1217,7 +1215,7 @@ ElmsLabSignpostText_Egg:
 	cont "by PROF.ELM."
 	done
 
-AideText_GiveYouPotions:
+AideText_GiveYouPotion:
 	text "<PLAY_G>, I want"
 	line "you to have this"
 	cont "for your errand."
@@ -1371,49 +1369,44 @@ ElmsLabPCText:
 	done
 
 ElmsLab_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 4, 11, 1, NEW_BARK_TOWN
-	warp_def 5, 11, 1, NEW_BARK_TOWN
+	db 2 ; warp events
+	warp_event  4, 11, NEW_BARK_TOWN, 1
+	warp_event  5, 11, NEW_BARK_TOWN, 1
 
-.CoordEvents:
-	db 8
-	coord_event 4, 6, 1, LabTryToLeaveScript
-	coord_event 5, 6, 1, LabTryToLeaveScript
-	coord_event 4, 5, 3, MeetCopScript
-	coord_event 5, 5, 3, MeetCopScript2
-	coord_event 4, 8, 5, AideScript_WalkPotions1
-	coord_event 5, 8, 5, AideScript_WalkPotions2
-	coord_event 4, 8, 6, AideScript_WalkBalls1
-	coord_event 5, 8, 6, AideScript_WalkBalls2
+	db 8 ; coord events
+	coord_event  4,  6, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
+	coord_event  5,  6, SCENE_ELMSLAB_CANT_LEAVE, LabTryToLeaveScript
+	coord_event  4,  5, SCENE_ELMSLAB_MEET_OFFICER, MeetCopScript
+	coord_event  5,  5, SCENE_ELMSLAB_MEET_OFFICER, MeetCopScript2
+	coord_event  4,  8, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion1
+	coord_event  5,  8, SCENE_ELMSLAB_AIDE_GIVES_POTION, AideScript_WalkPotion2
+	coord_event  4,  8, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls1
+	coord_event  5,  8, SCENE_ELMSLAB_AIDE_GIVES_POKE_BALLS, AideScript_WalkBalls2
 
-.BGEvents:
-	db 16
-	bg_event 2, 1, BGEVENT_READ, ElmsLabHealingMachine
-	bg_event 6, 1, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 7, 1, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 8, 1, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 9, 1, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 0, 7, BGEVENT_READ, ElmsLabTravelTip1
-	bg_event 1, 7, BGEVENT_READ, ElmsLabTravelTip2
-	bg_event 2, 7, BGEVENT_READ, ElmsLabTravelTip3
-	bg_event 3, 7, BGEVENT_READ, ElmsLabTravelTip4
-	bg_event 6, 7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 7, 7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 8, 7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 9, 7, BGEVENT_READ, ElmsLabBookshelf
-	bg_event 9, 3, BGEVENT_READ, ElmsLabTrashcan
-	bg_event 5, 0, BGEVENT_READ, ElmsLabWindow
-	bg_event 3, 5, BGEVENT_DOWN, ElmsLabPC
+	db 16 ; bg events
+	bg_event  2,  1, BGEVENT_READ, ElmsLabHealingMachine
+	bg_event  6,  1, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  7,  1, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  8,  1, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  9,  1, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  0,  7, BGEVENT_READ, ElmsLabTravelTip1
+	bg_event  1,  7, BGEVENT_READ, ElmsLabTravelTip2
+	bg_event  2,  7, BGEVENT_READ, ElmsLabTravelTip3
+	bg_event  3,  7, BGEVENT_READ, ElmsLabTravelTip4
+	bg_event  6,  7, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  7,  7, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  8,  7, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  9,  7, BGEVENT_READ, ElmsLabBookshelf
+	bg_event  9,  3, BGEVENT_READ, ElmsLabTrashcan
+	bg_event  5,  0, BGEVENT_READ, ElmsLabWindow
+	bg_event  3,  5, BGEVENT_DOWN, ElmsLabPC
 
-.ObjectEvents:
-	db 6
-	object_event 5, 2, SPRITE_ELM, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
-	object_event 2, 9, SPRITE_SCIENTIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
-	object_event 6, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
-	object_event 7, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
-	object_event 8, 3, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
-	object_event 5, 3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB
+	db 6 ; object events
+	object_event  5,  2, SPRITE_ELM, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfElmScript, -1
+	object_event  2,  9, SPRITE_SCIENTIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ElmsAideScript, EVENT_ELMS_AIDE_IN_LAB
+	object_event  6,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CyndaquilPokeBallScript, EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
+	object_event  7,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
+	object_event  8,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
+	object_event  5,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB

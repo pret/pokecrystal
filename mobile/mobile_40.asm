@@ -318,7 +318,7 @@ Function10016f: ; 10016f
 Function10020b: ; 10020b
 	xor a
 	ld [wc303], a
-	farcall Special_FadeOutPalettes
+	farcall FadeOutPalettes
 	farcall Function106464
 	call HideSprites
 	call DelayFrame
@@ -898,8 +898,8 @@ Jumptable_100581: ; 100581
 ; 100585
 
 Function100585: ; 100585
-	ld hl, MenuDataHeader_1005b2
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1005b2
+	call LoadMenuHeader
 	ld a, 0
 	ld [wcd28], a
 	ld a, [wcd26]
@@ -923,14 +923,14 @@ Function100597: ; 100597
 	ret
 ; 1005b2
 
-MenuDataHeader_1005b2: ; 1005b2
+MenuHeader_1005b2: ; 1005b2
 	db MENU_BACKUP_TILES ; flags
 	db 6, 14
 	db 10, 19
-	dw MenuData2_1005ba
+	dw MenuData_1005ba
 	db 1 ; default option
 
-MenuData2_1005ba:
+MenuData_1005ba:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "はい@"
@@ -950,8 +950,8 @@ Jumptable_1005cb: ; 1005cb
 ; 1005cf
 
 Function1005cf: ; 1005cf
-	ld hl, MenuDataHeader_1005fc
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1005fc
+	call LoadMenuHeader
 	ld a, 0
 	ld [wcd28], a
 	ld a, [wcd26]
@@ -974,14 +974,14 @@ Function1005e1: ; 1005e1
 	ret
 ; 1005fc
 
-MenuDataHeader_1005fc: ; 1005fc
+MenuHeader_1005fc: ; 1005fc
 	db MENU_BACKUP_TILES ; flags
 	db 6, 14
 	db 10, 19
-	dw MenuData2_100604
+	dw MenuData_100604
 	db 1 ; default option
 
-MenuData2_100604: ; 100604
+MenuData_100604: ; 100604
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2
 	db "かける@"
@@ -1800,12 +1800,12 @@ SECTION "bank40_2", ROMX
 Function100b12: ; 100b12
 	call Function100dd8
 	ret c
-	ld hl, BattleMenuDataHeader
-	ld a, BANK(BattleMenuDataHeader)
-	ld de, LoadMenuDataHeader
+	ld hl, BattleMenuHeader
+	ld a, BANK(BattleMenuHeader)
+	ld de, LoadMenuHeader
 	call FarCall_de
-	ld a, BANK(BattleMenuDataHeader)
-	ld [wMenuData2_2DMenuItemStringsBank], a
+	ld a, BANK(BattleMenuHeader)
+	ld [wMenuData_2DMenuItemStringsBank], a
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
 	call Function100e72
@@ -1845,8 +1845,8 @@ Function100b45: ; 100b45
 ; 100b7a
 
 Function100b7a: ; 100b7a
-	ld hl, CopyMenuData2
-	ld a, [wMenuData2_2DMenuItemStringsBank]
+	ld hl, CopyMenuData
+	ld a, [wMenuData_2DMenuItemStringsBank]
 	rst FarCall
 	farcall Draw2DMenu
 	farcall MobileTextBorder
@@ -2103,28 +2103,28 @@ MobileBattleMonMenu: ; 100d22
 ; 100d67
 
 Function100d67: ; 100d67
-	ld hl, .MenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, .MenuHeader
+	call CopyMenuHeader
 	xor a
 	ld [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
 	call PlaceVerticalMenuItems
 	call WaitBGMap
-	call CopyMenuData2
+	call CopyMenuData
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
 	ret
 ; 100d88
 
-.MenuDataHeader: ; 100d88
+.MenuHeader: ; 100d88
 	db 0 ; flags
 	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 
-.MenuData2: ; 100d90
+.MenuData: ; 100d90
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
 	db "いれかえる@"  ; TRADE
@@ -2803,7 +2803,7 @@ LoadSelectedPartiesForColosseum: ; 1010f2
 	ret
 ; 1011f1
 
-Special_Function1011f1: ; 1011f1
+Function1011f1: ; 1011f1
 	ld a, $04
 	call GetSRAMBank
 	ld a, [$a60c]
@@ -2812,7 +2812,7 @@ Special_Function1011f1: ; 1011f1
 	ld hl, wdc41
 	res 4, [hl]
 	ld hl, wGameTimerPause
-	bit 7, [hl]
+	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	jr z, .skip
 	ld hl, wdc41
 	set 4, [hl]
@@ -2827,20 +2827,20 @@ Special_Function1011f1: ; 1011f1
 	ret
 ; 101220
 
-Special_Function101220: ; 101220
+Function101220: ; 101220
 	xor a
 	ld [wLinkMode], a
 	ret
 ; 101225
 
-Special_Function101225: ; 101225
+Function101225: ; 101225
 	ld d, 1
 	ld e, BANK(Jumptable_101297)
 	ld bc, Jumptable_101297
 	call Function100000
 	jr Function10123d
 
-Special_Function101231: ; 101231
+Function101231: ; 101231
 	ld d, 2
 	ld e, BANK(Jumptable_101297)
 	ld bc, Jumptable_101297
@@ -2871,7 +2871,7 @@ Function101251: ; 101251
 	call Function1021e0
 	call Function1020ea
 	ret c
-	call Special_Function102142
+	call Function102142
 	ret
 ; 101265
 
@@ -4535,7 +4535,7 @@ Unknown_101d8d: ; 101d8d
 
 Function101d95: ; 101d95
 	call Function101ee2
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld e, $0e
 	call Function101ee4
 	ld hl, wcd29
@@ -4703,7 +4703,7 @@ Function101e98: ; 101e98
 	farcall Function8adb3
 	ret c
 	ld hl, wGameTimerPause
-	set 7, [hl]
+	set GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ld hl, wdc41
 	set 4, [hl]
 	ret
@@ -4711,7 +4711,7 @@ Function101e98: ; 101e98
 
 Function101ead: ; 101ead
 	ld hl, wGameTimerPause
-	bit 7, [hl]
+	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	jr nz, .asm_101ec8
 	ld hl, wdc41
 	bit 2, [hl]
@@ -5024,7 +5024,7 @@ Function102112: ; 102112
 	ret
 ; 102142
 
-Special_Function102142: ; 102142
+Function102142: ; 102142
 	call Function10218d
 	call Function102180
 	ld hl, UnknownText_0x1021d1
@@ -6200,8 +6200,8 @@ Jumptable_10292f: ; 10292f
 ; 102933
 
 Function102933: ; 102933
-	ld hl, MenuDataHeader_1029bb
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_1029bb
+	call LoadMenuHeader
 	call Function102e07
 	ld a, $32
 	ld [wTextDelayFrames], a
@@ -6285,7 +6285,7 @@ Function1029af: ; 1029af
 	ret
 ; 1029bb
 
-MenuDataHeader_1029bb: ; 1029bb
+MenuHeader_1029bb: ; 1029bb
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 3, 10, 15, 12
 	dw NULL
@@ -6305,7 +6305,7 @@ Jumptable_1029cb: ; 1029cb
 ; 1029cf
 
 Function1029cf: ; 1029cf
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	hlcoord 10, 7
 	ld b, 3
 	ld c, 8
@@ -7722,9 +7722,9 @@ Unknown_1035d7: ; 1035d7
 	dw Unknown_103608
 	dw Unknown_103608
 	dw Unknown_1035fe
-	dw Special_AskMobileOrCable
-	dw Special_AskMobileOrCable
-	dw Special_AskMobileOrCable
+	dw AskMobileOrCable
+	dw AskMobileOrCable
+	dw AskMobileOrCable
 
 Unknown_1035e7: ; 1035e7
 	dwcoord 0, 6
@@ -7755,9 +7755,9 @@ Unknown_103608: ; 103608
 	db 2, 2, 3
 ; 103612
 
-Special_AskMobileOrCable: ; 103612
-	ld hl, MenuDataHeader_103640
-	call LoadMenuDataHeader
+AskMobileOrCable: ; 103612
+	ld hl, MenuHeader_103640
+	call LoadMenuHeader
 	ld a, [wMobileOrCable_LastSelection]
 	and $0f
 	jr z, .skip_load
@@ -7782,13 +7782,13 @@ Special_AskMobileOrCable: ; 103612
 	ret
 ; 103640
 
-MenuDataHeader_103640: ; 103640
+MenuHeader_103640: ; 103640
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 6, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw MenuData2_103648
+	dw MenuData_103648
 	db 1 ; default option
 
-MenuData2_103648: ; 103648
+MenuData_103648: ; 103648
 	db STATICMENU_CURSOR ; flags
 	db 2
 	db "モバイル@"
@@ -7811,7 +7811,7 @@ Function103654: ; 103654
 	ret
 ; 10366e
 
-Special_Mobile_SelectThreeMons: ; 10366e
+Mobile_SelectThreeMons: ; 10366e
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	jr z, .asm_10369b
@@ -7849,8 +7849,8 @@ Special_Mobile_SelectThreeMons: ; 10366e
 .asm_1036b5
 	call Function103700
 	jr c, .asm_1036f4
-	ld hl, MenuDataHeader_103747
-	call LoadMenuDataHeader
+	ld hl, MenuHeader_103747
+	call LoadMenuHeader
 	call VerticalMenu
 	call ExitMenu
 	jr c, .asm_1036f4
@@ -7894,7 +7894,7 @@ Function1036f9: ; 1036f9
 Function103700: ; 103700
 	ld c, $0a
 	ld hl, wSwarmFlags
-	bit 4, [hl]
+	bit SWARMFLAGS_MOBILE_4_F, [hl]
 	jr z, .asm_10370f
 	farcall Function1008a6
 
@@ -7936,13 +7936,13 @@ Function103700: ; 103700
 	ret
 ; 103747
 
-MenuDataHeader_103747: ; 103747
+MenuHeader_103747: ; 103747
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 13, 5, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
-	dw MenuData2_10374f
+	dw MenuData_10374f
 	db 1 ; default option
 
-MenuData2_10374f: ; 10374f
+MenuData_10374f: ; 10374f
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3
 	db "はい@"
@@ -7979,7 +7979,7 @@ UnknownText_0x10377b: ; 0x10377b
 	db "@"
 ; 0x103780
 
-Special_Function103780: ; 103780
+Function103780: ; 103780
 	ld a, [wd265]
 	push af
 	call Function10378c
@@ -7991,18 +7991,18 @@ Special_Function103780: ; 103780
 Function10378c: ; 10378c
 	ld c, 0
 	ld hl, wSwarmFlags
-	bit 4, [hl]
+	bit SWARMFLAGS_MOBILE_4_F, [hl]
 	jr nz, .already_set
-	ld c, $01
+	ld c, 1
 	ld hl, wSwarmFlags
-	set 4, [hl]
+	set SWARMFLAGS_MOBILE_4_F, [hl]
 
 .already_set
 	push bc
 	farcall Link_SaveGame
 	pop bc
 	jr c, .failed_to_save
-	ld a, $01
+	ld a, 1
 	ld [wScriptVar], a
 	ld a, c
 	and a
@@ -8017,11 +8017,11 @@ Function10378c: ; 10378c
 	and a
 	ret z
 	ld hl, wSwarmFlags
-	res 4, [hl]
+	res SWARMFLAGS_MOBILE_4_F, [hl]
 	ret
 ; 1037c2
 
-Special_Function1037c2: ; 1037c2
+Function1037c2: ; 1037c2
 	call Function103823
 	jr c, .nope
 	ld a, [wdc5f]
@@ -8047,7 +8047,7 @@ UnknownText_0x1037e6: ; 0x1037e6
 	db "@"
 ; 0x1037eb
 
-Special_Function1037eb: ; 1037eb
+Function1037eb: ; 1037eb
 	call Function103823
 	jr nc, .asm_103807
 	ld hl, UnknownText_0x103819
@@ -8102,7 +8102,7 @@ Function103823: ; 103823
 	ret
 ; 10383c
 
-Special_Function10383c: ; 10383c
+Function10383c: ; 10383c
 	ld a, $01
 	ld [wdc60], a
 	xor a
@@ -8135,7 +8135,7 @@ UnknownText_0x103876: ; 0x103876
 	db "@"
 ; 0x10387b
 
-Special_Function10387b: ; 10387b
+Function10387b: ; 10387b
 	farcall Mobile_AlwaysReturnNotCarry
 	bit 7, c
 	ret nz

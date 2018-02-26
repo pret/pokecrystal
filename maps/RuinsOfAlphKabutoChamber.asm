@@ -1,15 +1,13 @@
-const_value set 2
+	const_def 2 ; object constants
 	const RUINSOFALPHKABUTOCHAMBER_RECEPTIONIST
 	const RUINSOFALPHKABUTOCHAMBER_SCIENTIST
 
 RuinsOfAlphKabutoChamber_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .CheckWall
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .CheckWall ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .HiddenDoors
 
 .CheckWall:
@@ -47,7 +45,7 @@ RuinsOfAlphKabutoChamber_MapScripts:
 	changeblock 4, 0, $30 ; open wall
 	reloadmappart
 	earthquake 50
-	setscene 1
+	setscene SCENE_FINISHED
 	closetext
 	end
 
@@ -57,7 +55,7 @@ RuinsOfAlphKabutoChamberReceptionistScript:
 MapRuinsOfAlphKabutoChamberSignpost2Script:
 	refreshscreen
 	writebyte UNOWNPUZZLE_KABUTO
-	special Special_UnownPuzzle
+	special UnownPuzzle
 	closetext
 	iftrue .PuzzleComplete
 	end
@@ -65,9 +63,9 @@ MapRuinsOfAlphKabutoChamberSignpost2Script:
 .PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_KABUTO_PUZZLE
-	setflag ENGINE_UNLOCKED_UNOWNS_1
+	setflag ENGINE_UNLOCKED_UNOWNS_A_TO_K
 	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, 1
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $18 ; left hole
@@ -86,7 +84,7 @@ ScientistScript_0x587a8:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	if_equal NUM_UNOWN, .AllUnownCaught
+	ifequal NUM_UNOWN, .AllUnownCaught
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue .WallOpen
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
@@ -97,7 +95,7 @@ ScientistScript_0x587a8:
 	writetext UnknownText_0x588f5
 	waitbutton
 	closetext
-	spriteface RUINSOFALPHKABUTOCHAMBER_SCIENTIST, UP
+	turnobject RUINSOFALPHKABUTOCHAMBER_SCIENTIST, UP
 	end
 
 .WallOpen:
@@ -122,7 +120,7 @@ MapRuinsOfAlphKabutoChamberSignpost4Script:
 	opentext
 	writetext UnknownText_0x58aa7
 	writebyte UNOWNWORDS_ESCAPE
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -132,7 +130,7 @@ MapRuinsOfAlphKabutoChamberSignpost5Script:
 	opentext
 	writetext UnknownText_0x58ad9
 	writebyte UNOWNWORDS_ESCAPE
-	special Special_DisplayUnownWords
+	special DisplayUnownWords
 	closetext
 	end
 
@@ -256,30 +254,25 @@ UnknownText_0x58b3f:
 	done
 
 RuinsOfAlphKabutoChamber_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 5
-	warp_def 3, 9, 2, RUINS_OF_ALPH_OUTSIDE
-	warp_def 4, 9, 2, RUINS_OF_ALPH_OUTSIDE
-	warp_def 3, 3, 4, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 3, 5, RUINS_OF_ALPH_INNER_CHAMBER
-	warp_def 4, 0, 1, RUINS_OF_ALPH_KABUTO_ITEM_ROOM
+	db 5 ; warp events
+	warp_event  3,  9, RUINS_OF_ALPH_OUTSIDE, 2
+	warp_event  4,  9, RUINS_OF_ALPH_OUTSIDE, 2
+	warp_event  3,  3, RUINS_OF_ALPH_INNER_CHAMBER, 4
+	warp_event  4,  3, RUINS_OF_ALPH_INNER_CHAMBER, 5
+	warp_event  4,  0, RUINS_OF_ALPH_KABUTO_ITEM_ROOM, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 6
-	bg_event 2, 3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
-	bg_event 5, 3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
-	bg_event 3, 2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
-	bg_event 4, 2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost3Script
-	bg_event 3, 0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
-	bg_event 4, 0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
+	db 6 ; bg events
+	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
+	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
+	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
+	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost3Script
+	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
+	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
 
-.ObjectEvents:
-	db 2
-	object_event 5, 5, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	object_event 3, 1, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1
+	db 2 ; object events
+	object_event  5,  5, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
+	object_event  3,  1, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1

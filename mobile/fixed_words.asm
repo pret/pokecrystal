@@ -274,7 +274,7 @@ CopyMobileEZChatToC608: ; 11c156
 	jr .copy_string
 ; 11c1ab
 
-Special_Function11c1ab: ; 11c1ab
+Function11c1ab: ; 11c1ab
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -3037,7 +3037,7 @@ EZChat_GetSeenPokemonByKana: ; 11d3ba
 	ld [wcd34], a
 
 	ld hl, EZChat_SortedWords
-	ld a, (EZChat_SortedWordsEnd - EZChat_SortedWords) / 4
+	ld a, (EZChat_SortedWords.End - EZChat_SortedWords) / 4
 
 .MasterLoop: ; 11d3ef
 	push af
@@ -4120,7 +4120,7 @@ macro_11f220: MACRO
 ; 12 words per page (0-based indexing)
 x = \1 / 12
 if \1 % 12 == 0
-x = x +- 1
+x = x + -1
 endc
 	db x
 ENDM
@@ -4196,4 +4196,4 @@ x = $d012
 	macro_11f23c $15 ; wa
 x = $d000
 	macro_11f23c $09 ; end
-EZChat_SortedWordsEnd:
+.End

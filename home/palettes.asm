@@ -253,7 +253,7 @@ CopyPals:: ; d50
 
 ; get pal color
 	ld a, b
-	and %11 ; color
+	maskbits 1 << PAL_COLOR_SIZE
 ; 2 bytes per color
 	add a
 	ld l, a
@@ -271,8 +271,9 @@ CopyPals:: ; d50
 	ld [hl], d
 	inc hl
 ; next pal color
+rept PAL_COLOR_SIZE
 	srl b
-	srl b
+endr
 ; source
 	pop de
 ; done pal?
@@ -280,7 +281,7 @@ CopyPals:: ; d50
 	jr nz, .loop
 
 ; de += 8 (next pal)
-	ld a, NUM_PAL_COLORS * 2
+	ld a, PALETTE_SIZE
 	add e
 	jr nc, .ok
 	inc d

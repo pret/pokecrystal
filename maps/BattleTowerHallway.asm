@@ -1,18 +1,16 @@
-const_value set 2
+	const_def 2 ; object constants
 	const BATTLETOWERHALLWAY_RECEPTIONIST
 
 BattleTowerHallway_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .Scene0
-	scene_script .Scene1
+	db 2 ; scene scripts
+	scene_script .Scene0 ; SCENE_DEFAULT
+	scene_script .Scene1 ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .Scene0:
 	priorityjump .ChooseBattleRoom
-	setscene 1
+	setscene SCENE_FINISHED
 .Scene1:
 	end
 
@@ -38,14 +36,14 @@ BattleTowerHallway_MapScripts:
 ; at least it should look like that
 ; because all warps lead to the same room
 .WalkToChosenBattleRoom: ; 0x9f5dc
-	if_equal 3, .L30L40
-	if_equal 4, .L30L40
-	if_equal 5, .L50L60
-	if_equal 6, .L50L60
-	if_equal 7, .L70L80
-	if_equal 8, .L70L80
-	if_equal 9, .L90L100
-	if_equal 10, .L90L100
+	ifequal 3, .L30L40
+	ifequal 4, .L30L40
+	ifequal 5, .L50L60
+	ifequal 6, .L50L60
+	ifequal 7, .L70L80
+	ifequal 8, .L70L80
+	ifequal 9, .L90L100
+	ifequal 10, .L90L100
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo1020Room
 	jump .EnterBattleRoom
 
@@ -77,24 +75,19 @@ BattleTowerHallway_MapScripts:
 	end
 
 BattleTowerHallway_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
-	warp_def 11, 1, 1, BATTLE_TOWER_ELEVATOR
-	warp_def 5, 0, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def 7, 0, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def 9, 0, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def 13, 0, 1, BATTLE_TOWER_BATTLE_ROOM
-	warp_def 15, 0, 1, BATTLE_TOWER_BATTLE_ROOM
+	db 6 ; warp events
+	warp_event 11,  1, BATTLE_TOWER_ELEVATOR, 1
+	warp_event  5,  0, BATTLE_TOWER_BATTLE_ROOM, 1
+	warp_event  7,  0, BATTLE_TOWER_BATTLE_ROOM, 1
+	warp_event  9,  0, BATTLE_TOWER_BATTLE_ROOM, 1
+	warp_event 13,  0, BATTLE_TOWER_BATTLE_ROOM, 1
+	warp_event 15,  0, BATTLE_TOWER_BATTLE_ROOM, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 11, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEvents, -1
+	db 1 ; object events
+	object_event 11,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerHallway_MapEvents, -1

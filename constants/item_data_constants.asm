@@ -10,7 +10,7 @@
 ITEMATTR_STRUCT_LENGTH EQU const_value
 
 ; item types
-const_value set 1
+	const_def 1
 	const ITEM     ; 1
 	const KEY_ITEM ; 2
 	const BALL     ; 3
@@ -18,14 +18,18 @@ const_value set 1
 
 ; item menu types
 ; UseItem.dw indexes (see engine/pack.asm)
+; UseRegisteredItem.SwitchTo indexes (see engine/select_menu.asm)
 ITEMMENU_NOUSE   EQU 0
 ITEMMENU_CURRENT EQU 4
 ITEMMENU_PARTY   EQU 5
 ITEMMENU_CLOSE   EQU 6
 
 ; item actions
-CANT_SELECT EQU 1 << 6
-CANT_TOSS   EQU 1 << 7
+CANT_SELECT_F EQU 6
+CANT_TOSS_F   EQU 7
+
+CANT_SELECT EQU 1 << CANT_SELECT_F
+CANT_TOSS   EQU 1 << CANT_TOSS_F
 
 
 ; pack pockets
@@ -34,7 +38,7 @@ CANT_TOSS   EQU 1 << 7
 	const BALL_POCKET     ; 1
 	const KEY_ITEM_POCKET ; 2
 	const TM_HM_POCKET    ; 3
-NUM_POCKETS EQU const_value +- 1
+NUM_POCKETS EQU const_value
 
 MAX_ITEMS     EQU 20
 MAX_BALLS     EQU 12
@@ -61,7 +65,7 @@ MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
 	const HELD_7
 	const HELD_CLEANSE_TAG
 
-const_value set 10
+	const_def 10
 	const HELD_HEAL_POISON
 	const HELD_HEAL_FREEZE
 	const HELD_HEAL_BURN
@@ -70,7 +74,7 @@ const_value set 10
 	const HELD_HEAL_STATUS
 	const HELD_HEAL_CONFUSION
 
-const_value set 20
+	const_def 20
 	const HELD_PREVENT_POISON
 	const HELD_PREVENT_BURN
 	const HELD_PREVENT_FREEZE
@@ -78,7 +82,7 @@ const_value set 20
 	const HELD_PREVENT_PARALYZE
 	const HELD_PREVENT_CONFUSE
 
-const_value set 30
+	const_def 30
 	const HELD_30
 	const HELD_ATTACK_UP
 	const HELD_DEFENSE_UP
@@ -89,12 +93,12 @@ const_value set 30
 	const HELD_EVASION_UP
 	const HELD_38
 
-const_value set 40
+	const_def 40
 	const HELD_40
 	const HELD_41
 	const HELD_METAL_POWDER
 
-const_value set 50
+	const_def 50
 	const HELD_NORMAL_BOOST
 	const HELD_FIGHTING_BOOST
 	const HELD_FLYING_BOOST
@@ -113,7 +117,7 @@ const_value set 50
 	const HELD_DARK_BOOST
 	const HELD_STEEL_BOOST
 
-const_value set 70
+	const_def 70
 	const HELD_CATCH_CHANCE
 	const HELD_71
 	const HELD_ESCAPE
@@ -170,29 +174,3 @@ const_value set 70
 	const MART_MT_MOON
 	const MART_INDIGO_PLATEAU
 	const MART_UNDERGROUND
-
-
-; PartyMenuQualityPointers indexes (see data/party_menu_qualities.asm)
-	const_def
-	const PARTYMENUACTION_CHOOSE_POKEMON
-	const PARTYMENUACTION_HEALING_ITEM
-	const PARTYMENUACTION_SWITCH
-	const PARTYMENUACTION_TEACH_TMHM
-	const PARTYMENUACTION_MOVE
-	const PARTYMENUACTION_EVO_STONE
-	const PARTYMENUACTION_GIVE_MON
-	const PARTYMENUACTION_GIVE_MON_FEMALE ; unused
-	const PARTYMENUACTION_GIVE_ITEM
-	const PARTYMENUACTION_MOBILE ; mobile
-; PrintPartyMenuActionText arguments (see engine/party_menu.asm)
-const_value set $f0
-	const PARTYMENUTEXT_HEAL_PSN
-	const PARTYMENUTEXT_HEAL_BRN
-	const PARTYMENUTEXT_HEAL_FRZ
-	const PARTYMENUTEXT_HEAL_SLP
-	const PARTYMENUTEXT_HEAL_PAR
-	const PARTYMENUTEXT_HEAL_HP
-	const PARTYMENUTEXT_HEAL_ALL
-	const PARTYMENUTEXT_REVIVE
-	const PARTYMENUTEXT_LEVEL_UP
-	const PARTYMENUTEXT_HEAL_CONFUSION

@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const LAKEOFRAGEMAGIKARPHOUSE_FISHING_GURU
 
 LakeOfRageMagikarpHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 FishingGuruScript_0x19a6ae:
 	faceplayer
@@ -40,14 +38,14 @@ UnknownScript_0x19a6d7:
 
 UnknownScript_0x19a6e0:
 	writebyte MAGIKARP
-	special Special_FindThatSpecies
+	special FindPartyMonThatSpecies
 	iffalse UnknownScript_0x19a6d7
 	writetext UnknownText_0x19a93e
 	waitbutton
-	special Special_CheckMagikarpLength
-	if_equal MAGIKARPLENGTH_NOT_MAGIKARP, UnknownScript_0x19a71c
-	if_equal MAGIKARPLENGTH_REFUSED, UnknownScript_0x19a722
-	if_equal MAGIKARPLENGTH_TOO_SHORT, UnknownScript_0x19a716
+	special CheckMagikarpLength
+	ifequal MAGIKARPLENGTH_NOT_MAGIKARP, UnknownScript_0x19a71c
+	ifequal MAGIKARPLENGTH_REFUSED, UnknownScript_0x19a722
+	ifequal MAGIKARPLENGTH_TOO_SHORT, UnknownScript_0x19a716
 	; MAGIKARPLENGTH_BEAT_RECORD
 	jump UnknownScript_0x19a6fe
 
@@ -207,22 +205,17 @@ UnknownText_0x19aabc:
 	db "@@"
 
 LakeOfRageMagikarpHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 2, LAKE_OF_RAGE
-	warp_def 3, 7, 2, LAKE_OF_RAGE
+	db 2 ; warp events
+	warp_event  2,  7, LAKE_OF_RAGE, 2
+	warp_event  3,  7, LAKE_OF_RAGE, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 0, 1, BGEVENT_READ, MagikarpHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, MagikarpHouseBookshelf
+	db 2 ; bg events
+	bg_event  0,  1, BGEVENT_READ, MagikarpHouseBookshelf
+	bg_event  1,  1, BGEVENT_READ, MagikarpHouseBookshelf
 
-.ObjectEvents:
-	db 1
-	object_event 2, 3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x19a6ae, -1
+	db 1 ; object events
+	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x19a6ae, -1

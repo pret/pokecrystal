@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ELMSHOUSE_ELMS_WIFE
 	const ELMSHOUSE_ELMS_SON
 
 ElmsHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ElmsWife:
 	jumptextfaceplayer ElmsWifeText
@@ -84,24 +82,19 @@ ElmsHousePCText:
 	done
 
 ElmsHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 4, NEW_BARK_TOWN
-	warp_def 3, 7, 4, NEW_BARK_TOWN
+	db 2 ; warp events
+	warp_event  2,  7, NEW_BARK_TOWN, 4
+	warp_event  3,  7, NEW_BARK_TOWN, 4
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
-	bg_event 0, 1, BGEVENT_READ, ElmsHousePC
-	bg_event 6, 1, BGEVENT_READ, ElmsHouseBookshelf
-	bg_event 7, 1, BGEVENT_READ, ElmsHouseBookshelf
+	db 3 ; bg events
+	bg_event  0,  1, BGEVENT_READ, ElmsHousePC
+	bg_event  6,  1, BGEVENT_READ, ElmsHouseBookshelf
+	bg_event  7,  1, BGEVENT_READ, ElmsHouseBookshelf
 
-.ObjectEvents:
-	db 2
-	object_event 1, 5, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ElmsWife, -1
-	object_event 5, 4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElmsSon, -1
+	db 2 ; object events
+	object_event  1,  5, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ElmsWife, -1
+	object_event  5,  4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ElmsSon, -1

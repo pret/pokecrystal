@@ -1,206 +1,201 @@
 engine_flag: MACRO
-	dwb \1, 1 << \2
+; location, bit
+; (all locations are in WRAM bank 1)
+	dwb \1 + (\2 / 8), 1 << (\2 % 8)
 ENDM
 
 EngineFlags: ; 80462
-	; location, bit
-	; (all locations are in WRAM bank 1)
+; entries correspond to ENGINE_* constants
 
 	; pokegear
-	engine_flag wPokegearFlags, 1 ; radio card       ; $0
-	engine_flag wPokegearFlags, 0 ; map card
-	engine_flag wPokegearFlags, 2 ; phone card
-	engine_flag wPokegearFlags, 3 ; expn card
-	engine_flag wPokegearFlags, 7 ; on/off
+	engine_flag wPokegearFlags, POKEGEAR_RADIO_CARD_F ; $0
+	engine_flag wPokegearFlags, POKEGEAR_MAP_CARD_F
+	engine_flag wPokegearFlags, POKEGEAR_PHONE_CARD_F
+	engine_flag wPokegearFlags, POKEGEAR_EXPN_CARD_F
+	engine_flag wPokegearFlags, POKEGEAR_OBTAINED_F
 
-	;   wDayCareMan, 7 ; day-care 1 on
-	engine_flag wDayCareMan, 6 ; egg is ready
-	;   wDayCareMan, 5 ; monster 1 and 2 are compatible
-	engine_flag wDayCareMan, 0 ; monster 1 in day-care
+	; day-care
+	engine_flag wDayCareMan, DAYCAREMAN_HAS_EGG_F
+	engine_flag wDayCareMan, DAYCAREMAN_HAS_MON_F
+	engine_flag wDayCareLady, DAYCARELADY_HAS_MON_F
 
-	;   wDayCareLady, 7 = day-care 2 on
-	engine_flag wDayCareLady, 0 ; monster 2 in day-care
-
-	engine_flag wMomSavingMoney, 0 ; mom saving money ; $8
-	engine_flag wMomSavingMoney, 7 ; dst
+	engine_flag wMomSavingMoney, MOM_SAVING_SOME_MONEY_F ; $8
+	engine_flag wMomSavingMoney, MOM_ACTIVE_F
 
 	engine_flag wUnusedTwoDayTimerOn, 0 ; unused, possibly related to a 2-day timer
 
-	engine_flag wStatusFlags, 0 ; pokedex
-	engine_flag wStatusFlags, 1 ; unown dex
-	engine_flag wStatusFlags, 3 ; pokerus
-	engine_flag wStatusFlags, 4 ; rocket signal on ch20
-	engine_flag wStatusFlags, 6 ; credits skip
-	engine_flag wStatusFlags, 7 ; bug contest on   ; $10
-	engine_flag wStatusFlags2, 2 ; bug contest timer
-	engine_flag wStatusFlags2, 1 ; safari zone?
-	engine_flag wStatusFlags2, 0 ; rockets in radio tower
-	engine_flag wStatusFlags2, 4 ; bike shop call enabled (1024 bike steps reqd)
-	engine_flag wStatusFlags2, 5 ; give pokerus
-	engine_flag wStatusFlags2, 6 ; berry -> berry juice when trading?
-	engine_flag wStatusFlags2, 7 ; rockets in mahogany
+	engine_flag wStatusFlags, STATUSFLAGS_POKEDEX_F
+	engine_flag wStatusFlags, STATUSFLAGS_UNOWN_DEX_F
+	engine_flag wStatusFlags, STATUSFLAGS_CAUGHT_POKERUS_F
+	engine_flag wStatusFlags, STATUSFLAGS_ROCKET_SIGNAL_F
+	engine_flag wStatusFlags, STATUSFLAGS_HALL_OF_FAME_F
+	engine_flag wStatusFlags, STATUSFLAGS_MAIN_MENU_MOBILE_CHOICES_F
 
-	engine_flag wBikeFlags, 0 ; strength active  ; $18
-	engine_flag wBikeFlags, 1 ; always on bike (cant surf)
-	engine_flag wBikeFlags, 2 ; downhill (cycling road)
+	engine_flag wStatusFlags2, STATUSFLAGS2_BUG_CONTEST_TIMER_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_SAFARI_GAME_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_BIKE_SHOP_CALL_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_5_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_REACHED_GOLDENROD_F
+	engine_flag wStatusFlags2, STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F
 
-	engine_flag wJohtoBadges, 0 ; zephyrbadge
-	engine_flag wJohtoBadges, 1 ; hivebadge
-	engine_flag wJohtoBadges, 2 ; plainbadge
-	engine_flag wJohtoBadges, 3 ; fogbadge
-	engine_flag wJohtoBadges, 4 ; mineralbadge
-	engine_flag wJohtoBadges, 5 ; stormbadge ; $20
-	engine_flag wJohtoBadges, 6 ; glacierbadge
-	engine_flag wJohtoBadges, 7 ; risingbadge
+	engine_flag wBikeFlags, BIKEFLAGS_STRENGTH_ACTIVE_F ; $18
+	engine_flag wBikeFlags, BIKEFLAGS_ALWAYS_ON_BIKE_F
+	engine_flag wBikeFlags, BIKEFLAGS_DOWNHILL_F
 
-	engine_flag wKantoBadges, 0 ; boulderbadge
-	engine_flag wKantoBadges, 1 ; cascadebadge
-	engine_flag wKantoBadges, 2 ; thunderbadge
-	engine_flag wKantoBadges, 3 ; rainbowbadge
-	engine_flag wKantoBadges, 4 ; soulbadge
-	engine_flag wKantoBadges, 5 ; marshbadge ; $28
-	engine_flag wKantoBadges, 6 ; volcanobadge
-	engine_flag wKantoBadges, 7 ; earthbadge
+	engine_flag wJohtoBadges, ZEPHYRBADGE
+	engine_flag wJohtoBadges, HIVEBADGE
+	engine_flag wJohtoBadges, PLAINBADGE
+	engine_flag wJohtoBadges, FOGBADGE
+	engine_flag wJohtoBadges, MINERALBADGE
+	engine_flag wJohtoBadges, STORMBADGE ; $20
+	engine_flag wJohtoBadges, GLACIERBADGE
+	engine_flag wJohtoBadges, RISINGBADGE
 
-	; unown sets
-	engine_flag wUnlockedUnowns, 0 ; 1
-	engine_flag wUnlockedUnowns, 1 ; 2
-	engine_flag wUnlockedUnowns, 2 ; 3
-	engine_flag wUnlockedUnowns, 3 ; 4
-	engine_flag wUnlockedUnowns, 4 ; 5
-	engine_flag wUnlockedUnowns, 5 ; 6       ; $30
-	engine_flag wUnlockedUnowns, 6 ; 7
-	engine_flag wUnlockedUnowns, 7 ; 8
+	engine_flag wKantoBadges, BOULDERBADGE
+	engine_flag wKantoBadges, CASCADEBADGE
+	engine_flag wKantoBadges, THUNDERBADGE
+	engine_flag wKantoBadges, RAINBOWBADGE
+	engine_flag wKantoBadges, SOULBADGE
+	engine_flag wKantoBadges, MARSHBADGE ; $28
+	engine_flag wKantoBadges, VOLCANOBADGE
+	engine_flag wKantoBadges, EARTHBADGE
+
+	; unown sets (see data/wild/unlocked_unowns.asm)
+	engine_flag wUnlockedUnowns, 0 ; A-K
+	engine_flag wUnlockedUnowns, 1 ; L-R
+	engine_flag wUnlockedUnowns, 2 ; S-W
+	engine_flag wUnlockedUnowns, 3 ; X-Z
+	engine_flag wUnlockedUnowns, 4 ; unused
+	engine_flag wUnlockedUnowns, 5 ; unused ; $30
+	engine_flag wUnlockedUnowns, 6 ; unused
+	engine_flag wUnlockedUnowns, 7 ; unused
 
 	; fly
-	engine_flag wVisitedSpawns, 0     ; your house
-	engine_flag wVisitedSpawns, 1     ; viridian pokecenter
-	engine_flag wVisitedSpawns, 2     ; pallet
-	engine_flag wVisitedSpawns, 3     ; viridian
-	engine_flag wVisitedSpawns, 4     ; pewter
-	engine_flag wVisitedSpawns, 5     ; cerulean ; $38
-	engine_flag wVisitedSpawns, 6     ; rock tunnel
-	engine_flag wVisitedSpawns, 7     ; vermilion
-	engine_flag wVisitedSpawns + 1, 0 ; lavender
-	engine_flag wVisitedSpawns + 1, 1 ; saffron
-	engine_flag wVisitedSpawns + 1, 2 ; celadon
-	engine_flag wVisitedSpawns + 1, 3 ; fuchsia
-	engine_flag wVisitedSpawns + 1, 4 ; cinnabar
-	engine_flag wVisitedSpawns + 1, 5 ; indigo plateau ; $40
-	engine_flag wVisitedSpawns + 1, 6 ; new bark
-	engine_flag wVisitedSpawns + 1, 7 ; cherrygrove
-	engine_flag wVisitedSpawns + 2, 0 ; violet
-	                                  ; union cave
-	engine_flag wVisitedSpawns + 2, 2 ; azalea
-	engine_flag wVisitedSpawns + 2, 3 ; cianwood
-	engine_flag wVisitedSpawns + 2, 4 ; goldenrod
-	engine_flag wVisitedSpawns + 2, 5 ; olivine
-	engine_flag wVisitedSpawns + 2, 6 ; ecruteak  ; $48
-	engine_flag wVisitedSpawns + 2, 7 ; mahogany
-	engine_flag wVisitedSpawns + 3, 0 ; lake of rage
-	engine_flag wVisitedSpawns + 3, 1 ; blackthorn
-	engine_flag wVisitedSpawns + 3, 2 ; silver cave
-	                                  ; fast ship
-	engine_flag wVisitedSpawns + 3, 4 ; unused
+	engine_flag wVisitedSpawns, SPAWN_HOME
+	engine_flag wVisitedSpawns, SPAWN_DEBUG
+	engine_flag wVisitedSpawns, SPAWN_PALLET
+	engine_flag wVisitedSpawns, SPAWN_VIRIDIAN
+	engine_flag wVisitedSpawns, SPAWN_PEWTER
+	engine_flag wVisitedSpawns, SPAWN_CERULEAN ; $38
+	engine_flag wVisitedSpawns, SPAWN_ROCK_TUNNEL
+	engine_flag wVisitedSpawns, SPAWN_VERMILION
+	engine_flag wVisitedSpawns, SPAWN_LAVENDER
+	engine_flag wVisitedSpawns, SPAWN_SAFFRON
+	engine_flag wVisitedSpawns, SPAWN_CELADON
+	engine_flag wVisitedSpawns, SPAWN_FUCHSIA
+	engine_flag wVisitedSpawns, SPAWN_CINNABAR
+	engine_flag wVisitedSpawns, SPAWN_INDIGO ; $40
+	engine_flag wVisitedSpawns, SPAWN_NEW_BARK
+	engine_flag wVisitedSpawns, SPAWN_CHERRYGROVE
+	engine_flag wVisitedSpawns, SPAWN_VIOLET
+	engine_flag wVisitedSpawns, SPAWN_AZALEA
+	engine_flag wVisitedSpawns, SPAWN_CIANWOOD
+	engine_flag wVisitedSpawns, SPAWN_GOLDENROD
+	engine_flag wVisitedSpawns, SPAWN_OLIVINE
+	engine_flag wVisitedSpawns, SPAWN_ECRUTEAK ; $48
+	engine_flag wVisitedSpawns, SPAWN_MAHOGANY
+	engine_flag wVisitedSpawns, SPAWN_LAKE_OF_RAGE
+	engine_flag wVisitedSpawns, SPAWN_BLACKTHORN
+	engine_flag wVisitedSpawns, SPAWN_MT_SILVER
+	engine_flag wVisitedSpawns, NUM_SPAWNS ; unused
 
-	engine_flag wLuckyNumberShowFlag, 0 ; lucky number show
-	engine_flag wStatusFlags2, 3 ; ????
+	engine_flag wLuckyNumberShowFlag, LUCKYNUMBERSHOW_GAME_OVER_F
 
-	engine_flag wDailyFlags, 0 ; kurt making balls  ; $50
-	engine_flag wDailyFlags, 1 ; ????
-	engine_flag wDailyFlags, 2 ; special wilddata?
-	engine_flag wDailyFlags, 3 ; time capsule (24h wait)
-	engine_flag wDailyFlags, 4 ; all fruit trees
-	engine_flag wDailyFlags, 5 ; shuckle given
-	engine_flag wDailyFlags, 6 ; goldenrod underground merchant closed
-	engine_flag wDailyFlags, 7 ; fought in trainer hall today
+	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_3_F
 
-	engine_flag wWeeklyFlags, 0 ; mt moon square clefairy  ; $58
-	engine_flag wWeeklyFlags, 1 ; union cave lapras
-	engine_flag wWeeklyFlags, 2 ; goldenrod underground haircut used
-	engine_flag wWeeklyFlags, 3 ; goldenrod mall happiness event floor05 object07
-	engine_flag wWeeklyFlags, 4 ; tea in blues house
-	engine_flag wWeeklyFlags, 5 ; indigo plateau rival fight
-	engine_flag wWeeklyFlags, 6 ; move tutor
-	engine_flag wWeeklyFlags, 7 ; buenas password
+	engine_flag wDailyFlags, DAILYFLAGS_KURT_MAKING_BALLS_F ; $50
+	engine_flag wDailyFlags, DAILYFLAGS_BUG_CONTEST_F
+	engine_flag wDailyFlags, DAILYFLAGS_FISH_SWARM_F
+	engine_flag wDailyFlags, DAILYFLAGS_TIME_CAPSULE_F
+	engine_flag wDailyFlags, DAILYFLAGS_ALL_FRUIT_TREES_F
+	engine_flag wDailyFlags, DAILYFLAGS_GOT_SHUCKIE_TODAY_F
+	engine_flag wDailyFlags, DAILYFLAGS_GOLDENROD_UNDERGROUND_BARGAIN_F
+	engine_flag wDailyFlags, DAILYFLAGS_TRAINER_HOUSE_F
 
-	engine_flag wSwarmFlags, 0 ; buenas password 2
-	engine_flag wSwarmFlags, 1 ; goldenrod dept store sale is on
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_MT_MOON_SQUARE_CLEFAIRY_F ; $58
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_UNION_CAVE_LAPRAS_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_GOLDENROD_UNDERGROUND_GOT_HAIRCUT_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_GOLDENROD_DEPT_STORE_TM27_RETURN_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_DAISYS_GROOMING_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_INDIGO_PLATEAU_RIVAL_FIGHT_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_DAILY_MOVE_TUTOR_F
+	engine_flag wWeeklyFlags, WEEKLYFLAGS_BUENAS_PASSWORD_F
 
-	engine_flag wGameTimerPause, 7 ; $62
+	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F ; $60
+	engine_flag wSwarmFlags, SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F
 
-	engine_flag wPlayerGender, 0 ; player is female
+	engine_flag wGameTimerPause, GAMETIMERPAUSE_MOBILE_7_F
 
-	engine_flag wCelebiEvent, 2 ; have gs ball after kurt examined it
+	engine_flag wPlayerGender, PLAYERGENDER_FEMALE_F
+
+	engine_flag wCelebiEvent, CELEBIEVENT_FOREST_IS_RESTLESS_F
 
 	; rematches
-	engine_flag wDailyRematchFlags, 0 ; jack
-	engine_flag wDailyRematchFlags, 1 ; huey
-	engine_flag wDailyRematchFlags, 2 ; gaven
-	engine_flag wDailyRematchFlags, 3 ; beth  ; $68
-	engine_flag wDailyRematchFlags, 4 ; jose
-	engine_flag wDailyRematchFlags, 5 ; reena
-	engine_flag wDailyRematchFlags, 6 ; joey
-	engine_flag wDailyRematchFlags, 7 ; wade
-	engine_flag wDailyRematchFlags + 1, 0 ; ralph
-	engine_flag wDailyRematchFlags + 1, 1 ; liz
-	engine_flag wDailyRematchFlags + 1, 2 ; anthony
-	engine_flag wDailyRematchFlags + 1, 3 ; todd  ; $70
-	engine_flag wDailyRematchFlags + 1, 4 ; gina
-	engine_flag wDailyRematchFlags + 1, 5 ; arnie
-	engine_flag wDailyRematchFlags + 1, 6 ; alan
-	engine_flag wDailyRematchFlags + 1, 7 ; dana
-	engine_flag wDailyRematchFlags + 2, 0 ; chad
-	engine_flag wDailyRematchFlags + 2, 1 ; tully
-	engine_flag wDailyRematchFlags + 2, 2 ; brent
-	engine_flag wDailyRematchFlags + 2, 3 ; tiffany  ; $78
-	engine_flag wDailyRematchFlags + 2, 4 ; vance
-	engine_flag wDailyRematchFlags + 2, 5 ; wilton
-	engine_flag wDailyRematchFlags + 2, 6 ; parry
-	engine_flag wDailyRematchFlags + 2, 7 ; erin
+	engine_flag wDailyRematchFlags,  0 ; jack
+	engine_flag wDailyRematchFlags,  1 ; huey
+	engine_flag wDailyRematchFlags,  2 ; gaven
+	engine_flag wDailyRematchFlags,  3 ; beth ; $68
+	engine_flag wDailyRematchFlags,  4 ; jose
+	engine_flag wDailyRematchFlags,  5 ; reena
+	engine_flag wDailyRematchFlags,  6 ; joey
+	engine_flag wDailyRematchFlags,  7 ; wade
+	engine_flag wDailyRematchFlags,  8 ; ralph
+	engine_flag wDailyRematchFlags,  9 ; liz
+	engine_flag wDailyRematchFlags, 10 ; anthony
+	engine_flag wDailyRematchFlags, 11 ; todd ; $70
+	engine_flag wDailyRematchFlags, 12 ; gina
+	engine_flag wDailyRematchFlags, 13 ; arnie
+	engine_flag wDailyRematchFlags, 14 ; alan
+	engine_flag wDailyRematchFlags, 15 ; dana
+	engine_flag wDailyRematchFlags, 16 ; chad
+	engine_flag wDailyRematchFlags, 17 ; tully
+	engine_flag wDailyRematchFlags, 18 ; brent
+	engine_flag wDailyRematchFlags, 19 ; tiffany ; $78
+	engine_flag wDailyRematchFlags, 20 ; vance
+	engine_flag wDailyRematchFlags, 21 ; wilton
+	engine_flag wDailyRematchFlags, 22 ; parry
+	engine_flag wDailyRematchFlags, 23 ; erin
 
 	engine_flag wDailyPhoneItemFlags, 0 ; beverly has nugget
 	engine_flag wDailyPhoneItemFlags, 1 ; jose has star piece
 	engine_flag wDailyPhoneItemFlags, 2 ; wade has item (see EVENT_WADE_HAS_*** in constants/event_flags.asm)
-	engine_flag wDailyPhoneItemFlags, 3 ; gina has leaf stone  ; $80
+	engine_flag wDailyPhoneItemFlags, 3 ; gina has leaf stone ; $80
 	engine_flag wDailyPhoneItemFlags, 4 ; alan has fire stone
 	engine_flag wDailyPhoneItemFlags, 5 ; liz has thunderstone
 	engine_flag wDailyPhoneItemFlags, 6 ; derek has nugget
 	engine_flag wDailyPhoneItemFlags, 7 ; tully has water stone
+	engine_flag wDailyPhoneItemFlags, 8 ; tiffany has pink bow
+	engine_flag wDailyPhoneItemFlags, 9 ; wilton has item (see EVENT_WILTON_HAS_*** in constants/event_flags.asm)
 
-	engine_flag wDailyPhoneItemFlags + 1, 0 ; tiffany has pink bow
-	engine_flag wDailyPhoneItemFlags + 1, 1 ; wilton has item (see EVENT_WILTON_HAS_*** in constants/event_flags.asm)
+	engine_flag wDailyPhoneTimeOfDayFlags,  0 ; jack
+	engine_flag wDailyPhoneTimeOfDayFlags,  1 ; huey ; $88
+	engine_flag wDailyPhoneTimeOfDayFlags,  2 ; gaven
+	engine_flag wDailyPhoneTimeOfDayFlags,  3 ; beth
+	engine_flag wDailyPhoneTimeOfDayFlags,  4 ; jose
+	engine_flag wDailyPhoneTimeOfDayFlags,  5 ; reena
+	engine_flag wDailyPhoneTimeOfDayFlags,  6 ; joey
+	engine_flag wDailyPhoneTimeOfDayFlags,  7 ; wade
+	engine_flag wDailyPhoneTimeOfDayFlags,  8 ; ralph
+	engine_flag wDailyPhoneTimeOfDayFlags,  9 ; liz ; $90
+	engine_flag wDailyPhoneTimeOfDayFlags, 10 ; anthony
+	engine_flag wDailyPhoneTimeOfDayFlags, 11 ; todd
+	engine_flag wDailyPhoneTimeOfDayFlags, 12 ; gina
+	engine_flag wDailyPhoneTimeOfDayFlags, 13 ; arnie
+	engine_flag wDailyPhoneTimeOfDayFlags, 14 ; alan
+	engine_flag wDailyPhoneTimeOfDayFlags, 15 ; dana
+	engine_flag wDailyPhoneTimeOfDayFlags, 16 ; chad
+	engine_flag wDailyPhoneTimeOfDayFlags, 17 ; tully ; $98
+	engine_flag wDailyPhoneTimeOfDayFlags, 18 ; brent
+	engine_flag wDailyPhoneTimeOfDayFlags, 19 ; tiffany
+	engine_flag wDailyPhoneTimeOfDayFlags, 20 ; vance
+	engine_flag wDailyPhoneTimeOfDayFlags, 21 ; wilton
+	engine_flag wDailyPhoneTimeOfDayFlags, 22 ; parry
+	engine_flag wDailyPhoneTimeOfDayFlags, 23 ; erin
 
-	engine_flag wDailyPhoneTimeOfDayFlags, 0
-	engine_flag wDailyPhoneTimeOfDayFlags, 1  ; $88
-	engine_flag wDailyPhoneTimeOfDayFlags, 2
-	engine_flag wDailyPhoneTimeOfDayFlags, 3
-	engine_flag wDailyPhoneTimeOfDayFlags, 4
-	engine_flag wDailyPhoneTimeOfDayFlags, 5
-	engine_flag wDailyPhoneTimeOfDayFlags, 6
-	engine_flag wDailyPhoneTimeOfDayFlags, 7
+	engine_flag wPlayerSpriteSetupFlags, PLAYERSPRITESETUP_FEMALE_TO_MALE_F
 
-	engine_flag wDailyPhoneTimeOfDayFlags + 1, 0
-	engine_flag wDailyPhoneTimeOfDayFlags + 1, 1  ; $90
-	engine_flag wDailyPhoneTimeOfDayFlags + 1, 2
-	engine_flag wDailyPhoneTimeOfDayFlags + 1, 3
-	engine_flag wDailyPhoneTimeOfDayFlags + 1, 4
-	engine_flag wDailyPhoneTimeOfDayFlags + 1, 5
-	engine_flag wDailyPhoneTimeOfDayFlags + 1, 6
-	engine_flag wDailyPhoneTimeOfDayFlags + 1, 7
-
-	engine_flag wDailyPhoneTimeOfDayFlags + 2, 0
-	engine_flag wDailyPhoneTimeOfDayFlags + 2, 1  ; $98
-	engine_flag wDailyPhoneTimeOfDayFlags + 2, 2
-	engine_flag wDailyPhoneTimeOfDayFlags + 2, 3
-	engine_flag wDailyPhoneTimeOfDayFlags + 2, 4
-	engine_flag wDailyPhoneTimeOfDayFlags + 2, 5
-	engine_flag wDailyPhoneTimeOfDayFlags + 2, 6
-	engine_flag wDailyPhoneTimeOfDayFlags + 2, 7
-
-	engine_flag wPlayerSpriteSetupFlags, 2 ; female player has been transformed into male
-
-	engine_flag wSwarmFlags, 2 ; dunsparce swarm   ; $a0
-	engine_flag wSwarmFlags, 3 ; yanma swarm
+	engine_flag wSwarmFlags, SWARMFLAGS_DUNSPARCE_SWARM_F ; $a0
+	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
 
 ; 80648

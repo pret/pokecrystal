@@ -417,7 +417,7 @@ PlacePartyMonEvoStoneCompatibility: ; 5022f
 	ld l, a
 	ld de, wStringBuffer1
 	ld a, BANK(EvosAttacks)
-	ld bc, $a
+	ld bc, 10
 	call FarCopyBytes
 	ld hl, wStringBuffer1
 .loop2
@@ -839,6 +839,7 @@ PrintPartyMenuActionText: ; 50566
 ; 5057b
 
 .MenuActionTexts: ; 5057b
+; entries correspond to PARTYMENUTEXT_* constants
 	dw .Text_CuredOfPoison
 	dw .Text_BurnWasHealed
 	dw .Text_Defrosted

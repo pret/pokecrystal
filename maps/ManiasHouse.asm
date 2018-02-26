@@ -1,12 +1,10 @@
-const_value set 2
+	const_def 2 ; object constants
 	const MANIASHOUSE_ROCKER
 
 ManiasHouse_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 ManiaScript:
 	faceplayer
@@ -18,7 +16,7 @@ ManiaScript:
 	writetext ManiaText_AskLookAfterShuckle
 	yesorno
 	iffalse .refusetotakeshuckie
-	special Special_GiveShuckle
+	special GiveShuckle
 	iffalse .partyfull
 	writetext ManiaText_TakeCareOfShuckle
 	buttonsound
@@ -31,7 +29,7 @@ ManiaScript:
 	end
 
 .alreadyhaveshuckie
-	checkflag ENGINE_SHUCKLE_GIVEN
+	checkflag ENGINE_GOT_SHUCKIE_TODAY
 	iffalse .returnshuckie
 	writetext ManiaText_TakeCareOfShuckle
 	waitbutton
@@ -54,11 +52,11 @@ ManiaScript:
 	writetext ManiaText_CanIHaveMyMonBack
 	yesorno
 	iffalse .refused
-	special Special_ReturnShuckle
-	if_equal SHUCKIE_WRONG_MON, .wrong
-	if_equal SHUCKIE_REFUSED, .refused
-	if_equal SHUCKIE_HAPPY, .superhappy
-	if_equal SHUCKIE_FAINTED, .default_postevent
+	special ReturnShuckle
+	ifequal SHUCKIE_WRONG_MON, .wrong
+	ifequal SHUCKIE_REFUSED, .refused
+	ifequal SHUCKIE_HAPPY, .superhappy
+	ifequal SHUCKIE_FAINTED, .default_postevent
 	; SHUCKIE_RETURNED
 	writetext ManiaText_ThankYou
 	waitbutton
@@ -200,20 +198,15 @@ ManiaText_ShuckleIsYourLastMon:
 	done
 
 ManiasHouse_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 1, CIANWOOD_CITY
-	warp_def 3, 7, 1, CIANWOOD_CITY
+	db 2 ; warp events
+	warp_event  2,  7, CIANWOOD_CITY, 1
+	warp_event  3,  7, CIANWOOD_CITY, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 2, 4, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ManiaScript, -1
+	db 1 ; object events
+	object_event  2,  4, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ManiaScript, -1

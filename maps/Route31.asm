@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE31_FISHER
 	const ROUTE31_YOUNGSTER
 	const ROUTE31_BUG_CATCHER
@@ -8,11 +8,9 @@ const_value set 2
 	const ROUTE31_POKE_BALL2
 
 Route31_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckMomCall
 
 .CheckMomCall:
@@ -25,11 +23,11 @@ Route31_MapScripts:
 	return
 
 TrainerBugCatcherWade1:
-	trainer EVENT_BEAT_BUG_CATCHER_WADE, BUG_CATCHER, WADE1, BugCatcherWade1SeenText, BugCatcherWade1BeatenText, 0, .Script
+	trainer BUG_CATCHER, WADE1, EVENT_BEAT_BUG_CATCHER_WADE, BugCatcherWade1SeenText, BugCatcherWade1BeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_BUG_CATCHER_WADE
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	checkflag ENGINE_WADE
 	iftrue .WadeRematch
@@ -49,8 +47,8 @@ TrainerBugCatcherWade1:
 	scall .AskAgainSTD
 .Continue:
 	askforphonenumber PHONE_BUG_CATCHER_WADE
-	if_equal PHONE_CONTACTS_FULL, .PhoneFullSTD
-	if_equal PHONE_CONTACT_REFUSED, .DeclinedNumberSTD
+	ifequal PHONE_CONTACTS_FULL, .PhoneFullSTD
+	ifequal PHONE_CONTACT_REFUSED, .DeclinedNumberSTD
 	trainertotext BUG_CATCHER, WADE1, MEM_BUFFER_0
 	scall .RegisterNumberSTD
 	jump .AcceptedNumberSTD
@@ -59,11 +57,11 @@ TrainerBugCatcherWade1:
 	scall .RematchSTD
 	winlosstext BugCatcherWade1BeatenText, 0
 	copybytetovar wWadeFightCount
-	if_equal 4, .Fight4
-	if_equal 3, .Fight3
-	if_equal 2, .Fight2
-	if_equal 1, .Fight1
-	if_equal 0, .LoadFight0
+	ifequal 4, .Fight4
+	ifequal 3, .Fight3
+	ifequal 2, .Fight2
+	ifequal 1, .Fight1
+	ifequal 0, .LoadFight0
 .Fight4:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight4
@@ -198,10 +196,10 @@ Route31MailRecipientScript:
 	writetext Text_Route31SleepyManGotMail
 	buttonsound
 	checkpokeitem ReceivedSpearowMailText
-	if_equal POKEMAIL_WRONG_MAIL, .WrongMail
-	if_equal POKEMAIL_REFUSED, .Refused
-	if_equal POKEMAIL_NO_MAIL, .NoMail
-	if_equal POKEMAIL_LAST_MON, .LastMon
+	ifequal POKEMAIL_WRONG_MAIL, .WrongMail
+	ifequal POKEMAIL_REFUSED, .Refused
+	ifequal POKEMAIL_NO_MAIL, .NoMail
+	ifequal POKEMAIL_LAST_MON, .LastMon
 	; POKEMAIL_CORRECT
 	writetext Text_Route31HandOverMailMon
 	buttonsound
@@ -418,29 +416,24 @@ DarkCaveSignText:
 	done
 
 Route31_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 3
-	warp_def 4, 6, 3, ROUTE_31_VIOLET_GATE
-	warp_def 4, 7, 4, ROUTE_31_VIOLET_GATE
-	warp_def 34, 5, 1, DARK_CAVE_VIOLET_ENTRANCE
+	db 3 ; warp events
+	warp_event  4,  6, ROUTE_31_VIOLET_GATE, 3
+	warp_event  4,  7, ROUTE_31_VIOLET_GATE, 4
+	warp_event 34,  5, DARK_CAVE_VIOLET_ENTRANCE, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 7, 5, BGEVENT_READ, Route31Sign
-	bg_event 31, 5, BGEVENT_READ, DarkCaveSign
+	db 2 ; bg events
+	bg_event  7,  5, BGEVENT_READ, Route31Sign
+	bg_event 31,  5, BGEVENT_READ, DarkCaveSign
 
-.ObjectEvents:
-	db 7
-	object_event 17, 7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
-	object_event 9, 5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31YoungsterScript, -1
+	db 7 ; object events
+	object_event 17,  7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31MailRecipientScript, -1
+	object_event  9,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31YoungsterScript, -1
 	object_event 21, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherWade1, -1
-	object_event 33, 8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
-	object_event 16, 7, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31FruitTree, -1
-	object_event 29, 5, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION
-	object_event 19, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31PokeBall, EVENT_ROUTE_31_POKE_BALL
+	object_event 33,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31CooltrainerMScript, -1
+	object_event 16,  7, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route31FruitTree, -1
+	object_event 29,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31Potion, EVENT_ROUTE_31_POTION
+	object_event 19, 15, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route31PokeBall, EVENT_ROUTE_31_POKE_BALL

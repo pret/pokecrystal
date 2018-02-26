@@ -112,7 +112,7 @@ InitClock: ; 90672 (24:4672)
 	jr .HourIsSet
 
 .MinutesAreSet:
-	call SetTimeOfDay
+	call InitTimeOfDay
 	ld hl, OakText_ResponseToSetTime
 	call PrintText
 	call WaitPressAorB_BlinkCursor
@@ -407,7 +407,7 @@ TimeSetDownArrowGFX: ; 9090b
 INCBIN "gfx/new_game/down_arrow.1bpp"
 ; 90913
 
-Special_SetDayOfWeek: ; 90913
+SetDayOfWeek: ; 90913
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -426,7 +426,7 @@ Special_SetDayOfWeek: ; 90913
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call TextBox
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	ld hl, .WhatDayIsItText
 	call PrintText
 	hlcoord 9, 3
@@ -454,7 +454,7 @@ Special_SetDayOfWeek: ; 90913
 	jr c, .loop
 	ld a, [wTempDayOfWeek]
 	ld [wStringBuffer2], a
-	call SetDayOfWeek
+	call InitDayOfWeek
 	call LoadStandardFont
 	pop af
 	ld [hInMenu], a
@@ -573,7 +573,7 @@ Special_SetDayOfWeek: ; 90913
 	db "@"
 ; 0x90a54
 
-Special_InitialSetDSTFlag: ; 90a54
+InitialSetDSTFlag: ; 90a54
 	ld a, [wDST]
 	set 7, a
 	ld [wDST], a
@@ -604,7 +604,7 @@ Special_InitialSetDSTFlag: ; 90a54
 	db "@"
 ; 0x90a88
 
-Special_InitialClearDSTFlag: ; 90a88
+InitialClearDSTFlag: ; 90a88
 	ld a, [wDST]
 	res 7, a
 	ld [wDST], a

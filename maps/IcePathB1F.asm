@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ICEPATHB1F_BOULDER1
 	const ICEPATHB1F_BOULDER2
 	const ICEPATHB1F_BOULDER3
@@ -6,11 +6,9 @@ const_value set 2
 	const ICEPATHB1F_POKE_BALL
 
 IcePathB1F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_CMDQUEUE, .SetUpStoneTable
 
 .SetUpStoneTable:
@@ -68,7 +66,7 @@ IcePathB1FIron:
 	itemball IRON
 
 IcePathB1FHiddenMaxPotion:
-	hiddenitem EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION, MAX_POTION
+	hiddenitem MAX_POTION, EVENT_ICE_PATH_B1F_HIDDEN_MAX_POTION
 
 IcePathBoulderFellThroughText:
 	text "The boulder fell"
@@ -76,31 +74,26 @@ IcePathBoulderFellThroughText:
 	done
 
 IcePathB1F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 8
-	warp_def 3, 15, 3, ICE_PATH_1F
-	warp_def 17, 3, 1, ICE_PATH_B2F_MAHOGANY_SIDE
-	warp_def 11, 2, 3, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
-	warp_def 4, 7, 4, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
-	warp_def 5, 12, 5, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
-	warp_def 12, 13, 6, ICE_PATH_B2F_MAHOGANY_SIDE ; hole
-	warp_def 5, 25, 4, ICE_PATH_1F
-	warp_def 11, 27, 1, ICE_PATH_B2F_BLACKTHORN_SIDE
+	db 8 ; warp events
+	warp_event  3, 15, ICE_PATH_1F, 3
+	warp_event 17,  3, ICE_PATH_B2F_MAHOGANY_SIDE, 1
+	warp_event 11,  2, ICE_PATH_B2F_MAHOGANY_SIDE, 3 ; hole
+	warp_event  4,  7, ICE_PATH_B2F_MAHOGANY_SIDE, 4 ; hole
+	warp_event  5, 12, ICE_PATH_B2F_MAHOGANY_SIDE, 5 ; hole
+	warp_event 12, 13, ICE_PATH_B2F_MAHOGANY_SIDE, 6 ; hole
+	warp_event  5, 25, ICE_PATH_1F, 4
+	warp_event 11, 27, ICE_PATH_B2F_BLACKTHORN_SIDE, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
+	db 1 ; bg events
 	bg_event 17, 30, BGEVENT_ITEM, IcePathB1FHiddenMaxPotion
 
-.ObjectEvents:
-	db 5
-	object_event 11, 7, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
-	object_event 7, 8, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
-	object_event 8, 9, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
-	object_event 17, 7, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
-	object_event 5, 35, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB1FIron, EVENT_ICE_PATH_B1F_IRON
+	db 5 ; object events
+	object_event 11,  7, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_1
+	object_event  7,  8, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_2
+	object_event  8,  9, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_3
+	object_event 17,  7, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, IcePathB1FBoulder, EVENT_BOULDER_IN_ICE_PATH_4
+	object_event  5, 35, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, IcePathB1FIron, EVENT_ICE_PATH_B1F_IRON

@@ -40,7 +40,7 @@ AI_Basic: ; 38591
 	push hl
 	push de
 	push bc
-	ld hl, .statusonlyeffects
+	ld hl, StatusOnlyEffects
 	ld de, 1
 	call IsInArray
 
@@ -63,13 +63,7 @@ AI_Basic: ; 38591
 	jr .checkmove
 ; 385db
 
-.statusonlyeffects
-	db EFFECT_SLEEP
-	db EFFECT_TOXIC
-	db EFFECT_POISON
-	db EFFECT_PARALYZE
-	db -1 ; end
-; 385e0
+INCLUDE "data/battle/ai/status_only_effects.asm"
 
 
 
@@ -1502,7 +1496,7 @@ AI_Smart_Encore: ; 38c3b
 .asm_38c68
 	push hl
 	ld a, [wLastPlayerCounterMove]
-	ld hl, .EncoreMoves
+	ld hl, EncoreMoves
 	ld de, 1
 	call IsInArray
 	pop hl
@@ -1522,39 +1516,7 @@ AI_Smart_Encore: ; 38c3b
 	inc [hl]
 	ret
 
-.EncoreMoves:
-	db SWORDS_DANCE
-	db WHIRLWIND
-	db LEER
-	db ROAR
-	db DISABLE
-	db MIST
-	db LEECH_SEED
-	db GROWTH
-	db POISONPOWDER
-	db STRING_SHOT
-	db MEDITATE
-	db AGILITY
-	db TELEPORT
-	db SCREECH
-	db HAZE
-	db FOCUS_ENERGY
-	db DREAM_EATER
-	db POISON_GAS
-	db SPLASH
-	db SHARPEN
-	db CONVERSION
-	db SUPER_FANG
-	db SUBSTITUTE
-	db TRIPLE_KICK
-	db SPIDER_WEB
-	db MIND_READER
-	db FLAME_WHEEL
-	db AEROBLAST
-	db COTTON_SPORE
-	db POWDER_SNOW
-	db -1 ; end
-; 38ca4
+INCLUDE "data/battle/ai/encore_moves.asm"
 
 
 AI_Smart_PainSplit: ; 38ca4
@@ -2521,20 +2483,7 @@ AI_Smart_RainDance: ; 390cb
 	jr AI_Smart_WeatherMove
 ; 390e7
 
-RainDanceMoves: ; 390e7
-	db WATER_GUN
-	db HYDRO_PUMP
-	db SURF
-	db BUBBLEBEAM
-	db THUNDER
-	db WATERFALL
-	db CLAMP
-	db BUBBLE
-	db CRABHAMMER
-	db OCTAZOOKA
-	db WHIRLPOOL
-	db -1 ; end
-; 390f3
+INCLUDE "data/battle/ai/rain_dance_moves.asm"
 
 
 AI_Smart_SunnyDay: ; 390f3
@@ -2613,17 +2562,7 @@ AIGoodWeatherType: ; 39122
 ; 39134
 
 
-SunnyDayMoves: ; 39134
-	db FIRE_PUNCH
-	db EMBER
-	db FLAMETHROWER
-	db FIRE_SPIN
-	db FIRE_BLAST
-	db SACRED_FIRE
-	db MORNING_SUN
-	db SYNTHESIS
-	db -1 ; end
-; 3913d
+INCLUDE "data/battle/ai/sunny_day_moves.asm"
 
 
 AI_Smart_BellyDrum: ; 3913d
@@ -3104,29 +3043,7 @@ AIHasMoveInArray: ; 392e6
 ; 39301
 
 
-UsefulMoves: ; 39301
-; Moves that are usable all-around.
-	db DOUBLE_EDGE
-	db SING
-	db FLAMETHROWER
-	db HYDRO_PUMP
-	db SURF
-	db ICE_BEAM
-	db BLIZZARD
-	db HYPER_BEAM
-	db SLEEP_POWDER
-	db THUNDERBOLT
-	db THUNDER
-	db EARTHQUAKE
-	db TOXIC
-	db PSYCHIC_M
-	db HYPNOSIS
-	db RECOVER
-	db FIRE_BLAST
-	db SOFTBOILED
-	db SUPER_FANG
-	db -1 ; end
-; 39315
+INCLUDE "data/battle/ai/useful_moves.asm"
 
 
 AI_Opportunist: ; 39315
@@ -3161,7 +3078,7 @@ AI_Opportunist: ; 39315
 	push hl
 	push de
 	push bc
-	ld hl, .stallmoves
+	ld hl, StallMoves
 	ld de, 1
 	call IsInArray
 
@@ -3176,41 +3093,7 @@ AI_Opportunist: ; 39315
 .asm_39347
 	ret
 
-.stallmoves
-	db SWORDS_DANCE
-	db TAIL_WHIP
-	db LEER
-	db GROWL
-	db DISABLE
-	db MIST
-	db COUNTER
-	db LEECH_SEED
-	db GROWTH
-	db STRING_SHOT
-	db MEDITATE
-	db AGILITY
-	db RAGE
-	db MIMIC
-	db SCREECH
-	db HARDEN
-	db WITHDRAW
-	db DEFENSE_CURL
-	db BARRIER
-	db LIGHT_SCREEN
-	db HAZE
-	db REFLECT
-	db FOCUS_ENERGY
-	db BIDE
-	db AMNESIA
-	db TRANSFORM
-	db SPLASH
-	db ACID_ARMOR
-	db SHARPEN
-	db CONVERSION
-	db SUBSTITUTE
-	db FLAME_WHEEL
-	db -1 ; end
-; 39369
+INCLUDE "data/battle/ai/stall_moves.asm"
 
 
 
@@ -3304,7 +3187,7 @@ AI_Aggressive: ; 39369
 	push de
 	push bc
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	ld hl, .RecklessMoves
+	ld hl, RecklessMoves
 	ld de, 1
 	call IsInArray
 	pop bc
@@ -3319,13 +3202,7 @@ AI_Aggressive: ; 39369
 .done
 	ret
 
-.RecklessMoves:
-	db EFFECT_SELFDESTRUCT
-	db EFFECT_RAMPAGE
-	db EFFECT_MULTI_HIT
-	db EFFECT_DOUBLE_HIT
-	db -1 ; end
-; 393e7
+INCLUDE "data/battle/ai/reckless_moves.asm"
 
 
 AIDamageCalc: ; 393e7
@@ -3333,7 +3210,7 @@ AIDamageCalc: ; 393e7
 	ld [hBattleTurn], a
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	ld de, 1
-	ld hl, .ConstantDamageEffects
+	ld hl, ConstantDamageEffects
 	call IsInArray
 	jr nc, .asm_39400
 	callfar BattleCommand_ConstantDamage
@@ -3345,13 +3222,7 @@ AIDamageCalc: ; 393e7
 	callfar BattleCommand_Stab
 	ret
 
-.ConstantDamageEffects:
-	db EFFECT_SUPER_FANG
-	db EFFECT_STATIC_DAMAGE
-	db EFFECT_LEVEL_DAMAGE
-	db EFFECT_PSYWAVE
-	db -1 ; end
-; 39418
+INCLUDE "data/battle/ai/constant_damage_effects.asm"
 
 
 AI_Cautious: ; 39418
@@ -3377,7 +3248,7 @@ AI_Cautious: ; 39418
 	push hl
 	push de
 	push bc
-	ld hl, .residualmoves
+	ld hl, ResidualMoves
 	ld de, 1
 	call IsInArray
 
@@ -3393,21 +3264,7 @@ AI_Cautious: ; 39418
 	inc [hl]
 	jr .asm_39425
 
-.residualmoves
-	db MIST
-	db LEECH_SEED
-	db POISONPOWDER
-	db STUN_SPORE
-	db THUNDER_WAVE
-	db FOCUS_ENERGY
-	db BIDE
-	db POISON_GAS
-	db TRANSFORM
-	db CONVERSION
-	db SUBSTITUTE
-	db SPIKES
-	db -1 ; end
-; 39453
+INCLUDE "data/battle/ai/residual_moves.asm"
 
 
 
@@ -3504,7 +3361,7 @@ AI_Risky: ; 394a9
 ; Don't use risky moves at max hp.
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	ld de, 1
-	ld hl, .RiskyMoves
+	ld hl, RiskyEffects
 	call IsInArray
 	jr nc, .checkko
 
@@ -3541,11 +3398,7 @@ endr
 	pop de
 	jr .checkmove
 
-.RiskyMoves:
-	db EFFECT_SELFDESTRUCT
-	db EFFECT_OHKO
-	db -1 ; end
-; 39502
+INCLUDE "data/battle/ai/risky_effects.asm"
 
 
 

@@ -22,8 +22,8 @@ Kurt_PrintTextHowMany: ; 8800c
 	db "@"
 ; 0x88018
 
-Special_SelectApricornForKurt: ; 88018
-	call LoadStandardMenuDataHeader
+SelectApricornForKurt: ; 88018
+	call LoadStandardMenuHeader
 	ld c, $1
 	xor a
 	ld [wMenuScrollPosition], a
@@ -59,8 +59,8 @@ Special_SelectApricornForKurt: ; 88018
 Kurt_SelectApricorn: ; 88055
 	farcall FindApricornsInBag
 	jr c, .nope
-	ld hl, .MenuDataHeader
-	call CopyMenuDataHeader
+	ld hl, .MenuHeader
+	call CopyMenuHeader
 	ld a, [wMenuSelection]
 	ld [wMenuCursorBuffer], a
 	xor a
@@ -83,16 +83,16 @@ Kurt_SelectApricorn: ; 88055
 	ret
 ; 88086
 
-.MenuDataHeader: ; 0x88086
+.MenuHeader: ; 0x88086
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 1, 13, 10
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 0x8808e
 
 	db 0 ; XXX
 
-.MenuData2: ; 0x8808f
+.MenuData: ; 0x8808f
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 7
 	db 1
@@ -129,8 +129,8 @@ Kurt_SelectQuantity: ; 880c2
 	ld [wItemQuantityBuffer], a
 	ld a, $1
 	ld [wItemQuantityChangeBuffer], a
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 .loop
 	xor a
 	ld [hBGMapMode], a
@@ -157,7 +157,7 @@ Kurt_SelectQuantity: ; 880c2
 	ret
 ; 8810d
 
-.MenuDataHeader: ; 0x8810d
+.MenuHeader: ; 0x8810d
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 9, SCREEN_WIDTH - 1, 12
 	dw NULL

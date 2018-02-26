@@ -1,9 +1,9 @@
 Script_ForcedMovement:: ; 0x1253d
 	checkcode VAR_FACING
-	if_equal DOWN, .down
-	if_equal UP, .up
-	if_equal LEFT, .left
-	if_equal RIGHT, .right
+	ifequal DOWN, .down
+	ifequal UP, .up
+	ifequal LEFT, .left
+	ifequal RIGHT, .right
 	end
 ; 0x12550
 

@@ -14,201 +14,190 @@ _DoItemEffect:: ; e722
 
 
 ItemEffects: ; e73c
-; entries correspond to item ids (see constants/item_constants.asm)
-	dw MasterBall
-	dw UltraBall
-	dw Brightpowder
-	dw GreatBall
-	dw PokeBall
-	dw TownMap
-	dw Bicycle
-	dw MoonStone
-	dw Antidote
-	dw BurnHeal
-	dw IceHeal
-	dw Awakening
-	dw ParlyzHeal
-	dw FullRestore
-	dw MaxPotion
-	dw HyperPotion
-	dw SuperPotion
-	dw Potion
-	dw EscapeRope
-	dw Repel
-	dw MaxElixer
-	dw FireStone
-	dw Thunderstone
-	dw WaterStone
-	dw Item19
-	dw HPUp
-	dw Protein
-	dw Iron
-	dw Carbos
-	dw LuckyPunch
-	dw Calcium
-	dw RareCandy
-	dw XAccuracy
-	dw LeafStone
-	dw MetalPowder
-	dw Nugget
-	dw PokeDoll
-	dw FullHeal
-	dw Revive
-	dw MaxRevive
-	dw GuardSpec
-	dw SuperRepel
-	dw MaxRepel
-	dw DireHit
-	dw Item2D
-	dw FreshWater
-	dw SodaPop
-	dw Lemonade
-	dw XAttack
-	dw Item32
-	dw XDefend
-	dw XSpeed
-	dw XSpecial
-	dw CoinCase
-	dw Itemfinder
-	dw PokeFlute
-	dw ExpShare
-	dw OldRod
-	dw GoodRod
-	dw SilverLeaf
-	dw SuperRod
-	dw PPUp
-	dw Ether
-	dw MaxEther
-	dw Elixer
-	dw RedScale
-	dw Secretpotion
-	dw SSTicket
-	dw MysteryEgg
-	dw ClearBell
-	dw SilverWing
-	dw MoomooMilk
-	dw QuickClaw
-	dw Psncureberry
-	dw GoldLeaf
-	dw SoftSand
-	dw SharpBeak
-	dw Przcureberry
-	dw BurntBerry
-	dw IceBerry
-	dw PoisonBarb
-	dw KingsRock
-	dw BitterBerry
-	dw MintBerry
-	dw RedApricorn
-	dw Tinymushroom
-	dw BigMushroom
-	dw Silverpowder
-	dw BluApricorn
-	dw Item5A
-	dw AmuletCoin
-	dw YlwApricorn
-	dw GrnApricorn
-	dw CleanseTag
-	dw MysticWater
-	dw Twistedspoon
-	dw WhtApricorn
-	dw Blackbelt
-	dw BlkApricorn
-	dw Item64
-	dw PnkApricorn
-	dw Blackglasses
-	dw Slowpoketail
-	dw PinkBow
-	dw Stick
-	dw SmokeBall
-	dw Nevermeltice
-	dw Magnet
-	dw Miracleberry
-	dw Pearl
-	dw BigPearl
-	dw Everstone
-	dw SpellTag
-	dw Ragecandybar
-	dw GsBall
-	dw BlueCard
-	dw MiracleSeed
-	dw ThickClub
-	dw FocusBand
-	dw Item78
-	dw Energypowder
-	dw EnergyRoot
-	dw HealPowder
-	dw RevivalHerb
-	dw HardStone
-	dw LuckyEgg
-	dw CardKey
-	dw MachinePart
-	dw EggTicket
-	dw LostItem
-	dw Stardust
-	dw StarPiece
-	dw BasementKey
-	dw Pass
-	dw Item87
-	dw Item88
-	dw Item89
-	dw Charcoal
-	dw BerryJuice
-	dw ScopeLens
-	dw Item8D
-	dw Item8E
-	dw MetalCoat
-	dw DragonFang
-	dw Item91
-	dw Leftovers
-	dw Item93
-	dw Item94
-	dw Item95
-	dw Mysteryberry
-	dw DragonScale
-	dw BerserkGene
-	dw Item99
-	dw Item9A
-	dw Item9B
-	dw SacredAsh
-	dw HeavyBall
-	dw FlowerMail
-	dw LevelBall
-	dw LureBall
-	dw FastBall
-	dw ItemA2
-	dw LightBall
-	dw FriendBall
-	dw MoonBall
-	dw LoveBall
-	dw NormalBox
-	dw GorgeousBox
-	dw SunStone
-	dw PolkadotBow
-	dw ItemAB
-	dw UpGrade
-	dw Berry
-	dw GoldBerry
-	dw Squirtbottle
-	dw ItemB0
-	dw ParkBall
-	dw RainbowWing
-	dw ItemB3
+; entries correspond to item ids
+	dw PokeBallEffect      ; MASTER_BALL
+	dw PokeBallEffect      ; ULTRA_BALL
+	dw NoEffect            ; BRIGHTPOWDER
+	dw PokeBallEffect      ; GREAT_BALL
+	dw PokeBallEffect      ; POKE_BALL
+	dw TownMapEffect       ; TOWN_MAP
+	dw BicycleEffect       ; BICYCLE
+	dw EvoStoneEffect      ; MOON_STONE
+	dw StatusHealingEffect ; ANTIDOTE
+	dw StatusHealingEffect ; BURN_HEAL
+	dw StatusHealingEffect ; ICE_HEAL
+	dw StatusHealingEffect ; AWAKENING
+	dw StatusHealingEffect ; PARLYZ_HEAL
+	dw FullRestoreEffect   ; FULL_RESTORE
+	dw RestoreHPEffect     ; MAX_POTION
+	dw RestoreHPEffect     ; HYPER_POTION
+	dw RestoreHPEffect     ; SUPER_POTION
+	dw RestoreHPEffect     ; POTION
+	dw EscapeRopeEffect    ; ESCAPE_ROPE
+	dw RepelEffect         ; REPEL
+	dw RestorePPEffect     ; MAX_ELIXER
+	dw EvoStoneEffect      ; FIRE_STONE
+	dw EvoStoneEffect      ; THUNDERSTONE
+	dw EvoStoneEffect      ; WATER_STONE
+	dw NoEffect            ; ITEM_19
+	dw VitaminEffect       ; HP_UP
+	dw VitaminEffect       ; PROTEIN
+	dw VitaminEffect       ; IRON
+	dw VitaminEffect       ; CARBOS
+	dw NoEffect            ; LUCKY_PUNCH
+	dw VitaminEffect       ; CALCIUM
+	dw RareCandyEffect     ; RARE_CANDY
+	dw XAccuracyEffect     ; X_ACCURACY
+	dw EvoStoneEffect      ; LEAF_STONE
+	dw NoEffect            ; METAL_POWDER
+	dw NoEffect            ; NUGGET
+	dw PokeDollEffect      ; POKE_DOLL
+	dw StatusHealingEffect ; FULL_HEAL
+	dw ReviveEffect        ; REVIVE
+	dw ReviveEffect        ; MAX_REVIVE
+	dw GuardSpecEffect     ; GUARD_SPEC
+	dw SuperRepelEffect    ; SUPER_REPEL
+	dw MaxRepelEffect      ; MAX_REPEL
+	dw DireHitEffect       ; DIRE_HIT
+	dw NoEffect            ; ITEM_2D
+	dw RestoreHPEffect     ; FRESH_WATER
+	dw RestoreHPEffect     ; SODA_POP
+	dw RestoreHPEffect     ; LEMONADE
+	dw XItemEffect         ; X_ATTACK
+	dw NoEffect            ; ITEM_32
+	dw XItemEffect         ; X_DEFEND
+	dw XItemEffect         ; X_SPEED
+	dw XItemEffect         ; X_SPECIAL
+	dw CoinCaseEffect      ; COIN_CASE
+	dw ItemfinderEffect    ; ITEMFINDER
+	dw PokeFluteEffect     ; POKE_FLUTE
+	dw NoEffect            ; EXP_SHARE
+	dw OldRodEffect        ; OLD_ROD
+	dw GoodRodEffect       ; GOOD_ROD
+	dw NoEffect            ; SILVER_LEAF
+	dw SuperRodEffect      ; SUPER_ROD
+	dw RestorePPEffect     ; PP_UP
+	dw RestorePPEffect     ; ETHER
+	dw RestorePPEffect     ; MAX_ETHER
+	dw RestorePPEffect     ; ELIXER
+	dw NoEffect            ; RED_SCALE
+	dw NoEffect            ; SECRETPOTION
+	dw NoEffect            ; S_S_TICKET
+	dw NoEffect            ; MYSTERY_EGG
+	dw NoEffect            ; CLEAR_BELL
+	dw NoEffect            ; SILVER_WING
+	dw RestoreHPEffect     ; MOOMOO_MILK
+	dw NoEffect            ; QUICK_CLAW
+	dw StatusHealingEffect ; PSNCUREBERRY
+	dw NoEffect            ; GOLD_LEAF
+	dw NoEffect            ; SOFT_SAND
+	dw NoEffect            ; SHARP_BEAK
+	dw StatusHealingEffect ; PRZCUREBERRY
+	dw StatusHealingEffect ; BURNT_BERRY
+	dw StatusHealingEffect ; ICE_BERRY
+	dw NoEffect            ; POISON_BARB
+	dw NoEffect            ; KINGS_ROCK
+	dw BitterBerryEffect   ; BITTER_BERRY
+	dw StatusHealingEffect ; MINT_BERRY
+	dw NoEffect            ; RED_APRICORN
+	dw NoEffect            ; TINYMUSHROOM
+	dw NoEffect            ; BIG_MUSHROOM
+	dw NoEffect            ; SILVERPOWDER
+	dw NoEffect            ; BLU_APRICORN
+	dw NoEffect            ; ITEM_5A
+	dw NoEffect            ; AMULET_COIN
+	dw NoEffect            ; YLW_APRICORN
+	dw NoEffect            ; GRN_APRICORN
+	dw NoEffect            ; CLEANSE_TAG
+	dw NoEffect            ; MYSTIC_WATER
+	dw NoEffect            ; TWISTEDSPOON
+	dw NoEffect            ; WHT_APRICORN
+	dw NoEffect            ; BLACKBELT
+	dw NoEffect            ; BLK_APRICORN
+	dw NoEffect            ; ITEM_64
+	dw NoEffect            ; PNK_APRICORN
+	dw NoEffect            ; BLACKGLASSES
+	dw NoEffect            ; SLOWPOKETAIL
+	dw NoEffect            ; PINK_BOW
+	dw NoEffect            ; STICK
+	dw NoEffect            ; SMOKE_BALL
+	dw NoEffect            ; NEVERMELTICE
+	dw NoEffect            ; MAGNET
+	dw StatusHealingEffect ; MIRACLEBERRY
+	dw NoEffect            ; PEARL
+	dw NoEffect            ; BIG_PEARL
+	dw NoEffect            ; EVERSTONE
+	dw NoEffect            ; SPELL_TAG
+	dw RestoreHPEffect     ; RAGECANDYBAR
+	dw NoEffect            ; GS_BALL
+	dw BlueCardEffect      ; BLUE_CARD
+	dw NoEffect            ; MIRACLE_SEED
+	dw NoEffect            ; THICK_CLUB
+	dw NoEffect            ; FOCUS_BAND
+	dw NoEffect            ; ITEM_78
+	dw EnergypowderEffect  ; ENERGYPOWDER
+	dw EnergyRootEffect    ; ENERGY_ROOT
+	dw HealPowderEffect    ; HEAL_POWDER
+	dw RevivalHerbEffect   ; REVIVAL_HERB
+	dw NoEffect            ; HARD_STONE
+	dw NoEffect            ; LUCKY_EGG
+	dw CardKeyEffect       ; CARD_KEY
+	dw NoEffect            ; MACHINE_PART
+	dw NoEffect            ; EGG_TICKET
+	dw NoEffect            ; LOST_ITEM
+	dw NoEffect            ; STARDUST
+	dw NoEffect            ; STAR_PIECE
+	dw BasementKeyEffect   ; BASEMENT_KEY
+	dw NoEffect            ; PASS
+	dw NoEffect            ; ITEM_87
+	dw NoEffect            ; ITEM_88
+	dw NoEffect            ; ITEM_89
+	dw NoEffect            ; CHARCOAL
+	dw RestoreHPEffect     ; BERRY_JUICE
+	dw NoEffect            ; SCOPE_LENS
+	dw NoEffect            ; ITEM_8D
+	dw NoEffect            ; ITEM_8E
+	dw NoEffect            ; METAL_COAT
+	dw NoEffect            ; DRAGON_FANG
+	dw NoEffect            ; ITEM_91
+	dw NoEffect            ; LEFTOVERS
+	dw NoEffect            ; ITEM_93
+	dw NoEffect            ; ITEM_94
+	dw NoEffect            ; ITEM_95
+	dw RestorePPEffect     ; MYSTERYBERRY
+	dw NoEffect            ; DRAGON_SCALE
+	dw NoEffect            ; BERSERK_GENE
+	dw NoEffect            ; ITEM_99
+	dw NoEffect            ; ITEM_9A
+	dw NoEffect            ; ITEM_9B
+	dw SacredAshEffect     ; SACRED_ASH
+	dw PokeBallEffect      ; HEAVY_BALL
+	dw NoEffect            ; FLOWER_MAIL
+	dw PokeBallEffect      ; LEVEL_BALL
+	dw PokeBallEffect      ; LURE_BALL
+	dw PokeBallEffect      ; FAST_BALL
+	dw NoEffect            ; ITEM_A2
+	dw NoEffect            ; LIGHT_BALL
+	dw PokeBallEffect      ; FRIEND_BALL
+	dw PokeBallEffect      ; MOON_BALL
+	dw PokeBallEffect      ; LOVE_BALL
+	dw NormalBoxEffect     ; NORMAL_BOX
+	dw GorgeousBoxEffect   ; GORGEOUS_BOX
+	dw EvoStoneEffect      ; SUN_STONE
+	dw NoEffect            ; POLKADOT_BOW
+	dw NoEffect            ; ITEM_AB
+	dw NoEffect            ; UP_GRADE
+	dw RestoreHPEffect     ; BERRY
+	dw RestoreHPEffect     ; GOLD_BERRY
+	dw SquirtbottleEffect  ; SQUIRTBOTTLE
+	dw NoEffect            ; ITEM_B0
+	dw PokeBallEffect      ; PARK_BALL
+	dw NoEffect            ; RAINBOW_WING
+	dw NoEffect            ; ITEM_B3
 ; e8a2
 
 
-MasterBall:
-UltraBall:
-GreatBall:
-PokeBall:
-HeavyBall:
-LevelBall:
-LureBall:
-FastBall:
-FriendBall:
-MoonBall:
-LoveBall:
-ParkBall: ; e8a2
+PokeBallEffect: ; e8a2
 	ld a, [wBattleMode]
 	dec a
 	jp nz, UseBallInTrainerBattle
@@ -355,33 +344,25 @@ ParkBall: ; e8a2
 	ld a, $ff
 .max_1
 
+	; BUG: farcall overwrites a, and GetItemHeldEffect takes b anyway.
+	; This is probably the reason the HELD_CATCH_CHANCE effect is never used.
+	; Uncomment the line below to fix.
 	ld d, a
 	push de
-
-	; BUG: farcall overwrites a,
-	; and GetItemHeldEffect takes b anyway.
-
-	; This is probably the reason
-	; the HELD_CATCH_CHANCE effect
-	; is never used.
-
-	; Uncomment the line below to fix.
-
 	ld a, [wBattleMonItem]
-;	ld b, a
+	; ld b, a
 	farcall GetItemHeldEffect
 	ld a, b
 	cp HELD_CATCH_CHANCE
-
 	pop de
 	ld a, d
-
-	jr nz, .skip_hp_calc
+	jr nz, .max_2
 	add c
-	jr nc, .skip_hp_calc
+	jr nc, .max_2
 	ld a, $ff
-.skip_hp_calc
+.max_2
 
+.skip_hp_calc
 	ld b, a
 	ld [wBuffer1], a
 	call Random
@@ -913,10 +894,6 @@ MoonBallMultiplier:
 ; This function is buggy.
 ; Intent:  multiply catch rate by 4 if mon evolves with moon stone
 ; Reality: no boost
-
-GLOBAL EvosAttacks
-GLOBAL EvosAttacksPointers
-
 	push bc
 	ld a, [wTempEnemyMonSpecies]
 	dec a
@@ -1170,24 +1147,19 @@ ReturnToBattle_UseBall: ; edfa (3:6dfa)
 	farcall _ReturnToBattle_UseBall
 	ret
 
-TownMap: ; ee01
+TownMapEffect: ; ee01
 	farcall PokegearMap
 	ret
 ; ee08
 
 
-Bicycle: ; ee08
+BicycleEffect: ; ee08
 	farcall BikeFunction
 	ret
 ; ee0f
 
 
-MoonStone:
-FireStone:
-Thunderstone:
-WaterStone:
-LeafStone:
-SunStone: ; ee0f
+EvoStoneEffect: ; ee0f
 	ld b, PARTYMENUACTION_EVO_STONE
 	call UseItem_SelectMon
 
@@ -1220,11 +1192,7 @@ SunStone: ; ee0f
 ; ee3d
 
 
-HPUp:
-Protein:
-Iron:
-Carbos:
-Calcium: ; ee3d
+VitaminEffect: ; ee3d
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 
@@ -1357,7 +1325,7 @@ RareCandy_StatBooster_GetParameters: ; eef5
 ; 0xef14
 
 
-RareCandy: ; ef14
+RareCandyEffect: ; ef14
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 
@@ -1449,7 +1417,7 @@ RareCandy: ; ef14
 ; efad
 
 
-HealPowder: ; efad
+HealPowderEffect: ; efad
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 
@@ -1471,18 +1439,7 @@ HealPowder: ; efad
 ; efcc
 
 
-Antidote:
-BurnHeal:
-IceHeal:
-Awakening:
-ParlyzHeal:
-FullHeal:
-Psncureberry:
-Przcureberry:
-BurntBerry:
-IceBerry:
-MintBerry:
-Miracleberry: ; efcc
+StatusHealingEffect: ; efcc
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 	jp c, StatusHealer_ExitMenu
@@ -1602,7 +1559,7 @@ StatusHealer_Jumptable: ; f09e (3:709e)
 	dw StatusHealer_ExitMenu
 
 
-RevivalHerb: ; f0a9
+RevivalHerbEffect: ; f0a9
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 	jp c, StatusHealer_ExitMenu
@@ -1621,8 +1578,7 @@ RevivalHerb: ; f0a9
 ; f0c8
 
 
-Revive:
-MaxRevive: ; f0c8
+ReviveEffect: ; f0c8
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 	jp c, StatusHealer_ExitMenu
@@ -1680,7 +1636,7 @@ RevivePokemon: ; f0d6
 ; f128
 
 
-FullRestore: ; f128
+FullRestoreEffect: ; f128
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 	jp c, StatusHealer_ExitMenu
@@ -1720,7 +1676,7 @@ FullRestore: ; f128
 ; f16a
 
 
-BitterBerry: ; f16a
+BitterBerryEffect: ; f16a
 	ld hl, wPlayerSubStatus3
 	bit SUBSTATUS_CONFUSED, [hl]
 	ld a, 1
@@ -1741,29 +1697,18 @@ BitterBerry: ; f16a
 ; f186
 
 
-MaxPotion:
-HyperPotion:
-SuperPotion:
-Potion:
-FreshWater:
-SodaPop:
-Lemonade:
-MoomooMilk:
-Ragecandybar:
-BerryJuice:
-Berry:
-GoldBerry: ; f186
+RestoreHPEffect: ; f186
 	call ItemRestoreHP
 	jp StatusHealer_Jumptable
 ; f18c
 
 
-Energypowder: ; f18c
+EnergypowderEffect: ; f18c
 	ld c, HAPPINESS_BITTERPOWDER
 	jr EnergypowderEnergyRootCommon
 ; f190
 
-EnergyRoot: ; f190
+EnergyRootEffect: ; f190
 	ld c, HAPPINESS_ENERGYROOT
 ; f192
 
@@ -2191,7 +2136,7 @@ Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 ; 0xf44f
 
 
-EscapeRope: ; f44f
+EscapeRopeEffect: ; f44f
 	xor a
 	ld [wItemEffectSucceeded], a
 	farcall EscapeRopeFunction
@@ -2203,17 +2148,17 @@ EscapeRope: ; f44f
 ; f462
 
 
-SuperRepel: ; f462
+SuperRepelEffect: ; f462
 	ld b, 200
 	jr UseRepel
 ; f466
 
-MaxRepel: ; f466
+MaxRepelEffect: ; f466
 	ld b, 250
 	jr UseRepel
 ; f466
 
-Repel: ; f46a
+RepelEffect: ; f46a
 	ld b, 100
 ; f46c
 
@@ -2235,7 +2180,7 @@ TextJump_RepelUsedEarlierIsStillInEffect: ; 0xf47d
 ; 0xf482
 
 
-XAccuracy: ; f482
+XAccuracyEffect: ; f482
 	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_X_ACCURACY, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
@@ -2244,7 +2189,7 @@ XAccuracy: ; f482
 ; f48f
 
 
-PokeDoll: ; f48f
+PokeDollEffect: ; f48f
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .asm_f4a6
@@ -2263,7 +2208,7 @@ PokeDoll: ; f48f
 ; f4ab
 
 
-GuardSpec: ; f4ab
+GuardSpecEffect: ; f4ab
 	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_MIST, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
@@ -2272,7 +2217,7 @@ GuardSpec: ; f4ab
 ; f4b8
 
 
-DireHit: ; f4b8
+DireHitEffect: ; f4b8
 	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_FOCUS_ENERGY, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
@@ -2281,10 +2226,7 @@ DireHit: ; f4b8
 ; f4c5
 
 
-XAttack:
-XDefend:
-XSpeed:
-XSpecial: ; f4c5
+XItemEffect: ; f4c5
 	call UseItemText
 
 	ld a, [wCurItem]
@@ -2320,7 +2262,7 @@ XSpecial: ; f4c5
 INCLUDE "data/items/x_stats.asm"
 
 
-PokeFlute: ; f50c
+PokeFluteEffect: ; f50c
 	ld a, [wBattleMode]
 	and a
 	jr nz, .dummy
@@ -2418,7 +2360,7 @@ PokeFlute: ; f50c
 ; f58f
 
 
-BlueCard: ; f58f
+BlueCardEffect: ; f58f
 	ld hl, .bluecardtext
 	jp MenuTextBoxWaitButton
 
@@ -2428,7 +2370,7 @@ BlueCard: ; f58f
 ; f59a
 
 
-CoinCase: ; f59a
+CoinCaseEffect: ; f59a
 	ld hl, .coincasetext
 	jp MenuTextBoxWaitButton
 
@@ -2438,17 +2380,17 @@ CoinCase: ; f59a
 ; f5a5
 
 
-OldRod: ; f5a5
+OldRodEffect: ; f5a5
 	ld e, $0
 	jr UseRod
 ; f5a9
 
-GoodRod: ; f5a9
+GoodRodEffect: ; f5a9
 	ld e, $1
 	jr UseRod
 ; f5ad
 
-SuperRod: ; f5ad
+SuperRodEffect: ; f5ad
 	ld e, $2
 	jr UseRod
 ; f5b1
@@ -2459,18 +2401,13 @@ UseRod: ; f5b1
 ; f5b8
 
 
-Itemfinder: ; f5b8
+ItemfinderEffect: ; f5b8
 	farcall ItemFinder
 	ret
 ; f5bf
 
 
-MaxElixer:
-PPUp:
-Ether:
-MaxEther:
-Elixer:
-Mysteryberry: ; f5bf
+RestorePPEffect: ; f5bf
 	ld a, [wCurItem]
 	ld [wd002], a
 
@@ -2736,25 +2673,25 @@ UnknownText_0xf739: ; 0xf739
 ; 0xf73e
 
 
-Squirtbottle: ; f73e
+SquirtbottleEffect: ; f73e
 	farcall _Squirtbottle
 	ret
 ; f745
 
 
-CardKey: ; f745
+CardKeyEffect: ; f745
 	farcall _CardKey
 	ret
 ; f74c
 
 
-BasementKey: ; f74c
+BasementKeyEffect: ; f74c
 	farcall _BasementKey
 	ret
 ; f753
 
 
-SacredAsh: ; f753
+SacredAshEffect: ; f753
 	farcall _SacredAsh
 	ld a, [wItemEffectSucceeded]
 	cp $1
@@ -2764,12 +2701,12 @@ SacredAsh: ; f753
 ; f763
 
 
-NormalBox: ; f763
+NormalBoxEffect: ; f763
 	ld c, DECOFLAG_SILVER_TROPHY_DOLL
 	jr OpenBox
 ; f767
 
-GorgeousBox: ; f767
+GorgeousBoxEffect: ; f767
 	ld c, DECOFLAG_GOLD_TROPHY_DOLL
 OpenBox: ; f769
 	farcall SetSpecificDecorationFlag
@@ -2786,97 +2723,7 @@ OpenBox: ; f769
 	db "@"
 ; 0xf77d
 
-Brightpowder:
-Item19:
-LuckyPunch:
-MetalPowder:
-Nugget:
-Item2D:
-Item32:
-ExpShare:
-SilverLeaf:
-RedScale:
-Secretpotion:
-SSTicket:
-MysteryEgg:
-ClearBell:
-SilverWing:
-QuickClaw:
-GoldLeaf:
-SoftSand:
-SharpBeak:
-PoisonBarb:
-KingsRock:
-RedApricorn:
-Tinymushroom:
-BigMushroom:
-Silverpowder:
-BluApricorn:
-Item5A:
-AmuletCoin:
-YlwApricorn:
-GrnApricorn:
-CleanseTag:
-MysticWater:
-Twistedspoon:
-WhtApricorn:
-Blackbelt:
-BlkApricorn:
-Item64:
-PnkApricorn:
-Blackglasses:
-Slowpoketail:
-PinkBow:
-Stick:
-SmokeBall:
-Nevermeltice:
-Magnet:
-Pearl:
-BigPearl:
-Everstone:
-SpellTag:
-GsBall:
-MiracleSeed:
-ThickClub:
-FocusBand:
-Item78:
-HardStone:
-LuckyEgg:
-MachinePart:
-EggTicket:
-LostItem:
-Stardust:
-StarPiece:
-Pass:
-Item87:
-Item88:
-Item89:
-Charcoal:
-ScopeLens:
-Item8D:
-Item8E:
-MetalCoat:
-DragonFang:
-Item91:
-Leftovers:
-Item93:
-Item94:
-Item95:
-DragonScale:
-BerserkGene:
-Item99:
-Item9A:
-Item9B:
-FlowerMail:
-ItemA2:
-LightBall:
-PolkadotBow:
-ItemAB:
-UpGrade:
-ItemB0:
-RainbowWing:
-ItemB3:
-TeruSama: ; f77d
+NoEffect: ; f77d
 	jp IsntTheTimeMessage
 ; f780
 

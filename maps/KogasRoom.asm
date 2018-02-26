@@ -1,14 +1,12 @@
-const_value set 2
+	const_def 2 ; object constants
 	const KOGASROOM_KOGA
 
 KogasRoom_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .LockDoor
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .LockDoor ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_TILES, .KogasRoomDoors
 
 .LockDoor:
@@ -37,7 +35,7 @@ KogasRoom_MapScripts:
 	changeblock 4, 14, $2a ; wall
 	reloadmappart
 	closetext
-	setscene 1
+	setscene SCENE_FINISHED
 	setevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
@@ -130,22 +128,17 @@ KogaScript_KogaDefeatText:
 	done
 
 KogasRoom_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 4, 17, 2, WILLS_ROOM
-	warp_def 5, 17, 3, WILLS_ROOM
-	warp_def 4, 2, 1, BRUNOS_ROOM
-	warp_def 5, 2, 2, BRUNOS_ROOM
+	db 4 ; warp events
+	warp_event  4, 17, WILLS_ROOM, 2
+	warp_event  5, 17, WILLS_ROOM, 3
+	warp_event  4,  2, BRUNOS_ROOM, 1
+	warp_event  5,  2, BRUNOS_ROOM, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 5, 7, SPRITE_KOGA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, KogaScript_Battle, -1
+	db 1 ; object events
+	object_event  5,  7, SPRITE_KOGA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, KogaScript_Battle, -1

@@ -202,6 +202,7 @@ AIChooseMove: ; 440ce
 
 
 AIScoringPointers: ; 441af
+; entries correspond to AI_* constants
 	dw AI_Basic
 	dw AI_Setup
 	dw AI_Types

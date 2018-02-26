@@ -1,15 +1,13 @@
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE17_BIKER1
 	const ROUTE17_BIKER2
 	const ROUTE17_BIKER3
 	const ROUTE17_BIKER4
 
 Route17_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .AlwaysOnBike
 
 .AlwaysOnBike:
@@ -18,10 +16,10 @@ Route17_MapScripts:
 	return
 
 TrainerBikerCharles:
-	trainer EVENT_BEAT_BIKER_CHARLES, BIKER, CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, .Script
+	trainer BIKER, CHARLES, EVENT_BEAT_BIKER_CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BikerCharlesAfterBattleText
 	waitbutton
@@ -29,10 +27,10 @@ TrainerBikerCharles:
 	end
 
 TrainerBikerRiley:
-	trainer EVENT_BEAT_BIKER_RILEY, BIKER, RILEY, BikerRileySeenText, BikerRileyBeatenText, 0, .Script
+	trainer BIKER, RILEY, EVENT_BEAT_BIKER_RILEY, BikerRileySeenText, BikerRileyBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BikerRileyAfterBattleText
 	waitbutton
@@ -40,10 +38,10 @@ TrainerBikerRiley:
 	end
 
 TrainerBikerJoel:
-	trainer EVENT_BEAT_BIKER_JOEL, BIKER, JOEL, BikerJoelSeenText, BikerJoelBeatenText, 0, .Script
+	trainer BIKER, JOEL, EVENT_BEAT_BIKER_JOEL, BikerJoelSeenText, BikerJoelBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BikerJoelAfterBattleText
 	waitbutton
@@ -51,10 +49,10 @@ TrainerBikerJoel:
 	end
 
 TrainerBikerGlenn:
-	trainer EVENT_BEAT_BIKER_GLENN, BIKER, GLENN, BikerGlennSeenText, BikerGlennBeatenText, 0, .Script
+	trainer BIKER, GLENN, EVENT_BEAT_BIKER_GLENN, BikerGlennSeenText, BikerGlennBeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext BikerGlennAfterBattleText
 	waitbutton
@@ -62,10 +60,10 @@ TrainerBikerGlenn:
 	end
 
 Route17HiddenMaxEther:
-	hiddenitem EVENT_ROUTE_17_HIDDEN_MAX_ETHER, MAX_ETHER
+	hiddenitem MAX_ETHER, EVENT_ROUTE_17_HIDDEN_MAX_ETHER
 
 Route17HiddenMaxElixer:
-	hiddenitem EVENT_ROUTE_17_HIDDEN_MAX_ELIXER, MAX_ELIXER
+	hiddenitem MAX_ELIXER, EVENT_ROUTE_17_HIDDEN_MAX_ELIXER
 
 BikerRileySeenText:
 	text "Hey, you! You're"
@@ -133,25 +131,20 @@ BikerCharlesAfterBattleText:
 	done
 
 Route17_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 17, 82, 1, ROUTE_17_ROUTE_18_GATE
-	warp_def 17, 83, 2, ROUTE_17_ROUTE_18_GATE
+	db 2 ; warp events
+	warp_event 17, 82, ROUTE_17_ROUTE_18_GATE, 1
+	warp_event 17, 83, ROUTE_17_ROUTE_18_GATE, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 9, 54, BGEVENT_ITEM, Route17HiddenMaxEther
-	bg_event 8, 77, BGEVENT_ITEM, Route17HiddenMaxElixer
+	db 2 ; bg events
+	bg_event  9, 54, BGEVENT_ITEM, Route17HiddenMaxEther
+	bg_event  8, 77, BGEVENT_ITEM, Route17HiddenMaxElixer
 
-.ObjectEvents:
-	db 4
-	object_event 4, 17, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerRiley, -1
-	object_event 9, 68, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerBikerJoel, -1
-	object_event 3, 53, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBikerGlenn, -1
-	object_event 6, 80, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerCharles, -1
+	db 4 ; object events
+	object_event  4, 17, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerRiley, -1
+	object_event  9, 68, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerBikerJoel, -1
+	object_event  3, 53, SPRITE_BIKER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBikerGlenn, -1
+	object_event  6, 80, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 4, TrainerBikerCharles, -1

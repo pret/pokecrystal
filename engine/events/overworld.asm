@@ -277,7 +277,7 @@ CheckOverworldTileArrays: ; c840
 	ret
 
 
-INCLUDE "data/field_move_blocks.asm"
+INCLUDE "data/events/field_move_blocks.asm"
 
 
 OWFlash: ; c8ac
@@ -358,7 +358,7 @@ SurfFunction: ; c909
 	call CheckBadge
 	jr c, .asm_c956
 	ld hl, wBikeFlags
-	bit 1, [hl] ; always on bike
+	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .cannotsurf
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
@@ -421,9 +421,9 @@ UsedSurfScript: ; c986
 
 	special ReplaceKrisSprite
 	special PlayMapMusic
-; step into the water
-	special Special_SurfStartStep ; (slow_step_x, step_end)
-	applymovement PLAYER, wMovementBuffer ; PLAYER, MovementBuffer
+; step into the water (slow_step DIR, step_end)
+	special SurfStartStep
+	applymovement PLAYER, wMovementBuffer
 	end
 
 .empty_fn ; c9a2
@@ -520,7 +520,7 @@ TrySurfOW:: ; c9e7
 	jr c, .quit
 
 	ld hl, wBikeFlags
-	bit 1, [hl] ; always on bike (can't surf)
+	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .quit
 
 	call GetSurfType
@@ -578,7 +578,7 @@ FlyFunction: ; ca3b
 .outdoors
 	xor a
 	ld [hMapAnims], a
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearSprites
 	farcall _FlyMap
 	ld a, e
@@ -623,7 +623,7 @@ FlyFunction: ; ca3b
 	special UpdateTimePals
 	callasm FlyFromAnim
 	farscall Script_AbortBugContest
-	special Special_WarpToSpawnPoint
+	special WarpToSpawnPoint
 	callasm DelayLoadingNewSprites
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_FLY
@@ -871,7 +871,7 @@ dig_incave
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .DigOut
 	farscall Script_AbortBugContest
-	special Special_WarpToSpawnPoint
+	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_DOOR
 	playsound SFX_WARP_FROM
@@ -958,7 +958,7 @@ TeleportFunction: ; cc61
 	playsound SFX_WARP_TO
 	applymovement PLAYER, .TeleportFrom
 	farscall Script_AbortBugContest
-	special Special_WarpToSpawnPoint
+	special WarpToSpawnPoint
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	newloadmap MAPSETUP_TELEPORT
 	playsound SFX_WARP_FROM
@@ -1008,7 +1008,7 @@ StrengthFunction: ; cce5
 
 SetStrengthFlag: ; cd12
 	ld hl, wBikeFlags
-	set 0, [hl]
+	set BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	ld a, [wCurPartyMon]
 	ld e, a
 	ld d, 0
@@ -1044,7 +1044,7 @@ Script_UsedStrength: ; 0xcd2d
 AskStrengthScript:
 	callasm TryStrengthOW
 	iffalse .AskStrength
-	if_equal $1, .DontMeetRequirements
+	ifequal $1, .DontMeetRequirements
 	jump .AlreadyUsedStrength
 
 .DontMeetRequirements: ; 0xcd59
@@ -1086,7 +1086,7 @@ TryStrengthOW: ; cd78
 	jr c, .nope
 
 	ld hl, wBikeFlags
-	bit 0, [hl]
+	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	jr z, .already_using
 
 	ld a, 2
@@ -1413,7 +1413,7 @@ UnknownText_0xcf58: ; 0xcf58
 
 AskRockSmashScript: ; 0xcf5d
 	callasm HasRockSmash
-	if_equal 1, .no
+	ifequal 1, .no
 
 	opentext
 	writetext UnknownText_0xcf77
@@ -1683,7 +1683,7 @@ BikeFunction: ; d0b3
 
 .GetOffBike:
 	ld hl, wBikeFlags
-	bit 1, [hl]
+	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	jr nz, .CantGetOffBike
 	ld hl, Script_GetOffBike
 	ld de, Script_GetOffBike_Register

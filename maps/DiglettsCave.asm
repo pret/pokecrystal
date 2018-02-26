@@ -1,18 +1,16 @@
-const_value set 2
+	const_def 2 ; object constants
 	const DIGLETTSCAVE_POKEFAN_M
 
 DiglettsCave_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 DiglettsCavePokefanMScript:
 	jumptextfaceplayer DiglettsCavePokefanMText
 
 DiglettsCaveHiddenMaxRevive:
-	hiddenitem EVENT_DIGLETTS_CAVE_HIDDEN_MAX_REVIVE, MAX_REVIVE
+	hiddenitem MAX_REVIVE, EVENT_DIGLETTS_CAVE_HIDDEN_MAX_REVIVE
 
 DiglettsCavePokefanMText:
 	text "A bunch of DIGLETT"
@@ -23,25 +21,20 @@ DiglettsCavePokefanMText:
 	done
 
 DiglettsCave_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 6
-	warp_def 3, 33, 10, VERMILION_CITY
-	warp_def 5, 31, 5, DIGLETTS_CAVE
-	warp_def 15, 5, 5, ROUTE_2
-	warp_def 17, 3, 6, DIGLETTS_CAVE
-	warp_def 17, 33, 2, DIGLETTS_CAVE
-	warp_def 3, 3, 4, DIGLETTS_CAVE
+	db 6 ; warp events
+	warp_event  3, 33, VERMILION_CITY, 10
+	warp_event  5, 31, DIGLETTS_CAVE, 5
+	warp_event 15,  5, ROUTE_2, 5
+	warp_event 17,  3, DIGLETTS_CAVE, 6
+	warp_event 17, 33, DIGLETTS_CAVE, 2
+	warp_event  3,  3, DIGLETTS_CAVE, 4
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 1
-	bg_event 6, 11, BGEVENT_ITEM, DiglettsCaveHiddenMaxRevive
+	db 1 ; bg events
+	bg_event  6, 11, BGEVENT_ITEM, DiglettsCaveHiddenMaxRevive
 
-.ObjectEvents:
-	db 1
-	object_event 3, 31, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DiglettsCavePokefanMScript, -1
+	db 1 ; object events
+	object_event  3, 31, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DiglettsCavePokefanMScript, -1

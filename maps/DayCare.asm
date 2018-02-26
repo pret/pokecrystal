@@ -1,13 +1,11 @@
-const_value set 2
+	const_def 2 ; object constants
 	const DAYCARE_GRAMPS
 	const DAYCARE_GRANNY
 
 DayCare_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .EggCheckCallback
 
 .EggCheckCallback:
@@ -31,8 +29,8 @@ DayCareManScript_Inside:
 	buttonsound
 	closetext
 	checkcode VAR_PARTYCOUNT
-	if_equal PARTY_LENGTH, .PartyFull
-	special Special_GiveOddEgg
+	ifequal PARTY_LENGTH, .PartyFull
+	special GiveOddEgg
 	opentext
 	writetext DayCareText_GotOddEgg
 	playsound SFX_KEY_ITEM
@@ -51,7 +49,7 @@ DayCareManScript_Inside:
 	end
 
 .AlreadyHaveOddEgg:
-	special Special_DayCareMan
+	special DayCareMan
 	waitbutton
 	closetext
 	end
@@ -61,7 +59,7 @@ DayCareLadyScript:
 	opentext
 	checkflag ENGINE_DAY_CARE_MAN_HAS_EGG
 	iftrue .HusbandWasLookingForYou
-	special Special_DayCareLady
+	special DayCareLady
 	waitbutton
 	closetext
 	end
@@ -156,25 +154,20 @@ DayCareText_PartyFull:
 	done
 
 DayCare_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 0, 5, 3, ROUTE_34
-	warp_def 0, 6, 4, ROUTE_34
-	warp_def 2, 7, 5, ROUTE_34
-	warp_def 3, 7, 5, ROUTE_34
+	db 4 ; warp events
+	warp_event  0,  5, ROUTE_34, 3
+	warp_event  0,  6, ROUTE_34, 4
+	warp_event  2,  7, ROUTE_34, 5
+	warp_event  3,  7, ROUTE_34, 5
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 0, 1, BGEVENT_READ, DayCareBookshelf
-	bg_event 1, 1, BGEVENT_READ, DayCareBookshelf
+	db 2 ; bg events
+	bg_event  0,  1, BGEVENT_READ, DayCareBookshelf
+	bg_event  1,  1, BGEVENT_READ, DayCareBookshelf
 
-.ObjectEvents:
-	db 2
-	object_event 2, 3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
-	object_event 5, 3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1
+	db 2 ; object events
+	object_event  2,  3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Inside, EVENT_DAY_CARE_MAN_IN_DAY_CARE
+	object_event  5,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, DayCareLadyScript, -1

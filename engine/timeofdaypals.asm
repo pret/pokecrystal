@@ -119,7 +119,7 @@ _UpdateTimePals:: ; 8c070
 	ret
 ; 8c079
 
-Special_FadeInPalettes:: ; 8c079
+FadeInPalettes:: ; 8c079
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
@@ -127,7 +127,7 @@ Special_FadeInPalettes:: ; 8c079
 	ret
 ; 8c084
 
-Special_FadeOutPalettes:: ; 8c084
+FadeOutPalettes:: ; 8c084
 	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
@@ -136,7 +136,7 @@ Special_FadeOutPalettes:: ; 8c084
 	ret
 ; 8c092
 
-Special_BattleTowerFade: ; 8c092
+BattleTowerFade: ; 8c092
 	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
@@ -153,7 +153,7 @@ Special_BattleTowerFade: ; 8c092
 	ret
 ; 8c0ab
 
-Special_FadeInQuickly: ; 8c0ab
+FadeInQuickly: ; 8c0ab
 	ld c, $0
 	call GetTimePalFade
 	ld b, $4
@@ -161,7 +161,7 @@ Special_FadeInQuickly: ; 8c0ab
 	ret
 ; 8c0b6
 
-Special_FadeBlackQuickly: ; 8c0b6
+FadeBlackQuickly: ; 8c0b6
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -216,7 +216,7 @@ ReplaceTimeOfDayPals: ; 8c0e5
 
 .DarkCave:
 	ld a, [wStatusFlags]
-	bit 2, a ; Flash
+	bit STATUSFLAGS_FLASH_F, a
 	jr nz, .UsedFlash
 	ld a, %11111111 ; 3, 3, 3, 3
 	ld [wTimeOfDayPalset], a

@@ -1,3 +1,5 @@
+; See also data/battle/held_heal_status.asm
+
 StatusHealingActions: ; f071
 	;  item,         party menu action text, status
 	db ANTIDOTE,     PARTYMENUTEXT_HEAL_PSN, 1 << PSN

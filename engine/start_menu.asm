@@ -1,3 +1,16 @@
+; StartMenu.Items indexes
+	const_def
+	const STARTMENUITEM_POKEDEX  ; 0
+	const STARTMENUITEM_POKEMON  ; 1
+	const STARTMENUITEM_PACK     ; 2
+	const STARTMENUITEM_STATUS   ; 3
+	const STARTMENUITEM_SAVE     ; 4
+	const STARTMENUITEM_OPTION   ; 5
+	const STARTMENUITEM_EXIT     ; 6
+	const STARTMENUITEM_POKEGEAR ; 7
+	const STARTMENUITEM_QUIT     ; 8
+
+
 StartMenu:: ; 125cd
 
 	call ClearWindowData
@@ -8,13 +21,13 @@ StartMenu:: ; 125cd
 	farcall ReanchorBGMap_NoOAMUpdate
 
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
-	ld hl, .MenuDataHeader
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
+	ld hl, .MenuHeader
 	jr z, .GotMenuData
-	ld hl, .ContestMenuDataHeader
+	ld hl, .ContestMenuHeader
 .GotMenuData:
 
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call .SetUpMenuItems
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
@@ -151,13 +164,13 @@ StartMenu:: ; 125cd
 ; 126d3
 
 
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default selection
 
-.ContestMenuDataHeader:
+.ContestMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 2, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
@@ -171,6 +184,7 @@ StartMenu:: ; 125cd
 	dw .Items
 
 .Items:
+; entries correspond to STARTMENUITEM_* constants
 	dw StartMenu_Pokedex,  .PokedexString,  .PokedexDesc
 	dw StartMenu_Pokemon,  .PartyString,    .PartyDesc
 	dw StartMenu_Pack,     .PackString,     .PackDesc
@@ -181,41 +195,50 @@ StartMenu:: ; 125cd
 	dw StartMenu_Pokegear, .PokegearString, .PokegearDesc
 	dw StartMenu_Quit,     .QuitString,     .QuitDesc
 
-.PokedexString: 	db "#DEX@"
-.PartyString:   	db "#MON@"
-.PackString:    	db "PACK@"
-.StatusString:  	db "<PLAYER>@"
-.SaveString:    	db "SAVE@"
-.OptionString:  	db "OPTION@"
-.ExitString:    	db "EXIT@"
-.PokegearString:	db "<POKE>GEAR@"
-.QuitString:    	db "QUIT@"
+.PokedexString:  db "#DEX@"
+.PartyString:    db "#MON@"
+.PackString:     db "PACK@"
+.StatusString:   db "<PLAYER>@"
+.SaveString:     db "SAVE@"
+.OptionString:   db "OPTION@"
+.ExitString:     db "EXIT@"
+.PokegearString: db "<POKE>GEAR@"
+.QuitString:     db "QUIT@"
 
-.PokedexDesc:  db   "#MON"
+.PokedexDesc:
+	db   "#MON"
 	next "database@"
 
-.PartyDesc:    db   "Party <PKMN>"
+.PartyDesc:
+	db   "Party <PKMN>"
 	next "status@"
 
-.PackDesc:     db   "Contains"
+.PackDesc:
+	db   "Contains"
 	next "items@"
 
-.PokegearDesc: db   "Trainer's"
+.PokegearDesc:
+	db   "Trainer's"
 	next "key device@"
 
-.StatusDesc:   db   "Your own"
+.StatusDesc:
+	db   "Your own"
 	next "status@"
 
-.SaveDesc:     db   "Save your"
+.SaveDesc:
+	db   "Save your"
 	next "progress@"
 
-.OptionDesc:   db   "Change"
+.OptionDesc:
+	db   "Change"
 	next "settings@"
 
-.ExitDesc:     db   "Close this"
+.ExitDesc:
+	db   "Close this"
 	next "menu@"
 
-.QuitDesc:     db   "Quit and"
+.QuitDesc:
+	db   "Quit and"
 	next "be judged.@"
 
 
@@ -266,7 +289,7 @@ endr
 .GetMenuAccountTextPointer: ; 12819
 	ld e, a
 	ld d, 0
-	ld hl, wMenuData2PointerTableAddr
+	ld hl, wMenuDataPointerTableAddr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -283,16 +306,16 @@ endr
 	call .FillMenuList
 
 	ld hl, wStatusFlags
-	bit 0, [hl]
+	bit STATUSFLAGS_POKEDEX_F, [hl]
 	jr z, .no_pokedex
-	ld a, 0 ; pokedex
+	ld a, STARTMENUITEM_POKEDEX
 	call .AppendMenuList
 .no_pokedex
 
 	ld a, [wPartyCount]
 	and a
 	jr z, .no_pokemon
-	ld a, 1 ; pokemon
+	ld a, STARTMENUITEM_POKEMON
 	call .AppendMenuList
 .no_pokemon
 
@@ -300,37 +323,37 @@ endr
 	and a
 	jr nz, .no_pack
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	jr nz, .no_pack
-	ld a, 2 ; pack
+	ld a, STARTMENUITEM_PACK
 	call .AppendMenuList
 .no_pack
 
 	ld hl, wPokegearFlags
-	bit 7, [hl]
+	bit POKEGEAR_OBTAINED_F, [hl]
 	jr z, .no_pokegear
-	ld a, 7 ; pokegear
+	ld a, STARTMENUITEM_POKEGEAR
 	call .AppendMenuList
 .no_pokegear
 
-	ld a, 3 ; status
+	ld a, STARTMENUITEM_STATUS
 	call .AppendMenuList
 
 	ld a, [wLinkMode]
 	and a
 	jr nz, .no_save
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
-	ld a, 8 ; quit
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
+	ld a, STARTMENUITEM_QUIT
 	jr nz, .write
-	ld a, 4 ; save
+	ld a, STARTMENUITEM_SAVE
 .write
 	call .AppendMenuList
 .no_save
 
-	ld a, 5 ; option
+	ld a, STARTMENUITEM_OPTION
 	call .AppendMenuList
-	ld a, 6 ; exit
+	ld a, STARTMENUITEM_EXIT
 	call .AppendMenuList
 	ld a, c
 	ld [wMenuItemsList], a
@@ -383,13 +406,13 @@ endr
 
 .IsMenuAccountOn: ; 128cb
 	ld a, [wOptions2]
-	and 1
+	and 1 << MENU_ACCOUNT
 	ret
 ; 128d1
 
 .DrawBugContestStatusBox: ; 128d1
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	ret z
 	farcall StartMenu_DrawBugContestStatusBox
 	ret
@@ -397,7 +420,7 @@ endr
 
 .DrawBugContestStatus: ; 128de
 	ld hl, wStatusFlags2
-	bit 2, [hl] ; bug catching contest
+	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	jr nz, .contest
 	ret
 .contest
@@ -706,26 +729,26 @@ PokemonActionSubmenu: ; 12a88
 	ret
 
 .Actions:
-	dbw MONMENU_CUT,        MonMenu_Cut ; Cut
-	dbw MONMENU_FLY,        MonMenu_Fly ; Fly
-	dbw MONMENU_SURF,       MonMenu_Surf ; Surf
-	dbw MONMENU_STRENGTH,   MonMenu_Strength ; Strength
-	dbw MONMENU_FLASH,      MonMenu_Flash ; Flash
-	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool ; Whirlpool
-	dbw MONMENU_DIG,        MonMenu_Dig ; Dig
-	dbw MONMENU_TELEPORT,   MonMenu_Teleport ; Teleport
-	dbw MONMENU_SOFTBOILED, MonMenu_Softboiled_MilkDrink ; Softboiled
-	dbw MONMENU_MILKDRINK,  MonMenu_Softboiled_MilkDrink ; MilkDrink
-	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt ; Headbutt
-	dbw MONMENU_WATERFALL,  MonMenu_Waterfall ; Waterfall
-	dbw MONMENU_ROCKSMASH,  MonMenu_RockSmash ; RockSmash
-	dbw MONMENU_SWEETSCENT, MonMenu_SweetScent ; SweetScent
-	dbw MONMENU_STATS,      OpenPartyStats
-	dbw MONMENU_SWITCH,     SwitchPartyMons
-	dbw MONMENU_ITEM,       GiveTakePartyMonItem
-	dbw MONMENU_CANCEL,     CancelPokemonAction
-	dbw MONMENU_MOVE,       ManagePokemonMoves ; move
-	dbw MONMENU_MAIL,       MonMailAction ; mail
+	dbw MONMENUITEM_CUT,        MonMenu_Cut
+	dbw MONMENUITEM_FLY,        MonMenu_Fly
+	dbw MONMENUITEM_SURF,       MonMenu_Surf
+	dbw MONMENUITEM_STRENGTH,   MonMenu_Strength
+	dbw MONMENUITEM_FLASH,      MonMenu_Flash
+	dbw MONMENUITEM_WHIRLPOOL,  MonMenu_Whirlpool
+	dbw MONMENUITEM_DIG,        MonMenu_Dig
+	dbw MONMENUITEM_TELEPORT,   MonMenu_Teleport
+	dbw MONMENUITEM_SOFTBOILED, MonMenu_Softboiled_MilkDrink
+	dbw MONMENUITEM_MILKDRINK,  MonMenu_Softboiled_MilkDrink
+	dbw MONMENUITEM_HEADBUTT,   MonMenu_Headbutt
+	dbw MONMENUITEM_WATERFALL,  MonMenu_Waterfall
+	dbw MONMENUITEM_ROCKSMASH,  MonMenu_RockSmash
+	dbw MONMENUITEM_SWEETSCENT, MonMenu_SweetScent
+	dbw MONMENUITEM_STATS,      OpenPartyStats
+	dbw MONMENUITEM_SWITCH,     SwitchPartyMons
+	dbw MONMENUITEM_ITEM,       GiveTakePartyMonItem
+	dbw MONMENUITEM_CANCEL,     CancelPokemonAction
+	dbw MONMENUITEM_MOVE,       ManagePokemonMoves
+	dbw MONMENUITEM_MAIL,       MonMailAction
 ; 12aec
 
 
@@ -749,7 +772,7 @@ SwitchPartyMons: ; 12aec
 	farcall PrintPartyMenuText
 
 	hlcoord 0, 1
-	ld bc, 20 * 2
+	ld bc, SCREEN_WIDTH * 2
 	ld a, [wSwitchMon]
 	dec a
 	call AddNTimes
@@ -790,7 +813,7 @@ GiveTakePartyMonItem: ; 12b60
 	jr z, .cancel
 
 	ld hl, GiveTakeItemMenuData
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	call ExitMenu
 	jr c, .cancel
@@ -804,7 +827,7 @@ GiveTakePartyMonItem: ; 12b60
 	cp 1
 	jr nz, .take
 
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearPalettes
 	call .GiveItem
 	call ClearPalettes
@@ -1038,7 +1061,7 @@ GetPartyItemLocation: ; 12cd7
 
 
 ReceiveItemFromPokemon: ; 12cdf
-	ld a, $1
+	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, wNumItems
 	jp ReceiveItem
@@ -1046,7 +1069,7 @@ ReceiveItemFromPokemon: ; 12cdf
 
 
 GiveItemToPokemon: ; 12cea (4:6cea)
-	ld a, $1
+	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, wNumItems
 	jp TossItem
@@ -1098,8 +1121,8 @@ MonMailAction: ; 12d45
 	jr z, .read
 
 ; Show the READ/TAKE/QUIT menu.
-	ld hl, .MenuDataHeader
-	call LoadMenuDataHeader
+	ld hl, .MenuHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	call ExitMenu
 
@@ -1161,14 +1184,14 @@ MonMailAction: ; 12d45
 ; 12dc9
 
 
-.MenuDataHeader:
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-	dw .MenuData2
+	dw .MenuData
 	db 1 ; default option
 ; 0x12dd1
 
-.MenuData2:
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "READ@"
@@ -1215,7 +1238,7 @@ MonMailAction: ; 12d45
 
 
 OpenPartyStats: ; 12e00
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call ClearSprites
 ; PartyMon
 	xor a

@@ -12,7 +12,7 @@ GetBattleVarAddr:: ; 39e7
 
 	push bc
 
-	ld hl, .BattleVarPairs
+	ld hl, BattleVarPairs
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -26,16 +26,16 @@ GetBattleVarAddr:: ; 39e7
 ; This lets battle variable calls be side-neutral.
 	ld a, [hBattleTurn]
 	and a
-	jr z, .get_var
+	jr z, .getvar
 	inc hl
 
-.get_var
+.getvar
 ; var id
 	ld a, [hl]
 	ld c, a
 	ld b, 0
 
-	ld hl, .BattleVarPointers
+	ld hl, BattleVarLocations
 	add hl, bc
 	add hl, bc
 
@@ -48,7 +48,8 @@ GetBattleVarAddr:: ; 39e7
 	pop bc
 	ret
 
-.BattleVarPairs:
+BattleVarPairs:
+; entries correspond to BATTLE_VARS_* constants
 	dw .Substatus1
 	dw .Substatus2
 	dw .Substatus3
@@ -71,41 +72,42 @@ GetBattleVarAddr:: ; 39e7
 	dw .LastMove
 	dw .LastMoveOpp
 
-;                       player                     enemy
-.Substatus1:      db PLAYER_SUBSTATUS_1,     ENEMY_SUBSTATUS_1
-.Substatus1Opp:   db ENEMY_SUBSTATUS_1,      PLAYER_SUBSTATUS_1
-.Substatus2:      db PLAYER_SUBSTATUS_2,     ENEMY_SUBSTATUS_2
-.Substatus2Opp:   db ENEMY_SUBSTATUS_2,      PLAYER_SUBSTATUS_2
-.Substatus3:      db PLAYER_SUBSTATUS_3,     ENEMY_SUBSTATUS_3
-.Substatus3Opp:   db ENEMY_SUBSTATUS_3,      PLAYER_SUBSTATUS_3
-.Substatus4:      db PLAYER_SUBSTATUS_4,     ENEMY_SUBSTATUS_4
-.Substatus4Opp:   db ENEMY_SUBSTATUS_4,      PLAYER_SUBSTATUS_4
-.Substatus5:      db PLAYER_SUBSTATUS_5,     ENEMY_SUBSTATUS_5
-.Substatus5Opp:   db ENEMY_SUBSTATUS_5,      PLAYER_SUBSTATUS_5
-.Status:          db PLAYER_STATUS,          ENEMY_STATUS
-.StatusOpp:       db ENEMY_STATUS,           PLAYER_STATUS
-.MoveAnim:        db PLAYER_MOVE_ANIMATION,  ENEMY_MOVE_ANIMATION
-.MoveEffect:      db PLAYER_MOVE_EFFECT,     ENEMY_MOVE_EFFECT
-.MovePower:       db PLAYER_MOVE_POWER,      ENEMY_MOVE_POWER
-.MoveType:        db PLAYER_MOVE_TYPE,       ENEMY_MOVE_TYPE
-.CurMove:         db PLAYER_CUR_MOVE,        ENEMY_CUR_MOVE
-.LastCounter:     db PLAYER_COUNTER_MOVE,    ENEMY_COUNTER_MOVE
-.LastCounterOpp:  db ENEMY_COUNTER_MOVE,     PLAYER_COUNTER_MOVE
-.LastMove:        db PLAYER_LAST_MOVE,       ENEMY_LAST_MOVE
-.LastMoveOpp:     db ENEMY_LAST_MOVE,        PLAYER_LAST_MOVE
+;                   player                 enemy
+.Substatus1:     db PLAYER_SUBSTATUS_1,    ENEMY_SUBSTATUS_1
+.Substatus1Opp:  db ENEMY_SUBSTATUS_1,     PLAYER_SUBSTATUS_1
+.Substatus2:     db PLAYER_SUBSTATUS_2,    ENEMY_SUBSTATUS_2
+.Substatus2Opp:  db ENEMY_SUBSTATUS_2,     PLAYER_SUBSTATUS_2
+.Substatus3:     db PLAYER_SUBSTATUS_3,    ENEMY_SUBSTATUS_3
+.Substatus3Opp:  db ENEMY_SUBSTATUS_3,     PLAYER_SUBSTATUS_3
+.Substatus4:     db PLAYER_SUBSTATUS_4,    ENEMY_SUBSTATUS_4
+.Substatus4Opp:  db ENEMY_SUBSTATUS_4,     PLAYER_SUBSTATUS_4
+.Substatus5:     db PLAYER_SUBSTATUS_5,    ENEMY_SUBSTATUS_5
+.Substatus5Opp:  db ENEMY_SUBSTATUS_5,     PLAYER_SUBSTATUS_5
+.Status:         db PLAYER_STATUS,         ENEMY_STATUS
+.StatusOpp:      db ENEMY_STATUS,          PLAYER_STATUS
+.MoveAnim:       db PLAYER_MOVE_ANIMATION, ENEMY_MOVE_ANIMATION
+.MoveEffect:     db PLAYER_MOVE_EFFECT,    ENEMY_MOVE_EFFECT
+.MovePower:      db PLAYER_MOVE_POWER,     ENEMY_MOVE_POWER
+.MoveType:       db PLAYER_MOVE_TYPE,      ENEMY_MOVE_TYPE
+.CurMove:        db PLAYER_CUR_MOVE,       ENEMY_CUR_MOVE
+.LastCounter:    db PLAYER_COUNTER_MOVE,   ENEMY_COUNTER_MOVE
+.LastCounterOpp: db ENEMY_COUNTER_MOVE,    PLAYER_COUNTER_MOVE
+.LastMove:       db PLAYER_LAST_MOVE,      ENEMY_LAST_MOVE
+.LastMoveOpp:    db ENEMY_LAST_MOVE,       PLAYER_LAST_MOVE
 
-.BattleVarPointers:
-	dw wPlayerSubStatus1,           wEnemySubStatus1
-	dw wPlayerSubStatus2,           wEnemySubStatus2
-	dw wPlayerSubStatus3,           wEnemySubStatus3
-	dw wPlayerSubStatus4,           wEnemySubStatus4
-	dw wPlayerSubStatus5,           wEnemySubStatus5
-	dw wBattleMonStatus,            wEnemyMonStatus
-	dw wPlayerMoveStructAnimation,  wEnemyMoveStructAnimation
-	dw wPlayerMoveStructEffect,     wEnemyMoveStructEffect
-	dw wPlayerMoveStructPower,      wEnemyMoveStructPower
-	dw wPlayerMoveStructType,       wEnemyMoveStructType
-	dw wCurPlayerMove,              wCurEnemyMove
-	dw wLastPlayerCounterMove,      wLastEnemyCounterMove
-	dw wLastPlayerMove,             wLastEnemyMove
+BattleVarLocations:
+; entries correspond to PLAYER_* and ENEMY_* constants
+	dw wPlayerSubStatus1,          wEnemySubStatus1
+	dw wPlayerSubStatus2,          wEnemySubStatus2
+	dw wPlayerSubStatus3,          wEnemySubStatus3
+	dw wPlayerSubStatus4,          wEnemySubStatus4
+	dw wPlayerSubStatus5,          wEnemySubStatus5
+	dw wBattleMonStatus,           wEnemyMonStatus
+	dw wPlayerMoveStructAnimation, wEnemyMoveStructAnimation
+	dw wPlayerMoveStructEffect,    wEnemyMoveStructEffect
+	dw wPlayerMoveStructPower,     wEnemyMoveStructPower
+	dw wPlayerMoveStructType,      wEnemyMoveStructType
+	dw wCurPlayerMove,             wCurEnemyMove
+	dw wLastPlayerCounterMove,     wLastEnemyCounterMove
+	dw wLastPlayerMove,            wLastEnemyMove
 ; 3a90

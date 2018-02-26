@@ -1,19 +1,16 @@
-const_value set 2
+	const_def 2 ; object constants
 	const BATTLETOWERELEVATOR_RECEPTIONIST
 
 BattleTowerElevator_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .Scene0
-	scene_script .Scene1
+	db 2 ; scene scripts
+	scene_script .Scene0 ; SCENE_DEFAULT
+	scene_script .Scene1 ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .Scene0:
 	priorityjump .RideElevator
-	setscene 1
-
+	setscene SCENE_FINISHED
 .Scene1:
 	end
 
@@ -22,7 +19,7 @@ BattleTowerElevator_MapScripts:
 	applymovement BATTLETOWERELEVATOR_RECEPTIONIST, MovementData_BattleTowerElevatorReceptionistWalksIn
 	applymovement PLAYER, MovementData_BattleTowerElevatorPlayerWalksIn
 	writebyte BATTLETOWERACTION_0A
-	special Special_BattleTowerAction
+	special BattleTowerAction
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitsfx
@@ -45,20 +42,15 @@ MovementData_BattleTowerElevatorPlayerWalksIn:
 	step_end
 
 BattleTowerElevator_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 1, 3, 1, BATTLE_TOWER_HALLWAY
-	warp_def 2, 3, 1, BATTLE_TOWER_HALLWAY
+	db 2 ; warp events
+	warp_event  1,  3, BATTLE_TOWER_HALLWAY, 1
+	warp_event  2,  3, BATTLE_TOWER_HALLWAY, 1
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 1
-	object_event 1, 2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MovementData_BattleTowerElevatorReceptionistWalksIn, -1
+	db 1 ; object events
+	object_event  1,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MovementData_BattleTowerElevatorReceptionistWalksIn, -1

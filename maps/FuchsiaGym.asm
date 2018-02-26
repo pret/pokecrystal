@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const FUCHSIAGYM_JANINE
 	const FUCHSIAGYM_FUCHSIA_GYM_1
 	const FUCHSIAGYM_FUCHSIA_GYM_2
@@ -7,11 +7,9 @@ const_value set 2
 	const FUCHSIAGYM_GYM_GUY
 
 FuchsiaGym_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 FuchsiaGymJanineScript:
 	checkflag ENGINE_SOULBADGE
@@ -35,7 +33,7 @@ FuchsiaGymJanineScript:
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 	opentext
 	writetext Text_ReceivedSoulBadge
 	playsound SFX_GET_BADGE
@@ -65,7 +63,7 @@ LassAliceScript:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 .AliceUnmasked:
 	faceplayer
 	opentext
@@ -99,7 +97,7 @@ LassLindaScript:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 .LindaUnmasked:
 	faceplayer
 	opentext
@@ -133,7 +131,7 @@ PicnickerCindyScript:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_LASS
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 .CindyUnmasked:
 	faceplayer
 	opentext
@@ -167,7 +165,7 @@ CamperBarryScript:
 	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, Movement_NinjaSpin
 	faceplayer
 	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_YOUNGSTER
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 .BarryUnmasked:
 	faceplayer
 	opentext
@@ -381,27 +379,22 @@ FuchsiaGymGuyWinText:
 	done
 
 FuchsiaGym_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 4, 17, 3, FUCHSIA_CITY
-	warp_def 5, 17, 3, FUCHSIA_CITY
+	db 2 ; warp events
+	warp_event  4, 17, FUCHSIA_CITY, 3
+	warp_event  5, 17, FUCHSIA_CITY, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 3, 15, BGEVENT_READ, FuchsiaGymStatue
-	bg_event 6, 15, BGEVENT_READ, FuchsiaGymStatue
+	db 2 ; bg events
+	bg_event  3, 15, BGEVENT_READ, FuchsiaGymStatue
+	bg_event  6, 15, BGEVENT_READ, FuchsiaGymStatue
 
-.ObjectEvents:
-	db 6
-	object_event 1, 10, SPRITE_JANINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
-	object_event 5, 7, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassAliceScript, -1
-	object_event 5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
-	object_event 9, 4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
-	object_event 4, 2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
-	object_event 7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuyScript, -1
+	db 6 ; object events
+	object_event  1, 10, SPRITE_JANINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
+	object_event  5,  7, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassAliceScript, -1
+	object_event  5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
+	object_event  9,  4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
+	object_event  4,  2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
+	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuyScript, -1

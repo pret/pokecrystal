@@ -1,4 +1,4 @@
-UnownPrinter: ; 16be4
+_UnownPrinter: ; 16be4
 	ld a, [wUnownDex]
 	and a
 	ret z

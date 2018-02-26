@@ -1,26 +1,24 @@
-const_value set 2
+	const_def 2 ; object constants
 	const GOLDENRODHAPPINESSRATER_TEACHER
 	const GOLDENRODHAPPINESSRATER_POKEFAN_M
 	const GOLDENRODHAPPINESSRATER_TWIN
 
 GoldenrodHappinessRater_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 TeacherScript_0x54953:
 	faceplayer
 	opentext
-	special Special_GetFirstPokemonHappiness
+	special GetFirstPokemonHappiness
 	writetext UnknownText_0x549a3
 	buttonsound
-	if_greater_than 250 - 1, UnknownScript_0x54973
-	if_greater_than 200 - 1, UnknownScript_0x54979
-	if_greater_than 150 - 1, UnknownScript_0x5497f
-	if_greater_than 100 - 1, UnknownScript_0x54985
-	if_greater_than  50 - 1, UnknownScript_0x5498b
+	ifgreater 250 - 1, UnknownScript_0x54973
+	ifgreater 200 - 1, UnknownScript_0x54979
+	ifgreater 150 - 1, UnknownScript_0x5497f
+	ifgreater 100 - 1, UnknownScript_0x54985
+	ifgreater  50 - 1, UnknownScript_0x5498b
 	jump UnknownScript_0x54991
 
 UnknownScript_0x54973:
@@ -137,25 +135,20 @@ GoldenrodHappinessRaterTwinText:
 	done
 
 GoldenrodHappinessRater_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 3, GOLDENROD_CITY
-	warp_def 3, 7, 3, GOLDENROD_CITY
+	db 2 ; warp events
+	warp_event  2,  7, GOLDENROD_CITY, 3
+	warp_event  3,  7, GOLDENROD_CITY, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 3
-	bg_event 0, 1, BGEVENT_READ, HappinessRatersHouseBookshelf
-	bg_event 1, 1, BGEVENT_READ, HappinessRatersHouseBookshelf
-	bg_event 7, 1, BGEVENT_READ, HappinessRatersHouseRadio
+	db 3 ; bg events
+	bg_event  0,  1, BGEVENT_READ, HappinessRatersHouseBookshelf
+	bg_event  1,  1, BGEVENT_READ, HappinessRatersHouseBookshelf
+	bg_event  7,  1, BGEVENT_READ, HappinessRatersHouseRadio
 
-.ObjectEvents:
-	db 3
-	object_event 2, 4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x54953, -1
-	object_event 5, 3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterPokefanMScript, -1
-	object_event 5, 6, SPRITE_TWIN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterTwinScript, -1
+	db 3 ; object events
+	object_event  2,  4, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x54953, -1
+	object_event  5,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterPokefanMScript, -1
+	object_event  5,  6, SPRITE_TWIN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodHappinessRaterTwinScript, -1

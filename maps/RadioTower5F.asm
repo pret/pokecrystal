@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const RADIOTOWER5F_DIRECTOR
 	const RADIOTOWER5F_ROCKET
 	const RADIOTOWER5F_ROCKET_GIRL
@@ -6,14 +6,12 @@ const_value set 2
 	const RADIOTOWER5F_POKE_BALL
 
 RadioTower5F_MapScripts:
-.SceneScripts:
-	db 3
-	scene_script .DummyScene0
-	scene_script .DummyScene1
-	scene_script .DummyScene2
+	db 3 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_RADIOTOWER5F_ROCKET_BOSS
+	scene_script .DummyScene2 ; SCENE_RADIOTOWER5F_NOTHING
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -25,7 +23,7 @@ RadioTower5F_MapScripts:
 	end
 
 FakeDirectorScript:
-	spriteface RADIOTOWER5F_DIRECTOR, UP
+	turnobject RADIOTOWER5F_DIRECTOR, UP
 	showemote EMOTE_SHOCK, RADIOTOWER5F_DIRECTOR, 15
 	opentext
 	writetext FakeDirectorTextBefore1
@@ -47,7 +45,7 @@ FakeDirectorScript:
 	buttonsound
 	verbosegiveitem BASEMENT_KEY
 	closetext
-	setscene 1
+	setscene SCENE_RADIOTOWER5F_ROCKET_BOSS
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_3
 	end
 
@@ -68,10 +66,10 @@ Director:
 	end
 
 TrainerExecutivef1:
-	trainer EVENT_BEAT_ROCKET_EXECUTIVEF_1, EXECUTIVEF, EXECUTIVEF_1, Executivef1SeenText, Executivef1BeatenText, 0, .Script
+	trainer EXECUTIVEF, EXECUTIVEF_1, EVENT_BEAT_ROCKET_EXECUTIVEF_1, Executivef1SeenText, Executivef1BeatenText, 0, .Script
 
 .Script:
-	end_if_just_battled
+	endifjustbattled
 	opentext
 	writetext Executivef1AfterBattleText
 	waitbutton
@@ -81,7 +79,7 @@ TrainerExecutivef1:
 RadioTower5FRocketBossScene:
 	applymovement PLAYER, MovementData_0x60125
 	playmusic MUSIC_ROCKET_ENCOUNTER
-	spriteface RADIOTOWER5F_ROCKET, RIGHT
+	turnobject RADIOTOWER5F_ROCKET, RIGHT
 	opentext
 	writetext RadioTower5FRocketBossBeforeText
 	waitbutton
@@ -95,12 +93,12 @@ RadioTower5FRocketBossScene:
 	writetext RadioTower5FRocketBossAfterText
 	waitbutton
 	closetext
-	special Special_FadeBlackQuickly
+	special FadeBlackQuickly
 	special ReloadSpritesNoPalettes
 	disappear RADIOTOWER5F_ROCKET
 	disappear RADIOTOWER5F_ROCKET_GIRL
 	pause 15
-	special Special_FadeInQuickly
+	special FadeInQuickly
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_1
 	setevent EVENT_CLEARED_RADIO_TOWER
 	clearflag ENGINE_ROCKETS_IN_RADIO_TOWER
@@ -118,7 +116,7 @@ RadioTower5FRocketBossScene:
 	moveobject RADIOTOWER5F_DIRECTOR, 12, 0
 	appear RADIOTOWER5F_DIRECTOR
 	applymovement RADIOTOWER5F_DIRECTOR, RadioTower5FDirectorWalksIn
-	spriteface PLAYER, RIGHT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext RadioTower5FDirectorThankYouText
 	buttonsound
@@ -126,8 +124,8 @@ RadioTower5FRocketBossScene:
 	writetext RadioTower5FDirectorDescribeClearBellText
 	waitbutton
 	closetext
-	setscene 2
-	setmapscene ECRUTEAK_HOUSE, 0
+	setscene SCENE_RADIOTOWER5F_NOTHING
+	setmapscene ECRUTEAK_TIN_TOWER_ENTRANCE, SCENE_DEFAULT
 	setevent EVENT_GOT_CLEAR_BELL
 	setevent EVENT_TEAM_ROCKET_DISBANDED
 	jump .UselessJump
@@ -421,31 +419,26 @@ SignpostRadioTower5FStudio:
 	done
 
 RadioTower5F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 0, 0, 1, RADIO_TOWER_4F
-	warp_def 12, 0, 3, RADIO_TOWER_4F
+	db 2 ; warp events
+	warp_event  0,  0, RADIO_TOWER_4F, 1
+	warp_event 12,  0, RADIO_TOWER_4F, 3
 
-.CoordEvents:
-	db 2
-	coord_event 0, 3, 0, FakeDirectorScript
-	coord_event 16, 5, 1, RadioTower5FRocketBossScene
+	db 2 ; coord events
+	coord_event  0,  3, SCENE_DEFAULT, FakeDirectorScript
+	coord_event 16,  5, SCENE_RADIOTOWER5F_ROCKET_BOSS, RadioTower5FRocketBossScene
 
-.BGEvents:
-	db 5
-	bg_event 3, 0, BGEVENT_READ, MapRadioTower5FSignpost0Script
-	bg_event 11, 0, BGEVENT_READ, MapRadioTower5FSignpost2Script
-	bg_event 15, 0, BGEVENT_READ, MapRadioTower5FSignpost2Script
-	bg_event 16, 1, BGEVENT_READ, RadioTower5FBookshelf
-	bg_event 17, 1, BGEVENT_READ, RadioTower5FBookshelf
+	db 5 ; bg events
+	bg_event  3,  0, BGEVENT_READ, MapRadioTower5FSignpost0Script
+	bg_event 11,  0, BGEVENT_READ, MapRadioTower5FSignpost2Script
+	bg_event 15,  0, BGEVENT_READ, MapRadioTower5FSignpost2Script
+	bg_event 16,  1, BGEVENT_READ, RadioTower5FBookshelf
+	bg_event 17,  1, BGEVENT_READ, RadioTower5FBookshelf
 
-.ObjectEvents:
-	db 5
-	object_event 3, 6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
-	object_event 13, 5, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 17, 2, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 13, 5, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	object_event 8, 5, SPRITE_POKE_BALL, SPRITEMOVEDATA_ITEM_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL
+	db 5 ; object events
+	object_event  3,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Director, -1
+	object_event 13,  5, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 17,  2, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerExecutivef1, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 13,  5, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Ben, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	object_event  8,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RadioTower5FUltraBall, EVENT_RADIO_TOWER_5F_ULTRA_BALL

@@ -1,24 +1,17 @@
 SafariZoneMainOffice_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 SafariZoneMainOffice_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 7, 2, FUCHSIA_CITY
-	warp_def 3, 7, 2, FUCHSIA_CITY
+	db 2 ; warp events
+	warp_event  2,  7, FUCHSIA_CITY, 2
+	warp_event  3,  7, FUCHSIA_CITY, 2
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 0
+	db 0 ; object events

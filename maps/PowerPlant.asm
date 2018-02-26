@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const POWERPLANT_OFFICER1
 	const POWERPLANT_GYM_GUY1
 	const POWERPLANT_GYM_GUY2
@@ -8,13 +8,11 @@ const_value set 2
 	const POWERPLANT_FOREST
 
 PowerPlant_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	db 2 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_POWERPLANT_NOTHING
+	scene_script .DummyScene1 ; SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -28,21 +26,21 @@ PowerPlantGuardPhoneScript:
 	waitsfx
 	pause 30
 	applymovement POWERPLANT_OFFICER1, MovementData_0x188ed5
-	spriteface POWERPLANT_GYM_GUY1, DOWN
-	spriteface POWERPLANT_GYM_GUY2, DOWN
+	turnobject POWERPLANT_GYM_GUY1, DOWN
+	turnobject POWERPLANT_GYM_GUY2, DOWN
 	opentext
 	writetext UnknownText_0x188f22
 	waitbutton
 	closetext
-	spriteface POWERPLANT_OFFICER1, LEFT
-	spriteface PLAYER, RIGHT
+	turnobject POWERPLANT_OFFICER1, LEFT
+	turnobject PLAYER, RIGHT
 	opentext
 	writetext UnknownText_0x188f7f
 	waitbutton
 	closetext
-	spriteface PLAYER, DOWN
+	turnobject PLAYER, DOWN
 	applymovement POWERPLANT_OFFICER1, MovementData_0x188eda
-	setscene 0
+	setscene SCENE_POWERPLANT_NOTHING
 	end
 
 OfficerScript_0x188df5:
@@ -148,8 +146,8 @@ PowerPlantManager:
 	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	clearevent EVENT_CERULEAN_GYM_ROCKET
 	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
-	setmapscene CERULEAN_GYM, 1
-	setscene 1
+	setmapscene CERULEAN_GYM, SCENE_CERULEANGYM_GRUNT_RUNS_OUT
+	setscene SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 	end
 
 UnknownScript_0x188e8d:
@@ -191,7 +189,7 @@ UnknownScript_0x188ec5:
 Forest:
 	faceplayer
 	opentext
-	trade NPCTRADE_FOREST
+	trade NPC_TRADE_FOREST
 	waitbutton
 	closetext
 	end
@@ -389,29 +387,24 @@ UnknownText_0x189475:
 	done
 
 PowerPlant_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 2
-	warp_def 2, 17, 2, ROUTE_10_NORTH
-	warp_def 3, 17, 2, ROUTE_10_NORTH
+	db 2 ; warp events
+	warp_event  2, 17, ROUTE_10_NORTH, 2
+	warp_event  3, 17, ROUTE_10_NORTH, 2
 
-.CoordEvents:
-	db 1
-	coord_event 5, 12, 1, PowerPlantGuardPhoneScript
+	db 1 ; coord events
+	coord_event  5, 12, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL, PowerPlantGuardPhoneScript
 
-.BGEvents:
-	db 2
-	bg_event 0, 1, BGEVENT_READ, PowerPlantBookshelf
-	bg_event 1, 1, BGEVENT_READ, PowerPlantBookshelf
+	db 2 ; bg events
+	bg_event  0,  1, BGEVENT_READ, PowerPlantBookshelf
+	bg_event  1,  1, BGEVENT_READ, PowerPlantBookshelf
 
-.ObjectEvents:
-	db 7
-	object_event 4, 14, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x188df5, -1
-	object_event 2, 9, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188e15, -1
-	object_event 6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188e29, -1
-	object_event 9, 3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x188e3d, -1
-	object_event 7, 2, SPRITE_GYM_GUY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188e51, -1
+	db 7 ; object events
+	object_event  4, 14, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x188df5, -1
+	object_event  2,  9, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188e15, -1
+	object_event  6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188e29, -1
+	object_event  9,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x188e3d, -1
+	object_event  7,  2, SPRITE_GYM_GUY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188e51, -1
 	object_event 14, 10, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PowerPlantManager, -1
-	object_event 5, 5, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Forest, -1
+	object_event  5,  5, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Forest, -1

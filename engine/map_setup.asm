@@ -79,7 +79,7 @@ MapSetupCommands: ; 15440
 	dba LoadGraphics ; 0e
 	dba LoadTileset ; 0f
 	dba LoadMapTimeOfDay ; 10
-	dba Special_LoadMapPalettes ; 11
+	dba LoadMapPalettes ; 11
 	dba LoadWildMonData ; 12
 	dba RefreshMapSprites ; 13
 	dba HandleNewMap ; 14
@@ -91,8 +91,8 @@ MapSetupCommands: ; 15440
 	dba LoadMapAttributes ; 1a
 	dba LoadMapAttributes_SkipPeople ; 1b
 	dba ClearBGPalettes ; 1c
-	dba Special_FadeOutPalettes ; 1d
-	dba Special_FadeInPalettes ; 1e
+	dba FadeOutPalettes ; 1d
+	dba FadeInPalettes ; 1e
 	dba GetCoordOfUpperLeftCorner ; 1f
 	dba RestoreFacingAfterWarp ; 20
 	dba SpawnInFacingDown ; 21
@@ -143,13 +143,13 @@ LoadObjectsRunCallback_02: ; 154d7
 
 DelayClearingOldSprites: ; 154eb
 	ld hl, wPlayerSpriteSetupFlags
-	set 7, [hl]
+	set PLAYERSPRITESETUP_RESET_ACTION_F, [hl]
 	ret
 ; 154f1
 
 DelayLoadingNewSprites: ; 154f1
 	ld hl, wPlayerSpriteSetupFlags
-	set 6, [hl]
+	set PLAYERSPRITESETUP_SKIP_RELOAD_GFX_F, [hl]
 	ret
 
 CheckReplaceKrisSprite: ; 154f7
@@ -169,7 +169,7 @@ CheckReplaceKrisSprite: ; 154f7
 .CheckBiking: ; 1550c (5:550c)
 	and a
 	ld hl, wBikeFlags
-	bit 1, [hl]
+	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
 	ret z
 	ld a, PLAYER_BIKE
 	ld [wPlayerState], a

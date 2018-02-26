@@ -838,7 +838,7 @@ JumpStep: ; 548a
 
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res 3, [hl]
+	res OVERHEAD, [hl]
 
 	ld hl, OBJECT_ACTION
 	add hl, bc

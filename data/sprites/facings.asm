@@ -32,10 +32,10 @@ Facings: ; 4049
 	dw FacingBoulderDust2
 	dw FacingGrass1
 	dw FacingGrass2
-FacingsEnd:
+.End
 	dw 0
 
-NUM_FACINGS EQU (FacingsEnd - Facings) / 2
+NUM_FACINGS EQU (Facings.End - Facings) / 2
 
 
 ; Tables used as a reference to transform OAM data.

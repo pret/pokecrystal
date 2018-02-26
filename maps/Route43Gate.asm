@@ -1,18 +1,16 @@
 ROUTE43GATE_TOLL EQU 1000
 
-const_value set 2
+	const_def 2 ; object constants
 	const ROUTE43GATE_OFFICER
 	const ROUTE43GATE_ROCKET1
 	const ROUTE43GATE_ROCKET2
 
 Route43Gate_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .RocketShakedown
-	scene_script .DummyScene
+	db 2 ; scene scripts
+	scene_script .RocketShakedown ; SCENE_DEFAULT
+	scene_script .DummyScene ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckIfRockets
 
 .RocketShakedown:
@@ -25,33 +23,33 @@ Route43Gate_MapScripts:
 .CheckIfRockets:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .NoRockets
-	setmapscene ROUTE_43, 0
+	setmapscene ROUTE_43, 0 ; Route 43 does not have a scene variable
 	return
 
 .NoRockets:
-	setmapscene ROUTE_43, 1
+	setmapscene ROUTE_43, 1 ; Route 43 does not have a scene variable
 	return
 
 .RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	checkcode VAR_FACING
-	if_equal DOWN, RocketScript_Southbound
-	if_equal UP, RocketScript_Northbound
-	setscene 1
+	ifequal DOWN, RocketScript_Southbound
+	ifequal UP, RocketScript_Northbound
+	setscene SCENE_FINISHED
 	end
 
 RocketScript_Southbound:
 	applymovement PLAYER, PlayerStepsIn
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_BlocksYouSouth
-	spriteface ROUTE43GATE_ROCKET1, UP
+	turnobject ROUTE43GATE_ROCKET1, UP
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_BlocksYouSouth
 	opentext
 	writetext RocketText_TollFee
 	buttonsound
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
-	if_equal HAVE_MORE, RocketScript_TollSouth
+	ifequal HAVE_MORE, RocketScript_TollSouth
 	jump RocketScript_YoureBrokeSouth
 
 RocketScript_TollSouth:
@@ -69,21 +67,21 @@ RocketScript_ShakeDownSouth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
-	setscene 1
+	setscene SCENE_FINISHED
 	special RestartMapMusic
 	end
 
 RocketScript_Northbound:
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET1, 15
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_BlocksYouNorth
-	spriteface ROUTE43GATE_ROCKET2, DOWN
+	turnobject ROUTE43GATE_ROCKET2, DOWN
 	showemote EMOTE_SHOCK, ROUTE43GATE_ROCKET2, 15
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_BlocksYouNorth
 	opentext
 	writetext RocketText_TollFee
 	buttonsound
 	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
-	if_equal HAVE_MORE, RocketScript_TollNorth
+	ifequal HAVE_MORE, RocketScript_TollNorth
 	jump RocketScript_YoureBrokeNorth
 
 RocketScript_TollNorth:
@@ -101,7 +99,7 @@ RocketScript_ShakeDownNorth:
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
-	setscene 1
+	setscene SCENE_FINISHED
 	special RestartMapMusic
 	end
 
@@ -248,24 +246,19 @@ OfficerText_AvoidGrass:
 	done
 
 Route43Gate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 4
-	warp_def 4, 0, 4, ROUTE_43
-	warp_def 5, 0, 5, ROUTE_43
-	warp_def 4, 7, 3, ROUTE_43
-	warp_def 5, 7, 3, ROUTE_43
+	db 4 ; warp events
+	warp_event  4,  0, ROUTE_43, 4
+	warp_event  5,  0, ROUTE_43, 5
+	warp_event  4,  7, ROUTE_43, 3
+	warp_event  5,  7, ROUTE_43, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
-	object_event 0, 4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
-	object_event 2, 4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
-	object_event 7, 4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
+	db 3 ; object events
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
+	object_event  2,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
+	object_event  7,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RocketScript_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS

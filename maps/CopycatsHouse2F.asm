@@ -1,4 +1,4 @@
-const_value set 2
+	const_def 2 ; object constants
 	const COPYCATSHOUSE2F_COPYCAT1 ; if player is male
 	const COPYCATSHOUSE2F_DODRIO
 	const COPYCATSHOUSE2F_FAIRYDOLL ; lost item
@@ -7,11 +7,9 @@ const_value set 2
 	const COPYCATSHOUSE2F_COPYCAT2 ; if player is female
 
 CopycatsHouse2F_MapScripts:
-.SceneScripts:
-	db 0
+	db 0 ; scene scripts
 
-.MapCallbacks:
-	db 1
+	db 1 ; callbacks
 	callback MAPCALLBACK_OBJECTS, .Callback
 
 .Callback:
@@ -46,7 +44,7 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .Default_Merge_1:
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .TalkAboutLostItem
 	opentext
@@ -70,7 +68,7 @@ Copycat:
 .Default_Merge_3a:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 	opentext
 	writetext CopycatText_QuickMimicking
 	waitbutton
@@ -99,7 +97,7 @@ Copycat:
 .Default_Merge_3b:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 	opentext
 	writetext CopycatText_Worried
 	waitbutton
@@ -142,7 +140,7 @@ Copycat:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 .GotPass_Merge_1:
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 	opentext
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .GotPass_Female_2
@@ -164,7 +162,7 @@ Copycat:
 .GotPass_Merge_3:
 	faceplayer
 	variablesprite SPRITE_COPYCAT, SPRITE_LASS
-	special Special_LoadUsedSpritesGFX
+	special LoadUsedSpritesGFX
 	opentext
 	writetext CopycatText_ItsAScream
 	waitbutton
@@ -361,26 +359,21 @@ CopycatsHouse2FDollText:
 	done
 
 CopycatsHouse2F_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 1
-	warp_def 3, 0, 3, COPYCATS_HOUSE_1F
+	db 1 ; warp events
+	warp_event  3,  0, COPYCATS_HOUSE_1F, 3
 
-.CoordEvents:
-	db 0
+	db 0 ; coord events
 
-.BGEvents:
-	db 2
-	bg_event 0, 1, BGEVENT_READ, CopycatsHouse2FBookshelf
-	bg_event 1, 1, BGEVENT_READ, CopycatsHouse2FBookshelf
+	db 2 ; bg events
+	bg_event  0,  1, BGEVENT_READ, CopycatsHouse2FBookshelf
+	bg_event  1,  1, BGEVENT_READ, CopycatsHouse2FBookshelf
 
-.ObjectEvents:
-	db 6
-	object_event 4, 3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_1
-	object_event 6, 4, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CopycatsDodrio, -1
-	object_event 6, 1, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
-	object_event 2, 1, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
-	object_event 7, 1, SPRITE_BIRD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
-	object_event 4, 3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_2
+	db 6 ; object events
+	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_1
+	object_event  6,  4, SPRITE_MOLTRES, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CopycatsDodrio, -1
+	object_event  6,  1, SPRITE_FAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, EVENT_COPYCATS_HOUSE_2F_DOLL
+	object_event  2,  1, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
+	object_event  7,  1, SPRITE_BIRD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopycatsHouse2FDoll, -1
+	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Copycat, EVENT_COPYCAT_2

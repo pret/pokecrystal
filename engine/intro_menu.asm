@@ -352,7 +352,7 @@ Continue: ; 5d65
 	farcall TryLoadSaveFile
 	jr c, .FailToLoad
 	farcall _LoadData
-	call LoadStandardMenuDataHeader
+	call LoadStandardMenuHeader
 	call DisplaySaveInfoOnContinue
 	ld a, $1
 	ld [hBGMapMode], a
@@ -484,8 +484,8 @@ FinishContinueFunction: ; 5e5d
 	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
 	ld hl, wGameTimerPause
-	set 0, [hl]
-	res 7, [hl]
+	set GAMETIMERPAUSE_TIMER_PAUSED_F, [hl]
+	res GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ld hl, wEnteredMapFromContinue
 	set 1, [hl]
 	farcall OverworldLoop
@@ -539,27 +539,27 @@ DisplayContinueDataWithRTCError: ; 5eaf
 Continue_LoadMenuHeader: ; 5ebf
 	xor a
 	ld [hBGMapMode], a
-	ld hl, .MenuDataHeader_Dex
+	ld hl, .MenuHeader_Dex
 	ld a, [wStatusFlags]
-	bit 0, a ; pokedex
+	bit STATUSFLAGS_POKEDEX_F, a
 	jr nz, .show_menu
-	ld hl, .MenuDataHeader_NoDex
+	ld hl, .MenuHeader_NoDex
 
 .show_menu
-	call _OffsetMenuDataHeader
+	call _OffsetMenuHeader
 	call MenuBox
 	call PlaceVerticalMenuItems
 	ret
 ; 5ed9
 
-.MenuDataHeader_Dex: ; 5ed9
+.MenuHeader_Dex: ; 5ed9
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 9
-	dw .MenuData2_Dex
+	dw .MenuData_Dex
 	db 1 ; default option
 ; 5ee1
 
-.MenuData2_Dex: ; 5ee1
+.MenuData_Dex: ; 5ee1
 	db 0 ; flags
 	db 4 ; items
 	db "PLAYER@"
@@ -568,14 +568,14 @@ Continue_LoadMenuHeader: ; 5ebf
 	db "TIME@"
 ; 5efb
 
-.MenuDataHeader_NoDex: ; 5efb
+.MenuHeader_NoDex: ; 5efb
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 9
-	dw .MenuData2_NoDex
+	dw .MenuData_NoDex
 	db 1 ; default option
 ; 5f03
 
-.MenuData2_NoDex: ; 5f03
+.MenuData_NoDex: ; 5f03
 	db 0 ; flags
 	db 4 ; items
 	db "PLAYER <PLAYER>@"
@@ -640,7 +640,7 @@ Continue_DisplayBadgeCount: ; 5f58
 
 Continue_DisplayPokedexNumCaught: ; 5f6b
 	ld a, [wStatusFlags]
-	bit 0, a ; Pokedex
+	bit STATUSFLAGS_POKEDEX_F, a
 	ret z
 	push hl
 	ld hl, wPokedexCaught
@@ -812,7 +812,7 @@ NamePlayer: ; 0x6074
 	ld hl, wPlayerName
 	ld de, .Chris
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .Male
 	ld de, .Kris
 .Male:
@@ -826,7 +826,7 @@ NamePlayer: ; 0x6074
 ; 60e9
 
 Unreferenced_Function60e9:
-	call LoadMenuDataHeader
+	call LoadMenuHeader
 	call VerticalMenu
 	ld a, [wMenuCursorY]
 	dec a
@@ -902,7 +902,7 @@ ShrinkPlayer: ; 610f
 
 Intro_RotatePalettesLeftFrontpic: ; 616a
 	ld hl, IntroFadePalettes
-	ld b, IntroFadePalettesEnd - IntroFadePalettes
+	ld b, IntroFadePalettes.End - IntroFadePalettes
 .loop
 	ld a, [hli]
 	call DmgToCgbBGPals
@@ -920,7 +920,7 @@ IntroFadePalettes: ; 0x617c
 	db %11111000
 	db %11110100
 	db %11100100
-IntroFadePalettesEnd
+.End
 ; 6182
 
 Intro_WipeInFrontpic: ; 6182
@@ -988,7 +988,7 @@ Intro_PlacePlayerSprite: ; 61cd
 
 	ld b, PAL_OW_RED
 	ld a, [wPlayerGender]
-	bit 0, a
+	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .male
 	ld b, PAL_OW_BLUE
 .male

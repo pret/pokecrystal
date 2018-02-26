@@ -1,16 +1,14 @@
-const_value set 2
+	const_def 2 ; object constants
 	const VICTORYROADGATE_OFFICER
 	const VICTORYROADGATE_BLACK_BELT1
 	const VICTORYROADGATE_BLACK_BELT2
 
 VictoryRoadGate_MapScripts:
-.SceneScripts:
-	db 2
-	scene_script .DummyScene0
-	scene_script .DummyScene1
+	db 2 ; scene scripts
+	scene_script .DummyScene0 ; SCENE_DEFAULT
+	scene_script .DummyScene1 ; SCENE_FINISHED
 
-.MapCallbacks:
-	db 0
+	db 0 ; callbacks
 
 .DummyScene0:
 	end
@@ -19,7 +17,7 @@ VictoryRoadGate_MapScripts:
 	end
 
 VictoryRoadGateBadgeCheckScene:
-	spriteface PLAYER, LEFT
+	turnobject PLAYER, LEFT
 	jump VictoryRoadGateBadgeCheckScript
 
 VictoryRoadGateOfficerScript:
@@ -29,7 +27,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateOfficerText
 	buttonsound
 	checkcode VAR_BADGES
-	if_greater_than NUM_JOHTO_BADGES - 1, .AllEightBadges
+	ifgreater NUM_JOHTO_BADGES - 1, .AllEightBadges
 	writetext VictoryRoadGateNotEnoughBadgesText
 	waitbutton
 	closetext
@@ -40,7 +38,7 @@ VictoryRoadGateBadgeCheckScript:
 	writetext VictoryRoadGateEightBadgesText
 	waitbutton
 	closetext
-	setscene 1
+	setscene SCENE_FINISHED
 	end
 
 VictoryRoadGateLeftBlackBeltScript:
@@ -98,29 +96,24 @@ VictoryRoadGateRightBlackBeltText:
 	done
 
 VictoryRoadGate_MapEvents:
-	; filler
-	db 0, 0
+	db 0, 0 ; filler
 
-.Warps:
-	db 8
-	warp_def 17, 7, 1, ROUTE_22
-	warp_def 18, 7, 1, ROUTE_22
-	warp_def 9, 17, 1, ROUTE_26
-	warp_def 10, 17, 1, ROUTE_26
-	warp_def 9, 0, 1, VICTORY_ROAD
-	warp_def 10, 0, 1, VICTORY_ROAD
-	warp_def 1, 7, 2, ROUTE_28
-	warp_def 2, 7, 2, ROUTE_28
+	db 8 ; warp events
+	warp_event 17,  7, ROUTE_22, 1
+	warp_event 18,  7, ROUTE_22, 1
+	warp_event  9, 17, ROUTE_26, 1
+	warp_event 10, 17, ROUTE_26, 1
+	warp_event  9,  0, VICTORY_ROAD, 1
+	warp_event 10,  0, VICTORY_ROAD, 1
+	warp_event  1,  7, ROUTE_28, 2
+	warp_event  2,  7, ROUTE_28, 2
 
-.CoordEvents:
-	db 1
-	coord_event 10, 11, 0, VictoryRoadGateBadgeCheckScene
+	db 1 ; coord events
+	coord_event 10, 11, SCENE_DEFAULT, VictoryRoadGateBadgeCheckScene
 
-.BGEvents:
-	db 0
+	db 0 ; bg events
 
-.ObjectEvents:
-	db 3
-	object_event 8, 11, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
-	object_event 7, 5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
-	object_event 12, 5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX
+	db 3 ; object events
+	object_event  8, 11, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateOfficerScript, -1
+	object_event  7,  5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateLeftBlackBeltScript, EVENT_OPENED_MT_SILVER
+	object_event 12,  5, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VictoryRoadGateRightBlackBeltScript, EVENT_FOUGHT_SNORLAX

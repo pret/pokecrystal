@@ -14,7 +14,7 @@ INCLUDE "engine/math.asm"
 INCLUDE "data/items/attributes.asm"
 INCLUDE "engine/npc_movement.asm"
 INCLUDE "engine/events/happiness_egg.asm"
-INCLUDE "engine/events/special.asm"
+INCLUDE "engine/events/specials_2.asm"
 
 
 SECTION "bank2", ROMX
@@ -28,7 +28,7 @@ INCLUDE "engine/color.asm"
 SECTION "bank3", ROMX
 
 INCLUDE "engine/routines/checktime.asm"
-INCLUDE "engine/specials.asm"
+INCLUDE "engine/events/specials.asm"
 INCLUDE "engine/printnum.asm"
 INCLUDE "engine/health.asm"
 INCLUDE "engine/events/overworld.asm"
@@ -206,7 +206,7 @@ INCLUDE "engine/events/buena_menu.asm"
 SECTION "bank13", ROMX
 
 INCLUDE "engine/map_palettes.asm"
-INCLUDE "gfx/tilesets/palette_maps.asm"
+INCLUDE "gfx/tileset_palette_maps.asm"
 INCLUDE "data/collision_permissions.asm"
 INCLUDE "engine/routines/emptyallsrambanks.asm"
 INCLUDE "engine/routines/savemenu_copytilemapatonce.asm"
@@ -262,7 +262,7 @@ INCLUDE "engine/load_pics.asm"
 INCLUDE "engine/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
-INCLUDE "data/unused/unknown_53d84.asm"
+INCLUDE "data/unused_53d84.asm"
 
 UnknownEggPic:: ; 53d9c
 ; Another egg pic. This is shifted up a few pixels.
@@ -279,7 +279,7 @@ SECTION "bank20", ROMX
 INCLUDE "engine/player_movement.asm"
 INCLUDE "engine/engine_flags.asm"
 INCLUDE "engine/variables.asm"
-INCLUDE "data/battle/battle_text.asm"
+INCLUDE "data/text/battle.asm"
 INCLUDE "engine/debug.asm"
 
 
@@ -462,7 +462,7 @@ INCLUDE "engine/battle/misc.asm"
 SECTION "bank3F", ROMX
 
 INCLUDE "engine/tileset_anims.asm"
-INCLUDE "engine/npctrade.asm"
+INCLUDE "engine/events/npc_trade.asm"
 INCLUDE "engine/events/mom_phone.asm"
 
 
@@ -539,9 +539,9 @@ SECTION "Mobile 5F", ROMX
 INCLUDE "mobile/mobile_5f.asm"
 
 
-SECTION "Common Text 1", ROMX
+SECTION "Phone Text 2", ROMX
 
-INCLUDE "data/std_text.asm"
+INCLUDE "data/text/std_text.asm"
 INCLUDE "data/phone/text/jack_overworld.asm"
 INCLUDE "data/phone/text/beverly_overworld.asm"
 INCLUDE "data/phone/text/huey_overworld.asm"

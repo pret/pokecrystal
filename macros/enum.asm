@@ -26,7 +26,11 @@ ENDM
 ; Enumerate constants
 
 const_def: MACRO
+if _NARG >= 1
+const_value = \1
+else
 const_value = 0
+endc
 ENDM
 
 const: MACRO
