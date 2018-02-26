@@ -92,10 +92,10 @@ ENDM
 itemball: MACRO
 ;\1: item: from constants/item_constants.asm
 ;\2: quantity: default 1
-if _NARG == 2
-	db \1, \2
+if _NARG == 1
+	itemball \1, 1
 else
-	db \1, 1
+	db \1, \2
 endc
 ENDM
 

@@ -194,23 +194,23 @@ ENDM
 
 	enum giveitem_command ; $1f
 giveitem: MACRO
+if _NARG == 1
+	giveitem \1, 1
+else
 	db giveitem_command
 	db \1 ; item
-if _NARG == 2
 	db \2 ; quantity
-else
-	db 1
 endc
 ENDM
 
 	enum takeitem_command ; $20
 takeitem: MACRO
+if _NARG == 1
+	takeitem \1, 1
+else
 	db takeitem_command
 	db \1 ; item
-if _NARG == 2
 	db \2 ; quantity
-else
-	db 1
 endc
 ENDM
 
@@ -291,22 +291,20 @@ ENDM
 
 	enum givepoke_command ; $2d
 givepoke: MACRO
+if _NARG == 2
+	givepoke \1, \2, NO_ITEM, FALSE
+elif _NARG == 3
+	givepoke \1, \2, \3, FALSE
+else
 	db givepoke_command
 	db \1 ; pokemon
 	db \2 ; level
-if _NARG >= 3
 	db \3 ; item
-if _NARG >= 4
 	db \4 ; trainer
 if \4
 	dw \5 ; trainer_name_pointer
 	dw \6 ; pkmn_nickname
 endc
-else
-	db 0
-endc
-else
-	db 0, 0
 endc
 ENDM
 
@@ -473,11 +471,11 @@ ENDM
 
 	enum refreshscreen_command ; $48
 refreshscreen: MACRO
-	db refreshscreen_command
-if _NARG == 1
-	db \1 ; dummy
+if _NARG == 0
+	refreshscreen 0
 else
-	db 0
+	db refreshscreen_command
+	db \1 ; dummy
 endc
 ENDM
 
@@ -982,12 +980,12 @@ ENDM
 
 	enum verbosegiveitem_command ; $9e
 verbosegiveitem: MACRO
+if _NARG == 1
+	verbosegiveitem \1, 1
+else
 	db verbosegiveitem_command
 	db \1 ; item
-if _NARG == 2
 	db \2 ; quantity
-else
-	db 1
 endc
 ENDM
 
