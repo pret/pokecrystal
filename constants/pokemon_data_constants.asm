@@ -47,20 +47,20 @@ GENDERLESS   EQU -1
 ; wBaseEggGroups values
 	const_def 1
 	const EGG_MONSTER      ; 1
-	const EGG_AMPHIBIAN    ; 2
+	const EGG_AMPHIBIAN    ; 2 (aka Water 1 in Stadium 2)
 	const EGG_BUG          ; 3
 	const EGG_FLYING       ; 4
-	const EGG_FIELD        ; 5
+	const EGG_FIELD        ; 5 (aka Ground in Stadium 2)
 	const EGG_FAIRY        ; 6
-	const EGG_GRASS        ; 7
-	const EGG_HUMANSHAPE   ; 8
-	const EGG_INVERTEBRATE ; 9
+	const EGG_GRASS        ; 7 (aka Plant in Stadium 2)
+	const EGG_HUMANSHAPE   ; 8 (aka Humanshape in Stadium 2)
+	const EGG_INVERTEBRATE ; 9 (aka Water 3 in Stadium 2)
 	const EGG_MINERAL      ; a
-	const EGG_AMORPHOUS    ; b
-	const EGG_FISH         ; c
+	const EGG_AMORPHOUS    ; b (aka Indeterminate in Stadium 2)
+	const EGG_FISH         ; c (aka Water 2 in Stadium 2)
 	const EGG_DITTO        ; d
 	const EGG_DRAGON       ; e
-	const EGG_NONE         ; f
+	const EGG_NONE         ; f (aka Undiscovered, or No Eggs in Stadium 2)
 
 
 ; pokedex entries (see data/pokemon/dex_entries.asm)
