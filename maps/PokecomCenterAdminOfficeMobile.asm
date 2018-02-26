@@ -1,23 +1,23 @@
 	const_def 2 ; object constants
-	const POKECOMCENTERADMINROOMMOBILE_SCIENTIST1
-	const POKECOMCENTERADMINROOMMOBILE_SCIENTIST2
-	const POKECOMCENTERADMINROOMMOBILE_SCIENTIST3
+	const POKECOMCENTERADMINOFFICEMOBILE_SCIENTIST1
+	const POKECOMCENTERADMINOFFICEMOBILE_SCIENTIST2
+	const POKECOMCENTERADMINOFFICEMOBILE_SCIENTIST3
 
-PokecomCenterAdminRoomMobile_MapScripts:
+PokecomCenterAdminOfficeMobile_MapScripts:
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-PokecomCenterAdminRoomMobileScientist1Script:
-	jumptextfaceplayer PokecomCenterAdminRoomMobileScientist1Text
+PokecomCenterAdminOfficeMobileScientist1Script:
+	jumptextfaceplayer PokecomCenterAdminOfficeMobileScientist1Text
 
-PokecomCenterAdminRoomMobileScientist2Script:
-	jumptextfaceplayer PokecomCenterAdminRoomMobileScientist2Text
+PokecomCenterAdminOfficeMobileScientist2Script:
+	jumptextfaceplayer PokecomCenterAdminOfficeMobileScientist2Text
 
-PokecomCenterAdminRoomMobileScientist3Script:
-	jumptextfaceplayer PokecomCenterAdminRoomMobileScientist3Text
+PokecomCenterAdminOfficeMobileScientist3Script:
+	jumptextfaceplayer PokecomCenterAdminOfficeMobileScientist3Text
 
-PokecomCenterAdminRoomMobileSignpost0Script:
+PokecomCenterAdminOfficeMobileSignpost0Script:
 	opentext
 	writetext UnknownText_0x627ee
 	waitbutton
@@ -59,7 +59,7 @@ MenuHeader_0x62602:
 	db "モバイルセンター@" ; MOBILE CENTER
 	db "やめる@" ; QUIT
 
-PokecomCenterAdminRoomMobileSignpost1Script:
+PokecomCenterAdminOfficeMobileSignpost1Script:
 	opentext
 	writetext UnknownText_0x62989
 	waitbutton
@@ -101,10 +101,10 @@ MenuHeader_0x6264c:
 	db "でんわ<GA>つながらないとき@" ; Don't use phone
 	db "やめる@" ; QUIT
 
-PokecomCenterAdminRoomMobileSignpost2Script:
+PokecomCenterAdminOfficeMobileSignpost2Script:
 	jumptext UnknownText_0x62b26
 
-PokecomCenterAdminRoomMobileScientist1Text:
+PokecomCenterAdminOfficeMobileScientist1Text:
 	text "#COM CENTER and"
 	line "MOBILE CENTER were"
 
@@ -118,7 +118,7 @@ PokecomCenterAdminRoomMobileScientist1Text:
 	line "strangers."
 	done
 
-PokecomCenterAdminRoomMobileScientist2Text:
+PokecomCenterAdminOfficeMobileScientist2Text:
 	text "When you linked"
 	line "with someone by"
 
@@ -135,7 +135,7 @@ PokecomCenterAdminRoomMobileScientist2Text:
 	line "got the shakes!"
 	done
 
-PokecomCenterAdminRoomMobileScientist3Text:
+PokecomCenterAdminOfficeMobileScientist3Text:
 	text "They were able to"
 	line "build this huge"
 
@@ -260,7 +260,7 @@ UnknownText_0x62b26:
 	para "<……> <……> <……>"
 	done
 
-PokecomCenterAdminRoomMobile_MapEvents:
+PokecomCenterAdminOfficeMobile_MapEvents:
 	db 0, 0 ; filler
 
 	db 2 ; warp events
@@ -270,11 +270,11 @@ PokecomCenterAdminRoomMobile_MapEvents:
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event  6, 26, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost0Script
-	bg_event  6, 28, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost1Script
-	bg_event  3, 26, BGEVENT_UP, PokecomCenterAdminRoomMobileSignpost2Script
+	bg_event  6, 26, BGEVENT_UP, PokecomCenterAdminOfficeMobileSignpost0Script
+	bg_event  6, 28, BGEVENT_UP, PokecomCenterAdminOfficeMobileSignpost1Script
+	bg_event  3, 26, BGEVENT_UP, PokecomCenterAdminOfficeMobileSignpost2Script
 
 	db 3 ; object events
-	object_event  4, 28, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist1Script, -1
-	object_event  7, 27, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist2Script, -1
-	object_event  7, 29, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminRoomMobileScientist3Script, -1
+	object_event  4, 28, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminOfficeMobileScientist1Script, -1
+	object_event  7, 27, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminOfficeMobileScientist2Script, -1
+	object_event  7, 29, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminOfficeMobileScientist3Script, -1
