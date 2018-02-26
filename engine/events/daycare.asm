@@ -44,7 +44,7 @@ Special_DayCareMan: ; 166d6
 	call GetPriceToRetrieveBreedmon
 	call DayCare_AskWithdrawBreedMon
 	jr c, .print_text
-	farcall RetrievePokemonFromDayCareMan
+	farcall RetrieveMonFromDayCareMan
 	call DayCare_GetBackMonForMoney
 	ld hl, wDayCareMan
 	res 0, [hl]
@@ -83,7 +83,7 @@ Special_DayCareLady: ; 1672a
 	call GetPriceToRetrieveBreedmon
 	call DayCare_AskWithdrawBreedMon
 	jr c, .print_text
-	farcall RetrievePokemonFromDayCareLady
+	farcall RetrieveMonFromDayCareLady
 	call DayCare_GetBackMonForMoney
 	ld hl, wDayCareLady
 	res 0, [hl]
@@ -566,8 +566,8 @@ DayCare_GiveEgg: ; 169ac
 	ld e, l
 	pop hl
 	push bc
-	ld b, $0
-	predef CalcPkmnStats
+	ld b, FALSE
+	predef CalcMonStats
 	pop bc
 	ld hl, MON_HP
 	add hl, bc

@@ -10,4 +10,4 @@ PnP_HiddenPlaces:
 	map ROUTE_16
 	map ROUTE_14
 	map CINNABAR_POKECENTER_2F_BETA
-PnP_HiddenPlacesEnd
+PnP_HiddenPlacesEnd:

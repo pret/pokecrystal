@@ -1543,7 +1543,7 @@ RadioChannels:
 ; entries correspond to constants/radio_constants.asm
 
 ; frequency value given here = 4 × ingame_frequency − 2
-	dbw 16, .PkmnTalkAndPokedexShow
+	dbw 16, .PKMNTalkAndPokedexShow
 	dbw 28, .PokemonMusic
 	dbw 32, .LuckyChannel
 	dbw 40, .BuenasPassword
@@ -1554,7 +1554,7 @@ RadioChannels:
 	dbw 80, .EvolutionRadio
 	db -1
 
-.PkmnTalkAndPokedexShow:
+.PKMNTalkAndPokedexShow:
 ; Pokédex Show in the morning
 
 ; Oak's Pokémon Talk in the afternoon and evening
@@ -1653,7 +1653,7 @@ LoadStation_OaksPokemonTalk: ; 91753 (24:5753)
 	ld a, BANK(PlayRadioShow)
 	ld hl, PlayRadioShow
 	call Radio_BackUpFarCallParams
-	ld de, OaksPkmnTalkName
+	ld de, OaksPKMNTalkName
 	ret
 
 LoadStation_PokedexShow: ; 91766 (24:5766)
@@ -1846,7 +1846,7 @@ NoRadioName: ; 918a9 (24:58a9)
 
 ; 918bf
 
-OaksPkmnTalkName:     db "OAK's <PK><MN> Talk@"
+OaksPKMNTalkName:     db "OAK's <PK><MN> Talk@"
 PokedexShowName:      db "#DEX Show@"
 PokemonMusicName:     db "#MON Music@"
 LuckyChannelName:     db "Lucky Channel@"

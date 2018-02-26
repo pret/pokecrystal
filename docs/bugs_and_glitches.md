@@ -261,7 +261,7 @@ This is a bug with `CheckPlayerHasUsableMoves` in [engine/battle/core.asm](/engi
 	ret nz
 
 .force_struggle
-	ld hl, BattleText_PkmnHasNoMovesLeft
+	ld hl, BattleText_MonHasNoMovesLeft
 	call StdBattleTextBox
 	ld c, 60
 	call DelayFrames

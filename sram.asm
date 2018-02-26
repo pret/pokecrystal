@@ -208,14 +208,14 @@ sBattleTowerSaveFileFlags:: db
 sBattleTowerReward:: db
 
 ; team of previous trainer
-sBTPkmnOfTrainers:: ; 0xbe51
-sBTPkmnPrevTrainer1:: db
-sBTPkmnPrevTrainer2:: db
-sBTPkmnPrevTrainer3:: db
+sBTMonOfTrainers:: ; 0xbe51
+sBTMonPrevTrainer1:: db
+sBTMonPrevTrainer2:: db
+sBTMonPrevTrainer3:: db
 ; team of preprevious trainer
-sBTPkmnPrevPrevTrainer1:: db
-sBTPkmnPrevPrevTrainer2:: db
-sBTPkmnPrevPrevTrainer3:: db
+sBTMonPrevPrevTrainer1:: db
+sBTMonPrevPrevTrainer2:: db
+sBTMonPrevPrevTrainer3:: db
 
 
 SECTION "Boxes 1-7",  SRAM, BANK [2]

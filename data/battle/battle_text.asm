@@ -137,14 +137,14 @@ BattleText_SafeguardFaded: ; 0x808d2
 	prompt
 ; 0x808e7
 
-BattleText_PkmnLightScreenFell: ; 0x808e7
+BattleText_MonsLightScreenFell: ; 0x808e7
 	text_from_ram wStringBuffer1
 	text " #MON's"
 	line "LIGHT SCREEN fell!"
 	prompt
 ; 0x80905
 
-BattleText_PkmnReflectFaded: ; 0x80905
+BattleText_MonsReflectFaded: ; 0x80905
 	text_from_ram wStringBuffer1
 	text " #MON's"
 	line "REFLECT faded!"
@@ -186,7 +186,7 @@ BattleText_TheSandstormSubsided: ; 0x8098f
 	prompt
 ; 0x809a8
 
-BattleText_EnemyPkmnFainted: ; 0x809a8
+BattleText_EnemyMonFainted: ; 0x809a8
 	text "Enemy @"
 	text_from_ram wEnemyMonNick
 	text_start
@@ -236,7 +236,7 @@ BattleText_0x80a4f: ; 0x80a4f
 	prompt
 ; 0x80a75
 
-BattleText_PkmnFainted: ; 0x80a75
+BattleText_MonFainted: ; 0x80a75
 	text_from_ram wBattleMonNick
 	text_start
 	line "fainted!"
@@ -261,7 +261,7 @@ LostAgainstText: ; 0x80ab9
 	prompt
 ; 0x80aca
 
-BattleText_EnemyIsAboutToUseWillPlayerChangePkmn: ; 0x80aca
+BattleText_EnemyIsAboutToUseWillPlayerChangeMon: ; 0x80aca
 	text "<ENEMY>"
 	line "is about to use"
 	cont "@"
@@ -353,14 +353,14 @@ BattleText_ItemsCantBeUsedHere: ; 0x80bf3
 	prompt
 ; 0x80c0d
 
-BattleText_PkmnIsAlreadyOut: ; 0x80c0d
+BattleText_MonIsAlreadyOut: ; 0x80c0d
 	text_from_ram wBattleMonNick
 	text_start
 	line "is already out."
 	prompt
 ; 0x80c22
 
-BattleText_PkmnCantBeRecalled: ; 0x80c22
+BattleText_MonCantBeRecalled: ; 0x80c22
 	text_from_ram wBattleMonNick
 	text_start
 	line "can't be recalled!"
@@ -379,7 +379,7 @@ BattleText_TheMoveIsDisabled: ; 0x80c5b
 	prompt
 ; 0x80c72
 
-BattleText_PkmnHasNoMovesLeft: ; 0x80c72
+BattleText_MonHasNoMovesLeft: ; 0x80c72
 	text_from_ram wBattleMonNick
 	text_start
 	line "has no moves left!"
@@ -402,7 +402,7 @@ BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 	db "@@"
 ; 0x80cb9
 
-BattleText_WildPkmnIsEating: ; 0x80cba
+BattleText_WildMonIsEating: ; 0x80cba
 	text "Wild @"
 	text_from_ram wEnemyMonNick
 	text_start
@@ -410,7 +410,7 @@ BattleText_WildPkmnIsEating: ; 0x80cba
 	prompt
 ; 0x80cd1
 
-BattleText_WildPkmnIsAngry: ; 0x80cd1
+BattleText_WildMonIsAngry: ; 0x80cd1
 	text "Wild @"
 	text_from_ram wEnemyMonNick
 	text_start

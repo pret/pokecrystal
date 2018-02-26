@@ -175,7 +175,7 @@ CheckPokeItem:: ; 44654
 	farcall CheckCurPartyMonFainted
 	ld a, POKEMAIL_LAST_MON
 	jr c, .close_sram_return
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	ld a, POKEMAIL_CORRECT

@@ -220,7 +220,7 @@ Function170c8b: ; 170c8b
 
 CheckBTMonMovesForErrors: ; 170c98
 	ld c, BATTLETOWER_PARTY_LENGTH
-	ld hl, wBT_OTTempPkmn1Moves
+	ld hl, wBT_OTTempMon1Moves
 .loop
 	push hl
 	ld a, [hl]
