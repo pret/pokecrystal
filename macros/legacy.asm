@@ -55,6 +55,10 @@ displaylocation   EQUS "landmarktotext"
 
 ; macros/scripts/maps.asm
 
+mapconst: MACRO
+	map_const \1, \3, \2
+ENDM
+
 maptrigger EQUS "scene_script"
 
 warp_def: MACRO

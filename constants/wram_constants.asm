@@ -84,6 +84,8 @@ FACE_RIGHT   EQU 1
 ; wPokemonWithdrawDepositParameter:: ; d10b
 PC_WITHDRAW       EQU 0
 PC_DEPOSIT        EQU 1
+REMOVE_PARTY      EQU 0
+REMOVE_BOX        EQU 1
 DAY_CARE_WITHDRAW EQU 2
 DAY_CARE_DEPOSIT  EQU 3
 

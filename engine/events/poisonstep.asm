@@ -145,7 +145,7 @@ DoPoisonStep:: ; 505da
 	ld a, [wPartyCount]
 	cp [hl]
 	jr nz, .party_loop
-	predef CheckPlayerPartyForFitPkmn
+	predef CheckPlayerPartyForFitMon
 	ld a, d
 	ld [wScriptVar], a
 	ret

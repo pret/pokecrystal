@@ -19,7 +19,7 @@ VictoryRoad_MapScripts:
 .DummyScene1:
 	end
 
-UnknownScript_0x74492:
+VictoryRoadRivalLeft:
 	moveobject VICTORYROAD_SILVER, 18, 11
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -27,69 +27,69 @@ UnknownScript_0x74492:
 	pause 15
 	appear VICTORYROAD_SILVER
 	applymovement VICTORYROAD_SILVER, MovementData_0x74539
-	scall UnknownScript_0x744d4
+	scall VictoryRoadRivalNext
 	applymovement VICTORYROAD_SILVER, MovementData_0x7454c
 	disappear VICTORYROAD_SILVER
 	setscene SCENE_FINISHED
 	playmapmusic
 	end
 
-UnknownScript_0x744b5:
+VictoryRoadRivalRight:
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
 	appear VICTORYROAD_SILVER
 	applymovement VICTORYROAD_SILVER, MovementData_0x74542
-	scall UnknownScript_0x744d4
+	scall VictoryRoadRivalNext
 	applymovement VICTORYROAD_SILVER, MovementData_0x74555
 	disappear VICTORYROAD_SILVER
 	setscene SCENE_FINISHED
 	playmapmusic
 	end
 
-UnknownScript_0x744d4:
+VictoryRoadRivalNext:
 	turnobject PLAYER, DOWN
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
-	writetext UnknownText_0x7455f
+	writetext VictoryRoadRivalBeforeText
 	waitbutton
 	closetext
 	setevent EVENT_RIVAL_VICTORY_ROAD
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue UnknownScript_0x744ff
+	iftrue .GotTotodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue UnknownScript_0x7450f
-	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
+	iftrue .GotChikorita
+	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_5_TOTODILE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump UnknownScript_0x7451f
+	jump .AfterBattle
 
-UnknownScript_0x744ff:
-	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
+.GotTotodile:
+	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_5_CHIKORITA
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump UnknownScript_0x7451f
+	jump .AfterBattle
 
-UnknownScript_0x7450f:
-	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
+.GotChikorita:
+	winlosstext VictoryRoadRivalDefeatText, VictoryRoadRivalVictoryText
 	setlasttalked VICTORYROAD_SILVER
 	loadtrainer RIVAL1, RIVAL1_5_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	jump UnknownScript_0x7451f
+	jump .AfterBattle
 
-UnknownScript_0x7451f:
+.AfterBattle:
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
-	writetext UnknownText_0x746ce
+	writetext VictoryRoadRivalAfterText
 	waitbutton
 	closetext
 	end
@@ -161,7 +161,7 @@ MovementData_0x74555:
 	step DOWN
 	step_end
 
-UnknownText_0x7455f:
+VictoryRoadRivalBeforeText:
 	text "Hold it."
 
 	para "…Are you going to"
@@ -187,7 +187,7 @@ UnknownText_0x7455f:
 	line "I challenge you!"
 	done
 
-UnknownText_0x7463d:
+VictoryRoadRivalDefeatText:
 	text "…I couldn't win…"
 
 	para "I gave it every-"
@@ -203,7 +203,7 @@ UnknownText_0x7463d:
 	line "said to me…"
 	done
 
-UnknownText_0x746ce:
+VictoryRoadRivalAfterText:
 	text "…I haven't given up"
 	line "on becoming the"
 	cont "greatest trainer…"
@@ -225,7 +225,7 @@ UnknownText_0x746ce:
 	line "at it until then."
 	done
 
-UnknownText_0x747aa:
+VictoryRoadRivalVictoryText:
 	text "…Humph!"
 
 	para "When it comes down"
@@ -252,8 +252,8 @@ VictoryRoad_MapEvents:
 	warp_event 13,  5, ROUTE_23, 3
 
 	db 2 ; coord events
-	coord_event 12,  8, SCENE_DEFAULT, UnknownScript_0x74492
-	coord_event 13,  8, SCENE_DEFAULT, UnknownScript_0x744b5
+	coord_event 12,  8, SCENE_DEFAULT, VictoryRoadRivalLeft
+	coord_event 13,  8, SCENE_DEFAULT, VictoryRoadRivalRight
 
 	db 2 ; bg events
 	bg_event  3, 29, BGEVENT_ITEM, VictoryRoadHiddenMaxPotion

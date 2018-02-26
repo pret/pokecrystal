@@ -61,13 +61,13 @@ ScientistScript_0x591d1:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	ifequal NUM_UNOWN, UnknownScript_0x591df
+	ifequal NUM_UNOWN, .PrinterAvailable
 	writetext UnknownText_0x59311
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x591df:
+.PrinterAvailable:
 	writetext UnknownText_0x5935f
 	waitbutton
 	closetext
@@ -77,29 +77,29 @@ ScientistScript_0x591e5:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	ifequal NUM_UNOWN, UnknownScript_0x5920b
+	ifequal NUM_UNOWN, .GotAllUnown
 	checkflag ENGINE_UNOWN_DEX
-	iftrue UnknownScript_0x59205
+	iftrue .GotUnownDex
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
-	iftrue UnknownScript_0x591ff
+	iftrue .UnownAppeared
 	writetext UnknownText_0x593ed
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x591ff:
+.UnownAppeared:
 	writetext UnknownText_0x59478
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x59205:
+.GotUnownDex:
 	writetext UnknownText_0x59445
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5920b:
+.GotAllUnown:
 	writetext UnknownText_0x594cb
 	waitbutton
 	closetext
@@ -110,21 +110,21 @@ ScientistScript_0x59214:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	ifequal NUM_UNOWN, UnknownScript_0x5922e
+	ifequal NUM_UNOWN, .GotAllUnown
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
-	iftrue UnknownScript_0x59228
+	iftrue .UnownAppeared
 	writetext UnknownText_0x5954f
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x59228:
+.UnownAppeared:
 	writetext UnknownText_0x595cb
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5922e:
+.GotAllUnown:
 	writetext UnknownText_0x59769
 	waitbutton
 	closetext
@@ -133,16 +133,16 @@ UnknownScript_0x5922e:
 MapRuinsOfAlphResearchCenterSignpost1Script:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
-	iftrue UnknownScript_0x59241
+	iftrue .SkipChecking
 	checkcode VAR_UNOWNCOUNT
-	ifequal NUM_UNOWN, UnknownScript_0x59247
-UnknownScript_0x59241:
+	ifequal NUM_UNOWN, .GotAllUnown
+.SkipChecking:
 	writetext UnknownText_0x597b6
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x59247:
+.GotAllUnown:
 	writetext UnknownText_0x597d9
 	waitbutton
 	closetext
@@ -151,16 +151,16 @@ UnknownScript_0x59247:
 MapRuinsOfAlphResearchCenterSignpost2Script:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
-	iftrue UnknownScript_0x5925a
+	iftrue .SkipChecking
 	checkcode VAR_UNOWNCOUNT
-	ifequal NUM_UNOWN, UnknownScript_0x59260
-UnknownScript_0x5925a:
+	ifequal NUM_UNOWN, .PrinterAvailable
+.SkipChecking:
 	writetext UnknownText_0x5980e
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x59260:
+.PrinterAvailable:
 	writetext UnknownText_0x5982d
 	waitbutton
 	special UnownPrinter

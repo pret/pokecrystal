@@ -185,8 +185,8 @@ DoNPCTrade: ; fcc63
 	ld a, [wOTTrademonSpecies]
 	ld [wCurPartySpecies], a
 	xor a
-	ld [wMonType], a
-	ld [wPokemonWithdrawDepositParameter], a
+	ld [wMonType], a ; PARTYMON
+	ld [wPokemonWithdrawDepositParameter], a ; REMOVE_PARTY
 	callfar RemoveMonFromPartyOrBox
 	predef TryAddMonToParty
 

@@ -35,11 +35,11 @@ VermilionPort_MapScripts:
 	blackoutmod VERMILION_CITY
 	end
 
-SailorScript_0x74dc4:
+VermilionPortSailorAtGangway:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue UnknownScript_0x74e1a
+	iftrue VermilionPortAlreadyRodeScript
 	writetext UnknownText_0x74f06
 	waitbutton
 	closetext
@@ -70,71 +70,71 @@ SailorScript_0x74dc4:
 	warp FAST_SHIP_1F, 25, 1
 	end
 
-UnknownScript_0x74e1a:
+VermilionPortAlreadyRodeScript:
 	writetext UnknownText_0x74f31
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x74e20:
+VermilionPortWalkUpToShipScript:
 	turnobject VERMILIONPORT_SAILOR2, RIGHT
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue UnknownScript_0x74e86
+	iftrue .skip
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iftrue UnknownScript_0x74e86
+	iftrue .skip
 	turnobject PLAYER, LEFT
 	opentext
 	checkcode VAR_WEEKDAY
-	ifequal MONDAY, UnknownScript_0x74e72
-	ifequal TUESDAY, UnknownScript_0x74e72
-	ifequal THURSDAY, UnknownScript_0x74e7c
-	ifequal FRIDAY, UnknownScript_0x74e7c
-	ifequal SATURDAY, UnknownScript_0x74e7c
+	ifequal MONDAY, .NextShipWednesday
+	ifequal TUESDAY, .NextShipWednesday
+	ifequal THURSDAY, .NextShipSunday
+	ifequal FRIDAY, .NextShipSunday
+	ifequal SATURDAY, .NextShipSunday
 	writetext UnknownText_0x74f4d
 	yesorno
-	iffalse UnknownScript_0x74e8d
+	iffalse VermilionPortNotRidingMoveAwayScript
 	writetext UnknownText_0x74f8b
 	buttonsound
 	checkitem S_S_TICKET
-	iffalse UnknownScript_0x74e68
-	writetext UnknownText_0x74fc2
+	iffalse .NoTicket
+	writetext VermilionPortSSTicketText
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74ef8
-	jump SailorScript_0x74dc4
+	jump VermilionPortSailorAtGangway
 
-UnknownScript_0x74e68:
+.NoTicket:
 	writetext UnknownText_0x74ff2
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
-UnknownScript_0x74e72:
+.NextShipWednesday:
 	writetext UnknownText_0x75059
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
-UnknownScript_0x74e7c:
+.NextShipSunday:
 	writetext UnknownText_0x75080
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
-UnknownScript_0x74e86:
+.skip:
 	end
 
-UnknownScript_0x74e87:
+VermilionPortNotRidingScript:
 	writetext UnknownText_0x74fa7
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x74e8d:
+VermilionPortNotRidingMoveAwayScript:
 	writetext UnknownText_0x74fa7
 	waitbutton
 	closetext
@@ -145,7 +145,7 @@ SailorScript_0x74e97:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue UnknownScript_0x74e1a
+	iftrue VermilionPortAlreadyRodeScript
 	checkcode VAR_WEEKDAY
 	ifequal MONDAY, .NextShipWednesday
 	ifequal TUESDAY, .NextShipWednesday
@@ -154,17 +154,17 @@ SailorScript_0x74e97:
 	ifequal SATURDAY, .NextShipSunday
 	writetext UnknownText_0x74f4d
 	yesorno
-	iffalse UnknownScript_0x74e87
+	iffalse VermilionPortNotRidingScript
 	writetext UnknownText_0x74f8b
 	buttonsound
 	checkitem S_S_TICKET
 	iffalse .NoTicket
-	writetext UnknownText_0x74fc2
+	writetext VermilionPortSSTicketText
 	waitbutton
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74efe
-	jump SailorScript_0x74dc4
+	jump VermilionPortSailorAtGangway
 
 .NoTicket:
 	writetext UnknownText_0x74ff2
@@ -255,7 +255,7 @@ UnknownText_0x74fa7:
 	line "again!"
 	done
 
-UnknownText_0x74fc2:
+VermilionPortSSTicketText:
 	text "<PLAYER> flashed"
 	line "the S.S.TICKET."
 
@@ -304,12 +304,12 @@ VermilionPort_MapEvents:
 	warp_event  7, 17, FAST_SHIP_1F, 1
 
 	db 1 ; coord events
-	coord_event  7, 11, SCENE_DEFAULT, UnknownScript_0x74e20
+	coord_event  7, 11, SCENE_DEFAULT, VermilionPortWalkUpToShipScript
 
 	db 1 ; bg events
 	bg_event 16, 13, BGEVENT_ITEM, VermilionPortHiddenIron
 
 	db 3 ; object events
-	object_event  7, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x74dc4, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
+	object_event  7, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionPortSailorAtGangway, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
 	object_event  6, 11, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x74e97, -1
 	object_event 11, 11, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x74ee6, -1

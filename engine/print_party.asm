@@ -159,7 +159,7 @@ PrintPartyMonPage1: ; 1dc381
 
 	xor a
 	ld [wMonType], a
-	farcall CopyPkmnToTempMon
+	farcall CopyMonToTempMon
 	hlcoord 0, 7
 	ld b, 9
 	ld c, 18
@@ -243,7 +243,7 @@ PrintPartyMonPage2: ; 1dc47b
 	call LoadFontsBattleExtra
 	xor a
 	ld [wMonType], a
-	farcall CopyPkmnToTempMon
+	farcall CopyMonToTempMon
 	hlcoord 0, 0
 	ld b, 15
 	ld c, 18

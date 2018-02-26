@@ -113,17 +113,17 @@ Text_StringBuffer2ExpPoints::
 	text " EXP. Points!"
 	prompt
 
-Text_GoPkmn::
+Text_GoMon::
 	text "Go! @@"
 
-Text_DoItPkmn::
+Text_DoItMon::
 	text "Do it! @@"
 
-Text_GoForItPkmn::
+Text_GoForItMon::
 	text "Go for it,"
 	line "@@"
 
-Text_YourFoesWeakGetmPkmn::
+Text_YourFoesWeakGetmMon::
 	text "Your foe's weak!"
 	line "Get'm, @@"
 
@@ -618,7 +618,7 @@ UnknownText_0x1c0bee::
 	cont "time to use that!"
 	prompt
 
-Text_YouDontHaveAPkmn::
+Text_YouDontHaveAMon::
 	text "You don't have a"
 	line "#MON!"
 	prompt

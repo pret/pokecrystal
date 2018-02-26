@@ -258,89 +258,89 @@ BrentBillTriviaScript:
 
 IrwinRumorScript:
 	checkevent EVENT_OPENED_MT_SILVER
-	iftrue IrwinMtSilver
+	iftrue .MtSilver
 	checkevent EVENT_FOUGHT_SNORLAX
-	iftrue IrwinSnorlax
+	iftrue .Snorlax
 	checkevent EVENT_GOT_PASS_FROM_COPYCAT
-	iftrue IrwinTrainPass
+	iftrue .TrainPass
 	checkflag ENGINE_MARSHBADGE
-	iftrue IrwinMarshBadge
+	iftrue .MarshBadge
 	checkflag ENGINE_FLYPOINT_VERMILION
-	iftrue IrwinVermilionCity
+	iftrue .VermilionCity
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue IrwinEliteFour
+	iftrue .EliteFour
 	checkflag ENGINE_RISINGBADGE
-	iftrue IrwinRisingBadge
+	iftrue .RisingBadge
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue IrwinRadioTower
+	iftrue .RadioTower
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue IrwinRocketHideout
+	iftrue .RocketHideout
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
-	iftrue IrwinJasmineReturned
+	iftrue .JasmineReturned
 	checkflag ENGINE_FOGBADGE
-	iftrue IrwinFogBadge
+	iftrue .FogBadge
 	checkflag ENGINE_PLAINBADGE
-	iftrue IrwinPlainBadge
+	iftrue .PlainBadge
 	farwritetext IrwinCalledRightAwayText
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinPlainBadge:
+.PlainBadge:
 	farwritetext UnknownText_0x64099
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinJasmineReturned:
+.JasmineReturned:
 	farwritetext UnknownText_0x640e6
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinRocketHideout:
+.RocketHideout:
 	farwritetext UnknownText_0x6416d
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinRadioTower:
+.RadioTower:
 	farwritetext UnknownText_0x641e8
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinRisingBadge:
+.RisingBadge:
 	farwritetext UnknownText_0x64247
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinEliteFour:
+.EliteFour:
 	farwritetext UnknownText_0x642bb
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinVermilionCity:
+.VermilionCity:
 	farwritetext UnknownText_0x643d4
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinTrainPass:
+.TrainPass:
 	farwritetext UnknownText_0x64448
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinSnorlax:
+.Snorlax:
 	farwritetext UnknownText_0x6455b
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinMtSilver:
+.MtSilver:
 	farwritetext UnknownText_0x645ff
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinFogBadge:
+.FogBadge:
 	farwritetext UnknownText_0x646df
 	buttonsound
 	jump PhoneScript_HangupText_Male
 
-IrwinMarshBadge:
+.MarshBadge:
 	farwritetext UnknownText_0x647d8
 	buttonsound
 	jump PhoneScript_HangupText_Male

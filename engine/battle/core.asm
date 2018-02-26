@@ -47,7 +47,7 @@ DoBattle: ; 3c000
 
 .player_2
 	call LoadTileMapToTempTileMap
-	call CheckPlayerPartyForFitPkmn
+	call CheckPlayerPartyForFitMon
 	ld a, d
 	and a
 	jp z, LostBattle
@@ -86,7 +86,7 @@ DoBattle: ; 3c000
 	call ResetBattleParticipants
 	call InitBattleMon
 	call ResetPlayerStatLevels
-	call SendOutPkmnText
+	call SendOutMonText
 	call NewBattleMonStatus
 	call BreakAttraction
 	call SendOutPlayerMon
@@ -1697,7 +1697,7 @@ HandleScreens: ; 3cb36
 	res SCREENS_LIGHT_SCREEN, [hl]
 	push hl
 	push de
-	ld hl, BattleText_PkmnLightScreenFell
+	ld hl, BattleText_MonsLightScreenFell
 	call StdBattleTextBox
 	pop de
 	pop hl
@@ -1711,7 +1711,7 @@ HandleScreens: ; 3cb36
 	ld [de], a
 	ret nz
 	res SCREENS_REFLECT, [hl]
-	ld hl, BattleText_PkmnReflectFaded
+	ld hl, BattleText_MonsReflectFaded
 	jp StdBattleTextBox
 ; 3cb9e
 
@@ -1825,7 +1825,7 @@ SubtractHPFromTarget: ; 3cc39
 ; 3cc3f
 
 SubtractHPFromUser: ; 3cc3f
-; Subtract HP from Pkmn
+; Subtract HP from mon
 	call SubtractHP
 	jp UpdateHPBarBattleHuds
 ; 3cc45
@@ -2057,7 +2057,7 @@ HandleEnemyMonFaint: ; 3cd55
 	xor a
 	ld [wWhichMonFaintedFirst], a
 	call UpdateBattleStateAndExperienceAfterEnemyFaint
-	call CheckPlayerPartyForFitPkmn
+	call CheckPlayerPartyForFitMon
 	ld a, d
 	and a
 	jp z, LostBattle
@@ -2189,7 +2189,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint: ; 3ce01
 	call PlayerMonFaintHappinessMod
 
 .player_mon_did_not_faint
-	call CheckPlayerPartyForFitPkmn
+	call CheckPlayerPartyForFitMon
 	ld a, d
 	and a
 	ret z
@@ -2311,7 +2311,7 @@ FaintYourPokemon: ; 3cef1
 	hlcoord 9, 7
 	lb bc, 5, 11
 	call ClearBox
-	ld hl, BattleText_PkmnFainted
+	ld hl, BattleText_MonFainted
 	jp StdBattleTextBox
 ; 3cf14
 
@@ -2325,7 +2325,7 @@ FaintEnemyPokemon: ; 3cf14
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
-	ld hl, BattleText_EnemyPkmnFainted
+	ld hl, BattleText_EnemyMonFainted
 	jp StdBattleTextBox
 ; 3cf35
 
@@ -2674,7 +2674,7 @@ HandlePlayerMonFaint: ; 3d14e
 	ld a, $1
 	ld [wWhichMonFaintedFirst], a
 	call PlayerMonFaintHappinessMod
-	call CheckPlayerPartyForFitPkmn
+	call CheckPlayerPartyForFitMon
 	ld a, d
 	and a
 	jp z, LostBattle
@@ -2833,7 +2833,7 @@ ForcePlayerMonChoice: ; 3d227
 	call CloseWindow
 	call GetMemSGBLayout
 	call SetPalettes
-	call SendOutPkmnText
+	call SendOutMonText
 	call NewBattleMonStatus
 	call BreakAttraction
 	call SendOutPlayerMon
@@ -2855,7 +2855,7 @@ PlayerPartyMonEntrance: ; 3d2b3
 	call AddBattleParticipant
 	call InitBattleMon
 	call ResetPlayerStatLevels
-	call SendOutPkmnText
+	call SendOutMonText
 	call NewBattleMonStatus
 	call BreakAttraction
 	call SendOutPlayerMon
@@ -2938,7 +2938,7 @@ SwitchMonAlreadyOut: ; 3d34f
 	cp [hl]
 	jr nz, .notout
 
-	ld hl, BattleText_PkmnIsAlreadyOut
+	ld hl, BattleText_MonIsAlreadyOut
 	call StdBattleTextBox
 	scf
 	ret
@@ -3201,11 +3201,11 @@ ForceEnemySwitch: ; 3d4c3
 	ld a, [wEnemySwitchMonIndex]
 	dec a
 	ld b, a
-	call LoadEnemyPkmnToSwitchTo
+	call LoadEnemyMonToSwitchTo
 	call ClearEnemyMonBox
 	call NewEnemyMonStatus
 	call ResetEnemyStatLevels
-	call Function_SetEnemyPkmnAndSendOutAnimation
+	call Function_SetEnemyMonAndSendOutAnimation
 	call BreakAttraction
 	call ResetBattleParticipants
 	ret
@@ -3218,15 +3218,15 @@ EnemySwitch: ; 3d4e1
 	call ResetEnemyBattleVars
 	call CheckWhetherSwitchmonIsPredetermined
 	jr c, .skip
-	call FindPkmnInOTPartyToSwitchIntoBattle
+	call FindMonInOTPartyToSwitchIntoBattle
 .skip
-	; 'b' contains the PartyNr of the Pkmn the AI will switch to
-	call LoadEnemyPkmnToSwitchTo
+	; 'b' contains the PartyNr of the mon the AI will switch to
+	call LoadEnemyMonToSwitchTo
 	call OfferSwitch
 	push af
 	call ClearEnemyMonBox
 	call Function_BattleTextEnemySentOut
-	call Function_SetEnemyPkmnAndSendOutAnimation
+	call Function_SetEnemyMonAndSendOutAnimation
 	pop af
 	ret c
 	; If we're here, then we're switching too
@@ -3244,15 +3244,15 @@ EnemySwitch_SetMode: ; 3d517
 	call ResetEnemyBattleVars
 	call CheckWhetherSwitchmonIsPredetermined
 	jr c, .skip
-	call FindPkmnInOTPartyToSwitchIntoBattle
+	call FindMonInOTPartyToSwitchIntoBattle
 .skip
-	; 'b' contains the PartyNr of the Pkmn the AI will switch to
-	call LoadEnemyPkmnToSwitchTo
+	; 'b' contains the PartyNr of the mon the AI will switch to
+	call LoadEnemyMonToSwitchTo
 	ld a, 1
 	ld [wEnemyIsSwitching], a
 	call ClearEnemyMonBox
 	call Function_BattleTextEnemySentOut
-	jp Function_SetEnemyPkmnAndSendOutAnimation
+	jp Function_SetEnemyMonAndSendOutAnimation
 ; 3d533
 
 CheckWhetherSwitchmonIsPredetermined: ; 3d533
@@ -3323,7 +3323,7 @@ AddBattleParticipant: ; 3d581
 	predef_jump SmallFarFlagAction
 ; 3d599
 
-FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
+FindMonInOTPartyToSwitchIntoBattle: ; 3d599
 	ld b, -1
 	ld a, $1
 	ld [wBuffer1], a
@@ -3351,7 +3351,7 @@ FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
 	pop bc
 	jr z, .discourage
 	call LookUpTheEffectivenessOfEveryMove
-	call IsThePlayerPkmnTypesEffectiveAgainstOTPkmn
+	call IsThePlayerMonTypesEffectiveAgainstOTMon
 	jr .loop
 
 .discourage
@@ -3398,9 +3398,9 @@ LookUpTheEffectivenessOfEveryMove: ; 3d5d7
 	ret
 ; 3d618
 
-IsThePlayerPkmnTypesEffectiveAgainstOTPkmn: ; 3d618
-; Calculates the effectiveness of the types of the PlayerPkmn
-; against the OTPkmn
+IsThePlayerMonTypesEffectiveAgainstOTMon: ; 3d618
+; Calculates the effectiveness of the types of the PlayerMon
+; against the OTMon
 	push bc
 	ld hl, wOTPartyCount
 	ld a, b
@@ -3512,8 +3512,8 @@ ScoreMonTypeMatchups: ; 3d672
 	ret
 ; 3d6ca
 
-LoadEnemyPkmnToSwitchTo: ; 3d6ca
-	; 'b' contains the PartyNr of the Pkmn the AI will switch to
+LoadEnemyMonToSwitchTo: ; 3d6ca
+	; 'b' contains the PartyNr of the mon the AI will switch to
 	ld a, b
 	ld [wCurPartyMon], a
 	ld hl, wOTPartyMon1Level
@@ -3585,7 +3585,7 @@ OfferSwitch: ; 3d74b
 	ld a, [wCurPartyMon]
 	push af
 	callfar Battle_GetTrainerName
-	ld hl, BattleText_EnemyIsAboutToUseWillPlayerChangePkmn
+	ld hl, BattleText_EnemyIsAboutToUseWillPlayerChangeMon
 	call StdBattleTextBox
 	lb bc, 1, 7
 	call PlaceYesNoBox
@@ -3641,14 +3641,14 @@ Function_BattleTextEnemySentOut: ; 3d7b8
 	jp WaitBGMap
 ; 3d7c7
 
-Function_SetEnemyPkmnAndSendOutAnimation: ; 3d7c7
+Function_SetEnemyMonAndSendOutAnimation: ; 3d7c7
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, OTPARTYMON
 	ld [wMonType], a
-	predef CopyPkmnToTempMon
+	predef CopyMonToTempMon
 	call GetEnemyMonFrontpic
 
 	xor a
@@ -3725,8 +3725,8 @@ ResetEnemyStatLevels: ; 3d867
 	ret
 ; 3d873
 
-CheckPlayerPartyForFitPkmn: ; 3d873
-; Has the player any Pkmn in his Party that can fight?
+CheckPlayerPartyForFitMon: ; 3d873
+; Has the player any mon in his Party that can fight?
 	ld a, [wPartyCount]
 	ld e, a
 	xor a
@@ -4312,7 +4312,7 @@ PursuitSwitch: ; 3dc5b
 	ld b, RESET_FLAG
 	predef SmallFarFlagAction
 	call PlayerMonFaintedAnimation
-	ld hl, BattleText_PkmnFainted
+	ld hl, BattleText_MonFainted
 	jr .done_fainted
 
 .check_enemy_fainted
@@ -4328,7 +4328,7 @@ PursuitSwitch: ; 3dc5b
 	call PlaySFX
 	call WaitSFX
 	call EnemyMonFaintedAnimation
-	ld hl, BattleText_EnemyPkmnFainted
+	ld hl, BattleText_EnemyMonFainted
 
 .done_fainted
 	call StdBattleTextBox
@@ -5293,7 +5293,7 @@ TryPlayerSwitch: ; 3e358
 	ld a, [wCurPartyMon]
 	cp d
 	jr nz, .check_trapped
-	ld hl, BattleText_PkmnIsAlreadyOut
+	ld hl, BattleText_MonIsAlreadyOut
 	call StdBattleTextBox
 	jp BattleMenuPKMN_Loop
 
@@ -5306,7 +5306,7 @@ TryPlayerSwitch: ; 3e358
 	jr z, .try_switch
 
 .trapped
-	ld hl, BattleText_PkmnCantBeRecalled
+	ld hl, BattleText_MonCantBeRecalled
 	call StdBattleTextBox
 	jp BattleMenuPKMN_Loop
 
@@ -5383,7 +5383,7 @@ EnemyMonEntrance: ; 3e3ff
 ; 3e40b
 
 BattleMonEntrance: ; 3e40b
-	call WithdrawPkmnText
+	call WithdrawMonText
 
 	ld c, 50
 	call DelayFrames
@@ -5406,7 +5406,7 @@ BattleMonEntrance: ; 3e40b
 	call AddBattleParticipant
 	call InitBattleMon
 	call ResetPlayerStatLevels
-	call SendOutPkmnText
+	call SendOutMonText
 	call NewBattleMonStatus
 	call BreakAttraction
 	call SendOutPlayerMon
@@ -5925,7 +5925,7 @@ CheckPlayerHasUsableMoves: ; 3e786
 	ret nz
 
 .force_struggle
-	ld hl, BattleText_PkmnHasNoMovesLeft
+	ld hl, BattleText_MonHasNoMovesLeft
 	call StdBattleTextBox
 	ld c, 60
 	call DelayFrames
@@ -6395,7 +6395,7 @@ LoadEnemyMon: ; 3e8eb
 	ld de, wEnemyMonMaxHP
 	ld b, FALSE
 	ld hl, wEnemyMonDVs - (MON_DVS - MON_STAT_EXP + 1) ; wLinkBattleRNs + 7 ; ?
-	predef CalcPkmnStats
+	predef CalcMonStats
 
 ; If we're in a trainer battle,
 ; get the rest of the parameters from the party struct
@@ -7302,7 +7302,7 @@ GiveExperiencePoints: ; 3ee3b
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
-	ld hl, Text_PkmnGainedExpPoint
+	ld hl, Text_MonGainedExpPoint
 	call BattleTextBox
 	ld a, [wStringBuffer2 + 1]
 	ld [hQuotient + 2], a
@@ -7371,7 +7371,7 @@ GiveExperiencePoints: ; 3ee3b
 .not_max_exp
 	xor a ; PARTYMON
 	ld [wMonType], a
-	predef CopyPkmnToTempMon
+	predef CopyMonToTempMon
 	callfar CalcLevel
 	pop bc
 	ld hl, MON_LEVEL
@@ -7408,7 +7408,7 @@ GiveExperiencePoints: ; 3ee3b
 	add hl, bc
 	push bc
 	ld b, TRUE
-	predef CalcPkmnStats
+	predef CalcMonStats
 	pop bc
 	pop de
 	ld hl, MON_MAXHP + 1
@@ -7484,7 +7484,7 @@ GiveExperiencePoints: ; 3ee3b
 .skip_animation2
 	xor a ; PARTYMON
 	ld [wMonType], a
-	predef CopyPkmnToTempMon
+	predef CopyMonToTempMon
 	hlcoord 9, 0
 	ld b, $a
 	ld c, $9
@@ -7600,7 +7600,7 @@ BoostExp: ; 3f106
 	ret
 ; 3f11b
 
-Text_PkmnGainedExpPoint: ; 3f11b
+Text_MonGainedExpPoint: ; 3f11b
 	text_jump Text_Gained
 	start_asm
 	ld hl, TextJump_StringBuffer2ExpPoints
@@ -7644,7 +7644,7 @@ AnimateExpBar: ; 3f136
 	ld [wd002], a
 	xor a ; PARTYMON
 	ld [wMonType], a
-	predef CopyPkmnToTempMon
+	predef CopyMonToTempMon
 	ld a, [wTempMonLevel]
 	ld b, a
 	ld e, a
@@ -7808,23 +7808,23 @@ AnimateExpBar: ; 3f136
 	ld [hBGMapMode], a
 	ret
 
-SendOutPkmnText: ; 3f26d
+SendOutMonText: ; 3f26d
 	ld a, [wLinkMode]
 	and a
 	jr z, .not_linked
 
-	ld hl, JumpText_GoPkmn ; If we're in a LinkBattle print just "Go <PlayerMon>"
+	ld hl, JumpText_GoMon ; If we're in a LinkBattle print just "Go <PlayerMon>"
 
 	ld a, [wBattleHasJustStarted] ; unless this (unidentified) variable is set
 	and a
 	jr nz, .skip_to_textbox
 
 .not_linked
-; Depending on the HP of the enemy Pkmn, the game prints a different text
+; Depending on the HP of the enemy mon, the game prints a different text
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	or [hl]
-	ld hl, JumpText_GoPkmn
+	ld hl, JumpText_GoMon
 	jr z, .skip_to_textbox
 
 	; compute enemy helth remaining as a percentage
@@ -7853,43 +7853,43 @@ SendOutPkmnText: ; 3f26d
 	call Divide
 
 	ld a, [hQuotient + 2]
-	ld hl, JumpText_GoPkmn
+	ld hl, JumpText_GoMon
 	cp 70
 	jr nc, .skip_to_textbox
 
-	ld hl, JumpText_DoItPkmn
+	ld hl, JumpText_DoItMon
 	cp 40
 	jr nc, .skip_to_textbox
 
-	ld hl, JumpText_GoForItPkmn
+	ld hl, JumpText_GoForItMon
 	cp 10
 	jr nc, .skip_to_textbox
 
-	ld hl, JumpText_YourFoesWeakGetmPkmn
+	ld hl, JumpText_YourFoesWeakGetmMon
 .skip_to_textbox
 	jp BattleTextBox
 ; 3f2d1
 
-JumpText_GoPkmn: ; 3f2d1
-	text_jump Text_GoPkmn
+JumpText_GoMon: ; 3f2d1
+	text_jump Text_GoMon
 	start_asm
 	jr Function_TextJump_BattleMonNick01
 ; 3f2d6
 
-JumpText_DoItPkmn: ; 3f2d8
-	text_jump Text_DoItPkmn
+JumpText_DoItMon: ; 3f2d8
+	text_jump Text_DoItMon
 	start_asm
 	jr Function_TextJump_BattleMonNick01
 ; 3f2dd
 
-JumpText_GoForItPkmn: ; 3f2df
-	text_jump Text_GoForItPkmn
+JumpText_GoForItMon: ; 3f2df
+	text_jump Text_GoForItMon
 	start_asm
 	jr Function_TextJump_BattleMonNick01
 ; 3f2e4
 
-JumpText_YourFoesWeakGetmPkmn: ; 3f2e6
-	text_jump Text_YourFoesWeakGetmPkmn
+JumpText_YourFoesWeakGetmMon: ; 3f2e6
+	text_jump Text_YourFoesWeakGetmMon
 	start_asm
 Function_TextJump_BattleMonNick01: ; 3f2eb
 	ld hl, TextJump_BattleMonNick01
@@ -7901,14 +7901,14 @@ TextJump_BattleMonNick01: ; 3f2ef
 	db "@"
 ; 3f2f4
 
-WithdrawPkmnText: ; 3f2f4
-	ld hl, .WithdrawPkmnText
+WithdrawMonText: ; 3f2f4
+	ld hl, .WithdrawMonText
 	jp BattleTextBox
 
-.WithdrawPkmnText:
+.WithdrawMonText:
 	text_jump Text_BattleMonNickComma
 	start_asm
-; Print text to withdraw Pkmn
+; Print text to withdraw mon
 ; depending on HP the message is different
 	push de
 	push bc
@@ -7989,7 +7989,7 @@ Unreferenced_HandleSafariAngerEatingStatus:
 	and a
 	jr z, .angry
 	dec [hl]
-	ld hl, BattleText_WildPkmnIsEating
+	ld hl, BattleText_WildMonIsEating
 	jr .finish
 
 .angry
@@ -7998,7 +7998,7 @@ Unreferenced_HandleSafariAngerEatingStatus:
 	and a
 	ret z
 	dec [hl]
-	ld hl, BattleText_WildPkmnIsAngry
+	ld hl, BattleText_WildMonIsAngry
 	jr nz, .finish
 	push hl
 	ld a, [wEnemyMonSpecies]

@@ -604,7 +604,7 @@ PokeBallEffect: ; e8a2
 .SendToPC:
 	call ClearSprites
 
-	predef SendPkmnIntoBox
+	predef SendMonIntoBox
 
 	farcall SetBoxMonCaughtData
 
@@ -1250,8 +1250,8 @@ UpdateStatsAfterItem: ; ee8c
 	ld e, l
 	ld a, MON_STAT_EXP - 1
 	call GetPartyParamLocation
-	ld b, $1
-	predef_jump CalcPkmnStats
+	ld b, TRUE
+	predef_jump CalcMonStats
 ; ee9f
 
 RareCandy_StatBooster_ExitMenu: ; ee9f
@@ -1390,7 +1390,7 @@ RareCandyEffect: ; ef14
 
 	xor a ; PARTYMON
 	ld [wMonType], a
-	predef CopyPkmnToTempMon
+	predef CopyMonToTempMon
 
 	hlcoord 9, 0
 	ld b, 10
@@ -1791,13 +1791,13 @@ UseItem_SelectMon: ; f1f9 (3:71f9)
 	push de
 	push bc
 	call ClearBGPalettes
-	call ChoosePkmnToUseItemOn
+	call ChooseMonToUseItemOn
 	pop bc
 	pop de
 	pop hl
 	ret
 
-ChoosePkmnToUseItemOn: ; f21c (3:721c)
+ChooseMonToUseItemOn: ; f21c (3:721c)
 	farcall LoadPartyMenuGFX
 	farcall InitPartyMenuWithCancel
 	farcall InitPartyMenuGFX
@@ -2099,7 +2099,7 @@ Softboiled_MilkDrinkFunction: ; f3df (3:73df)
 	push bc
 	ld a, PARTYMENUACTION_HEALING_ITEM
 	ld [wPartyMenuActionText], a
-	call ChoosePkmnToUseItemOn
+	call ChooseMonToUseItemOn
 	pop bc
 	jr c, .set_carry
 	ld a, [wPartyMenuCursor]
@@ -2412,7 +2412,7 @@ RestorePPEffect: ; f5bf
 	ld [wd002], a
 
 .loop
-	; Party Screen opens to choose on which Pkmn to use the Item
+	; Party Screen opens to choose on which mon to use the Item
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 	jp c, PPRestoreItem_Cancel

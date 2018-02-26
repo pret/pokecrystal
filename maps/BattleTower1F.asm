@@ -44,10 +44,10 @@ MapBattleTower1FSignpost0Script:
 	opentext
 	writetext Text_ReadBattleTowerRules
 	yesorno
-	iffalse UnknownScript_0x9e3e0
+	iffalse .skip
 	writetext Text_BattleTowerRules
 	waitbutton
-UnknownScript_0x9e3e0:
+.skip:
 	closetext
 	end
 
@@ -186,7 +186,7 @@ UnreferencedScript_0x9e4be:
 UnreferencedScript_0x9e4ea:
 	writebyte BATTLETOWERACTION_LEVEL_CHECK
 	special BattleTowerAction
-	ifnotequal $0, Script_APkmnLevelExceeds
+	ifnotequal $0, Script_AMonLevelExceeds
 	writebyte BATTLETOWERACTION_UBERS_CHECK
 	special BattleTowerAction
 	ifnotequal $0, Script_MayNotEnterABattleRoomUnderL70
@@ -223,8 +223,8 @@ UnreferencedScript_0x9e53b:
 	waitbutton
 	jump Script_BattleTowerHopeToServeYouAgain
 
-Script_APkmnLevelExceeds: ; 0x9e542
-	writetext Text_APkmnLevelExceeds
+Script_AMonLevelExceeds: ; 0x9e542
+	writetext Text_AMonLevelExceeds
 	waitbutton
 	jump Script_Menu_ChallengeExplanationCancel
 
@@ -626,7 +626,7 @@ Text_BattleTower_LeftWithoutSaving:
 	line "invalid."
 	done
 
-Text_YourPkmnWillBeHealedToFullHealth: ; 0x9ee92
+Text_YourMonWillBeHealedToFullHealth: ; 0x9ee92
 	text "Your #MON will"
 	line "be healed to full"
 	cont "health."
@@ -730,7 +730,7 @@ Text_RegisterRecordTimedOut_Mobile:
 	cont "challenge."
 	done
 
-Text_APkmnLevelExceeds: ; 0x9f1e5
+Text_AMonLevelExceeds: ; 0x9f1e5
 	text "One or more of"
 	line "your #MON's"
 	cont "levels exceeds @"

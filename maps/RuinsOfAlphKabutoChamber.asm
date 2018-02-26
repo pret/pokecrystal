@@ -57,10 +57,10 @@ MapRuinsOfAlphKabutoChamberSignpost2Script:
 	writebyte UNOWNPUZZLE_KABUTO
 	special UnownPuzzle
 	closetext
-	iftrue UnknownScript_0x58778
+	iftrue .PuzzleComplete
 	end
 
-UnknownScript_0x58778:
+.PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_KABUTO_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_A_TO_K
@@ -84,27 +84,27 @@ ScientistScript_0x587a8:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
-	ifequal NUM_UNOWN, UnknownScript_0x587cf
+	ifequal NUM_UNOWN, .AllUnownCaught
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
-	iftrue UnknownScript_0x587c9
+	iftrue .WallOpen
 	checkevent EVENT_SOLVED_KABUTO_PUZZLE
-	iffalse UnknownScript_0x587c0
+	iffalse .PuzzleIncomplete
 	writetext UnknownText_0x589b8
 	buttonsound
-UnknownScript_0x587c0:
+.PuzzleIncomplete:
 	writetext UnknownText_0x588f5
 	waitbutton
 	closetext
 	turnobject RUINSOFALPHKABUTOCHAMBER_SCIENTIST, UP
 	end
 
-UnknownScript_0x587c9:
+.WallOpen:
 	writetext UnknownText_0x5897c
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x587cf:
+.AllUnownCaught:
 	writetext UnknownText_0x594cb
 	waitbutton
 	closetext
@@ -126,7 +126,7 @@ MapRuinsOfAlphKabutoChamberSignpost4Script:
 
 MapRuinsOfAlphKabutoChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
-	iftrue UnknownScript_0x587f7
+	iftrue .WallOpen
 	opentext
 	writetext UnknownText_0x58ad9
 	writebyte UNOWNWORDS_ESCAPE
@@ -134,7 +134,7 @@ MapRuinsOfAlphKabutoChamberSignpost5Script:
 	closetext
 	end
 
-UnknownScript_0x587f7:
+.WallOpen:
 	opentext
 	writetext UnknownText_0x58afa
 	waitbutton

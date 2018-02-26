@@ -1,10 +1,10 @@
-CopyPkmnToTempMon: ; 5084a
-; gets the BaseData of a Pkmn
-; and copys the PkmnStructure to wTempMon
+CopyMonToTempMon: ; 5084a
+; gets the BaseData of a mon
+; and copies the party_struct to wTempMon
 
 	ld a, [wCurPartyMon]
 	ld e, a
-	call GetPkmnSpecies
+	call GetMonSpecies
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
@@ -32,7 +32,7 @@ CopyPkmnToTempMon: ; 5084a
 .done
 	ret
 
-CalcwBufferMonStats: ; 5088b
+CalcBufferMonStats: ; 5088b
 	ld bc, wBufferMon
 	jr _TempMonStatsCalculation
 
@@ -50,8 +50,8 @@ _TempMonStatsCalculation: ; 50893
 	ld hl, MON_STAT_EXP - 1
 	add hl, bc
 	push bc
-	ld b, $1
-	predef CalcPkmnStats
+	ld b, TRUE
+	predef CalcMonStats
 	pop bc
 	ld hl, MON_HP
 	add hl, bc
@@ -82,9 +82,9 @@ _TempMonStatsCalculation: ; 50893
 	ld [hl], a
 	ret
 
-GetPkmnSpecies: ; 508d5
-; [wMonType] has the type of the Pkmn
-; e = Nr. of Pkmn (i.e. [wCurPartyMon])
+GetMonSpecies: ; 508d5
+; [wMonType] has the type of the mon
+; e = Nr. of mon (i.e. [wCurPartyMon])
 
 	ld a, [wMonType]
 	and a ; PARTYMON

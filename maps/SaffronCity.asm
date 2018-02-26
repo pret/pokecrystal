@@ -22,13 +22,13 @@ LassScript_0x19932a:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x199338
+	iftrue .ReturnedPart
 	writetext UnknownText_0x19938d
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x199338:
+.ReturnedPart:
 	writetext UnknownText_0x19940d
 	waitbutton
 	closetext
@@ -38,13 +38,13 @@ PokefanMScript_0x19933e:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x19934c
+	iftrue .ReturnedPart
 	writetext UnknownText_0x199460
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x19934c:
+.ReturnedPart:
 	writetext UnknownText_0x1994ae
 	waitbutton
 	closetext
@@ -60,13 +60,13 @@ FisherScript_0x199358:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x199366
+	iftrue .ReturnedPart
 	writetext UnknownText_0x1995fc
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x199366:
+.ReturnedPart:
 	writetext UnknownText_0x19964b
 	waitbutton
 	closetext

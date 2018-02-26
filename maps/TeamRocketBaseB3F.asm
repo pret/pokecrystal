@@ -96,18 +96,18 @@ UnknownScript_0x6e056:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	turnobject TEAMROCKETBASEB3F_ROCKET1, DOWN
 	opentext
-	writetext UnknownText_0x6e400
+	writetext ExecutiveM4BeforeText
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e142
-	winlosstext UnknownText_0x6e511, 0
+	winlosstext ExecutiveM4BeatenText, 0
 	setlasttalked TEAMROCKETBASEB3F_ROCKET1
 	loadtrainer EXECUTIVEM, EXECUTIVEM_4
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ROCKET_EXECUTIVEM_4
 	opentext
-	writetext UnknownText_0x6e548
+	writetext ExecutiveM4AfterText
 	waitbutton
 	closetext
 	applymovement TEAMROCKETBASEB3F_ROCKET1, MovementData_0x6e144
@@ -383,7 +383,7 @@ RocketBaseRivalText:
 	cont "the likes of you!"
 	done
 
-UnknownText_0x6e400:
+ExecutiveM4BeforeText:
 	text "What? Who are you?"
 	line "This is the office"
 
@@ -410,7 +410,7 @@ UnknownText_0x6e400:
 	cont "place!"
 	done
 
-UnknownText_0x6e511:
+ExecutiveM4BeatenText:
 	text "I… I couldn't do a"
 	line "thing…"
 
@@ -418,7 +418,7 @@ UnknownText_0x6e511:
 	line "forgive me…"
 	done
 
-UnknownText_0x6e548:
+ExecutiveM4AfterText:
 	text "No, I can't let"
 	line "this affect me."
 

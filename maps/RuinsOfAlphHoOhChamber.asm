@@ -51,10 +51,10 @@ MapRuinsOfAlphHoOhChamberSignpost2Script:
 	writebyte UNOWNPUZZLE_HO_OH
 	special UnownPuzzle
 	closetext
-	iftrue UnknownScript_0x585ba
+	iftrue .PuzzleComplete
 	end
 
-UnknownScript_0x585ba:
+.PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_HO_OH_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_X_TO_Z
@@ -89,7 +89,7 @@ MapRuinsOfAlphHoOhChamberSignpost4Script:
 
 MapRuinsOfAlphHoOhChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
-	iftrue UnknownScript_0x58609
+	iftrue .WallOpen
 	opentext
 	writetext UnknownText_0x58644
 	writebyte UNOWNWORDS_HO_OH
@@ -97,7 +97,7 @@ MapRuinsOfAlphHoOhChamberSignpost5Script:
 	closetext
 	end
 
-UnknownScript_0x58609:
+.WallOpen:
 	opentext
 	writetext UnknownText_0x58665
 	waitbutton

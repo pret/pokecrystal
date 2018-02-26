@@ -18,36 +18,36 @@ TrainerGentlemanAlfred:
 	closetext
 	end
 
-TrainerSailorHuey1:
-	trainer SAILOR, HUEY1, EVENT_BEAT_SAILOR_HUEY, SailorHuey1SeenText, SailorHuey1BeatenText, 0, .Script
+TrainerSailorHuey:
+	trainer SAILOR, HUEY1, EVENT_BEAT_SAILOR_HUEY, SailorHueySeenText, SailorHueyBeatenText, 0, .Script
 
 .Script:
 	writecode VAR_CALLERID, PHONE_SAILOR_HUEY
 	endifjustbattled
 	opentext
 	checkflag ENGINE_HUEY
-	iftrue UnknownScript_0x5afc7
+	iftrue .WantsBattle
 	checkcellnum PHONE_SAILOR_HUEY
-	iftrue UnknownScript_0x5b05f
+	iftrue .NumberAccepted
 	checkevent EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x5afb0
+	iftrue .AskedBefore
 	setevent EVENT_HUEY_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x5b053
-	jump UnknownScript_0x5afb3
+	scall .AskNumber1
+	jump .AskForNumber
 
-UnknownScript_0x5afb0:
-	scall UnknownScript_0x5b057
-UnknownScript_0x5afb3:
+.AskedBefore:
+	scall .AskNumber2
+.AskForNumber:
 	askforphonenumber PHONE_SAILOR_HUEY
-	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5b067
-	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5b063
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext SAILOR, HUEY1, MEM_BUFFER_0
-	scall UnknownScript_0x5b05b
-	jump UnknownScript_0x5b05f
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
-UnknownScript_0x5afc7:
-	scall UnknownScript_0x5b06b
-	winlosstext SailorHuey1BeatenText, 0
+.WantsBattle:
+	scall .Rematch
+	winlosstext SailorHueyBeatenText, 0
 	copybytetovar wHueyFightCount
 	ifequal 3, .Fight3
 	ifequal 2, .Fight2
@@ -92,72 +92,72 @@ UnknownScript_0x5afc7:
 	reloadmapafterbattle
 	clearflag ENGINE_HUEY
 	checkevent EVENT_HUEY_PROTEIN
-	iftrue UnknownScript_0x5b03f
+	iftrue .HasProtein
 	checkevent EVENT_GOT_PROTEIN_FROM_HUEY
-	iftrue UnknownScript_0x5b03e
-	scall UnknownScript_0x5b076
+	iftrue .SkipGift
+	scall .RematchGift
 	verbosegiveitem PROTEIN
-	iffalse UnknownScript_0x5b06f
+	iffalse .PackFull
 	setevent EVENT_GOT_PROTEIN_FROM_HUEY
-	jump UnknownScript_0x5b05f
+	jump .NumberAccepted
 
-UnknownScript_0x5b03e:
+.SkipGift:
 	end
 
-UnknownScript_0x5b03f:
+.HasProtein:
 	opentext
 	writetext UnknownText_0x5b1b6
 	waitbutton
 	verbosegiveitem PROTEIN
-	iffalse UnknownScript_0x5b06f
+	iffalse .PackFull
 	clearevent EVENT_HUEY_PROTEIN
 	setevent EVENT_GOT_PROTEIN_FROM_HUEY
-	jump UnknownScript_0x5b05f
+	jump .NumberAccepted
 
-UnknownScript_0x5b053:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x5b057:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x5b05b:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x5b05f:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x5b063:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x5b067:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x5b06b:
+.Rematch:
 	jumpstd rematchm
 	end
 
-UnknownScript_0x5b06f:
+.PackFull:
 	setevent EVENT_HUEY_PROTEIN
 	jumpstd packfullm
 	end
 
-UnknownScript_0x5b076:
+.RematchGift:
 	jumpstd rematchgiftm
 	end
 
-SailorHuey1SeenText:
+SailorHueySeenText:
 	text "Men of the sea are"
 	line "always spoiling"
 	cont "for a good fight!"
 	done
 
-SailorHuey1BeatenText:
+SailorHueyBeatenText:
 	text "Urf!"
 	line "I lose!"
 	done
@@ -218,5 +218,5 @@ OlivineLighthouse2F_MapEvents:
 	db 0 ; bg events
 
 	db 2 ; object events
-	object_event  9,  3, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorHuey1, -1
+	object_event  9,  3, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorHuey, -1
 	object_event 17,  8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerGentlemanAlfred, -1

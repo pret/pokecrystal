@@ -1811,7 +1811,7 @@ SetUpMoveScreenBG: ; 13172
 	hlcoord 5, 1
 	call PlaceString
 	push bc
-	farcall CopyPkmnToTempMon
+	farcall CopyMonToTempMon
 	pop hl
 	call PrintLevel
 	ld hl, wPlayerHPPal
@@ -1828,7 +1828,7 @@ SetUpMoveList: ; 131ef
 	ld [hBGMapMode], a
 	ld [wMoveSwapBuffer], a
 	ld [wMonType], a
-	predef CopyPkmnToTempMon
+	predef CopyMonToTempMon
 	ld hl, wTempMonMoves
 	ld de, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES

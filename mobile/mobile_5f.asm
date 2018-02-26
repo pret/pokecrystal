@@ -2441,8 +2441,8 @@ Function17ded9: ; 17ded9
 	ld d, h
 	ld e, l
 	push hl
-	ld b, $0
-	farcall CalcPkmnStats
+	ld b, FALSE
+	farcall CalcMonStats
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1HP
@@ -2531,7 +2531,7 @@ Function17e026: ; 17e026
 	push bc
 	push hl
 	farcall LoadEnemyMon
-	farcall SendPkmnIntoBox
+	farcall SendMonIntoBox
 	farcall SetBoxMonCaughtData
 	pop hl
 	pop bc

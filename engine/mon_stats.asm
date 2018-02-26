@@ -343,7 +343,7 @@ Unused_PlaceEnemyHPLevel:
 	call GetNick
 	pop hl
 	call PlaceString
-	call CopyPkmnToTempMon
+	call CopyMonToTempMon
 	pop hl
 	ld a, [wCurPartySpecies]
 	cp EGG

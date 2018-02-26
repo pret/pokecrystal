@@ -307,13 +307,13 @@ YoungsterScript_0x6ad06:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6ad14
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b399
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6ad14:
+.StillCompeting:
 	writetext UnknownText_0x6b3c4
 	waitbutton
 	closetext
@@ -323,13 +323,13 @@ YoungsterScript_0x6ad1a:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6ad28
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b40f
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6ad28:
+.StillCompeting:
 	writetext UnknownText_0x6b440
 	waitbutton
 	closetext
@@ -339,13 +339,13 @@ RockerScript_0x6ad2e:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6ad3c
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b462
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6ad3c:
+.StillCompeting:
 	writetext UnknownText_0x6b496
 	waitbutton
 	closetext
@@ -355,13 +355,13 @@ PokefanMScript_0x6ad42:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6ad50
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b4da
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6ad50:
+.StillCompeting:
 	writetext UnknownText_0x6b50a
 	waitbutton
 	closetext
@@ -371,13 +371,13 @@ YoungsterScript_0x6ad56:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6ad64
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b54e
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6ad64:
+.StillCompeting:
 	writetext UnknownText_0x6b57c
 	waitbutton
 	closetext
@@ -387,13 +387,13 @@ YoungsterScript_0x6ad6a:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6ad78
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b5b0
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6ad78:
+.StillCompeting:
 	writetext UnknownText_0x6b5dd
 	waitbutton
 	closetext
@@ -403,13 +403,13 @@ LassScript_0x6ad7e:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6ad8c
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b64b
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6ad8c:
+.StillCompeting:
 	writetext UnknownText_0x6b698
 	waitbutton
 	closetext
@@ -419,13 +419,13 @@ YoungsterScript_0x6ad92:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6ada0
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b6b8
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6ada0:
+.StillCompeting:
 	writetext UnknownText_0x6b6e9
 	waitbutton
 	closetext
@@ -435,13 +435,13 @@ YoungsterScript_0x6ada6:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6adb4
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b71b
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6adb4:
+.StillCompeting:
 	writetext UnknownText_0x6b740
 	waitbutton
 	closetext
@@ -451,13 +451,13 @@ YoungsterScript_0x6adba:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x6adc8
+	iffalse .StillCompeting
 	writetext UnknownText_0x6b76f
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6adc8:
+.StillCompeting:
 	writetext UnknownText_0x6b7af
 	waitbutton
 	closetext

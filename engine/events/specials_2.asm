@@ -118,7 +118,7 @@ ReturnShuckle: ; 737e
 	cp 150
 	ld a, SHUCKIE_HAPPY
 	jr nc, .HappyToStayWithYou
-	xor a ; take from pc
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
 	ld a, SHUCKIE_RETURNED

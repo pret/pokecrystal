@@ -51,10 +51,10 @@ MapRuinsOfAlphOmanyteChamberSignpost2Script:
 	writebyte UNOWNPUZZLE_OMANYTE
 	special UnownPuzzle
 	closetext
-	iftrue UnknownScript_0x58c36
+	iftrue .PuzzleComplete
 	end
 
-UnknownScript_0x58c36:
+.PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_OMANYTE_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_L_TO_R
@@ -89,7 +89,7 @@ MapRuinsOfAlphOmanyteChamberSignpost4Script:
 
 MapRuinsOfAlphOmanyteChamberSignpost5Script:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
-	iftrue UnknownScript_0x58c85
+	iftrue .WallOpen
 	opentext
 	writetext UnknownText_0x58cc0
 	writebyte UNOWNWORDS_WATER
@@ -97,7 +97,7 @@ MapRuinsOfAlphOmanyteChamberSignpost5Script:
 	closetext
 	end
 
-UnknownScript_0x58c85:
+.WallOpen:
 	opentext
 	writetext UnknownText_0x58ce1
 	waitbutton

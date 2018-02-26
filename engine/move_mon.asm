@@ -1,5 +1,5 @@
 TryAddMonToParty: ; d88c
-; Check if to copy wild Pkmn or generate new Pkmn
+; Check if to copy wild mon or generate a new one
 	; Whose is it?
 	ld de, wPartyCount
 	ld a, [wMonType]
@@ -47,6 +47,7 @@ TryAddMonToParty: ; d88c
 	ld hl, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
+	; Only initialize the nickname for party mon
 	ld a, [wMonType]
 	and a
 	jr nz, .skipnickname
@@ -76,24 +77,34 @@ TryAddMonToParty: ; d88c
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 GeneratePartyMonStats: ; d906
+; wBattleMode specifies whether it's a wild mon or not.
+; wMonType specifies whether it's an opposing mon or not.
+; wCurPartySpecies/wCurPartyLevel specify the species and level.
+; hl points to the wPartyMon struct to fill.
+
 	ld e, l
 	ld d, h
 	push hl
+
+	; Initialize the species
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wBaseDexNo]
 	ld [de], a
 	inc de
+
+	; Copy the item if it's a wild mon
 	ld a, [wBattleMode]
 	and a
 	ld a, $0
 	jr z, .skipitem
 	ld a, [wEnemyMonItem]
-
 .skipitem
 	ld [de], a
 	inc de
+
+	; Copy the moves if it's a wild mon
 	push de
 	ld h, d
 	ld l, e
@@ -124,15 +135,19 @@ GeneratePartyMonStats: ; d906
 
 .next
 	pop de
-rept 4
+rept NUM_MOVES
 	inc de
 endr
+
+	; Initialize ID.
 	ld a, [wPlayerID]
 	ld [de], a
 	inc de
 	ld a, [wPlayerID + 1]
 	ld [de], a
 	inc de
+
+	; Initialize Exp.
 	push de
 	ld a, [wCurPartyLevel]
 	ld d, a
@@ -147,24 +162,28 @@ endr
 	ld a, [hProduct + 3]
 	ld [de], a
 	inc de
+
+	; Initialize stat experience.
 	xor a
-	ld b, $a
+	ld b, MON_DVS - MON_STAT_EXP
 .loop
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .loop
+
 	pop hl
 	push hl
 	ld a, [wMonType]
 	and $f
-	jr z, .generateDVs
+	jr z, .registerpokedex
+
 	push hl
 	farcall GetTrainerDVs
 	pop hl
-	jr .initializetrainermonstats
+	jr .initializeDVs
 
-.generateDVs
+.registerpokedex
 	ld a, [wCurPartySpecies]
 	ld [wd265], a
 	dec a
@@ -174,23 +193,26 @@ endr
 	dec a
 	call SetSeenAndCaughtMon
 	pop de
+
 	pop hl
 	push hl
 	ld a, [wBattleMode]
 	and a
-	jr nz, .copywildmonstats
+	jr nz, .copywildmonDVs
+
 	call Random
 	ld b, a
 	call Random
 	ld c, a
-
-.initializetrainermonstats
+.initializeDVs
 	ld a, b
 	ld [de], a
 	inc de
 	ld a, c
 	ld [de], a
 	inc de
+
+	; Initialize PP.
 	push hl
 	push de
 	inc hl
@@ -201,39 +223,52 @@ endr
 rept 4
 	inc de
 endr
-	ld a, 70
+
+	; Initialize happiness.
+	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
+
 	xor a
+	; PokerusStatus
 	ld [de], a
 	inc de
+	; CaughtData/CaughtTime/CaughtLevel
 	ld [de], a
 	inc de
+	; CaughtGender/CaughtLocation
 	ld [de], a
 	inc de
+
+	; Initialize level.
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	inc de
+
 	xor a
+	; Status
 	ld [de], a
 	inc de
+	; Unused
 	ld [de], a
 	inc de
-	ld bc, 10
+
+	; Initialize HP.
+	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld a, $1
+	ld a, 1
 	ld c, a
 	ld b, FALSE
-	call CalcPkmnStatC
+	call CalcMonStatC
 	ld a, [hProduct + 2]
 	ld [de], a
 	inc de
 	ld a, [hProduct + 3]
 	ld [de], a
 	inc de
-	jr .next2
+	jr .initstats
 
-.copywildmonstats
+.copywildmonDVs
 	ld a, [wEnemyMonDVs]
 	ld [de], a
 	inc de
@@ -252,19 +287,27 @@ endr
 	jr nz, .wildmonpploop
 	pop hl
 
+	; Initialize happiness.
 	ld a, BASE_HAPPINESS
 	ld [de], a
 	inc de
+
 	xor a
+	; PokerusStatus
 	ld [de], a
 	inc de
+	; CaughtData/CaughtTime/CaughtLevel
 	ld [de], a
 	inc de
+	; CaughtGender/CaughtLocation
 	ld [de], a
 	inc de
+
+	; Initialize level.
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	inc de
+
 	ld hl, wEnemyMonStatus
 	; Copy wEnemyMonStatus
 	ld a, [hli]
@@ -282,24 +325,24 @@ endr
 	ld [de], a
 	inc de
 
-.next2
+.initstats
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .generatestats
 	ld hl, wEnemyMonMaxHP
-	ld bc, 2 * 6 ; MaxHP + 5 Stats
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_MAXHP
 	call CopyBytes
 	pop hl
-	jr .next3
+	jr .registerunowndex
 
 .generatestats
 	pop hl
 	ld bc, MON_STAT_EXP - 1
 	add hl, bc
-	ld b, $0 ; if b = 1, then stat calculation takes stat exp into account.
-	call CalcPkmnStats
+	ld b, FALSE
+	call CalcMonStats
 
-.next3
+.registerunowndex
 	ld a, [wMonType]
 	and $f
 	jr nz, .done
@@ -434,12 +477,12 @@ AddTempmonToParty: ; da96
 	and a
 	ret
 
-SendGetPkmnIntoFromBox: ; db3f
-; Sents/Gets Pkmn into/from Box depending on Parameter
-; wPokemonWithdrawDepositParameter == 0: get Pkmn into Party
-; wPokemonWithdrawDepositParameter == 1: sent Pkmn into Box
-; wPokemonWithdrawDepositParameter == 2: get Pkmn from DayCare
-; wPokemonWithdrawDepositParameter == 3: put Pkmn into DayCare
+SendGetMonIntoFromBox: ; db3f
+; Sents/Gets mon into/from Box depending on Parameter
+; wPokemonWithdrawDepositParameter == 0: get mon into Party
+; wPokemonWithdrawDepositParameter == 1: sent mon into Box
+; wPokemonWithdrawDepositParameter == 2: get mon from DayCare
+; wPokemonWithdrawDepositParameter == 3: put mon into DayCare
 
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -452,7 +495,7 @@ SendGetPkmnIntoFromBox: ; db3f
 	ld hl, wBreedMon1Species
 	jr z, .breedmon
 
-	; we want to sent a Pkmn into the Box
+	; we want to sent a mon into the Box
 	; so check if there's enough space
 	ld hl, sBoxCount
 	ld a, [hl]
@@ -597,7 +640,7 @@ SendGetPkmnIntoFromBox: ; db3f
 	srl a
 	add $2
 	ld [wMonType], a
-	predef CopyPkmnToTempMon
+	predef CopyMonToTempMon
 	callfar CalcLevel
 	ld a, d
 	ld [wCurPartyLevel], a
@@ -616,8 +659,8 @@ SendGetPkmnIntoFromBox: ; db3f
 	add hl, bc
 
 	push bc
-	ld b, $1
-	call CalcPkmnStats
+	ld b, TRUE
+	call CalcMonStats
 	pop bc
 
 	ld a, [wPokemonWithdrawDepositParameter]
@@ -732,7 +775,7 @@ RestorePPofDepositedPokemon: ; dcb6
 	ret
 ; dd21
 
-RetrievePokemonFromDayCareMan: ; dd21
+RetrieveMonFromDayCareMan: ; dd21
 	ld a, [wBreedMon1Species]
 	ld [wCurPartySpecies], a
 	ld de, SFX_TRANSACTION
@@ -745,10 +788,10 @@ RetrievePokemonFromDayCareMan: ; dd21
 	ld [wCurPartyLevel], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	jp Functiondd64
+	jp RetrieveBreedmon
 ; dd42
 
-RetrievePokemonFromDayCareLady: ; dd42
+RetrieveMonFromDayCareLady: ; dd42
 	ld a, [wBreedMon2Species]
 	ld [wCurPartySpecies], a
 	ld de, SFX_TRANSACTION
@@ -761,10 +804,10 @@ RetrievePokemonFromDayCareLady: ; dd42
 	ld [wCurPartyLevel], a
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
-	jp Functiondd64
+	jp RetrieveBreedmon
 ; dd64
 
-Functiondd64: ; dd64
+RetrieveBreedmon: ; dd64
 	ld hl, wPartyCount
 	ld a, [hl]
 	cp PARTY_LENGTH
@@ -810,12 +853,12 @@ Functiondd64: ; dd64
 	pop hl
 	call CopyBytes
 	push hl
-	call Functionde1a
+	call GetLastPartyMon
 	pop hl
 	ld bc, BOXMON_STRUCT_LENGTH
 	call CopyBytes
 	call GetBaseData
-	call Functionde1a
+	call GetLastPartyMon
 	ld b, d
 	ld c, e
 	ld hl, MON_LEVEL
@@ -829,8 +872,8 @@ Functiondd64: ; dd64
 	ld hl, $a
 	add hl, bc
 	push bc
-	ld b, $1
-	call CalcPkmnStats
+	ld b, TRUE
+	call CalcMonStats
 	ld hl, wPartyMon1Moves
 	ld a, [wPartyCount]
 	dec a
@@ -861,7 +904,7 @@ Functiondd64: ; dd64
 	ret
 ; de1a
 
-Functionde1a: ; de1a
+GetLastPartyMon: ; de1a
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1Species
@@ -875,7 +918,7 @@ Functionde1a: ; de1a
 DepositMonWithDayCareMan: ; de2a
 	ld de, wBreedMon1Nick
 	call DepositBreedmon
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	jp RemoveMonFromPartyOrBox
 ; de37
@@ -883,7 +926,7 @@ DepositMonWithDayCareMan: ; de2a
 DepositMonWithDayCareLady: ; de37
 	ld de, wBreedMon2Nick
 	call DepositBreedmon
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	jp RemoveMonFromPartyOrBox
 ; de44
@@ -904,8 +947,8 @@ DepositBreedmon: ; de44
 	ld bc, BOXMON_STRUCT_LENGTH
 	jp CopyBytes
 
-SendPkmnIntoBox: ; de6e
-; Sends the Pkmn into one of Bills Boxes
+SendMonIntoBox: ; de6e
+; Sends the mon into one of Bills Boxes
 ; the data comes mainly from 'wEnemyMon:'
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
@@ -1359,8 +1402,8 @@ ComputeNPCTrademonStats: ; e134
 	push de
 	ld a, MON_STAT_EXP - 1
 	call GetPartyParamLocation
-	ld b, $1
-	call CalcPkmnStats
+	ld b, TRUE
+	call CalcMonStats
 	pop de
 	ld a, MON_HP
 	call GetPartyParamLocation
@@ -1372,17 +1415,17 @@ ComputeNPCTrademonStats: ; e134
 	ret
 ; e167
 
-CalcPkmnStats: ; e167
-; Calculates all 6 Stats of a Pkmn
+CalcMonStats: ; e167
+; Calculates all 6 Stats of a mon
 ; b: Take into account stat EXP if TRUE
 ; 'c' counts from 1-6 and points with 'wBaseStats' to the base value
 ; hl is the path to the Stat EXP
-; results in $ffb5 and $ffb6 are saved in [de]
+; de points to where the final stats will be saved
 
 	ld c, $0
 .loop
 	inc c
-	call CalcPkmnStatC
+	call CalcMonStatC
 	ld a, [hMultiplicand + 1]
 	ld [de], a
 	inc de
@@ -1395,7 +1438,7 @@ CalcPkmnStats: ; e167
 	ret
 ; e17b
 
-CalcPkmnStatC: ; e17b
+CalcMonStatC: ; e17b
 ; 'c' is 1-6 and points to the BaseStat
 ; 1: HP
 ; 2: Attack
@@ -1626,7 +1669,7 @@ GivePoke:: ; e277
 	ld a, [wCurPartySpecies]
 	ld [wTempEnemyMonSpecies], a
 	callfar LoadEnemyMon
-	call SendPkmnIntoBox
+	call SendMonIntoBox
 	jp nc, .FailedToGiveMon
 	ld a, BOXMON
 	ld [wMonType], a

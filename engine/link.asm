@@ -790,7 +790,7 @@ Link_PrepPartyData_Gen1: ; 28499
 	add hl, bc
 	ld c, STAT_SATK
 	ld b, TRUE
-	predef CalcPkmnStatC
+	predef CalcMonStatC
 
 	pop bc
 	pop de
@@ -1069,7 +1069,7 @@ Function2868a: ; 2868a
 	add hl, bc
 	ld c, STAT_SATK
 	ld b, TRUE
-	predef CalcPkmnStatC
+	predef CalcMonStatC
 	pop bc
 	pop hl
 	ld a, [hQuotient + 1]
@@ -1082,7 +1082,7 @@ Function2868a: ; 2868a
 	add hl, bc
 	ld c, STAT_SDEF
 	ld b, TRUE
-	predef CalcPkmnStatC
+	predef CalcMonStatC
 	pop bc
 	pop hl
 	ld a, [hQuotient + 1]
@@ -1863,7 +1863,7 @@ LinkTrade: ; 28b87
 	add hl, bc
 	ld a, [hl]
 	ld [wd002], a
-	xor a
+	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
 	callfar RemoveMonFromPartyOrBox
 	ld a, [wPartyCount]

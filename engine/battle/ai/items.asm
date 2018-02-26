@@ -74,7 +74,7 @@ SwitchOften: ; 38045
 	ld a, [wEnemySwitchMonParam]
 	and $f
 	inc a
-	; In register 'a' is the number (1-6) of the Pkmn to switch to
+	; In register 'a' is the number (1-6) of the mon to switch to
 	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
 ; 38083
