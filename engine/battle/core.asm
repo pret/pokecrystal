@@ -3324,7 +3324,7 @@ AddBattleParticipant: ; 3d581
 ; 3d599
 
 FindPkmnInOTPartyToSwitchIntoBattle: ; 3d599
-	ld b, $ff
+	ld b, -1
 	ld a, $1
 	ld [wBuffer1], a
 	ld [wBuffer2], a
@@ -3468,7 +3468,7 @@ ScoreMonTypeMatchups: ; 3d672
 	ld a, [wBuffer1]
 	and a
 	jr z, .okay2
-	ld b, $ff
+	ld b, -1
 	ld c, a
 .loop3
 	inc b
@@ -3477,7 +3477,7 @@ ScoreMonTypeMatchups: ; 3d672
 	jr .quit
 
 .okay2
-	ld b, $ff
+	ld b, -1
 	ld a, [wBuffer2]
 	ld c, a
 .loop4
@@ -8849,13 +8849,13 @@ BattleEnd_HandleRoamMons: ; 3f998
 
 .caught_or_defeated_roam_mon
 	call GetRoamMonHP
-	ld [hl], $0
+	ld [hl], 0
 	call GetRoamMonMapGroup
-	ld [hl], $ff
+	ld [hl], GROUP_N_A
 	call GetRoamMonMapNumber
-	ld [hl], $ff
+	ld [hl], MAP_N_A
 	call GetRoamMonSpecies
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
 .not_roaming
