@@ -53,7 +53,7 @@ GENDERLESS   EQU -1
 	const EGG_FIELD        ; 5 (aka Ground in Stadium 2)
 	const EGG_FAIRY        ; 6
 	const EGG_GRASS        ; 7 (aka Plant in Stadium 2)
-	const EGG_HUMANSHAPE   ; 8 (aka Humanshape in Stadium 2)
+	const EGG_HUMANSHAPE   ; 8 (aka Human-Like)
 	const EGG_INVERTEBRATE ; 9 (aka Water 3 in Stadium 2)
 	const EGG_MINERAL      ; a
 	const EGG_AMORPHOUS    ; b (aka Indeterminate in Stadium 2)
