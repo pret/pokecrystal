@@ -35,13 +35,13 @@ CeladonGymErikaScript:
 	setflag ENGINE_RAINBOWBADGE
 .FightDone:
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
-	iftrue UnknownScript_0x72aae
+	iftrue .GotGigaDrain
 	writetext UnknownText_0x72cb0
 	buttonsound
 	verbosegiveitem TM_GIGA_DRAIN
-	iffalse UnknownScript_0x72aae
+	iffalse .GotGigaDrain
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
-UnknownScript_0x72aae:
+.GotGigaDrain:
 	writetext UnknownText_0x72d8f
 	waitbutton
 	closetext

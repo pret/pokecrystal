@@ -15,33 +15,33 @@ RadioTower4F_MapScripts:
 RadioTower4FFisherScript:
 	jumptextfaceplayer RadioTower4FFisherText
 
-TeacherScript_0x5eb85:
+RadioTower4FDJMaryScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_PINK_BOW_FROM_MARY
-	iftrue UnknownScript_0x5ebac
+	iftrue .GotPinkBow
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0x5eb99
-	writetext UnknownText_0x5ec68
+	iftrue .ClearedRockets
+	writetext RadioTower4FDJMaryText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5eb99:
-	writetext UnknownText_0x5ecab
+.ClearedRockets:
+	writetext RadioTower4FDJMaryText_ClearedRockets
 	buttonsound
 	verbosegiveitem PINK_BOW
-	iffalse UnknownScript_0x5ebb0
-	writetext UnknownText_0x5ecef
+	iffalse .NoRoom
+	writetext RadioTower4FDJMaryText_GivePinkBow
 	waitbutton
 	closetext
 	setevent EVENT_GOT_PINK_BOW_FROM_MARY
 	end
 
-UnknownScript_0x5ebac:
-	writetext UnknownText_0x5ed2c
+.GotPinkBow:
+	writetext RadioTower4FDJMaryText_After
 	waitbutton
-UnknownScript_0x5ebb0:
+.NoRoom:
 	closetext
 	end
 
@@ -112,7 +112,7 @@ RadioTower4FFisherText:
 	line "broadcast there."
 	done
 
-UnknownText_0x5ec68:
+RadioTower4FDJMaryText:
 	text "MARY: Why? Why do"
 	line "I have to suffer"
 	cont "through this?"
@@ -120,7 +120,7 @@ UnknownText_0x5ec68:
 	para "MEOWTH, help me!"
 	done
 
-UnknownText_0x5ecab:
+RadioTower4FDJMaryText_ClearedRockets:
 	text "MARY: Oh! You're"
 	line "my little savior!"
 
@@ -128,7 +128,7 @@ UnknownText_0x5ecab:
 	line "as my thanks?"
 	done
 
-UnknownText_0x5ecef:
+RadioTower4FDJMaryText_GivePinkBow:
 	text "MARY: It's just"
 	line "right for #MON"
 
@@ -136,7 +136,7 @@ UnknownText_0x5ecef:
 	line "type moves."
 	done
 
-UnknownText_0x5ed2c:
+RadioTower4FDJMaryText_After:
 	text "MARY: Please tune"
 	line "into me on PROF."
 
@@ -260,7 +260,7 @@ RadioTower4F_MapEvents:
 
 	db 7 ; object events
 	object_event  6,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower4FFisherScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	object_event 14,  6, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5eb85, -1
+	object_event 14,  6, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower4FDJMaryScript, -1
 	object_event 12,  7, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTowerMeowth, -1
 	object_event  5,  6, SPRITE_ROCKET, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 14,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

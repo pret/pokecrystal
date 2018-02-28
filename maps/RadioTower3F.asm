@@ -26,23 +26,23 @@ RadioTower3F_MapScripts:
 RadioTower3FSuperNerdScript:
 	jumptextfaceplayer RadioTower3FSuperNerdText
 
-GymGuyScript_0x5e556:
+RadioTower3FGymGuyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .NoRockets
-	writetext UnknownText_0x5e682
+	writetext RadioTower3FGymGuyText_Rockets
 	waitbutton
 	closetext
 	end
 
 .NoRockets:
-	writetext UnknownText_0x5e6eb
+	writetext RadioTower3FGymGuyText
 	waitbutton
 	closetext
 	end
 
-CooltrainerFScript_0x5e56a:
+RadioTower3FCooltrainerFScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
@@ -131,13 +131,13 @@ CardKeySlotScript::
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .UsedCardKey
 	checkitem CARD_KEY
-	iftrue UnknownScript_0x5e605
+	iftrue .HaveCardKey
 .UsedCardKey:
 	closetext
 	end
 
-UnknownScript_0x5e605:
-	writetext UnknownText_0x5eabc
+.HaveCardKey:
+	writetext InsertedTheCardKeyText
 	waitbutton
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR
@@ -165,7 +165,7 @@ RadioTower3FSuperNerdText:
 	line "200 kinds."
 	done
 
-UnknownText_0x5e682:
+RadioTower3FGymGuyText_Rockets:
 	text "To trainers, #-"
 	line "MON are their"
 	cont "beloved partners."
@@ -177,7 +177,7 @@ UnknownText_0x5e682:
 	line "#MON."
 	done
 
-UnknownText_0x5e6eb:
+RadioTower3FGymGuyText:
 	text "We run 24 hours a"
 	line "day to broadcast"
 
@@ -312,7 +312,7 @@ RadioTower3FCardKeySlotText:
 	line "slot."
 	done
 
-UnknownText_0x5eabc:
+InsertedTheCardKeyText:
 	text "<PLAYER> inserted"
 	line "the CARD KEY."
 	done
@@ -343,8 +343,8 @@ RadioTower3F_MapEvents:
 
 	db 7 ; object events
 	object_event  7,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower3FSuperNerdScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x5e556, -1
-	object_event 11,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CooltrainerFScript_0x5e56a, -1
+	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower3FGymGuyScript, -1
+	object_event 11,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower3FCooltrainerFScript, -1
 	object_event  5,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  6,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 16,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

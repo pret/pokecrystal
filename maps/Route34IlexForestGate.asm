@@ -33,41 +33,41 @@ Route34IlexForestGateCelebiEvent:
 	stopfollow
 	turnobject PLAYER, DOWN
 	opentext
-	writetext UnknownText_0x62e41
+	writetext Route34IlexForestGateTeacher_ForestIsRestless
 	waitbutton
 	closetext
 	applymovement ROUTE34ILEXFORESTGATE_TEACHER2, MovementData_0x62d9a
 .skip:
 	end
 
-TeacherScript_0x62d63:
+Route34IlexForestGateTeacherScript:
 	faceplayer
 	opentext
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .ForestIsRestless
 	checkevent EVENT_GOT_TM12_SWEET_SCENT
 	iftrue .GotSweetScent
-	writetext UnknownText_0x62d9d
+	writetext Route34IlexForestGateTeacherText
 	buttonsound
 	verbosegiveitem TM_SWEET_SCENT
 	iffalse .NoRoom
 	setevent EVENT_GOT_TM12_SWEET_SCENT
 .GotSweetScent:
-	writetext UnknownText_0x62df6
+	writetext Route34IlexForestGateTeacher_GotSweetScent
 	waitbutton
 .NoRoom:
 	closetext
 	end
 
 .ForestIsRestless:
-	writetext UnknownText_0x62e41
+	writetext Route34IlexForestGateTeacher_ForestIsRestless
 	buttonsound
 	closetext
 	end
 
-IlexGateButterfree:
+Route34IlexForestGateButterfreeScript:
 	opentext
-	writetext UnknownText_0x62e83
+	writetext Route34IlexForestGateButterfreeText
 	cry BUTTERFREE
 	waitbutton
 	closetext
@@ -86,7 +86,7 @@ MovementData_0x62d9a:
 	step RIGHT
 	step_end
 
-UnknownText_0x62d9d:
+Route34IlexForestGateTeacherText:
 	text "Oh, honey. You're"
 	line "making a #DEX?"
 
@@ -97,7 +97,7 @@ UnknownText_0x62d9d:
 	line "this TM."
 	done
 
-UnknownText_0x62df6:
+Route34IlexForestGateTeacher_GotSweetScent:
 	text "It's SWEET SCENT."
 
 	para "Use it wherever"
@@ -107,7 +107,7 @@ UnknownText_0x62df6:
 	line "enticed by it."
 	done
 
-UnknownText_0x62e41:
+Route34IlexForestGateTeacher_ForestIsRestless:
 	text "Something's wrong"
 	line "in ILEX FOREST…"
 
@@ -115,7 +115,7 @@ UnknownText_0x62e41:
 	line "away right now."
 	done
 
-UnknownText_0x62e83:
+Route34IlexForestGateButterfreeText:
 	text "BUTTERFREE: Freeh!"
 	done
 
@@ -148,7 +148,7 @@ Route34IlexForestGate_MapEvents:
 	db 0 ; bg events
 
 	db 4 ; object events
-	object_event  9,  3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
-	object_event  9,  4, SPRITE_BUTTERFREE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, IlexGateButterfree, -1
+	object_event  9,  3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateTeacherScript, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_BEHIND_COUNTER
+	object_event  9,  4, SPRITE_BUTTERFREE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateButterfreeScript, -1
 	object_event  3,  4, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateLassScript, EVENT_ROUTE_34_ILEX_FOREST_GATE_LASS
-	object_event  5,  7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x62d63, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY
+	object_event  5,  7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route34IlexForestGateTeacherScript, EVENT_ROUTE_34_ILEX_FOREST_GATE_TEACHER_IN_WALKWAY

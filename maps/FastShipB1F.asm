@@ -25,9 +25,9 @@ FastShipB1F_MapScripts:
 .DummyScene1:
 	end
 
-UnknownScript_0x7673c:
+FastShipB1FSailorBlocksLeft:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
-	iftrue UnknownScript_0x76766
+	iftrue FastShipB1FAlreadyBlocked
 	applymovement FASTSHIPB1F_SAILOR2, MovementData_0x76876
 	moveobject FASTSHIPB1F_SAILOR1, 30, 6
 	appear FASTSHIPB1F_SAILOR1
@@ -35,9 +35,9 @@ UnknownScript_0x7673c:
 	disappear FASTSHIPB1F_SAILOR2
 	end
 
-UnknownScript_0x76751:
+FastShipB1FSailorBlocksRight:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_LEFT
-	iftrue UnknownScript_0x76766
+	iftrue FastShipB1FAlreadyBlocked
 	applymovement FASTSHIPB1F_SAILOR1, MovementData_0x76871
 	moveobject FASTSHIPB1F_SAILOR2, 31, 6
 	appear FASTSHIPB1F_SAILOR2
@@ -45,18 +45,18 @@ UnknownScript_0x76751:
 	disappear FASTSHIPB1F_SAILOR1
 	end
 
-UnknownScript_0x76766:
+FastShipB1FAlreadyBlocked:
 	end
 
 SailorScript_0x76767:
 	faceplayer
 	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue UnknownScript_0x767a0
+	iftrue .FirstTime
 	checkevent EVENT_FAST_SHIP_LAZY_SAILOR
-	iftrue UnknownScript_0x7678d
+	iftrue .LazySailor
 	checkevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
-	iftrue UnknownScript_0x76787
+	iftrue .AlreadyInformed
 	writetext UnknownText_0x7687b
 	waitbutton
 	closetext
@@ -64,28 +64,28 @@ SailorScript_0x76767:
 	clearevent EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
 	end
 
-UnknownScript_0x76787:
+.AlreadyInformed:
 	writetext UnknownText_0x76907
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7678d:
+.LazySailor:
 	writetext UnknownText_0x7692e
 	checkevent EVENT_FAST_SHIP_FOUND_GIRL
-	iffalse UnknownScript_0x76799
+	iffalse .NotFoundGirl
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x76799:
+.NotFoundGirl:
 	buttonsound
 	writetext UnknownText_0x7696d
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x767a0:
+.FirstTime:
 	writetext UnknownText_0x7699d
 	waitbutton
 	closetext
@@ -454,8 +454,8 @@ FastShipB1F_MapEvents:
 	warp_event 31, 13, FAST_SHIP_1F, 12
 
 	db 2 ; coord events
-	coord_event 30,  7, SCENE_DEFAULT, UnknownScript_0x7673c
-	coord_event 31,  7, SCENE_DEFAULT, UnknownScript_0x76751
+	coord_event 30,  7, SCENE_DEFAULT, FastShipB1FSailorBlocksLeft
+	coord_event 31,  7, SCENE_DEFAULT, FastShipB1FSailorBlocksRight
 
 	db 1 ; bg events
 	bg_event 27,  9, BGEVENT_READ, FashShipB1FTrashcan

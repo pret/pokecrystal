@@ -9,14 +9,14 @@ GoldenrodBikeShop_MapScripts:
 .UnreferencedDummyScene:
 	end
 
-ClerkScript_0x54750:
+GoldenrodBikeShopClerkScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_BICYCLE
-	iftrue UnknownScript_0x54775
+	iftrue .GotBicycle
 	writetext UnknownText_0x54787
 	yesorno
-	iffalse UnknownScript_0x5477b
+	iffalse .Refused
 	writetext UnknownText_0x547f8
 	buttonsound
 	waitsfx
@@ -27,13 +27,13 @@ ClerkScript_0x54750:
 	itemnotify
 	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	setevent EVENT_GOT_BICYCLE
-UnknownScript_0x54775:
+.GotBicycle:
 	writetext UnknownText_0x5485f
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5477b:
+.Refused:
 	writetext UnknownText_0x54898
 	waitbutton
 	closetext
@@ -121,4 +121,4 @@ GoldenrodBikeShop_MapEvents:
 	bg_event  7,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
 
 	db 1 ; object events
-	object_event  7,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x54750, -1
+	object_event  7,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodBikeShopClerkScript, -1

@@ -14,12 +14,12 @@ CooltrainerMScript_0x71670:
 	opentext
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
-	ifgreater NUM_POKEMON - 2 - 1, UnknownScript_0x7167e ; ignore Mew and Celebi
+	ifgreater NUM_POKEMON - 2 - 1, .CompletedPokedex ; ignore Mew and Celebi
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7167e:
+.CompletedPokedex:
 	buttonsound
 	writetext UnknownText_0x71725
 	playsound SFX_DEX_FANFARE_230_PLUS
@@ -37,21 +37,21 @@ GymGuyScript_0x71696:
 	faceplayer
 	opentext
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue UnknownScript_0x716a4
+	iftrue .CanPrintDiploma
 	writetext UnknownText_0x717b4
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x716a4:
+.CanPrintDiploma:
 	writetext UnknownText_0x717d8
 	yesorno
-	iffalse UnknownScript_0x716b0
+	iffalse .Refused
 	special PrintDiploma
 	closetext
 	end
 
-UnknownScript_0x716b0:
+.Refused:
 	writetext UnknownText_0x71830
 	waitbutton
 	closetext

@@ -22,17 +22,17 @@ Route27_MapScripts:
 .DummyScene1:
 	end
 
-UnknownScript_0x1a0873:
+FirstStepIntoKantoLeftScene:
 	turnobject ROUTE27_FISHER, LEFT
 	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
 	applymovement ROUTE27_FISHER, MovementData_0x1a0a66
-	jump UnknownScript_0x1a088c
+	jump FirstStepIntoKantoScene_Continue
 
-UnknownScript_0x1a0881:
+FirstStepIntoKantoRightScene:
 	turnobject ROUTE27_FISHER, LEFT
 	showemote EMOTE_SHOCK, ROUTE27_FISHER, 15
 	applymovement ROUTE27_FISHER, MovementData_0x1a0a69
-UnknownScript_0x1a088c:
+FirstStepIntoKantoScene_Continue:
 	turnobject PLAYER, RIGHT
 	opentext
 	writetext Route27FisherHeyText
@@ -474,8 +474,8 @@ Route27_MapEvents:
 	warp_event 36,  5, TOHJO_FALLS, 2
 
 	db 2 ; coord events
-	coord_event 18, 10, SCENE_DEFAULT, UnknownScript_0x1a0873
-	coord_event 19, 10, SCENE_DEFAULT, UnknownScript_0x1a0881
+	coord_event 18, 10, SCENE_DEFAULT, FirstStepIntoKantoLeftScene
+	coord_event 19, 10, SCENE_DEFAULT, FirstStepIntoKantoRightScene
 
 	db 1 ; bg events
 	bg_event 25,  7, BGEVENT_READ, TohjoFallsSign

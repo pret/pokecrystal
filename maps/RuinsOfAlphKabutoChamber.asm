@@ -80,7 +80,7 @@ RuinsOfAlphKabutoChamberPuzzle:
 	warpcheck
 	end
 
-ScientistScript_0x587a8:
+RuinsOfAlphKabutoChamberScientistScript:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
@@ -200,7 +200,7 @@ UnknownText_0x589b8:
 	cont "this wall here…"
 	done
 
-UnusedText_0x58a03:
+RuinsOfAlphKabutoChamberUnusedText:
 ; unused
 	text "The patterns on"
 	line "the wall appear to"
@@ -275,4 +275,4 @@ RuinsOfAlphKabutoChamber_MapEvents:
 
 	db 2 ; object events
 	object_event  5,  5, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
-	object_event  3,  1, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x587a8, -1
+	object_event  3,  1, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberScientistScript, -1

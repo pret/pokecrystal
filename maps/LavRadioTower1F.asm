@@ -16,8 +16,8 @@ LavRadioTower1FReceptionistScript:
 LavRadioTower1FOfficerScript:
 	jumptextfaceplayer LavRadioTower1FOfficerText
 
-LavRadioTower1FSuperNerdScript:
-	jumptextfaceplayer LavRadioTower1FSuperNerdText
+LavRadioTower1FSuperNerd1Script:
+	jumptextfaceplayer LavRadioTower1FSuperNerd1Text
 
 GentlemanScript_0x7ee6c:
 	faceplayer
@@ -50,18 +50,18 @@ GentlemanScript_0x7ee6c:
 .expncardname
 	db "EXPN CARD@"
 
-SuperNerdScript_0x7eea2:
+LavRadioTower1FSuperNerd2Script:
 	faceplayer
 	opentext
 	checkflag ENGINE_EXPN_CARD
-	iftrue UnknownScript_0x7eeb0
-	writetext UnknownText_0x7f193
+	iftrue .GotExpnCard
+	writetext LavRadioTower1FSuperNerd2Text
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7eeb0:
-	writetext UnknownText_0x7f248
+.GotExpnCard:
+	writetext LavRadioTower1FSuperNerd2Text_GotExpnCard
 	waitbutton
 	closetext
 	end
@@ -99,7 +99,7 @@ LavRadioTower1FOfficerText:
 	line "up our security."
 	done
 
-LavRadioTower1FSuperNerdText:
+LavRadioTower1FSuperNerd1Text:
 	text "Many people are"
 	line "hard at work here"
 
@@ -156,7 +156,7 @@ UnknownText_0x7f141:
 	para "Gahahahaha!"
 	done
 
-UnknownText_0x7f193:
+LavRadioTower1FSuperNerd2Text:
 	text "Hey there!"
 
 	para "I am the super"
@@ -175,7 +175,7 @@ UnknownText_0x7f193:
 	line "better get one!"
 	done
 
-UnknownText_0x7f248:
+LavRadioTower1FSuperNerd2Text_GotExpnCard:
 	text "Hey there!"
 
 	para "I am the super"
@@ -236,6 +236,6 @@ LavRadioTower1F_MapEvents:
 	db 5 ; object events
 	object_event  6,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FReceptionistScript, -1
 	object_event 15,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FOfficerScript, -1
-	object_event  1,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerdScript, -1
+	object_event  1,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd1Script, -1
 	object_event  9,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x7ee6c, -1
-	object_event 14,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x7eea2, -1
+	object_event 14,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd2Script, -1

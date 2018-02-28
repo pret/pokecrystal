@@ -20,7 +20,7 @@ SproutTower3F_MapScripts:
 .DummyScene1:
 	end
 
-UnknownScript_0x184947:
+SproutTower3FRivalScene:
 	turnobject PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
@@ -65,7 +65,7 @@ SageLiScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_HM05_FLASH
-	iftrue UnknownScript_0x1849d1
+	iftrue .GotFlash
 	writetext SageLiSeenText
 	waitbutton
 	closetext
@@ -84,7 +84,7 @@ SageLiScript:
 	closetext
 	end
 
-UnknownScript_0x1849d1:
+.GotFlash:
 	writetext UnknownText_0x184d88
 	waitbutton
 	closetext
@@ -334,7 +334,7 @@ SproutTower3F_MapEvents:
 	warp_event 10, 14, SPROUT_TOWER_2F, 4
 
 	db 1 ; coord events
-	coord_event 11,  9, SCENE_DEFAULT, UnknownScript_0x184947
+	coord_event 11,  9, SCENE_DEFAULT, SproutTower3FRivalScene
 
 	db 6 ; bg events
 	bg_event  8,  1, BGEVENT_READ, SproutTower3FStatue

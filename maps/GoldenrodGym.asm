@@ -49,9 +49,9 @@ GoldenrodGymWhitneyScript:
 
 .StoppedCrying:
 	checkevent EVENT_GOT_TM45_ATTRACT
-	iftrue UnknownScript_0x54077
+	iftrue .GotAttract
 	checkflag ENGINE_PLAINBADGE
-	iftrue UnknownScript_0x54064
+	iftrue .GotPlainBadge
 	writetext UnknownText_0x54222
 	buttonsound
 	waitsfx
@@ -61,21 +61,21 @@ GoldenrodGymWhitneyScript:
 	setflag ENGINE_PLAINBADGE
 	checkcode VAR_BADGES
 	scall GoldenrodGymActivateRockets
-UnknownScript_0x54064:
+.GotPlainBadge:
 	writetext UnknownText_0x5428b
 	buttonsound
 	verbosegiveitem TM_ATTRACT
-	iffalse UnknownScript_0x5407b
+	iffalse .NoRoomForAttract
 	setevent EVENT_GOT_TM45_ATTRACT
 	writetext UnknownText_0x54302
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x54077:
+.GotAttract:
 	writetext UnknownText_0x54360
 	waitbutton
-UnknownScript_0x5407b:
+.NoRoomForAttract:
 	closetext
 	end
 

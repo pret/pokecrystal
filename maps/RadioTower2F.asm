@@ -16,25 +16,25 @@ RadioTower2F_MapScripts:
 
 	db 0 ; callbacks
 
-UnknownScript_0x5d6fd:
+RadioTower2FUnusedDummyScene:
 ; unused
 	end
 
 RadioTower2FSuperNerdScript:
 	jumptextfaceplayer RadioTower2FSuperNerdText
 
-TeacherScript_0x5d701:
+RadioTower2FTeacherScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue .Rockets
-	writetext UnknownText_0x5d956
+	writetext RadioTower2FTeacherText
 	waitbutton
 	closetext
 	end
 
 .Rockets:
-	writetext UnknownText_0x5d983
+	writetext RadioTower2FTeacherText_Rockets
 	waitbutton
 	closetext
 	end
@@ -348,13 +348,13 @@ RadioTower2FSuperNerdText:
 	cont "where. Tune in!"
 	done
 
-UnknownText_0x5d956:
+RadioTower2FTeacherText:
 	text "Lullabies on the"
 	line "radio may make"
 	cont "#MON sleep."
 	done
 
-UnknownText_0x5d983:
+RadioTower2FTeacherText_Rockets:
 	text "Why would they"
 	line "want to take over"
 	cont "the RADIO TOWER?"
@@ -728,7 +728,7 @@ RadioTower2F_MapEvents:
 
 	db 11 ; object events
 	object_event  6,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower2FSuperNerdScript, EVENT_GOLDENROD_CITY_CIVILIANS
-	object_event 17,  2, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5d701, -1
+	object_event 17,  2, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower2FTeacherScript, -1
 	object_event  1,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  8,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM5, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  4,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM6, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

@@ -97,7 +97,8 @@ OlivineLighthouseJasmine:
 	closetext
 	end
 
-UnknownScript_0x60c39:
+OlivineLighthouseUnusedDummyScript:
+; unused
 	end
 
 OlivineLighthouseAmphy:

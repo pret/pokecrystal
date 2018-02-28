@@ -10,26 +10,26 @@ PharmacistScript_0x71afd:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_TM03_CURSE
-	iftrue UnknownScript_0x71b21
+	iftrue .GotCurse
 	writetext UnknownText_0x71b27
 	buttonsound
 	checktime NITE
-	iftrue UnknownScript_0x71b14
+	iftrue .Night
 	writetext UnknownText_0x71b4a
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x71b14:
+.Night:
 	writetext UnknownText_0x71ba3
 	buttonsound
 	verbosegiveitem TM_CURSE
-	iffalse UnknownScript_0x71b25
+	iffalse .NoRoom
 	setevent EVENT_GOT_TM03_CURSE
-UnknownScript_0x71b21:
+.GotCurse:
 	writetext UnknownText_0x71db3
 	waitbutton
-UnknownScript_0x71b25:
+.NoRoom:
 	closetext
 	end
 

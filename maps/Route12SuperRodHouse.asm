@@ -10,25 +10,25 @@ FishingGuruScript_0x7f484:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SUPER_ROD
-	iftrue UnknownScript_0x7f4a0
+	iftrue .GotSuperRod
 	writetext UnknownText_0x7f4af
 	yesorno
-	iffalse UnknownScript_0x7f4a6
+	iffalse .Refused
 	writetext UnknownText_0x7f52f
 	buttonsound
 	verbosegiveitem SUPER_ROD
-	iffalse UnknownScript_0x7f4aa
+	iffalse .NoRoom
 	setevent EVENT_GOT_SUPER_ROD
-UnknownScript_0x7f4a0:
+.GotSuperRod:
 	writetext UnknownText_0x7f57c
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7f4a6:
+.Refused:
 	writetext UnknownText_0x7f5ec
 	waitbutton
-UnknownScript_0x7f4aa:
+.NoRoom:
 	closetext
 	end
 

@@ -80,19 +80,19 @@ FastShipBed:
 	waitbutton
 	closetext
 	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
-	iftrue UnknownScript_0x75ae1
+	iftrue .AlreadyArrived
 	checkevent EVENT_FAST_SHIP_FOUND_GIRL
-	iftrue UnknownScript_0x75ae2
+	iftrue .CanArrive
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue UnknownScript_0x75ae2
-UnknownScript_0x75ae1:
+	iftrue .CanArrive
+.AlreadyArrived:
 	end
 
-UnknownScript_0x75ae2:
+.CanArrive:
 	playsound SFX_ELEVATOR_END
 	pause 30
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
-	iftrue UnknownScript_0x75af7
+	iftrue .ArrivedOlivine
 	opentext
 	writetext FastShipArrivedVermilionText
 	waitbutton
@@ -100,7 +100,7 @@ UnknownScript_0x75ae2:
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	end
 
-UnknownScript_0x75af7:
+.ArrivedOlivine:
 	opentext
 	writetext FastShipArrivedOlivineText
 	waitbutton

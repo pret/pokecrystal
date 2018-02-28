@@ -41,13 +41,13 @@ VermilionCitySuperNerdScript:
 VermilionSnorlax:
 	opentext
 	special SnorlaxAwake
-	iftrue UnknownScript_0x1aa9ab
+	iftrue .Awake
 	writetext UnknownText_0x1aab64
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1aa9ab:
+.Awake:
 	writetext UnknownText_0x1aab84
 	pause 15
 	cry SNORLAX

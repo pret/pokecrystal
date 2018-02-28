@@ -50,7 +50,7 @@ WiseTriosRoomSage2Script:
 WiseTriosRoomSage3Script:
 	jumptextfaceplayer WiseTriosRoomSage3Text
 
-UnknownScript_0x985a3:
+WiseTriosRoom_CannotEnterTinTowerScript:
 	turnobject WISETRIOSROOM_SAGE3, UP
 	turnobject PLAYER, DOWN
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE3, 20
@@ -91,7 +91,7 @@ TrainerSageKoji:
 
 .Script:
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
-	iftrue UnknownScript_0x9861b
+	iftrue .KojiAllowsPassage
 	pause 10
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE6, 20
 	opentext
@@ -106,7 +106,7 @@ TrainerSageKoji:
 	setscene SCENE_FINISHED
 	end
 
-UnknownScript_0x9861b:
+.KojiAllowsPassage:
 	opentext
 	writetext UnknownText_0x98db5
 	waitbutton
@@ -351,7 +351,7 @@ WiseTriosRoom_MapEvents:
 	warp_event  1,  4, ECRUTEAK_TIN_TOWER_ENTRANCE, 5
 
 	db 1 ; coord events
-	coord_event  7,  4, SCENE_DEFAULT, UnknownScript_0x985a3
+	coord_event  7,  4, SCENE_DEFAULT, WiseTriosRoom_CannotEnterTinTowerScript
 
 	db 0 ; bg events
 

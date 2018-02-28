@@ -10,9 +10,9 @@ OlivineHouseBeta_MapScripts:
 OlivineHouseBetaTeacherScript:
 	jumptextfaceplayer OlivineHouseBetaTeacherText
 
-RhydonScript_0x9c592:
+OlivineHouseBetaRhydonScript:
 	opentext
-	writetext UnknownText_0x9c5f0
+	writetext OlivineHouseBetaRhydonText
 	cry RHYDON
 	waitbutton
 	closetext
@@ -33,7 +33,7 @@ OlivineHouseBetaTeacherText:
 	cont "medicine for me."
 	done
 
-UnknownText_0x9c5f0:
+OlivineHouseBetaRhydonText:
 	text "RHYDON: Gugooh!"
 	done
 
@@ -52,4 +52,4 @@ OlivineHouseBeta_MapEvents:
 
 	db 2 ; object events
 	object_event  2,  3, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
-	object_event  6,  4, SPRITE_RHYDON, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RhydonScript_0x9c592, -1
+	object_event  6,  4, SPRITE_RHYDON, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaRhydonScript, -1
