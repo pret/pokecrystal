@@ -158,8 +158,8 @@ CeladonCityTeacher2Text:
 	line "a sales clerk."
 	done
 
+CeladonCityLassText_Mobile:
 ; unused
-CeladonCityUnusedPokeComCenterText:
 	text "I love being"
 	line "surrounded by tall"
 	cont "buildings!"

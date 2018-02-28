@@ -30,7 +30,8 @@ BattleTowerOutsideSailorScript:
 BattleTowerOutsideSign:
 	jumptext BattleTowerOutsideSignText
 
-BattleTowerOutsideUnusedText1:
+BattleTowerOutsideYoungsterText_NotYetOpen:
+; unreferenced
 	text "Wow, the BATTLE"
 	line "TOWER is huge! My"
 
@@ -38,7 +39,8 @@ BattleTowerOutsideUnusedText1:
 	line "looking up at it."
 	done
 
-BattleTowerOutsideUnusedText2:
+BattleTowerOutsideYoungsterText_Mobile:
+; unreferenced
 	text "Wow, the BATTLE"
 	line "TOWER is huge!"
 
@@ -61,7 +63,8 @@ BattleTowerOutsideYoungsterText:
 	cont "in there!"
 	done
 
-BattleTowerOutsideUnusedText3:
+BattleTowerOutsideBuenaText_NotYetOpen:
+; unreferenced
 	text "What on earth do"
 	line "they do here?"
 
@@ -83,7 +86,8 @@ BattleTowerOutsideBuenaText:
 	line "battle…"
 	done
 
-BattleTowerOutsideUnusedText4:
+BattleTowerOutsideSailorText_Mobile:
+; unreferenced
 	text "Ehehehe…"
 	line "I sneaked out of"
 	cont "work to come here."

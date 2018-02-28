@@ -162,8 +162,8 @@ SailorHueyBeatenText:
 	line "I lose!"
 	done
 
+SailorHueyUnusedText:
 ; unused
-UnusedText_0x5b0be:
 	text "What power!"
 	line "How would you like"
 

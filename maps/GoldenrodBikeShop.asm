@@ -6,7 +6,7 @@ GoldenrodBikeShop_MapScripts:
 
 	db 0 ; callbacks
 
-UnknownScript_0x5474f:
+.UnreferencedDummyScene:
 	end
 
 ClerkScript_0x54750:

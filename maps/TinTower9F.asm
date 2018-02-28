@@ -9,13 +9,13 @@ TinTower9F_MapScripts:
 TinTower9FHPUp:
 	itemball HP_UP
 
-; unused
 TinTower9FUnusedHoOhText:
+; unused
 	text "HO-OH: Shaoooh!"
 	done
 
-; unused
 TinTower9FUnusedLugiaText:
+; unused
 	text "LUGIA: Gyaaan!"
 	done
 

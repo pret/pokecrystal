@@ -39,8 +39,8 @@ GoldenrodDeptStore2FDirectory:
 GoldenrodDeptStore2FElevatorButton:
 	jumpstd elevatorbutton
 
-; unused
 UnusedText_0x55b7c:
+; unused
 	text "We intend to sell"
 	line "items for #MON"
 	cont "to hold."
@@ -50,8 +50,8 @@ UnusedText_0x55b7c:
 	cont "MON hold it."
 	done
 
-; unused
 UnusedText_0x55bd3:
+; unused
 	text "By giving #MON"
 	line "items to hold, I"
 

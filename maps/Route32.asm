@@ -541,8 +541,8 @@ Route32CooltrainerMText_AideIsWaiting:
 	line "CENTER."
 	done
 
-; might not be referenced anywhere
 Route32CooltrainerMText_UnusedSproutTower:
+; unused
 	text "Have you gone to"
 	line "SPROUT TOWER?"
 
@@ -679,7 +679,7 @@ FisherRalphSwarmText:
 	line "as you can, kid!"
 	done
 
-; --- start a segment of possibly unused texts
+; --- start a segment of unused text
 
 Route32UnusedFisher1SeenText:
 	text "I keep catching"
@@ -720,7 +720,7 @@ Route32UnusedFisher2AfterText:
 	line "#MON."
 	done
 
-; --- end a segment of possibly unused texts
+; --- end a segment of unused texts
 
 FisherHenrySeenText:
 	text "My #MON?"
@@ -835,8 +835,8 @@ BirdKeeperPeterAfterText:
 	cont "in VIOLET CITY."
 	done
 
-; unused
 Route32UnusedText:
+; unused
 	text "The fishermen"
 	line "yelled at me for"
 	cont "bugging them…"

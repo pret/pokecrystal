@@ -89,7 +89,7 @@ EcruteakCityHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION
 
 UnusedMissingDaughterText:
-; This text is neither used nor referenced in the final game.
+; unused
 	text "Oh, no. Oh, no…"
 
 	para "My daughter is"

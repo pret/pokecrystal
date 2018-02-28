@@ -307,8 +307,8 @@ UnknownText_0x595cb:
 	cont "kinds of them…"
 	done
 
-; unused
 UnusedText_0x59669:
+; unused
 	text "We think something"
 	line "caused the cryptic"
 
@@ -319,8 +319,8 @@ UnusedText_0x59669:
 	line "studies on that."
 	done
 
-; unused
 UnusedText_0x596d3:
+; unused
 	text "According to my"
 	line "research…"
 
