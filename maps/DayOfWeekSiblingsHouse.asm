@@ -6,28 +6,28 @@ DayOfWeekSiblingsHouse_MapScripts:
 
 	db 0 ; callbacks
 
-PokedexScript_0x7b1e4:
+DayOfWeekSiblingsHousePokedexScript:
 	opentext
-	writetext UnknownText_0x7b1f9
+	writetext DayOfWeekSiblingsHousePokedexText1
 	yesorno
-	iffalse UnknownText_0x7b1f7
-	writetext UnknownText_0x7b222
+	iffalse .End
+	writetext DayOfWeekSiblingsHousePokedexText2
 	yesorno
-	iffalse UnknownText_0x7b1f7
-	writetext UnknownText_0x7b2b9
+	iffalse .End
+	writetext DayOfWeekSiblingsHousePokedexText3
 	waitbutton
-UnknownText_0x7b1f7:
+.End:
 	closetext
 	end
 
-UnknownText_0x7b1f9:
+DayOfWeekSiblingsHousePokedexText1:
 	text "There's something"
 	line "written here."
 
 	para "Read it?"
 	done
 
-UnknownText_0x7b222:
+DayOfWeekSiblingsHousePokedexText2:
 	text "To my brothers and"
 	line "sisters:"
 
@@ -45,7 +45,7 @@ UnknownText_0x7b222:
 	para "Keep reading?"
 	done
 
-UnknownText_0x7b2b9:
+DayOfWeekSiblingsHousePokedexText3:
 	text "Monday, MONICA"
 	line "ROUTE 40"
 
@@ -80,4 +80,4 @@ DayOfWeekSiblingsHouse_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event  3,  3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokedexScript_0x7b1e4, -1
+	object_event  3,  3, SPRITE_POKEDEX, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayOfWeekSiblingsHousePokedexScript, -1

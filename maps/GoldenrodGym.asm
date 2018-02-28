@@ -19,7 +19,7 @@ GoldenrodGym_MapScripts:
 .DummyScene1:
 	end
 
-WhitneyScript_0x5400c:
+GoldenrodGymWhitneyScript:
 	faceplayer
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .FightDone
@@ -392,7 +392,7 @@ GoldenrodGym_MapEvents:
 	bg_event  4, 15, BGEVENT_READ, GoldenrodGymStatue
 
 	db 6 ; object events
-	object_event  8,  3, SPRITE_WHITNEY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, WhitneyScript_0x5400c, -1
+	object_event  8,  3, SPRITE_WHITNEY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGymWhitneyScript, -1
 	object_event  9, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerLassCarrie, -1
 	object_event  9,  6, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerLassBridget, -1
 	object_event  0,  2, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBeautyVictoria, -1

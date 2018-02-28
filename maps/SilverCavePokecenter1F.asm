@@ -7,7 +7,7 @@ SilverCavePokecenter1F_MapScripts:
 
 	db 0 ; callbacks
 
-NurseScript_0x1ae59a:
+SilverCavePokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
 SilverCavePokecenter1FGrannyScript:
@@ -40,5 +40,5 @@ SilverCavePokecenter1F_MapEvents:
 	db 0 ; bg events
 
 	db 2 ; object events
-	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x1ae59a, -1
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1FNurseScript, -1
 	object_event  1,  5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 2, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1FGrannyScript, -1

@@ -154,7 +154,7 @@ DragonShrine_MapScripts:
 	writetext DragonShrineIUnderstandText
 	waitbutton
 	closetext
-	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e0
+	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairTwoSlowStepsRightMovement
 	opentext
 	writetext DragonShrineHereRisingBadgeText
 	waitbutton
@@ -170,9 +170,9 @@ DragonShrine_MapScripts:
 	writetext DragonShrineRisingBadgeExplanationText
 	waitbutton
 	closetext
-	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2ce
+	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderWalkAway1Movement
 	turnobject DRAGONSHRINE_CLAIR, UP
-	applymovement DRAGONSHRINE_ELDER1, MovementData_0x18d2d1
+	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderWalkAway2Movement
 	turnobject PLAYER, UP
 	opentext
 	writetext DragonShrineElderScoldsClairText
@@ -182,7 +182,7 @@ DragonShrine_MapScripts:
 	writetext DragonShrineSpeechlessText
 	waitbutton
 	closetext
-	applymovement DRAGONSHRINE_CLAIR, MovementData_0x18d2e3
+	applymovement DRAGONSHRINE_CLAIR, DragonShrineClairWalkOutMovement
 	playsound SFX_ENTER_DOOR
 	disappear DRAGONSHRINE_CLAIR
 	waitsfx
@@ -349,12 +349,12 @@ DragonShrineElderWalkToClairMovement:
 	turn_head DOWN
 	step_end
 
-MovementData_0x18d2ce:
+DragonShrineElderWalkAway1Movement:
 	slow_step RIGHT
 	slow_step RIGHT
 	step_end
 
-MovementData_0x18d2d1:
+DragonShrineElderWalkAway2Movement:
 	slow_step RIGHT
 	turn_head DOWN
 	step_end
@@ -377,12 +377,12 @@ DragonShrineClairSlowStepLeftMovement:
 	remove_fixed_facing
 	step_end
 
-MovementData_0x18d2e0:
+DragonShrineClairTwoSlowStepsRightMovement:
 	slow_step RIGHT
 	slow_step RIGHT
 	step_end
 
-MovementData_0x18d2e3:
+DragonShrineClairWalkOutMovement:
 	step DOWN
 	step DOWN
 	step DOWN

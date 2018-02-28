@@ -104,13 +104,13 @@ BurnedTowerB1FEusine:
 	waitbutton
 	closetext
 	checkcode VAR_FACING
-	ifequal UP, .Movement
+	ifequal UP, .Movement2
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement1
-	jump UnknownScript_0x18622a
+	jump .Finish
 
-.Movement:
+.Movement2:
 	applymovement BURNEDTOWERB1F_EUSINE, BurnedTowerB1FEusineMovement2
-UnknownScript_0x18622a:
+.Finish:
 	disappear BURNEDTOWERB1F_EUSINE
 	playsound SFX_EXIT_BUILDING
 	waitsfx
@@ -155,7 +155,8 @@ BurnedTowerSuicuneMovement2:
 	remove_sliding
 	step_end
 
-MovementData_0x18624f:
+BurnedTowerUnusedMovement:
+; unreferenced
 	set_sliding
 	big_step DOWN
 	remove_sliding

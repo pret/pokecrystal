@@ -95,7 +95,8 @@ ManiaScript:
 	closetext
 	end
 
-UnknownScript_0x9d300:
+ManiasHouseUnusedBookshelf:
+; unused
 	jumpstd picturebookshelf
 
 ManiaText_AskLookAfterShuckle:

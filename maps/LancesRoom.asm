@@ -30,7 +30,7 @@ LancesRoom_MapScripts:
 	return
 
 .LancesDoorLocksBehindYou:
-	applymovement PLAYER, LancesRoom_PlayerWalksInMovementData
+	applymovement PLAYER, LancesRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -128,7 +128,7 @@ LanceScript_0x180e7b:
 	warpfacing UP, HALL_OF_FAME, 4, 13
 	end
 
-LancesRoom_PlayerWalksInMovementData:
+LancesRoom_EnterMovement:
 	step UP
 	step UP
 	step UP

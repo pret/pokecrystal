@@ -8,31 +8,31 @@ CherrygroveMart_MapScripts:
 
 	db 0 ; callbacks
 
-ClerkScript_0x19680a:
+CherrygroveMartClerkScript:
 	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x196817
+	iftrue .PokeBallsInStock
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE
 	closetext
 	end
 
-UnknownScript_0x196817:
+.PokeBallsInStock:
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_DEX
 	closetext
 	end
 
-CooltrainerMScript_0x19681d:
+CherrygroveMartCooltrainerMScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x19682b
-	writetext UnknownText_0x196834
+	iftrue .PokeBallsInStock
+	writetext CherrygroveMartCooltrainerMText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x19682b:
-	writetext UnknownText_0x196873
+.PokeBallsInStock:
+	writetext CherrygroveMartCooltrainerMText_PokeBallsInStock
 	waitbutton
 	closetext
 	end
@@ -40,7 +40,7 @@ UnknownScript_0x19682b:
 CherrygroveMartYoungsterScript:
 	jumptextfaceplayer CherrygroveMartYoungsterText
 
-UnknownText_0x196834:
+CherrygroveMartCooltrainerMText:
 	text "They're fresh out"
 	line "of # BALLS!"
 
@@ -48,7 +48,7 @@ UnknownText_0x196834:
 	line "more of them?"
 	done
 
-UnknownText_0x196873:
+CherrygroveMartCooltrainerMText_PokeBallsInStock:
 	text "# BALLS are in"
 	line "stock! Now I can"
 	cont "catch #MON!"
@@ -81,6 +81,6 @@ CherrygroveMart_MapEvents:
 	db 0 ; bg events
 
 	db 3 ; object events
-	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x19680a, -1
-	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x19681d, -1
+	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveMartClerkScript, -1
+	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygroveMartCooltrainerMScript, -1
 	object_event  2,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveMartYoungsterScript, -1

@@ -7,7 +7,7 @@ OlivineGym_MapScripts:
 
 	db 0 ; callbacks
 
-JasmineScript_0x9c12f:
+OlivineGymJasmineScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_JASMINE
@@ -209,5 +209,5 @@ OlivineGym_MapEvents:
 	bg_event  6, 13, BGEVENT_READ, OlivineGymStatue
 
 	db 2 ; object events
-	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, JasmineScript_0x9c12f, EVENT_OLIVINE_GYM_JASMINE
+	object_event  5,  3, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymJasmineScript, EVENT_OLIVINE_GYM_JASMINE
 	object_event  7, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineGymGuyScript, -1

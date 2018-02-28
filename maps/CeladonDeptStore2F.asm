@@ -9,14 +9,14 @@ CeladonDeptStore2F_MapScripts:
 
 	db 0 ; callbacks
 
-ClerkScript_0x70bad:
+CeladonDeptStore2FClerk1Script:
 	faceplayer
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_1
 	closetext
 	end
 
-ClerkScript_0x70bb5:
+CeladonDeptStore2FClerk2Script:
 	faceplayer
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_CELADON_2F_2
@@ -81,7 +81,7 @@ CeladonDeptStore2F_MapEvents:
 	bg_event  3,  0, BGEVENT_READ, CeladonDeptStore2FElevatorButton
 
 	db 4 ; object events
-	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70bad, -1
-	object_event 14,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x70bb5, -1
+	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FClerk1Script, -1
+	object_event 14,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FClerk2Script, -1
 	object_event  5,  2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FPokefanMScript, -1
 	object_event  6,  2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore2FYoungsterScript, -1

@@ -11,25 +11,25 @@ CopycatsHouse1F_MapScripts:
 CopycatsHouse1FPokefanMScript:
 	jumptextfaceplayer CopycatsHouse1FPokefanMText
 
-PokefanFScript_0x18ad16:
+CopycatsHouse1FPokefanFScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x18ad24
-	writetext UnknownText_0x18ad95
+	iftrue .ReturnedMachinePart
+	writetext CopycatsHouse1FPokefanFText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x18ad24:
-	writetext UnknownText_0x18add3
+.ReturnedMachinePart:
+	writetext CopycatsHouse1FPokefanFText_ReturnedMachinePart
 	waitbutton
 	closetext
 	end
 
-ClefairyScript_0x18ad2a:
+CopycatsHouse1FBlisseyScript:
 	opentext
-	writetext UnknownText_0x18ae4b
+	writetext CopycatsHouse1FBlisseyText
 	cry BLISSEY
 	waitbutton
 	closetext
@@ -46,7 +46,7 @@ CopycatsHouse1FPokefanMText:
 	line "around here."
 	done
 
-UnknownText_0x18ad95:
+CopycatsHouse1FPokefanFText:
 	text "My daughter is so"
 	line "self-centered…"
 
@@ -54,7 +54,7 @@ UnknownText_0x18ad95:
 	line "friends."
 	done
 
-UnknownText_0x18add3:
+CopycatsHouse1FPokefanFText_ReturnedMachinePart:
 	text "She recently lost"
 	line "the # DOLL that"
 
@@ -66,7 +66,7 @@ UnknownText_0x18add3:
 	cont "better at mimicry…"
 	done
 
-UnknownText_0x18ae4b:
+CopycatsHouse1FBlisseyText:
 	text "BLISSEY: Bliisii!"
 	done
 
@@ -84,5 +84,5 @@ CopycatsHouse1F_MapEvents:
 
 	db 3 ; object events
 	object_event  2,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CopycatsHouse1FPokefanMScript, -1
-	object_event  5,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x18ad16, -1
-	object_event  6,  6, SPRITE_CLEFAIRY, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClefairyScript_0x18ad2a, -1
+	object_event  5,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CopycatsHouse1FPokefanFScript, -1
+	object_event  6,  6, SPRITE_CLEFAIRY, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CopycatsHouse1FBlisseyScript, -1

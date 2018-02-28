@@ -8,7 +8,7 @@ GoldenrodDeptStore3F_MapScripts:
 
 	db 0 ; callbacks
 
-ClerkScript_0x55db8:
+GoldenrodDeptStore3FClerkScript:
 	faceplayer
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_3F
@@ -69,6 +69,6 @@ GoldenrodDeptStore3F_MapEvents:
 	bg_event  3,  0, BGEVENT_READ, GoldenrodDeptStore3FElevatorButton
 
 	db 3 ; object events
-	object_event  6,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x55db8, -1
+	object_event  6,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FClerkScript, -1
 	object_event 12,  5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FSuperNerdScript, -1
 	object_event  2,  5, SPRITE_ROCKER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore3FRockerScript, -1

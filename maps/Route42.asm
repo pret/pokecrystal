@@ -26,7 +26,7 @@ Route42SuicuneScript:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement ROUTE42_SUICUNE, MovementData_0x1a9356
+	applymovement ROUTE42_SUICUNE, Route42SuicuneMovement
 	disappear ROUTE42_SUICUNE
 	pause 10
 	setscene SCENE_ROUTE42_NOTHING
@@ -200,19 +200,19 @@ Route42UltraBall:
 Route42SuperPotion:
 	itemball SUPER_POTION
 
-FruitTreeScript_0x1a934d:
+Route42FruitTree1:
 	fruittree FRUITTREE_ROUTE_42_1
 
-FruitTreeScript_0x1a934f:
+Route42FruitTree2:
 	fruittree FRUITTREE_ROUTE_42_2
 
-FruitTreeScript_0x1a9351:
+Route42FruitTree3:
 	fruittree FRUITTREE_ROUTE_42_3
 
 Route42HiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_ROUTE_42_HIDDEN_MAX_POTION
 
-MovementData_0x1a9356:
+Route42SuicuneMovement:
 	set_sliding
 	fast_jump_step UP
 	fast_jump_step UP
@@ -340,9 +340,9 @@ Route42_MapEvents:
 	object_event 40, 10, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerFisherTully, -1
 	object_event 51,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerHikerBenjamin, -1
 	object_event 47,  8, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacShane, -1
-	object_event 27, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a934d, -1
-	object_event 28, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a934f, -1
-	object_event 29, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1a9351, -1
+	object_event 27, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route42FruitTree1, -1
+	object_event 28, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route42FruitTree2, -1
+	object_event 29, 16, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route42FruitTree3, -1
 	object_event  6,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42UltraBall, EVENT_ROUTE_42_ULTRA_BALL
 	object_event 33,  8, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route42SuperPotion, EVENT_ROUTE_42_SUPER_POTION
 	object_event 26, 16, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_42

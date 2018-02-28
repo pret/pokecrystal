@@ -66,7 +66,7 @@ RuinsOfAlphHoOhChamberPuzzle:
 	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
-	applymovement PLAYER, MovementData_0x58610
+	applymovement PLAYER, RuinsOfAlphHoOhChamberSkyfallTopMovement
 	playsound SFX_KINESIS
 	waitsfx
 	pause 20
@@ -104,7 +104,7 @@ RuinsOfAlphHoOhChamberWallPatternRight:
 	closetext
 	end
 
-MovementData_0x58610:
+RuinsOfAlphHoOhChamberSkyfallTopMovement:
 	skyfall_top
 	step_end
 

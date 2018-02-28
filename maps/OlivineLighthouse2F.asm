@@ -106,7 +106,7 @@ TrainerSailorHuey:
 
 .HasProtein:
 	opentext
-	writetext UnknownText_0x5b1b6
+	writetext SailorHueyGiveProteinText
 	waitbutton
 	verbosegiveitem PROTEIN
 	iffalse .PackFull
@@ -193,7 +193,7 @@ GentlemanAlfredAfterBattleText:
 	line "ordinary medicine."
 	done
 
-UnknownText_0x5b1b6:
+SailorHueyGiveProteinText:
 	text "Man! You're as"
 	line "tough as ever!"
 

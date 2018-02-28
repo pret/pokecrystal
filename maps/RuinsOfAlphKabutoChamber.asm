@@ -73,7 +73,7 @@ RuinsOfAlphKabutoChamberPuzzle:
 	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
-	applymovement PLAYER, MovementData_0x587fe
+	applymovement PLAYER, RuinsOfAlphKabutoChamberSkyfallTopMovement
 	playsound SFX_KINESIS
 	waitsfx
 	pause 20
@@ -141,7 +141,7 @@ RuinsOfAlphKabutoChamberWallPatternRight:
 	closetext
 	end
 
-MovementData_0x587fe:
+RuinsOfAlphKabutoChamberSkyfallTopMovement:
 	skyfall_top
 	step_end
 

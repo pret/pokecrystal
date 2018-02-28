@@ -9,24 +9,24 @@ Route10Pokecenter1F_MapScripts:
 
 	db 0 ; callbacks
 
-NurseScript_0x188bd4:
+Route10Pokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
 Route10Pokecenter1FGentlemanScript:
 	jumptextfaceplayer Route10Pokecenter1FGentlemanText
 
-GymGuyScript_0x188bda:
+Route10Pokecenter1FGymGuyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x188be8
-	writetext UnknownText_0x188c26
+	iftrue .ReturnedMachinePart
+	writetext Route10Pokecenter1FGymGuyText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x188be8:
-	writetext UnknownText_0x188c9e
+.ReturnedMachinePart:
+	writetext Route10Pokecenter1FGymGuyText_ReturnedMachinePart
 	waitbutton
 	closetext
 	end
@@ -42,7 +42,7 @@ Route10Pokecenter1FGentlemanText:
 	line "convenient."
 	done
 
-UnknownText_0x188c26:
+Route10Pokecenter1FGymGuyText:
 	text "The POWER PLANT's"
 	line "MANAGER is looking"
 
@@ -56,7 +56,7 @@ UnknownText_0x188c26:
 	line "was stolen."
 	done
 
-UnknownText_0x188c9e:
+Route10Pokecenter1FGymGuyText_ReturnedMachinePart:
 	text "I hear TEAM ROCKET"
 	line "got back together"
 
@@ -91,7 +91,7 @@ Route10Pokecenter1F_MapEvents:
 	db 0 ; bg events
 
 	db 4 ; object events
-	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x188bd4, -1
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FNurseScript, -1
 	object_event  7,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FGentlemanScript, -1
-	object_event  7,  2, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x188bda, -1
+	object_event  7,  2, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FGymGuyScript, -1
 	object_event  1,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FCooltrainerFScript, -1

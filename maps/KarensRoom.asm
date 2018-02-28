@@ -28,7 +28,7 @@ KarensRoom_MapScripts:
 	return
 
 .KarensDoorLocksBehindYou:
-	applymovement PLAYER, KarensMovementData_0x18078e
+	applymovement PLAYER, KarensRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -71,7 +71,7 @@ KarenScript_AfterBattle:
 	closetext
 	end
 
-KarensMovementData_0x18078e:
+KarensRoom_EnterMovement:
 	step UP
 	step UP
 	step UP

@@ -28,7 +28,7 @@ KogasRoom_MapScripts:
 	return
 
 .KogasDoorLocksBehindYou:
-	applymovement PLAYER, KogasMovementData_0x18078e
+	applymovement PLAYER, KogasRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -71,7 +71,7 @@ KogaScript_AfterBattle:
 	closetext
 	end
 
-KogasMovementData_0x18078e:
+KogasRoom_EnterMovement:
 	step UP
 	step UP
 	step UP

@@ -154,7 +154,7 @@ PicnickerCindyScript:
 	end
 
 .CindyAfterScript:
-	writetext UnknownText_0x19620c
+	writetext PicnickerCindyAfterText
 	waitbutton
 	closetext
 	end
@@ -188,7 +188,7 @@ CamperBarryScript:
 	end
 
 .BarryAfterScript:
-	writetext UnknownText_0x19626b
+	writetext CamperBarryAfterText
 	waitbutton
 	closetext
 	end
@@ -334,7 +334,7 @@ PicnickerCindyBeatenText:
 	line "I wanted to win!"
 	done
 
-UnknownText_0x19620c:
+PicnickerCindyAfterText:
 	text "You must be"
 	line "getting tired."
 	done
@@ -351,7 +351,7 @@ CamperBarryBeatenText:
 	line "right on! Dang!"
 	done
 
-UnknownText_0x19626b:
+CamperBarryAfterText:
 	text "Hey, you. Was my"
 	line "disguise cute or"
 	cont "what, huh?"

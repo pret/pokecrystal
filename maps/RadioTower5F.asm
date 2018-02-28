@@ -77,7 +77,7 @@ TrainerExecutivef1:
 	end
 
 RadioTower5FRocketBossScene:
-	applymovement PLAYER, MovementData_0x60125
+	applymovement PLAYER, RadioTower5FPlayerTwoStepsLeftMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	turnobject RADIOTOWER5F_ROCKET, RIGHT
 	opentext
@@ -185,7 +185,7 @@ RadioTower5FDirectorWalksOut:
 	step UP
 	step_end
 
-MovementData_0x60125:
+RadioTower5FPlayerTwoStepsLeftMovement:
 	step LEFT
 	step LEFT
 	step_end

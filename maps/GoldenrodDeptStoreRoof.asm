@@ -37,7 +37,7 @@ GoldenrodDeptStoreRoof_MapScripts:
 	setevent EVENT_GOLDENROD_SALE_ON
 	return
 
-ClerkScript_0x5673f:
+GoldenrodDeptStoreRoofClerkScript:
 	opentext
 	pokemart MARTTYPE_ROOFTOP, 0
 	closetext
@@ -224,7 +224,7 @@ GoldenrodDeptStoreRoof_MapEvents:
 	bg_event  3,  0, BGEVENT_UP, PokeDollVendingMachine
 
 	db 8 ; object events
-	object_event  1,  4, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x5673f, EVENT_GOLDENROD_SALE_OFF
+	object_event  1,  4, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofClerkScript, EVENT_GOLDENROD_SALE_OFF
 	object_event 10,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofPokefanFScript, -1
 	object_event  2,  1, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FisherScript_0x56749, -1
 	object_event  3,  4, SPRITE_TWIN, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStoreRoofTwinScript, EVENT_GOLDENROD_SALE_ON

@@ -40,11 +40,11 @@ CianwoodCitySuicuneAndEusine:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00da
+	applymovement CIANWOODCITY_SUICUNE, CianwoodCitySuicuneApproachMovement
 	turnobject PLAYER, DOWN
 	pause 15
 	playsound SFX_WARP_FROM
-	applymovement CIANWOODCITY_SUICUNE, MovementData_0x1a00e0
+	applymovement CIANWOODCITY_SUICUNE, CianwoodCitySuicuneDepartMovement
 	disappear CIANWOODCITY_SUICUNE
 	pause 10
 	setscene SCENE_CIANWOODCITY_NOTHING
@@ -55,7 +55,7 @@ CianwoodCitySuicuneAndEusine:
 	setevent EVENT_FOUGHT_EUSINE
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER
 	appear CIANWOODCITY_EUSINE
-	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00e7
+	applymovement CIANWOODCITY_EUSINE, CianwoodCityEusineApproachMovement
 	opentext
 	writetext EusineSuicuneText
 	waitbutton
@@ -71,7 +71,7 @@ CianwoodCitySuicuneAndEusine:
 	writetext EusineAfterText
 	waitbutton
 	closetext
-	applymovement CIANWOODCITY_EUSINE, MovementData_0x1a00ec
+	applymovement CIANWOODCITY_EUSINE, CianwoodCityEusineDepartMovement
 	disappear CIANWOODCITY_EUSINE
 	pause 20
 	special FadeOutMusic
@@ -148,7 +148,7 @@ CianwoodCityHiddenRevive:
 CianwoodCityHiddenMaxEther:
 	hiddenitem MAX_ETHER, EVENT_CIANWOOD_CITY_HIDDEN_MAX_ETHER
 
-MovementData_0x1a00da:
+CianwoodCitySuicuneApproachMovement:
 	set_sliding
 	fast_jump_step DOWN
 	fast_jump_step DOWN
@@ -156,7 +156,7 @@ MovementData_0x1a00da:
 	remove_sliding
 	step_end
 
-MovementData_0x1a00e0:
+CianwoodCitySuicuneDepartMovement:
 	set_sliding
 	fast_jump_step RIGHT
 	fast_jump_step UP
@@ -165,14 +165,14 @@ MovementData_0x1a00e0:
 	remove_sliding
 	step_end
 
-MovementData_0x1a00e7:
+CianwoodCityEusineApproachMovement:
 	step UP
 	step UP
 	step UP
 	step UP
 	step_end
 
-MovementData_0x1a00ec:
+CianwoodCityEusineDepartMovement:
 	step DOWN
 	step DOWN
 	step DOWN

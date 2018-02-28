@@ -9,21 +9,21 @@ VermilionPokecenter1F_MapScripts:
 
 	db 0 ; callbacks
 
-NurseScript_0x191603:
+VermilionPokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
-FishingGuruScript_0x191606:
+VermilionPokecenter1FFishingGuruScript:
 	faceplayer
 	opentext
 	checkevent EVENT_FOUGHT_SNORLAX
-	iftrue UnknownScript_0x191614
-	writetext UnknownText_0x191620
+	iftrue .FoughtSnorlax
+	writetext VermilionPokecenter1FFishingGuruText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x191614:
-	writetext UnknownText_0x191698
+.FoughtSnorlax:
+	writetext VermilionPokecenter1FFishingGuruText_FoughtSnorlax
 	waitbutton
 	closetext
 	end
@@ -34,7 +34,7 @@ VermilionPokecenter1FSailorScript:
 VermilionPokecenter1FBugCatcherScript:
 	jumptextfaceplayer VermilionPokecenter1FBugCatcherText
 
-UnknownText_0x191620:
+VermilionPokecenter1FFishingGuruText:
 	text "A sleeping #MON"
 	line "is lying in front"
 	cont "of DIGLETT'S CAVE."
@@ -46,7 +46,7 @@ UnknownText_0x191620:
 	line "wake it up?"
 	done
 
-UnknownText_0x191698:
+VermilionPokecenter1FFishingGuruText_FoughtSnorlax:
 	text "There used to be a"
 	line "sleeping #MON"
 
@@ -87,7 +87,7 @@ VermilionPokecenter1F_MapEvents:
 	db 0 ; bg events
 
 	db 4 ; object events
-	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x191603, -1
-	object_event  7,  2, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x191606, -1
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FNurseScript, -1
+	object_event  7,  2, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FFishingGuruScript, -1
 	object_event  6,  5, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FSailorScript, -1
 	object_event  1,  5, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FBugCatcherScript, -1
