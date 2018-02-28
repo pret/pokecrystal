@@ -287,14 +287,14 @@ TrainerLassKrise:
 	closetext
 	end
 
-MapNationalParkSignpost0Script:
-	jumptext UnknownText_0x5c750
+NationalParkRelaxationSquareSign:
+	jumptext NationalParkRelaxationSquareText
 
-MapNationalParkSignpost1Script:
-	jumptext UnknownText_0x5c771
+NationalParkBattleNoticeSign:
+	jumptext NationalParkBattleNoticeText
 
-MapNationalParkSignpost3Script:
-	jumptext UnknownText_0x5c7c6
+NationalParkTrainerTipsSign:
+	jumptext NationalParkTrainerTipsText
 
 NationalParkParlyzHeal:
 	itemball PARLYZ_HEAL
@@ -487,12 +487,12 @@ LassKriseAfterBattleText:
 	cont "because I'm cute!"
 	done
 
-UnknownText_0x5c750:
+NationalParkRelaxationSquareText:
 	text "RELAXATION SQUARE"
 	line "NATIONAL PARK"
 	done
 
-UnknownText_0x5c771:
+NationalParkBattleNoticeText:
 	text "What is this"
 	line "notice?"
 
@@ -503,7 +503,7 @@ UnknownText_0x5c771:
 	line "WARDEN'S OFFICE"
 	done
 
-UnknownText_0x5c7c6:
+NationalParkTrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "Print out MAIL by"
@@ -523,10 +523,10 @@ NationalPark_MapEvents:
 	db 0 ; coord events
 
 	db 4 ; bg events
-	bg_event 14, 44, BGEVENT_READ, MapNationalParkSignpost0Script
-	bg_event 27, 31, BGEVENT_READ, MapNationalParkSignpost1Script
+	bg_event 14, 44, BGEVENT_READ, NationalParkRelaxationSquareSign
+	bg_event 27, 31, BGEVENT_READ, NationalParkBattleNoticeSign
 	bg_event  6, 47, BGEVENT_ITEM, NationalParkHiddenFullHeal
-	bg_event 12,  4, BGEVENT_READ, MapNationalParkSignpost3Script
+	bg_event 12,  4, BGEVENT_READ, NationalParkTrainerTipsSign
 
 	db 14 ; object events
 	object_event 15, 24, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NationalParkLassScript, -1

@@ -49,8 +49,8 @@ TrainerBugCatcherDoug:
 Route2Sign:
 	jumptext Route2SignText
 
-MapRoute2Signpost1Script:
-	jumptext UnknownText_0x1ac49f
+Route2DiglettsCaveSign:
+	jumptext Route2DiglettsCaveSignText
 
 Route2DireHit:
 	itemball DIRE_HIT
@@ -140,7 +140,7 @@ Route2SignText:
 	line "PEWTER CITY"
 	done
 
-UnknownText_0x1ac49f:
+Route2DiglettsCaveSignText:
 	text "DIGLETT'S CAVE"
 	done
 
@@ -158,7 +158,7 @@ Route2_MapEvents:
 
 	db 6 ; bg events
 	bg_event  7, 51, BGEVENT_READ, Route2Sign
-	bg_event 11,  9, BGEVENT_READ, MapRoute2Signpost1Script
+	bg_event 11,  9, BGEVENT_READ, Route2DiglettsCaveSign
 	bg_event  7, 23, BGEVENT_ITEM, Route2HiddenMaxEther
 	bg_event  4, 14, BGEVENT_ITEM, Route2HiddenFullHeal
 	bg_event  4, 27, BGEVENT_ITEM, Route2HiddenFullRestore

@@ -124,9 +124,9 @@ TrainerScientistMarc:
 	closetext
 	end
 
-MapRadioTower3FSignpost2Script::
+CardKeySlotScript::
 	opentext
-	writetext UnknownText_0x5eaa4
+	writetext RadioTower3FCardKeySlotText
 	waitbutton
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .UsedCardKey
@@ -148,11 +148,11 @@ UnknownScript_0x5e605:
 	waitsfx
 	end
 
-MapRadioTower3FSignpost0Script:
-	jumptext UnknownText_0x5ead6
+RadioTower3FPersonnelSign:
+	jumptext RadioTower3FPersonnelSignText
 
-MapRadioTower3FSignpost1Script:
-	jumptext UnknownText_0x5eae4
+RadioTower3FPokemonMusicSign:
+	jumptext RadioTower3FPokemonMusicSignText
 
 RadioTower3FSuperNerdText:
 	text "We have recordings"
@@ -307,7 +307,7 @@ ScientistMarcAfterBattleText:
 	cont "I need from here."
 	done
 
-UnknownText_0x5eaa4:
+RadioTower3FCardKeySlotText:
 	text "It's the CARD KEY"
 	line "slot."
 	done
@@ -317,11 +317,11 @@ UnknownText_0x5eabc:
 	line "the CARD KEY."
 	done
 
-UnknownText_0x5ead6:
+RadioTower3FPersonnelSignText:
 	text "3F PERSONNEL"
 	done
 
-UnknownText_0x5eae4:
+RadioTower3FPokemonMusicSignText:
 	text "#MON MUSIC with"
 	line "Host DJ BEN"
 	done
@@ -337,9 +337,9 @@ RadioTower3F_MapEvents:
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event  3,  0, BGEVENT_READ, MapRadioTower3FSignpost0Script
-	bg_event  9,  0, BGEVENT_READ, MapRadioTower3FSignpost1Script
-	bg_event 14,  2, BGEVENT_UP, MapRadioTower3FSignpost2Script
+	bg_event  3,  0, BGEVENT_READ, RadioTower3FPersonnelSign
+	bg_event  9,  0, BGEVENT_READ, RadioTower3FPokemonMusicSign
+	bg_event 14,  2, BGEVENT_UP, CardKeySlotScript
 
 	db 7 ; object events
 	object_event  7,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower3FSuperNerdScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER

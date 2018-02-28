@@ -171,7 +171,7 @@ SilverScript_0x18c97e:
 	special RestartMapMusic
 	end
 
-MapDragonsDenB1FSignpost0Script:
+DragonShrineSignpost:
 	jumptext DragonShrineSignpostText
 
 DragonsDenB1FCalcium:
@@ -415,7 +415,7 @@ DragonsDenB1F_MapEvents:
 	coord_event 19, 30, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM, DragonsDenB1F_ClairScene
 
 	db 4 ; bg events
-	bg_event 18, 24, BGEVENT_READ, MapDragonsDenB1FSignpost0Script
+	bg_event 18, 24, BGEVENT_READ, DragonShrineSignpost
 	bg_event 33, 29, BGEVENT_ITEM, DragonsDenB1FHiddenRevive
 	bg_event 21, 17, BGEVENT_ITEM, DragonsDenB1FHiddenMaxPotion
 	bg_event 31, 15, BGEVENT_ITEM, DragonsDenB1FHiddenMaxElixer

@@ -859,7 +859,7 @@ Route36NationalParkGate_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  6,  0, BGEVENT_READ, MapRoute36NationalParkGateSignpost0Script
+	bg_event  6,  0, BGEVENT_READ, BugCatchingContestExplanationSign
 
 	db 12 ; object events
 	object_event  0,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route36OfficerScriptContest, EVENT_ROUTE_36_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY

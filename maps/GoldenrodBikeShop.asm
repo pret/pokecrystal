@@ -39,12 +39,12 @@ UnknownScript_0x5477b:
 	closetext
 	end
 
-; possibly unused
-UnknownScript_0x54781:
-	jumptext UnknownText_0x548c0
+GoldenrodBikeShopJustReleasedCompactBike:
+; unused
+	jumptext GoldenrodBikeShopJustReleasedCompactBikeText
 
-MapGoldenrodBikeShopSignpost8Script:
-	jumptext UnknownText_0x548ed
+GoldenrodBikeShopBicycle:
+	jumptext GoldenrodBikeShopBicycleText
 
 UnknownText_0x54787:
 	text "…sigh… I moved"
@@ -88,14 +88,14 @@ UnknownText_0x54898:
 	done
 
 ; possibly unused
-UnknownText_0x548c0:
+GoldenrodBikeShopJustReleasedCompactBikeText:
 	text "Just released!"
 
 	para "First-rate compact"
 	line "BICYCLES!"
 	done
 
-UnknownText_0x548ed:
+GoldenrodBikeShopBicycleText:
 	text "It's a shiny new"
 	line "BICYCLE!"
 	done
@@ -110,15 +110,15 @@ GoldenrodBikeShop_MapEvents:
 	db 0 ; coord events
 
 	db 9 ; bg events
-	bg_event  1,  2, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event  0,  3, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event  1,  3, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event  0,  5, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event  1,  5, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event  0,  6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event  1,  6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event  6,  6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
-	bg_event  7,  6, BGEVENT_READ, MapGoldenrodBikeShopSignpost8Script
+	bg_event  1,  2, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  0,  3, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  1,  3, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  0,  5, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  1,  5, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  0,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  1,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  6,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
+	bg_event  7,  6, BGEVENT_READ, GoldenrodBikeShopBicycle
 
 	db 1 ; object events
 	object_event  7,  2, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x54750, -1

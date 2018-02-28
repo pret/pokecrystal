@@ -130,48 +130,49 @@ ScientistScript_0x59214:
 	closetext
 	end
 
-MapRuinsOfAlphResearchCenterSignpost1Script:
+RuinsOfAlphResearchCenterComputer:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue .SkipChecking
 	checkcode VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .GotAllUnown
 .SkipChecking:
-	writetext UnknownText_0x597b6
+	writetext RuinsOfAlphResearchCenterComputerText1
 	waitbutton
 	closetext
 	end
 
 .GotAllUnown:
-	writetext UnknownText_0x597d9
+	writetext RuinsOfAlphResearchCenterComputerText2
 	waitbutton
 	closetext
 	end
 
-MapRuinsOfAlphResearchCenterSignpost2Script:
+RuinsOfAlphResearchCenterPrinter:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
 	iftrue .SkipChecking
 	checkcode VAR_UNOWNCOUNT
 	ifequal NUM_UNOWN, .PrinterAvailable
 .SkipChecking:
-	writetext UnknownText_0x5980e
+	writetext RuinsOfAlphResearchCenterDoesntWorkText
 	waitbutton
 	closetext
 	end
 
 .PrinterAvailable:
-	writetext UnknownText_0x5982d
+	writetext RuinsOfAlphResearchCenterUnownPrinterText
 	waitbutton
 	special UnownPrinter
 	closetext
 	end
 
-UnreferencedScript_0x59269:
-	jumptext UnusedText_0x59848
+RuinsOfAlphResearchCenterPhoto:
+; unreferenced
+	jumptext RuinsOfAlphResearchCenterProfSilktreePhotoText
 
-MapRuinsOfAlphResearchCenterSignpost0Script:
-	jumptext UnknownText_0x59886
+RuinsOfAlphResearchCenterBookshelf:
+	jumptext RuinsOfAlphResearchCenterAcademicBooksText
 
 MovementData_0x5926f:
 	step UP
@@ -347,14 +348,14 @@ UnknownText_0x59769:
 	line "deepens…"
 	done
 
-UnknownText_0x597b6:
+RuinsOfAlphResearchCenterComputerText1:
 	text "RUINS OF ALPH"
 
 	para "Exploration"
 	line "Year 10"
 	done
 
-UnknownText_0x597d9:
+RuinsOfAlphResearchCenterComputerText2:
 	text "Mystery #MON"
 	line "Name: UNOWN"
 
@@ -362,18 +363,18 @@ UnknownText_0x597d9:
 	line "kinds found."
 	done
 
-UnknownText_0x5980e:
+RuinsOfAlphResearchCenterDoesntWorkText:
 	text "This doesn't seem"
 	line "to work yet."
 	done
 
-UnknownText_0x5982d:
+RuinsOfAlphResearchCenterUnownPrinterText:
 	text "UNOWN may be"
 	line "printed out."
 	done
 
+RuinsOfAlphResearchCenterProfSilktreePhotoText:
 ; unused
-UnusedText_0x59848:
 	text "It's a photo of"
 	line "the RESEARCH"
 
@@ -381,7 +382,7 @@ UnusedText_0x59848:
 	line "PROF.SILKTREE."
 	done
 
-UnknownText_0x59886:
+RuinsOfAlphResearchCenterAcademicBooksText:
 	text "There are many"
 	line "academic books."
 
@@ -400,9 +401,9 @@ RuinsOfAlphResearchCenter_MapEvents:
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event  6,  5, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost0Script
-	bg_event  3,  4, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost1Script
-	bg_event  7,  1, BGEVENT_READ, MapRuinsOfAlphResearchCenterSignpost2Script
+	bg_event  6,  5, BGEVENT_READ, RuinsOfAlphResearchCenterBookshelf
+	bg_event  3,  4, BGEVENT_READ, RuinsOfAlphResearchCenterComputer
+	bg_event  7,  1, BGEVENT_READ, RuinsOfAlphResearchCenterPrinter
 
 	db 3 ; object events
 	object_event  4,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591e5, -1

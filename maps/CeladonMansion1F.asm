@@ -39,7 +39,7 @@ CeladonMansion1FNidoranF:
 CeladonMansionManagersSuiteSign:
 	jumptext CeladonMansionManagersSuiteSignText
 
-CeladonMansion1fBookshelf:
+CeladonMansion1FBookshelf:
 	jumpstd picturebookshelf
 
 CeladonMansionManagerText:
@@ -86,8 +86,8 @@ CeladonMansion1F_MapEvents:
 
 	db 3 ; bg events
 	bg_event  5,  8, BGEVENT_UP, CeladonMansionManagersSuiteSign
-	bg_event  0,  3, BGEVENT_READ, CeladonMansion1fBookshelf
-	bg_event  2,  3, BGEVENT_READ, CeladonMansion1fBookshelf
+	bg_event  0,  3, BGEVENT_READ, CeladonMansion1FBookshelf
+	bg_event  2,  3, BGEVENT_READ, CeladonMansion1FBookshelf
 
 	db 4 ; object events
 	object_event  1,  5, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonMansionManager, -1

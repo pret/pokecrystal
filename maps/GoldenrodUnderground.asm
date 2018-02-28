@@ -403,8 +403,8 @@ GoldenrodUndergroundScript_ShopClosed:
 GoldenrodUndergroundCoinCase:
 	itemball COIN_CASE
 
-MapGoldenrodUndergroundSignpost1Script:
-	jumptext UnknownText_0x7c91a
+GoldenrodUndergroundNoEntrySign:
+	jumptext GoldenrodUndergroundNoEntryText
 
 GoldenrodUndergroundHiddenParlyzHeal:
 	hiddenitem PARLYZ_HEAL, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL
@@ -639,7 +639,7 @@ UnknownText_0x7c904:
 	line "today."
 	done
 
-UnknownText_0x7c91a:
+GoldenrodUndergroundNoEntryText:
 	text "NO ENTRY BEYOND"
 	line "THIS POINT"
 	done
@@ -659,7 +659,7 @@ GoldenrodUnderground_MapEvents:
 
 	db 5 ; bg events
 	bg_event 18,  6, BGEVENT_READ, BasementDoorScript
-	bg_event 19,  6, BGEVENT_READ, MapGoldenrodUndergroundSignpost1Script
+	bg_event 19,  6, BGEVENT_READ, GoldenrodUndergroundNoEntrySign
 	bg_event  6, 13, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
 	bg_event  4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
 	bg_event 17,  8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote

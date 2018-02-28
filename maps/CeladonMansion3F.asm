@@ -69,17 +69,17 @@ CeladonMansion3FSuperNerdScript:
 CeladonMansion3FFisherScript:
 	jumptextfaceplayer CeladonMansion3FFisherText
 
-MapCeladonMansion3FSignpost0Script:
-	jumptext UnknownText_0x7190b
+CeladonMansion3FDevRoomSign:
+	jumptext CeladonMansion3FDevRoomSignText
 
-MapCeladonMansion3FSignpost1Script:
-	jumptext UnknownText_0x71928
+CeladonMansion3FDrawing:
+	jumptext CeladonMansion3FDrawingText
 
-MapCeladonMansion3FSignpost2Script:
-	jumptext UnknownText_0x71952
+CeladonMansion3FGameProgram:
+	jumptext CeladonMansion3FGameProgramText
 
-MapCeladonMansion3FSignpost3Script:
-	jumptext UnknownText_0x71996
+CeladonMansion3FReferenceMaterial:
+	jumptext CeladonMansion3FReferenceMaterialText
 
 UnknownText_0x716ce:
 	text "Is that right?"
@@ -161,18 +161,18 @@ CeladonMansion3FFisherText:
 	para "Oh, I love them!"
 	done
 
-UnknownText_0x7190b:
+CeladonMansion3FDevRoomSignText:
 	text "GAME FREAK"
 	line "DEVELOPMENT ROOM"
 	done
 
-UnknownText_0x71928:
+CeladonMansion3FDrawingText:
 	text "It's a detailed"
 	line "drawing of a"
 	cont "pretty girl."
 	done
 
-UnknownText_0x71952:
+CeladonMansion3FGameProgramText:
 	text "It's the game"
 	line "program. Messing"
 
@@ -180,7 +180,7 @@ UnknownText_0x71952:
 	line "a bug in the game!"
 	done
 
-UnknownText_0x71996:
+CeladonMansion3FReferenceMaterialText:
 	text "It's crammed with"
 	line "reference materi-"
 	cont "als. There's even"
@@ -199,10 +199,10 @@ CeladonMansion3F_MapEvents:
 	db 0 ; coord events
 
 	db 4 ; bg events
-	bg_event  5,  8, BGEVENT_UP, MapCeladonMansion3FSignpost0Script
-	bg_event  4,  3, BGEVENT_UP, MapCeladonMansion3FSignpost1Script
-	bg_event  1,  6, BGEVENT_UP, MapCeladonMansion3FSignpost2Script
-	bg_event  1,  3, BGEVENT_UP, MapCeladonMansion3FSignpost3Script
+	bg_event  5,  8, BGEVENT_UP, CeladonMansion3FDevRoomSign
+	bg_event  4,  3, BGEVENT_UP, CeladonMansion3FDrawing
+	bg_event  1,  6, BGEVENT_UP, CeladonMansion3FGameProgram
+	bg_event  1,  3, BGEVENT_UP, CeladonMansion3FReferenceMaterial
 
 	db 4 ; object events
 	object_event  3,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x71670, -1

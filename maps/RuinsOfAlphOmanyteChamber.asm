@@ -46,7 +46,7 @@ RuinsOfAlphOmanyteChamber_MapScripts:
 	closetext
 	end
 
-MapRuinsOfAlphOmanyteChamberSignpost2Script:
+RuinsOfAlphOmanyteChamberPuzzle:
 	refreshscreen
 	writebyte UNOWNPUZZLE_OMANYTE
 	special UnownPuzzle
@@ -73,25 +73,25 @@ MapRuinsOfAlphOmanyteChamberSignpost2Script:
 	warpcheck
 	end
 
-MapRuinsOfAlphOmanyteChamberSignpost1Script:
-	jumptext UnknownText_0x58d01
+RuinsOfAlphOmanyteChamberAncientReplica:
+	jumptext RuinsOfAlphOmanyteChamberAncientReplicaText
 
-MapRuinsOfAlphOmanyteChamberSignpost3Script:
-	jumptext UnknownText_0x58d26
+RuinsOfAlphOmanyteChamberDescriptionSign:
+	jumptext RuinsOfAlphOmanyteChamberDescriptionText
 
-MapRuinsOfAlphOmanyteChamberSignpost4Script:
+RuinsOfAlphOmanyteChamberWallPatternLeft:
 	opentext
-	writetext UnknownText_0x58c8e
+	writetext RuinsOfAlphOmanyteChamberWallPatternLeftText
 	writebyte UNOWNWORDS_WATER
 	special DisplayUnownWords
 	closetext
 	end
 
-MapRuinsOfAlphOmanyteChamberSignpost5Script:
+RuinsOfAlphOmanyteChamberWallPatternRight:
 	checkevent EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue .WallOpen
 	opentext
-	writetext UnknownText_0x58cc0
+	writetext RuinsOfAlphOmanyteChamberWallPatternRightText
 	writebyte UNOWNWORDS_WATER
 	special DisplayUnownWords
 	closetext
@@ -99,7 +99,7 @@ MapRuinsOfAlphOmanyteChamberSignpost5Script:
 
 .WallOpen:
 	opentext
-	writetext UnknownText_0x58ce1
+	writetext RuinsOfAlphOmanyteChamberWallHoleText
 	waitbutton
 	closetext
 	end
@@ -108,33 +108,33 @@ MovementData_0x58c8c:
 	skyfall_top
 	step_end
 
-UnknownText_0x58c8e:
+RuinsOfAlphOmanyteChamberWallPatternLeftText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
 
+RuinsOfAlphOmanyteChamberUnownText:
 ; unused
-UnusedText_0x58caf:
 	text "It's UNOWN text!"
 	done
 
-UnknownText_0x58cc0:
+RuinsOfAlphOmanyteChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
 
-UnknownText_0x58ce1:
+RuinsOfAlphOmanyteChamberWallHoleText:
 	text "There's a big hole"
 	line "in the wall!"
 	done
 
-UnknownText_0x58d01:
+RuinsOfAlphOmanyteChamberAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
 	done
 
-UnknownText_0x58d26:
+RuinsOfAlphOmanyteChamberDescriptionText:
 	text "This #MON"
 	line "drifted in the"
 
@@ -155,11 +155,11 @@ RuinsOfAlphOmanyteChamber_MapEvents:
 	db 0 ; coord events
 
 	db 6 ; bg events
-	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
-	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphOmanyteChamberSignpost1Script
-	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost2Script
-	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost3Script
-	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost4Script
-	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphOmanyteChamberSignpost5Script
+	bg_event  2,  3, BGEVENT_READ, RuinsOfAlphOmanyteChamberAncientReplica
+	bg_event  5,  3, BGEVENT_READ, RuinsOfAlphOmanyteChamberAncientReplica
+	bg_event  3,  2, BGEVENT_UP, RuinsOfAlphOmanyteChamberPuzzle
+	bg_event  4,  2, BGEVENT_UP, RuinsOfAlphOmanyteChamberDescriptionSign
+	bg_event  3,  0, BGEVENT_UP, RuinsOfAlphOmanyteChamberWallPatternLeft
+	bg_event  4,  0, BGEVENT_UP, RuinsOfAlphOmanyteChamberWallPatternRight
 
 	db 0 ; object events

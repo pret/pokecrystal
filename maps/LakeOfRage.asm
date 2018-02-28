@@ -125,19 +125,19 @@ LakeOfRageSuperNerdScript:
 LakeOfRageCooltrainerFScript:
 	jumptextfaceplayer LakeOfRageCooltrainerFText
 
-MapLakeOfRageSignpost0Script:
-	jumptext UnknownText_0x708d7
+LakeOfRageSign:
+	jumptext LakeOfRageSignText
 
-MapLakeOfRageSignpost1Script:
+MagikarpHouseSignScript:
 	opentext
-	writetext UnknownText_0x70903
+	writetext FishingGurusHouseSignText
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x700b8
+	iftrue .MagikarpLengthRecord
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x700b8:
+.MagikarpLengthRecord:
 	buttonsound
 	special MagikarpHouseSign
 	closetext
@@ -480,13 +480,13 @@ WesleyNotWednesdayText:
 	cont "That's too bad."
 	done
 
-UnknownText_0x708d7:
+LakeOfRageSignText:
 	text "LAKE OF RAGE,"
 	line "also known as"
 	cont "GYARADOS LAKE."
 	done
 
-UnknownText_0x70903:
+FishingGurusHouseSignText:
 	text "FISHING GURU'S"
 	line "HOUSE"
 	done
@@ -501,8 +501,8 @@ LakeOfRage_MapEvents:
 	db 0 ; coord events
 
 	db 5 ; bg events
-	bg_event 21, 27, BGEVENT_READ, MapLakeOfRageSignpost0Script
-	bg_event 25, 31, BGEVENT_READ, MapLakeOfRageSignpost1Script
+	bg_event 21, 27, BGEVENT_READ, LakeOfRageSign
+	bg_event 25, 31, BGEVENT_READ, MagikarpHouseSignScript
 	bg_event 11, 28, BGEVENT_ITEM, LakeOfRageHiddenFullRestore
 	bg_event  4,  4, BGEVENT_ITEM, LakeOfRageHiddenRareCandy
 	bg_event 35,  5, BGEVENT_ITEM, LakeOfRageHiddenMaxPotion

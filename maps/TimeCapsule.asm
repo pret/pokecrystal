@@ -34,19 +34,19 @@ TimeCapsule_MapScripts:
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_TIME_CAPSULE
 	end
 
-MapTimeCapsuleSignpost1Script:
+TimeCapsuleConsoleScript:
 	special TimeCapsule
 	newloadmap MAPSETUP_LINKRETURN
 	end
 
-ChrisScript_0x19351a:
+TimeCapsuleFriendScript:
 	opentext
-	writetext UnknownText_0x193521
+	writetext .FriendReadyText
 	waitbutton
 	closetext
 	end
 
-UnknownText_0x193521:
+.FriendReadyText:
 	text "Your friend is"
 	line "ready."
 	done
@@ -61,9 +61,9 @@ TimeCapsule_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  4,  4, BGEVENT_RIGHT, MapTimeCapsuleSignpost1Script
-	bg_event  5,  4, BGEVENT_LEFT, MapTimeCapsuleSignpost1Script
+	bg_event  4,  4, BGEVENT_RIGHT, TimeCapsuleConsoleScript
+	bg_event  5,  4, BGEVENT_LEFT, TimeCapsuleConsoleScript
 
 	db 2 ; object events
-	object_event  3,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x19351a, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event  6,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x19351a, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	object_event  3,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TimeCapsuleFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  6,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TimeCapsuleFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2

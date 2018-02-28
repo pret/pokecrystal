@@ -10,11 +10,11 @@ FightingDojo_MapScripts:
 FightingDojoBlackBelt:
 	jumptextfaceplayer FightingDojoBlackBeltText
 
-MapFightingDojoSignpost0Script:
-	jumptext FightingDojoSign0Text
-
-MapFightingDojoSignpost1Script:
+FightingDojoSign1:
 	jumptext FightingDojoSign1Text
+
+FightingDojoSign2:
+	jumptext FightingDojoSign2Text
 
 FightingDojoFocusBand:
 	itemball FOCUS_BAND
@@ -30,12 +30,12 @@ FightingDojoBlackBeltText:
 	cont "training."
 	done
 
-FightingDojoSign0Text:
+FightingDojoSign1Text:
 	text "What goes around"
 	line "comes around!"
 	done
 
-FightingDojoSign1Text:
+FightingDojoSign2Text:
 	text "Enemies on every"
 	line "side!"
 	done
@@ -50,8 +50,8 @@ FightingDojo_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  4,  0, BGEVENT_READ, MapFightingDojoSignpost0Script
-	bg_event  5,  0, BGEVENT_READ, MapFightingDojoSignpost1Script
+	bg_event  4,  0, BGEVENT_READ, FightingDojoSign1
+	bg_event  5,  0, BGEVENT_READ, FightingDojoSign2
 
 	db 2 ; object events
 	object_event  4,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FightingDojoBlackBelt, -1

@@ -21,10 +21,10 @@ RuinsOfAlphKabutoItemRoomHealPowder:
 RuinsOfAlphKabutoItemRoomEnergypowder:
 	itemball ENERGYPOWDER
 
-MapRuinsOfAlphKabutoItemRoomSignpost1Script:
-	jumptext UnknownText_0x599ad
+RuinsOfAlphKabutoItemRoomAncientReplica:
+	jumptext RuinsOfAlphKabutoItemRoomAncientReplicaText
 
-UnknownText_0x599ad:
+RuinsOfAlphKabutoItemRoomAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
@@ -42,8 +42,8 @@ RuinsOfAlphKabutoItemRoom_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  2,  1, BGEVENT_READ, MapRuinsOfAlphKabutoItemRoomSignpost1Script
-	bg_event  5,  1, BGEVENT_READ, MapRuinsOfAlphKabutoItemRoomSignpost1Script
+	bg_event  2,  1, BGEVENT_READ, RuinsOfAlphKabutoItemRoomAncientReplica
+	bg_event  5,  1, BGEVENT_READ, RuinsOfAlphKabutoItemRoomAncientReplica
 
 	db 4 ; object events
 	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphKabutoItemRoomBerry, EVENT_PICKED_UP_BERRY_FROM_KABUTO_ITEM_ROOM

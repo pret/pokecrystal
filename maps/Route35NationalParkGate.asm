@@ -200,8 +200,8 @@ OfficerScript_0x6a2ca:
 Route35NationalParkGateYoungsterScript:
 	jumptextfaceplayer Route35NationalParkGateYoungsterText
 
-MapRoute36NationalParkGateSignpost0Script:
-	jumptext UnknownText_0x6a90e
+BugCatchingContestExplanationSign:
+	jumptext BugCatchingContestExplanationText
 
 Route35NationalParkGate_GetDayOfWeek:
 	jumpstd daytotext
@@ -415,7 +415,7 @@ Route35NationalParkGateYoungsterText:
 	cont "test going to be?"
 	done
 
-UnknownText_0x6a90e:
+BugCatchingContestExplanationText:
 	text "The Bug-Catching"
 	line "Contest is held on"
 
@@ -447,7 +447,7 @@ Route35NationalParkGate_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  5,  0, BGEVENT_READ, MapRoute36NationalParkGateSignpost0Script
+	bg_event  5,  0, BGEVENT_READ, BugCatchingContestExplanationSign
 
 	db 3 ; object events
 	object_event  2,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY

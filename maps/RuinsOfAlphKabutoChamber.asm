@@ -52,7 +52,7 @@ RuinsOfAlphKabutoChamber_MapScripts:
 RuinsOfAlphKabutoChamberReceptionistScript:
 	jumptextfaceplayer RuinsOfAlphKabutoChamberReceptionistText
 
-MapRuinsOfAlphKabutoChamberSignpost2Script:
+RuinsOfAlphKabutoChamberPuzzle:
 	refreshscreen
 	writebyte UNOWNPUZZLE_KABUTO
 	special UnownPuzzle
@@ -110,25 +110,25 @@ ScientistScript_0x587a8:
 	closetext
 	end
 
-MapRuinsOfAlphKabutoChamberSignpost1Script:
-	jumptext UnknownText_0x58b1a
+RuinsOfAlphKabutoChamberAncientReplica:
+	jumptext RuinsOfAlphKabutoChamberAncientReplicaText
 
-MapRuinsOfAlphKabutoChamberSignpost3Script:
-	jumptext UnknownText_0x58b3f
+RuinsOfAlphKabutoChamberDescriptionSign:
+	jumptext RuinsOfAlphKabutoChamberDescriptionText
 
-MapRuinsOfAlphKabutoChamberSignpost4Script:
+RuinsOfAlphKabutoChamberWallPatternLeft:
 	opentext
-	writetext UnknownText_0x58aa7
+	writetext RuinsOfAlphKabutoChamberWallPatternLeftText
 	writebyte UNOWNWORDS_ESCAPE
 	special DisplayUnownWords
 	closetext
 	end
 
-MapRuinsOfAlphKabutoChamberSignpost5Script:
+RuinsOfAlphKabutoChamberWallPatternRight:
 	checkevent EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue .WallOpen
 	opentext
-	writetext UnknownText_0x58ad9
+	writetext RuinsOfAlphKabutoChamberWallPatternRightText
 	writebyte UNOWNWORDS_ESCAPE
 	special DisplayUnownWords
 	closetext
@@ -136,7 +136,7 @@ MapRuinsOfAlphKabutoChamberSignpost5Script:
 
 .WallOpen:
 	opentext
-	writetext UnknownText_0x58afa
+	writetext RuinsOfAlphKabutoChamberWallHoleText
 	waitbutton
 	closetext
 	end
@@ -200,8 +200,8 @@ UnknownText_0x589b8:
 	cont "this wall here…"
 	done
 
-; unused
 UnusedText_0x58a03:
+; unused
 	text "The patterns on"
 	line "the wall appear to"
 	cont "be words!"
@@ -219,33 +219,33 @@ UnusedText_0x58a03:
 	line "yet…"
 	done
 
-UnknownText_0x58aa7:
+RuinsOfAlphKabutoChamberWallPatternLeftText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
 
+RuinsOfAlphKabutoChamberUnownText:
 ; unused
-UnusedText_0x58ac8:
 	text "It's UNOWN text!"
 	done
 
-UnknownText_0x58ad9:
+RuinsOfAlphKabutoChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
 
-UnknownText_0x58afa:
+RuinsOfAlphKabutoChamberWallHoleText:
 	text "There's a big hole"
 	line "in the wall!"
 	done
 
-UnknownText_0x58b1a:
+RuinsOfAlphKabutoChamberAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
 	done
 
-UnknownText_0x58b3f:
+RuinsOfAlphKabutoChamberDescriptionText:
 	text "A #MON that hid"
 	line "on the sea floor."
 
@@ -266,12 +266,12 @@ RuinsOfAlphKabutoChamber_MapEvents:
 	db 0 ; coord events
 
 	db 6 ; bg events
-	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
-	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphKabutoChamberSignpost1Script
-	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost2Script
-	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost3Script
-	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost4Script
-	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphKabutoChamberSignpost5Script
+	bg_event  2,  3, BGEVENT_READ, RuinsOfAlphKabutoChamberAncientReplica
+	bg_event  5,  3, BGEVENT_READ, RuinsOfAlphKabutoChamberAncientReplica
+	bg_event  3,  2, BGEVENT_UP, RuinsOfAlphKabutoChamberPuzzle
+	bg_event  4,  2, BGEVENT_UP, RuinsOfAlphKabutoChamberDescriptionSign
+	bg_event  3,  0, BGEVENT_UP, RuinsOfAlphKabutoChamberWallPatternLeft
+	bg_event  4,  0, BGEVENT_UP, RuinsOfAlphKabutoChamberWallPatternRight
 
 	db 2 ; object events
 	object_event  5,  5, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphKabutoChamberReceptionistScript, EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST

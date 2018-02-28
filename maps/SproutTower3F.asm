@@ -123,11 +123,11 @@ TrainerSageNeal:
 	closetext
 	end
 
-MapSproutTower3FSignpost3Script:
-	jumptext UnknownText_0x184f37
+SproutTower3FPainting:
+	jumptext SproutTower3FPaintingText
 
-MapSproutTower3FSignpost5Script:
-	jumptext UnknownText_0x184f61
+SproutTower3FStatue:
+	jumptext SproutTower3FStatueText
 
 SproutTower3FPotion:
 	itemball POTION
@@ -314,13 +314,13 @@ SageNealAfterBattleText:
 	line "on your journey."
 	done
 
-UnknownText_0x184f37:
+SproutTower3FPaintingText:
 	text "It's a powerful"
 	line "painting of a"
 	cont "BELLSPROUT."
 	done
 
-UnknownText_0x184f61:
+SproutTower3FStatueText:
 	text "A #MON statue…"
 
 	para "It looks very"
@@ -337,12 +337,12 @@ SproutTower3F_MapEvents:
 	coord_event 11,  9, SCENE_DEFAULT, UnknownScript_0x184947
 
 	db 6 ; bg events
-	bg_event  8,  1, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event 11,  1, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event  9,  0, BGEVENT_READ, MapSproutTower3FSignpost3Script
-	bg_event 10,  0, BGEVENT_READ, MapSproutTower3FSignpost3Script
-	bg_event  5, 15, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event 14, 15, BGEVENT_READ, MapSproutTower3FSignpost5Script
+	bg_event  8,  1, BGEVENT_READ, SproutTower3FStatue
+	bg_event 11,  1, BGEVENT_READ, SproutTower3FStatue
+	bg_event  9,  0, BGEVENT_READ, SproutTower3FPainting
+	bg_event 10,  0, BGEVENT_READ, SproutTower3FPainting
+	bg_event  5, 15, BGEVENT_READ, SproutTower3FStatue
+	bg_event 14, 15, BGEVENT_READ, SproutTower3FStatue
 
 	db 7 ; object events
 	object_event  8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1

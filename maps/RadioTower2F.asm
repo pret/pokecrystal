@@ -17,6 +17,7 @@ RadioTower2F_MapScripts:
 	db 0 ; callbacks
 
 UnknownScript_0x5d6fd:
+; unused
 	end
 
 RadioTower2FSuperNerdScript:
@@ -324,14 +325,14 @@ RadioTowerBuenaPrizeReceptionist:
 	closetext
 	end
 
-MapRadioTower2FSignpost0Script:
-	jumptext UnknownText_0x5e426
+RadioTower2FSalesSign:
+	jumptext RadioTower2FSalesSignText
 
-MapRadioTower2FSignpost1Script:
-	jumptext UnknownText_0x5e430
+RadioTower2FOaksPKMNTalkSign:
+	jumptext RadioTower2FOaksPKMNTalkSignText
 
-MapRadioTower2FSignpost5Script:
-	jumptext UnknownText_0x5e463
+RadioTower2FPokemonRadioSign:
+	jumptext RadioTower2FPokemonRadioSignText
 
 RadioTower2FBookshelf:
 	jumpstd magazinebookshelf
@@ -691,11 +692,11 @@ UnknownText_0x5e3d8:
 	line "BLUE CARD!"
 	done
 
-UnknownText_0x5e426:
+RadioTower2FSalesSignText:
 	text "2F SALES"
 	done
 
-UnknownText_0x5e430:
+RadioTower2FOaksPKMNTalkSignText:
 	text "PROF.OAK'S #MON"
 	line "TALK"
 
@@ -703,7 +704,7 @@ UnknownText_0x5e430:
 	line "on the Air!"
 	done
 
-UnknownText_0x5e463:
+RadioTower2FPokemonRadioSignText:
 	text "Anywhere, Anytime"
 	line "#MON Radio"
 	done
@@ -718,12 +719,12 @@ RadioTower2F_MapEvents:
 	db 0 ; coord events
 
 	db 6 ; bg events
-	bg_event  3,  0, BGEVENT_READ, MapRadioTower2FSignpost0Script
-	bg_event  5,  0, BGEVENT_READ, MapRadioTower2FSignpost1Script
+	bg_event  3,  0, BGEVENT_READ, RadioTower2FSalesSign
+	bg_event  5,  0, BGEVENT_READ, RadioTower2FOaksPKMNTalkSign
 	bg_event  9,  1, BGEVENT_READ, RadioTower2FBookshelf
 	bg_event 10,  1, BGEVENT_READ, RadioTower2FBookshelf
 	bg_event 11,  1, BGEVENT_READ, RadioTower2FBookshelf
-	bg_event 13,  0, BGEVENT_READ, MapRadioTower2FSignpost5Script
+	bg_event 13,  0, BGEVENT_READ, RadioTower2FPokemonRadioSign
 
 	db 11 ; object events
 	object_event  6,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower2FSuperNerdScript, EVENT_GOLDENROD_CITY_CIVILIANS

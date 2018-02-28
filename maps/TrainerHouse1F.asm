@@ -25,14 +25,14 @@ TrainerHouse1FYoungsterScript:
 TrainerHouse1FGentlemanScript:
 	jumptextfaceplayer TrainerHouse1FGentlemanText
 
-MapTrainerHouse1FSignpost0Script:
-	jumptext UnknownText_0x9b1f4
+TrainerHouseSign1:
+	jumptext TrainerHouseSign1Text
 
-MapTrainerHouse1FSignpost1Script:
-	jumptext UnknownText_0x9b25d
+TrainerHouseSign2:
+	jumptext TrainerHouseSign2Text
 
-MapTrainerHouse1FSignpost2Script:
-	jumptext UnknownText_0x9b2c1
+TrainerHouseIllegibleBook:
+	jumptext TrainerHouseIllegibleText
 
 TrainerHouse1FReceptionistText:
 	text "Welcome to TRAINER"
@@ -101,7 +101,7 @@ TrainerHouse1FGentlemanText:
 	cont "battles."
 	done
 
-UnknownText_0x9b1f4:
+TrainerHouseSign1Text:
 	text "Practice battles"
 	line "are held in the"
 
@@ -113,7 +113,7 @@ UnknownText_0x9b1f4:
 	cont "participate."
 	done
 
-UnknownText_0x9b25d:
+TrainerHouseSign2Text:
 	text "There are no rules"
 	line "or regulations for"
 
@@ -124,7 +124,7 @@ UnknownText_0x9b25d:
 	line "goes!"
 	done
 
-UnknownText_0x9b2c1:
+TrainerHouseIllegibleText:
 	text "…What's this?"
 	line "A strategy memo?"
 
@@ -146,9 +146,9 @@ TrainerHouse1F_MapEvents:
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event  5,  0, BGEVENT_READ, MapTrainerHouse1FSignpost0Script
-	bg_event  7,  0, BGEVENT_READ, MapTrainerHouse1FSignpost1Script
-	bg_event  7, 10, BGEVENT_READ, MapTrainerHouse1FSignpost2Script
+	bg_event  5,  0, BGEVENT_READ, TrainerHouseSign1
+	bg_event  7,  0, BGEVENT_READ, TrainerHouseSign2
+	bg_event  7, 10, BGEVENT_READ, TrainerHouseIllegibleBook
 
 	db 5 ; object events
 	object_event  0, 11, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TrainerHouse1FReceptionistScript, -1

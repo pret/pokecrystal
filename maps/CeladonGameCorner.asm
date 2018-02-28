@@ -133,9 +133,9 @@ CeladonGameCornerCardFlipScript:
 CeladonGameCornerLighterScript:
 	jumptext CeladonGameCornerLighterText
 
-MapCeladonGameCornerSignpost9Script:
+CeladonGameCornerSodaCanScript:
 	opentext
-	writetext UnknownText_0x72567
+	writetext CeladonGameCornerSodaCanText
 	waitbutton
 	special CardFlip
 	closetext
@@ -270,7 +270,7 @@ CeladonGameCornerLighterText:
 	line "here."
 	done
 
-UnknownText_0x72567:
+CeladonGameCornerSodaCanText:
 	text "A can of soda…"
 
 	para "Someone must be"
@@ -298,7 +298,7 @@ CeladonGameCorner_MapEvents:
 	bg_event  6,  6, BGEVENT_READ, CeladonGameCornerCardFlipScript
 	bg_event  6,  7, BGEVENT_READ, CeladonGameCornerCardFlipScript
 	bg_event  6,  8, BGEVENT_READ, CeladonGameCornerCardFlipScript
-	bg_event  6,  9, BGEVENT_READ, MapCeladonGameCornerSignpost9Script
+	bg_event  6,  9, BGEVENT_READ, CeladonGameCornerSodaCanScript
 	bg_event  6, 10, BGEVENT_READ, CeladonGameCornerCardFlipScript
 	bg_event  6, 11, BGEVENT_RIGHT, CeladonGameCornerCardFlipScript
 	bg_event  7,  6, BGEVENT_READ, CeladonGameCornerLuckySlotMachineScript

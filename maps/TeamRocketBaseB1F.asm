@@ -500,17 +500,17 @@ TrainerGruntM16:
 	closetext
 	end
 
-MapTeamRocketBaseB1FSignpost5Script:
-	jumptext SecurityCameraText
+TeamRocketBaseB1FSecurityCamera:
+	jumptext TeamRocketBaseB1FSecurityCameraText
 
-MapTeamRocketBaseB1FSignpost7Script:
+TeamRocketBaseB1FBookshelf:
 	jumpstd teamrocketoath
 
-MapTeamRocketBaseB1FSignpost0Script:
+TeamRocketBaseB1FSecretSwitch:
 	opentext
 	checkevent EVENT_TURNED_OFF_SECURITY_CAMERAS
-	iftrue UnknownScript_0x6cabe
-	writetext UnknownText_0x6cdad
+	iftrue .SecretSwitchOff
+	writetext TeamRocketBaseB1FSecretSwitchText
 	playsound SFX_TALLY
 	waitbutton
 	closetext
@@ -522,8 +522,8 @@ MapTeamRocketBaseB1FSignpost0Script:
 	setevent EVENT_SECURITY_CAMERA_5
 	end
 
-UnknownScript_0x6cabe:
-	writetext UnknownText_0x6cdd0
+.SecretSwitchOff:
+	writetext TeamRocketBaseB1FSwitchOffText
 	waitbutton
 	closetext
 	end
@@ -706,7 +706,7 @@ GruntM16AfterBattleText:
 	cont "courage and walk."
 	done
 
-SecurityCameraText:
+TeamRocketBaseB1FSecurityCameraText:
 	text "It's a PERSIAN"
 	line "statue…"
 
@@ -714,12 +714,12 @@ SecurityCameraText:
 	line "shiny."
 	done
 
-UnknownText_0x6cdad:
+TeamRocketBaseB1FSecretSwitchText:
 	text "A secret switch!"
 	line "Better press it."
 	done
 
-UnknownText_0x6cdd0:
+TeamRocketBaseB1FSwitchOffText:
 	text "The switch is"
 	line "turned off."
 	done
@@ -770,14 +770,14 @@ TeamRocketBaseB1F_MapEvents:
 	coord_event  5, 13, SCENE_DEFAULT, ExplodingTrap22
 
 	db 9 ; bg events
-	bg_event 19, 11, BGEVENT_READ, MapTeamRocketBaseB1FSignpost0Script
-	bg_event 24,  1, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event  6,  1, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event  8, 15, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event 22, 15, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event 24,  5, BGEVENT_UP, MapTeamRocketBaseB1FSignpost5Script
-	bg_event 20, 11, BGEVENT_READ, MapTeamRocketBaseB1FSignpost7Script
-	bg_event 21, 11, BGEVENT_READ, MapTeamRocketBaseB1FSignpost7Script
+	bg_event 19, 11, BGEVENT_READ, TeamRocketBaseB1FSecretSwitch
+	bg_event 24,  1, BGEVENT_UP, TeamRocketBaseB1FSecurityCamera
+	bg_event  6,  1, BGEVENT_UP, TeamRocketBaseB1FSecurityCamera
+	bg_event  8, 15, BGEVENT_UP, TeamRocketBaseB1FSecurityCamera
+	bg_event 22, 15, BGEVENT_UP, TeamRocketBaseB1FSecurityCamera
+	bg_event 24,  5, BGEVENT_UP, TeamRocketBaseB1FSecurityCamera
+	bg_event 20, 11, BGEVENT_READ, TeamRocketBaseB1FBookshelf
+	bg_event 21, 11, BGEVENT_READ, TeamRocketBaseB1FBookshelf
 	bg_event  3, 11, BGEVENT_ITEM, TeamRocketBaseB1FHiddenRevive
 
 	db 6 ; object events

@@ -46,7 +46,7 @@ RuinsOfAlphHoOhChamber_MapScripts:
 	closetext
 	end
 
-MapRuinsOfAlphHoOhChamberSignpost2Script:
+RuinsOfAlphHoOhChamberPuzzle:
 	refreshscreen
 	writebyte UNOWNPUZZLE_HO_OH
 	special UnownPuzzle
@@ -73,25 +73,25 @@ MapRuinsOfAlphHoOhChamberSignpost2Script:
 	warpcheck
 	end
 
-MapRuinsOfAlphHoOhChamberSignpost1Script:
-	jumptext UnknownText_0x58685
+RuinsOfAlphHoOhChamberAncientReplica:
+	jumptext RuinsOfAlphHoOhChamberAncientReplicaText
 
-MapRuinsOfAlphHoOhChamberSignpost3Script:
-	jumptext UnknownText_0x586aa
+RuinsOfAlphHoOhChamberDescriptionSign:
+	jumptext RuinsOfAlphHoOhChamberDescriptionText
 
-MapRuinsOfAlphHoOhChamberSignpost4Script:
+RuinsOfAlphHoOhChamberWallPatternLeft:
 	opentext
-	writetext UnknownText_0x58612
+	writetext RuinsOfAlphHoOhChamberWallPatternLeftText
 	writebyte UNOWNWORDS_HO_OH
 	special DisplayUnownWords
 	closetext
 	end
 
-MapRuinsOfAlphHoOhChamberSignpost5Script:
+RuinsOfAlphHoOhChamberWallPatternRight:
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue .WallOpen
 	opentext
-	writetext UnknownText_0x58644
+	writetext RuinsOfAlphHoOhChamberWallPatternRightText
 	writebyte UNOWNWORDS_HO_OH
 	special DisplayUnownWords
 	closetext
@@ -99,7 +99,7 @@ MapRuinsOfAlphHoOhChamberSignpost5Script:
 
 .WallOpen:
 	opentext
-	writetext UnknownText_0x58665
+	writetext RuinsOfAlphHoOhChamberWallHoleText
 	waitbutton
 	closetext
 	end
@@ -108,33 +108,33 @@ MovementData_0x58610:
 	skyfall_top
 	step_end
 
-UnknownText_0x58612:
+RuinsOfAlphHoOhChamberWallPatternLeftText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
 
+RuinsOfAlphHoOhChamberUnownText:
 ; unused
-UnusedText_0x58633:
 	text "It's UNOWN text!"
 	done
 
-UnknownText_0x58644:
+RuinsOfAlphHoOhChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
 
-UnknownText_0x58665:
+RuinsOfAlphHoOhChamberWallHoleText:
 	text "There's a big hole"
 	line "in the wall!"
 	done
 
-UnknownText_0x58685:
+RuinsOfAlphHoOhChamberAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
 	done
 
-UnknownText_0x586aa:
+RuinsOfAlphHoOhChamberDescriptionText:
 	text "A #MON that"
 	line "flew gracefully on"
 
@@ -155,11 +155,11 @@ RuinsOfAlphHoOhChamber_MapEvents:
 	db 0 ; coord events
 
 	db 6 ; bg events
-	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
-	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphHoOhChamberSignpost1Script
-	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost2Script
-	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost3Script
-	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost4Script
-	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphHoOhChamberSignpost5Script
+	bg_event  2,  3, BGEVENT_READ, RuinsOfAlphHoOhChamberAncientReplica
+	bg_event  5,  3, BGEVENT_READ, RuinsOfAlphHoOhChamberAncientReplica
+	bg_event  3,  2, BGEVENT_UP, RuinsOfAlphHoOhChamberPuzzle
+	bg_event  4,  2, BGEVENT_UP, RuinsOfAlphHoOhChamberDescriptionSign
+	bg_event  3,  0, BGEVENT_UP, RuinsOfAlphHoOhChamberWallPatternLeft
+	bg_event  4,  0, BGEVENT_UP, RuinsOfAlphHoOhChamberWallPatternRight
 
 	db 0 ; object events

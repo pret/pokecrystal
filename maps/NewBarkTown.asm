@@ -128,14 +128,14 @@ NewBarkTownSilverScript:
 NewBarkTownSign:
 	jumptext NewBarkTownSignText
 
-MapNewBarkTownSignpost1Script:
-	jumptext PlayersHouseSignText
+NewBarkTownPlayersHouseSign:
+	jumptext NewBarkTownPlayersHouseSignText
 
-MapNewBarkTownSignpost2Script:
-	jumptext ElmsLabSignText
+NewBarkTownElmsLabSign:
+	jumptext NewBarkTownElmsLabSignText
 
-MapNewBarkTownSignpost3Script:
-	jumptext ElmsHouseSignText
+NewBarkTownElmsHouseSign:
+	jumptext NewBarkTownElmsHouseSignText
 
 Movement_TeacherRunsToYou1_NBT:
 	step LEFT
@@ -267,15 +267,15 @@ NewBarkTownSignText:
 	cont "Beginning Blow"
 	done
 
-PlayersHouseSignText:
+NewBarkTownPlayersHouseSignText:
 	text "<PLAYER>'s House"
 	done
 
-ElmsLabSignText:
+NewBarkTownElmsLabSignText:
 	text "ELM #MON LAB"
 	done
 
-ElmsHouseSignText:
+NewBarkTownElmsHouseSignText:
 	text "ELM'S HOUSE"
 	done
 
@@ -294,9 +294,9 @@ NewBarkTown_MapEvents:
 
 	db 4 ; bg events
 	bg_event  8,  8, BGEVENT_READ, NewBarkTownSign
-	bg_event 11,  5, BGEVENT_READ, MapNewBarkTownSignpost1Script
-	bg_event  3,  3, BGEVENT_READ, MapNewBarkTownSignpost2Script
-	bg_event  9, 13, BGEVENT_READ, MapNewBarkTownSignpost3Script
+	bg_event 11,  5, BGEVENT_READ, NewBarkTownPlayersHouseSign
+	bg_event  3,  3, BGEVENT_READ, NewBarkTownElmsLabSign
+	bg_event  9, 13, BGEVENT_READ, NewBarkTownElmsHouseSign
 
 	db 3 ; object events
 	object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1

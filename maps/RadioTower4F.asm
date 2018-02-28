@@ -97,11 +97,11 @@ TrainerScientistRich:
 	closetext
 	end
 
-MapRadioTower4FSignpost0Script:
-	jumptext UnknownText_0x5effe
+RadioTower4FProductionSign:
+	jumptext RadioTower4FProductionSignText
 
-MapRadioTower4FSignpost1Script:
-	jumptext UnknownText_0x5f00d
+RadioTower4FStudio2Sign:
+	jumptext RadioTower4FStudio2SignText
 
 RadioTower4FFisherText:
 	text "I listened to the"
@@ -235,11 +235,11 @@ ScientistRichAfterBattleText:
 	cont "stop TEAM ROCKET?"
 	done
 
-UnknownText_0x5effe:
+RadioTower4FProductionSignText:
 	text "4F PRODUCTION"
 	done
 
-UnknownText_0x5f00d:
+RadioTower4FStudio2SignText:
 	text "4F STUDIO 2"
 	done
 
@@ -255,8 +255,8 @@ RadioTower4F_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  7,  0, BGEVENT_READ, MapRadioTower4FSignpost0Script
-	bg_event 15,  0, BGEVENT_READ, MapRadioTower4FSignpost1Script
+	bg_event  7,  0, BGEVENT_READ, RadioTower4FProductionSign
+	bg_event 15,  0, BGEVENT_READ, RadioTower4FStudio2Sign
 
 	db 7 ; object events
 	object_event  6,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower4FFisherScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER

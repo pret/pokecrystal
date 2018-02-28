@@ -9,8 +9,8 @@ CeladonMansionRoof_MapScripts:
 CeladonMansionRoofFisherScript:
 	jumptextfaceplayer CeladonMansionRoofFisherText
 
-MapCeladonMansionRoofSignpost0Script:
-	jumptext UnknownText_0x71aa1
+CeladonMansionRoofGraffiti:
+	jumptext CeladonMansionRoofGraffitiText
 
 CeladonMansionRoofFisherText:
 	text "High places--I do"
@@ -23,7 +23,7 @@ CeladonMansionRoofFisherText:
 	line "me is smoke!"
 	done
 
-UnknownText_0x71aa1:
+CeladonMansionRoofGraffitiText:
 	text "There's graffiti"
 	line "on the wall…"
 
@@ -42,7 +42,7 @@ CeladonMansionRoof_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  6,  1, BGEVENT_LEFT, MapCeladonMansionRoofSignpost0Script
+	bg_event  6,  1, BGEVENT_LEFT, CeladonMansionRoofGraffiti
 
 	db 1 ; object events
 	object_event  7,  5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofFisherScript, -1

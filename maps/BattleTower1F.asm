@@ -40,7 +40,7 @@ BattleTower1F_MapScripts:
 .Scene1:
 	end
 
-MapBattleTower1FSignpost0Script:
+BattleTower1FRulesSign:
 	opentext
 	writetext Text_ReadBattleTowerRules
 	yesorno
@@ -802,7 +802,7 @@ BattleTower1F_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  6,  6, BGEVENT_READ, MapBattleTower1FSignpost0Script
+	bg_event  6,  6, BGEVENT_READ, BattleTower1FRulesSign
 
 	db 5 ; object events
 	object_event  7,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x9e3e2, -1

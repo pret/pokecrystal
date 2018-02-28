@@ -91,8 +91,8 @@ VermilionGymGuyScript:
 	closetext
 	end
 
-MapVermilionGymSignpost14Script:
-	jumptext UnknownText_0x19261e
+VermilionGymTrashCan:
+	jumptext VermilionGymTrashCanText
 
 VermilionGymStatue:
 	checkflag ENGINE_THUNDERBADGE
@@ -253,7 +253,7 @@ VermilionGymGuyWinText:
 	line "nervous."
 	done
 
-UnknownText_0x19261e:
+VermilionGymTrashCanText:
 	text "Nope! Nothing here"
 	line "but trash."
 	done
@@ -268,21 +268,21 @@ VermilionGym_MapEvents:
 	db 0 ; coord events
 
 	db 17 ; bg events
-	bg_event  1,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  3,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  5,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  7,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  9,  7, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  1,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  3,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  5,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  7,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  9,  9, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  1, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  3, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  5, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  7, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
-	bg_event  9, 11, BGEVENT_READ, MapVermilionGymSignpost14Script
+	bg_event  1,  7, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  3,  7, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  5,  7, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  7,  7, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  9,  7, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  1,  9, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  3,  9, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  5,  9, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  7,  9, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  9,  9, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  1, 11, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  3, 11, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  5, 11, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  7, 11, BGEVENT_READ, VermilionGymTrashCan
+	bg_event  9, 11, BGEVENT_READ, VermilionGymTrashCan
 	bg_event  3, 15, BGEVENT_READ, VermilionGymStatue
 	bg_event  6, 15, BGEVENT_READ, VermilionGymStatue
 

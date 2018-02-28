@@ -97,14 +97,14 @@ YoungsterScript_0x5c934:
 	closetext
 	end
 
-MapNationalParkBugContestSignpost0Script:
-	jumptext UnknownText_0x5cba7
+NationalParkBugContestRelaxationSquareSign:
+	jumptext NationalParkBugContestRelaxationSquareText
 
-MapNationalParkBugContestSignpost1Script:
-	jumptext UnknownText_0x5cbc8
+NationalParkBugContestBattleNoticeSign:
+	jumptext NationalParkBugContestBattleNoticeText
 
-MapNationalParkBugContestSignpost3Script:
-	jumptext UnknownText_0x5cc1d
+NationalParkBugContestTrainerTipsSign:
+	jumptext NationalParkBugContestTrainerTipsText
 
 NationalParkBugContestParlyzHeal:
 	itemball PARLYZ_HEAL
@@ -194,12 +194,12 @@ UnknownText_0x5cb64:
 	line "for sure."
 	done
 
-UnknownText_0x5cba7:
+NationalParkBugContestRelaxationSquareText:
 	text "RELAXATION SQUARE"
 	line "NATIONAL PARK"
 	done
 
-UnknownText_0x5cbc8:
+NationalParkBugContestBattleNoticeText:
 	text "What is this"
 	line "notice?"
 
@@ -210,7 +210,7 @@ UnknownText_0x5cbc8:
 	line "WARDEN'S OFFICE"
 	done
 
-UnknownText_0x5cc1d:
+NationalParkBugContestTrainerTipsText:
 	text "TRAINER TIPS"
 
 	para "Print out MAIL by"
@@ -230,10 +230,10 @@ NationalParkBugContest_MapEvents:
 	db 0 ; coord events
 
 	db 4 ; bg events
-	bg_event 14, 44, BGEVENT_READ, MapNationalParkBugContestSignpost0Script
-	bg_event 27, 31, BGEVENT_READ, MapNationalParkBugContestSignpost1Script
+	bg_event 14, 44, BGEVENT_READ, NationalParkBugContestRelaxationSquareSign
+	bg_event 27, 31, BGEVENT_READ, NationalParkBugContestBattleNoticeSign
 	bg_event  6, 47, BGEVENT_ITEM, NationalParkBugContestHiddenFullHeal
-	bg_event 12,  4, BGEVENT_READ, MapNationalParkBugContestSignpost3Script
+	bg_event 12,  4, BGEVENT_READ, NationalParkBugContestTrainerTipsSign
 
 	db 12 ; object events
 	object_event 19, 29, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x5c8ec, EVENT_BUG_CATCHING_CONTESTANT_1A

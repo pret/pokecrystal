@@ -194,11 +194,11 @@ TrainerGruntM3:
 	closetext
 	end
 
-MapRadioTower1FSignpost0Script:
-	jumptext UnknownText_0x5d5e7
+RadioTower1FDirectory:
+	jumptext RadioTower1FDirectoryText
 
-MapRadioTower1FSignpost1Script:
-	jumptext UnknownText_0x5d631
+RadioTower1FLuckyChannelSign:
+	jumptext RadioTower1FLuckyChannelSignText
 
 MovementData_0x5ce71:
 	step RIGHT
@@ -448,7 +448,7 @@ GruntM3AfterBattleText:
 	cont "warn the others…"
 	done
 
-UnknownText_0x5d5e7:
+RadioTower1FDirectoryText:
 	text "1F RECEPTION"
 	line "2F SALES"
 
@@ -459,7 +459,7 @@ UnknownText_0x5d5e7:
 	line "   OFFICE"
 	done
 
-UnknownText_0x5d631:
+RadioTower1FLuckyChannelSignText:
 	text "LUCKY CHANNEL!"
 
 	para "Win with #MON"
@@ -481,8 +481,8 @@ RadioTower1F_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  3,  0, BGEVENT_READ, MapRadioTower1FSignpost0Script
-	bg_event 13,  0, BGEVENT_READ, MapRadioTower1FSignpost1Script
+	bg_event  3,  0, BGEVENT_READ, RadioTower1FDirectory
+	bg_event 13,  0, BGEVENT_READ, RadioTower1FLuckyChannelSign
 
 	db 6 ; object events
 	object_event  5,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FReceptionistScript, -1

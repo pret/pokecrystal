@@ -21,10 +21,10 @@ RuinsOfAlphHoOhItemRoomRevivalHerb:
 RuinsOfAlphHoOhItemRoomCharcoal:
 	itemball CHARCOAL
 
-MapRuinsOfAlphHoOhItemRoomSignpost1Script:
-	jumptext UnknownText_0x59923
+RuinsOfAlphHoOhItemRoomAncientReplica:
+	jumptext RuinsOfAlphHoOhItemRoomAncientReplicaText
 
-UnknownText_0x59923:
+RuinsOfAlphHoOhItemRoomAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
@@ -42,8 +42,8 @@ RuinsOfAlphHoOhItemRoom_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  2,  1, BGEVENT_READ, MapRuinsOfAlphHoOhItemRoomSignpost1Script
-	bg_event  5,  1, BGEVENT_READ, MapRuinsOfAlphHoOhItemRoomSignpost1Script
+	bg_event  2,  1, BGEVENT_READ, RuinsOfAlphHoOhItemRoomAncientReplica
+	bg_event  5,  1, BGEVENT_READ, RuinsOfAlphHoOhItemRoomAncientReplica
 
 	db 4 ; object events
 	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphHoOhItemRoomGoldBerry, EVENT_PICKED_UP_GOLD_BERRY_FROM_HO_OH_ITEM_ROOM

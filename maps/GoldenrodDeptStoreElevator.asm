@@ -3,7 +3,7 @@ GoldenrodDeptStoreElevator_MapScripts:
 
 	db 0 ; callbacks
 
-MapGoldenrodDeptStoreElevatorSignpost0Script:
+GoldenrodDeptStoreElevatorScript:
 	opentext
 	elevator Elevator_0x566e0
 	closetext
@@ -62,6 +62,6 @@ GoldenrodDeptStoreElevator_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  3,  0, BGEVENT_READ, MapGoldenrodDeptStoreElevatorSignpost0Script
+	bg_event  3,  0, BGEVENT_READ, GoldenrodDeptStoreElevatorScript
 
 	db 0 ; object events

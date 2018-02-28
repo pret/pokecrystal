@@ -23,21 +23,21 @@ GentlemanScript_0x7ee6c:
 	faceplayer
 	opentext
 	checkflag ENGINE_EXPN_CARD
-	iftrue .UnknownScript_0x7ee8e
+	iftrue .GotExpnCard
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .UnknownScript_0x7ee80
+	iftrue .ReturnedMachinePart
 	writetext UnknownText_0x7effb
 	waitbutton
 	closetext
 	end
 
-.UnknownScript_0x7ee80:
+.ReturnedMachinePart:
 	writetext UnknownText_0x7f0a1
 	buttonsound
 	stringtotext .expncardname, MEM_BUFFER_1
 	scall .UnknownScript_0x7ee94
 	setflag ENGINE_EXPN_CARD
-.UnknownScript_0x7ee8e:
+.GotExpnCard:
 	writetext UnknownText_0x7f141
 	waitbutton
 	closetext
@@ -66,14 +66,15 @@ UnknownScript_0x7eeb0:
 	closetext
 	end
 
-MapLavRadioTower1FSignpost0Script:
-	jumptext UnknownText_0x7f2e3
+LavRadioTower1FDirectory:
+	jumptext LavRadioTower1FDirectoryText
 
-MapLavRadioTower1FSignpost1Script:
-	jumptext UnknownText_0x7f32d
+LavRadioTower1FPokeFluteSign:
+	jumptext LavRadioTower1FPokeFluteSignText
 
-UnknownScript_0x7eebc:
-	jumptext UnknownText_0x7f36b
+LavRadioTower1FReferenceLibrary:
+; unreferenced
+	jumptext LavRadioTower1FReferenceLibraryText
 
 LavRadioTower1FReceptionistText:
 	text "Welcome!"
@@ -191,7 +192,7 @@ UnknownText_0x7f248:
 	cont "off the air!"
 	done
 
-UnknownText_0x7f2e3:
+LavRadioTower1FDirectoryText:
 	text "1F RECEPTION"
 	line "2F SALES"
 
@@ -202,7 +203,7 @@ UnknownText_0x7f2e3:
 	line "   OFFICE"
 	done
 
-UnknownText_0x7f32d:
+LavRadioTower1FPokeFluteSignText:
 	text "Perk Up #MON"
 	line "with Mellow Sounds"
 
@@ -210,7 +211,7 @@ UnknownText_0x7f32d:
 	line "on CHANNEL 20"
 	done
 
-UnknownText_0x7f36b:
+LavRadioTower1FReferenceLibraryText:
 	text "Wow! A full rack"
 	line "of #MON CDs and"
 	cont "videos."
@@ -229,8 +230,8 @@ LavRadioTower1F_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 11,  0, BGEVENT_READ, MapLavRadioTower1FSignpost0Script
-	bg_event  5,  0, BGEVENT_READ, MapLavRadioTower1FSignpost1Script
+	bg_event 11,  0, BGEVENT_READ, LavRadioTower1FDirectory
+	bg_event  5,  0, BGEVENT_READ, LavRadioTower1FPokeFluteSign
 
 	db 5 ; object events
 	object_event  6,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FReceptionistScript, -1
