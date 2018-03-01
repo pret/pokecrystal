@@ -63,7 +63,7 @@ BattleTower1FReceptionistScript:
 	ifnotequal $0, Script_Menu_ChallengeExplanationCancel
 	jump Script_BattleTowerIntroductionYesNo
 
-Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
+Script_Menu_ChallengeExplanationCancel:
 	writetext Text_WantToGoIntoABattleRoom
 	writebyte TRUE
 	special Menu_ChallengeExplanationCancel
@@ -71,7 +71,7 @@ Script_Menu_ChallengeExplanationCancel: ; 0x9e3fc
 	ifequal 2, Script_BattleTowerExplanation
 	jump Script_BattleTowerHopeToServeYouAgain
 
-Script_ChooseChallenge: ; 0x9e40f
+Script_ChooseChallenge:
 	writebyte BATTLETOWERACTION_RESETDATA ; ResetBattleTowerTrainerSRAM
 	special BattleTowerAction
 	special CheckForBattleTowerRules
@@ -117,7 +117,7 @@ Script_WalkToBattleTowerElevator:
 	warpcheck
 	end
 
-Script_GivePlayerHisPrize: ; 0x9e47a
+Script_GivePlayerHisPrize:
 	writebyte BATTLETOWERACTION_1C
 	special BattleTowerAction
 	writebyte BATTLETOWERACTION_GIVEREWARD
@@ -131,17 +131,17 @@ Script_GivePlayerHisPrize: ; 0x9e47a
 	closetext
 	end
 
-Script_YourPackIsStuffedFull: ; 0x9e498
+Script_YourPackIsStuffedFull:
 	writetext Text_YourPackIsStuffedFull
 	waitbutton
 	closetext
 	end
 
-Script_BattleTowerIntroductionYesNo: ; 0x9e49e
+Script_BattleTowerIntroductionYesNo:
 	writetext Text_WouldYouLikeToHearAboutTheBattleTower
 	yesorno
 	iffalse Script_BattleTowerSkipExplanation
-Script_BattleTowerExplanation: ; 0x9e4a5
+Script_BattleTowerExplanation:
 	writetext Text_BattleTowerIntroduction_2
 Script_BattleTowerSkipExplanation:
 	writebyte BATTLETOWERACTION_SET_EXPLANATION_READ
@@ -159,7 +159,7 @@ UnreferencedScript_0x9e4b6:
 	closetext
 	end
 
-Script_WaitButton: ; 0x9e4bb
+Script_WaitButton:
 	waitbutton
 	closetext
 	end
@@ -223,12 +223,12 @@ UnreferencedScript_0x9e53b:
 	waitbutton
 	jump Script_BattleTowerHopeToServeYouAgain
 
-Script_AMonLevelExceeds: ; 0x9e542
+Script_AMonLevelExceeds:
 	writetext Text_AMonLevelExceeds
 	waitbutton
 	jump Script_Menu_ChallengeExplanationCancel
 
-Script_MayNotEnterABattleRoomUnderL70: ; 0x9e549
+Script_MayNotEnterABattleRoomUnderL70:
 	writetext Text_MayNotEnterABattleRoomUnderL70
 	waitbutton
 	jump Script_Menu_ChallengeExplanationCancel
@@ -346,7 +346,7 @@ MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent:
 	turn_head RIGHT
 	step_end
 
-Text_BattleTowerWelcomesYou: ; 0x9e5ab
+Text_BattleTowerWelcomesYou:
 	text "BATTLE TOWER"
 	line "welcomes you!"
 
@@ -354,17 +354,17 @@ Text_BattleTowerWelcomesYou: ; 0x9e5ab
 	line "to a BATTLE ROOM."
 	done
 
-Text_WantToGoIntoABattleRoom: ; 0x9e5ea
+Text_WantToGoIntoABattleRoom:
 	text "Want to go into a"
 	line "BATTLE ROOM?"
 	done
 
-Text_RightThisWayToYourBattleRoom: ; 0x9e60a
+Text_RightThisWayToYourBattleRoom:
 	text "Right this way to"
 	line "your BATTLE ROOM."
 	done
 
-Text_BattleTowerIntroduction_1: ; 0x9e62f
+Text_BattleTowerIntroduction_1:
 	text "BATTLE TOWER is a"
 	line "facility made for"
 	cont "#MON battles."
@@ -424,7 +424,7 @@ Text_BattleTowerIntroduction_1: ; 0x9e62f
 	para ""
 	done
 
-Text_BattleTowerIntroduction_2: ; 0x9e886
+Text_BattleTowerIntroduction_2:
 	text "BATTLE TOWER is a"
 	line "facility made for"
 	cont "#MON battles."
@@ -460,7 +460,7 @@ Text_BattleTowerIntroduction_2: ; 0x9e886
 	para ""
 	done
 
-Text_ReceivedAListOfLeadersOnTheHonorRoll: ; 0x9e9eb
+Text_ReceivedAListOfLeadersOnTheHonorRoll:
 	text "Received a list of"
 	line "LEADERS on the"
 	cont "HONOR ROLL."
@@ -468,18 +468,18 @@ Text_ReceivedAListOfLeadersOnTheHonorRoll: ; 0x9e9eb
 	para ""
 	done
 
-Text_PleaseConfirmOnThisMonitor: ; 0x9ea1b
+Text_PleaseConfirmOnThisMonitor:
 	text "Please confirm on"
 	line "this monitor."
 	done
 
-Text_ThankYou: ; 0x9ea3c
+Text_ThankYou:
 	text "Thank you!"
 
 	para ""
 	done
 
-Text_ThanksForVisiting: ; 0x9ea49
+Text_ThanksForVisiting:
 	text "Thanks for"
 	line "visiting!"
 	done
@@ -502,7 +502,7 @@ Text_BeatenAllTheTrainers_Mobile:
 	para ""
 	done
 
-Text_CongratulationsYouveBeatenAllTheTrainers: ; 0x9eaef
+Text_CongratulationsYouveBeatenAllTheTrainers:
 	text "Congratulations!"
 
 	para "You've beaten all"
@@ -522,7 +522,7 @@ Text_AskRegisterRecord_Mobile:
 	line "CENTER?"
 	done
 
-Text_PlayerGotFive: ; 0x9eb7e
+Text_PlayerGotFive:
 	text "<PLAYER> got five"
 	line "@"
 	text_from_ram wStringBuffer4
@@ -531,7 +531,7 @@ Text_PlayerGotFive: ; 0x9eb7e
 	text_waitbutton
 	db "@"
 
-Text_YourPackIsStuffedFull: ; 0x9eb94
+Text_YourPackIsStuffedFull:
 	text "Oops, your PACK is"
 	line "stuffed full."
 
@@ -539,24 +539,24 @@ Text_YourPackIsStuffedFull: ; 0x9eb94
 	line "and come back."
 	done
 
-Text_YourRegistrationIsComplete: ; 0x9ebd6
+Text_YourRegistrationIsComplete:
 	text "Your registration"
 	line "is complete."
 
 	para "Please come again!"
 	done
 
-Text_WeHopeToServeYouAgain: ; 0x9ec09
+Text_WeHopeToServeYouAgain:
 	text "We hope to serve"
 	line "you again."
 	done
 
-Text_PleaseStepThisWay: ; 0x9ec26
+Text_PleaseStepThisWay:
 	text "Please step this"
 	line "way."
 	done
 
-Text_WouldYouLikeToHearAboutTheBattleTower: ; 0x9ec3d
+Text_WouldYouLikeToHearAboutTheBattleTower:
 	text "Would you like to"
 	line "hear about the"
 	cont "BATTLE TOWER?"
@@ -582,19 +582,19 @@ Text_CantBeRegistered_PreviousRecordDeleted:
 	cont "deleted. OK?"
 	done
 
-Text_CheckTheLeaderHonorRoll: ; 0x9ed1e
+Text_CheckTheLeaderHonorRoll:
 	text "Check the LEADER"
 	line "HONOR ROLL?"
 	done
 
-Text_ReadBattleTowerRules: ; 0x9ed3c
+Text_ReadBattleTowerRules:
 	text "BATTLE TOWER rules"
 	line "are written here."
 
 	para "Read the rules?"
 	done
 
-Text_BattleTowerRules: ; 0x9ed72
+Text_BattleTowerRules:
 	text "Three #MON may"
 	line "enter battles."
 
@@ -626,13 +626,13 @@ Text_BattleTower_LeftWithoutSaving:
 	line "invalid."
 	done
 
-Text_YourMonWillBeHealedToFullHealth: ; 0x9ee92
+Text_YourMonWillBeHealedToFullHealth:
 	text "Your #MON will"
 	line "be healed to full"
 	cont "health."
 	done
 
-Text_NextUpOpponentNo: ; 0x9eebc
+Text_NextUpOpponentNo:
 	text "Next up, opponent"
 	line "no.@"
 	text_from_ram wStringBuffer3
@@ -647,7 +647,7 @@ Text_SaveBeforeConnecting_Mobile:
 	line "the CENTER."
 	done
 
-Text_SaveBeforeEnteringBattleRoom: ; 0x9ef1f
+Text_SaveBeforeEnteringBattleRoom:
 	text "Before entering"
 	line "the BATTLE ROOM,"
 
@@ -655,7 +655,7 @@ Text_SaveBeforeEnteringBattleRoom: ; 0x9ef1f
 	line "be saved."
 	done
 
-Text_SaveAndEndTheSession: ; 0x9ef5e
+Text_SaveAndEndTheSession:
 	text "SAVE and end the"
 	line "session?"
 	done
@@ -668,7 +668,7 @@ Text_SaveBeforeReentry:
 	line "the previous ROOM."
 	done
 
-Text_CancelYourBattleRoomChallenge: ; 0x9efbf
+Text_CancelYourBattleRoomChallenge:
 	text "Cancel your BATTLE"
 	line "ROOM challenge?"
 	done
@@ -699,7 +699,7 @@ Text_FiveDayBattleLimit_Mobile:
 	line "tomorrow."
 	done
 
-Text_TooMuchTimeElapsedNoRegister: ; 0x9f0c1
+Text_TooMuchTimeElapsedNoRegister:
 	text "Sorry, but it's"
 	line "not possible to"
 
@@ -730,7 +730,7 @@ Text_RegisterRecordTimedOut_Mobile:
 	cont "challenge."
 	done
 
-Text_AMonLevelExceeds: ; 0x9f1e5
+Text_AMonLevelExceeds:
 	text "One or more of"
 	line "your #MON's"
 	cont "levels exceeds @"
@@ -738,7 +738,7 @@ Text_AMonLevelExceeds: ; 0x9f1e5
 	text "."
 	done
 
-Text_MayNotEnterABattleRoomUnderL70: ; 0x9f217
+Text_MayNotEnterABattleRoomUnderL70:
 	text_from_ram wcd49
 	text " may not"
 	line "enter a BATTLE"
@@ -750,7 +750,7 @@ Text_MayNotEnterABattleRoomUnderL70: ; 0x9f217
 	text "."
 	done
 
-Text_BattleTowerYoungster: ; 0x9f264
+Text_BattleTowerYoungster:
 	text "Destroyed by the"
 	line "first opponent in"
 
@@ -758,7 +758,7 @@ Text_BattleTowerYoungster: ; 0x9f264
 	line "I'm no good…"
 	done
 
-Text_BattleTowerCooltrainerF: ; 0x9f2a4
+Text_BattleTowerCooltrainerF:
 	text "There are lots of"
 	line "BATTLE ROOMS, but"
 
@@ -766,7 +766,7 @@ Text_BattleTowerCooltrainerF: ; 0x9f2a4
 	line "them all!"
 	done
 
-Text_BattleTowerGranny: ; 0x9f2e3
+Text_BattleTowerGranny:
 	text "It's a grueling"
 	line "task, not being"
 
@@ -780,7 +780,7 @@ Text_BattleTowerGranny: ; 0x9f2e3
 	line "winning battles."
 	done
 
-Text_BattleTowerBugCatcher: ; 0x9f35b
+Text_BattleTowerBugCatcher:
 	text "I'm trying to see"
 	line "how far I can go"
 

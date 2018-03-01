@@ -105,7 +105,7 @@ RuinsOfAlphKabutoChamberScientistScript:
 	end
 
 .AllUnownCaught:
-	writetext UnknownText_0x594cb
+	writetext RuinsOfAlphResearchCenterScientist1Text_GotAllUnown
 	waitbutton
 	closetext
 	end

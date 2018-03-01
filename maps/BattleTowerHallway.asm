@@ -35,7 +35,7 @@ BattleTowerHallway_MapScripts:
 ; enter different rooms for different levels to battle against
 ; at least it should look like that
 ; because all warps lead to the same room
-.WalkToChosenBattleRoom: ; 0x9f5dc
+.WalkToChosenBattleRoom:
 	ifequal 3, .L30L40
 	ifequal 4, .L30L40
 	ifequal 5, .L50L60
@@ -47,23 +47,23 @@ BattleTowerHallway_MapScripts:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo1020Room
 	jump .EnterBattleRoom
 
-.L30L40: ; 0x9f603
+.L30L40:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo3040Room
 	jump .EnterBattleRoom
 
-.L50L60: ; 0x9f60a
+.L50L60:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo5060Room
 	jump .EnterBattleRoom
 
-.L70L80: ; 0x9f611
+.L70L80:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo7080Room
 	jump .EnterBattleRoom
 
-.L90L100: ; 0x9f618
+.L90L100:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo90100Room
 	jump .EnterBattleRoom
 
-.EnterBattleRoom: ; 0x9f61f
+.EnterBattleRoom:
 	faceobject PLAYER, BATTLETOWERHALLWAY_RECEPTIONIST
 	opentext
 	writetext Text_PleaseStepThisWay
