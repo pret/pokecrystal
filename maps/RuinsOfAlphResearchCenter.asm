@@ -57,7 +57,7 @@ RuinsOfAlphResearchCenter_MapScripts:
 	special RestartMapMusic
 	end
 
-ScientistScript_0x591d1:
+RuinsOfAlphResearchCenterScientist3Script:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
@@ -73,7 +73,7 @@ ScientistScript_0x591d1:
 	closetext
 	end
 
-ScientistScript_0x591e5:
+RuinsOfAlphResearchCenterScientist1Script:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
@@ -106,7 +106,7 @@ ScientistScript_0x591e5:
 	clearevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
 	end
 
-ScientistScript_0x59214:
+RuinsOfAlphResearchCenterScientist2Script:
 	faceplayer
 	opentext
 	checkcode VAR_UNOWNCOUNT
@@ -406,6 +406,6 @@ RuinsOfAlphResearchCenter_MapEvents:
 	bg_event  7,  1, BGEVENT_READ, RuinsOfAlphResearchCenterPrinter
 
 	db 3 ; object events
-	object_event  4,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591e5, -1
-	object_event  5,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x59214, -1
-	object_event  2,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ScientistScript_0x591d1, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST
+	object_event  4,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphResearchCenterScientist1Script, -1
+	object_event  5,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphResearchCenterScientist2Script, -1
+	object_event  2,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RuinsOfAlphResearchCenterScientist3Script, EVENT_RUINS_OF_ALPH_RESEARCH_CENTER_SCIENTIST

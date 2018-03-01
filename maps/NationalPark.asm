@@ -25,20 +25,20 @@ NationalParkLassScript:
 NationalParkPokefanFScript:
 	jumptextfaceplayer NationalParkPokefanFText
 
-TeacherScript_0x5c008:
+NationalParkTeacher1Script:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_QUICK_CLAW
-	iftrue UnknownScript_0x5c01d
-	writetext UnknownText_0x5c265
+	iftrue .GotQuickClaw
+	writetext NationalParkTeacher1Text
 	buttonsound
 	verbosegiveitem QUICK_CLAW
-	iffalse UnknownScript_0x5c021
+	iffalse .NoRoom
 	setevent EVENT_GOT_QUICK_CLAW
-UnknownScript_0x5c01d:
-	writetext UnknownText_0x5c30d
+.GotQuickClaw:
+	writetext NationalParkTeacher1Text_GotQuickClaw
 	waitbutton
-UnknownScript_0x5c021:
+.NoRoom:
 	closetext
 	end
 
@@ -48,8 +48,8 @@ NationalParkYoungster1Script:
 NationalParkYoungster2Script:
 	jumptextfaceplayer NationalParkYoungster2Text
 
-NationalParkTeacherScript:
-	jumptextfaceplayer NationalParkTeacherText
+NationalParkTeacher2Script:
+	jumptextfaceplayer NationalParkTeacher2Text
 
 NationalParkPersian:
 	faceplayer
@@ -60,10 +60,10 @@ NationalParkPersian:
 	closetext
 	end
 
-GameboyKidScript_0x5c037:
+NationalParkGameboyKidScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5c42a
+	writetext NationalParkGameboyKidText
 	waitbutton
 	closetext
 	turnobject NATIONALPARK_GAMEBOY_KID, DOWN
@@ -77,29 +77,29 @@ TrainerSchoolboyJack1:
 	endifjustbattled
 	opentext
 	checkflag ENGINE_JACK
-	iftrue UnknownScript_0x5c088
+	iftrue .Rematch
 	checkcellnum PHONE_SCHOOLBOY_JACK
-	iftrue UnknownScript_0x5c108
+	iftrue .NumberAccepted
 	checkevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x5c071
+	iftrue .AskAgain
 	writetext UnknownText_0x5c4f3
 	buttonsound
 	setevent EVENT_JACK_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x5c0fc
-	jump UnknownScript_0x5c074
+	scall .AskNumber1
+	jump .RequestNumber
 
-UnknownScript_0x5c071:
-	scall UnknownScript_0x5c100
-UnknownScript_0x5c074:
+.AskAgain:
+	scall .AskNumber2
+.RequestNumber:
 	askforphonenumber PHONE_SCHOOLBOY_JACK
-	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5c110
-	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5c10c
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext SCHOOLBOY, JACK1, MEM_BUFFER_0
-	scall UnknownScript_0x5c104
-	jump UnknownScript_0x5c108
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
-UnknownScript_0x5c088:
-	scall UnknownScript_0x5c114
+.Rematch:
+	scall .RematchStd
 	winlosstext SchoolboyJack1BeatenText, 0
 	copybytetovar wJackFightCount
 	ifequal 4, .Fight4
@@ -158,31 +158,31 @@ UnknownScript_0x5c088:
 	clearflag ENGINE_JACK
 	end
 
-UnknownScript_0x5c0fc:
+.AskNumber1:
 	jumpstd asknumber1m
 	end
 
-UnknownScript_0x5c100:
+.AskNumber2:
 	jumpstd asknumber2m
 	end
 
-UnknownScript_0x5c104:
+.RegisteredNumber:
 	jumpstd registerednumberm
 	end
 
-UnknownScript_0x5c108:
+.NumberAccepted:
 	jumpstd numberacceptedm
 	end
 
-UnknownScript_0x5c10c:
+.NumberDeclined:
 	jumpstd numberdeclinedm
 	end
 
-UnknownScript_0x5c110:
+.PhoneFull:
 	jumpstd phonefullm
 	end
 
-UnknownScript_0x5c114:
+.RematchStd:
 	jumpstd rematchm
 	end
 
@@ -205,74 +205,74 @@ TrainerPokefanfBeverly1:
 	endifjustbattled
 	opentext
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
-	iftrue UnknownScript_0x5c177
+	iftrue .GiveNugget
 	checkcellnum PHONE_POKEFAN_BEVERLY
-	iftrue UnknownScript_0x5c19b
+	iftrue .NumberAccepted
 	checkpoke MARILL
-	iffalse UnknownScript_0x5c189
+	iffalse .NoMarill
 	checkevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x5c160
+	iftrue .AskAgain
 	writetext UnknownText_0x5c5bd
 	buttonsound
 	setevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
-	scall UnknownScript_0x5c18f
-	jump UnknownScript_0x5c163
+	scall .AskNumber1
+	jump .RequestNumber
 
-UnknownScript_0x5c160:
-	scall UnknownScript_0x5c193
-UnknownScript_0x5c163:
+.AskAgain:
+	scall .AskNumber2
+.RequestNumber:
 	askforphonenumber PHONE_POKEFAN_BEVERLY
-	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x5c1a3
-	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x5c19f
+	ifequal PHONE_CONTACTS_FULL, .PhoneFull
+	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
 	trainertotext POKEFANF, BEVERLY1, MEM_BUFFER_0
-	scall UnknownScript_0x5c197
-	jump UnknownScript_0x5c19b
+	scall .RegisteredNumber
+	jump .NumberAccepted
 
-UnknownScript_0x5c177:
-	scall UnknownScript_0x5c1a7
+.GiveNugget:
+	scall .Gift
 	verbosegiveitem NUGGET
-	iffalse UnknownScript_0x5c186
+	iffalse .NoRoom
 	clearflag ENGINE_BEVERLY_HAS_NUGGET
-	jump UnknownScript_0x5c19b
+	jump .NumberAccepted
 
-UnknownScript_0x5c186:
-	jump UnknownScript_0x5c1ab
+.NoRoom:
+	jump .PackFull
 
-UnknownScript_0x5c189:
+.NoMarill:
 	writetext UnknownText_0x5c68a
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x5c18f:
+.AskNumber1:
 	jumpstd asknumber1f
 	end
 
-UnknownScript_0x5c193:
+.AskNumber2:
 	jumpstd asknumber2f
 	end
 
-UnknownScript_0x5c197:
+.RegisteredNumber:
 	jumpstd registerednumberf
 	end
 
-UnknownScript_0x5c19b:
+.NumberAccepted:
 	jumpstd numberacceptedf
 	end
 
-UnknownScript_0x5c19f:
+.NumberDeclined:
 	jumpstd numberdeclinedf
 	end
 
-UnknownScript_0x5c1a3:
+.PhoneFull:
 	jumpstd phonefullf
 	end
 
-UnknownScript_0x5c1a7:
+.Gift:
 	jumpstd giftf
 	end
 
-UnknownScript_0x5c1ab:
+.PackFull:
 	jumpstd packfullf
 	end
 
@@ -322,7 +322,7 @@ NationalParkPokefanFText:
 	cont "It cheers me up."
 	done
 
-UnknownText_0x5c265:
+NationalParkTeacher1Text:
 	text "Pay attention,"
 	line "please!"
 
@@ -342,7 +342,7 @@ UnknownText_0x5c265:
 	line "this."
 	done
 
-UnknownText_0x5c30d:
+NationalParkTeacher1Text_GotQuickClaw:
 	text "Let a #MON hold"
 	line "that QUICK CLAW."
 
@@ -363,7 +363,7 @@ NationalParkYoungster2Text:
 	cont "sticker if I win."
 	done
 
-NationalParkTeacherText:
+NationalParkTeacher2Text:
 	text "I take walks in"
 	line "the PARK, but I"
 
@@ -378,7 +378,7 @@ NationalParkPersianText:
 	text "PERSIAN: Fufushaa!"
 	done
 
-UnknownText_0x5c42a:
+NationalParkGameboyKidText:
 	text "I'm printing out"
 	line "my #DEX."
 
@@ -531,15 +531,15 @@ NationalPark_MapEvents:
 	db 14 ; object events
 	object_event 15, 24, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NationalParkLassScript, -1
 	object_event 14,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPokefanFScript, -1
-	object_event 27, 40, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x5c008, -1
+	object_event 27, 40, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NationalParkTeacher1Script, -1
 	object_event 11, 41, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster1Script, -1
 	object_event 10, 41, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster2Script, -1
-	object_event 17, 41, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkTeacherScript, -1
+	object_event 17, 41, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkTeacher2Script, -1
 	object_event 26, 40, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPersian, -1
 	object_event 27, 23, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
 	object_event 18, 29, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
 	object_event 16,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
 	object_event  8, 14, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassKrise, -1
 	object_event 35, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkParlyzHeal, EVENT_NATIONAL_PARK_PARLYZ_HEAL
-	object_event 26,  6, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GameboyKidScript_0x5c037, -1
+	object_event 26,  6, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkGameboyKidScript, -1
 	object_event  1, 43, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, NationalParkTMDig, EVENT_NATIONAL_PARK_TM_DIG

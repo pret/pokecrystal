@@ -47,14 +47,14 @@ TeamRocketBaseB2F_MapScripts:
 
 RocketBaseBossFLeft:
 	moveobject TEAMROCKETBASEB2F_LANCE, 9, 13
-	jump UnknownScript_0x6cfac
+	jump RocketBaseBossFScript
 
 RocketBaseBossFRight:
 	moveobject TEAMROCKETBASEB2F_ROCKET_GIRL, 21, 16
 	moveobject TEAMROCKETBASEB2F_ROCKET1, 21, 16
 	moveobject TEAMROCKETBASEB2F_DRAGON, 10, 13
 	moveobject TEAMROCKETBASEB2F_LANCE, 10, 13
-UnknownScript_0x6cfac:
+RocketBaseBossFScript:
 	appear TEAMROCKETBASEB2F_ROCKET_GIRL
 	appear TEAMROCKETBASEB2F_ROCKET1
 	opentext
@@ -235,7 +235,7 @@ RocketElectrode1:
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d28c
-	jump UnknownScript_0x6d184
+	jump RocketBaseElectrodeScript
 
 RocketElectrode2:
 	cry ELECTRODE
@@ -253,7 +253,7 @@ RocketElectrode2:
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d299
-	jump UnknownScript_0x6d184
+	jump RocketBaseElectrodeScript
 
 RocketElectrode3:
 	cry ELECTRODE
@@ -271,13 +271,13 @@ RocketElectrode3:
 	reloadmapafterbattle
 	special PlayMapMusic
 	applymovement PLAYER, MovementData_0x6d2a4
-	jump UnknownScript_0x6d184
+	jump RocketBaseElectrodeScript
 
 TeamRocketBaseB2FReloadMap:
 	reloadmapafterbattle
 	end
 
-UnknownScript_0x6d184:
+RocketBaseElectrodeScript:
 	moveobject TEAMROCKETBASEB2F_LANCE, 18, 6
 	appear TEAMROCKETBASEB2F_LANCE
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d27a
