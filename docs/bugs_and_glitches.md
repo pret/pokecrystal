@@ -293,19 +293,25 @@ This is a bug with `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](
 ```asm
 CheckHiddenOpponent: ; 37daa
 ; BUG: This routine should account for Lock-On and Mind Reader.
-; Uncomment the lines below to fix.
-	; ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	; call GetBattleVar
-    ; and 1 << SUBSTATUS_LOCK_ON
-    ; ret z
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 ```
 
-**Fix:** Uncomment those 4 lines to fix.
+Fix:
 
+```asm
+CheckHiddenOpponent: ; 37daa
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVar
+	and 1 << SUBSTATUS_LOCK_ON
+	ret z
+	ld a, BATTLE_VARS_SUBSTATUS3_OPP
+	call GetBattleVar
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
+	ret
+```
 
 ## Beat Up can desynchronize link battles
 
