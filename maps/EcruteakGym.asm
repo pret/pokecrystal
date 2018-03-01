@@ -80,14 +80,14 @@ EcruteakGymActivateRockets:
 	jumpstd radiotowerrockets
 
 EcruteakGymClosed:
-	applymovement PLAYER, MovementData_0x99e5d
-	applymovement ECRUTEAKGYM_GRAMPS, MovementData_0x99e63
+	applymovement PLAYER, EcruteakGymPlayerStepUpMovement
+	applymovement ECRUTEAKGYM_GRAMPS, EcruteakGymGrampsSlowStepDownMovement
 	opentext
 	writetext UnknownText_0x9a49c
 	waitbutton
 	closetext
 	follow PLAYER, ECRUTEAKGYM_GRAMPS
-	applymovement PLAYER, MovementData_0x99e5f
+	applymovement PLAYER, EcruteakGymPlayerSlowStepDownMovement
 	stopfollow
 	special FadeOutPalettes
 	playsound SFX_ENTER_DOOR
@@ -163,17 +163,17 @@ EcruteakGymStatue:
 	trainertotext MORTY, MORTY1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-MovementData_0x99e5d:
+EcruteakGymPlayerStepUpMovement:
 	step UP
 	step_end
 
-MovementData_0x99e5f:
+EcruteakGymPlayerSlowStepDownMovement:
 	fix_facing
 	slow_step DOWN
 	remove_fixed_facing
 	step_end
 
-MovementData_0x99e63:
+EcruteakGymGrampsSlowStepDownMovement:
 	slow_step DOWN
 	step_end
 

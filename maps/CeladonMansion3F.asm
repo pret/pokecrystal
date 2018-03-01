@@ -9,7 +9,7 @@ CeladonMansion3F_MapScripts:
 
 	db 0 ; callbacks
 
-CooltrainerMScript_0x71670:
+CeladonMansion3FCooltrainerMScript:
 	faceplayer
 	opentext
 	writetext UnknownText_0x716ce
@@ -33,7 +33,7 @@ CooltrainerMScript_0x71670:
 	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	end
 
-GymGuyScript_0x71696:
+CeladonMansion3FGymGuyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
@@ -57,7 +57,8 @@ GymGuyScript_0x71696:
 	closetext
 	end
 
-UnknownScript_0x716b6:
+.CancelPrinting:
+; unused
 	writetext UnknownText_0x71863
 	waitbutton
 	closetext
@@ -205,7 +206,7 @@ CeladonMansion3F_MapEvents:
 	bg_event  1,  3, BGEVENT_UP, CeladonMansion3FReferenceMaterial
 
 	db 4 ; object events
-	object_event  3,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x71670, -1
-	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x71696, -1
+	object_event  3,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FCooltrainerMScript, -1
+	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FGymGuyScript, -1
 	object_event  0,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FSuperNerdScript, -1
 	object_event  0,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FFisherScript, -1

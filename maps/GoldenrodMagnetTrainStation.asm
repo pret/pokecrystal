@@ -11,7 +11,7 @@ GoldenrodMagnetTrainStation_MapScripts:
 .DummyScene:
 	end
 
-OfficerScript_0x550ec:
+GoldenrodMagnetTrainStationOfficerScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
@@ -177,5 +177,5 @@ GoldenrodMagnetTrainStation_MapEvents:
 	db 0 ; bg events
 
 	db 2 ; object events
-	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x550ec, -1
+	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationOfficerScript, -1
 	object_event 11, 14, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationGentlemanScript, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN

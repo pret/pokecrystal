@@ -6,7 +6,7 @@ CeladonMansionRoofHouse_MapScripts:
 
 	db 0 ; callbacks
 
-PharmacistScript_0x71afd:
+CeladonMansionRoofHousePharmacistScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_TM03_CURSE
@@ -126,4 +126,4 @@ CeladonMansionRoofHouse_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event  3,  2, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PharmacistScript_0x71afd, -1
+	object_event  3,  2, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofHousePharmacistScript, -1

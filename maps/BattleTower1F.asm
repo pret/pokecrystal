@@ -51,7 +51,7 @@ BattleTower1FRulesSign:
 	closetext
 	end
 
-ReceptionistScript_0x9e3e2:
+BattleTower1FReceptionistScript:
 	writebyte BATTLETOWERACTION_GET_CHALLENGE_STATE ; copybytetovar sBattleTowerChallengeState
 	special BattleTowerAction
 	ifequal $3, Script_BeatenAllTrainers2 ; maps/BattleTowerBattleRoom.asm
@@ -244,7 +244,7 @@ BattleTower_LeftWithoutSaving:
 	waitbutton
 	jump Script_BattleTowerHopeToServeYouAgain
 
-YoungsterScript_0x9e55d:
+BattleTower1FYoungsterScript:
 	faceplayer
 	opentext
 	writetext Text_BattleTowerYoungster
@@ -253,13 +253,13 @@ YoungsterScript_0x9e55d:
 	turnobject BATTLETOWER1F_YOUNGSTER, RIGHT
 	end
 
-CooltrainerFScript_0x9e568:
+BattleTower1FCooltrainerFScript:
 	jumptextfaceplayer Text_BattleTowerCooltrainerF
 
-BugCatcherScript_0x9e56b:
+BattleTower1FBugCatcherScript:
 	jumptextfaceplayer Text_BattleTowerBugCatcher
 
-GrannyScript_0x9e56e:
+BattleTower1FGrannyScript:
 	jumptextfaceplayer Text_BattleTowerGranny
 
 MovementData_BattleTower1FWalkToElevator:
@@ -805,8 +805,8 @@ BattleTower1F_MapEvents:
 	bg_event  6,  6, BGEVENT_READ, BattleTower1FRulesSign
 
 	db 5 ; object events
-	object_event  7,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ReceptionistScript_0x9e3e2, -1
-	object_event 14,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x9e55d, -1
-	object_event  4,  9, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerFScript_0x9e568, -1
-	object_event  1,  3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BugCatcherScript_0x9e56b, -1
-	object_event 14,  3, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x9e56e, -1
+	object_event  7,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FReceptionistScript, -1
+	object_event 14,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BattleTower1FYoungsterScript, -1
+	object_event  4,  9, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTower1FCooltrainerFScript, -1
+	object_event  1,  3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BattleTower1FBugCatcherScript, -1
+	object_event 14,  3, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTower1FGrannyScript, -1

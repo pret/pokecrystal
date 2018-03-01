@@ -45,11 +45,11 @@ TeamRocketBaseB2F_MapScripts:
 	changeblock 14, 12, $07 ; floor
 	return
 
-UnknownScript_0x6cf95:
+RocketBaseBossFLeft:
 	moveobject TEAMROCKETBASEB2F_LANCE, 9, 13
 	jump UnknownScript_0x6cfac
 
-UnknownScript_0x6cf9c:
+RocketBaseBossFRight:
 	moveobject TEAMROCKETBASEB2F_ROCKET_GIRL, 21, 16
 	moveobject TEAMROCKETBASEB2F_ROCKET1, 21, 16
 	moveobject TEAMROCKETBASEB2F_DRAGON, 10, 13
@@ -140,11 +140,11 @@ UnknownScript_0x6cfac:
 	applymovement TEAMROCKETBASEB2F_LANCE, MovementData_0x6d267
 	disappear TEAMROCKETBASEB2F_LANCE
 
-UnknownScript_0x6d075:
+RocketBaseCantLeaveScript:
 	applymovement PLAYER, MovementData_0x6d271
 	end
 
-UnknownScript_0x6d07a:
+RocketBaseLancesSideScript:
 	opentext
 	writetext UnknownText_0x6d7ea
 	waitbutton
@@ -919,13 +919,13 @@ TeamRocketBaseB2F_MapEvents:
 	db 9 ; coord events
 	coord_event  5, 14, SCENE_DEFAULT, LanceHealsScript1
 	coord_event  4, 13, SCENE_DEFAULT, LanceHealsScript2
-	coord_event 14, 11, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS, UnknownScript_0x6cf95
-	coord_event 15, 11, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS, UnknownScript_0x6cf9c
-	coord_event 14, 12, SCENE_TEAMROCKETBASEB2F_ELECTRODES, UnknownScript_0x6d075
-	coord_event 15, 12, SCENE_TEAMROCKETBASEB2F_ELECTRODES, UnknownScript_0x6d075
-	coord_event 12,  3, SCENE_TEAMROCKETBASEB2F_ELECTRODES, UnknownScript_0x6d07a
-	coord_event 12, 10, SCENE_TEAMROCKETBASEB2F_ELECTRODES, UnknownScript_0x6d07a
-	coord_event 12, 11, SCENE_TEAMROCKETBASEB2F_ELECTRODES, UnknownScript_0x6d07a
+	coord_event 14, 11, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS, RocketBaseBossFLeft
+	coord_event 15, 11, SCENE_TEAMROCKETBASEB2F_ROCKET_BOSS, RocketBaseBossFRight
+	coord_event 14, 12, SCENE_TEAMROCKETBASEB2F_ELECTRODES, RocketBaseCantLeaveScript
+	coord_event 15, 12, SCENE_TEAMROCKETBASEB2F_ELECTRODES, RocketBaseCantLeaveScript
+	coord_event 12,  3, SCENE_TEAMROCKETBASEB2F_ELECTRODES, RocketBaseLancesSideScript
+	coord_event 12, 10, SCENE_TEAMROCKETBASEB2F_ELECTRODES, RocketBaseLancesSideScript
+	coord_event 12, 11, SCENE_TEAMROCKETBASEB2F_ELECTRODES, RocketBaseLancesSideScript
 
 	db 23 ; bg events
 	bg_event 14, 12, BGEVENT_IFNOTSET, TeamRocketBaseB2FLockedDoor

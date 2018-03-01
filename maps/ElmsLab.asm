@@ -152,7 +152,7 @@ LabTryToLeaveScript:
 	writetext LabWhereGoingText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x78f70
+	applymovement PLAYER, ElmsLab_CantLeaveMovement
 	end
 
 CyndaquilPokeBallScript:
@@ -619,7 +619,7 @@ ElmsLab_WalkUpToElmMovement:
 	turn_head LEFT
 	step_end
 
-MovementData_0x78f70:
+ElmsLab_CantLeaveMovement:
 	step UP
 	step_end
 

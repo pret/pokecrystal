@@ -21,26 +21,26 @@ CeruleanGym_MapScripts:
 	end
 
 .GruntRunsOutScript:
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884e3
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsDownMovement
 	playsound SFX_TACKLE
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884eb
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsIntoYouMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	opentext
 	writetext UnknownText_0x1884fb
 	waitbutton
 	closetext
 	showemote EMOTE_SHOCK, CERULEANGYM_ROCKET, 15
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884f7
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntBacksAwayMovement
 	opentext
 	writetext UnknownText_0x188574
 	waitbutton
 	closetext
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884f5
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntMovesCloseMovement
 	opentext
 	writetext UnknownText_0x1885a5
 	waitbutton
 	closetext
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884e8
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsOutMovement
 	playsound SFX_EXIT_BUILDING
 	disappear CERULEANGYM_ROCKET
 	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
@@ -161,19 +161,19 @@ CeruleanGymStatue:
 	trainertotext MISTY, MISTY1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-MovementData_0x1884e3:
+CeruleanGymGruntRunsDownMovement:
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
 	step_end
 
-MovementData_0x1884e8:
+CeruleanGymGruntRunsOutMovement:
 	big_step RIGHT
 	big_step DOWN
 	step_end
 
-MovementData_0x1884eb:
+CeruleanGymGruntRunsIntoYouMovement:
 	fix_facing
 	set_sliding
 	jump_step UP
@@ -185,11 +185,11 @@ MovementData_0x1884eb:
 	step DOWN
 	step_end
 
-MovementData_0x1884f5:
+CeruleanGymGruntMovesCloseMovement:
 	big_step DOWN
 	step_end
 
-MovementData_0x1884f7:
+CeruleanGymGruntBacksAwayMovement:
 	fix_facing
 	slow_step UP
 	remove_fixed_facing

@@ -6,7 +6,7 @@ Route12SuperRodHouse_MapScripts:
 
 	db 0 ; callbacks
 
-FishingGuruScript_0x7f484:
+Route12SuperRodHouseFishingGuruScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SUPER_ROD
@@ -89,4 +89,4 @@ Route12SuperRodHouse_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event  5,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x7f484, -1
+	object_event  5,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route12SuperRodHouseFishingGuruScript, -1

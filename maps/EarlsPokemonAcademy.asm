@@ -12,7 +12,7 @@ EarlsPokemonAcademy_MapScripts:
 	db 0 ; callbacks
 
 AcademyEarl:
-	applymovement EARLSPOKEMONACADEMY_EARL, MovementData_0x68b2d
+	applymovement EARLSPOKEMONACADEMY_EARL, AcademyEarlSpinMovement
 	faceplayer
 	opentext
 	writetext UnknownText_0x68b3b
@@ -145,7 +145,7 @@ AcademyStickerMachine:
 AcademyBookshelf:
 	jumpstd difficultbookshelf
 
-MovementData_0x68b2d:
+AcademyEarlSpinMovement:
 	turn_head DOWN
 	turn_head LEFT
 	turn_head UP

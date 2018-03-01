@@ -28,7 +28,7 @@ FastShipB1F_MapScripts:
 FastShipB1FSailorBlocksLeft:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	iftrue FastShipB1FAlreadyBlocked
-	applymovement FASTSHIPB1F_SAILOR2, MovementData_0x76876
+	applymovement FASTSHIPB1F_SAILOR2, FashShipB1FSailorBlocksLeftMovement
 	moveobject FASTSHIPB1F_SAILOR1, 30, 6
 	appear FASTSHIPB1F_SAILOR1
 	pause 5
@@ -38,7 +38,7 @@ FastShipB1FSailorBlocksLeft:
 FastShipB1FSailorBlocksRight:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_LEFT
 	iftrue FastShipB1FAlreadyBlocked
-	applymovement FASTSHIPB1F_SAILOR1, MovementData_0x76871
+	applymovement FASTSHIPB1F_SAILOR1, FashShipB1FSailorBlocksRightMovement
 	moveobject FASTSHIPB1F_SAILOR2, 31, 6
 	appear FASTSHIPB1F_SAILOR2
 	pause 5
@@ -48,7 +48,7 @@ FastShipB1FSailorBlocksRight:
 FastShipB1FAlreadyBlocked:
 	end
 
-SailorScript_0x76767:
+FastShipB1FSailorScript:
 	faceplayer
 	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
@@ -204,14 +204,14 @@ TrainerSchoolboyRicky:
 FashShipB1FTrashcan:
 	jumpstd trashcan
 
-MovementData_0x76871:
+FashShipB1FSailorBlocksRightMovement:
 	fix_facing
 	big_step RIGHT
 	remove_fixed_facing
 	turn_head DOWN
 	step_end
 
-MovementData_0x76876:
+FashShipB1FSailorBlocksLeftMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
@@ -461,8 +461,8 @@ FastShipB1F_MapEvents:
 	bg_event 27,  9, BGEVENT_READ, FashShipB1FTrashcan
 
 	db 12 ; object events
-	object_event 30,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
-	object_event 31,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
+	object_event 30,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FastShipB1FSailorScript, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
+	object_event 31,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FastShipB1FSailorScript, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	object_event  9, 11, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event  6,  4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event 26,  9, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP

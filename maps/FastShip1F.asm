@@ -40,20 +40,20 @@ FastShip1F_MapScripts:
 	setscene SCENE_DEFAULT
 	end
 
-SailorScript_0x75160:
+FastShip1FSailor1Script:
 	faceplayer
 	opentext
 	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
 	iftrue .Arrived
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue .Olivine
-	writetext UnknownText_0x7523b
+	writetext FastShip1FSailor1Text_ToVermilion
 	waitbutton
 	closetext
 	end
 
 .Olivine:
-	writetext UnknownText_0x7529b
+	writetext FastShip1FSailor1Text_ToOlivine
 	waitbutton
 	closetext
 	end
@@ -61,7 +61,7 @@ SailorScript_0x75160:
 .Arrived:
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue ._Olivine
-	writetext UnknownText_0x754be
+	writetext FastShip1FSailor1Text_InVermilion
 	waitbutton
 	closetext
 	scall .LetThePlayerOut
@@ -74,7 +74,7 @@ SailorScript_0x75160:
 	end
 
 ._Olivine:
-	writetext UnknownText_0x7548d
+	writetext FastShip1FSailor1Text_InOlivine
 	waitbutton
 	closetext
 	scall .LetThePlayerOut
@@ -98,24 +98,24 @@ SailorScript_0x75160:
 	applymovement PLAYER, MovementData_0x75238
 	end
 
-SailorScript_0x751d0:
+FastShip1FSailor2Script:
 	faceplayer
 	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue .Vermilion
-	writetext UnknownText_0x752f9
+	writetext FastShip1FSailor2Text_FirstTime
 	waitbutton
 	closetext
 	end
 
 .Vermilion:
-	writetext UnknownText_0x7534f
+	writetext FastShip1FSailor2Text
 	waitbutton
 	closetext
 	end
 
-FastShip1FSailorScript:
-	jumptextfaceplayer FastShip1FSailorText
+FastShip1FSailor3Script:
+	jumptextfaceplayer FastShip1FSailor3Text
 
 WorriedGrandpaSceneRight:
 	moveobject FASTSHIP1F_GENTLEMAN, 20, 6
@@ -205,7 +205,7 @@ MovementData_0x75238:
 	step UP
 	step_end
 
-UnknownText_0x7523b:
+FastShip1FSailor1Text_ToVermilion:
 	text "FAST SHIP S.S.AQUA"
 	line "is en route to"
 	cont "VERMILION CITY."
@@ -215,7 +215,7 @@ UnknownText_0x7523b:
 	cont "we arrive."
 	done
 
-UnknownText_0x7529b:
+FastShip1FSailor1Text_ToOlivine:
 	text "FAST SHIP S.S.AQUA"
 	line "is en route to"
 	cont "OLIVINE CITY."
@@ -225,7 +225,7 @@ UnknownText_0x7529b:
 	cont "we arrive."
 	done
 
-UnknownText_0x752f9:
+FastShip1FSailor2Text_FirstTime:
 	text "Here's your cabin."
 
 	para "If your #MON"
@@ -236,7 +236,7 @@ UnknownText_0x752f9:
 	line "them."
 	done
 
-UnknownText_0x7534f:
+FastShip1FSailor2Text:
 	text "Here's your cabin."
 
 	para "You can heal your"
@@ -248,7 +248,7 @@ UnknownText_0x7534f:
 	cont "you're sleeping."
 	done
 
-FastShip1FSailorText:
+FastShip1FSailor3Text:
 	text "The passengers are"
 	line "all trainers."
 
@@ -271,13 +271,13 @@ UnknownText_0x75412:
 	line "know!"
 	done
 
-UnknownText_0x7548d:
+FastShip1FSailor1Text_InOlivine:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
 	cont "OLIVINE CITY."
 	done
 
-UnknownText_0x754be:
+FastShip1FSailor1Text_InVermilion:
 	text "FAST SHIP S.S.AQUA"
 	line "has arrived in"
 	cont "VERMILION CITY."
@@ -307,7 +307,7 @@ FastShip1F_MapEvents:
 	db 0 ; bg events
 
 	db 4 ; object events
-	object_event 25,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x75160, -1
-	object_event 14,  7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x751d0, -1
-	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailorScript, -1
+	object_event 25,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor1Script, -1
+	object_event 14,  7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor2Script, -1
+	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor3Script, -1
 	object_event 19,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN

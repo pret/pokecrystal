@@ -41,17 +41,17 @@ LakeOfRage_MapScripts:
 	appear LAKEOFRAGE_WESLEY
 	return
 
-LanceScript_0x70022:
+LakeOfRageLanceScript:
 	checkevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
-	iftrue UnknownScript_0x70057
+	iftrue .AskAgainForHelp
 	opentext
 	writetext UnknownText_0x70157
 	buttonsound
 	faceplayer
 	writetext UnknownText_0x701b4
 	yesorno
-	iffalse UnknownScript_0x7004e
-UnknownScript_0x70035:
+	iffalse .RefusedToHelp
+.AgreedToHelp:
 	writetext UnknownText_0x702c6
 	waitbutton
 	closetext
@@ -63,22 +63,22 @@ UnknownScript_0x70035:
 	setmapscene MAHOGANY_MART_1F, SCENE_MAHOGANYMART1F_LANCE_UNCOVERS_STAIRS
 	end
 
-UnknownScript_0x7004e:
+.RefusedToHelp:
 	writetext UnknownText_0x70371
 	waitbutton
 	closetext
 	setevent EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	end
 
-UnknownScript_0x70057:
+.AskAgainForHelp:
 	faceplayer
 	opentext
 	writetext UnknownText_0x703a5
 	yesorno
-	iffalse UnknownScript_0x7004e
-	jump UnknownScript_0x70035
+	iffalse .RefusedToHelp
+	jump .AgreedToHelp
 
-GyaradosScript_0x70063:
+RedGyarados:
 	opentext
 	writetext UnknownText_0x703cb
 	pause 15
@@ -87,9 +87,9 @@ GyaradosScript_0x70063:
 	loadwildmon GYARADOS, 30
 	writecode VAR_BATTLETYPE, BATTLETYPE_SHINY
 	startbattle
-	ifequal $1, UnknownScript_0x7007a
+	ifequal $1, .NotBeaten
 	disappear LAKEOFRAGE_GYARADOS
-UnknownScript_0x7007a:
+.NotBeaten:
 	reloadmapafterbattle
 	opentext
 	giveitem RED_SCALE
@@ -103,18 +103,18 @@ UnknownScript_0x7007a:
 	appear LAKEOFRAGE_LANCE
 	end
 
-GrampsScript_0x7008e:
+LakeOfRageGrampsScript:
 	faceplayer
 	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0x7009c
-	writetext UnknownText_0x703f8
+	iftrue .ClearedRocketHideout
+	writetext LakeOfRageGrampsText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7009c:
-	writetext UnknownText_0x70421
+.ClearedRocketHideout:
+	writetext LakeOfRageGrampsText_ClearedRocketHideout
 	waitbutton
 	closetext
 	end
@@ -319,14 +319,14 @@ UnknownText_0x703df:
 	line "RED SCALE."
 	done
 
-UnknownText_0x703f8:
+LakeOfRageGrampsText:
 	text "The GYARADOS are"
 	line "angry!"
 
 	para "It's a bad omen!"
 	done
 
-UnknownText_0x70421:
+LakeOfRageGrampsText_ClearedRocketHideout:
 	text "Hahah! The MAGI-"
 	line "KARP are biting!"
 	done
@@ -508,15 +508,15 @@ LakeOfRage_MapEvents:
 	bg_event 35,  5, BGEVENT_ITEM, LakeOfRageHiddenMaxPotion
 
 	db 12 ; object events
-	object_event 21, 28, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceScript_0x70022, EVENT_LAKE_OF_RAGE_LANCE
-	object_event 20, 26, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x7008e, -1
+	object_event 21, 28, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageLanceScript, EVENT_LAKE_OF_RAGE_LANCE
+	object_event 20, 26, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageGrampsScript, -1
 	object_event 36, 13, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageSuperNerdScript, -1
 	object_event 25, 29, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LakeOfRageCooltrainerFScript, -1
 	object_event 30, 23, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerFisherAndre, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event 24, 26, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerFisherRaymond, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event  4, 15, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerCooltrainermAaron, EVENT_LAKE_OF_RAGE_CIVILIANS
 	object_event 36,  7, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerCooltrainerfLois, EVENT_LAKE_OF_RAGE_CIVILIANS
-	object_event 18, 22, SPRITE_GYARADOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GyaradosScript_0x70063, EVENT_LAKE_OF_RAGE_RED_GYARADOS
+	object_event 18, 22, SPRITE_GYARADOS, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RedGyarados, EVENT_LAKE_OF_RAGE_RED_GYARADOS
 	object_event  4,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WesleyScript, EVENT_LAKE_OF_RAGE_WESLEY_OF_WEDNESDAY
 	object_event  7, 10, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, LakeOfRageElixer, EVENT_LAKE_OF_RAGE_ELIXER
 	object_event 35,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, LakeOfRageTMDetect, EVENT_LAKE_OF_RAGE_TM_DETECT

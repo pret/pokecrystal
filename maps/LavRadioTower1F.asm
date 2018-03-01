@@ -19,31 +19,31 @@ LavRadioTower1FOfficerScript:
 LavRadioTower1FSuperNerd1Script:
 	jumptextfaceplayer LavRadioTower1FSuperNerd1Text
 
-GentlemanScript_0x7ee6c:
+LavRadioTower1FGentlemanScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_EXPN_CARD
 	iftrue .GotExpnCard
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
-	writetext UnknownText_0x7effb
+	writetext LavRadioTower1FGentlemanText
 	waitbutton
 	closetext
 	end
 
 .ReturnedMachinePart:
-	writetext UnknownText_0x7f0a1
+	writetext LavRadioTower1FGentlemanText_ReturnedMachinePart
 	buttonsound
 	stringtotext .expncardname, MEM_BUFFER_1
-	scall .UnknownScript_0x7ee94
+	scall .receiveitem
 	setflag ENGINE_EXPN_CARD
 .GotExpnCard:
-	writetext UnknownText_0x7f141
+	writetext LavRadioTower1FGentlemanText_GotExpnCard
 	waitbutton
 	closetext
 	end
 
-.UnknownScript_0x7ee94:
+.receiveitem:
 	jumpstd receiveitem
 	end
 
@@ -111,7 +111,7 @@ LavRadioTower1FSuperNerd1Text:
 	cont "on good shows."
 	done
 
-UnknownText_0x7effb:
+LavRadioTower1FGentlemanText:
 	text "Oh, no, no, no!"
 
 	para "We've been off the"
@@ -129,7 +129,7 @@ UnknownText_0x7effb:
 	para "I'll be ruined!"
 	done
 
-UnknownText_0x7f0a1:
+LavRadioTower1FGentlemanText_ReturnedMachinePart:
 	text "Ah! So you're the"
 	line "<PLAY_G> who solved"
 
@@ -146,7 +146,7 @@ UnknownText_0x7f0a1:
 	line "as my thanks."
 	done
 
-UnknownText_0x7f141:
+LavRadioTower1FGentlemanText_GotExpnCard:
 	text "With that thing,"
 	line "you can tune into"
 
@@ -237,5 +237,5 @@ LavRadioTower1F_MapEvents:
 	object_event  6,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FReceptionistScript, -1
 	object_event 15,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FOfficerScript, -1
 	object_event  1,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd1Script, -1
-	object_event  9,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x7ee6c, -1
+	object_event  9,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FGentlemanScript, -1
 	object_event 14,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd2Script, -1
