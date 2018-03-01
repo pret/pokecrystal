@@ -463,8 +463,9 @@ BugCatchingContestant10BScript:
 	closetext
 	end
 
-UnknownScript_0x6adce:
-	jumptext UnknownText_0x6b84c
+UnusedBugCatchingContestExplanationSign:
+; duplicate of BugCatchingContestExplanationSign in Route35NationalParkGate.asm
+	jumptext UnusedBugCatchingContestExplanationText
 
 MovementData_0x6add1:
 	big_step DOWN
@@ -807,7 +808,8 @@ UnusedSudowoodoText:
 	cont "SILPHSCOPE 2."
 	done
 
-UnknownText_0x6b84c:
+UnusedBugCatchingContestExplanationText:
+; duplicate of BugCatchingContestExplanationText in Route35NationalParkGate.asm
 	text "The Bug-Catching"
 	line "Contest is held on"
 

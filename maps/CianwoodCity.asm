@@ -118,8 +118,9 @@ CianwoodCityPokefanM:
 CianwoodCityLass:
 	jumptextfaceplayer CianwoodCityLassText
 
-CianwoodCityUnknownScript:
-	jumptextfaceplayer CianwoodCityUnknownText
+CianwoodCityUnusedScript:
+; unreferenced
+	jumptextfaceplayer CianwoodCityUnusedText
 
 CianwoodCitySign:
 	jumptext CianwoodCitySignText
@@ -264,8 +265,8 @@ CianwoodCityLassText:
 	line "MON."
 	done
 
-; possibly unused
-CianwoodCityUnknownText:
+CianwoodCityUnusedText:
+; unused
 	text "There are several"
 	line "islands between"
 	cont "here and OLIVINE."
