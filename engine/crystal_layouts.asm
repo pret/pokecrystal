@@ -54,7 +54,7 @@ MG_Mobile_Layout_WipeAttrMap: ; 49346 (12:5346)
 
 MG_Mobile_Layout_LoadPals: ; 49351 (12:5351)
 	ld de, wBGPals1
-	ld hl, Palette_493e1
+	ld hl, Palette_MysteryGiftMobile
 	ld bc, 5 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
@@ -111,7 +111,7 @@ MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
 	ret
 ; 493e1 (12:53e1)
 
-Palette_493e1: ; 493e1
+Palette_MysteryGiftMobile: ; 493e1
 INCLUDE "gfx/mystery_gift/mg_mobile.pal"
 ; 49409
 

@@ -283,12 +283,13 @@ NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 	add_hm WHIRLPOOL    ; f8
 	add_hm WATERFALL    ; f9
 NUM_HMS = const_value - HM01
-	const ITEM_FA       ; fa
 
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
 NUM_TM_HM_TUTOR = __enum__ + -1
+
+	const ITEM_FA       ; fa
 
 USE_SCRIPT_VAR EQU $00
 ITEM_FROM_MEM  EQU $ff

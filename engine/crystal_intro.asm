@@ -482,11 +482,11 @@ IntroScene1: ; e495b (39:495b)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_365ad
+	ld hl, IntroPalette2
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_365ad
+	ld hl, IntroPalette2
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -555,11 +555,11 @@ IntroScene3: ; e49fd (39:49fd)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_e5edd
+	ld hl, IntroPalette1
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_e5edd
+	ld hl, IntroPalette1
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -621,11 +621,11 @@ IntroScene5: ; e4a7a (39:4a7a)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_365ad
+	ld hl, IntroPalette2
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_365ad
+	ld hl, IntroPalette2
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -728,12 +728,12 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
 
-	ld hl, Palette_e5edd
+	ld hl, IntroPalette1
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 
-	ld hl, Palette_e5edd
+	ld hl, IntroPalette1
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -886,11 +886,11 @@ IntroScene11: ; e4c86 (39:4c86)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_365ad
+	ld hl, IntroPalette2
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_365ad
+	ld hl, IntroPalette2
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -1013,11 +1013,11 @@ IntroScene13: ; e4d6d (39:4d6d)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_e5edd
+	ld hl, IntroPalette1
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_e5edd
+	ld hl, IntroPalette1
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -1122,11 +1122,11 @@ IntroScene15: ; e4e40 (39:4e40)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_e77dd
+	ld hl, IntroPalette5
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_e77dd
+	ld hl, IntroPalette5
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -1196,11 +1196,11 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_e6d6d
+	ld hl, IntroPalette4
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_e6d6d
+	ld hl, IntroPalette4
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -1270,11 +1270,11 @@ IntroScene19: ; e4f7e (39:4f7e)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_e77dd
+	ld hl, IntroPalette5
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_e77dd
+	ld hl, IntroPalette5
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -1440,11 +1440,11 @@ IntroScene26: ; e50bb (39:50bb)
 	push af
 	ld a, BANK(wBGPals1)
 	ld [rSVBK], a
-	ld hl, Palette_e679d
+	ld hl, IntroPalette3
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
-	ld hl, Palette_e679d
+	ld hl, IntroPalette3
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
@@ -2086,7 +2086,7 @@ IntroTilemap003: ; e5ecd
 INCBIN "gfx/intro/003.tilemap.lz"
 ; e5edd
 
-Palette_e5edd: ; e5edd
+IntroPalette1: ; e5edd
 INCLUDE "gfx/intro/intro_1.pal"
 ; e5f5d
 
@@ -2122,7 +2122,7 @@ IntroTilemap007: ; e655d
 INCBIN "gfx/intro/007.tilemap.lz"
 ; e65ad
 
-Palette_365ad: ; e65ad
+IntroPalette2: ; e65ad
 INCLUDE "gfx/intro/intro_2.pal"
 ; e662d
 
@@ -2138,7 +2138,7 @@ IntroTilemap015: ; e676d
 INCBIN "gfx/intro/015.tilemap.lz"
 ; e679d
 
-Palette_e679d: ; e679d
+IntroPalette3: ; e679d
 INCLUDE "gfx/intro/intro_3.pal"
 ; e681d
 
@@ -2154,7 +2154,7 @@ IntroTilemap011: ; e6d0d
 INCBIN "gfx/intro/011.tilemap.lz"
 ; e6d6d
 
-Palette_e6d6d: ; e6d6d
+IntroPalette4: ; e6d6d
 INCLUDE "gfx/intro/intro_4.pal"
 ; e6ded
 
@@ -2182,7 +2182,7 @@ IntroTilemap013: ; e778d
 INCBIN "gfx/intro/013.tilemap.lz"
 ; e77dd
 
-Palette_e77dd: ; e77dd
+IntroPalette5: ; e77dd
 INCLUDE "gfx/intro/intro_5.pal"
 
 IntroUnownBackGFX: ; e785d

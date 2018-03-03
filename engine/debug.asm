@@ -181,13 +181,13 @@ Function819a7: ; 819a7
 	push af
 	ld a, BANK(wBGPals2)
 	ld [rSVBK], a
-	ld hl, Palette_819f4
+	ld hl, Palette_DebugBG
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	ld a, 1 << rBGPI_AUTO_INCREMENT
 	ld [rBGPI], a
-	ld hl, Palette_819f4
+	ld hl, Palette_DebugBG
 	ld c, 8 palettes
 	xor a
 .asm_819c8
@@ -196,7 +196,7 @@ Function819a7: ; 819a7
 	jr nz, .asm_819c8
 	ld a, 1 << rOBPI_AUTO_INCREMENT
 	ld [rOBPI], a
-	ld hl, Palette_81a34
+	ld hl, Palette_DebugOB
 	ld c, 8 palettes
 .asm_819d6
 	ld a, [hli]
@@ -216,10 +216,10 @@ Function819a7: ; 819a7
 	ret
 ; 819f4
 
-Palette_819f4: ; 819f4
+Palette_DebugBG: ; 819f4
 INCLUDE "gfx/debug/bg.pal"
 
-Palette_81a34: ; 81a34
+Palette_DebugOB: ; 81a34
 INCLUDE "gfx/debug/ob.pal"
 ; 81a74
 

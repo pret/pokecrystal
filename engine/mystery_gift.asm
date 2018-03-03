@@ -1420,7 +1420,7 @@ Function105688: ; 105688 (41:5688)
 	call WaitBGMap
 	call Function1057d7
 	hlcoord 3, 8
-	ld de, String_10572e
+	ld de, String_PressAToLink_BToCancel_JP
 	call PlaceString
 	call WaitBGMap
 	call Function10578c
@@ -1451,9 +1451,9 @@ Function105688: ; 105688 (41:5688)
 	ld a, c
 	ld [wd265], a
 	ld hl, Text_CardNotRegistered
-	jr c, asm_105726
+	jr c, PrintTextAndExit_JP
 	ld hl, Text_ListedCardAsNumber
-	jr asm_105726
+	jr PrintTextAndExit_JP
 
 Function1056eb: ; 1056eb (41:56eb)
 	ld c, 16
@@ -1487,7 +1487,7 @@ endr
 Function105712: ; 105712 (41:5712)
 	call Function105777
 	ld hl, Text_MGLinkCanceled
-	jr asm_105726
+	jr PrintTextAndExit_JP
 
 Function10571a: ; 10571a (41:571a)
 	call Function105777
@@ -1495,18 +1495,18 @@ Function10571a: ; 10571a (41:571a)
 	call PrintText
 	jp Function105688
 
-asm_105726: ; 105726 (41:5726)
+PrintTextAndExit_JP: ; 105726 (41:5726)
 	call PrintText
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ret
 ; 10572e (41:572e)
 
-String_10572e: ; 10572e
-	db   "エーボタン¯おすと"
+String_PressAToLink_BToCancel_JP: ; 10572e
+	db   "エーボタン<WO>おすと"
 	next "つうしん<PKMN>おこなわれるよ！"
-	next "ビーボタン¯おすと"
-	next "つうしん¯ちゅうし　します"
+	next "ビーボタン<WO>おすと"
+	next "つうしん<WO>ちゅうし　します"
 	db   "@"
 
 ; 10575e

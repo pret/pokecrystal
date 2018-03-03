@@ -11,7 +11,7 @@ __LoadTradeScreenBorder: ; 16d421
 ; 16d42e
 
 Function16d42e: ; 16d42e
-	ld hl, Tilemap_16d465
+	ld hl, Tilemap_MobileTradeBorderFullscreen
 	decoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call CopyBytes
@@ -34,13 +34,13 @@ Function16d43b: ; 16d43b
 	ret
 ; 16d465
 
-Tilemap_16d465:
+Tilemap_MobileTradeBorderFullscreen:
 INCBIN "gfx/trade/border_mobile_fullscreen.tilemap"
 
-Tilemap_16d5cd:
+Tilemap_CableTradeBorderTop:
 INCBIN "gfx/trade/border_cable_top.tilemap"
 
-Tilemap_16d5f5:
+Tilemap_CableTradeBorderBottom:
 INCBIN "gfx/trade/border_cable_bottom.tilemap"
 
 _LinkTextbox: ; 16d61d
@@ -152,11 +152,11 @@ LoadTradeRoomBGPals_: ; 16d6a7
 
 Function16d6ae: ; 16d6ae
 	call Function16d42e
-	ld hl, Tilemap_16d5cd
+	ld hl, Tilemap_CableTradeBorderTop
 	decoord 0, 0
 	ld bc, 2 * SCREEN_WIDTH
 	call CopyBytes
-	ld hl, Tilemap_16d5f5
+	ld hl, Tilemap_CableTradeBorderBottom
 	decoord 0, 16
 	ld bc, 2 * SCREEN_WIDTH
 	call CopyBytes
