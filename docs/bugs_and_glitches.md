@@ -903,18 +903,20 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 
 ([Video](https://www.youtube.com/watch?v=iHkWubvxmSg))
 
-This is a bug with `HallOfFame` in [engine/events/halloffame.asm](/engine/events/halloffame.asm):
+This is a bug with `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/halloffame.asm](/engine/events/halloffame.asm):
 
 ```asm
-	ld hl, wHallOfFameCount
-	ld a, [hl]
-	cp HOF_MASTER_COUNT - 1 ; should be HOF_MASTER_COUNT
-	jr nc, .ok
-	inc [hl]
-.ok
+	ld a, [wHallOfFameTempWinCount]
+	cp HOF_MASTER_COUNT + 1 ; should be HOF_MASTER_COUNT
+	jr c, .print_num_hof
+	ld de, .HOFMaster
+	hlcoord 1, 2
+	call PlaceString
+	hlcoord 13, 2
+	jr .finish
 ```
 
-**Fix:** Change `HOF_MASTER_COUNT - 1` to `HOF_MASTER_COUNT`.
+**Fix:** Change `HOF_MASTER_COUNT + 1` to `HOF_MASTER_COUNT`.
 
 
 ## Slot machine payout sound effects cut each other off
