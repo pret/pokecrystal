@@ -33,7 +33,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Magikarp length limits have a unit conversion error](#magikarp-length-limits-have-a-unit-conversion-error)
 - [Magikarp lengths can be miscalculated](#magikarp-lengths-can-be-miscalculated)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
-- [A "HOF Master!" title for 201-Time Famers is defined but inaccessible](#a-hof-master-title-for-201-time-famers-is-defined-but-inaccessible)
+- [A "HOF Master!" title for 200-Time Famers is defined but inaccessible](#a-hof-master-title-for-200-time-famers-is-defined-but-inaccessible)
 - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
 - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
@@ -899,7 +899,7 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 *To do:* Fix this bug.
 
 
-## A "HOF Master!" title for 201-Time Famers is defined but inaccessible
+## A "HOF Master!" title for 200-Time Famers is defined but inaccessible
 
 ([Video](https://www.youtube.com/watch?v=iHkWubvxmSg))
 
