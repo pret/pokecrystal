@@ -47,21 +47,21 @@ OfficerScript_0x188df5:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x188e0f
+	iftrue .ReturnedPart
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
-	iftrue UnknownScript_0x188e09
+	iftrue .MetManager
 	writetext UnknownText_0x188ee0
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x188e09:
+.MetManager:
 	writetext UnknownText_0x188f7f
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x188e0f:
+.ReturnedPart:
 	writetext UnknownText_0x188fa2
 	waitbutton
 	closetext
@@ -71,13 +71,13 @@ GymGuyScript_0x188e15:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x188e23
+	iftrue .ReturnedPart
 	writetext UnknownText_0x188fcf
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x188e23:
+.ReturnedPart:
 	writetext UnknownText_0x189038
 	waitbutton
 	closetext
@@ -87,13 +87,13 @@ GymGuyScript_0x188e29:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x188e37
+	iftrue .ReturnedPart
 	writetext UnknownText_0x189079
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x188e37:
+.ReturnedPart:
 	writetext UnknownText_0x1890ef
 	waitbutton
 	closetext
@@ -103,13 +103,13 @@ OfficerScript_0x188e3d:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x188e4b
+	iftrue .ReturnedPart
 	writetext UnknownText_0x18910e
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x188e4b:
+.ReturnedPart:
 	writetext UnknownText_0x18917f
 	waitbutton
 	closetext
@@ -119,13 +119,13 @@ GymGuyScript_0x188e51:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x188e5f
+	iftrue .ReturnedPart
 	writetext UnknownText_0x1891c2
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x188e5f:
+.ReturnedPart:
 	writetext UnknownText_0x189225
 	waitbutton
 	closetext
@@ -135,11 +135,11 @@ PowerPlantManager:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x188eac
+	iftrue .ReturnedPart
 	checkitem MACHINE_PART
-	iftrue UnknownScript_0x188e93
+	iftrue .HoldingPart
 	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
-	iftrue UnknownScript_0x188e8d
+	iftrue .MetManager
 	writetext UnknownText_0x189264
 	waitbutton
 	closetext
@@ -150,13 +150,13 @@ PowerPlantManager:
 	setscene SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 	end
 
-UnknownScript_0x188e8d:
+.MetManager:
 	writetext UnknownText_0x189308
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x188e93:
+.HoldingPart:
 	writetext UnknownText_0x18936e
 	buttonsound
 	takeitem MACHINE_PART
@@ -166,21 +166,21 @@ UnknownScript_0x188e93:
 	setevent EVENT_ROUTE_24_ROCKET
 	setevent EVENT_RESTORED_POWER_TO_KANTO
 	clearevent EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
-UnknownScript_0x188eac:
+.ReturnedPart:
 	checkevent EVENT_GOT_TM07_ZAP_CANNON
-	iftrue UnknownScript_0x188ec5
+	iftrue .GotTM
 	writetext UnknownText_0x1893c4
 	buttonsound
 	verbosegiveitem TM_ZAP_CANNON
-	iffalse UnknownScript_0x188ec3
+	iffalse .NoRoom
 	setevent EVENT_GOT_TM07_ZAP_CANNON
 	writetext UnknownText_0x1893f4
 	waitbutton
-UnknownScript_0x188ec3:
+.NoRoom:
 	closetext
 	end
 
-UnknownScript_0x188ec5:
+.GotTM:
 	writetext UnknownText_0x189475
 	waitbutton
 	closetext
