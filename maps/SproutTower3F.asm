@@ -20,7 +20,7 @@ SproutTower3F_MapScripts:
 .DummyScene1:
 	end
 
-UnknownScript_0x184947:
+SproutTower3FRivalEvent:
 	turnobject PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
@@ -43,12 +43,12 @@ UnknownScript_0x184947:
 	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a24
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
-	writetext UnknownText_0x184aec
+	writetext SproutTowerRivalOnlyCareAboutStrongText
 	waitbutton
 	closetext
 	turnobject SPROUTTOWER3F_SILVER, UP
 	opentext
-	writetext UnknownText_0x184bc8
+	writetext SproutTowerRivalUsedEscapeRopeText
 	pause 15
 	closetext
 	playsound SFX_WARP_TO
@@ -65,7 +65,7 @@ SageLiScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_HM05_FLASH
-	iftrue UnknownScript_0x1849d1
+	iftrue .GotFlash
 	writetext SageLiSeenText
 	waitbutton
 	closetext
@@ -74,18 +74,18 @@ SageLiScript:
 	startbattle
 	reloadmapafterbattle
 	opentext
-	writetext UnknownText_0x184cc2
+	writetext SageLiTakeThisFlashText
 	buttonsound
 	verbosegiveitem HM_FLASH
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
-	writetext UnknownText_0x184d13
+	writetext SageLiFlashExplanationText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1849d1:
-	writetext UnknownText_0x184d88
+.GotFlash:
+	writetext SageLiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -123,11 +123,11 @@ TrainerSageNeal:
 	closetext
 	end
 
-MapSproutTower3FSignpost3Script:
-	jumptext UnknownText_0x184f37
+SproutTower3FBellsproutPaintingScript:
+	jumptext SproutTower3FBellsproutPaintingText
 
-MapSproutTower3FSignpost5Script:
-	jumptext UnknownText_0x184f61
+SproutTower3FBellsproutStatueScript:
+	jumptext SproutTower3FBellsproutStatueText
 
 SproutTower3FPotion:
 	itemball POTION
@@ -172,7 +172,7 @@ UnknownText_0x184a27:
 	line "tools of war…"
 	done
 
-UnknownText_0x184aec:
+SproutTowerRivalOnlyCareAboutStrongText:
 	text "…"
 	line "…Humph!"
 
@@ -198,7 +198,7 @@ UnknownText_0x184aec:
 	cont "weak #MON."
 	done
 
-UnknownText_0x184bc8:
+SproutTowerRivalUsedEscapeRopeText:
 	text "<RIVAL> used an"
 	line "ESCAPE ROPE!"
 	done
@@ -230,7 +230,7 @@ SageLiBeatenText:
 	text "Ah, excellent!"
 	done
 
-UnknownText_0x184cc2:
+SageLiTakeThisFlashText:
 	text "You and your #-"
 	line "MON should have"
 
@@ -241,7 +241,7 @@ UnknownText_0x184cc2:
 	line "HM."
 	done
 
-UnknownText_0x184d13:
+SageLiFlashExplanationText:
 	text "FLASH illuminates"
 	line "even the darkest"
 	cont "of all places."
@@ -253,7 +253,7 @@ UnknownText_0x184d13:
 	line "from VIOLET's GYM."
 	done
 
-UnknownText_0x184d88:
+SageLiAfterBattleText:
 	text "I hope you learn"
 	line "and grow from your"
 	cont "journey."
@@ -314,13 +314,13 @@ SageNealAfterBattleText:
 	line "on your journey."
 	done
 
-UnknownText_0x184f37:
+SproutTower3FBellsproutPaintingText:
 	text "It's a powerful"
 	line "painting of a"
 	cont "BELLSPROUT."
 	done
 
-UnknownText_0x184f61:
+SproutTower3FBellsproutStatueText:
 	text "A #MON statue…"
 
 	para "It looks very"
@@ -334,15 +334,15 @@ SproutTower3F_MapEvents:
 	warp_event 10, 14, SPROUT_TOWER_2F, 4
 
 	db 1 ; coord events
-	coord_event 11,  9, SCENE_DEFAULT, UnknownScript_0x184947
+	coord_event 11,  9, SCENE_DEFAULT, SproutTower3FRivalEvent
 
 	db 6 ; bg events
-	bg_event  8,  1, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event 11,  1, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event  9,  0, BGEVENT_READ, MapSproutTower3FSignpost3Script
-	bg_event 10,  0, BGEVENT_READ, MapSproutTower3FSignpost3Script
-	bg_event  5, 15, BGEVENT_READ, MapSproutTower3FSignpost5Script
-	bg_event 14, 15, BGEVENT_READ, MapSproutTower3FSignpost5Script
+	bg_event  8,  1, BGEVENT_READ, SproutTower3FBellsproutStatueScript
+	bg_event 11,  1, BGEVENT_READ, SproutTower3FBellsproutStatueScript
+	bg_event  9,  0, BGEVENT_READ, SproutTower3FBellsproutPaintingScript
+	bg_event 10,  0, BGEVENT_READ, SproutTower3FBellsproutPaintingScript
+	bg_event  5, 15, BGEVENT_READ, SproutTower3FBellsproutStatueScript
+	bg_event 14, 15, BGEVENT_READ, SproutTower3FBellsproutStatueScript
 
 	db 7 ; object events
 	object_event  8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1
