@@ -1533,7 +1533,7 @@ HandleFutureSight: ; 3ca26
 	xor a
 	ld [wAttackMissed], a
 	ld [wAlreadyDisobeyed], a
-	ld a, 10
+	ld a, EFFECTIVE
 	ld [wTypeModifier], a
 	callfar DoMove
 	xor a
