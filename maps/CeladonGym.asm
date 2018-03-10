@@ -16,10 +16,10 @@ ErikaScript_0x72a6a:
 	opentext
 	checkflag ENGINE_RAINBOWBADGE
 	iftrue .FightDone
-	writetext UnknownText_0x72b28
+	writetext ErikaBeforeBattleText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x72c3e, 0
+	winlosstext ErikaBeatenText, 0
 	loadtrainer ERIKA, ERIKA1
 	startbattle
 	reloadmapafterbattle
@@ -29,20 +29,20 @@ ErikaScript_0x72a6a:
 	setevent EVENT_BEAT_BEAUTY_JULIA
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
 	opentext
-	writetext UnknownText_0x72c96
+	writetext PlayerReceivedRainbowBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_RAINBOWBADGE
 .FightDone:
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
-	iftrue UnknownScript_0x72aae
-	writetext UnknownText_0x72cb0
+	iftrue .AfterTM
+	writetext ErikaExplainTMText
 	buttonsound
 	verbosegiveitem TM_GIGA_DRAIN
-	iffalse UnknownScript_0x72aae
+	iffalse .AfterTM
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
-UnknownScript_0x72aae:
-	writetext UnknownText_0x72d8f
+.AfterTM:
+	writetext ErikaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -80,24 +80,24 @@ TrainerBeautyJulia:
 	closetext
 	end
 
-TrainerTwinsJoandzoe1:
-	trainer TWINS, JOANDZOE1, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoandzoe1SeenText, TwinsJoandzoe1BeatenText, 0, .Script
+TrainerTwinsJoAndZoe1:
+	trainer TWINS, JOANDZOE1, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoAndZoe1SeenText, TwinsJoAndZoe1BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext TwinsJoandzoe1AfterBattleText
+	writetext TwinsJoAndZoe1AfterBattleText
 	waitbutton
 	closetext
 	end
 
-TrainerTwinsJoandzoe2:
-	trainer TWINS, JOANDZOE2, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoandzoe2SeenText, TwinsJoandzoe2BeatenText, 0, .Script
+TrainerTwinsJoAndZoe2:
+	trainer TWINS, JOANDZOE2, EVENT_BEAT_TWINS_JO_AND_ZOE, TwinsJoAndZoe2SeenText, TwinsJoAndZoe2BeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
 	opentext
-	writetext TwinsJoandzoe2AfterBattleText
+	writetext TwinsJoAndZoe2AfterBattleText
 	waitbutton
 	closetext
 	end
@@ -110,7 +110,7 @@ CeladonGymStatue:
 	trainertotext ERIKA, ERIKA1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-UnknownText_0x72b28:
+ErikaBeforeBattleText:
 	text "ERIKA: Hello…"
 	line "Lovely weather,"
 
@@ -138,7 +138,7 @@ UnknownText_0x72b28:
 	line "shall not lose."
 	done
 
-UnknownText_0x72c3e:
+ErikaBeatenText:
 	text "ERIKA: Oh!"
 	line "I concede defeat…"
 
@@ -149,12 +149,12 @@ UnknownText_0x72c3e:
 	line "RAINBOWBADGE…"
 	done
 
-UnknownText_0x72c96:
+PlayerReceivedRainbowBadgeText:
 	text "<PLAYER> received"
 	line "RAINBOWBADGE."
 	done
 
-UnknownText_0x72cb0:
+ErikaExplainTMText:
 	text "ERIKA: That was a"
 	line "delightful match."
 
@@ -175,7 +175,7 @@ UnknownText_0x72cb0:
 	line "it pleases you…"
 	done
 
-UnknownText_0x72d8f:
+ErikaAfterBattleText:
 	text "ERIKA: Losing"
 	line "leaves a bitter"
 	cont "aftertaste…"
@@ -236,31 +236,31 @@ BeautyJuliaAfterBattleText:
 	cont "like ERIKA?"
 	done
 
-TwinsJoandzoe1SeenText:
+TwinsJoAndZoe1SeenText:
 	text "We'll show you"
 	line "#MON moves that"
 	cont "ERIKA taught us!"
 	done
 
-TwinsJoandzoe1BeatenText:
+TwinsJoAndZoe1BeatenText:
 	text "Oh… We lost…"
 	done
 
-TwinsJoandzoe1AfterBattleText:
+TwinsJoAndZoe1AfterBattleText:
 	text "ERIKA will get you"
 	line "back for us!"
 	done
 
-TwinsJoandzoe2SeenText:
+TwinsJoAndZoe2SeenText:
 	text "We're going to"
 	line "protect ERIKA!"
 	done
 
-TwinsJoandzoe2BeatenText:
+TwinsJoAndZoe2BeatenText:
 	text "We couldn't win…"
 	done
 
-TwinsJoandzoe2AfterBattleText:
+TwinsJoAndZoe2AfterBattleText:
 	text "ERIKA is much,"
 	line "much stronger!"
 	done
@@ -283,5 +283,5 @@ CeladonGym_MapEvents:
 	object_event  7,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassMichelle, -1
 	object_event  2,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 2, TrainerPicnickerTanya, -1
 	object_event  3,  5, SPRITE_BUENA, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerBeautyJulia, -1
-	object_event  4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoandzoe1, -1
-	object_event  5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoandzoe2, -1
+	object_event  4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoAndZoe1, -1
+	object_event  5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerTwinsJoAndZoe2, -1
