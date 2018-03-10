@@ -24,10 +24,10 @@ GoldenrodGymWhitneyScript:
 	checkevent EVENT_BEAT_WHITNEY
 	iftrue .FightDone
 	opentext
-	writetext UnknownText_0x54122
+	writetext WhitneyBeforeText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x541a5, 0
+	winlosstext WhitneyShouldntBeSoSeriousText, 0
 	loadtrainer WHITNEY, WHITNEY1
 	startbattle
 	reloadmapafterbattle
@@ -42,7 +42,7 @@ GoldenrodGymWhitneyScript:
 	opentext
 	checkevent EVENT_MADE_WHITNEY_CRY
 	iffalse .StoppedCrying
-	writetext UnknownText_0x541f4
+	writetext WhitneyYouMeanieText
 	waitbutton
 	closetext
 	end
@@ -52,28 +52,28 @@ GoldenrodGymWhitneyScript:
 	iftrue .GotAttract
 	checkflag ENGINE_PLAINBADGE
 	iftrue .GotPlainBadge
-	writetext UnknownText_0x54222
+	writetext WhitneyWhatDoYouWantText
 	buttonsound
 	waitsfx
-	writetext UnknownText_0x54273
+	writetext PlayerReceivedPlainBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_PLAINBADGE
 	checkcode VAR_BADGES
 	scall GoldenrodGymActivateRockets
 .GotPlainBadge:
-	writetext UnknownText_0x5428b
+	writetext WhitneyPlainBadgeText
 	buttonsound
 	verbosegiveitem TM_ATTRACT
 	iffalse .NoRoomForAttract
 	setevent EVENT_GOT_TM45_ATTRACT
-	writetext UnknownText_0x54302
+	writetext WhitneyAttractText
 	waitbutton
 	closetext
 	end
 
 .GotAttract:
-	writetext UnknownText_0x54360
+	writetext WhitneyGoodCryText
 	waitbutton
 .NoRoomForAttract:
 	closetext
@@ -182,7 +182,7 @@ BridgetWalksAwayMovement:
 	turn_head LEFT
 	step_end
 
-UnknownText_0x54122:
+WhitneyBeforeText:
 	text "Hi! I'm WHITNEY!"
 
 	para "Everyone was into"
@@ -197,7 +197,7 @@ UnknownText_0x54122:
 	cont "you--I'm good!"
 	done
 
-UnknownText_0x541a5:
+WhitneyShouldntBeSoSeriousText:
 	text "Sob…"
 
 	para "…Waaaaaaah!"
@@ -208,7 +208,7 @@ UnknownText_0x541a5:
 	cont "you child, you!"
 	done
 
-UnknownText_0x541f4:
+WhitneyYouMeanieText:
 	text "Waaaaah!"
 
 	para "Waaaaah!"
@@ -217,7 +217,7 @@ UnknownText_0x541f4:
 	line "…You meanie!"
 	done
 
-UnknownText_0x54222:
+WhitneyWhatDoYouWantText:
 	text "…Sniff…"
 
 	para "What? What do you"
@@ -228,12 +228,12 @@ UnknownText_0x54222:
 	cont "PLAINBADGE."
 	done
 
-UnknownText_0x54273:
+PlayerReceivedPlainBadgeText:
 	text "<PLAYER> received"
 	line "PLAINBADGE."
 	done
 
-UnknownText_0x5428b:
+WhitneyPlainBadgeText:
 	text "PLAINBADGE lets"
 	line "your #MON use"
 
@@ -248,7 +248,7 @@ UnknownText_0x5428b:
 	line "this too!"
 	done
 
-UnknownText_0x54302:
+WhitneyAttractText:
 	text "It's ATTRACT!"
 	line "It makes full use"
 
@@ -260,7 +260,7 @@ UnknownText_0x54302:
 	cont "like me?"
 	done
 
-UnknownText_0x54360:
+WhitneyGoodCryText:
 	text "Ah, that was a"
 	line "good cry!"
 

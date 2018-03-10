@@ -43,12 +43,12 @@ SproutTower3FRivalScene:
 	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a24
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
-	writetext UnknownText_0x184aec
+	writetext SproutTowerRivalOnlyCareAboutStrongText
 	waitbutton
 	closetext
 	turnobject SPROUTTOWER3F_SILVER, UP
 	opentext
-	writetext UnknownText_0x184bc8
+	writetext SproutTowerRivalUsedEscapeRopeText
 	pause 15
 	closetext
 	playsound SFX_WARP_TO
@@ -74,18 +74,18 @@ SageLiScript:
 	startbattle
 	reloadmapafterbattle
 	opentext
-	writetext UnknownText_0x184cc2
+	writetext SageLiTakeThisFlashText
 	buttonsound
 	verbosegiveitem HM_FLASH
 	setevent EVENT_GOT_HM05_FLASH
 	setevent EVENT_BEAT_SAGE_LI
-	writetext UnknownText_0x184d13
+	writetext SageLiFlashExplanationText
 	waitbutton
 	closetext
 	end
 
 .GotFlash:
-	writetext UnknownText_0x184d88
+	writetext SageLiAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -172,7 +172,7 @@ UnknownText_0x184a27:
 	line "tools of war…"
 	done
 
-UnknownText_0x184aec:
+SproutTowerRivalOnlyCareAboutStrongText:
 	text "…"
 	line "…Humph!"
 
@@ -198,7 +198,7 @@ UnknownText_0x184aec:
 	cont "weak #MON."
 	done
 
-UnknownText_0x184bc8:
+SproutTowerRivalUsedEscapeRopeText:
 	text "<RIVAL> used an"
 	line "ESCAPE ROPE!"
 	done
@@ -230,7 +230,7 @@ SageLiBeatenText:
 	text "Ah, excellent!"
 	done
 
-UnknownText_0x184cc2:
+SageLiTakeThisFlashText:
 	text "You and your #-"
 	line "MON should have"
 
@@ -241,7 +241,7 @@ UnknownText_0x184cc2:
 	line "HM."
 	done
 
-UnknownText_0x184d13:
+SageLiFlashExplanationText:
 	text "FLASH illuminates"
 	line "even the darkest"
 	cont "of all places."
@@ -253,7 +253,7 @@ UnknownText_0x184d13:
 	line "from VIOLET's GYM."
 	done
 
-UnknownText_0x184d88:
+SageLiAfterBattleText:
 	text "I hope you learn"
 	line "and grow from your"
 	cont "journey."
