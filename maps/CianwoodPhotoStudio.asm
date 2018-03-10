@@ -6,26 +6,26 @@ CianwoodPhotoStudio_MapScripts:
 
 	db 0 ; callbacks
 
-FishingGuruScript_0x9e0e0:
+CianwoodPhotoStudioFishingGuruScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x9e0f9
+	writetext CianwoodPhotoStudioFishingGuruText_Question
 	yesorno
-	iffalse UnknownScript_0x9e0f3
-	writetext UnknownText_0x9e142
+	iffalse .Refused
+	writetext CianwoodPhotoStudioFishingGuruText_Yes
 	waitbutton
 	special PhotoStudio
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x9e0f3:
-	writetext UnknownText_0x9e156
+.Refused:
+	writetext CianwoodPhotoStudioFishingGuruText_No
 	waitbutton
 	closetext
 	end
 
-UnknownText_0x9e0f9:
+CianwoodPhotoStudioFishingGuruText_Question:
 	text "You have magnifi-"
 	line "cent #MON with"
 	cont "you."
@@ -34,11 +34,11 @@ UnknownText_0x9e0f9:
 	line "for a souvenir?"
 	done
 
-UnknownText_0x9e142:
+CianwoodPhotoStudioFishingGuruText_Yes:
 	text "OK! Big smile now!"
 	done
 
-UnknownText_0x9e156:
+CianwoodPhotoStudioFishingGuruText_No:
 	text "Oh, that's too"
 	line "bad. I thought it"
 
@@ -58,4 +58,4 @@ CianwoodPhotoStudio_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x9e0e0, -1
+	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPhotoStudioFishingGuruScript, -1

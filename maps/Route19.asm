@@ -68,34 +68,34 @@ TrainerSwimmermTucker:
 	closetext
 	end
 
-FisherScript_0x19ea4d:
-	faceplayer
-	opentext
-	checkevent EVENT_CINNABAR_ROCKS_CLEARED
-	iftrue UnknownScript_0x19ea5b
-	writetext UnknownText_0x19ecaf
-	waitbutton
-	closetext
-	end
-
-UnknownScript_0x19ea5b:
-	writetext UnknownText_0x19ed24
-	waitbutton
-	closetext
-	end
-
-FisherScript_0x19ea61:
+Route19Fisher1Script:
 	faceplayer
 	opentext
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue .RocksCleared
-	writetext Route19FisherText1
+	writetext Route19Fisher1Text
 	waitbutton
 	closetext
 	end
 
 .RocksCleared:
-	writetext Route19FisherText2
+	writetext Route19Fisher1Text_RocksCleared
+	waitbutton
+	closetext
+	end
+
+Route19Fisher2Script:
+	faceplayer
+	opentext
+	checkevent EVENT_CINNABAR_ROCKS_CLEARED
+	iftrue .RocksCleared
+	writetext Route19Fisher2Text
+	waitbutton
+	closetext
+	end
+
+.RocksCleared:
+	writetext Route19Fisher2Text_RocksCleared
 	waitbutton
 	closetext
 	end
@@ -185,7 +185,7 @@ SwimmermJeromeAfterBattleText:
 	cont "love the sea."
 	done
 
-UnknownText_0x19ecaf:
+Route19Fisher1Text:
 	text "Sorry. This road"
 	line "is closed for"
 	cont "construction."
@@ -197,18 +197,18 @@ UnknownText_0x19ecaf:
 	line "from PALLET TOWN."
 	done
 
-UnknownText_0x19ed24:
+Route19Fisher1Text_RocksCleared:
 	text "I'm all sweaty."
 	line "Time for a swim!"
 	done
 
-Route19FisherText1:
+Route19Fisher2Text:
 	text "Who knows how long"
 	line "it would take to"
 	cont "move this boulder…"
 	done
 
-Route19FisherText2:
+Route19Fisher2Text_RocksCleared:
 	text "The roadwork is"
 	line "finally finished."
 
@@ -249,5 +249,5 @@ Route19_MapEvents:
 	object_event 13, 28, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
 	object_event 11, 17, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermJerome, -1
 	object_event  8, 23, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerSwimmermTucker, -1
-	object_event  9,  5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 1, FisherScript_0x19ea4d, -1
-	object_event 11,  5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, FisherScript_0x19ea61, -1
+	object_event  9,  5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 1, Route19Fisher1Script, -1
+	object_event 11,  5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, Route19Fisher2Script, -1

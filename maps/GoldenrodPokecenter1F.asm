@@ -10,7 +10,7 @@ GoldenrodPokecenter1F_MapScripts:
 
 	db 0 ; callbacks
 
-NurseScript_0x60f91:
+GoldenrodPokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
 GoldenrodPokecenter1F_GSBallSceneLeft:
@@ -83,34 +83,34 @@ GoldenrodPokecenter1FGameboyKidScript:
 GoldenrodPokecenter1FLassScript:
 	jumptextfaceplayer GoldenrodPokecenter1FLassText
 
-PokefanFScript_0x61024:
+GoldenrodPokecenter1FPokefanF:
 	faceplayer
 	opentext
 	writetext UnknownText_0x623fb
 	waitbutton
 	writetext UnknownText_0x6248c
 	yesorno
-	iffalse UnknownScript_0x6104b
+	iffalse .NoEonMail
 	takeitem EON_MAIL
-	iffalse UnknownScript_0x6104b
+	iffalse .NoEonMail
 	writetext UnknownText_0x62549
 	waitbutton
 	writetext UnknownText_0x624a4
 	waitbutton
 	verbosegiveitem REVIVE
-	iffalse UnknownScript_0x61051
+	iffalse .NoRoom
 	writetext UnknownText_0x624e9
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6104b:
+.NoEonMail:
 	writetext UnknownText_0x62509
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x61051:
+.NoRoom:
 	giveitem EON_MAIL
 	writetext UnknownText_0x6252a
 	waitbutton
@@ -818,8 +818,8 @@ GoldenrodPokecenter1F_MapEvents:
 	db 0 ; bg events
 
 	db 5 ; object events
-	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x60f91, -1
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FNurseScript, -1
 	object_event 16,  8, SPRITE_LINK_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 	object_event  6,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
 	object_event  1,  4, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
-	object_event  7,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x61024, -1
+	object_event  7,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FPokefanF, -1

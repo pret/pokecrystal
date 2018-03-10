@@ -26,37 +26,37 @@ EcruteakCityGramps2Script:
 EcruteakCityGramps3Script:
 	jumptextfaceplayer EcruteakCityGramps3Text
 
-EcruteakCityLassScript:
-	jumptextfaceplayer EcruteakCityLassText
+EcruteakCityLass1Script:
+	jumptextfaceplayer EcruteakCityLass1Text
 
-LassScript_0x1a4015:
+EcruteakCityLass2Script:
 	faceplayer
 	opentext
 	checkevent EVENT_RELEASED_THE_BEASTS
-	iftrue UnknownScript_0x1a4023
-	writetext UnknownText_0x1a421a
+	iftrue .ReleasedBeasts
+	writetext EcruteakCityLass2Text
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1a4023:
-	writetext UnknownText_0x1a4269
+.ReleasedBeasts:
+	writetext EcruteakCityLass2Text_ReleasedBeasts
 	waitbutton
 	closetext
 	end
 
-FisherScript_0x1a4029:
+EcruteakCityFisherScript:
 	faceplayer
 	opentext
 	checkevent EVENT_JASMINE_RETURNED_TO_GYM
-	iftrue UnknownScript_0x1a4037
-	writetext UnknownText_0x1a42ac
+	iftrue .JasmineReturned
+	writetext EcruteakCityFisherText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1a4037:
-	writetext UnknownText_0x1a4325
+.JasmineReturned:
+	writetext EcruteakCityFisherText_JasmineReturned
 	waitbutton
 	closetext
 	end
@@ -89,7 +89,7 @@ EcruteakCityHiddenHyperPotion:
 	hiddenitem HYPER_POTION, EVENT_ECRUTEAK_CITY_HIDDEN_HYPER_POTION
 
 UnusedMissingDaughterText:
-; This text is neither used nor referenced in the final game.
+; unused
 	text "Oh, no. Oh, no…"
 
 	para "My daughter is"
@@ -132,7 +132,7 @@ EcruteakCityGramps2Text:
 	cont "nice, I hear."
 	done
 
-EcruteakCityLassText:
+EcruteakCityLass1Text:
 	text "I'm going to prac-"
 	line "tice at the DANCE"
 
@@ -140,7 +140,7 @@ EcruteakCityLassText:
 	line "join me?"
 	done
 
-UnknownText_0x1a421a:
+EcruteakCityLass2Text:
 	text "The tower that"
 	line "used to be here…"
 
@@ -149,14 +149,14 @@ UnknownText_0x1a421a:
 	cont "taller."
 	done
 
-UnknownText_0x1a4269:
+EcruteakCityLass2Text_ReleasedBeasts:
 	text "Three big #MON"
 	line "ran off in differ-"
 	cont "ent directions."
 	cont "What were they?"
 	done
 
-UnknownText_0x1a42ac:
+EcruteakCityFisherText:
 	text "I heard a rumor"
 	line "about OLIVINE"
 	cont "LIGHTHOUSE."
@@ -169,7 +169,7 @@ UnknownText_0x1a42ac:
 	cont "are in trouble."
 	done
 
-UnknownText_0x1a4325:
+EcruteakCityFisherText_JasmineReturned:
 	text "The #MON at"
 	line "OLIVINE LIGHTHOUSE"
 	cont "has been cured."
@@ -292,8 +292,8 @@ EcruteakCity_MapEvents:
 	db 7 ; object events
 	object_event 18, 15, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps1Script, -1
 	object_event 20, 21, SPRITE_GRAMPS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps2Script, -1
-	object_event 21, 29, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakCityLassScript, -1
-	object_event  3,  9, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LassScript_0x1a4015, -1
-	object_event  9, 22, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FisherScript_0x1a4029, -1
+	object_event 21, 29, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EcruteakCityLass1Script, -1
+	object_event  3,  9, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakCityLass2Script, -1
+	object_event  9, 22, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityFisherScript, -1
 	object_event 10, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakCityYoungsterScript, -1
 	object_event  3,  7, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakCityGramps3Script, EVENT_ECRUTEAK_CITY_GRAMPS

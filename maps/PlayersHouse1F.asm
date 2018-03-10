@@ -18,26 +18,26 @@ PlayersHouse1F_MapScripts:
 .DummyScene1:
 	end
 
-UnknownScript_0x7a4d8:
+MeetMomLeftScript:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 
-UnknownScript_0x7a4db:
+MeetMomRightScript:
 	playmusic MUSIC_MOM
 	showemote EMOTE_SHOCK, PLAYERSHOUSE1F_MOM1, 15
 	turnobject PLAYER, LEFT
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iffalse UnknownScript_0x7a4f2
+	iffalse .OnRight
 	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a5fc
-	jump UnknownScript_0x7a4f6
+	jump MeetMomScript
 
-UnknownScript_0x7a4f2:
+.OnRight:
 	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a5fe
-UnknownScript_0x7a4f6:
+MeetMomScript:
 	opentext
 	writetext UnknownText_0x7a604
 	buttonsound
 	stringtotext GearName, MEM_BUFFER_1
-	scall UnknownScript_0x7a57e
+	scall PlayersHouse1FReceiveItemStd
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_PHONE_CARD
 	addcellnum PHONE_MOM
@@ -47,103 +47,103 @@ UnknownScript_0x7a4f6:
 	writetext UnknownText_0x7a6bd
 	buttonsound
 	special SetDayOfWeek
-UnknownScript_0x7a519:
+.SetDayOfWeek:
 	writetext UnknownText_0x7a742
 	yesorno
-	iffalse UnknownScript_0x7a52a
+	iffalse .WrongDay
 	special InitialSetDSTFlag
 	yesorno
-	iffalse UnknownScript_0x7a519
-	jump UnknownScript_0x7a531
+	iffalse .SetDayOfWeek
+	jump .DayOfWeekDone
 
-UnknownScript_0x7a52a:
+.WrongDay:
 	special InitialClearDSTFlag
 	yesorno
-	iffalse UnknownScript_0x7a519
-UnknownScript_0x7a531:
+	iffalse .SetDayOfWeek
+.DayOfWeekDone:
 	writetext UnknownText_0x7a763
 	yesorno
-	iffalse UnknownScript_0x7a542
-	jump UnknownScript_0x7a53b
+	iffalse .ExplainPhone
+	jump .KnowPhone
 
-UnknownScript_0x7a53b:
+.KnowPhone:
 	writetext UnknownText_0x7a7cb
 	buttonsound
-	jump UnknownScript_0x7a549
+	jump .FinishPhone
 
-UnknownScript_0x7a542:
+.ExplainPhone:
 	writetext UnknownText_0x7a807
 	buttonsound
-	jump UnknownScript_0x7a549
+	jump .FinishPhone
 
-UnknownScript_0x7a549:
+.FinishPhone:
 	writetext UnknownText_0x7a850
 	waitbutton
 	closetext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue UnknownScript_0x7a55d
+	iftrue .FromRight
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iffalse UnknownScript_0x7a564
-	jump UnknownScript_0x7a56b
+	iffalse .FromLeft
+	jump .Finish
 
-UnknownScript_0x7a55d:
+.FromRight:
 	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a600
-	jump UnknownScript_0x7a56b
+	jump .Finish
 
-UnknownScript_0x7a564:
+.FromLeft:
 	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a602
-	jump UnknownScript_0x7a56b
+	jump .Finish
 
-UnknownScript_0x7a56b:
+.Finish:
 	special RestartMapMusic
 	turnobject PLAYERSHOUSE1F_MOM1, LEFT
 	end
 
-UnknownScript_0x7a572:
+MeetMomTalkedScript:
 	playmusic MUSIC_MOM
-	jump UnknownScript_0x7a4f6
+	jump MeetMomScript
 
 GearName:
 	db "#GEAR@"
 
-UnknownScript_0x7a57e:
+PlayersHouse1FReceiveItemStd:
 	jumpstd receiveitem
 	end
 
-MomScript_0x7a582:
+MomScript:
 	faceplayer
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	checkscene
-	iffalse UnknownScript_0x7a572 ; SCENE_DEFAULT
+	iffalse MeetMomTalkedScript ; SCENE_DEFAULT
 	opentext
 	checkevent EVENT_FIRST_TIME_BANKING_WITH_MOM
-	iftrue UnknownScript_0x7a5af
+	iftrue .FirstTimeBanking
 	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	iftrue UnknownScript_0x7a5b8
+	iftrue .BankOfMom
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue UnknownScript_0x7a5b5
+	iftrue .GaveMysteryEgg
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue UnknownScript_0x7a5a9
+	iftrue .GotAPokemon
 	writetext UnknownText_0x7a8b5
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7a5a9:
+.GotAPokemon:
 	writetext UnknownText_0x7a8e5
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7a5af:
+.FirstTimeBanking:
 	writetext UnknownText_0x7a957
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7a5b5:
+.GaveMysteryEgg:
 	setevent EVENT_FIRST_TIME_BANKING_WITH_MOM
-UnknownScript_0x7a5b8:
+.BankOfMom:
 	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special BankOfMom
 	waitbutton
@@ -392,8 +392,8 @@ PlayersHouse1F_MapEvents:
 	warp_event  9,  0, PLAYERS_HOUSE_2F, 1
 
 	db 2 ; coord events
-	coord_event  8,  4, SCENE_DEFAULT, UnknownScript_0x7a4d8
-	coord_event  9,  4, SCENE_DEFAULT, UnknownScript_0x7a4db
+	coord_event  8,  4, SCENE_DEFAULT, MeetMomLeftScript
+	coord_event  9,  4, SCENE_DEFAULT, MeetMomRightScript
 
 	db 4 ; bg events
 	bg_event  0,  1, BGEVENT_READ, StoveScript
@@ -402,8 +402,8 @@ PlayersHouse1F_MapEvents:
 	bg_event  4,  1, BGEVENT_READ, TVScript
 
 	db 5 ; object events
-	object_event  7,  4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_1
-	object_event  2,  2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_2
-	object_event  7,  4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_2
-	object_event  0,  2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, OBJECTTYPE_SCRIPT, 0, MomScript_0x7a582, EVENT_PLAYERS_HOUSE_MOM_2
+	object_event  7,  4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_1
+	object_event  2,  2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, MORN, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_2
+	object_event  7,  4, SPRITE_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, DAY, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_2
+	object_event  0,  2, SPRITE_MOM, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, NITE, 0, OBJECTTYPE_SCRIPT, 0, MomScript, EVENT_PLAYERS_HOUSE_MOM_2
 	object_event  4,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NeighborScript, EVENT_PLAYERS_HOUSE_1F_NEIGHBOR

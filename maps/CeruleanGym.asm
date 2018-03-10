@@ -21,26 +21,26 @@ CeruleanGym_MapScripts:
 	end
 
 .GruntRunsOutScript:
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884e3
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsDownMovement
 	playsound SFX_TACKLE
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884eb
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsIntoYouMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	opentext
 	writetext UnknownText_0x1884fb
 	waitbutton
 	closetext
 	showemote EMOTE_SHOCK, CERULEANGYM_ROCKET, 15
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884f7
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntBacksAwayMovement
 	opentext
 	writetext UnknownText_0x188574
 	waitbutton
 	closetext
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884f5
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntMovesCloseMovement
 	opentext
 	writetext UnknownText_0x1885a5
 	waitbutton
 	closetext
-	applymovement CERULEANGYM_ROCKET, MovementData_0x1884e8
+	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsOutMovement
 	playsound SFX_EXIT_BUILDING
 	disappear CERULEANGYM_ROCKET
 	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
@@ -56,7 +56,7 @@ CeruleanGym_MapScripts:
 	pause 15
 	end
 
-MistyScript_0x188432:
+CeruleanGymMistyScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_CASCADEBADGE
@@ -161,19 +161,19 @@ CeruleanGymStatue:
 	trainertotext MISTY, MISTY1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-MovementData_0x1884e3:
+CeruleanGymGruntRunsDownMovement:
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
 	big_step DOWN
 	step_end
 
-MovementData_0x1884e8:
+CeruleanGymGruntRunsOutMovement:
 	big_step RIGHT
 	big_step DOWN
 	step_end
 
-MovementData_0x1884eb:
+CeruleanGymGruntRunsIntoYouMovement:
 	fix_facing
 	set_sliding
 	jump_step UP
@@ -185,11 +185,11 @@ MovementData_0x1884eb:
 	step DOWN
 	step_end
 
-MovementData_0x1884f5:
+CeruleanGymGruntMovesCloseMovement:
 	big_step DOWN
 	step_end
 
-MovementData_0x1884f7:
+CeruleanGymGruntBacksAwayMovement:
 	fix_facing
 	slow_step UP
 	remove_fixed_facing
@@ -376,7 +376,7 @@ CeruleanGym_MapEvents:
 
 	db 6 ; object events
 	object_event  4, 10, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
-	object_event  5,  3, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
+	object_event  5,  3, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanGymMistyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
 	object_event  4,  6, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
 	object_event  1,  9, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
 	object_event  8,  9, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermParker, EVENT_TRAINERS_IN_CERULEAN_GYM

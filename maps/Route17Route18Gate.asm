@@ -13,22 +13,22 @@ Route17Route18Gate_MapScripts:
 Route17Route18GateOfficerScript:
 	jumptextfaceplayer Route17Route18GateOfficerText
 
-UnknownScript_0x73611:
+Route17Route18GateBicycleCheck:
 	checkitem BICYCLE
-	iffalse UnknownScript_0x73617
+	iffalse .NoBicycle
 	end
 
-UnknownScript_0x73617:
+.NoBicycle:
 	showemote EMOTE_SHOCK, ROUTE17ROUTE18GATE_OFFICER, 15
 	turnobject PLAYER, UP
 	opentext
-	writetext UnknownText_0x7364d
+	writetext Route17Route18GateCannotPassText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x73629
+	applymovement PLAYER, Route17Route18GateCannotPassMovement
 	end
 
-MovementData_0x73629:
+Route17Route18GateCannotPassMovement:
 	step RIGHT
 	turn_head LEFT
 	step_end
@@ -38,7 +38,7 @@ Route17Route18GateOfficerText:
 	line "Uphill Starts Here"
 	done
 
-UnknownText_0x7364d:
+Route17Route18GateCannotPassText:
 	text "Hang on! Don't you"
 	line "have a BICYCLE?"
 
@@ -59,8 +59,8 @@ Route17Route18Gate_MapEvents:
 	warp_event  9,  5, ROUTE_18, 2
 
 	db 2 ; coord events
-	coord_event  5,  4, SCENE_DEFAULT, UnknownScript_0x73611
-	coord_event  5,  5, SCENE_DEFAULT, UnknownScript_0x73611
+	coord_event  5,  4, SCENE_DEFAULT, Route17Route18GateBicycleCheck
+	coord_event  5,  5, SCENE_DEFAULT, Route17Route18GateBicycleCheck
 
 	db 0 ; bg events
 

@@ -12,15 +12,15 @@ BillScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_EEVEE
-	iftrue UnknownScript_0x54c1f
+	iftrue .GotEevee
 	writetext UnknownText_0x54c74
 	yesorno
-	iffalse UnknownScript_0x54c19
+	iffalse .Refused
 	writetext UnknownText_0x54d3f
 	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
-	ifequal PARTY_LENGTH, UnknownScript_0x54c13
+	ifequal PARTY_LENGTH, .NoRoom
 	writetext UnknownText_0x54dae
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -31,19 +31,19 @@ BillScript:
 	closetext
 	end
 
-UnknownScript_0x54c13:
+.NoRoom:
 	writetext UnknownText_0x54e02
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x54c19:
+.Refused:
 	writetext UnknownText_0x54e2d
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x54c1f:
+.GotEevee:
 	writetext UnknownText_0x54e42
 	waitbutton
 	closetext
@@ -53,13 +53,13 @@ BillsMomScript:
 	faceplayer
 	opentext
 	checkevent EVENT_MET_BILL
-	iffalse UnknownScript_0x54c33
+	iffalse .HaventMetBill
 	writetext UnknownText_0x54ea8
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x54c33:
+.HaventMetBill:
 	writetext UnknownText_0x54f4e
 	waitbutton
 	closetext
@@ -69,33 +69,33 @@ BillsSisterScript:
 	faceplayer
 	opentext
 	checkcellnum PHONE_BILL
-	iftrue UnknownScript_0x54c58
+	iftrue .GotBillsNumber
 	writetext UnknownText_0x54f9e
 	askforphonenumber PHONE_BILL
-	ifequal PHONE_CONTACTS_FULL, UnknownScript_0x54c64
-	ifequal PHONE_CONTACT_REFUSED, UnknownScript_0x54c5e
+	ifequal PHONE_CONTACTS_FULL, .NoRoom
+	ifequal PHONE_CONTACT_REFUSED, .Refused
 	waitsfx
 	addcellnum PHONE_BILL
 	writetext UnknownText_0x54fd9
 	playsound SFX_REGISTER_PHONE_NUMBER
 	waitsfx
 	buttonsound
-UnknownScript_0x54c58: ;0x54c58
+.GotBillsNumber:
 	writetext UnknownText_0x55069
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x54c5e:
+.Refused:
 	writetext UnknownText_0x54ff3
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x54c64:
+.NoRoom:
 	writetext UnknownText_0x55046
 	buttonsound
-	jump UnknownScript_0x54c5e
+	jump .Refused
 
 BillsHouseBookshelf1:
 	jumpstd picturebookshelf

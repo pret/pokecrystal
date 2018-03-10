@@ -132,8 +132,8 @@ DanceTheatreCooltrainerMScript:
 DanceTheatreGrannyScript:
 	jumptextfaceplayer DanceTheatreGrannyText
 
-MapDanceTheatreSignpost1Script:
-	jumptext FancyPanelText
+DanceTheatreFancyPanel:
+	jumptext DanceTheatreFancyPanelText
 
 KimonoGirlNaoko2SeenText:
 	text "You have lovely"
@@ -329,7 +329,7 @@ DanceTheatreGrannyText:
 	cont "thing is possible."
 	done
 
-FancyPanelText:
+DanceTheatreFancyPanelText:
 	text "It's a fancy panel"
 	line "that's decorated"
 	cont "with flowers."
@@ -345,8 +345,8 @@ DanceTheatre_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  5,  6, BGEVENT_UP, MapDanceTheatreSignpost1Script
-	bg_event  6,  6, BGEVENT_UP, MapDanceTheatreSignpost1Script
+	bg_event  5,  6, BGEVENT_UP, DanceTheatreFancyPanel
+	bg_event  6,  6, BGEVENT_UP, DanceTheatreFancyPanel
 
 	db 9 ; object events
 	object_event  0,  2, SPRITE_KIMONO_GIRL, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 0, TrainerKimonoGirlNaoko2, -1

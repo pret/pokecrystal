@@ -22,7 +22,7 @@ OlivineCity_MapScripts:
 	setflag ENGINE_FLYPOINT_OLIVINE
 	return
 
-UnknownScript_0x1a8833:
+OlivineCityRivalSceneTop:
 	turnobject PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
@@ -46,7 +46,7 @@ UnknownScript_0x1a8833:
 	special LoadUsedSpritesGFX
 	end
 
-UnknownScript_0x1a886b:
+OlivineCityRivalSceneBottom:
 	turnobject PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
@@ -73,18 +73,18 @@ UnknownScript_0x1a886b:
 OlivineCitySailor1Script:
 	jumptextfaceplayer OlivineCitySailor1Text
 
-StandingYoungsterScript_0x1a88a6:
+OlivineCityStandingYoungsterScript:
 	faceplayer
 	opentext
 	random 2
-	ifequal 0, UnknownScript_0x1a88b4
-	writetext UnknownText_0x1a8b04
+	ifequal 0, .FiftyFifty
+	writetext OlivineCityStandingYoungsterPokegearText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x1a88b4:
-	writetext UnknownText_0x1a8b41
+.FiftyFifty:
+	writetext OlivineCityStandingYoungsterPokedexText
 	waitbutton
 	closetext
 	end
@@ -223,14 +223,14 @@ OlivineCitySailor1Text:
 	line "ship can sail."
 	done
 
-UnknownText_0x1a8b04:
+OlivineCityStandingYoungsterPokegearText:
 	text "That thing you"
 	line "have--it's a #-"
 	cont "GEAR, right? Wow,"
 	cont "that's cool."
 	done
 
-UnknownText_0x1a8b41:
+OlivineCityStandingYoungsterPokedexText:
 	text "Wow, you have a"
 	line "#DEX!"
 
@@ -303,8 +303,8 @@ OlivineCity_MapEvents:
 	warp_event 20, 27, OLIVINE_PORT_PASSAGE, 2
 
 	db 2 ; coord events
-	coord_event 13, 12, SCENE_DEFAULT, UnknownScript_0x1a8833
-	coord_event 13, 13, SCENE_DEFAULT, UnknownScript_0x1a886b
+	coord_event 13, 12, SCENE_DEFAULT, OlivineCityRivalSceneTop
+	coord_event 13, 13, SCENE_DEFAULT, OlivineCityRivalSceneBottom
 
 	db 7 ; bg events
 	bg_event 17, 11, BGEVENT_READ, OlivineCitySign
@@ -317,6 +317,6 @@ OlivineCity_MapEvents:
 
 	db 4 ; object events
 	object_event 26, 27, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor1Script, -1
-	object_event 20, 13, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, StandingYoungsterScript_0x1a88a6, -1
+	object_event 20, 13, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineCityStandingYoungsterScript, -1
 	object_event 17, 21, SPRITE_SAILOR, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineCitySailor2Script, -1
 	object_event 10, 11, SPRITE_OLIVINE_RIVAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY

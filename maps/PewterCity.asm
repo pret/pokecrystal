@@ -21,20 +21,20 @@ PewterCityCooltrainerFScript:
 PewterCityBugCatcherScript:
 	jumptextfaceplayer PewterCityBugCatcherText
 
-GrampsScript_0x18c00f:
+PewterCityGrampsScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SILVER_WING
-	iftrue UnknownScript_0x18c023
-	writetext UnknownText_0x18c0c6
+	iftrue .GotSilverWing
+	writetext PewterCityGrampsText
 	buttonsound
 	verbosegiveitem SILVER_WING
 	setevent EVENT_GOT_SILVER_WING
 	closetext
 	end
 
-UnknownScript_0x18c023:
-	writetext UnknownText_0x18c1aa
+.GotSilverWing:
+	writetext PewterCityGrampsText_GotSilverWing
 	waitbutton
 	closetext
 	end
@@ -60,10 +60,10 @@ PewterCityPokecenterSign:
 PewterCityMartSign:
 	jumpstd martsign
 
-FruitTreeScript_0x18c03e:
+PewterCityFruitTree1:
 	fruittree FRUITTREE_PEWTER_CITY_1
 
-FruitTreeScript_0x18c040:
+PewterCityFruitTree2:
 	fruittree FRUITTREE_PEWTER_CITY_2
 
 PewterCityCooltrainerFText:
@@ -83,7 +83,7 @@ PewterCityBugCatcherText:
 	line "night."
 	done
 
-UnknownText_0x18c0c6:
+PewterCityGrampsText:
 	text "Ah, you came all"
 	line "the way out here"
 	cont "from JOHTO?"
@@ -105,7 +105,7 @@ UnknownText_0x18c0c6:
 	cont "I found in JOHTO."
 	done
 
-UnknownText_0x18c1aa:
+PewterCityGrampsText_GotSilverWing:
 	text "Going to new, un-"
 	line "known places and"
 	cont "seeing new people…"
@@ -174,6 +174,6 @@ PewterCity_MapEvents:
 	db 5 ; object events
 	object_event 19, 11, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PewterCityCooltrainerFScript, -1
 	object_event 14, 29, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCityBugCatcherScript, -1
-	object_event 29, 17, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x18c00f, -1
-	object_event 32,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x18c03e, -1
-	object_event 30,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x18c040, -1
+	object_event 29, 17, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
+	object_event 32,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree1, -1
+	object_event 30,  3, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree2, -1

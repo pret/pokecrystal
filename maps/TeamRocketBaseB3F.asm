@@ -84,13 +84,13 @@ RocketBaseRival:
 TeamRocketBaseB3FRocketScript:
 	jumptextfaceplayer TeamRocketBaseB3FRocketText
 
-UnknownScript_0x6e04b:
+RocketBaseBossLeft:
 	applymovement PLAYER, MovementData_0x6e133
-	jump UnknownScript_0x6e056
+	jump RocketBaseBoss
 
-UnknownScript_0x6e052:
+RocketBaseBossRight:
 	applymovement PLAYER, MovementData_0x6e13a
-UnknownScript_0x6e056:
+RocketBaseBoss:
 	pause 30
 	showemote EMOTE_SHOCK, TEAMROCKETBASEB3F_ROCKET1, 15
 	playmusic MUSIC_ROCKET_ENCOUNTER
@@ -573,8 +573,8 @@ TeamRocketBaseB3F_MapEvents:
 	warp_event 27, 14, TEAM_ROCKET_BASE_B2F, 5
 
 	db 3 ; coord events
-	coord_event 10,  8, SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS, UnknownScript_0x6e04b
-	coord_event 11,  8, SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS, UnknownScript_0x6e052
+	coord_event 10,  8, SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS, RocketBaseBossLeft
+	coord_event 11,  8, SCENE_TEAMROCKETBASEB3F_ROCKET_BOSS, RocketBaseBossRight
 	coord_event  8, 10, SCENE_TEAMROCKETBASEB3F_RIVAL_ENCOUNTER, RocketBaseRival
 
 	db 10 ; bg events

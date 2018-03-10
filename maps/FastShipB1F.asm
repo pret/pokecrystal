@@ -25,38 +25,38 @@ FastShipB1F_MapScripts:
 .DummyScene1:
 	end
 
-UnknownScript_0x7673c:
+FastShipB1FSailorBlocksLeft:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
-	iftrue UnknownScript_0x76766
-	applymovement FASTSHIPB1F_SAILOR2, MovementData_0x76876
+	iftrue FastShipB1FAlreadyBlocked
+	applymovement FASTSHIPB1F_SAILOR2, FashShipB1FSailorBlocksLeftMovement
 	moveobject FASTSHIPB1F_SAILOR1, 30, 6
 	appear FASTSHIPB1F_SAILOR1
 	pause 5
 	disappear FASTSHIPB1F_SAILOR2
 	end
 
-UnknownScript_0x76751:
+FastShipB1FSailorBlocksRight:
 	checkevent EVENT_FAST_SHIP_B1F_SAILOR_LEFT
-	iftrue UnknownScript_0x76766
-	applymovement FASTSHIPB1F_SAILOR1, MovementData_0x76871
+	iftrue FastShipB1FAlreadyBlocked
+	applymovement FASTSHIPB1F_SAILOR1, FashShipB1FSailorBlocksRightMovement
 	moveobject FASTSHIPB1F_SAILOR2, 31, 6
 	appear FASTSHIPB1F_SAILOR2
 	pause 5
 	disappear FASTSHIPB1F_SAILOR1
 	end
 
-UnknownScript_0x76766:
+FastShipB1FAlreadyBlocked:
 	end
 
-SailorScript_0x76767:
+FastShipB1FSailorScript:
 	faceplayer
 	opentext
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue UnknownScript_0x767a0
+	iftrue .FirstTime
 	checkevent EVENT_FAST_SHIP_LAZY_SAILOR
-	iftrue UnknownScript_0x7678d
+	iftrue .LazySailor
 	checkevent EVENT_FAST_SHIP_INFORMED_ABOUT_LAZY_SAILOR
-	iftrue UnknownScript_0x76787
+	iftrue .AlreadyInformed
 	writetext UnknownText_0x7687b
 	waitbutton
 	closetext
@@ -64,28 +64,28 @@ SailorScript_0x76767:
 	clearevent EVENT_FAST_SHIP_CABINS_NNW_NNE_NE_SAILOR
 	end
 
-UnknownScript_0x76787:
+.AlreadyInformed:
 	writetext UnknownText_0x76907
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7678d:
+.LazySailor:
 	writetext UnknownText_0x7692e
 	checkevent EVENT_FAST_SHIP_FOUND_GIRL
-	iffalse UnknownScript_0x76799
+	iffalse .NotFoundGirl
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x76799:
+.NotFoundGirl:
 	buttonsound
 	writetext UnknownText_0x7696d
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x767a0:
+.FirstTime:
 	writetext UnknownText_0x7699d
 	waitbutton
 	closetext
@@ -204,14 +204,14 @@ TrainerSchoolboyRicky:
 FashShipB1FTrashcan:
 	jumpstd trashcan
 
-MovementData_0x76871:
+FashShipB1FSailorBlocksRightMovement:
 	fix_facing
 	big_step RIGHT
 	remove_fixed_facing
 	turn_head DOWN
 	step_end
 
-MovementData_0x76876:
+FashShipB1FSailorBlocksLeftMovement:
 	fix_facing
 	big_step LEFT
 	remove_fixed_facing
@@ -454,15 +454,15 @@ FastShipB1F_MapEvents:
 	warp_event 31, 13, FAST_SHIP_1F, 12
 
 	db 2 ; coord events
-	coord_event 30,  7, SCENE_DEFAULT, UnknownScript_0x7673c
-	coord_event 31,  7, SCENE_DEFAULT, UnknownScript_0x76751
+	coord_event 30,  7, SCENE_DEFAULT, FastShipB1FSailorBlocksLeft
+	coord_event 31,  7, SCENE_DEFAULT, FastShipB1FSailorBlocksRight
 
 	db 1 ; bg events
 	bg_event 27,  9, BGEVENT_READ, FashShipB1FTrashcan
 
 	db 12 ; object events
-	object_event 30,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
-	object_event 31,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SailorScript_0x76767, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
+	object_event 30,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FastShipB1FSailorScript, EVENT_FAST_SHIP_B1F_SAILOR_LEFT
+	object_event 31,  6, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FastShipB1FSailorScript, EVENT_FAST_SHIP_B1F_SAILOR_RIGHT
 	object_event  9, 11, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSailorJeff, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event  6,  4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 1, TrainerPicnickerDebra, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
 	object_event 26,  9, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerJugglerFritz, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP

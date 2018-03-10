@@ -20,7 +20,7 @@ SproutTower3F_MapScripts:
 .DummyScene1:
 	end
 
-SproutTower3FRivalEvent:
+SproutTower3FRivalScene:
 	turnobject PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
@@ -123,11 +123,11 @@ TrainerSageNeal:
 	closetext
 	end
 
-SproutTower3FBellsproutPaintingScript:
-	jumptext SproutTower3FBellsproutPaintingText
+SproutTower3FPainting:
+	jumptext SproutTower3FPaintingText
 
-SproutTower3FBellsproutStatueScript:
-	jumptext SproutTower3FBellsproutStatueText
+SproutTower3FStatue:
+	jumptext SproutTower3FStatueText
 
 SproutTower3FPotion:
 	itemball POTION
@@ -314,13 +314,13 @@ SageNealAfterBattleText:
 	line "on your journey."
 	done
 
-SproutTower3FBellsproutPaintingText:
+SproutTower3FPaintingText:
 	text "It's a powerful"
 	line "painting of a"
 	cont "BELLSPROUT."
 	done
 
-SproutTower3FBellsproutStatueText:
+SproutTower3FStatueText:
 	text "A #MON statue…"
 
 	para "It looks very"
@@ -334,15 +334,15 @@ SproutTower3F_MapEvents:
 	warp_event 10, 14, SPROUT_TOWER_2F, 4
 
 	db 1 ; coord events
-	coord_event 11,  9, SCENE_DEFAULT, SproutTower3FRivalEvent
+	coord_event 11,  9, SCENE_DEFAULT, SproutTower3FRivalScene
 
 	db 6 ; bg events
-	bg_event  8,  1, BGEVENT_READ, SproutTower3FBellsproutStatueScript
-	bg_event 11,  1, BGEVENT_READ, SproutTower3FBellsproutStatueScript
-	bg_event  9,  0, BGEVENT_READ, SproutTower3FBellsproutPaintingScript
-	bg_event 10,  0, BGEVENT_READ, SproutTower3FBellsproutPaintingScript
-	bg_event  5, 15, BGEVENT_READ, SproutTower3FBellsproutStatueScript
-	bg_event 14, 15, BGEVENT_READ, SproutTower3FBellsproutStatueScript
+	bg_event  8,  1, BGEVENT_READ, SproutTower3FStatue
+	bg_event 11,  1, BGEVENT_READ, SproutTower3FStatue
+	bg_event  9,  0, BGEVENT_READ, SproutTower3FPainting
+	bg_event 10,  0, BGEVENT_READ, SproutTower3FPainting
+	bg_event  5, 15, BGEVENT_READ, SproutTower3FStatue
+	bg_event 14, 15, BGEVENT_READ, SproutTower3FStatue
 
 	db 7 ; object events
 	object_event  8, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSageJin, -1

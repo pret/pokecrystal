@@ -1595,7 +1595,7 @@ MoveScreenLoop: ; 12fd5
 	lb bc, 5, SCREEN_WIDTH - 2
 	call ClearBox
 	hlcoord 1, 12
-	ld de, String_1316b
+	ld de, String_MoveWhere
 	call PlaceString
 	jp .joy_loop
 .b_button
@@ -1771,7 +1771,7 @@ MoveScreenAttributes: ; 13163
 	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
 ; 1316b
 
-String_1316b: ; 1316b
+String_MoveWhere: ; 1316b
 	db "Where?@"
 ; 13172
 
@@ -1871,13 +1871,13 @@ PlaceMoveData: ; 13256
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 10
-	ld de, String_132ba
+	ld de, String_MoveType_Top
 	call PlaceString
 	hlcoord 0, 11
-	ld de, String_132c2
+	ld de, String_MoveType_Bottom
 	call PlaceString
 	hlcoord 12, 12
-	ld de, String_132ca
+	ld de, String_MoveAtk
 	call PlaceString
 	ld a, [wCurMove]
 	ld b, a
@@ -1900,7 +1900,7 @@ PlaceMoveData: ; 13256
 	jr .description
 
 .no_power
-	ld de, String_132cf
+	ld de, String_MoveNoPower
 	call PlaceString
 
 .description
@@ -1911,16 +1911,16 @@ PlaceMoveData: ; 13256
 	ret
 ; 132ba
 
-String_132ba: ; 132ba
+String_MoveType_Top: ; 132ba
 	db "┌─────┐@"
 ; 132c2
-String_132c2: ; 132c2
+String_MoveType_Bottom: ; 132c2
 	db "│TYPE/└@"
 ; 132ca
-String_132ca: ; 132ca
+String_MoveAtk: ; 132ca
 	db "ATK/@"
 ; 132cf
-String_132cf: ; 132cf
+String_MoveNoPower: ; 132cf
 	db "---@"
 ; 132d3
 

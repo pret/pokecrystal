@@ -27,10 +27,11 @@ BattleTowerOutsideBuenaScript:
 BattleTowerOutsideSailorScript:
 	jumptextfaceplayer BattleTowerOutsideSailorText
 
-MapBattleTowerOutsideSignpost0Script:
-	jumptext BattleTowerOutsideText_UltimateChallenge
+BattleTowerOutsideSign:
+	jumptext BattleTowerOutsideSignText
 
-BattleTowerOutsideUnusedText1:
+BattleTowerOutsideYoungsterText_NotYetOpen:
+; unreferenced
 	text "Wow, the BATTLE"
 	line "TOWER is huge! My"
 
@@ -38,7 +39,8 @@ BattleTowerOutsideUnusedText1:
 	line "looking up at it."
 	done
 
-BattleTowerOutsideUnusedText2:
+BattleTowerOutsideYoungsterText_Mobile:
+; unreferenced
 	text "Wow, the BATTLE"
 	line "TOWER is huge!"
 
@@ -61,7 +63,8 @@ BattleTowerOutsideYoungsterText:
 	cont "in there!"
 	done
 
-BattleTowerOutsideUnusedText3:
+BattleTowerOutsideBuenaText_NotYetOpen:
+; unreferenced
 	text "What on earth do"
 	line "they do here?"
 
@@ -83,7 +86,8 @@ BattleTowerOutsideBuenaText:
 	line "battle…"
 	done
 
-BattleTowerOutsideUnusedText4:
+BattleTowerOutsideSailorText_Mobile:
+; unreferenced
 	text "Ehehehe…"
 	line "I sneaked out of"
 	cont "work to come here."
@@ -104,12 +108,12 @@ BattleTowerOutsideSailorText:
 	line "all. That I must!"
 	done
 
-BattleTowerOutsideText_BattleTower:
+BattleTowerOutsideSignText_NotYetOpen:
 ; unused; originally shown when the Battle Tower was closed
 	text "BATTLE TOWER"
 	done
 
-BattleTowerOutsideText_UltimateChallenge:
+BattleTowerOutsideSignText:
 	text "BATTLE TOWER"
 
 	para "Take the Ultimate"
@@ -139,7 +143,7 @@ BattleTowerOutside_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 10, 10, BGEVENT_READ, MapBattleTowerOutsideSignpost0Script
+	bg_event 10, 10, BGEVENT_READ, BattleTowerOutsideSign
 
 	db 4 ; object events
 	object_event  6, 12, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BattleTowerOutsideYoungsterScript, -1

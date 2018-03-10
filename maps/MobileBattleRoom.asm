@@ -17,7 +17,7 @@ MobileBattleRoom_MapScripts:
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_MOBILE_BATTLE_ROOM
 	end
 
-MapMobileBattleRoomSignpost0Script:
+MobileBattleRoomConsoleScript:
 	refreshscreen
 	special Function1037c2
 	ifequal $1, .one
@@ -74,6 +74,6 @@ MobileBattleRoom_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  4,  2, BGEVENT_UP, MapMobileBattleRoomSignpost0Script
+	bg_event  4,  2, BGEVENT_UP, MobileBattleRoomConsoleScript
 
 	db 0 ; object events

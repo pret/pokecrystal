@@ -45,7 +45,7 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 	closetext
 	end
 
-MapRuinsOfAlphAerodactylChamberSignpost2Script:
+RuinsOfAlphAerodactylChamberPuzzle:
 	refreshscreen
 	writebyte UNOWNPUZZLE_AERODACTYL
 	special UnownPuzzle
@@ -65,32 +65,32 @@ MapRuinsOfAlphAerodactylChamberSignpost2Script:
 	reloadmappart
 	playsound SFX_STRENGTH
 	earthquake 80
-	applymovement PLAYER, MovementData_0x58e4d
+	applymovement PLAYER, RuinsOfAlphAerodactylChamberSkyfallTopMovement
 	playsound SFX_KINESIS
 	waitsfx
 	pause 20
 	warpcheck
 	end
 
-MapRuinsOfAlphAerodactylChamberSignpost1Script:
-	jumptext UnknownText_0x58ec2
+RuinsOfAlphAerodactylChamberAncientReplica:
+	jumptext RuinsOfAlphAerodactylChamberAncientReplicaText
 
-MapRuinsOfAlphAerodactylChamberSignpost3Script:
-	jumptext UnknownText_0x58ee7
+RuinsOfAlphAerodactylChamberDescriptionSign:
+	jumptext RuinsOfAlphAerodactylChamberDescriptionText
 
-MapRuinsOfAlphAerodactylChamberSignpost4Script:
+RuinsOfAlphAerodactylChamberWallPatternLeft:
 	opentext
-	writetext UnknownText_0x58e4f
+	writetext RuinsOfAlphAerodactylChamberWallPatternLeftText
 	writebyte UNOWNWORDS_LIGHT
 	special DisplayUnownWords
 	closetext
 	end
 
-MapRuinsOfAlphAerodactylChamberSignpost5Script:
+RuinsOfAlphAerodactylChamberWallPatternRight:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue .WallOpen
 	opentext
-	writetext UnknownText_0x58e81
+	writetext RuinsOfAlphAerodactylChamberWallPatternRightText
 	writebyte UNOWNWORDS_LIGHT
 	special DisplayUnownWords
 	closetext
@@ -98,42 +98,42 @@ MapRuinsOfAlphAerodactylChamberSignpost5Script:
 
 .WallOpen:
 	opentext
-	writetext UnknownText_0x58ea2
+	writetext RuinsOfAlphAerodactylChamberWallHoleText
 	waitbutton
 	closetext
 	end
 
-MovementData_0x58e4d:
+RuinsOfAlphAerodactylChamberSkyfallTopMovement:
 	skyfall_top
 	step_end
 
-UnknownText_0x58e4f:
+RuinsOfAlphAerodactylChamberWallPatternLeftText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
 
+RuinsOfAlphAerodactylChamberUnownText:
 ; unused
-UnusedText_0x58e70:
 	text "It's UNOWN text!"
 	done
 
-UnknownText_0x58e81:
+RuinsOfAlphAerodactylChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
 
-UnknownText_0x58ea2:
+RuinsOfAlphAerodactylChamberWallHoleText:
 	text "There's a big hole"
 	line "in the wall!"
 	done
 
-UnknownText_0x58ec2:
+RuinsOfAlphAerodactylChamberAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
 	done
 
-UnknownText_0x58ee7:
+RuinsOfAlphAerodactylChamberDescriptionText:
 	text "This flying #-"
 	line "MON attacked its"
 
@@ -154,11 +154,11 @@ RuinsOfAlphAerodactylChamber_MapEvents:
 	db 0 ; coord events
 
 	db 6 ; bg events
-	bg_event  2,  3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
-	bg_event  5,  3, BGEVENT_READ, MapRuinsOfAlphAerodactylChamberSignpost1Script
-	bg_event  3,  2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost2Script
-	bg_event  4,  2, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost3Script
-	bg_event  3,  0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost4Script
-	bg_event  4,  0, BGEVENT_UP, MapRuinsOfAlphAerodactylChamberSignpost5Script
+	bg_event  2,  3, BGEVENT_READ, RuinsOfAlphAerodactylChamberAncientReplica
+	bg_event  5,  3, BGEVENT_READ, RuinsOfAlphAerodactylChamberAncientReplica
+	bg_event  3,  2, BGEVENT_UP, RuinsOfAlphAerodactylChamberPuzzle
+	bg_event  4,  2, BGEVENT_UP, RuinsOfAlphAerodactylChamberDescriptionSign
+	bg_event  3,  0, BGEVENT_UP, RuinsOfAlphAerodactylChamberWallPatternLeft
+	bg_event  4,  0, BGEVENT_UP, RuinsOfAlphAerodactylChamberWallPatternRight
 
 	db 0 ; object events

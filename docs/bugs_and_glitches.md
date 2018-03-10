@@ -33,6 +33,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Magikarp length limits have a unit conversion error](#magikarp-length-limits-have-a-unit-conversion-error)
 - [Magikarp lengths can be miscalculated](#magikarp-lengths-can-be-miscalculated)
 - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
+- [A "HOF Master!" title for 200-Time Famers is defined but inaccessible](#a-hof-master-title-for-200-time-famers-is-defined-but-inaccessible)
 - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
 - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
 - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
@@ -47,6 +48,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
 - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
 - [Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evosattacks-evolution-entries-can-have-stone-compatibility-reported-correctly)
+- [`EVOLVE_STAT` can break Stone compatibility reporting](#evolve_stat-can-break-stone-compatibility-reporting)
 - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
 - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
@@ -897,6 +899,26 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 *To do:* Fix this bug.
 
 
+## A "HOF Master!" title for 200-Time Famers is defined but inaccessible
+
+([Video](https://www.youtube.com/watch?v=iHkWubvxmSg))
+
+This is a bug with `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/halloffame.asm](/engine/events/halloffame.asm):
+
+```asm
+	ld a, [wHallOfFameTempWinCount]
+	cp HOF_MASTER_COUNT + 1 ; should be HOF_MASTER_COUNT
+	jr c, .print_num_hof
+	ld de, .HOFMaster
+	hlcoord 1, 2
+	call PlaceString
+	hlcoord 13, 2
+	jr .finish
+```
+
+**Fix:** Change `HOF_MASTER_COUNT + 1` to `HOF_MASTER_COUNT`.
+
+
 ## Slot machine payout sound effects cut each other off
 
 ([Video](https://www.youtube.com/watch?v=ojq3xqfRF6I))
@@ -1278,6 +1300,39 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 ```
 
 **Fix:** Change `ld bc, 10` to `ld bc, wStringBuffer2 - wStringBuffer1` to support up to six Stone entries.
+
+
+## `EVOLVE_STAT` can break Stone compatibility reporting
+
+This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/party_menu.asm](/engine/party_menu.asm):
+
+```asm
+.loop2
+	ld a, [hli]
+	and a
+	jr z, .nope
+	inc hl
+	inc hl
+	cp EVOLVE_ITEM
+	jr nz, .loop2
+```
+
+**Fix:**
+
+```asm
+.loop2
+	ld a, [hli]
+	and a
+	jr z, .nope
+	cp EVOLVE_STAT
+	jr nz, .not_four_bytes
+	inc hl
+.not_four_bytes
+	inc hl
+	inc hl
+	cp EVOLVE_ITEM
+	jr nz, .loop2
+```
 
 
 ## `ScriptCall` can overflow `wScriptStack` and crash

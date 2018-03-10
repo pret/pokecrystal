@@ -6,8 +6,8 @@ CeladonMansion2F_MapScripts:
 CeladonMansion2FComputer:
 	jumptext CeladonMansion2FComputerText
 
-CeladonMansion2FSign:
-	jumptext CeladonMansion2FSignText
+CeladonMansion2FMeetingRoomSign:
+	jumptext CeladonMansion2FMeetingRoomSignText
 
 CeladonMansion2FBookshelf:
 	jumpstd difficultbookshelf
@@ -42,7 +42,7 @@ CeladonMansion2FComputerText:
 	para "…"
 	done
 
-CeladonMansion2FSignText:
+CeladonMansion2FMeetingRoomSignText:
 	text "GAME FREAK"
 	line "MEETING ROOM"
 	done
@@ -60,7 +60,7 @@ CeladonMansion2F_MapEvents:
 
 	db 3 ; bg events
 	bg_event  0,  3, BGEVENT_READ, CeladonMansion2FComputer
-	bg_event  5,  8, BGEVENT_UP, CeladonMansion2FSign
+	bg_event  5,  8, BGEVENT_UP, CeladonMansion2FMeetingRoomSign
 	bg_event  2,  3, BGEVENT_READ, CeladonMansion2FBookshelf
 
 	db 0 ; object events

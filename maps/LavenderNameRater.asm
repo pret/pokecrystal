@@ -19,6 +19,7 @@ LavenderNameRater:
 	end
 
 LavenderNameRaterUnusedBookshelf:
+; unused
 	jumpstd difficultbookshelf
 
 LavenderNameRater_MapEvents:

@@ -27,7 +27,7 @@ RadioTower1FReceptionistScript:
 	closetext
 	end
 
-GentlemanScript_0x5cd3d:
+RadioTower1FLuckyNumberManScript:
 	faceplayer
 	opentext
 	writetext UnknownText_0x5ceba
@@ -194,11 +194,11 @@ TrainerGruntM3:
 	closetext
 	end
 
-MapRadioTower1FSignpost0Script:
-	jumptext UnknownText_0x5d5e7
+RadioTower1FDirectory:
+	jumptext RadioTower1FDirectoryText
 
-MapRadioTower1FSignpost1Script:
-	jumptext UnknownText_0x5d631
+RadioTower1FLuckyChannelSign:
+	jumptext RadioTower1FLuckyChannelSignText
 
 MovementData_0x5ce71:
 	step RIGHT
@@ -448,7 +448,7 @@ GruntM3AfterBattleText:
 	cont "warn the others…"
 	done
 
-UnknownText_0x5d5e7:
+RadioTower1FDirectoryText:
 	text "1F RECEPTION"
 	line "2F SALES"
 
@@ -459,7 +459,7 @@ UnknownText_0x5d5e7:
 	line "   OFFICE"
 	done
 
-UnknownText_0x5d631:
+RadioTower1FLuckyChannelSignText:
 	text "LUCKY CHANNEL!"
 
 	para "Win with #MON"
@@ -481,13 +481,13 @@ RadioTower1F_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  3,  0, BGEVENT_READ, MapRadioTower1FSignpost0Script
-	bg_event 13,  0, BGEVENT_READ, MapRadioTower1FSignpost1Script
+	bg_event  3,  0, BGEVENT_READ, RadioTower1FDirectory
+	bg_event 13,  0, BGEVENT_READ, RadioTower1FLuckyChannelSign
 
 	db 6 ; object events
 	object_event  5,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FReceptionistScript, -1
 	object_event 16,  4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower1FLassScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 15,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower1FYoungsterScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 14,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM3, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event  8,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x5cd3d, EVENT_GOLDENROD_CITY_CIVILIANS
+	object_event  8,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower1FLuckyNumberManScript, EVENT_GOLDENROD_CITY_CIVILIANS
 	object_event 12,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower1FRadioCardWomanScript, EVENT_GOLDENROD_CITY_CIVILIANS

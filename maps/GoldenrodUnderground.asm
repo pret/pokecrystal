@@ -152,7 +152,7 @@ TrainerPokemaniacDonald:
 	closetext
 	end
 
-GrannyScript_0x7c132:
+BitterMerchantScript:
 	opentext
 	checkcode VAR_WEEKDAY
 	ifequal SUNDAY, .Open
@@ -164,7 +164,7 @@ GrannyScript_0x7c132:
 	closetext
 	end
 
-GrampsScript_0x7c146:
+BargainMerchantScript:
 	opentext
 	checkflag ENGINE_GOLDENROD_UNDERGROUND_MERCHANT_CLOSED
 	iftrue GoldenrodUndergroundScript_ShopClosed
@@ -239,10 +239,10 @@ OlderHaircutBrotherScript:
 	writetext UnknownText_0x7c6d8
 	waitbutton
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue UnknownScript_0x7c2bb
+	iftrue EitherHaircutBrotherScript_SlightlyHappier
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iftrue UnknownScript_0x7c2c4
-	jump UnknownScript_0x7c2cd
+	iftrue EitherHaircutBrotherScript_Happier
+	jump EitherHaircutBrotherScript_MuchHappier
 
 .Refused:
 	writetext UnknownText_0x7c6ea
@@ -322,10 +322,10 @@ YoungerHaircutBrotherScript:
 	writetext UnknownText_0x7c82a
 	waitbutton
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue UnknownScript_0x7c2bb
+	iftrue EitherHaircutBrotherScript_SlightlyHappier
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iftrue UnknownScript_0x7c2c4
-	jump UnknownScript_0x7c2cd
+	iftrue EitherHaircutBrotherScript_Happier
+	jump EitherHaircutBrotherScript_MuchHappier
 
 .Refused:
 	writetext UnknownText_0x7c842
@@ -345,21 +345,21 @@ YoungerHaircutBrotherScript:
 	closetext
 	end
 
-UnknownScript_0x7c2bb:
+EitherHaircutBrotherScript_SlightlyHappier:
 	writetext HaircutBrosText_SlightlyHappier
 	special PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7c2c4:
+EitherHaircutBrotherScript_Happier:
 	writetext HaircutBrosText_Happier
 	special PlayCurMonCry
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7c2cd:
+EitherHaircutBrotherScript_MuchHappier:
 	writetext HaircutBrosText_MuchHappier
 	special PlayCurMonCry
 	waitbutton
@@ -403,8 +403,8 @@ GoldenrodUndergroundScript_ShopClosed:
 GoldenrodUndergroundCoinCase:
 	itemball COIN_CASE
 
-MapGoldenrodUndergroundSignpost1Script:
-	jumptext UnknownText_0x7c91a
+GoldenrodUndergroundNoEntrySign:
+	jumptext GoldenrodUndergroundNoEntryText
 
 GoldenrodUndergroundHiddenParlyzHeal:
 	hiddenitem PARLYZ_HEAL, EVENT_GOLDENROD_UNDERGROUND_HIDDEN_PARLYZ_HEAL
@@ -639,7 +639,7 @@ UnknownText_0x7c904:
 	line "today."
 	done
 
-UnknownText_0x7c91a:
+GoldenrodUndergroundNoEntryText:
 	text "NO ENTRY BEYOND"
 	line "THIS POINT"
 	done
@@ -659,7 +659,7 @@ GoldenrodUnderground_MapEvents:
 
 	db 5 ; bg events
 	bg_event 18,  6, BGEVENT_READ, BasementDoorScript
-	bg_event 19,  6, BGEVENT_READ, MapGoldenrodUndergroundSignpost1Script
+	bg_event 19,  6, BGEVENT_READ, GoldenrodUndergroundNoEntrySign
 	bg_event  6, 13, BGEVENT_ITEM, GoldenrodUndergroundHiddenParlyzHeal
 	bg_event  4, 18, BGEVENT_ITEM, GoldenrodUndergroundHiddenSuperPotion
 	bg_event 17,  8, BGEVENT_ITEM, GoldenrodUndergroundHiddenAntidote
@@ -670,7 +670,7 @@ GoldenrodUnderground_MapEvents:
 	object_event  3, 27, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPokemaniacIssac, -1
 	object_event  2,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPokemaniacDonald, -1
 	object_event  7, 25, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, GoldenrodUndergroundCoinCase, EVENT_GOLDENROD_UNDERGROUND_COIN_CASE
-	object_event  7, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrampsScript_0x7c146, EVENT_GOLDENROD_UNDERGROUND_GRAMPS
+	object_event  7, 11, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BargainMerchantScript, EVENT_GOLDENROD_UNDERGROUND_GRAMPS
 	object_event  7, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OlderHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_OLDER_HAIRCUT_BROTHER
 	object_event  7, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, YoungerHaircutBrotherScript, EVENT_GOLDENROD_UNDERGROUND_YOUNGER_HAIRCUT_BROTHER
-	object_event  7, 21, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x7c132, EVENT_GOLDENROD_UNDERGROUND_GRANNY
+	object_event  7, 21, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BitterMerchantScript, EVENT_GOLDENROD_UNDERGROUND_GRANNY

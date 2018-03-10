@@ -16,64 +16,65 @@ LavRadioTower1FReceptionistScript:
 LavRadioTower1FOfficerScript:
 	jumptextfaceplayer LavRadioTower1FOfficerText
 
-LavRadioTower1FSuperNerdScript:
-	jumptextfaceplayer LavRadioTower1FSuperNerdText
+LavRadioTower1FSuperNerd1Script:
+	jumptextfaceplayer LavRadioTower1FSuperNerd1Text
 
-GentlemanScript_0x7ee6c:
+LavRadioTower1FGentlemanScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_EXPN_CARD
-	iftrue .UnknownScript_0x7ee8e
+	iftrue .GotExpnCard
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .UnknownScript_0x7ee80
-	writetext UnknownText_0x7effb
+	iftrue .ReturnedMachinePart
+	writetext LavRadioTower1FGentlemanText
 	waitbutton
 	closetext
 	end
 
-.UnknownScript_0x7ee80:
-	writetext UnknownText_0x7f0a1
+.ReturnedMachinePart:
+	writetext LavRadioTower1FGentlemanText_ReturnedMachinePart
 	buttonsound
 	stringtotext .expncardname, MEM_BUFFER_1
-	scall .UnknownScript_0x7ee94
+	scall .receiveitem
 	setflag ENGINE_EXPN_CARD
-.UnknownScript_0x7ee8e:
-	writetext UnknownText_0x7f141
+.GotExpnCard:
+	writetext LavRadioTower1FGentlemanText_GotExpnCard
 	waitbutton
 	closetext
 	end
 
-.UnknownScript_0x7ee94:
+.receiveitem:
 	jumpstd receiveitem
 	end
 
 .expncardname
 	db "EXPN CARD@"
 
-SuperNerdScript_0x7eea2:
+LavRadioTower1FSuperNerd2Script:
 	faceplayer
 	opentext
 	checkflag ENGINE_EXPN_CARD
-	iftrue UnknownScript_0x7eeb0
-	writetext UnknownText_0x7f193
+	iftrue .GotExpnCard
+	writetext LavRadioTower1FSuperNerd2Text
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7eeb0:
-	writetext UnknownText_0x7f248
+.GotExpnCard:
+	writetext LavRadioTower1FSuperNerd2Text_GotExpnCard
 	waitbutton
 	closetext
 	end
 
-MapLavRadioTower1FSignpost0Script:
-	jumptext UnknownText_0x7f2e3
+LavRadioTower1FDirectory:
+	jumptext LavRadioTower1FDirectoryText
 
-MapLavRadioTower1FSignpost1Script:
-	jumptext UnknownText_0x7f32d
+LavRadioTower1FPokeFluteSign:
+	jumptext LavRadioTower1FPokeFluteSignText
 
-UnknownScript_0x7eebc:
-	jumptext UnknownText_0x7f36b
+LavRadioTower1FReferenceLibrary:
+; unreferenced
+	jumptext LavRadioTower1FReferenceLibraryText
 
 LavRadioTower1FReceptionistText:
 	text "Welcome!"
@@ -98,7 +99,7 @@ LavRadioTower1FOfficerText:
 	line "up our security."
 	done
 
-LavRadioTower1FSuperNerdText:
+LavRadioTower1FSuperNerd1Text:
 	text "Many people are"
 	line "hard at work here"
 
@@ -110,7 +111,7 @@ LavRadioTower1FSuperNerdText:
 	cont "on good shows."
 	done
 
-UnknownText_0x7effb:
+LavRadioTower1FGentlemanText:
 	text "Oh, no, no, no!"
 
 	para "We've been off the"
@@ -128,7 +129,7 @@ UnknownText_0x7effb:
 	para "I'll be ruined!"
 	done
 
-UnknownText_0x7f0a1:
+LavRadioTower1FGentlemanText_ReturnedMachinePart:
 	text "Ah! So you're the"
 	line "<PLAY_G> who solved"
 
@@ -145,7 +146,7 @@ UnknownText_0x7f0a1:
 	line "as my thanks."
 	done
 
-UnknownText_0x7f141:
+LavRadioTower1FGentlemanText_GotExpnCard:
 	text "With that thing,"
 	line "you can tune into"
 
@@ -155,7 +156,7 @@ UnknownText_0x7f141:
 	para "Gahahahaha!"
 	done
 
-UnknownText_0x7f193:
+LavRadioTower1FSuperNerd2Text:
 	text "Hey there!"
 
 	para "I am the super"
@@ -174,7 +175,7 @@ UnknownText_0x7f193:
 	line "better get one!"
 	done
 
-UnknownText_0x7f248:
+LavRadioTower1FSuperNerd2Text_GotExpnCard:
 	text "Hey there!"
 
 	para "I am the super"
@@ -191,7 +192,7 @@ UnknownText_0x7f248:
 	cont "off the air!"
 	done
 
-UnknownText_0x7f2e3:
+LavRadioTower1FDirectoryText:
 	text "1F RECEPTION"
 	line "2F SALES"
 
@@ -202,7 +203,7 @@ UnknownText_0x7f2e3:
 	line "   OFFICE"
 	done
 
-UnknownText_0x7f32d:
+LavRadioTower1FPokeFluteSignText:
 	text "Perk Up #MON"
 	line "with Mellow Sounds"
 
@@ -210,7 +211,7 @@ UnknownText_0x7f32d:
 	line "on CHANNEL 20"
 	done
 
-UnknownText_0x7f36b:
+LavRadioTower1FReferenceLibraryText:
 	text "Wow! A full rack"
 	line "of #MON CDs and"
 	cont "videos."
@@ -229,12 +230,12 @@ LavRadioTower1F_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event 11,  0, BGEVENT_READ, MapLavRadioTower1FSignpost0Script
-	bg_event  5,  0, BGEVENT_READ, MapLavRadioTower1FSignpost1Script
+	bg_event 11,  0, BGEVENT_READ, LavRadioTower1FDirectory
+	bg_event  5,  0, BGEVENT_READ, LavRadioTower1FPokeFluteSign
 
 	db 5 ; object events
 	object_event  6,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FReceptionistScript, -1
 	object_event 15,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FOfficerScript, -1
-	object_event  1,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerdScript, -1
-	object_event  9,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GentlemanScript_0x7ee6c, -1
-	object_event 14,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x7eea2, -1
+	object_event  1,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd1Script, -1
+	object_event  9,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FGentlemanScript, -1
+	object_event 14,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavRadioTower1FSuperNerd2Script, -1

@@ -34,12 +34,13 @@ TradeCenter_MapScripts:
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_TRADE_CENTER
 	end
 
-MapTradeCenterSignpost1Script:
+TradeCenterConsoleScript:
 	special TradeCenter
 	newloadmap MAPSETUP_LINKRETURN
 	end
 
-ChrisScript_0x19340b:
+TradeCenterFriendScript:
+; unreferenced
 	opentext
 	writetext .FriendReadyText
 	waitbutton
@@ -61,9 +62,9 @@ TradeCenter_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  4,  4, BGEVENT_RIGHT, MapTradeCenterSignpost1Script
-	bg_event  5,  4, BGEVENT_LEFT, MapTradeCenterSignpost1Script
+	bg_event  4,  4, BGEVENT_RIGHT, TradeCenterConsoleScript
+	bg_event  5,  4, BGEVENT_LEFT, TradeCenterConsoleScript
 
 	db 2 ; object events
-	object_event  3,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event  6,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	object_event  3,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  6,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2

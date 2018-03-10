@@ -81,8 +81,9 @@ UnionCave1FPotion:
 UnionCave1FAwakening:
 	itemball AWAKENING
 
-UnknownScript_0x59c08:
-	jumptext UnknownText_0x59f29
+UnionCave1FUnusedSign:
+; unused
+	jumptext UnionCave1FUnusedSignText
 
 HikerRussellSeenText:
 	text "You're headed to"
@@ -193,7 +194,7 @@ FirebreatherRayAfterBattleText:
 	cont "up this cave."
 	done
 
-UnknownText_0x59f29:
+UnionCave1FUnusedSignText:
 	text "UNION CAVE"
 	done
 

@@ -17,7 +17,7 @@ MahoganyMart1F_MapScripts:
 	end
 
 .LanceUncoversStaircase:
-	priorityjump UnknownScript_0x6c38f
+	priorityjump MahoganyMart1FLanceUncoversStaircaseScript
 	end
 
 .MahoganyMart1FStaircase:
@@ -29,38 +29,38 @@ MahoganyMart1F_MapScripts:
 	changeblock 6, 2, $1e ; stairs
 	return
 
-PharmacistScript_0x6c367:
+MahogayMart1FPharmacistScript:
 	faceplayer
 	opentext
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
-	iftrue UnknownScript_0x6c375
+	iftrue .LanceEntered
 	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_1
 	closetext
 	end
 
-UnknownScript_0x6c375:
-	writetext UnknownText_0x6c46b
+.LanceEntered:
+	writetext MahogayMart1FPharmacistText_LanceEntered
 	waitbutton
 	closetext
 	end
 
-BlackBeltScript_0x6c37b:
+MahogayMart1FBlackBeltScript:
 	faceplayer
 	opentext
 	checkevent EVENT_DECIDED_TO_HELP_LANCE
-	iftrue UnknownScript_0x6c389
-	writetext UnknownText_0x6c494
+	iftrue .LanceEntered
+	writetext MahogayMart1FBlackBeltText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6c389:
-	writetext UnknownText_0x6c501
+.LanceEntered:
+	writetext MahogayMart1FBlackBeltText_LanceEntered
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x6c38f:
+MahoganyMart1FLanceUncoversStaircaseScript:
 	pause 15
 	opentext
 	writetext UnknownText_0x6c52a
@@ -103,7 +103,7 @@ UnknownScript_0x6c38f:
 	waitsfx
 	end
 
-GrannyScript_0x6c3ee:
+MahogayMart1FGrannyScript:
 	faceplayer
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_MAHOGANY_2
@@ -164,13 +164,13 @@ UnknownText_0x6c414:
 	line "eat in MAHOGANY!"
 	done
 
-UnknownText_0x6c46b:
+MahogayMart1FPharmacistText_LanceEntered:
 	text "Arrgh… You found"
 	line "the secret stair-"
 	cont "way…"
 	done
 
-UnknownText_0x6c494:
+MahogayMart1FBlackBeltText:
 	text "Heheh! The experi-"
 	line "ment worked like a"
 	cont "charm."
@@ -182,7 +182,7 @@ UnknownText_0x6c494:
 	line "moneymakers."
 	done
 
-UnknownText_0x6c501:
+MahogayMart1FBlackBeltText_LanceEntered:
 	text "Urrgh…"
 
 	para "That guy's dragon"
@@ -231,8 +231,8 @@ MahoganyMart1F_MapEvents:
 	db 0 ; bg events
 
 	db 5 ; object events
-	object_event  4,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PharmacistScript_0x6c367, EVENT_TEAM_ROCKET_BASE_POPULATION
-	object_event  1,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackBeltScript_0x6c37b, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event  4,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FPharmacistScript, EVENT_TEAM_ROCKET_BASE_POPULATION
+	object_event  1,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FBlackBeltScript, EVENT_TEAM_ROCKET_BASE_POPULATION
 	object_event  4,  6, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
 	object_event  3,  6, SPRITE_DRAGON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MAHOGANY_MART_LANCE_AND_DRAGONITE
-	object_event  1,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GrannyScript_0x6c3ee, EVENT_MAHOGANY_MART_OWNERS
+	object_event  1,  3, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahogayMart1FGrannyScript, EVENT_MAHOGANY_MART_OWNERS

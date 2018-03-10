@@ -13,7 +13,7 @@ SaffronMagnetTrainStation_MapScripts:
 .DummyScene:
 	end
 
-OfficerScript_0x18a81e:
+SaffronMagnetTrainStationOfficerScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
@@ -68,18 +68,18 @@ Script_ArriveFromGoldenrod:
 	closetext
 	end
 
-GymGuyScript_0x18a875:
+SaffronMagnetTrainStationGymGuyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue UnknownScript_0x18a883
-	writetext UnknownText_0x18a9ca
+	iftrue .ReturnedMachinePart
+	writetext SaffronMagnetTrainStationGymGuyText
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x18a883:
-	writetext UnknownText_0x18aa61
+.ReturnedMachinePart:
+	writetext SaffronMagnetTrainStationGymGuyText_ReturnedMachinePart
 	waitbutton
 	closetext
 	end
@@ -164,7 +164,7 @@ UnknownText_0x18a993:
 	line "again."
 	done
 
-UnknownText_0x18a9ca:
+SaffronMagnetTrainStationGymGuyText:
 	text "The MAGNET TRAIN"
 	line "is a super-modern"
 
@@ -180,7 +180,7 @@ UnknownText_0x18a9ca:
 	cont "tricity…"
 	done
 
-UnknownText_0x18aa61:
+SaffronMagnetTrainStationGymGuyText_ReturnedMachinePart:
 	text "Whew…"
 
 	para "How many times"
@@ -228,7 +228,7 @@ SaffronMagnetTrainStation_MapEvents:
 	db 0 ; bg events
 
 	db 4 ; object events
-	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18a81e, -1
-	object_event 10, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x18a875, -1
+	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationOfficerScript, -1
+	object_event 10, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationGymGuyScript, -1
 	object_event  6, 11, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationTeacherScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	object_event  6, 10, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationLassScript, EVENT_SAFFRON_TRAIN_STATION_POPULATION

@@ -6,29 +6,29 @@ Route12SuperRodHouse_MapScripts:
 
 	db 0 ; callbacks
 
-FishingGuruScript_0x7f484:
+Route12SuperRodHouseFishingGuruScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SUPER_ROD
-	iftrue UnknownScript_0x7f4a0
+	iftrue .GotSuperRod
 	writetext UnknownText_0x7f4af
 	yesorno
-	iffalse UnknownScript_0x7f4a6
+	iffalse .Refused
 	writetext UnknownText_0x7f52f
 	buttonsound
 	verbosegiveitem SUPER_ROD
-	iffalse UnknownScript_0x7f4aa
+	iffalse .NoRoom
 	setevent EVENT_GOT_SUPER_ROD
-UnknownScript_0x7f4a0:
+.GotSuperRod:
 	writetext UnknownText_0x7f57c
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7f4a6:
+.Refused:
 	writetext UnknownText_0x7f5ec
 	waitbutton
-UnknownScript_0x7f4aa:
+.NoRoom:
 	closetext
 	end
 
@@ -89,4 +89,4 @@ Route12SuperRodHouse_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event  5,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FishingGuruScript_0x7f484, -1
+	object_event  5,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route12SuperRodHouseFishingGuruScript, -1

@@ -110,7 +110,7 @@ CherrygroveSilverSceneNorth:
 	turnobject PLAYER, RIGHT
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
-	writetext UnknownText_0x19c4e2
+	writetext CherrygroveRivalText_Seen
 	waitbutton
 	closetext
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
@@ -430,7 +430,7 @@ GuideGentNoText:
 	line "when you like."
 	done
 
-UnknownText_0x19c4e2:
+CherrygroveRivalText_Seen:
 	text "<……> <……> <……>"
 
 	para "You got a #MON"

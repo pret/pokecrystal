@@ -13,22 +13,22 @@ Route16Gate_MapScripts:
 Route16GateOfficerScript:
 	jumptextfaceplayer Route16GateOfficerText
 
-UnknownScript_0x733ed:
+Route16GateBicycleCheck:
 	checkitem BICYCLE
-	iffalse UnknownScript_0x733f3
+	iffalse .NoBicycle
 	end
 
-UnknownScript_0x733f3:
+.NoBicycle:
 	showemote EMOTE_SHOCK, ROUTE16GATE_OFFICER, 15
 	turnobject PLAYER, UP
 	opentext
-	writetext UnknownText_0x73496
+	writetext Route16GateCannotPassText
 	waitbutton
 	closetext
-	applymovement PLAYER, MovementData_0x73405
+	applymovement PLAYER, Route16GateCannotPassMovement
 	end
 
-MovementData_0x73405:
+Route16GateCannotPassMovement:
 	step RIGHT
 	turn_head LEFT
 	step_end
@@ -48,7 +48,7 @@ Route16GateOfficerText:
 	line "a ship or train."
 	done
 
-UnknownText_0x73496:
+Route16GateCannotPassText:
 	text "Hey! Whoa! Stop!"
 
 	para "You can't go out"
@@ -68,8 +68,8 @@ Route16Gate_MapEvents:
 	warp_event  9,  5, ROUTE_16, 3
 
 	db 2 ; coord events
-	coord_event  5,  4, SCENE_DEFAULT, UnknownScript_0x733ed
-	coord_event  5,  5, SCENE_DEFAULT, UnknownScript_0x733ed
+	coord_event  5,  4, SCENE_DEFAULT, Route16GateBicycleCheck
+	coord_event  5,  5, SCENE_DEFAULT, Route16GateBicycleCheck
 
 	db 0 ; bg events
 

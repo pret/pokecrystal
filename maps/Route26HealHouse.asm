@@ -6,7 +6,7 @@ Route26HealHouse_MapScripts:
 
 	db 0 ; callbacks
 
-TeacherScript_0x7b125:
+Route26HealHouseTeacherScript:
 	faceplayer
 	opentext
 	writetext UnknownText_0x7b14d
@@ -60,4 +60,4 @@ Route26HealHouse_MapEvents:
 	bg_event  1,  1, BGEVENT_READ, Route26HealHouseBookshelf
 
 	db 1 ; object events
-	object_event  2,  3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeacherScript_0x7b125, -1
+	object_event  2,  3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route26HealHouseTeacherScript, -1

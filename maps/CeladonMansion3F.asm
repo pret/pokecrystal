@@ -9,17 +9,17 @@ CeladonMansion3F_MapScripts:
 
 	db 0 ; callbacks
 
-CooltrainerMScript_0x71670:
+CeladonMansion3FCooltrainerMScript:
 	faceplayer
 	opentext
 	writetext UnknownText_0x716ce
 	checkcode VAR_DEXCAUGHT
-	ifgreater NUM_POKEMON - 2 - 1, UnknownScript_0x7167e ; ignore Mew and Celebi
+	ifgreater NUM_POKEMON - 2 - 1, .CompletedPokedex ; ignore Mew and Celebi
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7167e:
+.CompletedPokedex:
 	buttonsound
 	writetext UnknownText_0x71725
 	playsound SFX_DEX_FANFARE_230_PLUS
@@ -33,31 +33,32 @@ UnknownScript_0x7167e:
 	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	end
 
-GymGuyScript_0x71696:
+CeladonMansion3FGymGuyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
-	iftrue UnknownScript_0x716a4
+	iftrue .CanPrintDiploma
 	writetext UnknownText_0x717b4
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x716a4:
+.CanPrintDiploma:
 	writetext UnknownText_0x717d8
 	yesorno
-	iffalse UnknownScript_0x716b0
+	iffalse .Refused
 	special PrintDiploma
 	closetext
 	end
 
-UnknownScript_0x716b0:
+.Refused:
 	writetext UnknownText_0x71830
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x716b6:
+.CancelPrinting:
+; unused
 	writetext UnknownText_0x71863
 	waitbutton
 	closetext
@@ -69,17 +70,17 @@ CeladonMansion3FSuperNerdScript:
 CeladonMansion3FFisherScript:
 	jumptextfaceplayer CeladonMansion3FFisherText
 
-MapCeladonMansion3FSignpost0Script:
-	jumptext UnknownText_0x7190b
+CeladonMansion3FDevRoomSign:
+	jumptext CeladonMansion3FDevRoomSignText
 
-MapCeladonMansion3FSignpost1Script:
-	jumptext UnknownText_0x71928
+CeladonMansion3FDrawing:
+	jumptext CeladonMansion3FDrawingText
 
-MapCeladonMansion3FSignpost2Script:
-	jumptext UnknownText_0x71952
+CeladonMansion3FGameProgram:
+	jumptext CeladonMansion3FGameProgramText
 
-MapCeladonMansion3FSignpost3Script:
-	jumptext UnknownText_0x71996
+CeladonMansion3FReferenceMaterial:
+	jumptext CeladonMansion3FReferenceMaterialText
 
 UnknownText_0x716ce:
 	text "Is that right?"
@@ -161,18 +162,18 @@ CeladonMansion3FFisherText:
 	para "Oh, I love them!"
 	done
 
-UnknownText_0x7190b:
+CeladonMansion3FDevRoomSignText:
 	text "GAME FREAK"
 	line "DEVELOPMENT ROOM"
 	done
 
-UnknownText_0x71928:
+CeladonMansion3FDrawingText:
 	text "It's a detailed"
 	line "drawing of a"
 	cont "pretty girl."
 	done
 
-UnknownText_0x71952:
+CeladonMansion3FGameProgramText:
 	text "It's the game"
 	line "program. Messing"
 
@@ -180,7 +181,7 @@ UnknownText_0x71952:
 	line "a bug in the game!"
 	done
 
-UnknownText_0x71996:
+CeladonMansion3FReferenceMaterialText:
 	text "It's crammed with"
 	line "reference materi-"
 	cont "als. There's even"
@@ -199,13 +200,13 @@ CeladonMansion3F_MapEvents:
 	db 0 ; coord events
 
 	db 4 ; bg events
-	bg_event  5,  8, BGEVENT_UP, MapCeladonMansion3FSignpost0Script
-	bg_event  4,  3, BGEVENT_UP, MapCeladonMansion3FSignpost1Script
-	bg_event  1,  6, BGEVENT_UP, MapCeladonMansion3FSignpost2Script
-	bg_event  1,  3, BGEVENT_UP, MapCeladonMansion3FSignpost3Script
+	bg_event  5,  8, BGEVENT_UP, CeladonMansion3FDevRoomSign
+	bg_event  4,  3, BGEVENT_UP, CeladonMansion3FDrawing
+	bg_event  1,  6, BGEVENT_UP, CeladonMansion3FGameProgram
+	bg_event  1,  3, BGEVENT_UP, CeladonMansion3FReferenceMaterial
 
 	db 4 ; object events
-	object_event  3,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CooltrainerMScript_0x71670, -1
-	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x71696, -1
+	object_event  3,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FCooltrainerMScript, -1
+	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FGymGuyScript, -1
 	object_event  0,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FSuperNerdScript, -1
 	object_event  0,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonMansion3FFisherScript, -1

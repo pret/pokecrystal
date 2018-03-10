@@ -9,17 +9,17 @@ BattleTowerBattleRoom_MapScripts:
 
 	db 0 ; callbacks
 
-.EnterBattleRoom: ; 0x9f419
+.EnterBattleRoom:
 	disappear BATTLETOWERBATTLEROOM_YOUNGSTER
 	priorityjump Script_BattleRoom
 	setscene SCENE_FINISHED
 .DummyScene:
 	end
 
-Script_BattleRoom: ; 0x9f421
+Script_BattleRoom:
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerWalksIn
 ; beat all 7 opponents in a row
-Script_BattleRoomLoop: ; 0x9f425
+Script_BattleRoomLoop:
 	writebyte BATTLETOWERBATTLEROOM_YOUNGSTER
 	special LoadOpponentTrainerAndPokemonWithOTSprite
 	appear BATTLETOWERBATTLEROOM_YOUNGSTER
@@ -55,13 +55,13 @@ Script_BattleRoomLoop: ; 0x9f425
 	writetext Text_NextUpOpponentNo
 	yesorno
 	iffalse Script_DontBattleNextOpponent
-Script_ContinueAndBattleNextOpponent: ; 0x9f477
+Script_ContinueAndBattleNextOpponent:
 	closetext
 	applymovement PLAYER, MovementData_BattleTowerBattleRoomPlayerTurnsToFaceNextOpponent
 	applymovement BATTLETOWERBATTLEROOM_RECEPTIONIST, MovementData_BattleTowerBattleRoomReceptionistWalksAway
 	jump Script_BattleRoomLoop
 
-Script_DontBattleNextOpponent: ; 0x9f483
+Script_DontBattleNextOpponent:
 	writetext Text_SaveAndEndTheSession
 	yesorno
 	iffalse Script_DontSaveAndEndTheSession
@@ -75,7 +75,7 @@ Script_DontBattleNextOpponent: ; 0x9f483
 	waitsfx
 	special FadeOutPalettes
 	special Reset
-Script_DontSaveAndEndTheSession: ; 0x9f4a3
+Script_DontSaveAndEndTheSession:
 	writetext Text_CancelYourBattleRoomChallenge
 	yesorno
 	iffalse Script_ContinueAndBattleNextOpponent
@@ -101,7 +101,7 @@ Script_FailedBattleTowerChallenge:
 	closetext
 	end
 
-Script_BeatenAllTrainers: ; 0x9f4d9
+Script_BeatenAllTrainers:
 	pause 60
 	special BattleTowerFade
 	warpfacing UP, BATTLE_TOWER_1F, 7, 7

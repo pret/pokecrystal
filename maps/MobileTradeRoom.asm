@@ -17,7 +17,7 @@ MobileTradeRoom_MapScripts:
 	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_MOBILE_TRADE_ROOM
 	end
 
-MapMobileTradeRoomSignpost0Script:
+MobileTradeRoomConsoleScript:
 	refreshscreen
 	special Function1037c2
 	writetext MobileTradeRoom_EstablishingCommsText
@@ -42,6 +42,6 @@ MobileTradeRoom_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  4,  2, BGEVENT_UP, MapMobileTradeRoomSignpost0Script
+	bg_event  4,  2, BGEVENT_UP, MobileTradeRoomConsoleScript
 
 	db 0 ; object events

@@ -53,8 +53,8 @@ TrainerFirebreatherBurt:
 	closetext
 	end
 
-MapRoute3Signpost0Script:
-	jumptext UnknownText_0x1ae163
+Route3MtMoonSquareSign:
+	jumptext Route3MtMoonSquareSignText
 
 FirebreatherOtisSeenText:
 	text "Ah! The weather's"
@@ -123,7 +123,7 @@ FirebreatherBurtAfterBattleText:
 	line "trainer…"
 	done
 
-UnknownText_0x1ae163:
+Route3MtMoonSquareSignText:
 	text "MT.MOON SQUARE"
 
 	para "Just go up the"
@@ -139,7 +139,7 @@ Route3_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 49, 13, BGEVENT_READ, MapRoute3Signpost0Script
+	bg_event 49, 13, BGEVENT_READ, Route3MtMoonSquareSign
 
 	db 4 ; object events
 	object_event 26, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherOtis, -1

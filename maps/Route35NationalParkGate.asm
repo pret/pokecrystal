@@ -77,7 +77,7 @@ Route35NationalParkGate_MapScripts:
 	warpfacing UP, NATIONAL_PARK_BUG_CONTEST, 10, 47
 	end
 
-OfficerScript_0x6a204:
+Route35OfficerScriptContest:
 	checkcode VAR_WEEKDAY
 	ifequal SUNDAY, Route35NationalParkGate_NoContestToday
 	ifequal MONDAY, Route35NationalParkGate_NoContestToday
@@ -187,7 +187,7 @@ Route35NationalParkGate_ContestIsOver:
 Route35NationalParkGate_NoContestToday:
 	jumptextfaceplayer UnknownText_0x6a894
 
-OfficerScript_0x6a2ca:
+Route35NationalParkGateOfficerScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_DAILY_BUG_CONTEST
@@ -200,8 +200,8 @@ OfficerScript_0x6a2ca:
 Route35NationalParkGateYoungsterScript:
 	jumptextfaceplayer Route35NationalParkGateYoungsterText
 
-MapRoute36NationalParkGateSignpost0Script:
-	jumptext UnknownText_0x6a90e
+BugCatchingContestExplanationSign:
+	jumptext BugCatchingContestExplanationText
 
 Route35NationalParkGate_GetDayOfWeek:
 	jumpstd daytotext
@@ -415,7 +415,7 @@ Route35NationalParkGateYoungsterText:
 	cont "test going to be?"
 	done
 
-UnknownText_0x6a90e:
+BugCatchingContestExplanationText:
 	text "The Bug-Catching"
 	line "Contest is held on"
 
@@ -447,9 +447,9 @@ Route35NationalParkGate_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event  5,  0, BGEVENT_READ, MapRoute36NationalParkGateSignpost0Script
+	bg_event  5,  0, BGEVENT_READ, BugCatchingContestExplanationSign
 
 	db 3 ; object events
-	object_event  2,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x6a204, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
+	object_event  2,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route35OfficerScriptContest, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_CONTEST_DAY
 	object_event  6,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route35NationalParkGateYoungsterScript, EVENT_ROUTE_35_NATIONAL_PARK_GATE_YOUNGSTER
-	object_event  0,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x6a2ca, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY
+	object_event  0,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route35NationalParkGateOfficerScript, EVENT_ROUTE_35_NATIONAL_PARK_GATE_OFFICER_NOT_CONTEST_DAY

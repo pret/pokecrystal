@@ -21,10 +21,10 @@ RuinsOfAlphOmanyteItemRoomStardust:
 RuinsOfAlphOmanyteItemRoomStarPiece:
 	itemball STAR_PIECE
 
-MapRuinsOfAlphOmanyteItemRoomSignpost1Script:
-	jumptext UnknownText_0x59a37
+RuinsOfAlphOmanyteItemRoomAncientReplica:
+	jumptext RuinsOfAlphOmanyteItemRoomAncientReplicaText
 
-UnknownText_0x59a37:
+RuinsOfAlphOmanyteItemRoomAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
 	cont "MON."
@@ -42,8 +42,8 @@ RuinsOfAlphOmanyteItemRoom_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  2,  1, BGEVENT_READ, MapRuinsOfAlphOmanyteItemRoomSignpost1Script
-	bg_event  5,  1, BGEVENT_READ, MapRuinsOfAlphOmanyteItemRoomSignpost1Script
+	bg_event  2,  1, BGEVENT_READ, RuinsOfAlphOmanyteItemRoomAncientReplica
+	bg_event  5,  1, BGEVENT_READ, RuinsOfAlphOmanyteItemRoomAncientReplica
 
 	db 4 ; object events
 	object_event  2,  6, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, RuinsOfAlphOmanyteItemRoomMysteryberry, EVENT_PICKED_UP_MYSTERYBERRY_FROM_OMANYTE_ITEM_ROOM

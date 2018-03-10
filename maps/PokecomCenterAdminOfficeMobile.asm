@@ -17,36 +17,36 @@ PokecomCenterAdminOfficeMobileScientist2Script:
 PokecomCenterAdminOfficeMobileScientist3Script:
 	jumptextfaceplayer PokecomCenterAdminOfficeMobileScientist3Text
 
-PokecomCenterAdminOfficeMobileSignpost0Script:
+PokecomCenterAdminOfficeMobileComputer1:
 	opentext
-	writetext UnknownText_0x627ee
+	writetext PokecomCenterAdminOfficeMobileComputer1Text
 	waitbutton
-UnknownScript_0x625df:
+.loop:
 	reloadmappart
-	loadmenu MenuHeader_0x62602
+	loadmenu .Computer1MenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, UnknownScript_0x625f0
-	ifequal 2, UnknownScript_0x625f8
-	jump UnknownScript_0x62600
+	ifequal 1, .PokeComClub
+	ifequal 2, .MobileCenter
+	jump .Quit
 
-UnknownScript_0x625f0:
+.PokeComClub:
 	opentext
-	writetext UnknownText_0x62828
+	writetext PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub
 	waitbutton
-	jump UnknownScript_0x625df
+	jump .loop
 
-UnknownScript_0x625f8:
+.MobileCenter:
 	opentext
-	writetext UnknownText_0x628f4
+	writetext PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter
 	waitbutton
-	jump UnknownScript_0x625df
+	jump .loop
 
-UnknownScript_0x62600:
+.Quit:
 	closetext
 	end
 
-MenuHeader_0x62602:
+.Computer1MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 8
 	dw .MenuData
@@ -59,36 +59,36 @@ MenuHeader_0x62602:
 	db "モバイルセンター@" ; MOBILE CENTER
 	db "やめる@" ; QUIT
 
-PokecomCenterAdminOfficeMobileSignpost1Script:
+PokecomCenterAdminOfficeMobileComputer2:
 	opentext
-	writetext UnknownText_0x62989
+	writetext PokecomCenterAdminOfficeMobileComputer2Text
 	waitbutton
-UnknownScript_0x62629:
+.loop:
 	reloadmappart
-	loadmenu MenuHeader_0x6264c
+	loadmenu .Computer2MenuHeader
 	verticalmenu
 	closewindow
-	ifequal 1, UnknownScript_0x6263a
-	ifequal 2, UnknownScript_0x62642
-	jump UnknownScript_0x6264a
+	ifequal 1, .UsePhone
+	ifequal 2, .DontUsePhone
+	jump .Quit
 
-UnknownScript_0x6263a:
+.UsePhone:
 	opentext
-	writetext UnknownText_0x629ae
+	writetext PokecomCenterAdminOfficeMobileComputer2Text_UsePhone
 	waitbutton
-	jump UnknownScript_0x62629
+	jump .loop
 
-UnknownScript_0x62642:
+.DontUsePhone:
 	opentext
-	writetext UnknownText_0x62a5a
+	writetext PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone
 	waitbutton
-	jump UnknownScript_0x62629
+	jump .loop
 
-UnknownScript_0x6264a:
+.Quit:
 	closetext
 	end
 
-MenuHeader_0x6264c:
+.Computer2MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 8
 	dw .MenuData
@@ -101,8 +101,8 @@ MenuHeader_0x6264c:
 	db "でんわ<GA>つながらないとき@" ; Don't use phone
 	db "やめる@" ; QUIT
 
-PokecomCenterAdminOfficeMobileSignpost2Script:
-	jumptext UnknownText_0x62b26
+PokecomCenterAdminOfficeMobileComputer3:
+	jumptext PokecomCenterAdminOfficeMobileComputer3Text
 
 PokecomCenterAdminOfficeMobileScientist1Text:
 	text "#COM CENTER and"
@@ -144,7 +144,7 @@ PokecomCenterAdminOfficeMobileScientist3Text:
 	cont "less technology."
 	done
 
-UnknownText_0x627ee:
+PokecomCenterAdminOfficeMobileComputer1Text:
 	text "It's a notice"
 	line "about where MOBILE"
 
@@ -152,7 +152,7 @@ UnknownText_0x627ee:
 	line "used…"
 	done
 
-UnknownText_0x62828:
+PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
 	text "There's a #COM"
 	line "CLUB upstairs in"
 
@@ -174,7 +174,7 @@ UnknownText_0x62828:
 	cont "you."
 	done
 
-UnknownText_0x628f4:
+PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter:
 	text "To use the TRADE"
 	line "CORNER or read the"
 
@@ -189,13 +189,13 @@ UnknownText_0x628f4:
 	line "connecting there."
 	done
 
-UnknownText_0x62989:
+PokecomCenterAdminOfficeMobileComputer2Text:
 	text "It's a notice"
 	line "about using the"
 	cont "phone…"
 	done
 
-UnknownText_0x629ae:
+PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
 	text "Please ensure that"
 	line "your phone and"
 
@@ -211,7 +211,7 @@ UnknownText_0x629ae:
 	cont "while linking."
 	done
 
-UnknownText_0x62a5a:
+PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	text "If the server is"
 	line "busy, it may not"
 
@@ -232,7 +232,7 @@ UnknownText_0x62a5a:
 	cont "instructions."
 	done
 
-UnknownText_0x62b26:
+PokecomCenterAdminOfficeMobileComputer3Text:
 	text "The ADMINISTRATION"
 	line "OFFICE received an"
 	cont "e-mail. It says…"
@@ -270,9 +270,9 @@ PokecomCenterAdminOfficeMobile_MapEvents:
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event  6, 26, BGEVENT_UP, PokecomCenterAdminOfficeMobileSignpost0Script
-	bg_event  6, 28, BGEVENT_UP, PokecomCenterAdminOfficeMobileSignpost1Script
-	bg_event  3, 26, BGEVENT_UP, PokecomCenterAdminOfficeMobileSignpost2Script
+	bg_event  6, 26, BGEVENT_UP, PokecomCenterAdminOfficeMobileComputer1
+	bg_event  6, 28, BGEVENT_UP, PokecomCenterAdminOfficeMobileComputer2
+	bg_event  3, 26, BGEVENT_UP, PokecomCenterAdminOfficeMobileComputer3
 
 	db 3 ; object events
 	object_event  4, 28, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PokecomCenterAdminOfficeMobileScientist1Script, -1

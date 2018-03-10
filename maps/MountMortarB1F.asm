@@ -12,13 +12,13 @@ MountMortarB1F_MapScripts:
 
 	db 0 ; callbacks
 
-BlackBeltScript_0x7e1f6:
+MountMortarB1FKiyoScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_TYROGUE_FROM_KIYO
-	iftrue UnknownScript_0x7e231
+	iftrue .GotTyrogue
 	checkevent EVENT_BEAT_BLACKBELT_KIYO
-	iftrue UnknownScript_0x7e217
+	iftrue .BeatKiyo
 	writetext UnknownText_0x7e24d
 	waitbutton
 	closetext
@@ -28,24 +28,24 @@ BlackBeltScript_0x7e1f6:
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BLACKBELT_KIYO
 	opentext
-UnknownScript_0x7e217:
+.BeatKiyo:
 	writetext UnknownText_0x7e2c0
 	buttonsound
 	waitsfx
 	checkcode VAR_PARTYCOUNT
-	ifequal PARTY_LENGTH, UnknownScript_0x7e237
+	ifequal PARTY_LENGTH, .NoRoom
 	writetext UnknownText_0x7e355
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	givepoke TYROGUE, 10
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
-UnknownScript_0x7e231:
+.GotTyrogue:
 	writetext UnknownText_0x7e36a
 	waitbutton
 	closetext
 	end
 
-UnknownScript_0x7e237:
+.NoRoom:
 	writetext UnknownText_0x7e3df
 	waitbutton
 	closetext
@@ -148,7 +148,7 @@ MountMortarB1F_MapEvents:
 	object_event 29, 12, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FHyperPotion, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
 	object_event  4, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FCarbos, EVENT_MOUNT_MORTAR_B1F_CARBOS
 	object_event  9, 10, SPRITE_BOULDER, SPRITEMOVEDATA_STRENGTH_BOULDER, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortarB1FBoulder, -1
-	object_event 16,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BlackBeltScript_0x7e1f6, -1
+	object_event 16,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MountMortarB1FKiyoScript, -1
 	object_event 34, 24, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FFullRestore, EVENT_MOUNT_MORTAR_B1F_FULL_RESTORE
 	object_event 32,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FMaxEther, EVENT_MOUNT_MORTAR_B1F_MAX_ETHER
 	object_event 21, 26, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, MountMortarB1FPPUp, EVENT_MOUNT_MORTAR_B1F_PP_UP

@@ -37,6 +37,7 @@ AzaleaPokecenter1FGentlemanText:
 	done
 
 AzaleaPokecenter1FUnusedText:
+; unreferenced
 	text "This BILL guy"
 	line "created the system"
 

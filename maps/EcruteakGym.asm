@@ -21,7 +21,7 @@ EcruteakGym_MapScripts:
 .DummyScene:
 	end
 
-MortyScript_0x99d58:
+EcruteakGymMortyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_MORTY
@@ -80,14 +80,14 @@ EcruteakGymActivateRockets:
 	jumpstd radiotowerrockets
 
 EcruteakGymClosed:
-	applymovement PLAYER, MovementData_0x99e5d
-	applymovement ECRUTEAKGYM_GRAMPS, MovementData_0x99e63
+	applymovement PLAYER, EcruteakGymPlayerStepUpMovement
+	applymovement ECRUTEAKGYM_GRAMPS, EcruteakGymGrampsSlowStepDownMovement
 	opentext
 	writetext UnknownText_0x9a49c
 	waitbutton
 	closetext
 	follow PLAYER, ECRUTEAKGYM_GRAMPS
-	applymovement PLAYER, MovementData_0x99e5f
+	applymovement PLAYER, EcruteakGymPlayerSlowStepDownMovement
 	stopfollow
 	special FadeOutPalettes
 	playsound SFX_ENTER_DOOR
@@ -163,17 +163,17 @@ EcruteakGymStatue:
 	trainertotext MORTY, MORTY1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-MovementData_0x99e5d:
+EcruteakGymPlayerStepUpMovement:
 	step UP
 	step_end
 
-MovementData_0x99e5f:
+EcruteakGymPlayerSlowStepDownMovement:
 	fix_facing
 	slow_step DOWN
 	remove_fixed_facing
 	step_end
 
-MovementData_0x99e63:
+EcruteakGymGrampsSlowStepDownMovement:
 	slow_step DOWN
 	step_end
 
@@ -429,7 +429,7 @@ EcruteakGym_MapEvents:
 	bg_event  6, 15, BGEVENT_READ, EcruteakGymStatue
 
 	db 7 ; object events
-	object_event  5,  1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, MortyScript_0x99d58, -1
+	object_event  5,  1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, EcruteakGymMortyScript, -1
 	object_event  2,  7, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSageJeffrey, -1
 	object_event  3, 13, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSagePing, -1
 	object_event  7,  5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 1, TrainerMediumMartha, -1

@@ -9,7 +9,7 @@ CianwoodPokecenter1F_MapScripts:
 
 	db 0 ; callbacks
 
-NurseScript_0x9dbcf:
+CianwoodPokecenter1FNurseScript:
 	jumpstd pokecenternurse
 
 CianwoodPokecenter1FLassScript:
@@ -89,7 +89,8 @@ CianwoodGymGuyWinText:
 	cont "looking at you!"
 	done
 
-UnknownText_0x9ddf2:
+CianwoodPokecenter1FUnusedText1:
+; unreferenced
 	text "Don't you get the"
 	line "urge to show off"
 
@@ -103,7 +104,8 @@ UnknownText_0x9ddf2:
 	line "in VIOLET."
 	done
 
-UnknownText_0x9de66:
+CianwoodPokecenter1FUnusedText2:
+; unreferenced
 	text "I've been battling"
 	line "my pal in VIOLET"
 
@@ -142,7 +144,7 @@ CianwoodPokecenter1F_MapEvents:
 	db 0 ; bg events
 
 	db 4 ; object events
-	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NurseScript_0x9dbcf, -1
+	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CianwoodPokecenter1FNurseScript, -1
 	object_event  1,  5, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodPokecenter1FLassScript, -1
 	object_event  5,  3, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodGymGuyScript, -1
 	object_event  8,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CianwoodPokecenter1FSuperNerdScript, -1

@@ -37,8 +37,8 @@ TrainerSageChow:
 SproutTower1FParlyzHeal:
 	itemball PARLYZ_HEAL
 
-SproutTower1FBellsproutStatueScript:
-	jumptext SproutTower1FBellsproutStatueText
+SproutTower1FStatue:
+	jumptext SproutTower1FStatueText
 
 SageChowSeenText:
 	text "We stand guard in"
@@ -93,7 +93,7 @@ SproutTower1FTeacherText:
 	line "ing upstairs."
 	done
 
-SproutTower1FBellsproutStatueText:
+SproutTower1FStatueText:
 	text "A #MON statue…"
 
 	para "It looks very"
@@ -113,8 +113,8 @@ SproutTower1F_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  7, 15, BGEVENT_READ, SproutTower1FBellsproutStatueScript
-	bg_event 12, 15, BGEVENT_READ, SproutTower1FBellsproutStatueScript
+	bg_event  7, 15, BGEVENT_READ, SproutTower1FStatue
+	bg_event 12, 15, BGEVENT_READ, SproutTower1FStatue
 
 	db 6 ; object events
 	object_event  7,  4, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SproutTower1FSage1Script, -1

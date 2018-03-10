@@ -8,7 +8,7 @@ OlivineMart_MapScripts:
 
 	db 0 ; callbacks
 
-ClerkScript_0x9cac7:
+OlivineMartClerkScript:
 	opentext
 	pokemart MARTTYPE_STANDARD, MART_OLIVINE
 	closetext
@@ -55,6 +55,6 @@ OlivineMart_MapEvents:
 	db 0 ; bg events
 
 	db 3 ; object events
-	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ClerkScript_0x9cac7, -1
+	object_event  1,  3, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineMartClerkScript, -1
 	object_event  6,  2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OlivineMartCooltrainerFScript, -1
 	object_event  1,  6, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineMartLassScript, -1

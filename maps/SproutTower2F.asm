@@ -30,8 +30,8 @@ TrainerSageEdmond:
 	closetext
 	end
 
-SproutTower2FBellsproutStatueScript:
-	jumptext SproutTower2FBellsproutStatueText
+SproutTower2FStatue:
+	jumptext SproutTower2FStatueText
 
 SproutTower2FXAccuracy:
 	itemball X_ACCURACY
@@ -75,7 +75,7 @@ SageEdmondAfterBattleText:
 	line "well enough."
 	done
 
-SproutTower2FBellsproutStatueText:
+SproutTower2FStatueText:
 	text "A #MON statue…"
 
 	para "It looks very"
@@ -94,7 +94,7 @@ SproutTower2F_MapEvents:
 	db 0 ; coord events
 
 	db 1 ; bg events
-	bg_event 12, 15, BGEVENT_READ, SproutTower2FBellsproutStatueScript
+	bg_event 12, 15, BGEVENT_READ, SproutTower2FStatue
 
 	db 3 ; object events
 	object_event 12,  3, SPRITE_SAGE, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 4, TrainerSageNico, -1

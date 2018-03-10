@@ -30,7 +30,7 @@ LancesRoom_MapScripts:
 	return
 
 .LancesDoorLocksBehindYou:
-	applymovement PLAYER, LancesRoom_PlayerWalksInMovementData
+	applymovement PLAYER, LancesRoom_EnterMovement
 	refreshscreen $86
 	playsound SFX_STRENGTH
 	earthquake 80
@@ -44,12 +44,12 @@ LancesRoom_MapScripts:
 Script_ApproachLanceFromLeft:
 	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromLeft
-	jump LanceScript_0x180e7b
+	jump LancesRoomLanceScript
 
 Script_ApproachLanceFromRight:
 	special FadeOutMusic
 	applymovement PLAYER, MovementData_ApproachLanceFromRight
-LanceScript_0x180e7b:
+LancesRoomLanceScript:
 	turnobject LANCESROOM_LANCE, LEFT
 	opentext
 	writetext LanceBattleIntroText
@@ -128,7 +128,7 @@ LanceScript_0x180e7b:
 	warpfacing UP, HALL_OF_FAME, 4, 13
 	end
 
-LancesRoom_PlayerWalksInMovementData:
+LancesRoom_EnterMovement:
 	step UP
 	step UP
 	step UP
@@ -351,6 +351,6 @@ LancesRoom_MapEvents:
 	db 0 ; bg events
 
 	db 3 ; object events
-	object_event  5,  3, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LanceScript_0x180e7b, -1
+	object_event  5,  3, SPRITE_LANCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LancesRoomLanceScript, -1
 	object_event  4,  7, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY
 	object_event  4,  7, SPRITE_OAK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LANCES_ROOM_OAK_AND_MARY

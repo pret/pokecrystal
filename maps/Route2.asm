@@ -49,8 +49,8 @@ TrainerBugCatcherDoug:
 Route2Sign:
 	jumptext Route2SignText
 
-MapRoute2Signpost1Script:
-	jumptext UnknownText_0x1ac49f
+Route2DiglettsCaveSign:
+	jumptext Route2DiglettsCaveSignText
 
 Route2DireHit:
 	itemball DIRE_HIT
@@ -64,7 +64,7 @@ Route2Carbos:
 Route2Elixer:
 	itemball ELIXER
 
-FruitTreeScript_0x1ac306:
+Route2FruitTree:
 	fruittree FRUITTREE_ROUTE_2
 
 Route2HiddenMaxEther:
@@ -140,7 +140,7 @@ Route2SignText:
 	line "PEWTER CITY"
 	done
 
-UnknownText_0x1ac49f:
+Route2DiglettsCaveSignText:
 	text "DIGLETT'S CAVE"
 	done
 
@@ -158,7 +158,7 @@ Route2_MapEvents:
 
 	db 6 ; bg events
 	bg_event  7, 51, BGEVENT_READ, Route2Sign
-	bg_event 11,  9, BGEVENT_READ, MapRoute2Signpost1Script
+	bg_event 11,  9, BGEVENT_READ, Route2DiglettsCaveSign
 	bg_event  7, 23, BGEVENT_ITEM, Route2HiddenMaxEther
 	bg_event  4, 14, BGEVENT_ITEM, Route2HiddenFullHeal
 	bg_event  4, 27, BGEVENT_ITEM, Route2HiddenFullRestore
@@ -172,4 +172,4 @@ Route2_MapEvents:
 	object_event  2, 23, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2MaxPotion, EVENT_ROUTE_2_MAX_POTION
 	object_event 19,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Carbos, EVENT_ROUTE_2_CARBOS
 	object_event 14, 50, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Elixer, EVENT_ROUTE_2_ELIXER
-	object_event 10, 14, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FruitTreeScript_0x1ac306, -1
+	object_event 10, 14, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route2FruitTree, -1

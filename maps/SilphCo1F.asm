@@ -7,23 +7,23 @@ SilphCo1F_MapScripts:
 
 	db 0 ; callbacks
 
-SilphCoReceptionist:
+SilphCoReceptionistScript:
 	jumptextfaceplayer SilphCoReceptionistText
 
-OfficerScript_0x18abe8:
+SilphCoOfficerScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_UP_GRADE
-	iftrue UnknownScript_0x18abfd
-	writetext UnknownText_0x18ac36
+	iftrue .GotUpGrade
+	writetext SilphCoOfficerText
 	buttonsound
 	verbosegiveitem UP_GRADE
-	iffalse UnknownScript_0x18ac01
+	iffalse .NoRoom
 	setevent EVENT_GOT_UP_GRADE
-UnknownScript_0x18abfd:
-	writetext UnknownText_0x18aca8
+.GotUpGrade:
+	writetext SilphCoOfficerText_GotUpGrade
 	waitbutton
-UnknownScript_0x18ac01:
+.NoRoom:
 	closetext
 	end
 
@@ -33,7 +33,7 @@ SilphCoReceptionistText:
 	cont "OFFICE BUILDING."
 	done
 
-UnknownText_0x18ac36:
+SilphCoOfficerText:
 	text "Only employees are"
 	line "permitted to go"
 	cont "upstairs."
@@ -45,7 +45,7 @@ UnknownText_0x18ac36:
 	line "little souvenir."
 	done
 
-UnknownText_0x18aca8:
+SilphCoOfficerText_GotUpGrade:
 	text "It's SILPH CO.'s"
 	line "latest product."
 
@@ -65,5 +65,5 @@ SilphCo1F_MapEvents:
 	db 0 ; bg events
 
 	db 2 ; object events
-	object_event  4,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SilphCoReceptionist, -1
-	object_event 13,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x18abe8, -1
+	object_event  4,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SilphCoReceptionistScript, -1
+	object_event 13,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SilphCoOfficerScript, -1

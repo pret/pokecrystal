@@ -7,16 +7,16 @@ CherrygroveEvolutionSpeechHouse_MapScripts:
 
 	db 0 ; callbacks
 
-YoungsterScript_0x196cb2:
+CherrygroveEvolutionSpeechHouseYoungsterScript:
 	opentext
-	writetext UnknownText_0x196cc3
+	writetext CherrygroveEvolutionSpeechHouseYoungsterText
 	waitbutton
 	closetext
 	end
 
-LassScript_0x196cb9:
+CherrygroveEvolutionSpeechHouseLassScript:
 	opentext
-	writetext UnknownText_0x196cfc
+	writetext CherrygroveEvolutionSpeechHouseLassText
 	waitbutton
 	closetext
 	end
@@ -24,7 +24,7 @@ LassScript_0x196cb9:
 CherrygroveEvolutionSpeechHouseBookshelf:
 	jumpstd magazinebookshelf
 
-UnknownText_0x196cc3:
+CherrygroveEvolutionSpeechHouseYoungsterText:
 	text "#MON gain expe-"
 	line "rience in battle"
 
@@ -32,7 +32,7 @@ UnknownText_0x196cc3:
 	line "form."
 	done
 
-UnknownText_0x196cfc:
+CherrygroveEvolutionSpeechHouseLassText:
 	text "#MON change?"
 
 	para "I would be shocked"
@@ -53,5 +53,5 @@ CherrygroveEvolutionSpeechHouse_MapEvents:
 	bg_event  1,  1, BGEVENT_READ, CherrygroveEvolutionSpeechHouseBookshelf
 
 	db 2 ; object events
-	object_event  3,  5, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LassScript_0x196cb9, -1
-	object_event  2,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, YoungsterScript_0x196cb2, -1
+	object_event  3,  5, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CherrygroveEvolutionSpeechHouseLassScript, -1
+	object_event  2,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygroveEvolutionSpeechHouseYoungsterScript, -1

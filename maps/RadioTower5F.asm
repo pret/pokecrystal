@@ -77,7 +77,7 @@ TrainerExecutivef1:
 	end
 
 RadioTower5FRocketBossScene:
-	applymovement PLAYER, MovementData_0x60125
+	applymovement PLAYER, RadioTower5FPlayerTwoStepsLeftMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	turnobject RADIOTOWER5F_ROCKET, RIGHT
 	opentext
@@ -142,11 +142,11 @@ Ben:
 RadioTower5FUltraBall:
 	itemball ULTRA_BALL
 
-MapRadioTower5FSignpost0Script:
-	jumptext SignpostRadioTower5FOffice
+RadioTower5FDirectorsOfficeSign:
+	jumptext RadioTower5FDirectorsOfficeSignText
 
-MapRadioTower5FSignpost2Script:
-	jumptext SignpostRadioTower5FStudio
+RadioTower5FStudio1Sign:
+	jumptext RadioTower5FStudio1SignText
 
 RadioTower5FBookshelf:
 	jumpstd magazinebookshelf
@@ -185,7 +185,7 @@ RadioTower5FDirectorWalksOut:
 	step UP
 	step_end
 
-MovementData_0x60125:
+RadioTower5FPlayerTwoStepsLeftMovement:
 	step LEFT
 	step LEFT
 	step_end
@@ -409,12 +409,12 @@ BenText:
 	line "to our music?"
 	done
 
-SignpostRadioTower5FOffice:
+RadioTower5FDirectorsOfficeSignText:
 	text "5F DIRECTOR'S"
 	line "   OFFICE"
 	done
 
-SignpostRadioTower5FStudio:
+RadioTower5FStudio1SignText:
 	text "5F STUDIO 1"
 	done
 
@@ -430,9 +430,9 @@ RadioTower5F_MapEvents:
 	coord_event 16,  5, SCENE_RADIOTOWER5F_ROCKET_BOSS, RadioTower5FRocketBossScene
 
 	db 5 ; bg events
-	bg_event  3,  0, BGEVENT_READ, MapRadioTower5FSignpost0Script
-	bg_event 11,  0, BGEVENT_READ, MapRadioTower5FSignpost2Script
-	bg_event 15,  0, BGEVENT_READ, MapRadioTower5FSignpost2Script
+	bg_event  3,  0, BGEVENT_READ, RadioTower5FDirectorsOfficeSign
+	bg_event 11,  0, BGEVENT_READ, RadioTower5FStudio1Sign
+	bg_event 15,  0, BGEVENT_READ, RadioTower5FStudio1Sign
 	bg_event 16,  1, BGEVENT_READ, RadioTower5FBookshelf
 	bg_event 17,  1, BGEVENT_READ, RadioTower5FBookshelf
 

@@ -112,10 +112,10 @@ PokemonFanClubBayleefScript:
 	closetext
 	end
 
-MapPokemonFanClubSignpost0Script:
+PokemonFanClubListenSign:
 	jumptext PokemonFanClubListenSignText
 
-MapPokemonFanClubSignpost1Script:
+PokemonFanClubBraggingSign:
 	jumptext PokemonFanClubBraggingSignText
 
 UnknownText_0x191881:
@@ -304,8 +304,8 @@ PokemonFanClub_MapEvents:
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  7,  0, BGEVENT_READ, MapPokemonFanClubSignpost0Script
-	bg_event  9,  0, BGEVENT_READ, MapPokemonFanClubSignpost1Script
+	bg_event  7,  0, BGEVENT_READ, PokemonFanClubListenSign
+	bg_event  9,  0, BGEVENT_READ, PokemonFanClubBraggingSign
 
 	db 6 ; object events
 	object_event  3,  1, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PokemonFanClubPresidentScript, -1

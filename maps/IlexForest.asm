@@ -424,10 +424,10 @@ IlexForestBoulder:
 ; unused
 	jumpstd strengthboulder
 
-MapIlexForestSignpost0Script:
-	jumptext Text_IlexForestSignpost0
+IlexForestSignpost:
+	jumptext IlexForestSignpostText
 
-MapIlexForestSignpost4Script:
+IlexForestShrineScript:
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .ForestIsRestless
 	jump .DontDoCelebiEvent
@@ -843,7 +843,7 @@ Text_IlexForestLass:
 	cont "forest's guardian?"
 	done
 
-Text_IlexForestSignpost0:
+IlexForestSignpostText:
 	text "ILEX FOREST is"
 	line "so overgrown with"
 
@@ -946,11 +946,11 @@ IlexForest_MapEvents:
 	db 0 ; coord events
 
 	db 5 ; bg events
-	bg_event  3, 17, BGEVENT_READ, MapIlexForestSignpost0Script
+	bg_event  3, 17, BGEVENT_READ, IlexForestSignpost
 	bg_event 11,  7, BGEVENT_ITEM, IlexForestHiddenEther
 	bg_event 22, 14, BGEVENT_ITEM, IlexForestHiddenSuperPotion
 	bg_event  1, 17, BGEVENT_ITEM, IlexForestHiddenFullHeal
-	bg_event  8, 22, BGEVENT_UP, MapIlexForestSignpost4Script
+	bg_event  8, 22, BGEVENT_UP, IlexForestShrineScript
 
 	db 11 ; object events
 	object_event 14, 31, SPRITE_BIRD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, IlexForestFarfetchdScript, EVENT_ILEX_FOREST_FARFETCHD

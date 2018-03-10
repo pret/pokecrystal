@@ -26,23 +26,23 @@ RadioTower3F_MapScripts:
 RadioTower3FSuperNerdScript:
 	jumptextfaceplayer RadioTower3FSuperNerdText
 
-GymGuyScript_0x5e556:
+RadioTower3FGymGuyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .NoRockets
-	writetext UnknownText_0x5e682
+	writetext RadioTower3FGymGuyText_Rockets
 	waitbutton
 	closetext
 	end
 
 .NoRockets:
-	writetext UnknownText_0x5e6eb
+	writetext RadioTower3FGymGuyText
 	waitbutton
 	closetext
 	end
 
-CooltrainerFScript_0x5e56a:
+RadioTower3FCooltrainerFScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
@@ -124,20 +124,20 @@ TrainerScientistMarc:
 	closetext
 	end
 
-MapRadioTower3FSignpost2Script::
+CardKeySlotScript::
 	opentext
-	writetext UnknownText_0x5eaa4
+	writetext RadioTower3FCardKeySlotText
 	waitbutton
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue .UsedCardKey
 	checkitem CARD_KEY
-	iftrue UnknownScript_0x5e605
+	iftrue .HaveCardKey
 .UsedCardKey:
 	closetext
 	end
 
-UnknownScript_0x5e605:
-	writetext UnknownText_0x5eabc
+.HaveCardKey:
+	writetext InsertedTheCardKeyText
 	waitbutton
 	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound SFX_ENTER_DOOR
@@ -148,11 +148,11 @@ UnknownScript_0x5e605:
 	waitsfx
 	end
 
-MapRadioTower3FSignpost0Script:
-	jumptext UnknownText_0x5ead6
+RadioTower3FPersonnelSign:
+	jumptext RadioTower3FPersonnelSignText
 
-MapRadioTower3FSignpost1Script:
-	jumptext UnknownText_0x5eae4
+RadioTower3FPokemonMusicSign:
+	jumptext RadioTower3FPokemonMusicSignText
 
 RadioTower3FSuperNerdText:
 	text "We have recordings"
@@ -165,7 +165,7 @@ RadioTower3FSuperNerdText:
 	line "200 kinds."
 	done
 
-UnknownText_0x5e682:
+RadioTower3FGymGuyText_Rockets:
 	text "To trainers, #-"
 	line "MON are their"
 	cont "beloved partners."
@@ -177,7 +177,7 @@ UnknownText_0x5e682:
 	line "#MON."
 	done
 
-UnknownText_0x5e6eb:
+RadioTower3FGymGuyText:
 	text "We run 24 hours a"
 	line "day to broadcast"
 
@@ -307,21 +307,21 @@ ScientistMarcAfterBattleText:
 	cont "I need from here."
 	done
 
-UnknownText_0x5eaa4:
+RadioTower3FCardKeySlotText:
 	text "It's the CARD KEY"
 	line "slot."
 	done
 
-UnknownText_0x5eabc:
+InsertedTheCardKeyText:
 	text "<PLAYER> inserted"
 	line "the CARD KEY."
 	done
 
-UnknownText_0x5ead6:
+RadioTower3FPersonnelSignText:
 	text "3F PERSONNEL"
 	done
 
-UnknownText_0x5eae4:
+RadioTower3FPokemonMusicSignText:
 	text "#MON MUSIC with"
 	line "Host DJ BEN"
 	done
@@ -337,14 +337,14 @@ RadioTower3F_MapEvents:
 	db 0 ; coord events
 
 	db 3 ; bg events
-	bg_event  3,  0, BGEVENT_READ, MapRadioTower3FSignpost0Script
-	bg_event  9,  0, BGEVENT_READ, MapRadioTower3FSignpost1Script
-	bg_event 14,  2, BGEVENT_UP, MapRadioTower3FSignpost2Script
+	bg_event  3,  0, BGEVENT_READ, RadioTower3FPersonnelSign
+	bg_event  9,  0, BGEVENT_READ, RadioTower3FPokemonMusicSign
+	bg_event 14,  2, BGEVENT_UP, CardKeySlotScript
 
 	db 7 ; object events
 	object_event  7,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, RadioTower3FSuperNerdScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GymGuyScript_0x5e556, -1
-	object_event 11,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CooltrainerFScript_0x5e56a, -1
+	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower3FGymGuyScript, -1
+	object_event 11,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower3FCooltrainerFScript, -1
 	object_event  5,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event  6,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 16,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

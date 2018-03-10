@@ -6,23 +6,23 @@ Route19FuchsiaGate_MapScripts:
 
 	db 0 ; callbacks
 
-OfficerScript_0x1ab3f6:
+Route19FuchsiaGateOfficerScript:
 	faceplayer
 	opentext
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue .RocksCleared
-	writetext UnknownText_0x1ab40a
+	writetext Route19FuchsiaGateOfficerText
 	waitbutton
 	closetext
 	end
 
 .RocksCleared:
-	writetext UnknownText_0x1ab48a
+	writetext Route19FuchsiaGateOfficerText_RocksCleared
 	waitbutton
 	closetext
 	end
 
-UnknownText_0x1ab40a:
+Route19FuchsiaGateOfficerText:
 	text "CINNABAR's volcano"
 	line "erupted."
 
@@ -35,7 +35,7 @@ UnknownText_0x1ab40a:
 	cont "are safe…"
 	done
 
-UnknownText_0x1ab48a:
+Route19FuchsiaGateOfficerText_RocksCleared:
 	text "No CINNABAR citi-"
 	line "zens were injured"
 
@@ -57,4 +57,4 @@ Route19FuchsiaGate_MapEvents:
 	db 0 ; bg events
 
 	db 1 ; object events
-	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x1ab3f6, -1
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route19FuchsiaGateOfficerScript, -1

@@ -28,7 +28,7 @@ BillPhoneNiteGreetingText: ; 0x1b44b5
 	line "SERVICE."
 	done
 
-BillPhoneGeneriText: ; 0x1b44fe
+BillPhoneGenericText: ; 0x1b44fe
 	text "Who's calling?"
 
 	para "<PLAY_G>, is it?"

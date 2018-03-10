@@ -169,7 +169,7 @@ BillPhoneScript1: ; 0xbcfc5
 	jump .main
 
 .main ; 0xbcfe7
-	farwritetext BillPhoneGeneriText
+	farwritetext BillPhoneGenericText
 	buttonsound
 	checkcode VAR_BOXSPACE
 	vartomem MEM_BUFFER_0

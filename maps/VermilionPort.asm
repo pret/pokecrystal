@@ -35,7 +35,7 @@ VermilionPort_MapScripts:
 	blackoutmod VERMILION_CITY
 	end
 
-VermilionPortSailorAtGangway:
+VermilionPortSailorAtGangwayScript:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -102,7 +102,7 @@ VermilionPortWalkUpToShipScript:
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74ef8
-	jump VermilionPortSailorAtGangway
+	jump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
 	writetext UnknownText_0x74ff2
@@ -141,7 +141,7 @@ VermilionPortNotRidingMoveAwayScript:
 	applymovement PLAYER, MovementData_0x74ef5
 	end
 
-SailorScript_0x74e97:
+VermilionPortSailorScript:
 	faceplayer
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -164,7 +164,7 @@ SailorScript_0x74e97:
 	closetext
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	applymovement PLAYER, MovementData_0x74efe
-	jump VermilionPortSailorAtGangway
+	jump VermilionPortSailorAtGangwayScript
 
 .NoTicket:
 	writetext UnknownText_0x74ff2
@@ -184,7 +184,7 @@ SailorScript_0x74e97:
 	closetext
 	end
 
-SuperNerdScript_0x74ee6:
+VermilionPortSuperNerdScript:
 	faceplayer
 	opentext
 	writetext UnknownText_0x750a6
@@ -310,6 +310,6 @@ VermilionPort_MapEvents:
 	bg_event 16, 13, BGEVENT_ITEM, VermilionPortHiddenIron
 
 	db 3 ; object events
-	object_event  7, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionPortSailorAtGangway, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	object_event  6, 11, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SailorScript_0x74e97, -1
-	object_event 11, 11, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SuperNerdScript_0x74ee6, -1
+	object_event  7, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionPortSailorAtGangwayScript, EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
+	object_event  6, 11, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionPortSailorScript, -1
+	object_event 11, 11, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionPortSuperNerdScript, -1

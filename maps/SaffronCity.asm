@@ -18,34 +18,34 @@ SaffronCity_MapScripts:
 	setflag ENGINE_FLYPOINT_SAFFRON
 	return
 
-LassScript_0x19932a:
+SaffronCityLass1Script:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .ReturnedPart
-	writetext UnknownText_0x19938d
+	iftrue .ReturnedMachinePart
+	writetext SaffronCityLass1Text
 	waitbutton
 	closetext
 	end
 
-.ReturnedPart:
-	writetext UnknownText_0x19940d
+.ReturnedMachinePart:
+	writetext SaffronCityLass1Text_ReturnedMachinePart
 	waitbutton
 	closetext
 	end
 
-PokefanMScript_0x19933e:
+SaffronCityPokefanMScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .ReturnedPart
-	writetext UnknownText_0x199460
+	iftrue .ReturnedMachinePart
+	writetext SaffronCityPokefanMText
 	waitbutton
 	closetext
 	end
 
-.ReturnedPart:
-	writetext UnknownText_0x1994ae
+.ReturnedMachinePart:
+	writetext SaffronCityPokefanMText_ReturnedMachinePart
 	waitbutton
 	closetext
 	end
@@ -56,18 +56,18 @@ SaffronCityCooltrainerMScript:
 SaffronCityCooltrainerFScript:
 	jumptextfaceplayer SaffronCityCooltrainerFText
 
-FisherScript_0x199358:
+SaffronCityFisherScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RETURNED_MACHINE_PART
-	iftrue .ReturnedPart
-	writetext UnknownText_0x1995fc
+	iftrue .ReturnedMachinePart
+	writetext SaffronCityFisherText
 	waitbutton
 	closetext
 	end
 
-.ReturnedPart:
-	writetext UnknownText_0x19964b
+.ReturnedMachinePart:
+	writetext SaffronCityFisherText_ReturnedMachinePart
 	waitbutton
 	closetext
 	end
@@ -78,8 +78,8 @@ SaffronCityYoungster1Script:
 SaffronCityYoungster2Script:
 	jumptextfaceplayer SaffronCityYoungster2Text
 
-SaffronCityLassScript:
-	jumptextfaceplayer SaffronCityLassText
+SaffronCityLass2Script:
+	jumptextfaceplayer SaffronCityLass2Text
 
 SaffronCitySign:
 	jumptext SaffronCitySignText
@@ -105,7 +105,7 @@ SaffronCityPokecenterSign:
 SaffronCityMartSign:
 	jumpstd martsign
 
-UnknownText_0x19938d:
+SaffronCityLass1Text:
 	text "A little girl who"
 	line "is an expert at"
 
@@ -119,7 +119,7 @@ UnknownText_0x19938d:
 	line "It's confusing."
 	done
 
-UnknownText_0x19940d:
+SaffronCityLass1Text_ReturnedMachinePart:
 	text "The COPYCAT girl"
 	line "looked unhappy."
 
@@ -128,7 +128,7 @@ UnknownText_0x19940d:
 	cont "DOLL--CLEFAIRY."
 	done
 
-UnknownText_0x199460:
+SaffronCityPokefanMText:
 	text "You came out from"
 	line "JOHTO?"
 
@@ -137,7 +137,7 @@ UnknownText_0x199460:
 	cont "TRAIN's running."
 	done
 
-UnknownText_0x1994ae:
+SaffronCityPokefanMText_ReturnedMachinePart:
 	text "You came out from"
 	line "JOHTO?"
 
@@ -173,7 +173,7 @@ SaffronCityCooltrainerFText:
 	line "that."
 	done
 
-UnknownText_0x1995fc:
+SaffronCityFisherText:
 	text "Chew… Chew…"
 
 	para "I hear there's big"
@@ -183,7 +183,7 @@ UnknownText_0x1995fc:
 	para "Chew… Chew…"
 	done
 
-UnknownText_0x19964b:
+SaffronCityFisherText_ReturnedMachinePart:
 	text "Chew… Chew…"
 
 	para "I hear there was"
@@ -213,7 +213,7 @@ SaffronCityYoungster2Text:
 	line "over the place."
 	done
 
-SaffronCityLassText:
+SaffronCityLass2Text:
 	text "Our city was"
 	line "featured on a"
 	cont "radio program."
@@ -296,11 +296,11 @@ SaffronCity_MapEvents:
 	bg_event 26, 11, BGEVENT_READ, SaffronCityMartSign
 
 	db 8 ; object events
-	object_event  7, 14, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LassScript_0x19932a, -1
-	object_event 19, 30, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, PokefanMScript_0x19933e, -1
+	object_event  7, 14, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronCityLass1Script, -1
+	object_event 19, 30, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, SaffronCityPokefanMScript, -1
 	object_event 32,  7, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityCooltrainerMScript, -1
 	object_event 20, 24, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronCityCooltrainerFScript, -1
-	object_event 27, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FisherScript_0x199358, -1
+	object_event 27, 12, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityFisherScript, -1
 	object_event 15, 19, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronCityYoungster1Script, -1
 	object_event 35, 22, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronCityYoungster2Script, -1
-	object_event 19,  8, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityLassScript, -1
+	object_event 19,  8, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronCityLass2Script, -1

@@ -1334,7 +1334,7 @@ BattleTowerAction_EggTicket: ; 17093c (5c:493c) BattleTowerAction $0e
 	dec a
 	jr nz, .loop2
 .skip
-	ld de, String_1709a4
+	ld de, String_MysteryJP
 	ld a, NAME_LENGTH_JAPANESE
 .compare_loop
 	push af
@@ -1375,8 +1375,8 @@ endr
 	ret
 ; 1709a4 (5c:49a4)
 
-String_1709a4: ; 1709a4
-	db "なぞナゾ@@"
+String_MysteryJP: ; 1709a4
+	db "なぞナゾ@@" ; MYSTERY
 
 Function1709aa: ; 1709aa (5c:49aa) BattleTowerAction $0f
 	ld a, [rSVBK]
@@ -1400,7 +1400,7 @@ Function1709bb: ; 1709bb (5c:49bb) BattleTowerAction $10
 	jr nc, .invalid
 	ld e, a
 	ld d, 0
-	ld hl, Jumptable_1709e7
+	ld hl, .jumptable
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -1417,7 +1417,7 @@ Function1709bb: ; 1709bb (5c:49bb) BattleTowerAction $10
 	ret
 ; 1709e7 (5c:49e7)
 
-Jumptable_1709e7: ; 1709e7
+.jumptable: ; 1709e7
 	dw .NoAction
 	dw .NoAction
 	dw .DoAction1
@@ -1519,11 +1519,11 @@ Jumptable_1709e7: ; 1709e7
 ; 170a9c
 
 Function170a9c: ; 170a9c (5c:4a9c) BattleTowerAction $11
-	ld c, $0
+	ld c, FALSE
 	jr asm_170aa2
 
 Function170aa0: ; 170aa0 (5c:4aa0) BattleTowerAction $12
-	ld c, $1
+	ld c, TRUE
 asm_170aa2: ; 170aa2 (5c:4aa2)
 	ld a, $5
 	call GetSRAMBank

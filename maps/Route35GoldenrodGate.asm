@@ -8,7 +8,7 @@ Route35GoldenrodGate_MapScripts:
 
 	db 0 ; callbacks
 
-OfficerScript_0x69d37:
+RandyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_HP_UP_FROM_RANDY
@@ -73,18 +73,18 @@ GiftSpearowOTName:
 
 	db 0
 
-PokefanFScript_0x69dc6:
+Route35GoldenrodGatePokefanFScript:
 	faceplayer
 	opentext
 	checkevent EVENT_FOUGHT_SUDOWOODO
-	iftrue .aftersudowoodo
-	writetext UnknownText_0x6a00a
+	iftrue .FoughtSudowoodo
+	writetext Route35GoldenrodGatePokefanFText
 	waitbutton
 	closetext
 	end
 
-.aftersudowoodo
-	writetext UnknownText_0x6a09a
+.FoughtSudowoodo
+	writetext Route35GoldenrodGatePokefanFText_FoughtSudowoodo
 	waitbutton
 	closetext
 	end
@@ -159,7 +159,7 @@ UnknownText_0x69fd9:
 	cont "what'd I say?"
 	done
 
-UnknownText_0x6a00a:
+Route35GoldenrodGatePokefanFText:
 	text "A strange tree is"
 	line "blocking the road."
 
@@ -173,7 +173,7 @@ UnknownText_0x6a00a:
 	line "SQUIRTBOTTLE."
 	done
 
-UnknownText_0x6a09a:
+Route35GoldenrodGatePokefanFText_FoughtSudowoodo:
 	text "I like the #MON"
 	line "Lullaby they play"
 	cont "on the radio."
@@ -207,6 +207,6 @@ Route35GoldenrodGate_MapEvents:
 	db 0 ; bg events
 
 	db 3 ; object events
-	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_0x69d37, -1
-	object_event  6,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PokefanFScript_0x69dc6, -1
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RandyScript, -1
+	object_event  6,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route35GoldenrodGatePokefanFScript, -1
 	object_event  3,  2, SPRITE_FISHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route35GoldenrodGateFisherScript, -1

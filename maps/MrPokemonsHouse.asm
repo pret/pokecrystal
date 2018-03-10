@@ -143,13 +143,13 @@ MrPokemonsHouse_OakScript:
 	setevent EVENT_CYNDAQUIL_POKEBALL_IN_ELMS_LAB
 	end
 
-MapMrPokemonsHouseSignpost1Script:
+MrPokemonsHouse_ForeignMagazines:
 	jumptext MrPokemonsHouse_ForeignMagazinesText
 
-MapMrPokemonsHouseSignpost3Script:
+MrPokemonsHouse_BrokenComputer:
 	jumptext MrPokemonsHouse_BrokenComputerText
 
-MapMrPokemonsHouseSignpost4Script:
+MrPokemonsHouse_StrangeCoins:
 	jumptext MrPokemonsHouse_StrangeCoinsText
 
 MrPokemonsHouse_PlayerWalksToMrPokemon:
@@ -380,11 +380,11 @@ MrPokemonsHouse_MapEvents:
 	db 0 ; coord events
 
 	db 5 ; bg events
-	bg_event  0,  1, BGEVENT_READ, MapMrPokemonsHouseSignpost1Script
-	bg_event  1,  1, BGEVENT_READ, MapMrPokemonsHouseSignpost1Script
-	bg_event  6,  1, BGEVENT_READ, MapMrPokemonsHouseSignpost3Script
-	bg_event  7,  1, BGEVENT_READ, MapMrPokemonsHouseSignpost3Script
-	bg_event  6,  4, BGEVENT_READ, MapMrPokemonsHouseSignpost4Script
+	bg_event  0,  1, BGEVENT_READ, MrPokemonsHouse_ForeignMagazines
+	bg_event  1,  1, BGEVENT_READ, MrPokemonsHouse_ForeignMagazines
+	bg_event  6,  1, BGEVENT_READ, MrPokemonsHouse_BrokenComputer
+	bg_event  7,  1, BGEVENT_READ, MrPokemonsHouse_BrokenComputer
+	bg_event  6,  4, BGEVENT_READ, MrPokemonsHouse_StrangeCoins
 
 	db 2 ; object events
 	object_event  3,  5, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MrPokemonsHouse_MrPokemonScript, -1
