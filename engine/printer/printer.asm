@@ -1,4 +1,4 @@
-INCLUDE "engine/printer_serial.asm"
+INCLUDE "engine/printer/printer_serial.asm"
 
 SendScreenToPrinter: ; 843f0
 .loop

@@ -552,7 +552,7 @@ Unreferenced_BrokenGetStdGraphics: ; 8d1ac
 
 INCLUDE "data/sprite_anims/sequences.asm"
 
-INCLUDE "engine/sprite_anims.asm"
+INCLUDE "engine/gfx/sprite_anims.asm"
 
 INCLUDE "data/sprite_anims/framesets.asm"
 

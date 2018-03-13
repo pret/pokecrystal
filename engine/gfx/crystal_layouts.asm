@@ -203,7 +203,7 @@ Function49496: ; 49496
 	ret
 ; 494ac
 
-INCLUDE "engine/tileset_palettes.asm"
+INCLUDE "engine/gfx/tileset_palettes.asm"
 
 MG_Mobile_Layout02: ; 49706
 	ld hl, .Palette_49732

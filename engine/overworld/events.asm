@@ -1106,6 +1106,6 @@ ChangeDirectionScript: ; 9
 	end
 ; 96c56
 
-INCLUDE "engine/scripting.asm"
+INCLUDE "engine/overworld/scripting.asm"
 
-INCLUDE "engine/events_2.asm"
+INCLUDE "engine/overworld/events_2.asm"

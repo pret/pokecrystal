@@ -21,8 +21,8 @@ data/maps/map_data.o \
 data/pokemon/dex_entries.o \
 data/pokemon/egg_moves.o \
 data/pokemon/evos_attacks.o \
-engine/credits.o \
-engine/events.o \
+engine/title/credits.o \
+engine/overworld/events.o \
 gfx/pics.o \
 gfx/sprites.o \
 lib/mobile/main.o
