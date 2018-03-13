@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/magikarp/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db GROWTH_SLOW ; growth rate
-	dn EGG_FISH, EGG_DRAGON ; egg groups
+	dn EGG_WATER_2, EGG_DRAGON ; egg groups
 
 	; tm/hm learnset
 	tmhm
