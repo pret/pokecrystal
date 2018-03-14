@@ -32,30 +32,30 @@ INCLUDE "engine/events/specials.asm"
 INCLUDE "engine/routines/printnum.asm"
 INCLUDE "engine/pokemon/health.asm"
 INCLUDE "engine/events/overworld.asm"
-INCLUDE "engine/items.asm"
+INCLUDE "engine/items/items.asm"
 INCLUDE "engine/overworld/player_step.asm"
 INCLUDE "engine/battle/anim_hp_bar.asm"
 INCLUDE "engine/pokemon/move_mon.asm"
 INCLUDE "engine/pokemon/billspctop.asm"
-INCLUDE "engine/routines/getbreedmonlevelgrowth.asm"
+INCLUDE "engine/pokemon/getbreedmonlevelgrowth.asm"
 INCLUDE "engine/events/bug_contest/caught_mon.asm"
-INCLUDE "engine/item_effects.asm"
+INCLUDE "engine/items/item_effects.asm"
 INCLUDE "engine/battle_anims/getpokeballwobble.asm"
-INCLUDE "engine/routines/knowsmove.asm"
+INCLUDE "engine/pokemon/knowsmove.asm"
 
 
 SECTION "bank4", ROMX
 
-INCLUDE "engine/menu/pack.asm"
+INCLUDE "engine/items/pack.asm"
 INCLUDE "engine/overworld/time.asm"
-INCLUDE "engine/menu/tmhm.asm"
-INCLUDE "engine/menu/naming_screen.asm"
+INCLUDE "engine/items/tmhm.asm"
+INCLUDE "engine/menus/naming_screen.asm"
 INCLUDE "engine/events/misc_scripts.asm"
 INCLUDE "engine/events/heal_machine_anim.asm"
 INCLUDE "engine/events/whiteout.asm"
 INCLUDE "engine/events/forced_movement.asm"
 INCLUDE "engine/events/itemfinder.asm"
-INCLUDE "engine/menu/start_menu.asm"
+INCLUDE "engine/menus/start_menu.asm"
 INCLUDE "engine/overworld/select_menu.asm"
 INCLUDE "engine/events/elevator.asm"
 INCLUDE "engine/events/bug_contest/contest.asm"
@@ -70,14 +70,14 @@ INCLUDE "engine/routines/getsquareroot.asm"
 
 SECTION "bank5", ROMX
 
-INCLUDE "engine/rtc.asm"
+INCLUDE "engine/rtc/rtc.asm"
 INCLUDE "engine/overworld/overworld.asm"
 INCLUDE "engine/overworld/tile_events.asm"
 INCLUDE "engine/save.asm"
 INCLUDE "engine/overworld/spawn_points.asm"
 INCLUDE "engine/overworld/map_setup.asm"
 INCLUDE "engine/events/pokecenter_pc.asm"
-INCLUDE "engine/menu/mart.asm"
+INCLUDE "engine/items/mart.asm"
 INCLUDE "engine/money.asm"
 INCLUDE "data/items/marts.asm"
 INCLUDE "engine/events/mom.asm"
@@ -95,26 +95,26 @@ INCLUDE "engine/gfx/mapgroup_roofs.asm"
 
 SECTION "Clock Reset", ROMX
 
-INCLUDE "engine/menu/clock_reset.asm"
+INCLUDE "engine/rtc/clock_reset.asm"
 
 
 SECTION "bank9", ROMX
 
 INCLUDE "data/text_buffers.asm"
-INCLUDE "engine/menu/menu.asm"
-INCLUDE "engine/routines/updateitemdescription.asm"
+INCLUDE "engine/menus/menu.asm"
+INCLUDE "engine/items/updateitemdescription.asm"
 INCLUDE "engine/events/pokepic.asm"
 INCLUDE "engine/overworld/map_objects_2.asm"
-INCLUDE "engine/menu/scrolling_menu.asm"
-INCLUDE "engine/menu/switch_items.asm"
-INCLUDE "engine/menu/menu_2.asm"
-INCLUDE "engine/menu/mon_menu.asm"
+INCLUDE "engine/menus/scrolling_menu.asm"
+INCLUDE "engine/items/switch_items.asm"
+INCLUDE "engine/menus/menu_2.asm"
+INCLUDE "engine/pokemon/mon_menu.asm"
 INCLUDE "engine/battle/menu.asm"
-INCLUDE "engine/menu/buy_sell_toss.asm"
-INCLUDE "engine/menu/trainer_card.asm"
+INCLUDE "engine/items/buy_sell_toss.asm"
+INCLUDE "engine/menus/trainer_card.asm"
 INCLUDE "engine/events/prof_oaks_pc.asm"
 INCLUDE "engine/overworld/decorations.asm"
-INCLUDE "engine/routines/leveluphappinessmod.asm"
+INCLUDE "engine/pokemon/leveluphappinessmod.asm"
 INCLUDE "engine/battle/read_trainer_dvs.asm"
 INCLUDE "data/trainers/dvs.asm"
 INCLUDE "engine/battle/returntobattle_useball.asm"
@@ -148,7 +148,7 @@ INCLUDE "engine/pokemon/tmhm.asm"
 INCLUDE "data/moves/descriptions.asm"
 INCLUDE "engine/events/pokerus/pokerus.asm"
 INCLUDE "engine/battle/start_battle.asm"
-INCLUDE "engine/routines/placegraphic.asm"
+INCLUDE "engine/gfx/placegraphic.asm"
 
 
 SECTION "Effect Commands", ROMX
@@ -192,11 +192,11 @@ INCLUDE "engine/pokemon/mail.asm"
 SECTION "Crystal Features 1", ROMX
 
 INCLUDE "engine/init_gender.asm"
-INCLUDE "engine/routines/drawkrispackgfx.asm"
+INCLUDE "engine/gfx/drawkrispackgfx.asm"
 INCLUDE "engine/events/move_tutor.asm"
 INCLUDE "engine/gfx/crystal_layouts.asm"
 INCLUDE "engine/events/celebi.asm"
-INCLUDE "engine/menu/main_menu.asm"
+INCLUDE "engine/menus/main_menu.asm"
 INCLUDE "mobile/mobile_menu.asm"
 INCLUDE "engine/pokemon/search.asm"
 INCLUDE "mobile/mobile_12_2.asm"
@@ -212,7 +212,7 @@ INCLUDE "engine/routines/emptyallsrambanks.asm"
 INCLUDE "engine/routines/savemenu_copytilemapatonce.asm"
 INCLUDE "engine/routines/checksave.asm"
 INCLUDE "data/maps/scenes.asm"
-INCLUDE "engine/routines/loadmappart.asm"
+INCLUDE "engine/overworld/loadmappart.asm"
 INCLUDE "engine/routines/phonering_copytilemapatonce.asm"
 
 Shrink1Pic: ; 4d249
@@ -222,10 +222,10 @@ Shrink2Pic: ; 4d2d9
 INCBIN "gfx/new_game/shrink2.2bpp.lz"
 
 INCLUDE "engine/link/link_2.asm"
-INCLUDE "engine/menu/delete_save_change_clock.asm"
+INCLUDE "engine/rtc/delete_save_change_clock.asm"
 INCLUDE "data/tilesets.asm"
 INCLUDE "engine/routines/flagpredef.asm"
-INCLUDE "engine/routines/trademonfrontpic.asm"
+INCLUDE "engine/gfx/trademonfrontpic.asm"
 INCLUDE "engine/events/pokerus/check_pokerus.asm"
 INCLUDE "engine/events/lucky_number.asm"
 INCLUDE "engine/pokemon/caught_data.asm"
@@ -257,7 +257,7 @@ INCLUDE "engine/routines/unreferenced_getgen1trainerclassname.asm"
 INCLUDE "engine/pokemon/mon_stats.asm"
 INCLUDE "engine/routines/initlist.asm"
 INCLUDE "engine/pokemon/experience.asm"
-INCLUDE "engine/routines/switchpartymons.asm"
+INCLUDE "engine/pokemon/switchpartymons.asm"
 INCLUDE "engine/gfx/load_pics.asm"
 INCLUDE "engine/pokemon/move_mon_wo_mail.asm"
 INCLUDE "data/pokemon/base_stats.asm"
@@ -316,10 +316,10 @@ INCLUDE "engine/gfx/mon_icons.asm"
 SECTION "bank24", ROMX
 
 INCLUDE "engine/phone/phone.asm"
-INCLUDE "engine/menu/timeset.asm"
+INCLUDE "engine/rtc/timeset.asm"
 INCLUDE "engine/pokegear/pokegear.asm"
 INCLUDE "engine/events/fish.asm"
-INCLUDE "engine/game/slot_machine.asm"
+INCLUDE "engine/games/slot_machine.asm"
 
 
 SECTION "Phone Engine", ROMX
@@ -430,9 +430,9 @@ INCLUDE "gfx/pokemon/unown_frames.asm"
 SECTION "bank38", ROMX
 
 INCLUDE "engine/events/print_unown_2.asm"
-INCLUDE "engine/game/card_flip.asm"
-INCLUDE "engine/game/unown_puzzle.asm"
-INCLUDE "engine/game/dummy_game.asm"
+INCLUDE "engine/games/card_flip.asm"
+INCLUDE "engine/games/unown_puzzle.asm"
+INCLUDE "engine/games/dummy_game.asm"
 INCLUDE "engine/pokemon/billspc.asm"
 
 
@@ -441,7 +441,7 @@ SECTION "bank39", ROMX
 CopyrightGFX:: ; e4000
 INCBIN "gfx/splash/copyright.2bpp"
 
-INCLUDE "engine/menu/options_menu.asm"
+INCLUDE "engine/menus/options_menu.asm"
 INCLUDE "engine/title/crystal_intro.asm"
 
 
@@ -477,7 +477,7 @@ INCLUDE "engine/overworld/warp_connection.asm"
 INCLUDE "engine/link/mystery_gift.asm"
 INCLUDE "engine/battle/used_move_text.asm"
 INCLUDE "mobile/mobile_41.asm"
-INCLUDE "engine/routines/loadoverworldfont.asm"
+INCLUDE "engine/gfx/loadoverworldfont.asm"
 
 
 SECTION "Mobile 42", ROMX
@@ -566,7 +566,7 @@ INCLUDE "data/phone/text/trainers.asm"
 SECTION "Miscellaneous Text", ROMX
 
 INCLUDE "data/items/names.asm"
-INCLUDE "engine/routines/printitemdescription.asm"
+INCLUDE "engine/items/printitemdescription.asm"
 INCLUDE "data/items/descriptions.asm"
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
@@ -582,7 +582,7 @@ INCLUDE "engine/printer/print_party.asm"
 
 SECTION "bank77_2", ROMX
 
-INCLUDE "engine/routines/printhoursmins.asm"
+INCLUDE "engine/rtc/printhoursmins.asm"
 INCLUDE "engine/events/diploma.asm"
 INCLUDE "engine/pokedex/pokedex_3.asm"
 INCLUDE "engine/events/catch_tutorial_input.asm"
