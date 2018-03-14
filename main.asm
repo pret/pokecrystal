@@ -6,7 +6,7 @@ SECTION "bank1", ROMX
 INCLUDE "engine/routines/placewaitingtext.asm"
 INCLUDE "engine/routines/loadpushoam.asm"
 INCLUDE "engine/overworld/map_objects.asm"
-INCLUDE "engine/intro_menu.asm"
+INCLUDE "engine/menus/intro_menu.asm"
 INCLUDE "engine/overworld/init_map.asm"
 INCLUDE "engine/pokemon/learn.asm"
 INCLUDE "engine/routines/checknickerrors.asm"
@@ -191,7 +191,7 @@ INCLUDE "engine/pokemon/mail.asm"
 
 SECTION "Crystal Features 1", ROMX
 
-INCLUDE "engine/init_gender.asm"
+INCLUDE "engine/menus/init_gender.asm"
 INCLUDE "engine/gfx/drawkrispackgfx.asm"
 INCLUDE "engine/events/move_tutor.asm"
 INCLUDE "engine/gfx/crystal_layouts.asm"
