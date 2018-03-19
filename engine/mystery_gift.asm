@@ -394,7 +394,7 @@ Function104b88: ; 104b88 (41:4b88)
 	jp nz, Function104d32
 	call Function104d38
 	ret nz
-	ld hl, wOverworldMap
+	ld hl, wLinkData
 	ld a, [wca02]
 	ld b, a
 	call Function104d4e
@@ -551,7 +551,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	jp nz, Function104d32
 	call Function104d38
 	ret nz
-	ld hl, wOverworldMap
+	ld hl, wLinkData
 	ld a, [wca02]
 	ld b, a
 	call Function104d4e
@@ -1543,7 +1543,7 @@ Function105777: ; 105777 (41:5777)
 	ret
 
 Function10578c: ; 10578c (41:578c)
-	ld de, wOverworldMap
+	ld de, wLinkData
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld hl, sPlayerData + wPlayerName - wPlayerData

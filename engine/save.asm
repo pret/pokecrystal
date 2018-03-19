@@ -165,9 +165,9 @@ AddHallOfFameEntry: ; 14b5f
 	ld a, c
 	or b
 	jr nz, .loop
-	ld hl, wOverworldMap
+	ld hl, wHallOfFamePokemonList
 	ld de, sHallOfFame
-	ld bc, HOF_LENGTH
+	ld bc, wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1
 	call CopyBytes
 	call CloseSRAM
 	ret
@@ -943,8 +943,8 @@ endr
 ; 150f9
 
 SaveBoxAddress: ; 150f9
-; Save box via wMisc.
-; We do this in three steps because the size of wMisc is less than
+; Save box via wBoxPartialData.
+; We do this in three steps because the size of wBoxPartialData is less than
 ; the size of sBox.
 	push hl
 ; Load the first part of the active box.
@@ -953,8 +953,8 @@ SaveBoxAddress: ; 150f9
 	ld a, BANK(sBox)
 	call GetSRAMBank
 	ld hl, sBox
-	ld de, wMisc
-	ld bc, (wMiscEnd - wMisc)
+	ld de, wBoxPartialData
+	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
 	call CopyBytes
 	call CloseSRAM
 	pop de
@@ -963,23 +963,23 @@ SaveBoxAddress: ; 150f9
 	push af
 	push de
 	call GetSRAMBank
-	ld hl, wMisc
-	ld bc, (wMiscEnd - wMisc)
+	ld hl, wBoxPartialData
+	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
 	call CopyBytes
 	call CloseSRAM
 
 ; Load the second part of the active box.
 	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, sBox + (wMiscEnd - wMisc)
-	ld de, wMisc
-	ld bc, (wMiscEnd - wMisc)
+	ld hl, sBox + (wBoxPartialDataEnd - wBoxPartialData)
+	ld de, wBoxPartialData
+	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
 	call CopyBytes
 	call CloseSRAM
 	pop de
 	pop af
 
-	ld hl, (wMiscEnd - wMisc)
+	ld hl, (wBoxPartialDataEnd - wBoxPartialData)
 	add hl, de
 	ld e, l
 	ld d, h
@@ -987,30 +987,30 @@ SaveBoxAddress: ; 150f9
 	push af
 	push de
 	call GetSRAMBank
-	ld hl, wMisc
-	ld bc, (wMiscEnd - wMisc)
+	ld hl, wBoxPartialData
+	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
 	call CopyBytes
 	call CloseSRAM
 
 ; Load the third and final part of the active box.
 	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, sBox + (wMiscEnd - wMisc) * 2
-	ld de, wMisc
-	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
+	ld hl, sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2
+	ld de, wBoxPartialData
+	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
 	call CopyBytes
 	call CloseSRAM
 	pop de
 	pop af
 
-	ld hl, (wMiscEnd - wMisc)
+	ld hl, (wBoxPartialDataEnd - wBoxPartialData)
 	add hl, de
 	ld e, l
 	ld d, h
 ; Save it to the final part of the target box.
 	call GetSRAMBank
-	ld hl, wMisc
-	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
+	ld hl, wBoxPartialData
+	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
 	call CopyBytes
 	call CloseSRAM
 
@@ -1020,8 +1020,8 @@ SaveBoxAddress: ; 150f9
 
 
 LoadBoxAddress: ; 1517d (5:517d)
-; Load box via wMisc.
-; We do this in three steps because the size of wMisc is less than
+; Load box via wBoxPartialData.
+; We do this in three steps because the size of wBoxPartialData is less than
 ; the size of sBox.
 	push hl
 	ld l, e
@@ -1030,52 +1030,52 @@ LoadBoxAddress: ; 1517d (5:517d)
 	push af
 	push hl
 	call GetSRAMBank
-	ld de, wMisc
-	ld bc, (wMiscEnd - wMisc)
+	ld de, wBoxPartialData
+	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
 	call CopyBytes
 	call CloseSRAM
 	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, wMisc
+	ld hl, wBoxPartialData
 	ld de, sBox
-	ld bc, (wMiscEnd - wMisc)
+	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
 	call CopyBytes
 	call CloseSRAM
 	pop hl
 	pop af
 
-	ld de, (wMiscEnd - wMisc)
+	ld de, (wBoxPartialDataEnd - wBoxPartialData)
 	add hl, de
 ; Load part 2
 	push af
 	push hl
 	call GetSRAMBank
-	ld de, wMisc
-	ld bc, (wMiscEnd - wMisc)
+	ld de, wBoxPartialData
+	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
 	call CopyBytes
 	call CloseSRAM
 	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, wMisc
-	ld de, sBox + (wMiscEnd - wMisc)
-	ld bc, (wMiscEnd - wMisc)
+	ld hl, wBoxPartialData
+	ld de, sBox + (wBoxPartialDataEnd - wBoxPartialData)
+	ld bc, (wBoxPartialDataEnd - wBoxPartialData)
 	call CopyBytes
 	call CloseSRAM
 	pop hl
 	pop af
 ; Load part 3
-	ld de, (wMiscEnd - wMisc)
+	ld de, (wBoxPartialDataEnd - wBoxPartialData)
 	add hl, de
 	call GetSRAMBank
-	ld de, wMisc
-	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
+	ld de, wBoxPartialData
+	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
 	call CopyBytes
 	call CloseSRAM
 	ld a, BANK(sBox)
 	call GetSRAMBank
-	ld hl, wMisc
-	ld de, sBox + (wMiscEnd - wMisc) * 2
-	ld bc, sBoxEnd - (sBox + (wMiscEnd - wMisc) * 2) ; $8e
+	ld hl, wBoxPartialData
+	ld de, sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2
+	ld bc, sBoxEnd - (sBox + (wBoxPartialDataEnd - wBoxPartialData) * 2) ; $8e
 	call CopyBytes
 	call CloseSRAM
 

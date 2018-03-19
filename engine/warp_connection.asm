@@ -392,7 +392,7 @@ CheckMovingOffEdgeOfMap:: ; 104820 (41:4820)
 
 
 GetCoordOfUpperLeftCorner:: ; 10486d
-	ld hl, wOverworldMap
+	ld hl, wOverworldMapBlocks
 	ld a, [wXCoord]
 	bit 0, a
 	jr nz, .increment_then_halve1

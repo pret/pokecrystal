@@ -361,9 +361,13 @@ UNION ; c608
 wc608:: ds 480
 
 NEXTU ; c608
-; miscellaneous
-wMisc:: ds WMISC_WIDTH * WMISC_HEIGHT
-wMiscEnd::
+; surrounding tiles
+wSurroundingTiles:: ds SURROUNDING_WIDTH * SURROUNDING_HEIGHT
+
+NEXTU ; c608
+; box save buffer
+wBoxPartialData:: ds 480
+wBoxPartialDataEnd::
 
 NEXTU ; c608
 ; odd egg
@@ -389,7 +393,7 @@ wInitMinuteBuffer:: db ; c626
 
 NEXTU ; c608
 ; link engine data
-	ds 10
+wLink_c608:: ds 10
 wc612:: ds 10
 
 NEXTU ; c608
@@ -884,8 +888,9 @@ wc7e8_End::
 SECTION "Overworld Map", WRAM0
 
 UNION ; c800
-wOverworldMap:: ds 1300 ; c800
-wOverworldMapEnd::
+; overworld map blocks
+wOverworldMapBlocks:: ds 1300 ; c800
+wOverworldMapBlocksEnd::
 
 NEXTU ; c800
 ; GB Printer screen RAM
@@ -928,9 +933,13 @@ wGameboyPrinterRAMEnd::
 
 NEXTU ; c800
 ; bill's pc data
-wBillsPCPokemonList:: ; c800
-; Pokemon, box number, list index
+wBillsPCPokemonList::
+; (species, box number, list index) x30
 	ds 3 * 30
+
+NEXTU ; c800
+; Hall of Fame data
+wHallOfFamePokemonList:: hall_of_fame wHallOfFamePokemonList
 
 NEXTU ; c800
 ; raw link data

@@ -143,12 +143,12 @@ AnimateHallOfFame: ; 864c3
 
 
 GetHallOfFameParty: ; 8653f
-	ld hl, wOverworldMap
-	ld bc, HOF_LENGTH
+	ld hl, wHallOfFamePokemonList
+	ld bc, wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1
 	xor a
 	call ByteFill
 	ld a, [wHallOfFameCount]
-	ld de, wOverworldMap
+	ld de, wHallOfFamePokemonList
 	ld [de], a
 	inc de
 	ld hl, wPartySpecies
@@ -216,7 +216,7 @@ GetHallOfFameParty: ; 8653f
 	pop bc
 	inc c
 	pop de
-	ld hl, HOF_MON_LENGTH
+	ld hl, wHallOfFamePokemonListMon1End - wHallOfFamePokemonListMon1
 	add hl, de
 	ld e, l
 	ld d, h
@@ -224,7 +224,7 @@ GetHallOfFameParty: ; 8653f
 	jr .next
 
 .done
-	ld a, $ff
+	ld a, -1
 	ld [de], a
 	ret
 ; 865b5
@@ -422,7 +422,7 @@ LoadHOFTeam: ; 8671c
 	cp NUM_HOF_TEAMS
 	jr nc, .invalid
 	ld hl, sHallOfFame
-	ld bc, HOF_LENGTH
+	ld bc, wHallOfFameTempEnd - wHallOfFameTemp + 1
 	call AddNTimes
 	ld a, BANK(sHallOfFame)
 	call GetSRAMBank
@@ -430,7 +430,7 @@ LoadHOFTeam: ; 8671c
 	and a
 	jr z, .absent
 	ld de, wHallOfFameTemp
-	ld bc, HOF_LENGTH
+	ld bc, wHallOfFameTempEnd - wHallOfFameTemp + 1
 	call CopyBytes
 	call CloseSRAM
 	and a
