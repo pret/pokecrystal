@@ -48,7 +48,18 @@ void scan_file(char* filename) {
 				buffer = strchr(buffer, '\n');
 				if (!buffer) {
 					fprintf(stderr, "%s: no newline at end of file\n", filename);
+					break;
 				}
+				break;
+
+			case '"':
+				buffer++;
+				buffer = strchr(buffer, '"');
+				if (!buffer) {
+					fprintf(stderr, "%s: unterminated string\n", filename);
+					break;
+				}
+				buffer++;
 				break;
 
 			case 'i':
@@ -60,9 +71,10 @@ void scan_file(char* filename) {
 				}
 				if (is_incbin || is_include) {
 					buffer = strchr(buffer, '"');
-					if (!buffer++) {
+					if (!buffer) {
 						break;
 					}
+					buffer++;
 					int length = strcspn(buffer, "\"");
 					char *include = malloc(length + 1);
 					strncpy(include, buffer, length);
