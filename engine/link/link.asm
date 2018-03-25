@@ -2029,7 +2029,7 @@ Unreferenced_Function28f09: ; 28f09
 	ret
 ; 28f24
 
-INCLUDE "engine/gfx/trade_animation.asm"
+INCLUDE "engine/movie/trade_animation.asm"
 
 CheckTimeCapsuleCompatibility: ; 29bfb
 ; Checks to see if your party is compatible with the Gen 1 games.
