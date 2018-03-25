@@ -10,7 +10,7 @@ INCLUDE "engine/menus/intro_menu.asm"
 INCLUDE "engine/overworld/init_map.asm"
 INCLUDE "engine/pokemon/learn.asm"
 INCLUDE "engine/pokemon/checknickerrors.asm"
-INCLUDE "engine/routines/math.asm"
+INCLUDE "engine/math/math.asm"
 INCLUDE "data/items/attributes.asm"
 INCLUDE "engine/overworld/npc_movement.asm"
 INCLUDE "engine/events/happiness_egg.asm"
@@ -20,8 +20,8 @@ INCLUDE "engine/events/specials_2.asm"
 SECTION "bank2", ROMX
 
 INCLUDE "engine/overworld/player_object.asm"
-INCLUDE "engine/routines/sine.asm"
-INCLUDE "engine/routines/predef.asm"
+INCLUDE "engine/math/sine.asm"
+INCLUDE "engine/predef.asm"
 INCLUDE "engine/gfx/color.asm"
 
 
@@ -29,7 +29,7 @@ SECTION "bank3", ROMX
 
 INCLUDE "engine/events/checktime.asm"
 INCLUDE "engine/events/specials.asm"
-INCLUDE "engine/routines/printnum.asm"
+INCLUDE "engine/math/printnum.asm"
 INCLUDE "engine/pokemon/health.asm"
 INCLUDE "engine/events/overworld.asm"
 INCLUDE "engine/items/items.asm"
@@ -65,7 +65,7 @@ INCLUDE "engine/events/bug_contest/judging.asm"
 INCLUDE "engine/events/pokerus/apply_pokerus_tick.asm"
 INCLUDE "engine/events/bug_contest/contest_2.asm"
 INCLUDE "engine/pokemon/correcterrorsinplayerparty.asm"
-INCLUDE "engine/routines/getsquareroot.asm"
+INCLUDE "engine/math/getsquareroot.asm"
 
 
 SECTION "bank5", ROMX
@@ -95,7 +95,7 @@ INCLUDE "engine/tilesets/mapgroup_roofs.asm"
 
 SECTION "Clock Reset", ROMX
 
-INCLUDE "engine/rtc/clock_reset.asm"
+INCLUDE "engine/rtc/restart_clock.asm"
 
 
 SECTION "bank9", ROMX
@@ -208,7 +208,7 @@ SECTION "bank13", ROMX
 INCLUDE "engine/tilesets/map_palettes.asm"
 INCLUDE "gfx/tileset_palette_maps.asm"
 INCLUDE "data/collision_permissions.asm"
-INCLUDE "engine/routines/emptyallsrambanks.asm"
+INCLUDE "engine/menus/emptyallsrambanks.asm"
 INCLUDE "engine/menus/savemenu_copytilemapatonce.asm"
 INCLUDE "engine/events/checksave.asm"
 INCLUDE "data/maps/scenes.asm"
@@ -222,9 +222,10 @@ Shrink2Pic: ; 4d2d9
 INCBIN "gfx/new_game/shrink2.2bpp.lz"
 
 INCLUDE "engine/link/link_2.asm"
-INCLUDE "engine/rtc/delete_save_change_clock.asm"
+INCLUDE "engine/rtc/reset_password.asm"
+INCLUDE "engine/menus/delete_save.asm"
 INCLUDE "data/tilesets.asm"
-INCLUDE "engine/routines/flagpredef.asm"
+INCLUDE "engine/flagpredef.asm"
 INCLUDE "engine/gfx/trademonfrontpic.asm"
 INCLUDE "engine/events/pokerus/check_pokerus.asm"
 INCLUDE "engine/events/lucky_number.asm"
@@ -253,9 +254,9 @@ INCLUDE "engine/events/basement_key.asm"
 INCLUDE "engine/events/sacred_ash.asm"
 INCLUDE "engine/pokemon/tempmon.asm"
 INCLUDE "engine/pokemon/types.asm"
-INCLUDE "engine/routines/unreferenced_getgen1trainerclassname.asm"
+INCLUDE "engine/battle/unreferenced_getgen1trainerclassname.asm"
 INCLUDE "engine/pokemon/mon_stats.asm"
-INCLUDE "engine/routines/initlist.asm"
+INCLUDE "engine/link/initlist.asm"
 INCLUDE "engine/pokemon/experience.asm"
 INCLUDE "engine/pokemon/switchpartymons.asm"
 INCLUDE "engine/gfx/load_pics.asm"

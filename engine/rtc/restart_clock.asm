@@ -1,5 +1,4 @@
-
-ResetClock_GetWraparoundTime: ; 20000 (8:4000)
+RestartClock_GetWraparoundTime: ; 20000 (8:4000)
 	push hl
 	dec a
 	ld e, a
@@ -152,7 +151,7 @@ RestartClock: ; 20021 (8:4021)
 
 .pressed_up
 	ld a, [wBuffer1]
-	call ResetClock_GetWraparoundTime
+	call RestartClock_GetWraparoundTime
 	ld a, [de]
 	inc a
 	ld [de], a
@@ -164,7 +163,7 @@ RestartClock: ; 20021 (8:4021)
 
 .pressed_down
 	ld a, [wBuffer1]
-	call ResetClock_GetWraparoundTime
+	call RestartClock_GetWraparoundTime
 	ld a, [de]
 	dec a
 	ld [de], a
@@ -230,7 +229,7 @@ RestartClock: ; 20021 (8:4021)
 
 .PlaceChars: ; 20168 (8:4168)
 	push de
-	call ResetClock_GetWraparoundTime
+	call RestartClock_GetWraparoundTime
 	ld a, [wBuffer3]
 	dec a
 	ld b, a
