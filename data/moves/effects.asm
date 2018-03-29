@@ -797,7 +797,7 @@ Bide:
 	resettypematchup
 	checkhit
 	hittarget
-	effect0xa5
+	bidefailtext
 	checkfaint
 	checkdestinybond
 	buildopponentrage

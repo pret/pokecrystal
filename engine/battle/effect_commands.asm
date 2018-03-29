@@ -2437,7 +2437,7 @@ FailText_CheckOpponentProtect: ; 35157
 ; 35165
 
 
-BattleCommanda5: ; 35165
+BattleCommand_BideFailText: ; 35165
 	ld a, [wAttackMissed]
 	and a
 	ret z
