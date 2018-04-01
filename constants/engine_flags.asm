@@ -1,4 +1,4 @@
-; EngineFlags indexes (see engine/engine_flasg.asm)
+; EngineFlags indexes (see engine/engine_flags.asm)
 	const_def
 ; wPokegearFlags
 	const ENGINE_RADIO_CARD

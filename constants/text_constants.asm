@@ -36,7 +36,7 @@ TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 	const PRINTNUM_RIGHTALIGN_F   ; 6
 	const PRINTNUM_LEADINGZEROS_F ; 7
 
-; PrintNum arguments (see engine/printnum.asm)
+; PrintNum arguments (see engine/math/printnum.asm)
 PRINTNUM_MONEY          EQU 1 << PRINTNUM_MONEY_F
 PRINTNUM_RIGHTALIGN     EQU 1 << PRINTNUM_RIGHTALIGN_F
 PRINTNUM_LEADINGZEROS   EQU 1 << PRINTNUM_LEADINGZEROS_F

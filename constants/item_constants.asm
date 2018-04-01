@@ -3,7 +3,7 @@
 ; - ItemNames (see data/items/names.asm)
 ; - ItemDescriptions (see data/items/descriptions.asm)
 ; - ItemAttributes (see data/items/attributes.asm)
-; - ItemEffects (see engine/item_effects.asm)
+; - ItemEffects (see engine/items/item_effects.asm)
 	const_def
 	const NO_ITEM      ; 00
 	const MASTER_BALL  ; 01

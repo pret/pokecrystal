@@ -490,7 +490,7 @@ This is a bug with `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm]
 
 ([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
 
-This is a bug with `ShortHPBar_CalcPixelFrame` in [engine/anim_hp_bar.asm](/engine/anim_hp_bar.asm):
+This is a bug with `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](/engine/battle/anim_hp_bar.asm):
 
 ```asm
 	ld b, 0
@@ -519,7 +519,7 @@ This is a bug with `ShortHPBar_CalcPixelFrame` in [engine/anim_hp_bar.asm](/engi
 
 This can bring Pokémon straight from level 1 to 100 by gaining just a few experience points.
 
-This is a bug with `CalcExpAtLevel` in [engine/experience.asm](/engine/experience.asm):
+This is a bug with `CalcExpAtLevel` in [engine/pokemon/experience.asm](/engine/pokemon/experience.asm):
 
 ```asm
 CalcExpAtLevel: ; 50e47
@@ -589,7 +589,7 @@ Text_StringBuffer2ExpPoints::
 
 ## BRN/PSN/PAR do not affect catch rate
 
-This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_effects.asm):
+This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```asm
 ; This routine is buggy. It was intended that SLP and FRZ provide a higher
@@ -923,7 +923,7 @@ This is a bug with `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/hallof
 
 ([Video](https://www.youtube.com/watch?v=ojq3xqfRF6I))
 
-This is a bug with `Slots_PayoutAnim` in [engine/slot_machine.asm](/engine/slot_machine.asm):
+This is a bug with `Slots_PayoutAnim` in [engine/games/slot_machine.asm](/engine/games/slot_machine.asm):
 
 ```asm
 .okay
@@ -973,7 +973,7 @@ This is a bug with `PlayBattleMusic` in [engine/battle/start_battle.asm](/engine
 
 ## No bump noise if standing on tile `$3E`
 
-This is a bug with `DoPlayerMovement.CheckWarp` in [engine/player_movement.asm](/engine/player_movement.asm):
+This is a bug with `DoPlayerMovement.CheckWarp` in [engine/overworld/player_movement.asm](/engine/overworld/player_movement.asm):
 
 ```asm
 ; Bug: Since no case is made for STANDING here, it will check
@@ -1108,7 +1108,7 @@ In [home/map.asm](/home/map.asm):
 
 This bug is why the Lapras in [maps/UnionCaveB2F.asm](/maps/UnionCaveB2F.asm), which uses `SPRITEMOVEDATA_SWIM_WANDER`, is not restricted by its `1, 1` movement radius.
 
-In [engine/npc_movement.asm](/engine/npc_movement.asm):
+In [engine/overworld/npc_movement.asm](/engine/overworld/npc_movement.asm):
 
 ```asm
 	ld hl, OBJECT_FLAGS1
@@ -1126,7 +1126,7 @@ In [engine/npc_movement.asm](/engine/npc_movement.asm):
 
 This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh with only traded legendary beasts.
 
-In [engine/search.asm](/engine/search.asm):
+In [engine/pokemon/search.asm](/engine/pokemon/search.asm):
 
 ```asm
 ; check OT
@@ -1157,7 +1157,7 @@ endr
 
 This bug can affect Mew or Pokémon other than Ditto that used Transform via Mirror Move or Sketch.
 
-This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_effects.asm):
+This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```asm
 	ld hl, wEnemySubStatus5
@@ -1229,7 +1229,7 @@ This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_ef
 
 ([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
 
-This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_effects.asm):
+This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```asm
 .room_in_party
@@ -1254,7 +1254,7 @@ This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_ef
 
 ## `HELD_CATCH_CHANCE` has no effect
 
-This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_effects.asm):
+This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```asm
 	; BUG: farcall overwrites a, and GetItemHeldEffect takes b anyway.
@@ -1281,7 +1281,7 @@ This is a bug with `PokeBallEffect` in [engine/item_effects.asm](/engine/item_ef
 
 ## Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly
 
-This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/party_menu.asm](/engine/party_menu.asm):
+This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
 
 ```asm
 .DetermineCompatibility: ; 50268
@@ -1304,7 +1304,7 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 
 ## `EVOLVE_STAT` can break Stone compatibility reporting
 
-This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/party_menu.asm](/engine/party_menu.asm):
+This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
 
 ```asm
 .loop2
@@ -1337,7 +1337,7 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 
 ## `ScriptCall` can overflow `wScriptStack` and crash
 
-In [engine/scripting.asm](/engine/scripting.asm):
+In [engine/overworld/scripting.asm](/engine/overworld/scripting.asm):
 
 ```asm
 ScriptCall:
@@ -1377,7 +1377,7 @@ ScriptCall:
 
 ## `LoadSpriteGFX` does not limit the capacity of `UsedSprites`
 
-In [engine/overworld.asm](/engine/overworld.asm):
+In [engine/overworld/overworld.asm](/engine/overworld/overworld.asm):
 
 ```asm
 LoadSpriteGFX: ; 14306
@@ -1414,7 +1414,7 @@ LoadSpriteGFX: ; 14306
 
 ## `ChooseWildEncounter` doesn't really validate the wild Pokémon species
 
-In [engine/wildmons.asm](/engine/wildmons.asm):
+In [engine/overworld/wildmons.asm](/engine/overworld/wildmons.asm):
 
 ```asm
 ChooseWildEncounter: ; 2a14f
@@ -1452,7 +1452,7 @@ ValidateTempWildMonSpecies: ; 2a4a0
 
 ## `TryObjectEvent` arbitrary code execution
 
-In [engine/events.asm](/engine/events.asm):
+In [engine/overworld/events.asm](/engine/overworld/events.asm):
 
 ```asm
 ; Bug: If IsInArray returns nc, data at bc will be executed as code.

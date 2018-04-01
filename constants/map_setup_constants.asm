@@ -14,7 +14,7 @@
 	const MAPSETUP_BADWARP    ; fb
 	const MAPSETUP_FLY        ; fc
 
-; MapSetupCommands indexes (see engine/map_setup.asm)
+; MapSetupCommands indexes (see engine/overworld/map_setup.asm)
 ; Names taken from Condensation water's scripting compendium
 ; https://hax.iimarck.us/files/scriptingcodes_eng.htm
 	const_def

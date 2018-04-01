@@ -144,7 +144,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_LUGIA ; a1
 	const SPRITE_HO_OH ; a2
 
-; special GetMonSprite values (see engine/overworld.asm)
+; special GetMonSprite values (see engine/overworld/overworld.asm)
 	const_def $e0
 	const SPRITE_DAY_CARE_MON_1 ; e0
 	const SPRITE_DAY_CARE_MON_2 ; e1
