@@ -5651,7 +5651,7 @@ CheckPlayerHasMonToSwitchTo: ; 36994
 BattleCommand_EndLoop: ; 369b6
 ; endloop
 
-; Loop back to the command before 'critical'.
+; Loop back to 'critical'.
 
 	ld de, wPlayerRolloutCount
 	ld bc, wPlayerDamageTaken
@@ -5766,7 +5766,6 @@ BattleCommand_EndLoop: ; 369b6
 	ld [bc], a
 	ret
 
-; Loop back to the command before 'critical'.
 .loop_back_to_critical
 	ld a, [wBattleScriptBufferAddress + 1]
 	ld h, a
