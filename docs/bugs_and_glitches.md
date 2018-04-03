@@ -15,6 +15,8 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [A Pokémon that fainted from Pursuit will have its old status condition when revived](#a-pokémon-that-fainted-from-pursuit-will-have-its-old-status-condition-when-revived)
 - [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
 - [Beat Up can desynchronize link battles](#beat-up-can-desynchronize-link-battles)
+- [Beat Up may fail to raise substitute](#beat-up-may-fail-to-raise-substitute)
+- [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
 - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
 - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
 - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
@@ -337,6 +339,82 @@ This is a bug with `BattleCommand_BeatUp` in [engine/battle/move_effects/beat_up
 ```
 
 **Fix:** Change `cp [hl]` to `cp c`.
+
+
+## Beat Up may fail to raise substitute
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*  
+(Only the fixes denoted with "breaking" will actually break compatibility, the others just affect what's shown on the screen with the patched game)
+
+This is a bug in `BattleCommand_EndLoop` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm) that prevents the rest of the move's effect from being executed if the player or enemy only has one mon in their party while using Beat Up.
+
+It prevents the substitute from being raised and the King's Rock from working.
+
+```asm
+.only_one_beatup
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
+	res SUBSTATUS_IN_LOOP, [hl]
+	call BattleCommand_BeatUpFailText
+	jp EndMoveEffect
+```
+
+**Fix (breaking):** Replace the last two lines with `ret`.  
+**Fix (cosmetics):** Call `BattleCommand_RaiseSub` before the `jp`.
+
+There's a similar oversight in `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm) that will prevent the substitute from being raised if Beat Up is protected against.
+
+```asm
+	cp EFFECT_MULTI_HIT
+	jr z, .multihit
+	cp EFFECT_DOUBLE_HIT
+	jr z, .multihit
+	cp EFFECT_POISON_MULTI_HIT
+	jr z, .multihit
+	jp EndMoveEffect
+
+.multihit
+	call BattleCommand_RaiseSub
+	jp EndMoveEffect
+```
+
+**Fix:** Check for `EFFECT_BEAT_UP` as well.
+
+
+## Beat Up may trigger King's Rock even if it failed
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
+This is a bug in how `wAttackMissed` is never set by BeatUp, even when none of the 'mon have been able to attack (due to being fainted or having a status effect), the King's Rock may activate.
+
+This bug can be fixed in a plethora of ways, but the most straight-forward would be in `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](/engine/battle/move_effects/beat_up.asm), as that's always ran before the king's rock effect.
+
+```asm
+BattleCommand_BeatUpFailText: ; 355b5
+; beatupfailtext
+
+	ld a, [wBeatUpHitAtLeastOnce]
+	and a
+	ret nz
+
+	jp PrintButItFailed
+```
+
+**Fix:**
+
+```asm
+BattleCommand_BeatUpFailText: ; 355b5
+; beatupfailtext
+
+	ld a, [wBeatUpHitAtLeastOnce]
+	and a
+	ret nz
+
+	inc a
+	ld [wAttackMissed], a
+
+	jp PrintButItFailed
+```
 
 
 ## Present damage is incorrect in link battles
