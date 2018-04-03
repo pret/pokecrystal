@@ -172,7 +172,7 @@ ENDM
 	command bidefailtext            ; a5
 	command raisesubnoanim          ; a6
 	command lowersubnoanim          ; a7
-	command effect0xa8              ; a8
+	command beatupfailtext          ; a8
 	command clearmissdamage         ; a9
 	command movedelay               ; aa
 	command hittarget               ; ab

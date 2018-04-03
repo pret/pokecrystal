@@ -2056,7 +2056,7 @@ BeatUp:
 	checkdestinybond
 	buildopponentrage
 	endloop
-	effect0xa8
+	beatupfailtext
 	raisesub
 	kingsrock
 	endmove

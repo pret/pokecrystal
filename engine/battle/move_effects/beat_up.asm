@@ -203,7 +203,9 @@ BattleCommand_BeatUp: ; 35461
 ; 355b5
 
 
-BattleCommanda8: ; 355b5
+BattleCommand_BeatUpFailText: ; 355b5
+; beatupfailtext
+
 	ld a, [wBeatUpHitAtLeastOnce]
 	and a
 	ret nz
