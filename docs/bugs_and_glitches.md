@@ -713,7 +713,7 @@ This is a bug with `ItemAttributes` in [data/items/attributes.asm](/data/items/a
 
 ## Daisy's grooming doesn't always increase happiness
 
-This is a bug with `HaircutOrGrooming` in [engine/events/specials_2.asm](/engine/events/specials_2.asm):
+This is a bug with `HaircutOrGrooming` in [engine/events/haircut.asm](/engine/events/haircut.asm):
 
 ```asm
 ; Bug: Subtracting $ff from $ff fails to set c.

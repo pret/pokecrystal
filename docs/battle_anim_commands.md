@@ -88,7 +88,7 @@ Temporarily creates sprites from the top row of the player backpic, so that the 
 
 ## `$DB`: `anim_checkpokeball`
 
-Sets `BattleAnimVar` to the result of [GetPokeBallWobble](/engine/battle_anims/getpokeballwobble.asm).
+Sets `BattleAnimVar` to the result of [GetPokeBallWobble](/engine/battle_anims/pokeball_wobble.asm).
 
 
 ## `$DC`: `anim_transform`
