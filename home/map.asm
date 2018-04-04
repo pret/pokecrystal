@@ -1454,8 +1454,8 @@ BufferScreen:: ; 2879
 	ld h, [hl]
 	ld l, a
 	ld de, wScreenSave
-	ld c, $5
-	ld b, $6
+	ld c, SCREEN_META_HEIGHT
+	ld b, SCREEN_META_WIDTH
 .row
 	push bc
 	push hl
@@ -1467,9 +1467,9 @@ BufferScreen:: ; 2879
 	jr nz, .col
 	pop hl
 	ld a, [wMapWidth]
-	add $6
+	add 6
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	dec c
@@ -1498,18 +1498,18 @@ SaveScreen:: ; 289d
 	ret
 
 .up
-	ld de, wScreenSave + 6
+	ld de, wScreenSave + SCREEN_META_WIDTH
 	ld a, [hMapObjectIndexBuffer]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	jr .vertical
 
 .down
 	ld de, wScreenSave
 .vertical
-	ld b, 6
-	ld c, 4
+	ld b, SCREEN_META_WIDTH
+	ld c, SCREEN_META_HEIGHT - 1
 	jr SaveScreen_LoadNeighbor
 
 .left
@@ -1520,8 +1520,8 @@ SaveScreen:: ; 289d
 .right
 	ld de, wScreenSave
 .horizontal
-	ld b, 5
-	ld c, 5
+	ld b, SCREEN_META_WIDTH - 1
+	ld c, SCREEN_META_HEIGHT
 	jr SaveScreen_LoadNeighbor
 
 LoadNeighboringBlockData:: ; 28e3
@@ -1533,8 +1533,8 @@ LoadNeighboringBlockData:: ; 28e3
 	add 6
 	ld [hConnectionStripLength], a
 	ld de, wScreenSave
-	ld b, 6
-	ld c, 5
+	ld b, SCREEN_META_WIDTH
+	ld c, SCREEN_META_HEIGHT
 
 SaveScreen_LoadNeighbor:: ; 28f7
 .row

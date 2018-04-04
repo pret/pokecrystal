@@ -2769,7 +2769,7 @@ wMapGroup:: db ; dcb5 ; map group of current map
 wMapNumber:: db ; dcb6 ; map number of current map
 wYCoord:: db ; dcb7 ; current y coordinate relative to top-left corner of current map
 wXCoord:: db ; dcb8 ; current x coordinate relative to top-left corner of current map
-wScreenSave:: ds 6 * 5
+wScreenSave:: ds SCREEN_META_WIDTH * SCREEN_META_HEIGHT
 
 wCurrMapDataEnd::
 
