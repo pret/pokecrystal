@@ -15,10 +15,10 @@ ENDM
 	command damagevariation         ; 08
 	command checkhit                ; 09
 	command lowersub                ; 0a
-	command hittargetnosub          ; 0b
+	command moveanimnosub           ; 0b
 	command raisesub                ; 0c
 	command failuretext             ; 0d
-	command checkfaint              ; 0e
+	command applydamage             ; 0e
 	command criticaltext            ; 0f
 	command supereffectivetext      ; 10
 	command checkdestinybond        ; 11
@@ -175,7 +175,7 @@ ENDM
 	command beatupfailtext          ; a8
 	command clearmissdamage         ; a9
 	command movedelay               ; aa
-	command hittarget               ; ab
+	command moveanim                ; ab
 	command tristatuschance         ; ac
 	command supereffectivelooptext  ; ad
 	command startloop               ; ae

@@ -556,8 +556,8 @@ CheckEnemyTurn: ; 3421f
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	call z, PlayFXAnimID
 
-	ld c, $1
-	call EnemyHurtItself
+	ld c, TRUE
+	call DoEnemyDamage
 	call BattleCommand_RaiseSub
 	call CantMove
 	jp EndTurn
@@ -676,8 +676,8 @@ HitConfusion: ; 343a5
 	call CallBattleCore
 	ld a, $1
 	ld [hBGMapMode], a
-	ld c, $1
-	call PlayerHurtItself
+	ld c, TRUE
+	call DoPlayerDamage
 	jp BattleCommand_RaiseSub
 
 ; 343db
@@ -2081,16 +2081,16 @@ BattleCommand_LowerSub: ; 34eee
 ; 34f57
 
 
-BattleCommand_HitTarget: ; 34f57
-; hittarget
+BattleCommand_MoveAnim: ; 34f57
+; moveanim
 	call BattleCommand_LowerSub
-	call BattleCommand_HitTargetNoSub
+	call BattleCommand_MoveAnimNoSub
 	jp BattleCommand_RaiseSub
 
 ; 34f60
 
 
-BattleCommand_HitTargetNoSub: ; 34f60
+BattleCommand_MoveAnimNoSub: ; 34f60
 	ld a, [wAttackMissed]
 	and a
 	jp nz, BattleCommand_MoveDelay
@@ -2274,65 +2274,68 @@ BattleCommand_FailureText: ; 35023
 ; 3505e
 
 
-BattleCommand_CheckFaint: ; 3505e
-; checkfaint
+BattleCommand_ApplyDamage: ; 3505e
+; applydamage
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_ENDURE, a
-	jr z, .not_enduring
-	call BattleCommand_FalseSwipe
-	ld b, $0
-	jr nc, .okay
-	ld b, $1
-	jr .okay
+	jr z, .focus_band
 
-.not_enduring
+	call BattleCommand_FalseSwipe
+	ld b, 0
+	jr nc, .damage
+	ld b, 1
+	jr .damage
+
+.focus_band
 	call GetOpponentItem
 	ld a, b
 	cp HELD_FOCUS_BAND
-	ld b, $0
-	jr nz, .okay
+	ld b, 0
+	jr nz, .damage
+
 	call BattleRandom
 	cp c
-	jr nc, .okay
+	jr nc, .damage
 	call BattleCommand_FalseSwipe
-	ld b, $0
-	jr nc, .okay
-	ld b, $2
-.okay
+	ld b, 0
+	jr nc, .damage
+	ld b, 2
+
+.damage
 	push bc
-	call .check_sub
-	ld c, $0
+	call .update_damage_taken
+	ld c, FALSE
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .damage_player
-	call EnemyHurtItself
+	call DoEnemyDamage
 	jr .done_damage
 
 .damage_player
-	call PlayerHurtItself
+	call DoPlayerDamage
 
 .done_damage
 	pop bc
 	ld a, b
 	and a
 	ret z
+
 	dec a
-	jr nz, .not_enduring2
+	jr nz, .focus_band_text
 	ld hl, EnduredText
 	jp StdBattleTextBox
 
-.not_enduring2
+.focus_band_text
 	call GetOpponentItem
 	ld a, [hl]
 	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
-
 	ld hl, HungOnText
 	jp StdBattleTextBox
 
-.check_sub
+.update_damage_taken
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
@@ -2341,10 +2344,10 @@ BattleCommand_CheckFaint: ; 3505e
 	ld de, wPlayerDamageTaken + 1
 	ld a, [hBattleTurn]
 	and a
-	jr nz, .damage_taken
+	jr nz, .got_damage_taken
 	ld de, wEnemyDamageTaken + 1
 
-.damage_taken
+.got_damage_taken
 	ld a, [wCurDamage + 1]
 	ld b, a
 	ld a, [de]
@@ -2418,11 +2421,11 @@ GetFailureResultText: ; 350e4
 	ld a, $1
 	ld [wKickCounter], a
 	call LoadMoveAnim
-	ld c, $1
+	ld c, TRUE
 	ld a, [hBattleTurn]
 	and a
-	jp nz, EnemyHurtItself
-	jp PlayerHurtItself
+	jp nz, DoEnemyDamage
+	jp DoPlayerDamage
 
 FailText_CheckOpponentProtect: ; 35157
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
@@ -3620,15 +3623,13 @@ PlayFXAnimID: ; 35d08
 
 	ld c, 3
 	call DelayFrames
-
 	callfar PlayBattleAnim
-
 	ret
 
 ; 35d1c
 
 
-EnemyHurtItself: ; 35d1c
+DoEnemyDamage: ; 35d1c
 	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, a
@@ -3638,13 +3639,14 @@ EnemyHurtItself: ; 35d1c
 
 	ld a, c
 	and a
-	jr nz, .mimic_sub_check
-
+	jr nz, .ignore_substitute
 	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	jp nz, SelfInflictDamageToSubstitute
+	jp nz, DoSubstituteDamage
 
-.mimic_sub_check
+.ignore_substitute
+	; Substract wCurDamage from wEnemyMonHP.
+	;  store original HP in little endian wBuffer3/4
 	ld a, [hld]
 	ld b, a
 	ld a, [wEnemyMonHP + 1]
@@ -3657,19 +3659,18 @@ EnemyHurtItself: ; 35d1c
 	ld [wBuffer4], a
 	sbc b
 	ld [wEnemyMonHP], a
-	jr nc, .mimic_faint
+	jr nc, .no_underflow
 
 	ld a, [wBuffer4]
 	ld [hli], a
 	ld a, [wBuffer3]
 	ld [hl], a
-
 	xor a
 	ld hl, wEnemyMonHP
 	ld [hli], a
 	ld [hl], a
 
-.mimic_faint
+.no_underflow
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
 	ld [wBuffer2], a
@@ -3680,6 +3681,7 @@ EnemyHurtItself: ; 35d1c
 	ld [wBuffer6], a
 	ld a, [hl]
 	ld [wBuffer5], a
+
 	hlcoord 2, 2
 	xor a
 	ld [wWhichHPBar], a
@@ -3690,7 +3692,7 @@ EnemyHurtItself: ; 35d1c
 ; 35d7e
 
 
-PlayerHurtItself: ; 35d7e
+DoPlayerDamage: ; 35d7e
 	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, a
@@ -3700,12 +3702,15 @@ PlayerHurtItself: ; 35d7e
 
 	ld a, c
 	and a
-	jr nz, .mimic_sub_check
-
+	jr nz, .ignore_substitute
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	jp nz, SelfInflictDamageToSubstitute
-.mimic_sub_check
+	jp nz, DoSubstituteDamage
+
+.ignore_substitute
+	; Substract wCurDamage from wBattleMonHP.
+	;  store original HP in little endian wBuffer3/4
+	;  store new HP in little endian wBuffer5/6
 	ld a, [hld]
 	ld b, a
 	ld a, [wBattleMonHP + 1]
@@ -3719,14 +3724,13 @@ PlayerHurtItself: ; 35d7e
 	sbc b
 	ld [wBattleMonHP], a
 	ld [wBuffer6], a
-	jr nc, .mimic_faint
+	jr nc, .no_underflow
 
 	ld a, [wBuffer4]
 	ld [hli], a
 	ld a, [wBuffer3]
 	ld [hl], a
 	xor a
-
 	ld hl, wBattleMonHP
 	ld [hli], a
 	ld [hl], a
@@ -3734,14 +3738,15 @@ PlayerHurtItself: ; 35d7e
 	ld [hli], a
 	ld [hl], a
 
-.mimic_faint
+.no_underflow
 	ld hl, wBattleMonMaxHP
 	ld a, [hli]
 	ld [wBuffer2], a
 	ld a, [hl]
 	ld [wBuffer1], a
+
 	hlcoord 10, 9
-	ld a, $1
+	ld a, 1
 	ld [wWhichHPBar], a
 	predef AnimateHPBar
 .did_no_damage
@@ -3750,8 +3755,7 @@ PlayerHurtItself: ; 35d7e
 ; 35de0
 
 
-SelfInflictDamageToSubstitute: ; 35de0
-
+DoSubstituteDamage: ; 35de0
 	ld hl, SubTookDamageText
 	call StdBattleTextBox
 

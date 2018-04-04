@@ -10,9 +10,9 @@ NormalHit:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -40,9 +40,9 @@ PoisonHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -60,9 +60,9 @@ LeechHit:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	draintarget
@@ -82,9 +82,9 @@ BurnHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -103,9 +103,9 @@ FreezeHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -124,9 +124,9 @@ ParalyzeHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -145,9 +145,9 @@ Selfdestruct:
 	damagevariation
 	checkhit
 	selfdestruct
-	hittargetnosub
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -165,9 +165,9 @@ DreamEater:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	eatdream
@@ -544,9 +544,9 @@ AttackDownHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -566,9 +566,9 @@ DefenseDownHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -589,9 +589,9 @@ SpeedDownHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -611,9 +611,9 @@ SpecialAttackDownHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -633,9 +633,9 @@ SpecialDefenseDownHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -655,9 +655,9 @@ AccuracyDownHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -677,9 +677,9 @@ EvasionDownHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -699,9 +699,9 @@ DefenseUpHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -721,9 +721,9 @@ AttackUpHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -743,9 +743,9 @@ AllUpHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -763,9 +763,9 @@ PayDay:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	payday
@@ -796,9 +796,9 @@ Bide:
 	unleashenergy
 	resettypematchup
 	checkhit
-	hittarget
+	moveanim
 	bidefailtext
-	checkfaint
+	applydamage
 	checkdestinybond
 	buildopponentrage
 	kingsrock
@@ -817,9 +817,9 @@ Rampage:
 	stab
 	damagevariation
 	clearmissdamage
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -848,9 +848,9 @@ MultiHit:
 	stab
 	damagevariation
 	clearmissdamage
-	hittargetnosub
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	cleartext
 	supereffectivelooptext
@@ -875,9 +875,9 @@ PoisonMultiHit:
 	stab
 	damagevariation
 	clearmissdamage
-	hittargetnosub
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	cleartext
 	supereffectivelooptext
@@ -900,9 +900,9 @@ FlinchHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -916,9 +916,9 @@ OHKOHit:
 	doturn
 	stab
 	ohko
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -935,9 +935,9 @@ RecoilHit:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	recoil
@@ -980,9 +980,9 @@ ConfuseHit:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1022,9 +1022,9 @@ TriAttack:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1066,9 +1066,9 @@ SkyAttack:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1094,9 +1094,9 @@ HyperBeam:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	rechargenextturn
@@ -1115,10 +1115,10 @@ Rage:
 	checkhit
 	ragedamage
 	damagevariation
-	hittarget
+	moveanim
 	failuretext
 	rage
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1176,9 +1176,9 @@ RazorWind:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1198,10 +1198,10 @@ Fly:
 	stab
 	damagevariation
 	checkhit
-	hittargetnosub
+	moveanimnosub
 	raisesub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1220,9 +1220,9 @@ TrapTarget:
 	stab
 	damagevariation
 	clearmissdamage
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1239,9 +1239,9 @@ StaticDamage:
 	constantdamage
 	checkhit
 	resettypematchup
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	checkdestinybond
 	buildopponentrage
 	kingsrock
@@ -1254,9 +1254,9 @@ Reversal:
 	constantdamage
 	stab
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	supereffectivetext
 	checkdestinybond
 	buildopponentrage
@@ -1268,9 +1268,9 @@ Counter:
 	usedmovetext
 	doturn
 	counter
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	checkdestinybond
 	buildopponentrage
 	kingsrock
@@ -1304,9 +1304,9 @@ Snore:
 	checkhit
 	effectchance
 	snore
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1378,9 +1378,9 @@ FalseSwipe:
 	damagevariation
 	falseswipe
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1409,9 +1409,9 @@ TripleKick:
 	stab
 	damagevariation
 	clearmissdamage
-	hittargetnosub
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	cleartext
 	supereffectivelooptext
@@ -1434,9 +1434,9 @@ Thief:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	thief
@@ -1470,9 +1470,9 @@ FlameWheel:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	defrost
@@ -1543,9 +1543,9 @@ Rollout:
 	checkhit
 	rolloutpower
 	damagevariation
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1582,9 +1582,9 @@ FuryCutter:
 	checkhit
 	furycutter
 	damagevariation
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1611,9 +1611,9 @@ Return:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1634,7 +1634,7 @@ Present:
 	damagevariation
 	clearmissdamage
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1653,9 +1653,9 @@ Frustration:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1681,9 +1681,9 @@ SacredFire:
 	damagevariation
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	defrost
@@ -1704,9 +1704,9 @@ Magnitude:
 	damagevariation
 	checkhit
 	doubleundergrounddamage
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1732,9 +1732,9 @@ Pursuit:
 	damagevariation
 	pursuit
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1752,9 +1752,9 @@ RapidSpin:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	clearhazards
@@ -1794,9 +1794,9 @@ HiddenPower:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1824,7 +1824,7 @@ FakeOut:
 	doturn
 	checkhit
 	fakeout
-	hittarget
+	moveanim
 	failuretext
 	endmove
 
@@ -1847,9 +1847,9 @@ MirrorCoat:
 	usedmovetext
 	doturn
 	mirrorcoat
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	checkdestinybond
 	buildopponentrage
 	kingsrock
@@ -1867,9 +1867,9 @@ SkullBash:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1892,9 +1892,9 @@ Twister:
 	doubleflyingdamage
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1914,9 +1914,9 @@ Earthquake:
 	doubleundergrounddamage
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1933,9 +1933,9 @@ FutureSight:
 	futuresight
 	damagevariation ; skip here if last turn
 	checkhit
-	hittargetnosub
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
 	checkdestinybond
 	buildopponentrage
 	endmove
@@ -1951,9 +1951,9 @@ Gust:
 	damagevariation
 	doubleflyingdamage
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1972,9 +1972,9 @@ Stomp:
 	doubleminimizedamage
 	checkhit
 	effectchance
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -1995,9 +1995,9 @@ Solarbeam:
 	stab
 	damagevariation
 	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -2017,9 +2017,9 @@ Thunder:
 	effectchance
 	stab
 	damagevariation
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	checkdestinybond
@@ -2047,9 +2047,9 @@ BeatUp:
 	damagecalc
 	damagevariation
 	clearmissdamage
-	hittargetnosub
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	cleartext
 	supereffectivetext

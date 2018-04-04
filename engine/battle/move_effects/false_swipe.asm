@@ -1,6 +1,8 @@
 BattleCommand_FalseSwipe: ; 35c94
 ; falseswipe
 
+; Makes sure wCurDamage < MonHP
+
 	ld hl, wEnemyMonHP
 	ld a, [hBattleTurn]
 	and a
@@ -15,12 +17,14 @@ BattleCommand_FalseSwipe: ; 35c94
 	pop de
 	pop hl
 	jr c, .done
+
 	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, [hl]
 	dec a
 	ld [de], a
+
 	inc a
 	jr nz, .okay
 	dec de
@@ -28,11 +32,13 @@ BattleCommand_FalseSwipe: ; 35c94
 	dec a
 	ld [de], a
 .okay
+
 	ld a, [wCriticalHit]
 	cp 2
 	jr nz, .carry
 	xor a
 	ld [wCriticalHit], a
+
 .carry
 	scf
 	ret
