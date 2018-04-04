@@ -4136,6 +4136,7 @@ BattleCommand_EatDream: ; 36008
 
 
 SapHealth: ; 36011
+	; Divide damage by 2, store it in hDividend
 	ld hl, wCurDamage
 	ld a, [hli]
 	srl a
@@ -4145,10 +4146,11 @@ SapHealth: ; 36011
 	rr a
 	ld [hDividend + 1], a
 	or b
-	jr nz, .ok1
-	ld a, $1
+	jr nz, .at_least_one
+	ld a, 1
 	ld [hDividend + 1], a
-.ok1
+.at_least_one
+
 	ld hl, wBattleMonHP
 	ld de, wBattleMonMaxHP
 	ld a, [hBattleTurn]
@@ -4157,12 +4159,16 @@ SapHealth: ; 36011
 	ld hl, wEnemyMonHP
 	ld de, wEnemyMonMaxHP
 .battlemonhp
+
+	; Store current HP in little endian wBuffer3/4
 	ld bc, wBuffer4
 	ld a, [hli]
 	ld [bc], a
 	ld a, [hl]
 	dec bc
 	ld [bc], a
+
+	; Store max HP in little endian wBuffer1/2
 	ld a, [de]
 	dec bc
 	ld [bc], a
@@ -4170,6 +4176,8 @@ SapHealth: ; 36011
 	ld a, [de]
 	dec bc
 	ld [bc], a
+
+	; Add hDividend to current HP and copy it to little endian wBuffer5/6
 	ld a, [hDividend + 1]
 	ld b, [hl]
 	add b
@@ -4180,7 +4188,9 @@ SapHealth: ; 36011
 	adc b
 	ld [hli], a
 	ld [wBuffer6], a
-	jr c, .okay2
+	jr c, .max_hp
+
+	; Substract current HP from max HP (to see if we have more than max HP)
 	ld a, [hld]
 	ld b, a
 	ld a, [de]
@@ -4191,8 +4201,10 @@ SapHealth: ; 36011
 	ld a, [de]
 	inc de
 	sbc b
-	jr nc, .okay3
-.okay2
+	jr nc, .finish
+
+.max_hp
+	; Load max HP into current HP and copy it to little endian wBuffer5/6
 	ld a, [de]
 	ld [hld], a
 	ld [wBuffer5], a
@@ -4201,7 +4213,8 @@ SapHealth: ; 36011
 	ld [hli], a
 	ld [wBuffer6], a
 	inc de
-.okay3
+
+.finish
 	ld a, [hBattleTurn]
 	and a
 	hlcoord 10, 9
