@@ -14,10 +14,10 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_DamageVariation ; 34cfd
 	dw BattleCommand_CheckHit ; 34d32
 	dw BattleCommand_LowerSub ; 34eee
-	dw BattleCommand_HitTargetNoSub ; 34f60
+	dw BattleCommand_MoveAnimNoSub ; 34f60
 	dw BattleCommand_RaiseSub ; 35004
 	dw BattleCommand_FailureText ; 35023
-	dw BattleCommand_CheckFaint ; 3505e
+	dw BattleCommand_ApplyDamage ; 3505e
 	dw BattleCommand_CriticalText ; 35175
 	dw BattleCommand_SuperEffectiveText ; 351ad
 	dw BattleCommand_CheckDestinyBond ; 351c0
@@ -168,13 +168,13 @@ BattleCommandPointers: ; 3fd28
 	dw BattleCommand_RageDamage ; 3527b
 	dw BattleCommand_ResetTypeMatchup ; 34833
 	dw BattleCommand_AllStatsUp ; 36500
-	dw BattleCommanda5 ; 35165
+	dw BattleCommand_BideFailText ; 35165
 	dw BattleCommand_RaiseSubNoAnim ; 365af
 	dw BattleCommand_LowerSubNoAnim ; 365c3
-	dw BattleCommanda8 ; 355b5
+	dw BattleCommand_BeatUpFailText ; 355b5
 	dw BattleCommand_ClearMissDamage ; 355d5 - a9
 	dw BattleCommand_MoveDelay ; 37e80
-	dw BattleCommand_HitTarget ; 34f57
+	dw BattleCommand_MoveAnim ; 34f57
 	dw BattleCommand_TriStatusChance ; 3658f
 	dw BattleCommand_SuperEffectiveLoopText ; 351a5
 	dw BattleCommand_StartLoop ; 35197

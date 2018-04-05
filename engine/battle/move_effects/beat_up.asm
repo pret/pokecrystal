@@ -5,9 +5,11 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [hBattleTurn]
 	and a
 	jp nz, .enemy_beats_up
+
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_IN_LOOP, a
 	jr nz, .next_mon
+
 	ld c, 20
 	call DelayFrames
 	xor a
@@ -51,11 +53,13 @@ BattleCommand_BeatUp: ; 35461
 	ld [wBeatUpHitAtLeastOnce], a
 	ld hl, BeatUpAttackText
 	call StdBattleTextBox
+
 	ld a, [wEnemyMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wBaseDefense]
 	ld c, a
+
 	push bc
 	ld a, MON_SPECIES
 	call GetBeatupMonLocation
@@ -65,12 +69,14 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [wBaseAttack]
 	pop bc
 	ld b, a
+
 	push bc
 	ld a, MON_LEVEL
 	call GetBeatupMonLocation
 	ld a, [hl]
 	ld e, a
 	pop bc
+
 	ld a, [wPlayerMoveStructPower]
 	ld d, a
 	ret
@@ -78,21 +84,22 @@ BattleCommand_BeatUp: ; 35461
 .enemy_beats_up
 	ld a, [wEnemySubStatus3]
 	bit SUBSTATUS_IN_LOOP, a
-	jr nz, .not_first_enemy_beatup
+	jr nz, .enemy_next_mon
 
 	xor a
 	ld [wEnemyRolloutCount], a
 	ld [wd002], a
 	ld [wBeatUpHitAtLeastOnce], a
-	jr .enemy_continue
+	jr .enemy_got_mon
 
-.not_first_enemy_beatup
+.enemy_next_mon
 	ld a, [wEnemyRolloutCount]
 	ld b, a
 	ld a, [wOTPartyCount]
 	sub b
 	ld [wd002], a
-.enemy_continue
+
+.enemy_got_mon
 	ld a, [wBattleMode]
 	dec a
 	jr z, .wild
@@ -122,19 +129,20 @@ BattleCommand_BeatUp: ; 35461
 	call AddNTimes
 	ld de, wStringBuffer1
 	call CopyBytes
+
 .got_enemy_nick
 	ld a, MON_HP
 	call GetBeatupMonLocation
 	ld a, [hli]
 	or [hl]
 	jp z, .beatup_fail
+
 	ld a, [wd002]
 	ld b, a
 	ld a, [wCurOTMon]
 	cp b
 	ld hl, wEnemyMonStatus
 	jr z, .active_enemy
-
 	ld a, MON_STATUS
 	call GetBeatupMonLocation
 .active_enemy
@@ -157,11 +165,13 @@ BattleCommand_BeatUp: ; 35461
 .finish_beatup
 	ld hl, BeatUpAttackText
 	call StdBattleTextBox
+
 	ld a, [wBattleMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
 	ld a, [wBaseDefense]
 	ld c, a
+
 	push bc
 	ld a, MON_SPECIES
 	call GetBeatupMonLocation
@@ -171,12 +181,14 @@ BattleCommand_BeatUp: ; 35461
 	ld a, [wBaseAttack]
 	pop bc
 	ld b, a
+
 	push bc
 	ld a, MON_LEVEL
 	call GetBeatupMonLocation
 	ld a, [hl]
 	ld e, a
 	pop bc
+
 	ld a, [wEnemyMoveStructPower]
 	ld d, a
 	ret
@@ -191,7 +203,9 @@ BattleCommand_BeatUp: ; 35461
 ; 355b5
 
 
-BattleCommanda8: ; 355b5
+BattleCommand_BeatUpFailText: ; 355b5
+; beatupfailtext
+
 	ld a, [wBeatUpHitAtLeastOnce]
 	and a
 	ret nz
