@@ -778,7 +778,7 @@ PrintPartyMenuText: ; 5049a
 .gotstring ; 504be
 	ld a, [wOptions]
 	push af
-	set 4, a ; disable text delay
+	set NO_TEXT_SCROLL, a
 	ld [wOptions], a
 	hlcoord 1, 16 ; Coord
 	call PlaceString

@@ -41,20 +41,20 @@ DetermineLinkBattleResult: ; 2b930
 .victory
 	ld a, [wBattleResult]
 	and $f0
-	ld [wBattleResult], a
+	ld [wBattleResult], a ; WIN
 	ret
 
 .defeat
 	ld a, [wBattleResult]
 	and $f0
-	add $1
+	add LOSE
 	ld [wBattleResult], a
 	ret
 
 .drawn
 	ld a, [wBattleResult]
 	and $f0
-	add $2
+	add DRAW
 	ld [wBattleResult], a
 	ret
 
@@ -123,16 +123,16 @@ DetermineLinkBattleResult: ; 2b930
 	jr nz, .finish ; we have a pokemon that's neither fainted nor at full health
 	ld hl, wOTPartyMon1HP
 	call .CheckFaintedOrFullHealth
-	ld e, $1
+	ld e, $1 ; victory
 	ret
 
 .finish
 	ld hl, wOTPartyMon1HP
 	call .CheckFaintedOrFullHealth
-	ld e, $0
+	ld e, $0 ; drawn
 	ret nz ; we both have pokemon that are neither fainted nor at full health
-	ld e, $2
-	ld a, $1
+	ld e, $2 ; defeat
+	ld a, $1 ; not drawn
 	and a
 	ret
 

@@ -1504,8 +1504,11 @@ wGameTimerPause:: ; cfbc
 
 	ds 1
 
-wcfbe:: ; SGB flags?
-; bit 7
+wcfbe:: ; cfbe
+; bits 4, 6, or 7 can be used to disable joypad input
+; bit 4
+; bit 6: mon fainted?
+; bit 7: SGB flag?
 	db
 
 	ds 1
@@ -1893,7 +1896,11 @@ wVramState:: ; d0ed
 ;        flickers when climbing waterfall
 	db
 
-wBattleResult:: db ; d0ee
+wBattleResult:: ; d0ee
+; WIN, LOSE, or DRAW
+; bit 6: caught celebi
+; bit 7: box full
+	db
 wUsingItemWithSelect:: db ; d0ef
 
 UNION ; d0f0

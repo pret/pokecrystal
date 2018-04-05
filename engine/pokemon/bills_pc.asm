@@ -2,7 +2,7 @@ _DepositPKMN: ; e2391 (38:6391)
 	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	ld a, [wVramState]
 	push af
 	xor a
@@ -264,7 +264,7 @@ _WithdrawPKMN: ; e2583 (38:6583)
 	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	ld a, [wVramState]
 	push af
 	xor a
@@ -507,7 +507,7 @@ _MovePKMNWithoutMail: ; e2759
 	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	ld a, [wVramState]
 	push af
 	xor a

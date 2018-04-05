@@ -254,7 +254,7 @@ RunBattleTowerTrainer: ; 17024d
 	farcall HealParty
 	ld a, [wBattleResult]
 	ld [wScriptVar], a
-	and a
+	and a ; WIN?
 	jr nz, .lost
 	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
 	call GetSRAMBank
