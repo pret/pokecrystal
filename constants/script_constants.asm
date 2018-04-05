@@ -38,7 +38,7 @@ NUM_MEM_BUFFERS EQU const_value
 
 
 ; writecode/checkcode arguments
-; _GetVarAction.VarActionTable indexes (see engine/variables.asm)
+; _GetVarAction.VarActionTable indexes (see engine/overworld/variables.asm)
 	const_def
 	const VAR_STRINGBUFFER2    ; 00
 	const VAR_PARTYCOUNT       ; 01
@@ -75,7 +75,7 @@ RETVAR_ADDR_DE EQU (1 << 6)
 RETVAR_EXECUTE EQU (2 << 6)
 
 
-; PlayerEventScriptPointers indexes (see engine/events.asm)
+; PlayerEventScriptPointers indexes (see engine/overworld/events.asm)
 	const_def -1
 	const PLAYEREVENT_MAPSCRIPT
 	const PLAYEREVENT_NONE
@@ -92,7 +92,7 @@ NUM_PLAYER_EVENTS EQU const_value
 
 
 ; bg_event types
-; TryBGEvent arguments (see engine/events.asm)
+; TryBGEvent arguments (see engine/overworld/events.asm)
 	const_def
 	const BGEVENT_READ
 	const BGEVENT_UP
@@ -105,7 +105,7 @@ NUM_PLAYER_EVENTS EQU const_value
 	const BGEVENT_COPY
 
 ; object_event types
-; TryObjectEvent arguments (see engine/events.asm)
+; TryObjectEvent arguments (see engine/overworld/events.asm)
 	const_def
 	const OBJECTTYPE_SCRIPT
 	const OBJECTTYPE_ITEMBALL
@@ -203,7 +203,7 @@ EMOTE_MEM EQU -1
 NUM_FRUIT_TREES EQU const_value + -1
 
 ; describedecoration arguments
-; DescribeDecoration.JumpTable indexes (see engine/decorations.asm)
+; DescribeDecoration.JumpTable indexes (see engine/overworld/decorations.asm)
 	const_def
 	const DECODESC_POSTER     ; 0
 	const DECODESC_LEFT_DOLL  ; 1
@@ -259,7 +259,7 @@ NUM_FRUIT_TREES EQU const_value + -1
 	const HEALMACHINE_HALL_OF_FAME ; 2
 
 ; UnownPuzzle writebyte arguments
-; LoadUnownPuzzlePiecesGFX.LZPointers indexes (see engine/unown_puzzle.asm)
+; LoadUnownPuzzlePiecesGFX.LZPointers indexes (see engine/games/unown_puzzle.asm)
 	const_def
 	const UNOWNPUZZLE_KABUTO     ; 0
 	const UNOWNPUZZLE_OMANYTE    ; 1

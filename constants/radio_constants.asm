@@ -1,8 +1,8 @@
 ; radio channel ids
 ; indexes for:
 ; - RadioChannelSongs (see data/radio/channel_music.asm)
-; - PlayRadioShow/RadioJumptable (see engine/radio.asm)
-; - RadioChannels (see engine/radio.asm)
+; - PlayRadioShow/RadioJumptable (see engine/pokegear/radio.asm)
+; - RadioChannels (see engine/pokegear/radio.asm)
 	const_def
 	const OAKS_POKEMON_TALK      ; 00
 	const POKEDEX_SHOW           ; 01
@@ -94,7 +94,7 @@
 	const POKEDEX_SHOW_7         ; 56
 	const POKEDEX_SHOW_8         ; 57
 
-; PlayRadio.StationPointers indexes (see engine/pokegear.asm)
+; PlayRadio.StationPointers indexes (see engine/pokegear/pokegear.asm)
 	const_def
 	const MAPRADIO_POKEMON_CHANNEL
 	const MAPRADIO_OAKS_POKEMON_TALK
@@ -106,7 +106,7 @@
 	const MAPRADIO_LETS_ALL_SING
 	const MAPRADIO_ROCKET
 
-; These tables in engine/radio.asm are all sized to a power of 2
+; These tables in engine/pokegear/radio.asm are all sized to a power of 2
 ; so there's no need for a rejection sampling loop
 NUM_OAKS_POKEMON_TALK_ADVERBS    EQU 16 ; OaksPKMNTalk8.Adverbs
 NUM_OAKS_POKEMON_TALK_ADJECTIVES EQU 16 ; OaksPKMNTalk9.Adjectives
@@ -117,7 +117,7 @@ NUM_PNP_PLACES_ADJECTIVES    EQU 16 ; PeoplePlaces7.Adjectives
 NUM_PASSWORD_CATEGORIES    EQU 11
 NUM_PASSWORDS_PER_CATEGORY EQU  3
 
-; GetBuenasPassword.StringFunctionJumpTable indexes (see engine/radio.asm)
+; GetBuenasPassword.StringFunctionJumpTable indexes (see engine/pokegear/radio.asm)
 	const_def
 	const BUENA_MON
 	const BUENA_ITEM

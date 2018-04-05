@@ -121,7 +121,7 @@ MAPOBJECT_SCREEN_WIDTH EQU 12
 NUM_SPRITEMOVEDATA EQU const_value
 SPRITEMOVEDATA_FIELDS EQU 6
 
-; MapObjectMovementPattern.Pointers indexes (see engine/map_objects.asm)
+; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
 	const_def
 	const SPRITEMOVEFN_00                    ; 00
 	const SPRITEMOVEFN_RANDOM_WALK_Y         ; 01
@@ -152,7 +152,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const SPRITEMOVEFN_BOULDERDUST           ; 1a
 	const SPRITEMOVEFN_GRASS                 ; 1b
 
-; StepTypesJumptable indexes (see engine/map_objects.asm)
+; StepTypesJumptable indexes (see engine/overworld/map_objects.asm)
 	const_def
 	const STEP_TYPE_00              ; 00
 	const STEP_TYPE_SLEEP           ; 01
@@ -181,7 +181,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const STEP_TYPE_18              ; 18
 	const STEP_TYPE_SKYFALL_TOP     ; 19
 
-; ObjectActionPairPointers indexes (see engine/map_object_action.asm)
+; ObjectActionPairPointers indexes (see engine/overworld/map_object_action.asm)
 	const_def
 	const OBJECT_ACTION_00            ; 00
 	const OBJECT_ACTION_STAND         ; 01
@@ -237,7 +237,7 @@ SPRITEMOVEDATA_FIELDS EQU 6
 	const FACING_GRASS_2        ; 1f
 
 
-; DoPlayerMovement.DoStep arguments (see engine/player_movement.asm)
+; DoPlayerMovement.DoStep arguments (see engine/overworld/player_movement.asm)
 	const_def
 	const STEP_SLOW          ; 0
 	const STEP_WALK          ; 1

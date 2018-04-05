@@ -67,7 +67,7 @@ NUM_SPRITE_ANIM_STRUCTS EQU 10 ; see wSpriteAnimationStructs
 	const SPRITE_ANIM_INDEX_INTRO_SUICUNE_AWAY       ; 2b
 	const SPRITE_ANIM_INDEX_CELEBI                   ; 2c
 
-; DoAnimFrame.Jumptable indexes (see engine/sprite_anims.asm)
+; DoAnimFrame.Jumptable indexes (see engine/gfx/sprite_anims.asm)
 	const_def
 	const SPRITE_ANIM_SEQ_NULL                    ; 00
 	const SPRITE_ANIM_SEQ_PARTY_MON               ; 01

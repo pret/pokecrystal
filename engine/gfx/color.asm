@@ -1,4 +1,4 @@
-INCLUDE "engine/sgb_layouts.asm"
+INCLUDE "engine/gfx/sgb_layouts.asm"
 
 SHINY_ATK_BIT EQU 5
 SHINY_DEF_VAL EQU 10
@@ -445,7 +445,7 @@ LoadMailPalettes:
 .MailPals:
 INCLUDE "gfx/mail/mail.pal"
 
-INCLUDE "engine/cgb_layouts.asm"
+INCLUDE "engine/gfx/cgb_layouts.asm"
 
 Unreferenced_Function95f0:
 	ld hl, .Palette

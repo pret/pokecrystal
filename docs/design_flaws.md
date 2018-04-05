@@ -25,7 +25,7 @@ dba_pic: MACRO ; dbw bank, address
 ENDM
 ```
 
-The offset is translated into a correct bank by `FixPicBank` in [engine/load_pics.asm](/engine/load_pics.asm):
+The offset is translated into a correct bank by `FixPicBank` in [engine/gfx/load_pics.asm](/engine/gfx/load_pics.asm):
 
 ```asm
 FixPicBank: ; 511c5
@@ -107,7 +107,7 @@ ROMX $49
 	"Pics 2"
 ```
 
-Two routines in [engine/load_pics.asm](/engine/load_pics.asm) make this assumption; `GetFrontpicPointer`:
+Two routines in [engine/gfx/load_pics.asm](/engine/gfx/load_pics.asm) make this assumption; `GetFrontpicPointer`:
 
 ```asm
 	ld a, [wCurPartySpecies]
@@ -295,7 +295,7 @@ Modify `Pokedex_LoadAnyFootprint`:
 NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 ```
 
-`GetTMHMNumber` and `GetNumberedTMHM` in [engine/items.asm](/engine/items.asm) have to compensate for this:
+`GetTMHMNumber` and `GetNumberedTMHM` in [engine/items/items.asm](/engine/items/items.asm) have to compensate for this:
 
 ```asm
 GetTMHMNumber:: ; d407
@@ -338,7 +338,7 @@ GetNumberedTMHM: ; d417
 
 Move `ITEM_C3` and `ITEM_DC` above all the TMs in every table of item data.
 
-Modify engine/items.asm:
+Modify engine/items/items.asm:
 
 ```asm
 GetTMHMNumber:: ; d407
@@ -399,7 +399,7 @@ GetDexEntryPointer: ; 44333
 	db BANK(PokedexEntries4)
 ```
 
-`GetPokedexEntryBank` in [engine/item_effects.asm](/engine/item_effects.asm):
+`GetPokedexEntryBank` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```asm
 GetPokedexEntryBank:
@@ -425,7 +425,7 @@ GetPokedexEntryBank:
 	db BANK(PokedexEntries4)
 ```
 
-And `PokedexShow_GetDexEntryBank` in [engine/radio.asm](/engine/radio.asm):
+And `PokedexShow_GetDexEntryBank` in [engine/pokegear/radio.asm](/engine/pokegear/radio.asm):
 
 ```asm
 PokedexShow_GetDexEntryBank:
@@ -457,7 +457,7 @@ PokedexShow_GetDexEntryBank:
 
 ## Identical sine wave code and data is repeated five times
 
-`_Sine` in [engine/routines/sine.asm](/engine/routines/sine.asm):
+`_Sine` in [engine/math/sine.asm](/engine/math/sine.asm):
 
 ```asm
 _Sine:: ; 84d9
@@ -466,7 +466,7 @@ _Sine:: ; 84d9
 	calc_sine_wave
 ```
 
-`Sprites_Cosine` and `Sprites_Sine` in [engine/sprites.asm](/engine/sprites.asm):
+`Sprites_Cosine` and `Sprites_Sine` in [engine/gfx/sprites.asm](/engine/gfx/sprites.asm):
 
 ```asm
 Sprites_Cosine: ; 8e72a
@@ -583,7 +583,7 @@ ENDM
 
 ## `GetForestTreeFrame` works, but it's still bad
 
-In [engine/tileset_anims.asm](/engine/tileset_anims.asm):
+In [engine/tilesets/tileset_anims.asm](/engine/tilesets/tileset_anims.asm):
 
 ```asm
 GetForestTreeFrame: ; fc54c
