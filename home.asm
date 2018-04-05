@@ -1211,7 +1211,7 @@ GetNick:: ; 38a2
 	call CopyBytes
 	pop de
 
-	callfar CheckNickErrors
+	callfar CorrectNickErrors
 
 	pop bc
 	pop hl
