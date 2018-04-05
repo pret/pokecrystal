@@ -185,7 +185,7 @@ _HandleObjectAction
 	ret
 ; 445f
 
-INCLUDE "engine/map_object_action.asm"
+INCLUDE "engine/overworld/map_object_action.asm"
 
 CopyNextCoordsTileToStandingCoordsTile: ; 4600
 	ld hl, OBJECT_NEXT_MAP_X
@@ -1990,7 +1990,7 @@ DoMovementFunction: ; 506b
 	ret
 ; 5075
 
-INCLUDE "engine/movement.asm"
+INCLUDE "engine/overworld/movement.asm"
 ; 54b8
 
 ApplyMovementToFollower: ; 54b8

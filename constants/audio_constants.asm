@@ -17,7 +17,7 @@
 	const CC ; d (used for pitchoffset)
 
 ; channel
-; ChannelPointers indexes (see engine/audio.asm)
+; ChannelPointers indexes (see audio/engine.asm)
 	const_def
 	const CHAN1 ; 0
 	const CHAN2 ; 1

@@ -45,7 +45,7 @@ SPRITEOAMSTRUCT_LENGTH EQU const_value
 NUM_SPRITE_OAM_STRUCTS EQU 40 ; see wVirtualOAM
 
 
-; PokeAnims indexes (see engine/pic_animation.asm)
+; PokeAnims indexes (see engine/gfx/pic_animation.asm)
 	const_def
 	const ANIM_MON_SLOW
 	const ANIM_MON_NORMAL

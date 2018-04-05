@@ -1,6 +1,6 @@
 # Movement Commands
 
-Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engine/movement.asm:MovementPointers](/engine/movement.asm).
+Defined in [macros/scripts/movement.asm](/macros/scripts/movement.asm) and [engine/overworld/movement.asm:MovementPointers](/engine/overworld/movement.asm).
 
 
 ## `$00`−`$03`: <code>turn_head <i>direction</i></code>

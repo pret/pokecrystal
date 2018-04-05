@@ -1,4 +1,4 @@
-; GetSGBLayout arguments (see engine/cgb_layouts.asm and engine/sgb_layouts.asm)
+; GetSGBLayout arguments (see engine/gfx/cgb_layouts.asm and engine/gfx/sgb_layouts.asm)
 	const_def
 	const SCGB_BATTLE_GRAYSCALE
 	const SCGB_BATTLE_COLORS
@@ -36,7 +36,7 @@ SCGB_PARTY_MENU_HP_PALS  EQU -4
 SCGB_RAM EQU -1
 
 ; PredefPals indexes (see gfx/sgb/predef.pal)
-; GetPredefPal arguments (see engine/color.asm)
+; GetPredefPal arguments (see engine/gfx/color.asm)
 	const_def
 	const PREDEFPAL_00
 	const PREDEFPAL_PALLET

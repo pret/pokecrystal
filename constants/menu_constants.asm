@@ -34,7 +34,7 @@
 
 
 ; MonMenuOptions indexes (see data/mon_menu.asm)
-; used by PokemonActionSubmenu (see engine/start_menu.asm)
+; used by PokemonActionSubmenu (see engine/menus/start_menu.asm)
 	const_def 1
 	; moves
 	const MONMENUITEM_CUT        ; 1
@@ -83,7 +83,7 @@ HMENURETURN_ASM    EQU %11111111
 	const PARTYMENUACTION_GIVE_MON_FEMALE ; unused
 	const PARTYMENUACTION_GIVE_ITEM
 	const PARTYMENUACTION_MOBILE ; mobile
-; PrintPartyMenuActionText arguments (see engine/party_menu.asm)
+; PrintPartyMenuActionText arguments (see engine/pokemon/party_menu.asm)
 	const_def $f0
 	const PARTYMENUTEXT_HEAL_PSN
 	const PARTYMENUTEXT_HEAL_BRN
