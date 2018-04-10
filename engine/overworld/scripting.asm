@@ -613,7 +613,7 @@ GetPocketName:
 	farcall CheckItemPocket
 	ld a, [wItemAttributeParamBuffer]
 	dec a
-	ld hl, .Pockets
+	ld hl, ItemPocketNames
 	maskbits NUM_POCKETS
 	add a
 	ld e, a
@@ -626,20 +626,7 @@ GetPocketName:
 	call CopyName2
 	ret
 
-.Pockets:
-	dw .Item
-	dw .Key
-	dw .Ball
-	dw .TM
-
-.Item:
-	db "ITEM POCKET@"
-.Key:
-	db "KEY POCKET@"
-.Ball:
-	db "BALL POCKET@"
-.TM:
-	db "TM POCKET@"
+INCLUDE "data/items/pocket_names.asm"
 
 CurItemName:
 	ld a, [wCurItem]

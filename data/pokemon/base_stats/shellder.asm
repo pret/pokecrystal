@@ -14,7 +14,7 @@
 	INCBIN "gfx/pokemon/shellder/front.dimensions"
 	db 0, 0, 0, 0 ; padding
 	db GROWTH_SLOW ; growth rate
-	dn EGG_INVERTEBRATE, EGG_INVERTEBRATE ; egg groups
+	dn EGG_WATER_3, EGG_WATER_3 ; egg groups
 
 	; tm/hm learnset
 	tmhm CURSE, TOXIC, HIDDEN_POWER, SNORE, BLIZZARD, ICY_WIND, PROTECT, RAIN_DANCE, ENDURE, FRUSTRATION, RETURN, DOUBLE_TEAM, SWAGGER, SLEEP_TALK, SWIFT, REST, ATTRACT, SURF, WHIRLPOOL, ICE_BEAM

@@ -50,7 +50,7 @@ BattleCommand_Conversion2: ; 359e6
 	ld [hl], a
 	pop hl
 	ld a, [wTypeMatchup]
-	cp 10
+	cp EFFECTIVE
 	jr nc, .loop
 	call BattleCommand_SwitchTurn
 
