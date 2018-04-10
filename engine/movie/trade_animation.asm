@@ -126,7 +126,7 @@ RunTradeAnimScript: ; 28fa1
 	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	call .TradeAnimLayout
 	ld a, [wcf66]
 	and a

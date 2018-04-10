@@ -1,4 +1,4 @@
-CheckNickErrors:: ; 669f
+CorrectNickErrors:: ; 669f
 ; error-check monster nick before use
 ; must be a peace offering to gamesharkers
 

@@ -119,8 +119,8 @@ DoBattle: ; 3c000
 WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 	call Call_LoadTempTileMapToTileMap
 	ld a, [wBattleResult]
-	and $c0
-	add $2
+	and BATTLERESULT_BITMASK
+	add DRAW
 	ld [wBattleResult], a
 	ld a, [wLinkMode]
 	and a
@@ -128,8 +128,8 @@ WildFled_EnemyFled_LinkBattleCanceled: ; 3c0e5
 	jr z, .print_text
 
 	ld a, [wBattleResult]
-	and $c0
-	ld [wBattleResult], a
+	and BATTLERESULT_BITMASK
+	ld [wBattleResult], a ; WIN
 	ld hl, BattleText_EnemyFled
 	call CheckMobileBattleError
 	jr nc, .print_text
@@ -575,8 +575,8 @@ CheckContestBattleOver: ; 3c3f5
 	and a
 	jr nz, .contest_not_over
 	ld a, [wBattleResult]
-	and $c0
-	add $2
+	and BATTLERESULT_BITMASK
+	add DRAW
 	ld [wBattleResult], a
 	scf
 	ret
@@ -2199,8 +2199,8 @@ UpdateBattleStateAndExperienceAfterEnemyFaint: ; 3ce01
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	ld a, [wBattleResult]
-	and $c0
-	ld [wBattleResult], a
+	and BATTLERESULT_BITMASK
+	ld [wBattleResult], a ; WIN
 	call IsAnyMonHoldingExpShare
 	jr z, .skip_exp
 	ld hl, wEnemyMonBaseStats
@@ -2745,8 +2745,8 @@ PlayerMonFaintHappinessMod: ; 3d1aa
 	ld [wCurPartyMon], a
 	callfar ChangeHappiness
 	ld a, [wBattleResult]
-	and %11000000
-	add $1
+	and BATTLERESULT_BITMASK
+	add LOSE
 	ld [wBattleResult], a
 	ld a, [wWhichMonFaintedFirst]
 	and a
@@ -3050,8 +3050,8 @@ LostBattle: ; 3d38e
 	jr nz, .not_tied
 	ld hl, TiedAgainstText
 	ld a, [wBattleResult]
-	and $c0
-	add 2
+	and BATTLERESULT_BITMASK
+	add DRAW
 	ld [wBattleResult], a
 	jr .text
 
@@ -3928,11 +3928,11 @@ TryToRunAwayFromBattle: ; 3d8b3
 	cp BATTLEACTION_FORFEIT
 	ld a, DRAW
 	jr z, .fled
-	dec a
+	dec a ; LOSE
 .fled
 	ld b, a
 	ld a, [wBattleResult]
-	and $c0
+	and BATTLERESULT_BITMASK
 	add b
 	ld [wBattleResult], a
 	call StopDangerSound
@@ -5180,8 +5180,8 @@ BattleMenu_Pack: ; 3e1c7
 	xor a
 	ld [wWildMon], a
 	ld a, [wBattleResult]
-	and $c0
-	ld [wBattleResult], a
+	and BATTLERESULT_BITMASK
+	ld [wBattleResult], a ; WIN
 	call ClearWindowData
 	call SetPalettes
 	scf
@@ -8607,9 +8607,10 @@ DisplayLinkBattleResult: ; 3f77c
 .proceed
 	ld a, [wBattleResult]
 	and $f
-	cp $1
-	jr c, .victory
-	jr z, .loss
+	cp LOSE
+	jr c, .victory ; WIN
+	jr z, .loss ; LOSE
+	; DRAW
 	farcall StubbedTrainerRankings_ColosseumDraws
 	ld de, .Draw
 	jr .store_result
@@ -8841,7 +8842,7 @@ BattleEnd_HandleRoamMons: ; 3f998
 	jr nz, .not_roaming
 	ld a, [wBattleResult]
 	and $f
-	jr z, .caught_or_defeated_roam_mon
+	jr z, .caught_or_defeated_roam_mon ; WIN
 	call GetRoamMonHP
 	ld a, [wEnemyMonHP + 1]
 	ld [hl], a
@@ -9001,11 +9002,12 @@ AddLastMobileBattleToLinkRecord: ; 3fa42
 .StoreResult: ; 3faa0
 	ld a, [wBattleResult]
 	and $f
-	cp $1
+	cp LOSE
 	ld bc, sLinkBattleWins + 1 - sLinkBattleResults
-	jr c, .okay
+	jr c, .okay ; WIN
 	ld bc, sLinkBattleLosses + 1 - sLinkBattleResults
-	jr z, .okay
+	jr z, .okay ; LOSE
+	; DRAW
 	ld bc, sLinkBattleDraws + 1 - sLinkBattleResults
 .okay
 	add hl, bc

@@ -1,9 +1,9 @@
 _LoadMapPart:: ; 4d15b
-	ld hl, wMisc
+	ld hl, wSurroundingTiles
 	ld a, [wMetatileStandingY]
 	and a
 	jr z, .top_row
-	ld bc, WMISC_WIDTH * 2
+	ld bc, SURROUNDING_WIDTH * 2
 	add hl, bc
 
 .top_row
@@ -25,7 +25,7 @@ _LoadMapPart:: ; 4d15b
 	dec c
 	jr nz, .loop2
 	ld a, l
-	add 4
+	add METATILE_WIDTH
 	ld l, a
 	jr nc, .carry
 	inc h

@@ -146,6 +146,6 @@ _GetVarAction:: ; 80648 (20:4648)
 
 .BattleResult: ; 80728
 	ld a, [wBattleResult]
-	and $3f
+	and $ff ^ BATTLERESULT_BITMASK
 	jp .loadstringbuffer2
 ; 80730

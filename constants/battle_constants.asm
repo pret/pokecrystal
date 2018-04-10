@@ -157,7 +157,7 @@ SLP EQU %111 ; 0-7 turns
 	const FRZ
 	const PAR
 
-ALL_STATUS EQU (1 << PSN) + (1 << BRN) + (1 << FRZ) + (1 << PAR) + SLP
+ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 
 ; wPlayerSubStatus1 or wEnemySubStatus1 bit flags
 	enum_start 7, -1
@@ -248,3 +248,7 @@ SUBSTATUS_CURLED EQU 0
 	const WIN
 	const LOSE
 	const DRAW
+
+BATTLERESULT_CAUGHT_CELEBI EQU 6
+BATTLERESULT_BOX_FULL EQU 7
+BATTLERESULT_BITMASK EQU (1 << BATTLERESULT_CAUGHT_CELEBI) | (1 << BATTLERESULT_BOX_FULL)

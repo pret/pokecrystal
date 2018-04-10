@@ -949,18 +949,18 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	add 3
 	ld hl, wEnemyMonLevel
 	cp [hl]
-	jr nc, .okay
-	set 0, e
-.okay
+	jr nc, .not_stronger
+	set TRANS_STRONGER_F, e
+.not_stronger
 	ld a, [wEnvironment]
 	cp CAVE
-	jr z, .okay2
+	jr z, .cave
 	cp ENVIRONMENT_5
-	jr z, .okay2
+	jr z, .cave
 	cp DUNGEON
-	jr z, .okay2
-	set 1, e
-.okay2
+	jr z, .cave
+	set TRANS_NO_CAVE_F, e
+.cave
 	ld hl, .StartingPoints
 	add hl, de
 	ld a, [hl]
@@ -969,8 +969,11 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 ; 8c38f (23:438f)
 
 .StartingPoints: ; 8c38f
-	db 1,  9
-	db 16, 24
+; entries correspond to TRANS_* constants
+	db BATTLETRANSITION_CAVE
+	db BATTLETRANSITION_CAVE_STRONGER
+	db BATTLETRANSITION_NO_CAVE
+	db BATTLETRANSITION_NO_CAVE_STRONGER
 ; 8c393
 ```
 

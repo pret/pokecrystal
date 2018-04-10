@@ -1,5 +1,4 @@
 RefreshScreen:: ; 2dba
-
 	call ClearWindowData
 	ld a, [hROMBank]
 	push af

@@ -7,7 +7,7 @@ DisplayCaughtContestMonStats: ; cc000
 	ld hl, wOptions
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 
 	hlcoord 0, 0
 	ld b, 4

@@ -1359,7 +1359,7 @@ Script_startbattle:
 	call BufferScreen
 	predef StartBattle
 	ld a, [wBattleResult]
-	and $3f
+	and $ff ^ BATTLERESULT_BITMASK
 	ld [wScriptVar], a
 	ret
 
@@ -1378,10 +1378,10 @@ Script_reloadmapafterbattle:
 
 	ld hl, wBattleScriptFlags
 	ld d, [hl]
-	ld [hl], $0
+	ld [hl], 0
 	ld a, [wBattleResult]
-	and $3f
-	cp $1
+	and $ff ^ BATTLERESULT_BITMASK
+	cp LOSE
 	jr nz, .notblackedout
 	ld b, BANK(Script_BattleWhiteout)
 	ld hl, Script_BattleWhiteout
@@ -1395,7 +1395,7 @@ Script_reloadmapafterbattle:
 
 .was_wild
 	ld a, [wBattleResult]
-	bit 7, a
+	bit BATTLERESULT_BOX_FULL, a
 	jr z, .done
 	ld b, BANK(Script_SpecialBillCall)
 	ld de, Script_SpecialBillCall

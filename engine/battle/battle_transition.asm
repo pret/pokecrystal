@@ -1,3 +1,11 @@
+; BattleTransitionJumptable.Jumptable indexes
+BATTLETRANSITION_CAVE             EQU $01
+BATTLETRANSITION_CAVE_STRONGER    EQU $09
+BATTLETRANSITION_NO_CAVE          EQU $10
+BATTLETRANSITION_NO_CAVE_STRONGER EQU $18
+BATTLETRANSITION_FINISH           EQU $20
+BATTLETRANSITION_END              EQU $80
+
 DoBattleTransition: ; 8c20f
 	call .InitGFX
 	ld a, [rBGP]
@@ -14,7 +22,7 @@ DoBattleTransition: ; 8c20f
 
 .loop
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit 7, a ; BATTLETRANSITION_END?
 	jr nz, .done
 	call BattleTransitionJumptable
 	call DelayFrame
@@ -145,13 +153,13 @@ INCBIN "gfx/overworld/trainer_battle_pokeball_tiles.2bpp"
 
 
 BattleTransitionJumptable: ; 8c314
-	jumptable .dw, wJumptableIndex
+	jumptable .Jumptable, wJumptableIndex
 ; 8c323
 
-.dw ; 8c323 (23:4323)
+.Jumptable ; 8c323 (23:4323)
 	dw StartTrainerBattle_DetermineWhichAnimation ; 00
 
-	; Animation 1: cave
+	; BATTLETRANSITION_CAVE
 	dw StartTrainerBattle_LoadPokeBallGraphics ; 01
 	dw StartTrainerBattle_SetUpBGMap ; 02
 	dw StartTrainerBattle_Flash ; 03
@@ -161,7 +169,7 @@ BattleTransitionJumptable: ; 8c314
 	dw StartTrainerBattle_SetUpForWavyOutro ; 07
 	dw StartTrainerBattle_SineWave ; 08
 
-	; Animation 2: cave, stronger
+	; BATTLETRANSITION_CAVE_STRONGER
 	dw StartTrainerBattle_LoadPokeBallGraphics ; 09
 	dw StartTrainerBattle_SetUpBGMap ; 0a
 	dw StartTrainerBattle_Flash ; 0b
@@ -171,7 +179,7 @@ BattleTransitionJumptable: ; 8c314
 	; There is no setup for this one
 	dw StartTrainerBattle_ZoomToBlack ; 0f
 
-	; Animation 3: no cave
+	; BATTLETRANSITION_NO_CAVE
 	dw StartTrainerBattle_LoadPokeBallGraphics ; 10
 	dw StartTrainerBattle_SetUpBGMap ; 11
 	dw StartTrainerBattle_Flash ; 12
@@ -181,7 +189,7 @@ BattleTransitionJumptable: ; 8c314
 	dw StartTrainerBattle_SetUpForSpinOutro ; 16
 	dw StartTrainerBattle_SpinToBlack ; 17
 
-	; Animation 4: no cave, stronger
+	; BATTLETRANSITION_NO_CAVE_STRONGER
 	dw StartTrainerBattle_LoadPokeBallGraphics ; 18
 	dw StartTrainerBattle_SetUpBGMap ; 19
 	dw StartTrainerBattle_Flash ; 1a
@@ -191,9 +199,19 @@ BattleTransitionJumptable: ; 8c314
 	dw StartTrainerBattle_SetUpForRandomScatterOutro ; 1e
 	dw StartTrainerBattle_SpeckleToBlack ; 1f
 
-	; All animations jump to here.
+	; BATTLETRANSITION_FINISH
 	dw StartTrainerBattle_Finish ; 20
 
+; transition animations
+	const_def
+	const TRANS_CAVE
+	const TRANS_CAVE_STRONGER
+	const TRANS_NO_CAVE
+	const TRANS_NO_CAVE_STRONGER
+
+; transition animation bits
+TRANS_STRONGER_F EQU 0 ; bit set in TRANS_CAVE_STRONGER and TRANS_NO_CAVE_STRONGER
+TRANS_NO_CAVE_F EQU 1 ; bit set in TRANS_NO_CAVE and TRANS_NO_CAVE_STRONGER
 
 StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 ; The screen flashes a different number of times depending on the level of
@@ -205,18 +223,18 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	add 3
 	ld hl, wEnemyMonLevel
 	cp [hl]
-	jr nc, .okay
-	set 0, e
-.okay
+	jr nc, .not_stronger
+	set TRANS_STRONGER_F, e
+.not_stronger
 	ld a, [wEnvironment]
 	cp CAVE
-	jr z, .okay2
+	jr z, .cave
 	cp ENVIRONMENT_5
-	jr z, .okay2
+	jr z, .cave
 	cp DUNGEON
-	jr z, .okay2
-	set 1, e
-.okay2
+	jr z, .cave
+	set TRANS_NO_CAVE_F, e
+.cave
 	ld hl, .StartingPoints
 	add hl, de
 	ld a, [hl]
@@ -225,13 +243,16 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 ; 8c38f (23:438f)
 
 .StartingPoints: ; 8c38f
-	db 1,  9
-	db 16, 24
+; entries correspond to TRANS_* constants
+	db BATTLETRANSITION_CAVE
+	db BATTLETRANSITION_CAVE_STRONGER
+	db BATTLETRANSITION_NO_CAVE
+	db BATTLETRANSITION_NO_CAVE_STRONGER
 ; 8c393
 
 StartTrainerBattle_Finish: ; 8c393 (23:4393)
 	call ClearSprites
-	ld a, $80
+	ld a, BATTLETRANSITION_END
 	ld [wJumptableIndex], a
 	ret
 
@@ -322,7 +343,7 @@ StartTrainerBattle_SineWave: ; 8c408 (23:4408)
 	ret
 
 .end
-	ld a, $20
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 
@@ -394,7 +415,7 @@ endr
 	call DelayFrame
 	xor a
 	ld [hBGMapMode], a
-	ld a, $20
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 ; 8c490 (23:4490)
@@ -405,6 +426,10 @@ endr
 	const UPPER_RIGHT
 	const LOWER_LEFT
 	const LOWER_RIGHT
+
+; quadrant bits
+RIGHT_QUADRANT_F EQU 0 ; bit set in UPPER_RIGHT and LOWER_RIGHT
+LOWER_QUADRANT_F EQU 1 ; bit set in LOWER_LEFT and LOWER_RIGHT
 
 .spintable ; 8c490
 spintable_entry: MACRO
@@ -451,7 +476,7 @@ ENDM
 .loop1
 	ld [hl], $ff
 	ld a, [wcf65]
-	bit 0, a
+	bit RIGHT_QUADRANT_F, a
 	jr z, .leftside
 	inc hl
 	jr .okay1
@@ -462,7 +487,7 @@ ENDM
 	jr nz, .loop1
 	pop hl
 	ld a, [wcf65]
-	bit 1, a
+	bit LOWER_QUADRANT_F, a
 	ld bc, SCREEN_WIDTH
 	jr z, .upper
 	ld bc, -SCREEN_WIDTH
@@ -477,7 +502,7 @@ ENDM
 	ld c, a
 .loop2
 	ld a, [wcf65]
-	bit 0, a
+	bit RIGHT_QUADRANT_F, a
 	jr z, .leftside2
 	dec hl
 	jr .okay2
@@ -530,7 +555,7 @@ StartTrainerBattle_SpeckleToBlack: ; 8c58f (23:458f)
 	call DelayFrame
 	xor a
 	ld [hBGMapMode], a
-	ld a, $20
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 
@@ -778,7 +803,7 @@ StartTrainerBattle_ZoomToBlack: ; 8c768 (23:4768)
 	jr .loop
 
 .done
-	ld a, $20
+	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
 ; 8c792 (23:4792)

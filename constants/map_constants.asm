@@ -15,11 +15,15 @@ ENDM
 
 ; map group ids
 ; `newgroup` indexes are for:
-; - MapGroupPointers (see data/maps/definitions.asm)
+; - MapGroupPointers (see data/maps/maps.asm)
 ; - MapGroupRoofs (see data/maps/roofs.asm)
 ; - OutdoorSprites (see data/maps/outdoor_sprites.asm)
 ; - RoofPals (see gfx/tilesets/roofs.pal)
-; `map_const` indexes are for the sub-tables of MapGroupPointers (see data/maps/definitions.asm)
+; `map_const` indexes are for the sub-tables of MapGroupPointers (see data/maps/maps.asm)
+; Each map also has associated data:
+; - attributes (see data/maps/attributes.asm)
+; - blocks (see data/maps/blocks.asm)
+; - scripts and events (see data/maps/scripts.asm)
 	const_def
 
 	newgroup                                                      ;  1

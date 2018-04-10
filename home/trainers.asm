@@ -247,7 +247,7 @@ PrintWinLossText:: ; 3718
 .canlose
 	ld a, [wBattleResult]
 	ld hl, wWinTextPointer
-	and $f
+	and $f ; WIN?
 	jr z, .ok
 	ld hl, wLossTextPointer
 

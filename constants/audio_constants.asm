@@ -31,6 +31,8 @@ NUM_NOISE_CHANS EQU const_value
 	const CHAN8 ; 7
 NUM_CHANNELS EQU const_value
 
+NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
+
 ; Flags1
 	const_def
 	const SOUND_CHANNEL_ON ; 0

@@ -71,7 +71,7 @@ Function818f4: ; 818f4
 	ld hl, PokemonPalettes
 
 Function818fd: ; 818fd
-	ld de, wOverworldMap
+	ld de, wOverworldMapBlocks
 	ld c, NUM_POKEMON + 1
 .asm_81902
 	push bc
@@ -87,7 +87,7 @@ Function818fd: ; 818fd
 
 Function81911: ; 81911
 	ld hl, TrainerPalettes
-	ld de, wOverworldMap
+	ld de, wOverworldMapBlocks
 	ld c, NUM_TRAINER_CLASSES
 .asm_81919
 	push bc
@@ -424,7 +424,7 @@ Function81bf4: ; 81bf4
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld de, wOverworldMap
+	ld de, wOverworldMapBlocks
 	add hl, de
 	ld de, wc608
 	ld bc, 4
@@ -876,7 +876,7 @@ Function81eca: ; 81eca
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld de, wOverworldMap
+	ld de, wOverworldMapBlocks
 	add hl, de
 	ld e, l
 	ld d, h

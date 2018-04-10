@@ -109,7 +109,7 @@ LoadMapPart:: ; 217a
 	rst Bankswitch
 
 	call LoadMetatiles
-	ld a, $60
+	ld a, "■"
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
@@ -129,13 +129,13 @@ LoadMetatiles:: ; 2198
 	ld e, a
 	ld a, [wOverworldMapAnchor + 1]
 	ld d, a
-	ld hl, wMisc
-	ld b, WMISC_HEIGHT / 4 ; 5
+	ld hl, wSurroundingTiles
+	ld b, SURROUNDING_HEIGHT / METATILE_WIDTH ; 5
 
 .row
 	push de
 	push hl
-	ld c, WMISC_WIDTH / 4 ; 6
+	ld c, SURROUNDING_WIDTH / METATILE_WIDTH ; 6
 
 .col
 	push de
@@ -148,7 +148,7 @@ LoadMetatiles:: ; 2198
 	ld a, [wMapBorderBlock]
 
 .ok
-	; Load the current wMisc address into de.
+	; Load the current wSurroundingTiles address into de.
 	ld e, l
 	ld d, h
 	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
@@ -169,27 +169,27 @@ LoadMetatiles:: ; 2198
 	ld h, a
 
 	; copy the 4x4 metatile
-rept 3
-rept 4
+rept METATILE_WIDTH + -1
+rept METATILE_WIDTH
 	ld a, [hli]
 	ld [de], a
 	inc de
 endr
 	ld a, e
-	add WMISC_WIDTH - 4
+	add SURROUNDING_WIDTH - METATILE_WIDTH
 	ld e, a
 	jr nc, .next\@
 	inc d
 .next\@
 endr
-rept 4
+rept METATILE_WIDTH
 	ld a, [hli]
 	ld [de], a
 	inc de
 endr
 	; Next metatile
 	pop hl
-	ld de, 4
+	ld de, METATILE_WIDTH
 	add hl, de
 	pop de
 	inc de
@@ -197,7 +197,7 @@ endr
 	jp nz, .col
 	; Next metarow
 	pop hl
-	ld de, WMISC_WIDTH * 4
+	ld de, SURROUNDING_WIDTH * METATILE_WIDTH
 	add hl, de
 	pop de
 	ld a, [wMapWidth]
@@ -260,10 +260,10 @@ GetDestinationWarpNumber:: ; 2252
 
 .GetDestinationWarpNumber: ; 2266
 	ld a, [wPlayerStandingMapY]
-	sub $4
+	sub 4
 	ld e, a
 	ld a, [wPlayerStandingMapX]
-	sub $4
+	sub 4
 	ld d, a
 	ld a, [wCurrMapWarpCount]
 	and a
@@ -732,8 +732,8 @@ RestoreFacingAfterWarp:: ; 248a
 ; 24cd
 
 LoadBlockData:: ; 24cd
-	ld hl, wOverworldMap
-	ld bc, wOverworldMapEnd - wOverworldMap
+	ld hl, wOverworldMapBlocks
+	ld bc, wOverworldMapBlocksEnd - wOverworldMapBlocks
 	ld a, 0
 	call ByteFill
 	call ChangeMap
@@ -747,7 +747,7 @@ ChangeMap:: ; 24e4
 	ld a, [hROMBank]
 	push af
 
-	ld hl, wOverworldMap
+	ld hl, wOverworldMapBlocks
 	ld a, [wMapWidth]
 	ld [hConnectedMapWidth], a
 	add $6
@@ -1454,8 +1454,8 @@ BufferScreen:: ; 2879
 	ld h, [hl]
 	ld l, a
 	ld de, wScreenSave
-	ld c, $5
-	ld b, $6
+	ld c, SCREEN_META_HEIGHT
+	ld b, SCREEN_META_WIDTH
 .row
 	push bc
 	push hl
@@ -1467,9 +1467,9 @@ BufferScreen:: ; 2879
 	jr nz, .col
 	pop hl
 	ld a, [wMapWidth]
-	add $6
+	add 6
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
 	dec c
@@ -1498,18 +1498,18 @@ SaveScreen:: ; 289d
 	ret
 
 .up
-	ld de, wScreenSave + 6
+	ld de, wScreenSave + SCREEN_META_WIDTH
 	ld a, [hMapObjectIndexBuffer]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	jr .vertical
 
 .down
 	ld de, wScreenSave
 .vertical
-	ld b, 6
-	ld c, 4
+	ld b, SCREEN_META_WIDTH
+	ld c, SCREEN_META_HEIGHT - 1
 	jr SaveScreen_LoadNeighbor
 
 .left
@@ -1520,8 +1520,8 @@ SaveScreen:: ; 289d
 .right
 	ld de, wScreenSave
 .horizontal
-	ld b, 5
-	ld c, 5
+	ld b, SCREEN_META_WIDTH - 1
+	ld c, SCREEN_META_HEIGHT
 	jr SaveScreen_LoadNeighbor
 
 LoadNeighboringBlockData:: ; 28e3
@@ -1533,8 +1533,8 @@ LoadNeighboringBlockData:: ; 28e3
 	add 6
 	ld [hConnectionStripLength], a
 	ld de, wScreenSave
-	ld b, 6
-	ld c, 5
+	ld b, SCREEN_META_WIDTH
+	ld c, SCREEN_META_HEIGHT
 
 SaveScreen_LoadNeighbor:: ; 28f7
 .row
@@ -1816,7 +1816,7 @@ GetBlockLocation:: ; 2a66
 	add 6
 	ld c, a
 	ld b, 0
-	ld hl, wOverworldMap + 1
+	ld hl, wOverworldMapBlocks + 1
 	add hl, bc
 	ld a, e
 	srl a

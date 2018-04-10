@@ -75,8 +75,8 @@ SetRAMStateForMobile: ; 100063
 
 EnableMobile: ; 100082
 	xor a
-	ld hl, wOverworldMap
-	ld bc, wOverworldMapEnd - wOverworldMap
+	ld hl, wOverworldMapBlocks
+	ld bc, wOverworldMapBlocksEnd - wOverworldMapBlocks
 	call ByteFill
 
 	di

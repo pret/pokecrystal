@@ -64,7 +64,7 @@ Function170114: ; 170114
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a948
-	ld de, wMisc
+	ld de, wc608
 	ld bc, $f6 ; 246
 	call CopyBytes
 	call CloseSRAM
@@ -90,11 +90,11 @@ Function170139: ; 170139
 	ld b, $0
 	add hl, bc
 	call CloseSRAM
-; Store that number in wMisc
+; Store that number in wc608
 	ld a, h
-	ld [wMisc], a
+	ld [wc608], a
 	ld a, l
-	ld [wMisc + 1], a
+	ld [wc608 + 1], a
 	ld hl, wBT_OTTempMon1DVs
 	ld a, [wPlayerID]
 	ld [hli], a
@@ -161,7 +161,7 @@ Function170139: ; 170139
 	ld hl, $a894
 	ld bc, NAME_LENGTH_JAPANESE
 	call CopyBytes
-	ld hl, wMisc
+	ld hl, wc608
 	ld de, $a948
 	ld bc, $f6
 	call CopyBytes
@@ -254,7 +254,7 @@ RunBattleTowerTrainer: ; 17024d
 	farcall HealParty
 	ld a, [wBattleResult]
 	ld [wScriptVar], a
-	and a
+	and a ; WIN?
 	jr nz, .lost
 	ld a, BANK(sNrOfBeatenBattleTowerTrainers)
 	call GetSRAMBank
@@ -674,7 +674,7 @@ Function1704e1: ; 1704e1
 	call CopyBytes
 
 	ld hl, $a8b2
-	ld de, wMisc
+	ld de, wc608
 	ld bc, $0096
 	call CopyBytes
 
@@ -793,7 +793,7 @@ Function1704e1: ; 1704e1
 	call .PlaceUpDownArrows
 	ld a, $50
 	ld [wcd4e], a
-	ld hl, wMisc
+	ld hl, wc608
 	ld a, [wNrOfBeatenBattleTowerTrainers]
 	ld c, a
 	xor a
@@ -1441,7 +1441,7 @@ Function1709bb: ; 1709bb (5c:49bb) BattleTowerAction $10
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b023
-	ld de, wMisc
+	ld de, wc608
 	ld bc, $0069
 	call CopyBytes
 	ld a, [$a825]
@@ -1460,14 +1460,14 @@ Function1709bb: ; 1709bb (5c:49bb) BattleTowerAction $10
 	ld a, $0
 	call GetSRAMBank
 	ld hl, wRTC
-	ld de, wMisc
+	ld de, wc608
 	ld bc, $0004
 	call CopyBytes
 	call CloseSRAM
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b08c
-	ld de, wMisc
+	ld de, wc608
 	ld c, $4
 .compare_loop
 	ld a, [de]

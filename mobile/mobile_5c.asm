@@ -106,7 +106,7 @@ Function170c06: ; 170c06
 	call GetSRAMBank
 	ld hl, $a894
 	ld a, [wBattleResult]
-	and a
+	and a ; WIN?
 	jr nz, .asm_170c15
 	inc [hl]
 

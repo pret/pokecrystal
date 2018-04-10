@@ -2,20 +2,14 @@ unownwall: MACRO
 rept _NARG
 if \1 == "-"
 x = $64
-else
-if \1 >= "Y"
+elif \1 >= "Y"
 x = 2 * (\1 - "Y") + $60
-else
-if \1 >= "Q"
+elif \1 >= "Q"
 x = 2 * (\1 - "Q") + $40
-else
-if \1 >= "I"
+elif \1 >= "I"
 x = 2 * (\1 - "I") + $20
 else
 x = 2 * (\1 - "A")
-endc
-endc
-endc
 endc
 	db x
 shift
@@ -25,16 +19,16 @@ ENDM
 
 UnownWalls: ; 8aebc
 ; UNOWNWORDS_ESCAPE
-	; db      $08, $44, $04, $00, $2e, $08, $ff
+	; db      $08, $44, $04, $00, $2e, $08, -1
 	unownwall "E", "S", "C", "A", "P", "E"
 ; UNOWNWORDS_LIGHT
-	; db      $26, $20, $0c, $0e, $46, $ff
+	; db      $26, $20, $0c, $0e, $46, -1
 	unownwall "L", "I", "G", "H", "T"
 ; UNOWNWORDS_WATER
-	; db      $4c, $00, $46, $08, $42, $ff
+	; db      $4c, $00, $46, $08, $42, -1
 	unownwall "W", "A", "T", "E", "R"
 ; UNOWNWORDS_HO_OH
-	; db      $0e, $2c, $64, $2c, $0e, $ff
+	; db      $0e, $2c, $64, $2c, $0e, -1
 	unownwall "H", "O", "-", "O", "H"
 ; 8aed5
 

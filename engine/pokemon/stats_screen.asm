@@ -772,7 +772,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld hl, .OTNamePointers
 	call GetNicknamePointer
 	call CopyNickname
-	farcall CheckNickErrors
+	farcall CorrectNickErrors
 	hlcoord 2, 13
 	call PlaceString
 	ld a, [wTempMonCaughtGender]

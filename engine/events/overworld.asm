@@ -179,7 +179,7 @@ CheckMapForSomethingToCut: ; c7ce
 	farcall CheckCutCollision
 	pop de
 	jr nc, .fail
-	; Get the location of the current block in wOverworldMap.
+	; Get the location of the current block in wOverworldMapBlocks.
 	call GetBlockLocation
 	ld c, [hl]
 	; See if that block contains something that can be cut.
@@ -188,7 +188,7 @@ CheckMapForSomethingToCut: ; c7ce
 	call CheckOverworldTileArrays
 	pop hl
 	jr nc, .fail
-	; Back up the wOverworldMap address to wBuffer3
+	; Back up the wOverworldMapBlocks address to wBuffer3
 	ld a, l
 	ld [wBuffer3], a
 	ld a, h

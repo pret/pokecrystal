@@ -84,9 +84,9 @@ Gen2ToGen1LinkComms: ; 2805d
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
-	ld hl, wMisc
-	ld de, wPlayerTrademonSpecies
-	ld bc, wPlayerTrademonSpecies - wMisc
+	ld hl, wLink_c608
+	ld de, wTrademons
+	ld bc, wTrademons - wLink_c608
 	call Serial_ExchangeBytes
 	xor a
 	ld [rIF], a
@@ -229,9 +229,9 @@ Gen2ToGen2LinkComms: ; 28177
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
-	ld hl, wMisc
-	ld de, wPlayerTrademonSpecies
-	ld bc, $c8
+	ld hl, wLink_c608
+	ld de, wTrademons
+	ld bc, wTrademons - wLink_c608
 	call Serial_ExchangeBytes
 	ld a, [wLinkMode]
 	cp LINK_TRADECENTER
@@ -581,7 +581,7 @@ FixDataForLinkTransfer: ; 28434
 	ld [hli], a
 	dec b
 	jr nz, .loop2
-	ld hl, wMisc
+	ld hl, wLink_c608
 	ld a, SERIAL_PREAMBLE_BYTE
 	ld [hli], a
 	ld [hli], a

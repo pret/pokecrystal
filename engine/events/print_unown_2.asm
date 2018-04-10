@@ -12,7 +12,7 @@ RotateUnownFrontpic: ; e0000
 	ld de, wd002
 	call .Copy
 	call .Rotate
-	ld hl, UnownPrinter_OverworldMapRectangle
+	ld hl, UnownPrinter_GBPrinterRectangle
 	pop bc
 	add hl, bc
 	add hl, bc
@@ -30,7 +30,7 @@ RotateUnownFrontpic: ; e0000
 	cp 7 * 7
 	jr c, .loop
 
-	ld hl, wOverworldMap
+	ld hl, wGameboyPrinterRAM
 	ld de, sScratch
 	ld bc, 7 * 7 tiles
 	call CopyBytes
@@ -95,17 +95,17 @@ RotateUnownFrontpic: ; e0000
 	jr nz, .loop_count
 	ret
 
-overworldmaprect: MACRO
+gbprinterrect: MACRO
 y = 0
 rept \1
 x = \1 * (\2 + -1) + y
 rept \2
-	dw wOverworldMap tile x
+	dw wGameboyPrinterRAM tile x
 x = x + -\2
 endr
 y = y + 1
 endr
 ENDM
 
-UnownPrinter_OverworldMapRectangle: ; e008b
-	overworldmaprect 7, 7
+UnownPrinter_GBPrinterRectangle: ; e008b
+	gbprinterrect 7, 7

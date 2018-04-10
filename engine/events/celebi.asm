@@ -325,15 +325,15 @@ CelebiEvent_SetBattleType: ; 49bf3
 
 CheckCaughtCelebi: ; 49bf9
 	ld a, [wBattleResult]
-	bit 6, a
+	bit BATTLERESULT_CAUGHT_CELEBI, a
 	jr z, .false
-	ld a, $1
+	ld a, TRUE
 	ld [wScriptVar], a
 	jr .done
 
 
 .false
-	xor a
+	xor a ; FALSE
 	ld [wScriptVar], a
 
 .done
