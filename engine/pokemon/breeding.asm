@@ -24,7 +24,7 @@ CheckBreedmonCompatibility: ; 16e1d
 	ld [wTempMonDVs], a
 	ld a, [wBreedMon2DVs + 1]
 	ld [wTempMonDVs + 1], a
-	ld a, $3
+	ld a, TEMPMON
 	ld [wMonType], a
 	predef GetGender
 	pop bc

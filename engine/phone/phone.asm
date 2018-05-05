@@ -604,7 +604,7 @@ Phone_StartRinging: ; 9033f
 HangUp_Wait20Frames: ; 90355
 	jr Phone_Wait20Frames
 
-Phone_Wait20Frames
+Phone_Wait20Frames:
 	ld c, 20
 	call DelayFrames
 	farcall PhoneRing_CopyTilemapAtOnce

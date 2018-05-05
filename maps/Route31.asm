@@ -195,7 +195,7 @@ Route31MailRecipientScript:
 .TryGiveKenya:
 	writetext Text_Route31SleepyManGotMail
 	buttonsound
-	checkpokeitem ReceivedSpearowMailText
+	checkpokemail ReceivedSpearowMailText
 	ifequal POKEMAIL_WRONG_MAIL, .WrongMail
 	ifequal POKEMAIL_REFUSED, .Refused
 	ifequal POKEMAIL_NO_MAIL, .NoMail

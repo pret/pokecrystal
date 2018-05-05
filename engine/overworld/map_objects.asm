@@ -163,12 +163,12 @@ Function4440: ; 4440
 	add hl, bc
 	bit INVISIBLE, [hl]
 	jr nz, SetFacingStanding
-asm_4448
+asm_4448:
 	ld de, ObjectActionPairPointers + 2 ; use second column
 	jr _HandleObjectAction
 ; 444d
 
-_HandleObjectAction
+_HandleObjectAction:
 ; call [4 * wObjectStructs[ObjInd, OBJECT_ACTION] + de]
 	ld hl, OBJECT_ACTION
 	add hl, bc

@@ -31,6 +31,5 @@ OftenFleeMons: ; 3c5a8
 AlwaysFleeMons: ; 3c5b1
 	db RAIKOU
 	db ENTEI
-;	db SUICUNE
 	db -1
 ; 3c5b4
