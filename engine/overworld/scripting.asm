@@ -112,8 +112,8 @@ ScriptCommandTable:
 	dw Script_checkpoke                  ; 2c
 	dw Script_givepoke                   ; 2d
 	dw Script_giveegg                    ; 2e
-	dw Script_givepokeitem               ; 2f
-	dw Script_checkpokeitem              ; 30
+	dw Script_givepokemail               ; 2f
+	dw Script_checkpokemail              ; 30
 	dw Script_checkevent                 ; 31
 	dw Script_clearevent                 ; 32
 	dw Script_setevent                   ; 33
@@ -2019,7 +2019,7 @@ Script_stringtotext:
 	ld de, wStringBuffer2
 	jp ConvertMemToText
 
-Script_givepokeitem:
+Script_givepokemail:
 ; script command 0x2f
 ; parameters: pointer
 
@@ -2037,10 +2037,10 @@ Script_givepokeitem:
 	ld a, [wScriptBank]
 	call FarCopyBytes
 	pop bc
-	farcall GivePokeItem
+	farcall GivePokeMail
 	ret
 
-Script_checkpokeitem:
+Script_checkpokemail:
 ; script command 0x30
 ; parameters: pointer
 
@@ -2050,7 +2050,7 @@ Script_checkpokeitem:
 	ld d, a
 	ld a, [wScriptBank]
 	ld b, a
-	farcall CheckPokeItem
+	farcall CheckPokeMail
 	ret
 
 Script_giveitem:
