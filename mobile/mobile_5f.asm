@@ -1651,17 +1651,17 @@ Function17da31: ; 17da31
 
 Unknown_17da8c:
 x = 0
-	rept 8
+rept 8
 	db 1 << x
 x = x + 1
-	endr
+endr
 
 Unknown_17da94:
 x = 0
-	rept 8
+rept 8
 	db (1 << x) ^ $ff
 x = x + 1
-	endr
+endr
 ; 17da9c
 
 Function17da9c: ; 17da9c
