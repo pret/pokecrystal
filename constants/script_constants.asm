@@ -22,7 +22,7 @@ NUM_MEM_BUFFERS EQU const_value
 	const HAVE_AMOUNT ; 1
 	const HAVE_LESS   ; 2
 
-; checkpokeitem return values
+; checkpokemail return values
 	const_def
 	const POKEMAIL_WRONG_MAIL ; 0
 	const POKEMAIL_CORRECT    ; 1

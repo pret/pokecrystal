@@ -1293,7 +1293,7 @@ MobileTradeAnim_DisplayReceivedMon:
 	call MobileTradeAnim_MonDisplay_UpdateBGMap
 	ret
 
-MobileTradeAnim_DisplayEggData
+MobileTradeAnim_DisplayEggData:
 	call WaitTop
 	call MobileTradeAnim_ClearTilemap
 	ld a, HIGH(vBGMap1)

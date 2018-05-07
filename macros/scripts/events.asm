@@ -1,4 +1,4 @@
-; ScriptCommandTable indexes (see engine/scripting.asm)
+; ScriptCommandTable indexes (see engine/overworld/scripting.asm)
 	enum_start
 
 	enum scall_command ; $00
@@ -315,15 +315,15 @@ giveegg: MACRO
 	db \2 ; level
 ENDM
 
-	enum givepokeitem_command ; $2f
-givepokeitem: MACRO
-	db givepokeitem_command
+	enum givepokemail_command ; $2f
+givepokemail: MACRO
+	db givepokemail_command
 	dw \1 ; pointer
 ENDM
 
-	enum checkpokeitem_command ; $30
-checkpokeitem: MACRO
-	db checkpokeitem_command
+	enum checkpokemail_command ; $30
+checkpokemail: MACRO
+	db checkpokemail_command
 	dw \1 ; pointer
 ENDM
 

@@ -124,7 +124,7 @@ GetMailboxCount: ; 44648
 	jp CloseSRAM
 ; 44654
 
-CheckPokeItem:: ; 44654
+CheckPokeMail:: ; 44654
 	push bc
 	push de
 	farcall SelectMonFromParty
@@ -194,7 +194,7 @@ CheckPokeItem:: ; 44654
 ; 446cc
 
 
-GivePokeItem:: ; 446cc
+GivePokeMail:: ; 446cc
 	ld a, [wPartyCount]
 	dec a
 	push af

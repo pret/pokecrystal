@@ -240,7 +240,7 @@ SmashRockScript:
 PokecenterSignScript:
 	farjumptext PokecenterSignText
 
-MartSignScript
+MartSignScript:
 	farjumptext MartSignText
 
 DayToTextScript:
@@ -331,30 +331,30 @@ BugContestResultsScript:
 	verbosegiveitem BERRY
 	iffalse BugContestResults_NoRoomForBerry
 
-BugContestResults_DidNotWin
+BugContestResults_DidNotWin:
 	farwritetext ContestResults_DidNotWinText
 	buttonsound
 	jump BugContestResults_FinishUp
 ; 0xbc2b1
 
-BugContestResults_ReturnAfterWinnersPrize ; 0xbc2b1
+BugContestResults_ReturnAfterWinnersPrize: ; 0xbc2b1
 	farwritetext ContestResults_JoinUsNextTimeText
 	buttonsound
 
-BugContestResults_FinishUp
+BugContestResults_FinishUp:
 	checkevent EVENT_LEFT_MONS_WITH_CONTEST_OFFICER
 	iffalse BugContestResults_DidNotLeaveMons
 	farwritetext ContestResults_ReturnPartyText
 	waitbutton
 	special ContestReturnMons
-BugContestResults_DidNotLeaveMons
+BugContestResults_DidNotLeaveMons:
 	special CheckPartyFullAfterContest
 	ifequal BUGCONTEST_CAUGHT_MON, BugContestResults_CleanUp
 	ifequal BUGCONTEST_NO_CATCH, BugContestResults_CleanUp
 	; BUGCONTEST_BOXED_MON
 	farwritetext ContestResults_PartyFullText
 	waitbutton
-BugContestResults_CleanUp
+BugContestResults_CleanUp:
 	closetext
 	setscene SCENE_ROUTE36NATIONALPARKGATE_NOTHING
 	setmapscene ROUTE_35_NATIONAL_PARK_GATE, SCENE_ROUTE35NATIONALPARKGATE_NOTHING
@@ -383,7 +383,7 @@ BugContestResults_CleanUp
 	end
 ; 0xbc31e
 
-BugContestResults_FirstPlace ; 0xbc31e
+BugContestResults_FirstPlace: ; 0xbc31e
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	itemtotext SUN_STONE, MEM_BUFFER_1
 	farwritetext ContestResults_PlayerWonAPrizeText
@@ -393,7 +393,7 @@ BugContestResults_FirstPlace ; 0xbc31e
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc332
 
-BugContestResults_SecondPlace ; 0xbc332
+BugContestResults_SecondPlace: ; 0xbc332
 	itemtotext EVERSTONE, MEM_BUFFER_1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
@@ -402,7 +402,7 @@ BugContestResults_SecondPlace ; 0xbc332
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc343
 
-BugContestResults_ThirdPlace ; 0xbc343
+BugContestResults_ThirdPlace: ; 0xbc343
 	itemtotext GOLD_BERRY, MEM_BUFFER_1
 	farwritetext ContestResults_PlayerWonAPrizeText
 	waitbutton
@@ -411,35 +411,35 @@ BugContestResults_ThirdPlace ; 0xbc343
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc354
 
-BugContestResults_NoRoomForSunStone ; 0xbc354
+BugContestResults_NoRoomForSunStone: ; 0xbc354
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_SUN_STONE
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc35f
 
-BugContestResults_NoRoomForEverstone ; 0xbc35f
+BugContestResults_NoRoomForEverstone: ; 0xbc35f
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_EVERSTONE
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc36a
 
-BugContestResults_NoRoomForGoldBerry ; 0xbc36a
+BugContestResults_NoRoomForGoldBerry: ; 0xbc36a
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_GOLD_BERRY
 	jump BugContestResults_ReturnAfterWinnersPrize
 ; 0xbc375
 
-BugContestResults_NoRoomForBerry ; 0xbc375
+BugContestResults_NoRoomForBerry: ; 0xbc375
 	farwritetext BugContestPrizeNoRoomText
 	buttonsound
 	setevent EVENT_CONTEST_OFFICER_HAS_BERRY
 	jump BugContestResults_DidNotWin
 ; 0xbc380
 
-BugContestResults_CopyContestantsToResults ; 0xbc380
+BugContestResults_CopyContestantsToResults: ; 0xbc380
 	checkevent EVENT_BUG_CATCHING_CONTESTANT_1A
 	iftrue .skip1
 	clearevent EVENT_BUG_CATCHING_CONTESTANT_1B
