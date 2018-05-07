@@ -6451,7 +6451,7 @@ LoadEnemyMon: ; 3e8eb
 
 .InitRoamHP:
 ; HP only uses the lo byte in the RoamMon struct since
-; Raikou/Entei/Suicune will have < 256 hp at level 40
+; Raikou and Entei will have < 256 hp at level 40
 	ld a, [wEnemyMonHP + 1]
 	ld [hl], a
 	jr .Moves

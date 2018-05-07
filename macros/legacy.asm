@@ -51,6 +51,8 @@ reloadmapmusic    EQUS "dontrestartmapmusic"
 resetfuncs        EQUS "endall"
 storetext         EQUS "battletowertext"
 displaylocation   EQUS "landmarktotext"
+givepokeitem      EQUS "givepokemail"
+checkpokeitem     EQUS "checkpokemail"
 
 
 ; macros/scripts/maps.asm

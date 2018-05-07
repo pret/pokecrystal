@@ -99,9 +99,9 @@ Until this document is filled out, the [G/S Scripting Compendium](https://hax.ii
 
 ## `$2E`: <code>giveegg <i>mon_id</i>, <i>level</i></code>
 
-## `$2F`: <code>givepokeitem <i>pointer</i></code>
+## `$2F`: <code>givepokemail <i>pointer</i></code>
 
-## `$30`: <code>checkpokeitem <i>pointer</i></code>
+## `$30`: <code>checkpokemail <i>pointer</i></code>
 
 ## `$31`: <code>checkevent <i>event_flag</i></code>
 

@@ -223,7 +223,7 @@ OaksLabPoster2Text:
 	line "manner."
 	done
 
-OaksLabTrashcanText
+OaksLabTrashcanText:
 	text "There's nothing in"
 	line "here…"
 	done

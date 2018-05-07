@@ -1,4 +1,4 @@
-; MovementPointers indexes (see engine/movement.asm)
+; MovementPointers indexes (see engine/overworld/movement.asm)
 	enum_start
 
 ; Directional movements

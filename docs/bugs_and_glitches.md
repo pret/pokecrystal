@@ -1122,7 +1122,7 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 
 ```asm
 .Cry: ; 40340
-	ld a, [CurPartySpecies]
+	ld a, [wCurPartySpecies]
 	call PlayMonCry
 	ret
 ```
