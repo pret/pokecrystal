@@ -196,7 +196,7 @@ Sfx_Tingle_Ch5: ; 179964
 	dutycycle $1
 	pitchoffset 0, B_
 	notetype $1, $b1
-Sfx_Tingle_branch_17996c: ; 17996c
+.loop
 	octave 5
 	note C_, 3
 	octave 6
@@ -204,7 +204,7 @@ Sfx_Tingle_branch_17996c: ; 17996c
 	octave 5
 	note C_, 3
 	note __, 2
-	loopchannel 2, Sfx_Tingle_branch_17996c
+	loopchannel 2, .loop
 	note C_, 2
 	intensity $a1
 	note G_, 13
