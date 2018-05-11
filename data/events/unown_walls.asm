@@ -12,7 +12,7 @@ else
 x = 2 * (\1 - "A")
 endc
 	db x
-shift
+	shift
 endr
 	db -1 ; end
 ENDM

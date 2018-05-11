@@ -53,14 +53,14 @@ AnimateMon_Unused: ; d003a
 ; d0042
 
 pokeanim: MACRO
-	rept _NARG
+rept _NARG
 ; Workaround for a bug where macro args can't come after the start of a symbol
 if !DEF(\1_POKEANIM)
 \1_POKEANIM EQUS "PokeAnim_\1_"
 endc
 	db (\1_POKEANIM - PokeAnim_SetupCommands) / 2
 	shift
-	endr
+endr
 	db (PokeAnim_Finish_ - PokeAnim_SetupCommands) / 2
 ENDM
 

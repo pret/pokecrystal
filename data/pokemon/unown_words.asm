@@ -1,9 +1,9 @@
 unownword: MACRO
 x = 1
-	rept STRLEN(\1)
+rept STRLEN(\1)
 	db STRSUB(\1, x, 1) - $40
 x = x + 1
-	endr
+endr
 	db -1
 ENDM
 
