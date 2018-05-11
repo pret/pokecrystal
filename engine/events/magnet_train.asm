@@ -4,13 +4,13 @@ MagnetTrain: ; 8cc04
 	jr nz, .ToGoldenrod
 	ld a, 1 ; forwards
 	lb bc,  $40,  $60
-	lb de, ((11 * 8) - (11 * 8 + 4)), -$60
+	lb de, (11 * 8) - (11 * 8 + 4), -$60
 	jr .continue
 
 .ToGoldenrod:
 	ld a, -1 ; backwards
 	lb bc, -$40, -$60
-	lb de, ((11 * 8) + (11 * 8 + 4)), $60
+	lb de, (11 * 8) + (11 * 8 + 4), $60
 
 .continue
 	ld h, a
