@@ -1569,7 +1569,7 @@ AI_Smart_DefrostOpponent: ; 38ccb
 ; No move has EFFECT_DEFROST_OPPONENT, so this layer is unused.
 
 	ld a, [wEnemyMonStatus]
-	and $20
+	and 1 << FRZ
 	ret z
 	dec [hl]
 	dec [hl]
