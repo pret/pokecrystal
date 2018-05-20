@@ -571,11 +571,11 @@ RegisterItem: ; 103c2
 	ld a, [wCurrPocket]
 	rrca
 	rrca
-	and $c0
+	and REGISTERED_POCKET
 	ld b, a
 	ld a, [wCurItemQuantity]
 	inc a
-	and $3f
+	and REGISTERED_NUMBER
 	or b
 	ld [wWhichRegisteredItem], a
 	ld a, [wCurItem]
@@ -1283,7 +1283,7 @@ DrawPackGFX: ; 1089d
 	ld a, [wCurrPocket]
 	maskbits NUM_POCKETS
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
 	jr z, .male_dude
