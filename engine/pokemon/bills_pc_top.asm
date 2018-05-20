@@ -96,9 +96,9 @@ _BillsPC: ; e3fd
 	dw BillsPC_SeeYa
 
 .items ; e4c4
-	db 5
+	db 5 ; # items
 	db 0 ; WITHDRAW
-	db 1;  DEPOSIT
+	db 1 ; DEPOSIT
 	db 2 ; CHANGE BOX
 	db 3 ; MOVE PKMN
 	db 4 ; SEE YA!
