@@ -80,7 +80,7 @@ VBlank0:: ; 2b1
 	ld [hRandomSub], a
 
 	ld a, [hROMBank]
-	ld [hROMBankBackup], a
+	ldh [hROMBankBackup], a
 
 	ld a, [hSCX]
 	ld [rSCX], a
@@ -141,7 +141,7 @@ VBlank0:: ; 2b1
 	ld a, BANK(_UpdateSound)
 	rst Bankswitch
 	call _UpdateSound
-	ld a, [hROMBankBackup]
+	ldh a, [hROMBankBackup]
 	rst Bankswitch
 
 	ld a, [hSeconds]
@@ -155,13 +155,13 @@ VBlank2:: ; 325
 ; sound only
 
 	ld a, [hROMBank]
-	ld [hROMBankBackup], a
+	ldh [hROMBankBackup], a
 
 	ld a, BANK(_UpdateSound)
 	rst Bankswitch
 	call _UpdateSound
 
-	ld a, [hROMBankBackup]
+	ldh a, [hROMBankBackup]
 	rst Bankswitch
 
 	xor a
@@ -179,7 +179,7 @@ VBlank1:: ; 337
 ; sound / lcd stat
 
 	ld a, [hROMBank]
-	ld [hROMBankBackup], a
+	ldh [hROMBankBackup], a
 
 	ld a, [hSCX]
 	ld [rSCX], a
@@ -218,7 +218,7 @@ VBlank1:: ; 337
 	ld a, BANK(_UpdateSound)
 	rst Bankswitch
 	call _UpdateSound
-	ld a, [hROMBankBackup]
+	ldh a, [hROMBankBackup]
 	rst Bankswitch
 	di
 
@@ -267,7 +267,7 @@ VBlank3:: ; 396
 ; sound / lcd stat
 
 	ld a, [hROMBank]
-	ld [hROMBankBackup], a
+	ldh [hROMBankBackup], a
 
 	ld a, [hSCX]
 	ld [rSCX], a
@@ -300,7 +300,7 @@ VBlank3:: ; 396
 	ld a, BANK(_UpdateSound)
 	rst Bankswitch
 	call _UpdateSound
-	ld a, [hROMBankBackup]
+	ldh a, [hROMBankBackup]
 	rst Bankswitch
 	di
 
@@ -333,7 +333,7 @@ VBlank4:: ; 3df
 ; sound
 
 	ld a, [hROMBank]
-	ld [hROMBankBackup], a
+	ldh [hROMBankBackup], a
 
 	call UpdateBGMap
 	call Serve2bppRequest
@@ -351,7 +351,7 @@ VBlank4:: ; 3df
 	rst Bankswitch
 	call _UpdateSound
 
-	ld a, [hROMBankBackup]
+	ldh a, [hROMBankBackup]
 	rst Bankswitch
 	ret
 ; 400
@@ -366,7 +366,7 @@ VBlank5:: ; 400
 ;
 
 	ld a, [hROMBank]
-	ld [hROMBankBackup], a
+	ldh [hROMBankBackup], a
 
 	ld a, [hSCX]
 	ld [rSCX], a
@@ -394,7 +394,7 @@ VBlank5:: ; 400
 	ld a, BANK(_UpdateSound)
 	rst Bankswitch
 	call _UpdateSound
-	ld a, [hROMBankBackup]
+	ldh a, [hROMBankBackup]
 	rst Bankswitch
 	di
 
@@ -414,7 +414,7 @@ VBlank6:: ; 436
 ; sound
 
 	ld a, [hROMBank]
-	ld [hROMBankBackup], a
+	ldh [hROMBankBackup], a
 
 	; inc frame counter
 	ld hl, hVBlankCounter
@@ -435,7 +435,7 @@ VBlank6:: ; 436
 	rst Bankswitch
 	call _UpdateSound
 
-	ld a, [hROMBankBackup]
+	ldh a, [hROMBankBackup]
 	rst Bankswitch
 	ret
 ; 45a

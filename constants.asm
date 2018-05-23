@@ -2,8 +2,7 @@ INCLUDE "charmap.asm"
 
 INCLUDE "macros.asm"
 
-INCLUDE "hram.asm"
-
+INCLUDE "constants/hram_constants.asm"
 INCLUDE "constants/hardware_constants.asm"
 INCLUDE "constants/deco_constants.asm"
 INCLUDE "constants/wram_constants.asm"

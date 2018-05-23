@@ -16,6 +16,7 @@ audio.o \
 home.o \
 main.o \
 wram.o \
+hram.o \
 data/text/common.o \
 data/maps/map_data.o \
 data/pokemon/dex_entries.o \
