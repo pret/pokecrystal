@@ -13,7 +13,7 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_STANDING ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_STAND ; action
-	db 1 << 2 | 1 << 3 ; flags1
+	db FIXED_FACING | SLIDING ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
 
@@ -173,15 +173,15 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_BIG_SNORLAX ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_BIG_DOLL_SYM ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 5 ; flags1
-	db 1 << 0 ; flags2
+	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
+	db LOW_PRIORITY ; flags2
 	db 1 << 6 | 1 << 7 ; palette flags
 
 ; SPRITEMOVEDATA_POKEMON
 	db SPRITEMOVEFN_BOUNCE ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_BOUNCE ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 5 ; flags1
+	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
 
@@ -189,7 +189,7 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_STANDING ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_STAND ; action
-	db 1 << 2 | 1 << 3 ; flags1
+	db FIXED_FACING | SLIDING ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
 
@@ -197,7 +197,7 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_STANDING ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_STAND ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 5 ; flags1
+	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
 	db 1 << 4 ; flags2
 	db 0 ; palette flags
 
@@ -205,7 +205,7 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_STRENGTH ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_STAND ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 5 ; flags1
+	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
 	db 0 ; flags2
 	db 1 << 6 ; palette flags
 
@@ -221,23 +221,23 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_SHADOW ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_00 ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 7 ; flags1
-	db 1 << 0 ; flags2
+	db 1 << 1 | FIXED_FACING | SLIDING | EMOTE_OBJECT ; flags1
+	db LOW_PRIORITY ; flags2
 	db 0 ; palette flags
 
 ; SPRITEMOVEDATA_EMOTE
 	db SPRITEMOVEFN_EMOTE ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_EMOTE ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 7 ; flags1
-	db 1 << 1 ; flags2
+	db 1 << 1 | FIXED_FACING | SLIDING | EMOTE_OBJECT ; flags1
+	db HIGH_PRIORITY ; flags2
 	db 0 ; palette flags
 
 ; SPRITEMOVEDATA_SCREENSHAKE
 	db SPRITEMOVEFN_SCREENSHAKE ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_00 ; action
-	db 1 << 1 | 1 << 7 ; flags1
+	db 1 << 1 | EMOTE_OBJECT ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
 
@@ -261,32 +261,32 @@ SpriteMovementData:: ; 4273
 	db SPRITEMOVEFN_STRENGTH ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_BIG_DOLL_ASYM ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 5 ; flags1
-	db 1 << 0 ; flags2
+	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
+	db LOW_PRIORITY ; flags2
 	db 1 << 6 | 1 << 7 ; palette flags
 
 ; SPRITEMOVEDATA_BIGDOLL
 	db SPRITEMOVEFN_STRENGTH ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_BIG_DOLL ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 5 ; flags1
-	db 1 << 0 ; flags2
+	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
+	db LOW_PRIORITY ; flags2
 	db 1 << 6 | 1 << 7 ; palette flags
 
 ; SPRITEMOVEDATA_BOULDERDUST
 	db SPRITEMOVEFN_BOULDERDUST ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_BOULDER_DUST ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 7 ; flags1
-	db 1 << 0 ; flags2
+	db 1 << 1 | FIXED_FACING | SLIDING | EMOTE_OBJECT ; flags1
+	db LOW_PRIORITY ; flags2
 	db 0 ; palette flags
 
 ; SPRITEMOVEDATA_GRASS
 	db SPRITEMOVEFN_GRASS ; movement function
 	db DOWN ; facing
 	db OBJECT_ACTION_GRASS_SHAKE ; action
-	db 1 << 1 | 1 << 2 | 1 << 3 | 1 << 7 ; flags1
-	db 1 << 1 ; flags2
+	db 1 << 1 | FIXED_FACING | SLIDING | EMOTE_OBJECT ; flags1
+	db HIGH_PRIORITY ; flags2
 	db 0 ; palette flags
 
 ; SPRITEMOVEDATA_SWIM_WANDER

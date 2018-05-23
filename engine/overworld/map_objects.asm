@@ -146,7 +146,7 @@ Function437b: ; 437b
 .HandleObjectAction:
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit INVISIBLE, [hl]
+	bit INVISIBLE_F, [hl]
 	jr nz, SetFacingStanding
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
@@ -161,7 +161,7 @@ Function437b: ; 437b
 Function4440: ; 4440
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit INVISIBLE, [hl]
+	bit INVISIBLE_F, [hl]
 	jr nz, SetFacingStanding
 asm_4448:
 	ld de, ObjectActionPairPointers + 2 ; use second column
@@ -233,7 +233,7 @@ Function462a: ; 462a
 UpdateTallGrassFlags: ; 463f
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit OVERHEAD, [hl]
+	bit OVERHEAD_F, [hl]
 	jr z, .ok
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
@@ -260,13 +260,13 @@ SetTallGrassFlags: ; 4661
 .set
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set OVERHEAD, [hl]
+	set OVERHEAD_F, [hl]
 	ret
 
 .reset
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res OVERHEAD, [hl]
+	res OVERHEAD_F, [hl]
 	ret
 ; 4679
 
@@ -298,7 +298,7 @@ InitStep: ; 4690
 	ld [hl], a
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit FIXED_FACING, [hl]
+	bit FIXED_FACING_F, [hl]
 	jr nz, GetNextTile
 	add a
 	add a
@@ -2155,7 +2155,7 @@ DespawnEmote: ; 5579
 	push af
 	ld hl, OBJECT_FLAGS1
 	add hl, de
-	bit EMOTE_OBJECT, [hl]
+	bit EMOTE_OBJECT_F, [hl]
 	jr z, .next
 	ld hl, OBJECT_SPRITE
 	add hl, de
@@ -2918,10 +2918,10 @@ InitSprites: ; 5991
 	ld e, PRIORITY_LOW
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit LOW_PRIORITY, [hl]
+	bit LOW_PRIORITY_F, [hl]
 	jr nz, .add
 	ld e, PRIORITY_NORM
-	bit HIGH_PRIORITY, [hl]
+	bit HIGH_PRIORITY_F, [hl]
 	jr z, .add
 	ld e, PRIORITY_HIGH
 	jr .add

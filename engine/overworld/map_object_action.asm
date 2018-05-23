@@ -47,7 +47,7 @@ SetFacingStandAction: ; 44b5
 SetFacingStepAction: ; 44c1
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit SLIDING, [hl]
+	bit SLIDING_F, [hl]
 	jp nz, SetFacingCurrent
 
 	ld hl, OBJECT_STEP_FRAME
@@ -59,7 +59,7 @@ SetFacingStepAction: ; 44c1
 
 	rrca
 	rrca
-	and %00000011
+	maskbits NUM_DIRECTIONS
 	ld d, a
 
 	call GetSpriteDirection
@@ -74,7 +74,7 @@ SetFacingStepAction: ; 44c1
 SetFacingSkyfall: ; 44e4
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit SLIDING, [hl]
+	bit SLIDING_F, [hl]
 	jp nz, SetFacingCurrent
 
 	ld hl, OBJECT_STEP_FRAME
@@ -86,7 +86,7 @@ SetFacingSkyfall: ; 44e4
 
 	rrca
 	rrca
-	and %00000011
+	maskbits NUM_DIRECTIONS
 	ld d, a
 
 	call GetSpriteDirection
@@ -101,7 +101,7 @@ SetFacingSkyfall: ; 44e4
 SetFacingBumpAction: ; 4508
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit SLIDING, [hl]
+	bit SLIDING_F, [hl]
 	jp nz, SetFacingCurrent
 
 	ld hl, OBJECT_STEP_FRAME
@@ -112,7 +112,7 @@ SetFacingBumpAction: ; 4508
 	rrca
 	rrca
 	rrca
-	and %00000011
+	maskbits NUM_DIRECTIONS
 	ld d, a
 
 	call GetSpriteDirection
@@ -245,7 +245,7 @@ SetFacingWeirdTree: ; 45ab
 	ld a, [hl]
 	inc a
 	ld [hl], a
-	and %00001100
+	maskbits NUM_DIRECTIONS, 2
 	rrca
 	rrca
 	add FACING_WEIRD_TREE_0
