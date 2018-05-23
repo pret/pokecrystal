@@ -175,7 +175,7 @@ SpriteMovementData:: ; 4273
 	db OBJECT_ACTION_BIG_DOLL_SYM ; action
 	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
 	db LOW_PRIORITY ; flags2
-	db 1 << 6 | 1 << 7 ; palette flags
+	db STRENGTH_BOULDER | BIG_OBJECT ; palette flags
 
 ; SPRITEMOVEDATA_POKEMON
 	db SPRITEMOVEFN_BOUNCE ; movement function
@@ -207,7 +207,7 @@ SpriteMovementData:: ; 4273
 	db OBJECT_ACTION_STAND ; action
 	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
 	db 0 ; flags2
-	db 1 << 6 ; palette flags
+	db STRENGTH_BOULDER ; palette flags
 
 ; SPRITEMOVEDATA_FOLLOWNOTEXACT
 	db SPRITEMOVEFN_FOLLOWNOTEXACT ; movement function
@@ -263,7 +263,7 @@ SpriteMovementData:: ; 4273
 	db OBJECT_ACTION_BIG_DOLL_ASYM ; action
 	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
 	db LOW_PRIORITY ; flags2
-	db 1 << 6 | 1 << 7 ; palette flags
+	db STRENGTH_BOULDER | BIG_OBJECT ; palette flags
 
 ; SPRITEMOVEDATA_BIGDOLL
 	db SPRITEMOVEFN_STRENGTH ; movement function
@@ -271,7 +271,7 @@ SpriteMovementData:: ; 4273
 	db OBJECT_ACTION_BIG_DOLL ; action
 	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
 	db LOW_PRIORITY ; flags2
-	db 1 << 6 | 1 << 7 ; palette flags
+	db STRENGTH_BOULDER | BIG_OBJECT ; palette flags
 
 ; SPRITEMOVEDATA_BOULDERDUST
 	db SPRITEMOVEFN_BOULDERDUST ; movement function
@@ -295,7 +295,7 @@ SpriteMovementData:: ; 4273
 	db OBJECT_ACTION_STAND ; action
 	db 0 ; flags1
 	db 0 ; flags2
-	db 1 << 5 ; palette flags
+	db WALK_ON_WATER ; palette flags
 
 ; 25
 	db SPRITEMOVEFN_00 ; movement function

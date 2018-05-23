@@ -2444,7 +2444,7 @@ Function56cd: ; 56cd
 	ld [hUsedSpriteTile], a
 	ld hl, OBJECT_PALETTE
 	add hl, bc
-	bit 7, [hl]
+	bit BIG_OBJECT_F, [hl]
 	jr z, .ok7
 	ld a, d
 	add 2

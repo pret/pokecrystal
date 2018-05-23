@@ -2,8 +2,8 @@ Function6ec1: ; 6ec1
 
 	ld hl, OBJECT_PALETTE
 	add hl, bc
-	bit 5, [hl]
-	jr z, .not_bit_5
+	bit WALK_ON_WATER_F, [hl]
+	jr z, .walks_on_land
 
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
@@ -17,7 +17,7 @@ Function6ec1: ; 6ec1
 	ret c
 	jr .resume
 
-.not_bit_5
+.walks_on_land
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 4, [hl]
@@ -331,7 +331,7 @@ IsNPCAtCoord: ; 7041
 
 	ld hl, OBJECT_PALETTE
 	add hl, bc
-	bit 7, [hl]
+	bit BIG_OBJECT_F, [hl]
 	jr z, .got
 
 	call Function7171
