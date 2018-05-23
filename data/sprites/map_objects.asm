@@ -295,7 +295,7 @@ SpriteMovementData:: ; 4273
 	db OBJECT_ACTION_STAND ; action
 	db 0 ; flags1
 	db 0 ; flags2
-	db WALK_ON_WATER ; palette flags
+	db SWIMMING ; palette flags
 
 ; 25
 	db SPRITEMOVEFN_00 ; movement function

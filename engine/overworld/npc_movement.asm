@@ -2,8 +2,8 @@ Function6ec1: ; 6ec1
 
 	ld hl, OBJECT_PALETTE
 	add hl, bc
-	bit WALK_ON_WATER_F, [hl]
-	jr z, .walks_on_land
+	bit SWIMMING_F, [hl]
+	jr z, .not_swimming
 
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
@@ -17,7 +17,7 @@ Function6ec1: ; 6ec1
 	ret c
 	jr .resume
 
-.walks_on_land
+.not_swimming
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit 4, [hl]
