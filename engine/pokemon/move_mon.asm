@@ -1497,29 +1497,29 @@ CalcMonStatC: ; e17b
 	jr z, .Special
 	cp STAT_SDEF
 	jr z, .Special
-; DV_HP = (DV_ATK & 1) << 3 + (DV_DEF & 1) << 2 + (DV_SPD & 1) << 1 + (DV_SPC & 1)
+; DV_HP = (DV_ATK & 1) << 3 | (DV_DEF & 1) << 2 | (DV_SPD & 1) << 1 | (DV_SPC & 1)
 	push bc
 	ld a, [hl]
 	swap a
-	and $1
+	and 1
 	add a
 	add a
 	add a
 	ld b, a
 	ld a, [hli]
-	and $1
+	and 1
 	add a
 	add a
 	add b
 	ld b, a
 	ld a, [hl]
 	swap a
-	and $1
+	and 1
 	add a
 	add b
 	ld b, a
 	ld a, [hl]
-	and $1
+	and 1
 	add b
 	pop bc
 	jr .GotDV

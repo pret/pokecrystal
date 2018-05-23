@@ -75,6 +75,16 @@ OVERHEAD      EQU 3
 	const MAPOBJECT_F ; unused
 OBJECT_LENGTH EQU const_value
 
+; SpriteMovementData struct members (see data/sprites/map_objects.asm)
+	const_def
+	const SPRITEMOVEATTR_MOVEMENT ; 0
+	const SPRITEMOVEATTR_FACING   ; 1
+	const SPRITEMOVEATTR_ACTION   ; 2
+	const SPRITEMOVEATTR_FLAGS1   ; 3
+	const SPRITEMOVEATTR_FLAGS2   ; 4
+	const SPRITEMOVEATTR_PALFLAGS ; 5
+NUM_SPRITEMOVEDATA_FIELDS EQU const_value
+
 MAPOBJECT_SCREEN_HEIGHT EQU 11
 MAPOBJECT_SCREEN_WIDTH EQU 12
 
@@ -119,7 +129,6 @@ MAPOBJECT_SCREEN_WIDTH EQU 12
 	const SPRITEMOVEDATA_GRASS                ; 23
 	const SPRITEMOVEDATA_SWIM_WANDER          ; 24
 NUM_SPRITEMOVEDATA EQU const_value
-SPRITEMOVEDATA_FIELDS EQU 6
 
 ; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
 	const_def

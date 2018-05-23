@@ -83,7 +83,7 @@ EnableMobile: ; 100082
 	call DoubleSpeed
 	xor a
 	ld [rIF], a
-	ld a, 1 << VBLANK + 1 << LCD_STAT + 1 << TIMER + 1 << SERIAL
+	ld a, 1 << VBLANK | 1 << LCD_STAT | 1 << TIMER | 1 << SERIAL
 	ld [rIE], a
 	xor a
 	ld [hMapAnims], a
