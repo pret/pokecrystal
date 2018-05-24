@@ -22,10 +22,10 @@ Get1bpp_2:: ; ddc
 ; def
 
 FarCopyBytesDouble_DoubleBankSwitch:: ; def
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 	call FarCopyBytesDouble
@@ -37,11 +37,11 @@ FarCopyBytesDouble_DoubleBankSwitch:: ; def
 
 OldDMATransfer:: ; dfd
 	dec c
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
-	ld a, [hROMBank]
+	ldh [hBGMapMode], a
+	ldh a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
@@ -68,7 +68,7 @@ OldDMATransfer:: ; dfd
 	ld c, a
 ; DMA transfer state
 	ld a, $f
-	ld [hDMATransfer], a
+	ldh [hDMATransfer], a
 	call DelayFrame
 ; add $100 to hl and de
 	ld a, l
@@ -88,13 +88,13 @@ OldDMATransfer:: ; dfd
 .done
 	ld a, c
 	and $7f ; pretty silly, considering at most bits 0-2 would be set
-	ld [hDMATransfer], a
+	ldh [hDMATransfer], a
 	call DelayFrame
 	pop af
 	rst Bankswitch
 
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; e4a
 
@@ -154,10 +154,10 @@ DecompressRequest2bpp:: ; e73
 FarCopyBytes:: ; e8d
 ; copy bc bytes from a:hl to de
 
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 	call CopyBytes
@@ -172,10 +172,10 @@ FarCopyBytesDouble:: ; e9b
 ; Copy bc bytes from a:hl to bc*2 bytes at de,
 ; doubling each byte in the process.
 
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 ; switcheroo, de <> hl
@@ -209,29 +209,29 @@ FarCopyBytesDouble:: ; e9b
 
 Request2bpp:: ; eba
 ; Load 2bpp at b:de to occupy c tiles of hl.
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
 
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	push af
 	ld a, $8
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .NotMobile
-	ld a, [hMobile]
+	ldh a, [hMobile]
 	and a
 	jr nz, .NotMobile
 	ld a, $6
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 .NotMobile:
 	ld a, e
@@ -256,17 +256,17 @@ Request2bpp:: ; eba
 	jr nz, .wait
 
 	pop af
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 	pop af
 	rst Bankswitch
 
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .iterate
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	ld [wRequested2bpp], a
 
 .wait2
@@ -285,29 +285,29 @@ Request2bpp:: ; eba
 
 Request1bpp:: ; f1e
 ; Load 1bpp at b:de to occupy c tiles of hl.
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
 
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	push af
 
 	ld a, $8
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .NotMobile
-	ld a, [hMobile]
+	ldh a, [hMobile]
 	and a
 	jr nz, .NotMobile
 	ld a, $6
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 .NotMobile:
 	ld a, e
@@ -332,17 +332,17 @@ Request1bpp:: ; f1e
 	jr nz, .wait
 
 	pop af
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 	pop af
 	rst Bankswitch
 
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .iterate
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	ld [wRequested1bpp], a
 
 .wait2

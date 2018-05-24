@@ -314,13 +314,13 @@ GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
 
 Function1719c8: ; 1719c8 (5c:59c8)
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call Function1719d6
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 Function1719d6: ; 1719d6 (5c:59d6)

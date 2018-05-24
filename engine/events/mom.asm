@@ -1,8 +1,8 @@
 BankOfMom: ; 16218
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	xor a
 	ld [wJumptableIndex], a
 .loop
@@ -14,7 +14,7 @@ BankOfMom: ; 16218
 
 .done
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 ; 16233
 
@@ -306,7 +306,7 @@ DSTChecks: ; 16439
 ; check the time; avoid changing DST if doing so would change the current day
 	ld a, [wDST]
 	bit 7, a
-	ld a, [hHours]
+	ldh a, [hHours]
 	jr z, .NotDST
 	and a ; within one hour of 00:00?
 	jr z, .LostBooklet
@@ -450,7 +450,7 @@ Mom_SetUpDepositMenu: ; 16517
 Mom_ContinueMenuSetup: ; 1651a
 	push de
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 0
 	lb bc, 6, 18
 	call TextBox
@@ -498,7 +498,7 @@ Mom_WithdrawDepositMenuJoypad: ; 16571
 	jr nz, .pressedA
 	call .dpadaction
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 12, 6
 	ld bc, 7
 	ld a, " "
@@ -507,7 +507,7 @@ Mom_WithdrawDepositMenuJoypad: ; 16571
 	ld de, wStringBuffer2
 	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
-	ld a, [hVBlankCounter]
+	ldh a, [hVBlankCounter]
 	and $10
 	jr nz, .skip
 	hlcoord 13, 6

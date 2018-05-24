@@ -6,7 +6,7 @@ _TitleScreen: ; 10ed67
 
 ; Turn BG Map update off
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 ; Reset timing variables
 	ld hl, wJumptableIndex
@@ -189,7 +189,7 @@ _TitleScreen: ; 10ed67
 
 ; Let LCD Stat know we're messing around with SCX
 	ld a, rSCX - $ff00
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 
 	pop af
 	ld [rSVBK], a
@@ -205,19 +205,19 @@ _TitleScreen: ; 10ed67
 	ld [rLCDC], a
 
 	ld a, +112
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, 8
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, 7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, -112
-	ld [hWY], a
+	ldh [hWY], a
 
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 ; Update BG Map 0 (bank 0)
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 	xor a
 	ld [wd002], a
@@ -250,12 +250,12 @@ SuicuneFrameIterator: ; 10eea7
 	add hl, de
 	ld d, [hl]
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadSuicuneFrame
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $3
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	ret
 ; 10eece
 

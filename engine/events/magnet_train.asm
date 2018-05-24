@@ -30,9 +30,9 @@ MagnetTrain: ; 8cc04
 	ld a, d
 	ld [wMagnetTrainPlayerSpriteInitX], a
 
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	push af
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	push af
 	call MagntTrain_LoadGFX_PlayMusic
 	ld hl, hVBlank
@@ -58,13 +58,13 @@ MagnetTrain: ; 8cc04
 
 .done
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call ClearBGPalettes
 	xor a
-	ld [hLCDCPointer], a
-	ld [hLYOverrideStart], a
-	ld [hLYOverrideEnd], a
-	ld [hSCX], a
+	ldh [hLCDCPointer], a
+	ldh [hLYOverrideStart], a
+	ldh [hLYOverrideEnd], a
+	ldh [hSCX], a
 	ld [wRequested2bppSource], a
 	ld [wRequested2bppSource + 1], a
 	ld [wRequested2bppDest], a
@@ -73,11 +73,11 @@ MagnetTrain: ; 8cc04
 	call ClearTileMap
 
 	pop af
-	ld [hSCY], a
+	ldh [hSCY], a
 	pop af
-	ld [hSCX], a
+	ldh [hSCX], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	pop af
 	ld [rSVBK], a
 	ret
@@ -88,7 +88,7 @@ MagnetTrain_UpdateLYOverrides: ; 8cc99
 	ld c, $2f
 	ld a, [wMagnetTrainOffset]
 	add a
-	ld [hSCX], a
+	ldh [hSCX], a
 	call .loadloop
 	ld c, $30
 	ld a, [wMagnetTrainPosition]
@@ -121,12 +121,12 @@ MagntTrain_LoadGFX_PlayMusic: ; 8ccc9
 	call SetMagnetTrainPals
 	call DrawMagnetTrain
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call EnableLCD
 	xor a
-	ld [hBGMapMode], a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hBGMapMode], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wPlayerGender)
@@ -251,7 +251,7 @@ MagnetTrain_InitLYOverrides: ; 8cda6
 	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
 	ld a, rSCX - $ff00
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 	ret
 ; 8cdc3
 

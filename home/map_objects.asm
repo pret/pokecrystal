@@ -21,7 +21,7 @@ GetSpriteVTile:: ; 180e
 	ld hl, wUsedSprites + 2
 	ld c, SPRITE_GFX_LIST_CAPACITY - 1
 	ld b, a
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	cp 0
 	jr z, .nope
 	ld a, b
@@ -56,7 +56,7 @@ DoesSpriteHaveFacings:: ; 1836
 	push hl
 
 	ld b, a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_DoesSpriteHaveFacings)
 	rst Bankswitch
@@ -101,7 +101,7 @@ GetTileCollision:: ; 185d
 	ld d, 0
 	add hl, de
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(TileCollisionTable)
 	rst Bankswitch
@@ -227,14 +227,14 @@ GetMapObject:: ; 18d2
 
 CheckObjectVisibility:: ; 18de
 ; Sets carry if the object is not visible on the screen.
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
 	ld a, [hl]
 	cp -1
 	jr z, .not_visible
-	ld [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndexBuffer], a
 	call GetObjectStruct
 	and a
 	ret
@@ -320,23 +320,23 @@ CheckObjectTime:: ; 18f5
 ; 194d
 
 ; unused
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	call GetMapObject
 	call CopyObjectStruct
 	ret
 ; 1956
 
 _CopyObjectStruct:: ; 1956
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	call UnmaskObject
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	call GetMapObject
 	farcall CopyObjectStruct
 	ret
 ; 1967
 
 ApplyDeletionToMapObject:: ; 1967
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	call GetMapObject
 	ld hl, MAPOBJECT_OBJECT_STRUCT_ID
 	add hl, bc
@@ -419,7 +419,7 @@ Unreferenced_Function19b8:
 LoadMovementDataPointer:: ; 19e9
 ; Load the movement data pointer for object a.
 	ld [wMovementObject], a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld [wMovementDataPointer], a
 	ld a, l
 	ld [wMovementDataPointer + 1], a
@@ -513,7 +513,7 @@ endr
 
 CopySpriteMovementData:: ; 1a61
 	ld l, a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(SpriteMovementData)
 	rst Bankswitch
@@ -582,7 +582,7 @@ endr
 
 _GetMovementByte:: ; 1aae
 ; Switch to the movement data bank
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, [hli]
 	rst Bankswitch

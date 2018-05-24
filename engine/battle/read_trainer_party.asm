@@ -321,9 +321,9 @@ ComputeTrainerReward: ; 3991b (e:591b)
 	ld hl, wBattleReward
 	xor a
 	ld [hli], a
-	ld a, [hProduct + 2]
+	ldh a, [hProduct + 2]
 	ld [hli], a
-	ld a, [hProduct + 3]
+	ldh a, [hProduct + 3]
 	ld [hl], a
 	ret
 

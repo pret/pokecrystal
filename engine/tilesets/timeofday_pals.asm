@@ -329,7 +329,7 @@ ConvertTimePalsDecHL: ; 8c16d
 
 GetTimePalFade: ; 8c17c
 ; check cgb
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
 

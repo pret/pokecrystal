@@ -7,7 +7,7 @@ Pokepic:: ; 244e3
 	ld b, SCGB_POKEPIC
 	call GetSGBLayout
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
@@ -21,7 +21,7 @@ Pokepic:: ; 244e3
 	ld c, a
 	call Coord2Tile
 	ld a, $80
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
 	call WaitBGMap
@@ -34,7 +34,7 @@ ClosePokepic:: ; 24528
 	call WaitBGMap
 	call GetMemSGBLayout
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call OverworldTextModeSwitch
 	call ApplyTilemap
 	call UpdateSprites

@@ -286,7 +286,7 @@ HPBarAnim_UpdateHPRemaining: ; d784
 ; d7b4
 
 HPBarAnim_PaletteUpdate: ; d7b4
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 	ld hl, wCurHPAnimPal
@@ -298,7 +298,7 @@ HPBarAnim_PaletteUpdate: ; d7b4
 ; d7c9
 
 HPBarAnim_BGMapUpdate: ; d7c9
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
 	call DelayFrame
@@ -326,15 +326,15 @@ HPBarAnim_BGMapUpdate: ; d7c9
 	cp $5
 	jr z, .skip_delay
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, c
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	call DelayFrame
 .skip_delay
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, c
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	call DelayFrame
 	pop af
 	cp $2
@@ -346,14 +346,14 @@ HPBarAnim_BGMapUpdate: ; d7c9
 .two_frames
 	inc c
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, c
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	call DelayFrame
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, c
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	call DelayFrame
 	ret
 
@@ -366,7 +366,7 @@ HPBarAnim_BGMapUpdate: ; d7c9
 .finish
 	call DelayFrame
 	ld a, c
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	call DelayFrame
 	ret
 ; d839

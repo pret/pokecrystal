@@ -167,7 +167,7 @@ Slots_GetPals: ; 9279b (24:679b)
 	ld a, %11100100
 	call DmgToCgbBGPals
 	lb de, %11100100, %11100100
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
 	lb de, %11000000, %11100100
@@ -351,7 +351,7 @@ SlotsAction_WaitStart: ; 928c6 (24:68c6)
 .proceed
 	call SlotsAction_Next
 	xor a
-	ld [hJoypadSum], a
+	ldh [hJoypadSum], a
 	ret
 
 SlotsAction_WaitReel1: ; 928d6 (24:68d6)
@@ -373,7 +373,7 @@ SlotsAction_WaitStopReel1: ; 928e6 (24:68e6)
 	call Slots_LoadReelState
 	call SlotsAction_Next
 	xor a
-	ld [hJoypadSum], a
+	ldh [hJoypadSum], a
 SlotsAction_WaitReel2: ; 92900 (24:6900)
 	ld hl, hJoypadSum
 	ld a, [hl]
@@ -393,7 +393,7 @@ SlotsAction_WaitStopReel2: ; 92910 (24:6910)
 	call Slots_LoadReelState
 	call SlotsAction_Next
 	xor a
-	ld [hJoypadSum], a
+	ldh [hJoypadSum], a
 SlotsAction_WaitReel3: ; 9292a (24:692a)
 	ld hl, hJoypadSum
 	ld a, [hl]
@@ -413,7 +413,7 @@ SlotsAction_WaitStopReel3: ; 9293a (24:693a)
 	call Slots_LoadReelState
 	call SlotsAction_Next
 	xor a
-	ld [hJoypadSum], a
+	ldh [hJoypadSum], a
 	ret
 
 SlotsAction_FlashIfWin: ; 92955 (24:6955)
@@ -2164,7 +2164,7 @@ Slots_AnimateGolem: ; 9321d (24:721d)
 	xor $ff
 	inc a
 	ld [hl], a
-	ld [hSCY], a
+	ldh [hSCY], a
 	ret
 
 .restart
@@ -2172,7 +2172,7 @@ Slots_AnimateGolem: ; 9321d (24:721d)
 	add hl, bc
 	xor a
 	ld [hl], a
-	ld [hSCY], a
+	ldh [hSCY], a
 	ret
 
 Slots_AnimateChansey: ; 932ac (24:72ac)

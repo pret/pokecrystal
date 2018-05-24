@@ -382,7 +382,7 @@ PokeAnim_InitAnim: ; d0228
 
 PokeAnim_DoAnimScript: ; d0250
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 .loop
 	ld a, [wPokeAnimJumptableIndex]
 	and $7f
@@ -879,7 +879,7 @@ PokeAnim_SetVBank1: ; d0504
 	ld a, BANK(wPokeAnimCoord)
 	ld [rSVBK], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call .SetFlag
 	farcall HDMATransferAttrMapToWRAMBank3
 	pop af

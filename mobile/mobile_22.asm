@@ -206,13 +206,13 @@ Mobile22_ButtonSound: ; 89235 (22:5235)
 
 Mobile22_SetBGMapMode0: ; 8923c
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 89240
 
 Mobile22_SetBGMapMode1: ; 89240
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 89245
 
@@ -1256,7 +1256,7 @@ Function897d5: ; 897d5
 
 .asm_897f3
 	ld a, $37
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 12, 3
 	lb bc, 7, 7
 	predef PlaceGraphic

@@ -4,15 +4,15 @@ PUZZLE_VOID   EQU $ef
 puzcoord EQUS "* 6 +"
 
 _UnownPuzzle: ; e1190
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DisableLCD
 	ld hl, wc608 ; includes wPuzzlePieces
 	ld bc, wc7e8 - wc608
@@ -38,8 +38,8 @@ _UnownPuzzle: ; e1190
 	call UnownPuzzle_UpdateTilemap
 	call PlaceStartCancelBox
 	xor a
-	ld [hSCY], a
-	ld [hSCX], a
+	ldh [hSCY], a
+	ldh [hSCX], a
 	ld [rWY], a
 	ld [wJumptableIndex], a
 	ld [wHoldingUnownPuzzlePiece], a
@@ -66,7 +66,7 @@ _UnownPuzzle: ; e1190
 	ld a, [wHoldingUnownPuzzlePiece]
 	and a
 	jr nz, .holding_piece
-	ld a, [hVBlankCounter]
+	ldh a, [hVBlankCounter]
 	and $10
 	jr z, .clear
 .holding_piece
@@ -81,7 +81,7 @@ _UnownPuzzle: ; e1190
 
 .quit
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -192,10 +192,10 @@ UnownPuzzleJumptable: ; e12ca
 ; e12db
 
 .Function: ; e12db
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and START
 	jp nz, UnownPuzzle_Quit
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jp nz, UnownPuzzle_A
 	ld hl, hJoyLast

@@ -1,7 +1,7 @@
 _DisappearUser: ; fbd54
 	xor a
-	ld [hBGMapMode], a
-	ld a, [hBattleTurn]
+	ldh [hBGMapMode], a
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 	call GetEnemyFrontpicCoords
@@ -21,8 +21,8 @@ _AppearUserLowerSub: ; fbd71 (3e:7d71)
 
 AppearUser: ; fbd77 (3e:7d77)
 	xor a
-	ld [hBGMapMode], a
-	ld a, [hBattleTurn]
+	ldh [hBGMapMode], a
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 	call GetEnemyFrontpicCoords
@@ -32,11 +32,11 @@ AppearUser: ; fbd77 (3e:7d77)
 	call GetPlayerBackpicCoords
 	ld a, $31
 .okay
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	predef PlaceGraphic
 FinishAppearDisappearUser: ; fbd91 (3e:7d91)
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 GetEnemyFrontpicCoords: ; fbd96 (3e:7d96)
@@ -104,32 +104,32 @@ DoWeatherModifiers: ; fbda4
 
 .ApplyModifier:
 	xor a
-	ld [hMultiplicand + 0], a
+	ldh [hMultiplicand + 0], a
 	ld hl, wCurDamage
 	ld a, [hli]
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 
 	inc de
 	ld a, [de]
-	ld [hMultiplier], a
+	ldh [hMultiplier], a
 
 	call Multiply
 
 	ld a, 10
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, $4
 	call Divide
 
-	ld a, [hQuotient + 0]
+	ldh a, [hQuotient + 0]
 	and a
 	ld bc, -1
 	jr nz, .Update
 
-	ld a, [hQuotient + 1]
+	ldh a, [hQuotient + 1]
 	ld b, a
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	ld c, a
 	or b
 	jr nz, .Update
@@ -157,7 +157,7 @@ DoBadgeTypeBoosts: ; fbe24
 	and a
 	ret nz
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ret nz
 

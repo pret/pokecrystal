@@ -223,7 +223,7 @@ ChooseWildEncounter_BugContest:: ; 97d31
 	ld c, a
 	inc c
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	call SimpleDivide
 	add d
 
@@ -245,7 +245,7 @@ TryWildEncounter_BugContest: ; 97d64
 	farcall ApplyMusicEffectOnEncounterRate
 	farcall ApplyCleanseTagEffectOnEncounterRate
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	cp b
 	ret c
 	ld a, 1
@@ -341,7 +341,7 @@ HandleCmdQueue:: ; 97e08
 	ld hl, wCmdQueue
 	xor a
 .loop
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	ld a, [hl]
 	and a
 	jr z, .skip
@@ -354,7 +354,7 @@ HandleCmdQueue:: ; 97e08
 .skip
 	ld de, CMDQUEUE_ENTRY_SIZE
 	add hl, de
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	inc a
 	cp CMDQUEUE_CAPACITY
 	jr nz, .loop
@@ -509,7 +509,7 @@ CmdQueue_Type4: ; 97ebc
 ; 97ec3
 
 .zero ; 97ec3
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	ld hl, 4
 	add hl, bc
 	ld [hl], a
@@ -525,24 +525,24 @@ CmdQueue_Type4: ; 97ebc
 	jr z, .add
 	ld hl, 2
 	add hl, bc
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	sub [hl]
-	ld [hSCY], a
+	ldh [hSCY], a
 	ret
 
 .add
 	ld hl, 2
 	add hl, bc
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	add [hl]
-	ld [hSCY], a
+	ldh [hSCY], a
 	ret
 
 .finish
 	ld hl, 4
 	add hl, bc
 	ld a, [hl]
-	ld [hSCY], a
+	ldh [hSCY], a
 	call _DelCmdQueue
 	ret
 ; 97ef9

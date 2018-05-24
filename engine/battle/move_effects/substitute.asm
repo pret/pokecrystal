@@ -4,7 +4,7 @@ BattleCommand_Substitute: ; 36e7c
 	call BattleCommand_MoveDelay
 	ld hl, wBattleMonMaxHP
 	ld de, wPlayerSubstituteHP
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_hp
 	ld hl, wEnemyMonMaxHP
@@ -46,7 +46,7 @@ BattleCommand_Substitute: ; 36e7c
 
 	ld hl, wPlayerWrapCount
 	ld de, wPlayerTrappingMove
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 	ld hl, wEnemyWrapCount

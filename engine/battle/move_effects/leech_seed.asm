@@ -7,7 +7,7 @@ BattleCommand_LeechSeed: ; 36f9d
 	jr nz, .evaded
 
 	ld de, wEnemyMonType1
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld de, wBattleMonType1

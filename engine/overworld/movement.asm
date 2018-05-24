@@ -251,7 +251,7 @@ Movement_48: ; 51db
 Movement_remove_object: ; 51fd
 	call DeleteMapObject
 	ld hl, wObjectFollow_Leader
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr nz, .not_leading
 	ld [hl], -1
@@ -762,7 +762,7 @@ NormalStep: ; 5412
 
 .skip_grass
 	ld hl, wCenteredObject
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .player
 
@@ -787,7 +787,7 @@ TurningStep: ; 5446
 	ld [hl], OBJECT_ACTION_SPIN
 
 	ld hl, wCenteredObject
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .player
 
@@ -813,7 +813,7 @@ SlideStep: ; 5468
 	ld [hl], OBJECT_ACTION_STAND
 
 	ld hl, wCenteredObject
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .player
 
@@ -847,7 +847,7 @@ JumpStep: ; 548a
 	call SpawnShadow
 
 	ld hl, wCenteredObject
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .player
 

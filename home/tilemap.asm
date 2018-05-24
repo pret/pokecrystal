@@ -3,7 +3,7 @@ ClearBGPalettes:: ; 31f3
 WaitBGMap:: ; 31f6
 ; Tell VBlank to update BG Map
 	ld a, 1 ; BG Map 0 tiles
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 ; Wait for it to do its magic
 	ld c, 4
 	call DelayFrames
@@ -11,31 +11,31 @@ WaitBGMap:: ; 31f6
 ; 3200
 
 WaitBGMap2:: ; 0x3200
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .bg0
 
 	ld a, 2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld c, 4
 	call DelayFrames
 
 .bg0
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld c, 4
 	call DelayFrames
 	ret
 ; 0x3218
 
 IsCGB:: ; 3218
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret
 ; 321c
 
 ApplyTilemap:: ; 321c
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 
@@ -44,20 +44,20 @@ ApplyTilemap:: ; 321c
 	jr z, .dmg
 
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	jr CopyTilemapAtOnce
 
 .dmg
 ; WaitBGMap
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld c, 4
 	call DelayFrames
 	ret
 ; 3238
 
 CGBOnly_CopyTilemapAtOnce:: ; 3238
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, WaitBGMap
 
@@ -71,15 +71,15 @@ CopyTilemapAtOnce:: ; 323d
 ; 3246
 
 .CopyTilemapAtOnce: ; 3246
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
-	ld a, [hMapAnims]
+	ldh a, [hMapAnims]
 	push af
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 
 .wait
 	ld a, [rLY]
@@ -103,9 +103,9 @@ CopyTilemapAtOnce:: ; 323d
 	ei
 
 	pop af
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 327b
 
@@ -113,11 +113,11 @@ CopyTilemapAtOnce:: ; 323d
 ; Copy all tiles to vBGMap
 	ld [hSPBuffer], sp
 	ld sp, hl
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	ld h, a
 	ld l, 0
 	ld a, SCREEN_HEIGHT
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 	ld b, 1 << 1 ; not in v/hblank
 	ld c, LOW(rSTAT)
 
@@ -138,14 +138,14 @@ endr
 
 	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	add hl, de
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	dec a
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 	jr nz, .loop
 
-	ld a, [hSPBuffer]
+	ldh a, [hSPBuffer]
 	ld l, a
-	ld a, [hSPBuffer + 1]
+	ldh a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
@@ -154,7 +154,7 @@ endr
 SetPalettes:: ; 32f9
 ; Inits the Palettes
 ; depending on the system the monochromes palettes or color palettes
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .SetPalettesForGameBoyColor
 	ld a, %11100100
@@ -178,7 +178,7 @@ ClearPalettes:: ; 3317
 ; Make all palettes white
 
 ; CGB: make all the palette colors white
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
 
@@ -207,7 +207,7 @@ ClearPalettes:: ; 3317
 
 ; Request palette update
 	ld a, 1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 333e
 
@@ -216,11 +216,11 @@ GetMemSGBLayout:: ; 333e
 GetSGBLayout:: ; 3340
 ; load sgb packets unless dmg
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .sgb
 
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ret z
 

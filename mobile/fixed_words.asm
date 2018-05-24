@@ -275,13 +275,13 @@ CopyMobileEZChatToC608: ; 11c156
 ; 11c1ab
 
 Function11c1ab: ; 11c1ab
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call Function11c1b9
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 ; 11c1b9
 
@@ -378,8 +378,8 @@ EZChat_ClearBottom12Rows: ; 11c277 (47:4277)
 EZChat_MasterLoop: ; 11c283
 .loop
 	call JoyTextDelay
-	ld a, [hJoyPressed]
-	ld [hJoypadPressed], a
+	ldh a, [hJoyPressed]
+	ldh [hJoypadPressed], a
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
@@ -1363,13 +1363,13 @@ BCD2String: ; 11c8c7
 	inc a
 	push af
 	and $f
-	ld [hDividend], a
+	ldh [hDividend], a
 	pop af
 	and $f0
 	swap a
-	ld [hDividend + 1], a
+	ldh [hDividend + 1], a
 	xor a
-	ld [hDividend + 2], a
+	ldh [hDividend + 2], a
 	push hl
 	farcall Function11a80c
 	pop hl

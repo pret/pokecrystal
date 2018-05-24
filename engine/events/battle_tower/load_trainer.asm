@@ -19,11 +19,11 @@ Function_LoadOpponentTrainerAndPokemons: ; 1f8000
 	; Set wBT_OTTrainer as start address to write the following data to
 	ld de, wBT_OTTrainer
 
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	ld b, a
 .resample ; loop to find a random trainer
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	add b
 	ld b, a ; b contains the nr of the trainer
 if DEF(_CRYSTAL11)
@@ -108,11 +108,11 @@ Function_LoadRandomBattleTowerMon: ; 1f8081
 	ld bc, BattleTowerMons2 - BattleTowerMons1
 	call AddNTimes
 
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	ld b, a
 .resample
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	add b
 	ld b, a
 	maskbits BATTLETOWER_NUM_UNIQUE_MON

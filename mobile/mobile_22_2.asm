@@ -264,7 +264,7 @@ Function8b45c: ; 8b45c (22:745c)
 	call Function8b4fd
 	call Function89c44
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	pop bc
 	call Function8b3dd
 	jr nc, .asm_8b46e

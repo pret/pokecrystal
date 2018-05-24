@@ -484,8 +484,8 @@ BattleTowerRoomMenu_InitRAM: ; 1183cb
 	ld a, $f
 	ld [rIE], a
 	ld a, $1
-	ld [hMobileReceive], a
-	ld [hMobile], a
+	ldh [hMobileReceive], a
+	ldh [hMobile], a
 	ei
 	farcall Stubbed_Function106462
 	farcall Function106464
@@ -514,9 +514,9 @@ Function118440: ; 118440
 BattleTowerRoomMenu_Cleanup: ; 118452
 	di
 	xor a
-	ld [hMobileReceive], a
-	ld [hMobile], a
-	ld [hVBlank], a
+	ldh [hMobileReceive], a
+	ldh [hMobile], a
+	ldh [hVBlank], a
 	call NormalSpeed
 	xor a
 	ld [rIF], a
@@ -1013,7 +1013,7 @@ Function118821: ; 118821 (46:4821)
 	jr c, .asm_11884a
 	cp $4
 	jr z, .asm_11884a
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	cp $5
 	jr nz, .asm_11884a
 	ld a, $a
@@ -1032,7 +1032,7 @@ Function118821: ; 118821 (46:4821)
 ; 11884c (46:484c)
 
 Function11884c: ; 11884c
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	cp $5
 	jr nz, .asm_118864
 	ld a, $a
@@ -3093,14 +3093,14 @@ Function1196f2: ; 1196f2
 	jr z, .asm_11974c
 
 .asm_119735
-	ld a, [hRandomSub]
+	ldh a, [hRandomSub]
 	cp d
 	jr c, .asm_11974c
 	jr z, .asm_11973e
 	jr .asm_119745
 
 .asm_11973e
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	cp e
 	jr c, .asm_11974c
 	jr z, .asm_11974c
@@ -4250,7 +4250,7 @@ BattleTowerRoomMenu2: ; 119ed8 (46:5ed8)
 	ld a, [wcd8c]
 	ld [rSVBK], a
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .RunJumptable:
@@ -5341,31 +5341,31 @@ Function11a80c: ; 11a80c
 	call Function11a88c
 	xor a
 	ld b, a
-	ld a, [hDivisor]
+	ldh a, [hDivisor]
 	and $f
 	ld e, a
-	ld a, [hPrintNum7]
+	ldh a, [hPrintNum7]
 	and $f
 	call Function11a884
 	ld e, a
-	ld a, [hPrintNum9]
+	ldh a, [hPrintNum9]
 	and $f
 	call Function11a884
 	ld [wcd62], a
 	ld e, b
 	xor a
 	ld b, a
-	ld a, [hDivisor]
+	ldh a, [hDivisor]
 	and $f0
 	swap a
 	call Function11a884
 	ld e, a
-	ld a, [hPrintNum7]
+	ldh a, [hPrintNum7]
 	and $f0
 	swap a
 	call Function11a884
 	ld e, a
-	ld a, [hPrintNum9]
+	ldh a, [hPrintNum9]
 	and $f0
 	swap a
 	call Function11a884
@@ -5373,15 +5373,15 @@ Function11a80c: ; 11a80c
 	ld e, b
 	xor a
 	ld b, a
-	ld a, [hMathBuffer]
+	ldh a, [hMathBuffer]
 	and $f
 	call Function11a884
 	ld e, a
-	ld a, [hPrintNum8]
+	ldh a, [hPrintNum8]
 	and $f
 	call Function11a884
 	ld e, a
-	ld a, [hPrintNum10]
+	ldh a, [hPrintNum10]
 	and $f
 	call Function11a884
 	ld [wcd64], a
@@ -5509,7 +5509,7 @@ BattleTowerRoomMenu_WriteMessage_DoNothing:
 
 Function11a971: ; 11a971
 	ld hl, $c31f
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	and a
 	jr nz, .asm_11a97f
 	ld a, [hl]
@@ -5733,7 +5733,7 @@ Function11ac3e: ; 11ac3e
 
 Function11ac51: ; 11ac51
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -5742,12 +5742,12 @@ Function11ac51: ; 11ac51
 	push af
 	xor a
 	ld [wVramState], a
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ld [wcd49], a
 	ld [wcd4a], a
 	ld [wcd4c], a
@@ -5772,7 +5772,7 @@ Function11ac51: ; 11ac51
 .asm_11aca8
 	call ClearSprites
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	pop af
 	ld [wVramState], a
 	pop af
@@ -5841,7 +5841,7 @@ Function11ad1b: ; 11ad1b
 	ld a, [wMenuCursorY]
 	ld [wcd82], a
 	dec a
-	ld [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndexBuffer], a
 	ld a, $10
 	ld [wCurIconTile], a
 	ld hl, LoadMenuMonIcon
@@ -6442,10 +6442,10 @@ Function11b0ff: ; 11b0ff
 	and $3
 	ld [wcd4c], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call Function11b099
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .asm_11b125
@@ -7304,13 +7304,13 @@ Function11b570: ; 11b570
 	push de
 	pop hl
 
-	ld a, [hRTCMinutes]
+	ldh a, [hRTCMinutes]
 	ld [hli], a
-	ld a, [hRTCHours]
+	ldh a, [hRTCHours]
 	ld [hli], a
-	ld a, [hRTCDayLo]
+	ldh a, [hRTCDayLo]
 	ld [hli], a
-	ld a, [hRTCDayHi]
+	ldh a, [hRTCDayHi]
 	ld [hl], a
 
 	call CloseSRAM
@@ -7656,15 +7656,15 @@ Function11b879: ; 11b879
 	and a
 	ret z
 	ld hl, wcd4c
-	ld a, [hRTCDayHi]
+	ldh a, [hRTCDayHi]
 	cp [hl]
 	ret nz
 	dec hl
-	ld a, [hRTCDayLo]
+	ldh a, [hRTCDayLo]
 	cp [hl]
 	ret nz
 	ld hl, wcd4a
-	ld a, [hRTCHours]
+	ldh a, [hRTCHours]
 	cp [hl]
 	jr nc, .asm_11b8d8
 	ld a, $18
@@ -7672,16 +7672,16 @@ Function11b879: ; 11b879
 	ld hl, hRTCHours
 	add [hl]
 	ld [wcd4c], a
-	ld a, [hRTCMinutes]
+	ldh a, [hRTCMinutes]
 	ld [wcd4b], a
 	xor a
 	ld [wcd4a], a
 	jr .asm_11b8e2
 
 .asm_11b8d8
-	ld a, [hRTCMinutes]
+	ldh a, [hRTCMinutes]
 	ld [wcd4b], a
-	ld a, [hRTCHours]
+	ldh a, [hRTCHours]
 	ld [wcd4c], a
 
 .asm_11b8e2

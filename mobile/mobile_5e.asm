@@ -138,24 +138,24 @@ Function17a751: ; 17a751 (5e:6751)
 	ret
 
 Function17a770: ; 17a770 (5e:6770)
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call HideSprites
 	call Function17a9cb
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
 
 Function17a781: ; 17a781 (5e:6781)
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call JoyTextDelay
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 Function17a78f: ; 17a78f (5e:678f)
@@ -245,7 +245,7 @@ Function17a7ff: ; 17a7ff (5e:67ff)
 Function17a81a: ; 17a81a (5e:681a)
 	call IsSFXPlaying
 	ret nc
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and $3
 	ret z
 	call ExitMenu
@@ -260,10 +260,10 @@ Function17a81a: ; 17a81a (5e:681a)
 	ret
 
 Function17a83c: ; 17a83c (5e:683c)
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and $f0
 	ld c, a
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and $b
 	or c
 	ld c, a

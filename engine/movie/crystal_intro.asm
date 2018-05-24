@@ -4,14 +4,14 @@ Copyright_GFPresents: ; e4579
 	call ClearBGPalettes
 	call ClearTileMap
 	ld a, HIGH(vBGMap0)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	xor a ; LOW(vBGMap0)
-	ld [hBGMapAddress], a
-	ld [hJoyDown], a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hBGMapAddress], a
+	ldh [hJoyDown], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call WaitBGMap
 	ld b, SCGB_GAMEFREAK_LOGO
 	call GetSGBLayout
@@ -27,7 +27,7 @@ Copyright_GFPresents: ; e4579
 	call .GetGFLogoGFX
 .joy_loop
 	call JoyTextDelay
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and BUTTONS
 	jr nz, .pressed_button
 	ld a, [wJumptableIndex]
@@ -95,12 +95,12 @@ Copyright_GFPresents: ; e4579
 	ld [wJumptableIndex], a
 	ld [wIntroSceneFrameCounter], a
 	ld [wIntroSceneTimer], a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	ret
@@ -328,7 +328,7 @@ GameFreakLogoScene4: ; e4776 (39:4776)
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 .asm_e47a3
@@ -354,14 +354,14 @@ CrystalIntro: ; e48ac
 	push af
 	ld a, BANK(wGBCPalettes)
 	ld [rSVBK], a
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
-	ld a, [hVBlank]
+	ldh a, [hVBlank]
 	push af
 	call .InitRAMAddrs
 .loop ; e48bc
 	call JoyTextDelay
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and BUTTONS
 	jr nz, .ShutOffMusic
 	ld a, [wJumptableIndex]
@@ -381,16 +381,16 @@ CrystalIntro: ; e48ac
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	pop af
 	ld [rSVBK], a
 	ret
@@ -398,11 +398,11 @@ CrystalIntro: ; e48ac
 
 .InitRAMAddrs: ; e4901
 	xor a
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ld [wJumptableIndex], a
 	ret
 ; e490f
@@ -461,7 +461,7 @@ IntroScene1: ; e495b (39:495b)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap001
@@ -493,12 +493,12 @@ IntroScene1: ; e495b (39:495b)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
@@ -537,7 +537,7 @@ IntroScene3: ; e49fd (39:49fd)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap003
@@ -566,12 +566,12 @@ IntroScene3: ; e49fd (39:49fd)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call Intro_ResetLYOverrides
 	call Intro_SetCGBPalUpdate
 	xor a
@@ -599,8 +599,8 @@ IntroScene5: ; e4a7a (39:4a7a)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
-	ld [hLCDCPointer], a
+	ldh [hBGMapMode], a
+	ldh [hLCDCPointer], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap005
@@ -632,12 +632,12 @@ IntroScene5: ; e4a7a (39:4a7a)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
@@ -697,7 +697,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 	ld a, $1
 	ld [rVBK], a
@@ -742,12 +742,12 @@ IntroScene7: ; e4b3f (39:4b3f)
 	ld [rSVBK], a
 
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call Intro_ResetLYOverrides
 	farcall ClearSpriteAnims
 	depixel 13, 27, 4, 0
@@ -794,7 +794,7 @@ IntroScene8: ; e4bd3 (39:4bd3)
 IntroScene9: ; e4c04 (39:4c04)
 ; Set up the next scene (same bg).
 	xor a
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 	call ClearSprites
 	hlcoord 0, 0, wAttrMap
 	; first 12 rows have palette 1
@@ -810,18 +810,18 @@ IntroScene9: ; e4c04 (39:4c04)
 	ld a, $3
 	call ByteFill
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
 	ld a, $c ; $980c
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
 	xor a
-	ld [hBGMapMode], a
-	ld [hBGMapAddress], a
+	ldh [hBGMapMode], a
+	ldh [hBGMapAddress], a
 	ld [wGlobalAnimXOffset], a
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -867,8 +867,8 @@ IntroScene11: ; e4c86 (39:4c86)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
-	ld [hLCDCPointer], a
+	ldh [hBGMapMode], a
+	ldh [hLCDCPointer], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap007
@@ -897,12 +897,12 @@ IntroScene11: ; e4c86 (39:4c86)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
@@ -992,7 +992,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap003
@@ -1024,12 +1024,12 @@ IntroScene13: ; e4d6d (39:4d6d)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	depixel 13, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_INTRO_SUICUNE
@@ -1047,9 +1047,9 @@ IntroScene13: ; e4d6d (39:4d6d)
 
 IntroScene14: ; e4dfa (39:4dfa)
 ; Suicune runs then jumps.
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	sub 10
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
@@ -1096,7 +1096,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap009
@@ -1133,13 +1133,13 @@ IntroScene15: ; e4e40 (39:4e40)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, $90
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	depixel 8, 5
@@ -1162,11 +1162,11 @@ IntroScene16: ; e4edc (39:4edc)
 	cp $80
 	jr nc, .done
 	call Intro_Scene16_AnimateSuicune
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	and a
 	ret z
 	add 8
-	ld [hSCY], a
+	ldh [hSCY], a
 	ret
 .done
 	call NextIntroScene
@@ -1178,7 +1178,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap011
@@ -1207,12 +1207,12 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
@@ -1228,11 +1228,11 @@ IntroScene18: ; e4f67 (39:4f67)
 	inc [hl]
 	cp $60
 	jr nc, .done
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	cp $60
 	ret z
 	add 8
-	ld [hSCX], a
+	ldh [hSCX], a
 	ret
 .done
 	call NextIntroScene
@@ -1244,7 +1244,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap013
@@ -1281,13 +1281,13 @@ IntroScene19: ; e4f7e (39:4f7e)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, $d8
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	ld hl, wSpriteAnimDict
 	xor a
@@ -1316,9 +1316,9 @@ IntroScene20: ; e5019 (39:5019)
 	jr nc, .AppearUnown
 	cp $28
 	ret nc
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	inc a
-	ld [hSCY], a
+	ldh [hSCY], a
 	ret
 
 .AppearUnown:
@@ -1356,7 +1356,7 @@ IntroScene21: ; e505d (39:505d)
 	ld c, 3
 	call DelayFrames
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld [wIntroSceneFrameCounter], a
 	ld [wIntroSceneTimer], a
 	call NextIntroScene
@@ -1422,7 +1422,7 @@ IntroScene26: ; e50bb (39:50bb)
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
 	ld [rVBK], a
 	ld hl, IntroTilemap015
@@ -1451,12 +1451,12 @@ IntroScene26: ; e50bb (39:50bb)
 	pop af
 	ld [rSVBK], a
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	xor a
@@ -1545,7 +1545,7 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; e519c (39:519c)
 
@@ -1671,7 +1671,7 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; e5288 (39:5288)
 
@@ -1753,7 +1753,7 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; e538d (39:538d)
 
@@ -1821,7 +1821,7 @@ endr
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; e53db (39:53db)
 
@@ -1883,7 +1883,7 @@ Intro_Scene16_AnimateSuicune: ; e5441 (39:5441)
 
 .PrepareForSuicuneSwap:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 Intro_ColoredSuicuneFrameSwap: ; e5451 (39:5451)
@@ -1904,7 +1904,7 @@ Intro_ColoredSuicuneFrameSwap: ; e5451 (39:5451)
 	or b
 	jr nz, .loop
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 Intro_RustleGrass: ; e546d (39:546d)
@@ -1939,7 +1939,7 @@ Intro_RustleGrass: ; e546d (39:546d)
 
 Intro_SetCGBPalUpdate: ; e549e (39:549e)
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 Intro_ClearBGPals: ; e54a3 (39:54a3)
@@ -1956,7 +1956,7 @@ Intro_ClearBGPals: ; e54a3 (39:54a3)
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	call DelayFrame
 	ret
@@ -2032,7 +2032,7 @@ Intro_ResetLYOverrides: ; e5516 (39:5516)
 	pop af
 	ld [rSVBK], a
 	ld a, rSCX - $ff00
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 	ret
 
 Intro_PerspectiveScrollBG: ; e552f (39:552f)
@@ -2061,7 +2061,7 @@ Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	ld bc, $31
 	call ByteFill
 	ld a, [wLYOverrides + 0]
-	ld [hSCX], a
+	ldh [hSCX], a
 	pop af
 	ld [rSVBK], a
 	ret

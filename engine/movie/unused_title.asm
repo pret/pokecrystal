@@ -6,7 +6,7 @@ UnusedTitleScreen: ; 10c000
 
 ; Turn BG Map update off
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 ; Reset timing variables
 	ld hl, wJumptableIndex
@@ -90,7 +90,7 @@ UnusedTitleScreen: ; 10c000
 	ld [rSVBK], a
 
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 	ld de, MUSIC_TITLE
 	call PlayMusic
@@ -166,7 +166,7 @@ Function10ed51: ; 10ed51
 	call _TitleScreen
 .loop
 	call JoyTextDelay
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	ld b, a
 	and 1
 	jr nz, .done

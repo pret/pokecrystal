@@ -15,10 +15,10 @@ LoadTileMapToTempTileMap:: ; 309d
 
 Call_LoadTempTileMapToTileMap:: ; 30b4
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadTempTileMapToTileMap
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 30bf
 

@@ -438,15 +438,15 @@ Function4aad3: ; 4aad3
 
 	ld c, a
 	xor a
-	ld [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndexBuffer], a
 .loop
 	push bc
 	push hl
 	ld e, 0
 	farcall LoadMenuMonIcon
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	inc a
-	ld [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndexBuffer], a
 	pop hl
 	pop bc
 	dec c
@@ -707,7 +707,7 @@ Function4ac58: ; 4ac58
 
 .asm_4ac96
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call Function4acaa
 	call ExitMenu
 	and a
@@ -751,7 +751,7 @@ Function4acaa: ; 4acaa
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit 0, a
 	jr nz, .asm_4acf4
 	bit 1, a

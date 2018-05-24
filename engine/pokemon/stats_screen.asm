@@ -23,10 +23,10 @@ _MobileStatsScreenInit: ; 4dc8f
 	jr StatsScreenInit_gotaddress
 
 StatsScreenInit_gotaddress: ; 4dc94
-	ld a, [hMapAnims]
+	ldh a, [hMapAnims]
 	push af
 	xor a
-	ld [hMapAnims], a ; disable overworld tile animations
+	ldh [hMapAnims], a ; disable overworld tile animations
 	ld a, [wBoxAlignment] ; whether sprite is to be mirrorred
 	push af
 	ld a, [wJumptableIndex]
@@ -54,7 +54,7 @@ StatsScreenInit_gotaddress: ; 4dc94
 	pop af
 	ld [wBoxAlignment], a
 	pop af
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ret
 ; 0x4dcd2
 
@@ -271,7 +271,7 @@ StatsScreen_GetJoypad: ; 4de2c (13:5e2c)
 	jr .clear_flags
 
 .notbreedmon
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 .clear_flags
 	and a
 	ret
@@ -382,7 +382,7 @@ StatsScreen_JoypadAction: ; 4de54 (13:5e54)
 StatsScreen_InitUpperHalf: ; 4deea (13:5eea)
 	call .PlaceHPBar
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, [wBaseDexNo]
 	ld [wd265], a
 	ld [wCurSpecies], a
@@ -496,7 +496,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld [wd265], a
 	ld [wCurSpecies], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call .ClearBox
 	call .PageTilemap
 	call .LoadPals
@@ -646,15 +646,15 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	farcall CalcExpAtLevel
 	ld hl, wTempMonExp + 2
 	ld hl, wTempMonExp + 2
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	sub [hl]
 	dec hl
 	ld [wBuffer3], a
-	ld a, [hQuotient + 1]
+	ldh a, [hQuotient + 1]
 	sbc [hl]
 	dec hl
 	ld [wBuffer2], a
-	ld a, [hQuotient]
+	ldh a, [hQuotient]
 	sbc [hl]
 	ld [wBuffer1], a
 	ret
@@ -975,7 +975,7 @@ Unreferenced_4e32a: ; 4e32a
 
 EggStatsScreen: ; 4e33a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld hl, wCurHPPal
 	call SetHPPal
 	ld b, SCGB_STATS_SCREEN_HP_PALS

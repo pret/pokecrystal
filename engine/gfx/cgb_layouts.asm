@@ -1,7 +1,7 @@
 ; Replaces the functionality of sgb.asm to work with CGB hardware.
 
 CheckCGB: ; 8d55
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret
 ; 8d59
@@ -198,7 +198,7 @@ _CGB_PokegearPals: ; 8eb9
 	call FarCopyWRAM
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 8edb
 
@@ -253,7 +253,7 @@ _CGB_StatsScreenHPPals: ; 8edb
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 8f52
 
@@ -295,7 +295,7 @@ _CGB_Pokedex: ; 8f70
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 8fba
 
@@ -333,7 +333,7 @@ _CGB_BillsPC: ; 8fca
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 9009
 
@@ -356,7 +356,7 @@ _CGB_BillsPC: ; 8fca
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 9036
 
@@ -381,7 +381,7 @@ _CGB_PokedexUnownMode: ; 903e
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 906e
 
@@ -435,7 +435,7 @@ _CGB_SlotMachine: ; 906e
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 90f8
 
@@ -454,7 +454,7 @@ _CGB06: ; 90f8
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 9122
 
@@ -605,7 +605,7 @@ _CGB_Evolution: ; 91e4
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 9228
 
@@ -624,7 +624,7 @@ _CGB_GSTitleScreen: ; 9228
 	ld [wSGBPredef], a
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 9251
 
@@ -761,7 +761,7 @@ _CGB_TrainerCard: ; 9289
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 9373
 
@@ -786,7 +786,7 @@ _CGB_MoveList: ; 9373
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 93a6
 
@@ -797,7 +797,7 @@ _CGB0f: ; 93a6
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 93ba
 
@@ -810,7 +810,7 @@ _CGB_PokedexSearchOption: ; 93ba
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 93d3
 
@@ -859,7 +859,7 @@ _CGB_PackPals: ; 93d3
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 9439
 
@@ -921,7 +921,7 @@ _CGB13: ; 94d0
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 94fa
 

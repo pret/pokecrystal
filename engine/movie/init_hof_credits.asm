@@ -14,8 +14,8 @@ InitDisplayForHallOfFame: ; 4e881
 	xor a
 	call ByteFill
 	xor a
-	ld [hSCY], a
-	ld [hSCX], a
+	ldh [hSCY], a
+	ldh [hSCX], a
 	call EnableLCD
 	ld hl, .SavingRecordDontTurnOff
 	call PrintText
@@ -53,8 +53,8 @@ InitDisplayForRedCredits: ; 4e8c2
 	dec c
 	jr nz, .load_white_palettes
 	xor a
-	ld [hSCY], a
-	ld [hSCX], a
+	ldh [hSCY], a
+	ldh [hSCX], a
 	call EnableLCD
 	call WaitBGMap2
 	call SetPalettes

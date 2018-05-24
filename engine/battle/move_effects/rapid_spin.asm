@@ -12,7 +12,7 @@ BattleCommand_ClearHazards: ; 37b39
 
 	ld hl, wPlayerScreens
 	ld de, wPlayerWrapCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_screens_wrap
 	ld hl, wEnemyScreens

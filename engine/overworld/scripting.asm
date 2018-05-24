@@ -411,14 +411,14 @@ Script_waitbutton:
 Script_buttonsound:
 ; script command 0x55
 
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call WaitBGMap
 	call ButtonSound
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
 
 Script_yesorno:
@@ -942,7 +942,7 @@ Script_setlasttalked:
 
 	call GetScriptByte
 	call GetScriptObject
-	ld [hLastTalked], a
+	ldh [hLastTalked], a
 	ret
 
 Script_applymovement:
@@ -986,25 +986,25 @@ Script_applymovement2:
 ; parameters: data
 ; apply movement to last talked
 
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 	ld c, a
 	jp ApplyMovement
 
 Script_faceplayer:
 ; script command 0x6b
 
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 	and a
 	ret z
 	ld d, $0
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 	ld e, a
 	farcall GetRelativeFacing
 	ld a, d
 	add a
 	add a
 	ld e, a
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 	ld d, a
 	call ApplyObjectFacing
 	ret
@@ -1017,14 +1017,14 @@ Script_faceobject:
 	call GetScriptObject
 	cp LAST_TALKED
 	jr c, .ok
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 .ok
 	ld e, a
 	call GetScriptByte
 	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok2
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 .ok2
 	ld d, a
 	push de
@@ -1047,7 +1047,7 @@ Script_turnobject:
 	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 .ok
 	ld d, a
 	call GetScriptByte
@@ -1122,7 +1122,7 @@ Script_appear:
 	call GetScriptByte
 	call GetScriptObject
 	call _CopyObjectStruct
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld b, 0 ; clear
 	call ApplyEventActionAppearDisappear
 	ret
@@ -1135,10 +1135,10 @@ Script_disappear:
 	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 .ok
 	call DeleteObjectStruct
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld b, 1 ; set
 	call ApplyEventActionAppearDisappear
 	farcall _UpdateSprites
@@ -1207,7 +1207,7 @@ Script_writeobjectxy:
 	call GetScriptObject
 	cp LAST_TALKED
 	jr nz, .ok
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 .ok
 	ld b, a
 	farcall WriteObjectXY
@@ -1249,7 +1249,7 @@ Script_showemote:
 	call GetScriptObject
 	cp LAST_TALKED
 	jr z, .ok
-	ld [hLastTalked], a
+	ldh [hLastTalked], a
 .ok
 	call GetScriptByte
 	ld [wScriptDelay], a
@@ -1409,7 +1409,7 @@ Script_reloadmap:
 	xor a
 	ld [wBattleScriptFlags], a
 	ld a, MAPSETUP_RELOADMAP
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	ld a, $1
 	call LoadMapStatus
 	call StopScript
@@ -1788,7 +1788,7 @@ Script_random:
 	push bc
 	call Random
 	pop bc
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	cp b
 	jr nc, .loop
 	jr .finish
@@ -1797,7 +1797,7 @@ Script_random:
 	push bc
 	call Random
 	pop bc
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 
 .finish
 	push af
@@ -2198,9 +2198,9 @@ Script_checkcoins:
 
 LoadCoinAmountToMem:
 	call GetScriptByte
-	ld [hMoneyTemp + 1], a
+	ldh [hMoneyTemp + 1], a
 	call GetScriptByte
-	ld [hMoneyTemp], a
+	ldh [hMoneyTemp], a
 	ld bc, hMoneyTemp
 	ret
 
@@ -2487,7 +2487,7 @@ Script_warp:
 	ld a, -1
 	ld [wDefaultSpawnpoint], a
 	ld a, MAPSETUP_WARP
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
 	call StopScript
@@ -2500,7 +2500,7 @@ Script_warp:
 	ld a, -1
 	ld [wDefaultSpawnpoint], a
 	ld a, MAPSETUP_BADWARP
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
 	call StopScript
@@ -2596,7 +2596,7 @@ Script_reloadmappart::
 ; script command 0x7c
 
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call OverworldTextModeSwitch
 	call GetMovementPermissions
 	farcall ReloadMapPart
@@ -2621,7 +2621,7 @@ Script_newloadmap:
 ; parameters: which_method
 
 	call GetScriptByte
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	ld a, 1
 	call LoadMapStatus
 	call StopScript

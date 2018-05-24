@@ -122,16 +122,16 @@ Mobile_ReloadMapPart: ; 104099
 	ld a, BANK(w3_d800)
 	ld [rSVBK], a
 	ld de, w3_d800
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	ld [rHDMA1], a
-	ld a, [hBGMapAddress]
+	ldh a, [hBGMapAddress]
 	ld [rHDMA2], a
 	ld a, d
 	ld [rHDMA3], a
 	ld a, e
 	ld [rHDMA4], a
 	ld a, $23
-	ld [hDMATransfer], a
+	ldh [hDMATransfer], a
 	call WaitDMATransfer
 	ret
 ; 1040fb
@@ -212,13 +212,13 @@ Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap: ; 104148 (41:4148)
 ; 104177
 
 CallInSafeGFXMode: ; 104177
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
-	ld a, [hMapAnims]
+	ldh a, [hMapAnims]
 	push af
 	xor a
-	ld [hBGMapMode], a
-	ld [hMapAnims], a
+	ldh [hBGMapMode], a
+	ldh [hMapAnims], a
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wScratchTileMap)
@@ -233,9 +233,9 @@ CallInSafeGFXMode: ; 104177
 	pop af
 	ld [rSVBK], a
 	pop af
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 10419c
 
@@ -247,12 +247,12 @@ CallInSafeGFXMode: ; 104177
 HDMATransferToWRAMBank3: ; 10419d (41:419d)
 	call _LoadHDMAParameters
 	ld a, $23
-	ld [hDMATransfer], a
+	ldh [hDMATransfer], a
 
 WaitDMATransfer: ; 104a14
 .loop
 	call DelayFrame
-	ld a, [hDMATransfer]
+	ldh a, [hDMATransfer]
 	and a
 	jr nz, .loop
 	ret
@@ -261,9 +261,9 @@ HDMATransfer_Wait127Scanlines_toBGMap: ; 1041ad (41:41ad)
 ; HDMA transfer from hl to [hBGMapAddress]
 ; hBGMapAddress -> de
 ; 2 * SCREEN_HEIGHT -> c
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	ld d, a
-	ld a, [hBGMapAddress]
+	ldh a, [hBGMapAddress]
 	ld e, a
 	ld c, 2 * SCREEN_HEIGHT
 	jr HDMATransfer_Wait127Scanlines
@@ -273,9 +273,9 @@ HDMATransfer_Wait123Scanlines_toBGMap: ; 1041b7 (41:41b7)
 ; hBGMapAddress -> de
 ; 2 * SCREEN_HEIGHT -> c
 ; $7b --> b
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	ld d, a
-	ld a, [hBGMapAddress]
+	ldh a, [hBGMapAddress]
 	ld e, a
 	ld c, 2 * SCREEN_HEIGHT
 	jr HDMATransfer_Wait123Scanlines
@@ -285,9 +285,9 @@ HDMATransfer_NoDI: ; 1041c1
 ; HDMA transfer from hl to [hBGMapAddress]
 ; [hBGMapAddress] --> de
 ; 2 * SCREEN_HEIGHT --> c
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	ld d, a
-	ld a, [hBGMapAddress]
+	ldh a, [hBGMapAddress]
 	ld e, a
 	ld c, 2 * SCREEN_HEIGHT
 
@@ -415,10 +415,10 @@ _LoadHDMAParameters: ; 10424e (41:424e)
 	ld [rHDMA1], a
 	ld a, l
 	ld [rHDMA2], a
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	and $1f
 	ld [rHDMA3], a
-	ld a, [hBGMapAddress]
+	ldh a, [hBGMapAddress]
 	ld [rHDMA4], a
 	ret
 
@@ -432,10 +432,10 @@ PadAttrMapForHDMATransfer: ; 104263 (41:4263)
 PadMapForHDMATransfer: ; 104265 (41:4265)
 ; pad a 20x18 map to 32x18 for HDMA transfer
 ; back up the padding value in c to hMapObjectIndexBuffer
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	push af
 	ld a, c
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 
 ; for each row on the screen
 	ld c, SCREEN_HEIGHT
@@ -451,7 +451,7 @@ PadMapForHDMATransfer: ; 104265 (41:4265)
 	jr nz, .loop2
 
 ; load the original padding value of c into hl for 32 - 20 = 12 rows
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld b, BG_MAP_WIDTH - SCREEN_WIDTH
 .loop3
 	ld [hli], a
@@ -463,7 +463,7 @@ PadMapForHDMATransfer: ; 104265 (41:4265)
 
 ; restore the original value of hMapObjectIndexBuffer
 	pop af
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	ret
 
 

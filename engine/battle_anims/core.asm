@@ -221,7 +221,7 @@ InitBattleAnimBuffer: ; ccaaa
 	ld [wBattleAnimTempXOffset], a
 	ld a, [hli]
 	ld [wBattleAnimTempYOffset], a
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ret z
 	ld hl, BATTLEANIMSTRUCT_01

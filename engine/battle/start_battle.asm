@@ -14,7 +14,7 @@ ShowLinkBattleParticipants: ; 2ee18
 
 FindFirstAliveMonAndStartBattle: ; 2ee2f
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call DelayFrame
 	ld b, 6
 	ld hl, wPartyMon1HP
@@ -36,14 +36,14 @@ FindFirstAliveMonAndStartBattle: ; 2ee2f
 	predef DoBattleTransition
 	farcall _LoadBattleFontsHPBar
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
-	ld [hWY], a
+	ldh [hBGMapMode], a
+	ldh [hWY], a
 	ld [rWY], a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ret
 
 PlayBattleMusic: ; 2ee6c

@@ -2,7 +2,7 @@ Reset:: ; 150
 	di
 	call MapSetup_Sound_Off
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call ClearPalettes
 	xor a
 	ld [rIF], a
@@ -30,9 +30,9 @@ _Start:: ; 16e
 	ld a, $1
 
 .load
-	ld [hCGB], a
+	ldh [hCGB], a
 	ld a, $1
-	ld [hSystemBooted], a
+	ldh [hSystemBooted], a
 ; 17d
 
 
@@ -82,18 +82,18 @@ Init:: ; 17d
 	ld sp, wStack
 
 ; Clear HRAM
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	push af
-	ld a, [hSystemBooted]
+	ldh a, [hSystemBooted]
 	push af
 	xor a
 	ld hl, HRAM_Begin
 	ld bc, HRAM_End - HRAM_Begin
 	call ByteFill
 	pop af
-	ld [hSystemBooted], a
+	ldh [hSystemBooted], a
 	pop af
-	ld [hCGB], a
+	ldh [hCGB], a
 
 	call ClearWRAM
 	ld a, 1
@@ -109,20 +109,20 @@ Init:: ; 17d
 	call WriteOAMDMACodeToHRAM
 
 	xor a
-	ld [hMapAnims], a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hMapAnims], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld [rJOYP], a
 
 	ld a, $8 ; HBlank int enable
 	ld [rSTAT], a
 
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld [rWY], a
 
 	ld a, 7
-	ld [hWX], a
+	ldh [hWX], a
 	ld [rWX], a
 
 	ld a, LCDC_DEFAULT ; %11100011
@@ -137,14 +137,14 @@ Init:: ; 17d
 	ld [rLCDC], a
 
 	ld a, CONNECTION_NOT_ESTABLISHED
-	ld [hSerialConnectionStatus], a
+	ldh [hSerialConnectionStatus], a
 
 	farcall InitCGBPals
 
 	ld a, HIGH(vBGMap1)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	xor a ; LOW(vBGMap1)
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 
 	farcall StartClock
 
@@ -152,7 +152,7 @@ Init:: ; 17d
 	ld [MBC3LatchClock], a
 	ld [MBC3SRamEnable], a
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .no_double_speed
 	call NormalSpeed

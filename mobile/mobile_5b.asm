@@ -1,10 +1,10 @@
 Unreferenced_Function16c000: ; 16c000
 	; Only for CGB
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 	; Only do this once per boot cycle
-	ld a, [hSystemBooted]
+	ldh a, [hSystemBooted]
 	and a
 	ret z
 	; Set some flag, preserving the old state
@@ -21,7 +21,7 @@ Unreferenced_Function16c000: ; 16c000
 	; Prevent this routine from running again
 	; until the next time the system is turned on
 	xor a
-	ld [hSystemBooted], a
+	ldh [hSystemBooted], a
 	; Restore the flag state
 	pop af
 	ld [wcfbe], a
@@ -86,7 +86,7 @@ Function16c089: ; 16c089
 	ld [wBuffer2], a
 	ld [wd1f1], a
 	xor a
-	ld [hWY], a
+	ldh [hWY], a
 	call Function16c0fa
 	ld a, [wd002]
 	ld [wcf64], a
@@ -107,7 +107,7 @@ Function16c0a8: ; 16c0a8
 	ld [wd1f1], a
 	call ClearSprites
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call Function16c0fa
 	ret
 ; 16c0ba
@@ -180,7 +180,7 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	call Function16cc73
 	call Function16cc02
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call EnableLCD
 	ret
 ; 16c130
@@ -687,7 +687,7 @@ Function16cbd1: ; 16cbd1
 	call FarCopyWRAM
 	farcall ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 16cbfb
 

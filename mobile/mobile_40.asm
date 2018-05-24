@@ -68,8 +68,8 @@ SetRAMStateForMobile: ; 100063
 	ld a, [rIE]
 	ld [wBGMapBuffer], a
 	xor a
-	ld [hMapAnims], a
-	ld [hLCDCPointer], a
+	ldh [hMapAnims], a
+	ldh [hLCDCPointer], a
 	ret
 ; 100082
 
@@ -86,11 +86,11 @@ EnableMobile: ; 100082
 	ld a, 1 << VBLANK + 1 << LCD_STAT + 1 << TIMER + 1 << SERIAL
 	ld [rIE], a
 	xor a
-	ld [hMapAnims], a
-	ld [hLCDCPointer], a
+	ldh [hMapAnims], a
+	ldh [hLCDCPointer], a
 	ld a, $01
-	ld [hMobileReceive], a
-	ld [hMobile], a
+	ldh [hMobileReceive], a
+	ldh [hMobile], a
 	ei
 
 	ret
@@ -99,10 +99,10 @@ EnableMobile: ; 100082
 DisableMobile: ; 1000a4
 	di
 	xor a
-	ld [hMobileReceive], a
-	ld [hMobile], a
+	ldh [hMobileReceive], a
+	ldh [hMobile], a
 	xor a
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call NormalSpeed
 	xor a
 	ld [rIF], a
@@ -173,8 +173,8 @@ Function1000fa: ; 1000fa
 	and $13
 	ld [rIE], a
 	xor a
-	ld [hMobileReceive], a
-	ld [hMobile], a
+	ldh [hMobileReceive], a
+	ldh [hMobile], a
 	ei
 
 	ld a, [wLinkMode]
@@ -419,10 +419,10 @@ Function1002c9: ; 1002c9
 
 Function1002dc: ; 1002dc
 	ld a, MAPSETUP_LINKRETURN
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	farcall RunMapSetupScript
 	xor a
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	call LoadStandardFont
 	ret
 ; 1002ed
@@ -431,7 +431,7 @@ Function1002ed: ; 1002ed
 	farcall LoadOW_BGPal7
 	farcall ApplyPals
 	ld a, $01
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret
 ; 100301
@@ -1057,11 +1057,11 @@ IncrementMobileInactivityTimerByCFrames: ; 10064e
 Function100665: ; 100665
 	call UpdateTime
 	ld hl, wcd36
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld [hli], a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld [hli], a
-	ld a, [hSeconds]
+	ldh a, [hSeconds]
 	ld [hl], a
 	ret
 ; 100675
@@ -1134,7 +1134,7 @@ Function1006d3: ; 1006d3
 Function1006dc: ; 1006dc
 	ld a, [hld]
 	ld c, a
-	ld a, [hSeconds]
+	ldh a, [hSeconds]
 	sub c
 	jr nc, .asm_1006e5
 	add $3c
@@ -1144,7 +1144,7 @@ Function1006dc: ; 1006dc
 	dec de
 	ld a, [hld]
 	ld c, a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	sbc c
 	jr nc, .asm_1006f0
 	add $3c
@@ -1154,7 +1154,7 @@ Function1006dc: ; 1006dc
 	dec de
 	ld a, [hl]
 	ld c, a
-	ld a, [hHours]
+	ldh a, [hHours]
 	sbc c
 	jr nc, .asm_1006fb
 	add $18
@@ -1194,11 +1194,11 @@ Function100720: ; 100720
 	xor a
 	ld [wcd6a], a
 	call UpdateTime
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld [wcd72], a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld [wcd73], a
-	ld a, [hSeconds]
+	ldh a, [hSeconds]
 	ld [wcd74], a
 	ld a, $04
 	ld hl, $a800
@@ -1217,11 +1217,11 @@ Function100720: ; 100720
 
 Function100754: ; 100754
 	call UpdateTime
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld [wcd72], a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld [wcd73], a
-	ld a, [hSeconds]
+	ldh a, [hSeconds]
 	ld [wcd74], a
 	ld a, [wcd6d]
 	ld [wcd6b], a
@@ -1336,11 +1336,11 @@ Function1007f6: ; 1007f6
 	call CloseSRAM
 	ld hl, wcd6e
 	call Function100826
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld [wcd72], a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld [wcd73], a
-	ld a, [hSeconds]
+	ldh a, [hSeconds]
 	ld [wcd74], a
 	ret
 ; 100826
@@ -1459,24 +1459,24 @@ Function1008a6: ; 1008a6
 
 
 Function1008e0: ; 1008e0
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	ld b, a
-	ld a, [hVBlank]
+	ldh a, [hVBlank]
 	ld c, a
 	push bc
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $03
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call Function100970
 	call Function100902
 	call Function100989
 	call DelayFrame
 	pop bc
 	ld a, c
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	ld a, b
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 100902
 
@@ -1609,7 +1609,7 @@ Function1009d2: ; 1009d2
 ; 1009f3
 
 Function1009f3: ; 1009f3
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	and SELECT + A_BUTTON
 	cp SELECT + A_BUTTON
 	jr nz, .select_a
@@ -1876,7 +1876,7 @@ MobileMoveSelectionScreen: ; 100b9f
 
 .GetMoveSelection: ; 100bc2
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call Function100c74
 	call Function100c98
 .master_loop
@@ -2034,7 +2034,7 @@ Mobile_PartyMenuSelect: ; 100cb5
 	cp b
 	jr z, .done
 	ld [wPartyMenuCursor], a
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	ld b, a
 	bit 1, b
 	jr nz, .done
@@ -2106,7 +2106,7 @@ Function100d67: ; 100d67
 	ld hl, .MenuHeader
 	call CopyMenuHeader
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
 	call PlaceVerticalMenuItems
@@ -2347,7 +2347,7 @@ Function100eca: ; 100eca
 Function100ed4: ; 100ed4
 	farcall ApplyPals
 	ld a, $01
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 100edf
 
@@ -3159,7 +3159,7 @@ asm_101416
 
 Function101418: ; 101418
 	call GetJoypad
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	and SELECT + A_BUTTON
 	cp SELECT + A_BUTTON
 	jr z, .asm_101425
@@ -3261,7 +3261,7 @@ Function1014a6: ; 1014a6
 
 Function1014b7: ; 1014b7
 	call GetJoypad
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and $03
 	jr nz, .asm_1014c5
 	ld hl, wcd42
@@ -3940,7 +3940,7 @@ Function101913: ; 101913
 	ld hl, wcd29
 	res 7, [hl]
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, [wcd21]
 	cp $01
 	jr z, .asm_10193f
@@ -4056,7 +4056,7 @@ _StartMobileBattle: ; 1019ab
 	jr z, .got_link_player_number
 	ld a, USING_EXTERNAL_CLOCK
 .got_link_player_number
-	ld [hSerialConnectionStatus], a
+	ldh [hSerialConnectionStatus], a
 	ret
 ; 101a21
 
@@ -4076,7 +4076,7 @@ StartMobileBattle: ; 101a21
 	xor a
 	ld [wDisableTextAcceleration], a
 	ld a, CONNECTION_NOT_ESTABLISHED
-	ld [hSerialConnectionStatus], a
+	ldh [hSerialConnectionStatus], a
 	pop af
 	ld [wOptions], a
 	ret
@@ -5561,7 +5561,7 @@ Function1024de: ; 1024de
 	ld hl, wcd4e
 	dec [hl]
 	jr z, .asm_1024e9
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	ret z
 
@@ -5865,7 +5865,7 @@ Function1026de: ; 1026de
 ; 1026f3
 
 Function1026f3: ; 1026f3
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit A_BUTTON_F, a
 	jr nz, .asm_102723
 	bit D_UP_F, a
@@ -5953,7 +5953,7 @@ Function102775: ; 102775
 ; 10278c
 
 Function10278c: ; 10278c
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit A_BUTTON_F, a
 	jr nz, asm_1027c6
 	bit B_BUTTON_F, a
@@ -5978,7 +5978,7 @@ Function1027a0: ; 1027a0
 	ret
 
 Function1027b7: ; 1027b7
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit A_BUTTON_F, a
 	jr nz, asm_1027d1
 	bit B_BUTTON_F, a
@@ -6936,7 +6936,7 @@ Function102e4f: ; 102e4f
 	push de
 	push hl
 	ld a, c
-	ld [hDividend], a
+	ldh [hDividend], a
 	call GetPokemonName
 	pop hl
 	call PlaceString
@@ -7141,12 +7141,12 @@ Function10305d: ; 10305d
 
 Function10306e: ; 10306e
 	ld a, $01
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call ClearSprites
 	ld de, wVirtualOAM
 	call Function1030cd
 	xor a
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
 ; 10307f
 
@@ -7360,7 +7360,7 @@ Function103302: ; 103302
 
 Function103309: ; 103309
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld hl, wBuffer1
 	ld bc, 10
 	xor a
@@ -7449,7 +7449,7 @@ Function10339a: ; 10339a
 
 Function1033af: ; 1033af
 	call GetJoypad
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .left
 	bit D_RIGHT_F, a

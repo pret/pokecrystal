@@ -27,7 +27,7 @@ BattleCommand_Sketch: ; 35a74
 	ld e, l
 ; Get the battle move structs.
 	ld hl, wBattleMonMoves
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .get_last_move
 	ld hl, wEnemyMonMoves
@@ -74,7 +74,7 @@ BattleCommand_Sketch: ; 35a74
 	ld [hl], a
 	pop bc
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .user_trainer
 	ld a, [wBattleMode]

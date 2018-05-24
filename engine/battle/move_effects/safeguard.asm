@@ -3,7 +3,7 @@ BattleCommand_Safeguard: ; 37939
 
 	ld hl, wPlayerScreens
 	ld de, wPlayerSafeguardCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld hl, wEnemyScreens

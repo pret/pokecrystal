@@ -24,7 +24,7 @@ Unreferenced_Function48c:: ; 48c
 
 
 RotateFourPalettesRight:: ; 4a3
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld hl, IncGradGBPalTable_00
@@ -38,7 +38,7 @@ RotateFourPalettesRight:: ; 4a3
 ; 4b6
 
 RotateThreePalettesRight:: ; 4b6
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld hl, IncGradGBPalTable_05
@@ -68,7 +68,7 @@ RotatePalettesRight:: ; 4c7
 ; 4dd
 
 RotateFourPalettesLeft:: ; 4dd
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld hl, IncGradGBPalTable_04 - 1
@@ -82,7 +82,7 @@ RotateFourPalettesLeft:: ; 4dd
 ; 4f0
 
 RotateThreePalettesLeft:: ; 4f0
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld hl, IncGradGBPalTable_07 - 1

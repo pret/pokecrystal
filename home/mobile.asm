@@ -20,7 +20,7 @@ Function3e32:: ; 3e32
 .okay
 	ld hl, $c822
 	set 6, [hl]
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(Function110030)
 	ld [$c981], a
@@ -53,7 +53,7 @@ Function3e60:: ; 3e60
 ; 3e80
 
 MobileReceive:: ; 3e80
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_MobileReceive)
 	ld [$c981], a
@@ -75,7 +75,7 @@ Timer:: ; 3e93
 	push de
 	push hl
 
-	ld a, [hMobile]
+	ldh a, [hMobile]
 	and a
 	jr z, .pop_ret
 
@@ -99,7 +99,7 @@ Timer:: ; 3e93
 	and 1 << rSC_ON
 	jr nz, .skip_Timer
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_Timer)
 	ld [$c981], a
@@ -129,7 +129,7 @@ Timer:: ; 3e93
 
 Unreferenced_Function3ed7:: ; 3ed7
 	ld [$dc02], a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(Function114243)
 	rst Bankswitch

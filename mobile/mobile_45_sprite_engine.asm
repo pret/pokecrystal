@@ -534,7 +534,7 @@ Function116294: ; 116294
 	pop af
 	ld [rSVBK], a
 	ld a, $30
-	ld [hWY], a
+	ldh [hWY], a
 	ret
 
 ; 1162cb
@@ -671,7 +671,7 @@ Function11636e: ; 11636e
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call UpdateSprites
 	pop af
 	ld [rSVBK], a
@@ -715,7 +715,7 @@ Function1163c0: ; 1163c0
 	call SetPalettes
 	call DelayFrame
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call UpdateSprites
 	farcall Function14157
 	pop af
@@ -751,7 +751,7 @@ Function1163c0: ; 1163c0
 Function116441: ; 116441
 	farcall Function17d405
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ReloadMapPart
 	ld a, $8
 	ld [wMusicFade], a

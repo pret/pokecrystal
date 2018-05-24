@@ -87,10 +87,10 @@ RunMobileTradeAnim_Frontpics: ; 10805b
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, [hMapAnims]
+	ldh a, [hMapAnims]
 	push af
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ld hl, wVramState
 	ld a, [hl]
 	push af
@@ -108,7 +108,7 @@ RunMobileTradeAnim_Frontpics: ; 10805b
 	pop af
 	ld [wVramState], a
 	pop af
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ret
 ; 108089
 
@@ -117,10 +117,10 @@ RunMobileTradeAnim_NoFrontpics: ; 108089
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, [hMapAnims]
+	ldh a, [hMapAnims]
 	push af
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ld hl, wVramState
 	ld a, [hl]
 	push af
@@ -138,7 +138,7 @@ RunMobileTradeAnim_NoFrontpics: ; 108089
 	pop af
 	ld [wVramState], a
 	pop af
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ret
 ; 1080b7
 
@@ -169,12 +169,12 @@ Function1080b7: ; 1080b7
 	call EnableLCD
 
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 
 	call DelayFrame
@@ -231,12 +231,12 @@ Function108157: ; 108157
 	call LoadFontsBattleExtra
 	call EnableLCD
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ClearSpriteAnims
 	xor a
 	ld hl, wSpriteAnimDict
@@ -353,12 +353,12 @@ MobileTradeAnim_JumptableLoop: ; 10824b
 
 .StopAnim:
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call LoadStandardFont
 	call LoadFontsBattleExtra
 	farcall Stubbed_Function106462
@@ -476,13 +476,13 @@ MobileTradeAnim_ShowPlayerMonToBeSent: ; 10830e
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic2
 	ld a, $80
-	ld [hSCX], a
+	ldh [hSCX], a
 	xor a
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $87
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $50
-	ld [hWY], a
+	ldh [hWY], a
 	call MobileTradeAnim_DisplayMonToBeSent
 	ld a, [wPlayerTrademonSpecies]
 	ld [wCurPartySpecies], a
@@ -497,22 +497,22 @@ MobileTradeAnim_ShowPlayerMonToBeSent: ; 10830e
 	call DmgToCgbBGPals
 	call WaitBGMap
 .loop
-	ld a, [hWX]
+	ldh a, [hWX]
 	cp $7
 	jr z, .okay
 	sub $4
-	ld [hWX], a
-	ld a, [hSCX]
+	ldh [hWX], a
+	ldh a, [hSCX]
 	sub $4
-	ld [hSCX], a
+	ldh [hSCX], a
 	call DelayFrame
 	jr .loop
 
 .okay
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	xor a
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, [wPlayerTrademonSpecies]
 	call GetCryIndex
 	jr c, .skip_cry
@@ -553,12 +553,12 @@ MobileTradeAnim_ShowOTMonFromTrade: ; 10839b
 	call EnableLCD
 	farcall DeinitializeAllSprites
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
 	call _InitSpriteAnimStruct
@@ -572,12 +572,12 @@ MobileTradeAnim_ShowOTMonFromTrade: ; 10839b
 	call PlaySFX
 	call MobileTradeAnim_DisplayReceivedMon
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $50
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, [wOTTrademonSpecies]
 	ld [wCurPartySpecies], a
 	ld a, [wOTTrademonDVs]
@@ -601,13 +601,13 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic2
 	ld a, $80
-	ld [hSCX], a
+	ldh [hSCX], a
 	xor a
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $87
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $50
-	ld [hWY], a
+	ldh [hWY], a
 	call MobileTradeAnim_DisplayMonToBeSent
 	ld a, [wPlayerTrademonSpecies]
 	ld [wCurPartySpecies], a
@@ -632,22 +632,22 @@ MobileTradeAnim_ShowPlayerMonForGTS: ; 10842c
 	call DmgToCgbBGPals
 	call WaitBGMap
 .loop
-	ld a, [hWX]
+	ldh a, [hWX]
 	cp $7
 	jr z, .done
 	sub $4
-	ld [hWX], a
-	ld a, [hSCX]
+	ldh [hWX], a
+	ldh a, [hSCX]
 	sub $4
-	ld [hSCX], a
+	ldh [hSCX], a
 	call DelayFrame
 	jr .loop
 
 .done
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	xor a
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, [wPlayerTrademonSpecies]
 	call GetCryIndex
 	jr c, .skip_cry
@@ -697,12 +697,12 @@ MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
 	call _InitSpriteAnimStruct
@@ -716,12 +716,12 @@ MobileTradeAnim_ShowOTMonFromGTS: ; 1084d7
 	call PlaySFX
 	call MobileTradeAnim_DisplayReceivedMon
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $50
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, [wOTTrademonSpecies]
 	ld [wCurPartySpecies], a
 	ld a, [wOTTrademonDVs]
@@ -766,12 +766,12 @@ MobileTradeAnim_GetOddEgg: ; 108589
 	lb bc, BANK(TradePoofGFX), 12
 	call Request2bpp
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
 	call _InitSpriteAnimStruct
@@ -785,12 +785,12 @@ MobileTradeAnim_GetOddEgg: ; 108589
 	call PlaySFX
 	call Function108a33
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $50
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, [wOTTrademonSpecies]
 	ld [wCurPartySpecies], a
 	ld a, [wOTTrademonDVs]
@@ -817,20 +817,20 @@ MobileTradeAnim_02: ; 108638
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DisableLCD
 	call MobileTradeAnim_ClearBGMap
 	call Function108c80
 	call Function108c6d
 	call EnableLCD
 	ld a, $c
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, $78
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -853,7 +853,7 @@ MobileTradeAnim_10: ; 108689
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DisableLCD
 	call MobileTradeAnim_ClearBGMap
 	ld a, $1
@@ -870,13 +870,13 @@ MobileTradeAnim_10: ; 108689
 	call Function108c6d
 	call EnableLCD
 	ld a, $c
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, $78
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -898,7 +898,7 @@ MobileTradeAnim_11: ; 1086f4
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DisableLCD
 	ld a, $1
 	ld [rVBK], a
@@ -914,13 +914,13 @@ MobileTradeAnim_11: ; 1086f4
 	call Function108c6d
 	call EnableLCD
 	ld a, $80
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, $90
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -935,7 +935,7 @@ MobileTradeAnim_11: ; 1086f4
 	call Function108af4
 	call Function108b5a
 	ld a, $e0
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld de, MUSIC_EVOLUTION
 	call PlayMusic2
 	call GetMobileTradeAnimByte
@@ -950,12 +950,12 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 	call Function1082f0
 	call Function108af4
 .loop
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	cp $e0
 	jr z, .loop2
 	dec a
 	dec a
-	ld [hSCX], a
+	ldh [hSCX], a
 	cp $f8
 	jr nz, .next
 	depixel 10, 11, 4, 0
@@ -968,12 +968,12 @@ MobileTradeAnim_GiveTrademon1: ; 108763
 	jr .loop
 
 .loop2
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	cp $f8
 	jr z, .done
 	dec a
 	dec a
-	ld [hSCY], a
+	ldh [hSCY], a
 	cp $40
 	jr z, .init
 	cp $30
@@ -1027,11 +1027,11 @@ MobileTradeAnim_GiveTrademon2: ; 1087cf
 	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_SENT_PULSE
 	call _InitSpriteAnimStruct
 .loop
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	cp $90
 	jr z, .done
 	sub $8
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld c, 1
 	call WaitMobileTradeSpriteAnims
 	jr .loop
@@ -1086,11 +1086,11 @@ MobileTradeAnim_GetTrademon1: ; 108863
 	ld c, 40
 	call WaitMobileTradeSpriteAnims
 .loop
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	cp $f8
 	jr z, .done
 	add $8
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld c, 1
 	call WaitMobileTradeSpriteAnims
 	jr .loop
@@ -1118,12 +1118,12 @@ MobileTradeAnim_GetTrademon2: ; 108894
 	call Function1082fa
 	call Function108af4
 .asm_1088ad
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	cp $78
 	jr z, .asm_1088ee
 	inc a
 	inc a
-	ld [hSCY], a
+	ldh [hSCY], a
 	cp $30
 	jr z, .asm_1088c5
 	cp $40
@@ -1158,12 +1158,12 @@ MobileTradeAnim_GetTrademon2: ; 108894
 	jr .asm_1088ad
 
 .asm_1088ee
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	cp $c
 	jr z, .asm_108906
 	inc a
 	inc a
-	ld [hSCX], a
+	ldh [hSCX], a
 	cp -8
 	jr nz, .asm_1088e7
 	call MobileTradeAnim_DeleteSprites
@@ -1236,7 +1236,7 @@ asm_108966
 	call MobileTradeAnim_ClearTilemap
 	hlcoord 7, 2
 	xor a
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
 	call WaitBGMap
@@ -1250,7 +1250,7 @@ Function10898a: ; 10898a
 	call MobileTradeAnim_ClearTilemap
 	hlcoord 7, 2
 	xor a
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
 	call WaitBGMap
@@ -1297,7 +1297,7 @@ MobileTradeAnim_DisplayEggData:
 	call WaitTop
 	call MobileTradeAnim_ClearTilemap
 	ld a, HIGH(vBGMap1)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	hlcoord 5, 0
 	ld b, 6
 	ld c, 9
@@ -1320,7 +1320,7 @@ Function108a33: ; 108a33
 	call WaitTop
 	call MobileTradeAnim_ClearTilemap
 	ld a, HIGH(vBGMap1)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	hlcoord 5, 0
 	ld b, 6
 	ld c, 9
@@ -1340,7 +1340,7 @@ MobileTradeAnim_LoadMonTemplate: ; 108a5b
 	call WaitTop
 	call MobileTradeAnim_ClearTilemap
 	ld a, HIGH(vBGMap1)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	hlcoord 4, 0
 	ld b,  6
 	ld c, 10
@@ -1363,7 +1363,7 @@ MobileTradeAnim_MonDisplay_UpdateBGMap: ; 108a87
 	call WaitBGMap
 	call WaitTop
 	ld a, HIGH(vBGMap0)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	ret
 ; 108a92
 
@@ -1513,7 +1513,7 @@ Function108b5a: ; 108b5a
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 108b78
 
@@ -1538,7 +1538,7 @@ Function108b78: ; 108b78
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; 108b98
 
@@ -1605,7 +1605,7 @@ Function108be0: ; 108be0 (42:4be0)
 
 Function108bec: ; 108bec
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld hl, .PlayerWillTradeMon
 	call PrintText
 	ld c, 80
@@ -1634,7 +1634,7 @@ Function108bec: ; 108bec
 
 Function108c16: ; 108c16
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld hl, .TakeGoodCareOfMon
 	call PrintText
 	ld c, 80
@@ -1649,7 +1649,7 @@ Function108c16: ; 108c16
 
 Function108c2b: ; 108c2b
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld hl, .PlayersMonTrade
 	call PrintText
 	ld c, 80
@@ -1664,7 +1664,7 @@ Function108c2b: ; 108c2b
 
 Function108c40: ; 108c40
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, [wcf65]
 	and %10000000
 	jr z, .Getmon

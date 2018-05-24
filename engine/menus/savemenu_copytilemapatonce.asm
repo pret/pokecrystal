@@ -1,17 +1,17 @@
 SaveMenu_CopyTilemapAtOnce: ; 4cf45 (13:4f45)
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jp z, WaitBGMap
 
 ; The following is a modified version of CopyTilemapAtOnce.
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
-	ld a, [hMapAnims]
+	ldh [hBGMapMode], a
+	ldh a, [hMapAnims]
 	push af
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 .WaitLY:
 	ld a, [rLY]
 	cp $60
@@ -33,19 +33,19 @@ SaveMenu_CopyTilemapAtOnce: ; 4cf45 (13:4f45)
 	ei
 
 	pop af
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .CopyTilemapAtOnce: ; 4cf80 (13:4f80)
 	ld [hSPBuffer], sp ; $ffd9
 	ld sp, hl
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	ld h, a
 	ld l, 0
 	ld a, SCREEN_HEIGHT
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 	ld b, 1 << 1
 	ld c, LOW(rSTAT)
 
@@ -64,14 +64,14 @@ endr
 
 	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	add hl, de
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	dec a
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 	jr nz, .loop
 
-	ld a, [hSPBuffer]
+	ldh a, [hSPBuffer]
 	ld l, a
-	ld a, [hSPBuffer + 1]
+	ldh a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
