@@ -586,7 +586,7 @@ Sprites_Sine: ; 8e72c
 
 
 AnimateEndOfExpBar: ; 8e79d
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	ld de, EndOfExpBarGFX
 	and a
 	jr z, .load

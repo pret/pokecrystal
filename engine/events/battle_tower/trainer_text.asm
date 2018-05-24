@@ -28,7 +28,7 @@ endc
 	and a
 	jr nz, .female
 	; generate a random number between 0 and 24
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $1f
 	cp 25
 	jr c, .okay0
@@ -40,7 +40,7 @@ endc
 
 .female
 	; generate a random number between 0 and 14
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $f
 	cp 15
 	jr c, .okay1

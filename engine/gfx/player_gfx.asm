@@ -28,11 +28,11 @@ MovePlayerPic: ; 88266
 	push hl
 	push de
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	lb bc, 7, 7
 	predef PlaceGraphic
 	xor a
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	call WaitBGMap
 	call DelayFrame
 	pop de
@@ -147,7 +147,7 @@ GetChrisBackpic: ; 88830
 HOF_LoadTrainerFrontpic: ; 88840
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld e, 0
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -170,7 +170,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	call Get2bpp
 	call WaitBGMap
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 DrawIntroPlayerPic: ; 88874
@@ -200,7 +200,7 @@ DrawIntroPlayerPic: ; 88874
 
 ; Draw
 	xor a
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
 	predef PlaceGraphic

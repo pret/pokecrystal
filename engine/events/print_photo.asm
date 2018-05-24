@@ -12,7 +12,7 @@ PhotoStudio: ; 16dc7
 	call DisableSpriteUpdates
 	farcall PrintPartymon
 	call ReturnToMapWithSpeechTextbox
-	ld a, [hPrinter]
+	ldh a, [hPrinter]
 	and a
 	jr nz, .cancel
 	ld hl, .Text_Presto

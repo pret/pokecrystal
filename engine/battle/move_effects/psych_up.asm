@@ -3,7 +3,7 @@ BattleCommand_PsychUp: ; 37c55
 
 	ld hl, wEnemyStatLevels
 	ld de, wPlayerStatLevels
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .pointers_correct
 ; It's the enemy's turn, so swap the pointers.
@@ -35,7 +35,7 @@ BattleCommand_PsychUp: ; 37c55
 	inc de
 	dec b
 	jr nz, .loop2
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, .calc_enemy_stats
 	call CalcPlayerStats

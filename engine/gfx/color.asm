@@ -152,7 +152,7 @@ Unreferenced_Function8b07:
 
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 .BGPal:
@@ -170,7 +170,7 @@ Unreferenced_Function8b07:
 Unreferenced_Function8b3f:
 	call CheckCGB
 	ret nz
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ret z
 	ld hl, BlkPacket_9a86
@@ -179,7 +179,7 @@ Unreferenced_Function8b3f:
 Unreferenced_Function8b4d:
 	call CheckCGB
 	jr nz, .cgb
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ret z
 	ld hl, PalPacket_Function8b4d
@@ -194,7 +194,7 @@ Unreferenced_Function8b4d:
 Unreferenced_Function8b67:
 	call CheckCGB
 	jr nz, .cgb
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ret z
 	ld hl, PalPacket_Pack
@@ -209,7 +209,7 @@ Unreferenced_Function8b67:
 Unreferenced_Function8b81:
 	call CheckCGB
 	jr nz, .cgb
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ret z
 	ld a, c
@@ -275,7 +275,7 @@ got_palette_pointer_8bd7
 	ret
 
 Unreferenced_Function8bec:
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
 	ld hl, wPlayerLightScreenCount
@@ -354,7 +354,7 @@ ApplyHPBarPals:
 	ld a, BANK(wBGPals2)
 	call FarCopyWRAM
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 .PartyMenu:
@@ -610,16 +610,16 @@ ApplyAttrMap:
 	ld a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jr z, .UpdateVBank1
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .UpdateVBank1:
@@ -866,11 +866,11 @@ InitSGBBorder:
 	ld [wcfbe], a
 	xor a
 	ld [rJOYP], a
-	ld [hSGB], a
+	ldh [hSGB], a
 	call PushSGBBorderPalsAndWait
 	jr nc, .skip
 	ld a, $1
-	ld [hSGB], a
+	ldh [hSGB], a
 	call _InitSGBBorderPals
 	call SGBBorder_PushBGPals
 	call SGBDelayCycles

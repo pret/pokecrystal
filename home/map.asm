@@ -52,7 +52,7 @@ GetMapSceneID:: ; 2147
 ; Searches the scene script table for the map group and number loaded in bc, and returns the wram pointer in de.
 ; If the map is not in the scene script table, returns carry.
 	push bc
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(MapScenes)
 	rst Bankswitch
@@ -102,7 +102,7 @@ OverworldTextModeSwitch:: ; 2173
 ; 217a
 
 LoadMapPart:: ; 217a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	ld a, [wTilesetBlocksBank]
@@ -214,10 +214,10 @@ endr
 
 ReturnToMapFromSubmenu:: ; 222a
 	ld a, MAPSETUP_SUBMENU
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	farcall RunMapSetupScript
 	xor a
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	ret
 ; 2238
 
@@ -246,7 +246,7 @@ GetDestinationWarpNumber:: ; 2252
 	farcall CheckWarpCollision
 	ret nc
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	call SwitchToMapScriptsBank
@@ -318,7 +318,7 @@ GetDestinationWarpNumber:: ; 2252
 ; 22a7
 
 CopyWarpData:: ; 22a7
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	call SwitchToMapScriptsBank
@@ -744,14 +744,14 @@ LoadBlockData:: ; 24cd
 ; 24e4
 
 ChangeMap:: ; 24e4
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	ld hl, wOverworldMapBlocks
 	ld a, [wMapWidth]
-	ld [hConnectedMapWidth], a
+	ldh [hConnectedMapWidth], a
 	add $6
-	ld [hConnectionStripLength], a
+	ldh [hConnectionStripLength], a
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -770,7 +770,7 @@ ChangeMap:: ; 24e4
 	ld b, a
 .row
 	push hl
-	ld a, [hConnectedMapWidth]
+	ldh a, [hConnectedMapWidth]
 	ld c, a
 .col
 	ld a, [de]
@@ -779,7 +779,7 @@ ChangeMap:: ; 24e4
 	dec c
 	jr nz, .col
 	pop hl
-	ld a, [hConnectionStripLength]
+	ldh a, [hConnectionStripLength]
 	add l
 	ld l, a
 	jr nc, .okay
@@ -813,9 +813,9 @@ FillMapConnections:: ; 2524
 	ld a, [wNorthConnectionStripLocation + 1]
 	ld d, a
 	ld a, [wNorthConnectionStripLength]
-	ld [hConnectionStripLength], a
+	ldh [hConnectionStripLength], a
 	ld a, [wNorthConnectedMapWidth]
-	ld [hConnectedMapWidth], a
+	ldh [hConnectedMapWidth], a
 	call FillNorthConnectionStrip
 
 .South:
@@ -836,9 +836,9 @@ FillMapConnections:: ; 2524
 	ld a, [wSouthConnectionStripLocation + 1]
 	ld d, a
 	ld a, [wSouthConnectionStripLength]
-	ld [hConnectionStripLength], a
+	ldh [hConnectionStripLength], a
 	ld a, [wSouthConnectedMapWidth]
-	ld [hConnectedMapWidth], a
+	ldh [hConnectedMapWidth], a
 	call FillSouthConnectionStrip
 
 .West:
@@ -861,7 +861,7 @@ FillMapConnections:: ; 2524
 	ld a, [wWestConnectionStripLength]
 	ld b, a
 	ld a, [wWestConnectedMapWidth]
-	ld [hConnectionStripLength], a
+	ldh [hConnectionStripLength], a
 	call FillWestConnectionStrip
 
 .East:
@@ -884,7 +884,7 @@ FillMapConnections:: ; 2524
 	ld a, [wEastConnectionStripLength]
 	ld b, a
 	ld a, [wEastConnectedMapWidth]
-	ld [hConnectionStripLength], a
+	ldh [hConnectionStripLength], a
 	call FillEastConnectionStrip
 
 .Done:
@@ -899,7 +899,7 @@ FillSouthConnectionStrip:: ; 25d3
 	push de
 
 	push hl
-	ld a, [hConnectionStripLength]
+	ldh a, [hConnectionStripLength]
 	ld b, a
 .x
 	ld a, [hli]
@@ -909,7 +909,7 @@ FillSouthConnectionStrip:: ; 25d3
 	jr nz, .x
 	pop hl
 
-	ld a, [hConnectedMapWidth]
+	ldh a, [hConnectedMapWidth]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -933,7 +933,7 @@ FillEastConnectionStrip:: ; 25f6
 .loop
 	ld a, [wMapWidth]
 	add 6
-	ld [hConnectedMapWidth], a
+	ldh [hConnectedMapWidth], a
 
 	push de
 
@@ -949,13 +949,13 @@ FillEastConnectionStrip:: ; 25f6
 	inc de
 	pop hl
 
-	ld a, [hConnectionStripLength]
+	ldh a, [hConnectionStripLength]
 	ld e, a
 	ld d, 0
 	add hl, de
 	pop de
 
-	ld a, [hConnectedMapWidth]
+	ldh a, [hConnectedMapWidth]
 	add e
 	ld e, a
 	jr nc, .okay
@@ -999,7 +999,7 @@ CallMapScript:: ; 2631
 RunMapCallback:: ; 263b
 ; Will run the first callback found with execution index equal to a.
 	ld b, a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	call SwitchToMapScriptsBank
 	call .FindCallback
@@ -1067,7 +1067,7 @@ ExecuteCallbackScript:: ; 2674
 ; 269a
 
 MapTextbox:: ; 269a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	ld a, b
@@ -1077,12 +1077,12 @@ MapTextbox:: ; 269a
 	call SpeechTextBox
 	call SafeUpdateSprites
 	ld a, 1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call ApplyTilemap
 	pop hl
 	call PrintTextBoxText
 	xor a
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 
 	pop af
 	rst Bankswitch
@@ -1092,10 +1092,10 @@ MapTextbox:: ; 269a
 Call_a_de:: ; 26b7
 ; Call a:de.
 
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 	call .de
@@ -1111,7 +1111,7 @@ Call_a_de:: ; 26b7
 
 GetMovementData:: ; 26c7
 ; Initialize the movement data for object c at b:hl
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
@@ -1130,7 +1130,7 @@ GetScriptByte:: ; 0x26d4
 
 	push hl
 	push bc
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, [wScriptBank]
 	rst Bankswitch
@@ -1184,7 +1184,7 @@ CoordinatesEventText:: ; 2702
 ; 2707
 
 CheckObjectMask:: ; 2707
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
 	ld hl, wObjectMasks
@@ -1194,7 +1194,7 @@ CheckObjectMask:: ; 2707
 ; 2712
 
 MaskObject:: ; 2712
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
 	ld hl, wObjectMasks
@@ -1204,7 +1204,7 @@ MaskObject:: ; 2712
 ; 271e
 
 UnmaskObject:: ; 271e
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld e, a
 	ld d, $0
 	ld hl, wObjectMasks
@@ -1225,7 +1225,7 @@ ScrollMapDown:: ; 272a
 	ld d, a
 	call UpdateBGMapRow
 	ld a, $1
-	ld [hBGMapUpdate], a
+	ldh [hBGMapUpdate], a
 	ret
 ; 2748
 
@@ -1249,7 +1249,7 @@ ScrollMapUp:: ; 2748
 	ld d, a
 	call UpdateBGMapRow
 	ld a, $1
-	ld [hBGMapUpdate], a
+	ldh [hBGMapUpdate], a
 	ret
 ; 2771
 
@@ -1265,7 +1265,7 @@ ScrollMapRight:: ; 2771
 	ld d, a
 	call UpdateBGMapColumn
 	ld a, $1
-	ld [hBGMapUpdate], a
+	ldh [hBGMapUpdate], a
 	ret
 ; 278f
 
@@ -1288,7 +1288,7 @@ ScrollMapLeft:: ; 278f
 	ld d, a
 	call UpdateBGMapColumn
 	ld a, $1
-	ld [hBGMapUpdate], a
+	ldh [hBGMapUpdate], a
 	ret
 ; 27b7
 
@@ -1352,7 +1352,7 @@ UpdateBGMapRow:: ; 27d3
 	dec c
 	jr nz, .loop
 	ld a, SCREEN_WIDTH
-	ld [hBGMapTileCount], a
+	ldh [hBGMapTileCount], a
 	ret
 ; 27f8
 
@@ -1379,7 +1379,7 @@ UpdateBGMapColumn:: ; 27f8
 	dec c
 	jr nz, .loop
 	ld a, SCREEN_HEIGHT
-	ld [hBGMapTileCount], a
+	ldh [hBGMapTileCount], a
 	ret
 ; 2816
 
@@ -1444,7 +1444,7 @@ LoadTilesetGFX:: ; 2821
 
 .skip_roof
 	xor a
-	ld [hTileAnimFrame], a
+	ldh [hTileAnimFrame], a
 	ret
 ; 2879
 
@@ -1485,7 +1485,7 @@ SaveScreen:: ; 289d
 	ld de, wScreenSave
 	ld a, [wMapWidth]
 	add 6
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	ld a, [wPlayerStepDirection]
 	and a
 	jr z, .down
@@ -1499,7 +1499,7 @@ SaveScreen:: ; 289d
 
 .up
 	ld de, wScreenSave + SCREEN_META_WIDTH
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -1531,7 +1531,7 @@ LoadNeighboringBlockData:: ; 28e3
 	ld l, a
 	ld a, [wMapWidth]
 	add 6
-	ld [hConnectionStripLength], a
+	ldh [hConnectionStripLength], a
 	ld de, wScreenSave
 	ld b, SCREEN_META_WIDTH
 	ld c, SCREEN_META_HEIGHT
@@ -1556,7 +1556,7 @@ SaveScreen_LoadNeighbor:: ; 28f7
 
 .okay
 	pop hl
-	ld a, [hConnectionStripLength]
+	ldh a, [hConnectionStripLength]
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -1858,7 +1858,7 @@ CheckFacingBGEvent:: ; 2a8b
 	ret z
 
 	ld c, a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	call SwitchToMapScriptsBank
 	call CheckIfFacingTileCoordIsBGEvent
@@ -1914,7 +1914,7 @@ CheckCurrentMapCoordEvents:: ; 2ad4
 	ret z
 ; Copy the coord event count into c.
 	ld c, a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	call SwitchToMapScriptsBank
 	call .CoordEventCheck
@@ -1982,7 +1982,7 @@ CheckCurrentMapCoordEvents:: ; 2ad4
 
 FadeToMenu:: ; 2b29
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadStandardMenuHeader
 	farcall FadeOutPalettes
 	call ClearSprites
@@ -2035,7 +2035,7 @@ ReturnToMapWithSpeechTextbox:: ; 0x2b74
 	call UpdateTimePals
 	call DelayFrame
 	ld a, $1
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	pop af
 	ret
 ; 0x2bae
@@ -2046,7 +2046,7 @@ ReloadTilesetAndPalettes:: ; 2bae
 	farcall RefreshSprites
 	call LoadStandardFont
 	call LoadFontsExtra
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, [wMapGroup]
 	ld b, a
@@ -2118,7 +2118,7 @@ GetMapField:: ; 0x2c04
 	ld c, a
 GetAnyMapField:: ; 0x2c0c
 	; bankswitch
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
@@ -2165,7 +2165,7 @@ GetAnyMapAttributesBank:: ; 2c31
 CopyMapPartial:: ; 2c3d
 ; Copy map data bank, tileset, environment, and map data address
 ; from the current map's entry within its group.
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch

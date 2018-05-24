@@ -928,7 +928,7 @@ Function17d5be: ; 17d5be
 	call Function17e438
 
 Function17d5c4:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and a
 	ret z
 	ld c, 0
@@ -3074,7 +3074,7 @@ Function17e3e0: ; 17e3e0
 	ld c, a
 	call HlToCrashCheckPointer
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrames
 	ret
 ; 17e3f0
@@ -5231,7 +5231,7 @@ String_17fedf: ; 17fedf
 ; 17ff23
 
 Function17ff23: ; 17ff23
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and a
 	ret z
 	ld a, $8

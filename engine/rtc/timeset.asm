@@ -3,10 +3,10 @@ TIMESET_DOWN_ARROW EQUS "\"♀\"" ; $f5
 
 InitClock: ; 90672 (24:4672)
 ; Ask the player to set the time.
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 
 	ld a, $0
 	ld [wSpriteUpdatesEnabled], a
@@ -24,7 +24,7 @@ InitClock: ; 90672 (24:4672)
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadStandardFont
 	ld de, TimeSetBackgroundGFX
 	ld hl, vTiles2 tile $00
@@ -117,22 +117,22 @@ InitClock: ; 90672 (24:4672)
 	call PrintText
 	call WaitPressAorB_BlinkCursor
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 .ClearScreen: ; 90783 (24:4783)
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 0
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a
 	call ByteFill
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 SetHour: ; 90795 (24:4795)
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .Confirm
 
@@ -225,7 +225,7 @@ UnreferencedFunction907f1: ; 907f1
 ; 90810
 
 SetMinutes: ; 90810 (24:4810)
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .a_button
 	ld hl, hJoyLast
@@ -408,10 +408,10 @@ INCBIN "gfx/new_game/down_arrow.1bpp"
 ; 90913
 
 SetDayOfWeek: ; 90913
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ld de, TimeSetUpArrowGFX
 	ld hl, vTiles0 tile TIMESET_UP_ARROW
 	lb bc, BANK(TimeSetUpArrowGFX), 1
@@ -457,12 +457,12 @@ SetDayOfWeek: ; 90913
 	call InitDayOfWeek
 	call LoadStandardFont
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 ; 90993
 
 .GetJoypadAction: ; 90993
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jr z, .not_A
 	scf
@@ -505,7 +505,7 @@ SetDayOfWeek: ; 90913
 
 .finish_dpad
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 10, 4
 	ld b, 2
 	ld c, 9
@@ -588,9 +588,9 @@ InitialSetDSTFlag: ; 90a54
 .Text: ; 90a6c
 	start_asm
 	call UpdateTime
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld b, a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld c, a
 	decoord 1, 14
 	farcall PrintHoursMins
@@ -619,9 +619,9 @@ InitialClearDSTFlag: ; 90a88
 .Text: ; 90aa0
 	start_asm
 	call UpdateTime
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld b, a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld c, a
 	decoord 1, 14
 	farcall PrintHoursMins

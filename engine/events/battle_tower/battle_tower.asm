@@ -1019,7 +1019,7 @@ BattleTower_RandomlyChooseReward: ; 17073e (5c:473e) BattleTowerAction $1e
 ; Generate a random stat boosting item.
 .loop
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $7
 	cp 6
 	jr c, .okay
@@ -1641,9 +1641,9 @@ LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
 	ld hl, wUsedSprites
 	add hl, de
 	ld [hli], a
-	ld [hUsedSpriteIndex], a
+	ldh [hUsedSpriteIndex], a
 	ld a, [hl]
-	ld [hUsedSpriteTile], a
+	ldh [hUsedSpriteTile], a
 	farcall GetUsedSprite
 	ret
 ; 170b90

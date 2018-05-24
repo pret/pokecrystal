@@ -418,11 +418,11 @@ PlayCurMonCry: ; c472
 
 
 GameboyCheck: ; c478
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
 
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	jr nz, .sgb
 

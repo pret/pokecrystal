@@ -2,7 +2,7 @@ BattleCommand_BeatUp: ; 35461
 ; beatup
 
 	call ResetDamage
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jp nz, .enemy_beats_up
 
@@ -219,7 +219,7 @@ GetBeatupMonLocation: ; 355bd
 	push bc
 	ld c, a
 	ld b, 0
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPartyMon1Species
 	jr z, .got_species

@@ -21,7 +21,7 @@ _BillsPC: ; e3fd
 
 .LogIn: ; e41c (3:641c)
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadStandardMenuHeader
 	call ClearPCItemScreen
 	ld hl, wOptions
@@ -53,7 +53,7 @@ _BillsPC: ; e3fd
 	call SetPalettes
 	xor a
 	ld [wWhichIndexSet], a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DoNthMenu
 	jr c, .cancel
 	ld a, [wMenuCursorBuffer]
@@ -237,7 +237,7 @@ BillsPC_ChangeBoxMenu: ; e583 (3:6583)
 ClearPCItemScreen: ; e58b
 	call DisableSpriteUpdates
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ClearBGPalettes
 	call ClearSprites
 	hlcoord 0, 0

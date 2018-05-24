@@ -27,10 +27,10 @@ PokeGear: ; 90b8d (24:4b8d)
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ld a, [wVramState]
 	push af
 	xor a
@@ -55,16 +55,16 @@ PokeGear: ; 90b8d (24:4b8d)
 	pop af
 	ld [wVramState], a
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	pop af
 	ld [wOptions], a
 	call ClearBGPalettes
 	xor a ; LOW(vBGMap0)
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call ExitPokegearRadio_HandleMusic
 	ret
 
@@ -74,10 +74,10 @@ PokeGear: ; 90b8d (24:4b8d)
 	call ClearSprites
 	call DisableLCD
 	xor a
-	ld [hSCY], a
-	ld [hSCX], a
+	ldh [hSCY], a
+	ldh [hSCX], a
 	ld a, $7
-	ld [hWX], a
+	ldh [hWX], a
 	call Pokegear_LoadGFX
 	farcall ClearSpriteAnims
 	call InitPokegearModeIndicatorArrow
@@ -102,7 +102,7 @@ PokeGear: ; 90b8d (24:4b8d)
 	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 	ld a, %11100100
@@ -245,7 +245,7 @@ Pokegear_InitJumptableIndices: ; 90d9e (24:4d9e)
 
 InitPokegearTilemap: ; 90da8 (24:4da8)
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $4f
@@ -271,22 +271,22 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	and a
 	jr nz, .kanto_0
 	xor a ; LOW(vBGMap0)
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	call .UpdateBGMap
 	ld a, $90
 	jr .finish
 
 .kanto_0
 	xor a ; LOW(vBGMap1)
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap1)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	call .UpdateBGMap
 	xor a
 .finish
-	ld [hWY], a
+	ldh [hWY], a
 	; swap region maps
 	ld a, [wPokegearMapRegion]
 	maskbits NUM_REGIONS
@@ -295,11 +295,11 @@ InitPokegearTilemap: ; 90da8 (24:4da8)
 	ret
 
 .UpdateBGMap: ; 90e00 (24:4e00)
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld c, 3
 	call DelayFrames
 .dmg
@@ -527,19 +527,19 @@ PokegearClock_Joypad: ; 90f3e (24:4f3e)
 
 .UpdateClock: ; 90f7b (24:4f7b)
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call Pokegear_UpdateClock
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 Pokegear_UpdateClock: ; 90f86 (24:4f86)
 	hlcoord 3, 5
 	lb bc, 5, 14
 	call ClearBox
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld b, a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld c, a
 	decoord 6, 8
 	farcall PrintHoursMins
@@ -932,7 +932,7 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 	ld hl, wOptions
 	res NO_TEXT_SCROLL, [hl]
 	xor a
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ld de, SFX_CALL
 	call PlaySFX
 	ld hl, .dotdotdot
@@ -951,7 +951,7 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call PokegearPhone_UpdateCursor
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -984,7 +984,7 @@ PokegearPhone_MakePhoneCall: ; 911eb (24:51eb)
 ; 0x91256
 
 PokegearPhone_FinishPhoneCall: ; 91256 (24:5256)
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	ret z
 	farcall HangUp
@@ -1038,14 +1038,14 @@ PokegearPhone_GetDPad: ; 9126d (24:526d)
 
 .done_joypad_same_page
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call PokegearPhone_UpdateCursor
 	call WaitBGMap
 	ret
 
 .done_joypad_update_page
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call PokegearPhone_UpdateDisplayList
 	call WaitBGMap
 	ret
@@ -1163,7 +1163,7 @@ PokegearPhoneContactSubmenu: ; 91342 (24:5342)
 	ld de, .CallCancelStrings
 .got_menu_data
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	push hl
 	push de
 	ld a, [de]
@@ -1230,12 +1230,12 @@ PokegearPhoneContactSubmenu: ; 91342 (24:5342)
 
 .a_b
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call PokegearPhone_UpdateDisplayList
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	pop hl
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and B_BUTTON
 	jr nz, .Cancel
 	ld a, [wPokegearPhoneSubmenuCursor]
@@ -1264,7 +1264,7 @@ PokegearPhoneContactSubmenu: ; 91342 (24:5342)
 	jr c, .CancelDelete
 	call PokegearPhone_DeletePhoneNumber
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call PokegearPhone_UpdateDisplayList
 	ld hl, PokegearText_WhomToCall
 	call PrintText
@@ -1340,7 +1340,7 @@ PokegearPhoneContactSubmenu: ; 91342 (24:5342)
 ; 9146e
 
 ; unused
-	ld a, [hHours]
+	ldh a, [hHours]
 	cp 12
 	jr c, .am
 	sub 12
@@ -1520,11 +1520,11 @@ UpdateRadioStation: ; 9166f (24:566f)
 	and a
 	ret z
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 2, 9
 	call PlaceString
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 ; 916a1 (24:56a1)
@@ -1823,7 +1823,7 @@ NoRadioStation: ; 91888 (24:5888)
 	ld [wPokegearRadioChannelAddr], a
 	ld [wPokegearRadioChannelAddr + 1], a
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 NoRadioMusic: ; 9189d (24:589d)
@@ -1835,7 +1835,7 @@ NoRadioMusic: ; 9189d (24:589d)
 
 NoRadioName: ; 918a9 (24:58a9)
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 1, 8
 	lb bc, 3, 18
 	call ClearBox
@@ -1863,10 +1863,10 @@ _TownMap: ; 9191c
 	push af
 	set NO_TEXT_SCROLL, [hl]
 
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 
 	ld a, [wVramState]
 	push af
@@ -1887,7 +1887,7 @@ _TownMap: ; 9191c
 	ld [wTownMapPlayerIconLandmark], a
 	ld [wTownMapCursorLandmark], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call .InitTilemap
 	call WaitBGMap2
 	ld a, [wTownMapPlayerIconLandmark]
@@ -1901,7 +1901,7 @@ _TownMap: ; 9191c
 	ld b, SCGB_POKEGEAR_PALS
 	call GetSGBLayout
 	call SetPalettes
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld a, %11100100
@@ -1925,7 +1925,7 @@ _TownMap: ; 9191c
 	pop af
 	ld [wVramState], a
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	pop af
 	ld [wOptions], a
 	call ClearBGPalettes
@@ -2037,7 +2037,7 @@ PlayRadio: ; 91a53
 	call DelayFrames
 .loop
 	call JoyTextDelay
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	jr nz, .stop
 	ld a, [wPokegearRadioChannelAddr]
@@ -2145,7 +2145,7 @@ _FlyMap: ; 91af3
 	push af
 	ld [hl], $1
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall ClearSpriteAnims
 	call LoadTownMapGFX
 	ld de, FlyMapLabelBorderGFX
@@ -2187,14 +2187,14 @@ _FlyMap: ; 91af3
 .exit
 	ld [wTownMapPlayerIconLandmark], a
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call ClearBGPalettes
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	xor a ; LOW(vBGMap0)
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
 	ret
@@ -2245,7 +2245,7 @@ FlyMapScroll: ; 91b73
 	call TownMapBubble
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 ; 91bb5
@@ -2481,9 +2481,9 @@ Pokedex_GetArea: ; 91d11
 	ld [wTownMapPlayerIconLandmark], a
 	call ClearSprites
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ld de, PokedexNestIconGFX
 	ld hl, vTiles0 tile $7f
 	lb bc, BANK(PokedexNestIconGFX), 1
@@ -2507,7 +2507,7 @@ Pokedex_GetArea: ; 91d11
 	call GetSGBLayout
 	call SetPalettes
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	xor a ; JOHTO_REGION
 	call .GetAndPlaceNest
 .loop
@@ -2516,7 +2516,7 @@ Pokedex_GetArea: ; 91d11
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON
 	jr nz, .a_b
-	ld a, [hJoypadDown]
+	ldh a, [hJoypadDown]
 	and SELECT
 	jr nz, .select
 	call .LeftRightInput
@@ -2549,12 +2549,12 @@ Pokedex_GetArea: ; 91d11
 	ret
 
 .left
-	ld a, [hWY]
+	ldh a, [hWY]
 	cp $90
 	ret z
 	call ClearSprites
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	xor a ; JOHTO_REGION
 	call .GetAndPlaceNest
 	ret
@@ -2563,12 +2563,12 @@ Pokedex_GetArea: ; 91d11
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_HALL_OF_FAME_F, a
 	ret z
-	ld a, [hWY]
+	ldh a, [hWY]
 	and a
 	ret z
 	call ClearSprites
 	xor a
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, KANTO_REGION
 	call .GetAndPlaceNest
 	ret
@@ -2576,7 +2576,7 @@ Pokedex_GetArea: ; 91d11
 ; 91dcd
 
 .BlinkNestIcons: ; 91dcd
-	ld a, [hVBlankCounter]
+	ldh a, [hVBlankCounter]
 	ld e, a
 	and $f
 	ret nz
@@ -2769,16 +2769,16 @@ TownMapBGUpdate: ; 91ee4
 
 ; BG Map address
 	ld a, l
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, h
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 ; Only update palettes on CGB
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .tiles
 ; BG Map mode 2 (palettes)
 	ld a, 2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 ; The BG Map is updated in thirds, so we wait
 
 ; 3 frames to update the whole screen's palettes.
@@ -2789,7 +2789,7 @@ TownMapBGUpdate: ; 91ee4
 	call WaitBGMap
 ; Turn off BG Map update
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 ; 91eff
@@ -2974,7 +2974,7 @@ Unreferenced_Function92311:
 	push af
 	ld [hl], $1
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall ClearSpriteAnims
 	call LoadTownMapGFX
 	ld de, FlyMapLabelBorderGFX
@@ -3029,14 +3029,14 @@ Unreferenced_Function92311:
 .finished_a_b
 	ld [wTownMapPlayerIconLandmark], a
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call ClearBGPalettes
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	xor a ; LOW(vBGMap0)
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
 	ret
@@ -3085,13 +3085,13 @@ Unreferenced_Function92311:
 	ld a, $90
 	ld b, $98
 .finish
-	ld [hWY], a
+	ldh [hWY], a
 	ld a, b
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	call TownMapBubble
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 ; 92402

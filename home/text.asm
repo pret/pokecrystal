@@ -334,12 +334,12 @@ PlaceKokoWa:  print_name PlaceKokoWaText ; 11f6
 
 
 PlaceMoveTargetsName:: ; 11fd
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	xor 1
 	jr PlaceMoveUsersName.place
 
 PlaceMoveUsersName:: ; 1203
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 
 .place: ; 1205
 	push de
@@ -644,15 +644,15 @@ TextScroll:: ; 138c
 
 Text_WaitBGMap:: ; 13b6
 	push bc
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, 1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 
 	call WaitBGMap
 
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	pop bc
 	ret
 ; 13c6
@@ -675,7 +675,7 @@ UnloadBlinkingCursor:: ; 13cd
 
 FarString:: ; 13d4
 	ld b, a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	ld a, b
@@ -801,7 +801,7 @@ Text_TX_FAR:: ; 1455
 ; little endian
 ; [$16][addr][bank]
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	ld a, [hli]
@@ -810,7 +810,7 @@ Text_TX_FAR:: ; 1455
 	ld d, a
 	ld a, [hli]
 
-	ld [hROMBank], a
+	ldh [hROMBank], a
 	ld [MBC3RomBank], a
 
 	push hl
@@ -820,7 +820,7 @@ Text_TX_FAR:: ; 1455
 	pop hl
 
 	pop af
-	ld [hROMBank], a
+	ldh [hROMBank], a
 	ld [MBC3RomBank], a
 	ret
 ; 1470
@@ -969,7 +969,7 @@ Text_TX_EXIT:: ; 14ed
 	push hl
 	push bc
 	call GetJoypad
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
 	jr nz, .done
 	ld c, 30
@@ -1053,7 +1053,7 @@ Text_TX_DOTS:: ; 1543
 	ld a, "…"
 	ld [hli], a
 	call GetJoypad
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
 	jr nz, .next
 	ld c, 10

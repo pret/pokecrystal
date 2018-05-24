@@ -204,30 +204,30 @@ CalcMagikarpLength: ; fbbfc
 	; c = (bc - de) / [hl]
 	call .BCMinusDE
 	ld a, b
-	ld [hDividend + 0], a
+	ldh [hDividend + 0], a
 	ld a, c
-	ld [hDividend + 1], a
+	ldh [hDividend + 1], a
 	ld a, [hl]
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	ld c, a
 
 	; de = c + 100 × (2 + i)
 	xor a
-	ld [hMultiplicand + 0], a
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
 	ld a, 100
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, [wd265]
-	ld [hMultiplier], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld b, 0
-	ld a, [hProduct + 3]
+	ldh a, [hProduct + 3]
 	add c
 	ld e, a
-	ld a, [hProduct + 2]
+	ldh a, [hProduct + 2]
 	adc b
 	ld d, a
 	jr .done

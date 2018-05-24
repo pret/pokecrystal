@@ -10,9 +10,9 @@ GetEmote2bpp: ; 1412a
 _ReplaceKrisSprite:: ; 14135
 	call GetPlayerSprite
 	ld a, [wUsedSprites]
-	ld [hUsedSpriteIndex], a
+	ldh [hUsedSpriteIndex], a
 	ld a, [wUsedSprites + 1]
-	ld [hUsedSpriteTile], a
+	ldh [hUsedSpriteTile], a
 	call GetUsedSprite
 	ret
 ; 14146
@@ -571,10 +571,10 @@ GetUsedSprites: ; 1439b
 	ld a, [hli]
 	and a
 	jr z, .done
-	ld [hUsedSpriteIndex], a
+	ldh [hUsedSpriteIndex], a
 
 	ld a, [hli]
-	ld [hUsedSpriteTile], a
+	ldh [hUsedSpriteTile], a
 
 	bit 7, a
 	jr z, .dont_set
@@ -597,9 +597,9 @@ GetUsedSprites: ; 1439b
 ; 143c8
 
 GetUsedSprite: ; 143c8
-	ld a, [hUsedSpriteIndex]
+	ldh a, [hUsedSpriteIndex]
 	call SafeGetSprite
-	ld a, [hUsedSpriteTile]
+	ldh a, [hUsedSpriteTile]
 	call .GetTileAddr
 	push hl
 	push de
@@ -628,7 +628,7 @@ endr
 	bit 6, a
 	jr nz, .done
 
-	ld a, [hUsedSpriteIndex]
+	ldh a, [hUsedSpriteIndex]
 	call _DoesSpriteHaveFacings
 	jr c, .done
 

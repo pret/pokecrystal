@@ -80,13 +80,13 @@ StartMenu:: ; 125cd
 	dw .ReturnRedraw
 
 .Exit:
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, 1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call LoadFontsExtra
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 .ReturnEnd:
 	call ExitMenu
 .ReturnEnd2:
@@ -97,7 +97,7 @@ StartMenu:: ; 125cd
 .GetInput:
 ; Return carry on exit, and no-carry on selection.
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call .DrawMenuAccount
 	call SetUpMenu
 	ld a, $ff
@@ -123,14 +123,14 @@ StartMenu:: ; 125cd
 .ExitMenuRunScript: ; 12691
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
-	ld [hMenuReturn], a
+	ldh [hMenuReturn], a
 	ret
 ; 12699
 
 .ExitMenuRunScriptCloseText: ; 12699
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
-	ld [hMenuReturn], a
+	ldh [hMenuReturn], a
 	jr .ReturnEnd2
 ; 126a2
 
@@ -1418,19 +1418,19 @@ MonMenu_Softboiled_MilkDrink: ; 12ee6
 	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [hDividend + 0], a
+	ldh [hDividend + 0], a
 	ld a, [hl]
-	ld [hDividend + 1], a
+	ldh [hDividend + 1], a
 	ld a, 5
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
 	ld a, MON_HP + 1
 	call GetPartyParamLocation
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	sub [hl]
 	dec hl
-	ld a, [hQuotient + 1]
+	ldh a, [hQuotient + 1]
 	sbc [hl]
 	ret
 ; 12f26
@@ -1780,7 +1780,7 @@ SetUpMoveScreenBG: ; 13172
 	call ClearTileMap
 	call ClearSprites
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall LoadStatsScreenPageTilesGFX
 	farcall ClearSpriteAnims2
 	ld a, [wCurPartyMon]
@@ -1825,7 +1825,7 @@ SetUpMoveScreenBG: ; 13172
 
 SetUpMoveList: ; 131ef
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld [wMoveSwapBuffer], a
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -1869,7 +1869,7 @@ PrepareToPlaceMoveData: ; 13235
 
 PlaceMoveData: ; 13256
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 10
 	ld de, String_MoveType_Top
 	call PlaceString
@@ -1907,7 +1907,7 @@ PlaceMoveData: ; 13256
 	hlcoord 1, 14
 	predef PrintMoveDesc
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 132ba
 

@@ -62,7 +62,7 @@ _InterpretMobileMenu:: ; 2403c
 
 Draw2DMenu: ; 24085
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call MenuBox
 	call Place2DMenuItemStrings
 	ret
@@ -265,18 +265,18 @@ _StaticMenuJoypad:: ; 241a8
 _ScrollingMenuJoypad:: ; 241ab
 	ld hl, w2DMenuFlags2
 	res 7, [hl]
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	call MenuJoypadLoop
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 241ba
 
 MobileMenuJoypad: ; 241ba
 	ld hl, w2DMenuFlags2
 	res 7, [hl]
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	call Move2DMenuCursor
 	call Do2DMenuRTCJoypad
@@ -284,7 +284,7 @@ MobileMenuJoypad: ; 241ba
 	call _2DMenuInterpretJoypad
 .skip_joypad
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call GetMenuJoypad
 	ld c, a
 	ret
@@ -353,15 +353,15 @@ MenuJoypadLoop: ; 24216
 ; 24238
 
 .BGMap_OAM: ; 24238
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call WaitBGMap
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 24249
 
@@ -686,7 +686,7 @@ _PushWindow:: ; 24374
 
 _ExitMenu:: ; 243e8
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 	ld a, [rSVBK]
 	push af

@@ -1,5 +1,5 @@
 PhoneRing_CopyTilemapAtOnce: ; 4d188
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jp z, WaitBGMap
 	ld a, [wSpriteUpdatesEnabled]
@@ -7,14 +7,14 @@ PhoneRing_CopyTilemapAtOnce: ; 4d188
 	jp z, WaitBGMap
 
 ; What follows is a modified version of CopyTilemapAtOnce.
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
-	ld a, [hMapAnims]
+	ldh [hBGMapMode], a
+	ldh a, [hMapAnims]
 	push af
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 .wait
 	ld a, [rLY]
 	cp LY_VBLANK - 1
@@ -36,19 +36,19 @@ PhoneRing_CopyTilemapAtOnce: ; 4d188
 	ei
 
 	pop af
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .CopyTilemapAtOnce: ; 4d1cb
 	ld [hSPBuffer], sp
 	ld sp, hl
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	ld h, a
 	ld l, 0
 	ld a, SCREEN_HEIGHT
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 	ld b, 1 << 1 ; not in v/hblank
 	ld c, LOW(rSTAT)
 
@@ -67,14 +67,14 @@ endr
 
 	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
 	add hl, de
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	dec a
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 	jr nz, .loop
 
-	ld a, [hSPBuffer]
+	ldh a, [hSPBuffer]
 	ld l, a
-	ld a, [hSPBuffer + 1]
+	ldh a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret

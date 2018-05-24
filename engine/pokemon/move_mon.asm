@@ -16,7 +16,7 @@ TryAddMonToParty: ; d88c
 	; Increase the party count
 	ld [de], a
 	ld a, [de] ; Why are we doing this?
-	ld [hMoveMon], a ; HRAM backup
+	ldh [hMoveMon], a ; HRAM backup
 	add e
 	ld e, a
 	jr nc, .loadspecies
@@ -39,7 +39,7 @@ TryAddMonToParty: ; d88c
 	ld hl, wOTPartyMonOT
 
 .loadOTname
-	ld a, [hMoveMon] ; Restore index from backup
+	ldh a, [hMoveMon] ; Restore index from backup
 	dec a
 	call SkipNames
 	ld d, h
@@ -55,7 +55,7 @@ TryAddMonToParty: ; d88c
 	ld [wd265], a
 	call GetPokemonName
 	ld hl, wPartyMonNicknames
-	ld a, [hMoveMon]
+	ldh a, [hMoveMon]
 	dec a
 	call SkipNames
 	ld d, h
@@ -72,7 +72,7 @@ TryAddMonToParty: ; d88c
 	ld hl, wOTPartyMon1Species
 
 .initializeStats
-	ld a, [hMoveMon]
+	ldh a, [hMoveMon]
 	dec a
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
@@ -153,13 +153,13 @@ endr
 	ld d, a
 	callfar CalcExpAtLevel
 	pop de
-	ld a, [hProduct + 1]
+	ldh a, [hProduct + 1]
 	ld [de], a
 	inc de
-	ld a, [hProduct + 2]
+	ldh a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ld a, [hProduct + 3]
+	ldh a, [hProduct + 3]
 	ld [de], a
 	inc de
 
@@ -260,10 +260,10 @@ endr
 	ld c, a
 	ld b, FALSE
 	call CalcMonStatC
-	ld a, [hProduct + 2]
+	ldh a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ld a, [hProduct + 3]
+	ldh a, [hProduct + 3]
 	ld [de], a
 	inc de
 	jr .initstats
@@ -894,11 +894,11 @@ RetrieveBreedmon: ; dd64
 	pop bc
 	ld hl, $8
 	add hl, bc
-	ld a, [hMultiplicand]
+	ldh a, [hMultiplicand]
 	ld [hli], a
-	ld a, [hMultiplicand + 1]
+	ldh a, [hMultiplicand + 1]
 	ld [hli], a
-	ld a, [hMultiplicand + 2]
+	ldh a, [hMultiplicand + 2]
 	ld [hl], a
 	and a
 	ret
@@ -1006,13 +1006,13 @@ SendMonIntoBox: ; de6e
 	ld d, a
 	callfar CalcExpAtLevel
 	pop de
-	ld a, [hProduct + 1]
+	ldh a, [hProduct + 1]
 	ld [de], a
 	inc de
-	ld a, [hProduct + 2]
+	ldh a, [hProduct + 2]
 	ld [de], a
 	inc de
-	ld a, [hProduct + 3]
+	ldh a, [hProduct + 3]
 	ld [de], a
 	inc de
 
@@ -1426,10 +1426,10 @@ CalcMonStats: ; e167
 .loop
 	inc c
 	call CalcMonStatC
-	ld a, [hMultiplicand + 1]
+	ldh a, [hMultiplicand + 1]
 	ld [de], a
 	inc de
-	ld a, [hMultiplicand + 2]
+	ldh a, [hMultiplicand + 2]
 	ld [de], a
 	inc de
 	ld a, c
@@ -1565,22 +1565,22 @@ CalcMonStatC: ; e17b
 	inc d
 
 .no_overflow_2
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, d
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 1], a
 	xor a
-	ld [hMultiplicand + 0], a
+	ldh [hMultiplicand + 0], a
 	ld a, [wCurPartyLevel]
-	ld [hMultiplier], a
+	ldh [hMultiplier], a
 	call Multiply
-	ld a, [hProduct + 1]
-	ld [hDividend + 0], a
-	ld a, [hProduct + 2]
-	ld [hDividend + 1], a
-	ld a, [hProduct + 3]
-	ld [hDividend + 2], a
+	ldh a, [hProduct + 1]
+	ldh [hDividend + 0], a
+	ldh a, [hProduct + 2]
+	ldh [hDividend + 1], a
+	ldh a, [hProduct + 3]
+	ldh [hDividend + 2], a
 	ld a, 100
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld a, 3
 	ld b, a
 	call Divide
@@ -1590,42 +1590,42 @@ CalcMonStatC: ; e17b
 	jr nz, .not_hp
 	ld a, [wCurPartyLevel]
 	ld b, a
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	add b
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 	jr nc, .no_overflow_3
-	ld a, [hQuotient + 1]
+	ldh a, [hQuotient + 1]
 	inc a
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 1], a
 
 .no_overflow_3
 	ld a, STAT_MIN_HP
 
 .not_hp
 	ld b, a
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	add b
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 	jr nc, .no_overflow_4
-	ld a, [hQuotient + 1]
+	ldh a, [hQuotient + 1]
 	inc a
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 1], a
 
 .no_overflow_4
-	ld a, [hQuotient + 1]
+	ldh a, [hQuotient + 1]
 	cp HIGH(MAX_STAT_VALUE + 1) + 1
 	jr nc, .max_stat
 	cp HIGH(MAX_STAT_VALUE + 1)
 	jr c, .stat_value_okay
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	cp LOW(MAX_STAT_VALUE + 1)
 	jr c, .stat_value_okay
 
 .max_stat
 	ld a, HIGH(MAX_STAT_VALUE)
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, LOW(MAX_STAT_VALUE)
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 
 .stat_value_okay
 	pop bc

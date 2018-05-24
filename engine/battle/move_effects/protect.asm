@@ -17,7 +17,7 @@ BattleCommand_Protect: ; 37618
 ProtectChance: ; 3762c
 
 	ld de, wPlayerProtectCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .asm_37637
 	ld de, wEnemyProtectCount

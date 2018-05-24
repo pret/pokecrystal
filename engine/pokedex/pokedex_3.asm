@@ -119,16 +119,16 @@ DrawPokedexSearchResultsWindow: ; 1de1d1 (77:61d1)
 	next "D!@"
 
 DrawDexEntryScreenRightEdge: ; 1de247
-	ld a, [hBGMapAddress]
+	ldh a, [hBGMapAddress]
 	ld l, a
-	ld a, [hBGMapAddress + 1]
+	ldh a, [hBGMapAddress + 1]
 	ld h, a
 	push hl
 	inc hl
 	ld a, l
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, h
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	hlcoord 19, 0
 	ld [hl], $66
 	hlcoord 19, 1
@@ -145,9 +145,9 @@ DrawDexEntryScreenRightEdge: ; 1de247
 	call WaitBGMap2
 	pop hl
 	ld a, l
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, h
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	ret
 
 Bank77_FillColumn: ; 1de27f

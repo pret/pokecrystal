@@ -1,5 +1,5 @@
 RunMapSetupScript:: ; 15363
-	ld a, [hMapEntryMethod]
+	ldh a, [hMapEntryMethod]
 	and $f
 	dec a
 	ld c, a
@@ -119,13 +119,13 @@ DontScrollText: ; 154ca
 
 ActivateMapAnims: ; 154cf
 	ld a, $1
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ret
 ; 154d3
 
 SuspendMapAnims: ; 154d3
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ret
 ; 154d7
 

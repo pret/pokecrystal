@@ -176,7 +176,7 @@ UseRegisteredItem: ; 133c3
 	jr nz, ._cantuse
 	scf
 	ld a, HMENURETURN_SCRIPT
-	ld [hMenuReturn], a
+	ldh [hMenuReturn], a
 	ret
 ; 13422
 

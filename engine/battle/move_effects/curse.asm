@@ -3,7 +3,7 @@ BattleCommand_Curse: ; 37588
 
 	ld de, wBattleMonType1
 	ld bc, wPlayerStatLevels
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .go
 	ld de, wEnemyMonType1

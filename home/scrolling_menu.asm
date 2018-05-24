@@ -1,6 +1,6 @@
 ScrollingMenu:: ; 350c
 	call CopyMenuData
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	ld a, BANK(_ScrollingMenu)
@@ -46,18 +46,18 @@ InitScrollingMenu:: ; 352f
 JoyTextDelay_ForcehJoyDown:: ; 354b joypad
 	call DelayFrame
 
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call JoyTextDelay
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_RIGHT + D_LEFT + D_UP + D_DOWN
 	ld c, a
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON + B_BUTTON + SELECT + START
 	or c
 	ld c, a

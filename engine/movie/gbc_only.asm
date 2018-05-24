@@ -1,6 +1,6 @@
 GBCOnlyScreen: ; 4ea82
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret nz
 

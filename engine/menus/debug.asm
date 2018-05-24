@@ -25,18 +25,18 @@
 ColorTest: ; 818ac
 ; A debug menu to test monster and trainer palettes at runtime.
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .asm_818b5
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ret z
 
 .asm_818b5
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call DisableLCD
 	call Function81948
 	call Function8197c
@@ -60,7 +60,7 @@ ColorTest: ; 818ac
 
 .asm_818f0
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 ; 818f4
 
@@ -174,7 +174,7 @@ Function8197c: ; 8197c
 ; 819a7
 
 Function819a7: ; 819a7
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 	ld a, [rSVBK]
@@ -299,7 +299,7 @@ Jumptable_81acf: ; 81acf
 
 Function81adb: ; 81adb
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, DEBUGTEST_BLACK
@@ -341,7 +341,7 @@ Function81adb: ; 81adb
 	ld de, vTiles2 tile $31
 	predef GetMonBackpic
 	ld a, $31
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 2, 4
 	lb bc, 6, 6
 	predef PlaceGraphic
@@ -373,7 +373,7 @@ Function81adb: ; 81adb
 	callfar GetTrainerPic
 	xor a
 	ld [wTempEnemyMonSpecies], a
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 2, 3
 	lb bc, 7, 7
 	predef PlaceGraphic
@@ -438,11 +438,11 @@ Function81bf4: ; 81bf4
 ; 81c18
 
 Function81c18: ; 81c18
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .asm_81c2a
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
@@ -455,7 +455,7 @@ Function81c18: ; 81c18
 ; 81c33
 
 Function81c33: ; 81c33
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .asm_81c69
 	ld a, [rSVBK]
@@ -473,7 +473,7 @@ Function81c33: ; 81c33
 	ld de, wc608 + 2
 	call Function81ca7
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ld a, $3
 	ld [wJumptableIndex], a
 	pop af
@@ -536,10 +536,10 @@ Function81cbc: ; 81cbc
 ; 81cc2
 
 Function81cc2: ; 81cc2
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and B_BUTTON
 	jr nz, .asm_81cdf
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and A_BUTTON
 	jr nz, .asm_81ce5
 	ld a, [wcf64]
@@ -640,10 +640,10 @@ Function81d58: ; 81d58
 	ld hl, wc608 + 12
 
 Function81d63: ; 81d63
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_RIGHT
 	jr nz, Function81d70
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_LEFT
 	jr nz, Function81d77
 	ret
@@ -1079,12 +1079,12 @@ TilesetColorTest:
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call ClearSprites
 	call OverworldTextModeSwitch
 	call WaitBGMap2
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld de, DebugColorTestGFX + 1 tiles
 	ld hl, vTiles2 tile DEBUGTEST_UP_ARROW
 	lb bc, BANK(DebugColorTestGFX), 22
@@ -1094,7 +1094,7 @@ TilesetColorTest:
 	lb bc, BANK(DebugColorTestGFX), 1
 	call Request2bpp
 	ld a, HIGH(vBGMap1)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, DEBUGTEST_BLACK
@@ -1120,7 +1120,7 @@ TilesetColorTest:
 	call WaitBGMap2
 	ld [wJumptableIndex], a
 	ld a, $40
-	ld [hWY], a
+	ldh [hWY], a
 	ret
 ; 821d2
 
@@ -1234,18 +1234,18 @@ Function82236: ; 82236
 	pop af
 	ld [rSVBK], a
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld c, 3
 	call DelayFrames
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .asm_82299
 	call ClearSprites
-	ld a, [hWY]
+	ldh a, [hWY]
 	xor $d0
-	ld [hWY], a
+	ldh [hWY], a
 	ret
 ; 822a3
 
@@ -1278,7 +1278,7 @@ Function822a3: ; 822a3
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret
 ; 822f0
@@ -1369,10 +1369,10 @@ Function8235d: ; 8235d
 	ld hl, wc608 + 12
 
 Function82368: ; 82368
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_RIGHT
 	jr nz, .asm_82375
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_LEFT
 	jr nz, .asm_8237c
 	ret

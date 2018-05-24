@@ -28,12 +28,12 @@ _DummyGame: ; e1e5b (38:5e5b)
 	xor a
 	call ByteFill
 	xor a
-	ld [hSCY], a
-	ld [hSCX], a
+	ldh [hSCY], a
+	ldh [hSCX], a
 	ld [rWY], a
 	ld [wJumptableIndex], a
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ld a, $e4
@@ -200,7 +200,7 @@ endr
 	ret
 
 .RevealAll:
-	ld a, [hJoypadPressed]
+	ldh a, [hJoypadPressed]
 	and A_BUTTON
 	ret z
 	xor a

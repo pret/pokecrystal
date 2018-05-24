@@ -107,7 +107,7 @@ StubbedTrainerRankings_BugContestScore: ; 105f79
 	ret
 	ld a, BANK(sTrainerRankingBugContestScore)
 	call GetSRAMBank
-	ld a, [hProduct]
+	ldh a, [hProduct]
 	ld hl, sTrainerRankingBugContestScore
 	cp [hl]
 	jr z, .isLowByteHigher
@@ -116,15 +116,15 @@ StubbedTrainerRankings_BugContestScore: ; 105f79
 
 .isLowByteHigher
 	inc hl
-	ld a, [hMultiplicand]
+	ldh a, [hMultiplicand]
 	cp [hl]
 	jr c, .done
 	dec hl
 
 .newHighScore
-	ld a, [hProduct]
+	ldh a, [hProduct]
 	ld [hli], a
-	ld a, [hMultiplicand]
+	ldh a, [hMultiplicand]
 	ld [hl], a
 
 .done
@@ -382,7 +382,7 @@ StubbedTrainerRankings_LinkBattles: ; 1060df
 StubbedTrainerRankings_Splash: ; 1060e5
 	ret
 	; Only counts if it’s the player’s turn
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ret nz
 	ld hl, sTrainerRankingSplash
@@ -419,7 +419,7 @@ StubbedTrainerRankings_ColosseumDraws: ; draw
 StubbedTrainerRankings_Selfdestruct: ; 10610d
 	ret
 	; Only counts if it’s the player’s turn
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ret nz
 	ld hl, sTrainerRankingSelfdestruct
@@ -611,9 +611,9 @@ _MobilePrintNum:: ; 1061ef
 ; hl: where to print the converted string
 	push bc
 	xor a
-	ld [hPrintNum1], a
-	ld [hPrintNum2], a
-	ld [hPrintNum3], a
+	ldh [hPrintNum1], a
+	ldh [hPrintNum2], a
+	ldh [hPrintNum3], a
 	ld a, b
 	and $f
 	cp $1
@@ -624,29 +624,29 @@ _MobilePrintNum:: ; 1061ef
 	jr z, .three_bytes
 ; four bytes
 	ld a, [de]
-	ld [hPrintNum1], a
+	ldh [hPrintNum1], a
 	inc de
 
 .three_bytes
 	ld a, [de]
-	ld [hPrintNum2], a
+	ldh [hPrintNum2], a
 	inc de
 
 .two_bytes
 	ld a, [de]
-	ld [hPrintNum3], a
+	ldh [hPrintNum3], a
 	inc de
 
 .one_byte
 	ld a, [de]
-	ld [hPrintNum4], a
+	ldh [hPrintNum4], a
 	inc de
 
 	push de
 	xor a
-	ld [hPrintNum9], a
+	ldh [hPrintNum9], a
 	ld a, b
-	ld [hPrintNum10], a
+	ldh [hPrintNum10], a
 	ld a, c
 	cp 2
 	jr z, .two_digits
@@ -693,7 +693,7 @@ endr
 
 .two_digits
 	ld c, 0
-	ld a, [hPrintNum4]
+	ldh a, [hPrintNum4]
 .mod_ten_loop
 	cp 10
 	jr c, .simple_divide_done
@@ -703,9 +703,9 @@ endr
 
 .simple_divide_done
 	ld b, a
-	ld a, [hPrintNum9]
+	ldh a, [hPrintNum9]
 	or c
-	ld [hPrintNum9], a
+	ldh [hPrintNum9], a
 	jr nz, .create_digit
 	call .LoadMinusTenIfNegative
 	jr .done
@@ -741,53 +741,53 @@ endr
 	ld a, [de]
 	dec de
 	ld b, a
-	ld a, [hPrintNum4]
+	ldh a, [hPrintNum4]
 	sub b
-	ld [hPrintNum8], a
+	ldh [hPrintNum8], a
 	ld a, [de]
 	dec de
 	ld b, a
-	ld a, [hPrintNum3]
+	ldh a, [hPrintNum3]
 	sbc b
-	ld [hPrintNum7], a
+	ldh [hPrintNum7], a
 	ld a, [de]
 	dec de
 	ld b, a
-	ld a, [hPrintNum2]
+	ldh a, [hPrintNum2]
 	sbc b
-	ld [hPrintNum6], a
+	ldh [hPrintNum6], a
 	ld a, [de]
 	inc de
 	inc de
 	inc de
 	ld b, a
-	ld a, [hPrintNum1]
+	ldh a, [hPrintNum1]
 	sbc b
-	ld [hPrintNum5], a
+	ldh [hPrintNum5], a
 	jr c, .asm_1062eb
-	ld a, [hPrintNum5]
-	ld [hPrintNum1], a
-	ld a, [hPrintNum6]
-	ld [hPrintNum2], a
-	ld a, [hPrintNum7]
-	ld [hPrintNum3], a
-	ld a, [hPrintNum8]
-	ld [hPrintNum4], a
+	ldh a, [hPrintNum5]
+	ldh [hPrintNum1], a
+	ldh a, [hPrintNum6]
+	ldh [hPrintNum2], a
+	ldh a, [hPrintNum7]
+	ldh [hPrintNum3], a
+	ldh a, [hPrintNum8]
+	ldh [hPrintNum4], a
 	inc c
 	jr .asm_1062b4
 
 .asm_1062eb
-	ld a, [hPrintNum9]
+	ldh a, [hPrintNum9]
 	or c
 	jr z, .LoadMinusTenIfNegative
 	ld a, -10
 	add c
 	ld [hl], a
-	ld [hPrintNum9], a
+	ldh [hPrintNum9], a
 	ret
 
 .LoadMinusTenIfNegative:
-	ld a, [hPrintNum10]
+	ldh a, [hPrintNum10]
 	bit 7, a
 	ret z
 
@@ -796,12 +796,12 @@ endr
 ; 1062ff
 
 .Function1062ff: ; 1062ff
-	ld a, [hPrintNum10]
+	ldh a, [hPrintNum10]
 	bit 7, a
 	jr nz, .asm_10630d
 	bit 6, a
 	jr z, .asm_10630d
-	ld a, [hPrintNum9]
+	ldh a, [hPrintNum9]
 	and a
 	ret z
 
@@ -1027,8 +1027,8 @@ Function106442: ; 106442
 	ld a, $36
 	call Function3e32
 	xor a
-	ld [hMobile], a
-	ld [hMobileReceive], a
+	ldh [hMobile], a
+	ldh [hMobileReceive], a
 	ld a, [wMobileCommsJumptableIndex]
 	inc a
 	ld [wMobileCommsJumptableIndex], a

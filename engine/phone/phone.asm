@@ -102,7 +102,7 @@ INCLUDE "data/phone/permanent_numbers.asm"
 
 
 FarPlaceString: ; 90069
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
@@ -180,7 +180,7 @@ ChooseRandomCaller: ; 900bf (24:40bf)
 ; Sample a random number between 0 and 31.
 	ld c, a
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	swap a
 	and $1f
 ; Compute that number modulo the number of available callers.

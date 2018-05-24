@@ -1140,11 +1140,11 @@ BattleAnimFunction_0D: ; cd66a (33:566a)
 .zero
 	call BattleAnim_IncAnonJumptableIndex
 	ld a, rSCY - $ff00
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 	ld a, $58
-	ld [hLYOverrideStart], a
+	ldh [hLYOverrideStart], a
 	ld a, $5e
-	ld [hLYOverrideEnd], a
+	ldh [hLYOverrideEnd], a
 	ret
 
 .one
@@ -1158,7 +1158,7 @@ BattleAnimFunction_0D: ; cd66a (33:566a)
 	jr nc, .asm_cd69b
 	call BattleAnim_IncAnonJumptableIndex
 	xor a
-	ld [hLYOverrideStart], a
+	ldh [hLYOverrideStart], a
 	ret
 
 .asm_cd69b
@@ -1177,7 +1177,7 @@ BattleAnimFunction_0D: ; cd66a (33:566a)
 	add [hl]
 	sub $10
 	ret c
-	ld [hLYOverrideStart], a
+	ldh [hLYOverrideStart], a
 	ld hl, BATTLEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
@@ -1198,9 +1198,9 @@ BattleAnimFunction_0D: ; cd66a (33:566a)
 	cp $70
 	jr c, asm_cd6da
 	xor a
-	ld [hLCDCPointer], a
-	ld [hLYOverrideStart], a
-	ld [hLYOverrideEnd], a
+	ldh [hLCDCPointer], a
+	ldh [hLYOverrideStart], a
+	ldh [hLYOverrideEnd], a
 .four
 	call DeinitBattleAnimation
 	ret
@@ -1211,7 +1211,7 @@ asm_cd6da: ; cd6da (33:56da)
 	ld [hl], a
 	sub $10
 	ret c
-	ld [hLYOverrideStart], a
+	ldh [hLYOverrideStart], a
 	ret
 
 BattleAnimFunction_0E: ; cd6e3 (33:56e3)
@@ -1621,7 +1621,7 @@ Functioncd913: ; cd913 (33:5913)
 	ld hl, BATTLEANIMSTRUCT_10
 	add hl, bc
 	ld e, [hl]
-	ld hl, hTransferVirtualOAM ; $ff80
+	ld hl, -$80
 	add hl, de
 	ld e, l
 	ld d, h
@@ -2120,7 +2120,7 @@ asm_cdbfa: ; cdbfa (33:5bfa)
 	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
-	ld hl, hTransferVirtualOAM ; $ff80
+	ld hl, -$80
 	add hl, de
 	ld e, l
 	ld d, h
@@ -2256,7 +2256,7 @@ BattleAnimFunction_21: ; cdcc3 (33:5cc3)
 	dw Functioncdced
 
 Functioncdcca: ; cdcca (33:5cca)
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .asm_cdcd9
 	ld hl, BATTLEANIMSTRUCT_0B
@@ -3233,7 +3233,7 @@ BattleAnimFunction_32: ; ce255 (33:6255)
 
 Functionce260: ; ce260 (33:6260)
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, .asm_ce26c
 	ld a, $f0
@@ -3286,7 +3286,7 @@ Functionce29f: ; ce29f (33:629f)
 	srl a
 	ld e, a
 	ld d, $0
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	jr nz, .asm_ce2b6
 	ld hl, Unknown_ce2c4
@@ -3364,7 +3364,7 @@ Functionce306: ; ce306 (33:6306)
 	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
-	ld hl, hTransferVirtualOAM ; $ff80
+	ld hl, -$80
 	add hl, de
 	ld e, l
 	ld d, h

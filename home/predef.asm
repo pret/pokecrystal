@@ -3,7 +3,7 @@ Predef:: ; 2d83
 ; Preserves bc, de, hl and f.
 
 	ld [wPredefID], a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	ld a, BANK(GetPredefPointer)

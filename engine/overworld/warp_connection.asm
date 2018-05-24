@@ -244,8 +244,8 @@ LoadMapTimeOfDay: ; 104750
 	ld [wBGMapAnchor + 1], a
 	xor a ; LOW(vBGMap0)
 	ld [wBGMapAnchor], a
-	ld [hSCY], a
-	ld [hSCX], a
+	ldh [hSCY], a
+	ldh [hSCX], a
 	farcall ApplyBGMapAnchorToObjects
 
 	ld a, [rVBK]
@@ -270,7 +270,7 @@ LoadMapTimeOfDay: ; 104750
 .PushAttrMap: ; 1047a3 (41:47a3)
 	decoord 0, 0
 	call .copy
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 
@@ -302,9 +302,9 @@ LoadGraphics: ; 1047cf
 	call LoadTileset
 	call LoadTilesetGFX
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	xor a
-	ld [hTileAnimFrame], a
+	ldh [hTileAnimFrame], a
 	farcall RefreshSprites
 	call LoadFontsExtra
 	farcall LoadOverworldFont

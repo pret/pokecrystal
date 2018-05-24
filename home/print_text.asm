@@ -55,7 +55,7 @@ PrintLetterDelay:: ; 313d
 	jr nz, .wait
 
 ; Wait one frame if holding A or B.
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	bit A_BUTTON_F, a
 	jr z, .checkb
 	jr .delay
@@ -74,7 +74,7 @@ PrintLetterDelay:: ; 313d
 
 .end
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	pop bc
 	pop de
 	pop hl
@@ -111,10 +111,10 @@ MobilePrintNum:: ; 31a4
 ; 31b0
 
 FarPrintText:: ; 31b0
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 	call PrintText

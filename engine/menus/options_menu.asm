@@ -18,7 +18,7 @@ _OptionsMenu: ; e41d0
 .print_text_loop ; this next will display the settings of each option when the menu is opened
 	push bc
 	xor a
-	ld [hJoyLast], a
+	ldh [hJoyLast], a
 	call GetOptionPointer
 	pop bc
 	ld hl, wJumptableIndex
@@ -30,7 +30,7 @@ _OptionsMenu: ; e41d0
 	xor a
 	ld [wJumptableIndex], a
 	inc a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call WaitBGMap
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
@@ -38,7 +38,7 @@ _OptionsMenu: ; e41d0
 
 .joypad_loop
 	call JoyTextDelay
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and START | B_BUTTON
 	jr nz, .ExitOptions
 	call OptionsControl
@@ -57,7 +57,7 @@ _OptionsMenu: ; e41d0
 	call PlaySFX
 	call WaitSFX
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 ; e4241
 
@@ -112,7 +112,7 @@ GetOptionPointer: ; e42d6
 
 Options_TextSpeed: ; e42f5
 	call GetTextSpeed
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
@@ -198,7 +198,7 @@ GetTextSpeed: ; e4346
 
 Options_BattleScene: ; e4365
 	ld hl, wOptions
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
@@ -240,7 +240,7 @@ Options_BattleScene: ; e4365
 
 Options_BattleStyle: ; e43a0
 	ld hl, wOptions
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
@@ -281,7 +281,7 @@ Options_BattleStyle: ; e43a0
 
 Options_Sound: ; e43dd
 	ld hl, wOptions
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
@@ -336,7 +336,7 @@ Options_Sound: ; e43dd
 
 Options_Print: ; e4424
 	call GetPrinterSetting
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
@@ -435,7 +435,7 @@ GetPrinterSetting: ; e4491
 
 Options_MenuAccount: ; e44c1
 	ld hl, wOptions2
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
@@ -476,7 +476,7 @@ Options_MenuAccount: ; e44c1
 
 Options_Frame: ; e44fa
 	ld hl, wTextBoxFrame
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
@@ -507,7 +507,7 @@ UpdateFrame: ; e4512
 ; e4520
 
 Options_Cancel: ; e4520
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .Exit
 	and a
@@ -520,7 +520,7 @@ Options_Cancel: ; e4520
 
 OptionsControl: ; e452a
 	ld hl, wJumptableIndex
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	cp D_DOWN
 	jr z, .DownPressed
 	cp D_UP

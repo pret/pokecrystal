@@ -1,12 +1,12 @@
 LoadPoisonBGPals: ; cbcdd
 	call .LoadPals
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret nz
 	ret ; ????
 
 .LoadPals: ; cbce5
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
 	ld a, [wTimeOfDayPal]
@@ -40,7 +40,7 @@ LoadPoisonBGPals: ; cbcdd
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ld c, 4
 	call DelayFrames
 	farcall _UpdateTimePals

@@ -486,7 +486,7 @@ In [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 ```asm
 BattleCheckTypeMatchup: ; 347c8
 	ld hl, wEnemyMonType1
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, CheckTypeMatchup
 	ld hl, wBattleMonType1

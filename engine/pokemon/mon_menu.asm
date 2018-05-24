@@ -2,7 +2,7 @@ INCLUDE "data/mon_menu.asm"
 
 MonSubmenu: ; 24d19
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call GetMonSubmenuItems
 	farcall FreezeMonIcons
 	ld hl, .MenuHeader
@@ -11,7 +11,7 @@ MonSubmenu: ; 24d19
 	call PopulateMonMenu
 
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call MonMenuLoop
 	ld [wMenuSelection], a
 
@@ -52,7 +52,7 @@ MonMenuLoop: ; 24d59
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit A_BUTTON_F, a
 	jr nz, .select
 	bit B_BUTTON_F, a
@@ -259,7 +259,7 @@ BattleMonMenu: ; 24e99
 	ld hl, MenuHeader_0x24ed4
 	call CopyMenuHeader
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
 	call PlaceVerticalMenuItems
@@ -274,7 +274,7 @@ BattleMonMenu: ; 24e99
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit B_BUTTON_F, a
 	jr z, .clear_carry
 	ret z

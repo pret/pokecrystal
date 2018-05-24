@@ -59,13 +59,13 @@ ComputeHPBarPixels: ; c699
 	jr z, .zero
 	push hl
 	xor a
-	ld [hMultiplicand + 0], a
+	ldh [hMultiplicand + 0], a
 	ld a, b
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, c
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, 6 * 8
-	ld [hMultiplier], a
+	ldh [hMultiplier], a
 	call Multiply
 	; We need de to be under 256 because hDivisor is only 1 byte.
 	ld a, d
@@ -76,22 +76,22 @@ ComputeHPBarPixels: ; c699
 	rr e
 	srl d
 	rr e
-	ld a, [hProduct + 2]
+	ldh a, [hProduct + 2]
 	ld b, a
-	ld a, [hProduct + 3]
+	ldh a, [hProduct + 3]
 	srl b
 	rr a
 	srl b
 	rr a
-	ld [hDividend + 3], a
+	ldh [hDividend + 3], a
 	ld a, b
-	ld [hDividend + 2], a
+	ldh [hDividend + 2], a
 .divide
 	ld a, e
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	ld e, a
 	pop hl
 	and a

@@ -204,10 +204,10 @@ LinkTradeMenu: ; 16d70c
 .GetJoypad: ; 16d713
 	push bc
 	push af
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_PAD
 	ld b, a
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and BUTTONS
 	or b
 	ld b, a
@@ -221,11 +221,11 @@ LinkTradeMenu: ; 16d70c
 .MenuAction: ; 16d725
 	ld hl, w2DMenuFlags2
 	res 7, [hl]
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	call .loop
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .loop
@@ -249,15 +249,15 @@ LinkTradeMenu: ; 16d70c
 ; 16d759
 
 .UpdateBGMapAndOAM: ; 16d759
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call WaitBGMap
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .loop2

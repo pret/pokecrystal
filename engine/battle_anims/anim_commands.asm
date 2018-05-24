@@ -42,10 +42,10 @@ _PlayBattleAnim: ; cc0e4
 	call BattleAnimRunScript
 
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 	call BattleAnimDelayFrame
 	call BattleAnimDelayFrame
@@ -70,8 +70,8 @@ BattleAnimRunScript: ; cc11c
 	call BattleAnimRequestPals
 
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	call BattleAnimDelayFrame
 	call BattleAnimRestoreHuds
 
@@ -148,7 +148,7 @@ BattleAnimClearHud: ; cc1a1
 	call WaitTop
 	call ClearActorHud
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call BattleAnimDelayFrame
 	call BattleAnimDelayFrame
 	call BattleAnimDelayFrame
@@ -174,7 +174,7 @@ BattleAnimRestoreHuds: ; cc1bb
 	ld [rSVBK], a
 
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call BattleAnimDelayFrame
 	call BattleAnimDelayFrame
 	call BattleAnimDelayFrame
@@ -184,7 +184,7 @@ BattleAnimRestoreHuds: ; cc1bb
 
 BattleAnimRequestPals: ; cc1e2
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 
@@ -216,7 +216,7 @@ BattleAnimDelayFrame: ; cc1fb
 
 ClearActorHud: ; cc207
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -234,18 +234,18 @@ ClearActorHud: ; cc207
 
 Unreferenced_Functioncc220: ; cc220
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, LOW(vBGMap0 tile $28)
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0 tile $28)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	call WaitBGMap2
 	ld a, $60
-	ld [hWY], a
+	ldh [hWY], a
 	xor a ; LOW(vBGMap0)
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 	ld a, HIGH(vBGMap0)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	call BattleAnimDelayFrame
 	ret
 ; cc23d
@@ -660,7 +660,7 @@ BattleAnimCmd_OBP1: ; cc465 (33:4465)
 	ret
 
 BattleAnimCmd_ResetObp0: ; cc46c (33:446c)
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ld a, $e0
 	jr z, .not_sgb
@@ -921,7 +921,7 @@ BattleAnimCmd_Transform: ; cc5dc (33:45dc)
 	ld a, [wCurPartySpecies] ; CurPartySpecies
 	push af
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -951,7 +951,7 @@ BattleAnimCmd_Transform: ; cc5dc (33:45dc)
 BattleAnimCmd_UpdateActorPic: ; cc622 (33:4622)
 
 	ld de, vTiles0 tile $00
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -989,7 +989,7 @@ GetSubstitutePic: ; cc64c
 	or b
 	jr nz, .loop
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -1068,7 +1068,7 @@ GetMinimizePic: ; cc6e7 (33:46e7)
 	or b
 	jr nz, .loop
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -1122,7 +1122,7 @@ BattleAnimCmd_DropSub: ; cc750 (33:4750)
 
 	ld a, [wCurPartySpecies] ; CurPartySpecies
 	push af
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -1150,7 +1150,7 @@ BattleAnimCmd_BeatUp: ; cc776 (33:4776)
 	ld a, [wBattleAnimParam]
 	ld [wCurPartySpecies], a ; CurPartySpecies
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 
@@ -1177,12 +1177,12 @@ BattleAnimCmd_BeatUp: ; cc776 (33:4776)
 
 BattleAnimCmd_OAMOn: ; cc7bb (33:47bb)
 	xor a
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
 
 BattleAnimCmd_OAMOff: ; cc7bf (33:47bf)
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
 
 BattleAnimCmd_ClearSprites: ; cc7c4 (33:47c4)
@@ -1229,7 +1229,7 @@ BattleAnimCmd_Sound: ; cc7cd (33:47cd)
 ; cc7fc
 
 .GetCryTrack: ; cc7fc (33:47fc)
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy
 
@@ -1256,7 +1256,7 @@ endr
 	ld a, BANK(wEnemyMon) ; wBattleMon is in WRAM0, but EnemyMon is in WRAMX
 	ld [rSVBK], a
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy
 
@@ -1353,10 +1353,10 @@ PlayHitSound: ; cc881
 ; cc8a4
 
 BattleAnimAssignPals: ; cc8a4
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ld a, %11100000
 	jr z, .sgb
@@ -1415,17 +1415,17 @@ BattleAnim_RevertPals: ; cc8f6
 	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	xor a
-	ld [hSCX], a
-	ld [hSCY], a
+	ldh [hSCX], a
+	ldh [hSCY], a
 	call BattleAnimDelayFrame
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; cc91a
 
 BattleAnim_SetBGPals: ; cc91a
 	ld [rBGP], a
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 	ld a, [rSVBK]
@@ -1447,13 +1447,13 @@ BattleAnim_SetBGPals: ; cc91a
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; cc94b
 
 BattleAnim_SetOBPals: ; cc94b
 	ld [rOBP0], a
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 	ld a, [rSVBK]
@@ -1469,7 +1469,7 @@ BattleAnim_SetOBPals: ; cc94b
 	pop af
 	ld [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 ; cc96e
 

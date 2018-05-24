@@ -47,7 +47,7 @@ EvolutionAnimation: ; 4e5e1
 	ld [wLowHealthAlarm], a
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, [wEvolutionOldSpecies]
 	ld [wPlayerHPPal], a
 
@@ -75,7 +75,7 @@ EvolutionAnimation: ; 4e5e1
 	ld [wCurSpecies], a
 
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call .check_statused
 	jr c, .skip_cry
 
@@ -212,7 +212,7 @@ EvolutionAnimation: ; 4e5e1
 .ReplaceFrontpic: ; 4e755
 	push bc
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 7, 2
 	lb bc, 7, 7
 	ld de, SCREEN_WIDTH - 7
@@ -229,7 +229,7 @@ EvolutionAnimation: ; 4e5e1
 	dec b
 	jr nz, .loop1
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call WaitBGMap
 	pop bc
 	ret
@@ -239,7 +239,7 @@ EvolutionAnimation: ; 4e5e1
 	call DelayFrame
 	push bc
 	call JoyTextDelay
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	pop bc
 	and B_BUTTON
 	jr nz, .pressed_b
@@ -339,7 +339,7 @@ EvolutionAnimation: ; 4e5e1
 	push bc
 	callfar PlaySpriteAnimations
 	; a = (([hVBlankCounter] + 4) / 2) % NUM_PALETTES
-	ld a, [hVBlankCounter]
+	ldh a, [hVBlankCounter]
 	and %1110
 	srl a
 	inc a

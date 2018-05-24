@@ -24,7 +24,7 @@ GetBattleVarAddr:: ; 39e7
 
 ; Enemy turn uses the second byte instead.
 ; This lets battle variable calls be side-neutral.
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .getvar
 	inc hl

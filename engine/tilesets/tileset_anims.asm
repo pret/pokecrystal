@@ -9,10 +9,10 @@ _AnimateTileset:: ; fc000
 	ld a, [wTilesetAnim + 1]
 	ld d, a
 
-	ld a, [hTileAnimFrame]
+	ldh a, [hTileAnimFrame]
 	ld l, a
 	inc a
-	ld [hTileAnimFrame], a
+	ldh [hTileAnimFrame], a
 
 	ld h, 0
 	add hl, hl
@@ -293,7 +293,7 @@ TilesetAerodactylWordRoomAnim: ; 0xfc2e7
 DoneTileAnimation: ; fc2fb
 ; Reset the animation command loop.
 	xor a
-	ld [hTileAnimFrame], a
+	ldh [hTileAnimFrame], a
 
 WaitTileAnimation: ; fc2fe
 ; Do nothing this frame.
@@ -680,7 +680,7 @@ AnimateFlowerTile: ; fc56d
 	ld e, a
 
 ; CGB has different color mappings for flowers.
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and 1
 
 	add e
@@ -919,7 +919,7 @@ TileAnimationPalette: ; fc6d7
 ; Transition between color values 0-2 for color 0 in palette 3.
 
 ; No palette changes on DMG.
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 
@@ -983,7 +983,7 @@ TileAnimationPalette: ; fc6d7
 
 FlickeringCaveEntrancePalette: ; fc71e
 ; No palette changes on DMG.
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 ; We don't want to mess with non-standard palettes.
@@ -1002,7 +1002,7 @@ FlickeringCaveEntrancePalette: ; fc71e
 ; Ready for BGPD input...
 	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_YELLOW
 	ld [rBGPI], a
-	ld a, [hVBlankCounter]
+	ldh a, [hVBlankCounter]
 	and %10
 	jr nz, .bit1set
 	ld hl, wBGPals1 palette PAL_BG_YELLOW

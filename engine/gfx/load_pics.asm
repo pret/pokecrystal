@@ -32,18 +32,18 @@ GetUnownLetter: ; 51040
 	or b
 
 ; Divide by 10 to get 0-25
-	ld [hDividend + 3], a
+	ldh [hDividend + 3], a
 	xor a
-	ld [hDividend], a
-	ld [hDividend + 1], a
-	ld [hDividend + 2], a
+	ldh [hDividend], a
+	ldh [hDividend + 1], a
+	ldh [hDividend + 2], a
 	ld a, $ff / NUM_UNOWN + 1
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
 
 ; Increment to get 1-26
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	inc a
 	ld [wUnownLetter], a
 	ret
@@ -68,7 +68,7 @@ GetAnimatedFrontpic: ; 5108b
 	ld a, [rSVBK]
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call _GetFrontpic
 	call GetAnimatedEnemyFrontpic
 	pop af
@@ -96,7 +96,7 @@ _GetFrontpic: ; 510a5
 	push hl
 	ld de, wDecompressScratch
 	ld c, 7 * 7
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	pop hl
@@ -135,7 +135,7 @@ GetAnimatedEnemyFrontpic: ; 51103
 	push hl
 	ld de, wDecompressScratch
 	ld c, 7 * 7
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	pop hl
@@ -165,7 +165,7 @@ GetAnimatedEnemyFrontpic: ; 51103
 	pop bc
 	pop hl
 	ld de, wDecompressScratch
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	xor a
@@ -237,7 +237,7 @@ GetMonBackpic: ; 5116c
 	call FixBackpicAlignment
 	pop hl
 	ld de, wDecompressScratch
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	pop af
@@ -315,7 +315,7 @@ GetTrainerPic: ; 5120d
 	ret nc
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld hl, TrainerPicPointers
 	ld a, [wTrainerClass]
 	dec a
@@ -339,14 +339,14 @@ GetTrainerPic: ; 5120d
 	pop hl
 	ld de, wDecompressScratch
 	ld c, 7 * 7
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	pop af
 	ld [rSVBK], a
 	call WaitBGMap
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 DecompressGet2bpp: ; 5125d
@@ -365,7 +365,7 @@ DecompressGet2bpp: ; 5125d
 	pop bc
 	ld de, wDecompressScratch
 	pop hl
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
 

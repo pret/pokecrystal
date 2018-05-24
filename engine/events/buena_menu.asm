@@ -43,16 +43,16 @@ AskRememberPassword: ; 4ae12
 	ret
 
 Buena_ExitMenu: ; 4ae5e
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	call ExitMenu
 	call UpdateSprites
 	xor a
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call DelayFrame
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call ApplyTilemap
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret

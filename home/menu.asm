@@ -10,7 +10,7 @@ CopyMenuHeader::
 	ld de, wMenuHeader
 	ld bc, wMenuHeaderEnd - wMenuHeader
 	call CopyBytes
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld [wMenuDataBank], a
 	ret
 ; 0x1d4b
@@ -71,7 +71,7 @@ Call_ExitMenu:: ; 1d7d
 
 VerticalMenu::
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
 	call PlaceVerticalMenuItems
@@ -251,17 +251,17 @@ DrawVariableLengthMenuBox::
 
 MenuWriteText::
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call GetMenuIndexSet ; sort out the text
 	call RunMenuItemPrintingFunction ; actually write it
 	call SafeUpdateSprites
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call ApplyTilemap
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
 ; 0x1ea6
 
@@ -548,10 +548,10 @@ MenuTextBoxWaitButton:: ; 2012
 ; 201c
 
 Place2DMenuItemName:: ; 201c
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 	call PlaceString
@@ -562,7 +562,7 @@ Place2DMenuItemName:: ; 201c
 ; 202a
 
 _2DMenu:: ; 202a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _2DMenu_
 	ld a, [wMenuCursorBuffer]
@@ -570,7 +570,7 @@ _2DMenu:: ; 202a
 ; 2039
 
 InterpretBattleMenu:: ; 2039
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _InterpretBattleMenu
 	ld a, [wMenuCursorBuffer]
@@ -578,7 +578,7 @@ InterpretBattleMenu:: ; 2039
 ; 2048
 
 InterpretMobileMenu:: ; 2048
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld [wMenuData_2DMenuItemStringsBank], a
 	farcall _InterpretMobileMenu
 	ld a, [wMenuCursorBuffer]

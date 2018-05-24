@@ -1,131 +1,146 @@
-; HRAM uses constants instead of labels so that
-; "ld a, [hAddress]" and "ld [hAddress], a" will
-; use the more efficient "ldh" instruction.
+INCLUDE "constants.asm"
 
-hTransferVirtualOAM           EQU $ff80 ; 10 bytes
+SECTION "HRAM", HRAM
 
-hROMBankBackup     EQU $ff8a
-hBuffer            EQU $ff8b
-hFF8C              EQU $ff8c
-hRTCDayHi          EQU $ff8d
-hRTCDayLo          EQU $ff8e
-hRTCHours          EQU $ff8f
-hRTCMinutes        EQU $ff90
-hRTCSeconds        EQU $ff91
+hTransferVirtualOAM:: ds 10 ; FF80
 
-hHours             EQU $ff94
+hROMBankBackup:: ds 1 ; FF8A
+hBuffer:: ds 1
+hFF8C:: ds 1
 
-hMinutes           EQU $ff96
+hRTCDayHi:: ds 1
+hRTCDayLo:: ds 1
+hRTCHours:: ds 1
+hRTCMinutes:: ds 1 ; FF90
+hRTCSeconds:: ds 1
+	ds 2
 
-hSeconds           EQU $ff98
+hHours:: ds 1
+	ds 1
+hMinutes:: ds 1
+	ds 1
+hSeconds:: ds 1
+	ds 1
+	ds 1
 
-hVBlankCounter     EQU $ff9b
+hVBlankCounter:: ds 1
+	ds 1
+hROMBank:: ds 1
+hVBlank:: ds 1
+hMapEntryMethod:: ds 1
+hMenuReturn:: ds 2 ; FFA0
 
-hROMBank           EQU $ff9d
-hVBlank            EQU $ff9e
-hMapEntryMethod    EQU $ff9f
-hMenuReturn        EQU $ffa0
+hJoypadReleased:: ds 1
+hJoypadPressed:: ds 1
+hJoypadDown:: ds 1
+hJoypadSum:: ds 1
+hJoyReleased:: ds 1
+hJoyPressed:: ds 1
+hJoyDown:: ds 1
+hJoyLast:: ds 1
+hInMenu:: ds 1
+	ds 1
+hPrinter:: ds 1
+hGraphicStartTile:: ds 1
+hMoveMon:: ds 1
 
-hJoypadReleased    EQU $ffa2
-hJoypadPressed     EQU $ffa3
-hJoypadDown        EQU $ffa4
-hJoypadSum         EQU $ffa5
-hJoyReleased       EQU $ffa6
-hJoyPressed        EQU $ffa7
-hJoyDown           EQU $ffa8
-hJoyLast           EQU $ffa9
-hInMenu            EQU $ffaa
+UNION
+hMapObjectIndexBuffer:: ds 1
+hObjectStructIndexBuffer:: ds 1
+NEXTU
+hConnectionStripLength:: ds 1
+hConnectedMapWidth:: ds 1
+ENDU
 
-hPrinter           EQU $ffac
-hGraphicStartTile  EQU $ffad
-hMoveMon           EQU $ffae
+hStringCmpString1:: ds 2
+UNION
+hPastLeadingZeroes:: ds 2
+hStringCmpString2:: ds 2
+NEXTU
+UNION
+hDividend:: ds 4
+hDivisor:: ds 1
+NEXTU
+	ds 1
+hQuotient:: ds 3
+hRemainder:: ds 1
+NEXTU
+	ds 1
+hMultiplicand:: ds 3
+hMultiplier:: ds 1
+NEXTU
+hProduct:: ds 4
+ENDU
+hMathBuffer:: ds 5
+NEXTU
+hPrintNum1:: ds 1
+hPrintNum2:: ds 1
+hPrintNum3:: ds 1
+hPrintNum4:: ds 1
+hPrintNum5:: ds 1
+hPrintNum6:: ds 1
+hPrintNum7:: ds 1
+hPrintNum8:: ds 1
+hPrintNum9:: ds 1
+hMGStatusFlags::
+hPrintNum10:: ds 1
+ENDU
 
-hMapObjectIndexBuffer    EQU $ffaf
-hObjectStructIndexBuffer EQU $ffb0
+hUsedSpriteIndex:: ds 1 ; $ffbd
+hUsedSpriteTile:: ds 1 ; $ffbe
+hFFBF:: ds 1 ; $ffbf
+hFFC0:: ds 1 ; $ffc0
+hFFC1:: ds 1 ; $ffc1
+hFFC2:: ds 1 ; $ffc2
 
-hConnectionStripLength EQU $ffaf
-hConnectedMapWidth EQU $ffb0
+UNION
+hMoneyTemp:: ds 3 ; $ffc3
+NEXTU
+hMGJoypadPressed:: ds 1 ; $ffc3
+hMGJoypadReleased:: ds 1 ; $ffc4
+ENDU
 
-hPastLeadingZeroes EQU $ffb3
+hLCDCPointer:: ds 1 ; $ffc6
+hLYOverrideStart:: ds 1 ; $ffc7
+hLYOverrideEnd:: ds 1 ; $ffc8
 
-hStringCmpString1  EQU $ffb1
-hStringCmpString2  EQU $ffb5
+hMobileReceive:: ds 1 ; $ffc9
+hSerialReceivedNewData:: ds 1 ; $ffca
+hSerialConnectionStatus:: ds 1 ; $ffcb
+hSerialIgnoringInitialData:: ds 1 ; $ffcc
+hSerialSend:: ds 1 ; $ffcd
+hSerialReceive:: ds 1 ; $ffce
 
-hDividend          EQU $ffb3 ; length in b register, before 'call Divide' (max 4 bytes)
-hDivisor           EQU $ffb7 ; 1 byte long
-hQuotient          EQU $ffb4 ; result (3 bytes long)
-hRemainder         EQU $ffb7
+hSCX:: ds 1 ; $ffcf
+hSCY:: ds 1 ; $ffd0
+hWX:: ds 1 ; $ffd1
+hWY:: ds 1 ; $ffd2
+hTilesPerCycle:: ds 1 ; $ffd3
+hBGMapMode:: ds 1 ; $ffd4
+hBGMapThird:: ds 1 ; $ffd5
+hBGMapAddress:: ds 2 ; $ffd6
 
-hMultiplicand      EQU $ffb4 ; 3 bytes long
-hMultiplier        EQU $ffb7 ; 1 byte long
-hProduct           EQU $ffb3 ; result (4 bytes long)
+hOAMUpdate:: ds 1 ; $ffd8
+hSPBuffer:: ds 2 ; $ffd9
 
-hMathBuffer        EQU $ffb8
+hBGMapUpdate:: ds 1 ; $ffdb
+hBGMapTileCount:: ds 1 ; $ffdc
+	ds 1
+hMapAnims:: ds 1 ; $ffde
+hTileAnimFrame:: ds 1 ; $ffdf
 
-hPrintNum1         EQU $ffb3
-hPrintNum2         EQU $ffb4
-hPrintNum3         EQU $ffb5
-hPrintNum4         EQU $ffb6
-hPrintNum5         EQU $ffb7
-hPrintNum6         EQU $ffb8
-hPrintNum7         EQU $ffb9
-hPrintNum8         EQU $ffba
-hPrintNum9         EQU $ffbb
-hPrintNum10        EQU $ffbc
+hLastTalked:: ds 1 ; $ffe0
 
-hMGStatusFlags     EQU $ffbc
+hRandom::
+hRandomAdd:: ds 1 ; $ffe1
+hRandomSub:: ds 1 ; $ffe2
 
-hUsedSpriteIndex   EQU $ffbd
-hUsedSpriteTile    EQU $ffbe
-hFFBF              EQU $ffbf
-hFFC0              EQU $ffc0
-hFFC1              EQU $ffc1
-hFFC2              EQU $ffc2
-hMoneyTemp         EQU $ffc3
-
-hMGJoypadPressed   EQU $ffc3
-hMGJoypadReleased  EQU $ffc4
-
-hLCDCPointer       EQU $ffc6
-hLYOverrideStart   EQU $ffc7
-hLYOverrideEnd     EQU $ffc8
-
-hMobileReceive             EQU $ffc9
-hSerialReceivedNewData     EQU $ffca
-hSerialConnectionStatus    EQU $ffcb
-hSerialIgnoringInitialData EQU $ffcc
-hSerialSend                EQU $ffcd
-hSerialReceive             EQU $ffce
-
-hSCX               EQU $ffcf
-hSCY               EQU $ffd0
-hWX                EQU $ffd1
-hWY                EQU $ffd2
-hTilesPerCycle     EQU $ffd3
-hBGMapMode         EQU $ffd4
-hBGMapThird        EQU $ffd5
-hBGMapAddress      EQU $ffd6
-
-hOAMUpdate         EQU $ffd8
-hSPBuffer          EQU $ffd9
-
-hBGMapUpdate       EQU $ffdb
-hBGMapTileCount    EQU $ffdc
-
-hMapAnims          EQU $ffde
-hTileAnimFrame     EQU $ffdf
-
-hLastTalked        EQU $ffe0
-
-hRandom            EQU $ffe1
-hRandomAdd         EQU $ffe1
-hRandomSub         EQU $ffe2
-hSecondsBackup     EQU $ffe3
-hBattleTurn        EQU $ffe4 ; Which trainers turn is it? 0: Player, 1: Opponent Trainer
-hCGBPalUpdate      EQU $ffe5
-hCGB               EQU $ffe6
-hSGB               EQU $ffe7
-hDMATransfer       EQU $ffe8
-hMobile            EQU $ffe9
-hSystemBooted      EQU $ffea
-hClockResetTrigger EQU $ffeb
+hSecondsBackup:: ds 1 ; $ffe3
+hBattleTurn:: ds 1 ; $ffe4 ; Which trainers turn is it? 0: Player, 1: Opponent Trainer
+hCGBPalUpdate:: ds 1 ; $ffe5
+hCGB:: ds 1 ; $ffe6
+hSGB:: ds 1 ; $ffe7
+hDMATransfer:: ds 1 ; $ffe8
+hMobile:: ds 1 ; $ffe9
+hSystemBooted:: ds 1 ; $ffea
+hClockResetTrigger:: ds 1 ; $ffeb

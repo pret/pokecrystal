@@ -63,7 +63,7 @@ Unreferenced_Function2ebb:: ; 2ebb
 	bit 1, a
 	ret z
 
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	bit B_BUTTON_F, a
 	ret
 ; 2ec6
@@ -157,7 +157,7 @@ INCLUDE "home/math.asm"
 INCLUDE "home/print_text.asm"
 
 CallPointerAt:: ; 31be
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, [hli]
 	rst Bankswitch
@@ -176,7 +176,7 @@ CallPointerAt:: ; 31be
 
 QueueScript:: ; 31cd
 ; Push pointer hl in the current bank to wQueuedScriptBank.
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 
 FarQueueScript:: ; 31cf
 ; Push pointer a:hl to wQueuedScriptBank.

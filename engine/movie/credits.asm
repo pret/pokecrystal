@@ -69,18 +69,18 @@ Credits:: ; 109847
 	call ByteFill
 
 	ld a, rSCX - $ff00
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 
 	call GetCreditsPalette
 	call SetPalettes
-	ld a, [hVBlank]
+	ldh a, [hVBlank]
 	push af
 	ld a, $5
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld [wCreditsPos], a
 	ld [wCreditsUnusedCD21], a
 	ld [wCreditsTimer], a
@@ -97,17 +97,17 @@ Credits:: ; 109847
 .exit_credits
 	call ClearBGPalettes
 	xor a
-	ld [hLCDCPointer], a
-	ld [hBGMapAddress], a
+	ldh [hLCDCPointer], a
+	ldh [hBGMapAddress], a
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	pop af
 	ld [rSVBK], a
 	ret
 ; 1098fd
 
 Credits_HandleAButton: ; 1098fd
-	ld a, [hJoypadDown]
+	ldh a, [hJoypadDown]
 	and A_BUTTON
 	ret z
 	ld a, [wJumptableIndex]
@@ -116,7 +116,7 @@ Credits_HandleAButton: ; 1098fd
 ; 109908
 
 Credits_HandleBButton: ; 109908
-	ld a, [hJoypadDown]
+	ldh a, [hJoypadDown]
 	and B_BUTTON
 	ret z
 	ld a, [wJumptableIndex]
@@ -181,7 +181,7 @@ Credits_LoopBack: ; 109956 (42:5956)
 
 Credits_PrepBGMapUpdate: ; 10995e (42:595e)
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	jp Credits_Next
 
 Credits_UpdateGFXRequestPath: ; 109964 (42:5964)
@@ -198,7 +198,7 @@ Credits_UpdateGFXRequestPath: ; 109964 (42:5964)
 
 Credits_RequestGFX: ; 10997b (42:597b)
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $8
 	ld [wRequested2bpp], a
 	jp Credits_Next
@@ -246,7 +246,7 @@ ParseCredits: ; 1099aa
 ; First, let's clear the current text display,
 ; starting from line 5.
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 5
 	ld bc, 20 * 12
 	ld a, " "
@@ -358,9 +358,9 @@ ParseCredits: ; 1099aa
 	ld [wCreditsTimer], a
 
 	xor a
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 .done
 	jp Credits_Next
@@ -402,9 +402,9 @@ ParseCredits: ; 1099aa
 
 ConstructCreditsTilemap: ; 109a95 (42:5a95)
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $c
-	ld [hBGMapAddress], a
+	ldh [hBGMapAddress], a
 
 	ld a, $28
 	hlcoord 0, 0
@@ -446,8 +446,8 @@ ConstructCreditsTilemap: ; 109a95 (42:5a95)
 
 	call WaitBGMap2
 	xor a
-	ld [hBGMapMode], a
-	ld [hBGMapAddress], a
+	ldh [hBGMapMode], a
+	ldh [hBGMapAddress], a
 	hlcoord 0, 0
 	call .InitTopPortion
 	call WaitBGMap2

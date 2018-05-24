@@ -131,13 +131,13 @@ EnterMap: ; 9673e
 	farcall RunMapSetupScript
 	call DisableEvents
 
-	ld a, [hMapEntryMethod]
+	ldh a, [hMapEntryMethod]
 	cp MAPSETUP_CONNECTION
 	jr nz, .dont_enable
 	call EnableEvents
 .dont_enable
 
-	ld a, [hMapEntryMethod]
+	ldh a, [hMapEntryMethod]
 	cp MAPSETUP_RELOADMAP
 	jr nz, .dontresetpoison
 	xor a
@@ -145,7 +145,7 @@ EnterMap: ; 9673e
 .dontresetpoison
 
 	xor a ; end map entry
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	ld a, 2 ; HandleMap
 	ld [wMapStatus], a
 	ret
@@ -555,7 +555,7 @@ OWPlayerInput: ; 96974
 ; 96999
 
 CheckAPressOW: ; 96999
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	ret z
 	call TryObjectEvent
@@ -584,14 +584,14 @@ TryObjectEvent: ; 969b5
 
 .IsObject:
 	call PlayTalkObject
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
-	ld [hLastTalked], a
+	ldh [hLastTalked], a
 
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 	call GetMapObject
 	ld hl, MAPOBJECT_COLOR
 	add hl, bc
@@ -872,9 +872,9 @@ PlayerMovement: ; 96af0
 
 CheckMenuOW: ; 96b30
 	xor a
-	ld [hMenuReturn], a
-	ld [hMenuReturn + 1], a
-	ld a, [hJoyPressed]
+	ldh [hMenuReturn], a
+	ldh [hMenuReturn + 1], a
+	ldh a, [hJoyPressed]
 
 	bit SELECT_F, a
 	jr nz, .Select

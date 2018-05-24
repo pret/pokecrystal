@@ -7,7 +7,7 @@ UpdatePalsIfCGB:: ; c2f
 ; return carry if successful
 
 ; check cgb
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 
@@ -15,7 +15,7 @@ UpdatePalsIfCGB:: ; c2f
 UpdateCGBPals:: ; c33
 ; return carry if successful
 ; any pals to update?
-	ld a, [hCGBPalUpdate]
+	ldh a, [hCGBPalUpdate]
 	and a
 	ret z
 
@@ -64,7 +64,7 @@ endr
 
 ; clear pal update queue
 	xor a
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 	scf
 	ret
@@ -80,7 +80,7 @@ DmgToCgbBGPals:: ; c9f
 	push af
 
 ; Don't need to be here if DMG
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .end
 
@@ -104,7 +104,7 @@ DmgToCgbBGPals:: ; c9f
 	call CopyPals
 ; request pal update
 	ld a, 1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 	pop af
 	ld [rSVBK], a
@@ -128,7 +128,7 @@ DmgToCgbObjPals:: ; ccb
 	ld a, d
 	ld [rOBP1], a
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 
@@ -152,7 +152,7 @@ DmgToCgbObjPals:: ; ccb
 	call CopyPals
 ; request pal update
 	ld a, 1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 	pop af
 	ld [rSVBK], a
@@ -168,7 +168,7 @@ DmgToCgbObjPal0:: ; cf8
 	push af
 
 ; Don't need to be here if not CGB
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 
@@ -188,7 +188,7 @@ DmgToCgbObjPal0:: ; cf8
 	ld c, 1
 	call CopyPals
 	ld a, 1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 	pop af
 	ld [rSVBK], a
@@ -206,7 +206,7 @@ DmgToCgbObjPal1:: ; d24
 	ld [rOBP1], a
 	push af
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 
@@ -226,7 +226,7 @@ DmgToCgbObjPal1:: ; d24
 	ld c, 1
 	call CopyPals
 	ld a, 1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 	pop af
 	ld [rSVBK], a
@@ -297,7 +297,7 @@ endr
 
 
 ClearVBank1:: ; d79
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 
@@ -321,7 +321,7 @@ ret_d90:: ; d90
 
 
 ReloadSpritesNoPalettes:: ; d91
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 	ld a, [rSVBK]
@@ -335,7 +335,7 @@ ReloadSpritesNoPalettes:: ; d91
 	pop af
 	ld [rSVBK], a
 	ld a, 1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret
 ; db1

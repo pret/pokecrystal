@@ -156,7 +156,7 @@ MainMenu_GetWhichMenu: ; 49da4
 	ret
 
 .next
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	cp $1
 	ld a, $1
 	ret nz
@@ -225,7 +225,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	and a
 	ret z
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call .PlaceBox
 	ld hl, wOptions
 	ld a, [hl]
@@ -235,7 +235,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	pop af
 	ld [wOptions], a
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 ; 49e27
 
@@ -269,7 +269,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 	decoord 1, 15
 	call .PlaceCurrentDay
 	decoord 4, 16
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld c, a
 	farcall PrintHour
 	ld [hl], ":"
@@ -331,7 +331,7 @@ MainMenu_PrintCurrentTimeAndDay: ; 49e09
 
 Function49ed0: ; 49ed0
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call ClearTileMap
 	call LoadFontsExtra
 	call LoadStandardFont

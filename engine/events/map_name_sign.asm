@@ -2,7 +2,7 @@ MAP_NAME_SIGN_START EQU $60
 
 ReturnFromMapSetupScript:: ; b8000
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall .inefficient_farcall ; this is a waste of 6 ROM bytes and 6 stack bytes
 	ret
 ; b800a
@@ -53,9 +53,9 @@ ReturnFromMapSetupScript:: ; b8000
 	ld [wPreviousLandmark], a
 	ld a, $90
 	ld [rWY], a
-	ld [hWY], a
+	ldh [hWY], a
 	xor a
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 	ret
 ; b8064
 
@@ -119,15 +119,15 @@ PlaceMapNameSign:: ; b8098 (2e:4098)
 	ld a, $80
 	ld a, $70
 	ld [rWY], a
-	ld [hWY], a
+	ldh [hWY], a
 	ret
 
 .disappear
 	ld a, $90
 	ld [rWY], a
-	ld [hWY], a
+	ldh [hWY], a
 	xor a
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 	ret
 
 

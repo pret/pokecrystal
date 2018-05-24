@@ -344,10 +344,10 @@ FindStackTop: ; 14c90
 SavingDontTurnOffThePower: ; 14c99
 	; Prevent joypad interrupts
 	xor a
-	ld [hJoypadReleased], a
-	ld [hJoypadPressed], a
-	ld [hJoypadSum], a
-	ld [hJoypadDown], a
+	ldh [hJoypadReleased], a
+	ldh [hJoypadPressed], a
+	ldh [hJoypadSum], a
+	ldh [hJoypadDown], a
 	; Save the text speed setting to the stack
 	ld a, [wOptions]
 	push af

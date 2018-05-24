@@ -3,25 +3,25 @@ BattleCommand_FrustrationPower: ; 3790e
 
 	push bc
 	ld hl, wBattleMonHappiness
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_happiness
 	ld hl, wEnemyMonHappiness
 .got_happiness
 	ld a, $ff
 	sub [hl]
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 	xor a
-	ld [hMultiplicand + 0], a
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
 	ld a, 10
-	ld [hMultiplier], a
+	ldh [hMultiplier], a
 	call Multiply
 	ld a, 25
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	ld d, a
 	pop bc
 	ret

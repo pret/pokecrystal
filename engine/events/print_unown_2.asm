@@ -37,7 +37,7 @@ RotateUnownFrontpic: ; e0000
 	pop hl
 	ld de, sScratch
 	ld c, 7 * 7
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	call CloseSRAM
