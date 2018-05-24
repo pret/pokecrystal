@@ -93,7 +93,7 @@ Function437b: ; 437b
 .ok2
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit 1, [hl]
+	bit WONT_DELETE_F, [hl]
 	jr nz, .yes2
 	call DeleteMapObject
 	scf
@@ -3063,7 +3063,7 @@ InitSprites: ; 5991
 	ld e, [hl]
 	inc hl
 	ld a, [hFFC1]
-	bit 2, e
+	bit ABSOLUTE_TILE_ID_F, e
 	jr z, .nope1
 	xor a
 .nope1
@@ -3072,7 +3072,7 @@ InitSprites: ; 5991
 	ld [bc], a ; tile id
 	inc c
 	ld a, e
-	bit 1, a
+	bit RELATIVE_ATTRIBUTES_F, a
 	jr z, .nope2
 	ld a, [hFFC2]
 	or e

@@ -1194,11 +1194,11 @@ In [engine/overworld/npc_movement.asm](/engine/overworld/npc_movement.asm):
 ```asm
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit 4, [hl] ; lost, uncomment next line to fix
-;	jr nz, .resume
+	bit NOCLIP_TILES_F, [hl] ; lost, uncomment next line to fix
+	; jr nz, .noclip_tiles
 ```
 
-**Fix:** Uncomment `jr nz, .resume`.
+**Fix:** Uncomment `jr nz, .noclip_tiles`.
 
 
 ## `CheckOwnMon` only checks the first five letters of OT names
