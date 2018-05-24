@@ -44,7 +44,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
 - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
 - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
-- [`Function6ec1` does not correctly limit object movement](#function6ec1-does-not-correctly-limit-object-movement)
+- [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
 - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
 - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
@@ -1185,11 +1185,11 @@ In [home/map.asm](/home/map.asm):
 *To do:* Identify specific code causing this bug and fix it.
 
 
-## `Function6ec1` does not correctly limit object movement
+## Swimming NPCs aren't limited by their movement radius
 
 This bug is why the Lapras in [maps/UnionCaveB2F.asm](/maps/UnionCaveB2F.asm), which uses `SPRITEMOVEDATA_SWIM_WANDER`, is not restricted by its `1, 1` movement radius.
 
-In [engine/overworld/npc_movement.asm](/engine/overworld/npc_movement.asm):
+This is a bug with `CanObjectMoveInDirection` in [engine/overworld/npc_movement.asm](/engine/overworld/npc_movement.asm):
 
 ```asm
 	ld hl, OBJECT_FLAGS1

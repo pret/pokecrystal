@@ -696,7 +696,7 @@ MapObjectMovementPattern: ; 47dd
 	and %00000011
 	or 0
 	call InitStep
-	call Function6ec1
+	call CanObjectMoveInDirection
 	jr c, .ok2
 	ld de, SFX_STRENGTH
 	call PlaySFX
@@ -1049,7 +1049,7 @@ MapObjectMovementPattern: ; 47dd
 
 .RandomWalkContinue:
 	call InitStep
-	call Function6ec1 ; check whether the object can move in that direction
+	call CanObjectMoveInDirection ; check whether the object can move in that direction
 	jr c, .NewDuration
 	call UpdateTallGrassFlags
 	ld hl, OBJECT_ACTION

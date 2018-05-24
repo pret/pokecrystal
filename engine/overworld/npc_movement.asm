@@ -1,4 +1,4 @@
-Function6ec1: ; 6ec1
+CanObjectMoveInDirection: ; 6ec1
 
 	ld hl, OBJECT_PALETTE
 	add hl, bc
