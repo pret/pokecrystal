@@ -2973,35 +2973,35 @@ InitSprites: ; 5991
 	ld hl, OBJECT_SPRITE_TILE
 	add hl, bc
 	ld a, [hl]
-	and %01111111
+	and $ff ^ (1 << 7)
 	ld [hFFC1], a
 	xor a
 	bit 7, [hl]
 	jr nz, .skip1
-	or %00001000
+	or VRAM_BANK_1
 .skip1
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld e, [hl]
 	bit 7, e
 	jr z, .skip2
-	or %10000000
+	or PRIORITY
 .skip2
-	bit 4, e
+	bit USE_OBP1_F, e
 	jr z, .skip3
-	or %00010000
+	or OBP_NUM
 .skip3
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld d, a
 	ld a, [hl]
-	and %00000111
+	and PALETTE_MASK
 	or d
 	ld d, a
 	xor a
-	bit 3, e
+	bit OVERHEAD_F, e
 	jr z, .skip4
-	or %10000000
+	or PRIORITY
 .skip4
 	ld [hFFC2], a
 	ld hl, OBJECT_SPRITE_X

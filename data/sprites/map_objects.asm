@@ -198,7 +198,7 @@ SpriteMovementData:: ; 4273
 	db DOWN ; facing
 	db OBJECT_ACTION_STAND ; action
 	db 1 << 1 | FIXED_FACING | SLIDING | 1 << 5 ; flags1
-	db 1 << 4 ; flags2
+	db USE_OBP1 ; flags2
 	db 0 ; palette flags
 
 ; SPRITEMOVEDATA_STRENGTH_BOULDER
