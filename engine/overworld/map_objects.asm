@@ -2574,7 +2574,7 @@ ContinueSpawnFacing: ; 57db
 
 _SetPlayerPalette: ; 57e2
 	ld a, d
-	and %10000000
+	and 1 << 7
 	ret z
 	ld bc, 0 ; debug?
 	ld hl, OBJECT_FACING
@@ -2584,13 +2584,13 @@ _SetPlayerPalette: ; 57e2
 	ld [hl], a
 	ld a, d
 	swap a
-	and %00000111
+	and PALETTE_MASK
 	ld d, a
 	ld bc, wPlayerStruct
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	and %11111000
+	and $ff ^ PALETTE_MASK
 	or d
 	ld [hl], a
 	ret
