@@ -20,7 +20,6 @@ INCLUDE "data/trainers/pic_pointers.asm"
 
 
 SECTION "Pics 1", ROMX
-Pics_1::
 
 HoOhFrontpic:        INCBIN "gfx/pokemon/ho_oh/front.animated.2bpp.lz"
 MachampFrontpic:     INCBIN "gfx/pokemon/machamp/front.animated.2bpp.lz"

@@ -252,7 +252,7 @@ GLOBAL PICS_FIX
 
 	push hl
 	push bc
-	sub BANK(Pics_1) - PICS_FIX
+	sub BANK("Pics 1") - PICS_FIX
 	ld c, a
 	ld b, 0
 	ld hl, .PicsBanks
@@ -263,30 +263,30 @@ GLOBAL PICS_FIX
 	ret
 
 .PicsBanks: ; 511d4
-	db BANK(Pics_1) + 0
-	db BANK(Pics_1) + 1
-	db BANK(Pics_1) + 2
-	db BANK(Pics_1) + 3
-	db BANK(Pics_1) + 4
-	db BANK(Pics_1) + 5
-	db BANK(Pics_1) + 6
-	db BANK(Pics_1) + 7
-	db BANK(Pics_1) + 8
-	db BANK(Pics_1) + 9
-	db BANK(Pics_1) + 10
-	db BANK(Pics_1) + 11
-	db BANK(Pics_1) + 12
-	db BANK(Pics_1) + 13
-	db BANK(Pics_1) + 14
-	db BANK(Pics_1) + 15
-	db BANK(Pics_1) + 16
-	db BANK(Pics_1) + 17
-	db BANK(Pics_1) + 18
-	db BANK(Pics_1) + 19
-	db BANK(Pics_1) + 20
-	db BANK(Pics_1) + 21
-	db BANK(Pics_1) + 22
-	db BANK(Pics_1) + 23
+	db BANK("Pics 1") + 0
+	db BANK("Pics 1") + 1
+	db BANK("Pics 1") + 2
+	db BANK("Pics 1") + 3
+	db BANK("Pics 1") + 4
+	db BANK("Pics 1") + 5
+	db BANK("Pics 1") + 6
+	db BANK("Pics 1") + 7
+	db BANK("Pics 1") + 8
+	db BANK("Pics 1") + 9
+	db BANK("Pics 1") + 10
+	db BANK("Pics 1") + 11
+	db BANK("Pics 1") + 12
+	db BANK("Pics 1") + 13
+	db BANK("Pics 1") + 14
+	db BANK("Pics 1") + 15
+	db BANK("Pics 1") + 16
+	db BANK("Pics 1") + 17
+	db BANK("Pics 1") + 18
+	db BANK("Pics 1") + 19
+	db BANK("Pics 1") + 20
+	db BANK("Pics 1") + 21
+	db BANK("Pics 1") + 22
+	db BANK("Pics 1") + 23
 
 Function511ec: ; 511ec
 	ld a, c
