@@ -182,12 +182,12 @@ Unreferenced_Function8b4d:
 	ld a, [hSGB]
 	and a
 	ret z
-	ld hl, PalPacket_Function8b4d
+	ld hl, PalPacket_BetaIntroVenusaur
 	jp PushSGBPals_
 
 .cgb
 	ld de, wOBPals1
-	ld a, PREDEFPAL_3B
+	ld a, PREDEFPAL_BETA_INTRO_VENUSAUR
 	call GetPredefPal
 	jp LoadHLPaletteIntoDE
 
@@ -1349,8 +1349,8 @@ INCLUDE "gfx/pokegear/pokegear.pal"
 FemalePokegearPals:
 INCLUDE "gfx/pokegear/pokegear_f.pal"
 
-Palettes_SCGB_11:
-INCLUDE "gfx/unknown/b789.pal"
+BetaPokerPals:
+INCLUDE "gfx/beta_poker/beta_poker.pal"
 
 SlotMachinePals:
 INCLUDE "gfx/slots/slots.pal"
