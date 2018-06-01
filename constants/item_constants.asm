@@ -207,19 +207,6 @@ endc
 	enum \1_TMNUM
 ENDM
 
-add_hm: MACRO
-if !DEF(HM01)
-HM01 = const_value
-endc
-	define _\@_1, "HM_\1"
-	const _\@_1
-	enum \1_TMNUM
-ENDM
-
-add_mt: MACRO
-	enum \1_TMNUM
-ENDM
-
 ; see data/moves/tmhm_moves.asm for moves
 	add_tm DYNAMICPUNCH ; bf
 	add_tm HEADBUTT     ; c0
@@ -275,6 +262,15 @@ ENDM
 	add_tm NIGHTMARE    ; f2
 NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 
+add_hm: MACRO
+if !DEF(HM01)
+HM01 = const_value
+endc
+	define _\@_1, "HM_\1"
+	const _\@_1
+	enum \1_TMNUM
+ENDM
+
 	add_hm CUT          ; f3
 	add_hm FLY          ; f4
 	add_hm SURF         ; f5
@@ -283,6 +279,10 @@ NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 	add_hm WHIRLPOOL    ; f8
 	add_hm WATERFALL    ; f9
 NUM_HMS = const_value - HM01
+
+add_mt: MACRO
+	enum \1_TMNUM
+ENDM
 
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT

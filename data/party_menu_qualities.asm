@@ -13,7 +13,7 @@
 partymenuqualities: MACRO
 rept _NARG
 	db PARTYMENUQUALITY_\1
-shift
+	shift
 endr
 	db -1 ; end
 ENDM

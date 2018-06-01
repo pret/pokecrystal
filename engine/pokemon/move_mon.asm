@@ -115,20 +115,20 @@ GeneratePartyMonStats: ; d906
 	and a
 	jr nz, .randomlygeneratemoves
 	ld de, wEnemyMonMoves
-	rept NUM_MOVES + -1
+rept NUM_MOVES + -1
 	ld a, [de]
 	inc de
 	ld [hli], a
-	endr
+endr
 	ld a, [de]
 	ld [hl], a
 	jr .next
 
 .randomlygeneratemoves
 	xor a
-	rept NUM_MOVES + -1
+rept NUM_MOVES + -1
 	ld [hli], a
-	endr
+endr
 	ld [hl], a
 	ld [wBuffer1], a
 	predef FillMoves
@@ -220,7 +220,7 @@ endr
 	call FillPP
 	pop de
 	pop hl
-rept 4
+rept NUM_MOVES
 	inc de
 endr
 

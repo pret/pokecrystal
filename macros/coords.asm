@@ -26,11 +26,11 @@ ENDM
 
 dwcoord: MACRO
 ; x, y
-	rept _NARG / 2
+rept _NARG / 2
 	dw (\2) * SCREEN_WIDTH + (\1) + wTileMap
 	shift
 	shift
-	endr
+endr
 ENDM
 
 ldcoord_a: MACRO

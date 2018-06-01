@@ -22,9 +22,9 @@ Animation data is in these files:
 - [gfx/pokemon/anims.asm](/gfx/pokemon/anims.asm):
   Main animations (played everywhere)
 
-- [gfx/pokemon/extras.asm](/gfx/pokemon/extras.asm):
-  Extra animations, appended to the main animation.  
+- [gfx/pokemon/idles.asm](/gfx/pokemon/idles.asm):
+  Idle animations, appended to the main animation.  
   Used in the status screen (blinking, tail wags etc.)
 
-- [gfx/pokemon/unown_anims.asm](/gfx/pokemon/unown_anims.asm) and [gfx/pokemon/unown_extras.asm](/gfx/pokemon/unown_extras.asm):
+- [gfx/pokemon/unown_anims.asm](/gfx/pokemon/unown_anims.asm) and [gfx/pokemon/unown_idles.asm](/gfx/pokemon/unown_idles.asm):
   Unown has its own animation data despite having an entry in the main tables.

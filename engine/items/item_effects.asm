@@ -806,10 +806,10 @@ HeavyBallMultiplier:
 	ld b, h
 	ld c, l
 
-	rept 4
+rept 4
 	srl b
 	rr c
-	endr
+endr
 	call .subbc
 
 	srl b
@@ -2529,9 +2529,9 @@ BattleRestorePP: ; f652
 	push hl
 	push de
 	push bc
-	rept NUM_MOVES + 2 ; wBattleMonPP - wBattleMonMoves
+rept NUM_MOVES + 2 ; wBattleMonPP - wBattleMonMoves
 	inc de
-	endr
+endr
 	ld bc, MON_PP - MON_MOVES
 	add hl, bc
 	ld a, [hl]
