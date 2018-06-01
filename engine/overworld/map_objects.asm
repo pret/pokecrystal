@@ -2116,13 +2116,13 @@ SpawnEmote: ; 5547
 
 ShakeGrass: ; 5556
 	push bc
-	ld de, .data_5562
+	ld de, .GrassObject
 	call CopyTempObjectData
 	call InitTempObject
 	pop bc
 	ret
 
-.data_5562
+.GrassObject
 	db $00, PAL_OW_TREE, SPRITEMOVEDATA_GRASS
 ; 5565
 
@@ -2140,6 +2140,7 @@ ShakeScreen: ; 5565
 .ScreenShakeObject:
 	db $00, PAL_OW_SILVER, SPRITEMOVEDATA_SCREENSHAKE
 ; 5579
+
 DespawnEmote: ; 5579
 	push bc
 	ld a, [hMapObjectIndexBuffer]

@@ -64,7 +64,7 @@ DoMove: ; 3402c
 	inc hl
 	ld [de], a
 	inc de
-	cp -1
+	cp endmove_command
 	jr nz, .GetMoveEffect
 
 ; Start at the first command.
