@@ -53,7 +53,6 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
 - [`Special_CheckBugContestContestantFlag` can read beyond its data table](#special_checkbugcontestcontestantflag-can-read-beyond-its-data-table)
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
-- [Moves erroneously say they have missed when the opponent uses Protect or Detect](#moves-erroneously-say-they-have-missed-when-the-opponent-uses-protect-or-detect)
 
 
 ## Thick Club and Light Ball can decrease damage done with boosted (Special) Attack
@@ -1493,29 +1492,3 @@ ClearWRAM:: ; 25a
 ```
 
 **Fix:** Change `jr nc, .bank_loop` to `jr c, .bank_loop`.
-
-## Moves erroneously say they have missed when the opponent uses Protect or Detect
-
-In [battle/effect_commands.asm](battle/effect_commands.asm):
-
-```asm
-BattleCommand_CheckHit: ; 34d32
-; checkhit
-
-	call .DreamEater
-	jp z, .Miss
-
-	call .Protect
-	jp nz, .Miss
-```
-
-**Fix:** Change `jp nz, .Miss` to `jp nz, .Failed` and add
-
-```asm
-.Failed:
-    ld a, 1
-    ld [wEffectFailed], a
-    ret
-```
-
-at [line 1781](battle/effect_commands.asm#L1718).
