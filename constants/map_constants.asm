@@ -5,8 +5,8 @@ ENDM
 
 map_const: MACRO
 ;\1: map id
-;\2: height: in blocks
-;\3: width: in blocks
+;\2: width: in blocks
+;\3: height: in blocks
 GROUP_\1 EQU const_value
 	enum MAP_\1
 \1_WIDTH EQU \2

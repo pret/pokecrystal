@@ -44,16 +44,54 @@ OW_LEFT  EQU LEFT  << 2
 OW_RIGHT EQU RIGHT << 2
 
 ; object_struct OBJECT_FLAGS1 bit flags
-INVISIBLE    EQU 0
-FIXED_FACING EQU 2
-SLIDING      EQU 3
-EMOTE_OBJECT EQU 7
+	const_def
+	const INVISIBLE_F     ; 0
+	const WONT_DELETE_F   ; 1
+	const FIXED_FACING_F  ; 2
+	const SLIDING_F       ; 3
+	const NOCLIP_TILES_F  ; 4
+	const MOVE_ANYWHERE_F ; 5
+	const NOCLIP_OBJS_F   ; 6
+	const EMOTE_OBJECT_F  ; 7
+
+INVISIBLE     EQU 1 << INVISIBLE_F
+WONT_DELETE   EQU 1 << WONT_DELETE_F
+FIXED_FACING  EQU 1 << FIXED_FACING_F
+SLIDING       EQU 1 << SLIDING_F
+NOCLIP_TILES  EQU 1 << NOCLIP_TILES_F
+MOVE_ANYWHERE EQU 1 << MOVE_ANYWHERE_F
+NOCLIP_OBJS   EQU 1 << NOCLIP_OBJS_F
+EMOTE_OBJECT  EQU 1 << EMOTE_OBJECT_F
 
 ; object_struct OBJECT_FLAGS2 bit flags
-LOW_PRIORITY  EQU 0
-HIGH_PRIORITY EQU 1
-OVERHEAD      EQU 3
+	const_def
+	const LOW_PRIORITY_F  ; 0
+	const HIGH_PRIORITY_F ; 1
+	const OBJ_FLAGS2_2    ; 2
+	const OVERHEAD_F      ; 3
+	const USE_OBP1_F      ; 4
 
+LOW_PRIORITY  EQU 1 << LOW_PRIORITY_F
+HIGH_PRIORITY EQU 1 << HIGH_PRIORITY_F
+OVERHEAD      EQU 1 << OVERHEAD_F
+USE_OBP1      EQU 1 << USE_OBP1_F
+
+; object_struct OBJECT_PALETTE bit flags
+	const_def 5
+	const SWIMMING_F         ; 5
+	const STRENGTH_BOULDER_F ; 6
+	const BIG_OBJECT_F       ; 7
+
+SWIMMING         EQU 1 << SWIMMING_F
+STRENGTH_BOULDER EQU 1 << STRENGTH_BOULDER_F
+BIG_OBJECT       EQU 1 << BIG_OBJECT_F
+
+; facing attribute bit flags
+RELATIVE_ATTRIBUTES_F EQU 1
+ABSOLUTE_TILE_ID_F    EQU 2
+
+RELATIVE_ATTRIBUTES EQU 1 << RELATIVE_ATTRIBUTES_F
+ABSOLUTE_TILE_ID    EQU 1 << ABSOLUTE_TILE_ID_F
 
 ; map_object struct members (see macros/wram.asm)
 	const_def
@@ -75,8 +113,18 @@ OVERHEAD      EQU 3
 	const MAPOBJECT_F ; unused
 OBJECT_LENGTH EQU const_value
 
-MAPOBJECT_SCREEN_HEIGHT EQU 11
-MAPOBJECT_SCREEN_WIDTH EQU 12
+; SpriteMovementData struct members (see data/sprites/map_objects.asm)
+	const_def
+	const SPRITEMOVEATTR_MOVEMENT ; 0
+	const SPRITEMOVEATTR_FACING   ; 1
+	const SPRITEMOVEATTR_ACTION   ; 2
+	const SPRITEMOVEATTR_FLAGS1   ; 3
+	const SPRITEMOVEATTR_FLAGS2   ; 4
+	const SPRITEMOVEATTR_PALFLAGS ; 5
+NUM_SPRITEMOVEDATA_FIELDS EQU const_value
+
+MAPOBJECT_SCREEN_WIDTH  EQU (SCREEN_WIDTH / 2) + 2
+MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 
 
 ; SpriteMovementData indexes (see data/sprites/map_objects.asm)
@@ -119,7 +167,6 @@ MAPOBJECT_SCREEN_WIDTH EQU 12
 	const SPRITEMOVEDATA_GRASS                ; 23
 	const SPRITEMOVEDATA_SWIM_WANDER          ; 24
 NUM_SPRITEMOVEDATA EQU const_value
-SPRITEMOVEDATA_FIELDS EQU 6
 
 ; MapObjectMovementPattern.Pointers indexes (see engine/overworld/map_objects.asm)
 	const_def

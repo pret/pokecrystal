@@ -1,6 +1,6 @@
 anim_obj_gfx: MACRO
 ; # tiles, label
-	db  \1
+	db \1
 	dba \2
 ENDM
 

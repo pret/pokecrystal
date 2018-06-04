@@ -15,5 +15,5 @@ TimeCapsule_CatchRateItems: ; 28785
 	db ITEM_DC, BERRY
 	db ITEM_FA, BERRY
 	db -1,      BERRY
-	db  0 ; end
+	db 0 ; end
 ; 2879e

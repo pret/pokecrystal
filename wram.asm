@@ -2421,7 +2421,7 @@ wMapObjectsEnd::
 
 wObjectMasks:: ds NUM_OBJECTS ; d81e
 
-wVariableSprites:: ds 16; d82e
+wVariableSprites:: ds $100 - SPRITE_VARS ; d82e
 
 wEnteredMapFromContinue:: db ; d83e
 	ds 2

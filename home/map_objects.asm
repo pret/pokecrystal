@@ -482,10 +482,10 @@ GetSpriteMovementFunction:: ; 1a2f
 	xor a
 
 .ok
-	ld hl, SpriteMovementData
+	ld hl, SpriteMovementData + SPRITEMOVEATTR_MOVEMENT
 	ld e, a
 	ld d, 0
-rept SPRITEMOVEDATA_FIELDS
+rept NUM_SPRITEMOVEDATA_FIELDS
 	add hl, de
 endr
 	ld a, [hl]
@@ -497,15 +497,15 @@ GetInitialFacing:: ; 1a47
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, SpriteMovementData + 1 ; init facing
-rept SPRITEMOVEDATA_FIELDS
+	ld hl, SpriteMovementData + SPRITEMOVEATTR_FACING
+rept NUM_SPRITEMOVEDATA_FIELDS
 	add hl, de
 endr
 	ld a, BANK(SpriteMovementData)
 	call GetFarByte
 	add a
 	add a
-	and $c
+	maskbits NUM_DIRECTIONS, 2
 	pop de
 	pop bc
 	ret
@@ -537,8 +537,8 @@ CopySpriteMovementData:: ; 1a61
 	push de
 	ld e, a
 	ld d, 0
-	ld hl, SpriteMovementData + 1 ; init facing
-rept SPRITEMOVEDATA_FIELDS
+	ld hl, SpriteMovementData + SPRITEMOVEATTR_FACING
+rept NUM_SPRITEMOVEDATA_FIELDS
 	add hl, de
 endr
 	ld b, h
@@ -549,7 +549,7 @@ endr
 	inc bc
 	rlca
 	rlca
-	and %00001100
+	maskbits NUM_DIRECTIONS, 2
 	ld hl, OBJECT_FACING
 	add hl, de
 	ld [hl], a
@@ -654,7 +654,7 @@ SetSpriteDirection:: ; 1af8
 	and %11110011
 	ld e, a
 	pop af
-	and %00001100
+	maskbits NUM_DIRECTIONS, 2
 	or e
 	ld [hl], a
 	ret
@@ -664,6 +664,6 @@ GetSpriteDirection:: ; 1b07
 	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	and %00001100
+	maskbits NUM_DIRECTIONS, 2
 	ret
 ; 1b0f

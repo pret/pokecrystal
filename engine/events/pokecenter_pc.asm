@@ -39,12 +39,19 @@ PokemonCenterPC: ; 1559a
 	dw PlaceNthMenuStrings
 	dw .JumpTable
 
+PCPC_PLAYERS_PC   EQU 0
+PCPC_BILLS_PC     EQU 1
+PCPC_OAKS_PC      EQU 2
+PCPC_HALL_OF_FAME EQU 3
+PCPC_TURN_OFF     EQU 4
+
 .JumpTable:
-	dw PlayersPC, .String_PlayersPC
-	dw BillsPC, .String_BillsPC
-	dw OaksPC, .String_OaksPC
+; entries correspond to PCPC_* constants
+	dw PlayersPC,    .String_PlayersPC
+	dw BillsPC,      .String_BillsPC
+	dw OaksPC,       .String_OaksPC
 	dw HallOfFamePC, .String_HallOfFame
-	dw TurnOffPC, .String_TurnOff
+	dw TurnOffPC,    .String_TurnOff
 
 .String_PlayersPC:  db "<PLAYER>'s PC@"
 .String_BillsPC:    db "BILL's PC@"
@@ -53,33 +60,42 @@ PokemonCenterPC: ; 1559a
 .String_TurnOff:    db "TURN OFF@"
 
 .WhichPC:
-	; before pokedex
-	db  3 ; items
-	db  1, 0, 4 ; bill's, player's, turn off
-	db -1
+	; before Pokédex
+	db 3
+	db PCPC_BILLS_PC
+	db PCPC_PLAYERS_PC
+	db PCPC_TURN_OFF
+	db -1 ; end
 
 	; before Hall Of Fame
-	db  4 ; items
-	db  1, 0, 2, 4 ; bill's, player's, oak's, turn off
-	db -1
+	db 4
+	db PCPC_BILLS_PC
+	db PCPC_PLAYERS_PC
+	db PCPC_OAKS_PC
+	db PCPC_TURN_OFF
+	db -1 ; end
 
 	; postgame
-	db  5 ; items
-	db  1, 0, 2, 3, 4 ; bill's, player's, oak's, hall of fame, turn off
-	db -1
+	db 5
+	db PCPC_BILLS_PC
+	db PCPC_PLAYERS_PC
+	db PCPC_OAKS_PC
+	db PCPC_HALL_OF_FAME
+	db PCPC_TURN_OFF
+	db -1 ; end
 
 .ChooseWhichPCListToUse:
 	call CheckReceivedDex
 	jr nz, .got_dex
-	ld a, $0
+	ld a, 0 ; before Pokédex
 	ret
 
 .got_dex
 	ld a, [wHallOfFameCount]
 	and a
-	ld a, $1
+	ld a, 1 ; before Hall Of Fame
 	ret z
-	ld a, $2
+	ld a, 2 ; postgame
 	ret
 ; 15650
 
@@ -244,7 +260,16 @@ PlayersPCMenuData: ; 0x15736
 	dw PlaceNthMenuStrings
 	dw .PlayersPCMenuPointers
 
+PLAYERSPC_WITHDRAW_ITEM EQU 0
+PLAYERSPC_DEPOSIT_ITEM  EQU 1
+PLAYERSPC_TOSS_ITEM     EQU 2
+PLAYERSPC_MAIL_BOX      EQU 3
+PLAYERSPC_DECORATION    EQU 4
+PLAYERSPC_TURN_OFF      EQU 5
+PLAYERSPC_LOG_OFF       EQU 6
+
 .PlayersPCMenuPointers: ; 0x15746
+; entries correspond to PLAYERSPC_* constants
 	dw PlayerWithdrawItemMenu, .WithdrawItem
 	dw PlayerDepositItemMenu,  .DepositItem
 	dw PlayerTossItemMenu,     .TossItem
@@ -261,32 +286,24 @@ PlayersPCMenuData: ; 0x15736
 .TurnOff:      db "TURN OFF@"
 .LogOff:       db "LOG OFF@"
 
-WITHDRAW_ITEM EQU 0
-DEPOSIT_ITEM  EQU 1
-TOSS_ITEM     EQU 2
-MAIL_BOX      EQU 3
-DECORATION    EQU 4
-TURN_OFF      EQU 5
-LOG_OFF       EQU 6
-
 .PlayersPCMenuList1:
 	db 5
-	db WITHDRAW_ITEM
-	db DEPOSIT_ITEM
-	db TOSS_ITEM
-	db MAIL_BOX
-	db TURN_OFF
-	db -1
+	db PLAYERSPC_WITHDRAW_ITEM
+	db PLAYERSPC_DEPOSIT_ITEM
+	db PLAYERSPC_TOSS_ITEM
+	db PLAYERSPC_MAIL_BOX
+	db PLAYERSPC_TURN_OFF
+	db -1 ; end
 
 .PlayersPCMenuList2:
 	db 6
-	db WITHDRAW_ITEM
-	db DEPOSIT_ITEM
-	db TOSS_ITEM
-	db MAIL_BOX
-	db DECORATION
-	db LOG_OFF
-	db -1
+	db PLAYERSPC_WITHDRAW_ITEM
+	db PLAYERSPC_DEPOSIT_ITEM
+	db PLAYERSPC_TOSS_ITEM
+	db PLAYERSPC_MAIL_BOX
+	db PLAYERSPC_DECORATION
+	db PLAYERSPC_LOG_OFF
+	db -1 ; end
 
 PC_DisplayTextWaitMenu: ; 157bb
 	ld a, [wOptions]
@@ -461,13 +478,14 @@ PlayerDepositItemMenu: ; 0x1588b
 	ret
 
 .dw
-	dw .tossable
+; entries correspond to ITEMMENU_* constants
+	dw .tossable ; ITEMMENU_NOUSE
 	dw .no_toss
 	dw .no_toss
 	dw .no_toss
-	dw .tossable
-	dw .tossable
-	dw .tossable
+	dw .tossable ; ITEMMENU_CURRENT
+	dw .tossable ; ITEMMENU_PARTY
+	dw .tossable ; ITEMMENU_CLOSE
 
 .no_toss
 	ret

@@ -38,9 +38,9 @@ LoadSGBLayout: ; 864c
 	dw .SGB_GSTitleScreen
 	dw .SGB0d
 	dw .SGB_MoveList
-	dw .SGB0f
+	dw .SGB_BetaPikachuMinigame
 	dw .SGB_PokedexSearchOption
-	dw .SGB11
+	dw .SGB_BetaPoker
 	dw .SGB12
 	dw .SGB13
 	dw .SGB_PackPals
@@ -346,18 +346,18 @@ endr
 	ret
 ; 8897
 
-.SGB0f: ; 8897
-	ld hl, PalPacket_SCGB_0F
+.SGB_BetaPikachuMinigame: ; 8897
+	ld hl, PalPacket_BetaPikachuMinigame
 	ld de, BlkPacket_9a86
 	ret
 ; 889e
 
-.SGB11: ; 889e
+.SGB_BetaPoker: ; 889e
 	ld hl, BlkPacket_9a86
 	ld de, wPlayerLightScreenCount ; ???
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
-	ld hl, PalPacket_SCGB_11
+	ld hl, PalPacket_BetaPoker
 	ld de, BlkPacket_9a86
 	ret
 ; 88b1

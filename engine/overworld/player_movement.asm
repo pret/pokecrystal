@@ -684,7 +684,7 @@ DoPlayerMovement:: ; 80000
 
 	ld hl, OBJECT_PALETTE
 	add hl, bc
-	bit 6, [hl]
+	bit STRENGTH_BOULDER_F, [hl]
 	jr z, .not_boulder
 
 	ld hl, OBJECT_FLAGS2
@@ -696,7 +696,7 @@ DoPlayerMovement:: ; 80000
 	ld hl, OBJECT_RANGE
 	add hl, bc
 	ld a, [hl]
-	and $fc
+	and %11111100
 	or d
 	ld [hl], a
 

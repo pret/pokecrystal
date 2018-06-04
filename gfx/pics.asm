@@ -20,7 +20,6 @@ INCLUDE "data/trainers/pic_pointers.asm"
 
 
 SECTION "Pics 1", ROMX
-Pics_1::
 
 HoOhFrontpic:        INCBIN "gfx/pokemon/ho_oh/front.animated.2bpp.lz"
 MachampFrontpic:     INCBIN "gfx/pokemon/machamp/front.animated.2bpp.lz"
@@ -794,3 +793,21 @@ INCBIN "gfx/pokemon/unown_y/back.2bpp.lz"
 INCBIN "gfx/pokemon/unown_p/back.2bpp.lz"
 INCBIN "gfx/pokemon/unown_i/back.2bpp.lz"
 INCBIN "gfx/pokemon/unown_r/back.2bpp.lz"
+
+
+; Sections "Pics 20" to "Pics 24" are not used for any graphics,
+; but entries for their banks exist in FixPicBank (see engine/gfx/load_pics.asm).
+
+SECTION "Pics 20", ROMX
+
+
+SECTION "Pics 21", ROMX
+
+
+SECTION "Pics 22", ROMX
+
+
+SECTION "Pics 23", ROMX
+
+
+SECTION "Pics 24", ROMX
