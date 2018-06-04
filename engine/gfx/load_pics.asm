@@ -263,25 +263,25 @@ GLOBAL PICS_FIX
 	ret
 
 .PicsBanks: ; 511d4
-	db BANK("Pics 1") + 0
-	db BANK("Pics 1") + 1
-	db BANK("Pics 1") + 2
-	db BANK("Pics 1") + 3
-	db BANK("Pics 1") + 4
-	db BANK("Pics 1") + 5
-	db BANK("Pics 1") + 6
-	db BANK("Pics 1") + 7
-	db BANK("Pics 1") + 8
-	db BANK("Pics 1") + 9
-	db BANK("Pics 1") + 10
-	db BANK("Pics 1") + 11
-	db BANK("Pics 1") + 12
-	db BANK("Pics 1") + 13
-	db BANK("Pics 1") + 14
-	db BANK("Pics 1") + 15
-	db BANK("Pics 1") + 16
-	db BANK("Pics 1") + 17
-	db BANK("Pics 1") + 18
+	db BANK("Pics 1")  ; BANK("Pics 1") + 0
+	db BANK("Pics 2")  ; BANK("Pics 1") + 1
+	db BANK("Pics 3")  ; BANK("Pics 1") + 2
+	db BANK("Pics 4")  ; BANK("Pics 1") + 3
+	db BANK("Pics 5")  ; BANK("Pics 1") + 4
+	db BANK("Pics 6")  ; BANK("Pics 1") + 5
+	db BANK("Pics 7")  ; BANK("Pics 1") + 6
+	db BANK("Pics 8")  ; BANK("Pics 1") + 7
+	db BANK("Pics 9")  ; BANK("Pics 1") + 8
+	db BANK("Pics 10") ; BANK("Pics 1") + 9
+	db BANK("Pics 11") ; BANK("Pics 1") + 10
+	db BANK("Pics 12") ; BANK("Pics 1") + 11
+	db BANK("Pics 13") ; BANK("Pics 1") + 12
+	db BANK("Pics 14") ; BANK("Pics 1") + 13
+	db BANK("Pics 15") ; BANK("Pics 1") + 14
+	db BANK("Pics 16") ; BANK("Pics 1") + 15
+	db BANK("Pics 17") ; BANK("Pics 1") + 16
+	db BANK("Pics 18") ; BANK("Pics 1") + 17
+	db BANK("Pics 19") ; BANK("Pics 1") + 18
 	db BANK("Pics 1") + 19
 	db BANK("Pics 1") + 20
 	db BANK("Pics 1") + 21
