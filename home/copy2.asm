@@ -1,7 +1,7 @@
 CopyBytes:: ; 0x3026
 ; copy bc bytes from hl to de
-	inc b  ; we bail the moment b hits 0, so include the last run
-	inc c  ; same thing; include last byte
+	inc b ; we bail the moment b hits 0, so include the last run
+	inc c ; same thing; include last byte
 	jr .HandleLoop
 .CopyByte:
 	ld a, [hli]
@@ -39,8 +39,8 @@ SwapBytes:: ; 0x3034
 
 ByteFill:: ; 0x3041
 ; fill bc bytes with the value of a, starting at hl
-	inc b  ; we bail the moment b hits 0, so include the last run
-	inc c  ; same thing; include last byte
+	inc b ; we bail the moment b hits 0, so include the last run
+	inc c ; same thing; include last byte
 	jr .HandleLoop
 .PutByte:
 	ld [hli], a

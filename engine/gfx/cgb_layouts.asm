@@ -48,7 +48,7 @@ LoadSGBLayoutCGB: ; 8d59
 	dw _CGB_GSTitleScreen
 	dw _CGB0d
 	dw _CGB_MoveList
-	dw _CGB0f
+	dw _CGB_BetaPikachuMinigame
 	dw _CGB_PokedexSearchOption
 	dw _CGB11
 	dw _CGB_Pokepic
@@ -532,7 +532,7 @@ _CGB_GSIntro: ; 9122
 ; 9195
 
 _CGB11: ; 9195
-	ld hl, Palettes_SCGB_11
+	ld hl, BetaPokerPals
 	ld de, wBGPals1
 	ld bc, 5 palettes
 	ld a, BANK(wBGPals1)
@@ -790,8 +790,8 @@ _CGB_MoveList: ; 9373
 	ret
 ; 93a6
 
-_CGB0f: ; 93a6
-	ld hl, PalPacket_SCGB_0F + 1
+_CGB_BetaPikachuMinigame: ; 93a6
+	ld hl, PalPacket_BetaPikachuMinigame + 1
 	call CopyFourPalettes
 	call WipeAttrMap
 	call ApplyAttrMap

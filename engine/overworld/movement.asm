@@ -377,42 +377,42 @@ Movement_tree_shake: ; 5279
 Movement_remove_sliding: ; 5293
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	res SLIDING, [hl]
+	res SLIDING_F, [hl]
 	jp ContinueReadingMovement
 ; 529c
 
 Movement_set_sliding: ; 529c
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set SLIDING, [hl]
+	set SLIDING_F, [hl]
 	jp ContinueReadingMovement
 ; 52a5
 
 Movement_remove_fixed_facing: ; 52a5
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	res FIXED_FACING, [hl]
+	res FIXED_FACING_F, [hl]
 	jp ContinueReadingMovement
 ; 52ae
 
 Movement_fix_facing: ; 52ae
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set FIXED_FACING, [hl]
+	set FIXED_FACING_F, [hl]
 	jp ContinueReadingMovement
 ; 52b7
 
 Movement_show_object: ; 52b7
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	res INVISIBLE, [hl]
+	res INVISIBLE_F, [hl]
 	jp ContinueReadingMovement
 ; 52c0
 
 Movement_hide_object: ; 52c0
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	set INVISIBLE, [hl]
+	set INVISIBLE_F, [hl]
 	jp ContinueReadingMovement
 ; 52c9
 
@@ -838,7 +838,7 @@ JumpStep: ; 548a
 
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res OVERHEAD, [hl]
+	res OVERHEAD_F, [hl]
 
 	ld hl, OBJECT_ACTION
 	add hl, bc

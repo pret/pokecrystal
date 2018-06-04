@@ -109,11 +109,11 @@ TypeMatchups: ; 34bb1
 	db STEEL,     ROCK,      SUPER_EFFECTIVE
 	db STEEL,     STEEL,     NOT_VERY_EFFECTIVE
 
-	db -2 ; end
+	db -2 ; end (with Foresight)
 
 ; Foresight removes Ghost's immunities.
 	db NORMAL,    GHOST,     NO_EFFECT
 	db FIGHTING,  GHOST,     NO_EFFECT
 
-	db -1 ; end (with Foresight)
+	db -1 ; end
 ; 34cfd

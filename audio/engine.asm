@@ -1775,7 +1775,7 @@ Music_Vibrato: ; e8882
 	swap a
 	srl a ; halve
 	ld e, a
-	adc a, 0; round up
+	adc 0 ; round up
 	swap a
 	or e
 	ld [hl], a

@@ -93,7 +93,7 @@ Function437b: ; 437b
 .ok2
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit 1, [hl]
+	bit WONT_DELETE_F, [hl]
 	jr nz, .yes2
 	call DeleteMapObject
 	scf
@@ -146,7 +146,7 @@ Function437b: ; 437b
 .HandleObjectAction:
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit INVISIBLE, [hl]
+	bit INVISIBLE_F, [hl]
 	jr nz, SetFacingStanding
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
@@ -161,7 +161,7 @@ Function437b: ; 437b
 Function4440: ; 4440
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit INVISIBLE, [hl]
+	bit INVISIBLE_F, [hl]
 	jr nz, SetFacingStanding
 asm_4448:
 	ld de, ObjectActionPairPointers + 2 ; use second column
@@ -233,7 +233,7 @@ Function462a: ; 462a
 UpdateTallGrassFlags: ; 463f
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit OVERHEAD, [hl]
+	bit OVERHEAD_F, [hl]
 	jr z, .ok
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
@@ -260,13 +260,13 @@ SetTallGrassFlags: ; 4661
 .set
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	set OVERHEAD, [hl]
+	set OVERHEAD_F, [hl]
 	ret
 
 .reset
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res OVERHEAD, [hl]
+	res OVERHEAD_F, [hl]
 	ret
 ; 4679
 
@@ -298,7 +298,7 @@ InitStep: ; 4690
 	ld [hl], a
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
-	bit FIXED_FACING, [hl]
+	bit FIXED_FACING_F, [hl]
 	jr nz, GetNextTile
 	add a
 	add a
@@ -696,7 +696,7 @@ MapObjectMovementPattern: ; 47dd
 	and %00000011
 	or 0
 	call InitStep
-	call Function6ec1
+	call CanObjectMoveInDirection
 	jr c, .ok2
 	ld de, SFX_STRENGTH
 	call PlaySFX
@@ -1049,7 +1049,7 @@ MapObjectMovementPattern: ; 47dd
 
 .RandomWalkContinue:
 	call InitStep
-	call Function6ec1 ; check whether the object can move in that direction
+	call CanObjectMoveInDirection ; check whether the object can move in that direction
 	jr c, .NewDuration
 	call UpdateTallGrassFlags
 	ld hl, OBJECT_ACTION
@@ -2156,7 +2156,7 @@ DespawnEmote: ; 5579
 	push af
 	ld hl, OBJECT_FLAGS1
 	add hl, de
-	bit EMOTE_OBJECT, [hl]
+	bit EMOTE_OBJECT_F, [hl]
 	jr z, .next
 	ld hl, OBJECT_SPRITE
 	add hl, de
@@ -2445,7 +2445,7 @@ Function56cd: ; 56cd
 	ld [hUsedSpriteTile], a
 	ld hl, OBJECT_PALETTE
 	add hl, bc
-	bit 7, [hl]
+	bit BIG_OBJECT_F, [hl]
 	jr z, .ok7
 	ld a, d
 	add 2
@@ -2575,7 +2575,7 @@ ContinueSpawnFacing: ; 57db
 
 _SetPlayerPalette: ; 57e2
 	ld a, d
-	and %10000000
+	and 1 << 7
 	ret z
 	ld bc, 0 ; debug?
 	ld hl, OBJECT_FACING
@@ -2585,13 +2585,13 @@ _SetPlayerPalette: ; 57e2
 	ld [hl], a
 	ld a, d
 	swap a
-	and %00000111
+	and PALETTE_MASK
 	ld d, a
 	ld bc, wPlayerStruct
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld a, [hl]
-	and %11111000
+	and $ff ^ PALETTE_MASK
 	or d
 	ld [hl], a
 	ret
@@ -2919,10 +2919,10 @@ InitSprites: ; 5991
 	ld e, PRIORITY_LOW
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	bit LOW_PRIORITY, [hl]
+	bit LOW_PRIORITY_F, [hl]
 	jr nz, .add
 	ld e, PRIORITY_NORM
-	bit HIGH_PRIORITY, [hl]
+	bit HIGH_PRIORITY_F, [hl]
 	jr z, .add
 	ld e, PRIORITY_HIGH
 	jr .add
@@ -2974,35 +2974,35 @@ InitSprites: ; 5991
 	ld hl, OBJECT_SPRITE_TILE
 	add hl, bc
 	ld a, [hl]
-	and %01111111
+	and $ff ^ (1 << 7)
 	ld [hFFC1], a
 	xor a
 	bit 7, [hl]
 	jr nz, .skip1
-	or %00001000
+	or VRAM_BANK_1
 .skip1
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	ld e, [hl]
 	bit 7, e
 	jr z, .skip2
-	or %10000000
+	or PRIORITY
 .skip2
-	bit 4, e
+	bit USE_OBP1_F, e
 	jr z, .skip3
-	or %00010000
+	or OBP_NUM
 .skip3
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld d, a
 	ld a, [hl]
-	and %00000111
+	and PALETTE_MASK
 	or d
 	ld d, a
 	xor a
-	bit 3, e
+	bit OVERHEAD_F, e
 	jr z, .skip4
-	or %10000000
+	or PRIORITY
 .skip4
 	ld [hFFC2], a
 	ld hl, OBJECT_SPRITE_X
@@ -3064,7 +3064,7 @@ InitSprites: ; 5991
 	ld e, [hl]
 	inc hl
 	ld a, [hFFC1]
-	bit 2, e
+	bit ABSOLUTE_TILE_ID_F, e
 	jr z, .nope1
 	xor a
 .nope1
@@ -3073,7 +3073,7 @@ InitSprites: ; 5991
 	ld [bc], a ; tile id
 	inc c
 	ld a, e
-	bit 1, a
+	bit RELATIVE_ATTRIBUTES_F, a
 	jr z, .nope2
 	ld a, [hFFC2]
 	or e
