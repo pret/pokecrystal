@@ -539,47 +539,57 @@ PlayDanger: ; e8307
 	ld a, [wLowHealthAlarm]
 	bit DANGER_ON_F, a
 	ret z
+
+	; Don't do anything if SFX is being played
 	and $ff ^ (1 << DANGER_ON_F)
 	ld d, a
 	call _CheckSFX
-	jr c, .asm_e8335
+	jr c, .increment
+
+	; Play the high tone
 	and a
-	jr z, .asm_e8323
-	cp 16 ; halfway
-	jr z, .asm_e831e
-	jr .asm_e8335
+	jr z, .begin
 
-.asm_e831e
-	ld hl, Tablee8354
-	jr .updatehw
+	; Play the low tone
+	cp 16
+	jr z, .halfway
 
-.asm_e8323
-	ld hl, Tablee8350
-.updatehw
+	jr .increment
+
+.halfway
+	ld hl, DangerSoundLow
+	jr .applychannel
+
+.begin
+	ld hl, DangetSoundHigh
+
+.applychannel
 	xor a
-	ld [rNR10], a ; sweep off
+	ld [rNR10], a
 	ld a, [hli]
-	ld [rNR11], a ; sound length / duty cycle
+	ld [rNR11], a
 	ld a, [hli]
-	ld [rNR12], a ; ch1 volume envelope
+	ld [rNR12], a
 	ld a, [hli]
-	ld [rNR13], a ; ch1 frequency lo
+	ld [rNR13], a
 	ld a, [hli]
-	ld [rNR14], a ; ch1 frequency hi
-.asm_e8335
+	ld [rNR14], a
+
+.increment
 	ld a, d
 	inc a
-	cp 30
-	jr c, .asm_e833c
+	cp 30 ; Ending frame
+	jr c, .noreset
 	xor a
-.asm_e833c
+.noreset
+	; Make sure the danger sound is kept on
 	or 1 << DANGER_ON_F
 	ld [wLowHealthAlarm], a
-	; is hw ch1 on?
+
+	; Enable channel 1 if it's off
 	ld a, [wSoundOutput]
 	and $11
 	ret nz
-	; if not, turn it on
 	ld a, [wSoundOutput]
 	or $11
 	ld [wSoundOutput], a
@@ -587,14 +597,14 @@ PlayDanger: ; e8307
 
 ; e8350
 
-Tablee8350: ; e8350
+DangetSoundHigh: ; e8350
 	db $80 ; duty 50%
 	db $e2 ; volume 14, envelope decrease sweep 2
 	db $50 ; frequency: $750
 	db $87 ; restart sound
 ; e8354
 
-Tablee8354: ; e8354
+DangerSoundLow: ; e8354
 	db $80 ; duty 50%
 	db $e2 ; volume 14, envelope decrease sweep 2
 	db $ee ; frequency: $6ee
