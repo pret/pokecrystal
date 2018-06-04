@@ -131,7 +131,7 @@ channel_struct: MACRO
 ; Addreses are wChannel1 (c101).
 \1MusicID::           dw
 \1MusicBank::         db
-\1Flags::             db ; 0:on/off 1:subroutine 3:sfx 4:noise 5:rest
+\1Flags1::            db ; 0:on/off 1:subroutine 3:sfx 4:noise 5:rest
 \1Flags2::            db ; 0:vibrato on/off 2:duty 4:cry pitch
 \1Flags3::            db ; 0:vibrato up/down
 \1MusicAddress::      dw
@@ -141,9 +141,7 @@ channel_struct: MACRO
 \1Condition::         db ; conditional jumps
 \1DutyCycle::         db ; bits 6-7 (0:12.5% 1:25% 2:50% 3:75%)
 \1Intensity::         db ; hi:pressure lo:velocity
-\1Frequency:: ; 11 bits
-\1FrequencyLo::       db
-\1FrequencyHi::       db
+\1Frequency::         dw ; 11 bits
 \1Pitch::             db ; 0:rest 1-c:note
 \1Octave::            db ; 7-0 (0 is highest)
 \1PitchOffset::       db ; raises existing octaves (to repeat phrases)

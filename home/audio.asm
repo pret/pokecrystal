@@ -249,16 +249,16 @@ WaitSFX:: ; 3c55
 	push hl
 
 .wait
-	ld hl, wChannel5Flags
+	ld hl, wChannel5Flags1
 	bit 0, [hl]
 	jr nz, .wait
-	ld hl, wChannel6Flags
+	ld hl, wChannel6Flags1
 	bit 0, [hl]
 	jr nz, .wait
-	ld hl, wChannel7Flags
+	ld hl, wChannel7Flags1
 	bit 0, [hl]
 	jr nz, .wait
-	ld hl, wChannel8Flags
+	ld hl, wChannel8Flags1
 	bit 0, [hl]
 	jr nz, .wait
 
@@ -271,16 +271,16 @@ IsSFXPlaying:: ; 3c74
 ; The inverse of CheckSFX.
 	push hl
 
-	ld hl, wChannel5Flags
+	ld hl, wChannel5Flags1
 	bit 0, [hl]
 	jr nz, .playing
-	ld hl, wChannel6Flags
+	ld hl, wChannel6Flags1
 	bit 0, [hl]
 	jr nz, .playing
-	ld hl, wChannel7Flags
+	ld hl, wChannel7Flags1
 	bit 0, [hl]
 	jr nz, .playing
-	ld hl, wChannel8Flags
+	ld hl, wChannel8Flags1
 	bit 0, [hl]
 	jr nz, .playing
 
@@ -540,16 +540,16 @@ Unreferenced_Function3d9f:: ; 3d9f
 
 CheckSFX:: ; 3dde
 ; Return carry if any SFX channels are active.
-	ld a, [wChannel5Flags]
+	ld a, [wChannel5Flags1]
 	bit 0, a
 	jr nz, .playing
-	ld a, [wChannel6Flags]
+	ld a, [wChannel6Flags1]
 	bit 0, a
 	jr nz, .playing
-	ld a, [wChannel7Flags]
+	ld a, [wChannel7Flags1]
 	bit 0, a
 	jr nz, .playing
-	ld a, [wChannel8Flags]
+	ld a, [wChannel8Flags1]
 	bit 0, a
 	jr nz, .playing
 	and a
@@ -561,7 +561,7 @@ CheckSFX:: ; 3dde
 
 TerminateExpBarSound:: ; 3dfe
 	xor a
-	ld [wChannel5Flags], a
+	ld [wChannel5Flags1], a
 	ld [wSoundInput], a
 	ld [rNR10], a
 	ld [rNR11], a
@@ -575,10 +575,10 @@ TerminateExpBarSound:: ; 3dfe
 ChannelsOff:: ; 3e10
 ; Quickly turn off music channels
 	xor a
-	ld [wChannel1Flags], a
-	ld [wChannel2Flags], a
-	ld [wChannel3Flags], a
-	ld [wChannel4Flags], a
+	ld [wChannel1Flags1], a
+	ld [wChannel2Flags1], a
+	ld [wChannel3Flags1], a
+	ld [wChannel4Flags1], a
 	ld [wSoundInput], a
 	ret
 ; 3e21
@@ -586,10 +586,10 @@ ChannelsOff:: ; 3e10
 SFXChannelsOff:: ; 3e21
 ; Quickly turn off sound effect channels
 	xor a
-	ld [wChannel5Flags], a
-	ld [wChannel6Flags], a
-	ld [wChannel7Flags], a
-	ld [wChannel8Flags], a
+	ld [wChannel5Flags1], a
+	ld [wChannel6Flags1], a
+	ld [wChannel7Flags1], a
+	ld [wChannel8Flags1], a
 	ld [wSoundInput], a
 	ret
 ; 3e32
