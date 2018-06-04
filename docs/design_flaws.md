@@ -66,11 +66,11 @@ GLOBAL PICS_FIX
 	db BANK("Pics 17") ; BANK("Pics 1") + 16
 	db BANK("Pics 18") ; BANK("Pics 1") + 17
 	db BANK("Pics 19") ; BANK("Pics 1") + 18
-	db BANK("Pics 1") + 19
-	db BANK("Pics 1") + 20
-	db BANK("Pics 1") + 21
-	db BANK("Pics 1") + 22
-	db BANK("Pics 1") + 23
+	db BANK("Pics 20") ; BANK("Pics 1") + 19
+	db BANK("Pics 21") ; BANK("Pics 1") + 20
+	db BANK("Pics 22") ; BANK("Pics 1") + 21
+	db BANK("Pics 23") ; BANK("Pics 1") + 22
+	db BANK("Pics 24") ; BANK("Pics 1") + 23
 ```
 
 **Fix:** Use `dba` instead of `dba_pic`, delete `FixPicBank`, and remove all four calls to `FixPicBank`.
