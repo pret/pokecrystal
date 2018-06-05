@@ -561,7 +561,7 @@ PlayDanger: ; e8307
 	jr .applychannel
 
 .begin
-	ld hl, DangetSoundHigh
+	ld hl, DangerSoundHigh
 
 .applychannel
 	xor a
@@ -597,7 +597,7 @@ PlayDanger: ; e8307
 
 ; e8350
 
-DangetSoundHigh: ; e8350
+DangerSoundHigh: ; e8350
 	db $80 ; duty 50%
 	db $e2 ; volume 14, envelope decrease sweep 2
 	db $50 ; frequency: $750
