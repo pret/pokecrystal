@@ -226,9 +226,9 @@ Cry_Magcargo_Ch6: ; f2ed3
 
 Cry_Magcargo_Ch8: ; f2ef2
 	noise __,  3, $e8, $3b
-Cry_Magcargo_branch_f2ef5: ; f2ef5
+.loop
 	noise __,  2, $f1, $4e
-	loopchannel 5, Cry_Magcargo_branch_f2ef5
+	loopchannel 5, .loop
 	noise __,  3, $d8, $3f
 	noise C_,  5, $c2, $5f
 	endchannel
@@ -378,9 +378,8 @@ Cry_Togetic_branch_f3022: ; f3022
 Cry_Togetic_Ch5: ; f3035
 	tone $0002
 Cry_Togetic_Ch6: ; f3038
-Cry_Togetic_branch_f3038: ; f3038
 	callchannel Cry_Togetic_branch_f3022
-	loopchannel 2, Cry_Togetic_branch_f3038
+	loopchannel 2, Cry_Togetic_Ch6
 	sound __, 15, $0, 0
 	sound __,  9, $f2, $07c2
 	endchannel
@@ -464,12 +463,12 @@ Cry_Hoothoot_Ch5: ; f30d6
 
 Cry_Hoothoot_Ch6: ; f30f9
 	sound_duty 2, 0, 2, 0
-Cry_Hoothoot_branch_f30fb: ; f30fb
+.loop1
 	sound __,  3, $a1, $0600
-	loopchannel 3, Cry_Hoothoot_branch_f30fb
-Cry_Hoothoot_branch_f3103: ; f3103
+	loopchannel 3, .loop1
+.loop2
 	sound __,  3, $a1, $0630
-	loopchannel 4, Cry_Hoothoot_branch_f3103
+	loopchannel 4, .loop2
 	sound __,  5, $a2, $0634
 	sound __,  5, $91, $0638
 	endchannel
@@ -525,14 +524,14 @@ Cry_Cyndaquil_Ch5: ; f3156
 Cry_Cyndaquil_Ch6: ; f3159
 	dutycycle $2
 	sound __,  9, $2f, $0107
-Cry_Cyndaquil_branch_f315f: ; f315f
+.loop1
 	sound __,  1, $e1, $0483
 	sound __,  1, $51, $044e
-	loopchannel 4, Cry_Cyndaquil_branch_f315f
-Cry_Cyndaquil_branch_f316b: ; f316b
+	loopchannel 4, .loop1
+.loop2
 	sound __,  1, $e1, $03da
 	sound __,  2, $51, $0312
-	loopchannel 4, Cry_Cyndaquil_branch_f316b
+	loopchannel 4, .loop2
 	endchannel
 ; f3178
 
@@ -683,29 +682,24 @@ Cry_Donphan_Ch8: ; f3274
 Cry_Typhlosion_Ch5: ; f3284
 Cry_Teddiursa_Ch5: ; f3284
 	sound_duty 2, 0, 1, 0
-Cry_Typhlosion_branch_f3286: ; f3286
-Cry_Teddiursa_branch_f3286: ; f3286
+.loop1
 	sound __,  4, $c1, $0791
-	loopchannel 3, Cry_Typhlosion_branch_f3286
-Cry_Typhlosion_branch_f328e: ; f328e
-Cry_Teddiursa_branch_f328e: ; f328e
+	loopchannel 3, .loop1
+.loop2
 	sound __,  4, $d1, $04b1
-	loopchannel 6, Cry_Typhlosion_branch_f328e
-Cry_Typhlosion_branch_f3296: ; f3296
-Cry_Teddiursa_branch_f3296: ; f3296
+	loopchannel 6, .loop2
+.loop3
 	sound __,  2, $d1, $0491
 	sound __,  2, $b1, $0451
-	loopchannel 6, Cry_Typhlosion_branch_f3296
-Cry_Typhlosion_branch_f32a2: ; f32a2
-Cry_Teddiursa_branch_f32a2: ; f32a2
+	loopchannel 6, .loop3
+.loop4
 	sound __,  2, $a3, $0471
 	sound __,  2, $81, $0441
-	loopchannel 6, Cry_Typhlosion_branch_f32a2
-Cry_Typhlosion_branch_f32ae: ; f32ae
-Cry_Teddiursa_branch_f32ae: ; f32ae
+	loopchannel 6, .loop4
+.loop5
 	sound __,  2, $41, $0421
 	sound __,  2, $21, $0401
-	loopchannel 4, Cry_Typhlosion_branch_f32ae
+	loopchannel 4, .loop5
 	endchannel
 ; f32bb
 
@@ -803,10 +797,10 @@ Cry_Mantine_Ch8: ; f334c
 
 Cry_Ampharos_Ch5: ; f3353
 	sound_duty 2, 3, 1, 3
-Cry_Ampharos_branch_f3355: ; f3355
+.loop
 	sound __,  2, $c1, $0520
 	sound __,  2, $a1, $0420
-	loopchannel 4, Cry_Ampharos_branch_f3355
+	loopchannel 4, .loop
 	dutycycle $0
 	sound __,  5, $78, $0760
 	sound __,  5, $78, $0730
@@ -911,23 +905,22 @@ Cry_Aipom_Ch5: ; f3422
 
 Cry_Aipom_Ch6: ; f3441
 	sound_duty 3, 1, 2, 0
-Cry_Aipom_branch_f3443: ; f3443
+.loop1
 	sound __,  2, $f1, $07b4
-	loopchannel 8, Cry_Aipom_branch_f3443
-Cry_Aipom_branch_f344b: ; f344b
+	loopchannel 8, .loop1
+.loop2
 	sound __,  2, $c1, $0790
-	loopchannel 3, Cry_Aipom_branch_f344b
-Cry_Aipom_branch_f3453: ; f3453
+	loopchannel 3, .loop2
+.loop3
 	sound __,  2, $b1, $078d
-	loopchannel 2, Cry_Aipom_branch_f3453
+	loopchannel 2, .loop3
 	sound C_,  1, $92, $0795
 	endchannel
 ; f3460
 
 Cry_Aipom_Ch8: ; f3460
-Cry_Aipom_branch_f3460: ; f3460
 	noise __,  1, $f1, $28
-	loopchannel 4, Cry_Aipom_branch_f3460
+	loopchannel 4, Cry_Aipom_Ch8
 	noise __,  1, $91, $49
 	noise __,  2, $a8, $4a
 	noise __,  1, $e1, $4b
@@ -1656,7 +1649,6 @@ Cry_Slowpoke_Ch8: ; f3a19
 ; f3a1a
 
 Cry_Drowzee_Ch5: ; f3a1a
-Cry_Drowzee_branch_f3a1a: ; f3a1a
 	sound_duty 0, 2, 0, 2
 	sound __,  6, $f2, $0650
 	sound __, 10, $d1, $0660
@@ -1664,7 +1656,7 @@ Cry_Drowzee_branch_f3a1a: ; f3a1a
 	sound __, 10, $c1, $0622
 	sound __,  6, $f2, $0610
 	sound __,  7, $d1, $0620
-	loopchannel 2, Cry_Drowzee_branch_f3a1a
+	loopchannel 2, Cry_Drowzee_Ch5
 	endchannel
 ; f3a39
 

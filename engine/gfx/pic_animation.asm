@@ -399,11 +399,11 @@ PokeAnim_DoAnimScript: ; d0250
 .RunAnim: ; d0261
 	call PokeAnim_GetPointer
 	ld a, [wPokeAnimCommand]
-	cp -1
+	cp endanim_command
 	jr z, PokeAnim_End
-	cp -2
+	cp setrepeat_command
 	jr z, .SetRepeat
-	cp -3
+	cp dorepeat_command
 	jr z, .DoRepeat
 	call PokeAnim_GetFrame
 	ld a, [wPokeAnimParameter]

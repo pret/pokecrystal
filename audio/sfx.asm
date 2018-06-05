@@ -1545,9 +1545,9 @@ Sfx_2ndPlace_Ch8: ; f0fd2
 	togglesfx
 	sfxtogglenoise $3
 	notetype $8
-Sfx_2ndPlace_branch_f0fd7: ; f0fd7
+.loop
 	note C#, 1
-	loopchannel 6, Sfx_2ndPlace_branch_f0fd7
+	loopchannel 6, .loop
 	note B_, 12
 	note B_, 12
 	note B_, 12
@@ -2085,7 +2085,7 @@ Sfx_GetBadge_Ch8: ; f121b
 	togglesfx
 	sfxtogglenoise $4
 	notetype $6
-Sfx_GetBadge_branch_f1220: ; f1220
+.loop
 	note B_, 12
 	note D_, 1
 	note D_, 1
@@ -2100,7 +2100,7 @@ Sfx_GetBadge_branch_f1220: ; f1220
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	loopchannel 2, Sfx_GetBadge_branch_f1220
+	loopchannel 2, .loop
 	note B_, 16
 	note __, 6
 	endchannel
@@ -2238,7 +2238,7 @@ Sfx_Protect_Ch5: ; f12ba
 	togglesfx
 	notetype $1, $f1
 	dutycycle $0
-Sfx_Protect_branch_f12c0: ; f12c0
+.loop
 	octave 5
 	note F_, 5
 	note A_, 5
@@ -2251,7 +2251,7 @@ Sfx_Protect_branch_f12c0: ; f12c0
 	octave 6
 	note C#, 5
 	note E_, 5
-	loopchannel 3, Sfx_Protect_branch_f12c0
+	loopchannel 3, .loop
 	intensity $c1
 	octave 5
 	note F_, 5
@@ -2272,10 +2272,9 @@ Sfx_Protect_branch_f12c0: ; f12c0
 ; f12e5
 
 Sfx_Protect_Ch8: ; f12e5
-Sfx_Protect_branch_f12e5: ; f12e5
 	noise __, 10, $9e, $0
 	noise __, 10, $be, $11
-	loopchannel 6, Sfx_Protect_branch_f12e5
+	loopchannel 6, Sfx_Protect_Ch8
 	noise __, 10, $a7, $0
 	noise C_,  1, $75, $11
 	endchannel
@@ -2288,12 +2287,12 @@ Sfx_Sketch: ; f12f6
 Sfx_Sketch_Ch5: ; f12f9
 	dutycycle $1
 	soundinput $a5
-Sfx_Sketch_branch_f12fd: ; f12fd
+.loop
 	sound __,  3, $f1, $06e0
 	sound __, 14, $af, $05b0
 	sound __,  5, $0, 0
 	sound __, 10, $f4, $0718
-	loopchannel 3, Sfx_Sketch_branch_f12fd
+	loopchannel 3, .loop
 	soundinput $8
 	endchannel
 ; f1314
@@ -2303,12 +2302,11 @@ Sfx_RainDance: ; f1314
 ; f1317
 
 Sfx_RainDance_Ch8: ; f1317
-Sfx_RainDance_branch_f1317: ; f1317
 	noise __, 12, $7d, $50
 	noise __,  7, $7d, $4f
 	noise __, 12, $7f, $47
 	noise __, 16, $6e, $22
-	loopchannel 3, Sfx_RainDance_branch_f1317
+	loopchannel 3, Sfx_RainDance_Ch8
 	noise __,  7, $6d, $50
 	noise __,  6, $5d, $4f
 	noise __,  6, $4f, $47
@@ -2342,10 +2340,9 @@ Sfx_Spark: ; f1352
 ; f1355
 
 Sfx_Spark_Ch8: ; f1355
-Sfx_Spark_branch_f1355: ; f1355
 	noise __,  5, $f8, $5d
 	noise __,  5, $d8, $6f
-	loopchannel 2, Sfx_Spark_branch_f1355
+	loopchannel 2, Sfx_Spark_Ch8
 	endchannel
 ; f1360
 
@@ -2393,12 +2390,11 @@ Sfx_Thief: ; f139c
 ; f139f
 
 Sfx_Thief_Ch8: ; f139f
-Sfx_Thief_branch_f139f: ; f139f
 	noise __,  1, $0, $0
 	noise __,  5, $e1, $12
 	noise __,  1, $0, $0
 	noise __,  3, $b1, $22
-	loopchannel 2, Sfx_Thief_branch_f139f
+	loopchannel 2, Sfx_Thief_Ch8
 	endchannel
 ; f13b0
 
@@ -2488,7 +2484,7 @@ Sfx_Nightmare: ; f141d
 Sfx_Nightmare_Ch5: ; f1420
 	dutycycle $0
 	soundinput $34
-Sfx_Nightmare_branch_f1424: ; f1424
+.loop
 	sound __,  4, $ba, $0631
 	sound __,  3, $0, 0
 	sound __,  4, $f8, $0621
@@ -2499,7 +2495,7 @@ Sfx_Nightmare_branch_f1424: ; f1424
 	sound __,  3, $0, 0
 	sound __,  4, $e8, $05f1
 	sound __,  3, $0, 0
-	loopchannel 2, Sfx_Nightmare_branch_f1424
+	loopchannel 2, .loop
 	soundinput $8
 	endchannel
 ; f1453
@@ -2524,10 +2520,10 @@ Sfx_SweetKiss: ; f1469
 
 Sfx_SweetKiss_Ch5: ; f146c
 	dutycycle $2
-Sfx_SweetKiss_branch_f146e: ; f146e
+.loop
 	sound __,  3, $c1, $07c8
 	sound __,  3, $d1, $07da
-	loopchannel 2, Sfx_SweetKiss_branch_f146e
+	loopchannel 2, .loop
 	sound C_, 11, $f1, $07e2
 	endchannel
 ; f147f
@@ -2757,10 +2753,9 @@ Sfx_ZapCannon: ; f15de
 ; f15e1
 
 Sfx_ZapCannon_Ch8: ; f15e1
-Sfx_ZapCannon_branch_f15e1: ; f15e1
 	noise __,  3, $e1, $49
 	noise __,  1, $0, $0
-	loopchannel 8, Sfx_ZapCannon_branch_f15e1
+	loopchannel 8, Sfx_ZapCannon_Ch8
 	noise __,  9, $e1, $49
 	endchannel
 ; f15ef
@@ -2773,10 +2768,10 @@ Sfx_MeanLook_Ch5: ; f15f2
 	soundinput $77
 	dutycycle $3
 	sound __,  3, $f8, $0720
-Sfx_MeanLook_branch_f15fa: ; f15fa
+.loop
 	sound __,  2, $88, $0660
 	sound __,  3, $f8, $0790
-	loopchannel 5, Sfx_MeanLook_branch_f15fa
+	loopchannel 5, .loop
 	sound __, 13, $f8, $0700
 	sound __, 13, $c8, $0720
 	sound __, 13, $a8, $0700
@@ -2806,13 +2801,13 @@ Sfx_Return: ; f1637
 
 Sfx_Return_Ch5: ; f163a
 	dutycycle $0
-Sfx_Return_branch_f163c: ; f163c
+.loop
 	soundinput $bf
 	sound __,  9, $f1, $0759
 	soundinput $57
 	sound __,  9, $f1, $0759
 	sound C_,  1, $0, 0
-	loopchannel 2, Sfx_Return_branch_f163c
+	loopchannel 2, .loop
 	soundinput $8
 	endchannel
 ; f1653
@@ -2843,14 +2838,14 @@ Sfx_MilkDrink: ; f167f
 
 Sfx_MilkDrink_Ch5: ; f1682
 	dutycycle $2
-Sfx_MilkDrink_branch_f1684: ; f1684
+.loop
 	soundinput $a4
 	sound __,  3, $ea, $04e0
 	sound __, 14, $f7, $0290
 	soundinput $9e
 	sound __,  5, $c9, $05e1
 	sound __,  3, $0, 0
-	loopchannel 6, Sfx_MilkDrink_branch_f1684
+	loopchannel 6, .loop
 	soundinput $8
 	endchannel
 ; f169f
@@ -2862,10 +2857,10 @@ Sfx_Present: ; f169f
 Sfx_Present_Ch5: ; f16a2
 	dutycycle $2
 	soundinput $d6
-Sfx_Present_branch_f16a6: ; f16a6
+.loop
 	sound __,  3, $f1, $0740
 	sound __,  2, $0, 0
-	loopchannel 3, Sfx_Present_branch_f16a6
+	loopchannel 3, .loop
 	sound C_,  1, $f1, $0780
 	soundinput $8
 	endchannel
@@ -2877,11 +2872,11 @@ Sfx_MorningSun: ; f16b9
 
 Sfx_MorningSun_Ch5: ; f16bc
 	dutycycle $3
-Sfx_MorningSun_branch_f16be: ; f16be
+.loop
 	sound __,  3, $f1, $07e4
 	sound __,  3, $f1, $07e0
 	sound __,  6, $f2, $07e7
-	loopchannel 3, Sfx_MorningSun_branch_f16be
+	loopchannel 3, .loop
 	sound __,  2, $0, 0
 	sound __,  9, $c2, $07e7
 	sound __,  2, $0, 0
@@ -2895,10 +2890,10 @@ Sfx_Moonlight: ; f16df
 
 Sfx_Moonlight_Ch5: ; f16e2
 	dutycycle $2
-Sfx_Moonlight_branch_f16e4: ; f16e4
+.loop
 	sound __,  2, $f8, $07d0
 	sound __,  5, $f1, $07e0
-	loopchannel 2, Sfx_Moonlight_branch_f16e4
+	loopchannel 2, .loop
 	sound C_,  1, $f1, $07e0
 	sound C_,  1, $d1, $07e0
 	sound C_,  1, $81, $07e0
@@ -2914,10 +2909,10 @@ Sfx_Encore_Ch5: ; f1703
 	dutycycle $2
 	soundinput $ce
 	sound C_,  1, $0, 0
-Sfx_Encore_branch_f170b: ; f170b
+.loop
 	sound __,  3, $f8, $0774
 	sound C#,  5, $0, 0
-	loopchannel 2, Sfx_Encore_branch_f170b
+	loopchannel 2, .loop
 	soundinput $8
 	endchannel
 ; f171a
@@ -3085,12 +3080,12 @@ Sfx_GsIntroCharizardFireball: ; f17d9
 Sfx_GsIntroCharizardFireball_Ch8: ; f17dc
 	noise __,  9, $cf, $4d
 	noise __,  9, $f1, $37
-Sfx_GsIntroCharizardFireball_branch_f17e2: ; f17e2
+.loop
 	noise __,  2, $f8, $4f
 	noise __,  1, $c8, $26
 	noise __,  2, $d8, $5f
 	noise __,  1, $a8, $37
-	loopchannel 12, Sfx_GsIntroCharizardFireball_branch_f17e2
+	loopchannel 12, .loop
 	noise __,  4, $f8, $6f
 	noise __,  5, $d8, $5f
 	noise __, 13, $d8, $5c
@@ -3348,13 +3343,13 @@ Sfx_DexFanfare140169_Ch8: ; f193f
 	sfxtogglenoise $4
 	notetype $c
 	note C_, 4
-Sfx_DexFanfare140169_branch_f1945: ; f1945
+.loop
 	note D_, 4
 	note C#, 1
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	loopchannel 3, Sfx_DexFanfare140169_branch_f1945
+	loopchannel 3, .loop
 	note D_, 8
 	endchannel
 ; f1950
@@ -3762,7 +3757,7 @@ Sfx_DexFanfare230Plus_Ch8: ; f1b0c
 	note D_, 2
 	note D_, 2
 	note D_, 2
-Sfx_DexFanfare230Plus_branch_f1b14: ; f1b14
+.loop1
 	note D_, 6
 	note D_, 2
 	note D_, 2
@@ -3774,7 +3769,7 @@ Sfx_DexFanfare230Plus_branch_f1b14: ; f1b14
 	note C#, 1
 	note C#, 1
 	note C#, 1
-	loopchannel 2, Sfx_DexFanfare230Plus_branch_f1b14
+	loopchannel 2, .loop1
 	note D_, 6
 	note D_, 2
 	note D_, 2
@@ -3783,9 +3778,9 @@ Sfx_DexFanfare230Plus_branch_f1b14: ; f1b14
 	note D_, 4
 	note D_, 4
 	note D_, 4
-Sfx_DexFanfare230Plus_branch_f1b2b: ; f1b2b
+.loop2
 	note C#, 1
-	loopchannel 18, Sfx_DexFanfare230Plus_branch_f1b2b
+	loopchannel 18, .loop2
 	note D_, 6
 	endchannel
 ; f1b32
@@ -3878,11 +3873,11 @@ Sfx_SweetScent2_Ch5: ; f1bb9
 Sfx_SweetScent2_Ch8: ; f1bcc
 	noise __,  3, $e8, $22
 	noise C_,  2, $aa, $0
-Sfx_SweetScent2_branch_f1bd2: ; f1bd2
+.loop
 	noise __,  5, $d9, $10
 	noise __,  9, $91, $0
 	noise __,  3, $61, $7
-	loopchannel 5, Sfx_SweetScent2_branch_f1bd2
+	loopchannel 5, .loop
 	noise __,  5, $99, $0
 	noise __, 11, $61, $0
 	noise __,  7, $59, $0
@@ -3990,13 +3985,13 @@ Sfx_2Boops: ; f1cb4
 
 Sfx_2Boops_Ch5: ; f1cb7
 	dutycycle $2
-Sfx_2Boops_branch_f1cb9: ; f1cb9
+.loop
 	soundinput $79
 	sound __,  2, $99, $0563
 	sound __,  5, $f2, $04b5
 	soundinput $43
 	sound C_,  1, $f8, $05cd
-	loopchannel 2, Sfx_2Boops_branch_f1cb9
+	loopchannel 2, .loop
 	soundinput $8
 	endchannel
 ; f1cd0
@@ -4150,11 +4145,10 @@ Sfx_Potion_Ch5: ; f1d9d
 ; f1dac
 
 Sfx_Poison_Ch5: ; f1dac
-Sfx_Poison_branch_f1dac: ; f1dac
 	dutycycle $0
 	soundinput $14
 	sound __,  5, $f2, $0600
-	loopchannel 4, Sfx_Poison_branch_f1dac
+	loopchannel 4, Sfx_Poison_Ch5
 	sound __, 16, $f3, $0600
 	soundinput $8
 	endchannel
@@ -4572,11 +4566,10 @@ Sfx_Cut_Ch8: ; f20c3
 ; f20d0
 
 Sfx_WingAttack_Ch8: ; f20d0
-Sfx_WingAttack_branch_f20d0: ; f20d0
 	noise __,  9, $4f, $23
 	noise __,  5, $c4, $22
 	noise __,  7, $f2, $23
-	loopchannel 4, Sfx_WingAttack_branch_f20d0
+	loopchannel 4, Sfx_WingAttack_Ch8
 	endchannel
 ; f20de
 
@@ -4754,9 +4747,9 @@ Sfx_Thunder_Ch8: ; f21d3
 Sfx_Supersonic_Ch5: ; f21e9
 	dutycycle $2
 	sound __, 16, $3f, $07c0
-Sfx_Supersonic_branch_f21ef: ; f21ef
+.loop
 	sound __, 16, $df, $07c0
-	loopchannel 4, Sfx_Supersonic_branch_f21ef
+	loopchannel 4, .loop
 	sound __, 16, $d1, $07c0
 	endchannel
 ; f21fc
@@ -4764,63 +4757,57 @@ Sfx_Supersonic_branch_f21ef: ; f21ef
 Sfx_Supersonic_Ch6: ; f21fc
 	sound_duty 3, 0, 3, 2
 	sound __, 16, $2f, $07c8
-Sfx_Supersonic_branch_f2202: ; f2202
+.loop
 	sound __, 16, $cf, $07c7
-	loopchannel 4, Sfx_Supersonic_branch_f2202
+	loopchannel 4, .loop
 	sound __, 16, $c1, $07c8
 	endchannel
 ; f220f
 
 Sfx_Supersonic_Ch8: ; f220f
-Sfx_Supersonic_branch_f220f: ; f220f
 	noise __,  4, $97, $12
 	noise __,  4, $a1, $11
-	loopchannel 10, Sfx_Supersonic_branch_f220f
+	loopchannel 10, Sfx_Supersonic_Ch8
 	endchannel
 ; f221a
 
 Sfx_Leer_Ch5: ; f221a
-Sfx_Leer_branch_f221a: ; f221a
 	dutycycle $0
 	sound __,  1, $f1, $07c0
 	sound __,  1, $f1, $0700
-	loopchannel 12, Sfx_Leer_branch_f221a
+	loopchannel 12, Sfx_Leer_Ch5
 	endchannel
 ; f2229
 
 Sfx_Leer_Ch6: ; f2229
-Sfx_Leer_branch_f2229: ; f2229
 	sound_duty 3, 0, 3, 2
 	sound __,  1, $e1, $07c1
 	sound __,  1, $e1, $0701
-	loopchannel 12, Sfx_Leer_branch_f2229
+	loopchannel 12, Sfx_Leer_Ch6
 	endchannel
 ; f2238
 
 Sfx_Leer_Ch8: ; f2238
-Sfx_Leer_branch_f2238: ; f2238
 	noise __,  2, $d1, $49
 	noise __,  2, $d1, $29
-	loopchannel 6, Sfx_Leer_branch_f2238
+	loopchannel 6, Sfx_Leer_Ch8
 	endchannel
 ; f2243
 
 Sfx_Ember_Ch5: ; f2243
-Sfx_Ember_branch_f2243: ; f2243
 	sound_duty 1, 2, 0, 3
 	sound __, 12, $f3, $0120
 	sound __, 10, $d3, $0150
-	loopchannel 5, Sfx_Ember_branch_f2243
+	loopchannel 5, Sfx_Ember_Ch5
 	sound __,  9, $e3, $0130
 	sound __, 16, $c2, $0110
 	endchannel
 ; f225a
 
 Sfx_Ember_Ch8: ; f225a
-Sfx_Ember_branch_f225a: ; f225a
 	noise __, 11, $f3, $35
 	noise __, 15, $f6, $45
-	loopchannel 4, Sfx_Ember_branch_f225a
+	loopchannel 4, Sfx_Ember_Ch8
 	noise __, 13, $f4, $bc
 	noise __, 13, $f5, $9c
 	noise __, 16, $f4, $ac
@@ -4828,178 +4815,161 @@ Sfx_Ember_branch_f225a: ; f225a
 ; f226e
 
 Sfx_Bubblebeam_Ch5: ; f226e
-Sfx_Bubblebeam_branch_f226e: ; f226e
 	sound_duty 1, 2, 3, 0
 	sound __,  5, $f4, $0600
 	sound __,  4, $c4, $0500
 	sound __,  6, $b5, $0600
 	sound __, 14, $e2, $06c0
-	loopchannel 3, Sfx_Bubblebeam_branch_f226e
+	loopchannel 3, Sfx_Bubblebeam_Ch5
 	sound __,  9, $d1, $0600
 	endchannel
 ; f2289
 
 Sfx_Bubblebeam_Ch6: ; f2289
-Sfx_Bubblebeam_branch_f2289: ; f2289
 	sound_duty 1, 3, 0, 2
 	sound __,  6, $e4, $05e0
 	sound __,  5, $b4, $04e0
 	sound __,  7, $a5, $05e8
 	sound __, 15, $d1, $06a0
-	loopchannel 3, Sfx_Bubblebeam_branch_f2289
+	loopchannel 3, Sfx_Bubblebeam_Ch6
 	endchannel
 ; f22a0
 
 Sfx_Bubblebeam_Ch8: ; f22a0
-Sfx_Bubblebeam_branch_f22a0: ; f22a0
 	noise __,  6, $c3, $33
 	noise __,  4, $92, $43
 	noise __, 11, $b5, $33
 	noise __, 16, $c3, $32
-	loopchannel 2, Sfx_Bubblebeam_branch_f22a0
+	loopchannel 2, Sfx_Bubblebeam_Ch8
 	endchannel
 ; f22b1
 
 Sfx_HydroPump_Ch5: ; f22b1
-Sfx_HydroPump_branch_f22b1: ; f22b1
 	sound_duty 2, 0, 1, 3
 	sound __,  4, $81, $0300
 	sound __,  4, $c1, $0400
 	sound __,  4, $f1, $0500
 	sound __,  4, $b1, $0400
 	sound __,  4, $71, $0300
-	loopchannel 5, Sfx_HydroPump_branch_f22b1
+	loopchannel 5, Sfx_HydroPump_Ch5
 	sound __,  9, $81, $0400
 	endchannel
 ; f22d0
 
 Sfx_HydroPump_Ch8: ; f22d0
-Sfx_HydroPump_branch_f22d0: ; f22d0
 	noise __,  4, $62, $22
 	noise __,  4, $a2, $32
 	noise __,  4, $d2, $33
 	noise __,  4, $92, $23
 	noise __,  4, $52, $12
-	loopchannel 5, Sfx_HydroPump_branch_f22d0
+	loopchannel 5, Sfx_HydroPump_Ch8
 	noise __,  9, $81, $12
 	endchannel
 ; f22e7
 
 Sfx_Surf_Ch5: ; f22e7
-Sfx_Surf_branch_f22e7: ; f22e7
 	sound_duty 1, 2, 3, 0
 	sound __, 16, $f4, $0500
 	sound __, 16, $c4, $0400
 	sound __, 16, $e2, $05c0
-	loopchannel 3, Sfx_Surf_branch_f22e7
+	loopchannel 3, Sfx_Surf_Ch5
 	endchannel
 ; f22fa
 
 Sfx_Surf_Ch6: ; f22fa
-Sfx_Surf_branch_f22fa: ; f22fa
 	sound_duty 1, 3, 0, 2
 	sound __,  8, $e4, $0430
 	sound __, 16, $b4, $0330
 	sound __, 16, $a2, $0438
-	loopchannel 4, Sfx_Surf_branch_f22fa
+	loopchannel 4, Sfx_Surf_Ch6
 	endchannel
 ; f230d
 
 Sfx_Surf_Ch8: ; f230d
-Sfx_Surf_branch_f230d: ; f230d
 	noise __, 10, $f4, $44
 	noise __, 10, $f2, $43
 	noise __, 16, $f4, $42
 	noise __, 16, $f4, $41
-	loopchannel 3, Sfx_Surf_branch_f230d
+	loopchannel 3, Sfx_Surf_Ch8
 	endchannel
 ; f231e
 
 Sfx_Psybeam_Ch5: ; f231e
-Sfx_Psybeam_branch_f231e: ; f231e
 	sound_duty 1, 0, 2, 2
 	sound __, 11, $f1, $0640
 	sound __, 11, $f3, $0680
 	sound __, 11, $f2, $0620
-	loopchannel 4, Sfx_Psybeam_branch_f231e
+	loopchannel 4, Sfx_Psybeam_Ch5
 	sound __, 11, $f1, $0640
 	endchannel
 ; f2335
 
 Sfx_Psybeam_Ch6: ; f2335
-Sfx_Psybeam_branch_f2335: ; f2335
 	sound_duty 3, 0, 3, 2
 	sound __, 11, $f3, $0571
 	sound __,  8, $e3, $0531
 	sound __, 11, $f1, $0551
-	loopchannel 4, Sfx_Psybeam_branch_f2335
+	loopchannel 4, Sfx_Psybeam_Ch6
 	sound __, 11, $f1, $0571
 	endchannel
 ; f234c
 
 Sfx_Psybeam_Ch8: ; f234c
-Sfx_Psybeam_branch_f234c: ; f234c
 	noise __,  3, $d1, $4a
 	noise __,  3, $d2, $2a
-	loopchannel 21, Sfx_Psybeam_branch_f234c
+	loopchannel 21, Sfx_Psybeam_Ch8
 	endchannel
 ; f2357
 
 Sfx_Charge_Ch5: ; f2357
-Sfx_Charge_branch_f2357: ; f2357
 	dutycycle $0
 	sound __,  3, $f1, $0200
 	sound __,  4, $f1, $0700
 	sound __,  5, $f1, $0500
 	sound __,  6, $f1, $07f0
-	loopchannel 8, Sfx_Charge_branch_f2357
+	loopchannel 8, Sfx_Charge_Ch5
 	endchannel
 ; f236e
 
 Sfx_Charge_Ch6: ; f236e
-Sfx_Charge_branch_f236e: ; f236e
 	sound_duty 3, 0, 3, 2
 	sound __,  3, $e1, $0302
 	sound __,  4, $e1, $07f2
 	sound __,  5, $e1, $0602
 	sound __,  6, $e1, $0702
-	loopchannel 8, Sfx_Charge_branch_f236e
+	loopchannel 8, Sfx_Charge_Ch6
 	endchannel
 ; f2385
 
 Sfx_Charge_Ch8: ; f2385
-Sfx_Charge_branch_f2385: ; f2385
 	noise __,  3, $d3, $10
 	noise __,  4, $d3, $11
 	noise __,  3, $d2, $10
 	noise __,  6, $d2, $12
-	loopchannel 9, Sfx_Charge_branch_f2385
+	loopchannel 9, Sfx_Charge_Ch8
 	endchannel
 ; f2396
 
 Sfx_Thundershock_Ch5: ; f2396
-Sfx_Thundershock_branch_f2396: ; f2396
 	sound_duty 3, 2, 2, 0
 	sound __,  4, $f1, $07f0
 	sound __,  5, $f2, $0200
-	loopchannel 8, Sfx_Thundershock_branch_f2396
+	loopchannel 8, Sfx_Thundershock_Ch5
 	endchannel
 ; f23a5
 
 Sfx_Thundershock_Ch6: ; f23a5
-Sfx_Thundershock_branch_f23a5: ; f23a5
 	sound_duty 3, 0, 3, 2
 	sound __,  5, $e2, $0202
 	sound __,  5, $e1, $07e2
-	loopchannel 9, Sfx_Thundershock_branch_f23a5
+	loopchannel 9, Sfx_Thundershock_Ch6
 	endchannel
 ; f23b4
 
 Sfx_Thundershock_Ch8: ; f23b4
-Sfx_Thundershock_branch_f23b4: ; f23b4
 	noise __,  5, $ff, $43
 	noise __,  5, $f2, $44
-	loopchannel 9, Sfx_Thundershock_branch_f23b4
+	loopchannel 9, Sfx_Thundershock_Ch8
 	endchannel
 ; f23bf
 
@@ -5159,10 +5129,10 @@ Sfx_HyperBeam_Ch5: ; f24ca
 	sound __,  3, $f1, $07c0
 	sound __,  3, $f1, $0700
 	sound __,  3, $f1, $07d0
-Sfx_HyperBeam_branch_f24f8: ; f24f8
+.loop
 	sound __,  3, $f1, $0700
 	sound __,  3, $f1, $07e0
-	loopchannel 12, Sfx_HyperBeam_branch_f24f8
+	loopchannel 12, .loop
 	sound __, 16, $f1, $0700
 	endchannel
 ; f2509
@@ -5180,19 +5150,18 @@ Sfx_HyperBeam_Ch6: ; f2509
 	sound __,  3, $f1, $07c1
 	sound __,  3, $f1, $0701
 	sound __,  3, $f1, $07d1
-Sfx_HyperBeam_branch_f2537: ; f2537
+.loop
 	sound __,  3, $f1, $0701
 	sound __,  3, $f1, $07e1
-	loopchannel 12, Sfx_HyperBeam_branch_f2537
+	loopchannel 12, .loop
 	sound __, 16, $f1, $0701
 	endchannel
 ; f2548
 
 Sfx_HyperBeam_Ch8: ; f2548
-Sfx_HyperBeam_branch_f2548: ; f2548
 	noise __,  2, $d1, $49
 	noise __,  2, $d1, $29
-	loopchannel 26, Sfx_HyperBeam_branch_f2548
+	loopchannel 26, Sfx_HyperBeam_Ch8
 	endchannel
 ; f2553
 
@@ -5302,10 +5271,9 @@ Sfx_Metronome_Ch5: ; f25ec
 ; f2617
 
 Sfx_Unknown5F_Ch5: ; f2617
-Sfx_Unknown5F_branch_f2617: ; f2617
 	sound __,  3, $f7, $0601
 	sound __,  3, $f7, $0701
-	loopchannel 8, Sfx_Unknown5F_branch_f2617
+	loopchannel 8, Sfx_Unknown5F_Ch5
 	endchannel
 ; f2624
 
@@ -5313,7 +5281,7 @@ Sfx_Unknown5F_Ch6: ; f2624
 	sound __,  2, $f7, $ffff
 	sound __,  3, $f7, $0602
 	sound __,  3, $f7, $0702
-	loopchannel 8, Sfx_Unknown5F_branch_f2617
+	loopchannel 8, Sfx_Unknown5F_Ch5
 	endchannel
 ; f2635
 
@@ -5484,35 +5452,31 @@ Sfx_HangUp_Ch5: ; f26f1
 	sound __,  5, $b8, $077b
 	sound __,  3, $21, $077b
 	sound C_,  1, $0, 0
-Sfx_HangUp_branch_f26ff: ; f26ff
 Sfx_NoSignal_Ch5: ; f26ff
-Sfx_NoSignal_branch_f26ff: ; f26ff
 	dutycycle $2
 	sound C_,  5, $e8, $070b
 	sound C_, 13, $0, 0
-	loopchannel 3, Sfx_HangUp_branch_f26ff
+	loopchannel 3, Sfx_NoSignal_Ch5
 	endchannel
 ; f270e
 
 Sfx_Sandstorm_Ch8: ; f270e
-Sfx_Sandstorm_branch_f270e: ; f270e
 Sfx_Unknown5F_Ch8: ; f270e
-Sfx_Unknown5F_branch_f270e: ; f270e
 	noise __,  2, $f8, $41
 	noise __,  3, $9c, $24
 	noise __,  1, $0, $0
 	noise __,  4, $59, $16
 	noise __,  3, $0, $0
-	loopchannel 3, Sfx_Sandstorm_branch_f270e
+	loopchannel 3, Sfx_Sandstorm_Ch8
 	endchannel
 ; f2722
 
 Sfx_Elevator_Ch5: ; f2722
 	dutycycle $2
 	soundinput $5a
-Sfx_Elevator_branch_f2726: ; f2726
+.loop
 	sound __,  3, $f1, $0300
-	loopchannel 48, Sfx_Elevator_branch_f2726
+	loopchannel 48, .loop
 	soundinput $8
 	dutycycle $2
 	sound __, 16, $f3, $0730

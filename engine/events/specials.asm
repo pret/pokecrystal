@@ -95,13 +95,13 @@ NameRival: ; 0xc29d
 	farcall _NamingScreen
 	; default to "SILVER"
 	ld hl, wRivalName
-	ld de, DefaultRivalName
+	ld de, .default
 	call InitName
 	ret
-; 0xc2b2
 
-DefaultRivalName: ; 0xc2b2
+.default
 	db "SILVER@"
+; 0xc2b9
 
 NameRater: ; c2b9
 	farcall _NameRater
