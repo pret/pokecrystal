@@ -8,6 +8,6 @@ sed \
     -e "s/^00:[C-D]/4_WRAM0@&/g" \
     -e "s/^..:[D-D]/5_WRAMX@&/g" \
     $1 \
-| sort -o $TEMP_FILE
-sed -e "s/^.*@//g" $TEMP_FILE > $1
-rm $TEMP_FILE
+| sort \
+| sed -e "s/^.*@//g" > $TEMP_FILE
+mv $TEMP_FILE $1
