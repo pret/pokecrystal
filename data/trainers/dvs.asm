@@ -1,72 +1,76 @@
+dvs: MACRO
+; atk, def, spd, spc
+	dn \1, \2
+	dn \3, \4
+ENDM
+
 TrainerClassDVs: ; 270d6
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
-	;  Atk  Spd
-	;  Def  Spc
-	db $9A, $77 ; falkner
-	db $88, $88 ; bugsy
-	db $98, $88 ; whitney
-	db $98, $88 ; morty
-	db $98, $88 ; pryce
-	db $98, $88 ; jasmine
-	db $98, $88 ; chuck
-	db $7C, $DD ; clair
-	db $DD, $DD ; rival1
-	db $98, $88 ; pokemon prof
-	db $DC, $DD ; will
-	db $DC, $DD ; cal
-	db $DC, $DD ; bruno
-	db $7F, $DF ; karen
-	db $DC, $DD ; koga
-	db $DC, $DD ; champion
-	db $98, $88 ; brock
-	db $78, $88 ; misty
-	db $98, $88 ; lt surge
-	db $98, $88 ; scientist
-	db $78, $88 ; erika
-	db $98, $88 ; youngster
-	db $98, $88 ; schoolboy
-	db $98, $88 ; bird keeper
-	db $58, $88 ; lass
-	db $98, $88 ; janine
-	db $D8, $C8 ; cooltrainerm
-	db $7C, $C8 ; cooltrainerf
-	db $69, $C8 ; beauty
-	db $98, $88 ; pokemaniac
-	db $D8, $A8 ; gruntm
-	db $98, $88 ; gentleman
-	db $98, $88 ; skier
-	db $68, $88 ; teacher
-	db $7D, $87 ; sabrina
-	db $98, $88 ; bug catcher
-	db $98, $88 ; fisher
-	db $98, $88 ; swimmerm
-	db $78, $88 ; swimmerf
-	db $98, $88 ; sailor
-	db $98, $88 ; super nerd
-	db $98, $88 ; rival2
-	db $98, $88 ; guitarist
-	db $A8, $88 ; hiker
-	db $98, $88 ; biker
-	db $98, $88 ; blaine
-	db $98, $88 ; burglar
-	db $98, $88 ; firebreather
-	db $98, $88 ; juggler
-	db $98, $88 ; blackbelt
-	db $D8, $A8 ; executivem
-	db $98, $88 ; psychic
-	db $6A, $A8 ; picnicker
-	db $98, $88 ; camper
-	db $7E, $A8 ; executivef
-	db $98, $88 ; sage
-	db $78, $88 ; medium
-	db $98, $88 ; boarder
-	db $98, $88 ; pokefanm
-	db $68, $8A ; kimono girl
-	db $68, $A8 ; twins
-	db $6D, $88 ; pokefanf
-	db $FD, $DE ; red
-	db $9D, $DD ; blue
-	db $98, $88 ; officer
-	db $7E, $A8 ; gruntf
-	db $98, $88 ; mysticalman
+	dvs  9, 10,  7,  7 ; FALKNER
+	dvs  8,  8,  8,  8 ; BUGSY
+	dvs  9,  8,  8,  8 ; WHITNEY
+	dvs  9,  8,  8,  8 ; MORTY
+	dvs  9,  8,  8,  8 ; PRYCE
+	dvs  9,  8,  8,  8 ; JASMINE
+	dvs  9,  8,  8,  8 ; CHUCK
+	dvs  7, 12, 13, 13 ; CLAIR
+	dvs 13, 13, 13, 13 ; RIVAL1
+	dvs  9,  8,  8,  8 ; POKEMON_PROF
+	dvs 13, 12, 13, 13 ; WILL
+	dvs 13, 12, 13, 13 ; CAL
+	dvs 13, 12, 13, 13 ; BRUNO
+	dvs  7, 15, 13, 15 ; KAREN
+	dvs 13, 12, 13, 13 ; KOGA
+	dvs 13, 12, 13, 13 ; CHAMPION
+	dvs  9,  8,  8,  8 ; BROCK
+	dvs  7,  8,  8,  8 ; MISTY
+	dvs  9,  8,  8,  8 ; LT_SURGE
+	dvs  9,  8,  8,  8 ; SCIENTIST
+	dvs  7,  8,  8,  8 ; ERIKA
+	dvs  9,  8,  8,  8 ; YOUNGSTER
+	dvs  9,  8,  8,  8 ; SCHOOLBOY
+	dvs  9,  8,  8,  8 ; BIRD_KEEPER
+	dvs  5,  8,  8,  8 ; LASS
+	dvs  9,  8,  8,  8 ; JANINE
+	dvs 13,  8, 12,  8 ; COOLTRAINERM
+	dvs  7, 12, 12,  8 ; COOLTRAINERF
+	dvs  6,  9, 12,  8 ; BEAUTY
+	dvs  9,  8,  8,  8 ; POKEMANIAC
+	dvs 13,  8, 10,  8 ; GRUNTM
+	dvs  9,  8,  8,  8 ; GENTLEMAN
+	dvs  9,  8,  8,  8 ; SKIER
+	dvs  6,  8,  8,  8 ; TEACHER
+	dvs  7, 13,  8,  7 ; SABRINA
+	dvs  9,  8,  8,  8 ; BUG_CATCHER
+	dvs  9,  8,  8,  8 ; FISHER
+	dvs  9,  8,  8,  8 ; SWIMMERM
+	dvs  7,  8,  8,  8 ; SWIMMERF
+	dvs  9,  8,  8,  8 ; SAILOR
+	dvs  9,  8,  8,  8 ; SUPER_NERD
+	dvs  9,  8,  8,  8 ; RIVAL2
+	dvs  9,  8,  8,  8 ; GUITARIST
+	dvs 10,  8,  8,  8 ; HIKER
+	dvs  9,  8,  8,  8 ; BIKER
+	dvs  9,  8,  8,  8 ; BLAINE
+	dvs  9,  8,  8,  8 ; BURGLAR
+	dvs  9,  8,  8,  8 ; FIREBREATHER
+	dvs  9,  8,  8,  8 ; JUGGLER
+	dvs  9,  8,  8,  8 ; BLACKBELT_T
+	dvs 13,  8, 10,  8 ; EXECUTIVEM
+	dvs  9,  8,  8,  8 ; PSYCHIC_T
+	dvs  6, 10, 10,  8 ; PICNICKER
+	dvs  9,  8,  8,  8 ; CAMPER
+	dvs  7, 14, 10,  8 ; EXECUTIVEF
+	dvs  9,  8,  8,  8 ; SAGE
+	dvs  7,  8,  8,  8 ; MEDIUM
+	dvs  9,  8,  8,  8 ; BOARDER
+	dvs  9,  8,  8,  8 ; POKEFANM
+	dvs  6,  8,  8, 10 ; KIMONO_GIRL
+	dvs  6,  8, 10,  8 ; TWINS
+	dvs  6, 13,  8,  8 ; POKEFANF
+	dvs 15, 13, 13, 14 ; RED
+	dvs  9, 13, 13, 13 ; BLUE
+	dvs  9,  8,  8,  8 ; OFFICER
+	dvs  7, 14, 10,  8 ; GRUNTF
+	dvs  9,  8,  8,  8 ; MYSTICALMAN
 ; 2715c
