@@ -39,7 +39,7 @@ void md5_wikipedia(uint8_t *data, int length, uint8_t *result) {
 	uint8_t *message = calloc(length + 64, sizeof(uint8_t));
 	memcpy(message, data, length);
 
-	long orig_bitlength = length * 8;
+	int64_t orig_bitlength = length * 8;
 
 	message[length++] |= 1 << 7;
 
