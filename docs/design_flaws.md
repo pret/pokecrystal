@@ -272,11 +272,12 @@ Modify `Pokedex_LoadAnyFootprint`:
 
 ```diff
 -	push hl
--	ld e, l
--	ld d, h
--	ld hl, vTiles2 tile $62
+	ld e, l
+	ld d, h
+	ld hl, vTiles2 tile $62
 -	lb bc, BANK(Footprints), 2
--	call Request1bpp
++	lb bc, BANK(Footprints), 4
+	call Request1bpp
 -	pop hl
 -
 -	; Whoever was editing footprints forgot to fix their
@@ -284,12 +285,11 @@ Modify `Pokedex_LoadAnyFootprint`:
 -	ld de, 8 tiles
 -	add hl, de
 -
-	ld e, l
-	ld d, h
-	ld hl, vTiles2 tile $64
+-	ld e, l
+-	ld d, h
+-	ld hl, vTiles2 tile $64
 -	lb bc, BANK(Footprints), 2
-+	lb bc, BANK(Footprints), 4
-	call Request1bpp
+-	call Request1bpp
 ```
 
 
