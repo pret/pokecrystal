@@ -967,17 +967,9 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	ld [wJumptableIndex], a
 	ret
 ; 8c38f (23:438f)
-
-.StartingPoints: ; 8c38f
-; entries correspond to TRANS_* constants
-	db BATTLETRANSITION_CAVE
-	db BATTLETRANSITION_CAVE_STRONGER
-	db BATTLETRANSITION_NO_CAVE
-	db BATTLETRANSITION_NO_CAVE_STRONGER
-; 8c393
 ```
 
-*To do:* Fix this bug.
+**Fix:** Change `wEnemyMonLevel` to `wCurPartyLevel`.
 
 
 ## A "HOF Master!" title for 200-Time Famers is defined but inaccessible
