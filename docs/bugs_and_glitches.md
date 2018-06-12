@@ -936,9 +936,13 @@ This is a bug with `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.
 
 ([Video](https://www.youtube.com/watch?v=eij_1060SMc))
 
-This is a bug with `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm):
+This is a cluster of bugs centred on `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm).
 
-```asm
+**Fix:**
+
+First, change `wEnemyMonLevel` to `wCurPartyLevel` - the former won't be populated until a call to `LoadEnemyMon` later in the start-of-battle routine, but it's populated from the latter so we can take advantage of that.
+
+```diff
 StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 ; The screen flashes a different number of times depending on the level of
 ; your lead Pokemon relative to the opponent's.
@@ -947,37 +951,160 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	ld de, 0
 	ld a, [wBattleMonLevel]
 	add 3
-	ld hl, wEnemyMonLevel
+-	ld hl, wEnemyMonLevel
++	ld hl, wCurPartyLevel
 	cp [hl]
 	jr nc, .not_stronger
 	set TRANS_STRONGER_F, e
 .not_stronger
-	ld a, [wEnvironment]
-	cp CAVE
-	jr z, .cave
-	cp ENVIRONMENT_5
-	jr z, .cave
-	cp DUNGEON
-	jr z, .cave
-	set TRANS_NO_CAVE_F, e
-.cave
-	ld hl, .StartingPoints
-	add hl, de
-	ld a, [hl]
-	ld [wJumptableIndex], a
-	ret
-; 8c38f (23:438f)
-
-.StartingPoints: ; 8c38f
-; entries correspond to TRANS_* constants
-	db BATTLETRANSITION_CAVE
-	db BATTLETRANSITION_CAVE_STRONGER
-	db BATTLETRANSITION_NO_CAVE
-	db BATTLETRANSITION_NO_CAVE_STRONGER
-; 8c393
 ```
 
-*To do:* Fix this bug.
+However, we discover another problem - `wBattleMonLevel` is populated too early, in `FindFirstAliveMonAndStartBattle` in [engine/battle/start_battle.asm](/engine/battle/start_battle.asm), and the value there gets overwritten in the time it takes to reach `StartTrainerBattle_DetermineWhichAnimation`. Let's move that code closer to the point of use (and change the hardcoded value of 6 to its intended `PARTY_LENGTH` while we're at it).
+
+```diff
+FindFirstAliveMonAndStartBattle: ; 2ee2f
+	xor a
+	ld [hMapAnims], a
+	call DelayFrame
+-	ld b, 6
+-	ld hl, wPartyMon1HP
+-	ld de, PARTYMON_STRUCT_LENGTH - 1
+-
+-.loop
+-	ld a, [hli]
+-	or [hl]
+-	jr nz, .okay
+-	add hl, de
+-	dec b
+-	jr nz, .loop
+-
+-.okay
+-	ld de, MON_LEVEL - MON_HP
+-	add hl, de
+-	ld a, [hl]
+-	ld [wBattleMonLevel], a
+	predef DoBattleTransition
+```
+
+```diff
+StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
+; The screen flashes a different number of times depending on the level of
+; your lead Pokemon relative to the opponent's.
+; BUG: wBattleMonLevel and wEnemyMonLevel are not set at this point, so whatever
+; values happen to be there will determine the animation.
++	ld b, PARTY_LENGTH
++	ld hl, wPartyMon1HP
++	ld de, PARTYMON_STRUCT_LENGTH - 1
++
++.loop
++	ld a, [hli]
++	or [hl]
++	jr nz, .okay
++	add hl, de
++	dec b
++	jr nz, .loop
++
++.okay
++	ld de, MON_LEVEL - MON_HP
++	add hl, de
+	ld de, 0
+-	ld a, [wBattleMonLevel]
++	ld a, [hl]
+	add 3
+	ld hl, wCurPartyLevel
+	cp [hl]
+	jr nc, .not_stronger
+	set TRANS_STRONGER_F, e
+```
+
+That's all we need to fix transitions for wild battles, but `wBattleMonLevel` isn't populated correctly for trainer battles. We need to add some code to fix that, and the best place for it is at the bottom of [engine/battle/read_trainer_party.asm](/engine/battle/read_trainer_party.asm), replacing the unused `Function39990`.
+
+```asm
+SetTrainerBattleLevel:
+	ld a, 255
+	ld [wCurPartyLevel], a
+
+	ld a, [wInBattleTowerBattle]
+	bit 0, a
+	ret nz
+
+	ld a, [wLinkMode]
+	and a
+	ret nz
+
+	ld a, [wOtherTrainerClass]
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, TrainerGroups
+rept 2
+	add hl, bc
+endr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+	ld a, [wOtherTrainerID]
+	ld b, a
+.skip_trainer
+	dec b
+	jr z, .got_trainer
+.loop1
+	ld a, [hli]
+	cp $ff
+	jr nz, .loop1
+	jr .skip_trainer
+.got_trainer
+
+.skip_name
+	ld a, [hli]
+	cp "@"
+	jr nz, .skip_name
+
+	inc hl
+	ld a, [hl]
+	ld [wCurPartyLevel], a
+	ret
+```
+
+Now we can use this code in `StartTrainerBattle_DetermineWhichAnimation`.
+
+```diff
+StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
+; The screen flashes a different number of times depending on the level of
+; your lead Pokemon relative to the opponent's.
+-; BUG: wBattleMonLevel and wEnemyMonLevel are not set at this point, so whatever
+-; values happen to be there will determine the animation.
++	ld a, [wOtherTrainerClass]
++	and a
++	jr z, .wild
++	farcall SetTrainerBattleLevel
++.wild
+	ld b, PARTY_LENGTH
+	ld hl, wPartyMon1HP
+	ld de, PARTYMON_STRUCT_LENGTH - 1
+
+.loop
+	ld a, [hli]
+	or [hl]
+	jr nz, .okay
+	add hl, de
+	dec b
+	jr nz, .loop
+
+.okay
+	ld de, MON_LEVEL - MON_HP
+	add hl, de
+	ld de, 0
+	ld a, [hl]
+	add 3
+	ld hl, wCurPartyLevel
+	cp [hl]
+	jr nc, .not_stronger
+	set TRANS_STRONGER_F, e
+```
+
+That's it - battle transitions are now correct for all battles.
 
 
 ## A "HOF Master!" title for 200-Time Famers is defined but inaccessible
