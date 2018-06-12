@@ -936,7 +936,7 @@ This is a bug with `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.
 
 ([Video](https://www.youtube.com/watch?v=eij_1060SMc))
 
-This is a cluster of bugs centred on `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm).
+This is a cluster of bugs centered on `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm).
 
 **Fix:**
 
