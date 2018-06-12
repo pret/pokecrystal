@@ -959,14 +959,14 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 .not_stronger
 ```
 
-However, we discover another problem - `wBattleMonLevel` is populated too early, in `FindFirstAliveMonAndStartBattle` in [engine/battle/start_battle.asm](/engine/battle/start_battle.asm), and the value there gets overwritten in the time it takes to reach `StartTrainerBattle_DetermineWhichAnimation`. Let's move that code closer to the point of use (and change the hardcoded value of 6 to its intended `PARTY_LENGTH` while we're at it).
+However, we discover another problem - `wBattleMonLevel` is populated too early, in `FindFirstAliveMonAndStartBattle` in [engine/battle/start_battle.asm](/engine/battle/start_battle.asm), and the value there gets overwritten in the time it takes to reach `StartTrainerBattle_DetermineWhichAnimation`. Let's move that code closer to the point of use.
 
 ```diff
 FindFirstAliveMonAndStartBattle: ; 2ee2f
 	xor a
 	ld [hMapAnims], a
 	call DelayFrame
--	ld b, 6
+-	ld b, PARTY_LENGTH
 -	ld hl, wPartyMon1HP
 -	ld de, PARTYMON_STRUCT_LENGTH - 1
 -
@@ -1017,7 +1017,7 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	set TRANS_STRONGER_F, e
 ```
 
-That's all we need to fix transitions for wild battles, but `wBattleMonLevel` isn't populated correctly for trainer battles. We need to add some code to fix that, and the best place for it is at the bottom of [engine/battle/read_trainer_party.asm](/engine/battle/read_trainer_party.asm), replacing the unused `Function39990`.
+That's all we need to fix transitions for wild battles, but `wBattleMonLevel` isn't populated correctly for trainer battles. We need to add some code to fix that, and the best place for it is at the bottom of [engine/battle/read_trainer_party.asm](/engine/battle/read_trainer_party.asm).
 
 ```asm
 SetTrainerBattleLevel:

@@ -16,7 +16,7 @@ FindFirstAliveMonAndStartBattle: ; 2ee2f
 	xor a
 	ld [hMapAnims], a
 	call DelayFrame
-	ld b, 6
+	ld b, PARTY_LENGTH
 	ld hl, wPartyMon1HP
 	ld de, PARTYMON_STRUCT_LENGTH - 1
 
