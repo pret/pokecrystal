@@ -103,7 +103,7 @@ PrintPage2: ; 1dc213
 	ret
 ; 1dc275
 
-GBPrinterStrings:
+GBPrinterStrings: ; used only for BANK(GBPrinterStrings)
 GBPrinterString_Null: db "@"
 GBPrinterString_CheckingLink: next " CHECKING LINK...@"
 GBPrinterString_Transmitting: next "  TRANSMITTING...@"

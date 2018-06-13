@@ -1,4 +1,4 @@
-AIScoring: ; 38591
+AIScoring: ; used only for BANK(AIScoring)
 
 AI_Basic: ; 38591
 ; Don't do anything redundant:

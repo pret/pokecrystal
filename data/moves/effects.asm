@@ -1,4 +1,4 @@
-MoveEffects: ; 2732e
+MoveEffects: ; used only for BANK(MoveEffects)
 
 NormalHit:
 	checkobedience

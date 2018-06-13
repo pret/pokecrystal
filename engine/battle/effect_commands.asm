@@ -7394,7 +7394,7 @@ PlayOpponentBattleAnim: ; 37e54
 
 
 CallBattleCore: ; 37e73
-	ld a, BANK(BattleCore)
+	ld a, BANK("Battle Core")
 	rst FarCall
 	ret
 
@@ -7467,7 +7467,7 @@ GetMoveData: ; 37ead
 	ld hl, Moves
 	ld bc, MOVE_LENGTH
 	call AddNTimes
-	ld a, Bank(Moves)
+	ld a, BANK(Moves)
 	jp FarCopyBytes
 
 ; 37ebb

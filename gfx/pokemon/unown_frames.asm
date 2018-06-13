@@ -1,4 +1,5 @@
-UnownsFrames:
+UnownsFrames: ; used only for BANK(UnownsFrames)
+
 UnownAFrames: INCLUDE "gfx/pokemon/unown_a/frames.asm"
 UnownBFrames: INCLUDE "gfx/pokemon/unown_b/frames.asm"
 UnownCFrames: INCLUDE "gfx/pokemon/unown_c/frames.asm"

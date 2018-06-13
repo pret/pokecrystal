@@ -49,7 +49,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
 - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
-- [Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evosattacks-evolution-entries-can-have-stone-compatibility-reported-correctly)
+- [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
 - [`EVOLVE_STAT` can break Stone compatibility reporting](#evolve_stat-can-break-stone-compatibility-reporting)
 - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
@@ -712,7 +712,7 @@ MoonBallMultiplier:
 ; No Pokémon evolve with Burn Heal,
 ; so Moon Balls always have a catch rate of 1×.
 	push bc
-	ld a, BANK(EvosAttacks)
+	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
 	cp MOON_STONE_RED ; BURN_HEAL
 	pop bc
@@ -1360,7 +1360,7 @@ This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/i
 **Fix:** Uncomment `ld b, a`.
 
 
-## Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly
+## Only the first three evolution entries can have Stone compatibility reported correctly
 
 This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
 
@@ -1375,7 +1375,7 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 	ld h, [hl]
 	ld l, a
 	ld de, wStringBuffer1
-	ld a, BANK(EvosAttacks)
+	ld a, BANK("Evolutions and Attacks")
 	ld bc, 10
 	call FarCopyBytes
 ```

@@ -611,7 +611,7 @@ Credits_TheEnd: ; 109c11 (42:5c11)
 
 CreditsBorderGFX:    INCBIN "gfx/credits/border.2bpp"
 
-CreditsMonsGFX:
+CreditsMonsGFX: ; used only for BANK(CreditsMonsGFX)
 CreditsPichuGFX:     INCBIN "gfx/credits/pichu.2bpp"
 CreditsSmoochumGFX:  INCBIN "gfx/credits/smoochum.2bpp"
 CreditsDittoGFX:     INCBIN "gfx/credits/ditto.2bpp"

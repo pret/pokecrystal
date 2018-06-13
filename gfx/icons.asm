@@ -1,4 +1,5 @@
-Icons:
+Icons: ; used only for BANK(Icons)
+
 NullIcon:
 PoliwagIcon:      INCBIN "gfx/icons/poliwag.2bpp" ; 0x8ec0d
 JigglypuffIcon:   INCBIN "gfx/icons/jigglypuff.2bpp" ; 0x8ec8d
