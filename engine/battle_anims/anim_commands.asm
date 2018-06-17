@@ -977,7 +977,7 @@ BattleAnimCmd_RaiseSub: ; cc640 (33:4640)
 	xor a ; sScratch
 	call GetSRAMBank
 
-GetSubstitutePic: ; cc64c
+GetSubstitutePic: ; used only for BANK(GetSubstitutePic)
 
 	ld hl, sScratch
 	ld bc, (7 * 7) tiles

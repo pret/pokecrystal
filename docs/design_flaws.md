@@ -393,10 +393,10 @@ GetDexEntryPointer: ; 44333
 	ret
 
 .PokedexEntryBanks:
-	db BANK(PokedexEntries1)
-	db BANK(PokedexEntries2)
-	db BANK(PokedexEntries3)
-	db BANK(PokedexEntries4)
+	db BANK("Pokedex Entries 001-064")
+	db BANK("Pokedex Entries 065-128")
+	db BANK("Pokedex Entries 129-192")
+	db BANK("Pokedex Entries 193-251")
 ```
 
 `GetPokedexEntryBank` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
@@ -419,10 +419,10 @@ GetPokedexEntryBank:
 	ret
 
 .PokedexEntryBanks:
-	db BANK(PokedexEntries1)
-	db BANK(PokedexEntries2)
-	db BANK(PokedexEntries3)
-	db BANK(PokedexEntries4)
+	db BANK("Pokedex Entries 001-064")
+	db BANK("Pokedex Entries 065-128")
+	db BANK("Pokedex Entries 129-192")
+	db BANK("Pokedex Entries 193-251")
 ```
 
 And `PokedexShow_GetDexEntryBank` in [engine/pokegear/radio.asm](/engine/pokegear/radio.asm):
@@ -446,10 +446,10 @@ PokedexShow_GetDexEntryBank:
 	ret
 
 .PokedexEntryBanks:
-	db BANK(PokedexEntries1)
-	db BANK(PokedexEntries2)
-	db BANK(PokedexEntries3)
-	db BANK(PokedexEntries4)
+	db BANK("Pokedex Entries 001-064")
+	db BANK("Pokedex Entries 065-128")
+	db BANK("Pokedex Entries 129-192")
+	db BANK("Pokedex Entries 193-251")
 ```
 
 **Fix:** Use `dba` instead of `dw` in `PokedexDataPointerTable`, and modify the code that accesses it to match.

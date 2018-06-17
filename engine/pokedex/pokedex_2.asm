@@ -242,10 +242,10 @@ GetDexEntryPointer: ; 44333
 	ret
 
 .PokedexEntryBanks:
-	db BANK(PokedexEntries1)
-	db BANK(PokedexEntries2)
-	db BANK(PokedexEntries3)
-	db BANK(PokedexEntries4)
+	db BANK("Pokedex Entries 001-064")
+	db BANK("Pokedex Entries 065-128")
+	db BANK("Pokedex Entries 129-192")
+	db BANK("Pokedex Entries 193-251")
 
 GetDexEntryPagePointer: ; 44355
 	call GetDexEntryPointer ; b:de

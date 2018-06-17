@@ -15,7 +15,7 @@ _DudeAutoInput: ; 1de299
 	call StartAutoInput
 	ret
 
-DudeAutoInputs:
+DudeAutoInputs: ; used only for BANK(DudeAutoInputs)
 
 DudeAutoInput_A: ; 1de29f
 	db NO_INPUT, $50

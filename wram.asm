@@ -2361,7 +2361,7 @@ wDST:: ; d4c2
 ; bit 7: dst
 	db
 
-wGameTime::
+wGameTime:: ; used only for BANK(wGameTime)
 wGameTimeCap::     db ; d4c3
 wGameTimeHours::   dw ; d4c4
 wGameTimeMinutes:: db ; d4c6
@@ -2972,7 +2972,7 @@ w3_dffc:: ds 4
 SECTION "GBC Video", WRAMX
 
 ; eight 4-color palettes each
-wGBCPalettes::
+wGBCPalettes:: ; used only for BANK(wGBCPalettes)
 wBGPals1:: ds 8 palettes ; d000
 wOBPals1:: ds 8 palettes ; d040
 wBGPals2:: ds 8 palettes ; d080
@@ -2983,7 +2983,7 @@ wLYOverridesEnd:: ; d190
 
 	ds 1
 
-wMagnetTrain::
+wMagnetTrain:: ; used only for BANK(wMagnetTrain)
 wMagnetTrainDirection:: db
 wMagnetTrainInitPosition:: db
 wMagnetTrainHoldPosition:: db

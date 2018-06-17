@@ -3,11 +3,6 @@ INCLUDE "constants.asm"
 
 SECTION "Evolutions and Attacks", ROMX
 
-
-INCLUDE "data/pokemon/evos_attacks_pointers.asm"
-
-
-EvosAttacks::
 ; Evos+attacks data structure:
 ; - Evolution methods:
 ;    * db EVOLVE_LEVEL, level, species
@@ -20,6 +15,7 @@ EvosAttacks::
 ;    * db level, move
 ; - db 0 ; no more level-up moves
 
+INCLUDE "data/pokemon/evos_attacks_pointers.asm"
 
 BulbasaurEvosAttacks:
 	db EVOLVE_LEVEL, 16, IVYSAUR

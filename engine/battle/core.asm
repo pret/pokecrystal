@@ -1,5 +1,5 @@
 ; Core components of the battle engine.
-BattleCore:
+
 DoBattle: ; 3c000
 	xor a
 	ld [wBattleParticipantsNotFainted], a

@@ -767,10 +767,10 @@ GetPokedexEntryBank:
 	ret
 
 .PokedexEntryBanks:
-	db BANK(PokedexEntries1)
-	db BANK(PokedexEntries2)
-	db BANK(PokedexEntries3)
-	db BANK(PokedexEntries4)
+	db BANK("Pokedex Entries 001-064")
+	db BANK("Pokedex Entries 065-128")
+	db BANK("Pokedex Entries 129-192")
+	db BANK("Pokedex Entries 193-251")
 
 HeavyBallMultiplier:
 ; subtract 20 from catch rate if weight < 102.4 kg
@@ -907,7 +907,7 @@ MoonBallMultiplier:
 	pop bc
 
 	push bc
-	ld a, BANK(EvosAttacks)
+	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
 	cp EVOLVE_ITEM
 	pop bc
@@ -921,7 +921,7 @@ MoonBallMultiplier:
 ; No Pokémon evolve with Burn Heal,
 ; so Moon Balls always have a catch rate of 1×.
 	push bc
-	ld a, BANK(EvosAttacks)
+	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
 	cp MOON_STONE_RED ; BURN_HEAL
 	pop bc

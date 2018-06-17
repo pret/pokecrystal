@@ -11,11 +11,7 @@ SECTION "Egg Moves", ROMX
 ; Staryu's egg moves were removed in Crystal, because Staryu is genderless
 ; and can only breed with Ditto.
 
-
 INCLUDE "data/pokemon/egg_move_pointers.asm"
-
-
-EggMoves::
 
 BulbasaurEggMoves:
 	db LIGHT_SCREEN

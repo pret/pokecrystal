@@ -3,7 +3,6 @@ INCLUDE "constants.asm"
 
 SECTION "Pokedex Entries 001-064", ROMX
 
-PokedexEntries1::
 BulbasaurPokedexEntry::  INCLUDE "data/pokemon/dex_entries/bulbasaur.asm"
 IvysaurPokedexEntry::    INCLUDE "data/pokemon/dex_entries/ivysaur.asm"
 VenusaurPokedexEntry::   INCLUDE "data/pokemon/dex_entries/venusaur.asm"
@@ -72,7 +71,6 @@ KadabraPokedexEntry::    INCLUDE "data/pokemon/dex_entries/kadabra.asm"
 
 SECTION "Pokedex Entries 065-128", ROMX
 
-PokedexEntries2::
 AlakazamPokedexEntry::   INCLUDE "data/pokemon/dex_entries/alakazam.asm"
 MachopPokedexEntry::     INCLUDE "data/pokemon/dex_entries/machop.asm"
 MachokePokedexEntry::    INCLUDE "data/pokemon/dex_entries/machoke.asm"
@@ -141,7 +139,6 @@ TaurosPokedexEntry::     INCLUDE "data/pokemon/dex_entries/tauros.asm"
 
 SECTION "Pokedex Entries 129-192", ROMX
 
-PokedexEntries3::
 MagikarpPokedexEntry::   INCLUDE "data/pokemon/dex_entries/magikarp.asm"
 GyaradosPokedexEntry::   INCLUDE "data/pokemon/dex_entries/gyarados.asm"
 LaprasPokedexEntry::     INCLUDE "data/pokemon/dex_entries/lapras.asm"
@@ -210,7 +207,6 @@ SunfloraPokedexEntry::   INCLUDE "data/pokemon/dex_entries/sunflora.asm"
 
 SECTION "Pokedex Entries 193-251", ROMX
 
-PokedexEntries4::
 YanmaPokedexEntry::      INCLUDE "data/pokemon/dex_entries/yanma.asm"
 WooperPokedexEntry::     INCLUDE "data/pokemon/dex_entries/wooper.asm"
 QuagsirePokedexEntry::   INCLUDE "data/pokemon/dex_entries/quagsire.asm"

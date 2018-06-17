@@ -836,6 +836,7 @@ LovelyKissDescription:
 SkyAttackDescription:
 	db   "1st turn: Prepare"
 	next "2nd turn: Attack@"
+
 TransformDescription:
 	db   "The user assumes"
 	next "the foe's guise.@"
