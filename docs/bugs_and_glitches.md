@@ -305,6 +305,7 @@ CheckHiddenOpponent: ; 37daa
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVar
 	and 1 << SUBSTATUS_LOCK_ON
+	cp 1 << SUBSTATUS_LOCK_ON
 	ret z
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
