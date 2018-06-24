@@ -96,7 +96,7 @@ FindNest: ; 2a01f
 
 .next_water
 	pop hl
-	ld bc, 3 * 3
+	ld bc, WATER_WILDDATA_LENGTH
 	add hl, bc
 	jr .FindWater
 ; 2a088
