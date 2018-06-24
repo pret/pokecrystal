@@ -110,7 +110,7 @@ LoadMartPointer: ; 15b10
 	ld [wMartPointer + 1], a
 	ld hl, wCurMart
 	xor a
-	ld bc, 16
+	ld bc, wCurMartEnd - wCurMart
 	call ByteFill
 	xor a
 	ld [wEngineBuffer5], a
