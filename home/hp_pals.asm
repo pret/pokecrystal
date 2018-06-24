@@ -1,11 +1,10 @@
-SetHPPal:: ; 334e
+SetHPPal::
 ; Set palette for hp bar pixel length e at hl.
 	call GetHPPal
 	ld [hl], d
 	ret
-; 3353
 
-GetHPPal:: ; 3353
+GetHPPal::
 ; Get palette for hp bar pixel length e in d.
 	ld d, HP_GREEN
 	ld a, e
@@ -16,4 +15,3 @@ GetHPPal:: ; 3353
 	ret nc
 	inc d ; HP_RED
 	ret
-; 335f

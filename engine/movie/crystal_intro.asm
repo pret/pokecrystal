@@ -1,4 +1,4 @@
-Copyright_GFPresents: ; e4579
+Copyright_GFPresents:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call ClearBGPalettes
@@ -47,9 +47,8 @@ Copyright_GFPresents: ; e4579
 	call .StopGamefreakAnim
 	and a
 	ret
-; e45e8
 
-.GetGFLogoGFX: ; e45e8
+.GetGFLogoGFX:
 	ld de, GameFreakLogo
 	ld hl, vTiles2
 	lb bc, BANK(GameFreakLogo), 28
@@ -104,18 +103,16 @@ Copyright_GFPresents: ; e4579
 	lb de, %11100100, %11100100
 	call DmgToCgbObjPals
 	ret
-; e465e
 
-.StopGamefreakAnim: ; e465e
+.StopGamefreakAnim:
 	farcall ClearSpriteAnims
 	call ClearTileMap
 	call ClearSprites
 	ld c, 16
 	call DelayFrames
 	ret
-; e4670
 
-PlaceGameFreakPresents: ; e4670
+PlaceGameFreakPresents:
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
@@ -126,26 +123,22 @@ PlaceGameFreakPresents: ; e4670
 	ld h, [hl]
 	ld l, a
 	jp hl
-; e467f
 
-.dw ; e467f
+.dw
 	dw PlaceGameFreakPresents_0
 	dw PlaceGameFreakPresents_1
 	dw PlaceGameFreakPresents_2
 	dw PlaceGameFreakPresents_3
-; e4687
 
-PlaceGameFreakPresents_AdvanceIndex: ; e4687
+PlaceGameFreakPresents_AdvanceIndex:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
-; e468c
 
-PlaceGameFreakPresents_0: ; e468c
+PlaceGameFreakPresents_0:
 	ret
-; e468d
 
-PlaceGameFreakPresents_1: ; e468d
+PlaceGameFreakPresents_1:
 	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $20
@@ -163,16 +156,14 @@ PlaceGameFreakPresents_1: ; e468d
 	ld de, SFX_GAME_FREAK_PRESENTS
 	call PlaySFX
 	ret
-; e46af
 
 .GAME_FREAK:
 	;  G  A  M  E   _  F  R  E  A  K
 	db 0, 1, 2, 3, 13, 4, 5, 3, 1, 6
 .end
 	db "@"
-; e46ba
 
-PlaceGameFreakPresents_2: ; e46ba
+PlaceGameFreakPresents_2:
 	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $40
@@ -188,15 +179,13 @@ PlaceGameFreakPresents_2: ; e46ba
 	call CopyBytes
 	call PlaceGameFreakPresents_AdvanceIndex
 	ret
-; e46d6
 
 .presents
 	db 7, 8, 9, 10, 11, 12
 .end
 	db "@"
-; e46dd
 
-PlaceGameFreakPresents_3: ; e46dd
+PlaceGameFreakPresents_3:
 	ld hl, wIntroSceneTimer
 	ld a, [hl]
 	cp $80
@@ -208,10 +197,9 @@ PlaceGameFreakPresents_3: ; e46dd
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
-; e46ed
 
 
-GameFreakLogoJumper: ; e46ed (39:46ed)
+GameFreakLogoJumper:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	ld e, [hl]
@@ -224,20 +212,20 @@ GameFreakLogoJumper: ; e46ed (39:46ed)
 	ld l, a
 	jp hl
 
-GameFreakLogoScenes: ; e46fd (39:46fd)
+GameFreakLogoScenes:
 	dw GameFreakLogoScene1
 	dw GameFreakLogoScene2
 	dw GameFreakLogoScene3
 	dw GameFreakLogoScene4
 	dw GameFreakLogoScene5
 
-GameFreakLogoScene1: ; e4707 (39:4707)
+GameFreakLogoScene1:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
 	ret
 
-GameFreakLogoScene2: ; e470d (39:470d)
+GameFreakLogoScene2:
 	ld hl, SPRITEANIMSTRUCT_0C
 	add hl, bc
 	ld a, [hl]
@@ -283,7 +271,7 @@ GameFreakLogoScene2: ; e470d (39:470d)
 	call PlaySFX
 	ret
 
-GameFreakLogoScene3: ; e4759 (39:4759)
+GameFreakLogoScene3:
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
@@ -303,7 +291,7 @@ GameFreakLogoScene3: ; e4759 (39:4759)
 	call PlaySFX
 	ret
 
-GameFreakLogoScene4: ; e4776 (39:4776)
+GameFreakLogoScene4:
 	ld hl, SPRITEANIMSTRUCT_0D
 	add hl, bc
 	ld a, [hl]
@@ -336,20 +324,17 @@ GameFreakLogoScene4: ; e4776 (39:4776)
 	add hl, bc
 	inc [hl]
 	call PlaceGameFreakPresents_AdvanceIndex
-GameFreakLogoScene5: ; e47ab (39:47ab)
+GameFreakLogoScene5:
 	ret
-; e47ac (39:47ac)
 
-GameFreakLogoPalettes: ; e47ac
+GameFreakLogoPalettes:
 INCLUDE "gfx/intro/gamefreak_logo.pal"
-; e47cc
 
-GameFreakLogo: ; e47cc
+GameFreakLogo:
 INCBIN "gfx/splash/logo1.1bpp"
 INCBIN "gfx/splash/logo2.1bpp"
-; e48ac
 
-CrystalIntro: ; e48ac
+CrystalIntro:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wGBCPalettes)
@@ -359,7 +344,7 @@ CrystalIntro: ; e48ac
 	ld a, [hVBlank]
 	push af
 	call .InitRAMAddrs
-.loop ; e48bc
+.loop
 	call JoyTextDelay
 	ld a, [hJoyLast]
 	and BUTTONS
@@ -394,9 +379,8 @@ CrystalIntro: ; e48ac
 	pop af
 	ld [rSVBK], a
 	ret
-; e4901
 
-.InitRAMAddrs: ; e4901
+.InitRAMAddrs:
 	xor a
 	ld [hVBlank], a
 	ld a, $1
@@ -405,9 +389,8 @@ CrystalIntro: ; e48ac
 	ld [hMapAnims], a
 	ld [wJumptableIndex], a
 	ret
-; e490f
 
-IntroSceneJumper: ; e490f
+IntroSceneJumper:
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
@@ -418,9 +401,8 @@ IntroSceneJumper: ; e490f
 	ld h, [hl]
 	ld l, a
 	jp hl
-; e491e
 
-IntroScenes: ; e491e (39:491e)
+IntroScenes:
 	dw IntroScene1
 	dw IntroScene2
 	dw IntroScene3
@@ -450,12 +432,12 @@ IntroScenes: ; e491e (39:491e)
 	dw IntroScene27
 	dw IntroScene28
 
-NextIntroScene: ; e4956 (39:4956)
+NextIntroScene:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-IntroScene1: ; e495b (39:495b)
+IntroScene1:
 ; Setup the next scene.
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -507,7 +489,7 @@ IntroScene1: ; e495b (39:495b)
 	call NextIntroScene
 	ret
 
-IntroScene2: ; e49d6 (39:49d6)
+IntroScene2:
 ; First Unown (A) fades in, pulses, then fades out.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -531,7 +513,7 @@ IntroScene2: ; e49d6 (39:49d6)
 	call NextIntroScene
 	ret
 
-IntroScene3: ; e49fd (39:49fd)
+IntroScene3:
 ; More setup. Transition to the outdoor scene.
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -579,7 +561,7 @@ IntroScene3: ; e49fd (39:49fd)
 	call NextIntroScene
 	ret
 
-IntroScene4: ; e4a69 (39:4a69)
+IntroScene4:
 ; Scroll the outdoor panorama for a bit.
 	call Intro_PerspectiveScrollBG
 	ld hl, wIntroSceneFrameCounter
@@ -593,7 +575,7 @@ IntroScene4: ; e4a69 (39:4a69)
 	call NextIntroScene
 	ret
 
-IntroScene5: ; e4a7a (39:4a7a)
+IntroScene5:
 ; Go back to the Unown.
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -646,7 +628,7 @@ IntroScene5: ; e4a7a (39:4a7a)
 	call NextIntroScene
 	ret
 
-IntroScene6: ; e4af7 (39:4af7)
+IntroScene6:
 ; Two more Unown (I, H) fade in.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -691,7 +673,7 @@ IntroScene6: ; e4af7 (39:4af7)
 	call NextIntroScene
 	ret
 
-IntroScene7: ; e4b3f (39:4b3f)
+IntroScene7:
 ; Back to the outdoor scene.
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -762,7 +744,7 @@ IntroScene7: ; e4b3f (39:4b3f)
 	call NextIntroScene
 	ret
 
-IntroScene8: ; e4bd3 (39:4bd3)
+IntroScene8:
 ; Scroll the scene, then show Suicune running across the screen.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -791,7 +773,7 @@ IntroScene8: ; e4bd3 (39:4bd3)
 	call NextIntroScene
 	ret
 
-IntroScene9: ; e4c04 (39:4c04)
+IntroScene9:
 ; Set up the next scene (same bg).
 	xor a
 	ld [hLCDCPointer], a
@@ -828,7 +810,7 @@ IntroScene9: ; e4c04 (39:4c04)
 	call NextIntroScene
 	ret
 
-IntroScene10: ; e4c4f (39:4c4f)
+IntroScene10:
 ; Wooper and Pichu enter.
 	call Intro_RustleGrass
 	ld hl, wIntroSceneFrameCounter
@@ -861,7 +843,7 @@ IntroScene10: ; e4c4f (39:4c4f)
 	call NextIntroScene
 	ret
 
-IntroScene11: ; e4c86 (39:4c86)
+IntroScene11:
 ; Back to Unown again.
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -911,7 +893,7 @@ IntroScene11: ; e4c86 (39:4c86)
 	call NextIntroScene
 	ret
 
-IntroScene12: ; e4cfa (39:4cfa)
+IntroScene12:
 ; Even more Unown.
 	call .PlayUnownSound
 	ld hl, wIntroSceneFrameCounter
@@ -951,7 +933,7 @@ IntroScene12: ; e4cfa (39:4cfa)
 	call NextIntroScene
 	ret
 
-.PlayUnownSound: ; e4d36 (39:4d36)
+.PlayUnownSound:
 	ld a, [wIntroSceneFrameCounter]
 	ld c, a
 	ld hl, .UnownSounds
@@ -973,9 +955,8 @@ IntroScene12: ; e4cfa (39:4cfa)
 	pop de
 	call PlaySFX
 	ret
-; e4d54 (39:4d54)
 
-.UnownSounds: ; e4d54
+.UnownSounds:
 	dbw $00, SFX_INTRO_UNOWN_3
 	dbw $20, SFX_INTRO_UNOWN_2
 	dbw $40, SFX_INTRO_UNOWN_1
@@ -984,9 +965,9 @@ IntroScene12: ; e4cfa (39:4cfa)
 	dbw $90, SFX_INTRO_UNOWN_2
 	dbw $a0, SFX_INTRO_UNOWN_1
 	dbw $b0, SFX_INTRO_UNOWN_2
-	db -1 ; e4d6d
+	db -1
 
-IntroScene13: ; e4d6d (39:4d6d)
+IntroScene13:
 ; Switch scenes again.
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -1045,7 +1026,7 @@ IntroScene13: ; e4d6d (39:4d6d)
 	call NextIntroScene
 	ret
 
-IntroScene14: ; e4dfa (39:4dfa)
+IntroScene14:
 ; Suicune runs then jumps.
 	ld a, [hSCX]
 	sub 10
@@ -1090,7 +1071,7 @@ IntroScene14: ; e4dfa (39:4dfa)
 	call NextIntroScene
 	ret
 
-IntroScene15: ; e4e40 (39:4e40)
+IntroScene15:
 ; Transition to a new scene.
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -1154,7 +1135,7 @@ IntroScene15: ; e4e40 (39:4e40)
 	call NextIntroScene
 	ret
 
-IntroScene16: ; e4edc (39:4edc)
+IntroScene16:
 ; Suicune shows its face. An Unown appears in front.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -1172,7 +1153,7 @@ IntroScene16: ; e4edc (39:4edc)
 	call NextIntroScene
 	ret
 
-IntroScene17: ; e4ef5 (39:4ef5)
+IntroScene17:
 ; ...
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -1221,7 +1202,7 @@ IntroScene17: ; e4ef5 (39:4ef5)
 	call NextIntroScene
 	ret
 
-IntroScene18: ; e4f67 (39:4f67)
+IntroScene18:
 ; Suicune close up.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -1238,7 +1219,7 @@ IntroScene18: ; e4f67 (39:4f67)
 	call NextIntroScene
 	ret
 
-IntroScene19: ; e4f7e (39:4f7e)
+IntroScene19:
 ; More setup.
 	call Intro_ClearBGPals
 	call ClearSprites
@@ -1303,7 +1284,7 @@ IntroScene19: ; e4f7e (39:4f7e)
 	call NextIntroScene
 	ret
 
-IntroScene20: ; e5019 (39:5019)
+IntroScene20:
 ; Suicune running away. A bunch of Unown appear.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -1335,7 +1316,6 @@ IntroScene20: ; e5019 (39:5019)
 	xor a
 	call Intro_Scene20_AppearUnown
 	ret
-; e5049 (39:5049)
 ; unused
 	ld a, c
 	and $1c
@@ -1350,7 +1330,7 @@ IntroScene20: ; e5019 (39:5019)
 	call NextIntroScene
 	ret
 
-IntroScene21: ; e505d (39:505d)
+IntroScene21:
 ; Suicune gets more distant and turns black.
 	call Intro_ColoredSuicuneFrameSwap
 	ld c, 3
@@ -1362,7 +1342,7 @@ IntroScene21: ; e505d (39:505d)
 	call NextIntroScene
 	ret
 
-IntroScene22: ; e5072 (39:5072)
+IntroScene22:
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
 	inc [hl]
@@ -1374,13 +1354,13 @@ IntroScene22: ; e5072 (39:5072)
 	call NextIntroScene
 	ret
 
-IntroScene23: ; e5086 (39:5086)
+IntroScene23:
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	call NextIntroScene
 	ret
 
-IntroScene24: ; e508e (39:508e)
+IntroScene24:
 ; Fade to white.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -1404,7 +1384,7 @@ IntroScene24: ; e508e (39:508e)
 	call NextIntroScene
 	ret
 
-IntroScene25: ; e50ad (39:50ad)
+IntroScene25:
 ; Wait around a bit.
 	ld a, [wIntroSceneFrameCounter]
 	dec a
@@ -1416,7 +1396,7 @@ IntroScene25: ; e50ad (39:50ad)
 	call NextIntroScene
 	ret
 
-IntroScene26: ; e50bb (39:50bb)
+IntroScene26:
 ; Load the final scene.
 	call ClearBGPalettes
 	call ClearSprites
@@ -1465,7 +1445,7 @@ IntroScene26: ; e50bb (39:50bb)
 	call NextIntroScene
 	ret
 
-IntroScene27: ; e512d (39:512d)
+IntroScene27:
 ; Spell out C R Y S T A L with Unown.
 	ld hl, wIntroSceneTimer
 	inc [hl]
@@ -1490,7 +1470,7 @@ IntroScene27: ; e512d (39:512d)
 	ld [wIntroSceneFrameCounter], a
 	ret
 
-IntroScene28: ; e5152 (39:5152)
+IntroScene28:
 ; Cut out when the music ends, and lead into the title screen.
 	ld hl, wIntroSceneFrameCounter
 	ld a, [hl]
@@ -1515,7 +1495,7 @@ IntroScene28: ; e5152 (39:5152)
 	set 7, [hl]
 	ret
 
-Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
+Intro_Scene24_ApplyPaletteFade:
 ; load the (a)th palette from .FadePals to all wBGPals2
 	ld hl, .FadePals
 	add l
@@ -1547,13 +1527,11 @@ Intro_Scene24_ApplyPaletteFade: ; e5172 (39:5172)
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; e519c (39:519c)
 
-.FadePals: ; e519c
+.FadePals:
 INCLUDE "gfx/intro/fade.pal"
-; e51dc
 
-CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
+CrystalIntro_InitUnownAnim:
 	push de
 	ld a, SPRITE_ANIM_INDEX_INTRO_UNOWN
 	call _InitSpriteAnimStruct
@@ -1593,7 +1571,7 @@ CrystalIntro_InitUnownAnim: ; e51dc (39:51dc)
 	call ReinitSpriteAnimFrame
 	ret
 
-CrystalIntro_UnownFade: ; e5223 (39:5223)
+CrystalIntro_UnownFade:
 	add a
 	add a
 	add a
@@ -1673,36 +1651,32 @@ CrystalIntro_UnownFade: ; e5223 (39:5223)
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; e5288 (39:5288)
 
-.BWFade: ; e5288
+.BWFade:
 ; Fade between black and white.
 hue = 0
 rept 32
 	RGB hue, hue, hue
 hue = hue + 1
 endr
-; e52c8
 
-.BlackLBlueFade: ; e52c8
+.BlackLBlueFade:
 ; Fade between black and light blue.
 hue = 0
 rept 32
 	RGB 0, hue / 2, hue
 hue = hue + 1
 endr
-; e5308
 
-.BlackBlueFade: ; e5308
+.BlackBlueFade:
 ; Fade between black and blue.
 hue = 0
 rept 32
 	RGB 0, 0, hue
 hue = hue + 1
 endr
-; e5348
 
-Intro_Scene20_AppearUnown: ; e5348 (39:5348)
+Intro_Scene20_AppearUnown:
 ; Spawn the palette for the nth Unown
 	and a
 	jr nz, .load_pal_2
@@ -1755,25 +1729,22 @@ Intro_Scene20_AppearUnown: ; e5348 (39:5348)
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; e538d (39:538d)
 
-.pal1 ; e538d
+.pal1
 	RGB 24, 12, 09
 	RGB 31, 31, 31
 	RGB 12, 00, 31
 	RGB 00, 00, 00
 
-; e5395
 
-.pal2 ; e5395
+.pal2
 	RGB 24, 12, 09
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 
-; e539d
 
-Intro_FadeUnownWordPals: ; e539d (39:539d)
+Intro_FadeUnownWordPals:
 	add a
 	add a
 	add a
@@ -1823,9 +1794,8 @@ endr
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; e53db (39:53db)
 
-.FastFadePalettes: ; e53db
+.FastFadePalettes:
 hue = 31
 rept 8
 	RGB hue, hue, hue
@@ -1833,17 +1803,15 @@ hue = hue + -1
 	RGB hue, hue, hue
 hue = hue + -2
 endr
-; e53fb
 
-.SlowFadePalettes: ; e53fb
+.SlowFadePalettes:
 hue = 31
 rept 16
 	RGB hue, hue, hue
 hue = hue + -1
 endr
-; e541b
 
-Intro_LoadTilemap: ; e541b (39:541b)
+Intro_LoadTilemap:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
@@ -1873,7 +1841,7 @@ Intro_LoadTilemap: ; e541b (39:541b)
 	ld [rSVBK], a
 	ret
 
-Intro_Scene16_AnimateSuicune: ; e5441 (39:5441)
+Intro_Scene16_AnimateSuicune:
 	ld a, [wIntroSceneFrameCounter]
 	and $3
 	jr z, Intro_ColoredSuicuneFrameSwap
@@ -1886,7 +1854,7 @@ Intro_Scene16_AnimateSuicune: ; e5441 (39:5441)
 	ld [hBGMapMode], a
 	ret
 
-Intro_ColoredSuicuneFrameSwap: ; e5451 (39:5451)
+Intro_ColoredSuicuneFrameSwap:
 	hlcoord 0, 0
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 .loop
@@ -1907,7 +1875,7 @@ Intro_ColoredSuicuneFrameSwap: ; e5451 (39:5451)
 	ld [hBGMapMode], a
 	ret
 
-Intro_RustleGrass: ; e546d (39:546d)
+Intro_RustleGrass:
 	ld a, [wIntroSceneFrameCounter]
 	cp 36
 	ret nc
@@ -1928,21 +1896,19 @@ Intro_RustleGrass: ; e546d (39:546d)
 	ld a, 4
 	ld [wRequested2bppSize], a
 	ret
-; e5496 (39:5496)
 
-.RustlingGrassPointers: ; e5496
+.RustlingGrassPointers:
 	dw IntroGrass1GFX
 	dw IntroGrass2GFX
 	dw IntroGrass3GFX
 	dw IntroGrass2GFX
-; e549e
 
-Intro_SetCGBPalUpdate: ; e549e (39:549e)
+Intro_SetCGBPalUpdate:
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
 
-Intro_ClearBGPals: ; e54a3 (39:54a3)
+Intro_ClearBGPals:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
@@ -1961,7 +1927,7 @@ Intro_ClearBGPals: ; e54a3 (39:54a3)
 	call DelayFrame
 	ret
 
-Intro_DecompressRequest2bpp_128Tiles: ; e54c2 (39:54c2)
+Intro_DecompressRequest2bpp_128Tiles:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
@@ -1980,7 +1946,7 @@ Intro_DecompressRequest2bpp_128Tiles: ; e54c2 (39:54c2)
 	ld [rSVBK], a
 	ret
 
-Intro_DecompressRequest2bpp_255Tiles: ; e54de (39:54de)
+Intro_DecompressRequest2bpp_255Tiles:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
@@ -1999,7 +1965,7 @@ Intro_DecompressRequest2bpp_255Tiles: ; e54de (39:54de)
 	ld [rSVBK], a
 	ret
 
-Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
+Intro_DecompressRequest2bpp_64Tiles:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
@@ -2018,7 +1984,7 @@ Intro_DecompressRequest2bpp_64Tiles: ; e54fa (39:54fa)
 	ld [rSVBK], a
 	ret
 
-Intro_ResetLYOverrides: ; e5516 (39:5516)
+Intro_ResetLYOverrides:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wLYOverrides)
@@ -2035,7 +2001,7 @@ Intro_ResetLYOverrides: ; e5516 (39:5516)
 	ld [hLCDCPointer], a
 	ret
 
-Intro_PerspectiveScrollBG: ; e552f (39:552f)
+Intro_PerspectiveScrollBG:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wLYOverrides)
@@ -2066,134 +2032,104 @@ Intro_PerspectiveScrollBG: ; e552f (39:552f)
 	ld [rSVBK], a
 	ret
 
-IntroSuicuneRunGFX: ; e555d
+IntroSuicuneRunGFX:
 INCBIN "gfx/intro/suicune_run.2bpp.lz"
-; e592d
 
-IntroPichuWooperGFX: ; e592d
+IntroPichuWooperGFX:
 INCBIN "gfx/intro/pichu_wooper.2bpp.lz"
-; e5c7d
 
-IntroBackgroundGFX: ; e5c7d
+IntroBackgroundGFX:
 INCBIN "gfx/intro/background.2bpp.lz"
-; e5e6d
 
-IntroTilemap004: ; e5e6d
+IntroTilemap004:
 INCBIN "gfx/intro/004.tilemap.lz"
-; e5ecd
 
-IntroTilemap003: ; e5ecd
+IntroTilemap003:
 INCBIN "gfx/intro/003.tilemap.lz"
-; e5edd
 
-IntroPalette1: ; e5edd
+IntroPalette1:
 INCLUDE "gfx/intro/intro_1.pal"
-; e5f5d
 
-IntroUnownsGFX: ; e5f5d
+IntroUnownsGFX:
 INCBIN "gfx/intro/unowns.2bpp.lz"
-; e634d
 
-IntroPulseGFX: ; e634d
+IntroPulseGFX:
 INCBIN "gfx/intro/pulse.2bpp.lz"
-; e63dd
 
-IntroTilemap002: ; e63dd
+IntroTilemap002:
 INCBIN "gfx/intro/002.tilemap.lz"
-; e641d
 
-IntroTilemap001: ; e641d
+IntroTilemap001:
 INCBIN "gfx/intro/001.tilemap.lz"
-; e642d
 
-IntroTilemap006: ; e642d
+IntroTilemap006:
 INCBIN "gfx/intro/006.tilemap.lz"
-; e647d
 
-IntroTilemap005: ; e647d
+IntroTilemap005:
 INCBIN "gfx/intro/005.tilemap.lz"
-; e649d
 
-IntroTilemap008: ; e649d
+IntroTilemap008:
 INCBIN "gfx/intro/008.tilemap.lz"
-; e655d
 
-IntroTilemap007: ; e655d
+IntroTilemap007:
 INCBIN "gfx/intro/007.tilemap.lz"
-; e65ad
 
-IntroPalette2: ; e65ad
+IntroPalette2:
 INCLUDE "gfx/intro/intro_2.pal"
-; e662d
 
-IntroCrystalUnownsGFX: ; e662d
+IntroCrystalUnownsGFX:
 INCBIN "gfx/intro/crystal_unowns.2bpp.lz"
-; e672d
 
-IntroTilemap017: ; e672d
+IntroTilemap017:
 INCBIN "gfx/intro/017.tilemap.lz"
-; e676d
 
-IntroTilemap015: ; e676d
+IntroTilemap015:
 INCBIN "gfx/intro/015.tilemap.lz"
-; e679d
 
-IntroPalette3: ; e679d
+IntroPalette3:
 INCLUDE "gfx/intro/intro_3.pal"
-; e681d
 
-IntroSuicuneCloseGFX: ; e681d
+IntroSuicuneCloseGFX:
 INCBIN "gfx/intro/suicune_close.2bpp.lz"
-; e6c3d
 
-IntroTilemap012: ; e6c3d
+IntroTilemap012:
 INCBIN "gfx/intro/012.tilemap.lz"
-; e6d0d
 
-IntroTilemap011: ; e6d0d
+IntroTilemap011:
 INCBIN "gfx/intro/011.tilemap.lz"
-; e6d6d
 
-IntroPalette4: ; e6d6d
+IntroPalette4:
 INCLUDE "gfx/intro/intro_4.pal"
-; e6ded
 
-IntroSuicuneJumpGFX: ; e6ded
+IntroSuicuneJumpGFX:
 INCBIN "gfx/intro/suicune_jump.2bpp.lz"
-; e72ad
 
-IntroSuicuneBackGFX: ; e72ad
+IntroSuicuneBackGFX:
 INCBIN "gfx/intro/suicune_back.2bpp.lz"
-; e764d
 
-IntroTilemap010: ; e764d
+IntroTilemap010:
 INCBIN "gfx/intro/010.tilemap.lz"
-; e76ad
 
-IntroTilemap009: ; e76ad
+IntroTilemap009:
 INCBIN "gfx/intro/009.tilemap.lz"
-; e76bd
 
-IntroTilemap014: ; e76bd
+IntroTilemap014:
 INCBIN "gfx/intro/014.tilemap.lz"
-; e778d
 
-IntroTilemap013: ; e778d
+IntroTilemap013:
 INCBIN "gfx/intro/013.tilemap.lz"
-; e77dd
 
-IntroPalette5: ; e77dd
+IntroPalette5:
 INCLUDE "gfx/intro/intro_5.pal"
 
-IntroUnownBackGFX: ; e785d
+IntroUnownBackGFX:
 INCBIN "gfx/intro/unown_back.2bpp.lz"
-; e799d
 
-IntroGrass1GFX: ; e799d
+IntroGrass1GFX:
 INCBIN "gfx/intro/grass1.2bpp"
-IntroGrass2GFX: ; e79dd
+IntroGrass2GFX:
 INCBIN "gfx/intro/grass2.2bpp"
-IntroGrass3GFX: ; e7a1d
+IntroGrass3GFX:
 INCBIN "gfx/intro/grass3.2bpp"
-IntroGrass4GFX: ; e7a5d
+IntroGrass4GFX:
 INCBIN "gfx/intro/grass4.2bpp"

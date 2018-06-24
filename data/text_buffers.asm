@@ -1,4 +1,4 @@
-StringBufferPointers:: ; 24000
+StringBufferPointers::
 ; entries correspond to arguments for text_buffer (TX_STRINGBUFFER)
 	dw wStringBuffer3 ; 0
 	dw wStringBuffer4 ; 1

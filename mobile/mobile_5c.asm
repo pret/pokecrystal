@@ -1,4 +1,4 @@
-Function170000: ; 170000
+Function170000:
 	ld a, [$c62b]
 	ld [wPlayerTrademonSpecies], a
 	ld hl, $c62e
@@ -35,9 +35,8 @@ Function170000: ; 170000
 	call CopyBytes
 	ret
 
-; 17005a
 
-Function17005a: ; 17005a
+Function17005a:
 	ld a, $5
 	call GetSRAMBank
 	ld a, [$a824]
@@ -73,11 +72,10 @@ Function17005a: ; 17005a
 	call CloseSRAM
 	ret
 
-; 1700b0
 
 INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
-Function170be4: ; 170be4
+Function170be4:
 	ld a, $5
 	call GetSRAMBank
 	xor a
@@ -87,9 +85,8 @@ Function170be4: ; 170be4
 	call CloseSRAM
 	ret
 
-; 170bf7
 
-Clears5_a89a: ; 170bf7
+Clears5_a89a:
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a89a
@@ -99,9 +96,8 @@ Clears5_a89a: ; 170bf7
 	call CloseSRAM
 	ret
 
-; 170c06
 
-Function170c06: ; 170c06
+Function170c06:
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $a894
@@ -203,9 +199,8 @@ Function170c06: ; 170c06
 	call CloseSRAM
 	ret
 
-; 170c8b
 
-Function170c8b: ; 170c8b
+Function170c8b:
 	ld hl, wLastEnemyCounterMove
 	ld b, $5
 .asm_170c90
@@ -216,9 +211,8 @@ Function170c8b: ; 170c8b
 	jr nz, .asm_170c90
 	ret
 
-; 170c98
 
-CheckBTMonMovesForErrors: ; 170c98
+CheckBTMonMovesForErrors:
 	ld c, BATTLETOWER_PARTY_LENGTH
 	ld hl, wBT_OTTempMon1Moves
 .loop
@@ -260,9 +254,8 @@ CheckBTMonMovesForErrors: ; 170c98
 	jr nz, .loop
 	ret
 
-; 170cc6
 
-Function170cc6: ; 170cc6
+Function170cc6:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
@@ -289,9 +282,8 @@ Function170cc6: ; 170cc6
 	ld [rSVBK], a
 	ret
 
-; 170d02
 
-Function170d02: ; 170d02
+Function170d02:
 	ld a, $1
 	ld [rVBK], a
 	ld de, GFX_171848
@@ -302,7 +294,6 @@ Function170d02: ; 170d02
 	ld [rVBK], a
 	ret
 
-; 170d16
 
 PichuAnimatedMobileGFX:
 INCBIN "gfx/mobile/pichu_animated.2bpp.lz"
@@ -313,7 +304,7 @@ INCBIN "gfx/mobile/electro_ball.2bpp.lz"
 GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
 
-Function1719c8: ; 1719c8 (5c:59c8)
+Function1719c8:
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -323,7 +314,7 @@ Function1719c8: ; 1719c8 (5c:59c8)
 	ld [hInMenu], a
 	ret
 
-Function1719d6: ; 1719d6 (5c:59d6)
+Function1719d6:
 	farcall BattleTowerRoomMenu_InitRAM
 	call Function1719ed
 	ld a, [rSVBK]
@@ -335,7 +326,7 @@ Function1719d6: ; 1719d6 (5c:59d6)
 	ld [rSVBK], a
 	ret
 
-Function1719ed: ; 1719ed (5c:59ed)
+Function1719ed:
 	xor a
 	ld [wcd49], a
 	ld [wcd4a], a
@@ -348,7 +339,7 @@ Function1719ed: ; 1719ed (5c:59ed)
 	farcall ClearSpriteAnims
 	ret
 
-Function171a11: ; 171a11 (5c:5a11)
+Function171a11:
 .loop
 	call JoyTextDelay
 	ld a, [wcd49]
@@ -363,7 +354,7 @@ Function171a11: ; 171a11 (5c:5a11)
 	call ClearSprites
 	ret
 
-Function171a36: ; 171a36 (5c:5a36)
+Function171a36:
 	ld a, [wcd49]
 	ld e, a
 	ld d, 0
@@ -375,7 +366,7 @@ Function171a36: ; 171a36 (5c:5a36)
 	ld l, a
 	jp hl
 
-Jumptable_171a45: ; 171a45 (5c:5a45)
+Jumptable_171a45:
 	dw Function171a95
 	dw Function171ac9
 	dw Function171a5d
@@ -390,7 +381,7 @@ Jumptable_171a45: ; 171a45 (5c:5a45)
 	dw Function171c41
 
 
-Function171a5d: ; 171a5d (5c:5a5d)
+Function171a5d:
 	ld a, [wc821]
 	bit 1, a
 	jr nz, .asm_171a6a
@@ -419,30 +410,28 @@ Function171a5d: ; 171a5d (5c:5a5d)
 	ld [wcd49], a
 	ret
 
-Function171a95: ; 171a95 (5c:5a95)
+Function171a95:
 	farcall Function171ccd
 	hlcoord 2, 8
 	ld de, String_171aa7
 	call PlaceString
 	jp Function171c66
 
-; 171aa7 (5c:5aa7)
 
-String_171aa7: ; 171aa7
+String_171aa7:
 	db   "モバイルアダプタに"
 	next "せつぞく　しています"
 	next "しばらく　おまちください"
 	db   "@"
-; 171ac9
 
-Function171ac9: ; 171ac9 (5c:5ac9)
+Function171ac9:
 	ld de, wcd81
 	ld hl, $5c
 	ld a, $2
 	call Function3e32
 	jp Function171c66
 
-Function171ad7: ; 171ad7 (5c:5ad7)
+Function171ad7:
 	xor a
 	ld hl, $c608
 	ld bc, $66
@@ -452,7 +441,7 @@ Function171ad7: ; 171ad7 (5c:5ad7)
 	call Function3e32
 	jp Function171c66
 
-Function171aec: ; 171aec (5c:5aec)
+Function171aec:
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -503,7 +492,7 @@ Function171aec: ; 171aec (5c:5aec)
 	jr nz, .asm_171b1b
 	jp Function171c66
 
-Function171b42: ; 171b42 (5c:5b42)
+Function171b42:
 	ld a, [de]
 	inc de
 	and a
@@ -512,7 +501,7 @@ Function171b42: ; 171b42 (5c:5b42)
 	ld [hli], a
 	jr Function171b42
 
-Function171b4b: ; 171b4b (5c:5b4b)
+Function171b4b:
 	depixel 8, 2
 	ld a, SPRITE_ANIM_INDEX_EZCHAT_CURSOR
 	call _InitSpriteAnimStruct
@@ -543,7 +532,7 @@ Function171b4b: ; 171b4b (5c:5b4b)
 	ld [wcd24], a
 	jp Function171c66
 
-Function171b85: ; 171b85 (5c:5b85)
+Function171b85:
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
 	and $2
@@ -559,12 +548,12 @@ Function171b85: ; 171b85 (5c:5b85)
 	jr nz, asm_171baf
 	ret
 
-Function171b9f: ; 171b9f (5c:5b9f)
+Function171b9f:
 	ld a, $80
 	ld [wcd49], a
 	ret
 
-asm_171ba5: ; 171ba5 (5c:5ba5)
+asm_171ba5:
 	ld a, [wcd4a]
 	and a
 	ret z
@@ -572,7 +561,7 @@ asm_171ba5: ; 171ba5 (5c:5ba5)
 	ld [wcd4a], a
 	ret
 
-asm_171baf: ; 171baf (5c:5baf)
+asm_171baf:
 	ld a, [wcd4b]
 	ld c, a
 	ld a, [wcd4a]
@@ -582,7 +571,7 @@ asm_171baf: ; 171baf (5c:5baf)
 	ld [wcd4a], a
 	ret
 
-Function171bbd: ; 171bbd (5c:5bbd)
+Function171bbd:
 	call PlayClickSFX
 	ld a, $8
 	ld [wcd23], a
@@ -590,7 +579,7 @@ Function171bbd: ; 171bbd (5c:5bbd)
 	ld [wcd24], a
 	jp Function171c66
 
-Function171bcc: ; 171bcc (5c:5bcc)
+Function171bcc:
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
 	and $2
@@ -600,7 +589,7 @@ Function171bcc: ; 171bcc (5c:5bcc)
 	jp nz, Function171beb
 	ret
 
-Function171bdc: ; 171bdc (5c:5bdc)
+Function171bdc:
 	ld a, $4
 	ld [wcd23], a
 	ld a, $8
@@ -609,7 +598,7 @@ Function171bdc: ; 171bdc (5c:5bdc)
 	dec [hl]
 	ret
 
-Function171beb: ; 171beb (5c:5beb)
+Function171beb:
 	ld a, $5
 	call GetSRAMBank
 	ld a, [wcd4a]
@@ -636,7 +625,7 @@ Function171beb: ; 171beb (5c:5beb)
 	ld [wcd4c], a
 	call Function171c66
 
-Function171c2c: ; 171c2c (5c:5c2c)
+Function171c2c:
 	ld hl, wcd4c
 	dec [hl]
 	ret nz
@@ -644,12 +633,12 @@ Function171c2c: ; 171c2c (5c:5c2c)
 	call ClearBGPalettes
 	jr asm_171c60
 
-Function171c39: ; 171c39 (5c:5c39)
+Function171c39:
 	ld a, $28
 	ld [wcd4c], a
 	call Function171c66
 
-Function171c41: ; 171c41 (5c:5c41)
+Function171c41:
 	ld hl, wcd4c
 	dec [hl]
 	ret nz
@@ -659,31 +648,28 @@ Function171c41: ; 171c41 (5c:5c41)
 	ld a, $2
 	ld [wc303], a
 	farcall DisplayMobileError
-asm_171c60: ; 171c60 (5c:5c60)
+asm_171c60:
 	ld a, $80
 	ld [wcd49], a
 	ret
 
-Function171c66: ; 171c66 (5c:5c66)
+Function171c66:
 	ld hl, wcd49
 	inc [hl]
 	ret
 
-; 171c6b (5c:5c6b)
 
-MenuHeader_171c6b: ; 171c6b
+MenuHeader_171c6b:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
-; 171c73
 
-String_171c73: ; 171c73
+String_171c73:
 	db   "モバイルセンターを　けってい"
 	next "しました@"
-; 171c87
 
-Function171c87: ; 171c87 (5c:5c87)
+Function171c87:
 	call DisableLCD
 	ld hl, GFX_171db1
 	ld de, vTiles2 tile $00
@@ -709,7 +695,7 @@ Function171c87: ; 171c87 (5c:5c87)
 	call PlaceString
 	ret
 
-Function171ccd: ; 171ccd (5c:5ccd)
+Function171ccd:
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -728,7 +714,7 @@ Function171ccd: ; 171ccd (5c:5ccd)
 	ld [rSVBK], a
 	ret
 
-Function171cf0: ; 171cf0 (5c:5cf0)
+Function171cf0:
 	xor a
 	hlcoord 4, 15
 	ld [hli], a
@@ -755,7 +741,7 @@ Function171cf0: ; 171cf0 (5c:5cf0)
 	ld de, String_172e4e
 	jp PlaceString
 
-Function171d2b: ; 171d2b (5c:5d2b)
+Function171d2b:
 	call DisableLCD
 	ld hl, GFX_171db1
 	ld de, vTiles2 tile $00
@@ -781,7 +767,6 @@ Function171d2b: ; 171d2b (5c:5d2b)
 	call PlaceString
 	ret
 
-; 171d71 (5c:5d71)
 
 Palette_171d71:
 	RGB  0,  0,  0
@@ -836,21 +821,20 @@ INCBIN "gfx/unknown/172955.attrmap"
 LZ_172abd:
 INCBIN "gfx/pokedex/slowpoke.2bpp.lz"
 
-String_172e31: ; 172e31
+String_172e31:
 	db "パスワード<WO>いれてください@"
-String_172e3f: ; 172e3f
+String_172e3f:
 	db "きりかえ　やめる　　けってい@"
-String_172e4e: ; 172e4e
+String_172e4e:
 	db "きりかえ　やめる　　"
 String_172e58:
 	db "けってい@"
-String_172e5d: ; 172e5d
+String_172e5d:
 	db "せつぞくする　モバイルセンターを"
 	next "えらんで　ください@"
-; 172e78
 
 
-Function172e78: ; 172e78 (5c:6e78)
+Function172e78:
 	ld a, $7f
 	hlcoord 0, 0
 	ld bc, $168
@@ -875,7 +859,6 @@ Function172e78: ; 172e78 (5c:6e78)
 	call CopyBytes
 	ret
 
-; 172eb9 (5c:6eb9)
 
 Function172eb9:
 	ld a, [rSVBK]
@@ -895,7 +878,6 @@ Function172eb9:
 	ld [rSVBK], a
 	ret
 
-; 172edf (5c:6edf)
 
 Palette_172edf:
 	RGB  5, 12, 17

@@ -1,4 +1,4 @@
-Unreferenced_Function88248: ; 88248
+Unreferenced_Function88248:
 	ld c, CAL
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -10,17 +10,17 @@ Unreferenced_Function88248: ; 88248
 	ld [wTrainerClass], a
 	ret
 
-MovePlayerPicRight: ; 88258
+MovePlayerPicRight:
 	hlcoord 6, 4
 	ld de, 1
 	jr MovePlayerPic
 
-MovePlayerPicLeft: ; 88260
+MovePlayerPicLeft:
 	hlcoord 13, 4
 	ld de, -1
 	; fallthrough
 
-MovePlayerPic: ; 88266
+MovePlayerPic:
 ; Move player pic at hl by de * 7 tiles.
 	ld c, $8
 .loop
@@ -55,7 +55,7 @@ MovePlayerPic: ; 88266
 	pop hl
 	jr .loop
 
-ShowPlayerNamingChoices: ; 88297
+ShowPlayerNamingChoices:
 	ld hl, ChrisNameMenuHeader
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -84,7 +84,7 @@ GetPlayerNameArray: ; 88318 This Function is never called
 	call InitName
 	ret
 
-GetPlayerIcon: ; 8832c
+GetPlayerIcon:
 ; Get the player icon corresponding to gender
 
 ; Male
@@ -102,7 +102,7 @@ GetPlayerIcon: ; 8832c
 .done
 	ret
 
-GetCardPic: ; 8833e
+GetCardPic:
 	ld hl, ChrisCardPic
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -120,23 +120,23 @@ GetCardPic: ; 8833e
 	call FarCopyBytes
 	ret
 
-ChrisCardPic: ; 88365
+ChrisCardPic:
 INCBIN "gfx/trainer_card/chris_card.2bpp"
 
-KrisCardPic: ; 88595
+KrisCardPic:
 INCBIN "gfx/trainer_card/kris_card.2bpp"
 
-CardGFX: ; 887c5
+CardGFX:
 INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
-GetPlayerBackpic: ; 88825
+GetPlayerBackpic:
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, GetChrisBackpic
 	call GetKrisBackpic
 	ret
 
-GetChrisBackpic: ; 88830
+GetChrisBackpic:
 	ld hl, ChrisBackpic
 	ld b, BANK(ChrisBackpic)
 	ld de, vTiles2 tile $31
@@ -144,7 +144,7 @@ GetChrisBackpic: ; 88830
 	predef DecompressGet2bpp
 	ret
 
-HOF_LoadTrainerFrontpic: ; 88840
+HOF_LoadTrainerFrontpic:
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
@@ -173,7 +173,7 @@ HOF_LoadTrainerFrontpic: ; 88840
 	ld [hBGMapMode], a
 	ret
 
-DrawIntroPlayerPic: ; 88874
+DrawIntroPlayerPic:
 ; Draw the player pic at (6,4).
 
 ; Get class
@@ -206,13 +206,13 @@ DrawIntroPlayerPic: ; 88874
 	predef PlaceGraphic
 	ret
 
-ChrisPic: ; 888a9
+ChrisPic:
 INCBIN "gfx/player/chris.2bpp"
 
-KrisPic: ; 88bb9
+KrisPic:
 INCBIN "gfx/player/kris.2bpp"
 
-GetKrisBackpic: ; 88ec9
+GetKrisBackpic:
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
 	ld hl, vTiles2 tile $31
@@ -220,5 +220,5 @@ GetKrisBackpic: ; 88ec9
 	call Get2bpp
 	ret
 
-KrisBackpic: ; 88ed6
+KrisBackpic:
 INCBIN "gfx/player/kris_back.2bpp"

@@ -6,7 +6,7 @@
 	const MARTTEXT_HERE_YOU_GO
 	const MARTTEXT_SOLD_OUT
 
-OpenMartDialog:: ; 15a45
+OpenMartDialog::
 	call GetMart
 	ld a, c
 	ld [wEngineBuffer1], a
@@ -15,7 +15,6 @@ OpenMartDialog:: ; 15a45
 	ld hl, .dialogs
 	rst JumpTable
 	ret
-; 15a57
 
 .dialogs
 	dw MartDialog
@@ -23,18 +22,16 @@ OpenMartDialog:: ; 15a45
 	dw BargainShop
 	dw Pharmacist
 	dw RooftopSale
-; 15a61
 
-MartDialog: ; 15a61
+MartDialog:
 	ld a, 0
 	ld [wEngineBuffer1], a
 	xor a
 	ld [wEngineBuffer5], a
 	call StandardMart
 	ret
-; 15a6e
 
-HerbShop: ; 15a6e
+HerbShop:
 	call FarReadMart
 	call LoadStandardMenuHeader
 	ld hl, Text_HerbShop_Intro
@@ -43,9 +40,8 @@ HerbShop: ; 15a6e
 	ld hl, Text_HerbShop_ComeAgain
 	call MartTextBox
 	ret
-; 15a84
 
-BargainShop: ; 15a84
+BargainShop:
 	ld b, BANK(BargainShopData)
 	ld de, BargainShopData
 	call LoadMartPointer
@@ -65,9 +61,8 @@ BargainShop: ; 15a84
 	ld hl, Text_BargainShop_ComeAgain
 	call MartTextBox
 	ret
-; 15aae
 
-Pharmacist: ; 15aae
+Pharmacist:
 	call FarReadMart
 	call LoadStandardMenuHeader
 	ld hl, Text_Pharmacist_Intro
@@ -76,9 +71,8 @@ Pharmacist: ; 15aae
 	ld hl, Text_Pharmacist_ComeAgain
 	call MartTextBox
 	ret
-; 15ac4
 
-RooftopSale: ; 15ac4
+RooftopSale:
 	ld b, BANK(RooftopSaleMart1)
 	ld de, RooftopSaleMart1
 	ld hl, wStatusFlags
@@ -97,11 +91,10 @@ RooftopSale: ; 15ac4
 	ld hl, Text_Mart_ComeAgain
 	call MartTextBox
 	ret
-; 15aee
 
 INCLUDE "data/items/rooftop_sale.asm"
 
-LoadMartPointer: ; 15b10
+LoadMartPointer:
 	ld a, b
 	ld [wMartPointerBank], a
 	ld a, e
@@ -117,9 +110,8 @@ LoadMartPointer: ; 15b10
 	ld [wBargainShopFlags], a
 	ld [wFacingDirection], a
 	ret
-; 15b31
 
-GetMart: ; 15b31
+GetMart:
 	ld a, e
 	cp (Marts.End - Marts) / 2
 	jr c, .IsAMart
@@ -136,9 +128,8 @@ GetMart: ; 15b31
 	ld d, [hl]
 	ld b, BANK(Marts)
 	ret
-; 15b47
 
-StandardMart: ; 15b47
+StandardMart:
 .loop
 	ld a, [wEngineBuffer5]
 	ld hl, .MartFunctions
@@ -155,17 +146,15 @@ StandardMart: ; 15b47
 	dw .Sell
 	dw .Quit
 	dw .AnythingElse
-; 15b62
 
-.HowMayIHelpYou: ; 15b62
+.HowMayIHelpYou:
 	call LoadStandardMenuHeader
 	ld hl, Text_Mart_HowMayIHelpYou
 	call PrintText
 	ld a, $1 ; top menu
 	ret
-; 15b6e
 
-.TopMenu: ; 15b6e
+.TopMenu:
 	ld hl, MenuHeader_BuySell
 	call CopyMenuHeader
 	call VerticalMenu
@@ -184,41 +173,36 @@ StandardMart: ; 15b47
 .sell
 	ld a, $3 ; sell
 	ret
-; 15b8d
 
-.Buy: ; 15b8d
+.Buy:
 	call ExitMenu
 	call FarReadMart
 	call BuyMenu
 	and a
 	ld a, $5 ; Anything else?
 	ret
-; 15b9a
 
-.Sell: ; 15b9a
+.Sell:
 	call ExitMenu
 	call SellMenu
 	ld a, $5 ; Anything else?
 	ret
-; 15ba3
 
-.Quit: ; 15ba3
+.Quit:
 	call ExitMenu
 	ld hl, Text_Mart_ComeAgain
 	call MartTextBox
 	ld a, $ff ; exit
 	ret
-; 15baf
 
-.AnythingElse: ; 15baf
+.AnythingElse:
 	call LoadStandardMenuHeader
 	ld hl, Text_Mart_AnythingElse
 	call PrintText
 	ld a, $1 ; top menu
 	ret
-; 15bbb
 
-FarReadMart: ; 15bbb
+FarReadMart:
 	ld hl, wMartPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -246,16 +230,15 @@ FarReadMart: ; 15bbb
 
 .done
 	ret
-; 15be5
 
-GetMartItemPrice: ; 15be5
+GetMartItemPrice:
 ; Return the price of item a in BCD at hl and in tiles at wStringBuffer1.
 	push hl
 	ld [wCurItem], a
 	farcall GetItemPrice
 	pop hl
 
-GetMartPrice: ; 15bf0
+GetMartPrice:
 ; Return price de in BCD at hl and in tiles at wStringBuffer1.
 	push hl
 	ld a, d
@@ -280,9 +263,8 @@ GetMartPrice: ; 15bf0
 	dec c
 	jr nz, .loop
 	ret
-; 15c1a
 
-.CharToNybble: ; 15c1a
+.CharToNybble:
 	ld a, [de]
 	inc de
 	cp " "
@@ -292,9 +274,8 @@ GetMartPrice: ; 15bf0
 .not_space
 	sub "0"
 	ret
-; 15c25
 
-ReadMart: ; 15c25
+ReadMart:
 ; Load the mart pointer.  Mart data is local (no need for bank).
 	ld hl, wMartPointer
 	ld a, [hli]
@@ -337,12 +318,11 @@ ReadMart: ; 15c25
 	ld a, [hl]
 	ld [wCurMart], a
 	ret
-; 15c51
 
 INCLUDE "data/items/bargain_shop.asm"
 
 
-BuyMenu: ; 15c62
+BuyMenu:
 	call FadeToMenu
 	farcall BlankScreen
 	xor a
@@ -354,9 +334,8 @@ BuyMenu: ; 15c62
 	jr nc, .loop
 	call CloseSubmenu
 	ret
-; 15c7d
 
-LoadBuyMenuText: ; 15c7d
+LoadBuyMenuText:
 ; load text from a nested table
 ; which table is in wEngineBuffer1
 ; which entry is in register a
@@ -375,9 +354,8 @@ LoadBuyMenuText: ; 15c7d
 	ld l, a
 	call PrintText
 	ret
-; 15c91
 
-MartAskPurchaseQuantity: ; 15c91
+MartAskPurchaseQuantity:
 	call GetMartDialogGroup ; gets a pointer from GetMartDialogGroup.MartTextFunctionPointers
 	inc hl
 	inc hl
@@ -387,9 +365,8 @@ MartAskPurchaseQuantity: ; 15c91
 	cp 1
 	jp z, BargainShopAskPurchaseQuantity
 	jp RooftopSaleAskPurchaseQuantity
-; 15ca3
 
-GetMartDialogGroup: ; 15ca3
+GetMartDialogGroup:
 	ld a, [wEngineBuffer1]
 	ld e, a
 	ld d, 0
@@ -398,17 +375,15 @@ GetMartDialogGroup: ; 15ca3
 	add hl, de
 	add hl, de
 	ret
-; 15cb0
 
-.MartTextFunctionPointers: ; 15cb0
+.MartTextFunctionPointers:
 	dwb .StandardMartPointers, 0
 	dwb .HerbShopPointers, 0
 	dwb .BargainShopPointers, 1
 	dwb .PharmacyPointers, 0
 	dwb .StandardMartPointers, 2
-; 15cbf
 
-.StandardMartPointers: ; 15cbf
+.StandardMartPointers:
 	dw Text_Mart_HowMany
 	dw Text_Mart_CostsThisMuch
 	dw Text_Mart_InsufficientFunds
@@ -416,7 +391,7 @@ GetMartDialogGroup: ; 15ca3
 	dw Text_Mart_HereYouGo
 	dw BuyMenuLoop
 
-.HerbShopPointers: ; 15ccb
+.HerbShopPointers:
 	dw Text_HerbShop_HowMany
 	dw Text_HerbShop_CostsThisMuch
 	dw Text_HerbShop_InsufficientFunds
@@ -424,7 +399,7 @@ GetMartDialogGroup: ; 15ca3
 	dw Text_HerbShop_HereYouGo
 	dw BuyMenuLoop
 
-.BargainShopPointers: ; 15cd7
+.BargainShopPointers:
 	dw BuyMenuLoop
 	dw Text_BargainShop_CostsThisMuch
 	dw Text_BargainShop_InsufficientFunds
@@ -432,17 +407,16 @@ GetMartDialogGroup: ; 15ca3
 	dw Text_BargainShop_HereYouGo
 	dw Text_BargainShop_SoldOut
 
-.PharmacyPointers: ; 15ce3
+.PharmacyPointers:
 	dw Text_Pharmacy_HowMany
 	dw Text_Pharmacy_CostsThisMuch
 	dw Text_Pharmacy_InsufficientFunds
 	dw Text_Pharmacy_BagFull
 	dw Text_Pharmacy_HereYouGo
 	dw BuyMenuLoop
-; 15cef
 
 
-BuyMenuLoop: ; 15cef
+BuyMenuLoop:
 	farcall PlaceMoneyTopRight
 	call UpdateSprites
 	ld hl, MenuHeader_Buy
@@ -512,7 +486,6 @@ BuyMenuLoop: ; 15cef
 	call JoyWaitAorB
 	and a
 	ret
-; 15d83
 
 StandardMartAskPurchaseQuantity:
 	ld a, 99
@@ -522,15 +495,13 @@ StandardMartAskPurchaseQuantity:
 	farcall SelectQuantityToBuy
 	call ExitMenu
 	ret
-; 15d97
 
-MartConfirmPurchase: ; 15d97
+MartConfirmPurchase:
 	predef PartyMonItemName
 	ld a, MARTTEXT_COSTS_THIS_MUCH
 	call LoadBuyMenuText
 	call YesNoBox
 	ret
-; 15da5
 
 BargainShopAskPurchaseQuantity:
 	ld a, 1
@@ -571,7 +542,6 @@ BargainShopAskPurchaseQuantity:
 	call JoyWaitAorB
 	scf
 	ret
-; 15de2
 
 RooftopSaleAskPurchaseQuantity:
 	ld a, MARTTEXT_HOW_MANY
@@ -582,9 +552,8 @@ RooftopSaleAskPurchaseQuantity:
 	farcall RooftopSale_SelectQuantityToBuy
 	call ExitMenu
 	ret
-; 15df9
 
-.GetSalePrice: ; 15df9
+.GetSalePrice:
 	ld a, [wMartItemID]
 	ld e, a
 	ld d, 0
@@ -601,7 +570,6 @@ RooftopSaleAskPurchaseQuantity:
 	inc hl
 	ld d, [hl]
 	ret
-; 15e0e
 
 
 Text_Mart_HowMany: ; 0x15e0e
@@ -631,9 +599,8 @@ MenuHeader_Buy: ; 0x15e18
 	dba PlaceMenuItemName
 	dba .PrintBCDPrices
 	dba UpdateItemDescription
-; 15e30
 
-.PrintBCDPrices: ; 15e30
+.PrintBCDPrices:
 	ld a, [wScrollingMenuCursorPosition]
 	ld c, a
 	ld b, 0
@@ -650,7 +617,6 @@ MenuHeader_Buy: ; 0x15e18
 	ld c, PRINTNUM_LEADINGZEROS | PRINTNUM_MONEY | 3
 	call PrintBCDNumber
 	ret
-; 15e4a (5:5e4a)
 
 Text_HerbShop_Intro: ; 0x15e4a
 	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
@@ -779,7 +745,7 @@ Text_Pharmacist_ComeAgain: ; 0x15eae
 ; 0x15eb3
 
 
-SellMenu: ; 15eb3
+SellMenu:
 	call DisableSpriteUpdates
 	farcall DepositSellInitPackBuffers
 .loop
@@ -794,14 +760,12 @@ SellMenu: ; 15eb3
 	call ReturnToMapWithSpeechTextbox
 	and a
 	ret
-; 15ed3
 
 .Unreferenced_NothingToSell:
 	ld hl, .NothingToSellText
 	call MenuTextBoxBackup
 	and a
 	ret
-; 15edb
 
 .NothingToSellText: ; 0x15edb
 	; You don't have anything to sell.
@@ -810,15 +774,14 @@ SellMenu: ; 15eb3
 ; 0x15ee0
 
 
-.TryToSellItem: ; 15ee0
+.TryToSellItem:
 	farcall CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .dw
 	rst JumpTable
 	ret
-; 15eee
 
-.dw ; 15eee
+.dw
 	dw .try_sell
 	dw .cant_buy
 	dw .cant_buy
@@ -826,14 +789,12 @@ SellMenu: ; 15eb3
 	dw .try_sell
 	dw .try_sell
 	dw .try_sell
-; 15efc
 
-.cant_buy ; 15efc
+.cant_buy
 	ret
-; 15efd
 
 
-.try_sell ; 15efd
+.try_sell
 	farcall _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
@@ -877,7 +838,6 @@ SellMenu: ; 15eb3
 	call ExitMenu
 	and a
 	ret
-; 15f73
 
 Text_Mart_SellHowMany: ; 0x15f73
 	; How many?
@@ -891,7 +851,7 @@ Text_Mart_ICanPayThisMuch: ; 0x15f78
 	db "@"
 ; 0x15f7d
 
-.UnusedString15f7d: ; 15f7d
+.UnusedString15f7d:
 	db "！ダミー！@"
 
 Text_Mart_HowMayIHelpYou: ; 0x15f83
@@ -955,16 +915,14 @@ Text_Mart_SoldForAmount: ; 0x15fbe
 	db "@"
 ; 0x15fc3
 
-PlayTransactionSound: ; 15fc3
+PlayTransactionSound:
 	call WaitSFX
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	ret
-; 15fcd
 
-MartTextBox: ; 15fcd
+MartTextBox:
 	call MenuTextBox
 	call JoyWaitAorB
 	call ExitMenu
 	ret
-; 15fd7

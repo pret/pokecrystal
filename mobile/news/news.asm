@@ -2,7 +2,7 @@
 
 	db $cc, $6b, $1e ; unused
 
-Unreferenced_Function1f4003: ; 1f4003
+Unreferenced_Function1f4003:
 	ld a, $6
 	call GetSRAMBank
 	ld hl, .news_data
@@ -15,7 +15,7 @@ Unreferenced_Function1f4003: ; 1f4003
 .news_data
 INCBIN "mobile/news/news_1.bin"
 
-Unreferenced_Function1f4dbe: ; 1f4dbe
+Unreferenced_Function1f4dbe:
 	ld a, $6
 	call GetSRAMBank
 	ld hl, .news_data
@@ -28,7 +28,7 @@ Unreferenced_Function1f4dbe: ; 1f4dbe
 .news_data
 INCBIN "mobile/news/news_2.bin"
 
-Function1f5d9f: ; 1f5d9f
+Function1f5d9f:
 	ld a, $6
 	call GetSRAMBank
 	ld hl, .news_data

@@ -1,4 +1,4 @@
-ResetGameTime:: ; 208a
+ResetGameTime::
 	xor a
 	ld [wGameTimeCap], a
 	ld [wGameTimeHours], a
@@ -7,10 +7,9 @@ ResetGameTime:: ; 208a
 	ld [wGameTimeSeconds], a
 	ld [wGameTimeFrames], a
 	ret
-; 209e
 
 
-GameTimer:: ; 209e
+GameTimer::
 
 	nop
 
@@ -24,10 +23,9 @@ GameTimer:: ; 209e
 	pop af
 	ld [rSVBK], a
 	ret
-; 20ad
 
 
-UpdateGameTimer:: ; 20ad
+UpdateGameTimer::
 ; Increment the game timer by one frame.
 ; The game timer is capped at 999:59:59.00.
 
@@ -128,4 +126,3 @@ UpdateGameTimer:: ; 20ad
 	ld a, l
 	ld [wGameTimeHours + 1], a
 	ret
-; 210f

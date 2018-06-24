@@ -1,4 +1,4 @@
-Pokered_MonIndices: ; fb91c
+Pokered_MonIndices:
 	db RHYDON
 	db KANGASKHAN
 	db NIDORAN_M
@@ -252,4 +252,3 @@ Pokered_MonIndices: ; fb91c
 	db QWILFISH
 	db WOBBUFFET
 	db WOBBUFFET
-; fba18

@@ -107,7 +107,7 @@ InitPartyMenuPalettes:
 	ret
 
 ; SGB layout for SCGB_PARTY_MENU_HP_PALS
-SGB_ApplyPartyMenuHPPals: ; 8ade
+SGB_ApplyPartyMenuHPPals:
 	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld e, a
@@ -648,7 +648,7 @@ ApplyAttrMap:
 	ret
 
 ; CGB layout for SCGB_PARTY_MENU_HP_PALS
-CGB_ApplyPartyMenuHPPals: ; 96f3
+CGB_ApplyPartyMenuHPPals:
 	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld e, a

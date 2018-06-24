@@ -1,4 +1,4 @@
-BattleCommand_StartRain: ; 37bf4
+BattleCommand_StartRain:
 ; startrain
 	ld a, WEATHER_RAIN
 	ld [wBattleWeather], a
@@ -8,4 +8,3 @@ BattleCommand_StartRain: ; 37bf4
 	ld hl, DownpourText
 	jp StdBattleTextBox
 
-; 37c07

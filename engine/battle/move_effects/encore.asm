@@ -1,4 +1,4 @@
-BattleCommand_Encore: ; 35864
+BattleCommand_Encore:
 ; encore
 
 	ld hl, wEnemyMonMoves
@@ -119,4 +119,3 @@ BattleCommand_Encore: ; 35864
 .failed
 	jp PrintDidntAffect2
 
-; 35926

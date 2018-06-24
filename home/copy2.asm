@@ -92,7 +92,7 @@ GetFarHalfword:: ; 0x305d
 	ret
 ; 0x306b
 
-FarCopyWRAM:: ; 306b
+FarCopyWRAM::
 	ld [hBuffer], a
 	ld a, [rSVBK]
 	push af
@@ -104,9 +104,8 @@ FarCopyWRAM:: ; 306b
 	pop af
 	ld [rSVBK], a
 	ret
-; 307b
 
-GetFarWRAMByte:: ; 307b
+GetFarWRAMByte::
 	ld [hBuffer], a
 	ld a, [rSVBK]
 	push af
@@ -118,9 +117,8 @@ GetFarWRAMByte:: ; 307b
 	ld [rSVBK], a
 	ld a, [hBuffer]
 	ret
-; 308d
 
-GetFarWRAMWord:: ; 308d
+GetFarWRAMWord::
 	ld [hBuffer], a
 	ld a, [rSVBK]
 	push af
@@ -132,4 +130,3 @@ GetFarWRAMWord:: ; 308d
 	pop af
 	ld [rSVBK], a
 	ret
-; 309d

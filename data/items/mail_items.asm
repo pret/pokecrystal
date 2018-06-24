@@ -1,4 +1,4 @@
-MailItems: ; b9e80
+MailItems:
 	db FLOWER_MAIL
 	db SURF_MAIL
 	db LITEBLUEMAIL
@@ -10,4 +10,3 @@ MailItems: ; b9e80
 	db MUSIC_MAIL
 	db MIRAGE_MAIL
 	db -1
-; b9e8b

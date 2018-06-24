@@ -1,4 +1,4 @@
-CalcLevel: ; 50e1b
+CalcLevel:
 	ld a, [wTempMonSpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
@@ -30,7 +30,7 @@ CalcLevel: ; 50e1b
 	dec d
 	ret
 
-CalcExpAtLevel: ; 50e47
+CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e
 	ld a, [wBaseGrowthRate]
 	add a
@@ -150,7 +150,7 @@ CalcExpAtLevel: ; 50e47
 	ld [hMultiplicand], a
 	ret
 
-.LevelSquared: ; 50eed
+.LevelSquared:
 	xor a
 	ld [hMultiplicand + 0], a
 	ld [hMultiplicand + 1], a

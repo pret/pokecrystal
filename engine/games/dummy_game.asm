@@ -1,4 +1,4 @@
-_DummyGame: ; e1e5b (38:5e5b)
+_DummyGame:
 	call .LoadGFXAndPals
 	call DelayFrame
 .loop
@@ -243,9 +243,8 @@ endr
 	ld [wJumptableIndex], a
 	ret
 
-; e2010
 
-DummyGame_CheckMatch: ; e2010
+DummyGame_CheckMatch:
 	ld hl, wDummyGameCard1
 	ld a, [hli]
 	cp [hl]
@@ -322,7 +321,6 @@ DummyGame_CheckMatch: ; e2010
 	inc bc
 	ret
 
-; e2093
 
 DummyGameText_Yeah: ; 0xe2093
 	; , yeah!
@@ -336,7 +334,7 @@ DummyGameText_Darn: ; 0xe2098
 	db "@"
 ; 0xe209d
 
-DummyGame_InitBoard: ; e209d
+DummyGame_InitBoard:
 	ld hl, wDummyGameCards
 	ld bc, wDummyGameCardsEnd - wDummyGameCards
 	xor a
@@ -385,9 +383,8 @@ DummyGame_InitBoard: ; e209d
 	jr nz, .loop
 	ret
 
-; e20e5
 
-DummyGame_SampleTilePlacement: ; e20e5
+DummyGame_SampleTilePlacement:
 	push hl
 	ld de, wDummyGameCards
 .loop
@@ -408,9 +405,8 @@ DummyGame_SampleTilePlacement: ; e20e5
 	inc hl
 	ret
 
-; e2101
 
-DummyGame_GetDistributionOfTiles: ; e2101
+DummyGame_GetDistributionOfTiles:
 	ld a, [wMenuCursorY]
 	dec a
 	ld l, a
@@ -426,9 +422,8 @@ DummyGame_GetDistributionOfTiles: ; e2101
 	db $02, $03, $06, $06, $06, $08, $08, $06
 	db $02, $02, $04, $06, $06, $08, $08, $09
 	db $02, $02, $02, $04, $07, $08, $08, $0c
-; e2128
 
-DummyGame_PlaceCard: ; e2128
+DummyGame_PlaceCard:
 	ld a, [wDummyGameLastCardPicked]
 	sla a
 	sla a
@@ -446,9 +441,8 @@ DummyGame_PlaceCard: ; e2128
 	call DelayFrames
 	ret
 
-; e2142
 
-DummyGame_DeleteCard: ; e2142
+DummyGame_DeleteCard:
 	ld a, $1
 	ld [hli], a
 	ld [hld], a
@@ -460,9 +454,8 @@ DummyGame_DeleteCard: ; e2142
 	call DelayFrames
 	ret
 
-; e2152
 
-DummyGame_InitStrings: ; e2152
+DummyGame_InitStrings:
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, $1
@@ -483,9 +476,8 @@ DummyGame_InitStrings: ; e2152
 	db "とったもの@"
 .japstr2
 	db "あと　かい@"
-; e2183
 
-DummyGame_Card2Coord: ; e2183
+DummyGame_Card2Coord:
 	ld d, 0
 .find_row
 	sub 9
@@ -511,9 +503,8 @@ DummyGame_Card2Coord: ; e2183
 	add hl, de
 	ret
 
-; e21a1
 
-DummyGame_InterpretJoypad_AnimateCursor: ; e21a1 (38:61a1)
+DummyGame_InterpretJoypad_AnimateCursor:
 	ld a, [wJumptableIndex]
 	cp $7
 	jr nc, .quit
@@ -606,7 +597,6 @@ DummyGame_InterpretJoypad_AnimateCursor: ; e21a1 (38:61a1)
 	ld [hl], a
 	ret
 
-; e2221 (38:6221)
 
-LZ_e2221: ; e2221
+LZ_e2221:
 INCBIN "gfx/dummy_game/dummy_game.2bpp.lz"

@@ -1,4 +1,4 @@
-LoadTileMapToTempTileMap:: ; 309d
+LoadTileMapToTempTileMap::
 ; Load wTileMap into wTempTileMap
 	ld a, [rSVBK]
 	push af
@@ -11,18 +11,16 @@ LoadTileMapToTempTileMap:: ; 309d
 	pop af
 	ld [rSVBK], a
 	ret
-; 30b4
 
-Call_LoadTempTileMapToTileMap:: ; 30b4
+Call_LoadTempTileMapToTileMap::
 	xor a
 	ld [hBGMapMode], a
 	call LoadTempTileMapToTileMap
 	ld a, 1
 	ld [hBGMapMode], a
 	ret
-; 30bf
 
-LoadTempTileMapToTileMap:: ; 30bf
+LoadTempTileMapToTileMap::
 ; Load wTempTileMap into wTileMap
 	ld a, [rSVBK]
 	push af
@@ -35,4 +33,3 @@ LoadTempTileMapToTileMap:: ; 30bf
 	pop af
 	ld [rSVBK], a
 	ret
-; 30d6

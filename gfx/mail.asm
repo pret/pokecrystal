@@ -1,111 +1,111 @@
-MorphMailDividerGFX: ; b9926
+MorphMailDividerGFX:
 INCBIN "gfx/mail/morph_mail_divider.1bpp"
 
-BlueSkyMailGrassGFX: ; b992e
+BlueSkyMailGrassGFX:
 INCBIN "gfx/mail/grass.1bpp"
 
-PortraitMailSmallPokeballGFX: ; b9936
+PortraitMailSmallPokeballGFX:
 INCBIN "gfx/mail/small_pokeball.1bpp"
 
-MorphMailBorderGFX: ; b993e
+MorphMailBorderGFX:
 INCBIN "gfx/mail/morph_mail_border.1bpp"
 
-MusicMailSmallNoteGFX: ; b9946
+MusicMailSmallNoteGFX:
 INCBIN "gfx/mail/small_note.1bpp"
 
-SurfMailWaveGFX: ; b994e
+SurfMailWaveGFX:
 INCBIN "gfx/mail/wave.1bpp"
 
-PortraitMailUnderlineGFX: ; b995e
+PortraitMailUnderlineGFX:
 INCBIN "gfx/mail/portraitmail_underline.1bpp"
 
-LovelyMailUnderlineGFX: ; b9966
+LovelyMailUnderlineGFX:
 INCBIN "gfx/mail/lovely_mail_underline.1bpp"
 
-LovelyMailSmallHeartGFX: ; b996e
+LovelyMailSmallHeartGFX:
 INCBIN "gfx/mail/small_heart.1bpp"
 
-SurfLiteBlueMailSmallShapesGFX: ; b9976
+SurfLiteBlueMailSmallShapesGFX:
 INCBIN "gfx/mail/small_triangle.1bpp"
 
-EonMailBorder1GFX: ; b997e
+EonMailBorder1GFX:
 INCBIN "gfx/mail/eon_mail_border_1.1bpp"
 
-EonMailBorder2GFX: ; b998e
+EonMailBorder2GFX:
 INCBIN "gfx/mail/eon_mail_border_2.1bpp"
 
-MailNatuGFX: ; b9996
+MailNatuGFX:
 INCBIN "gfx/mail/natu.1bpp"
 
-MailDratiniGFX: ; b99c6
+MailDratiniGFX:
 INCBIN "gfx/mail/dratini.1bpp"
 
-MailPoliwagGFX: ; b99f6
+MailPoliwagGFX:
 INCBIN "gfx/mail/poliwag.1bpp"
 
-MailLaprasGFX: ; b9a26
+MailLaprasGFX:
 INCBIN "gfx/mail/lapras.1bpp"
 
-MailEeveeGFX: ; b9a56
+MailEeveeGFX:
 INCBIN "gfx/mail/eevee.1bpp"
 
-MailDittoGFX: ; b9a86
+MailDittoGFX:
 INCBIN "gfx/mail/ditto.1bpp"
 
-MailMewGFX: ; b9ab6
+MailMewGFX:
 INCBIN "gfx/mail/mew.1bpp"
 
-MailDragoniteGFX: ; b9b46
+MailDragoniteGFX:
 INCBIN "gfx/mail/dragonite.1bpp"
 
-MailSentretGFX: ; b9bce
+MailSentretGFX:
 INCBIN "gfx/mail/sentret.1bpp"
 
-MailUnusedGrassGFX: ; b9bee
+MailUnusedGrassGFX:
 INCBIN "gfx/mail/unused_grass.1bpp"
 
-PortraitMailLargePokeballGFX: ; b9bfe
+PortraitMailLargePokeballGFX:
 INCBIN "gfx/mail/large_pokeball.1bpp"
 
-MailOddishGFX: ; b9c1e
+MailOddishGFX:
 INCBIN "gfx/mail/oddish.1bpp"
 
-SurfLiteBlueMailLargeShapesGFX: ; b9c3e
+SurfLiteBlueMailLargeShapesGFX:
 INCBIN "gfx/mail/large_triangle.1bpp"
 
-LovelyMailLargeHeartGFX: ; b9c5e
+LovelyMailLargeHeartGFX:
 INCBIN "gfx/mail/large_heart.1bpp"
 
-MorphMailBorderCornerGFX: ; b9c7e
+MorphMailBorderCornerGFX:
 INCBIN "gfx/mail/morph_mail_corner.1bpp"
 
-MailLargeCircleGFX: ; b9c9e
+MailLargeCircleGFX:
 INCBIN "gfx/mail/large_circle.1bpp"
 
-FlowerMailFlowerGFX: ; b9cbe
+FlowerMailFlowerGFX:
 INCBIN "gfx/mail/flower_1.1bpp"
 INCBIN "gfx/mail/flower_2.1bpp"
 
-MusicMailLargeNoteGFX: ; b9cfe
+MusicMailLargeNoteGFX:
 INCBIN "gfx/mail/large_note.1bpp"
 
-MailCloudGFX: ; b9d16
+MailCloudGFX:
 INCBIN "gfx/mail/cloud.1bpp"
 
-SurfMailBorderGFX: ; b9d46
+SurfMailBorderGFX:
 INCBIN "gfx/mail/surf_mail_border.1bpp"
 
-FlowerMailBorderGFX: ; b9d86
+FlowerMailBorderGFX:
 INCBIN "gfx/mail/flower_mail_border.1bpp"
 
-LiteBlueMailBorderGFX: ; b9dc6
+LiteBlueMailBorderGFX:
 INCBIN "gfx/mail/litebluemail_border.1bpp"
 
-MusicMailBorderGFX: ; b9e06
+MusicMailBorderGFX:
 INCBIN "gfx/mail/music_mail_border.1bpp"
 
-LovelyMailBorderGFX: ; b9e26
+LovelyMailBorderGFX:
 INCBIN "gfx/mail/lovely_mail_border.1bpp"
 
-PortraitMailBorderGFX: ; b9e4e
+PortraitMailBorderGFX:
 INCBIN "gfx/mail/portraitmail_border.1bpp"

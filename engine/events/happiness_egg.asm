@@ -1,4 +1,4 @@
-GetFirstPokemonHappiness: ; 718d
+GetFirstPokemonHappiness:
 	ld hl, wPartyMon1Happiness
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wPartySpecies
@@ -17,7 +17,7 @@ GetFirstPokemonHappiness: ; 718d
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
-CheckFirstMonIsEgg: ; 71ac
+CheckFirstMonIsEgg:
 	ld a, [wPartySpecies]
 	ld [wd265], a
 	cp EGG
@@ -30,7 +30,7 @@ CheckFirstMonIsEgg: ; 71ac
 	call GetPokemonName
 	jp CopyPokemonName_Buffer1_Buffer3
 
-ChangeHappiness: ; 71c2
+ChangeHappiness:
 ; Perform happiness action c on wCurPartyMon
 
 	ld a, [wCurPartyMon]
@@ -106,7 +106,7 @@ ChangeHappiness: ; 71c2
 INCLUDE "data/events/happiness_changes.asm"
 
 
-StepHappiness:: ; 725a
+StepHappiness::
 ; Raise the party's happiness by 1 point every other step cycle.
 
 	ld hl, wHappinessStepCount
@@ -142,7 +142,7 @@ StepHappiness:: ; 725a
 	ret
 
 
-DayCareStep:: ; 7282
+DayCareStep::
 ; Raise the experience of Day-Care Pokémon every step cycle.
 
 	ld a, [wDayCareMan]

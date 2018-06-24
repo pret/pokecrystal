@@ -1,4 +1,4 @@
-BattleCommand_PerishSong: ; 376c2
+BattleCommand_PerishSong:
 ; perishsong
 
 
@@ -37,4 +37,3 @@ BattleCommand_PerishSong: ; 376c2
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
-; 376f8

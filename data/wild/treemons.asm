@@ -1,4 +1,4 @@
-TreeMons: ; b82e8
+TreeMons:
 ; entries correspond to TREEMON_SET_* constants
 	dw TreeMonSet_City
 	dw TreeMonSet_Canyon
@@ -15,7 +15,7 @@ TreeMons: ; b82e8
 ;	db  %, species, level
 
 TreeMonSet_City:
-TreeMonSet_Canyon: ; b82fa
+TreeMonSet_Canyon:
 ; common
 	db 50, SPEAROW,    10
 	db 15, SPEAROW,    10
@@ -33,7 +33,7 @@ TreeMonSet_Canyon: ; b82fa
 	db  5, AIPOM,      10
 	db -1
 
-TreeMonSet_Town: ; b8320
+TreeMonSet_Town:
 ; common
 	db 50, SPEAROW,    10
 	db 15, EKANS,      10
@@ -51,7 +51,7 @@ TreeMonSet_Town: ; b8320
 	db  5, AIPOM,      10
 	db -1
 
-TreeMonSet_Route: ; b8346
+TreeMonSet_Route:
 ; common
 	db 50, HOOTHOOT,   10
 	db 15, SPINARAK,   10
@@ -69,7 +69,7 @@ TreeMonSet_Route: ; b8346
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMonSet_Kanto: ; b836c
+TreeMonSet_Kanto:
 ; common
 	db 50, HOOTHOOT,   10
 	db 15, EKANS,      10
@@ -87,7 +87,7 @@ TreeMonSet_Kanto: ; b836c
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMonSet_Lake: ; b8392
+TreeMonSet_Lake:
 ; common
 	db 50, HOOTHOOT,   10
 	db 15, VENONAT,    10
@@ -105,7 +105,7 @@ TreeMonSet_Lake: ; b8392
 	db  5, EXEGGCUTE,  10
 	db -1
 
-TreeMonSet_Forest: ; b83b8
+TreeMonSet_Forest:
 ; common
 	db 50, HOOTHOOT,   10
 	db 15, PINECO,     10
@@ -123,8 +123,7 @@ TreeMonSet_Forest: ; b83b8
 	db  5, KAKUNA,     10
 	db -1
 
-TreeMonSet_Rock: ; b83de
+TreeMonSet_Rock:
 	db 90, KRABBY,     15
 	db 10, SHUCKLE,    15
 	db -1
-; b83e5

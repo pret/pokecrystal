@@ -1,14 +1,13 @@
 ; More overworld event handling.
 
 
-WarpToSpawnPoint:: ; 97c28
+WarpToSpawnPoint::
 	ld hl, wStatusFlags2
 	res STATUSFLAGS2_SAFARI_GAME_F, [hl]
 	res STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	ret
-; 97c30
 
-RunMemScript:: ; 97c30
+RunMemScript::
 ; If there is no script here, we don't need to be here.
 	ld a, [wMapReentryScriptQueueFlag]
 	and a
@@ -29,9 +28,8 @@ RunMemScript:: ; 97c30
 	call ByteFill
 	pop af
 	ret
-; 97c4f
 
-LoadScriptBDE:: ; 97c4f
+LoadScriptBDE::
 ; If there's already a script here, don't overwrite.
 	ld hl, wMapReentryScriptQueueFlag
 	ld a, [hl]
@@ -48,9 +46,8 @@ LoadScriptBDE:: ; 97c4f
 	ld [hl], d
 	scf
 	ret
-; 97c5f
 
-TryTileCollisionEvent:: ; 97c5f
+TryTileCollisionEvent::
 	call GetFacingTileCoord
 	ld [wEngineBuffer1], a
 	ld c, a
@@ -98,10 +95,9 @@ TryTileCollisionEvent:: ; 97c5f
 	ld a, $ff
 	scf
 	ret
-; 97cc0
 
 
-RandomEncounter:: ; 97cc0
+RandomEncounter::
 ; Random encounter
 
 	call CheckWildEncounterCooldown
@@ -139,16 +135,14 @@ RandomEncounter:: ; 97cc0
 	call CallScript
 	scf
 	ret
-; 97cf9
 
-WildBattleScript: ; 97cf9
+WildBattleScript:
 	randomwildmon
 	startbattle
 	reloadmapafterbattle
 	end
-; 97cfd
 
-CanUseSweetScent:: ; 97cfd
+CanUseSweetScent::
 	ld hl, wStatusFlags
 	bit STATUSFLAGS_NO_WILD_ENCOUNTERS_F, [hl]
 	jr nz, .no
@@ -170,17 +164,15 @@ CanUseSweetScent:: ; 97cfd
 .no
 	and a
 	ret
-; 97d23
 
-_TryWildEncounter_BugContest: ; 97d23
+_TryWildEncounter_BugContest:
 	call TryWildEncounter_BugContest
 	ret nc
 	call ChooseWildEncounter_BugContest
 	farcall CheckRepelEffect
 	ret
-; 97d31
 
-ChooseWildEncounter_BugContest:: ; 97d31
+ChooseWildEncounter_BugContest::
 ; Pick a random mon out of ContestMons.
 
 .loop
@@ -232,9 +224,8 @@ ChooseWildEncounter_BugContest:: ; 97d31
 
 	xor a
 	ret
-; 97d64
 
-TryWildEncounter_BugContest: ; 97d64
+TryWildEncounter_BugContest:
 	ld a, [wPlayerStandingTile]
 	call CheckSuperTallGrassTile
 	ld b, 40 percent
@@ -251,13 +242,12 @@ TryWildEncounter_BugContest: ; 97d64
 	ld a, 1
 	and a
 	ret
-; 97d87
 
 
 INCLUDE "data/wild/bug_contest_mons.asm"
 
 
-DoBikeStep:: ; 97db3
+DoBikeStep::
 	nop
 	nop
 	; If the bike shop owner doesn't have our number, or
@@ -322,9 +312,8 @@ DoBikeStep:: ; 97db3
 .NoCall:
 	xor a
 	ret
-; 97df9
 
-ClearCmdQueue:: ; 97df9
+ClearCmdQueue::
 	ld hl, wCmdQueue
 	ld de, 6
 	ld c, 4
@@ -335,9 +324,8 @@ ClearCmdQueue:: ; 97df9
 	dec c
 	jr nz, .loop
 	ret
-; 97e08
 
-HandleCmdQueue:: ; 97e08
+HandleCmdQueue::
 	ld hl, wCmdQueue
 	xor a
 .loop
@@ -359,18 +347,16 @@ HandleCmdQueue:: ; 97e08
 	cp CMDQUEUE_CAPACITY
 	jr nz, .loop
 	ret
-; 97e25
 
-Unreferenced_GetNthCmdQueueEntry: ; 97e25
+Unreferenced_GetNthCmdQueueEntry:
 	ld hl, wCmdQueue
 	ld bc, CMDQUEUE_ENTRY_SIZE
 	call AddNTimes
 	ld b, h
 	ld c, l
 	ret
-; 97e31
 
-WriteCmdQueue:: ; 97e31
+WriteCmdQueue::
 	push bc
 	push de
 	call .GetNextEmptyEntry
@@ -385,9 +371,8 @@ WriteCmdQueue:: ; 97e31
 	xor a
 	ld [hl], a
 	ret
-; 97e45
 
-.GetNextEmptyEntry: ; 97e45
+.GetNextEmptyEntry:
 	ld hl, wCmdQueue
 	ld de, CMDQUEUE_ENTRY_SIZE
 	ld c, CMDQUEUE_CAPACITY
@@ -406,9 +391,8 @@ WriteCmdQueue:: ; 97e31
 	sub c
 	and a
 	ret
-; 97e5c
 
-DelCmdQueue:: ; 97e5c
+DelCmdQueue::
 	ld hl, wCmdQueue
 	ld de, CMDQUEUE_ENTRY_SIZE
 	ld c, CMDQUEUE_CAPACITY
@@ -427,16 +411,14 @@ DelCmdQueue:: ; 97e5c
 	ld [hl], a
 	scf
 	ret
-; 97e72
 
-_DelCmdQueue: ; 97e72
+_DelCmdQueue:
 	ld hl, CMDQUEUE_TYPE
 	add hl, bc
 	ld [hl], 0
 	ret
-; 97e79
 
-HandleQueuedCommand: ; 97e79
+HandleQueuedCommand:
 	ld hl, CMDQUEUE_TYPE
 	add hl, bc
 	ld a, [hl]
@@ -459,62 +441,54 @@ HandleQueuedCommand: ; 97e79
 	pop af
 	rst FarCall
 	ret
-; 97e94
 
-.Jumptable: ; 97e94
+.Jumptable:
 	dba CmdQueue_Null
 	dba CmdQueue_Null2
 	dba CmdQueue_StoneTable
 	dba CmdQueue_Type3
 	dba CmdQueue_Type4
-; 97ea3
 
-CmdQueueAnonymousJumptable: ; 97ea3
+CmdQueueAnonymousJumptable:
 	ld hl, CMDQUEUE_05
 	add hl, bc
 	ld a, [hl]
 	pop hl
 	rst JumpTable
 	ret
-; 97eab
 
-CmdQueueAnonJT_Increment: ; 97eab
+CmdQueueAnonJT_Increment:
 	ld hl, CMDQUEUE_05
 	add hl, bc
 	inc [hl]
 	ret
-; 97eb1
 
-CmdQueueAnonJT_Decrement: ; 97eb1
+CmdQueueAnonJT_Decrement:
 	ld hl, CMDQUEUE_05
 	add hl, bc
 	dec [hl]
 	ret
-; 97eb7
 
-CmdQueue_Null: ; 97eb7
+CmdQueue_Null:
 	ret
-; 97eb8
 
-CmdQueue_Null2: ; 97eb8
+CmdQueue_Null2:
 	call ret_2f3e
 	ret
-; 97ebc
 
-CmdQueue_Type4: ; 97ebc
+CmdQueue_Type4:
 	call CmdQueueAnonymousJumptable
 	; anonymous dw
 	dw .zero
 	dw .one
-; 97ec3
 
-.zero ; 97ec3
+.zero
 	ld a, [hSCY]
 	ld hl, 4
 	add hl, bc
 	ld [hl], a
 	call CmdQueueAnonJT_Increment
-.one ; 97ecd
+.one
 	ld hl, 1
 	add hl, bc
 	ld a, [hl]
@@ -545,21 +519,19 @@ CmdQueue_Type4: ; 97ebc
 	ld [hSCY], a
 	call _DelCmdQueue
 	ret
-; 97ef9
 
-CmdQueue_Type3: ; 97ef9
+CmdQueue_Type3:
 	call CmdQueueAnonymousJumptable
 	; anonymous dw
 	dw .zero
 	dw .one
 	dw .two
-; 97f02
 
-.zero ; 97f02
+.zero
 	call .IsPlayerFacingDown
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Increment
-.one ; 97f0a
+.one
 	call .IsPlayerFacingDown
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Increment
@@ -569,9 +541,8 @@ CmdQueue_Type3: ; 97ef9
 	ld a, [hl]
 	ld [wd173], a
 	ret
-; 97f1b
 
-.two ; 97f1b
+.two
 	call .IsPlayerFacingDown
 	jr z, .PlayerNotFacingDown
 	call CmdQueueAnonJT_Decrement
@@ -581,27 +552,24 @@ CmdQueue_Type3: ; 97ef9
 	ld a, [hl]
 	ld [wd173], a
 	ret
-; 97f2c
 
-.PlayerNotFacingDown: ; 97f2c
+.PlayerNotFacingDown:
 	ld a, $7f
 	ld [wd173], a
 	ld hl, 5
 	add hl, bc
 	ld [hl], 0
 	ret
-; 97f38
 
-.IsPlayerFacingDown: ; 97f38
+.IsPlayerFacingDown:
 	push bc
 	ld bc, wPlayerStruct
 	call GetSpriteDirection
 	and a
 	pop bc
 	ret
-; 97f42
 
-CmdQueue_StoneTable: ; 97f42
+CmdQueue_StoneTable:
 	ld de, wPlayerStruct
 	ld a, NUM_OBJECT_STRUCTS
 .loop
@@ -647,4 +615,3 @@ CmdQueue_StoneTable: ; 97f42
 .fall_down_hole
 	pop af
 	ret
-; 97f7e

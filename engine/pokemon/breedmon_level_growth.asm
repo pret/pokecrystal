@@ -1,4 +1,4 @@
-GetBreedMon1LevelGrowth: ; e698
+GetBreedMon1LevelGrowth:
 	ld hl, wBreedMon1Stats
 	ld de, wTempMon
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -12,7 +12,7 @@ GetBreedMon1LevelGrowth: ; e698
 	ld d, a
 	ret
 
-GetBreedMon2LevelGrowth: ; e6b3
+GetBreedMon2LevelGrowth:
 	ld hl, wBreedMon2Stats
 	ld de, wTempMon
 	ld bc, BOXMON_STRUCT_LENGTH

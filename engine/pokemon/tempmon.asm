@@ -1,4 +1,4 @@
-CopyMonToTempMon: ; 5084a
+CopyMonToTempMon:
 ; gets the BaseData of a mon
 ; and copies the party_struct to wTempMon
 
@@ -32,13 +32,13 @@ CopyMonToTempMon: ; 5084a
 .done
 	ret
 
-CalcBufferMonStats: ; 5088b
+CalcBufferMonStats:
 	ld bc, wBufferMon
 	jr _TempMonStatsCalculation
 
-CalcTempmonStats: ; 50890
+CalcTempmonStats:
 	ld bc, wTempMon
-_TempMonStatsCalculation: ; 50893
+_TempMonStatsCalculation:
 	ld hl, MON_LEVEL
 	add hl, bc
 	ld a, [hl]
@@ -82,7 +82,7 @@ _TempMonStatsCalculation: ; 50893
 	ld [hl], a
 	ret
 
-GetMonSpecies: ; 508d5
+GetMonSpecies:
 ; [wMonType] has the type of the mon
 ; e = Nr. of mon (i.e. [wCurPartyMon])
 

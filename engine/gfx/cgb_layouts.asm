@@ -1,12 +1,11 @@
 ; Replaces the functionality of sgb.asm to work with CGB hardware.
 
-CheckCGB: ; 8d55
+CheckCGB:
 	ld a, [hCGB]
 	and a
 	ret
-; 8d59
 
-LoadSGBLayoutCGB: ; 8d59
+LoadSGBLayoutCGB:
 	ld a, b
 	cp SCGB_RAM
 	jr nz, .not_ram
@@ -26,13 +25,11 @@ LoadSGBLayoutCGB: ; 8d59
 	ld de, .ReturnFromJumpTable
 	push de
 	jp hl
-; 8d79
 
-.ReturnFromJumpTable: ; 8d79
+.ReturnFromJumpTable:
 	ret
-; 8d7a
 
-.dw ; 8d7a
+.dw
 	dw _CGB_BattleGrayscale
 	dw _CGB_BattleColors
 	dw _CGB_PokegearPals
@@ -64,9 +61,8 @@ LoadSGBLayoutCGB: ; 8d59
 	dw _CGB_TrainerOrMonFrontpicPals
 	dw _CGB_MysteryGift
 	dw _CGB1e
-; 8db8
 
-_CGB_BattleGrayscale: ; 8db8
+_CGB_BattleGrayscale:
 	ld hl, PalPacket_BattleGrayscale + 1
 	ld de, wBGPals1
 	ld c, 4
@@ -81,7 +77,7 @@ _CGB_BattleGrayscale: ; 8db8
 	call CopyPalettes
 	jr _CGB_FinishBattleScreenLayout
 
-_CGB_BattleColors: ; 8ddb
+_CGB_BattleColors:
 	ld de, wBGPals1
 	call GetBattlemonBackpicPalettePointer
 	push hl
@@ -115,7 +111,7 @@ _CGB_BattleColors: ; 8ddb
 	ld a, SCGB_BATTLE_COLORS
 	ld [wSGBPredef], a
 	call ApplyPals
-_CGB_FinishBattleScreenLayout: ; 8e23
+_CGB_FinishBattleScreenLayout:
 	call InitPartyMenuBGPal7
 	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
@@ -152,12 +148,11 @@ _CGB_FinishBattleScreenLayout: ; 8e23
 	call FarCopyWRAM
 	call ApplyAttrMap
 	ret
-; 8e85
 
 
-InitPartyMenuBGPal7: ; 8e85
+InitPartyMenuBGPal7:
 	farcall Function100dc0
-Mobile_InitPartyMenuBGPal7: ; 8e8b
+Mobile_InitPartyMenuBGPal7:
 	ld hl, PartyMenuBGPalette
 	jr nc, .not_mobile
 	ld hl, PartyMenuBGMobilePalette
@@ -167,9 +162,8 @@ Mobile_InitPartyMenuBGPal7: ; 8e8b
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
-; 8e9f
 
-InitPartyMenuBGPal0: ; 8e9f
+InitPartyMenuBGPal0:
 	farcall Function100dc0
 	ld hl, PartyMenuBGPalette
 	jr nc, .not_mobile
@@ -180,9 +174,8 @@ InitPartyMenuBGPal0: ; 8e9f
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
-; 8eb9
 
-_CGB_PokegearPals: ; 8eb9
+_CGB_PokegearPals:
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .male
@@ -200,9 +193,8 @@ _CGB_PokegearPals: ; 8eb9
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 8edb
 
-_CGB_StatsScreenHPPals: ; 8edb
+_CGB_StatsScreenHPPals:
 	ld de, wBGPals1
 	ld a, [wCurHPPal]
 	ld l, a
@@ -255,17 +247,14 @@ _CGB_StatsScreenHPPals: ; 8edb
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 8f52
 
-StatsScreenPagePals: ; 8f52
+StatsScreenPagePals:
 INCLUDE "gfx/stats/pages.pal"
-; 8f6a
 
-StatsScreenPals: ; 8f6a
+StatsScreenPals:
 INCLUDE "gfx/stats/stats.pal"
-; 8f70
 
-_CGB_Pokedex: ; 8f70
+_CGB_Pokedex:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_POKEDEX
 	call GetPredefPal
@@ -297,17 +286,14 @@ _CGB_Pokedex: ; 8f70
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 8fba
 
-.PokedexQuestionMarkPalette: ; 8fba
+.PokedexQuestionMarkPalette:
 INCLUDE "gfx/pokedex/question_mark.pal"
-; 8fc2
 
-.PokedexCursorPalette: ; 8fc2
+.PokedexCursorPalette:
 INCLUDE "gfx/pokedex/cursor.pal"
-; 8fca
 
-_CGB_BillsPC: ; 8fca
+_CGB_BillsPC:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_POKEDEX
 	call GetPredefPal
@@ -335,9 +321,8 @@ _CGB_BillsPC: ; 8fca
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 9009
 
-.Function9009: ; 9009
+.Function9009:
 	ld hl, .BillsPCOrangePalette
 	call LoadHLPaletteIntoDE
 	jr .asm_901a
@@ -358,13 +343,11 @@ _CGB_BillsPC: ; 8fca
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 9036
 
-.BillsPCOrangePalette: ; 9036
+.BillsPCOrangePalette:
 INCLUDE "gfx/pc/orange.pal"
-; 903e
 
-_CGB_PokedexUnownMode: ; 903e
+_CGB_PokedexUnownMode:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_POKEDEX
 	call GetPredefPal
@@ -383,9 +366,8 @@ _CGB_PokedexUnownMode: ; 903e
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 906e
 
-_CGB_SlotMachine: ; 906e
+_CGB_SlotMachine:
 	ld hl, SlotMachinePals
 	ld de, wBGPals1
 	ld bc, 16 palettes
@@ -437,9 +419,8 @@ _CGB_SlotMachine: ; 906e
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 90f8
 
-_CGB06: ; 90f8
+_CGB06:
 	ld hl, PalPacket_SCGB_06 + 1
 	call CopyFourPalettes
 	call WipeAttrMap
@@ -456,9 +437,8 @@ _CGB06: ; 90f8
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 9122
 
-_CGB_GSIntro: ; 9122
+_CGB_GSIntro:
 	ld b, 0
 	ld hl, .Jumptable
 	add hl, bc
@@ -467,15 +447,13 @@ _CGB_GSIntro: ; 9122
 	ld h, [hl]
 	ld l, a
 	jp hl
-; 912d
 
-.Jumptable: ; 912d
+.Jumptable:
 	dw .ShellderLaprasScene
 	dw .JigglypuffPikachuScene
 	dw .StartersCharizardScene
-; 9133
 
-.ShellderLaprasScene: ; 9133
+.ShellderLaprasScene:
 	ld hl, .ShellderLaprasBGPalette
 	ld de, wBGPals1
 	call LoadHLPaletteIntoDE
@@ -486,15 +464,14 @@ _CGB_GSIntro: ; 9122
 	call FarCopyWRAM
 	call WipeAttrMap
 	ret
-; 914e
 
-.ShellderLaprasBGPalette: ; 914e
+.ShellderLaprasBGPalette:
 	RGB 19, 31, 19
 	RGB 18, 23, 31
 	RGB 11, 21, 28
 	RGB 04, 16, 24
 
-.ShellderLaprasOBPals: ; 9156
+.ShellderLaprasOBPals:
 	RGB 29, 29, 29
 	RGB 20, 19, 20
 	RGB 19, 06, 04
@@ -504,9 +481,8 @@ _CGB_GSIntro: ; 9122
 	RGB 31, 31, 31
 	RGB 31, 00, 00
 	RGB 03, 04, 06
-; 9166
 
-.JigglypuffPikachuScene: ; 9166
+.JigglypuffPikachuScene:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_GS_INTRO_JIGGLYPUFF_PIKACHU_BG
 	call GetPredefPal
@@ -518,9 +494,8 @@ _CGB_GSIntro: ; 9122
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
 	ret
-; 9180
 
-.StartersCharizardScene: ; 9180
+.StartersCharizardScene:
 	ld hl, PalPacket_Pack + 1
 	call CopyFourPalettes
 	ld de, wOBPals1
@@ -529,9 +504,8 @@ _CGB_GSIntro: ; 9122
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
 	ret
-; 9195
 
-_CGB11: ; 9195
+_CGB11:
 	ld hl, BetaPokerPals
 	ld de, wBGPals1
 	ld bc, 5 palettes
@@ -541,9 +515,8 @@ _CGB11: ; 9195
 	call WipeAttrMap
 	call ApplyAttrMap
 	ret
-; 91ad
 
-_CGB_Diploma: ; 91ad
+_CGB_Diploma:
 	ld hl, DiplomaPalettes
 	ld de, wBGPals1
 	ld bc, 16 palettes
@@ -555,16 +528,14 @@ _CGB_Diploma: ; 91ad
 	call WipeAttrMap
 	call ApplyAttrMap
 	ret
-; 91c8
 
-_CGB_MapPals: ; 91c8
+_CGB_MapPals:
 	call LoadMapPals
 	ld a, SCGB_MAPPALS
 	ld [wSGBPredef], a
 	ret
-; 91d1
 
-_CGB_PartyMenu: ; 91d1
+_CGB_PartyMenu:
 	ld hl, PalPacket_PartyMenu + 1
 	call CopyFourPalettes
 	call InitPartyMenuBGPal0
@@ -572,9 +543,8 @@ _CGB_PartyMenu: ; 91d1
 	call InitPartyMenuOBPals
 	call ApplyAttrMap
 	ret
-; 91e4
 
-_CGB_Evolution: ; 91e4
+_CGB_Evolution:
 	ld de, wBGPals1
 	ld a, c
 	and a
@@ -607,9 +577,8 @@ _CGB_Evolution: ; 91e4
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 9228
 
-_CGB_GSTitleScreen: ; 9228
+_CGB_GSTitleScreen:
 	ld hl, UnusedGSTitleBGPals
 	ld de, wBGPals1
 	ld bc, 5 palettes
@@ -626,17 +595,15 @@ _CGB_GSTitleScreen: ; 9228
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 9251
 
-_CGB0d: ; 9251
+_CGB0d:
 	ld hl, PalPacket_Diploma + 1
 	call CopyFourPalettes
 	call WipeAttrMap
 	call ApplyAttrMap
 	ret
-; 925e
 
-_CGB_UnownPuzzle: ; 925e
+_CGB_UnownPuzzle:
 	ld hl, PalPacket_UnownPuzzle + 1
 	call CopyFourPalettes
 	ld de, wOBPals1
@@ -657,9 +624,8 @@ _CGB_UnownPuzzle: ; 925e
 	call WipeAttrMap
 	call ApplyAttrMap
 	ret
-; 9289
 
-_CGB_TrainerCard: ; 9289
+_CGB_TrainerCard:
 	ld de, wBGPals1
 	xor a ; CHRIS
 	call GetTrainerPalettePointer
@@ -763,9 +729,8 @@ _CGB_TrainerCard: ; 9289
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 9373
 
-_CGB_MoveList: ; 9373
+_CGB_MoveList:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_GOLDENROD
 	call GetPredefPal
@@ -788,9 +753,8 @@ _CGB_MoveList: ; 9373
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 93a6
 
-_CGB_BetaPikachuMinigame: ; 93a6
+_CGB_BetaPikachuMinigame:
 	ld hl, PalPacket_BetaPikachuMinigame + 1
 	call CopyFourPalettes
 	call WipeAttrMap
@@ -799,9 +763,8 @@ _CGB_BetaPikachuMinigame: ; 93a6
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 93ba
 
-_CGB_PokedexSearchOption: ; 93ba
+_CGB_PokedexSearchOption:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_POKEDEX
 	call GetPredefPal
@@ -812,9 +775,8 @@ _CGB_PokedexSearchOption: ; 93ba
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 93d3
 
-_CGB_PackPals: ; 93d3
+_CGB_PackPals:
 ; pack pals
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -861,17 +823,14 @@ _CGB_PackPals: ; 93d3
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 9439
 
-.ChrisPackPals: ; 9439
+.ChrisPackPals:
 INCLUDE "gfx/pack/pack.pal"
-; 9469
 
-.KrisPackPals: ; 9469
+.KrisPackPals:
 INCLUDE "gfx/pack/pack_f.pal"
-; 9499
 
-_CGB_Pokepic: ; 9499
+_CGB_Pokepic:
 	call _CGB_MapPals
 	ld de, SCREEN_WIDTH
 	hlcoord 0, 0, wAttrMap
@@ -904,9 +863,8 @@ _CGB_Pokepic: ; 9499
 	call FillBoxCGB
 	call ApplyAttrMap
 	ret
-; 94d0
 
-_CGB13: ; 94d0
+_CGB13:
 	ld hl, PalPacket_SCGB_13 + 1
 	call CopyFourPalettes
 	call WipeAttrMap
@@ -923,9 +881,8 @@ _CGB13: ; 94d0
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 94fa
 
-_CGB_GamefreakLogo: ; 94fa
+_CGB_GamefreakLogo:
 	ld de, wBGPals1
 	ld a, PREDEFPAL_GAMEFREAK_LOGO
 	call GetPredefPal
@@ -940,13 +897,11 @@ _CGB_GamefreakLogo: ; 94fa
 	call ApplyAttrMap
 	call ApplyPals
 	ret
-; 9521
 
-.Palette: ; 9521
+.Palette:
 INCLUDE "gfx/splash/logo.pal"
-; 9529
 
-_CGB_PlayerOrMonFrontpicPals: ; 9529
+_CGB_PlayerOrMonFrontpicPals:
 	ld de, wBGPals1
 	ld a, [wCurPartySpecies]
 	ld bc, wTempMonDVs
@@ -956,9 +911,8 @@ _CGB_PlayerOrMonFrontpicPals: ; 9529
 	call ApplyAttrMap
 	call ApplyPals
 	ret
-; 9542
 
-_CGB1e: ; 9542
+_CGB1e:
 	ld de, wBGPals1
 	ld a, [wCurPartySpecies]
 	call GetMonPalettePointer_
@@ -966,9 +920,8 @@ _CGB1e: ; 9542
 	call WipeAttrMap
 	call ApplyAttrMap
 	ret
-; 9555
 
-_CGB_TradeTube: ; 9555
+_CGB_TradeTube:
 	ld hl, PalPacket_TradeTube + 1
 	call CopyFourPalettes
 	ld hl, PartyMenuOBPals
@@ -982,9 +935,8 @@ _CGB_TradeTube: ; 9555
 	call LoadHLPaletteIntoDE
 	call WipeAttrMap
 	ret
-; 9578
 
-_CGB_TrainerOrMonFrontpicPals: ; 9578
+_CGB_TrainerOrMonFrontpicPals:
 	ld de, wBGPals1
 	ld a, [wCurPartySpecies]
 	ld bc, wTempMonDVs
@@ -994,9 +946,8 @@ _CGB_TrainerOrMonFrontpicPals: ; 9578
 	call ApplyAttrMap
 	call ApplyPals
 	ret
-; 9591
 
-_CGB_MysteryGift: ; 9591
+_CGB_MysteryGift:
 	ld hl, .Palettes
 	ld de, wBGPals1
 	ld bc, 2 palettes
@@ -1026,8 +977,6 @@ _CGB_MysteryGift: ; 9591
 	call FillBoxCGB
 	call ApplyAttrMap
 	ret
-; 95e0
 
-.Palettes: ; 95e0
+.Palettes:
 INCLUDE "gfx/mystery_gift/mystery_gift.pal"
-; 95f0

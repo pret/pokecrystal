@@ -1,4 +1,4 @@
-BankOfMom: ; 16218
+BankOfMom:
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -16,9 +16,8 @@ BankOfMom: ; 16218
 	pop af
 	ld [hInMenu], a
 	ret
-; 16233
 
-.RunJumptable: ; 16233
+.RunJumptable:
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
@@ -29,9 +28,8 @@ BankOfMom: ; 16218
 	ld h, [hl]
 	ld l, a
 	jp hl
-; 16242
 
-.dw ; 16242
+.dw
 
 	dw .CheckIfBankInitialized
 	dw .InitializeBank
@@ -42,9 +40,8 @@ BankOfMom: ; 16218
 	dw .StopOrStartSavingMoney
 	dw .AskDST
 	dw .JustDoWhatYouCan
-; 16254
 
-.CheckIfBankInitialized: ; 16254
+.CheckIfBankInitialized:
 	ld a, [wMomSavingMoney]
 	bit MOM_ACTIVE_F, a
 	jr nz, .savingmoneyalready
@@ -59,9 +56,8 @@ BankOfMom: ; 16218
 .done_0
 	ld [wJumptableIndex], a
 	ret
-; 1626a
 
-.InitializeBank: ; 1626a
+.InitializeBank:
 	ld hl, UnknownText_0x16649
 	call PrintText
 	call YesNoBox
@@ -81,9 +77,8 @@ BankOfMom: ; 16218
 	ld a, $8
 	ld [wJumptableIndex], a
 	ret
-; 16290
 
-.IsThisAboutYourMoney: ; 16290
+.IsThisAboutYourMoney:
 	ld hl, UnknownText_0x16658
 	call PrintText
 	call YesNoBox
@@ -98,9 +93,8 @@ BankOfMom: ; 16218
 .done_2
 	ld [wJumptableIndex], a
 	ret
-; 162a8
 
-.AccessBankOfMom: ; 162a8
+.AccessBankOfMom:
 	ld hl, UnknownText_0x1665d
 	call PrintText
 	call LoadStandardMenuHeader
@@ -135,9 +129,8 @@ BankOfMom: ; 16218
 .done_3
 	ld [wJumptableIndex], a
 	ret
-; 162e0
 
-.StoreMoney: ; 162e0
+.StoreMoney:
 	ld hl, UnknownText_0x16662
 	call PrintText
 	xor a
@@ -202,9 +195,8 @@ BankOfMom: ; 16218
 .done_4
 	ld [wJumptableIndex], a
 	ret
-; 16373
 
-.TakeMoney: ; 16373
+.TakeMoney:
 	ld hl, UnknownText_0x16667
 	call PrintText
 	xor a
@@ -269,9 +261,8 @@ BankOfMom: ; 16218
 .done_5
 	ld [wJumptableIndex], a
 	ret
-; 16406
 
-.StopOrStartSavingMoney: ; 16406
+.StopOrStartSavingMoney:
 	ld hl, UnknownText_0x1666c
 	call PrintText
 	call YesNoBox
@@ -290,19 +281,17 @@ BankOfMom: ; 16218
 	ld a, $7
 	ld [wJumptableIndex], a
 	ret
-; 1642d
 
-.AskDST: ; 1642d
+.AskDST:
 	ld hl, UnknownText_0x16694
 	call PrintText
 
-.JustDoWhatYouCan: ; 16433
+.JustDoWhatYouCan:
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
-; 16439
 
-DSTChecks: ; 16439
+DSTChecks:
 ; check the time; avoid changing DST if doing so would change the current day
 	ld a, [wDST]
 	bit 7, a
@@ -364,9 +353,8 @@ DSTChecks: ; 16439
 	ld hl, .Text_SetClockForward
 	call PlaceHLTextAtBC
 	ret
-; 164b9
 
-.SetClockForward: ; 164b9
+.SetClockForward:
 	ld a, [wStartHour]
 	add 1
 	sub 24
@@ -379,9 +367,8 @@ DSTChecks: ; 16439
 	adc 0
 	ld [wStartDay], a
 	ret
-; 164d1
 
-.SetClockBack: ; 164d1
+.SetClockBack:
 	ld a, [wStartHour]
 	sub 1
 	jr nc, .DontLoopHourBack
@@ -395,14 +382,12 @@ DSTChecks: ; 16439
 .DontLoopDayBack:
 	ld [wStartDay], a
 	ret
-; 164ea
 
-.ClearBox: ; 164ea
+.ClearBox:
 	hlcoord 1, 14
 	lb bc, 3, 18
 	call ClearBox
 	ret
-; 164f4
 
 .Text_AdjustClock: ; 0x164f4
 	; Do you want to adjust your clock for Daylight Saving Time?
@@ -441,13 +426,13 @@ DSTChecks: ; 16439
 	db "@"
 ; 0x16512
 
-Mom_SetUpWithdrawMenu: ; 16512
+Mom_SetUpWithdrawMenu:
 	ld de, Mon_WithdrawString
 	jr Mom_ContinueMenuSetup
 
-Mom_SetUpDepositMenu: ; 16517
+Mom_SetUpDepositMenu:
 	ld de, Mom_DepositString
-Mom_ContinueMenuSetup: ; 1651a
+Mom_ContinueMenuSetup:
 	push de
 	xor a
 	ld [hBGMapMode], a
@@ -478,15 +463,13 @@ Mom_ContinueMenuSetup: ; 1651a
 	call UpdateSprites
 	call CGBOnly_CopyTilemapAtOnce
 	ret
-; 1656b
 
-Mom_Wait10Frames: ; 1656b
+Mom_Wait10Frames:
 	ld c, 10
 	call DelayFrames
 	ret
-; 16571
 
-Mom_WithdrawDepositMenuJoypad: ; 16571
+Mom_WithdrawDepositMenuJoypad:
 .loop
 	call JoyTextDelay
 	ld hl, hJoyPressed
@@ -590,9 +573,8 @@ Mom_WithdrawDepositMenuJoypad: ; 16571
 	add hl, de
 	pop de
 	ret
-; 16613
 
-.DigitQuantities: ; 16613
+.DigitQuantities:
 	dt 100000
 	dt 10000
 	dt 1000
@@ -613,7 +595,6 @@ Mom_WithdrawDepositMenuJoypad: ; 16571
 	dt 900
 	dt 90
 	dt 9
-; 16649
 
 UnknownText_0x16649: ; 0x16649
 	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
@@ -711,21 +692,17 @@ UnknownText_0x16694: ; 0x16694
 	db "@"
 ; 0x16699
 
-Mom_SavedString: ; 16699
+Mom_SavedString:
 	db "SAVED@"
-; 1669f
 
-Mon_WithdrawString: ; 1669f
+Mon_WithdrawString:
 	db "WITHDRAW@"
-; 166a8
 
-Mom_DepositString: ; 166a8
+Mom_DepositString:
 	db "DEPOSIT@"
-; 166b0
 
-Mom_HeldString: ; 166b0
+Mom_HeldString:
 	db "HELD@"
-; 166b5
 
 MenuHeader_0x166b5: ; 0x166b5
 	db MENU_BACKUP_TILES ; flags

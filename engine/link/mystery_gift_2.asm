@@ -1,4 +1,4 @@
-PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
+PrepMysteryGiftDataToSend:
 	ld de, wMysteryGiftStaging
 	ld a, $1
 	ld [de], a
@@ -56,7 +56,7 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 	ld bc, wMysteryGiftPlayerDataEnd - wMysteryGiftPlayerData
 	jp CopyBytes
 
-.RandomSample: ; 2c6ac (b:46ac)
+.RandomSample:
 	push de
 	call Random
 	cp 10 percent
@@ -121,7 +121,7 @@ PrepMysteryGiftDataToSend: ; 2c642 (b:4642)
 	pop de
 	ret
 
-MysteryGiftGetItemHeldEffect: ; 2c708 (b:4708)
+MysteryGiftGetItemHeldEffect:
 	ld a, c
 	cp MysteryGiftItems.End - MysteryGiftItems
 	jr nc, MysteryGiftFallbackItem
@@ -131,7 +131,7 @@ MysteryGiftGetItemHeldEffect: ; 2c708 (b:4708)
 	ld c, [hl]
 	ret
 
-MysteryGiftGetDecoration: ; 2c715 (b:4715)
+MysteryGiftGetDecoration:
 	ld a, c
 	cp MysteryGiftDecos.End - MysteryGiftDecos
 	jr nc, MysteryGiftFallbackItem
@@ -141,10 +141,9 @@ MysteryGiftGetDecoration: ; 2c715 (b:4715)
 	ld c, [hl]
 	ret
 
-MysteryGiftFallbackItem: ; 2c722 (b:4722)
+MysteryGiftFallbackItem:
 	ld c, DECO_POLKADOT_BED ; GREAT_BALL
 	ret
-; 2c725 (b:4725)
 
 
 INCLUDE "data/items/mystery_gift_items.asm"

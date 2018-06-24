@@ -1,4 +1,4 @@
-SpriteMovementData:: ; 4273
+SpriteMovementData::
 ; entries correspond to SPRITEMOVEDATA_* constants
 
 ; SPRITEMOVEDATA_00
@@ -304,5 +304,3 @@ SpriteMovementData:: ; 4273
 	db 0 ; flags1
 	db 0 ; flags2
 	db 0 ; palette flags
-
-; 4357

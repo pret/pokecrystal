@@ -1,4 +1,4 @@
-LoadOverworldFont:: ; 106594
+LoadOverworldFont::
 	ld de, .OverworldFontGFX
 	ld hl, vTiles1
 	lb bc, BANK(.OverworldFontGFX), $80
@@ -8,7 +8,6 @@ LoadOverworldFont:: ; 106594
 	lb bc, BANK(.OverworldFontSpaceGFX), 1
 	call Get2bpp
 	ret
-; 1065ad
 
 .OverworldFontGFX:
 INCBIN "gfx/font/overworld.2bpp"

@@ -22,7 +22,7 @@
 	const DEBUGTEST_E        ; $7e
 	const DEBUGTEST_F        ; $7f
 
-ColorTest: ; 818ac
+ColorTest:
 ; A debug menu to test monster and trainer palettes at runtime.
 
 	ld a, [hCGB]
@@ -62,15 +62,14 @@ ColorTest: ; 818ac
 	pop af
 	ld [hInMenu], a
 	ret
-; 818f4
 
-Function818f4: ; 818f4
+Function818f4:
 	ld a, [wd002]
 	and a
 	jr nz, Function81911
 	ld hl, PokemonPalettes
 
-Function818fd: ; 818fd
+Function818fd:
 	ld de, wOverworldMapBlocks
 	ld c, NUM_POKEMON + 1
 .asm_81902
@@ -85,7 +84,7 @@ Function818fd: ; 818fd
 	jr nz, .asm_81902
 	ret
 
-Function81911: ; 81911
+Function81911:
 	ld hl, TrainerPalettes
 	ld de, wOverworldMapBlocks
 	ld c, NUM_TRAINER_CLASSES
@@ -100,9 +99,8 @@ Function81911: ; 81911
 	dec c
 	jr nz, .asm_81919
 	ret
-; 81928
 
-Function81928: ; 81928
+Function81928:
 	ld a, BANK(PokemonPalettes) ; BANK(TrainerPalettes)
 	call GetFarByte
 	ld [de], a
@@ -123,9 +121,8 @@ Function81928: ; 81928
 	ld [de], a
 	inc de
 	ret
-; 81948
 
-Function81948: ; 81948
+Function81948:
 	ld a, $1
 	ld [rVBK], a
 	ld hl, vTiles0
@@ -148,9 +145,8 @@ Function81948: ; 81948
 	call ByteFill
 	call ClearSprites
 	ret
-; 8197c
 
-Function8197c: ; 8197c
+Function8197c:
 	ld hl, DebugColorTestGFX + 1 tiles
 	ld de, vTiles2 tile DEBUGTEST_UP_ARROW
 	ld bc, 22 tiles
@@ -171,9 +167,8 @@ Function8197c: ; 8197c
 	or b
 	jr nz, .asm_8199d
 	ret
-; 819a7
 
-Function819a7: ; 819a7
+Function819a7:
 	ld a, [hCGB]
 	and a
 	ret z
@@ -214,16 +209,14 @@ Function819a7: ; 819a7
 	pop af
 	ld [rSVBK], a
 	ret
-; 819f4
 
-Palette_DebugBG: ; 819f4
+Palette_DebugBG:
 INCLUDE "gfx/debug/bg.pal"
 
-Palette_DebugOB: ; 81a34
+Palette_DebugOB:
 INCLUDE "gfx/debug/ob.pal"
-; 81a74
 
-Function81a74: ; 81a74
+Function81a74:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
 	cp $4
@@ -273,9 +266,8 @@ Function81a74: ; 81a74
 	ld a, $0
 	ld [wJumptableIndex], a
 	ret
-; 81ac3
 
-Function81ac3: ; 81ac3
+Function81ac3:
 ; Looping back around the pic set.
 	ld a, [wd002]
 	and a
@@ -286,18 +278,16 @@ Function81ac3: ; 81ac3
 .asm_81acc
 	ld a, NUM_TRAINER_CLASSES - 1 ; MYSTICALMAN
 	ret
-; 81acf
 
-Jumptable_81acf: ; 81acf
+Jumptable_81acf:
 	dw Function81adb
 	dw Function81c18
 	dw Function81c33
 	dw Function81cc2
 	dw Function81d8e
 	dw Function81daf
-; 81adb
 
-Function81adb: ; 81adb
+Function81adb:
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
@@ -382,14 +372,12 @@ Function81adb: ; 81adb
 	ld a, $1
 	ld [wJumptableIndex], a
 	ret
-; 81baf
 
 String_81baf: db "レア", DEBUGTEST_BLACK, DEBUGTEST_BLACK, "@" ; rare (shiny)
 String_81bb4: db "ノーマル@" ; normal
 String_81bb9: db DEBUGTEST_A, "きりかえ▶@" ; (A) switches
-; 81bc0
 
-Function81bc0: ; 81bc0
+Function81bc0:
 	decoord 0, 11, wAttrMap
 	hlcoord 2, 11
 	ld a, $1
@@ -402,7 +390,7 @@ Function81bc0: ; 81bc0
 	hlcoord 2, 15
 	ld a, $3
 
-Function81bde: ; 81bde
+Function81bde:
 	push af
 	ld a, DEBUGTEST_UP_ARROW
 	ld [hli], a
@@ -415,9 +403,8 @@ Function81bde: ; 81bde
 	ld bc, $28
 	call ByteFill
 	ret
-; 81bf4
 
-Function81bf4: ; 81bf4
+Function81bf4:
 	ld a, [wcf66]
 	inc a
 	ld l, a
@@ -435,9 +422,8 @@ Function81bf4: ; 81bf4
 	ld de, wc608
 	call Function81ea5
 	ret
-; 81c18
 
-Function81c18: ; 81c18
+Function81c18:
 	ld a, [hCGB]
 	and a
 	jr z, .asm_81c2a
@@ -452,9 +438,8 @@ Function81c18: ; 81c18
 	ld a, $2
 	ld [wJumptableIndex], a
 	ret
-; 81c33
 
-Function81c33: ; 81c33
+Function81c33:
 	ld a, [hCGB]
 	and a
 	jr z, .asm_81c69
@@ -511,9 +496,8 @@ Function81c33: ; 81c33
 	ld a, $3
 	ld [wJumptableIndex], a
 	ret
-; 81ca7
 
-Function81ca7: ; 81ca7
+Function81ca7:
 	inc hl
 	inc hl
 	inc hl
@@ -528,14 +512,13 @@ Function81ca7: ; 81ca7
 	ld a, [de]
 	swap a
 
-Function81cbc: ; 81cbc
+Function81cbc:
 	and $f
 	add DEBUGTEST_0
 	ld [hld], a
 	ret
-; 81cc2
 
-Function81cc2: ; 81cc2
+Function81cc2:
 	ld a, [hJoyLast]
 	and B_BUTTON
 	jr nz, .asm_81cdf
@@ -574,16 +557,14 @@ Function81cc2: ; 81cc2
 	ld a, $0
 	ld [wJumptableIndex], a
 	ret
-; 81d02
 
-Jumptable_81d02: ; 81d02
+Jumptable_81d02:
 	dw Function81d0a
 	dw Function81d34
 	dw Function81d46
 	dw Function81d58
-; 81d0a
 
-Function81d0a: ; 81d0a
+Function81d0a:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_DOWN
@@ -610,7 +591,7 @@ Function81d0a: ; 81d0a
 	call Function81ea5
 	ret
 
-Function81d34: ; 81d34
+Function81d34:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_DOWN
@@ -621,7 +602,7 @@ Function81d34: ; 81d34
 	ld hl, wc608 + 10
 	jr Function81d63
 
-Function81d46: ; 81d46
+Function81d46:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_DOWN
@@ -632,14 +613,14 @@ Function81d46: ; 81d46
 	ld hl, wc608 + 11
 	jr Function81d63
 
-Function81d58: ; 81d58
+Function81d58:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
 	jr nz, Function81d84
 	ld hl, wc608 + 12
 
-Function81d63: ; 81d63
+Function81d63:
 	ld a, [hJoyLast]
 	and D_RIGHT
 	jr nz, Function81d70
@@ -648,37 +629,36 @@ Function81d63: ; 81d63
 	jr nz, Function81d77
 	ret
 
-Function81d70: ; 81d70
+Function81d70:
 	ld a, [hl]
 	cp $1f
 	ret nc
 	inc [hl]
 	jr Function81d7b
 
-Function81d77: ; 81d77
+Function81d77:
 	ld a, [hl]
 	and a
 	ret z
 	dec [hl]
 
-Function81d7b: ; 81d7b
+Function81d7b:
 	call Function81e67
 	ld a, $2
 	ld [wJumptableIndex], a
 	ret
 
-Function81d84: ; 81d84
+Function81d84:
 	ld hl, wcf64
 	dec [hl]
 	ret
 
-Function81d89: ; 81d89
+Function81d89:
 	ld hl, wcf64
 	inc [hl]
 	ret
-; 81d8e
 
-Function81d8e: ; 81d8e
+Function81d8e:
 	hlcoord 0, 10
 	ld bc, $a0
 	ld a, DEBUGTEST_BLACK
@@ -692,9 +672,8 @@ Function81d8e: ; 81d8e
 	ld a, $5
 	ld [wJumptableIndex], a
 	ret
-; 81daf
 
-Function81daf: ; 81daf
+Function81daf:
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON
@@ -706,15 +685,13 @@ Function81daf: ; 81daf
 	ld a, $0
 	ld [wJumptableIndex], a
 	ret
-; 81dc1
 
-Function81dc1: ; 81dc1
+Function81dc1:
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
-; 81dc7
 
-Function81dc7: ; 81dc7
+Function81dc7:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
@@ -749,9 +726,8 @@ Function81dc7: ; 81dc7
 	ld [wd004], a
 	call Function81df4
 	ret
-; 81df4
 
-Function81df4: ; 81df4
+Function81df4:
 	hlcoord 10, 11
 	call Function81e5e
 	hlcoord 10, 12
@@ -783,13 +759,11 @@ Function81df4: ; 81df4
 	hlcoord 10, 14
 	call PlaceString
 	ret
-; 81e46
 
 String_81e46: db "おぼえられる@" ; can be taught
 String_81e4d: db "おぼえられない@" ; cannot be taught
-; 81e55
 
-Function81e55: ; 81e55
+Function81e55:
 	cp $32
 	jr c, .asm_81e5b
 	inc a
@@ -798,16 +772,14 @@ Function81e55: ; 81e55
 .asm_81e5b
 	add $bf
 	ret
-; 81e5e
 
-Function81e5e: ; 81e5e
+Function81e5e:
 	ld bc, 10
 	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	ret
-; 81e67
 
-Function81e67: ; 81e67
+Function81e67:
 	ld a, [wc608 + 10]
 	and $1f
 	ld e, a
@@ -843,9 +815,8 @@ Function81e67: ; 81e67
 	ld a, d
 	ld [wc608 + 1], a
 	ret
-; 81ea5
 
-Function81ea5: ; 81ea5
+Function81ea5:
 	ld a, [de]
 	and $1f
 	ld [wc608 + 10], a
@@ -867,9 +838,8 @@ Function81ea5: ; 81ea5
 	srl a
 	ld [wc608 + 12], a
 	ret
-; 81eca
 
-Function81eca: ; 81eca
+Function81eca:
 	ld a, [wcf66]
 	inc a
 	ld l, a
@@ -884,9 +854,8 @@ Function81eca: ; 81eca
 	ld bc, 4
 	call CopyBytes
 	ret
-; 81ee3
 
-Function81ee3: ; 81ee3
+Function81ee3:
 .asm_81ee3
 	ld a, LOW(PALRGB_WHITE)
 	ld [hli], a
@@ -910,9 +879,8 @@ Function81ee3: ; 81ee3
 	dec c
 	jr nz, .asm_81ee3
 	ret
-; 81efc
 
-Bank20_FillBoxWithByte: ; 81efc
+Bank20_FillBoxWithByte:
 ; For some reason, we have another copy of FillBoxWithByte here
 .row
 	push bc
@@ -928,9 +896,8 @@ Bank20_FillBoxWithByte: ; 81efc
 	dec b
 	jr nz, .row
 	ret
-; 81f0c
 
-Function81f0c: ; 81f0c
+Function81f0c:
 	ld a, [wcfbe]
 	push af
 	set 7, a
@@ -939,9 +906,8 @@ Function81f0c: ; 81f0c
 	pop af
 	ld [wcfbe], a
 	ret
-; 81f1d
 
-Function81f1d: ; 81f1d
+Function81f1d:
 	ld a, [hl]
 	and $7
 	ret z
@@ -989,9 +955,8 @@ Function81f1d: ; 81f1d
 	dec b
 	jr nz, .asm_81f22
 	ret
-; 81f5e
 
-Function81f5e: ; 81f5e
+Function81f5e:
 	ld a, DEBUGTEST_BLACK
 	hlcoord 10, 0
 	ld [hl], a
@@ -1059,14 +1024,12 @@ Function81f5e: ; 81f5e
 .asm_81fc9
 	call ClearSprites
 	ret
-; 81fcd
 
-String_81fcd: ; 81fcd
+String_81fcd:
 	db   "おわりますか？" ; Are you finished?
 	next "はい<DOT><DOT><DOT>", DEBUGTEST_A ; YES...(A)
 	next "いいえ<DOT><DOT>", DEBUGTEST_B ; NO..(B)
 	db   "@"
-; 81fe3
 
 DebugColorTestGFX:
 INCBIN "gfx/debug/color_test.2bpp"
@@ -1122,17 +1085,16 @@ TilesetColorTest:
 	ld a, $40
 	ld [hWY], a
 	ret
-; 821d2
 
-Function821d2: ; 821d2
+Function821d2:
 	hlcoord 0, 0
 	call Function821de
 
-Function821d8: ; 821d8
+Function821d8:
 	ld a, [wcf64]
 	hlcoord 0, 0, wAttrMap
 
-Function821de: ; 821de
+Function821de:
 	add hl, de
 rept 4
 	ld [hli], a
@@ -1148,25 +1110,23 @@ rept 4
 	ld [hli], a
 endr
 	ret
-; 821f4
 
-Function821f4: ; 821f4
+Function821f4:
 	hlcoord 2, 4
 	call Function82203
 	hlcoord 2, 6
 	call Function82203
 	hlcoord 2, 8
 
-Function82203: ; 82203
+Function82203:
 	ld a, DEBUGTEST_UP_ARROW
 	ld [hli], a
 	ld bc, $10 - 1
 	ld a, DEBUGTEST_TICKS
 	call ByteFill
 	ret
-; 8220f
 
-Function8220f: ; 8220f
+Function8220f:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
@@ -1187,10 +1147,9 @@ Function8220f: ; 8220f
 	pop af
 	ld [rSVBK], a
 	ret
-; 82236
 
 
-Function82236: ; 82236
+Function82236:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and SELECT
@@ -1247,9 +1206,8 @@ Function82236: ; 82236
 	xor $d0
 	ld [hWY], a
 	ret
-; 822a3
 
-Function822a3: ; 822a3
+Function822a3:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
@@ -1281,9 +1239,8 @@ Function822a3: ; 822a3
 	ld [hCGBPalUpdate], a
 	call DelayFrame
 	ret
-; 822f0
 
-Function822f0: ; 822f0
+Function822f0:
 	ld a, [wcf65]
 	and 3
 	ld e, a
@@ -1295,16 +1252,14 @@ Function822f0: ; 822f0
 	ld h, [hl]
 	ld l, a
 	jp hl
-; 82301
 
-.dw ; 82301
+.dw
 	dw Function82309
 	dw Function82339
 	dw Function8234b
 	dw Function8235d
-; 82309
 
-Function82309: ; 82309
+Function82309:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_DOWN
@@ -1339,7 +1294,7 @@ Function82309: ; 82309
 	call Function81ea5
 	ret
 
-Function82339: ; 82338
+Function82339:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_DOWN
@@ -1350,7 +1305,7 @@ Function82339: ; 82338
 	ld hl, wc608 + 10
 	jr Function82368
 
-Function8234b: ; 8234b
+Function8234b:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_DOWN
@@ -1361,14 +1316,14 @@ Function8234b: ; 8234b
 	ld hl, wc608 + 11
 	jr Function82368
 
-Function8235d: ; 8235d
+Function8235d:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_UP
 	jr nz, Function82387
 	ld hl, wc608 + 12
 
-Function82368: ; 82368
+Function82368:
 	ld a, [hJoyLast]
 	and D_RIGHT
 	jr nz, .asm_82375
@@ -1395,18 +1350,17 @@ Function82368: ; 82368
 	call Function822a3
 	ret
 
-Function82387: ; 82387
+Function82387:
 	ld hl, wcf65
 	dec [hl]
 	ret
 
-Function8238c: ; 8238c
+Function8238c:
 	ld hl, wcf65
 	inc [hl]
 	ret
-; 82391
 
-Function82391: ; 82391
+Function82391:
 	ld a, [wc608 + 10]
 	and $1f
 	ld e, a
@@ -1437,11 +1391,9 @@ Function82391: ; 82391
 	ld [hli], a
 	ld [hl], d
 	ret
-; 823c6
 
-Function823c6: ; 823c6
+Function823c6:
 	ret
 
-Function823c7: ; 823c7
+Function823c7:
 	ret
-; 823c8

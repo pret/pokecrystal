@@ -1,4 +1,4 @@
-CutTreeBlockPointers: ; c862
+CutTreeBlockPointers:
 ; tileset, block list pointer
 	dbw TILESET_JOHTO,        .johto
 	dbw TILESET_JOHTO_MODERN, .johto_modern
@@ -43,7 +43,7 @@ CutTreeBlockPointers: ; c862
 	db -1 ; end
 
 
-WhirlpoolBlockPointers: ; c8a4
+WhirlpoolBlockPointers:
 	dbw TILESET_JOHTO, .johto
 	db -1 ; end
 

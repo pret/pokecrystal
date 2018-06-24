@@ -1,6 +1,6 @@
 MANIA_OT_ID EQU 00518
 
-GiveShuckle: ; 7305
+GiveShuckle:
 
 ; Adding to the party.
 	xor a
@@ -71,7 +71,7 @@ SpecialShuckleOT:
 SpecialShuckleNick:
 	db "SHUCKIE@"
 
-ReturnShuckle: ; 737e
+ReturnShuckle:
 	farcall SelectMonFromParty
 	jr c, .refused
 

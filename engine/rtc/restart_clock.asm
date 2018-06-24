@@ -1,4 +1,4 @@
-RestartClock_GetWraparoundTime: ; 20000 (8:4000)
+RestartClock_GetWraparoundTime:
 	push hl
 	dec a
 	ld e, a
@@ -16,9 +16,8 @@ endr
 	ld c, [hl]
 	pop hl
 	ret
-; 20015 (8:4015)
 
-.WrapAroundTimes: ; 20015
+.WrapAroundTimes:
 	dw wBuffer4
 	db 7, 4
 
@@ -27,9 +26,8 @@ endr
 
 	dw wBuffer6
 	db 60, 15
-; 20021
 
-RestartClock: ; 20021 (8:4021)
+RestartClock:
 ; If we're here, we had an RTC overflow.
 	ld hl, .Text_ClockTimeMayBeWrong
 	call PrintText
@@ -48,7 +46,6 @@ RestartClock: ; 20021 (8:4021)
 	ld [hl], b
 	ld c, a
 	ret
-; 20047 (8:4047)
 
 .Text_ClockTimeMayBeWrong: ; 0x20047
 	; The clock's time may be wrong. Please reset the time.
@@ -62,7 +59,7 @@ RestartClock: ; 20021 (8:4021)
 	db "@"
 ; 0x20051
 
-.SetClock: ; 20051 (8:4051)
+.SetClock:
 	ld a, 1
 	ld [wBuffer1], a ; which digit
 	ld [wBuffer2], a
@@ -105,7 +102,6 @@ RestartClock: ; 20021 (8:4021)
 .cancel
 	ld a, $1
 	ret
-; 200b0 (8:40b0)
 
 .Text_IsThisOK: ; 0x200b0
 	; Is this OK?
@@ -193,7 +189,7 @@ RestartClock: ; 20021 (8:4021)
 	xor a
 	ret
 
-.PrintTime: ; 2011f (8:411f)
+.PrintTime:
 	hlcoord 0, 5
 	ld b, 5
 	ld c, 18
@@ -217,17 +213,15 @@ RestartClock: ; 20021 (8:4021)
 	ld a, [wBuffer1]
 	ld [wBuffer2], a
 	ret
-; 20160 (8:4160)
 
-.unreferenced ; 20160
+.unreferenced
 ; unused
 	ld a, [wBuffer3]
 	ld b, a
 	call Coord2Tile
 	ret
-; 20168
 
-.PlaceChars: ; 20168 (8:4168)
+.PlaceChars:
 	push de
 	call RestartClock_GetWraparoundTime
 	ld a, [wBuffer3]
@@ -240,14 +234,11 @@ RestartClock: ; 20021 (8:4021)
 	add hl, bc
 	ld [hl], e
 	ret
-; 2017c (8:417c)
 
-UnreferencedString_HourJP: ; 2017c
+UnreferencedString_HourJP:
 ; unused
 	db "じ@" ; HR
-; 2017e
 
-UnreferencedString_MinuteJP: ; 2017e
+UnreferencedString_MinuteJP:
 ; unused
 	db "ふん@" ; MIN
-; 20181

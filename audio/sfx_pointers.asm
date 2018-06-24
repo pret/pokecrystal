@@ -1,4 +1,4 @@
-SFX: ; e927c
+SFX:
 ; entries correspond to SFX_* constants
 
 	dba Sfx_DexFanfare5079
@@ -211,4 +211,3 @@ SFX: ; e927c
 	dba Sfx_TwoPcBeeps
 	dba Sfx_4NoteDitty
 	dba Sfx_Twinkle
-; e94e9

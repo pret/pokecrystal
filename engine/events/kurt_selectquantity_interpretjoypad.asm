@@ -1,4 +1,4 @@
-Kurt_SelectQuantity_InterpretJoypad: ; 27a28
+Kurt_SelectQuantity_InterpretJoypad:
 	call BuySellToss_InterpretJoypad
 	ld b, a
 	ret

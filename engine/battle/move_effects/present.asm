@@ -1,4 +1,4 @@
-BattleCommand_Present: ; 37874
+BattleCommand_Present:
 ; present
 
 	ld a, [wLinkMode]

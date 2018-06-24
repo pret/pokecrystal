@@ -1,5 +1,4 @@
-PermanentNumbers: ; 90066
+PermanentNumbers:
 	db PHONECONTACT_MOM
 	db PHONECONTACT_ELM
 	db -1 ; end
-; 90069

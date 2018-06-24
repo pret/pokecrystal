@@ -1,4 +1,4 @@
-Cries: ; e91b0
+Cries:
 	dba Cry_Nidoran_M
 	dba Cry_Nidoran_F
 	dba Cry_Slowpoke
@@ -67,4 +67,3 @@ Cries: ; e91b0
 	dba Cry_Aipom
 	dba Cry_Dunsparce
 	dba Cry_Donphan
-; e927c

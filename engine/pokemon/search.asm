@@ -248,7 +248,7 @@ endr
 	ret
 ; 0x4a810
 
-BoxAddressTable1: ; 4a810
+BoxAddressTable1:
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -263,7 +263,6 @@ BoxAddressTable1: ; 4a810
 	dba sBox12
 	dba sBox13
 	dba sBox14
-; 4a83a
 
 UpdateOTPointer: ; 0x4a83a
 	push hl

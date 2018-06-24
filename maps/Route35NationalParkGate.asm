@@ -131,7 +131,7 @@ Route35NationalParkGate_LeaveTheRestBehind:
 	checkcode VAR_BOXSPACE
 	ifequal 0, Route35NationalParkGate_NoRoomInBox
 
-Route35NationalParkGate_LessThanFullParty: ; 6a27d
+Route35NationalParkGate_LessThanFullParty:
 	special CheckFirstMonIsEgg
 	ifequal TRUE, Route35NationalParkGate_FirstMonIsEgg
 	writetext UnknownText_0x6a4c6

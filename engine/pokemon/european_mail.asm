@@ -1,4 +1,4 @@
-IsMailEuropean: ; 1de5c8
+IsMailEuropean:
 ; return 1 if French
 ; return 2 if German
 ; return 3 if Italian
@@ -27,18 +27,18 @@ IsMailEuropean: ; 1de5c8
 	ret
 
 ; The regular font.
-StandardEnglishFont: ; 1de5e6
+StandardEnglishFont:
 INCBIN "gfx/font/english.1bpp"
 
 ; An extended font.
-FrenchGermanFont: ; 1de9e6
+FrenchGermanFont:
 INCBIN "gfx/font/french_german.1bpp"
 
 ; An even more extended font.
-SpanishItalianFont: ; 1dede6
+SpanishItalianFont:
 INCBIN "gfx/font/spanish_italian.1bpp"
 
-HandleFrenchGermanMail: ; 1df1e6
+HandleFrenchGermanMail:
 ; called if mail is french or german
 ; fix 's 't 'v
 	ld b, sPartyMon1MailAuthor - sPartyMon1Mail
@@ -68,7 +68,7 @@ HandleFrenchGermanMail: ; 1df1e6
 	ret
 
 LireLeCourrierAnglais:
-DeutenEnglischenPost: ; 1df203
+DeutenEnglischenPost:
 ; Cette fonction convertit certains des caractères anglais pour
 ; leur équivalent dans le jeu de caractères français.
 ; Diese Funktion wandelt bestimmte englische Zeichen, um ihre
@@ -99,7 +99,7 @@ DeutenEnglischenPost: ; 1df203
 	jr nz, .loop
 	ret
 
-HandleSpanishItalianMail: ; 1df220
+HandleSpanishItalianMail:
 LeerCorreosIngleses:
 LeggiPostaInglese:
 ; This function converts certain characters between

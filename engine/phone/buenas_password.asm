@@ -165,6 +165,5 @@ BuenaPhoneScript_Random1:
 .two
 	writetext UnknownText_0xa1e2f
 	end
-; a0c28
 
 INCLUDE "data/phone/text/buena.asm"

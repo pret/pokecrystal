@@ -27,7 +27,7 @@ HiddenItemScript:: ; 0x13625
 	writetext .no_room_text
 	waitbutton
 
-.finish ; 13643
+.finish
 	closetext
 	end
 
@@ -41,7 +41,7 @@ HiddenItemScript:: ; 0x13625
 	text_jump UnknownText_0x1bd331
 	db "@"
 
-SetMemEvent: ; 1364f
+SetMemEvent:
 	ld hl, wEngineBuffer1
 	ld a, [hli]
 	ld d, [hl]

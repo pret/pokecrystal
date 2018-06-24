@@ -1,4 +1,4 @@
-CheckPartyFullAfterContest: ; 4d9e5
+CheckPartyFullAfterContest:
 	ld a, [wContestMon]
 	and a
 	jp z, .DidntCatchAnything
@@ -85,7 +85,7 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld [wScriptVar], a
 	ret
 
-.TryAddToBox: ; 4daa3
+.TryAddToBox:
 	ld a, BANK(sBoxCount)
 	call GetSRAMBank
 	ld hl, sBoxCount
@@ -146,12 +146,12 @@ CheckPartyFullAfterContest: ; 4d9e5
 	ld [wScriptVar], a
 	ret
 
-.DidntCatchAnything: ; 4db35
+.DidntCatchAnything:
 	ld a, BUGCONTEST_NO_CATCH
 	ld [wScriptVar], a
 	ret
 
-GiveANickname_YesNo: ; 4db3b
+GiveANickname_YesNo:
 	ld hl, TextJump_GiveANickname
 	call PrintText
 	jp YesNoBox
@@ -161,12 +161,12 @@ TextJump_GiveANickname: ; 0x4db44
 	text_jump UnknownText_0x1c12fc
 	db "@"
 
-SetCaughtData: ; 4db49
+SetCaughtData:
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1CaughtLevel
 	call GetPartyLocation
-SetBoxmonOrEggmonCaughtData: ; 4db53
+SetBoxmonOrEggmonCaughtData:
 	ld a, [wTimeOfDay]
 	inc a
 	rrca
@@ -199,7 +199,7 @@ SetBoxmonOrEggmonCaughtData: ; 4db53
 	ld [hl], a
 	ret
 
-SetBoxMonCaughtData: ; 4db83
+SetBoxMonCaughtData:
 	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
 	ld hl, sBoxMon1CaughtLevel
@@ -207,7 +207,7 @@ SetBoxMonCaughtData: ; 4db83
 	call CloseSRAM
 	ret
 
-SetGiftBoxMonCaughtData: ; 4db92
+SetGiftBoxMonCaughtData:
 	push bc
 	ld a, BANK(sBoxMon1CaughtLevel)
 	call GetSRAMBank
@@ -217,14 +217,14 @@ SetGiftBoxMonCaughtData: ; 4db92
 	call CloseSRAM
 	ret
 
-SetGiftPartyMonCaughtData: ; 4dba3
+SetGiftPartyMonCaughtData:
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1CaughtLevel
 	push bc
 	call GetPartyLocation
 	pop bc
-SetGiftMonCaughtData: ; 4dbaf
+SetGiftMonCaughtData:
 	xor a
 	ld [hli], a
 	ld a, GIFT_LOCATION
@@ -233,7 +233,7 @@ SetGiftMonCaughtData: ; 4dbaf
 	ld [hl], a
 	ret
 
-SetEggMonCaughtData: ; 4dbb8 (13:5bb8)
+SetEggMonCaughtData:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1CaughtLevel
 	call GetPartyLocation

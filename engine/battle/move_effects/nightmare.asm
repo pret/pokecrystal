@@ -1,4 +1,4 @@
-BattleCommand_Nightmare: ; 37536
+BattleCommand_Nightmare:
 ; nightmare
 
 ; Can't hit an absent opponent.
@@ -35,4 +35,3 @@ BattleCommand_Nightmare: ; 37536
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
-; 37563

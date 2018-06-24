@@ -1,4 +1,4 @@
-BattleCommand_Endure: ; 3766f
+BattleCommand_Endure:
 ; endure
 
 ; Endure shares code with Protect. See protect.asm.
@@ -14,4 +14,3 @@ BattleCommand_Endure: ; 3766f
 
 	ld hl, BracedItselfText
 	jp StdBattleTextBox
-; 37683

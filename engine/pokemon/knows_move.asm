@@ -1,4 +1,4 @@
-KnowsMove: ; f9ea
+KnowsMove:
 	ld a, MON_MOVES
 	call GetPartyParamLocation
 	ld a, [wPutativeTMHMMove]

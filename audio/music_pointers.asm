@@ -1,6 +1,6 @@
 ; See song sections in audio.asm.
 
-Music: ; e906e
+Music:
 ; entries correspond to MUSIC_* constants
 
 	dba Music_Nothing ; 0xe91a3
@@ -109,4 +109,3 @@ Music: ; e906e
 	dba Music_SuicuneBattle ; 0x178b81
 	dba Music_BattleTowerLobby ; 0x17948b
 	dba Music_MobileCenter ; 0x17961d
-; e91a3

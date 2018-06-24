@@ -1,4 +1,4 @@
-NPCTrade:: ; fcba8
+NPCTrade::
 	ld a, e
 	ld [wJumptableIndex], a
 	call Trade_GetDialog
@@ -51,9 +51,8 @@ NPCTrade:: ; fcba8
 .done
 	call PrintTradeText
 	ret
-; fcc07
 
-.TradeAnimation: ; fcc07
+.TradeAnimation:
 	call DisableSpriteUpdates
 	ld a, [wJumptableIndex]
 	push af
@@ -66,9 +65,8 @@ NPCTrade:: ; fcba8
 	ld [wJumptableIndex], a
 	call ReturnToMapWithSpeechTextbox
 	ret
-; fcc23
 
-CheckTradeGender: ; fcc23
+CheckTradeGender:
 	xor a
 	ld [wMonType], a
 
@@ -95,9 +93,8 @@ CheckTradeGender: ; fcc23
 .not_matching
 	scf
 	ret
-; fcc4a
 
-TradeFlagAction: ; fcc4a
+TradeFlagAction:
 	ld hl, wTradeFlags
 	ld a, [wJumptableIndex]
 	ld c, a
@@ -105,17 +102,15 @@ TradeFlagAction: ; fcc4a
 	ld a, c
 	and a
 	ret
-; fcc59
 
-Trade_GetDialog: ; fcc59
+Trade_GetDialog:
 	ld e, NPCTRADE_DIALOG
 	call GetTradeAttribute
 	ld a, [hl]
 	ld [wcf64], a
 	ret
-; fcc63
 
-DoNPCTrade: ; fcc63
+DoNPCTrade:
 	ld e, NPCTRADE_GIVEMON
 	call GetTradeAttribute
 	ld a, [hl]
@@ -275,7 +270,6 @@ DoNPCTrade: ; fcc63
 	pop bc
 	pop af
 	ret
-; fcdc2
 
 
 GetTradeAttribute: ; 0xfcdc2
@@ -294,71 +288,63 @@ GetTradeAttribute: ; 0xfcdc2
 	ret
 ; 0xfcdd7
 
-Trade_GetAttributeOfCurrentPartymon: ; fcdd7
+Trade_GetAttributeOfCurrentPartymon:
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	ret
-; fcdde
 
-Trade_GetAttributeOfLastPartymon: ; fcdde
+Trade_GetAttributeOfLastPartymon:
 	ld a, [wPartyCount]
 	dec a
 	call AddNTimes
 	ld e, l
 	ld d, h
 	ret
-; fcde8
 
-GetTradeMonName: ; fcde8
+GetTradeMonName:
 	push de
 	ld [wd265], a
 	call GetBasePokemonName
 	ld hl, wStringBuffer1
 	pop de
 	ret
-; fcdf4
 
-CopyTradeName: ; fcdf4
+CopyTradeName:
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret
-; fcdfb
 
-Unreferenced_Functionfcdfb: ; fcdfb
+Unreferenced_Functionfcdfb:
 	ld bc, 4
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
 	ret
-; fce05
 
-Unreferenced_Functionfce05: ; fce05
+Unreferenced_Functionfce05:
 	ld bc, 3
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
 	ret
-; fce0f
 
-Trade_CopyTwoBytes: ; fce0f
+Trade_CopyTwoBytes:
 	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, [hl]
 	ld [de], a
 	ret
-; fce15
 
-Trade_CopyTwoBytesReverseEndian: ; fce15
+Trade_CopyTwoBytesReverseEndian:
 	ld a, [hli]
 	ld [de], a
 	dec de
 	ld a, [hl]
 	ld [de], a
 	ret
-; fce1b
 
-GetTradeMonNames: ; fce1b
+GetTradeMonNames:
 	ld e, NPCTRADE_GETMON
 	call GetTradeAttribute
 	ld a, [hl]
@@ -398,13 +384,12 @@ GetTradeMonNames: ; fce1b
 	ld [hli], a
 	ld [hl], "@"
 	ret
-; fce58
 
 
 INCLUDE "data/events/npc_trades.asm"
 
 
-PrintTradeText: ; fcf38
+PrintTradeText:
 	push af
 	call GetTradeMonNames
 	pop af
@@ -420,9 +405,8 @@ PrintTradeText: ; fcf38
 	ld l, a
 	call PrintText
 	ret
-; fcf53
 
-TradeTexts: ; fcf53
+TradeTexts:
 ; entries correspond to TRADE_DIALOG_* × TRADE_DIALOGSET_* constants
 ; TRADE_DIALOG_INTRO
 	dw TradeIntroText1
@@ -449,7 +433,6 @@ TradeTexts: ; fcf53
 	dw TradeAfterText2
 	dw TradeAfterText3
 	dw TradeAfterText4
-; fcf7b
 
 
 ConnectLinkCableText: ; 0xfcf7b

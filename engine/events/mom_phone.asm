@@ -5,7 +5,7 @@ const_value = 1
 	const MOM_ITEM
 	const MOM_DOLL
 
-MomTriesToBuySomething:: ; fcfec
+MomTriesToBuySomething::
 	ld a, [wMapReentryScriptQueueFlag]
 	and a
 	ret nz
@@ -23,14 +23,13 @@ MomTriesToBuySomething:: ; fcfec
 	farcall LoadScriptBDE
 	scf
 	ret
-; fd00f
 
 .Script: ; 0xfd00f
 	callasm .ASMFunction
 	farjump Script_ReceivePhoneCall
 ; 0xfd017
 
-.ASMFunction: ; fd017
+.ASMFunction:
 	call MomBuysItem_DeductFunds
 	call Mom_GetScriptPointer
 	ld a, [wWhichMomItemSet]
@@ -56,9 +55,8 @@ MomTriesToBuySomething:: ; fcfec
 	ld a, d
 	ld [hl], a
 	ret
-; fd044
 
-CheckBalance_MomItem2: ; fd044
+CheckBalance_MomItem2:
 	ld a, [wWhichMomItem]
 	cp NUM_MOM_ITEMS_2
 	jr nc, .nope
@@ -115,10 +113,9 @@ CheckBalance_MomItem2: ; fd044
 	ld bc, hMoneyTemp
 	farcall AddMoney
 	ret
-; fd0a6
 
 
-MomBuysItem_DeductFunds: ; fd0a6 (3f:50a6)
+MomBuysItem_DeductFunds:
 	call GetItemFromMom
 	ld de, 3 ; cost
 	add hl, de
@@ -134,7 +131,7 @@ MomBuysItem_DeductFunds: ; fd0a6 (3f:50a6)
 	ret
 
 
-Mom_GiveItemOrDoll: ; fd0c3
+Mom_GiveItemOrDoll:
 	call GetItemFromMom
 	ld de, 6 ; item type
 	add hl, de
@@ -156,10 +153,9 @@ Mom_GiveItemOrDoll: ; fd0c3
 	ld hl, wPCItems
 	call ReceiveItem
 	ret
-; fd0eb
 
 
-Mom_GetScriptPointer: ; fd0eb (3f:50eb)
+Mom_GetScriptPointer:
 	call GetItemFromMom
 	ld de, 6 ; item type
 	add hl, de
@@ -169,7 +165,6 @@ Mom_GetScriptPointer: ; fd0eb (3f:50eb)
 	ret z
 	ld de, .DollScript
 	ret
-; fd0fd (3f:50fd)
 
 .ItemScript: ; 0xfd0fd
 	writetext _MomText_HiHowAreYou
@@ -188,7 +183,7 @@ Mom_GetScriptPointer: ; fd0eb (3f:50eb)
 ; 0xfd117
 
 
-GetItemFromMom: ; fd117
+GetItemFromMom:
 	ld a, [wWhichMomItemSet]
 	and a
 	jr z, .zero
@@ -213,7 +208,6 @@ rept 3 ; multiply hl by 8
 endr
 	add hl, de
 	ret
-; fd136
 
 INCLUDE "data/items/mom_phone.asm"
 
@@ -257,8 +251,7 @@ _MomText_ItsInRoom: ; 0xfd1ca
 
 	db 0 ; unused
 
-DummyPredef3A: ; fd1d0
+DummyPredef3A:
 	ret
-; fd1d1
 
 	ret ; unused

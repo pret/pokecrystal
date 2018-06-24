@@ -1,4 +1,4 @@
-PokemonPalettes: ; a8ce
+PokemonPalettes:
 ; entries correspond to Pokémon species, two apiece
 
 ; 000
@@ -534,5 +534,3 @@ INCLUDE "gfx/pokemon/egg/shiny.pal"
 ; 255 shiny
 	RGB 23, 23, 23
 	RGB 17, 17, 17
-
-; b0ce

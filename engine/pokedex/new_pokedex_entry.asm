@@ -1,4 +1,4 @@
-NewPokedexEntry: ; fb877
+NewPokedexEntry:
 	ld a, [hMapAnims]
 	push af
 	xor a
@@ -32,9 +32,8 @@ NewPokedexEntry: ; fb877
 	pop af
 	ld [hMapAnims], a
 	ret
-; fb8c8
 
-.ReturnFromDexRegistration: ; fb8c8
+.ReturnFromDexRegistration:
 	call ClearTileMap
 	call LoadFontsExtra
 	call LoadStandardFont
@@ -49,4 +48,3 @@ NewPokedexEntry: ; fb877
 	call GetSGBLayout
 	call SetPalettes
 	ret
-; fb8f1

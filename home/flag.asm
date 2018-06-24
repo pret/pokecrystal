@@ -1,19 +1,17 @@
-ResetMapBufferEventFlags:: ; 2e50
+ResetMapBufferEventFlags::
 	xor a
 	ld hl, wEventFlags
 	ld [hli], a
 	ret
-; 2e56
 
-ResetBikeFlags:: ; 2e56
+ResetBikeFlags::
 	xor a
 	ld hl, wBikeFlags
 	ld [hli], a
 	ld [hl], a
 	ret
-; 2e5d
 
-ResetFlashIfOutOfCave:: ; 2e5d
+ResetFlashIfOutOfCave::
 	ld a, [wEnvironment]
 	cp ROUTE
 	jr z, .outdoors
@@ -25,7 +23,6 @@ ResetFlashIfOutOfCave:: ; 2e5d
 	ld hl, wStatusFlags
 	res STATUSFLAGS_FLASH_F, [hl]
 	ret
-; 2e6f
 
 
 EventFlagAction:: ; 0x2e6f
@@ -102,11 +99,10 @@ FlagAction:: ; 0x2e76
 ; 0x2ead
 
 
-CheckReceivedDex:: ; 2ead
+CheckReceivedDex::
 	ld de, ENGINE_POKEDEX
 	ld b, CHECK_FLAG
 	farcall EngineFlagAction
 	ld a, c
 	and a
 	ret
-; 2ebb

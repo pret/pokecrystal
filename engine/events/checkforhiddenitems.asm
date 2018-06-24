@@ -1,4 +1,4 @@
-CheckForHiddenItems: ; b8172
+CheckForHiddenItems:
 ; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.
 	call GetMapScriptsBank
 	ld [wBuffer1], a
@@ -75,11 +75,9 @@ CheckForHiddenItems: ; b8172
 	pop hl
 	scf
 	ret
-; b81e2
 
-.GetFarByte: ; b81e2
+.GetFarByte:
 	ld a, [wBuffer1]
 	call GetFarByte
 	inc hl
 	ret
-; b81ea

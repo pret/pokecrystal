@@ -1,11 +1,11 @@
-ReadPartyMonMail: ; b9229
+ReadPartyMonMail:
 	ld a, [wCurPartyMon]
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	ld d, h
 	ld e, l
-ReadAnyMail: ; b9237
+ReadAnyMail:
 	push de
 	call ClearBGPalettes
 	call ClearSprites
@@ -63,9 +63,8 @@ ReadAnyMail: ; b9237
 	pop af
 	ld [wJumptableIndex], a
 	jr .loop
-; b92b8
 
-.LoadGFX: ; b92b8
+.LoadGFX:
 	ld h, d
 	ld l, e
 	push hl
@@ -110,9 +109,8 @@ ReadAnyMail: ; b9237
 	jp hl
 .done
 	ret
-; b92f8
 
-MailGFXPointers: ; b92f8
+MailGFXPointers:
 	dbw FLOWER_MAIL,  LoadFlowerMailGFX
 	dbw SURF_MAIL,    LoadSurfMailGFX
 	dbw LITEBLUEMAIL, LoadLiteBlueMailGFX
@@ -124,9 +122,8 @@ MailGFXPointers: ; b92f8
 	dbw MUSIC_MAIL,   LoadMusicMailGFX
 	dbw MIRAGE_MAIL,  LoadMirageMailGFX
 	db -1
-; b9317
 
-LoadSurfMailGFX: ; b9317
+LoadSurfMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld de, SurfMailBorderGFX
@@ -140,7 +137,7 @@ LoadSurfMailGFX: ; b9317
 	call LoadMailGFX_Color2
 	jr FinishLoadingSurfLiteBlueMailGFX
 
-LoadLiteBlueMailGFX: ; b9335
+LoadLiteBlueMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld de, LiteBlueMailBorderGFX
@@ -153,7 +150,7 @@ LoadLiteBlueMailGFX: ; b9335
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
 
-FinishLoadingSurfLiteBlueMailGFX: ; b9351
+FinishLoadingSurfLiteBlueMailGFX:
 	ld de, SurfLiteBlueMailSmallShapesGFX
 	ld c, 2 * 8
 	call LoadMailGFX_Color2
@@ -209,9 +206,8 @@ FinishLoadingSurfLiteBlueMailGFX: ; b9351
 	ld [hli], a
 	pop hl
 	jp MailGFX_PlaceMessage
-; b93d2
 
-LoadEonMailGFX: ; b93d2
+LoadEonMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld de, EonMailBorder1GFX
@@ -259,9 +255,8 @@ LoadEonMailGFX: ; b93d2
 	call LovelyEonMail_PlaceIcons
 	pop hl
 	jp MailGFX_PlaceMessage
-; b944b
 
-LoadLovelyMailGFX: ; b944b
+LoadLovelyMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld de, LovelyMailBorderGFX
@@ -290,9 +285,8 @@ LoadLovelyMailGFX: ; b944b
 	call LovelyEonMail_PlaceIcons
 	pop hl
 	jp MailGFX_PlaceMessage
-; b9491
 
-LovelyEonMail_PlaceIcons: ; b9491
+LovelyEonMail_PlaceIcons:
 	ld a, $3d
 	hlcoord 2, 2
 	call Mail_Draw2x2Graphic
@@ -322,9 +316,8 @@ LovelyEonMail_PlaceIcons: ; b9491
 	hlcoord 16, 12
 	ld [hl], a
 	ret
-; b94d6
 
-LoadMorphMailGFX: ; b94d6
+LoadMorphMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld bc, 5 * 8
@@ -398,9 +391,8 @@ LoadMorphMailGFX: ; b94d6
 	call Mail_Draw3x2Graphic
 	pop hl
 	jp MailGFX_PlaceMessage
-; b9582
 
-LoadBlueSkyMailGFX: ; b9582
+LoadBlueSkyMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld de, EonMailBorder1GFX
@@ -476,9 +468,8 @@ LoadBlueSkyMailGFX: ; b9582
 	call Mail_Draw2x2Graphic
 	pop hl
 	jp MailGFX_PlaceMessage
-; b9636
 
-Mail_Place6TileRow: ; b9636
+Mail_Place6TileRow:
 	ld b, $6
 .loop
 	ld [hli], a
@@ -486,9 +477,8 @@ Mail_Place6TileRow: ; b9636
 	dec b
 	jr nz, .loop
 	ret
-; b963e
 
-LoadFlowerMailGFX: ; b963e
+LoadFlowerMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld de, FlowerMailBorderGFX
@@ -541,9 +531,8 @@ LoadFlowerMailGFX: ; b963e
 	call Mail_Draw2x2Graphic
 	pop hl
 	jp MailGFX_PlaceMessage
-; b96ca
 
-LoadPortraitMailGFX: ; b96ca
+LoadPortraitMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld de, PortraitMailBorderGFX
@@ -572,9 +561,8 @@ LoadPortraitMailGFX: ; b96ca
 	call PrepMonFrontpic
 	pop hl
 	jp MailGFX_PlaceMessage
-; b9710
 
-LoadMusicMailGFX: ; b9710
+LoadMusicMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld de, MusicMailBorderGFX
@@ -615,9 +603,8 @@ LoadMusicMailGFX: ; b9710
 	call LovelyEonMail_PlaceIcons
 	pop hl
 	jp MailGFX_PlaceMessage
-; b9776
 
-LoadMirageMailGFX: ; b9776
+LoadMirageMailGFX:
 	push bc
 	ld hl, vTiles2 tile $31
 	ld bc, 5 * 8
@@ -676,9 +663,8 @@ LoadMirageMailGFX: ; b9776
 	call Mail_Draw16TileRow
 	pop hl
 	jp MailGFX_PlaceMessage
-; b97f8
 
-MailGFX_GenerateMonochromeTilesColor2: ; b97f8
+MailGFX_GenerateMonochromeTilesColor2:
 .loop
 	xor a
 	ld [hli], a
@@ -689,9 +675,8 @@ MailGFX_GenerateMonochromeTilesColor2: ; b97f8
 	or c
 	jr nz, .loop
 	ret
-; b9803
 
-MailGFX_PlaceMessage: ; b9803
+MailGFX_PlaceMessage:
 	ld bc, MAIL_STRUCT_LENGTH
 	ld de, wTempMail
 	ld a, BANK(sPartyMail)
@@ -723,9 +708,8 @@ MailGFX_PlaceMessage: ; b9803
 
 .place_author
 	jp PlaceString
-; b984e
 
-Unreferenced_Functionb984e: ; b984e
+Unreferenced_Functionb984e:
 .loop
 	ld a, [hl]
 	xor $ff
@@ -735,9 +719,8 @@ Unreferenced_Functionb984e: ; b984e
 	or c
 	jr nz, .loop
 	ret
-; b9858
 
-DrawMailBorder: ; b9858
+DrawMailBorder:
 	hlcoord 0, 0
 	ld a, $31
 	ld [hli], a
@@ -757,9 +740,8 @@ DrawMailBorder: ; b9858
 	ld a, $38
 	ld [hl], a
 	ret
-; b987b
 
-DrawMailBorder2: ; b987b
+DrawMailBorder2:
 	hlcoord 0, 0
 	ld a, $31
 	ld [hli], a
@@ -778,23 +760,22 @@ DrawMailBorder2: ; b987b
 	call Mail_DrawLeftRightBorder
 	ld [hl], $31
 	ret
-; b989e
 
-Mail_Place14TileAlternatingRow: ; b989e
+Mail_Place14TileAlternatingRow:
 	push af
 	ld b, 14 / 2
 	jr Mail_PlaceAlternatingRow
 
-Mail_Place16TileAlternatingRow: ; b98a3
+Mail_Place16TileAlternatingRow:
 	push af
 	ld b, 16 / 2
 	jr Mail_PlaceAlternatingRow
 
-Mail_Place18TileAlternatingRow: ; b98a8
+Mail_Place18TileAlternatingRow:
 	push af
 	ld b, 18 / 2
 
-Mail_PlaceAlternatingRow: ; b98ab
+Mail_PlaceAlternatingRow:
 .loop
 	ld [hli], a
 	inc a
@@ -805,18 +786,17 @@ Mail_PlaceAlternatingRow: ; b98ab
 	ld [hl], a
 	pop af
 	ret
-; b98b5
 
-Mail_Place14TileAlternatingColumn: ; b98b5
+Mail_Place14TileAlternatingColumn:
 	push af
 	ld b, 14 / 2
 	jr Mail_PlaceAlternatingColumn
 
-Mail_Place16TileAlternatingColumn: ; b98ba
+Mail_Place16TileAlternatingColumn:
 	push af
 	ld b, 16 / 2
 
-Mail_PlaceAlternatingColumn: ; b98bd
+Mail_PlaceAlternatingColumn:
 .loop
 	ld [hl], a
 	ld de, SCREEN_WIDTH
@@ -830,36 +810,34 @@ Mail_PlaceAlternatingColumn: ; b98bd
 	ld [hl], a
 	pop af
 	ret
-; b98cc
 
-Mail_Draw7TileRow: ; b98cc
+Mail_Draw7TileRow:
 	ld b, $7
 	jr Mail_DrawRowLoop
 
-Mail_Draw13TileRow: ; b98d0
+Mail_Draw13TileRow:
 	ld b, $d
 	jr Mail_DrawRowLoop
 
-Mail_Draw16TileRow: ; b98d4
+Mail_Draw16TileRow:
 	ld b, $10
 	jr Mail_DrawRowLoop
 
-Mail_DrawTopBottomBorder: ; b98d8
+Mail_DrawTopBottomBorder:
 	ld b, SCREEN_WIDTH - 2
 	jr Mail_DrawRowLoop
 
-Mail_DrawFullWidthBorder: ; b98dc
+Mail_DrawFullWidthBorder:
 	ld b, SCREEN_WIDTH
 
-Mail_DrawRowLoop: ; b98de
+Mail_DrawRowLoop:
 .loop
 	ld [hli], a
 	dec b
 	jr nz, .loop
 	ret
-; b98e3
 
-Mail_DrawLeftRightBorder: ; b98e3
+Mail_DrawLeftRightBorder:
 	ld b, SCREEN_HEIGHT - 2
 	ld de, SCREEN_WIDTH
 .loop
@@ -868,9 +846,8 @@ Mail_DrawLeftRightBorder: ; b98e3
 	dec b
 	jr nz, .loop
 	ret
-; b98ee
 
-Mail_Draw2x2Graphic: ; b98ee
+Mail_Draw2x2Graphic:
 	push af
 	ld [hli], a
 	inc a
@@ -883,9 +860,8 @@ Mail_Draw2x2Graphic: ; b98ee
 	ld [hl], a
 	pop af
 	ret
-; b98fc
 
-Mail_Draw3x2Graphic: ; b98fc
+Mail_Draw3x2Graphic:
 	ld [hli], a
 	inc a
 	ld [hli], a
@@ -900,9 +876,8 @@ Mail_Draw3x2Graphic: ; b98fc
 	inc a
 	ld [hl], a
 	ret
-; b990c
 
-LoadMailGFX_Color1: ; b990c
+LoadMailGFX_Color1:
 .loop
 	ld a, [de]
 	inc de
@@ -912,9 +887,8 @@ LoadMailGFX_Color1: ; b990c
 	dec c
 	jr nz, .loop
 	ret
-; b9915
 
-LoadMailGFX_Color2: ; b9915
+LoadMailGFX_Color2:
 .loop
 	xor a
 	ld [hli], a
@@ -924,9 +898,8 @@ LoadMailGFX_Color2: ; b9915
 	dec c
 	jr nz, .loop
 	ret
-; b991e
 
-LoadMailGFX_Color3: ; b991e
+LoadMailGFX_Color3:
 .loop
 	ld a, [de]
 	inc de
@@ -935,15 +908,13 @@ LoadMailGFX_Color3: ; b991e
 	dec c
 	jr nz, .loop
 	ret
-; b9926
 
 INCLUDE "gfx/mail.asm"
 
-ItemIsMail: ; b9e76
+ItemIsMail:
 	ld a, d
 	ld hl, MailItems
 	ld de, 1
 	jp IsInArray
-; b9e80
 
 INCLUDE "data/items/mail_items.asm"

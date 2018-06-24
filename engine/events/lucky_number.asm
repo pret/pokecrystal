@@ -1,4 +1,4 @@
-CheckForLuckyNumberWinners: ; 4d87a
+CheckForLuckyNumberWinners:
 	xor a
 	ld [wScriptVar], a
 	ld [wFoundMatchingIDInParty], a
@@ -118,7 +118,7 @@ CheckForLuckyNumberWinners: ; 4d87a
 .print
 	jp PrintText
 
-.CompareLuckyNumberToMonID: ; 4d939
+.CompareLuckyNumberToMonID:
 	push bc
 	push de
 	push hl
@@ -190,7 +190,7 @@ CheckForLuckyNumberWinners: ; 4d87a
 	and a
 	ret
 
-.BoxBankAddresses: ; 4d99f
+.BoxBankAddresses:
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -216,7 +216,7 @@ CheckForLuckyNumberWinners: ; 4d87a
 	text_jump UnknownText_0x1c12ae
 	db "@"
 
-PrintTodaysLuckyNumber: ; 4d9d3
+PrintTodaysLuckyNumber:
 	ld hl, wStringBuffer3
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5

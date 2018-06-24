@@ -1,4 +1,4 @@
-ReanchorBGMap_NoOAMUpdate:: ; 6454
+ReanchorBGMap_NoOAMUpdate::
 	call DelayFrame
 	ld a, [hOAMUpdate]
 	push af
@@ -50,13 +50,13 @@ ReanchorBGMap_NoOAMUpdate:: ; 6454
 	call ApplyBGMapAnchorToObjects
 	ret
 
-.LoadBGMapAddrIntoHRAM: ; 64b9
+.LoadBGMapAddrIntoHRAM:
 	ld [hBGMapAddress + 1], a
 	xor a
 	ld [hBGMapAddress], a
 	ret
 
-LoadFonts_NoOAMUpdate:: ; 64bf
+LoadFonts_NoOAMUpdate::
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -76,7 +76,7 @@ LoadFonts_NoOAMUpdate:: ; 64bf
 	call LoadStandardFont
 	ret
 
-HDMATransfer_FillBGMap0WithBlack: ; 64db
+HDMATransfer_FillBGMap0WithBlack:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)

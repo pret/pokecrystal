@@ -1,4 +1,4 @@
-Function115d99: ; 115d99
+Function115d99:
 	ld de, GFX_11601a
 	ld hl, vTiles0 tile $60
 	lb bc, BANK(GFX_11601a), 20
@@ -16,9 +16,8 @@ Function115d99: ; 115d99
 	ld [wc308], a
 	ret
 
-; 115dc3
 
-Function115dc3: ; 115dc3
+Function115dc3:
 	xor a
 	ld [wc305], a
 	ld a, $a0
@@ -27,9 +26,8 @@ Function115dc3: ; 115dc3
 	call ByteFill
 	ret
 
-; 115dd3
 
-Function115dd3: ; 115dd3
+Function115dd3:
 	ld a, [wc305]
 	and a
 	ret z
@@ -77,25 +75,23 @@ Function115dd3: ; 115dd3
 	jr nz, .asm_115e04
 	ret
 
-; 115e18
 
-Function115e18: ; 115e18
+Function115e18:
 	ld a, c
 	ld [wc30a], a
 	xor a
 	ld [wc30b], a
 	jr Function115e2b
 
-; 115e22
 
-Function115e22: ; 115e22
+Function115e22:
 	ld hl, wc30c
 	dec [hl]
 	ret nz
 	ld hl, wc30b
 	inc [hl]
 
-Function115e2b: ; 115e2b
+Function115e2b:
 	ld a, [wc30a]
 	sla a
 	ld c, a
@@ -126,7 +122,6 @@ Function115e2b: ; 115e2b
 	ld [wc30c], a
 	ret
 
-; 115e59
 
 Unknown_115e59:
 	dw Unknown_115e61
@@ -135,7 +130,7 @@ Unknown_115e59:
 	dw Unknown_115e79
 
 ; OAM idx (see Unknown_115e86), flip flags/duration
-Unknown_115e61: ; 115e61
+Unknown_115e61:
 	db $04, $08
 	db $05, $08
 	db $06, $08
@@ -143,17 +138,17 @@ Unknown_115e61: ; 115e61
 	db $08, $08
 	db -1
 
-Unknown_115e6c: ; 115e6c
+Unknown_115e6c:
 	db $01, $08
 	db $02, $08
 	db $03, $08
 	db $09, $08
 	db $0a, $08
-Unknown_115e76: ; 115e76
+Unknown_115e76:
 	db $00, $08
 	db -1
 
-Unknown_115e79: ; 115e79
+Unknown_115e79:
 	db $0b, $08
 	db $0c, $08
 	db $0d, $08
@@ -161,7 +156,6 @@ Unknown_115e79: ; 115e79
 	db $0f, $08
 	db $00, $08
 	db -1
-; 115e86
 
 Unknown_115e86:
 	dw Unknown_115ea6
@@ -181,14 +175,14 @@ Unknown_115e86:
 	dw Unknown_115ff0
 	dw Unknown_116005
 
-Unknown_115ea6: ; 115ea6
+Unknown_115ea6:
 	db 4
 	dsprite   1, 0,   0, 0, $60, $01
 	dsprite   1, 0,   1, 0, $61, $01
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115eb7: ; 115eb7
+Unknown_115eb7:
 	db 5
 	dsprite   0, 0,   1, 0, $64, $00
 	dsprite   1, 0,   0, 0, $60, $01
@@ -196,7 +190,7 @@ Unknown_115eb7: ; 115eb7
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115ecc: ; 115ecc
+Unknown_115ecc:
 	db 5
 	dsprite   0, 0,   1, 0, $65, $00
 	dsprite   1, 0,   0, 0, $60, $01
@@ -204,7 +198,7 @@ Unknown_115ecc: ; 115ecc
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115ee1: ; 115ee1
+Unknown_115ee1:
 	db 5
 	dsprite   0, 0,   1, 0, $66, $00
 	dsprite   1, 0,   0, 0, $60, $01
@@ -212,7 +206,7 @@ Unknown_115ee1: ; 115ee1
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115ef6: ; 115ef6
+Unknown_115ef6:
 	db 7
 	dsprite   0, 0,   0, 0, $67, $01
 	dsprite   1, 0,   0, 0, $68, $01
@@ -222,7 +216,7 @@ Unknown_115ef6: ; 115ef6
 	dsprite   3, 0,   1, 0, $6b, $00
 	dsprite   3, 0,   2, 0, $6c, $00
 
-Unknown_115f13: ; 115f13
+Unknown_115f13:
 	db 7
 	dsprite   0, 0,   0, 0, $67, $01
 	dsprite   1, 0,   0, 0, $68, $01
@@ -232,7 +226,7 @@ Unknown_115f13: ; 115f13
 	dsprite   3, 0,   1, 0, $6b, $00
 	dsprite   3, 0,   2, 0, $6c, $00
 
-Unknown_115f30: ; 115f30
+Unknown_115f30:
 	db 7
 	dsprite   0, 0,   0, 0, $67, $01
 	dsprite   1, 0,   0, 0, $68, $01
@@ -242,7 +236,7 @@ Unknown_115f30: ; 115f30
 	dsprite   3, 0,   1, 0, $6b, $00
 	dsprite   3, 0,   2, 0, $6c, $00
 
-Unknown_115f4d: ; 115f4d
+Unknown_115f4d:
 	db 7
 	dsprite   0, 0,   0, 0, $67, $01
 	dsprite   1, 0,   0, 0, $68, $01
@@ -252,7 +246,7 @@ Unknown_115f4d: ; 115f4d
 	dsprite   3, 0,   1, 0, $6b, $00
 	dsprite   3, 0,   2, 0, $6c, $00
 
-Unknown_115f6a: ; 115f6a
+Unknown_115f6a:
 	db 7
 	dsprite   0, 0,   0, 0, $67, $01
 	dsprite   1, 0,   0, 0, $68, $01
@@ -262,7 +256,7 @@ Unknown_115f6a: ; 115f6a
 	dsprite   3, 0,   1, 0, $6b, $00
 	dsprite   3, 0,   2, 0, $6c, $00
 
-Unknown_115f87: ; 115f87
+Unknown_115f87:
 	db 5
 	dsprite   0, 0,   1, 0, $72, $00
 	dsprite   1, 0,   0, 0, $60, $01
@@ -270,7 +264,7 @@ Unknown_115f87: ; 115f87
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115f9c: ; 115f9c
+Unknown_115f9c:
 	db 5
 	dsprite   0, 0,   1, 0, $73, $00
 	dsprite   1, 0,   0, 0, $60, $01
@@ -278,7 +272,7 @@ Unknown_115f9c: ; 115f9c
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115fb1: ; 115fb1
+Unknown_115fb1:
 	db 5
 	dsprite   0, 1,   1, 0, $64, $60
 	dsprite   1, 0,   0, 0, $60, $01
@@ -286,7 +280,7 @@ Unknown_115fb1: ; 115fb1
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115fc6: ; 115fc6
+Unknown_115fc6:
 	db 5
 	dsprite   0, 1,   1, 0, $65, $60
 	dsprite   1, 0,   0, 0, $60, $01
@@ -294,7 +288,7 @@ Unknown_115fc6: ; 115fc6
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115fdb: ; 115fdb
+Unknown_115fdb:
 	db 5
 	dsprite   0, 1,   1, 0, $66, $60
 	dsprite   1, 0,   0, 0, $60, $01
@@ -302,7 +296,7 @@ Unknown_115fdb: ; 115fdb
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_115ff0: ; 115ff0
+Unknown_115ff0:
 	db 5
 	dsprite   0, 1,   1, 0, $72, $60
 	dsprite   1, 0,   0, 0, $60, $01
@@ -310,20 +304,19 @@ Unknown_115ff0: ; 115ff0
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
 
-Unknown_116005: ; 116005
+Unknown_116005:
 	db 5
 	dsprite   0, 1,   1, 0, $73, $60
 	dsprite   1, 0,   0, 0, $60, $01
 	dsprite   1, 0,   1, 0, $61, $01
 	dsprite   2, 0,   0, 0, $62, $01
 	dsprite   2, 0,   1, 0, $63, $01
-; 11601a
 
-GFX_11601a:: ; 11601a
+GFX_11601a::
 INCBIN "gfx/unknown/11601a.2bpp"
 
 
-Function11615a: ; 11615a
+Function11615a:
 	xor a
 	ld [wc30d], a
 	ld [$c319], a
@@ -350,9 +343,8 @@ Function11615a: ; 11615a
 	ld [wc3f3], a
 	ret
 
-; 11619d
 
-Function11619d: ; 11619d
+Function11619d:
 	ld a, [wc30d]
 	and a
 	ret z
@@ -368,9 +360,8 @@ Function11619d: ; 11619d
 	call Function1161b8
 	ret
 
-; 1161b8
 
-Function1161b8: ; 1161b8
+Function1161b8:
 	ld a, [$c319]
 	ld e, a
 	ld d, 0
@@ -382,9 +373,8 @@ Function1161b8: ; 1161b8
 	ld l, a
 	jp hl
 
-; 1161c7
 
-.Jumptable: ; 1161c7
+.Jumptable:
 	dw Function1161d5
 	dw Function116294
 	dw Function1162cb
@@ -392,9 +382,8 @@ Function1161b8: ; 1161b8
 	dw Function1163c0
 	dw Function11636e
 	dw Function116441
-; 1161d5
 
-Function1161d5: ; 1161d5
+Function1161d5:
 	ld a, [rSVBK]
 	push af
 
@@ -504,16 +493,14 @@ Function1161d5: ; 1161d5
 	ld [$c319], a
 	ret
 
-; 11628c
 
-MenuHeader_11628c: ; 11628c
+MenuHeader_11628c:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 6, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
-; 116294
 
-Function116294: ; 116294
+Function116294:
 	farcall Function170d02
 	ld a, [$c319]
 	inc a
@@ -537,9 +524,8 @@ Function116294: ; 116294
 	ld [hWY], a
 	ret
 
-; 1162cb
 
-Function1162cb: ; 1162cb
+Function1162cb:
 	farcall Function170cc6
 	ld a, [$c319]
 	inc a
@@ -557,9 +543,8 @@ Function1162cb: ; 1162cb
 	ld [rSVBK], a
 	ret
 
-; 1162f2
 
-Function1162f2: ; 1162f2
+Function1162f2:
 	call Function11659d
 	call Function116758
 	call Function1167a6
@@ -648,9 +633,8 @@ Function1162f2: ; 1162f2
 	jr nz, .asm_11635a
 	ret
 
-; 11636e
 
-Function11636e: ; 11636e
+Function11636e:
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -687,9 +671,8 @@ Function11636e: ; 11636e
 	ld [wc30d], a
 	ret
 
-; 1163c0
 
-Function1163c0: ; 1163c0
+Function1163c0:
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -746,9 +729,8 @@ Function1163c0: ; 1163c0
 	ld [wc30d], a
 	ret
 
-; 116441
 
-Function116441: ; 116441
+Function116441:
 	farcall Function17d405
 	ld a, $90
 	ld [hWY], a
@@ -764,9 +746,8 @@ Function116441: ; 116441
 	ld [wc30d], a
 	ret
 
-; 116468
 
-Function116468: ; 116468
+Function116468:
 	call Function116567
 	ld a, [wc314]
 	cp $d

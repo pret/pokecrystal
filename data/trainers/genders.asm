@@ -1,6 +1,6 @@
 ; Used by BattleTowerText
 
-BTTrainerClassGenders: ; 11f2f0
+BTTrainerClassGenders:
 ; entries correspond to trainer classes
 	db MALE   ; FALKNER
 	db FEMALE ; WHITNEY
@@ -68,4 +68,3 @@ BTTrainerClassGenders: ; 11f2f0
 	db MALE   ; BLUE
 	db MALE   ; OFFICER
 	db FEMALE ; GRUNTF
-; 11f332

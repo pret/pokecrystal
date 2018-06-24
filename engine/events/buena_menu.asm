@@ -1,4 +1,4 @@
-AskRememberPassword: ; 4ae12
+AskRememberPassword:
 	call .DoMenu
 	ld a, $0
 	jr c, .okay
@@ -8,7 +8,7 @@ AskRememberPassword: ; 4ae12
 	ld [wScriptVar], a
 	ret
 
-.DoMenu: ; 4ae1f
+.DoMenu:
 	lb bc, 14, 7
 	push bc
 	ld hl, YesNoMenuHeader
@@ -42,7 +42,7 @@ AskRememberPassword: ; 4ae12
 	scf
 	ret
 
-Buena_ExitMenu: ; 4ae5e
+Buena_ExitMenu:
 	ld a, [hOAMUpdate]
 	push af
 	call ExitMenu

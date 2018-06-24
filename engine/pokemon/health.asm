@@ -1,4 +1,4 @@
-HealParty: ; c658
+HealParty:
 	xor a
 	ld [wCurPartyMon], a
 	ld hl, wPartySpecies
@@ -22,7 +22,7 @@ HealParty: ; c658
 .done
 	ret
 
-HealPartyMon: ; c677
+HealPartyMon:
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld d, h
@@ -52,7 +52,7 @@ HealPartyMon: ; c677
 	farcall RestoreAllPP
 	ret
 
-ComputeHPBarPixels: ; c699
+ComputeHPBarPixels:
 ; e = bc * (6 * 8) / de
 	ld a, b
 	or c
@@ -103,7 +103,7 @@ ComputeHPBarPixels: ; c699
 	ld e, 0
 	ret
 
-AnimateHPBar: ; c6e0
+AnimateHPBar:
 	call WaitBGMap
 	call _AnimateHPBar
 	call WaitBGMap

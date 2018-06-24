@@ -1,4 +1,4 @@
-BattleCommand_Protect: ; 37618
+BattleCommand_Protect:
 ; protect
 	call ProtectChance
 	ret c
@@ -11,10 +11,9 @@ BattleCommand_Protect: ; 37618
 
 	ld hl, ProtectedItselfText
 	jp StdBattleTextBox
-; 3762c
 
 
-ProtectChance: ; 3762c
+ProtectChance:
 
 	ld de, wPlayerProtectCount
 	ld a, [hBattleTurn]
@@ -77,4 +76,3 @@ ProtectChance: ; 3762c
 	call PrintButItFailed
 	scf
 	ret
-; 3766f

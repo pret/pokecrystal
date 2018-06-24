@@ -1,6 +1,6 @@
 ; AI_SMART encourages these moves with Encore.
 
-EncoreMoves: ; 38c85
+EncoreMoves:
 	db SWORDS_DANCE
 	db WHIRLWIND
 	db LEER
@@ -32,4 +32,3 @@ EncoreMoves: ; 38c85
 	db COTTON_SPORE
 	db POWDER_SNOW
 	db -1 ; end
-; 38ca4

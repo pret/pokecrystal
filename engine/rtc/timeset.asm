@@ -1,7 +1,7 @@
 TIMESET_UP_ARROW   EQUS "\"♂\"" ; $ef
 TIMESET_DOWN_ARROW EQUS "\"♀\"" ; $f5
 
-InitClock: ; 90672 (24:4672)
+InitClock:
 ; Ask the player to set the time.
 	ld a, [hInMenu]
 	push af
@@ -120,7 +120,7 @@ InitClock: ; 90672 (24:4672)
 	ld [hInMenu], a
 	ret
 
-.ClearScreen: ; 90783 (24:4783)
+.ClearScreen:
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
@@ -131,7 +131,7 @@ InitClock: ; 90672 (24:4672)
 	ld [hBGMapMode], a
 	ret
 
-SetHour: ; 90795 (24:4795)
+SetHour:
 	ld a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .Confirm
@@ -183,7 +183,7 @@ SetHour: ; 90795 (24:4795)
 	scf
 	ret
 
-DisplayHourOClock: ; 907de (24:47de)
+DisplayHourOClock:
 	push hl
 	ld a, [wInitHourBuffer]
 	ld c, a
@@ -195,9 +195,8 @@ DisplayHourOClock: ; 907de (24:47de)
 	call PlaceString
 	pop hl
 	ret
-; 907f1 (24:47f1)
 
-UnreferencedFunction907f1: ; 907f1
+UnreferencedFunction907f1:
 	ld h, d
 	ld l, e
 	push hl
@@ -222,9 +221,8 @@ UnreferencedFunction907f1: ; 907f1
 	inc hl
 	inc hl
 	ret
-; 90810
 
-SetMinutes: ; 90810 (24:4810)
+SetMinutes:
 	ld a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .a_button
@@ -273,7 +271,7 @@ SetMinutes: ; 90810 (24:4810)
 	scf
 	ret
 
-DisplayMinutesWithMinString: ; 90859 (24:4859)
+DisplayMinutesWithMinString:
 	ld de, wInitMinuteBuffer
 	call PrintTwoDigitNumberRightAlign
 	inc hl
@@ -281,7 +279,7 @@ DisplayMinutesWithMinString: ; 90859 (24:4859)
 	call PlaceString
 	ret
 
-PrintTwoDigitNumberRightAlign: ; 90867 (24:4867)
+PrintTwoDigitNumberRightAlign:
 	push hl
 	ld a, " "
 	ld [hli], a
@@ -290,7 +288,6 @@ PrintTwoDigitNumberRightAlign: ; 90867 (24:4867)
 	lb bc, PRINTNUM_RIGHTALIGN | 1, 2
 	call PrintNum
 	ret
-; 90874 (24:4874)
 
 Text_WokeUpOak: ; 0x90874
 	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
@@ -306,7 +303,6 @@ Text_WhatTimeIsIt: ; 0x90879
 
 String_oclock:
 	db "o'clock@"
-; 90886
 
 Text_WhatHrs: ; 0x90886
 	; What?@ @
@@ -316,7 +312,6 @@ Text_WhatHrs: ; 0x90886
 	call DisplayHourOClock
 	ld hl, .QuestionMark
 	ret
-; 90895 (24:4895)
 
 .QuestionMark: ; 0x90895
 	; ?
@@ -332,7 +327,6 @@ Text_HowManyMinutes: ; 0x9089a
 
 String_min:
 	db "min.@"
-; 908a4
 
 Text_WhoaMins: ; 0x908a4
 	; Whoa!@ @
@@ -342,7 +336,6 @@ Text_WhoaMins: ; 0x908a4
 	call DisplayMinutesWithMinString
 	ld hl, .QuestionMark
 	ret
-; 908b3 (24:48b3)
 
 .QuestionMark: ; 0x908b3
 	; ?
@@ -379,7 +372,6 @@ OakText_ResponseToSetTime: ; 0x908b8
 .day:
 	ld hl, .yikes
 	ret
-; 908ec (24:48ec)
 
 .overslept ; 0x908ec
 	; ! I overslept!
@@ -399,15 +391,14 @@ OakText_ResponseToSetTime: ; 0x908b8
 	db "@"
 ; 0x908fb
 
-TimeSetBackgroundGFX: ; 908fb
+TimeSetBackgroundGFX:
 INCBIN "gfx/new_game/timeset_bg.1bpp"
-TimeSetUpArrowGFX: ; 90903
+TimeSetUpArrowGFX:
 INCBIN "gfx/new_game/up_arrow.1bpp"
-TimeSetDownArrowGFX: ; 9090b
+TimeSetDownArrowGFX:
 INCBIN "gfx/new_game/down_arrow.1bpp"
-; 90913
 
-SetDayOfWeek: ; 90913
+SetDayOfWeek:
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -459,9 +450,8 @@ SetDayOfWeek: ; 90913
 	pop af
 	ld [hInMenu], a
 	ret
-; 90993
 
-.GetJoypadAction: ; 90993
+.GetJoypadAction:
 	ld a, [hJoyPressed]
 	and A_BUTTON
 	jr z, .not_A
@@ -515,9 +505,8 @@ SetDayOfWeek: ; 90913
 	call WaitBGMap
 	and a
 	ret
-; 909de
 
-.PlaceWeekdayString: ; 909de
+.PlaceWeekdayString:
 	push hl
 	ld a, [wTempDayOfWeek]
 	ld e, a
@@ -531,9 +520,8 @@ SetDayOfWeek: ; 90913
 	pop hl
 	call PlaceString
 	ret
-; 909f2
 
-.WeekdayStrings: ; 909f2
+.WeekdayStrings:
 ; entries correspond to wCurDay constants (see constants/wram_constants.asm)
 	dw .Sunday
 	dw .Monday
@@ -565,7 +553,6 @@ SetDayOfWeek: ; 90913
 	call .PlaceWeekdayString
 	ld hl, .IsIt
 	ret
-; 90a4f (24:4a4f)
 
 .IsIt: ; 0x90a4f
 	; , is it?
@@ -573,7 +560,7 @@ SetDayOfWeek: ; 90913
 	db "@"
 ; 0x90a54
 
-InitialSetDSTFlag: ; 90a54
+InitialSetDSTFlag:
 	ld a, [wDST]
 	set 7, a
 	ld [wDST], a
@@ -583,9 +570,8 @@ InitialSetDSTFlag: ; 90a54
 	ld hl, .Text
 	call PlaceHLTextAtBC
 	ret
-; 90a6c
 
-.Text: ; 90a6c
+.Text:
 	start_asm
 	call UpdateTime
 	ld a, [hHours]
@@ -596,7 +582,6 @@ InitialSetDSTFlag: ; 90a54
 	farcall PrintHoursMins
 	ld hl, .DSTIsThatOK
 	ret
-; 90a83 (24:4a83)
 
 .DSTIsThatOK: ; 0x90a83
 	; DST, is that OK?
@@ -604,7 +589,7 @@ InitialSetDSTFlag: ; 90a54
 	db "@"
 ; 0x90a88
 
-InitialClearDSTFlag: ; 90a88
+InitialClearDSTFlag:
 	ld a, [wDST]
 	res 7, a
 	ld [wDST], a
@@ -614,9 +599,8 @@ InitialClearDSTFlag: ; 90a88
 	ld hl, .Text
 	call PlaceHLTextAtBC
 	ret
-; 90aa0
 
-.Text: ; 90aa0
+.Text:
 	start_asm
 	call UpdateTime
 	ld a, [hHours]
@@ -627,7 +611,6 @@ InitialClearDSTFlag: ; 90a88
 	farcall PrintHoursMins
 	ld hl, .IsThatOK
 	ret
-; 90ab7
 
 .IsThatOK: ; 0x90ab7
 	; , is that OK?
@@ -635,14 +618,13 @@ InitialClearDSTFlag: ; 90a88
 	db "@"
 ; 0x90abc
 
-DebugDisplayTime: ; 90abc
+DebugDisplayTime:
 	hlcoord 1, 14
 	lb bc, 3, SCREEN_WIDTH - 2
 	call ClearBox
 	ld hl, .Text
 	call PlaceHLTextAtBC
 	ret
-; 90acc
 
 .Text: ; 0x90acc
 	start_asm
@@ -694,14 +676,13 @@ DebugDisplayTime: ; 90abc
 .done
 	ld hl, .NowOnDebug
 	ret
-; 90b13
 
 .NowOnDebug: ; 0x90b13
 	text "<PARA>Now on DEBUG…"
 	prompt
 ; 0x90b23
 
-.PrintTime: ; 90b23
+.PrintTime:
 	lb bc, 1, 3
 	call PrintNum
 	ld [hl], "."
@@ -715,9 +696,8 @@ DebugDisplayTime: ; 90abc
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
 	ret
-; 90b3e
 
-PrintHour: ; 90b3e (24:4b3e)
+PrintHour:
 	ld l, e
 	ld h, d
 	push bc
@@ -733,7 +713,7 @@ PrintHour: ; 90b3e (24:4b3e)
 	call PrintTwoDigitNumberRightAlign
 	ret
 
-GetTimeOfDayString: ; 90b58 (24:4b58)
+GetTimeOfDayString:
 	ld a, c
 	cp MORN_HOUR
 	jr c, .nite
@@ -750,12 +730,10 @@ GetTimeOfDayString: ; 90b58 (24:4b58)
 .day
 	ld de, .day_string
 	ret
-; 90b71 (24:4b71)
 
 .nite_string: db "NITE@"
 .morn_string: db "MORN@"
 .day_string:  db "DAY@"
-; 90b7f
 
 AdjustHourForAMorPM:
 ; Convert the hour stored in c (0-23) to a 1-12 value

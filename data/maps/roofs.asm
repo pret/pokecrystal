@@ -6,7 +6,7 @@
 	const ROOF_OLIVINE   ; 3
 	const ROOF_GOLDENROD ; 4
 
-MapGroupRoofs: ; 1c021i
+MapGroupRoofs:
 ; entries correspond to map groups
 ; values are indexes for Roofs (see below)
 	db -1             ;  0
@@ -36,13 +36,11 @@ MapGroupRoofs: ; 1c021i
 	db ROOF_NEW_BARK  ; 24 (New Bark)
 	db -1             ; 25
 	db ROOF_NEW_BARK  ; 26 (Cherrygrove)
-; 1c03c
 
-Roofs: ; 1c03c
+Roofs:
 ; entries correspond to ROOF_* constants
 INCBIN "gfx/tilesets/roofs/0.2bpp"
 INCBIN "gfx/tilesets/roofs/1.2bpp"
 INCBIN "gfx/tilesets/roofs/2.2bpp"
 INCBIN "gfx/tilesets/roofs/3.2bpp"
 INCBIN "gfx/tilesets/roofs/4.2bpp"
-; 1c30c

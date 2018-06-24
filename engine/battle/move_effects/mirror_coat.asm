@@ -1,4 +1,4 @@
-BattleCommand_MirrorCoat: ; 37c95
+BattleCommand_MirrorCoat:
 ; mirrorcoat
 
 	ld a, 1
@@ -58,4 +58,3 @@ BattleCommand_MirrorCoat: ; 37c95
 	ld [wAttackMissed], a
 	ret
 
-; 37ce6

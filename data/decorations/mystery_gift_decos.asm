@@ -1,4 +1,4 @@
-MysteryGiftDecos: ; 2c74a
+MysteryGiftDecos:
 	db DECOFLAG_PIKACHU_DOLL
 	db DECOFLAG_BULBASAUR_DOLL
 	db DECOFLAG_CHARMANDER_DOLL
@@ -37,4 +37,3 @@ MysteryGiftDecos: ; 2c74a
 	db DECOFLAG_GRIMER_DOLL
 	db DECOFLAG_UNOWN_DOLL
 .End
-; 2c76f

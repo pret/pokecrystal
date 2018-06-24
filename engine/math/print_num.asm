@@ -1,4 +1,4 @@
-_PrintNum:: ; c4c7
+_PrintNum::
 ; Print c digits of the b-byte value from de to hl.
 ; Allows 2 to 7 digits. For 1-digit numbers, add
 ; the value to char "0" instead of calling PrintNum.
@@ -178,7 +178,7 @@ _PrintNum:: ; c4c7
 	pop bc
 	ret
 
-.PrintYen: ; c5ba
+.PrintYen:
 	push af
 	ld a, [hPrintNum1]
 	and a
@@ -193,7 +193,7 @@ _PrintNum:: ; c4c7
 	pop af
 	ret
 
-.PrintDigit: ; c5cb (3:45cb)
+.PrintDigit:
 	dec e
 	jr nz, .ok
 	ld a, "0"
@@ -278,14 +278,14 @@ _PrintNum:: ; c4c7
 	ld [hl], "<DOT>"
 	ret
 
-.PrintLeadingZero: ; c644
+.PrintLeadingZero:
 ; prints a leading zero unless they are turned off in the flags
 	bit 7, d ; print leading zeroes?
 	ret z
 	ld [hl], "0"
 	ret
 
-.AdvancePointer: ; c64a
+.AdvancePointer:
 ; increments the pointer unless leading zeroes are not being printed,
 ; the number is left-aligned, and no nonzero digits have been printed yet
 	bit 7, d ; print leading zeroes?

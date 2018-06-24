@@ -1,4 +1,4 @@
-BattleTowerText:: ; 11c000
+BattleTowerText::
 ; Print text c for trainer [wBT_OTTrainerClass]
 ; 1: Intro text
 ; 2: Player lost
@@ -83,19 +83,18 @@ endc
 	ld [rSVBK], a
 	call PlaceHLTextAtBC
 	ret
-; 11c05d
 
 INCLUDE "mobile/fixed_words.asm"
 
 INCLUDE "data/trainers/genders.asm"
 
 
-BTMaleTrainerTexts: ; 11f332
+BTMaleTrainerTexts:
 	dw .Greetings
 	dw .PlayerLost
 	dw .PlayerWon
 
-.Greetings: ; 11f338
+.Greetings:
 	dw BTGreetingM1
 	dw BTGreetingM2
 	dw BTGreetingM3
@@ -122,7 +121,7 @@ BTMaleTrainerTexts: ; 11f332
 	dw BTGreetingM24
 	dw BTGreetingM25
 
-.PlayerLost: ; 11f36a
+.PlayerLost:
 	dw BTLossM1
 	dw BTLossM2
 	dw BTLossM3
@@ -149,7 +148,7 @@ BTMaleTrainerTexts: ; 11f332
 	dw BTLossM24
 	dw BTLossM25
 
-.PlayerWon: ; 11f39c
+.PlayerWon:
 	dw BTWinM1
 	dw BTWinM2
 	dw BTWinM3
@@ -182,7 +181,7 @@ BTFemaleTrainerTexts:
 	dw .PlayerLost
 	dw .PlayerWon
 
-.Greetings: ; 11f3d4
+.Greetings:
 	dw BTGreetingF1
 	dw BTGreetingF2
 	dw BTGreetingF3
@@ -199,7 +198,7 @@ BTFemaleTrainerTexts:
 	dw BTGreetingF14
 	dw BTGreetingF15
 
-.PlayerLost: ; 11f3f2
+.PlayerLost:
 	dw BTLossF1
 	dw BTLossF2
 	dw BTLossF3
@@ -216,7 +215,7 @@ BTFemaleTrainerTexts:
 	dw BTLossF14
 	dw BTLossF15
 
-.PlayerWon: ; 11f410
+.PlayerWon:
 	dw BTWinF1
 	dw BTWinF2
 	dw BTWinF3

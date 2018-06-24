@@ -7,4 +7,3 @@ HeldStatUpItems:
 	dbw HELD_ACCURACY_UP,   BattleCommand_AccuracyUp
 	dbw HELD_EVASION_UP,    BattleCommand_EvasionUp
 	db -1 ; end
-; 3df12

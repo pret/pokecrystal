@@ -11,7 +11,7 @@ endr
 	db 0
 ENDM
 
-RoamMaps: ; 2a40f
+RoamMaps:
 ; there are NUM_ROAMMON_MAPS entries
 	; start map, ...other maps
 	roam_map ROUTE_29, ROUTE_30, ROUTE_46
@@ -31,4 +31,3 @@ RoamMaps: ; 2a40f
 	roam_map ROUTE_45, ROUTE_44, ROUTE_46
 	roam_map ROUTE_46, ROUTE_45, ROUTE_29
 	db -1 ; end
-; 2a4a0

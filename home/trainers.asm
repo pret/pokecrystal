@@ -1,4 +1,4 @@
-CheckTrainerBattle2:: ; 3600
+CheckTrainerBattle2::
 	ld a, [hROMBank]
 	push af
 
@@ -9,9 +9,8 @@ CheckTrainerBattle2:: ; 3600
 	ld a, b
 	rst Bankswitch
 	ret
-; 360d
 
-CheckTrainerBattle:: ; 360d
+CheckTrainerBattle::
 ; Check if any trainer on the map sees the player and wants to battle.
 
 ; Skip the player object.
@@ -101,15 +100,14 @@ CheckTrainerBattle:: ; 360d
 	ld a, c
 	ld [wEngineBuffer3], a
 	jr LoadTrainer_continue
-; 3674
 
-TalkToTrainer:: ; 3674
+TalkToTrainer::
 	ld a, 1
 	ld [wEngineBuffer2], a
 	ld a, -1
 	ld [wEngineBuffer3], a
 
-LoadTrainer_continue:: ; 367e
+LoadTrainer_continue::
 	call GetMapScriptsBank
 	ld [wEngineBuffer1], a
 
@@ -128,9 +126,8 @@ LoadTrainer_continue:: ; 367e
 	ld [wRunningTrainerBattleScript], a
 	scf
 	ret
-; 36a5
 
-FacingPlayerDistance_bc:: ; 36a5
+FacingPlayerDistance_bc::
 
 	push de
 	call FacingPlayerDistance
@@ -138,9 +135,8 @@ FacingPlayerDistance_bc:: ; 36a5
 	ld c, e
 	pop de
 	ret
-; 36ad
 
-FacingPlayerDistance:: ; 36ad
+FacingPlayerDistance::
 ; Return carry if the sprite at bc is facing the player,
 ; and its distance in d.
 
@@ -208,9 +204,8 @@ FacingPlayerDistance:: ; 36ad
 .NotFacing:
 	and a
 	ret
-; 36f5
 
-CheckTrainerFlag:: ; 36f5
+CheckTrainerFlag::
 	push bc
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
@@ -233,9 +228,8 @@ CheckTrainerFlag:: ; 36f5
 	and a
 	pop bc
 	ret
-; 3718
 
-PrintWinLossText:: ; 3718
+PrintWinLossText::
 	ld a, [wBattleType]
 	cp BATTLETYPE_CANLOSE
 	jr .canlose ; ??????????
@@ -260,4 +254,3 @@ PrintWinLossText:: ; 3718
 	call WaitBGMap
 	call WaitPressAorB_BlinkCursor
 	ret
-; 3741

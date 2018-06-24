@@ -1,4 +1,4 @@
-EngineFlagAction:: ; 80430
+EngineFlagAction::
 ; Do action b on engine flag de
 ;
 ;   b = 0: reset flag
@@ -80,7 +80,6 @@ EngineFlagAction:: ; 80430
 	and c
 	ld [de], a
 	ret
-; 80462
 
 
 INCLUDE "data/engine_flags.asm"

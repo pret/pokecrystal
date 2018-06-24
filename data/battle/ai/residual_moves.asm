@@ -14,4 +14,3 @@ ResidualMoves:
 	db SUBSTITUTE
 	db SPIKES
 	db -1 ; end
-; 39453

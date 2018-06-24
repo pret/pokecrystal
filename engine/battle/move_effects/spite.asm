@@ -1,4 +1,4 @@
-BattleCommand_Spite: ; 35c0f
+BattleCommand_Spite:
 ; spite
 
 	ld a, [wAttackMissed]
@@ -85,4 +85,3 @@ BattleCommand_Spite: ; 35c0f
 .failed
 	jp PrintDidntAffect2
 
-; 35c94

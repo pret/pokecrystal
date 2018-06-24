@@ -1,6 +1,6 @@
 ; AI_SMART prefers these moves during harsh sunlight.
 
-SunnyDayMoves: ; 39134
+SunnyDayMoves:
 	db FIRE_PUNCH
 	db EMBER
 	db FLAMETHROWER
@@ -10,4 +10,3 @@ SunnyDayMoves: ; 39134
 	db MORNING_SUN
 	db SYNTHESIS
 	db -1 ; end
-; 3913d

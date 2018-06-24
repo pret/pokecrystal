@@ -1,4 +1,4 @@
-TypeMatchups: ; 34bb1
+TypeMatchups:
 	;  attacker,  defender,  *=
 	db NORMAL,    ROCK,      NOT_VERY_EFFECTIVE
 	db NORMAL,    STEEL,     NOT_VERY_EFFECTIVE
@@ -116,4 +116,3 @@ TypeMatchups: ; 34bb1
 	db FIGHTING,  GHOST,     NO_EFFECT
 
 	db -1 ; end
-; 34cfd

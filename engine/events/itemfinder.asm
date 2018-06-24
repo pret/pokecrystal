@@ -1,4 +1,4 @@
-ItemFinder: ; 12580
+ItemFinder:
 	farcall CheckForHiddenItems
 	jr c, .found_something
 	ld hl, .Script_FoundNothing
@@ -12,9 +12,8 @@ ItemFinder: ; 12580
 	ld a, $1
 	ld [wItemEffectSucceeded], a
 	ret
-; 12599
 
-.ItemfinderSound: ; 12599
+.ItemfinderSound:
 	ld c, 4
 .sfx_loop
 	push bc
@@ -26,7 +25,6 @@ ItemFinder: ; 12580
 	dec c
 	jr nz, .sfx_loop
 	ret
-; 125ad
 
 .Script_FoundSomething: ; 0x125ad
 	reloadmappart

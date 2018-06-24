@@ -1,4 +1,4 @@
-LevelUpHappinessMod: ; 2709e
+LevelUpHappinessMod:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1CaughtLocation
 	call GetPartyLocation

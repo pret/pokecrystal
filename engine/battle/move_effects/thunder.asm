@@ -1,4 +1,4 @@
-BattleCommand_ThunderAccuracy: ; 37d94
+BattleCommand_ThunderAccuracy:
 ; thunderaccuracy
 
 	ld a, BATTLE_VARS_MOVE_TYPE
@@ -17,4 +17,3 @@ BattleCommand_ThunderAccuracy: ; 37d94
 	ld [hl], 100 percent
 	ret
 
-; 37daa

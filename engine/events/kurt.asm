@@ -1,8 +1,7 @@
-Kurt_PrintTextWhichApricorn: ; 88000
+Kurt_PrintTextWhichApricorn:
 	ld hl, .Text
 	call PrintText
 	ret
-; 88007
 
 .Text: ; 0x88007
 	; Which APRICORN should I use?
@@ -10,11 +9,10 @@ Kurt_PrintTextWhichApricorn: ; 88000
 	db "@"
 ; 0x8800c
 
-Kurt_PrintTextHowMany: ; 8800c
+Kurt_PrintTextHowMany:
 	ld hl, .Text
 	call PrintText
 	ret
-; 88013
 
 .Text: ; 0x88013
 	; How many should I make?
@@ -22,7 +20,7 @@ Kurt_PrintTextHowMany: ; 8800c
 	db "@"
 ; 0x88018
 
-SelectApricornForKurt: ; 88018
+SelectApricornForKurt:
 	call LoadStandardMenuHeader
 	ld c, $1
 	xor a
@@ -54,9 +52,8 @@ SelectApricornForKurt: ; 88018
 .done
 	call Call_ExitMenu
 	ret
-; 88055
 
-Kurt_SelectApricorn: ; 88055
+Kurt_SelectApricorn:
 	farcall FindApricornsInBag
 	jr c, .nope
 	ld hl, .MenuHeader
@@ -81,7 +78,6 @@ Kurt_SelectApricorn: ; 88055
 .done
 	ld c, a
 	ret
-; 88086
 
 .MenuHeader: ; 0x88086
 	db MENU_BACKUP_TILES ; flags
@@ -101,15 +97,14 @@ Kurt_SelectApricorn: ; 88055
 	dba .Quantity
 	dba NULL
 
-.Name: ; 8809f
+.Name:
 	ld a, [wMenuSelection]
 	and a
 	ret z
 	farcall PlaceMenuItemName
 	ret
-; 880ab
 
-.Quantity: ; 880ab
+.Quantity:
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
 	call Kurt_GetQuantityOfApricorn
@@ -118,9 +113,8 @@ Kurt_SelectApricorn: ; 88055
 	ld [wMenuSelectionQuantity], a
 	farcall PlaceMenuItemQuantity
 	ret
-; 880c2
 
-Kurt_SelectQuantity: ; 880c2
+Kurt_SelectQuantity:
 	ld a, [wCurItem]
 	ld [wMenuSelection], a
 	call Kurt_GetQuantityOfApricorn
@@ -155,7 +149,6 @@ Kurt_SelectQuantity: ; 880c2
 .done
 	call CloseWindow
 	ret
-; 8810d
 
 .MenuHeader: ; 0x8810d
 	db MENU_BACKUP_TILES ; flags
@@ -164,7 +157,7 @@ Kurt_SelectQuantity: ; 880c2
 	db -1 ; default option
 	db 0
 
-.PlaceApricornName: ; 88116
+.PlaceApricornName:
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
@@ -172,9 +165,8 @@ Kurt_SelectQuantity: ; 880c2
 	ld e, l
 	farcall PlaceMenuItemName
 	ret
-; 88126
 
-PlaceApricornQuantity: ; 88126
+PlaceApricornQuantity:
 	call MenuBoxCoord2Tile
 	ld de, 2 * SCREEN_WIDTH + 10
 	add hl, de
@@ -183,9 +175,8 @@ PlaceApricornQuantity: ; 88126
 	ld de, wItemQuantityChangeBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
-; 88139
 
-Kurt_GetQuantityOfApricorn: ; 88139
+Kurt_GetQuantityOfApricorn:
 	push bc
 	ld hl, wNumItems
 	ld a, [wCurItem]
@@ -216,9 +207,8 @@ Kurt_GetQuantityOfApricorn: ; 88139
 	and a
 	pop bc
 	ret
-; 88161
 
-Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
+Kurt_GiveUpSelectedQuantityOfSelectedApricorn:
 ; Get the quantity of Apricorns of type [wCurItem]
 ; in the bag. Compatible with multiple stacks.
 
@@ -352,9 +342,8 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn: ; 88161
 	pop bc
 	pop de
 	ret
-; 88201
 
-Kurt_GetAddressOfApricornQuantity: ; 88201
+Kurt_GetAddressOfApricornQuantity:
 	push hl
 	push bc
 	ld hl, wNumItems
@@ -368,9 +357,8 @@ Kurt_GetAddressOfApricornQuantity: ; 88201
 	pop bc
 	pop hl
 	ret
-; 88211
 
-Kurt_GetRidOfItem: ; 88211
+Kurt_GetRidOfItem:
 	push bc
 	ld hl, wNumItems
 	ld a, [wCurItemQuantity]
@@ -409,4 +397,3 @@ Kurt_GetRidOfItem: ; 88211
 	ld [wItemQuantityChangeBuffer], a
 	pop bc
 	ret
-; 88248

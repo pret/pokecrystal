@@ -1,4 +1,4 @@
-CatchTutorial:: ; 4e554
+CatchTutorial::
 	ld a, [wBattleType]
 	dec a
 	ld c, a
@@ -11,12 +11,12 @@ CatchTutorial:: ; 4e554
 	ld l, a
 	jp hl
 
-.dw ; 4e564 (13:6564)
+.dw
 	dw .DudeTutorial
 	dw .DudeTutorial
 	dw .DudeTutorial
 
-.DudeTutorial: ; 4e56a (13:656a)
+.DudeTutorial:
 ; Back up your name to your Mom's name.
 	ld hl, wPlayerName
 	ld de, wMomsName
@@ -52,7 +52,7 @@ CatchTutorial:: ; 4e554
 	call CopyBytes
 	ret
 
-.LoadDudeData: ; 4e5b7 (13:65b7)
+.LoadDudeData:
 	ld hl, wDudeNumItems
 	ld [hl], 1
 	inc hl
@@ -68,14 +68,14 @@ CatchTutorial:: ; 4e554
 	ld hl, wDudeNumBalls
 	ld a, 1
 	ld [hli], a
-	ld a, POKE_BALL ; 5
+	ld a, POKE_BALL
 	ld [hli], a
 	ld [hli], a
 	ld [hl], -1
 	ret
 
-.Dude: ; 4e5da
+.Dude:
 	db "DUDE@"
 
-.AutoInput: ; 4e5df
+.AutoInput:
 	db NO_INPUT, $ff ; end

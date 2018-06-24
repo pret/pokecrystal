@@ -1,4 +1,4 @@
-PokemonCenterPC: ; 1559a
+PokemonCenterPC:
 	call PC_CheckPartyForPokemon
 	ret c
 	call PC_PlayBootSound
@@ -97,9 +97,8 @@ PCPC_TURN_OFF     EQU 4
 	ret z
 	ld a, 2 ; postgame
 	ret
-; 15650
 
-PC_CheckPartyForPokemon: ; 15650
+PC_CheckPartyForPokemon:
 	ld a, [wPartyCount]
 	and a
 	ret nz
@@ -116,16 +115,15 @@ PC_CheckPartyForPokemon: ; 15650
 	db "@"
 ; 0x15668
 
-BillsPC: ; 15668
+BillsPC:
 	call PC_PlayChoosePCSound
 	ld hl, PokecenterPCText_AccessedBillsPC
 	call PC_DisplayText
 	farcall _BillsPC
 	and a
 	ret
-; 15679 (5:5679)
 
-PlayersPC: ; 15679
+PlayersPC:
 	call PC_PlayChoosePCSound
 	ld hl, PokecenterPCText_AccessedOwnPC
 	call PC_DisplayText
@@ -133,61 +131,56 @@ PlayersPC: ; 15679
 	call _PlayersPC
 	and a
 	ret
-; 15689
 
-OaksPC: ; 15689
+OaksPC:
 	call PC_PlayChoosePCSound
 	ld hl, PokecenterPCText_AccessedOaksPC
 	call PC_DisplayText
 	farcall ProfOaksPC
 	and a
 	ret
-; 1569a
 
-HallOfFamePC: ; 1569a
+HallOfFamePC:
 	call PC_PlayChoosePCSound
 	call FadeToMenu
 	farcall _HallOfFamePC
 	call CloseSubmenu
 	and a
 	ret
-; 156ab
 
-TurnOffPC: ; 156ab
+TurnOffPC:
 	ld hl, PokecenterPCText_LinkClosed
 	call PrintText
 	scf
 	ret
-; 156b3
 
-PC_PlayBootSound: ; 156b3
+PC_PlayBootSound:
 	ld de, SFX_BOOT_PC
 	jr PC_WaitPlaySFX
 
-PC_PlayShutdownSound: ; 156b8
+PC_PlayShutdownSound:
 	ld de, SFX_SHUT_DOWN_PC
 	call PC_WaitPlaySFX
 	call WaitSFX
 	ret
 
-PC_PlayChoosePCSound: ; 156c2
+PC_PlayChoosePCSound:
 	ld de, SFX_CHOOSE_PC_OPTION
 	jr PC_WaitPlaySFX
 
-PC_PlaySwapItemsSound: ; 156c7
+PC_PlaySwapItemsSound:
 	ld de, SFX_SWITCH_POKEMON
 	call PC_WaitPlaySFX
 	ld de, SFX_SWITCH_POKEMON
 
-PC_WaitPlaySFX: ; 156d0
+PC_WaitPlaySFX:
 	push de
 	call WaitSFX
 	pop de
 	call PlaySFX
 	ret
-; 156d9
 
-_PlayersHousePC: ; 156d9
+_PlayersHousePC:
 	call PC_PlayBootSound
 	ld hl, UnknownText_0x156ff
 	call PC_DisplayText
@@ -206,7 +199,6 @@ _PlayersHousePC: ; 156d9
 	call ClearBGPalettes
 	ld c, $1
 	ret
-; 156ff
 
 UnknownText_0x156ff: ; 0x156ff
 	; turned on the PC.
@@ -214,7 +206,7 @@ UnknownText_0x156ff: ; 0x156ff
 	db "@"
 ; 0x15704
 
-_PlayersPC: ; 15704
+_PlayersPC:
 	ld a, b
 	ld [wWhichIndexSet], a
 	ld hl, UnknownText_0x157cc
@@ -222,9 +214,8 @@ _PlayersPC: ; 15704
 	call Function15715
 	call ExitMenu
 	ret
-; 15715
 
-Function15715: ; 15715
+Function15715:
 	xor a
 	ld [wPCItemsCursor], a
 	ld [wPCItemsScrollPosition], a
@@ -244,7 +235,6 @@ Function15715: ; 15715
 .asm_15732
 	call ExitMenu
 	ret
-; 15736
 
 PlayersPCMenuData: ; 0x15736
 	db MENU_BACKUP_TILES ; flags
@@ -305,7 +295,7 @@ PLAYERSPC_LOG_OFF       EQU 6
 	db PLAYERSPC_LOG_OFF
 	db -1 ; end
 
-PC_DisplayTextWaitMenu: ; 157bb
+PC_DisplayTextWaitMenu:
 	ld a, [wOptions]
 	push af
 	set NO_TEXT_SCROLL, a
@@ -314,7 +304,6 @@ PC_DisplayTextWaitMenu: ; 157bb
 	pop af
 	ld [wOptions], a
 	ret
-; 157cc
 
 UnknownText_0x157cc: ; 0x157cc
 	; What do you want to do?
@@ -651,11 +640,10 @@ PCItemsJoypad: ; 0x15985
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
-PC_DisplayText: ; 15a20
+PC_DisplayText:
 	call MenuTextBox
 	call ExitMenu
 	ret
-; 15a27
 
 PokecenterPCText_BootedUpPC: ; 0x15a27
 	; turned on the PC.

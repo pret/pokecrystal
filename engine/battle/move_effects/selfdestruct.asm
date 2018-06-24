@@ -1,4 +1,4 @@
-BattleCommand_Selfdestruct: ; 37380
+BattleCommand_Selfdestruct:
 	farcall StubbedTrainerRankings_Selfdestruct
 	ld a, BATTLEANIM_PLAYER_DAMAGE
 	ld [wNumHits], a
@@ -28,4 +28,3 @@ BattleCommand_Selfdestruct: ; 37380
 	call WaitBGMap
 	jp RefreshBattleHuds
 
-; 373c9

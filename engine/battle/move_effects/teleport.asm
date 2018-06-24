@@ -1,4 +1,4 @@
-BattleCommand_Teleport: ; 36778
+BattleCommand_Teleport:
 ; teleport
 
 	ld a, [wBattleType]
@@ -88,4 +88,3 @@ BattleCommand_Teleport: ; 36778
 	ld hl, FledFromBattleText
 	jp StdBattleTextBox
 
-; 36804

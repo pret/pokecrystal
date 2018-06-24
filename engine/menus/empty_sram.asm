@@ -1,4 +1,4 @@
-EmptyAllSRAMBanks: ; 4cf1f
+EmptyAllSRAMBanks:
 	ld a, 0
 	call .EmptyBank
 	ld a, 1
@@ -9,7 +9,7 @@ EmptyAllSRAMBanks: ; 4cf1f
 	call .EmptyBank
 	ret
 
-.EmptyBank: ; 4cf34
+.EmptyBank:
 	call GetSRAMBank
 	ld hl, SRAM_Begin
 	ld bc, SRAM_End - SRAM_Begin

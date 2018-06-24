@@ -1,4 +1,4 @@
-AIChooseMove: ; 440ce
+AIChooseMove:
 ; Score each move in wEnemyMonMoves starting from wBuffer1. Lower is better.
 ; Pick the move with the lowest score.
 
@@ -198,10 +198,9 @@ AIChooseMove: ; 440ce
 	ld a, c
 	ld [wCurEnemyMoveNum], a
 	ret
-; 441af
 
 
-AIScoringPointers: ; 441af
+AIScoringPointers:
 ; entries correspond to AI_* constants
 	dw AI_Basic
 	dw AI_Setup
@@ -219,4 +218,3 @@ AIScoringPointers: ; 441af
 	dw AI_None
 	dw AI_None
 	dw AI_None
-; 441cf
