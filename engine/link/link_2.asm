@@ -67,22 +67,22 @@ LinkTextbox2: ; 4d35b
 	add hl, de
 .loop
 	push hl
-	ld a, "┌"
+	ld a, $79
 	ld [hli], a
 	ld a, " "
 	call .PlaceRow
-	ld [hl], "─"
+	ld [hl], $7a
 	pop hl
 	ld de, SCREEN_WIDTH
 	add hl, de
 	dec b
 	jr nz, .loop
 
-	ld a, "┐"
+	ld a, $7b
 	ld [hli], a
-	ld a, "│"
+	ld a, $7c
 	call .PlaceRow
-	ld [hl], "└"
+	ld [hl], $7d
 	ret
 ; 4d3ab
 
