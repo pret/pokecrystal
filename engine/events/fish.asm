@@ -11,7 +11,7 @@ Fish: ; 92402
 	call GetFishGroupIndex
 
 	ld hl, FishGroups
-rept 7
+rept FISHGROUP_DATA_LENGTH
 	add hl, de
 endr
 	call .Fish
