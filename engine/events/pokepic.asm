@@ -1,4 +1,4 @@
-Pokepic:: ; 244e3
+Pokepic::
 	ld hl, PokepicMenuHeader
 	call CopyMenuHeader
 	call MenuBox
@@ -27,7 +27,7 @@ Pokepic:: ; 244e3
 	call WaitBGMap
 	ret
 
-ClosePokepic:: ; 24528
+ClosePokepic::
 	ld hl, PokepicMenuHeader
 	call CopyMenuHeader
 	call ClearMenuBoxInterior

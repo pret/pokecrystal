@@ -11,7 +11,7 @@ HoOhChamber: ; 0x8addb
 	ret
 ; 0x8adef
 
-OmanyteChamber: ; 8adef
+OmanyteChamber:
 	call GetMapAttributesPointer ; pointless?
 	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, CHECK_FLAG
@@ -51,9 +51,8 @@ OmanyteChamber: ; 8adef
 
 .nope
 	ret
-; 8ae30
 
-SpecialAerodactylChamber: ; 8ae30
+SpecialAerodactylChamber:
 	push de
 	push bc
 
@@ -79,9 +78,8 @@ SpecialAerodactylChamber: ; 8ae30
 	pop bc
 	pop de
 	ret
-; 8ae4e
 
-SpecialKabutoChamber: ; 8ae4e
+SpecialKabutoChamber:
 	push hl
 	push de
 
@@ -101,9 +99,8 @@ SpecialKabutoChamber: ; 8ae4e
 	pop de
 	pop hl
 	ret
-; 8ae68
 
-DisplayUnownWords: ; 8ae68
+DisplayUnownWords:
 	ld a, [wScriptVar]
 	ld hl, MenuHeaders_UnownWalls
 	and a
@@ -151,11 +148,10 @@ DisplayUnownWords: ; 8ae68
 	call PlayClickSFX
 	call CloseWindow
 	ret
-; 8aebc
 
 INCLUDE "data/events/unown_walls.asm"
 
-_DisplayUnownWords_FillAttr: ; 8aee9
+_DisplayUnownWords_FillAttr:
 	ld a, [de]
 	cp $ff
 	ret z
@@ -170,9 +166,8 @@ _DisplayUnownWords_FillAttr: ; 8aee9
 	inc hl
 	inc de
 	jr _DisplayUnownWords_FillAttr
-; 8aefd
 
-.PlaceSquare: ; 8aefd
+.PlaceSquare:
 	push hl
 	ld [hli], a
 	ld [hld], a
@@ -183,9 +178,8 @@ _DisplayUnownWords_FillAttr: ; 8aee9
 	ld [hl], a
 	pop hl
 	ret
-; 8af09
 
-_DisplayUnownWords_CopyWord: ; 8af09
+_DisplayUnownWords_CopyWord:
 	push hl
 	push de
 .word_loop
@@ -203,9 +197,8 @@ _DisplayUnownWords_CopyWord: ; 8af09
 	pop de
 	pop hl
 	ret
-; 8af1c
 
-.ConvertChar: ; 8af1c
+.ConvertChar:
 	push hl
 	ld a, c
 	cp $60
@@ -264,4 +257,3 @@ _DisplayUnownWords_CopyWord: ; 8af09
 	ld [hl], $2
 	pop hl
 	ret
-; 8af6b

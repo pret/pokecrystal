@@ -4,13 +4,13 @@ CARDFLIP_LIGHT_ON  EQU $f5
 CARDFLIP_DECK_SIZE EQU 4 * 6
 
 ; two labels below called from inside ./dummy_game.asm
-Unknown_e00ed: ; e00ed (38:40ed)
+Unknown_e00ed:
 ; Graphics for an unused Game Corner
 ; game were meant to be here.
-ret_e00ed: ; e00ed (38:40ed)
+ret_e00ed:
 	ret
 
-_CardFlip: ; e00ee (38:40ee)
+_CardFlip:
 	ld hl, wOptions
 	set NO_TEXT_SCROLL, [hl]
 	call ClearBGPalettes
@@ -74,7 +74,7 @@ _CardFlip: ; e00ee (38:40ee)
 	res 4, [hl]
 	ret
 
-.CardFlip: ; e0191 (38:4191)
+.CardFlip:
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
@@ -85,9 +85,8 @@ _CardFlip: ; e00ee (38:40ee)
 	ld h, [hl]
 	ld l, a
 	jp hl
-; e01a0 (38:41a0)
 
-.Jumptable: ; e01a0
+.Jumptable:
 	dw .AskPlayWithThree
 	dw .DeductCoins
 	dw .ChooseACard
@@ -96,15 +95,13 @@ _CardFlip: ; e00ee (38:40ee)
 	dw .TabulateTheResult
 	dw .PlayAgain
 	dw .Quit
-; e01b0
 
-.Increment: ; e01b0
+.Increment:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
-; e01b5
 
-.AskPlayWithThree: ; e01b5
+.AskPlayWithThree:
 	ld hl, .PlayWithThreeCoinsText
 	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
@@ -117,7 +114,6 @@ _CardFlip: ; e00ee (38:40ee)
 	ld a, 7
 	ld [wJumptableIndex], a
 	ret
-; e01cd
 
 .PlayWithThreeCoinsText: ; 0xe01cd
 	; Play with three coins?
@@ -125,7 +121,7 @@ _CardFlip: ; e00ee (38:40ee)
 	db "@"
 ; 0xe01d2
 
-.DeductCoins: ; e01d2
+.DeductCoins:
 	ld a, [wCoins]
 	ld h, a
 	ld a, [wCoins + 1]
@@ -159,7 +155,6 @@ _CardFlip: ; e00ee (38:40ee)
 	call WaitSFX
 	call .Increment
 	ret
-; e0212
 
 .NotEnoughCoinsText: ; 0xe0212
 	; Not enough coins…
@@ -167,7 +162,7 @@ _CardFlip: ; e00ee (38:40ee)
 	db "@"
 ; 0xe0217
 
-.ChooseACard: ; e0217
+.ChooseACard:
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
@@ -238,7 +233,6 @@ _CardFlip: ; e00ee (38:40ee)
 	ld [wCardFlipWhichCard], a
 	call .Increment
 	ret
-; e02b2
 
 .ChooseACardText: ; 0xe02b2
 	; Choose a card.
@@ -246,7 +240,7 @@ _CardFlip: ; e00ee (38:40ee)
 	db "@"
 ; 0xe02b7
 
-.PlaceYourBet: ; e02b7
+.PlaceYourBet:
 	ld hl, .PlaceYourBetText
 	call CardFlip_UpdateCoinBalanceDisplay
 .betloop
@@ -262,7 +256,6 @@ _CardFlip: ; e00ee (38:40ee)
 .betdone
 	call .Increment
 	ret
-; e02d5
 
 .PlaceYourBetText: ; 0xe02d5
 	; Place your bet.
@@ -270,7 +263,7 @@ _CardFlip: ; e00ee (38:40ee)
 	db "@"
 ; 0xe02da
 
-.CheckTheCard: ; e02da
+.CheckTheCard:
 	xor a
 	ld [hVBlankCounter], a
 	call CardFlip_UpdateCursorOAM
@@ -298,16 +291,14 @@ _CardFlip: ; e00ee (38:40ee)
 	call WaitBGMap2
 	call .Increment
 	ret
-; e0314
 
-.TabulateTheResult: ; e0314
+.TabulateTheResult:
 	call CardFlip_CheckWinCondition
 	call WaitPressAorB_BlinkCursor
 	call .Increment
 	ret
-; e031e
 
-.PlayAgain: ; e031e
+.PlayAgain:
 	call ClearSprites
 	ld hl, .PlayAgainText
 	call CardFlip_UpdateCoinBalanceDisplay
@@ -337,7 +328,6 @@ _CardFlip: ; e00ee (38:40ee)
 	ld a, 1
 	ld [wJumptableIndex], a
 	ret
-; e0356
 
 .PlayAgainText: ; 0xe0356
 	; Want to play again?
@@ -351,13 +341,12 @@ _CardFlip: ; e00ee (38:40ee)
 	db "@"
 ; 0xe0360
 
-.Quit: ; e0360
+.Quit:
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
-; e0366
 
-CardFlip_ShuffleDeck: ; e0366
+CardFlip_ShuffleDeck:
 	ld hl, wDeck
 	ld bc, CARDFLIP_DECK_SIZE
 	xor a
@@ -384,9 +373,8 @@ CardFlip_ShuffleDeck: ; e0366
 	ld bc, CARDFLIP_DECK_SIZE
 	call ByteFill
 	ret
-; e0398
 
-CollapseCursorPosition: ; e0398
+CollapseCursorPosition:
 	ld hl, 0
 	ld bc, 6
 	ld a, [wCardFlipCursorY]
@@ -396,9 +384,8 @@ CollapseCursorPosition: ; e0398
 	ld c, a
 	add hl, bc
 	ret
-; e03ac
 
-GetCoordsOfChosenCard: ; e03ac
+GetCoordsOfChosenCard:
 	ld a, [wCardFlipWhichCard]
 	and a
 	jr nz, .BottomCard
@@ -412,27 +399,24 @@ GetCoordsOfChosenCard: ; e03ac
 
 .done
 	ret
-; e03c1
 
-PlaceCardFaceDown: ; e03c1
+PlaceCardFaceDown:
 	xor a
 	ld [hBGMapMode], a
 	ld de, .FaceDownCardTilemap
 	lb bc, 6, 5
 	call CardFlip_CopyToBox
 	ret
-; e03ce
 
-.FaceDownCardTilemap: ; e03ce
+.FaceDownCardTilemap:
 	db $08, $09, $09, $09, $0a
 	db $0b, $28, $2b, $28, $0c
 	db $0b, $2c, $2d, $2e, $0c
 	db $0b, $2f, $30, $31, $0c
 	db $0b, $32, $33, $34, $0c
 	db $0d, $0e, $0e, $0e, $0f
-; e03ec
 
-CardFlip_DisplayCardFaceUp: ; e03ec
+CardFlip_DisplayCardFaceUp:
 	xor a
 	ld [hBGMapMode], a
 	push hl
@@ -493,18 +477,16 @@ CardFlip_DisplayCardFaceUp: ; e03ec
 	lb bc, 6, 5
 	call CardFlip_FillBox
 	ret
-; e043b
 
-.FaceUpCardTilemap: ; e043b
+.FaceUpCardTilemap:
 	db $18, $19, $19, $19, $1a
 	db $1b, $35, $7f, $7f, $1c
 	db $0b, $28, $28, $28, $0c
 	db $0b, $28, $28, $28, $0c
 	db $0b, $28, $28, $28, $0c
 	db $1d, $1e, $1e, $1e, $1f
-; e0459
 
-.Deck: ; e0459
+.Deck:
 	; level, pic anchor (3x3)
 	db "1", $4e, "1", $57, "1", $69, "1", $60
 	db "2", $4e, "2", $57, "2", $69, "2", $60
@@ -512,9 +494,8 @@ CardFlip_DisplayCardFaceUp: ; e03ec
 	db "4", $4e, "4", $57, "4", $69, "4", $60
 	db "5", $4e, "5", $57, "5", $69, "5", $60
 	db "6", $4e, "6", $57, "6", $69, "6", $60
-; e0489
 
-CardFlip_UpdateCoinBalanceDisplay: ; e0489
+CardFlip_UpdateCoinBalanceDisplay:
 	push hl
 	hlcoord 0, 12
 	ld b, 4
@@ -524,9 +505,8 @@ CardFlip_UpdateCoinBalanceDisplay: ; e0489
 	call PrintTextBoxText
 	call CardFlip_PrintCoinBalance
 	ret
-; e049c
 
-CardFlip_PrintCoinBalance: ; e049c
+CardFlip_PrintCoinBalance:
 	hlcoord 9, 15
 	ld b, 1
 	ld c, 9
@@ -539,13 +519,11 @@ CardFlip_PrintCoinBalance: ; e049c
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	call PrintNum
 	ret
-; e04bc
 
 .CoinStr:
 	db "COIN@"
-; e04c1
 
-CardFlip_InitTilemap: ; e04c1 (38:44c1)
+CardFlip_InitTilemap:
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 0
@@ -560,12 +538,11 @@ CardFlip_InitTilemap: ; e04c1 (38:44c1)
 	lb bc, 4, 18
 	call TextBox
 	ret
-; e04e5 (38:44e5)
 
-CardFlip_FillGreenBox: ; e04e5
+CardFlip_FillGreenBox:
 	ld a, $29
 
-CardFlip_FillBox: ; e04e7 (38:44e7)
+CardFlip_FillBox:
 .row
 	push bc
 	push hl
@@ -581,7 +558,7 @@ CardFlip_FillBox: ; e04e7 (38:44e7)
 	jr nz, .row
 	ret
 
-CardFlip_CopyToBox: ; e04f7 (38:44f7)
+CardFlip_CopyToBox:
 .row
 	push bc
 	push hl
@@ -598,9 +575,8 @@ CardFlip_CopyToBox: ; e04f7 (38:44f7)
 	dec b
 	jr nz, .row
 	ret
-; e0509 (38:4509)
 
-CardFlip_CopyOAM: ; e0509
+CardFlip_CopyOAM:
 	ld de, wVirtualOAMSprite00
 	ld a, [hli]
 .loop
@@ -623,9 +599,8 @@ CardFlip_CopyOAM: ; e0509
 	dec a
 	jr nz, .loop
 	ret
-; e0521
 
-CardFlip_ShiftDigitsLeftTwoPixels: ; e0521 (38:4521)
+CardFlip_ShiftDigitsLeftTwoPixels:
 	ld de, vTiles0 tile "0"
 	ld hl, vTiles0 tile "0" + 2
 	ld bc, 10 tiles - 2
@@ -635,9 +610,8 @@ CardFlip_ShiftDigitsLeftTwoPixels: ; e0521 (38:4521)
 	ld [hli], a
 	ld [hl], a
 	ret
-; e0534 (38:4534)
 
-CardFlip_BlankDiscardedCardSlot: ; e0534
+CardFlip_BlankDiscardedCardSlot:
 	xor a
 	ld [hBGMapMode], a
 	ld a, [wCardFlipFaceUpCard]
@@ -660,18 +634,16 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	ld h, [hl]
 	ld l, a
 	jp hl
-; e0553
 
-.Jumptable: ; e0553
+.Jumptable:
 	dw .Level1
 	dw .Level2
 	dw .Level3
 	dw .Level4
 	dw .Level5
 	dw .Level6
-; e055f
 
-.Level1: ; e055f
+.Level1:
 	ld hl, wDiscardPile + 4
 	add hl, de
 	ld a, [hl]
@@ -695,9 +667,8 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	add hl, bc
 	ld [hl], $3d
 	ret
-; e0583
 
-.Level2: ; e0583
+.Level2:
 	ld hl, wDiscardPile - 4
 	add hl, de
 	ld a, [hl]
@@ -721,9 +692,8 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	add hl, bc
 	ld [hl], $3a
 	ret
-; e05a7
 
-.Level3: ; e05a7
+.Level3:
 	ld hl, wDiscardPile + 4
 	add hl, de
 	ld a, [hl]
@@ -747,9 +717,8 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	add hl, bc
 	ld [hl], $3d
 	ret
-; e05cb
 
-.Level4: ; e05cb
+.Level4:
 	ld hl, wDiscardPile - 4
 	add hl, de
 	ld a, [hl]
@@ -773,9 +742,8 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	add hl, bc
 	ld [hl], $3a
 	ret
-; e05ef
 
-.Level5: ; e05ef
+.Level5:
 	ld hl, wDiscardPile + 4
 	add hl, de
 	ld a, [hl]
@@ -799,9 +767,8 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	add hl, bc
 	ld [hl], $3d
 	ret
-; e0613
 
-.Level6: ; e0613
+.Level6:
 	ld hl, wDiscardPile - 4
 	add hl, de
 	ld a, [hl]
@@ -825,9 +792,8 @@ CardFlip_BlankDiscardedCardSlot: ; e0534
 	add hl, bc
 	ld [hl], $3a
 	ret
-; e0637
 
-CardFlip_CheckWinCondition: ; e0637
+CardFlip_CheckWinCondition:
 	call CollapseCursorPosition
 	add hl, hl
 	ld de, .Jumptable
@@ -836,9 +802,8 @@ CardFlip_CheckWinCondition: ; e0637
 	ld h, [hl]
 	ld l, a
 	jp hl
-; e0643
 
-.Jumptable: ; e0643
+.Jumptable:
 	dw .Impossible
 	dw .Impossible
 	dw .PikaJiggly
@@ -894,233 +859,227 @@ CardFlip_CheckWinCondition: ; e0637
 	dw .JigglySix
 	dw .PoliSix
 	dw .OddSix
-; e06a3
 
-.Impossible: ; e06a3
+.Impossible:
 	jp .Lose
-; e06a6
 
-.PikaJiggly: ; e06a6
+.PikaJiggly:
 	ld a, [wCardFlipFaceUpCard]
 	and $2
 	jp nz, .Lose
 	jr .WinSix
 
-.PoliOddish: ; e06b0
+.PoliOddish:
 	ld a, [wCardFlipFaceUpCard]
 	and $2
 	jr nz, .WinSix
 	jp .Lose
 
-.WinSix: ; e06ba
+.WinSix:
 	ld c, $6
 	ld de, SFX_2ND_PLACE
 	jp .Payout
-; e06c2
 
-.OneTwo: ; e06c2
+.OneTwo:
 	ld a, [wCardFlipFaceUpCard]
 	and $18
 	jr z, .WinNine
 	jp .Lose
 
-.ThreeFour: ; e06cc
+.ThreeFour:
 	ld a, [wCardFlipFaceUpCard]
 	and $18
 	cp $8
 	jr z, .WinNine
 	jp .Lose
 
-.FiveSix: ; e06d8
+.FiveSix:
 	ld a, [wCardFlipFaceUpCard]
 	and $18
 	cp $10
 	jr z, .WinNine
 	jp .Lose
 
-.WinNine: ; e06e4
+.WinNine:
 	ld c, $9
 	ld de, SFX_2ND_PLACE
 	jp .Payout
-; e06ec
 
-.Pikachu: ; e06ec
+.Pikachu:
 	ld a, [wCardFlipFaceUpCard]
 	and $3
 	jr z, .WinTwelve
 	jp .Lose
 
-.Jigglypuff: ; e06f6
+.Jigglypuff:
 	ld a, [wCardFlipFaceUpCard]
 	and $3
 	cp $1
 	jr z, .WinTwelve
 	jp .Lose
 
-.Poliwag: ; e0702
+.Poliwag:
 	ld a, [wCardFlipFaceUpCard]
 	and $3
 	cp $2
 	jr z, .WinTwelve
 	jp .Lose
 
-.Oddish: ; e070e
+.Oddish:
 	ld a, [wCardFlipFaceUpCard]
 	and $3
 	cp $3
 	jr z, .WinTwelve
 	jp .Lose
 
-.WinTwelve: ; e071a
+.WinTwelve:
 	ld c, $c
 	ld de, SFX_2ND_PLACE
 	jp .Payout
-; e0722
 
-.One: ; e0722
+.One:
 	ld a, [wCardFlipFaceUpCard]
 	and $1c
 	jr z, .WinEighteen
 	jp .Lose
 
-.Two: ; e072c
+.Two:
 	ld a, [wCardFlipFaceUpCard]
 	and $1c
 	cp $4
 	jr z, .WinEighteen
 	jp .Lose
 
-.Three: ; e0738
+.Three:
 	ld a, [wCardFlipFaceUpCard]
 	and $1c
 	cp $8
 	jr z, .WinEighteen
 	jp .Lose
 
-.Four: ; e0744
+.Four:
 	ld a, [wCardFlipFaceUpCard]
 	and $1c
 	cp $c
 	jr z, .WinEighteen
 	jp .Lose
 
-.Five: ; e0750
+.Five:
 	ld a, [wCardFlipFaceUpCard]
 	and $1c
 	cp $10
 	jr z, .WinEighteen
 	jp .Lose
 
-.Six: ; e075c
+.Six:
 	ld a, [wCardFlipFaceUpCard]
 	and $1c
 	cp $14
 	jr z, .WinEighteen
 	jp .Lose
 
-.WinEighteen: ; e0768
+.WinEighteen:
 	ld c, $12
 	ld de, SFX_2ND_PLACE
 	jp .Payout
-; e0770
 
 
-.PikaOne: ; e0770
+.PikaOne:
 	ld e, $0
 	jr .CheckWin72
 
-.JigglyOne: ; e0774
+.JigglyOne:
 	ld e, $1
 	jr .CheckWin72
 
-.PoliOne: ; e0778
+.PoliOne:
 	ld e, $2
 	jr .CheckWin72
 
-.OddOne: ; e077c
+.OddOne:
 	ld e, $3
 	jr .CheckWin72
 
-.PikaTwo: ; e0780
+.PikaTwo:
 	ld e, $4
 	jr .CheckWin72
 
-.JigglyTwo: ; e0784
+.JigglyTwo:
 	ld e, $5
 	jr .CheckWin72
 
-.PoliTwo: ; e0788
+.PoliTwo:
 	ld e, $6
 	jr .CheckWin72
 
-.OddTwo: ; e078c
+.OddTwo:
 	ld e, $7
 	jr .CheckWin72
 
-.PikaThree: ; e0790
+.PikaThree:
 	ld e, $8
 	jr .CheckWin72
 
-.JigglyThree: ; e0794
+.JigglyThree:
 	ld e, $9
 	jr .CheckWin72
 
-.PoliThree: ; e0798
+.PoliThree:
 	ld e, $a
 	jr .CheckWin72
 
-.OddThree: ; e079c
+.OddThree:
 	ld e, $b
 	jr .CheckWin72
 
-.PikaFour: ; e07a0
+.PikaFour:
 	ld e, $c
 	jr .CheckWin72
 
-.JigglyFour: ; e07a4
+.JigglyFour:
 	ld e, $d
 	jr .CheckWin72
 
-.PoliFour: ; e07a8
+.PoliFour:
 	ld e, $e
 	jr .CheckWin72
 
-.OddFour: ; e07ac
+.OddFour:
 	ld e, $f
 	jr .CheckWin72
 
-.PikaFive: ; e07b0
+.PikaFive:
 	ld e, $10
 	jr .CheckWin72
 
-.JigglyFive: ; e07b4
+.JigglyFive:
 	ld e, $11
 	jr .CheckWin72
 
-.PoliFive: ; e07b8
+.PoliFive:
 	ld e, $12
 	jr .CheckWin72
 
-.OddFive: ; e07bc
+.OddFive:
 	ld e, $13
 	jr .CheckWin72
 
-.PikaSix: ; e07c0
+.PikaSix:
 	ld e, $14
 	jr .CheckWin72
 
-.JigglySix: ; e07c4
+.JigglySix:
 	ld e, $15
 	jr .CheckWin72
 
-.PoliSix: ; e07c8
+.PoliSix:
 	ld e, $16
 	jr .CheckWin72
 
-.OddSix: ; e07cc
+.OddSix:
 	ld e, $17
 
-.CheckWin72: ; e07ce
+.CheckWin72:
 	ld a, [wCardFlipFaceUpCard]
 	cp e
 	jr nz, .Lose
@@ -1128,7 +1087,7 @@ CardFlip_CheckWinCondition: ; e0637
 	ld de, SFX_2ND_PLACE
 	jr .Payout
 
-.Lose: ; e07db
+.Lose:
 	ld de, SFX_WRONG
 	call PlaySFX
 	ld hl, .Text_Darn
@@ -1136,7 +1095,7 @@ CardFlip_CheckWinCondition: ; e0637
 	call WaitSFX
 	ret
 
-.Payout: ; e07eb
+.Payout:
 	push bc
 	push de
 	ld hl, .Text_Yeah
@@ -1159,7 +1118,6 @@ CardFlip_CheckWinCondition: ; e0637
 	dec c
 	jr nz, .loop
 	ret
-; e0811
 
 .Text_Yeah: ; 0xe0811
 	; Yeah!
@@ -1173,7 +1131,7 @@ CardFlip_CheckWinCondition: ; e0637
 	db "@"
 ; 0xe081b
 
-.AddCoinPlaySFX: ; e081b
+.AddCoinPlaySFX:
 	ld a, [wCoins]
 	ld h, a
 	ld a, [wCoins + 1]
@@ -1186,9 +1144,8 @@ CardFlip_CheckWinCondition: ; e0637
 	ld de, SFX_PAY_DAY
 	call PlaySFX
 	ret
-; e0833
 
-.IsCoinCaseFull: ; e0833
+.IsCoinCaseFull:
 	ld a, [wCoins]
 	cp HIGH(MAX_COINS)
 	jr c, .less
@@ -1207,16 +1164,14 @@ CardFlip_CheckWinCondition: ; e0637
 .less
 	and a
 	ret
-; e0849
 
-PlaceOAMCardBorder: ; e0849
+PlaceOAMCardBorder:
 	call GetCoordsOfChosenCard
 	ld hl, .SpriteData
 	call CardFlip_CopyOAM
 	ret
-; e0853
 
-.SpriteData: ; e0853
+.SpriteData:
 	db 18
 	dsprite 0, 0, 0, 0, $04, 0
 	dsprite 0, 0, 1, 0, $06, 0
@@ -1241,9 +1196,8 @@ PlaceOAMCardBorder: ; e0849
 	dsprite 5, 0, 2, 0, $06, 0 | Y_FLIP
 	dsprite 5, 0, 3, 0, $06, 0 | Y_FLIP
 	dsprite 5, 0, 4, 0, $04, 0 | X_FLIP | Y_FLIP
-; e089c
 
-ChooseCard_HandleJoypad: ; e089c
+ChooseCard_HandleJoypad:
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_LEFT
@@ -1258,9 +1212,8 @@ ChooseCard_HandleJoypad: ; e089c
 	and D_DOWN
 	jp nz, .d_down
 	ret
-; e08b8
 
-.d_left ; e08b8
+.d_left
 	ld hl, wCardFlipCursorX
 	ld a, [wCardFlipCursorY]
 	and a
@@ -1296,9 +1249,8 @@ ChooseCard_HandleJoypad: ; e089c
 	ld a, $1
 	ld [wCardFlipCursorX], a
 	jp .play_sound
-; e08ef
 
-.d_right ; e08ef
+.d_right
 	ld hl, wCardFlipCursorX
 	ld a, [wCardFlipCursorY]
 	and a
@@ -1319,7 +1271,7 @@ ChooseCard_HandleJoypad: ; e089c
 	inc [hl]
 	jr .play_sound
 
-.d_up ; e090a
+.d_up
 	ld hl, wCardFlipCursorY
 	ld a, [wCardFlipCursorX]
 	and a
@@ -1356,7 +1308,7 @@ ChooseCard_HandleJoypad: ; e089c
 	ld [wCardFlipCursorX], a
 	jr .play_sound
 
-.d_down ; e093d
+.d_down
 	ld hl, wCardFlipCursorY
 	ld a, [wCardFlipCursorX]
 	and a
@@ -1377,13 +1329,12 @@ ChooseCard_HandleJoypad: ; e089c
 	inc [hl]
 	inc [hl]
 
-.play_sound ; e0959
+.play_sound
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
 	call PlaySFX
 	ret
-; e0960
 
-CardFlip_UpdateCursorOAM: ; e0960
+CardFlip_UpdateCursorOAM:
 	call ClearSprites
 	ld a, [hCGB]
 	and a
@@ -1407,9 +1358,8 @@ CardFlip_UpdateCursorOAM: ; e0960
 	ld l, a
 	call CardFlip_CopyOAM
 	ret
-; e0981
 
-.OAMData: ; e0981
+.OAMData:
 cardflip_cursor: MACRO
 if _NARG >= 5
 	dbpixel \1, \2, \3, \4
@@ -1475,9 +1425,8 @@ ENDM
 	cardflip_cursor 15, 12, 0, 4, .SingleTile
 	cardflip_cursor 17, 12, 0, 4, .SingleTile
 	cardflip_cursor 19, 12, 0, 4, .SingleTile
-; e0a41
 
-.SingleTile: ; e0a41
+.SingleTile:
 	db 6
 	dsprite  0, 0,  -1, 7, $00, 0 | PRIORITY
 	dsprite  0, 0,   0, 0, $02, 0 | PRIORITY
@@ -1486,7 +1435,7 @@ ENDM
 	dsprite  0, 5,   0, 0, $02, 0 | Y_FLIP | PRIORITY
 	dsprite  0, 5,   1, 0, $03, 0 | PRIORITY
 
-.PokeGroup: ; e0a5a
+.PokeGroup:
 	db 26
 	dsprite  0, 0,  -1, 7, $00, 0 | PRIORITY
 	dsprite  0, 0,   0, 0, $02, 0 | PRIORITY
@@ -1515,7 +1464,7 @@ ENDM
 	dsprite 10, 1,   0, 0, $02, 0 | Y_FLIP | PRIORITY
 	dsprite 10, 1,   1, 0, $03, 0 | PRIORITY
 
-.NumGroup: ; e0ac3
+.NumGroup:
 	db 20
 	dsprite  0, 0,  -1, 7, $00, 0 | PRIORITY
 	dsprite  0, 0,   0, 0, $02, 0 | PRIORITY
@@ -1538,7 +1487,7 @@ ENDM
 	dsprite  0, 5,   7, 0, $02, 0 | Y_FLIP | PRIORITY
 	dsprite  0, 5,   8, 0, $03, 0 | PRIORITY
 
-.NumGroupPair: ; e0b14
+.NumGroupPair:
 	db 30
 	dsprite  0, 0,   0, 0, $00, 0 | PRIORITY
 	dsprite  0, 0,   1, 0, $02, 0 | PRIORITY
@@ -1571,7 +1520,7 @@ ENDM
 	dsprite  2, 1,   8, 0, $03, 0 | PRIORITY
 	dsprite  2, 1,   9, 0, $03, 0 | PRIORITY
 
-.PokeGroupPair: ; e0b8d
+.PokeGroupPair:
 	db 38
 	dsprite  0, 0,  -1, 7, $00, 0 | PRIORITY
 	dsprite  0, 0,   3, 0, $00, 0 | X_FLIP | PRIORITY
@@ -1612,15 +1561,14 @@ ENDM
 	dsprite 11, 1,   2, 0, $02, 0 | Y_FLIP | PRIORITY
 	dsprite 11, 1,   3, 0, $03, 0 | X_FLIP | Y_FLIP | PRIORITY
 
-.Impossible: ; e0c26
+.Impossible:
 	db 4
 	dsprite  0, 0,   0, 0, $00, 0 | PRIORITY
 	dsprite  0, 0,   1, 0, $00, 0 | X_FLIP | PRIORITY
 	dsprite  1, 0,   0, 0, $00, 0 | Y_FLIP | PRIORITY
 	dsprite  1, 0,   1, 0, $00, 0 | X_FLIP | Y_FLIP | PRIORITY
-; e0c37
 
-CardFlip_InitAttrPals: ; e0c37 (38:4c37)
+CardFlip_InitAttrPals:
 	ld a, [hCGB]
 	and a
 	ret z
@@ -1666,27 +1614,24 @@ CardFlip_InitAttrPals: ; e0c37 (38:4c37)
 	pop af
 	ld [rSVBK], a
 	ret
-; e0c93 (38:4c93)
 
-.palettes ; e0c93
+.palettes
 INCLUDE "gfx/card_flip/card_flip.pal"
-; e0cdb
 
-CardFlipLZ03: ; e0cdb
+CardFlipLZ03:
 INCBIN "gfx/card_flip/card_flip_3.2bpp.lz"
 
-CardFlipOffButtonGFX: ; e0cf6
+CardFlipOffButtonGFX:
 INCBIN "gfx/card_flip/off.2bpp"
 
-CardFlipOnButtonGFX: ; e0d06
+CardFlipOnButtonGFX:
 INCBIN "gfx/card_flip/on.2bpp"
 
-CardFlipLZ01: ; e0d16
+CardFlipLZ01:
 INCBIN "gfx/card_flip/card_flip_1.2bpp.lz"
 
-CardFlipLZ02: ; e0ea8
+CardFlipLZ02:
 INCBIN "gfx/card_flip/card_flip_2.2bpp.lz"
 
-CardFlipTilemap: ; e110c
+CardFlipTilemap:
 INCBIN "gfx/card_flip/card_flip.tilemap"
-; e1190

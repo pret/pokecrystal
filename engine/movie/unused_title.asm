@@ -1,4 +1,4 @@
-UnusedTitleScreen: ; 10c000
+UnusedTitleScreen:
 
 	call ClearBGPalettes
 	call ClearTileMap
@@ -96,30 +96,24 @@ UnusedTitleScreen: ; 10c000
 	call PlayMusic
 
 	ret
-; 10c0b1
 
-UnusedTitleBG_GFX: ; 10c0b1
+UnusedTitleBG_GFX:
 INCBIN "gfx/title/old_bg.2bpp"
-; 10d0b1
 
-UnusedTitleBG_Tilemap: ; 10d0b1
+UnusedTitleBG_Tilemap:
 ; 32x32 (alternating tiles and attributes)
 INCBIN "gfx/title/old_bg.tilemap"
-; 10d8b1
 
-UnusedTitleBG_Palettes: ; 10d8b1
+UnusedTitleBG_Palettes:
 INCLUDE "gfx/title/old_bg.pal"
-; 10dab1
 
-UnusedTitleFG_GFX: ; 10dab1
+UnusedTitleFG_GFX:
 INCBIN "gfx/title/old_fg.2bpp"
-; 10eab1
 
-UnusedTitleFG_Palettes: ; 10eab1
+UnusedTitleFG_Palettes:
 INCLUDE "gfx/title/old_fg.pal"
-; 10ecb1
 
-UnusedTitleFG_OAM: ; 10ecb1
+UnusedTitleFG_OAM:
 	dsprite  3,  0,  7,  0, $00, 1
 	dsprite  3,  0,  8,  0, $02, 1
 	dsprite  3,  0,  9,  0, $04, 1
@@ -160,9 +154,8 @@ UnusedTitleFG_OAM: ; 10ecb1
 	dsprite 11,  0, 12,  0, $4a, 1
 	dsprite 11,  0, 13,  0, $4c, 1
 	dsprite 11,  0, 14,  0, $4e, 1
-; 10ed51
 
-Function10ed51: ; 10ed51
+Function10ed51:
 	call _TitleScreen
 .loop
 	call JoyTextDelay
@@ -175,4 +168,3 @@ Function10ed51: ; 10ed51
 	jr .loop
 .done
 	ret
-; 10ed67

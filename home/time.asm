@@ -1,7 +1,7 @@
 ; Functions relating to the timer interrupt and the real-time-clock.
 
 
-AskTimer:: ; 591
+AskTimer::
 	push af
 	ld a, [hMobile]
 	and a
@@ -11,29 +11,26 @@ AskTimer:: ; 591
 .not_mobile
 	pop af
 	reti
-; 59c
 
 
-LatchClock:: ; 59c
+LatchClock::
 ; latch clock counter data
 	ld a, 0
 	ld [MBC3LatchClock], a
 	ld a, 1
 	ld [MBC3LatchClock], a
 	ret
-; 5a7
 
 
-UpdateTime:: ; 5a7
+UpdateTime::
 	call GetClock
 	call FixDays
 	call FixTime
 	farcall GetTimeOfDay
 	ret
-; 5b7
 
 
-GetClock:: ; 5b7
+GetClock::
 ; store clock data in hRTCDayHi-hRTCSeconds
 
 ; enable clock r/w
@@ -72,10 +69,9 @@ GetClock:: ; 5b7
 ; unlatch clock / disable clock r/w
 	call CloseSRAM
 	ret
-; 5e8
 
 
-FixDays:: ; 5e8
+FixDays::
 ; fix day count
 ; mod by 140
 
@@ -134,10 +130,9 @@ FixDays:: ; 5e8
 .quit
 	xor a
 	ret
-; 61d
 
 
-FixTime:: ; 61d
+FixTime::
 ; add ingame time (set at newgame) to current time
 ;				  day     hr    min    sec
 ; store time in wCurDay, hHours, hMinutes, hSeconds
@@ -185,16 +180,15 @@ FixTime:: ; 61d
 	adc c
 	ld [wCurDay], a
 	ret
-; 658
 
-InitTimeOfDay:: ; 658
+InitTimeOfDay::
 	xor a
 	ld [wStringBuffer2], a
 	ld a, $0 ; useless
 	ld [wStringBuffer2 + 3], a
 	jr InitTime
 
-InitDayOfWeek:: ; 663
+InitDayOfWeek::
 	call UpdateTime
 	ld a, [hHours]
 	ld [wStringBuffer2 + 1], a
@@ -204,20 +198,18 @@ InitDayOfWeek:: ; 663
 	ld [wStringBuffer2 + 3], a
 	jr InitTime ; useless
 
-InitTime:: ; 677
+InitTime::
 	farcall _InitTime
 	ret
-; 67e
 
 
 
-PanicResetClock:: ; 67e
+PanicResetClock::
 	call .ClearhRTC
 	call SetClock
 	ret
-; 685
 
-.ClearhRTC: ; 685
+.ClearhRTC:
 	xor a
 	ld [hRTCSeconds], a
 	ld [hRTCMinutes], a
@@ -225,10 +217,9 @@ PanicResetClock:: ; 67e
 	ld [hRTCDayLo], a
 	ld [hRTCDayHi], a
 	ret
-; 691
 
 
-SetClock:: ; 691
+SetClock::
 ; set clock data from hram
 
 ; enable clock r/w
@@ -274,10 +265,9 @@ SetClock:: ; 691
 ; cleanup
 	call CloseSRAM ; unlatch clock, disable clock r/w
 	ret
-; 6c4
 
 
-ClearRTCStatus:: ; 6c4
+ClearRTCStatus::
 ; clear sRTCStatusFlags
 	xor a
 	push af
@@ -287,9 +277,8 @@ ClearRTCStatus:: ; 6c4
 	ld [sRTCStatusFlags], a
 	call CloseSRAM
 	ret
-; 6d3
 
-RecordRTCStatus:: ; 6d3
+RecordRTCStatus::
 ; append flags to sRTCStatusFlags
 	ld hl, sRTCStatusFlags
 	push af
@@ -300,13 +289,11 @@ RecordRTCStatus:: ; 6d3
 	ld [hl], a
 	call CloseSRAM
 	ret
-; 6e3
 
-CheckRTCStatus:: ; 6e3
+CheckRTCStatus::
 ; check sRTCStatusFlags
 	ld a, BANK(sRTCStatusFlags)
 	call GetSRAMBank
 	ld a, [sRTCStatusFlags]
 	call CloseSRAM
 	ret
-; 6ef

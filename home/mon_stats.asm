@@ -1,4 +1,4 @@
-IsAPokemon:: ; 3741
+IsAPokemon::
 ; Return carry if species a is not a Pokemon.
 	and a
 	jr z, .NotAPokemon
@@ -14,9 +14,8 @@ IsAPokemon:: ; 3741
 .Pokemon:
 	and a
 	ret
-; 3750
 
-DrawBattleHPBar:: ; 3750
+DrawBattleHPBar::
 ; Draw an HP bar d tiles long at hl
 ; Fill it up to e pixels
 
@@ -75,13 +74,12 @@ DrawBattleHPBar:: ; 3750
 	pop de
 	pop hl
 	ret
-; 3786
 
-PrepMonFrontpic:: ; 3786
+PrepMonFrontpic::
 	ld a, $1
 	ld [wBoxAlignment], a
 
-_PrepMonFrontpic:: ; 378b
+_PrepMonFrontpic::
 	ld a, [wCurPartySpecies]
 	call IsAPokemon
 	jr c, .not_pokemon
@@ -104,4 +102,3 @@ _PrepMonFrontpic:: ; 378b
 	inc a
 	ld [wCurPartySpecies], a
 	ret
-; 37b6

@@ -21,7 +21,7 @@
 	const DAYCARETEXT_OH_FINE
 	const DAYCARETEXT_COME_AGAIN
 
-DayCareMan: ; 166d6
+DayCareMan:
 	ld hl, wDayCareMan
 	bit DAYCAREMAN_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
@@ -58,9 +58,8 @@ DayCareMan: ; 166d6
 	ld a, DAYCARETEXT_COME_AGAIN
 	call PrintDayCareText
 	ret
-; 1672a
 
-DayCareLady: ; 1672a
+DayCareLady:
 	ld hl, wDayCareLady
 	bit DAYCARELADY_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
@@ -98,9 +97,8 @@ DayCareLady: ; 1672a
 	ld a, DAYCARETEXT_COME_AGAIN
 	call PrintDayCareText
 	ret
-; 16781
 
-DayCareLadyIntroText: ; 16781
+DayCareLadyIntroText:
 	bit DAYCARELADY_ACTIVE_F, [hl]
 	jr nz, .okay
 	set DAYCARELADY_ACTIVE_F, [hl]
@@ -109,16 +107,14 @@ DayCareLadyIntroText: ; 16781
 	call PrintDayCareText
 	call YesNoBox
 	ret
-; 1678f
 
-DayCareManIntroText: ; 1678f
+DayCareManIntroText:
 	set DAYCAREMAN_ACTIVE_F, [hl]
 	call PrintDayCareText
 	call YesNoBox
 	ret
-; 16798
 
-DayCareAskDepositPokemon: ; 16798
+DayCareAskDepositPokemon:
 	ld a, [wPartyCount]
 	cp 2
 	jr c, .OnlyOneMon
@@ -169,7 +165,6 @@ DayCareAskDepositPokemon: ; 16798
 	ld a, DAYCARETEXT_REMOVE_MAIL
 	scf
 	ret
-; 167f1
 
 .DummyText: ; 0x167f1
 	;
@@ -177,7 +172,7 @@ DayCareAskDepositPokemon: ; 16798
 	db "@"
 ; 0x167f6
 
-DayCare_DepositPokemonText: ; 167f6
+DayCare_DepositPokemonText:
 	ld a, DAYCARETEXT_DEPOSIT
 	call PrintDayCareText
 	ld a, [wCurPartySpecies]
@@ -185,9 +180,8 @@ DayCare_DepositPokemonText: ; 167f6
 	ld a, DAYCARETEXT_COME_BACK_LATER
 	call PrintDayCareText
 	ret
-; 16807
 
-DayCare_AskWithdrawBreedMon: ; 16807
+DayCare_AskWithdrawBreedMon:
 	ld a, [wStringBuffer2 + 1]
 	and a
 	jr nz, .grew_at_least_one_level
@@ -232,9 +226,8 @@ DayCare_AskWithdrawBreedMon: ; 16807
 	ld a, DAYCARETEXT_PARTY_FULL
 	scf
 	ret
-; 16850
 
-DayCare_GetBackMonForMoney: ; 16850
+DayCare_GetBackMonForMoney:
 	ld bc, wStringBuffer2 + 2
 	ld de, wMoney
 	farcall TakeMoney
@@ -245,9 +238,8 @@ DayCare_GetBackMonForMoney: ; 16850
 	ld a, DAYCARETEXT_GOT_BACK
 	call PrintDayCareText
 	ret
-; 1686d
 
-GetPriceToRetrieveBreedmon: ; 1686d
+GetPriceToRetrieveBreedmon:
 	ld a, b
 	ld [wStringBuffer2], a
 	ld a, d
@@ -268,9 +260,8 @@ GetPriceToRetrieveBreedmon: ; 1686d
 	ld a, l
 	ld [wStringBuffer2 + 4], a
 	ret
-; 1689b
 
-PrintDayCareText: ; 1689b
+PrintDayCareText:
 	ld e, a
 	ld d, 0
 	ld hl, .TextTable
@@ -281,9 +272,8 @@ PrintDayCareText: ; 1689b
 	ld l, a
 	call PrintText
 	ret
-; 168aa
 
-.TextTable: ; 168aa
+.TextTable:
 ; entries correspond to DAYCARETEXT_* constants
 	dw .DayCareManIntro ; 00
 	dw .DayCareManOddEgg ; 01
@@ -305,7 +295,6 @@ PrintDayCareText: ; 1689b
 	dw .NotEnoughMoney ; 11
 	dw .OhFineThen ; 12
 	dw .ComeAgain ; 13
-; 168d2
 
 .DayCareManIntro: ; 0x168d2
 	; I'm the DAY-CARE MAN. Want me to raise a #MON?
@@ -427,7 +416,7 @@ PrintDayCareText: ; 1689b
 	db "@"
 ; 0x16936
 
-DayCareManOutside: ; 16936
+DayCareManOutside:
 	ld hl, wDayCareMan
 	bit DAYCAREMAN_HAS_EGG_F, [hl]
 	jr nz, .AskGiveEgg
@@ -441,7 +430,7 @@ DayCareManOutside: ; 16936
 	db "@"
 ; 0x16949
 
-.AskGiveEgg: ; 16949
+.AskGiveEgg:
 	ld hl, .IntroText
 	call PrintText
 	call YesNoBox
@@ -477,7 +466,6 @@ DayCareManOutside: ; 16936
 	ld a, TRUE
 	ld [wScriptVar], a
 	ret
-; 16993
 
 .IntroText: ; 0x16993
 	; Ah, it's you! We were raising your #MON, and my goodness, were we surprised! Your #MON had an EGG! We don't know how it got there, but your #MON had it. You want it?
@@ -509,7 +497,7 @@ DayCareManOutside: ; 16936
 	db "@"
 ; 0x169ac
 
-DayCare_GiveEgg: ; 169ac
+DayCare_GiveEgg:
 	ld a, [wEggMonLevel]
 	ld [wCurPartyLevel], a
 	ld hl, wPartyCount
@@ -580,18 +568,16 @@ DayCare_GiveEgg: ; 169ac
 .PartyFull:
 	scf
 	ret
-; 16a31
 
-DayCare_GetCurrentPartyMember: ; 16a31
+DayCare_GetCurrentPartyMember:
 	ld a, [wPartyCount]
 	dec a
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ret
-; 16a3b
 
-DayCare_InitBreeding: ; 16a3b
+DayCare_InitBreeding:
 	ld a, [wDayCareLady]
 	bit DAYCARELADY_HAS_MON_F, a
 	ret z
@@ -612,9 +598,8 @@ DayCare_InitBreeding: ; 16a3b
 	jr c, .loop
 	ld [wStepsToEgg], a
 	jp .UselessJump
-; 16a66
 
-.UselessJump: ; 16a66
+.UselessJump:
 	xor a
 	ld hl, wEggMon
 	ld bc, wEggMonEnd - wEggMon
@@ -788,8 +773,6 @@ DayCare_InitBreeding: ; 16a3b
 	ld a, [wCurPartyLevel]
 	ld [wEggMonLevel], a
 	ret
-; 16be0
 
-.String_EGG: ; 16be0
+.String_EGG:
 	db "EGG@"
-; 16be4

@@ -1,9 +1,8 @@
-DoItemEffect:: ; 2f3f
+DoItemEffect::
 	farcall _DoItemEffect
 	ret
-; 2f46
 
-CheckTossableItem:: ; 2f46
+CheckTossableItem::
 	push hl
 	push de
 	push bc
@@ -12,9 +11,8 @@ CheckTossableItem:: ; 2f46
 	pop de
 	pop hl
 	ret
-; 2f53
 
-TossItem:: ; 2f53
+TossItem::
 	push hl
 	push de
 	push bc
@@ -32,9 +30,8 @@ TossItem:: ; 2f53
 	pop de
 	pop hl
 	ret
-; 2f66
 
-ReceiveItem:: ; 2f66
+ReceiveItem::
 	push bc
 	ld a, [hROMBank]
 	push af
@@ -52,9 +49,8 @@ ReceiveItem:: ; 2f66
 	rst Bankswitch
 	pop bc
 	ret
-; 2f79
 
-CheckItem:: ; 2f79
+CheckItem::
 	push hl
 	push de
 	push bc
@@ -72,4 +68,3 @@ CheckItem:: ; 2f79
 	pop de
 	pop hl
 	ret
-; 2f8c

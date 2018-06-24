@@ -1,4 +1,4 @@
-GetTrademonFrontpic: ; 4d7fd
+GetTrademonFrontpic:
 	ld a, [wOTTrademonSpecies]
 	ld hl, wOTTrademonDVs
 	ld de, vTiles2
@@ -13,7 +13,7 @@ GetTrademonFrontpic: ; 4d7fd
 	predef GetAnimatedFrontpic
 	ret
 
-AnimateTrademonFrontpic: ; 4d81e
+AnimateTrademonFrontpic:
 	ld a, [wOTTrademonSpecies]
 	call IsAPokemon
 	ret c

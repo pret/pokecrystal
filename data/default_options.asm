@@ -1,4 +1,4 @@
-DefaultOptions: ; 14f7c
+DefaultOptions:
 ; wOptions: med text speed
 	db TEXT_DELAY_MED
 ; wSaveFileExists: no
@@ -14,4 +14,3 @@ DefaultOptions: ; 14f7c
 
 	db $00
 	db $00
-; 14f84

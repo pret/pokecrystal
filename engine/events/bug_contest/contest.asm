@@ -1,4 +1,4 @@
-GiveParkBalls: ; 135db
+GiveParkBalls:
 	xor a
 	ld [wContestMon], a
 	ld a, 20

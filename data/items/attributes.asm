@@ -5,7 +5,7 @@ item_attribute: MACRO
 	dn \6, \7
 ENDM
 
-ItemAttributes: ; 67c1
+ItemAttributes:
 ; entries correspond to item ids
 ; MASTER_BALL
 	item_attribute 0, HELD_NONE, 0, CANT_SELECT, BALL, ITEMMENU_NOUSE, ITEMMENU_CLOSE

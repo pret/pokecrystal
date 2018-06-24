@@ -1,4 +1,4 @@
-InitCrystalData: ; 48000
+InitCrystalData:
 	ld a, $1
 	ld [wd474], a
 	xor a
@@ -18,11 +18,10 @@ InitCrystalData: ; 48000
 	res 1, a
 	ld [wd479], a
 	ret
-; 4802f
 
 INCLUDE "mobile/mobile_12.asm"
 
-InitGender: ; 48dcb (12:4dcb)
+InitGender:
 	call InitGenderScreen
 	call LoadGenderScreenPal
 	call LoadGenderScreenLightBlueTile
@@ -41,7 +40,6 @@ InitGender: ; 48dcb (12:4dcb)
 	ld c, 10
 	call DelayFrames
 	ret
-; 48dfc (12:4dfc)
 
 .MenuHeader: ; 0x48dfc
 	db MENU_BACKUP_TILES ; flags
@@ -63,7 +61,7 @@ TextJump_AreYouABoyOrAreYouAGirl: ; 0x48e0f
 	db "@"
 ; 0x48e14
 
-InitGenderScreen: ; 48e14 (12:4e14)
+InitGenderScreen:
 	ld a, $10
 	ld [wMusicFade], a
 	ld a, MUSIC_NONE
@@ -85,7 +83,7 @@ InitGenderScreen: ; 48e14 (12:4e14)
 	call ByteFill
 	ret
 
-LoadGenderScreenPal: ; 48e47 (12:4e47)
+LoadGenderScreenPal:
 	ld hl, .Palette
 	ld de, wBGPals1
 	ld bc, 1 palettes
@@ -93,19 +91,16 @@ LoadGenderScreenPal: ; 48e47 (12:4e47)
 	call FarCopyWRAM
 	farcall ApplyPals
 	ret
-; 48e5c (12:4e5c)
 
-.Palette: ; 48e5c
+.Palette:
 INCLUDE "gfx/new_game/gender_screen.pal"
-; 48e64
 
-LoadGenderScreenLightBlueTile: ; 48e64 (12:4e64)
+LoadGenderScreenLightBlueTile:
 	ld de, .LightBlueTile
 	ld hl, vTiles2 tile $00
 	lb bc, BANK(.LightBlueTile), 1
 	call Get2bpp
 	ret
-; 48e71 (12:4e71)
 
-.LightBlueTile: ; 48e71
+.LightBlueTile:
 INCBIN "gfx/new_game/gender_screen.2bpp"

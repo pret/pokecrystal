@@ -93,4 +93,3 @@ EZChat_SortedPokemon:
 .ro:       db VULPIX, -1
 .wa:       db JUMPLUFF, TOTODILE, MACHOP ;, -1
 .end:      db -1
-; 11d67e

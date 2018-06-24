@@ -1,4 +1,4 @@
-_ReceiveItem:: ; d1d5
+_ReceiveItem::
 	call DoesHLEqualNumItems
 	jp nz, PutItemInPocket
 	push hl
@@ -10,28 +10,28 @@ _ReceiveItem:: ; d1d5
 	rst JumpTable
 	ret
 
-.Pockets: ; d1e9
+.Pockets:
 ; entries correspond to item types
 	dw .Item
 	dw .KeyItem
 	dw .Ball
 	dw .TMHM
 
-.Item: ; d1f1
+.Item:
 	ld h, d
 	ld l, e
 	jp PutItemInPocket
 
-.KeyItem: ; d1f6
+.KeyItem:
 	ld h, d
 	ld l, e
 	jp ReceiveKeyItem
 
-.Ball: ; d1fb
+.Ball:
 	ld hl, wNumBalls
 	jp PutItemInPocket
 
-.TMHM: ; d201
+.TMHM:
 	ld h, d
 	ld l, e
 	ld a, [wCurItem]
@@ -39,7 +39,7 @@ _ReceiveItem:: ; d1d5
 	call GetTMHMNumber
 	jp ReceiveTMHM
 
-_TossItem:: ; d20d
+_TossItem::
 	call DoesHLEqualNumItems
 	jr nz, .remove
 	push hl
@@ -58,11 +58,11 @@ _TossItem:: ; d20d
 	dw .Ball
 	dw .TMHM
 
-.Ball: ; d228
+.Ball:
 	ld hl, wNumBalls
 	jp RemoveItemFromPocket
 
-.TMHM: ; d22e
+.TMHM:
 	ld h, d
 	ld l, e
 	ld a, [wCurItem]
@@ -70,19 +70,19 @@ _TossItem:: ; d20d
 	call GetTMHMNumber
 	jp TossTMHM
 
-.KeyItem: ; d23a
+.KeyItem:
 	ld h, d
 	ld l, e
 	jp TossKeyItem
 
-.Item: ; d23f
+.Item:
 	ld h, d
 	ld l, e
 
 .remove
 	jp RemoveItemFromPocket
 
-_CheckItem:: ; d244
+_CheckItem::
 	call DoesHLEqualNumItems
 	jr nz, .nope
 	push hl
@@ -101,11 +101,11 @@ _CheckItem:: ; d244
 	dw .Ball
 	dw .TMHM
 
-.Ball: ; d25f
+.Ball:
 	ld hl, wNumBalls
 	jp CheckTheItem
 
-.TMHM: ; d265
+.TMHM:
 	ld h, d
 	ld l, e
 	ld a, [wCurItem]
@@ -113,19 +113,19 @@ _CheckItem:: ; d244
 	call GetTMHMNumber
 	jp CheckTMHM
 
-.KeyItem: ; d271
+.KeyItem:
 	ld h, d
 	ld l, e
 	jp CheckKeyItems
 
-.Item: ; d276
+.Item:
 	ld h, d
 	ld l, e
 
 .nope
 	jp CheckTheItem
 
-DoesHLEqualNumItems: ; d27b
+DoesHLEqualNumItems:
 	ld a, l
 	cp LOW(wNumItems)
 	ret nz
@@ -133,7 +133,7 @@ DoesHLEqualNumItems: ; d27b
 	cp HIGH(wNumItems)
 	ret
 
-GetPocketCapacity: ; d283
+GetPocketCapacity:
 	ld c, MAX_ITEMS
 	ld a, e
 	cp LOW(wNumItems)
@@ -155,7 +155,7 @@ GetPocketCapacity: ; d283
 	ld c, MAX_BALLS
 	ret
 
-PutItemInPocket: ; d29c
+PutItemInPocket:
 	ld d, h
 	ld e, l
 	inc hl
@@ -231,7 +231,7 @@ PutItemInPocket: ; d29c
 	scf
 	ret
 
-RemoveItemFromPocket: ; d2ff
+RemoveItemFromPocket:
 	ld d, h
 	ld e, l
 	ld a, [hli]
@@ -296,7 +296,7 @@ RemoveItemFromPocket: ; d2ff
 	and a
 	ret
 
-CheckTheItem: ; d349
+CheckTheItem:
 	ld a, [wCurItem]
 	ld c, a
 .loop
@@ -313,7 +313,7 @@ CheckTheItem: ; d349
 	and a
 	ret
 
-ReceiveKeyItem: ; d35a
+ReceiveKeyItem:
 	ld hl, wNumKeyItems
 	ld a, [hli]
 	cp MAX_KEY_ITEMS
@@ -333,7 +333,7 @@ ReceiveKeyItem: ; d35a
 	and a
 	ret
 
-TossKeyItem: ; d374
+TossKeyItem:
 	ld a, [wCurItemQuantity]
 	ld e, a
 	ld d, 0
@@ -363,7 +363,7 @@ TossKeyItem: ; d374
 	scf
 	ret
 
-.Toss: ; d396
+.Toss:
 	ld hl, wNumKeyItems
 	ld a, [wCurItem]
 	ld c, a
@@ -384,7 +384,7 @@ TossKeyItem: ; d374
 	scf
 	ret
 
-CheckKeyItems: ; d3b1
+CheckKeyItems:
 	ld a, [wCurItem]
 	ld c, a
 	ld hl, wKeyItems
@@ -401,7 +401,7 @@ CheckKeyItems: ; d3b1
 	scf
 	ret
 
-ReceiveTMHM: ; d3c4
+ReceiveTMHM:
 	dec c
 	ld b, 0
 	ld hl, wTMsHMs
@@ -418,7 +418,7 @@ ReceiveTMHM: ; d3c4
 	and a
 	ret
 
-TossTMHM: ; d3d8
+TossTMHM:
 	dec c
 	ld b, 0
 	ld hl, wTMsHMs
@@ -445,7 +445,7 @@ TossTMHM: ; d3d8
 	and a
 	ret
 
-CheckTMHM: ; d3fb
+CheckTMHM:
 	dec c
 	ld b, $0
 	ld hl, wTMsHMs
@@ -456,7 +456,7 @@ CheckTMHM: ; d3fb
 	scf
 	ret
 
-GetTMHMNumber:: ; d407
+GetTMHMNumber::
 ; Return the number of a TM/HM by item id c.
 	ld a, c
 ; Skip any dummy items.
@@ -473,7 +473,7 @@ GetTMHMNumber:: ; d407
 	ld c, a
 	ret
 
-GetNumberedTMHM: ; d417
+GetNumberedTMHM:
 ; Return the item id of a TM/HM by number c.
 	ld a, c
 ; Skip any gaps.
@@ -491,7 +491,7 @@ GetNumberedTMHM: ; d417
 	ld c, a
 	ret
 
-_CheckTossableItem:: ; d427
+_CheckTossableItem::
 ; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be removed from the bag.
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
@@ -500,7 +500,7 @@ _CheckTossableItem:: ; d427
 	and a
 	ret
 
-CheckSelectableItem: ; d432
+CheckSelectableItem:
 ; Return 1 in wItemAttributeParamBuffer and carry if wCurItem can't be selected.
 	ld a, ITEMATTR_PERMISSIONS
 	call GetItemAttr
@@ -509,7 +509,7 @@ CheckSelectableItem: ; d432
 	and a
 	ret
 
-CheckItemPocket:: ; d43d
+CheckItemPocket::
 ; Return the pocket for wCurItem in wItemAttributeParamBuffer.
 	ld a, ITEMATTR_POCKET
 	call GetItemAttr
@@ -517,7 +517,7 @@ CheckItemPocket:: ; d43d
 	ld [wItemAttributeParamBuffer], a
 	ret
 
-CheckItemContext: ; d448
+CheckItemContext:
 ; Return the context for wCurItem in wItemAttributeParamBuffer.
 	ld a, ITEMATTR_HELP
 	call GetItemAttr
@@ -525,7 +525,7 @@ CheckItemContext: ; d448
 	ld [wItemAttributeParamBuffer], a
 	ret
 
-CheckItemMenu: ; d453
+CheckItemMenu:
 ; Return the menu for wCurItem in wItemAttributeParamBuffer.
 	ld a, ITEMATTR_HELP
 	call GetItemAttr
@@ -534,7 +534,7 @@ CheckItemMenu: ; d453
 	ld [wItemAttributeParamBuffer], a
 	ret
 
-GetItemAttr: ; d460
+GetItemAttr:
 ; Get attribute a of wCurItem.
 
 	push hl
@@ -560,13 +560,13 @@ GetItemAttr: ; d460
 	pop hl
 	ret
 
-ItemAttr_ReturnCarry: ; d47f
+ItemAttr_ReturnCarry:
 	ld a, 1
 	ld [wItemAttributeParamBuffer], a
 	scf
 	ret
 
-GetItemPrice: ; d486
+GetItemPrice:
 ; Return the price of wCurItem in de.
 	push hl
 	push bc

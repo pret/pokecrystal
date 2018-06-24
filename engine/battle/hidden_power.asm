@@ -1,4 +1,4 @@
-HiddenPowerDamage: ; fbced
+HiddenPowerDamage:
 ; Override Hidden Power's type and power based on the user's DVs.
 
 	ld hl, wBattleMonDVs
@@ -108,4 +108,3 @@ HiddenPowerDamage: ; fbced
 	pop af
 	ld d, a
 	ret
-; fbd54

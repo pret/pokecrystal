@@ -1,4 +1,4 @@
-ObjectActionPairPointers: ; 445f
+ObjectActionPairPointers:
 ; entries correspond to OBJECT_ACTION_* constants
 	dw SetFacingStanding,              SetFacingStanding
 	dw SetFacingStandAction,           SetFacingCurrent
@@ -17,34 +17,30 @@ ObjectActionPairPointers: ; 445f
 	dw SetFacingBoulderDust,           SetFacingStanding
 	dw SetFacingGrassShake,            SetFacingStanding
 	dw SetFacingSkyfall,               SetFacingCurrent
-; 44a3
 
-SetFacingStanding: ; 44a3
+SetFacingStanding:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], STANDING
 	ret
-; 44aa
 
-SetFacingCurrent: ; 44aa
+SetFacingCurrent:
 	call GetSpriteDirection
 	or FACING_STEP_DOWN_0 ; useless
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], a
 	ret
-; 44b5
 
-SetFacingStandAction: ; 44b5
+SetFacingStandAction:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
 	and 1
 	jr nz, SetFacingStepAction
 	jp SetFacingCurrent
-; 44c1
 
-SetFacingStepAction: ; 44c1
+SetFacingStepAction:
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit SLIDING_F, [hl]
@@ -69,9 +65,8 @@ SetFacingStepAction: ; 44c1
 	add hl, bc
 	ld [hl], a
 	ret
-; 44e4
 
-SetFacingSkyfall: ; 44e4
+SetFacingSkyfall:
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit SLIDING_F, [hl]
@@ -96,9 +91,8 @@ SetFacingSkyfall: ; 44e4
 	add hl, bc
 	ld [hl], a
 	ret
-; 4508
 
-SetFacingBumpAction: ; 4508
+SetFacingBumpAction:
 	ld hl, OBJECT_FLAGS1
 	add hl, bc
 	bit SLIDING_F, [hl]
@@ -122,9 +116,8 @@ SetFacingBumpAction: ; 4508
 	add hl, bc
 	ld [hl], a
 	ret
-; 4529
 
-SetFacingCounterclockwiseSpin: ; 4529
+SetFacingCounterclockwiseSpin:
 	call CounterclockwiseSpinAction
 	ld hl, OBJECT_FACING
 	add hl, bc
@@ -134,14 +127,12 @@ SetFacingCounterclockwiseSpin: ; 4529
 	add hl, bc
 	ld [hl], a
 	ret
-; 4539
 
-SetFacingCounterclockwiseSpin2: ; 4539
+SetFacingCounterclockwiseSpin2:
 	call CounterclockwiseSpinAction
 	jp SetFacingStanding
-; 453f
 
-CounterclockwiseSpinAction: ; 453f
+CounterclockwiseSpinAction:
 ; Here, OBJECT_STEP_FRAME consists of two 2-bit components,
 ; using only bits 0,1 and 4,5.
 ; bits 0,1 is a timer (4 overworld frames)
@@ -179,13 +170,11 @@ CounterclockwiseSpinAction: ; 453f
 	add hl, bc
 	ld [hl], a
 	ret
-; 456a
 
-.Directions: ; 456a
+.Directions:
 	db OW_DOWN, OW_RIGHT, OW_UP, OW_LEFT
-; 456e
 
-SetFacingFish: ; 456e
+SetFacingFish:
 	call GetSpriteDirection
 	rrca
 	rrca
@@ -194,30 +183,26 @@ SetFacingFish: ; 456e
 	add hl, bc
 	ld [hl], a
 	ret
-; 457b
 
-SetFacingShadow: ; 457b
+SetFacingShadow:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], FACING_SHADOW
 	ret
-; 4582
 
 SetFacingEmote: ; 4582 emote
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], FACING_EMOTE
 	ret
-; 4589
 
-SetFacingBigDollSym: ; 4589
+SetFacingBigDollSym:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], FACING_BIG_DOLL_SYM
 	ret
-; 4590
 
-SetFacingBounce: ; 4590
+SetFacingBounce:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld a, [hl]
@@ -230,16 +215,14 @@ SetFacingBounce: ; 4590
 	add hl, bc
 	ld [hl], FACING_STEP_UP_0
 	ret
-; 45a4
 
-SetFacingFreezeBounce: ; 45a4
+SetFacingFreezeBounce:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], FACING_STEP_DOWN_0
 	ret
-; 45ab
 
-SetFacingWeirdTree: ; 45ab
+SetFacingWeirdTree:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	ld a, [hl]
@@ -253,16 +236,14 @@ SetFacingWeirdTree: ; 45ab
 	add hl, bc
 	ld [hl], a
 	ret
-; 45be
 
-SetFacingBigDollAsym: ; 45be
+SetFacingBigDollAsym:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], FACING_BIG_DOLL_ASYM
 	ret
-; 45c5
 
-SetFacingBigDoll: ; 45c5
+SetFacingBigDoll:
 	ld a, [wVariableSprites + SPRITE_BIG_DOLL - SPRITE_VARS]
 	ld d, FACING_BIG_DOLL_SYM ; symmetric
 	cp SPRITE_BIG_SNORLAX
@@ -276,9 +257,8 @@ SetFacingBigDoll: ; 45c5
 	add hl, bc
 	ld [hl], d
 	ret
-; 45da
 
-SetFacingBoulderDust: ; 45da
+SetFacingBoulderDust:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	inc [hl]
@@ -293,9 +273,8 @@ SetFacingBoulderDust: ; 45da
 .ok
 	ld [hl], a
 	ret
-; 45ed
 
-SetFacingGrassShake: ; 45ed
+SetFacingGrassShake:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
 	inc [hl]
@@ -310,4 +289,3 @@ SetFacingGrassShake: ; 45ed
 .ok
 	ld [hl], a
 	ret
-; 4600

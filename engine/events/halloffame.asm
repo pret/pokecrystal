@@ -35,7 +35,7 @@ HallOfFame:: ; 0x8640e
 	ret
 ; 0x86455
 
-RedCredits:: ; 86455
+RedCredits::
 	ld a, LOW(MUSIC_NONE)
 	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_NONE)
@@ -56,9 +56,8 @@ RedCredits:: ; 86455
 	ld b, a
 	farcall Credits
 	ret
-; 8648e
 
-HallOfFame_FadeOutMusic: ; 8648e
+HallOfFame_FadeOutMusic:
 	ld a, LOW(MUSIC_NONE)
 	ld [wMusicFadeID], a
 	ld a, HIGH(MUSIC_NONE)
@@ -72,9 +71,8 @@ HallOfFame_FadeOutMusic: ; 8648e
 	farcall InitDisplayForHallOfFame
 	ld c, 100
 	jp DelayFrames
-; 864b4
 
-HallOfFame_PlayMusicDE: ; 864b4
+HallOfFame_PlayMusicDE:
 	push de
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -82,9 +80,8 @@ HallOfFame_PlayMusicDE: ; 864b4
 	pop de
 	call PlayMusic
 	ret
-; 864c3
 
-AnimateHallOfFame: ; 864c3
+AnimateHallOfFame:
 	xor a
 	ld [wJumptableIndex], a
 	call LoadHOFTeam
@@ -120,9 +117,8 @@ AnimateHallOfFame: ; 864c3
 	ld c, 8
 	call DelayFrames
 	ret
-; 8650c
 
-.DisplayNewHallOfFamer: ; 8650c
+.DisplayNewHallOfFamer:
 	call DisplayHOFMon
 	ld de, .String_NewHallOfFamer
 	hlcoord 1, 2
@@ -135,14 +131,12 @@ AnimateHallOfFame: ; 864c3
 	call DelayFrames
 	and a
 	ret
-; 8652c
 
 .String_NewHallOfFamer:
 	db "New Hall of Famer!@"
-; 8653f
 
 
-GetHallOfFameParty: ; 8653f
+GetHallOfFameParty:
 	ld hl, wHallOfFamePokemonList
 	ld bc, wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1
 	xor a
@@ -227,9 +221,8 @@ GetHallOfFameParty: ; 8653f
 	ld a, -1
 	ld [de], a
 	ret
-; 865b5
 
-AnimateHOFMonEntrance: ; 865b5
+AnimateHOFMonEntrance:
 	push hl
 	call ClearBGPalettes
 	farcall ResetDisplayBetweenHallOfFameMons
@@ -281,7 +274,6 @@ AnimateHOFMonEntrance: ; 865b5
 	ld [hSCY], a
 	call HOF_SlideFrontpic
 	ret
-; 86635
 
 HOF_SlideBackpic:
 .backpicloop
@@ -292,7 +284,6 @@ HOF_SlideBackpic:
 	ld [hSCX], a
 	call DelayFrame
 	jr .backpicloop
-; 86643
 
 HOF_SlideFrontpic:
 .frontpicloop
@@ -304,9 +295,8 @@ HOF_SlideFrontpic:
 	ld [hSCX], a
 	call DelayFrame
 	jr .frontpicloop
-; 86650
 
-_HallOfFamePC: ; 86650
+_HallOfFamePC:
 	call LoadFontsBattleExtra
 	xor a
 	ld [wJumptableIndex], a
@@ -415,9 +405,8 @@ _HallOfFamePC: ; 86650
 
 .TimeFamer:
 	db "    -Time Famer@"
-; 8671c
 
-LoadHOFTeam: ; 8671c
+LoadHOFTeam:
 	ld a, [wJumptableIndex]
 	cp NUM_HOF_TEAMS
 	jr nc, .invalid
@@ -442,9 +431,8 @@ LoadHOFTeam: ; 8671c
 .invalid
 	scf
 	ret
-; 86748
 
-DisplayHOFMon: ; 86748
+DisplayHOFMon:
 	xor a
 	ld [hBGMapMode], a
 	ld a, [hli]
@@ -529,9 +517,8 @@ DisplayHOFMon: ; 86748
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
-; 86810
 
-HOF_AnimatePlayerPic: ; 86810
+HOF_AnimatePlayerPic:
 	call ClearBGPalettes
 	ld hl, vTiles2 tile HALLOFFAME_COLON
 	ld de, FontExtra + 13 tiles ; "<COLON>"
@@ -614,9 +601,7 @@ HOF_AnimatePlayerPic: ; 86810
 	call WaitBGMap
 	farcall ProfOaksPCRating
 	ret
-; 868ed
 
 .PlayTime:
 	db "PLAY TIME@"
-; 868f7
 

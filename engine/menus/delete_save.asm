@@ -1,4 +1,4 @@
-_DeleteSaveData: ; 4d54c
+_DeleteSaveData:
 	farcall BlankScreen
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout

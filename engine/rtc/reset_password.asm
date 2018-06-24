@@ -1,4 +1,4 @@
-_ResetClock: ; 4d3b1
+_ResetClock:
 	farcall BlankScreen
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
@@ -58,7 +58,7 @@ _ResetClock: ; 4d3b1
 	db "NO@"
 	db "YES@"
 
-ClockResetPassword: ; 4d41e
+ClockResetPassword:
 	call .CalculatePassword
 	push de
 	ld hl, wStringBuffer2
@@ -106,7 +106,7 @@ ClockResetPassword: ; 4d41e
 	text_jump UnknownText_0x1c562e
 	db "@"
 
-.updateIDdisplay ; 4d468
+.updateIDdisplay
 	hlcoord 14, 15
 	ld de, wStringBuffer2
 	ld c, 5
@@ -129,7 +129,7 @@ ClockResetPassword: ; 4d41e
 	ld [hl], "▲"
 	ret
 
-.dpadinput ; 4d490
+.dpadinput
 	ld a, b
 	and D_LEFT
 	jr nz, .left
@@ -186,7 +186,7 @@ ClockResetPassword: ; 4d41e
 	ld [hl], 9
 	ret
 
-.getcurrentdigit ; 4d4d5
+.getcurrentdigit
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
 	ld d, $0
@@ -194,7 +194,7 @@ ClockResetPassword: ; 4d41e
 	add hl, de
 	ret
 
-.ConvertDecIDToBytes: ; 4d4e0
+.ConvertDecIDToBytes:
 	ld hl, 0
 	ld de, wStringBuffer2 + 4
 	ld bc, 1
@@ -206,7 +206,7 @@ ClockResetPassword: ; 4d41e
 	ld bc, 1000
 	call .ConvertToBytes
 	ld bc, 10000
-.ConvertToBytes: ; 4d501
+.ConvertToBytes:
 	ld a, [de]
 	dec de
 	push hl
@@ -218,7 +218,7 @@ ClockResetPassword: ; 4d41e
 	add hl, bc
 	ret
 
-.CalculatePassword: ; 4d50f
+.CalculatePassword:
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld de, 0
@@ -234,7 +234,7 @@ ClockResetPassword: ; 4d41e
 	call CloseSRAM
 	ret
 
-.ComponentFromNumber: ; 4d533
+.ComponentFromNumber:
 	ld a, [hli]
 	add e
 	ld e, a
@@ -245,7 +245,7 @@ ClockResetPassword: ; 4d41e
 	jr nz, .ComponentFromNumber
 	ret
 
-.ComponentFromString: ; 4d53e
+.ComponentFromString:
 	ld a, [hli]
 	cp "@"
 	ret z

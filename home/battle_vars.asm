@@ -1,12 +1,11 @@
-GetBattleVar:: ; 39e1
+GetBattleVar::
 ; Preserves hl.
 	push hl
 	call GetBattleVarAddr
 	pop hl
 	ret
-; 39e7
 
-GetBattleVarAddr:: ; 39e7
+GetBattleVarAddr::
 ; Get variable from pair a, depending on whose turn it is.
 ; There are 21 variable pairs.
 
@@ -110,4 +109,3 @@ BattleVarLocations:
 	dw wCurPlayerMove,             wCurEnemyMove
 	dw wLastPlayerCounterMove,     wLastEnemyCounterMove
 	dw wLastPlayerMove,            wLastEnemyMove
-; 3a90

@@ -1,4 +1,4 @@
-TMHMMoves: ; 1167a
+TMHMMoves:
 ; entries correspond to *_TMNUM enums (see constants/item_constants.asm)
 ; TMs
 	db DYNAMICPUNCH
@@ -64,4 +64,3 @@ TMHMMoves: ; 1167a
 	db THUNDERBOLT
 	db ICE_BEAM
 	db 0 ; end
-; 116b7

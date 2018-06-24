@@ -1,4 +1,4 @@
-_NameRater: ; fb6ed
+_NameRater:
 ; Introduce himself
 	ld hl, NameRaterIntroText
 	call PrintText
@@ -77,9 +77,8 @@ _NameRater: ; fb6ed
 .done
 	call PrintText
 	ret
-; fb78a
 
-CheckIfMonIsYourOT: ; fb78a
+CheckIfMonIsYourOT:
 ; Checks to see if the partymon loaded in [wCurPartyMon] has the different OT as you.  Returns carry if not.
 	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
@@ -110,9 +109,8 @@ CheckIfMonIsYourOT: ; fb78a
 .nope
 	scf
 	ret
-; fb7be
 
-IsNewNameEmpty: ; fb7be
+IsNewNameEmpty:
 ; Checks to see if the nickname loaded in wStringBuffer2 is empty.  If so, return carry.
 	ld hl, wStringBuffer2
 	ld c, MON_NAME_LENGTH - 1
@@ -132,9 +130,8 @@ IsNewNameEmpty: ; fb7be
 .nonspace
 	and a
 	ret
-; fb7d3
 
-CompareNewToOld: ; fb7d3
+CompareNewToOld:
 ; Compares the nickname in wStringBuffer2 to the previous nickname.  If they are the same, return carry.
 	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
@@ -167,9 +164,8 @@ CompareNewToOld: ; fb7d3
 .terminator
 	scf
 	ret
-; fb802
 
-GetNicknameLength: ; fb802
+GetNicknameLength:
 ; Gets the length of the name starting at hl and returns it in c.
 	ld c, 0
 .loop
@@ -181,7 +177,6 @@ GetNicknameLength: ; fb802
 	cp MON_NAME_LENGTH - 1
 	jr nz, .loop
 	ret
-; fb80f
 
 NameRaterIntroText: ; 0xfb80f
 	; Hello, hello! I'm the NAME RATER.

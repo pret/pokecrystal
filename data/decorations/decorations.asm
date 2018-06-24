@@ -1,4 +1,4 @@
-DecorationIDs: ; 26f2b
+DecorationIDs:
 ; see constants/deco_constants.asm
 	db DECO_FEATHERY_BED ; 2
 	db DECO_PINK_BED ; 3
@@ -52,4 +52,3 @@ TrophyIDs:
 	db DECO_GOLD_TROPHY_DOLL ; 33
 	db DECO_SILVER_TROPHY_DOLL ; 34
 	db -1
-; 26f59

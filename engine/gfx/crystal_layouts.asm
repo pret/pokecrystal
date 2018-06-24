@@ -20,15 +20,13 @@ GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
 	jp hl
 .done
 	ret
-; 49330 (12:5330)
 
-.dw ; 49330
+.dw
 	dw MG_Mobile_Layout00
 	dw MG_Mobile_Layout01
 	dw MG_Mobile_Layout02
-; 49336
 
-MG_Mobile_Layout_FillBox: ; 49336
+MG_Mobile_Layout_FillBox:
 .row
 	push bc
 	push hl
@@ -43,16 +41,15 @@ MG_Mobile_Layout_FillBox: ; 49336
 	dec b
 	jr nz, .row
 	ret
-; 49346
 
-MG_Mobile_Layout_WipeAttrMap: ; 49346 (12:5346)
+MG_Mobile_Layout_WipeAttrMap:
 	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a
 	call ByteFill
 	ret
 
-MG_Mobile_Layout_LoadPals: ; 49351 (12:5351)
+MG_Mobile_Layout_LoadPals:
 	ld de, wBGPals1
 	ld hl, Palette_MysteryGiftMobile
 	ld bc, 5 palettes
@@ -65,7 +62,7 @@ MG_Mobile_Layout_LoadPals: ; 49351 (12:5351)
 	call FarCopyWRAM
 	ret
 
-MG_Mobile_Layout00: ; 4936e (12:536e)
+MG_Mobile_Layout00:
 	call MG_Mobile_Layout_LoadPals
 	call MG_Mobile_Layout_WipeAttrMap
 	call MG_Mobile_Layout_CreatePalBoxes
@@ -73,7 +70,7 @@ MG_Mobile_Layout00: ; 4936e (12:536e)
 	farcall ApplyPals
 	ret
 
-MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
+MG_Mobile_Layout_CreatePalBoxes:
 	hlcoord 0, 0, wAttrMap
 	lb bc, 4, 1
 	ld a, $1
@@ -109,35 +106,30 @@ MG_Mobile_Layout_CreatePalBoxes: ; 49384 (12:5384)
 	ld a, $7
 	call ByteFill
 	ret
-; 493e1 (12:53e1)
 
-Palette_MysteryGiftMobile: ; 493e1
+Palette_MysteryGiftMobile:
 INCLUDE "gfx/mystery_gift/mg_mobile.pal"
-; 49409
 
-LoadOW_BGPal7:: ; 49409
+LoadOW_BGPal7::
 	ld hl, Palette_TextBG7
 	ld de, wBGPals1 palette PAL_BG_TEXT
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
-; 49418
 
-Palette_TextBG7: ; 49418
+Palette_TextBG7:
 INCLUDE "gfx/font/bg_text.pal"
-; 49420
 
-Function49420:: ; 49420 (12:5420)
+Function49420::
 	ld hl, MansionPalette1 + 8 palettes
 	ld de, wBGPals1 palette PAL_BG_ROOF
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	ret
-; 4942f (12:542f)
 
-MG_Mobile_Layout01: ; 4942f
+MG_Mobile_Layout01:
 	call MG_Mobile_Layout_LoadPals
 	ld de, wBGPals1 palette PAL_BG_TEXT
 	ld hl, .Palette_49478
@@ -168,16 +160,14 @@ MG_Mobile_Layout01: ; 4942f
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 49478
 
-.Palette_49478: ; 49478
+.Palette_49478:
 	RGB 31, 31, 31
 	RGB 26, 31, 00
 	RGB 20, 16, 03
 	RGB 00, 00, 00
-; 49480
 
-Function49480: ; 49480
+Function49480:
 	hlcoord 0, 0, wAttrMap
 	lb bc, 4, SCREEN_WIDTH
 	ld a, $7
@@ -188,9 +178,8 @@ Function49480: ; 49480
 	hlcoord 19, 2, wAttrMap
 	ld [hl], a
 	ret
-; 49496
 
-Function49496: ; 49496
+Function49496:
 	hlcoord 0, 0, wAttrMap
 	lb bc, 2, SCREEN_WIDTH
 	ld a, $7
@@ -201,11 +190,10 @@ Function49496: ; 49496
 	hlcoord 19, 1, wAttrMap
 	ld [hl], a
 	ret
-; 494ac
 
 INCLUDE "engine/tilesets/tileset_palettes.asm"
 
-MG_Mobile_Layout02: ; 49706
+MG_Mobile_Layout02:
 	ld hl, .Palette_49732
 	ld de, wBGPals1
 	ld bc, 1 palettes
@@ -220,23 +208,20 @@ MG_Mobile_Layout02: ; 49706
 	ld a, BANK(wOBPals1)
 	call FarCopyWRAM
 	ret
-; 49732
 
-.Palette_49732: ; 49732
+.Palette_49732:
 	RGB 31, 31, 31
 	RGB 23, 16, 07
 	RGB 23, 07, 07
 	RGB 03, 07, 20
-; 4973a
 
-.Palette_4973a: ; 4973a
+.Palette_4973a:
 	RGB 00, 00, 00
 	RGB 07, 05, 31
 	RGB 14, 18, 31
 	RGB 31, 31, 31
-; 49742
 
-Function49742: ; 49742
+Function49742:
 	ld hl, .Palette_49757
 	ld de, wBGPals1
 	ld bc, 8 palettes
@@ -244,13 +229,11 @@ Function49742: ; 49742
 	call FarCopyWRAM
 	farcall ApplyPals
 	ret
-; 49757
 
-.Palette_49757: ; 49757
+.Palette_49757:
 INCLUDE "gfx/unknown/49757.pal"
-; 49797
 
-_InitMG_Mobile_LinkTradePalMap: ; 49797
+_InitMG_Mobile_LinkTradePalMap:
 	hlcoord 0, 0, wAttrMap
 	lb bc, 16, 2
 	ld a, $4
@@ -300,9 +283,8 @@ _InitMG_Mobile_LinkTradePalMap: ; 49797
 	ld bc, 6
 	call ByteFill
 	ret
-; 49811
 
-LoadTradeRoomBGPals: ; 49811
+LoadTradeRoomBGPals:
 	ld hl, TradeRoomPalette
 	ld de, wBGPals1 palette PAL_BG_GREEN
 	ld bc, 6 palettes
@@ -310,16 +292,13 @@ LoadTradeRoomBGPals: ; 49811
 	call FarCopyWRAM
 	farcall ApplyPals
 	ret
-; 49826
 
-TradeRoomPalette: ; 49826
+TradeRoomPalette:
 INCLUDE "gfx/trade/border.pal"
-; 49856
 
-InitMG_Mobile_LinkTradePalMap: ; 49856
+InitMG_Mobile_LinkTradePalMap:
 	call _InitMG_Mobile_LinkTradePalMap
 	ret
-; 4985a
 
 ; unused
 INCLUDE "gfx/unknown/4985a.asm"

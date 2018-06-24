@@ -1,4 +1,4 @@
-DetermineLinkBattleResult: ; 2b930
+DetermineLinkBattleResult:
 	farcall UpdateEnemyMonInParty
 	ld hl, wPartyMon1HP
 	call .CountMonsRemaining
@@ -58,7 +58,7 @@ DetermineLinkBattleResult: ; 2b930
 	ld [wBattleResult], a
 	ret
 
-.CountMonsRemaining: ; 2b995
+.CountMonsRemaining:
 	ld c, 0
 	ld b, 3
 	ld de, PARTYMON_STRUCT_LENGTH - 1
@@ -74,7 +74,7 @@ DetermineLinkBattleResult: ; 2b930
 	jr nz, .loop
 	ret
 
-.CalcPercentHPRemaining: ; 2b9a6
+.CalcPercentHPRemaining:
 	ld de, 0
 	ld c, $3
 .loop2
@@ -117,7 +117,7 @@ DetermineLinkBattleResult: ; 2b930
 	jr nz, .loop2
 	ret
 
-.BothSides_CheckNumberMonsAtFullHealth: ; 2b9e1
+.BothSides_CheckNumberMonsAtFullHealth:
 	ld hl, wPartyMon1HP
 	call .CheckFaintedOrFullHealth
 	jr nz, .finish ; we have a pokemon that's neither fainted nor at full health
@@ -136,7 +136,7 @@ DetermineLinkBattleResult: ; 2b930
 	and a
 	ret
 
-.CheckFaintedOrFullHealth: ; 2ba01
+.CheckFaintedOrFullHealth:
 	ld d, 3
 .loop3
 	ld a, [hli]

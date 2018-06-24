@@ -119,7 +119,6 @@ INCLUDE "gfx/tilesets/players_room_palette_map.asm"
 
 UnusedMuseumPalMap: ; 0x4cb65
 INCLUDE "gfx/tilesets/unused_museum_palette_map.asm"
-; 4cbd5
 
 TilesetIcePathPalMap: ; 0x4cbd5
 INCLUDE "gfx/tilesets/ice_path_palette_map.asm"

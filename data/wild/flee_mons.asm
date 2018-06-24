@@ -1,7 +1,7 @@
 FleeMons:
 ; referenced by TryEnemyFlee and FastBallMultiplier
 
-SometimesFleeMons: ; 3c59a
+SometimesFleeMons:
 	db MAGNEMITE
 	db GRIMER
 	db TANGELA
@@ -17,7 +17,7 @@ SometimesFleeMons: ; 3c59a
 	db HERACROSS
 	db -1
 
-OftenFleeMons: ; 3c5a8
+OftenFleeMons:
 	db CUBONE
 	db ARTICUNO
 	db ZAPDOS
@@ -28,8 +28,7 @@ OftenFleeMons: ; 3c5a8
 	db TEDDIURSA
 	db -1
 
-AlwaysFleeMons: ; 3c5b1
+AlwaysFleeMons:
 	db RAIKOU
 	db ENTEI
 	db -1
-; 3c5b4

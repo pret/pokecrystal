@@ -146,30 +146,30 @@ channel_struct: MACRO
 \1Octave::            db ; 7-0 (0 is highest)
 \1PitchOffset::       db ; raises existing octaves (to repeat phrases)
 \1NoteDuration::      db ; frames remaining for the current note
-\1Field16::           ds 1 ; c117
-                      ds 1 ; c118
+\1Field16::           ds 1
+                      ds 1
 \1LoopCount::         db
 \1Tempo::             dw
 \1Tracks::            db ; hi:left lo:right
-\1SFXDutyLoop::       db ; c11d
+\1SFXDutyLoop::       db
 \1VibratoDelayCount:: db ; initialized by \1VibratoDelay
 \1VibratoDelay::      db ; number of frames a note plays until vibrato starts
 \1VibratoExtent::     db
 \1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
 \1PitchWheelTarget::  dw ; frequency endpoint for pitch wheel
-\1PitchWheelAmount::  db ; c124
-\1PitchWheelAmountFraction::   db ; c125
-\1Field25::           db ; c126
-                      ds 1 ; c127
+\1PitchWheelAmount::  db
+\1PitchWheelAmountFraction::   db
+\1Field25::           db
+                      ds 1
 \1CryPitch::          dw
 \1Field29::           ds 1
 \1Field2a::           ds 2
 \1Field2c::           ds 1
 \1NoteLength::        db ; frames per 16th note
-\1Field2e::           ds 1 ; c12f
-\1Field2f::           ds 1 ; c130
-\1Field30::           ds 1 ; c131
-                      ds 1 ; c132
+\1Field2e::           ds 1
+\1Field2f::           ds 1
+\1Field30::           ds 1
+                      ds 1
 ENDM
 
 battle_tower_struct: MACRO

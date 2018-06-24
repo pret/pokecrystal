@@ -1,6 +1,6 @@
 ; Metronome cannot turn into these moves.
 
-MetronomeExcepts: ; 37454
+MetronomeExcepts:
 	db NO_MOVE
 	db METRONOME
 	db STRUGGLE
@@ -15,4 +15,3 @@ MetronomeExcepts: ; 37454
 	db SLEEP_TALK
 	db THIEF
 	db -1
-; 37462

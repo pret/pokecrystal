@@ -1,4 +1,4 @@
-BattleCommand_GetMagnitude: ; 37991
+BattleCommand_GetMagnitude:
 ; getmagnitude
 
 	push bc

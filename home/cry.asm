@@ -1,4 +1,4 @@
-PlayStereoCry:: ; 37b6
+PlayStereoCry::
 	push af
 	ld a, 1
 	ld [wStereoPanningMask], a
@@ -6,9 +6,8 @@ PlayStereoCry:: ; 37b6
 	call _PlayMonCry
 	call WaitSFX
 	ret
-; 37c4
 
-PlayStereoCry2:: ; 37c4
+PlayStereoCry2::
 ; Don't wait for the cry to end.
 ; Used during pic animations.
 	push af
@@ -16,15 +15,13 @@ PlayStereoCry2:: ; 37c4
 	ld [wStereoPanningMask], a
 	pop af
 	jp _PlayMonCry
-; 37ce
 
-PlayMonCry:: ; 37ce
+PlayMonCry::
 	call PlayMonCry2
 	call WaitSFX
 	ret
-; 37d5
 
-PlayMonCry2:: ; 37d5
+PlayMonCry2::
 ; Don't wait for the cry to end.
 	push af
 	xor a
@@ -33,9 +30,8 @@ PlayMonCry2:: ; 37d5
 	pop af
 	call _PlayMonCry
 	ret
-; 37e2
 
-_PlayMonCry:: ; 37e2
+_PlayMonCry::
 	push hl
 	push de
 	push bc
@@ -52,9 +48,8 @@ _PlayMonCry:: ; 37e2
 	pop de
 	pop hl
 	ret
-; 37f3
 
-LoadCry:: ; 37f3
+LoadCry::
 ; Load cry bc.
 
 	call GetCryIndex
@@ -88,9 +83,8 @@ endr
 	rst Bankswitch
 	and a
 	ret
-; 381e
 
-GetCryIndex:: ; 381e
+GetCryIndex::
 	and a
 	jr z, .no
 	cp NUM_POKEMON + 1
@@ -105,4 +99,3 @@ GetCryIndex:: ; 381e
 .no
 	scf
 	ret
-; 382d

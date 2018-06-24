@@ -1,4 +1,4 @@
-BattleCommand_ClearHazards: ; 37b39
+BattleCommand_ClearHazards:
 ; clearhazards
 
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -35,4 +35,3 @@ BattleCommand_ClearHazards: ; 37b39
 	ld hl, ReleasedByText
 	jp StdBattleTextBox
 
-; 37b74

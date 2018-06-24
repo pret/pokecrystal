@@ -43,7 +43,7 @@ INCLUDE "home/handshake.asm"
 INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
 
-InexplicablyEmptyFunction:: ; 2d43
+InexplicablyEmptyFunction::
 ; unused
 ; Inexplicably empty.
 ; Seen in PredefPointers.
@@ -51,14 +51,13 @@ rept 16
 	nop
 endr
 	ret
-; 2d54
 
 INCLUDE "home/farcall.asm"
 INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
 INCLUDE "home/flag.asm"
 
-Unreferenced_Function2ebb:: ; 2ebb
+Unreferenced_Function2ebb::
 	ld a, [wMonStatusFlags]
 	bit 1, a
 	ret z
@@ -66,34 +65,29 @@ Unreferenced_Function2ebb:: ; 2ebb
 	ld a, [hJoyDown]
 	bit B_BUTTON_F, a
 	ret
-; 2ec6
 
-xor_a:: ; 2ec6
+xor_a::
 	xor a
 	ret
-; 2ec8
 
-xor_a_dec_a:: ; 2ec8
+xor_a_dec_a::
 	xor a
 	dec a
 	ret
-; 2ecb
 
-Unreferenced_Function2ecb:: ; 2ecb
+Unreferenced_Function2ecb::
 	push hl
 	ld hl, wMonStatusFlags
 	bit 1, [hl]
 	pop hl
 	ret
-; 2ed3
 
 INCLUDE "home/sprite_updates.asm"
 INCLUDE "home/string.asm"
 INCLUDE "home/region.asm"
 
-ret_2f3e:: ; 2f3e
+ret_2f3e::
 	ret
-; 2f3f
 
 INCLUDE "home/item.asm"
 INCLUDE "home/random.asm"
@@ -101,14 +95,12 @@ INCLUDE "home/sram.asm"
 
 ; Register aliases
 
-_hl_:: ; 2fec
+_hl_::
 	jp hl
-; 2fed
 
-_de_:: ; 2fed
+_de_::
 	push de
 	ret
-; 2fef
 
 INCLUDE "home/double_speed.asm"
 INCLUDE "home/clear_sprites.asm"
@@ -116,7 +108,7 @@ INCLUDE "home/copy2.asm"
 INCLUDE "home/copy_tilemap.asm"
 INCLUDE "home/copy_name.asm"
 
-IsInArray:: ; 30e1
+IsInArray::
 ; Find value a for every de bytes in array hl.
 ; Return index in b and carry if found.
 
@@ -139,7 +131,6 @@ IsInArray:: ; 30e1
 .InArray:
 	scf
 	ret
-; 30f4
 
 SkipNames:: ; 0x30f4
 ; Skip a names.
@@ -156,7 +147,7 @@ SkipNames:: ; 0x30f4
 INCLUDE "home/math.asm"
 INCLUDE "home/print_text.asm"
 
-CallPointerAt:: ; 31be
+CallPointerAt::
 	ld a, [hROMBank]
 	push af
 	ld a, [hli]
@@ -172,13 +163,12 @@ CallPointerAt:: ; 31be
 	ld a, h
 	rst Bankswitch
 	ret
-; 31cd
 
-QueueScript:: ; 31cd
+QueueScript::
 ; Push pointer hl in the current bank to wQueuedScriptBank.
 	ld a, [hROMBank]
 
-FarQueueScript:: ; 31cf
+FarQueueScript::
 ; Push pointer a:hl to wQueuedScriptBank.
 	ld [wQueuedScriptBank], a
 	ld a, l
@@ -186,9 +176,8 @@ FarQueueScript:: ; 31cf
 	ld a, h
 	ld [wQueuedScriptAddr + 1], a
 	ret
-; 31db
 
-StringCmp:: ; 31db
+StringCmp::
 ; Compare c bytes at de and hl.
 ; Return z if they all match.
 .loop
@@ -202,7 +191,7 @@ StringCmp:: ; 31db
 	ret
 ; 0x31e4
 
-CompareLong:: ; 31e4
+CompareLong::
 ; Compare bc bytes at de and hl.
 ; Return carry if they all match.
 
@@ -224,7 +213,6 @@ CompareLong:: ; 31e4
 .Diff:
 	and a
 	ret
-; 31f3
 
 INCLUDE "home/tilemap.asm"
 INCLUDE "home/hp_pals.asm"
@@ -254,14 +242,13 @@ CountSetBits:: ; 0x335f
 	ret
 ; 0x3376
 
-GetWeekday:: ; 3376
+GetWeekday::
 	ld a, [wCurDay]
 .mod
 	sub 7
 	jr nc, .mod
 	add 7
 	ret
-; 3380
 
 INCLUDE "home/pokedex_flags.asm"
 INCLUDE "home/names.asm"

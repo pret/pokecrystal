@@ -1,18 +1,18 @@
-_FindPartyMonAboveLevel: ; 4dbd2
+_FindPartyMonAboveLevel:
 	ld hl, wPartyMon1Level
 	call FindAboveLevel
 	ret
 
-_FindPartyMonAtLeastThatHappy: ; 4dbd9
+_FindPartyMonAtLeastThatHappy:
 	ld hl, wPartyMon1Happiness
 	call FindAtLeastThatHappy
 	ret
 
-_FindPartyMonThatSpecies: ; 4dbe0
+_FindPartyMonThatSpecies:
 	ld hl, wPartyMon1Species
 	jp FindThatSpecies
 
-_FindPartyMonThatSpeciesYourTrainerID: ; 4dbe6
+_FindPartyMonThatSpeciesYourTrainerID:
 	ld hl, wPartyMon1Species
 	call FindThatSpecies
 	ret z
@@ -35,7 +35,7 @@ _FindPartyMonThatSpeciesYourTrainerID: ; 4dbe6
 	xor a
 	ret
 
-FindAtLeastThatHappy: ; 4dc0a
+FindAtLeastThatHappy:
 ; Sets the bits for the Pokemon that have a happiness greater than or equal to b.
 ; The lowest bits are used.  Sets z if no Pokemon in your party is at least that happy.
 	ld c, $0
@@ -69,7 +69,7 @@ FindAtLeastThatHappy: ; 4dc0a
 	and a
 	ret
 
-FindAboveLevel: ; 4dc31
+FindAboveLevel:
 	ld c, $0
 	ld a, [wPartyCount]
 	ld d, a
@@ -98,7 +98,7 @@ FindAboveLevel: ; 4dc31
 	and a
 	ret
 
-FindThatSpecies: ; 4dc56
+FindThatSpecies:
 ; Find species b in your party.
 ; If you have no Pokemon, returns c = -1 and z.
 ; If that species is in your party, returns its location in c, and nz.
@@ -116,7 +116,7 @@ FindThatSpecies: ; 4dc56
 	and a
 	ret
 
-RetroactivelyIgnoreEggs: ; 4dc67
+RetroactivelyIgnoreEggs:
 	ld e, -2
 	ld hl, wPartySpecies
 .loop

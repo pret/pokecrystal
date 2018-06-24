@@ -1,4 +1,4 @@
-Mobile_PrintOpponentBattleMessage: ; 4ea0a
+Mobile_PrintOpponentBattleMessage:
 	ld a, c
 	push af
 	call SpeechTextBox

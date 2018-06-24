@@ -41,7 +41,7 @@ FindItemInBallScript:: ; 0x122ce
 	db "@"
 ; 0x122f8
 
-.TryReceiveItem: ; 122f8
+.TryReceiveItem:
 	xor a
 	ld [wScriptVar], a
 	ld a, [wEngineBuffer1]
@@ -59,4 +59,3 @@ FindItemInBallScript:: ; 0x122ce
 	ld a, $1
 	ld [wScriptVar], a
 	ret
-; 12324

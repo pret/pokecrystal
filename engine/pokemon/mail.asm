@@ -1,4 +1,4 @@
-SendMailToPC: ; 4456e
+SendMailToPC:
 	ld a, MON_ITEM
 	call GetPartyParamLocation
 	ld d, [hl]
@@ -37,9 +37,8 @@ SendMailToPC: ; 4456e
 .full
 	scf
 	ret
-; 445c0
 
-DeleteMailFromPC: ; 445c0 (11:45c0)
+DeleteMailFromPC:
 ; Shift all mail messages in the mailbox
 	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
@@ -71,9 +70,8 @@ DeleteMailFromPC: ; 445c0 (11:45c0)
 	ld hl, sMailboxCount
 	dec [hl]
 	jp CloseSRAM
-; 445f4 (11:45f4)
 
-ReadMailMessage: ; 445f4
+ReadMailMessage:
 	ld a, b
 	ld hl, sMailbox
 	ld bc, MAIL_STRUCT_LENGTH
@@ -83,7 +81,7 @@ ReadMailMessage: ; 445f4
 	farcall ReadAnyMail
 	ret
 
-MoveMailFromPCToParty: ; 44607
+MoveMailFromPCToParty:
 	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
 	push bc
@@ -114,17 +112,15 @@ MoveMailFromPCToParty: ; 44607
 	call CloseSRAM
 	pop bc
 	jp DeleteMailFromPC
-; 44648 (11:4648)
 
-GetMailboxCount: ; 44648
+GetMailboxCount:
 	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
 	ld a, [sMailboxCount]
 	ld c, a
 	jp CloseSRAM
-; 44654
 
-CheckPokeMail:: ; 44654
+CheckPokeMail::
 	push bc
 	push de
 	farcall SelectMonFromParty
@@ -191,10 +187,9 @@ CheckPokeMail:: ; 44654
 .return
 	ld [wScriptVar], a
 	ret
-; 446cc
 
 
-GivePokeMail:: ; 446cc
+GivePokeMail::
 	ld a, [wPartyCount]
 	dec a
 	push af
@@ -241,10 +236,9 @@ GivePokeMail:: ; 446cc
 	ld a, b
 	ld [de], a
 	jp CloseSRAM
-; 44725
 
 
-BackupPartyMonMail: ; 44725
+BackupPartyMonMail:
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld hl, sPartyMail
@@ -256,9 +250,8 @@ BackupPartyMonMail: ; 44725
 	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
 	call CopyBytes
 	jp CloseSRAM
-; 44745
 
-RestorePartyMonMail: ; 44745 (11:4745)
+RestorePartyMonMail:
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	ld hl, sPartyMailBackup
@@ -271,7 +264,7 @@ RestorePartyMonMail: ; 44745 (11:4745)
 	call CopyBytes
 	jp CloseSRAM
 
-DeletePartyMonMail: ; 44765 (11:4765)
+DeletePartyMonMail:
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
 	xor a
@@ -283,10 +276,9 @@ DeletePartyMonMail: ; 44765 (11:4765)
 	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
 	call ByteFill
 	jp CloseSRAM
-; 44781 (11:4781)
 
 
-IsAnyMonHoldingMail: ; 44781
+IsAnyMonHoldingMail:
 	ld a, [wPartyCount]
 	and a
 	jr z, .no_mons
@@ -308,7 +300,6 @@ IsAnyMonHoldingMail: ; 44781
 .no_mons
 	and a
 	ret
-; 447a0
 
 _PlayerMailBoxMenu: ; 0x447a0
 	call InitMail

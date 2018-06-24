@@ -1,4 +1,4 @@
-NamesPointers:: ; 33ab
+NamesPointers::
 ; entries correspond to GetName constants (see constants/text_constants.asm)
 	dba PokemonNames        ; MON_NAME (not used; jumps to GetPokemonName)
 	dba MoveNames           ; MOVE_NAME
@@ -8,9 +8,8 @@ NamesPointers:: ; 33ab
 	dbw 0, wOTPartyMonOT     ; ENEMY_OT_NAME
 	dba TrainerClassNames   ; TRAINER_NAME
 	dbw 4, MoveDescriptions ; MOVE_DESC_NAME_BROKEN (wrong bank)
-; 33c3
 
-GetName:: ; 33c3
+GetName::
 ; Return name wCurSpecies from name list wNamedObjectTypeBuffer in wStringBuffer1.
 
 	ld a, [hROMBank]
@@ -67,9 +66,8 @@ GetName:: ; 33c3
 	pop af
 	rst Bankswitch
 	ret
-; 3411
 
-GetNthString:: ; 3411
+GetNthString::
 ; Return the address of the
 ; ath string starting from hl.
 
@@ -87,9 +85,8 @@ GetNthString:: ; 3411
 	jr nz, .readChar
 	pop bc
 	ret
-; 3420
 
-GetBasePokemonName:: ; 3420
+GetBasePokemonName::
 ; Discards gender (Nidoran).
 
 	push hl
@@ -112,9 +109,8 @@ GetBasePokemonName:: ; 3420
 	pop hl
 	ret
 
-; 343b
 
-GetPokemonName:: ; 343b
+GetPokemonName::
 ; Get Pokemon name wd265.
 
 	ld a, [hROMBank]
@@ -150,9 +146,8 @@ GetPokemonName:: ; 343b
 	pop af
 	rst Bankswitch
 	ret
-; 3468
 
-GetItemName:: ; 3468
+GetItemName::
 ; Get item name wd265.
 
 	push hl
@@ -174,9 +169,8 @@ GetItemName:: ; 3468
 	pop bc
 	pop hl
 	ret
-; 3487
 
-GetTMHMName:: ; 3487
+GetTMHMName::
 ; Get TM/HM name by item id wd265.
 
 	push hl
@@ -257,11 +251,10 @@ GetTMHMName:: ; 3487
 	db "HM"
 .HMTextEnd:
 	db "@"
-; 34df
 
 INCLUDE "home/hm_moves.asm"
 
-GetMoveName:: ; 34f8
+GetMoveName::
 	push hl
 
 	ld a, MOVE_NAME
@@ -275,4 +268,3 @@ GetMoveName:: ; 34f8
 
 	pop hl
 	ret
-; 350c

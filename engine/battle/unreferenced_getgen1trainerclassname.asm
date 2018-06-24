@@ -1,4 +1,4 @@
-Unreferenced_GetGen1TrainerClassName: ; 50a28
+Unreferenced_GetGen1TrainerClassName:
 	ld hl, Gen1TrainerClassNames
 	ld a, [wTrainerClass]
 	dec a

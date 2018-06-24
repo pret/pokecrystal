@@ -4,7 +4,7 @@ anim_obj_gfx: MACRO
 	dba \2
 ENDM
 
-AnimObjGFX: ; cfcf6
+AnimObjGFX:
 ; entries correspond to ANIM_GFX_* constants
 	anim_obj_gfx  0, AnimObj00GFX
 	anim_obj_gfx 21, AnimObjHitGFX
@@ -48,4 +48,3 @@ AnimObjGFX: ; cfcf6
 	anim_obj_gfx 24, AnimObjAeroblastGFX
 	anim_obj_gfx  1, NULL
 	anim_obj_gfx  1, NULL
-; cfd9e

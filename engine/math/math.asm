@@ -1,4 +1,4 @@
-_Multiply:: ; 66de
+_Multiply::
 
 ; hMultiplier is one byte.
 	ld a, 8
@@ -82,10 +82,9 @@ _Multiply:: ; 66de
 	ld [hProduct + 0], a
 
 	ret
-; 673e
 
 
-_Divide:: ; 673e
+_Divide::
 	xor a
 	ld [hMathBuffer + 0], a
 	ld [hMathBuffer + 1], a
@@ -193,4 +192,3 @@ _Divide:: ; 673e
 	ld [hDividend + 0], a
 
 	ret
-; 67c1

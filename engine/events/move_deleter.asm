@@ -107,7 +107,7 @@ MoveDeletion:
 	db "@"
 ; 0x2c5f9
 
-.DeleteMove: ; 2c5f9
+.DeleteMove:
 	ld a, b
 	push bc
 	dec a

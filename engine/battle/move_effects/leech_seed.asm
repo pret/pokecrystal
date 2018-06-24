@@ -1,4 +1,4 @@
-BattleCommand_LeechSeed: ; 36f9d
+BattleCommand_LeechSeed:
 ; leechseed
 	ld a, [wAttackMissed]
 	and a
@@ -39,4 +39,3 @@ BattleCommand_LeechSeed: ; 36f9d
 	ld hl, EvadedText
 	jp StdBattleTextBox
 
-; 36fe1

@@ -1,4 +1,4 @@
-SelectMenu:: ; 13327
+SelectMenu::
 
 	call CheckRegisteredItem
 	jr c, .NotRegistered
@@ -11,16 +11,14 @@ SelectMenu:: ; 13327
 	call MapTextbox
 	call WaitButton
 	jp CloseText
-; 13340
 
 
-ItemMayBeRegisteredText: ; 13340
+ItemMayBeRegisteredText:
 	text_jump UnknownText_0x1c1cf3
 	db "@"
-; 13345
 
 
-CheckRegisteredItem: ; 13345
+CheckRegisteredItem:
 
 	ld a, [wWhichRegisteredItem]
 	and a
@@ -86,10 +84,9 @@ CheckRegisteredItem: ; 13345
 	ld [wRegisteredItem], a
 	scf
 	ret
-; 133a6
 
 
-.CheckRegisteredNo: ; 133a6
+.CheckRegisteredNo:
 	ld a, [wWhichRegisteredItem]
 	and REGISTERED_NUMBER
 	dec a
@@ -102,10 +99,9 @@ CheckRegisteredItem: ; 13345
 .NotEnoughItems:
 	scf
 	ret
-; 133b6
 
 
-.IsSameItem: ; 133b6
+.IsSameItem:
 	ld a, [wRegisteredItem]
 	cp [hl]
 	jr nz, .NotSameItem
@@ -116,10 +112,9 @@ CheckRegisteredItem: ; 13345
 .NotSameItem:
 	scf
 	ret
-; 133c3
 
 
-UseRegisteredItem: ; 133c3
+UseRegisteredItem:
 
 	farcall CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
@@ -136,25 +131,22 @@ UseRegisteredItem: ; 133c3
 	dw .Current
 	dw .Party
 	dw .Overworld
-; 133df
 
-.NoFunction: ; 133df
+.NoFunction:
 	call OpenText
 	call CantUseItem
 	call CloseText
 	and a
 	ret
-; 133ea
 
-.Current: ; 133ea
+.Current:
 	call OpenText
 	call DoItemEffect
 	call CloseText
 	and a
 	ret
-; 133f5
 
-.Party: ; 133f5
+.Party:
 	call RefreshScreen
 	call FadeToMenu
 	call DoItemEffect
@@ -162,9 +154,8 @@ UseRegisteredItem: ; 133c3
 	call CloseText
 	and a
 	ret
-; 13406
 
-.Overworld: ; 13406
+.Overworld:
 	call RefreshScreen
 	ld a, 1
 	ld [wUsingItemWithSelect], a
@@ -178,9 +169,8 @@ UseRegisteredItem: ; 133c3
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	ret
-; 13422
 
-.CantUse: ; 13422
+.CantUse:
 	call RefreshScreen
 
 ._cantuse
@@ -188,4 +178,3 @@ UseRegisteredItem: ; 133c3
 	call CloseText
 	and a
 	ret
-; 1342d

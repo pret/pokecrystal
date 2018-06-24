@@ -1,4 +1,4 @@
-PhotoStudio: ; 16dc7
+PhotoStudio:
 	ld hl, .Text_AskWhichMon
 	call PrintText
 	farcall SelectMonFromParty
@@ -28,7 +28,6 @@ PhotoStudio: ; 16dc7
 .print_text
 	call PrintText
 	ret
-; 16e04
 
 .Text_AskWhichMon: ; 0x16e04
 	; Which #MON should I photo- graph?

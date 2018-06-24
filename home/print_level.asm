@@ -1,4 +1,4 @@
-PrintLevel:: ; 382d
+PrintLevel::
 ; Print wTempMonLevel at hl
 
 	ld a, [wTempMonLevel]
@@ -14,18 +14,15 @@ PrintLevel:: ; 382d
 	dec hl
 	inc c
 	jr Print8BitNumRightAlign
-; 383d
 
-PrintLevel_Force3Digits:: ; 383d
+PrintLevel_Force3Digits::
 ; Print :L and all 3 digits
 	ld [hl], "<LV>"
 	inc hl
 	ld c, 3
-; 3842
 
-Print8BitNumRightAlign:: ; 3842
+Print8BitNumRightAlign::
 	ld [wd265], a
 	ld de, wd265
 	ld b, PRINTNUM_RIGHTALIGN | 1
 	jp PrintNum
-; 384d

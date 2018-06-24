@@ -1,4 +1,4 @@
-RotateUnownFrontpic: ; e0000
+RotateUnownFrontpic:
 ; something to do with Unown printer
 	push de
 	xor a ; sScratch
@@ -43,7 +43,7 @@ RotateUnownFrontpic: ; e0000
 	call CloseSRAM
 	ret
 
-.Copy: ; e004e
+.Copy:
 	ld c, $10
 .loop_copy
 	ld a, [hli]
@@ -53,7 +53,7 @@ RotateUnownFrontpic: ; e0000
 	jr nz, .loop_copy
 	ret
 
-.Rotate: ; e0057
+.Rotate:
 	ld hl, wd012
 	ld e, %10000000
 	ld d, 8
@@ -75,7 +75,7 @@ RotateUnownFrontpic: ; e0000
 	jr nz, .loop_decompress
 	ret
 
-.CountSetBit: ; e0078
+.CountSetBit:
 	ld b, 0
 	ld c, 8
 .loop_count
@@ -107,5 +107,5 @@ y = y + 1
 endr
 ENDM
 
-UnownPrinter_GBPrinterRectangle: ; e008b
+UnownPrinter_GBPrinterRectangle:
 	gbprinterrect 7, 7

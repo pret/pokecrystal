@@ -1,4 +1,4 @@
-BuenasPassword: ; 8af6b
+BuenasPassword:
 	xor a
 	ld [wWhichIndexSet], a
 	ld hl, .MenuHeader
@@ -26,7 +26,6 @@ BuenasPassword: ; 8af6b
 	ld a, b
 	ld [wScriptVar], a
 	ret
-; 8afa9
 
 .MenuHeader: ; 0x8afa9
 	db MENU_BACKUP_TILES ; flags
@@ -44,7 +43,7 @@ BuenasPassword: ; 8af6b
 	dw .PlacePasswordChoices
 ; 0x8afb4
 
-.PasswordIndices: ; 8afb8
+.PasswordIndices:
 	db NUM_PASSWORDS_PER_CATEGORY
 x = 0
 rept NUM_PASSWORDS_PER_CATEGORY
@@ -53,7 +52,7 @@ x = x + 1
 endr
 	db -1
 
-.PlacePasswordChoices: ; 8afbd
+.PlacePasswordChoices:
 	push de
 	ld a, [wBuenasPassword]
 	and $f0
@@ -65,9 +64,8 @@ endr
 	pop hl
 	call PlaceString
 	ret
-; 8afd4
 
-BuenaPrize: ; 8afd4
+BuenaPrize:
 	xor a
 	ld [wMenuScrollPosition], a
 	ld a, $1
@@ -149,7 +147,6 @@ BuenaPrize: ; 8afd4
 	call JoyWaitAorB
 	call PlayClickSFX
 	ret
-; 8b072
 
 .Text_AskWhichPrize: ; 0x8b072
 	; Which prize would you like?
@@ -186,19 +183,17 @@ BuenaPrize: ; 8afd4
 	db "@"
 ; 0x8b090
 
-Buena_DisplayBlueCardBalance: ; 8b090
+Buena_DisplayBlueCardBalance:
 	ld hl, BlueCardBalanceMenuHeader
 	call LoadMenuHeader
 	ret
-; 8b097
 
-PrintBlueCardBalance: ; 8b097
+PrintBlueCardBalance:
 	ld de, wBlueCardBalance
 	call .DrawBox
 	ret
-; 8b09e
 
-.DrawBox: ; 8b09e
+.DrawBox:
 	push de
 	xor a
 	ld [hBGMapMode], a
@@ -221,29 +216,24 @@ PrintBlueCardBalance: ; 8b097
 	lb bc, 1, 2
 	call PrintNum
 	ret
-; 8b0ca
 
 .Points_string:
 	db "Points@"
-; 8b0d1
 
 BlueCardBalanceMenuHeader: ; 0x8b0d1
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 11, 11, 13
-; 8b0d6
 
-Buena_PlacePrizeMenuBox: ; 8b0d6
+Buena_PlacePrizeMenuBox:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
 	ret
-; 8b0dd
 
 .MenuHeader ; 0x8b0dd
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 17, TEXTBOX_Y - 1
-; 8b0e2
 
-Buena_PrizeMenu: ; 8b0e2
+Buena_PrizeMenu:
 	ld hl, .MenuHeader
 	call CopyMenuHeader
 	ld a, [wMenuSelection]
@@ -268,7 +258,6 @@ Buena_PrizeMenu: ; 8b0e2
 .cancel
 	xor a
 	ret
-; 8b113
 
 .MenuHeader: ; 0x8b113
 	db MENU_BACKUP_TILES ; flags
@@ -286,11 +275,10 @@ Buena_PrizeMenu: ; 8b0e2
 	dba .indices
 	dba .prizeitem
 	dba .prizepoints
-; 8b129
 
 NUM_BUENA_PRIZES EQU 9 ; ((BuenaPrizeItems.End - BuenaPrizeItems) / 2)
 
-.indices ; 8b129
+.indices
 	db NUM_BUENA_PRIZES
 x = 1
 rept NUM_BUENA_PRIZES
@@ -298,9 +286,8 @@ rept NUM_BUENA_PRIZES
 x = x + 1
 endr
 	db -1
-; 8b134
 
-.prizeitem ; 8b134
+.prizeitem
 	ld a, [wMenuSelection]
 	call Buena_getprize
 	ld a, [hl]
@@ -310,9 +297,8 @@ endr
 	pop hl
 	call PlaceString
 	ret
-; 8b147
 
-.prizepoints ; 8b147
+.prizepoints
 	ld a, [wMenuSelection]
 	call Buena_getprize
 	inc hl
@@ -321,9 +307,8 @@ endr
 	add c
 	ld [de], a
 	ret
-; 8b154
 
-Buena_getprize: ; 8b154
+Buena_getprize:
 	dec a
 	ld hl, BuenaPrizeItems
 	ld b, 0
@@ -331,6 +316,5 @@ Buena_getprize: ; 8b154
 	add hl, bc
 	add hl, bc
 	ret
-; 8b15e
 
 INCLUDE "data/items/buena_prizes.asm"

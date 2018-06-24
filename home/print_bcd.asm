@@ -1,4 +1,4 @@
-PrintBCDNumber:: ; 38bb
+PrintBCDNumber::
 ; function to print a BCD (Binary-coded decimal) number
 ; de = address of BCD number
 ; hl = destination address
@@ -50,7 +50,7 @@ PrintBCDNumber:: ; 38bb
 	ret
 ; 0x38f2
 
-PrintBCDDigit:: ; 38f2
+PrintBCDDigit::
 	and %00001111
 	and a
 	jr z, .zeroDigit

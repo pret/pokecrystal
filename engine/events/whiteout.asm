@@ -32,23 +32,21 @@ Script_Whiteout: ; 0x124ce
 	db "@"
 ; 0x124fa
 
-OverworldBGMap: ; 124fa
+OverworldBGMap:
 	call ClearPalettes
 	call ClearScreen
 	call WaitBGMap2
 	call HideSprites
 	call RotateThreePalettesLeft
 	ret
-; 1250a
 
-BattleBGMap: ; 1250a
+BattleBGMap:
 	ld b, SCGB_BATTLE_GRAYSCALE
 	call GetSGBLayout
 	call SetPalettes
 	ret
-; 12513
 
-HalveMoney: ; 12513
+HalveMoney:
 	farcall StubbedTrainerRankings_WhiteOuts
 
 ; Halve the player's money.
@@ -63,10 +61,9 @@ HalveMoney: ; 12513
 	rra
 	ld [hl], a
 	ret
-; 12527
 
 
-GetWhiteoutSpawn: ; 12527
+GetWhiteoutSpawn:
 	ld a, [wLastSpawnMapGroup]
 	ld d, a
 	ld a, [wLastSpawnMapNumber]
@@ -79,4 +76,3 @@ GetWhiteoutSpawn: ; 12527
 .yes
 	ld [wDefaultSpawnpoint], a
 	ret
-; 1253d

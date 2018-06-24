@@ -1,6 +1,6 @@
 INCLUDE "data/mon_menu.asm"
 
-MonSubmenu: ; 24d19
+MonSubmenu:
 	xor a
 	ld [hBGMapMode], a
 	call GetMonSubmenuItems
@@ -17,16 +17,14 @@ MonSubmenu: ; 24d19
 
 	call ExitMenu
 	ret
-; 24d3f
 
-.MenuHeader: ; 24d3f
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw 0
 	db 1 ; default option
-; 24d47
 
-.GetTopCoord: ; 24d47
+.GetTopCoord:
 ; TopCoord = 1 + BottomCoord - 2 * (NumSubmenuItems + 1)
 	ld a, [wBuffer1]
 	inc a
@@ -38,9 +36,8 @@ MonSubmenu: ; 24d19
 	ld [wMenuBorderTopCoord], a
 	call MenuBox
 	ret
-; 24d59
 
-MonMenuLoop: ; 24d59
+MonMenuLoop:
 .loop
 	ld a, MENU_UNUSED_3 | MENU_BACKUP_TILES_2 ; flags
 	ld [wMenuDataFlags], a
@@ -72,9 +69,8 @@ MonMenuLoop: ; 24d59
 	add hl, bc
 	ld a, [hl]
 	ret
-; 24d91
 
-PopulateMonMenu: ; 24d91
+PopulateMonMenu:
 	call MenuBoxCoord2Tile
 	ld bc, 2 * SCREEN_WIDTH + 2
 	add hl, bc
@@ -93,9 +89,8 @@ PopulateMonMenu: ; 24d91
 	add hl, bc
 	pop de
 	jr .loop
-; 24db0
 
-GetMonMenuString: ; 24db0
+GetMonMenuString:
 	ld hl, MonMenuOptions + 1
 	ld de, 3
 	call IsInArray
@@ -118,9 +113,8 @@ GetMonMenuString: ; 24db0
 	ld d, h
 	ld e, l
 	ret
-; 24dd4
 
-GetMonSubmenuItems: ; 24dd4
+GetMonSubmenuItems:
 	call ResetMonSubmenu
 	ld a, [wCurPartySpecies]
 	cp EGG
@@ -195,9 +189,8 @@ GetMonSubmenuItems: ; 24dd4
 	call AddMonMenuItem
 	call TerminateMonSubmenu
 	ret
-; 24e52
 
-IsFieldMove: ; 24e52
+IsFieldMove:
 	ld b, a
 	ld hl, MonMenuOptions
 .next
@@ -216,18 +209,16 @@ IsFieldMove: ; 24e52
 
 .nope
 	ret
-; 24e68
 
-ResetMonSubmenu: ; 24e68
+ResetMonSubmenu:
 	xor a
 	ld [wBuffer1], a
 	ld hl, wBuffer2
 	ld bc, NUM_MONMENU_ITEMS + 1
 	call ByteFill
 	ret
-; 24e76
 
-TerminateMonSubmenu: ; 24e76
+TerminateMonSubmenu:
 	ld a, [wBuffer1]
 	ld e, a
 	ld d, 0
@@ -235,9 +226,8 @@ TerminateMonSubmenu: ; 24e76
 	add hl, de
 	ld [hl], -1
 	ret
-; 24e83
 
-AddMonMenuItem: ; 24e83
+AddMonMenuItem:
 	push hl
 	push de
 	push af
@@ -253,9 +243,8 @@ AddMonMenuItem: ; 24e83
 	pop de
 	pop hl
 	ret
-; 24e99
 
-BattleMonMenu: ; 24e99
+BattleMonMenu:
 	ld hl, MenuHeader_0x24ed4
 	call CopyMenuHeader
 	xor a
@@ -286,19 +275,16 @@ BattleMonMenu: ; 24e99
 .clear_carry
 	and a
 	ret
-; 24ed4
 
-MenuHeader_0x24ed4: ; 24ed4
+MenuHeader_0x24ed4:
 	db 0 ; flags
 	menu_coords 11, 11, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw MenuData_0x24edc
 	db 1 ; default option
-; 24edc
 
-MenuData_0x24edc: ; 24edc
+MenuData_0x24edc:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 3 ; items
 	db "SWITCH@"
 	db "STATS@"
 	db "CANCEL@"
-; 24ef2

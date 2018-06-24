@@ -1,4 +1,4 @@
-BattleCommand_Spikes: ; 37683
+BattleCommand_Spikes:
 ; spikes
 
 	ld hl, wEnemyScreens
@@ -24,4 +24,3 @@ BattleCommand_Spikes: ; 37683
 
 .failed
 	jp FailMove
-; 376a0

@@ -1,4 +1,4 @@
-InitList: ; 50db9
+InitList:
 	ld a, [wInitListType]
 
 	cp INIT_ENEMYOT_LIST

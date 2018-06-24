@@ -109,4 +109,3 @@ GiveDratini: ; 0x8b170
 .EmptyParty:
 	scf
 	ret
-; 8b1e1

@@ -1,4 +1,4 @@
-BattleCommand_HiddenPower: ; 37be8
+BattleCommand_HiddenPower:
 ; hiddenpower
 
 	ld a, [wAttackMissed]
@@ -7,4 +7,3 @@ BattleCommand_HiddenPower: ; 37be8
 	farcall HiddenPowerDamage
 	ret
 
-; 37bf4

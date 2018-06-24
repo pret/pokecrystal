@@ -1,6 +1,6 @@
 ; party menu icons
 
-MonMenuIcons: ; 8eac4
+MonMenuIcons:
 	db ICON_BULBASAUR   ; BULBASAUR
 	db ICON_BULBASAUR   ; IVYSAUR
 	db ICON_BULBASAUR   ; VENUSAUR
@@ -252,4 +252,3 @@ MonMenuIcons: ; 8eac4
 	db ICON_LUGIA       ; LUGIA
 	db ICON_HO_OH       ; HO_OH
 	db ICON_HUMANSHAPE  ; CELEBI
-; 8ebbf

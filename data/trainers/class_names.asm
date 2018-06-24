@@ -1,4 +1,4 @@
-TrainerClassNames:: ; 2c1ef
+TrainerClassNames::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	db "LEADER@"
 	db "LEADER@"

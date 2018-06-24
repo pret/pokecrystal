@@ -1,4 +1,4 @@
-GBCOnlyScreen: ; 4ea82
+GBCOnlyScreen:
 
 	ld a, [hCGB]
 	and a
@@ -37,10 +37,9 @@ GBCOnlyScreen: ; 4ea82
 .loop
 	call DelayFrame
 	jr .loop
-; 4eac5
 
 
-DrawGBCOnlyScreen: ; 4eac5
+DrawGBCOnlyScreen:
 
 	call DrawGBCOnlyBorder
 
@@ -63,10 +62,9 @@ DrawGBCOnlyScreen: ; 4eac5
 	call PlaceString
 
 	ret
-; 4eaea
 
 
-DrawGBCOnlyBorder: ; 4eaea
+DrawGBCOnlyBorder:
 
 	hlcoord 0, 0
 	ld [hl], 0 ; top-left
@@ -94,18 +92,16 @@ DrawGBCOnlyBorder: ; 4eaea
 
 	ld [hl], 7 ; bottom-right
 	ret
-; 4eb15
 
-.FillRow: ; 4eb15
+.FillRow:
 	ld c, SCREEN_WIDTH - 2
 .next_column
 	ld [hli], a
 	dec c
 	jr nz, .next_column
 	ret
-; 4eb1c
 
-.FillColumn: ; 4eb1c
+.FillColumn:
 	ld de, SCREEN_WIDTH
 	ld c, SCREEN_HEIGHT - 2
 .next_row
@@ -114,10 +110,9 @@ DrawGBCOnlyBorder: ; 4eaea
 	dec c
 	jr nz, .next_row
 	ret
-; 4eb27
 
 
-DrawGBCOnlyGraphic: ; 4eb27
+DrawGBCOnlyGraphic:
 	ld de, SCREEN_WIDTH
 .y
 	push bc
@@ -133,17 +128,14 @@ DrawGBCOnlyGraphic: ; 4eb27
 	dec c
 	jr nz, .y
 	ret
-; 4eb38
 
 
-GBCOnlyString: ; 4eb38
+GBCOnlyString:
 	db   "This Game Pak is"
 	next "designed only for"
 	next "use on the"
 	next "Game Boy Color.@"
-; 4eb76
 
 
-GBCOnlyGFX: ; 4eb76
+GBCOnlyGFX:
 INCBIN "gfx/sgb/gbc_only.2bpp.lz"
-; 4f0bc

@@ -26,10 +26,9 @@ prob_total = 0
 ; Tyrogue
 	prob 10
 	prob 1
-; 1fb56e
 
 
-OddEggs: ; 1fb56e
+OddEggs:
 
 OddEgg1:
 	db PICHU

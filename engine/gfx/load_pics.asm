@@ -1,4 +1,4 @@
-GetUnownLetter: ; 51040
+GetUnownLetter:
 ; Return Unown letter in wUnownLetter based on DVs at hl
 
 ; Take the middle 2 bits of each DV and place them in order:
@@ -48,7 +48,7 @@ GetUnownLetter: ; 51040
 	ld [wUnownLetter], a
 	ret
 
-GetMonFrontpic: ; 51077
+GetMonFrontpic:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call IsAPokemon
@@ -60,7 +60,7 @@ GetMonFrontpic: ; 51077
 	ld [rSVBK], a
 	ret
 
-GetAnimatedFrontpic: ; 5108b
+GetAnimatedFrontpic:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call IsAPokemon
@@ -75,7 +75,7 @@ GetAnimatedFrontpic: ; 5108b
 	ld [rSVBK], a
 	ret
 
-_GetFrontpic: ; 510a5
+_GetFrontpic:
 	push de
 	call GetBaseData
 	ld a, [wBasePicSize]
@@ -102,7 +102,7 @@ _GetFrontpic: ; 510a5
 	pop hl
 	ret
 
-GetFrontpicPointer: ; 510d7
+GetFrontpicPointer:
 	ld a, [wCurPartySpecies]
 	cp UNOWN
 	jr z, .unown
@@ -129,7 +129,7 @@ GetFrontpicPointer: ; 510d7
 	pop bc
 	ret
 
-GetAnimatedEnemyFrontpic: ; 51103
+GetAnimatedEnemyFrontpic:
 	ld a, BANK(vTiles3)
 	ld [rVBK], a
 	push hl
@@ -172,7 +172,7 @@ GetAnimatedEnemyFrontpic: ; 51103
 	ld [rVBK], a
 	ret
 
-LoadFrontpicTiles: ; 5114f
+LoadFrontpicTiles:
 	ld hl, wDecompressScratch
 	swap c
 	ld a, c
@@ -193,7 +193,7 @@ LoadFrontpicTiles: ; 5114f
 	jr nz, .loop
 	ret
 
-GetMonBackpic: ; 5116c
+GetMonBackpic:
 	ld a, [wCurPartySpecies]
 	call IsAPokemon
 	ret c
@@ -244,7 +244,7 @@ GetMonBackpic: ; 5116c
 	ld [rSVBK], a
 	ret
 
-FixPicBank: ; 511c5
+FixPicBank:
 ; This is a thing for some reason.
 
 PICS_FIX EQU $36
@@ -262,7 +262,7 @@ GLOBAL PICS_FIX
 	pop hl
 	ret
 
-.PicsBanks: ; 511d4
+.PicsBanks:
 	db BANK("Pics 1")  ; BANK("Pics 1") + 0
 	db BANK("Pics 2")  ; BANK("Pics 1") + 1
 	db BANK("Pics 3")  ; BANK("Pics 1") + 2
@@ -288,7 +288,7 @@ GLOBAL PICS_FIX
 	db BANK("Pics 23") ; BANK("Pics 1") + 22
 	db BANK("Pics 24") ; BANK("Pics 1") + 23
 
-Function511ec: ; 511ec
+Function511ec:
 	ld a, c
 	push de
 	ld hl, PokemonPicPointers
@@ -307,7 +307,7 @@ Function511ec: ; 511ec
 	call FarDecompress
 	ret
 
-GetTrainerPic: ; 5120d
+GetTrainerPic:
 	ld a, [wTrainerClass]
 	and a
 	ret z
@@ -349,7 +349,7 @@ GetTrainerPic: ; 5120d
 	ld [hBGMapMode], a
 	ret
 
-DecompressGet2bpp: ; 5125d
+DecompressGet2bpp:
 ; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
 
 	ld a, [rSVBK]
@@ -373,7 +373,7 @@ DecompressGet2bpp: ; 5125d
 	ld [rSVBK], a
 	ret
 
-FixBackpicAlignment: ; 5127c
+FixBackpicAlignment:
 	push de
 	push bc
 	ld a, [wBoxAlignment]
@@ -409,7 +409,7 @@ FixBackpicAlignment: ; 5127c
 	pop de
 	ret
 
-PadFrontpic: ; 512ab
+PadFrontpic:
 ; pads frontpic to fill 7x7 box
 	ld a, b
 	cp 6
@@ -461,7 +461,7 @@ PadFrontpic: ; 512ab
 	jr nz, .Fill
 	ret
 
-LoadOrientedFrontpic: ; 512f2
+LoadOrientedFrontpic:
 	ld a, [wBoxAlignment]
 	and a
 	jr nz, .x_flip

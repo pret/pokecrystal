@@ -1,4 +1,4 @@
-BattleCommand_FuryCutter: ; 37792
+BattleCommand_FuryCutter:
 ; furycutter
 
 	ld hl, wPlayerFuryCutterCount
@@ -38,10 +38,9 @@ BattleCommand_FuryCutter: ; 37792
 	ld [hl], a
 	ret
 
-; 377be
 
 
-ResetFuryCutterCount: ; 377be
+ResetFuryCutterCount:
 
 	push hl
 
@@ -58,4 +57,3 @@ ResetFuryCutterCount: ; 377be
 	pop hl
 	ret
 
-; 377ce

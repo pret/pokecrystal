@@ -294,7 +294,6 @@ ElmPhoneScript2: ; 0xbd081
 	farwritetext ElmPhoneUnusedText
 	specialphonecall SPECIALCALL_NONE
 	end
-; bd0d0
 
 ; Jack
 

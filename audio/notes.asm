@@ -1,4 +1,4 @@
-FrequencyTable: ; e8d80
+FrequencyTable:
 	dw 0     ; __
 	dw $f82c ; C_
 	dw $f89d ; C#
@@ -24,4 +24,3 @@ FrequencyTable: ; e8d80
 	dw $fdac ; A_
 	dw $fdcd ; A#
 	dw $fded ; B_
-; e8db2

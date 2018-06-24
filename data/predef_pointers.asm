@@ -6,7 +6,7 @@ add_predef: MACRO
 	dab \1
 ENDM
 
-PredefPointers:: ; 856b
+PredefPointers::
 	add_predef LearnMove ; $0
 	add_predef DummyPredef1
 	add_predef HealParty ; this is both a special and a predef
@@ -82,4 +82,3 @@ PredefPointers:: ; 856b
 	add_predef Unused_HOF_AnimateAlignedFrontpic ; $48
 	add_predef HOF_AnimateFrontpic
 	dbw -1, InexplicablyEmptyFunction ; ???
-; 864c

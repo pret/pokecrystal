@@ -1,52 +1,48 @@
 String_89116:
 	db "-----@"
 
-String_8911c: ; 8911c
+String_8911c:
 	db   "でんわばんごうが　ただしく" ; Phone number is not
 	next "はいって　いません！@"   ; entered correctly!
-; 89135
 
-String_89135: ; 89135
+String_89135:
 	db   "データが　かわって　いますが"  ; The data has changed.
 	next "かきかえないで　やめますか？@" ; Quit anyway?
-; 89153
 
-String_89153: ; 89153
+String_89153:
 	db   "メッセージは　ありません@"    ; No message
-; 89160
 
-OpenSRAMBank4: ; 89160
+OpenSRAMBank4:
 	push af
 	ld a, $4
 	call GetSRAMBank
 	pop af
 	ret
-; 89168
 
 
-Function89168: ; 89168 (22:5168)
+Function89168:
 	ld hl, wGameTimerPause
 	set GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ret
 
-Function8916e: ; 8916e (22:516e)
+Function8916e:
 	ld hl, wGameTimerPause
 	res GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ret
 
-Function89174: ; 89174 (22:5174)
+Function89174:
 	ld hl, wGameTimerPause
 	bit GAMETIMERPAUSE_MOBILE_7_F, [hl]
 	ret
 
-Function8917a: ; 8917a (22:517a)
+Function8917a:
 	ld hl, wd002
 	ld bc, $32
 	xor a
 	call ByteFill
 	ret
 
-Function89185: ; 89185 (22:5185)
+Function89185:
 ; strcmp(hl, de, c)
 ; Compares c bytes starting at de and hl and incrementing together until a mismatch is found.
 ; Preserves hl and de.
@@ -65,7 +61,7 @@ Function89185: ; 89185 (22:5185)
 	pop de
 	ret
 
-Function89193: ; 89193
+Function89193:
 ; copy(hl, de, 4)
 ; Copies c bytes from hl to de.
 ; Preserves hl and de.
@@ -80,10 +76,9 @@ Function89193: ; 89193
 	pop hl
 	pop de
 	ret
-; 8919e
 
 
-Function8919e: ; 8919e (22:519e)
+Function8919e:
 ; Searches for the c'th string starting at de.  Returns the pointer in de.
 	ld a, c
 	and a
@@ -97,14 +92,13 @@ Function8919e: ; 8919e (22:519e)
 	jr nz, .loop
 	ret
 
-Function891ab: ; 891ab
+Function891ab:
 	call Mobile22_SetBGMapMode1
 	farcall ReloadMapPart
 	call Mobile22_SetBGMapMode0
 	ret
-; 891b8
 
-Function891b8: ; 891b8
+Function891b8:
 	call Mobile22_SetBGMapMode0
 	hlcoord 0, 0
 	ld a, " "
@@ -112,17 +106,16 @@ Function891b8: ; 891b8
 	call ByteFill
 	call DelayFrame
 	ret
-; 891ca
 
 
-Function891ca: ; 891ca (22:51ca)
+Function891ca:
 	push bc
 	call Function891b8
 	call WaitBGMap
 	pop bc
 	ret
 
-Function891d3: ; 891d3 (22:51d3)
+Function891d3:
 	push bc
 	call Function891ca
 	ld c, $10
@@ -130,7 +123,7 @@ Function891d3: ; 891d3 (22:51d3)
 	pop bc
 	ret
 
-Function891de: ; 891de
+Function891de:
 	call Mobile22_SetBGMapMode0
 	call ClearPalettes
 	hlcoord 0, 0, wAttrMap
@@ -143,30 +136,26 @@ Function891de: ; 891de
 	call ByteFill
 	call Function891ab
 	ret
-; 891fe
 
-Function891fe: ; 891fe
+Function891fe:
 	push bc
 	call Function891de
 	ld c, $10
 	call DelayFrames
 	pop bc
 	ret
-; 89209
 
-Function89209: ; 89209
+Function89209:
 	ld a, 1
 	ld [wSpriteUpdatesEnabled], a
 	ret
-; 8920f
 
-Function8920f: ; 8920f
+Function8920f:
 	ld a, 0
 	ld [wSpriteUpdatesEnabled], a
 	ret
-; 89215
 
-Function89215: ; 89215
+Function89215:
 	push hl
 	push bc
 	ld bc, wAttrMap - wTileMap
@@ -175,10 +164,9 @@ Function89215: ; 89215
 	pop bc
 	pop hl
 	ret
-; 8921f
 
 
-Function8921f: ; 8921f (22:521f)
+Function8921f:
 	push de
 	ld de, SCREEN_WIDTH
 	add hl, de
@@ -199,43 +187,41 @@ Function8921f: ; 8921f (22:521f)
 	pop de
 	ret
 
-Mobile22_ButtonSound: ; 89235 (22:5235)
+Mobile22_ButtonSound:
 	call JoyWaitAorB
 	call PlayClickSFX
 	ret
 
-Mobile22_SetBGMapMode0: ; 8923c
+Mobile22_SetBGMapMode0:
 	xor a
 	ld [hBGMapMode], a
 	ret
-; 89240
 
-Mobile22_SetBGMapMode1: ; 89240
+Mobile22_SetBGMapMode1:
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
-; 89245
 
 
-Function89245: ; 89245 (22:5245)
+Function89245:
 	farcall TryLoadSaveFile
 	ret c
 	farcall _LoadData
 	and a
 	ret
 
-Function89254: ; 89254 (22:5254)
+Function89254:
 	ld bc, $d07
 	jr Function89261
 
-Function89259: ; 89259
+Function89259:
 	ld bc, $0e07
 	jr Function89261
 
-Function8925e: ; 8925e
+Function8925e:
 	ld bc, $0e0c
 
-Function89261: ; 89261
+Function89261:
 	push af
 	push bc
 	ld hl, MenuHeader_0x892a3
@@ -274,7 +260,6 @@ Function89261: ; 89261
 .done
 	scf
 	ret
-; 892a3
 
 MenuHeader_0x892a3: ; 0x892a3
 	db MENU_BACKUP_TILES ; flags
@@ -290,10 +275,10 @@ MenuData_0x892ab: ; 0x892ab
 	db "いいえ@"
 ; 0x892b4
 
-Function892b4: ; 892b4 (22:52b4)
+Function892b4:
 	call Function8931b
 
-Function892b7: ; 892b7
+Function892b7:
 	ld d, b
 	ld e, c
 	ld hl, 0
@@ -340,10 +325,9 @@ Function892b7: ; 892b7
 	dec e
 	jr nz, .loop
 	ret
-; 89305
 
 
-Function89305: ; 89305 (22:5305)
+Function89305:
 	xor a
 	ld [wMenuSelection], a
 	ld c, 40
@@ -358,7 +342,7 @@ Function89305: ; 89305 (22:5305)
 	jr nz, .loop
 	ret
 
-Function8931b: ; 8931b
+Function8931b:
 	push hl
 	ld hl, $a03b ; 4:a03b
 	ld a, [wMenuSelection]
@@ -369,13 +353,12 @@ Function8931b: ; 8931b
 	ld c, l
 	pop hl
 	ret
-; 8932d
 
-Function8932d: ; 8932d
+Function8932d:
 	ld hl, 0
 	add hl, bc
 
-Function89331: ; 89331
+Function89331:
 ; Scans up to 5 characters starting at hl, looking for a nonspace character up to the next terminator.
 ; Sets carry if it does not find a nonspace character.
 ; Returns the location of the following character in hl.
@@ -400,15 +383,14 @@ Function89331: ; 89331
 .done
 	pop bc
 	ret
-; 89346
 
 
-Function89346: ; 89346 (22:5346)
+Function89346:
 	ld h, b
 	ld l, c
 	jr _incave
 
-Function8934a: ; 8934a
+Function8934a:
 	ld hl, NAME_LENGTH_JAPANESE
 	add hl, bc
 _incave:
@@ -434,9 +416,8 @@ _incave:
 .done
 	pop bc
 	ret
-; 89363
 
-Function89363: ; 89363
+Function89363:
 ; Scans six byte pairs starting at bc to find $ff.  Sets carry if it does not find a $ff.  Returns the location of the byte after the first $ff found in hl.
 	ld h, b
 	ld l, c
@@ -466,9 +447,8 @@ Function89363: ; 89363
 .done
 	pop de
 	ret
-; 89381
 
-Function89381: ; 89381
+Function89381:
 	push bc
 	push de
 	call Function89b45
@@ -485,9 +465,8 @@ Function89381: ; 89381
 	call Function89193
 	pop bc
 	ret
-; 8939a
 
-Function8939a: ; 8939a
+Function8939a:
 	push bc
 	ld hl, 0
 	add hl, bc
@@ -500,10 +479,9 @@ Function8939a: ; 8939a
 	ld de, wd008
 	call Function89381
 	ret
-; 893b3
 
 
-Function893b3: ; 893b3 (22:53b3)
+Function893b3:
 	call DisableLCD
 	call ClearSprites
 	call LoadStandardFont
@@ -514,7 +492,7 @@ Function893b3: ; 893b3 (22:53b3)
 	call EnableLCD
 	ret
 
-Function893cc: ; 893cc
+Function893cc:
 	call DisableLCD
 	call ClearSprites
 	call LoadStandardFont
@@ -523,38 +501,34 @@ Function893cc: ; 893cc
 	call Function89464
 	call EnableLCD
 	ret
-; 893e2
 
 
-Function893e2: ; 893e2 (22:53e2)
+Function893e2:
 	call Function89b1e
 	call Function893b3
 	call Function8a5b6
 	call Function8949c
 	ret
 
-Function893ef: ; 893ef
+Function893ef:
 	ld de, vTiles0
 	ld hl, GFX_8940b
 	ld bc, $20
 	ld a, BANK(GFX_8940b)
 	call FarCopyBytes
 	ret
-; 893fe
 
-Function893fe: ; 893fe
+Function893fe:
 	call DisableLCD
 	call Function893ef
 	call EnableLCD
 	call DelayFrame
 	ret
-; 8940b
 
-GFX_8940b: ; 8940b
+GFX_8940b:
 INCBIN "gfx/unknown/08940b.2bpp"
-; 8942b
 
-Function8942b: ; 8942b (22:542b)
+Function8942b:
 	ld de, vTiles0 tile $02
 	ld hl, MobileAdapterGFX + $7d tiles
 	ld bc, 8 tiles
@@ -567,7 +541,7 @@ Function8942b: ; 8942b (22:542b)
 	call FarCopyBytes
 	ret
 
-Function89448: ; 89448 (22:5448)
+Function89448:
 ; Clears the sprite array
 	push af
 	ld hl, wVirtualOAM
@@ -580,7 +554,7 @@ Function89448: ; 89448 (22:5448)
 	pop af
 	ret
 
-Function89455: ; 89455 (22:5455)
+Function89455:
 	ld hl, MobileAdapterGFX + $7d tiles
 	ld de, vTiles2 tile $0c
 	ld bc, $49 tiles
@@ -588,7 +562,7 @@ Function89455: ; 89455 (22:5455)
 	call FarCopyBytes
 	ret
 
-Function89464: ; 89464
+Function89464:
 	ld hl, MobileAdapterGFX
 	ld de, vTiles2
 	ld bc, $20 tiles
@@ -600,9 +574,8 @@ Function89464: ; 89464
 	ld a, BANK(MobileAdapterGFX)
 	call FarCopyBytes
 	ret
-; 89481
 
-Function89481: ; 89481
+Function89481:
 	ld d, 2
 	call Function8934a
 	ret c
@@ -613,10 +586,9 @@ Function89481: ; 89481
 	ret z
 	inc d
 	ret
-; 89492
 
 
-Function89492: ; 89492 (22:5492)
+Function89492:
 	ld d, 0
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -624,7 +596,7 @@ Function89492: ; 89492 (22:5492)
 	inc d
 	ret
 
-Function8949c: ; 8949c
+Function8949c:
 	ld a, [rSVBK]
 	push af
 	ld a, 5
@@ -636,16 +608,14 @@ Function8949c: ; 8949c
 	pop af
 	ld [rSVBK], a
 	ret
-; 894b3
 
-Palette_894b3: ; 894b3
+Palette_894b3:
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 00, 00, 00
-; 894bb
 
-Function894bb: ; 894bb
+Function894bb:
 	call Function894dc
 	push bc
 	call Function8956f
@@ -653,10 +623,9 @@ Function894bb: ; 894bb
 	call Function8a60d
 	pop bc
 	ret
-; 894ca
 
 
-Function894ca: ; 894ca (22:54ca)
+Function894ca:
 	push bc
 	call Function894dc
 	call Function895c7
@@ -666,7 +635,7 @@ Function894ca: ; 894ca (22:54ca)
 	pop bc
 	ret
 
-Function894dc: ; 894dc
+Function894dc:
 	push bc
 	ld a, [rSVBK]
 	push af
@@ -693,15 +662,13 @@ Function894dc: ; 894dc
 	ld [rSVBK], a
 	pop bc
 	ret
-; 89509
 
-.PalettePointers: ; 89509
+.PalettePointers:
 	dw .Pals012a
 	dw .Pals012b
 	dw .Pals012c
-; 8950f
 
-.Pals012a: ; 8950f
+.Pals012a:
 	RGB 31, 31, 31
 	RGB 10, 17, 13
 	RGB 10, 08, 22
@@ -717,7 +684,7 @@ Function894dc: ; 894dc
 	RGB 10, 17, 13
 	RGB 00, 00, 00
 
-.Pals012b: ; 89527
+.Pals012b:
 	RGB 31, 31, 31
 	RGB 30, 22, 11
 	RGB 31, 08, 15
@@ -733,7 +700,7 @@ Function894dc: ; 894dc
 	RGB 30, 22, 11
 	RGB 00, 00, 00
 
-.Pals012c: ; 8953f
+.Pals012c:
 	RGB 31, 31, 31
 	RGB 15, 20, 26
 	RGB 25, 07, 20
@@ -749,7 +716,7 @@ Function894dc: ; 894dc
 	RGB 15, 20, 26
 	RGB 00, 00, 00
 
-.Pals345: ; 89557
+.Pals345:
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 13, 00
@@ -764,9 +731,8 @@ Function894dc: ; 894dc
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
-; 8956f
 
-Function8956f: ; 8956f
+Function8956f:
 	push bc
 	ld hl, 16
 	add hl, bc
@@ -819,10 +785,9 @@ Function8956f: ; 8956f
 	ld [rSVBK], a
 	pop bc
 	ret
-; 895c7
 
 
-Function895c7: ; 895c7 (22:55c7)
+Function895c7:
 	ld a, [rSVBK]
 	push af
 	ld a, 5
@@ -834,24 +799,21 @@ Function895c7: ; 895c7 (22:55c7)
 	pop af
 	ld [rSVBK], a
 	ret
-; 895de (22:55de)
 
-Palette_895de: ; 895de
+Palette_895de:
 	RGB 31, 31, 31
 	RGB 07, 07, 06
 	RGB 07, 07, 06
 	RGB 00, 00, 00
-; 895e6
 
-Function895e6: ; 895e6
+Function895e6:
 	ld a, 7
 	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	ret
-; 895f2
 
-Function895f2: ; 895f2
+Function895f2:
 	push bc
 	xor a
 	hlcoord 0, 0, wAttrMap
@@ -861,9 +823,8 @@ Function895f2: ; 895f2
 	call Function89655
 	pop bc
 	ret
-; 89605
 
-Function89605: ; 89605
+Function89605:
 	hlcoord 19, 2, wAttrMap
 	ld a, 1
 	ld de, SCREEN_WIDTH
@@ -899,9 +860,8 @@ Function89605: ; 89605
 	ld bc, 14
 	call ByteFill
 	ret
-; 8963d
 
-Function8963d: ; 8963d
+Function8963d:
 	hlcoord 12, 3, wAttrMap
 	ld a, 6
 	ld de, SCREEN_WIDTH
@@ -918,9 +878,8 @@ Function8963d: ; 8963d
 	dec b
 	jr nz, .loop
 	ret
-; 89655
 
-Function89655: ; 89655
+Function89655:
 	hlcoord 1, 12, wAttrMap
 	ld de, SCREEN_WIDTH
 	ld a, 5
@@ -937,9 +896,8 @@ Function89655: ; 89655
 	dec b
 	jr nz, .loop
 	ret
-; 8966c
 
-Function8966c: ; 8966c
+Function8966c:
 	push bc
 	call Function89688
 	hlcoord 4, 0
@@ -947,10 +905,9 @@ Function8966c: ; 8966c
 	call Function896f5
 	pop bc
 	ret
-; 8967a
 
 
-Function8967a: ; 8967a (22:567a)
+Function8967a:
 	push bc
 	call Function89688
 	hlcoord 2, 0
@@ -959,7 +916,7 @@ Function8967a: ; 8967a (22:567a)
 	pop bc
 	ret
 
-Function89688: ; 89688
+Function89688:
 	hlcoord 0, 0
 	ld a, 1
 	ld e, SCREEN_WIDTH
@@ -997,9 +954,8 @@ Function89688: ; 89688
 	ld e, SCREEN_WIDTH
 	call Function896eb
 	ret
-; 896cb
 
-Function896cb: ; 896cb
+Function896cb:
 	ld de, SCREEN_WIDTH - 1
 	ld a, 7
 	ld [hl], a
@@ -1007,9 +963,8 @@ Function896cb: ; 896cb
 	ld a, 9
 	ld [hli], a
 	ret
-; 896d6
 
-Function896d6: ; 896d6
+Function896d6:
 	ld de, SCREEN_WIDTH - 1
 	ld a, 10
 	ld [hl], a
@@ -1017,9 +972,8 @@ Function896d6: ; 896d6
 	ld a, 11
 	ld [hli], a
 	ret
-; 896e1
 
-Function896e1: ; 896e1
+Function896e1:
 .loop
 	ld [hli], a
 	inc a
@@ -1030,9 +984,8 @@ Function896e1: ; 896e1
 	dec e
 	jr nz, .loop
 	ret
-; 896eb
 
-Function896eb: ; 896eb
+Function896eb:
 .loop
 	ld [hli], a
 	dec a
@@ -1043,9 +996,8 @@ Function896eb: ; 896eb
 	dec e
 	jr nz, .loop
 	ret
-; 896f5
 
-Function896f5: ; 896f5
+Function896f5:
 	call Function8971f
 	call Function89736
 	inc hl
@@ -1089,7 +1041,7 @@ ClearScreenArea: ; 0x896ff
 	ret
 ; 0x8971f
 
-Function8971f: ; 8971f
+Function8971f:
 	ld a, $2c
 	ld [hli], a
 	ld a, $2d
@@ -1106,9 +1058,8 @@ Function8971f: ; 8971f
 	ld [hl], a
 	pop hl
 	ret
-; 89736
 
-Function89736: ; 89736
+Function89736:
 	push hl
 	inc hl
 	inc hl
@@ -1130,17 +1081,15 @@ Function89736: ; 89736
 	ld [hl], a
 	pop hl
 	ret
-; 89753
 
-Function89753: ; 89753
+Function89753:
 	ld a, $c
 	ld [hl], a
 	xor a
 	call Function89215
 	ret
-; 8975b
 
-Function8975b: ; 8975b
+Function8975b:
 	ld a, $1d
 	ld [hli], a
 	inc a
@@ -1157,17 +1106,15 @@ Function8975b: ; 8975b
 	dec e
 	jr nz, .asm_89769
 	ret
-; 89771
 
-Function89771: ; 89771
+Function89771:
 	ld a, $12
 	ld [hl], a
 	ld a, $3
 	call Function89215
 	ret
-; 8977a
 
-Function8977a: ; 8977a
+Function8977a:
 	ld e, $4
 	ld d, $13
 .asm_8977e
@@ -1189,9 +1136,8 @@ Function8977a: ; 8977a
 	dec e
 	jr nz, .asm_8978c
 	ret
-; 89797
 
-Function89797: ; 89797
+Function89797:
 	push bc
 	ld a, $e
 	ld [hl], a
@@ -1209,9 +1155,8 @@ Function89797: ; 89797
 	ld [hl], a
 	pop bc
 	ret
-; 897af
 
-Function897af: ; 897af
+Function897af:
 	push bc
 	ld hl, $0010
 	add hl, bc
@@ -1230,9 +1175,8 @@ Function897af: ; 897af
 	farcall GetTrainerPic
 	pop bc
 	ret
-; 897d5
 
-Function897d5: ; 897d5
+Function897d5:
 	push bc
 	call Function8934a
 	jr nc, .asm_897f3
@@ -1263,10 +1207,9 @@ Function897d5: ; 897d5
 	call Function8963d
 	pop bc
 	ret
-; 89807
 
 
-Function89807: ; 89807 (22:5807)
+Function89807:
 	ld hl, MobileAdapterGFX + $20 tiles
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
@@ -1282,7 +1225,7 @@ Function89807: ; 89807 (22:5807)
 	call DelayFrame
 	ret
 
-Function89829: ; 89829 (22:5829)
+Function89829:
 	push bc
 	ld bc, $705
 	ld de, $14
@@ -1304,7 +1247,7 @@ Function89829: ; 89829 (22:5829)
 	pop bc
 	ret
 
-Function89844: ; 89844
+Function89844:
 	call Function89481
 	call Function894bb
 	call Function897af
@@ -1313,9 +1256,8 @@ Function89844: ; 89844
 	call SetPalettes
 	pop bc
 	ret
-; 89856
 
-Function89856: ; 89856
+Function89856:
 	push bc
 	call Function891b8
 	pop bc
@@ -1333,10 +1275,9 @@ Function89856: ; 89856
 	pop bc
 	call Function897d5
 	ret
-; 8987f
 
 
-Function8987f: ; 8987f (22:587f)
+Function8987f:
 	call Function891b8
 	call Function895f2
 	call Function8967a
@@ -1353,7 +1294,7 @@ Function8987f: ; 8987f (22:587f)
 	call Function89975
 	ret
 
-Function898aa: ; 898aa
+Function898aa:
 	ld a, [wMenuSelection]
 	and a
 	ret z
@@ -1364,9 +1305,8 @@ Function898aa: ; 898aa
 	call PrintNum
 	pop bc
 	ret
-; 898be
 
-Function898be: ; 898be
+Function898be:
 	push bc
 	ld de, wd002
 	ld hl, wd002
@@ -1385,9 +1325,8 @@ Function898be: ; 898be
 	call PlaceString
 	pop bc
 	ret
-; 898dc
 
-Function898dc: ; 898dc
+Function898dc:
 	ld hl, $0006
 	add hl, bc
 	push bc
@@ -1402,9 +1341,8 @@ Function898dc: ; 898dc
 	call PlaceString
 	pop bc
 	ret
-; 898f3
 
-Function898f3: ; 898f3
+Function898f3:
 	push bc
 	ld hl, $000c
 	add hl, bc
@@ -1425,9 +1363,8 @@ Function898f3: ; 898f3
 .asm_89913
 	pop bc
 	ret
-; 89915
 
-Function89915: ; 89915
+Function89915:
 	push bc
 	push hl
 	ld de, Unknown_89942
@@ -1461,15 +1398,13 @@ Function89915: ; 89915
 	jr nz, .asm_89932
 	pop bc
 	ret
-; 89942
 
-Unknown_89942: ; 89942
+Unknown_89942:
 	db $24, $25, $26, " ", $27, $28, $29, $2a
-Unknown_8994a: ; 8994a
+Unknown_8994a:
 	db $24, $27, $29, $ff
-; 8994e
 
-Function8994e: ; 8994e
+Function8994e:
 	push hl
 	push de
 	ld de, SCREEN_WIDTH
@@ -1486,9 +1421,8 @@ Function8994e: ; 8994e
 	pop de
 	pop hl
 	ret
-; 89962
 
-Function89962: ; 89962
+Function89962:
 	push bc
 	ld c, $4
 	ld b, $20
@@ -1503,9 +1437,8 @@ Function89962: ; 89962
 	jr nz, .asm_89967
 	pop bc
 	ret
-; 89975
 
-Function89975: ; 89975
+Function89975:
 	push bc
 	ld e, $8
 .asm_89978
@@ -1522,9 +1455,8 @@ Function89975: ; 89975
 	jr nz, .asm_89978
 	pop bc
 	ret
-; 8998b
 
-Function8998b: ; 8998b
+Function8998b:
 	push bc
 	and $f
 	cp $a
@@ -1540,10 +1472,9 @@ Function8998b: ; 8998b
 	ld [hl], a
 	pop bc
 	ret
-; 8999c
 
 
-Function8999c: ; 8999c (22:599c)
+Function8999c:
 	ld de, wPlayerName
 	call PlaceString
 	inc bc
@@ -1552,13 +1483,11 @@ Function8999c: ; 8999c (22:599c)
 	ld de, String_899ac
 	call PlaceString
 	ret
-; 899ac (22:59ac)
 
-String_899ac: ; 899ac
+String_899ac:
 	db "の　めいし@"
-; 899b2
 
-Function899b2: ; 899b2 (22:59b2)
+Function899b2:
 	ld bc, wPlayerName
 	call Function89346
 	jr c, .asm_899bf
@@ -1571,13 +1500,13 @@ Function899b2: ; 899b2 (22:59b2)
 	call PlaceString
 	ret
 
-Function899c9: ; 899c9 (22:59c9)
+Function899c9:
 	ld de, wPlayerID
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ret
 
-Function899d3: ; 899d3
+Function899d3:
 	hlcoord 1, 4
 	call Function89753
 	hlcoord 2, 5
@@ -1593,9 +1522,8 @@ Function899d3: ; 899d3
 	hlcoord 2, 9
 	call Function89915
 	ret
-; 899fe
 
-Function899fe: ; 899fe
+Function899fe:
 	push bc
 	push hl
 	ld hl, $0019
@@ -1606,9 +1534,8 @@ Function899fe: ; 899fe
 	call Function89a0c
 	pop bc
 	ret
-; 89a0c
 
-Function89a0c: ; 89a0c
+Function89a0c:
 	push hl
 	call Function89363
 	pop hl
@@ -1622,17 +1549,16 @@ Function89a0c: ; 89a0c
 	ld de, String_89153
 	call PlaceString
 	ret
-; 89a23
 
 
-Function89a23: ; 89a23 (22:5a23)
+Function89a23:
 	hlcoord 0, 11
 	ld b, $4
 	ld c, $12
 	call Function8921f
 	ret
 
-Function89a2e: ; 89a2e (22:5a2e)
+Function89a2e:
 	hlcoord 11, 12
 	ld b, $2
 	ld c, $6
@@ -1645,17 +1571,14 @@ Function89a2e: ; 89a2e (22:5a2e)
 	call PlaceString
 	call Function89655
 	ret
-; 89a4e (22:5a4e)
 
-String_89a4e: ; 89a4e
+String_89a4e:
 	db "けってい@"
-; 89a53
 
-String_89a53: ; 89a53
+String_89a53:
 	db "やめる@"
-; 89a57
 
-Function89a57: ; 89a57
+Function89a57:
 	call JoyTextDelay_ForcehJoyDown ; joypad
 	bit D_UP_F, c
 	jr nz, .d_up
@@ -1691,31 +1614,27 @@ Function89a57: ; 89a57
 	call nc, .PlayPocketSwitchSFX
 	ld a, $0
 	ret
-; 89a8a
 
-.PlayPocketSwitchSFX: ; 89a8a
+.PlayPocketSwitchSFX:
 	push af
 	ld de, SFX_SWITCH_POCKETS
 	call PlaySFX
 	pop af
 	ret
-; 89a93
 
-.MoveCursorDown: ; 89a93
+.MoveCursorDown:
 	ld d, 40
 	ld e,  1
 	call .ApplyCursorMovement
 	ret
-; 89a9b
 
-.MoveCursorUp: ; 89a9b
+.MoveCursorUp:
 	ld d,  1
 	ld e, -1
 	call .ApplyCursorMovement
 	ret
-; 89aa3
 
-.ApplyCursorMovement: ; 89aa3
+.ApplyCursorMovement:
 	ld a, [wMenuSelection]
 	ld c, a
 	push bc
@@ -1742,17 +1661,15 @@ Function89a57: ; 89a57
 	ld [wMenuSelection], a
 	scf
 	ret
-; 89ac7
 
-.Function89ac7: ; 89ac7
+.Function89ac7:
 	call OpenSRAMBank4
 	call Function8931b
 	call .Function89ad4
 	call CloseSRAM
 	ret
-; 89ad4
 
-.Function89ad4: ; 89ad4
+.Function89ad4:
 	push de
 	call Function8932d ; find a non-space character within 5 bytes of bc
 	jr c, .no_nonspace_character
@@ -1767,9 +1684,8 @@ Function89a57: ; 89a57
 .finish_decode
 	pop de
 	ret
-; 89ae6
 
-.Function89ae6: ; 89ae6
+.Function89ae6:
 	ld hl, wd031
 	xor a
 	ld [hl], a
@@ -1788,34 +1704,30 @@ Function89a57: ; 89a57
 .load_and_ret
 	ld [wd030], a
 	ret
-; 89b00
 
 
-Function89b00: ; 89b00 (22:5b00)
+Function89b00:
 	farcall MG_Mobile_Layout_LoadPals
 	ret
-; 89b07 (22:5b07)
 
-Function89b07: ; 89b07
+Function89b07:
 	call Mobile22_SetBGMapMode0
 	call DelayFrame
 	farcall Function4a3a7
 	ret
-; 89b14
 
-Function89b14: ; 89b14
+Function89b14:
 	call ClearBGPalettes
 	call Function89b07
 	call Function89b00
 	ret
-; 89b1e
 
-Function89b1e: ; 89b1e (22:5b1e)
+Function89b1e:
 	farcall Function4a485
 	call Function89b00
 	ret
 
-Function89b28: ; 89b28 (22:5b28)
+Function89b28:
 	call Function891de
 	call ClearBGPalettes
 	call Function893e2
@@ -1824,12 +1736,12 @@ Function89b28: ; 89b28 (22:5b28)
 	call SetPalettes
 	ret
 
-Function89b3b: ; 89b3b (22:5b3b)
+Function89b3b:
 	call Mobile22_SetBGMapMode0
 	farcall Function48cda
 	ret
 
-Function89b45: ; 89b45
+Function89b45:
 	; some sort of decoder?
 	; BCD?
 	push hl
@@ -1877,10 +1789,9 @@ Function89b45: ; 89b45
 	pop bc
 	pop hl
 	ret
-; 89b78
 
 
-Function89b78: ; 89b78 (22:5b78)
+Function89b78:
 	push bc
 	ld a, [wd010]
 	cp $10
@@ -1904,7 +1815,7 @@ Function89b78: ; 89b78 (22:5b78)
 	pop bc
 	ret
 
-Function89b97: ; 89b97 (22:5b97)
+Function89b97:
 	call Function89c34
 	jr c, .asm_89ba0
 	call Function89448
@@ -1955,45 +1866,42 @@ Function89b97: ; 89b97 (22:5b97)
 	ld c, $4
 	add hl, bc
 	jr .asm_89bb4
-; 89bd8 (22:5bd8)
 
-Unknown_89bd8: ; 89bd8
+Unknown_89bd8:
 	dw Unknown_89be0
 	dw Unknown_89bf5
 	dw Unknown_89c0a
 	dw Unknown_89c1f
-; 89be0
 
-Unknown_89be0: ; 89be0
+Unknown_89be0:
 	db $01, $12, $4e, $01, 0
 	db $01, $19, $4e, $01, 0 | Y_FLIP
 	db $01, $12, $72, $01, 0 | X_FLIP
 	db $01, $19, $72, $01, 0 | X_FLIP | Y_FLIP
 	db -1 ; end
 
-Unknown_89bf5: ; 89bf5
+Unknown_89bf5:
 	db $01, $60, $16, $01, 0
 	db $01, $62, $16, $01, 0 | Y_FLIP
 	db $01, $60, $92, $01, 0 | X_FLIP
 	db $01, $62, $92, $01, 0 | X_FLIP | Y_FLIP
 	db -1 ; end
 
-Unknown_89c0a: ; 89c0a
+Unknown_89c0a:
 	db $01, $78, $66, $01, 0
 	db $01, $78, $66, $01, 0 | Y_FLIP
 	db $01, $78, $92, $01, 0 | X_FLIP
 	db $01, $78, $92, $01, 0 | X_FLIP | Y_FLIP
 	db -1 ; end
 
-Unknown_89c1f: ; 89c1f
+Unknown_89c1f:
 	db $01, $80, $66, $01, 0
 	db $01, $80, $66, $01, 0 | Y_FLIP
 	db $01, $80, $92, $01, 0 | X_FLIP
 	db $01, $80, $92, $01, 0 | X_FLIP | Y_FLIP
 	db -1 ; end
-; 89c34
 
-Function89c34: ; 89c34 (22:5c34)
+Function89c34:
 	push bc
 	ld a, [wd012]
 	ld c, a
@@ -2005,7 +1913,7 @@ Function89c34: ; 89c34 (22:5c34)
 	pop bc
 	ret
 
-Function89c44: ; 89c44 (22:5c44)
+Function89c44:
 	call Function89c34
 	jr c, .asm_89c4f
 	push de
@@ -2035,7 +1943,7 @@ Function89c44: ; 89c44 (22:5c44)
 	ld [hli], a ; attributes
 	ret
 
-Function89c67: ; 89c67 (22:5c67)
+Function89c67:
 ; menu scrolling?
 	call JoyTextDelay_ForcehJoyDown ; joypad
 	ld b, $0
@@ -2099,22 +2007,20 @@ Function89c67: ; 89c67 (22:5c67)
 	xor a
 	ld [wd012], a
 	ret
-; 89cbf (22:5cbf)
 
-.ScrollData0: ; 89cbf
+.ScrollData0:
 	db 0, 2, 0, 0
 	db 1, 3, 0, 0
 	db 2, 4, 0, 0
 	db 3, 0, 0, 0
 
-.ScrollData1: ; 89ccf
+.ScrollData1:
 	db 0, 0, 0, 0
 	db 0, 3, 0, 0
 	db 2, 4, 0, 0
 	db 3, 0, 0, 0
-; 89cdf
 
-Function89cdf: ; 89cdf (22:5cdf)
+Function89cdf:
 	ld a, $10
 	add b
 	ld b, a
@@ -2152,7 +2058,7 @@ Function89cdf: ; 89cdf (22:5cdf)
 	jr nz, .asm_89cee
 	ret
 
-Function89d0d: ; 89d0d (22:5d0d)
+Function89d0d:
 	call Mobile22_SetBGMapMode0
 	ld a, [rSVBK]
 	push af
@@ -2185,23 +2091,20 @@ Function89d0d: ; 89d0d (22:5d0d)
 	call DelayFrames
 	call RestartMapMusic
 	ret
-; 89d4e (22:5d4e)
 
-.Palette1: ; 89d4e
+.Palette1:
 	RGB 31, 31, 31
 	RGB 19, 19, 19
 	RGB 15, 15, 15
 	RGB 00, 00, 00
-; 89d56
 
-.Palette2: ; 89d56
+.Palette2:
 	RGB 31, 31, 31
 	RGB 19, 19, 19
 	RGB 19, 19, 19
 	RGB 00, 00, 00
-; 89d5e
 
-Function89d5e: ; 89d5e (22:5d5e)
+Function89d5e:
 	push af
 	call CopyMenuHeader
 	pop af
@@ -2213,7 +2116,7 @@ Function89d5e: ; 89d5e (22:5d5e)
 	set 7, [hl]
 	ret
 
-Function89d75: ; 89d75 (22:5d75)
+Function89d75:
 	push hl
 	call Mobile22_SetBGMapMode0
 	call _hl_
@@ -2221,14 +2124,14 @@ Function89d75: ; 89d75 (22:5d75)
 	pop hl
 	jr asm_89d90
 
-Function89d85: ; 89d85 (22:5d85)
+Function89d85:
 	push hl
 	call Mobile22_SetBGMapMode0
 	call _hl_
 	call CGBOnly_CopyTilemapAtOnce
 	pop hl
 
-asm_89d90: ; 89d90 (22:5d90)
+asm_89d90:
 	call Mobile22_SetBGMapMode0
 	push hl
 	call _hl_
@@ -2246,7 +2149,7 @@ asm_89d90: ; 89d90 (22:5d90)
 	and a
 	ret
 
-Function89dab: ; 89dab (22:5dab)
+Function89dab:
 	call Mobile22_SetBGMapMode0
 	farcall MobileMenuJoypad
 	call Mobile22_SetBGMapMode0
@@ -2276,7 +2179,7 @@ Function89dab: ; 89dab (22:5dab)
 	and a
 	ret
 
-Function89de0: ; 89de0 (22:5de0)
+Function89de0:
 	call ClearSprites
 	call Function89e0a
 	jr c, .asm_89e00
@@ -2299,13 +2202,13 @@ Function89de0: ; 89de0 (22:5de0)
 	call Function8917a
 	ret
 
-Jumptable_89e04: ; 89e04 (22:5e04)
+Jumptable_89e04:
 	dw Function8a62c
 	dw Function8a999
 	dw Function8ab93
 
 
-Function89e0a: ; 89e0a (22:5e0a)
+Function89e0a:
 	call OpenSRAMBank4
 	call Function8b3b0
 	call CloseSRAM
@@ -2313,32 +2216,32 @@ Function89e0a: ; 89e0a (22:5e0a)
 	rst JumpTable
 	ret
 
-Jumptable_89e18: ; 89e18 (22:5e18)
+Jumptable_89e18:
 	dw Function89e1e
 	dw Function8a116
 	dw Function8a2aa
 
 
-Function89e1e: ; 89e1e (22:5e1e)
+Function89e1e:
 	call OpenSRAMBank4
-	ld bc, $a037 ; 4:a037
+	ld bc, $a037
 	call Function8b36c
 	call CloseSRAM
 	xor a
 	ld [wd02d], a
 
-asm_89e2e: ; 89e2e (22:5e2e)
+asm_89e2e:
 	ld a, [wd02d]
 	ld hl, Jumptable_89e3c
 	rst JumpTable
 	ret
 
-Function89e36: ; 89e36 (22:5e36)
+Function89e36:
 	ld hl, wd02d
 	inc [hl]
 	jr asm_89e2e
 
-Jumptable_89e3c: ; 89e3c (22:5e3c)
+Jumptable_89e3c:
 	dw Function89e6f
 	dw Function89fed
 	dw Function89ff6
@@ -2355,7 +2258,7 @@ Jumptable_89e3c: ; 89e3c (22:5e3c)
 	dw Function89e68
 
 
-Function89e58: ; 89e58 (22:5e58)
+Function89e58:
 	ld a, $1
 	call Function8a2fe
 	call Function891fe
@@ -2364,13 +2267,13 @@ Function89e58: ; 89e58 (22:5e58)
 	and a
 	ret
 
-Function89e68: ; 89e68 (22:5e68)
+Function89e68:
 	call Function891fe
 	ld a, $1
 	scf
 	ret
 
-Function89e6f: ; 89e6f (22:5e6f)
+Function89e6f:
 	call Function891de
 	call Function89245
 	call Function89ee1
@@ -2387,7 +2290,7 @@ Function89e6f: ; 89e6f (22:5e6f)
 	call SetPalettes
 	jp Function89e36
 
-Function89e9a: ; 89e9a (22:5e9a)
+Function89e9a:
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -2399,16 +2302,14 @@ Function89e9a: ; 89e9a (22:5e9a)
 	pop af
 	ld [rSVBK], a
 	ret
-; 89eb1 (22:5eb1)
 
-Palette_89eb1: ; 89eb1
+Palette_89eb1:
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 27, 19, 00
 	RGB 00, 00, 00
-; 89eb9
 
-Function89eb9: ; 89eb9 (22:5eb9)
+Function89eb9:
 	call Function891fe
 	call Function89ee1
 	call Function89e9a
@@ -2424,7 +2325,7 @@ Function89eb9: ; 89eb9 (22:5eb9)
 	call SetPalettes
 	jp Function89e36
 
-Function89ee1: ; 89ee1 (22:5ee1)
+Function89ee1:
 	call ClearBGPalettes
 	call Function893e2
 	call Mobile22_SetBGMapMode0
@@ -2434,7 +2335,7 @@ Function89ee1: ; 89ee1 (22:5ee1)
 	call Function8a53d
 	ret
 
-Function89efd: ; 89efd (22:5efd)
+Function89efd:
 	ld hl, wd012
 	ld a, $ff
 	ld [hli], a
@@ -2508,7 +2409,7 @@ endr
 	jr nz, .asm_89f60
 	jp Function89e36
 
-Function89f6a: ; 89f6a (22:5f6a)
+Function89f6a:
 	push af
 	ld de, $10
 	call Function89f9a
@@ -2519,7 +2420,7 @@ Function89f6a: ; 89f6a (22:5f6a)
 	pop af
 	ret
 
-Function89f77: ; 89f77 (22:5f77)
+Function89f77:
 	push af
 	ld de, $10
 	call Function89f9a
@@ -2548,7 +2449,7 @@ Function89f77: ; 89f77 (22:5f77)
 	pop af
 	ret
 
-Function89f9a: ; 89f9a (22:5f9a)
+Function89f9a:
 	dec a
 	ld hl, wVirtualOAM
 	and a
@@ -2559,7 +2460,7 @@ Function89f9a: ; 89f9a (22:5f9a)
 	jr nz, .asm_89fa0
 	ret
 
-Function89fa5: ; 89fa5 (22:5fa5)
+Function89fa5:
 	ld de, $10
 	call Function89f9a
 	ld e, $2
@@ -2592,7 +2493,7 @@ Function89fa5: ; 89fa5 (22:5fa5)
 	jr nz, .asm_89faf
 	ret
 
-Function89fce: ; 89fce (22:5fce)
+Function89fce:
 	call Function8a5b6
 	ld a, $5
 	hlcoord 7, 4, wAttrMap
@@ -2605,12 +2506,12 @@ Function89fce: ; 89fce (22:5fce)
 	call Function891ab
 	jp Function89e36
 
-Function89fed: ; 89fed (22:5fed)
+Function89fed:
 	ld hl, UnknownText_0x8a102
 	call PrintText
 	jp Function89e36
 
-Function89ff6: ; 89ff6 (22:5ff6)
+Function89ff6:
 	call Function891fe
 	call ClearBGPalettes
 	call Function893cc
@@ -2636,19 +2537,19 @@ Function89ff6: ; 89ff6 (22:5ff6)
 	call Mobile22_ButtonSound
 	jp Function89e36
 
-Function8a03d: ; 8a03d (22:603d)
+Function8a03d:
 	ld hl, UnknownText_0x8a107
 	call Function89209
 	call PrintText
 	call Function8920f
 	jp Function89e36
 
-Function8a04c: ; 8a04c (22:604c)
+Function8a04c:
 	ld hl, UnknownText_0x8a10c
 	call PrintText
 	jp Function89e36
 
-Function8a055: ; 8a055 (22:6055)
+Function8a055:
 	ld c, $7
 	ld b, $4
 .asm_8a059
@@ -2687,7 +2588,7 @@ Function8a055: ; 8a055 (22:6055)
 	call CGBOnly_CopyTilemapAtOnce
 	jp Function89e36
 
-Function8a0a1: ; 8a0a1 (22:60a1)
+Function8a0a1:
 	call Mobile22_SetBGMapMode0
 	push bc
 	call Function8a0c9
@@ -2708,7 +2609,7 @@ Function8a0a1: ; 8a0a1 (22:60a1)
 	pop bc
 	ret
 
-Function8a0c1: ; 8a0c1 (22:60c1)
+Function8a0c1:
 	push hl
 	ld bc, wAttrMap - wTileMap
 	add hl, bc
@@ -2716,7 +2617,7 @@ Function8a0c1: ; 8a0c1 (22:60c1)
 	pop hl
 	ret
 
-Function8a0c9: ; 8a0c9 (22:60c9)
+Function8a0c9:
 	push bc
 	hlcoord 0, 0
 	ld de, $14
@@ -2734,30 +2635,29 @@ Function8a0c9: ; 8a0c9 (22:60c9)
 	pop bc
 	ret
 
-Function8a0de: ; 8a0de (22:60de)
+Function8a0de:
 	call Function8a0c9
 	ld de, wAttrMap - wTileMap
 	add hl, de
 	ret
 
-Function8a0e6: ; 8a0e6 (22:60e6)
+Function8a0e6:
 	call Function8b539
 	jp Function89e36
 
-Function8a0ec: ; 8a0ec (22:60ec)
+Function8a0ec:
 	ld hl, UnknownText_0x8a111
 	call PrintText
 	jp Function89e36
 
-Function8a0f5: ; 8a0f5 (22:60f5)
+Function8a0f5:
 	call Function8b555
 	jp nc, Function8a0ff
 	ld hl, wd02d
 	inc [hl]
 
-Function8a0ff: ; 8a0ff (22:60ff)
+Function8a0ff:
 	jp Function89e36
-; 8a102 (22:6102)
 
 UnknownText_0x8a102: ; 0x8a102
 	; The CARD FOLDER stores your and your friends' CARDS. A CARD contains information like the person's name, phone number and profile.
@@ -2783,7 +2683,7 @@ UnknownText_0x8a111: ; 0x8a111
 	db "@"
 ; 0x8a116
 
-Function8a116: ; 8a116 (22:6116)
+Function8a116:
 	ld a, $1
 	ld [wd030], a
 	ld hl, MenuHeader_0x8a176
@@ -2828,14 +2728,12 @@ Function8a116: ; 8a116 (22:6116)
 	call Function8920f
 	scf
 	ret
-; 8a176 (22:6176)
 
 MenuHeader_0x8a176: ; 0x8a176
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
-; 8a17b
 
-Function8a17b: ; 8a17b (22:617b)
+Function8a17b:
 	decoord 14, 0
 	ld b, $5
 	ld c, $4
@@ -2850,7 +2748,6 @@ Function8a17b: ; 8a17b (22:617b)
 .asm_8a198
 	ld d, a
 	ret
-; 8a19a (22:619a)
 
 MenuHeader_0x8a19a: ; 0x8a19a
 	db MENU_BACKUP_TILES ; flags
@@ -2867,7 +2764,7 @@ MenuData_0x8a1a2: ; 0x8a1a2
 	db "もどる@"
 ; 0x8a1b0
 
-Function8a1b0: ; 8a1b0
+Function8a1b0:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
@@ -2880,9 +2777,8 @@ Function8a1b0: ; 8a1b0
 	call Function8919e
 	call PlaceString
 	ret
-; 8a1cc
 
-Strings_8a1cc: ; 8a1cc
+Strings_8a1cc:
 	db   "めいし<NO>せいりと　へんしゅうを"
 	next "おこないます"
 	db   "@"
@@ -2893,10 +2789,9 @@ Strings_8a1cc: ; 8a1cc
 
 	db   "まえ<NO>がめん<NI>もどります"
 	db   "@"
-; 8a20d
 
 
-Function8a20d: ; 8a20d (22:620d)
+Function8a20d:
 	ld hl, UnknownText_0x8a232
 	call PrintText
 	ld a, $2
@@ -2914,7 +2809,6 @@ Function8a20d: ; 8a20d (22:620d)
 	xor a
 	and a
 	ret
-; 8a232 (22:6232)
 
 UnknownText_0x8a232: ; 0x8a232
 	; If the CARD FOLDER is deleted, all its CARDS and the PASSCODE will also be deleted. Beware--a deleted CARD FOLDER can't be restored. Want to delete your CARD FOLDER?
@@ -2934,7 +2828,7 @@ UnknownText_0x8a23c: ; 0x8a23c
 	db "@"
 ; 0x8a241
 
-Function8a241: ; 8a241 (22:6241)
+Function8a241:
 	call LoadStandardMenuHeader
 	call Function891fe
 	call Function8a262
@@ -2951,7 +2845,7 @@ Function8a241: ; 8a241 (22:6241)
 	and a
 	ret
 
-Function8a262: ; 8a262 (22:6262)
+Function8a262:
 	call ClearBGPalettes
 	call Function893e2
 	call Mobile22_SetBGMapMode0
@@ -2977,7 +2871,7 @@ Function8a262: ; 8a262 (22:6262)
 	call Function8b5e7
 	ret
 
-Function8a2aa: ; 8a2aa (22:62aa)
+Function8a2aa:
 	ld hl, MenuHeader_0x8a2ef
 	call LoadMenuHeader
 	ld hl, UnknownText_0x8a2f4
@@ -3009,12 +2903,10 @@ Function8a2aa: ; 8a2aa (22:62aa)
 .asm_8a2ed
 	scf
 	ret
-; 8a2ef (22:62ef)
 
 MenuHeader_0x8a2ef: ; 0x8a2ef
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
-; 8a2f4
 
 UnknownText_0x8a2f4: ; 0x8a2f4
 	; There is an older CARD FOLDER from a previous journey. Do you want to open it?
@@ -3028,7 +2920,7 @@ UnknownText_0x8a2f9: ; 0x8a2f9
 	db "@"
 ; 0x8a2fe
 
-Function8a2fe: ; 8a2fe (22:62fe)
+Function8a2fe:
 	call Function8a313
 	call Function89305
 	ld hl, $a603
@@ -3038,14 +2930,14 @@ Function8a2fe: ; 8a2fe (22:62fe)
 	call CloseSRAM
 	ret
 
-Function8a313: ; 8a313 (22:6313)
+Function8a313:
 	ld c, a
 	call OpenSRAMBank4
 	ld a, c
 	ld [$a60b], a
 	ret
 
-Function8a31c: ; 8a31c (22:631c)
+Function8a31c:
 	push bc
 	call Mobile22_SetBGMapMode0
 	farcall Function4a3a7
@@ -3090,7 +2982,7 @@ Function8a31c: ; 8a31c (22:631c)
 	and a
 	ret
 
-Function8a383: ; 8a383 (22:6383)
+Function8a383:
 	farcall MobileMenuJoypad
 	ld a, c
 	ld hl, wMenuJoypadFilter
@@ -3110,7 +3002,7 @@ Function8a383: ; 8a383 (22:6383)
 	call PlayClickSFX
 	ret
 
-Function8a3a2: ; 8a3a2 (22:63a2)
+Function8a3a2:
 	ld a, [wMenuCursorY]
 	dec a
 	ld hl, wd002
@@ -3121,7 +3013,7 @@ Function8a3a2: ; 8a3a2 (22:63a2)
 	ld [wMenuSelection], a
 	ret
 
-Function8a3b2: ; 8a3b2 (22:63b2)
+Function8a3b2:
 	ld a, $1
 	ld [wMenuSelection], a
 	call Function8a4fc
@@ -3143,7 +3035,7 @@ Function8a3b2: ; 8a3b2 (22:63b2)
 	call CopyMenuHeader
 	ret
 
-Function8a3df: ; 8a3df (22:63df)
+Function8a3df:
 	call OpenSRAMBank4
 	ld hl, $a603
 	call Function89b45
@@ -3160,14 +3052,13 @@ Function8a3df: ; 8a3df (22:63df)
 	and a
 	ret
 
-Function8a400: ; 8a400 (22:6400)
+Function8a400:
 	ld a, [de]
 	inc de
 	ld [hli], a
 	cp $ff
 	jr nz, Function8a400
 	ret
-; 8a408 (22:6408)
 
 Unknown_8a408: db 1, 2, -1
 Unknown_8a40b: db 1, 2, 3, -1
@@ -3203,7 +3094,7 @@ MenuData_0x8a43d: ; 0x8a43d
 	db "やめる@"
 ; 0x8a453
 
-Function8a453: ; 8a453 (22:6453)
+Function8a453:
 	hlcoord 0, 12
 	ld b, $4
 	ld c, $12
@@ -3220,13 +3111,11 @@ Function8a453: ; 8a453 (22:6453)
 .asm_8a472
 	call PlaceString
 	ret
-; 8a476 (22:6476)
 
-String_8a476: ; 8a476
+String_8a476:
 	db   "まえ<NO>がめん<NI>もどります@"
-; 8a483
 
-Strings_8a483: ; 8a483
+Strings_8a483:
 	db   "おともだち<NO>めいしは"
 	next "ここ<NI>いれておきます@"
 
@@ -3235,9 +3124,8 @@ Strings_8a483: ; 8a483
 
 	db   "ともだちと　じぶん<NO>めいしを"
 	next "せきがいせんで　こうかん　します@"
-; 8a4d3
 
-Function8a4d3: ; 8a4d3 (22:64d3)
+Function8a4d3:
 	ld a, [wMenuSelection]
 	cp $1
 	jr nz, .asm_8a4eb
@@ -3257,7 +3145,7 @@ Function8a4d3: ; 8a4d3 (22:64d3)
 	call Function8a5a3
 	ret
 
-Function8a4fc: ; 8a4fc (22:64fc)
+Function8a4fc:
 	ld a, [wMenuSelection]
 	cp $3
 	jr nz, asm_8a529
@@ -3273,7 +3161,7 @@ Function8a4fc: ; 8a4fc (22:64fc)
 	call Function8a515
 	ret
 
-Function8a515: ; 8a515 (22:6515)
+Function8a515:
 	ld hl, wd012
 	ld a, [hl]
 	cp $38
@@ -3287,7 +3175,7 @@ Function8a515: ; 8a515 (22:6515)
 	ld [wd013], a
 	ret
 
-asm_8a529: ; 8a529 (22:6529)
+asm_8a529:
 	ld hl, wd012
 	ld a, $3c
 	ld [hli], a
@@ -3299,7 +3187,7 @@ asm_8a529: ; 8a529 (22:6529)
 	call ByteFill
 	ret
 
-Function8a53d: ; 8a53d (22:653d)
+Function8a53d:
 	push hl
 	ld a, $15
 	ld c, $8
@@ -3328,7 +3216,7 @@ Function8a53d: ; 8a53d (22:653d)
 	ld a, $27
 	ld c, $6
 
-Function8a573: ; 8a573 (22:6573)
+Function8a573:
 	ld [hl], a
 	call Function8a584
 	inc a
@@ -3336,14 +3224,14 @@ Function8a573: ; 8a573 (22:6573)
 	jr nz, Function8a573
 	ret
 
-Function8a57c: ; 8a57c (22:657c)
+Function8a57c:
 	ld [hl], a
 	call Function8a584
 	dec c
 	jr nz, Function8a57c
 	ret
 
-Function8a584: ; 8a584 (22:6584)
+Function8a584:
 	push af
 	ld a, $4
 	call Function89215
@@ -3351,7 +3239,7 @@ Function8a584: ; 8a584 (22:6584)
 	pop af
 	ret
 
-Function8a58d: ; 8a58d (22:658d)
+Function8a58d:
 	ld a, $2d
 	ld bc, $606
 	ld de, $14
@@ -3370,7 +3258,7 @@ Function8a58d: ; 8a58d (22:658d)
 	jr nz, .asm_8a595
 	ret
 
-Function8a5a3: ; 8a5a3 (22:65a3)
+Function8a5a3:
 	ld bc, $603
 	ld de, $14
 .asm_8a5a9
@@ -3387,7 +3275,7 @@ Function8a5a3: ; 8a5a3 (22:65a3)
 	jr nz, .asm_8a5a9
 	ret
 
-Function8a5b6: ; 8a5b6 (22:65b6)
+Function8a5b6:
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -3407,9 +3295,8 @@ Function8a5b6: ; 8a5b6 (22:65b6)
 	pop af
 	ld [rSVBK], a
 	ret
-; 8a5e5 (22:65e5)
 
-Palette_8a5e5: ; 8a5e5
+Palette_8a5e5:
 	RGB 31, 31, 31
 	RGB 27, 19, 00
 	RGB 07, 11, 22
@@ -3424,23 +3311,20 @@ Palette_8a5e5: ; 8a5e5
 	RGB 31, 00, 00
 	RGB 27, 19, 00
 	RGB 00, 00, 00
-; 8a5fd
 
-Palette_8a5fd: ; 8a5fd
+Palette_8a5fd:
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 	RGB 31, 31, 31
-; 8a605
 
-Palette_8a605: ; 8a605
+Palette_8a605:
 	RGB 00, 00, 00
 	RGB 14, 18, 31
 	RGB 16, 16, 31
 	RGB 31, 31, 31
-; 8a60d
 
-Function8a60d: ; 8a60d
+Function8a60d:
 	ld a, [rSVBK]
 	push af
 	ld a, $5
@@ -3452,16 +3336,14 @@ Function8a60d: ; 8a60d
 	pop af
 	ld [rSVBK], a
 	ret
-; 8a624
 
-Palette_8a624: ; 8a624
+Palette_8a624:
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 00, 00, 00
-; 8a62c
 
-Function8a62c: ; 8a62c (22:662c)
+Function8a62c:
 	call LoadStandardMenuHeader
 	call Function891fe
 	xor a
@@ -3499,14 +3381,14 @@ Function8a62c: ; 8a62c (22:662c)
 	call Function89b28
 	ret
 
-Jumptable_8a671: ; 8a671 (22:6671)
+Jumptable_8a671:
 	dw Function8a679
 	dw Function8a6cd
 	dw Function8a8c3
 	dw Function8a930
 
 
-Function8a679: ; 8a679 (22:6679)
+Function8a679:
 	call Function891de
 	call ClearBGPalettes
 	call Function893cc
@@ -3535,23 +3417,23 @@ Function8a679: ; 8a679 (22:6679)
 	call Function89448
 	ret
 
-Jumptable_8a6bc: ; 8a6bc (22:66bc)
+Jumptable_8a6bc:
 	dw Function8a6c0
 	dw Function8a6c5
 
 
-Function8a6c0: ; 8a6c0 (22:66c0)
+Function8a6c0:
 	call PlayClickSFX
 	and a
 	ret
 
-Function8a6c5: ; 8a6c5 (22:66c5)
+Function8a6c5:
 	call PlayClickSFX
 	call Function89d0d
 	scf
 	ret
 
-Function8a6cd: ; 8a6cd (22:66cd)
+Function8a6cd:
 	call Function891de
 	call ClearBGPalettes
 	call Function893cc
@@ -3607,14 +3489,14 @@ Function8a6cd: ; 8a6cd (22:66cd)
 	call Function8b677
 	ret
 
-Jumptable_8a74f: ; 8a74f (22:674f)
+Jumptable_8a74f:
 	dw Function8a78c
 	dw Function8a7cb
 	dw Function8a818
 	dw Function8a8a1
 
 
-Function8a757: ; 8a757 (22:6757)
+Function8a757:
 	call Function8939a
 	xor a
 	ld [wd010], a
@@ -3622,7 +3504,7 @@ Function8a757: ; 8a757 (22:6757)
 	ld [wd012], a
 	ret
 
-Function8a765: ; 8a765 (22:6765)
+Function8a765:
 	call Function8931b
 	push bc
 	ld hl, $0
@@ -3646,7 +3528,7 @@ Function8a765: ; 8a765 (22:6765)
 	scf
 	ret
 
-Function8a78c: ; 8a78c (22:678c)
+Function8a78c:
 	call Function891fe
 	ld de, wd002
 	ld b, $5
@@ -3673,7 +3555,7 @@ Function8a78c: ; 8a78c (22:678c)
 	and a
 	ret
 
-Function8a7cb: ; 8a7cb (22:67cb)
+Function8a7cb:
 	ld a, [wMenuSelection]
 	push af
 	call Function891de
@@ -3706,7 +3588,7 @@ Function8a7cb: ; 8a7cb (22:67cb)
 	and a
 	ret
 
-Function8a818: ; 8a818 (22:6818)
+Function8a818:
 	call Function89a23
 	ld hl, wd002
 	call Function89331
@@ -3743,7 +3625,6 @@ Function8a818: ; 8a818 (22:6818)
 	call CloseSRAM
 	scf
 	ret
-; 8a868 (22:6868)
 
 .string_8a868
 	db "めいし<WO>かきかえ　まし<TA!>@"
@@ -3760,14 +3641,12 @@ Function8a818: ; 8a818 (22:6818)
 	call JoyWaitAorB
 	and a
 	ret
-; 8a88b (22:688b)
 
-String_8a88b: ; 8a88b
+String_8a88b:
 	db   "おともだち<NO>なまえが"
 	next "かかれて　いません！@"
-; 8a8a1
 
-Function8a8a1: ; 8a8a1 (22:68a1)
+Function8a8a1:
 	call OpenSRAMBank4
 	call Function8a765
 	call CloseSRAM
@@ -3786,7 +3665,7 @@ Function8a8a1: ; 8a8a1 (22:68a1)
 	and a
 	ret
 
-Function8a8c3: ; 8a8c3 (22:68c3)
+Function8a8c3:
 	call Function891de
 	call ClearBGPalettes
 	call Function893cc
@@ -3818,17 +3697,14 @@ Function8a8c3: ; 8a8c3 (22:68c3)
 	call Function891fe
 	call Function8b677
 	ret
-; 8a919 (22:6919)
 
-String_8a919: ; 8a919
+String_8a919:
 	db "このデータ<WO>けしますか？@"
-; 8a926
 
-String_8a926: ; 8a926
+String_8a926:
 	db "データ<WO>けしまし<TA!>@"
-; 8a930
 
-Function8a930: ; 8a930 (22:6930)
+Function8a930:
 	ld a, [wMenuSelection]
 	push af
 	xor a
@@ -3883,7 +3759,7 @@ Function8a930: ; 8a930 (22:6930)
 	call CloseSRAM
 	ret
 
-Function8a999: ; 8a999 (22:6999)
+Function8a999:
 	ld hl, MenuHeader_0x8a9c9
 	call LoadMenuHeader
 	ld c, $1
@@ -3908,17 +3784,15 @@ Function8a999: ; 8a999 (22:6999)
 	call Function8920f
 	ret
 
-Jumptable_8a9c5: ; 8a9c5 (22:69c5)
+Jumptable_8a9c5:
 	dw Function8aa0a
 	dw Function8ab3b
-; 8a9c9 (22:69c9)
 
 MenuHeader_0x8a9c9: ; 0x8a9c9
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 4, 18, TEXTBOX_Y - 1
-; 8a9ce
 
-Function8a9ce: ; 8a9ce (22:69ce)
+Function8a9ce:
 	push bc
 	decoord 11, 4
 	ld b, $6
@@ -3940,7 +3814,6 @@ Function8a9ce: ; 8a9ce (22:69ce)
 	ld e, $0
 	scf
 	ret
-; 8a9f2 (22:69f2)
 
 MenuHeader_0x8a9f2: ; 0x8a9f2
 	db MENU_BACKUP_TILES ; flags
@@ -3957,11 +3830,10 @@ MenuData_0x8a9fa: ; 0x8a9fa
 	db "やめる@"
 ; 0x8aa09
 
-Function8aa09: ; 8aa09
+Function8aa09:
 	ret
-; 8aa0a
 
-Function8aa0a: ; 8aa0a (22:6a0a)
+Function8aa0a:
 	ld a, $1
 	ld [wd02f], a
 	ld [wd011], a
@@ -4006,13 +3878,13 @@ Function8aa0a: ; 8aa0a (22:6a0a)
 	call Function89448
 	ret
 
-Jumptable_8aa6d: ; 8aa6d (22:6a6d)
+Jumptable_8aa6d:
 	dw Function8aa73
 	dw Function8aab6
 	dw Function8ab11
 
 
-Function8aa73: ; 8aa73 (22:6a73)
+Function8aa73:
 	ld a, [wMenuSelection]
 	ld e, a
 	push de
@@ -4043,7 +3915,7 @@ Function8aa73: ; 8aa73 (22:6a73)
 	and a
 	ret
 
-Function8aab6: ; 8aab6 (22:6ab6)
+Function8aab6:
 	call Function89a23
 	ld hl, wd008
 	call Function89b45
@@ -4067,13 +3939,11 @@ Function8aab6: ; 8aab6 (22:6ab6)
 	call CloseSRAM
 	scf
 	ret
-; 8aaf0 (22:6af0)
 
-String_8aaf0: ; 8aaf0
+String_8aaf0:
 	db "あたらしい　めいし<PKMN>できまし<LNBRK>@"
-; 8ab00
 
-Function8ab00: ; 8ab00
+Function8ab00:
 	ld de, String_8911c
 	hlcoord 1, 13
 	call PlaceString
@@ -4082,7 +3952,7 @@ Function8ab00: ; 8ab00
 	and a
 	ret
 
-Function8ab11: ; 8ab11 (22:6b11)
+Function8ab11:
 	call OpenSRAMBank4
 	ld hl, $a603
 	ld de, wd008
@@ -4104,7 +3974,7 @@ Function8ab11: ; 8ab11 (22:6b11)
 	and a
 	ret
 
-Function8ab3b: ; 8ab3b (22:6b3b)
+Function8ab3b:
 .pressed_start
 	call Function891fe
 	call ClearBGPalettes
@@ -4128,7 +3998,7 @@ Function8ab3b: ; 8ab3b (22:6b3b)
 	jr c, .pressed_start
 	ret
 
-.JoypadLoop: ; 8ab77 (22:6b77)
+.JoypadLoop:
 	call JoyTextDelay_ForcehJoyDown
 	bit A_BUTTON_F, c
 	jr nz, .a_b_button
@@ -4146,7 +4016,7 @@ Function8ab3b: ; 8ab3b (22:6b3b)
 	and a
 	ret
 
-Function8ab93: ; 8ab93 (22:6b93)
+Function8ab93:
 	call ClearBGPalettes
 	call LoadStandardMenuHeader
 	farcall Function105688
@@ -4154,9 +4024,8 @@ Function8ab93: ; 8ab93 (22:6b93)
 	call Function891fe
 	call Function89b28
 	ret
-; 8aba9 (22:6ba9)
 
-Function8aba9: ; 8aba9
+Function8aba9:
 	ld a, $2
 	call Function8b94a
 	ld a, $1
@@ -4223,14 +4092,12 @@ Function8aba9: ; 8aba9
 	ld a, [wMenuSelection]
 	ld c, a
 	ret
-; 8ac3b
 
-String_8ac3b: ; 8ac3b
+String_8ac3b:
 	db   "こ<NO>ともだち<NI>でんわを"
 	next "かけますか？@"
-; 8ac4e
 
-Function8ac4e: ; 8ac4e
+Function8ac4e:
 	xor a
 	ld [wMenuSelection], a
 	push de
@@ -4245,18 +4112,17 @@ Function8ac4e: ; 8ac4e
 	call Function899fe
 	call Function891ab
 	ret
-; 8ac70
 
-Function8ac70: ; 8ac70
+Function8ac70:
 	push de
 	ld a, $3
 	call Function8b94a
 
-Function8ac76: ; 8ac76
+Function8ac76:
 	call Function891fe
 	call Function8b677
 
-Function8ac7c: ; 8ac7c
+Function8ac7c:
 	call Function8b7bd
 	jr z, .asm_8acf0
 	ld a, c
@@ -4331,7 +4197,6 @@ Function8ac7c: ; 8ac7c
 	ld c, $0
 	scf
 	ret
-; 8ad06
 
 UnknownText_0x8ad06: ; 0x8ad06
 	; Finish registering CARDS?
@@ -4339,7 +4204,7 @@ UnknownText_0x8ad06: ; 0x8ad06
 	db "@"
 ; 0x8ad0b
 
-Function8ad0b: ; 8ad0b
+Function8ad0b:
 .asm_8ad0b
 	ld a, [wMenuSelection]
 	ld [wd02f], a
@@ -4401,36 +4266,31 @@ Function8ad0b: ; 8ad0b
 .asm_8ad87
 	pop bc
 	ret
-; 8ad89
 
-String_8ad89: ; 8ad89
+String_8ad89:
 	db   "こ<NO>めいし<WO>けして"
 	next "いれかえますか？@"
-; 8ad9c
 
-String_8ad9c: ; 8ad9c
+String_8ad9c:
 	db   "おともだち<NO>なまえを"
 	next "のこして　おきますか？@"
-; 8adb3
 
-Function8adb3: ; 8adb3
+Function8adb3:
 	call Function891de
 	call Function8a262
 	push af
 	call Function891de
 	pop af
 	ret
-; 8adbf
 
-Function8adbf: ; 8adbf
+Function8adbf:
 	call OpenSRAMBank4
 	ld hl, $a603
 	call Function89b45
 	call CloseSRAM
 	ret
-; 8adcc
 
-Function8adcc: ; 8adcc
+Function8adcc:
 	call OpenSRAMBank4
 	call Function8b3b0
 	call CloseSRAM
@@ -4439,4 +4299,3 @@ Function8adcc: ; 8adcc
 	ret z
 	scf
 	ret
-; 8addb

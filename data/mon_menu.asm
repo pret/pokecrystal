@@ -8,7 +8,7 @@
 	const MONMENUVALUE_MAIL   ; 6
 	const MONMENUVALUE_ERROR  ; 7
 
-MonMenuOptionStrings: ; 24caf
+MonMenuOptionStrings:
 ; entries correspond to MONMENUVALUE_* constants
 	db "STATS@"
 	db "SWITCH@"
@@ -17,9 +17,8 @@ MonMenuOptionStrings: ; 24caf
 	db "MOVE@"
 	db "MAIL@"
 	db "ERROR!@"
-; 24cd9
 
-MonMenuOptions: ; 24cd9
+MonMenuOptions:
 ; category, item, value; actions are in PokemonActionSubmenu (see engine/start_menu.asm)
 ; moves
 	db MONMENU_FIELD_MOVE, MONMENUITEM_CUT,        CUT
@@ -45,4 +44,3 @@ MonMenuOptions: ; 24cd9
 	db MONMENU_MENUOPTION, MONMENUITEM_MAIL,       MONMENUVALUE_MAIL
 	db MONMENU_MENUOPTION, MONMENUITEM_ERROR,      MONMENUVALUE_ERROR
 	db -1
-; 24d19

@@ -1,4 +1,4 @@
-DoPoisonStep:: ; 505da
+DoPoisonStep::
 	ld a, [wPartyCount]
 	and a
 	jr z, .no_faint
@@ -55,9 +55,8 @@ DoPoisonStep:: ; 505da
 .no_faint
 	xor a
 	ret
-; 5062e
 
-.DamageMonIfPoisoned: ; 5062e
+.DamageMonIfPoisoned:
 ; check if mon is poisoned, return if not
 	ld a, MON_STATUS
 	call GetPartyParamLocation
@@ -98,31 +97,27 @@ DoPoisonStep:: ; 505da
 	ld c, %01
 	scf
 	ret
-; 50658
 
-.PlayPoisonSFX: ; 50658
+.PlayPoisonSFX:
 	ld de, SFX_POISON
 	call PlaySFX
 	ld b, $2
 	predef LoadPoisonBGPals
 	call DelayFrame
 	ret
-; 50669
 
-.Script_MonFaintedToPoison: ; 50669
+.Script_MonFaintedToPoison:
 	callasm .PlayPoisonSFX
 	opentext
 	callasm .CheckWhitedOut
 	iffalse .whiteout
 	closetext
 	end
-; 50677
 
-.whiteout ; 50677
+.whiteout
 	farjump Script_OverworldWhiteout
-; 5067b
 
-.CheckWhitedOut: ; 5067b
+.CheckWhitedOut:
 	xor a
 	ld [wCurPartyMon], a
 	ld de, wEngineBuffer2
@@ -149,14 +144,11 @@ DoPoisonStep:: ; 505da
 	ld a, d
 	ld [wScriptVar], a
 	ret
-; 506b2
 
-.PoisonFaintText: ; 506b2
+.PoisonFaintText:
 	text_jump UnknownText_0x1c0acc
 	db "@"
-; 506b7
 
-.PoisonWhiteOutText: ; 506b7
+.PoisonWhiteOutText:
 	text_jump UnknownText_0x1c0ada
 	db "@"
-; 506bc
