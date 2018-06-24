@@ -28,7 +28,7 @@ OpenMartDialog:: ; 15a45
 MartDialog: ; 15a61
 	ld a, 0
 	ld [wEngineBuffer1], a
-	xor a
+	xor a ; STANDARDMART_HOWMAYIHELPYOU
 	ld [wEngineBuffer5], a
 	call StandardMart
 	ret
@@ -138,17 +138,27 @@ GetMart: ; 15b31
 	ret
 ; 15b47
 
+; StandardMart.MartFunctions indexes
+	const_def
+	const STANDARDMART_HOWMAYIHELPYOU ; 0
+	const STANDARDMART_TOPMENU        ; 1
+	const STANDARDMART_BUY            ; 2
+	const STANDARDMART_SELL           ; 3
+	const STANDARDMART_QUIT           ; 4
+	const STANDARDMART_ANYTHINGELSE   ; 5
+
 StandardMart: ; 15b47
 .loop
 	ld a, [wEngineBuffer5]
 	ld hl, .MartFunctions
 	rst JumpTable
 	ld [wEngineBuffer5], a
-	cp $ff
+	cp -1
 	jr nz, .loop
 	ret
 
 .MartFunctions:
+; entries correspond to STANDARDMART_* constants
 	dw .HowMayIHelpYou
 	dw .TopMenu
 	dw .Buy
@@ -161,7 +171,7 @@ StandardMart: ; 15b47
 	call LoadStandardMenuHeader
 	ld hl, Text_Mart_HowMayIHelpYou
 	call PrintText
-	ld a, $1 ; top menu
+	ld a, STANDARDMART_TOPMENU
 	ret
 ; 15b6e
 
@@ -176,13 +186,13 @@ StandardMart: ; 15b47
 	cp $2
 	jr z, .sell
 .quit
-	ld a, $4 ;  Come again!
+	ld a, STANDARDMART_QUIT
 	ret
 .buy
-	ld a, $2 ; buy
+	ld a, STANDARDMART_BUY
 	ret
 .sell
-	ld a, $3 ; sell
+	ld a, STANDARDMART_SELL
 	ret
 ; 15b8d
 
@@ -191,14 +201,14 @@ StandardMart: ; 15b47
 	call FarReadMart
 	call BuyMenu
 	and a
-	ld a, $5 ; Anything else?
+	ld a, STANDARDMART_ANYTHINGELSE
 	ret
 ; 15b9a
 
 .Sell: ; 15b9a
 	call ExitMenu
 	call SellMenu
-	ld a, $5 ; Anything else?
+	ld a, STANDARDMART_ANYTHINGELSE
 	ret
 ; 15ba3
 
@@ -206,7 +216,7 @@ StandardMart: ; 15b47
 	call ExitMenu
 	ld hl, Text_Mart_ComeAgain
 	call MartTextBox
-	ld a, $ff ; exit
+	ld a, -1
 	ret
 ; 15baf
 
@@ -214,7 +224,7 @@ StandardMart: ; 15b47
 	call LoadStandardMenuHeader
 	ld hl, Text_Mart_AnythingElse
 	call PrintText
-	ld a, $1 ; top menu
+	ld a, STANDARDMART_TOPMENU
 	ret
 ; 15bbb
 
@@ -470,7 +480,7 @@ BuyMenuLoop: ; 15cef
 	jr c, .cancel
 	ld de, wMoney
 	ld bc, hMoneyTemp
-	ld a, $3 ; useless load
+	ld a, 3 ; useless load
 	call CompareMoney
 	jr c, .insufficient_funds
 	ld hl, wNumItems
@@ -478,7 +488,7 @@ BuyMenuLoop: ; 15cef
 	jr nc, .insufficient_bag_space
 	ld a, [wMartItemID]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld b, SET_FLAG
 	ld hl, wBargainShopFlags
 	call FlagAction
@@ -537,7 +547,7 @@ BargainShopAskPurchaseQuantity:
 	ld [wItemQuantityChangeBuffer], a
 	ld a, [wMartItemID]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld b, CHECK_FLAG
 	ld hl, wBargainShopFlags
 	call FlagAction
@@ -546,7 +556,7 @@ BargainShopAskPurchaseQuantity:
 	jr nz, .SoldOut
 	ld a, [wMartItemID]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wMartPointer
 	ld a, [hli]
 	ld h, [hl]
