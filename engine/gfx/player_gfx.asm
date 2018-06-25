@@ -72,7 +72,7 @@ ShowPlayerNamingChoices:
 
 INCLUDE "data/player_names.asm"
 
-GetPlayerNameArray: ; 88318 This Function is never called
+Unreferenced_GetPlayerNameArray:
 	ld hl, wPlayerName
 	ld de, MalePlayerNameArray
 	ld a, [wPlayerGender]

@@ -925,7 +925,7 @@ INCBIN "gfx/naming_screen/middle_line.1bpp"
 NamingScreenGFX_UnderLine:
 INCBIN "gfx/naming_screen/underline.1bpp"
 
-_ComposeMailMessage: ; 11e75 (mail?)
+_ComposeMailMessage:
 	ld hl, wNamingScreenDestinationPointer
 	ld [hl], e
 	inc hl

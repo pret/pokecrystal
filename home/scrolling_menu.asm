@@ -40,7 +40,7 @@ InitScrollingMenu::
 	pop bc
 	jp TextBox
 
-JoyTextDelay_ForcehJoyDown:: ; 354b joypad
+JoyTextDelay_ForcehJoyDown::
 	call DelayFrame
 
 	ld a, [hInMenu]

@@ -226,20 +226,19 @@ BillsPCDepositFuncCancel:
 	ld [wJumptableIndex], a
 	ret
 
-BillsPCDepositMenuHeader: ; 0xe253d (38:653d)
+BillsPCDepositMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
 
-.MenuData: ; 0xe2545 (38:6545)
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "DEPOSIT@"
 	db "STATS@"
 	db "RELEASE@"
 	db "CANCEL@"
-; 0xe2564 (38:6564)
 
 Unreferenced_BillsPCClearThreeBoxes:
 	hlcoord 0, 0
@@ -405,7 +404,7 @@ BillsPC_Withdraw:
 	ld l, a
 	jp hl
 
-.dw ; e2699 (38:6699) #mark
+.dw
 	dw .withdraw ; Withdraw
 	dw .stats ; Stats
 	dw .release ; Release

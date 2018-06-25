@@ -1,4 +1,4 @@
-GetMysteryGift_MobileAdapterLayout: ; 4930f (mobile)
+GetMysteryGift_MobileAdapterLayout:
 	ld a, b
 	cp SCGB_RAM
 	jr nz, .not_ram

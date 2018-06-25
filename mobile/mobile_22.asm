@@ -1035,7 +1035,7 @@ ClearScreenArea:
 	ld a, $18
 	ld [hli], a
 	dec c
-	jr nz, .asm_89713 ; 0x8971c $f5
+	jr nz, .asm_89713
 	ret
 
 Function8971f:

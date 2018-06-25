@@ -5130,7 +5130,7 @@ String_11a7ac:
 	db   "データ<NO>よみこみを"
 	next "ちゅうし　しますか？@"
 
-String_11a7c1: ; 11a7c1 ; new news?
+String_11a7c1:
 	db   "あたらしい　ニュースは"
 	next "ありません　でした@"
 

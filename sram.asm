@@ -208,7 +208,7 @@ sBattleTowerSaveFileFlags:: db
 sBattleTowerReward:: db
 
 ; team of previous trainer
-sBTMonOfTrainers:: ; 0xbe51
+sBTMonOfTrainers:: ; be51
 sBTMonPrevTrainer1:: db
 sBTMonPrevTrainer2:: db
 sBTMonPrevTrainer3:: db
