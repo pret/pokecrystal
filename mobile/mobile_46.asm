@@ -1304,7 +1304,6 @@ BattleTowerRoomMenu_UpdatePickLevelMenu:
 	ld [wMobileInactivityTimerFrames], a
 	ret
 
-
 Function118a54:
 	ld a, [wcd55]
 	ld l, a

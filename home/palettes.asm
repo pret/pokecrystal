@@ -229,7 +229,6 @@ DmgToCgbObjPal1::
 	pop af
 	ret
 
-
 CopyPals::
 ; copy c palettes in order b from de to hl
 

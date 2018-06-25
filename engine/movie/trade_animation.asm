@@ -1409,7 +1409,6 @@ TradeAnim_WaitAnim2:
 	call TradeAnim_AdvanceScriptPointer
 	ret
 
-
 Unreferenced_DebugTrade:
 ; This function is not referenced.
 ; It was meant for use in Japanese versions, so the

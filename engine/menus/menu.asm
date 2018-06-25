@@ -55,7 +55,6 @@ _InterpretMobileMenu::
 	and a
 	ret
 
-
 Draw2DMenu:
 	xor a
 	ld [hBGMapMode], a

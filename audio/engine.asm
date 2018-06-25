@@ -2752,7 +2752,6 @@ LoadMusicByte::
 	ld a, [wCurMusicByte]
 	ret
 
-
 INCLUDE "audio/notes.asm"
 
 INCLUDE "audio/wave_samples.asm"

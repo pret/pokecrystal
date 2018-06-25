@@ -2037,7 +2037,6 @@ Function100db0:
 	xor a
 	ret
 
-
 Function100dc0:
 	ld a, [wLinkMode]
 	cp LINK_MOBILE

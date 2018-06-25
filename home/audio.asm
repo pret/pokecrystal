@@ -130,7 +130,6 @@ PlayMusic2::
 	pop hl
 	ret
 
-
 PlayCry::
 ; Play cry de.
 

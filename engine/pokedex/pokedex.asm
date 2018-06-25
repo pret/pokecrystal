@@ -1609,7 +1609,6 @@ Pokedex_CheckSeen:
 	pop de
 	ret
 
-
 Pokedex_OrderMonsByMode:
 	ld hl, wPokedexOrder
 	ld bc, wPokedexOrderEnd - wPokedexOrder

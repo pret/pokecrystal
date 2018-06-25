@@ -79,7 +79,6 @@ BattleCommand_BatonPass:
 
 	jr ResetBatonPassStatus
 
-
 BatonPass_LinkPlayerSwitch:
 	ld a, [wLinkMode]
 	and a
@@ -96,7 +95,6 @@ BatonPass_LinkPlayerSwitch:
 	xor a
 	ld [wBattlePlayerAction], a
 	ret
-
 
 BatonPass_LinkEnemySwitch:
 	ld a, [wLinkMode]
@@ -123,11 +121,9 @@ BatonPass_LinkEnemySwitch:
 .switch
 	jp CloseWindow
 
-
 FailedBatonPass:
 	call AnimateFailedMove
 	jp PrintButItFailed
-
 
 ResetBatonPassStatus:
 ; Reset status changes that aren't passed by Baton Pass.
@@ -168,7 +164,6 @@ ResetBatonPassStatus:
 	ld [wEnemyWrapCount], a
 	ret
 
-
 CheckAnyOtherAlivePartyMons:
 	ld hl, wPartyMon1HP
 	ld a, [wPartyCount]
@@ -176,7 +171,6 @@ CheckAnyOtherAlivePartyMons:
 	ld a, [wCurBattleMon]
 	ld e, a
 	jr CheckAnyOtherAliveMons
-
 
 CheckAnyOtherAliveEnemyMons:
 	ld hl, wOTPartyMon1HP

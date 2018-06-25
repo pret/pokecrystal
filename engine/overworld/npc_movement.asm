@@ -215,7 +215,6 @@ Function6fa1:
 	scf
 	ret
 
-
 CheckFacingObject::
 
 	call GetFacingTileCoord

@@ -2784,7 +2784,6 @@ ApplyPPUp:
 	inc de
 	jr .loop
 
-
 ComputeMaxPP:
 	push bc
 	; Divide the base PP by 5.

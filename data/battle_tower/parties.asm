@@ -550,7 +550,6 @@ BattleTowerMons1:
 	db "BARIYA-DO@@"
 
 
-
 BattleTowerMons2:
 
 	db UMBREON
@@ -1098,7 +1097,6 @@ BattleTowerMons2:
 	bigdw 42 ; SAtk
 	bigdw 42 ; SDef
 	db "NUO-@@@@@@@"
-
 
 
 BattleTowerMons3:
@@ -1650,7 +1648,6 @@ BattleTowerMons3:
 	db "OKORIZARU@@"
 
 
-
 BattleTowerMons4:
 
 	db TAUROS
@@ -2198,7 +2195,6 @@ BattleTowerMons4:
 	bigdw 103 ; SAtk
 	bigdw 95 ; SDef
 	db "EREBU-@@@@@"
-
 
 
 BattleTowerMons5:
@@ -2750,7 +2746,6 @@ BattleTowerMons5:
 	db "HURI-ZA-@@@"
 
 
-
 BattleTowerMons6:
 
 	db KINGDRA
@@ -3298,7 +3293,6 @@ BattleTowerMons6:
 	bigdw 105 ; SAtk
 	bigdw 117 ; SDef
 	db "GORO-NIya@@"
-
 
 
 BattleTowerMons7:
@@ -3850,7 +3844,6 @@ BattleTowerMons7:
 	db "KAMEtuKUSU@"
 
 
-
 BattleTowerMons8:
 
 	db JOLTEON
@@ -4400,7 +4393,6 @@ BattleTowerMons8:
 	db "GURANBURU@@"
 
 
-
 BattleTowerMons9:
 
 	db UMBREON
@@ -4948,7 +4940,6 @@ BattleTowerMons9:
 	bigdw 167 ; SAtk
 	bigdw 230 ; SDef
 	db "BETOBETON@@"
-
 
 
 BattleTowerMons10:

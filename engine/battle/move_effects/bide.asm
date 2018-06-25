@@ -69,7 +69,6 @@ BattleCommand_StoreEnergy:
 	call StdBattleTextBox
 	jp EndMoveEffect
 
-
 BattleCommand_UnleashEnergy:
 ; unleashenergy
 

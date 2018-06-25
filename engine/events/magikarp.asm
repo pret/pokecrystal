@@ -301,7 +301,6 @@ CalcMagikarpLength:
 
 INCLUDE "data/events/magikarp_lengths.asm"
 
-
 MagikarpHouseSign:
 	ld a, [wBestMagikarpLengthFeet]
 	ld [wMagikarpLength], a

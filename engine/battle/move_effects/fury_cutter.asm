@@ -38,7 +38,6 @@ BattleCommand_FuryCutter:
 	ld [hl], a
 	ret
 
-
 ResetFuryCutterCount:
 
 	push hl

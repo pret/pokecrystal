@@ -93,11 +93,9 @@ OldDMATransfer::
 	ld [hBGMapMode], a
 	ret
 
-
 ReplaceKrisSprite::
 	farcall _ReplaceKrisSprite
 	ret
-
 
 LoadStandardFont::
 	farcall _LoadStandardFont
@@ -106,7 +104,6 @@ LoadStandardFont::
 LoadFontsBattleExtra::
 	farcall _LoadFontsBattleExtra
 	ret
-
 
 LoadFontsExtra::
 	farcall _LoadFontsExtra1
@@ -134,7 +131,6 @@ DecompressRequest2bpp::
 	call Request2bpp
 	call CloseSRAM
 	ret
-
 
 FarCopyBytes::
 ; copy bc bytes from a:hl to de

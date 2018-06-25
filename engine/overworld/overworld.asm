@@ -161,7 +161,6 @@ LoadUsedSpritesGFX:
 	farcall LoadEmote
 	ret
 
-
 SafeGetSprite:
 	push hl
 	call GetSprite

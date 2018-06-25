@@ -530,8 +530,6 @@ BTWinM25:
 	text_jump UnknownText_0x1ec99b
 	db "@"
 
-
-
 BTGreetingF1:
 	text_jump UnknownText_0x1ec9bd
 	db "@"

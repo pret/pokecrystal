@@ -26,7 +26,6 @@ BattleCommand_TripleKick:
 	ld [hl], a
 	ret
 
-
 BattleCommand_KickCounter:
 ; kickcounter
 
