@@ -1,5 +1,5 @@
-TRADEANIM_RIGHT_ARROW EQU $ed
-TRADEANIM_LEFT_ARROW  EQU $ee
+TRADEANIM_RIGHT_ARROW EQUS "\"▶\"" ; $ed
+TRADEANIM_LEFT_ARROW  EQUS "\"▼\"" ; $ee
 
 ; TradeAnim_TubeAnimJumptable.Jumptable indexes
 	const_def
