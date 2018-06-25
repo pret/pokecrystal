@@ -5076,7 +5076,7 @@ String_17fe63:
 	next "せつめいしょを　ごらんください"
 	db   "@"
 
-String_17fe9a: ; 17fe9a ; unused
+String_17fe9a: ; unused
 	db   "ポケモンニュースが"
 	next "あたらしくなっているので"
 	next "レポートを　おくれません"

@@ -810,7 +810,8 @@ Mobile_AlwaysReturnNotCarry:
 	or a
 	ret
 
-Function106331: ; 106331 - called by Mobile_DummyReturnFalse in Crystal-J
+Function106331:
+; called by Mobile_DummyReturnFalse in Crystal-J
 	; check ~[4:b000] == [7:a800]
 	ld a, $4
 	call GetSRAMBank

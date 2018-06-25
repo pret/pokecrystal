@@ -27,7 +27,7 @@ PrinterJumptableIteration:
 	ld l, a
 	jp hl
 
-.Jumptable: ; 84031 (21:4031)
+.Jumptable:
 	dw Print_InitPrinterHandshake ; 00
 	dw Printer_CheckConnectionStatus ; 01
 	dw Printer_WaitSerial ; 02

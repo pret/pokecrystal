@@ -41,14 +41,14 @@ RestoreTileBackup::
 	ld [hli], a
 	dec de
 	dec c
-	jr nz, .col ; 0x1c3b $fa
+	jr nz, .col
 
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .row ; 0x1c44 $ef
+	jr nz, .row
 
 	ret
 
@@ -60,7 +60,7 @@ PopWindow::
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .loop ; 0x1c50 $fa
+	jr nz, .loop
 	ret
 
 GetMenuBoxDims::

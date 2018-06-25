@@ -86,7 +86,7 @@ FindNest:
 	ld a, [hli]
 	ld c, a
 	inc hl
-	ld a, 3
+	ld a, NUM_WATERMON
 	call .SearchMapForMon
 	jr nc, .next_water
 	ld [de], a
@@ -94,7 +94,7 @@ FindNest:
 
 .next_water
 	pop hl
-	ld bc, 3 * 3
+	ld bc, WATER_WILDDATA_LENGTH
 	add hl, bc
 	jr .FindWater
 
@@ -264,7 +264,7 @@ ChooseWildEncounter:
 	inc hl
 	inc hl
 	ld a, [wTimeOfDay]
-	ld bc, $e
+	ld bc, NUM_GRASSMON * 2
 	call AddNTimes
 	ld de, GrassMonProbTable
 
@@ -655,7 +655,7 @@ UpdateRoamMons:
 	jr nc, .update_loop ; invalid index, try again
 	inc hl
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld a, [wRoamMons_LastMapGroup]
@@ -796,7 +796,7 @@ RandomUnseenWildMon:
 	jr z, .randloop1
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 ; We now have the pointer to one of the last (rarest) three wild Pokemon found in that area.
@@ -870,7 +870,7 @@ RandomPhoneWildMon:
 	call Random
 	and %11
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	inc hl

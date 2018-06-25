@@ -28,7 +28,7 @@ ENDM
 The offset is translated into a correct bank by `FixPicBank` in [engine/gfx/load_pics.asm](/engine/gfx/load_pics.asm):
 
 ```asm
-FixPicBank: ; 511c5
+FixPicBank:
 ; This is a thing for some reason.
 
 PICS_FIX EQU $36
@@ -46,7 +46,7 @@ GLOBAL PICS_FIX
 	pop hl
 	ret
 
-.PicsBanks: ; 511d4
+.PicsBanks:
 	db BANK("Pics 1")  ; BANK("Pics 1") + 0
 	db BANK("Pics 2")  ; BANK("Pics 1") + 1
 	db BANK("Pics 3")  ; BANK("Pics 1") + 2
@@ -298,7 +298,7 @@ NUM_TMS = const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 `GetTMHMNumber` and `GetNumberedTMHM` in [engine/items/items.asm](/engine/items/items.asm) have to compensate for this:
 
 ```asm
-GetTMHMNumber:: ; d407
+GetTMHMNumber::
 ; Return the number of a TM/HM by item id c.
 	ld a, c
 ; Skip any dummy items.
@@ -315,7 +315,7 @@ GetTMHMNumber:: ; d407
 	ld c, a
 	ret
 
-GetNumberedTMHM: ; d417
+GetNumberedTMHM:
 ; Return the item id of a TM/HM by number c.
 	ld a, c
 ; Skip any gaps.
@@ -341,7 +341,7 @@ Move `ITEM_C3` and `ITEM_DC` above all the TMs in every table of item data.
 Modify engine/items/items.asm:
 
 ```asm
-GetTMHMNumber:: ; d407
+GetTMHMNumber::
 ; Return the number of a TM/HM by item id c.
 	ld a, c
 	sub TM01
@@ -349,7 +349,7 @@ GetTMHMNumber:: ; d407
 	ld c, a
 	ret
 
-GetNumberedTMHM: ; d417
+GetNumberedTMHM:
 ; Return the item id of a TM/HM by number c.
 	ld a, c
 	add TM01
@@ -366,7 +366,7 @@ GetNumberedTMHM: ; d417
 Three separate routines do the same derivation; `GetDexEntryPointer` in [engine/pokedex/pokedex_2.asm](/engine/pokedex/pokedex_2.asm):
 
 ```asm
-GetDexEntryPointer: ; 44333
+GetDexEntryPointer:
 ; return dex entry pointer b:de
 	push hl
 	ld hl, PokedexDataPointerTable
@@ -460,7 +460,7 @@ PokedexShow_GetDexEntryBank:
 `_Sine` in [engine/math/sine.asm](/engine/math/sine.asm):
 
 ```asm
-_Sine:: ; 84d9
+_Sine::
 ; a = d * sin(e * pi/32)
 	ld a, e
 	calc_sine_wave
@@ -469,11 +469,11 @@ _Sine:: ; 84d9
 `Sprites_Cosine` and `Sprites_Sine` in [engine/gfx/sprites.asm](/engine/gfx/sprites.asm):
 
 ```asm
-Sprites_Cosine: ; 8e72a
+Sprites_Cosine:
 ; a = d * cos(a * pi/32)
 	add %010000 ; cos(x) = sin(x + pi/2)
 	; fallthrough
-Sprites_Sine: ; 8e72c
+Sprites_Sine:
 ; a = d * sin(a * pi/32)
 	calc_sine_wave
 ```
@@ -481,37 +481,34 @@ Sprites_Sine: ; 8e72c
 `BattleAnim_Cosine` and `BattleAnim_Sine` in [engine/battle_anims/functions.asm](/engine/battle_anims/functions.asm):
 
 ```asm
-BattleAnim_Cosine: ; ce732 (33:6732)
+BattleAnim_Cosine:
 ; a = d * cos(a * pi/32)
 	add %010000 ; cos(x) = sin(x + pi/2)
 	; fallthrough
-BattleAnim_Sine: ; ce734 (33:6734)
+BattleAnim_Sine:
 ; a = d * sin(a * pi/32)
 	calc_sine_wave BattleAnimSineWave
 
 ...
 
-BattleAnimSineWave: ; ce77f
+BattleAnimSineWave:
 	sine_table 32
-; ce7bf
 ```
 
 `StartTrainerBattle_DrawSineWave` in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm):
 
 ```asm
-StartTrainerBattle_DrawSineWave: ; 8c6f7 (23:46f7)
+StartTrainerBattle_DrawSineWave:
 	calc_sine_wave
-; 8c768
 ```
 
 And `CelebiEvent_Cosine` in [engine/events/celebi.asm](/engine/events/celebi.asm):
 
 ```asm
-CelebiEvent_Cosine: ; 49b3b (12:5b3b)
+CelebiEvent_Cosine:
 ; a = d * cos(a * pi/32)
 	add %010000 ; cos(x) = sin(x + pi/2)
 	calc_sine_wave
-; 49bae
 ```
 
 They all rely on `calc_sine_wave` in [macros/code.asm](/macros/code.asm):
@@ -586,7 +583,7 @@ ENDM
 In [engine/tilesets/tileset_anims.asm](/engine/tilesets/tileset_anims.asm):
 
 ```asm
-GetForestTreeFrame: ; fc54c
+GetForestTreeFrame:
 ; Return 0 if a is even, or 2 if odd.
 	and a
 	jr z, .even
@@ -609,16 +606,14 @@ GetForestTreeFrame: ; fc54c
 .even
 	xor a
 	ret
-; fc56d
 ```
 
 **Fix:**
 
 ```asm
-GetForestTreeFrame: ; fc54c
+GetForestTreeFrame:
 ; Return 0 if a is even, or 2 if odd.
 	and 1
 	add a
 	ret
-; fc56d
 ```

@@ -1629,7 +1629,6 @@ wMartItem7BCD:: ds 3
 wMartItem8BCD:: ds 3
 wMartItem9BCD:: ds 3
 wMartItem10BCD:: ds 3
-wMartItemBCDEnd::
 
 NEXTU ; d002
 ; town map data

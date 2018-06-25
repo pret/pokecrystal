@@ -190,7 +190,7 @@ SetFacingShadow:
 	ld [hl], FACING_SHADOW
 	ret
 
-SetFacingEmote: ; 4582 emote
+SetFacingEmote:
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld [hl], FACING_EMOTE

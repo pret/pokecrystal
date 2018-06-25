@@ -1,7 +1,7 @@
 NONTALKABLE EQUS "db"
 TALKABLE    EQUS "db TALK +"
 
-TileCollisionTable:: ; 4ce1f
+TileCollisionTable::
 ; entries correspond to COLL_* constants
 	NONTALKABLE  LANDTILE ; COLL_FLOOR
 	NONTALKABLE  LANDTILE ; COLL_01
@@ -259,4 +259,3 @@ TileCollisionTable:: ; 4ce1f
 	NONTALKABLE  LANDTILE ; fd
 	NONTALKABLE  LANDTILE ; fe
 	NONTALKABLE  WALLTILE ; COLL_FF
-; 4cf1f

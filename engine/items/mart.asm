@@ -26,7 +26,7 @@ OpenMartDialog::
 MartDialog:
 	ld a, 0
 	ld [wEngineBuffer1], a
-	xor a
+	xor a ; STANDARDMART_HOWMAYIHELPYOU
 	ld [wEngineBuffer5], a
 	call StandardMart
 	ret
@@ -103,7 +103,7 @@ LoadMartPointer:
 	ld [wMartPointer + 1], a
 	ld hl, wCurMart
 	xor a
-	ld bc, 16
+	ld bc, wCurMartEnd - wCurMart
 	call ByteFill
 	xor a
 	ld [wEngineBuffer5], a
@@ -129,17 +129,27 @@ GetMart:
 	ld b, BANK(Marts)
 	ret
 
+; StandardMart.MartFunctions indexes
+	const_def
+	const STANDARDMART_HOWMAYIHELPYOU ; 0
+	const STANDARDMART_TOPMENU        ; 1
+	const STANDARDMART_BUY            ; 2
+	const STANDARDMART_SELL           ; 3
+	const STANDARDMART_QUIT           ; 4
+	const STANDARDMART_ANYTHINGELSE   ; 5
+
 StandardMart:
 .loop
 	ld a, [wEngineBuffer5]
 	ld hl, .MartFunctions
 	rst JumpTable
 	ld [wEngineBuffer5], a
-	cp $ff
+	cp -1
 	jr nz, .loop
 	ret
 
 .MartFunctions:
+; entries correspond to STANDARDMART_* constants
 	dw .HowMayIHelpYou
 	dw .TopMenu
 	dw .Buy
@@ -151,7 +161,7 @@ StandardMart:
 	call LoadStandardMenuHeader
 	ld hl, Text_Mart_HowMayIHelpYou
 	call PrintText
-	ld a, $1 ; top menu
+	ld a, STANDARDMART_TOPMENU
 	ret
 
 .TopMenu:
@@ -165,13 +175,13 @@ StandardMart:
 	cp $2
 	jr z, .sell
 .quit
-	ld a, $4 ;  Come again!
+	ld a, STANDARDMART_QUIT
 	ret
 .buy
-	ld a, $2 ; buy
+	ld a, STANDARDMART_BUY
 	ret
 .sell
-	ld a, $3 ; sell
+	ld a, STANDARDMART_SELL
 	ret
 
 .Buy:
@@ -179,27 +189,27 @@ StandardMart:
 	call FarReadMart
 	call BuyMenu
 	and a
-	ld a, $5 ; Anything else?
+	ld a, STANDARDMART_ANYTHINGELSE
 	ret
 
 .Sell:
 	call ExitMenu
 	call SellMenu
-	ld a, $5 ; Anything else?
+	ld a, STANDARDMART_ANYTHINGELSE
 	ret
 
 .Quit:
 	call ExitMenu
 	ld hl, Text_Mart_ComeAgain
 	call MartTextBox
-	ld a, $ff ; exit
+	ld a, -1
 	ret
 
 .AnythingElse:
 	call LoadStandardMenuHeader
 	ld hl, Text_Mart_AnythingElse
 	call PrintText
-	ld a, $1 ; top menu
+	ld a, STANDARDMART_TOPMENU
 	ret
 
 FarReadMart:
@@ -444,7 +454,7 @@ BuyMenuLoop:
 	jr c, .cancel
 	ld de, wMoney
 	ld bc, hMoneyTemp
-	ld a, $3 ; useless load
+	ld a, 3 ; useless load
 	call CompareMoney
 	jr c, .insufficient_funds
 	ld hl, wNumItems
@@ -452,7 +462,7 @@ BuyMenuLoop:
 	jr nc, .insufficient_bag_space
 	ld a, [wMartItemID]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld b, SET_FLAG
 	ld hl, wBargainShopFlags
 	call FlagAction
@@ -508,7 +518,7 @@ BargainShopAskPurchaseQuantity:
 	ld [wItemQuantityChangeBuffer], a
 	ld a, [wMartItemID]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld b, CHECK_FLAG
 	ld hl, wBargainShopFlags
 	call FlagAction
@@ -517,7 +527,7 @@ BargainShopAskPurchaseQuantity:
 	jr nz, .SoldOut
 	ld a, [wMartItemID]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, wMartPointer
 	ld a, [hli]
 	ld h, [hl]

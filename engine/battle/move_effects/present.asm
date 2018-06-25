@@ -32,12 +32,12 @@ BattleCommand_Present:
 .next
 	ld a, [hli]
 	cp -1
-	jr z, .heal_effect ; 378a4 $11
+	jr z, .heal_effect
 	cp b
-	jr nc, .got_power ; 378a7 $4
+	jr nc, .got_power
 	inc c
 	inc hl
-	jr .next ; 378ab $f4
+	jr .next
 
 .got_power
 	ld a, c
@@ -56,12 +56,12 @@ BattleCommand_Present:
 	ld hl, AICheckPlayerMaxHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .got_hp_fn_pointer ; 378c9 $3
+	jr z, .got_hp_fn_pointer
 	ld hl, AICheckEnemyMaxHP
 .got_hp_fn_pointer
 	ld a, BANK(AICheckPlayerMaxHP)
 	rst FarCall
-	jr c, .already_fully_healed ; 378d1 $20
+	jr c, .already_fully_healed
 
 	ld hl, GetQuarterMaxHP
 	call CallBattleCore
@@ -73,12 +73,12 @@ BattleCommand_Present:
 	call StdBattleTextBox
 	call BattleCommand_SwitchTurn
 	call UpdateOpponentInParty
-	jr .do_animation ; 378f1 $11
+	jr .do_animation
 
 .already_fully_healed
 	call BattleCommand_SwitchTurn
 	call _CheckBattleScene
-	jr nc, .do_animation ; 378f9 $9
+	jr nc, .do_animation
 	call AnimateFailedMove
 	ld hl, RefusedGiftText
 	call StdBattleTextBox

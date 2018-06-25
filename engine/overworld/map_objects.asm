@@ -2159,7 +2159,8 @@ Function55e0::
 	jr nz, .loop
 	ret
 
-Function5602: ; 5602, called at battle start
+Function5602:
+; called at battle start
 	call Function5645 ; clear sprites
 	ld a, PLAYER
 	call Function5629 ; respawn player
