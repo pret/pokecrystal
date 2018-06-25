@@ -90,7 +90,6 @@ EnableMobile:
 	ei
 
 	ret
-; 0x1000a4
 
 DisableMobile:
 	di
@@ -7507,34 +7506,27 @@ MenuData_10374f:
 	db "やめる@"
 	db "せつめい@"
 
-UnknownText_0x10375d: ; 0x10375d
+UnknownText_0x10375d:
 	text_jump UnknownText_0x1c422a
 	db "@"
-; 0x103762
-UnknownText_0x103762: ; 0x103762
+UnknownText_0x103762:
 	text_jump UnknownText_0x1c4275
 	db "@"
-; 0x103767
-UnknownText_0x103767: ; 0x103767
+UnknownText_0x103767:
 	text_jump UnknownText_0x1c4298
 	db "@"
-; 0x10376c
-UnknownText_0x10376c: ; 0x10376c
+UnknownText_0x10376c:
 	text_jump UnknownText_0x1c439c
 	db "@"
-; 0x103771
-UnknownText_0x103771: ; 0x103771
+UnknownText_0x103771:
 	text_jump UnknownText_0x1c43dc
 	db "@"
-; 0x103776
-UnknownText_0x103776: ; 0x103776
+UnknownText_0x103776:
 	text_jump UnknownText_0x1c4419
 	db "@"
-; 0x10377b
-UnknownText_0x10377b: ; 0x10377b
+UnknownText_0x10377b:
 	text_jump UnknownText_0x1c445a
 	db "@"
-; 0x103780
 
 Function103780:
 	ld a, [wd265]
@@ -7596,10 +7588,9 @@ Function1037c2:
 	ld [wScriptVar], a
 	ret
 
-UnknownText_0x1037e6: ; 0x1037e6
+UnknownText_0x1037e6:
 	text_jump UnknownText_0x1c449c
 	db "@"
-; 0x1037eb
 
 Function1037eb:
 	call Function103823
@@ -7627,15 +7618,13 @@ Function1037eb:
 	ld [wScriptVar], a
 	ret
 
-UnknownText_0x103819: ; 0x103819
+UnknownText_0x103819:
 	text_jump UnknownText_0x1c44c0
 	db "@"
-; 0x10381e
 
-UnknownText_0x10381e: ; 0x10381e
+UnknownText_0x10381e:
 	text_jump UnknownText_0x1c44e7
 	db "@"
-; 0x103823
 
 Function103823:
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7681,10 +7670,9 @@ Function10383c:
 	ld [wScriptVar], a
 	ret
 
-UnknownText_0x103876: ; 0x103876
+UnknownText_0x103876:
 	text_jump UnknownText_0x1c4508
 	db "@"
-; 0x10387b
 
 Function10387b:
 	farcall Mobile_AlwaysReturnNotCarry
@@ -7698,7 +7686,6 @@ Function10387b:
 	call JoyWaitAorB
 	ret
 
-UnknownText_0x103898: ; 0x103898
+UnknownText_0x103898:
 	text_jump UnknownText_0x1c4525
 	db "@"
-; 0x10389d

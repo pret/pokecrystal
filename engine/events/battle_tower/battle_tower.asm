@@ -330,7 +330,7 @@ ReadBTTrainerParty:
 	jr .done_trainer_name
 
 .trainer_name_okay
-	ld hl, wBT_OTTempName ; 0xc608
+	ld hl, wBT_OTTempName
 
 .done_trainer_name
 	ld de, wOTPlayerName
@@ -1564,7 +1564,7 @@ BattleTowerAction_UbersCheck: ; BattleTowerAction $19
 	ld [wScriptVar], a
 	ret
 
-LoadOpponentTrainerAndPokemonWithOTSprite: ; 0x170b44
+LoadOpponentTrainerAndPokemonWithOTSprite:
 	farcall Function_LoadOpponentTrainerAndPokemons
 	ld a, [rSVBK]
 	push af

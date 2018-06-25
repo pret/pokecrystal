@@ -7,4 +7,3 @@
 	frame 6, 06
 	frame 5, 06
 	endanim
-; 0xd1e71

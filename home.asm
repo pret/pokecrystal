@@ -132,7 +132,7 @@ IsInArray::
 	scf
 	ret
 
-SkipNames:: ; 0x30f4
+SkipNames::
 ; Skip a names.
 	ld bc, NAME_LENGTH
 	and a
@@ -142,7 +142,6 @@ SkipNames:: ; 0x30f4
 	dec a
 	jr nz, .loop
 	ret
-; 0x30fe
 
 INCLUDE "home/math.asm"
 INCLUDE "home/print_text.asm"
@@ -189,7 +188,6 @@ StringCmp::
 	dec c
 	jr nz, .loop
 	ret
-; 0x31e4
 
 CompareLong::
 ; Compare bc bytes at de and hl.
@@ -217,7 +215,7 @@ CompareLong::
 INCLUDE "home/tilemap.asm"
 INCLUDE "home/hp_pals.asm"
 
-CountSetBits:: ; 0x335f
+CountSetBits::
 ; Count the number of set bits in b bytes starting from hl.
 ; Return in a, c and [wd265].
 	ld c, 0
@@ -240,7 +238,6 @@ CountSetBits:: ; 0x335f
 	ld a, c
 	ld [wd265], a
 	ret
-; 0x3376
 
 GetWeekday::
 	ld a, [wCurDay]

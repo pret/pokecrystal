@@ -5,4 +5,3 @@
 	frame 5, 14
 	frame 6, 11
 	endanim
-; 0xd1666

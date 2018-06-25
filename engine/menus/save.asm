@@ -1112,50 +1112,42 @@ Checksum:
 	ret
 
 
-Text_WouldYouLikeToSaveTheGame: ; 0x15283
+Text_WouldYouLikeToSaveTheGame:
 	; Would you like to save the game?
 	text_jump UnknownText_0x1c454b
 	db "@"
-; 0x15288
 
-Text_SavingDontTurnOffThePower: ; 0x15288
+Text_SavingDontTurnOffThePower:
 	; SAVING… DON'T TURN OFF THE POWER.
 	text_jump UnknownText_0x1c456d
 	db "@"
-; 0x1528d
 
-Text_PlayerSavedTheGame: ; 0x1528d
+Text_PlayerSavedTheGame:
 	; saved the game.
 	text_jump UnknownText_0x1c4590
 	db "@"
-; 0x15292
 
-Text_AlreadyASaveFile: ; 0x15292
+Text_AlreadyASaveFile:
 	; There is already a save file. Is it OK to overwrite?
 	text_jump UnknownText_0x1c45a3
 	db "@"
-; 0x15297
 
-Text_AnotherSaveFile: ; 0x15297
+Text_AnotherSaveFile:
 	; There is another save file. Is it OK to overwrite?
 	text_jump UnknownText_0x1c45d9
 	db "@"
-; 0x1529c
 
-Text_SaveFileCorrupted: ; 0x1529c
+Text_SaveFileCorrupted:
 	; The save file is corrupted!
 	text_jump UnknownText_0x1c460d
 	db "@"
-; 0x152a1
 
-Text_SaveOnBoxSwitch: ; 0x152a1
+Text_SaveOnBoxSwitch:
 	; When you change a #MON BOX, data will be saved. OK?
 	text_jump UnknownText_0x1c462a
 	db "@"
-; 0x152a6
 
-Text_SaveOnMoveMonWOMail: ; 0x152a6
+Text_SaveOnMoveMonWOMail:
 	; Each time you move a #MON, data will be saved. OK?
 	text_jump UnknownText_0x1c465f
 	db "@"
-; 0x152ab

@@ -1549,20 +1549,17 @@ Function108bec:
 	call DelayFrames
 	ret
 
-.PlayerWillTradeMon: ; 0x108c07
+.PlayerWillTradeMon:
 	text_jump UnknownText_0x1bc787
 	db "@"
-; 0x108c0c
 
-.ForPartnersMon: ; 0x108c0c
+.ForPartnersMon:
 	text_jump UnknownText_0x1bc79d
 	db "@"
-; 0x108c11
 
-.UnusedTextPlayersMonTrade: ; 0x108c11
+.UnusedTextPlayersMonTrade:
 	text_jump UnknownText_0x1bc7b0
 	db "@"
-; 0x108c16
 
 Function108c16:
 	ld a, $90
@@ -1573,10 +1570,9 @@ Function108c16:
 	call DelayFrames
 	ret
 
-.TakeGoodCareOfMon: ; 0x108c26
+.TakeGoodCareOfMon:
 	text_jump UnknownText_0x1bc7c3
 	db "@"
-; 0x108c2b
 
 Function108c2b:
 	ld a, $90
@@ -1587,10 +1583,9 @@ Function108c2b:
 	call DelayFrames
 	ret
 
-.PlayersMonTrade: ; 0x108c3b
+.PlayersMonTrade:
 	text_jump UnknownText_0x1bc7dd
 	db "@"
-; 0x108c40
 
 Function108c40:
 	ld a, $90
@@ -1611,15 +1606,13 @@ Function108c40:
 	call DelayFrames
 	ret
 
-.TakeGoodCareOf: ; 0x108c63
+.TakeGoodCareOf:
 	text_jump UnknownText_0x1bc7f0
 	db "@"
-; 0x108c68
 
-.CameBack: ; 0x108c68
+.CameBack:
 	text_jump UnknownText_0x1bc80a
 	db "@"
-; 0x108c6d
 
 Function108c6d:
 	ld hl, LZ_108fe7

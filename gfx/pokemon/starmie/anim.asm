@@ -5,4 +5,3 @@
 	frame 2, 07
 	frame 3, 07
 	endanim
-; 0xd0f86

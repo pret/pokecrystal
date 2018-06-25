@@ -7,4 +7,3 @@
 	dorepeat 3
 	frame 6, 18
 	endanim
-; 0xd148d

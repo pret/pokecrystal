@@ -8,4 +8,3 @@
 	frame 3, 02
 	frame 4, 02
 	endanim
-; 0xd22dd

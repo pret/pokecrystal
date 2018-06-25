@@ -7,4 +7,3 @@
 	frame 2, 03
 	dorepeat 5
 	endanim
-; 0xd237e

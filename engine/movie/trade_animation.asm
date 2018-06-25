@@ -1247,17 +1247,15 @@ TradeAnim_SentToOTText:
 	ret
 
 
-.Text_WasSentTo: ; 0x29732
+.Text_WasSentTo:
 	; was sent to @ .
 	text_jump UnknownText_0x1bc6e9
 	db "@"
-; 0x29737
 
-.Text_MonName: ; 0x29737
+.Text_MonName:
 	;
 	text_jump UnknownText_0x1bc701
 	db "@"
-; 0x2973c
 
 TradeAnim_OTBidsFarewell:
 	ld hl, .Text_BidsFarewellToMon
@@ -1270,17 +1268,15 @@ TradeAnim_OTBidsFarewell:
 	ret
 
 
-.Text_BidsFarewellToMon: ; 0x29752
+.Text_BidsFarewellToMon:
 	; bids farewell to
 	text_jump UnknownText_0x1bc703
 	db "@"
-; 0x29757
 
-.Text_MonName: ; 0x29757
+.Text_MonName:
 	; .
 	text_jump UnknownText_0x1bc719
 	db "@"
-; 0x2975c
 
 TradeAnim_TakeCareOfText:
 	call WaitTop
@@ -1296,11 +1292,10 @@ TradeAnim_TakeCareOfText:
 	ret
 
 
-.Text_TakeGoodCareOfMon: ; 0x2977a
+.Text_TakeGoodCareOfMon:
 	; Take good care of @ .
 	text_jump UnknownText_0x1bc71f
 	db "@"
-; 0x2977f
 
 TradeAnim_OTSendsText1:
 	ld hl, .Text_ForYourMon
@@ -1315,17 +1310,15 @@ TradeAnim_OTSendsText1:
 	ret
 
 
-.Text_ForYourMon: ; 0x2979a
+.Text_ForYourMon:
 	; For @ 's @ ,
 	text_jump UnknownText_0x1bc739
 	db "@"
-; 0x2979f
 
-.Text_OTSends: ; 0x2979f
+.Text_OTSends:
 	; sends @ .
 	text_jump UnknownText_0x1bc74c
 	db "@"
-; 0x297a4
 
 TradeAnim_OTSendsText2:
 	ld hl, .Text_WillTrade
@@ -1340,17 +1333,15 @@ TradeAnim_OTSendsText2:
 	ret
 
 
-.Text_WillTrade: ; 0x297bf
+.Text_WillTrade:
 	; will trade @ @
 	text_jump UnknownText_0x1bc75e
 	db "@"
-; 0x297c4
 
-.Text_ForYourMon: ; 0x297c4
+.Text_ForYourMon:
 	; for @ 's @ .
 	text_jump UnknownText_0x1bc774
 	db "@"
-; 0x297c9
 
 TradeAnim_Wait80Frames:
 	ld c, 80

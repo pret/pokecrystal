@@ -4,7 +4,7 @@ landmark: MACRO
 	dw \3
 ENDM
 
-Landmarks: ; 0x1ca8c3
+Landmarks:
 ; entries correspond to constants/landmark_constants.asm
 	landmark   0,   0, SpecialMapName
 	landmark 148, 116, NewBarkTownName
@@ -102,7 +102,6 @@ Landmarks: ; 0x1ca8c3
 	landmark  20, 116, TohjoFallsName
 	landmark  28,  84, Route28Name
 	landmark 148, 132, FastShipName
-; 0x1caa43
 
 NewBarkTownName:     db "NEW BARK¯TOWN@"
 CherrygroveCityName: db "CHERRYGROVE¯CITY@"

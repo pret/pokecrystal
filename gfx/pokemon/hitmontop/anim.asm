@@ -6,4 +6,3 @@
 	dorepeat 3
 	frame 4, 25
 	endanim
-; 0xd15c6

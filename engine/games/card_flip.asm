@@ -115,11 +115,10 @@ _CardFlip:
 	ld [wJumptableIndex], a
 	ret
 
-.PlayWithThreeCoinsText: ; 0xe01cd
+.PlayWithThreeCoinsText:
 	; Play with three coins?
 	text_jump UnknownText_0x1c5793
 	db "@"
-; 0xe01d2
 
 .DeductCoins:
 	ld a, [wCoins]
@@ -156,11 +155,10 @@ _CardFlip:
 	call .Increment
 	ret
 
-.NotEnoughCoinsText: ; 0xe0212
+.NotEnoughCoinsText:
 	; Not enough coins…
 	text_jump UnknownText_0x1c57ab
 	db "@"
-; 0xe0217
 
 .ChooseACard:
 	xor a
@@ -234,11 +232,10 @@ _CardFlip:
 	call .Increment
 	ret
 
-.ChooseACardText: ; 0xe02b2
+.ChooseACardText:
 	; Choose a card.
 	text_jump UnknownText_0x1c57be
 	db "@"
-; 0xe02b7
 
 .PlaceYourBet:
 	ld hl, .PlaceYourBetText
@@ -257,11 +254,10 @@ _CardFlip:
 	call .Increment
 	ret
 
-.PlaceYourBetText: ; 0xe02d5
+.PlaceYourBetText:
 	; Place your bet.
 	text_jump UnknownText_0x1c57ce
 	db "@"
-; 0xe02da
 
 .CheckTheCard:
 	xor a
@@ -329,17 +325,15 @@ _CardFlip:
 	ld [wJumptableIndex], a
 	ret
 
-.PlayAgainText: ; 0xe0356
+.PlayAgainText:
 	; Want to play again?
 	text_jump UnknownText_0x1c57df
 	db "@"
-; 0xe035b
 
-.CardsShuffledText: ; 0xe035b
+.CardsShuffledText:
 	; The cards have been shuffled.
 	text_jump UnknownText_0x1c57f4
 	db "@"
-; 0xe0360
 
 .Quit:
 	ld hl, wJumptableIndex
@@ -1119,17 +1113,15 @@ CardFlip_CheckWinCondition:
 	jr nz, .loop
 	ret
 
-.Text_Yeah: ; 0xe0811
+.Text_Yeah:
 	; Yeah!
 	text_jump UnknownText_0x1c5813
 	db "@"
-; 0xe0816
 
-.Text_Darn: ; 0xe0816
+.Text_Darn:
 	; Darn…
 	text_jump UnknownText_0x1c581a
 	db "@"
-; 0xe081b
 
 .AddCoinPlaySFX:
 	ld a, [wCoins]

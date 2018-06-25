@@ -4,13 +4,12 @@ NAMINGSCREEN_BORDER     EQUS "\"■\"" ; $60
 NAMINGSCREEN_MIDDLELINE EQUS "\"→\"" ; $eb
 NAMINGSCREEN_UNDERLINE  EQUS "\"<DOT>\"" ; $f2
 
-_NamingScreen: ; 0x116b7
+_NamingScreen:
 	call DisableSpriteUpdates
 	call NamingScreen
 	call ReturnToMapWithSpeechTextbox
 	ret
 
-; 0x116c1
 
 NamingScreen:
 	ld hl, wNamingScreenDestinationPointer

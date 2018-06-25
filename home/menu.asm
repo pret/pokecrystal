@@ -13,7 +13,6 @@ CopyMenuHeader::
 	ld a, [hROMBank]
 	ld [wMenuDataBank], a
 	ret
-; 0x1d4b
 
 StoreTo_wMenuCursorBuffer::
 	ld [wMenuCursorBuffer], a
@@ -109,7 +108,6 @@ CopyNameFromMenu::
 	pop bc
 	pop hl
 	ret
-; 0x1dcf
 
 
 YesNoBox::
@@ -246,7 +244,6 @@ MenuWriteText::
 	pop af
 	ld [hOAMUpdate], a
 	ret
-; 0x1ea6
 
 AutomaticGetMenuBottomCoord::
 	ld a, [wMenuBorderLeftCoord]
@@ -505,7 +502,6 @@ PlayClickSFX::
 	call PlaySFX
 	pop de
 	ret
-; 0x2012
 
 MenuTextBoxWaitButton::
 	call MenuTextBox

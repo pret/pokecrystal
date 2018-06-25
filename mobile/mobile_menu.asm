@@ -448,7 +448,7 @@ Function4a28a:
 	xor a
 	ret
 
-MenuHeader_0x4a346: ; 0x4a346
+MenuHeader_0x4a346:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 0, SCREEN_WIDTH - 1, 6
 
@@ -457,31 +457,27 @@ String_4a34b:
 	next "けす"
 	next "もどる@"
 
-UnknownText_0x4a358: ; 0x4a358
+UnknownText_0x4a358:
 	; Delete the saved LOG-IN PASSWORD?
 	text_jump UnknownText_0x1c5196
 	db "@"
-; 0x4a35d
 
-UnknownText_0x4a35d: ; 0x4a35d
+UnknownText_0x4a35d:
 	; Deleted the LOG-IN PASSWORD.
 	text_jump UnknownText_0x1c51b9
 	db "@"
-; 0x4a362
 
-DeletePassword_YesNo_MenuHeader: ; 0x4a362
+DeletePassword_YesNo_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData_0x4a36a
 	db 2 ; default option
-; 0x4a36a
 
-MenuData_0x4a36a: ; 0x4a36a
+MenuData_0x4a36a:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2 ; items
 	db "はい@"
 	db "いいえ@"
-; 0x4a373
 
 Function4a373:
 	ld hl, w2DMenuCursorInitY

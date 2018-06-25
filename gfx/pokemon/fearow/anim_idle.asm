@@ -3,4 +3,3 @@
 	frame 0, 05
 	dorepeat 1
 	endanim
-; 0xd198f

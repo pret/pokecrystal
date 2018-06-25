@@ -8,4 +8,3 @@
 	frame 1, 40
 	frame 2, 10
 	endanim
-; 0xd0eda

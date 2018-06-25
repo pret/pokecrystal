@@ -3,4 +3,3 @@
 	frame 1, 15
 	dorepeat 1
 	endanim
-; 0xd11e6

@@ -9,4 +9,3 @@
 	frame 3, 09
 	frame 1, 03
 	endanim
-; 0xd1194

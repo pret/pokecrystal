@@ -5,4 +5,3 @@
 	frame 4, 12
 	dorepeat 3
 	endanim
-; 0xd0fe4

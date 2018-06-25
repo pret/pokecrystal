@@ -3,4 +3,3 @@
 	frame 2, 28
 	frame 3, 08
 	endanim
-; 0xd163d

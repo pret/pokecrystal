@@ -2577,11 +2577,11 @@ PlayVictoryMusic:
 	pop de
 	ret
 
-IsKantoGymLeader: ; 0x3d123
+IsKantoGymLeader:
 	ld hl, KantoGymLeaders
 	jr IsGymLeaderCommon
 
-IsGymLeader: ; 0x3d128
+IsGymLeader:
 	ld hl, GymLeaders
 IsGymLeaderCommon:
 	push de
@@ -2590,7 +2590,6 @@ IsGymLeaderCommon:
 	call IsInArray
 	pop de
 	ret
-; 0x3d137
 
 INCLUDE "data/trainers/leaders.asm"
 

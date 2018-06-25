@@ -7,4 +7,3 @@
 	frame 0, 10
 	frame 5, 10
 	endanim
-; 0xd0a64

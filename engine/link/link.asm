@@ -505,11 +505,10 @@ LinkTimeout:
 	call WaitBGMap2
 	ret
 
-.TooMuchTimeHasElapsed: ; 0x283ed
+.TooMuchTimeHasElapsed:
 	; Too much time has elapsed. Please try again.
 	text_jump UnknownText_0x1c4183
 	db "@"
-; 0x283f2
 
 ExchangeBytes:
 	ld a, TRUE
@@ -1491,20 +1490,18 @@ Function28926:
 	jp InitTradeMenuDisplay
 
 
-.Text_CantTradeLastMon: ; 0x28aaf
+.Text_CantTradeLastMon:
 	; If you trade that #MON, you won't be able to battle.
 	text_jump UnknownText_0x1c41b1
 	db "@"
-; 0x28ab4
 
 .String_Stats_Trade:
 	db "STATS     TRADE@"
 
-.Text_Abnormal: ; 0x28ac4
+.Text_Abnormal:
 	; Your friend's @  appears to be abnormal!
 	text_jump UnknownText_0x1c41e6
 	db "@"
-; 0x28ac9
 
 
 Function28ac9:
@@ -1955,11 +1952,10 @@ String28eab:
 	db   "TRADE"
 	next "CANCEL@"
 
-UnknownText_0x28eb8: ; 0x28eb8
+UnknownText_0x28eb8:
 	; Trade @ for @ ?
 	text_jump UnknownText_0x1c4212
 	db "@"
-; 0x28ebd
 
 String28ebd:
 	db   "Trade completed!@"

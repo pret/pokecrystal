@@ -5,4 +5,3 @@
 	frame 5, 05
 	dorepeat 3
 	endanim
-; 0xd1e7e

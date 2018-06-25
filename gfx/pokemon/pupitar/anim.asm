@@ -5,4 +5,3 @@
 	frame 2, 04
 	dorepeat 2
 	endanim
-; 0xd164a

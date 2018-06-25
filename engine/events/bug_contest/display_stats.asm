@@ -96,7 +96,7 @@ DisplayAlreadyCaughtText:
 	ld hl, .AlreadyCaughtText
 	jp PrintText
 
-.AlreadyCaughtText: ; 0xcc0d0
+.AlreadyCaughtText:
 	; You already caught a @ .
 	text_jump UnknownText_0x1c10dd
 	db "@"

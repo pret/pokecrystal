@@ -1,6 +1,6 @@
 HALLOFFAME_COLON EQU $63
 
-HallOfFame:: ; 0x8640e
+HallOfFame::
 	call HallOfFame_FadeOutMusic
 	ld a, [wStatusFlags]
 	push af
@@ -33,7 +33,6 @@ HallOfFame:: ; 0x8640e
 	ld b, a
 	farcall Credits
 	ret
-; 0x86455
 
 RedCredits::
 	ld a, LOW(MUSIC_NONE)

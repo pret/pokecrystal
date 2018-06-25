@@ -389,42 +389,36 @@ DSTChecks:
 	call ClearBox
 	ret
 
-.Text_AdjustClock: ; 0x164f4
+.Text_AdjustClock:
 	; Do you want to adjust your clock for Daylight Saving Time?
 	text_jump UnknownText_0x1c6095
 	db "@"
-; 0x164f9
 
-.Text_LostInstructionBooklet: ; 0x164f9
+.Text_LostInstructionBooklet:
 	; I lost the instruction booklet for the POKéGEAR.
 	; Come back again in a while.
 	text_jump UnknownText_0x1c60d1
 	db "@"
-; 0x164fe
 
-.Text_SwitchToDST: ; 0x164fe
+.Text_SwitchToDST:
 	; Do you want to switch to Daylight Saving Time?
 	text_jump UnknownText_0x1c6000
 	db "@"
-; 0x16503
 
-.Text_SetClockForward: ; 0x16503
+.Text_SetClockForward:
 	; I set the clock forward by one hour.
 	text_jump UnknownText_0x1c6030
 	db "@"
-; 0x16508
 
-.Text_IsDSTOver: ; 0x16508
+.Text_IsDSTOver:
 	; Is Daylight Saving Time over?
 	text_jump UnknownText_0x1c6056
 	db "@"
-; 0x1650d
 
-.Text_SetClockBack: ; 0x1650d
+.Text_SetClockBack:
 	; I put the clock back one hour.
 	text_jump UnknownText_0x1c6075
 	db "@"
-; 0x16512
 
 Mom_SetUpWithdrawMenu:
 	ld de, Mon_WithdrawString
@@ -596,101 +590,85 @@ Mom_WithdrawDepositMenuJoypad:
 	dt 90
 	dt 9
 
-UnknownText_0x16649: ; 0x16649
+UnknownText_0x16649:
 	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
 	text_jump UnknownText_0x1bd77f
 	db "@"
-; 0x1664e
 
-UnknownText_0x1664e: ; 0x1664e
+UnknownText_0x1664e:
 	; OK, I'll take care of your money.
 	text_jump UnknownText_0x1bd868
 	db "@"
-; 0x16653
 
-UnknownText_0x16653: ; 0x16653
+UnknownText_0x16653:
 	; Be careful. #MON are your friends. You need to work as a team. Now, go on!
 	text_jump UnknownText_0x1bd88e
 	db "@"
-; 0x16658
 
-UnknownText_0x16658: ; 0x16658
+UnknownText_0x16658:
 	; Hi! Welcome home! You're trying very hard, I see. I've kept your room tidy. Or is this about your money?
 	text_jump UnknownText_0x1bd8da
 	db "@"
-; 0x1665d
 
-UnknownText_0x1665d: ; 0x1665d
+UnknownText_0x1665d:
 	; What do you want to do?
 	text_jump UnknownText_0x1bd942
 	db "@"
-; 0x16662
 
-UnknownText_0x16662: ; 0x16662
+UnknownText_0x16662:
 	; How much do you want to save?
 	text_jump UnknownText_0x1bd95b
 	db "@"
-; 0x16667
 
-UnknownText_0x16667: ; 0x16667
+UnknownText_0x16667:
 	; How much do you want to take?
 	text_jump UnknownText_0x1bd97a
 	db "@"
-; 0x1666c
 
-UnknownText_0x1666c: ; 0x1666c
+UnknownText_0x1666c:
 	; Do you want to save some money?
 	text_jump UnknownText_0x1bd999
 	db "@"
-; 0x16671
 
-UnknownText_0x16671: ; 0x16671
+UnknownText_0x16671:
 	; You haven't saved that much.
 	text_jump UnknownText_0x1bd9ba
 	db "@"
-; 0x16676
 
-UnknownText_0x16676: ; 0x16676
+UnknownText_0x16676:
 	; You can't take that much.
 	text_jump UnknownText_0x1bd9d7
 	db "@"
-; 0x1667b
 
-UnknownText_0x1667b: ; 0x1667b
+UnknownText_0x1667b:
 	; You don't have that much.
 	text_jump UnknownText_0x1bd9f1
 	db "@"
-; 0x16680
 
-UnknownText_0x16680: ; 0x16680
+UnknownText_0x16680:
 	; You can't save that much.
 	text_jump UnknownText_0x1bda0b
 	db "@"
-; 0x16685
 
-UnknownText_0x16685: ; 0x16685
+UnknownText_0x16685:
 	; OK, I'll save your money. Trust me! , stick with it!
 	text_jump UnknownText_0x1bda25
 	db "@"
-; 0x1668a
 
-UnknownText_0x1668a: ; 0x1668a
+UnknownText_0x1668a:
 	; Your money's safe here! Get going!
 	text_jump UnknownText_0x1bda5b
 	db "@"
-; 0x1668f
 
-UnknownText_0x1668f: ; 0x1668f
+UnknownText_0x1668f:
 	; , don't give up!
 	text_jump UnknownText_0x1bda7e
 	db "@"
-; 0x16694
 
-UnknownText_0x16694: ; 0x16694
+UnknownText_0x16694:
 	; Just do what you can.
 	text_jump UnknownText_0x1bda90
 	db "@"
-; 0x16699
 
 Mom_SavedString:
 	db "SAVED@"
@@ -704,18 +682,16 @@ Mom_DepositString:
 Mom_HeldString:
 	db "HELD@"
 
-MenuHeader_0x166b5: ; 0x166b5
+MenuHeader_0x166b5:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, 10
 	dw MenuData_0x166bd
 	db 1 ; default option
-; 0x166bd
 
-MenuData_0x166bd: ; 0x166bd
+MenuData_0x166bd:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "GET@"
 	db "SAVE@"
 	db "CHANGE@"
 	db "CANCEL@"
-; 0x166d6

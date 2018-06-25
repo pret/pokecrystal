@@ -6,4 +6,3 @@
 	frame 0, 02
 	dorepeat 4
 	endanim
-; 0xd22ae

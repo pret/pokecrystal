@@ -289,22 +289,20 @@ PrintTwoDigitNumberRightAlign:
 	call PrintNum
 	ret
 
-Text_WokeUpOak: ; 0x90874
+Text_WokeUpOak:
 	; Zzz… Hm? Wha…? You woke me up! Will you check the clock for me?
 	text_jump UnknownText_0x1bc29c
 	db "@"
-; 0x90879
 
-Text_WhatTimeIsIt: ; 0x90879
+Text_WhatTimeIsIt:
 	; What time is it?
 	text_jump UnknownText_0x1bc2eb
 	db "@"
-; 0x9087e
 
 String_oclock:
 	db "o'clock@"
 
-Text_WhatHrs: ; 0x90886
+Text_WhatHrs:
 	; What?@ @
 	text_jump UnknownText_0x1bc2fd
 	start_asm
@@ -313,22 +311,20 @@ Text_WhatHrs: ; 0x90886
 	ld hl, .QuestionMark
 	ret
 
-.QuestionMark: ; 0x90895
+.QuestionMark:
 	; ?
 	text_jump UnknownText_0x1bc305
 	db "@"
-; 0x9089a
 
-Text_HowManyMinutes: ; 0x9089a
+Text_HowManyMinutes:
 	; How many minutes?
 	text_jump UnknownText_0x1bc308
 	db "@"
-; 0x9089f
 
 String_min:
 	db "min.@"
 
-Text_WhoaMins: ; 0x908a4
+Text_WhoaMins:
 	; Whoa!@ @
 	text_jump UnknownText_0x1bc31b
 	start_asm
@@ -337,13 +333,12 @@ Text_WhoaMins: ; 0x908a4
 	ld hl, .QuestionMark
 	ret
 
-.QuestionMark: ; 0x908b3
+.QuestionMark:
 	; ?
 	text_jump UnknownText_0x1bc323
 	db "@"
-; 0x908b8
 
-OakText_ResponseToSetTime: ; 0x908b8
+OakText_ResponseToSetTime:
 	start_asm
 	decoord 1, 14
 	ld a, [wInitHourBuffer]
@@ -373,23 +368,20 @@ OakText_ResponseToSetTime: ; 0x908b8
 	ld hl, .yikes
 	ret
 
-.overslept ; 0x908ec
+.overslept
 	; ! I overslept!
 	text_jump UnknownText_0x1bc326
 	db "@"
-; 0x908f1
 
-.yikes ; 0x908f1
+.yikes
 	; ! Yikes! I over- slept!
 	text_jump UnknownText_0x1bc336
 	db "@"
-; 0x908f6
 
-.sodark ; 0x908f6
+.sodark
 	; ! No wonder it's so dark!
 	text_jump UnknownText_0x1bc34f
 	db "@"
-; 0x908fb
 
 TimeSetBackgroundGFX:
 INCBIN "gfx/new_game/timeset_bg.1bpp"
@@ -541,24 +533,22 @@ SetDayOfWeek:
 .Saturday:  db "SATURDAY@"
 
 
-.WhatDayIsItText: ; 0x90a3f
+.WhatDayIsItText:
 	; What day is it?
 	text_jump UnknownText_0x1bc369
 	db "@"
-; 0x90a44
 
-.ConfirmWeekdayText: ; 0x90a44
+.ConfirmWeekdayText:
 	start_asm
 	hlcoord 1, 14
 	call .PlaceWeekdayString
 	ld hl, .IsIt
 	ret
 
-.IsIt: ; 0x90a4f
+.IsIt:
 	; , is it?
 	text_jump UnknownText_0x1bc37a
 	db "@"
-; 0x90a54
 
 InitialSetDSTFlag:
 	ld a, [wDST]
@@ -583,11 +573,10 @@ InitialSetDSTFlag:
 	ld hl, .DSTIsThatOK
 	ret
 
-.DSTIsThatOK: ; 0x90a83
+.DSTIsThatOK:
 	; DST, is that OK?
 	text_jump Text_DSTIsThatOK
 	db "@"
-; 0x90a88
 
 InitialClearDSTFlag:
 	ld a, [wDST]
@@ -612,11 +601,10 @@ InitialClearDSTFlag:
 	ld hl, .IsThatOK
 	ret
 
-.IsThatOK: ; 0x90ab7
+.IsThatOK:
 	; , is that OK?
 	text_jump UnknownText_0x1c5ff1
 	db "@"
-; 0x90abc
 
 DebugDisplayTime:
 	hlcoord 1, 14
@@ -626,7 +614,7 @@ DebugDisplayTime:
 	call PlaceHLTextAtBC
 	ret
 
-.Text: ; 0x90acc
+.Text:
 	start_asm
 	call UpdateTime
 
@@ -677,10 +665,9 @@ DebugDisplayTime:
 	ld hl, .NowOnDebug
 	ret
 
-.NowOnDebug: ; 0x90b13
+.NowOnDebug:
 	text "<PARA>Now on DEBUG…"
 	prompt
-; 0x90b23
 
 .PrintTime:
 	lb bc, 1, 3

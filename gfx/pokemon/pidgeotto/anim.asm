@@ -8,4 +8,3 @@
 	dorepeat 5
 	frame 2, 20
 	endanim
-; 0xd097a

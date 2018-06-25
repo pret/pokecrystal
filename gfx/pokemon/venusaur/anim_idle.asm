@@ -3,4 +3,3 @@
 	frame 6, 13
 	frame 7, 13
 	endanim
-; 0xd18b6

@@ -627,7 +627,7 @@ Continue_DisplayGameTime:
 	jp PrintNum
 
 
-OakSpeech: ; 0x5f99
+OakSpeech:
 	farcall InitClock
 	call RotateFourPalettesLeft
 	call ClearTileMap
@@ -705,11 +705,11 @@ OakSpeech: ; 0x5f99
 	call PrintText
 	ret
 
-OakText1: ; 0x6045
+OakText1:
 	text_jump _OakText1
 	db "@"
 
-OakText2: ; 0x604a
+OakText2:
 	text_jump _OakText2
 	start_asm
 	ld a, WOOPER
@@ -718,27 +718,27 @@ OakText2: ; 0x604a
 	ld hl, OakText3
 	ret
 
-OakText3: ; 0x605b
+OakText3:
 	text_jump _OakText3
 	db "@"
 
-OakText4: ; 0x6060
+OakText4:
 	text_jump _OakText4
 	db "@"
 
-OakText5: ; 0x6065
+OakText5:
 	text_jump _OakText5
 	db "@"
 
-OakText6: ; 0x606a
+OakText6:
 	text_jump _OakText6
 	db "@"
 
-OakText7: ; 0x606f
+OakText7:
 	text_jump _OakText7
 	db "@"
 
-NamePlayer: ; 0x6074
+NamePlayer:
 	farcall MovePlayerPicRight
 	farcall ShowPlayerNamingChoices
 	ld a, [wMenuCursorY]
@@ -867,7 +867,7 @@ Intro_RotatePalettesLeftFrontpic:
 	jr nz, .loop
 	ret
 
-IntroFadePalettes: ; 0x617c
+IntroFadePalettes:
 	db %01010100
 	db %10101000
 	db %11111100

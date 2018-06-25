@@ -113,7 +113,6 @@ PC_CheckPartyForPokemon:
 	; Bzzzzt! You must have a #MON to use this!
 	text_jump UnknownText_0x1c1328
 	db "@"
-; 0x15668
 
 BillsPC:
 	call PC_PlayChoosePCSound
@@ -200,11 +199,10 @@ _PlayersHousePC:
 	ld c, $1
 	ret
 
-UnknownText_0x156ff: ; 0x156ff
+UnknownText_0x156ff:
 	; turned on the PC.
 	text_jump UnknownText_0x1c1353
 	db "@"
-; 0x15704
 
 _PlayersPC:
 	ld a, b
@@ -236,7 +234,7 @@ Function15715:
 	call ExitMenu
 	ret
 
-PlayersPCMenuData: ; 0x15736
+PlayersPCMenuData:
 	db MENU_BACKUP_TILES ; flags
 	db  0,  0 ; top left corner coords (y, x)
 	db 12, 15 ; bottom right corner coords (y, x)
@@ -258,7 +256,7 @@ PLAYERSPC_DECORATION    EQU 4
 PLAYERSPC_TURN_OFF      EQU 5
 PLAYERSPC_LOG_OFF       EQU 6
 
-.PlayersPCMenuPointers: ; 0x15746
+.PlayersPCMenuPointers:
 ; entries correspond to PLAYERSPC_* constants
 	dw PlayerWithdrawItemMenu, .WithdrawItem
 	dw PlayerDepositItemMenu,  .DepositItem
@@ -305,13 +303,12 @@ PC_DisplayTextWaitMenu:
 	ld [wOptions], a
 	ret
 
-UnknownText_0x157cc: ; 0x157cc
+UnknownText_0x157cc:
 	; What do you want to do?
 	text_jump UnknownText_0x1c1368
 	db "@"
-; 0x157d1
 
-PlayerWithdrawItemMenu: ; 0x157d1
+PlayerWithdrawItemMenu:
 	call LoadStandardMenuHeader
 	farcall ClearPCItemScreen
 .loop
@@ -375,19 +372,19 @@ PlayerWithdrawItemMenu: ; 0x157d1
 .done
 	ret
 
-.HowManyText: ; 0x15850
+.HowManyText:
 	text_jump _PlayersPCHowManyWithdrawText
 	db "@"
 
-.WithdrewText: ; 0x15855
+.WithdrewText:
 	text_jump _PlayersPCWithdrewItemsText
 	db "@"
 
-.NoRoomText: ; 0x1585a
+.NoRoomText:
 	text_jump _PlayersPCNoRoomWithdrawText
 	db "@"
 
-PlayerTossItemMenu: ; 0x1585f
+PlayerTossItemMenu:
 	call LoadStandardMenuHeader
 	farcall ClearPCItemScreen
 .loop
@@ -401,24 +398,21 @@ PlayerTossItemMenu: ; 0x1585f
 	call CloseSubmenu
 	xor a
 	ret
-; 0x1587d
 
-PlayerDecorationMenu: ; 0x1587d
+PlayerDecorationMenu:
 	farcall _PlayerDecorationMenu
 	ld a, c
 	and a
 	ret z
 	scf
 	ret
-; 0x15888
 
-PlayerLogOffMenu: ; 0x15888
+PlayerLogOffMenu:
 	xor a
 	scf
 	ret
-; 0x1588b
 
-PlayerDepositItemMenu: ; 0x1588b
+PlayerDepositItemMenu:
 	call .CheckItemsInBag
 	jr c, .nope
 	call DisableSpriteUpdates
@@ -538,25 +532,24 @@ PlayerDepositItemMenu: ; 0x1588b
 	and a
 	ret
 
-.HowManyText: ; 0x1596e
+.HowManyText:
 	text_jump _PlayersPCHowManyDepositText
 	db "@"
 
-.DepositText: ; 0x15973
+.DepositText:
 	text_jump _PlayersPCDepositItemsText
 	db "@"
 
-.NoRoomText: ; 0x15978
+.NoRoomText:
 	text_jump _PlayersPCNoRoomDepositText
 	db "@"
 
-PlayerMailBoxMenu: ; 0x1597d
+PlayerMailBoxMenu:
 	farcall _PlayerMailBoxMenu
 	xor a
 	ret
-; 0x15985
 
-PCItemsJoypad: ; 0x15985
+PCItemsJoypad:
 	xor a
 	ld [wSwitchItem], a
 .loop
@@ -645,38 +638,32 @@ PC_DisplayText:
 	call ExitMenu
 	ret
 
-PokecenterPCText_BootedUpPC: ; 0x15a27
+PokecenterPCText_BootedUpPC:
 	; turned on the PC.
 	text_jump UnknownText_0x1c144d
 	db "@"
-; 0x15a2c
 
-PokecenterPCText_AccessWhosePC: ; 0x15a2c
+PokecenterPCText_AccessWhosePC:
 	; Access whose PC?
 	text_jump UnknownText_0x1c1462
 	db "@"
-; 0x15a31
 
-PokecenterPCText_AccessedBillsPC: ; 0x15a31
+PokecenterPCText_AccessedBillsPC:
 	; BILL's PC accessed. #MON Storage System opened.
 	text_jump UnknownText_0x1c1474
 	db "@"
-; 0x15a36
 
-PokecenterPCText_AccessedOwnPC: ; 0x15a36
+PokecenterPCText_AccessedOwnPC:
 	; Accessed own PC. Item Storage System opened.
 	text_jump UnknownText_0x1c14a4
 	db "@"
-; 0x15a3b
 
-PokecenterPCText_AccessedOaksPC: ; 0x15a3b
+PokecenterPCText_AccessedOaksPC:
 	; PROF.OAK's PC accessed. #DEX Rating System opened.
 	text_jump UnknownText_0x1c14d2
 	db "@"
-; 0x15a40
 
-PokecenterPCText_LinkClosed: ; 0x15a40
+PokecenterPCText_LinkClosed:
 	; … Link closed…
 	text_jump UnknownText_0x1c1505
 	db "@"
-; 0x15a45

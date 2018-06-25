@@ -7,4 +7,3 @@
 	frame 4, 06
 	dorepeat 5
 	endanim
-; 0xd1054

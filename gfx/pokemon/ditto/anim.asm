@@ -8,4 +8,3 @@
 	frame 7, 12
 	frame 8, 12
 	endanim
-; 0xd1029

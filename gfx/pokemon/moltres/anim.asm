@@ -10,4 +10,3 @@
 	frame 0, 12
 	frame 1, 12
 	endanim
-; 0xd10e3

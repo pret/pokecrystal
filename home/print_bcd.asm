@@ -48,7 +48,6 @@ PrintBCDNumber::
 	inc hl
 .done
 	ret
-; 0x38f2
 
 PrintBCDDigit::
 	and %00001111
@@ -78,4 +77,3 @@ PrintBCDDigit::
 	ld a, " "
 	ld [hli], a ; if right-aligned, "print" a space by advancing the pointer
 	ret
-; 0x3917

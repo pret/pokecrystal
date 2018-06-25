@@ -71,11 +71,10 @@ CheckMagikarpLength:
 	ld [wScriptVar], a
 	ret
 
-.MeasureItText: ; 0xfbba9
+.MeasureItText:
 	; Let me measure that MAGIKARP. …Hm, it measures @ .
 	text_jump UnknownText_0x1c1203
 	db "@"
-; 0xfbbae
 
 Magikarp_LoadFeetInchesChars:
 	ld hl, vTiles2 tile "′" ; $6e
@@ -315,8 +314,7 @@ MagikarpHouseSign:
 	call PrintText
 	ret
 
-.CurrentRecordtext: ; 0xfbce8
+.CurrentRecordtext:
 	; "CURRENT RECORD"
 	text_jump UnknownText_0x1c123a
 	db "@"
-; 0xfbced

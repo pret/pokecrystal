@@ -301,7 +301,7 @@ IsAnyMonHoldingMail:
 	and a
 	ret
 
-_PlayerMailBoxMenu: ; 0x447a0
+_PlayerMailBoxMenu:
 	call InitMail
 	jr z, .nomail
 	call LoadStandardMenuHeader
@@ -311,13 +311,12 @@ _PlayerMailBoxMenu: ; 0x447a0
 .nomail
 	ld hl, .EmptyMailboxText
 	jp MenuTextBoxBackup
-; 0x447b4
 
-.EmptyMailboxText: ; 0x447b4
+.EmptyMailboxText:
 	text_jump _EmptyMailboxText
 	db "@"
 
-InitMail: ; 0x447b9
+InitMail:
 ; initialize wMailboxCount and beyond with incrementing values, one per mail
 ; set z if no mail
 	ld a, BANK(sMailboxCount)
@@ -344,9 +343,8 @@ InitMail: ; 0x447b9
 	ld a, [wMailboxCount]
 	and a
 	ret
-; 0x447da
 
-MailboxPC_GetMailAuthor: ; 0x447da
+MailboxPC_GetMailAuthor:
 	dec a
 	ld hl, sMailbox1Author
 	ld bc, MAIL_STRUCT_LENGTH
@@ -362,17 +360,15 @@ MailboxPC_GetMailAuthor: ; 0x447da
 	call CloseSRAM
 	pop de
 	ret
-; 0x447fb
 
-MailboxPC_PrintMailAuthor: ; 0x447fb
+MailboxPC_PrintMailAuthor:
 	push de
 	ld a, [wMenuSelection]
 	call MailboxPC_GetMailAuthor
 	pop hl
 	jp PlaceString
-; 0x44806
 
-MailboxPC: ; 0x44806
+MailboxPC:
 	xor a
 	ld [wCurMessageScrollPosition], a
 	ld a, 1
@@ -405,9 +401,8 @@ MailboxPC: ; 0x44806
 .exit
 	xor a
 	ret
-; 0x4484a
 
-.Submenu: ; 0x4484a
+.Submenu:
 	ld hl, .SubMenuHeader
 	call LoadMenuHeader
 	call VerticalMenu
@@ -420,7 +415,6 @@ MailboxPC: ; 0x44806
 
 .subexit
 	ret
-; 0x44861
 
 .JumpTable:
 	dw .ReadMail
@@ -428,16 +422,15 @@ MailboxPC: ; 0x44806
 	dw .AttachMail
 	dw .Cancel
 
-.ReadMail: ; 0x44869
+.ReadMail:
 	call FadeToMenu
 	ld a, [wMenuSelection]
 	dec a
 	ld b, a
 	call ReadMailMessage
 	jp CloseSubmenu
-; 0x44877
 
-.PutInPack: ; 0x44877
+.PutInPack:
 	ld hl, .MessageLostText
 	call MenuTextBox
 	call YesNoBox
@@ -461,21 +454,20 @@ MailboxPC: ; 0x44806
 	call DeleteMailFromPC
 	ld hl, .PutAwayText
 	jp MenuTextBoxBackup
-; 0x448ac
 
-.PutAwayText: ; 0x448ac
+.PutAwayText:
 	text_jump ClearedMailPutAwayText
 	db "@"
 
-.PackFullText: ; 0x448b1
+.PackFullText:
 	text_jump MailPackFullText
 	db "@"
 
-.MessageLostText: ; 0x448b6
+.MessageLostText:
 	text_jump MailMessageLostText
 	db "@"
 
-.GetMailType: ; 0x448bb
+.GetMailType:
 	push af
 	ld a, BANK(sMailboxCount)
 	call GetSRAMBank
@@ -486,9 +478,8 @@ MailboxPC: ; 0x44806
 	ld a, [hl]
 	ld [wCurItem], a
 	jp CloseSRAM
-; 0x448d2
 
-.AttachMail: ; 0x448d2
+.AttachMail:
 	call FadeToMenu
 	xor a
 	ld [wPartyMenuActionText], a
@@ -531,24 +522,23 @@ MailboxPC: ; 0x44806
 
 .exit2
 	jp CloseSubmenu
-; 0x4493c
 
-.HoldingMailText: ; 0x4493c
+.HoldingMailText:
 	text_jump MailAlreadyHoldingItemText
 	db "@"
 
-.EggText: ; 0x44941
+.EggText:
 	text_jump MailEggText
 	db "@"
 
-.MailMovedText: ; 0x44946
+.MailMovedText:
 	text_jump MailMovedFromBoxText
 	db "@"
 
 .Cancel:
 	ret
 
-.TopMenuHeader: ; 0x4494c
+.TopMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 8, 1, SCREEN_WIDTH - 2, 10
 	dw .TopMenuData
@@ -563,7 +553,7 @@ MailboxPC: ; 0x44806
 	dba NULL
 	dba NULL
 
-.SubMenuHeader: ; 0x44964
+.SubMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 13, 9
 	dw .SubMenuData

@@ -6,4 +6,3 @@
 	frame 2, 06
 	dorepeat 4
 	endanim
-; 0xd12dc

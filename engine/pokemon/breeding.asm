@@ -355,7 +355,7 @@ HatchEggs:
 .done
 	ret
 
-.Text_HatchEgg: ; 0x1708b
+.Text_HatchEgg:
 	; Huh? @ @
 	text_jump UnknownText_0x1c0db0
 	start_asm
@@ -377,23 +377,20 @@ HatchEggs:
 	ld hl, .CameOutOfItsEgg
 	ret
 
-.ClearTextbox: ; 0x170b0
+.ClearTextbox:
 	;
 	text_jump UnknownText_0x1c0db8
 	db "@"
-; 0x170b5
 
-.CameOutOfItsEgg: ; 0x170b5
+.CameOutOfItsEgg:
 	; came out of its EGG!@ @
 	text_jump UnknownText_0x1c0dba
 	db "@"
-; 0x170ba
 
-.Text_NicknameHatchling: ; 0x170ba
+.Text_NicknameHatchling:
 	; Give a nickname to @ ?
 	text_jump UnknownText_0x1c0dd8
 	db "@"
-; 0x170bf
 
 InitEggMoves:
 	call GetHeritableMoves
@@ -898,17 +895,15 @@ DayCareMon2:
 DayCareMonCursor:
 	jp WaitPressAorB_BlinkCursor
 
-DayCareMon2Text: ; 0x17462
+DayCareMon2Text:
 	; It's @ that was left with the DAY-CARE LADY.
 	text_jump UnknownText_0x1c0df3
 	db "@"
-; 0x17467
 
-DayCareMon1Text: ; 0x17467
+DayCareMon1Text:
 	; It's @ that was left with the DAY-CARE MAN.
 	text_jump UnknownText_0x1c0e24
 	db "@"
-; 0x1746c
 
 DayCareMonCompatibilityText:
 	push bc
@@ -935,35 +930,30 @@ DayCareMonCompatibilityText:
 .done
 	ret
 
-.AllAlone: ; 0x1749c
+.AllAlone:
 	; It's brimming with energy.
 	text_jump UnknownText_0x1c0e54
 	db "@"
-; 0x174a1
 
-.Incompatible: ; 0x174a1
+.Incompatible:
 	; It has no interest in @ .
 	text_jump UnknownText_0x1c0e6f
 	db "@"
-; 0x174a6
 
-.HighCompatibility: ; 0x174a6
+.HighCompatibility:
 	; It appears to care for @ .
 	text_jump UnknownText_0x1c0e8d
 	db "@"
-; 0x174ab
 
-.ModerateCompatibility: ; 0x174ab
+.ModerateCompatibility:
 	; It's friendly with @ .
 	text_jump UnknownText_0x1c0eac
 	db "@"
-; 0x174b0
 
-.SlightCompatibility: ; 0x174b0
+.SlightCompatibility:
 	; It shows interest in @ .
 	text_jump UnknownText_0x1c0ec6
 	db "@"
-; 0x174b5
 
 Unreferenced_DayCareMonPrintEmptyString:
 	ld hl, .string

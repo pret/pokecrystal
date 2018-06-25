@@ -3,4 +3,3 @@
 	frame 0, 08
 	dorepeat 1
 	endanim
-; 0xd205d

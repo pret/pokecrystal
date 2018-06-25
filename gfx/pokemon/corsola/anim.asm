@@ -4,4 +4,3 @@
 	frame 0, 12
 	frame 3, 18
 	endanim
-; 0xd1501

@@ -46,7 +46,7 @@ CheckAnyFaintedMon:
 	scf
 	ret
 
-SacredAshScript: ; 0x50821
+SacredAshScript:
 	special HealParty
 	reloadmappart
 	playsound SFX_WARP_TO
@@ -63,10 +63,8 @@ SacredAshScript: ; 0x50821
 	waitbutton
 	closetext
 	end
-; 0x50845
 
-UnknownText_0x50845: ; 0x50845
+UnknownText_0x50845:
 	; 's #MON were all healed!
 	text_jump UnknownText_0x1c0b65
 	db "@"
-; 0x5084a

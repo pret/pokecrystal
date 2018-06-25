@@ -98,6 +98,6 @@ CheckCanLearnMoveTutorMove:
 	scf
 	ret
 
-.MenuHeader: ; 0x4930a
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1

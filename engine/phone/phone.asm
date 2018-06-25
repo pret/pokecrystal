@@ -282,10 +282,9 @@ CheckSpecialPhoneCall::
 	xor a
 	ret
 
-.script ; 0x90173
+.script
 	pause 30
 	jump Script_ReceivePhoneCall
-; 0x90178
 
 .DoSpecialPhoneCall:
 	ld a, [wSpecialPhoneCallID]
@@ -381,15 +380,13 @@ Function90199:
 	call ExecuteCallbackScript
 	ret
 
-UnknownScript_0x90205: ; 0x90205
+UnknownScript_0x90205:
 	ptcall wd002
 	return
-; 0x90209
 
-UnknownScript_0x90209: ; 0x90209
+UnknownScript_0x90209:
 	scall UnknownScript_0x90657
 	return
-; 0x9020d
 
 LoadCallerScript:
 	nop
@@ -425,7 +422,7 @@ WrongNumber:
 	text_jump UnknownText_0x1c5565
 	db "@"
 
-Script_ReceivePhoneCall: ; 0x90241
+Script_ReceivePhoneCall:
 	refreshscreen
 	callasm RingTwice_StartCall
 	ptcall wPhoneScriptPointer
@@ -434,9 +431,8 @@ Script_ReceivePhoneCall: ; 0x90241
 	closetext
 	callasm InitCallReceiveDelay
 	end
-; 0x90255
 
-Script_SpecialBillCall:: ; 0x90255
+Script_SpecialBillCall::
 	callasm .LoadBillScript
 	jump Script_ReceivePhoneCall
 
@@ -444,7 +440,7 @@ Script_SpecialBillCall:: ; 0x90255
 	ld e, PHONE_BILL
 	jp LoadCallerScript
 
-UnknownScript_0x90261: ; 0x90261
+UnknownScript_0x90261:
 	callasm .LoadElmScript
 	pause 30
 	jump Script_ReceivePhoneCall
@@ -558,10 +554,9 @@ HangUp_BoopOn:
 	call PrintText
 	ret
 
-UnknownText_0x90336: ; 0x90336
+UnknownText_0x90336:
 	text_jump UnknownText_0x1c5588
 	db "@"
-; 0x9033b
 
 
 HangUp_BoopOff:
@@ -721,35 +716,29 @@ INCLUDE "data/phone/phone_contacts.asm"
 INCLUDE "data/phone/special_calls.asm"
 
 
-UnknownScript_0x90657: ; 0x90657
+UnknownScript_0x90657:
 	writetext UnknownText_0x9065b
 	end
-; 0x9065b
 
-UnknownText_0x9065b: ; 0x9065b
+UnknownText_0x9065b:
 	; That number is out of the area.
 	text_jump UnknownText_0x1c558b
 	db "@"
-; 0x90660
 
-PhoneScript_JustTalkToThem: ; 0x90660
+PhoneScript_JustTalkToThem:
 	writetext UnknownText_0x90664
 	end
-; 0x90664
 
-UnknownText_0x90664: ; 0x90664
+UnknownText_0x90664:
 	; Just go talk to that person!
 	text_jump UnknownText_0x1c55ac
 	db "@"
-; 0x90669
 
-UnknownScript_0x90669: ; 0x90669
+UnknownScript_0x90669:
 	writetext UnknownText_0x9066d
 	end
-; 0x9066d
 
-UnknownText_0x9066d: ; 0x9066d
+UnknownText_0x9066d:
 	; Thank you!
 	text_jump UnknownText_0x1c55ca
 	db "@"
-; 0x90672

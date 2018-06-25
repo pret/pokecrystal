@@ -5,4 +5,3 @@
 	dorepeat 2
 	frame 3, 16
 	endanim
-; 0xd2145

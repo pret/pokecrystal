@@ -1,4 +1,4 @@
-UnknownText_0xa0c28: ; 0xa0c28
+UnknownText_0xa0c28:
 	text "Hi, this is BUENA…"
 
 	para "Oh! Good morning,"
@@ -7,18 +7,16 @@ UnknownText_0xa0c28: ; 0xa0c28
 	para "I'm kind of foggy"
 	line "in the morning…"
 	done
-; 0xa0c72
 
-UnknownText_0xa0c72: ; 0xa0c72
+UnknownText_0xa0c72:
 	text "Hi, this is BUENA…"
 	line "Oh! Hi, <PLAY_G>!"
 
 	para "Do you tune into"
 	line "BUENA's show?"
 	done
-; 0xa0caf
 
-UnknownText_0xa0caf: ; 0xa0caf
+UnknownText_0xa0caf:
 	text "This is BUENA."
 	line "I can't come to"
 
@@ -34,9 +32,8 @@ UnknownText_0xa0caf: ; 0xa0caf
 	para "give me a call"
 	line "after midnight!"
 	done
-; 0xa0d42
 
-UnknownText_0xa0d42: ; 0xa0d42
+UnknownText_0xa0d42:
 	text "Hi, this is BUENA…"
 	line "Oh! Hi, <PLAY_G>!"
 
@@ -46,45 +43,40 @@ UnknownText_0xa0d42: ; 0xa0d42
 	para "Let me tell you,"
 	line "I'm exhausted!"
 	done
-; 0xa0d96
 
-UnknownText_0xa0d96: ; 0xa0d96
+UnknownText_0xa0d96:
 	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
 	para "I got up early, so"
 	line "I decided to call!"
 	done
-; 0xa0dcf
 
-UnknownText_0xa0dcf: ; 0xa0dcf
+UnknownText_0xa0dcf:
 	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
 	para "I needed someone"
 	line "to chat with!"
 	done
-; 0xa0e01
 
-UnknownText_0xa0e01: ; 0xa0e01
+UnknownText_0xa0e01:
 	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
 	para "I'm just on my"
 	line "break."
 	done
-; 0xa0e29
 
-UnknownText_0xa0e29: ; 0xa0e29
+UnknownText_0xa0e29:
 	text "<PLAY_G>!"
 	line "Hi, it's BUENA!"
 
 	para "I couldn't sleep,"
 	line "so I called you."
 	done
-; 0xa0e5e
 
-UnknownText_0xa0e5e: ; 0xa0e5e
+UnknownText_0xa0e5e:
 	text "Oh. Hi, <PLAY_G>!"
 
 	para "You are how?"
@@ -101,9 +93,8 @@ UnknownText_0xa0e5e: ; 0xa0e5e
 	para "<PLAY_G>, you'd"
 	line "better be careful!"
 	done
-; 0xa0efb
 
-UnknownText_0xa0efb: ; 0xa0efb
+UnknownText_0xa0efb:
 	text "The other day, I"
 	line "went out to eat"
 
@@ -125,9 +116,8 @@ UnknownText_0xa0efb: ; 0xa0efb
 	para "show! I'll catch"
 	line "you later!"
 	done
-; 0xa0fcf
 
-UnknownText_0xa0fcf: ; 0xa0fcf
+UnknownText_0xa0fcf:
 	text "You know the"
 	line "receptionist at"
 	cont "the RADIO TOWER?"
@@ -149,9 +139,8 @@ UnknownText_0xa0fcf: ; 0xa0fcf
 
 	para "Catch you later!"
 	done
-; 0xa109d
 
-UnknownText_0xa109d: ; 0xa109d
+UnknownText_0xa109d:
 	text "Tell me, <PLAY_G>."
 	line "Have you ever won"
 
@@ -167,9 +156,8 @@ UnknownText_0xa109d: ; 0xa109d
 
 	para "Let's chat again!"
 	done
-; 0xa1143
 
-UnknownText_0xa1143: ; 0xa1143
+UnknownText_0xa1143:
 	text "You know, last"
 	line "night…"
 
@@ -198,9 +186,8 @@ UnknownText_0xa1143: ; 0xa1143
 	para "Uh… Um… I… Sorry,"
 	line "wrong number!"
 	done
-; 0xa1244
 
-UnknownText_0xa1244: ; 0xa1244
+UnknownText_0xa1244:
 	text "Yesterday, PROF."
 	line "OAK was in the"
 
@@ -221,9 +208,8 @@ UnknownText_0xa1244: ; 0xa1244
 
 	para "Catch you later!"
 	done
-; 0xa1318
 
-UnknownText_0xa1318: ; 0xa1318
+UnknownText_0xa1318:
 	text "…Cough, cough!"
 
 	para "Uhm sorry uh got"
@@ -242,9 +228,8 @@ UnknownText_0xa1318: ; 0xa1318
 	line "the fly. This has"
 	cont "been BUENA!"
 	done
-; 0xa13d8
 
-UnknownText_0xa13d8: ; 0xa13d8
+UnknownText_0xa13d8:
 	text "Hey, <PLAY_G>."
 	line "You won that RADIO"
 
@@ -263,9 +248,8 @@ UnknownText_0xa13d8: ; 0xa13d8
 	para "Well, let's chat"
 	line "again!"
 	done
-; 0xa1488
 
-UnknownText_0xa1488: ; 0xa1488
+UnknownText_0xa1488:
 	text "I'm elated that"
 	line "more people are"
 
@@ -298,9 +282,8 @@ UnknownText_0xa1488: ; 0xa1488
 
 	para "Let's chat again!"
 	done
-; 0xa15de
 
-UnknownText_0xa15de: ; 0xa15de
+UnknownText_0xa15de:
 	text "Guess what?"
 	line "The RADIO TOWER's"
 
@@ -331,9 +314,8 @@ UnknownText_0xa15de: ; 0xa15de
 	para "Later! Tune into"
 	line "my show!"
 	done
-; 0xa1717
 
-UnknownText_0xa1717: ; 0xa1717
+UnknownText_0xa1717:
 	text "<PLAY_G>, tell me."
 
 	para "When do you relax"
@@ -364,9 +346,8 @@ UnknownText_0xa1717: ; 0xa1717
 	para "Please forget this"
 	line "happened! Later!"
 	done
-; 0xa183d
 
-UnknownText_0xa183d: ; 0xa183d
+UnknownText_0xa183d:
 	text "<PLAY_G>, what was"
 	line "the first #MON"
 	cont "you ever caught?"
@@ -405,9 +386,8 @@ UnknownText_0xa183d: ; 0xa183d
 
 	para "Bye-bye!"
 	done
-; 0xa19b1
 
-UnknownText_0xa19b1: ; 0xa19b1
+UnknownText_0xa19b1:
 	text "Guess what? All of"
 	line "us from the RADIO"
 
@@ -434,9 +414,8 @@ UnknownText_0xa19b1: ; 0xa19b1
 
 	para "Bye-bye!"
 	done
-; 0xa1ac0
 
-UnknownText_0xa1ac0: ; 0xa1ac0
+UnknownText_0xa1ac0:
 	text "Did you know…?"
 
 	para "BEN and FERN talk"
@@ -465,9 +444,8 @@ UnknownText_0xa1ac0: ; 0xa1ac0
 
 	para "Let's chat again!"
 	done
-; 0xa1bed
 
-UnknownText_0xa1bed: ; 0xa1bed
+UnknownText_0xa1bed:
 	text "I'm going shopping"
 	line "with MARY and LILY"
 	cont "soon."
@@ -483,9 +461,8 @@ UnknownText_0xa1bed: ; 0xa1bed
 
 	para "Catch you later!"
 	done
-; 0xa1c88
 
-UnknownText_0xa1c88: ; 0xa1c88
+UnknownText_0xa1c88:
 	text "I'm thinking of"
 	line "going to the GAME"
 
@@ -506,9 +483,8 @@ UnknownText_0xa1c88: ; 0xa1c88
 
 	para "Catch you later!"
 	done
-; 0xa1d5f
 
-UnknownText_0xa1d5f: ; 0xa1d5f
+UnknownText_0xa1d5f:
 	text "Hey, <PLAY_G>. You"
 	line "use your #GEAR"
 
@@ -530,9 +506,8 @@ UnknownText_0xa1d5f: ; 0xa1d5f
 	para "Anyway, thanks for"
 	line "calling! Later!"
 	done
-; 0xa1e2f
 
-UnknownText_0xa1e2f: ; 0xa1e2f
+UnknownText_0xa1e2f:
 	text "Is it sunny"
 	line "outside today?"
 
@@ -547,4 +522,3 @@ UnknownText_0xa1e2f: ; 0xa1e2f
 
 	para "Please call again!"
 	done
-; 0xa1eca

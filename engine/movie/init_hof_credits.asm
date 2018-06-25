@@ -23,7 +23,7 @@ InitDisplayForHallOfFame:
 	call SetPalettes
 	ret
 
-.SavingRecordDontTurnOff: ; 0x4e8bd
+.SavingRecordDontTurnOff:
 	; SAVING RECORD… DON'T TURN OFF!
 	text_jump UnknownText_0x1bd39e
 	db "@"

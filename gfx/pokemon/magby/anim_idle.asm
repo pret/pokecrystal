@@ -3,4 +3,3 @@
 	frame 5, 09
 	dorepeat 1
 	endanim
-; 0xd21af

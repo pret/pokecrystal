@@ -4,4 +4,3 @@
 	frame 3, 36
 	frame 2, 12
 	endanim
-; 0xd11dd

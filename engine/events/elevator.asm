@@ -137,11 +137,10 @@ Elevator_AskWhichFloor:
 	scf
 	ret
 
-Elevator_WhichFloorText: ; 0x1350d
+Elevator_WhichFloorText:
 	; Which floor?
 	text_jump UnknownText_0x1bd2bc
 	db "@"
-; 0x13512
 
 
 Elevator_GetCurrentFloorText:
@@ -178,14 +177,13 @@ Elevator_GetCurrentFloorString:
 	call GetFloorString
 	ret
 
-Elevator_MenuHeader: ; 0x13550
+Elevator_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 1, 18, 9
 	dw Elevator_MenuData
 	db 1 ; default option
-; 0x13558
 
-Elevator_MenuData: ; 0x13558
+Elevator_MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 0 ; rows, columns
 	db 1 ; horizontal spacing

@@ -32,7 +32,7 @@ BugContest_SetCaughtContestMon:
 	ld hl, wContestMon
 	jp GeneratePartyMonStats
 
-.caughttext ; 0xe71d
+.caughttext
 	; Caught @ !
 	text_jump UnknownText_0x1c10c0
 	db "@"

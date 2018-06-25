@@ -10,4 +10,3 @@
 	dorepeat 7
 	dorepeat 7
 	endanim
-; 0xd0fcc

@@ -27,7 +27,6 @@ _BasementKey:
 	ld [wItemEffectSucceeded], a
 	ret
 
-.BasementKeyScript: ; 0x507e1
+.BasementKeyScript:
 	closetext
 	farjump BasementDoorScript
-; 0x507e6

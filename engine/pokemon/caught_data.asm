@@ -156,7 +156,7 @@ GiveANickname_YesNo:
 	call PrintText
 	jp YesNoBox
 
-TextJump_GiveANickname: ; 0x4db44
+TextJump_GiveANickname:
 	; Give a nickname to the @  you received?
 	text_jump UnknownText_0x1c12fc
 	db "@"

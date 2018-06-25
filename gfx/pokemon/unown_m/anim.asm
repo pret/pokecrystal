@@ -9,4 +9,3 @@
 	frame 1, 02
 	dorepeat 5
 	endanim
-; 0xd232e

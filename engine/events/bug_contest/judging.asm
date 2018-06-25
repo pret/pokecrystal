@@ -25,7 +25,7 @@ _BugContestJudging:
 	call PrintText
 	jp BugContest_GetPlayersResult
 
-BugContest_FirstPlaceText: ; 0x136eb
+BugContest_FirstPlaceText:
 	text_jump ContestJudging_FirstPlaceText
 	start_asm
 	ld de, SFX_1ST_PLACE
@@ -34,13 +34,12 @@ BugContest_FirstPlaceText: ; 0x136eb
 	ld hl, BugContest_FirstPlaceScoreText
 	ret
 
-BugContest_FirstPlaceScoreText: ; 0x136fd
+BugContest_FirstPlaceScoreText:
 	; The winning score was @  points!
 	text_jump ContestJudging_FirstPlaceScoreText
 	db "@"
-; 0x13702
 
-BugContest_SecondPlaceText: ; 0x13702
+BugContest_SecondPlaceText:
 	; Placing second was @ , who caught a @ !@ @
 	text_jump ContestJudging_SecondPlaceText
 	start_asm
@@ -50,13 +49,12 @@ BugContest_SecondPlaceText: ; 0x13702
 	ld hl, BugContest_SecondPlaceScoreText
 	ret
 
-BugContest_SecondPlaceScoreText: ; 0x13714
+BugContest_SecondPlaceScoreText:
 	; The score was @  points!
 	text_jump ContestJudging_SecondPlaceScoreText
 	db "@"
-; 0x13719
 
-BugContest_ThirdPlaceText: ; 0x13719
+BugContest_ThirdPlaceText:
 	; Placing third was @ , who caught a @ !@ @
 	text_jump ContestJudging_ThirdPlaceText
 	start_asm
@@ -66,11 +64,10 @@ BugContest_ThirdPlaceText: ; 0x13719
 	ld hl, BugContest_ThirdPlaceScoreText
 	ret
 
-BugContest_ThirdPlaceScoreText: ; 0x1372b
+BugContest_ThirdPlaceScoreText:
 	; The score was @  points!
 	text_jump ContestJudging_ThirdPlaceScoreText
 	db "@"
-; 0x13730
 
 LoadContestantName:
 ; If a = 1, get your name.

@@ -25,12 +25,12 @@ ResetFlashIfOutOfCave::
 	ret
 
 
-EventFlagAction:: ; 0x2e6f
+EventFlagAction::
 	ld hl, wEventFlags
 	call FlagAction
 	ret
 
-FlagAction:: ; 0x2e76
+FlagAction::
 ; Perform action b on bit de in flag array hl.
 
 ; inputs:
@@ -96,7 +96,6 @@ FlagAction:: ; 0x2e76
 	and [hl]
 	ld [hl], a
 	ret
-; 0x2ead
 
 
 CheckReceivedDex::

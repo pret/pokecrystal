@@ -206,12 +206,12 @@ CheckForLuckyNumberWinners:
 	dba sBox13
 	dba sBox14
 
-.FoundPartymonText: ; 0x4d9c9
+.FoundPartymonText:
 	; Congratulations! We have a match with the ID number of @  in your party.
 	text_jump UnknownText_0x1c1261
 	db "@"
 
-.FoundBoxmonText: ; 0x4d9ce
+.FoundBoxmonText:
 	; Congratulations! We have a match with the ID number of @  in your PC BOX.
 	text_jump UnknownText_0x1c12ae
 	db "@"

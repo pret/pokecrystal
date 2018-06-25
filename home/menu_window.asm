@@ -2,17 +2,17 @@ PushWindow::
 	callfar _PushWindow
 	ret
 
-ExitMenu:: ; 0x1c07
+ExitMenu::
 	push af
 	callfar _ExitMenu
 	pop af
 	ret
 
-InitVerticalMenuCursor:: ; 0x1c10
+InitVerticalMenuCursor::
 	callfar _InitVerticalMenuCursor
 	ret
 
-CloseWindow:: ; 0x1c17
+CloseWindow::
 	push af
 	call ExitMenu
 	call ApplyTilemap
@@ -20,15 +20,14 @@ CloseWindow:: ; 0x1c17
 	pop af
 	ret
 
-RestoreTileBackup:: ; 0x1c23
+RestoreTileBackup::
 	call MenuBoxCoord2Tile
 	call .copy
 	call MenuBoxCoord2Attr
 	call .copy
 	ret
-; 0x1c30
 
-.copy ; 0x1c30
+.copy
 	call GetMenuBoxDims
 	inc b
 	inc c
@@ -53,7 +52,7 @@ RestoreTileBackup:: ; 0x1c23
 
 	ret
 
-PopWindow:: ; 0x1c47
+PopWindow::
 	ld b, $10
 	ld de, wMenuFlags
 .loop
@@ -64,7 +63,7 @@ PopWindow:: ; 0x1c47
 	jr nz, .loop ; 0x1c50 $fa
 	ret
 
-GetMenuBoxDims:: ; 0x1c53
+GetMenuBoxDims::
 	ld a, [wMenuBorderTopCoord] ; top
 	ld b, a
 	ld a, [wMenuBorderBottomCoord] ; bottom
@@ -76,7 +75,6 @@ GetMenuBoxDims:: ; 0x1c53
 	sub c
 	ld c, a
 	ret
-; 0x1c66
 
 CopyMenuData::
 	push hl

@@ -1,13 +1,12 @@
-Script_BattleWhiteout:: ; 0x124c1
+Script_BattleWhiteout::
 	callasm BattleBGMap
 	jump Script_Whiteout
-; 0x124c8
 
-Script_OverworldWhiteout:: ; 0x124c8
+Script_OverworldWhiteout::
 	refreshscreen
 	callasm OverworldBGMap
 
-Script_Whiteout: ; 0x124ce
+Script_Whiteout:
 	writetext .WhitedOutText
 	waitbutton
 	special FadeOutPalettes
@@ -24,13 +23,11 @@ Script_Whiteout: ; 0x124ce
 
 .bug_contest
 	jumpstd bugcontestresultswarp
-; 0x124f5
 
-.WhitedOutText: ; 0x124f5
+.WhitedOutText:
 	; is out of useable #MON!  whited out!
 	text_jump UnknownText_0x1c0a4e
 	db "@"
-; 0x124fa
 
 OverworldBGMap:
 	call ClearPalettes

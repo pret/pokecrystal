@@ -297,53 +297,45 @@ SeerTexts:
 	dw SeerEggText
 	dw SeerLevelOnlyText
 
-SeerIntroText: ; 0x4f28c
+SeerIntroText:
 	; I see all. I know all… Certainly, I know of your #MON!
 	text_jump UnknownText_0x1c475f
 	db "@"
-; 0x4f291
 
-SeerCantTellText: ; 0x4f291
+SeerCantTellText:
 	; Whaaaat? I can't tell a thing! How could I not know of this?
 	text_jump UnknownText_0x1c4797
 	db "@"
-; 0x4f296
 
-SeerMetAtText: ; 0x4f296
+SeerMetAtText:
 	; Hm… I see you met @  here: @ !
 	text_jump UnknownText_0x1c47d4
 	db "@"
-; 0x4f29b
 
-SeerTimeLevelText: ; 0x4f29b
+SeerTimeLevelText:
 	; The time was @ ! Its level was @ ! Am I good or what?
 	text_jump UnknownText_0x1c47fa
 	db "@"
-; 0x4f2a0
 
-SeerTradedText: ; 0x4f2a0
+SeerTradedText:
 	; Hm… @ came from @ in a trade? @ was where @ met @ !
 	text_jump UnknownText_0x1c4837
 	db "@"
-; 0x4f2a5
 
-SeerLevelOnlyText: ; 0x4f2a5
+SeerLevelOnlyText:
 	; What!? Incredible! I don't understand how, but it is incredible! You are special. I can't tell where you met it, but it was at level @ . Am I good or what?
 	text_jump UnknownText_0x1c487f
 	db "@"
-; 0x4f2aa
 
-SeerEggText: ; 0x4f2aa
+SeerEggText:
 	; Hey! That's an EGG! You can't say that you've met it yet…
 	text_jump UnknownText_0x1c491d
 	db "@"
-; 0x4f2af
 
-SeerCancelText: ; 0x4f2af
+SeerCancelText:
 	; Fufufu! I saw that you'd do nothing!
 	text_jump UnknownText_0x1c4955
 	db "@"
-; 0x4f2b4
 
 
 SeerAdvice:
@@ -381,35 +373,30 @@ SeerAdviceTexts:
 	dbw 100, SeerAdvice5
 	dbw 255, SeerAdvice1
 
-SeerAdvice1: ; 0x4f2e8
+SeerAdvice1:
 	; Incidentally… It would be wise to raise your #MON with a little more care.
 	text_jump UnknownText_0x1c497a
 	db "@"
-; 0x4f2ed
 
-SeerAdvice2: ; 0x4f2ed
+SeerAdvice2:
 	; Incidentally… It seems to have grown a little. @  seems to be becoming more confident.
 	text_jump UnknownText_0x1c49c6
 	db "@"
-; 0x4f2f2
 
-SeerAdvice3: ; 0x4f2f2
+SeerAdvice3:
 	; Incidentally… @  has grown. It's gained much strength.
 	text_jump UnknownText_0x1c4a21
 	db "@"
-; 0x4f2f7
 
-SeerAdvice4: ; 0x4f2f7
+SeerAdvice4:
 	; Incidentally… It certainly has grown mighty! This @ must have come through numerous #MON battles. It looks brimming with confidence.
 	text_jump UnknownText_0x1c4a5b
 	db "@"
-; 0x4f2fc
 
-SeerAdvice5: ; 0x4f2fc
+SeerAdvice5:
 	; Incidentally… I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
 	text_jump UnknownText_0x1c4ae5
 	db "@"
-; 0x4f301
 
 
 GetCaughtGender:

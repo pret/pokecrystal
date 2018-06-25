@@ -4,4 +4,3 @@
 	frame 1, 09
 	dorepeat 2
 	endanim
-; 0xd0b97

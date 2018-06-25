@@ -1,4 +1,4 @@
-CopyBytes:: ; 0x3026
+CopyBytes::
 ; copy bc bytes from hl to de
 	inc b ; we bail the moment b hits 0, so include the last run
 	inc c ; same thing; include last byte
@@ -14,7 +14,7 @@ CopyBytes:: ; 0x3026
 	jr nz, .CopyByte
 	ret
 
-SwapBytes:: ; 0x3034
+SwapBytes::
 ; swap bc bytes between hl and de
 .Loop:
 	; stash [hl] away on the stack
@@ -37,7 +37,7 @@ SwapBytes:: ; 0x3034
 	jr nz, .Loop
 	ret
 
-ByteFill:: ; 0x3041
+ByteFill::
 ; fill bc bytes with the value of a, starting at hl
 	inc b ; we bail the moment b hits 0, so include the last run
 	inc c ; same thing; include last byte
@@ -51,7 +51,7 @@ ByteFill:: ; 0x3041
 	jr nz, .PutByte
 	ret
 
-GetFarByte:: ; 0x304d
+GetFarByte::
 ; retrieve a single byte from a:hl, and return it in a.
 	; bankswitch to new bank
 	ld [hBuffer], a
@@ -72,7 +72,7 @@ GetFarByte:: ; 0x304d
 	ld a, [hBuffer]
 	ret
 
-GetFarHalfword:: ; 0x305d
+GetFarHalfword::
 ; retrieve a halfword from a:hl, and return it in hl.
 	; bankswitch to new bank
 	ld [hBuffer], a
@@ -90,7 +90,6 @@ GetFarHalfword:: ; 0x305d
 	pop af
 	rst Bankswitch
 	ret
-; 0x306b
 
 FarCopyWRAM::
 	ld [hBuffer], a
