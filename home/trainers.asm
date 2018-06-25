@@ -20,7 +20,6 @@ CheckTrainerBattle::
 .loop
 
 ; Start a battle if the object:
-
 	push af
 	push de
 
@@ -128,7 +127,6 @@ LoadTrainer_continue::
 	ret
 
 FacingPlayerDistance_bc::
-
 	push de
 	call FacingPlayerDistance
 	ld b, d

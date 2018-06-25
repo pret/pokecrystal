@@ -485,7 +485,6 @@ CheckTimeEvents:
 	ret
 
 OWPlayerInput:
-
 	call PlayerMovement
 	ret c
 	and a

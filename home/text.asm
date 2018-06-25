@@ -52,7 +52,6 @@ TextBox::
 	jr TextBoxPalette
 
 TextBoxBorder::
-
 	; Top
 	push hl
 	ld a, "┌"

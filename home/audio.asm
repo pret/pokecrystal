@@ -1,7 +1,6 @@
 ; Audio interfaces.
 
 MapSetup_Sound_Off::
-
 	push hl
 	push de
 	push bc
@@ -26,7 +25,6 @@ MapSetup_Sound_Off::
 	ret
 
 UpdateSound::
-
 	push hl
 	push de
 	push bc

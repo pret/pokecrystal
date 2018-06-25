@@ -27,7 +27,6 @@ TreeMonEncounter:
 	ret
 
 RockMonEncounter:
-
 	xor a
 	ld [wTempWildMonSpecies], a
 	ld [wCurPartyLevel], a

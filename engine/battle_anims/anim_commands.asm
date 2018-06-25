@@ -1,7 +1,6 @@
 ; Battle animation command interpreter.
 
 PlayBattleAnim:
-
 	ld a, [rSVBK]
 	push af
 
@@ -15,7 +14,6 @@ PlayBattleAnim:
 	ret
 
 _PlayBattleAnim:
-
 	ld c, 6
 .wait
 	call BattleAnimDelayFrame
@@ -53,7 +51,6 @@ _PlayBattleAnim:
 	ret
 
 BattleAnimRunScript:
-
 	ld a, [wFXAnimID + 1]
 	and a
 	jr nz, .hi_byte
@@ -97,7 +94,6 @@ BattleAnimRunScript:
 	ret
 
 RunBattleAnimScript:
-
 	call ClearBattleAnims
 
 .playframe
@@ -139,7 +135,6 @@ RunBattleAnimScript:
 	ret
 
 BattleAnimClearHud:
-
 	call BattleAnimDelayFrame
 	call WaitTop
 	call ClearActorHud
@@ -152,7 +147,6 @@ BattleAnimClearHud:
 	ret
 
 BattleAnimRestoreHuds:
-
 	call BattleAnimDelayFrame
 	call WaitTop
 
@@ -177,7 +171,6 @@ BattleAnimRestoreHuds:
 	ret
 
 BattleAnimRequestPals:
-
 	ld a, [hCGB]
 	and a
 	ret z
@@ -207,7 +200,6 @@ BattleAnimDelayFrame:
 	ret
 
 ClearActorHud:
-
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player
@@ -241,7 +233,6 @@ Unreferenced_Functioncc220:
 	ret
 
 BattleAnim_ClearCGB_OAMFlags:
-
 	ld a, [wBattleAnimFlags]
 	bit 3, a
 	jr z, .delete
@@ -777,7 +768,6 @@ BattleAnimCmd_SetObj:
 	ret
 
 BattleAnimCmd_EnemyFeetObj:
-
 	ld hl, wBattleAnimTileDict
 .loop
 	ld a, [hl]
@@ -832,7 +822,6 @@ BattleAnimCmd_EnemyFeetObj:
 	ret
 
 BattleAnimCmd_PlayerHeadObj:
-
 	ld hl, wBattleAnimTileDict
 .loop
 	ld a, [hl]
@@ -931,7 +920,6 @@ BattleAnimCmd_Transform:
 	ret
 
 BattleAnimCmd_UpdateActorPic:
-
 	ld de, vTiles0 tile $00
 	ld a, [hBattleTurn]
 	and a
@@ -951,7 +939,6 @@ BattleAnimCmd_UpdateActorPic:
 	ret
 
 BattleAnimCmd_RaiseSub:
-
 	ld a, [rSVBK]
 	push af
 	ld a, 1 ; unnecessary bankswitch?

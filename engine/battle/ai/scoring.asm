@@ -594,7 +594,6 @@ AI_Smart_DreamEater:
 	ret
 
 AI_Smart_EvasionUp:
-
 ; Dismiss this move if enemy's evasion can't raise anymore.
 	ld a, [wEnemyEvaLevel]
 	cp $d
@@ -725,7 +724,6 @@ AI_Smart_AlwaysHit:
 	ret
 
 AI_Smart_MirrorMove:
-
 ; If the player did not use any move last turn...
 	ld a, [wLastPlayerCounterMove]
 	and a
@@ -767,7 +765,6 @@ AI_Smart_MirrorMove:
 	ret
 
 AI_Smart_AccuracyDown:
-
 ; If player's HP is full...
 	call AICheckPlayerMaxHP
 	jr nc, .asm_389a0
@@ -872,7 +869,6 @@ AI_Smart_AccuracyDown:
 	ret
 
 AI_Smart_ResetStats:
-
 ; 85% chance to encourage this move if any of enemy's stat levels is lower than -2.
 	push hl
 	ld hl, wEnemyAtkLevel
@@ -1090,7 +1086,6 @@ AI_Smart_Unused2B:
 	ret
 
 AI_Smart_Confuse:
-
 ; 90% chance to discourage this move if player's HP is between 25% and 50%.
 	call AICheckPlayerHalfHP
 	ret c
@@ -1107,7 +1102,6 @@ AI_Smart_Confuse:
 	ret
 
 AI_Smart_SpDefenseUp2:
-
 ; Discourage this move if enemy's HP is lower than 50%.
 	call AICheckEnemyHalfHP
 	jr nc, .asm_38b10
@@ -1167,7 +1161,6 @@ AI_Smart_SuperFang:
 	ret
 
 AI_Smart_Paralyze:
-
 ; 50% chance to discourage this move if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
 	jr nc, .asm_38b3a
@@ -2025,7 +2018,6 @@ AI_Smart_PerishSong:
 	ret
 
 AI_Smart_Sandstorm:
-
 ; Greatly discourage this move if the player is immune to Sandstorm damage.
 	ld a, [wBattleMonType1]
 	push hl
@@ -2207,7 +2199,6 @@ AI_Smart_Safeguard:
 
 AI_Smart_Magnitude:
 AI_Smart_Earthquake:
-
 ; Greatly encourage this move if the player is underground and the enemy is faster.
 	ld a, [wLastPlayerCounterMove]
 	cp DIG
@@ -2330,7 +2321,6 @@ AI_Smart_HiddenPower:
 	ret
 
 AI_Smart_RainDance:
-
 ; Greatly discourage this move if it would favour the player type-wise.
 ; Particularly, if the player is a Water-type.
 	ld a, [wBattleMonType1]
@@ -2352,7 +2342,6 @@ AI_Smart_RainDance:
 INCLUDE "data/battle/ai/rain_dance_moves.asm"
 
 AI_Smart_SunnyDay:
-
 ; Greatly discourage this move if it would favour the player type-wise.
 ; Particularly, if the player is a Fire-type.
 	ld a, [wBattleMonType1]
@@ -2566,7 +2555,6 @@ AI_Smart_MirrorCoat:
 
 AI_Smart_Twister:
 AI_Smart_Gust:
-
 ; Greatly encourage this move if the player is flying and the enemy is faster.
 	ld a, [wLastPlayerCounterMove]
 	cp FLY

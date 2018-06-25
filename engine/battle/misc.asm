@@ -50,7 +50,6 @@ GetPlayerBackpicCoords:
 	ret
 
 DoWeatherModifiers:
-
 	ld de, WeatherTypeModifiers
 	ld a, [wBattleWeather]
 	ld b, a

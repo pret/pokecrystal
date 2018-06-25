@@ -1,5 +1,4 @@
 GBCOnlyScreen:
-
 	ld a, [hCGB]
 	and a
 	ret nz
@@ -39,7 +38,6 @@ GBCOnlyScreen:
 	jr .loop
 
 DrawGBCOnlyScreen:
-
 	call DrawGBCOnlyBorder
 
 	; Pokemon
@@ -63,7 +61,6 @@ DrawGBCOnlyScreen:
 	ret
 
 DrawGBCOnlyBorder:
-
 	hlcoord 0, 0
 	ld [hl], 0 ; top-left
 

@@ -1,6 +1,5 @@
 SFX:
 ; entries correspond to SFX_* constants
-
 	dba Sfx_DexFanfare5079
 	dba Sfx_Item
 	dba Sfx_CaughtMon
@@ -191,9 +190,7 @@ SFX:
 	dba Sfx_2Boops
 	dba Sfx_GlassTing
 	dba Sfx_GlassTing2
-
-; Crystal adds the following SFX:
-
+; new to Crystal
 	dba Sfx_IntroUnown1
 	dba Sfx_IntroUnown2
 	dba Sfx_IntroUnown3

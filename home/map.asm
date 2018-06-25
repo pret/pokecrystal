@@ -757,7 +757,6 @@ ChangeMap::
 	ret
 
 FillMapConnections::
-
 ; North
 	ld a, [wNorthConnectedMapGroup]
 	cp $ff
@@ -855,7 +854,6 @@ FillMapConnections::
 
 FillNorthConnectionStrip::
 FillSouthConnectionStrip::
-
 	ld c, 3
 .y
 	push de
@@ -890,7 +888,6 @@ FillSouthConnectionStrip::
 
 FillWestConnectionStrip::
 FillEastConnectionStrip::
-
 .loop
 	ld a, [wMapWidth]
 	add 6

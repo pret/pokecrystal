@@ -68,7 +68,6 @@ DoMove:
 	ld [wBattleScriptBufferAddress + 1], a
 
 .ReadMoveEffectCommand:
-
 ; ld a, [wBattleScriptBufferAddress++]
 	ld a, [wBattleScriptBufferAddress]
 	ld l, a
@@ -136,7 +135,6 @@ BattleCommand_CheckTurn:
 	jp nz, CheckEnemyTurn
 
 CheckPlayerTurn:
-
 	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
 	jr z, .no_recharge
@@ -366,7 +364,6 @@ OpponentCantMove:
 	jp BattleCommand_SwitchTurn
 
 CheckEnemyTurn:
-
 	ld hl, wEnemySubStatus4
 	bit SUBSTATUS_RECHARGE, [hl]
 	jr z, .no_recharge
@@ -589,7 +586,6 @@ EndTurn:
 	jp ResetDamage
 
 MoveDisabled:
-
 	; Make sure any charged moves fail
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
@@ -604,7 +600,6 @@ MoveDisabled:
 	jp StdBattleTextBox
 
 HitConfusion:
-
 	ld hl, HurtItselfText
 	call StdBattleTextBox
 
@@ -811,7 +806,6 @@ BattleCommand_CheckObedience:
 	jp .EndDisobedience
 
 .UseInstead:
-
 ; Can't use another move if the monster only has one!
 	ld a, [wBattleMonMoves + 1]
 	and a
@@ -919,7 +913,6 @@ BattleCommand_CheckObedience:
 	jp EndMoveEffect
 
 IgnoreSleepOnly:
-
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 
@@ -952,7 +945,6 @@ BattleCommand_UsedMoveText:
 	ret
 
 CheckUserIsCharging:
-
 	ld a, [hBattleTurn]
 	and a
 	ld a, [wPlayerCharging] ; player
@@ -1775,7 +1767,6 @@ BattleCommand_CheckHit:
 	ret
 
 .StatModifiers:
-
 	ld a, [hBattleTurn]
 	and a
 
@@ -3066,8 +3057,8 @@ BattleCommand_DamageCalc:
 	ld [hDivisor], a
 	ld b, 4
 	call Divide
-.DoneItem:
 
+.DoneItem:
 ; Critical hits
 	call .CriticalMultiplier
 
@@ -3583,7 +3574,6 @@ DoSubstituteDamage:
 	jp ResetDamage
 
 UpdateMoveData:
-
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVarAddr
 	ld d, h

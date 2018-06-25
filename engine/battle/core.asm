@@ -6036,7 +6036,6 @@ LoadEnemyMon:
 	jp .Happiness
 
 .InitDVs:
-
 ; Trainer DVs
 
 ; All trainers have preset DVs, determined by class

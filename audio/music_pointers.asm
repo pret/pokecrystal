@@ -2,7 +2,6 @@
 
 Music:
 ; entries correspond to MUSIC_* constants
-
 	dba Music_Nothing
 	dba Music_TitleScreen
 	dba Music_Route1
@@ -96,9 +95,7 @@ Music:
 	dba Music_LakeOfRageRocketRadio
 	dba Music_Printer
 	dba Music_PostCredits
-
-; Crystal adds the following songs:
-
+; new to Crystal
 	dba Music_Clair
 	dba Music_MobileAdapterMenu
 	dba Music_MobileAdapter

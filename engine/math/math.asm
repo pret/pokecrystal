@@ -1,5 +1,4 @@
 _Multiply::
-
 ; hMultiplier is one byte.
 	ld a, 8
 	ld b, a

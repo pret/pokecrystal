@@ -94,7 +94,6 @@ ResetWRAM:
 	ret
 
 _ResetWRAM:
-
 	ld hl, wVirtualOAM
 	ld bc, wOptions - wVirtualOAM
 	xor a
@@ -801,7 +800,6 @@ StorePlayerName:
 	ret
 
 ShrinkPlayer:
-
 	ld a, [hROMBank]
 	push af
 
@@ -911,7 +909,6 @@ ShrinkFrame:
 	ret
 
 Intro_PlacePlayerSprite:
-
 	farcall GetPlayerIcon
 	ld c, $c
 	ld hl, vTiles0
@@ -1067,7 +1064,6 @@ TitleScreenScene:
 	ret
 
 TitleScreenEntrance:
-
 ; Animate the logo:
 ; Move each line by 4 pixels until our count hits 0.
 	ld a, [hSCX]
@@ -1115,7 +1111,6 @@ TitleScreenEntrance:
 	ret
 
 TitleScreenTimer:
-
 ; Next scene
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -1129,7 +1124,6 @@ TitleScreenTimer:
 	ret
 
 TitleScreenMain:
-
 ; Run the timer down.
 	ld hl, wTitleScreenTimer
 	ld e, [hl]
@@ -1230,7 +1224,6 @@ TitleScreenMain:
 	ret
 
 TitleScreenEnd:
-
 ; Wait until the music is done fading.
 
 	ld hl, wTitleScreenTimer

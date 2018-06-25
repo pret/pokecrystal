@@ -13,7 +13,6 @@ BattleCommand_Protect:
 	jp StdBattleTextBox
 
 ProtectChance:
-
 	ld de, wPlayerProtectCount
 	ld a, [hBattleTurn]
 	and a

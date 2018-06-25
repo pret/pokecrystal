@@ -356,7 +356,6 @@ Serve2bppRequest::
 	jr _Serve2bppRequest
 
 Serve2bppRequest_VBlank::
-
 	ld a, [wRequested2bpp]
 	and a
 	ret z

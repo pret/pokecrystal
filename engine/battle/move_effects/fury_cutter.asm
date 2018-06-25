@@ -39,7 +39,6 @@ BattleCommand_FuryCutter:
 	ret
 
 ResetFuryCutterCount:
-
 	push hl
 
 	ld hl, wPlayerFuryCutterCount

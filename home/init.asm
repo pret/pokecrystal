@@ -33,7 +33,6 @@ _Start::
 	ld [hSystemBooted], a
 
 Init::
-
 	di
 
 	xor a

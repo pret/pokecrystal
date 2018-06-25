@@ -19,7 +19,6 @@ POKEDEX_SCX EQU 5
 GLOBAL POKEDEX_SCX
 
 Pokedex:
-
 	ld a, [hWX]
 	ld l, a
 	ld a, [hWY]

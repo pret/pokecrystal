@@ -9,7 +9,6 @@ ResetGameTime::
 	ret
 
 GameTimer::
-
 	nop
 
 	ld a, [rSVBK]

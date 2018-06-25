@@ -1,5 +1,4 @@
 CanObjectMoveInDirection:
-
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit SWIMMING_F, [hl]
@@ -216,7 +215,6 @@ Function6fa1:
 	ret
 
 CheckFacingObject::
-
 	call GetFacingTileCoord
 
 ; Double the distance for counter tiles.

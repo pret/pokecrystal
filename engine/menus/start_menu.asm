@@ -11,7 +11,6 @@
 	const STARTMENUITEM_QUIT     ; 8
 
 StartMenu::
-
 	call ClearWindowData
 
 	ld de, SFX_MENU
@@ -24,8 +23,8 @@ StartMenu::
 	ld hl, .MenuHeader
 	jr z, .GotMenuData
 	ld hl, .ContestMenuHeader
-.GotMenuData:
 
+.GotMenuData:
 	call LoadMenuHeader
 	call .SetUpMenuItems
 	ld a, [wBattleMenuCursorBuffer]
@@ -459,7 +458,6 @@ StartMenu_Status:
 	ret
 
 StartMenu_Pokedex:
-
 	ld a, [wPartyCount]
 	and a
 	jr z, .asm_12949
@@ -473,7 +471,6 @@ StartMenu_Pokedex:
 	ret
 
 StartMenu_Pokegear:
-
 	call FadeToMenu
 	farcall PokeGear
 	call CloseSubmenu
@@ -481,7 +478,6 @@ StartMenu_Pokegear:
 	ret
 
 StartMenu_Pack:
-
 	call FadeToMenu
 	farcall Pack
 	ld a, [wPackUsedItem]
@@ -497,7 +493,6 @@ StartMenu_Pack:
 	ret
 
 StartMenu_Pokemon:
-
 	ld a, [wPartyCount]
 	and a
 	jr z, .return
@@ -700,7 +695,6 @@ PokemonActionSubmenu:
 	dbw MONMENUITEM_MAIL,       MonMailAction
 
 SwitchPartyMons:
-
 ; Don't try if there's nothing to switch!
 	ld a, [wPartyCount]
 	cp 2
@@ -751,7 +745,6 @@ SwitchPartyMons:
 	ret
 
 GiveTakePartyMonItem:
-
 ; Eggs can't hold items!
 	ld a, [wCurPartySpecies]
 	cp EGG
@@ -791,7 +784,6 @@ GiveTakePartyMonItem:
 	ret
 
 .GiveItem:
-
 	farcall DepositSellInitPackBuffers
 
 .loop
@@ -822,7 +814,6 @@ GiveTakePartyMonItem:
 	ret
 
 TryGiveItemToPartymon:
-
 	call SpeechTextBox
 	call PartyMonItemName
 	call GetPartyItemLocation
@@ -885,7 +876,6 @@ TryGiveItemToPartymon:
 	ret
 
 GivePartyItem:
-
 	call GetPartyItemLocation
 	ld a, [wCurItem]
 	ld [hl], a
@@ -898,7 +888,6 @@ GivePartyItem:
 	ret
 
 TakePartyItem:
-
 	call SpeechTextBox
 	call GetPartyItemLocation
 	ld a, [hl]

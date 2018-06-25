@@ -45,7 +45,6 @@ BattleCommand_BatonPass:
 	ret
 
 .Enemy:
-
 ; Wildmons don't have anything to switch to
 	ld a, [wBattleMode]
 	dec a ; WILDMON

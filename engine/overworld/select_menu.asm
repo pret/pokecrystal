@@ -1,5 +1,4 @@
 SelectMenu::
-
 	call CheckRegisteredItem
 	jr c, .NotRegistered
 	jp UseRegisteredItem
@@ -17,7 +16,6 @@ ItemMayBeRegisteredText:
 	db "@"
 
 CheckRegisteredItem:
-
 	ld a, [wWhichRegisteredItem]
 	and a
 	jr z, .NoRegisteredItem
@@ -110,7 +108,6 @@ CheckRegisteredItem:
 	ret
 
 UseRegisteredItem:
-
 	farcall CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
 	ld hl, .SwitchTo

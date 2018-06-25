@@ -484,8 +484,8 @@ PokeBallEffect:
 	ld de, wEnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-.Transformed:
 
+.Transformed:
 	ld a, [wEnemyMonSpecies]
 	ld [wWildMon], a
 	ld [wCurPartySpecies], a
@@ -560,8 +560,8 @@ PokeBallEffect:
 
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [hl], a
-.SkipPartyMonFriendBall:
 
+.SkipPartyMonFriendBall:
 	ld hl, Text_AskNicknameNewlyCaughtMon
 	call PrintText
 
