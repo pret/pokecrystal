@@ -9,7 +9,6 @@ UserPartyAttr::
 	pop af
 	jr OTPartyAttr
 
-
 OpponentPartyAttr::
 	push af
 	ld a, [hBattleTurn]
@@ -20,7 +19,6 @@ OpponentPartyAttr::
 .ot
 	pop af
 	jr OTPartyAttr
-
 
 BattlePartyAttr::
 ; Get attribute a from the party struct of the active battle mon. 
@@ -34,7 +32,6 @@ BattlePartyAttr::
 	pop bc
 	ret
 
-
 OTPartyAttr::
 ; Get attribute a from the party struct of the active enemy mon.
 	push bc
@@ -46,7 +43,6 @@ OTPartyAttr::
 	call GetPartyLocation
 	pop bc
 	ret
-
 
 ResetDamage::
 	xor a
@@ -63,7 +59,6 @@ SetEnemyTurn::
 	ld a, 1
 	ld [hBattleTurn], a
 	ret
-
 
 UpdateOpponentInParty::
 	ld a, [hBattleTurn]
@@ -110,7 +105,6 @@ UpdateEnemyMonInParty::
 	ld bc, wEnemyMonMaxHP - wEnemyMonLevel
 	jp CopyBytes
 
-
 RefreshBattleHuds::
 	call UpdateBattleHuds
 	ld c, 3
@@ -122,9 +116,7 @@ UpdateBattleHuds::
 	farcall UpdateEnemyHUD
 	ret
 
-
 INCLUDE "home/battle_vars.asm"
-
 
 FarCopyRadioText::
 	inc hl
@@ -149,7 +141,6 @@ FarCopyRadioText::
 	ld [MBC3RomBank], a
 	ret
 
-
 MobileTextBorder::
 
 CELL_PHONE_TOP    EQU $5e
@@ -168,7 +159,6 @@ CELL_PHONE_BOTTOM EQU $5f
 	ld [hl], CELL_PHONE_BOTTOM
 	ret
 
-
 BattleTextBox::
 ; Open a textbox and print text at hl.
 	push hl
@@ -179,7 +169,6 @@ BattleTextBox::
 	pop hl
 	call PrintTextBoxText
 	ret
-
 
 StdBattleTextBox::
 ; Open a textbox and print battle text at 20:hl.

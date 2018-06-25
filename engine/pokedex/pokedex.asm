@@ -427,7 +427,6 @@ DexEntryScreen_ArrowCursorData:
 	dwcoord 11, 17 ; CRY
 	dwcoord 15, 17 ; PRNT
 
-
 DexEntryScreen_MenuActionJumptable:
 	dw Pokedex_Page
 	dw .Area
@@ -1069,7 +1068,6 @@ Pokedex_FillColumn:
 	pop de
 	ret
 
-
 Pokedex_DrawMainScreenBG:
 ; Draws the left sidebar and the bottom bar on the main screen.
 	hlcoord 0, 17
@@ -1416,7 +1414,6 @@ Pokedex_PlaceString:
 	ld [hli], a
 	jr .loop
 
-
 Pokedex_PlaceBorder:
 	push hl
 	ld a, $33
@@ -1459,7 +1456,6 @@ Pokedex_PlaceBorder:
 	ld [hli], a
 	dec e
 	jr .row_loop
-
 
 Pokedex_PrintListing:
 ; Prints the list of Pokémon on the main Pokédex screen.
@@ -1578,7 +1574,6 @@ Pokedex_DrawFootprint:
 	ld [hl], a
 	ret
 
-
 Pokedex_GetSelectedMon:
 ; Gets the species of the currently selected Pokémon. This corresponds to the
 ; position of the cursor in the main listing, but this function can be used
@@ -1594,7 +1589,6 @@ Pokedex_GetSelectedMon:
 	ld [wd265], a
 	ret
 
-
 Pokedex_CheckCaught:
 	push de
 	push hl
@@ -1605,7 +1599,6 @@ Pokedex_CheckCaught:
 	pop de
 	ret
 
-
 Pokedex_CheckSeen:
 	push de
 	push hl
@@ -1615,7 +1608,6 @@ Pokedex_CheckSeen:
 	pop hl
 	pop de
 	ret
-
 
 
 Pokedex_OrderMonsByMode:
@@ -1711,11 +1703,9 @@ Pokedex_ABCMode:
 .doneabc
 	ret
 
-
 INCLUDE "data/pokemon/dex_order_alpha.asm"
 
 INCLUDE "data/pokemon/dex_order_new.asm"
-
 
 Pokedex_DisplayModeDescription:
 	xor a
@@ -2349,7 +2339,6 @@ Pokedex_ApplyUsualPals:
 	call DmgToCgbObjPal0
 	ret
 
-
 Pokedex_LoadPointer:
 	ld e, a
 	ld d, 0
@@ -2386,7 +2375,6 @@ Pokedex_LoadSelectedMonTiles:
 	call Get2bpp
 	call CloseSRAM
 	ret
-
 
 Pokedex_LoadCurrentFootprint:
 	call Pokedex_GetSelectedMon
@@ -2430,7 +2418,6 @@ Pokedex_LoadAnyFootprint:
 	call Request1bpp
 
 	ret
-
 
 Pokedex_LoadGFX:
 	call DisableLCD
@@ -2561,7 +2548,6 @@ _NewPokedexEntry:
 	call PlayMonCry
 	ret
 
-
 Pokedex_SetBGMapMode3:
 	ld a, $3
 	ld [hBGMapMode], a
@@ -2584,7 +2570,6 @@ Pokedex_SetBGMapMode_3ifDMG_4ifCGB:
 .DMG:
 	call Pokedex_SetBGMapMode3
 	ret
-
 
 Pokedex_ResetBGMapMode:
 	xor a

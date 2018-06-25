@@ -49,7 +49,6 @@ GetPlayerBackpicCoords:
 	lb bc, 6, 6
 	ret
 
-
 DoWeatherModifiers:
 
 	ld de, WeatherTypeModifiers
@@ -75,7 +74,6 @@ DoWeatherModifiers:
 	inc de
 	inc de
 	jr .CheckWeatherType
-
 
 .done_weather_types
 	ld de, WeatherMoveModifiers
@@ -146,7 +144,6 @@ DoWeatherModifiers:
 	ret
 
 INCLUDE "data/battle/weather_modifiers.asm"
-
 
 DoBadgeTypeBoosts:
 	ld a, [wLinkMode]

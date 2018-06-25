@@ -532,7 +532,6 @@ SetDayOfWeek:
 .Friday:    db " FRIDAY@"
 .Saturday:  db "SATURDAY@"
 
-
 .WhatDayIsItText:
 	; What day is it?
 	text_jump UnknownText_0x1bc369

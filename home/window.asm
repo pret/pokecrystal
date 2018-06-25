@@ -13,7 +13,6 @@ RefreshScreen::
 	rst Bankswitch
 	ret
 
-
 CloseText::
 	ld a, [hOAMUpdate]
 	push af

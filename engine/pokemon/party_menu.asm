@@ -11,7 +11,6 @@ SelectMonFromParty:
 	call ReturnToMapWithSpeechTextbox
 	ret
 
-
 SelectTradeOrDayCareMon:
 	ld a, b
 	ld [wPartyMenuActionText], a
@@ -40,7 +39,6 @@ LoadPartyMenuGFX:
 	callfar InitPartyMenuPalettes ; engine/color.asm
 	callfar ClearSpriteAnims2
 	ret
-
 
 WritePartyMenuTilemap:
 	ld hl, wOptions
@@ -113,7 +111,6 @@ PlacePartyNicknames:
 
 .CANCEL:
 	db "CANCEL@"
-
 
 PlacePartyHPBar:
 	xor a
@@ -349,7 +346,6 @@ PlacePartyMonTMHMCompatibility:
 .string_not_able
 	db "NOT ABLE@"
 
-
 PlacePartyMonEvoStoneCompatibility:
 	ld a, [wPartyCount]
 	and a
@@ -429,7 +425,6 @@ PlacePartyMonEvoStoneCompatibility:
 .string_not_able
 	db "NOT ABLE@"
 
-
 PlacePartyMonGender:
 	ld a, [wPartyCount]
 	and a
@@ -477,7 +472,6 @@ PlacePartyMonGender:
 
 .unknown
 	db "…UNKNOWN@"
-
 
 PlacePartyMonMobileBattleSelection:
 	ld a, [wPartyCount]
@@ -556,7 +550,6 @@ PlacePartyMonMobileBattleSelection:
 .Strings_1_2_3:
 	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
 
-
 PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)
 	add b
@@ -589,7 +582,6 @@ GetPartyMenuQualityIndexes:
 	ret
 
 INCLUDE "data/party_menu_qualities.asm"
-
 
 InitPartyMenuGFX:
 	ld hl, wPartyCount
@@ -716,7 +708,6 @@ PartyMenuSelect:
 	call WaitSFX
 	scf
 	ret
-
 
 PrintPartyMenuText:
 	hlcoord 0, 14
@@ -861,7 +852,6 @@ PrintPartyMenuActionText:
 	; came to its senses.
 	text_jump UnknownText_0x1bc16e
 	db "@"
-
 
 .PrintText:
 	ld e, a

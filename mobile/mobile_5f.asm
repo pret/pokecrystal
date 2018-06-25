@@ -172,7 +172,6 @@ HaveWantPals:
 	RGB  0,  0,  0
 	RGB  0,  0,  0
 
-
 CheckStringForErrors:
 ; Valid character ranges:
 ; $0, $5 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
@@ -412,7 +411,6 @@ Function17d1f1:
 
 .asm_17d223
 	ret
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Parameter: [wScriptVar] = 0..1
@@ -1035,7 +1033,6 @@ Function17d60b:
 	call CopyBytes
 	call CloseSRAM
 	ret
-
 
 Function17d6a1:
 	push hl
@@ -3530,7 +3527,6 @@ Function17e6de:
 	jr nz, .asm_17e6ee
 	ret
 
-
 PokemonNewsGFX:
 INCBIN "gfx/mobile/pokemon_news.2bpp"
 
@@ -3573,7 +3569,6 @@ Palette_17eff6:
 	RGB 27, 24,  0
 	RGB 24, 16,  3
 	RGB  0,  0,  0
-
 
 Function17f036::
 	ld a, $6
@@ -5040,7 +5035,6 @@ String_17fd84:
 	next "くわしくは　とりあつかい"
 	next "せつめいしょを　ごらんください"
 	db   "@"
-
 
 String_17fdb2:
 	db   "３ぷん　いじょう　なにも"

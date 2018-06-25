@@ -25,7 +25,6 @@ BattleCommand_CheckFutureSight:
 	ld b, futuresight_command
 	jp SkipToBattleCommand
 
-
 BattleCommand_FutureSight:
 ; futuresight
 

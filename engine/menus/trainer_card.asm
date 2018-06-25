@@ -136,7 +136,6 @@ TrainerCard_Page1_Joypad:
 	ld [wJumptableIndex], a
 	ret
 
-
 TrainerCard_Page2_LoadGFX:
 	call ClearSprites
 	hlcoord 0, 8
@@ -256,7 +255,6 @@ TrainerCard_PrintTopHalfOfCard:
 	predef PlaceGraphic
 	ret
 
-
 .Name_Money:
 	db   "NAME/"
 	next ""
@@ -333,7 +331,6 @@ endr
 	ld hl, TrainerCard_JohtoBadgesOAM
 	call TrainerCard_Page2_3_OAMUpdate
 	ret
-
 
 .BadgesTilemap:
 	db $79, $7a, $7b, $7c, $7d, -1 ; "BADGES"
@@ -539,7 +536,6 @@ TrainerCard_Page2_3_OAMUpdate:
 	inc hl
 	inc de
 	jr .loop2
-
 
 .facing1
 	dsprite  0,  0,  0,  0, $00, 0

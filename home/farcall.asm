@@ -14,7 +14,6 @@ FarCall_de::
 	push de
 	ret
 
-
 FarCall_hl::
 ; Call a:hl.
 ; Preserves other registers.

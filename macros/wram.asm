@@ -76,7 +76,6 @@ red_party_struct: MACRO
 \1Special::    dw
 ENDM
 
-
 battle_struct: MACRO
 \1Species::   db
 \1Item::      db
@@ -113,7 +112,6 @@ box: MACRO
 \1MonNicknamesEnd::
 \1End::             ds 2 ; padding
 ENDM
-
 
 map_connection_struct: MACRO
 \1ConnectedMapGroup::       db

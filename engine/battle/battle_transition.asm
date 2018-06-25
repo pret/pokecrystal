@@ -146,7 +146,6 @@ ConvertTrainerBattlePokeballTilesTo2bpp:
 TrainerBattlePokeballTiles:
 INCBIN "gfx/overworld/trainer_battle_pokeball_tiles.2bpp"
 
-
 BattleTransitionJumptable:
 	jumptable .Jumptable, wJumptableIndex
 
@@ -752,7 +751,6 @@ WipeLYOverrides:
 	dec c
 	jr nz, .loop
 	ret
-
 
 StartTrainerBattle_DrawSineWave:
 	calc_sine_wave

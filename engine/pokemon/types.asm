@@ -38,7 +38,6 @@ PrintMonTypes:
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	jp ByteFill
 
-
 PrintMoveType:
 ; Print the type of move b at hl.
 
@@ -55,7 +54,6 @@ PrintMoveType:
 	pop hl
 
 	ld b, a
-
 
 PrintType:
 ; Print type b at hl.
@@ -75,7 +73,6 @@ PrintType:
 
 	jp PlaceString
 
-
 GetTypeName:
 ; Copy the name of type [wd265] to wStringBuffer1.
 
@@ -91,6 +88,5 @@ GetTypeName:
 	ld de, wStringBuffer1
 	ld bc, MOVE_NAME_LENGTH
 	jp CopyBytes
-
 
 INCLUDE "data/types/names.asm"

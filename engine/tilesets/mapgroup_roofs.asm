@@ -15,5 +15,4 @@ LoadMapGroupRoof::
 	call CopyBytes
 	ret
 
-
 INCLUDE "data/maps/roofs.asm"

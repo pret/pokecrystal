@@ -137,7 +137,6 @@ StartBugContestTimer:
 	call CopyDayHourMinSecToHL
 	ret
 
-
 CheckBugContestTimer::
 	ld hl, wBugContestStartTime
 	call CalcSecsMinsHoursDaysSince
@@ -171,7 +170,6 @@ CheckBugContestTimer::
 	ld [wBugContestSecsRemaining], a
 	scf
 	ret
-
 
 InitializeStartDay:
 	call UpdateTime

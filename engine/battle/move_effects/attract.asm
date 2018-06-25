@@ -22,7 +22,6 @@ BattleCommand_Attract:
 .failed
 	jp FailMove
 
-
 CheckOppositeGender:
 	ld a, MON_SPECIES
 	call BattlePartyAttr

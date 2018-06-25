@@ -25,7 +25,6 @@ GiveMoney::
 MaxMoney:
 	dt MAX_MONEY
 
-
 TakeMoney::
 	ld a, 3
 	call SubtractMoney
@@ -186,7 +185,6 @@ GiveCoins::
 
 .maxcoins
 	bigdw MAX_COINS
-
 
 TakeCoins::
 	ld a, 2

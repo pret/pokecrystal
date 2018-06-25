@@ -1257,7 +1257,6 @@ String_48aa1:
 	db   "Tell Now"
 	next "Tell Later@"
 
-
 Function48ab5:
 	ld a, [hJoyPressed]
 	and A_BUTTON

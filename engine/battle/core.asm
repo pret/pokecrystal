@@ -6486,7 +6486,6 @@ CheckUnownLetter:
 
 INCLUDE "data/wild/unlocked_unowns.asm"
 
-
 Unreferenced_SwapBattlerLevels:
 	push bc
 	ld a, [wBattleMonLevel]

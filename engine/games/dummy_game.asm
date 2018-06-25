@@ -243,7 +243,6 @@ endr
 	ld [wJumptableIndex], a
 	ret
 
-
 DummyGame_CheckMatch:
 	ld hl, wDummyGameCard1
 	ld a, [hli]
@@ -321,7 +320,6 @@ DummyGame_CheckMatch:
 	inc bc
 	ret
 
-
 DummyGameText_Yeah:
 	; , yeah!
 	text_jump UnknownText_0x1c1a5b
@@ -381,7 +379,6 @@ DummyGame_InitBoard:
 	jr nz, .loop
 	ret
 
-
 DummyGame_SampleTilePlacement:
 	push hl
 	ld de, wDummyGameCards
@@ -402,7 +399,6 @@ DummyGame_SampleTilePlacement:
 	pop hl
 	inc hl
 	ret
-
 
 DummyGame_GetDistributionOfTiles:
 	ld a, [wMenuCursorY]
@@ -439,7 +435,6 @@ DummyGame_PlaceCard:
 	call DelayFrames
 	ret
 
-
 DummyGame_DeleteCard:
 	ld a, $1
 	ld [hli], a
@@ -451,7 +446,6 @@ DummyGame_DeleteCard:
 	ld c, 3
 	call DelayFrames
 	ret
-
 
 DummyGame_InitStrings:
 	hlcoord 0, 0
@@ -500,7 +494,6 @@ DummyGame_Card2Coord:
 	sla e
 	add hl, de
 	ret
-
 
 DummyGame_InterpretJoypad_AnimateCursor:
 	ld a, [wJumptableIndex]
@@ -594,7 +587,6 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	add 9
 	ld [hl], a
 	ret
-
 
 LZ_e2221:
 INCBIN "gfx/dummy_game/dummy_game.2bpp.lz"

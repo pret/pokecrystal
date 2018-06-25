@@ -96,7 +96,6 @@ CheckPlayerMoveTypeMatchups:
 	pop hl
 	ret
 
-
 .CheckEnemyMoveMatchups:
 	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
@@ -290,7 +289,6 @@ CheckAbleToSwitch:
 	ld [wEnemySwitchMonParam], a
 	ret
 
-
 FindAliveEnemyMons:
 	ld a, [wOTPartyCount]
 	cp 2
@@ -340,7 +338,6 @@ FindAliveEnemyMons:
 .more_than_one
 	and a
 	ret
-
 
 FindEnemyMonsImmuneToLastCounterMove:
 	ld hl, wOTPartyMon1
@@ -407,7 +404,6 @@ FindEnemyMonsImmuneToLastCounterMove:
 	inc d
 	srl c
 	jr .loop
-
 
 FindAliveEnemyMonsWithASuperEffectiveMove:
 	push bc
@@ -546,7 +542,6 @@ FindEnemyMonsWithASuperEffectiveMove:
 	pop bc
 	ret
 
-
 FindEnemyMonsThatResistPlayer:
 	push bc
 	ld hl, wOTPartySpecies
@@ -606,7 +601,6 @@ FindEnemyMonsThatResistPlayer:
 	and c
 	ld c, a
 	ret
-
 
 FindEnemyMonsWithAtLeastQuarterMaxHP:
 	push bc

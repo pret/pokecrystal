@@ -12,11 +12,9 @@ SelectMenu::
 	call WaitButton
 	jp CloseText
 
-
 ItemMayBeRegisteredText:
 	text_jump UnknownText_0x1c1cf3
 	db "@"
-
 
 CheckRegisteredItem:
 
@@ -85,7 +83,6 @@ CheckRegisteredItem:
 	scf
 	ret
 
-
 .CheckRegisteredNo:
 	ld a, [wWhichRegisteredItem]
 	and REGISTERED_NUMBER
@@ -100,7 +97,6 @@ CheckRegisteredItem:
 	scf
 	ret
 
-
 .IsSameItem:
 	ld a, [wRegisteredItem]
 	cp [hl]
@@ -112,7 +108,6 @@ CheckRegisteredItem:
 .NotSameItem:
 	scf
 	ret
-
 
 UseRegisteredItem:
 

@@ -549,7 +549,6 @@ Continue_LoadMenuHeader:
 	db " @"
 	db "TIME@"
 
-
 Continue_DisplayBadgesDexPlayerName:
 	call MenuBoxCoord2Tile
 	push hl
@@ -625,7 +624,6 @@ Continue_DisplayGameTime:
 	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
-
 
 OakSpeech:
 	farcall InitClock
@@ -957,7 +955,6 @@ Intro_PlacePlayerSprite:
 	db 10 * 8 + 4,  9 * 8, 2
 	db 10 * 8 + 4, 10 * 8, 3
 
-
 CrystalIntroSequence:
 	callfar Copyright_GFPresents
 	jr c, StartTitleScreen
@@ -1018,7 +1015,6 @@ StartTitleScreen:
 	dw CrystalIntroSequence
 	dw ResetClock
 
-
 .TitleScreen:
 	farcall _TitleScreen
 	ret
@@ -1070,7 +1066,6 @@ TitleScreenScene:
 	inc [hl]
 	ret
 
-
 TitleScreenEntrance:
 
 ; Animate the logo:
@@ -1118,7 +1113,6 @@ TitleScreenEntrance:
 	ld a, $88
 	ld [hWY], a
 	ret
-
 
 TitleScreenTimer:
 

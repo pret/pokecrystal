@@ -187,13 +187,11 @@ ClearWholeMenuBox::
 	call ClearBox
 	ret
 
-
 MenuBoxCoord2Tile::
 	ld a, [wMenuBorderLeftCoord]
 	ld c, a
 	ld a, [wMenuBorderTopCoord]
 	ld b, a
-
 
 Coord2Tile::
 ; Return the address of wTileMap(c, b) in hl.

@@ -79,7 +79,6 @@ PokeAnims:
 .Egg1:   pokeanim Setup, Play
 .Egg2:   pokeanim Idle, Play
 
-
 AnimateFrontpic:
 	call AnimateMon_CheckIfPokemon
 	ret c
@@ -717,7 +716,6 @@ PokeAnim_ConvertAndApplyBitmask:
 	; db 29, 30, 31, 32, 33, 34
 	; db 36, 37, 38, 39, 40, 41
 	; db 43, 44, 45, 46, 47, 48
-
 
 .GetStartCoord:
 	ld hl, wPokeAnimCoord

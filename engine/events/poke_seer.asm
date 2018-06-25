@@ -48,7 +48,6 @@ PokeSeer:
 	call PrintSeerText
 	ret
 
-
 SeerAction:
 	ld a, [wSeerAction]
 	ld hl, SeerActions
@@ -337,7 +336,6 @@ SeerCancelText:
 	text_jump UnknownText_0x1c4955
 	db "@"
 
-
 SeerAdvice:
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
@@ -397,7 +395,6 @@ SeerAdvice5:
 	; Incidentally… I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
 	text_jump UnknownText_0x1c4ae5
 	db "@"
-
 
 GetCaughtGender:
 	ld hl, MON_CAUGHTGENDER

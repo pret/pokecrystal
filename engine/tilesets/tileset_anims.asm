@@ -290,7 +290,6 @@ StandingTileFrame8:
 	ld [wTileAnimationTimer], a
 	ret
 
-
 ScrollTileRightLeft:
 ; Scroll right for 4 ticks, then left for 4 ticks.
 	ld a, [wTileAnimationTimer]
@@ -393,7 +392,6 @@ ScrollTileDown:
 	jr nz, .loop
 	ret
 
-
 AnimateFountain:
 	ld hl, sp+0
 	ld b, h
@@ -431,7 +429,6 @@ AnimateFountain:
 .frame4 INCBIN "gfx/tilesets/fountain/4.2bpp"
 .frame5 INCBIN "gfx/tilesets/fountain/5.2bpp"
 
-
 AnimateWaterTile:
 ; Draw a water tile for the current frame in VRAM tile at de.
 
@@ -467,7 +464,6 @@ AnimateWaterTile:
 WaterTileFrames:
 	INCBIN "gfx/tilesets/water/water.2bpp"
 
-
 ForestTreeLeftAnimation:
 	ld hl, sp+0
 	ld b, h
@@ -497,7 +493,6 @@ ForestTreeLeftAnimation:
 	ld hl, vTiles2 tile $0c
 	jp WriteTile
 
-
 ForestTreeLeftFrames:
 	INCBIN "gfx/tilesets/forest-tree/1.2bpp"
 	INCBIN "gfx/tilesets/forest-tree/2.2bpp"
@@ -505,7 +500,6 @@ ForestTreeLeftFrames:
 ForestTreeRightFrames:
 	INCBIN "gfx/tilesets/forest-tree/3.2bpp"
 	INCBIN "gfx/tilesets/forest-tree/4.2bpp"
-
 
 ForestTreeRightAnimation:
 	ld hl, sp+0
@@ -540,7 +534,6 @@ ForestTreeRightAnimation:
 	ld hl, vTiles2 tile $0f
 	jp WriteTile
 
-
 ForestTreeLeftAnimation2:
 	ld hl, sp+0
 	ld b, h
@@ -570,7 +563,6 @@ ForestTreeLeftAnimation2:
 	ld sp, hl
 	ld hl, vTiles2 tile $0c
 	jp WriteTile
-
 
 ForestTreeRightAnimation2:
 	ld hl, sp+0
@@ -606,7 +598,6 @@ ForestTreeRightAnimation2:
 	ld hl, vTiles2 tile $0f
 	jp WriteTile
 
-
 GetForestTreeFrame:
 ; Return 0 if a is even, or 2 if odd.
 	and a
@@ -630,7 +621,6 @@ GetForestTreeFrame:
 .even
 	xor a
 	ret
-
 
 AnimateFlowerTile:
 ; No parameters.
@@ -667,7 +657,6 @@ FlowerTileFrames:
 	INCBIN "gfx/tilesets/flower/dmg_2.2bpp"
 	INCBIN "gfx/tilesets/flower/cgb_2.2bpp"
 
-
 LavaBubbleAnim1:
 ; Splash in the bottom-right corner of the fountain.
 	ld hl, sp+0
@@ -688,7 +677,6 @@ LavaBubbleAnim1:
 	ld hl, vTiles2 tile $5b
 	jp WriteTile
 
-
 LavaBubbleAnim2:
 ; Splash in the top-left corner of the fountain.
 	ld hl, sp+0
@@ -707,13 +695,11 @@ LavaBubbleAnim2:
 	ld hl, vTiles2 tile $38
 	jp WriteTile
 
-
 LavaBubbleFrames:
 	INCBIN "gfx/tilesets/lava/1.2bpp"
 	INCBIN "gfx/tilesets/lava/2.2bpp"
 	INCBIN "gfx/tilesets/lava/3.2bpp"
 	INCBIN "gfx/tilesets/lava/4.2bpp"
-
 
 AnimateTowerPillarTile:
 ; Read from struct at de:
@@ -761,12 +747,10 @@ AnimateTowerPillarTile:
 .frames
 	db $00, $10, $20, $30, $40, $30, $20, $10
 
-
 StandingTileFrame:
 	ld hl, wTileAnimationTimer
 	inc [hl]
 	ret
-
 
 AnimateWhirlpoolTile:
 ; Update whirlpool tile using struct at de.
@@ -812,7 +796,6 @@ AnimateWhirlpoolTile:
 
 	jr WriteTile
 
-
 WriteTileFromBuffer:
 ; Write tiledata at wTileAnimBuffer to de.
 ; wTileAnimBuffer is loaded to sp for WriteTile.
@@ -827,7 +810,6 @@ WriteTileFromBuffer:
 	ld h, d
 	ld l, e
 	jr WriteTile
-
 
 WriteTileToBuffer:
 ; Write tiledata de to wTileAnimBuffer.
@@ -869,7 +851,6 @@ endr
 	ld l, c
 	ld sp, hl
 	ret
-
 
 TileAnimationPalette:
 ; Transition between color values 0-2 for color 0 in palette 3.
@@ -935,7 +916,6 @@ TileAnimationPalette:
 	ld [rSVBK], a
 	ret
 
-
 FlickeringCaveEntrancePalette:
 ; No palette changes on DMG.
 	ld a, [hCGB]
@@ -976,7 +956,6 @@ FlickeringCaveEntrancePalette:
 	ld [rSVBK], a
 	ret
 
-
 TowerPillarTilePointer1:  dw vTiles2 tile $2d, TowerPillarTile1
 TowerPillarTilePointer2:  dw vTiles2 tile $2f, TowerPillarTile2
 TowerPillarTilePointer3:  dw vTiles2 tile $3d, TowerPillarTile3
@@ -998,7 +977,6 @@ TowerPillarTile7:  INCBIN "gfx/tilesets/tower-pillar/7.2bpp"
 TowerPillarTile8:  INCBIN "gfx/tilesets/tower-pillar/8.2bpp"
 TowerPillarTile9:  INCBIN "gfx/tilesets/tower-pillar/9.2bpp"
 TowerPillarTile10: INCBIN "gfx/tilesets/tower-pillar/10.2bpp"
-
 
 WhirlpoolFrames1: dw vTiles2 tile $32, WhirlpoolTiles1
 WhirlpoolFrames2: dw vTiles2 tile $33, WhirlpoolTiles2

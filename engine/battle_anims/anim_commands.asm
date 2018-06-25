@@ -240,7 +240,6 @@ Unreferenced_Functioncc220:
 	call BattleAnimDelayFrame
 	ret
 
-
 BattleAnim_ClearCGB_OAMFlags:
 
 	ld a, [wBattleAnimFlags]
@@ -333,7 +332,6 @@ RunBattleAnimCommand:
 	ld l, a
 	jp hl
 
-
 BattleAnimCommands::
 ; entries correspond to macros/scripts/battle_anims.asm enumeration
 	dw BattleAnimCmd_Obj
@@ -384,7 +382,6 @@ BattleAnimCommands::
 	dw BattleAnimCmd_Loop
 	dw BattleAnimCmd_Call
 	dw BattleAnimCmd_Ret
-
 
 BattleAnimCmd_EA:
 BattleAnimCmd_EB:
@@ -1303,7 +1300,6 @@ endr
 	dw $0000, $0040
 	dw $0000, $0000
 	dw $0000, $0000
-
 
 PlayHitSound:
 	ld a, [wNumHits]

@@ -276,9 +276,7 @@ CheckOverworldTileArrays:
 	xor a
 	ret
 
-
 INCLUDE "data/events/field_move_blocks.asm"
-
 
 OWFlash:
 	call .CheckUseFlash

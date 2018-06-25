@@ -126,7 +126,6 @@ _LoadTradeScreenBorder:
 	call __LoadTradeScreenBorder
 	ret
 
-
 LinkComms_LoadPleaseWaitTextboxBorderGFX:
 	ld de, LinkCommsBorderGFX + $30 tiles
 	ld hl, vTiles2 tile $76

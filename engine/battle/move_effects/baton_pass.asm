@@ -5,7 +5,6 @@ BattleCommand_BatonPass:
 	and a
 	jp nz, .Enemy
 
-
 ; Need something to switch to
 	call CheckAnyOtherAlivePartyMons
 	jp z, FailedBatonPass
@@ -45,7 +44,6 @@ BattleCommand_BatonPass:
 	call ResetBatonPassStatus
 	ret
 
-
 .Enemy:
 
 ; Wildmons don't have anything to switch to
@@ -82,7 +80,6 @@ BattleCommand_BatonPass:
 	jr ResetBatonPassStatus
 
 
-
 BatonPass_LinkPlayerSwitch:
 	ld a, [wLinkMode]
 	and a
@@ -99,7 +96,6 @@ BatonPass_LinkPlayerSwitch:
 	xor a
 	ld [wBattlePlayerAction], a
 	ret
-
 
 
 BatonPass_LinkEnemySwitch:
@@ -128,11 +124,9 @@ BatonPass_LinkEnemySwitch:
 	jp CloseWindow
 
 
-
 FailedBatonPass:
 	call AnimateFailedMove
 	jp PrintButItFailed
-
 
 
 ResetBatonPassStatus:
@@ -175,7 +169,6 @@ ResetBatonPassStatus:
 	ret
 
 
-
 CheckAnyOtherAlivePartyMons:
 	ld hl, wPartyMon1HP
 	ld a, [wPartyCount]
@@ -183,7 +176,6 @@ CheckAnyOtherAlivePartyMons:
 	ld a, [wCurBattleMon]
 	ld e, a
 	jr CheckAnyOtherAliveMons
-
 
 
 CheckAnyOtherAliveEnemyMons:

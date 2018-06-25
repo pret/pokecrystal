@@ -62,10 +62,8 @@ GENDER_UNKNOWN EQU -1
 	const EGG_DRAGON        ; e
 	const EGG_NONE          ; f (Undiscovered)
 
-
 ; pokedex entries (see data/pokemon/dex_entries.asm)
 NUM_DEX_ENTRY_BANKS EQU 4
-
 
 ; party_struct members (see macros/wram.asm)
 MON_SPECIES            EQUS "(wPartyMon1Species - wPartyMon1)"
@@ -101,7 +99,6 @@ BOXMON_STRUCT_LENGTH   EQUS "(wPartyMon1End - wPartyMon1)"
 PARTYMON_STRUCT_LENGTH EQUS "(wPartyMon1StatsEnd - wPartyMon1)"
 REDMON_STRUCT_LENGTH EQU 44
 
-
 ; caught data
 
 CAUGHT_TIME_MASK  EQU %11000000
@@ -116,7 +113,6 @@ CAUGHT_BY_BOY     EQU 2
 
 CAUGHT_EGG_LEVEL EQU 1
 
-
 ; maximum number of party pokemon
 PARTY_LENGTH EQU 6
 
@@ -128,7 +124,6 @@ NUM_BOXES    EQU 14
 HOF_MON_LENGTH = 1 + 2 + 2 + 1 + (MON_NAME_LENGTH + -1) ; species, id, dvs, level, nick
 HOF_LENGTH = 1 + HOF_MON_LENGTH * PARTY_LENGTH + 1 ; win count, party, terminator
 NUM_HOF_TEAMS = 30
-
 
 ; evolution types (used in data/pokemon/evos_attacks.asm)
 	const_def 1
@@ -150,7 +145,6 @@ NUM_HOF_TEAMS = 30
 	const ATK_LT_DEF
 	const ATK_EQ_DEF
 
-
 ; wild data
 
 NUM_GRASSMON EQU 7 ; data/wild/*_grass.asm table size
@@ -161,7 +155,6 @@ WATER_WILDDATA_LENGTH EQU (NUM_WATERMON * 2 + 1) * 1 + 2
 FISHGROUP_DATA_LENGTH EQU 1 + 2 * 3
 
 NUM_ROAMMON_MAPS EQU 16 ; RoamMaps table size (see data/wild/roammon_maps.asm)
-
 
 ; treemon sets
 ; TreeMons indexes (see data/wild/treemons.asm)
@@ -181,7 +174,6 @@ NUM_TREEMON_SETS EQU const_value
 	const TREEMON_SCORE_BAD  ; 0
 	const TREEMON_SCORE_GOOD ; 1
 	const TREEMON_SCORE_RARE ; 2
-
 
 ; ChangeHappiness arguments (see data/happiness_changes.asm)
 const_value = 1
@@ -211,7 +203,6 @@ FRIEND_BALL_HAPPINESS EQU 200
 HAPPINESS_TO_EVOLVE   EQU 220
 HAPPINESS_THRESHOLD_1 EQU 100
 HAPPINESS_THRESHOLD_2 EQU 200
-
 
 ; PP
 PP_UP_MASK EQU %11000000

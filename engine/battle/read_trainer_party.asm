@@ -321,7 +321,6 @@ ComputeTrainerReward:
 	ld [hl], a
 	ret
 
-
 Battle_GetTrainerName::
 	ld a, [wInBattleTowerBattle]
 	bit 0, a

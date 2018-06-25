@@ -42,7 +42,6 @@ CutTreeBlockPointers:
 	db $0f, $17, 0
 	db -1 ; end
 
-
 WhirlpoolBlockPointers:
 	dbw TILESET_JOHTO, .johto
 	db -1 ; end

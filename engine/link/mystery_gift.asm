@@ -1168,7 +1168,6 @@ Function1050c8:
 .okay
 	jp CloseSRAM
 
-
 BackupMysteryGift:
 	call GetMysteryGiftBank
 	ld hl, sMysteryGiftItem
@@ -1179,7 +1178,6 @@ BackupMysteryGift:
 	ld a, [hl]
 	ld [de], a
 	jp CloseSRAM
-
 
 RestoreMysteryGift:
 	call GetMysteryGiftBank
@@ -1202,11 +1200,9 @@ MysteryGift_ClearTrainerData:
 	jr nz, .loop
 	ret
 
-
 GetMysteryGiftBank:
 	ld a, BANK(sBackupMysteryGiftItem)
 	jp GetSRAMBank
-
 
 StagePartyDataForMysteryGift:
 ; You will be sending this data to your mystery gift partner.
@@ -1492,7 +1488,6 @@ String_PressAToLink_BToCancel_JP:
 	next "ビーボタン<WO>おすと"
 	next "つうしん<WO>ちゅうし　します"
 	db   "@"
-
 
 Text_ReceivedCard:
 	text_jump UnknownText_0x1c051a

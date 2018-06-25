@@ -221,7 +221,6 @@ Credits_LYOverride:
 	jr nz, .loop
 	ret
 
-
 ParseCredits:
 	ld hl, wJumptableIndex
 	bit 7, [hl]
@@ -392,7 +391,6 @@ ParseCredits:
 	pop de
 	pop hl
 	ret
-
 
 ConstructCreditsTilemap:
 	xor a
@@ -597,7 +595,6 @@ Credits_TheEnd:
 	dec c
 	jr nz, .loop
 	ret
-
 
 CreditsBorderGFX:    INCBIN "gfx/credits/border.2bpp"
 

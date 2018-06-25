@@ -26,7 +26,6 @@ DeinitBattleAnimation:
 	ld [hl], $0
 	ret
 
-
 InitBattleAnimation:
 	ld a, [wBattleAnimTemp0]
 	ld e, a
@@ -190,7 +189,6 @@ BattleAnimOAMUpdate:
 	scf
 	ret
 
-
 InitBattleAnimBuffer:
 	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
@@ -274,7 +272,6 @@ InitBattleAnimBuffer:
 	ld [wBattleAnimTempXOffset], a
 	ret
 
-
 GetBattleAnimTileOffset:
 	push hl
 	push bc
@@ -301,7 +298,6 @@ GetBattleAnimTileOffset:
 _ExecuteBGEffects:
 	callfar ExecuteBGEffects
 	ret
-
 
 _QueueBGEffect:
 	callfar QueueBGEffect

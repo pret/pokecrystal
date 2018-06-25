@@ -113,7 +113,6 @@ CheckBalance_MomItem2:
 	farcall AddMoney
 	ret
 
-
 MomBuysItem_DeductFunds:
 	call GetItemFromMom
 	ld de, 3 ; cost
@@ -128,7 +127,6 @@ MomBuysItem_DeductFunds:
 	ld bc, hMoneyTemp
 	farcall TakeMoney
 	ret
-
 
 Mom_GiveItemOrDoll:
 	call GetItemFromMom
@@ -152,7 +150,6 @@ Mom_GiveItemOrDoll:
 	ld hl, wPCItems
 	call ReceiveItem
 	ret
-
 
 Mom_GetScriptPointer:
 	call GetItemFromMom
@@ -178,7 +175,6 @@ Mom_GetScriptPointer:
 	writetext _MomText_BoughtWithYourMoney
 	writetext _MomText_ItsInRoom
 	end
-
 
 GetItemFromMom:
 	ld a, [wWhichMomItemSet]

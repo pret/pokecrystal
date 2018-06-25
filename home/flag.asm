@@ -24,7 +24,6 @@ ResetFlashIfOutOfCave::
 	res STATUSFLAGS_FLASH_F, [hl]
 	ret
 
-
 EventFlagAction::
 	ld hl, wEventFlags
 	call FlagAction
@@ -96,7 +95,6 @@ FlagAction::
 	and [hl]
 	ld [hl], a
 	ret
-
 
 CheckReceivedDex::
 	ld de, ENGINE_POKEDEX

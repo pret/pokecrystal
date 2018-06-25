@@ -161,13 +161,11 @@ OWCutJumptable:
 	ld l, a
 	jp hl
 
-
 .dw
 	dw Cut_SpawnAnimateTree
 	dw Cut_SpawnAnimateLeaves
 	dw Cut_StartWaiting
 	dw Cut_WaitAnimSFX
-
 
 Cut_SpawnAnimateTree:
 	call Cut_Headbutt_GetPixelFacing
@@ -302,7 +300,6 @@ Cut_Headbutt_GetPixelFacing:
 	dbpixel 10,  9
 	dbpixel  8, 11
 	dbpixel 12, 11
-
 
 FlyFromAnim:
 	call DelayFrame

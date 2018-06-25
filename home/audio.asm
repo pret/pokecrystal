@@ -25,7 +25,6 @@ MapSetup_Sound_Off::
 	pop hl
 	ret
 
-
 UpdateSound::
 
 	push hl
@@ -51,7 +50,6 @@ UpdateSound::
 	pop hl
 	ret
 
-
 _LoadMusicByte::
 ; wCurMusicByte = [a:de]
 GLOBAL LoadMusicByte
@@ -66,7 +64,6 @@ GLOBAL LoadMusicByte
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 	ret
-
 
 PlayMusic::
 ; Play music de.
@@ -102,7 +99,6 @@ PlayMusic::
 	pop hl
 	ret
 
-
 PlayMusic2::
 ; Stop playing music, then play music de.
 
@@ -133,7 +129,6 @@ PlayMusic2::
 	pop de
 	pop hl
 	ret
-
 
 
 PlayCry::
@@ -187,7 +182,6 @@ endr
 	pop hl
 	ret
 
-
 PlaySFX::
 ; Play sound effect de.
 ; Sound effects are ordered by priority (highest to lowest)
@@ -228,12 +222,10 @@ PlaySFX::
 	pop hl
 	ret
 
-
 WaitPlaySFX::
 	call WaitSFX
 	call PlaySFX
 	ret
-
 
 WaitSFX::
 ; infinite loop until sfx is done playing
@@ -544,7 +536,6 @@ TerminateExpBarSound::
 	ld [rNR13], a
 	ld [rNR14], a
 	ret
-
 
 ChannelsOff::
 ; Quickly turn off music channels

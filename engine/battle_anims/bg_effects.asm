@@ -134,7 +134,6 @@ BattleBGEffects:
 	dw BattleBGEffect_WobbleMon
 	dw BattleBGEffect_35
 
-
 BattleBGEffect_End:
 	call EndBattleBGEffect
 	ret
@@ -348,7 +347,6 @@ BattleBGEffect_HideMon:
 	dw BattleBGEffects_IncrementJumptable
 	dw .four
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	push bc
@@ -414,7 +412,6 @@ BattleBGEffect_FeetFollow:
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
 	dw .five
-
 
 .zero
 	call BGEffect_CheckFlyDigStatus
@@ -482,7 +479,6 @@ BattleBGEffect_HeadFollow:
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
 	dw .five
-
 
 .zero
 	call BGEffect_CheckFlyDigStatus
@@ -553,7 +549,6 @@ BattleBGEffect_27:
 	dw BattleBGEffects_IncrementJumptable
 	dw BattleBGEffects_IncrementJumptable
 	dw .four
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -716,7 +711,6 @@ BattleBGEffect_RunPicResizeScript:
 	dw BattleBGEffects_IncrementJumptable
 	dw .restart
 	dw .end
-
 
 .zero
 	ld hl, BG_EFFECT_STRUCT_03
@@ -915,7 +909,6 @@ BattleBGEffect_Surf:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	lb de, 2, 2
@@ -981,7 +974,6 @@ BattleBGEffect_Whirlpool:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -1056,7 +1048,6 @@ BattleBGEffect_Psychic:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -1094,7 +1085,6 @@ BattleBGEffect_Teleport:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -1118,7 +1108,6 @@ BattleBGEffect_NightShade:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -1149,7 +1138,6 @@ BattleBGEffect_DoubleTeam:
 	dw .three
 	dw .four
 	dw .five
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -1242,7 +1230,6 @@ BattleBGEffect_AcidArmor:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -1305,7 +1292,6 @@ BattleBGEffect_Withdraw:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -1354,7 +1340,6 @@ BattleBGEffect_Dig:
 	dw .one
 	dw .two
 	dw .three
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -1422,7 +1407,6 @@ BattleBGEffect_Tackle:
 	dw Tackle_BGEffect25_2d_two
 	dw .three
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -1456,7 +1440,6 @@ BattleBGEffect_25:
 	dw Tackle_BGEffect25_2d_one
 	dw Tackle_BGEffect25_2d_two
 	dw .three
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -1585,7 +1568,6 @@ BattleBGEffect_2d:
 	dw Tackle_BGEffect25_2d_two
 	dw .three
 
-
 .three
 	call BattleAnim_ResetLCDStatCustom
 	ret
@@ -1633,7 +1615,6 @@ BattleBGEffect_26:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -1671,7 +1652,6 @@ BattleBGEffect_2c:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -1727,7 +1707,6 @@ BattleBGEffect_28:
 	dw .one
 	dw .two
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -1769,7 +1748,6 @@ BattleBGEffect_BounceDown:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -1928,7 +1906,6 @@ BattleBGEffect_2b:
 	dw .zero
 	dw .one
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -1968,7 +1945,6 @@ BattleBGEffect_1c:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -2196,7 +2172,6 @@ BattleBGEffect_VibrateMon:
 	dw .zero
 	dw .one
 
-
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
@@ -2241,7 +2216,6 @@ BattleBGEffect_WobbleMon:
 	dw .zero
 	dw .one
 	dw .two
-
 
 .zero
 	call BattleBGEffects_IncrementJumptable
@@ -2407,7 +2381,6 @@ BGEffect_RapidCyclePals:
 	dw .one_dmg
 	dw .two_dmg
 
-
 .zero_dmg
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
@@ -2471,7 +2444,6 @@ BGEffect_RapidCyclePals:
 	dw .two_cgb
 	dw .three_cgb
 	dw .four_cgb
-
 
 .zero_cgb
 	call BGEffect_CheckBattleTurn

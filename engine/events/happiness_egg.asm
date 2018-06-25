@@ -102,9 +102,7 @@ ChangeHappiness:
 	ld [wBattleMonHappiness], a
 	ret
 
-
 INCLUDE "data/events/happiness_changes.asm"
-
 
 StepHappiness::
 ; Raise the party's happiness by 1 point every other step cycle.
@@ -140,7 +138,6 @@ StepHappiness::
 	dec c
 	jr nz, .loop
 	ret
-
 
 DayCareStep::
 ; Raise the experience of Day-Care Pokémon every step cycle.

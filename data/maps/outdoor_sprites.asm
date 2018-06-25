@@ -30,7 +30,6 @@ OutdoorSprites:
 	dw SaffronGroupSprites
 	dw CherrygroveGroupSprites
 
-
 PalletGroupSprites:
 	db SPRITE_SUICUNE
 	db SPRITE_SILVER_TROPHY

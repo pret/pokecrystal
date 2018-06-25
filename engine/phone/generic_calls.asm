@@ -1255,7 +1255,6 @@ PhoneScript_MonFlavorText:
 	buttonsound
 	farjump PhoneScript_HangupText_Male
 
-
 GrandmaString: db "Grandma@"
 GrandpaString: db "Grandpa@"
 MomString: db "Mom@"

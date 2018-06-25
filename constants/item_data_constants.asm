@@ -32,7 +32,6 @@ NO_LIMITS   EQU 0
 CANT_SELECT EQU 1 << CANT_SELECT_F
 CANT_TOSS   EQU 1 << CANT_TOSS_F
 
-
 ; pack pockets
 	const_def
 	const ITEM_POCKET     ; 0
@@ -46,13 +45,11 @@ MAX_BALLS     EQU 12
 MAX_KEY_ITEMS EQU 25
 MAX_PC_ITEMS  EQU 50
 
-
 ; mail
 MAIL_LINE_LENGTH   EQU $10
 MAIL_MSG_LENGTH    EQU $20
 MAILBOX_CAPACITY   EQU 10
 MAIL_STRUCT_LENGTH EQU $2f ; mailmsg struct
-
 
 ; held item effects
 	const_def

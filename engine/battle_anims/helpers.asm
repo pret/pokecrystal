@@ -72,7 +72,6 @@ GetBattleAnimFrame:
 	ld [hl], a
 	jr .loop
 
-
 .GetPointer:
 	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
@@ -92,7 +91,6 @@ GetBattleAnimFrame:
 	add hl, de
 	ret
 
-
 GetBattleAnimOAMPointer:
 	ld l, a
 	ld h, 0
@@ -101,7 +99,6 @@ GetBattleAnimOAMPointer:
 	add hl, hl
 	add hl, de
 	ret
-
 
 LoadBattleAnimObj:
 	push hl

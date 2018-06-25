@@ -88,7 +88,6 @@ INCLUDE "mobile/fixed_words.asm"
 
 INCLUDE "data/trainers/genders.asm"
 
-
 BTMaleTrainerTexts:
 	dw .Greetings
 	dw .PlayerLost
@@ -175,7 +174,6 @@ BTMaleTrainerTexts:
 	dw BTWinM24
 	dw BTWinM25
 
-
 BTFemaleTrainerTexts:
 	dw .Greetings
 	dw .PlayerLost
@@ -231,7 +229,6 @@ BTFemaleTrainerTexts:
 	dw BTWinF13
 	dw BTWinF14
 	dw BTWinF15
-
 
 BTGreetingM1:
 	text_jump BattleTowerText_0x1ec000
@@ -532,7 +529,6 @@ BTLossM25:
 BTWinM25:
 	text_jump UnknownText_0x1ec99b
 	db "@"
-
 
 
 

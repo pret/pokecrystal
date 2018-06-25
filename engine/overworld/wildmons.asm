@@ -490,7 +490,6 @@ LookUpWildmonsForMapDE:
 	scf
 	ret
 
-
 InitRoamMons:
 ; initialize wRoamMon structs
 
@@ -523,7 +522,6 @@ InitRoamMons:
 	ld [wRoamMon2HP], a
 
 	ret
-
 
 CheckEncounterRoamMon:
 	push hl
@@ -572,7 +570,6 @@ CheckEncounterRoamMon:
 	and a
 	ret
 
-
 UpdateRoamMons:
 	ld a, [wRoamMon1MapGroup]
 	cp GROUP_N_A
@@ -614,7 +611,6 @@ UpdateRoamMons:
 
 .Finished:
 	jp _BackUpMapIndices
-
 
 .Update:
 	ld hl, RoamMaps
@@ -752,9 +748,7 @@ _BackUpMapIndices:
 	ld [wRoamMons_CurrentMapGroup], a
 	ret
 
-
 INCLUDE "data/wild/roammon_maps.asm"
-
 
 ValidateTempWildMonSpecies:
 ; Due to a development oversight, this function is called with the wild Pokemon's level, not its species, in a.
@@ -964,7 +958,6 @@ RandomPhoneMon:
 	ld de, wStringBuffer4
 	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
-
 
 INCLUDE "data/wild/johto_grass.asm"
 INCLUDE "data/wild/johto_water.asm"

@@ -47,7 +47,6 @@ BattleRandom::
 	ld a, [wPredefTemp + 1]
 	ret
 
-
 RandomRange::
 ; Return a random number between 0 and a (non-inclusive).
 

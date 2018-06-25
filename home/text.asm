@@ -19,7 +19,6 @@ FillBoxWithByte::
 	jr nz, .row
 	ret
 
-
 ClearTileMap::
 ; Fill wTileMap with blank tiles.
 
@@ -34,14 +33,12 @@ ClearTileMap::
 	ret z
 	jp WaitBGMap
 
-
 ClearScreen::
 	ld a, PAL_BG_TEXT
 	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call ByteFill
 	jr ClearTileMap
-
 
 TextBox::
 ; Draw a text box at hl with room for b lines of c characters each.
@@ -53,7 +50,6 @@ TextBox::
 	pop hl
 	pop bc
 	jr TextBoxPalette
-
 
 TextBoxBorder::
 
@@ -102,7 +98,6 @@ TextBoxBorder::
 	jr nz, .loop
 	ret
 
-
 TextBoxPalette::
 ; Fill text box width c height b at hl with pal 7
 	ld de, wAttrMap - wTileMap
@@ -127,7 +122,6 @@ TextBoxPalette::
 	jr nz, .col
 	ret
 
-
 SpeechTextBox::
 ; Standard textbox.
 	hlcoord TEXTBOX_X, TEXTBOX_Y
@@ -143,7 +137,6 @@ RadioTerminator::
 	ld hl, .stop
 	ret
 .stop	db "@"
-
 
 PrintText::
 	call SetUpTextBox
@@ -166,7 +159,6 @@ SetUpTextBox::
 	call ApplyTilemap
 	pop hl
 	ret
-
 
 PlaceString::
 	push hl
@@ -285,13 +277,11 @@ ENDM
 	call PrintLetterDelay
 	jp NextChar
 
-
 DayOfWeekChar::
 	ld c, l
 	ld b, h
 	farcall Function17f036
 	jp PlaceNextChar
-
 
 print_name: MACRO
 	push de
@@ -318,7 +308,6 @@ PlaceJPRoute: print_name PlaceJPRouteText
 PlaceWatashi: print_name PlaceWatashiText
 PlaceKokoWa:  print_name PlaceKokoWaText
 
-
 PlaceMoveTargetsName::
 	ld a, [hBattleTurn]
 	xor 1
@@ -342,7 +331,6 @@ PlaceMoveUsersName::
 	ld l, c
 	ld de, wEnemyMonNick
 	jr PlaceCommandCharacter
-
 
 PlaceEnemysName::
 	push de
@@ -377,7 +365,6 @@ PlaceEnemysName::
 	ld de, wOTClassName
 	jr PlaceCommandCharacter
 
-
 PlaceGenderedPlayerName::
 	push de
 	ld de, wPlayerName
@@ -390,7 +377,6 @@ PlaceGenderedPlayerName::
 	jr z, PlaceCommandCharacter
 	ld de, ChanSuffixText
 	jr PlaceCommandCharacter
-
 
 PlaceCommandCharacter::
 	call PlaceString
@@ -472,7 +458,6 @@ TextFar::
 	push hl
 	jp NextChar
 
-
 LineChar::
 	pop hl
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
@@ -502,7 +487,6 @@ Paragraph::
 	pop de
 	jp NextChar
 
-
 _ContText::
 	ld a, [wLinkMode]
 	or a
@@ -529,7 +513,6 @@ _ContTextNoPause::
 	pop de
 	jp NextChar
 
-
 ContText::
 	push de
 	ld de, .cont
@@ -542,7 +525,6 @@ ContText::
 	jp NextChar
 
 .cont: db "<_CONT>@"
-
 
 PlaceDexEnd::
 ; Ends a Pokédex entry in Gen 1.
@@ -660,7 +642,6 @@ PokeFluteTerminatorCharacter::
 	ret
 
 .stop: db "@"
-
 
 PlaceHLTextAtBC::
 	ld a, [wTextBoxFlags]

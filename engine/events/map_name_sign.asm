@@ -96,7 +96,6 @@ ReturnFromMapSetupScript::
 	cp MAP_ROUTE_36_NATIONAL_PARK_GATE
 	ret
 
-
 PlaceMapNameSign::
 	ld hl, wLandmarkSignTimer
 	ld a, [hl]
@@ -125,7 +124,6 @@ PlaceMapNameSign::
 	ld [hLCDCPointer], a
 	ret
 
-
 LoadMapNameSignGFX:
 	ld de, MapEntryFrameGFX
 	ld hl, vTiles2 tile MAP_NAME_SIGN_START
@@ -140,7 +138,6 @@ InitMapNameFrame:
 	call InitMapSignAttrMap
 	call PlaceMapNameFrame
 	ret
-
 
 PlaceMapNameCenterAlign:
 	ld a, [wCurrentLandmark]
@@ -173,7 +170,6 @@ PlaceMapNameCenterAlign:
 .stop
 	pop hl
 	ret
-
 
 InitMapSignAttrMap:
 	ld de, wAttrMap - wTileMap

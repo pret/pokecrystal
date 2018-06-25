@@ -77,7 +77,6 @@ StringOptions:
 	db "        :TYPE<LNBRK>"
 	db "CANCEL@"
 
-
 GetOptionPointer:
 	ld a, [wJumptableIndex] ; load the cursor position to a
 	ld e, a ; copy it to de
@@ -99,7 +98,6 @@ GetOptionPointer:
 	dw Options_MenuAccount
 	dw Options_Frame
 	dw Options_Cancel
-
 
 	const_def
 	const OPT_TEXT_SPEED_FAST ; 0
@@ -163,7 +161,6 @@ Options_TextSpeed:
 .Mid:  db "MID @"
 .Slow: db "SLOW@"
 
-
 GetTextSpeed:
 ; converts TEXT_DELAY_* value in a to OPT_TEXT_SPEED_* value in c,
 ; with previous/next TEXT_DELAY_* values in d/e
@@ -187,7 +184,6 @@ GetTextSpeed:
 	ld c, OPT_TEXT_SPEED_FAST
 	lb de, TEXT_DELAY_SLOW, TEXT_DELAY_MED
 	ret
-
 
 Options_BattleScene:
 	ld hl, wOptions
@@ -228,7 +224,6 @@ Options_BattleScene:
 .On:  db "ON @"
 .Off: db "OFF@"
 
-
 Options_BattleStyle:
 	ld hl, wOptions
 	ld a, [hJoyPressed]
@@ -266,7 +261,6 @@ Options_BattleStyle:
 
 .Shift: db "SHIFT@"
 .Set:   db "SET  @"
-
 
 Options_Sound:
 	ld hl, wOptions
@@ -312,7 +306,6 @@ Options_Sound:
 
 .Mono:   db "MONO  @"
 .Stereo: db "STEREO@"
-
 
 	const_def
 	const OPT_PRINT_LIGHTEST ; 0
@@ -378,7 +371,6 @@ Options_Print:
 .Normal:   db "NORMAL  @"
 .Darker:   db "DARKER  @"
 .Darkest:  db "DARKEST @"
-
 
 GetPrinterSetting:
 ; converts GBPRINTER_* value in a to OPT_PRINT_* value in c,
@@ -454,7 +446,6 @@ Options_MenuAccount:
 
 .Off: db "OFF@"
 .On:  db "ON @"
-
 
 Options_Frame:
 	ld hl, wTextBoxFrame

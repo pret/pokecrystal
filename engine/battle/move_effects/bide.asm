@@ -70,7 +70,6 @@ BattleCommand_StoreEnergy:
 	jp EndMoveEffect
 
 
-
 BattleCommand_UnleashEnergy:
 ; unleashenergy
 

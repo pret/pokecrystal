@@ -109,7 +109,6 @@ GetBasePokemonName::
 	pop hl
 	ret
 
-
 GetPokemonName::
 ; Get Pokemon name wd265.
 

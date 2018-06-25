@@ -139,7 +139,6 @@ CalcMagikarpLength:
 ; if b = 252-253:  x = 65210,  y =   5,  z = 13
 ; if b = 254:      x = 65410,  y =   2,  z = 14
 
-
 	; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
 	; id
@@ -301,7 +300,6 @@ CalcMagikarpLength:
 	ret
 
 INCLUDE "data/events/magikarp_lengths.asm"
-
 
 
 MagikarpHouseSign:

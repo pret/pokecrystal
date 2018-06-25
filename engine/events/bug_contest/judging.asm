@@ -125,9 +125,7 @@ LoadContestantName:
 	ld bc, NAME_LENGTH
 	jp CopyBytes
 
-
 INCLUDE "data/events/bug_contest_winners.asm"
-
 
 BugContest_GetPlayersResult:
 	ld hl, wBugContestThirdPlaceWinnerID

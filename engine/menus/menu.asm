@@ -56,7 +56,6 @@ _InterpretMobileMenu::
 	ret
 
 
-
 Draw2DMenu:
 	xor a
 	ld [hBGMapMode], a
@@ -158,7 +157,6 @@ Place2DMenuItemStrings:
 	rst FarCall
 	ret
 
-
 Init2DMenuCursorPosition:
 	call GetMenuTextStartCoord
 	ld a, b
@@ -247,7 +245,6 @@ Init2DMenuCursorPosition:
 	ld [wMenuJoypadFilter], a
 	ret
 
-
 _StaticMenuJoypad::
 	call Place2DMenuCursor
 _ScrollingMenuJoypad::
@@ -275,7 +272,6 @@ MobileMenuJoypad:
 	call GetMenuJoypad
 	ld c, a
 	ret
-
 
 Unreferenced_Function241d5:
 	call Place2DMenuCursor
@@ -314,7 +310,6 @@ Unreferenced_Function241d5:
 	jr z, .loop2
 	and a
 	ret
-
 
 MenuJoypadLoop:
 .loop

@@ -37,7 +37,6 @@ Facings:
 
 NUM_FACINGS EQU (Facings.End - Facings) / 2
 
-
 ; Tables used as a reference to transform OAM data.
 
 ; Format:

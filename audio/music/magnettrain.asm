@@ -245,7 +245,6 @@ Music_MagnetTrain_Ch4:
 	note B_, 16
 	endchannel
 
-
 ; unused
 Music_MagnetTrain_branch_ef711:
 	note G#, 1
@@ -261,7 +260,6 @@ Music_MagnetTrain_branch_ef711:
 	note G_, 1
 	note G_, 1
 	endchannel
-
 
 Music_MagnetTrain_branch_ef71e:
 	note G#, 2

@@ -94,9 +94,7 @@ GetFruitTreeItem:
 	pop hl
 	ret
 
-
 INCLUDE "data/items/fruit_trees.asm"
-
 
 FruitBearingTreeText:
 	text_jump _FruitBearingTreeText

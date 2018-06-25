@@ -19,7 +19,6 @@ ENDM
 depixel EQUS "ldpixel de,"
 bcpixel EQUS "ldpixel bc,"
 
-
 ; Design patterns
 
 jumptable: MACRO

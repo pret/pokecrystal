@@ -50,7 +50,6 @@ BattleCommand_Thief:
 	ld [de], a
 	jr .stole
 
-
 .enemy
 
 ; The enemy can't already have an item.
@@ -91,12 +90,10 @@ BattleCommand_Thief:
 	ld [hl], a
 	ld [de], a
 
-
 .stole
 	call GetItemName
 	ld hl, StoleText
 	jp StdBattleTextBox
-
 
 .playeritem
 	ld a, 1

@@ -91,7 +91,6 @@ endc
 
 	ret
 
-
 Function_LoadRandomBattleTowerMon:
 	ld c, BATTLETOWER_PARTY_LENGTH
 .loop

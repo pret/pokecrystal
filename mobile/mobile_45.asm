@@ -143,7 +143,6 @@ Function114243::
 	pop de
 	jp hl
 
-
 Function11425c:
 	ld [$dc02], a
 	pop af
@@ -152,10 +151,8 @@ Function11425c:
 	ld [MBC3SRamBank], a
 	ret
 
-
 Stubbed_Function114268:
 	ret
-
 
 Function114269:
 	ld h, d
@@ -296,14 +293,12 @@ Function114269:
 	ld [$dc02], a
 	jp .asm_11429b
 
-
 Function114333:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function11433c:
 	push de
@@ -397,7 +392,6 @@ Function11433c:
 	ld b, $1
 	jp Function11425c
 
-
 Function1143b7:
 	ld a, [de]
 	ld b, a
@@ -448,7 +442,6 @@ Function1143b7:
 	pop hl
 	jp Function11425c
 
-
 Function1143f3:
 	call Function114412
 	and a
@@ -475,7 +468,6 @@ Function1143f3:
 	ld a, $1
 	ld b, $84
 	ret
-
 
 Function114412:
 	ld a, c
@@ -606,14 +598,12 @@ Function114412:
 	ld a, $1
 	ret
 
-
 Function1144c8:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function1144d1:
 	call Function114561
@@ -712,7 +702,6 @@ Function1144d1:
 	ld a, $1
 	jp Function11425c
 
-
 Function114561:
 	ld hl, $dc03
 	ld a, [de]
@@ -733,7 +722,6 @@ Function114561:
 	ld a, [de]
 	ld [hl], a
 	ret
-
 
 Function114576:
 	xor a
@@ -788,7 +776,6 @@ Function114576:
 	ld a, $1
 	ld [wDecoBed], a
 	ret
-
 
 Function1145c5:
 	ld hl, $dc24
@@ -882,7 +869,6 @@ Function1145c5:
 	xor a
 	ret
 
-
 Function11463c:
 	ld a, [$dc00]
 	push af
@@ -945,14 +931,12 @@ Function11463c:
 	ld a, $1
 	ret
 
-
 Function11469b:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function1146a4:
 	call Function114867
@@ -1010,7 +994,6 @@ Function1146a4:
 .asm_1146f7
 	ld a, $1
 	ret
-
 
 Function1146fa:
 	call Function114867
@@ -1137,7 +1120,6 @@ Function1146fa:
 	xor a
 	ret
 
-
 Function1147cd:
 	ld bc, NULL
 	ld a, [wDecoRightOrnament]
@@ -1214,14 +1196,12 @@ Function1147cd:
 	ld a, $1
 	ret
 
-
 Function11483a:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function114843:
 	ld a, [$dc00]
@@ -1245,7 +1225,6 @@ Function114843:
 	ld [$dc00], a
 	ld a, $1
 	ret
-
 
 Function114867:
 	ld hl, $dc06
@@ -1305,14 +1284,12 @@ Function114867:
 	ld a, $1
 	ret
 
-
 Function1148b9:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function1148c2:
 	ld hl, $dc06
@@ -1405,14 +1382,12 @@ Function1148c2:
 	ld a, $1
 	ret
 
-
 Function114944:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function11494d:
 	ld hl, $dc06
@@ -1497,14 +1472,12 @@ Function11494d:
 	ld a, $1
 	ret
 
-
 Function1149c3:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function1149cc:
 	ld hl, $dc06
@@ -1555,14 +1528,12 @@ Function1149cc:
 	ld a, $1
 	ret
 
-
 Function114a0f:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function114a18:
 	ld bc, NULL
@@ -1630,14 +1601,12 @@ Function114a18:
 	ld a, $1
 	ret
 
-
 Function114a71:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function114a7a:
 	ld bc, NULL
@@ -1690,14 +1659,12 @@ Function114a7a:
 	ld a, $1
 	ret
 
-
 Function114ac6:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function114acf:
 .asm_114acf
@@ -1801,14 +1768,12 @@ Function114acf:
 	xor a
 	ret
 
-
 Function114b4c:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function114b55:
 	call Function114561
@@ -1884,7 +1849,6 @@ endr
 	ld b, $82
 	jp Function11425c
 
-
 Function114bbc:
 	ld h, d
 	ld l, e
@@ -1937,7 +1901,6 @@ Function114bbc:
 	ld a, $1
 	pop hl
 	jp Function11425c
-
 
 Function114c0b:
 	ld hl, $dc24
@@ -1997,14 +1960,12 @@ Function114c0b:
 	jr z, .asm_114c24
 	jr .asm_114c18
 
-
 Function114c55:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function114c5e:
 	ld de, wPartyMon5Defense
@@ -2105,7 +2066,6 @@ Function114c5e:
 	dec bc
 	ret
 
-
 Function114cd9:
 	ld h, d
 	ld l, e
@@ -2170,7 +2130,6 @@ endr
 	pop hl
 	ld a, $1
 	jp Function11425c
-
 
 Function114d39:
 .asm_114d39
@@ -2238,7 +2197,6 @@ Function114d39:
 	xor a
 	ld [hli], a
 	ret
-
 
 Function114d99:
 	ld de, wPartyMon5Defense
@@ -2313,7 +2271,6 @@ Function114d99:
 	xor a
 	ret
 
-
 Function114df1:
 	cp $1b
 	ret nz
@@ -2363,7 +2320,6 @@ Function114df1:
 	xor a
 	ret
 
-
 Function114e2d:
 	cp $30
 	jr c, .asm_114e45
@@ -2398,7 +2354,6 @@ Function114e2d:
 	jr z, .asm_114e55
 	xor a
 	ret
-
 
 Function114e62:
 	ld a, c
@@ -2442,7 +2397,6 @@ Function114e62:
 	ld a, $1
 	ld b, $83
 	jp Function11425c
-
 
 Function114ea0:
 	ld hl, $dc06
@@ -2490,14 +2444,12 @@ Function114ea0:
 	ld b, $83
 	ret
 
-
 Function114ee0:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function114ee9:
 	ld hl, $dc03
@@ -2531,7 +2483,6 @@ Function114ee9:
 	ld [hli], a
 	ld [hl], d
 	ret
-
 
 Function114f0a:
 	call Function114f39
@@ -2568,7 +2519,6 @@ Function114f0a:
 	ld a, $ff
 	ret
 
-
 Function114f39:
 	ld hl, $dc0d
 	ld e, [hl]
@@ -2598,7 +2548,6 @@ Function114f39:
 
 .asm_114f58
 	ret
-
 
 Function114f59:
 	ld a, [wTimerEventStartDay]
@@ -2726,7 +2675,6 @@ Function114f59:
 	xor a
 	ret
 
-
 Function115020:
 	push hl
 	ld hl, $dc06
@@ -2774,14 +2722,12 @@ Function115020:
 	ld a, $1
 	ret
 
-
 Function115059:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function115062:
 	ld hl, wDecoBed
@@ -2835,7 +2781,6 @@ Function115062:
 
 .asm_1150b2
 	ret
-
 
 Function1150b3:
 	ld hl, $dc24
@@ -2939,7 +2884,6 @@ Function1150b3:
 	ld [de], a
 	ret
 
-
 Function115136:
 	ld hl, $dc06
 	ld a, [hli]
@@ -2986,14 +2930,12 @@ Function115136:
 	ld a, $1
 	ret
 
-
 Function115170:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function115179:
 	ld hl, $dc06
@@ -3105,14 +3047,12 @@ Function115179:
 	xor a
 	ret
 
-
 Function11520e:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function115217:
 	push hl
@@ -3199,14 +3139,12 @@ Function115217:
 	call z, Function115286
 	jr .asm_115252
 
-
 Function115286:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function11528f:
 	ld hl, wDecoBed
@@ -3231,14 +3169,12 @@ Function11528f:
 	ld [hl], c
 	ret
 
-
 Function1152af:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function1152b8:
 	push bc
@@ -3365,7 +3301,6 @@ Function1152b8:
 	xor a
 	jp Function11425c
 
-
 Function11537d:
 	ld hl, $dc06
 	ld a, [de]
@@ -3414,7 +3349,6 @@ Function11537d:
 	ld [wTimerEventStartDay], a
 	ret
 
-
 Function1153b5:
 	ld hl, $dc0d
 	ld e, [hl]
@@ -3439,7 +3373,6 @@ Function1153b5:
 	inc hl
 	ld [hl], d
 	ret
-
 
 Function1153d2:
 	ld a, [$dc03]
@@ -3627,7 +3560,6 @@ Function1153d2:
 	xor a
 	ret
 
-
 Function1154d4:
 	xor a
 	ld [wTimerEventStartDay], a
@@ -3758,7 +3690,6 @@ Function1154d4:
 	call Function1155d1
 	jr .asm_115547
 
-
 Function1155af:
 	ld hl, $dc06
 	ld a, [de]
@@ -3788,7 +3719,6 @@ Function1155af:
 	ld [hl], d
 	call Function1155d1
 	ret
-
 
 Function1155d1:
 	ld a, [$dc0d]
@@ -3832,7 +3762,6 @@ Function1155d1:
 	ld a, h
 	ld [$dc0e], a
 	ret
-
 
 Function11560a:
 	ld a, [$dc06]
@@ -3960,7 +3889,6 @@ Function11560a:
 	ld bc, $03db
 	jr .asm_115659
 
-
 Function1156cc:
 	ld a, [wTimerEventStartDay]
 	and a
@@ -4023,7 +3951,6 @@ Function1156cc:
 	ld b, $83
 	jp Function11425c
 
-
 Function115732:
 	ld hl, $dc02
 	ld a, [de]
@@ -4065,7 +3992,6 @@ Function115732:
 	ld [hli], a
 	ld [hl], b
 	ret
-
 
 Function11575c:
 	ld hl, $dc05
@@ -4153,7 +4079,6 @@ Function11575c:
 	ld [wTimerEventStartDay], a
 	ret
 
-
 Function1157d0:
 	ld hl, $dc05
 	ld a, [hli]
@@ -4210,7 +4135,6 @@ Function1157d0:
 	ld a, $3
 	ld [wTimerEventStartDay], a
 	ret
-
 
 Function11581e:
 	ld a, [wTimerEventStartDay]
@@ -4317,7 +4241,6 @@ Function11581e:
 	ld a, $ff
 	ld [wTimerEventStartDay], a
 	ret
-
 
 Function1158c2:
 	ld a, e
@@ -4527,7 +4450,6 @@ endr
 	ld [hl], a
 	ret
 
-
 Function1159dc:
 	cp $1a
 	jr c, .asm_1159ef
@@ -4555,7 +4477,6 @@ Function1159dc:
 .asm_1159f8
 	ld a, $2b
 	ret
-
 
 Function1159fb:
 	ld a, [wTimerEventStartDay]
@@ -4618,7 +4539,6 @@ Function1159fb:
 	ld a, $1
 	jp Function11425c
 
-
 Function115a5f:
 	ld hl, $dc05
 	ld a, [hli]
@@ -4678,7 +4598,6 @@ Function115a5f:
 	ld [wTimerEventStartDay], a
 	ret
 
-
 Function115ab0:
 	ld hl, $dc05
 	ld a, [hli]
@@ -4737,7 +4656,6 @@ Function115ab0:
 	ld [wTimerEventStartDay], a
 	xor a
 	ret
-
 
 Function115b00:
 	ld a, [wTimerEventStartDay]
@@ -4871,7 +4789,6 @@ Function115b00:
 	xor a
 	ret
 
-
 Function115bc8:
 	xor a
 	ld [wDecoCarpet], a
@@ -4970,7 +4887,6 @@ Function115bc8:
 .asm_115c46
 	ld a, $2
 	ret
-
 
 Function115c49:
 	ld a, e
@@ -5109,7 +5025,6 @@ endr
 	jp nz, .asm_115c64
 	ret
 
-
 Function115cfd:
 	cp $2b
 	jr c, .asm_115d27
@@ -5179,7 +5094,6 @@ Function115cfd:
 	sub $47
 	ret
 
-
 Function115d53:
 .asm_115d53
 	ld a, [de]
@@ -5194,14 +5108,12 @@ Function115d53:
 	ld [hl], a
 	ret
 
-
 Function115d61:
 	push bc
 	ld bc, $dc00
 	call Function115d80
 	pop bc
 	ret
-
 
 Function115d6a:
 .asm_115d6a
@@ -5216,14 +5128,12 @@ Function115d6a:
 	xor a
 	ret
 
-
 Function115d77:
 	push bc
 	ld bc, wCurrMapBGEventCount
 	call Function115d80
 	pop bc
 	ret
-
 
 Function115d80:
 	ld e, a
@@ -5246,9 +5156,7 @@ Function115d80:
 	ld e, $0
 	ret
 
-
 INCLUDE "mobile/mobile_45_sprite_engine.asm"
-
 
 Function116567:
 	ld hl, wc3f7
@@ -5287,7 +5195,6 @@ Function116567:
 	ld [wc3f7], a
 	ret
 
-
 Function11659d:
 	ld a, [wc314]
 	cp $12
@@ -5301,7 +5208,6 @@ Function11659d:
 	ld h, [hl]
 	ld l, a
 	jp hl
-
 
 Jumptable_1165af:
 	dw Function11677e
@@ -5345,7 +5251,6 @@ Function1165e3:
 	ret c
 	jp Function116797
 
-
 Function1165f5:
 	ld a, $1
 	ld c, a
@@ -5365,7 +5270,6 @@ Function116600:
 	ld a, $2
 	ld [wc314], a
 	ret
-
 
 Function116615:
 	call Function11678e
@@ -5388,7 +5292,6 @@ Function116623:
 	ret c
 	jp Function116797
 
-
 Function116635:
 	ld a, $2
 	ld c, a
@@ -5408,7 +5311,6 @@ Function116640:
 	ld a, $7
 	ld [wc314], a
 	ret
-
 
 Function116655:
 	xor a
@@ -5454,7 +5356,6 @@ Function11668d:
 	ld a, $c
 	ld [wc314], a
 	ret
-
 
 Function11669f:
 	call Function11678e
@@ -5503,7 +5404,6 @@ Function1166d6:
 	ld [wc314], a
 	ret
 
-
 Function1166f4:
 	ld [wc30e], a
 	ld a, b
@@ -5530,7 +5430,6 @@ Function1166f4:
 	call Function116797
 	ret
 
-
 Function11671f:
 	ld [wc30f], a
 	ld a, b
@@ -5553,7 +5452,6 @@ Function11671f:
 	call Function116797
 	ret
 
-
 Function116747:
 	ld hl, wc30e
 	ld a, [wc314 + 2]
@@ -5564,7 +5462,6 @@ Function116747:
 	add [hl]
 	ld [hl], a
 	ret
-
 
 Function116758:
 	ld a, [wc30f]
@@ -5595,7 +5492,6 @@ Function116758:
 	ld [wc314 + 4], a
 	ret
 
-
 Function11677e:
 	ld a, $0
 
@@ -5612,7 +5508,6 @@ Function116780:
 	and a
 	ret
 
-
 Function11678e:
 	ld hl, wc314
 	ld a, [hl]
@@ -5620,12 +5515,10 @@ Function11678e:
 	inc [hl]
 	ret
 
-
 Function116797:
 	ld hl, wc314
 	inc [hl]
 	ret
-
 
 Function11679c:
 	ld a, c
@@ -5681,7 +5574,6 @@ asm_1167af
 	ld a, [hl]
 	ld [wc313], a
 	ret
-
 
 Unknown_1167eb:
 	dw Unknown_1167fb
@@ -6725,7 +6617,6 @@ GiveOddEgg:
 	farcall _GiveOddEgg
 	ret
 
-
 Function11765d:
 	ld a, [hInMenu]
 	push af
@@ -6825,7 +6716,6 @@ Jumptable_117728:
 	dw Function117976
 	dw Function117984
 	dw Function1179a7
-
 
 Function117738:
 	farcall Function171ccd
@@ -7178,7 +7068,6 @@ Function1179a7:
 	ld [wcd49], a
 	ret
 
-
 MenuHeader_1179b5:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
@@ -7190,7 +7079,6 @@ MenuHeader_1179bd:
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default option
-
 
 YessNoString_1179c5:
 	db   "はい"
@@ -7213,13 +7101,11 @@ MobilePassword_IncrementJumptable:
 	inc [hl]
 	ret
 
-
 Unknown_117a0f:
 INCBIN "data/mobile/ascii-alpha.txt"
 
 Unknown_117a47:
 INCBIN "data/mobile/ascii-sym.txt"
-
 
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
@@ -7234,12 +7120,10 @@ MobileStudium:
 	ld [hInMenu], a
 	ret
 
-
 Function117a8d:
 	call Function117a94
 	call Function117acd
 	ret
-
 
 Function117a94:
 	xor a
@@ -7253,7 +7137,6 @@ Function117a94:
 	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 
-
 Function117ab4:
 	call ClearBGPalettes
 	call ClearSprites
@@ -7261,7 +7144,6 @@ Function117ab4:
 	farcall Function172eb9
 	farcall ReloadMapPart
 	ret
-
 
 Function117acd:
 	call JoyTextDelay

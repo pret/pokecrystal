@@ -1,6 +1,5 @@
 ; Functions to copy data from ROM.
 
-
 Get2bpp_2::
 	ld a, [rLCDC]
 	bit rLCDC_ENABLE, a
@@ -95,11 +94,9 @@ OldDMATransfer::
 	ret
 
 
-
 ReplaceKrisSprite::
 	farcall _ReplaceKrisSprite
 	ret
-
 
 
 LoadStandardFont::
@@ -109,7 +106,6 @@ LoadStandardFont::
 LoadFontsBattleExtra::
 	farcall _LoadFontsBattleExtra
 	ret
-
 
 
 LoadFontsExtra::
@@ -140,7 +136,6 @@ DecompressRequest2bpp::
 	ret
 
 
-
 FarCopyBytes::
 ; copy bc bytes from a:hl to de
 
@@ -155,7 +150,6 @@ FarCopyBytes::
 	pop af
 	rst Bankswitch
 	ret
-
 
 FarCopyBytesDouble::
 ; Copy bc bytes from a:hl to bc*2 bytes at de,
@@ -193,7 +187,6 @@ FarCopyBytesDouble::
 	pop af
 	rst Bankswitch
 	ret
-
 
 Request2bpp::
 ; Load 2bpp at b:de to occupy c tiles of hl.
@@ -269,7 +262,6 @@ Request2bpp::
 	ld c, a
 	jr .loop
 
-
 Request1bpp::
 ; Load 1bpp at b:de to occupy c tiles of hl.
 	ld a, [hBGMapMode]
@@ -344,7 +336,6 @@ Request1bpp::
 	ld c, a
 	jr .loop
 
-
 Get2bpp::
 	ld a, [rLCDC]
 	bit rLCDC_ENABLE, a
@@ -373,7 +364,6 @@ Copy2bpp::
 	pop af
 
 	jp FarCopyBytes
-
 
 Get1bpp::
 	ld a, [rLCDC]

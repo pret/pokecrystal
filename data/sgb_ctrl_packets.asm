@@ -37,7 +37,6 @@ sgb_data_snd: MACRO
 	db \3 ; length (1-11)
 ENDM
 
-
 ; Crystal does not support SGB, so this is unused.
 
 PalTrnPacket:  sgb_pal_trn
@@ -48,7 +47,6 @@ PctTrnPacket:  sgb_pct_trn
 
 MaskEnFreezePacket: sgb_mask_en 1
 MaskEnCancelPacket: sgb_mask_en 0
-
 
 ; These are packets containing SNES code.
 ; This set of packets is found in several Japanese SGB-compatible titles.

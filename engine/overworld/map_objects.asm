@@ -2,7 +2,6 @@ INCLUDE "data/sprites/facings.asm"
 
 INCLUDE "data/sprites/map_objects.asm"
 
-
 DeleteMapObject::
 	push bc
 	ld hl, OBJECT_MAP_OBJECT_INDEX
@@ -2764,7 +2763,6 @@ ApplyBGMapAnchorToObjects:
 	pop de
 	pop hl
 	ret
-
 
 PRIORITY_LOW  EQU $10
 PRIORITY_NORM EQU $20

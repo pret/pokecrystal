@@ -58,7 +58,6 @@ CanObjectMoveInDirection:
 	and a
 	ret
 
-
 WillObjectBumpIntoWater:
 	call Function6f5f
 	ret c
@@ -217,7 +216,6 @@ Function6fa1:
 	ret
 
 
-
 CheckFacingObject::
 
 	call GetFacingTileCoord
@@ -257,7 +255,6 @@ CheckFacingObject::
 .standing
 	scf
 	ret
-
 
 WillObjectBumpIntoSomeoneElse:
 	ld hl, OBJECT_NEXT_MAP_X
@@ -531,7 +528,6 @@ Unreferenced_Function7113:
 .yes
 	scf
 	ret
-
 
 Function7171:
 	ld hl, OBJECT_NEXT_MAP_X

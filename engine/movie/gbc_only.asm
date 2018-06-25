@@ -38,7 +38,6 @@ GBCOnlyScreen:
 	call DelayFrame
 	jr .loop
 
-
 DrawGBCOnlyScreen:
 
 	call DrawGBCOnlyBorder
@@ -62,7 +61,6 @@ DrawGBCOnlyScreen:
 	call PlaceString
 
 	ret
-
 
 DrawGBCOnlyBorder:
 
@@ -111,7 +109,6 @@ DrawGBCOnlyBorder:
 	jr nz, .next_row
 	ret
 
-
 DrawGBCOnlyGraphic:
 	ld de, SCREEN_WIDTH
 .y
@@ -129,13 +126,11 @@ DrawGBCOnlyGraphic:
 	jr nz, .y
 	ret
 
-
 GBCOnlyString:
 	db   "This Game Pak is"
 	next "designed only for"
 	next "use on the"
 	next "Game Boy Color.@"
-
 
 GBCOnlyGFX:
 INCBIN "gfx/sgb/gbc_only.2bpp.lz"

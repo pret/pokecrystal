@@ -415,7 +415,6 @@ PopulateDecoCategoryMenu:
 	dbw 0, 0
 	dbw 0, 0
 
-
 GetDecorationData:
 	ld hl, DecorationAttributes
 	ld bc, 6
@@ -466,7 +465,6 @@ DoDecorationAction2:
 	dw DecoAction_setupornament
 	dw DecoAction_putawayornament
 
-
 GetDecorationFlag:
 	call GetDecorationData
 	ld de, 3 ; event flag
@@ -514,7 +512,6 @@ GetDecoName:
 	dw .poster
 	dw .doll
 	dw .bigdoll
-
 
 .invalid
 	ret
@@ -922,7 +919,6 @@ DecorationFlagAction_c:
 	ld a, c
 	jp DecorationFlagAction
 
-
 GetDecorationName_c:
 	ld a, c
 	call GetDecorationID
@@ -931,7 +927,6 @@ GetDecorationName_c:
 	call GetDecorationName
 	pop de
 	ret
-
 
 SetSpecificDecorationFlag:
 	ld a, c

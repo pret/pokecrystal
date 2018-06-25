@@ -188,7 +188,6 @@ CheckPokeMail::
 	ld [wScriptVar], a
 	ret
 
-
 GivePokeMail::
 	ld a, [wPartyCount]
 	dec a
@@ -237,7 +236,6 @@ GivePokeMail::
 	ld [de], a
 	jp CloseSRAM
 
-
 BackupPartyMonMail:
 	ld a, BANK(sPartyMail)
 	call GetSRAMBank
@@ -276,7 +274,6 @@ DeletePartyMonMail:
 	ld bc, 1 + 10 * MAIL_STRUCT_LENGTH
 	call ByteFill
 	jp CloseSRAM
-
 
 IsAnyMonHoldingMail:
 	ld a, [wPartyCount]

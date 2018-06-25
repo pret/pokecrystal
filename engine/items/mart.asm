@@ -331,7 +331,6 @@ ReadMart:
 
 INCLUDE "data/items/bargain_shop.asm"
 
-
 BuyMenu:
 	call FadeToMenu
 	farcall BlankScreen
@@ -424,7 +423,6 @@ GetMartDialogGroup:
 	dw Text_Pharmacy_BagFull
 	dw Text_Pharmacy_HereYouGo
 	dw BuyMenuLoop
-
 
 BuyMenuLoop:
 	farcall PlaceMoneyTopRight
@@ -581,7 +579,6 @@ RooftopSaleAskPurchaseQuantity:
 	ld d, [hl]
 	ret
 
-
 Text_Mart_HowMany:
 	; How many?
 	text_jump UnknownText_0x1c4bfd
@@ -730,7 +727,6 @@ Text_Pharmacist_ComeAgain:
 	text_jump UnknownText_0x1c4ef6
 	db "@"
 
-
 SellMenu:
 	call DisableSpriteUpdates
 	farcall DepositSellInitPackBuffers
@@ -758,7 +754,6 @@ SellMenu:
 	text_jump UnknownText_0x1c4f12
 	db "@"
 
-
 .TryToSellItem:
 	farcall CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
@@ -777,7 +772,6 @@ SellMenu:
 
 .cant_buy
 	ret
-
 
 .try_sell
 	farcall _CheckTossableItem

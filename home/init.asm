@@ -18,7 +18,6 @@ Reset::
 
 	jr Init
 
-
 _Start::
 	cp $11
 	jr z, .cgb
@@ -32,7 +31,6 @@ _Start::
 	ld [hCGB], a
 	ld a, $1
 	ld [hSystemBooted], a
-
 
 Init::
 
@@ -99,7 +97,6 @@ Init::
 	call ClearVRAM
 	call ClearSprites
 	call ClearsScratch
-
 
 	ld a, BANK(WriteOAMDMACodeToHRAM)
 	rst Bankswitch
@@ -170,7 +167,6 @@ Init::
 	xor a
 	ld [wMapMusic], a
 	jp GameInit
-
 
 ClearVRAM::
 ; Wipe VRAM banks 0 and 1

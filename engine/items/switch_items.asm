@@ -239,7 +239,6 @@ ItemSwitch_ConvertSpacingToDW:
 	pop hl
 	ret
 
-
 .spacing_dws
 	dw 0, 1, 2
 

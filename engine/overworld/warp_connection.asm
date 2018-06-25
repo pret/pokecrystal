@@ -15,7 +15,6 @@ InitCommandQueue:
 	ld [wMapTimeOfDay], a
 	ret
 
-
 EnterMapConnection:
 ; Return carry if a connection has been entered.
 	ld a, [wPlayerStepDirection]
@@ -387,7 +386,6 @@ CheckMovingOffEdgeOfMap::
 .ok
 	scf
 	ret
-
 
 GetCoordOfUpperLeftCorner::
 	ld hl, wOverworldMapBlocks

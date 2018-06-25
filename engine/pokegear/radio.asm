@@ -126,7 +126,6 @@ RadioJumptable:
 	dw PokedexShow7 ; $56
 	dw PokedexShow8 ; $57
 
-
 PrintRadioLine:
 	ld [wNextRadioLine], a
 	ld hl, wRadioText

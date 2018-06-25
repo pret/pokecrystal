@@ -10,7 +10,6 @@
 	const STARTMENUITEM_POKEGEAR ; 7
 	const STARTMENUITEM_QUIT     ; 8
 
-
 StartMenu::
 
 	call ClearWindowData
@@ -157,7 +156,6 @@ StartMenu::
 	call FinishExitMenu
 	ret
 
-
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
@@ -235,7 +233,6 @@ StartMenu::
 	db   "Quit and"
 	next "be judged.@"
 
-
 .OpenMenu:
 	ld a, [wMenuSelection]
 	call .GetMenuAccountTextPointer
@@ -276,7 +273,6 @@ endr
 	pop de
 	ret
 
-
 .GetMenuAccountTextPointer:
 	ld e, a
 	ld d, 0
@@ -288,7 +284,6 @@ rept 6
 	add hl, de
 endr
 	ret
-
 
 .SetUpMenuItems:
 	xor a
@@ -349,7 +344,6 @@ endr
 	ld [wMenuItemsList], a
 	ret
 
-
 .FillMenuList:
 	xor a
 	ld hl, wMenuItemsList
@@ -409,13 +403,11 @@ endr
 	farcall StartMenu_PrintBugContestStatus
 	ret
 
-
 StartMenu_Exit:
 ; Exit the menu.
 
 	ld a, 1
 	ret
-
 
 StartMenu_Quit:
 ; Retire from the bug catching contest.
@@ -437,7 +429,6 @@ StartMenu_Quit:
 	text_jump UnknownText_0x1c1a6c
 	db "@"
 
-
 StartMenu_Save:
 ; Save the game.
 
@@ -450,7 +441,6 @@ StartMenu_Save:
 	ld a, 1
 	ret
 
-
 StartMenu_Option:
 ; Game options.
 
@@ -458,7 +448,6 @@ StartMenu_Option:
 	farcall OptionsMenu
 	ld a, 6
 	ret
-
 
 StartMenu_Status:
 ; Player status.
@@ -468,7 +457,6 @@ StartMenu_Status:
 	call CloseSubmenu
 	ld a, 0
 	ret
-
 
 StartMenu_Pokedex:
 
@@ -484,7 +472,6 @@ StartMenu_Pokedex:
 	ld a, 0
 	ret
 
-
 StartMenu_Pokegear:
 
 	call FadeToMenu
@@ -492,7 +479,6 @@ StartMenu_Pokegear:
 	call CloseSubmenu
 	ld a, 0
 	ret
-
 
 StartMenu_Pack:
 
@@ -509,7 +495,6 @@ StartMenu_Pack:
 	call ExitAllMenus
 	ld a, 4
 	ret
-
 
 StartMenu_Pokemon:
 
@@ -657,7 +642,6 @@ CantUseItemText:
 	text_jump UnknownText_0x1c1b03
 	db "@"
 
-
 PartyMonItemName:
 	ld a, [wCurItem]
 	ld [wd265], a
@@ -665,13 +649,11 @@ PartyMonItemName:
 	call CopyName1
 	ret
 
-
 CancelPokemonAction:
 	farcall InitPartyMenuWithCancel
 	farcall UnfreezeMonIcons
 	ld a, 1
 	ret
-
 
 PokemonActionSubmenu:
 	hlcoord 1, 15
@@ -716,7 +698,6 @@ PokemonActionSubmenu:
 	dbw MONMENUITEM_CANCEL,     CancelPokemonAction
 	dbw MONMENUITEM_MOVE,       ManagePokemonMoves
 	dbw MONMENUITEM_MAIL,       MonMailAction
-
 
 SwitchPartyMons:
 
@@ -769,7 +750,6 @@ SwitchPartyMons:
 	call CancelPokemonAction
 	ret
 
-
 GiveTakePartyMonItem:
 
 ; Eggs can't hold items!
@@ -810,7 +790,6 @@ GiveTakePartyMonItem:
 	ld a, 3
 	ret
 
-
 .GiveItem:
 
 	farcall DepositSellInitPackBuffers
@@ -841,7 +820,6 @@ GiveTakePartyMonItem:
 
 .quit
 	ret
-
 
 TryGiveItemToPartymon:
 
@@ -906,7 +884,6 @@ TryGiveItemToPartymon:
 .abort
 	ret
 
-
 GivePartyItem:
 
 	call GetPartyItemLocation
@@ -919,7 +896,6 @@ GivePartyItem:
 
 .done
 	ret
-
 
 TakePartyItem:
 
@@ -955,7 +931,6 @@ TakePartyItem:
 .asm_12c9a
 	ret
 
-
 GiveTakeItemMenuData:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
 	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
@@ -967,7 +942,6 @@ GiveTakeItemMenuData:
 	db 2 ; # items
 	db "GIVE@"
 	db "TAKE@"
-
 
 TookAndMadeHoldText:
 	text_jump UnknownText_0x1c1b2c
@@ -1001,7 +975,6 @@ CantBeHeldText:
 	text_jump UnknownText_0x1c1c09
 	db "@"
 
-
 GetPartyItemLocation:
 	push af
 	ld a, MON_ITEM
@@ -1009,13 +982,11 @@ GetPartyItemLocation:
 	pop af
 	ret
 
-
 ReceiveItemFromPokemon:
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, wNumItems
 	jp ReceiveItem
-
 
 GiveItemToPokemon:
 	ld a, 1
@@ -1027,7 +998,6 @@ StartMenuYesNo:
 	call MenuTextBox
 	call YesNoBox
 	jp ExitMenu
-
 
 ComposeMailMessage:
 	ld de, wTempMailMessage
@@ -1130,7 +1100,6 @@ MonMailAction:
 	ld a, $3
 	ret
 
-
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
@@ -1143,7 +1112,6 @@ MonMailAction:
 	db "READ@"
 	db "TAKE@"
 	db "QUIT@"
-
 
 .mailwilllosemessagetext
 ; The MAIL will lose its message. OK?
@@ -1175,7 +1143,6 @@ MonMailAction:
 	text_jump UnknownText_0x1c1cc4
 	db "@"
 
-
 OpenPartyStats:
 	call LoadStandardMenuHeader
 	call ClearSprites
@@ -1189,7 +1156,6 @@ OpenPartyStats:
 	ld a, 0
 	ret
 
-
 MonMenu_Cut:
 	farcall CutFunction
 	ld a, [wFieldMoveSucceeded]
@@ -1202,7 +1168,6 @@ MonMenu_Cut:
 .Fail:
 	ld a, $3
 	ret
-
 
 MonMenu_Fly:
 	farcall FlyFunction

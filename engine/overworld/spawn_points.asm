@@ -1,6 +1,5 @@
 INCLUDE "data/maps/spawn_points.asm"
 
-
 LoadSpawnPoint:
 	; loads the spawn point in wDefaultSpawnpoint
 	push hl
@@ -26,7 +25,6 @@ LoadSpawnPoint:
 	pop de
 	pop hl
 	ret
-
 
 IsSpawnPoint:
 ; Checks if the map loaded in de is a spawn point.  Returns carry if it's a spawn point.

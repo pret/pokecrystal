@@ -36,7 +36,6 @@ SaveAfterLinkTrade:
 	call ResumeGameLogic
 	ret
 
-
 ChangeBoxSaveGame:
 	push de
 	ld hl, Text_SaveOnBoxSwitch
@@ -142,7 +141,6 @@ ResumeGameLogic:
 	xor a
 	ld [wGameLogicPaused], a
 	ret
-
 
 AddHallOfFameEntry:
 	ld a, BANK(sHallOfFame)
@@ -254,7 +252,6 @@ SavedTheGame:
 	call DelayFrames
 	ret
 
-
 SaveGameData_:
 	ld a, 1
 	ld [wSaveFileExists], a
@@ -348,7 +345,6 @@ SavingDontTurnOffThePower:
 	ld c, $10
 	call DelayFrames
 	ret
-
 
 ErasePreviousSave:
 	call EraseBoxes
@@ -457,7 +453,6 @@ Unreferenced_Function14d93:
 	ld [$a000], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
-
 
 HallOfFame_InitSaveIfNeeded:
 	ld a, [wSavedAtLeastOnce]
@@ -585,7 +580,6 @@ SaveBackupChecksum:
 	call CloseSRAM
 	ret
 
-
 TryLoadSaveFile:
 	call VerifyChecksum
 	jr nz, .backup
@@ -631,7 +625,6 @@ TryLoadSaveFile:
 	ld [wOptions], a
 	scf
 	ret
-
 
 TryLoadSaveData:
 	xor a
@@ -681,9 +674,7 @@ TryLoadSaveData:
 	call PanicResetClock
 	ret
 
-
 INCLUDE "data/default_options.asm"
-
 
 CheckPrimarySaveFile:
 	ld a, BANK(sCheckValue1) ; BANK(sCheckValue2)
@@ -725,7 +716,6 @@ CheckBackupSaveFile:
 .nope
 	call CloseSRAM
 	ret
-
 
 LoadPlayerData:
 	ld a, BANK(sPlayerData)
@@ -823,7 +813,6 @@ VerifyBackupChecksum:
 	pop af
 	ret
 
-
 _SaveData:
 	; This is called within two scenarios:
 	;   a) ErasePreviousSave (the process of erasing the save from a previous game file)
@@ -850,7 +839,6 @@ _SaveData:
 
 	jp CloseSRAM
 
-
 _LoadData:
 	ld a, BANK(sCrystalData)
 	call GetSRAMBank
@@ -869,7 +857,6 @@ _LoadData:
 	ld [hli], a
 
 	jp CloseSRAM
-
 
 GetBoxAddress:
 	ld a, [wCurBox]
@@ -972,7 +959,6 @@ SaveBoxAddress:
 	pop hl
 	ret
 
-
 LoadBoxAddress:
 ; Load box via wBoxPartialData.
 ; We do this in three steps because the size of wBoxPartialData is less than
@@ -1036,7 +1022,6 @@ LoadBoxAddress:
 	pop hl
 	ret
 
-
 EraseBoxes:
 	ld hl, BoxAddresses
 	ld c, NUM_BOXES
@@ -1095,7 +1080,6 @@ BoxAddresses:
 	dbww BANK(sBox13), sBox13, sBox13End
 	dbww BANK(sBox14), sBox14, sBox14End
 
-
 Checksum:
 	ld de, 0
 .loop
@@ -1110,7 +1094,6 @@ Checksum:
 	or c
 	jr nz, .loop
 	ret
-
 
 Text_WouldYouLikeToSaveTheGame:
 	; Would you like to save the game?

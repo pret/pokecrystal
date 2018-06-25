@@ -1,6 +1,5 @@
 ; More overworld event handling.
 
-
 WarpToSpawnPoint::
 	ld hl, wStatusFlags2
 	res STATUSFLAGS2_SAFARI_GAME_F, [hl]
@@ -95,7 +94,6 @@ TryTileCollisionEvent::
 	ld a, $ff
 	scf
 	ret
-
 
 RandomEncounter::
 ; Random encounter
@@ -243,9 +241,7 @@ TryWildEncounter_BugContest:
 	and a
 	ret
 
-
 INCLUDE "data/wild/bug_contest_mons.asm"
-
 
 DoBikeStep::
 	nop

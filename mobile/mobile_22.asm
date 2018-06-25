@@ -19,7 +19,6 @@ OpenSRAMBank4:
 	pop af
 	ret
 
-
 Function89168:
 	ld hl, wGameTimerPause
 	set GAMETIMERPAUSE_MOBILE_7_F, [hl]
@@ -77,7 +76,6 @@ Function89193:
 	pop de
 	ret
 
-
 Function8919e:
 ; Searches for the c'th string starting at de.  Returns the pointer in de.
 	ld a, c
@@ -106,7 +104,6 @@ Function891b8:
 	call ByteFill
 	call DelayFrame
 	ret
-
 
 Function891ca:
 	push bc
@@ -165,7 +162,6 @@ Function89215:
 	pop hl
 	ret
 
-
 Function8921f:
 	push de
 	ld de, SCREEN_WIDTH
@@ -201,7 +197,6 @@ Mobile22_SetBGMapMode1:
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
-
 
 Function89245:
 	farcall TryLoadSaveFile
@@ -324,7 +319,6 @@ Function892b7:
 	jr nz, .loop
 	ret
 
-
 Function89305:
 	xor a
 	ld [wMenuSelection], a
@@ -381,7 +375,6 @@ Function89331:
 .done
 	pop bc
 	ret
-
 
 Function89346:
 	ld h, b
@@ -478,7 +471,6 @@ Function8939a:
 	call Function89381
 	ret
 
-
 Function893b3:
 	call DisableLCD
 	call ClearSprites
@@ -499,7 +491,6 @@ Function893cc:
 	call Function89464
 	call EnableLCD
 	ret
-
 
 Function893e2:
 	call Function89b1e
@@ -585,7 +576,6 @@ Function89481:
 	inc d
 	ret
 
-
 Function89492:
 	ld d, 0
 	ld a, [wPlayerGender]
@@ -621,7 +611,6 @@ Function894bb:
 	call Function8a60d
 	pop bc
 	ret
-
 
 Function894ca:
 	push bc
@@ -784,7 +773,6 @@ Function8956f:
 	pop bc
 	ret
 
-
 Function895c7:
 	ld a, [rSVBK]
 	push af
@@ -903,7 +891,6 @@ Function8966c:
 	call Function896f5
 	pop bc
 	ret
-
 
 Function8967a:
 	push bc
@@ -1205,7 +1192,6 @@ Function897d5:
 	pop bc
 	ret
 
-
 Function89807:
 	ld hl, MobileAdapterGFX + $20 tiles
 	ld a, [wPlayerGender]
@@ -1272,7 +1258,6 @@ Function89856:
 	pop bc
 	call Function897d5
 	ret
-
 
 Function8987f:
 	call Function891b8
@@ -1470,7 +1455,6 @@ Function8998b:
 	pop bc
 	ret
 
-
 Function8999c:
 	ld de, wPlayerName
 	call PlaceString
@@ -1546,7 +1530,6 @@ Function89a0c:
 	ld de, String_89153
 	call PlaceString
 	ret
-
 
 Function89a23:
 	hlcoord 0, 11
@@ -1702,7 +1685,6 @@ Function89a57:
 	ld [wd030], a
 	ret
 
-
 Function89b00:
 	farcall MG_Mobile_Layout_LoadPals
 	ret
@@ -1786,7 +1768,6 @@ Function89b45:
 	pop bc
 	pop hl
 	ret
-
 
 Function89b78:
 	push bc
@@ -2204,7 +2185,6 @@ Jumptable_89e04:
 	dw Function8a999
 	dw Function8ab93
 
-
 Function89e0a:
 	call OpenSRAMBank4
 	call Function8b3b0
@@ -2217,7 +2197,6 @@ Jumptable_89e18:
 	dw Function89e1e
 	dw Function8a116
 	dw Function8a2aa
-
 
 Function89e1e:
 	call OpenSRAMBank4
@@ -2253,7 +2232,6 @@ Jumptable_89e3c:
 	dw Function8a0f5
 	dw Function89e58
 	dw Function89e68
-
 
 Function89e58:
 	ld a, $1
@@ -2780,7 +2758,6 @@ Strings_8a1cc:
 
 	db   "まえ<NO>がめん<NI>もどります"
 	db   "@"
-
 
 Function8a20d:
 	ld hl, UnknownText_0x8a232
@@ -3369,7 +3346,6 @@ Jumptable_8a671:
 	dw Function8a8c3
 	dw Function8a930
 
-
 Function8a679:
 	call Function891de
 	call ClearBGPalettes
@@ -3402,7 +3378,6 @@ Function8a679:
 Jumptable_8a6bc:
 	dw Function8a6c0
 	dw Function8a6c5
-
 
 Function8a6c0:
 	call PlayClickSFX
@@ -3476,7 +3451,6 @@ Jumptable_8a74f:
 	dw Function8a7cb
 	dw Function8a818
 	dw Function8a8a1
-
 
 Function8a757:
 	call Function8939a
@@ -3862,7 +3836,6 @@ Jumptable_8aa6d:
 	dw Function8aa73
 	dw Function8aab6
 	dw Function8ab11
-
 
 Function8aa73:
 	ld a, [wMenuSelection]

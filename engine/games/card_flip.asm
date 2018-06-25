@@ -977,7 +977,6 @@ CardFlip_CheckWinCondition:
 	ld de, SFX_2ND_PLACE
 	jp .Payout
 
-
 .PikaOne:
 	ld e, $0
 	jr .CheckWin72
