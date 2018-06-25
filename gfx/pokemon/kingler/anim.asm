@@ -7,4 +7,3 @@
 	frame 0, 15
 	frame 2, 15
 	endanim
-; 0xd0e4a

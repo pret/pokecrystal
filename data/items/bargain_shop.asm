@@ -1,4 +1,4 @@
-BargainShopData: ; 15c51
+BargainShopData:
 	db 5
 	dbw NUGGET,     4500
 	dbw PEARL,       650
@@ -6,4 +6,3 @@ BargainShopData: ; 15c51
 	dbw STARDUST,    900
 	dbw STAR_PIECE, 4600
 	db -1
-; 15c62

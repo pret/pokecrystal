@@ -7,4 +7,3 @@
 	frame 4, 12
 	dorepeat 5
 	endanim
-; 0xd12cd

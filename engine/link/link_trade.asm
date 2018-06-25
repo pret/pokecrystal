@@ -1,24 +1,21 @@
 LinkCommsBorderGFX:
 INCBIN "gfx/trade/border_tiles.2bpp"
-; 16d421
 
-__LoadTradeScreenBorder: ; 16d421
+__LoadTradeScreenBorder:
 	ld de, LinkCommsBorderGFX
 	ld hl, vTiles2
 	lb bc, BANK(LinkCommsBorderGFX), 70
 	call Get2bpp
 	ret
-; 16d42e
 
-Function16d42e: ; 16d42e
+Function16d42e:
 	ld hl, Tilemap_MobileTradeBorderFullscreen
 	decoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	call CopyBytes
 	ret
-; 16d43b
 
-Function16d43b: ; 16d43b
+Function16d43b:
 	call LoadStandardMenuHeader
 	call ClearBGPalettes
 	call ClearTileMap
@@ -32,7 +29,6 @@ Function16d43b: ; 16d43b
 	call JoyWaitAorB
 	call Call_ExitMenu
 	ret
-; 16d465
 
 Tilemap_MobileTradeBorderFullscreen:
 INCBIN "gfx/trade/border_mobile_fullscreen.tilemap"
@@ -43,7 +39,7 @@ INCBIN "gfx/trade/border_cable_top.tilemap"
 Tilemap_CableTradeBorderBottom:
 INCBIN "gfx/trade/border_cable_bottom.tilemap"
 
-_LinkTextbox: ; 16d61d
+_LinkTextbox:
 	ld h, d
 	ld l, e
 	push bc
@@ -73,9 +69,8 @@ _LinkTextbox: ; 16d61d
 	dec b
 	jr nz, .row
 	ret
-; 16d640
 
-.PlaceBorder ; 16d640
+.PlaceBorder
 	push hl
 	ld a, $30
 	ld [hli], a
@@ -105,18 +100,16 @@ _LinkTextbox: ; 16d61d
 	call .PlaceRow
 	ld [hl], $37
 	ret
-; 16d66d
 
-.PlaceRow ; 16d66d
+.PlaceRow
 	ld d, c
 .row_loop
 	ld [hli], a
 	dec d
 	jr nz, .row_loop
 	ret
-; 16d673
 
-InitTradeSpeciesList: ; 16d673
+InitTradeSpeciesList:
 	call _LoadTradeScreenBorder
 	call Function16d6ae
 	farcall InitMG_Mobile_LinkTradePalMap
@@ -125,32 +118,27 @@ InitTradeSpeciesList: ; 16d673
 	ld de, .CANCEL
 	call PlaceString
 	ret
-; 16d68f
 
-.CANCEL: ; 16d68f
+.CANCEL:
 	db "CANCEL@"
-; 16d696
 
-_LoadTradeScreenBorder: ; 16d696
+_LoadTradeScreenBorder:
 	call __LoadTradeScreenBorder
 	ret
-; 16d69a
 
 
-LinkComms_LoadPleaseWaitTextboxBorderGFX: ; 16d69a
+LinkComms_LoadPleaseWaitTextboxBorderGFX:
 	ld de, LinkCommsBorderGFX + $30 tiles
 	ld hl, vTiles2 tile $76
 	lb bc, BANK(LinkCommsBorderGFX), 8
 	call Get2bpp
 	ret
-; 16d6a7
 
-LoadTradeRoomBGPals_: ; 16d6a7
+LoadTradeRoomBGPals_:
 	farcall LoadTradeRoomBGPals
 	ret
-; 16d6ae
 
-Function16d6ae: ; 16d6ae
+Function16d6ae:
 	call Function16d42e
 	ld hl, Tilemap_CableTradeBorderTop
 	decoord 0, 0
@@ -161,23 +149,20 @@ Function16d6ae: ; 16d6ae
 	ld bc, 2 * SCREEN_WIDTH
 	call CopyBytes
 	ret
-; 16d6ca
 
-LinkTextbox: ; 16d6ca
+LinkTextbox:
 	call _LinkTextbox
 	ret
-; 16d6ce
 
-Function16d6ce: ; 16d6ce
+Function16d6ce:
 	call LoadStandardMenuHeader
 	call Function16d6e1
 	farcall WaitLinkTransfer
 	call Call_ExitMenu
 	call WaitBGMap2
 	ret
-; 16d6e1
 
-Function16d6e1: ; 16d6e1
+Function16d6e1:
 	hlcoord 4, 10
 	ld b, 1
 	ld c, 10
@@ -189,19 +174,16 @@ Function16d6e1: ; 16d6e1
 	call WaitBGMap2
 	ld c, 50
 	jp DelayFrames
-; 16d701
 
-.Waiting: ; 16d701
+.Waiting:
 	db "WAITING..!@"
-; 16d70c
 
-LinkTradeMenu: ; 16d70c
+LinkTradeMenu:
 	call .MenuAction
 	call .GetJoypad
 	ret
-; 16d713
 
-.GetJoypad: ; 16d713
+.GetJoypad:
 	push bc
 	push af
 	ld a, [hJoyLast]
@@ -216,9 +198,8 @@ LinkTradeMenu: ; 16d70c
 	pop bc
 	ld d, a
 	ret
-; 16d725
 
-.MenuAction: ; 16d725
+.MenuAction:
 	ld hl, w2DMenuFlags2
 	res 7, [hl]
 	ld a, [hBGMapMode]
@@ -246,9 +227,8 @@ LinkTradeMenu: ; 16d70c
 
 .done
 	ret
-; 16d759
 
-.UpdateBGMapAndOAM: ; 16d759
+.UpdateBGMapAndOAM:
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -269,9 +249,8 @@ LinkTradeMenu: ; 16d70c
 	jr z, .loop2
 	and a
 	ret
-; 16d77a
 
-.UpdateCursor: ; 16d77a
+.UpdateCursor:
 	ld hl, wCursorCurrentTile
 	ld a, [hli]
 	ld h, [hl]
@@ -346,9 +325,8 @@ LinkTradeMenu: ; 16d70c
 	ld a, h
 	ld [wCursorCurrentTile + 1], a
 	ret
-; 16d7e7
 
-.TryAnims: ; 16d7e7
+.TryAnims:
 	ld a, [w2DMenuFlags1]
 	bit 6, a
 	jr z, .skip_anims
@@ -360,4 +338,3 @@ LinkTradeMenu: ; 16d70c
 	ret z
 	scf
 	ret
-; 16d7fe

@@ -9,7 +9,7 @@ growth_rate: MACRO
 	db \4, \5
 ENDM
 
-GrowthRates: ; 50efa
+GrowthRates:
 ; entries correspond to GROWTH_* (see constants/pokemon_data_constants.asm)
 	growth_rate 1, 1,   0,   0,   0 ; Medium Fast
 	growth_rate 3, 4,  10,   0,  30 ; Slightly Fast
@@ -17,4 +17,3 @@ GrowthRates: ; 50efa
 	growth_rate 6, 5, -15, 100, 140 ; Medium Slow
 	growth_rate 4, 5,   0,   0,   0 ; Fast
 	growth_rate 5, 4,   0,   0,   0 ; Slow
-; 50f12

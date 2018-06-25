@@ -1,4 +1,4 @@
-PrintItemDescription: ; 0x1c8955
+PrintItemDescription:
 ; Print the description for item [wCurSpecies] at de.
 
 	ld a, [wCurSpecies]
@@ -28,4 +28,3 @@ PrintItemDescription: ; 0x1c8955
 	ld d, [hl]
 	pop hl
 	jp PlaceString
-; 0x1c8987

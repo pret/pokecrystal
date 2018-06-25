@@ -1,4 +1,4 @@
-BattleCommand_Substitute: ; 36e7c
+BattleCommand_Substitute:
 ; substitute
 
 	call BattleCommand_MoveDelay
@@ -87,4 +87,3 @@ BattleCommand_Substitute: ; 36e7c
 .jp_stdbattletextbox
 	jp StdBattleTextBox
 
-; 36f0b

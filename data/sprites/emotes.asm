@@ -5,7 +5,7 @@ emote: MACRO
 	dw vTiles1 tile \3
 ENDM
 
-Emotes: ; 144d
+Emotes:
 ; entries correspond to EMOTE_* constants
 	emote ShockEmote,     4, $78
 	emote QuestionEmote,  4, $78
@@ -19,4 +19,3 @@ Emotes: ; 144d
 	emote FishingRodGFX,  2, $7c
 	emote BoulderDustGFX, 2, $7e
 	emote GrassRustleGFX, 1, $7e
-; 14495

@@ -1,4 +1,4 @@
-CheckBattleScene: ; 4ea44
+CheckBattleScene:
 ; Return carry if battle scene is turned off.
 
 	ld a, BANK(wLinkMode)

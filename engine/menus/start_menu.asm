@@ -11,7 +11,7 @@
 	const STARTMENUITEM_QUIT     ; 8
 
 
-StartMenu:: ; 125cd
+StartMenu::
 
 	call ClearWindowData
 
@@ -118,23 +118,20 @@ StartMenu:: ; 125cd
 .b
 	scf
 	ret
-; 12691
 
-.ExitMenuRunScript: ; 12691
+.ExitMenuRunScript:
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	ret
-; 12699
 
-.ExitMenuRunScriptCloseText: ; 12699
+.ExitMenuRunScriptCloseText:
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
 	ld [hMenuReturn], a
 	jr .ReturnEnd2
-; 126a2
 
-.ExitMenuCallFuncCloseText: ; 126a2
+.ExitMenuCallFuncCloseText:
 	call ExitMenu
 	ld hl, wQueuedScriptAddr
 	ld a, [hli]
@@ -143,14 +140,12 @@ StartMenu:: ; 125cd
 	ld a, [wQueuedScriptBank]
 	rst FarCall
 	jr .ReturnEnd2
-; 126b1
 
-.ReturnRedraw: ; 126b1
+.ReturnRedraw:
 	call .Clear
 	jp .Reopen
-; 126b7
 
-.Clear: ; 126b7
+.Clear:
 	call ClearBGPalettes
 	call Call_ExitMenu
 	call ReloadTilesetAndPalettes
@@ -161,7 +156,6 @@ StartMenu:: ; 125cd
 	call ret_d90
 	call FinishExitMenu
 	ret
-; 126d3
 
 
 .MenuHeader:
@@ -242,16 +236,15 @@ StartMenu:: ; 125cd
 	next "be judged.@"
 
 
-.OpenMenu: ; 127e5
+.OpenMenu:
 	ld a, [wMenuSelection]
 	call .GetMenuAccountTextPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
-; 127ef
 
-.MenuString: ; 127ef
+.MenuString:
 	push de
 	ld a, [wMenuSelection]
 	call .GetMenuAccountTextPointer
@@ -263,9 +256,8 @@ StartMenu:: ; 125cd
 	pop hl
 	call PlaceString
 	ret
-; 12800
 
-.MenuDesc: ; 12800
+.MenuDesc:
 	push de
 	ld a, [wMenuSelection]
 	cp $ff
@@ -283,10 +275,9 @@ endr
 .none
 	pop de
 	ret
-; 12819
 
 
-.GetMenuAccountTextPointer: ; 12819
+.GetMenuAccountTextPointer:
 	ld e, a
 	ld d, 0
 	ld hl, wMenuDataPointerTableAddr
@@ -297,10 +288,9 @@ rept 6
 	add hl, de
 endr
 	ret
-; 12829
 
 
-.SetUpMenuItems: ; 12829
+.SetUpMenuItems:
 	xor a
 	ld [wWhichIndexSet], a
 	call .FillMenuList
@@ -358,10 +348,9 @@ endr
 	ld a, c
 	ld [wMenuItemsList], a
 	ret
-; 1288d
 
 
-.FillMenuList: ; 1288d
+.FillMenuList:
 	xor a
 	ld hl, wMenuItemsList
 	ld [hli], a
@@ -371,28 +360,24 @@ endr
 	ld de, wMenuItemsList + 1
 	ld c, 0
 	ret
-; 128a0
 
-.AppendMenuList: ; 128a0
+.AppendMenuList:
 	ld [de], a
 	inc de
 	inc c
 	ret
-; 128a4
 
-.DrawMenuAccount_: ; 128a4
+.DrawMenuAccount_:
 	jp .DrawMenuAccount
-; 128a7
 
-.PrintMenuAccount: ; 128a7
+.PrintMenuAccount:
 	call .IsMenuAccountOn
 	ret z
 	call .DrawMenuAccount
 	decoord 0, 14
 	jp .MenuDesc
-; 128b4
 
-.DrawMenuAccount: ; 128b4
+.DrawMenuAccount:
 	call .IsMenuAccountOn
 	ret z
 	hlcoord 0, 13
@@ -402,23 +387,20 @@ endr
 	ld b, 3
 	ld c, 8
 	jp TextBoxPalette
-; 128cb
 
-.IsMenuAccountOn: ; 128cb
+.IsMenuAccountOn:
 	ld a, [wOptions2]
 	and 1 << MENU_ACCOUNT
 	ret
-; 128d1
 
-.DrawBugContestStatusBox: ; 128d1
+.DrawBugContestStatusBox:
 	ld hl, wStatusFlags2
 	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	ret z
 	farcall StartMenu_DrawBugContestStatusBox
 	ret
-; 128de
 
-.DrawBugContestStatus: ; 128de
+.DrawBugContestStatus:
 	ld hl, wStatusFlags2
 	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
 	jr nz, .contest
@@ -426,18 +408,16 @@ endr
 .contest
 	farcall StartMenu_PrintBugContestStatus
 	ret
-; 128ed
 
 
-StartMenu_Exit: ; 128ed
+StartMenu_Exit:
 ; Exit the menu.
 
 	ld a, 1
 	ret
-; 128f0
 
 
-StartMenu_Quit: ; 128f0
+StartMenu_Quit:
 ; Retire from the bug catching contest.
 
 	ld hl, .EndTheContestText
@@ -456,10 +436,9 @@ StartMenu_Quit: ; 128f0
 .EndTheContestText:
 	text_jump UnknownText_0x1c1a6c
 	db "@"
-; 1290b
 
 
-StartMenu_Save: ; 1290b
+StartMenu_Save:
 ; Save the game.
 
 	call BufferScreen
@@ -470,20 +449,18 @@ StartMenu_Save: ; 1290b
 .asm_12919
 	ld a, 1
 	ret
-; 1291c
 
 
-StartMenu_Option: ; 1291c
+StartMenu_Option:
 ; Game options.
 
 	call FadeToMenu
 	farcall OptionsMenu
 	ld a, 6
 	ret
-; 12928
 
 
-StartMenu_Status: ; 12928
+StartMenu_Status:
 ; Player status.
 
 	call FadeToMenu
@@ -491,10 +468,9 @@ StartMenu_Status: ; 12928
 	call CloseSubmenu
 	ld a, 0
 	ret
-; 12937
 
 
-StartMenu_Pokedex: ; 12937
+StartMenu_Pokedex:
 
 	ld a, [wPartyCount]
 	and a
@@ -507,20 +483,18 @@ StartMenu_Pokedex: ; 12937
 .asm_12949
 	ld a, 0
 	ret
-; 1294c
 
 
-StartMenu_Pokegear: ; 1294c
+StartMenu_Pokegear:
 
 	call FadeToMenu
 	farcall PokeGear
 	call CloseSubmenu
 	ld a, 0
 	ret
-; 1295b
 
 
-StartMenu_Pack: ; 1295b
+StartMenu_Pack:
 
 	call FadeToMenu
 	farcall Pack
@@ -535,10 +509,9 @@ StartMenu_Pack: ; 1295b
 	call ExitAllMenus
 	ld a, 4
 	ret
-; 12976
 
 
-StartMenu_Pokemon: ; 12976
+StartMenu_Pokemon:
 
 	ld a, [wPartyCount]
 	and a
@@ -586,9 +559,8 @@ StartMenu_Pokemon: ; 12976
 	call ExitAllMenus
 	pop af
 	ret
-; 129d5
 
-HasNoItems: ; 129d5
+HasNoItems:
 	ld a, [wNumItems]
 	and a
 	ret nz
@@ -612,7 +584,7 @@ HasNoItems: ; 129d5
 	and a
 	ret
 
-TossItemFromPC: ; 129f4
+TossItemFromPC:
 	push de
 	call PartyMonItemName
 	farcall _CheckTossableItem
@@ -675,38 +647,33 @@ TossItemFromPC: ; 129f4
 	; That's too impor- tant to toss out!
 	text_jump UnknownText_0x1c1adf
 	db "@"
-; 0x12a60
 
-CantUseItem: ; 12a60
+CantUseItem:
 	ld hl, CantUseItemText
 	call MenuTextBoxWaitButton
 	ret
-; 12a67
 
-CantUseItemText: ; 12a67
+CantUseItemText:
 	text_jump UnknownText_0x1c1b03
 	db "@"
-; 12a6c
 
 
-PartyMonItemName: ; 12a6c
+PartyMonItemName:
 	ld a, [wCurItem]
 	ld [wd265], a
 	call GetItemName
 	call CopyName1
 	ret
-; 12a79
 
 
-CancelPokemonAction: ; 12a79
+CancelPokemonAction:
 	farcall InitPartyMenuWithCancel
 	farcall UnfreezeMonIcons
 	ld a, 1
 	ret
-; 12a88
 
 
-PokemonActionSubmenu: ; 12a88
+PokemonActionSubmenu:
 	hlcoord 1, 15
 	lb bc, 2, 18
 	call ClearBox
@@ -749,10 +716,9 @@ PokemonActionSubmenu: ; 12a88
 	dbw MONMENUITEM_CANCEL,     CancelPokemonAction
 	dbw MONMENUITEM_MOVE,       ManagePokemonMoves
 	dbw MONMENUITEM_MAIL,       MonMailAction
-; 12aec
 
 
-SwitchPartyMons: ; 12aec
+SwitchPartyMons:
 
 ; Don't try if there's nothing to switch!
 	ld a, [wPartyCount]
@@ -802,10 +768,9 @@ SwitchPartyMons: ; 12aec
 	ld [wPartyMenuActionText], a
 	call CancelPokemonAction
 	ret
-; 12b60
 
 
-GiveTakePartyMonItem: ; 12b60
+GiveTakePartyMonItem:
 
 ; Eggs can't hold items!
 	ld a, [wCurPartySpecies]
@@ -844,7 +809,6 @@ GiveTakePartyMonItem: ; 12b60
 .cancel
 	ld a, 3
 	ret
-; 12ba9
 
 
 .GiveItem:
@@ -877,10 +841,9 @@ GiveTakePartyMonItem: ; 12b60
 
 .quit
 	ret
-; 12bd9
 
 
-TryGiveItemToPartymon: ; 12bd9
+TryGiveItemToPartymon:
 
 	call SpeechTextBox
 	call PartyMonItemName
@@ -942,10 +905,9 @@ TryGiveItemToPartymon: ; 12bd9
 
 .abort
 	ret
-; 12c4c
 
 
-GivePartyItem: ; 12c4c
+GivePartyItem:
 
 	call GetPartyItemLocation
 	ld a, [wCurItem]
@@ -957,10 +919,9 @@ GivePartyItem: ; 12c4c
 
 .done
 	ret
-; 12c60
 
 
-TakePartyItem: ; 12c60
+TakePartyItem:
 
 	call SpeechTextBox
 	call GetPartyItemLocation
@@ -993,10 +954,9 @@ TakePartyItem: ; 12c60
 
 .asm_12c9a
 	ret
-; 12c9b
 
 
-GiveTakeItemMenuData: ; 12c9b
+GiveTakeItemMenuData:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
 	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .Items
@@ -1007,81 +967,69 @@ GiveTakeItemMenuData: ; 12c9b
 	db 2 ; # items
 	db "GIVE@"
 	db "TAKE@"
-; 12caf
 
 
-TookAndMadeHoldText: ; 12caf
+TookAndMadeHoldText:
 	text_jump UnknownText_0x1c1b2c
 	db "@"
-; 12cb4
 
-MadeHoldText: ; 12cb4
+MadeHoldText:
 	text_jump UnknownText_0x1c1b57
 	db "@"
-; 12cb9
 
-PleaseRemoveMailText: ; 12cb9
+PleaseRemoveMailText:
 	text_jump UnknownText_0x1c1b6f
 	db "@"
-; 12cbe
 
-IsntHoldingAnythingText: ; 12cbe
+IsntHoldingAnythingText:
 	text_jump UnknownText_0x1c1b8e
 	db "@"
-; 12cc3
 
-ItemStorageIsFullText: ; 12cc3
+ItemStorageIsFullText:
 	text_jump UnknownText_0x1c1baa
 	db "@"
-; 12cc8
 
-TookFromText: ; 12cc8
+TookFromText:
 	text_jump UnknownText_0x1c1bc4
 	db "@"
-; 12ccd
 
-SwitchAlreadyHoldingText: ; 12ccd
+SwitchAlreadyHoldingText:
 	text_jump UnknownText_0x1c1bdc
 	db "@"
-; 12cd2
 
-CantBeHeldText: ; 12cd2
+CantBeHeldText:
 	text_jump UnknownText_0x1c1c09
 	db "@"
-; 12cd7
 
 
-GetPartyItemLocation: ; 12cd7
+GetPartyItemLocation:
 	push af
 	ld a, MON_ITEM
 	call GetPartyParamLocation
 	pop af
 	ret
-; 12cdf
 
 
-ReceiveItemFromPokemon: ; 12cdf
+ReceiveItemFromPokemon:
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, wNumItems
 	jp ReceiveItem
-; 12cea
 
 
-GiveItemToPokemon: ; 12cea (4:6cea)
+GiveItemToPokemon:
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, wNumItems
 	jp TossItem
 
-StartMenuYesNo: ; 12cf5
+StartMenuYesNo:
 	call MenuTextBox
 	call YesNoBox
 	jp ExitMenu
-; 12cfe
 
 
-ComposeMailMessage: ; 12cfe (4:6cfe)
+ComposeMailMessage:
 	ld de, wTempMailMessage
 	farcall _ComposeMailMessage
 	ld hl, wPlayerName
@@ -1110,7 +1058,7 @@ ComposeMailMessage: ; 12cfe (4:6cfe)
 	call CloseSRAM
 	ret
 
-MonMailAction: ; 12d45
+MonMailAction:
 ; If in the time capsule or trade center,
 ; selecting the mail only allows you to
 ; read the mail.
@@ -1181,7 +1129,6 @@ MonMailAction: ; 12d45
 .done
 	ld a, $3
 	ret
-; 12dc9
 
 
 .MenuHeader:
@@ -1189,7 +1136,6 @@ MonMailAction: ; 12d45
 	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default option
-; 0x12dd1
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
@@ -1197,47 +1143,40 @@ MonMailAction: ; 12d45
 	db "READ@"
 	db "TAKE@"
 	db "QUIT@"
-; 0x12de2
 
 
 .mailwilllosemessagetext
 ; The MAIL will lose its message. OK?
 	text_jump UnknownText_0x1c1c22
 	db "@"
-; 0x12de7
 
 .tookmailfrommontext
 ; MAIL detached from <POKEMON>.
 	text_jump UnknownText_0x1c1c47
 	db "@"
-; 0x12dec
 
 .bagfulltext
 ; There's no space for removing MAIL.
 	text_jump UnknownText_0x1c1c62
 	db "@"
-; 0x12df1
 
 .sendmailtopctext
 ; Send the removed MAIL to your PC?
 	text_jump UnknownText_0x1c1c86
 	db "@"
-; 0x12df6
 
 .mailboxfulltext
 ; Your PC's MAILBOX is full.
 	text_jump UnknownText_0x1c1ca9
 	db "@"
-; 0x12dfb
 
 .sentmailtopctext
 ; The MAIL was sent to your PC.
 	text_jump UnknownText_0x1c1cc4
 	db "@"
-; 0x12e00
 
 
-OpenPartyStats: ; 12e00
+OpenPartyStats:
 	call LoadStandardMenuHeader
 	call ClearSprites
 ; PartyMon
@@ -1249,10 +1188,9 @@ OpenPartyStats: ; 12e00
 	call Call_ExitMenu
 	ld a, 0
 	ret
-; 12e1b
 
 
-MonMenu_Cut: ; 12e1b
+MonMenu_Cut:
 	farcall CutFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -1264,10 +1202,9 @@ MonMenu_Cut: ; 12e1b
 .Fail:
 	ld a, $3
 	ret
-; 12e30
 
 
-MonMenu_Fly: ; 12e30
+MonMenu_Fly:
 	farcall FlyFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $2
@@ -1290,9 +1227,8 @@ MonMenu_Fly: ; 12e30
 .Unreferenced:
 	ld a, $1
 	ret
-; 12e55
 
-MonMenu_Flash: ; 12e55
+MonMenu_Flash:
 	farcall OWFlash
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -1304,9 +1240,8 @@ MonMenu_Flash: ; 12e55
 .Fail:
 	ld a, $3
 	ret
-; 12e6a
 
-MonMenu_Strength: ; 12e6a
+MonMenu_Strength:
 	farcall StrengthFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -1318,9 +1253,8 @@ MonMenu_Strength: ; 12e6a
 .Fail:
 	ld a, $3
 	ret
-; 12e7f
 
-MonMenu_Whirlpool: ; 12e7f
+MonMenu_Whirlpool:
 	farcall WhirlpoolFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -1332,9 +1266,8 @@ MonMenu_Whirlpool: ; 12e7f
 .Fail:
 	ld a, $3
 	ret
-; 12e94
 
-MonMenu_Waterfall: ; 12e94
+MonMenu_Waterfall:
 	farcall WaterfallFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -1346,9 +1279,8 @@ MonMenu_Waterfall: ; 12e94
 .Fail:
 	ld a, $3
 	ret
-; 12ea9
 
-MonMenu_Teleport: ; 12ea9
+MonMenu_Teleport:
 	farcall TeleportFunction
 	ld a, [wFieldMoveSucceeded]
 	and a
@@ -1360,9 +1292,8 @@ MonMenu_Teleport: ; 12ea9
 .Fail:
 	ld a, $3
 	ret
-; 12ebd
 
-MonMenu_Surf: ; 12ebd
+MonMenu_Surf:
 	farcall SurfFunction
 	ld a, [wFieldMoveSucceeded]
 	and a
@@ -1374,9 +1305,8 @@ MonMenu_Surf: ; 12ebd
 .Fail:
 	ld a, $3
 	ret
-; 12ed1
 
-MonMenu_Dig: ; 12ed1
+MonMenu_Dig:
 	farcall DigFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -1388,9 +1318,8 @@ MonMenu_Dig: ; 12ed1
 .Fail:
 	ld a, $3
 	ret
-; 12ee6
 
-MonMenu_Softboiled_MilkDrink: ; 12ee6
+MonMenu_Softboiled_MilkDrink:
 	call .CheckMonHasEnoughHP
 	jr nc, .NotEnoughHP
 	farcall Softboiled_MilkDrinkFunction
@@ -1405,13 +1334,11 @@ MonMenu_Softboiled_MilkDrink: ; 12ee6
 	ld [wPartyMenuActionText], a
 	ld a, $3
 	ret
-; 12f00
 
 .Text_NotEnoughHP:
 	; Not enough HP!
 	text_jump UnknownText_0x1c1ce3
 	db "@"
-; 0x12f05
 
 .CheckMonHasEnoughHP:
 ; Need to have at least (MaxHP / 5) HP left.
@@ -1433,9 +1360,8 @@ MonMenu_Softboiled_MilkDrink: ; 12ee6
 	ld a, [hQuotient + 1]
 	sbc [hl]
 	ret
-; 12f26
 
-MonMenu_Headbutt: ; 12f26
+MonMenu_Headbutt:
 	farcall HeadbuttFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -1447,9 +1373,8 @@ MonMenu_Headbutt: ; 12f26
 .Fail:
 	ld a, $3
 	ret
-; 12f3b
 
-MonMenu_RockSmash: ; 12f3b
+MonMenu_RockSmash:
 	farcall RockSmashFunction
 	ld a, [wFieldMoveSucceeded]
 	cp $1
@@ -1461,16 +1386,14 @@ MonMenu_RockSmash: ; 12f3b
 .Fail:
 	ld a, $3
 	ret
-; 12f50
 
-MonMenu_SweetScent: ; 12f50
+MonMenu_SweetScent:
 	farcall SweetScentFromMenu
 	ld b, $4
 	ld a, $2
 	ret
-; 12f5b
 
-ChooseMoveToDelete: ; 12f5b
+ChooseMoveToDelete:
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -1484,7 +1407,6 @@ ChooseMoveToDelete: ; 12f5b
 	call ClearBGPalettes
 	pop af
 	ret
-; 12f73
 
 .ChooseMoveToDelete
 	call SetUpMoveScreenBG
@@ -1506,7 +1428,6 @@ ChooseMoveToDelete: ; 12f5b
 	call PrepareToPlaceMoveData
 	call PlaceMoveData
 	jp .loop
-; 12f9c
 
 .a_button
 	and a
@@ -1525,17 +1446,15 @@ ChooseMoveToDelete: ; 12f5b
 	call ClearTileMap
 	pop af
 	ret
-; 12fb2
 
-DeleteMoveScreenAttrs: ; 12fb2
+DeleteMoveScreenAttrs:
 	db 3, 1
 	db 3, 1
 	db $40, $00
 	dn 2, 0
 	db D_UP | D_DOWN | A_BUTTON | B_BUTTON
-; 12fba
 
-ManagePokemonMoves: ; 12fba
+ManagePokemonMoves:
 	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
@@ -1551,9 +1470,8 @@ ManagePokemonMoves: ; 12fba
 .egg
 	ld a, $0
 	ret
-; 12fd5
 
-MoveScreenLoop: ; 12fd5
+MoveScreenLoop:
 	ld a, [wCurPartyMon]
 	inc a
 	ld [wPartyMenuCursor], a
@@ -1613,7 +1531,6 @@ MoveScreenLoop: ; 12fd5
 	lb bc, 8, SCREEN_WIDTH - 2
 	call ClearBox
 	jp .loop
-; 1305b
 
 .d_right
 	ld a, [wMoveSwapBuffer]
@@ -1678,7 +1595,6 @@ MoveScreenLoop: ; 12fd5
 	and a
 	jr z, .cycle_right
 	jr .cycle_left_loop
-; 130c6
 
 .a_button
 	call PlayClickSFX
@@ -1729,7 +1645,6 @@ MoveScreenLoop: ; 12fd5
 	lb bc, 1, 9
 	call ClearBox
 	jp .loop
-; 1313a
 
 .copy_move
 	push hl
@@ -1752,7 +1667,6 @@ MoveScreenLoop: ; 12fd5
 	ld a, b
 	ld [de], a
 	ret
-; 13154
 
 .exit
 	xor a
@@ -1761,21 +1675,18 @@ MoveScreenLoop: ; 12fd5
 	res 6, [hl]
 	call ClearSprites
 	jp ClearTileMap
-; 13163
 
-MoveScreenAttributes: ; 13163
+MoveScreenAttributes:
 	db 3, 1
 	db 3, 1
 	db $40, $00
 	dn 2, 0
 	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
-; 1316b
 
-String_MoveWhere: ; 1316b
+String_MoveWhere:
 	db "Where?@"
-; 13172
 
-SetUpMoveScreenBG: ; 13172
+SetUpMoveScreenBG:
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -1821,9 +1732,8 @@ SetUpMoveScreenBG: ; 13172
 	hlcoord 16, 0
 	lb bc, 1, 3
 	jp ClearBox
-; 131ef
 
-SetUpMoveList: ; 131ef
+SetUpMoveList:
 	xor a
 	ld [hBGMapMode], a
 	ld [wMoveSwapBuffer], a
@@ -1848,9 +1758,8 @@ SetUpMoveList: ; 131ef
 	ld b, 5
 	ld c, 18
 	jp TextBox
-; 13235
 
-PrepareToPlaceMoveData: ; 13235
+PrepareToPlaceMoveData:
 	ld hl, wPartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
@@ -1865,9 +1774,8 @@ PrepareToPlaceMoveData: ; 13235
 	hlcoord 1, 12
 	lb bc, 5, 18
 	jp ClearBox
-; 13256
 
-PlaceMoveData: ; 13256
+PlaceMoveData:
 	xor a
 	ld [hBGMapMode], a
 	hlcoord 0, 10
@@ -1909,28 +1817,22 @@ PlaceMoveData: ; 13256
 	ld a, $1
 	ld [hBGMapMode], a
 	ret
-; 132ba
 
-String_MoveType_Top: ; 132ba
+String_MoveType_Top:
 	db "┌─────┐@"
-; 132c2
-String_MoveType_Bottom: ; 132c2
+String_MoveType_Bottom:
 	db "│TYPE/└@"
-; 132ca
-String_MoveAtk: ; 132ca
+String_MoveAtk:
 	db "ATK/@"
-; 132cf
-String_MoveNoPower: ; 132cf
+String_MoveNoPower:
 	db "---@"
-; 132d3
 
-Function132d3: ; 132d3
+Function132d3:
 	call Function132da
 	call Function132fe
 	ret
-; 132da
 
-Function132da: ; 132da
+Function132da:
 	ld a, [wCurPartyMon]
 	and a
 	ret z
@@ -1958,9 +1860,8 @@ Function132da: ; 132da
 	hlcoord 16, 0
 	ld [hl], "◀"
 	ret
-; 132fe
 
-Function132fe: ; 132fe
+Function132fe:
 	ld a, [wCurPartyMon]
 	inc a
 	ld c, a
@@ -1990,4 +1891,3 @@ Function132fe: ; 132fe
 	hlcoord 18, 0
 	ld [hl], "▶"
 	ret
-; 13327

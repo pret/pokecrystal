@@ -1,11 +1,10 @@
-Music_CrystalOpening: ; 1786e8
+Music_CrystalOpening:
 	musicheader 4, 1, Music_CrystalOpening_Ch1
 	musicheader 1, 2, Music_CrystalOpening_Ch2
 	musicheader 1, 3, Music_CrystalOpening_Ch3
 	musicheader 1, 4, Music_CrystalOpening_Ch4
-; 1786f4
 
-Music_CrystalOpening_Ch1: ; 1786f4
+Music_CrystalOpening_Ch1:
 	tempo 136
 	volume $77
 	tone $0002
@@ -121,9 +120,8 @@ Music_CrystalOpening_Ch1: ; 1786f4
 	octave 2
 	note D_, 16
 	endchannel
-; 17877a
 
-Music_CrystalOpening_Ch2: ; 17877a
+Music_CrystalOpening_Ch2:
 	notetype $c, $a2
 	dutycycle $3
 	vibrato $8, $44
@@ -177,9 +175,8 @@ Music_CrystalOpening_Ch2: ; 17877a
 	octave 3
 	note D_, 16
 	endchannel
-; 1787c8
 
-Music_CrystalOpening_Ch3: ; 1787c8
+Music_CrystalOpening_Ch3:
 	notetype $c, $16
 	octave 1
 	note B_, 4
@@ -242,9 +239,8 @@ Music_CrystalOpening_Ch3: ; 1787c8
 	note D_, 1
 	note __, 15
 	endchannel
-; 178810
 
-Music_CrystalOpening_Ch4: ; 178810
+Music_CrystalOpening_Ch4:
 	stereopanning $f
 	togglenoise $3
 	notetype $c
@@ -361,4 +357,3 @@ Music_CrystalOpening_Ch4: ; 178810
 	note __, 16
 	note __, 16
 	endchannel
-; 178889

@@ -4,4 +4,3 @@
 	frame 2, 12
 	dorepeat 2
 	endanim
-; 0xd1369

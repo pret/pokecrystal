@@ -1,4 +1,4 @@
-UpdateItemDescription: ; 0x244c3
+UpdateItemDescription:
 	ld a, [wMenuSelection]
 	ld [wCurSpecies], a
 	hlcoord 0, 12

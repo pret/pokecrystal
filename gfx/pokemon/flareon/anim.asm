@@ -4,4 +4,3 @@
 	frame 3, 08
 	dorepeat 2
 	endanim
-; 0xd105f

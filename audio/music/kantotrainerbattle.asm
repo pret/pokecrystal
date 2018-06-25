@@ -1,12 +1,11 @@
-Music_KantoTrainerBattle: ; ec9fa
+Music_KantoTrainerBattle:
 	musicheader 3, 1, Music_KantoTrainerBattle_Ch1
 	musicheader 1, 2, Music_KantoTrainerBattle_Ch2
 	musicheader 1, 3, Music_KantoTrainerBattle_Ch3
-; eca03
 
 	db $3
 
-Music_KantoTrainerBattle_Ch1: ; eca04
+Music_KantoTrainerBattle_Ch1:
 	tempo 114
 	volume $77
 	pitchoffset 1, B_
@@ -127,7 +126,7 @@ Music_KantoTrainerBattle_Ch1: ; eca04
 	note D#, 2
 	note F_, 2
 	note F#, 2
-Music_KantoTrainerBattle_branch_eca88: ; eca88
+Music_KantoTrainerBattle_branch_eca88:
 	notetype $c, $b7
 	note D#, 4
 	note __, 2
@@ -464,9 +463,8 @@ Music_KantoTrainerBattle_branch_eca88: ; eca88
 	octave 4
 	note D_, 4
 	loopchannel 0, Music_KantoTrainerBattle_branch_eca88
-; ecbea
 
-Music_KantoTrainerBattle_Ch2: ; ecbea
+Music_KantoTrainerBattle_Ch2:
 	pitchoffset 1, B_
 	vibrato $6, $36
 	dutycycle $1
@@ -485,7 +483,7 @@ Music_KantoTrainerBattle_Ch2: ; ecbea
 	note F#, 1
 	dutycycle $3
 	intensity $62
-Music_KantoTrainerBattle_branch_ecc04: ; ecc04
+Music_KantoTrainerBattle_branch_ecc04:
 	octave 3
 	note G_, 1
 	note G#, 1
@@ -542,7 +540,7 @@ Music_KantoTrainerBattle_branch_ecc04: ; ecc04
 	octave 3
 	note D_, 1
 	note F_, 1
-Music_KantoTrainerBattle_branch_ecc41: ; ecc41
+Music_KantoTrainerBattle_branch_ecc41:
 	notetype $c, $d7
 	octave 2
 	note C_, 1
@@ -917,9 +915,8 @@ Music_KantoTrainerBattle_branch_ecc41: ; ecc41
 	octave 3
 	note B_, 4
 	loopchannel 0, Music_KantoTrainerBattle_branch_ecc41
-; ecdd2
 
-Music_KantoTrainerBattle_Ch3: ; ecdd2
+Music_KantoTrainerBattle_Ch3:
 	pitchoffset 1, B_
 	vibrato $12, $23
 	notetype $c, $15
@@ -1050,7 +1047,7 @@ Music_KantoTrainerBattle_Ch3: ; ecdd2
 	note G_, 2
 	note A#, 2
 	note B_, 2
-Music_KantoTrainerBattle_branch_ece5a: ; ece5a
+Music_KantoTrainerBattle_branch_ece5a:
 	notetype $c, $14
 	octave 6
 	note C_, 4
@@ -1537,4 +1534,3 @@ Music_KantoTrainerBattle_branch_ece5a: ; ece5a
 	octave 5
 	note G_, 4
 	loopchannel 0, Music_KantoTrainerBattle_branch_ece5a
-; ed06d

@@ -1,4 +1,4 @@
-BillsGrandfather: ; 73f7
+BillsGrandfather:
 	farcall SelectMonFromParty
 	jr c, .cancel
 	ld a, [wCurPartySpecies]
@@ -12,19 +12,19 @@ BillsGrandfather: ; 73f7
 	ld [wScriptVar], a
 	ret
 
-YoungerHaircutBrother: ; 7413
+YoungerHaircutBrother:
 	ld hl, HappinessData_YoungerHaircutBrother
 	jr HaircutOrGrooming
 
-OlderHaircutBrother: ; 7418
+OlderHaircutBrother:
 	ld hl, HappinessData_OlderHaircutBrother
 	jr HaircutOrGrooming
 
-DaisysGrooming: ; 741d
+DaisysGrooming:
 	ld hl, HappinessData_DaisysGrooming
 	; fallthrough
 
-HaircutOrGrooming: ; 7420
+HaircutOrGrooming:
 	push hl
 	farcall SelectMonFromParty
 	pop hl
@@ -72,11 +72,11 @@ HaircutOrGrooming: ; 7420
 
 INCLUDE "data/events/happiness_probabilities.asm"
 
-CopyPokemonName_Buffer1_Buffer3: ; 746e
+CopyPokemonName_Buffer1_Buffer3:
 	ld hl, wStringBuffer1
 	ld de, wStringBuffer3
 	ld bc, MON_NAME_LENGTH
 	jp CopyBytes
 
-DummyPredef1: ; 747a
+DummyPredef1:
 	ret

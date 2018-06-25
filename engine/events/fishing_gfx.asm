@@ -1,4 +1,4 @@
-LoadFishingGFX: ; b84b3
+LoadFishingGFX:
 	ld a, [rVBK]
 	push af
 	ld a, $1
@@ -23,9 +23,8 @@ LoadFishingGFX: ; b84b3
 	pop af
 	ld [rVBK], a
 	ret
-; b84e3
 
-.LoadGFX: ; b84e3
+.LoadGFX:
 	lb bc, BANK(FishingGFX), 2
 	push de
 	call Get2bpp
@@ -35,12 +34,9 @@ LoadFishingGFX: ; b84b3
 	ld d, h
 	ld e, l
 	ret
-; b84f2
 
-FishingGFX: ; b84f2
+FishingGFX:
 INCBIN "gfx/overworld/chris_fish.2bpp"
-; b8582
 
-KrisFishingGFX: ; b8582
+KrisFishingGFX:
 INCBIN "gfx/overworld/kris_fish.2bpp"
-; b8612

@@ -5,4 +5,3 @@
 	dorepeat 2
 	frame 1, 30
 	endanim
-; 0xd1c07

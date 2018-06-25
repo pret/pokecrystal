@@ -4,4 +4,3 @@
 	frame 9, 06
 	dorepeat 2
 	endanim
-; 0xd21e2

@@ -57,7 +57,7 @@ GoldenrodGameCornerTMVendorScript:
 	checkitem COIN_CASE
 	iffalse GoldenrodGameCornerPrizeVendor_NoCoinCaseScript
 	writetext GoldenrodGameCornerPrizeVendorWhichPrizeText
-GoldenrodGameCornerTMVendor_LoopScript: ; 056c36
+GoldenrodGameCornerTMVendor_LoopScript:
 	special DisplayCoinCaseBalance
 	loadmenu GoldenrodGameCornerTMVendorMenuHeader
 	verticalmenu

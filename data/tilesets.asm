@@ -10,7 +10,7 @@ ENDM
 ; - The *PalMap are defined in gfx/tileset_palette_maps.asm
 ; - The *Anim are defined in engine/tileset_anims.asm
 
-Tilesets:: ; 4d596
+Tilesets::
 ; entries correspond to TILESET_* constants
 	tileset Tileset0
 	tileset TilesetJohto
@@ -49,4 +49,3 @@ Tilesets:: ; 4d596
 	tileset TilesetKabutoWordRoom
 	tileset TilesetOmanyteWordRoom
 	tileset TilesetAerodactylWordRoom
-; 4d7c1

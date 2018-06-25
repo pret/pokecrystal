@@ -1,4 +1,4 @@
-GiveDratini: ; 0x8b170
+GiveDratini:
 ; if wScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
 ;  0: give it a special moveset with Extremespeed.
 ;  1: give it the normal moveset of a level 15 Dratini.
@@ -84,7 +84,7 @@ GiveDratini: ; 0x8b170
 	db TWISTER
 	db 0
 
-.GetNthPartyMon: ; 0x8b1ce
+.GetNthPartyMon:
 ; inputs:
 ; hl must be set to 0 before calling this function.
 ; a must be set to the number of Pokémon in the party.
@@ -109,4 +109,3 @@ GiveDratini: ; 0x8b170
 .EmptyParty:
 	scf
 	ret
-; 8b1e1

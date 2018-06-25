@@ -1,4 +1,4 @@
-BattleCommand_Sketch: ; 35a74
+BattleCommand_Sketch:
 ; sketch
 
 	call ClearLastMove
@@ -116,4 +116,3 @@ BattleCommand_Sketch: ; 35a74
 	call AnimateFailedMove
 	jp PrintDidntAffect
 
-; 35b16

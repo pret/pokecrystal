@@ -5,4 +5,3 @@
 	frame 3, 11
 	dorepeat 3
 	endanim
-; 0xd147c

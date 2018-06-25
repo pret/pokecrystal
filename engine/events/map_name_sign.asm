@@ -1,14 +1,13 @@
 MAP_NAME_SIGN_START EQU $60
 
-ReturnFromMapSetupScript:: ; b8000
+ReturnFromMapSetupScript::
 	xor a
 	ld [hBGMapMode], a
 	farcall .inefficient_farcall ; this is a waste of 6 ROM bytes and 6 stack bytes
 	ret
-; b800a
 
 ; should have just been a fallthrough
-.inefficient_farcall ; b800a
+.inefficient_farcall
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapNumber]
@@ -57,9 +56,8 @@ ReturnFromMapSetupScript:: ; b8000
 	xor a
 	ld [hLCDCPointer], a
 	ret
-; b8064
 
-.CheckMovingWithinLandmark: ; b8064
+.CheckMovingWithinLandmark:
 	ld a, [wCurrentLandmark]
 	ld c, a
 	ld a, [wPreviousLandmark]
@@ -67,9 +65,8 @@ ReturnFromMapSetupScript:: ; b8000
 	ret z
 	cp SPECIAL_MAP
 	ret
-; b8070
 
-.CheckSpecialMap: ; b8070
+.CheckSpecialMap:
 ; These landmarks do not get pop-up signs.
 	cp -1
 	ret z
@@ -88,9 +85,8 @@ ReturnFromMapSetupScript:: ; b8000
 	ld a, 1
 	and a
 	ret
-; b8089
 
-.CheckNationalParkGate: ; b8089
+.CheckNationalParkGate:
 	ld a, [wMapGroup]
 	cp GROUP_ROUTE_35_NATIONAL_PARK_GATE
 	ret nz
@@ -99,10 +95,9 @@ ReturnFromMapSetupScript:: ; b8000
 	ret z
 	cp MAP_ROUTE_36_NATIONAL_PARK_GATE
 	ret
-; b8098
 
 
-PlaceMapNameSign:: ; b8098 (2e:4098)
+PlaceMapNameSign::
 	ld hl, wLandmarkSignTimer
 	ld a, [hl]
 	and a
@@ -131,25 +126,23 @@ PlaceMapNameSign:: ; b8098 (2e:4098)
 	ret
 
 
-LoadMapNameSignGFX: ; b80c6
+LoadMapNameSignGFX:
 	ld de, MapEntryFrameGFX
 	ld hl, vTiles2 tile MAP_NAME_SIGN_START
 	lb bc, BANK(MapEntryFrameGFX), 14
 	call Get2bpp
 	ret
-; b80d3
 
-InitMapNameFrame: ; b80d3
+InitMapNameFrame:
 	hlcoord 0, 0
 	ld b, 2
 	ld c, 18
 	call InitMapSignAttrMap
 	call PlaceMapNameFrame
 	ret
-; b80e1
 
 
-PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
+PlaceMapNameCenterAlign:
 	ld a, [wCurrentLandmark]
 	ld e, a
 	farcall GetLandmarkName
@@ -165,7 +158,7 @@ PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
 	call PlaceString
 	ret
 
-.GetNameLength: ; b8101 (2e:4101)
+.GetNameLength:
 	ld c, 0
 	push hl
 	ld hl, wStringBuffer1
@@ -182,7 +175,7 @@ PlaceMapNameCenterAlign: ; b80e1 (2e:40e1)
 	ret
 
 
-InitMapSignAttrMap: ; b8115
+InitMapSignAttrMap:
 	ld de, wAttrMap - wTileMap
 	add hl, de
 	inc b
@@ -204,9 +197,8 @@ InitMapSignAttrMap: ; b8115
 	dec b
 	jr nz, .loop
 	ret
-; b812f
 
-PlaceMapNameFrame: ; b812f
+PlaceMapNameFrame:
 	hlcoord 0, 0
 	; top left
 	ld a, MAP_NAME_SIGN_START + 1
@@ -243,9 +235,8 @@ PlaceMapNameFrame: ; b812f
 	ld a, MAP_NAME_SIGN_START + 10
 	ld [hl], a
 	ret
-; b815b
 
-.FillMiddle: ; b815b
+.FillMiddle:
 	ld c, SCREEN_WIDTH - 2
 	ld a, MAP_NAME_SIGN_START + 13
 .loop
@@ -253,9 +244,8 @@ PlaceMapNameFrame: ; b812f
 	dec c
 	jr nz, .loop
 	ret
-; b8164
 
-.FillTopBottom: ; b8164
+.FillTopBottom:
 	ld c, 5
 	jr .enterloop
 
@@ -271,4 +261,3 @@ PlaceMapNameFrame: ; b812f
 	dec c
 	jr nz, .continueloop
 	ret
-; b8172

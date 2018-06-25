@@ -1,4 +1,4 @@
-ConsumeHeldItem: ; 27192
+ConsumeHeldItem:
 	push hl
 	push de
 	push bc

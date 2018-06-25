@@ -1,15 +1,15 @@
-MainMenu_Mobile: ; 49efc
+MainMenu_Mobile:
 	call ClearBGPalettes
 	ld a, MUSIC_MOBILE_ADAPTER_MENU
 	ld [wMapMusic], a
 	ld de, MUSIC_MOBILE_ADAPTER_MENU
 	call Function4a6c5
-Function49f0a: ; 49f0a
+Function49f0a:
 	call ClearBGPalettes
 	call Function4a3a7
 	call Function4a492
 	call ClearBGPalettes
-Function49f16: ; 49f16
+Function49f16:
 	call MobileMenu_InitMenuBuffers
 	ld c, 12
 	call DelayFrames
@@ -98,47 +98,40 @@ Function49f16: ; 49f16
 	hlcoord 5, 1
 	call ClearBox
 	jp .joy_loop
-; 49fcc
 
 
-MobileString1: ; 49fcc
+MobileString1:
 	db   "めいしフォルダー"
 	next "あいさつ"
 	next "プロフィール"
 	next "せ<TTE>い"
 	next "もどる"
 	db   "@"
-; 49fe9
 
 
 MobileStrings2:
 
-String_0x49fe9: ; 49fe9
+String_0x49fe9:
 	db   "めいし¯つくったり"
 	next "ほぞんしておける　フォルダーです@"
-; 4a004
 
-String_0x4a004: ; 4a004
+String_0x4a004:
 	db   "モバイルたいせんや　じぶんのめいしで"
 	next "つかう　あいさつ¯つくります@"
-; 4a026
 
-String_0x4a026: ; 4a026
+String_0x4a026:
 	db   "あなた<NO>じゅうしょや　ねんれいの"
 	next "せ<TTE>い¯かえられます@"
-; 4a042
 
-String_0x4a042: ; 4a042
+String_0x4a042:
 	db  "モバイルセンター<NI>せつぞくするとき"
 	next "ひつような　こと¯きめます@"
-; 4a062
 
-String_0x4a062: ; 4a062
+String_0x4a062:
 	db   "まえ<NO>がめん　<NI>もどります"
 	next "@"
-; 4a071
 
-MobileMenu_InitMenuBuffers: ; 4a071 (12:6071)
+MobileMenu_InitMenuBuffers:
 	ld hl, w2DMenuCursorInitY
 	ld a, 2
 	ld [hli], a
@@ -166,7 +159,7 @@ MobileMenu_InitMenuBuffers: ; 4a071 (12:6071)
 	ld [hli], a ; wMenuCursorY, wMenuCursorX
 	ret
 
-Function4a098: ; 4a098 (12:6098)
+Function4a098:
 	ld a, 2
 	call MenuClickSound
 	call PlaceHollowCursor
@@ -179,13 +172,13 @@ Function4a098: ; 4a098 (12:6098)
 	pop bc
 	jp Function49f16
 
-Function4a0b9: ; 4a0b9 (12:60b9)
+Function4a0b9:
 	ld a, 2
 	call MenuClickSound
 	pop bc
 	jp Function4a4c4
 
-Function4a0c2: ; 4a0c2 (12:60c2)
+Function4a0c2:
 	ld a, 2
 	call MenuClickSound
 	ld a, BANK(sPlayerData)
@@ -211,7 +204,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	call DelayFrames
 	jr asm_4a111
 
-Function4a100: ; 4a100 (12:6100)
+Function4a100:
 	ld a, 2
 	call MenuClickSound
 	call ClearBGPalettes
@@ -219,12 +212,12 @@ Function4a100: ; 4a100 (12:6100)
 	call ClearBGPalettes
 	call ClearTileMap
 
-asm_4a111: ; 4a111 (12:6111)
+asm_4a111:
 	pop bc
 	call LoadFontsExtra
 	jp Function49f0a
 
-Function4a118: ; 4a118 (12:6118)
+Function4a118:
 	ld hl, w2DMenuCursorInitY
 	ld a, $1
 	ld [hli], a
@@ -249,14 +242,14 @@ Function4a118: ; 4a118 (12:6118)
 	ld [hli], a
 	ret
 
-Function4a13b: ; 4a13b (12:613b)
+Function4a13b:
 	call Function4a3a7
 	call Function4a492
 	call Function4a373
 	ld c, 10
 	call DelayFrames
 
-Function4a149: ; 4a149 (12:6149)
+Function4a149:
 	hlcoord 1, 2
 	ld b, $6
 	ld c, $10
@@ -288,13 +281,13 @@ Function4a149: ; 4a149 (12:6149)
 	push bc
 	jr asm_4a19d
 
-Function4a195: ; 4a195 (12:6195)
+Function4a195:
 	call ScrollingMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 
-asm_4a19d: ; 4a19d (12:619d)
+asm_4a19d:
 	bit 0, a
 	jr nz, .asm_4a1a7
 	bit 1, a
@@ -336,15 +329,13 @@ asm_4a19d: ; 4a19d (12:619d)
 	hlcoord 2, 3
 	call ClearBox
 	jp Function4a195
-; 4a1ef (12:61ef)
 
-String_4a1ef: ; 4a1ef
+String_4a1ef:
 	db   "モバイルセンター¯えらぶ"
 	next "ログインパスワード¯いれる"
 	next "もどる@"
-; 4a20e
 
-Function4a20e: ; 4a20e (12:620e)
+Function4a20e:
 	ld a, $1
 	call MenuClickSound
 	farcall Function1719c8
@@ -352,7 +343,7 @@ Function4a20e: ; 4a20e (12:620e)
 	call DelayFrame
 	jr Function4a239
 
-Function4a221: ; 4a221 (12:6221)
+Function4a221:
 	ld a, $1
 	call MenuClickSound
 	call Function4a28a
@@ -365,12 +356,11 @@ Function4a221: ; 4a221 (12:6221)
 	pop bc
 	jp Function4a149
 
-Function4a239: ; 4a239 (12:6239)
+Function4a239:
 	pop bc
 	jp Function4a13b
-; 4a23d (12:623d)
 
-Strings_4a23d: ; 4a23d
+Strings_4a23d:
 	db   "いつも　せつぞく¯する"
 	next "モバイルセンター¯えらびます@"
 
@@ -380,9 +370,8 @@ Strings_4a23d: ; 4a23d
 	db   "まえ<NO>がめん　<NI>もどります@"
 
 	db   "@"
-; 4a28a
 
-Function4a28a: ; 4a28a (12:628a)
+Function4a28a:
 	hlcoord 2, 3
 	lb bc, 6, 1
 	ld a, " "
@@ -458,45 +447,39 @@ Function4a28a: ; 4a28a (12:628a)
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	xor a
 	ret
-; 4a346 (12:6346)
 
-MenuHeader_0x4a346: ; 0x4a346
+MenuHeader_0x4a346:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 12, 0, SCREEN_WIDTH - 1, 6
 
-String_4a34b: ; 4a34b
+String_4a34b:
 	db   "いれなおす"
 	next "けす"
 	next "もどる@"
-; 4a358
 
-UnknownText_0x4a358: ; 0x4a358
+UnknownText_0x4a358:
 	; Delete the saved LOG-IN PASSWORD?
 	text_jump UnknownText_0x1c5196
 	db "@"
-; 0x4a35d
 
-UnknownText_0x4a35d: ; 0x4a35d
+UnknownText_0x4a35d:
 	; Deleted the LOG-IN PASSWORD.
 	text_jump UnknownText_0x1c51b9
 	db "@"
-; 0x4a362
 
-DeletePassword_YesNo_MenuHeader: ; 0x4a362
+DeletePassword_YesNo_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData_0x4a36a
 	db 2 ; default option
-; 0x4a36a
 
-MenuData_0x4a36a: ; 0x4a36a
+MenuData_0x4a36a:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 2 ; items
 	db "はい@"
 	db "いいえ@"
-; 0x4a373
 
-Function4a373: ; 4a373 (12:6373)
+Function4a373:
 	ld hl, w2DMenuCursorInitY
 	ld a, $4
 	ld [hli], a
@@ -522,19 +505,17 @@ Function4a373: ; 4a373 (12:6373)
 	ld [hli], a
 	ld [hli], a
 	ret
-; 4a39a (12:639a)
 
-Function4a39a: ; 4a39a
+Function4a39a:
 	call Function4a485
 	call Function4a492
 	call Function4a3aa
 	call SetPalettes
 	ret
-; 4a3a7
 
-Function4a3a7: ; 4a3a7 (12:63a7)
+Function4a3a7:
 	call Function4a485
-Function4a3aa: ; 4a3aa
+Function4a3aa:
 	hlcoord 0, 0
 	lb bc, 3, 1
 	xor a
@@ -596,9 +577,8 @@ Function4a3aa: ; 4a3aa
 	ld a, " "
 	call Function4a6d8
 	ret
-; 4a449 (12:6449)
 
-Function4a449: ; 4a449
+Function4a449:
 	ld bc, 3 * SCREEN_WIDTH
 	ld a, $0
 	hlcoord 0, 0
@@ -622,21 +602,20 @@ Function4a449: ; 4a449
 	ld a, " "
 	call ByteFill
 	ret
-; 4a485
 
-Function4a485: ; 4a485 (12:6485)
+Function4a485:
 	ld de, GFX_49c0c
 	ld hl, vTiles2 tile $00
 	lb bc, BANK(GFX_49c0c), 13
 	call Get2bpp
 	ret
 
-Function4a492: ; 4a492 (12:6492)
+Function4a492:
 	call MG_Mobile_Layout00
 	ret
 
 
-MainMenu_MobileStudium: ; 4a496
+MainMenu_MobileStudium:
 	ld a, [wStartDay]
 	ld b, a
 	ld a, [wStartHour]
@@ -660,10 +639,9 @@ MainMenu_MobileStudium: ; 4a496
 	ld a, e
 	ld [wStartSecond], a
 	ret
-; 4a4c4
 
 
-Function4a4c4: ; 4a4c4 (12:64c4)
+Function4a4c4:
 	call ClearBGPalettes
 	call Function4a3a7
 	call Function4a492
@@ -715,13 +693,13 @@ Function4a4c4: ; 4a4c4 (12:64c4)
 	push bc
 	jr asm_4a54d
 
-Function4a545: ; 4a545 (12:6545)
+Function4a545:
 	call ScrollingMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 
-asm_4a54d: ; 4a54d (12:654d)
+asm_4a54d:
 	bit 0, a
 	jr nz, .asm_4a557
 	bit 1, a
@@ -771,7 +749,7 @@ asm_4a54d: ; 4a54d (12:654d)
 	call PlaceString
 	jp Function4a5b0
 
-Function4a5b0: ; 4a5b0 (12:65b0)
+Function4a5b0:
 	call Function4a680
 	pop bc
 	ld hl, wMenuCursorY
@@ -781,21 +759,19 @@ Function4a5b0: ; 4a5b0 (12:65b0)
 	hlcoord 3, 1
 	call ClearBox
 	jp Function4a545
-; 4a5c5 (12:65c5)
 
-String_4a5c5: ; 4a5c5
+String_4a5c5:
 	db "じこしょうかい@"
-String_4a5cd: ; 4a5cd
+String_4a5cd:
 	db "たいせん　<GA>はじまるとき@"
-String_4a5da: ; 4a5da
+String_4a5da:
 	db "たいせん　<NI>かったとき@"
-String_4a5e6: ; 4a5e6
+String_4a5e6:
 	db "たいせん　<NI>まけたとき@"
-String_4a5f2: ; 4a5f2
+String_4a5f2:
 	db "もどる@"
-; 4a5f6
 
-Strings_4a5f6: ; 4a5f6
+Strings_4a5f6:
 	db "めいし　や　ニュース　<NI>のせる@"
 	db "あなた<NO>あいさつです@"
 	db "モバイル　たいせん<GA>はじまるとき@"
@@ -806,9 +782,8 @@ Strings_4a5f6: ; 4a5f6
 	db "あいて<NI>みえる　あいさつです@"
 	db "まえ<NO>がめん　<NI>もどります@"
 	db "@"
-; 4a680
 
-Function4a680: ; 4a680 (12:6680)
+Function4a680:
 	ld hl, w2DMenuCursorInitY
 	ld a, $2
 	ld [hli], a
@@ -839,7 +814,7 @@ Function4a680: ; 4a680 (12:6680)
 	ld [hli], a
 	ret
 
-Function4a6ab: ; 4a6ab (12:66ab)
+Function4a6ab:
 	ld a, $2
 	call MenuClickSound
 	call ClearBGPalettes
@@ -850,7 +825,7 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	call LoadFontsExtra
 	jp Function4a4c4
 
-Function4a6c5: ; 4a6c5 (12:66c5)
+Function4a6c5:
 	ld a, $5
 	ld [wMusicFade], a
 	ld a, e
@@ -861,7 +836,7 @@ Function4a6c5: ; 4a6c5 (12:66c5)
 	call DelayFrames
 	ret
 
-Function4a6d8: ; 4a6d8 (12:66d8)
+Function4a6d8:
 	push bc
 	push hl
 .asm_4a6da

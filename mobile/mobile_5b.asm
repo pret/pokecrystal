@@ -1,4 +1,4 @@
-Unreferenced_Function16c000: ; 16c000
+Unreferenced_Function16c000:
 	; Only for CGB
 	ld a, [hCGB]
 	and a
@@ -26,9 +26,8 @@ Unreferenced_Function16c000: ; 16c000
 	pop af
 	ld [wcfbe], a
 	ret
-; 16c031
 
-.RunJumptable: ; 16c031
+.RunJumptable:
 	xor a
 	ld [wJumptableIndex], a
 	ld [wcf64], a
@@ -46,9 +45,8 @@ Unreferenced_Function16c000: ; 16c000
 	cp $ff
 	jr nz, .loop
 	ret
-; 16c05c
 
-.Jumptable: ; 16c05c
+.Jumptable:
 	dw .init
 	dw Function16c0ba
 	dw Function16c089
@@ -61,9 +59,8 @@ Unreferenced_Function16c000: ; 16c000
 	dw Function16c0dc
 	dw Function16c0ec
 	dw .quit
-; 16c074
 
-.init ; 16c074
+.init
 	ld a, [wcf64]
 	and a
 	ret z
@@ -71,17 +68,15 @@ Unreferenced_Function16c000: ; 16c000
 	xor a
 	ld [wd003], a
 	ret
-; 16c081
 
-.quit ; 16c081
+.quit
 	push af
 	ld a, $ff
 	ld [wd002], a
 	pop af
 	ret
-; 16c089
 
-Function16c089: ; 16c089
+Function16c089:
 	ld a, $1
 	ld [wBuffer2], a
 	ld [wd1f1], a
@@ -91,17 +86,15 @@ Function16c089: ; 16c089
 	ld a, [wd002]
 	ld [wcf64], a
 	ret
-; 16c09e
 
-Function16c09e: ; 16c09e
+Function16c09e:
 	ld a, [wcf64]
 	cp $4
 	ret nz
 	call Function16c0fa
 	ret
-; 16c0a8
 
-Function16c0a8: ; 16c0a8
+Function16c0a8:
 	xor a
 	ld [wBuffer2], a
 	ld [wd1f1], a
@@ -110,9 +103,8 @@ Function16c0a8: ; 16c0a8
 	ld [hWY], a
 	call Function16c0fa
 	ret
-; 16c0ba
 
-Function16c0ba: ; 16c0ba
+Function16c0ba:
 	call Function16c943
 	push af
 	ld a, [wd003]
@@ -121,9 +113,8 @@ Function16c0ba: ; 16c0ba
 	pop af
 	call c, Function16c0fa
 	ret
-; 16c0ca
 
-Function16c0ca: ; 16c0ca
+Function16c0ca:
 	ld a, [wd003]
 	cp $28
 	push af
@@ -133,9 +124,8 @@ Function16c0ca: ; 16c0ca
 	pop af
 	call z, Function16c0fa
 	ret
-; 16c0dc
 
-Function16c0dc: ; 16c0dc
+Function16c0dc:
 	call Function16ca11
 	push af
 	ld a, [wd003]
@@ -144,9 +134,8 @@ Function16c0dc: ; 16c0dc
 	pop af
 	call c, Function16c0fa
 	ret
-; 16c0ec
 
-Function16c0ec: ; 16c0ec
+Function16c0ec:
 	call ClearBGPalettes
 	call ClearScreen
 	push af
@@ -154,9 +143,8 @@ Function16c0ec: ; 16c0ec
 	ld [wd002], a
 	pop af
 	ret
-; 16c0fa
 
-Function16c0fa: ; 16c0fa
+Function16c0fa:
 	push af
 	ld a, [wd002]
 	inc a
@@ -165,9 +153,8 @@ Function16c0fa: ; 16c0fa
 	ld [wd003], a
 	pop af
 	ret
-; 16c108
 
-MobileSystemSplashScreen_InitGFX: ; 16c108
+MobileSystemSplashScreen_InitGFX:
 	call DisableLCD
 	ld hl, vTiles2
 	ld de, .Tiles
@@ -183,9 +170,8 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	ld [hBGMapMode], a
 	call EnableLCD
 	ret
-; 16c130
 
-.LoadPals: ; 16c130
+.LoadPals:
 	ld de, wBGPals1
 	ld hl, UnknownMobilePalettes_16c903
 	ld bc, 8
@@ -193,9 +179,8 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	call FarCopyWRAM
 	farcall ApplyPals
 	ret
-; 16c145
 
-.LoadTileMap: ; 16c145
+.LoadTileMap:
 	hlcoord 0, 0
 	ld bc, 20
 	xor a
@@ -205,9 +190,8 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	ld bc, $0154
 	call CopyBytes
 	ret
-; 16c15c
 
-.LoadAttrMap: ; 16c15c
+.LoadAttrMap:
 	hlcoord 0, 0, wAttrMap
 	ld bc, SCREEN_WIDTH
 	xor a
@@ -217,7 +201,6 @@ MobileSystemSplashScreen_InitGFX: ; 16c108
 	ld bc, 17 * SCREEN_WIDTH
 	call CopyBytes
 	ret
-; 16c173
 
 .Tiles:
 INCBIN "gfx/mobile/mobile_splash.2bpp"
@@ -228,12 +211,11 @@ INCBIN "gfx/mobile/mobile_splash.tilemap"
 .AttrMap:
 INCBIN "gfx/mobile/mobile_splash.attrmap"
 
-UnknownMobilePalettes_16c903: ; 16c903
+UnknownMobilePalettes_16c903:
 INCLUDE "gfx/unknown/16c903.pal"
 
-; 16c943
 
-Function16c943: ; 16c943
+Function16c943:
 	ld a, [wd003]
 	and a
 	jr nz, .asm_16c95e
@@ -354,9 +336,8 @@ Function16c943: ; 16c943
 	ld [rSVBK], a
 	scf
 	ret
-; 16ca11
 
-Function16ca11: ; 16ca11
+Function16ca11:
 	ld a, [wd003]
 	and a
 	jr nz, .asm_16ca1d
@@ -455,25 +436,22 @@ Function16ca11: ; 16ca11
 	ld [rSVBK], a
 	scf
 	ret
-; 16cab6
 
-Function16cab6: ; 16cab6
+Function16cab6:
 	ld b, $0
 	ld c, e
 	add hl, bc
 	ret
-; 16cabb
 
-Function16cabb: ; 16cabb
+Function16cabb:
 	inc hl
 	ld a, [hl]
 	srl a
 	srl a
 	and $1f
 	ret
-; 16cac4
 
-Function16cac4: ; 16cac4
+Function16cac4:
 	inc hl
 	ld a, [hld]
 	and $3
@@ -487,15 +465,13 @@ Function16cac4: ; 16cac4
 	rl b
 	ld a, b
 	ret
-; 16cad8
 
-Function16cad8: ; 16cad8
+Function16cad8:
 	ld a, [hl]
 	and $1f
 	ret
-; 16cadc
 
-Function16cadc: ; 16cadc
+Function16cadc:
 	sla a
 	sla a
 	ld b, a
@@ -505,9 +481,8 @@ Function16cadc: ; 16cadc
 	or b
 	ld [hl], a
 	ret
-; 16cae8
 
-Function16cae8: ; 16cae8
+Function16cae8:
 	ld c, a
 	srl a
 	srl a
@@ -530,18 +505,16 @@ Function16cae8: ; 16cae8
 	or b
 	ld [hl], a
 	ret
-; 16cb08
 
-Function16cb08: ; 16cb08
+Function16cb08:
 	ld b, a
 	ld a, [hl]
 	and $e0
 	or b
 	ld [hl], a
 	ret
-; 16cb0f
 
-Function16cb0f: ; 16cb0f
+Function16cb0f:
 	xor a
 	ld [wBuffer1], a
 	ld [wBuffer2], a
@@ -556,9 +529,8 @@ Function16cb0f: ; 16cb0f
 	xor a
 	ld [wd1f0], a
 	ret
-; 16cb2e
 
-Function16cb2e: ; 16cb2e
+Function16cb2e:
 	ld a, [wBuffer2]
 	and a
 	ret z
@@ -567,9 +539,8 @@ Function16cb2e: ; 16cb2e
 	ld de, wVirtualOAM
 	call Function16cb5d
 	ret
-; 16cb40
 
-Function16cb40: ; 16cb40
+Function16cb40:
 	ld hl, wd1ec
 	inc [hl]
 	ld a, [hl]
@@ -588,9 +559,8 @@ Function16cb40: ; 16cb40
 	ld a, $a0
 	ld [wd1ef], a
 	ret
-; 16cb5d
 
-Function16cb5d: ; 16cb5d
+Function16cb5d:
 	ld a, [hli]
 	and a
 	ret z
@@ -622,7 +592,6 @@ Function16cb5d: ; 16cb5d
 	dec a
 	jr nz, .asm_16cb60
 	ret
-; 16cb86
 
 Unknown_16cb86:
 	db 7
@@ -633,26 +602,23 @@ Unknown_16cb86:
 	db 16,  0, 4, 1
 	db 16,  8, 5, 0
 	db 16, 16, 6, 0
-; 16cba3
 
-Function16cba3: ; 16cba3
+Function16cba3:
 	xor a
 	ld [wd1f1], a
 	ld [wd1f2], a
 	ld [wd1f3], a
 	ret
-; 16cbae
 
-Function16cbae: ; 16cbae
+Function16cbae:
 	ld a, [wd1f1]
 	and a
 	ret z
 	call Function16cbba
 	call Function16cbd1
 	ret
-; 16cbba
 
-Function16cbba: ; 16cbba
+Function16cbba:
 	ld hl, wd1f2
 	inc [hl]
 	ld a, [hl]
@@ -669,9 +635,8 @@ Function16cbba: ; 16cbba
 .asm_16cbcd
 	ld [wd1f3], a
 	ret
-; 16cbd1
 
-Function16cbd1: ; 16cbd1
+Function16cbd1:
 	ld a, [wd1f3]
 	ld c, a
 	ld b, 0
@@ -689,13 +654,11 @@ Function16cbd1: ; 16cbd1
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 16cbfb
 
 Unknown_16cbfb:
 	db 0, 1, 2, 1, 0, 1, 2
-; 16cc02
 
-Function16cc02: ; 16cc02
+Function16cc02:
 	call Function16cc18
 	call Function16cc49
 	call Function16cc62
@@ -704,17 +667,15 @@ Function16cc02: ; 16cc02
 	call Function16cb0f
 	call Function16cba3
 	ret
-; 16cc18
 
-Function16cc18: ; 16cc18
+Function16cc18:
 	ld hl, vTiles1
 	ld de, GFX_16cca3
 	lb bc, BANK(GFX_16cca3), 46
 	call Get2bpp
 	ret
-; 16cc25
 
-Function16cc25: ; 16cc25
+Function16cc25:
 	ld hl, Unknown_16cfa9
 	ld de, wBGPals1 + 1 palettes
 	call .CopyPal
@@ -725,15 +686,13 @@ Function16cc25: ; 16cc25
 	ld de, wOBPals1 + 1 palettes
 	call .CopyPal
 	ret
-; 16cc41
 
-.CopyPal: ; 16cc41
+.CopyPal:
 	ld bc, 1 palettes
 	ld a, $5
 	jp FarCopyWRAM
-; 16cc49
 
-Function16cc49: ; 16cc49
+Function16cc49:
 	hlcoord 4, 15
 	ld a, $80
 	call Function16cc5a
@@ -741,9 +700,8 @@ Function16cc49: ; 16cc49
 	ld a, $90
 	call Function16cc5a
 	ret
-; 16cc5a
 
-Function16cc5a: ; 16cc5a
+Function16cc5a:
 	ld c, $10
 .asm_16cc5c
 	ld [hli], a
@@ -751,17 +709,15 @@ Function16cc5a: ; 16cc5a
 	dec c
 	jr nz, .asm_16cc5c
 	ret
-; 16cc62
 
-Function16cc62: ; 16cc62
+Function16cc62:
 	hlcoord 0, 15, wAttrMap
 	ld bc, $0028
 	ld a, $1
 	call ByteFill
 	ret
-; 16cc6e
 
-Function16cc6e: ; 16cc6e
+Function16cc6e:
 	hlbgcoord 0, 0, vBGMap1
 	jr Function16cc73
 
@@ -781,9 +737,8 @@ Function16cc73:
 	pop af
 	ld [rVBK], a
 	ret
-; 16cc90
 
-Function16cc90: ; 16cc90
+Function16cc90:
 	ld bc, $1214
 .asm_16cc93
 	push bc
@@ -799,7 +754,6 @@ Function16cc90: ; 16cc90
 	dec b
 	jr nz, .asm_16cc93
 	ret
-; 16cca3
 
 GFX_16cca3:
 INCBIN "gfx/unknown/16cca3.2bpp"
@@ -829,4 +783,3 @@ Unknown_16cfb9:
 	RGB 27, 11, 12
 	RGB 07, 07, 07
 
-; 16cfc1

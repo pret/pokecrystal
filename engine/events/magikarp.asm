@@ -1,4 +1,4 @@
-CheckMagikarpLength: ; fbb32
+CheckMagikarpLength:
 	; Returns 3 if you select a Magikarp that beats the previous record.
 	; Returns 2 if you select a Magikarp, but the current record is longer.
 	; Returns 1 if you press B in the Pokemon selection menu.
@@ -70,27 +70,23 @@ CheckMagikarpLength: ; fbb32
 	xor a ; MAGIKARPLENGTH_NOT_MAGIKARP
 	ld [wScriptVar], a
 	ret
-; fbba9
 
-.MeasureItText: ; 0xfbba9
+.MeasureItText:
 	; Let me measure that MAGIKARP. …Hm, it measures @ .
 	text_jump UnknownText_0x1c1203
 	db "@"
-; 0xfbbae
 
-Magikarp_LoadFeetInchesChars: ; fbbae
+Magikarp_LoadFeetInchesChars:
 	ld hl, vTiles2 tile "′" ; $6e
 	ld de, .feetinchchars
 	lb bc, BANK(.feetinchchars), 2
 	call Request2bpp
 	ret
-; fbbbb
 
-.feetinchchars ; fbbb
+.feetinchchars
 INCBIN "gfx/font/feet_inches.2bpp"
-; fbbdb
 
-PrintMagikarpLength: ; fbbdb
+PrintMagikarpLength:
 	call Magikarp_LoadFeetInchesChars
 	ld hl, wStringBuffer1
 	ld de, wMagikarpLength
@@ -105,9 +101,8 @@ PrintMagikarpLength: ; fbbdb
 	inc hl
 	ld [hl], "@"
 	ret
-; fbbfc
 
-CalcMagikarpLength: ; fbbfc
+CalcMagikarpLength:
 ; Return Magikarp's length (in feet and inches) at wMagikarpLength (big endian).
 ;
 ; input:
@@ -283,9 +278,8 @@ CalcMagikarpLength: ; fbbfc
 	inc hl
 	ld [hl], e ; in
 	ret
-; fbc9a
 
-.BCLessThanDE: ; fbc9a
+.BCLessThanDE:
 ; Intention: Return bc < de.
 ; Reality: Return b < d.
 	ld a, b
@@ -295,9 +289,8 @@ CalcMagikarpLength: ; fbbfc
 	ld a, c
 	cp e
 	ret
-; fbca1
 
-.BCMinusDE: ; fbca1
+.BCMinusDE:
 ; bc -= de
 	ld a, c
 	sub e
@@ -306,13 +299,12 @@ CalcMagikarpLength: ; fbbfc
 	sbc d
 	ld b, a
 	ret
-; fbca8
 
 INCLUDE "data/events/magikarp_lengths.asm"
 
 
 
-MagikarpHouseSign: ; fbcd2
+MagikarpHouseSign:
 	ld a, [wBestMagikarpLengthFeet]
 	ld [wMagikarpLength], a
 	ld a, [wBestMagikarpLengthInches]
@@ -321,10 +313,8 @@ MagikarpHouseSign: ; fbcd2
 	ld hl, .CurrentRecordtext
 	call PrintText
 	ret
-; fbce8
 
-.CurrentRecordtext: ; 0xfbce8
+.CurrentRecordtext:
 	; "CURRENT RECORD"
 	text_jump UnknownText_0x1c123a
 	db "@"
-; 0xfbced

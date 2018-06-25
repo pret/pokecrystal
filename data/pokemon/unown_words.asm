@@ -7,7 +7,7 @@ endr
 	db -1
 ENDM
 
-UnownWords: ; fba5a
+UnownWords:
 ; entries correspond to UNOWN_* form constants
 	dw UnownWordA
 	dw UnownWordA
@@ -36,7 +36,6 @@ UnownWords: ; fba5a
 	dw UnownWordX
 	dw UnownWordY
 	dw UnownWordZ
-; fba90
 
 UnownWordA: unownword "ANGRY"
 UnownWordB: unownword "BEAR"
@@ -64,4 +63,3 @@ UnownWordW: unownword "WANT"
 UnownWordX: unownword "XXXXX"
 UnownWordY: unownword "YIELD"
 UnownWordZ: unownword "ZOOM"
-; fbb32

@@ -1,6 +1,6 @@
 ; Used by GetMobileOTTrainerClass
 
-MaleTrainers: ; 4e95d
+MaleTrainers:
 	db BURGLAR
 	db YOUNGSTER
 	db SCHOOLBOY
@@ -28,7 +28,7 @@ MaleTrainers: ; 4e95d
 	db SCIENTIST
 .End
 
-FemaleTrainers: ; 4e976
+FemaleTrainers:
 	db MEDIUM
 	db LASS
 	db BEAUTY

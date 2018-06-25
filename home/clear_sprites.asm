@@ -1,4 +1,4 @@
-ClearSprites:: ; 300b
+ClearSprites::
 ; Erase OAM data
 	ld hl, wVirtualOAM
 	ld b, wVirtualOAMEnd - wVirtualOAM
@@ -8,9 +8,8 @@ ClearSprites:: ; 300b
 	dec b
 	jr nz, .loop
 	ret
-; 3016
 
-HideSprites:: ; 3016
+HideSprites::
 ; Set all OAM y-positions to 160 to hide them offscreen
 	ld hl, wVirtualOAMSprite00YCoord
 	ld de, SPRITEOAMSTRUCT_LENGTH
@@ -22,4 +21,3 @@ HideSprites:: ; 3016
 	dec b
 	jr nz, .loop
 	ret
-; 3026

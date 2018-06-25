@@ -1,4 +1,4 @@
-MoveEffectPriorities: ; 3c5df
+MoveEffectPriorities:
 	db EFFECT_PROTECT,      3
 	db EFFECT_ENDURE,       3
 	db EFFECT_PRIORITY_HIT, 2
@@ -6,4 +6,3 @@ MoveEffectPriorities: ; 3c5df
 	db EFFECT_COUNTER,      0
 	db EFFECT_MIRROR_COAT,  0
 	db -1
-; 3c5ec

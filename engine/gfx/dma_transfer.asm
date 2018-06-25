@@ -1,4 +1,4 @@
-HDMATransferAttrMapAndTileMapToWRAMBank3:: ; 104000
+HDMATransferAttrMapAndTileMapToWRAMBank3::
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
@@ -18,9 +18,8 @@ HDMATransferAttrMapAndTileMapToWRAMBank3:: ; 104000
 	ld hl, wScratchAttrMap
 	call HDMATransferToWRAMBank3
 	ret
-; 10402d
 
-HDMATransferTileMapToWRAMBank3:: ; 10402d
+HDMATransferTileMapToWRAMBank3::
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
@@ -33,9 +32,8 @@ HDMATransferTileMapToWRAMBank3:: ; 10402d
 	ld hl, wScratchTileMap
 	call HDMATransferToWRAMBank3
 	ret
-; 104047
 
-HDMATransferAttrMapToWRAMBank3: ; 104047
+HDMATransferAttrMapToWRAMBank3:
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
@@ -48,9 +46,8 @@ HDMATransferAttrMapToWRAMBank3: ; 104047
 	ld hl, wScratchAttrMap
 	call HDMATransferToWRAMBank3
 	ret
-; 104061
 
-ReloadMapPart:: ; 104061
+ReloadMapPart::
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
@@ -80,7 +77,7 @@ ReloadMapPart:: ; 104061
 
 	ret
 
-Mobile_ReloadMapPart: ; 104099
+Mobile_ReloadMapPart:
 	ld hl, ReloadMapPart ; useless
 	ld hl, .Function
 	jp CallInSafeGFXMode
@@ -110,7 +107,6 @@ Mobile_ReloadMapPart: ; 104099
 	ei
 
 	ret
-; 1040d4
 
 ; unused
 	ld hl, .unreferenced_1040da
@@ -134,7 +130,6 @@ Mobile_ReloadMapPart: ; 104099
 	ld [hDMATransfer], a
 	call WaitDMATransfer
 	ret
-; 1040fb
 
 ; unused
 	ld hl, .unreferenced_104101
@@ -148,9 +143,8 @@ Mobile_ReloadMapPart: ; 104099
 	ld hl, w3_d800
 	call HDMATransferToWRAMBank3
 	ret
-; 104110
 
-OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 104110
+OpenAndCloseMenu_HDMATransferTileMapAndAttrMap::
 ; OpenText
 	ld hl, .Function
 	jp CallInSafeGFXMode
@@ -182,9 +176,8 @@ OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:: ; 104110
 	ld [rVBK], a
 	ei
 	ret
-; 104148
 
-Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap: ; 104148 (41:4148)
+Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap:
 	ld hl, .Function
 	jp CallInSafeGFXMode
 
@@ -209,9 +202,8 @@ Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap: ; 104148 (41:4148)
 	ld hl, wScratchTileMap
 	call HDMATransfer_Wait127Scanlines_toBGMap
 	ret
-; 104177
 
-CallInSafeGFXMode: ; 104177
+CallInSafeGFXMode:
 	ld a, [hBGMapMode]
 	push af
 	ld a, [hMapAnims]
@@ -237,19 +229,17 @@ CallInSafeGFXMode: ; 104177
 	pop af
 	ld [hBGMapMode], a
 	ret
-; 10419c
 
-._hl_ ; 10419c
+._hl_
 	jp hl
-; 10419d
 
 
-HDMATransferToWRAMBank3: ; 10419d (41:419d)
+HDMATransferToWRAMBank3:
 	call _LoadHDMAParameters
 	ld a, $23
 	ld [hDMATransfer], a
 
-WaitDMATransfer: ; 104a14
+WaitDMATransfer:
 .loop
 	call DelayFrame
 	ld a, [hDMATransfer]
@@ -257,7 +247,7 @@ WaitDMATransfer: ; 104a14
 	jr nz, .loop
 	ret
 
-HDMATransfer_Wait127Scanlines_toBGMap: ; 1041ad (41:41ad)
+HDMATransfer_Wait127Scanlines_toBGMap:
 ; HDMA transfer from hl to [hBGMapAddress]
 ; hBGMapAddress -> de
 ; 2 * SCREEN_HEIGHT -> c
@@ -268,7 +258,7 @@ HDMATransfer_Wait127Scanlines_toBGMap: ; 1041ad (41:41ad)
 	ld c, 2 * SCREEN_HEIGHT
 	jr HDMATransfer_Wait127Scanlines
 
-HDMATransfer_Wait123Scanlines_toBGMap: ; 1041b7 (41:41b7)
+HDMATransfer_Wait123Scanlines_toBGMap:
 ; HDMA transfer from hl to [hBGMapAddress]
 ; hBGMapAddress -> de
 ; 2 * SCREEN_HEIGHT -> c
@@ -279,9 +269,8 @@ HDMATransfer_Wait123Scanlines_toBGMap: ; 1041b7 (41:41b7)
 	ld e, a
 	ld c, 2 * SCREEN_HEIGHT
 	jr HDMATransfer_Wait123Scanlines
-; 1041c1 (41:41c1)
 
-HDMATransfer_NoDI: ; 1041c1
+HDMATransfer_NoDI:
 ; HDMA transfer from hl to [hBGMapAddress]
 ; [hBGMapAddress] --> de
 ; 2 * SCREEN_HEIGHT --> c
@@ -339,7 +328,6 @@ HDMATransfer_NoDI: ; 1041c1
 	ld hl, rHDMA5
 	res 7, [hl]
 	ret
-; 104205
 
 HDMATransfer_Wait123Scanlines:
 	ld b, $7b
@@ -407,10 +395,9 @@ _continue_HDMATransfer:
 	ei
 
 	ret
-; 10424e
 
 
-_LoadHDMAParameters: ; 10424e (41:424e)
+_LoadHDMAParameters:
 	ld a, h
 	ld [rHDMA1], a
 	ld a, l
@@ -422,14 +409,14 @@ _LoadHDMAParameters: ; 10424e (41:424e)
 	ld [rHDMA4], a
 	ret
 
-PadTilemapForHDMATransfer: ; 10425f (41:425f)
+PadTilemapForHDMATransfer:
 	ld c, " "
 	jr PadMapForHDMATransfer
 
-PadAttrMapForHDMATransfer: ; 104263 (41:4263)
+PadAttrMapForHDMATransfer:
 	ld c, $0
 
-PadMapForHDMATransfer: ; 104265 (41:4265)
+PadMapForHDMATransfer:
 ; pad a 20x18 map to 32x18 for HDMA transfer
 ; back up the padding value in c to hMapObjectIndexBuffer
 	ld a, [hMapObjectIndexBuffer]
@@ -467,7 +454,7 @@ PadMapForHDMATransfer: ; 104265 (41:4265)
 	ret
 
 
-_Get2bpp:: ; 104284
+_Get2bpp::
 	; 2bpp when [rLCDC] & $80
 	; switch to WRAM bank 6
 	ld a, [rSVBK]
@@ -510,9 +497,8 @@ _Get2bpp:: ; 104284
 	pop af
 	ld [rSVBK], a
 	ret
-; 1042b2
 
-_Get1bpp:: ; 1042b2
+_Get1bpp::
 	; 1bpp when [rLCDC] & $80
 .loop
 	ld a, c
@@ -537,9 +523,8 @@ _Get1bpp:: ; 1042b2
 	sub $10
 	ld c, a
 	jr .loop
-; 1042d6
 
-.bankswitch ; 1042d6
+.bankswitch
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wScratchTileMap)
@@ -576,12 +561,10 @@ _Get1bpp:: ; 1042b2
 	pop af
 	ld [rSVBK], a
 	ret
-; 104303
 
-HDMATransfer_OnlyTopFourRows: ; 104303
+HDMATransfer_OnlyTopFourRows:
 	ld hl, .Function
 	jp CallInSafeGFXMode
-; 104309
 
 .Function:
 	ld hl, wScratchTileMap
@@ -604,7 +587,7 @@ HDMATransfer_OnlyTopFourRows: ; 104303
 	call HDMATransfer_Wait127Scanlines
 	ret
 
-.Copy: ; 10433a (41:433a)
+.Copy:
 	ld b, 4
 .outer_loop
 	ld c, SCREEN_WIDTH
@@ -623,4 +606,3 @@ HDMATransfer_OnlyTopFourRows: ; 104303
 	dec b
 	jr nz, .outer_loop
 	ret
-; 104350

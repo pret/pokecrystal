@@ -1,4 +1,4 @@
-SpriteAnimFrameData: ; 8d6e6
+SpriteAnimFrameData:
 ; entries correspond to SPRITE_ANIM_FRAMESET_* constants
 	dw .Frameset_00
 	dw .Frameset_PartyMon
@@ -66,7 +66,6 @@ SpriteAnimFrameData: ; 8d6e6
 	dw .Frameset_IntroUnownF
 	dw .Frameset_CelebiLeft
 	dw .Frameset_CelebiRight
-; 8d76a
 
 .Frameset_00:
 	frame SPRITE_ANIM_OAMSET_RED_WALK_1, 32
@@ -496,4 +495,3 @@ SpriteAnimFrameData: ; 8d6e6
 	frame SPRITE_ANIM_OAMSET_CELEBI_1,  8, OAM_X_FLIP
 	frame SPRITE_ANIM_OAMSET_CELEBI_2,  8, OAM_X_FLIP
 	endanim
-; 8d94d

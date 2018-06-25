@@ -3,4 +3,3 @@
 	frame 0, 04
 	frame 3, 04
 	endanim
-; 0xd19d7

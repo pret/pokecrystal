@@ -1,4 +1,4 @@
-Pokepic:: ; 244e3
+Pokepic::
 	ld hl, PokepicMenuHeader
 	call CopyMenuHeader
 	call MenuBox
@@ -27,7 +27,7 @@ Pokepic:: ; 244e3
 	call WaitBGMap
 	ret
 
-ClosePokepic:: ; 24528
+ClosePokepic::
 	ld hl, PokepicMenuHeader
 	call CopyMenuHeader
 	call ClearMenuBoxInterior
@@ -41,7 +41,7 @@ ClosePokepic:: ; 24528
 	call LoadStandardFont
 	ret
 
-PokepicMenuHeader: ; 0x24547
+PokepicMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 4, 14, 13
 	dw NULL

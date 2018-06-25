@@ -1,4 +1,4 @@
-SpriteMons: ; 14495
+SpriteMons:
 ; entries correspond to SPRITE_* constants past SPRITE_POKEMON
 	db UNOWN
 	db GEODUDE
@@ -35,4 +35,3 @@ SpriteMons: ; 14495
 	db GYARADOS
 	db LUGIA
 	db HO_OH
-; 144b8

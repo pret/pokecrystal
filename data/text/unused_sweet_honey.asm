@@ -8,7 +8,7 @@
 ; Most of these texts seem to be associated with a single NPC.
 ; The last text is associated with a second NPC, probably a Butterfree.
 
-UnusedSweetHoneyText: ; 0x5578a
+UnusedSweetHoneyText:
 	text "My #MON is an"
 	line "expert at collect-"
 	cont "ing SWEET HONEY."
@@ -17,7 +17,7 @@ UnusedSweetHoneyText: ; 0x5578a
 	line "with you."
 	done
 
-UnusedSweetHoneyBagFullText: ; 0x557d6
+UnusedSweetHoneyBagFullText:
 	text "I want to give you"
 	line "some SWEET HONEY,"
 
@@ -25,17 +25,17 @@ UnusedSweetHoneyBagFullText: ; 0x557d6
 	line "room for it."
 	done
 
-UnusedSweetHoneyGiveText: ; 0x55819
+UnusedSweetHoneyGiveText:
 	text "Here you go! Have"
 	line "some SWEET HONEY!"
 	done
 
-UnusedGotSweetHoneyText: ; 0x5583e
+UnusedGotSweetHoneyText:
 	text "<PLAYER> received"
 	line "SWEET HONEY."
 	done
 
-UnusedSweetHoneyAfterText1: ; 0x55856
+UnusedSweetHoneyAfterText1:
 	text "My little brother"
 	line "takes SWEET HONEY"
 
@@ -46,7 +46,7 @@ UnusedSweetHoneyAfterText1: ; 0x55856
 	line "up to?"
 	done
 
-UnusedSweetHoneyAfterText2: ; 0x558b1
+UnusedSweetHoneyAfterText2:
 	text "Did you put SWEET"
 	line "HONEY on a tree?"
 
@@ -54,7 +54,7 @@ UnusedSweetHoneyAfterText2: ; 0x558b1
 	line "it?"
 	done
 
-UnusedSweetHoneyAfterText3: ; 0x558ea
+UnusedSweetHoneyAfterText3:
 	text "Did you put SWEET"
 	line "HONEY on a tree?"
 
@@ -63,6 +63,6 @@ UnusedSweetHoneyAfterText3: ; 0x558ea
 	cont "be drawn to it."
 	done
 
-UnusedSweetHoneyButterfreeText: ; 0x5593f
+UnusedSweetHoneyButterfreeText:
 	text "BUTTERFREE: Freeh!"
 	done

@@ -1,4 +1,4 @@
-BugContest_SetCaughtContestMon: ; e6ce
+BugContest_SetCaughtContestMon:
 	ld a, [wContestMon]
 	and a
 	jr z, .firstcatch
@@ -18,7 +18,7 @@ BugContest_SetCaughtContestMon: ; e6ce
 	call PrintText
 	ret
 
-.generatestats ; e6fd
+.generatestats
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
@@ -32,7 +32,7 @@ BugContest_SetCaughtContestMon: ; e6ce
 	ld hl, wContestMon
 	jp GeneratePartyMonStats
 
-.caughttext ; 0xe71d
+.caughttext
 	; Caught @ !
 	text_jump UnknownText_0x1c10c0
 	db "@"

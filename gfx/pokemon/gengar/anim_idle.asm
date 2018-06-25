@@ -6,4 +6,3 @@
 	frame 6, 09
 	frame 5, 09
 	endanim
-; 0xd1c69

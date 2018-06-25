@@ -1,4 +1,4 @@
-_ResetClock: ; 4d3b1
+_ResetClock:
 	farcall BlankScreen
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
@@ -31,34 +31,34 @@ _ResetClock: ; 4d3b1
 	call PrintText
 	ret
 
-.text_okay ; 0x4d3fe
+.text_okay
 	; Password OK. Select CONTINUE & reset settings.
 	text_jump UnknownText_0x1c55db
 	db "@"
 
-.text_wrong ; 0x4d403
+.text_wrong
 	; Wrong password!
 	text_jump UnknownText_0x1c560b
 	db "@"
 
-.text_askreset ; 0x4d408
+.text_askreset
 	; Reset the clock?
 	text_jump UnknownText_0x1c561c
 	db "@"
 
-.NoYes_MenuHeader: ; 0x4d40d
+.NoYes_MenuHeader:
 	db 0 ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .NoYes_MenuData
 	db 1 ; default option
 
-.NoYes_MenuData: ; 0x4d415
+.NoYes_MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "NO@"
 	db "YES@"
 
-ClockResetPassword: ; 4d41e
+ClockResetPassword:
 	call .CalculatePassword
 	push de
 	ld hl, wStringBuffer2
@@ -101,12 +101,12 @@ ClockResetPassword: ; 4d41e
 	scf
 	ret
 
-.pleaseenterpasswordtext ; 0x4d463
+.pleaseenterpasswordtext
 	; Please enter the password.
 	text_jump UnknownText_0x1c562e
 	db "@"
 
-.updateIDdisplay ; 4d468
+.updateIDdisplay
 	hlcoord 14, 15
 	ld de, wStringBuffer2
 	ld c, 5
@@ -129,7 +129,7 @@ ClockResetPassword: ; 4d41e
 	ld [hl], "▲"
 	ret
 
-.dpadinput ; 4d490
+.dpadinput
 	ld a, b
 	and D_LEFT
 	jr nz, .left
@@ -186,7 +186,7 @@ ClockResetPassword: ; 4d41e
 	ld [hl], 9
 	ret
 
-.getcurrentdigit ; 4d4d5
+.getcurrentdigit
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
 	ld d, $0
@@ -194,7 +194,7 @@ ClockResetPassword: ; 4d41e
 	add hl, de
 	ret
 
-.ConvertDecIDToBytes: ; 4d4e0
+.ConvertDecIDToBytes:
 	ld hl, 0
 	ld de, wStringBuffer2 + 4
 	ld bc, 1
@@ -206,7 +206,7 @@ ClockResetPassword: ; 4d41e
 	ld bc, 1000
 	call .ConvertToBytes
 	ld bc, 10000
-.ConvertToBytes: ; 4d501
+.ConvertToBytes:
 	ld a, [de]
 	dec de
 	push hl
@@ -218,7 +218,7 @@ ClockResetPassword: ; 4d41e
 	add hl, bc
 	ret
 
-.CalculatePassword: ; 4d50f
+.CalculatePassword:
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
 	ld de, 0
@@ -234,7 +234,7 @@ ClockResetPassword: ; 4d41e
 	call CloseSRAM
 	ret
 
-.ComponentFromNumber: ; 4d533
+.ComponentFromNumber:
 	ld a, [hli]
 	add e
 	ld e, a
@@ -245,7 +245,7 @@ ClockResetPassword: ; 4d41e
 	jr nz, .ComponentFromNumber
 	ret
 
-.ComponentFromString: ; 4d53e
+.ComponentFromString:
 	ld a, [hli]
 	cp "@"
 	ret z

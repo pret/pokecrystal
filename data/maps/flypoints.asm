@@ -3,7 +3,7 @@ flypoint: MACRO
 	db \2, SPAWN_\1
 ENDM
 
-Flypoints: ; 91c5e
+Flypoints:
 ; landmark, spawn point
 	const_def
 ; Johto
@@ -35,4 +35,3 @@ KANTO_FLYPOINT EQU const_value
 	flypoint CINNABAR,     CINNABAR_ISLAND
 	flypoint INDIGO,       INDIGO_PLATEAU
 	db -1
-; 91c8f

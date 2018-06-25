@@ -7,7 +7,7 @@
 	const HEALMACHINESTATE_HOFPLAYSFX
 	const HEALMACHINESTATE_FINISH
 
-HealMachineAnim: ; 12324
+HealMachineAnim:
 	; If you have no Pokemon, don't change the buffer.  This can lead to some glitchy effects if you have no Pokemon.
 	ld a, [wPartyCount]
 	and a
@@ -24,9 +24,8 @@ HealMachineAnim: ; 12324
 	ld a, [wBuffer2]
 	call DmgToCgbObjPal1
 	ret
-; 1233e
 
-.DoJumptableFunctions: ; 1233e
+.DoJumptableFunctions:
 	xor a
 	ld [wBuffer3], a
 .jumpable_loop
@@ -53,14 +52,12 @@ HealMachineAnim: ; 12324
 
 .finish
 	ret
-; 12365
 
-.Pointers: ; 12365
+.Pointers:
 ; entries correspond to HEALMACHINE_* constants
 	dw .Pokecenter
 	dw .ElmLab
 	dw .HallOfFame
-; 1236b
 
 healmachineanimseq: MACRO
 rept _NARG
@@ -69,15 +66,14 @@ rept _NARG
 endr
 ENDM
 
-.Pokecenter: ; 1236b
+.Pokecenter:
 	healmachineanimseq LOADGFX, PCLOADBALLS, PLAYMUSIC, FINISH
-.ElmLab: ; 1236f
+.ElmLab:
 	healmachineanimseq LOADGFX, PCLOADBALLS, PLAYMUSIC, FINISH
-.HallOfFame: ; 12373
+.HallOfFame:
 	healmachineanimseq LOADGFX, HOFLOADBALLS, HOFPLAYSFX, FINISH
-; 12377
 
-.Jumptable: ; 12377
+.Jumptable:
 ; entries correspond to HEALMACHINESTATE_* constants
 	dw .LoadGFX
 	dw .PC_LoadBallsOntoMachine
@@ -85,29 +81,27 @@ ENDM
 	dw .PlayHealMusic
 	dw .HOF_PlaySFX
 	dw .dummy_5 ; never encountered
-; 12383
 
-.LoadGFX: ; 12383
+.LoadGFX:
 	call .LoadPalettes
 	ld de, .HealMachineGFX
 	ld hl, vTiles0 tile $7c
 	lb bc, BANK(.HealMachineGFX), 2
 	call Request2bpp
 	ret
-; 12393
 
-.PC_LoadBallsOntoMachine: ; 12393
+.PC_LoadBallsOntoMachine:
 	ld hl, wVirtualOAMSprite32
 	ld de, .PC_ElmsLab_OAM
 	call .PlaceHealingMachineTile
 	call .PlaceHealingMachineTile
 	jr .LoadBallsOntoMachine
 
-.HOF_LoadBallsOntoMachine: ; 123a1
+.HOF_LoadBallsOntoMachine:
 	ld hl, wVirtualOAMSprite32
 	ld de, .HOF_OAM
 
-.LoadBallsOntoMachine: ; 123a7
+.LoadBallsOntoMachine:
 	ld a, [wPartyCount]
 	ld b, a
 .party_loop
@@ -121,15 +115,13 @@ ENDM
 	dec b
 	jr nz, .party_loop
 	ret
-; 123bf
 
-.PlayHealMusic: ; 123bf
+.PlayHealMusic:
 	ld de, MUSIC_HEAL
 	call PlayMusic
 	jp .FlashPalettes8Times
-; 123c8
 
-.HOF_PlaySFX: ; 123c8
+.HOF_PlaySFX:
 	ld de, SFX_GAME_FREAK_LOGO_GS
 	call PlaySFX
 	call .FlashPalettes8Times
@@ -137,13 +129,11 @@ ENDM
 	ld de, SFX_BOOT_PC
 	call PlaySFX
 	ret
-; 123db
 
-.dummy_5 ; 123db
+.dummy_5
 	ret
-; 123dc
 
-.PC_ElmsLab_OAM: ; 123dc
+.PC_ElmsLab_OAM:
 	dsprite   4, 0,   4, 2, $7c, PAL_OW_TREE | OBP_NUM
 	dsprite   4, 0,   4, 6, $7c, PAL_OW_TREE | OBP_NUM
 	dsprite   4, 6,   4, 0, $7d, PAL_OW_TREE | OBP_NUM
@@ -152,22 +142,19 @@ ENDM
 	dsprite   5, 3,   5, 0, $7d, PAL_OW_TREE | OBP_NUM | X_FLIP
 	dsprite   6, 0,   4, 0, $7d, PAL_OW_TREE | OBP_NUM
 	dsprite   6, 0,   5, 0, $7d, PAL_OW_TREE | OBP_NUM | X_FLIP
-; 123fc
 
-.HealMachineGFX: ; 123fc
+.HealMachineGFX:
 INCBIN "gfx/overworld/heal_machine.2bpp"
-; 1241c
 
-.HOF_OAM: ; 1241c
+.HOF_OAM:
 	dsprite   7, 4,  10, 1, $7d, PAL_OW_TREE | OBP_NUM
 	dsprite   7, 4,  10, 6, $7d, PAL_OW_TREE | OBP_NUM
 	dsprite   7, 3,   9, 5, $7d, PAL_OW_TREE | OBP_NUM
 	dsprite   7, 3,  11, 2, $7d, PAL_OW_TREE | OBP_NUM
 	dsprite   7, 1,   9, 1, $7d, PAL_OW_TREE | OBP_NUM
 	dsprite   7, 1,  11, 5, $7d, PAL_OW_TREE | OBP_NUM
-; 12434
 
-.LoadPalettes: ; 12434
+.LoadPalettes:
 	call IsCGB
 	jr nz, .cgb
 	ld a, %11100000
@@ -183,13 +170,11 @@ INCBIN "gfx/overworld/heal_machine.2bpp"
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 12451
 
-.palettes ; 12451
+.palettes
 INCLUDE "gfx/overworld/heal_machine.pal"
-; 12459
 
-.FlashPalettes8Times: ; 12459
+.FlashPalettes8Times:
 	ld c, 8
 .palette_loop
 	push bc
@@ -200,9 +185,8 @@ INCLUDE "gfx/overworld/heal_machine.pal"
 	dec c
 	jr nz, .palette_loop
 	ret
-; 12469
 
-.FlashPalettes: ; 12469
+.FlashPalettes:
 	call IsCGB
 	jr nz, .go
 	ld a, [rOBP1]
@@ -250,9 +234,8 @@ INCLUDE "gfx/overworld/heal_machine.pal"
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
-; 124a3
 
-.PlaceHealingMachineTile: ; 124a3
+.PlaceHealingMachineTile:
 	push bc
 	ld a, [wBuffer1]
 	bcpixel 2, 4
@@ -277,4 +260,3 @@ INCLUDE "gfx/overworld/heal_machine.pal"
 	ld [hli], a ; attributes
 	pop bc
 	ret
-; 124c1

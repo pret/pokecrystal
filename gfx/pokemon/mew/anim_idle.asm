@@ -6,4 +6,3 @@
 	frame 4, 20
 	dorepeat 1
 	endanim
-; 0xd1e96

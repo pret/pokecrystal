@@ -1,4 +1,4 @@
-AnimObj00GFX: ; 84a2e
+AnimObj00GFX:
 AnimObjHitGFX:       INCBIN "gfx/battle_anims/hit.2bpp.lz"
 AnimObjCutGFX:       INCBIN "gfx/battle_anims/cut.2bpp.lz"
 AnimObjFireGFX:      INCBIN "gfx/battle_anims/fire.2bpp.lz"
@@ -38,4 +38,3 @@ AnimObjShineGFX:     INCBIN "gfx/battle_anims/shine.2bpp.lz"
 AnimObjAngelsGFX:    INCBIN "gfx/battle_anims/angels.2bpp.lz"
 AnimObjWaveGFX:      INCBIN "gfx/battle_anims/wave.2bpp.lz"
 AnimObjAeroblastGFX: INCBIN "gfx/battle_anims/aeroblast.2bpp.lz"
-; 8640e

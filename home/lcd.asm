@@ -1,7 +1,7 @@
 ; LCD handling
 
 
-Unreferenced_Function547:: ; 547
+Unreferenced_Function547::
 	ld a, [hLCDCPointer]
 	cp rSCX - $ff00
 	ret nz
@@ -9,10 +9,9 @@ Unreferenced_Function547:: ; 547
 	ld a, [wLYOverrides]
 	ld [$ff00+c], a
 	ret
-; 552
 
 
-LCD:: ; 552
+LCD::
 	push af
 	ld a, [hLCDCPointer]
 	and a
@@ -34,10 +33,9 @@ LCD:: ; 552
 .done
 	pop af
 	reti
-; 568
 
 
-DisableLCD:: ; 568
+DisableLCD::
 ; Turn the LCD off
 
 ; Don't need to do anything if the LCD is already off
@@ -69,12 +67,10 @@ DisableLCD:: ; 568
 	ld a, b
 	ld [rIE], a
 	ret
-; 58a
 
 
-EnableLCD:: ; 58a
+EnableLCD::
 	ld a, [rLCDC]
 	set rLCDC_ENABLE, a
 	ld [rLCDC], a
 	ret
-; 591

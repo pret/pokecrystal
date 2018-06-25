@@ -1,6 +1,6 @@
 ; Johto Pokémon in water
 
-JohtoWaterWildMons: ; 0x2b11d
+JohtoWaterWildMons:
 
 	map_id RUINS_OF_ALPH_OUTSIDE
 	db 2 percent ; encounter rate

@@ -1,4 +1,4 @@
-Predef:: ; 2d83
+Predef::
 ; Call predefined function a.
 ; Preserves bc, de, hl and f.
 
@@ -50,4 +50,3 @@ Predef:: ; 2d83
 	ld a, [wPredefTemp + 1]
 	ld l, a
 	ret
-; 2dba

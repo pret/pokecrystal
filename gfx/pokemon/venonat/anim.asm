@@ -13,4 +13,3 @@
 	frame 0, 02
 	dorepeat 11
 	endanim
-; 0xd0b83

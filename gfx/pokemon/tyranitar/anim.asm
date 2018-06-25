@@ -6,4 +6,3 @@
 	frame 0, 16
 	frame 4, 16
 	endanim
-; 0xd1659

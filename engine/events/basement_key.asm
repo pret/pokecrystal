@@ -1,4 +1,4 @@
-_BasementKey: ; 507b4
+_BasementKey:
 ; Are we even in the right map to use this?
 	ld a, [wMapGroup]
 	cp GROUP_GOLDENROD_UNDERGROUND
@@ -26,9 +26,7 @@ _BasementKey: ; 507b4
 	ld a, FALSE
 	ld [wItemEffectSucceeded], a
 	ret
-; 507e1
 
-.BasementKeyScript: ; 0x507e1
+.BasementKeyScript:
 	closetext
 	farjump BasementDoorScript
-; 0x507e6

@@ -1,4 +1,4 @@
-LinkMonStatsScreen: ; 4d319
+LinkMonStatsScreen:
 	ld a, [wMenuCursorY]
 	dec a
 	ld [wCurPartyMon], a
@@ -17,12 +17,12 @@ LinkMonStatsScreen: ; 4d319
 	call WaitBGMap2
 	ret
 
-Link_WaitBGMap: ; 4d354
+Link_WaitBGMap:
 	call WaitBGMap
 	call WaitBGMap2
 	ret
 
-LinkTextbox2: ; 4d35b
+LinkTextbox2:
 	ld h, d
 	ld l, e
 	push bc
@@ -52,9 +52,8 @@ LinkTextbox2: ; 4d35b
 	dec b
 	jr nz, .row
 	ret
-; 4d37e
 
-.PlaceBorder: ; 4d37e
+.PlaceBorder:
 	push hl
 	ld a, $76
 	ld [hli], a
@@ -84,9 +83,8 @@ LinkTextbox2: ; 4d35b
 	call .PlaceRow
 	ld [hl], $7d
 	ret
-; 4d3ab
 
-.PlaceRow: ; 4d3ab
+.PlaceRow:
 	ld d, c
 .row_loop
 	ld [hli], a

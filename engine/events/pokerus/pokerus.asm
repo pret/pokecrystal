@@ -1,4 +1,4 @@
-GivePokerusAndConvertBerries: ; 2ed44
+GivePokerusAndConvertBerries:
 	call ConvertBerriesToBerryJuice
 	ld hl, wPartyMon1PokerusStatus
 	ld a, [wPartyCount]
@@ -121,7 +121,7 @@ GivePokerusAndConvertBerries: ; 2ed44
 	ld [hl], a
 	ret
 
-ConvertBerriesToBerryJuice: ; 2ede6
+ConvertBerriesToBerryJuice:
 ; If we haven't been to Goldenrod City at least once,
 ; prevent Shuckle from turning held Berry into Berry Juice.
 	ld hl, wStatusFlags2

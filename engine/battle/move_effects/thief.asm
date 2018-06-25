@@ -1,4 +1,4 @@
-BattleCommand_Thief: ; 37492
+BattleCommand_Thief:
 ; thief
 
 	ld a, [hBattleTurn]
@@ -113,4 +113,3 @@ BattleCommand_Thief: ; 37492
 	ld e, l
 	ld hl, wEnemyMonItem
 	ret
-; 37517

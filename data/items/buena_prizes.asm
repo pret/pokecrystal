@@ -1,4 +1,4 @@
-BuenaPrizeItems: ; 8b15e
+BuenaPrizeItems:
 ; there are NUM_BUENA_PRIZES items (see engine/events/buena.asm)
 	db ULTRA_BALL,   2
 	db FULL_RESTORE, 2
@@ -10,4 +10,3 @@ BuenaPrizeItems: ; 8b15e
 	db CALCIUM,      5
 	db HP_UP,        5
 .End
-; 8b170

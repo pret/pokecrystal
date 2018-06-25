@@ -17,7 +17,7 @@ endr
 	db -1 ; end
 ENDM
 
-UnownWalls: ; 8aebc
+UnownWalls:
 ; UNOWNWORDS_ESCAPE
 	; db      $08, $44, $04, $00, $2e, $08, -1
 	unownwall "E", "S", "C", "A", "P", "E"
@@ -30,9 +30,8 @@ UnownWalls: ; 8aebc
 ; UNOWNWORDS_HO_OH
 	; db      $0e, $2c, $64, $2c, $0e, -1
 	unownwall "H", "O", "-", "O", "H"
-; 8aed5
 
-MenuHeaders_UnownWalls: ; 0x8aed5
+MenuHeaders_UnownWalls:
 ; UNOWNWORDS_ESCAPE
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 3, 4, 16, 9
@@ -45,4 +44,3 @@ MenuHeaders_UnownWalls: ; 0x8aed5
 ; UNOWNWORDS_HO_OH
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 4, 4, 15, 9
-; 8aee9

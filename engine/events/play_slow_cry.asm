@@ -1,4 +1,4 @@
-PlaySlowCry: ; fb841
+PlaySlowCry:
 	ld a, [wScriptVar]
 	call LoadCry
 	jr c, .done
@@ -28,4 +28,3 @@ PlaySlowCry: ; fb841
 
 .done
 	ret
-; fb877

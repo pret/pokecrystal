@@ -1,4 +1,4 @@
-BugCatchingContestantEventFlagTable: ; 139fe
+BugCatchingContestantEventFlagTable:
 ; there are NUM_BUG_CONTESTANTS entries
 	dw EVENT_BUG_CATCHING_CONTESTANT_1A
 	dw EVENT_BUG_CATCHING_CONTESTANT_2A
@@ -10,4 +10,3 @@ BugCatchingContestantEventFlagTable: ; 139fe
 	dw EVENT_BUG_CATCHING_CONTESTANT_8A
 	dw EVENT_BUG_CATCHING_CONTESTANT_9A
 	dw EVENT_BUG_CATCHING_CONTESTANT_10A
-; 13a12

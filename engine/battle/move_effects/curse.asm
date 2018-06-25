@@ -1,4 +1,4 @@
-BattleCommand_Curse: ; 37588
+BattleCommand_Curse:
 ; curse
 
 	ld de, wBattleMonType1
@@ -94,4 +94,3 @@ BattleCommand_Curse: ; 37588
 	call AnimateFailedMove
 	ld hl, WontRiseAnymoreText
 	jp StdBattleTextBox
-; 37618

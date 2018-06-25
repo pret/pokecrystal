@@ -1,6 +1,6 @@
 ; Kanto Pokémon in grass
 
-KantoGrassWildMons: ; 0x2b274
+KantoGrassWildMons:
 
 	map_id DIGLETTS_CAVE
 	db 4 percent, 2 percent, 8 percent ; encounter rates: morn/day/nite

@@ -1,4 +1,4 @@
-FarDecompress:: ; b40
+FarDecompress::
 ; Decompress graphics data from a:hl to de.
 
 	ld [wLZBank], a
@@ -12,10 +12,9 @@ FarDecompress:: ; b40
 	pop af
 	rst Bankswitch
 	ret
-; b50
 
 
-Decompress:: ; b50
+Decompress::
 ; Pokemon Crystal uses an lz variant for compression.
 ; This is mainly (but not necessarily) used for graphics.
 
@@ -340,4 +339,3 @@ LZ_LONG_HI   EQU %00000011
 .next
 	inc hl
 	jp .Main
-; c2f

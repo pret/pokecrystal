@@ -1,4 +1,4 @@
-CanLearnTMHMMove: ; 11639
+CanLearnTMHMMove:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
@@ -31,9 +31,8 @@ CanLearnTMHMMove: ; 11639
 	pop hl
 	ld c, 0
 	ret
-; 1166a
 
-GetTMHMMove: ; 1166a
+GetTMHMMove:
 	ld a, [wd265]
 	dec a
 	ld hl, TMHMMoves
@@ -43,7 +42,6 @@ GetTMHMMove: ; 1166a
 	ld a, [hl]
 	ld [wd265], a
 	ret
-; 1167a
 
 
 INCLUDE "data/moves/tmhm_moves.asm"

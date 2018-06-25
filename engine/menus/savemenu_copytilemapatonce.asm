@@ -1,4 +1,4 @@
-SaveMenu_CopyTilemapAtOnce: ; 4cf45 (13:4f45)
+SaveMenu_CopyTilemapAtOnce:
 	ld a, [hCGB]
 	and a
 	jp z, WaitBGMap
@@ -38,7 +38,7 @@ SaveMenu_CopyTilemapAtOnce: ; 4cf45 (13:4f45)
 	ld [hBGMapMode], a
 	ret
 
-.CopyTilemapAtOnce: ; 4cf80 (13:4f80)
+.CopyTilemapAtOnce:
 	ld [hSPBuffer], sp ; $ffd9
 	ld sp, hl
 	ld a, [hBGMapAddress + 1]

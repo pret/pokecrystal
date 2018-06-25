@@ -5,4 +5,3 @@
 	dorepeat 2
 	frame 3, 18
 	endanim
-; 0xd12e9

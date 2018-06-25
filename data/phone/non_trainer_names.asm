@@ -1,4 +1,4 @@
-NonTrainerCallerNames: ; 903d6
+NonTrainerCallerNames:
 ; entries correspond to PHONECONTACT_* constants
 	dw .none
 	dw .mom
@@ -13,4 +13,3 @@ NonTrainerCallerNames: ; 903d6
 .elm:      db "PROF.ELM:@"
 .bikeshop: db "BIKE SHOP:@"
 .buena:    db "BUENA:<LNBRK>   DISC JOCKEY@"
-; 90423

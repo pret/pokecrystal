@@ -1,4 +1,4 @@
-DoMysteryGift: ; 1048ba (41:48ba)
+DoMysteryGift:
 	call ClearTileMap
 	call ClearSprites
 	call WaitBGMap
@@ -98,84 +98,74 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld hl, .Text_Sent ; sent item
 	jr .PrintTextAndExit
 
-.LinkCanceled: ; 1049af (41:49af)
+.LinkCanceled:
 	ld hl, .Text_LinkCanceled ; Link has been canceled
 	jr .PrintTextAndExit
 
-.CommunicationError: ; 1049b4 (41:49b4)
+.CommunicationError:
 	ld hl, .Text_CommunicationError ; Communication error
 	call PrintText
 	jp DoMysteryGift
 
-.GiftWaiting: ; 1049bd (41:49bd)
+.GiftWaiting:
 	ld hl, .Text_ReceiveGiftAtCounter ; receive gift at counter
 	jr .PrintTextAndExit
 
-.FriendNotReady: ; 1049c2 (41:49c2)
+.FriendNotReady:
 	ld hl, .Text_FriendNotReady ; friend not ready
 
-.PrintTextAndExit: ; 1049c5 (41:49c5)
+.PrintTextAndExit:
 	call PrintText
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ret
-; 1049cd (41:49cd)
 
-.String_PressAToLink_BToCancel: ; 1049cd
+.String_PressAToLink_BToCancel:
 	db   "Press A to"
 	next "link IR-Device"
 	next "Press B to"
 	next "cancel it."
 	db   "@"
-; 1049fd
 
-.Text_LinkCanceled: ; 1049fd
+.Text_LinkCanceled:
 	text_jump UnknownText_0x1c0436
 	db "@"
-; 104a02
 
-.Text_CommunicationError: ; 104a02
+.Text_CommunicationError:
 	text_jump UnknownText_0x1c0454
 	db "@"
-; 104a07
 
-.Text_ReceiveGiftAtCounter: ; 104a07
+.Text_ReceiveGiftAtCounter:
 	text_jump UnknownText_0x1c046a
 	db "@"
-; 104a0c
 
-.Text_FriendNotReady: ; 104a0c
+.Text_FriendNotReady:
 	text_jump UnknownText_0x1c048e
 	db "@"
-; 104a11
 
-.Text_MaxFiveGifts: ; 104a11
+.Text_MaxFiveGifts:
 	text_jump UnknownText_0x1c04a7
 	db "@"
-; 104a16
 
-.Text_MaxOneGiftPerPerson: ; 104a16
+.Text_MaxOneGiftPerPerson:
 	text_jump UnknownText_0x1c04c6
 	db "@"
-; 104a1b
 
-.Text_Sent: ; 104a1b
+.Text_Sent:
 	text_jump UnknownText_0x1c04e9
 	db "@"
-; 104a20
 
-.Text_SentToHome: ; 104a20
+.Text_SentToHome:
 	text_jump UnknownText_0x1c04fa
 	db "@"
-; 104a25
 
-.CheckAlreadyGotFiveGiftsToday: ; 104a25 (41:4a25)
+.CheckAlreadyGotFiveGiftsToday:
 	call GetMysteryGiftBank
 	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	cp $5
 	jp CloseSRAM
 
-.CheckAlreadyGotAGiftFromThatPerson: ; 104a30 (41:4a30)
+.CheckAlreadyGotAGiftFromThatPerson:
 	call GetMysteryGiftBank
 	ld a, [wMysteryGiftPartnerID]
 	ld b, a
@@ -203,7 +193,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 .No:
 	jp CloseSRAM
 
-.AddMysteryGiftPartnerID: ; 104a56 (41:4a56)
+.AddMysteryGiftPartnerID:
 	call GetMysteryGiftBank
 	ld hl, sNumDailyMysteryGiftPartnerIDs
 	ld a, [hl]
@@ -219,7 +209,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	ld [hl], a
 	jp CloseSRAM
 
-.SaveMysteryGiftTrainerName: ; 104a71 (41:4a71)
+.SaveMysteryGiftTrainerName:
 	call GetMysteryGiftBank
 	ld a, $1
 	ld [sMysteryGiftTrainerHouseFlag], a
@@ -235,7 +225,7 @@ DoMysteryGift: ; 1048ba (41:48ba)
 	call CopyBytes
 	jp CloseSRAM
 
-Function104a95: ; 104a95 (41:4a95)
+Function104a95:
 	di
 	farcall ClearChannels
 	call Function104d5e
@@ -305,10 +295,10 @@ Function104a95: ; 104a95 (41:4a95)
 	ld [hMGStatusFlags], a
 	jp Function104bd0
 
-Function104b04: ; 104b04 (41:4b04)
+Function104b04:
 	call Function104b40
 	jp nz, Function104bd0
-Function104b0a: ; 104b0a (41:4b0a)
+Function104b0a:
 	call Function104d38
 	jp nz, Function104bd0
 	call Function104b88
@@ -318,7 +308,7 @@ Function104b0a: ; 104b0a (41:4b0a)
 	call Function105033
 	jp Function104bd0
 
-Function104b22: ; 104b22 (41:4b22)
+Function104b22:
 	call Function104b88
 	jp nz, Function104bd0
 	call Function104d43
@@ -330,13 +320,13 @@ Function104b22: ; 104b22 (41:4b22)
 	call Function10502e
 	jp Function104bd0
 
-Function104b40: ; 104b40 (41:4b40)
+Function104b40:
 	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d56
 	ret nz
 
-Function104b49: ; 104b49 (41:4b49)
+Function104b49:
 	call Function105033
 	ld a, [hMGStatusFlags]
 	cp $6c
@@ -368,7 +358,7 @@ Function104b49: ; 104b49 (41:4b49)
 	cp $6c
 	ret
 
-Function104b88: ; 104b88 (41:4b88)
+Function104b88:
 	ld a, $96
 	ld [hPrintNum1], a
 	ld hl, hPrintNum1
@@ -404,7 +394,7 @@ Function104b88: ; 104b88 (41:4b88)
 	cp $6c
 	ret
 
-Function104bd0: ; 104bd0 (41:4bd0)
+Function104bd0:
 	nop
 	ld a, [hMGStatusFlags]
 	cp $10
@@ -451,7 +441,7 @@ Function104bd0: ; 104bd0 (41:4bd0)
 	pop af
 	ret
 
-Function104c2d: ; 104c2d (41:4c2d)
+Function104c2d:
 	di
 	farcall ClearChannels
 	call Function104d5e
@@ -488,7 +478,7 @@ Function104c2d: ; 104c2d (41:4c2d)
 	call Function10502e
 	jp Function104d1c
 
-Function104c8a: ; 104c8a (41:4c8a)
+Function104c8a:
 	ld hl, hPrintNum1
 	ld b, $1
 	call Function104d56
@@ -524,7 +514,7 @@ Function104c8a: ; 104c8a (41:4c8a)
 	cp $6c
 	ret
 
-Function104cd2: ; 104cd2 (41:4cd2)
+Function104cd2:
 	ld a, $3c
 	ld [hPrintNum1], a
 	ld hl, hPrintNum1
@@ -561,7 +551,7 @@ Function104cd2: ; 104cd2 (41:4cd2)
 	cp $6c
 	ret
 
-Function104d1c: ; 104d1c (41:4d1c)
+Function104d1c:
 	nop
 	ld a, [hMGStatusFlags]
 	push af
@@ -576,39 +566,39 @@ Function104d1c: ; 104d1c (41:4d1c)
 	pop af
 	ret
 
-Function104d32: ; 104d32 (41:4d32)
+Function104d32:
 	ld a, $80
 	ld [hMGStatusFlags], a
 	and a
 	ret
 
-Function104d38: ; 104d38 (41:4d38)
+Function104d38:
 	call Function104d96
 	call Function104e46
 	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
-Function104d43: ; 104d43 (41:4d43)
+Function104d43:
 	call Function104d96
 	call Function104dfe
 	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
-Function104d4e: ; 104d4e (41:4d4e)
+Function104d4e:
 	call Function104e93
 	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
-Function104d56: ; 104d56 (41:4d56)
+Function104d56:
 	call Function104f57
 	ld a, [hMGStatusFlags]
 	cp $6c
 	ret
 
-Function104d5e: ; 104d5e (41:4d5e)
+Function104d5e:
 	call Function104d74
 	ld a, $4
 	ld [rIE], a
@@ -624,7 +614,7 @@ Function104d5e: ; 104d5e (41:4d5e)
 	jr nz, .asm_104d6d
 	ret
 
-Function104d74: ; 104d74 (41:4d74)
+Function104d74:
 	xor a
 	ld [rTAC], a
 	ld a, $fe
@@ -636,7 +626,7 @@ Function104d74: ; 104d74 (41:4d74)
 	ld [rTAC], a
 	ret
 
-Function104d86: ; 104d86 (41:4d86)
+Function104d86:
 	xor a
 	ld [rTAC], a
 	ld [rTMA], a
@@ -647,21 +637,21 @@ Function104d86: ; 104d86 (41:4d86)
 	ld [rTAC], a
 	ret
 
-Function104d96: ; 104d96 (41:4d96)
+Function104d96:
 	ld a, $c0
 	call Function104e8c
 	ld a, $1
 	ld [hPrintNum9], a
 	ret
 
-Function104da0: ; 104da0 (41:4da0)
+Function104da0:
 	xor a
 	call Function104e8c
 	ld a, $2
 	ld [rTAC], a
 	ret
 
-Function104da9: ; 104da9 (41:4da9)
+Function104da9:
 	inc d
 	ret z
 	xor a
@@ -673,7 +663,7 @@ Function104da9: ; 104da9 (41:4da9)
 	or a
 	ret
 
-Function104db7: ; 104db7 (41:4db7)
+Function104db7:
 	inc d
 	ret z
 	xor a
@@ -685,7 +675,7 @@ Function104db7: ; 104db7 (41:4db7)
 	or a
 	ret
 
-Function104dc5: ; 104dc5 (41:4dc5)
+Function104dc5:
 	ld a, $c1
 	ld [$ff00+c], a
 .wait
@@ -696,7 +686,7 @@ Function104dc5: ; 104dc5 (41:4dc5)
 	halt
 	jr .wait
 
-Function104dd1: ; 104dd1 (41:4dd1)
+Function104dd1:
 	ld a, $c0
 	ld [$ff00+c], a
 .wait
@@ -707,7 +697,7 @@ Function104dd1: ; 104dd1 (41:4dd1)
 	halt
 	jr .wait
 
-Function104ddd: ; 104ddd (41:4ddd)
+Function104ddd:
 	ld d, $0
 	ld e, d
 	ld a, $1
@@ -730,7 +720,7 @@ Function104ddd: ; 104ddd (41:4ddd)
 	and b
 	jr nz, .loop
 
-Function104dfe: ; 104dfe (41:4dfe)
+Function104dfe:
 	ld c, LOW(rRP)
 	ld d, $0
 	ld e, d
@@ -757,7 +747,7 @@ Function104dfe: ; 104dfe (41:4dfe)
 	call Function104dd1
 	ret
 
-Function104e3a: ; 104e3a (41:4e3a)
+Function104e3a:
 	; Wait a random amount of time
 	call Random
 	ld e, a
@@ -768,7 +758,7 @@ Function104e3a: ; 104e3a (41:4e3a)
 	ld a, d
 	or e
 	jr nz, .loop
-Function104e46: ; 104e46 (41:4e46)
+Function104e46:
 	ld a, $2
 	ld [hPrintNum9], a
 	ld c, LOW(rRP)
@@ -800,13 +790,13 @@ Function104e46: ; 104e46 (41:4e46)
 	ld [hMGStatusFlags], a
 	ret
 
-Function104e8c: ; 104e8c (41:4e8c)
+Function104e8c:
 	ld [rRP], a
 	ld a, $ff
 	ld [hMGStatusFlags], a
 	ret
 
-Function104e93: ; 104e93 (41:4e93)
+Function104e93:
 	xor a
 	ld [hPrintNum5], a
 	ld [hPrintNum6], a
@@ -843,7 +833,7 @@ Function104e93: ; 104e93 (41:4e93)
 	pop hl
 	ret
 
-Function104ed6: ; 104ed6 (41:4ed6)
+Function104ed6:
 	ld c, LOW(rRP)
 	ld d, $5
 	call Function104dd1
@@ -910,25 +900,25 @@ Function104ed6: ; 104ed6 (41:4ed6)
 	call Function104dd1
 	ret
 
-Function104f42: ; 104f42 (41:4f42)
+Function104f42:
 	ld a, [hMGStatusFlags]
 	or $2
 	ld [hMGStatusFlags], a
 	ret
 
-Function104f49: ; 104f49 (41:4f49)
+Function104f49:
 	ld a, [hMGStatusFlags]
 	or $1
 	ld [hMGStatusFlags], a
 	ret
 
-Function104f50: ; 104f50 (41:4f50)
+Function104f50:
 	ld a, [hMGStatusFlags]
 	or $80
 	ld [hMGStatusFlags], a
 	ret
 
-Function104f57: ; 104f57 (41:4f57)
+Function104f57:
 	xor a
 	ld [hPrintNum5], a
 	ld [hPrintNum6], a
@@ -980,7 +970,7 @@ Function104f57: ; 104f57 (41:4f57)
 	ld [hPrintNum6], a
 	ret
 
-Function104faf: ; 104faf (41:4faf)
+Function104faf:
 	ld c, LOW(rRP)
 	ld d, $0
 	call Function104db7
@@ -1059,15 +1049,15 @@ Function104faf: ; 104faf (41:4faf)
 	call Function104dd1
 	ret
 
-Function10502e: ; 10502e (41:502e)
+Function10502e:
 	ld b, $0
 	jp Function104e93
 
-Function105033: ; 105033 (41:5033)
+Function105033:
 	ld b, $0
 	jp Function104f57
 
-MysteryGift_ReadJoypad: ; 105038 (41:5038)
+MysteryGift_ReadJoypad:
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
 	ld a, R_DPAD
@@ -1112,7 +1102,7 @@ endr
 	ld [rJOYP], a
 	ret
 
-MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
+MysteryGift_CheckAndSetDecorationAlreadyReceived:
 	call GetMysteryGiftBank
 	ld d, $0
 	ld b, CHECK_FLAG
@@ -1134,7 +1124,7 @@ MysteryGift_CheckAndSetDecorationAlreadyReceived: ; 105069 (41:5069)
 	xor a
 	ret
 
-MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
+MysteryGift_CopyReceivedDecosToPC:
 	call GetMysteryGiftBank
 	ld c, $0
 .loop
@@ -1157,7 +1147,7 @@ MysteryGift_CopyReceivedDecosToPC: ; 105091 (41:5091)
 	jr c, .loop
 	jp CloseSRAM
 
-UnlockMysteryGift: ; 1050b9
+UnlockMysteryGift:
 	call GetMysteryGiftBank
 	ld hl, sMysteryGiftUnlocked
 	ld a, [hl]
@@ -1167,9 +1157,8 @@ UnlockMysteryGift: ; 1050b9
 	ld [hl], a
 .ok
 	jp CloseSRAM
-; 1050c8
 
-Function1050c8: ; 1050c8
+Function1050c8:
 	call GetMysteryGiftBank
 	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	cp $ff
@@ -1178,10 +1167,9 @@ Function1050c8: ; 1050c8
 	ld [sNumDailyMysteryGiftPartnerIDs], a
 .okay
 	jp CloseSRAM
-; 1050d9
 
 
-BackupMysteryGift: ; 1050d9
+BackupMysteryGift:
 	call GetMysteryGiftBank
 	ld hl, sMysteryGiftItem
 	ld de, sBackupMysteryGiftItem
@@ -1191,10 +1179,9 @@ BackupMysteryGift: ; 1050d9
 	ld a, [hl]
 	ld [de], a
 	jp CloseSRAM
-; 1050ea
 
 
-RestoreMysteryGift: ; 1050ea (41:50ea)
+RestoreMysteryGift:
 	call GetMysteryGiftBank
 	ld hl, sBackupMysteryGiftItem
 	ld de, sMysteryGiftItem
@@ -1205,7 +1192,7 @@ RestoreMysteryGift: ; 1050ea (41:50ea)
 	ld [de], a
 	jp CloseSRAM
 
-MysteryGift_ClearTrainerData: ; 1050fb (41:50fb)
+MysteryGift_ClearTrainerData:
 	ld hl, wMysteryGiftTrainerData
 	xor a
 	ld b, wMysteryGiftTrainerDataEnd - wMysteryGiftTrainerData
@@ -1216,13 +1203,12 @@ MysteryGift_ClearTrainerData: ; 1050fb (41:50fb)
 	ret
 
 
-GetMysteryGiftBank: ; 105106
+GetMysteryGiftBank:
 	ld a, BANK(sBackupMysteryGiftItem)
 	jp GetSRAMBank
-; 10510b
 
 
-StagePartyDataForMysteryGift: ; 10510b (41:510b)
+StagePartyDataForMysteryGift:
 ; You will be sending this data to your mystery gift partner.
 ; Structure is the same as a trainer with species and moves
 ; defined.
@@ -1273,7 +1259,7 @@ StagePartyDataForMysteryGift: ; 10510b (41:510b)
 	ld [wca00], a
 	jp CloseSRAM
 
-InitMysteryGiftLayout: ; 105153 (41:5153)
+InitMysteryGiftLayout:
 	call ClearBGPalettes
 	call DisableLCD
 	ld hl, MysteryGiftGFX
@@ -1364,37 +1350,36 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	call SetPalettes
 	ret
 
-.Load5GFX: ; 10522e (41:522e)
+.Load5GFX:
 	ld b,  5
 	jr .gfx_loop
-; 105232 (41:5232)
 
 .Unreferenced_Load6GFX:
 	ld b,  6
 	jr .gfx_loop
 
-.Load16GFX: ; 105236 (41:5236)
+.Load16GFX:
 	ld b, 16
 
-.gfx_loop ; 105238 (41:5238)
+.gfx_loop
 	ld [hli], a
 	inc a
 	dec b
 	jr nz, .gfx_loop
 	ret
 
-.Load9Column: ; 10523e (41:523e)
+.Load9Column:
 	ld b,  9
 	jr .col_loop
 
-.Load11Column: ; 105242 (41:5242)
+.Load11Column:
 	ld b, 11
 	jr .col_loop
 
-.Load14Column: ; 105246 (41:5246)
+.Load14Column:
 	ld b, 14
 
-.col_loop ; 105248 (41:5248)
+.col_loop
 	ld [hl], a
 	ld de, SCREEN_WIDTH
 	add hl, de
@@ -1402,7 +1387,7 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	jr nz, .col_loop
 	ret
 
-.Load16Row: ; 105251 (41:5251)
+.Load16Row:
 	ld b, 16
 .row_loop
 	ld [hli], a
@@ -1410,11 +1395,11 @@ InitMysteryGiftLayout: ; 105153 (41:5153)
 	jr nz, .row_loop
 	ret
 
-MysteryGiftGFX: ; 105258
+MysteryGiftGFX:
 INCBIN "gfx/mystery_gift/mystery_gift.2bpp"
 .End
 
-Function105688: ; 105688 (41:5688)
+Function105688:
 	call ClearTileMap
 	call ClearSprites
 	call WaitBGMap
@@ -1455,7 +1440,7 @@ Function105688: ; 105688 (41:5688)
 	ld hl, Text_ListedCardAsNumber
 	jr PrintTextAndExit_JP
 
-Function1056eb: ; 1056eb (41:56eb)
+Function1056eb:
 	ld c, 16
 .loop
 	ld hl, wVirtualOAMSprite00YCoord
@@ -1484,55 +1469,52 @@ endr
 	pop bc
 	jr .loop
 
-Function105712: ; 105712 (41:5712)
+Function105712:
 	call Function105777
 	ld hl, Text_MGLinkCanceled
 	jr PrintTextAndExit_JP
 
-Function10571a: ; 10571a (41:571a)
+Function10571a:
 	call Function105777
 	ld hl, Text_MGCommError
 	call PrintText
 	jp Function105688
 
-PrintTextAndExit_JP: ; 105726 (41:5726)
+PrintTextAndExit_JP:
 	call PrintText
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ret
-; 10572e (41:572e)
 
-String_PressAToLink_BToCancel_JP: ; 10572e
+String_PressAToLink_BToCancel_JP:
 	db   "エーボタン<WO>おすと"
 	next "つうしん<PKMN>おこなわれるよ！"
 	next "ビーボタン<WO>おすと"
 	next "つうしん<WO>ちゅうし　します"
 	db   "@"
 
-; 10575e
 
-Text_ReceivedCard: ; 10575e
+Text_ReceivedCard:
 	text_jump UnknownText_0x1c051a
 	db "@"
 
-Text_ListedCardAsNumber: ; 105763
+Text_ListedCardAsNumber:
 	text_jump UnknownText_0x1c0531
 	db "@"
 
-Text_CardNotRegistered: ; 105768
+Text_CardNotRegistered:
 	text_jump UnknownText_0x1c0555
 	db "@"
 
-Text_MGLinkCanceled: ; 10576d
+Text_MGLinkCanceled:
 	text_jump UnknownText_0x1c0573
 	db "@"
 
-Text_MGCommError: ; 105772
+Text_MGCommError:
 	text_jump UnknownText_0x1c0591
 	db "@"
-; 105777
 
-Function105777: ; 105777 (41:5777)
+Function105777:
 	call ClearSprites
 	call ClearTileMap
 	call EnableLCD
@@ -1542,7 +1524,7 @@ Function105777: ; 105777 (41:5777)
 	call SetPalettes
 	ret
 
-Function10578c: ; 10578c (41:578c)
+Function10578c:
 	ld de, wLinkData
 	ld a, BANK(sPlayerData)
 	call GetSRAMBank
@@ -1572,7 +1554,7 @@ Function10578c: ; 10578c (41:578c)
 	call CloseSRAM
 	ret
 
-Function1057d7: ; 1057d7 (41:57d7)
+Function1057d7:
 	call ClearBGPalettes
 	call DisableLCD
 	ld hl, MysteryGiftJP_GFX
@@ -1666,36 +1648,36 @@ Function1057d7: ; 1057d7 (41:57d7)
 	farcall GetMysteryGift_MobileAdapterLayout
 	jp SetPalettes
 
-.Load6Row: ; 1058c6 (41:58c6)
+.Load6Row:
 	ld b,  6
 	jr .row_loop
 
-.Load11Row: ; 1058ca (41:58ca)
+.Load11Row:
 	ld b, 11
 	jr .row_loop
 
-.Load12Row: ; 1058ce (41:58ce)
+.Load12Row:
 	ld b, 12
 
-.row_loop ; 1058d0 (41:58d0)
+.row_loop
 	ld [hli], a
 	inc a
 	dec b
 	jr nz, .row_loop
 	ret
 
-.Load9Column: ; 1058d6 (41:58d6)
+.Load9Column:
 	ld b,  9
 	jr .column_loop
 
-.Load11Column: ; 1058da (41:58da)
+.Load11Column:
 	ld b, 11
 	jr .column_loop
 
-.Load14Column: ; 1058de (41:58de)
+.Load14Column:
 	ld b, 14
 
-.column_loop ; 1058e0 (41:58e0)
+.column_loop
 	ld [hl], a
 	ld de, SCREEN_WIDTH
 	add hl, de
@@ -1703,16 +1685,15 @@ Function1057d7: ; 1057d7 (41:57d7)
 	jr nz, .column_loop
 	ret
 
-.Load16Row: ; 1058e9 (41:58e9)
+.Load16Row:
 	ld b, 16
 .row_loop_no_inc
 	ld [hli], a
 	dec b
 	jr nz, .row_loop_no_inc
 	ret
-; 1058f0 (41:58f0)
 
-.OAM_data: ; 1058f0
+.OAM_data:
 	dsprite  2, 1,  6, 4, $00, 0
 	dsprite  2, 1,  7, 4, $01, 0
 	dsprite  2, 1,  8, 4, $02, 0
@@ -1731,5 +1712,5 @@ Function1057d7: ; 1057d7 (41:57d7)
 	dsprite  1, 1, 14, 4, $07, 0
 
 ; japanese mystery gift gfx
-MysteryGiftJP_GFX: ; 105930
+MysteryGiftJP_GFX:
 INCBIN "gfx/mystery_gift/mystery_gift_jp.2bpp"

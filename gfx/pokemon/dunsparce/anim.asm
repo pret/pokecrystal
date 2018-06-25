@@ -5,4 +5,3 @@
 	dorepeat 2
 	frame 4, 12
 	endanim
-; 0xd1441

@@ -131,10 +131,10 @@ INCLUDE "engine/link/link.asm"
 INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/link_result.asm"
 
-ChrisBackpic: ; 2ba1a
+ChrisBackpic:
 INCBIN "gfx/player/chris_back.2bpp.lz"
 
-DudeBackpic: ; 2bbaa
+DudeBackpic:
 INCBIN "gfx/battle/dude.2bpp.lz"
 
 
@@ -216,10 +216,10 @@ INCLUDE "data/maps/scenes.asm"
 INCLUDE "engine/overworld/load_map_part.asm"
 INCLUDE "engine/phone/phonering_copytilemapatonce.asm"
 
-Shrink1Pic: ; 4d249
+Shrink1Pic:
 INCBIN "gfx/new_game/shrink1.2bpp.lz"
 
-Shrink2Pic: ; 4d2d9
+Shrink2Pic:
 INCBIN "gfx/new_game/shrink2.2bpp.lz"
 
 INCLUDE "engine/link/link_2.asm"
@@ -266,7 +266,7 @@ INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/names.asm"
 INCLUDE "data/pokemon/unused_pic_banks.asm"
 
-UnknownEggPic:: ; 53d9c
+UnknownEggPic::
 ; Another egg pic. This is shifted up a few pixels.
 INCBIN "gfx/unknown/unknown_egg.2bpp.lz"
 
@@ -376,7 +376,7 @@ INCLUDE "engine/battle_anims/bg_effects.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "engine/events/poisonstep_pals.asm"
 
-TheEndGFX:: ; cbd2e
+TheEndGFX::
 INCBIN "gfx/credits/theend.2bpp"
 
 
@@ -440,7 +440,7 @@ INCLUDE "engine/pokemon/bills_pc.asm"
 
 SECTION "bank39", ROMX
 
-CopyrightGFX:: ; e4000
+CopyrightGFX::
 INCBIN "gfx/splash/copyright.2bpp"
 
 INCLUDE "engine/menus/options_menu.asm"
@@ -489,7 +489,7 @@ INCLUDE "mobile/mobile_42.asm"
 
 SECTION "Intro Logo", ROMX
 
-IntroLogoGFX: ; 109407
+IntroLogoGFX:
 INCBIN "gfx/intro/logo.2bpp.lz"
 
 
@@ -576,7 +576,7 @@ INCLUDE "engine/overworld/landmarks.asm"
 
 SECTION "bank77", ROMX
 
-UnownFont: ; 1dc000
+UnownFont:
 INCBIN "gfx/font/unown_font.2bpp"
 
 INCLUDE "engine/printer/print_party.asm"
@@ -590,7 +590,7 @@ INCLUDE "engine/pokedex/pokedex_3.asm"
 INCLUDE "engine/events/catch_tutorial_input.asm"
 INCLUDE "engine/pokegear/townmap_convertlinebreakcharacters.asm"
 
-PokegearGFX: ; 1de2e4
+PokegearGFX:
 INCBIN "gfx/pokegear/pokegear.2bpp.lz"
 
 INCLUDE "engine/pokemon/european_mail.asm"

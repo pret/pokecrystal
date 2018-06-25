@@ -4,4 +4,3 @@
 	frame 4, 10
 	frame 7, 25
 	endanim
-; 0xd0c26

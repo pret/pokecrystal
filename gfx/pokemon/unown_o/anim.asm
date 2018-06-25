@@ -5,4 +5,3 @@
 	frame 1, 10
 	frame 3, 04
 	endanim
-; 0xd234c

@@ -3,4 +3,3 @@
 	frame 1, 13
 	dorepeat 1
 	endanim
-; 0xd20b0

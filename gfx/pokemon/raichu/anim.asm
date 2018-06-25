@@ -5,4 +5,3 @@
 	frame 2, 10
 	frame 1, 08
 	endanim
-; 0xd0a0f

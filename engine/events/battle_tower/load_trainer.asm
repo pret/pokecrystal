@@ -1,4 +1,4 @@
-Function_LoadOpponentTrainerAndPokemons: ; 1f8000
+Function_LoadOpponentTrainerAndPokemons:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wBT_OTTrainer)
@@ -92,7 +92,7 @@ endc
 	ret
 
 
-Function_LoadRandomBattleTowerMon: ; 1f8081
+Function_LoadRandomBattleTowerMon:
 	ld c, BATTLETOWER_PARTY_LENGTH
 .loop
 	push bc
@@ -207,7 +207,6 @@ Function_LoadRandomBattleTowerMon: ; 1f8081
 	ld [sBTMonPrevTrainer3], a
 	call CloseSRAM
 	ret
-; 1f814e
 
 INCLUDE "data/battle_tower/classes.asm"
 

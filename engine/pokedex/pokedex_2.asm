@@ -1,4 +1,4 @@
-AnimateDexSearchSlowpoke: ; 441cf
+AnimateDexSearchSlowpoke:
 	ld hl, .FrameIDs
 	ld b, 25
 .loop
@@ -29,7 +29,7 @@ AnimateDexSearchSlowpoke: ; 441cf
 	call DelayFrames
 	ret
 
-.FrameIDs: ; 441fc
+.FrameIDs:
 	; frame ID, duration
 	db 0, 7
 	db 1, 7
@@ -38,7 +38,7 @@ AnimateDexSearchSlowpoke: ; 441cf
 	db 4, 7
 	db -2
 
-DoDexSearchSlowpokeFrame: ; 44207
+DoDexSearchSlowpokeFrame:
 	ld a, [wDexSearchSlowpokeFrame]
 	ld hl, .SlowpokeSpriteData
 	ld de, wVirtualOAMSprite00
@@ -64,7 +64,7 @@ DoDexSearchSlowpokeFrame: ; 44207
 	inc de
 	jr .loop
 
-.SlowpokeSpriteData: ; 44228
+.SlowpokeSpriteData:
 	dsprite 11, 0,  9, 0, $00, 0
 	dsprite 11, 0, 10, 0, $01, 0
 	dsprite 11, 0, 11, 0, $02, 0
@@ -76,7 +76,7 @@ DoDexSearchSlowpokeFrame: ; 44207
 	dsprite 13, 0, 11, 0, $22, 0
 	db -1
 
-DisplayDexEntry: ; 4424d
+DisplayDexEntry:
 	call GetPokemonName
 	hlcoord 9, 3
 	call PlaceString ; mon species
@@ -211,11 +211,11 @@ DisplayDexEntry: ; 4424d
 	call FarString
 	ret
 
-UnreferencedPOKeString: ; 44331
+UnreferencedPOKeString:
 ; unused
 	db "#@"
 
-GetDexEntryPointer: ; 44333
+GetDexEntryPointer:
 ; return dex entry pointer b:de
 	push hl
 	ld hl, PokedexDataPointerTable
@@ -247,8 +247,8 @@ GetDexEntryPointer: ; 44333
 	db BANK("Pokedex Entries 129-192")
 	db BANK("Pokedex Entries 193-251")
 
-GetDexEntryPagePointer: ; 44355
-	call GetDexEntryPointer ; b:de
+GetDexEntryPagePointer:
+	call GetDexEntryPointer
 	push hl
 	ld h, d
 	ld l, e

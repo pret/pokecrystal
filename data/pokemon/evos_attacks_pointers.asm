@@ -1,6 +1,6 @@
 ; Evolutions and attacks are grouped together since they're both checked at level-up.
 
-EvosAttacksPointers:: ; 0x425b1
+EvosAttacksPointers::
 	dw BulbasaurEvosAttacks
 	dw IvysaurEvosAttacks
 	dw VenusaurEvosAttacks
@@ -252,4 +252,3 @@ EvosAttacksPointers:: ; 0x425b1
 	dw LugiaEvosAttacks
 	dw HoOhEvosAttacks
 	dw CelebiEvosAttacks
-; 0x427a7

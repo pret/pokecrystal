@@ -4,4 +4,3 @@
 	frame 4, 10
 	frame 1, 25
 	endanim
-; 0xd14e4

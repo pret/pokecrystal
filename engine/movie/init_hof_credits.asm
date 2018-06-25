@@ -1,4 +1,4 @@
-InitDisplayForHallOfFame: ; 4e881
+InitDisplayForHallOfFame:
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -23,12 +23,12 @@ InitDisplayForHallOfFame: ; 4e881
 	call SetPalettes
 	ret
 
-.SavingRecordDontTurnOff: ; 0x4e8bd
+.SavingRecordDontTurnOff:
 	; SAVING RECORD… DON'T TURN OFF!
 	text_jump UnknownText_0x1bd39e
 	db "@"
 
-InitDisplayForRedCredits: ; 4e8c2
+InitDisplayForRedCredits:
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -60,7 +60,7 @@ InitDisplayForRedCredits: ; 4e8c2
 	call SetPalettes
 	ret
 
-ResetDisplayBetweenHallOfFameMons: ; 4e906
+ResetDisplayBetweenHallOfFameMons:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)

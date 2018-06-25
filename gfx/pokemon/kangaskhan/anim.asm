@@ -6,4 +6,3 @@
 	frame 3, 09
 	frame 4, 15
 	endanim
-; 0xd0f3c

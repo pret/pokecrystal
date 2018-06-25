@@ -8,4 +8,3 @@
 	dorepeat 5
 	frame 3, 10
 	endanim
-; 0xd1271

@@ -1,4 +1,4 @@
-BattleTowerMons: ; 1f8450
+BattleTowerMons:
 ; 10 groups of 21 mons.
 
 

@@ -10,4 +10,3 @@
 	frame 1, 12
 	dorepeat 8
 	endanim
-; 0xd1114

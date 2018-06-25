@@ -6,4 +6,3 @@
 	frame 4, 05
 	dorepeat 4
 	endanim
-; 0xd1280

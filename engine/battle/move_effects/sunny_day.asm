@@ -1,4 +1,4 @@
-BattleCommand_StartSun: ; 37c07
+BattleCommand_StartSun:
 ; startsun
 	ld a, WEATHER_SUN
 	ld [wBattleWeather], a
@@ -8,4 +8,3 @@ BattleCommand_StartSun: ; 37c07
 	ld hl, SunGotBrightText
 	jp StdBattleTextBox
 
-; 37c1a

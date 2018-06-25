@@ -1,4 +1,4 @@
-BattleCommand_Conversion2: ; 359e6
+BattleCommand_Conversion2:
 ; conversion2
 
 	ld a, [wAttackMissed]
@@ -63,4 +63,3 @@ BattleCommand_Conversion2: ; 359e6
 .failed
 	jp FailMove
 
-; 35a53

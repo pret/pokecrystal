@@ -1,4 +1,4 @@
-_GiveOddEgg: ; 1fb4b6
+_GiveOddEgg:
 	; Figure out which egg to give.
 
 	; Compare a random word to
@@ -88,7 +88,6 @@ _GiveOddEgg: ; 1fb4b6
 	ld [wMobileMonNicknamePointerBuffer + 1], a
 	farcall AddMobileMonToParty
 	ret
-; 1fb546
 
 .Odd:
 	db "ODD@@@@@@@@@"

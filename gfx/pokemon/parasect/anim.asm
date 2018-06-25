@@ -10,4 +10,3 @@
 	frame 4, 04
 	dorepeat 8
 	endanim
-; 0xd0b66

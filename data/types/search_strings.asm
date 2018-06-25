@@ -1,4 +1,4 @@
-PokedexTypeSearchStrings: ; 40fe4
+PokedexTypeSearchStrings:
 ; entries correspond with PokedexTypeSearchConversionTable (see data/types/search_types.asm)
 	db "  ----  @"
 	db " NORMAL @"
@@ -18,4 +18,3 @@ PokedexTypeSearchStrings: ; 40fe4
 	db " DRAGON @"
 	db "  DARK  @"
 	db " STEEL  @"
-; 41086

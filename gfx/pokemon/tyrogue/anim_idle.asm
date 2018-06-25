@@ -3,4 +3,3 @@
 	frame 4, 05
 	dorepeat 1
 	endanim
-; 0xd2187

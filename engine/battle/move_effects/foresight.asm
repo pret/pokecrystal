@@ -1,4 +1,4 @@
-BattleCommand_Foresight: ; 376a0
+BattleCommand_Foresight:
 ; foresight
 
 	ld a, [wAttackMissed]
@@ -20,4 +20,3 @@ BattleCommand_Foresight: ; 376a0
 
 .failed
 	jp FailMove
-; 376c2

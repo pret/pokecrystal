@@ -5,4 +5,3 @@
 	frame 0, 06
 	frame 3, 08
 	endanim
-; 0xd1607

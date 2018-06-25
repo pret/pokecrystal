@@ -6,4 +6,3 @@
 	frame 0, 10
 	frame 4, 08
 	endanim
-; 0xd11a3

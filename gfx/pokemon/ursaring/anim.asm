@@ -6,4 +6,3 @@
 	dorepeat 3
 	frame 1, 10
 	endanim
-; 0xd14c8

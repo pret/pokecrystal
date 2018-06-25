@@ -6,4 +6,3 @@
 	frame 1, 12
 	frame 5, 12
 	endanim
-; 0xd1e57

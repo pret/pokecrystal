@@ -10,4 +10,3 @@
 	frame 0, 03
 	dorepeat 6
 	endanim
-; 0xd1634

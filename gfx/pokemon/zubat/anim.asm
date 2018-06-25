@@ -5,4 +5,3 @@
 	frame 3, 07
 	frame 0, 07
 	endanim
-; 0xd0afa

@@ -1,4 +1,4 @@
-BattleCommand_Metronome: ; 37418
+BattleCommand_Metronome:
 ; metronome
 
 	call ClearLastMove
@@ -40,7 +40,6 @@ BattleCommand_Metronome: ; 37418
 	ld [hl], b
 	call UpdateMoveData
 	jp ResetTurn
-; 37454
 
 
 INCLUDE "data/battle/metronome_exception_moves.asm"
