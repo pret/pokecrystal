@@ -12,4 +12,3 @@
 	frame 3, 05
 	dorepeat 8
 	endanim
-; 0xd09ed

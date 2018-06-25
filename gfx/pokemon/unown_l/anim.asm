@@ -9,4 +9,3 @@
 	frame 4, 12
 	frame 3, 11
 	endanim
-; 0xd2319

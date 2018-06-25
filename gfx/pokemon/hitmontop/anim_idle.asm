@@ -4,4 +4,3 @@
 	dorepeat 1
 	frame 4, 30
 	endanim
-; 0xd2192

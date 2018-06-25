@@ -7,4 +7,3 @@
 	frame 3, 04
 	frame 4, 08
 	endanim
-; 0xd1560

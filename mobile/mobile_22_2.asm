@@ -458,35 +458,30 @@ Function8b555:
 	pop af
 	ret
 
-UnknownText_0x8b5ce: ; 0x8b5ce
+UnknownText_0x8b5ce:
 	; Please enter any four-digit number.
 	text_jump UnknownText_0x1bc187
 	db "@"
-; 0x8b5d3
 
-UnknownText_0x8b5d3: ; 0x8b5d3
+UnknownText_0x8b5d3:
 	; Enter the same number to confirm.
 	text_jump UnknownText_0x1bc1ac
 	db "@"
-; 0x8b5d8
 
-UnknownText_0x8b5d8: ; 0x8b5d8
+UnknownText_0x8b5d8:
 	; That's not the same number.
 	text_jump UnknownText_0x1bc1cf
 	db "@"
-; 0x8b5dd
 
-UnknownText_0x8b5dd: ; 0x8b5dd
+UnknownText_0x8b5dd:
 	; Your PASSCODE has been set. Enter this number next time to open the CARD FOLDER.
 	text_jump UnknownText_0x1bc1eb
 	db "@"
-; 0x8b5e2
 
-UnknownText_0x8b5e2: ; 0x8b5e2
+UnknownText_0x8b5e2:
 	; 0000 is invalid!
 	text_jump UnknownText_0x1bc23e
 	db "@"
-; 0x8b5e7
 
 Function8b5e7:
 	ld bc, wd013
@@ -528,19 +523,17 @@ Function8b5e7:
 	pop af
 	ret
 
-UnknownText_0x8b642: ; 0x8b642
+UnknownText_0x8b642:
 	; Enter the CARD FOLDER PASSCODE.
 	text_jump UnknownText_0x1bc251
 	db "@"
-; 0x8b647
 
-UnknownText_0x8b647: ; 0x8b647
+UnknownText_0x8b647:
 	; Incorrect PASSCODE!
 	text_jump UnknownText_0x1bc272
 	db "@"
-; 0x8b64c
 
-UnknownText_0x8b64c: ; 0x8b64c
+UnknownText_0x8b64c:
 	; CARD FOLDER open.@ @
 	text_jump UnknownText_0x1bc288
 	start_asm
@@ -880,16 +873,15 @@ Function8b855:
 	ld [hl], a
 	ret
 
-MenuHeader_0x8b867: ; 0x8b867
+MenuHeader_0x8b867:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 3, 18, 13
 	dw MenuData_0x8b870
 	db 1 ; default option
-; 0x8b86f
 
 	db 0
 
-MenuData_0x8b870: ; 0x8b870
+MenuData_0x8b870:
 	db SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT ; flags
 	db 5 ; items
 	db 3, 1
@@ -1044,33 +1036,30 @@ Function8b99f:
 Function8b9ab:
 	ret
 
-MenuHeader_0x8b9ac: ; 0x8b9ac
+MenuHeader_0x8b9ac:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
-MenuHeader_0x8b9b1: ; 0x8b9b1
+MenuHeader_0x8b9b1:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, 7
 	dw MenuData_0x8b9b9
 	db 1 ; default option
-; 0x8b9b9
 
-MenuData_0x8b9b9: ; 0x8b9b9
+MenuData_0x8b9b9:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "へんしゅう@" ; EDIT
 	db "いれかえ@"   ; REPLACE
 	db "やめる@"     ; QUIT
-; 0x8b9ca
 
-MenuHeader_0x8b9ca: ; 0x8b9ca
+MenuHeader_0x8b9ca:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw MenuData_0x8b9d2
 	db 1 ; default option
-; 0x8b9d2
 
-MenuData_0x8b9d2: ; 0x8b9d2
+MenuData_0x8b9d2:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 5 ; items
 	db "みる@"       ; VIEW
@@ -1078,7 +1067,6 @@ MenuData_0x8b9d2: ; 0x8b9d2
 	db "いれかえ@"   ; REPLACE
 	db "けす@"       ; ERASE
 	db "やめる@"     ; QUIT
-; 0x8b9e9
 
 Function8b9e9:
 	call OpenSRAMBank4

@@ -6,4 +6,3 @@
 	frame 1, 08
 	frame 4, 08
 	endanim
-; 0xd1329

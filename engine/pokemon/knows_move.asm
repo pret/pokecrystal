@@ -19,7 +19,7 @@ KnowsMove:
 	scf
 	ret
 
-.Text_knows: ; 0xfa06
+.Text_knows:
 	; knows @ .
 	text_jump UnknownText_0x1c5ea8
 	db "@"

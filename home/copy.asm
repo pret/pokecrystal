@@ -155,7 +155,6 @@ FarCopyBytes::
 	pop af
 	rst Bankswitch
 	ret
-; 0xe9b
 
 
 FarCopyBytesDouble::
@@ -194,7 +193,6 @@ FarCopyBytesDouble::
 	pop af
 	rst Bankswitch
 	ret
-; 0xeba
 
 
 Request2bpp::

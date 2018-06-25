@@ -1799,11 +1799,10 @@ GivePoke::
 	ld b, $2
 	ret
 
-TextJump_WasSentToBillsPC: ; 0xe3d9
+TextJump_WasSentToBillsPC:
 	; was sent to BILL's PC.
 	text_jump Text_WasSentToBillsPC
 	db "@"
-; 0xe3de
 
 InitNickname:
 	push de

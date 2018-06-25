@@ -14,7 +14,7 @@ _BillsPC:
 	scf
 	ret
 
-.Text_GottaHavePokemon: ; 0xe417
+.Text_GottaHavePokemon:
 	; You gotta have #MON to call!
 	text_jump UnknownText_0x1c1006
 	db "@"
@@ -35,7 +35,7 @@ _BillsPC:
 	call LoadFontsBattleExtra
 	ret
 
-.Text_What: ; 0xe43a
+.Text_What:
 	; What?
 	text_jump UnknownText_0x1c1024
 	db "@"
@@ -68,13 +68,13 @@ _BillsPC:
 	call CloseWindow
 	ret
 
-.MenuHeader: ; 0xe46f
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default option
 
-.MenuData: ; 0xe477
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 0 ; items
 	dw .items
@@ -128,7 +128,7 @@ BillsPC_MovePKMNMenu:
 	and a
 	ret
 
-.Text_MonHoldingMail: ; 0xe4f9
+.Text_MonHoldingMail:
 	; There is a #MON holding MAIL. Please remove the MAIL.
 	text_jump UnknownText_0x1c102b
 	db "@"
@@ -163,12 +163,12 @@ Unreferenced_Functione512:
 	scf
 	ret
 
-.Text_NoMon: ; 0xe52e
+.Text_NoMon:
 	; You don't have a single #MON!
 	text_jump UnknownText_0x1c1062
 	db "@"
 
-.Text_ItsYourLastMon: ; 0xe533
+.Text_ItsYourLastMon:
 	; You can't deposit your last #MON!
 	text_jump UnknownText_0x1c1080
 	db "@"
@@ -224,7 +224,7 @@ Unreferenced_Functione56d:
 	scf
 	ret
 
-UnknownText_0xe57e: ; 0xe57e
+UnknownText_0xe57e:
 	; You can't take any more #MON.
 	text_jump UnknownText_0x1c10a2
 	db "@"

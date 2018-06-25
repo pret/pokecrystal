@@ -112,7 +112,7 @@ FieldMoveFailed:
 	call MenuTextBoxBackup
 	ret
 
-.CantUseHere: ; 0xc780
+.CantUseHere:
 	; Can't use that here.
 	text_jump UnknownText_0x1c05c8
 	db "@"
@@ -161,12 +161,12 @@ CutFunction:
 	ld a, $80
 	ret
 
-Text_UsedCut: ; 0xc7c4
+Text_UsedCut:
 	; used CUT!
 	text_jump UnknownText_0x1c05dd
 	db "@"
 
-Text_NothingToCut: ; 0xc7c9
+Text_NothingToCut:
 	; There's nothing to CUT here.
 	text_jump UnknownText_0x1c05ec
 	db "@"
@@ -210,7 +210,7 @@ Script_CutFromMenu:
 	reloadmappart
 	special UpdateTimePals
 
-Script_Cut: ; 0xc802
+Script_Cut:
 	callasm GetPartyNick
 	writetext Text_UsedCut
 	reloadmappart
@@ -316,7 +316,7 @@ UseFlash:
 	ld hl, Script_UseFlash
 	jp QueueScript
 
-Script_UseFlash: ; 0xc8e6
+Script_UseFlash:
 	reloadmappart
 	special UpdateTimePals
 	writetext UnknownText_0xc8f3
@@ -324,7 +324,7 @@ Script_UseFlash: ; 0xc8e6
 	closetext
 	end
 
-UnknownText_0xc8f3: ; 0xc8f3
+UnknownText_0xc8f3:
 	text_jump UnknownText_0x1c0609
 	start_asm
 	call WaitSFX
@@ -334,7 +334,7 @@ UnknownText_0xc8f3: ; 0xc8f3
 	ld hl, .BlankText
 	ret
 
-.BlankText: ; 0xc908
+.BlankText:
 	db "@"
 
 SurfFunction:
@@ -617,7 +617,7 @@ FlyFunction:
 	ld a, $82
 	ret
 
-.FlyScript: ; 0xcaa3
+.FlyScript:
 	reloadmappart
 	callasm HideSprites
 	special UpdateTimePals
@@ -678,11 +678,11 @@ CheckMapCanWaterfall:
 	scf
 	ret
 
-Script_WaterfallFromMenu: ; 0xcb1c
+Script_WaterfallFromMenu:
 	reloadmappart
 	special UpdateTimePals
 
-Script_UsedWaterfall: ; 0xcb20
+Script_UsedWaterfall:
 	callasm GetPartyNick
 	writetext .Text_UsedWaterfall
 	waitbutton
@@ -709,7 +709,7 @@ Script_UsedWaterfall: ; 0xcb20
 	turn_waterfall UP
 	step_end
 
-.Text_UsedWaterfall: ; 0xcb51
+.Text_UsedWaterfall:
 	; used WATERFALL!
 	text_jump UnknownText_0x1c068e
 	db "@"
@@ -736,15 +736,15 @@ TryWaterfallOW::
 	scf
 	ret
 
-Script_CantDoWaterfall: ; 0xcb7e
+Script_CantDoWaterfall:
 	jumptext .Text_CantDoWaterfall
 
-.Text_CantDoWaterfall: ; 0xcb81
+.Text_CantDoWaterfall:
 	; Wow, it's a huge waterfall.
 	text_jump UnknownText_0x1c06a3
 	db "@"
 
-Script_AskWaterfall: ; 0xcb86
+Script_AskWaterfall:
 	opentext
 	writetext .AskUseWaterfall
 	yesorno
@@ -752,7 +752,7 @@ Script_AskWaterfall: ; 0xcb86
 	closetext
 	end
 
-.AskUseWaterfall: ; 0xcb90
+.AskUseWaterfall:
 	; Do you want to use WATERFALL?
 	text_jump UnknownText_0x1c06bf
 	db "@"
@@ -839,33 +839,33 @@ dig_incave
 	ld a, $80
 	ret
 
-.Text_UsedDig: ; 0xcc1c
+.Text_UsedDig:
 	; used DIG!
 	text_jump UnknownText_0x1c06de
 	db "@"
 
-.Text_UsedEscapeRope: ; 0xcc21
+.Text_UsedEscapeRope:
 	; used an ESCAPE ROPE.
 	text_jump UnknownText_0x1c06ed
 	db "@"
 
-.Text_CantUseHere: ; 0xcc26
+.Text_CantUseHere:
 	; Can't use that here.
 	text_jump UnknownText_0x1c0705
 	db "@"
 
-.UsedEscapeRopeScript: ; 0xcc2b
+.UsedEscapeRopeScript:
 	reloadmappart
 	special UpdateTimePals
 	writetext .Text_UsedEscapeRope
 	jump .UsedDigOrEscapeRopeScript
 
-.UsedDigScript: ; 0xcc35
+.UsedDigScript:
 	reloadmappart
 	special UpdateTimePals
 	writetext .Text_UsedDig
 
-.UsedDigOrEscapeRopeScript: ; 0xcc3c
+.UsedDigOrEscapeRopeScript:
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
@@ -878,12 +878,12 @@ dig_incave
 	applymovement PLAYER, .DigReturn
 	end
 
-.DigOut: ; 0xcc59
+.DigOut:
 	step_dig 32
 	hide_object
 	step_end
 
-.DigReturn: ; 0xcc5d
+.DigReturn:
 	show_object
 	return_dig 32
 	step_end
@@ -938,17 +938,17 @@ TeleportFunction:
 	ld a, $80
 	ret
 
-.Text_ReturnToLastMonCenter: ; 0xccb1
+.Text_ReturnToLastMonCenter:
 	; Return to the last #MON CENTER.
 	text_jump UnknownText_0x1c071a
 	db "@"
 
-.Text_CantUseHere: ; 0xccb6
+.Text_CantUseHere:
 	; Can't use that here.
 	text_jump UnknownText_0x1c073b
 	db "@"
 
-.TeleportScript: ; 0xccbb
+.TeleportScript:
 	reloadmappart
 	special UpdateTimePals
 	writetext .Text_ReturnToLastMonCenter
@@ -992,7 +992,7 @@ StrengthFunction:
 	ld a, $80
 	ret
 
-.JumpText: ; 0xcd01
+.JumpText:
 	text_jump UnknownText_0x1c0751
 	db "@"
 
@@ -1019,11 +1019,11 @@ SetStrengthFlag:
 	call GetPartyNick
 	ret
 
-Script_StrengthFromMenu: ; 0xcd29
+Script_StrengthFromMenu:
 	reloadmappart
 	special UpdateTimePals
 
-Script_UsedStrength: ; 0xcd2d
+Script_UsedStrength:
 	callasm SetStrengthFlag
 	writetext .UsedStrength
 	copybytetovar wBuffer6
@@ -1033,11 +1033,11 @@ Script_UsedStrength: ; 0xcd2d
 	closetext
 	end
 
-.UsedStrength: ; 0xcd41
+.UsedStrength:
 	text_jump UnknownText_0x1c0774
 	db "@"
 
-.StrengthAllowedItToMoveBoulders: ; 0xcd46
+.StrengthAllowedItToMoveBoulders:
 	text_jump UnknownText_0x1c0788
 	db "@"
 
@@ -1047,13 +1047,13 @@ AskStrengthScript:
 	ifequal $1, .DontMeetRequirements
 	jump .AlreadyUsedStrength
 
-.DontMeetRequirements: ; 0xcd59
+.DontMeetRequirements:
 	jumptext UnknownText_0xcd73
 
-.AlreadyUsedStrength: ; 0xcd5c
+.AlreadyUsedStrength:
 	jumptext UnknownText_0xcd6e
 
-.AskStrength: ; 0xcd5f
+.AskStrength:
 	opentext
 	writetext UnknownText_0xcd69
 	yesorno
@@ -1061,17 +1061,17 @@ AskStrengthScript:
 	closetext
 	end
 
-UnknownText_0xcd69: ; 0xcd69
+UnknownText_0xcd69:
 	; A #MON may be able to move this. Want to use STRENGTH?
 	text_jump UnknownText_0x1c07a0
 	db "@"
 
-UnknownText_0xcd6e: ; 0xcd6e
+UnknownText_0xcd6e:
 	; Boulders may now be moved!
 	text_jump UnknownText_0x1c07d8
 	db "@"
 
-UnknownText_0xcd73: ; 0xcd73
+UnknownText_0xcd73:
 	; A #MON may be able to move this.
 	text_jump UnknownText_0x1c07f4
 	db "@"
@@ -1147,7 +1147,7 @@ Jumptable_cdae:
 	ld a, $80
 	ret
 
-Text_UsedWhirlpool: ; 0xcdd9
+Text_UsedWhirlpool:
 	; used WHIRLPOOL!
 	text_jump UnknownText_0x1c0816
 	db "@"
@@ -1181,11 +1181,11 @@ TryWhirlpoolMenu:
 	scf
 	ret
 
-Script_WhirlpoolFromMenu: ; 0xce0b
+Script_WhirlpoolFromMenu:
 	reloadmappart
 	special UpdateTimePals
 
-Script_UsedWhirlpool: ; 0xce0f
+Script_UsedWhirlpool:
 	callasm GetPartyNick
 	writetext Text_UsedWhirlpool
 	reloadmappart
@@ -1232,14 +1232,14 @@ TryWhirlpoolOW::
 	scf
 	ret
 
-Script_MightyWhirlpool: ; 0xce66
+Script_MightyWhirlpool:
 	jumptext .MightyWhirlpoolText
 
-.MightyWhirlpoolText: ; 0xce69
+.MightyWhirlpoolText:
 	text_jump UnknownText_0x1c082b
 	db "@"
 
-Script_AskWhirlpoolOW: ; 0xce6e
+Script_AskWhirlpoolOW:
 	opentext
 	writetext UnknownText_0xce78
 	yesorno
@@ -1247,7 +1247,7 @@ Script_AskWhirlpoolOW: ; 0xce6e
 	closetext
 	end
 
-UnknownText_0xce78: ; 0xce78
+UnknownText_0xce78:
 	text_jump UnknownText_0x1c0864
 	db "@"
 
@@ -1272,21 +1272,21 @@ TryHeadbuttFromMenu:
 	ld a, $80
 	ret
 
-UnknownText_0xce9d: ; 0xce9d
+UnknownText_0xce9d:
 	; did a HEADBUTT!
 	text_jump UnknownText_0x1c0897
 	db "@"
 
-UnknownText_0xcea2: ; 0xcea2
+UnknownText_0xcea2:
 	; Nope. Nothing…
 	text_jump UnknownText_0x1c08ac
 	db "@"
 
-HeadbuttFromMenuScript: ; 0xcea7
+HeadbuttFromMenuScript:
 	reloadmappart
 	special UpdateTimePals
 
-HeadbuttScript: ; 0xceab
+HeadbuttScript:
 	callasm GetPartyNick
 	writetext UnknownText_0xce9d
 
@@ -1322,7 +1322,7 @@ TryHeadbuttOW::
 	xor a
 	ret
 
-AskHeadbuttScript: ; 0xcedc
+AskHeadbuttScript:
 	opentext
 	writetext UnknownText_0xcee6
 	yesorno
@@ -1330,7 +1330,7 @@ AskHeadbuttScript: ; 0xcedc
 	closetext
 	end
 
-UnknownText_0xcee6: ; 0xcee6
+UnknownText_0xcee6:
 	; A #MON could be in this tree. Want to HEADBUTT it?
 	text_jump UnknownText_0x1c08bc
 	db "@"
@@ -1380,7 +1380,7 @@ GetFacingObject:
 	scf
 	ret
 
-RockSmashFromMenuScript: ; 0xcf2e
+RockSmashFromMenuScript:
 	reloadmappart
 	special UpdateTimePals
 
@@ -1403,15 +1403,15 @@ RockSmashScript:
 .done
 	end
 
-MovementData_0xcf55: ; 0xcf55
+MovementData_0xcf55:
 	rock_smash 10
 	step_end
 
-UnknownText_0xcf58: ; 0xcf58
+UnknownText_0xcf58:
 	text_jump UnknownText_0x1c08f0
 	db "@"
 
-AskRockSmashScript: ; 0xcf5d
+AskRockSmashScript:
 	callasm HasRockSmash
 	ifequal 1, .no
 
@@ -1424,12 +1424,12 @@ AskRockSmashScript: ; 0xcf5d
 .no
 	jumptext UnknownText_0xcf72
 
-UnknownText_0xcf72: ; 0xcf72
+UnknownText_0xcf72:
 	; Maybe a #MON can break this.
 	text_jump UnknownText_0x1c0906
 	db "@"
 
-UnknownText_0xcf77: ; 0xcf77
+UnknownText_0xcf77:
 	; This rock looks breakable. Want to use ROCK SMASH?
 	text_jump UnknownText_0x1c0924
 	db "@"
@@ -1538,32 +1538,32 @@ FishFunction:
 	ld a, $81
 	ret
 
-Script_NotEvenANibble: ; 0xd01e
+Script_NotEvenANibble:
 	scall Script_FishCastRod
 	writetext UnknownText_0xd0a9
 	jump Script_NotEvenANibble_FallThrough
 
-Script_NotEvenANibble2: ; 0xd027
+Script_NotEvenANibble2:
 	scall Script_FishCastRod
 	writetext UnknownText_0xd0a9
 
-Script_NotEvenANibble_FallThrough: ; 0xd02d
+Script_NotEvenANibble_FallThrough:
 	loademote EMOTE_SHADOW
 	callasm PutTheRodAway
 	closetext
 	end
 
-Script_GotABite: ; 0xd035
+Script_GotABite:
 	scall Script_FishCastRod
 	callasm Fishing_CheckFacingUp
 	iffalse .NotFacingUp
 	applymovement PLAYER, .Movement_FacingUp
 	jump .FightTheHookedPokemon
 
-.NotFacingUp: ; 0xd046
+.NotFacingUp:
 	applymovement PLAYER, .Movement_NotFacingUp
 
-.FightTheHookedPokemon: ; 0xd04a
+.FightTheHookedPokemon:
 	pause 40
 	applymovement PLAYER, .Movement_RestoreRod
 	writetext UnknownText_0xd0a4
@@ -1608,7 +1608,7 @@ Fishing_CheckFacingUp:
 	ld [wScriptVar], a
 	ret
 
-Script_FishCastRod: ; 0xd07c
+Script_FishCastRod:
 	reloadmappart
 	loadvar hBGMapMode, $0
 	special UpdateTimePals
@@ -1632,12 +1632,12 @@ PutTheRodAway:
 	call ReplaceKrisSprite
 	ret
 
-UnknownText_0xd0a4: ; 0xd0a4
+UnknownText_0xd0a4:
 	; Oh! A bite!
 	text_jump UnknownText_0x1c0958
 	db "@"
 
-UnknownText_0xd0a9: ; 0xd0a9
+UnknownText_0xd0a9:
 	; Not even a nibble!
 	text_jump UnknownText_0x1c0965
 	db "@"
@@ -1733,7 +1733,7 @@ BikeFunction:
 	scf
 	ret
 
-Script_GetOnBike: ; 0xd13e
+Script_GetOnBike:
 	reloadmappart
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, PLAYER_BIKE
@@ -1743,7 +1743,7 @@ Script_GetOnBike: ; 0xd13e
 	special ReplaceKrisSprite
 	end
 
-Script_GetOnBike_Register: ; 0xd14e
+Script_GetOnBike_Register:
 	writecode VAR_MOVEMENT, PLAYER_BIKE
 	closetext
 	special ReplaceKrisSprite
@@ -1753,7 +1753,7 @@ Script_GetOnBike_Register: ; 0xd14e
 	nop
 	ret
 
-Script_GetOffBike: ; 0xd158
+Script_GetOffBike:
 	reloadmappart
 	special UpdateTimePals
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
@@ -1766,27 +1766,27 @@ FinishGettingOffBike:
 	special PlayMapMusic
 	end
 
-Script_GetOffBike_Register: ; 0xd16b
+Script_GetOffBike_Register:
 	writecode VAR_MOVEMENT, PLAYER_NORMAL
 	jump FinishGettingOffBike
 
-Script_CantGetOffBike: ; 0xd171
+Script_CantGetOffBike:
 	writetext .CantGetOffBikeText
 	waitbutton
 	closetext
 	end
 
-.CantGetOffBikeText: ; 0xd177
+.CantGetOffBikeText:
 	; You can't get off here!
 	text_jump UnknownText_0x1c099a
 	db "@"
 
-GotOnTheBikeText: ; 0xd17c
+GotOnTheBikeText:
 	; got on the @ .
 	text_jump UnknownText_0x1c09b2
 	db "@"
 
-GotOffTheBikeText: ; 0xd181
+GotOffTheBikeText:
 	; got off the @ .
 	text_jump UnknownText_0x1c09c7
 	db "@"
@@ -1813,7 +1813,7 @@ TryCutOW::
 	scf
 	ret
 
-AskCutScript: ; 0xd1a9
+AskCutScript:
 	opentext
 	writetext UnknownText_0xd1c8
 	yesorno
@@ -1833,13 +1833,13 @@ AskCutScript: ; 0xd1a9
 	ld [wScriptVar], a
 	ret
 
-UnknownText_0xd1c8: ; 0xd1c8
+UnknownText_0xd1c8:
 	text_jump UnknownText_0x1c09dd
 	db "@"
 
-CantCutScript: ; 0xd1cd
+CantCutScript:
 	jumptext UnknownText_0xd1d0
 
-UnknownText_0xd1d0: ; 0xd1d0
+UnknownText_0xd1d0:
 	text_jump UnknownText_0x1c0a05
 	db "@"

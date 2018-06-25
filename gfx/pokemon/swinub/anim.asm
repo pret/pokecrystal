@@ -4,4 +4,3 @@
 	frame 2, 09
 	dorepeat 2
 	endanim
-; 0xd14ef

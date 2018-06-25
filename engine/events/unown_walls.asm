@@ -1,4 +1,4 @@
-HoOhChamber: ; 0x8addb
+HoOhChamber:
 	ld hl, wPartySpecies
 	ld a, [hl]
 	cp HO_OH ; is Ho-oh the first Pokémon in the party?
@@ -9,7 +9,6 @@ HoOhChamber: ; 0x8addb
 	call EventFlagAction
 .done
 	ret
-; 0x8adef
 
 OmanyteChamber:
 	call GetMapAttributesPointer ; pointless?

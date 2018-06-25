@@ -551,41 +551,38 @@ MobileDesc_Age:              db "How old are you?@"
 MobileDesc_Address:          db "Where do you live?@"
 MobileDesc_ZipCode:          db "Your zip code?@"
 
-MenuHeader_0x484f1: ; 0x484f1
+MenuHeader_0x484f1:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 2, SCREEN_WIDTH - 1, 7
 	dw MenuData_0x484f9
 	db 1 ; default option
-; 0x484f9
 
-MenuData_0x484f9: ; 0x484f9
+MenuData_0x484f9:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 2 ; items
 Strings_484fb:
 String_484fb: db "Boy@"
 String_484ff: db "Girl@"
-; 0x48504
 
-MenuHeader_0x48504: ; 0x48504
+MenuHeader_0x48504:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 
-MenuHeader_0x48509: ; 0x48509
+MenuHeader_0x48509:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 5, SCREEN_WIDTH - 1, 7
 
-MenuHeader_0x4850e: ; 0x4850e
+MenuHeader_0x4850e:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
-MenuHeader_0x48513: ; 0x48513
+MenuHeader_0x48513:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 1, 18, 12
 	dw MenuData_0x4851b
 	db 1 ; default option
-; 0x4851b
 
-MenuData_0x4851b: ; 0x4851b
+MenuData_0x4851b:
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_CALL_FUNCTION1_CANCEL ; flags
 	db 6 ; items
 
@@ -1252,7 +1249,7 @@ Function48a9a:
 	scf
 	ret
 
-MenuHeader_0x48a9c: ; 0x48a9c
+MenuHeader_0x48a9c:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 8, SCREEN_WIDTH - 1, 13
 

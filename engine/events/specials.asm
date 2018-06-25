@@ -83,7 +83,7 @@ FoundNone:
 	ld [wScriptVar], a
 	ret
 
-NameRival: ; 0xc29d
+NameRival:
 	ld b, $2 ; rival
 	ld de, wRivalName
 	farcall _NamingScreen
@@ -95,7 +95,6 @@ NameRival: ; 0xc29d
 
 .default
 	db "SILVER@"
-; 0xc2b9
 
 NameRater:
 	farcall _NameRater
@@ -168,11 +167,10 @@ GetMysteryGiftItem:
 	ld [wScriptVar], a
 	ret
 
-.ReceiveItemText: ; 0xc345
+.ReceiveItemText:
 	; received item
 	text_jump UnknownText_0x1bd3be
 	db "@"
-; 0xc34a
 
 BugContestJudging:
 	farcall _BugContestJudging
@@ -257,17 +255,15 @@ CheckCoinsAndCoinCase:
 	scf
 	ret
 
-.NoCoinsText: ; 0xc3d1
+.NoCoinsText:
 	; You have no coins.
 	text_jump UnknownText_0x1bd3d7
 	db "@"
-; 0xc3d6
 
-.NoCoinCaseText: ; 0xc3d6
+.NoCoinCaseText:
 	; You don't have a COIN CASE.
 	text_jump UnknownText_0x1bd3eb
 	db "@"
-; 0xc3db
 
 ClearBGPalettesBufferScreen:
 	call ClearBGPalettes
@@ -331,7 +327,7 @@ CheckLuckyNumberShowFlag:
 	farcall _CheckLuckyNumberShowFlag
 	jp ScriptReturnCarry
 
-SnorlaxAwake: ; 0xc43d
+SnorlaxAwake:
 ; Check if the Poké Flute channel is playing, and if the player is standing
 ; next to Snorlax.
 
@@ -430,7 +426,7 @@ PrintDiploma:
 	call ExitAllMenus
 	ret
 
-TrainerHouse: ; 0xc4b9
+TrainerHouse:
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)
 	call GetSRAMBank
 	ld a, [sMysteryGiftTrainerHouseFlag]

@@ -4,4 +4,3 @@
 	frame 2, 08
 	frame 1, 06
 	endanim
-; 0xd144f

@@ -6,4 +6,3 @@
 	dorepeat 3
 	frame 2, 10
 	endanim
-; 0xd1038

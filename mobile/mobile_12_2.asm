@@ -239,11 +239,10 @@ Function4a94e:
 	call PrintText
 	jr .asm_4a974
 
-UnknownText_0x4a9be: ; 0x4a9be
+UnknownText_0x4a9be:
 	; Pick three #MON for battle.
 	text_jump UnknownText_0x1c51d7
 	db "@"
-; 0x4a9c3
 
 Function4a9c3:
 	ld hl, wd002
@@ -293,11 +292,10 @@ Function4a9d7:
 	call YesNoBox
 	ret
 
-UnknownText_0x4aa1d: ; 0x4aa1d
+UnknownText_0x4aa1d:
 	; , @  and @ . Use these three?
 	text_jump UnknownText_0x1c51f4
 	db "@"
-; 0x4aa22
 
 Function4aa22:
 	call ClearBGPalettes
@@ -694,12 +692,11 @@ Function4ac58:
 	and a
 	ret
 
-MenuHeader_0x4aca2: ; 0x4aca2
+MenuHeader_0x4aca2:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 9, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 1 ; default option
-; 0x4acaa
 
 Function4acaa:
 .asm_4acaa
@@ -795,11 +792,10 @@ Function4ad17:
 	call Function4adc2
 	ret
 
-UnknownText_0x4ad51: ; 0x4ad51
+UnknownText_0x4ad51:
 	; Only three #MON may enter.
 	text_jump UnknownText_0x1c521c
 	db "@"
-; 0x4ad56
 
 Function4ad56:
 	farcall OpenPartyStats

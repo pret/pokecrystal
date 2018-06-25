@@ -6,4 +6,3 @@
 	dorepeat 3
 	frame 2, 30
 	endanim
-; 0xd13be

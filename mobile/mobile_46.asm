@@ -1492,19 +1492,19 @@ Function118b9a:
 
 	charmap " ", $20 ; revert to ascii
 
-ExchangeDownloadURL: ; 0x118ba5
+ExchangeDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt", 0
 
-BattleDownloadURL: ; 0x118bf7
+BattleDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/battle/index.txt", 0
 
-NewsDownloadURL: ; 0x118c47
+NewsDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/news/index.txt", 0
 
-MenuDownloadURL: ; 0x118c95
+MenuDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/POKESTA/menu.cgb", 0
 
-IndexDownloadURL: ; 0x118ce5
+IndexDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
 
 
@@ -5411,64 +5411,54 @@ Function11a9f4:
 	and a
 	ret
 
-Text_SaveFileWillBeSent: ; 0x11aa13
+Text_SaveFileWillBeSent:
 	text "SAVE FILE will be"
 	line "sent."
 	done
-; 0x11aa2c
 
-Text_SentSaveFileReadingNews: ; 0x11aa2c
+Text_SentSaveFileReadingNews:
 	text "Sent SAVE FILE."
 	line "Reading NEWS…"
 	done
-; 0x11aa4b
 
-Text_ReadingNews: ; 0x11aa4b
+Text_ReadingNews:
 	text "Reading NEWS…"
 	done
-; 0x11aa5a
 
-Text_ReceivedNews: ; 0x11aa5a
+Text_ReceivedNews:
 	text "Received NEWS!"
 	done
-; 0x11aa6a
 
-Text_QuitReadingNews: ; 0x11aa6a
+Text_QuitReadingNews:
 	text "Quit reading NEWS?"
 	done
-; 0x11aa7e
 
-Text_CanceledSendingSaveFile: ; 0x11aa7e
+Text_CanceledSendingSaveFile:
 	text "Canceled sending"
 	line "SAVE FILE."
 	done
-; 0x11aa9b
 
-Text_ReceivedOddEgg: ; 0x11aa9b
+Text_ReceivedOddEgg:
 	text "ODD EGG"
 	line "was received!"
 	done
-; 0x11aab2
 
-Text_RegisteringRecord: ; 0x11aab2
+Text_RegisteringRecord:
 	text "Registering your"
 	line "record…"
 	done
-; 0x11aacc
 
-Text_BattleRoomVisitLimit: ; 0x11aacc
+Text_BattleRoomVisitLimit:
 	text "One visit per day"
 	line "per BATTLE ROOM!"
 	done
-; 0x11aaf0
 
-Text_PartyMonTopsThisLevel: ; 0x11aaf0
+Text_PartyMonTopsThisLevel:
 	text "A party #MON"
 	line "tops this level."
 	done
-; 0x11ab0f
 
-Text_UberRestriction: ; 0x11ab0f
+Text_UberRestriction:
 	text_from_ram wcd49
 	text " may go"
 	line "only to BATTLE"
@@ -5476,50 +5466,42 @@ Text_UberRestriction: ; 0x11ab0f
 	para "ROOMS that are"
 	line "Lv.70 or higher."
 	done
-; 0x11ab4a
 
-Text_CancelBattleRoomChallenge: ; 0x11ab4a
+Text_CancelBattleRoomChallenge:
 	text "Cancel your BATTLE"
 	line "ROOM challenge?"
 	done
-; 0x11ab6e
 
-Text_ExitGymLeaderHonorRoll: ; 0x11ab6e
+Text_ExitGymLeaderHonorRoll:
 	text "Exit GYM LEADER"
 	line "HONOR ROLL?"
 	done
-; 0x11ab8b
 
-Text_LinkingWithCenter: ; 0x11ab8b
+Text_LinkingWithCenter:
 	text "Linking with the"
 	line "CENTER…"
 	done
-; 0x11aba5
 
-Text_WhatLevelDoYouWantToChallenge: ; 0x11aba5
+Text_WhatLevelDoYouWantToChallenge:
 	text "What level do you"
 	line "want to challenge?"
 	done
-; 0x11abcb
 
-Text_CheckBattleRoomListByMaxLevel: ; 0x11abcb
+Text_CheckBattleRoomListByMaxLevel:
 	text "Check BATTLE ROOM"
 	line "list by max level?"
 	done
-; 0x11abf1
 
-Text_EnterWhichBattleRoom: ; 0x11abf1
+Text_EnterWhichBattleRoom:
 	text "Enter which"
 	line "BATTLE ROOM?"
 	done
-; 0x11ac0b
 
-Text_WhichBattleRoom: ; 0x11ac0b
+Text_WhichBattleRoom:
 	text "Which BATTLE ROOM?"
 	done
-; 0x11ac1f
 
-Text_ThisBattleRoomPleaseWait: ; 0x11ac1f
+Text_ThisBattleRoomPleaseWait:
 	text_from_ram wStringBuffer3
 	text "'s ROOM"
 	line "@"
@@ -5527,7 +5509,6 @@ Text_ThisBattleRoomPleaseWait: ; 0x11ac1f
 	text "?"
 	cont "Please wait…"
 	done
-; 0x11ac3e
 
 Function11ac3e:
 	call SpeechTextBox

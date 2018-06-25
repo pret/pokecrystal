@@ -3,4 +3,3 @@
 	frame 1, 10
 	dorepeat 1
 	endanim
-; 0xd190d

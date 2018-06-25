@@ -647,7 +647,6 @@ TossItemFromPC:
 	; That's too impor- tant to toss out!
 	text_jump UnknownText_0x1c1adf
 	db "@"
-; 0x12a60
 
 CantUseItem:
 	ld hl, CantUseItemText
@@ -1137,7 +1136,6 @@ MonMailAction:
 	menu_coords 12, 10, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default option
-; 0x12dd1
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
@@ -1145,44 +1143,37 @@ MonMailAction:
 	db "READ@"
 	db "TAKE@"
 	db "QUIT@"
-; 0x12de2
 
 
 .mailwilllosemessagetext
 ; The MAIL will lose its message. OK?
 	text_jump UnknownText_0x1c1c22
 	db "@"
-; 0x12de7
 
 .tookmailfrommontext
 ; MAIL detached from <POKEMON>.
 	text_jump UnknownText_0x1c1c47
 	db "@"
-; 0x12dec
 
 .bagfulltext
 ; There's no space for removing MAIL.
 	text_jump UnknownText_0x1c1c62
 	db "@"
-; 0x12df1
 
 .sendmailtopctext
 ; Send the removed MAIL to your PC?
 	text_jump UnknownText_0x1c1c86
 	db "@"
-; 0x12df6
 
 .mailboxfulltext
 ; Your PC's MAILBOX is full.
 	text_jump UnknownText_0x1c1ca9
 	db "@"
-; 0x12dfb
 
 .sentmailtopctext
 ; The MAIL was sent to your PC.
 	text_jump UnknownText_0x1c1cc4
 	db "@"
-; 0x12e00
 
 
 OpenPartyStats:
@@ -1348,7 +1339,6 @@ MonMenu_Softboiled_MilkDrink:
 	; Not enough HP!
 	text_jump UnknownText_0x1c1ce3
 	db "@"
-; 0x12f05
 
 .CheckMonHasEnoughHP:
 ; Need to have at least (MaxHP / 5) HP left.

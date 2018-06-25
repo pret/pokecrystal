@@ -42,7 +42,7 @@ LoadPartyMenuGFX:
 	ret
 
 
-WritePartyMenuTilemap: ; 0x5005f
+WritePartyMenuTilemap:
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -67,7 +67,6 @@ WritePartyMenuTilemap: ; 0x5005f
 	pop af
 	ld [wOptions], a
 	ret
-; 0x50089
 
 .Jumptable:
 ; entries correspond to PARTYMENUQUALITY_* constants
@@ -644,7 +643,7 @@ InitPartyMenuWithCancel:
 	ld [wMenuJoypadFilter], a
 	ret
 
-InitPartyMenuNoCancel: ; 0x5042d
+InitPartyMenuNoCancel:
 ; no cancel
 	ld de, PartyMenuAttributes
 	call SetMenuAttributes
@@ -680,7 +679,7 @@ PartyMenuAttributes:
 	dn 2, 0
 	db 0
 
-PartyMenuSelect: ; 0x50457
+PartyMenuSelect:
 ; sets carry if exitted menu.
 	call StaticMenuJoypad
 	call PlaceHollowCursor
@@ -717,7 +716,6 @@ PartyMenuSelect: ; 0x50457
 	call WaitSFX
 	scf
 	ret
-; 0x5049a
 
 
 PrintPartyMenuText:
@@ -750,9 +748,8 @@ PrintPartyMenuText:
 	pop af
 	ld [wOptions], a
 	ret
-; 0x504d2
 
-PartyMenuStrings: ; 0x504d2
+PartyMenuStrings:
 	dw ChooseAMonString
 	dw UseOnWhichPKMNString
 	dw WhichPKMNString
@@ -763,33 +760,33 @@ PartyMenuStrings: ; 0x504d2
 	dw ChooseAMonString ; Probably used to be ChooseAMalePKMNString
 	dw ToWhichPKMNString
 
-ChooseAMonString: ; 0x504e4
+ChooseAMonString:
 	db "Choose a #MON.@"
 
-UseOnWhichPKMNString: ; 0x504f3
+UseOnWhichPKMNString:
 	db "Use on which <PK><MN>?@"
 
-WhichPKMNString: ; 0x50504
+WhichPKMNString:
 	db "Which <PK><MN>?@"
 
-TeachWhichPKMNString: ; 0x5050e
+TeachWhichPKMNString:
 	db "Teach which <PK><MN>?@"
 
-MoveToWhereString: ; 0x5051e
+MoveToWhereString:
 	db "Move to where?@"
 
-ChooseAFemalePKMNString: ; 0x5052d
+ChooseAFemalePKMNString:
 ; unused
 	db "Choose a ♀<PK><MN>.@"
 
-ChooseAMalePKMNString: ; 0x5053b
+ChooseAMalePKMNString:
 ; unused
 	db "Choose a ♂<PK><MN>.@"
 
-ToWhichPKMNString: ; 0x50549
+ToWhichPKMNString:
 	db "To which <PK><MN>?@"
 
-YouHaveNoPKMNString: ; 0x50556
+YouHaveNoPKMNString:
 	db "You have no <PK><MN>!@"
 
 PrintPartyMenuActionText:
@@ -815,65 +812,55 @@ PrintPartyMenuActionText:
 	dw .Text_GrewToLevel
 	dw .Text_CameToItsSenses
 
-.Text_RecoveredSomeHP: ; 0x5058f
+.Text_RecoveredSomeHP:
 	; recovered @ HP!
 	text_jump UnknownText_0x1bc0a2
 	db "@"
-; 0x50594
 
-.Text_CuredOfPoison: ; 0x50594
+.Text_CuredOfPoison:
 	; 's cured of poison.
 	text_jump UnknownText_0x1bc0bb
 	db "@"
-; 0x50599
 
-.Text_RidOfParalysis: ; 0x50599
+.Text_RidOfParalysis:
 	; 's rid of paralysis.
 	text_jump UnknownText_0x1bc0d2
 	db "@"
-; 0x5059e
 
-.Text_BurnWasHealed: ; 0x5059e
+.Text_BurnWasHealed:
 	; 's burn was healed.
 	text_jump UnknownText_0x1bc0ea
 	db "@"
-; 0x505a3
 
-.Text_Defrosted: ; 0x505a3
+.Text_Defrosted:
 	; was defrosted.
 	text_jump UnknownText_0x1bc101
 	db "@"
-; 0x505a8
 
-.Text_WokeUp: ; 0x505a8
+.Text_WokeUp:
 	; woke up.
 	text_jump UnknownText_0x1bc115
 	db "@"
-; 0x505ad
 
-.Text_HealthReturned: ; 0x505ad
+.Text_HealthReturned:
 	; 's health returned.
 	text_jump UnknownText_0x1bc123
 	db "@"
-; 0x505b2
 
-.Text_Revitalized: ; 0x505b2
+.Text_Revitalized:
 	; is revitalized.
 	text_jump UnknownText_0x1bc13a
 	db "@"
-; 0x505b7
 
-.Text_GrewToLevel: ; 0x505b7
+.Text_GrewToLevel:
 	; grew to level @ !@ @
 	text_jump UnknownText_0x1bc14f
 	db "@"
-; 0x505bc
 
-.Text_CameToItsSenses: ; 0x505bc
+.Text_CameToItsSenses:
 	; came to its senses.
 	text_jump UnknownText_0x1bc16e
 	db "@"
-; 0x505c1
 
 
 .PrintText:

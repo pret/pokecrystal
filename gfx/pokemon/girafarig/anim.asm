@@ -11,4 +11,3 @@
 	frame 5, 05
 	frame 3, 05
 	endanim
-; 0xd141c

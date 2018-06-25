@@ -6,4 +6,3 @@
 	frame 0, 15
 	frame 5, 15
 	endanim
-; 0xd1539

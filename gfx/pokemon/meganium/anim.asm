@@ -8,4 +8,3 @@
 	frame 3, 07
 	dorepeat 6
 	endanim
-; 0xd117f

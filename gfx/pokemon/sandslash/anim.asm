@@ -7,4 +7,3 @@
 	frame 4, 07
 	frame 2, 08
 	endanim
-; 0xd0a37

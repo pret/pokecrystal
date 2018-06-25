@@ -32,7 +32,6 @@ _CardKey:
 	ld [wItemEffectSucceeded], a
 	ret
 
-.CardKeyScript: ; 0x507af
+.CardKeyScript:
 	closetext
 	farjump CardKeySlotScript
-; 0x507b4

@@ -1064,43 +1064,37 @@ LevelBallMultiplier:
 ; These two texts were carried over from gen 1.
 ; They are not used in gen 2, and are dummied out.
 
-Text_RBY_CatchMarowak: ; 0xedab
+Text_RBY_CatchMarowak:
 	; It dodged the thrown BALL! This #MON can't be caught!
 	text_jump UnknownText_0x1c5a5a
 	db "@"
-; 0xedb0
 
-Text_RBY_NoShake: ; 0xedb0
+Text_RBY_NoShake:
 	; You missed the #MON!
 	text_jump UnknownText_0x1c5a90
 	db "@"
-; 0xedb5
 
-Text_NoShake: ; 0xedb5
+Text_NoShake:
 	; Oh no! The #MON broke free!
 	text_jump UnknownText_0x1c5aa6
 	db "@"
-; 0xedba
 
-Text_OneShake: ; 0xedba
+Text_OneShake:
 	; Aww! It appeared to be caught!
 	text_jump UnknownText_0x1c5ac3
 	db "@"
-; 0xedbf
 
-Text_TwoShakes: ; 0xedbf
+Text_TwoShakes:
 	; Aargh! Almost had it!
 	text_jump UnknownText_0x1c5ae3
 	db "@"
-; 0xedc4
 
-Text_ThreeShakes: ; 0xedc4
+Text_ThreeShakes:
 	; Shoot! It was so close too!
 	text_jump UnknownText_0x1c5afa
 	db "@"
-; 0xedc9
 
-Text_GotchaMonWasCaught: ; 0xedc9
+Text_GotchaMonWasCaught:
 	; Gotcha! @ was caught!@ @
 	text_jump UnknownText_0x1c5b17
 	start_asm
@@ -1115,29 +1109,25 @@ Text_GotchaMonWasCaught: ; 0xedc9
 	ld hl, TextJump_Waitbutton
 	ret
 
-TextJump_Waitbutton: ; 0xede6
+TextJump_Waitbutton:
 	; @
 	text_jump Text_Waitbutton_2
 	db "@"
-; 0xedeb
 
-Text_SentToBillsPC: ; 0xedeb
+Text_SentToBillsPC:
 	; was sent to BILL's PC.
 	text_jump UnknownText_0x1c5b38
 	db "@"
-; 0xedf0
 
-Text_AddedToPokedex: ; 0xedf0
+Text_AddedToPokedex:
 	; 's data was newly added to the #DEX.@ @
 	text_jump UnknownText_0x1c5b53
 	db "@"
-; 0xedf5
 
-Text_AskNicknameNewlyCaughtMon: ; 0xedf5
+Text_AskNicknameNewlyCaughtMon:
 	; Give a nickname to @ ?
 	text_jump UnknownText_0x1c5b7f
 	db "@"
-; 0xedfa
 
 ReturnToBattle_UseBall:
 	farcall _ReturnToBattle_UseBall
@@ -1251,11 +1241,10 @@ RareCandy_StatBooster_ExitMenu:
 	jp ClearPalettes
 
 
-Text_StatRose: ; 0xeea6
+Text_StatRose:
 	; 's @  rose.
 	text_jump UnknownText_0x1c5b9a
 	db "@"
-; 0xeeab
 
 
 StatStrings:
@@ -1309,7 +1298,6 @@ RareCandy_StatBooster_GetParameters:
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ret
-; 0xef14
 
 
 RareCandyEffect:
@@ -2097,11 +2085,10 @@ Softboiled_MilkDrinkFunction:
 	pop bc
 	jr .loop
 
-.Text_CantBeUsed: ; 0xf44a
+.Text_CantBeUsed:
 	; That can't be used on this #MON.
 	text_jump UnknownText_0x1c5bac
 	db "@"
-; 0xf44f
 
 
 EscapeRopeEffect:
@@ -2137,11 +2124,10 @@ UseRepel:
 	jp UseItemText
 
 
-TextJump_RepelUsedEarlierIsStillInEffect: ; 0xf47d
+TextJump_RepelUsedEarlierIsStillInEffect:
 	; The REPEL used earlier is still in effect.
 	text_jump Text_RepelUsedEarlierIsStillInEffect
 	db "@"
-; 0xf482
 
 
 XAccuracyEffect:
@@ -2287,19 +2273,17 @@ PokeFluteEffect:
 	ret
 
 
-.CatchyTune: ; 0xf56c
+.CatchyTune:
 	; Played the # FLUTE. Now, that's a catchy tune!
 	text_jump UnknownText_0x1c5bf9
 	db "@"
-; 0xf571
 
-.AllSleepingMonWokeUp: ; 0xf571
+.AllSleepingMonWokeUp:
 	; All sleeping #MON woke up.
 	text_jump UnknownText_0x1c5c28
 	db "@"
-; 0xf576
 
-.PlayedTheFlute: ; 0xf576
+.PlayedTheFlute:
 	; played the # FLUTE.@ @
 	text_jump UnknownText_0x1c5c44
 	start_asm
@@ -2587,35 +2571,30 @@ RestorePP:
 	xor a
 	ret
 
-TextJump_RaiseThePPOfWhichMove: ; 0xf725
+TextJump_RaiseThePPOfWhichMove:
 	; Raise the PP of which move?
 	text_jump Text_RaiseThePPOfWhichMove
 	db "@"
-; 0xf72a
 
-TextJump_RestoreThePPOfWhichMove: ; 0xf72a
+TextJump_RestoreThePPOfWhichMove:
 	; Restore the PP of which move?
 	text_jump Text_RestoreThePPOfWhichMove
 	db "@"
-; 0xf72f
 
-TextJump_PPIsMaxedOut: ; 0xf72f
+TextJump_PPIsMaxedOut:
 	; 's PP is maxed out.
 	text_jump Text_PPIsMaxedOut
 	db "@"
-; 0xf734
 
-TextJump_PPsIncreased: ; 0xf734
+TextJump_PPsIncreased:
 	; 's PP increased.
 	text_jump Text_PPsIncreased
 	db "@"
-; 0xf739
 
-UnknownText_0xf739: ; 0xf739
+UnknownText_0xf739:
 	; PP was restored.
 	text_jump UnknownText_0x1c5cf1
 	db "@"
-; 0xf73e
 
 
 SquirtbottleEffect:
@@ -2656,11 +2635,10 @@ OpenBox:
 
 	jp UseDisposableItem
 
-.text ; 0xf778
+.text
 	; There was a trophy inside!
 	text_jump UnknownText_0x1c5d03
 	db "@"
-; 0xf77d
 
 NoEffect:
 	jp IsntTheTimeMessage
@@ -2753,83 +2731,70 @@ CantUseItemMessage:
 	ld [wItemEffectSucceeded], a
 	jp PrintText
 
-LooksBitterText: ; 0xf80b
+LooksBitterText:
 	; It looks bitter…
 	text_jump UnknownText_0x1c5d3e
 	db "@"
-; 0xf810
 
-CantUseOnEggText: ; 0xf810
+CantUseOnEggText:
 	; That can't be used on an EGG.
 	text_jump UnknownText_0x1c5d50
 	db "@"
-; 0xf815
 
-IsntTheTimeText: ; 0xf815
+IsntTheTimeText:
 	; OAK:  ! This isn't the time to use that!
 	text_jump UnknownText_0x1c5d6e
 	db "@"
-; 0xf81a
 
-BelongsToSomeoneElseText: ; 0xf81a
+BelongsToSomeoneElseText:
 	; That belongs to someone else!
 	text_jump UnknownText_0x1c5d97
 	db "@"
-; 0xf81f
 
-WontHaveAnyEffectText: ; 0xf81f
+WontHaveAnyEffectText:
 	; It won't have any effect.
 	text_jump UnknownText_0x1c5db6
 	db "@"
-; 0xf824
 
-BlockedTheBallText: ; 0xf824
+BlockedTheBallText:
 	; The trainer blocked the BALL!
 	text_jump UnknownText_0x1c5dd0
 	db "@"
-; 0xf829
 
-DontBeAThiefText: ; 0xf829
+DontBeAThiefText:
 	; Don't be a thief!
 	text_jump UnknownText_0x1c5def
 	db "@"
-; 0xf82e
 
-CyclingIsntAllowedText: ; 0xf82e
+CyclingIsntAllowedText:
 	; Cycling isn't allowed here.
 	text_jump UnknownText_0x1c5e01
 	db "@"
-; 0xf833
 
-CantGetOnYourBikeText: ; 0xf833
+CantGetOnYourBikeText:
 	; Can't get on your @  now.
 	text_jump UnknownText_0x1c5e1d
 	db "@"
-; 0xf838
 
-Ball_BoxIsFullText: ; 0xf838
+Ball_BoxIsFullText:
 	; The #MON BOX is full. That can't be used now.
 	text_jump UnknownText_0x1c5e3a
 	db "@"
-; 0xf83d
 
-UsedItemText: ; 0xf83d
+UsedItemText:
 	; used the@ .
 	text_jump UnknownText_0x1c5e68
 	db "@"
-; 0xf842
 
-GotOnTheItemText: ; 0xf842
+GotOnTheItemText:
 	; got on the@ .
 	text_jump UnknownText_0x1c5e7b
 	db "@"
-; 0xf847
 
-GotOffTheItemText: ; 0xf847
+GotOffTheItemText:
 	; got off@ the @ .
 	text_jump UnknownText_0x1c5e90
 	db "@"
-; 0xf84c
 
 
 ApplyPPUp:

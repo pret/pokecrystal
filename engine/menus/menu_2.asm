@@ -1,4 +1,4 @@
-PlaceMenuItemName: ; 0x24ab4
+PlaceMenuItemName:
 	push de
 	ld a, [wMenuSelection]
 	ld [wNamedObjectIndexBuffer], a
@@ -7,7 +7,7 @@ PlaceMenuItemName: ; 0x24ab4
 	call PlaceString
 	ret
 
-PlaceMenuItemQuantity: ; 0x24ac3
+PlaceMenuItemQuantity:
 	push de
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
@@ -52,13 +52,13 @@ PlaceMoneyTextBox:
 	call PrintNum
 	ret
 
-MenuHeader_0x24b15: ; 0x24b15
+MenuHeader_0x24b15:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, 2
 	dw NULL
 	db 1 ; default option
 
-MenuHeader_0x24b1d: ; 0x24b1d
+MenuHeader_0x24b1d:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 11, 8, 13
 	dw NULL

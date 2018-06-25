@@ -3,4 +3,3 @@
 	frame 2, 14
 	frame 1, 06
 	endanim
-; 0xd1299

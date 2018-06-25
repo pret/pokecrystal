@@ -5,7 +5,7 @@ InitDecorations:
 	ld [wDecoPoster], a
 	ret
 
-_PlayerDecorationMenu: ; 0x2675c
+_PlayerDecorationMenu:
 	ld a, [wWhichIndexSet]
 	push af
 	ld hl, .MenuHeader
@@ -34,22 +34,19 @@ _PlayerDecorationMenu: ; 0x2675c
 	ld a, [wBuffer5]
 	ld c, a
 	ret
-; 0x2679a
 
-.MenuHeader: ; 0x2679a
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 5, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .MenuData
 	db 1 ; default option
-; 0x267a2
 
-.MenuData: ; 0x267a2
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw wd002
 	dw PlaceNthMenuStrings
 	dw .pointers
-; 0x267aa
 
 .pointers
 	dw DecoBedMenu, .bed
@@ -385,35 +382,31 @@ PopulateDecoCategoryMenu:
 	call MenuTextBoxBackup
 	ret
 
-.Text_nothing_to_choose: ; 0x269b0
+.Text_nothing_to_choose:
 	; There's nothing to choose.
 	text_jump UnknownText_0x1bc471
 	db "@"
-; 0x269b5
 
-.NonscrollingMenuHeader: ; 0x269b5
+.NonscrollingMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .NonscrollingMenuData
 	db 1 ; default option
-; 0x269bd
 
-.NonscrollingMenuData: ; 0x269bd
+.NonscrollingMenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 0 ; items
 	dw wd002
 	dw DecorationMenuFunction
 	dw DecorationAttributes
-; 0x269c5
 
-.ScrollingMenuHeader: ; 0x269c5
+.ScrollingMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 1, SCREEN_WIDTH - 2, SCREEN_HEIGHT - 2
 	dw .ScrollingMenuData
 	db 1 ; default option
-; 0x269cd
 
-.ScrollingMenuData: ; 0x269cd
+.ScrollingMenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 8, 0 ; rows, columns
 	db 1 ; horizontal spacing
@@ -814,11 +807,10 @@ DecoAction_SetItUp_Ornament:
 	ld [wOtherDecoration], a
 	ret
 
-UnknownText_0x26e41: ; 0x26e41
+UnknownText_0x26e41:
 	; Which side do you want to put it on?
 	text_jump UnknownText_0x1bc48c
 	db "@"
-; 0x26e46
 
 DecoAction_PutItAway_Ornament:
 	ld a, [wSelectedDecoration]
@@ -841,11 +833,10 @@ DecoAction_PutItAway_Ornament:
 	xor a
 	ret
 
-DecoText_WhichSide: ; 0x26e6b
+DecoText_WhichSide:
 	; Which side do you want to put away?
 	text_jump UnknownText_0x1bc4b2
 	db "@"
-; 0x26e70
 
 DecoAction_AskWhichSide:
 	call MenuTextBox
@@ -882,50 +873,43 @@ QueryWhichSide:
 	pop de
 	ret
 
-MenuHeader_0x26eab: ; 0x26eab
+MenuHeader_0x26eab:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 13, 7
 	dw MenuData_0x26eb3
 	db 1 ; default option
-; 0x26eb3
 
-MenuData_0x26eb3: ; 0x26eb3
+MenuData_0x26eb3:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "RIGHT SIDE@"
 	db "LEFT SIDE@"
 	db "CANCEL@"
-; 0x26ed1
 
-DecoText_PutAwayTheDeco: ; 0x26ed1
+DecoText_PutAwayTheDeco:
 	; Put away the @ .
 	text_jump UnknownText_0x1bc4d7
 	db "@"
-; 0x26ed6
 
-DecoText_NothingToPutAway: ; 0x26ed6
+DecoText_NothingToPutAway:
 	; There's nothing to put away.
 	text_jump UnknownText_0x1bc4ec
 	db "@"
-; 0x26edb
 
-DecoText_SetUpTheDeco: ; 0x26edb
+DecoText_SetUpTheDeco:
 	; Set up the @ .
 	text_jump UnknownText_0x1bc509
 	db "@"
-; 0x26ee0
 
-DecoText_PutAwayAndSetUp: ; 0x26ee0
+DecoText_PutAwayAndSetUp:
 	; Put away the @ and set up the @ .
 	text_jump UnknownText_0x1bc51c
 	db "@"
-; 0x26ee5
 
-DecoText_AlreadySetUp: ; 0x26ee5
+DecoText_AlreadySetUp:
 	; That's already set up.
 	text_jump UnknownText_0x1bc546
 	db "@"
-; 0x26eea
 
 GetDecorationName_c_de:
 	ld a, c
@@ -1024,50 +1008,42 @@ DecorationDesc_PosterPointers:
 	dbw DECO_JIGGLYPUFF_POSTER, DecorationDesc_JigglypuffPoster
 	db -1
 
-DecorationDesc_TownMapPoster: ; 0x26f91
+DecorationDesc_TownMapPoster:
 	opentext
 	writetext .TownMapText
 	waitbutton
 	special OverworldTownMap
 	closetext
 	end
-; 0x26f9b
 
-.TownMapText: ; 0x26f9b
+.TownMapText:
 	; It's the TOWN MAP.
 	text_jump UnknownText_0x1bc55d
 	db "@"
-; 0x26fa0
 
-DecorationDesc_PikachuPoster: ; 0x26fa0
+DecorationDesc_PikachuPoster:
 	jumptext .PikaPosterText
-; 0x26fa3
 
-.PikaPosterText: ; 0x26fa3
+.PikaPosterText:
 	; It's a poster of a cute PIKACHU.
 	text_jump UnknownText_0x1bc570
 	db "@"
-; 0x26fa8
 
-DecorationDesc_ClefairyPoster: ; 0x26fa8
+DecorationDesc_ClefairyPoster:
 	jumptext .ClefairyPosterText
-; 0x26fab
 
-.ClefairyPosterText: ; 0x26fab
+.ClefairyPosterText:
 	; It's a poster of a cute CLEFAIRY.
 	text_jump UnknownText_0x1bc591
 	db "@"
-; 0x26fb0
 
-DecorationDesc_JigglypuffPoster: ; 0x26fb0
+DecorationDesc_JigglypuffPoster:
 	jumptext .JigglypuffPosterText
-; 0x26fb3
 
-.JigglypuffPosterText: ; 0x26fb3
+.JigglypuffPosterText:
 	; It's a poster of a cute JIGGLYPUFF.
 	text_jump UnknownText_0x1bc5b3
 	db "@"
-; 0x26fb8
 
 DecorationDesc_NullPoster:
 	end
@@ -1095,11 +1071,10 @@ DecorationDesc_OrnamentOrConsole:
 .OrnamentConsoleScript:
 	jumptext .OrnamentConsoleText
 
-.OrnamentConsoleText: ; 0x26fd8
+.OrnamentConsoleText:
 	; It's an adorable @ .
 	text_jump UnknownText_0x1bc5d7
 	db "@"
-; 0x26fdd
 
 DecorationDesc_GiantOrnament:
 	ld b, BANK(.BigDollScript)
@@ -1109,11 +1084,10 @@ DecorationDesc_GiantOrnament:
 .BigDollScript:
 	jumptext .BigDollText
 
-.BigDollText: ; 0x26fe6
+.BigDollText:
 	; A giant doll! It's fluffy and cuddly.
 	text_jump UnknownText_0x1bc5ef
 	db "@"
-; 0x26feb
 
 ToggleMaptileDecorations:
 	lb de, 0, 4

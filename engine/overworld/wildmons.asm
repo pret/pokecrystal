@@ -842,7 +842,6 @@ RandomUnseenWildMon:
 	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
 	text_jump UnknownText_0x1bd34b
 	db "@"
-; 0x2a51f
 
 RandomPhoneWildMon:
 	farcall GetCallerLocation

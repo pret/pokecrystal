@@ -29,32 +29,27 @@ PhotoStudio:
 	call PrintText
 	ret
 
-.Text_AskWhichMon: ; 0x16e04
+.Text_AskWhichMon:
 	; Which #MON should I photo- graph?
 	text_jump UnknownText_0x1be024
 	db "@"
-; 0x16e09
 
-.Text_HoldStill: ; 0x16e09
+.Text_HoldStill:
 	; All righty. Hold still for a bit.
 	text_jump UnknownText_0x1be047
 	db "@"
-; 0x16e0e
 
-.Text_Presto: ; 0x16e0e
+.Text_Presto:
 	; Presto! All done. Come again, OK?
 	text_jump UnknownText_0x1be06a
 	db "@"
-; 0x16e13
 
-.Text_NoPicture: ; 0x16e13
+.Text_NoPicture:
 	; Oh, no picture? Come again, OK?
 	text_jump UnknownText_0x1c0000
 	db "@"
-; 0x16e18
 
-.Text_Egg: ; 0x16e18
+.Text_Egg:
 	; An EGG? My talent is worth more…
 	text_jump UnknownText_0x1c0021
 	db "@"
-; 0x16e1d

@@ -48,14 +48,13 @@ MainMenu:
 	db "MOBILE@"
 	db "MOBILE STUDIUM@"
 
-.Jumptable: ; 0x49d60
+.Jumptable:
 	dw MainMenu_Continue
 	dw MainMenu_NewGame
 	dw MainMenu_Options
 	dw MainMenu_MysteryGift
 	dw MainMenu_Mobile
 	dw MainMenu_MobileStudium
-; 0x49d6c
 
 CONTINUE       EQU 0
 NEW_GAME       EQU 1
@@ -66,20 +65,20 @@ MOBILE_STUDIUM EQU 5
 
 MainMenuItems:
 
-NewGameMenu: ; 0x49d6c
+NewGameMenu:
 	db 2
 	db NEW_GAME
 	db OPTION
 	db -1
 
-ContinueMenu: ; 0x49d70
+ContinueMenu:
 	db 3
 	db CONTINUE
 	db NEW_GAME
 	db OPTION
 	db -1
 
-MobileMysteryMenu: ; 0x49d75
+MobileMysteryMenu:
 	db 5
 	db CONTINUE
 	db NEW_GAME
@@ -88,7 +87,7 @@ MobileMysteryMenu: ; 0x49d75
 	db MOBILE
 	db -1
 
-MobileMenu: ; 0x49d7c
+MobileMenu:
 	db 4
 	db CONTINUE
 	db NEW_GAME
@@ -96,7 +95,7 @@ MobileMenu: ; 0x49d7c
 	db MOBILE
 	db -1
 
-MobileStudiumMenu: ; 0x49d82
+MobileStudiumMenu:
 	db 5
 	db CONTINUE
 	db NEW_GAME
@@ -105,7 +104,7 @@ MobileStudiumMenu: ; 0x49d82
 	db MOBILE_STUDIUM
 	db -1
 
-MysteryMobileStudiumMenu: ; 0x49d89
+MysteryMobileStudiumMenu:
 	db 6
 	db CONTINUE
 	db NEW_GAME
@@ -115,7 +114,7 @@ MysteryMobileStudiumMenu: ; 0x49d89
 	db MOBILE_STUDIUM
 	db -1
 
-MysteryMenu: ; 0x49d91
+MysteryMenu:
 	db 4
 	db CONTINUE
 	db NEW_GAME
@@ -123,7 +122,7 @@ MysteryMenu: ; 0x49d91
 	db MYSTERY_GIFT
 	db -1
 
-MysteryStudiumMenu: ; 0x49d97
+MysteryStudiumMenu:
 	db 5
 	db CONTINUE
 	db NEW_GAME
@@ -132,7 +131,7 @@ MysteryStudiumMenu: ; 0x49d97
 	db MOBILE_STUDIUM
 	db -1
 
-StudiumMenu: ; 0x49d9e
+StudiumMenu:
 	db 4
 	db CONTINUE
 	db NEW_GAME

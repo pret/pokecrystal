@@ -33,9 +33,9 @@ _AnimateTileset::
 
 	jp hl
 
-Tileset0Anim: ; 0xfc01b
-TilesetJohtoModernAnim: ; 0xfc01b
-TilesetKantoAnim: ; 0xfc01b
+Tileset0Anim:
+TilesetJohtoModernAnim:
+TilesetKantoAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -47,9 +47,8 @@ TilesetKantoAnim: ; 0xfc01b
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
-; 0xfc047
 
-TilesetParkAnim: ; 0xfc047
+TilesetParkAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw vTiles2 tile $5f, AnimateFountain
@@ -61,9 +60,8 @@ TilesetParkAnim: ; 0xfc047
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
-; 0xfc073
 
-TilesetForestAnim: ; 0xfc073
+TilesetForestAnim:
 	dw NULL,  ForestTreeLeftAnimation
 	dw NULL,  ForestTreeRightAnimation
 	dw NULL,  WaitTileAnimation
@@ -76,9 +74,8 @@ TilesetForestAnim: ; 0xfc073
 	dw NULL,  TileAnimationPalette
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
-; 0xfc0a3
 
-TilesetJohtoAnim: ; 0xfc0a3
+TilesetJohtoAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -92,9 +89,8 @@ TilesetJohtoAnim: ; 0xfc0a3
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
-; 0xfc0d7
 
-UnusedTilesetAnim_fc0d7: ; 0xfc0d7
+UnusedTilesetAnim_fc0d7:
 	dw vTiles2 tile $03, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw vTiles2 tile $03, WriteTileFromBuffer
@@ -106,9 +102,8 @@ UnusedTilesetAnim_fc0d7: ; 0xfc0d7
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  DoneTileAnimation
-; 0xfc103
 
-UnusedTilesetAnim_fc103: ; 0xfc103
+UnusedTilesetAnim_fc103:
 	dw vTiles2 tile $14, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw vTiles2 tile $14, WriteTileFromBuffer
@@ -120,9 +115,8 @@ UnusedTilesetAnim_fc103: ; 0xfc103
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  DoneTileAnimation
-; 0xfc12f
 
-TilesetPortAnim: ; 0xfc12f
+TilesetPortAnim:
 	dw vTiles2 tile $14, AnimateWaterTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -135,9 +129,8 @@ TilesetPortAnim: ; 0xfc12f
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
-; 0xfc15f
 
-TilesetEliteFourRoomAnim: ; 0xfc15f
+TilesetEliteFourRoomAnim:
 	dw NULL,  LavaBubbleAnim2
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
@@ -146,9 +139,8 @@ TilesetEliteFourRoomAnim: ; 0xfc15f
 	dw NULL,  WaitTileAnimation
 	dw NULL,  StandingTileFrame8
 	dw NULL,  DoneTileAnimation
-; 0xfc17f
 
-UnusedTilesetAnim_fc17f: ; 0xfc17f
+UnusedTilesetAnim_fc17f:
 	dw vTiles2 tile $53, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileDown
 	dw wTileAnimBuffer, ScrollTileDown
@@ -161,9 +153,8 @@ UnusedTilesetAnim_fc17f: ; 0xfc17f
 	dw wTileAnimBuffer, ScrollTileDown
 	dw vTiles2 tile $53, WriteTileFromBuffer
 	dw NULL,  DoneTileAnimation
-; 0xfc1af
 
-UnusedTilesetAnim_fc1af: ; 0xfc1af
+UnusedTilesetAnim_fc1af:
 	dw vTiles2 tile $54, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileDown
 	dw wTileAnimBuffer, ScrollTileDown
@@ -178,10 +169,9 @@ UnusedTilesetAnim_fc1af: ; 0xfc1af
 	dw wTileAnimBuffer, ScrollTileDown
 	dw vTiles2 tile $54, WriteTileFromBuffer
 	dw NULL,  DoneTileAnimation
-; 0xfc1e7
 
-TilesetCaveAnim: ; 0xfc1e7
-TilesetDarkCaveAnim: ; 0xfc1e7
+TilesetCaveAnim:
+TilesetDarkCaveAnim:
 	dw vTiles2 tile $14, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileRightLeft
@@ -201,9 +191,8 @@ TilesetDarkCaveAnim: ; 0xfc1e7
 	dw vTiles2 tile $40, WriteTileFromBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  DoneTileAnimation
-; 0xfc233
 
-TilesetIcePathAnim: ; 0xfc233
+TilesetIcePathAnim:
 	dw vTiles2 tile $35, WriteTileToBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw wTileAnimBuffer, ScrollTileRightLeft
@@ -223,9 +212,8 @@ TilesetIcePathAnim: ; 0xfc233
 	dw vTiles2 tile $31, WriteTileFromBuffer
 	dw NULL,  FlickeringCaveEntrancePalette
 	dw NULL,  DoneTileAnimation
-; 0xfc27f
 
-TilesetTowerAnim: ; 0xfc27f
+TilesetTowerAnim:
 	dw TowerPillarTilePointer9,  AnimateTowerPillarTile
 	dw TowerPillarTilePointer10, AnimateTowerPillarTile
 	dw TowerPillarTilePointer7,  AnimateTowerPillarTile
@@ -242,9 +230,8 @@ TilesetTowerAnim: ; 0xfc27f
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  DoneTileAnimation
-; 0xfc2bf
 
-UnusedTilesetAnim_fc2bf: ; 0xfc2bf
+UnusedTilesetAnim_fc2bf:
 	dw vTiles2 tile $4f, WriteTileToBuffer
 	dw wTileAnimBuffer, ScrollTileRightLeft
 	dw vTiles2 tile $4f, WriteTileFromBuffer
@@ -255,39 +242,37 @@ UnusedTilesetAnim_fc2bf: ; 0xfc2bf
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  DoneTileAnimation
-; 0xfc2e7
 
-TilesetBattleTowerOutsideAnim: ; 0xfc2e7
-TilesetHouseAnim: ; 0xfc2e7
-TilesetPlayersHouseAnim: ; 0xfc2e7
-TilesetPokecenterAnim: ; 0xfc2e7
-TilesetGateAnim: ; 0xfc2e7
-TilesetLabAnim: ; 0xfc2e7
-TilesetFacilityAnim: ; 0xfc2e7
-TilesetMartAnim: ; 0xfc2e7
-TilesetMansionAnim: ; 0xfc2e7
-TilesetGameCornerAnim: ; 0xfc2e7
-TilesetTraditionalHouseAnim: ; 0xfc2e7
-TilesetTrainStationAnim: ; 0xfc2e7
-TilesetChampionsRoomAnim: ; 0xfc2e7
-TilesetLighthouseAnim: ; 0xfc2e7
-TilesetPlayersRoomAnim: ; 0xfc2e7
-TilesetPokeComCenterAnim: ; 0xfc2e7
-TilesetBattleTowerAnim: ; 0xfc2e7
-TilesetRuinsOfAlphAnim: ; 0xfc2e7
-TilesetRadioTowerAnim: ; 0xfc2e7
-TilesetUndergroundAnim: ; 0xfc2e7
-TilesetBetaWordRoomAnim: ; 0xfc2e7
-TilesetHoOhWordRoomAnim: ; 0xfc2e7
-TilesetKabutoWordRoomAnim: ; 0xfc2e7
-TilesetOmanyteWordRoomAnim: ; 0xfc2e7
-TilesetAerodactylWordRoomAnim: ; 0xfc2e7
+TilesetBattleTowerOutsideAnim:
+TilesetHouseAnim:
+TilesetPlayersHouseAnim:
+TilesetPokecenterAnim:
+TilesetGateAnim:
+TilesetLabAnim:
+TilesetFacilityAnim:
+TilesetMartAnim:
+TilesetMansionAnim:
+TilesetGameCornerAnim:
+TilesetTraditionalHouseAnim:
+TilesetTrainStationAnim:
+TilesetChampionsRoomAnim:
+TilesetLighthouseAnim:
+TilesetPlayersRoomAnim:
+TilesetPokeComCenterAnim:
+TilesetBattleTowerAnim:
+TilesetRuinsOfAlphAnim:
+TilesetRadioTowerAnim:
+TilesetUndergroundAnim:
+TilesetBetaWordRoomAnim:
+TilesetHoOhWordRoomAnim:
+TilesetKabutoWordRoomAnim:
+TilesetOmanyteWordRoomAnim:
+TilesetAerodactylWordRoomAnim:
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  WaitTileAnimation
 	dw NULL,  DoneTileAnimation
-; 0xfc2fb
 
 DoneTileAnimation:
 ; Reset the animation command loop.

@@ -284,7 +284,6 @@ ENDM
 	ld [hli], a
 	call PrintLetterDelay
 	jp NextChar
-; 0x117b
 
 
 DayOfWeekChar::
@@ -399,7 +398,6 @@ PlaceCommandCharacter::
 	ld l, c
 	pop de
 	jp NextChar
-; 0x1273
 
 TMCharText::      db "TM@"
 TrainerCharText:: db "TRAINER@"
@@ -480,7 +478,6 @@ LineChar::
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	push hl
 	jp NextChar
-; 0x12f2
 
 Paragraph::
 	push de

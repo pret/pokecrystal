@@ -4,4 +4,3 @@
 	frame 2, 09
 	frame 1, 10
 	endanim
-; 0xd1016

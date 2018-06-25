@@ -4,7 +4,7 @@ spawn: MACRO
 	db \2, \3
 ENDM
 
-SpawnPoints: ; 0x152ab
+SpawnPoints:
 ; entries correspond to SPAWN_* constants
 
 	spawn PLAYERS_HOUSE_2F,            3,  3

@@ -56,9 +56,8 @@ StatsScreenInit_gotaddress:
 	pop af
 	ld [hMapAnims], a
 	ret
-; 0x4dcd2
 
-StatsScreenMain: ; 0x4dcd2
+StatsScreenMain:
 	xor a
 	ld [wJumptableIndex], a
 	; stupid interns
@@ -77,7 +76,6 @@ StatsScreenMain: ; 0x4dcd2
 	bit 7, a
 	jr z, .loop
 	ret
-; 0x4dcf7
 
 StatsScreenMobile:
 	xor a
@@ -175,7 +173,6 @@ EggStatsInit:
 	inc a
 	ld [wJumptableIndex], a
 	ret
-; 0x4ddac
 
 
 EggStatsJoypad:
@@ -1004,7 +1001,6 @@ EggStatsScreen:
 	ld de, SFX_2_BOOPS
 	call PlaySFX
 	ret
-; 0x4e3c0
 
 EggString:
 	db "EGG@"
@@ -1012,27 +1008,26 @@ EggString:
 FiveQMarkString:
 	db "?????@"
 
-EggSoonString: ; 0x4e3ca
+EggSoonString:
 	db   "It's making sounds"
 	next "inside. It's going"
 	next "to hatch soon!@"
 
-EggCloseString: ; 0x4e3fd
+EggCloseString:
 	db   "It moves around"
 	next "inside sometimes."
 	next "It must be close"
 	next "to hatching.@"
 
-EggMoreTimeString: ; 0x4e43d
+EggMoreTimeString:
 	db   "Wonder what's"
 	next "inside? It needs"
 	next "more time, though.@"
 
-EggALotMoreTimeString: ; 0x4e46e
+EggALotMoreTimeString:
 	db   "This EGG needs a"
 	next "lot more time to"
 	next "hatch.@"
-; 0x4e497
 
 
 StatsScreen_AnimateEgg:

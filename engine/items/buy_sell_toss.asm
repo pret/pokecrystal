@@ -201,23 +201,20 @@ BuySell_DisplaySubtotal:
 	call WaitBGMap
 	ret
 
-TossItem_MenuHeader: ; 0x250ed
+TossItem_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 15, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw ret_25097
 	db 0 ; default option
-; 0x250f5
 
-BuyItem_MenuHeader: ; 0x250f5
+BuyItem_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw DisplayPurchasePrice
 	db -1 ; default option
-; 0x250fd
 
-SellItem_MenuHeader: ; 0x250fd
+SellItem_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 7, 15, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw DisplaySellingPrice
 	db 0 ; default option
-; 0x25105

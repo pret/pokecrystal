@@ -166,29 +166,25 @@ TeachTMHM:
 	scf
 	ret
 
-Text_BootedTM: ; 0x2c8bf
+Text_BootedTM:
 	; Booted up a TM.
 	text_jump UnknownText_0x1c0373
 	db "@"
-; 0x2c8c4
 
-Text_BootedHM: ; 0x2c8c4
+Text_BootedHM:
 	; Booted up an HM.
 	text_jump UnknownText_0x1c0384
 	db "@"
-; 0x2c8c9
 
-Text_ItContained: ; 0x2c8c9
+Text_ItContained:
 	; It contained @ . Teach @ to a #MON?
 	text_jump UnknownText_0x1c0396
 	db "@"
-; 0x2c8ce
 
-Text_TMHMNotCompatible: ; 0x2c8ce
+Text_TMHMNotCompatible:
 	; is not compatible with @ . It can't learn @ .
 	text_jump UnknownText_0x1c03c2
 	db "@"
-; 0x2c8d3
 
 TMHM_PocketLoop:
 	xor a
@@ -501,17 +497,15 @@ Unreferenced_Function2cadf:
 .print
 	jp PrintText
 
-.NoRoomText: ; 0x2caf0
+.NoRoomText:
 	; You have no room for any more @ S.
 	text_jump UnknownText_0x1c03fa
 	db "@"
-; 0x2caf5
 
-.ReceivedText: ; 0x2caf5
+.ReceivedText:
 	; You received @ !
 	text_jump UnknownText_0x1c0421
 	db "@"
-; 0x2cafa
 
 .CheckHaveRoomForTMHM:
 	ld a, [wd265]

@@ -7,4 +7,3 @@
 	frame 1, 04
 	dorepeat 5
 	endanim
-; 0xd197b

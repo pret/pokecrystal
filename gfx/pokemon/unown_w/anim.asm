@@ -3,4 +3,3 @@
 	frame 0, 06
 	frame 2, 12
 	endanim
-; 0xd23a6

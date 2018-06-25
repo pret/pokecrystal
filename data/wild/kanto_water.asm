@@ -1,6 +1,6 @@
 ; Kanto Pokémon in water
 
-KantoWaterWildMons: ; 0x2b7f7
+KantoWaterWildMons:
 
 	map_id TOHJO_FALLS
 	db 4 percent ; encounter rate

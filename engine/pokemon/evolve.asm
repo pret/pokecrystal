@@ -399,29 +399,25 @@ IsMonHoldingEverstone:
 	pop hl
 	ret
 
-Text_CongratulationsYourPokemon: ; 0x42473
+Text_CongratulationsYourPokemon:
 	; Congratulations! Your @ @
 	text_jump UnknownText_0x1c4b92
 	db "@"
-; 0x42478
 
-Text_EvolvedIntoPKMN: ; 0x42478
+Text_EvolvedIntoPKMN:
 	; evolved into @ !
 	text_jump UnknownText_0x1c4baf
 	db "@"
-; 0x4247d
 
-Text_StoppedEvolving: ; 0x4247d
+Text_StoppedEvolving:
 	; Huh? @ stopped evolving!
 	text_jump UnknownText_0x1c4bc5
 	db "@"
-; 0x42482
 
-Text_WhatEvolving: ; 0x42482
+Text_WhatEvolving:
 	; What? @ is evolving!
 	text_jump UnknownText_0x1c4be3
 	db "@"
-; 0x42487
 
 
 LearnLevelMoves:

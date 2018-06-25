@@ -1076,7 +1076,7 @@ GetMovementData::
 	rst Bankswitch
 	ret
 
-GetScriptByte:: ; 0x26d4
+GetScriptByte::
 ; Return byte at wScriptBank:wScriptPos in a.
 
 	push hl
@@ -1105,16 +1105,13 @@ GetScriptByte:: ; 0x26d4
 	pop bc
 	pop hl
 	ret
-; 0x26ef
 
-ObjectEvent:: ; 0x26ef
+ObjectEvent::
 	jumptextfaceplayer ObjectEventText
-; 0x26f2
 
 ObjectEventText::
 	text_jump _ObjectEventText
 	db "@"
-; 0x26f7
 
 BGEvent::
 	jumptext BGEventText
@@ -1929,7 +1926,7 @@ FinishExitMenu::
 	call EnableSpriteUpdates
 	ret
 
-ReturnToMapWithSpeechTextbox:: ; 0x2b74
+ReturnToMapWithSpeechTextbox::
 	push af
 	ld a, $1
 	ld [wSpriteUpdatesEnabled], a
@@ -1952,7 +1949,6 @@ ReturnToMapWithSpeechTextbox:: ; 0x2b74
 	ld [hMapAnims], a
 	pop af
 	ret
-; 0x2bae
 
 ReloadTilesetAndPalettes::
 	call DisableLCD
@@ -1983,7 +1979,7 @@ GetMapPointer::
 	ld b, a
 	ld a, [wMapNumber]
 	ld c, a
-GetAnyMapPointer:: ; 0x2bed
+GetAnyMapPointer::
 ; Prior to calling this function, you must have switched banks so that
 ; MapGroupPointers is visible.
 
@@ -2013,9 +2009,8 @@ GetAnyMapPointer:: ; 0x2bed
 	ld a, 9
 	call AddNTimes
 	ret
-; 0x2c04
 
-GetMapField:: ; 0x2c04
+GetMapField::
 ; Extract data from the current map's group entry.
 
 ; inputs:
@@ -2029,7 +2024,7 @@ GetMapField:: ; 0x2c04
 	ld b, a
 	ld a, [wMapNumber]
 	ld c, a
-GetAnyMapField:: ; 0x2c0c
+GetAnyMapField::
 	; bankswitch
 	ld a, [hROMBank]
 	push af
@@ -2046,7 +2041,6 @@ GetAnyMapField:: ; 0x2c0c
 	pop af
 	rst Bankswitch
 	ret
-; 0x2c1c
 
 SwitchToMapAttributesBank::
 	ld a, [wMapGroup]
@@ -2128,7 +2122,7 @@ GetAnyMapBlocksBank::
 	pop hl
 	ret
 
-GetMapAttributesPointer:: ; 0x2c7d
+GetMapAttributesPointer::
 ; returns the current map's data pointer in hl.
 	push bc
 	push de
@@ -2172,7 +2166,7 @@ GetAnyMapTileset::
 	ld a, c
 	ret
 
-GetWorldMapLocation:: ; 0x2caf
+GetWorldMapLocation::
 ; given a map group/id in bc, return its location on the Pokégear map.
 	push hl
 	push de
@@ -2186,7 +2180,6 @@ GetWorldMapLocation:: ; 0x2caf
 	pop de
 	pop hl
 	ret
-; 0x2cbd
 
 GetMapMusic::
 	push hl

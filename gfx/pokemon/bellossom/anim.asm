@@ -7,4 +7,3 @@
 	frame 5, 12
 	frame 4, 10
 	endanim
-; 0xd130b

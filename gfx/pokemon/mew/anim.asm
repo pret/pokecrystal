@@ -15,4 +15,3 @@
 	frame 0, 15
 	frame 4, 15
 	endanim
-; 0xd1154

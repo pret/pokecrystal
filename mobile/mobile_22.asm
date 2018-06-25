@@ -261,19 +261,17 @@ Function89261:
 	scf
 	ret
 
-MenuHeader_0x892a3: ; 0x892a3
+MenuHeader_0x892a3:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 5, 15, 9
 	dw MenuData_0x892ab
 	db 1 ; default option
-; 0x892ab
 
-MenuData_0x892ab: ; 0x892ab
+MenuData_0x892ab:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "はい@"
 	db "いいえ@"
-; 0x892b4
 
 Function892b4:
 	call Function8931b
@@ -1004,7 +1002,7 @@ Function896f5:
 	inc hl
 	ld b, 2
 
-ClearScreenArea: ; 0x896ff
+ClearScreenArea:
 ; clears an area of the screen
 ; INPUT:
 ; hl = address of upper left corner of the area
@@ -1039,7 +1037,6 @@ ClearScreenArea: ; 0x896ff
 	dec c
 	jr nz, .asm_89713 ; 0x8971c $f5
 	ret
-; 0x8971f
 
 Function8971f:
 	ld a, $2c
@@ -2659,29 +2656,25 @@ Function8a0f5:
 Function8a0ff:
 	jp Function89e36
 
-UnknownText_0x8a102: ; 0x8a102
+UnknownText_0x8a102:
 	; The CARD FOLDER stores your and your friends' CARDS. A CARD contains information like the person's name, phone number and profile.
 	text_jump UnknownText_0x1c5238
 	db "@"
-; 0x8a107
 
-UnknownText_0x8a107: ; 0x8a107
+UnknownText_0x8a107:
 	; This is your CARD. Once you've entered your phone number, you can trade CARDS with your friends.
 	text_jump UnknownText_0x1c52bc
 	db "@"
-; 0x8a10c
 
-UnknownText_0x8a10c: ; 0x8a10c
+UnknownText_0x8a10c:
 	; If you have your friend's CARD, you can use it to make a call from a mobile phone on the 2nd floor of a #MON CENTER.
 	text_jump UnknownText_0x1c531e
 	db "@"
-; 0x8a111
 
-UnknownText_0x8a111: ; 0x8a111
+UnknownText_0x8a111:
 	; To safely store your collection of CARDS, you must set a PASSCODE for your CARD FOLDER.
 	text_jump UnknownText_0x1c5394
 	db "@"
-; 0x8a116
 
 Function8a116:
 	ld a, $1
@@ -2729,7 +2722,7 @@ Function8a116:
 	scf
 	ret
 
-MenuHeader_0x8a176: ; 0x8a176
+MenuHeader_0x8a176:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
 
@@ -2749,20 +2742,18 @@ Function8a17b:
 	ld d, a
 	ret
 
-MenuHeader_0x8a19a: ; 0x8a19a
+MenuHeader_0x8a19a:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 0, SCREEN_WIDTH - 1, 6
 	dw MenuData_0x8a1a2
 	db 1 ; default option
-; 0x8a1a2
 
-MenuData_0x8a1a2: ; 0x8a1a2
+MenuData_0x8a1a2:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "ひらく@"
 	db "すてる@"
 	db "もどる@"
-; 0x8a1b0
 
 Function8a1b0:
 	hlcoord 0, 12
@@ -2810,23 +2801,20 @@ Function8a20d:
 	and a
 	ret
 
-UnknownText_0x8a232: ; 0x8a232
+UnknownText_0x8a232:
 	; If the CARD FOLDER is deleted, all its CARDS and the PASSCODE will also be deleted. Beware--a deleted CARD FOLDER can't be restored. Want to delete your CARD FOLDER?
 	text_jump UnknownText_0x1c53ee
 	db "@"
-; 0x8a237
 
-UnknownText_0x8a237: ; 0x8a237
+UnknownText_0x8a237:
 	; Are you sure you want to delete it?
 	text_jump UnknownText_0x1c5494
 	db "@"
-; 0x8a23c
 
-UnknownText_0x8a23c: ; 0x8a23c
+UnknownText_0x8a23c:
 	; The CARD FOLDER has been deleted.
 	text_jump UnknownText_0x1c54b9
 	db "@"
-; 0x8a241
 
 Function8a241:
 	call LoadStandardMenuHeader
@@ -2904,21 +2892,19 @@ Function8a2aa:
 	scf
 	ret
 
-MenuHeader_0x8a2ef: ; 0x8a2ef
+MenuHeader_0x8a2ef:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 
-UnknownText_0x8a2f4: ; 0x8a2f4
+UnknownText_0x8a2f4:
 	; There is an older CARD FOLDER from a previous journey. Do you want to open it?
 	text_jump UnknownText_0x1c54dd
 	db "@"
-; 0x8a2f9
 
-UnknownText_0x8a2f9: ; 0x8a2f9
+UnknownText_0x8a2f9:
 	; Delete the old CARD FOLDER?
 	text_jump UnknownText_0x1c552d
 	db "@"
-; 0x8a2fe
 
 Function8a2fe:
 	call Function8a313
@@ -3063,36 +3049,32 @@ Function8a400:
 Unknown_8a408: db 1, 2, -1
 Unknown_8a40b: db 1, 2, 3, -1
 
-MenuHeader_0x8a40f: ; 0x8a40f
+MenuHeader_0x8a40f:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 10, TEXTBOX_Y - 1
 	dw MenuData_0x8a417
 	db 1 ; default option
-; 0x8a417
 
-MenuData_0x8a417: ; 0x8a417
+MenuData_0x8a417:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 4 ; items
 	db "めいしりスト@"
 	db "じぶんの　めいし@"
 	db "めいしこうかん@"
 	db "やめる@"
-; 0x8a435
 
-MenuHeader_0x8a435: ; 0x8a435
+MenuHeader_0x8a435:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 10, 9
 	dw MenuData_0x8a43d
 	db 1 ; default option
-; 0x8a43d
 
-MenuData_0x8a43d: ; 0x8a43d
+MenuData_0x8a43d:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "めいしりスト@"
 	db "じぶんの　めいし@"
 	db "やめる@"
-; 0x8a453
 
 Function8a453:
 	hlcoord 0, 12
@@ -3788,7 +3770,7 @@ Jumptable_8a9c5:
 	dw Function8aa0a
 	dw Function8ab3b
 
-MenuHeader_0x8a9c9: ; 0x8a9c9
+MenuHeader_0x8a9c9:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 4, 18, TEXTBOX_Y - 1
 
@@ -3815,20 +3797,18 @@ Function8a9ce:
 	scf
 	ret
 
-MenuHeader_0x8a9f2: ; 0x8a9f2
+MenuHeader_0x8a9f2:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 4, 18, TEXTBOX_Y - 1
 	dw MenuData_0x8a9fa
 	db 1 ; default option
-; 0x8a9fa
 
-MenuData_0x8a9fa: ; 0x8a9fa
+MenuData_0x8a9fa:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 3 ; items
 	db "へんしゅう@"
 	db "みる@"
 	db "やめる@"
-; 0x8aa09
 
 Function8aa09:
 	ret
@@ -4198,11 +4178,10 @@ Function8ac7c:
 	scf
 	ret
 
-UnknownText_0x8ad06: ; 0x8ad06
+UnknownText_0x8ad06:
 	; Finish registering CARDS?
 	text_jump UnknownText_0x1c554a
 	db "@"
-; 0x8ad0b
 
 Function8ad0b:
 .asm_8ad0b

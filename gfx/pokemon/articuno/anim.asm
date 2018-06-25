@@ -6,4 +6,3 @@
 	dorepeat 2
 	frame 5, 12
 	endanim
-; 0xd10c1

@@ -3,4 +3,3 @@
 	frame 2, 14
 	frame 3, 14
 	endanim
-; 0xd1357

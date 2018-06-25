@@ -231,7 +231,6 @@ BillsPCDepositMenuHeader: ; 0xe253d (38:653d)
 	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
-; 0xe2545
 
 .MenuData: ; 0xe2545 (38:6545)
 	db STATICMENU_CURSOR ; flags
@@ -482,21 +481,19 @@ BillsPC_Withdraw:
 	ld [wJumptableIndex], a
 	ret
 
-.MenuHeader: ; 0xe2731
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
-; 0xe2739
 
-.MenuData: ; 0xe2739
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "WITHDRAW@"
 	db "STATS@"
 	db "RELEASE@"
 	db "CANCEL@"
-; 0xe2759
 
 _MovePKMNWithoutMail:
 	ld hl, wOptions
@@ -694,20 +691,18 @@ _MovePKMNWithoutMail:
 	ld [wJumptableIndex], a
 	ret
 
-.MenuHeader: ; 0xe28c3
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 9, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
-; 0xe28cb
 
-.MenuData: ; 0xe28cb
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "MOVE@"
 	db "STATS@"
 	db "CANCEL@"
-; 0xe28df
 
 .PrepInsertCursor:
 	xor a
@@ -2272,14 +2267,13 @@ BillsPC_ClearTilemap:
 	call ByteFill
 	ret
 
-_ChangeBox_MenuHeader: ; 0xe35f1
+_ChangeBox_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 5, 9, 12
 	dw .MenuData
 	db 1 ; default option
-; 0xe35f9
 
-.MenuData ; 0xe35f9
+.MenuData
 	db MENU_UNUSED_1 | MENU_UNUSED_3 ; flags
 	db 4, 0
 	db 1
@@ -2488,21 +2482,19 @@ BillsPC_ChangeBoxSubmenu:
 
 	hlcoord 11, 7 ; unused
 
-.MenuHeader: ; 0xe377b
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 4, SCREEN_WIDTH - 1, 13
 	dw .MenuData
 	db 1 ; default option
-; 0xe3783
 
-.MenuData: ; 0xe3783
+.MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "SWITCH@"
 	db "NAME@"
 	db "PRINT@"
 	db "QUIT@"
-; 0xe379c
 
 BillsPC_PlaceChooseABoxString:
 	ld de, .ChooseABox

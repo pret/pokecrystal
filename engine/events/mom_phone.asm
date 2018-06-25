@@ -24,10 +24,9 @@ MomTriesToBuySomething::
 	scf
 	ret
 
-.Script: ; 0xfd00f
+.Script:
 	callasm .ASMFunction
 	farjump Script_ReceivePhoneCall
-; 0xfd017
 
 .ASMFunction:
 	call MomBuysItem_DeductFunds
@@ -166,21 +165,19 @@ Mom_GetScriptPointer:
 	ld de, .DollScript
 	ret
 
-.ItemScript: ; 0xfd0fd
+.ItemScript:
 	writetext _MomText_HiHowAreYou
 	writetext _MomText_FoundAnItem
 	writetext _MomText_BoughtWithYourMoney
 	writetext _MomText_ItsInPC
 	end
-; 0xfd10a
 
-.DollScript: ; 0xfd10a
+.DollScript:
 	writetext _MomText_HiHowAreYou
 	writetext _MomText_FoundADoll
 	writetext _MomText_BoughtWithYourMoney
 	writetext _MomText_ItsInRoom
 	end
-; 0xfd117
 
 
 GetItemFromMom:
@@ -213,41 +210,35 @@ INCLUDE "data/items/mom_phone.asm"
 
 	db 0, 0, 0 ; unused
 
-_MomText_HiHowAreYou: ; 0xfd1b1
+_MomText_HiHowAreYou:
 	; Hi,  ! How are you?
 	text_jump UnknownText_0x1bc615
 	db "@"
-; 0xfd1b6
 
-_MomText_FoundAnItem: ; 0xfd1b6
+_MomText_FoundAnItem:
 	; I found a useful item shopping, so
 	text_jump UnknownText_0x1bc62a
 	db "@"
-; 0xfd1bb
 
-_MomText_BoughtWithYourMoney: ; 0xfd1bb
+_MomText_BoughtWithYourMoney:
 	; I bought it with your money. Sorry!
 	text_jump UnknownText_0x1bc64e
 	db "@"
-; 0xfd1c0
 
-_MomText_ItsInPC: ; 0xfd1c0
+_MomText_ItsInPC:
 	; It's in your PC. You'll like it!
 	text_jump UnknownText_0x1bc673
 	db "@"
-; 0xfd1c5
 
-_MomText_FoundADoll: ; 0xfd1c5
+_MomText_FoundADoll:
 	; While shopping today, I saw this adorable doll, so
 	text_jump UnknownText_0x1bc693
 	db "@"
-; 0xfd1ca
 
-_MomText_ItsInRoom: ; 0xfd1ca
+_MomText_ItsInRoom:
 	; It's in your room. You'll love it!
 	text_jump UnknownText_0x1bc6c7
 	db "@"
-; 0xfd1cf
 
 	db 0 ; unused
 

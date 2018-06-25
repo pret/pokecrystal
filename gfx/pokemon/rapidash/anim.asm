@@ -11,4 +11,3 @@
 	frame 3, 12
 	dorepeat 9
 	endanim
-; 0xd0d31

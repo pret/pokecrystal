@@ -47,17 +47,15 @@ RestartClock:
 	ld c, a
 	ret
 
-.Text_ClockTimeMayBeWrong: ; 0x20047
+.Text_ClockTimeMayBeWrong:
 	; The clock's time may be wrong. Please reset the time.
 	text_jump UnknownText_0x1c40e6
 	db "@"
-; 0x2004c
 
-.Text_SetWithControlPad: ; 0x2004c
+.Text_SetWithControlPad:
 	; Set with the Control Pad. Confirm: A Button Cancel:  B Button
 	text_jump UnknownText_0x1c411c
 	db "@"
-; 0x20051
 
 .SetClock:
 	ld a, 1
@@ -103,17 +101,15 @@ RestartClock:
 	ld a, $1
 	ret
 
-.Text_IsThisOK: ; 0x200b0
+.Text_IsThisOK:
 	; Is this OK?
 	text_jump UnknownText_0x1c415b
 	db "@"
-; 0x200b5
 
-.Text_ClockReset: ; 0x200b5
+.Text_ClockReset:
 	; The clock has been reset.
 	text_jump UnknownText_0x1c4168
 	db "@"
-; 0x200ba
 
 .joy_loop
 	call JoyTextDelay_ForcehJoyDown

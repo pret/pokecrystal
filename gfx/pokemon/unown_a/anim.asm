@@ -10,4 +10,3 @@
 	frame 0, 07
 	dorepeat 6
 	endanim
-; 0xd2274

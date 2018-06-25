@@ -1,4 +1,4 @@
-BeastsCheck: ; 0x4a6e8
+BeastsCheck:
 ; Check if the player owns all three legendary beasts.
 ; They must exist in either party or PC, and have the player's OT and ID.
 ; Return the result in wScriptVar.
@@ -29,7 +29,7 @@ BeastsCheck: ; 0x4a6e8
 	ret
 
 
-MonCheck: ; 0x4a711
+MonCheck:
 ; Check if the player owns any Pokémon of the species in wScriptVar.
 ; Return the result in wScriptVar.
 
@@ -47,7 +47,7 @@ MonCheck: ; 0x4a711
 	ret
 
 
-CheckOwnMonAnywhere: ; 0x4a721
+CheckOwnMonAnywhere:
 ; Check if the player owns any monsters of the species in wScriptVar.
 ; It must exist in either party or PC, and have the player's OT and ID.
 
@@ -179,7 +179,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	ret
 
 
-CheckOwnMon: ; 0x4a7ba
+CheckOwnMon:
 ; Check if a Pokémon belongs to the player and is of a specific species.
 
 ; inputs:
@@ -246,7 +246,6 @@ endr
 	pop bc
 	scf
 	ret
-; 0x4a810
 
 BoxAddressTable1:
 	dba sBox1
@@ -264,7 +263,7 @@ BoxAddressTable1:
 	dba sBox13
 	dba sBox14
 
-UpdateOTPointer: ; 0x4a83a
+UpdateOTPointer:
 	push hl
 	ld hl, NAME_LENGTH
 	add hl, bc
@@ -272,4 +271,3 @@ UpdateOTPointer: ; 0x4a83a
 	ld c, l
 	pop hl
 	ret
-; 0x4a843

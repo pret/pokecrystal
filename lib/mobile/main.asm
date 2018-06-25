@@ -2349,23 +2349,23 @@ Function110f07:
 	ld [$c86a], a
 	jp Function110432
 
-URIPrefix: ; 0x110fad
+URIPrefix:
 	db "http://"
 .End
 
-HTTPDownloadURL: ; 0x110fb4
+HTTPDownloadURL:
 	db "gameboy.datacenter.ne.jp/cgb/download"
 .End
 
-HTTPUploadURL: ; 0x110fd9
+HTTPUploadURL:
 	db "gameboy.datacenter.ne.jp/cgb/upload"
 .End
 
-HTTPUtilityURL: ; 0x110ffc
+HTTPUtilityURL:
 	db "gameboy.datacenter.ne.jp/cgb/utility"
 .End
 
-HTTPRankingURL: ; 0x111020
+HTTPRankingURL:
 	db "gameboy.datacenter.ne.jp/cgb/ranking"
 .End
 

@@ -5,4 +5,3 @@
 	frame 0, 02
 	dorepeat 1
 	endanim
-; 0xd199c

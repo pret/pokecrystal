@@ -4,4 +4,3 @@
 	dorepeat 1
 	frame 3, 20
 	endanim
-; 0xd21a6

@@ -41,7 +41,7 @@ ClosePokepic::
 	call LoadStandardFont
 	ret
 
-PokepicMenuHeader: ; 0x24547
+PokepicMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 4, 14, 13
 	dw NULL

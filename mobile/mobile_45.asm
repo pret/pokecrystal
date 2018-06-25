@@ -7224,7 +7224,7 @@ INCBIN "data/mobile/ascii-sym.txt"
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
 ; Needs better function names
-MobileStudium: ; 0x117a7f
+MobileStudium:
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -7234,16 +7234,14 @@ MobileStudium: ; 0x117a7f
 	ld [hInMenu], a
 	ret
 
-; 0x117a8d
 
-Function117a8d: ; 0x117a8d
+Function117a8d:
 	call Function117a94
 	call Function117acd
 	ret
 
-; 0x117a94
 
-Function117a94: ; 0x117a94
+Function117a94:
 	xor a
 	ld [wJumptableIndex], a
 	ld [wcf64], a
@@ -7255,9 +7253,8 @@ Function117a94: ; 0x117a94
 	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
 
-; 0x117ab4
 
-Function117ab4: ; 0x117ab4
+Function117ab4:
 	call ClearBGPalettes
 	call ClearSprites
 	farcall Function172e78
@@ -7265,9 +7262,8 @@ Function117ab4: ; 0x117ab4
 	farcall ReloadMapPart
 	ret
 
-; 0x117acd
 
-Function117acd: ; 0x117acd
+Function117acd:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
 	bit 7, a
@@ -7281,7 +7277,7 @@ Function117acd: ; 0x117acd
 	call ClearSprites
 	ret
 
-Function117ae9: ; 0x117ae9
+Function117ae9:
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, $0
@@ -7293,7 +7289,7 @@ Function117ae9: ; 0x117ae9
 	ld l, a
 	jp hl
 
-.Jumptable: ; 0x117af8
+.Jumptable:
 	dw Function117b06
 	dw Function117b14
 	dw Function117b28
@@ -7530,31 +7526,31 @@ Function117c89:
 	call CloseSRAM
 	ret
 
-MenuHeader_117cbc: ; 0x117cbc
+MenuHeader_117cbc:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw NULL
 	db 0 ; default option
 
-MenuHeader_117cc4: ; 0x117cc4
+MenuHeader_117cc4:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw NULL
 	db 0 ; default item
 
-YesNo117ccc: ; 0x117ccc
+YesNo117ccc:
 	db   "はい"
 	next "いいえ@"
 
-MobileStadiumEntryText: ; 0x117cd3
+MobileStadiumEntryText:
 	text_jump _MobileStadiumEntryText
 	db "@"
 
-MobileStadiumSuccessText: ; 0x117cd8
+MobileStadiumSuccessText:
 	text_jump _MobileStadiumSuccessText
 	db "@"
 
-MobileStudium_JumptableIncrement: ; 0x117cdd
+MobileStudium_JumptableIncrement:
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret

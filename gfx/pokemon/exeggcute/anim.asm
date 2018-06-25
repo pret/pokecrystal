@@ -14,4 +14,3 @@
 	frame 0, 08
 	frame 3, 08
 	endanim
-; 0xd0e7b

@@ -27,21 +27,19 @@ BuenasPassword:
 	ld [wScriptVar], a
 	ret
 
-.MenuHeader: ; 0x8afa9
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 10, 7
 	dw .MenuData
 	db 1 ; default option
-; 0x8afb1
 
 	db 0
 
-.MenuData: ; 0x8afb2
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 0 ; items
 	dw .PasswordIndices
 	dw .PlacePasswordChoices
-; 0x8afb4
 
 .PasswordIndices:
 	db NUM_PASSWORDS_PER_CATEGORY
@@ -148,40 +146,34 @@ BuenaPrize:
 	call PlayClickSFX
 	ret
 
-.Text_AskWhichPrize: ; 0x8b072
+.Text_AskWhichPrize:
 	; Which prize would you like?
 	text_jump UnknownText_0x1c589f
 	db "@"
-; 0x8b077
 
-.Text_IsThatRight: ; 0x8b077
+.Text_IsThatRight:
 	; ? Is that right?
 	text_jump UnknownText_0x1c58bc
 	db "@"
-; 0x8b07c
 
 .Text_HereYouGo:	; Here you go!
 	text_jump UnknownText_0x1c58d1
 	db "@"
-; 0x8b081
 
-.Text_NotEnoughPoints: ; 0x8b081
+.Text_NotEnoughPoints:
 	; You don't have enough points.
 	text_jump UnknownText_0x1c58e0
 	db "@"
-; 0x8b086
 
-.Text_NoRoom: ; 0x8b086
+.Text_NoRoom:
 	; You have no room for it.
 	text_jump UnknownText_0x1c58ff
 	db "@"
-; 0x8b08b
 
-.Text_PleaseComeBackAgain: ; 0x8b08b
+.Text_PleaseComeBackAgain:
 	; Oh. Please come back again!
 	text_jump UnknownText_0x1c591a
 	db "@"
-; 0x8b090
 
 Buena_DisplayBlueCardBalance:
 	ld hl, BlueCardBalanceMenuHeader
@@ -220,7 +212,7 @@ PrintBlueCardBalance:
 .Points_string:
 	db "Points@"
 
-BlueCardBalanceMenuHeader: ; 0x8b0d1
+BlueCardBalanceMenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 11, 11, 13
 
@@ -229,7 +221,7 @@ Buena_PlacePrizeMenuBox:
 	call LoadMenuHeader
 	ret
 
-.MenuHeader ; 0x8b0dd
+.MenuHeader
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 17, TEXTBOX_Y - 1
 
@@ -259,16 +251,15 @@ Buena_PrizeMenu:
 	xor a
 	ret
 
-.MenuHeader: ; 0x8b113
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 1, 1, 16, 9
 	dw .MenuData
 	db 1 ; default option
-; 0x8b11b
 
 	db 0
 
-.MenuData: ; 0x8b11c
+.MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 13 ; rows, columns
 	db 1 ; spacing

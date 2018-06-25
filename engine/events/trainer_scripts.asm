@@ -1,4 +1,4 @@
-TalkToTrainerScript:: ; 0xbe66a
+TalkToTrainerScript::
 	faceplayer
 	trainerflagaction CHECK_FLAG
 	iftrue AlreadyBeatenTrainerScript
@@ -6,7 +6,7 @@ TalkToTrainerScript:: ; 0xbe66a
 	encountermusic
 	jump StartBattleWithMapTrainerScript
 
-SeenByTrainerScript:: ; 0xbe675
+SeenByTrainerScript::
 	loadmemtrainer
 	encountermusic
 	showemote EMOTE_SHOCK, LAST_TALKED, 30
@@ -16,7 +16,7 @@ SeenByTrainerScript:: ; 0xbe675
 	faceobject PLAYER, LAST_TALKED
 	jump StartBattleWithMapTrainerScript
 
-StartBattleWithMapTrainerScript: ; 0xbe68a
+StartBattleWithMapTrainerScript:
 	opentext
 	trainertext $0
 	waitbutton

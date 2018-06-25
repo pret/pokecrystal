@@ -97,7 +97,6 @@ CopyDataUntil::
 	cp c
 	jr nz, CopyDataUntil
 	ret
-; 0x3198
 
 PrintNum::
 	homecall _PrintNum

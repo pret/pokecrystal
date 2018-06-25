@@ -31,28 +31,28 @@ _ResetClock:
 	call PrintText
 	ret
 
-.text_okay ; 0x4d3fe
+.text_okay
 	; Password OK. Select CONTINUE & reset settings.
 	text_jump UnknownText_0x1c55db
 	db "@"
 
-.text_wrong ; 0x4d403
+.text_wrong
 	; Wrong password!
 	text_jump UnknownText_0x1c560b
 	db "@"
 
-.text_askreset ; 0x4d408
+.text_askreset
 	; Reset the clock?
 	text_jump UnknownText_0x1c561c
 	db "@"
 
-.NoYes_MenuHeader: ; 0x4d40d
+.NoYes_MenuHeader:
 	db 0 ; flags
 	menu_coords 14, 7, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .NoYes_MenuData
 	db 1 ; default option
 
-.NoYes_MenuData: ; 0x4d415
+.NoYes_MenuData:
 	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
 	db 2 ; items
 	db "NO@"
@@ -101,7 +101,7 @@ ClockResetPassword:
 	scf
 	ret
 
-.pleaseenterpasswordtext ; 0x4d463
+.pleaseenterpasswordtext
 	; Please enter the password.
 	text_jump UnknownText_0x1c562e
 	db "@"

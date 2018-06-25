@@ -9,7 +9,7 @@ WaitBGMap::
 	call DelayFrames
 	ret
 
-WaitBGMap2:: ; 0x3200
+WaitBGMap2::
 	ld a, [hCGB]
 	and a
 	jr z, .bg0
@@ -25,7 +25,6 @@ WaitBGMap2:: ; 0x3200
 	ld c, 4
 	call DelayFrames
 	ret
-; 0x3218
 
 IsCGB::
 	ld a, [hCGB]

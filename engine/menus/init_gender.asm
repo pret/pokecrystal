@@ -41,25 +41,22 @@ InitGender:
 	call DelayFrames
 	ret
 
-.MenuHeader: ; 0x48dfc
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 6, 4, 12, 9
 	dw .MenuData
 	db 1 ; default option
-; 0x48e04
 
-.MenuData: ; 0x48e04
+.MenuData:
 	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
 	db 2 ; items
 	db "Boy@"
 	db "Girl@"
-; 0x48e0f
 
-TextJump_AreYouABoyOrAreYouAGirl: ; 0x48e0f
+TextJump_AreYouABoyOrAreYouAGirl:
 	; Are you a boy? Or are you a girl?
 	text_jump Text_AreYouABoyOrAreYouAGirl
 	db "@"
-; 0x48e14
 
 InitGenderScreen:
 	ld a, $10

@@ -2,7 +2,7 @@
 ; which were used for Trainer Rankings in Pokémon News.
 
 ; Copies certain values at the time the player enters the Hall of Fame.
-StubbedTrainerRankings_HallOfFame2:: ; 0x105ef6
+StubbedTrainerRankings_HallOfFame2::
 	ret
 	ld a, BANK(sTrainerRankingGameTimeHOF)
 	call GetSRAMBank
@@ -287,7 +287,7 @@ StubbedTrainerRankings_Unused1:
 	ld hl, sTrainerRankingUnused1
 	jp StubbedTrainerRankings_Increment3Byte
 
-StubbedTrainerRankings_HallOfFame:: ; 0x106078
+StubbedTrainerRankings_HallOfFame::
 	ret
 	ld hl, sTrainerRankingHOFEntries
 	jp StubbedTrainerRankings_Increment3Byte

@@ -322,17 +322,15 @@ DummyGame_CheckMatch:
 	ret
 
 
-DummyGameText_Yeah: ; 0xe2093
+DummyGameText_Yeah:
 	; , yeah!
 	text_jump UnknownText_0x1c1a5b
 	db "@"
-; 0xe2098
 
-DummyGameText_Darn: ; 0xe2098
+DummyGameText_Darn:
 	; Darn…
 	text_jump UnknownText_0x1c1a65
 	db "@"
-; 0xe209d
 
 DummyGame_InitBoard:
 	ld hl, wDummyGameCards
