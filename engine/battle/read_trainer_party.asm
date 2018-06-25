@@ -387,3 +387,5 @@ Function39990:
 	ld bc, NAME_LENGTH
 	pop de
 	ret
+
+INCLUDE "data/trainers/parties.asm"

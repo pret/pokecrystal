@@ -1,5 +1,3 @@
-INCLUDE "engine/printer/printer_serial.asm"
-
 SendScreenToPrinter:
 .loop
 	call JoyTextDelay

@@ -279,3 +279,5 @@ endr
 	ld e, l
 	pop hl
 	ret
+
+INCLUDE "data/pokemon/dex_entry_pointers.asm"
