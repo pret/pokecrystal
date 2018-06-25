@@ -16,4 +16,3 @@ BattleCommand_ThunderAccuracy:
 	; Redundant with CheckHit guranteeing hit
 	ld [hl], 100 percent
 	ret
-

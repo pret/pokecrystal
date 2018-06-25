@@ -91,4 +91,3 @@ BattleCommand_PainSplit:
 
 .ButItFailed:
 	jp PrintDidntAffect2
-

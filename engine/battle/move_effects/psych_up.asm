@@ -47,4 +47,3 @@ BattleCommand_PsychUp:
 	call AnimateCurrentMove
 	ld hl, CopiedStatsText
 	jp StdBattleTextBox
-

@@ -21,4 +21,3 @@ BattleCommand_Safeguard:
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
-

@@ -25,4 +25,3 @@ OakRatings:
 	rating 239, SFX_DEX_FANFARE_230_PLUS,     OakRating17
 	rating 248, SFX_DEX_FANFARE_230_PLUS,     OakRating18
 	rating 255, SFX_DEX_FANFARE_230_PLUS,     OakRating19
- 

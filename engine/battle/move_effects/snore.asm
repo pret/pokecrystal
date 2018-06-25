@@ -9,4 +9,3 @@ BattleCommand_Snore:
 	ld [wAttackMissed], a
 	call FailMove
 	jp EndMoveEffect
-

@@ -19,4 +19,3 @@ BattleCommand_LockOn:
 .fail
 	call AnimateFailedMove
 	jp PrintDidntAffect
-

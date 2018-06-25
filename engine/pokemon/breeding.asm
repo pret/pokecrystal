@@ -959,4 +959,3 @@ Unreferenced_DayCareMonPrintEmptyString:
 
 .string
 	db "@"
-

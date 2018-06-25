@@ -79,4 +79,3 @@ BattleCommand_FutureSight:
 	call AnimateFailedMove
 	call PrintButItFailed
 	jp EndMoveEffect
-

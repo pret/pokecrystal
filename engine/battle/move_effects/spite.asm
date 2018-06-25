@@ -84,4 +84,3 @@ BattleCommand_Spite:
 
 .failed
 	jp PrintDidntAffect2
-

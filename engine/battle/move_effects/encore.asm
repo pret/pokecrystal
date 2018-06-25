@@ -118,4 +118,3 @@ BattleCommand_Encore:
 
 .failed
 	jp PrintDidntAffect2
-

@@ -7,4 +7,3 @@ BattleCommand_StartSun:
 	call AnimateCurrentMove
 	ld hl, SunGotBrightText
 	jp StdBattleTextBox
-

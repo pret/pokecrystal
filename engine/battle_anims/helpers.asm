@@ -120,4 +120,3 @@ LoadBattleAnimObj:
 	call DecompressRequest2bpp
 	pop bc
 	ret
-

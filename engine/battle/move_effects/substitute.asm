@@ -86,4 +86,3 @@ BattleCommand_Substitute:
 	ld hl, TooWeakSubText
 .jp_stdbattletextbox
 	jp StdBattleTextBox
-

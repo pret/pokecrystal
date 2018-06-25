@@ -2946,4 +2946,3 @@ Unreferenced_Function92311:
 	xor a
 	ld [hBGMapMode], a
 	ret
-

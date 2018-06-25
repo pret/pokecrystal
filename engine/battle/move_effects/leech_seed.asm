@@ -38,4 +38,3 @@ BattleCommand_LeechSeed:
 	call AnimateFailedMove
 	ld hl, EvadedText
 	jp StdBattleTextBox
-

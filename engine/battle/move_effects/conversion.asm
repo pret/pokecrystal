@@ -94,4 +94,3 @@ BattleCommand_Conversion:
 	call AnimateCurrentMove
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
-

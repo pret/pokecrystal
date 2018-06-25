@@ -98,4 +98,3 @@ BattleCommand_UnleashEnergy:
 	ld [wKickCounter], a
 	call AnimateCurrentMove
 	jp EndMoveEffect
-

@@ -32,4 +32,3 @@ BattleCommand_HealBell:
 	and a
 	jp z, CalcPlayerStats
 	jp CalcEnemyStats
-

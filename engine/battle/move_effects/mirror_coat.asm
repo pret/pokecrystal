@@ -57,4 +57,3 @@ BattleCommand_MirrorCoat:
 	xor a
 	ld [wAttackMissed], a
 	ret
-

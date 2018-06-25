@@ -216,4 +216,3 @@ CheckAnyOtherAliveMons:
 	ld a, b
 	and a
 	ret
-

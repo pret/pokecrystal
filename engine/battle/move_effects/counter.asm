@@ -56,4 +56,3 @@ BattleCommand_Counter:
 	xor a
 	ld [wAttackMissed], a
 	ret
-

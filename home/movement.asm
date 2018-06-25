@@ -190,4 +190,3 @@ HideCursor::
 	ld l, a
 	ld [hl], " "
 	ret
-

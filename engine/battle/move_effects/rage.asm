@@ -4,4 +4,3 @@ BattleCommand_Rage:
 	call GetBattleVarAddr
 	set SUBSTATUS_RAGE, [hl]
 	ret
-

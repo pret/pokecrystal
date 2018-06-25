@@ -2904,4 +2904,3 @@ BattleBGEffects_Cosine:
 	callfar BattleAnim_Cosine_e
 	ld a, e
 	ret
-

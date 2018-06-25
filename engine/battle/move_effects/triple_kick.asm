@@ -32,4 +32,3 @@ BattleCommand_KickCounter:
 	ld hl, wKickCounter
 	inc [hl]
 	ret
-

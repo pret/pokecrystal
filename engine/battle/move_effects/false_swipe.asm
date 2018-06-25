@@ -46,4 +46,3 @@ BattleCommand_FalseSwipe:
 .done
 	and a
 	ret
-

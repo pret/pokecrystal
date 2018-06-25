@@ -54,4 +54,3 @@ ResetFuryCutterCount:
 
 	pop hl
 	ret
-
