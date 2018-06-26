@@ -1,5 +1,5 @@
-PUZZLE_BORDER EQUS "\"▼\"" ; $ee
-PUZZLE_VOID   EQUS "\"♂\"" ; $ef
+PUZZLE_BORDER EQU $ee
+PUZZLE_VOID   EQU $ef
 
 puzcoord EQUS "* 6 +"
 

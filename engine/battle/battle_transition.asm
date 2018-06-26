@@ -6,6 +6,8 @@ BATTLETRANSITION_NO_CAVE_STRONGER EQU $18
 BATTLETRANSITION_FINISH           EQU $20
 BATTLETRANSITION_END              EQU $80
 
+BATTLETRANSITION_SQUARE EQUS "\"8\"" ; $fe
+
 DoBattleTransition:
 	call .InitGFX
 	ld a, [rBGP]
@@ -97,7 +99,7 @@ LoadTrainerBattlePokeballTiles:
 ; Load the tiles used in the Pokeball Graphic that fills the screen
 ; at the start of every Trainer battle.
 	ld de, TrainerBattlePokeballTiles
-	ld hl, vTiles1 tile $7e
+	ld hl, vTiles0 tile BATTLETRANSITION_SQUARE
 	ld b, BANK(TrainerBattlePokeballTiles)
 	ld c, 2
 	call Request2bpp
@@ -108,7 +110,7 @@ LoadTrainerBattlePokeballTiles:
 	ld [rVBK], a
 
 	ld de, TrainerBattlePokeballTiles
-	ld hl, vTiles4 tile $7e
+	ld hl, vTiles3 tile BATTLETRANSITION_SQUARE
 	ld b, BANK(TrainerBattlePokeballTiles)
 	ld c, 2
 	call Request2bpp
@@ -616,7 +618,7 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	jr z, .done
 	sla a
 	jr nc, .no_load
-	ld [hl], $fe
+	ld [hl], BATTLETRANSITION_SQUARE
 .no_load
 	inc hl
 	jr .loop4
