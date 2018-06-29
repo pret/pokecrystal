@@ -1643,9 +1643,9 @@ GetMovementPermissions::
 
 .CheckHiNybble:
 	and $f0
-	cp $b0
+	cp HI_NYBBLE_SIDE_WALLS
 	ret z
-	cp $c0
+	cp HI_NYBBLE_UNUSED_C0
 	ret
 
 GetFacingTileCoord::

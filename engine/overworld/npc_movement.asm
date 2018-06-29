@@ -142,9 +142,9 @@ Function6f5f:
 Function6f7f:
 	ld d, a
 	and $f0
-	cp $b0
+	cp HI_NYBBLE_SIDE_WALLS
 	jr z, .done
-	cp $c0
+	cp HI_NYBBLE_UNUSED_C0
 	jr z, .done
 	xor a
 	ret
