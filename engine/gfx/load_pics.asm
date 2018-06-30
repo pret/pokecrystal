@@ -417,39 +417,39 @@ PadFrontpic:
 	jr z, .five
 
 .seven_loop
-	ld c, $70
+	ld c, 7 << 4
 	call LoadOrientedFrontpic
 	dec b
 	jr nz, .seven_loop
 	ret
 
 .six
-	ld c, $70
+	ld c, 7 << 4
 	xor a
 	call .Fill
 .six_loop
-	ld c, $10
+	ld c, (7 - 6) << 4
 	xor a
 	call .Fill
-	ld c, $60
+	ld c, 6 << 4
 	call LoadOrientedFrontpic
 	dec b
 	jr nz, .six_loop
 	ret
 
 .five
-	ld c, $70
+	ld c, 7 << 4
 	xor a
 	call .Fill
 .five_loop
-	ld c, $20
+	ld c, (7 - 5) << 4
 	xor a
 	call .Fill
-	ld c, $50
+	ld c, 5 << 4
 	call LoadOrientedFrontpic
 	dec b
 	jr nz, .five_loop
-	ld c, $70
+	ld c, 7 << 4
 	xor a
 	call .Fill
 	ret
