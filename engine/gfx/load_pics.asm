@@ -158,7 +158,6 @@ GetAnimatedEnemyFrontpic:
 	ld de, wDecompressEnemyFrontpic + 7 * 7 tiles
 	ld c, 7 * 7
 .got_dims
-
 	push hl
 	push bc
 	call LoadFrontpicTiles
