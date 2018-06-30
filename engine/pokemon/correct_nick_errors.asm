@@ -70,5 +70,5 @@ CorrectNickErrors::
 	db "<ROUTE>",  "<GREEN>" + 1
 	db "<ENEMY>",  "<ENEMY>" + 1
 	db "<MOM>",    "<TM>"    + 1
-	db "<ROCKET>", " "
+	db "<ROCKET>", "┘"       + 1
 	db -1 ; end
