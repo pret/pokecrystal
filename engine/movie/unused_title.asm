@@ -1,5 +1,4 @@
 UnusedTitleScreen:
-
 	call ClearBGPalettes
 	call ClearTileMap
 	call DisableLCD

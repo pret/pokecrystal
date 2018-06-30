@@ -142,7 +142,6 @@ Elevator_WhichFloorText:
 	text_jump UnknownText_0x1bd2bc
 	db "@"
 
-
 Elevator_GetCurrentFloorText:
 	ld hl, wOptions
 	ld a, [hl]
@@ -163,7 +162,6 @@ Elevator_GetCurrentFloorText:
 
 Elevator_CurrentFloorText:
 	db "Now on:@"
-
 
 Elevator_GetCurrentFloorString:
 	push hl

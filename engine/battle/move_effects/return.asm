@@ -23,4 +23,3 @@ BattleCommand_HappinessPower:
 	ld d, a
 	pop bc
 	ret
-

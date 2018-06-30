@@ -21,7 +21,6 @@ endr
 	pop af
 	ret
 
-
 .Fish:
 ; Fish for monsters with rod b from encounter data in FishGroup at hl.
 ; Return monster e at level d.
@@ -90,7 +89,6 @@ endr
 	inc hl
 	ret
 
-
 GetFishGroupIndex:
 ; Return the index of fishgroup d in de.
 
@@ -125,6 +123,5 @@ GetFishGroupIndex:
 	jr nz, .done
 	ld d, FISHGROUP_REMORAID_SWARM
 	jr .done
-
 
 INCLUDE "data/wild/fish.asm"

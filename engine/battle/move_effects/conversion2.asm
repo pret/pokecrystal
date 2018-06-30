@@ -62,4 +62,3 @@ BattleCommand_Conversion2:
 
 .failed
 	jp FailMove
-

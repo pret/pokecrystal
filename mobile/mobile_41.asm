@@ -513,7 +513,6 @@ CalculateTrainerRankingsChecksum:
 	pop bc
 	ret
 
-
 BackupMobileEventIndex:
 	ld a, BANK(sMobileEventIndex)
 	call GetSRAMBank
@@ -525,7 +524,6 @@ BackupMobileEventIndex:
 	ld [sMobileEventIndexBackup], a
 	call CloseSRAM
 	ret
-
 
 RestoreMobileEventIndex:
 	ld a, BANK(sMobileEventIndexBackup)
@@ -578,7 +576,6 @@ InitializeTrainerRankings:
 	ld bc, sTrainerRankingsEnd - sTrainerRankings
 	call CopyBytes
 	ret
-
 
 _MobilePrintNum::
 ; Supports signed 31-bit integers (up to 10 digits)

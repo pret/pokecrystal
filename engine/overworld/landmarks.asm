@@ -13,7 +13,6 @@ GetLandmarkCoords:
 	pop hl
 	ret
 
-
 GetLandmarkName::
 ; Copy the name of landmark e to wStringBuffer1.
 	push hl
@@ -44,9 +43,7 @@ GetLandmarkName::
 	pop hl
 	ret
 
-
 INCLUDE "data/maps/landmarks.asm"
-
 
 RegionCheck:
 ; Checks if the player is in Kanto or Johto.

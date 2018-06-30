@@ -34,4 +34,3 @@ BattleCommand_ClearHazards:
 	ld [de], a
 	ld hl, ReleasedByText
 	jp StdBattleTextBox
-

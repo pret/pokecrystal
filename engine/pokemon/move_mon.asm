@@ -1367,7 +1367,6 @@ RemoveMonFromPartyOrBox:
 .close_sram
 	jp CloseSRAM
 
-
 ComputeNPCTrademonStats:
 	ld a, MON_LEVEL
 	call GetPartyParamLocation

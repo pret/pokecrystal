@@ -6036,7 +6036,6 @@ LoadEnemyMon:
 	jp .Happiness
 
 .InitDVs:
-
 ; Trainer DVs
 
 ; All trainers have preset DVs, determined by class
@@ -6485,7 +6484,6 @@ CheckUnownLetter:
 	ret
 
 INCLUDE "data/wild/unlocked_unowns.asm"
-
 
 Unreferenced_SwapBattlerLevels:
 	push bc

@@ -11,7 +11,6 @@ AddPhoneNumber::
 	scf
 	ret
 
-
 DelCellNum::
 	call _CheckCellNum
 	jr nc, .not_in_list
@@ -94,7 +93,6 @@ GetRemainingSpaceInPhoneList:
 
 INCLUDE "data/phone/permanent_numbers.asm"
 
-
 FarPlaceString:
 	ld a, [hROMBank]
 	push af
@@ -106,7 +104,6 @@ FarPlaceString:
 	pop af
 	rst Bankswitch
 	ret
-
 
 CheckPhoneCall::
 ; Check if the phone is ringing in the overworld.
@@ -508,7 +505,6 @@ Phone_CallerTextboxWithName2:
 	call FarPlaceString
 	ret
 
-
 Phone_NoSignal:
 	ld de, SFX_NO_SIGNAL
 	call PlaySFX
@@ -548,7 +544,6 @@ UnknownText_0x9032a:
 	text_jump UnknownText_0x1c5580
 	db "@"
 
-
 HangUp_BoopOn:
 	ld hl, UnknownText_0x90336
 	call PrintText
@@ -557,7 +552,6 @@ HangUp_BoopOn:
 UnknownText_0x90336:
 	text_jump UnknownText_0x1c5588
 	db "@"
-
 
 HangUp_BoopOff:
 	call SpeechTextBox
@@ -581,7 +575,6 @@ Phone_Wait20Frames:
 	farcall PhoneRing_CopyTilemapAtOnce
 	ret
 
-
 Function90363:
 	push bc
 	call Phone_CallerTextbox
@@ -595,14 +588,12 @@ Function90363:
 	call Function90380
 	ret
 
-
 Phone_CallerTextbox:
 	hlcoord 0, 0
 	ld b, 2
 	ld c, SCREEN_WIDTH - 2
 	call TextBox
 	ret
-
 
 Function90380:
 	ld h, d
@@ -636,7 +627,6 @@ GetCallerTrainerClass:
 	ld c, a
 	pop hl
 	ret
-
 
 GetCallerName:
 	ld a, c
@@ -710,11 +700,9 @@ GetCallerLocation:
 	pop de
 	ret
 
-
 INCLUDE "data/phone/phone_contacts.asm"
 
 INCLUDE "data/phone/special_calls.asm"
-
 
 UnknownScript_0x90657:
 	writetext UnknownText_0x9065b

@@ -12,9 +12,7 @@ BattleCommand_Protect:
 	ld hl, ProtectedItselfText
 	jp StdBattleTextBox
 
-
 ProtectChance:
-
 	ld de, wPlayerProtectCount
 	ld a, [hBattleTurn]
 	and a
@@ -67,7 +65,6 @@ ProtectChance:
 
 	and a
 	ret
-
 
 .failed
 	xor a

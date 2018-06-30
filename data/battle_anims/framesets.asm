@@ -1266,4 +1266,3 @@ BattleAnimFrameData:
 .Frameset_b8:
 	frame BATTLEANIMOAMSET_D7,  8
 	endanim
-

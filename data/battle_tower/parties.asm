@@ -1,7 +1,6 @@
 BattleTowerMons:
 ; 10 groups of 21 mons.
 
-
 BattleTowerMons1:
 
 	db JOLTEON
@@ -30,7 +29,6 @@ BattleTowerMons1:
 	bigdw 31 ; SDef
 	db "SANDA-SU@@@"
 
-
 	db ESPEON
 	db LEFTOVERS
 	db MUD_SLAP, PSYCHIC_M, PSYCH_UP, TOXIC
@@ -56,7 +54,6 @@ BattleTowerMons1:
 	bigdw 38 ; SAtk
 	bigdw 31 ; SDef
 	db "E-HUi@@@@@@"
-
 
 	db UMBREON
 	db GOLD_BERRY
@@ -84,7 +81,6 @@ BattleTowerMons1:
 	bigdw 39 ; SDef
 	db "BURAtuKI-@@"
 
-
 	db WOBBUFFET
 	db FOCUS_BAND
 	db COUNTER, MIRROR_COAT, SAFEGUARD, DESTINY_BOND
@@ -110,7 +106,6 @@ BattleTowerMons1:
 	bigdw 18 ; SAtk
 	bigdw 23 ; SDef
 	db "SO-NANSU@@@"
-
 
 	db KANGASKHAN
 	db MIRACLEBERRY
@@ -138,7 +133,6 @@ BattleTowerMons1:
 	bigdw 28 ; SDef
 	db "GARU-RA@@@@"
 
-
 	db CORSOLA
 	db SCOPE_LENS
 	db SURF, PSYCHIC_M, RECOVER, ANCIENTPOWER
@@ -164,7 +158,6 @@ BattleTowerMons1:
 	bigdw 24 ; SAtk
 	bigdw 28 ; SDef
 	db "SANI-GO@@@@"
-
 
 	db MILTANK
 	db GOLD_BERRY
@@ -192,7 +185,6 @@ BattleTowerMons1:
 	bigdw 26 ; SDef
 	db "MIRUTANKU@@"
 
-
 	db AERODACTYL
 	db LEFTOVERS
 	db HYPER_BEAM, SUPERSONIC, EARTHQUAKE, BITE
@@ -218,7 +210,6 @@ BattleTowerMons1:
 	bigdw 23 ; SAtk
 	bigdw 26 ; SDef
 	db "PUTERA@@@@@"
-
 
 	db LAPRAS
 	db MIRACLEBERRY
@@ -246,7 +237,6 @@ BattleTowerMons1:
 	bigdw 30 ; SDef
 	db "RAPURASU@@@"
 
-
 	db SNEASEL
 	db GOLD_BERRY
 	db SLASH, FAINT_ATTACK, SURF, BLIZZARD
@@ -272,7 +262,6 @@ BattleTowerMons1:
 	bigdw 19 ; SAtk
 	bigdw 27 ; SDef
 	db "NIyu-RA@@@@"
-
 
 	db PORYGON2
 	db BRIGHTPOWDER
@@ -300,7 +289,6 @@ BattleTowerMons1:
 	bigdw 31 ; SDef
 	db "PORIGON2@@@"
 
-
 	db MISDREAVUS
 	db FOCUS_BAND
 	db PERISH_SONG, MEAN_LOOK, PAIN_SPLIT, SHADOW_BALL
@@ -326,7 +314,6 @@ BattleTowerMons1:
 	bigdw 29 ; SAtk
 	bigdw 29 ; SDef
 	db "MUUMA@@@@@@"
-
 
 	db HOUNDOUR
 	db GOLD_BERRY
@@ -354,7 +341,6 @@ BattleTowerMons1:
 	bigdw 22 ; SDef
 	db "DERUBIRU@@@"
 
-
 	db GIRAFARIG
 	db KINGS_ROCK
 	db PSYBEAM, MUD_SLAP, SHADOW_BALL, AGILITY
@@ -380,7 +366,6 @@ BattleTowerMons1:
 	bigdw 29 ; SAtk
 	bigdw 24 ; SDef
 	db "KIRINRIKI@@"
-
 
 	db BLISSEY
 	db QUICK_CLAW
@@ -408,7 +393,6 @@ BattleTowerMons1:
 	bigdw 39 ; SDef
 	db "HAPINASU@@@"
 
-
 	db SNORLAX
 	db MIRACLEBERRY
 	db HEADBUTT, PROTECT, SNORE, SURF
@@ -434,7 +418,6 @@ BattleTowerMons1:
 	bigdw 23 ; SAtk
 	bigdw 32 ; SDef
 	db "KABIGON@@@@"
-
 
 	db EXEGGUTOR
 	db KINGS_ROCK
@@ -462,7 +445,6 @@ BattleTowerMons1:
 	bigdw 25 ; SDef
 	db "NAtuSI-@@@@"
 
-
 	db HERACROSS
 	db GOLD_BERRY
 	db REVERSAL, ENDURE, COUNTER, ROCK_SMASH
@@ -488,7 +470,6 @@ BattleTowerMons1:
 	bigdw 18 ; SAtk
 	bigdw 29 ; SDef
 	db "HERAKUROSU@"
-
 
 	db UNOWN
 	db BERRY
@@ -516,7 +497,6 @@ BattleTowerMons1:
 	bigdw 21 ; SDef
 	db "ANNO-N@@@@@"
 
-
 	db TAUROS
 	db KINGS_ROCK
 	db HEADBUTT, SWAGGER, TAIL_WHIP, ICY_WIND
@@ -543,7 +523,6 @@ BattleTowerMons1:
 	bigdw 24 ; SDef
 	db "KENTAROSU@@"
 
-
 	db MR__MIME
 	db QUICK_CLAW
 	db TOXIC, PSYCH_UP, FIRE_PUNCH, HEADBUTT
@@ -569,8 +548,6 @@ BattleTowerMons1:
 	bigdw 30 ; SAtk
 	bigdw 34 ; SDef
 	db "BARIYA-DO@@"
-
-
 
 
 BattleTowerMons2:
@@ -601,7 +578,6 @@ BattleTowerMons2:
 	bigdw 72 ; SDef
 	db "BURAtuKI-@@"
 
-
 	db STARMIE
 	db GOLD_BERRY
 	db RECOVER, PSYCHIC_M, SURF, PSYCH_UP
@@ -627,7 +603,6 @@ BattleTowerMons2:
 	bigdw 60 ; SAtk
 	bigdw 54 ; SDef
 	db "SUTA-MI-@@@"
-
 
 	db GYARADOS
 	db MIRACLEBERRY
@@ -655,7 +630,6 @@ BattleTowerMons2:
 	bigdw 61 ; SDef
 	db "GIyaRADOSU@"
 
-
 	db STEELIX
 	db GOLD_BERRY
 	db ROAR, IRON_TAIL, SWAGGER, EARTHQUAKE
@@ -681,7 +655,6 @@ BattleTowerMons2:
 	bigdw 44 ; SAtk
 	bigdw 48 ; SDef
 	db "HAGANE-RU@@"
-
 
 	db ALAKAZAM
 	db BERRY_JUICE
@@ -709,7 +682,6 @@ BattleTowerMons2:
 	bigdw 55 ; SDef
 	db "HU-DEiN@@@@"
 
-
 	db ARCANINE
 	db BRIGHTPOWDER
 	db FLAMETHROWER, ROAR, HYPER_BEAM, IRON_TAIL
@@ -735,7 +707,6 @@ BattleTowerMons2:
 	bigdw 60 ; SAtk
 	bigdw 52 ; SDef
 	db "UINDEi@@@@@"
-
 
 	db HERACROSS
 	db FOCUS_BAND
@@ -763,7 +734,6 @@ BattleTowerMons2:
 	bigdw 59 ; SDef
 	db "HERAKUROSU@"
 
-
 	db EXEGGUTOR
 	db LEFTOVERS
 	db HYPER_BEAM, PSYCHIC_M, TOXIC, DREAM_EATER
@@ -789,7 +759,6 @@ BattleTowerMons2:
 	bigdw 70 ; SAtk
 	bigdw 46 ; SDef
 	db "NAtuSI-@@@@"
-
 
 	db AERODACTYL
 	db GOLD_BERRY
@@ -817,7 +786,6 @@ BattleTowerMons2:
 	bigdw 50 ; SDef
 	db "PUTERA@@@@@"
 
-
 	db BLISSEY
 	db BRIGHTPOWDER
 	db PSYCHIC_M, SUBMISSION, SOFTBOILED, COUNTER
@@ -843,7 +811,6 @@ BattleTowerMons2:
 	bigdw 51 ; SAtk
 	bigdw 75 ; SDef
 	db "HAPINASU@@@"
-
 
 	db LAPRAS
 	db GOLD_BERRY
@@ -871,7 +838,6 @@ BattleTowerMons2:
 	bigdw 54 ; SDef
 	db "RAPURASU@@@"
 
-
 	db PIKACHU
 	db LIGHT_BALL
 	db THUNDERBOLT, THUNDER_WAVE, STRENGTH, TOXIC
@@ -897,7 +863,6 @@ BattleTowerMons2:
 	bigdw 41 ; SAtk
 	bigdw 37 ; SDef
 	db "PIKATIyuU@@"
-
 
 	db SCIZOR
 	db FOCUS_BAND
@@ -925,7 +890,6 @@ BattleTowerMons2:
 	bigdw 53 ; SDef
 	db "HAtuSAMU@@@"
 
-
 	db HITMONCHAN
 	db GOLD_BERRY
 	db THUNDERPUNCH, ICE_PUNCH, FIRE_PUNCH, MEGA_PUNCH
@@ -951,7 +915,6 @@ BattleTowerMons2:
 	bigdw 32 ; SAtk
 	bigdw 62 ; SDef
 	db "EBIWARA-@@@"
-
 
 	db TAUROS
 	db BRIGHTPOWDER
@@ -979,7 +942,6 @@ BattleTowerMons2:
 	bigdw 47 ; SDef
 	db "KENTAROSU@@"
 
-
 	db AZUMARILL
 	db MYSTIC_WATER
 	db SURF, BLIZZARD, ATTRACT, RAIN_DANCE
@@ -1005,7 +967,6 @@ BattleTowerMons2:
 	bigdw 37 ; SAtk
 	bigdw 49 ; SDef
 	db "MARIRURI@@@"
-
 
 	db MILTANK
 	db KINGS_ROCK
@@ -1033,7 +994,6 @@ BattleTowerMons2:
 	bigdw 48 ; SDef
 	db "MIRUTANKU@@"
 
-
 	db WIGGLYTUFF
 	db GOLD_BERRY
 	db HYPER_BEAM, BLIZZARD, FIRE_BLAST, ATTRACT
@@ -1059,7 +1019,6 @@ BattleTowerMons2:
 	bigdw 50 ; SAtk
 	bigdw 40 ; SDef
 	db "PUKURIN@@@@"
-
 
 	db WIGGLYTUFF
 	db PINK_BOW
@@ -1087,7 +1046,6 @@ BattleTowerMons2:
 	bigdw 36 ; SDef
 	db "PUKURIN@@@@"
 
-
 	db NIDOKING
 	db BERRY
 	db BLIZZARD, EARTHQUAKE, SURF, THUNDERPUNCH
@@ -1114,7 +1072,6 @@ BattleTowerMons2:
 	bigdw 46 ; SDef
 	db "NIDOKINGU@@"
 
-
 	db QUAGSIRE
 	db QUICK_CLAW
 	db AMNESIA, EARTHQUAKE, SURF, RAIN_DANCE
@@ -1140,8 +1097,6 @@ BattleTowerMons2:
 	bigdw 42 ; SAtk
 	bigdw 42 ; SDef
 	db "NUO-@@@@@@@"
-
-
 
 
 BattleTowerMons3:
@@ -1172,7 +1127,6 @@ BattleTowerMons3:
 	bigdw 87 ; SDef
 	db "SANDA-SU@@@"
 
-
 	db POLIWRATH
 	db BRIGHTPOWDER
 	db DOUBLE_TEAM, SURF, FISSURE, SUBMISSION
@@ -1198,7 +1152,6 @@ BattleTowerMons3:
 	bigdw 70 ; SAtk
 	bigdw 82 ; SDef
 	db "NIyoROBON@@"
-
 
 	db STARMIE
 	db LEFTOVERS
@@ -1226,7 +1179,6 @@ BattleTowerMons3:
 	bigdw 81 ; SDef
 	db "SUTA-MI-@@@"
 
-
 	db JYNX
 	db GOLD_BERRY
 	db BLIZZARD, LOVELY_KISS, DREAM_EATER, ATTRACT
@@ -1252,7 +1204,6 @@ BattleTowerMons3:
 	bigdw 98 ; SAtk
 	bigdw 86 ; SDef
 	db "RU-ZIyuRA@@"
-
 
 	db DUGTRIO
 	db KINGS_ROCK
@@ -1280,7 +1231,6 @@ BattleTowerMons3:
 	bigdw 72 ; SDef
 	db "DAGUTORIO@@"
 
-
 	db BELLOSSOM
 	db BRIGHTPOWDER
 	db GIGA_DRAIN, SUNNY_DAY, SOLARBEAM, DOUBLE_TEAM
@@ -1306,7 +1256,6 @@ BattleTowerMons3:
 	bigdw 82 ; SAtk
 	bigdw 88 ; SDef
 	db "KIREIHANA@@"
-
 
 	db BLISSEY
 	db LEFTOVERS
@@ -1334,7 +1283,6 @@ BattleTowerMons3:
 	bigdw 109 ; SDef
 	db "HAPINASU@@@"
 
-
 	db HOUNDOOM
 	db CHARCOAL
 	db FLAMETHROWER, CRUNCH, SHADOW_BALL, DREAM_EATER
@@ -1360,7 +1308,6 @@ BattleTowerMons3:
 	bigdw 94 ; SAtk
 	bigdw 76 ; SDef
 	db "HERUGA-@@@@"
-
 
 	db MACHAMP
 	db MIRACLEBERRY
@@ -1388,7 +1335,6 @@ BattleTowerMons3:
 	bigdw 80 ; SDef
 	db "KAIRIKI-@@@"
 
-
 	db CROBAT
 	db GOLD_BERRY
 	db ATTRACT, CONFUSE_RAY, TOXIC, WING_ATTACK
@@ -1414,7 +1360,6 @@ BattleTowerMons3:
 	bigdw 70 ; SAtk
 	bigdw 76 ; SDef
 	db "KUROBAtuTO@"
-
 
 	db PORYGON2
 	db BRIGHTPOWDER
@@ -1442,7 +1387,6 @@ BattleTowerMons3:
 	bigdw 81 ; SDef
 	db "PORIGON2@@@"
 
-
 	db MAROWAK
 	db THICK_CLUB
 	db EARTHQUAKE, RETURN, HYPER_BEAM, BONEMERANG
@@ -1468,7 +1412,6 @@ BattleTowerMons3:
 	bigdw 54 ; SAtk
 	bigdw 72 ; SDef
 	db "GARAGARA@@@"
-
 
 	db ELECTRODE
 	db BRIGHTPOWDER
@@ -1496,7 +1439,6 @@ BattleTowerMons3:
 	bigdw 78 ; SDef
 	db "MARUMAIN@@@"
 
-
 	db LAPRAS
 	db LEFTOVERS
 	db RAIN_DANCE, WATER_GUN, ICY_WIND, STRENGTH
@@ -1522,7 +1464,6 @@ BattleTowerMons3:
 	bigdw 75 ; SAtk
 	bigdw 81 ; SDef
 	db "RAPURASU@@@"
-
 
 	db LANTURN
 	db GOLD_BERRY
@@ -1550,7 +1491,6 @@ BattleTowerMons3:
 	bigdw 70 ; SDef
 	db "RANTA-N@@@@"
 
-
 	db ESPEON
 	db MIRACLEBERRY
 	db CONFUSION, SWIFT, TOXIC, PSYCH_UP
@@ -1576,7 +1516,6 @@ BattleTowerMons3:
 	bigdw 103 ; SAtk
 	bigdw 82 ; SDef
 	db "E-HUi@@@@@@"
-
 
 	db TENTACRUEL
 	db KINGS_ROCK
@@ -1604,7 +1543,6 @@ BattleTowerMons3:
 	bigdw 101 ; SDef
 	db "DOKUKURAGE@"
 
-
 	db GENGAR
 	db GOLD_BERRY
 	db THIEF, LICK, NIGHT_SHADE, GIGA_DRAIN
@@ -1630,7 +1568,6 @@ BattleTowerMons3:
 	bigdw 103 ; SAtk
 	bigdw 70 ; SDef
 	db "GENGA-@@@@@"
-
 
 	db URSARING
 	db GOLD_BERRY
@@ -1658,7 +1595,6 @@ BattleTowerMons3:
 	bigdw 65 ; SDef
 	db "RINGUMA@@@@"
 
-
 	db FEAROW
 	db BRIGHTPOWDER
 	db MIRROR_MOVE, PURSUIT, PECK, SWIFT
@@ -1685,7 +1621,6 @@ BattleTowerMons3:
 	bigdw 58 ; SDef
 	db "ONIDORIRU@@"
 
-
 	db PRIMEAPE
 	db MIRACLEBERRY
 	db LOW_KICK, KARATE_CHOP, REVERSAL, FOCUS_ENERGY
@@ -1711,8 +1646,6 @@ BattleTowerMons3:
 	bigdw 58 ; SAtk
 	bigdw 64 ; SDef
 	db "OKORIZARU@@"
-
-
 
 
 BattleTowerMons4:
@@ -1743,7 +1676,6 @@ BattleTowerMons4:
 	bigdw 94 ; SDef
 	db "KENTAROSU@@"
 
-
 	db KINGDRA
 	db LEFTOVERS
 	db SURF, DRAGONBREATH, HYPER_BEAM, BLIZZARD
@@ -1769,7 +1701,6 @@ BattleTowerMons4:
 	bigdw 115 ; SAtk
 	bigdw 115 ; SDef
 	db "KINGUDORA@@"
-
 
 	db SNORLAX
 	db QUICK_CLAW
@@ -1797,7 +1728,6 @@ BattleTowerMons4:
 	bigdw 125 ; SDef
 	db "KABIGON@@@@"
 
-
 	db LAPRAS
 	db LEFTOVERS
 	db THUNDERBOLT, ICE_BEAM, CONFUSE_RAY, SURF
@@ -1823,7 +1753,6 @@ BattleTowerMons4:
 	bigdw 103 ; SAtk
 	bigdw 111 ; SDef
 	db "RAPURASU@@@"
-
 
 	db STEELIX
 	db GOLD_BERRY
@@ -1851,7 +1780,6 @@ BattleTowerMons4:
 	bigdw 87 ; SDef
 	db "HAGANE-RU@@"
 
-
 	db ALAKAZAM
 	db KINGS_ROCK
 	db PSYCHIC_M, THUNDERPUNCH, RECOVER, FIRE_PUNCH
@@ -1877,7 +1805,6 @@ BattleTowerMons4:
 	bigdw 147 ; SAtk
 	bigdw 107 ; SDef
 	db "HU-DEiN@@@@"
-
 
 	db STARMIE
 	db LEFTOVERS
@@ -1905,7 +1832,6 @@ BattleTowerMons4:
 	bigdw 105 ; SDef
 	db "SUTA-MI-@@@"
 
-
 	db WOBBUFFET
 	db GOLD_BERRY
 	db COUNTER, MIRROR_COAT, SAFEGUARD, DESTINY_BOND
@@ -1931,7 +1857,6 @@ BattleTowerMons4:
 	bigdw 59 ; SAtk
 	bigdw 79 ; SDef
 	db "SO-NANSU@@@"
-
 
 	db GOLEM
 	db FOCUS_BAND
@@ -1959,7 +1884,6 @@ BattleTowerMons4:
 	bigdw 88 ; SDef
 	db "GORO-NIya@@"
 
-
 	db SCIZOR
 	db SCOPE_LENS
 	db SLASH, STEEL_WING, PURSUIT, HYPER_BEAM
@@ -1985,7 +1909,6 @@ BattleTowerMons4:
 	bigdw 82 ; SAtk
 	bigdw 102 ; SDef
 	db "HAtuSAMU@@@"
-
 
 	db DUGTRIO
 	db KINGS_ROCK
@@ -2013,7 +1936,6 @@ BattleTowerMons4:
 	bigdw 91 ; SDef
 	db "DAGUTORIO@@"
 
-
 	db SLOWBRO
 	db MIRACLEBERRY
 	db SURF, PSYCHIC_M, EARTHQUAKE, BLIZZARD
@@ -2039,7 +1961,6 @@ BattleTowerMons4:
 	bigdw 119 ; SAtk
 	bigdw 103 ; SDef
 	db "YADORAN@@@@"
-
 
 	db PORYGON2
 	db NO_ITEM
@@ -2067,7 +1988,6 @@ BattleTowerMons4:
 	bigdw 115 ; SDef
 	db "PORIGON2@@@"
 
-
 	db ARCANINE
 	db CHARCOAL
 	db FLAME_WHEEL, LEER, BODY_SLAM, ROAR
@@ -2093,7 +2013,6 @@ BattleTowerMons4:
 	bigdw 115 ; SAtk
 	bigdw 99 ; SDef
 	db "UINDEi@@@@@"
-
 
 	db FORRETRESS
 	db LEFTOVERS
@@ -2121,7 +2040,6 @@ BattleTowerMons4:
 	bigdw 87 ; SDef
 	db "HUoRETOSU@@"
 
-
 	db OMASTAR
 	db GOLD_BERRY
 	db CURSE, WATER_GUN, ANCIENTPOWER, ROCK_SMASH
@@ -2147,7 +2065,6 @@ BattleTowerMons4:
 	bigdw 124 ; SAtk
 	bigdw 88 ; SDef
 	db "OMUSUTA-@@@"
-
 
 	db CHARIZARD
 	db KINGS_ROCK
@@ -2175,7 +2092,6 @@ BattleTowerMons4:
 	bigdw 106 ; SDef
 	db "RIZA-DON@@@"
 
-
 	db EXEGGUTOR
 	db BRIGHTPOWDER
 	db EGG_BOMB, STOMP, PSYCH_UP, CONFUSION
@@ -2201,7 +2117,6 @@ BattleTowerMons4:
 	bigdw 132 ; SAtk
 	bigdw 84 ; SDef
 	db "NAtuSI-@@@@"
-
 
 	db HYPNO
 	db BRIGHTPOWDER
@@ -2229,7 +2144,6 @@ BattleTowerMons4:
 	bigdw 122 ; SDef
 	db "SURI-PA-@@@"
 
-
 	db MUK
 	db QUICK_CLAW
 	db SCREECH, TOXIC, SLUDGE, HARDEN
@@ -2256,7 +2170,6 @@ BattleTowerMons4:
 	bigdw 111 ; SDef
 	db "BETOBETON@@"
 
-
 	db ELECTABUZZ
 	db KINGS_ROCK
 	db LIGHT_SCREEN, THUNDERPUNCH, SWIFT, SNORE
@@ -2282,8 +2195,6 @@ BattleTowerMons4:
 	bigdw 103 ; SAtk
 	bigdw 95 ; SDef
 	db "EREBU-@@@@@"
-
-
 
 
 BattleTowerMons5:
@@ -2314,7 +2225,6 @@ BattleTowerMons5:
 	bigdw 144 ; SDef
 	db "KINGUDORA@@"
 
-
 	db HOUNDOOM
 	db MIRACLEBERRY
 	db REST, CRUNCH, DREAM_EATER, FLAMETHROWER
@@ -2340,7 +2250,6 @@ BattleTowerMons5:
 	bigdw 157 ; SAtk
 	bigdw 127 ; SDef
 	db "HERUGA-@@@@"
-
 
 	db SHUCKLE
 	db LEFTOVERS
@@ -2368,7 +2277,6 @@ BattleTowerMons5:
 	bigdw 279 ; SDef
 	db "TUBOTUBO@@@"
 
-
 	db SNORLAX
 	db LEFTOVERS
 	db HYPER_BEAM, EARTHQUAKE, SURF, PSYCH_UP
@@ -2394,7 +2302,6 @@ BattleTowerMons5:
 	bigdw 114 ; SAtk
 	bigdw 159 ; SDef
 	db "KABIGON@@@@"
-
 
 	db LAPRAS
 	db GOLD_BERRY
@@ -2422,7 +2329,6 @@ BattleTowerMons5:
 	bigdw 143 ; SDef
 	db "RAPURASU@@@"
 
-
 	db JOLTEON
 	db KINGS_ROCK
 	db THUNDERBOLT, THUNDER_WAVE, SHADOW_BALL, HIDDEN_POWER
@@ -2448,7 +2354,6 @@ BattleTowerMons5:
 	bigdw 159 ; SAtk
 	bigdw 144 ; SDef
 	db "SANDA-SU@@@"
-
 
 	db SCIZOR
 	db LEFTOVERS
@@ -2476,7 +2381,6 @@ BattleTowerMons5:
 	bigdw 124 ; SDef
 	db "HAtuSAMU@@@"
 
-
 	db SLOWKING
 	db MINT_BERRY
 	db REST, SURF, PSYCHIC_M, AMNESIA
@@ -2502,7 +2406,6 @@ BattleTowerMons5:
 	bigdw 146 ; SAtk
 	bigdw 156 ; SDef
 	db "YADOKINGU@@"
-
 
 	db MACHAMP
 	db GOLD_BERRY
@@ -2530,7 +2433,6 @@ BattleTowerMons5:
 	bigdw 128 ; SDef
 	db "KAIRIKI-@@@"
 
-
 	db STARMIE
 	db SCOPE_LENS
 	db THUNDER_WAVE, RECOVER, THUNDERBOLT, SURF
@@ -2556,7 +2458,6 @@ BattleTowerMons5:
 	bigdw 145 ; SAtk
 	bigdw 130 ; SDef
 	db "SUTA-MI-@@@"
-
 
 	db DUGTRIO
 	db KINGS_ROCK
@@ -2584,7 +2485,6 @@ BattleTowerMons5:
 	bigdw 116 ; SDef
 	db "DAGUTORIO@@"
 
-
 	db ELECTRODE
 	db MIRACLEBERRY
 	db THUNDERBOLT, EXPLOSION, MIRROR_COAT, REST
@@ -2610,7 +2510,6 @@ BattleTowerMons5:
 	bigdw 126 ; SAtk
 	bigdw 126 ; SDef
 	db "MARUMAIN@@@"
-
 
 	db AERODACTYL
 	db KINGS_ROCK
@@ -2638,7 +2537,6 @@ BattleTowerMons5:
 	bigdw 119 ; SDef
 	db "PUTERA@@@@@"
 
-
 	db CROBAT
 	db LEFTOVERS
 	db CONFUSE_RAY, ATTRACT, HYPER_BEAM, TOXIC
@@ -2664,7 +2562,6 @@ BattleTowerMons5:
 	bigdw 117 ; SAtk
 	bigdw 127 ; SDef
 	db "KUROBAtuTO@"
-
 
 	db ZAPDOS
 	db MIRACLEBERRY
@@ -2692,7 +2589,6 @@ BattleTowerMons5:
 	bigdw 136 ; SDef
 	db "SANDA-@@@@@"
 
-
 	db SKARMORY
 	db GOLD_BERRY
 	db SANDSTORM, FLY, STEEL_WING, TOXIC
@@ -2718,7 +2614,6 @@ BattleTowerMons5:
 	bigdw 83 ; SAtk
 	bigdw 113 ; SDef
 	db "EA-MUDO@@@@"
-
 
 	db FORRETRESS
 	db LEFTOVERS
@@ -2746,7 +2641,6 @@ BattleTowerMons5:
 	bigdw 103 ; SDef
 	db "HUoRETOSU@@"
 
-
 	db STEELIX
 	db MIRACLEBERRY
 	db SANDSTORM, IRON_TAIL, REST, EARTHQUAKE
@@ -2772,7 +2666,6 @@ BattleTowerMons5:
 	bigdw 99 ; SAtk
 	bigdw 109 ; SDef
 	db "HAGANE-RU@@"
-
 
 	db GIRAFARIG
 	db SCOPE_LENS
@@ -2800,7 +2693,6 @@ BattleTowerMons5:
 	bigdw 101 ; SDef
 	db "KIRINRIKI@@"
 
-
 	db GYARADOS
 	db MIRACLEBERRY
 	db HYPER_BEAM, SURF, RAIN_DANCE, ZAP_CANNON
@@ -2827,7 +2719,6 @@ BattleTowerMons5:
 	bigdw 135 ; SDef
 	db "GIyaRADOSU@"
 
-
 	db ARTICUNO
 	db GOLD_BERRY
 	db BLIZZARD, HYPER_BEAM, ROAR, ICY_WIND
@@ -2853,8 +2744,6 @@ BattleTowerMons5:
 	bigdw 131 ; SAtk
 	bigdw 161 ; SDef
 	db "HURI-ZA-@@@"
-
-
 
 
 BattleTowerMons6:
@@ -2885,7 +2774,6 @@ BattleTowerMons6:
 	bigdw 172 ; SDef
 	db "KINGUDORA@@"
 
-
 	db TYRANITAR
 	db GOLD_BERRY
 	db CRUNCH, EARTHQUAKE, ROCK_SLIDE, HYPER_BEAM
@@ -2911,7 +2799,6 @@ BattleTowerMons6:
 	bigdw 169 ; SAtk
 	bigdw 175 ; SDef
 	db "BANGIRASU@@"
-
 
 	db HOUNDOOM
 	db MIRACLEBERRY
@@ -2939,7 +2826,6 @@ BattleTowerMons6:
 	bigdw 153 ; SDef
 	db "HERUGA-@@@@"
 
-
 	db PORYGON2
 	db LEFTOVERS
 	db BLIZZARD, RECOVER, TOXIC, PSYCHIC_M
@@ -2965,7 +2851,6 @@ BattleTowerMons6:
 	bigdw 182 ; SAtk
 	bigdw 170 ; SDef
 	db "PORIGON2@@@"
-
 
 	db MACHAMP
 	db QUICK_CLAW
@@ -2993,7 +2878,6 @@ BattleTowerMons6:
 	bigdw 158 ; SDef
 	db "KAIRIKI-@@@"
 
-
 	db ZAPDOS
 	db MINT_BERRY
 	db REST, DRILL_PECK, THUNDERBOLT, THUNDER_WAVE
@@ -3019,7 +2903,6 @@ BattleTowerMons6:
 	bigdw 203 ; SAtk
 	bigdw 161 ; SDef
 	db "SANDA-@@@@@"
-
 
 	db WOBBUFFET
 	db GOLD_BERRY
@@ -3047,7 +2930,6 @@ BattleTowerMons6:
 	bigdw 122 ; SDef
 	db "SO-NANSU@@@"
 
-
 	db AERODACTYL
 	db LEFTOVERS
 	db HYPER_BEAM, SUPERSONIC, EARTHQUAKE, BITE
@@ -3073,7 +2955,6 @@ BattleTowerMons6:
 	bigdw 124 ; SAtk
 	bigdw 142 ; SDef
 	db "PUTERA@@@@@"
-
 
 	db DRAGONITE
 	db MIRACLEBERRY
@@ -3101,7 +2982,6 @@ BattleTowerMons6:
 	bigdw 172 ; SDef
 	db "KAIRIyu-@@@"
 
-
 	db UMBREON
 	db GOLD_BERRY
 	db MUD_SLAP, MOONLIGHT, PSYCHIC_M, FAINT_ATTACK
@@ -3127,7 +3007,6 @@ BattleTowerMons6:
 	bigdw 128 ; SAtk
 	bigdw 212 ; SDef
 	db "BURAtuKI-@@"
-
 
 	db ARCANINE
 	db CHARCOAL
@@ -3155,7 +3034,6 @@ BattleTowerMons6:
 	bigdw 149 ; SDef
 	db "UINDEi@@@@@"
 
-
 	db SKARMORY
 	db MIRACLEBERRY
 	db STEEL_WING, FLY, TOXIC, PROTECT
@@ -3181,7 +3059,6 @@ BattleTowerMons6:
 	bigdw 99 ; SAtk
 	bigdw 135 ; SDef
 	db "EA-MUDO@@@@"
-
 
 	db BLISSEY
 	db LEFTOVERS
@@ -3209,7 +3086,6 @@ BattleTowerMons6:
 	bigdw 215 ; SDef
 	db "HAPINASU@@@"
 
-
 	db SNORLAX
 	db PINK_BOW
 	db ROCK_SLIDE, SURF, BODY_SLAM, EARTHQUAKE
@@ -3235,7 +3111,6 @@ BattleTowerMons6:
 	bigdw 130 ; SAtk
 	bigdw 184 ; SDef
 	db "KABIGON@@@@"
-
 
 	db HERACROSS
 	db FOCUS_BAND
@@ -3263,7 +3138,6 @@ BattleTowerMons6:
 	bigdw 167 ; SDef
 	db "HERAKUROSU@"
 
-
 	db JYNX
 	db MIRACLEBERRY
 	db BLIZZARD, PSYCHIC_M, SHADOW_BALL, ICY_WIND
@@ -3289,7 +3163,6 @@ BattleTowerMons6:
 	bigdw 189 ; SAtk
 	bigdw 165 ; SDef
 	db "RU-ZIyuRA@@"
-
 
 	db BLASTOISE
 	db GOLD_BERRY
@@ -3317,7 +3190,6 @@ BattleTowerMons6:
 	bigdw 180 ; SDef
 	db "KAMEtuKUSU@"
 
-
 	db RHYDON
 	db QUICK_CLAW
 	db EARTHQUAKE, SURF, IRON_TAIL, ROCK_SLIDE
@@ -3343,7 +3215,6 @@ BattleTowerMons6:
 	bigdw 104 ; SAtk
 	bigdw 104 ; SDef
 	db "SAIDON@@@@@"
-
 
 	db SANDSLASH
 	db SCOPE_LENS
@@ -3371,7 +3242,6 @@ BattleTowerMons6:
 	bigdw 105 ; SDef
 	db "SANDOPAN@@@"
 
-
 	db PARASECT
 	db GOLD_BERRY
 	db SPORE, GIGA_DRAIN, HYPER_BEAM, SLUDGE_BOMB
@@ -3398,7 +3268,6 @@ BattleTowerMons6:
 	bigdw 144 ; SDef
 	db "PARASEKUTO@"
 
-
 	db GOLEM
 	db BRIGHTPOWDER
 	db EXPLOSION, EARTHQUAKE, FIRE_PUNCH, FRUSTRATION
@@ -3424,8 +3293,6 @@ BattleTowerMons6:
 	bigdw 105 ; SAtk
 	bigdw 117 ; SDef
 	db "GORO-NIya@@"
-
-
 
 
 BattleTowerMons7:
@@ -3456,7 +3323,6 @@ BattleTowerMons7:
 	bigdw 201 ; SDef
 	db "SANDA-SU@@@"
 
-
 	db VAPOREON
 	db LEFTOVERS
 	db BLIZZARD, SHADOW_BALL, SURF, MUD_SLAP
@@ -3482,7 +3348,6 @@ BattleTowerMons7:
 	bigdw 218 ; SAtk
 	bigdw 197 ; SDef
 	db "SIyaWA-ZU@@"
-
 
 	db UMBREON
 	db GOLD_BERRY
@@ -3510,7 +3375,6 @@ BattleTowerMons7:
 	bigdw 247 ; SDef
 	db "BURAtuKI-@@"
 
-
 	db BLISSEY
 	db GOLD_BERRY
 	db COUNTER, SOFTBOILED, SHADOW_BALL, THUNDERBOLT
@@ -3536,7 +3400,6 @@ BattleTowerMons7:
 	bigdw 166 ; SAtk
 	bigdw 250 ; SDef
 	db "HAPINASU@@@"
-
 
 	db SNORLAX
 	db LEFTOVERS
@@ -3564,7 +3427,6 @@ BattleTowerMons7:
 	bigdw 215 ; SDef
 	db "KABIGON@@@@"
 
-
 	db HOUNDOOM
 	db KINGS_ROCK
 	db CRUNCH, FLAMETHROWER, FAINT_ATTACK, ROAR
@@ -3590,7 +3452,6 @@ BattleTowerMons7:
 	bigdw 217 ; SAtk
 	bigdw 175 ; SDef
 	db "HERUGA-@@@@"
-
 
 	db TYRANITAR
 	db LEFTOVERS
@@ -3618,7 +3479,6 @@ BattleTowerMons7:
 	bigdw 203 ; SDef
 	db "BANGIRASU@@"
 
-
 	db ZAPDOS
 	db GOLD_BERRY
 	db THUNDERBOLT, DRILL_PECK, THUNDER_WAVE, HYPER_BEAM
@@ -3644,7 +3504,6 @@ BattleTowerMons7:
 	bigdw 238 ; SAtk
 	bigdw 189 ; SDef
 	db "SANDA-@@@@@"
-
 
 	db EXEGGUTOR
 	db MIRACLEBERRY
@@ -3672,7 +3531,6 @@ BattleTowerMons7:
 	bigdw 151 ; SDef
 	db "NAtuSI-@@@@"
 
-
 	db UMBREON
 	db GOLD_BERRY
 	db MOONLIGHT, FAINT_ATTACK, PSYCHIC_M, SHADOW_BALL
@@ -3698,7 +3556,6 @@ BattleTowerMons7:
 	bigdw 142 ; SAtk
 	bigdw 240 ; SDef
 	db "BURAtuKI-@@"
-
 
 	db GYARADOS
 	db BRIGHTPOWDER
@@ -3726,7 +3583,6 @@ BattleTowerMons7:
 	bigdw 204 ; SDef
 	db "GIyaRADOSU@"
 
-
 	db QUAGSIRE
 	db MIRACLEBERRY
 	db EARTHQUAKE, SURF, SLUDGE_BOMB, IRON_TAIL
@@ -3752,7 +3608,6 @@ BattleTowerMons7:
 	bigdw 152 ; SAtk
 	bigdw 152 ; SDef
 	db "NUO-@@@@@@@"
-
 
 	db URSARING
 	db SCOPE_LENS
@@ -3780,7 +3635,6 @@ BattleTowerMons7:
 	bigdw 166 ; SDef
 	db "RINGUMA@@@@"
 
-
 	db MR__MIME
 	db KINGS_ROCK
 	db REFLECT, FIRE_PUNCH, PSYCHIC_M, ENCORE
@@ -3806,7 +3660,6 @@ BattleTowerMons7:
 	bigdw 198 ; SAtk
 	bigdw 226 ; SDef
 	db "BARIYA-DO@@"
-
 
 	db PRIMEAPE
 	db QUICK_CLAW
@@ -3834,7 +3687,6 @@ BattleTowerMons7:
 	bigdw 162 ; SDef
 	db "OKORIZARU@@"
 
-
 	db GIRAFARIG
 	db GOLD_BERRY
 	db AGILITY, BATON_PASS, CRUNCH, EARTHQUAKE
@@ -3860,7 +3712,6 @@ BattleTowerMons7:
 	bigdw 187 ; SAtk
 	bigdw 152 ; SDef
 	db "KIRINRIKI@@"
-
 
 	db HITMONLEE
 	db FOCUS_BAND
@@ -3888,7 +3739,6 @@ BattleTowerMons7:
 	bigdw 217 ; SDef
 	db "SAWAMURA-@@"
 
-
 	db HERACROSS
 	db BRIGHTPOWDER
 	db REVERSAL, ENDURE, MEGAHORN, EARTHQUAKE
@@ -3914,7 +3764,6 @@ BattleTowerMons7:
 	bigdw 109 ; SAtk
 	bigdw 186 ; SDef
 	db "HERAKUROSU@"
-
 
 	db VENUSAUR
 	db BRIGHTPOWDER
@@ -3942,7 +3791,6 @@ BattleTowerMons7:
 	bigdw 180 ; SDef
 	db "HUSIGIBANA@"
 
-
 	db CHARIZARD
 	db SCOPE_LENS
 	db SLASH, EARTHQUAKE, HYPER_BEAM, FLAMETHROWER
@@ -3969,7 +3817,6 @@ BattleTowerMons7:
 	bigdw 159 ; SDef
 	db "RIZA-DON@@@"
 
-
 	db BLASTOISE
 	db QUICK_CLAW
 	db HYDRO_PUMP, ICE_PUNCH, HYPER_BEAM, IRON_TAIL
@@ -3995,8 +3842,6 @@ BattleTowerMons7:
 	bigdw 159 ; SAtk
 	bigdw 187 ; SDef
 	db "KAMEtuKUSU@"
-
-
 
 
 BattleTowerMons8:
@@ -4027,7 +3872,6 @@ BattleTowerMons8:
 	bigdw 221 ; SDef
 	db "SANDA-SU@@@"
 
-
 	db SNORLAX
 	db LEFTOVERS
 	db REST, BELLY_DRUM, SNORE, EARTHQUAKE
@@ -4053,7 +3897,6 @@ BattleTowerMons8:
 	bigdw 178 ; SAtk
 	bigdw 250 ; SDef
 	db "KABIGON@@@@"
-
 
 	db HOUNDOOM
 	db MINT_BERRY
@@ -4081,7 +3924,6 @@ BattleTowerMons8:
 	bigdw 197 ; SDef
 	db "HERUGA-@@@@"
 
-
 	db TAUROS
 	db GOLD_BERRY
 	db EARTHQUAKE, BODY_SLAM, IRON_TAIL, HYPER_BEAM
@@ -4107,7 +3949,6 @@ BattleTowerMons8:
 	bigdw 135 ; SAtk
 	bigdw 183 ; SDef
 	db "KENTAROSU@@"
-
 
 	db LAPRAS
 	db MINT_BERRY
@@ -4135,7 +3976,6 @@ BattleTowerMons8:
 	bigdw 218 ; SDef
 	db "RAPURASU@@@"
 
-
 	db TYRANITAR
 	db MIRACLEBERRY
 	db REST, CRUNCH, EARTHQUAKE, ROCK_SLIDE
@@ -4161,7 +4001,6 @@ BattleTowerMons8:
 	bigdw 218 ; SAtk
 	bigdw 226 ; SDef
 	db "BANGIRASU@@"
-
 
 	db GENGAR
 	db NO_ITEM
@@ -4189,7 +4028,6 @@ BattleTowerMons8:
 	bigdw 189 ; SDef
 	db "GENGA-@@@@@"
 
-
 	db FORRETRESS
 	db LEFTOVERS
 	db EXPLOSION, TOXIC, SOLARBEAM, SWAGGER
@@ -4215,7 +4053,6 @@ BattleTowerMons8:
 	bigdw 165 ; SAtk
 	bigdw 165 ; SDef
 	db "HUoRETOSU@@"
-
 
 	db KINGDRA
 	db MINT_BERRY
@@ -4243,7 +4080,6 @@ BattleTowerMons8:
 	bigdw 221 ; SDef
 	db "KINGUDORA@@"
 
-
 	db DRAGONITE
 	db GOLD_BERRY
 	db THUNDER_WAVE, SURF, THUNDERBOLT, OUTRAGE
@@ -4269,7 +4105,6 @@ BattleTowerMons8:
 	bigdw 228 ; SAtk
 	bigdw 228 ; SDef
 	db "KAIRIyu-@@@"
-
 
 	db PORYGON2
 	db LEFTOVERS
@@ -4297,7 +4132,6 @@ BattleTowerMons8:
 	bigdw 221 ; SDef
 	db "PORIGON2@@@"
 
-
 	db JYNX
 	db QUICK_CLAW
 	db LOVELY_KISS, BLIZZARD, DREAM_EATER, PSYCHIC_M
@@ -4323,7 +4157,6 @@ BattleTowerMons8:
 	bigdw 257 ; SAtk
 	bigdw 225 ; SDef
 	db "RU-ZIyuRA@@"
-
 
 	db MANTINE
 	db GOLD_BERRY
@@ -4351,7 +4184,6 @@ BattleTowerMons8:
 	bigdw 292 ; SDef
 	db "MANTAIN@@@@"
 
-
 	db SKARMORY
 	db QUICK_CLAW
 	db STEEL_WING, FLY, MUD_SLAP, TOXIC
@@ -4377,7 +4209,6 @@ BattleTowerMons8:
 	bigdw 137 ; SAtk
 	bigdw 185 ; SDef
 	db "EA-MUDO@@@@"
-
 
 	db MOLTRES
 	db CHARCOAL
@@ -4405,7 +4236,6 @@ BattleTowerMons8:
 	bigdw 207 ; SDef
 	db "HUaIYA-@@@@"
 
-
 	db AERODACTYL
 	db MIRACLEBERRY
 	db HYPER_BEAM, REST, EARTHQUAKE, ROAR
@@ -4431,7 +4261,6 @@ BattleTowerMons8:
 	bigdw 165 ; SAtk
 	bigdw 189 ; SDef
 	db "PUTERA@@@@@"
-
 
 	db ELECTRODE
 	db KINGS_ROCK
@@ -4459,7 +4288,6 @@ BattleTowerMons8:
 	bigdw 201 ; SDef
 	db "MARUMAIN@@@"
 
-
 	db DUGTRIO
 	db SCOPE_LENS
 	db SLASH, EARTHQUAKE, THIEF, MUD_SLAP
@@ -4485,7 +4313,6 @@ BattleTowerMons8:
 	bigdw 145 ; SAtk
 	bigdw 177 ; SDef
 	db "DAGUTORIO@@"
-
 
 	db VICTREEBEL
 	db QUICK_CLAW
@@ -4513,7 +4340,6 @@ BattleTowerMons8:
 	bigdw 143 ; SDef
 	db "UTUBOtuTO@@"
 
-
 	db PINSIR
 	db GOLD_BERRY
 	db HYPER_BEAM, SUBMISSION, STRENGTH, TOXIC
@@ -4540,7 +4366,6 @@ BattleTowerMons8:
 	bigdw 157 ; SDef
 	db "KAIROSU@@@@"
 
-
 	db GRANBULL
 	db BRIGHTPOWDER
 	db ROAR, SHADOW_BALL, HYPER_BEAM, THUNDERPUNCH
@@ -4566,8 +4391,6 @@ BattleTowerMons8:
 	bigdw 146 ; SAtk
 	bigdw 146 ; SDef
 	db "GURANBURU@@"
-
-
 
 
 BattleTowerMons9:
@@ -4598,7 +4421,6 @@ BattleTowerMons9:
 	bigdw 314 ; SDef
 	db "BURAtuKI-@@"
 
-
 	db DRAGONITE
 	db QUICK_CLAW
 	db FIRE_BLAST, HYPER_BEAM, OUTRAGE, BLIZZARD
@@ -4624,7 +4446,6 @@ BattleTowerMons9:
 	bigdw 263 ; SAtk
 	bigdw 263 ; SDef
 	db "KAIRIyu-@@@"
-
 
 	db STARMIE
 	db LEFTOVERS
@@ -4652,7 +4473,6 @@ BattleTowerMons9:
 	bigdw 236 ; SDef
 	db "SUTA-MI-@@@"
 
-
 	db CLOYSTER
 	db LEFTOVERS
 	db EXPLOSION, BLIZZARD, SURF, ICY_WIND
@@ -4678,7 +4498,6 @@ BattleTowerMons9:
 	bigdw 234 ; SAtk
 	bigdw 162 ; SDef
 	db "PARUSIeN@@@"
-
 
 	db CROBAT
 	db GOLD_BERRY
@@ -4706,7 +4525,6 @@ BattleTowerMons9:
 	bigdw 225 ; SDef
 	db "KUROBAtuTO@"
 
-
 	db PORYGON2
 	db QUICK_CLAW
 	db TOXIC, PSYCHIC_M, RECOVER, PROTECT
@@ -4732,7 +4550,6 @@ BattleTowerMons9:
 	bigdw 266 ; SAtk
 	bigdw 248 ; SDef
 	db "PORIGON2@@@"
-
 
 	db KINGDRA
 	db LEFTOVERS
@@ -4760,7 +4577,6 @@ BattleTowerMons9:
 	bigdw 248 ; SDef
 	db "KINGUDORA@@"
 
-
 	db TYRANITAR
 	db QUICK_CLAW
 	db HYPER_BEAM, CRUNCH, EARTHQUAKE, ROCK_SLIDE
@@ -4786,7 +4602,6 @@ BattleTowerMons9:
 	bigdw 250 ; SAtk
 	bigdw 259 ; SDef
 	db "BANGIRASU@@"
-
 
 	db LAPRAS
 	db MINT_BERRY
@@ -4814,7 +4629,6 @@ BattleTowerMons9:
 	bigdw 255 ; SDef
 	db "RAPURASU@@@"
 
-
 	db ESPEON
 	db GOLD_BERRY
 	db PSYCHIC_M, SHADOW_BALL, SUNNY_DAY, MORNING_SUN
@@ -4840,7 +4654,6 @@ BattleTowerMons9:
 	bigdw 313 ; SAtk
 	bigdw 250 ; SDef
 	db "E-HUi@@@@@@"
-
 
 	db MACHAMP
 	db QUICK_CLAW
@@ -4868,7 +4681,6 @@ BattleTowerMons9:
 	bigdw 230 ; SDef
 	db "KAIRIKI-@@@"
 
-
 	db SNORLAX
 	db MIRACLEBERRY
 	db FIRE_BLAST, SURF, EARTHQUAKE, HYPER_BEAM
@@ -4894,7 +4706,6 @@ BattleTowerMons9:
 	bigdw 194 ; SAtk
 	bigdw 275 ; SDef
 	db "KABIGON@@@@"
-
 
 	db ARCANINE
 	db MINT_BERRY
@@ -4922,7 +4733,6 @@ BattleTowerMons9:
 	bigdw 226 ; SDef
 	db "UINDEi@@@@@"
 
-
 	db BLISSEY
 	db LEFTOVERS
 	db SOLARBEAM, SUNNY_DAY, SOFTBOILED, FIRE_BLAST
@@ -4948,7 +4758,6 @@ BattleTowerMons9:
 	bigdw 214 ; SAtk
 	bigdw 322 ; SDef
 	db "HAPINASU@@@"
-
 
 	db HOUNDOOM
 	db BRIGHTPOWDER
@@ -4976,7 +4785,6 @@ BattleTowerMons9:
 	bigdw 223 ; SDef
 	db "HERUGA-@@@@"
 
-
 	db SKARMORY
 	db QUICK_CLAW
 	db SANDSTORM, STEEL_WING, TOXIC, RETURN
@@ -5002,7 +4810,6 @@ BattleTowerMons9:
 	bigdw 139 ; SAtk
 	bigdw 193 ; SDef
 	db "EA-MUDO@@@@"
-
 
 	db SHUCKLE
 	db LEFTOVERS
@@ -5030,7 +4837,6 @@ BattleTowerMons9:
 	bigdw 493 ; SDef
 	db "TUBOTUBO@@@"
 
-
 	db FLAREON
 	db MINT_BERRY
 	db HYPER_BEAM, FLAMETHROWER, SHADOW_BALL, ROAR
@@ -5056,7 +4862,6 @@ BattleTowerMons9:
 	bigdw 238 ; SAtk
 	bigdw 265 ; SDef
 	db "BU-SUTA-@@@"
-
 
 	db MILTANK
 	db LEFTOVERS
@@ -5084,7 +4889,6 @@ BattleTowerMons9:
 	bigdw 182 ; SDef
 	db "MIRUTANKU@@"
 
-
 	db TAUROS
 	db PINK_BOW
 	db THUNDERBOLT, HYPER_BEAM, ATTRACT, EARTHQUAKE
@@ -5111,7 +4915,6 @@ BattleTowerMons9:
 	bigdw 180 ; SDef
 	db "KENTAROSU@@"
 
-
 	db MUK
 	db QUICK_CLAW
 	db TOXIC, SLUDGE_BOMB, ATTRACT, GIGA_DRAIN
@@ -5137,8 +4940,6 @@ BattleTowerMons9:
 	bigdw 167 ; SAtk
 	bigdw 230 ; SDef
 	db "BETOBETON@@"
-
-
 
 
 BattleTowerMons10:
@@ -5169,7 +4970,6 @@ BattleTowerMons10:
 	bigdw 252 ; SDef
 	db "HERUGA-@@@@"
 
-
 	db MACHAMP
 	db QUICK_CLAW
 	db CROSS_CHOP, EARTHQUAKE, HYPER_BEAM, VITAL_THROW
@@ -5195,7 +4995,6 @@ BattleTowerMons10:
 	bigdw 226 ; SAtk
 	bigdw 266 ; SDef
 	db "KAIRIKI-@@@"
-
 
 	db KINGDRA
 	db LEFTOVERS
@@ -5223,7 +5022,6 @@ BattleTowerMons10:
 	bigdw 284 ; SDef
 	db "KINGUDORA@@"
 
-
 	db JOLTEON
 	db BRIGHTPOWDER
 	db THUNDERBOLT, ROAR, THUNDER_WAVE, IRON_TAIL
@@ -5249,7 +5047,6 @@ BattleTowerMons10:
 	bigdw 308 ; SAtk
 	bigdw 278 ; SDef
 	db "SANDA-SU@@@"
-
 
 	db TAUROS
 	db KINGS_ROCK
@@ -5277,7 +5074,6 @@ BattleTowerMons10:
 	bigdw 230 ; SDef
 	db "KENTAROSU@@"
 
-
 	db ARCANINE
 	db LEFTOVERS
 	db FLAMETHROWER, EXTREMESPEED, IRON_TAIL, HYPER_BEAM
@@ -5303,7 +5099,6 @@ BattleTowerMons10:
 	bigdw 290 ; SAtk
 	bigdw 250 ; SDef
 	db "UINDEi@@@@@"
-
 
 	db CHARIZARD
 	db SCOPE_LENS
@@ -5331,7 +5126,6 @@ BattleTowerMons10:
 	bigdw 263 ; SDef
 	db "RIZA-DON@@@"
 
-
 	db ELECTRODE
 	db BRIGHTPOWDER
 	db THUNDER_WAVE, THUNDERBOLT, EXPLOSION, MIRROR_COAT
@@ -5357,7 +5151,6 @@ BattleTowerMons10:
 	bigdw 248 ; SAtk
 	bigdw 248 ; SDef
 	db "MARUMAIN@@@"
-
 
 	db RHYDON
 	db MIRACLEBERRY
@@ -5385,7 +5178,6 @@ BattleTowerMons10:
 	bigdw 178 ; SDef
 	db "SAIDON@@@@@"
 
-
 	db STEELIX
 	db LEFTOVERS
 	db EARTHQUAKE, HYPER_BEAM, SWAGGER, CRUNCH
@@ -5411,7 +5203,6 @@ BattleTowerMons10:
 	bigdw 198 ; SAtk
 	bigdw 218 ; SDef
 	db "HAGANE-RU@@"
-
 
 	db FEAROW
 	db KINGS_ROCK
@@ -5439,7 +5230,6 @@ BattleTowerMons10:
 	bigdw 212 ; SDef
 	db "ONIDORIRU@@"
 
-
 	db MISDREAVUS
 	db FOCUS_BAND
 	db PERISH_SONG, MEAN_LOOK, PAIN_SPLIT, SHADOW_BALL
@@ -5465,7 +5255,6 @@ BattleTowerMons10:
 	bigdw 263 ; SAtk
 	bigdw 263 ; SDef
 	db "MUUMA@@@@@@"
-
 
 	db SNEASEL
 	db SCOPE_LENS
@@ -5493,7 +5282,6 @@ BattleTowerMons10:
 	bigdw 240 ; SDef
 	db "NIyu-RA@@@@"
 
-
 	db SCIZOR
 	db QUICK_CLAW
 	db STEEL_WING, HYPER_BEAM, SLASH, TOXIC
@@ -5519,7 +5307,6 @@ BattleTowerMons10:
 	bigdw 196 ; SAtk
 	bigdw 246 ; SDef
 	db "HAtuSAMU@@@"
-
 
 	db BLISSEY
 	db LEFTOVERS
@@ -5547,7 +5334,6 @@ BattleTowerMons10:
 	bigdw 346 ; SDef
 	db "HAPINASU@@@"
 
-
 	db PILOSWINE
 	db MINT_BERRY
 	db REST, BLIZZARD, HYPER_BEAM, EARTHQUAKE
@@ -5573,7 +5359,6 @@ BattleTowerMons10:
 	bigdw 194 ; SAtk
 	bigdw 194 ; SDef
 	db "INOMU-@@@@@"
-
 
 	db EXEGGUTOR
 	db QUICK_CLAW
@@ -5601,7 +5386,6 @@ BattleTowerMons10:
 	bigdw 218 ; SDef
 	db "NAtuSI-@@@@"
 
-
 	db OMASTAR
 	db LEFTOVERS
 	db SURF, ANCIENTPOWER, BLIZZARD, TOXIC
@@ -5627,7 +5411,6 @@ BattleTowerMons10:
 	bigdw 304 ; SAtk
 	bigdw 214 ; SDef
 	db "OMUSUTA-@@@"
-
 
 	db GOLEM
 	db BRIGHTPOWDER
@@ -5655,7 +5438,6 @@ BattleTowerMons10:
 	bigdw 190 ; SDef
 	db "GORO-NIya@@"
 
-
 	db HITMONCHAN
 	db FOCUS_BAND
 	db COUNTER, FIRE_PUNCH, THUNDERPUNCH, ICE_PUNCH
@@ -5681,7 +5463,6 @@ BattleTowerMons10:
 	bigdw 130 ; SAtk
 	bigdw 280 ; SDef
 	db "EBIWARA-@@@"
-
 
 	db LANTURN
 	db QUICK_CLAW

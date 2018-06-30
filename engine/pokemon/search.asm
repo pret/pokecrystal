@@ -28,7 +28,6 @@ BeastsCheck:
 	ld [wScriptVar], a
 	ret
 
-
 MonCheck:
 ; Check if the player owns any Pokémon of the species in wScriptVar.
 ; Return the result in wScriptVar.
@@ -45,7 +44,6 @@ MonCheck:
 	ld a, 1
 	ld [wScriptVar], a
 	ret
-
 
 CheckOwnMonAnywhere:
 ; Check if the player owns any monsters of the species in wScriptVar.
@@ -177,7 +175,6 @@ CheckOwnMonAnywhere:
 	call CloseSRAM
 	and a
 	ret
-
 
 CheckOwnMon:
 ; Check if a Pokémon belongs to the player and is of a specific species.

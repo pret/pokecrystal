@@ -7,4 +7,3 @@ BattleCommand_DestinyBond:
 	call AnimateCurrentMove
 	ld hl, DestinyBondEffectText
 	jp StdBattleTextBox
-

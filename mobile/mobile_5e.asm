@@ -190,7 +190,6 @@ Jumptable_17a7b6:
 	dw Function17a81a
 	dw Function17a7f4
 
-
 Function17a7c2:
 	ld a, $4
 	call Function17aad3

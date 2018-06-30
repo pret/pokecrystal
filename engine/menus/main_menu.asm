@@ -139,7 +139,6 @@ StudiumMenu:
 	db MOBILE_STUDIUM
 	db -1
 
-
 MainMenu_GetWhichMenu:
 	nop
 	nop
@@ -231,7 +230,6 @@ MainMenu_PrintCurrentTimeAndDay:
 	ld [hBGMapMode], a
 	ret
 
-
 .PlaceBox:
 	call CheckRTCStatus
 	and $80
@@ -245,7 +243,6 @@ MainMenu_PrintCurrentTimeAndDay:
 .TimeFail:
 	call SpeechTextBox
 	ret
-
 
 .PlaceTime:
 	ld a, [wSaveFileExists]
@@ -322,7 +319,6 @@ Function49ed0:
 	call LoadStandardFont
 	call ClearWindowData
 	ret
-
 
 MainMenu_NewGame:
 	farcall NewGame

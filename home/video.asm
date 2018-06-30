@@ -17,7 +17,6 @@ DMATransfer::
 	scf
 	ret
 
-
 UpdateBGMapBuffer::
 ; Copy [hBGMapTileCount] 16x8 tiles from wBGMapBuffer
 ; to bg map addresses in wBGMapBufferPtrs.
@@ -41,7 +40,6 @@ UpdateBGMapBuffer::
 
 	ld hl, wBGMapPalBuffer
 	ld de, wBGMapBuffer
-
 
 .next
 ; Copy a pair of 16x8 blocks (one 16x16 block)
@@ -82,7 +80,6 @@ endr
 
 	jr nz, .next
 
-
 	ld a, [hSPBuffer]
 	ld l, a
 	ld a, [hSPBuffer + 1]
@@ -96,7 +93,6 @@ endr
 	ld [hBGMapUpdate], a
 	scf
 	ret
-
 
 WaitTop::
 ; Wait until the top third of the BG Map is being updated.
@@ -116,7 +112,6 @@ WaitTop::
 	xor a
 	ld [hBGMapMode], a
 	ret
-
 
 UpdateBGMap::
 ; Update the BG Map, in thirds, from wTileMap and wAttrMap.
@@ -160,7 +155,6 @@ UpdateBGMap::
 	ld [hBGMapAddress + 1], a
 	ret
 
-
 .Attr:
 	ld a, 1
 	ld [rVBK], a
@@ -172,10 +166,8 @@ UpdateBGMap::
 	ld [rVBK], a
 	ret
 
-
 .Tiles:
 	hlcoord 0, 0
-
 
 .update
 	ld [hSPBuffer], sp
@@ -188,9 +180,7 @@ UpdateBGMap::
 	jr z, .middle
 	; 2
 
-
 THIRD_HEIGHT EQU SCREEN_HEIGHT / 3
-
 
 .bottom
 	ld de, 2 * THIRD_HEIGHT * SCREEN_WIDTH
@@ -209,7 +199,6 @@ THIRD_HEIGHT EQU SCREEN_HEIGHT / 3
 	xor a
 	jr .start
 
-
 .middle
 	ld de, THIRD_HEIGHT * SCREEN_WIDTH
 	add hl, de
@@ -227,7 +216,6 @@ THIRD_HEIGHT EQU SCREEN_HEIGHT / 3
 	ld a, 2
 	jr .start
 
-
 .top
 	ld sp, hl
 
@@ -239,7 +227,6 @@ THIRD_HEIGHT EQU SCREEN_HEIGHT / 3
 ; Next time: middle third
 	ld a, 1
 
-
 .start
 ; Which third to update next time
 	ld [hBGMapThird], a
@@ -249,7 +236,6 @@ THIRD_HEIGHT EQU SCREEN_HEIGHT / 3
 
 ; Discrepancy between wTileMap and BGMap
 	ld bc, BG_MAP_WIDTH - (SCREEN_WIDTH - 1)
-
 
 .row
 ; Copy a row of 20 tiles
@@ -269,14 +255,12 @@ endr
 	dec a
 	jr nz, .row
 
-
 	ld a, [hSPBuffer]
 	ld l, a
 	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
-
 
 Serve1bppRequest::
 ; Only call during the first fifth of VBlank
@@ -342,7 +326,6 @@ endr
 	dec b
 	jr nz, .next
 
-
 	ld a, l
 	ld [wRequested1bppDest], a
 	ld a, h
@@ -356,7 +339,6 @@ endr
 	ld h, a
 	ld sp, hl
 	ret
-
 
 Serve2bppRequest::
 ; Only call during the first fifth of VBlank
@@ -373,9 +355,7 @@ Serve2bppRequest::
 	ret nc
 	jr _Serve2bppRequest
 
-
 Serve2bppRequest_VBlank::
-
 	ld a, [wRequested2bpp]
 	and a
 	ret z
@@ -423,7 +403,6 @@ endr
 	dec b
 	jr nz, .next
 
-
 	ld a, l
 	ld [wRequested2bppDest], a
 	ld a, h
@@ -437,7 +416,6 @@ endr
 	ld h, a
 	ld sp, hl
 	ret
-
 
 AnimateTileset::
 ; Only call during the first fifth of VBlank

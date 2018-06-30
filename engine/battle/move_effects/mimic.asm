@@ -48,4 +48,3 @@ BattleCommand_Mimic:
 
 .fail
 	jp FailMimic
-

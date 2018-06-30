@@ -112,7 +112,6 @@ StatsScreenPointerTable:
 	dw MonStatsJoypad
 	dw StatsScreen_Exit
 
-
 StatsScreen_WaitAnim:
 	ld hl, wcf64
 	bit 6, [hl]
@@ -173,7 +172,6 @@ EggStatsInit:
 	inc a
 	ld [wJumptableIndex], a
 	ret
-
 
 EggStatsJoypad:
 	call StatsScreen_GetJoypad
@@ -783,7 +781,6 @@ IDNoString:
 OTString:
 	db "OT/@"
 
-
 StatsScreen_PlaceFrontpic:
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
@@ -1029,7 +1026,6 @@ EggALotMoreTimeString:
 	next "lot more time to"
 	next "hatch.@"
 
-
 StatsScreen_AnimateEgg:
 	call StatsScreen_GetAnimationParam
 	ret nc
@@ -1125,7 +1121,6 @@ GetNicknamePointer:
 	ret z
 	ld a, [wCurPartyMon]
 	jp SkipNames
-
 
 CheckFaintedFrzSlp:
 	ld hl, MON_HP

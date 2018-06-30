@@ -59,7 +59,6 @@ HalveMoney:
 	ld [hl], a
 	ret
 
-
 GetWhiteoutSpawn:
 	ld a, [wLastSpawnMapGroup]
 	ld d, a

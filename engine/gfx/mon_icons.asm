@@ -33,7 +33,6 @@ LoadMenuMonIcon:
 	ld l, a
 	jp hl
 
-
 .Jumptable:
 	dw PartyMenu_InitAnimatedMonIcon ; party menu
 	dw NamingScreen_InitAnimatedMonIcon ; naming screen
@@ -263,7 +262,6 @@ GetSpeciesIcon:
 	call GetIconGFX
 	ret
 
-
 FlyFunction_GetMonIcon:
 	push de
 	ld a, [wd265]
@@ -448,7 +446,6 @@ ReadMonMenuIcon:
 .egg
 	ld a, ICON_EGG
 	ret
-
 
 INCLUDE "data/pokemon/menu_icons.asm"
 

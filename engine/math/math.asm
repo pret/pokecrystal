@@ -1,5 +1,4 @@
 _Multiply::
-
 ; hMultiplier is one byte.
 	ld a, 8
 	ld b, a
@@ -10,7 +9,6 @@ _Multiply::
 	ld [hMathBuffer + 2], a
 	ld [hMathBuffer + 3], a
 	ld [hMathBuffer + 4], a
-
 
 .loop
 	ld a, [hMultiplier]
@@ -46,7 +44,6 @@ _Multiply::
 	dec b
 	jr z, .done
 
-
 ; hMultiplicand <<= 1
 
 	ld a, [hMultiplicand + 2]
@@ -67,7 +64,6 @@ _Multiply::
 
 	jr .loop
 
-
 .done
 	ld a, [hMathBuffer + 4]
 	ld [hProduct + 3], a
@@ -82,7 +78,6 @@ _Multiply::
 	ld [hProduct + 0], a
 
 	ret
-
 
 _Divide::
 	xor a

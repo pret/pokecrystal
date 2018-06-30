@@ -256,7 +256,6 @@ DoPlayerMovement::
 	ret
 
 .TryStep:
-
 ; Surfing actually calls .TrySurf directly instead of passing through here.
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
@@ -321,7 +320,6 @@ DoPlayerMovement::
 	ret
 
 .TrySurf:
-
 	call .CheckSurfPerms
 	ld [wd040], a
 	jr c, .surf_bump
@@ -395,7 +393,6 @@ DoPlayerMovement::
 	db FACE_UP | FACE_LEFT    ; COLL_HOP_UP_LEFT
 
 .CheckWarp:
-
 ; Bug: Since no case is made for STANDING here, it will check
 ; [.edgewarps + $ff]. This resolves to $3e at $8035a.
 ; This causes wd041 to be nonzero when standing on tile $3e,
@@ -657,7 +654,6 @@ DoPlayerMovement::
 	ret
 
 .CheckStrengthBoulder:
-
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_STRENGTH_ACTIVE_F, [hl]
 	jr z, .not_boulder
@@ -779,7 +775,6 @@ DoPlayerMovement::
 	ret
 
 .BumpSound:
-
 	call CheckSFX
 	ret c
 	ld de, SFX_BUMP

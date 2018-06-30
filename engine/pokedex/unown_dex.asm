@@ -46,5 +46,4 @@ PrintUnownWord:
 	ld [hli], a
 	jr .loop
 
-
 INCLUDE "data/pokemon/unown_words.asm"

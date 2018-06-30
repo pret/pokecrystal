@@ -22,4 +22,3 @@ BattleCommand_Pursuit:
 	ld [hli], a
 	ld [hl], a
 	ret
-

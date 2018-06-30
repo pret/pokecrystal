@@ -170,7 +170,6 @@ GetGender:
 	call AddNTimes
 
 .DVs:
-
 ; sBoxMon data is read directly from SRAM.
 	ld a, [wMonType]
 	cp BOXMON

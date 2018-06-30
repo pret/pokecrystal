@@ -1,5 +1,4 @@
 CanObjectMoveInDirection:
-
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit SWIMMING_F, [hl]
@@ -57,7 +56,6 @@ CanObjectMoveInDirection:
 .move_anywhere
 	and a
 	ret
-
 
 WillObjectBumpIntoWater:
 	call Function6f5f
@@ -144,9 +142,9 @@ Function6f5f:
 Function6f7f:
 	ld d, a
 	and $f0
-	cp $b0
+	cp HI_NYBBLE_SIDE_WALLS
 	jr z, .done
-	cp $c0
+	cp HI_NYBBLE_UNUSED_C0
 	jr z, .done
 	xor a
 	ret
@@ -216,10 +214,7 @@ Function6fa1:
 	scf
 	ret
 
-
-
 CheckFacingObject::
-
 	call GetFacingTileCoord
 
 ; Double the distance for counter tiles.
@@ -257,7 +252,6 @@ CheckFacingObject::
 .standing
 	scf
 	ret
-
 
 WillObjectBumpIntoSomeoneElse:
 	ld hl, OBJECT_NEXT_MAP_X
@@ -531,7 +525,6 @@ Unreferenced_Function7113:
 .yes
 	scf
 	ret
-
 
 Function7171:
 	ld hl, OBJECT_NEXT_MAP_X

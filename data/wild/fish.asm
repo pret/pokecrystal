@@ -204,7 +204,6 @@ FishGroups:
 	db  90 percent + 1, MAGIKARP,   40
 	db 100 percent,     REMORAID,   40
 
-
 TimeFishGroups:
 	;  day              nite
 	db CORSOLA,    20,  STARYU,     20 ; 0

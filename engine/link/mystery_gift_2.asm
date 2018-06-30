@@ -145,7 +145,6 @@ MysteryGiftFallbackItem:
 	ld c, DECO_POLKADOT_BED ; GREAT_BALL
 	ret
 
-
 INCLUDE "data/items/mystery_gift_items.asm"
 
 INCLUDE "data/decorations/mystery_gift_decos.asm"

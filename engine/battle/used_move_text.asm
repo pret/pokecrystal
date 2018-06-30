@@ -131,7 +131,6 @@ EndUsedMove5Text:
 	text_jump _EndUsedMove5Text
 	db "@"
 
-
 GetMoveGrammar:
 ; store move grammar type in wd265
 
@@ -168,7 +167,6 @@ GetMoveGrammar:
 	ret
 
 INCLUDE "data/moves/grammar.asm"
-
 
 UpdateUsedMoves:
 ; append move a to wPlayerUsedMoves unless it has already been used

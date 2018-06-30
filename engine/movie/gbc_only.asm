@@ -1,5 +1,4 @@
 GBCOnlyScreen:
-
 	ld a, [hCGB]
 	and a
 	ret nz
@@ -38,9 +37,7 @@ GBCOnlyScreen:
 	call DelayFrame
 	jr .loop
 
-
 DrawGBCOnlyScreen:
-
 	call DrawGBCOnlyBorder
 
 	; Pokemon
@@ -63,9 +60,7 @@ DrawGBCOnlyScreen:
 
 	ret
 
-
 DrawGBCOnlyBorder:
-
 	hlcoord 0, 0
 	ld [hl], 0 ; top-left
 
@@ -111,7 +106,6 @@ DrawGBCOnlyBorder:
 	jr nz, .next_row
 	ret
 
-
 DrawGBCOnlyGraphic:
 	ld de, SCREEN_WIDTH
 .y
@@ -129,13 +123,11 @@ DrawGBCOnlyGraphic:
 	jr nz, .y
 	ret
 
-
 GBCOnlyString:
 	db   "This Game Pak is"
 	next "designed only for"
 	next "use on the"
 	next "Game Boy Color.@"
-
 
 GBCOnlyGFX:
 INCBIN "gfx/sgb/gbc_only.2bpp.lz"

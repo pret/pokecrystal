@@ -2,11 +2,10 @@ INCLUDE "constants.asm"
 
 
 SECTION "NULL", ROM0
+
 NULL::
 
-
 INCLUDE "home/rst.asm"
-
 
 INCLUDE "home/interrupts.asm"
 

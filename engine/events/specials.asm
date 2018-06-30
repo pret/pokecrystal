@@ -291,7 +291,6 @@ ActivateFishingSwarm:
 	ld [wFishingSwarmFlag], a
 	ret
 
-
 StoreSwarmMapIndices::
 	ld a, c
 	and a
@@ -309,7 +308,6 @@ StoreSwarmMapIndices::
 	ld a, e
 	ld [wYanmaMapNumber], a
 	ret
-
 
 CheckPokerus:
 ; Check if a monster in your party has Pokerus
@@ -377,11 +375,9 @@ SnorlaxAwake:
 	db 36,  9 ; right
 	db -1
 
-
 PlayCurMonCry:
 	ld a, [wCurPartySpecies]
 	jp PlayMonCry
-
 
 GameboyCheck:
 	ld a, [hCGB]
@@ -403,7 +399,6 @@ GameboyCheck:
 .done
 	ld [wScriptVar], a
 	ret
-
 
 FadeOutMusic:
 	ld a, LOW(MUSIC_NONE)

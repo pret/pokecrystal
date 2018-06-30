@@ -41,14 +41,12 @@ CelebiShrineEvent:
 	pop bc
 	jr .loop
 
-
 .done
 	pop af
 	ld [wVramState], a
 	call .RestorePlayerSprite_DespawnLeaves
 	call CelebiEvent_SetBattleType
 	ret
-
 
 .RestorePlayerSprite_DespawnLeaves:
 	ld hl, wVirtualOAMSprite00TileID
@@ -68,7 +66,6 @@ endr
 	call ByteFill
 	ret
 
-
 LoadCelebiGFX:
 	farcall ClearSpriteAnims
 	ld de, SpecialCelebiLeafGFX
@@ -83,7 +80,6 @@ LoadCelebiGFX:
 	ld [wJumptableIndex], a
 	ret
 
-
 CelebiEvent_CountDown:
 	ld hl, wFrameCounter
 	ld a, [hl]
@@ -92,12 +88,10 @@ CelebiEvent_CountDown:
 	dec [hl]
 	ret
 
-
 .done
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
-
 
 CelebiEvent_SpawnLeaf:
 ; unused
@@ -119,7 +113,6 @@ CelebiEvent_SpawnLeaf:
 	ld [hl], $80
 	ret
 
-
 SpecialCelebiLeafGFX:
 INCBIN "gfx/overworld/cut_grass.2bpp"
 
@@ -128,7 +121,6 @@ INCBIN "gfx/overworld/celebi/1.2bpp"
 INCBIN "gfx/overworld/celebi/2.2bpp"
 INCBIN "gfx/overworld/celebi/3.2bpp"
 INCBIN "gfx/overworld/celebi/4.2bpp"
-
 
 UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
@@ -224,7 +216,6 @@ UpdateCelebiPosition:
 .done
 	ret
 
-
 .FreezeCelebiPosition:
 	pop af
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
@@ -232,7 +223,6 @@ UpdateCelebiPosition:
 	ld a, SPRITE_ANIM_FRAMESET_CELEBI_LEFT
 	call ReinitSpriteAnimFrame
 	ret
-
 
 CelebiEvent_Cosine:
 ; a = d * cos(a * pi/32)
@@ -261,21 +251,17 @@ GetCelebiSpriteTile:
 	jr c, .done
 	jr .restart
 
-
 .Frame1:
 	ld a, SPECIALCELEBIEVENT_CELEBI
 	jr .load_tile
-
 
 .Frame2:
 	ld a, SPECIALCELEBIEVENT_CELEBI + 4
 	jr .load_tile
 
-
 .Frame3:
 	ld a, SPECIALCELEBIEVENT_CELEBI + 8
 	jr .load_tile
-
 
 .Frame4:
 	ld a, SPECIALCELEBIEVENT_CELEBI + 12
@@ -285,7 +271,6 @@ GetCelebiSpriteTile:
 	add hl, bc
 	ld [hl], a
 	jr .done
-
 
 .restart
 	pop de
@@ -298,7 +283,6 @@ GetCelebiSpriteTile:
 	pop hl
 	ret
 
-
 .AddE:
 	push af
 	ld a, d
@@ -307,12 +291,10 @@ GetCelebiSpriteTile:
 	pop af
 	ret
 
-
 CelebiEvent_SetBattleType:
 	ld a, BATTLETYPE_CELEBI
 	ld [wBattleType], a
 	ret
-
 
 CheckCaughtCelebi:
 	ld a, [wBattleResult]
@@ -322,11 +304,9 @@ CheckCaughtCelebi:
 	ld [wScriptVar], a
 	jr .done
 
-
 .false
 	xor a ; FALSE
 	ld [wScriptVar], a
 
 .done
 	ret
-

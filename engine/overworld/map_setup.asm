@@ -107,7 +107,6 @@ MapSetupCommands:
 	dba DontScrollText ; 2c
 	dba ReturnFromMapSetupScript ; 2d
 
-
 DontScrollText:
 	xor a
 	ld [wDisableTextAcceleration], a

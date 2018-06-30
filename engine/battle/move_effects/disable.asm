@@ -70,4 +70,3 @@ BattleCommand_Disable:
 
 .failed
 	jp FailMove
-

@@ -137,4 +137,3 @@ BattleCommand_Transform:
 	call nz, LoadAnim
 	ld hl, TransformedText
 	jp StdBattleTextBox
-

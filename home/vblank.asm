@@ -6,7 +6,6 @@
 
 ; This prevents the display and audio output from lagging.
 
-
 VBlank::
 	push af
 	push bc
@@ -44,7 +43,6 @@ VBlank::
 	dw VBlank5
 	dw VBlank6
 	dw VBlank0 ; just in case
-
 
 VBlank0::
 ; normal operation
@@ -114,7 +112,6 @@ VBlank0::
 	call hTransferVirtualOAM
 .done_oam
 
-
 	; vblank-sensitive operations are done
 
 	xor a
@@ -147,7 +144,6 @@ VBlank0::
 
 	ret
 
-
 VBlank2::
 ; sound only
 
@@ -164,7 +160,6 @@ VBlank2::
 	xor a
 	ld [wVBlankOccurred], a
 	ret
-
 
 VBlank1::
 ; scx, scy
@@ -232,7 +227,6 @@ VBlank1::
 	ld [rIF], a
 	ret
 
-
 UpdatePals::
 ; update pals for either dmg or cgb
 
@@ -250,7 +244,6 @@ UpdatePals::
 
 	and a
 	ret
-
 
 VBlank3::
 ; scx, scy
@@ -316,7 +309,6 @@ VBlank3::
 	ld [rIF], a
 	ret
 
-
 VBlank4::
 ; bg map
 ; tiles
@@ -347,7 +339,6 @@ VBlank4::
 	ld a, [hROMBankBackup]
 	rst Bankswitch
 	ret
-
 
 VBlank5::
 ; scx
@@ -396,7 +387,6 @@ VBlank5::
 	ld a, %1111 ; serial timer lcdstat vblank
 	ld [rIE], a
 	ret
-
 
 VBlank6::
 ; palettes

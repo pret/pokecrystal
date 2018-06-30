@@ -35,7 +35,6 @@ Function170000:
 	call CopyBytes
 	ret
 
-
 Function17005a:
 	ld a, $5
 	call GetSRAMBank
@@ -72,7 +71,6 @@ Function17005a:
 	call CloseSRAM
 	ret
 
-
 INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
 Function170be4:
@@ -85,7 +83,6 @@ Function170be4:
 	call CloseSRAM
 	ret
 
-
 Clears5_a89a:
 	ld a, $5
 	call GetSRAMBank
@@ -95,7 +92,6 @@ Clears5_a89a:
 	ld [hl], a
 	call CloseSRAM
 	ret
-
 
 Function170c06:
 	ld a, $5
@@ -199,7 +195,6 @@ Function170c06:
 	call CloseSRAM
 	ret
 
-
 Function170c8b:
 	ld hl, wLastEnemyCounterMove
 	ld b, $5
@@ -210,7 +205,6 @@ Function170c8b:
 	dec b
 	jr nz, .asm_170c90
 	ret
-
 
 CheckBTMonMovesForErrors:
 	ld c, BATTLETOWER_PARTY_LENGTH
@@ -254,7 +248,6 @@ CheckBTMonMovesForErrors:
 	jr nz, .loop
 	ret
 
-
 Function170cc6:
 	ld a, [rSVBK]
 	push af
@@ -282,7 +275,6 @@ Function170cc6:
 	ld [rSVBK], a
 	ret
 
-
 Function170d02:
 	ld a, $1
 	ld [rVBK], a
@@ -293,7 +285,6 @@ Function170d02:
 	xor a
 	ld [rVBK], a
 	ret
-
 
 PichuAnimatedMobileGFX:
 INCBIN "gfx/mobile/pichu_animated.2bpp.lz"
@@ -380,7 +371,6 @@ Jumptable_171a45:
 	dw Function171c39
 	dw Function171c41
 
-
 Function171a5d:
 	ld a, [wc821]
 	bit 1, a
@@ -416,7 +406,6 @@ Function171a95:
 	ld de, String_171aa7
 	call PlaceString
 	jp Function171c66
-
 
 String_171aa7:
 	db   "モバイルアダプタに"
@@ -658,7 +647,6 @@ Function171c66:
 	inc [hl]
 	ret
 
-
 MenuHeader_171c6b:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
@@ -767,7 +755,6 @@ Function171d2b:
 	call PlaceString
 	ret
 
-
 Palette_171d71:
 	RGB  0,  0,  0
 	RGB  3,  0,  0
@@ -833,7 +820,6 @@ String_172e5d:
 	db "せつぞくする　モバイルセンターを"
 	next "えらんで　ください@"
 
-
 Function172e78:
 	ld a, $7f
 	hlcoord 0, 0
@@ -859,7 +845,6 @@ Function172e78:
 	call CopyBytes
 	ret
 
-
 Function172eb9:
 	ld a, [rSVBK]
 	push af
@@ -877,7 +862,6 @@ Function172eb9:
 	pop af
 	ld [rSVBK], a
 	ret
-
 
 Palette_172edf:
 	RGB  5, 12, 17

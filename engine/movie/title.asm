@@ -1,5 +1,4 @@
 _TitleScreen:
-
 	call ClearBGPalettes
 	call ClearSprites
 	call ClearTileMap
@@ -18,24 +17,20 @@ _TitleScreen:
 ; Turn LCD off
 	call DisableLCD
 
-
 ; VRAM bank 1
 	ld a, 1
 	ld [rVBK], a
-
 
 ; Decompress running Suicune gfx
 	ld hl, TitleSuicuneGFX
 	ld de, vTiles1
 	call Decompress
 
-
 ; Clear screen palettes
 	hlbgcoord 0, 0
 	ld bc, 20 * BG_MAP_WIDTH
 	xor a
 	call ByteFill
-
 
 ; Fill tile palettes:
 
@@ -46,7 +41,6 @@ _TitleScreen:
 	ld bc, BG_MAP_WIDTH
 	ld a, 7 ; palette
 	call ByteFill
-
 
 ; BG Map 0:
 
@@ -78,7 +72,6 @@ _TitleScreen:
 	ld a, 6
 	call ByteFill
 
-
 ; 'CRYSTAL VERSION'
 	hlbgcoord 5, 9
 	ld bc, NAME_LENGTH ; length of version text
@@ -91,11 +84,9 @@ _TitleScreen:
 	ld a, 0 | VRAM_BANK_1
 	call ByteFill
 
-
 ; Back to VRAM bank 0
 	ld a, $0
 	ld [rVBK], a
-
 
 ; Decompress logo
 	ld hl, TitleLogoGFX
@@ -106,7 +97,6 @@ _TitleScreen:
 	ld hl, TitleCrystalGFX
 	ld de, vTiles0
 	call Decompress
-
 
 ; Clear screen tiles
 	hlbgcoord 0, 0
@@ -157,7 +147,6 @@ _TitleScreen:
 	pop af
 	ld [rSVBK], a
 
-
 ; LY/SCX trickery starts here
 
 	ld a, [rSVBK]
@@ -193,7 +182,6 @@ _TitleScreen:
 
 	pop af
 	ld [rSVBK], a
-
 
 ; Reset audio
 	call ChannelsOff
@@ -262,7 +250,6 @@ SuicuneFrameIterator:
 	db $88 ; vTiles4 tile $08
 	db $00 ; vTiles5 tile $00
 	db $08 ; vTiles5 tile $08
-
 
 LoadSuicuneFrame:
 	hlcoord 6, 12
@@ -352,7 +339,6 @@ InitializeBackground:
 	dec c
 	jr nz, .loop2
 	ret
-
 
 AnimateTitleCrystal:
 ; Move the title screen crystal downward until it's fully visible

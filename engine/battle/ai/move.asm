@@ -15,7 +15,6 @@ AIChooseMove:
 	farcall CheckEnemyLockedIn
 	ret nz
 
-
 ; The default score is 20. Unusable moves are given a score of 80.
 	ld a, 20
 	ld hl, wBuffer1
@@ -60,7 +59,6 @@ AIChooseMove:
 	jr nz, .CheckMovePP
 	ld [hl], 80
 	jr .CheckMovePP
-
 
 ; Apply AI scoring layers depending on the trainer class.
 .ApplyLayers:
@@ -198,7 +196,6 @@ AIChooseMove:
 	ld a, c
 	ld [wCurEnemyMoveNum], a
 	ret
-
 
 AIScoringPointers:
 ; entries correspond to AI_* constants

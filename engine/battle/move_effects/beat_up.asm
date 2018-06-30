@@ -193,13 +193,9 @@ BattleCommand_BeatUp:
 	ld d, a
 	ret
 
-
-
 .beatup_fail
 	ld b, buildopponentrage_command
 	jp SkipToBattleCommand
-
-
 
 BattleCommand_BeatUpFailText:
 ; beatupfailtext
@@ -209,8 +205,6 @@ BattleCommand_BeatUpFailText:
 	ret nz
 
 	jp PrintButItFailed
-
-
 
 GetBeatupMonLocation:
 	push bc

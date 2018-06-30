@@ -166,7 +166,6 @@ tradeanim_wait_180_if_ot_egg: MACRO
 	db tradeanim_wait_180_if_ot_egg_command
 ENDM
 
-
 ; Mobile
 	enum_start $01
 

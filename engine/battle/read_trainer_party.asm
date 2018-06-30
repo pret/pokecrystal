@@ -321,7 +321,6 @@ ComputeTrainerReward:
 	ld [hl], a
 	ret
 
-
 Battle_GetTrainerName::
 	ld a, [wInBattleTowerBattle]
 	bit 0, a
@@ -388,3 +387,5 @@ Function39990:
 	ld bc, NAME_LENGTH
 	pop de
 	ret
+
+INCLUDE "data/trainers/parties.asm"

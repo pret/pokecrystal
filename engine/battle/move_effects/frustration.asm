@@ -25,4 +25,3 @@ BattleCommand_FrustrationPower:
 	ld d, a
 	pop bc
 	ret
-

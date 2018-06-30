@@ -10,7 +10,6 @@ UpdateTimeOfDayPal::
 	ld [wTimeOfDayPal], a
 	ret
 
-
 _TimeOfDayPals::
 ; return carry if pals are changed
 
@@ -65,11 +64,9 @@ _TimeOfDayPals::
 	ld a, b
 	ld [rSVBK], a
 
-
 ; update sgb pals
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
-
 
 ; restore bg palette 7
 	ld hl, wOBPals1 - 1 ; last byte in wBGPals1
@@ -108,7 +105,6 @@ _TimeOfDayPals::
 ; no change occurred
 	and a
 	ret
-
 
 _UpdateTimePals::
 	ld c, $9 ; normal
@@ -160,7 +156,6 @@ FadeBlackQuickly:
 	ld b, $4
 	call ConvertTimePalsDecHL
 	ret
-
 
 FillWhiteBGColor:
 	ld a, [rSVBK]
@@ -271,7 +266,6 @@ GetTimePalette:
 	rlca
 	ret
 
-
 DmgToCgbTimePals:
 	push hl
 	push de
@@ -309,7 +303,6 @@ ConvertTimePalsDecHL:
 	dec b
 	jr nz, .loop
 	ret
-
 
 GetTimePalFade:
 ; check cgb

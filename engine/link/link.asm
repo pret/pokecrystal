@@ -1112,9 +1112,7 @@ TimeCapsule_ReplaceTeruSama:
 	pop hl
 	ret
 
-
 INCLUDE "data/items/catch_rate_items.asm"
-
 
 Link_CopyOTData:
 .loop
@@ -1489,7 +1487,6 @@ Function28926:
 	call DelayFrames
 	jp InitTradeMenuDisplay
 
-
 .Text_CantTradeLastMon:
 	; If you trade that #MON, you won't be able to battle.
 	text_jump UnknownText_0x1c41b1
@@ -1502,7 +1499,6 @@ Function28926:
 	; Your friend's @  appears to be abnormal!
 	text_jump UnknownText_0x1c41e6
 	db "@"
-
 
 Function28ac9:
 	ld a, [wMenuCursorY]
@@ -1963,7 +1959,6 @@ String28ebd:
 String_TooBadTheTradeWasCanceled:
 	db   "Too bad! The trade"
 	next "was canceled!@"
-
 
 LinkTextboxAtHL:
 	ld d, h

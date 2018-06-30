@@ -233,7 +233,6 @@ CallInSafeGFXMode:
 ._hl_
 	jp hl
 
-
 HDMATransferToWRAMBank3:
 	call _LoadHDMAParameters
 	ld a, $23
@@ -333,7 +332,6 @@ HDMATransfer_Wait123Scanlines:
 	ld b, $7b
 	jr _continue_HDMATransfer
 
-
 HDMATransfer_Wait127Scanlines:
 	ld b, $7f
 _continue_HDMATransfer:
@@ -396,7 +394,6 @@ _continue_HDMATransfer:
 
 	ret
 
-
 _LoadHDMAParameters:
 	ld a, h
 	ld [rHDMA1], a
@@ -452,7 +449,6 @@ PadMapForHDMATransfer:
 	pop af
 	ld [hMapObjectIndexBuffer], a
 	ret
-
 
 _Get2bpp::
 	; 2bpp when [rLCDC] & $80

@@ -99,7 +99,6 @@ Function49f16:
 	call ClearBox
 	jp .joy_loop
 
-
 MobileString1:
 	db   "めいしフォルダー"
 	next "あいさつ"
@@ -107,7 +106,6 @@ MobileString1:
 	next "せ<TTE>い"
 	next "もどる"
 	db   "@"
-
 
 MobileStrings2:
 
@@ -614,7 +612,6 @@ Function4a492:
 	call MG_Mobile_Layout00
 	ret
 
-
 MainMenu_MobileStudium:
 	ld a, [wStartDay]
 	ld b, a
@@ -639,7 +636,6 @@ MainMenu_MobileStudium:
 	ld a, e
 	ld [wStartSecond], a
 	ret
-
 
 Function4a4c4:
 	call ClearBGPalettes

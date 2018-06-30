@@ -20,7 +20,7 @@ BlindingFlash:
 ShakeHeadbuttTree:
 	farcall ClearSpriteAnims
 	ld de, CutGrassGFX
-	ld hl, vTiles1
+	ld hl, vTiles1 tile $00
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
 	ld de, HeadbuttTreeGFX
@@ -134,11 +134,11 @@ OWCutAnimation:
 .LoadCutGFX:
 	callfar ClearSpriteAnims ; pointless to farcall
 	ld de, CutGrassGFX
-	ld hl, vTiles1
+	ld hl, vTiles1 tile $00
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
 	ld de, CutTreeGFX
-	ld hl, vTiles1 tile $4
+	ld hl, vTiles1 tile $04
 	lb bc, BANK(CutTreeGFX), 4
 	call Request2bpp
 	ret
@@ -161,13 +161,11 @@ OWCutJumptable:
 	ld l, a
 	jp hl
 
-
 .dw
 	dw Cut_SpawnAnimateTree
 	dw Cut_SpawnAnimateLeaves
 	dw Cut_StartWaiting
 	dw Cut_WaitAnimSFX
-
 
 Cut_SpawnAnimateTree:
 	call Cut_Headbutt_GetPixelFacing
@@ -302,7 +300,6 @@ Cut_Headbutt_GetPixelFacing:
 	dbpixel 10,  9
 	dbpixel  8, 11
 	dbpixel 12, 11
-
 
 FlyFromAnim:
 	call DelayFrame

@@ -18,7 +18,6 @@ endr
 	db -1 ; end
 ENDM
 
-
 PartyMenuQualityPointers:
 ; entries correspond to PARTYMENUACTION_* constants
 	dw .Default  ; PARTYMENUACTION_CHOOSE_POKEMON

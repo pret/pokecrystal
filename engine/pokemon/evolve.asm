@@ -87,7 +87,6 @@ EvolveAfterBattle_MasterLoop:
 	cp EVOLVE_HAPPINESS
 	jr z, .happiness
 
-
 ; EVOLVE_STAT
 	ld a, [wTempMonLevel]
 	cp [hl]
@@ -116,7 +115,6 @@ EvolveAfterBattle_MasterLoop:
 	inc hl
 	jr .proceed
 
-
 .happiness
 	ld a, [wTempMonHappiness]
 	cp HAPPINESS_TO_EVOLVE
@@ -143,7 +141,6 @@ EvolveAfterBattle_MasterLoop:
 	jp z, .dont_evolve_3
 	jr .proceed
 
-
 .trade
 	ld a, [wLinkMode]
 	and a
@@ -169,7 +166,6 @@ EvolveAfterBattle_MasterLoop:
 	ld [wTempMonItem], a
 	jr .proceed
 
-
 .item
 	ld a, [hli]
 	ld b, a
@@ -184,7 +180,6 @@ EvolveAfterBattle_MasterLoop:
 	and a
 	jp nz, .dont_evolve_3
 	jr .proceed
-
 
 .level
 	ld a, [hli]
@@ -419,7 +414,6 @@ Text_WhatEvolving:
 	text_jump UnknownText_0x1c4be3
 	db "@"
 
-
 LearnLevelMoves:
 	ld a, [wd265]
 	ld [wCurPartySpecies], a
@@ -483,7 +477,6 @@ LearnLevelMoves:
 	ld a, [wCurPartySpecies]
 	ld [wd265], a
 	ret
-
 
 FillMoves:
 ; Fill in moves at de for wCurPartySpecies at wCurPartyLevel
@@ -604,7 +597,6 @@ ShiftMoves:
 	dec c
 	jr nz, .loop
 	ret
-
 
 EvoFlagAction:
 	push de

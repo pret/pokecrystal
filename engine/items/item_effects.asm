@@ -11,7 +11,6 @@ _DoItemEffect::
 	rst JumpTable
 	ret
 
-
 ItemEffects:
 ; entries correspond to item ids
 	dw PokeBallEffect      ; MASTER_BALL
@@ -193,7 +192,6 @@ ItemEffects:
 	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; ITEM_B3
-
 
 PokeBallEffect:
 	ld a, [wBattleMode]
@@ -486,8 +484,8 @@ PokeBallEffect:
 	ld de, wEnemyMonPP
 	ld bc, NUM_MOVES
 	call CopyBytes
-.Transformed:
 
+.Transformed:
 	ld a, [wEnemyMonSpecies]
 	ld [wWildMon], a
 	ld [wCurPartySpecies], a
@@ -562,8 +560,8 @@ PokeBallEffect:
 
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [hl], a
-.SkipPartyMonFriendBall:
 
+.SkipPartyMonFriendBall:
 	ld hl, Text_AskNicknameNewlyCaughtMon
 	call PrintText
 
@@ -711,7 +709,6 @@ PokeBallEffect:
 	ld hl, wParkBallsRemaining
 	dec [hl]
 	ret
-
 
 BallMultiplierFunctionTable:
 ; table of routines that increase or decrease the catch rate based on
@@ -1137,11 +1134,9 @@ TownMapEffect:
 	farcall PokegearMap
 	ret
 
-
 BicycleEffect:
 	farcall BikeFunction
 	ret
-
 
 EvoStoneEffect:
 	ld b, PARTYMENUACTION_EVO_STONE
@@ -1173,7 +1168,6 @@ EvoStoneEffect:
 	xor a
 	ld [wItemEffectSucceeded], a
 	ret
-
 
 VitaminEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
@@ -1218,12 +1212,10 @@ VitaminEffect:
 
 	jp UseDisposableItem
 
-
 NoEffectMessage:
 	ld hl, WontHaveAnyEffectText
 	call PrintText
 	jp ClearPalettes
-
 
 UpdateStatsAfterItem:
 	ld a, MON_MAXHP
@@ -1240,12 +1232,10 @@ RareCandy_StatBooster_ExitMenu:
 	ld [wItemEffectSucceeded], a
 	jp ClearPalettes
 
-
 Text_StatRose:
 	; 's @  rose.
 	text_jump UnknownText_0x1c5b9a
 	db "@"
-
 
 StatStrings:
 	dw .health
@@ -1259,7 +1249,6 @@ StatStrings:
 .defense db "DEFENSE@"
 .speed   db "SPEED@"
 .special db "SPECIAL@"
-
 
 GetStatExpRelativePointer:
 	ld a, [wCurItem]
@@ -1284,7 +1273,6 @@ Table_eeeb:
 	db CARBOS,  MON_SPD_EXP - MON_STAT_EXP
 	db CALCIUM, MON_SPC_EXP - MON_STAT_EXP
 
-
 RareCandy_StatBooster_GetParameters:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
@@ -1298,7 +1286,6 @@ RareCandy_StatBooster_GetParameters:
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ret
-
 
 RareCandyEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
@@ -1390,7 +1377,6 @@ RareCandyEffect:
 
 	jp UseDisposableItem
 
-
 HealPowderEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
@@ -1411,7 +1397,6 @@ HealPowderEffect:
 .asm_efc9
 	jp StatusHealer_Jumptable
 
-
 StatusHealingEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
@@ -1420,7 +1405,6 @@ StatusHealingEffect:
 FullyHealStatus:
 	call UseStatusHealer
 	jp StatusHealer_Jumptable
-
 
 UseStatusHealer:
 	call IsMonFainted
@@ -1529,7 +1513,6 @@ StatusHealer_Jumptable:
 	dw StatusHealer_NoEffect
 	dw StatusHealer_ExitMenu
 
-
 RevivalHerbEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
@@ -1547,7 +1530,6 @@ RevivalHerbEffect:
 .asm_f0c5
 	jp StatusHealer_Jumptable
 
-
 ReviveEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
@@ -1555,7 +1537,6 @@ ReviveEffect:
 
 	call RevivePokemon
 	jp StatusHealer_Jumptable
-
 
 RevivePokemon:
 	call IsMonFainted
@@ -1603,7 +1584,6 @@ RevivePokemon:
 	ld a, 0
 	ret
 
-
 FullRestoreEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
@@ -1620,7 +1600,6 @@ FullRestoreEffect:
 .NotAtFullHealth:
 	call .FullRestore
 	jp StatusHealer_Jumptable
-
 
 .FullRestore:
 	xor a
@@ -1641,7 +1620,6 @@ FullRestoreEffect:
 	ld a, 0
 	ret
 
-
 BitterBerryEffect:
 	ld hl, wPlayerSubStatus3
 	bit SUBSTATUS_CONFUSED, [hl]
@@ -1661,11 +1639,9 @@ BitterBerryEffect:
 .done
 	jp StatusHealer_Jumptable
 
-
 RestoreHPEffect:
 	call ItemRestoreHP
 	jp StatusHealer_Jumptable
-
 
 EnergypowderEffect:
 	ld c, HAPPINESS_BITTERPOWDER
@@ -1687,7 +1663,6 @@ EnergypowderEnergyRootCommon:
 
 .skip_happiness
 	jp StatusHealer_Jumptable
-
 
 ItemRestoreHP:
 	ld b, PARTYMENUACTION_HEALING_ITEM
@@ -2090,7 +2065,6 @@ Softboiled_MilkDrinkFunction:
 	text_jump UnknownText_0x1c5bac
 	db "@"
 
-
 EscapeRopeEffect:
 	xor a
 	ld [wItemEffectSucceeded], a
@@ -2100,7 +2074,6 @@ EscapeRopeEffect:
 	cp 1
 	call z, UseDisposableItem
 	ret
-
 
 SuperRepelEffect:
 	ld b, 200
@@ -2123,12 +2096,10 @@ UseRepel:
 	ld [wRepelEffect], a
 	jp UseItemText
 
-
 TextJump_RepelUsedEarlierIsStillInEffect:
 	; The REPEL used earlier is still in effect.
 	text_jump Text_RepelUsedEarlierIsStillInEffect
 	db "@"
-
 
 XAccuracyEffect:
 	ld hl, wPlayerSubStatus4
@@ -2136,7 +2107,6 @@ XAccuracyEffect:
 	jp nz, WontHaveAnyEffect_NotUsedMessage
 	set SUBSTATUS_X_ACCURACY, [hl]
 	jp UseItemText
-
 
 PokeDollEffect:
 	ld a, [wBattleMode]
@@ -2155,7 +2125,6 @@ PokeDollEffect:
 	ld [wItemEffectSucceeded], a
 	ret
 
-
 GuardSpecEffect:
 	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_MIST, [hl]
@@ -2163,14 +2132,12 @@ GuardSpecEffect:
 	set SUBSTATUS_MIST, [hl]
 	jp UseItemText
 
-
 DireHitEffect:
 	ld hl, wPlayerSubStatus4
 	bit SUBSTATUS_FOCUS_ENERGY, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
 	set SUBSTATUS_FOCUS_ENERGY, [hl]
 	jp UseItemText
-
 
 XItemEffect:
 	call UseItemText
@@ -2205,7 +2172,6 @@ XItemEffect:
 	ret
 
 INCLUDE "data/items/x_stats.asm"
-
 
 PokeFluteEffect:
 	ld a, [wBattleMode]
@@ -2251,7 +2217,6 @@ PokeFluteEffect:
 	ld hl, .AllSleepingMonWokeUp
 	jp PrintText
 
-
 .CureSleep:
 	ld de, PARTYMON_STRUCT_LENGTH
 	ld c, PARTY_LENGTH
@@ -2271,7 +2236,6 @@ PokeFluteEffect:
 	dec c
 	jr nz, .loop
 	ret
-
 
 .CatchyTune:
 	; Played the # FLUTE. Now, that's a catchy tune!
@@ -2300,7 +2264,6 @@ PokeFluteEffect:
 .battle
 	jp PokeFluteTerminatorCharacter
 
-
 BlueCardEffect:
 	ld hl, .bluecardtext
 	jp MenuTextBoxWaitButton
@@ -2309,7 +2272,6 @@ BlueCardEffect:
 	text_jump UnknownText_0x1c5c5e
 	db "@"
 
-
 CoinCaseEffect:
 	ld hl, .coincasetext
 	jp MenuTextBoxWaitButton
@@ -2317,7 +2279,6 @@ CoinCaseEffect:
 .coincasetext
 	text_jump UnknownText_0x1c5c7b
 	db "@"
-
 
 OldRodEffect:
 	ld e, $0
@@ -2335,11 +2296,9 @@ UseRod:
 	farcall FishFunction
 	ret
 
-
 ItemfinderEffect:
 	farcall ItemFinder
 	ret
-
 
 RestorePPEffect:
 	ld a, [wCurItem]
@@ -2596,21 +2555,17 @@ UnknownText_0xf739:
 	text_jump UnknownText_0x1c5cf1
 	db "@"
 
-
 SquirtbottleEffect:
 	farcall _Squirtbottle
 	ret
-
 
 CardKeyEffect:
 	farcall _CardKey
 	ret
 
-
 BasementKeyEffect:
 	farcall _BasementKey
 	ret
-
 
 SacredAshEffect:
 	farcall _SacredAsh
@@ -2619,7 +2574,6 @@ SacredAshEffect:
 	ret nz
 	call UseDisposableItem
 	ret
-
 
 NormalBoxEffect:
 	ld c, DECOFLAG_SILVER_TROPHY_DOLL
@@ -2642,7 +2596,6 @@ OpenBox:
 
 NoEffect:
 	jp IsntTheTimeMessage
-
 
 Play_SFX_FULL_HEAL:
 	push de
@@ -2796,7 +2749,6 @@ GotOffTheItemText:
 	text_jump UnknownText_0x1c5e90
 	db "@"
 
-
 ApplyPPUp:
 	ld a, MON_MOVES
 	call GetPartyParamLocation
@@ -2831,8 +2783,6 @@ ApplyPPUp:
 	inc hl
 	inc de
 	jr .loop
-
-
 
 ComputeMaxPP:
 	push bc
@@ -2917,7 +2867,6 @@ RestoreAllPP:
 	dec c
 	jr nz, .loop
 	ret
-
 
 GetMaxPPOfMove:
 	ld a, [wStringBuffer1 + 0]

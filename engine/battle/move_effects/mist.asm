@@ -13,4 +13,3 @@ BattleCommand_Mist:
 .already_mist
 	call AnimateFailedMove
 	jp PrintButItFailed
-

@@ -1,6 +1,5 @@
 ; Functions relating to the timer interrupt and the real-time-clock.
 
-
 AskTimer::
 	push af
 	ld a, [hMobile]
@@ -12,7 +11,6 @@ AskTimer::
 	pop af
 	reti
 
-
 LatchClock::
 ; latch clock counter data
 	ld a, 0
@@ -21,14 +19,12 @@ LatchClock::
 	ld [MBC3LatchClock], a
 	ret
 
-
 UpdateTime::
 	call GetClock
 	call FixDays
 	call FixTime
 	farcall GetTimeOfDay
 	ret
-
 
 GetClock::
 ; store clock data in hRTCDayHi-hRTCSeconds
@@ -69,7 +65,6 @@ GetClock::
 ; unlatch clock / disable clock r/w
 	call CloseSRAM
 	ret
-
 
 FixDays::
 ; fix day count
@@ -130,7 +125,6 @@ FixDays::
 .quit
 	xor a
 	ret
-
 
 FixTime::
 ; add ingame time (set at newgame) to current time
@@ -202,8 +196,6 @@ InitTime::
 	farcall _InitTime
 	ret
 
-
-
 PanicResetClock::
 	call .ClearhRTC
 	call SetClock
@@ -217,7 +209,6 @@ PanicResetClock::
 	ld [hRTCDayLo], a
 	ld [hRTCDayHi], a
 	ret
-
 
 SetClock::
 ; set clock data from hram
@@ -265,7 +256,6 @@ SetClock::
 ; cleanup
 	call CloseSRAM ; unlatch clock, disable clock r/w
 	ret
-
 
 ClearRTCStatus::
 ; clear sRTCStatusFlags

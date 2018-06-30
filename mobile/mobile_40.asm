@@ -435,7 +435,6 @@ Function100327:
 	farcall HDMATransferTileMapToWRAMBank3
 	ret
 
-
 Function10032e:
 	call Function10034d
 	ld e, a
@@ -636,7 +635,6 @@ Function10043a:
 	pop bc
 	pop hl
 	ret
-
 
 Jumptable_10044e:
 	dw Function10046a
@@ -1189,7 +1187,6 @@ Function100772:
 	pop de
 	ret
 
-
 Function10079c:
 	ld a, [wcd21]
 	cp $01
@@ -1374,7 +1371,6 @@ Function1008a6:
 	ld c, 0
 	ret
 
-
 Function1008e0:
 	ld a, [hBGMapMode]
 	ld b, a
@@ -1436,7 +1432,6 @@ Function100902:
 	db "たいせん　しゅうりょう@"
 .string_100966
 	db "のこり　　　ふん！@"
-
 
 Function100970:
 	hlcoord 0, 0
@@ -2042,8 +2037,6 @@ Function100db0:
 	xor a
 	ret
 
-
-
 Function100dc0:
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -2168,7 +2161,6 @@ Function100e84:
 	rst JumpTable
 	ret
 
-
 Jumptable_100e8c:
 	dw Function100ea2
 	dw Function100eae
@@ -2182,14 +2174,12 @@ Jumptable_100e8c:
 	dw Function100eae
 	dw Function100ec4
 
-
 Function100ea2:
 	call Function100dc0
 	ret nc
 	ld hl, wcd29
 	set 0, [hl]
 	call Function100ec5
-
 
 Function100eae:
 	scf
@@ -6930,7 +6920,6 @@ Palettes_1032e2:
 	RGB 25,  0,  0
 	RGB  0,  0,  0
 	RGB  0,  0,  0
-
 
 Function103302:
 	call Function103309

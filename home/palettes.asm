@@ -1,6 +1,5 @@
 ; Functions dealing with palettes.
 
-
 UpdatePalsIfCGB::
 ; update bgp data from wBGPals2
 ; update obp data from wOBPals2
@@ -11,7 +10,6 @@ UpdatePalsIfCGB::
 	and a
 	ret z
 
-
 UpdateCGBPals::
 ; return carry if successful
 ; any pals to update?
@@ -19,9 +17,7 @@ UpdateCGBPals::
 	and a
 	ret z
 
-
 ForceUpdateCGBPals::
-
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
@@ -69,7 +65,6 @@ endr
 	scf
 	ret
 
-
 DmgToCgbBGPals::
 ; exists to forego reinserting cgb-converted image data
 
@@ -114,7 +109,6 @@ DmgToCgbBGPals::
 	pop af
 	ret
 
-
 DmgToCgbObjPals::
 ; exists to forego reinserting cgb-converted image data
 
@@ -158,7 +152,6 @@ DmgToCgbObjPals::
 	pop de
 	pop hl
 	ret
-
 
 DmgToCgbObjPal0::
 	ld [rOBP0], a
@@ -235,8 +228,6 @@ DmgToCgbObjPal1::
 	pop af
 	ret
 
-
-
 CopyPals::
 ; copy c palettes in order b from de to hl
 
@@ -289,7 +280,6 @@ endr
 	jr nz, CopyPals
 	ret
 
-
 ClearVBank1::
 	ld a, [hCGB]
 	and a
@@ -307,10 +297,8 @@ ClearVBank1::
 	ld [rVBK], a
 	ret
 
-
 ret_d90::
 	ret
-
 
 ReloadSpritesNoPalettes::
 	ld a, [hCGB]
@@ -330,7 +318,6 @@ ReloadSpritesNoPalettes::
 	ld [hCGBPalUpdate], a
 	call DelayFrame
 	ret
-
 
 FarCallSwapTextboxPalettes::
 	homecall SwapTextboxPalettes

@@ -38,7 +38,6 @@ Pack:
 	call Pack_GetJumptablePointer
 	jp hl
 
-
 .Jumptable:
 ; entries correspond to PACKSTATE_* constants
 	dw .InitGFX            ;  0
@@ -173,7 +172,6 @@ Pack:
 .Jumptable1:
 	dw .UseItem
 	dw QuitItemSubmenu
-
 
 .MenuHeader2:
 	db MENU_BACKUP_TILES ; flags
@@ -424,7 +422,6 @@ Jumptable_GiveTossQuit:
 	dw TossMenu
 	dw QuitItemSubmenu
 
-
 UseItem:
 	farcall CheckItemMenu
 	ld a, [wItemAttributeParamBuffer]
@@ -650,7 +647,6 @@ BattlePack:
 	ld hl, .Jumptable
 	call Pack_GetJumptablePointer
 	jp hl
-
 
 .Jumptable:
 ; entries correspond to PACKSTATE_* constants
@@ -943,7 +939,6 @@ DepositSellPack:
 	call Pack_GetJumptablePointer
 	jp hl
 
-
 .Jumptable:
 ; entries correspond to *_POCKET constants
 	dw .ItemsPocket
@@ -1087,7 +1082,6 @@ TutorialPack:
 	ld hl, .dw
 	call Pack_GetJumptablePointer
 	jp hl
-
 
 .dw
 ; entries correspond to *_POCKET constants

@@ -10,7 +10,6 @@ _NamingScreen:
 	call ReturnToMapWithSpeechTextbox
 	ret
 
-
 NamingScreen:
 	ld hl, wNamingScreenDestinationPointer
 	ld [hl], e
@@ -44,7 +43,6 @@ NamingScreen:
 	call ClearJoypad
 	ret
 
-
 .SetUpNamingScreen:
 	call ClearBGPalettes
 	ld b, SCGB_DIPLOMA
@@ -61,7 +59,6 @@ NamingScreen:
 	call NamingScreen_InitNameEntry
 	ret
 
-
 .GetNamingScreenSetup:
 	ld a, [wNamingScreenType]
 	and 7
@@ -74,7 +71,6 @@ NamingScreen:
 	ld h, [hl]
 	ld l, a
 	jp hl
-
 
 .Jumptable:
 	dw .Pokemon
@@ -117,11 +113,9 @@ NamingScreen:
 	call .StoreMonIconParams
 	ret
 
-
 .NicknameStrings:
 	db "'S@"
 	db "NICKNAME?@"
-
 
 .Player:
 	farcall GetPlayerIcon
@@ -132,10 +126,8 @@ NamingScreen:
 	call .StoreSpriteIconParams
 	ret
 
-
 .PlayerNameString:
 	db "YOUR NAME?@"
-
 
 .Rival:
 	ld de, SilverSpriteGFX
@@ -147,10 +139,8 @@ NamingScreen:
 	call .StoreSpriteIconParams
 	ret
 
-
 .RivalNameString:
 	db "RIVAL'S NAME?@"
-
 
 .Mom:
 	ld de, MomSpriteGFX
@@ -162,10 +152,8 @@ NamingScreen:
 	call .StoreSpriteIconParams
 	ret
 
-
 .MomNameString:
 	db "MOTHER'S NAME?@"
-
 
 .Box:
 	ld de, PokeBallSpriteGFX
@@ -188,10 +176,8 @@ NamingScreen:
 	call .StoreBoxIconParams
 	ret
 
-
 .BoxNameString:
 	db "BOX NAME?@"
-
 
 .Tomodachi:
 	hlcoord 3, 2
@@ -200,10 +186,8 @@ NamingScreen:
 	call .StoreSpriteIconParams
 	ret
 
-
 .oTomodachi_no_namae_sutoringu
 	db "おともだち　の　なまえは？@"
-
 
 .LoadSprite:
 	push de
@@ -271,7 +255,6 @@ NamingScreen_IsTargetBox:
 	pop bc
 	ret
 
-
 NamingScreen_InitText:
 	call WaitTop
 	hlcoord 0, 0
@@ -333,7 +316,6 @@ NamingScreen_ApplyTextInputMode:
 	jr nz, .row
 	ret
 
-
 NamingScreenJoypadLoop:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
@@ -354,7 +336,6 @@ NamingScreenJoypadLoop:
 	ld [hSCY], a
 	scf
 	ret
-
 
 .UpdateStringEntry:
 	xor a
@@ -380,7 +361,6 @@ NamingScreenJoypadLoop:
 	ld [hBGMapMode], a
 	ret
 
-
 .RunJumptable:
 	ld a, [wJumptableIndex]
 	ld e, a
@@ -392,7 +372,6 @@ NamingScreenJoypadLoop:
 	ld h, [hl]
 	ld l, a
 	jp hl
-
 
 .Jumptable:
 	dw .InitCursor
@@ -569,13 +548,11 @@ NamingScreen_AnimateCursor:
 	ld [hl], a
 	ret
 
-
 .LetterEntries:
 	db $00, $10, $20, $30, $40, $50, $60, $70, $80
 
 .CaseDelEnd:
 	db $00, $00, $00, $30, $30, $30, $60, $60, $60
-
 
 .GetDPad:
 	ld hl, hJoyLast
@@ -720,7 +697,6 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 	scf
 	ret
 
-
 ; unused
 	ld a, [wNamingScreenCurrNameLength]
 	and a
@@ -745,9 +721,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 	ld a, [hl]
 	jr NamingScreen_LoadNextCharacter
 
-
 INCLUDE "data/text/unused_dakutens.asm"
-
 
 NamingScreen_DeleteCharacter:
 	ld hl, wNamingScreenCurrNameLength
@@ -777,7 +751,6 @@ NamingScreen_GetTextCursorPosition:
 	pop af
 	ret
 
-
 NamingScreen_InitNameEntry:
 ; load NAMINGSCREEN_UNDERLINE, (NAMINGSCREEN_MIDDLELINE * [wNamingScreenMaxNameLength]), "@" into the dw address at wNamingScreenDestinationPointer
 	ld hl, wNamingScreenDestinationPointer
@@ -796,7 +769,6 @@ NamingScreen_InitNameEntry:
 	jr nz, .loop
 	ld [hl], "@"
 	ret
-
 
 NamingScreen_StoreEntry:
 	ld hl, wNamingScreenDestinationPointer
@@ -907,7 +879,6 @@ LoadNamingScreenGFX:
 	ld [hWX], a
 	ret
 
-
 NamingScreenGFX_Border:
 INCBIN "gfx/naming_screen/border.2bpp"
 
@@ -995,7 +966,6 @@ _ComposeMailMessage:
 	ld [hl], "<NEXT>"
 	ret
 
-
 .MailIcon:
 INCBIN "gfx/icons/mail_big.2bpp"
 
@@ -1004,10 +974,8 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ld [wNamingScreenMaxNameLength], a
 	ret
 
-
 .UnusedString11f7a:
 	db "メールを　かいてね@"
-
 
 .InitCharset:
 	call WaitTop
@@ -1235,13 +1203,11 @@ ComposeMail_AnimateCursor:
 	ld [hl], a
 	ret
 
-
 .LetterEntries:
 	db $00, $10, $20, $30, $40, $50, $60, $70, $80, $90
 
 .CaseDelEnd:
 	db $00, $00, $00, $30, $30, $30, $60, $60, $60, $60
-
 
 .GetDPad:
 	ld hl, hJoyLast
@@ -1383,7 +1349,6 @@ MailComposition_TryAddLastCharacter:
 	ld a, [wNamingScreenLastCharacter]
 	jp MailComposition_TryAddCharacter
 
-
 ; unused
 	ld a, [wNamingScreenCurrNameLength]
 	and a
@@ -1418,6 +1383,4 @@ MailComposition_TryAddLastCharacter:
 	ld a, [hl]
 	jp NamingScreen_LoadNextCharacter
 
-
 INCLUDE "data/text/mail_input_chars.asm"
-

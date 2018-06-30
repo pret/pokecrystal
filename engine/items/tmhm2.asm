@@ -43,5 +43,4 @@ GetTMHMMove:
 	ld [wd265], a
 	ret
 
-
 INCLUDE "data/moves/tmhm_moves.asm"

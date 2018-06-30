@@ -8,9 +8,7 @@ ResetGameTime::
 	ld [wGameTimeFrames], a
 	ret
 
-
 GameTimer::
-
 	nop
 
 	ld a, [rSVBK]
@@ -24,11 +22,9 @@ GameTimer::
 	ld [rSVBK], a
 	ret
 
-
 UpdateGameTimer::
 ; Increment the game timer by one frame.
 ; The game timer is capped at 999:59:59.00.
-
 
 ; Don't update if game logic is paused.
 	ld a, [wGameLogicPaused]
@@ -45,7 +41,6 @@ UpdateGameTimer::
 	bit 0, [hl]
 	ret nz
 
-
 ; +1 frame
 	ld hl, wGameTimeFrames
 	ld a, [hl]
@@ -56,7 +51,6 @@ UpdateGameTimer::
 
 	ld [hl], a
 	ret
-
 
 .second
 	xor a
@@ -73,7 +67,6 @@ UpdateGameTimer::
 	ld [hl], a
 	ret
 
-
 .minute
 	xor a
 	ld [hl], a
@@ -89,7 +82,6 @@ UpdateGameTimer::
 	ld [hl], a
 	ret
 
-
 .hour
 	xor a
 	ld [hl], a
@@ -100,7 +92,6 @@ UpdateGameTimer::
 	ld a, [wGameTimeHours + 1]
 	ld l, a
 	inc hl
-
 
 ; Cap the timer after 1000 hours.
 	ld a, h
@@ -118,7 +109,6 @@ UpdateGameTimer::
 	ld [wGameTimeMinutes], a
 	ld [wGameTimeSeconds], a
 	ret
-
 
 .ok
 	ld a, h

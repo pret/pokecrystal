@@ -102,7 +102,6 @@ endr
 
 	ret
 
-
 GetJoypad::
 ; Update mirror joypad input from hJoypadDown (real input)
 
@@ -190,7 +189,6 @@ GetJoypad::
 	rst Bankswitch
 	jr .quit
 
-
 .updateauto
 ; An input of $ff will end the stream.
 	ld a, [hli]
@@ -230,7 +228,6 @@ GetJoypad::
 	ld [hJoyDown], a ; input
 	jr .quit
 
-
 StartAutoInput::
 ; Start reading automated input stream at a:hl.
 
@@ -252,7 +249,6 @@ StartAutoInput::
 	ld [wInputType], a
 	ret
 
-
 StopAutoInput::
 ; Clear variables related to automated input.
 	xor a
@@ -263,7 +259,6 @@ StopAutoInput::
 ; Back to normal input.
 	ld [wInputType], a
 	ret
-
 
 JoyTitleScreenInput::
 .loop
@@ -291,7 +286,6 @@ JoyTitleScreenInput::
 .keycombo
 	scf
 	ret
-
 
 JoyWaitAorB::
 .loop

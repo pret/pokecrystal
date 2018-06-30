@@ -1,5 +1,5 @@
-CARDFLIP_LIGHT_OFF EQU $ef
-CARDFLIP_LIGHT_ON  EQU $f5
+CARDFLIP_LIGHT_OFF EQUS "\"♂\"" ; $ef
+CARDFLIP_LIGHT_ON  EQUS "\"♀\"" ; $f5
 
 CARDFLIP_DECK_SIZE EQU 4 * 6
 
@@ -976,7 +976,6 @@ CardFlip_CheckWinCondition:
 	ld c, $12
 	ld de, SFX_2ND_PLACE
 	jp .Payout
-
 
 .PikaOne:
 	ld e, $0

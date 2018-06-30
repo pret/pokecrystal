@@ -16,7 +16,6 @@ Function115d99:
 	ld [wc308], a
 	ret
 
-
 Function115dc3:
 	xor a
 	ld [wc305], a
@@ -25,7 +24,6 @@ Function115dc3:
 	ld bc, 8 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ret
-
 
 Function115dd3:
 	ld a, [wc305]
@@ -75,14 +73,12 @@ Function115dd3:
 	jr nz, .asm_115e04
 	ret
 
-
 Function115e18:
 	ld a, c
 	ld [wc30a], a
 	xor a
 	ld [wc30b], a
 	jr Function115e2b
-
 
 Function115e22:
 	ld hl, wc30c
@@ -121,7 +117,6 @@ Function115e2b:
 	ld a, [hl]
 	ld [wc30c], a
 	ret
-
 
 Unknown_115e59:
 	dw Unknown_115e61
@@ -315,7 +310,6 @@ Unknown_116005:
 GFX_11601a::
 INCBIN "gfx/unknown/11601a.2bpp"
 
-
 Function11615a:
 	xor a
 	ld [wc30d], a
@@ -343,7 +337,6 @@ Function11615a:
 	ld [wc3f3], a
 	ret
 
-
 Function11619d:
 	ld a, [wc30d]
 	and a
@@ -360,7 +353,6 @@ Function11619d:
 	call Function1161b8
 	ret
 
-
 Function1161b8:
 	ld a, [$c319]
 	ld e, a
@@ -372,7 +364,6 @@ Function1161b8:
 	ld h, [hl]
 	ld l, a
 	jp hl
-
 
 .Jumptable:
 	dw Function1161d5
@@ -493,7 +484,6 @@ Function1161d5:
 	ld [$c319], a
 	ret
 
-
 MenuHeader_11628c:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 6, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
@@ -524,7 +514,6 @@ Function116294:
 	ld [hWY], a
 	ret
 
-
 Function1162cb:
 	farcall Function170cc6
 	ld a, [$c319]
@@ -542,7 +531,6 @@ Function1162cb:
 	pop af
 	ld [rSVBK], a
 	ret
-
 
 Function1162f2:
 	call Function11659d
@@ -633,7 +621,6 @@ Function1162f2:
 	jr nz, .asm_11635a
 	ret
 
-
 Function11636e:
 	ld a, [rSVBK]
 	push af
@@ -670,7 +657,6 @@ Function11636e:
 	ld [$c319], a
 	ld [wc30d], a
 	ret
-
 
 Function1163c0:
 	ld a, [rSVBK]
@@ -729,7 +715,6 @@ Function1163c0:
 	ld [wc30d], a
 	ret
 
-
 Function116441:
 	farcall Function17d405
 	ld a, $90
@@ -745,7 +730,6 @@ Function116441:
 	ld [$c319], a
 	ld [wc30d], a
 	ret
-
 
 Function116468:
 	call Function116567

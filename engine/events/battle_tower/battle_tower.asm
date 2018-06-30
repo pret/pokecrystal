@@ -264,7 +264,6 @@ RunBattleTowerTrainer:
 	ld [wBattleTowerBattleEnded], a
 	ret
 
-
 ReadBTTrainerParty:
 ; Initialise the BattleTower-Trainer and his mon
 	call CopyBTTrainer_FromBT_OT_TowBT_OTTemp
@@ -555,7 +554,6 @@ Function17042c:
 
 INCLUDE "data/battle_tower/unknown_levels.asm"
 
-
 CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 ; copy the BattleTower-Trainer data that lies at 'wBT_OTTrainer' to 'wBT_OTTemp'
 	ld a, [rSVBK]
@@ -672,11 +670,9 @@ Function1704e1:
 	call .PlaceTextItems
 	jr .NextJumptableFunction
 
-
 .Jumptable_1:
 	call SetPalettes
 	call .NextJumptableFunction
-
 
 .Jumptable_2:
 	ld hl, hJoyPressed
@@ -882,7 +878,6 @@ BattleTowerAction:
 	ld l, a
 	jp hl
 
-
 .dw
 	dw BattleTowerAction_CheckExplanationRead ; 0x00
 	dw BattleTowerAction_SetExplanationRead ; 0x01
@@ -916,7 +911,6 @@ BattleTowerAction:
 	dw Function170729 ; 0x1d
 	dw BattleTower_RandomlyChooseReward ; 0x1e
 	dw BattleTower_SaveOptions ; 0x1f
-
 
 ; Reset the save memory for BattleTower-Trainers (Counter and all 7 TrainerBytes)
 ResetBattleTowerTrainersSRAM: ; BattleTowerAction $1a
@@ -1200,7 +1194,6 @@ BattleTower_CheckSaveFileExistsAndIsYours: ; BattleTowerAction $09
 	ld [wScriptVar], a
 	ret
 
-
 Function1708b1: ; BattleTowerAction $0a
 	xor a
 	ld [wMusicFade], a
@@ -1260,7 +1253,6 @@ Function1708f0: ; BattleTowerAction $0d
 	ld [wScriptVar], a
 	ret
 
-
 Function170923:
 	ld a, $5
 	call GetSRAMBank
@@ -1272,7 +1264,6 @@ Function170923:
 	call ByteFill
 	call CloseSRAM
 	ret
-
 
 BattleTowerAction_EggTicket: ; BattleTowerAction $0e
 	xor a

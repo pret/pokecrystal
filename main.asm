@@ -117,10 +117,8 @@ INCLUDE "engine/events/prof_oaks_pc.asm"
 INCLUDE "engine/overworld/decorations.asm"
 INCLUDE "engine/pokemon/level_up_happiness.asm"
 INCLUDE "engine/battle/read_trainer_dvs.asm"
-INCLUDE "data/trainers/dvs.asm"
 INCLUDE "engine/battle/returntobattle_useball.asm"
 INCLUDE "engine/battle/consume_held_item.asm"
-INCLUDE "data/moves/effects_pointers.asm"
 INCLUDE "data/moves/effects.asm"
 INCLUDE "engine/events/kurt_selectquantity_interpretjoypad.asm"
 
@@ -162,10 +160,7 @@ SECTION "Enemy Trainers", ROMX
 INCLUDE "engine/battle/ai/items.asm"
 INCLUDE "engine/battle/ai/scoring.asm"
 INCLUDE "engine/battle/read_trainer_attributes.asm"
-INCLUDE "data/trainers/attributes.asm"
 INCLUDE "engine/battle/read_trainer_party.asm"
-INCLUDE "data/trainers/party_pointers.asm"
-INCLUDE "data/trainers/parties.asm"
 
 
 SECTION "Battle Core", ROMX
@@ -186,7 +181,6 @@ SECTION "bank11", ROMX
 INCLUDE "engine/events/fruit_trees.asm"
 INCLUDE "engine/battle/ai/move.asm"
 INCLUDE "engine/pokedex/pokedex_2.asm"
-INCLUDE "data/pokemon/dex_entry_pointers.asm"
 INCLUDE "engine/pokemon/mail.asm"
 
 
@@ -287,6 +281,7 @@ INCLUDE "engine/menus/debug.asm"
 
 SECTION "bank21", ROMX
 
+INCLUDE "engine/printer/printer_serial.asm"
 INCLUDE "engine/printer/printer.asm"
 INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
@@ -569,7 +564,6 @@ SECTION "Miscellaneous Text", ROMX
 
 INCLUDE "data/items/names.asm"
 INCLUDE "engine/items/print_item_description.asm"
-INCLUDE "data/items/descriptions.asm"
 INCLUDE "data/moves/names.asm"
 INCLUDE "engine/overworld/landmarks.asm"
 

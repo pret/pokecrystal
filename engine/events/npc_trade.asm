@@ -271,7 +271,6 @@ DoNPCTrade:
 	pop af
 	ret
 
-
 GetTradeAttribute:
 	ld d, 0
 	push de
@@ -384,9 +383,7 @@ GetTradeMonNames:
 	ld [hl], "@"
 	ret
 
-
 INCLUDE "data/events/npc_trades.asm"
-
 
 PrintTradeText:
 	push af
@@ -433,12 +430,10 @@ TradeTexts:
 	dw TradeAfterText3
 	dw TradeAfterText4
 
-
 ConnectLinkCableText:
 	; OK, connect the Game Link Cable.
 	text_jump UnknownText_0x1bd407
 	db "@"
-
 
 TradedForText:
 	; traded givemon for getmon
@@ -455,7 +450,6 @@ TradedForText:
 	; interpret_data
 	text_jump UnknownText_0x1bd445
 	db "@"
-
 
 TradeIntroText1:
 	; I collect #MON. Do you have @ ? Want to trade it for my @ ?
@@ -481,7 +475,6 @@ TradeAfterText1:
 	; Hi, how's my old @  doing?
 	text_jump UnknownText_0x1bd4f4
 	db "@"
-
 
 TradeIntroText2:
 TradeIntroText3:
@@ -511,7 +504,6 @@ TradeAfterText2:
 	text_jump UnknownText_0x1bd5f4
 	db "@"
 
-
 TradeIntroText4:
 	; 's cute, but I don't have it. Do you have @ ? Want to trade it for my @ ?
 	text_jump UnknownText_0x1bd621
@@ -536,7 +528,6 @@ TradeAfterText4:
 	; How is that @  I traded you doing? Your @ 's so cute!
 	text_jump UnknownText_0x1bd6f5
 	db "@"
-
 
 TradeCompleteText3:
 	; Uh? What happened?

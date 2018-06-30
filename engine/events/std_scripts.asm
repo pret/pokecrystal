@@ -1850,7 +1850,6 @@ CoinVendor_IntroScript:
 	closetext
 	end
 
-
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 4, 15, TEXTBOX_Y - 1
@@ -1863,7 +1862,6 @@ CoinVendor_IntroScript:
 	db " 50 :  ¥1000@"
 	db "500 : ¥10000@"
 	db "CANCEL@"
-
 
 HappinessCheckScript:
 	faceplayer

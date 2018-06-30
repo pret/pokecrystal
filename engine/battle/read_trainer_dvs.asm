@@ -17,3 +17,5 @@ GetTrainerDVs:
 
 	pop hl
 	ret
+
+INCLUDE "data/trainers/dvs.asm"

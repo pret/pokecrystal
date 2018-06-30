@@ -91,7 +91,6 @@ GetPlayerSprite:
 
 INCLUDE "data/sprites/player_sprites.asm"
 
-
 AddMapSprites:
 	call GetMapEnvironment
 	call CheckOutdoorMap
@@ -102,7 +101,6 @@ AddMapSprites:
 .outdoor
 	call AddOutdoorSprites
 	ret
-
 
 AddIndoorSprites:
 	ld hl, wMap1ObjectSprite
@@ -118,7 +116,6 @@ AddIndoorSprites:
 	cp NUM_OBJECTS
 	jr nz, .loop
 	ret
-
 
 AddOutdoorSprites:
 	ld a, [wMapGroup]
@@ -140,7 +137,6 @@ AddOutdoorSprites:
 	dec c
 	jr nz, .loop
 	ret
-
 
 LoadUsedSpritesGFX:
 	ld a, MAPCALLBACK_SPRITES
@@ -164,8 +160,6 @@ LoadUsedSpritesGFX:
 .outdoor
 	farcall LoadEmote
 	ret
-
-
 
 SafeGetSprite:
 	push hl
@@ -199,7 +193,6 @@ GetSprite:
 	ld l, [hl]
 	ld h, a
 	ret
-
 
 GetMonSprite:
 ; Return carry if a monster sprite was loaded.
@@ -263,7 +256,6 @@ GetMonSprite:
 	and a
 	ret
 
-
 _DoesSpriteHaveFacings::
 ; Checks to see whether we can apply a facing to a sprite.
 ; Returns carry unless the sprite is a Pokemon or a Still Sprite.
@@ -290,7 +282,6 @@ _DoesSpriteHaveFacings::
 	and a
 	ret
 
-
 _GetSpritePalette::
 	ld a, c
 	call GetMonSprite
@@ -310,13 +301,11 @@ _GetSpritePalette::
 	ld c, a
 	ret
 
-
 LoadAndSortSprites:
 	call LoadSpriteGFX
 	call SortUsedSprites
 	call ArrangeUsedSprites
 	ret
-
 
 AddSpriteGFX:
 ; Add any new sprite ids to a list of graphics to be loaded.
@@ -356,7 +345,6 @@ AddSpriteGFX:
 	and a
 	ret
 
-
 LoadSpriteGFX:
 ; Bug: b is not preserved, so it's useless as a next count.
 ; Uncomment the lines below to fix.
@@ -383,7 +371,6 @@ LoadSpriteGFX:
 	; pop bc
 	ld a, l
 	ret
-
 
 SortUsedSprites:
 ; Bubble-sort sprites by type.
@@ -455,7 +442,6 @@ SortUsedSprites:
 .quit
 	ret
 
-
 ArrangeUsedSprites:
 ; Get the length of each sprite and space them out in VRAM.
 ; Crystal introduces a second table in VRAM bank 0.
@@ -514,7 +500,6 @@ ArrangeUsedSprites:
 .quit
 	ret
 
-
 GetSpriteLength:
 ; Return the length of sprite type a in tiles.
 
@@ -535,7 +520,6 @@ GetSpriteLength:
 .OneDirection:
 	ld a, 4
 	ret
-
 
 GetUsedSprites:
 	ld hl, wUsedSprites
@@ -677,7 +661,6 @@ LoadEmote::
 	ret z
 	call GetEmote2bpp
 	ret
-
 
 INCLUDE "data/sprites/emotes.asm"
 

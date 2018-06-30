@@ -152,7 +152,6 @@ BillsPCDepositJumptable:
 	dw BillsPCDepositFuncRelease ; Release Pokemon
 	dw BillsPCDepositFuncCancel ; Cancel
 
-
 BillsPCDepositFuncDeposit:
 	call BillsPC_CheckMail_PreventBlackout
 	jp c, BillsPCDepositFuncCancel
@@ -409,7 +408,6 @@ BillsPC_Withdraw:
 	dw .stats ; Stats
 	dw .release ; Release
 	dw .cancel ; Cancel
-
 
 .withdraw
 	call BillsPC_CheckMail_PreventBlackout
@@ -1874,7 +1872,6 @@ TryWithdrawPokemon:
 	scf
 	ret
 
-
 ReleasePKMN_ByePKMN:
 	hlcoord 0, 0
 	lb bc, 15, 8
@@ -2229,7 +2226,6 @@ PCString_Non: db "Non.@"
 PCString_BoxFull: db "The BOX is full.@"
 PCString_PartyFull: db "The party's full!@"
 PCString_NoReleasingEGGS: db "No releasing EGGS!@"
-
 
 _ChangeBox:
 	call LoadStandardMenuHeader

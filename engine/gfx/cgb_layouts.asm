@@ -149,7 +149,6 @@ _CGB_FinishBattleScreenLayout:
 	call ApplyAttrMap
 	ret
 
-
 InitPartyMenuBGPal7:
 	farcall Function100dc0
 Mobile_InitPartyMenuBGPal7:

@@ -6,4 +6,3 @@ BattleCommand_HiddenPower:
 	ret nz
 	farcall HiddenPowerDamage
 	ret
-

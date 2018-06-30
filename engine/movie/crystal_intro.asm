@@ -198,7 +198,6 @@ PlaceGameFreakPresents_3:
 	set 7, [hl]
 	ret
 
-
 GameFreakLogoJumper:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
@@ -1736,13 +1735,11 @@ Intro_Scene20_AppearUnown:
 	RGB 12, 00, 31
 	RGB 00, 00, 00
 
-
 .pal2
 	RGB 24, 12, 09
 	RGB 31, 31, 31
 	RGB 31, 31, 31
 	RGB 31, 31, 31
-
 
 Intro_FadeUnownWordPals:
 	add a

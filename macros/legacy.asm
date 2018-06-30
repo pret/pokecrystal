@@ -8,7 +8,6 @@ callab EQUS "callfar"
 ; macros/scripts/audio.asm
 unknownmusic0xde EQUS "sound_duty"
 
-
 ; macros/scripts/events.asm
 
 checkmorn EQUS "checktime MORN"
@@ -54,7 +53,6 @@ displaylocation   EQUS "landmarktotext"
 givepokeitem      EQUS "givepokemail"
 checkpokeitem     EQUS "checkpokemail"
 
-
 ; macros/scripts/maps.asm
 
 mapconst: MACRO
@@ -93,7 +91,6 @@ ENDM
 PERSONTYPE_SCRIPT   EQUS "OBJECTTYPE_SCRIPT"
 PERSONTYPE_ITEMBALL EQUS "OBJECTTYPE_ITEMBALL"
 PERSONTYPE_TRAINER  EQUS "OBJECTTYPE_TRAINER"
-
 
 ; macros/scripts/movement.asm
 

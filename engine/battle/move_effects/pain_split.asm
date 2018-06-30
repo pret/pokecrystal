@@ -89,7 +89,5 @@ BattleCommand_PainSplit:
 	ld [wBuffer6], a
 	ret
 
-
 .ButItFailed:
 	jp PrintDidntAffect2
-

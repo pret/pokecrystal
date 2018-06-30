@@ -280,7 +280,6 @@ Jumptable_8b4a0:
 	dw Function8b4a4
 	dw Function8b4b8
 
-
 Function8b4a4:
 	push bc
 	push de
@@ -989,7 +988,6 @@ Function8b94a:
 	ld a, $1
 	ld [wd030], a
 	ret
-
 
 Function8b960:
 	ld hl, MenuHeader_0x8b9ac

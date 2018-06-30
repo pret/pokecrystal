@@ -84,7 +84,6 @@ CheckBreedmonCompatibility:
 	ld [wd265], a
 	ret
 
-
 .CheckDVs:
 ; If Defense DVs match and the lower 3 bits of the Special DVs match,
 ; avoid breeding
@@ -623,7 +622,6 @@ GetBreedmonMovePointer:
 	ld hl, wBreedMon2Moves
 	ret
 
-
 GetEggFrontpic:
 	push de
 	ld [wCurPartySpecies], a
@@ -961,4 +959,3 @@ Unreferenced_DayCareMonPrintEmptyString:
 
 .string
 	db "@"
-

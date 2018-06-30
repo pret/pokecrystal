@@ -1,6 +1,5 @@
 ; Functions used in displaying and handling menus.
 
-
 LoadMenuHeader::
 	call CopyMenuHeader
 	call PushWindow
@@ -17,7 +16,6 @@ CopyMenuHeader::
 StoreTo_wMenuCursorBuffer::
 	ld [wMenuCursorBuffer], a
 	ret
-
 
 MenuTextBox::
 	push hl
@@ -108,7 +106,6 @@ CopyNameFromMenu::
 	pop bc
 	pop hl
 	ret
-
 
 YesNoBox::
 	lb bc, SCREEN_WIDTH - 6, 7
@@ -330,7 +327,6 @@ InitMenuCursorAndButtonPermissions::
 .disallow_left_right
 	ret
 
-
 GetScrollingMenuJoypad::
 	call ScrollingMenuJoypad
 	ld hl, wMenuJoypadFilter
@@ -494,7 +490,6 @@ MenuClickSound::
 .nosound
 	pop af
 	ret
-
 
 PlayClickSFX::
 	push de

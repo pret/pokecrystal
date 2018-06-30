@@ -141,4 +141,3 @@ BattleCommand_SleepTalk:
 	ret z
 	cp EFFECT_BIDE
 	ret
-

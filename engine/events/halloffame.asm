@@ -134,7 +134,6 @@ AnimateHallOfFame:
 .String_NewHallOfFamer:
 	db "New Hall of Famer!@"
 
-
 GetHallOfFameParty:
 	ld hl, wHallOfFamePokemonList
 	ld bc, wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1
@@ -603,4 +602,3 @@ HOF_AnimatePlayerPic:
 
 .PlayTime:
 	db "PLAY TIME@"
-

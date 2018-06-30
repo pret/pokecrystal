@@ -1,3 +1,6 @@
+UNOWNSTAMP_BOLD_A EQUS "\"♂\"" ; $ef
+UNOWNSTAMP_BOLD_B EQUS "\"♀\"" ; $f5
+
 _UnownPrinter:
 	ld a, [wUnownDex]
 	and a
@@ -15,12 +18,12 @@ _UnownPrinter:
 	call ClearTileMap
 
 	ld de, UnownDexATile
-	ld hl, vTiles1 tile $6f
+	ld hl, vTiles0 tile UNOWNSTAMP_BOLD_A
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
 	ld de, UnownDexBTile
-	ld hl, vTiles1 tile $75
+	ld hl, vTiles0 tile UNOWNSTAMP_BOLD_B
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
@@ -200,8 +203,8 @@ UnownDexDoWhatString:
 	db "Do what?@"
 
 UnownDexMenuString:
-	db   "♂ PRINT"
-	next "♀ CANCEL"
+	db   UNOWNSTAMP_BOLD_A, " PRINT"
+	next UNOWNSTAMP_BOLD_B, " CANCEL"
 	next "← PREVIOUS"
 	next "→ NEXT"
 	db   "@"

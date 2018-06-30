@@ -212,7 +212,6 @@ DeinitializeSprite:
 	ld [hl], $0
 	ret
 
-
 DeinitializeAllSprites:
 ; Clear the index field of every struct in the wSpriteAnimationStructs array.
 	ld hl, wSpriteAnimationStructs
@@ -225,7 +224,6 @@ DeinitializeAllSprites:
 	dec e
 	jr nz, .loop
 	ret
-
 
 UpdateAnimFrame:
 	call InitSpriteAnimBuffer ; init WRAM
@@ -411,7 +409,6 @@ _ReinitSpriteAnimFrame::
 	ld [hl], -1
 	ret
 
-
 GetSpriteAnimFrame:
 .loop
 	ld hl, SPRITEANIMSTRUCT_DURATION
@@ -532,7 +529,6 @@ Unreferenced_BrokenGetStdGraphics:
 	pop bc
 	ret
 
-
 INCLUDE "data/sprite_anims/sequences.asm"
 
 INCLUDE "engine/gfx/sprite_anims.asm"
@@ -540,7 +536,6 @@ INCLUDE "engine/gfx/sprite_anims.asm"
 INCLUDE "data/sprite_anims/framesets.asm"
 
 INCLUDE "data/sprite_anims/oam.asm"
-
 
 BrokenStdGFXPointers:
 	; tile count, bank, pointer
@@ -557,7 +552,6 @@ BrokenStdGFXPointers:
 
 .deleted
 
-
 Sprites_Cosine:
 ; a = d * cos(a * pi/32)
 	add %010000 ; cos(x) = sin(x + pi/2)
@@ -565,7 +559,6 @@ Sprites_Cosine:
 Sprites_Sine:
 ; a = d * sin(a * pi/32)
 	calc_sine_wave
-
 
 AnimateEndOfExpBar:
 	ld a, [hSGB]

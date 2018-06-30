@@ -69,8 +69,6 @@ BattleCommand_StoreEnergy:
 	call StdBattleTextBox
 	jp EndMoveEffect
 
-
-
 BattleCommand_UnleashEnergy:
 ; unleashenergy
 
@@ -100,4 +98,3 @@ BattleCommand_UnleashEnergy:
 	ld [wKickCounter], a
 	call AnimateCurrentMove
 	jp EndMoveEffect
-

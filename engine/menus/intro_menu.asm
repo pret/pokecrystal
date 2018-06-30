@@ -94,7 +94,6 @@ ResetWRAM:
 	ret
 
 _ResetWRAM:
-
 	ld hl, wVirtualOAM
 	ld bc, wOptions - wVirtualOAM
 	xor a
@@ -549,7 +548,6 @@ Continue_LoadMenuHeader:
 	db " @"
 	db "TIME@"
 
-
 Continue_DisplayBadgesDexPlayerName:
 	call MenuBoxCoord2Tile
 	push hl
@@ -625,7 +623,6 @@ Continue_DisplayGameTime:
 	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
-
 
 OakSpeech:
 	farcall InitClock
@@ -803,7 +800,6 @@ StorePlayerName:
 	ret
 
 ShrinkPlayer:
-
 	ld a, [hROMBank]
 	push af
 
@@ -913,7 +909,6 @@ ShrinkFrame:
 	ret
 
 Intro_PlacePlayerSprite:
-
 	farcall GetPlayerIcon
 	ld c, $c
 	ld hl, vTiles0
@@ -956,7 +951,6 @@ Intro_PlacePlayerSprite:
 	db  9 * 8 + 4, 10 * 8, 1
 	db 10 * 8 + 4,  9 * 8, 2
 	db 10 * 8 + 4, 10 * 8, 3
-
 
 CrystalIntroSequence:
 	callfar Copyright_GFPresents
@@ -1018,7 +1012,6 @@ StartTitleScreen:
 	dw CrystalIntroSequence
 	dw ResetClock
 
-
 .TitleScreen:
 	farcall _TitleScreen
 	ret
@@ -1070,9 +1063,7 @@ TitleScreenScene:
 	inc [hl]
 	ret
 
-
 TitleScreenEntrance:
-
 ; Animate the logo:
 ; Move each line by 4 pixels until our count hits 0.
 	ld a, [hSCX]
@@ -1119,9 +1110,7 @@ TitleScreenEntrance:
 	ld [hWY], a
 	ret
 
-
 TitleScreenTimer:
-
 ; Next scene
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -1135,7 +1124,6 @@ TitleScreenTimer:
 	ret
 
 TitleScreenMain:
-
 ; Run the timer down.
 	ld hl, wTitleScreenTimer
 	ld e, [hl]
@@ -1236,7 +1224,6 @@ TitleScreenMain:
 	ret
 
 TitleScreenEnd:
-
 ; Wait until the music is done fading.
 
 	ld hl, wTitleScreenTimer

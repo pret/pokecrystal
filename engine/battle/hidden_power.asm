@@ -8,7 +8,6 @@ HiddenPowerDamage:
 	ld hl, wEnemyMonDVs
 .got_dvs
 
-
 ; Power:
 
 ; Take the top bit from each stat
@@ -61,7 +60,6 @@ HiddenPowerDamage:
 	inc a
 
 	ld d, a
-
 
 ; Type:
 

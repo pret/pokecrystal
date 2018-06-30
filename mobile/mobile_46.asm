@@ -333,7 +333,6 @@ Function118284:
 	call BattleTowerRoomMenu_Cleanup
 	ret
 
-
 Function1182d5:
 	call BattleTowerRoomMenu_InitRAM
 	ld a, $18
@@ -1120,11 +1119,9 @@ Function118903:
 	call BattleTowerRoomMenu2
 	jp BattleTowerRoomMenu_IncrementJumptable
 
-
 Function11891c:
 	call Function118b42
 	jp BattleTowerRoomMenu_IncrementJumptable
-
 
 BattleTowerRoomMenu_PickLevelMessage:
 	ld a, [wcd38]
@@ -1307,8 +1304,6 @@ BattleTowerRoomMenu_UpdatePickLevelMenu:
 	ld [wMobileInactivityTimerFrames], a
 	ret
 
-
-
 Function118a54:
 	ld a, [wcd55]
 	ld l, a
@@ -1489,7 +1484,6 @@ Function118b9a:
 	and a
 	ret
 
-
 	charmap " ", $20 ; revert to ascii
 
 ExchangeDownloadURL:
@@ -1506,7 +1500,6 @@ MenuDownloadURL:
 
 IndexDownloadURL:
 	db "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt", 0
-
 
 Unreferenced_Function118d35:
 	ld hl, $d200
@@ -7690,5 +7683,3 @@ TilemapPack_11bb7d:
 	db $2e, $0a, $85, $0a, $0a, $0a, $8d, $00 ; 22
 	db $2e, $0a, $0a, $84, $0a, $0a, $8e, $00 ; 23
 	db -1
-
-

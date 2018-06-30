@@ -7,4 +7,3 @@ BattleCommand_StartRain:
 	call AnimateCurrentMove
 	ld hl, DownpourText
 	jp StdBattleTextBox
-
