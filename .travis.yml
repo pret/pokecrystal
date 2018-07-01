@@ -1,4 +1,7 @@
 language: c
+os:
+  - linux
+  - osx
 install:
   - |-
     path="$(pwd)"; cd;
@@ -20,4 +23,3 @@ before_script:
 script:
   - make -j2 compare
   - check_status
-
