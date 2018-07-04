@@ -40,4 +40,4 @@ BattleCommand_Metronome:
 	call UpdateMoveData
 	jp ResetTurn
 
-INCLUDE "data/battle/metronome_exception_moves.asm"
+INCLUDE "data/moves/metronome_exception_moves.asm"
