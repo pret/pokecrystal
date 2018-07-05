@@ -8,7 +8,7 @@ ENDM
 ; Associated data:
 ; - The *GFX, *Meta, and *Coll are defined in gfx/tilesets.asm
 ; - The *PalMap are defined in gfx/tileset_palette_maps.asm
-; - The *Anim are defined in engine/tileset_anims.asm
+; - The *Anim are defined in engine/tilesets/tileset_anims.asm
 
 Tilesets::
 ; entries correspond to TILESET_* constants
