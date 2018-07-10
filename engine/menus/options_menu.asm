@@ -165,7 +165,7 @@ GetTextSpeed:
 ; converts TEXT_DELAY_* value in a to OPT_TEXT_SPEED_* value in c,
 ; with previous/next TEXT_DELAY_* values in d/e
 	ld a, [wOptions]
-	and $7
+	and TEXT_DELAY_MASK
 	cp TEXT_DELAY_SLOW
 	jr z, .slow
 	cp TEXT_DELAY_FAST
@@ -467,7 +467,7 @@ Options_Frame:
 	dec a
 
 .Save:
-	and $7
+	maskbits NUM_FRAMES
 	ld [hl], a
 UpdateFrame:
 	ld a, [wTextBoxFrame]
