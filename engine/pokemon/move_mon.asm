@@ -1403,7 +1403,7 @@ CalcMonStats:
 ; hl is the path to the Stat EXP
 ; de points to where the final stats will be saved
 
-	ld c, $0
+	ld c, STAT_HP - 1 ; first stat
 .loop
 	inc c
 	call CalcMonStatC
@@ -1414,7 +1414,7 @@ CalcMonStats:
 	ld [de], a
 	inc de
 	ld a, c
-	cp STAT_SDEF
+	cp STAT_SDEF ; last stat
 	jr nz, .loop
 	ret
 
@@ -1434,14 +1434,14 @@ CalcMonStatC:
 	push hl
 	ld hl, wBaseStats
 	dec hl ; has to be decreased, because 'c' begins with 1
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ld e, a
 	pop hl
 	push hl
 	ld a, c
-	cp STAT_SDEF
+	cp STAT_SDEF ; last stat
 	jr nz, .not_spdef
 	dec hl
 	dec hl

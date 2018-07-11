@@ -206,7 +206,7 @@
 	const SFX_INTRO_SUICUNE_4             ; c8
 	const SFX_GAME_FREAK_PRESENTS         ; c9
 	const SFX_TINGLE                      ; ca
-	const SFX_UNKNOWN_CB                  ; cb
+	const SFX_INTRO_WHOOSH                ; cb
 	const SFX_TWO_PC_BEEPS                ; cc
 	const SFX_4_NOTE_DITTY                ; cd
 	const SFX_TWINKLE                     ; ce
