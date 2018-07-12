@@ -27,14 +27,14 @@ MeetMomRightScript:
 	turnobject PLAYER, LEFT
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .OnRight
-	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a5fc
+	applymovement PLAYERSHOUSE1F_MOM1, Movement_MomTurnsTowardPlayer
 	jump MeetMomScript
 
 .OnRight:
-	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a5fe
+	applymovement PLAYERSHOUSE1F_MOM1, Movement_MomWalksToPlayer
 MeetMomScript:
 	opentext
-	writetext UnknownText_0x7a604
+	writetext Text_ElmsLookingForYou
 	buttonsound
 	stringtotext GearName, MEM_BUFFER_1
 	scall PlayersHouse1FReceiveItemStd
@@ -44,11 +44,11 @@ MeetMomScript:
 	setscene SCENE_FINISHED
 	setevent EVENT_PLAYERS_HOUSE_MOM_1
 	clearevent EVENT_PLAYERS_HOUSE_MOM_2
-	writetext UnknownText_0x7a6bd
+	writetext Text_Pokegear
 	buttonsound
 	special SetDayOfWeek
 .SetDayOfWeek:
-	writetext UnknownText_0x7a742
+	writetext Text_DST
 	yesorno
 	iffalse .WrongDay
 	special InitialSetDSTFlag
@@ -61,23 +61,23 @@ MeetMomScript:
 	yesorno
 	iffalse .SetDayOfWeek
 .DayOfWeekDone:
-	writetext UnknownText_0x7a763
+	writetext Text_ComeHomeForDST
 	yesorno
 	iffalse .ExplainPhone
 	jump .KnowPhone
 
 .KnowPhone:
-	writetext UnknownText_0x7a7cb
+	writetext Text_KnowTheInstructions
 	buttonsound
 	jump .FinishPhone
 
 .ExplainPhone:
-	writetext UnknownText_0x7a807
+	writetext Text_DontKnowTheInstructions
 	buttonsound
 	jump .FinishPhone
 
 .FinishPhone:
-	writetext UnknownText_0x7a850
+	writetext Text_InstructionsNext
 	waitbutton
 	closetext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -87,11 +87,11 @@ MeetMomScript:
 	jump .Finish
 
 .FromRight:
-	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a600
+	applymovement PLAYERSHOUSE1F_MOM1, Movement_MomTurnsBack
 	jump .Finish
 
 .FromLeft:
-	applymovement PLAYERSHOUSE1F_MOM1, MovementData_0x7a602
+	applymovement PLAYERSHOUSE1F_MOM1, Movement_MomWalksBack
 	jump .Finish
 
 .Finish:
@@ -124,19 +124,19 @@ MomScript:
 	iftrue .GaveMysteryEgg
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue .GotAPokemon
-	writetext UnknownText_0x7a8b5
+	writetext Text_HurryUpElmIsWaiting
 	waitbutton
 	closetext
 	end
 
 .GotAPokemon:
-	writetext UnknownText_0x7a8e5
+	writetext Text_AfterGotAMon
 	waitbutton
 	closetext
 	end
 
 .FirstTimeBanking:
-	writetext UnknownText_0x7a957
+	writetext Text_ImBehindYou
 	waitbutton
 	closetext
 	end
@@ -194,23 +194,23 @@ SinkScript:
 FridgeScript:
 	jumptext FridgeText
 
-MovementData_0x7a5fc:
+Movement_MomTurnsTowardPlayer:
 	turn_head RIGHT
 	step_end
 
-MovementData_0x7a5fe:
+Movement_MomWalksToPlayer:
 	slow_step RIGHT
 	step_end
 
-MovementData_0x7a600:
+Movement_MomTurnsBack:
 	turn_head LEFT
 	step_end
 
-MovementData_0x7a602:
+Movement_MomWalksBack:
 	slow_step LEFT
 	step_end
 
-UnknownText_0x7a604:
+Text_ElmsLookingForYou:
 	text "Oh, <PLAYER>…! Our"
 	line "neighbor, PROF."
 
@@ -230,7 +230,7 @@ UnknownText_0x7a604:
 	para "Here you go!"
 	done
 
-UnknownText_0x7a6bd:
+Text_Pokegear:
 	text "#MON GEAR, or"
 	line "just #GEAR."
 
@@ -245,12 +245,12 @@ UnknownText_0x7a6bd:
 	line "that!"
 	done
 
-UnknownText_0x7a742:
+Text_DST:
 	text "Is it Daylight"
 	line "Saving Time now?"
 	done
 
-UnknownText_0x7a763:
+Text_ComeHomeForDST:
 	text "Come home to"
 	line "adjust your clock"
 
@@ -262,7 +262,7 @@ UnknownText_0x7a763:
 	cont "the PHONE?"
 	done
 
-UnknownText_0x7a7cb:
+Text_KnowTheInstructions:
 	text "Don't you just"
 	line "turn the #GEAR"
 
@@ -270,7 +270,7 @@ UnknownText_0x7a7cb:
 	line "PHONE icon?"
 	done
 
-UnknownText_0x7a807:
+Text_DontKnowTheInstructions:
 	text "I'll read the"
 	line "instructions."
 
@@ -279,7 +279,7 @@ UnknownText_0x7a807:
 	cont "PHONE icon."
 	done
 
-UnknownText_0x7a850:
+Text_InstructionsNext:
 	text "Phone numbers are"
 	line "stored in memory."
 
@@ -290,14 +290,14 @@ UnknownText_0x7a850:
 	line "convenient?"
 	done
 
-UnknownText_0x7a8b5:
+Text_HurryUpElmIsWaiting:
 	text "PROF.ELM is wait-"
 	line "ing for you."
 
 	para "Hurry up, baby!"
 	done
 
-UnknownText_0x7a8e5:
+Text_AfterGotAMon:
 	text "So, what was PROF."
 	line "ELM's errand?"
 
@@ -311,7 +311,7 @@ UnknownText_0x7a8e5:
 	cont "rely on you."
 	done
 
-UnknownText_0x7a957:
+Text_ImBehindYou:
 	text "<PLAYER>, do it!"
 
 	para "I'm behind you all"
