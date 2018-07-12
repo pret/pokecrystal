@@ -128,7 +128,7 @@
 	const SFX_SWEET_KISS                  ; 7c
 	const SFX_SWEET_KISS_2                ; 7d
 	const SFX_BELLY_DRUM                  ; 7e
-	const SFX_UNKNOWN_7F                  ; 7f
+	const SFX_TOXIC                       ; 7f
 	const SFX_SLUDGE_BOMB                 ; 80
 	const SFX_FORESIGHT                   ; 81
 	const SFX_SPITE                       ; 82
