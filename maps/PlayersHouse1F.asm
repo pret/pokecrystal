@@ -44,11 +44,11 @@ MeetMomScript:
 	setscene SCENE_FINISHED
 	setevent EVENT_PLAYERS_HOUSE_MOM_1
 	clearevent EVENT_PLAYERS_HOUSE_MOM_2
-	writetext Text_Pokegear
+	writetext Text_MomGivePokegear
 	buttonsound
 	special SetDayOfWeek
 .SetDayOfWeek:
-	writetext Text_DST
+	writetext Text_IsItDSTNow
 	yesorno
 	iffalse .WrongDay
 	special InitialSetDSTFlag
@@ -67,17 +67,17 @@ MeetMomScript:
 	jump .KnowPhone
 
 .KnowPhone:
-	writetext Text_KnowTheInstructions
+	writetext Text_KnowThePhoneInstructions
 	buttonsound
 	jump .FinishPhone
 
 .ExplainPhone:
-	writetext Text_DontKnowTheInstructions
+	writetext Text_DontKnowThePhoneInstructions
 	buttonsound
 	jump .FinishPhone
 
 .FinishPhone:
-	writetext Text_InstructionsNext
+	writetext Text_PhoneInstructionsNext
 	waitbutton
 	closetext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -230,7 +230,7 @@ Text_ElmsLookingForYou:
 	para "Here you go!"
 	done
 
-Text_Pokegear:
+Text_MomGivePokegear:
 	text "#MON GEAR, or"
 	line "just #GEAR."
 
@@ -245,7 +245,7 @@ Text_Pokegear:
 	line "that!"
 	done
 
-Text_DST:
+Text_IsItDSTNow:
 	text "Is it Daylight"
 	line "Saving Time now?"
 	done
@@ -262,7 +262,7 @@ Text_ComeHomeForDST:
 	cont "the PHONE?"
 	done
 
-Text_KnowTheInstructions:
+Text_KnowThePhoneInstructions:
 	text "Don't you just"
 	line "turn the #GEAR"
 
@@ -270,7 +270,7 @@ Text_KnowTheInstructions:
 	line "PHONE icon?"
 	done
 
-Text_DontKnowTheInstructions:
+Text_DontKnowThePhoneInstructions:
 	text "I'll read the"
 	line "instructions."
 
@@ -279,7 +279,7 @@ Text_DontKnowTheInstructions:
 	cont "PHONE icon."
 	done
 
-Text_InstructionsNext:
+Text_PhoneInstructionsNext:
 	text "Phone numbers are"
 	line "stored in memory."
 
