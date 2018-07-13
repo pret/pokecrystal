@@ -2507,7 +2507,7 @@ wRegisteredItem:: db ; d95c
 wPlayerState:: db ; d95d
 
 wHallOfFameCount:: dw
-wTradeFlags:: flag_array PARTY_LENGTH ; d960
+wTradeFlags:: flag_array NUM_NPC_TRADES ; d960
 	ds 1
 wMooMooBerries:: db ; d962
 wUndergroundSwitchPositions:: db ; d963

@@ -19,6 +19,7 @@ NPCTRADE_PADDING EQU 31 ; db
 	const NPC_TRADE_CHRIS  ; 4
 	const NPC_TRADE_KIM    ; 5
 	const NPC_TRADE_FOREST ; 6
+NUM_NPC_TRADES EQU const_value
 
 ; trade gender limits
 	const_def
