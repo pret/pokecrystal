@@ -1085,17 +1085,18 @@ DecorationDesc_GiantOrnament:
 	db "@"
 
 ToggleMaptileDecorations:
-	lb de, 0, 4
+	; tile coordinates work the same way as for changeblock
+	lb de, 0, 4 ; bed coordinates
 	ld a, [wDecoBed]
 	call SetDecorationTile
-	lb de, 7, 4
+	lb de, 7, 4 ; plant coordinates
 	ld a, [wDecoPlant]
 	call SetDecorationTile
-	lb de, 6, 0
+	lb de, 6, 0 ; poster coordinates
 	ld a, [wDecoPoster]
 	call SetDecorationTile
 	call SetPosterVisibility
-	lb de, 0, 0
+	lb de, 0, 0 ; carpet top-left coordinates
 	call PadCoords_de
 	ld a, [wDecoCarpet]
 	and a
@@ -1103,15 +1104,15 @@ ToggleMaptileDecorations:
 	call _GetDecorationSprite
 	ld [hl], a
 	push af
-	lb de, 0, 2
+	lb de, 0, 2 ; carpet bottom-left coordinates
 	call PadCoords_de
 	pop af
 	inc a
-	ld [hli], a
+	ld [hli], a ; carpet bottom-left block
 	inc a
-	ld [hli], a
+	ld [hli], a ; carpet bottom-middle block
 	dec a
-	ld [hl], a
+	ld [hl], a ; carpet bottom-right block
 	ret
 
 SetPosterVisibility:
@@ -1177,6 +1178,7 @@ _GetDecorationSprite:
 	ret
 
 PadCoords_de:
+; adjusts coordinates, the same way as Script_changeblock
 	ld a, d
 	add 4
 	ld d, a
