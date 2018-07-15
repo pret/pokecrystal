@@ -284,7 +284,7 @@ RunBattleAnimCommand:
 .loop
 	call GetBattleAnimByte
 
-	cp $ff
+	cp anim_ret_command
 	jr nz, .not_done_with_anim
 
 ; Return from a subroutine.
