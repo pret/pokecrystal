@@ -270,7 +270,7 @@ ReadBTTrainerParty:
 
 ; Check the nicknames for illegal characters, and replace bad nicknames
 ; with their species names.
-	ld de, wBT_OTTempMon1Name ; $c643
+	ld de, wBT_OTTempMon1Name
 	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_1
@@ -280,44 +280,44 @@ ReadBTTrainerParty:
 	call GetPokemonName
 	ld l, e
 	ld h, d
-	ld de, wBT_OTTempMon1Name ; $c643
+	ld de, wBT_OTTempMon1Name
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_1
-	ld de, wBT_OTTempMon2Name ; $c67e
+	ld de, wBT_OTTempMon2Name
 	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_2
-	ld a, [wBT_OTTempMon2] ; [$c64e]
+	ld a, [wBT_OTTempMon2]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld l, e
 	ld h, d
-	ld de, wBT_OTTempMon2Name ; $c67e
+	ld de, wBT_OTTempMon2Name
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_2
-	ld de, wBT_OTTempMon3Name ; $c686 + 51 = $c6b9
+	ld de, wBT_OTTempMon3Name
 	ld c, MON_NAME_LENGTH
 	farcall CheckStringForErrors
 	jr nc, .skip_mon_3
-	ld a, [wBT_OTTempMon3] ; [$c689]
+	ld a, [wBT_OTTempMon3]
 	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld l, e
 	ld h, d
-	ld de, wBT_OTTempMon3Name ; $c686 + 51 = $c6b9
+	ld de, wBT_OTTempMon3Name
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 
 .skip_mon_3
 ; Add the terminator character to each of these names
 	ld a, "@"
-	ld [wBT_OTTempMon1NameEnd - 1], a ; $c64d
-	ld [wBT_OTTempMon2NameEnd - 1], a ; $c688
-	ld [wBT_OTTempMon3NameEnd - 1], a ; $c68a + 57 = $c6c3
+	ld [wBT_OTTempMon1NameEnd - 1], a
+	ld [wBT_OTTempMon2NameEnd - 1], a
+	ld [wBT_OTTempMon3NameEnd - 1], a
 ; Fix errors in the movesets
 	call CheckBTMonMovesForErrors
 ; Repair the trainer name if needed, then copy it to wOTPlayerName

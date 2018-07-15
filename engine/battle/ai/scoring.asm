@@ -1550,7 +1550,7 @@ AI_Smart_Spite:
 	dec [hl]
 	ret
 
-Function_0x38d16
+Function_0x38d16:
 	jp AIDiscourageMove
 
 AI_Smart_DestinyBond:
