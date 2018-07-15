@@ -4,7 +4,7 @@
 ## Questions
 
 - [What is pokecrystal11.gbc?](#what-is-pokecrystal11gbc)
-- [I can't build the ROM, `make` just prints an error!](#I-cant-build-the-rom-make-just-prints-an-error)
+- [I can't build the ROM, `make` just prints an error!](#i-cant-build-the-rom-make-just-prints-an-error)
   - [`gcc`: command not found](#gcc-command-not-found)
   - ["ERROR: `UNION` already defined"](#error-union-already-defined)
   - ["Segmentation fault" from `rgbgfx`](#segmentation-fault-from-rgbgfx)
