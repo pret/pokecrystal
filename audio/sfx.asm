@@ -364,6 +364,7 @@ Sfx_Shine:
 Sfx_Unknown5F:
 	musicheader 3, 5, Sfx_Unknown5F_Ch5
 	musicheader 1, 6, Sfx_Unknown5F_Ch6
+
 Sfx_Sandstorm:
 	musicheader 1, 8, Sfx_Sandstorm_Ch8
 
