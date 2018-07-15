@@ -586,7 +586,7 @@ Function8b690:
 	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes
 	ld hl, GFX_17afa5 + $514 + $160
-	ld de, vTiles1 tile $6e
+	ld de, vTiles0 tile $ee
 	ld bc, $10
 	ld a, BANK(GFX_17afa5)
 	call FarCopyBytes

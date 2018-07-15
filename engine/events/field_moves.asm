@@ -1,3 +1,7 @@
+FIELDMOVE_GRASS EQU $80
+FIELDMOVE_TREE EQU $84
+FIELDMOVE_FLY EQU $84
+
 PlayWhirlpoolSound:
 	call WaitSFX
 	ld de, SFX_SURF
@@ -20,11 +24,11 @@ BlindingFlash:
 ShakeHeadbuttTree:
 	farcall ClearSpriteAnims
 	ld de, CutGrassGFX
-	ld hl, vTiles1 tile $00
+	ld hl, vTiles0 tile FIELDMOVE_GRASS
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
 	ld de, HeadbuttTreeGFX
-	ld hl, vTiles1 tile $04
+	ld hl, vTiles0 tile FIELDMOVE_TREE
 	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
 	call Cut_Headbutt_GetPixelFacing
@@ -32,8 +36,8 @@ ShakeHeadbuttTree:
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $84
-	ld a, 36 * 4
+	ld [hl], FIELDMOVE_TREE
+	ld a, 36 * SPRITEOAMSTRUCT_LENGTH
 	ld [wCurrSpriteOAMAddr], a
 	farcall DoNextFrameForAllSprites
 	call HideHeadbuttTree
@@ -48,7 +52,7 @@ ShakeHeadbuttTree:
 	and a
 	jr z, .done
 	dec [hl]
-	ld a, 36 * 4
+	ld a, 36 * SPRITEOAMSTRUCT_LENGTH
 	ld [wCurrSpriteOAMAddr], a
 	farcall DoNextFrameForAllSprites
 	call DelayFrame
@@ -111,7 +115,7 @@ OWCutAnimation:
 	; 0: Split tree in half
 	; 1: Mow the lawn
 	ld a, e
-	and $1
+	and 1
 	ld [wJumptableIndex], a
 	call .LoadCutGFX
 	call WaitSFX
@@ -121,7 +125,7 @@ OWCutAnimation:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .finish
-	ld a, 36 * 4
+	ld a, 36 * SPRITEOAMSTRUCT_LENGTH
 	ld [wCurrSpriteOAMAddr], a
 	callfar DoNextFrameForAllSprites
 	call OWCutJumptable
@@ -134,11 +138,11 @@ OWCutAnimation:
 .LoadCutGFX:
 	callfar ClearSpriteAnims ; pointless to farcall
 	ld de, CutGrassGFX
-	ld hl, vTiles1 tile $00
+	ld hl, vTiles0 tile FIELDMOVE_GRASS
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
 	ld de, CutTreeGFX
-	ld hl, vTiles1 tile $04
+	ld hl, vTiles0 tile FIELDMOVE_TREE
 	lb bc, BANK(CutTreeGFX), 4
 	call Request2bpp
 	ret
@@ -173,7 +177,7 @@ Cut_SpawnAnimateTree:
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $84
+	ld [hl], FIELDMOVE_TREE
 	ld a, 32
 	ld [wFrameCounter], a
 ; Cut_StartWaiting
@@ -226,7 +230,7 @@ Cut_SpawnLeaf:
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $80
+	ld [hl], FIELDMOVE_GRASS
 	ld hl, SPRITEANIMSTRUCT_0E
 	add hl, bc
 	ld [hl], $4
@@ -313,7 +317,7 @@ FlyFromAnim:
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $84
+	ld [hl], FIELDMOVE_FLY
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], SPRITE_ANIM_SEQ_FLY_FROM
@@ -323,7 +327,7 @@ FlyFromAnim:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
-	ld a, 0 * 4
+	ld a, 0 * SPRITEOAMSTRUCT_LENGTH
 	ld [wCurrSpriteOAMAddr], a
 	callfar DoNextFrameForAllSprites
 	call FlyFunction_FrameTimer
@@ -347,7 +351,7 @@ FlyToAnim:
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $84
+	ld [hl], FIELDMOVE_FLY
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
 	ld [hl], SPRITE_ANIM_SEQ_FLY_TO
@@ -360,7 +364,7 @@ FlyToAnim:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
-	ld a, 0 * 4
+	ld a, 0 * SPRITEOAMSTRUCT_LENGTH
 	ld [wCurrSpriteOAMAddr], a
 	callfar DoNextFrameForAllSprites
 	call FlyFunction_FrameTimer
@@ -394,7 +398,7 @@ endr
 FlyFunction_InitGFX:
 	callfar ClearSpriteAnims
 	ld de, CutGrassGFX
-	ld hl, vTiles1 tile $00
+	ld hl, vTiles0 tile FIELDMOVE_GRASS
 	lb bc, BANK(CutGrassGFX), 4
 	call Request2bpp
 	ld a, [wCurPartyMon]
@@ -404,7 +408,7 @@ FlyFunction_InitGFX:
 	add hl, de
 	ld a, [hl]
 	ld [wd265], a
-	ld e, $84
+	ld e, FIELDMOVE_FLY
 	farcall FlyFunction_GetMonIcon
 	xor a
 	ld [wJumptableIndex], a
@@ -446,5 +450,5 @@ FlyFunction_FrameTimer:
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $80
+	ld [hl], FIELDMOVE_GRASS
 	ret

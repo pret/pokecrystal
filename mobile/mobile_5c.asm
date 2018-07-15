@@ -279,7 +279,7 @@ Function170d02:
 	ld a, $1
 	ld [rVBK], a
 	ld de, GFX_171848
-	ld hl, vTiles1 tile $41
+	ld hl, vTiles0 tile $c1
 	lb bc, BANK(GFX_171848), 24
 	call Get2bpp
 	xor a
