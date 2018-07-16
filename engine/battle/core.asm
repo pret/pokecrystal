@@ -3619,10 +3619,10 @@ CheckPlayerPartyForFitMon:
 	ld e, a
 	xor a
 	ld hl, wPartyMon1HP
-	ld bc, wPartyMon2 - (wPartyMon1 + 1)
+	ld bc, PARTYMON_STRUCT_LENGTH - 1
 .loop
 	or [hl]
-	inc hl
+	inc hl ; + 1
 	or [hl]
 	add hl, bc
 	dec e

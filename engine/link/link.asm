@@ -2039,7 +2039,7 @@ CheckTimeCapsuleCompatibility:
 	jr nc, .move_too_new
 	dec c
 	jr nz, .move_next
-	ld de, wPartyMon2 - (wPartyMon1 + NUM_MOVES)
+	ld de, PARTYMON_STRUCT_LENGTH - NUM_MOVES
 	add hl, de
 	dec b
 	jr nz, .move_loop

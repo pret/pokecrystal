@@ -104,7 +104,7 @@ Function_LoadRandomBattleTowerMon:
 	ld a, [wBTChoiceOfLvlGroup]
 	dec a
 	ld hl, BattleTowerMons
-	ld bc, BattleTowerMons2 - BattleTowerMons1
+	ld bc, BattleTowerMons2 - BattleTowerMons1 ; size of one level group
 	call AddNTimes
 
 	ld a, [hRandomAdd]

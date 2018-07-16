@@ -55,8 +55,8 @@ OddEgg1:
 	bigdw 8 ; SAtk
 	bigdw 8 ; SDef
 	db "EGG@@@@@@@@"
+OddEgg1End:
 
-OddEgg2:
 	db PICHU
 	db NO_ITEM
 	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, 0
