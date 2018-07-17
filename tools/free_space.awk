@@ -1,11 +1,14 @@
-#!/usr/bin/awk -nf
+#!/usr/bin/awk -f
+
+# Usage: tools/free_space.awk pokecrystal.map
 
 BEGIN {
-	total = free = 0x4000 * 128
+	total = free = 16384 * 128
 }
 /^  SECTION: \$[0-7]/ {
-	free -= sprintf("%d", "0x" substr($3, 3))
+	free -= strtonum("0x" substr($3, 3))
 }
 END {
-	printf("Free space: %d/%d (%.2f%%)\n", free, total, free*100.0/total)
+	percent = free * 100.0 / total
+	printf("Free space: %d/%d (%.2f%%)\n", free, total, percent)
 }
