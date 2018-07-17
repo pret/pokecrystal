@@ -129,3 +129,4 @@ hDMATransfer       EQU $ffe8
 hMobile            EQU $ffe9
 hSystemBooted      EQU $ffea
 hClockResetTrigger EQU $ffeb
+hFFEC              EQU $ffec
