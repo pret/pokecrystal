@@ -178,26 +178,30 @@ NextChar::
 
 CheckDict::
 dict: MACRO
-if \1 == 0
+if \1 == "<NULL>"
 	and a
 else
 	cp \1
 endc
-	jp z, \2
-ENDM
 
-dict2: MACRO
-	cp \1
+if STRSUB("\2", 1, 1) == "\""
+; Replace a character with another one
 	jr nz, ._\@
 	ld a, \2
 ._\@:
+elif STRSUB("\2", 1, 1) == "."
+; Locals can use a short jump
+	jr z, \2
+else
+	jp z, \2
+endc
 ENDM
 
-	dict TX_DAY,      DayOfWeekChar
+	dict "<MOBILE>",  MobileScriptChar
 	dict "<LINE>",    LineChar
 	dict "<NEXT>",    NextLineChar
-	dict TX_FAR,      TextFar
-	dict TX_START,    NullChar
+	dict "<CR>",      CarriageReturnChar
+	dict "<NULL>",    NullChar
 	dict "<SCROLL>",  _ContTextNoPause
 	dict "<_CONT>",   _ContText
 	dict "<PARA>",    Paragraph
@@ -215,7 +219,7 @@ ENDM
 	dict "<TM>",      TMChar
 	dict "<TRAINER>", TrainerChar
 	dict "<KOUGEKI>", PlaceKougeki
-	dict "<LNBRK>",   LineBreakChar
+	dict "<LF>",      LineFeedChar
 	dict "<CONT>",    ContText
 	dict "<……>",      SixDotsChar
 	dict "<DONE>",    DoneText
@@ -223,17 +227,14 @@ ENDM
 	dict "<PKMN>",    PlacePKMN
 	dict "<POKE>",    PlacePOKE
 	dict "%",         NextChar
-	dict2 "¯",        " "
+	dict "¯",         " "
 	dict "<DEXEND>",  PlaceDexEnd
 	dict "<TARGET>",  PlaceMoveTargetsName
 	dict "<USER>",    PlaceMoveUsersName
 	dict "<ENEMY>",   PlaceEnemysName
 	dict "<PLAY_G>",  PlaceGenderedPlayerName
-
-	cp "ﾟ"
-	jr z, .place ; should be .diacritic
-	cp "ﾞ"
-	jr z, .place ; should be .diacritic
+	dict "ﾟ",         .place ; should be .diacritic
+	dict "ﾞ",         .place ; should be .diacritic
 	jr .not_diacritic
 
 .diacritic
@@ -276,10 +277,10 @@ ENDM
 	call PrintLetterDelay
 	jp NextChar
 
-DayOfWeekChar::
+MobileScriptChar::
 	ld c, l
 	ld b, h
-	farcall Function17f036
+	farcall RunMobileScript
 	jp PlaceNextChar
 
 print_name: MACRO
@@ -409,14 +410,14 @@ NextLineChar::
 	push hl
 	jp NextChar
 
-LineBreakChar::
+LineFeedChar::
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	push hl
 	jp NextChar
 
-TextFar::
+CarriageReturnChar::
 	pop hl
 	push de
 	ld bc, -wTileMap + $10000

@@ -3570,25 +3570,25 @@ Palette_17eff6:
 	RGB 24, 16,  3
 	RGB  0,  0,  0
 
-Function17f036::
+RunMobileScript::
 	ld a, $6
 	call GetSRAMBank
 	inc de
-.asm_17f03c
-	call Function17f047
-	jr c, .asm_17f043
-	jr .asm_17f03c
+.loop
+	call _RunMobileScript
+	jr c, .finished
+	jr .loop
 
-.asm_17f043
+.finished
 	call CloseSRAM
 	ret
 
-Function17f047:
+_RunMobileScript:
 	ld a, [de]
 	inc de
 	cp $50
 	jr z, .finished
-	cp $10
+	cp $10 ; jumptable size
 	jr nc, .finished
 	dec a
 	push de

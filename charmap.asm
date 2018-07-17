@@ -2,9 +2,12 @@
 
 ; Control characters (see home/text.asm)
 
+	charmap "<NULL>",    $00
 	charmap "<PLAY_G>",  $14 ; "<PLAYER>くん" or "<PLAYER>ちゃん"; same as "<PLAYER>" in English
+	charmap "<MOBILE>",  $15
+	charmap "<CR>",      $16
 	charmap "¯",         $1f ; soft linebreak
-	charmap "<LNBRK>",   $22
+	charmap "<LF>",      $22
 	charmap "<POKE>",    $24 ; "<PO><KE>"
 	charmap "%",         $25 ; soft linebreak in landmark names
 	charmap "<RED>",     $38 ; wRedsName
