@@ -1176,7 +1176,7 @@ ScrollMapUp::
 	ld l, a
 	ld a, [wBGMapAnchor + 1]
 	ld h, a
-	ld bc, $0200
+	ld bc, BG_MAP_WIDTH tiles
 	add hl, bc
 ; cap d at HIGH(vBGMap0)
 	ld a, h

@@ -17,7 +17,7 @@ LoadFishingGFX:
 	call .LoadGFX
 	ld hl, vTiles0 tile $0a
 	call .LoadGFX
-	ld hl, vTiles1 tile $7c
+	ld hl, vTiles0 tile $fc
 	call .LoadGFX
 
 	pop af

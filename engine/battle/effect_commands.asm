@@ -1210,7 +1210,9 @@ BattleCommand_Critical:
 	ld [wCriticalHit], a
 	ret
 
-INCLUDE "data/battle/critical_hits.asm"
+INCLUDE "data/moves/critical_hit_moves.asm"
+
+INCLUDE "data/battle/critical_hit_chances.asm"
 
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 

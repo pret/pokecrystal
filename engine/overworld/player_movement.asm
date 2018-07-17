@@ -562,8 +562,8 @@ DoPlayerMovement::
 .GetAction:
 ; Poll player input and update movement info.
 
-	ld hl, .table
-	ld de, .table2 - .table1
+	ld hl, .action_table
+	ld de, .action_table_1_end - .action_table_1
 	ld a, [wCurInput]
 	bit D_DOWN_F, a
 	jr nz, .d_down
@@ -597,25 +597,20 @@ DoPlayerMovement::
 	ld [wWalkingTile], a
 	ret
 
-.table
-; struct:
-;	walk direction
-;	facing
-;	x movement
-;	y movement
-;	tile collision pointer
-.table1
-	db STANDING, FACE_CURRENT, 0, 0
-	dw wPlayerStandingTile
-.table2
-	db RIGHT, FACE_RIGHT,  1,  0
-	dw wTileRight
-	db LEFT,  FACE_LEFT,  -1,  0
-	dw wTileLeft
-	db UP,    FACE_UP,     0, -1
-	dw wTileUp
-	db DOWN,  FACE_DOWN,   0,  1
-	dw wTileDown
+player_action: MACRO
+; walk direction, facing, x movement, y movement, tile collision pointer
+	db \1, \2, \3, \4
+	dw \5
+ENDM
+
+.action_table:
+.action_table_1
+	player_action STANDING, FACE_CURRENT, 0,  0, wPlayerStandingTile
+.action_table_1_end
+	player_action RIGHT,    FACE_RIGHT,   1,  0, wTileRight
+	player_action LEFT,     FACE_LEFT,   -1,  0, wTileLeft
+	player_action UP,       FACE_UP,      0, -1, wTileUp
+	player_action DOWN,     FACE_DOWN,    0,  1, wTileDown
 
 .CheckNPC:
 ; Returns 0 if there is an NPC in front that you can't move

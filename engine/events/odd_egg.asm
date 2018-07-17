@@ -39,7 +39,7 @@ _GiveOddEgg:
 .done
 
 	ld hl, OddEggs
-	ld a, OddEgg2 - OddEgg1
+	ld a, OddEgg1End - OddEgg1
 	call AddNTimes
 
 	ld de, wOddEggSpecies

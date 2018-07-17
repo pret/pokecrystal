@@ -204,7 +204,7 @@ SFX:
 	dba Sfx_IntroSuicune4
 	dba Sfx_GameFreakPresents
 	dba Sfx_Tingle
-	dba Sfx_UnknownCB
+	dba Sfx_IntroWhoosh
 	dba Sfx_TwoPcBeeps
 	dba Sfx_4NoteDitty
 	dba Sfx_Twinkle

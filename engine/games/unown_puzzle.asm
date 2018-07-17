@@ -19,11 +19,11 @@ _UnownPuzzle:
 	xor a
 	call ByteFill
 	ld hl, UnownPuzzleCursorGFX
-	ld de, vTiles1 tile $60
+	ld de, vTiles0 tile $e0
 	ld bc, 4 tiles
 	call CopyBytes
 	ld hl, UnownPuzzleStartCancelLZ
-	ld de, vTiles1 tile $6d
+	ld de, vTiles0 tile $ed
 	call Decompress
 	call LoadUnownPuzzlePiecesGFX
 	hlcoord 0, 0

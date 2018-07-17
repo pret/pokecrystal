@@ -605,7 +605,7 @@ Function17d370:
 	call ClearScreen
 	farcall ReloadMapPart
 	call DisableLCD
-	ld hl, vTiles1 tile $6e
+	ld hl, vTiles0 tile $ee
 	ld de, $c608
 	ld bc, 1 tiles
 	call CopyBytes
@@ -620,7 +620,7 @@ Function17d370:
 	ld bc, 1 tiles
 	call ByteFill
 	ld hl, $c608
-	ld de, vTiles1 tile $6e
+	ld de, vTiles0 tile $ee
 	ld bc, 1 tiles
 	call CopyBytes
 	xor a
@@ -652,7 +652,7 @@ Function17d3f6:
 
 Function17d405:
 	call DisableLCD
-	ld hl, vTiles1 tile $6e
+	ld hl, vTiles0 tile $ee
 	ld de, $c608
 	ld bc, 1 tiles
 	call CopyBytes
@@ -667,7 +667,7 @@ Function17d405:
 	ld bc, 1 tiles
 	call ByteFill
 	ld hl, $c608
-	ld de, vTiles1 tile $6e
+	ld de, vTiles0 tile $ee
 	ld bc, 1 tiles
 	call CopyBytes
 	xor a

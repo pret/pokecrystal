@@ -41,7 +41,7 @@ OddEgg1:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	db $0, $0 ; DVs
+	dn 0, 0, 0, 0 ; DVs
 	db 30, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -55,8 +55,8 @@ OddEgg1:
 	bigdw 8 ; SAtk
 	bigdw 8 ; SDef
 	db "EGG@@@@@@@@"
+OddEgg1End:
 
-OddEgg2:
 	db PICHU
 	db NO_ITEM
 	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, 0
@@ -68,7 +68,7 @@ OddEgg2:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	db $2a, $aa ; DVs
+	dn 2, 10, 10, 10 ; DVs
 	db 30, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -120,7 +120,7 @@ OddEgg2:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	db $2a, $aa ; DVs
+	dn 2, 10, 10, 10 ; DVs
 	db 35, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -172,7 +172,7 @@ OddEgg2:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	db $2a, $aa ; DVs
+	dn 2, 10, 10, 10 ; DVs
 	db 15, 20, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -224,7 +224,7 @@ OddEgg2:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	db $2a, $aa ; DVs
+	dn 2, 10, 10, 10 ; DVs
 	db 35, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -276,7 +276,7 @@ OddEgg2:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	db $2a, $aa ; DVs
+	dn 2, 10, 10, 10 ; DVs
 	db 25, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -328,7 +328,7 @@ OddEgg2:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	db $2a, $aa ; DVs
+	dn 2, 10, 10, 10 ; DVs
 	db 30, 30, 10, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
@@ -380,7 +380,7 @@ OddEgg2:
 	bigdw 0
 	bigdw 0
 	bigdw 0
-	db $2a, $aa ; DVs
+	dn 2, 10, 10, 10 ; DVs
 	db 35, 10, 0, 0 ; PP
 	db 20 ; Happiness
 	db 0, 0, 0 ; Pokerus, Caught data
