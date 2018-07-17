@@ -9,6 +9,5 @@ BEGIN {
 	free -= strtonum("0x" substr($3, 3))
 }
 END {
-	percent = free * 100.0 / total
-	printf("Free space: %d/%d (%.2f%%)\n", free, total, percent)
+	printf("Free space: %d/%d (%.2f%%)\n", free, total, free * 100 / total)
 }
