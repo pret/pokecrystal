@@ -1317,7 +1317,7 @@ Pokedex_DrawUnownModeBG:
 	call Pokedex_PlaceFrontpicAtHL
 	ld de, 0
 	ld b, 0
-	ld c, 26
+	ld c, NUM_UNOWN
 .loop
 	ld hl, wUnownDex
 	add hl, de
@@ -2486,11 +2486,11 @@ Pokedex_LoadUnownFont:
 	ld a, BANK(UnownFont)
 	call FarCopyBytes
 	ld hl, sScratch + $188
-	ld bc, 27 tiles
+	ld bc, (NUM_UNOWN + 1) tiles
 	call Pokedex_InvertTiles
 	ld de, sScratch + $188
 	ld hl, vTiles2 tile $40
-	lb bc, BANK(Pokedex_LoadUnownFont), 27
+	lb bc, BANK(Pokedex_LoadUnownFont), NUM_UNOWN + 1
 	call Request2bpp
 	call CloseSRAM
 	ret
