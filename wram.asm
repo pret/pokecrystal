@@ -359,7 +359,13 @@ SECTION "Battle", WRAM0
 
 UNION ; c608
 ; unidentified uses
-wc608:: ds 480
+wc608:: ds 53
+wc63d:: ds 5
+wc642:: ds 5
+wc647:: ds 33
+wc668:: ds 32
+wc688:: ds 2
+wc68a:: ds 350
 
 NEXTU ; c608
 ; surrounding tiles
@@ -868,7 +874,18 @@ endc
 
 NEXTU ; c6d0
 ; mobile data
-wc6d0:: ds 126
+wc6d0:: ds 56
+wc708:: db
+wc709:: db
+wc70a:: db
+wc70b:: db
+wc70c:: db
+wc70d:: db
+wc70e:: db
+wc70f:: db
+wc710:: db
+wc711:: db
+wc712:: ds 60
 wc74e:: ds 107
 wc7b9:: ds 1
 wc7ba:: ds 1

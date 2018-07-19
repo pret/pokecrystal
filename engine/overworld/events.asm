@@ -1336,8 +1336,8 @@ DoBikeStep::
 
 ClearCmdQueue::
 	ld hl, wCmdQueue
-	ld de, 6
-	ld c, 4
+	ld de, CMDQUEUE_ENTRY_SIZE
+	ld c, CMDQUEUE_CAPACITY
 	xor a
 .loop
 	ld [hl], a
@@ -1443,7 +1443,7 @@ HandleQueuedCommand:
 	ld hl, CMDQUEUE_TYPE
 	add hl, bc
 	ld a, [hl]
-	cp 5
+	cp NUM_CMDQUEUE_TYPES
 	jr c, .okay
 	xor a
 

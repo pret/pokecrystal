@@ -8578,7 +8578,7 @@ ReadAndPrintLinkBattleRecord:
 	db "   0    0    0@"
 
 .Format:
-	db "  ---  <LNBRK>"
+	db "  ---  <LF>"
 	db "         -    -    -@"
 .Record:
 	db "<PLAYER>'s RECORD@"

@@ -178,26 +178,30 @@ NextChar::
 
 CheckDict::
 dict: MACRO
-if \1 == 0
+if \1 == "<NULL>"
 	and a
 else
 	cp \1
 endc
-	jp z, \2
-ENDM
 
-dict2: MACRO
-	cp \1
+if STRSUB("\2", 1, 1) == "\""
+; Replace a character with another one
 	jr nz, ._\@
 	ld a, \2
 ._\@:
+elif STRSUB("\2", 1, 1) == "."
+; Locals can use a short jump
+	jr z, \2
+else
+	jp z, \2
+endc
 ENDM
 
-	dict TX_DAY,      DayOfWeekChar
+	dict "<MOBILE>",  MobileScriptChar
 	dict "<LINE>",    LineChar
 	dict "<NEXT>",    NextLineChar
-	dict TX_FAR,      TextFar
-	dict TX_START,    NullChar
+	dict "<CR>",      CarriageReturnChar
+	dict "<NULL>",    NullChar
 	dict "<SCROLL>",  _ContTextNoPause
 	dict "<_CONT>",   _ContText
 	dict "<PARA>",    Paragraph
@@ -215,7 +219,7 @@ ENDM
 	dict "<TM>",      TMChar
 	dict "<TRAINER>", TrainerChar
 	dict "<KOUGEKI>", PlaceKougeki
-	dict "<LNBRK>",   LineBreakChar
+	dict "<LF>",      LineFeedChar
 	dict "<CONT>",    ContText
 	dict "<……>",      SixDotsChar
 	dict "<DONE>",    DoneText
@@ -223,17 +227,14 @@ ENDM
 	dict "<PKMN>",    PlacePKMN
 	dict "<POKE>",    PlacePOKE
 	dict "%",         NextChar
-	dict2 "¯",        " "
+	dict "¯",         " "
 	dict "<DEXEND>",  PlaceDexEnd
 	dict "<TARGET>",  PlaceMoveTargetsName
 	dict "<USER>",    PlaceMoveUsersName
 	dict "<ENEMY>",   PlaceEnemysName
 	dict "<PLAY_G>",  PlaceGenderedPlayerName
-
-	cp "ﾟ"
-	jr z, .place ; should be .diacritic
-	cp "ﾞ"
-	jr z, .place ; should be .diacritic
+	dict "ﾟ",         .place ; should be .diacritic
+	dict "ﾞ",         .place ; should be .diacritic
 	jr .not_diacritic
 
 .diacritic
@@ -276,10 +277,10 @@ ENDM
 	call PrintLetterDelay
 	jp NextChar
 
-DayOfWeekChar::
+MobileScriptChar::
 	ld c, l
 	ld b, h
-	farcall Function17f036
+	farcall RunMobileScript
 	jp PlaceNextChar
 
 print_name: MACRO
@@ -409,14 +410,14 @@ NextLineChar::
 	push hl
 	jp NextChar
 
-LineBreakChar::
+LineFeedChar::
 	pop hl
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	push hl
 	jp NextChar
 
-TextFar::
+CarriageReturnChar::
 	pop hl
 	push de
 	ld bc, -wTileMap + $10000
@@ -681,32 +682,32 @@ DoTextUntilTerminator::
 
 TextCommands::
 ; entries correspond to TX_* constants (see macros/scripts/text.asm)
-	dw Text_TX               ; TX_START
-	dw Text_TX_RAM           ; TX_RAM
-	dw Text_TX_BCD           ; TX_BCD
-	dw Text_TX_MOVE          ; TX_MOVE
-	dw Text_TX_BOX           ; TX_BOX
-	dw Text_TX_LOW           ; TX_LOW
-	dw Text_WAIT_BUTTON      ; WAIT_BUTTON
-	dw Text_TX_SCROLL        ; TX_SCROLL
-	dw Text_START_ASM        ; START_ASM
-	dw Text_TX_NUM           ; TX_NUM
-	dw Text_TX_EXIT          ; TX_EXIT
-	dw Text_PlaySound        ; TX_SOUND_DEX_FANFARE_50_79
-	dw Text_TX_DOTS          ; TX_DOTS
-	dw Text_LINK_WAIT_BUTTON ; TX_LINK_WAIT_BUTTON
-	dw Text_PlaySound        ; TX_SOUND_DEX_FANFARE_20_49
-	dw Text_PlaySound        ; TX_SOUND_ITEM
-	dw Text_PlaySound        ; TX_SOUND_CAUGHT_MON
-	dw Text_PlaySound        ; TX_SOUND_DEX_FANFARE_80_109
-	dw Text_PlaySound        ; TX_SOUND_FANFARE
-	dw Text_PlaySound        ; TX_SOUND_SLOT_MACHINE_START
-	dw Text_TX_STRINGBUFFER  ; TX_STRINGBUFFER
-	dw Text_TX_DAY           ; TX_DAY
-	dw Text_TX_FAR           ; TX_FAR
+	dw TextCommand_START            ; TX_START
+	dw TextCommand_RAM              ; TX_RAM
+	dw TextCommand_BCD              ; TX_BCD
+	dw TextCommand_MOVE             ; TX_MOVE
+	dw TextCommand_BOX              ; TX_BOX
+	dw TextCommand_LOW              ; TX_LOW
+	dw TextCommand_WAIT_BUTTON      ; TX_WAIT_BUTTON
+	dw TextCommand_SCROLL           ; TX_SCROLL
+	dw TextCommand_START_ASM        ; TX_START_ASM
+	dw TextCommand_NUM              ; TX_NUM
+	dw TextCommand_EXIT             ; TX_EXIT
+	dw TextCommand_SOUND            ; TX_SOUND_DEX_FANFARE_50_79
+	dw TextCommand_DOTS             ; TX_DOTS
+	dw TextCommand_LINK_WAIT_BUTTON ; TX_LINK_WAIT_BUTTON
+	dw TextCommand_SOUND            ; TX_SOUND_DEX_FANFARE_20_49
+	dw TextCommand_SOUND            ; TX_SOUND_ITEM
+	dw TextCommand_SOUND            ; TX_SOUND_CAUGHT_MON
+	dw TextCommand_SOUND            ; TX_SOUND_DEX_FANFARE_80_109
+	dw TextCommand_SOUND            ; TX_SOUND_FANFARE
+	dw TextCommand_SOUND            ; TX_SOUND_SLOT_MACHINE_START
+	dw TextCommand_STRINGBUFFER     ; TX_STRINGBUFFER
+	dw TextCommand_DAY              ; TX_DAY
+	dw TextCommand_FAR              ; TX_FAR
 
-Text_TX::
-; TX
+TextCommand_START::
+; text_start
 ; write text until "@"
 ; [$00]["...@"]
 
@@ -720,7 +721,7 @@ Text_TX::
 	inc hl
 	ret
 
-Text_TX_RAM::
+TextCommand_RAM::
 ; text_from_ram
 ; write text from a ram address
 ; little endian
@@ -737,7 +738,7 @@ Text_TX_RAM::
 	pop hl
 	ret
 
-Text_TX_FAR::
+TextCommand_FAR::
 ; text_jump
 ; write text from a different bank
 ; little endian
@@ -766,8 +767,8 @@ Text_TX_FAR::
 	ld [MBC3RomBank], a
 	ret
 
-Text_TX_BCD::
-; TX_BCD
+TextCommand_BCD::
+; text_bcd
 ; write bcd from address, typically ram
 ; [$02][addr][flags]
 ; flags: see PrintBCDNumber
@@ -787,8 +788,8 @@ Text_TX_BCD::
 	pop hl
 	ret
 
-Text_TX_MOVE::
-; TX_MOVE
+TextCommand_MOVE::
+; text_move
 ; move to a new tile
 ; [$03][addr]
 
@@ -800,8 +801,8 @@ Text_TX_MOVE::
 	ld b, a
 	ret
 
-Text_TX_BOX::
-; TX_BOX
+TextCommand_BOX::
+; text_box
 ; draw a box
 ; little endian
 ; [$04][addr][height][width]
@@ -821,25 +822,25 @@ Text_TX_BOX::
 	pop hl
 	ret
 
-Text_TX_LOW::
-; TX_LOW
+TextCommand_LOW::
+; text_low
 ; write text at (1,16)
 ; [$05]
 
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	ret
 
-Text_WAIT_BUTTON::
-; TX_WAITBUTTON
+TextCommand_WAIT_BUTTON::
+; text_waitbutton
 ; wait for button press
 ; show arrow
 ; [06]
 
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
-	jp z, Text_LINK_WAIT_BUTTON
+	jp z, TextCommand_LINK_WAIT_BUTTON
 	cp LINK_MOBILE
-	jp z, Text_LINK_WAIT_BUTTON
+	jp z, TextCommand_LINK_WAIT_BUTTON
 
 	push hl
 	call LoadBlinkingCursor
@@ -850,7 +851,8 @@ Text_WAIT_BUTTON::
 	pop hl
 	ret
 
-Text_TX_SCROLL::
+TextCommand_SCROLL::
+; text_scroll
 ; pushes text up two lines and sets the BC cursor to the border tile
 ; below the first character column of the text box.
 	push hl
@@ -861,8 +863,8 @@ Text_TX_SCROLL::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	ret
 
-Text_START_ASM::
-; TX_ASM
+TextCommand_START_ASM::
+; start_asm
 
 	bit 7, h
 	jr nz, .not_rom
@@ -873,8 +875,8 @@ Text_START_ASM::
 	ld [hl], a
 	ret
 
-Text_TX_NUM::
-; TX_NUM
+TextCommand_NUM::
+; deciram
 ; [$09][addr][hi:bytes lo:digits]
 	ld a, [hli]
 	ld e, a
@@ -898,7 +900,8 @@ Text_TX_NUM::
 	pop hl
 	ret
 
-Text_TX_EXIT::
+TextCommand_EXIT::
+; interpret_data
 	push hl
 	push bc
 	call GetJoypad
@@ -912,7 +915,7 @@ Text_TX_EXIT::
 	pop hl
 	ret
 
-Text_PlaySound::
+TextCommand_SOUND::
 ; chars:
 ;   $0b, $0e, $0f, $10, $11, $12, $13
 ; see TextSFX
@@ -948,7 +951,7 @@ Text_PlaySound::
 	ret
 
 Unreferenced_Function1522::
-; TX_CRY
+; play_cry
 	push de
 	ld e, [hl]
 	inc hl
@@ -969,7 +972,8 @@ TextSFX::
 	dbw TX_SOUND_SLOT_MACHINE_START, SFX_SLOT_MACHINE_START
 	db -1
 
-Text_TX_DOTS::
+TextCommand_DOTS::
+; limited_interpret_data
 ; [$0C][num]
 	ld a, [hli]
 	ld d, a
@@ -997,7 +1001,8 @@ Text_TX_DOTS::
 	pop hl
 	ret
 
-Text_LINK_WAIT_BUTTON::
+TextCommand_LINK_WAIT_BUTTON::
+; link_wait_button
 ; wait for key down
 ; display arrow
 	push hl
@@ -1007,7 +1012,8 @@ Text_LINK_WAIT_BUTTON::
 	pop hl
 	ret
 
-Text_TX_STRINGBUFFER::
+TextCommand_STRINGBUFFER::
+; text_buffer
 ; Print a string from one of the following:
 ; 0: wStringBuffer3
 ; 1: wStringBuffer4
@@ -1035,8 +1041,8 @@ Text_TX_STRINGBUFFER::
 	pop hl
 	ret
 
-Text_TX_DAY::
-; TX_DAY
+TextCommand_DAY::
+; current_day
 
 	call GetWeekday
 	push hl

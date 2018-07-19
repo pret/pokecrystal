@@ -265,27 +265,27 @@ CheckStringForErrors_IgnoreTerminator:
 	ret
 
 Function17d0f3:
-	ld a, [$c608 + 5]
+	ld a, [wc608 + 5]
 	ld [wOTTrademonSpecies], a
 	ld [wCurPartySpecies], a
 	ld a, [wcd81]
-	ld [$c74e], a
-	ld hl, $c63d
+	ld [wc74e], a
+	ld hl, wc608 + 53
 	ld de, wOTTrademonOTName
 	ld bc, 5
 	call CopyBytes
 	ld a, "@"
 	ld [de], a
-	ld a, [$c608 + 11]
+	ld a, [wc608 + 11]
 	ld [wOTTrademonID], a
-	ld a, [$c608 + 12]
+	ld a, [wc608 + 12]
 	ld [wOTTrademonID + 1], a
-	ld hl, $c608 + 26
+	ld hl, wc608 + 26
 	ld a, [hli]
 	ld [wOTTrademonDVs], a
 	ld a, [hl]
 	ld [wOTTrademonDVs + 1], a
-	ld bc, $c608 + 5
+	ld bc, wc608 + 5
 	farcall GetCaughtGender
 	ld a, c
 	ld [wOTTrademonCaughtData], a
@@ -324,7 +324,7 @@ Function17d0f3:
 
 Mobile_CopyDefaultOTName:
 	ld hl, Mobile5F_PlayersName
-	ld de, $c63d
+	ld de, wc63d
 	ld bc, 5
 	call CopyBytes
 	ret
@@ -334,7 +334,7 @@ Mobile5F_PlayersName:
 
 Mobile_CopyDefaultNickname:
 	ld hl, .DefaultNickname
-	ld de, $c642
+	ld de, wc642
 	ld bc, 5
 	call CopyBytes
 	ret
@@ -344,11 +344,11 @@ Mobile_CopyDefaultNickname:
 
 Mobile_CopyDefaultMail:
 	ld a, "@"
-	ld hl, $c647
+	ld hl, wc647
 	ld bc, MAIL_MSG_LENGTH + 1
 	call ByteFill
 	ld hl, .DefaultMessage
-	ld de, $c647
+	ld de, wc647
 	ld bc, 6
 	call CopyBytes
 	ret
@@ -358,11 +358,11 @@ Mobile_CopyDefaultMail:
 
 Mobile_CopyDefaultMailAuthor:
 	ld a, "@"
-	ld de, $c668
+	ld de, wc668
 	ld bc, 5
 	call ByteFill
 	ld hl, Mobile5F_PlayersName
-	ld de, $c668
+	ld de, wc668
 	ld bc, 5
 	call CopyBytes
 	ret
@@ -606,7 +606,7 @@ Function17d370:
 	farcall ReloadMapPart
 	call DisableLCD
 	ld hl, vTiles0 tile $ee
-	ld de, $c608
+	ld de, wc608
 	ld bc, 1 tiles
 	call CopyBytes
 	ld a, $1
@@ -619,7 +619,7 @@ Function17d370:
 	ld hl, vTiles2 tile $7f
 	ld bc, 1 tiles
 	call ByteFill
-	ld hl, $c608
+	ld hl, wc608
 	ld de, vTiles0 tile $ee
 	ld bc, 1 tiles
 	call CopyBytes
@@ -653,7 +653,7 @@ Function17d3f6:
 Function17d405:
 	call DisableLCD
 	ld hl, vTiles0 tile $ee
-	ld de, $c608
+	ld de, wc608
 	ld bc, 1 tiles
 	call CopyBytes
 	ld a, $1
@@ -666,7 +666,7 @@ Function17d405:
 	ld hl, vTiles2 tile $7f
 	ld bc, 1 tiles
 	call ByteFill
-	ld hl, $c608
+	ld hl, wc608
 	ld de, vTiles0 tile $ee
 	ld bc, 1 tiles
 	call CopyBytes
@@ -713,7 +713,7 @@ Jumptable_17d483:
 
 Function17d48d:
 	ld hl, Palette_17eff6
-	ld de, $c608
+	ld de, wc608
 	ld bc, $40
 	call CopyBytes
 	ld hl, TileAttrmap_17eb8e
@@ -765,7 +765,7 @@ Function17d48d:
 
 .asm_17d4e0
 	ld a, [hli]
-	ld de, $c608
+	ld de, wc608
 	ld c, $8
 .asm_17d4e6
 	srl a
@@ -938,7 +938,7 @@ Function17d5c4:
 Function17d5f6:
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $c608
+	ld hl, wc608
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
@@ -950,7 +950,7 @@ Function17d60b:
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b1d3
-	ld de, $c608
+	ld de, wc608
 	ld bc, $20
 	call CopyBytes
 	ld a, [$b1b1]
@@ -964,7 +964,7 @@ Function17d60b:
 	call CloseSRAM
 	ld a, $6
 	call GetSRAMBank
-	ld de, $c708
+	ld de, wc708
 	ld a, c
 	and a
 	jr z, .asm_17d684
@@ -985,7 +985,7 @@ Function17d60b:
 	ld [wcd49], a
 	push hl
 	push de
-	ld hl, $c608
+	ld hl, wc608
 	ld e, b
 	ld d, $0
 	add hl, de
@@ -1024,7 +1024,7 @@ Function17d60b:
 	call CloseSRAM
 	ld a, $5
 	call GetSRAMBank
-	ld hl, $c708
+	ld hl, wc708
 	ld de, $b1b3
 	ld a, [$b1b1]
 	ld c, a
@@ -1307,7 +1307,7 @@ Function17d85d:
 	and a
 	jr nz, .asm_17d86c
 	pop hl
-	ld de, $c608
+	ld de, wc608
 	ld c, $0
 .asm_17d878
 	ld a, [hli]
@@ -1365,7 +1365,7 @@ Function17d85d:
 	push bc
 	ld a, $3
 	ld [rSVBK], a
-	ld hl, $c608
+	ld hl, wc608
 	ld de, wBGPals1
 	ld b, $0
 	call CopyBytes
@@ -1426,7 +1426,7 @@ Function17d902:
 
 Function17d93a:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $5
 	call CopyBytes
 	call HlToCrashCheckPointer
@@ -1435,19 +1435,19 @@ Function17d93a:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld a, [$c70c]
+	ld a, [wc70c]
 	call Function17e6de
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld [wCurPartySpecies], a
-	ld a, [$c70c]
+	ld a, [wc70c]
 	ld e, a
 	farcall LoadMonPaletteAsNthBGPal
 	call SetPalettes
-	ld a, [$c708]
+	ld a, [wc708]
 	ld l, a
-	ld a, [$c709]
+	ld a, [wc709]
 	ld h, a
-	ld a, [$c70b]
+	ld a, [wc70b]
 	ld c, a
 	decoord 0, 0
 	add hl, de
@@ -1461,7 +1461,7 @@ Function17d93a:
 
 Function17d98b:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $4
 	call CopyBytes
 	call HlToCrashCheckPointer
@@ -1470,17 +1470,17 @@ Function17d98b:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld a, [$c70b]
+	ld a, [wc70b]
 	call Function17e6de
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld [wTrainerClass], a
-	ld a, [$c70b]
+	ld a, [wc70b]
 	ld e, a
 	farcall LoadTrainerClassPaletteAsNthBGPal
 	call SetPalettes
-	ld a, [$c708]
+	ld a, [wc708]
 	ld e, a
-	ld a, [$c709]
+	ld a, [wc709]
 	ld d, a
 	push de
 	ld de, vTiles2
@@ -1497,34 +1497,34 @@ Function17d98b:
 
 Function17d9e3:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $7
 	call CopyBytes
 	call HlToCrashCheckPointer
-	ld a, [$c70b]
+	ld a, [wc70b]
 	push af
 	cp $c0
 	jr c, .asm_17da01
-	ld a, [$c70c]
+	ld a, [wc70c]
 	ld [rSVBK], a
 	jr .asm_17da07
 
 .asm_17da01
-	ld a, [$c70c]
+	ld a, [wc70c]
 	call GetSRAMBank
 
 .asm_17da07
-	ld a, [$c708]
+	ld a, [wc708]
 	ld l, a
-	ld a, [$c709]
+	ld a, [wc709]
 	ld h, a
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld e, a
-	ld a, [$c70b]
+	ld a, [wc70b]
 	ld d, a
-	ld a, [$c70d]
+	ld a, [wc70d]
 	ld c, a
-	ld a, [$c70e]
+	ld a, [wc70e]
 	ld b, a
 	call CopyBytes
 	pop af
@@ -1542,28 +1542,28 @@ Function17d9e3:
 
 Function17da31:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $4
 	call CopyBytes
 	call HlToCrashCheckPointer
-	ld a, [$c709]
+	ld a, [wc709]
 	push af
 	cp $c0
 	jr c, .asm_17da4f
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld [rSVBK], a
 	jr .asm_17da55
 
 .asm_17da4f
-	ld a, [$c70a]
+	ld a, [wc70a]
 	call GetSRAMBank
 
 .asm_17da55
-	ld a, [$c708]
+	ld a, [wc708]
 	ld e, a
-	ld a, [$c709]
+	ld a, [wc709]
 	ld d, a
-	ld a, [$c70b]
+	ld a, [wc70b]
 	ld c, a
 	bit 7, c
 	jr nz, .asm_17da70
@@ -1824,7 +1824,7 @@ Function17dbe9:
 
 Function17dc1f:
 	call IncCrashCheckPointer
-	ld de, $c688
+	ld de, wc688
 	ld bc, $6
 	call CopyBytes
 	call Function17e32b
@@ -1832,24 +1832,24 @@ Function17dc1f:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, $c688
+	ld hl, wc688
 	ld a, $40
-	ld [$c708], a
+	ld [wc708], a
 	ld a, [hli]
-	ld [$c70a], a
+	ld [wc70a], a
 	add $5
-	ld [$c70c], a
+	ld [wc70c], a
 	ld a, [hli]
-	ld [$c709], a
+	ld [wc709], a
 	add $4
-	ld [$c70b], a
+	ld [wc70b], a
 	ld a, $96
-	ld [$c70d], a
+	ld [wc70d], a
 	ld a, $5c
-	ld [$c70e], a
+	ld [wc70e], a
 	ld a, $1
-	ld [$c70f], a
-	ld hl, $c708
+	ld [wc70f], a
+	ld hl, wc708
 	call LoadMenuHeader
 	call VerticalMenu
 	jr nc, .asm_17dc6e
@@ -1863,16 +1863,16 @@ Function17dc1f:
 	ld a, [wMenuCursorY]
 	cp $1
 	jr nz, .asm_17dc85
-	ld a, [$c68a]
+	ld a, [wc68a]
 	ld l, a
-	ld a, [$c68a + 1]
+	ld a, [wc68a + 1]
 	ld h, a
 	jr .asm_17dc8d
 
 .asm_17dc85
-	ld a, [$c68a + 2]
+	ld a, [wc68a + 2]
 	ld l, a
-	ld a, [$c68a + 3]
+	ld a, [wc68a + 3]
 	ld h, a
 
 .asm_17dc8d
@@ -2005,35 +2005,35 @@ Function17dd30:
 
 Function17dd49:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $a
 	call CopyBytes
-	ld a, [$c711]
+	ld a, [wc711]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, [$c70a]
+	ld a, [wc70a]
 	cp $c0
 	jr c, .sram
-	ld a, [$c708]
+	ld a, [wc708]
 	ld [rSVBK], a
 	jr .got_bank
 
 .sram
-	ld a, [$c708]
+	ld a, [wc708]
 	call GetSRAMBank
 
 .got_bank
-	ld a, [$c709]
+	ld a, [wc709]
 	ld l, a
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld h, a
-	ld de, $c688
-	ld a, [$c711]
+	ld de, wc688
+	ld a, [wc711]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, [$c70a]
+	ld a, [wc70a]
 	cp $c0
 	jr c, .close_sram
 	ld a, $4
@@ -2044,10 +2044,10 @@ Function17dd49:
 	call CloseSRAM
 
 .exited_bank
-	ld a, [$c711]
+	ld a, [wc711]
 	ld c, a
-	ld hl, $c712
-	ld de, $c688
+	ld hl, wc712
+	ld de, wc688
 .loop
 	ld a, [de]
 	inc de
@@ -2060,23 +2060,23 @@ Function17dd49:
 .next
 	dec c
 	jr nz, .loop
-	ld a, [$c70d]
+	ld a, [wc70d]
 	ld l, a
-	ld a, [$c70e]
+	ld a, [wc70e]
 	ld h, a
 	jr .done
 
 .load2
-	ld a, [$c70f]
+	ld a, [wc70f]
 	ld l, a
-	ld a, [$c710]
+	ld a, [wc710]
 	ld h, a
 	jr .done
 
 .load
-	ld a, [$c70b]
+	ld a, [wc70b]
 	ld l, a
-	ld a, [$c70c]
+	ld a, [wc70c]
 	ld h, a
 
 .done
@@ -2085,31 +2085,31 @@ Function17dd49:
 
 Function17ddcd:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $8
 	call CopyBytes
-	ld a, [$c70a]
+	ld a, [wc70a]
 	cp $c0
 	jr c, .asm_17dde7
-	ld a, [$c708]
+	ld a, [wc708]
 	ld [rSVBK], a
 	jr .asm_17dded
 
 .asm_17dde7
-	ld a, [$c708]
+	ld a, [wc708]
 	call GetSRAMBank
 
 .asm_17dded
-	ld a, [$c709]
+	ld a, [wc709]
 	ld e, a
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld d, a
 	ld a, [de]
-	ld [$c710], a
-	ld a, [$c70b]
+	ld [wc710], a
+	ld a, [wc70b]
 	ld c, a
 	ld b, $0
-	ld a, [$c70a]
+	ld a, [wc70a]
 	cp $c0
 	jr c, .asm_17de0c
 	ld a, $4
@@ -2124,20 +2124,20 @@ Function17ddcd:
 	ld hl, Unknown_17da8c
 	add hl, bc
 	ld a, [hl]
-	ld hl, $c710
+	ld hl, wc710
 	and [hl]
 	pop hl
 	jr nz, .asm_17de26
-	ld a, [$c70e]
+	ld a, [wc70e]
 	ld l, a
-	ld a, [$c70f]
+	ld a, [wc70f]
 	ld h, a
 	jr .asm_17de2e
 
 .asm_17de26
-	ld a, [$c70c]
+	ld a, [wc70c]
 	ld l, a
-	ld a, [$c70d]
+	ld a, [wc70d]
 	ld h, a
 
 .asm_17de2e
@@ -2146,26 +2146,26 @@ Function17ddcd:
 
 Function17de32:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $9
 	call CopyBytes
-	ld a, [$c710]
+	ld a, [wc710]
 	ld c, a
 	ld b, $0
 	call CopyBytes
 	ld a, $6
 	call GetSRAMBank
 	call Function17f4f6
-	ld a, [$c708]
+	ld a, [wc708]
 	ld e, a
-	ld a, [$c709]
+	ld a, [wc709]
 	ld d, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld a, [$c710]
+	ld a, [wc710]
 	ld c, a
-	ld hl, $c711
+	ld hl, wc711
 .asm_17de61
 	ld a, [de]
 	inc de
@@ -2178,23 +2178,23 @@ Function17de32:
 .asm_17de6b
 	dec c
 	jr nz, .asm_17de61
-	ld a, [$c70c]
+	ld a, [wc70c]
 	ld l, a
-	ld a, [$c70d]
+	ld a, [wc70d]
 	ld h, a
 	jr .asm_17de8a
 
 .asm_17de78
-	ld a, [$c70e]
+	ld a, [wc70e]
 	ld l, a
-	ld a, [$c70f]
+	ld a, [wc70f]
 	ld h, a
 	jr .asm_17de8a
 
 .asm_17de82
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld l, a
-	ld a, [$c70b]
+	ld a, [wc70b]
 	ld h, a
 
 .asm_17de8a
@@ -2204,20 +2204,20 @@ Function17de32:
 
 Function17de91:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $7
 	call CopyBytes
 	ld a, $6
 	call GetSRAMBank
 	call Function17f4f6
-	ld a, [$c708]
+	ld a, [wc708]
 	ld e, a
-	ld a, [$c709]
+	ld a, [wc709]
 	ld d, a
 	add hl, de
 	ld e, l
 	ld d, h
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld c, a
 	ld b, $0
 	ld hl, Unknown_17da8c
@@ -2227,16 +2227,16 @@ Function17de91:
 	ld h, d
 	and [hl]
 	jr nz, .asm_17deca
-	ld a, [$c70d]
+	ld a, [wc70d]
 	ld l, a
-	ld a, [$c70e]
+	ld a, [wc70e]
 	ld h, a
 	jr .asm_17ded2
 
 .asm_17deca
-	ld a, [$c70b]
+	ld a, [wc70b]
 	ld l, a
-	ld a, [$c70c]
+	ld a, [wc70c]
 	ld h, a
 
 .asm_17ded2
@@ -2246,7 +2246,7 @@ Function17de91:
 
 Function17ded9:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $1f
 	call CopyBytes
 	call Function17e32b
@@ -2254,7 +2254,7 @@ Function17ded9:
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, $c708
+	ld hl, wc708
 	ld a, [hli]
 	ld [wCurPartySpecies], a
 	ld [wTempEnemyMonSpecies], a
@@ -2585,14 +2585,14 @@ asm_17e0ee
 
 Function17e0fd:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $6
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, $c708
+	ld hl, wc708
 	ld a, [hli]
 	ld [wCurItem], a
 	ld a, [hli]
@@ -2618,14 +2618,14 @@ Function17e0fd:
 
 Function17e133:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $5
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, $c708
+	ld hl, wc708
 	ld a, [hli]
 	ld [wScriptVar], a
 	push hl
@@ -2648,14 +2648,14 @@ Function17e133:
 
 Function17e165:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $5
 	call CopyBytes
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
-	ld hl, $c708
+	ld hl, wc708
 	ld a, [hli]
 	ld [wCurItem], a
 	push hl
@@ -2684,31 +2684,31 @@ Function17e165:
 
 Function17e1a1:
 	call IncCrashCheckPointer
-	ld de, $c708
+	ld de, wc708
 	ld bc, $d
 	call CopyBytes
-	ld a, [$c70a]
+	ld a, [wc70a]
 	cp $c0
 	jr c, .asm_17e1bb
-	ld a, [$c708]
+	ld a, [wc708]
 	ld [rSVBK], a
 	jr .asm_17e1c1
 
 .asm_17e1bb
-	ld a, [$c708]
+	ld a, [wc708]
 	call GetSRAMBank
 
 .asm_17e1c1
-	ld a, [$c709]
+	ld a, [wc709]
 	ld l, a
-	ld a, [$c70a]
+	ld a, [wc70a]
 	ld h, a
-	ld de, $c608
-	ld a, [$c70b]
+	ld de, wc608
+	ld a, [wc70b]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, [$c70a]
+	ld a, [wc70a]
 	cp $c0
 	jr c, .asm_17e1e2
 	ld a, $4
@@ -2719,28 +2719,28 @@ Function17e1a1:
 	call CloseSRAM
 
 .asm_17e1e5
-	ld a, [$c70e]
+	ld a, [wc70e]
 	cp $c0
 	jr c, .asm_17e1f3
-	ld a, [$c70c]
+	ld a, [wc70c]
 	ld [rSVBK], a
 	jr .asm_17e1f9
 
 .asm_17e1f3
-	ld a, [$c70c]
+	ld a, [wc70c]
 	call GetSRAMBank
 
 .asm_17e1f9
-	ld a, [$c70d]
+	ld a, [wc70d]
 	ld l, a
-	ld a, [$c70e]
+	ld a, [wc70e]
 	ld h, a
-	ld de, $c688
-	ld a, [$c70b]
+	ld de, wc688
+	ld a, [wc70b]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, [$c70e]
+	ld a, [wc70e]
 	cp $c0
 	jr c, .asm_17e21a
 	ld a, $4
@@ -2751,10 +2751,10 @@ Function17e1a1:
 	call CloseSRAM
 
 .asm_17e21d
-	ld a, [$c70b]
+	ld a, [wc70b]
 	ld c, a
-	ld hl, $c688
-	ld de, $c608
+	ld hl, wc688
+	ld de, wc608
 .asm_17e227
 	ld a, [de]
 	inc de
@@ -2767,23 +2767,23 @@ Function17e1a1:
 .asm_17e231
 	dec c
 	jr nz, .asm_17e227
-	ld a, [$c711]
+	ld a, [wc711]
 	ld l, a
-	ld a, [$c712]
+	ld a, [wc712]
 	ld h, a
 	jr .asm_17e250
 
 .asm_17e23e
-	ld a, [$c70f]
+	ld a, [wc70f]
 	ld l, a
-	ld a, [$c710]
+	ld a, [wc710]
 	ld h, a
 	jr .asm_17e250
 
 .asm_17e248
-	ld a, [$c712 + 1]
+	ld a, [wc712 + 1]
 	ld l, a
-	ld a, [$c712 + 2]
+	ld a, [wc712 + 2]
 	ld h, a
 
 .asm_17e250
@@ -2927,7 +2927,7 @@ Function17e309:
 Function17e32b:
 	ld a, $5
 	call GetSRAMBank
-	ld hl, $c608
+	ld hl, wc608
 	ld de, $b0b1
 	ld bc, $40
 	call CopyBytes
@@ -2941,7 +2941,7 @@ Function17e349:
 	ld a, $5
 	call GetSRAMBank
 	ld hl, $b0b1
-	ld de, $c608
+	ld de, wc608
 	ld bc, $40
 	call CopyBytes
 	ld de, wBGMapBuffer
@@ -3286,7 +3286,7 @@ Function17e5af:
 	ld h, a
 	bccoord 0, 0
 	add hl, bc
-	ld bc, $ffec
+	ld bc, hFFEC
 	add hl, bc
 	ld a, [wMobileInactivityTimerSeconds]
 	ld c, a
@@ -3505,9 +3505,9 @@ Function17e691:
 
 Function17e6de:
 	push af
-	ld a, [$c708]
+	ld a, [wc708]
 	ld l, a
-	ld a, [$c709]
+	ld a, [wc709]
 	ld h, a
 	decoord 0, 0, wAttrMap
 	add hl, de
@@ -3570,25 +3570,25 @@ Palette_17eff6:
 	RGB 24, 16,  3
 	RGB  0,  0,  0
 
-Function17f036::
+RunMobileScript::
 	ld a, $6
 	call GetSRAMBank
 	inc de
-.asm_17f03c
-	call Function17f047
-	jr c, .asm_17f043
-	jr .asm_17f03c
+.loop
+	call _RunMobileScript
+	jr c, .finished
+	jr .loop
 
-.asm_17f043
+.finished
 	call CloseSRAM
 	ret
 
-Function17f047:
+_RunMobileScript:
 	ld a, [de]
 	inc de
-	cp $50
+	cp "@"
 	jr z, .finished
-	cp $10
+	cp $10 ; jumptable size
 	jr nc, .finished
 	dec a
 	push de
@@ -3641,7 +3641,7 @@ Function17f081:
 	ld b, $0
 	add hl, bc
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_17f09d
 	and a
 	ret
@@ -3726,7 +3726,7 @@ Function17f0f8:
 	ld b, $0
 	add hl, bc
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_17f112
 	and a
 	ret
@@ -3749,15 +3749,15 @@ Function17f0f8:
 	ld a, [wcd55]
 	ld d, a
 	add hl, de
-	ld de, $c608
+	ld de, wc608
 	ld a, [wcd56]
 	ld c, a
 	ld b, $0
 	call CopyBytes
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	pop hl
-	ld de, $c608
+	ld de, wc608
 	call PlaceString
 	ld a, c
 	ld [wcd52], a
@@ -3778,7 +3778,7 @@ Function17f154:
 	ld e, l
 	ld d, h
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_17f165
 	and a
 	ret
@@ -3823,7 +3823,7 @@ Function17f181:
 	ld b, $0
 	add hl, bc
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_17f19b
 	and a
 	ret
@@ -3847,10 +3847,10 @@ Function17f181:
 	add hl, de
 	ld a, [hl]
 	ld c, a
-	ld de, $c608
+	ld de, wc608
 	farcall Function48c63
 	pop hl
-	ld de, $c608
+	ld de, wc608
 	call PlaceString
 	ld a, c
 	ld [wcd52], a
@@ -3877,7 +3877,7 @@ Function17f1d0:
 	ld b, $0
 	add hl, bc
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_17f1ea
 	and a
 	ret
@@ -3933,7 +3933,7 @@ Function17f220:
 	ld b, $0
 	add hl, bc
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_17f23a
 	and a
 	ret
@@ -3996,7 +3996,7 @@ Function17f27b:
 	ld b, $0
 	add hl, bc
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_17f295
 	and a
 	ret
@@ -4079,13 +4079,13 @@ Function17f2ff:
 	ld a, $1
 	ld [rSVBK], a
 	ld hl, wPlayerName
-	ld de, $c608
+	ld de, wc608
 	ld bc, $6
 	call CopyBytes
 	ld a, $4
 	ld [rSVBK], a
 	pop hl
-	ld de, $c608
+	ld de, wc608
 	call PlaceString
 	ld a, c
 	ld [wcd52], a
@@ -4125,10 +4125,10 @@ Function17f334:
 .asm_17f35d
 	ld c, a
 	call CloseSRAM
-	ld de, $c608
+	ld de, wc608
 	farcall Function48c63
 	pop hl
-	ld de, $c608
+	ld de, wc608
 	call PlaceString
 	ld a, c
 	ld [wcd52], a
@@ -4186,14 +4186,14 @@ Function17f382:
 Function17f3c9:
 	push bc
 	ld hl, wcd36
-	ld de, $c708
+	ld de, wc708
 	ld bc, 12
 	call CopyBytes
 	pop de
 	ld c, $0
 	farcall Function11c075
 	push hl
-	ld hl, $c708
+	ld hl, wc708
 	ld de, wcd36
 	ld bc, $c
 	call CopyBytes
@@ -4304,7 +4304,7 @@ Function17f44f:
 	ld b, 0
 	add hl, bc
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_17f46b
 	and a
 	ret
@@ -4337,7 +4337,7 @@ Function17f44f:
 	ld l, a
 	ld a, [wcd56]
 	ld h, a
-	ld de, $c608
+	ld de, wc608
 	ld a, [wcd57]
 	ld c, a
 	ld b, $0
@@ -4355,7 +4355,7 @@ Function17f44f:
 	call GetSRAMBank
 
 .asm_17f4b7
-	ld de, $c608
+	ld de, wc608
 	pop hl
 	push hl
 	ld a, [wcd57]
