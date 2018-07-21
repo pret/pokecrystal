@@ -302,17 +302,10 @@ Fix:
 
 ```asm
 CheckHiddenOpponent: ; 37daa
-	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVar
-	ld a, [hl]
-	and 1 << SUBSTATUS_LOCK_ON
-	cp 1 << SUBSTATUS_LOCK_ON
-	ret z
-	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVar
-	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret
 ```
+
+The code in `CheckHiddenOpponent` is completely redundant as `CheckHit` already does what this code is doing. Another option is to remove `CheckHiddenOpponent` completely, the calls to `CheckHiddenOpponent`, and the jump afterwards.
 
 ## Beat Up can desynchronize link battles
 
