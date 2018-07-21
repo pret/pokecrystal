@@ -49,7 +49,7 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pokémon-always-catches-a-ditto)
 - [Using a Park Ball in normal battles has a corrupt animation](#using-a-park-ball-in-normal-battles-has-a-corrupt-animation)
 - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
-- [Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evosattacks-evolution-entries-can-have-stone-compatibility-reported-correctly)
+- [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
 - [`EVOLVE_STAT` can break Stone compatibility reporting](#evolve_stat-can-break-stone-compatibility-reporting)
 - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
@@ -162,7 +162,7 @@ This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/en
 This is a bug with `BattleCommand_BellyDrum` in [engine/battle/move_effects/belly_drum.asm](/engine/battle/move_effects/belly_drum.asm):
 
 ```asm
-BattleCommand_BellyDrum: ; 37c1a
+BattleCommand_BellyDrum:
 ; bellydrum
 ; This command is buggy because it raises the user's attack
 ; before checking that it has enough HP to use the move.
@@ -180,7 +180,7 @@ BattleCommand_BellyDrum: ; 37c1a
 **Fix:**
 
 ```asm
-BattleCommand_BellyDrum: ; 37c1a
+BattleCommand_BellyDrum:
 ; bellydrum
 	callfar GetHalfMaxHP
 	callfar CheckUserHasEnoughHP
@@ -293,7 +293,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 This is a bug with `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```asm
-CheckHiddenOpponent: ; 37daa
+CheckHiddenOpponent:
 ; BUG: This routine should account for Lock-On and Mind Reader.
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVar
@@ -390,7 +390,7 @@ This is a bug in how `wAttackMissed` is never set by BeatUp, even when none of t
 This bug can be fixed in a plethora of ways, but the most straight-forward would be in `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](/engine/battle/move_effects/beat_up.asm), as that's always ran before the king's rock effect.
 
 ```asm
-BattleCommand_BeatUpFailText: ; 355b5
+BattleCommand_BeatUpFailText:
 ; beatupfailtext
 
 	ld a, [wBeatUpHitAtLeastOnce]
@@ -403,7 +403,7 @@ BattleCommand_BeatUpFailText: ; 355b5
 **Fix:**
 
 ```diff
-BattleCommand_BeatUpFailText: ; 355b5
+BattleCommand_BeatUpFailText:
 ; beatupfailtext
 
 	ld a, [wBeatUpHitAtLeastOnce]
@@ -428,7 +428,7 @@ This bug existed for all battles in Gold and Silver, and was only fixed for sing
 This is a bug with `BattleCommand_Present` in [engine/battle/move_effects/present.asm](/engine/battle/move_effects/present.asm):
 
 ```asm
-BattleCommand_Present: ; 37874
+BattleCommand_Present:
 ; present
 
 	ld a, [wLinkMode]
@@ -451,7 +451,7 @@ BattleCommand_Present: ; 37874
 **Fix:**
 
 ```asm
-BattleCommand_Present: ; 37874
+BattleCommand_Present:
 ; present
 
 	push bc
@@ -484,13 +484,13 @@ This is a bug with `AI_Smart_MeanLook` in [engine/battle/ai/scoring.asm](/engine
 In [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```asm
-BattleCheckTypeMatchup: ; 347c8
+BattleCheckTypeMatchup:
 	ld hl, wEnemyMonType1
 	ld a, [hBattleTurn]
 	and a
 	jr z, CheckTypeMatchup
 	ld hl, wBattleMonType1
-CheckTypeMatchup: ; 347d3
+CheckTypeMatchup:
 ; There is an incorrect assumption about this function made in the AI related code: when
 ; the AI calls CheckTypeMatchup (not BattleCheckTypeMatchup), it assumes that placing the
 ; offensive type in a will make this function do the right thing. Since a is overwritten,
@@ -515,7 +515,7 @@ CheckTypeMatchup: ; 347d3
 This is a bug with `AI_HealStatus` in [engine/battle/ai/items.asm](/engine/battle/ai/items.asm):
 
 ```asm
-AI_HealStatus: ; 384e0
+AI_HealStatus:
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -530,7 +530,6 @@ AI_HealStatus: ; 384e0
 	ld hl, wEnemySubStatus5
 	res SUBSTATUS_TOXIC, [hl]
 	ret
-; 384f7
 ```
 
 **Fix:** Uncomment `ld hl, wEnemySubStatus1` and `res SUBSTATUS_NIGHTMARE, [hl]`.
@@ -600,7 +599,7 @@ This can bring Pokémon straight from level 1 to 100 by gaining just a few exper
 This is a bug with `CalcExpAtLevel` in [engine/pokemon/experience.asm](/engine/pokemon/experience.asm):
 
 ```asm
-CalcExpAtLevel: ; 50e47
+CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e
 	ld a, [wBaseGrowthRate]
 	add a
@@ -614,7 +613,7 @@ CalcExpAtLevel: ; 50e47
 **Fix:**
 
 ```diff
-CalcExpAtLevel: ; 50e47
+CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e
 +	ld a, d
 +	cp 1
@@ -712,7 +711,7 @@ MoonBallMultiplier:
 ; No Pokémon evolve with Burn Heal,
 ; so Moon Balls always have a catch rate of 1×.
 	push bc
-	ld a, BANK(EvosAttacks)
+	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
 	cp MOON_STONE_RED ; BURN_HEAL
 	pop bc
@@ -821,7 +820,7 @@ This is a bug with `HaircutOrGrooming` in [engine/events/haircut.asm](/engine/ev
 
 INCLUDE "data/events/happiness_probabilities.asm"
 
-CopyPokemonName_Buffer1_Buffer3: ; 746e
+CopyPokemonName_Buffer1_Buffer3:
 	ld hl, wStringBuffer1
 	ld de, wStringBuffer3
 	ld bc, MON_NAME_LENGTH
@@ -831,14 +830,14 @@ CopyPokemonName_Buffer1_Buffer3: ; 746e
 In [data/events/happiness_probabilities.asm](/data/events/happiness_probabilities.asm):
 
 ```asm
-HappinessData_DaisysGrooming: ; 746b
+HappinessData_DaisysGrooming:
 	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
 ```
 
 **Fix:**
 
 ```diff
-HappinessData_DaisysGrooming: ; 746b
+HappinessData_DaisysGrooming:
 -	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
 +	db $80, 2, HAPPINESS_GROOMING ; 50% chance
 +	db $ff, 2, HAPPINESS_GROOMING ; 50% chance
@@ -917,7 +916,7 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](
 This is a bug with `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.asm](/engine/events/magikarp.asm):
 
 ```asm
-.BCLessThanDE: ; fbc9a
+.BCLessThanDE:
 ; Intention: Return bc < de.
 ; Reality: Return b < d.
 	ld a, b
@@ -927,7 +926,6 @@ This is a bug with `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.
 	ld a, c
 	cp e
 	ret
-; fbca1
 ```
 
 **Fix:** Delete `ret nc`.
@@ -940,7 +938,7 @@ This is a bug with `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.
 This is a bug with `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm):
 
 ```asm
-StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
+StartTrainerBattle_DetermineWhichAnimation:
 ; The screen flashes a different number of times depending on the level of
 ; your lead Pokemon relative to the opponent's.
 ; BUG: wBattleMonLevel and wEnemyMonLevel are not set at this point, so whatever
@@ -967,15 +965,13 @@ StartTrainerBattle_DetermineWhichAnimation: ; 8c365 (23:4365)
 	ld a, [hl]
 	ld [wJumptableIndex], a
 	ret
-; 8c38f (23:438f)
 
-.StartingPoints: ; 8c38f
+.StartingPoints:
 ; entries correspond to TRANS_* constants
 	db BATTLETRANSITION_CAVE
 	db BATTLETRANSITION_CAVE_STRONGER
 	db BATTLETRANSITION_NO_CAVE
 	db BATTLETRANSITION_NO_CAVE_STRONGER
-; 8c393
 ```
 
 *To do:* Fix this bug.
@@ -1114,7 +1110,7 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/overworld/player_move
 The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm):
 
 ```asm
-.Cry: ; 40340
+.Cry:
 	call Pokedex_GetSelectedMon
 	ld a, [wd265]
 	call GetCryIndex
@@ -1127,7 +1123,7 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 **Workaround:**
 
 ```asm
-.Cry: ; 40340
+.Cry:
 	ld a, [wCurPartySpecies]
 	call PlayMonCry
 	ret
@@ -1380,12 +1376,12 @@ This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/i
 **Fix:** Uncomment `ld b, a`.
 
 
-## Only the first three `EvosAttacks` evolution entries can have Stone compatibility reported correctly
+## Only the first three evolution entries can have Stone compatibility reported correctly
 
 This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
 
 ```asm
-.DetermineCompatibility: ; 50268
+.DetermineCompatibility:
 	ld de, wStringBuffer1
 	ld a, BANK(EvosAttacksPointers)
 	ld bc, 2
@@ -1395,7 +1391,7 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 	ld h, [hl]
 	ld l, a
 	ld de, wStringBuffer1
-	ld a, BANK(EvosAttacks)
+	ld a, BANK("Evolutions and Attacks")
 	ld bc, 10
 	call FarCopyBytes
 ```
@@ -1481,7 +1477,7 @@ ScriptCall:
 In [engine/overworld/overworld.asm](/engine/overworld/overworld.asm):
 
 ```asm
-LoadSpriteGFX: ; 14306
+LoadSpriteGFX:
 ; Bug: b is not preserved, so it's useless as a next count.
 ; Uncomment the lines below to fix.
 
@@ -1507,7 +1503,6 @@ LoadSpriteGFX: ; 14306
 	; pop bc
 	ld a, l
 	ret
-; 1431e
 ```
 
 **Fix:** Uncomment `push bc` and `pop bc`.
@@ -1518,7 +1513,7 @@ LoadSpriteGFX: ; 14306
 In [engine/overworld/wildmons.asm](/engine/overworld/wildmons.asm):
 
 ```asm
-ChooseWildEncounter: ; 2a14f
+ChooseWildEncounter:
 ...
 	ld a, b
 	ld [wCurPartyLevel], a
@@ -1533,7 +1528,7 @@ ChooseWildEncounter: ; 2a14f
 
 ...
 
-ValidateTempWildMonSpecies: ; 2a4a0
+ValidateTempWildMonSpecies:
 ; Due to a development oversight, this function is called with the wild Pokemon's level, not its species, in a.
 ```
 
@@ -1585,7 +1580,7 @@ In [engine/overworld/events.asm](/engine/overworld/events.asm):
 In [engine/events/bug_contest/contest_2.asm](/engine/events/bug_contest/contest_2.asm):
 
 ```asm
-CheckBugContestContestantFlag: ; 139ed
+CheckBugContestContestantFlag:
 ; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
 
 ; Bug: If a >= NUM_BUG_CONTESTANTS when this is called,
@@ -1602,7 +1597,6 @@ CheckBugContestContestantFlag: ; 139ed
 	ld b, CHECK_FLAG
 	call EventFlagAction
 	ret
-; 139fe
 
 INCLUDE "data/events/bug_contest_flags.asm"
 ```
@@ -1615,7 +1609,7 @@ However, `a < NUM_BUG_CONTESTANTS` should always be true, so in practice this is
 In [home/init.asm](/home/init.asm):
 
 ```asm
-ClearWRAM:: ; 25a
+ClearWRAM::
 ; Wipe swappable WRAM banks (1-7)
 ; Assumes CGB or AGB
 
@@ -1632,7 +1626,6 @@ ClearWRAM:: ; 25a
 	cp 8
 	jr nc, .bank_loop ; Should be jr c
 	ret
-; 270
 ```
 
 **Fix:** Change `jr nc, .bank_loop` to `jr c, .bank_loop`.

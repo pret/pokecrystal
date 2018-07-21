@@ -3,4 +3,3 @@
 	frame 4, 10
 	frame 1, 09
 	endanim
-; 0xd0d92

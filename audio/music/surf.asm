@@ -1,17 +1,16 @@
-Music_Surf: ; f518a
+Music_Surf:
 	musicheader 3, 1, Music_Surf_Ch1
 	musicheader 1, 2, Music_Surf_Ch2
 	musicheader 1, 3, Music_Surf_Ch3
-; f5193
 
 	db $3
 
-Music_Surf_Ch1: ; f5194
+Music_Surf_Ch1:
 	tempo 108
 	volume $77
 	notetype $c, $a7
 	stereopanning $f
-Music_Surf_branch_f519e: ; f519e
+Music_Surf_branch_f519e:
 	dutycycle $2
 	vibrato $10, $24
 	intensity $73
@@ -119,9 +118,8 @@ Music_Surf_branch_f519e: ; f519e
 	octave 3
 	note D#, 2
 	loopchannel 0, Music_Surf_branch_f519e
-; f5233
 
-Music_Surf_branch_f5233: ; f5233
+Music_Surf_branch_f5233:
 	notetype $c, $a7
 	octave 3
 	note D#, 4
@@ -214,9 +212,8 @@ Music_Surf_branch_f5233: ; f5233
 	note C#, 4
 	note D_, 4
 	endchannel
-; f5293
 
-Music_Surf_branch_f5293: ; f5293
+Music_Surf_branch_f5293:
 	octave 4
 	note G#, 16
 	note D#, 4
@@ -281,9 +278,8 @@ Music_Surf_branch_f5293: ; f5293
 	octave 3
 	note G_, 2
 	endchannel
-; f52d9
 
-Music_Surf_branch_f52d9: ; f52d9
+Music_Surf_branch_f52d9:
 	octave 3
 	note A#, 3
 	note G_, 3
@@ -341,15 +337,14 @@ Music_Surf_branch_f52d9: ; f52d9
 	octave 2
 	note B_, 8
 	endchannel
-; f5317
 
-Music_Surf_Ch2: ; f5317
-Music_Surf_branch_f5317: ; f5317
+Music_Surf_Ch2:
+Music_Surf_branch_f5317:
 	notetype $c, $c2
 	stereopanning $f0
 	dutycycle $2
 	vibrato $14, $23
-Music_Surf_branch_f5321: ; f5321
+Music_Surf_branch_f5321:
 	octave 1
 	note A#, 4
 	octave 2
@@ -365,7 +360,7 @@ Music_Surf_branch_f5321: ; f5321
 	note __, 3
 	note A#, 1
 	note __, 3
-Music_Surf_branch_f5333: ; f5333
+Music_Surf_branch_f5333:
 	note D#, 4
 	note G_, 2
 	note G#, 2
@@ -448,9 +443,8 @@ Music_Surf_branch_f5333: ; f5333
 	note A#, 4
 	note B_, 4
 	loopchannel 0, Music_Surf_branch_f5317
-; f53b2
 
-Music_Surf_branch_f53b2: ; f53b2
+Music_Surf_branch_f53b2:
 	octave 1
 	note G#, 4
 	octave 3
@@ -487,9 +481,8 @@ Music_Surf_branch_f53b2: ; f53b2
 	note F_, 4
 	note G_, 4
 	endchannel
-; f53d6
 
-Music_Surf_branch_f53d6: ; f53d6
+Music_Surf_branch_f53d6:
 	octave 4
 	note F_, 4
 	note D#, 4
@@ -507,9 +500,8 @@ Music_Surf_branch_f53d6: ; f53d6
 	note B_, 1
 	note A_, 1
 	endchannel
-; f53e8
 
-Music_Surf_branch_f53e8: ; f53e8
+Music_Surf_branch_f53e8:
 	note A#, 7
 	octave 4
 	note C_, 8
@@ -521,9 +513,8 @@ Music_Surf_branch_f53e8: ; f53e8
 	note C_, 16
 	note G_, 8
 	endchannel
-; f53f3
 
-Music_Surf_branch_f53f3: ; f53f3
+Music_Surf_branch_f53f3:
 	note F#, 1
 	note G_, 3
 	note F_, 4
@@ -540,9 +531,8 @@ Music_Surf_branch_f53f3: ; f53f3
 	octave 3
 	note B_, 1
 	endchannel
-; f5404
 
-Music_Surf_branch_f5404: ; f5404
+Music_Surf_branch_f5404:
 	octave 4
 	note C_, 8
 	note G_, 4
@@ -551,10 +541,9 @@ Music_Surf_branch_f5404: ; f5404
 	note G#, 8
 	note D#, 8
 	endchannel
-; f540c
 
-Music_Surf_Ch3: ; f540c
-Music_Surf_branch_f540c: ; f540c
+Music_Surf_Ch3:
+Music_Surf_branch_f540c:
 	stereopanning $ff
 	notetype $c, $15
 	vibrato $16, $23
@@ -697,9 +686,8 @@ Music_Surf_branch_f540c: ; f540c
 	octave 2
 	note B_, 4
 	loopchannel 0, Music_Surf_branch_f540c
-; f54c8
 
-Music_Surf_branch_f54c8: ; f54c8
+Music_Surf_branch_f54c8:
 	octave 3
 	note D#, 4
 	note G_, 1
@@ -732,4 +720,3 @@ Music_Surf_branch_f54c8: ; f54c8
 	note G#, 1
 	note __, 3
 	endchannel
-; f54e8

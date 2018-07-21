@@ -5,7 +5,7 @@ specialcall: MACRO
 	dba \3
 ENDM
 
-SpecialPhoneCallList: ; 90627
+SpecialPhoneCallList:
 ; entries correspond to SPECIALCALL_* constants
 	specialcall SpecialCallOnlyWhenOutside, PHONECONTACT_ELM,      ElmPhoneScript2
 	specialcall SpecialCallOnlyWhenOutside, PHONECONTACT_ELM,      ElmPhoneScript2
@@ -15,4 +15,3 @@ SpecialPhoneCallList: ; 90627
 	specialcall SpecialCallWhereverYouAre,  PHONECONTACT_BIKESHOP, BikeShopPhoneScript
 	specialcall SpecialCallWhereverYouAre,  PHONECONTACT_MOM,      MomPhoneLectureScript
 	specialcall SpecialCallOnlyWhenOutside, PHONECONTACT_ELM,      ElmPhoneScript2
-; 90657

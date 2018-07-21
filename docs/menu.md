@@ -54,8 +54,8 @@ Call state for functions in `MenuData` of `ScrollingMenu`:
 
 ```
 All of them:
-[MenuSelection] = Current item. -1 is the CANCEL item.
-[MenuSelectionQuantity] = Quantity of the current item.
+[wMenuSelection] = Current item. -1 is the CANCEL item.
+[wMenuSelectionQuantity] = Quantity of the current item.
 
 Function1: Called to display a menu entry.
 de = Cursor position in TileMap
@@ -90,7 +90,7 @@ db -1 ; cancel
 ...
 ```
 
-In case it's 1, `[MenuSelectionQuantity]` will simply contain the next entry.
+In case it's 1, `[wMenuSelectionQuantity]` will simply contain the next entry.
 
 ## `_2DMenu`
 
@@ -208,7 +208,7 @@ StringPointers:
 
 Call state for `DisplayFunction`:
 ```
-[MenuSelection] = Current item. -1 is the CANCEL item.
+[wMenuSelection] = Current item. -1 is the CANCEL item.
 de = Cursor position in TileMap
 ```
 

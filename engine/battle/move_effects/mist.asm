@@ -1,4 +1,4 @@
-BattleCommand_Mist: ; 36c7e
+BattleCommand_Mist:
 ; mist
 
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -13,5 +13,3 @@ BattleCommand_Mist: ; 36c7e
 .already_mist
 	call AnimateFailedMove
 	jp PrintButItFailed
-
-; 36c98

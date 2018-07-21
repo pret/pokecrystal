@@ -1,4 +1,4 @@
-BattleCommand_Pursuit: ; 37b1d
+BattleCommand_Pursuit:
 ; pursuit
 ; Double damage if the opponent is switching.
 
@@ -22,5 +22,3 @@ BattleCommand_Pursuit: ; 37b1d
 	ld [hli], a
 	ld [hl], a
 	ret
-
-; 37b39

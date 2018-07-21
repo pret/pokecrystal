@@ -1,7 +1,6 @@
 ; Audio interfaces.
 
-MapSetup_Sound_Off:: ; 3b4e
-
+MapSetup_Sound_Off::
 	push hl
 	push de
 	push bc
@@ -24,11 +23,8 @@ MapSetup_Sound_Off:: ; 3b4e
 	pop de
 	pop hl
 	ret
-; 3b6a
 
-
-UpdateSound:: ; 3b6a
-
+UpdateSound::
 	push hl
 	push de
 	push bc
@@ -51,13 +47,9 @@ UpdateSound:: ; 3b6a
 	pop de
 	pop hl
 	ret
-; 3b86
 
-
-_LoadMusicByte:: ; 3b86
+_LoadMusicByte::
 ; wCurMusicByte = [a:de]
-GLOBAL LoadMusicByte
-
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
@@ -68,10 +60,8 @@ GLOBAL LoadMusicByte
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 	ret
-; 3b97
 
-
-PlayMusic:: ; 3b97
+PlayMusic::
 ; Play music de.
 
 	push hl
@@ -104,10 +94,8 @@ PlayMusic:: ; 3b97
 	pop de
 	pop hl
 	ret
-; 3bbc
 
-
-PlayMusic2:: ; 3bbc
+PlayMusic2::
 ; Stop playing music, then play music de.
 
 	push hl
@@ -138,10 +126,7 @@ PlayMusic2:: ; 3bbc
 	pop hl
 	ret
 
-; 3be3
-
-
-PlayCry:: ; 3be3
+PlayCry::
 ; Play cry de.
 
 	push hl
@@ -191,10 +176,8 @@ endr
 	pop de
 	pop hl
 	ret
-; 3c23
 
-
-PlaySFX:: ; 3c23
+PlaySFX::
 ; Play sound effect de.
 ; Sound effects are ordered by priority (highest to lowest)
 
@@ -233,17 +216,13 @@ PlaySFX:: ; 3c23
 	pop de
 	pop hl
 	ret
-; 3c4e
 
-
-WaitPlaySFX:: ; 3c4e
+WaitPlaySFX::
 	call WaitSFX
 	call PlaySFX
 	ret
-; 3c55
 
-
-WaitSFX:: ; 3c55
+WaitSFX::
 ; infinite loop until sfx is done playing
 
 	push hl
@@ -264,9 +243,8 @@ WaitSFX:: ; 3c55
 
 	pop hl
 	ret
-; 3c74
 
-IsSFXPlaying:: ; 3c74
+IsSFXPlaying::
 ; Return carry if no sound effect is playing.
 ; The inverse of CheckSFX.
 	push hl
@@ -292,39 +270,33 @@ IsSFXPlaying:: ; 3c74
 	pop hl
 	and a
 	ret
-; 3c97
 
-MaxVolume:: ; 3c97
+MaxVolume::
 	ld a, MAX_VOLUME
 	ld [wVolume], a
 	ret
-; 3c9d
 
-LowVolume:: ; 3c9d
+LowVolume::
 	ld a, $33 ; 40%
 	ld [wVolume], a
 	ret
-; 3ca3
 
-VolumeOff:: ; 3ca3
+VolumeOff::
 	xor a
 	ld [wVolume], a
 	ret
-; 3ca8
 
-Unused_FadeOutMusic:: ; 3ca8
+Unused_FadeOutMusic::
 	ld a, 4
 	ld [wMusicFade], a
 	ret
-; 3cae
 
-FadeInMusic:: ; 3cae
+FadeInMusic::
 	ld a, 4 | (1 << MUSIC_FADE_IN_F)
 	ld [wMusicFade], a
 	ret
-; 3cb4
 
-SkipMusic:: ; 3cb4
+SkipMusic::
 ; Skip a frames of music.
 .loop
 	and a
@@ -332,9 +304,8 @@ SkipMusic:: ; 3cb4
 	dec a
 	call UpdateSound
 	jr .loop
-; 3cbc
 
-FadeToMapMusic:: ; 3cbc
+FadeToMapMusic::
 	push hl
 	push de
 	push bc
@@ -360,9 +331,8 @@ FadeToMapMusic:: ; 3cbc
 	pop de
 	pop hl
 	ret
-; 3cdf
 
-PlayMapMusic:: ; 3cdf
+PlayMapMusic::
 	push hl
 	push de
 	push bc
@@ -388,9 +358,8 @@ PlayMapMusic:: ; 3cdf
 	pop de
 	pop hl
 	ret
-; 3d03
 
-EnterMapMusic:: ; 3d03
+EnterMapMusic::
 	push hl
 	push de
 	push bc
@@ -419,9 +388,8 @@ EnterMapMusic:: ; 3d03
 	pop de
 	pop hl
 	ret
-; 3d2f
 
-TryRestartMapMusic:: ; 3d2f
+TryRestartMapMusic::
 	ld a, [wDontPlayMapMusicOnReload]
 	and a
 	jr z, RestartMapMusic
@@ -433,9 +401,8 @@ TryRestartMapMusic:: ; 3d2f
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
 	ret
-; 3d47
 
-RestartMapMusic:: ; 3d47
+RestartMapMusic::
 	push hl
 	push de
 	push bc
@@ -452,9 +419,8 @@ RestartMapMusic:: ; 3d47
 	pop de
 	pop hl
 	ret
-; 3d62
 
-SpecialMapMusic:: ; 3d62
+SpecialMapMusic::
 	ld a, [wPlayerState]
 	cp PLAYER_SURF
 	jr z, .surf
@@ -493,16 +459,14 @@ SpecialMapMusic:: ; 3d62
 	ld de, MUSIC_BUG_CATCHING_CONTEST_RANKING
 	scf
 	ret
-; 3d97
 
-GetMapMusic_MaybeSpecial:: ; 3d97
+GetMapMusic_MaybeSpecial::
 	call SpecialMapMusic
 	ret c
 	call GetMapMusic
 	ret
-; 3d9f
 
-Unreferenced_Function3d9f:: ; 3d9f
+Unreferenced_Function3d9f::
 ; Places a BCD number at the
 ; upper center of the screen.
 	ld a, 4 * TILE_WIDTH
@@ -536,9 +500,8 @@ Unreferenced_Function3d9f:: ; 3d9f
 	ld [wVirtualOAMSprite38TileID], a
 	ld [wVirtualOAMSprite39TileID], a
 	ret
-; 3dde
 
-CheckSFX:: ; 3dde
+CheckSFX::
 ; Return carry if any SFX channels are active.
 	ld a, [wChannel5Flags1]
 	bit 0, a
@@ -557,9 +520,8 @@ CheckSFX:: ; 3dde
 .playing
 	scf
 	ret
-; 3dfe
 
-TerminateExpBarSound:: ; 3dfe
+TerminateExpBarSound::
 	xor a
 	ld [wChannel5Flags1], a
 	ld [wSoundInput], a
@@ -569,10 +531,8 @@ TerminateExpBarSound:: ; 3dfe
 	ld [rNR13], a
 	ld [rNR14], a
 	ret
-; 3e10
 
-
-ChannelsOff:: ; 3e10
+ChannelsOff::
 ; Quickly turn off music channels
 	xor a
 	ld [wChannel1Flags1], a
@@ -581,9 +541,8 @@ ChannelsOff:: ; 3e10
 	ld [wChannel4Flags1], a
 	ld [wSoundInput], a
 	ret
-; 3e21
 
-SFXChannelsOff:: ; 3e21
+SFXChannelsOff::
 ; Quickly turn off sound effect channels
 	xor a
 	ld [wChannel5Flags1], a
@@ -592,4 +551,3 @@ SFXChannelsOff:: ; 3e21
 	ld [wChannel8Flags1], a
 	ld [wSoundInput], a
 	ret
-; 3e32

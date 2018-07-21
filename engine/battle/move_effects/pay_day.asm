@@ -1,4 +1,4 @@
-BattleCommand_PayDay: ; 3705c
+BattleCommand_PayDay:
 ; payday
 
 	xor a
@@ -24,5 +24,3 @@ BattleCommand_PayDay: ; 3705c
 .done
 	ld hl, CoinsScatteredText
 	jp StdBattleTextBox
-
-; 3707f

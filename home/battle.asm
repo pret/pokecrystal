@@ -1,4 +1,4 @@
-UserPartyAttr:: ; 3945
+UserPartyAttr::
 	push af
 	ld a, [hBattleTurn]
 	and a
@@ -8,10 +8,8 @@ UserPartyAttr:: ; 3945
 .ot
 	pop af
 	jr OTPartyAttr
-; 3951
 
-
-OpponentPartyAttr:: ; 3951
+OpponentPartyAttr::
 	push af
 	ld a, [hBattleTurn]
 	and a
@@ -21,10 +19,8 @@ OpponentPartyAttr:: ; 3951
 .ot
 	pop af
 	jr OTPartyAttr
-; 395d
 
-
-BattlePartyAttr:: ; 395d
+BattlePartyAttr::
 ; Get attribute a from the party struct of the active battle mon. 
 	push bc
 	ld c, a
@@ -35,10 +31,8 @@ BattlePartyAttr:: ; 395d
 	call GetPartyLocation
 	pop bc
 	ret
-; 396d
 
-
-OTPartyAttr:: ; 396d
+OTPartyAttr::
 ; Get attribute a from the party struct of the active enemy mon.
 	push bc
 	ld c, a
@@ -49,49 +43,41 @@ OTPartyAttr:: ; 396d
 	call GetPartyLocation
 	pop bc
 	ret
-; 397d
 
-
-ResetDamage:: ; 397d
+ResetDamage::
 	xor a
 	ld [wCurDamage], a
 	ld [wCurDamage + 1], a
 	ret
-; 3985
 
-SetPlayerTurn:: ; 3985
+SetPlayerTurn::
 	xor a
 	ld [hBattleTurn], a
 	ret
-; 3989
 
-SetEnemyTurn:: ; 3989
+SetEnemyTurn::
 	ld a, 1
 	ld [hBattleTurn], a
 	ret
-; 398e
 
-
-UpdateOpponentInParty:: ; 398e
+UpdateOpponentInParty::
 	ld a, [hBattleTurn]
 	and a
 	jr z, UpdateEnemyMonInParty
 	jr UpdateBattleMonInParty
-; 3995
 
-UpdateUserInParty:: ; 3995
+UpdateUserInParty::
 	ld a, [hBattleTurn]
 	and a
 	jr z, UpdateBattleMonInParty
 	jr UpdateEnemyMonInParty
-; 399c
 
-UpdateBattleMonInParty:: ; 399c
+UpdateBattleMonInParty::
 ; Update level, status, current HP
 
 	ld a, [wCurBattleMon]
 
-UpdateBattleMon:: ; 399f
+UpdateBattleMon::
 	ld hl, wPartyMon1Level
 	call GetPartyLocation
 
@@ -100,9 +86,8 @@ UpdateBattleMon:: ; 399f
 	ld hl, wBattleMonLevel
 	ld bc, wBattleMonMaxHP - wBattleMonLevel
 	jp CopyBytes
-; 39b0
 
-UpdateEnemyMonInParty:: ; 39b0
+UpdateEnemyMonInParty::
 ; Update level, status, current HP
 
 ; No wildmons.
@@ -119,27 +104,21 @@ UpdateEnemyMonInParty:: ; 39b0
 	ld hl, wEnemyMonLevel
 	ld bc, wEnemyMonMaxHP - wEnemyMonLevel
 	jp CopyBytes
-; 39c9
 
-
-RefreshBattleHuds:: ; 39c9
+RefreshBattleHuds::
 	call UpdateBattleHuds
 	ld c, 3
 	call DelayFrames
 	jp WaitBGMap
-; 39d4
 
-UpdateBattleHuds:: ; 39d4
+UpdateBattleHuds::
 	farcall UpdatePlayerHUD
 	farcall UpdateEnemyHUD
 	ret
-; 39e1
-
 
 INCLUDE "home/battle_vars.asm"
 
-
-FarCopyRadioText:: ; 3a90
+FarCopyRadioText::
 	inc hl
 	ld a, [hROMBank]
 	push af
@@ -161,14 +140,8 @@ FarCopyRadioText:: ; 3a90
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 	ret
-; 3ab2
 
-
-MobileTextBorder:: ; 3ab2
-
-CELL_PHONE_TOP    EQU $5e
-CELL_PHONE_BOTTOM EQU $5f
-
+MobileTextBorder::
 	; For mobile link battles only.
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -177,14 +150,12 @@ CELL_PHONE_BOTTOM EQU $5f
 	; Draw a cell phone icon at the
 	; top right corner of the border.
 	hlcoord 19, 12
-	ld [hl], CELL_PHONE_TOP
+	ld [hl], $5e ; top
 	hlcoord 19, 13
-	ld [hl], CELL_PHONE_BOTTOM
+	ld [hl], $5f ; bottom
 	ret
-; 3ac3
 
-
-BattleTextBox:: ; 3ac3
+BattleTextBox::
 ; Open a textbox and print text at hl.
 	push hl
 	call SpeechTextBox
@@ -194,10 +165,8 @@ BattleTextBox:: ; 3ac3
 	pop hl
 	call PrintTextBoxText
 	ret
-; 3ad5
 
-
-StdBattleTextBox:: ; 3ad5
+StdBattleTextBox::
 ; Open a textbox and print battle text at 20:hl.
 
 	ld a, [hROMBank]
@@ -211,10 +180,8 @@ StdBattleTextBox:: ; 3ad5
 	pop af
 	rst Bankswitch
 	ret
-; 3ae1
 
-GetBattleAnimPointer:: ; 3ae1
-
+GetBattleAnimPointer::
 	ld a, BANK(BattleAnimations)
 	rst Bankswitch
 
@@ -227,10 +194,8 @@ GetBattleAnimPointer:: ; 3ae1
 	rst Bankswitch
 
 	ret
-; 3af0
 
-GetBattleAnimByte:: ; 3af0
-
+GetBattleAnimByte::
 	push hl
 	push de
 
@@ -258,4 +223,3 @@ GetBattleAnimByte:: ; 3af0
 
 	ld a, [wBattleAnimByte]
 	ret
-; 3b0c

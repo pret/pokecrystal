@@ -1,4 +1,4 @@
-LoadMapGroupRoof:: ; 1c000
+LoadMapGroupRoof::
 	ld a, [wMapGroup]
 	ld e, a
 	ld d, 0
@@ -14,7 +14,5 @@ LoadMapGroupRoof:: ; 1c000
 	ld bc, 9 tiles
 	call CopyBytes
 	ret
-; 1c021
-
 
 INCLUDE "data/maps/roofs.asm"

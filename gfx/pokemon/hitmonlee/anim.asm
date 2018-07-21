@@ -10,4 +10,3 @@
 	frame 4, 05
 	frame 1, 08
 	endanim
-; 0xd0ec7

@@ -16,7 +16,7 @@ _SwitchPartyMons:
 .skip
 	ret
 
-.ClearSprite: ; 50f34 (14:4f34)
+.ClearSprite:
 	push af
 	hlcoord 0, 1
 	ld bc, 2 * SCREEN_WIDTH
@@ -39,7 +39,7 @@ _SwitchPartyMons:
 	call WaitPlaySFX
 	ret
 
-.SwapMonAndMail: ; 50f62 (14:4f62)
+.SwapMonAndMail:
 	push hl
 	push de
 	push bc
@@ -136,10 +136,10 @@ _SwitchPartyMons:
 	pop hl
 	ret
 
-.CopyNameTowd002: ; 51036 (14:5036)
+.CopyNameTowd002:
 	ld de, wd002
 
-.CopyName: ; 51039 (14:5039)
+.CopyName:
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	ret

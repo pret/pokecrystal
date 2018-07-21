@@ -1,7 +1,6 @@
 ; Functions to copy data from ROM.
 
-
-Get2bpp_2:: ; dc9
+Get2bpp_2::
 	ld a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp z, Copy2bpp
@@ -9,9 +8,8 @@ Get2bpp_2:: ; dc9
 	homecall _Get2bpp
 
 	ret
-; ddc
 
-Get1bpp_2:: ; ddc
+Get1bpp_2::
 	ld a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp z, Copy1bpp
@@ -19,9 +17,8 @@ Get1bpp_2:: ; ddc
 	homecall _Get1bpp
 
 	ret
-; def
 
-FarCopyBytesDouble_DoubleBankSwitch:: ; def
+FarCopyBytesDouble_DoubleBankSwitch::
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -33,9 +30,8 @@ FarCopyBytesDouble_DoubleBankSwitch:: ; def
 	pop af
 	rst Bankswitch
 	ret
-; dfd
 
-OldDMATransfer:: ; dfd
+OldDMATransfer::
 	dec c
 	ld a, [hBGMapMode]
 	push af
@@ -96,41 +92,29 @@ OldDMATransfer:: ; dfd
 	pop af
 	ld [hBGMapMode], a
 	ret
-; e4a
 
-
-
-ReplaceKrisSprite:: ; e4a
+ReplaceKrisSprite::
 	farcall _ReplaceKrisSprite
 	ret
-; e51
 
-
-
-LoadStandardFont:: ; e51
+LoadStandardFont::
 	farcall _LoadStandardFont
 	ret
-; e58
 
-LoadFontsBattleExtra:: ; e58
+LoadFontsBattleExtra::
 	farcall _LoadFontsBattleExtra
 	ret
-; e5f
 
-
-
-LoadFontsExtra:: ; e5f
+LoadFontsExtra::
 	farcall _LoadFontsExtra1
 	farcall _LoadFontsExtra2
 	ret
-; e6c
 
-LoadFontsExtra2:: ; e6c
+LoadFontsExtra2::
 	farcall _LoadFontsExtra2
 	ret
-; e73
 
-DecompressRequest2bpp:: ; e73
+DecompressRequest2bpp::
 	push de
 	ld a, BANK(sScratch)
 	call GetSRAMBank
@@ -147,11 +131,8 @@ DecompressRequest2bpp:: ; e73
 	call Request2bpp
 	call CloseSRAM
 	ret
-; e8d
 
-
-
-FarCopyBytes:: ; e8d
+FarCopyBytes::
 ; copy bc bytes from a:hl to de
 
 	ld [hBuffer], a
@@ -165,10 +146,8 @@ FarCopyBytes:: ; e8d
 	pop af
 	rst Bankswitch
 	ret
-; 0xe9b
 
-
-FarCopyBytesDouble:: ; e9b
+FarCopyBytesDouble::
 ; Copy bc bytes from a:hl to bc*2 bytes at de,
 ; doubling each byte in the process.
 
@@ -204,10 +183,8 @@ FarCopyBytesDouble:: ; e9b
 	pop af
 	rst Bankswitch
 	ret
-; 0xeba
 
-
-Request2bpp:: ; eba
+Request2bpp::
 ; Load 2bpp at b:de to occupy c tiles of hl.
 	ld a, [hBGMapMode]
 	push af
@@ -280,10 +257,8 @@ Request2bpp:: ; eba
 	sub [hl]
 	ld c, a
 	jr .loop
-; f1e
 
-
-Request1bpp:: ; f1e
+Request1bpp::
 ; Load 1bpp at b:de to occupy c tiles of hl.
 	ld a, [hBGMapMode]
 	push af
@@ -356,15 +331,13 @@ Request1bpp:: ; f1e
 	sub [hl]
 	ld c, a
 	jr .loop
-; f82
 
-
-Get2bpp:: ; f82
+Get2bpp::
 	ld a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp nz, Request2bpp
 
-Copy2bpp:: ; f89
+Copy2bpp::
 ; copy c 2bpp tiles from b:de to hl
 
 	push hl
@@ -387,15 +360,13 @@ Copy2bpp:: ; f89
 	pop af
 
 	jp FarCopyBytes
-; f9d
 
-
-Get1bpp:: ; f9d
+Get1bpp::
 	ld a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp nz, Request1bpp
 
-Copy1bpp:: ; fa4
+Copy1bpp::
 ; copy c 1bpp tiles from b:de to hl
 
 	push de
@@ -418,4 +389,3 @@ Copy1bpp:: ; fa4
 
 	pop hl
 	jp FarCopyBytesDouble
-; fb6

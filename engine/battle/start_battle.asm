@@ -1,4 +1,4 @@
-ShowLinkBattleParticipants: ; 2ee18
+ShowLinkBattleParticipants:
 ; If we're not in a communications room,
 ; we don't need to be here.
 	ld a, [wLinkMode]
@@ -12,11 +12,11 @@ ShowLinkBattleParticipants: ; 2ee18
 	call ClearSprites
 	ret
 
-FindFirstAliveMonAndStartBattle: ; 2ee2f
+FindFirstAliveMonAndStartBattle:
 	xor a
 	ld [hMapAnims], a
 	call DelayFrame
-	ld b, 6
+	ld b, PARTY_LENGTH
 	ld hl, wPartyMon1HP
 	ld de, PARTYMON_STRUCT_LENGTH - 1
 
@@ -46,7 +46,7 @@ FindFirstAliveMonAndStartBattle: ; 2ee2f
 	ld [hMapAnims], a
 	ret
 
-PlayBattleMusic: ; 2ee6c
+PlayBattleMusic:
 	push hl
 	push de
 	push bc
@@ -148,7 +148,7 @@ PlayBattleMusic: ; 2ee6c
 	pop hl
 	ret
 
-ClearBattleRAM: ; 2ef18
+ClearBattleRAM:
 	xor a
 	ld [wBattlePlayerAction], a
 	ld [wBattleResult], a

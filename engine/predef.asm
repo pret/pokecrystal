@@ -1,4 +1,4 @@
-GetPredefPointer:: ; 854b
+GetPredefPointer::
 ; Return the bank and address of wPredefID in a and wPredefAddress.
 
 ; Save hl for later (back in Predef)
@@ -24,6 +24,5 @@ GetPredefPointer:: ; 854b
 	ld a, [hl]
 
 	ret
-; 856b
 
 INCLUDE "data/predef_pointers.asm"

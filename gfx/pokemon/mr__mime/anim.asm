@@ -8,4 +8,3 @@
 	frame 0, 32
 	frame 6, 06
 	endanim
-; 0xd0f99

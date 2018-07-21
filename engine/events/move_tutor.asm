@@ -1,4 +1,4 @@
-MoveTutor: ; 4925b
+MoveTutor:
 	call FadeToMenu
 	call ClearBGPalettes
 	call ClearScreen
@@ -33,7 +33,7 @@ MoveTutor: ; 4925b
 	call CloseSubmenu
 	ret
 
-.GetMoveTutorMove: ; 492a5
+.GetMoveTutorMove:
 	ld a, [wScriptVar]
 	cp MOVETUTOR_FLAMETHROWER
 	jr z, .flamethrower
@@ -51,7 +51,7 @@ MoveTutor: ; 4925b
 	ld a, THUNDERBOLT
 	ret
 
-CheckCanLearnMoveTutorMove: ; 492b9
+CheckCanLearnMoveTutorMove:
 	ld hl, .MenuHeader
 	call LoadMenuHeader
 
@@ -98,6 +98,6 @@ CheckCanLearnMoveTutorMove: ; 492b9
 	scf
 	ret
 
-.MenuHeader: ; 0x4930a
+.MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1

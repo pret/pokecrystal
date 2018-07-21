@@ -1,4 +1,4 @@
-BattleCommand_Curse: ; 37588
+BattleCommand_Curse:
 ; curse
 
 	ld de, wBattleMonType1
@@ -20,7 +20,6 @@ BattleCommand_Curse: ; 37588
 	ld a, [de]
 	cp GHOST
 	jr z, .ghost
-
 
 ; If no stats can be increased, don't.
 
@@ -54,7 +53,6 @@ BattleCommand_Curse: ; 37588
 	call BattleCommand_DefenseUp
 	jp BattleCommand_StatUpMessage
 
-
 .ghost
 
 ; Cut HP in half and put a curse on the opponent.
@@ -84,7 +82,6 @@ BattleCommand_Curse: ; 37588
 	call AnimateFailedMove
 	jp PrintButItFailed
 
-
 .cantraise
 
 ; Can't raise either stat.
@@ -94,4 +91,3 @@ BattleCommand_Curse: ; 37588
 	call AnimateFailedMove
 	ld hl, WontRiseAnymoreText
 	jp StdBattleTextBox
-; 37618

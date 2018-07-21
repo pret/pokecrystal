@@ -1,4 +1,4 @@
-TypeNames: ; 5097b
+TypeNames:
 ; entries correspond to types (see constants/type_constants.asm)
 	dw Normal
 	dw Fighting
@@ -48,5 +48,3 @@ Ghost:     db "GHOST@"
 Steel:     db "STEEL@"
 Dragon:    db "DRAGON@"
 Dark:      db "DARK@"
-
-; 50a28

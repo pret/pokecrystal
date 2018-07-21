@@ -1,8 +1,8 @@
-CopyName1:: ; 30d6
+CopyName1::
 ; Copies the name from de to wStringBuffer2
 	ld hl, wStringBuffer2
 
-CopyName2:: ; 30d9
+CopyName2::
 ; Copies the name from de to hl
 .loop
 	ld a, [de]
@@ -11,4 +11,3 @@ CopyName2:: ; 30d9
 	cp "@"
 	jr nz, .loop
 	ret
-; 30e1

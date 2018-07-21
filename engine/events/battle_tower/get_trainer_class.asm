@@ -5,7 +5,7 @@ GetMobileOTTrainerClass: ; mobile function
 	ld c, a
 	ret
 
-.GetMobileOTTrainerClass: ; 4e930
+.GetMobileOTTrainerClass:
 	ld a, [hli]
 	xor [hl]
 	ld c, a

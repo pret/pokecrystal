@@ -1,11 +1,10 @@
-DisplayUsedMoveText: ; 105db0
+DisplayUsedMoveText:
 ; battle command 03
 	ld hl, UsedMoveText
 	call BattleTextBox
 	jp WaitBGMap
-; 105db9
 
-UsedMoveText: ; 105db9
+UsedMoveText:
 ; this is a stream of text and asm from 105db9 to 105ef6
 	text_jump _ActorNameText
 	start_asm
@@ -58,18 +57,16 @@ UsedMoveText: ; 105db9
 	ret c
 	ld hl, UsedMove1Text
 	ret
-; 105e04
 
-UsedMove1Text: ; 105e04
+UsedMove1Text:
 	text_jump _UsedMove1Text
 	start_asm
 	jr UsedMoveText_CheckObedience
-; 105e0b
 
-UsedMove2Text: ; 105e0b
+UsedMove2Text:
 	text_jump _UsedMove2Text
 	start_asm
-UsedMoveText_CheckObedience: ; 105e10
+UsedMoveText_CheckObedience:
 ; check obedience
 	ld a, [wAlreadyDisobeyed]
 	and a
@@ -77,7 +74,6 @@ UsedMoveText_CheckObedience: ; 105e10
 ; print "instead,"
 	ld hl, .UsedInsteadText
 	ret
-; 105e1a
 
 .UsedInsteadText:
 	text_jump _UsedInsteadText
@@ -85,9 +81,8 @@ UsedMoveText_CheckObedience: ; 105e10
 .GetMoveNameText:
 	ld hl, MoveNameText
 	ret
-; 105e23
 
-MoveNameText: ; 105e23
+MoveNameText:
 	text_jump _MoveNameText
 	start_asm
 ; get start address
@@ -111,40 +106,32 @@ MoveNameText: ; 105e23
 	ld h, [hl]
 	ld l, a
 	ret
-; 105e39
 
-.endusedmovetexts ; 105e39
+.endusedmovetexts
 ; entries correspond to MoveGrammar sets
 	dw EndUsedMove1Text
 	dw EndUsedMove2Text
 	dw EndUsedMove3Text
 	dw EndUsedMove4Text
 	dw EndUsedMove5Text
-; 105e43
 
-EndUsedMove1Text: ; 105e43
+EndUsedMove1Text:
 	text_jump _EndUsedMove1Text
 	db "@"
-; 105e48
-EndUsedMove2Text: ; 105e48
+EndUsedMove2Text:
 	text_jump _EndUsedMove2Text
 	db "@"
-; 105e4d
-EndUsedMove3Text: ; 105e4d
+EndUsedMove3Text:
 	text_jump _EndUsedMove3Text
 	db "@"
-; 105e52
-EndUsedMove4Text: ; 105e52
+EndUsedMove4Text:
 	text_jump _EndUsedMove4Text
 	db "@"
-; 105e57
-EndUsedMove5Text: ; 105e57
+EndUsedMove5Text:
 	text_jump _EndUsedMove5Text
 	db "@"
-; 105e5c
 
-
-GetMoveGrammar: ; 105e5c
+GetMoveGrammar:
 ; store move grammar type in wd265
 
 	push bc
@@ -178,12 +165,10 @@ GetMoveGrammar: ; 105e5c
 ; we're done
 	pop bc
 	ret
-; 105e7a
 
 INCLUDE "data/moves/grammar.asm"
 
-
-UpdateUsedMoves: ; 105ed0
+UpdateUsedMoves:
 ; append move a to wPlayerUsedMoves unless it has already been used
 
 	push bc
@@ -237,4 +222,3 @@ UpdateUsedMoves: ; 105ed0
 ; list updated
 	pop bc
 	ret
-; 105ef6

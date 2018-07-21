@@ -1,4 +1,4 @@
-GetTrainerClassName: ; 3952d
+GetTrainerClassName:
 	ld hl, wRivalName
 	ld a, c
 	cp RIVAL1
@@ -19,7 +19,7 @@ GetTrainerClassName: ; 3952d
 	pop de
 	ret
 
-GetOTName: ; 39550
+GetOTName:
 	ld hl, wOTPlayerName
 	ld a, [wLinkMode]
 	and a
@@ -44,7 +44,7 @@ GetOTName: ; 39550
 	pop de
 	ret
 
-GetTrainerAttributes: ; 3957b
+GetTrainerAttributes:
 	ld a, [wTrainerClass]
 	ld c, a
 	call GetOTName
@@ -62,3 +62,5 @@ GetTrainerAttributes: ; 3957b
 	ld a, [hl]
 	ld [wEnemyTrainerBaseReward], a
 	ret
+
+INCLUDE "data/trainers/attributes.asm"

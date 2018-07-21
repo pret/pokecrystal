@@ -295,7 +295,7 @@ anim_call: MACRO
 	dw \1 ; address
 ENDM
 
-	enum anim_ret_command ; $ff
+anim_ret_command EQU -1 ; $ff
 anim_ret: MACRO
 	db anim_ret_command
 ENDM

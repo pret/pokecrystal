@@ -7,4 +7,3 @@
 	frame 2, 06
 	dorepeat 5
 	endanim
-; 0xd1219

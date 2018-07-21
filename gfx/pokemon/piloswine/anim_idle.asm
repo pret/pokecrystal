@@ -3,4 +3,3 @@
 	frame 3, 12
 	dorepeat 1
 	endanim
-; 0xd2102

@@ -4,7 +4,7 @@ spawn: MACRO
 	db \2, \3
 ENDM
 
-SpawnPoints: ; 0x152ab
+SpawnPoints:
 ; entries correspond to SPAWN_* constants
 
 	spawn PLAYERS_HOUSE_2F,            3,  3
@@ -38,4 +38,3 @@ SpawnPoints: ; 0x152ab
 	spawn SILVER_CAVE_OUTSIDE,        23, 20
 	spawn FAST_SHIP_CABINS_SW_SSW_NW,  6,  2
 	spawn N_A,                        -1, -1
-; 1531f

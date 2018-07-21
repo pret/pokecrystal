@@ -8,4 +8,3 @@
 	frame 1, 06
 	dorepeat 6
 	endanim
-; 0xd13e2

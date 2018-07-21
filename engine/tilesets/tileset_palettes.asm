@@ -1,4 +1,4 @@
-LoadSpecialMapPalette: ; 494ac
+LoadSpecialMapPalette:
 	ld a, [wMapTileset]
 	cp TILESET_POKECOM_CENTER
 	jr z, .pokecom_2f
@@ -51,78 +51,66 @@ LoadSpecialMapPalette: ; 494ac
 .do_nothing
 	and a
 	ret
-; 494f2
 
-LoadPokeComPalette: ; 494f2
+LoadPokeComPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, PokeComPalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
-; 49501
 
-PokeComPalette: ; 49501
+PokeComPalette:
 INCLUDE "gfx/tilesets/pokecom_center.pal"
-; 49541
 
-LoadBattleTowerPalette: ; 49541
+LoadBattleTowerPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, BattleTowerPalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
-; 49550
 
-BattleTowerPalette: ; 49550
+BattleTowerPalette:
 INCLUDE "gfx/tilesets/battle_tower.pal"
-; 49590
 
-LoadIcePathPalette: ; 49590
+LoadIcePathPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, IcePathPalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
-; 4959f
 
-IcePathPalette: ; 4959f
+IcePathPalette:
 INCLUDE "gfx/tilesets/ice_path.pal"
-; 495df
 
-LoadHousePalette: ; 495df
+LoadHousePalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, HousePalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
-; 495ee
 
-HousePalette: ; 495ee
+HousePalette:
 INCLUDE "gfx/tilesets/house.pal"
-; 4962e
 
-LoadRadioTowerPalette: ; 4962e
+LoadRadioTowerPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, RadioTowerPalette
 	ld bc, 8 palettes
 	call FarCopyWRAM
 	ret
-; 4963d
 
-RadioTowerPalette: ; 4963d
+RadioTowerPalette:
 INCLUDE "gfx/tilesets/radio_tower.pal"
-; 4967d
 
-MansionPalette1: ; 4967d
+MansionPalette1:
 INCLUDE "gfx/tilesets/mansion_1.pal"
-; 496c5
 
-LoadMansionPalette: ; 496c5
+LoadMansionPalette:
 	ld a, BANK(wBGPals1)
 	ld de, wBGPals1
 	ld hl, MansionPalette1
@@ -144,8 +132,6 @@ LoadMansionPalette: ; 496c5
 	ld bc, 1 palettes
 	call FarCopyWRAM
 	ret
-; 496fe
 
-MansionPalette2: ; 496fe
+MansionPalette2:
 INCLUDE "gfx/tilesets/mansion_2.pal"
-; 49706

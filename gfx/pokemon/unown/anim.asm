@@ -9,4 +9,3 @@
 	frame 9, 05
 	frame 10, 05
 	endanim
-; 0xd13fe

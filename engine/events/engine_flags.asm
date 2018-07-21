@@ -1,4 +1,4 @@
-EngineFlagAction:: ; 80430
+EngineFlagAction::
 ; Do action b on engine flag de
 ;
 ;   b = 0: reset flag
@@ -6,7 +6,6 @@ EngineFlagAction:: ; 80430
 ;     > 1: check flag, result in c
 ;
 ; Setting/resetting does not return a result.
-
 
 ; 16-bit flag ids are considered invalid, but it's nice
 ; to know that the infrastructure is there.
@@ -80,7 +79,5 @@ EngineFlagAction:: ; 80430
 	and c
 	ld [de], a
 	ret
-; 80462
-
 
 INCLUDE "data/engine_flags.asm"

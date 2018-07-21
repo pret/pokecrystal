@@ -3,4 +3,3 @@
 	frame 1, 07
 	dorepeat 1
 	endanim
-; 0xd192b

@@ -1,4 +1,4 @@
-LearnMove: ; 6508
+LearnMove:
 	call LoadTileMapToTempTileMap
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
@@ -117,9 +117,8 @@ LearnMove: ; 6508
 	call PrintText
 	ld b, 1
 	ret
-; 65d3
 
-ForgetMove: ; 65d3
+ForgetMove:
 	push hl
 	ld hl, Text_TryingToLearn
 	call PrintText
@@ -200,40 +199,34 @@ ForgetMove: ; 65d3
 .cancel
 	scf
 	ret
-; 666b
 
-Text_LearnedMove: ; 666b
+Text_LearnedMove:
 ; <MON> learned <MOVE>!
 	text_jump UnknownText_0x1c5660
 	db "@"
-; 6670
 
-Text_ForgetWhich: ; 6670
+Text_ForgetWhich:
 ; Which move should be forgotten?
 	text_jump UnknownText_0x1c5678
 	db "@"
-; 6675
 
-Text_StopLearning: ; 6675
+Text_StopLearning:
 ; Stop learning <MOVE>?
 	text_jump UnknownText_0x1c5699
 	db "@"
-; 667a
 
-Text_DidNotLearn: ; 667a
+Text_DidNotLearn:
 ; <MON> did not learn <MOVE>.
 	text_jump UnknownText_0x1c56af
 	db "@"
-; 667f
 
-Text_TryingToLearn: ; 667f
+Text_TryingToLearn:
 ; <MON> is trying to learn <MOVE>. But <MON> can't learn more than
 ; four moves. Delete an older move to make room for <MOVE>?
 	text_jump UnknownText_0x1c56c9
 	db "@"
-; 6684
 
-Text_1_2_and_Poof: ; 6684
+Text_1_2_and_Poof:
 	text_jump UnknownText_0x1c5740 ; 1, 2 and…
 	start_asm
 	push de
@@ -247,10 +240,8 @@ Text_1_2_and_Poof: ; 6684
 ; Poof! <MON> forgot <MOVE>. And…
 	text_jump UnknownText_0x1c574e
 	db "@"
-; 669a
 
-Text_CantForgetHM: ; 669a
+Text_CantForgetHM:
 ; HM moves can't be forgotten now.
 	text_jump UnknownText_0x1c5772
 	db "@"
-; 669f

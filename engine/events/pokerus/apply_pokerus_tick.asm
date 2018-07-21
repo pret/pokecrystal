@@ -1,4 +1,4 @@
-ApplyPokerusTick: ; 13988
+ApplyPokerusTick:
 ; decreases all pokemon's pokerus counter by b. if the lower nybble reaches zero, the pokerus is cured.
 	ld hl, wPartyMon1PokerusStatus ; wPartyMon1 + MON_PKRS
 	ld a, [wPartyCount]

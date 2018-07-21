@@ -1,4 +1,4 @@
-IsInJohto:: ; 2f17
+IsInJohto::
 ; Return 0 if the player is in Johto, and 1 in Kanto.
 
 	ld a, [wMapGroup]
@@ -30,4 +30,3 @@ IsInJohto:: ; 2f17
 .Kanto:
 	ld a, 1
 	ret
-; 2f3e

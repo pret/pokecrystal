@@ -105,7 +105,6 @@ KANTO_LANDMARK EQU const_value
 GIFT_LOCATION  EQU $7e
 EVENT_LOCATION EQU $7f
 
-
 ; Regions
 	const_def
 	const JOHTO_REGION ; 0

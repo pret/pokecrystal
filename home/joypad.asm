@@ -1,21 +1,19 @@
-JoypadInt:: ; 92e
+JoypadInt::
 ; Replaced by Joypad, called from VBlank instead of the useless
 ; joypad interrupt.
 
 ; This is a placeholder in case the interrupt is somehow enabled.
 	reti
-; 92f
 
-ClearJoypad:: ; 92f
+ClearJoypad::
 	xor a
 ; Pressed this frame (delta)
 	ld [hJoyPressed], a
 ; Currently pressed
 	ld [hJoyDown], a
 	ret
-; 935
 
-Joypad:: ; 935
+Joypad::
 ; Read the joypad register and translate it to something more
 ; workable for use in-game. There are 8 buttons, so we can use
 ; one byte to contain all player input.
@@ -103,10 +101,8 @@ endr
 	jp z, Reset
 
 	ret
-; 984
 
-
-GetJoypad:: ; 984
+GetJoypad::
 ; Update mirror joypad input from hJoypadDown (real input)
 
 ; hJoyReleased: released this frame (delta)
@@ -193,7 +189,6 @@ GetJoypad:: ; 984
 	rst Bankswitch
 	jr .quit
 
-
 .updateauto
 ; An input of $ff will end the stream.
 	ld a, [hli]
@@ -232,10 +227,8 @@ GetJoypad:: ; 984
 	ld [hJoyPressed], a ; pressed
 	ld [hJoyDown], a ; input
 	jr .quit
-; 9ee
 
-
-StartAutoInput:: ; 9ee
+StartAutoInput::
 ; Start reading automated input stream at a:hl.
 
 	ld [wAutoInputBank], a
@@ -255,10 +248,8 @@ StartAutoInput:: ; 9ee
 	ld a, AUTO_INPUT
 	ld [wInputType], a
 	ret
-; a0a
 
-
-StopAutoInput:: ; a0a
+StopAutoInput::
 ; Clear variables related to automated input.
 	xor a
 	ld [wAutoInputBank], a
@@ -268,10 +259,8 @@ StopAutoInput:: ; a0a
 ; Back to normal input.
 	ld [wInputType], a
 	ret
-; a1b
 
-
-JoyTitleScreenInput:: ; a1b
+JoyTitleScreenInput::
 .loop
 
 	call DelayFrame
@@ -297,10 +286,8 @@ JoyTitleScreenInput:: ; a1b
 .keycombo
 	scf
 	ret
-; a36
 
-
-JoyWaitAorB:: ; a36
+JoyWaitAorB::
 .loop
 	call DelayFrame
 	call GetJoypad
@@ -309,9 +296,8 @@ JoyWaitAorB:: ; a36
 	ret nz
 	call RTC
 	jr .loop
-; a46
 
-WaitButton:: ; a46
+WaitButton::
 	ld a, [hOAMUpdate]
 	push af
 	ld a, 1
@@ -321,9 +307,8 @@ WaitButton:: ; a46
 	pop af
 	ld [hOAMUpdate], a
 	ret
-; a57
 
-JoyTextDelay:: ; a57
+JoyTextDelay::
 	call GetJoypad
 	ld a, [hInMenu]
 	and a
@@ -351,9 +336,8 @@ JoyTextDelay:: ; a57
 	ld a, 5
 	ld [wTextDelayFrames], a
 	ret
-; a80
 
-WaitPressAorB_BlinkCursor:: ; a80
+WaitPressAorB_BlinkCursor::
 	ld a, [hMapObjectIndexBuffer]
 	push af
 	ld a, [hObjectStructIndexBuffer]
@@ -379,18 +363,16 @@ WaitPressAorB_BlinkCursor:: ; a80
 	pop af
 	ld [hMapObjectIndexBuffer], a
 	ret
-; aa5
 
-SimpleWaitPressAorB:: ; aa5
+SimpleWaitPressAorB::
 .loop
 	call JoyTextDelay
 	ld a, [hJoyLast]
 	and A_BUTTON | B_BUTTON
 	jr z, .loop
 	ret
-; aaf
 
-ButtonSound:: ; aaf
+ButtonSound::
 	ld a, [wLinkMode]
 	and a
 	jr nz, .link
@@ -404,9 +386,8 @@ ButtonSound:: ; aaf
 .link
 	ld c, 65
 	jp DelayFrames
-; ac6
 
-.wait_input ; ac6
+.wait_input
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -432,9 +413,8 @@ ButtonSound:: ; aaf
 	pop af
 	ld [hOAMUpdate], a
 	ret
-; af5
 
-.blink_cursor ; af5
+.blink_cursor
 	ld a, [hVBlankCounter]
 	and %00010000 ; bit 4, a
 	jr z, .cursor_off
@@ -447,9 +427,8 @@ ButtonSound:: ; aaf
 .load_cursor_state
 	ldcoord_a 18, 17
 	ret
-; b06
 
-BlinkCursor:: ; b06
+BlinkCursor::
 	push bc
 	ld a, [hl]
 	ld b, a
@@ -491,4 +470,3 @@ BlinkCursor:: ; b06
 	ld a, "▼"
 	ld [hl], a
 	ret
-; b40

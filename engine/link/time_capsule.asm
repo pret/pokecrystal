@@ -1,6 +1,6 @@
 ; These functions seem to be related to backwards compatibility
 
-ValidateOTTrademon: ; fb57e
+ValidateOTTrademon:
 	ld a, [wd003]
 	ld hl, wOTPartyMon1Species
 	call GetPartyLocation
@@ -63,9 +63,8 @@ ValidateOTTrademon: ; fb57e
 .abnormal
 	scf
 	ret
-; fb5dd
 
-Functionfb5dd: ; fb5dd
+Functionfb5dd:
 	ld a, [wd002]
 	ld d, a
 	ld a, [wPartyCount]
@@ -100,9 +99,8 @@ Functionfb5dd: ; fb5dd
 .done
 	and a
 	ret
-; fb60d
 
-PlaceTradePartnerNamesAndParty: ; fb60d
+PlaceTradePartnerNamesAndParty:
 	hlcoord 4, 0
 	ld de, wPlayerName
 	call PlaceString
@@ -118,7 +116,7 @@ PlaceTradePartnerNamesAndParty: ; fb60d
 	call .PlaceSpeciesNames
 	hlcoord 7, 9
 	ld de, wOTPartySpecies
-.PlaceSpeciesNames: ; fb634
+.PlaceSpeciesNames:
 	ld c, $0
 .loop
 	ld a, [de]
@@ -142,6 +140,5 @@ PlaceTradePartnerNamesAndParty: ; fb60d
 	pop bc
 	inc c
 	jr .loop
-; fb656
 
 INCLUDE "data/pokemon/gen1_base_special.asm"

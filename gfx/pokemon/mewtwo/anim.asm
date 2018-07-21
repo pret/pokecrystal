@@ -14,4 +14,3 @@
 	frame 5, 14
 	frame 3, 04
 	endanim
-; 0xd1133

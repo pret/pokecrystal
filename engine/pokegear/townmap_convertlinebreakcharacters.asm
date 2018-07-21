@@ -1,18 +1,18 @@
-TownMap_ConvertLineBreakCharacters: ; 1de2c5
+TownMap_ConvertLineBreakCharacters:
 	ld hl, wStringBuffer1
 .loop
 	ld a, [hl]
 	cp "@"
 	jr z, .end
 	cp "%"
-	jr z, .line_break
+	jr z, .line_feed
 	cp "¯"
-	jr z, .line_break
+	jr z, .line_feed
 	inc hl
 	jr .loop
 
-.line_break
-	ld [hl], "<LNBRK>"
+.line_feed
+	ld [hl], "<LF>"
 
 .end
 	ld de, wStringBuffer1

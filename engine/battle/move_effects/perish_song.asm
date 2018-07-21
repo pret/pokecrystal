@@ -1,6 +1,5 @@
-BattleCommand_PerishSong: ; 376c2
+BattleCommand_PerishSong:
 ; perishsong
-
 
 	ld hl, wPlayerSubStatus1
 	ld de, wEnemySubStatus1
@@ -37,4 +36,3 @@ BattleCommand_PerishSong: ; 376c2
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
-; 376f8

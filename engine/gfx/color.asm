@@ -107,7 +107,7 @@ InitPartyMenuPalettes:
 	ret
 
 ; SGB layout for SCGB_PARTY_MENU_HP_PALS
-SGB_ApplyPartyMenuHPPals: ; 8ade
+SGB_ApplyPartyMenuHPPals:
 	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld e, a
@@ -648,7 +648,7 @@ ApplyAttrMap:
 	ret
 
 ; CGB layout for SCGB_PARTY_MENU_HP_PALS
-CGB_ApplyPartyMenuHPPals: ; 96f3
+CGB_ApplyPartyMenuHPPals:
 	ld hl, wHPPals
 	ld a, [wSGBPals]
 	ld e, a
@@ -1128,7 +1128,7 @@ SGBBorder_YetMorePalPushing:
 	ld [rBGP], a
 	ret
 
-CopyData: ; 0x9a52
+CopyData:
 ; copy bc bytes of data from hl to de
 .loop
 	ld a, [hli]
@@ -1139,9 +1139,8 @@ CopyData: ; 0x9a52
 	or b
 	jr nz, .loop
 	ret
-; 0x9a5b
 
-ClearBytes: ; 0x9a5b
+ClearBytes:
 ; clear bc bytes of data starting from de
 .loop
 	xor a
@@ -1152,9 +1151,8 @@ ClearBytes: ; 0x9a5b
 	or b
 	jr nz, .loop
 	ret
-; 0x9a64
 
-DrawDefaultTiles: ; 0x9a64
+DrawDefaultTiles:
 ; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
 	hlbgcoord 0, 0 ; BG Map 0
 	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
@@ -1172,7 +1170,6 @@ DrawDefaultTiles: ; 0x9a64
 	dec c
 	jr nz, .line
 	ret
-; 0x9a7a
 
 SGBDelayCycles:
 	ld de, 7000

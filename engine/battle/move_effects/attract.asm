@@ -1,4 +1,4 @@
-BattleCommand_Attract: ; 377ce
+BattleCommand_Attract:
 ; attract
 	ld a, [wAttackMissed]
 	and a
@@ -21,10 +21,8 @@ BattleCommand_Attract: ; 377ce
 
 .failed
 	jp FailMove
-; 377f5
 
-
-CheckOppositeGender: ; 377f5
+CheckOppositeGender:
 	ld a, MON_SPECIES
 	call BattlePartyAttr
 	ld a, [hl]
@@ -76,4 +74,3 @@ CheckOppositeGender: ; 377f5
 .genderless_samegender
 	scf
 	ret
-; 3784b

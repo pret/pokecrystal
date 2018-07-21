@@ -1,4 +1,4 @@
-SwitchItemsInBag: ; 2490c (9:490c)
+SwitchItemsInBag:
 	ld a, [wSwitchItem]
 	and a
 	jr z, .init
@@ -84,7 +84,7 @@ SwitchItemsInBag: ; 2490c (9:490c)
 	ld [wSwitchItem], a
 	ret
 
-Function249a7: ; 249a7 (9:49a7)
+Function249a7:
 	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	ld d, h
@@ -110,7 +110,7 @@ Function249a7: ; 249a7 (9:49a7)
 	scf
 	ret
 
-Function249d1: ; 249d1 (9:49d1)
+Function249d1:
 	ld a, [wSwitchItem]
 	call ItemSwitch_GetNthItem
 	inc hl
@@ -180,14 +180,14 @@ Function249d1: ; 249d1 (9:49d1)
 	ld [wSwitchItem], a
 	ret
 
-Function24a40: ; 24a40 (9:4a40)
+Function24a40:
 	call ItemSwitch_GetNthItem
 	ld de, wd002
 	call ItemSwitch_ConvertSpacingToDW
 	call CopyBytes
 	ret
 
-Function24a4d: ; 24a4d (9:4a4d)
+Function24a4d:
 	call ItemSwitch_GetNthItem
 	ld d, h
 	ld e, l
@@ -196,7 +196,7 @@ Function24a4d: ; 24a4d (9:4a4d)
 	call CopyBytes
 	ret
 
-ItemSwitch_GetNthItem: ; 24a5c (9:4a5c)
+ItemSwitch_GetNthItem:
 	push af
 	call ItemSwitch_ConvertSpacingToDW
 	ld hl, wMenuData_ItemsPointerAddr
@@ -208,7 +208,7 @@ ItemSwitch_GetNthItem: ; 24a5c (9:4a5c)
 	call AddNTimes
 	ret
 
-Function24a6c: ; 24a6c (9:4a6c)
+Function24a6c:
 	push hl
 	call ItemSwitch_ConvertSpacingToDW
 	ld a, d
@@ -224,7 +224,7 @@ Function24a6c: ; 24a6c (9:4a6c)
 	pop hl
 	ret
 
-ItemSwitch_ConvertSpacingToDW: ; 24a80 (9:4a80)
+ItemSwitch_ConvertSpacingToDW:
 ; This function is absolutely idiotic.
 	push hl
 	ld a, [wMenuData_ScrollingMenuSpacing]
@@ -239,13 +239,10 @@ ItemSwitch_ConvertSpacingToDW: ; 24a80 (9:4a80)
 	pop hl
 	ret
 
-; 24a91 (9:4a91)
-
-.spacing_dws ; 24a91
+.spacing_dws
 	dw 0, 1, 2
-; 24a97
 
-Function24a97: ; 24a97 (9:4a97)
+Function24a97:
 	push af
 	call ItemSwitch_ConvertSpacingToDW
 	ld a, c
@@ -262,7 +259,7 @@ Function24a97: ; 24a97 (9:4a97)
 	ld a, $1
 	ret
 
-Function24aab: ; 24aab (9:4aab)
+Function24aab:
 .loop
 	ld a, [hld]
 	ld [de], a

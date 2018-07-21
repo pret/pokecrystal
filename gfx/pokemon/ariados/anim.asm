@@ -5,4 +5,3 @@
 	dorepeat 2
 	frame 1, 24
 	endanim
-; 0xd124d

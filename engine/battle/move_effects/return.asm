@@ -1,4 +1,4 @@
-BattleCommand_HappinessPower: ; 3784b
+BattleCommand_HappinessPower:
 ; happinesspower
 	push bc
 	ld hl, wBattleMonHappiness
@@ -23,5 +23,3 @@ BattleCommand_HappinessPower: ; 3784b
 	ld d, a
 	pop bc
 	ret
-
-; 37874

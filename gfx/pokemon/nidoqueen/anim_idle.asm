@@ -4,4 +4,3 @@
 	frame 6, 07
 	dorepeat 2
 	endanim
-; 0xd19f4

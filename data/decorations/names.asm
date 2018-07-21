@@ -1,4 +1,4 @@
-DecorationNames: ; 26b8d
+DecorationNames:
 ; entries correspond to constants/deco_constants.asm
 	db "CANCEL@"
 	db "PUT IT AWAY@"
@@ -26,4 +26,3 @@ DecorationNames: ; 26b8d
 	db "BLUE@"
 	db "YELLOW@"
 	db "GREEN@"
-; 26c72

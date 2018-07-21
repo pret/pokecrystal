@@ -1,4 +1,4 @@
-BattleCommand_PainSplit: ; 35926
+BattleCommand_PainSplit:
 ; painsplit
 
 	ld a, [wAttackMissed]
@@ -65,7 +65,7 @@ BattleCommand_PainSplit: ; 35926
 	inc de
 	inc de
 
-.EnemyShareHP: ; 359ac
+.EnemyShareHP:
 	ld c, [hl]
 	dec hl
 	ld a, [wCurDamage + 1]
@@ -89,9 +89,5 @@ BattleCommand_PainSplit: ; 35926
 	ld [wBuffer6], a
 	ret
 
-; 359cd
-
 .ButItFailed:
 	jp PrintDidntAffect2
-
-; 359d0

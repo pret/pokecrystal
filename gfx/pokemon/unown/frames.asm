@@ -42,4 +42,3 @@
 .frame11
 	db $05 ; bitmask
 	db $27
-; 0xd8e5e

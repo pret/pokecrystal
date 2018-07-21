@@ -3,4 +3,3 @@
 	frame 2, 07
 	dorepeat 1
 	endanim
-; 0xd1ef2

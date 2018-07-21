@@ -1,3 +1,3 @@
-BattleStart_CopyTilemapAtOnce: ; 8cf4f
+BattleStart_CopyTilemapAtOnce:
 	call CGBOnly_CopyTilemapAtOnce
 	ret

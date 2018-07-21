@@ -1,4 +1,4 @@
-BattleCommand_Disable: ; 36fed
+BattleCommand_Disable:
 ; disable
 
 	ld a, [wAttackMissed]
@@ -70,5 +70,3 @@ BattleCommand_Disable: ; 36fed
 
 .failed
 	jp FailMove
-
-; 3705c

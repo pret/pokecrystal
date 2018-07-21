@@ -1,4 +1,4 @@
-BattleCommand_MirrorMove: ; 373c9
+BattleCommand_MirrorMove:
 ; mirrormove
 
 	call ClearLastMove
@@ -49,4 +49,3 @@ BattleCommand_MirrorMove: ; 373c9
 .done
 	call BattleCommand_MoveDelay
 	jp ResetTurn
-; 37418

@@ -1,4 +1,4 @@
-BugContestantPointers: ; 13783
+BugContestantPointers:
 ; there are NUM_BUG_CONTESTANTS + 1 entries
 	dw BugContestant_BugCatcherDon ; this reverts back to the player
 	dw BugContestant_BugCatcherDon
@@ -11,7 +11,6 @@ BugContestantPointers: ; 13783
 	dw BugContestant_BugCatcherJosh
 	dw BugContestant_YoungsterSamuel
 	dw BugContestant_SchoolboyKipp
-; 13799
 
 ; contestant format:
 ;   db class, id
@@ -78,4 +77,3 @@ BugContestant_SchoolboyKipp:
 	dbw VENONAT,    267
 	dbw PARAS,      254
 	dbw KAKUNA,     259
-; 13807

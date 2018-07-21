@@ -1,4 +1,4 @@
-AIChooseMove: ; 440ce
+AIChooseMove:
 ; Score each move in wEnemyMonMoves starting from wBuffer1. Lower is better.
 ; Pick the move with the lowest score.
 
@@ -14,7 +14,6 @@ AIChooseMove: ; 440ce
 ; No use picking a move if there's no choice.
 	farcall CheckEnemyLockedIn
 	ret nz
-
 
 ; The default score is 20. Unusable moves are given a score of 80.
 	ld a, 20
@@ -60,7 +59,6 @@ AIChooseMove: ; 440ce
 	jr nz, .CheckMovePP
 	ld [hl], 80
 	jr .CheckMovePP
-
 
 ; Apply AI scoring layers depending on the trainer class.
 .ApplyLayers:
@@ -198,10 +196,8 @@ AIChooseMove: ; 440ce
 	ld a, c
 	ld [wCurEnemyMoveNum], a
 	ret
-; 441af
 
-
-AIScoringPointers: ; 441af
+AIScoringPointers:
 ; entries correspond to AI_* constants
 	dw AI_Basic
 	dw AI_Setup
@@ -219,4 +215,3 @@ AIScoringPointers: ; 441af
 	dw AI_None
 	dw AI_None
 	dw AI_None
-; 441cf

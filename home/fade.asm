@@ -1,7 +1,6 @@
 ; Functions to fade the screen in and out.
 
-
-Unreferenced_Function48c:: ; 48c
+Unreferenced_Function48c::
 ; TimeOfDayFade
 	ld a, [wTimeOfDayPal]
 	ld b, a
@@ -20,10 +19,8 @@ Unreferenced_Function48c:: ; 48c
 	ld a, [hli]
 	ld [rOBP1], a
 	ret
-; 4a3
 
-
-RotateFourPalettesRight:: ; 4a3
+RotateFourPalettesRight::
 	ld a, [hCGB]
 	and a
 	jr z, .dmg
@@ -35,9 +32,8 @@ RotateFourPalettesRight:: ; 4a3
 	ld hl, IncGradGBPalTable_08
 	ld b, 4
 	jr RotatePalettesRight
-; 4b6
 
-RotateThreePalettesRight:: ; 4b6
+RotateThreePalettesRight::
 	ld a, [hCGB]
 	and a
 	jr z, .dmg
@@ -48,7 +44,7 @@ RotateThreePalettesRight:: ; 4b6
 .dmg
 	ld hl, IncGradGBPalTable_13
 	ld b, 3
-RotatePalettesRight:: ; 4c7
+RotatePalettesRight::
 ; Rotate palettes to the right and fill with loaded colors from the left
 ; If we're already at the leftmost color, fill with the leftmost color
 	push de
@@ -65,9 +61,8 @@ RotatePalettesRight:: ; 4c7
 	dec b
 	jr nz, RotatePalettesRight
 	ret
-; 4dd
 
-RotateFourPalettesLeft:: ; 4dd
+RotateFourPalettesLeft::
 	ld a, [hCGB]
 	and a
 	jr z, .dmg
@@ -79,9 +74,8 @@ RotateFourPalettesLeft:: ; 4dd
 	ld hl, IncGradGBPalTable_12 - 1
 	ld b, 4
 	jr RotatePalettesLeft
-; 4f0
 
-RotateThreePalettesLeft:: ; 4f0
+RotateThreePalettesLeft::
 	ld a, [hCGB]
 	and a
 	jr z, .dmg
@@ -92,7 +86,7 @@ RotateThreePalettesLeft:: ; 4f0
 .dmg
 	ld hl, IncGradGBPalTable_15 - 1
 	ld b, 3
-RotatePalettesLeft:: ; 501
+RotatePalettesLeft::
 ; Rotate palettes to the left and fill with loaded colors from the right
 ; If we're already at the rightmost color, fill with the rightmost color
 	push de
@@ -109,10 +103,7 @@ RotatePalettesLeft:: ; 501
 	dec b
 	jr nz, RotatePalettesLeft
 	ret
-; 517
 
-
-; 517
 IncGradGBPalTable_00:: db %11111111, %11111111, %11111111
 IncGradGBPalTable_01:: db %11111110, %11111110, %11111110
 IncGradGBPalTable_02:: db %11111001, %11111001, %11111001
@@ -134,4 +125,3 @@ IncGradGBPalTable_13:: db %10010000, %10000000, %10010000
 IncGradGBPalTable_14:: db %01000000, %01000000, %01000000
 
 IncGradGBPalTable_15:: db %00000000, %00000000, %00000000
-; 547

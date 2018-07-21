@@ -46,9 +46,9 @@ text_low: MACRO
 	db TX_LOW
 ENDM
 
-	enum WAIT_BUTTON ; $06
+	enum TX_WAIT_BUTTON ; $06
 text_waitbutton: MACRO
-	db WAIT_BUTTON
+	db TX_WAIT_BUTTON
 ENDM
 
 	enum TX_SCROLL ; $07
@@ -56,9 +56,9 @@ text_scroll: MACRO
 	db TX_SCROLL
 ENDM
 
-	enum START_ASM ; $08
+	enum TX_START_ASM ; $08
 start_asm: MACRO
-	db START_ASM
+	db TX_START_ASM
 ENDM
 
 	enum TX_NUM ; $09

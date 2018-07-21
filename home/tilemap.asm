@@ -1,6 +1,6 @@
-ClearBGPalettes:: ; 31f3
+ClearBGPalettes::
 	call ClearPalettes
-WaitBGMap:: ; 31f6
+WaitBGMap::
 ; Tell VBlank to update BG Map
 	ld a, 1 ; BG Map 0 tiles
 	ld [hBGMapMode], a
@@ -8,9 +8,8 @@ WaitBGMap:: ; 31f6
 	ld c, 4
 	call DelayFrames
 	ret
-; 3200
 
-WaitBGMap2:: ; 0x3200
+WaitBGMap2::
 	ld a, [hCGB]
 	and a
 	jr z, .bg0
@@ -26,15 +25,13 @@ WaitBGMap2:: ; 0x3200
 	ld c, 4
 	call DelayFrames
 	ret
-; 0x3218
 
-IsCGB:: ; 3218
+IsCGB::
 	ld a, [hCGB]
 	and a
 	ret
-; 321c
 
-ApplyTilemap:: ; 321c
+ApplyTilemap::
 	ld a, [hCGB]
 	and a
 	jr z, .dmg
@@ -54,23 +51,20 @@ ApplyTilemap:: ; 321c
 	ld c, 4
 	call DelayFrames
 	ret
-; 3238
 
-CGBOnly_CopyTilemapAtOnce:: ; 3238
+CGBOnly_CopyTilemapAtOnce::
 	ld a, [hCGB]
 	and a
 	jr z, WaitBGMap
 
-CopyTilemapAtOnce:: ; 323d
+CopyTilemapAtOnce::
 	jr .CopyTilemapAtOnce
-; 323f
 
 ; unused
 	farcall HDMATransferAttrMapAndTileMapToWRAMBank3
 	ret
-; 3246
 
-.CopyTilemapAtOnce: ; 3246
+.CopyTilemapAtOnce:
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -107,9 +101,8 @@ CopyTilemapAtOnce:: ; 323d
 	pop af
 	ld [hBGMapMode], a
 	ret
-; 327b
 
-.StackPointerMagic: ; 327b
+.StackPointerMagic:
 ; Copy all tiles to vBGMap
 	ld [hSPBuffer], sp
 	ld sp, hl
@@ -149,9 +142,8 @@ endr
 	ld h, a
 	ld sp, hl
 	ret
-; 32f9
 
-SetPalettes:: ; 32f9
+SetPalettes::
 ; Inits the Palettes
 ; depending on the system the monochromes palettes or color palettes
 	ld a, [hCGB]
@@ -172,9 +164,8 @@ SetPalettes:: ; 32f9
 	call DmgToCgbObjPals
 	pop de
 	ret
-; 3317
 
-ClearPalettes:: ; 3317
+ClearPalettes::
 ; Make all palettes white
 
 ; CGB: make all the palette colors white
@@ -209,11 +200,10 @@ ClearPalettes:: ; 3317
 	ld a, 1
 	ld [hCGBPalUpdate], a
 	ret
-; 333e
 
-GetMemSGBLayout:: ; 333e
+GetMemSGBLayout::
 	ld b, SCGB_RAM
-GetSGBLayout:: ; 3340
+GetSGBLayout::
 ; load sgb packets unless dmg
 
 	ld a, [hCGB]
@@ -226,4 +216,3 @@ GetSGBLayout:: ; 3340
 
 .sgb
 	predef_jump LoadSGBLayout
-; 334e

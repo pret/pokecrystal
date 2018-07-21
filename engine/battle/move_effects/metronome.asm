@@ -1,4 +1,4 @@
-BattleCommand_Metronome: ; 37418
+BattleCommand_Metronome:
 ; metronome
 
 	call ClearLastMove
@@ -34,13 +34,10 @@ BattleCommand_Metronome: ; 37418
 	call CheckUserMove
 	jr z, .GetMove
 
-
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
 	ld [hl], b
 	call UpdateMoveData
 	jp ResetTurn
-; 37454
 
-
-INCLUDE "data/battle/metronome_exception_moves.asm"
+INCLUDE "data/moves/metronome_exception_moves.asm"

@@ -1,11 +1,11 @@
-LoadPoisonBGPals: ; cbcdd
+LoadPoisonBGPals:
 	call .LoadPals
 	ld a, [hCGB]
 	and a
 	ret nz
 	ret ; ????
 
-.LoadPals: ; cbce5
+.LoadPals:
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb

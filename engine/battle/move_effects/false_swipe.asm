@@ -1,4 +1,4 @@
-BattleCommand_FalseSwipe: ; 35c94
+BattleCommand_FalseSwipe:
 ; falseswipe
 
 ; Makes sure wCurDamage < MonHP
@@ -46,5 +46,3 @@ BattleCommand_FalseSwipe: ; 35c94
 .done
 	and a
 	ret
-
-; 35cc9

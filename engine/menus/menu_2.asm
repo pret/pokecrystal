@@ -1,4 +1,4 @@
-PlaceMenuItemName: ; 0x24ab4
+PlaceMenuItemName:
 	push de
 	ld a, [wMenuSelection]
 	ld [wNamedObjectIndexBuffer], a
@@ -7,7 +7,7 @@ PlaceMenuItemName: ; 0x24ab4
 	call PlaceString
 	ret
 
-PlaceMenuItemQuantity: ; 0x24ac3
+PlaceMenuItemQuantity:
 	push de
 	ld a, [wMenuSelection]
 	ld [wCurItem], a
@@ -27,22 +27,22 @@ PlaceMenuItemQuantity: ; 0x24ac3
 .done
 	ret
 
-PlaceMoneyTopRight: ; 24ae8
+PlaceMoneyTopRight:
 	ld hl, MenuHeader_0x24b15
 	call CopyMenuHeader
 	jr PlaceMoneyTextBox
 
-PlaceMoneyBottomLeft: ; 24af0
+PlaceMoneyBottomLeft:
 	ld hl, MenuHeader_0x24b1d
 	call CopyMenuHeader
 	jr PlaceMoneyTextBox
 
-PlaceMoneyAtTopLeftOfTextbox: ; 24af8
+PlaceMoneyAtTopLeftOfTextbox:
 	ld hl, MenuHeader_0x24b15
 	lb de, 0, 11
 	call OffsetMenuHeader
 
-PlaceMoneyTextBox: ; 24b01
+PlaceMoneyTextBox:
 	call MenuBox
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
@@ -52,19 +52,19 @@ PlaceMoneyTextBox: ; 24b01
 	call PrintNum
 	ret
 
-MenuHeader_0x24b15: ; 0x24b15
+MenuHeader_0x24b15:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 0, SCREEN_WIDTH - 1, 2
 	dw NULL
 	db 1 ; default option
 
-MenuHeader_0x24b1d: ; 0x24b1d
+MenuHeader_0x24b1d:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 11, 8, 13
 	dw NULL
 	db 1 ; default option
 
-DisplayCoinCaseBalance: ; 24b25
+DisplayCoinCaseBalance:
 	; Place a text box of size 1x7 at 11, 0.
 	hlcoord 11, 0
 	ld b, 1
@@ -82,7 +82,7 @@ DisplayCoinCaseBalance: ; 24b25
 	call PrintNum
 	ret
 
-DisplayMoneyAndCoinBalance: ; 24b4e
+DisplayMoneyAndCoinBalance:
 	hlcoord 5, 0
 	ld b, 3
 	ld c, 13
@@ -103,14 +103,14 @@ DisplayMoneyAndCoinBalance: ; 24b4e
 	call PrintNum
 	ret
 
-MoneyString: ; 24b83
+MoneyString:
 	db "MONEY@"
-CoinString: ; 24b89
+CoinString:
 	db "COIN@"
-ShowMoney_TerminatorString: ; 24b8e
+ShowMoney_TerminatorString:
 	db "@"
 
-Unreferenced_Function24b8f: ; 24b8f
+Unreferenced_Function24b8f:
 ; related to safari?
 	ld hl, wOptions
 	ld a, [hl]
@@ -138,19 +138,19 @@ Unreferenced_Function24b8f: ; 24b8f
 	ld [wOptions], a
 	ret
 
-.slash_500 ; 24bcf
+.slash_500
 	db "／５００@"
-.booru_ko ; 24bd4
+.booru_ko
 	db "ボール　　　こ@"
 
-StartMenu_DrawBugContestStatusBox: ; 24bdc
+StartMenu_DrawBugContestStatusBox:
 	hlcoord 0, 0
 	ld b, 5
 	ld c, 17
 	call TextBox
 	ret
 
-StartMenu_PrintBugContestStatus: ; 24be7
+StartMenu_PrintBugContestStatus:
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -194,18 +194,18 @@ StartMenu_PrintBugContestStatus: ; 24be7
 	ld [wOptions], a
 	ret
 
-.Balls_JP: ; 24c43
+.Balls_JP:
 	db "ボール　　　こ@"
-.CAUGHT: ; 24c4b
+.CAUGHT:
 	db "CAUGHT@"
-.Balls_EN: ; 24c52
+.Balls_EN:
 	db "BALLS:@"
-.None: ; 24c59
+.None:
 	db "None@"
-.LEVEL: ; 24c5e
+.LEVEL:
 	db "LEVEL@"
 
-FindApricornsInBag: ; 24c64
+FindApricornsInBag:
 ; Checks the bag for Apricorns.
 	ld hl, wBuffer1
 	xor a
@@ -239,7 +239,7 @@ FindApricornsInBag: ; 24c64
 	scf
 	ret
 
-.addtobuffer ; 24c94
+.addtobuffer
 	push hl
 	ld hl, wBuffer1
 	inc [hl]

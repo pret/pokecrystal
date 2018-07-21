@@ -1,4 +1,4 @@
-TrainerPalettes: ; b0ce
+TrainerPalettes:
 ; entries correspond to trainer classes
 
 PlayerPalette: ; Chris uses the same colors as Cal
@@ -71,4 +71,3 @@ INCLUDE "gfx/trainers/blue.pal"
 INCLUDE "gfx/trainers/officer.pal"
 INCLUDE "gfx/trainers/grunt_f.pal"
 INCLUDE "gfx/trainers/mysticalman.pal"
-; b1de

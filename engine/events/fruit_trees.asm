@@ -1,4 +1,4 @@
-FruitTreeScript:: ; 44000
+FruitTreeScript::
 	callasm GetCurTreeFruit
 	opentext
 	copybytetovar wCurFruit
@@ -32,38 +32,33 @@ FruitTreeScript:: ; 44000
 .end
 	closetext
 	end
-; 44041
 
-GetCurTreeFruit: ; 44041
+GetCurTreeFruit:
 	ld a, [wCurFruitTree]
 	dec a
 	call GetFruitTreeItem
 	ld [wCurFruit], a
 	ret
-; 4404c
 
-TryResetFruitTrees: ; 4404c
+TryResetFruitTrees:
 	ld hl, wDailyFlags
 	bit DAILYFLAGS_ALL_FRUIT_TREES_F, [hl]
 	ret nz
 	jp ResetFruitTrees
-; 44055
 
-CheckFruitTree: ; 44055
+CheckFruitTree:
 	ld b, 2
 	call GetFruitTreeFlag
 	ld a, c
 	ld [wScriptVar], a
 	ret
-; 4405f
 
-PickedFruitTree: ; 4405f
+PickedFruitTree:
 	farcall StubbedTrainerRankings_FruitPicked
 	ld b, 1
 	jp GetFruitTreeFlag
-; 4406a
 
-ResetFruitTrees: ; 4406a
+ResetFruitTrees:
 	xor a
 	ld hl, wFruitTreeFlags
 	ld [hli], a
@@ -73,9 +68,8 @@ ResetFruitTrees: ; 4406a
 	ld hl, wDailyFlags
 	set DAILYFLAGS_ALL_FRUIT_TREES_F, [hl]
 	ret
-; 44078
 
-GetFruitTreeFlag: ; 44078
+GetFruitTreeFlag:
 	push hl
 	push de
 	ld a, [wCurFruitTree]
@@ -87,9 +81,8 @@ GetFruitTreeFlag: ; 44078
 	pop de
 	pop hl
 	ret
-; 4408a
 
-GetFruitTreeItem: ; 4408a
+GetFruitTreeItem:
 	push hl
 	push de
 	ld e, a
@@ -100,33 +93,25 @@ GetFruitTreeItem: ; 4408a
 	pop de
 	pop hl
 	ret
-; 44097
-
 
 INCLUDE "data/items/fruit_trees.asm"
 
-
-FruitBearingTreeText: ; 440b5
+FruitBearingTreeText:
 	text_jump _FruitBearingTreeText
 	db "@"
-; 440ba
 
-HeyItsFruitText: ; 440ba
+HeyItsFruitText:
 	text_jump _HeyItsFruitText
 	db "@"
-; 440bf
 
-ObtainedFruitText: ; 440bf
+ObtainedFruitText:
 	text_jump _ObtainedFruitText
 	db "@"
-; 440c4
 
-FruitPackIsFullText: ; 440c4
+FruitPackIsFullText:
 	text_jump _FruitPackIsFullText
 	db "@"
-; 440c9
 
-NothingHereText: ; 440c9
+NothingHereText:
 	text_jump _NothingHereText
 	db "@"
-; 440ce

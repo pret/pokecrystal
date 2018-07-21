@@ -1,4 +1,4 @@
-Gen1TrainerClassNames: ; 50a42
+Gen1TrainerClassNames:
 ; Untranslated trainer class names from Red.
 	dw .Youngster
 	dw .BugCatcher

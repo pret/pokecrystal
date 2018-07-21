@@ -3,7 +3,7 @@ PUZZLE_VOID   EQU $ef
 
 puzcoord EQUS "* 6 +"
 
-_UnownPuzzle: ; e1190
+_UnownPuzzle:
 	ld a, [hInMenu]
 	push af
 	ld a, $1
@@ -19,11 +19,11 @@ _UnownPuzzle: ; e1190
 	xor a
 	call ByteFill
 	ld hl, UnownPuzzleCursorGFX
-	ld de, vTiles1 tile $60
+	ld de, vTiles0 tile $e0
 	ld bc, 4 tiles
 	call CopyBytes
 	ld hl, UnownPuzzleStartCancelLZ
-	ld de, vTiles1 tile $6d
+	ld de, vTiles0 tile $ed
 	call Decompress
 	call LoadUnownPuzzlePiecesGFX
 	hlcoord 0, 0
@@ -88,9 +88,8 @@ _UnownPuzzle: ; e1190
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ret
-; e124e
 
-InitUnownPuzzlePiecePositions: ; e124e
+InitUnownPuzzlePiecePositions:
 	ld c,  1
 	ld b, 16
 .load_loop
@@ -111,9 +110,8 @@ InitUnownPuzzlePiecePositions: ; e124e
 	dec b
 	jr nz, .load_loop
 	ret
-; e126d
 
-.PuzzlePieceInitialPositions: ; e126d
+.PuzzlePieceInitialPositions:
 initpuzcoord: MACRO
 rept _NARG / 2
 	db \1 puzcoord \2
@@ -128,9 +126,8 @@ ENDM
 	initpuzcoord 4,0,                     4,5
 	initpuzcoord 5,0,                     5,5
 	                   ; START > CANCEL
-; e127d
 
-PlaceStartCancelBox: ; e127d
+PlaceStartCancelBox:
 	call PlaceStartCancelBoxBorder
 	hlcoord 5, 16
 	ld a, $f6
@@ -141,9 +138,8 @@ PlaceStartCancelBox: ; e127d
 	dec c
 	jr nz, .loop
 	ret
-; e128d
 
-PlaceStartCancelBoxBorder: ; e128d
+PlaceStartCancelBoxBorder:
 	hlcoord 4, 15
 	ld a, $f0
 	ld [hli], a
@@ -172,9 +168,8 @@ PlaceStartCancelBoxBorder: ; e128d
 	ld a, $f5
 	ld [hl], a
 	ret
-; e12ca
 
-UnownPuzzleJumptable: ; e12ca
+UnownPuzzleJumptable:
 	ld a, [wJumptableIndex]
 	ld e, a
 	ld d, 0
@@ -185,13 +180,11 @@ UnownPuzzleJumptable: ; e12ca
 	ld h, [hl]
 	ld l, a
 	jp hl
-; e12d9
 
-.Jumptable: ; e12d9
+.Jumptable:
 	dw .Function
-; e12db
 
-.Function: ; e12db
+.Function:
 	ld a, [hJoyPressed]
 	and START
 	jp nz, UnownPuzzle_Quit
@@ -299,9 +292,8 @@ UnownPuzzleJumptable: ; e12ca
 .play_sfx
 	call PlaySFX
 	ret
-; e1376
 
-UnownPuzzle_A: ; e1376
+UnownPuzzle_A:
 	ld a, [wHoldingUnownPuzzlePiece]
 	and a
 	jr nz, .TryPlacePiece
@@ -348,19 +340,18 @@ UnownPuzzle_A: ; e1376
 	call SimpleWaitPressAorB
 	ld a, TRUE
 	ld [wSolvedUnownPuzzle], a
-UnownPuzzle_Quit: ; e13de
+UnownPuzzle_Quit:
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
 
-UnownPuzzle_InvalidAction: ; e13e4
+UnownPuzzle_InvalidAction:
 	ld de, SFX_WRONG
 	call PlaySFX
 	call WaitSFX
 	ret
-; e13ee
 
-UnownPuzzle_FillBox: ; e13ee
+UnownPuzzle_FillBox:
 	ld de, SCREEN_WIDTH
 .row
 	push bc
@@ -375,9 +366,8 @@ UnownPuzzle_FillBox: ; e13ee
 	dec b
 	jr nz, .row
 	ret
-; e13fe
 
-UnownPuzzle_UpdateTilemap: ; e13fe
+UnownPuzzle_UpdateTilemap:
 	xor a
 	ld [wUnownPuzzleCursorPosition], a
 	ld c, 6 * 6
@@ -400,9 +390,8 @@ UnownPuzzle_UpdateTilemap: ; e13fe
 	dec c
 	jr nz, .loop
 	ret
-; e141f
 
-PlaceUnownPuzzlePieceGFX: ; e141f
+PlaceUnownPuzzlePieceGFX:
 	ld a, $2 ; tilemap coords
 	call GetUnownPuzzleCoordData
 	ld a, [hli]
@@ -427,9 +416,8 @@ PlaceUnownPuzzlePieceGFX: ; e141f
 	dec b
 	jr nz, .row
 	ret
-; e1441
 
-FillUnoccupiedPuzzleSpace: ; e1441
+FillUnoccupiedPuzzleSpace:
 	ld a, 2 ; tilemap coords
 	call GetUnownPuzzleCoordData
 	ld a, [hli]
@@ -454,9 +442,8 @@ FillUnoccupiedPuzzleSpace: ; e1441
 	dec b
 	jr nz, .row
 	ret
-; e1463
 
-GetUnownPuzzleCoordData: ; e1463
+GetUnownPuzzleCoordData:
 	ld e, a
 	ld d, 0
 	ld hl, UnownPuzzleCoordData
@@ -467,9 +454,8 @@ rept 6
 	add hl, de
 endr
 	ret
-; e1475
 
-UnownPuzzle_CheckCurrentTileOccupancy: ; e1475
+UnownPuzzle_CheckCurrentTileOccupancy:
 	ld hl, wPuzzlePieces
 	ld a, [wUnownPuzzleCursorPosition]
 	ld e, a
@@ -477,9 +463,8 @@ UnownPuzzle_CheckCurrentTileOccupancy: ; e1475
 	add hl, de
 	ld a, [hl]
 	ret
-; e1481
 
-GetCurrentPuzzlePieceVTileCorner: ; e1481
+GetCurrentPuzzlePieceVTileCorner:
 	ld a, [wUnownPuzzleHeldPiece]
 	ld hl, .Corners
 	add l
@@ -489,9 +474,8 @@ GetCurrentPuzzlePieceVTileCorner: ; e1481
 	ld h, a
 	ld a, [hl]
 	ret
-; e148f
 
-.Corners: ; e148f
+.Corners:
 ; 00, 01, 02
 ; 0c, 0d, 0e
 ; 18, 19, 1a
@@ -500,9 +484,8 @@ GetCurrentPuzzlePieceVTileCorner: ; e1481
 	db $24, $27, $2a, $2d
 	db $48, $4b, $4e, $51
 	db $6c, $6f, $72, $75
-; e14a0
 
-CheckSolvedUnownPuzzle: ; e14a0
+CheckSolvedUnownPuzzle:
 	ld hl, .SolvedPuzzleConfiguration
 	ld de, wPuzzlePieces
 	ld c, 6 * 6
@@ -520,18 +503,16 @@ CheckSolvedUnownPuzzle: ; e14a0
 .not_solved
 	and a
 	ret
-; e14b5
 
-.SolvedPuzzleConfiguration: ; e14b5
+.SolvedPuzzleConfiguration:
 	db $00, $00, $00, $00, $00, $00
 	db $00, $01, $02, $03, $04, $00
 	db $00, $05, $06, $07, $08, $00
 	db $00, $09, $0a, $0b, $0c, $00
 	db $00, $0d, $0e, $0f, $10, $00
 	db $00, $00, $00, $00, $00, $00
-; e14d9
 
-RedrawUnownPuzzlePieces: ; e14d9
+RedrawUnownPuzzlePieces:
 	call GetCurrentPuzzlePieceVTileCorner
 	ld [wd002], a
 	xor a
@@ -570,9 +551,8 @@ RedrawUnownPuzzlePieces: ; e14d9
 	ld [de], a ; attributes
 	inc de
 	jr .loop
-; e150f
 
-.OAM_HoldingPiece: ; e150f
+.OAM_HoldingPiece:
 	dsprite -1, -4, -1, -4, $00, 0
 	dsprite -1, -4,  0, -4, $01, 0
 	dsprite -1, -4,  0,  4, $02, 0
@@ -584,7 +564,7 @@ RedrawUnownPuzzlePieces: ; e14d9
 	dsprite  0,  4,  0,  4, $1a, 0
 	db -1
 
-.OAM_NotHoldingPiece: ; e1534
+.OAM_NotHoldingPiece:
 	dsprite -1, -4, -1, -4, $00, 0
 	dsprite -1, -4,  0, -4, $01, 0
 	dsprite -1, -4,  0,  4, $00, 0 | X_FLIP
@@ -596,7 +576,7 @@ RedrawUnownPuzzlePieces: ; e14d9
 	dsprite  0,  4,  0,  4, $00, 0 | X_FLIP | Y_FLIP
 	db -1
 
-UnownPuzzleCoordData: ; e1559
+UnownPuzzleCoordData:
 
 puzzle_coords: MACRO
 	dbpixel \1, \2, \3, \4
@@ -646,7 +626,7 @@ ENDM
 	puzzle_coords 15, 18, 4, 4, 13, 15, PUZZLE_BORDER, 0
 	puzzle_coords 18, 18, 4, 4, 16, 15, PUZZLE_BORDER, 0
 
-ConvertLoadedPuzzlePieces: ; e1631
+ConvertLoadedPuzzlePieces:
 	ld hl, vTiles2
 	ld de, vTiles0
 	ld b, 6
@@ -667,9 +647,8 @@ ConvertLoadedPuzzlePieces: ; e1631
 	jr nz, .loop
 	call UnownPuzzle_AddPuzzlePieceBorders
 	ret
-; e1654
 
-.EnlargePuzzlePieceTiles: ; e1654
+.EnlargePuzzlePieceTiles:
 ; double size
 	ld c, 6
 .loop1
@@ -738,9 +717,8 @@ ConvertLoadedPuzzlePieces: ; e1631
 	dec c
 	jr nz, .loop1
 	ret
-; e16aa
 
-.GetEnlargedTile: ; e16aa
+.GetEnlargedTile:
 	push hl
 	ld hl, .EnlargedTiles
 	add l
@@ -751,18 +729,15 @@ ConvertLoadedPuzzlePieces: ; e1631
 	ld a, [hl]
 	pop hl
 	ret
-; e16b7
 
-.EnlargedTiles: ; e16b7
-
+.EnlargedTiles:
 x = 0
 rept 16
 	db ((x & %1000) * %11000) + ((x & %0100) * %1100) + ((x & %0010) * %110) + ((x & %0001) * %11)
 x = x + 1
 endr
-; e16c7
 
-UnownPuzzle_AddPuzzlePieceBorders: ; e16c7
+UnownPuzzle_AddPuzzlePieceBorders:
 	ld hl, PuzzlePieceBorderData
 	ld a, 8
 .loop
@@ -784,9 +759,8 @@ endr
 	dec a
 	jr nz, .loop
 	ret
-; e16e2
 
-.LoadGFX: ; e16e2
+.LoadGFX:
 	lb bc, 4, 4
 .loop1
 	push bc
@@ -817,9 +791,8 @@ endr
 	dec b
 	jr nz, .loop1
 	ret
-; e1703
 
-PuzzlePieceBorderData: ; e1703
+PuzzlePieceBorderData:
 	dw .TileBordersGFX + 0 tiles, vTiles0 tile $00
 	dw .TileBordersGFX + 1 tiles, vTiles0 tile $01
 	dw .TileBordersGFX + 2 tiles, vTiles0 tile $02
@@ -828,12 +801,11 @@ PuzzlePieceBorderData: ; e1703
 	dw .TileBordersGFX + 5 tiles, vTiles0 tile $18
 	dw .TileBordersGFX + 6 tiles, vTiles0 tile $19
 	dw .TileBordersGFX + 7 tiles, vTiles0 tile $1a
-; e1723
 
-.TileBordersGFX: ; e1723
+.TileBordersGFX:
 INCBIN "gfx/unown_puzzle/tile_borders.2bpp"
 
-LoadUnownPuzzlePiecesGFX: ; e17a3
+LoadUnownPuzzlePiecesGFX:
 	ld a, [wScriptVar]
 	maskbits NUM_UNOWN_PUZZLES
 	ld e, a
@@ -848,30 +820,28 @@ LoadUnownPuzzlePiecesGFX: ; e17a3
 	call Decompress
 	call ConvertLoadedPuzzlePieces
 	ret
-; e17bd
 
-.LZPointers: ; e17bd
+.LZPointers:
 ; entries correspond to UNOWNPUZZLE_* constants
 	dw KabutoPuzzleLZ
 	dw OmanytePuzzleLZ
 	dw AerodactylPuzzleLZ
 	dw HoOhPuzzleLZ
-; e17c5
 
-UnownPuzzleCursorGFX: ; e17c5
+UnownPuzzleCursorGFX:
 INCBIN "gfx/unown_puzzle/cursor.2bpp"
 
-UnownPuzzleStartCancelLZ: ; e1805
+UnownPuzzleStartCancelLZ:
 INCBIN "gfx/unown_puzzle/start_cancel.2bpp.lz"
 
-HoOhPuzzleLZ: ; e18ab
+HoOhPuzzleLZ:
 INCBIN "gfx/unown_puzzle/hooh.2bpp.lz"
 
-AerodactylPuzzleLZ: ; e19fb
+AerodactylPuzzleLZ:
 INCBIN "gfx/unown_puzzle/aerodactyl.2bpp.lz"
 
-KabutoPuzzleLZ: ; e1bab
+KabutoPuzzleLZ:
 INCBIN "gfx/unown_puzzle/kabuto.2bpp.lz"
 
-OmanytePuzzleLZ: ; e1c9b
+OmanytePuzzleLZ:
 INCBIN "gfx/unown_puzzle/omanyte.2bpp.lz"

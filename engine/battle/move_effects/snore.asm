@@ -1,4 +1,4 @@
-BattleCommand_Snore: ; 359d0
+BattleCommand_Snore:
 ; snore
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
@@ -9,5 +9,3 @@ BattleCommand_Snore: ; 359d0
 	ld [wAttackMissed], a
 	call FailMove
 	jp EndMoveEffect
-
-; 359e6

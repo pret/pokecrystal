@@ -1,4 +1,5 @@
 INCLUDE "constants.asm"
+
 INCLUDE "macros/wram.asm"
 
 
@@ -358,7 +359,13 @@ SECTION "Battle", WRAM0
 
 UNION ; c608
 ; unidentified uses
-wc608:: ds 480
+wc608:: ds 53
+wc63d:: ds 5
+wc642:: ds 5
+wc647:: ds 33
+wc668:: ds 32
+wc688:: ds 2
+wc68a:: ds 350
 
 NEXTU ; c608
 ; surrounding tiles
@@ -867,7 +874,18 @@ endc
 
 NEXTU ; c6d0
 ; mobile data
-wc6d0:: ds 126
+wc6d0:: ds 56
+wc708:: db
+wc709:: db
+wc70a:: db
+wc70b:: db
+wc70c:: db
+wc70d:: db
+wc70e:: db
+wc70f:: db
+wc710:: db
+wc711:: db
+wc712:: ds 60
 wc74e:: ds 107
 wc7b9:: ds 1
 wc7ba:: ds 1
@@ -1629,7 +1647,6 @@ wMartItem7BCD:: ds 3
 wMartItem8BCD:: ds 3
 wMartItem9BCD:: ds 3
 wMartItem10BCD:: ds 3
-wMartItemBCDEnd::
 
 NEXTU ; d002
 ; town map data
@@ -2112,7 +2129,6 @@ wEnemyMonCatchRate:: db ; d22b
 wEnemyMonBaseExp::   db ; d22c
 wEnemyMonEnd::
 
-
 wBattleMode:: ; d22d
 ; 0: overworld
 ; 1: wild battle
@@ -2361,7 +2377,7 @@ wDST:: ; d4c2
 ; bit 7: dst
 	db
 
-wGameTime::
+wGameTime:: ; used only for BANK(wGameTime)
 wGameTimeCap::     db ; d4c3
 wGameTimeHours::   dw ; d4c4
 wGameTimeMinutes:: db ; d4c6
@@ -2472,7 +2488,6 @@ wBadges::
 wJohtoBadges:: flag_array NUM_JOHTO_BADGES ; d857
 wKantoBadges:: flag_array NUM_KANTO_BADGES ; d858
 
-
 wTMsHMs:: ds NUM_TMS + NUM_HMS ; d859
 wTMsHMsEnd::
 
@@ -2509,7 +2524,7 @@ wRegisteredItem:: db ; d95c
 wPlayerState:: db ; d95d
 
 wHallOfFameCount:: dw
-wTradeFlags:: flag_array PARTY_LENGTH ; d960
+wTradeFlags:: flag_array NUM_NPC_TRADES ; d960
 	ds 1
 wMooMooBerries:: db ; d962
 wUndergroundSwitchPositions:: db ; d963
@@ -2751,7 +2766,6 @@ wKurtApricornQuantity:: db
 
 wPlayerDataEnd::
 
-
 wCurrMapData::
 
 wVisitedSpawns:: flag_array NUM_SPAWNS ; dca5
@@ -2972,7 +2986,7 @@ w3_dffc:: ds 4
 SECTION "GBC Video", WRAMX
 
 ; eight 4-color palettes each
-wGBCPalettes::
+wGBCPalettes:: ; used only for BANK(wGBCPalettes)
 wBGPals1:: ds 8 palettes ; d000
 wOBPals1:: ds 8 palettes ; d040
 wBGPals2:: ds 8 palettes ; d080
@@ -2983,7 +2997,7 @@ wLYOverridesEnd:: ; d190
 
 	ds 1
 
-wMagnetTrain::
+wMagnetTrain:: ; used only for BANK(wMagnetTrain)
 wMagnetTrainDirection:: db
 wMagnetTrainInitPosition:: db
 wMagnetTrainHoldPosition:: db

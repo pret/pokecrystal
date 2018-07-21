@@ -1,4 +1,4 @@
-BattleCommand_StartSandstorm: ; 376f8
+BattleCommand_StartSandstorm:
 ; startsandstorm
 
 	ld a, [wBattleWeather]
@@ -16,4 +16,3 @@ BattleCommand_StartSandstorm: ; 376f8
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
-; 37718

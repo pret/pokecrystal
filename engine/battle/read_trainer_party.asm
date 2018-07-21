@@ -1,4 +1,4 @@
-ReadTrainerParty: ; 39771
+ReadTrainerParty:
 	ld a, [wInBattleTowerBattle]
 	bit 0, a
 	ret nz
@@ -79,17 +79,15 @@ ReadTrainerParty: ; 39771
 	call TrainerType2
 	call CloseSRAM
 	jr .done
-; 397e3
 
-TrainerTypes: ; 397e3
+TrainerTypes:
 ; entries correspond to TRAINERTYPE_* constants
 	dw TrainerType1 ; level, species
 	dw TrainerType2 ; level, species, moves
 	dw TrainerType3 ; level, species, item
 	dw TrainerType4 ; level, species, item, moves
-; 397eb
 
-TrainerType1: ; 397eb
+TrainerType1:
 ; normal (level, species)
 	ld h, d
 	ld l, e
@@ -107,9 +105,8 @@ TrainerType1: ; 397eb
 	predef TryAddMonToParty
 	pop hl
 	jr .loop
-; 39806
 
-TrainerType2: ; 39806
+TrainerType2:
 ; moves
 	ld h, d
 	ld l, e
@@ -184,9 +181,8 @@ TrainerType2: ; 39806
 
 	pop hl
 	jr .loop
-; 39871
 
-TrainerType3: ; 39871
+TrainerType3:
 ; item
 	ld h, d
 	ld l, e
@@ -213,9 +209,8 @@ TrainerType3: ; 39871
 	ld a, [hli]
 	ld [de], a
 	jr .loop
-; 3989d (e:589d)
 
-TrainerType4: ; 3989d
+TrainerType4:
 ; item + moves
 	ld h, d
 	ld l, e
@@ -305,9 +300,8 @@ TrainerType4: ; 3989d
 
 	pop hl
 	jr .loop
-; 3991b
 
-ComputeTrainerReward: ; 3991b (e:591b)
+ComputeTrainerReward:
 	ld hl, hProduct
 	xor a
 	ld [hli], a
@@ -327,8 +321,7 @@ ComputeTrainerReward: ; 3991b (e:591b)
 	ld [hl], a
 	ret
 
-
-Battle_GetTrainerName:: ; 39939
+Battle_GetTrainerName::
 	ld a, [wInBattleTowerBattle]
 	bit 0, a
 	ld hl, wOTPlayerName
@@ -339,7 +332,7 @@ Battle_GetTrainerName:: ; 39939
 	ld a, [wOtherTrainerClass]
 	ld c, a
 
-GetTrainerName:: ; 3994c
+GetTrainerName::
 	ld a, c
 	cp CAL
 	jr nz, .not_cal2
@@ -379,20 +372,20 @@ GetTrainerName:: ; 3994c
 	jr nz, .skip
 	jr .loop
 
-CopyTrainerName: ; 39984
+CopyTrainerName:
 	ld de, wStringBuffer1
 	push de
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	pop de
 	ret
-; 39990
 
-Function39990: ; 39990
+Function39990:
 ; This function is useless.
 	ld de, wStringBuffer1
 	push de
 	ld bc, NAME_LENGTH
 	pop de
 	ret
-; 39999
+
+INCLUDE "data/trainers/parties.asm"

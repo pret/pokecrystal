@@ -7,4 +7,3 @@
 	dorepeat 4
 	frame 6, 20
 	endanim
-; 0xd1abe

@@ -1,4 +1,4 @@
-RTC:: ; 46f
+RTC::
 ; update time and time-sensitive palettes
 
 ; rtc enabled?
@@ -13,12 +13,10 @@ RTC:: ; 46f
 	bit 0, a ; obj update
 	ret z
 
-TimeOfDayPals:: ; 47e
+TimeOfDayPals::
 	callfar _TimeOfDayPals
 	ret
-; 485
 
-UpdateTimePals:: ; 485
+UpdateTimePals::
 	callfar _UpdateTimePals
 	ret
-; 48c

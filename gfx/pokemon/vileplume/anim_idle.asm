@@ -5,4 +5,3 @@
 	frame 0, 12
 	frame 3, 07
 	endanim
-; 0xd1a82

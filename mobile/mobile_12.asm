@@ -1,4 +1,4 @@
-InitMobileProfile: ; 4802f (12:402f)
+InitMobileProfile:
 	xor a
 	set 6, a
 	ld [wd002], a
@@ -120,12 +120,12 @@ InitMobileProfile: ; 4802f (12:402f)
 	push bc
 	jr asm_4815f
 
-Function48157: ; 48157 (12:4157)
+Function48157:
 	call ScrollingMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
-asm_4815f: ; 4815f (12:415f)
+asm_4815f:
 	bit A_BUTTON_F, a
 	jp nz, Function4820d
 	ld b, a
@@ -148,7 +148,7 @@ asm_4815f: ; 4815f (12:415f)
 	ld a, $ff
 	ret
 
-Function48187: ; 48187 (12:4187)
+Function48187:
 	ld a, [wd479]
 	bit 1, a
 	jr nz, .asm_481f1
@@ -207,13 +207,11 @@ Function48187: ; 48187 (12:4187)
 	call PlaceString
 .asm_48201
 	ret
-; 48202 (12:4202)
 
-.String_TellLater: ; 48202
+.String_TellLater:
 	db "Tell Later@"
-; 4820d
 
-Function4820d: ; 4820d (12:420d)
+Function4820d:
 	call PlaceHollowCursor
 	ld hl, wMenuCursorY
 	ld a, [hl]
@@ -240,7 +238,6 @@ Function4820d: ; 4820d (12:420d)
 	bit 6, a
 	jr z, .asm_4825c
 	jr .asm_4825c
-; 48241 (12:4241)
 
 	hlcoord 1, 15
 	ld b, $2
@@ -265,21 +262,19 @@ Function4820d: ; 4820d (12:420d)
 	xor a
 	ret
 
-Function48272: ; 48272 (12:4272)
+Function48272:
 	jp Function4840c
-; 48275 (12:4275)
 
-MobileString_PersonalInfo: ; 48275
+MobileString_PersonalInfo:
 	db "Personal Info@"
-; 48283
 
-Function48283: ; 48283 (12:4283)
+Function48283:
 	lb bc, 2, 18
 	hlcoord 1, 15
 	call ClearBox
 	ret
 
-asm_4828d: ; 4828d (12:428d)
+asm_4828d:
 	call Function48283
 	hlcoord 1, 16
 	ld de, MobileDesc_Gender
@@ -331,7 +326,7 @@ asm_4828d: ; 4828d (12:428d)
 	ld [wd003], a
 	jp Function4840c
 
-Function48304: ; 48304 (12:4304)
+Function48304:
 	call Function48283
 	hlcoord 1, 16
 	ld de, MobileDesc_Address
@@ -388,7 +383,7 @@ Function48304: ; 48304 (12:4304)
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTileMapAndAttrMap
 	jp Function4840c
 
-Function48383: ; 48383 (12:4383)
+Function48383:
 	push bc
 	push af
 	bit 5, a
@@ -425,7 +420,7 @@ Function48383: ; 48383 (12:4383)
 	pop bc
 	ret
 
-Function483bb: ; 483bb (12:43bb)
+Function483bb:
 	ld hl, wScrollingMenuCursorPosition
 	ld a, [hl]
 	inc a
@@ -454,9 +449,8 @@ Function483bb: ; 483bb (12:43bb)
 	hlcoord 11, 8
 	call PlaceString
 	ret
-; 483e8 (12:43e8)
 
-Function483e8: ; 483e8
+Function483e8:
 	push de
 	ld hl, Prefectures
 	ld a, [wMenuSelection]
@@ -483,9 +477,8 @@ Function483e8: ; 483e8
 	pop hl
 	call PlaceString
 	ret
-; 4840c
 
-Function4840c: ; 4840c (12:440c)
+Function4840c:
 	call Function48187
 	call Function48283
 	hlcoord 1, 16
@@ -511,7 +504,7 @@ Function4840c: ; 4840c (12:440c)
 	call ClearBox
 	jp Function48157
 
-Mobile12_Bin2Dec: ; 48444 (12:4444)
+Mobile12_Bin2Dec:
 	push bc
 	push af
 	push de
@@ -533,10 +526,8 @@ Mobile12_Bin2Dec: ; 48444 (12:4444)
 	pop af
 	pop bc
 	ret
-; 4845d (12:445d)
 
-.DigitStrings: ; 4845d
-; 4845d
+.DigitStrings:
 	db "0@"
 	db "1@"
 	db "2@"
@@ -547,7 +538,6 @@ Mobile12_Bin2Dec: ; 48444 (12:4444)
 	db "7@"
 	db "8@"
 	db "9@"
-; 48471
 
 MobileProfileString:         db "  Mobile Profile@"
 MobileString_Gender:         db "Gender@"
@@ -560,47 +550,43 @@ MobileDesc_Gender:           db "Boy or girl?@"
 MobileDesc_Age:              db "How old are you?@"
 MobileDesc_Address:          db "Where do you live?@"
 MobileDesc_ZipCode:          db "Your zip code?@"
-; 484f1
 
-MenuHeader_0x484f1: ; 0x484f1
+MenuHeader_0x484f1:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 2, SCREEN_WIDTH - 1, 7
 	dw MenuData_0x484f9
 	db 1 ; default option
-; 0x484f9
 
-MenuData_0x484f9: ; 0x484f9
+MenuData_0x484f9:
 	db STATICMENU_CURSOR | STATICMENU_WRAP ; flags
 	db 2 ; items
 Strings_484fb:
 String_484fb: db "Boy@"
 String_484ff: db "Girl@"
-; 0x48504
 
-MenuHeader_0x48504: ; 0x48504
+MenuHeader_0x48504:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 
-MenuHeader_0x48509: ; 0x48509
+MenuHeader_0x48509:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 5, SCREEN_WIDTH - 1, 7
 
-MenuHeader_0x4850e: ; 0x4850e
+MenuHeader_0x4850e:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 9, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 
-MenuHeader_0x48513: ; 0x48513
+MenuHeader_0x48513:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 11, 1, 18, 12
 	dw MenuData_0x4851b
 	db 1 ; default option
-; 0x4851b
 
-MenuData_0x4851b: ; 0x4851b
+MenuData_0x4851b:
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_CALL_FUNCTION1_CANCEL ; flags
 	db 6 ; items
 
-Unknown_4851d: ; 4851d
+Unknown_4851d:
 	db $00, $01, $12, $2b, $45, $12, $e8, $43, $00, $00, $00, $00, $00, $00, $2e, $00, $01, $02, $03, $04
 	db $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f, $10, $11, $12, $13, $14, $15, $16, $17, $18
 	db $19, $1a, $1b, $1c, $1d, $1e, $1f, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $2a, $2b, $2c
@@ -654,9 +640,8 @@ Yamagata:  db "やまがたけん@" ; Yamagata
 Yamaguchi: db "やまぐちけん@" ; Yamaguchi
 Yamanashi: db "やまなしけん@" ; Yamanashi
 Wakayama:  db "わかやまけん@" ; Wakayama
-; 48689
 
-Function48689: ; 48689 (12:4689)
+Function48689:
 	ld c, 7
 	call DelayFrames
 	ld b, $1
@@ -681,7 +666,7 @@ Function48689: ; 48689 (12:4689)
 	call Function48cdc
 	ret
 
-Function486bf: ; 486bf (12:46bf)
+Function486bf:
 	ld hl, w2DMenuCursorInitY
 	ld a, [wd002]
 	bit 6, a
@@ -752,7 +737,7 @@ Function486bf: ; 486bf (12:46bf)
 	ld [hli], a ; cursor tile + 1
 	ret
 
-Function48725: ; 48725 (12:4725)
+Function48725:
 ;	 ld a, [wd003]
 ;	 and $f
 ;	 cp $f
@@ -779,7 +764,7 @@ Function48725: ; 48725 (12:4725)
 	and a
 	ret
 
-Function4873c: ; 4873c (12:473c)
+Function4873c:
 	ld hl, w2DMenuCursorInitY
 	ld a, 4
 	ld [hli], a
@@ -820,7 +805,7 @@ Function4873c: ; 4873c (12:473c)
 	ld [hli], a ; cursor tile + 1
 	ret
 
-Function4876f: ; 4876f (12:476f)
+Function4876f:
 	call Function48283
 	hlcoord 1, 16
 	ld de, MobileDesc_Age
@@ -879,7 +864,7 @@ Function4876f: ; 4876f (12:476f)
 	ld [hInMenu], a
 	jp Function4840c
 
-Function487ec: ; 487ec (12:47ec)
+Function487ec:
 	push hl
 	ld de, wd473
 	call Function487ff
@@ -891,7 +876,7 @@ endr
 	call PlaceString
 	ret
 
-Function487ff: ; 487ff (12:47ff)
+Function487ff:
 	push hl
 	ld a, " "
 	ld [hli], a
@@ -901,13 +886,11 @@ Function487ff: ; 487ff (12:47ff)
 	ld c, 3
 	call PrintNum
 	ret
-; 4880d (12:480d)
 
-String_4880d: ; 4880d
+String_4880d:
 	db "@"
-; 4880e
 
-Function4880e: ; 4880e (12:480e)
+Function4880e:
 	ld a, [hJoyPressed]
 	and A_BUTTON
 	jp nz, Function488b9
@@ -1001,27 +984,26 @@ Function4880e: ; 4880e (12:480e)
 	and a
 	ret
 
-Function488b4: ; 488b4 (12:48b4)
+Function488b4:
 	ld a, $0
 	and a
 	scf
 	ret
 
-Function488b9: ; 488b9 (12:48b9)
+Function488b9:
 	ld a, [wd003]
 	set 1, a
 	ld [wd003], a
 	scf
 	ret
-; 488c3 (12:48c3)
 
-MobileUpArrowGFX: ; 488c3
+MobileUpArrowGFX:
 INCBIN "gfx/mobile/up_arrow.2bpp"
 
-MobileDownArrowGFX: ; 488cb
+MobileDownArrowGFX:
 INCBIN "gfx/mobile/down_arrow.2bpp"
 
-Function488d3: ; 488d3 (12:48d3)
+Function488d3:
 	call Function48283
 	hlcoord 1, 16
 	ld de, MobileDesc_ZipCode
@@ -1057,7 +1039,7 @@ Function488d3: ; 488d3 (12:48d3)
 	ld d, $0
 	ld b, $0
 
-asm_48922: ; 48922 (12:4922)
+asm_48922:
 	push bc
 	call JoyTextDelay
 	ld a, [hJoyDown]
@@ -1089,9 +1071,8 @@ asm_48922: ; 48922 (12:4922)
 	ld c, 10
 	call DelayFrames
 	jr asm_48972
-; 4895a (12:495a)
 
-Function4895a: ; 4895a
+Function4895a:
 	ld a, [hJoyPressed]
 	and a
 	jr z, .asm_48965
@@ -1109,12 +1090,12 @@ Function4895a: ; 4895a
 	ld b, $1
 	push bc
 
-Function4896e: ; 4896e (12:496e)
+Function4896e:
 	pop bc
 	ld b, $0
 	push bc
 
-asm_48972: ; 48972 (12:4972)
+asm_48972:
 	call Function48ab5
 	push af
 	cp $f0
@@ -1181,7 +1162,7 @@ asm_48972: ; 48972 (12:4972)
 	ld [hInMenu], a
 	jp Function4840c
 
-Function489ea: ; 489ea (12:49ea)
+Function489ea:
 	push de
 	ld a, [wd475]
 	and $f
@@ -1218,13 +1199,11 @@ Function489ea: ; 489ea (12:49ea)
 	call Mobile12_Bin2Dec
 	pop de
 	ret
-; 48a38 (12:4a38)
 
-String_48a38: ; 48a38
+String_48a38:
 	db "-@"
-; 48a3a
 
-Function48a3a: ; 48a3a (12:4a3a)
+Function48a3a:
 	ld hl, MenuHeader_0x48a9c
 	call LoadMenuHeader
 	call Function4873c
@@ -1266,22 +1245,19 @@ Function48a3a: ; 48a3a (12:4a3a)
 	and a
 	ret
 
-Function48a9a: ; 48a9a (12:4a9a)
+Function48a9a:
 	scf
 	ret
-; 48a9c (12:4a9c)
 
-MenuHeader_0x48a9c: ; 0x48a9c
+MenuHeader_0x48a9c:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 10, 8, SCREEN_WIDTH - 1, 13
 
-String_48aa1: ; 48aa1
+String_48aa1:
 	db   "Tell Now"
 	next "Tell Later@"
-; 48ab5
 
-
-Function48ab5: ; 48ab5 (12:4ab5)
+Function48ab5:
 	ld a, [hJoyPressed]
 	and A_BUTTON
 	jp nz, Function48c0f
@@ -1457,7 +1433,7 @@ Function48ab5: ; 48ab5 (12:4ab5)
 	ld a, [hl]
 	and $f
 
-asm_48bc7: ; 48bc7 (12:4bc7)
+asm_48bc7:
 	hlcoord 11, 10
 	push af
 	ld a, d
@@ -1470,7 +1446,7 @@ asm_48bc7: ; 48bc7 (12:4bc7)
 	ld a, $f
 	jr Function48c00
 
-Function48bd7: ; 48bd7 (12:4bd7)
+Function48bd7:
 	push de
 	hlcoord 10, 9
 	ld b, $1
@@ -1501,7 +1477,7 @@ Function48bd7: ; 48bd7 (12:4bd7)
 	and $f
 	jr asm_48bc7
 
-Function48c00: ; 48c00 (12:4c00)
+Function48c00:
 	push af
 	hlcoord 11, 10
 	call Function489ea
@@ -1511,15 +1487,15 @@ Function48c00: ; 48c00 (12:4c00)
 	ld a, b
 	ret
 
-Function48c0d: ; 48c0d (12:4c0d)
+Function48c0d:
 	xor a
 	and a
 
-Function48c0f: ; 48c0f (12:4c0f)
+Function48c0f:
 	scf
 	ret
 
-Function48c11: ; 48c11 (12:4c11)
+Function48c11:
 	ld a, [wd002]
 	bit 7, a
 	jr z, .asm_48c20
@@ -1556,7 +1532,7 @@ Function48c11: ; 48c11 (12:4c11)
 	ld [wd002], a
 	ret
 
-Function48c4d: ; 48c4d (12:4c4d)
+Function48c4d:
 	swap a
 	and $f0
 	push af
@@ -1568,7 +1544,7 @@ Function48c4d: ; 48c4d (12:4c4d)
 	ld [hl], a
 	ret
 
-Function48c5a: ; 48c5a (12:4c5a)
+Function48c5a:
 	push af
 	ld a, [hl]
 	and $f0
@@ -1578,7 +1554,7 @@ Function48c5a: ; 48c5a (12:4c5a)
 	ld [hl], a
 	ret
 
-Function48c63: ; 48c63
+Function48c63:
 	ld a, "@"
 	ld [de], a
 	ld a, c
@@ -1613,9 +1589,8 @@ Function48c63: ; 48c63
 .asm_48c8c
 	scf
 	ret
-; 48c8e
 
-Unreferenced_Function48c8e: ; 48c8e
+Unreferenced_Function48c8e:
 	ld hl, wd019 + $11
 	ld d, h
 	ld e, l
@@ -1624,9 +1599,8 @@ Unreferenced_Function48c8e: ; 48c8e
 	call PlaceString
 	call WaitBGMap
 	ret
-; 48ca3
 
-Function48ca3: ; 48ca3
+Function48ca3:
 	push af
 	push bc
 	push de
@@ -1669,13 +1643,12 @@ Function48ca3: ; 48ca3
 	pop bc
 	pop af
 	ret
-; 48cda
 
-Function48cda: ; 48cda (12:4cda)
+Function48cda:
 	ld h, d
 	ld l, e
 
-Function48cdc: ; 48cdc (12:4cdc)
+Function48cdc:
 	push bc
 	push hl
 	call Function48cfd
@@ -1703,7 +1676,7 @@ Function48cdc: ; 48cdc (12:4cdc)
 	jr nz, .asm_48ced
 	ret
 
-Function48cfd: ; 48cfd (12:4cfd)
+Function48cfd:
 	push hl
 	ld a, $4
 	ld [hli], a
@@ -1733,7 +1706,7 @@ Function48cfd: ; 48cfd (12:4cfd)
 	ld [hl], $b
 	ret
 
-Function48d2a: ; 48d2a (12:4d2a)
+Function48d2a:
 	ld d, c
 .asm_48d2b
 	ld [hli], a
@@ -1741,21 +1714,21 @@ Function48d2a: ; 48d2a (12:4d2a)
 	jr nz, .asm_48d2b
 	ret
 
-Function48d30: ; 48d30 (12:4d30)
+Function48d30:
 	ld hl, wd475
 	call Function48d4a
 	ld hl, wd477
 	call Function48d4a
 	ret
 
-Function48d3d: ; 48d3d (12:4d3d)
+Function48d3d:
 	ld hl, wd475
 	call Function48d94
 	ld hl, wd477
 	call Function48d94
 	ret
 
-Function48d4a: ; 48d4a (12:4d4a)
+Function48d4a:
 	inc hl
 	ld a, [hl]
 	ld b, a
@@ -1805,7 +1778,7 @@ Function48d4a: ; 48d4a (12:4d4a)
 	ld [hl], b
 	ret
 
-Function48d94: ; 48d94 (12:4d94)
+Function48d94:
 	xor a
 	ld [hDividend + 0], a
 	ld [hDividend + 1], a

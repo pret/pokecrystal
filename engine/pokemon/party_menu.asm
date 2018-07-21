@@ -1,4 +1,4 @@
-SelectMonFromParty: ; 50000
+SelectMonFromParty:
 	call DisableSpriteUpdates
 	xor a
 	ld [wPartyMenuActionText], a
@@ -10,10 +10,8 @@ SelectMonFromParty: ; 50000
 	call PartyMenuSelect
 	call ReturnToMapWithSpeechTextbox
 	ret
-; 5001d
 
-
-SelectTradeOrDayCareMon: ; 5001d
+SelectTradeOrDayCareMon:
 	ld a, b
 	ld [wPartyMenuActionText], a
 	call DisableSpriteUpdates
@@ -27,26 +25,22 @@ SelectTradeOrDayCareMon: ; 5001d
 	call PartyMenuSelect
 	call ReturnToMapWithSpeechTextbox
 	ret
-; 5003f
 
-InitPartyMenuLayout: ; 5003f
+InitPartyMenuLayout:
 	call LoadPartyMenuGFX
 	call InitPartyMenuWithCancel
 	call InitPartyMenuGFX
 	call WritePartyMenuTilemap
 	call PrintPartyMenuText
 	ret
-; 5004f
 
-LoadPartyMenuGFX: ; 5004f
+LoadPartyMenuGFX:
 	call LoadFontsBattleExtra
 	callfar InitPartyMenuPalettes ; engine/color.asm
 	callfar ClearSpriteAnims2
 	ret
-; 5005f
 
-
-WritePartyMenuTilemap: ; 0x5005f
+WritePartyMenuTilemap:
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -71,9 +65,8 @@ WritePartyMenuTilemap: ; 0x5005f
 	pop af
 	ld [wOptions], a
 	ret
-; 0x50089
 
-.Jumptable: ; 50089
+.Jumptable:
 ; entries correspond to PARTYMENUQUALITY_* constants
 	dw PlacePartyNicknames
 	dw PlacePartyHPBar
@@ -84,9 +77,8 @@ WritePartyMenuTilemap: ; 0x5005f
 	dw PlacePartyMonEvoStoneCompatibility
 	dw PlacePartyMonGender
 	dw PlacePartyMonMobileBattleSelection
-; 5009b
 
-PlacePartyNicknames: ; 5009b
+PlacePartyNicknames:
 	hlcoord 3, 1
 	ld a, [wPartyCount]
 	and a
@@ -116,14 +108,11 @@ PlacePartyNicknames: ; 5009b
 	ld de, .CANCEL
 	call PlaceString
 	ret
-; 500c8
 
-.CANCEL: ; 500c8
+.CANCEL:
 	db "CANCEL@"
-; 500cf
 
-
-PlacePartyHPBar: ; 500cf
+PlacePartyHPBar:
 	xor a
 	ld [wSGBPals], a
 	ld a, [wPartyCount]
@@ -164,9 +153,8 @@ PlacePartyHPBar: ; 500cf
 	ld b, SCGB_PARTY_MENU
 	call GetSGBLayout
 	ret
-; 50117
 
-PlacePartymonHPBar: ; 50117
+PlacePartymonHPBar:
 	ld a, b
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1HP
@@ -191,9 +179,8 @@ PlacePartymonHPBar: ; 50117
 	ld e, a
 	predef ComputeHPBarPixels
 	ret
-; 50138
 
-PlacePartyMenuHPDigits: ; 50138
+PlacePartyMenuHPDigits:
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -233,9 +220,8 @@ PlacePartyMenuHPDigits: ; 50138
 	dec c
 	jr nz, .loop
 	ret
-; 50176
 
-PlacePartyMonLevel: ; 50176
+PlacePartyMonLevel:
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -276,9 +262,8 @@ PlacePartyMonLevel: ; 50176
 	dec c
 	jr nz, .loop
 	ret
-; 501b2
 
-PlacePartyMonStatus: ; 501b2
+PlacePartyMonStatus:
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -309,9 +294,8 @@ PlacePartyMonStatus: ; 501b2
 	dec c
 	jr nz, .loop
 	ret
-; 501e0
 
-PlacePartyMonTMHMCompatibility: ; 501e0
+PlacePartyMonTMHMCompatibility:
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -344,9 +328,8 @@ PlacePartyMonTMHMCompatibility: ; 501e0
 	dec c
 	jr nz, .loop
 	ret
-; 50215
 
-.PlaceAbleNotAble: ; 50215
+.PlaceAbleNotAble:
 	ld a, c
 	and a
 	jr nz, .able
@@ -356,18 +339,14 @@ PlacePartyMonTMHMCompatibility: ; 501e0
 .able
 	ld de, .string_able
 	ret
-; 50221
 
-.string_able ; 50221
+.string_able
 	db "ABLE@"
-; 50226
 
-.string_not_able ; 50226
+.string_not_able
 	db "NOT ABLE@"
-; 5022f
 
-
-PlacePartyMonEvoStoneCompatibility: ; 5022f
+PlacePartyMonEvoStoneCompatibility:
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -404,9 +383,8 @@ PlacePartyMonEvoStoneCompatibility: ; 5022f
 	dec c
 	jr nz, .loop
 	ret
-; 50268
 
-.DetermineCompatibility: ; 50268
+.DetermineCompatibility:
 	ld de, wStringBuffer1
 	ld a, BANK(EvosAttacksPointers)
 	ld bc, 2
@@ -416,7 +394,7 @@ PlacePartyMonEvoStoneCompatibility: ; 5022f
 	ld h, [hl]
 	ld l, a
 	ld de, wStringBuffer1
-	ld a, BANK(EvosAttacks)
+	ld a, BANK("Evolutions and Attacks")
 	ld bc, 10
 	call FarCopyBytes
 	ld hl, wStringBuffer1
@@ -441,17 +419,13 @@ PlacePartyMonEvoStoneCompatibility: ; 5022f
 .nope
 	ld de, .string_not_able
 	ret
-; 502a3
 
-.string_able ; 502a3
+.string_able
 	db "ABLE@"
-; 502a8
-.string_not_able ; 502a8
+.string_not_able
 	db "NOT ABLE@"
-; 502b1
 
-
-PlacePartyMonGender: ; 502b1
+PlacePartyMonGender:
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -489,22 +463,17 @@ PlacePartyMonGender: ; 502b1
 	dec c
 	jr nz, .loop
 	ret
-; 502ee
 
-.male ; 502ee
+.male
 	db "♂…MALE@"
-; 502f5
 
-.female ; 502f5
+.female
 	db "♀…FEMALE@"
-; 502fe
 
-.unknown ; 502fe
+.unknown
 	db "…UNKNOWN@"
-; 50307
 
-
-PlacePartyMonMobileBattleSelection: ; 50307
+PlacePartyMonMobileBattleSelection:
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -571,23 +540,17 @@ PlacePartyMonMobileBattleSelection: ; 50307
 	dec b
 	ret z
 	jr .loop2
-; 5036b
 
-.String_Banme: ; 5036b
+.String_Banme:
 	db "　ばんめ　　@" ; Place
-; 50372
-.String_Sanka_Shinai: ; 50372
+.String_Sanka_Shinai:
 	db "さんかしない@" ; Cancel
-; 50379
-.String_Kettei_Yameru: ; 50379
+.String_Kettei_Yameru:
 	db "けってい　　やめる@" ; Quit
-; 50383
-.Strings_1_2_3: ; 50383
+.Strings_1_2_3:
 	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
-; 50389
 
-
-PartyMenuCheckEgg: ; 50389
+PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)
 	add b
 	ld e, a
@@ -597,9 +560,8 @@ PartyMenuCheckEgg: ; 50389
 	ld a, [de]
 	cp EGG
 	ret
-; 50396
 
-GetPartyMenuQualityIndexes: ; 50396
+GetPartyMenuQualityIndexes:
 	ld a, [wPartyMenuActionText]
 	and $f0
 	jr nz, .skip
@@ -618,12 +580,10 @@ GetPartyMenuQualityIndexes: ; 50396
 .skip
 	ld hl, PartyMenuQualityPointers.Default
 	ret
-; 503b2
 
 INCLUDE "data/party_menu_qualities.asm"
 
-
-InitPartyMenuGFX: ; 503e0
+InitPartyMenuGFX:
 	ld hl, wPartyCount
 	ld a, [hli]
 	and a
@@ -647,9 +607,8 @@ InitPartyMenuGFX: ; 503e0
 	jr nz, .loop
 	callfar PlaySpriteAnimations
 	ret
-; 50405
 
-InitPartyMenuWithCancel: ; 50405
+InitPartyMenuWithCancel:
 ; with cancel
 	xor a
 	ld [wSwitchMon], a
@@ -675,9 +634,8 @@ InitPartyMenuWithCancel: ; 50405
 	ld a, A_BUTTON | B_BUTTON
 	ld [wMenuJoypadFilter], a
 	ret
-; 5042d
 
-InitPartyMenuNoCancel: ; 0x5042d
+InitPartyMenuNoCancel:
 ; no cancel
 	ld de, PartyMenuAttributes
 	call SetMenuAttributes
@@ -697,9 +655,8 @@ InitPartyMenuNoCancel: ; 0x5042d
 	ld a, A_BUTTON | B_BUTTON
 	ld [wMenuJoypadFilter], a
 	ret
-; 5044f (14:444f)
 
-PartyMenuAttributes: ; 5044f
+PartyMenuAttributes:
 ; cursor y
 ; cursor x
 ; num rows
@@ -713,9 +670,8 @@ PartyMenuAttributes: ; 5044f
 	db $60, $00
 	dn 2, 0
 	db 0
-; 50457
 
-PartyMenuSelect: ; 0x50457
+PartyMenuSelect:
 ; sets carry if exitted menu.
 	call StaticMenuJoypad
 	call PlaceHollowCursor
@@ -752,10 +708,8 @@ PartyMenuSelect: ; 0x50457
 	call WaitSFX
 	scf
 	ret
-; 0x5049a
 
-
-PrintPartyMenuText: ; 5049a
+PrintPartyMenuText:
 	hlcoord 0, 14
 	lb bc, 2, 18
 	call TextBox
@@ -764,7 +718,7 @@ PrintPartyMenuText: ; 5049a
 	jr nz, .haspokemon
 	ld de, YouHaveNoPKMNString
 	jr .gotstring
-.haspokemon ; 504ae
+.haspokemon
 	ld a, [wPartyMenuActionText]
 	and $f ; drop high nibble
 	ld hl, PartyMenuStrings
@@ -775,7 +729,7 @@ PrintPartyMenuText: ; 5049a
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-.gotstring ; 504be
+.gotstring
 	ld a, [wOptions]
 	push af
 	set NO_TEXT_SCROLL, a
@@ -785,9 +739,8 @@ PrintPartyMenuText: ; 5049a
 	pop af
 	ld [wOptions], a
 	ret
-; 0x504d2
 
-PartyMenuStrings: ; 0x504d2
+PartyMenuStrings:
 	dw ChooseAMonString
 	dw UseOnWhichPKMNString
 	dw WhichPKMNString
@@ -798,36 +751,36 @@ PartyMenuStrings: ; 0x504d2
 	dw ChooseAMonString ; Probably used to be ChooseAMalePKMNString
 	dw ToWhichPKMNString
 
-ChooseAMonString: ; 0x504e4
+ChooseAMonString:
 	db "Choose a #MON.@"
 
-UseOnWhichPKMNString: ; 0x504f3
+UseOnWhichPKMNString:
 	db "Use on which <PK><MN>?@"
 
-WhichPKMNString: ; 0x50504
+WhichPKMNString:
 	db "Which <PK><MN>?@"
 
-TeachWhichPKMNString: ; 0x5050e
+TeachWhichPKMNString:
 	db "Teach which <PK><MN>?@"
 
-MoveToWhereString: ; 0x5051e
+MoveToWhereString:
 	db "Move to where?@"
 
-ChooseAFemalePKMNString: ; 0x5052d
+ChooseAFemalePKMNString:
 ; unused
 	db "Choose a ♀<PK><MN>.@"
 
-ChooseAMalePKMNString: ; 0x5053b
+ChooseAMalePKMNString:
 ; unused
 	db "Choose a ♂<PK><MN>.@"
 
-ToWhichPKMNString: ; 0x50549
+ToWhichPKMNString:
 	db "To which <PK><MN>?@"
 
-YouHaveNoPKMNString: ; 0x50556
+YouHaveNoPKMNString:
 	db "You have no <PK><MN>!@"
 
-PrintPartyMenuActionText: ; 50566
+PrintPartyMenuActionText:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
@@ -836,9 +789,8 @@ PrintPartyMenuActionText: ; 50566
 	ld hl, .MenuActionTexts
 	call .PrintText
 	ret
-; 5057b
 
-.MenuActionTexts: ; 5057b
+.MenuActionTexts:
 ; entries correspond to PARTYMENUTEXT_* constants
 	dw .Text_CuredOfPoison
 	dw .Text_BurnWasHealed
@@ -850,70 +802,58 @@ PrintPartyMenuActionText: ; 50566
 	dw .Text_Revitalized
 	dw .Text_GrewToLevel
 	dw .Text_CameToItsSenses
-; 5058f
 
-.Text_RecoveredSomeHP: ; 0x5058f
+.Text_RecoveredSomeHP:
 	; recovered @ HP!
 	text_jump UnknownText_0x1bc0a2
 	db "@"
-; 0x50594
 
-.Text_CuredOfPoison: ; 0x50594
+.Text_CuredOfPoison:
 	; 's cured of poison.
 	text_jump UnknownText_0x1bc0bb
 	db "@"
-; 0x50599
 
-.Text_RidOfParalysis: ; 0x50599
+.Text_RidOfParalysis:
 	; 's rid of paralysis.
 	text_jump UnknownText_0x1bc0d2
 	db "@"
-; 0x5059e
 
-.Text_BurnWasHealed: ; 0x5059e
+.Text_BurnWasHealed:
 	; 's burn was healed.
 	text_jump UnknownText_0x1bc0ea
 	db "@"
-; 0x505a3
 
-.Text_Defrosted: ; 0x505a3
+.Text_Defrosted:
 	; was defrosted.
 	text_jump UnknownText_0x1bc101
 	db "@"
-; 0x505a8
 
-.Text_WokeUp: ; 0x505a8
+.Text_WokeUp:
 	; woke up.
 	text_jump UnknownText_0x1bc115
 	db "@"
-; 0x505ad
 
-.Text_HealthReturned: ; 0x505ad
+.Text_HealthReturned:
 	; 's health returned.
 	text_jump UnknownText_0x1bc123
 	db "@"
-; 0x505b2
 
-.Text_Revitalized: ; 0x505b2
+.Text_Revitalized:
 	; is revitalized.
 	text_jump UnknownText_0x1bc13a
 	db "@"
-; 0x505b7
 
-.Text_GrewToLevel: ; 0x505b7
+.Text_GrewToLevel:
 	; grew to level @ !@ @
 	text_jump UnknownText_0x1bc14f
 	db "@"
-; 0x505bc
 
-.Text_CameToItsSenses: ; 0x505bc
+.Text_CameToItsSenses:
 	; came to its senses.
 	text_jump UnknownText_0x1bc16e
 	db "@"
-; 0x505c1
 
-
-.PrintText: ; 505c1
+.PrintText:
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -929,4 +869,3 @@ PrintPartyMenuActionText: ; 50566
 	pop af
 	ld [wOptions], a
 	ret
-; 505da

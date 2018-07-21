@@ -1,10 +1,9 @@
-Music_GoldSilverOpening: ; f7055
+Music_GoldSilverOpening:
 	musicheader 3, 1, Music_GoldSilverOpening_Ch1
 	musicheader 1, 2, Music_GoldSilverOpening_Ch2
 	musicheader 1, 3, Music_GoldSilverOpening_Ch3
-; f705e
 
-Music_GoldSilverOpening_Ch1: ; f705e
+Music_GoldSilverOpening_Ch1:
 	tempo 256
 	volume $77
 	tone $0001
@@ -128,9 +127,8 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note G_, 2
 	note A_, 16
 	endchannel
-; f70f8
 
-Music_GoldSilverOpening_Ch2: ; f70f8
+Music_GoldSilverOpening_Ch2:
 	tone $0001
 	stereopanning $f
 	notetype $c, $b7
@@ -309,9 +307,8 @@ Music_GoldSilverOpening_Ch2: ; f70f8
 	note C_, 4
 	note D#, 16
 	endchannel
-; f71c8
 
-Music_GoldSilverOpening_Ch3: ; f71c8
+Music_GoldSilverOpening_Ch3:
 	notetype $6, $10
 	octave 2
 	note D_, 4
@@ -616,4 +613,3 @@ Music_GoldSilverOpening_Ch3: ; f71c8
 	note C_, 1
 	note __, 13
 	endchannel
-; f7308

@@ -1,4 +1,4 @@
-GiveMoney:: ; 15fd7
+GiveMoney::
 	ld a, 3
 	call AddMoney
 	ld bc, MaxMoney
@@ -21,14 +21,11 @@ GiveMoney:: ; 15fd7
 .not_maxed_out
 	and a
 	ret
-; 15ff7
 
-MaxMoney: ; 15ff7
+MaxMoney:
 	dt MAX_MONEY
-; 15ffa
 
-
-TakeMoney:: ; 15ffa
+TakeMoney::
 	ld a, 3
 	call SubtractMoney
 	jr nc, .okay
@@ -45,11 +42,10 @@ TakeMoney:: ; 15ffa
 .okay
 	and a
 	ret
-; 1600b
 
-CompareMoney:: ; 1600b
+CompareMoney::
 	ld a, 3
-CompareFunds: ; 1600d
+CompareFunds:
 ; a: number of bytes
 ; bc: start addr of amount (big-endian)
 ; de: start addr of account (big-endian)
@@ -94,11 +90,10 @@ CompareFunds: ; 1600d
 	pop de
 	pop hl
 	ret
-; 16035
 
-SubtractMoney: ; 16035
+SubtractMoney:
 	ld a, 3
-SubtractFunds: ; 16037
+SubtractFunds:
 ; a: number of bytes
 ; bc: start addr of amount (big-endian)
 ; de: start addr of account (big-endian)
@@ -130,11 +125,10 @@ SubtractFunds: ; 16037
 	pop de
 	pop hl
 	ret
-; 16053
 
-AddMoney: ; 16053
+AddMoney:
 	ld a, 3
-AddFunds: ; 16055
+AddFunds:
 ; a: number of bytes
 ; bc: start addr of amount (big-endian)
 ; de: start addr of account (big-endian)
@@ -167,9 +161,8 @@ AddFunds: ; 16055
 	pop de
 	pop hl
 	ret
-; 1606f
 
-GiveCoins:: ; 1606f
+GiveCoins::
 	ld a, 2
 	ld de, wCoins
 	call AddFunds
@@ -189,14 +182,11 @@ GiveCoins:: ; 1606f
 .not_maxed
 	and a
 	ret
-; 1608d
 
-.maxcoins ; 1608d
+.maxcoins
 	bigdw MAX_COINS
-; 1608f
 
-
-TakeCoins:: ; 1608f
+TakeCoins::
 	ld a, 2
 	ld de, wCoins
 	call SubtractFunds
@@ -212,10 +202,8 @@ TakeCoins:: ; 1608f
 .okay
 	and a
 	ret
-; 160a1
 
-CheckCoins:: ; 160a1
+CheckCoins::
 	ld a, 2
 	ld de, wCoins
 	jp CompareFunds
-; 160a9

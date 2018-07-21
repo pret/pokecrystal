@@ -1,4 +1,6 @@
-MoveEffects: ; 2732e
+INCLUDE "data/moves/effects_pointers.asm"
+
+MoveEffects: ; used only for BANK(MoveEffects)
 
 NormalHit:
 	checkobedience

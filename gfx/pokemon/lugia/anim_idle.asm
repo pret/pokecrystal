@@ -5,4 +5,3 @@
 	frame 8, 10
 	frame 3, 10
 	endanim
-; 0xd220c

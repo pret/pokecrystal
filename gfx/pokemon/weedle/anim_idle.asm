@@ -9,4 +9,3 @@
 	frame 3, 05
 	dorepeat 5
 	endanim
-; 0xd1922

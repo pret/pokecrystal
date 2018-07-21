@@ -1,4 +1,4 @@
-BattleCommand_SleepTalk: ; 35b33
+BattleCommand_SleepTalk:
 ; sleeptalk
 
 	call ClearLastMove
@@ -141,5 +141,3 @@ BattleCommand_SleepTalk: ; 35b33
 	ret z
 	cp EFFECT_BIDE
 	ret
-
-; 35bff

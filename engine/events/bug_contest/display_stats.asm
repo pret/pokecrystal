@@ -1,4 +1,4 @@
-DisplayCaughtContestMonStats: ; cc000
+DisplayCaughtContestMonStats:
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -86,22 +86,22 @@ DisplayCaughtContestMonStats: ; cc000
 .This:
 	db " THIS <PKMN>  @"
 
-SwitchMonText: ; cc0c2
+SwitchMonText:
 	; Switch #MON?
 	text_jump UnknownText_0x1c10cf
 	db "@"
 
-DisplayAlreadyCaughtText: ; cc0c7
+DisplayAlreadyCaughtText:
 	call GetPokemonName
 	ld hl, .AlreadyCaughtText
 	jp PrintText
 
-.AlreadyCaughtText: ; 0xcc0d0
+.AlreadyCaughtText:
 	; You already caught a @ .
 	text_jump UnknownText_0x1c10dd
 	db "@"
 
 DummyPredef2F:
 DummyPredef38:
-DummyPredef39: ; cc0d5
+DummyPredef39:
 	ret

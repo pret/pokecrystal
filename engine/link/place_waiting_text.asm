@@ -1,4 +1,4 @@
-PlaceWaitingText:: ; 4000
+PlaceWaitingText::
 	hlcoord 3, 10
 	ld b, 1
 	ld c, 11
@@ -20,5 +20,5 @@ PlaceWaitingText:: ; 4000
 	ld c, 50
 	jp DelayFrames
 
-.Waiting: ; 4025
+.Waiting:
 	db "Waiting...!@"

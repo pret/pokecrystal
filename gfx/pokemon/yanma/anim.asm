@@ -6,4 +6,3 @@
 	frame 2, 03
 	dorepeat 4
 	endanim
-; 0xd138a

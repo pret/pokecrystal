@@ -6,4 +6,3 @@
 	dorepeat 3
 	frame 2, 16
 	endanim
-; 0xd0c42

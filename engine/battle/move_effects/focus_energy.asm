@@ -1,4 +1,4 @@
-BattleCommand_FocusEnergy: ; 36c98
+BattleCommand_FocusEnergy:
 ; focusenergy
 
 	ld a, BATTLE_VARS_SUBSTATUS4
@@ -13,5 +13,3 @@ BattleCommand_FocusEnergy: ; 36c98
 .already_pumped
 	call AnimateFailedMove
 	jp PrintButItFailed
-
-; 36cb2

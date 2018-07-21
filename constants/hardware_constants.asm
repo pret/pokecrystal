@@ -58,10 +58,6 @@ X_FLIP       EQU 1 << OAM_X_FLIP    ; $20
 Y_FLIP       EQU 1 << OAM_Y_FLIP    ; $40
 PRIORITY     EQU 1 << OAM_PRIORITY  ; $80
 
-; Other useful constants
-LCDC_DEFAULT EQU %11100011
-LY_VBLANK    EQU 144
-
 ; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)
 rSB         EQU $ff01 ; Serial transfer data (R/W)
@@ -119,14 +115,20 @@ rWave_d     EQU $ff3d
 rWave_e     EQU $ff3e
 rWave_f     EQU $ff3f
 rLCDC       EQU $ff40 ; LCD Control (R/W)
+rLCDC_BG_PRIORITY    EQU 0 ; 0=Off, 1=On
 rLCDC_SPRITES_ENABLE EQU 1 ; 0=Off, 1=On
 rLCDC_SPRITE_SIZE    EQU 2 ; 0=8x8, 1=8x16
+rLCDC_BG_TILEMAP     EQU 3 ; 0=9800-9BFF, 1=9C00-9FFF
+rLCDC_TILE_DATA      EQU 4 ; 0=8800-97FF, 1=8000-8FFF
+rLCDC_WINDOW_ENABLE  EQU 5 ; 0=Off, 1=On
 rLCDC_WINDOW_TILEMAP EQU 6 ; 0=9800-9BFF, 1=9C00-9FFF
 rLCDC_ENABLE         EQU 7 ; 0=Off, 1=On
+LCDC_DEFAULT EQU (1 << rLCDC_ENABLE) | (1 << rLCDC_WINDOW_TILEMAP) | (1 << rLCDC_WINDOW_ENABLE) | (1 << rLCDC_SPRITES_ENABLE) | (1 << rLCDC_BG_PRIORITY)
 rSTAT       EQU $ff41 ; LCDC Status (R/W)
 rSCY        EQU $ff42 ; Scroll Y (R/W)
 rSCX        EQU $ff43 ; Scroll X (R/W)
 rLY         EQU $ff44 ; LCDC Y-Coordinate (R)
+LY_VBLANK EQU 144
 rLYC        EQU $ff45 ; LY Compare (R/W)
 rDMA        EQU $ff46 ; DMA Transfer and Start Address (W)
 rBGP        EQU $ff47 ; BG Palette Data (R/W) - Non CGB Mode Only

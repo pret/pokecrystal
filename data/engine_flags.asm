@@ -4,7 +4,7 @@ engine_flag: MACRO
 	dwb \1 + (\2 / 8), 1 << (\2 % 8)
 ENDM
 
-EngineFlags: ; 80462
+EngineFlags:
 ; entries correspond to ENGINE_* constants
 
 	; pokegear
@@ -197,5 +197,3 @@ EngineFlags: ; 80462
 
 	engine_flag wSwarmFlags, SWARMFLAGS_DUNSPARCE_SWARM_F ; $a0
 	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
-
-; 80648

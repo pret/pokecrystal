@@ -1,4 +1,4 @@
-BattleCommand_HealBell: ; 35cc9
+BattleCommand_HealBell:
 ; healbell
 
 	ld a, BATTLE_VARS_SUBSTATUS1
@@ -32,5 +32,3 @@ BattleCommand_HealBell: ; 35cc9
 	and a
 	jp z, CalcPlayerStats
 	jp CalcEnemyStats
-
-; 35d00

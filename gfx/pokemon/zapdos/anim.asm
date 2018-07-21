@@ -4,4 +4,3 @@
 	frame 3, 10
 	dorepeat 2
 	endanim
-; 0xd10cc

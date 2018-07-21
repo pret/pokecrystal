@@ -1,4 +1,4 @@
-BattleCommand_LockOn: ; 35a53
+BattleCommand_LockOn:
 ; lockon
 
 	call CheckSubstituteOpp
@@ -19,5 +19,3 @@ BattleCommand_LockOn: ; 35a53
 .fail
 	call AnimateFailedMove
 	jp PrintDidntAffect
-
-; 35a74

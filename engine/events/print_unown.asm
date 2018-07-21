@@ -1,4 +1,7 @@
-_UnownPrinter: ; 16be4
+UNOWNSTAMP_BOLD_A EQUS "\"♂\"" ; $ef
+UNOWNSTAMP_BOLD_B EQUS "\"♀\"" ; $f5
+
+_UnownPrinter:
 	ld a, [wUnownDex]
 	and a
 	ret z
@@ -15,12 +18,12 @@ _UnownPrinter: ; 16be4
 	call ClearTileMap
 
 	ld de, UnownDexATile
-	ld hl, vTiles1 tile $6f
+	ld hl, vTiles0 tile UNOWNSTAMP_BOLD_A
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
 	ld de, UnownDexBTile
-	ld hl, vTiles1 tile $75
+	ld hl, vTiles0 tile UNOWNSTAMP_BOLD_B
 	lb bc, BANK(UnownDexBTile), 1
 	call Request1bpp
 
@@ -94,9 +97,8 @@ _UnownPrinter: ; 16be4
 	ld [hInMenu], a
 	call ReturnToMapFromSubmenu
 	ret
-; 16ca0
 
-.LeftRight: ; 16ca0
+.LeftRight:
 	ld a, [hJoyLast]
 	and D_RIGHT
 	jr nz, .press_right
@@ -127,9 +129,8 @@ _UnownPrinter: ; 16be4
 .return
 	call .UpdateUnownFrontpic
 	ret
-; 16cc8
 
-.UpdateUnownFrontpic: ; 16cc8
+.UpdateUnownFrontpic:
 	ld a, [wJumptableIndex]
 	cp 26
 	jr z, .vacant
@@ -151,7 +152,7 @@ _UnownPrinter: ; 16be4
 	farcall RotateUnownFrontpic
 	ret
 
-.Load2bppToSRAM: ; 16cff
+.Load2bppToSRAM:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
@@ -194,7 +195,6 @@ _UnownPrinter: ; 16be4
 	ld c, 20
 	call DelayFrames
 	ret
-; 16d57
 
 AlphRuinsStampString:
 	db " ALPH RUINS STAMP@"
@@ -203,23 +203,21 @@ UnownDexDoWhatString:
 	db "Do what?@"
 
 UnownDexMenuString:
-	db   "♂ PRINT"
-	next "♀ CANCEL"
+	db   UNOWNSTAMP_BOLD_A, " PRINT"
+	next UNOWNSTAMP_BOLD_B, " CANCEL"
 	next "← PREVIOUS"
 	next "→ NEXT"
 	db   "@"
 
 UnownDexVacantString:
 	db "VACANT@"
-; 16d9c
 
-UnownDexATile: ; 16d9c
+UnownDexATile:
 INCBIN "gfx/printer/bold_a.1bpp"
-UnownDexBTile: ; 16da4
+UnownDexBTile:
 INCBIN "gfx/printer/bold_b.1bpp"
-; 16dac
 
-PlaceUnownPrinterFrontpic: ; 16dac
+PlaceUnownPrinterFrontpic:
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
@@ -230,4 +228,3 @@ PlaceUnownPrinterFrontpic: ; 16dac
 	lb bc, 7, 7
 	predef PlaceGraphic
 	ret
-; 16dc7

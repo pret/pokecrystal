@@ -1,4 +1,4 @@
-MoveDescriptions:: ; 2cb52
+MoveDescriptions::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	dw PoundDescription
 	dw KarateChopDescription
@@ -256,7 +256,6 @@ MoveDescriptions:: ; 2cb52
 	dw MoveFEDescription
 	dw MoveFFDescription
 	dw Move00Description
-; 2cd52
 
 MoveFCDescription:
 MoveFDDescription:
@@ -836,6 +835,7 @@ LovelyKissDescription:
 SkyAttackDescription:
 	db   "1st turn: Prepare"
 	next "2nd turn: Attack@"
+
 TransformDescription:
 	db   "The user assumes"
 	next "the foe's guise.@"
@@ -1267,4 +1267,3 @@ WhirlpoolDescription:
 BeatUpDescription:
 	db   "Party #MON join"
 	next "in the attack.@"
-; 2ed44

@@ -1,4 +1,4 @@
-BattleCommand_BellyDrum: ; 37c1a
+BattleCommand_BellyDrum:
 ; bellydrum
 ; This command is buggy because it raises the user's attack
 ; before checking that it has enough HP to use the move.
@@ -32,5 +32,3 @@ BattleCommand_BellyDrum: ; 37c1a
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
-
-; 37c55

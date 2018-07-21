@@ -1,4 +1,4 @@
-BattleCommand_CheckFutureSight: ; 37d0d
+BattleCommand_CheckFutureSight:
 ; checkfuturesight
 
 	ld hl, wPlayerFutureSightCount
@@ -25,9 +25,7 @@ BattleCommand_CheckFutureSight: ; 37d0d
 	ld b, futuresight_command
 	jp SkipToBattleCommand
 
-; 37d34
-
-BattleCommand_FutureSight: ; 37d34
+BattleCommand_FutureSight:
 ; futuresight
 
 	call CheckUserIsCharging
@@ -81,5 +79,3 @@ BattleCommand_FutureSight: ; 37d34
 	call AnimateFailedMove
 	call PrintButItFailed
 	jp EndMoveEffect
-
-; 37d94

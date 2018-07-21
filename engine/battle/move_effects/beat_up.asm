@@ -1,4 +1,4 @@
-BattleCommand_BeatUp: ; 35461
+BattleCommand_BeatUp:
 ; beatup
 
 	call ResetDamage
@@ -193,17 +193,11 @@ BattleCommand_BeatUp: ; 35461
 	ld d, a
 	ret
 
-; 355b0
-
-
-.beatup_fail ; 355b0
+.beatup_fail
 	ld b, buildopponentrage_command
 	jp SkipToBattleCommand
 
-; 355b5
-
-
-BattleCommand_BeatUpFailText: ; 355b5
+BattleCommand_BeatUpFailText:
 ; beatupfailtext
 
 	ld a, [wBeatUpHitAtLeastOnce]
@@ -212,10 +206,7 @@ BattleCommand_BeatUpFailText: ; 355b5
 
 	jp PrintButItFailed
 
-; 355bd
-
-
-GetBeatupMonLocation: ; 355bd
+GetBeatupMonLocation:
 	push bc
 	ld c, a
 	ld b, 0

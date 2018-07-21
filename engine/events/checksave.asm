@@ -1,4 +1,4 @@
-CheckSave:: ; 4cffe
+CheckSave::
 	ld a, BANK(sCheckValue1) ; BANK(sCheckValue2)
 	call GetSRAMBank
 	ld a, [sCheckValue1]

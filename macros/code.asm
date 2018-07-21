@@ -1,11 +1,11 @@
 ; Syntactic sugar macros
 
 lb: MACRO ; r, hi, lo
-	ld \1, (((\2) & $ff) << 8) | (((\3) & $ff))
+	ld \1, ((\2) & $ff) << 8 | ((\3) & $ff)
 ENDM
 
 ln: MACRO ; r, hi, lo
-	ld \1, (((\2) & $f) << 4) | (((\3) & $f))
+	ld \1, ((\2) & $f) << 4 | ((\3) & $f)
 ENDM
 
 ldpixel: MACRO
@@ -18,7 +18,6 @@ ENDM
 
 depixel EQUS "ldpixel de,"
 bcpixel EQUS "ldpixel bc,"
-
 
 ; Design patterns
 

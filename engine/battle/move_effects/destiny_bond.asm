@@ -1,4 +1,4 @@
-BattleCommand_DestinyBond: ; 35bff
+BattleCommand_DestinyBond:
 ; destinybond
 
 	ld a, BATTLE_VARS_SUBSTATUS5
@@ -7,5 +7,3 @@ BattleCommand_DestinyBond: ; 35bff
 	call AnimateCurrentMove
 	ld hl, DestinyBondEffectText
 	jp StdBattleTextBox
-
-; 35c0f

@@ -1,7 +1,6 @@
 MAX_ROLLOUT_COUNT EQU 5
 
-
-BattleCommand_CheckCurl: ; 37718
+BattleCommand_CheckCurl:
 ; checkcurl
 
 	ld de, wPlayerRolloutCount
@@ -22,10 +21,8 @@ BattleCommand_CheckCurl: ; 37718
 	xor a
 	ld [de], a
 	ret
-; 37734
 
-
-BattleCommand_RolloutPower: ; 37734
+BattleCommand_RolloutPower:
 ; rolloutpower
 
 	ld a, BATTLE_VARS_STATUS
@@ -96,4 +93,3 @@ BattleCommand_RolloutPower: ; 37734
 
 .done_damage
 	ret
-; 37791

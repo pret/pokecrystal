@@ -1,4 +1,4 @@
-BattleAnimFrameData: ; ce85e
+BattleAnimFrameData:
 ; entries correspond to BATTLEANIMFRAMESET_* constants
 	dw .Frameset_00 ; BATTLEANIMFRAMESET_00
 	dw .Frameset_01 ; BATTLEANIMFRAMESET_01
@@ -1266,5 +1266,3 @@ BattleAnimFrameData: ; ce85e
 .Frameset_b8:
 	frame BATTLEANIMOAMSET_D7,  8
 	endanim
-
-; ceeae

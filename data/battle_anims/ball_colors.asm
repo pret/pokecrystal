@@ -1,6 +1,6 @@
 ; colors of balls thrown in battle
 
-BallColors: ; cd26c (33:526c)
+BallColors:
 	db MASTER_BALL, PAL_BATTLE_OB_GREEN
 	db ULTRA_BALL,  PAL_BATTLE_OB_YELLOW
 	db GREAT_BALL,  PAL_BATTLE_OB_BLUE
@@ -13,4 +13,3 @@ BallColors: ; cd26c (33:526c)
 	db MOON_BALL,   PAL_BATTLE_OB_GRAY
 	db LOVE_BALL,   PAL_BATTLE_OB_RED
 	db -1,          PAL_BATTLE_OB_GRAY
-; cd284

@@ -1,4 +1,4 @@
-BattleCommand_TripleKick: ; 346b2
+BattleCommand_TripleKick:
 ; triplekick
 
 	ld a, [wKickCounter]
@@ -26,14 +26,9 @@ BattleCommand_TripleKick: ; 346b2
 	ld [hl], a
 	ret
 
-; 346cd
-
-
-BattleCommand_KickCounter: ; 346cd
+BattleCommand_KickCounter:
 ; kickcounter
 
 	ld hl, wKickCounter
 	inc [hl]
 	ret
-
-; 346d2

@@ -3,7 +3,7 @@ mon_cry: MACRO
 	dw \1, \2, \3
 ENDM
 
-PokemonCries:: ; f2787
+PokemonCries::
 ; entries correspond to constants/pokemon_constants.asm
 	mon_cry CRY_BULBASAUR,   $080,  $081 ; BULBASAUR
 	mon_cry CRY_BULBASAUR,   $020,  $100 ; IVYSAUR
@@ -260,4 +260,3 @@ PokemonCries:: ; f2787
 	mon_cry CRY_NIDORAN_M,      0,     0 ; 253
 	mon_cry CRY_NIDORAN_M,      0,     0 ; 254
 	mon_cry CRY_NIDORAN_M,      0,     0 ; 255
-; f2d81

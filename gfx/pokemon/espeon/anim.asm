@@ -6,4 +6,3 @@
 	frame 3, 07
 	dorepeat 3
 	endanim
-; 0xd13af

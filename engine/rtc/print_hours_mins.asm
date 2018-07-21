@@ -1,4 +1,4 @@
-Unreferenced_Function1dd6a9: ; 1dd6a9
+Unreferenced_Function1dd6a9:
 	ld a, b
 	ld b, c
 	ld c, a
@@ -13,7 +13,7 @@ Unreferenced_Function1dd6a9: ; 1dd6a9
 	pop bc
 	ret
 
-PrintHoursMins: ; 1dd6bb (77:56bb)
+PrintHoursMins:
 ; Hours in b, minutes in c
 	ld a, b
 	cp 12
@@ -59,5 +59,5 @@ PrintHoursMins: ; 1dd6bb (77:56bb)
 	call PlaceString
 	ret
 
-String_AM: db "AM@" ; 1dd6fc
-String_PM: db "PM@" ; 1dd6ff
+String_AM: db "AM@"
+String_PM: db "PM@"

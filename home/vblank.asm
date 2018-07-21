@@ -6,8 +6,7 @@
 
 ; This prevents the display and audio output from lagging.
 
-
-VBlank:: ; 283
+VBlank::
 	push af
 	push bc
 	push de
@@ -34,9 +33,8 @@ VBlank:: ; 283
 	pop bc
 	pop af
 	reti
-; 2a1
 
-.VBlanks: ; 2a1
+.VBlanks:
 	dw VBlank0
 	dw VBlank1
 	dw VBlank2
@@ -45,10 +43,8 @@ VBlank:: ; 283
 	dw VBlank5
 	dw VBlank6
 	dw VBlank0 ; just in case
-; 2b1
 
-
-VBlank0:: ; 2b1
+VBlank0::
 ; normal operation
 
 ; rng
@@ -116,7 +112,6 @@ VBlank0:: ; 2b1
 	call hTransferVirtualOAM
 .done_oam
 
-
 	; vblank-sensitive operations are done
 
 	xor a
@@ -148,10 +143,8 @@ VBlank0:: ; 2b1
 	ld [hSecondsBackup], a
 
 	ret
-; 325
 
-
-VBlank2:: ; 325
+VBlank2::
 ; sound only
 
 	ld a, [hROMBank]
@@ -167,10 +160,8 @@ VBlank2:: ; 325
 	xor a
 	ld [wVBlankOccurred], a
 	ret
-; 337
 
-
-VBlank1:: ; 337
+VBlank1::
 ; scx, scy
 ; palettes
 ; bg map
@@ -235,10 +226,8 @@ VBlank1:: ; 337
 	ld a, b
 	ld [rIF], a
 	ret
-; 37f
 
-
-UpdatePals:: ; 37f
+UpdatePals::
 ; update pals for either dmg or cgb
 
 	ld a, [hCGB]
@@ -255,10 +244,8 @@ UpdatePals:: ; 37f
 
 	and a
 	ret
-; 396
 
-
-VBlank3:: ; 396
+VBlank3::
 ; scx, scy
 ; palettes
 ; bg map
@@ -321,10 +308,8 @@ VBlank3:: ; 396
 	ld a, b
 	ld [rIF], a
 	ret
-; 3df
 
-
-VBlank4:: ; 3df
+VBlank4::
 ; bg map
 ; tiles
 ; oam
@@ -354,10 +339,8 @@ VBlank4:: ; 3df
 	ld a, [hROMBankBackup]
 	rst Bankswitch
 	ret
-; 400
 
-
-VBlank5:: ; 400
+VBlank5::
 ; scx
 ; palettes
 ; bg map
@@ -404,10 +387,8 @@ VBlank5:: ; 400
 	ld a, %1111 ; serial timer lcdstat vblank
 	ld [rIE], a
 	ret
-; 436
 
-
-VBlank6:: ; 436
+VBlank6::
 ; palettes
 ; tiles
 ; dma transfer
@@ -438,4 +419,3 @@ VBlank6:: ; 436
 	ld a, [hROMBankBackup]
 	rst Bankswitch
 	ret
-; 45a

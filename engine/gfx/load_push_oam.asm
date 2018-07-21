@@ -1,4 +1,4 @@
-WriteOAMDMACodeToHRAM:: ; 4031
+WriteOAMDMACodeToHRAM::
 	ld c, hTransferVirtualOAM - $ff00
 	ld b, .PushOAMEnd - .PushOAM
 	ld hl, .PushOAM
@@ -10,7 +10,7 @@ WriteOAMDMACodeToHRAM:: ; 4031
 	jr nz, .loop
 	ret
 
-.PushOAM: ; 403f
+.PushOAM:
 	ld a, HIGH(wVirtualOAM)
 	ld [rDMA], a
 	ld a, NUM_SPRITE_OAM_STRUCTS

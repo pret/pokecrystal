@@ -16,7 +16,6 @@ sgb_pal23: MACRO
 	db (SGB_PAL23 << 3) + 1
 ENDM
 
-
 PalPacket_GSTitleScreen:
 	sgb_pal_set GS_TITLE_SCREEN_0, GS_TITLE_SCREEN_1, GS_TITLE_SCREEN_2, GS_TITLE_SCREEN_3
 
@@ -79,7 +78,6 @@ PalPacket_TradeTube:
 
 PalPacket_GamefreakLogo:
 	sgb_pal_set GS_INTRO_GAMEFREAK_LOGO, 00, 00, 00
-
 
 PalPacket_9ce6:
 	sgb_pal01

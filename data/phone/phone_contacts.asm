@@ -8,7 +8,7 @@ phone: MACRO
 	dba \7
 ENDM
 
-PhoneContacts: ; 9045f
+PhoneContacts:
 ; entries correspond to PHONE_* constants
 	phone TRAINER_NONE, PHONE_00,           N_A,              0,       UnusedPhoneScript,   0,       UnusedPhoneScript
 	phone TRAINER_NONE, PHONECONTACT_MOM,   PLAYERS_HOUSE_1F, ANYTIME, MomPhoneScript,      0,       UnusedPhoneScript
@@ -48,4 +48,3 @@ PhoneContacts: ; 9045f
 	phone HIKER,        PARRY1,             ROUTE_45,         ANYTIME, ParryPhoneScript1,   ANYTIME, ParryPhoneScript2
 	phone PICNICKER,    ERIN1,              ROUTE_46,         ANYTIME, ErinPhoneScript1,    ANYTIME, ErinPhoneScript2
 	phone TRAINER_NONE, PHONECONTACT_BUENA, GOLDENROD_DEPT_STORE_ROOF, ANYTIME, BuenaPhoneScript1, ANYTIME, BuenaPhoneScript2
-; 90627

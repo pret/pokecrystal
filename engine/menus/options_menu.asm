@@ -1,4 +1,4 @@
-_OptionsMenu: ; e41d0
+_OptionsMenu:
 	ld hl, hInMenu
 	ld a, [hl]
 	push af
@@ -59,28 +59,25 @@ _OptionsMenu: ; e41d0
 	pop af
 	ld [hInMenu], a
 	ret
-; e4241
 
-StringOptions: ; e4241
-	db "TEXT SPEED<LNBRK>"
-	db "        :<LNBRK>"
-	db "BATTLE SCENE<LNBRK>"
-	db "        :<LNBRK>"
-	db "BATTLE STYLE<LNBRK>"
-	db "        :<LNBRK>"
-	db "SOUND<LNBRK>"
-	db "        :<LNBRK>"
-	db "PRINT<LNBRK>"
-	db "        :<LNBRK>"
-	db "MENU ACCOUNT<LNBRK>"
-	db "        :<LNBRK>"
-	db "FRAME<LNBRK>"
-	db "        :TYPE<LNBRK>"
+StringOptions:
+	db "TEXT SPEED<LF>"
+	db "        :<LF>"
+	db "BATTLE SCENE<LF>"
+	db "        :<LF>"
+	db "BATTLE STYLE<LF>"
+	db "        :<LF>"
+	db "SOUND<LF>"
+	db "        :<LF>"
+	db "PRINT<LF>"
+	db "        :<LF>"
+	db "MENU ACCOUNT<LF>"
+	db "        :<LF>"
+	db "FRAME<LF>"
+	db "        :TYPE<LF>"
 	db "CANCEL@"
-; e42d6
 
-
-GetOptionPointer: ; e42d6
+GetOptionPointer:
 	ld a, [wJumptableIndex] ; load the cursor position to a
 	ld e, a ; copy it to de
 	ld d, 0
@@ -91,7 +88,6 @@ GetOptionPointer: ; e42d6
 	ld h, [hl]
 	ld l, a
 	jp hl ; jump to the code of the current highlighted item
-; e42e5
 
 .Pointers:
 	dw Options_TextSpeed
@@ -102,15 +98,13 @@ GetOptionPointer: ; e42d6
 	dw Options_MenuAccount
 	dw Options_Frame
 	dw Options_Cancel
-; e42f5
-
 
 	const_def
 	const OPT_TEXT_SPEED_FAST ; 0
 	const OPT_TEXT_SPEED_MED  ; 1
 	const OPT_TEXT_SPEED_SLOW ; 2
 
-Options_TextSpeed: ; e42f5
+Options_TextSpeed:
 	call GetTextSpeed
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
@@ -156,7 +150,6 @@ Options_TextSpeed: ; e42f5
 	call PlaceString
 	and a
 	ret
-; e4331
 
 .Strings:
 ; entries correspond to OPT_TEXT_SPEED_* constants
@@ -167,14 +160,12 @@ Options_TextSpeed: ; e42f5
 .Fast: db "FAST@"
 .Mid:  db "MID @"
 .Slow: db "SLOW@"
-; e4346
 
-
-GetTextSpeed: ; e4346
+GetTextSpeed:
 ; converts TEXT_DELAY_* value in a to OPT_TEXT_SPEED_* value in c,
 ; with previous/next TEXT_DELAY_* values in d/e
 	ld a, [wOptions]
-	and $7
+	and TEXT_DELAY_MASK
 	cp TEXT_DELAY_SLOW
 	jr z, .slow
 	cp TEXT_DELAY_FAST
@@ -193,10 +184,8 @@ GetTextSpeed: ; e4346
 	ld c, OPT_TEXT_SPEED_FAST
 	lb de, TEXT_DELAY_SLOW, TEXT_DELAY_MED
 	ret
-; e4365
 
-
-Options_BattleScene: ; e4365
+Options_BattleScene:
 	ld hl, wOptions
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
@@ -231,14 +220,11 @@ Options_BattleScene: ; e4365
 	call PlaceString
 	and a
 	ret
-; e4398
 
 .On:  db "ON @"
 .Off: db "OFF@"
-; e43a0
 
-
-Options_BattleStyle: ; e43a0
+Options_BattleStyle:
 	ld hl, wOptions
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
@@ -272,14 +258,11 @@ Options_BattleStyle: ; e43a0
 	call PlaceString
 	and a
 	ret
-; e43d1
 
 .Shift: db "SHIFT@"
 .Set:   db "SET  @"
-; e43dd
 
-
-Options_Sound: ; e43dd
+Options_Sound:
 	ld hl, wOptions
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
@@ -320,12 +303,9 @@ Options_Sound: ; e43dd
 	call PlaceString
 	and a
 	ret
-; e4416
 
 .Mono:   db "MONO  @"
 .Stereo: db "STEREO@"
-; e4424
-
 
 	const_def
 	const OPT_PRINT_LIGHTEST ; 0
@@ -334,7 +314,7 @@ Options_Sound: ; e43dd
 	const OPT_PRINT_DARKER   ; 3
 	const OPT_PRINT_DARKEST  ; 4
 
-Options_Print: ; e4424
+Options_Print:
 	call GetPrinterSetting
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
@@ -377,7 +357,6 @@ Options_Print: ; e4424
 	call PlaceString
 	and a
 	ret
-; e445a
 
 .Strings:
 ; entries correspond to OPT_PRINT_* constants
@@ -392,10 +371,8 @@ Options_Print: ; e4424
 .Normal:   db "NORMAL  @"
 .Darker:   db "DARKER  @"
 .Darkest:  db "DARKEST @"
-; e4491
 
-
-GetPrinterSetting: ; e4491
+GetPrinterSetting:
 ; converts GBPRINTER_* value in a to OPT_PRINT_* value in c,
 ; with previous/next GBPRINTER_* values in d/e
 	ld a, [wGBPrinter]
@@ -431,9 +408,8 @@ GetPrinterSetting: ; e4491
 	ld c, OPT_PRINT_DARKEST
 	lb de, GBPRINTER_DARKER, GBPRINTER_LIGHTEST
 	ret
-; e44c1
 
-Options_MenuAccount: ; e44c1
+Options_MenuAccount:
 	ld hl, wOptions2
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
@@ -467,14 +443,11 @@ Options_MenuAccount: ; e44c1
 	call PlaceString
 	and a
 	ret
-; e44f2
 
 .Off: db "OFF@"
 .On:  db "ON @"
-; e44fa
 
-
-Options_Frame: ; e44fa
+Options_Frame:
 	ld hl, wTextBoxFrame
 	ld a, [hJoyPressed]
 	bit D_LEFT_F, a
@@ -494,9 +467,9 @@ Options_Frame: ; e44fa
 	dec a
 
 .Save:
-	and $7
+	maskbits NUM_FRAMES
 	ld [hl], a
-UpdateFrame: ; e4512
+UpdateFrame:
 	ld a, [wTextBoxFrame]
 	hlcoord 16, 15 ; where on the screen the number is drawn
 	add "1"
@@ -504,9 +477,8 @@ UpdateFrame: ; e4512
 	call LoadFontsExtra
 	and a
 	ret
-; e4520
 
-Options_Cancel: ; e4520
+Options_Cancel:
 	ld a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .Exit
@@ -516,9 +488,8 @@ Options_Cancel: ; e4520
 .Exit:
 	scf
 	ret
-; e452a
 
-OptionsControl: ; e452a
+OptionsControl:
 	ld hl, wJumptableIndex
 	ld a, [hJoyLast]
 	cp D_DOWN
@@ -563,9 +534,8 @@ OptionsControl: ; e452a
 	dec [hl]
 	scf
 	ret
-; e455c
 
-Options_UpdateCursorPosition: ; e455c
+Options_UpdateCursorPosition:
 	hlcoord 1, 1
 	ld de, SCREEN_WIDTH
 	ld c, $10
@@ -580,4 +550,3 @@ Options_UpdateCursorPosition: ; e455c
 	call AddNTimes
 	ld [hl], "▶"
 	ret
-; e4579

@@ -32,7 +32,6 @@
 	shift_const SCROLLINGMENU_ENABLE_START
 	shift_const SCROLLINGMENU_ENABLE_SELECT
 
-
 ; MonMenuOptions indexes (see data/mon_menu.asm)
 ; used by PokemonActionSubmenu (see engine/menus/start_menu.asm)
 	const_def 1
@@ -69,7 +68,6 @@ NUM_MONMENU_ITEMS EQU 8
 ; start/select menu return values
 HMENURETURN_SCRIPT EQU %10000000
 HMENURETURN_ASM    EQU %11111111
-
 
 ; PartyMenuQualityPointers indexes (see data/party_menu_qualities.asm)
 	const_def

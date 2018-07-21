@@ -126,7 +126,6 @@ NUM_SPRITEMOVEDATA_FIELDS EQU const_value
 MAPOBJECT_SCREEN_WIDTH  EQU (SCREEN_WIDTH / 2) + 2
 MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
 
-
 ; SpriteMovementData indexes (see data/sprites/map_objects.asm)
 	const_def
 	const SPRITEMOVEDATA_00                   ; 00
@@ -282,7 +281,6 @@ NUM_SPRITEMOVEDATA EQU const_value
 	const FACING_BOULDER_DUST_2 ; 1d
 	const FACING_GRASS_1        ; 1e
 	const FACING_GRASS_2        ; 1f
-
 
 ; DoPlayerMovement.DoStep arguments (see engine/overworld/player_movement.asm)
 	const_def

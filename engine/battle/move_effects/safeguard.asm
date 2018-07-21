@@ -1,4 +1,4 @@
-BattleCommand_Safeguard: ; 37939
+BattleCommand_Safeguard:
 ; safeguard
 
 	ld hl, wPlayerScreens
@@ -21,5 +21,3 @@ BattleCommand_Safeguard: ; 37939
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
-
-; 37962

@@ -13,4 +13,3 @@
 	frame 13, 05
 	dorepeat 11
 	endanim
-; 0xd1696

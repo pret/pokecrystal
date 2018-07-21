@@ -1,4 +1,4 @@
-TrainerClassDVs: ; 270d6
+TrainerClassDVs:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	;  atk,def,spd,spc
 	dn  9, 10,  7,  7 ; FALKNER
@@ -68,4 +68,3 @@ TrainerClassDVs: ; 270d6
 	dn  9,  8,  8,  8 ; OFFICER
 	dn  7, 14, 10,  8 ; GRUNTF
 	dn  9,  8,  8,  8 ; MYSTICALMAN
-; 2715c

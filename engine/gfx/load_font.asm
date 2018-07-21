@@ -5,22 +5,20 @@ INCLUDE "gfx/font.asm"
 Unreferenced_fb434:
 	db 0
 
-Unreferenced_Functionfb435: ; 4b435
+Unreferenced_Functionfb435:
 	ld a, [Unreferenced_fb434]
 	and a
 	jp nz, Get1bpp_2
 	jp Get1bpp
-; fb43f
 
-Unreferenced_Functionfb43f: ; fb43f
+Unreferenced_Functionfb43f:
 	ld a, [Unreferenced_fb434]
 	and a
 	jp nz, Get2bpp_2
 	jp Get2bpp
 ; End unreferenced block
-; fb449
 
-_LoadStandardFont:: ; fb449
+_LoadStandardFont::
 	ld de, Font
 	ld hl, vTiles1
 	lb bc, BANK(Font), 128 ; "A" to "9"
@@ -45,9 +43,8 @@ _LoadStandardFont:: ; fb449
 	lb bc, BANK(Font), 32 ; "'" to "9"
 	call Get1bpp_2
 	ret
-; fb48a
 
-_LoadFontsExtra1:: ; fb48a
+_LoadFontsExtra1::
 	ld de, FontsExtra_SolidBlackGFX
 	ld hl, vTiles2 tile "■" ; $60
 	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
@@ -61,26 +58,23 @@ _LoadFontsExtra1:: ; fb48a
 	lb bc, BANK(FontExtra), 22 ; "<BOLD_D>" to "ぉ"
 	call Get2bpp_2
 	jr LoadFrame
-; fb4b0
 
-_LoadFontsExtra2:: ; fb4b0
+_LoadFontsExtra2::
 	ld de, FontsExtra2_UpArrowGFX
 	ld hl, vTiles2 tile "▲" ; $61
 	ld b, BANK(FontsExtra2_UpArrowGFX)
 	ld c, 1
 	call Get2bpp_2
 	ret
-; fb4be
 
-_LoadFontsBattleExtra:: ; fb4be
+_LoadFontsBattleExtra::
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 25
 	call Get2bpp_2
 	jr LoadFrame
-; fb4cc
 
-LoadFrame: ; fb4cc
+LoadFrame:
 	ld a, [wTextBoxFrame]
 	maskbits NUM_FRAMES
 	ld bc, 6 * LEN_1BPP_TILE
@@ -96,9 +90,8 @@ LoadFrame: ; fb4cc
 	lb bc, BANK(TextBoxSpaceGFX), 1
 	call Get1bpp_2
 	ret
-; fb4f2
 
-LoadBattleFontsHPBar: ; fb4f2
+LoadBattleFontsHPBar:
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 12
@@ -109,7 +102,7 @@ LoadBattleFontsHPBar: ; fb4f2
 	call Get2bpp_2
 	call LoadFrame
 
-LoadHPBar: ; fb50d
+LoadHPBar:
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4
@@ -127,9 +120,8 @@ LoadHPBar: ; fb50d
 	lb bc, BANK(MobilePhoneTilesGFX), 2
 	call Get2bpp_2
 	ret
-; fb53e
 
-StatsScreen_LoadFont: ; fb53e
+StatsScreen_LoadFont:
 	call _LoadFontsBattleExtra
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
@@ -147,10 +139,9 @@ StatsScreen_LoadFont: ; fb53e
 	ld hl, vTiles2 tile $55
 	lb bc, BANK(ExpBarGFX), 8
 	call Get2bpp_2
-LoadStatsScreenPageTilesGFX: ; fb571
+LoadStatsScreenPageTilesGFX:
 	ld de, StatsScreenPageTilesGFX
 	ld hl, vTiles2 tile $31
 	lb bc, BANK(StatsScreenPageTilesGFX), 17
 	call Get2bpp_2
 	ret
-; fb57e

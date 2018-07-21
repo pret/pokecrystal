@@ -4,4 +4,3 @@
 	dorepeat 1
 	frame 1, 08
 	endanim
-; 0xd1544

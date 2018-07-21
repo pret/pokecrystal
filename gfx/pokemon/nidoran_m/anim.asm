@@ -5,4 +5,3 @@
 	frame 1, 06
 	dorepeat 3
 	endanim
-; 0xd0a71

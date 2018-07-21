@@ -3,7 +3,7 @@ rating: MACRO
 	dbww \1, \2, \3
 ENDM
 
-OakRatings: ; 0x2667f
+OakRatings:
 ; if you caught at most this many, play this sound, load this text
 ; (text is defined in engine/events/prof_oaks_pc.asm)
 	rating   9, SFX_DEX_FANFARE_LESS_THAN_20, OakRating01
@@ -25,5 +25,3 @@ OakRatings: ; 0x2667f
 	rating 239, SFX_DEX_FANFARE_230_PLUS,     OakRating17
 	rating 248, SFX_DEX_FANFARE_230_PLUS,     OakRating18
 	rating 255, SFX_DEX_FANFARE_230_PLUS,     OakRating19
- ; 0x266de
- 

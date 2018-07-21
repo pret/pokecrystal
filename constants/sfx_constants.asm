@@ -128,7 +128,7 @@
 	const SFX_SWEET_KISS                  ; 7c
 	const SFX_SWEET_KISS_2                ; 7d
 	const SFX_BELLY_DRUM                  ; 7e
-	const SFX_UNKNOWN_7F                  ; 7f
+	const SFX_TOXIC                       ; 7f
 	const SFX_SLUDGE_BOMB                 ; 80
 	const SFX_FORESIGHT                   ; 81
 	const SFX_SPITE                       ; 82
@@ -206,7 +206,7 @@
 	const SFX_INTRO_SUICUNE_4             ; c8
 	const SFX_GAME_FREAK_PRESENTS         ; c9
 	const SFX_TINGLE                      ; ca
-	const SFX_UNKNOWN_CB                  ; cb
+	const SFX_INTRO_WHOOSH                ; cb
 	const SFX_TWO_PC_BEEPS                ; cc
 	const SFX_4_NOTE_DITTY                ; cd
 	const SFX_TWINKLE                     ; ce

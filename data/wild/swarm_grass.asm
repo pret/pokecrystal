@@ -1,6 +1,6 @@
 ; Pokémon swarms in grass
 
-SwarmGrassWildMons: ; 0x2b8d0
+SwarmGrassWildMons:
 
 ; Dunsparce swarm
 	map_id DARK_CAVE_VIOLET_ENTRANCE

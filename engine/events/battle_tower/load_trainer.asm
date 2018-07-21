@@ -1,4 +1,4 @@
-Function_LoadOpponentTrainerAndPokemons: ; 1f8000
+Function_LoadOpponentTrainerAndPokemons:
 	ld a, [rSVBK]
 	push af
 	ld a, BANK(wBT_OTTrainer)
@@ -91,8 +91,7 @@ endc
 
 	ret
 
-
-Function_LoadRandomBattleTowerMon: ; 1f8081
+Function_LoadRandomBattleTowerMon:
 	ld c, BATTLETOWER_PARTY_LENGTH
 .loop
 	push bc
@@ -105,7 +104,7 @@ Function_LoadRandomBattleTowerMon: ; 1f8081
 	ld a, [wBTChoiceOfLvlGroup]
 	dec a
 	ld hl, BattleTowerMons
-	ld bc, BattleTowerMons2 - BattleTowerMons1
+	ld bc, BattleTowerMons2 - BattleTowerMons1 ; size of one level group
 	call AddNTimes
 
 	ld a, [hRandomAdd]
@@ -207,7 +206,6 @@ Function_LoadRandomBattleTowerMon: ; 1f8081
 	ld [sBTMonPrevTrainer3], a
 	call CloseSRAM
 	ret
-; 1f814e
 
 INCLUDE "data/battle_tower/classes.asm"
 

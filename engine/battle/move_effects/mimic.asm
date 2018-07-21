@@ -1,4 +1,4 @@
-BattleCommand_Mimic: ; 36f46
+BattleCommand_Mimic:
 ; mimic
 
 	call ClearLastMove
@@ -48,5 +48,3 @@ BattleCommand_Mimic: ; 36f46
 
 .fail
 	jp FailMimic
-
-; 36f9d

@@ -7,4 +7,3 @@
 	frame 0, 25
 	frame 3, 10
 	endanim
-; 0xd193c

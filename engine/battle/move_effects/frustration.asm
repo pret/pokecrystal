@@ -1,4 +1,4 @@
-BattleCommand_FrustrationPower: ; 3790e
+BattleCommand_FrustrationPower:
 ; frustrationpower
 
 	push bc
@@ -25,5 +25,3 @@ BattleCommand_FrustrationPower: ; 3790e
 	ld d, a
 	pop bc
 	ret
-
-; 37939

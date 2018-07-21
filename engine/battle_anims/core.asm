@@ -1,4 +1,4 @@
-QueueBattleAnimation: ; cc9a1 (33:49a1)
+QueueBattleAnimation:
 	ld hl, wActiveAnimObjects
 	ld e, 10
 .loop
@@ -20,15 +20,13 @@ QueueBattleAnimation: ; cc9a1 (33:49a1)
 	call InitBattleAnimation
 	ret
 
-DeinitBattleAnimation: ; cc9bd
+DeinitBattleAnimation:
 	ld hl, BATTLEANIMSTRUCT_INDEX
 	add hl, bc
 	ld [hl], $0
 	ret
 
-; cc9c4
-
-InitBattleAnimation: ; cc9c4 (33:49c4)
+InitBattleAnimation:
 	ld a, [wBattleAnimTemp0]
 	ld e, a
 	ld d, 0
@@ -79,7 +77,7 @@ endr
 	ld [hl], a  ; 10
 	ret
 
-BattleAnimOAMUpdate: ; cca09
+BattleAnimOAMUpdate:
 	call InitBattleAnimBuffer
 	call GetBattleAnimFrame
 	cp -3
@@ -191,9 +189,7 @@ BattleAnimOAMUpdate: ; cca09
 	scf
 	ret
 
-; ccaaa
-
-InitBattleAnimBuffer: ; ccaaa
+InitBattleAnimBuffer:
 	ld hl, BATTLEANIMSTRUCT_01
 	add hl, bc
 	ld a, [hl]
@@ -276,9 +272,7 @@ InitBattleAnimBuffer: ; ccaaa
 	ld [wBattleAnimTempXOffset], a
 	ret
 
-; ccb31
-
-GetBattleAnimTileOffset: ; ccb31 (33:4b31)
+GetBattleAnimTileOffset:
 	push hl
 	push bc
 	ld hl, wBattleAnimTileDict
@@ -301,14 +295,10 @@ GetBattleAnimTileOffset: ; ccb31 (33:4b31)
 	pop hl
 	ret
 
-_ExecuteBGEffects: ; ccb48
+_ExecuteBGEffects:
 	callfar ExecuteBGEffects
 	ret
 
-; ccb4f
-
-_QueueBGEffect: ; ccb4f (33:4b4f)
+_QueueBGEffect:
 	callfar QueueBGEffect
 	ret
-
-; ccb56 (33:4b56)

@@ -3,4 +3,3 @@
 	frame 2, 20
 	frame 1, 06
 	endanim
-; 0xd08a5

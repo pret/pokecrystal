@@ -3,4 +3,3 @@
 	frame 3, 05
 	dorepeat 1
 	endanim
-; 0xd24b9

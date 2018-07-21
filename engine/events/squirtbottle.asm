@@ -1,4 +1,4 @@
-_Squirtbottle: ; 50730
+_Squirtbottle:
 	ld hl, .SquirtbottleScript
 	call QueueScript
 	ld a, $1
@@ -44,4 +44,3 @@ _Squirtbottle: ; 50730
 	xor a
 	ld [wScriptVar], a
 	ret
-; 50779

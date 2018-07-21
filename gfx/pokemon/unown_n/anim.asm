@@ -7,4 +7,3 @@
 	frame 2, 04
 	frame 1, 03
 	endanim
-; 0xd233f

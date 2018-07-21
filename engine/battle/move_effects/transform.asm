@@ -1,5 +1,5 @@
 
-BattleCommand_Transform: ; 371cd
+BattleCommand_Transform:
 ; transform
 
 	call ClearLastMove
@@ -137,5 +137,3 @@ BattleCommand_Transform: ; 371cd
 	call nz, LoadAnim
 	ld hl, TransformedText
 	jp StdBattleTextBox
-
-; 372c6

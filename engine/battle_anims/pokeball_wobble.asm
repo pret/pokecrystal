@@ -1,4 +1,4 @@
-GetPokeBallWobble: ; f971 (3:7971)
+GetPokeBallWobble:
 ; Returns whether a Poke Ball will wobble in the catch animation.
 ; Whether a Pokemon is caught is determined beforehand.
 

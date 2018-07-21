@@ -1,4 +1,4 @@
-Function3e32:: ; 3e32
+Function3e32::
 ; Mobile
 	cp $2
 	ld [$c988], a
@@ -27,9 +27,8 @@ Function3e32:: ; 3e32
 	rst Bankswitch
 
 	jp Function110030
-; 3e60
 
-Function3e60:: ; 3e60
+Function3e60::
 ; Return from Function110030
 	ld [$c986], a
 	ld a, l
@@ -50,9 +49,8 @@ Function3e60:: ; 3e60
 	ld l, a
 	ld a, [$c986]
 	ret
-; 3e80
 
-MobileReceive:: ; 3e80
+MobileReceive::
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(_MobileReceive)
@@ -66,10 +64,8 @@ MobileReceive:: ; 3e80
 	rst Bankswitch
 
 	ret
-; 3e93
 
-
-Timer:: ; 3e93
+Timer::
 	push af
 	push bc
 	push de
@@ -125,9 +121,8 @@ Timer:: ; 3e93
 	pop bc
 	pop af
 	reti
-; 3ed7
 
-Unreferenced_Function3ed7:: ; 3ed7
+Unreferenced_Function3ed7::
 	ld [$dc02], a
 	ld a, [hROMBank]
 	push af
@@ -141,9 +136,8 @@ Unreferenced_Function3ed7:: ; 3ed7
 
 	ld a, [$dc02]
 	ret
-; 3eea
 
-Function3eea:: ; 3eea
+Function3eea::
 	push hl
 	push bc
 	ld de, wAttrMap - wTileMap
@@ -157,9 +151,8 @@ Function3eea:: ; 3eea
 	pop hl
 	call MobileHome_PlaceBox
 	ret
-; 3efd
 
-Unreferenced_Function3efd:: ; 3efd
+Unreferenced_Function3efd::
 	push hl
 	hlcoord 0, 12
 	ld b, 4
@@ -168,7 +161,6 @@ Unreferenced_Function3efd:: ; 3efd
 	pop hl
 	call PrintTextBoxText
 	ret
-; 3f0d
 
 .fill_attr
 	push hl
@@ -184,9 +176,8 @@ Unreferenced_Function3efd:: ; 3efd
 	pop hl
 	call TextBoxBorder
 	ret
-; 3f20
 
-Function3f20:: ; 3f20
+Function3f20::
 	hlcoord 0, 0, wAttrMap
 	ld b,  6
 	ld c, 20
@@ -196,9 +187,8 @@ Function3f20:: ; 3f20
 	ld c, 18
 	call MobileHome_PlaceBox
 	ret
-; 3f35
 
-Function3f35:: ; 3f35
+Function3f35::
 	ld a, 6
 	ld de, SCREEN_WIDTH
 .row
@@ -214,9 +204,8 @@ Function3f35:: ; 3f35
 	dec b
 	jr nz, .row
 	ret
-; 3f47
 
-MobileHome_PlaceBox: ; 3f47
+MobileHome_PlaceBox:
 	push bc
 	call .FillTop
 	pop bc
@@ -228,7 +217,6 @@ MobileHome_PlaceBox: ; 3f47
 	jr nz, .RowLoop
 	call .FillBottom
 	ret
-; 3f58
 
 .FillTop:
 	ld a, $63
@@ -260,18 +248,16 @@ MobileHome_PlaceBox: ; 3f47
 	ld de, SCREEN_WIDTH
 	add hl, de
 	ret
-; 3f7c
 
-Function3f7c:: ; 3f7c
+Function3f7c::
 	call MenuBoxCoord2Tile
 	call GetMenuBoxDims
 	dec b
 	dec c
 	call Function3eea
 	ret
-; 3f88
 
-Function3f88:: ; 3f88
+Function3f88::
 	ld hl, wDecompressScratch
 	ld b, 0
 .row
@@ -290,9 +276,8 @@ Function3f88:: ; 3f88
 	dec c
 	jr nz, .row
 	ret
-; 3f9f
 
-Function3f9f:: ; 3f9f
+Function3f9f::
 	ld hl, wDecompressScratch
 .row
 	push bc
@@ -311,4 +296,3 @@ Function3f9f:: ; 3f9f
 	dec c
 	jr nz, .row
 	ret
-; 3fb5

@@ -1,4 +1,4 @@
-BattleCommand_PsychUp: ; 37c55
+BattleCommand_PsychUp:
 ; psychup
 
 	ld hl, wEnemyStatLevels
@@ -47,5 +47,3 @@ BattleCommand_PsychUp: ; 37c55
 	call AnimateCurrentMove
 	ld hl, CopiedStatsText
 	jp StdBattleTextBox
-
-; 37c95

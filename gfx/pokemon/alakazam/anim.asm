@@ -6,4 +6,3 @@
 	dorepeat 2
 	frame 3, 07
 	endanim
-; 0xd0c76
