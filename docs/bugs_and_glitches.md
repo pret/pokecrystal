@@ -304,6 +304,7 @@ Fix:
 CheckHiddenOpponent: ; 37daa
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVar
+	ld a, [hl]
 	and 1 << SUBSTATUS_LOCK_ON
 	cp 1 << SUBSTATUS_LOCK_ON
 	ret z
