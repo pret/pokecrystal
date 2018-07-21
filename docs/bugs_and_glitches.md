@@ -246,7 +246,35 @@ DefenseDownHit:
 
 ([Video](https://www.youtube.com/watch?v=uRYyzKRatFk))
 
-*To do:* Identify specific code causing this bug and fix it.
+This is a bug with `BattleCommand_Counter` in [engine/battle/move_effects/counter.asm](/engine/battle/move_effects/counter.asm) and `BattleCommand_MirrorCoat` in [engine/battle/move_effects/mirror_coat.asm](/engine/battle/move_effects/mirror_coat.asm):
+
+```asm
+	; BUG: Move should fail with all non-damaging battle actions
+	ld hl, wCurDamage
+	ld a, [hli]
+	or [hl]
+	ret z
+```
+
+**Fix:**
+
+```diff
+	ld hl, wCurDamage
+	ld a, [hli]
+	or [hl]
+-	ret z
++	jp z, .failed
+```
+
+Add this to the end of each file:
+
+```diff
++.failed
++	ld a, 1
++	ld [wEffectFailed], a
++	and a
++	ret
+```
 
 
 ## A Disabled but PP Up–enhanced move may not trigger Struggle
