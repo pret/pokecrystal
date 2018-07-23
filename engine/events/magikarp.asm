@@ -36,7 +36,7 @@ CheckMagikarpLength:
 	ld hl, wMagikarpLength
 	ld de, wBestMagikarpLengthFeet
 	ld c, 2
-	call StringCmp
+	call CompareBytes
 	jr nc, .not_long_enough
 
 	; NEW RECORD!!! Let's save that.

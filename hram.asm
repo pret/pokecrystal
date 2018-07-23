@@ -48,8 +48,8 @@ hConnectedMapWidth EQU $ffb0
 
 hPastLeadingZeroes EQU $ffb3
 
-hStringCmpString1  EQU $ffb1
-hStringCmpString2  EQU $ffb5
+hEnemyMonSpeed  EQU $ffb1
+hPartyMon1Speed EQU $ffb5
 
 hDividend          EQU $ffb3 ; length in b register, before 'call Divide' (max 4 bytes)
 hDivisor           EQU $ffb7 ; 1 byte long
