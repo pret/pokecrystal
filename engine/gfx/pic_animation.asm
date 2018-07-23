@@ -109,7 +109,7 @@ LoadMonAnimation:
 SetUpPokeAnim:
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(wPokeAnimSceneIndex)
+	ld a, BANK(wPokeAnimStruct)
 	ld [rSVBK], a
 	ld a, [wPokeAnimSceneIndex]
 	ld c, a
@@ -284,14 +284,14 @@ AnimateMon_CheckIfPokemon:
 PokeAnim_InitPicAttributes:
 	ld a, [rSVBK]
 	push af
-	ld a, BANK(wPokeAnimSceneIndex)
+	ld a, BANK(wPokeAnimStruct)
 	ld [rSVBK], a
 
 	push bc
 	push de
 	push hl
-	ld hl, wPokeAnimSceneIndex
-	ld bc, wPokeAnimStructEnd - wPokeAnimSceneIndex
+	ld hl, wPokeAnimStruct
+	ld bc, wPokeAnimStructEnd - wPokeAnimStruct
 	xor a
 	call ByteFill
 	pop hl

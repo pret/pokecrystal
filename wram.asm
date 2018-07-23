@@ -2893,6 +2893,7 @@ wTempTileMap::
 	ds SCREEN_WIDTH * SCREEN_HEIGHT ; $168 = 360
 
 ; PokeAnim data
+wPokeAnimStruct::
 wPokeAnimSceneIndex:: db
 wPokeAnimPointer:: dw
 wPokeAnimSpecies:: db
@@ -2901,7 +2902,6 @@ wPokeAnimSpeciesOrUnown:: db
 wPokeAnimGraphicStartTile:: db
 wPokeAnimCoord:: dw
 wPokeAnimFrontpicHeight:: db
-; PokeAnim Data
 wPokeAnimIdleFlag:: db
 wPokeAnimSpeed:: db
 wPokeAnimPointerBank:: db
