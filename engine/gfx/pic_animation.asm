@@ -40,8 +40,8 @@ AnimateMon_Hatch:
 	call AnimateFrontpic
 	ret
 
-AnimateMon_Unused:
-	ld e, ANIM_MON_UNUSED
+AnimateMon_HOF:
+	ld e, ANIM_MON_HOF
 	ld d, $0
 	call AnimateFrontpic
 	ret
@@ -65,7 +65,7 @@ PokeAnims:
 	dw .Trade
 	dw .Evolve
 	dw .Hatch
-	dw .Unused ; same as .Menu
+	dw .HOF
 	dw .Egg1
 	dw .Egg2
 
@@ -75,7 +75,7 @@ PokeAnims:
 .Trade:  pokeanim Idle, Play2, Idle, Play, SetWait, Wait, Cry, Setup, Play
 .Evolve: pokeanim Idle, Play, SetWait, Wait, CryNoWait, Setup, Play
 .Hatch:  pokeanim Idle, Play, CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
-.Unused: pokeanim CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
+.HOF:    pokeanim CryNoWait, Setup, Play, SetWait, Wait, Idle, Play
 .Egg1:   pokeanim Setup, Play
 .Egg2:   pokeanim Idle, Play
 

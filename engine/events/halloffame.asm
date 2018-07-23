@@ -124,7 +124,7 @@ AnimateHallOfFame:
 	call PlaceString
 	call WaitBGMap
 	decoord 6, 5
-	ld c, $6
+	ld c, ANIM_MON_HOF
 	predef HOF_AnimateFrontpic
 	ld c, 60
 	call DelayFrames
@@ -390,7 +390,7 @@ _HallOfFamePC:
 	call GetSGBLayout
 	call SetPalettes
 	decoord 6, 5
-	ld c, $6
+	ld c, ANIM_MON_HOF
 	predef HOF_AnimateFrontpic
 	and a
 	ret
