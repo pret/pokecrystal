@@ -478,21 +478,21 @@ PlayerDepositItemMenu:
 	push af
 	ld a, [wBuffer2]
 	push af
-	call .DepositItem_
+	call .DepositItem
 	pop af
 	ld [wBuffer2], a
 	pop af
 	ld [wBuffer1], a
 	ret
 
-.DepositItem_:
+.DepositItem:
 	farcall _CheckTossableItem
 	ld a, [wItemAttributeParamBuffer]
 	and a
 	jr z, .AskQuantity
 	ld a, $1
 	ld [wItemQuantityChangeBuffer], a
-	jr .DepositItem
+	jr .ContinueDeposit
 
 .AskQuantity:
 	ld hl, .HowManyText
@@ -504,7 +504,7 @@ PlayerDepositItemMenu:
 	pop af
 	jr c, .DeclinedToDeposit
 
-.DepositItem:
+.ContinueDeposit:
 	ld a, [wItemQuantityChangeBuffer]
 	ld [wBuffer1], a
 	ld a, [wCurItemQuantity]

@@ -59,6 +59,7 @@ endr
 ENDM
 
 PokeAnims:
+; entries correspond to ANIM_MON_* constants
 	dw .Slow
 	dw .Normal
 	dw .Menu

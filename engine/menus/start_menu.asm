@@ -29,7 +29,7 @@ StartMenu::
 	call .SetUpMenuItems
 	ld a, [wBattleMenuCursorBuffer]
 	ld [wMenuCursorBuffer], a
-	call .DrawMenuAccount_
+	call .DrawMenuAccount
 	call DrawVariableLengthMenuBox
 	call .DrawBugContestStatusBox
 	call SafeUpdateSprites
@@ -49,7 +49,7 @@ StartMenu::
 .Select:
 	call .GetInput
 	jr c, .Exit
-	call .DrawMenuAccount
+	call ._DrawMenuAccount
 	ld a, [wMenuCursorBuffer]
 	ld [wBattleMenuCursorBuffer], a
 	call PlayClickSFX
@@ -96,7 +96,7 @@ StartMenu::
 ; Return carry on exit, and no-carry on selection.
 	xor a
 	ld [hBGMapMode], a
-	call .DrawMenuAccount
+	call ._DrawMenuAccount
 	call SetUpMenu
 	ld a, $ff
 	ld [wMenuSelection], a
@@ -147,7 +147,7 @@ StartMenu::
 	call ClearBGPalettes
 	call Call_ExitMenu
 	call ReloadTilesetAndPalettes
-	call .DrawMenuAccount_
+	call .DrawMenuAccount
 	call DrawVariableLengthMenuBox
 	call .DrawBugContestStatus
 	call UpdateSprites
@@ -360,17 +360,17 @@ endr
 	inc c
 	ret
 
-.DrawMenuAccount_:
-	jp .DrawMenuAccount
+.DrawMenuAccount:
+	jp ._DrawMenuAccount
 
 .PrintMenuAccount:
 	call .IsMenuAccountOn
 	ret z
-	call .DrawMenuAccount
+	call ._DrawMenuAccount
 	decoord 0, 14
 	jp .MenuDesc
 
-.DrawMenuAccount:
+._DrawMenuAccount:
 	call .IsMenuAccountOn
 	ret z
 	hlcoord 0, 13

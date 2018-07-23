@@ -164,7 +164,7 @@ AddHallOfFameEntry:
 	ret
 
 SaveGameData:
-	call SaveGameData_
+	call _SaveGameData
 	ret
 
 AskOverwriteSaveFile:
@@ -228,7 +228,7 @@ CompareLoadedAndSavedPlayerID:
 _SavingDontTurnOffThePower:
 	call SavingDontTurnOffThePower
 SavedTheGame:
-	call SaveGameData_
+	call _SaveGameData
 	; wait 32 frames
 	ld c, $20
 	call DelayFrames
@@ -252,7 +252,7 @@ SavedTheGame:
 	call DelayFrames
 	ret
 
-SaveGameData_:
+_SaveGameData:
 	ld a, TRUE
 	ld [wSaveFileExists], a
 	farcall StageRTCTimeForSave

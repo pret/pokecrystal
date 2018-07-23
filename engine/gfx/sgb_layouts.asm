@@ -61,7 +61,7 @@ LoadSGBLayout:
 
 .SGB_BattleColors:
 	ld hl, BlkPacket_Battle
-	call PushSGBPals_
+	call PushSGBPals
 
 	ld hl, PalPacket_9ce6
 	ld de, wSGBPals
@@ -210,7 +210,7 @@ LoadSGBLayout:
 	inc hl
 	ld [hl], HIGH(palred 26 + palgreen 10 + palblue 6)
 	ld a, [wCurPartySpecies]
-	call GetMonPalettePointer_
+	call GetMonPalettePointer
 	ld a, [hli]
 	ld [wSGBPals + 9], a
 	ld a, [hli]
@@ -566,6 +566,6 @@ INCLUDE "data/maps/sgb_roof_pal_inds.asm"
 
 _LoadSGBLayout_ReturnFromJumpTable:
 	push de
-	call PushSGBPals_
+	call PushSGBPals
 	pop hl
-	jp PushSGBPals_
+	jp PushSGBPals
