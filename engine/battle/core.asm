@@ -7113,7 +7113,7 @@ GiveExperiencePoints:
 	push bc
 	call LoadTileMapToTempTileMap
 	pop bc
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EXP + 2
 	add hl, bc
 	ld d, [hl]
 	ld a, [hQuotient + 2]
@@ -7145,7 +7145,7 @@ GiveExperiencePoints:
 	ld d, MAX_LEVEL
 	callfar CalcExpAtLevel
 	pop bc
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EXP + 2
 	add hl, bc
 	push bc
 	ld a, [hQuotient]
