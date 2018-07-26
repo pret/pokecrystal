@@ -9,15 +9,24 @@ DoMysteryGift:
 	call WaitBGMap
 	farcall PrepMysteryGiftDataToSend
 	call MysteryGift_ClearTrainerData
+.VC_infrared_fake_0::
+if DEF(_CRYSTALVC)
+	; Same bank. And there I thought they'd have learned by now...
+	farcall StagePartyDataForMysteryGift
+	call MysteryGift_ClearTrainerData
+	nop
+else
 	ld a, $2
 	ld [wca01], a
 	ld a, $14
 	ld [wca02], a
+endc
 	ld a, [rIE]
 	push af
 
 	call Function104a95
 
+.VC_infrared_fake_4::
 	ld d, a
 	xor a
 	ld [rIF], a
@@ -226,6 +235,26 @@ DoMysteryGift:
 	jp CloseSRAM
 
 Function104a95:
+.VC_infrared_fake_2:: ; hook
+.VC_infrared_fake_1:: ; patch
+if DEF(_CRYSTALVC)
+	ld d, $ef
+.loop
+	dec d
+	ld a, d
+	or a
+	jr nz, .loop
+.VC_infrared_fake_3:: ; hook
+	nop
+	cp $10
+.loop2 ; same location as original .loop2
+	ret z
+	nop
+	nop
+	cp $6c
+	jr nz, Function104a95
+	ret
+else
 	di
 	farcall ClearChannels
 	call Function104d5e
@@ -234,6 +263,7 @@ Function104a95:
 	call Function104d96
 	call Function104ddd
 	ld a, [hMGStatusFlags]
+endc
 	cp $10
 	jp z, Function104bd0
 	cp $6c

@@ -12,6 +12,7 @@
 # roms
 *.gbc
 *.gb
+*.patch
 
 # for any of the poor souls with save game files in their working directory
 *.sgm

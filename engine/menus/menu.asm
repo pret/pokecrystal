@@ -364,7 +364,9 @@ Menu_WasButtonPressed:
 	call GetMenuJoypad
 	and a
 	ret z
+.VC_print_forbid_3::
 	scf
+.VC_print_forbid_2::
 	ret
 
 _2DMenuInterpretJoypad:

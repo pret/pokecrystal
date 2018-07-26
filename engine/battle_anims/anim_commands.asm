@@ -58,12 +58,20 @@ BattleAnimRunScript:
 	farcall CheckBattleScene
 	jr c, .disabled
 
+.VC_FPA_001_Begin::
+.VC_FPA_002_Begin::
+.VC_FPA_003_Begin::
+.VC_FPA_004_Begin::
+.VC_FPA_005_Begin::
+.VC_FPA_006_Begin::
+.VC_FPA_007_Begin::
 	call BattleAnimClearHud
 	call RunBattleAnimScript
 
 	call BattleAnimAssignPals
 	call BattleAnimRequestPals
 
+.VC_FPA_001_End::
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -666,6 +674,7 @@ BattleAnimCmd_5GFX:
 .loop
 	ld a, [wBattleAnimTemp0]
 	cp (vTiles1 - vTiles0) / $10 - $31
+.VC_FPA_042801_Begin::
 	ret nc
 	call GetBattleAnimByte
 	ld [hli], a
