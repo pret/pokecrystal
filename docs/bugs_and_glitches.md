@@ -76,21 +76,21 @@ This is a bug with `SpeciesItemBoost` in [engine/battle/effect_commands.asm](/en
 
 **Fix:**
 
-```asm
+```diff
 ; Double the stat
 	sla l
 	rl h
-
-	ld a, HIGH(MAX_STAT_VALUE)
-	cp h
-	jr c, .cap
-	ld a, LOW(MAX_STAT_VALUE)
-	cp l
-	ret nc
-
-.cap
-	ld h, HIGH(MAX_STAT_VALUE)
-	ld l, LOW(MAX_STAT_VALUE)
++
++	ld a, HIGH(MAX_STAT_VALUE)
++	cp h
++	jr c, .cap
++	ld a, LOW(MAX_STAT_VALUE)
++	cp l
++	ret nc
++
++.cap
++	ld h, HIGH(MAX_STAT_VALUE)
++	ld l, LOW(MAX_STAT_VALUE)
 	ret
 ```
 
@@ -123,7 +123,7 @@ This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/en
 
 **Fix:**
 
-```asm
+```diff
 	ld a, c
 	srl a
 	add c
@@ -138,17 +138,17 @@ This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/en
 .done
 	scf
 	rr c
-
-	ld a, HIGH(MAX_STAT_VALUE)
-	cp b
-	jr c, .cap
-	ld a, LOW(MAX_STAT_VALUE)
-	cp c
-	ret nc
-
-.cap
-	ld b, HIGH(MAX_STAT_VALUE)
-	ld c, LOW(MAX_STAT_VALUE)
++
++	ld a, HIGH(MAX_STAT_VALUE)
++	cp b
++	jr c, .cap
++	ld a, LOW(MAX_STAT_VALUE)
++	cp c
++	ret nc
++
++.cap
++	ld b, HIGH(MAX_STAT_VALUE)
++	ld c, LOW(MAX_STAT_VALUE)
 	ret
 ```
 
@@ -430,16 +430,16 @@ BattleCommand_BeatUpFailText:
 
 **Fix:**
 
-```asm
+```diff
 BattleCommand_BeatUpFailText:
 ; beatupfailtext
 
 	ld a, [wBeatUpHitAtLeastOnce]
 	and a
 	ret nz
-
-	inc a
-	ld [wAttackMissed], a
++
++	inc a
++	ld [wAttackMissed], a
 
 	jp PrintButItFailed
 ```
@@ -640,22 +640,22 @@ CalcExpAtLevel:
 
 **Fix:**
 
-```asm
+```diff
 CalcExpAtLevel:
 ; (a/b)*n**3 + c*n**2 + d*n - e
-	ld a, d
-	cp 1
-	jr nz, .UseExpFormula
-; Pokémon have 0 experience at level 1
-	xor a
-	ld hl, hProduct
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	ret
-
-.UseExpFormula
++	ld a, d
++	cp 1
++	jr nz, .UseExpFormula
++; Pokémon have 0 experience at level 1
++	xor a
++	ld hl, hProduct
++	ld [hli], a
++	ld [hli], a
++	ld [hli], a
++	ld [hl], a
++	ret
++
++.UseExpFormula
 	ld a, [wBaseGrowthRate]
 	add a
 	add a
@@ -864,10 +864,11 @@ HappinessData_DaisysGrooming:
 
 **Fix:**
 
-```asm
+```diff
 HappinessData_DaisysGrooming:
-	db $80, 2, HAPPINESS_GROOMING ; 50% chance
-	db $ff, 2, HAPPINESS_GROOMING ; 50% chance
+-	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
++	db $80, 2, HAPPINESS_GROOMING ; 50% chance
++	db $ff, 2, HAPPINESS_GROOMING ; 50% chance
 ```
 
 
@@ -1061,18 +1062,18 @@ This is a bug with `PlayBattleMusic` in [engine/battle/start_battle.asm](/engine
 
 **Fix:**
 
-```asm
+```diff
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jr z, .done
 	cp GRUNTF
 	jr z, .done
-	cp EXECUTIVEM
-	jr z, .done
-	cp EXECUTIVEF
-	jr z, .done
-	cp SCIENTIST
-	jr z, .done
++	cp EXECUTIVEM
++	jr z, .done
++	cp EXECUTIVEF
++	jr z, .done
++	cp SCIENTIST
++	jr z, .done
 ```
 
 
@@ -1107,10 +1108,12 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/overworld/player_move
 
 **Fix:**
 
-```asm
+```diff
 	ld a, [wWalkingDirection]
-	cp STANDING
-	jr z, .not_warp
+-	; cp STANDING
+-	; jr z, .not_warp
++	cp STANDING
++	jr z, .not_warp
 	ld e, a
 	ld d, 0
 	ld hl, .EdgeWarps
@@ -1122,6 +1125,9 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/overworld/player_move
 	ld a, 1
 	ld [wd041], a
 	ld a, [wWalkingDirection]
+-	; This is in the wrong place.
+-	cp STANDING
+-	jr z, .not_warp
 ```
 
 
@@ -1303,15 +1309,27 @@ This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/i
 
 **Fix:** 
 
-```asm
+```diff
 	ld hl, wEnemySubStatus5
 	ld a, [hl]
 	push af
 	set SUBSTATUS_TRANSFORMED, [hl]
 
+-; This code is buggy. Any wild Pokémon that has Transformed will be
+-; caught as a Ditto, even if it was something else like Mew.
+-; To fix, do not set [wTempEnemyMonSpecies] to DITTO.
 	bit SUBSTATUS_TRANSFORMED, a
-	jr nz, .load_data
+-	jr nz, .ditto
+-	jr .not_ditto
++	jr nz, .load_data
 
+-.ditto
+-	ld a, DITTO
+-	ld [wTempEnemyMonSpecies], a
+-	jr .load_data
+-
+-.not_ditto
+-	set SUBSTATUS_TRANSFORMED, [hl]
 	ld hl, wEnemyBackupDVs
 	ld a, [wEnemyMonDVs]
 	ld [hli], a
@@ -1347,12 +1365,14 @@ This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/i
 
 **Fix:**
 
-```asm
+```diff
 .room_in_party
 	xor a
 	ld [wWildMon], a
-	ld a, [wBattleType]
-	cp BATTLETYPE_CONTEST
+-	ld a, [wCurItem]
+-	cp PARK_BALL
++	ld a, [wBattleType]
++	cp BATTLETYPE_CONTEST
 	call nz, ReturnToBattle_UseBall
 ```
 
@@ -1429,10 +1449,10 @@ This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` i
 	ld a, [hli]
 	and a
 	jr z, .nope
-	cp EVOLVE_STAT
-	jr nz, .not_four_bytes
-	inc hl
-.not_four_bytes
++	cp EVOLVE_STAT
++	jr nz, .not_four_bytes
++	inc hl
++.not_four_bytes
 	inc hl
 	inc hl
 	cp EVOLVE_ITEM
@@ -1542,11 +1562,12 @@ ValidateTempWildMonSpecies:
 
 **Fix:**
 
-```asm
+```diff
 	ld a, b
 	ld [wCurPartyLevel], a
 	ld b, [hl]
-	ld a, b
+-	; ld a, b
++	ld a, b
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
 
