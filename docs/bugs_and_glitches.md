@@ -55,7 +55,6 @@ These are known bugs and glitches in the original Pokémon Crystal game: code th
 - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
 - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pokémon-species)
 - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
-- [`CheckBugContestContestantFlag` can read beyond its data table](#checkbugcontestcontestantflag-can-read-beyond-its-data-table)
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
 
 
@@ -1489,35 +1488,6 @@ In [engine/overworld/events.asm](/engine/overworld/events.asm):
 	xor a
 	ret
 ```
-
-
-## `CheckBugContestContestantFlag` can read beyond its data table
-
-In [engine/events/bug_contest/contest_2.asm](/engine/events/bug_contest/contest_2.asm):
-
-```asm
-CheckBugContestContestantFlag:
-; Checks the flag of the Bug Catching Contestant whose index is loaded in a.
-
-; Bug: If a >= NUM_BUG_CONTESTANTS when this is called,
-; it will read beyond the table.
-
-	ld hl, BugCatchingContestantEventFlagTable
-	ld e, a
-	ld d, 0
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, CHECK_FLAG
-	call EventFlagAction
-	ret
-
-INCLUDE "data/events/bug_contest_flags.asm"
-```
-
-However, `a < NUM_BUG_CONTESTANTS` should always be true, so in practice this is not a problem.
 
 
 ## `ClearWRAM` only clears WRAM bank 1
