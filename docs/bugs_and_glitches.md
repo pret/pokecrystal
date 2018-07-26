@@ -329,8 +329,14 @@ CheckHiddenOpponent:
 	ret
 ```
 
-*To do:* Fix this bug.
+Fix:
 
+```asm
+CheckHiddenOpponent: ; 37daa
+	ret
+```
+
+The code in `CheckHiddenOpponent` is completely redundant as `CheckHit` already does what this code is doing. Another option is to remove `CheckHiddenOpponent` completely, the calls to `CheckHiddenOpponent`, and the jump afterwards.
 
 ## Beat Up can desynchronize link battles
 
