@@ -2,6 +2,13 @@
 
 These are known bugs and glitches in the original Pokémon Crystal game: code that clearly does not work as intended, or that only works in limited circumstances but has the possibility to fail or crash.
 
+Fixes are written in the `diff` format. If you're familiar with git, this should look farmiliar:
+```diff
+ this is some code
+-delete red - lines
++add green + lines
+```
+
 
 ## Contents
 
