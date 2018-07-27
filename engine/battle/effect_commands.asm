@@ -6154,7 +6154,7 @@ BattleCommand_Heal:
 	push de
 	push bc
 	ld c, 2
-	call StringCmp
+	call CompareBytes
 	pop bc
 	pop de
 	pop hl
@@ -6573,7 +6573,7 @@ BattleCommand_TimeBasedHealContinue:
 
 ; Don't bother healing if HP is already full.
 	push bc
-	call StringCmp
+	call CompareBytes
 	pop bc
 	jr z, .Full
 

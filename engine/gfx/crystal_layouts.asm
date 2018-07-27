@@ -284,7 +284,7 @@ _InitMG_Mobile_LinkTradePalMap:
 	call ByteFill
 	ret
 
-LoadTradeRoomBGPals:
+_LoadTradeRoomBGPals:
 	ld hl, TradeRoomPalette
 	ld de, wBGPals1 palette PAL_BG_GREEN
 	ld bc, 6 palettes

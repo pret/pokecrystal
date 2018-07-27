@@ -133,8 +133,8 @@ LinkComms_LoadPleaseWaitTextboxBorderGFX:
 	call Get2bpp
 	ret
 
-LoadTradeRoomBGPals_:
-	farcall LoadTradeRoomBGPals
+LoadTradeRoomBGPals:
+	farcall _LoadTradeRoomBGPals
 	ret
 
 Function16d6ae:

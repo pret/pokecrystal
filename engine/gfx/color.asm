@@ -94,9 +94,9 @@ Unreferenced_Function8aa4:
 	ld a, d
 	ld [wSGBPals + 6], a
 	ld hl, wSGBPals
-	call PushSGBPals_
+	call PushSGBPals
 	ld hl, BlkPacket_9a86
-	call PushSGBPals_
+	call PushSGBPals
 	ret
 
 InitPartyMenuPalettes:
@@ -173,7 +173,7 @@ Unreferenced_Function8b3f:
 	and a
 	ret z
 	ld hl, BlkPacket_9a86
-	jp PushSGBPals_
+	jp PushSGBPals
 
 Unreferenced_Function8b4d:
 	call CheckCGB
@@ -182,7 +182,7 @@ Unreferenced_Function8b4d:
 	and a
 	ret z
 	ld hl, PalPacket_BetaIntroVenusaur
-	jp PushSGBPals_
+	jp PushSGBPals
 
 .cgb
 	ld de, wOBPals1
@@ -197,7 +197,7 @@ Unreferenced_Function8b67:
 	and a
 	ret z
 	ld hl, PalPacket_Pack
-	jp PushSGBPals_
+	jp PushSGBPals
 
 .cgb
 	ld de, wOBPals1
@@ -218,7 +218,7 @@ Unreferenced_Function8b81:
 	ld bc, PALPACKET_LENGTH
 	call CopyBytes
 	pop af
-	call GetMonPalettePointer_
+	call GetMonPalettePointer
 	ld a, [hli]
 	ld [wSGBPals + 3], a
 	ld a, [hli]
@@ -228,12 +228,12 @@ Unreferenced_Function8b81:
 	ld a, [hl]
 	ld [wSGBPals + 6], a
 	ld hl, wSGBPals
-	jp PushSGBPals_
+	jp PushSGBPals
 
 .cgb
 	ld de, wOBPals1
 	ld a, c
-	call GetMonPalettePointer_
+	call GetMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	ret
 
@@ -245,7 +245,7 @@ LoadTrainerClassPaletteAsNthBGPal:
 
 LoadMonPaletteAsNthBGPal:
 	ld a, [wCurPartySpecies]
-	call GetMonPalettePointer
+	call _GetMonPalettePointer
 	ld a, e
 	bit 7, a
 	jr z, got_palette_pointer_8bd7
@@ -278,7 +278,7 @@ Unreferenced_Function8bec:
 	and a
 	jr nz, .cgb
 	ld hl, wPlayerLightScreenCount
-	jp PushSGBPals_
+	jp PushSGBPals
 
 .cgb
 	ld a, [wEnemyLightScreenCount] ; col
@@ -310,7 +310,7 @@ ApplyMonOrTrainerPals:
 	and a
 	jr z, .get_trainer
 	ld a, [wCurPartySpecies]
-	call GetMonPalettePointer_
+	call GetMonPalettePointer
 	jr .load_palettes
 
 .get_trainer
@@ -426,9 +426,9 @@ LoadMailPalettes:
 	ld a, [hli]
 	ld [wSGBPals + 6], a
 	ld hl, wSGBPals
-	call PushSGBPals_
+	call PushSGBPals
 	ld hl, BlkPacket_9a86
-	call PushSGBPals_
+	call PushSGBPals
 	ret
 
 .cgb
@@ -732,8 +732,8 @@ GetTrainerPalettePointer:
 	add hl, bc
 	ret
 
-GetMonPalettePointer_:
-	call GetMonPalettePointer
+GetMonPalettePointer:
+	call _GetMonPalettePointer
 	ret
 
 Unreferenced_Function9779:
@@ -781,7 +781,7 @@ Unreferenced_Function97cc:
 	jr nz, .loop
 	ret
 
-GetMonPalettePointer:
+_GetMonPalettePointer:
 	ld l, a
 	ld h, $0
 	add hl, hl
@@ -793,7 +793,7 @@ GetMonPalettePointer:
 
 GetMonNormalOrShinyPalettePointer:
 	push bc
-	call GetMonPalettePointer
+	call _GetMonPalettePointer
 	pop bc
 	push hl
 	call CheckShininess
@@ -804,17 +804,17 @@ rept 4
 endr
 	ret
 
-PushSGBPals_:
+PushSGBPals:
 	ld a, [wcfbe]
 	push af
 	set 7, a
 	ld [wcfbe], a
-	call PushSGBPals
+	call _PushSGBPals
 	pop af
 	ld [wcfbe], a
 	ret
 
-PushSGBPals:
+_PushSGBPals:
 	ld a, [hl]
 	and $7
 	ret z
@@ -878,7 +878,7 @@ InitSGBBorder:
 	call SGBDelayCycles
 	call SGB_ClearVRAM
 	ld hl, MaskEnCancelPacket
-	call PushSGBPals
+	call _PushSGBPals
 
 .skip
 	pop af
@@ -950,7 +950,7 @@ _InitSGBBorderPals:
 	push hl
 	ld h, [hl]
 	ld l, a
-	call PushSGBPals
+	call _PushSGBPals
 	pop hl
 	inc hl
 	pop bc
@@ -974,12 +974,12 @@ Unreferenced_Function9911:
 	xor a
 	ld [rJOYP], a
 	ld hl, MaskEnFreezePacket
-	call PushSGBPals
+	call _PushSGBPals
 	call PushSGBBorder
 	call SGBDelayCycles
 	call SGB_ClearVRAM
 	ld hl, MaskEnCancelPacket
-	call PushSGBPals
+	call _PushSGBPals
 	ei
 	ret
 
@@ -1005,7 +1005,7 @@ SGB_ClearVRAM:
 
 PushSGBBorderPalsAndWait:
 	ld hl, MltReq2Packet
-	call PushSGBPals
+	call _PushSGBPals
 	call SGBDelayCycles
 	ld a, [rJOYP]
 	and $3
@@ -1050,7 +1050,7 @@ endr
 
 .FinalPush:
 	ld hl, MltReq1Packet
-	call PushSGBPals
+	call _PushSGBPals
 	jp SGBDelayCycles
 
 SGBBorder_PushBGPals:
@@ -1065,7 +1065,7 @@ SGBBorder_PushBGPals:
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ld hl, PalTrnPacket
-	call PushSGBPals
+	call _PushSGBPals
 	xor a
 	ld [rBGP], a
 	ret
@@ -1099,7 +1099,7 @@ SGBBorder_MorePalPushing:
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ld hl, PctTrnPacket
-	call PushSGBPals
+	call _PushSGBPals
 	xor a
 	ld [rBGP], a
 	ret
@@ -1123,7 +1123,7 @@ SGBBorder_YetMorePalPushing:
 	ld a, LCDC_DEFAULT
 	ld [rLCDC], a
 	ld hl, ChrTrnPacket
-	call PushSGBPals
+	call _PushSGBPals
 	xor a
 	ld [rBGP], a
 	ret

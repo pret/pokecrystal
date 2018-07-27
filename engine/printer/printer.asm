@@ -268,12 +268,12 @@ PrintUnownStamp:
 	ld [wPrinterQueueLength], a
 	ret
 
-PrintMail:
-	call PrintMail_
+PrintMailAndExit:
+	call PrintMail
 	call Printer_ExitPrinter
 	ret
 
-PrintMail_:
+PrintMail:
 	ld a, [wPrinterQueueLength]
 	push af
 	xor a

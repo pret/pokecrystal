@@ -2063,7 +2063,7 @@ Function89d0d:
 	ld [rSVBK], a
 
 	call SetPalettes
-	farcall PrintMail_
+	farcall PrintMail
 	call Mobile22_SetBGMapMode1
 	ld c, 24
 	call DelayFrames

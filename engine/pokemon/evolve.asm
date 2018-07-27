@@ -99,7 +99,7 @@ EvolveAfterBattle_MasterLoop:
 	ld de, wTempMonAttack
 	ld hl, wTempMonDefense
 	ld c, 2
-	call StringCmp
+	call CompareBytes
 	ld a, ATK_EQ_DEF
 	jr z, .got_tyrogue_evo
 	ld a, ATK_LT_DEF
