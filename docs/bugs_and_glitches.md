@@ -22,7 +22,8 @@ Fixes are written in the `diff` format. If you're familiar with git, this should
 - [A Pokémon that fainted from Pursuit will have its old status condition when revived](#a-pokémon-that-fainted-from-pursuit-will-have-its-old-status-condition-when-revived)
 - [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
 - [Beat Up can desynchronize link battles](#beat-up-can-desynchronize-link-battles)
-- [Beat Up may fail to raise substitute](#beat-up-may-fail-to-raise-substitute)
+- [Beat Up works incorrectly with only one Pokémon in the party](#beat-up-works-incorrectly-with-only-one-pokémon-in-the-party)
+- [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
 - [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
 - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
 - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
@@ -276,32 +277,13 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 **Fix:** Edit `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```diff
- CheckHiddenOpponent:
--; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.
--	ld a, BATTLE_VARS_SUBSTATUS3_OPP
--	call GetBattleVar
--	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
- 	ret
-```
-
-**Alternate fix:**
-
-To be more efficient, completely remove `CheckHiddenOpponent`:
-
-```diff
 -CheckHiddenOpponent:
 -; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.
 -	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 -	call GetBattleVar
 -	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
--	ret
-```
-
-And remove all eight calls to it in various files:
-
-```diff
--	call CheckHiddenOpponent
--	jr nz, .fail
++	xor a
+ 	ret
 ```
 
 
@@ -341,11 +323,11 @@ And remove all eight calls to it in various files:
 ```
 
 
-## Beat Up may fail to raise substitute
+## Beat Up works incorrectly with only one Pokémon in the party
 
-*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+*Fixing this bug may break compatibility with standard Pokémon Crystal for link battles.*
 
-This bug prevents the rest of the move's effect from being executed if the player or enemy only has one Pokémon in their party while using Beat Up. It prevents Substitute from being raised and King's Rock from working.
+This bug prevents the rest of Beat Up's effect from being executed if the player or enemy only has one Pokémon in their party while using it. It prevents Substitute from being raised and King's Rock from working.
 
 **Fix:** Edit `BattleCommand_EndLoop` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
@@ -371,7 +353,12 @@ This bug prevents the rest of the move's effect from being executed if the playe
  	jp EndMoveEffect
 ```
 
-For the cosmetic fix, also edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm).
+
+## Beat Up may fail to raise Substitute
+
+This bug prevents Substitute from being raised if Beat Up was blocked by Protect or Detect.
+
+**Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm).
 
 ```diff
  	cp EFFECT_MULTI_HIT
