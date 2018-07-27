@@ -158,11 +158,10 @@ wDisableTextAcceleration:: db
 wPreviousLandmark:: db
 wCurrentLandmark:: db
 wLandmarkSignTimer:: dw
-wLinkMode:: ; c2dc
-; 0 not in link battle
-; 1 link battle
-; 4 mobile battle
-	db
+
+wLinkMode::
+; a LINK_* value for the link type
+	db ; c2dc
 
 wScriptVar:: db ; c2dd
 

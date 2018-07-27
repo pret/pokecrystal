@@ -12,8 +12,9 @@ Fixes are written in the `diff` format. If you're familiar with git, this should
 
 ## Contents
 
-- [Thick Club and Light Ball can decrease damage done with boosted (Special) Attack](#thick-club-and-light-ball-can-decrease-damage-done-with-boosted-special-attack)
+- [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
+- [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
 - [Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling](#confusion-damage-is-affected-by-type-boosting-items-and-explosionself-destruct-doubling)
 - [Moves that lower Defense can do so after breaking a Substitute](#moves-that-lower-defense-can-do-so-after-breaking-a-substitute)
@@ -66,7 +67,7 @@ Fixes are written in the `diff` format. If you're familiar with git, this should
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
 
 
-## Thick Club and Light Ball can decrease damage done with boosted (Special) Attack
+## Thick Club and Light Ball can make (Special) Attack wrap around above 1024
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
@@ -129,6 +130,34 @@ Fixes are written in the `diff` format. If you're familiar with git, this should
 +	ld c, LOW(MAX_STAT_VALUE)
  	ret
 ```
+
+
+## Reflect and Light Screen can make (Special) Defense wrap around above 1024
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
+This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
+
+**Fix:** Edit `TruncateHL_BC` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm)
+
+```diff
+ .finish
+-	ld a, [wLinkMode]
+-	cp LINK_COLOSSEUM
+-	jr z, .done
+ ; If we go back to the loop point,
+ ; it's the same as doing this exact
+ ; same check twice.
+ 	ld a, h
+ 	or b
+ 	jr nz, .loop
+
+-.done
+ 	ld b, l
+ 	ret
+```
+
+(This fix also affects Thick Club, Light Ball, and Metal Powder, as described above, but their specific fixes in the above bugs allow more accurate damage calculations.)
 
 
 ## Belly Drum sharply boosts Attack even with under 50% HP
