@@ -63,7 +63,7 @@ MOVE_LENGTH EQU const_value
 	const STAT_SATK
 NUM_EXP_STATS EQU const_value + -1
 	const STAT_SDEF
-NUM_STATS EQU const_value
+NUM_STATS EQU const_value +- 1
 STAT_SPC EQU STAT_SATK
 
 ; stat formula constants

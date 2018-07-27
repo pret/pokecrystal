@@ -530,7 +530,7 @@ DetermineMoveOrder:
 	ld de, wBattleMonSpeed
 	ld hl, wEnemyMonSpeed
 	ld c, 2
-	call StringCmp
+	call CompareBytes
 	jr z, .speed_tie
 	jp nc, .player_first
 	jp .enemy_first
@@ -3715,19 +3715,19 @@ TryToRunAwayFromBattle:
 	inc a
 	ld [wNumFleeAttempts], a
 	ld a, [hli]
-	ld [hStringCmpString2 + 0], a
+	ld [hPartyMon1Speed + 0], a
 	ld a, [hl]
-	ld [hStringCmpString2 + 1], a
+	ld [hPartyMon1Speed + 1], a
 	ld a, [de]
 	inc de
-	ld [hStringCmpString1 + 0], a
+	ld [hEnemyMonSpeed + 0], a
 	ld a, [de]
-	ld [hStringCmpString1 + 1], a
+	ld [hEnemyMonSpeed + 1], a
 	call Call_LoadTempTileMapToTileMap
-	ld de, hStringCmpString2
-	ld hl, hStringCmpString1
-	ld c, $2
-	call StringCmp
+	ld de, hPartyMon1Speed
+	ld hl, hEnemyMonSpeed
+	ld c, 2
+	call CompareBytes
 	jr nc, .can_escape
 
 	xor a
@@ -3739,9 +3739,9 @@ TryToRunAwayFromBattle:
 	ld [hDividend + 0], a
 	ld a, [hProduct + 3]
 	ld [hDividend + 1], a
-	ld a, [hStringCmpString1 + 0]
+	ld a, [hEnemyMonSpeed + 0]
 	ld b, a
-	ld a, [hStringCmpString1 + 1]
+	ld a, [hEnemyMonSpeed + 1]
 	srl b
 	rr a
 	srl b
@@ -7113,7 +7113,7 @@ GiveExperiencePoints:
 	push bc
 	call LoadTileMapToTempTileMap
 	pop bc
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EXP + 2
 	add hl, bc
 	ld d, [hl]
 	ld a, [hQuotient + 2]
@@ -7145,7 +7145,7 @@ GiveExperiencePoints:
 	ld d, MAX_LEVEL
 	callfar CalcExpAtLevel
 	pop bc
-	ld hl, MON_STAT_EXP - 1
+	ld hl, MON_EXP + 2
 	add hl, bc
 	push bc
 	ld a, [hQuotient]
@@ -8712,7 +8712,7 @@ AddLastMobileBattleToLinkRecord:
 	push de
 	ld bc, 12
 	ld de, wStringBuffer1
-	call CompareLong
+	call CompareBytesLong
 	pop de
 	pop hl
 	jr c, .done
@@ -8821,7 +8821,7 @@ AddLastMobileBattleToLinkRecord:
 	pop hl
 	push bc
 	ld c, 3
-	call StringCmp
+	call CompareBytes
 	pop bc
 	jr z, .equal
 	jr nc, .done2
@@ -9094,7 +9094,7 @@ BattleStartMessage:
 	jr .skip_cry ; cry is played during the animation
 
 .cry_no_anim
-	ld a, $0f
+	ld a, $f
 	ld [wCryTracks], a
 	ld a, [wTempEnemyMonSpecies]
 	call PlayStereoCry

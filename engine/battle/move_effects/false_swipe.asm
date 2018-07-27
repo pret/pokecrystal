@@ -13,7 +13,7 @@ BattleCommand_FalseSwipe:
 	ld c, 2
 	push hl
 	push de
-	call StringCmp
+	call CompareBytes
 	pop de
 	pop hl
 	jr c, .done
