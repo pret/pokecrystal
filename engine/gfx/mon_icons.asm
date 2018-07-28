@@ -34,13 +34,14 @@ LoadMenuMonIcon:
 	jp hl
 
 .Jumptable:
-	dw PartyMenu_InitAnimatedMonIcon ; party menu
-	dw NamingScreen_InitAnimatedMonIcon ; naming screen
-	dw MoveList_InitAnimatedMonIcon ; moves (?)
-	dw Trade_LoadMonIconGFX ; trade
-	dw Mobile_InitAnimatedMonIcon ; mobile
-	dw Mobile_InitPartyMenuBGPal71 ; mobile
-	dw .GetPartyMenuMonIcon ; unused
+; entries correspond to MONICON_* constants
+	dw PartyMenu_InitAnimatedMonIcon    ; MONICON_PARTYMENU
+	dw NamingScreen_InitAnimatedMonIcon ; MONICON_NAMINGSCREEN
+	dw MoveList_InitAnimatedMonIcon     ; MONICON_MOVES
+	dw Trade_LoadMonIconGFX             ; MONICON_TRADE
+	dw Mobile_InitAnimatedMonIcon       ; MONICON_MOBILE1
+	dw Mobile_InitPartyMenuBGPal71      ; MONICON_MOBILE2
+	dw .GetPartyMenuMonIcon             ; MONICON_UNUSED
 
 .GetPartyMenuMonIcon:
 	call InitPartyMenuIcon
@@ -65,14 +66,14 @@ LoadMenuMonIcon:
 	pop bc
 	pop hl
 	jr c, .not_mail
-	ld a, $6
+	ld a, $06
 	jr .got_tile
 .not_mail
-	ld a, $5
-	; jr .got_tile
+	ld a, $05
+	; fallthrough
 
 .no_item
-	ld a, $4
+	ld a, $04
 .got_tile
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
@@ -156,7 +157,7 @@ InitPartyMenuIcon:
 	ld a, [hObjectStructIndexBuffer]
 	ld hl, wPartySpecies
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	call ReadMonMenuIcon
@@ -214,7 +215,7 @@ SetPartyMonIconAnimSpeed:
 	db $80 ; HP_RED
 
 NamingScreen_InitAnimatedMonIcon:
-	ld a, [wd265]
+	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	xor a
@@ -228,7 +229,7 @@ NamingScreen_InitAnimatedMonIcon:
 	ret
 
 MoveList_InitAnimatedMonIcon:
-	ld a, [wd265]
+	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	xor a
@@ -243,7 +244,7 @@ MoveList_InitAnimatedMonIcon:
 	ret
 
 Trade_LoadMonIconGFX:
-	ld a, [wd265]
+	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	ld a, $62
@@ -254,7 +255,7 @@ Trade_LoadMonIconGFX:
 GetSpeciesIcon:
 ; Load species icon into VRAM at tile a
 	push de
-	ld a, [wd265]
+	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	pop de
@@ -264,7 +265,7 @@ GetSpeciesIcon:
 
 FlyFunction_GetMonIcon:
 	push de
-	ld a, [wd265]
+	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	pop de
@@ -274,7 +275,7 @@ FlyFunction_GetMonIcon:
 
 Unreferenced_GetMonIcon2:
 	push de
-	ld a, [wd265]
+	ld a, [wTempIconSpecies]
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	pop de

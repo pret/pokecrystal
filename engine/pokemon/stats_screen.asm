@@ -377,7 +377,7 @@ StatsScreen_InitUpperHalf:
 	xor a
 	ld [hBGMapMode], a
 	ld a, [wBaseDexNo]
-	ld [wd265], a
+	ld [wDeciramBuffer], a
 	ld [wCurSpecies], a
 	hlcoord 8, 0
 	ld [hl], "№"
@@ -386,7 +386,7 @@ StatsScreen_InitUpperHalf:
 	inc hl
 	hlcoord 10, 0
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
-	ld de, wd265
+	ld de, wDeciramBuffer
 	call PrintNum
 	hlcoord 14, 0
 	call PrintLevel
@@ -401,7 +401,7 @@ StatsScreen_InitUpperHalf:
 	ld a, "/"
 	ld [hli], a
 	ld a, [wBaseDexNo]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	call PlaceString
 	call StatsScreen_PlaceHorizontalDivider
@@ -483,7 +483,7 @@ StatsScreen_PlaceShinyIcon:
 
 StatsScreen_LoadGFX:
 	ld a, [wBaseDexNo]
-	ld [wd265], a
+	ld [wTempSpecies], a
 	ld [wCurSpecies], a
 	xor a
 	ld [hBGMapMode], a
@@ -708,7 +708,7 @@ StatsScreen_LoadGFX:
 	ld b, a
 	farcall TimeCapsule_ReplaceTeruSama
 	ld a, b
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ret
 

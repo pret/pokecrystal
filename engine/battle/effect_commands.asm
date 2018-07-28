@@ -2,7 +2,7 @@ DoPlayerTurn:
 	call SetPlayerTurn
 
 	ld a, [wBattlePlayerAction]
-	and a
+	and a ; BATTLEPLAYERACTION_USEMOVE?
 	ret nz
 
 	jr DoTurn
@@ -1248,7 +1248,7 @@ BattleCommand_Stab:
 .go
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarAddr
-	ld [wTypeMatchup], a
+	ld [wCurType], a
 
 	push hl
 	push de
@@ -1264,7 +1264,7 @@ BattleCommand_Stab:
 	pop bc
 	pop de
 
-	ld a, [wTypeMatchup]
+	ld a, [wCurType]
 	cp b
 	jr z, .stab
 	cp c

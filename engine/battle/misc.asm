@@ -53,13 +53,13 @@ DoWeatherModifiers:
 	ld de, WeatherTypeModifiers
 	ld a, [wBattleWeather]
 	ld b, a
-	ld a, [wd265] ; move type
+	ld a, [wCurType]
 	ld c, a
 
 .CheckWeatherType:
 	ld a, [de]
 	inc de
-	cp $ff
+	cp -1
 	jr z, .done_weather_types
 
 	cp b
@@ -84,7 +84,7 @@ DoWeatherModifiers:
 .CheckWeatherMove:
 	ld a, [de]
 	inc de
-	cp $ff
+	cp -1
 	jr z, .done
 
 	cp b
@@ -116,7 +116,7 @@ DoWeatherModifiers:
 
 	ld a, 10
 	ld [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
 
 	ld a, [hQuotient + 0]
@@ -176,7 +176,7 @@ DoBadgeTypeBoosts:
 	rr c
 	jr nc, .NextBadge
 
-	ld a, [wd265] ; move type
+	ld a, [wCurType]
 	cp [hl]
 	jr z, .ApplyBoost
 

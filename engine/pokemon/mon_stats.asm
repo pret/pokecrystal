@@ -295,7 +295,7 @@ ListMovePP:
 	call PrintNum
 	ld a, "/"
 	ld [hli], a
-	ld de, wd265
+	ld de, wTempPP
 	lb bc, 1, 2
 	call PrintNum
 	pop hl

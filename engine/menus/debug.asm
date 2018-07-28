@@ -311,9 +311,9 @@ Function81adb:
 	ld a, [wcf66]
 	inc a
 	ld [wCurPartySpecies], a
-	ld [wd265], a
+	ld [wDeciramBuffer], a
 	hlcoord 0, 1
-	ld de, wd265
+	ld de, wDeciramBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	ld a, [wd002]
@@ -353,7 +353,7 @@ Function81adb:
 	jr .asm_81ba9
 
 .asm_81b7a
-	ld a, [wd265]
+	ld a, [wDeciramBuffer]
 	ld [wTrainerClass], a
 	callfar GetTrainerAttributes
 	ld de, wStringBuffer1
@@ -738,9 +738,9 @@ Function81df4:
 	call Function81e5e
 	ld a, [wd004]
 	inc a
-	ld [wd265], a
+	ld [wTempTMHM], a
 	predef GetTMHMMove
-	ld a, [wd265]
+	ld a, [wTempTMHM]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	hlcoord 10, 12

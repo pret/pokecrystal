@@ -373,7 +373,7 @@ HandleBerserkGene:
 	push bc
 	callfar GetUserItem
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	sub BERSERK_GENE
 	pop bc
 	pop de
@@ -447,7 +447,7 @@ DetermineMoveOrder:
 	sub BATTLEACTION_SWITCH1
 	jr c, .use_move
 	ld a, [wBattlePlayerAction]
-	cp $2
+	cp BATTLEPLAYERACTION_SWITCH
 	jr nz, .switch
 	ld a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
@@ -472,7 +472,7 @@ DetermineMoveOrder:
 
 .use_move
 	ld a, [wBattlePlayerAction]
-	and a
+	and a ; BATTLEPLAYERACTION_USEMOVE?
 	jp nz, .player_first
 	call CompareMovePriority
 	jr z, .equal_priority
@@ -611,7 +611,7 @@ ParsePlayerAction:
 
 .not_encored
 	ld a, [wBattlePlayerAction]
-	cp $2
+	cp BATTLEPLAYERACTION_SWITCH
 	jr z, .reset_rage
 	and a
 	jr nz, .reset_bide
@@ -900,7 +900,7 @@ Battle_EnemyFirst:
 	call ResidualDamage
 	jp z, HandlePlayerMonFaint
 	call RefreshBattleHuds
-	xor a
+	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
 	ret
 
@@ -949,7 +949,7 @@ Battle_PlayerFirst:
 	call ResidualDamage
 	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
-	xor a
+	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
 	ret
 
@@ -1161,7 +1161,7 @@ HandlePerishSong:
 	ret z
 	dec [hl]
 	ld a, [hl]
-	ld [wd265], a
+	ld [wDeciramBuffer], a
 	push af
 	ld hl, PerishCountText
 	call StdBattleTextBox
@@ -1235,7 +1235,7 @@ HandleWrap:
 	ret nz
 
 	ld a, [de]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [wFXAnimID], a
 	call GetMoveName
 	dec [hl]
@@ -1288,7 +1288,7 @@ HandleLeftovers:
 
 	callfar GetUserItem
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetItemName
 	ld a, b
 	cp HELD_LEFTOVERS
@@ -1397,7 +1397,7 @@ HandleMysteryberry:
 	push bc
 	push bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wTempByteValue], a
 	ld de, wBattleMonMoves - 1
 	ld hl, wBattleMonPP
 	ld a, [hBattleTurn]
@@ -1417,7 +1417,7 @@ HandleMysteryberry:
 	pop de
 	pop bc
 
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	cp [hl]
 	jr nz, .skip_checks
 	ld a, [hBattleTurn]
@@ -1434,7 +1434,7 @@ HandleMysteryberry:
 .skip_checks
 	callfar GetUserItem
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	xor a
 	ld [hl], a
 	call GetPartymonItem
@@ -2048,18 +2048,18 @@ HandleEnemyMonFaint:
 	call CheckMobileBattleError
 	jp c, WildFled_EnemyFled_LinkBattleCanceled
 
-	ld a, $1
+	ld a, BATTLEPLAYERACTION_USEITEM
 	ld [wBattlePlayerAction], a
 	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
 	jr DoubleSwitch
 
 .player_mon_not_fainted
-	ld a, $1
+	ld a, BATTLEPLAYERACTION_USEITEM
 	ld [wBattlePlayerAction], a
 	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
-	xor a
+	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
 	ret
 
@@ -2088,7 +2088,7 @@ DoubleSwitch:
 	call PlayerPartyMonEntrance
 
 .done
-	xor a
+	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
 	ret
 
@@ -2636,7 +2636,7 @@ HandlePlayerMonFaint:
 	ld a, c
 	and a
 	ret nz
-	ld a, $1
+	ld a, BATTLEPLAYERACTION_USEITEM
 	ld [wBattlePlayerAction], a
 	call HandleEnemySwitch
 	jp z, WildFled_EnemyFled_LinkBattleCanceled
@@ -2716,12 +2716,12 @@ ForcePlayerMonChoice:
 	ld a, [wLinkMode]
 	and a
 	jr z, .skip_link
-	ld a, $1
+	ld a, BATTLEPLAYERACTION_USEITEM
 	ld [wBattlePlayerAction], a
 	call LinkBattleSendReceiveAction
 
 .skip_link
-	xor a
+	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
 	call CheckMobileBattleError
 	jr c, .enemy_fainted_mobile_error
@@ -3287,8 +3287,8 @@ LookUpTheEffectivenessOfEveryMove:
 	pop bc
 	pop de
 	pop hl
-	ld a, [wd265] ; Get The Effectiveness Modifier
-	cp 10 + 1 ; 1.0 + 0.1
+	ld a, [wTypeMatchup]
+	cp EFFECTIVE + 1
 	jr c, .loop
 	ld hl, wBuffer1
 	set 0, [hl]
@@ -3319,14 +3319,14 @@ IsThePlayerMonTypesEffectiveAgainstOTMon:
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	call SetPlayerTurn
 	callfar BattleCheckTypeMatchup
-	ld a, [wd265]
-	cp 10 + 1 ; 1.0 + 0.1
+	ld a, [wTypeMatchup]
+	cp EFFECTIVE + 1
 	jr nc, .super_effective
 	ld a, [wBattleMonType2]
 	ld [wPlayerMoveStruct + MOVE_TYPE], a
 	callfar BattleCheckTypeMatchup
-	ld a, [wd265]
-	cp 10 + 1 ; 1.0 + 0.1
+	ld a, [wTypeMatchup]
+	cp EFFECTIVE + 1
 	jr nc, .super_effective
 	pop bc
 	ret
@@ -3695,7 +3695,7 @@ TryToRunAwayFromBattle:
 	push hl
 	push de
 	ld a, [wBattleMonItem]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld b, a
 	callfar GetItemHeldEffect
 	ld a, b
@@ -3732,7 +3732,7 @@ TryToRunAwayFromBattle:
 
 	xor a
 	ld [hMultiplicand], a
-	ld a, $20
+	ld a, 32
 	ld [hMultiplier], a
 	call Multiply
 	ld a, [hProduct + 2]
@@ -3772,7 +3772,7 @@ TryToRunAwayFromBattle:
 	ld a, [hQuotient + 2]
 	cp b
 	jr nc, .can_escape
-	ld a, $1
+	ld a, BATTLEPLAYERACTION_USEITEM
 	ld [wBattlePlayerAction], a
 	ld hl, BattleText_CantEscape2
 	jr .print_inescapable_text
@@ -3786,7 +3786,7 @@ TryToRunAwayFromBattle:
 
 .print_inescapable_text
 	call StdBattleTextBox
-	ld a, $1
+	ld a, TRUE
 	ld [wFailedToFlee], a
 	call LoadTileMapToTempTileMap
 	and a
@@ -3798,7 +3798,7 @@ TryToRunAwayFromBattle:
 	ld a, DRAW
 	jr z, .fled
 	call LoadTileMapToTempTileMap
-	xor a
+	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
 	ld a, $f
 	ld [wCurMoveNum], a
@@ -4429,7 +4429,7 @@ UseConfusionHealingItem:
 
 .heal_status
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call GetBattleVarAddr
 	res SUBSTATUS_CONFUSED, [hl]
@@ -4496,7 +4496,7 @@ HandleStatBoostingHeldItems:
 	jr nz, .loop
 	pop bc
 	ld a, [bc]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	push bc
 	dec hl
 	dec hl
@@ -4952,7 +4952,7 @@ BattleMenu_Pack:
 
 	farcall BattlePack
 	ld a, [wBattlePlayerAction]
-	and a
+	and a ; BATTLEPLAYERACTION_USEMOVE?
 	jr z, .didnt_use_item
 	jr .got_item
 
@@ -5157,7 +5157,7 @@ TryPlayerSwitch:
 	jp z, BattleMenuPKMN_Loop
 	ld a, [wCurBattleMon]
 	ld [wLastPlayerMon], a
-	ld a, $2
+	ld a, BATTLEPLAYERACTION_SWITCH
 	ld [wBattlePlayerAction], a
 	call ClearPalettes
 	call DelayFrame
@@ -5270,8 +5270,8 @@ PassedBattleMonEntrance:
 	ld [wCurBattleMon], a
 	call AddBattleParticipant
 	call InitBattleMon
-	xor a
-	ld [wd265], a
+	xor a ; FALSE
+	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
 	call SendOutPlayerMon
 	call EmptyBattleTextBox
@@ -5286,11 +5286,11 @@ BattleMenu_Run:
 	ld hl, wBattleMonSpeed
 	ld de, wEnemyMonSpeed
 	call TryToRunAwayFromBattle
-	ld a, $0
+	ld a, FALSE
 	ld [wFailedToFlee], a
 	ret c
 	ld a, [wBattlePlayerAction]
-	and a
+	and a ; BATTLEPLAYERACTION_USEMOVE?
 	ret nz
 	jp BattleMenu
 
@@ -5770,7 +5770,7 @@ ParseEnemyAction:
 	call EmptyBattleTextBox
 	call LoadTileMapToTempTileMap
 	ld a, [wBattlePlayerAction]
-	and a
+	and a ; BATTLEPLAYERACTION_USEMOVE?
 	call z, LinkBattleSendReceiveAction
 	call Call_LoadTempTileMapToTileMap
 	ld a, [wBattleAction]
@@ -6375,7 +6375,7 @@ LoadEnemyMon:
 	ld [de], a
 
 	ld a, [wTempEnemyMonSpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 
 	call GetPokemonName
 
@@ -6661,14 +6661,14 @@ ApplyStatLevelMultiplierOnAllStats:
 	call ApplyStatLevelMultiplier
 	inc c
 	ld a, c
-	cp 5
+	cp NUM_BATTLE_STATS
 	jr nz, .stat_loop
 	ret
 
 ApplyStatLevelMultiplier:
 	push bc
 	push bc
-	ld a, [wd265]
+	ld a, [wApplyStatLevelMultipliersToEnemy]
 	and a
 	ld a, c
 	ld hl, wBattleMonAttack
@@ -6718,7 +6718,7 @@ ApplyStatLevelMultiplier:
 	call Multiply
 	ld a, [hl]
 	ld [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
 	pop hl
 
@@ -7192,7 +7192,7 @@ GiveExperiencePoints:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurSpecies], a
-	ld [wd265], a
+	ld [wTempSpecies], a ; unused?
 	call GetBaseData
 	ld hl, MON_MAXHP + 1
 	add hl, bc
@@ -7256,8 +7256,8 @@ GiveExperiencePoints:
 	call CopyBytes
 
 .transformed
-	xor a
-	ld [wd265], a
+	xor a ; FALSE
+	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
 	callfar ApplyStatusEffectOnPlayerStats
 	callfar BadgeStatBoosts
@@ -7299,7 +7299,7 @@ GiveExperiencePoints:
 	xor a ; PARTYMON
 	ld [wMonType], a
 	ld a, [wCurSpecies]
-	ld [wd265], a
+	ld [wTempSpecies], a ; unused?
 	ld a, [wCurPartyLevel]
 	push af
 	ld c, a
@@ -7359,7 +7359,7 @@ GiveExperiencePoints:
 	cp 2
 	ret c
 
-	ld [wd265], a
+	ld [wTempByteValue], a
 	ld hl, wEnemyMonBaseStats
 	ld c, wEnemyMonEnd - wEnemyMonBaseStats
 .count_loop2
@@ -7367,7 +7367,7 @@ GiveExperiencePoints:
 	ld [hDividend + 0], a
 	ld a, [hl]
 	ld [hDividend + 1], a
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	ld [hDivisor], a
 	ld b, 2
 	call Divide

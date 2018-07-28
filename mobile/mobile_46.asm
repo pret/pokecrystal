@@ -3967,7 +3967,7 @@ BattleTower_UbersCheck:
 .uber_under_70
 	pop af
 	ld a, [de]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	ld de, wcd49
@@ -5624,11 +5624,11 @@ Function11ad1b:
 	ld [wCurIconTile], a
 	ld hl, LoadMenuMonIcon
 	ld a, BANK(LoadMenuMonIcon)
-	ld e, $4
+	ld e, MONICON_MOBILE1
 	rst FarCall
 	ld hl, LoadMenuMonIcon
 	ld a, BANK(LoadMenuMonIcon)
-	ld e, $5
+	ld e, MONICON_MOBILE2
 	rst FarCall
 	ld hl, $c6d0
 	ld bc, $0115
@@ -6127,7 +6127,7 @@ Function11b099:
 .loop
 	push af
 	ld a, [de]
-	ld [wd265], a
+	ld [wTempSpecies], a
 	push de
 	push hl
 	call .PlaceMonNameOrPlaceholderString
@@ -6387,13 +6387,13 @@ Function11b20b:
 	ld hl, $c6d0
 	add hl, de
 	ld a, [hl]
-	ld [wd265], a
+	ld [wTempSpecies], a
 	ret
 
 CheckCaughtMemMon:
 	push de
 	push hl
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	dec a
 	call CheckCaughtMon
 	pop hl
@@ -6403,7 +6403,7 @@ CheckCaughtMemMon:
 CheckSeenMemMon:
 	push de
 	push hl
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	dec a
 	call CheckSeenMon
 	pop hl
@@ -6463,7 +6463,7 @@ Function11b275:
 	ret
 
 Function11b279:
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	ld [wCurSpecies], a
 	call CheckSeenMemMon
 	jr z, .asm_11b28f

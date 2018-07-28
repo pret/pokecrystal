@@ -317,7 +317,7 @@ TradeAnim_TubeToOT1:
 	ld a, TRADEANIM_RIGHT_ARROW
 	call TradeAnim_PlaceTrademonStatsOnTubeAnim
 	ld a, [wLinkTradeSendmonSpecies]
-	ld [wd265], a
+	ld [wTempIconSpecies], a
 	xor a
 	depixel 5, 11, 4, 0
 	ld b, $0
@@ -327,7 +327,7 @@ TradeAnim_TubeToPlayer1:
 	ld a, TRADEANIM_LEFT_ARROW
 	call TradeAnim_PlaceTrademonStatsOnTubeAnim
 	ld a, [wLinkTradeGetmonSpecies]
-	ld [wd265], a
+	ld [wTempIconSpecies], a
 	ld a, TRADEANIMSTATE_2
 	depixel 9, 18, 4, 4
 	ld b, $4
@@ -820,7 +820,7 @@ TradeAnim_GetFrontpic:
 
 TradeAnim_GetNickname:
 	push de
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	pop de
@@ -1373,7 +1373,7 @@ LoadTradeBallAndCableGFX:
 
 LoadTradeBubbleGFX:
 	call DelayFrame
-	ld e, $3
+	ld e, MONICON_TRADE
 	callfar LoadMenuMonIcon
 	ld de, TradeBubbleGFX
 	ld hl, vTiles0 tile $72

@@ -596,7 +596,7 @@ InitPartyMenuGFX:
 	push hl
 	ld hl, LoadMenuMonIcon
 	ld a, BANK(LoadMenuMonIcon)
-	ld e, $0
+	ld e, MONICON_PARTYMENU
 	rst FarCall
 	ld a, [hObjectStructIndexBuffer]
 	inc a

@@ -26,11 +26,11 @@ PrintPage1:
 	hlcoord 2, 11, wPrinterTileMapBuffer
 	lb bc, 5, 18
 	call ClearBox
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	dec a
 	call CheckCaughtMon
 	push af
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	ld b, a
 	ld c, 1 ; get page 1
 	farcall GetDexEntryPagePointer
@@ -75,11 +75,11 @@ PrintPage2:
 	ld bc, SCREEN_WIDTH
 	ld a, $32
 	call ByteFill
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	dec a
 	call CheckCaughtMon
 	push af
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	ld b, a
 	ld c, 2 ; get page 2
 	farcall GetDexEntryPagePointer
@@ -170,7 +170,7 @@ PrintPartyMonPage1:
 	lb bc, 2, 3
 	call PrintNum
 	ld a, [wCurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [wCurSpecies], a
 	ld hl, wPartyMonNicknames
 	call Function1dc50e
@@ -186,7 +186,7 @@ PrintPartyMonPage1:
 	inc hl
 	ld [hl], "."
 	inc hl
-	ld de, wd265
+	ld de, wNamedObjectIndexBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	hlcoord 1, 9
@@ -297,7 +297,7 @@ Function1dc51a:
 	and a
 	jr z, .no_move
 
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	jr .got_string
 

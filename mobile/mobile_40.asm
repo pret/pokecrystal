@@ -1549,7 +1549,7 @@ _LinkBattleSendReceiveAction:
 
 .StageForSend:
 	ld a, [wBattlePlayerAction]
-	and a
+	and a ; BATTLEPLAYERACTION_USEMOVE?
 	jr nz, .switch
 	ld a, [wCurPlayerMove]
 	ld b, BATTLEACTION_E
@@ -6383,7 +6383,7 @@ Function102d48:
 	ld hl, wPartyCount
 	add hl, de
 	ld a, [hl]
-	ld [wd265], a
+	ld [wTempSpecies], a
 	cp EGG
 	jr z, .asm_102d6d
 	dec a
@@ -6396,7 +6396,7 @@ Function102d48:
 	ld [hl], BASE_HAPPINESS
 
 .asm_102d6d
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	cp UNOWN
 	jr nz, .asm_102d98
 	ld a, [wcd4c]
@@ -6529,7 +6529,7 @@ Function102e4f:
 	ld a, [de]
 	cp $ff
 	ret z
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	push bc
 	push hl
 	push de
@@ -6557,7 +6557,7 @@ Function102ea8:
 	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	ld de, wStringBuffer2
@@ -6570,7 +6570,7 @@ Function102ea8:
 	ld hl, wOTPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, UnknownText_0x102ee2
 	call PrintTextBoxText
@@ -6639,7 +6639,7 @@ Function102f85:
 	ld hl, wOTPartySpecies
 	add hl, bc
 	ld a, [hl]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	call Function102dc3
 	ld de, String_102fb2
@@ -7518,11 +7518,11 @@ UnknownText_0x10377b:
 	db "@"
 
 Function103780:
-	ld a, [wd265]
+	ld a, [wChosenCableClubRoom]
 	push af
 	call Function10378c
 	pop af
-	ld [wd265], a
+	ld [wChosenCableClubRoom], a
 	ret
 
 Function10378c:

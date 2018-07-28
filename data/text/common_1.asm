@@ -41,7 +41,7 @@ UnknownText_0x1bc0a2::
 	text_from_ram wStringBuffer1
 	text_start
 	line "recovered @"
-	deciram wd1f3, 2, 3
+	deciram wCurHPAnimDeltaHP, 2, 3
 	text "HP!"
 	done
 
@@ -1155,7 +1155,7 @@ Text_BreedingIsNotPossible::
 UnknownText_0x1bd0d8::
 	text "The compatibility"
 	line "is @"
-	deciram wd265, 1, 3
+	deciram wDeciramBuffer, 1, 3
 	text "."
 	cont "Should they breed?"
 	done

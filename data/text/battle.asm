@@ -87,7 +87,7 @@ SandstormHitsText:
 PerishCountText:
 	text "<USER>'s"
 	line "PERISH count is @"
-	deciram wd265, 1, 1
+	deciram wDeciramBuffer, 1, 1
 	text "!"
 	prompt
 
@@ -669,7 +669,7 @@ SpiteEffectText:
 	text_from_ram wStringBuffer1
 	text " was"
 	cont "reduced by @"
-	deciram wd265, 1, 1
+	deciram wDeciramBuffer, 1, 1
 	text "!"
 	prompt
 
@@ -1029,7 +1029,7 @@ SafeguardProtectText:
 
 MagnitudeText:
 	text "Magnitude @"
-	deciram wd265, 1, 1
+	deciram wDeciramBuffer, 1, 1
 	text "!"
 	prompt
 

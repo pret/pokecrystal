@@ -133,12 +133,12 @@ StartMoveMonWOMail_SaveGame:
 	ret
 
 PauseGameLogic:
-	ld a, $1
+	ld a, TRUE
 	ld [wGameLogicPaused], a
 	ret
 
 ResumeGameLogic:
-	xor a
+	xor a ; FALSE
 	ld [wGameLogicPaused], a
 	ret
 
@@ -230,13 +230,13 @@ _SavingDontTurnOffThePower:
 SavedTheGame:
 	call _SaveGameData
 	; wait 32 frames
-	ld c, $20
+	ld c, 32
 	call DelayFrames
 	; copy the original text speed setting to the stack
 	ld a, [wOptions]
 	push af
-	; set text speed super slow
-	ld a, 3
+	; set text speed to medium
+	ld a, TEXT_DELAY_MED
 	ld [wOptions], a
 	; <PLAYER> saved the game!
 	ld hl, Text_PlayerSavedTheGame
@@ -248,7 +248,7 @@ SavedTheGame:
 	call WaitPlaySFX
 	call WaitSFX
 	; wait 30 frames
-	ld c, $1e
+	ld c, 30
 	call DelayFrames
 	ret
 
@@ -332,8 +332,8 @@ SavingDontTurnOffThePower:
 	; Save the text speed setting to the stack
 	ld a, [wOptions]
 	push af
-	; Set the text speed to super slow
-	ld a, $3
+	; Set the text speed to medium
+	ld a, TEXT_DELAY_MED
 	ld [wOptions], a
 	; SAVING... DON'T TURN OFF THE POWER.
 	ld hl, Text_SavingDontTurnOffThePower
@@ -342,7 +342,7 @@ SavingDontTurnOffThePower:
 	pop af
 	ld [wOptions], a
 	; Wait for 16 frames
-	ld c, $10
+	ld c, 16
 	call DelayFrames
 	ret
 

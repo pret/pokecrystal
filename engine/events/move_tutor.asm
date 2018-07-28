@@ -8,7 +8,7 @@ MoveTutor:
 	xor a
 	ld [wItemAttributeParamBuffer], a
 	call .GetMoveTutorMove
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	call CopyName1

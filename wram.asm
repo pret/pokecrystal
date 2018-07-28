@@ -2199,11 +2199,24 @@ wPutativeTMHMMove:: db
 wInitListType:: db
 wBattleHasJustStarted:: db
 
+; d265 has many different short-term uses
 wNamedObjectIndexBuffer::
-wCurTMHM::
+wDeciramBuffer::
+wTempByteValue::
+wNumSetBits::
 wTypeMatchup::
-wFoundMatchingIDInParty::
-wd265::
+wCurType::
+wTempSpecies::
+wTempIconSpecies::
+wTempTMHM::
+wTempPP::
+wNextBoxOrPartyIndex::
+wChosenCableClubRoom::
+wBreedingCompatibility::
+wMoveGrammar::
+wApplyStatLevelMultipliersToEnemy::
+wUsePPUp::
+wd265:: ; mobile
 	db
 
 wFailedToFlee:: db

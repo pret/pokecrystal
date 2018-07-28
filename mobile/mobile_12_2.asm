@@ -428,7 +428,7 @@ Function4aad3:
 .loop
 	push bc
 	push hl
-	ld e, 0
+	ld e, MONICON_PARTYMENU
 	farcall LoadMenuMonIcon
 	ld a, [hObjectStructIndexBuffer]
 	inc a

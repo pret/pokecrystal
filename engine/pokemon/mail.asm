@@ -149,7 +149,7 @@ CheckPokeMail::
 
 ; Compare the mail message, byte for byte, with the expected message.
 	ld a, MAIL_MSG_LENGTH
-	ld [wd265], a
+	ld [wTempByteValue], a
 .loop
 	ld a, [de]
 	ld c, a
@@ -162,9 +162,9 @@ CheckPokeMail::
 	jr nz, .close_sram_return
 	inc hl
 	inc de
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	dec a
-	ld [wd265], a
+	ld [wTempByteValue], a
 	jr nz, .loop
 
 .done
