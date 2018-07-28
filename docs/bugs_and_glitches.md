@@ -887,18 +887,49 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ([Video](https://www.youtube.com/watch?v=eij_1060SMc))
 
-This is a bug with `StartTrainerBattle_DetermineWhichAnimation` in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm):
+**Fix:**
 
-```asm
+There's three things wrong here.
+
+* `wEnemyMonLevel` doesn't have the value its name implies yet; it'll be populated later from `wCurPartyLevel`.
+* `wBattleMonLevel` gets overwritten between when the value is written in `FindFirstAliveMonAndStartBattle` and when it's read.
+* `wBattleMonLevel` isn't set until much later when the battle is with a trainer; extra code is needed to read a trainer's party and get the level of their lead Pokémon.
+
+First, in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm):
+
+```diff
 StartTrainerBattle_DetermineWhichAnimation:
 ; The screen flashes a different number of times depending on the level of
 ; your lead Pokemon relative to the opponent's.
-; BUG: wBattleMonLevel and wEnemyMonLevel are not set at this point, so whatever
-; values happen to be there will determine the animation.
+-; BUG: wBattleMonLevel and wEnemyMonLevel are not set at this point, so whatever
+-; values happen to be there will determine the animation.
++	ld a, [wOtherTrainerClass]
++	and a
++	jr z, .wild
++	farcall SetTrainerBattleLevel
++
++.wild
++	ld b, PARTY_LENGTH
++	ld hl, wPartyMon1HP
++	ld de, PARTYMON_STRUCT_LENGTH - 1
++
++.loop
++	ld a, [hli]
++	or [hl]
++	jr nz, .okay
++	add hl, de
++	dec b
++	jr nz, .loop
++
++.okay
++	ld de, MON_LEVEL - MON_HP
++	add hl, de
 	ld de, 0
-	ld a, [wBattleMonLevel]
+-	ld a, [wBattleMonLevel]
++	ld a, [hl]
 	add 3
-	ld hl, wEnemyMonLevel
+-	ld hl, wEnemyMonLevel
++	ld hl, wCurPartyLevel
 	cp [hl]
 	jr nc, .not_stronger
 	set TRANS_STRONGER_F, e
@@ -926,7 +957,82 @@ StartTrainerBattle_DetermineWhichAnimation:
 	db BATTLETRANSITION_NO_CAVE_STRONGER
 ```
 
-*To do:* Fix this bug.
+In [engine/battle/start_battle.asm](/engine/battle/start_battle.asm):
+
+```diff
+FindFirstAliveMonAndStartBattle:
+	xor a
+	ld [hMapAnims], a
+	call DelayFrame
+-	ld b, 6
+-	ld hl, wPartyMon1HP
+-	ld de, PARTYMON_STRUCT_LENGTH - 1
+-
+-.loop
+-	ld a, [hli]
+-	or [hl]
+-	jr nz, .okay
+-	add hl, de
+-	dec b
+-	jr nz, .loop
+-
+-.okay
+-	ld de, MON_LEVEL - MON_HP
+-	add hl, de
+-	ld a, [hl]
+-	ld [wBattleMonLevel], a
+	predef DoBattleTransition
+```
+
+Finally, add this code to the end of [engine/battle/read_trainer_party.asm](/engine/battle/read_trainer_party.asm):
+
+```asm
+SetTrainerBattleLevel:
+	ld a, 255
+	ld [wCurPartyLevel], a
+
+	ld a, [wInBattleTowerBattle]
+	bit 0, a
+	ret nz
+
+	ld a, [wLinkMode]
+	and a
+	ret nz
+
+	ld a, [wOtherTrainerClass]
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, TrainerGroups
+rept 2
+	add hl, bc
+endr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+	ld a, [wOtherTrainerID]
+	ld b, a
+.skip_trainer
+	dec b
+	jr z, .got_trainer
+.loop1
+	ld a, [hli]
+	cp $ff
+	jr nz, .loop1
+	jr .skip_trainer
+.got_trainer
+
+.skip_name
+	ld a, [hli]
+	cp "@"
+	jr nz, .skip_name
+
+	inc hl
+	ld a, [hl]
+	ld [wCurPartyLevel], a
+	ret
+```
 
 
 ## A "HOF Master!" title for 200-Time Famers is defined but inaccessible
