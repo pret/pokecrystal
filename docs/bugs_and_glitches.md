@@ -12,8 +12,9 @@ Fixes are written in the `diff` format. If you're familiar with git, this should
 
 ## Contents
 
-- [Thick Club and Light Ball can decrease damage done with boosted (Special) Attack](#thick-club-and-light-ball-can-decrease-damage-done-with-boosted-special-attack)
+- [Thick Club and Light Ball can make (Special) Attack wrap around above 1024](#thick-club-and-light-ball-can-make-special-attack-wrap-around-above-1024)
 - [Metal Powder can increase damage taken with boosted (Special) Defense](#metal-powder-can-increase-damage-taken-with-boosted-special-defense)
+- [Reflect and Light Screen can make (Special) Defense wrap around above 1024](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024)
 - [Belly Drum sharply boosts Attack even with under 50% HP](#belly-drum-sharply-boosts-attack-even-with-under-50-hp)
 - [Confusion damage is affected by type-boosting items and Explosion/Self-Destruct doubling](#confusion-damage-is-affected-by-type-boosting-items-and-explosionself-destruct-doubling)
 - [Moves that lower Defense can do so after breaking a Substitute](#moves-that-lower-defense-can-do-so-after-breaking-a-substitute)
@@ -22,7 +23,8 @@ Fixes are written in the `diff` format. If you're familiar with git, this should
 - [A Pokémon that fainted from Pursuit will have its old status condition when revived](#a-pokémon-that-fainted-from-pursuit-will-have-its-old-status-condition-when-revived)
 - [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
 - [Beat Up can desynchronize link battles](#beat-up-can-desynchronize-link-battles)
-- [Beat Up may fail to raise substitute](#beat-up-may-fail-to-raise-substitute)
+- [Beat Up works incorrectly with only one Pokémon in the party](#beat-up-works-incorrectly-with-only-one-pokémon-in-the-party)
+- [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
 - [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
 - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
 - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pokémon-is-badly-poisoned)
@@ -65,21 +67,18 @@ Fixes are written in the `diff` format. If you're familiar with git, this should
 - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
 
 
-## Thick Club and Light Ball can decrease damage done with boosted (Special) Attack
+## Thick Club and Light Ball can make (Special) Attack wrap around above 1024
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-This is a bug with `SpeciesItemBoost` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
-
-
-**Fix:**
+**Fix:** Edit `SpeciesItemBoost` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm)
 
 ```diff
-; Double the stat
-	sla l
-	rl h
+ ; Double the stat
+ 	sla l
+ 	rl h
 +
 +	ld a, HIGH(MAX_STAT_VALUE)
 +	cp h
@@ -91,7 +90,7 @@ This is a bug with `SpeciesItemBoost` in [engine/battle/effect_commands.asm](/en
 +.cap
 +	ld h, HIGH(MAX_STAT_VALUE)
 +	ld l, LOW(MAX_STAT_VALUE)
-	ret
+ 	ret
 ```
 
 
@@ -101,26 +100,23 @@ This is a bug with `SpeciesItemBoost` in [engine/battle/effect_commands.asm](/en
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
-
-
-**Fix:**
+**Fix:** Edit `DittoMetalPowder` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```diff
-	ld a, c
-	srl a
-	add c
-	ld c, a
-	ret nc
+ 	ld a, c
+ 	srl a
+ 	add c
+ 	ld c, a
+ 	ret nc
 
-	srl b
-	ld a, b
-	and a
-	jr nz, .done
-	inc b
-.done
-	scf
-	rr c
+ 	srl b
+ 	ld a, b
+ 	and a
+ 	jr nz, .done
+ 	inc b
+ .done
+ 	scf
+ 	rr c
 +
 +	ld a, HIGH(MAX_STAT_VALUE)
 +	cp b
@@ -132,8 +128,36 @@ This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/en
 +.cap
 +	ld b, HIGH(MAX_STAT_VALUE)
 +	ld c, LOW(MAX_STAT_VALUE)
-	ret
+ 	ret
 ```
+
+
+## Reflect and Light Screen can make (Special) Defense wrap around above 1024
+
+*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
+
+This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
+
+**Fix:** Edit `TruncateHL_BC` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm)
+
+```diff
+ .finish
+-	ld a, [wLinkMode]
+-	cp LINK_COLOSSEUM
+-	jr z, .done
+ ; If we go back to the loop point,
+ ; it's the same as doing this exact
+ ; same check twice.
+ 	ld a, h
+ 	or b
+ 	jr nz, .loop
+
+-.done
+ 	ld b, l
+ 	ret
+```
+
+(This fix also affects Thick Club, Light Ball, and Metal Powder, as described above, but their specific fixes in the above bugs allow more accurate damage calculations.)
 
 
 ## Belly Drum sharply boosts Attack even with under 50% HP
@@ -142,29 +166,27 @@ This is a bug with `DittoMetalPowder` in [engine/battle/effect_commands.asm](/en
 
 ([Video](https://www.youtube.com/watch?v=zuCLMikWo4Y))
 
-This is a bug with `BattleCommand_BellyDrum` in [engine/battle/move_effects/belly_drum.asm](/engine/battle/move_effects/belly_drum.asm):
-
-
-**Fix:**
+**Fix:** Edit `BattleCommand_BellyDrum` in [engine/battle/move_effects/belly_drum.asm](/engine/battle/move_effects/belly_drum.asm):
 
 ```diff
-BattleCommand_BellyDrum:
-; bellydrum
+ BattleCommand_BellyDrum:
+ ; bellydrum
 -; This command is buggy because it raises the user's attack
 -; before checking that it has enough HP to use the move.
 -; Swap the order of these two blocks to fix.
-+	callfar GetHalfMaxHP
-+	callfar CheckUserHasEnoughHP
-+	jr nc, .failed
-+
-	call BattleCommand_AttackUp2
-	ld a, [wAttackMissed]
-	and a
-	jr nz, .failed
+-	call BattleCommand_AttackUp2
+-	ld a, [wAttackMissed]
+-	and a
+-	jr nz, .failed
 -
--	callfar GetHalfMaxHP
--	callfar CheckUserHasEnoughHP
--	jr nc, .failed
+ 	callfar GetHalfMaxHP
+ 	callfar CheckUserHasEnoughHP
+ 	jr nc, .failed
++
++	call BattleCommand_AttackUp2
++	ld a, [wAttackMissed]
++	and a
++	jr nz, .failed
 ```
 
 
@@ -185,34 +207,31 @@ BattleCommand_BellyDrum:
 
 This bug affects Acid, Iron Tail, and Rock Smash.
 
-This is a bug with `DefenseDownHit` in [data/moves/effects.asm](/data/moves/effects.asm):
+**Fix:** Edit `DefenseDownHit` in [data/moves/effects.asm](/data/moves/effects.asm):
 
-
-**Fix:**
-
-```asm
-DefenseDownHit:
-	checkobedience
-	usedmovetext
-	doturn
-	critical
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	effectchance
-	hittarget
-	failuretext
-	checkfaint
-	criticaltext
-	supereffectivetext
-	checkdestinybond
-	buildopponentrage
+```diff
+ DefenseDownHit:
+ 	checkobedience
+ 	usedmovetext
+ 	doturn
+ 	critical
+ 	damagestats
+ 	damagecalc
+ 	stab
+ 	damagevariation
+ 	checkhit
+ 	effectchance
+ 	hittarget
+ 	failuretext
+ 	checkfaint
+ 	criticaltext
+ 	supereffectivetext
+ 	checkdestinybond
+ 	buildopponentrage
 -	effectchance ; bug: duplicate effectchance shouldn't be here
-	defensedown
-	statdownmessage
-	endmove
+ 	defensedown
+ 	statdownmessage
+ 	endmove
 ```
 
 
@@ -222,16 +241,13 @@ DefenseDownHit:
 
 ([Video](https://www.youtube.com/watch?v=uRYyzKRatFk))
 
-This is a bug with `BattleCommand_Counter` in [engine/battle/move_effects/counter.asm](/engine/battle/move_effects/counter.asm) and `BattleCommand_MirrorCoat` in [engine/battle/move_effects/mirror_coat.asm](/engine/battle/move_effects/mirror_coat.asm):
-
-
-**Fix:**
+**Fix:** Edit `BattleCommand_Counter` in [engine/battle/move_effects/counter.asm](/engine/battle/move_effects/counter.asm) and `BattleCommand_MirrorCoat` in [engine/battle/move_effects/mirror_coat.asm](/engine/battle/move_effects/mirror_coat.asm):
 
 ```diff
 -	; BUG: Move should fail with all non-damaging battle actions
-	ld hl, wCurDamage
-	ld a, [hli]
-	or [hl]
+ 	ld hl, wCurDamage
+ 	ld a, [hli]
+ 	or [hl]
 -	ret z
 +	jp z, .failed
 ```
@@ -253,25 +269,22 @@ Add this to the end of each file:
 
 ([Video](https://www.youtube.com/watch?v=1v9x4SgMggs))
 
-This is a bug with `CheckPlayerHasUsableMoves` in [engine/battle/core.asm](/engine/battle/core.asm):
-
-
-**Fix:**
+**Fix:** Edit `CheckPlayerHasUsableMoves` in [engine/battle/core.asm](/engine/battle/core.asm):
 
 ```diff
-.done
+ .done
 -	; Bug: this will result in a move with PP Up confusing the game.
 -	and a ; should be "and PP_MASK"
 +	and PP_MASK
-	ret nz
+ 	ret nz
 
-.force_struggle
-	ld hl, BattleText_MonHasNoMovesLeft
-	call StdBattleTextBox
-	ld c, 60
-	call DelayFrames
-	xor a
-	ret
+ .force_struggle
+ 	ld hl, BattleText_MonHasNoMovesLeft
+ 	call StdBattleTextBox
+ 	ld c, 60
+ 	call DelayFrames
+ 	xor a
+ 	ret
 ```
 
 
@@ -290,21 +303,17 @@ This is a bug with `CheckPlayerHasUsableMoves` in [engine/battle/core.asm](/engi
 
 This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider Web, Transform, and stat-lowering effects of moves like String Shot or Bubble during the semi-invulnerable turn of Fly or Dig.
 
-This is a bug with `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
-
-
-**Fix:**
+**Fix:** Edit `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```diff
-CheckHiddenOpponent:
+-CheckHiddenOpponent:
 -; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.
 -	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 -	call GetBattleVar
 -	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	ret
++	xor a
+ 	ret
 ```
-
-The code in `CheckHiddenOpponent` is completely redundant as `BattleCommand_CheckHit` already does what this code is doing. Another option is to remove `CheckHiddenOpponent` completely, the calls to `CheckHiddenOpponent`, and the jump afterwards.
 
 
 ## Beat Up can desynchronize link battles
@@ -313,93 +322,87 @@ The code in `CheckHiddenOpponent` is completely redundant as `BattleCommand_Chec
 
 ([Video](https://www.youtube.com/watch?v=202-iAsrIa8))
 
-This is a bug with `BattleCommand_BeatUp` in [engine/battle/move_effects/beat_up.asm](/engine/battle/move_effects/beat_up.asm):
-
-
-**Fix:**
+**Fix:** Edit `BattleCommand_BeatUp` in [engine/battle/move_effects/beat_up.asm](/engine/battle/move_effects/beat_up.asm):
 
 ```diff
-.got_mon
-	ld a, [wd002]
-	ld hl, wPartyMonNicknames
-	call GetNick
-	ld a, MON_HP
-	call GetBeatupMonLocation
-	ld a, [hli]
-	or [hl]
-	jp z, .beatup_fail ; fainted
-	ld a, [wd002]
-	ld c, a
-	ld a, [wCurBattleMon]
+ .got_mon
+ 	ld a, [wd002]
+ 	ld hl, wPartyMonNicknames
+ 	call GetNick
+ 	ld a, MON_HP
+ 	call GetBeatupMonLocation
+ 	ld a, [hli]
+ 	or [hl]
+ 	jp z, .beatup_fail ; fainted
+ 	ld a, [wd002]
+ 	ld c, a
+ 	ld a, [wCurBattleMon]
 -	; BUG: this can desynchronize link battles
 -	; Change "cp [hl]" to "cp c" to fix
 -	cp [hl]
 +	cp c
-	ld hl, wBattleMonStatus
-	jr z, .active_mon
-	ld a, MON_STATUS
-	call GetBeatupMonLocation
-.active_mon
-	ld a, [hl]
-	and a
-	jp nz, .beatup_fail
+ 	ld hl, wBattleMonStatus
+ 	jr z, .active_mon
+ 	ld a, MON_STATUS
+ 	call GetBeatupMonLocation
+ .active_mon
+ 	ld a, [hl]
+ 	and a
+ 	jp nz, .beatup_fail
 ```
 
 
-## Beat Up may fail to raise substitute
+## Beat Up works incorrectly with only one Pokémon in the party
 
-*Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*  
-(Only the fixes denoted with "breaking" will actually break compatibility, the others just affect what's shown on the screen with the patched game)
+*Fixing this bug may break compatibility with standard Pokémon Crystal for link battles.*
 
-This is a bug in `BattleCommand_EndLoop` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm) that prevents the rest of the move's effect from being executed if the player or enemy only has one mon in their party while using Beat Up.
+This bug prevents the rest of Beat Up's effect from being executed if the player or enemy only has one Pokémon in their party while using it. It prevents Substitute from being raised and King's Rock from working.
 
-It prevents the substitute from being raised and the King's Rock from working.
-
-
-**Fix (breaking):**
+**Fix:** Edit `BattleCommand_EndLoop` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```diff
-.only_one_beatup
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	res SUBSTATUS_IN_LOOP, [hl]
+ .only_one_beatup
+ 	ld a, BATTLE_VARS_SUBSTATUS3
+ 	call GetBattleVarAddr
+ 	res SUBSTATUS_IN_LOOP, [hl]
 -	call BattleCommand_BeatUpFailText
 -	jp EndMoveEffect
 +	ret
 ```
 
-**Fix (cosmetics):**
+**Cosmetic fix:** This fix does not break compatibility, but it only affects what's shown on the screen for the patched game.
 
 ```diff
-.only_one_beatup
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarAddr
-	res SUBSTATUS_IN_LOOP, [hl]
-	call BattleCommand_BeatUpFailText
+ .only_one_beatup
+ 	ld a, BATTLE_VARS_SUBSTATUS3
+ 	call GetBattleVarAddr
+ 	res SUBSTATUS_IN_LOOP, [hl]
+ 	call BattleCommand_BeatUpFailText
 +	call BattleCommand_RaiseSub
-	jp EndMoveEffect
+ 	jp EndMoveEffect
 ```
 
 
-There's a similar oversight in `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm) that will prevent the substitute from being raised if Beat Up is protected against.
+## Beat Up may fail to raise Substitute
 
+This bug prevents Substitute from being raised if Beat Up was blocked by Protect or Detect.
 
-**Fix (cosmetics):**
+**Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm).
 
-```asm
-	cp EFFECT_MULTI_HIT
-	jr z, .multihit
-	cp EFFECT_DOUBLE_HIT
-	jr z, .multihit
-	cp EFFECT_POISON_MULTI_HIT
-	jr z, .multihit
+```diff
+ 	cp EFFECT_MULTI_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_DOUBLE_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_POISON_MULTI_HIT
+ 	jr z, .multihit
 +	cp EFFECT_BEAT_UP
 +	jr z, .multihit
-	jp EndMoveEffect
+ 	jp EndMoveEffect
 
-.multihit
-	call BattleCommand_RaiseSub
-	jp EndMoveEffect
+ .multihit
+ 	call BattleCommand_RaiseSub
+ 	jp EndMoveEffect
 ```
 
 
@@ -407,25 +410,22 @@ There's a similar oversight in `BattleCommand_FailureText` in [engine/battle/eff
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
-This is a bug in how `wAttackMissed` is never set by BeatUp, even when none of the 'mon have been able to attack (due to being fainted or having a status effect), the King's Rock may activate.
+This bug is caused because Beat Up never sets `wAttackMissed`, even when no Pokémon was able to attack (due to being fainted or having a status condition).
 
-This bug can be fixed in a plethora of ways, but the most straight-forward would be in `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](/engine/battle/move_effects/beat_up.asm), as that's always ran before the king's rock effect.
-
-
-**Fix:**
+**Fix:** Edit `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](/engine/battle/move_effects/beat_up.asm):
 
 ```diff
-BattleCommand_BeatUpFailText:
-; beatupfailtext
+ BattleCommand_BeatUpFailText:
+ ; beatupfailtext
 
-	ld a, [wBeatUpHitAtLeastOnce]
-	and a
-	ret nz
+ 	ld a, [wBeatUpHitAtLeastOnce]
+ 	and a
+ 	ret nz
 +
 +	inc a
 +	ld [wAttackMissed], a
 
-	jp PrintButItFailed
+ 	jp PrintButItFailed
 ```
 
 
@@ -437,20 +437,17 @@ BattleCommand_BeatUpFailText:
 
 This bug existed for all battles in Gold and Silver, and was only fixed for single-player battles in Crystal to preserve link compatibility.
 
-This is a bug with `BattleCommand_Present` in [engine/battle/move_effects/present.asm](/engine/battle/move_effects/present.asm):
-
-
-**Fix:**
+**Fix:** Edit `BattleCommand_Present` in [engine/battle/move_effects/present.asm](/engine/battle/move_effects/present.asm):
 
 ```diff
-BattleCommand_Present:
-; present
+ BattleCommand_Present:
+ ; present
 
 -	ld a, [wLinkMode]
 -	cp LINK_COLOSSEUM
 -	jr z, .colosseum_skippush
-	push bc
-	push de
+ 	push bc
+ 	push de
 -.colosseum_skippush
 -
 	call BattleCommand_Stab
@@ -458,8 +455,8 @@ BattleCommand_Present:
 -	ld a, [wLinkMode]
 -	cp LINK_COLOSSEUM
 -	jr z, .colosseum_skippop
-	pop de
-	pop bc
+ 	pop de
+ 	pop bc
 -.colosseum_skippop
 ```
 
@@ -468,10 +465,7 @@ BattleCommand_Present:
 
 ([Video](https://www.youtube.com/watch?v=cygMO-zHTls))
 
-This is a bug with `AI_Smart_MeanLook` in [engine/battle/ai/scoring.asm](/engine/battle/ai/scoring.asm):
-
-
-**Fix:**
+**Fix:** Edit `AI_Smart_MeanLook` in [engine/battle/ai/scoring.asm](/engine/battle/ai/scoring.asm):
 
 ```diff
 -; 80% chance to greatly encourage this move if the enemy is badly poisoned (buggy).
@@ -479,14 +473,14 @@ This is a bug with `AI_Smart_MeanLook` in [engine/battle/ai/scoring.asm](/engine
 -	ld a, [wEnemySubStatus5]
 +; 80% chance to greatly encourage this move if the player is badly poisoned
 +	ld a, [wPlayerSubStatus5]
-	bit SUBSTATUS_TOXIC, a
-	jr nz, .asm_38e26
+ 	bit SUBSTATUS_TOXIC, a
+ 	jr nz, .asm_38e26
 ```
 
 
 ## AI makes a false assumption about `CheckTypeMatchup`
 
-In [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
+In [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm).
 
 ```asm
 BattleCheckTypeMatchup:
@@ -517,29 +511,26 @@ CheckTypeMatchup:
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=322))
 
-This is a bug with `AI_HealStatus` in [engine/battle/ai/items.asm](/engine/battle/ai/items.asm):
-
-
-**Fix:**
+**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](/engine/battle/ai/items.asm):
 
 ```diff
-AI_HealStatus:
-	ld a, [wCurOTMon]
-	ld hl, wOTPartyMon1Status
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	xor a
-	ld [hl], a
-	ld [wEnemyMonStatus], a
+ AI_HealStatus:
+ 	ld a, [wCurOTMon]
+ 	ld hl, wOTPartyMon1Status
+ 	ld bc, PARTYMON_STRUCT_LENGTH
+ 	call AddNTimes
+ 	xor a
+ 	ld [hl], a
+ 	ld [wEnemyMonStatus], a
 -	; Bug: this should reset SUBSTATUS_NIGHTMARE too
 -	; Uncomment the lines below to fix
 -	; ld hl, wEnemySubStatus1
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
-	ld hl, wEnemySubStatus5
-	res SUBSTATUS_TOXIC, [hl]
-	ret
+ 	ld hl, wEnemySubStatus5
+ 	res SUBSTATUS_TOXIC, [hl]
+ 	ret
 ```
 
 
@@ -547,29 +538,26 @@ AI_HealStatus:
 
 ([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
 
-This is a bug with `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](/engine/battle/anim_hp_bar.asm):
-
-
-**Fix:**
+**Fix:** Edit `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](/engine/battle/anim_hp_bar.asm):
 
 ```diff
 -	; This routine is buggy. The result from ComputeHPBarPixels is stored
 -	; in e. However, the pop de opcode deletes this result before it is even
 -	; used. The game then proceeds as though it never deleted that output.
 -	; To fix, uncomment the line below.
-	call ComputeHPBarPixels
+ 	call ComputeHPBarPixels
 -	; ld a, e
 +	ld a, e
-	pop bc
-	pop de
-	pop hl
+ 	pop bc
+ 	pop de
+ 	pop hl
 -	ld a, e ; Comment or delete this line to fix the above bug.
-	ld hl, wCurHPBarPixels
-	cp [hl]
-	jr z, .loop
-	ld [hl], a
-	and a
-	ret
+ 	ld hl, wCurHPBarPixels
+ 	cp [hl]
+ 	jr z, .loop
+ 	ld [hl], a
+ 	and a
+ 	ret
 ```
 
 
@@ -577,28 +565,25 @@ This is a bug with `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm]
 
 ([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
 
-This is a bug with `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](/engine/battle/anim_hp_bar.asm):
-
-
-**Fix:**
+**Fix:** Edit `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](/engine/battle/anim_hp_bar.asm):
 
 ```diff
-	ld b, 0
+ 	ld b, 0
 -; This routine is buggy. If [wCurHPAnimMaxHP] * [wCurHPBarPixels] is
 -; divisible by HP_BAR_LENGTH_PX, the loop runs one extra time.
 -; To fix, uncomment the line below.
-.loop
-	ld a, l
-	sub HP_BAR_LENGTH_PX
-	ld l, a
-	ld a, h
-	sbc $0
-	ld h, a
+ .loop
+ 	ld a, l
+ 	sub HP_BAR_LENGTH_PX
+ 	ld l, a
+ 	ld a, h
+ 	sbc $0
+ 	ld h, a
 -	; jr z, .done
 +	jr z, .done
-	jr c, .done
-	inc b
-	jr .loop
+ 	jr c, .done
+ 	inc b
+ 	jr .loop
 ```
 
 
@@ -608,14 +593,11 @@ This is a bug with `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm
 
 This can bring Pokémon straight from level 1 to 100 by gaining just a few experience points.
 
-This is a bug with `CalcExpAtLevel` in [engine/pokemon/experience.asm](/engine/pokemon/experience.asm):
-
-
-**Fix:**
+**Fix:** Edit `CalcExpAtLevel` in [engine/pokemon/experience.asm](/engine/pokemon/experience.asm):
 
 ```diff
-CalcExpAtLevel:
-; (a/b)*n**3 + c*n**2 + d*n - e
+ CalcExpAtLevel:
+ ; (a/b)*n**3 + c*n**2 + d*n - e
 +	ld a, d
 +	cp 1
 +	jr nz, .UseExpFormula
@@ -628,14 +610,14 @@ CalcExpAtLevel:
 +	ld [hl], a
 +	ret
 +
-+.UseExpFormula
-	ld a, [wBaseGrowthRate]
-	add a
-	add a
-	ld c, a
-	ld b, 0
-	ld hl, GrowthRates
-	add hl, bc
+ +.UseExpFormula
+ 	ld a, [wBaseGrowthRate]
+ 	add a
+ 	add a
+ 	ld c, a
+ 	ld b, 0
+ 	ld hl, GrowthRates
+ 	add hl, bc
 ```
 
 
@@ -643,37 +625,31 @@ CalcExpAtLevel:
 
 ([Video](https://www.youtube.com/watch?v=o54VjpAEoO8))
 
-This is a bug with `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2ExpPoints` in [data/text/common_2.asm](/data/text/common_2.asm):
-
-
-**Fix:**
+**Fix:** Edit `Text_ABoostedStringBuffer2ExpPoints` and `Text_StringBuffer2ExpPoints` in [data/text/common_2.asm](/data/text/common_2.asm):
 
 ```diff
-Text_ABoostedStringBuffer2ExpPoints::
-	text_start
-	line "a boosted"
-	cont "@"
+ Text_ABoostedStringBuffer2ExpPoints::
+ 	text_start
+ 	line "a boosted"
+ 	cont "@"
 -	deciram wStringBuffer2, 2, 4
 +	deciram wStringBuffer2, 2, 5
-	text " EXP. Points!"
-	prompt
+ 	text " EXP. Points!"
+ 	prompt
 
-Text_StringBuffer2ExpPoints::
-	text_start
-	line "@"
+ Text_StringBuffer2ExpPoints::
+ 	text_start
+ 	line "@"
 -	deciram wStringBuffer2, 2, 4
 +	deciram wStringBuffer2, 2, 5
-	text " EXP. Points!"
-	prompt
+ 	text " EXP. Points!"
+ 	prompt
 ```
 
 
 ## BRN/PSN/PAR do not affect catch rate
 
-This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
-
-
-**Fix:**
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```diff
 -; This routine is buggy. It was intended that SLP and FRZ provide a higher
@@ -681,61 +657,55 @@ This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/i
 -; no status effect at all. But instead, it makes BRN/PSN/PAR provide no
 -; benefit.
 -; Uncomment the line below to fix this.
-	ld b, a
-	ld a, [wEnemyMonStatus]
-	and 1 << FRZ | SLP
-	ld c, 10
-	jr nz, .addstatus
+ 	ld b, a
+ 	ld a, [wEnemyMonStatus]
+ 	and 1 << FRZ | SLP
+ 	ld c, 10
+ 	jr nz, .addstatus
 -	; ld a, [wEnemyMonStatus]
 +	ld a, [wEnemyMonStatus]
-	and a
-	ld c, 5
-	jr nz, .addstatus
-	ld c, 0
-.addstatus
-	ld a, b
-	add c
-	jr nc, .max_1
-	ld a, $ff
-.max_1
+ 	and a
+ 	ld c, 5
+ 	jr nz, .addstatus
+ 	ld c, 0
+ .addstatus
+ 	ld a, b
+ 	add c
+ 	jr nc, .max_1
+ 	ld a, $ff
+ .max_1
 ```
 
 
 ## Moon Ball does not boost catch rate
 
-This is a bug with `MoonBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
-
-
-**Fix:**
+**Fix:** Edit `MoonBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```diff
 -; Moon Stone's constant from Pokémon Red is used.
 -; No Pokémon evolve with Burn Heal,
 -; so Moon Balls always have a catch rate of 1×.
-	push bc
-	ld a, BANK("Evolutions and Attacks")
-	call GetFarByte
+ 	push bc
+ 	ld a, BANK("Evolutions and Attacks")
+ 	call GetFarByte
 -	cp MOON_STONE_RED ; BURN_HEAL
 +	cp MOON_STONE
-	pop bc
-	ret nz
+ 	pop bc
+ 	ret nz
 ```
 
 
 ## Love Ball boosts catch rate for the wrong gender
 
-This is a bug with `LoveBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
-
-
-**Fix:**
+**Fix:** Edit `LoveBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```diff
-.wildmale
+ .wildmale
 
-	ld a, d
-	pop de
-	cp d
-	pop bc
+ 	ld a, d
+ 	pop de
+ 	cp d
+ 	pop bc
 -	ret nz ; for the intended effect, this should be "ret z"
 +	ret z
 ```
@@ -743,24 +713,21 @@ This is a bug with `LoveBallMultiplier` in [items/item_effects.asm](/items/item_
 
 ## Fast Ball only boosts catch rate for three Pokémon
 
-This is a bug with `FastBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
-
-
-**Fix:**
+**Fix:** Edit `FastBallMultiplier` in [items/item_effects.asm](/items/item_effects.asm):
 
 ```diff
-.loop
-	ld a, BANK(FleeMons)
-	call GetFarByte
+ .loop
+ 	ld a, BANK(FleeMons)
+ 	call GetFarByte
 
-	inc hl
-	cp -1
-	jr z, .next
-	cp c
+ 	inc hl
+ 	cp -1
+ 	jr z, .next
+ 	cp c
 -	jr nz, .next ; for the intended effect, this should be "jr nz, .loop"
 +	jr nz, .loop
-	sla b
-	jr c, .max
+ 	sla b
+ 	jr c, .max
 ```
 
 
@@ -768,21 +735,14 @@ This is a bug with `FastBallMultiplier` in [items/item_effects.asm](/items/item_
 
 *Fixing this bug will break compatibility with standard Pokémon Crystal for link battles.*
 
-This is a bug with `ItemAttributes` in [data/items/attributes.asm](/data/items/attributes.asm):
-
-
-**Fix:**
+**Fix:** Edit `ItemAttributes` in [data/items/attributes.asm](/data/items/attributes.asm):
 
 ```diff
-; DRAGON_FANG
+ ; DRAGON_FANG
 -	item_attribute 100, HELD_NONE, 0, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 +	item_attribute 100, HELD_DRAGON_BOOST, 0, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
-```
-
-And:
-
-```diff
-; DRAGON_SCALE
+ ...
+ ; DRAGON_SCALE
 -	item_attribute 2100, HELD_DRAGON_BOOST, 10, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 +	item_attribute 2100, HELD_NONE, 10, CANT_SELECT, ITEM, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 ```
@@ -827,13 +787,10 @@ CopyPokemonName_Buffer1_Buffer3:
 	jp CopyBytes
 ```
 
-In [data/events/happiness_probabilities.asm](/data/events/happiness_probabilities.asm):
-
-
-**Fix:**
+**Fix:** Edit  [data/events/happiness_probabilities.asm](/data/events/happiness_probabilities.asm):
 
 ```diff
-HappinessData_DaisysGrooming:
+ HappinessData_DaisysGrooming:
 -	db $ff, 2, HAPPINESS_GROOMING ; 99.6% chance
 +	db $80, 2, HAPPINESS_GROOMING ; 50% chance
 +	db $ff, 2, HAPPINESS_GROOMING ; 50% chance
@@ -842,13 +799,10 @@ HappinessData_DaisysGrooming:
 
 ## Magikarp in Lake of Rage are shorter, not longer
 
-This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](/engine/battle/core.asm):
-
-
-**Fix:**
+**Fix:** Edit `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](/engine/battle/core.asm):
 
 ```diff
-.CheckMagikarpArea:
+ .CheckMagikarpArea:
 -; The "jr z" checks are supposed to be "jr nz".
 -
 -; Instead, all maps in GROUP_LAKE_OF_RAGE (Mahogany area)
@@ -862,12 +816,12 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](
 -
 -; Moreover, due to the check not being translated to feet+inches, all Magikarp
 -; smaller than 4'0" may be caught by the filter, a lot more than intended.
-	ld a, [wMapGroup]
-	cp GROUP_LAKE_OF_RAGE
+ 	ld a, [wMapGroup]
+ 	cp GROUP_LAKE_OF_RAGE
 -	jr z, .Happiness
 +	jr nz, .Happiness
-	ld a, [wMapNumber]
-	cp MAP_LAKE_OF_RAGE
+ 	ld a, [wMapNumber]
+ 	cp MAP_LAKE_OF_RAGE
 -	jr z, .Happiness
 +	jr nz, .Happiness
 ```
@@ -875,63 +829,57 @@ This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](
 
 ## Magikarp length limits have a unit conversion error
 
-This is a bug with `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](/engine/battle/core.asm):
-
-
-**Fix:**
+**Fix:** Edit `LoadEnemyMon.CheckMagikarpArea` in [engine/battle/core.asm](/engine/battle/core.asm):
 
 ```diff
-; Get Magikarp's length
-	ld de, wEnemyMonDVs
-	ld bc, wPlayerID
-	callfar CalcMagikarpLength
+ ; Get Magikarp's length
+ 	ld de, wEnemyMonDVs
+ 	ld bc, wPlayerID
+ 	callfar CalcMagikarpLength
 
-; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6 feet)
-	ld a, [wMagikarpLength]
+ ; No reason to keep going if length > 1536 mm (i.e. if HIGH(length) > 6 feet)
+ 	ld a, [wMagikarpLength]
 -	cp HIGH(1536) ; should be "cp 5", since 1536 mm = 5'0", but HIGH(1536) = 6
 +	cp 5
-	jr nz, .CheckMagikarpArea
+ 	jr nz, .CheckMagikarpArea
 
-; 5% chance of skipping both size checks
-	call Random
-	cp 5 percent
-	jr c, .CheckMagikarpArea
-; Try again if length >= 1616 mm (i.e. if LOW(length) >= 3 inches)
-	ld a, [wMagikarpLength + 1]
+ ; 5% chance of skipping both size checks
+ 	call Random
+ 	cp 5 percent
+ 	jr c, .CheckMagikarpArea
+ ; Try again if length >= 1616 mm (i.e. if LOW(length) >= 3 inches)
+ 	ld a, [wMagikarpLength + 1]
 -	cp LOW(1616) ; should be "cp 3", since 1616 mm = 5'3", but LOW(1616) = 80
 +	cp 3
-	jr nc, .GenerateDVs
+ 	jr nc, .GenerateDVs
 
-; 20% chance of skipping this check
-	call Random
-	cp 20 percent - 1
-	jr c, .CheckMagikarpArea
-; Try again if length >= 1600 mm (i.e. if LOW(length) >= 2 inches)
-	ld a, [wMagikarpLength + 1]
+ ; 20% chance of skipping this check
+ 	call Random
+ 	cp 20 percent - 1
+ 	jr c, .CheckMagikarpArea
+ ; Try again if length >= 1600 mm (i.e. if LOW(length) >= 2 inches)
+ 	ld a, [wMagikarpLength + 1]
 -	cp LOW(1600) ; should be "cp 2", since 1600 mm = 5'2", but LOW(1600) = 64
 +	cp 2
-	jr nc, .GenerateDVs
+ 	jr nc, .GenerateDVs
 ```
 
 
 ## Magikarp lengths can be miscalculated
 
-This is a bug with `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.asm](/engine/events/magikarp.asm):
-
-
-**Fix:**
+**Fix:** Edit `CalcMagikarpLength.BCLessThanDE` in [engine/events/magikarp.asm](/engine/events/magikarp.asm):
 
 ```diff
-.BCLessThanDE:
+ .BCLessThanDE:
 -; Intention: Return bc < de.
 -; Reality: Return b < d.
-	ld a, b
-	cp d
-	ret c
+ 	ld a, b
+ 	cp d
+ 	ret c
 -	ret nc ; whoops
-	ld a, c
-	cp e
-	ret
+ 	ld a, c
+ 	cp e
+ 	ret
 ```
 
 
@@ -985,21 +933,18 @@ StartTrainerBattle_DetermineWhichAnimation:
 
 ([Video](https://www.youtube.com/watch?v=iHkWubvxmSg))
 
-This is a bug with `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/halloffame.asm](/engine/events/halloffame.asm):
-
-
-**Fix:**
+**Fix:** Edit `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/halloffame.asm](/engine/events/halloffame.asm):
 
 ```diff
-	ld a, [wHallOfFameTempWinCount]
+ 	ld a, [wHallOfFameTempWinCount]
 -	cp HOF_MASTER_COUNT + 1 ; should be HOF_MASTER_COUNT
 +	cp HOF_MASTER_COUNT
-	jr c, .print_num_hof
-	ld de, .HOFMaster
-	hlcoord 1, 2
-	call PlaceString
-	hlcoord 13, 2
-	jr .finish
+ 	jr c, .print_num_hof
+ 	ld de, .HOFMaster
+ 	hlcoord 1, 2
+ 	call PlaceString
+ 	hlcoord 13, 2
+ 	jr .finish
 ```
 
 
@@ -1007,39 +952,33 @@ This is a bug with `_HallOfFamePC.DisplayMonAndStrings` in [engine/events/hallof
 
 ([Video](https://www.youtube.com/watch?v=ojq3xqfRF6I))
 
-This is a bug with `Slots_PayoutAnim` in [engine/games/slot_machine.asm](/engine/games/slot_machine.asm):
-
-
-**Fix:**
+**Fix:** Edit `Slots_PayoutAnim` in [engine/games/slot_machine.asm](/engine/games/slot_machine.asm):
 
 ```diff
-.okay
-	ld [hl], e
-	dec hl
-	ld [hl], d
-	ld a, [wSlotsDelay]
-	and $7
+ .okay
+ 	ld [hl], e
+ 	dec hl
+ 	ld [hl], d
+ 	ld a, [wSlotsDelay]
+ 	and $7
 -	ret z ; ret nz would be more appropriate
 +	ret nz
-	ld de, SFX_GET_COIN_FROM_SLOTS
-	call PlaySFX
-	ret
+ 	ld de, SFX_GET_COIN_FROM_SLOTS
+ 	call PlaySFX
+ 	ret
 ```
 
 
 ## Team Rocket battle music is not used for Executives or Scientists
 
-This is a bug with `PlayBattleMusic` in [engine/battle/start_battle.asm](/engine/battle/start_battle.asm):
-
-
-**Fix:**
+**Fix:** Edit `PlayBattleMusic` in [engine/battle/start_battle.asm](/engine/battle/start_battle.asm):
 
 ```diff
-	ld de, MUSIC_ROCKET_BATTLE
-	cp GRUNTM
-	jr z, .done
-	cp GRUNTF
-	jr z, .done
+ 	ld de, MUSIC_ROCKET_BATTLE
+ 	cp GRUNTM
+ 	jr z, .done
+ 	cp GRUNTF
+ 	jr z, .done
 +	cp EXECUTIVEM
 +	jr z, .done
 +	cp EXECUTIVEF
@@ -1051,34 +990,31 @@ This is a bug with `PlayBattleMusic` in [engine/battle/start_battle.asm](/engine
 
 ## No bump noise if standing on tile `$3E`
 
-This is a bug with `DoPlayerMovement.CheckWarp` in [engine/overworld/player_movement.asm](/engine/overworld/player_movement.asm):
-
-
-**Fix:**
+**Fix:** Edit `DoPlayerMovement.CheckWarp` in [engine/overworld/player_movement.asm](/engine/overworld/player_movement.asm):
 
 ```diff
-.CheckWarp:
+ .CheckWarp:
 -; Bug: Since no case is made for STANDING here, it will check
 -; [.edgewarps + $ff]. This resolves to $3e at $8035a.
 -; This causes wd041 to be nonzero when standing on tile $3e,
 -; making bumps silent.
 -
-	ld a, [wWalkingDirection]
+ 	ld a, [wWalkingDirection]
 -	; cp STANDING
 -	; jr z, .not_warp
 +	cp STANDING
 +	jr z, .not_warp
-	ld e, a
-	ld d, 0
-	ld hl, .EdgeWarps
-	add hl, de
-	ld a, [wPlayerStandingTile]
-	cp [hl]
-	jr nz, .not_warp
+ 	ld e, a
+ 	ld d, 0
+ 	ld hl, .EdgeWarps
+ 	add hl, de
+ 	ld a, [wPlayerStandingTile]
+ 	cp [hl]
+ 	jr nz, .not_warp
 
-	ld a, 1
-	ld [wd041], a
-	ld a, [wWalkingDirection]
+ 	ld a, 1
+ 	ld [wd041], a
+ 	ld a, [wWalkingDirection]
 -	; This is in the wrong place.
 -	cp STANDING
 -	jr z, .not_warp
@@ -1089,13 +1025,12 @@ This is a bug with `DoPlayerMovement.CheckWarp` in [engine/overworld/player_move
 
 ([Video](https://www.youtube.com/watch?v=z305e4sIO24))
 
-The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm):
+The exact cause of this bug is unknown.
 
-
-**Workaround:**
+**Workaround:** Edit `DexEntryScreen_MenuActionJumptable.Cry` in [engine/pokedex/pokedex.asm](/engine/pokedex/pokedex.asm):
 
 ```diff
-.Cry:
+ .Cry:
 -	call Pokedex_GetSelectedMon
 -	ld a, [wd265]
 -	call GetCryIndex
@@ -1104,7 +1039,7 @@ The exact cause is unknown, but a workaround exists for `DexEntryScreen_MenuActi
 -	call PlayCry
 +	ld a, [wCurPartySpecies]
 +	call PlayMonCry
-	ret
+ 	ret
 ```
 
 
@@ -1134,29 +1069,26 @@ This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/p
 
 This bug prevents you from using blocksets with more than 128 blocks.
 
-In [home/map.asm](/home/map.asm):
-
-
-**Fix:**
+**Fix:** Edit `LoadMetatiles` in [home/map.asm](/home/map.asm):
 
 ```diff
-	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
+ 	; Set hl to the address of the current metatile data ([wTilesetBlocksAddress] + (a) tiles).
 -	; This is buggy; it wraps around past 128 blocks.
 -	; To fix, uncomment the line below.
 -	add a ; Comment or delete this line to fix the above bug.
-	ld l, a
-	ld h, 0
+ 	ld l, a
+ 	ld h, 0
 -	; add hl, hl
 +	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld a, [wTilesetBlocksAddress]
-	add l
-	ld l, a
-	ld a, [wTilesetBlocksAddress + 1]
-	adc h
-	ld h, a
+ 	add hl, hl
+ 	add hl, hl
+ 	add hl, hl
+ 	ld a, [wTilesetBlocksAddress]
+ 	add l
+ 	ld l, a
+ 	ld a, [wTilesetBlocksAddress + 1]
+ 	adc h
+ 	ld h, a
 ```
 
 
@@ -1171,15 +1103,12 @@ In [home/map.asm](/home/map.asm):
 
 This bug is why the Lapras in [maps/UnionCaveB2F.asm](/maps/UnionCaveB2F.asm), which uses `SPRITEMOVEDATA_SWIM_WANDER`, is not restricted by its `1, 1` movement radius.
 
-This is a bug with `CanObjectMoveInDirection` in [engine/overworld/npc_movement.asm](/engine/overworld/npc_movement.asm):
-
-
-**Fix:**
+**Fix:** Edit `CanObjectMoveInDirection` in [engine/overworld/npc_movement.asm](/engine/overworld/npc_movement.asm):
 
 ```diff
-	ld hl, OBJECT_FLAGS1
-	add hl, bc
-	bit NOCLIP_TILES_F, [hl] ; lost, uncomment next line to fix
+ 	ld hl, OBJECT_FLAGS1
+ 	add hl, bc
+ 	bit NOCLIP_TILES_F, [hl] ; lost, uncomment next line to fix
 -	; jr nz, .noclip_tiles
 +	jr nz, .noclip_tiles
 ```
@@ -1191,32 +1120,29 @@ This is a bug with `CanObjectMoveInDirection` in [engine/overworld/npc_movement.
 
 This bug can allow you to talk to Eusine in Celadon City and encounter Ho-Oh with only traded legendary beasts.
 
-In [engine/pokemon/search.asm](/engine/pokemon/search.asm):
-
-
-**Fix:**
+**Fix:** Edit `CheckOwnMon` in [engine/pokemon/search.asm](/engine/pokemon/search.asm):
 
 ```diff
-; check OT
+ ; check OT
 -; This only checks five characters, which is fine for the Japanese version,
 -; but in the English version the player name is 7 characters, so this is wrong.
 
-	ld hl, wPlayerName
+ 	ld hl, wPlayerName
 
 -rept NAME_LENGTH_JAPANESE + -2 ; should be PLAYER_NAME_LENGTH + -2
 +rept PLAYER_NAME_LENGTH + -2
-	ld a, [de]
-	cp [hl]
-	jr nz, .notfound
-	cp "@"
-	jr z, .found ; reached end of string
-	inc hl
-	inc de
-endr
+ 	ld a, [de]
+ 	cp [hl]
+ 	jr nz, .notfound
+ 	cp "@"
+ 	jr z, .found ; reached end of string
+ 	inc hl
+ 	inc de
+ endr
 
-	ld a, [de]
-	cp [hl]
-	jr z, .found
+ 	ld a, [de]
+ 	cp [hl]
+ 	jr z, .found
 ```
 
 
@@ -1224,21 +1150,18 @@ endr
 
 This bug can affect Mew or Pokémon other than Ditto that used Transform via Mirror Move or Sketch.
 
-This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
-
-
-**Fix:**
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```diff
-	ld hl, wEnemySubStatus5
-	ld a, [hl]
-	push af
-	set SUBSTATUS_TRANSFORMED, [hl]
+ 	ld hl, wEnemySubStatus5
+ 	ld a, [hl]
+ 	push af
+ 	set SUBSTATUS_TRANSFORMED, [hl]
 
 -; This code is buggy. Any wild Pokémon that has Transformed will be
 -; caught as a Ditto, even if it was something else like Mew.
 -; To fix, do not set [wTempEnemyMonSpecies] to DITTO.
-	bit SUBSTATUS_TRANSFORMED, a
+ 	bit SUBSTATUS_TRANSFORMED, a
 -	jr nz, .ditto
 -	jr .not_ditto
 +	jr nz, .load_data
@@ -1250,21 +1173,21 @@ This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/i
 -
 -.not_ditto
 -	set SUBSTATUS_TRANSFORMED, [hl]
-	ld hl, wEnemyBackupDVs
-	ld a, [wEnemyMonDVs]
-	ld [hli], a
-	ld a, [wEnemyMonDVs + 1]
-	ld [hl], a
+ 	ld hl, wEnemyBackupDVs
+ 	ld a, [wEnemyMonDVs]
+ 	ld [hli], a
+ 	ld a, [wEnemyMonDVs + 1]
+ 	ld [hl], a
 
-.load_data
-	ld a, [wTempEnemyMonSpecies]
-	ld [wCurPartySpecies], a
-	ld a, [wEnemyMonLevel]
-	ld [wCurPartyLevel], a
-	farcall LoadEnemyMon
+ .load_data
+ 	ld a, [wTempEnemyMonSpecies]
+ 	ld [wCurPartySpecies], a
+ 	ld a, [wEnemyMonLevel]
+ 	ld [wCurPartyLevel], a
+ 	farcall LoadEnemyMon
 
-	pop af
-	ld [wEnemySubStatus5], a
+ 	pop af
+ 	ld [wEnemySubStatus5], a
 ```
 
 
@@ -1272,97 +1195,87 @@ This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/i
 
 ([Video](https://www.youtube.com/watch?v=v1ErZdLCIyU))
 
-This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
-
-
-**Fix:**
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```diff
-.room_in_party
-	xor a
-	ld [wWildMon], a
+ .room_in_party
+ 	xor a
+ 	ld [wWildMon], a
 -	ld a, [wCurItem]
 -	cp PARK_BALL
 +	ld a, [wBattleType]
 +	cp BATTLETYPE_CONTEST
-	call nz, ReturnToBattle_UseBall
+ 	call nz, ReturnToBattle_UseBall
 ```
 
 
 ## `HELD_CATCH_CHANCE` has no effect
 
-This is a bug with `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
-
-
-**Fix:**
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](/engine/items/item_effects.asm):
 
 ```diff
 -	; BUG: farcall overwrites a, and GetItemHeldEffect takes b anyway.
 -	; This is probably the reason the HELD_CATCH_CHANCE effect is never used.
 -	; Uncomment the line below to fix.
-	ld d, a
-	push de
-	ld a, [wBattleMonItem]
+ 	ld d, a
+ 	push de
+ 	ld a, [wBattleMonItem]
 -	; ld b, a
 +	ld b, a
-	farcall GetItemHeldEffect
-	ld a, b
-	cp HELD_CATCH_CHANCE
-	pop de
-	ld a, d
-	jr nz, .max_2
-	add c
-	jr nc, .max_2
-	ld a, $ff
-.max_2
+ 	farcall GetItemHeldEffect
+ 	ld a, b
+ 	cp HELD_CATCH_CHANCE
+ 	pop de
+ 	ld a, d
+ 	jr nz, .max_2
+ 	add c
+ 	jr nc, .max_2
+ 	ld a, $ff
+ .max_2
 ```
 
 
 ## Only the first three evolution entries can have Stone compatibility reported correctly
 
-This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
-
-
-**Workaround (supports up to six entries):**
+**Workaround:** Edit `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
 
 ```diff
-.DetermineCompatibility:
-	ld de, wStringBuffer1
-	ld a, BANK(EvosAttacksPointers)
-	ld bc, 2
-	call FarCopyBytes
-	ld hl, wStringBuffer1
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, wStringBuffer1
-	ld a, BANK("Evolutions and Attacks")
+ .DetermineCompatibility:
+ 	ld de, wStringBuffer1
+ 	ld a, BANK(EvosAttacksPointers)
+ 	ld bc, 2
+ 	call FarCopyBytes
+ 	ld hl, wStringBuffer1
+ 	ld a, [hli]
+ 	ld h, [hl]
+ 	ld l, a
+ 	ld de, wStringBuffer1
+ 	ld a, BANK("Evolutions and Attacks")
 -	ld bc, 10
 +	ld bc, wStringBuffer2 - wStringBuffer1
-	call FarCopyBytes
+ 	call FarCopyBytes
 ```
+
+This supports up to six entries.
 
 
 ## `EVOLVE_STAT` can break Stone compatibility reporting
 
-This is a bug with `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
-
-
-**Fix:**
+**Fix:** Edit `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
 
 ```asm
-.loop2
-	ld a, [hli]
-	and a
-	jr z, .nope
+ .loop2
+ 	ld a, [hli]
+ 	and a
+ 	jr z, .nope
 +	cp EVOLVE_STAT
 +	jr nz, .not_four_bytes
 +	inc hl
 +.not_four_bytes
-	inc hl
-	inc hl
-	cp EVOLVE_ITEM
-	jr nz, .loop2
+ 	inc hl
+ 	inc hl
+ 	cp EVOLVE_ITEM
+ 	jr nz, .loop2
 ```
 
 
@@ -1408,119 +1321,107 @@ ScriptCall:
 
 ## `LoadSpriteGFX` does not limit the capacity of `UsedSprites`
 
-In [engine/overworld/overworld.asm](/engine/overworld/overworld.asm):
-
-
-**Fix:**
+**Fix:** Edit `LoadSpriteGFX` in [engine/overworld/overworld.asm](/engine/overworld/overworld.asm):
 
 ```diff
-LoadSpriteGFX:
+ LoadSpriteGFX:
 -; Bug: b is not preserved, so it's useless as a next count.
 -; Uncomment the lines below to fix.
 -
-	ld hl, wUsedSprites
-	ld b, SPRITE_GFX_LIST_CAPACITY
-.loop
-	ld a, [hli]
-	and a
-	jr z, .done
-	push hl
-	call .LoadSprite
-	pop hl
-	ld [hli], a
-	dec b
-	jr nz, .loop
+ 	ld hl, wUsedSprites
+ 	ld b, SPRITE_GFX_LIST_CAPACITY
+ .loop
+ 	ld a, [hli]
+ 	and a
+ 	jr z, .done
+ 	push hl
+ 	call .LoadSprite
+ 	pop hl
+ 	ld [hli], a
+ 	dec b
+ 	jr nz, .loop
 
-.done
-	ret
+ .done
+ 	ret
 
-.LoadSprite:
+ .LoadSprite:
 -	; push bc
 +	push bc
-	call GetSprite
+ 	call GetSprite
 -	; pop bc
 +	pop bc
-	ld a, l
-	ret
+ 	ld a, l
+ 	ret
 ```
 
 
 ## `ChooseWildEncounter` doesn't really validate the wild Pokémon species
 
-In [engine/overworld/wildmons.asm](/engine/overworld/wildmons.asm):
-
-
-**Fix:**
+**Fix:** Edit `ChooseWildEncounter` in [engine/overworld/wildmons.asm](/engine/overworld/wildmons.asm):
 
 ```diff
-.ok
-	ld a, b
-	ld [wCurPartyLevel], a
-	ld b, [hl]
+ .ok
+ 	ld a, b
+ 	ld [wCurPartyLevel], a
+ 	ld b, [hl]
 -	; ld a, b
 +	ld a, b
-	call ValidateTempWildMonSpecies
-	jr c, .nowildbattle
+ 	call ValidateTempWildMonSpecies
+ 	jr c, .nowildbattle
 
-	cp UNOWN
-	jr nz, .done
+ 	cp UNOWN
+ 	jr nz, .done
 ```
 
 
 ## `TryObjectEvent` arbitrary code execution
 
-In [engine/overworld/events.asm](/engine/overworld/events.asm):
-
-
-**Fix:**
+**Fix:** Edit `TryObjectEvent` in [engine/overworld/events.asm](/engine/overworld/events.asm):
 
 ```diff
 -; Bug: If IsInArray returns nc, data at bc will be executed as code.
-	push bc
-	ld de, 3
-	ld hl, .pointers
-	call IsInArray
-	jr nc, .nope_bugged
-	pop bc
+ 	push bc
+ 	ld de, 3
+ 	ld hl, .pointers
+ 	call IsInArray
+ 	jr nc, .nope_bugged
+ 	pop bc
 
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+ 	inc hl
+ 	ld a, [hli]
+ 	ld h, [hl]
+ 	ld l, a
+ 	jp hl
 
-.nope_bugged
+ .nope_bugged
 -	; pop bc
 +	pop bc
-	xor a
-	ret
+ 	xor a
+ 	ret
 ```
 
 
 ## `ClearWRAM` only clears WRAM bank 1
 
-In [home/init.asm](/home/init.asm):
-
-
-**Fix:**
+**Fix:** Edit `ClearWRAM` in [home/init.asm](/home/init.asm):
 
 ```diff
-ClearWRAM::
-; Wipe swappable WRAM banks (1-7)
-; Assumes CGB or AGB
+ ClearWRAM::
+ ; Wipe swappable WRAM banks (1-7)
+ ; Assumes CGB or AGB
 
-	ld a, 1
-.bank_loop
-	push af
-	ld [rSVBK], a
-	xor a
-	ld hl, WRAM1_Begin
-	ld bc, WRAM1_End - WRAM1_Begin
-	call ByteFill
-	pop af
-	inc a
-	cp 8
+ 	ld a, 1
+ .bank_loop
+ 	push af
+ 	ld [rSVBK], a
+ 	xor a
+ 	ld hl, WRAM1_Begin
+ 	ld bc, WRAM1_End - WRAM1_Begin
+ 	call ByteFill
+ 	pop af
+ 	inc a
+ 	cp 8
 -	jr nc, .bank_loop ; Should be jr c
 +	jr c, .bank_loop
-	ret
+ 	ret
 ```

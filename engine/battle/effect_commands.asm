@@ -2679,7 +2679,7 @@ TruncateHL_BC:
 
 .finish
 	ld a, [wLinkMode]
-	cp 3
+	cp LINK_COLOSSEUM
 	jr z, .done
 ; If we go back to the loop point,
 ; it's the same as doing this exact
