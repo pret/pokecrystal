@@ -1320,9 +1320,7 @@ wcf5d:: dw
 
 wMonType:: db ; cf5f
 
-wCurSpecies::
-wCurMove::
-	db ; cf60
+wCurSpecies:: db ; cf60
 
 wNamedObjectTypeBuffer:: db
 

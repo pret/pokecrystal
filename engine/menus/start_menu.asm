@@ -1724,7 +1724,7 @@ PrepareToPlaceMoveData:
 	ld b, $0
 	add hl, bc
 	ld a, [hl]
-	ld [wCurMove], a
+	ld [wCurSpecies], a
 	hlcoord 1, 12
 	lb bc, 5, 18
 	jp ClearBox
@@ -1741,11 +1741,11 @@ PlaceMoveData:
 	hlcoord 12, 12
 	ld de, String_MoveAtk
 	call PlaceString
-	ld a, [wCurMove]
+	ld a, [wCurSpecies]
 	ld b, a
 	hlcoord 2, 12
 	predef PrintMoveType
-	ld a, [wCurMove]
+	ld a, [wCurSpecies]
 	dec a
 	ld hl, Moves + MOVE_POWER
 	ld bc, MOVE_LENGTH

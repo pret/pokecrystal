@@ -3583,7 +3583,7 @@ UpdateMoveData:
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
-	ld [wCurMove], a
+	ld [wCurSpecies], a
 	ld [wNamedObjectIndexBuffer], a
 
 	dec a

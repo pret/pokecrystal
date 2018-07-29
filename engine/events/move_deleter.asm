@@ -27,7 +27,7 @@ MoveDeletion:
 	jr c, .declined
 	ld a, [wMenuCursorY]
 	push af
-	ld a, [wCurMove]
+	ld a, [wCurSpecies]
 	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	ld hl, .ConfirmDeleteText
