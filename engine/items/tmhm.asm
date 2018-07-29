@@ -381,7 +381,7 @@ TMHM_DisplayPocketItems:
 	ld [wTempTMHM], a
 .okay
 	predef GetTMHMMove
-	ld a, [wTempTMHM]
+	ld a, [wNamedObjectIndexBuffer]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 	pop hl

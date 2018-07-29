@@ -1492,7 +1492,7 @@ Pokedex_PrintListing:
 .loop
 	push af
 	ld a, [de]
-	ld [wTempSpecies], a
+	ld [wTempSpecies], a ; also sets wNamedObjectIndexBuffer
 	push de
 	push hl
 	call .PrintEntry
