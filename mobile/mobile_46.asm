@@ -3367,7 +3367,7 @@ Function119987:
 	ret
 
 Function1199b4:
-	ld a, [w3_d081+1]
+	ld a, [w3_d081 + 1]
 	and a
 	jr nz, .asm_1199c7
 	ld a, [w3_d081]

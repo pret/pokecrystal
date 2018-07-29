@@ -39,7 +39,7 @@ Predef::
 	ld a, h
 	ld [wPredefTemp], a
 	ld a, l
-	ld [wPredefTemp+1], a
+	ld [wPredefTemp + 1], a
 
 	pop hl
 	ld a, h

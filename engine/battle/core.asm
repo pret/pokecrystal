@@ -5989,7 +5989,7 @@ LoadEnemyMon:
 ; Used for Ho-Oh, Lugia and Snorlax encounters
 	ld a, [wBattleType]
 	cp BATTLETYPE_FORCEITEM
-	ld a, [wBaseItems]
+	ld a, [wBaseItem1]
 	jr z, .UpdateItem
 
 ; Failing that, it's all up to chance
@@ -6007,9 +6007,9 @@ LoadEnemyMon:
 ; From there, an 8% chance for Item2
 	call BattleRandom
 	cp 8 percent ; 8% of 25% = 2% Item2
-	ld a, [wBaseItems]
+	ld a, [wBaseItem1]
 	jr nc, .UpdateItem
-	ld a, [wBaseItems+1]
+	ld a, [wBaseItem2]
 
 .UpdateItem:
 	ld [wEnemyMonItem], a

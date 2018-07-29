@@ -213,7 +213,7 @@ GetJoypad::
 	ld a, l
 	ld [wAutoInputAddress], a
 	ld a, h
-	ld [wAutoInputAddress+1], a
+	ld [wAutoInputAddress + 1], a
 	jr .finishauto
 
 .stopauto
@@ -235,7 +235,7 @@ StartAutoInput::
 	ld a, l
 	ld [wAutoInputAddress], a
 	ld a, h
-	ld [wAutoInputAddress+1], a
+	ld [wAutoInputAddress + 1], a
 ; Start reading the stream immediately.
 	xor a
 	ld [wAutoInputLength], a
@@ -254,7 +254,7 @@ StopAutoInput::
 	xor a
 	ld [wAutoInputBank], a
 	ld [wAutoInputAddress], a
-	ld [wAutoInputAddress+1], a
+	ld [wAutoInputAddress + 1], a
 	ld [wAutoInputLength], a
 ; Back to normal input.
 	ld [wInputType], a

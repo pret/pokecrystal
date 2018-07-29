@@ -2422,7 +2422,7 @@ _PlayCry::
 	add hl, bc
 	ld a, [wCryLength]
 	ld [hli], a
-	ld a, [wCryLength+1]
+	ld a, [wCryLength + 1]
 	ld [hl], a
 .start
 	call StartChannel

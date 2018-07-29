@@ -983,7 +983,7 @@ PlayerEventScriptPointers:
 	dba Script_OverworldWhiteout ; PLAYEREVENT_WHITEOUT
 	dba HatchEggScript           ; PLAYEREVENT_HATCH
 	dba ChangeDirectionScript    ; PLAYEREVENT_JOYCHANGEFACING
-	dba Invalid_0x96c2d          ; 10
+	dba Invalid_0x96c2d          ; (NUM_PLAYER_EVENTS)
 
 Invalid_0x96c2d:
 	end
