@@ -2138,40 +2138,40 @@ Pokedex_PutScrollbarOAM:
 	ld hl, wDexListingScrollOffset
 	add [hl]
 	cp e
-	jr z, .asm_4133f
-	ld hl, $0
-	ld bc, $79
+	jr z, .max
+	ld hl, 0
+	ld bc, 121 ; max y - min y
 	call AddNTimes
 	ld e, l
 	ld d, h
-	ld b, $0
+	ld b, 0
 	ld a, d
 	or e
-	jr z, .asm_41341
+	jr z, .done
 	ld a, [wDexListingEnd]
 	ld c, a
-.asm_41333
+.loop
 	ld a, e
 	sub c
 	ld e, a
 	ld a, d
-	sbc $0
+	sbc 0
 	ld d, a
-	jr c, .asm_41341
+	jr c, .done
 	inc b
-	jr .asm_41333
-.asm_4133f
-	ld b, $79
-.asm_41341
-	ld a, $14
+	jr .loop
+.max
+	ld b, 121 ; max y - min y
+.done
+	ld a, 20 ; min y
 	add b
 	pop hl
 	ld [hli], a
-	ld a, $a1
+	ld a, 161 ; x
 	ld [hli], a
-	ld a, $f
+	ld a, $0f ; tile id
 	ld [hli], a
-	ld [hl], $0
+	ld [hl], 0 ; attributes
 	ret
 
 Pokedex_InitArrowCursor:
