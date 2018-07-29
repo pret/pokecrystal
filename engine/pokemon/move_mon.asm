@@ -52,7 +52,7 @@ TryAddMonToParty:
 	and a
 	jr nz, .skipnickname
 	ld a, [wCurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wPartyMonNicknames
 	ld a, [hMoveMon]
@@ -185,11 +185,11 @@ endr
 
 .registerpokedex
 	ld a, [wCurPartySpecies]
-	ld [wd265], a
+	ld [wTempSpecies], a
 	dec a
 	push de
 	call CheckCaughtMon
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	dec a
 	call SetSeenAndCaughtMon
 	pop de
@@ -750,7 +750,7 @@ RestorePPofDepositedPokemon:
 	farcall GetMaxPPOfMove
 	pop de
 	pop hl
-	ld a, [wd265]
+	ld a, [wTempPP]
 	ld b, a
 	ld a, [de]
 	and %11000000
@@ -970,7 +970,7 @@ SendMonIntoBox:
 	call CopyBytes
 
 	ld a, [wCurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 
 	ld de, sBoxMonNicknames
@@ -1669,7 +1669,7 @@ GivePoke::
 
 .done
 	ld a, [wCurPartySpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld [wTempEnemyMonSpecies], a
 	call GetPokemonName
 	ld hl, wStringBuffer1

@@ -2,10 +2,10 @@ NamesPointers::
 ; entries correspond to GetName constants (see constants/text_constants.asm)
 	dba PokemonNames        ; MON_NAME (not used; jumps to GetPokemonName)
 	dba MoveNames           ; MOVE_NAME
-	dbw 0, NULL             ; DUMMY_NAME
+	dba NULL                ; DUMMY_NAME
 	dba ItemNames           ; ITEM_NAME
-	dbw 0, wPartyMonOT       ; PARTY_OT_NAME
-	dbw 0, wOTPartyMonOT     ; ENEMY_OT_NAME
+	dbw 0, wPartyMonOT      ; PARTY_OT_NAME
+	dbw 0, wOTPartyMonOT    ; ENEMY_OT_NAME
 	dba TrainerClassNames   ; TRAINER_NAME
 	dbw 4, MoveDescriptions ; MOVE_DESC_NAME_BROKEN (wrong bank)
 
@@ -23,7 +23,7 @@ GetName::
 	jr nz, .NotPokeName
 
 	ld a, [wCurSpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, MON_NAME_LENGTH
 	add hl, de
@@ -110,7 +110,7 @@ GetBasePokemonName::
 	ret
 
 GetPokemonName::
-; Get Pokemon name wd265.
+; Get Pokemon name for wNamedObjectIndexBuffer.
 
 	ld a, [hROMBank]
 	push af
@@ -119,7 +119,7 @@ GetPokemonName::
 	rst Bankswitch
 
 ; Each name is ten characters
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	dec a
 	ld d, 0
 	ld e, a
@@ -147,11 +147,11 @@ GetPokemonName::
 	ret
 
 GetItemName::
-; Get item name wd265.
+; Get item name for wNamedObjectIndexBuffer.
 
 	push hl
 	push bc
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 
 	cp TM01
 	jr nc, .TM
@@ -170,12 +170,12 @@ GetItemName::
 	ret
 
 GetTMHMName::
-; Get TM/HM name by item id wd265.
+; Get TM/HM name for item wNamedObjectIndexBuffer.
 
 	push hl
 	push de
 	push bc
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	push af
 
 ; TM/HM prefix
@@ -197,7 +197,7 @@ GetTMHMName::
 
 ; TM/HM number
 	push de
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	ld c, a
 	callfar GetTMHMNumber
 	pop de
@@ -235,7 +235,7 @@ GetTMHMName::
 	ld [de], a
 
 	pop af
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	pop bc
 	pop de
 	pop hl

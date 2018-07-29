@@ -121,10 +121,10 @@ Function170c06:
 	push hl
 	ld de, 0
 	xor a
-	ld [wd265], a
+	ld [wTempByteValue], a
 .asm_170c30
 	ld hl, wPartyMon1HP
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	call GetPartyLocation
 	ld a, [hli]
 	ld b, a
@@ -143,9 +143,9 @@ Function170c06:
 	push hl
 	pop de
 	jr c, .asm_170c58
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	inc a
-	ld [wd265], a
+	ld [wTempByteValue], a
 	cp $3
 	jr c, .asm_170c30
 	jr .asm_170c5b

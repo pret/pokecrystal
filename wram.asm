@@ -1320,9 +1320,7 @@ wcf5d:: dw
 
 wMonType:: db ; cf5f
 
-wCurSpecies::
-wCurMove::
-	db ; cf60
+wCurSpecies:: db ; cf60
 
 wNamedObjectTypeBuffer:: db
 
@@ -1675,11 +1673,7 @@ wRadioTextEnd::
 
 NEXTU ; d002
 ; lucky number show
-wLuckyNumberDigit1Buffer:: db
-wLuckyNumberDigit2Buffer:: db
-wLuckyNumberDigit3Buffer:: db
-wLuckyNumberDigit4Buffer:: db
-wLuckyNumberDigit5Buffer:: db
+wLuckyNumberDigitsBuffer:: ds 5
 
 NEXTU ; d002
 ; movement buffer data
@@ -1701,7 +1695,7 @@ NEXTU ; d002
 ; trainer HUD data
 	ds 1
 wPlaceBallsDirection:: db
-wTrainerHUDTiles:: db
+wTrainerHUDTiles:: ds 4
 
 NEXTU ; d002
 ; mobile participant nicknames
@@ -1731,7 +1725,8 @@ wd003:: db
 wd004:: db
 
 ; mobile?
-	ds 3
+	ds 1
+wd006:: ds 2
 wd008:: ds 2
 	ds 2
 wd00c:: ds 1
@@ -1886,7 +1881,7 @@ wTMHMPocketScrollPosition::     db
 wSwitchMon::
 wSwitchItem::
 wMoveSwapBuffer::
-wd0e3::
+wd0e3:: ; mobile
 	db
 
 wMenuScrollPosition:: ds 4
@@ -2199,11 +2194,24 @@ wPutativeTMHMMove:: db
 wInitListType:: db
 wBattleHasJustStarted:: db
 
+; d265 has many different short-term uses
 wNamedObjectIndexBuffer::
-wCurTMHM::
+wDeciramBuffer::
+wTempByteValue::
+wNumSetBits::
 wTypeMatchup::
-wFoundMatchingIDInParty::
-wd265::
+wCurType::
+wTempSpecies::
+wTempIconSpecies::
+wTempTMHM::
+wTempPP::
+wNextBoxOrPartyIndex::
+wChosenCableClubRoom::
+wBreedingCompatibility::
+wMoveGrammar::
+wApplyStatLevelMultipliersToEnemy::
+wUsePPUp::
+wd265:: ; mobile
 	db
 
 wFailedToFlee:: db

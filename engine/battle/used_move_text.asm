@@ -26,7 +26,7 @@ UsedMoveText:
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	ld [wd265], a
+	ld [wMoveGrammar], a
 
 	push hl
 	farcall CheckUserIsCharging
@@ -34,13 +34,12 @@ UsedMoveText:
 	jr nz, .grammar
 
 	; update last move
-	ld a, [wd265]
+	ld a, [wMoveGrammar]
 	ld [hl], a
 	ld [de], a
 
 .grammar
-	call GetMoveGrammar
-; wd265 now contains MoveGrammar
+	call GetMoveGrammar ; convert move id to grammar index
 
 ; everything except 'instead' made redundant in localization
 
@@ -51,7 +50,7 @@ UsedMoveText:
 	ret nz
 
 	; check move grammar
-	ld a, [wd265]
+	ld a, [wMoveGrammar]
 	cp $3
 	ld hl, UsedMove2Text
 	ret c
@@ -89,14 +88,14 @@ MoveNameText:
 	ld hl, .endusedmovetexts
 
 ; get move id
-	ld a, [wd265]
+	ld a, [wMoveGrammar]
 
 ; 2-byte pointer
 	add a
 
 ; seek
 	push bc
-	ld b, $0
+	ld b, 0
 	ld c, a
 	add hl, bc
 	pop bc
@@ -132,13 +131,13 @@ EndUsedMove5Text:
 	db "@"
 
 GetMoveGrammar:
-; store move grammar type in wd265
+; store move grammar type in wMoveGrammar
 
 	push bc
-; c = move id
-	ld a, [wd265]
-	ld c, a
-	ld b, $0
+; wMoveGrammar contains move id
+	ld a, [wMoveGrammar]
+	ld c, a ; move id
+	ld b, 0 ; grammar index
 
 ; read grammar table
 	ld hl, MoveGrammar
@@ -158,9 +157,9 @@ GetMoveGrammar:
 	jr .loop
 
 .end
-; wd265 now contains move grammar
+; wMoveGrammar now contains move grammar
 	ld a, b
-	ld [wd265], a
+	ld [wMoveGrammar], a
 
 ; we're done
 	pop bc

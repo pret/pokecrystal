@@ -318,7 +318,7 @@ Function108229:
 
 MobileTradeAnim_InitSpeciesName:
 	push de
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	pop de

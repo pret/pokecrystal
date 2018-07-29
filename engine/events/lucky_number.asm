@@ -1,7 +1,7 @@
 CheckForLuckyNumberWinners:
 	xor a
 	ld [wScriptVar], a
-	ld [wFoundMatchingIDInParty], a
+	ld [wTempByteValue], a
 	ld a, [wPartyCount]
 	and a
 	ret z
@@ -34,8 +34,8 @@ CheckForLuckyNumberWinners:
 	jr z, .SkipOpenBoxMon
 	call .CompareLuckyNumberToMonID
 	jr nc, .SkipOpenBoxMon
-	ld a, 1
-	ld [wFoundMatchingIDInParty], a
+	ld a, TRUE
+	ld [wTempByteValue], a
 
 .SkipOpenBoxMon:
 	push bc
@@ -81,8 +81,8 @@ CheckForLuckyNumberWinners:
 
 	call .CompareLuckyNumberToMonID ; sets wScriptVar and wCurPartySpecies appropriately
 	jr nc, .SkipBoxMon
-	ld a, 1
-	ld [wFoundMatchingIDInParty], a
+	ld a, TRUE
+	ld [wTempByteValue], a
 
 .SkipBoxMon:
 	push bc
@@ -104,7 +104,7 @@ CheckForLuckyNumberWinners:
 	and a
 	ret z ; found nothing
 	farcall StubbedTrainerRankings_LuckyNumberShow
-	ld a, [wFoundMatchingIDInParty]
+	ld a, [wTempByteValue]
 	and a
 	push af
 	ld a, [wCurPartySpecies]
@@ -127,14 +127,14 @@ CheckForLuckyNumberWinners:
 	ld hl, wBuffer1
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
-	ld hl, wLuckyNumberDigit1Buffer
+	ld hl, wLuckyNumberDigitsBuffer
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
 	ld b, 5
 	ld c, 0
-	ld hl, wLuckyNumberDigit5Buffer
-	ld de, wBuffer5
+	ld hl, wLuckyNumberDigitsBuffer + 4
+	ld de, wBuffer1 + 4
 .loop
 	ld a, [de]
 	cp [hl]

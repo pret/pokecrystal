@@ -377,7 +377,7 @@ ParseCredits:
 	push de
 	ld a, [wCreditsPos]
 	ld e, a
-	ld a, [wCreditsPos+1]
+	ld a, [wCreditsPos + 1]
 	ld d, a
 	ld hl, CreditsScript
 	add hl, de
@@ -386,7 +386,7 @@ ParseCredits:
 	ld a, e
 	ld [wCreditsPos], a
 	ld a, d
-	ld [wCreditsPos+1], a
+	ld [wCreditsPos + 1], a
 	ld a, [hl]
 	pop de
 	pop hl

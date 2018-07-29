@@ -236,7 +236,7 @@ EvolveAfterBattle_MasterLoop:
 	ld [wCurSpecies], a
 	ld [wTempMonSpecies], a
 	ld [wEvolutionNewSpecies], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 
 	push hl
@@ -293,15 +293,15 @@ EvolveAfterBattle_MasterLoop:
 	call CopyBytes
 
 	ld a, [wCurSpecies]
-	ld [wd265], a
+	ld [wTempSpecies], a
 	xor a
 	ld [wMonType], a
 	call LearnLevelMoves
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	dec a
 	call SetSeenAndCaughtMon
 
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	cp UNOWN
 	jr nz, .skip_unown
 
@@ -348,7 +348,7 @@ UpdateSpeciesNameIfNotNicknamed:
 	ld a, [wCurSpecies]
 	push af
 	ld a, [wBaseDexNo]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	pop af
 	ld [wCurSpecies], a
@@ -369,7 +369,7 @@ UpdateSpeciesNameIfNotNicknamed:
 	call AddNTimes
 	push hl
 	ld a, [wCurSpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 	pop de
@@ -415,7 +415,7 @@ Text_WhatEvolving:
 	db "@"
 
 LearnLevelMoves:
-	ld a, [wd265]
+	ld a, [wTempSpecies]
 	ld [wCurPartySpecies], a
 	dec a
 	ld b, 0
@@ -466,7 +466,7 @@ LearnLevelMoves:
 .learn
 	ld a, d
 	ld [wPutativeTMHMMove], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	call CopyName1
 	predef LearnMove
@@ -475,7 +475,7 @@ LearnLevelMoves:
 
 .done
 	ld a, [wCurPartySpecies]
-	ld [wd265], a
+	ld [wTempSpecies], a
 	ret
 
 FillMoves:

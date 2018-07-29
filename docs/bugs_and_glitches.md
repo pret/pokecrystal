@@ -306,7 +306,7 @@ This bug affects Attract, Curse, Foresight, Mean Look, Mimic, Nightmare, Spider 
 **Fix:** Edit `CheckHiddenOpponent` in [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm):
 
 ```diff
--CheckHiddenOpponent:
+ CheckHiddenOpponent:
 -; BUG: This routine is completely redundant and introduces a bug, since BattleCommand_CheckHit does these checks properly.
 -	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 -	call GetBattleVar
@@ -887,20 +887,20 @@ CopyPokemonName_Buffer1_Buffer3:
 
 ([Video](https://www.youtube.com/watch?v=eij_1060SMc))
 
+There are three things wrong here:
+
+- `wEnemyMonLevel` isn't initialized yet
+- `wBattleMonLevel` gets overwritten after it's initialized by `FindFirstAliveMonAndStartBattle`
+- `wBattleMonLevel` isn't initialized until much later when the battle is with a trainer
+
 **Fix:**
 
-There's three things wrong here.
-
-* `wEnemyMonLevel` doesn't have the value its name implies yet; it'll be populated later from `wCurPartyLevel`.
-* `wBattleMonLevel` gets overwritten between when the value is written in `FindFirstAliveMonAndStartBattle` and when it's read.
-* `wBattleMonLevel` isn't set until much later when the battle is with a trainer; extra code is needed to read a trainer's party and get the level of their lead Pokémon.
-
-First, in [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm):
+First, edit [engine/battle/battle_transition.asm](/engine/battle/battle_transition.asm):
 
 ```diff
-StartTrainerBattle_DetermineWhichAnimation:
-; The screen flashes a different number of times depending on the level of
-; your lead Pokemon relative to the opponent's.
+ StartTrainerBattle_DetermineWhichAnimation:
+ ; The screen flashes a different number of times depending on the level of
+ ; your lead Pokemon relative to the opponent's.
 -; BUG: wBattleMonLevel and wEnemyMonLevel are not set at this point, so whatever
 -; values happen to be there will determine the animation.
 +	ld a, [wOtherTrainerClass]
@@ -927,43 +927,43 @@ StartTrainerBattle_DetermineWhichAnimation:
 	ld de, 0
 -	ld a, [wBattleMonLevel]
 +	ld a, [hl]
-	add 3
+ 	add 3
 -	ld hl, wEnemyMonLevel
 +	ld hl, wCurPartyLevel
-	cp [hl]
-	jr nc, .not_stronger
-	set TRANS_STRONGER_F, e
-.not_stronger
-	ld a, [wEnvironment]
-	cp CAVE
-	jr z, .cave
-	cp ENVIRONMENT_5
-	jr z, .cave
-	cp DUNGEON
-	jr z, .cave
-	set TRANS_NO_CAVE_F, e
-.cave
-	ld hl, .StartingPoints
-	add hl, de
-	ld a, [hl]
-	ld [wJumptableIndex], a
-	ret
+ 	cp [hl]
+ 	jr nc, .not_stronger
+ 	set TRANS_STRONGER_F, e
+ .not_stronger
+ 	ld a, [wEnvironment]
+ 	cp CAVE
+ 	jr z, .cave
+ 	cp ENVIRONMENT_5
+ 	jr z, .cave
+ 	cp DUNGEON
+ 	jr z, .cave
+ 	set TRANS_NO_CAVE_F, e
+ .cave
+ 	ld hl, .StartingPoints
+ 	add hl, de
+ 	ld a, [hl]
+ 	ld [wJumptableIndex], a
+ 	ret
 
-.StartingPoints:
-; entries correspond to TRANS_* constants
-	db BATTLETRANSITION_CAVE
-	db BATTLETRANSITION_CAVE_STRONGER
-	db BATTLETRANSITION_NO_CAVE
-	db BATTLETRANSITION_NO_CAVE_STRONGER
+ .StartingPoints:
+ ; entries correspond to TRANS_* constants
+ 	db BATTLETRANSITION_CAVE
+ 	db BATTLETRANSITION_CAVE_STRONGER
+ 	db BATTLETRANSITION_NO_CAVE
+ 	db BATTLETRANSITION_NO_CAVE_STRONGER
 ```
 
-In [engine/battle/start_battle.asm](/engine/battle/start_battle.asm):
+Then edit [engine/battle/start_battle.asm](/engine/battle/start_battle.asm):
 
 ```diff
-FindFirstAliveMonAndStartBattle:
-	xor a
-	ld [hMapAnims], a
-	call DelayFrame
+ FindFirstAliveMonAndStartBattle:
+ 	xor a
+ 	ld [hMapAnims], a
+ 	call DelayFrame
 -	ld b, 6
 -	ld hl, wPartyMon1HP
 -	ld de, PARTYMON_STRUCT_LENGTH - 1
@@ -981,57 +981,58 @@ FindFirstAliveMonAndStartBattle:
 -	add hl, de
 -	ld a, [hl]
 -	ld [wBattleMonLevel], a
-	predef DoBattleTransition
+ 	predef DoBattleTransition
 ```
 
-Finally, add this code to the end of [engine/battle/read_trainer_party.asm](/engine/battle/read_trainer_party.asm):
+Finally, edit [engine/battle/read_trainer_party.asm](/engine/battle/read_trainer_party.asm):
 
 ```asm
-SetTrainerBattleLevel:
-	ld a, 255
-	ld [wCurPartyLevel], a
-
-	ld a, [wInBattleTowerBattle]
-	bit 0, a
-	ret nz
-
-	ld a, [wLinkMode]
-	and a
-	ret nz
-
-	ld a, [wOtherTrainerClass]
-	dec a
-	ld c, a
-	ld b, 0
-	ld hl, TrainerGroups
-rept 2
-	add hl, bc
-endr
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	ld a, [wOtherTrainerID]
-	ld b, a
-.skip_trainer
-	dec b
-	jr z, .got_trainer
-.loop1
-	ld a, [hli]
-	cp $ff
-	jr nz, .loop1
-	jr .skip_trainer
-.got_trainer
-
-.skip_name
-	ld a, [hli]
-	cp "@"
-	jr nz, .skip_name
-
-	inc hl
-	ld a, [hl]
-	ld [wCurPartyLevel], a
-	ret
+ INCLUDE "data/trainers/parties.asm"
++
++SetTrainerBattleLevel:
++	ld a, 255
++	ld [wCurPartyLevel], a
++
++	ld a, [wInBattleTowerBattle]
++	bit 0, a
++	ret nz
++
++	ld a, [wLinkMode]
++	and a
++	ret nz
++
++	ld a, [wOtherTrainerClass]
++	dec a
++	ld c, a
++	ld b, 0
++	ld hl, TrainerGroups
++	add hl, bc
++	add hl, bc
++	ld a, [hli]
++	ld h, [hl]
++	ld l, a
++
++	ld a, [wOtherTrainerID]
++	ld b, a
++.skip_trainer
++	dec b
++	jr z, .got_trainer
++.loop1
++	ld a, [hli]
++	cp $ff
++	jr nz, .loop1
++	jr .skip_trainer
++.got_trainer
++
++.skip_name
++	ld a, [hli]
++	cp "@"
++	jr nz, .skip_name
++
++	inc hl
++	ld a, [hl]
++	ld [wCurPartyLevel], a
++	ret
 ```
 
 
@@ -1138,7 +1139,7 @@ The exact cause of this bug is unknown.
 ```diff
  .Cry:
 -	call Pokedex_GetSelectedMon
--	ld a, [wd265]
+-	ld a, [wTempSpecies]
 -	call GetCryIndex
 -	ld e, c
 -	ld d, b

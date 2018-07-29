@@ -185,7 +185,7 @@ CalcMagikarpLength:
 
 	ld hl, MagikarpLengths
 	ld a, 2
-	ld [wd265], a
+	ld [wTempByteValue], a
 
 .read
 	ld a, [hli]
@@ -214,7 +214,7 @@ CalcMagikarpLength:
 	ld [hMultiplicand + 1], a
 	ld a, 100
 	ld [hMultiplicand + 2], a
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	ld [hMultiplier], a
 	call Multiply
 	ld b, 0
@@ -228,9 +228,9 @@ CalcMagikarpLength:
 
 .next
 	inc hl ; align to next triplet
-	ld a, [wd265]
+	ld a, [wTempByteValue]
 	inc a
-	ld [wd265], a
+	ld [wTempByteValue], a
 	cp 16
 	jr c, .read
 

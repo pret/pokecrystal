@@ -22,7 +22,7 @@ PrintLevel_Force3Digits::
 	ld c, 3
 
 Print8BitNumRightAlign::
-	ld [wd265], a
-	ld de, wd265
+	ld [wDeciramBuffer], a
+	ld de, wDeciramBuffer
 	ld b, PRINTNUM_RIGHTALIGN | 1
 	jp PrintNum

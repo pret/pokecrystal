@@ -694,8 +694,8 @@ PrintHour:
 	inc hl
 	pop bc
 	call AdjustHourForAMorPM
-	ld [wd265], a
-	ld de, wd265
+	ld [wDeciramBuffer], a
+	ld de, wDeciramBuffer
 	call PrintTwoDigitNumberRightAlign
 	ret
 

@@ -21,7 +21,7 @@ BattleCommand_Thief:
 
 ; Can't steal mail.
 
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld d, a
 	farcall ItemIsMail
 	ret c
@@ -45,7 +45,7 @@ BattleCommand_Thief:
 	ld [de], a
 
 	call .playeritem
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	ld [hl], a
 	ld [de], a
 	jr .stole
@@ -68,7 +68,7 @@ BattleCommand_Thief:
 
 ; Can't steal mail!
 
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	ld d, a
 	farcall ItemIsMail
 	ret c
@@ -86,7 +86,7 @@ BattleCommand_Thief:
 	ld [de], a
 
 	call .enemyitem
-	ld a, [wd265]
+	ld a, [wNamedObjectIndexBuffer]
 	ld [hl], a
 	ld [de], a
 

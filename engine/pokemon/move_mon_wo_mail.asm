@@ -5,21 +5,21 @@ InsertPokemonIntoBox:
 	call InsertSpeciesIntoBoxOrParty
 	ld a, [sBoxCount]
 	dec a
-	ld [wd265], a
+	ld [wNextBoxOrPartyIndex], a
 	ld hl, sBoxMonNicknames
 	ld bc, MON_NAME_LENGTH
 	ld de, wBufferMonNick
 	call InsertDataIntoBoxOrParty
 	ld a, [sBoxCount]
 	dec a
-	ld [wd265], a
+	ld [wNextBoxOrPartyIndex], a
 	ld hl, sBoxMonOT
 	ld bc, NAME_LENGTH
 	ld de, wBufferMonOT
 	call InsertDataIntoBoxOrParty
 	ld a, [sBoxCount]
 	dec a
-	ld [wd265], a
+	ld [wNextBoxOrPartyIndex], a
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld de, wBufferMon
@@ -42,21 +42,21 @@ InsertPokemonIntoParty:
 	call InsertSpeciesIntoBoxOrParty
 	ld a, [wPartyCount]
 	dec a
-	ld [wd265], a
+	ld [wNextBoxOrPartyIndex], a
 	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
 	ld de, wBufferMonNick
 	call InsertDataIntoBoxOrParty
 	ld a, [wPartyCount]
 	dec a
-	ld [wd265], a
+	ld [wNextBoxOrPartyIndex], a
 	ld hl, wPartyMonOT
 	ld bc, NAME_LENGTH
 	ld de, wBufferMonOT
 	call InsertDataIntoBoxOrParty
 	ld a, [wPartyCount]
 	dec a
-	ld [wd265], a
+	ld [wNextBoxOrPartyIndex], a
 	ld hl, wPartyMons
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld de, wBufferMon
@@ -85,7 +85,7 @@ InsertDataIntoBoxOrParty:
 	push de
 	push hl
 	push bc
-	ld a, [wd265]
+	ld a, [wNextBoxOrPartyIndex]
 	dec a
 	call AddNTimes
 	push hl
@@ -95,7 +95,7 @@ InsertDataIntoBoxOrParty:
 	pop hl
 .loop
 	push bc
-	ld a, [wd265]
+	ld a, [wNextBoxOrPartyIndex]
 	ld b, a
 	ld a, [wCurPartyMon]
 	cp b
@@ -116,9 +116,9 @@ InsertDataIntoBoxOrParty:
 	sbc b
 	ld h, a
 	pop de
-	ld a, [wd265]
+	ld a, [wNextBoxOrPartyIndex]
 	dec a
-	ld [wd265], a
+	ld [wNextBoxOrPartyIndex], a
 	jr .loop
 
 .insert

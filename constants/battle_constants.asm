@@ -63,8 +63,8 @@ MOVE_LENGTH EQU const_value
 	const STAT_SATK
 NUM_EXP_STATS EQU const_value + -1
 	const STAT_SDEF
-NUM_STATS EQU const_value +- 1
-STAT_SPC EQU STAT_SATK
+NUM_STATS EQU const_value + -1
+NUM_BATTLE_STATS EQU NUM_STATS + -1 ; don't count HP
 
 ; stat formula constants
 STAT_MIN_NORMAL EQU 5
@@ -243,6 +243,12 @@ SUBSTATUS_CURLED EQU 0
 	const BATTLEACTION_D
 	const BATTLEACTION_E
 	const BATTLEACTION_FORFEIT
+
+; wBattlePlayerAction
+	const_def
+	const BATTLEPLAYERACTION_USEMOVE
+	const BATTLEPLAYERACTION_USEITEM
+	const BATTLEPLAYERACTION_SWITCH
 
 ; wBattleResult
 	const_def

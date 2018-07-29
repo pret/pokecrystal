@@ -28,7 +28,7 @@ MoveDeletion:
 	ld a, [wMenuCursorY]
 	push af
 	ld a, [wCurSpecies]
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetMoveName
 	ld hl, .ConfirmDeleteText
 	call PrintText

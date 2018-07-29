@@ -9,7 +9,7 @@ PrintItemDescription:
 	push de
 	farcall GetTMHMItemMove
 	pop hl
-	ld a, [wd265]
+	ld a, [wTempTMHM]
 	ld [wCurSpecies], a
 	predef PrintMoveDesc
 	ret

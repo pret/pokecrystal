@@ -153,43 +153,43 @@ Don't enforce `org $4000` in pokecrystal.link.
 Modify `GetFrontpicPointer`:
 
 ```diff
-	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr z, .unown
-	ld a, [wCurPartySpecies]
+ 	ld a, [wCurPartySpecies]
+ 	cp UNOWN
+ 	jr z, .unown
+ 	ld a, [wCurPartySpecies]
 +	ld hl, PokemonPicPointers
-	ld d, BANK(PokemonPicPointers)
-	jr .ok
+ 	ld d, BANK(PokemonPicPointers)
+ 	jr .ok
 
-.unown
-	ld a, [wUnownLetter]
+ .unown
+ 	ld a, [wUnownLetter]
 +	ld hl, UnownPicPointers
-	ld d, BANK(UnownPicPointers)
+ 	ld d, BANK(UnownPicPointers)
 
-.ok
+ .ok
 -	ld hl, PokemonPicPointers ; UnownPicPointers
-	dec a
-	ld bc, 6
-	call AddNTimes
+ 	dec a
+ 	ld bc, 6
+ 	call AddNTimes
 ```
 
 And `GetMonBackpic`:
 
-```asm
+```diff
 -	; These are assumed to be at the same address in their respective banks.
 -	ld hl, PokemonPicPointers ; UnownPicPointers
-	ld a, b
+ 	ld a, b
 +	ld hl, PokemonPicPointers
-	ld d, BANK(PokemonPicPointers)
-	cp UNOWN
-	jr nz, .ok
-	ld a, c
+ 	ld d, BANK(PokemonPicPointers)
+ 	cp UNOWN
+ 	jr nz, .ok
+ 	ld a, c
 +	ld hl, UnownPicPointers
-	ld d, BANK(UnownPicPointers)
-.ok
-	dec a
-	ld bc, 6
-	call AddNTimes
+ 	ld d, BANK(UnownPicPointers)
+ .ok
+ 	dec a
+ 	ld bc, 6
+ 	call AddNTimes
 ```
 
 
@@ -273,12 +273,12 @@ Modify `Pokedex_LoadAnyFootprint`:
 
 ```diff
 -	push hl
-	ld e, l
-	ld d, h
-	ld hl, vTiles2 tile $62
+ 	ld e, l
+ 	ld d, h
+ 	ld hl, vTiles2 tile $62
 -	lb bc, BANK(Footprints), 2
 +	lb bc, BANK(Footprints), 4
-	call Request1bpp
+ 	call Request1bpp
 -	pop hl
 -
 -	; Whoever was editing footprints forgot to fix their
@@ -359,9 +359,9 @@ Move `ITEM_C3` and `ITEM_DC` above all the TMs in every table of item data.
 Modify engine/items/items.asm:
 
 ```diff
-GetTMHMNumber::
-; Return the number of a TM/HM by item id c.
-	ld a, c
+ GetTMHMNumber::
+ ; Return the number of a TM/HM by item id c.
+ 	ld a, c
 -; Skip any dummy items.
 -	cp ITEM_C3 ; TM04-05
 -	jr c, .done
@@ -371,14 +371,14 @@ GetTMHMNumber::
 -.skip
 -	dec a
 -.done
-	sub TM01
-	inc a
-	ld c, a
-	ret
+ 	sub TM01
+ 	inc a
+ 	ld c, a
+ 	ret
 
-GetNumberedTMHM:
-; Return the item id of a TM/HM by number c.
-	ld a, c
+ GetNumberedTMHM:
+ ; Return the item id of a TM/HM by number c.
+ 	ld a, c
 -; Skip any gaps.
 -	cp ITEM_C3 - (TM01 - 1)
 -	jr c, .done
@@ -389,10 +389,10 @@ GetNumberedTMHM:
 -.skip_one
 -	inc a
 -.done
-	add TM01
-	dec a
-	ld c, a
-	ret
+ 	add TM01
+ 	dec a
+ 	ld c, a
+ 	ret
 ```
 
 

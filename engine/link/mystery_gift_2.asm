@@ -24,7 +24,7 @@ PrepMysteryGiftDataToSend:
 	call CountSetBits
 	pop de
 	pop bc
-	ld a, [wd265]
+	ld a, [wNumSetBits]
 	ld [de], a
 	inc de ; wc80f
 	call CloseSRAM

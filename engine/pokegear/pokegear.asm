@@ -1287,12 +1287,12 @@ PokegearPhoneContactSubmenu:
 	cp 12
 	jr c, .am
 	sub 12
-	ld [wd265], a
+	ld [wTempByteValue], a
 	scf
 	ret
 
 .am
-	ld [wd265], a
+	ld [wTempByteValue], a
 	and a
 	ret
 
@@ -2741,7 +2741,7 @@ TownMapMon:
 	ld d, $0
 	add hl, de
 	ld a, [hl]
-	ld [wd265], a
+	ld [wTempIconSpecies], a
 ; Get FlyMon icon
 	ld e, $08 ; starting tile in VRAM
 	farcall GetSpeciesIcon

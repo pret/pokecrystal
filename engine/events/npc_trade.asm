@@ -301,7 +301,7 @@ Trade_GetAttributeOfLastPartymon:
 
 GetTradeMonName:
 	push de
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetBasePokemonName
 	ld hl, wStringBuffer1
 	pop de

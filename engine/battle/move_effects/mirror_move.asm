@@ -24,7 +24,7 @@ BattleCommand_MirrorMove:
 .use
 	ld a, b
 	ld [hl], a
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 
 	push af
 	ld a, BATTLE_VARS_MOVE_ANIM

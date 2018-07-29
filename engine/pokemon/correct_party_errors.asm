@@ -123,7 +123,7 @@ Unreferenced_CorrectPartyErrors:
 	cp EGG
 	ld hl, .TAMAGO
 	jr z, .got_nickname
-	ld [wd265], a
+	ld [wNamedObjectIndexBuffer], a
 	call GetPokemonName
 	ld hl, wStringBuffer1
 .got_nickname
