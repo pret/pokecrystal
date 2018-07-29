@@ -1701,7 +1701,7 @@ NEXTU ; d002
 ; trainer HUD data
 	ds 1
 wPlaceBallsDirection:: db
-wTrainerHUDTiles:: db
+wTrainerHUDTiles:: ds 4
 
 NEXTU ; d002
 ; mobile participant nicknames
