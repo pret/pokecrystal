@@ -1675,11 +1675,7 @@ wRadioTextEnd::
 
 NEXTU ; d002
 ; lucky number show
-wLuckyNumberDigit1Buffer:: db
-wLuckyNumberDigit2Buffer:: db
-wLuckyNumberDigit3Buffer:: db
-wLuckyNumberDigit4Buffer:: db
-wLuckyNumberDigit5Buffer:: db
+wLuckyNumberDigitsBuffer:: ds 5
 
 NEXTU ; d002
 ; movement buffer data
@@ -1731,7 +1727,8 @@ wd003:: db
 wd004:: db
 
 ; mobile?
-	ds 3
+	ds 1
+wd006:: ds 2
 wd008:: ds 2
 	ds 2
 wd00c:: ds 1

@@ -268,7 +268,7 @@ Function4a9d7:
 	call GetNick
 	ld h, d
 	ld l, e
-	ld de, wEndFlypoint
+	ld de, wd006
 	ld bc, 6
 	call CopyBytes
 	ld a, [wd003]
