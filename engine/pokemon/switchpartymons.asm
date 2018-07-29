@@ -1,5 +1,5 @@
 _SwitchPartyMons:
-	ld a, [wd0e3]
+	ld a, [wSwitchMon]
 	dec a
 	ld [wBuffer3], a
 	ld b, a

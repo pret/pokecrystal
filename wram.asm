@@ -1883,7 +1883,7 @@ wTMHMPocketScrollPosition::     db
 wSwitchMon::
 wSwitchItem::
 wMoveSwapBuffer::
-wd0e3::
+wd0e3:: ; mobile
 	db
 
 wMenuScrollPosition:: ds 4
