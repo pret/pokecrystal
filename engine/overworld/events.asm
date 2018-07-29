@@ -972,16 +972,17 @@ DoPlayerEvent:
 	ret
 
 PlayerEventScriptPointers:
-	dba Invalid_0x96c2d          ; 0
-	dba SeenByTrainerScript      ; 1
-	dba TalkToTrainerScript      ; 2
-	dba FindItemInBallScript     ; 3
-	dba EdgeWarpScript           ; 4
-	dba WarpToNewMapScript       ; 5
-	dba FallIntoMapScript        ; 6
-	dba Script_OverworldWhiteout ; 7
-	dba HatchEggScript           ; 8
-	dba ChangeDirectionScript    ; 9
+; entries correspond to PLAYEREVENT_* constants
+	dba Invalid_0x96c2d          ; PLAYEREVENT_NONE
+	dba SeenByTrainerScript      ; PLAYEREVENT_SEENBYTRAINER
+	dba TalkToTrainerScript      ; PLAYEREVENT_TALKTOTRAINER
+	dba FindItemInBallScript     ; PLAYEREVENT_ITEMBALL
+	dba EdgeWarpScript           ; PLAYEREVENT_CONNECTION
+	dba WarpToNewMapScript       ; PLAYEREVENT_WARP
+	dba FallIntoMapScript        ; PLAYEREVENT_FALL
+	dba Script_OverworldWhiteout ; PLAYEREVENT_WHITEOUT
+	dba HatchEggScript           ; PLAYEREVENT_HATCH
+	dba ChangeDirectionScript    ; PLAYEREVENT_JOYCHANGEFACING
 	dba Invalid_0x96c2d          ; 10
 
 Invalid_0x96c2d:
