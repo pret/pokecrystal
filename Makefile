@@ -96,7 +96,7 @@ pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
 	$(eval filename := $@.$(hash))
 	$(if $(wildcard $(filename)),\
 		cp $(filename) $@,\
-		tools/lzcomp $< $@)
+		tools/lzcomp -- $< $@)
 
 
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
