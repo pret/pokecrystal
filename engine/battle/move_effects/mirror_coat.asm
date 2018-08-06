@@ -29,11 +29,11 @@ BattleCommand_MirrorCoat:
 	ld de, wStringBuffer1
 	call GetMoveData
 
-	ld a, [wStringBuffer1 + 2]
+	ld a, [wStringBuffer1 + MOVE_POWER]
 	and a
 	ret z
 
-	ld a, [wStringBuffer1 + 3]
+	ld a, [wStringBuffer1 + MOVE_TYPE]
 	cp SPECIAL
 	ret c
 
