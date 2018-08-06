@@ -54,8 +54,8 @@ GiveShuckle:
 	call CopyName2
 
 ; Engine flag for this event.
-	ld hl, wDailyFlags
-	set DAILYFLAGS_GOT_SHUCKIE_TODAY_F, [hl]
+	ld hl, wDailyFlags1
+	set DAILYFLAGS1_GOT_SHUCKIE_TODAY_F, [hl]
 	ld a, 1
 	ld [wScriptVar], a
 	ret

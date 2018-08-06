@@ -91,9 +91,9 @@ CheckDailyResetTimer::
 	call CheckDayDependentEventHL
 	ret nc
 	xor a
-	ld hl, wDailyFlags
-	ld [hli], a ; wDailyFlags
-	ld [hli], a ; wWeeklyFlags
+	ld hl, wDailyFlags1
+	ld [hli], a ; wDailyFlags1
+	ld [hli], a ; wDailyFlags2
 	ld [hli], a ; wSwarmFlags
 	ld [hl], a  ; wSwarmFlags + 1
 	ld hl, wDailyRematchFlags
@@ -207,14 +207,14 @@ CheckUnusedTwoDayTimer:
 	ret
 
 ; unused
-	ld hl, wDailyFlags
-	set DAILYFLAGS_FISH_SWARM_F, [hl]
+	ld hl, wDailyFlags1
+	set DAILYFLAGS1_FISH_SWARM_F, [hl]
 	ret
 
 ; unused
 	and a
-	ld hl, wDailyFlags
-	bit DAILYFLAGS_FISH_SWARM_F, [hl]
+	ld hl, wDailyFlags1
+	bit DAILYFLAGS1_FISH_SWARM_F, [hl]
 	ret nz
 	scf
 	ret
