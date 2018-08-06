@@ -695,7 +695,7 @@ SendGetMonIntoFromBox:
 	ld a, [sBoxCount]
 	dec a
 	ld b, a
-	call RestorePPofDepositedPokemon
+	call RestorePPOfDepositedPokemon
 .CloseSRAM_And_ClearCarryFlag:
 	call CloseSRAM
 	and a
@@ -706,7 +706,7 @@ CloseSRAM_And_SetCarryFlag:
 	scf
 	ret
 
-RestorePPofDepositedPokemon:
+RestorePPOfDepositedPokemon:
 	ld a, b
 	ld hl, sBoxMons
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -1057,7 +1057,7 @@ SendMonIntoBox:
 	call CopyBytes
 
 	ld b, 0
-	call RestorePPofDepositedPokemon
+	call RestorePPOfDepositedPokemon
 
 	call CloseSRAM
 	scf
