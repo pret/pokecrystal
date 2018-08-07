@@ -30,11 +30,11 @@ CheckPlayerMoveTypeMatchups:
 	ld hl, wEnemyMonType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
-	cp 10 + 1 ; 1.0 + 0.1
+	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr nc, .super_effective
 	and a
 	jr z, .next
-	cp 10 ; 1.0
+	cp EFFECTIVE ; 1.0
 	jr nc, .neutral
 
 .not_very_effective
@@ -75,7 +75,7 @@ CheckPlayerMoveTypeMatchups:
 	ld hl, wEnemyMonType1
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
-	cp 10 + 1 ; 1.0 + 0.1
+	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr c, .ok
 	call .DecreaseScore
 .ok
@@ -84,7 +84,7 @@ CheckPlayerMoveTypeMatchups:
 	jr z, .ok2
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
-	cp 10 + 1 ; 1.0 + 0.1
+	cp EFFECTIVE + 1 ; 1.0 + 0.1
 	jr c, .ok2
 	call .DecreaseScore
 .ok2
@@ -130,7 +130,7 @@ CheckPlayerMoveTypeMatchups:
 
 	; not very effective
 	inc c
-	cp 10
+	cp EFFECTIVE
 	jr c, .loop2
 
 	; neutral
@@ -139,7 +139,7 @@ CheckPlayerMoveTypeMatchups:
 	inc c
 	inc c
 	inc c
-	cp 10
+	cp EFFECTIVE
 	jr z, .loop2
 
 	; super effective
@@ -481,7 +481,7 @@ FindEnemyMonsWithASuperEffectiveMove:
 
 	; if neutral: load 1 and continue
 	ld e, 1
-	cp 10 + 1
+	cp EFFECTIVE + 1
 	jr c, .nope
 
 	; if super-effective: load 2 and break
@@ -584,7 +584,7 @@ FindEnemyMonsThatResistPlayer:
 	ld hl, wBaseType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
-	cp 10 + 1
+	cp EFFECTIVE + 1
 	jr nc, .dont_choose_mon
 
 	ld a, b
