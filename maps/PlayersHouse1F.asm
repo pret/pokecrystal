@@ -374,7 +374,7 @@ FridgeText:
 
 TVText:
 	text "There's a movie on"
-	line "TV Stars dot the":
+	line "TV: Stars dot the"
 
 	para "sky as two boys"
 	line "ride on a train…"
