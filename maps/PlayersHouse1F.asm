@@ -27,14 +27,14 @@ MeetMomRightScript:
 	turnobject PLAYER, LEFT
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .OnRight
-	applymovement PLAYERSHOUSE1F_MOM1, Movement_MomTurnsTowardPlayer
+	applymovement PLAYERSHOUSE1F_MOM1, MomTurnsTowardPlayerMovement
 	jump MeetMomScript
 
 .OnRight:
-	applymovement PLAYERSHOUSE1F_MOM1, Movement_MomWalksToPlayer
+	applymovement PLAYERSHOUSE1F_MOM1, MomWalksToPlayerMovement
 MeetMomScript:
 	opentext
-	writetext Text_ElmsLookingForYou
+	writetext ElmsLookingForYouText
 	buttonsound
 	stringtotext GearName, MEM_BUFFER_1
 	scall PlayersHouse1FReceiveItemStd
@@ -44,11 +44,11 @@ MeetMomScript:
 	setscene SCENE_FINISHED
 	setevent EVENT_PLAYERS_HOUSE_MOM_1
 	clearevent EVENT_PLAYERS_HOUSE_MOM_2
-	writetext Text_MomGivePokegear
+	writetext MomGivesPokegearText
 	buttonsound
 	special SetDayOfWeek
 .SetDayOfWeek:
-	writetext Text_IsItDSTNow
+	writetext IsItDSTText
 	yesorno
 	iffalse .WrongDay
 	special InitialSetDSTFlag
@@ -61,23 +61,23 @@ MeetMomScript:
 	yesorno
 	iffalse .SetDayOfWeek
 .DayOfWeekDone:
-	writetext Text_ComeHomeForDST
+	writetext ComeHomeForDSTText
 	yesorno
 	iffalse .ExplainPhone
 	jump .KnowPhone
 
 .KnowPhone:
-	writetext Text_KnowThePhoneInstructions
+	writetext KnowTheInstructionsText
 	buttonsound
 	jump .FinishPhone
 
 .ExplainPhone:
-	writetext Text_DontKnowThePhoneInstructions
+	writetext DontKnowTheInstructionsText
 	buttonsound
 	jump .FinishPhone
 
 .FinishPhone:
-	writetext Text_PhoneInstructionsNext
+	writetext InstructionsNextText
 	waitbutton
 	closetext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -87,11 +87,11 @@ MeetMomScript:
 	jump .Finish
 
 .FromRight:
-	applymovement PLAYERSHOUSE1F_MOM1, Movement_MomTurnsBack
+	applymovement PLAYERSHOUSE1F_MOM1, MomTurnsBackMovement
 	jump .Finish
 
 .FromLeft:
-	applymovement PLAYERSHOUSE1F_MOM1, Movement_MomWalksBack
+	applymovement PLAYERSHOUSE1F_MOM1, MomWalksBackMovement
 	jump .Finish
 
 .Finish:
@@ -124,19 +124,19 @@ MomScript:
 	iftrue .GaveMysteryEgg
 	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue .GotAPokemon
-	writetext Text_HurryUpElmIsWaiting
+	writetext HurryUpElmIsWaitingText
 	waitbutton
 	closetext
 	end
 
 .GotAPokemon:
-	writetext Text_AfterGotAMon
+	writetext AfterGotAMonText
 	waitbutton
 	closetext
 	end
 
 .FirstTimeBanking:
-	writetext Text_ImBehindYou
+	writetext ImBehindYouText
 	waitbutton
 	closetext
 	end
@@ -194,23 +194,23 @@ SinkScript:
 FridgeScript:
 	jumptext FridgeText
 
-Movement_MomTurnsTowardPlayer:
+MomTurnsTowardPlayerMovement:
 	turn_head RIGHT
 	step_end
 
-Movement_MomWalksToPlayer:
+MomWalksToPlayerMovement:
 	slow_step RIGHT
 	step_end
 
-Movement_MomTurnsBack:
+MomTurnsBackMovement:
 	turn_head LEFT
 	step_end
 
-Movement_MomWalksBack:
+MomWalksBackMovement:
 	slow_step LEFT
 	step_end
 
-Text_ElmsLookingForYou:
+ElmsLookingForYouText:
 	text "Oh, <PLAYER>…! Our"
 	line "neighbor, PROF."
 
@@ -230,7 +230,7 @@ Text_ElmsLookingForYou:
 	para "Here you go!"
 	done
 
-Text_MomGivePokegear:
+MomGivesPokegearText:
 	text "#MON GEAR, or"
 	line "just #GEAR."
 
@@ -245,12 +245,12 @@ Text_MomGivePokegear:
 	line "that!"
 	done
 
-Text_IsItDSTNow:
+IsItDSTText:
 	text "Is it Daylight"
 	line "Saving Time now?"
 	done
 
-Text_ComeHomeForDST:
+ComeHomeForDSTText:
 	text "Come home to"
 	line "adjust your clock"
 
@@ -262,7 +262,7 @@ Text_ComeHomeForDST:
 	cont "the PHONE?"
 	done
 
-Text_KnowThePhoneInstructions:
+KnowTheInstructionsText:
 	text "Don't you just"
 	line "turn the #GEAR"
 
@@ -270,7 +270,7 @@ Text_KnowThePhoneInstructions:
 	line "PHONE icon?"
 	done
 
-Text_DontKnowThePhoneInstructions:
+DontKnowTheInstructionsText:
 	text "I'll read the"
 	line "instructions."
 
@@ -279,7 +279,7 @@ Text_DontKnowThePhoneInstructions:
 	cont "PHONE icon."
 	done
 
-Text_PhoneInstructionsNext:
+InstructionsNextText:
 	text "Phone numbers are"
 	line "stored in memory."
 
@@ -290,14 +290,14 @@ Text_PhoneInstructionsNext:
 	line "convenient?"
 	done
 
-Text_HurryUpElmIsWaiting:
+HurryUpElmIsWaitingText:
 	text "PROF.ELM is wait-"
 	line "ing for you."
 
 	para "Hurry up, baby!"
 	done
 
-Text_AfterGotAMon:
+AfterGotAMonText:
 	text "So, what was PROF."
 	line "ELM's errand?"
 
@@ -311,7 +311,7 @@ Text_AfterGotAMon:
 	cont "rely on you."
 	done
 
-Text_ImBehindYou:
+ImBehindYouText:
 	text "<PLAYER>, do it!"
 
 	para "I'm behind you all"
@@ -374,7 +374,7 @@ FridgeText:
 
 TVText:
 	text "There's a movie on"
-	line "TV: Stars dot the"
+	line "TV Stars dot the":
 
 	para "sky as two boys"
 	line "ride on a train…"
@@ -382,7 +382,7 @@ TVText:
 	para "I'd better get"
 	line "rolling too!"
 	done
-
+	
 PlayersHouse1F_MapEvents:
 	db 0, 0 ; filler
 
