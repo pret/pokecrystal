@@ -10,15 +10,15 @@
 	const GOLDENRODGAMECORNER_COOLTRAINER_F
 	const GOLDENRODGAMECORNER_GENTLEMAN
 	const GOLDENRODGAMECORNER_POKEFAN_M2
-	const GOLDENRODGAMECORNER_POKEFAN_M3
+	const GOLDENRODGAMECORNER_MOVETUTOR
 
 GoldenrodGameCorner_MapScripts:
 	db 0 ; scene scripts
 
 	db 1 ; callbacks
-	callback MAPCALLBACK_OBJECTS, .Callback
+	callback MAPCALLBACK_OBJECTS, .MoveTutor
 
-.Callback:
+.MoveTutor:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iffalse .finish
 	checkitem COIN_CASE
@@ -27,23 +27,23 @@ GoldenrodGameCorner_MapScripts:
 	ifequal WEDNESDAY, .move_tutor_outside
 	ifequal SATURDAY, .move_tutor_outside
 .move_tutor_inside
-	appear GOLDENRODGAMECORNER_POKEFAN_M3
+	appear GOLDENRODGAMECORNER_MOVETUTOR
 	return
 
 .move_tutor_outside
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .finish
-	disappear GOLDENRODGAMECORNER_POKEFAN_M3
+	disappear GOLDENRODGAMECORNER_MOVETUTOR
 .finish
 	return
 
-GoldenrodGameCornerPokefanM3Script:
+MoveTutorInsideScript:
 	faceplayer
 	opentext
-	writetext GoldenrodGameCornerPokefanM3Text
+	writetext MoveTutorInsideText
 	waitbutton
 	closetext
-	turnobject GOLDENRODGAMECORNER_POKEFAN_M3, RIGHT
+	turnobject GOLDENRODGAMECORNER_MOVETUTOR, RIGHT
 	end
 
 GoldenrodGameCornerCoinVendorScript:
@@ -422,7 +422,7 @@ GoldenrodGameCornerPokefanM2Text:
 	line "UNDERGROUND."
 	done
 
-GoldenrodGameCornerPokefanM3Text:
+MoveTutorInsideText:
 	text "Wahahah! The coins"
 	line "keep rolling in!"
 	done
@@ -488,4 +488,4 @@ GoldenrodGameCorner_MapEvents:
 	object_event 10,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerCooltrainerFScript, -1
 	object_event  5, 10, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerGentlemanScript, -1
 	object_event  2,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM2Script, -1
-	object_event 17, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodGameCornerPokefanM3Script, EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
+	object_event 17, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MoveTutorInsideScript, EVENT_GOLDENROD_GAME_CORNER_MOVE_TUTOR
