@@ -2594,7 +2594,7 @@ PlayerAttackDamage:
 
 .physicalcrit
 	ld hl, wBattleMonAttack
-	call GetDamageStatsCritical
+	call CheckDamageStatsCritical
 	jr c, .thickclub
 
 	ld hl, wEnemyDefense
@@ -2618,7 +2618,7 @@ PlayerAttackDamage:
 
 .specialcrit
 	ld hl, wBattleMonSpclAtk
-	call GetDamageStatsCritical
+	call CheckDamageStatsCritical
 	jr c, .lightball
 
 	ld hl, wEnemySpDef
@@ -2692,19 +2692,15 @@ TruncateHL_BC:
 	ld b, l
 	ret
 
-GetDamageStatsCritical:
-; Return carry if non-critical.
+CheckDamageStatsCritical:
+; Return carry if boosted stats should be used in damage calculations.
+; Unboosted stats should be used if the attack is a critical hit,
+;  and the stage of the opponent's defense is higher than the user's attack.
 
 	ld a, [wCriticalHit]
 	and a
 	scf
 	ret z
-
-	; fallthrough
-
-GetDamageStats:
-; Return the attacker's offensive stat and the defender's defensive
-; stat based on whether the attacking type is physical or special.
 
 	push hl
 	push bc
@@ -2840,7 +2836,7 @@ EnemyAttackDamage:
 
 .physicalcrit
 	ld hl, wEnemyMonAttack
-	call GetDamageStatsCritical
+	call CheckDamageStatsCritical
 	jr c, .thickclub
 
 	ld hl, wPlayerDefense
@@ -2864,7 +2860,7 @@ EnemyAttackDamage:
 
 .specialcrit
 	ld hl, wEnemyMonSpclAtk
-	call GetDamageStatsCritical
+	call CheckDamageStatsCritical
 	jr c, .lightball
 	ld hl, wPlayerSpDef
 	ld a, [hli]
