@@ -4181,13 +4181,13 @@ BattleCommand_EvasionUp2:
 
 BattleCommand_StatUp:
 ; statup
-	call CheckIfStatCanBeRaised
+	call RaiseStat
 	ld a, [wFailedMessage]
 	and a
 	ret nz
-	jp StatUpAnimation
+	jp MinimizeDropSub
 
-CheckIfStatCanBeRaised:
+RaiseStat:
 	ld a, b
 	ld [wLoweredStat], a
 	ld hl, wPlayerStatLevels
@@ -4283,7 +4283,9 @@ CheckIfStatCanBeRaised:
 	ld [wFailedMessage], a
 	ret
 
-StatUpAnimation:
+MinimizeDropSub:
+; Lower the substitute if we're minimizing
+
 	ld bc, wPlayerMinimized
 	ld hl, DropPlayerSub
 	ld a, [hBattleTurn]

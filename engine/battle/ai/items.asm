@@ -806,7 +806,7 @@ EnemyUsedXItem:
 	push bc
 	call PrintText_UsedItemOn
 	pop bc
-	farcall CheckIfStatCanBeRaised
+	farcall RaiseStat
 	jp AIUpdateHUD
 
 ; Parameter
