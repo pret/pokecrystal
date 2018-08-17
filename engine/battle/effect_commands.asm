@@ -2363,10 +2363,12 @@ BattleCommand_SuperEffectiveText:
 .print
 	jp StdBattleTextBox
 
-BattleCommand_CheckDestinyBond:
-; checkdestinybond
+BattleCommand_CheckFaint:
+; checkfaint
 
-; Faint the user if it fainted an opponent using Destiny Bond.
+; Faint the opponent if its HP reached zero
+;  and faint the user along with it if it used Destiny Bond.
+; Ends the move effect if the opponent faints.
 
 	ld hl, wEnemyMonHP
 	ld a, [hBattleTurn]
