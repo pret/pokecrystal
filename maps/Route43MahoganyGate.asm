@@ -11,18 +11,18 @@ Route43MahoganyGateOfficer:
 	opentext
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .RocketsCleared
-	writetext UnknownText_0x19ab1f
+	writetext Route43MahoganyGateOfficerText
 	waitbutton
 	closetext
 	end
 
 .RocketsCleared:
-	writetext UnknownText_0x19ab65
+	writetext Route43MahoganyGateOfficerRocketsClearedText
 	waitbutton
 	closetext
 	end
 
-UnknownText_0x19ab1f:
+Route43MahoganyGateOfficerText:
 	text "Only people headed"
 	line "up to LAKE OF RAGE"
 
@@ -30,7 +30,7 @@ UnknownText_0x19ab1f:
 	line "here lately."
 	done
 
-UnknownText_0x19ab65:
+Route43MahoganyGateOfficerRocketsClearedText:
 	text "Nobody goes up to"
 	line "LAKE OF RAGE these"
 	cont "days."

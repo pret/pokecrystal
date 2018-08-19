@@ -14,27 +14,27 @@ GoldenrodBikeShopClerkScript:
 	opentext
 	checkevent EVENT_GOT_BICYCLE
 	iftrue .GotBicycle
-	writetext UnknownText_0x54787
+	writetext GoldenrodBikeShopClerkIntroText
 	yesorno
 	iffalse .Refused
-	writetext UnknownText_0x547f8
+	writetext GoldenrodBikeShopClerkAgreedText
 	buttonsound
 	waitsfx
 	giveitem BICYCLE
-	writetext UnknownText_0x54848
+	writetext BorrowedABicycleText
 	playsound SFX_KEY_ITEM
 	waitsfx
 	itemnotify
 	setflag ENGINE_BIKE_SHOP_CALL_ENABLED
 	setevent EVENT_GOT_BICYCLE
 .GotBicycle:
-	writetext UnknownText_0x5485f
+	writetext GoldenrodBikeShopClerkFirstRateBikesText
 	waitbutton
 	closetext
 	end
 
 .Refused:
-	writetext UnknownText_0x54898
+	writetext GoldenrodBikeShopClerkRefusedText
 	waitbutton
 	closetext
 	end
@@ -46,7 +46,7 @@ GoldenrodBikeShopJustReleasedCompactBike:
 GoldenrodBikeShopBicycle:
 	jumptext GoldenrodBikeShopBicycleText
 
-UnknownText_0x54787:
+GoldenrodBikeShopClerkIntroText:
 	text "…sigh… I moved"
 	line "here, but I can't"
 
@@ -58,7 +58,7 @@ UnknownText_0x54787:
 	cont "tise for me?"
 	done
 
-UnknownText_0x547f8:
+GoldenrodBikeShopClerkAgreedText:
 	text "Really? Great!"
 
 	para "Give me your name"
@@ -68,12 +68,12 @@ UnknownText_0x547f8:
 	line "a BICYCLE."
 	done
 
-UnknownText_0x54848:
+BorrowedABicycleText:
 	text "<PLAYER> borrowed a"
 	line "BICYCLE."
 	done
 
-UnknownText_0x5485f:
+GoldenrodBikeShopClerkFirstRateBikesText:
 	text "My BICYCLES are"
 	line "first-rate! You"
 
@@ -81,13 +81,12 @@ UnknownText_0x5485f:
 	line "anywhere."
 	done
 
-UnknownText_0x54898:
+GoldenrodBikeShopClerkRefusedText:
 	text "…sigh… Oh, for"
 	line "the kindness of"
 	cont "people…"
 	done
 
-; possibly unused
 GoldenrodBikeShopJustReleasedCompactBikeText:
 	text "Just released!"
 

@@ -71,17 +71,17 @@ GoldenrodUndergroundWarehouseDirectorScript:
 	opentext
 	checkevent EVENT_RECEIVED_CARD_KEY
 	iftrue .GotCardKey
-	writetext UnknownText_0x7dbc6
+	writetext DirectorIntroText
 	buttonsound
 	verbosegiveitem CARD_KEY
 	setevent EVENT_RECEIVED_CARD_KEY
 	setevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
 	clearevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
 	clearevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
-	writetext UnknownText_0x7dc5b
+	writetext DirectorCardKeyText
 	buttonsound
 .GotCardKey:
-	writetext UnknownText_0x7dc8d
+	writetext DirectorAfterText
 	waitbutton
 	closetext
 	end
@@ -157,7 +157,7 @@ GruntM15AfterBattleText:
 	cont "I'll remember you!"
 	done
 
-UnknownText_0x7dbc6:
+DirectorIntroText:
 	text "DIRECTOR: Who?"
 	line "What? You came to"
 	cont "rescue me?"
@@ -176,13 +176,13 @@ UnknownText_0x7dbc6:
 	line "CARD KEY."
 	done
 
-UnknownText_0x7dc5b:
+DirectorCardKeyText:
 	text "DIRECTOR: Use that"
 	line "to open the shut-"
 	cont "ters on 3F."
 	done
 
-UnknownText_0x7dc8d:
+DirectorAfterText:
 	text "I'm begging you to"
 	line "help."
 

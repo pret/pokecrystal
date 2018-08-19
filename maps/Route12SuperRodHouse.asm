@@ -11,22 +11,22 @@ Route12SuperRodHouseFishingGuruScript:
 	opentext
 	checkevent EVENT_GOT_SUPER_ROD
 	iftrue .GotSuperRod
-	writetext UnknownText_0x7f4af
+	writetext OfferSuperRodText
 	yesorno
 	iffalse .Refused
-	writetext UnknownText_0x7f52f
+	writetext GiveSuperRodText
 	buttonsound
 	verbosegiveitem SUPER_ROD
 	iffalse .NoRoom
 	setevent EVENT_GOT_SUPER_ROD
 .GotSuperRod:
-	writetext UnknownText_0x7f57c
+	writetext GaveSuperRodText
 	waitbutton
 	closetext
 	end
 
 .Refused:
-	writetext UnknownText_0x7f5ec
+	writetext DontWantSuperRodText
 	waitbutton
 .NoRoom:
 	closetext
@@ -36,7 +36,7 @@ SuperRodHouseBookshelf:
 ; unused
 	jumpstd picturebookshelf
 
-UnknownText_0x7f4af:
+OfferSuperRodText:
 	text "I'm the FISHING"
 	line "GURU's younger"
 	cont "brother."
@@ -51,7 +51,7 @@ UnknownText_0x7f4af:
 	line "right."
 	done
 
-UnknownText_0x7f52f:
+GiveSuperRodText:
 	text "Yes, yes. Just as"
 	line "I thought!"
 
@@ -60,7 +60,7 @@ UnknownText_0x7f52f:
 	cont "SUPER ROD."
 	done
 
-UnknownText_0x7f57c:
+GaveSuperRodText:
 	text "Try your hand at"
 	line "fishing wherever"
 	cont "there is water."
@@ -72,7 +72,7 @@ UnknownText_0x7f57c:
 	line "different RODS."
 	done
 
-UnknownText_0x7f5ec:
+DontWantSuperRodText:
 	text "Huh? My own eyes"
 	line "deceived me?"
 	done

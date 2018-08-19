@@ -55,7 +55,7 @@ GoldenrodDeptStoreB1FBlackBelt3Script:
 
 GoldenrodDeptStoreB1FMachopScript:
 	opentext
-	writetext UnknownText_0x7d8bb
+	writetext GoldenrodDeptStoreB1FMachokeText
 	cry MACHOKE
 	waitbutton
 	closetext
@@ -103,7 +103,7 @@ GoldenrodDeptStoreB1FBlackBelt3Text:
 	line "want it!"
 	done
 
-UnknownText_0x7d8bb:
+GoldenrodDeptStoreB1FMachokeText:
 	text "MACHOKE: Maaacho!"
 	done
 

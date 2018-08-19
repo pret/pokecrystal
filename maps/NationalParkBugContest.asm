@@ -20,7 +20,7 @@ NationalParkBugContest_MapScripts:
 BugCatchingContestant1AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5c94c
+	writetext BugCatchingContestant1AText
 	waitbutton
 	closetext
 	end
@@ -28,7 +28,7 @@ BugCatchingContestant1AScript:
 BugCatchingContestant2AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5c973
+	writetext BugCatchingContestant2AText
 	waitbutton
 	closetext
 	end
@@ -36,7 +36,7 @@ BugCatchingContestant2AScript:
 BugCatchingContestant3AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5c9a3
+	writetext BugCatchingContestant3AText
 	waitbutton
 	closetext
 	end
@@ -44,7 +44,7 @@ BugCatchingContestant3AScript:
 BugCatchingContestant4AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5c9cc
+	writetext BugCatchingContestant4AText
 	waitbutton
 	closetext
 	end
@@ -52,7 +52,7 @@ BugCatchingContestant4AScript:
 BugCatchingContestant5AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5ca15
+	writetext BugCatchingContestant5AText
 	waitbutton
 	closetext
 	end
@@ -60,7 +60,7 @@ BugCatchingContestant5AScript:
 BugCatchingContestant6AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5ca52
+	writetext BugCatchingContestant6AText
 	waitbutton
 	closetext
 	end
@@ -68,7 +68,7 @@ BugCatchingContestant6AScript:
 BugCatchingContestant7AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5ca8f
+	writetext BugCatchingContestant7AText
 	waitbutton
 	closetext
 	end
@@ -76,7 +76,7 @@ BugCatchingContestant7AScript:
 BugCatchingContestant8AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5cac8
+	writetext BugCatchingContestant8AText
 	waitbutton
 	closetext
 	end
@@ -84,7 +84,7 @@ BugCatchingContestant8AScript:
 BugCatchingContestant9AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5cb25
+	writetext BugCatchingContestant9AText
 	waitbutton
 	closetext
 	end
@@ -92,7 +92,7 @@ BugCatchingContestant9AScript:
 BugCatchingContestant10AScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x5cb64
+	writetext BugCatchingContestant10AText
 	waitbutton
 	closetext
 	end
@@ -115,25 +115,25 @@ NationalParkBugContestTMDig:
 NationalParkBugContestHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL
 
-UnknownText_0x5c94c:
+BugCatchingContestant1AText:
 	text "DON: I'm going to"
 	line "win! Don't bother"
 	cont "me."
 	done
 
-UnknownText_0x5c973:
+BugCatchingContestant2AText:
 	text "ED: My PARASECT"
 	line "puts #MON to"
 	cont "sleep with SPORE."
 	done
 
-UnknownText_0x5c9a3:
+BugCatchingContestant3AText:
 	text "NICK: I'm raising"
 	line "fast #MON for"
 	cont "battles."
 	done
 
-UnknownText_0x5c9cc:
+BugCatchingContestant4AText:
 	text "WILLIAM: I'm not"
 	line "concerned about"
 	cont "winning."
@@ -142,7 +142,7 @@ UnknownText_0x5c9cc:
 	line "for rare #MON."
 	done
 
-UnknownText_0x5ca15:
+BugCatchingContestant5AText:
 	text "BENNY: Ssh! You'll"
 	line "scare off SCYTHER."
 
@@ -150,7 +150,7 @@ UnknownText_0x5ca15:
 	line "later."
 	done
 
-UnknownText_0x5ca52:
+BugCatchingContestant6AText:
 	text "BARRY: You should"
 	line "weaken bug #MON"
 
@@ -158,7 +158,7 @@ UnknownText_0x5ca52:
 	line "a BALL."
 	done
 
-UnknownText_0x5ca8f:
+BugCatchingContestant7AText:
 	text "CINDY: I love bug"
 	line "#MON."
 
@@ -166,7 +166,7 @@ UnknownText_0x5ca8f:
 	line "like them too."
 	done
 
-UnknownText_0x5cac8:
+BugCatchingContestant8AText:
 	text "JOSH: I've been"
 	line "collecting bug"
 
@@ -177,7 +177,7 @@ UnknownText_0x5cac8:
 	line "going to lose!"
 	done
 
-UnknownText_0x5cb25:
+BugCatchingContestant9AText:
 	text "SAMUEL: If you've"
 	line "got the time to"
 
@@ -185,7 +185,7 @@ UnknownText_0x5cb25:
 	line "bug #MON."
 	done
 
-UnknownText_0x5cb64:
+BugCatchingContestant10AText:
 	text "KIPP: I've studied"
 	line "about bug #MON"
 	cont "a lot."

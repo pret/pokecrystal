@@ -13,27 +13,27 @@ PewterGymBrockScript:
 	opentext
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .FightDone
-	writetext UnknownText_0x1a28d0
+	writetext BrockIntroText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x1a29bb, 0
+	winlosstext BrockWinLossText, 0
 	loadtrainer BROCK, BROCK1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK
 	setevent EVENT_BEAT_CAMPER_JERRY
 	opentext
-	writetext UnknownText_0x1a2a3d
+	writetext ReceivedBoulderBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_BOULDERBADGE
-	writetext UnknownText_0x1a2a57
+	writetext BrockBoulderBadgeText
 	waitbutton
 	closetext
 	end
 
 .FightDone:
-	writetext UnknownText_0x1a2ada
+	writetext BrockFightDoneText
 	waitbutton
 	closetext
 	end
@@ -73,7 +73,7 @@ PewterGymStatue:
 	trainertotext BROCK, BROCK1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-UnknownText_0x1a28d0:
+BrockIntroText:
 	text "BROCK: Wow, it's"
 	line "not often that we"
 
@@ -98,7 +98,7 @@ UnknownText_0x1a28d0:
 	para "Come on!"
 	done
 
-UnknownText_0x1a29bb:
+BrockWinLossText:
 	text "BROCK: Your #-"
 	line "MON's powerful at-"
 	cont "tacks overcame my"
@@ -111,12 +111,12 @@ UnknownText_0x1a29bb:
 	line "this BADGE."
 	done
 
-UnknownText_0x1a2a3d:
+ReceivedBoulderBadgeText:
 	text "<PLAYER> received"
 	line "BOULDERBADGE."
 	done
 
-UnknownText_0x1a2a57:
+BrockBoulderBadgeText:
 	text "BROCK: <PLAY_G>,"
 	line "thanks. I enjoyed"
 
@@ -131,7 +131,7 @@ UnknownText_0x1a2a57:
 	line "powerful."
 	done
 
-UnknownText_0x1a2ada:
+BrockFightDoneText:
 	text "BROCK: The world"
 	line "is huge. There are"
 

@@ -125,7 +125,7 @@ CatchingTutorialDudeScript:
 	end
 
 .BoxFull:
-	writetext UnknownText_0x1a10a7
+	writetext CatchingTutorialBoxFullText
 	waitbutton
 	closetext
 	end
@@ -246,7 +246,7 @@ DudeMovementData2b:
 	step DOWN
 	step_end
 
-UnknownText_0x1a10a7:
+CatchingTutorialBoxFullText:
 	text "#MON hide in"
 	line "the grass. Who"
 

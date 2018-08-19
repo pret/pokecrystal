@@ -59,7 +59,7 @@ WiseTriosRoom_CannotEnterTinTowerScript:
 	stopfollow
 	turnobject PLAYER, RIGHT
 	opentext
-	writetext UnknownText_0x98712
+	writetext WiseTriosRoomSage3BlocksExitText
 	waitbutton
 	closetext
 	applymovement WISETRIOSROOM_SAGE3, MovementData_0x98625
@@ -71,7 +71,7 @@ TrainerSageGaku:
 
 .Script:
 	opentext
-	writetext UnknownText_0x98938
+	writetext SageGakuAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -81,7 +81,7 @@ TrainerSageMasa:
 
 .Script:
 	opentext
-	writetext UnknownText_0x98a35
+	writetext SageMasaAfterBattleText
 	waitbutton
 	closetext
 	end
@@ -95,9 +95,9 @@ TrainerSageKoji:
 	pause 10
 	showemote EMOTE_SHOCK, WISETRIOSROOM_SAGE6, 20
 	opentext
-	writetext UnknownText_0x98c6c
+	writetext SageKojiAfterBattleQuestionText
 	buttonsound
-	writetext UnknownText_0x98cac
+	writetext SageKojiAfterBattleSpeechText
 	waitbutton
 	closetext
 	applymovement WISETRIOSROOM_SAGE6, MovementData_0x98628
@@ -108,7 +108,7 @@ TrainerSageKoji:
 
 .KojiAllowsPassage:
 	opentext
-	writetext UnknownText_0x98db5
+	writetext SageKojiAfterBattleFinalText
 	waitbutton
 	closetext
 	end
@@ -153,7 +153,7 @@ WiseTriosRoomSage2Text:
 	line "by someone."
 	done
 
-UnknownText_0x98712:
+WiseTriosRoomSage3BlocksExitText:
 	text "TIN TOWER may be"
 	line "entered by those"
 
@@ -213,7 +213,7 @@ SageGakuBeatenText:
 	line "thought? Perhaps…"
 	done
 
-UnknownText_0x98938:
+SageGakuAfterBattleText:
 	text "Ah, so it is you"
 	line "who claim to have"
 
@@ -241,7 +241,7 @@ SageMasaBeatenText:
 	line "the truth…"
 	done
 
-UnknownText_0x98a35:
+SageMasaAfterBattleText:
 	text "In the past, there"
 	line "were two nine-tier"
 	cont "towers here."
@@ -301,7 +301,7 @@ SageKojiBeatenText:
 	line "Why?"
 	done
 
-UnknownText_0x98c6c:
+SageKojiAfterBattleQuestionText:
 	text "You… Are you the"
 	line "trainer who is"
 
@@ -309,7 +309,7 @@ UnknownText_0x98c6c:
 	line "legendary #MON?"
 	done
 
-UnknownText_0x98cac:
+SageKojiAfterBattleSpeechText:
 	text "I see…"
 
 	para "We, the WISE TRIO,"
@@ -335,7 +335,7 @@ UnknownText_0x98cac:
 	line "you to the test."
 	done
 
-UnknownText_0x98db5:
+SageKojiAfterBattleFinalText:
 	text "Please, do go on."
 
 	para "SUICUNE will put"

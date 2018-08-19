@@ -17,16 +17,16 @@ ViridianCity_MapScripts:
 ViridianCityCoffeeGramps:
 	faceplayer
 	opentext
-	writetext UnknownText_0x1a9aa5
+	writetext ViridianCityCoffeeGrampsQuestionText
 	yesorno
 	iffalse .no
-	writetext UnknownText_0x1a9b6f
+	writetext ViridianCityCoffeeGrampsBelievedText
 	waitbutton
 	closetext
 	end
 
 .no:
-	writetext UnknownText_0x1a9bb7
+	writetext ViridianCityCoffeeGrampsDoubtedText
 	waitbutton
 	closetext
 	end
@@ -36,13 +36,13 @@ ViridianCityGrampsNearGym:
 	opentext
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue .BlueReturned
-	writetext UnknownText_0x1a9c11
+	writetext ViridianCityGrampsNearGymText
 	waitbutton
 	closetext
 	end
 
 .BlueReturned:
-	writetext UnknownText_0x1a9c7e
+	writetext ViridianCityGrampsNearGymBlueReturnedText
 	waitbutton
 	closetext
 	end
@@ -52,13 +52,13 @@ ViridianCityDreamEaterFisher:
 	opentext
 	checkevent EVENT_GOT_TM42_DREAM_EATER
 	iftrue .GotDreamEater
-	writetext UnknownText_0x1a9cc4
+	writetext ViridianCityDreamEaterFisherText
 	buttonsound
 	verbosegiveitem TM_DREAM_EATER
 	iffalse .NoRoomForDreamEater
 	setevent EVENT_GOT_TM42_DREAM_EATER
 .GotDreamEater:
-	writetext UnknownText_0x1a9d86
+	writetext ViridianCityDreamEaterFisherGotDreamEaterText
 	waitbutton
 .NoRoomForDreamEater:
 	closetext
@@ -85,7 +85,7 @@ ViridianCityPokecenterSign:
 ViridianCityMartSign:
 	jumpstd martsign
 
-UnknownText_0x1a9aa5:
+ViridianCityCoffeeGrampsQuestionText:
 	text "Hey, kid! I just"
 	line "had a double shot"
 
@@ -105,7 +105,7 @@ UnknownText_0x1a9aa5:
 	para "Do you believe me?"
 	done
 
-UnknownText_0x1a9b6f:
+ViridianCityCoffeeGrampsBelievedText:
 	text "Good, good. Yes, I"
 	line "was something out"
 
@@ -113,7 +113,7 @@ UnknownText_0x1a9b6f:
 	line "let me tell you!"
 	done
 
-UnknownText_0x1a9bb7:
+ViridianCityCoffeeGrampsDoubtedText:
 	text "What? You little"
 	line "whelp!"
 
@@ -124,7 +124,7 @@ UnknownText_0x1a9bb7:
 	line "or two. Humph!"
 	done
 
-UnknownText_0x1a9c11:
+ViridianCityGrampsNearGymText:
 	text "This GYM didn't"
 	line "have a LEADER"
 	cont "until recently."
@@ -136,7 +136,7 @@ UnknownText_0x1a9c11:
 	line "often away."
 	done
 
-UnknownText_0x1a9c7e:
+ViridianCityGrampsNearGymBlueReturnedText:
 	text "Are you going to"
 	line "battle the LEADER?"
 
@@ -144,7 +144,7 @@ UnknownText_0x1a9c7e:
 	line "You'll need it."
 	done
 
-UnknownText_0x1a9cc4:
+ViridianCityDreamEaterFisherText:
 	text "Yawn!"
 
 	para "I must have dozed"
@@ -167,7 +167,7 @@ UnknownText_0x1a9cc4:
 	cont "this TM."
 	done
 
-UnknownText_0x1a9d86:
+ViridianCityDreamEaterFisherGotDreamEaterText:
 	text "TM42 contains"
 	line "DREAM EATER…"
 

@@ -308,13 +308,13 @@ BugCatchingContestant1BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b399
+	writetext BugCatchingContestant1BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b3c4
+	writetext BugCatchingContestant1BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -324,13 +324,13 @@ BugCatchingContestant2BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b40f
+	writetext BugCatchingContestant2BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b440
+	writetext BugCatchingContestant2BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -340,13 +340,13 @@ BugCatchingContestant3BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b462
+	writetext BugCatchingContestant3BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b496
+	writetext BugCatchingContestant3BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -356,13 +356,13 @@ BugCatchingContestant4BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b4da
+	writetext BugCatchingContestant4BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b50a
+	writetext BugCatchingContestant4BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -372,13 +372,13 @@ BugCatchingContestant5BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b54e
+	writetext BugCatchingContestant5BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b57c
+	writetext BugCatchingContestant5BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -388,13 +388,13 @@ BugCatchingContestant6BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b5b0
+	writetext BugCatchingContestant6BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b5dd
+	writetext BugCatchingContestant6BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -404,13 +404,13 @@ BugCatchingContestant7BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b64b
+	writetext BugCatchingContestant7BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b698
+	writetext BugCatchingContestant7BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -420,13 +420,13 @@ BugCatchingContestant8BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b6b8
+	writetext BugCatchingContestant8BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b6e9
+	writetext BugCatchingContestant8BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -436,13 +436,13 @@ BugCatchingContestant9BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b71b
+	writetext BugCatchingContestant9BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b740
+	writetext BugCatchingContestant9BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -452,13 +452,13 @@ BugCatchingContestant10BScript:
 	opentext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
 	iffalse .StillCompeting
-	writetext UnknownText_0x6b76f
+	writetext BugCatchingContestant10BText
 	waitbutton
 	closetext
 	end
 
 .StillCompeting:
-	writetext UnknownText_0x6b7af
+	writetext BugCatchingContestant10BStillCompetingText
 	waitbutton
 	closetext
 	end
@@ -658,13 +658,13 @@ UnknownText_0x6b370:
 	cont "the PARK."
 	done
 
-UnknownText_0x6b399:
+BugCatchingContestant1BText:
 	text "DON: Wow, you beat"
 	line "me. You're pretty"
 	cont "good."
 	done
 
-UnknownText_0x6b3c4:
+BugCatchingContestant1BStillCompetingText:
 	text "DON: Luck plays a"
 	line "big part in this."
 
@@ -673,24 +673,24 @@ UnknownText_0x6b3c4:
 	cont "appear."
 	done
 
-UnknownText_0x6b40f:
+BugCatchingContestant2BText:
 	text "ED: I envy you."
 	line "I just couldn't"
 	cont "do it this time."
 	done
 
-UnknownText_0x6b440:
+BugCatchingContestant2BStillCompetingText:
 	text "ED: Maybe you win"
 	line "with big #MON?"
 	done
 
-UnknownText_0x6b462:
+BugCatchingContestant3BText:
 	text "NICK: Well done!"
 	line "I'm going to raise"
 	cont "my #MON better."
 	done
 
-UnknownText_0x6b496:
+BugCatchingContestant3BStillCompetingText:
 	text "NICK: Maybe you"
 	line "get a higher score"
 
@@ -698,13 +698,13 @@ UnknownText_0x6b496:
 	line "an unusual color."
 	done
 
-UnknownText_0x6b4da:
+BugCatchingContestant4BText:
 	text "WILLIAM: You're"
 	line "the winner? What"
 	cont "did you catch?"
 	done
 
-UnknownText_0x6b50a:
+BugCatchingContestant4BStillCompetingText:
 	text "WILLIAM: Well, I'm"
 	line "satisfied because"
 
@@ -712,25 +712,25 @@ UnknownText_0x6b50a:
 	line "that I wanted."
 	done
 
-UnknownText_0x6b54e:
+BugCatchingContestant5BText:
 	text "BENNY: Congrats!"
 	line "You have earned my"
 	cont "respect!"
 	done
 
-UnknownText_0x6b57c:
+BugCatchingContestant5BStillCompetingText:
 	text "BENNY: I caught a"
 	line "SCYTHER before,"
 	cont "but I didn't win."
 	done
 
-UnknownText_0x6b5b0:
+BugCatchingContestant6BText:
 	text "BARRY: That #-"
 	line "MON you caught…"
 	cont "it's awesome!"
 	done
 
-UnknownText_0x6b5dd:
+BugCatchingContestant6BStillCompetingText:
 	text "BARRY: It's easier"
 	line "to win if you get"
 
@@ -742,7 +742,7 @@ UnknownText_0x6b5dd:
 	cont "other points."
 	done
 
-UnknownText_0x6b64b:
+BugCatchingContestant7BText:
 	text "CINDY: You won?"
 	line "That's great!"
 
@@ -751,35 +751,35 @@ UnknownText_0x6b64b:
 	cont "#MON with me?"
 	done
 
-UnknownText_0x6b698:
+BugCatchingContestant7BStillCompetingText:
 	text "CINDY: I really"
 	line "love bug #MON!"
 	done
 
-UnknownText_0x6b6b8:
+BugCatchingContestant8BText:
 	text "JOSH: I… I can't"
 	line "believe I lost at"
 	cont "bug-catching…"
 	done
 
-UnknownText_0x6b6e9:
+BugCatchingContestant8BStillCompetingText:
 	text "JOSH: I heard that"
 	line "somebody won with"
 	cont "a CATERPIE!"
 	done
 
-UnknownText_0x6b71b:
+BugCatchingContestant9BText:
 	text "SAMUEL: Next time,"
 	line "I'm going to win."
 	done
 
-UnknownText_0x6b740:
+BugCatchingContestant9BStillCompetingText:
 	text "SAMUEL: Darn."
 	line "I thought I would"
 	cont "score higher…"
 	done
 
-UnknownText_0x6b76f:
+BugCatchingContestant10BText:
 	text "KIPP: Could you"
 	line "give me some tips?"
 
@@ -787,7 +787,7 @@ UnknownText_0x6b76f:
 	line "your style."
 	done
 
-UnknownText_0x6b7af:
+BugCatchingContestant10BStillCompetingText:
 	text "KIPP: I study a"
 	line "lot, but that's"
 
