@@ -11,13 +11,24 @@ struct command {
   signed value:    17;
 };
 
+struct options {
+  const char * input;
+  const char * output;
+  unsigned char mode;
+};
+
 int main(int, char **);
+struct options get_options(int, char **);
+void usage(const char *);
 void error_exit(int, const char *, ...);
 void bit_flip(const unsigned char *, unsigned short, unsigned char *);
 unsigned char * read_file_into_buffer(const char *, unsigned short *);
+void write_commands_to_textfile(const char *, const struct command *, unsigned, const unsigned char *);
+void write_command_to_textfile(FILE *, struct command, const unsigned char *);
 void write_commands_to_file(const char *, const struct command *, unsigned, const unsigned char *);
 void write_command_to_file(FILE *, struct command, const unsigned char *);
 struct command * compress(const unsigned char *, unsigned short *);
+struct command * store_uncompressed(unsigned short *);
 struct command * try_compress(const unsigned char *, const unsigned char *, unsigned short *, unsigned);
 struct command find_best_copy(const unsigned char *, unsigned short, unsigned short, const unsigned char *, unsigned);
 unsigned short scan_forwards(const unsigned char *, unsigned short, const unsigned char *, unsigned short, short *);
@@ -33,17 +44,47 @@ struct command * merge_command_sequences(const struct command *, unsigned short,
 unsigned short compressed_length(const struct command *, unsigned short);
 
 int main (int argc, char ** argv) {
-  if (argc < 3) {
-    fprintf(stderr, "usage: %s <source file> <compressed output>\n", *argv);
-    return 3;
-  }
+  struct options options = get_options(argc, argv);
   unsigned short size;
-  unsigned char * file_buffer = read_file_into_buffer(argv[1], &size);
+  unsigned char * file_buffer = read_file_into_buffer(options.input, &size);
   struct command * compressed = compress(file_buffer, &size);
-  write_commands_to_file(argv[2], compressed, size, file_buffer);
+  if (options.mode)
+    write_commands_to_textfile(options.output, compressed, size, file_buffer);
+  else
+    write_commands_to_file(options.output, compressed, size, file_buffer);
   free(file_buffer);
   free(compressed);
   return 0;
+}
+
+struct options get_options (int argc, char ** argv) {
+  struct options result = {.input = NULL, .output = NULL, .mode = 0};
+  const char * program_name = *argv;
+  for (argv ++; *argv; argv ++) {
+    if (strncmp(*argv, "--", 2)) break;
+    if (!strcmp(*argv, "--")) {
+      argv ++;
+      break;
+    } else if (!strcmp(*argv, "--text"))
+      result.mode = 1;
+    else if (!strcmp(*argv, "--binary"))
+      result.mode = 0;
+    else
+      error_exit(3, "unknown option: %s", *argv);
+  }
+  if (!*argv) usage(program_name);
+  result.input = *argv;
+  result.output = argv[1];
+  return result;
+}
+
+void usage (const char * program_name) {
+  fprintf(stderr, "Usage: %s [<options>] <source file> [<compressed output>]\n\n", program_name);
+  fputs("Options:\n", stderr);
+  fputs("    --text    Output the command stream as text.\n", stderr);
+  fputs("    --binary  Output the command stream as binary data (default).\n", stderr);
+  fputs("    --        End of option list.\n", stderr);
+  exit(3);
 }
 
 void error_exit (int error_code, const char * error, ...) {
@@ -77,13 +118,63 @@ unsigned char * read_file_into_buffer (const char * file, unsigned short * size)
   return buf;
 }
 
+void write_commands_to_textfile (const char * file, const struct command * commands, unsigned count, const unsigned char * input_stream) {
+  FILE * fp = file ? fopen(file, "w") : stdout;
+  if (!fp) error_exit(1, "could not open file %s for writing", file);
+  while (count --) write_command_to_textfile(fp, *(commands ++), input_stream);
+  if (fputs("\tlzend\n", fp) < 0) error_exit(1, "could not write terminator to compressed output");
+  if (file) fclose(fp);
+}
+
+void write_command_to_textfile (FILE * fp, struct command command, const unsigned char * input_stream) {
+  if ((!command.count) || (command.count > 1024)) error_exit(2, "invalid command in output stream");
+  int rv, pos;
+  const char * kind;
+  switch (command.command) {
+    case 0:
+      if ((rv = fprintf(fp, "\tlzdata")) < 0) break;
+      for (pos = 0; pos < command.count; pos ++) if ((rv = fprintf(fp, "%s$%02hhx", pos ? ", " : " ", input_stream[command.value + pos])) < 0) break;
+      rv = putc('\n', fp);
+      break;
+    case 1:
+      if ((command.value < 0) || (command.value > 255)) error_exit(2, "invalid command in output stream");
+      rv = fprintf(fp, "\tlzrepeat %u, $%02hhx\n", command.count, (unsigned char) command.value);
+      break;
+    case 2:
+      if ((command.value < 0) || (command.value > 65535)) error_exit(2, "invalid command in output stream");
+      rv = fprintf(fp, "\tlzrepeat %u, $%02hhx, $%02hhx\n", command.count, (unsigned char) command.value, (unsigned char) (command.value >> 8));
+      break;
+    case 3:
+      rv = fprintf(fp, "\tlzzero %u\n", command.count);
+      break;
+    case 4:
+      kind = "normal";
+      goto copy;
+    case 5:
+      kind = "flipped";
+      goto copy;
+    case 6:
+      kind = "reversed";
+    copy:
+      if ((command.value < -128) || (command.value > 32767)) error_exit(2, "invalid command in output stream");
+      if (command.value < 0)
+        rv = fprintf(fp, "\tlzcopy %s, %u, %d\n", kind, command.count, command.value);
+      else
+        rv = fprintf(fp, "\tlzcopy %s, %u, $%04hx\n", kind, command.count, (unsigned short) command.value);
+      break;
+    default:
+      error_exit(2, "invalid command in output stream");
+  }
+  if (rv < 0) error_exit(1, "could not write command to compressed output");
+}
+
 void write_commands_to_file (const char * file, const struct command * commands, unsigned count, const unsigned char * input_stream) {
-  FILE * fp = fopen(file, "wb");
+  FILE * fp = file ? fopen(file, "wb") : stdout;
   if (!fp) error_exit(1, "could not open file %s for writing", file);
   while (count --) write_command_to_file(fp, *(commands ++), input_stream);
   unsigned char terminator = -1;
   if (fwrite(&terminator, 1, 1, fp) != 1) error_exit(1, "could not write terminator to compressed output");
-  fclose(fp);
+  if (file) fclose(fp);
 }
 
 void write_command_to_file (FILE * fp, struct command command, const unsigned char * input_stream) {
@@ -113,7 +204,7 @@ void write_command_to_file (FILE * fp, struct command command, const unsigned ch
         *(pos ++) = command.value;
       }
   }
-  if ((int)fwrite(buf, 1, pos - buf, fp) != (pos - buf)) error_exit(1, "could not write command to compressed output");
+  if (fwrite(buf, 1, pos - buf, fp) != (pos - buf)) error_exit(1, "could not write command to compressed output");
   if (command.command) return;
   command.count ++;
   if (fwrite(input_stream + command.value, 1, command.count, fp) != command.count) error_exit(1, "could not write data to compressed output");
@@ -122,16 +213,31 @@ void write_command_to_file (FILE * fp, struct command command, const unsigned ch
 struct command * compress (const unsigned char * data, unsigned short * size) {
   unsigned char * bitflipped = malloc(*size);
   bit_flip(data, *size, bitflipped);
-  struct command * compressed_sequences[COMPRESSION_METHODS];
-  unsigned short lengths[COMPRESSION_METHODS];
+  struct command * compressed_sequences[COMPRESSION_METHODS + 1];
+  unsigned short lengths[COMPRESSION_METHODS + 1];
   unsigned current;
   for (current = 0; current < COMPRESSION_METHODS; current ++) {
     lengths[current] = *size;
     compressed_sequences[current] = try_compress(data, bitflipped, lengths + current, current);
   }
   free(bitflipped);
-  struct command * result = select_command_sequence(compressed_sequences, lengths, COMPRESSION_METHODS, size);
-  for (current = 0; current < COMPRESSION_METHODS; current ++) free(compressed_sequences[current]);
+  lengths[COMPRESSION_METHODS] = *size;
+  compressed_sequences[COMPRESSION_METHODS] = store_uncompressed(lengths + COMPRESSION_METHODS);
+  struct command * result = select_command_sequence(compressed_sequences, lengths, COMPRESSION_METHODS + 1, size);
+  for (current = 0; current <= COMPRESSION_METHODS; current ++) free(compressed_sequences[current]);
+  return result;
+}
+
+struct command * store_uncompressed (unsigned short * size) {
+  unsigned short position, block, remainder = *size;
+  struct command * result = NULL;
+  *size = 0;
+  for (position = 0; remainder; position += block, remainder -= block) {
+    block = (remainder > 1024) ? 1024 : remainder;
+    if ((block <= 64) && (block > 32)) block = 32;
+    result = realloc(result, sizeof(struct command) * (1 + *size));
+    result[(*size) ++] = (struct command) {.command = 0, .count = block, .value = position};
+  }
   return result;
 }
 
@@ -177,11 +283,11 @@ struct command find_best_copy (const unsigned char * data, unsigned short positi
   struct command simple = {.command = 7};
   struct command flipped = simple, backwards = simple;
   short count, offset;
-  if ((count = scan_forwards(data + position, length - position, data, position, &offset)))
+  if (count = scan_forwards(data + position, length - position, data, position, &offset))
     simple = (struct command) {.command = 4, .count = count, .value = offset};
-  if ((count = scan_forwards(data + position, length - position, bitflipped, position, &offset)))
+  if (count = scan_forwards(data + position, length - position, bitflipped, position, &offset))
     flipped = (struct command) {.command = 5, .count = count, .value = offset};
-  if ((count = scan_backwards(data, length - position, position, &offset)))
+  if (count = scan_backwards(data, length - position, position, &offset))
     backwards = (struct command) {.command = 6, .count = count, .value = offset};
   struct command command;
   switch (flags / 24) {
@@ -220,7 +326,8 @@ unsigned short scan_backwards (const unsigned char * data, unsigned short limit,
   unsigned short position;
   for (position = 0; position < real_position; position ++) {
     if (data[position] != data[real_position]) continue;
-    for (current_length = 0; (current_length < limit) && (data[position - current_length] == data[real_position + current_length]); current_length ++);
+    for (current_length = 0; (current_length <= position) && (current_length < limit) &&
+                             (data[position - current_length] == data[real_position + current_length]); current_length ++);
     if (current_length > 1024) current_length = 1024;
     if (current_length < best_length) continue;
     best_match = position;
@@ -310,7 +417,6 @@ void optimize (struct command * commands, unsigned short count) {
         break;
       case 1:
         if (commands -> value != next -> value) break;
-        // falls through
       case 3:
         if ((commands -> count + next -> count) <= 1024) {
           commands -> count += next -> count;

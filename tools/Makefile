@@ -19,5 +19,10 @@ clean:
 	rm -f $(tools)
 
 gfx md5: common.h
+
+# suppress warnings
+lzcomp: lzcomp.c
+	$(CC) -O3 -o $@ $<
+
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<
