@@ -226,7 +226,7 @@ This bug affects Acid, Iron Tail, and Rock Smash.
  	checkfaint
  	criticaltext
  	supereffectivetext
- 	checkdestinybond
+ 	checkfaint
  	buildopponentrage
 -	effectchance ; bug: duplicate effectchance shouldn't be here
  	defensedown

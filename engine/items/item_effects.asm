@@ -2159,7 +2159,7 @@ XItemEffect:
 	ld [hBattleTurn], a
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a
-	farcall CheckIfStatCanBeRaised
+	farcall RaiseStat
 	call WaitSFX
 
 	farcall BattleCommand_StatUpMessage

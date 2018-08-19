@@ -29,13 +29,13 @@ Defined in [macros/scripts/battle_commands.asm](/macros/scripts/battle_commands.
 
 ## `$0D`: `failuretext`
 
-## `$0E`: `checkfaint`
+## `$0E`: `applydamage`
 
 ## `$0F`: `criticaltext`
 
 ## `$10`: `supereffectivetext`
 
-## `$11`: `checkdestinybond`
+## `$11`: `checkfaint`
 
 ## `$12`: `buildopponentrage`
 
@@ -331,13 +331,13 @@ Defined in [macros/scripts/battle_commands.asm](/macros/scripts/battle_commands.
 
 ## `$A4`: `allstatsup`
 
-## `$A5`: `effect0xa5`
+## `$A5`: `bidefailtext`
 
 ## `$A6`: `raisesubnoanim`
 
 ## `$A7`: `lowersubnoanim`
 
-## `$A8`: `effect0xa8`
+## `$A8`: `beatupfailtext`
 
 ## `$A9`: `clearmissdamage`
 

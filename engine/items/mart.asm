@@ -54,8 +54,8 @@ BargainShop:
 	ld a, [hli]
 	or [hl]
 	jr z, .skip_set
-	ld hl, wDailyFlags
-	set DAILYFLAGS_GOLDENROD_UNDERGROUND_BARGAIN_F, [hl]
+	ld hl, wDailyFlags1
+	set DAILYFLAGS1_GOLDENROD_UNDERGROUND_BARGAIN_F, [hl]
 
 .skip_set
 	ld hl, Text_BargainShop_ComeAgain

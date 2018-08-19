@@ -21,7 +21,7 @@ ENDM
 	command applydamage             ; 0e
 	command criticaltext            ; 0f
 	command supereffectivetext      ; 10
-	command checkdestinybond        ; 11
+	command checkfaint              ; 11
 	command buildopponentrage       ; 12
 	command poisontarget            ; 13
 	command sleeptarget             ; 14

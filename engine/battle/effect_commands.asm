@@ -2363,10 +2363,12 @@ BattleCommand_SuperEffectiveText:
 .print
 	jp StdBattleTextBox
 
-BattleCommand_CheckDestinyBond:
-; checkdestinybond
+BattleCommand_CheckFaint:
+; checkfaint
 
-; Faint the user if it fainted an opponent using Destiny Bond.
+; Faint the opponent if its HP reached zero
+;  and faint the user along with it if it used Destiny Bond.
+; Ends the move effect if the opponent faints.
 
 	ld hl, wEnemyMonHP
 	ld a, [hBattleTurn]
@@ -2594,7 +2596,7 @@ PlayerAttackDamage:
 
 .physicalcrit
 	ld hl, wBattleMonAttack
-	call GetDamageStatsCritical
+	call CheckDamageStatsCritical
 	jr c, .thickclub
 
 	ld hl, wEnemyDefense
@@ -2618,7 +2620,7 @@ PlayerAttackDamage:
 
 .specialcrit
 	ld hl, wBattleMonSpclAtk
-	call GetDamageStatsCritical
+	call CheckDamageStatsCritical
 	jr c, .lightball
 
 	ld hl, wEnemySpDef
@@ -2692,19 +2694,15 @@ TruncateHL_BC:
 	ld b, l
 	ret
 
-GetDamageStatsCritical:
-; Return carry if non-critical.
+CheckDamageStatsCritical:
+; Return carry if boosted stats should be used in damage calculations.
+; Unboosted stats should be used if the attack is a critical hit,
+;  and the stage of the opponent's defense is higher than the user's attack.
 
 	ld a, [wCriticalHit]
 	and a
 	scf
 	ret z
-
-	; fallthrough
-
-GetDamageStats:
-; Return the attacker's offensive stat and the defender's defensive
-; stat based on whether the attacking type is physical or special.
 
 	push hl
 	push bc
@@ -2840,7 +2838,7 @@ EnemyAttackDamage:
 
 .physicalcrit
 	ld hl, wEnemyMonAttack
-	call GetDamageStatsCritical
+	call CheckDamageStatsCritical
 	jr c, .thickclub
 
 	ld hl, wPlayerDefense
@@ -2864,7 +2862,7 @@ EnemyAttackDamage:
 
 .specialcrit
 	ld hl, wEnemyMonSpclAtk
-	call GetDamageStatsCritical
+	call CheckDamageStatsCritical
 	jr c, .lightball
 	ld hl, wPlayerSpDef
 	ld a, [hli]
@@ -4185,13 +4183,13 @@ BattleCommand_EvasionUp2:
 
 BattleCommand_StatUp:
 ; statup
-	call CheckIfStatCanBeRaised
+	call RaiseStat
 	ld a, [wFailedMessage]
 	and a
 	ret nz
-	jp StatUpAnimation
+	jp MinimizeDropSub
 
-CheckIfStatCanBeRaised:
+RaiseStat:
 	ld a, b
 	ld [wLoweredStat], a
 	ld hl, wPlayerStatLevels
@@ -4287,7 +4285,9 @@ CheckIfStatCanBeRaised:
 	ld [wFailedMessage], a
 	ret
 
-StatUpAnimation:
+MinimizeDropSub:
+; Lower the substitute if we're minimizing
+
 	ld bc, wPlayerMinimized
 	ld hl, DropPlayerSub
 	ld a, [hBattleTurn]

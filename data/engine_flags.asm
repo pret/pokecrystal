@@ -104,23 +104,23 @@ EngineFlags:
 
 	engine_flag wStatusFlags2, STATUSFLAGS2_UNUSED_3_F
 
-	engine_flag wDailyFlags, DAILYFLAGS_KURT_MAKING_BALLS_F ; $50
-	engine_flag wDailyFlags, DAILYFLAGS_BUG_CONTEST_F
-	engine_flag wDailyFlags, DAILYFLAGS_FISH_SWARM_F
-	engine_flag wDailyFlags, DAILYFLAGS_TIME_CAPSULE_F
-	engine_flag wDailyFlags, DAILYFLAGS_ALL_FRUIT_TREES_F
-	engine_flag wDailyFlags, DAILYFLAGS_GOT_SHUCKIE_TODAY_F
-	engine_flag wDailyFlags, DAILYFLAGS_GOLDENROD_UNDERGROUND_BARGAIN_F
-	engine_flag wDailyFlags, DAILYFLAGS_TRAINER_HOUSE_F
+	engine_flag wDailyFlags1, DAILYFLAGS1_KURT_MAKING_BALLS_F ; $50
+	engine_flag wDailyFlags1, DAILYFLAGS1_BUG_CONTEST_F
+	engine_flag wDailyFlags1, DAILYFLAGS1_FISH_SWARM_F
+	engine_flag wDailyFlags1, DAILYFLAGS1_TIME_CAPSULE_F
+	engine_flag wDailyFlags1, DAILYFLAGS1_ALL_FRUIT_TREES_F
+	engine_flag wDailyFlags1, DAILYFLAGS1_GOT_SHUCKIE_TODAY_F
+	engine_flag wDailyFlags1, DAILYFLAGS1_GOLDENROD_UNDERGROUND_BARGAIN_F
+	engine_flag wDailyFlags1, DAILYFLAGS1_TRAINER_HOUSE_F
 
-	engine_flag wWeeklyFlags, WEEKLYFLAGS_MT_MOON_SQUARE_CLEFAIRY_F ; $58
-	engine_flag wWeeklyFlags, WEEKLYFLAGS_UNION_CAVE_LAPRAS_F
-	engine_flag wWeeklyFlags, WEEKLYFLAGS_GOLDENROD_UNDERGROUND_GOT_HAIRCUT_F
-	engine_flag wWeeklyFlags, WEEKLYFLAGS_GOLDENROD_DEPT_STORE_TM27_RETURN_F
-	engine_flag wWeeklyFlags, WEEKLYFLAGS_DAISYS_GROOMING_F
-	engine_flag wWeeklyFlags, WEEKLYFLAGS_INDIGO_PLATEAU_RIVAL_FIGHT_F
-	engine_flag wWeeklyFlags, WEEKLYFLAGS_DAILY_MOVE_TUTOR_F
-	engine_flag wWeeklyFlags, WEEKLYFLAGS_BUENAS_PASSWORD_F
+	engine_flag wDailyFlags2, DAILYFLAGS2_MT_MOON_SQUARE_CLEFAIRY_F ; $58
+	engine_flag wDailyFlags2, DAILYFLAGS2_UNION_CAVE_LAPRAS_F
+	engine_flag wDailyFlags2, DAILYFLAGS2_GOLDENROD_UNDERGROUND_GOT_HAIRCUT_F
+	engine_flag wDailyFlags2, DAILYFLAGS2_GOLDENROD_DEPT_STORE_TM27_RETURN_F
+	engine_flag wDailyFlags2, DAILYFLAGS2_DAISYS_GROOMING_F
+	engine_flag wDailyFlags2, DAILYFLAGS2_INDIGO_PLATEAU_RIVAL_FIGHT_F
+	engine_flag wDailyFlags2, DAILYFLAGS2_MOVE_TUTOR_F
+	engine_flag wDailyFlags2, DAILYFLAGS2_BUENAS_PASSWORD_F
 
 	engine_flag wSwarmFlags, SWARMFLAGS_BUENAS_PASSWORD_F ; $60
 	engine_flag wSwarmFlags, SWARMFLAGS_GOLDENROD_DEPT_STORE_SALE_F

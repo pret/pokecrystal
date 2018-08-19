@@ -34,7 +34,7 @@ InsertPokemonIntoBox:
 	call CopyBytes
 	ld a, [wCurPartyMon]
 	ld b, a
-	farcall RestorePPofDepositedPokemon
+	farcall RestorePPOfDepositedPokemon
 	jp CloseSRAM
 
 InsertPokemonIntoParty:

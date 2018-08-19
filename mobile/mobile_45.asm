@@ -4265,7 +4265,7 @@ Function1158c2:
 	ld l, c
 	ld h, b
 	xor a
-	ld [wWeeklyFlags], a
+	ld [wDailyFlags2], a
 
 .asm_1158e5
 	ld b, $3
@@ -4290,7 +4290,7 @@ Function1158c2:
 	push hl
 	dec hl
 	ld a, c
-	ld [wWeeklyFlags], a
+	ld [wDailyFlags2], a
 .asm_115908
 	xor a
 	ld [hld], a
@@ -4430,7 +4430,7 @@ endr
 	jp nz, .asm_1158e5
 
 .asm_1159c4
-	ld a, [wWeeklyFlags]
+	ld a, [wDailyFlags2]
 	cp $0
 	jr z, .asm_1159d8
 	push hl
@@ -4890,7 +4890,7 @@ Function115bc8:
 
 Function115c49:
 	ld a, e
-	ld [wWeeklyFlags], a
+	ld [wDailyFlags2], a
 	ld a, d
 	ld [wSwarmFlags], a
 	xor a
@@ -4960,7 +4960,7 @@ endr
 	ld [$dc1a], a
 	push de
 	push hl
-	ld hl, wWeeklyFlags
+	ld hl, wDailyFlags2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -5070,7 +5070,7 @@ Function115cfd:
 .asm_115d38
 	push de
 	push hl
-	ld a, [wWeeklyFlags]
+	ld a, [wDailyFlags2]
 	ld l, a
 	ld a, [wSwarmFlags]
 	ld h, a
