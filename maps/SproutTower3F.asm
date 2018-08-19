@@ -34,7 +34,7 @@ SproutTower3FRivalScene:
 	applymovement PLAYER, MovementData_0x184a1d
 	applymovement SPROUTTOWER3F_SILVER, MovementData_0x184a22
 	opentext
-	writetext UnknownText_0x184a27
+	writetext SproutTowerElderLecturesRivalText
 	waitbutton
 	closetext
 	showemote EMOTE_SHOCK, SPROUTTOWER3F_SILVER, 15
@@ -151,7 +151,7 @@ MovementData_0x184a24:
 	step DOWN
 	step_end
 
-UnknownText_0x184a27:
+SproutTowerElderLecturesRivalText:
 	text "ELDER: You are in-"
 	line "deed skilled as a"
 	cont "trainer."

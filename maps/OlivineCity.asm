@@ -33,7 +33,7 @@ OlivineCityRivalSceneTop:
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88d2
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
-	writetext UnknownText_0x1a88fa
+	writetext OlivineCityRivalText
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x1a88f4
@@ -57,7 +57,7 @@ OlivineCityRivalSceneBottom:
 	applymovement OLIVINECITY_OLIVINE_RIVAL, MovementData_0x1a88d6
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
-	writetext UnknownText_0x1a88fa
+	writetext OlivineCityRivalText
 	waitbutton
 	closetext
 	applymovement PLAYER, MovementData_0x1a88f7
@@ -165,7 +165,7 @@ MovementData_0x1a88f7:
 	turn_head DOWN
 	step_end
 
-UnknownText_0x1a88fa:
+OlivineCityRivalText:
 	text "…"
 
 	para "You again?"

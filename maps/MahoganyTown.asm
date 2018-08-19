@@ -43,14 +43,14 @@ RageCandyBarMerchantScript:
 
 .ClearedRocketHideout:
 	opentext
-	writetext RageCandyBarMerchantText_SoldOut
+	writetext RageCandyBarMerchantSoldOutText
 	waitbutton
 	closetext
 	end
 
 .SellRageCandyBars:
 	opentext
-	writetext RageCandyBarMerchantText_TryOne
+	writetext RageCandyBarMerchantTryOneText
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse .Refused
@@ -62,25 +62,25 @@ RageCandyBarMerchantScript:
 	playsound SFX_TRANSACTION
 	takemoney YOUR_MONEY, 300
 	special PlaceMoneyTopRight
-	writetext RageCandyBarMerchantText_SavorIt
+	writetext RageCandyBarMerchantSavorItText
 	waitbutton
 	closetext
 	end
 
 .NotEnoughMoney:
-	writetext RageCandyBarMerchantText_NotEnoughMoney
+	writetext RageCandyBarMerchantNotEnoughMoneyText
 	waitbutton
 	closetext
 	end
 
 .Refused:
-	writetext RageCandyBarMerchantText_Refused
+	writetext RageCandyBarMerchantRefusedText
 	waitbutton
 	closetext
 	end
 
 .NoRoom:
-	writetext UnknownText_0x190188
+	writetext RageCandyBarMerchantNoRoomText
 	waitbutton
 	closetext
 	end
@@ -138,7 +138,7 @@ MovementData_0x1900ad:
 	turn_head DOWN
 	step_end
 
-RageCandyBarMerchantText_TryOne:
+RageCandyBarMerchantTryOneText:
 	text "Hiya, kid!"
 
 	para "I see you're new"
@@ -155,25 +155,25 @@ RageCandyBarMerchantText_TryOne:
 	cont "¥300! Want one?"
 	done
 
-RageCandyBarMerchantText_SavorIt:
+RageCandyBarMerchantSavorItText:
 	text "Good! Savor it!"
 	done
 
-RageCandyBarMerchantText_NotEnoughMoney:
+RageCandyBarMerchantNotEnoughMoneyText:
 	text "You don't have"
 	line "enough money."
 	done
 
-RageCandyBarMerchantText_Refused:
+RageCandyBarMerchantRefusedText:
 	text "Oh, fine then…"
 	done
 
-UnknownText_0x190188:
+RageCandyBarMerchantNoRoomText:
 	text "You don't have"
 	line "room for this."
 	done
 
-RageCandyBarMerchantText_SoldOut:
+RageCandyBarMerchantSoldOutText:
 	text "RAGECANDYBAR's"
 	line "sold out."
 

@@ -15,10 +15,10 @@ VermilionGymSurgeScript:
 	opentext
 	checkflag ENGINE_THUNDERBADGE
 	iftrue .FightDone
-	writetext UnknownText_0x192142
+	writetext LtSurgeIntroText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x192238, 0
+	winlosstext LtSurgeWinLossText, 0
 	loadtrainer LT_SURGE, LT_SURGE1
 	startbattle
 	reloadmapafterbattle
@@ -27,17 +27,17 @@ VermilionGymSurgeScript:
 	setevent EVENT_BEAT_GUITARIST_VINCENT
 	setevent EVENT_BEAT_JUGGLER_HORTON
 	opentext
-	writetext UnknownText_0x192277
+	writetext ReceivedThunderBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_THUNDERBADGE
-	writetext UnknownText_0x192291
+	writetext LtSurgeThunderBadgeText
 	waitbutton
 	closetext
 	end
 
 .FightDone:
-	writetext UnknownText_0x192303
+	writetext LtSurgeFightDoneText
 	waitbutton
 	closetext
 	end
@@ -102,7 +102,7 @@ VermilionGymStatue:
 	trainertotext LT_SURGE, LT_SURGE1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-UnknownText_0x192142:
+LtSurgeIntroText:
 	text "SURGE: Hey, you"
 	line "little tyke!"
 
@@ -125,7 +125,7 @@ UnknownText_0x192142:
 	cont "enemies in war!"
 	done
 
-UnknownText_0x192238:
+LtSurgeWinLossText:
 	text "SURGE: Arrrgh!"
 	line "You are strong!"
 
@@ -133,12 +133,12 @@ UnknownText_0x192238:
 	line "THUNDERBADGE!"
 	done
 
-UnknownText_0x192277:
+ReceivedThunderBadgeText:
 	text "<PLAYER> received"
 	line "THUNDERBADGE."
 	done
 
-UnknownText_0x192291:
+LtSurgeThunderBadgeText:
 	text "SURGE: THUNDER-"
 	line "BADGE increases"
 	cont "#MON's speed. "
@@ -150,7 +150,7 @@ UnknownText_0x192291:
 	line "proudly, hear?"
 	done
 
-UnknownText_0x192303:
+LtSurgeFightDoneText:
 	text "SURGE: Hey, kid!"
 	line "Still slugging and"
 	cont "chugging away?"
