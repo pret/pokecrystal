@@ -26,10 +26,10 @@ EcruteakGymMortyScript:
 	opentext
 	checkevent EVENT_BEAT_MORTY
 	iftrue .FightDone
-	writetext UnknownText_0x99e65
+	writetext MortyIntroText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x9a00a, 0
+	winlosstext MortyWinLossText, 0
 	loadtrainer MORTY, MORTY1
 	startbattle
 	reloadmapafterbattle
@@ -62,7 +62,7 @@ EcruteakGymMortyScript:
 	end
 
 .GotShadowBall:
-	writetext UnknownText_0x9a145
+	writetext MortyFightDoneText
 	waitbutton
 .NoRoomForShadowBall:
 	closetext
@@ -83,7 +83,7 @@ EcruteakGymClosed:
 	applymovement PLAYER, EcruteakGymPlayerStepUpMovement
 	applymovement ECRUTEAKGYM_GRAMPS, EcruteakGymGrampsSlowStepDownMovement
 	opentext
-	writetext UnknownText_0x9a49c
+	writetext EcruteakGymClosedText
 	waitbutton
 	closetext
 	follow PLAYER, ECRUTEAKGYM_GRAMPS
@@ -177,7 +177,7 @@ EcruteakGymGrampsSlowStepDownMovement:
 	slow_step DOWN
 	step_end
 
-UnknownText_0x99e65:
+MortyIntroText:
 	text "Good of you to"
 	line "have come."
 
@@ -218,7 +218,7 @@ UnknownText_0x99e65:
 	cont "level!"
 	done
 
-UnknownText_0x9a00a:
+MortyWinLossText:
 	text "I'm not good"
 	line "enough yet…"
 
@@ -259,7 +259,7 @@ MortyText_ShadowBallSpeech:
 	line "appeals to you."
 	done
 
-UnknownText_0x9a145:
+MortyFightDoneText:
 	text "I see…"
 
 	para "Your journey has"
@@ -374,7 +374,7 @@ EcruteakGymGuyWinText:
 	cont "pure terror!"
 	done
 
-UnknownText_0x9a49c:
+EcruteakGymClosedText:
 	text "MORTY, the GYM"
 	line "LEADER, is absent."
 

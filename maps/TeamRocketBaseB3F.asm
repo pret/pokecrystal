@@ -183,13 +183,13 @@ TeamRocketBaseB3FLockedDoor:
 	jump .OpenSesame
 
 .NeedsPassword:
-	writetext UnknownText_0x6e970
+	writetext TeamRocketBaseB3FLockedDoorNeedsPasswordText
 	waitbutton
 	closetext
 	end
 
 .OpenSesame:
-	writetext UnknownText_0x6e9a3
+	writetext TeamRocketBaseB3FLockedDoorOpenSesameText
 	waitbutton
 	playsound SFX_ENTER_DOOR
 	changeblock 10, 8, $07 ; floor
@@ -547,14 +547,14 @@ ScientistMitchAfterBattleText:
 	line "excites me!"
 	done
 
-UnknownText_0x6e970:
+TeamRocketBaseB3FLockedDoorNeedsPasswordText:
 	text "The door's closed…"
 
 	para "It needs two"
 	line "passwords to open."
 	done
 
-UnknownText_0x6e9a3:
+TeamRocketBaseB3FLockedDoorOpenSesameText:
 	text "The door's closed…"
 
 	para "<PLAYER> entered"

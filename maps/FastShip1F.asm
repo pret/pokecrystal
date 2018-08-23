@@ -127,7 +127,7 @@ WorriedGrandpaSceneLeft:
 	applymovement PLAYER, MovementData_0x7522e
 	applymovement FASTSHIP1F_GENTLEMAN, MovementData_0x75220
 	opentext
-	writetext UnknownText_0x75412
+	writetext FastShip1FGrandpaText
 	waitbutton
 	closetext
 	turnobject PLAYER, RIGHT
@@ -257,7 +257,7 @@ FastShip1FSailor3Text:
 	cont "their cabins."
 	done
 
-UnknownText_0x75412:
+FastShip1FGrandpaText:
 	text "Whoa! Excuse me."
 	line "I was in a hurry!"
 

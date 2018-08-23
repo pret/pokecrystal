@@ -19,7 +19,7 @@ MonMenuOptionStrings:
 	db "ERROR!@"
 
 MonMenuOptions:
-; category, item, value; actions are in PokemonActionSubmenu (see engine/start_menu.asm)
+; category, item, value; actions are in PokemonActionSubmenu (see engine/pokemon/mon_menu.asm)
 ; moves
 	db MONMENU_FIELD_MOVE, MONMENUITEM_CUT,        CUT
 	db MONMENU_FIELD_MOVE, MONMENUITEM_FLY,        FLY

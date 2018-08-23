@@ -14,16 +14,16 @@ VioletGymFalknerScript:
 	opentext
 	checkevent EVENT_BEAT_FALKNER
 	iftrue .FightDone
-	writetext UnknownText_0x68473
+	writetext FalknerIntroText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x6854a, 0
+	winlosstext FalknerWinLossText, 0
 	loadtrainer FALKNER, FALKNER1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_FALKNER
 	opentext
-	writetext UnknownText_0x685af
+	writetext ReceivedZephyrBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_ZEPHYRBADGE
@@ -36,18 +36,18 @@ VioletGymFalknerScript:
 	setevent EVENT_BEAT_BIRD_KEEPER_ABE
 	setmapscene ELMS_LAB, SCENE_ELMSLAB_NOTHING
 	specialphonecall SPECIALCALL_ASSISTANT
-	writetext UnknownText_0x685c8
+	writetext FalknerZephyrBadgeText
 	buttonsound
 	verbosegiveitem TM_MUD_SLAP
 	iffalse .NoRoomForMudSlap
 	setevent EVENT_GOT_TM31_MUD_SLAP
-	writetext UnknownText_0x68648
+	writetext FalknerTMMudSlapText
 	waitbutton
 	closetext
 	end
 
 .SpeechAfterTM:
-	writetext UnknownText_0x68735
+	writetext FalknerFightDoneText
 	waitbutton
 .NoRoomForMudSlap:
 	closetext
@@ -110,7 +110,7 @@ VioletGymStatue:
 	trainertotext FALKNER, FALKNER1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-UnknownText_0x68473:
+FalknerIntroText:
 	text "I'm FALKNER, the"
 	line "VIOLET #MON GYM"
 	cont "leader!"
@@ -133,7 +133,7 @@ UnknownText_0x68473:
 	line "#MON!"
 	done
 
-UnknownText_0x6854a:
+FalknerWinLossText:
 	text "…Darn! My dad's"
 	line "cherished bird"
 	cont "#MON…"
@@ -146,12 +146,12 @@ UnknownText_0x6854a:
 	cont "ZEPHYRBADGE."
 	done
 
-UnknownText_0x685af:
+ReceivedZephyrBadgeText:
 	text "<PLAYER> received"
 	line "ZEPHYRBADGE."
 	done
 
-UnknownText_0x685c8:
+FalknerZephyrBadgeText:
 	text "ZEPHYRBADGE"
 	line "raises the attack"
 	cont "power of #MON."
@@ -166,7 +166,7 @@ UnknownText_0x685c8:
 	line "too."
 	done
 
-UnknownText_0x68648:
+FalknerTMMudSlapText:
 	text "By using a TM, a"
 	line "#MON will"
 
@@ -191,7 +191,7 @@ UnknownText_0x68648:
 	cont "and offensive."
 	done
 
-UnknownText_0x68735:
+FalknerFightDoneText:
 	text "There are #MON"
 	line "GYMS in cities and"
 	cont "towns ahead."

@@ -89,13 +89,13 @@ IlexForestCharcoalApprenticeScript:
 	opentext
 	checkevent EVENT_HERDED_FARFETCHD
 	iftrue .DoneFarfetchd
-	writetext UnknownText_0x6ef5c
+	writetext IlexForestApprenticeIntroText
 	waitbutton
 	closetext
 	end
 
 .DoneFarfetchd:
-	writetext UnknownText_0x6f019
+	writetext IlexForestApprenticeAfterText
 	waitbutton
 	closetext
 	end
@@ -736,7 +736,7 @@ MovementData_0x6ef58:
 	remove_fixed_facing
 	step_end
 
-UnknownText_0x6ef5c:
+IlexForestApprenticeIntroText:
 	text "Oh, man… My boss"
 	line "is going to be"
 	cont "steaming…"
@@ -755,7 +755,7 @@ UnknownText_0x6ef5c:
 	line "and scary for me…"
 	done
 
-UnknownText_0x6f019:
+IlexForestApprenticeAfterText:
 	text "Wow! Thanks a"
 	line "whole bunch!"
 

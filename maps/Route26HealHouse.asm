@@ -9,7 +9,7 @@ Route26HealHouse_MapScripts:
 Route26HealHouseTeacherScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x7b14d
+	writetext Route26HealHouseRestAWhileText
 	waitbutton
 	closetext
 	special FadeBlackQuickly
@@ -21,7 +21,7 @@ Route26HealHouseTeacherScript:
 	special FadeInQuickly
 	special RestartMapMusic
 	opentext
-	writetext UnknownText_0x7b18b
+	writetext Route26HealHouseKeepAtItText
 	waitbutton
 	closetext
 	end
@@ -29,7 +29,7 @@ Route26HealHouseTeacherScript:
 Route26HealHouseBookshelf:
 	jumpstd picturebookshelf
 
-UnknownText_0x7b14d:
+Route26HealHouseRestAWhileText:
 	text "Your #MON look"
 	line "a little tired."
 
@@ -37,7 +37,7 @@ UnknownText_0x7b14d:
 	line "them a while."
 	done
 
-UnknownText_0x7b18b:
+Route26HealHouseKeepAtItText:
 	text "There!"
 
 	para "Your #MON are"

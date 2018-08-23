@@ -26,18 +26,18 @@ CeruleanGym_MapScripts:
 	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsIntoYouMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	opentext
-	writetext UnknownText_0x1884fb
+	writetext CeruleanGymGruntIntroText
 	waitbutton
 	closetext
 	showemote EMOTE_SHOCK, CERULEANGYM_ROCKET, 15
 	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntBacksAwayMovement
 	opentext
-	writetext UnknownText_0x188574
+	writetext CeruleanGymGruntBigMistakeText
 	waitbutton
 	closetext
 	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntMovesCloseMovement
 	opentext
-	writetext UnknownText_0x1885a5
+	writetext CeruleanGymGruntByeText
 	waitbutton
 	closetext
 	applymovement CERULEANGYM_ROCKET, CeruleanGymGruntRunsOutMovement
@@ -61,10 +61,10 @@ CeruleanGymMistyScript:
 	opentext
 	checkflag ENGINE_CASCADEBADGE
 	iftrue .FightDone
-	writetext UnknownText_0x188674
+	writetext MistyIntroText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x18870c, 0
+	winlosstext MistyWinLossText, 0
 	loadtrainer MISTY, MISTY1
 	startbattle
 	reloadmapafterbattle
@@ -73,12 +73,12 @@ CeruleanGymMistyScript:
 	setevent EVENT_BEAT_SWIMMERF_BRIANA
 	setevent EVENT_BEAT_SWIMMERM_PARKER
 	opentext
-	writetext UnknownText_0x188768
+	writetext ReceivedCascadeBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_CASCADEBADGE
 .FightDone:
-	writetext UnknownText_0x188782
+	writetext MistyFightDoneText
 	waitbutton
 	closetext
 	end
@@ -139,7 +139,7 @@ CeruleanGymStatue1:
 	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	iffalse CeruleanGymStatue
 	opentext
-	writetext CeruleanGymNote1
+	writetext CeruleanGymNote1Text
 	waitbutton
 	closetext
 	end
@@ -148,7 +148,7 @@ CeruleanGymStatue2:
 	checkevent EVENT_TRAINERS_IN_CERULEAN_GYM
 	iffalse CeruleanGymStatue
 	opentext
-	writetext CeruleanGymNote2
+	writetext CeruleanGymNote2Text
 	waitbutton
 	closetext
 	end
@@ -195,7 +195,7 @@ CeruleanGymGruntBacksAwayMovement:
 	remove_fixed_facing
 	step_end
 
-UnknownText_0x1884fb:
+CeruleanGymGruntIntroText:
 	text "Oops! I so sorry!"
 	line "You not hurt,"
 	cont "okay?"
@@ -207,13 +207,13 @@ UnknownText_0x1884fb:
 	cont "seen by somebody."
 	done
 
-UnknownText_0x188574:
+CeruleanGymGruntBigMistakeText:
 	text "Oh no! You seen"
 	line "me already! I make"
 	cont "big mistake!"
 	done
 
-UnknownText_0x1885a5:
+CeruleanGymGruntByeText:
 	text "Hey, you! Forget"
 	line "you see me, okay?"
 
@@ -226,19 +226,19 @@ UnknownText_0x1885a5:
 	para "Bye-bye a go-go!"
 	done
 
-CeruleanGymNote1:
+CeruleanGymNote1Text:
 	text "Sorry, I'll be out"
 	line "for a while."
 	cont "MISTY, GYM LEADER"
 	done
 
-CeruleanGymNote2:
+CeruleanGymNote2Text:
 	text "Since MISTY's out,"
 	line "we'll be away too."
 	cont "GYM TRAINERS"
 	done
 
-UnknownText_0x188674:
+MistyIntroText:
 	text "MISTY: I was ex-"
 	line "pecting you, you"
 	cont "pest!"
@@ -254,7 +254,7 @@ UnknownText_0x188674:
 	line "#MON are tough!"
 	done
 
-UnknownText_0x18870c:
+MistyWinLossText:
 	text "MISTY: You really"
 	line "are good…"
 
@@ -265,12 +265,12 @@ UnknownText_0x18870c:
 	line "CASCADEBADGE."
 	done
 
-UnknownText_0x188768:
+ReceivedCascadeBadgeText:
 	text "<PLAYER> received"
 	line "CASCADEBADGE."
 	done
 
-UnknownText_0x188782:
+MistyFightDoneText:
 	text "MISTY: Are there"
 	line "many strong train-"
 	cont "ers in JOHTO? Like"

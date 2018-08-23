@@ -33,7 +33,7 @@
 	shift_const SCROLLINGMENU_ENABLE_SELECT
 
 ; MonMenuOptions indexes (see data/mon_menu.asm)
-; used by PokemonActionSubmenu (see engine/menus/start_menu.asm)
+; used by PokemonActionSubmenu (see engine/pokemon/mon_menu.asm)
 	const_def 1
 	; moves
 	const MONMENUITEM_CUT        ; 1

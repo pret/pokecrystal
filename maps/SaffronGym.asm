@@ -16,10 +16,10 @@ SaffronGymSabrinaScript:
 	opentext
 	checkflag ENGINE_MARSHBADGE
 	iftrue .FightDone
-	writetext UnknownText_0x189cdf
+	writetext SabrinaIntroText
 	waitbutton
 	closetext
-	winlosstext UnknownText_0x189df4, 0
+	winlosstext SabrinaWinLossText, 0
 	loadtrainer SABRINA, SABRINA1
 	startbattle
 	reloadmapafterbattle
@@ -29,17 +29,17 @@ SaffronGymSabrinaScript:
 	setevent EVENT_BEAT_PSYCHIC_FRANKLIN
 	setevent EVENT_BEAT_PSYCHIC_JARED
 	opentext
-	writetext UnknownText_0x189e95
+	writetext ReceivedMarshBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_MARSHBADGE
-	writetext UnknownText_0x189ead
+	writetext SabrinaMarshBadgeText
 	waitbutton
 	closetext
 	end
 
 .FightDone:
-	writetext UnknownText_0x189f6c
+	writetext SabrinaFightDoneText
 	waitbutton
 	closetext
 	end
@@ -112,7 +112,7 @@ SaffronGymStatue:
 	trainertotext SABRINA, SABRINA1, MEM_BUFFER_1
 	jumpstd gymstatue2
 
-UnknownText_0x189cdf:
+SabrinaIntroText:
 	text "SABRINA: I knew"
 	line "you were coming…"
 
@@ -138,7 +138,7 @@ UnknownText_0x189cdf:
 	cont "psychic powers!"
 	done
 
-UnknownText_0x189df4:
+SabrinaWinLossText:
 	text "SABRINA: Your"
 	line "power…"
 
@@ -156,12 +156,12 @@ UnknownText_0x189df4:
 	cont "MARSHBADGE."
 	done
 
-UnknownText_0x189e95:
+ReceivedMarshBadgeText:
 	text "<PLAYER> received"
 	line "MARSHBADGE."
 	done
 
-UnknownText_0x189ead:
+SabrinaMarshBadgeText:
 	text "SABRINA: MARSH-"
 	line "BADGE draws out"
 
@@ -179,7 +179,7 @@ UnknownText_0x189ead:
 	cont "beloved CHAMPION!"
 	done
 
-UnknownText_0x189f6c:
+SabrinaFightDoneText:
 	text "SABRINA: Your love"
 	line "for your #MON"
 

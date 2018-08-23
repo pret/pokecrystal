@@ -50,14 +50,14 @@ TrainerGuitaristClyde:
 	special Mobile_DummyReturnFalse
 	iftrue .mobile
 	opentext
-	writetext UnknownText_0x75d65
+	writetext GuitaristClydeAfterBattleText
 	waitbutton
 	closetext
 	end
 
 .mobile
 	opentext
-	writetext UnknownText_0x75cfe
+	writetext GuitaristClydeAfterBattleMobileText
 	waitbutton
 	closetext
 	end
@@ -180,7 +180,7 @@ GuitaristClydeBeatenText:
 	line "Total distortion!"
 	done
 
-UnknownText_0x75cfe:
+GuitaristClydeAfterBattleMobileText:
 	text "I was going to"
 	line "make my debut at"
 	cont "the BATTLE TOWER…"
@@ -190,7 +190,7 @@ UnknownText_0x75cfe:
 	cont "redo my training…"
 	done
 
-UnknownText_0x75d65:
+GuitaristClydeAfterBattleText:
 	text "Speaking of the"
 	line "RADIO STATION,"
 

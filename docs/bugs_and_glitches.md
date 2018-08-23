@@ -986,7 +986,7 @@ Then edit [engine/battle/start_battle.asm](/engine/battle/start_battle.asm):
 
 Finally, edit [engine/battle/read_trainer_party.asm](/engine/battle/read_trainer_party.asm):
 
-```asm
+```diff
  INCLUDE "data/trainers/parties.asm"
 +
 +SetTrainerBattleLevel:
@@ -1370,7 +1370,7 @@ This supports up to six entries.
 
 **Fix:** Edit `PlacePartyMonEvoStoneCompatibility.DetermineCompatibility` in [engine/pokemon/party_menu.asm](/engine/pokemon/party_menu.asm):
 
-```asm
+```diff
  .loop2
  	ld a, [hli]
  	and a

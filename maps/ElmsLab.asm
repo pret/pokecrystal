@@ -111,7 +111,7 @@ ElmCheckEverstone:
 	writebyte TOGETIC
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
-	writetext UnknownText_0x79a40
+	writetext ElmThoughtEggHatchedText
 	waitbutton
 	closetext
 	end
@@ -1064,7 +1064,7 @@ ElmWaitingEggHatchText:
 	line "EGG changed any?"
 	done
 
-UnknownText_0x79a40:
+ElmThoughtEggHatchedText:
 	text "<PLAY_G>? I thought"
 	line "the EGG hatched."
 

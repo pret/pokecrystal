@@ -49,7 +49,7 @@ GoldenrodDeptStoreRoofPokefanFScript:
 GoldenrodDeptStoreRoofFisherScript:
 	faceplayer
 	opentext
-	writetext UnknownText_0x567d2
+	writetext GoldenrodDeptStoreRoofFisherText
 	waitbutton
 	closetext
 	turnobject GOLDENRODDEPTSTOREROOF_FISHER, UP
@@ -60,12 +60,12 @@ GoldenrodDeptStoreRoofTwinScript:
 
 GoldenrodDeptStoreRoofSuperNerdScript:
 	opentext
-	writetext UnknownText_0x56867
+	writetext GoldenrodDeptStoreRoofSuperNerdOhWowText
 	waitbutton
 	closetext
 	turnobject GOLDENRODDEPTSTOREROOF_SUPER_NERD, UP
 	opentext
-	writetext UnknownText_0x56871
+	writetext GoldenrodDeptStoreRoofSuperNerdQuitBotheringMeText
 	waitbutton
 	closetext
 	turnobject GOLDENRODDEPTSTOREROOF_SUPER_NERD, RIGHT
@@ -102,7 +102,7 @@ GoldenrodDeptStoreRoofPokefanFText:
 	line "from shopping."
 	done
 
-UnknownText_0x567d2:
+GoldenrodDeptStoreRoofFisherText:
 	text "Pardon? Who says"
 	line "an adult can't get"
 	cont "into this?"
@@ -120,11 +120,11 @@ GoldenrodDeptStoreRoofTwinText:
 	cont "so often."
 	done
 
-UnknownText_0x56867:
+GoldenrodDeptStoreRoofSuperNerdOhWowText:
 	text "Oh, wow!"
 	done
 
-UnknownText_0x56871:
+GoldenrodDeptStoreRoofSuperNerdQuitBotheringMeText:
 	text "Will you quit"
 	line "bothering me?"
 	done
