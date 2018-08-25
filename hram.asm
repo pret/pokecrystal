@@ -66,26 +66,27 @@ UNION ; ffb3
 hPartyMon1Speed:: dw ; ffb5
 
 NEXTU ; ffb3
-
-UNION ; ffb3
 hDividend:: ds 4 ; ffb3
 hDivisor:: db ; ffb7
+
 NEXTU ; ffb3
 	ds 1
 hQuotient:: ds 3 ; ffb4
 hRemainder:: db ; ffb7
+
 NEXTU ; ffb3
 	ds 1
 hMultiplicand:: ds 3 ; ffb4
 hMultiplier:: db ; ffb7
+
 NEXTU ; ffb3
 hProduct:: ds 4 ; ffb3
-ENDU ; ffb8
 
+NEXTU ; ffb3
+	ds 5
 hMathBuffer:: ds 5 ; ffb8
 
 NEXTU ; ffb3
-
 hPrintNum1::  db ; ffb3
 hPrintNum2::  db ; ffb4
 hPrintNum3::  db ; ffb5
@@ -98,7 +99,6 @@ hPrintNum9::  db ; ffbb
 hPrintNum10:: db ; ffbc
 
 NEXTU ; ffb3
-
 	ds 9
 hMGStatusFlags:: db ; ffbc
 ENDU ; ffbd
