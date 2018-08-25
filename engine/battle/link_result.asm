@@ -83,13 +83,13 @@ DetermineLinkBattleResult:
 	jr z, .next
 	dec hl
 	xor a
-	ld [hDividend + 0], a
+	ldh [hDividend + 0], a
 	ld a, [hli]
-	ld [hDividend + 1], a
+	ldh [hDividend + 1], a
 	ld a, [hli]
-	ld [hDividend + 2], a
+	ldh [hDividend + 2], a
 	xor a
-	ld [hDividend + 3], a
+	ldh [hDividend + 3], a
 	ld a, [hli]
 	ld b, a
 	ld a, [hld]
@@ -97,13 +97,13 @@ DetermineLinkBattleResult:
 	rr a
 	srl b
 	rr a
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, $4
 	call Divide
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	add e
 	ld e, a
-	ld a, [hQuotient + 1]
+	ldh a, [hQuotient + 1]
 	adc d
 	ld d, a
 	dec hl

@@ -8,7 +8,7 @@ PlaceGraphic:
 	and a
 	jr nz, .right
 
-	ld a, [hGraphicStartTile]
+	ldh a, [hGraphicStartTile]
 .x1
 	push bc
 	push hl
@@ -35,7 +35,7 @@ PlaceGraphic:
 	add hl, bc
 	pop bc
 
-	ld a, [hGraphicStartTile]
+	ldh a, [hGraphicStartTile]
 .x2
 	push bc
 	push hl

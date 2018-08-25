@@ -30,7 +30,7 @@ BattleCommand_Transform:
 	call ResetActorDisable
 	ld hl, wBattleMonSpecies
 	ld de, wEnemyMonSpecies
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, .got_mon_species
 	ld hl, wEnemyMonSpecies
@@ -46,7 +46,7 @@ BattleCommand_Transform:
 	inc de
 	ld bc, NUM_MOVES
 	call CopyBytes
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .mimic_enemy_backup
 	ld a, [de]
@@ -112,7 +112,7 @@ BattleCommand_Transform:
 	call BattleSideCopy
 	call _CheckBattleScene
 	jr c, .mimic_anims
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerMinimized]
 	jr z, .got_byte

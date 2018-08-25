@@ -371,7 +371,7 @@ Function48304:
 	call ExitMenu
 	call ExitMenu
 	pop af
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	bit 0, a
 	jr z, .asm_48377
 	call Function483bb
@@ -812,10 +812,10 @@ Function4876f:
 	call PlaceString
 	ld hl, MenuHeader_0x48509
 	call LoadMenuHeader
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	hlcoord 10, 5
 	ld b, $1
 	ld c, $8
@@ -861,7 +861,7 @@ Function4876f:
 	hlcoord 11, 6
 	call Function487ec
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	jp Function4840c
 
 Function487ec:
@@ -891,10 +891,10 @@ String_4880d:
 	db "@"
 
 Function4880e:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jp nz, Function488b9
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and B_BUTTON
 	jp nz, Function488b4
 	ld hl, hJoyLast
@@ -1012,10 +1012,10 @@ Function488d3:
 	jp c, Function4840c
 	ld hl, MenuHeader_0x4850e
 	call LoadMenuHeader
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	hlcoord 10, 9
 	ld b, $1
 	ld c, $8
@@ -1042,7 +1042,7 @@ Function488d3:
 asm_48922:
 	push bc
 	call JoyTextDelay
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	and a
 	jp z, Function4896e
 	bit 0, a
@@ -1073,7 +1073,7 @@ asm_48922:
 	jr asm_48972
 
 Function4895a:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and a
 	jr z, .asm_48965
 	pop bc
@@ -1082,7 +1082,7 @@ Function4895a:
 	jr asm_48972
 
 .asm_48965
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and a
 	jr z, asm_48972
 
@@ -1159,7 +1159,7 @@ asm_48972:
 	lb bc, 1, 8
 	call ClearBox
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	jp Function4840c
 
 Function489ea:
@@ -1258,10 +1258,10 @@ String_48aa1:
 	next "Tell Later@"
 
 Function48ab5:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jp nz, Function48c0f
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and B_BUTTON
 	jp nz, Function48c0d
 	ld a, d
@@ -1746,8 +1746,8 @@ Function48d4a:
 	add c
 	ld [hld], a
 	xor a
-	ld [hMultiplicand + 0], a
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 0], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
 	srl a
 	srl a
@@ -1759,13 +1759,13 @@ Function48d4a:
 	ld a, [hli]
 	and $f
 	add b
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, 100
-	ld [hMultiplier], a
+	ldh [hMultiplier], a
 	call Multiply
-	ld a, [hProduct + 2]
+	ldh a, [hProduct + 2]
 	ld b, a
-	ld a, [hProduct + 3]
+	ldh a, [hProduct + 3]
 	ld c, a
 	ld e, [hl]
 	add e
@@ -1780,17 +1780,17 @@ Function48d4a:
 
 Function48d94:
 	xor a
-	ld [hDividend + 0], a
-	ld [hDividend + 1], a
+	ldh [hDividend + 0], a
+	ldh [hDividend + 1], a
 	ld a, [hli]
-	ld [hDividend + 0], a
+	ldh [hDividend + 0], a
 	ld a, [hl]
-	ld [hDividend + 1], a
+	ldh [hDividend + 1], a
 	ld a, 100
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hRemainder]
+	ldh a, [hRemainder]
 	ld c, 10
 	call SimpleDivide
 	sla b
@@ -1799,7 +1799,7 @@ Function48d94:
 	sla b
 	or b
 	ld [hld], a
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	ld c, 10
 	call SimpleDivide
 	sla b

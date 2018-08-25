@@ -12,7 +12,7 @@ WriteOAMDMACodeToHRAM::
 
 .PushOAM:
 	ld a, HIGH(wVirtualOAM)
-	ld [rDMA], a
+	ldh [rDMA], a
 	ld a, NUM_SPRITE_OAM_STRUCTS
 .pushoam_loop
 	dec a

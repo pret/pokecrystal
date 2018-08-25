@@ -7,7 +7,7 @@ BattleCommand_Mimic:
 	and a
 	jr nz, .fail
 	ld hl, wBattleMonMoves
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player_turn
 	ld hl, wEnemyMonMoves

@@ -656,11 +656,11 @@ DayCare_InitBreeding:
 	ld d, a
 	callfar CalcExpAtLevel
 	ld hl, wEggMonExp
-	ld a, [hMultiplicand]
+	ldh a, [hMultiplicand]
 	ld [hli], a
-	ld a, [hMultiplicand + 1]
+	ldh a, [hMultiplicand + 1]
 	ld [hli], a
-	ld a, [hMultiplicand + 2]
+	ldh a, [hMultiplicand + 2]
 	ld [hl], a
 	xor a
 	ld b, wEggMonDVs - wEggMonStatExp

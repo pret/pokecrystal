@@ -375,7 +375,7 @@ MailboxPC:
 	ld hl, .TopMenuHeader
 	call CopyMenuHeader
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call InitScrollingMenu
 	call UpdateSprites
 

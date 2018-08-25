@@ -61,7 +61,7 @@ $(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL -D _CRYSTAL11
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
 define DEP
 $1: $2 $$(shell tools/scan_includes $2)
-	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
+	$$(RGBASM) $$(RGBASMFLAGS) -L -o $$@ $$<
 endef
 
 # Build tools when building the rom.

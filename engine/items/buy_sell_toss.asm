@@ -157,13 +157,13 @@ DisplaySellingPrice:
 
 BuySell_MultiplyPrice:
 	xor a
-	ld [hMultiplicand + 0], a
+	ldh [hMultiplicand + 0], a
 	ld a, [wBuffer1]
-	ld [hMultiplicand + 1], a
+	ldh [hMultiplicand + 1], a
 	ld a, [wBuffer2]
-	ld [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a
 	ld a, [wItemQuantityChangeBuffer]
-	ld [hMultiplier], a
+	ldh [hMultiplier], a
 	push hl
 	call Multiply
 	pop hl
@@ -187,11 +187,11 @@ Sell_HalvePrice:
 BuySell_DisplaySubtotal:
 	push hl
 	ld hl, hMoneyTemp
-	ld a, [hProduct + 1]
+	ldh a, [hProduct + 1]
 	ld [hli], a
-	ld a, [hProduct + 2]
+	ldh a, [hProduct + 2]
 	ld [hli], a
-	ld a, [hProduct + 3]
+	ldh a, [hProduct + 3]
 	ld [hl], a
 	pop hl
 	inc hl

@@ -2,7 +2,7 @@ ConsumeHeldItem:
 	push hl
 	push de
 	push bc
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wOTPartyMon1Item
 	ld de, wEnemyMonItem
@@ -38,7 +38,7 @@ ConsumeHeldItem:
 	pop af
 	pop hl
 	call GetPartyLocation
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, .ourturn
 	ld a, [wBattleMode]

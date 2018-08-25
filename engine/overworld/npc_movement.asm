@@ -238,7 +238,7 @@ CheckFacingObject::
 .asm_6ff1
 	ld bc, wObjectStructs ; redundant
 	ld a, 0
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	call IsNPCAtCoord
 	ret nc
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -263,7 +263,7 @@ WillObjectBumpIntoSomeoneElse:
 	jr IsNPCAtCoord
 
 Unreferenced_Function7015:
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	call GetObjectStruct
 	call .CheckWillBeFacingNPC
 	call IsNPCAtCoord
@@ -302,7 +302,7 @@ IsNPCAtCoord:
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ld [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndexBuffer], a
 	call DoesObjectHaveASprite
 	jr z, .next
 
@@ -333,9 +333,9 @@ IsNPCAtCoord:
 	jr nz, .ok
 
 .ok2
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld l, a
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	cp l
 	jr nz, .setcarry
 
@@ -350,9 +350,9 @@ IsNPCAtCoord:
 	ld a, [hl]
 	cp e
 	jr nz, .next
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld l, a
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	cp l
 	jr nz, .setcarry
 
@@ -361,7 +361,7 @@ IsNPCAtCoord:
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -469,7 +469,7 @@ Unreferenced_Function7113:
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ld [hObjectStructIndexBuffer], a
+	ldh [hObjectStructIndexBuffer], a
 	call DoesObjectHaveASprite
 	jr z, .next
 	ld hl, OBJECT_MOVEMENTTYPE
@@ -492,7 +492,7 @@ Unreferenced_Function7113:
 	ld a, [hl]
 	cp d
 	jr nz, .check_current_coords
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	cp $0
 	jr z, .next
 	jr .yes
@@ -515,7 +515,7 @@ Unreferenced_Function7113:
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop

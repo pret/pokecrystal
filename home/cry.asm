@@ -55,7 +55,7 @@ LoadCry::
 	call GetCryIndex
 	ret c
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(PokemonCries)
 	rst Bankswitch

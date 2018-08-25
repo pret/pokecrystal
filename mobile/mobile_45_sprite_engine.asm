@@ -375,11 +375,11 @@ Function1161b8:
 	dw Function116441
 
 Function1161d5:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 
 	ld a, $6
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld hl, Unknown_117356
 	ld de, wDecompressScratch
@@ -390,86 +390,86 @@ Function1161d5:
 
 .wait_for_vblank
 ; Wait until a vblank would occur had interrupts not just been disabled.
-	ld a, [rLY]
+	ldh a, [rLY]
 	cp LY_VBLANK + 1
 	jr nz, .wait_for_vblank
 
 	ld a, $d0
-	ld [rHDMA1], a
+	ldh [rHDMA1], a
 	ld a, $0
-	ld [rHDMA2], a
+	ldh [rHDMA2], a
 	ld a, $1c
-	ld [rHDMA3], a
+	ldh [rHDMA3], a
 	xor a
-	ld [rHDMA4], a
+	ldh [rHDMA4], a
 	ld a, $8
-	ld [rHDMA5], a
+	ldh [rHDMA5], a
 
 	ld a, $d0
-	ld [rHDMA1], a
+	ldh [rHDMA1], a
 	ld a, $80
-	ld [rHDMA2], a
+	ldh [rHDMA2], a
 	ld a, $1c
-	ld [rHDMA3], a
+	ldh [rHDMA3], a
 	ld a, $80
-	ld [rHDMA4], a
+	ldh [rHDMA4], a
 	ld a, $8
-	ld [rHDMA5], a
+	ldh [rHDMA5], a
 
 	ld a, $d1
-	ld [rHDMA1], a
+	ldh [rHDMA1], a
 	ld a, $0
-	ld [rHDMA2], a
+	ldh [rHDMA2], a
 	ld a, $1d
-	ld [rHDMA3], a
+	ldh [rHDMA3], a
 	xor a
-	ld [rHDMA4], a
+	ldh [rHDMA4], a
 	ld a, $8
-	ld [rHDMA5], a
+	ldh [rHDMA5], a
 
 	ld a, $1
-	ld [rVBK], a
+	ldh [rVBK], a
 
 	ld a, $d1
-	ld [rHDMA1], a
+	ldh [rHDMA1], a
 	ld a, $80
-	ld [rHDMA2], a
+	ldh [rHDMA2], a
 	ld a, $1c
-	ld [rHDMA3], a
+	ldh [rHDMA3], a
 	xor a
-	ld [rHDMA4], a
+	ldh [rHDMA4], a
 	ld a, $8
-	ld [rHDMA5], a
+	ldh [rHDMA5], a
 
 	ld a, $d2
-	ld [rHDMA1], a
+	ldh [rHDMA1], a
 	ld a, $0
-	ld [rHDMA2], a
+	ldh [rHDMA2], a
 	ld a, $1c
-	ld [rHDMA3], a
+	ldh [rHDMA3], a
 	ld a, $80
-	ld [rHDMA4], a
+	ldh [rHDMA4], a
 	ld a, $8
-	ld [rHDMA5], a
+	ldh [rHDMA5], a
 
 	ld a, $d2
-	ld [rHDMA1], a
+	ldh [rHDMA1], a
 	ld a, $80
-	ld [rHDMA2], a
+	ldh [rHDMA2], a
 	ld a, $1d
-	ld [rHDMA3], a
+	ldh [rHDMA3], a
 	xor a
-	ld [rHDMA4], a
+	ldh [rHDMA4], a
 	ld a, $8
-	ld [rHDMA5], a
+	ldh [rHDMA5], a
 
 	xor a
-	ld [rVBK], a
+	ldh [rVBK], a
 
 	ei
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	farcall ReloadMapPart
 	ld a, $8
@@ -495,10 +495,10 @@ Function116294:
 	ld a, [$c319]
 	inc a
 	ld [$c319], a
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wBGPals1 palette 6
 	ld de, $c320
 	ld bc, 2 palettes
@@ -509,9 +509,9 @@ Function116294:
 	call CopyBytes
 	call SetPalettes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $30
-	ld [hWY], a
+	ldh [hWY], a
 	ret
 
 Function1162cb:
@@ -519,17 +519,17 @@ Function1162cb:
 	ld a, [$c319]
 	inc a
 	ld [$c319], a
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_11730e
 	ld de, wOBPals1 + 2 palettes
 	ld bc, 6 palettes
 	call CopyBytes
 	call SetPalettes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function1162f2:
@@ -622,30 +622,30 @@ Function1162f2:
 	ret
 
 Function11636e:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wBGPals2
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call SetPalettes
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $a0
 	ld hl, wVirtualOAM
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call UpdateSprites
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	farcall ReloadMapPart
 	ld a, $8
 	ld [wMusicFade], a
@@ -659,10 +659,10 @@ Function11636e:
 	ret
 
 Function1163c0:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $a0
 	ld hl, wVirtualOAM
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
@@ -671,24 +671,24 @@ Function1163c0:
 	farcall Function14146
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, $c320
 	ld de, wd030
 	ld bc, $0010
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call SetPalettes
 	call DelayFrame
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call UpdateSprites
 	farcall Function14157
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	farcall ReloadMapPart
 	ld a, [wLinkMode]
 	cp $4
@@ -718,7 +718,7 @@ Function1163c0:
 Function116441:
 	farcall Function17d405
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	farcall ReloadMapPart
 	ld a, $8
 	ld [wMusicFade], a

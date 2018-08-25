@@ -2,10 +2,10 @@ FarCall_de::
 ; Call a:de.
 ; Preserves other registers.
 
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 	call .de
 	jr ReturnFarCall
@@ -18,10 +18,10 @@ FarCall_hl::
 ; Call a:hl.
 ; Preserves other registers.
 
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 	call FarJump_hl
 

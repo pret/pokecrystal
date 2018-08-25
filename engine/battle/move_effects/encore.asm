@@ -3,7 +3,7 @@ BattleCommand_Encore:
 
 	ld hl, wEnemyMonMoves
 	ld de, wEnemyEncoreCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld hl, wBattleMonMoves
@@ -47,7 +47,7 @@ BattleCommand_Encore:
 	ld [de], a
 	call CheckOpponentWentFirst
 	jr nz, .finish_move
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .force_last_enemy_move
 

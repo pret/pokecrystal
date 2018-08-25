@@ -3,7 +3,7 @@ BattleCommand_CheckFutureSight:
 
 	ld hl, wPlayerFutureSightCount
 	ld de, wPlayerFutureSightDamage
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld hl, wEnemyFutureSightCount
@@ -41,7 +41,7 @@ BattleCommand_FutureSight:
 	ld [hl], b
 .AlreadyChargingFutureSight:
 	ld hl, wPlayerFutureSightCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .GotFutureSightCount
 	ld hl, wEnemyFutureSightCount
@@ -57,7 +57,7 @@ BattleCommand_FutureSight:
 	call StdBattleTextBox
 	call BattleCommand_RaiseSub
 	ld de, wPlayerFutureSightDamage
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .StoreDamage
 	ld de, wEnemyFutureSightDamage

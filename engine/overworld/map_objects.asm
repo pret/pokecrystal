@@ -555,26 +555,26 @@ MapObjectMovementPattern:
 
 .RandomWalkY:
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and %00000001
 	jp .RandomWalkContinue
 
 .RandomWalkX:
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and %00000001
 	or  %00000010
 	jp .RandomWalkContinue
 
 .RandomWalkXY:
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and %00000011
 	jp .RandomWalkContinue
 
 .RandomSpin1:
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and %00001100
 	ld hl, OBJECT_FACING
 	add hl, bc
@@ -588,7 +588,7 @@ MapObjectMovementPattern:
 	and %00001100
 	ld d, a
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and %00001100
 	cp d
 	jr nz, .keep
@@ -1026,7 +1026,7 @@ MapObjectMovementPattern:
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STEP
 	ld hl, wCenteredObject
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	cp [hl]
 	jr z, .load_6
 	ld hl, OBJECT_STEP_TYPE
@@ -1045,13 +1045,13 @@ MapObjectMovementPattern:
 	call Function462a
 RandomStepDuration_Slow:
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and %01111111
 	jr SetRandomStepDuration
 
 RandomStepDuration_Fast:
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and %00011111
 SetRandomStepDuration:
 	ld hl, OBJECT_STEP_DURATION
@@ -1923,7 +1923,7 @@ ApplyMovementToFollower:
 	ret z
 	ld a, [wObjectFollow_Leader]
 	ld d, a
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	cp d
 	ret nz
 	ld a, e
@@ -2059,7 +2059,7 @@ ShakeScreen:
 
 DespawnEmote:
 	push bc
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld c, a
 	call .DeleteEmote
 	pop bc
@@ -2119,7 +2119,7 @@ CopyTempObjectData:
 	ld [hli], a
 	ld a, [de]
 	ld [hli], a
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	ld [hli], a
 	push hl
 	ld hl, OBJECT_NEXT_MAP_X
@@ -2143,7 +2143,7 @@ Function55e0::
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	call DoesObjectHaveASprite
 	jr z, .ok
 	call Function565c
@@ -2152,7 +2152,7 @@ Function55e0::
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2166,7 +2166,7 @@ Function5602:
 	ld a, [wBattleScriptFlags]
 	bit 7, a
 	jr z, .ok
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 	and a
 	jr z, .ok
 	call Function5629 ; respawn opponent
@@ -2202,13 +2202,13 @@ Function5645:
 	xor a
 	ld bc, wObjectStructs
 .loop
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	call SetFacing_Standing
 	ld hl, OBJECT_STRUCT_LENGTH
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2317,7 +2317,7 @@ Function56cd:
 	jr c, .ok3
 	sub BG_MAP_WIDTH
 .ok3
-	ld [hUsedSpriteIndex], a
+	ldh [hUsedSpriteIndex], a
 	ld a, [wPlayerBGMapOffsetY]
 	ld e, a
 	ld hl, OBJECT_SPRITE_Y_OFFSET
@@ -2346,7 +2346,7 @@ Function56cd:
 	jr c, .ok6
 	sub BG_MAP_HEIGHT
 .ok6
-	ld [hUsedSpriteTile], a
+	ldh [hUsedSpriteTile], a
 	ld hl, OBJECT_PALETTE
 	add hl, bc
 	bit BIG_OBJECT_F, [hl]
@@ -2359,18 +2359,18 @@ Function56cd:
 	ld e, a
 .ok7
 	ld a, d
-	ld [hFFBF], a
+	ldh [hFFBF], a
 .loop
-	ld a, [hFFBF]
+	ldh a, [hFFBF]
 	ld d, a
-	ld a, [hUsedSpriteTile]
+	ldh a, [hUsedSpriteTile]
 	add e
 	dec a
 	cp SCREEN_HEIGHT
 	jr nc, .ok9
 	ld b, a
 .next
-	ld a, [hUsedSpriteIndex]
+	ldh a, [hUsedSpriteIndex]
 	add d
 	dec a
 	cp SCREEN_WIDTH
@@ -2415,7 +2415,7 @@ HandleNPCStep::
 	ld bc, wObjectStructs
 	xor a
 .loop
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	call DoesObjectHaveASprite
 	jr z, .next
 	call Function437b
@@ -2424,7 +2424,7 @@ HandleNPCStep::
 	add hl, bc
 	ld b, h
 	ld c, l
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	inc a
 	cp NUM_OBJECT_STRUCTS
 	jr nz, .loop
@@ -2508,7 +2508,7 @@ StartFollow::
 SetLeaderIfVisible:
 	call CheckObjectVisibility
 	ret c
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	ld [wObjectFollow_Leader], a
 	ret
 
@@ -2534,7 +2534,7 @@ SetFollowerIfVisible:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_00
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	ld [wObjectFollow_Follower], a
 	ret
 
@@ -2691,15 +2691,15 @@ _UpdateSprites::
 	bit 0, a
 	ret z
 	xor a
-	ld [hUsedSpriteIndex], a
-	ld a, [hOAMUpdate]
+	ldh [hUsedSpriteIndex], a
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, 1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call InitSprites
 	call .fill
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
 
 .fill
@@ -2709,7 +2709,7 @@ _UpdateSprites::
 	jr z, .ok
 	ld b, 28 * SPRITEOAMSTRUCT_LENGTH
 .ok
-	ld a, [hUsedSpriteIndex]
+	ldh a, [hUsedSpriteIndex]
 	cp b
 	ret nc
 	ld l, a
@@ -2855,7 +2855,7 @@ InitSprites:
 	add hl, bc
 	ld a, [hl]
 	and $ff ^ (1 << 7)
-	ld [hFFC1], a
+	ldh [hFFC1], a
 	xor a
 	bit 7, [hl]
 	jr nz, .skip1
@@ -2884,7 +2884,7 @@ InitSprites:
 	jr z, .skip4
 	or PRIORITY
 .skip4
-	ld [hFFC2], a
+	ldh [hFFC2], a
 	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
@@ -2895,7 +2895,7 @@ InitSprites:
 	ld e, a
 	ld a, [wPlayerBGMapOffsetX]
 	add e
-	ld [hFFBF], a
+	ldh [hFFBF], a
 	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
@@ -2906,7 +2906,7 @@ InitSprites:
 	ld e, a
 	ld a, [wPlayerBGMapOffsetY]
 	add e
-	ld [hFFC0], a
+	ldh [hFFC0], a
 	ld hl, OBJECT_FACING_STEP
 	add hl, bc
 	ld a, [hl]
@@ -2922,28 +2922,28 @@ InitSprites:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [hUsedSpriteIndex]
+	ldh a, [hUsedSpriteIndex]
 	ld c, a
 	ld b, HIGH(wVirtualOAM)
 	ld a, [hli]
-	ld [hUsedSpriteTile], a
+	ldh [hUsedSpriteTile], a
 	add c
 	cp LOW(wVirtualOAMEnd)
 	jr nc, .full
 .addsprite
-	ld a, [hFFC0]
+	ldh a, [hFFC0]
 	add [hl]
 	inc hl
 	ld [bc], a ; y
 	inc c
-	ld a, [hFFBF]
+	ldh a, [hFFBF]
 	add [hl]
 	inc hl
 	ld [bc], a ; x
 	inc c
 	ld e, [hl]
 	inc hl
-	ld a, [hFFC1]
+	ldh a, [hFFC1]
 	bit ABSOLUTE_TILE_ID_F, e
 	jr z, .nope1
 	xor a
@@ -2955,19 +2955,19 @@ InitSprites:
 	ld a, e
 	bit RELATIVE_ATTRIBUTES_F, a
 	jr z, .nope2
-	ld a, [hFFC2]
+	ldh a, [hFFC2]
 	or e
 .nope2
 	and OBP_NUM | X_FLIP | Y_FLIP | PRIORITY
 	or d
 	ld [bc], a ; attributes
 	inc c
-	ld a, [hUsedSpriteTile]
+	ldh a, [hUsedSpriteTile]
 	dec a
-	ld [hUsedSpriteTile], a
+	ldh [hUsedSpriteTile], a
 	jr nz, .addsprite
 	ld a, c
-	ld [hUsedSpriteIndex], a
+	ldh [hUsedSpriteIndex], a
 .done
 	xor a
 	ret

@@ -10,10 +10,10 @@ Function1700ba:
 	ret
 
 Function1700c4:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	call Function17042c
 
@@ -47,7 +47,7 @@ Function1700c4:
 	call CopyBytes
 	call CloseSRAM
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function170114:
@@ -556,10 +556,10 @@ INCLUDE "data/battle_tower/unknown_levels.asm"
 
 CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 ; copy the BattleTower-Trainer data that lies at 'wBT_OTTrainer' to 'wBT_OTTemp'
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBT_OTTrainer)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld hl, wBT_OTTrainer
 	ld de, wBT_OTTemp
@@ -567,7 +567,7 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 	call CopyBytes
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld a, BANK(sBattleTowerChallengeState)
 	call GetSRAMBank
@@ -982,7 +982,7 @@ BattleTower_RandomlyChooseReward: ; BattleTowerAction $1e
 ; Generate a random stat boosting item.
 .loop
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $7
 	cp 6
 	jr c, .okay
@@ -1153,28 +1153,28 @@ Function17081d: ; BattleTowerAction $17
 SaveBattleTowerLevelGroup: ; BattleTowerAction $07
 	ld a, BANK(sBTChoiceOfLevelGroup)
 	call GetSRAMBank
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [wBTChoiceOfLvlGroup]
 	ld [sBTChoiceOfLevelGroup], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call CloseSRAM
 	ret
 
 LoadBattleTowerLevelGroup: ; BattleTowerAction $08 ; Load level group choice
 	ld a, BANK(sBTChoiceOfLevelGroup)
 	call GetSRAMBank
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [sBTChoiceOfLevelGroup]
 	ld [wBTChoiceOfLvlGroup], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call CloseSRAM
 	ret
 
@@ -1336,14 +1336,14 @@ String_MysteryJP:
 	db "なぞナゾ@@" ; MYSTERY
 
 Function1709aa: ; BattleTowerAction $0f
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(w3_d090)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [w3_d090]
 	ld [wScriptVar], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function1709bb: ; BattleTowerAction $10
@@ -1557,17 +1557,17 @@ BattleTowerAction_UbersCheck: ; BattleTowerAction $19
 
 LoadOpponentTrainerAndPokemonWithOTSprite:
 	farcall Function_LoadOpponentTrainerAndPokemons
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wBT_OTTrainerClass
 	ld a, [hl]
 	dec a
 	ld c, a
 	ld b, $0
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, BTTrainerClassSprites
 	add hl, bc
 	ld a, [hl]
@@ -1593,9 +1593,9 @@ LoadOpponentTrainerAndPokemonWithOTSprite:
 	ld hl, wUsedSprites
 	add hl, de
 	ld [hli], a
-	ld [hUsedSpriteIndex], a
+	ldh [hUsedSpriteIndex], a
 	ld a, [hl]
-	ld [hUsedSpriteTile], a
+	ldh [hUsedSpriteTile], a
 	farcall GetUsedSprite
 	ret
 

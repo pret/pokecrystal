@@ -757,19 +757,19 @@ MonMenu_Softboiled_MilkDrink:
 	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
-	ld [hDividend + 0], a
+	ldh [hDividend + 0], a
 	ld a, [hl]
-	ld [hDividend + 1], a
+	ldh [hDividend + 1], a
 	ld a, 5
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
 	ld a, MON_HP + 1
 	call GetPartyParamLocation
-	ld a, [hQuotient + 2]
+	ldh a, [hQuotient + 2]
 	sub [hl]
 	dec hl
-	ld a, [hQuotient + 1]
+	ldh a, [hQuotient + 1]
 	sbc [hl]
 	ret
 
@@ -1103,7 +1103,7 @@ SetUpMoveScreenBG:
 	call ClearTileMap
 	call ClearSprites
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall LoadStatsScreenPageTilesGFX
 	farcall ClearSpriteAnims2
 	ld a, [wCurPartyMon]
@@ -1147,7 +1147,7 @@ SetUpMoveScreenBG:
 
 SetUpMoveList:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld [wMoveSwapBuffer], a
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -1189,7 +1189,7 @@ PrepareToPlaceMoveData:
 
 PlaceMoveData:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 10
 	ld de, String_MoveType_Top
 	call PlaceString
@@ -1227,7 +1227,7 @@ PlaceMoveData:
 	hlcoord 1, 14
 	predef PrintMoveDesc
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 String_MoveType_Top:

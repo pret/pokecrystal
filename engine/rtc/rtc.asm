@@ -24,7 +24,7 @@ StartRTC:
 
 GetTimeOfDay::
 ; get time of day based on the current hour
-	ld a, [hHours] ; hour
+	ldh a, [hHours] ; hour
 	ld hl, TimesOfDay
 
 .check
@@ -65,11 +65,11 @@ StageRTCTimeForSave:
 	ld hl, wRTC
 	ld a, [wCurDay]
 	ld [hli], a
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld [hli], a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld [hli], a
-	ld a, [hSeconds]
+	ldh a, [hSeconds]
 	ld [hli], a
 	ret
 

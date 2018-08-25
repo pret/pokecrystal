@@ -62,7 +62,7 @@ ShakeHeadbuttTree:
 	call OverworldTextModeSwitch
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall ClearSpriteAnims
 	ld hl, wVirtualOAMSprite36
 	ld bc, wVirtualOAMEnd - wVirtualOAMSprite36
@@ -80,7 +80,7 @@ INCBIN "gfx/overworld/headbutt_tree.2bpp"
 
 HideHeadbuttTree:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, [wPlayerDirection]
 	and %00001100
 	srl a
@@ -101,7 +101,7 @@ HideHeadbuttTree:
 	ld [hld], a
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 TreeRelativeLocationTable:
@@ -205,7 +205,7 @@ Cut_SpawnAnimateLeaves:
 
 Cut_StartWaiting:
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 ; Cut_WaitAnimSFX
 	ld hl, wJumptableIndex
 	inc [hl]

@@ -4,7 +4,7 @@ BattleCommand_CheckCurl:
 ; checkcurl
 
 	ld de, wPlayerRolloutCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld de, wEnemyRolloutCount
@@ -31,7 +31,7 @@ BattleCommand_RolloutPower:
 	ret nz
 
 	ld hl, wPlayerRolloutCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_rollout_count
 	ld hl, wEnemyRolloutCount

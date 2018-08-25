@@ -20,16 +20,16 @@ BattleTowerHallway_MapScripts:
 	jump .WalkToChosenBattleRoom
 
 .asm_load_battle_room
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 
 	ld a, BANK(wBTChoiceOfLvlGroup)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [wBTChoiceOfLvlGroup]
 	ld [wScriptVar], a
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 ; enter different rooms for different levels to battle against

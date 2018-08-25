@@ -54,7 +54,7 @@ BattleCommand_Present:
 	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn
 	ld hl, AICheckPlayerMaxHP
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_hp_fn_pointer
 	ld hl, AICheckEnemyMaxHP

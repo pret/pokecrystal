@@ -363,7 +363,7 @@ PopulateDecoCategoryMenu:
 	ld hl, .ScrollingMenuHeader
 	call CopyMenuHeader
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call InitScrollingMenu
 	xor a
 	ld [wMenuScrollPosition], a

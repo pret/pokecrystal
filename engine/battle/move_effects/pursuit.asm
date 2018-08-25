@@ -3,7 +3,7 @@ BattleCommand_Pursuit:
 ; Double damage if the opponent is switching.
 
 	ld hl, wEnemyIsSwitching
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .ok
 	ld hl, wPlayerIsSwitching

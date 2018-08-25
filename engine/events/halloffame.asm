@@ -44,7 +44,7 @@ RedCredits::
 	farcall FadeOutPalettes
 	xor a
 	ld [wVramState], a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	farcall InitDisplayForRedCredits
 	ld c, 8
 	call DelayFrames
@@ -66,7 +66,7 @@ HallOfFame_FadeOutMusic:
 	farcall FadeOutPalettes
 	xor a
 	ld [wVramState], a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	farcall InitDisplayForHallOfFame
 	ld c, 100
 	jp DelayFrames
@@ -243,17 +243,17 @@ AnimateHOFMonEntrance:
 	ld de, vTiles2 tile $31
 	predef GetMonBackpic
 	ld a, $31
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 6, 6
 	lb bc, 6, 6
 	predef PlaceGraphic
 	ld a, $d0
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $90
-	ld [hSCX], a
+	ldh [hSCX], a
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
 	call SetPalettes
@@ -268,29 +268,29 @@ AnimateHOFMonEntrance:
 	call _PrepMonFrontpic
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
-	ld [hSCY], a
+	ldh [hBGMapMode], a
+	ldh [hSCY], a
 	call HOF_SlideFrontpic
 	ret
 
 HOF_SlideBackpic:
 .backpicloop
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	cp $70
 	ret z
 	add $4
-	ld [hSCX], a
+	ldh [hSCX], a
 	call DelayFrame
 	jr .backpicloop
 
 HOF_SlideFrontpic:
 .frontpicloop
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	and a
 	ret z
 	dec a
 	dec a
-	ld [hSCX], a
+	ldh [hSCX], a
 	call DelayFrame
 	jr .frontpicloop
 
@@ -432,7 +432,7 @@ LoadHOFTeam:
 
 DisplayHOFMon:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, [hli]
 	ld [wTempMonSpecies], a
 	ld a, [hli]
@@ -528,17 +528,17 @@ HOF_AnimatePlayerPic:
 	call ByteFill
 	farcall GetPlayerBackpic
 	ld a, $31
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 6, 6
 	lb bc, 6, 6
 	predef PlaceGraphic
 	ld a, $d0
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, $90
-	ld [hSCX], a
+	ldh [hSCX], a
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld [wCurPartySpecies], a
 	ld b, SCGB_PLAYER_OR_MON_FRONTPIC_PALS
 	call GetSGBLayout
@@ -552,19 +552,19 @@ HOF_AnimatePlayerPic:
 	call ByteFill
 	farcall HOF_LoadTrainerFrontpic
 	xor a
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 12, 5
 	lb bc, 7, 7
 	predef PlaceGraphic
 	ld a, $c0
-	ld [hSCX], a
+	ldh [hSCX], a
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
-	ld [hSCY], a
+	ldh [hBGMapMode], a
+	ldh [hSCY], a
 	call HOF_SlideFrontpic
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 2
 	lb bc, 8, 9
 	call TextBox

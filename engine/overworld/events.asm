@@ -115,13 +115,13 @@ EnterMap:
 	farcall RunMapSetupScript
 	call DisableEvents
 
-	ld a, [hMapEntryMethod]
+	ldh a, [hMapEntryMethod]
 	cp MAPSETUP_CONNECTION
 	jr nz, .dont_enable
 	call EnableEvents
 .dont_enable
 
-	ld a, [hMapEntryMethod]
+	ldh a, [hMapEntryMethod]
 	cp MAPSETUP_RELOADMAP
 	jr nz, .dontresetpoison
 	xor a
@@ -129,7 +129,7 @@ EnterMap:
 .dontresetpoison
 
 	xor a ; end map entry
-	ld [hMapEntryMethod], a
+	ldh [hMapEntryMethod], a
 	ld a, 2 ; HandleMap
 	ld [wMapStatus], a
 	ret
@@ -512,7 +512,7 @@ OWPlayerInput:
 	ret
 
 CheckAPressOW:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	ret z
 	call TryObjectEvent
@@ -539,14 +539,14 @@ TryObjectEvent:
 
 .IsObject:
 	call PlayTalkObject
-	ld a, [hObjectStructIndexBuffer]
+	ldh a, [hObjectStructIndexBuffer]
 	call GetObjectStruct
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, bc
 	ld a, [hl]
-	ld [hLastTalked], a
+	ldh [hLastTalked], a
 
-	ld a, [hLastTalked]
+	ldh a, [hLastTalked]
 	call GetMapObject
 	ld hl, MAPOBJECT_COLOR
 	add hl, bc
@@ -809,9 +809,9 @@ PlayerMovement:
 
 CheckMenuOW:
 	xor a
-	ld [hMenuReturn], a
-	ld [hMenuReturn + 1], a
-	ld a, [hJoyPressed]
+	ldh [hMenuReturn], a
+	ldh [hMenuReturn + 1], a
+	ldh a, [hJoyPressed]
 
 	bit SELECT_F, a
 	jr nz, .Select
@@ -1239,7 +1239,7 @@ ChooseWildEncounter_BugContest::
 	ld c, a
 	inc c
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	call SimpleDivide
 	add d
 
@@ -1260,7 +1260,7 @@ TryWildEncounter_BugContest:
 	farcall ApplyMusicEffectOnEncounterRate
 	farcall ApplyCleanseTagEffectOnEncounterRate
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	cp b
 	ret c
 	ld a, 1
@@ -1351,7 +1351,7 @@ HandleCmdQueue::
 	ld hl, wCmdQueue
 	xor a
 .loop
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 	ld a, [hl]
 	and a
 	jr z, .skip
@@ -1364,7 +1364,7 @@ HandleCmdQueue::
 .skip
 	ld de, CMDQUEUE_ENTRY_SIZE
 	add hl, de
-	ld a, [hMapObjectIndexBuffer]
+	ldh a, [hMapObjectIndexBuffer]
 	inc a
 	cp CMDQUEUE_CAPACITY
 	jr nz, .loop
@@ -1505,7 +1505,7 @@ CmdQueue_Type4:
 	dw .one
 
 .zero
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	ld hl, 4
 	add hl, bc
 	ld [hl], a
@@ -1521,24 +1521,24 @@ CmdQueue_Type4:
 	jr z, .add
 	ld hl, 2
 	add hl, bc
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	sub [hl]
-	ld [hSCY], a
+	ldh [hSCY], a
 	ret
 
 .add
 	ld hl, 2
 	add hl, bc
-	ld a, [hSCY]
+	ldh a, [hSCY]
 	add [hl]
-	ld [hSCY], a
+	ldh [hSCY], a
 	ret
 
 .finish
 	ld hl, 4
 	add hl, bc
 	ld a, [hl]
-	ld [hSCY], a
+	ldh [hSCY], a
 	call _DelCmdQueue
 	ret
 

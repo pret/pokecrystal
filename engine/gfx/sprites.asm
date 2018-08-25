@@ -561,7 +561,7 @@ Sprites_Sine:
 	calc_sine_wave
 
 AnimateEndOfExpBar:
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	ld de, EndOfExpBarGFX
 	and a
 	jr z, .load

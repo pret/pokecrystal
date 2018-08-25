@@ -9,10 +9,10 @@ _AnimateTileset::
 	ld a, [wTilesetAnim + 1]
 	ld d, a
 
-	ld a, [hTileAnimFrame]
+	ldh a, [hTileAnimFrame]
 	ld l, a
 	inc a
-	ld [hTileAnimFrame], a
+	ldh [hTileAnimFrame], a
 
 	ld h, 0
 	add hl, hl
@@ -277,7 +277,7 @@ TilesetAerodactylWordRoomAnim:
 DoneTileAnimation:
 ; Reset the animation command loop.
 	xor a
-	ld [hTileAnimFrame], a
+	ldh [hTileAnimFrame], a
 
 WaitTileAnimation:
 ; Do nothing this frame.
@@ -636,7 +636,7 @@ AnimateFlowerTile:
 	ld e, a
 
 ; CGB has different color mappings for flowers.
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and 1
 
 	add e
@@ -856,12 +856,12 @@ AnimateWaterPalette:
 ; Transition between color values 0-2 for color 0 in palette 3.
 
 ; No palette changes on DMG.
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 
 ; We don't want to mess with non-standard palettes.
-	ld a, [rBGP] ; BGP
+	ldh a, [rBGP] ; BGP
 	cp %11100100
 	ret nz
 
@@ -874,12 +874,12 @@ AnimateWaterPalette:
 ; Ready for BGPD input...
 
 	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_WATER
-	ld [rBGPI], a
+	ldh [rBGPI], a
 
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 ; Update color 0 in order 0 1 2 1
 	ld a, l
@@ -891,38 +891,38 @@ AnimateWaterPalette:
 .color1
 	ld hl, wBGPals1 palette PAL_BG_WATER color 1
 	ld a, [hli]
-	ld [rBGPD], a
+	ldh [rBGPD], a
 	ld a, [hli]
-	ld [rBGPD], a
+	ldh [rBGPD], a
 	jr .end
 
 .color0
 	ld hl, wBGPals1 palette PAL_BG_WATER color 0
 	ld a, [hli]
-	ld [rBGPD], a
+	ldh [rBGPD], a
 	ld a, [hli]
-	ld [rBGPD], a
+	ldh [rBGPD], a
 	jr .end
 
 .color2
 	ld hl, wBGPals1 palette PAL_BG_WATER color 2
 	ld a, [hli]
-	ld [rBGPD], a
+	ldh [rBGPD], a
 	ld a, [hli]
-	ld [rBGPD], a
+	ldh [rBGPD], a
 
 .end
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 FlickeringCaveEntrancePalette:
 ; No palette changes on DMG.
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 ; We don't want to mess with non-standard palettes.
-	ld a, [rBGP]
+	ldh a, [rBGP]
 	cp %11100100
 	ret nz
 ; We only want to be here if we're in a dark cave.
@@ -930,14 +930,14 @@ FlickeringCaveEntrancePalette:
 	cp %11111111 ; 3,3,3,3
 	ret nz
 
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 ; Ready for BGPD input...
 	ld a, (1 << rBGPI_AUTO_INCREMENT) palette PAL_BG_YELLOW
-	ld [rBGPI], a
-	ld a, [hVBlankCounter]
+	ldh [rBGPI], a
+	ldh a, [hVBlankCounter]
 	and %10
 	jr nz, .bit1set
 	ld hl, wBGPals1 palette PAL_BG_YELLOW
@@ -948,12 +948,12 @@ FlickeringCaveEntrancePalette:
 
 .okay
 	ld a, [hli]
-	ld [rBGPD], a
+	ldh [rBGPD], a
 	ld a, [hli]
-	ld [rBGPD], a
+	ldh [rBGPD], a
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 TowerPillarTilePointer1:  dw vTiles2 tile $2d, TowerPillarTile1

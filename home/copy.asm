@@ -1,7 +1,7 @@
 ; Functions to copy data from ROM.
 
 Get2bpp_2::
-	ld a, [rLCDC]
+	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp z, Copy2bpp
 
@@ -10,7 +10,7 @@ Get2bpp_2::
 	ret
 
 Get1bpp_2::
-	ld a, [rLCDC]
+	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp z, Copy1bpp
 
@@ -19,10 +19,10 @@ Get1bpp_2::
 	ret
 
 FarCopyBytesDouble_DoubleBankSwitch::
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 	call FarCopyBytesDouble
@@ -33,11 +33,11 @@ FarCopyBytesDouble_DoubleBankSwitch::
 
 OldDMATransfer::
 	dec c
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
-	ld a, [hROMBank]
+	ldh [hBGMapMode], a
+	ldh a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
@@ -45,16 +45,16 @@ OldDMATransfer::
 .loop
 ; load the source and target MSB and LSB
 	ld a, d
-	ld [rHDMA1], a ; source MSB
+	ldh [rHDMA1], a ; source MSB
 	ld a, e
 	and $f0
-	ld [rHDMA2], a ; source LSB
+	ldh [rHDMA2], a ; source LSB
 	ld a, h
 	and $1f
-	ld [rHDMA3], a ; target MSB
+	ldh [rHDMA3], a ; target MSB
 	ld a, l
 	and $f0
-	ld [rHDMA4], a ; target LSB
+	ldh [rHDMA4], a ; target LSB
 ; stop when c < 8
 	ld a, c
 	cp $8
@@ -64,7 +64,7 @@ OldDMATransfer::
 	ld c, a
 ; DMA transfer state
 	ld a, $f
-	ld [hDMATransfer], a
+	ldh [hDMATransfer], a
 	call DelayFrame
 ; add $100 to hl and de
 	ld a, l
@@ -84,13 +84,13 @@ OldDMATransfer::
 .done
 	ld a, c
 	and $7f ; pretty silly, considering at most bits 0-2 would be set
-	ld [hDMATransfer], a
+	ldh [hDMATransfer], a
 	call DelayFrame
 	pop af
 	rst Bankswitch
 
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 ReplaceKrisSprite::
@@ -135,10 +135,10 @@ DecompressRequest2bpp::
 FarCopyBytes::
 ; copy bc bytes from a:hl to de
 
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 	call CopyBytes
@@ -151,10 +151,10 @@ FarCopyBytesDouble::
 ; Copy bc bytes from a:hl to bc*2 bytes at de,
 ; doubling each byte in the process.
 
-	ld [hBuffer], a
-	ld a, [hROMBank]
+	ldh [hBuffer], a
+	ldh a, [hROMBank]
 	push af
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 	rst Bankswitch
 
 ; switcheroo, de <> hl
@@ -186,29 +186,29 @@ FarCopyBytesDouble::
 
 Request2bpp::
 ; Load 2bpp at b:de to occupy c tiles of hl.
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
 
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	push af
 	ld a, $8
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .NotMobile
-	ld a, [hMobile]
+	ldh a, [hMobile]
 	and a
 	jr nz, .NotMobile
 	ld a, $6
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 .NotMobile:
 	ld a, e
@@ -233,17 +233,17 @@ Request2bpp::
 	jr nz, .wait
 
 	pop af
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 	pop af
 	rst Bankswitch
 
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .iterate
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	ld [wRequested2bpp], a
 
 .wait2
@@ -260,29 +260,29 @@ Request2bpp::
 
 Request1bpp::
 ; Load 1bpp at b:de to occupy c tiles of hl.
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, b
 	rst Bankswitch
 
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	push af
 
 	ld a, $8
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
 	jr nz, .NotMobile
-	ld a, [hMobile]
+	ldh a, [hMobile]
 	and a
 	jr nz, .NotMobile
 	ld a, $6
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 .NotMobile:
 	ld a, e
@@ -307,17 +307,17 @@ Request1bpp::
 	jr nz, .wait
 
 	pop af
-	ld [hTilesPerCycle], a
+	ldh [hTilesPerCycle], a
 
 	pop af
 	rst Bankswitch
 
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .iterate
-	ld a, [hTilesPerCycle]
+	ldh a, [hTilesPerCycle]
 	ld [wRequested1bpp], a
 
 .wait2
@@ -333,7 +333,7 @@ Request1bpp::
 	jr .loop
 
 Get2bpp::
-	ld a, [rLCDC]
+	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp nz, Request2bpp
 
@@ -362,7 +362,7 @@ Copy2bpp::
 	jp FarCopyBytes
 
 Get1bpp::
-	ld a, [rLCDC]
+	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
 	jp nz, Request1bpp
 

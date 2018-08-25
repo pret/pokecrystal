@@ -4,12 +4,12 @@ GetPokeBallWobble:
 
 	push de
 
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	ld d, a
 	push de
 
 	ld a, BANK(wBuffer2)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld a, [wBuffer2]
 	inc a
@@ -54,7 +54,7 @@ GetPokeBallWobble:
 	pop de
 	ld e, a
 	ld a, d
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, e
 	pop de
 	ret

@@ -1,7 +1,7 @@
 BattleCommand_Thief:
 ; thief
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, .enemy
 

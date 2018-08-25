@@ -5,7 +5,7 @@ BattleCommand_PayDay:
 	ld hl, wStringBuffer1
 	ld [hli], a
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld a, [wBattleMonLevel]
 	jr z, .ok

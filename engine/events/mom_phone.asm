@@ -61,11 +61,11 @@ CheckBalance_MomItem2:
 	jr nc, .nope
 	call GetItemFromMom
 	ld a, [hli]
-	ld [hMoneyTemp], a
+	ldh [hMoneyTemp], a
 	ld a, [hli]
-	ld [hMoneyTemp + 1], a
+	ldh [hMoneyTemp + 1], a
 	ld a, [hli]
-	ld [hMoneyTemp + 2], a
+	ldh [hMoneyTemp + 2], a
 	ld de, wMomsMoney
 	ld bc, hMoneyTemp
 	farcall CompareMoney
@@ -118,11 +118,11 @@ MomBuysItem_DeductFunds:
 	ld de, 3 ; cost
 	add hl, de
 	ld a, [hli]
-	ld [hMoneyTemp], a
+	ldh [hMoneyTemp], a
 	ld a, [hli]
-	ld [hMoneyTemp + 1], a
+	ldh [hMoneyTemp + 1], a
 	ld a, [hli]
-	ld [hMoneyTemp + 2], a
+	ldh [hMoneyTemp + 2], a
 	ld de, wMomsMoney
 	ld bc, hMoneyTemp
 	farcall TakeMoney

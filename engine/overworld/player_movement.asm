@@ -13,7 +13,7 @@ DoPlayerMovement::
 
 .GetDPad:
 
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	ld [wCurInput], a
 
 ; Standing downhill instead moves down.
@@ -617,7 +617,7 @@ ENDM
 ; Returns 1 if there is no NPC in front
 ; Returns 2 if there is a movable NPC in front
 	ld a, 0
-	ld [hMapObjectIndexBuffer], a
+	ldh [hMapObjectIndexBuffer], a
 ; Load the next X coordinate into d
 	ld a, [wPlayerStandingMapX]
 	ld d, a

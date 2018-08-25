@@ -49,15 +49,15 @@ PrintDexEntry:
 	call Request1bpp
 
 	xor a
-	ld [hPrinter], a
+	ldh [hPrinter], a
 	call Printer_PlayMusic
 
-	ld a, [rIE]
+	ldh a, [rIE]
 	push af
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	ld a, $9
-	ld [rIE], a
+	ldh [rIE], a
 
 	call Printer_StartTransmission
 	ld a, $10
@@ -83,7 +83,7 @@ PrintDexEntry:
 	ld c, 12
 	call DelayFrames
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 	call Printer_StartTransmission
 	ld a, $3
@@ -96,13 +96,13 @@ PrintDexEntry:
 
 .skip_second_page
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
 
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	pop af
-	ld [rIE], a
+	ldh [rIE], a
 
 	call Printer_ExitPrinter
 	ld c, 8
@@ -132,16 +132,16 @@ PrintPCBox:
 	ld [wWhichBoxToPrint], a
 
 	xor a
-	ld [hPrinter], a
+	ldh [hPrinter], a
 	ld [wFinishedPrintingBox], a
 	call Printer_PlayMusic
 
-	ld a, [rIE]
+	ldh a, [rIE]
 	push af
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	ld a, %1001
-	ld [rIE], a
+	ldh [rIE], a
 
 	ld hl, hVBlank
 	ld a, [hl]
@@ -149,7 +149,7 @@ PrintPCBox:
 	ld [hl], %0100
 
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call PrintPCBox_Page1
 	ld a, $10 ; to be loaded to wcbfa
 	call Printer_PrepareTileMapForPrint
@@ -160,7 +160,7 @@ PrintPCBox:
 	ld c, 12
 	call DelayFrames
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call PrintPCBox_Page2
 	ld a, $0 ; to be loaded to wcbfa
 	call Printer_PrepareTileMapForPrint
@@ -172,7 +172,7 @@ PrintPCBox:
 	call DelayFrames
 
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call PrintPCBox_Page3
 	ld a, $0 ; to be loaded to wcbfa
 	call Printer_PrepareTileMapForPrint
@@ -184,20 +184,20 @@ PrintPCBox:
 	call DelayFrames
 
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call PrintPCBox_Page4
 	ld a, $3 ; to be loaded to wcbfa
 	call Printer_PrepareTileMapForPrint
 	call Printer_ResetRegistersAndStartDataSend
 .cancel
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
 
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	pop af
-	ld [rIE], a
+	ldh [rIE], a
 	call Printer_ExitPrinter
 
 	pop af
@@ -213,20 +213,20 @@ PrintUnownStamp:
 	ld a, [wPrinterQueueLength]
 	push af
 	xor a
-	ld [hPrinter], a
+	ldh [hPrinter], a
 	call Printer_PlayMusic
-	ld a, [rIE]
+	ldh a, [rIE]
 	push af
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	ld a, $9
-	ld [rIE], a
+	ldh [rIE], a
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
 	ld [hl], $4
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadTileMapToTempTileMap
 	farcall PlaceUnownPrinterFrontpic
 	ld a, $0 ; to be loaded to wcbfa
@@ -257,13 +257,13 @@ PrintUnownStamp:
 
 .done
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
 	call Call_LoadTempTileMapToTileMap
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	pop af
-	ld [rIE], a
+	ldh [rIE], a
 	pop af
 	ld [wPrinterQueueLength], a
 	ret
@@ -277,18 +277,18 @@ PrintMail:
 	ld a, [wPrinterQueueLength]
 	push af
 	xor a
-	ld [hPrinter], a
+	ldh [hPrinter], a
 	call Printer_PlayMusic
 
-	ld a, [rIE]
+	ldh a, [rIE]
 	push af
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	ld a, %1001
-	ld [rIE], a
+	ldh [rIE], a
 
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 	ld a, $13 ; to be loaded to wcbfa
 	call Printer_PrepareTileMapForPrint
@@ -302,14 +302,14 @@ PrintMail:
 	call SendScreenToPrinter
 
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
 	call Printer_CopyBufferToTileMap
 
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	pop af
-	ld [rIE], a
+	ldh [rIE], a
 
 	pop af
 	ld [wPrinterQueueLength], a
@@ -319,18 +319,18 @@ PrintPartymon:
 	ld a, [wPrinterQueueLength]
 	push af
 	xor a
-	ld [hPrinter], a
+	ldh [hPrinter], a
 	call Printer_PlayMusic
 
-	ld a, [rIE]
+	ldh a, [rIE]
 	push af
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	ld a, %1001
-	ld [rIE], a
+	ldh [rIE], a
 
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall PrintPartyMonPage1
 	ld a, $10 ; to be loaded to wcbfa
 	call Printer_PrepareTileMapForPrint
@@ -351,7 +351,7 @@ PrintPartymon:
 	call DelayFrames
 
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall PrintPartyMonPage2
 	ld a, $3 ; to be loaded to wcbfa
 	call Printer_PrepareTileMapForPrint
@@ -362,14 +362,14 @@ PrintPartymon:
 	call SendScreenToPrinter
 .cancel
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
 
 	call Printer_CopyBufferToTileMap
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	pop af
-	ld [rIE], a
+	ldh [rIE], a
 	call Printer_ExitPrinter
 
 	pop af
@@ -383,15 +383,15 @@ _PrintDiploma:
 	farcall PlaceDiplomaOnScreen
 
 	xor a
-	ld [hPrinter], a
+	ldh [hPrinter], a
 	call Printer_PlayMusic
 
-	ld a, [rIE]
+	ldh a, [rIE]
 	push af
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	ld a, %1001
-	ld [rIE], a
+	ldh [rIE], a
 
 	ld hl, hVBlank
 	ld a, [hl]
@@ -412,7 +412,7 @@ _PrintDiploma:
 
 	call LoadTileMapToTempTileMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 	farcall PrintDiplomaPage2
 
@@ -426,13 +426,13 @@ _PrintDiploma:
 	call SendScreenToPrinter
 .cancel
 	pop af
-	ld [hVBlank], a
+	ldh [hVBlank], a
 	call Printer_CleanUpAfterSend
 
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	pop af
-	ld [rIE], a
+	ldh [rIE], a
 	call Printer_ExitPrinter
 
 	pop af
@@ -440,7 +440,7 @@ _PrintDiploma:
 	ret
 
 CheckCancelPrint:
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	and B_BUTTON
 	jr nz, .pressed_b
 	and a
@@ -457,11 +457,11 @@ CheckCancelPrint:
 	ld a, $16 ; cancel
 	ld [wPrinterOpcode], a
 	ld a, $88
-	ld [rSB], a
+	ldh [rSB], a
 	ld a, $1
-	ld [rSC], a
+	ldh [rSC], a
 	ld a, $81
-	ld [rSC], a
+	ldh [rSC], a
 .loop2
 	ld a, [wPrinterOpcode]
 	and a
@@ -469,7 +469,7 @@ CheckCancelPrint:
 
 .cancel
 	ld a, $1
-	ld [hPrinter], a
+	ldh [hPrinter], a
 	scf
 	ret
 
@@ -489,10 +489,10 @@ Printer_CopyBufferToTileMap:
 
 Printer_ResetJoypadRegisters:
 	xor a
-	ld [hJoyReleased], a
-	ld [hJoyPressed], a
-	ld [hJoyDown], a
-	ld [hJoyLast], a
+	ldh [hJoyReleased], a
+	ldh [hJoyPressed], a
+	ldh [hJoyDown], a
+	ldh [hJoyLast], a
 	ret
 
 Printer_PlayMusic:
@@ -551,7 +551,7 @@ PlacePrinterStatusString:
 	ret z
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 5
 	lb bc, 10, 18
 	call TextBox
@@ -571,7 +571,7 @@ PlacePrinterStatusString:
 	ld de, String_PressBToCancel
 	call PlaceString
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	xor a
 	ld [wPrinterStatus], a
 	ret
@@ -582,7 +582,7 @@ Unreferenced_Function847bd:
 	ret z
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 2, 4
 	lb bc, 13, 16
 	call ClearBox
@@ -602,7 +602,7 @@ Unreferenced_Function847bd:
 	ld de, String_PressBToCancel
 	call PlaceString
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	xor a
 	ld [wPrinterStatus], a
 	ret

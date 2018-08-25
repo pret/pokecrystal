@@ -2,7 +2,7 @@ FarDecompress::
 ; Decompress graphics data from a:hl to de.
 
 	ld [wLZBank], a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, [wLZBank]
 	rst Bankswitch
