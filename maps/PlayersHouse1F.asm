@@ -130,7 +130,7 @@ MomScript:
 	end
 
 .GotAPokemon:
-	writetext AfterGotAMonText
+	writetext SoWhatWasProfElmsErrandText
 	waitbutton
 	closetext
 	end
@@ -297,7 +297,7 @@ HurryUpElmIsWaitingText:
 	para "Hurry up, baby!"
 	done
 
-AfterGotAMonText:
+SoWhatWasProfElmsErrandText:
 	text "So, what was PROF."
 	line "ELM's errand?"
 
@@ -382,7 +382,7 @@ TVText:
 	para "I'd better get"
 	line "rolling too!"
 	done
-	
+
 PlayersHouse1F_MapEvents:
 	db 0, 0 ; filler
 
