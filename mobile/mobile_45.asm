@@ -6748,7 +6748,7 @@ Function117764:
 	xor a
 .asm_117770
 	ld [wcd24], a
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and SELECT
 	jr nz, Function117764_select

@@ -70,7 +70,7 @@ _DepositPKMN:
 	ret
 
 .HandleJoypad:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b_button
@@ -328,7 +328,7 @@ _WithdrawPKMN:
 	ret
 
 .Joypad:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b_button
@@ -1660,7 +1660,7 @@ BillsPC_StatsScreen:
 	ret
 
 StatsScreenDPad:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON | D_RIGHT | D_LEFT
 	ld [wMenuJoypad], a

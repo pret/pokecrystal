@@ -1619,7 +1619,7 @@ Functioncd913:
 	ld hl, BATTLEANIMSTRUCT_10
 	add hl, bc
 	ld e, [hl]
-	ld hl, hTransferVirtualOAM ; $ff80
+	ld hl, hTransferVirtualOAM
 	add hl, de
 	ld e, l
 	ld d, h
@@ -2116,7 +2116,7 @@ asm_cdbfa:
 	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
-	ld hl, hTransferVirtualOAM ; $ff80
+	ld hl, hTransferVirtualOAM
 	add hl, de
 	ld e, l
 	ld d, h
@@ -3356,7 +3356,7 @@ Functionce306:
 	ld hl, BATTLEANIMSTRUCT_0F
 	add hl, bc
 	ld e, [hl]
-	ld hl, hTransferVirtualOAM ; $ff80
+	ld hl, hTransferVirtualOAM
 	add hl, de
 	ld e, l
 	ld d, h

@@ -500,7 +500,7 @@ DummyGame_InterpretJoypad_AnimateCursor:
 	cp $7
 	jr nc, .quit
 	call JoyTextDelay
-	ld hl, hJoypadPressed ; $ffa3
+	ld hl, hJoypadPressed
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .pressed_a

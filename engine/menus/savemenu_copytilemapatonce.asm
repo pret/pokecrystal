@@ -39,7 +39,7 @@ SaveMenu_CopyTilemapAtOnce:
 	ret
 
 .CopyTilemapAtOnce:
-	ld [hSPBuffer], sp ; $ffd9
+	ld [hSPBuffer], sp
 	ld sp, hl
 	ldh a, [hBGMapAddress + 1]
 	ld h, a

@@ -561,7 +561,7 @@ Function11c3c2:
 
 Function11c3ed:
 	ld hl, wcd20 ; wcd20
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 	ld a, [de]
 	and $8
 	jr nz, .asm_11c426
@@ -726,7 +726,7 @@ Function11c52c:
 
 Function11c53d:
 	ld hl, wcd21
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 
 	ld a, [de]
 	and START
@@ -935,7 +935,7 @@ Function11c658:
 
 Function11c675:
 	ld hl, wMobileCommsJumptableIndex
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 	ld a, [de]
 	and A_BUTTON
 	jr nz, .a
@@ -1507,7 +1507,7 @@ Function11c9bd:
 
 Function11c9c3:
 	ld hl, wcd2a
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 	ld a, [de]
 	and $1
 	jr nz, .asm_11c9de
@@ -1650,7 +1650,7 @@ Function11caad:
 
 Function11cab3:
 	ld hl, wcd2a
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 	ld a, [de]
 	and $1
 	jr nz, .asm_11cace
@@ -1743,7 +1743,7 @@ Function11cb52:
 
 Function11cb66:
 	ld hl, wcd2a
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 	ld a, [de]
 	and $1
 	jr nz, .asm_11cb81
@@ -1898,7 +1898,7 @@ Function11ccef:
 	call Function11cfb5
 
 Function11cd04:
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 	ld a, [de]
 	and a
 	ret z
@@ -1934,7 +1934,7 @@ Function11cd20:
 
 Function11cd54:
 	ld hl, wcd2c
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 	ld a, [de]
 	and A_BUTTON
 	jr nz, .asm_11cd6f
@@ -2039,7 +2039,7 @@ Function11ce2b:
 	ld hl, Unknown_11ceb9
 	add hl, bc
 
-	ld de, hJoypadPressed ; $ffa3
+	ld de, hJoypadPressed
 	ld a, [de]
 	and START
 	jr nz, .start

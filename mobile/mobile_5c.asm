@@ -522,7 +522,7 @@ Function171b4b:
 	jp Function171c66
 
 Function171b85:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and $2
 	jp nz, Function171b9f
@@ -569,7 +569,7 @@ Function171bbd:
 	jp Function171c66
 
 Function171bcc:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and $2
 	jp nz, Function171bdc

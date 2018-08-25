@@ -400,7 +400,7 @@ NamingScreenJoypadLoop:
 	ret
 
 .ReadButtons:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .a
@@ -1083,7 +1083,7 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ret
 
 .process_joypad
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .a
