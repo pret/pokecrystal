@@ -68,7 +68,7 @@ Credits::
 	xor a
 	call ByteFill
 
-	ld a, rSCX - $ff00
+	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 
 	call GetCreditsPalette

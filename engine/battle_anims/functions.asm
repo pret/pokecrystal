@@ -1137,7 +1137,7 @@ BattleAnimFunction_0D:
 	dw .four
 .zero
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, rSCY - $ff00
+	ld a, LOW(rSCY)
 	ldh [hLCDCPointer], a
 	ld a, $58
 	ldh [hLYOverrideStart], a

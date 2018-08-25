@@ -315,7 +315,7 @@ StartTrainerBattle_SetUpForWavyOutro:
 
 	call StartTrainerBattle_NextScene
 
-	ld a, rSCX - $ff00
+	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 	xor a
 	ldh [hLYOverrideStart], a

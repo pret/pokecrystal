@@ -2,7 +2,7 @@
 
 Unreferenced_Function547::
 	ldh a, [hLCDCPointer]
-	cp rSCX - $ff00
+	cp LOW(rSCX)
 	ret nz
 	ld c, a
 	ld a, [wLYOverrides]

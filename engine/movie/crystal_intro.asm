@@ -1994,7 +1994,7 @@ Intro_ResetLYOverrides:
 
 	pop af
 	ldh [rSVBK], a
-	ld a, rSCX - $ff00
+	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 	ret
 

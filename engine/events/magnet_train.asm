@@ -242,7 +242,7 @@ MagnetTrain_InitLYOverrides:
 	ld bc, wLYOverridesBackupEnd - wLYOverridesBackup
 	ld a, [wMagnetTrainInitPosition]
 	call ByteFill
-	ld a, rSCX - $ff00
+	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 	ret
 
