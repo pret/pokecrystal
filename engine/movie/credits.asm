@@ -20,8 +20,8 @@ Credits::
 	call ClearTileMap
 	call ClearSprites
 
-	ld hl, wCreditsFaux2bpp
-	ld c, wCreditsFaux2bppEnd - wCreditsFaux2bpp
+	ld hl, wCreditsBlankFrame2bpp
+	ld c, (wCreditsBlankFrame2bppEnd - wCreditsBlankFrame2bpp) / 2
 	ld de, `22222222 ; eight pixels, each with color #2
 
 .load_loop
@@ -561,7 +561,7 @@ Credits_LoadBorderGFX:
 	ret
 
 .init
-	ld hl, wCreditsFaux2bpp
+	ld hl, wCreditsBlankFrame2bpp
 	ret
 
 .Frames:

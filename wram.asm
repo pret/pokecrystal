@@ -1069,26 +1069,22 @@ wc9f9:: ds 7
 
 UNION ; ca00
 ; blank credits tile buffer
-wCreditsFaux2bpp:: ds 8 * LEN_2BPP_TILE
-wCreditsFaux2bppEnd::
+wCreditsBlankFrame2bpp:: ds 16 tiles
+wCreditsBlankFrame2bppEnd::
 
 NEXTU ; ca00
 ; mystery gift data
 wca00:: db
 wca01:: db
 wca02:: db
-	ds 160
-ENDU ; caa3
 
-wcaa3:: ds 2
-wcaa5:: ds 16
-wcab5:: ds 10
-wcabf:: ds 10
-wcac9:: ds 63
-wcb08:: ds 6
+NEXTU ; ca00
+; link data
+	ds 191
+wcabf:: ds 79
 wcb0e:: ds 5
-wcb13:: ds 9
-wcb1c:: ds 14
+wcb13:: ds 23
+ENDU ; cb2a
 
 wBillsPC_ScrollPosition:: db
 wBillsPC_CursorPosition:: db
