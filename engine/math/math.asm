@@ -172,18 +172,18 @@ _Divide::
 
 .done
 	ldh a, [hDividend + 1]
-	ldh [hDivisor], a
+	ldh [hRemainder], a
 
 	ldh a, [hMathBuffer + 4]
-	ldh [hDividend + 3], a
+	ldh [hQuotient + 2], a
 
 	ldh a, [hMathBuffer + 3]
-	ldh [hDividend + 2], a
+	ldh [hQuotient + 1], a
 
 	ldh a, [hMathBuffer + 2]
-	ldh [hDividend + 1], a
+	ldh [hQuotient + 0], a
 
 	ldh a, [hMathBuffer + 1]
-	ldh [hDividend + 0], a
+	ldh [hQuotient - 1], a
 
 	ret
