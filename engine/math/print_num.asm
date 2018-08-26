@@ -23,9 +23,9 @@ _PrintNum::
 
 .main
 	xor a
-	ldh [hPrintNum1], a
-	ldh [hPrintNum2], a
-	ldh [hPrintNum3], a
+	ldh [hPrintNumBuffer + 0], a
+	ldh [hPrintNumBuffer + 1], a
+	ldh [hPrintNumBuffer + 2], a
 	ld a, b
 	and $f
 	cp 1
@@ -35,26 +35,26 @@ _PrintNum::
 ; maximum 3 bytes
 .long
 	ld a, [de]
-	ldh [hPrintNum2], a
+	ldh [hPrintNumBuffer + 1], a
 	inc de
 	ld a, [de]
-	ldh [hPrintNum3], a
+	ldh [hPrintNumBuffer + 2], a
 	inc de
 	ld a, [de]
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 	jr .start
 
 .word
 	ld a, [de]
-	ldh [hPrintNum3], a
+	ldh [hPrintNumBuffer + 2], a
 	inc de
 	ld a, [de]
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 	jr .start
 
 .byte
 	ld a, [de]
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 
 .start
 	push de
@@ -81,51 +81,51 @@ _PrintNum::
 
 .seven
 	ld a, HIGH(1000000 >> 8)
-	ldh [hPrintNum5], a
+	ldh [hPrintNumBuffer + 4], a
 	ld a, HIGH(1000000) ; mid
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 	ld a, LOW(1000000)
-	ldh [hPrintNum7], a
+	ldh [hPrintNumBuffer + 6], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .six
 	ld a, HIGH(100000 >> 8)
-	ldh [hPrintNum5], a
+	ldh [hPrintNumBuffer + 4], a
 	ld a, HIGH(100000) ; mid
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 	ld a, LOW(100000)
-	ldh [hPrintNum7], a
+	ldh [hPrintNumBuffer + 6], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .five
 	xor a ; HIGH(10000 >> 8)
-	ldh [hPrintNum5], a
+	ldh [hPrintNumBuffer + 4], a
 	ld a, HIGH(10000) ; mid
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 	ld a, LOW(10000)
-	ldh [hPrintNum7], a
+	ldh [hPrintNumBuffer + 6], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .four
 	xor a ; HIGH(1000 >> 8)
-	ldh [hPrintNum5], a
+	ldh [hPrintNumBuffer + 4], a
 	ld a, HIGH(1000) ; mid
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 	ld a, LOW(1000)
-	ldh [hPrintNum7], a
+	ldh [hPrintNumBuffer + 6], a
 	call .PrintDigit
 	call .AdvancePointer
 
 .three
 	xor a ; HIGH(100 >> 8)
-	ldh [hPrintNum5], a
+	ldh [hPrintNumBuffer + 4], a
 	xor a ; HIGH(100) ; mid
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 	ld a, LOW(100)
-	ldh [hPrintNum7], a
+	ldh [hPrintNumBuffer + 6], a
 	call .PrintDigit
 	call .AdvancePointer
 
@@ -133,11 +133,11 @@ _PrintNum::
 	dec e
 	jr nz, .two_skip
 	ld a, "0"
-	ldh [hPrintNum1], a
+	ldh [hPrintNumBuffer + 0], a
 .two_skip
 
 	ld c, 0
-	ldh a, [hPrintNum4]
+	ldh a, [hPrintNumBuffer + 3]
 .mod_10
 	cp 10
 	jr c, .modded_10
@@ -147,7 +147,7 @@ _PrintNum::
 .modded_10
 
 	ld b, a
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer + 0]
 	or c
 	jr nz, .money
 	call .PrintLeadingZero
@@ -160,7 +160,7 @@ _PrintNum::
 	add c
 	ld [hl], a
 	pop af
-	ldh [hPrintNum1], a
+	ldh [hPrintNumBuffer + 0], a
 	inc e
 	dec e
 	jr nz, .money_leading_zero
@@ -180,7 +180,7 @@ _PrintNum::
 
 .PrintYen:
 	push af
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer + 0]
 	and a
 	jr nz, .stop
 	bit 5, d
@@ -197,68 +197,68 @@ _PrintNum::
 	dec e
 	jr nz, .ok
 	ld a, "0"
-	ldh [hPrintNum1], a
+	ldh [hPrintNumBuffer + 0], a
 .ok
 	ld c, 0
 .loop
-	ldh a, [hPrintNum5]
+	ldh a, [hPrintNumBuffer + 4]
 	ld b, a
-	ldh a, [hPrintNum2]
-	ldh [hPrintNum8], a
+	ldh a, [hPrintNumBuffer + 1]
+	ldh [hPrintNumBuffer + 7], a
 	cp b
 	jr c, .skip1
 	sub b
-	ldh [hPrintNum2], a
-	ldh a, [hPrintNum6]
+	ldh [hPrintNumBuffer + 1], a
+	ldh a, [hPrintNumBuffer + 5]
 	ld b, a
-	ldh a, [hPrintNum3]
-	ldh [hPrintNum9], a
+	ldh a, [hPrintNumBuffer + 2]
+	ldh [hPrintNumBuffer + 8], a
 	cp b
 	jr nc, .skip2
-	ldh a, [hPrintNum2]
+	ldh a, [hPrintNumBuffer + 1]
 	or 0
 	jr z, .skip3
 	dec a
-	ldh [hPrintNum2], a
-	ldh a, [hPrintNum3]
+	ldh [hPrintNumBuffer + 1], a
+	ldh a, [hPrintNumBuffer + 2]
 .skip2
 	sub b
-	ldh [hPrintNum3], a
-	ldh a, [hPrintNum7]
+	ldh [hPrintNumBuffer + 2], a
+	ldh a, [hPrintNumBuffer + 6]
 	ld b, a
-	ldh a, [hPrintNum4]
-	ldh [hPrintNum10], a
+	ldh a, [hPrintNumBuffer + 3]
+	ldh [hPrintNumBuffer + 9], a
 	cp b
 	jr nc, .skip4
-	ldh a, [hPrintNum3]
+	ldh a, [hPrintNumBuffer + 2]
 	and a
 	jr nz, .skip5
-	ldh a, [hPrintNum2]
+	ldh a, [hPrintNumBuffer + 1]
 	and a
 	jr z, .skip6
 	dec a
-	ldh [hPrintNum2], a
+	ldh [hPrintNumBuffer + 1], a
 	xor a
 .skip5
 	dec a
-	ldh [hPrintNum3], a
-	ldh a, [hPrintNum4]
+	ldh [hPrintNumBuffer + 2], a
+	ldh a, [hPrintNumBuffer + 3]
 .skip4
 	sub b
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 	inc c
 	jr .loop
 .skip6
-	ldh a, [hPrintNum9]
-	ldh [hPrintNum3], a
+	ldh a, [hPrintNumBuffer + 8]
+	ldh [hPrintNumBuffer + 2], a
 .skip3
-	ldh a, [hPrintNum8]
-	ldh [hPrintNum2], a
+	ldh a, [hPrintNumBuffer + 7]
+	ldh [hPrintNumBuffer + 1], a
 .skip1
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer + 0]
 	or c
 	jr z, .PrintLeadingZero
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer + 0]
 	and a
 	jr nz, .done
 	bit 5, d
@@ -270,7 +270,7 @@ _PrintNum::
 	ld a, "0"
 	add c
 	ld [hl], a
-	ldh [hPrintNum1], a
+	ldh [hPrintNumBuffer + 0], a
 	inc e
 	dec e
 	ret nz
@@ -292,7 +292,7 @@ _PrintNum::
 	jr nz, .inc
 	bit 6, d ; left alignment or right alignment?
 	jr z, .inc
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer + 0]
 	and a
 	ret z
 .inc

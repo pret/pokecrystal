@@ -586,9 +586,9 @@ _MobilePrintNum::
 ; hl: where to print the converted string
 	push bc
 	xor a
-	ldh [hPrintNum1], a
-	ldh [hPrintNum2], a
-	ldh [hPrintNum3], a
+	ldh [hPrintNumBuffer + 0], a
+	ldh [hPrintNumBuffer + 1], a
+	ldh [hPrintNumBuffer + 2], a
 	ld a, b
 	and $f
 	cp $1
@@ -599,29 +599,29 @@ _MobilePrintNum::
 	jr z, .three_bytes
 ; four bytes
 	ld a, [de]
-	ldh [hPrintNum1], a
+	ldh [hPrintNumBuffer + 0], a
 	inc de
 
 .three_bytes
 	ld a, [de]
-	ldh [hPrintNum2], a
+	ldh [hPrintNumBuffer + 1], a
 	inc de
 
 .two_bytes
 	ld a, [de]
-	ldh [hPrintNum3], a
+	ldh [hPrintNumBuffer + 2], a
 	inc de
 
 .one_byte
 	ld a, [de]
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 	inc de
 
 	push de
 	xor a
-	ldh [hPrintNum9], a
+	ldh [hPrintNumBuffer + 8], a
 	ld a, b
-	ldh [hPrintNum10], a
+	ldh [hPrintNumBuffer + 9], a
 	ld a, c
 	cp 2
 	jr z, .two_digits
@@ -668,7 +668,7 @@ endr
 
 .two_digits
 	ld c, 0
-	ldh a, [hPrintNum4]
+	ldh a, [hPrintNumBuffer + 3]
 .mod_ten_loop
 	cp 10
 	jr c, .simple_divide_done
@@ -678,9 +678,9 @@ endr
 
 .simple_divide_done
 	ld b, a
-	ldh a, [hPrintNum9]
+	ldh a, [hPrintNumBuffer + 8]
 	or c
-	ldh [hPrintNum9], a
+	ldh [hPrintNumBuffer + 8], a
 	jr nz, .create_digit
 	call .LoadMinusTenIfNegative
 	jr .done
@@ -714,53 +714,53 @@ endr
 	ld a, [de]
 	dec de
 	ld b, a
-	ldh a, [hPrintNum4]
+	ldh a, [hPrintNumBuffer + 3]
 	sub b
-	ldh [hPrintNum8], a
+	ldh [hPrintNumBuffer + 7], a
 	ld a, [de]
 	dec de
 	ld b, a
-	ldh a, [hPrintNum3]
+	ldh a, [hPrintNumBuffer + 2]
 	sbc b
-	ldh [hPrintNum7], a
+	ldh [hPrintNumBuffer + 6], a
 	ld a, [de]
 	dec de
 	ld b, a
-	ldh a, [hPrintNum2]
+	ldh a, [hPrintNumBuffer + 1]
 	sbc b
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 	ld a, [de]
 	inc de
 	inc de
 	inc de
 	ld b, a
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer + 0]
 	sbc b
-	ldh [hPrintNum5], a
+	ldh [hPrintNumBuffer + 4], a
 	jr c, .asm_1062eb
-	ldh a, [hPrintNum5]
-	ldh [hPrintNum1], a
-	ldh a, [hPrintNum6]
-	ldh [hPrintNum2], a
-	ldh a, [hPrintNum7]
-	ldh [hPrintNum3], a
-	ldh a, [hPrintNum8]
-	ldh [hPrintNum4], a
+	ldh a, [hPrintNumBuffer + 4]
+	ldh [hPrintNumBuffer + 0], a
+	ldh a, [hPrintNumBuffer + 5]
+	ldh [hPrintNumBuffer + 1], a
+	ldh a, [hPrintNumBuffer + 6]
+	ldh [hPrintNumBuffer + 2], a
+	ldh a, [hPrintNumBuffer + 7]
+	ldh [hPrintNumBuffer + 3], a
 	inc c
 	jr .asm_1062b4
 
 .asm_1062eb
-	ldh a, [hPrintNum9]
+	ldh a, [hPrintNumBuffer + 8]
 	or c
 	jr z, .LoadMinusTenIfNegative
 	ld a, -10
 	add c
 	ld [hl], a
-	ldh [hPrintNum9], a
+	ldh [hPrintNumBuffer + 8], a
 	ret
 
 .LoadMinusTenIfNegative:
-	ldh a, [hPrintNum10]
+	ldh a, [hPrintNumBuffer + 9]
 	bit 7, a
 	ret z
 
@@ -768,12 +768,12 @@ endr
 	ret
 
 .Function1062ff:
-	ldh a, [hPrintNum10]
+	ldh a, [hPrintNumBuffer + 9]
 	bit 7, a
 	jr nz, .asm_10630d
 	bit 6, a
 	jr z, .asm_10630d
-	ldh a, [hPrintNum9]
+	ldh a, [hPrintNumBuffer + 8]
 	and a
 	ret z
 

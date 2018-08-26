@@ -5148,7 +5148,7 @@ Function11a80c:
 	ld bc, hQuotient
 	ld hl, Unknown_11a8ba
 	call Function11a88c
-	ld bc, hPrintNum3
+	ld bc, hPrintNumBuffer + 2
 	ld hl, Unknown_11a8da
 	call Function11a88c
 	xor a
@@ -5156,11 +5156,11 @@ Function11a80c:
 	ldh a, [hDivisor]
 	and $f
 	ld e, a
-	ldh a, [hPrintNum7]
+	ldh a, [hPrintNumBuffer + 6]
 	and $f
 	call Function11a884
 	ld e, a
-	ldh a, [hPrintNum9]
+	ldh a, [hPrintNumBuffer + 8]
 	and $f
 	call Function11a884
 	ld [wcd62], a
@@ -5172,12 +5172,12 @@ Function11a80c:
 	swap a
 	call Function11a884
 	ld e, a
-	ldh a, [hPrintNum7]
+	ldh a, [hPrintNumBuffer + 6]
 	and $f0
 	swap a
 	call Function11a884
 	ld e, a
-	ldh a, [hPrintNum9]
+	ldh a, [hPrintNumBuffer + 8]
 	and $f0
 	swap a
 	call Function11a884
@@ -5189,11 +5189,11 @@ Function11a80c:
 	and $f
 	call Function11a884
 	ld e, a
-	ldh a, [hPrintNum8]
+	ldh a, [hPrintNumBuffer + 7]
 	and $f
 	call Function11a884
 	ld e, a
-	ldh a, [hPrintNum10]
+	ldh a, [hPrintNumBuffer + 9]
 	and $f
 	call Function11a884
 	ld [wcd64], a

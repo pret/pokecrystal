@@ -259,7 +259,7 @@ GetTreeScore:
 	ld b, 2
 	call Divide
 
-	ldh a, [hQuotient + 3]
+	ldh a, [hRemainder]
 	ret
 
 .OTIDScore:
@@ -271,5 +271,5 @@ GetTreeScore:
 	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hQuotient + 3]
+	ldh a, [hRemainder]
 	ret

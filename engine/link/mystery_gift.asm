@@ -239,10 +239,10 @@ Function104a95:
 	cp $6c
 	jr nz, .loop2
 
-	ldh a, [hPrintNum9]
+	ldh a, [hPrintNumBuffer + 8]
 	cp $2
 	jr z, Function104b22
-	ld hl, hPrintNum1
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d56
 	jr nz, .ly_loop
@@ -321,7 +321,7 @@ Function104b22:
 	jp Function104bd0
 
 Function104b40:
-	ld hl, hPrintNum1
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -331,14 +331,14 @@ Function104b49:
 	ldh a, [hMGStatusFlags]
 	cp $6c
 	ret nz
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer]
 	cp $96
 	jp nz, Function104d32
 	ld a, $90
-	ldh [hPrintNum1], a
+	ldh [hPrintNumBuffer], a
 	call Function104d38
 	ret nz
-	ld hl, hPrintNum1
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -360,8 +360,8 @@ Function104b49:
 
 Function104b88:
 	ld a, $96
-	ldh [hPrintNum1], a
-	ld hl, hPrintNum1
+	ldh [hPrintNumBuffer], a
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -371,7 +371,7 @@ Function104b88:
 	ret nz
 	call Function104d43
 	ret nz
-	ld hl, hPrintNum1
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -379,7 +379,7 @@ Function104b88:
 	ldh a, [hMGStatusFlags]
 	cp $6c
 	ret nz
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer]
 	cp $90
 	jp nz, Function104d32
 	call Function104d38
@@ -415,7 +415,7 @@ Function104bd0:
 	call MysteryGift_ClearTrainerData
 	ld a, $26
 	ld [wca02], a
-	ldh a, [hPrintNum9]
+	ldh a, [hPrintNumBuffer + 8]
 	cp $2
 	jr z, .asm_104c10
 	call Function104d43
@@ -453,7 +453,7 @@ Function104c2d:
 	jp z, Function104d1c
 	cp $6c
 	jr nz, .asm_104c37
-	ldh a, [hPrintNum9]
+	ldh a, [hPrintNumBuffer + 8]
 	cp $2
 	jr z, .asm_104c6c
 	call Function104c8a
@@ -479,7 +479,7 @@ Function104c2d:
 	jp Function104d1c
 
 Function104c8a:
-	ld hl, hPrintNum1
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -487,14 +487,14 @@ Function104c8a:
 	ldh a, [hMGStatusFlags]
 	cp $6c
 	ret nz
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer]
 	cp $3c
 	jp nz, Function104d32
 	swap a
-	ldh [hPrintNum1], a
+	ldh [hPrintNumBuffer], a
 	call Function104d38
 	ret nz
-	ld hl, hPrintNum1
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -516,8 +516,8 @@ Function104c8a:
 
 Function104cd2:
 	ld a, $3c
-	ldh [hPrintNum1], a
-	ld hl, hPrintNum1
+	ldh [hPrintNumBuffer], a
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d4e
 	ret nz
@@ -527,7 +527,7 @@ Function104cd2:
 	ret nz
 	call Function104d43
 	ret nz
-	ld hl, hPrintNum1
+	ld hl, hPrintNumBuffer
 	ld b, $1
 	call Function104d56
 	ret nz
@@ -535,7 +535,7 @@ Function104cd2:
 	ldh a, [hMGStatusFlags]
 	cp $6c
 	ret nz
-	ldh a, [hPrintNum1]
+	ldh a, [hPrintNumBuffer]
 	swap a
 	cp $3c
 	jp nz, Function104d32
@@ -641,7 +641,7 @@ Function104d96:
 	ld a, $c0
 	call Function104e8c
 	ld a, $1
-	ldh [hPrintNum9], a
+	ldh [hPrintNumBuffer + 8], a
 	ret
 
 Function104da0:
@@ -701,7 +701,7 @@ Function104ddd:
 	ld d, $0
 	ld e, d
 	ld a, $1
-	ldh [hPrintNum9], a
+	ldh [hPrintNumBuffer + 8], a
 .loop
 	call MysteryGift_ReadJoypad
 	ld b, $2
@@ -760,7 +760,7 @@ Function104e3a:
 	jr nz, .loop
 Function104e46:
 	ld a, $2
-	ldh [hPrintNum9], a
+	ldh [hPrintNumBuffer + 8], a
 	ld c, LOW(rRP)
 	ld d, $0
 	ld e, d
@@ -798,14 +798,14 @@ Function104e8c:
 
 Function104e93:
 	xor a
-	ldh [hPrintNum5], a
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 4], a
+	ldh [hPrintNumBuffer + 5], a
 	push hl
 	push bc
 	ld c, LOW(rRP)
 	ld d, $3d
 	call Function104dd1
-	ld hl, hPrintNum2
+	ld hl, hPrintNumBuffer + 1
 	ld a, $5a
 	ld [hli], a
 	ld [hl], b
@@ -815,21 +815,21 @@ Function104e93:
 	pop bc
 	pop hl
 	call Function104ed6
-	ldh a, [hPrintNum5]
-	ldh [hPrintNum2], a
-	ldh a, [hPrintNum6]
-	ldh [hPrintNum3], a
+	ldh a, [hPrintNumBuffer + 4]
+	ldh [hPrintNumBuffer + 1], a
+	ldh a, [hPrintNumBuffer + 5]
+	ldh [hPrintNumBuffer + 2], a
 	push hl
-	ld hl, hPrintNum2
+	ld hl, hPrintNumBuffer + 1
 	ld b, $2
 	call Function104ed6
 	ld hl, hMGStatusFlags
 	ld b, $1
 	call Function104faf
-	ldh a, [hPrintNum2]
-	ldh [hPrintNum5], a
-	ldh a, [hPrintNum3]
-	ldh [hPrintNum6], a
+	ldh a, [hPrintNumBuffer + 1]
+	ldh [hPrintNumBuffer + 4], a
+	ldh a, [hPrintNumBuffer + 2]
+	ldh [hPrintNumBuffer + 5], a
 	pop hl
 	ret
 
@@ -850,15 +850,15 @@ Function104ed6:
 	inc b
 	jr z, .asm_104f2e
 	ld a, $8
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 	ld a, [hli]
 	ld e, a
-	ldh a, [hPrintNum5]
+	ldh a, [hPrintNumBuffer + 4]
 	add e
-	ldh [hPrintNum5], a
-	ldh a, [hPrintNum6]
+	ldh [hPrintNumBuffer + 4], a
+	ldh a, [hPrintNumBuffer + 5]
 	adc 0
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 .asm_104f02
 	xor a
 	ldh [rIF], a
@@ -883,10 +883,10 @@ Function104ed6:
 	ldh [rIF], a
 	halt
 .asm_104f25
-	ldh a, [hPrintNum4]
+	ldh a, [hPrintNumBuffer + 3]
 	dec a
 	jr z, .asm_104eee
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 	jr .asm_104f02
 .asm_104f2e
 	ld a, $fe
@@ -920,35 +920,35 @@ Function104f50:
 
 Function104f57:
 	xor a
-	ldh [hPrintNum5], a
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 4], a
+	ldh [hPrintNumBuffer + 5], a
 	push bc
 	push hl
-	ld hl, hPrintNum2
+	ld hl, hPrintNumBuffer + 1
 	ld b, $2
 	call Function104faf
-	ldh a, [hPrintNum3]
-	ldh [hPrintNum8], a
+	ldh a, [hPrintNumBuffer + 2]
+	ldh [hPrintNumBuffer + 7], a
 	ld b, a
 	pop hl
 	pop af
 	cp b
 	jp c, Function104f50
-	ldh a, [hPrintNum2]
+	ldh a, [hPrintNumBuffer + 1]
 	cp $5a
 	jp nz, Function104f50
 	call Function104faf
-	ldh a, [hPrintNum5]
+	ldh a, [hPrintNumBuffer + 4]
 	ld d, a
-	ldh a, [hPrintNum6]
+	ldh a, [hPrintNumBuffer + 5]
 	ld e, a
 	push hl
 	push de
-	ld hl, hPrintNum2
+	ld hl, hPrintNumBuffer + 1
 	ld b, $2
 	call Function104faf
 	pop de
-	ld hl, hPrintNum2
+	ld hl, hPrintNumBuffer + 1
 	ld a, [hli]
 	xor d
 	ld b, a
@@ -965,9 +965,9 @@ Function104f57:
 	pop de
 	pop hl
 	ld a, d
-	ldh [hPrintNum5], a
+	ldh [hPrintNumBuffer + 4], a
 	ld a, e
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 	ret
 
 Function104faf:
@@ -991,7 +991,7 @@ Function104faf:
 	inc b
 	jr z, .asm_10501a
 	ld a, $8
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 .asm_104fd9
 	ld d, $0
 .asm_104fdb
@@ -1020,9 +1020,9 @@ Function104faf:
 .asm_104ffd
 	res 0, e
 .asm_104fff
-	ldh a, [hPrintNum4]
+	ldh a, [hPrintNumBuffer + 3]
 	dec a
-	ldh [hPrintNum4], a
+	ldh [hPrintNumBuffer + 3], a
 	jr z, .asm_10500b
 	ld a, e
 	rlca
@@ -1031,12 +1031,12 @@ Function104faf:
 .asm_10500b
 	ld a, e
 	ld [hli], a
-	ldh a, [hPrintNum5]
+	ldh a, [hPrintNumBuffer + 4]
 	add e
-	ldh [hPrintNum5], a
-	ldh a, [hPrintNum6]
+	ldh [hPrintNumBuffer + 4], a
+	ldh a, [hPrintNumBuffer + 5]
 	adc 0
-	ldh [hPrintNum6], a
+	ldh [hPrintNumBuffer + 5], a
 	jr .asm_104fd2
 .asm_10501a
 	call Function104d74
