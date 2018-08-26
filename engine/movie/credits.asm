@@ -22,7 +22,10 @@ Credits::
 
 	ld hl, wCreditsBlankFrame2bpp
 	ld c, (wCreditsBlankFrame2bppEnd - wCreditsBlankFrame2bpp) / 2
-	ld de, `22222222 ; eight pixels, each with color #2
+	ld de, `22222222 ; eight pixels, each color #2 (dark)
+
+; Fill wCreditsBlankFrame2bpp with 4x4=16 tiles, all solid dark color
+; (the same color used for the four border frame mons' backgrounds)
 
 .load_loop
 	ld a, e

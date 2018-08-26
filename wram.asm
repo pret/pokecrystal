@@ -1069,7 +1069,7 @@ wc9f9:: ds 7
 
 UNION ; ca00
 ; blank credits tile buffer
-wCreditsBlankFrame2bpp:: ds 16 tiles
+wCreditsBlankFrame2bpp:: ds 4 * 4 tiles
 wCreditsBlankFrame2bppEnd::
 
 NEXTU ; ca00
