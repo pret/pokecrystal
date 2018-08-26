@@ -74,11 +74,11 @@ PascalCase:: ; global label
 wPascalCase: ; wram
 sPascalCase: ; sram
 vPascalCase: ; vram
+hPascalCase: ; hram
 PascalCase:  ; rom
 
 ; Some constants are also prefixed
 rBGP EQU $ff47 ; hardware register
-hPascalCase EQU $ff80 ; hram
 
 ; Most other constants should be upper case
 UPPER_CASE EQU 1
