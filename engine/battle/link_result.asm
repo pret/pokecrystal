@@ -100,10 +100,10 @@ DetermineLinkBattleResult:
 	ldh [hDivisor], a
 	ld b, $4
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	add e
 	ld e, a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	adc d
 	ld d, a
 	dec hl

@@ -766,10 +766,10 @@ MonMenu_Softboiled_MilkDrink:
 	call Divide
 	ld a, MON_HP + 1
 	call GetPartyParamLocation
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc [hl]
 	ret
 

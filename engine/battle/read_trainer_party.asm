@@ -305,12 +305,12 @@ ComputeTrainerReward:
 	ld hl, hProduct
 	xor a
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; hMultiplicand + 0
+	ld [hli], a ; hMultiplicand + 1
 	ld a, [wEnemyTrainerBaseReward]
-	ld [hli], a
+	ld [hli], a ; hMultiplicand + 2
 	ld a, [wCurPartyLevel]
-	ld [hl], a
+	ld [hl], a ; hMultiplier
 	call Multiply
 	ld hl, wBattleReward
 	xor a

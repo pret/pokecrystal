@@ -5145,7 +5145,7 @@ Function11a80c:
 	ld bc, hDividend
 	ld hl, Unknown_11a89a
 	call Function11a88c
-	ld bc, hQuotient
+	ld bc, hQuotient + 1
 	ld hl, Unknown_11a8ba
 	call Function11a88c
 	ld bc, hPrintNumBuffer + 2

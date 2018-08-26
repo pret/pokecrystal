@@ -91,7 +91,7 @@ ComputeHPBarPixels:
 	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld e, a
 	pop hl
 	and a

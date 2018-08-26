@@ -58,11 +58,11 @@ CalcExpAtLevel:
 	ld b, 4
 	call Divide
 ; Push the cubic term to the stack
-	ldh a, [hQuotient + 0]
-	push af
 	ldh a, [hQuotient + 1]
 	push af
 	ldh a, [hQuotient + 2]
+	push af
+	ldh a, [hQuotient + 3]
 	push af
 ; Square the level and multiply by the lower 7 bits of c
 	call .LevelSquared

@@ -250,9 +250,9 @@ GetTreeScore:
 	ld b, 2
 	call Divide
 
-	ldh a, [hQuotient + 1]
-	ldh [hDividend], a
 	ldh a, [hQuotient + 2]
+	ldh [hDividend], a
+	ldh a, [hQuotient + 3]
 	ldh [hDividend + 1], a
 	ld a, 10
 	ldh [hDivisor], a

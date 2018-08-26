@@ -175,15 +175,15 @@ _Divide::
 	ldh [hRemainder], a
 
 	ldh a, [hMathBuffer + 4]
-	ldh [hQuotient + 2], a
+	ldh [hQuotient + 3], a
 
 	ldh a, [hMathBuffer + 3]
-	ldh [hQuotient + 1], a
+	ldh [hQuotient + 2], a
 
 	ldh a, [hMathBuffer + 2]
-	ldh [hQuotient + 0], a
+	ldh [hQuotient + 1], a
 
 	ldh a, [hMathBuffer + 1]
-	ldh [hQuotient - 1], a
+	ldh [hQuotient + 0], a
 
 	ret

@@ -310,10 +310,10 @@ PokeBallEffect:
 
 	ld a, b
 	ldh [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
 
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	and a
 	jr nz, .statuscheck
 	ld a, 1
@@ -1313,7 +1313,7 @@ RareCandyEffect:
 	ld a, MON_EXP
 	call GetPartyParamLocation
 
-	ldh a, [hMultiplicand]
+	ldh a, [hMultiplicand + 0]
 	ld [hli], a
 	ldh a, [hMultiplicand + 1]
 	ld [hli], a
@@ -1963,9 +1963,9 @@ GetOneFifthMaxHP:
 	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hQuotient + 1]
-	ld d, a
 	ldh a, [hQuotient + 2]
+	ld d, a
+	ldh a, [hQuotient + 3]
 	ld e, a
 	pop bc
 	ret
@@ -2814,7 +2814,7 @@ ComputeMaxPP:
 	; Since this would overflow into bit 6, we prevent that from happening
 	; by decreasing the extra amount of PP each PP Up provides, resulting
 	; in a maximum of 61.
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	cp $8
 	jr c, .okay
 	ld a, $7

@@ -786,10 +786,10 @@ Link_PrepPartyData_Gen1:
 	pop bc
 	pop de
 
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld [de], a
 	inc de
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [de], a
 	inc de
 	ld h, b
@@ -1059,9 +1059,9 @@ Function2868a:
 	predef CalcMonStatC
 	pop bc
 	pop hl
-	ldh a, [hQuotient + 1]
-	ld [hli], a
 	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hli], a
 	push hl
 	push bc
@@ -1072,9 +1072,9 @@ Function2868a:
 	predef CalcMonStatC
 	pop bc
 	pop hl
-	ldh a, [hQuotient + 1]
-	ld [hli], a
 	ldh a, [hQuotient + 2]
+	ld [hli], a
+	ldh a, [hQuotient + 3]
 	ld [hli], a
 	push hl
 	ld hl, $1b

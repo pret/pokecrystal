@@ -63,9 +63,7 @@ hEnemyMonSpeed:: dw ; ffb1
 
 UNION ; ffb3
 ; miscellaneous
-	ds 2
-hPartyMon1Speed:: dw ; ffb5
-	ds 5
+	ds 9
 hMGStatusFlags:: db ; ffbc
 
 NEXTU ; ffb3
@@ -85,8 +83,7 @@ hDivisor:: db ; ffb7
 
 NEXTU ; ffb3
 ; results of Divide
-	ds 1
-hQuotient:: ds 3 ; ffb4
+hQuotient:: ds 4 ; ffb3
 hRemainder:: db ; ffb7
 
 NEXTU ; ffb3

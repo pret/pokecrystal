@@ -43,7 +43,7 @@ GetUnownLetter:
 	call Divide
 
 ; Increment to get 1-26
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	inc a
 	ld [wUnownLetter], a
 	ret

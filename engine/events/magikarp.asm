@@ -205,7 +205,7 @@ CalcMagikarpLength:
 	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld c, a
 
 	; de = c + 100 × (2 + i)
