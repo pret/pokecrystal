@@ -21,8 +21,8 @@ Credits::
 	call ClearSprites
 
 	ld hl, wCreditsFaux2bpp
-	ld c, $80
-	ld de, $ff00
+	ld c, wCreditsFaux2bppEnd - wCreditsFaux2bpp
+	ld de, `22222222 ; eight pixels, each with color #2
 
 .load_loop
 	ld a, e

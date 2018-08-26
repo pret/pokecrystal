@@ -45,7 +45,7 @@ wCurNoteDuration:: db ; used in MusicE0 and LoadNote
 wCurMusicByte:: db ; c298
 wCurChannel:: db ; c299
 wVolume:: ; c29a
-; corresponds to $ff24
+; corresponds to rNR50
 ; Channel control / ON-OFF / Volume (R/W)
 ;   bit 7 - Vin->SO2 ON/OFF
 ;   bit 6-4 - SO2 output level (volume) (# 0-7)
@@ -53,12 +53,12 @@ wVolume:: ; c29a
 ;   bit 2-0 - SO1 output level (volume) (# 0-7)
 	db
 wSoundOutput:: ; c29b
-; corresponds to $ff25
+; corresponds to rNR51
 ; bit 4-7: ch1-4 so2 on/off
 ; bit 0-3: ch1-4 so1 on/off
 	db
 wSoundInput:: ; c29c
-; corresponds to $ff26
+; corresponds to rNR52
 ; bit 7: global on/off
 ; bit 0: ch1 on/off
 ; bit 1: ch2 on/off
@@ -1069,7 +1069,8 @@ wc9f9:: ds 7
 
 UNION ; ca00
 ; blank credits tile buffer
-wCreditsFaux2bpp:: ds 128
+wCreditsFaux2bpp:: ds 8 * LEN_2BPP_TILE
+wCreditsFaux2bppEnd::
 
 NEXTU ; ca00
 ; mystery gift data

@@ -795,7 +795,7 @@ IntroScene9:
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
-	ld a, $c ; $980c
+	ld a, LOW(vBGMap0 + $c) ; $c
 	ldh [hBGMapAddress], a
 	call DelayFrame
 	call DelayFrame
