@@ -40,7 +40,7 @@ ReadAnyMail:
 	farcall LoadMailPalettes
 	call SetPalettes
 	xor a
-	ld [hJoyPressed], a
+	ldh [hJoyPressed], a
 	call .loop
 	call ClearBGPalettes
 	call DisableLCD
@@ -49,7 +49,7 @@ ReadAnyMail:
 
 .loop
 	call GetJoypad
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON | START
 	jr z, .loop
 	and START

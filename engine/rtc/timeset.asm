@@ -3,10 +3,10 @@ TIMESET_DOWN_ARROW EQUS "\"♀\"" ; $f5
 
 InitClock:
 ; Ask the player to set the time.
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 
 	ld a, $0
 	ld [wSpriteUpdatesEnabled], a
@@ -24,7 +24,7 @@ InitClock:
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadStandardFont
 	ld de, TimeSetBackgroundGFX
 	ld hl, vTiles2 tile $00
@@ -117,22 +117,22 @@ InitClock:
 	call PrintText
 	call WaitPressAorB_BlinkCursor
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 .ClearScreen:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 0
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a
 	call ByteFill
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 SetHour:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .Confirm
 
@@ -223,7 +223,7 @@ UnreferencedFunction907f1:
 	ret
 
 SetMinutes:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .a_button
 	ld hl, hJoyLast
@@ -391,10 +391,10 @@ TimeSetDownArrowGFX:
 INCBIN "gfx/new_game/down_arrow.1bpp"
 
 SetDayOfWeek:
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ld de, TimeSetUpArrowGFX
 	ld hl, vTiles0 tile TIMESET_UP_ARROW
 	lb bc, BANK(TimeSetUpArrowGFX), 1
@@ -440,11 +440,11 @@ SetDayOfWeek:
 	call InitDayOfWeek
 	call LoadStandardFont
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 .GetJoypadAction:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jr z, .not_A
 	scf
@@ -487,7 +487,7 @@ SetDayOfWeek:
 
 .finish_dpad
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 10, 4
 	ld b, 2
 	ld c, 9
@@ -563,9 +563,9 @@ InitialSetDSTFlag:
 .Text:
 	start_asm
 	call UpdateTime
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld b, a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld c, a
 	decoord 1, 14
 	farcall PrintHoursMins
@@ -591,9 +591,9 @@ InitialClearDSTFlag:
 .Text:
 	start_asm
 	call UpdateTime
-	ld a, [hHours]
+	ldh a, [hHours]
 	ld b, a
-	ld a, [hMinutes]
+	ldh a, [hMinutes]
 	ld c, a
 	decoord 1, 14
 	farcall PrintHoursMins

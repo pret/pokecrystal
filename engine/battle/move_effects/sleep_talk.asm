@@ -5,7 +5,7 @@ BattleCommand_SleepTalk:
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .fail
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wBattleMonMoves + 1
 	ld a, [wDisabledMove]
@@ -77,7 +77,7 @@ BattleCommand_SleepTalk:
 	ret
 
 .check_has_usable_move
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld a, [wDisabledMove]
 	jr z, .got_move_2

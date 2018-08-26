@@ -13,15 +13,15 @@ Unreferenced_Function48c::
 
 .okay
 	ld a, [hli]
-	ld [rBGP], a
+	ldh [rBGP], a
 	ld a, [hli]
-	ld [rOBP0], a
+	ldh [rOBP0], a
 	ld a, [hli]
-	ld [rOBP1], a
+	ldh [rOBP1], a
 	ret
 
 RotateFourPalettesRight::
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld hl, IncGradGBPalTable_00
@@ -34,7 +34,7 @@ RotateFourPalettesRight::
 	jr RotatePalettesRight
 
 RotateThreePalettesRight::
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld hl, IncGradGBPalTable_05
@@ -63,7 +63,7 @@ RotatePalettesRight::
 	ret
 
 RotateFourPalettesLeft::
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld hl, IncGradGBPalTable_04 - 1
@@ -76,7 +76,7 @@ RotateFourPalettesLeft::
 	jr RotatePalettesLeft
 
 RotateThreePalettesLeft::
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .dmg
 	ld hl, IncGradGBPalTable_07 - 1

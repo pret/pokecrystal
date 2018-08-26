@@ -128,7 +128,7 @@ String_114232:
 Function114243::
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	ld a, [hFF8C]
+	ldh a, [hFF8C]
 	push af ; if [$dc02] == 0, this is popped to pc.
 	push de
 	ld a, [$dc02]
@@ -146,8 +146,8 @@ Function114243::
 Function11425c:
 	ld [$dc02], a
 	pop af
-	ld [hFF8C], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ret
 
@@ -162,7 +162,7 @@ Function114269:
 	ld [$dc03], a
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -359,7 +359,7 @@ Function11433c:
 	pop bc
 	ld a, [$dc03]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, String_114004
@@ -417,7 +417,7 @@ Function1143b7:
 	push af
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld h, [hl]
@@ -472,7 +472,7 @@ Function1143f3:
 Function114412:
 	ld a, c
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, Unknown_11417f
 	ld a, b
@@ -659,7 +659,7 @@ Function1144d1:
 	pop hl
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -676,7 +676,7 @@ Function1144d1:
 	ld hl, $dc06
 	ld a, [hl]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, $dc09
 	ld e, [hl]
@@ -734,7 +734,7 @@ Function114576:
 	jr nz, .asm_1145b4
 	ld a, h
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	push hl
 	push de
@@ -752,7 +752,7 @@ Function114576:
 	jr nz, .asm_1145ba
 	ld a, h
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, String_114218
 	call Function114acf
@@ -924,7 +924,7 @@ Function11463c:
 	pop de
 	pop af
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	xor a
 	ld [wDecoCarpet], a
@@ -945,7 +945,7 @@ Function1146a4:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -959,7 +959,7 @@ Function1146a4:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1002,7 +1002,7 @@ Function1146fa:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1016,7 +1016,7 @@ Function1146fa:
 	ld a, $1
 	ld [$dc0e], a
 	ld a, [$dc00]
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, $1
 	ld [wDecoRightOrnament], a
@@ -1043,7 +1043,7 @@ Function1146fa:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1097,7 +1097,7 @@ Function1146fa:
 	ld hl, $dc03
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	call Function114a7a
 	and a
@@ -1207,7 +1207,7 @@ Function114843:
 	ld a, [$dc00]
 	push af
 	push de
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	call Function114a18
 	and a
@@ -1230,7 +1230,7 @@ Function114867:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1295,7 +1295,7 @@ Function1148c2:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1393,7 +1393,7 @@ Function11494d:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1483,7 +1483,7 @@ Function1149cc:
 	ld hl, $dc06
 	ld a, [hl]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	push de
 	ld hl, $dc09
@@ -1830,7 +1830,7 @@ endr
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -1868,7 +1868,7 @@ Function114bbc:
 	jr nz, .asm_114bff
 	ld a, h
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	call Function114c0b
 	ld hl, $dc24
@@ -1879,7 +1879,7 @@ Function114bbc:
 	pop hl
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2085,7 +2085,7 @@ Function114cd9:
 	ld [$dc04], a
 	ld a, h
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, $dc24
 	call Function114d39
@@ -2104,7 +2104,7 @@ endr
 	pop hl
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2402,7 +2402,7 @@ Function114ea0:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2602,7 +2602,7 @@ Function114f59:
 	inc hl
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -2680,7 +2680,7 @@ Function115020:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2737,7 +2737,7 @@ Function115062:
 	ld c, a
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -2888,7 +2888,7 @@ Function115136:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -2941,7 +2941,7 @@ Function115179:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -3059,7 +3059,7 @@ Function115217:
 	ld hl, $dc06
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -3152,7 +3152,7 @@ Function11528f:
 	inc hl
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, [hli]
 	ld e, a
@@ -3401,7 +3401,7 @@ Function1153d2:
 .asm_1153f5
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -3535,7 +3535,7 @@ Function1153d2:
 	ld hl, wDecoRightOrnament
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -3768,7 +3768,7 @@ Function11560a:
 	ld [wCurrMapBGEventCount], a
 	ld a, [$dc17]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, $dc1a
 	ld c, [hl]
@@ -3841,7 +3841,7 @@ Function11560a:
 	ld [hl], d
 	pop bc
 	ld a, [wCurrMapBGEventCount]
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld hl, wCurrMapSceneScriptCount
 	ld e, [hl]
@@ -4147,7 +4147,7 @@ Function11581e:
 	ld hl, $dc02
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -4201,7 +4201,7 @@ Function11581e:
 	ld hl, wCurrMapSceneScriptCount
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -4668,7 +4668,7 @@ Function115b00:
 	ld hl, $dc02
 	ld a, [hli]
 	ld [$dc00], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -4756,7 +4756,7 @@ Function115b00:
 	ld hl, wCurrMapSceneScriptCount
 	ld a, [hli]
 	ld [wCurrMapBGEventCount], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld e, [hl]
 	inc hl
@@ -5149,7 +5149,7 @@ Function115d80:
 	ld a, [bc]
 	inc a
 	ld [bc], a
-	ld [hFF8C], a
+	ldh [hFF8C], a
 	ld [MBC3SRamBank], a
 	ld a, e
 	ld d, $a0
@@ -5337,7 +5337,7 @@ Function11665c:
 .asm_116675
 	ld [wc30f], a
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $7
 	sla a
 	sla a
@@ -5413,7 +5413,7 @@ Function1166f4:
 	ld hl, wc30f
 .asm_116702
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $7
 	jr z, .asm_11670c
 	dec a
@@ -5439,7 +5439,7 @@ Function11671f:
 	ld hl, wc30e
 .asm_11672d
 	call Random
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $7
 	sla a
 	sla a
@@ -6618,21 +6618,21 @@ GiveOddEgg:
 	ret
 
 Function11765d:
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call Function11766b
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 Function11766b:
 	call Function117699
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call Function1176ee
 	ld a, $5
 	call GetSRAMBank
@@ -6645,7 +6645,7 @@ Function11766b:
 	call CopyBytes
 	call CloseSRAM
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function117699:
@@ -6748,7 +6748,7 @@ Function117764:
 	xor a
 .asm_117770
 	ld [wcd24], a
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and SELECT
 	jr nz, Function117764_select
@@ -6964,7 +6964,7 @@ Function1178aa:
 	jp MobilePassword_IncrementJumptable
 
 Function1178e8:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	cp B_BUTTON
 	jr z, .b_button
 	cp A_BUTTON
@@ -7111,13 +7111,13 @@ INCBIN "data/mobile/ascii-sym.txt"
 ; Mobile Stadium option from the continue/newgame menu.
 ; Needs better function names
 MobileStudium:
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call Function117a8d
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 Function117a8d:
@@ -7215,7 +7215,7 @@ Function117b31:
 	jp MobileStudium_JumptableIncrement
 
 Function117b4f:
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	cp B_BUTTON
 	jr z, .b_button
 	cp A_BUTTON
@@ -7272,7 +7272,7 @@ Function117b4f:
 Function117bb6:
 	call Function117c89
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	farcall Function118284
 	call ClearSprites
 	ld a, [wc300]
@@ -7294,10 +7294,10 @@ Function117bb6:
 	ret
 
 .asm_117be7
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [wcd89]
 	and $1
 	jr nz, .asm_117c16
@@ -7322,19 +7322,19 @@ Function117bb6:
 
 .asm_117c16
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $d3
 	ld [wc300], a
 	jr .asm_117bd0
 
 .asm_117c20
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	farcall Function172eb9
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $3
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $7
 	call GetSRAMBank
 	ld hl, w3_d002
@@ -7343,7 +7343,7 @@ Function117bb6:
 	call CopyBytes
 	call CloseSRAM
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	jp MobileStudium_JumptableIncrement
 
 Function117c4a:
@@ -7354,10 +7354,10 @@ Function117c4a:
 	farcall ReloadMapPart
 	ld hl, MobileStadiumSuccessText
 	call PrintText
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wBGPals1
 	ld de, 1 palettes
 	ld c, 8
@@ -7373,7 +7373,7 @@ Function117c4a:
 	jr nz, .loop
 	call RotateThreePalettesRight
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $80
 	ld [wJumptableIndex], a
 	ret

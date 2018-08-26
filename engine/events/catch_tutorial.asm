@@ -31,8 +31,8 @@ CatchTutorial::
 	call .LoadDudeData
 
 	xor a
-	ld [hJoyDown], a
-	ld [hJoyPressed], a
+	ldh [hJoyDown], a
+	ldh [hJoyPressed], a
 	ld a, [wOptions]
 	push af
 	and $f8

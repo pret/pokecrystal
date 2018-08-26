@@ -4,7 +4,7 @@ EvolutionAnimation:
 	push bc
 	ld a, [wCurSpecies]
 	push af
-	ld a, [rOBP0]
+	ldh a, [rOBP0]
 	push af
 	ld a, [wBaseDexNo]
 	push af
@@ -14,7 +14,7 @@ EvolutionAnimation:
 	pop af
 	ld [wBaseDexNo], a
 	pop af
-	ld [rOBP0], a
+	ldh [rOBP0], a
 	pop af
 	ld [wCurSpecies], a
 	pop bc
@@ -30,7 +30,7 @@ EvolutionAnimation:
 
 .EvolutionAnimation:
 	ld a, %11100100
-	ld [rOBP0], a
+	ldh [rOBP0], a
 
 	ld de, MUSIC_NONE
 	call PlayMusic
@@ -46,7 +46,7 @@ EvolutionAnimation:
 	ld [wLowHealthAlarm], a
 	call WaitBGMap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, [wEvolutionOldSpecies]
 	ld [wPlayerHPPal], a
 
@@ -74,7 +74,7 @@ EvolutionAnimation:
 	ld [wCurSpecies], a
 
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call .check_statused
 	jr c, .skip_cry
 
@@ -205,7 +205,7 @@ EvolutionAnimation:
 .ReplaceFrontpic:
 	push bc
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 7, 2
 	lb bc, 7, 7
 	ld de, SCREEN_WIDTH - 7
@@ -222,7 +222,7 @@ EvolutionAnimation:
 	dec b
 	jr nz, .loop1
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call WaitBGMap
 	pop bc
 	ret
@@ -231,7 +231,7 @@ EvolutionAnimation:
 	call DelayFrame
 	push bc
 	call JoyTextDelay
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	pop bc
 	and B_BUTTON
 	jr nz, .pressed_b
@@ -326,7 +326,7 @@ EvolutionAnimation:
 	push bc
 	callfar PlaySpriteAnimations
 	; a = (([hVBlankCounter] + 4) / 2) % NUM_PALETTES
-	ld a, [hVBlankCounter]
+	ldh a, [hVBlankCounter]
 	and %1110
 	srl a
 	inc a

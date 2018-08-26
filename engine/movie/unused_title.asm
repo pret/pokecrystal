@@ -5,7 +5,7 @@ UnusedTitleScreen:
 
 ; Turn BG Map update off
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 ; Reset timing variables
 	ld hl, wJumptableIndex
@@ -34,11 +34,11 @@ UnusedTitleScreen:
 	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
 .copy
 	ld a, 0
-	ld [rVBK], a
+	ldh [rVBK], a
 	ld a, [hli]
 	ld [de], a
 	ld a, 1
-	ld [rVBK], a
+	ldh [rVBK], a
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -53,17 +53,17 @@ UnusedTitleScreen:
 	call CopyBytes
 
 	call EnableLCD
-	ld a, [rLCDC]
+	ldh a, [rLCDC]
 	set rLCDC_SPRITES_ENABLE, a
 	set rLCDC_SPRITE_SIZE, a
-	ld [rLCDC], a
+	ldh [rLCDC], a
 
 	call DelayFrame
 
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld hl, UnusedTitleBG_Palettes
 	ld de, wBGPals1
@@ -86,10 +86,10 @@ UnusedTitleScreen:
 	call CopyBytes
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 	ld de, MUSIC_TITLE
 	call PlayMusic
@@ -158,7 +158,7 @@ Function10ed51:
 	call _TitleScreen
 .loop
 	call JoyTextDelay
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	ld b, a
 	and 1
 	jr nz, .done

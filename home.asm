@@ -61,7 +61,7 @@ Unreferenced_Function2ebb::
 	bit 1, a
 	ret z
 
-	ld a, [hJoyDown]
+	ldh a, [hJoyDown]
 	bit B_BUTTON_F, a
 	ret
 
@@ -146,7 +146,7 @@ INCLUDE "home/math.asm"
 INCLUDE "home/print_text.asm"
 
 CallPointerAt::
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, [hli]
 	rst Bankswitch

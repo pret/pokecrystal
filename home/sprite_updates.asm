@@ -1,6 +1,6 @@
 DisableSpriteUpdates::
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ld a, [wVramState]
 	res 0, a
 	ld [wVramState], a
@@ -15,5 +15,5 @@ EnableSpriteUpdates::
 	set 0, a
 	ld [wVramState], a
 	ld a, $1
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ret

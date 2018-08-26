@@ -3,10 +3,10 @@ BattleTowerText::
 ; 1: Intro text
 ; 2: Player lost
 ; 3: Player won
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBT_OTTrainerClass)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 if DEF(_CRYSTAL11)
 	ld hl, wBT_OTTrainerClass
 else
@@ -28,7 +28,7 @@ endc
 	and a
 	jr nz, .female
 	; generate a random number between 0 and 24
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $1f
 	cp 25
 	jr c, .okay0
@@ -40,7 +40,7 @@ endc
 
 .female
 	; generate a random number between 0 and 14
-	ld a, [hRandomAdd]
+	ldh a, [hRandomAdd]
 	and $f
 	cp 15
 	jr c, .okay1
@@ -80,7 +80,7 @@ endc
 	ld h, a
 	bccoord 1, 14
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call PlaceHLTextAtBC
 	ret
 

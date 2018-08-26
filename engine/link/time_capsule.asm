@@ -128,7 +128,7 @@ PlaceTradePartnerNamesAndParty:
 	push de
 	push hl
 	ld a, c
-	ld [hProduct], a
+	ldh [hProduct], a
 	call GetPokemonName
 	pop hl
 	call PlaceString

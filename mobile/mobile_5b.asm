@@ -1,10 +1,10 @@
 Unreferenced_Function16c000:
 	; Only for CGB
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
 	; Only do this once per boot cycle
-	ld a, [hSystemBooted]
+	ldh a, [hSystemBooted]
 	and a
 	ret z
 	; Set some flag, preserving the old state
@@ -21,7 +21,7 @@ Unreferenced_Function16c000:
 	; Prevent this routine from running again
 	; until the next time the system is turned on
 	xor a
-	ld [hSystemBooted], a
+	ldh [hSystemBooted], a
 	; Restore the flag state
 	pop af
 	ld [wcfbe], a
@@ -81,7 +81,7 @@ Function16c089:
 	ld [wBuffer2], a
 	ld [wd1f1], a
 	xor a
-	ld [hWY], a
+	ldh [hWY], a
 	call Function16c0fa
 	ld a, [wd002]
 	ld [wcf64], a
@@ -100,7 +100,7 @@ Function16c0a8:
 	ld [wd1f1], a
 	call ClearSprites
 	ld a, $90
-	ld [hWY], a
+	ldh [hWY], a
 	call Function16c0fa
 	ret
 
@@ -167,7 +167,7 @@ MobileSystemSplashScreen_InitGFX:
 	call Function16cc73
 	call Function16cc02
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call EnableLCD
 	ret
 
@@ -218,22 +218,22 @@ Function16c943:
 	ld a, [wd003]
 	and a
 	jr nz, .asm_16c95e
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $ff
 	ld bc, 1 palettes
 	ld hl, wBGPals1
 	call ByteFill
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 .asm_16c95e
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld e, $0
 	ld a, $0
 .asm_16c969
@@ -313,26 +313,26 @@ Function16c943:
 	jr nz, .asm_16c969
 	farcall ApplyPals
 	call SetPalettes
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [wd003]
 	cp $1f
 	jr z, .asm_16ca09
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld e, $0
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	and a
 	ret
 
 .asm_16ca09
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	scf
 	ret
 
@@ -343,10 +343,10 @@ Function16ca11:
 	farcall ApplyPals
 
 .asm_16ca1d
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld e, $0
 	ld a, $0
 .asm_16ca28
@@ -414,25 +414,25 @@ Function16ca11:
 	jr nz, .asm_16ca28
 	farcall ApplyPals
 	call SetPalettes
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [wd003]
 	cp $1f
 	jr z, .asm_16caae
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	and a
 	ret
 
 .asm_16caae
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	scf
 	ret
 
@@ -651,7 +651,7 @@ Function16cbd1:
 	call FarCopyWRAM
 	farcall ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 Unknown_16cbfb:
@@ -721,20 +721,20 @@ Function16cc6e:
 	jr Function16cc73
 
 Function16cc73:
-	ld a, [rVBK]
+	ldh a, [rVBK]
 	push af
 	ld a, $0
-	ld [rVBK], a
+	ldh [rVBK], a
 	push hl
 	decoord 0, 0
 	call Function16cc90
 	pop hl
 	ld a, $1
-	ld [rVBK], a
+	ldh [rVBK], a
 	decoord 0, 0, wAttrMap
 	call Function16cc90
 	pop af
-	ld [rVBK], a
+	ldh [rVBK], a
 	ret
 
 Function16cc90:

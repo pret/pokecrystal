@@ -3114,3 +3114,5 @@ wWindowStackBottom:: ds 1
 
 
 INCLUDE "sram.asm"
+
+INCLUDE "hram.asm"

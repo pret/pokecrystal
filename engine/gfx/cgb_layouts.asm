@@ -1,7 +1,7 @@
 ; Replaces the functionality of sgb.asm to work with CGB hardware.
 
 CheckCGB:
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret
 
@@ -190,7 +190,7 @@ _CGB_PokegearPals:
 	call FarCopyWRAM
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_StatsScreenHPPals:
@@ -244,7 +244,7 @@ _CGB_StatsScreenHPPals:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 StatsScreenPagePals:
@@ -283,7 +283,7 @@ _CGB_Pokedex:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 .PokedexQuestionMarkPalette:
@@ -318,7 +318,7 @@ _CGB_BillsPC:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 .Function9009:
@@ -340,7 +340,7 @@ _CGB_BillsPC:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 .BillsPCOrangePalette:
@@ -363,7 +363,7 @@ _CGB_PokedexUnownMode:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_SlotMachine:
@@ -416,7 +416,7 @@ _CGB_SlotMachine:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB06:
@@ -434,7 +434,7 @@ _CGB06:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_GSIntro:
@@ -574,7 +574,7 @@ _CGB_Evolution:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_GSTitleScreen:
@@ -592,7 +592,7 @@ _CGB_GSTitleScreen:
 	ld [wSGBPredef], a
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB0d:
@@ -609,17 +609,17 @@ _CGB_UnownPuzzle:
 	ld a, PREDEFPAL_UNOWN_PUZZLE
 	call GetPredefPal
 	call LoadHLPaletteIntoDE
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wOBPals1)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wOBPals1
 	ld a, LOW(palred 31 + palgreen 0 + palblue 0)
 	ld [hli], a
 	ld a, HIGH(palred 31 + palgreen 0 + palblue 0)
 	ld [hl], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call WipeAttrMap
 	call ApplyAttrMap
 	ret
@@ -726,7 +726,7 @@ _CGB_TrainerCard:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_MoveList:
@@ -750,7 +750,7 @@ _CGB_MoveList:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_BetaPikachuMinigame:
@@ -760,7 +760,7 @@ _CGB_BetaPikachuMinigame:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_PokedexSearchOption:
@@ -772,7 +772,7 @@ _CGB_PokedexSearchOption:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_PackPals:
@@ -820,7 +820,7 @@ _CGB_PackPals:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 .ChrisPackPals:
@@ -878,7 +878,7 @@ _CGB13:
 	call ApplyAttrMap
 	call ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 _CGB_GamefreakLogo:

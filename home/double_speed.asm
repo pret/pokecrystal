@@ -19,9 +19,9 @@ NormalSpeed::
 SwitchSpeed::
 	set 0, [hl]
 	xor a
-	ld [rIF], a
-	ld [rIE], a
+	ldh [rIF], a
+	ldh [rIE], a
 	ld a, $30
-	ld [rJOYP], a
+	ldh [rJOYP], a
 	stop ; rgbasm adds a nop after this instruction by default
 	ret

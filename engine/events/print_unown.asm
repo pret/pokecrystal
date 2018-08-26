@@ -6,10 +6,10 @@ _UnownPrinter:
 	and a
 	ret z
 
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ld a, [wOptions]
 	push af
 	set NO_TEXT_SCROLL, a
@@ -69,11 +69,11 @@ _UnownPrinter:
 .joy_loop
 	call JoyTextDelay
 
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and B_BUTTON
 	jr nz, .pressed_b
 
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and A_BUTTON
 	jr nz, .pressed_a
 
@@ -94,15 +94,15 @@ _UnownPrinter:
 	pop af
 	ld [wOptions], a
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call ReturnToMapFromSubmenu
 	ret
 
 .LeftRight:
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_RIGHT
 	jr nz, .press_right
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_LEFT
 	jr nz, .press_left
 	ret
@@ -145,7 +145,7 @@ _UnownPrinter:
 	call .Load2bppToSRAM
 	hlcoord 1, 6
 	xor a
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
 	ld de, vTiles2 tile $31
@@ -153,23 +153,23 @@ _UnownPrinter:
 	ret
 
 .Load2bppToSRAM:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld a, BANK(sScratch)
 	call GetSRAMBank
 	ld de, wDecompressScratch
 	ld hl, sScratch
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	ld c, $31
 	call Get2bpp
 	call CloseSRAM
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 .vacant
@@ -188,7 +188,7 @@ _UnownPrinter:
 	ld hl, vTiles2 tile $31
 	ld de, sScratch
 	ld c, $31
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	ld b, a
 	call Get2bpp
 	call CloseSRAM
@@ -224,7 +224,7 @@ PlaceUnownPrinterFrontpic:
 	call ByteFill
 	hlcoord 7, 11
 	ld a, $31
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
 	ret

@@ -73,7 +73,7 @@ ClockResetPassword:
 	call .updateIDdisplay
 .loop2
 	call JoyTextDelay
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	ld b, a
 	and A_BUTTON
 	jr nz, .confirm

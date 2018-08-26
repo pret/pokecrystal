@@ -188,7 +188,7 @@ PrintBlueCardBalance:
 .DrawBox:
 	push de
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld hl, BlueCardBalanceMenuHeader
 	call CopyMenuHeader
 	call MenuBox
@@ -232,7 +232,7 @@ Buena_PrizeMenu:
 	ld [wMenuCursorBuffer], a
 	xor a
 	ld [wWhichIndexSet], a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call InitScrollingMenu
 	call UpdateSprites
 	call ScrollingMenu

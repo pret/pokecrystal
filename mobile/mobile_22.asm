@@ -190,12 +190,12 @@ Mobile22_ButtonSound:
 
 Mobile22_SetBGMapMode0:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 Mobile22_SetBGMapMode1:
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 Function89245:
@@ -585,16 +585,16 @@ Function89492:
 	ret
 
 Function8949c:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, 5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_894b3
 	ld de, wBGPals1 palette 7
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Palette_894b3:
@@ -624,10 +624,10 @@ Function894ca:
 
 Function894dc:
 	push bc
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, 5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld c, d
 	ld b, 0
@@ -646,7 +646,7 @@ Function894dc:
 	call CopyBytes
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	pop bc
 	ret
 
@@ -732,17 +732,17 @@ Function8956f:
 	farcall GetMobileOTTrainerClass
 	ld a, c
 	ld [wTrainerClass], a
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, 5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wd030
 	ld a, -1
 	ld [hli], a
 	ld a, " "
 	ld [hl], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [wTrainerClass]
 	ld h, 0
 	ld l, a
@@ -750,10 +750,10 @@ Function8956f:
 	add hl, hl
 	ld de, TrainerPalettes
 	add hl, de
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld de, wd032
 	ld c, 4
 .loop
@@ -769,21 +769,21 @@ Function8956f:
 	ld [hli], a
 	ld [hl], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	pop bc
 	ret
 
 Function895c7:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, 5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_895de
 	ld de, wd030
 	ld bc, 8
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Palette_895de:
@@ -1184,7 +1184,7 @@ Function897d5:
 
 .asm_897f3
 	ld a, $37
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 12, 3
 	lb bc, 7, 7
 	predef PlaceGraphic
@@ -2038,10 +2038,10 @@ Function89cdf:
 
 Function89d0d:
 	call Mobile22_SetBGMapMode0
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld c, 8
 	ld de, wBGPals1
@@ -2060,7 +2060,7 @@ Function89d0d:
 	call CopyBytes
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	call SetPalettes
 	farcall PrintMail
@@ -2266,16 +2266,16 @@ Function89e6f:
 	jp Function89e36
 
 Function89e9a:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_89eb1
 	ld de, wBGPals1 palette 5
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Palette_89eb1:
@@ -3235,10 +3235,10 @@ Function8a5a3:
 	ret
 
 Function8a5b6:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_8a5e5
 	ld de, wBGPals1 + 4 palettes
 	ld bc, 3 palettes
@@ -3252,7 +3252,7 @@ Function8a5b6:
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Palette_8a5e5:
@@ -3284,16 +3284,16 @@ Palette_8a605:
 	RGB 31, 31, 31
 
 Function8a60d:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_8a624
 	ld de, wOBPals1
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Palette_8a624:

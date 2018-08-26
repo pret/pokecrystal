@@ -1,8 +1,8 @@
 LoadFishingGFX:
-	ld a, [rVBK]
+	ldh a, [rVBK]
 	push af
 	ld a, $1
-	ld [rVBK], a
+	ldh [rVBK], a
 
 	ld de, FishingGFX
 	ld a, [wPlayerGender]
@@ -21,7 +21,7 @@ LoadFishingGFX:
 	call .LoadGFX
 
 	pop af
-	ld [rVBK], a
+	ldh [rVBK], a
 	ret
 
 .LoadGFX:

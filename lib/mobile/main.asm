@@ -185,14 +185,14 @@ Function1100b4:
 
 Function1100dc:
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld e, c
 	ld b, a
 	ld hl, Unknown_112089
 	add hl, bc
 	ld c, [hl]
 	inc hl
-	ld a, [rKEY1]
+	ldh a, [rKEY1]
 	bit 7, a
 	jr nz, .asm_1100f9
 	ld a, e
@@ -205,8 +205,8 @@ Function1100dc:
 
 .asm_1100f9
 	ld a, c
-	ld [rTMA], a
-	ld [rTIMA], a
+	ldh [rTMA], a
+	ldh [rTIMA], a
 	ld a, [hli]
 	ld [$c81f], a
 	ld [$c816], a
@@ -400,10 +400,10 @@ Function110236:
 	push bc
 	push hl
 	xor a
-	ld [rTAC], a
-	ld a, [rIF]
+	ldh [rTAC], a
+	ldh a, [rIF]
 	and $1b
-	ld [rIF], a
+	ldh [rIF], a
 	call Function110029
 	ld bc, $0452
 	ld hl, $c800
@@ -470,7 +470,7 @@ Function110291:
 
 .asm_1102b3
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	xor a
 	ld [$c819], a
 	ld a, l
@@ -554,7 +554,7 @@ Function11032c:
 	cp $1
 	jp nz, Function110226
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld [$c819], a
 	ld hl, $c880
 	ld a, e
@@ -653,7 +653,7 @@ Function1103ac:
 
 .asm_1103d6
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld [$c86d], a
 	ld [$c97a], a
 	ld a, [$c870]
@@ -719,7 +719,7 @@ Function110438:
 
 .asm_110454
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld [$c97a], a
 	ld a, [$c870]
 	ld c, a
@@ -902,7 +902,7 @@ Function110596:
 	ld a, b
 	ld [$cb36], a
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld a, e
 	ld [$c86e], a
 	ld a, d
@@ -935,7 +935,7 @@ Function1105dd:
 	cp $1
 	jp nz, Function110226
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld a, [$c870]
 	ld c, a
 	call Function1100dc
@@ -3249,7 +3249,7 @@ Function111541:
 
 .asm_111582
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld a, [$c870]
 	ld c, a
 	call Function1100dc
@@ -3414,7 +3414,7 @@ Function111664:
 
 Function111686:
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 	ld c, $ff
 	ld a, [$ff00+c]
 	and $f3
@@ -3477,7 +3477,7 @@ _MobileReceive::
 	jp nz, Function1118bc
 	ld hl, $c808
 	add hl, de
-	ld a, [rSB]
+	ldh a, [rSB]
 	ld [hl], a
 	ld a, $8
 	cp l
@@ -3648,7 +3648,7 @@ Function1117e7:
 .asm_111803
 	ld b, $66
 .asm_111805
-	ld a, [rSB]
+	ldh a, [rSB]
 	cp b
 	jr z, .asm_111840
 	cp $d2
@@ -3715,7 +3715,7 @@ Function11186e:
 	jr nz, Function1118bc
 	xor a
 	ld [hli], a
-	ld a, [rSB]
+	ldh a, [rSB]
 	ld [$c80c], a
 	inc [hl]
 	or a
@@ -3734,7 +3734,7 @@ Function111884:
 	jr Function1118bc
 
 Function111892:
-	ld a, [rSB]
+	ldh a, [rSB]
 	ld c, a
 	call Function111664
 	ld hl, $c80a
@@ -3765,7 +3765,7 @@ Function1118bc:
 	ret
 
 Function1118c2:
-	ld a, [rSB]
+	ldh a, [rSB]
 	ld c, a
 	ld b, $0
 	ld hl, $c812
@@ -3965,7 +3965,7 @@ asm_111a40:
 	ld a, $4b
 
 Function111a42:
-	ld [rSB], a
+	ldh [rSB], a
 	jp Function111b2e
 asm_111a47:
 	ld hl, $c815
@@ -4092,7 +4092,7 @@ Function111b21:
 	ld e, a
 	ld d, [hl]
 	ld a, [de]
-	ld [rSB], a
+	ldh [rSB], a
 	inc de
 	ld a, d
 	ld [hld], a
@@ -4102,9 +4102,9 @@ Function111b2e:
 	ld hl, $c822
 	set 1, [hl]
 	ld a, $3
-	ld [rSC], a
+	ldh [rSC], a
 	ld a, $83
-	ld [rSC], a
+	ldh [rSC], a
 
 Function111b3b:
 	ret
@@ -4683,7 +4683,7 @@ Function111f07:
 	scf
 	ret
 .asm_111f17
-	ld a, [rSC]
+	ldh a, [rSC]
 	and $80
 	jr nz, .asm_111f17
 	di

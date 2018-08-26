@@ -1,9 +1,9 @@
 TMHMPocket:
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call TMHM_PocketLoop
 	ld a, $0
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret nc
 	call PlaceHollowCursor
 	call WaitBGMap
@@ -188,7 +188,7 @@ Text_TMHMNotCompatible:
 
 TMHM_PocketLoop:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call TMHM_DisplayPocketItems
 	ld a, 2
 	ld [w2DMenuCursorInitY], a
@@ -227,7 +227,7 @@ TMHM_JoypadLoop:
 	dec a
 	ld [wTMHMPocketCursor], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, [w2DMenuFlags2]
 	bit 7, a
 	jp nz, TMHM_ScrollPocket

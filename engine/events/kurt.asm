@@ -59,7 +59,7 @@ Kurt_SelectApricorn:
 	ld a, [wMenuSelection]
 	ld [wMenuCursorBuffer], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call InitScrollingMenu
 	call UpdateSprites
 	call ScrollingMenu
@@ -124,7 +124,7 @@ Kurt_SelectQuantity:
 	call LoadMenuHeader
 .loop
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
 	call .PlaceApricornName

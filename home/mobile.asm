@@ -20,7 +20,7 @@ Function3e32::
 .okay
 	ld hl, $c822
 	set 6, [hl]
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(Function110030)
 	ld [$c981], a
@@ -51,7 +51,7 @@ Function3e60::
 	ret
 
 MobileReceive::
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_MobileReceive)
 	ld [$c981], a
@@ -71,17 +71,17 @@ Timer::
 	push de
 	push hl
 
-	ld a, [hMobile]
+	ldh a, [hMobile]
 	and a
 	jr z, .pop_ret
 
 	xor a
-	ld [rTAC], a
+	ldh [rTAC], a
 
 ; Turn off timer interrupt
-	ld a, [rIF]
+	ldh a, [rIF]
 	and 1 << VBLANK | 1 << LCD_STAT | 1 << SERIAL | 1 << JOYPAD
-	ld [rIF], a
+	ldh [rIF], a
 
 	ld a, [$c86a]
 	or a
@@ -91,11 +91,11 @@ Timer::
 	bit 1, a
 	jr nz, .skip_Timer
 
-	ld a, [rSC]
+	ldh a, [rSC]
 	and 1 << rSC_ON
 	jr nz, .skip_Timer
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_Timer)
 	ld [$c981], a
@@ -109,11 +109,11 @@ Timer::
 	rst Bankswitch
 
 .skip_Timer
-	ld a, [rTMA]
-	ld [rTIMA], a
+	ldh a, [rTMA]
+	ldh [rTIMA], a
 
 	ld a, 1 << rTAC_ON | rTAC_65536_HZ
-	ld [rTAC], a
+	ldh [rTAC], a
 
 .pop_ret
 	pop hl
@@ -124,7 +124,7 @@ Timer::
 
 Unreferenced_Function3ed7::
 	ld [$dc02], a
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(Function114243)
 	rst Bankswitch

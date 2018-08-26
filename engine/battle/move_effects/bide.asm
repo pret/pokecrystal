@@ -7,7 +7,7 @@ BattleCommand_StoreEnergy:
 	ret z
 
 	ld hl, wPlayerRolloutCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .check_still_storing_energy
 	ld hl, wEnemyRolloutCount
@@ -28,7 +28,7 @@ BattleCommand_StoreEnergy:
 	ld [hl], a
 	ld hl, wPlayerDamageTaken + 1
 	ld de, wPlayerCharging ; player
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 	ld hl, wEnemyDamageTaken + 1
@@ -74,7 +74,7 @@ BattleCommand_UnleashEnergy:
 
 	ld de, wPlayerDamageTaken
 	ld bc, wPlayerRolloutCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_damage
 	ld de, wEnemyDamageTaken

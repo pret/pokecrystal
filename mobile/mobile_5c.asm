@@ -249,21 +249,21 @@ CheckBTMonMovesForErrors:
 	ret
 
 Function170cc6:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, PichuAnimatedMobileGFX
 	ld de, wDecompressScratch
 	call Decompress
 	ld a, 1
-	ld [rVBK], a
+	ldh [rVBK], a
 	ld de, wDecompressScratch
 	ld hl, vTiles0
 	lb bc, BANK(wDecompressScratch), 193
 	call Get2bpp
 	xor a
-	ld [rVBK], a
+	ldh [rVBK], a
 	ld hl, ElectroBallMobileGFX
 	ld de, wDecompressScratch
 	call Decompress
@@ -272,18 +272,18 @@ Function170cc6:
 	lb bc, BANK(wDecompressScratch), 83
 	call Get2bpp
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function170d02:
 	ld a, $1
-	ld [rVBK], a
+	ldh [rVBK], a
 	ld de, GFX_171848
 	ld hl, vTiles0 tile $c1
 	lb bc, BANK(GFX_171848), 24
 	call Get2bpp
 	xor a
-	ld [rVBK], a
+	ldh [rVBK], a
 	ret
 
 PichuAnimatedMobileGFX:
@@ -296,25 +296,25 @@ GFX_171848:
 INCBIN "gfx/unknown/171848.2bpp"
 
 Function1719c8:
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call Function1719d6
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 Function1719d6:
 	farcall BattleTowerRoomMenu_InitRAM
 	call Function1719ed
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call Function171a11
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function1719ed:
@@ -389,13 +389,13 @@ Function171a5d:
 	ld [wc302], a
 	ld a, $a
 	call Function3e32
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	farcall BattleTowerRoomMenu_Cleanup
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $a
 	ld [wcd49], a
 	ret
@@ -431,13 +431,13 @@ Function171ad7:
 	jp Function171c66
 
 Function171aec:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	farcall BattleTowerRoomMenu_Cleanup
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	hlcoord 2, 6
 	ld a, $8
 .asm_171b01
@@ -522,7 +522,7 @@ Function171b4b:
 	jp Function171c66
 
 Function171b85:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and $2
 	jp nz, Function171b9f
@@ -569,7 +569,7 @@ Function171bbd:
 	jp Function171c66
 
 Function171bcc:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and $2
 	jp nz, Function171bdc
@@ -684,10 +684,10 @@ Function171c87:
 	ret
 
 Function171ccd:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_171d71
 	ld de, wBGPals1
 	ld bc, 8 palettes
@@ -699,7 +699,7 @@ Function171ccd:
 	ld [hl], a
 	call SetPalettes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function171cf0:
@@ -846,10 +846,10 @@ Function172e78:
 	ret
 
 Function172eb9:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_172edf
 	ld de, wBGPals1
 	ld bc, 8 palettes
@@ -860,7 +860,7 @@ Function172eb9:
 	call CopyBytes
 	call SetPalettes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Palette_172edf:

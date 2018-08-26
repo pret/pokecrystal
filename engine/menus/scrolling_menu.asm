@@ -1,16 +1,16 @@
 _InitScrollingMenu::
 	xor a
 	ld [wMenuJoypad], a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	inc a
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call InitScrollingMenuCursor
 	call ScrollingMenu_InitFlags
 	call ScrollingMenu_ValidateSwitchItem
 	call ScrollingMenu_InitDisplay
 	call ApplyTilemap
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 _ScrollingMenu::
@@ -24,22 +24,22 @@ _ScrollingMenu::
 	call MenuClickSound
 	ld [wMenuJoypad], a
 	ld a, 0
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 .zero
 	call ScrollingMenu_InitDisplay
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld c, 3
 	call DelayFrames
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 ScrollingMenu_InitDisplay:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -54,10 +54,10 @@ ScrollingMenu_InitDisplay:
 ScrollingMenuJoyAction:
 .loop
 	call ScrollingMenuJoypad
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_PAD
 	ld b, a
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and BUTTONS
 	or b
 	bit A_BUTTON_F, a

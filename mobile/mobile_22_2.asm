@@ -257,7 +257,7 @@ Function8b45c:
 	call Function8b4fd
 	call Function89c44
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	pop bc
 	call Function8b3dd
 	jr nc, .asm_8b46e
@@ -593,16 +593,16 @@ Function8b690:
 	ret
 
 Function8b6bb:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_8b6d5
 	ld de, wBGPals1
 	ld bc, 3 palettes
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call Function8949c
 	ret
 

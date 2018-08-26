@@ -4,7 +4,7 @@ BattleCommand_FalseSwipe:
 ; Makes sure wCurDamage < MonHP
 
 	ld hl, wEnemyMonHP
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_hp
 	ld hl, wBattleMonHP

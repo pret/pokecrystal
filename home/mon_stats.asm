@@ -89,7 +89,7 @@ _PrepMonFrontpic::
 	predef GetMonFrontpic
 	pop hl
 	xor a
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
 	predef PlaceGraphic
 	xor a

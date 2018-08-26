@@ -1,7 +1,7 @@
 BattleCommand_BatonPass:
 ; batonpass
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jp nz, .Enemy
 

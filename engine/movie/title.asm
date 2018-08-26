@@ -5,7 +5,7 @@ _TitleScreen:
 
 ; Turn BG Map update off
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 ; Reset timing variables
 	ld hl, wJumptableIndex
@@ -19,7 +19,7 @@ _TitleScreen:
 
 ; VRAM bank 1
 	ld a, 1
-	ld [rVBK], a
+	ldh [rVBK], a
 
 ; Decompress running Suicune gfx
 	ld hl, TitleSuicuneGFX
@@ -86,7 +86,7 @@ _TitleScreen:
 
 ; Back to VRAM bank 0
 	ld a, $0
-	ld [rVBK], a
+	ldh [rVBK], a
 
 ; Decompress logo
 	ld hl, TitleLogoGFX
@@ -126,11 +126,11 @@ _TitleScreen:
 	call InitializeBackground
 
 ; Save WRAM bank
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 ; WRAM bank 5
 	ld a, BANK(wBGPals1)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 ; Update palette colors
 	ld hl, TitleScreenPalettes
@@ -145,14 +145,14 @@ _TitleScreen:
 
 ; Restore WRAM bank
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 ; LY/SCX trickery starts here
 
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wLYOverrides)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 ; Make alternating lines come in from opposite sides
 
@@ -177,35 +177,35 @@ _TitleScreen:
 	call ByteFill
 
 ; Let LCD Stat know we're messing around with SCX
-	ld a, rSCX - $ff00
-	ld [hLCDCPointer], a
+	ld a, LOW(rSCX)
+	ldh [hLCDCPointer], a
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 ; Reset audio
 	call ChannelsOff
 	call EnableLCD
 
 ; Set sprite size to 8x16
-	ld a, [rLCDC]
+	ldh a, [rLCDC]
 	set rLCDC_SPRITE_SIZE, a
-	ld [rLCDC], a
+	ldh [rLCDC], a
 
 	ld a, +112
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, 8
-	ld [hSCY], a
+	ldh [hSCY], a
 	ld a, 7
-	ld [hWX], a
+	ldh [hWX], a
 	ld a, -112
-	ld [hWY], a
+	ldh [hWY], a
 
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 
 ; Update BG Map 0 (bank 0)
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
 	xor a
 	ld [wd002], a
@@ -237,12 +237,12 @@ SuicuneFrameIterator:
 	add hl, de
 	ld d, [hl]
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadSuicuneFrame
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $3
-	ld [hBGMapThird], a
+	ldh [hBGMapThird], a
 	ret
 
 .Frames:

@@ -242,34 +242,34 @@ GetTreeScore:
 	add hl, bc
 
 	ld a, h
-	ld [hDividend], a
+	ldh [hDividend], a
 	ld a, l
-	ld [hDividend + 1], a
+	ldh [hDividend + 1], a
 	ld a, 5
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
 
-	ld a, [hQuotient + 1]
-	ld [hDividend], a
-	ld a, [hQuotient + 2]
-	ld [hDividend + 1], a
+	ldh a, [hQuotient + 1]
+	ldh [hDividend], a
+	ldh a, [hQuotient + 2]
+	ldh [hDividend + 1], a
 	ld a, 10
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
 
-	ld a, [hQuotient + 3]
+	ldh a, [hRemainder]
 	ret
 
 .OTIDScore:
 	ld a, [wPlayerID]
-	ld [hDividend], a
+	ldh [hDividend], a
 	ld a, [wPlayerID + 1]
-	ld [hDividend + 1], a
+	ldh [hDividend + 1], a
 	ld a, 10
-	ld [hDivisor], a
+	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ld a, [hQuotient + 3]
+	ldh a, [hRemainder]
 	ret

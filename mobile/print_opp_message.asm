@@ -13,17 +13,17 @@ Mobile_PrintOpponentBattleMessage:
 	ld a, BANK(w5_MobileOpponentBattleMessages)
 	call FarCopyWRAM
 
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld bc, wMobileOpponentBattleMessage
 	decoord 1, 14
 	farcall PrintEZChatBattleMessage
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld c, 180
 	call DelayFrames

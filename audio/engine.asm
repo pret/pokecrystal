@@ -202,10 +202,10 @@ _UpdateSound::
 	call FadeMusic
 	; write volume to hardware register
 	ld a, [wVolume]
-	ld [rNR50], a
+	ldh [rNR50], a
 	; write SO on/off to hardware register
 	ld a, [wSoundOutput]
-	ld [rNR51], a
+	ldh [rNR51], a
 	ret
 
 UpdateChannels:
@@ -244,7 +244,7 @@ UpdateChannels:
 	jr z, .asm_e8159
 	;
 	ld a, [wSoundInput]
-	ld [rNR10], a
+	ldh [rNR10], a
 .asm_e8159
 	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch1rest
@@ -258,35 +258,35 @@ UpdateChannels:
 
 .frequency_override
 	ld a, [wCurTrackFrequency]
-	ld [rNR13], a
+	ldh [rNR13], a
 	ld a, [wCurTrackFrequency + 1]
-	ld [rNR14], a
+	ldh [rNR14], a
 .check_duty_override
 	bit NOTE_DUTY_OVERRIDE, [hl]
 	ret z
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ld a, [rNR11]
+	ldh a, [rNR11]
 	and $3f ; sound length
 	or d
-	ld [rNR11], a
+	ldh [rNR11], a
 	ret
 
 .asm_e8184
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ld a, [rNR11]
+	ldh a, [rNR11]
 	and $3f ; sound length
 	or d
-	ld [rNR11], a
+	ldh [rNR11], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR13], a
+	ldh [rNR13], a
 	ret
 
 .ch1rest
-	ld a, [rNR52]
+	ldh a, [rNR52]
 	and %10001110 ; ch1 off
-	ld [rNR52], a
+	ldh [rNR52], a
 	ld hl, rNR10
 	call ClearChannel
 	ret
@@ -295,14 +295,14 @@ UpdateChannels:
 	ld hl, wCurTrackDuty
 	ld a, $3f ; sound length
 	or [hl]
-	ld [rNR11], a
+	ldh [rNR11], a
 	ld a, [wCurTrackIntensity]
-	ld [rNR12], a
+	ldh [rNR12], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR13], a
+	ldh [rNR13], a
 	ld a, [wCurTrackFrequency + 1]
 	or $80
-	ld [rNR14], a
+	ldh [rNR14], a
 	ret
 
 .Channel2:
@@ -319,34 +319,34 @@ UpdateChannels:
 	ret z
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ld a, [rNR21]
+	ldh a, [rNR21]
 	and $3f ; sound length
 	or d
-	ld [rNR21], a
+	ldh [rNR21], a
 	ret
 
 .asm_e81db ; unused
 	ld a, [wCurTrackFrequency]
-	ld [rNR23], a
+	ldh [rNR23], a
 	ld a, [wCurTrackFrequency + 1]
-	ld [rNR24], a
+	ldh [rNR24], a
 	ret
 
 .asm_e81e6
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ld a, [rNR21]
+	ldh a, [rNR21]
 	and $3f ; sound length
 	or d
-	ld [rNR21], a
+	ldh [rNR21], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR23], a
+	ldh [rNR23], a
 	ret
 
 .ch2rest
-	ld a, [rNR52]
+	ldh a, [rNR52]
 	and %10001101 ; ch2 off
-	ld [rNR52], a
+	ldh [rNR52], a
 	ld hl, rNR20
 	call ClearChannel
 	ret
@@ -355,14 +355,14 @@ UpdateChannels:
 	ld hl, wCurTrackDuty
 	ld a, $3f ; sound length
 	or [hl]
-	ld [rNR21], a
+	ldh [rNR21], a
 	ld a, [wCurTrackIntensity]
-	ld [rNR22], a
+	ldh [rNR22], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR23], a
+	ldh [rNR23], a
 	ld a, [wCurTrackFrequency + 1]
 	or $80 ; initial (restart)
-	ld [rNR24], a
+	ldh [rNR24], a
 	ret
 
 .Channel3:
@@ -379,37 +379,37 @@ UpdateChannels:
 
 .asm_e822f ; unused
 	ld a, [wCurTrackFrequency]
-	ld [rNR33], a
+	ldh [rNR33], a
 	ld a, [wCurTrackFrequency + 1]
-	ld [rNR34], a
+	ldh [rNR34], a
 	ret
 
 .asm_e823a
 	ld a, [wCurTrackFrequency]
-	ld [rNR33], a
+	ldh [rNR33], a
 	ret
 
 .ch3rest
-	ld a, [rNR52]
+	ldh a, [rNR52]
 	and %10001011 ; ch3 off
-	ld [rNR52], a
+	ldh [rNR52], a
 	ld hl, rNR30
 	call ClearChannel
 	ret
 
 .asm_e824d
 	ld a, $3f ; sound length
-	ld [rNR31], a
+	ldh [rNR31], a
 	xor a
-	ld [rNR30], a
+	ldh [rNR30], a
 	call .asm_e8268
 	ld a, $80
-	ld [rNR30], a
+	ldh [rNR30], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR33], a
+	ldh [rNR33], a
 	ld a, [wCurTrackFrequency + 1]
 	or $80
-	ld [rNR34], a
+	ldh [rNR34], a
 	ret
 
 .asm_e8268
@@ -428,42 +428,42 @@ endr
 	add hl, de
 	; load wavepattern into rWave_0-rWave_f
 	ld a, [hli]
-	ld [rWave_0], a
+	ldh [rWave_0], a
 	ld a, [hli]
-	ld [rWave_1], a
+	ldh [rWave_1], a
 	ld a, [hli]
-	ld [rWave_2], a
+	ldh [rWave_2], a
 	ld a, [hli]
-	ld [rWave_3], a
+	ldh [rWave_3], a
 	ld a, [hli]
-	ld [rWave_4], a
+	ldh [rWave_4], a
 	ld a, [hli]
-	ld [rWave_5], a
+	ldh [rWave_5], a
 	ld a, [hli]
-	ld [rWave_6], a
+	ldh [rWave_6], a
 	ld a, [hli]
-	ld [rWave_7], a
+	ldh [rWave_7], a
 	ld a, [hli]
-	ld [rWave_8], a
+	ldh [rWave_8], a
 	ld a, [hli]
-	ld [rWave_9], a
+	ldh [rWave_9], a
 	ld a, [hli]
-	ld [rWave_a], a
+	ldh [rWave_a], a
 	ld a, [hli]
-	ld [rWave_b], a
+	ldh [rWave_b], a
 	ld a, [hli]
-	ld [rWave_c], a
+	ldh [rWave_c], a
 	ld a, [hli]
-	ld [rWave_d], a
+	ldh [rWave_d], a
 	ld a, [hli]
-	ld [rWave_e], a
+	ldh [rWave_e], a
 	ld a, [hli]
-	ld [rWave_f], a
+	ldh [rWave_f], a
 	pop hl
 	ld a, [wCurTrackIntensity]
 	and $f0
 	sla a
-	ld [rNR32], a
+	ldh [rNR32], a
 	ret
 
 .Channel4:
@@ -478,26 +478,26 @@ endr
 
 .asm_e82c1 ; unused
 	ld a, [wCurTrackFrequency]
-	ld [rNR43], a
+	ldh [rNR43], a
 	ret
 
 .ch4rest
-	ld a, [rNR52]
+	ldh a, [rNR52]
 	and %10000111 ; ch4 off
-	ld [rNR52], a
+	ldh [rNR52], a
 	ld hl, rNR40
 	call ClearChannel
 	ret
 
 .asm_e82d4
 	ld a, $3f ; sound length
-	ld [rNR41], a
+	ldh [rNR41], a
 	ld a, [wCurTrackIntensity]
-	ld [rNR42], a
+	ldh [rNR42], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR43], a
+	ldh [rNR43], a
 	ld a, $80
-	ld [rNR44], a
+	ldh [rNR44], a
 	ret
 
 _CheckSFX:
@@ -551,15 +551,15 @@ PlayDanger:
 
 .applychannel
 	xor a
-	ld [rNR10], a
+	ldh [rNR10], a
 	ld a, [hli]
-	ld [rNR11], a
+	ldh [rNR11], a
 	ld a, [hli]
-	ld [rNR12], a
+	ldh [rNR12], a
 	ld a, [hli]
-	ld [rNR13], a
+	ldh [rNR13], a
 	ld a, [hli]
-	ld [rNR14], a
+	ldh [rNR14], a
 
 .increment
 	ld a, d
@@ -1221,7 +1221,7 @@ ParseMusic:
 	jr nz, .ok
 	; ????
 	xor a
-	ld [rNR10], a ; sweep = 0
+	ldh [rNR10], a ; sweep = 0
 .ok
 ; stop playing
 	; turn channel off
@@ -2476,56 +2476,56 @@ _PlaySFX::
 	jr z, .ch6
 	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
-	ld [rNR11], a ; length/wavepattern = 0
+	ldh [rNR11], a ; length/wavepattern = 0
 	ld a, $8
-	ld [rNR12], a ; envelope = 0
+	ldh [rNR12], a ; envelope = 0
 	xor a
-	ld [rNR13], a ; frequency lo = 0
+	ldh [rNR13], a ; frequency lo = 0
 	ld a, $80
-	ld [rNR14], a ; restart sound (freq hi = 0)
+	ldh [rNR14], a ; restart sound (freq hi = 0)
 	xor a
 	ld [wSoundInput], a ; global sound off
-	ld [rNR10], a ; sweep = 0
+	ldh [rNR10], a ; sweep = 0
 .ch6
 	ld hl, wChannel6Flags1
 	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .ch7
 	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
-	ld [rNR21], a ; length/wavepattern = 0
+	ldh [rNR21], a ; length/wavepattern = 0
 	ld a, $8
-	ld [rNR22], a ; envelope = 0
+	ldh [rNR22], a ; envelope = 0
 	xor a
-	ld [rNR23], a ; frequency lo = 0
+	ldh [rNR23], a ; frequency lo = 0
 	ld a, $80
-	ld [rNR24], a ; restart sound (freq hi = 0)
+	ldh [rNR24], a ; restart sound (freq hi = 0)
 .ch7
 	ld hl, wChannel7Flags1
 	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .ch8
 	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
-	ld [rNR30], a ; sound mode #3 off
-	ld [rNR31], a ; length/wavepattern = 0
+	ldh [rNR30], a ; sound mode #3 off
+	ldh [rNR31], a ; length/wavepattern = 0
 	ld a, $8
-	ld [rNR32], a ; envelope = 0
+	ldh [rNR32], a ; envelope = 0
 	xor a
-	ld [rNR33], a ; frequency lo = 0
+	ldh [rNR33], a ; frequency lo = 0
 	ld a, $80
-	ld [rNR34], a ; restart sound (freq hi = 0)
+	ldh [rNR34], a ; restart sound (freq hi = 0)
 .ch8
 	ld hl, wChannel8Flags1
 	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .chscleared
 	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
-	ld [rNR41], a ; length/wavepattern = 0
+	ldh [rNR41], a ; length/wavepattern = 0
 	ld a, $8
-	ld [rNR42], a ; envelope = 0
+	ldh [rNR42], a ; envelope = 0
 	xor a
-	ld [rNR43], a ; frequency lo = 0
+	ldh [rNR43], a ; frequency lo = 0
 	ld a, $80
-	ld [rNR44], a ; restart sound (freq hi = 0)
+	ldh [rNR44], a ; restart sound (freq hi = 0)
 	xor a
 	ld [wNoiseSampleAddress], a
 	ld [wNoiseSampleAddress + 1], a

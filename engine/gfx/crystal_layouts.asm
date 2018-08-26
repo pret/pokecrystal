@@ -158,7 +158,7 @@ MG_Mobile_Layout01:
 	farcall ApplyAttrMap
 	farcall ApplyPals
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ret
 
 .Palette_49478:

@@ -1,22 +1,22 @@
 BattleIntroSlidingPics:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wLYOverrides)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call .subfunction1
-	ld a, rSCX - $ff00
-	ld [hLCDCPointer], a
+	ld a, LOW(rSCX)
+	ldh [hLCDCPointer], a
 	call .subfunction2
 	xor a
-	ld [hLCDCPointer], a
+	ldh [hLCDCPointer], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 .subfunction1
 	call .subfunction4
 	ld a, $90
-	ld [hSCX], a
+	ldh [hSCX], a
 	ld a, %11100100
 	call DmgToCgbBGPals
 	lb de, %11100100, %11100100
@@ -31,11 +31,11 @@ BattleIntroSlidingPics:
 .loop1
 	push af
 .loop2
-	ld a, [rLY]
+	ldh a, [rLY]
 	cp $60
 	jr c, .loop2
 	ld a, d
-	ld [hSCX], a
+	ldh [hSCX], a
 	call .subfunction5
 	inc e
 	inc e

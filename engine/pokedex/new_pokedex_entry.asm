@@ -1,8 +1,8 @@
 NewPokedexEntry:
-	ld a, [hMapAnims]
+	ldh a, [hMapAnims]
 	push af
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call LowVolume
 	call ClearBGPalettes
 	call ClearTileMap
@@ -10,9 +10,9 @@ NewPokedexEntry:
 	call ClearSprites
 	ld a, [wPokedexStatus]
 	push af
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	add POKEDEX_SCX
-	ld [hSCX], a
+	ldh [hSCX], a
 	xor a
 	ld [wPokedexStatus], a
 	farcall _NewPokedexEntry
@@ -25,12 +25,12 @@ NewPokedexEntry:
 	ld [wPokedexStatus], a
 	call MaxVolume
 	call RotateThreePalettesRight
-	ld a, [hSCX]
+	ldh a, [hSCX]
 	add -POKEDEX_SCX
-	ld [hSCX], a
+	ldh [hSCX], a
 	call .ReturnFromDexRegistration
 	pop af
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	ret
 
 .ReturnFromDexRegistration:

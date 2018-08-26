@@ -1,6 +1,6 @@
 UserPartyAttr::
 	push af
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, .ot
 	pop af
@@ -11,7 +11,7 @@ UserPartyAttr::
 
 OpponentPartyAttr::
 	push af
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .ot
 	pop af
@@ -52,22 +52,22 @@ ResetDamage::
 
 SetPlayerTurn::
 	xor a
-	ld [hBattleTurn], a
+	ldh [hBattleTurn], a
 	ret
 
 SetEnemyTurn::
 	ld a, 1
-	ld [hBattleTurn], a
+	ldh [hBattleTurn], a
 	ret
 
 UpdateOpponentInParty::
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, UpdateEnemyMonInParty
 	jr UpdateBattleMonInParty
 
 UpdateUserInParty::
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, UpdateBattleMonInParty
 	jr UpdateEnemyMonInParty
@@ -120,14 +120,14 @@ INCLUDE "home/battle_vars.asm"
 
 FarCopyRadioText::
 	inc hl
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	ld a, [hli]
-	ld [hROMBank], a
+	ldh [hROMBank], a
 	ld [MBC3RomBank], a
 	ld a, e
 	ld l, a
@@ -137,7 +137,7 @@ FarCopyRadioText::
 	ld bc, 2 * SCREEN_WIDTH
 	call CopyBytes
 	pop af
-	ld [hROMBank], a
+	ldh [hROMBank], a
 	ld [MBC3RomBank], a
 	ret
 
@@ -169,7 +169,7 @@ BattleTextBox::
 StdBattleTextBox::
 ; Open a textbox and print battle text at 20:hl.
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	ld a, BANK(BattleText)

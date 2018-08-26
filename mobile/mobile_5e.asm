@@ -138,24 +138,24 @@ Function17a751:
 	ret
 
 Function17a770:
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call HideSprites
 	call Function17a9cb
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
 
 Function17a781:
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call JoyTextDelay
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 Function17a78f:
@@ -243,7 +243,7 @@ Function17a7ff:
 Function17a81a:
 	call IsSFXPlaying
 	ret nc
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and $3
 	ret z
 	call ExitMenu
@@ -258,10 +258,10 @@ Function17a81a:
 	ret
 
 Function17a83c:
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and $f0
 	ld c, a
-	ld a, [hJoyPressed]
+	ldh a, [hJoyPressed]
 	and $b
 	or c
 	ld c, a
@@ -724,10 +724,10 @@ Unknown_17aaf7:
 	db $0, $0,$f0,$10, $e, $c, $c, $b, $9, $b, $9, $b, $9
 
 Function17aba0:
-	ld a, [rVBK]
+	ldh a, [rVBK]
 	push af
 	ld a, $1
-	ld [rVBK], a
+	ldh [rVBK], a
 
 	ld hl, vTiles5 tile $00
 	ld de, GFX_17afa5
@@ -735,7 +735,7 @@ Function17aba0:
 	call Get2bpp
 
 	pop af
-	ld [rVBK], a
+	ldh [rVBK], a
 
 	ld hl, vTiles0 tile $00
 	ld de, GFX_17afa5 + $4c0
@@ -749,10 +749,10 @@ Function17aba0:
 	ret
 
 Function17abcf:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 
 	ld hl, Palette_17ac55
 	ld de, wBGPals1 ; $d000
@@ -776,7 +776,7 @@ Function17abcf:
 	call FarCopyBytes
 
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function17ac0c:

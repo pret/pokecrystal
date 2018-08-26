@@ -78,13 +78,13 @@ StartMenu::
 	dw .ReturnRedraw
 
 .Exit:
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, 1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call LoadFontsExtra
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 .ReturnEnd:
 	call ExitMenu
 .ReturnEnd2:
@@ -95,7 +95,7 @@ StartMenu::
 .GetInput:
 ; Return carry on exit, and no-carry on selection.
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ._DrawMenuAccount
 	call SetUpMenu
 	ld a, $ff
@@ -120,13 +120,13 @@ StartMenu::
 .ExitMenuRunScript:
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
-	ld [hMenuReturn], a
+	ldh [hMenuReturn], a
 	ret
 
 .ExitMenuRunScriptCloseText:
 	call ExitMenu
 	ld a, HMENURETURN_SCRIPT
-	ld [hMenuReturn], a
+	ldh [hMenuReturn], a
 	jr .ReturnEnd2
 
 .ExitMenuCallFuncCloseText:

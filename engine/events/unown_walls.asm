@@ -115,7 +115,7 @@ DisplayUnownWords:
 .load
 	call LoadMenuHeader
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call MenuBox
 	call UpdateSprites
 	call ApplyTilemap

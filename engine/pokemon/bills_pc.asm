@@ -7,12 +7,12 @@ _DepositPKMN:
 	push af
 	xor a
 	ld [wVramState], a
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call BillsPC_InitRAM
 	xor a
 	ld [wBillsPC_LoadedBox], a
@@ -28,7 +28,7 @@ _DepositPKMN:
 .done
 	call ClearSprites
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	pop af
 	ld [wVramState], a
 	pop af
@@ -50,7 +50,7 @@ _DepositPKMN:
 
 .Init:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ClearSprites
 	call CopyBoxmonSpecies
 	call BillsPC_BoxName
@@ -70,7 +70,7 @@ _DepositPKMN:
 	ret
 
 .HandleJoypad:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b_button
@@ -82,11 +82,11 @@ _DepositPKMN:
 	ret z
 	call BillsPC_UpdateSelectionCursor
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call BillsPC_RefreshTextboxes
 	call PCMonInfo
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	ret
@@ -113,7 +113,7 @@ _DepositPKMN:
 
 .WhatsUp:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ClearSprites
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [wCurPartySpecies], a
@@ -263,12 +263,12 @@ _WithdrawPKMN:
 	push af
 	xor a
 	ld [wVramState], a
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call BillsPC_InitRAM
 	ld a, NUM_BOXES + 1
 	ld [wBillsPC_LoadedBox], a
@@ -284,7 +284,7 @@ _WithdrawPKMN:
 .done
 	call ClearSprites
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	pop af
 	ld [wVramState], a
 	pop af
@@ -308,7 +308,7 @@ _WithdrawPKMN:
 	ld a, NUM_BOXES + 1
 	ld [wBillsPC_LoadedBox], a
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ClearSprites
 	call CopyBoxmonSpecies
 	call BillsPC_BoxName
@@ -328,7 +328,7 @@ _WithdrawPKMN:
 	ret
 
 .Joypad:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b_button
@@ -340,11 +340,11 @@ _WithdrawPKMN:
 	ret z
 	call BillsPC_UpdateSelectionCursor
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call BillsPC_RefreshTextboxes
 	call PCMonInfo
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	ret
@@ -370,7 +370,7 @@ _WithdrawPKMN:
 
 .PrepSubmenu:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ClearSprites
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [wCurPartySpecies], a
@@ -501,12 +501,12 @@ _MovePKMNWithoutMail:
 	push af
 	xor a
 	ld [wVramState], a
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call BillsPC_InitRAM
 	ld a, [wCurBox]
 	and $f
@@ -525,7 +525,7 @@ _MovePKMNWithoutMail:
 .asm_e2793
 	call ClearSprites
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	pop af
 	ld [wVramState], a
 	pop af
@@ -549,7 +549,7 @@ _MovePKMNWithoutMail:
 
 .Init:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ClearSprites
 	call CopyBoxmonSpecies
 	ld de, PCString_ChooseaPKMN
@@ -582,11 +582,11 @@ _MovePKMNWithoutMail:
 	ret z
 	call BillsPC_UpdateSelectionCursor
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call BillsPC_RefreshTextboxes
 	call PCMonInfo
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	ret
@@ -621,7 +621,7 @@ _MovePKMNWithoutMail:
 
 .PrepSubmenu:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call ClearSprites
 	call BillsPC_GetSelectedPokemonSpecies
 	ld [wCurPartySpecies], a
@@ -703,7 +703,7 @@ _MovePKMNWithoutMail:
 
 .PrepInsertCursor:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call CopyBoxmonSpecies
 	ld de, PCString_MoveToWhere
 	call BillsPC_PlaceString
@@ -731,10 +731,10 @@ _MovePKMNWithoutMail:
 	ret z
 	call BillsPC_UpdateInsertCursor
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call BillsPC_RefreshTextboxes
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	ret
@@ -1660,7 +1660,7 @@ BillsPC_StatsScreen:
 	ret
 
 StatsScreenDPad:
-	ld hl, hJoyPressed ; $ffa7
+	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON | D_RIGHT | D_LEFT
 	ld [wMenuJoypad], a
@@ -2232,7 +2232,7 @@ _ChangeBox:
 	call BillsPC_ClearTilemap
 .loop
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call BillsPC_PrintBoxName
 	call BillsPC_PlaceChooseABoxString
 	ld hl, _ChangeBox_MenuHeader
@@ -2255,7 +2255,7 @@ _ChangeBox:
 
 BillsPC_ClearTilemap:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, " "
@@ -2527,5 +2527,5 @@ BillsPC_PlaceChangeBoxString:
 	hlcoord 1, 16
 	call PlaceString
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret

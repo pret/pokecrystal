@@ -485,7 +485,7 @@ In [engine/battle/effect_commands.asm](/engine/battle/effect_commands.asm).
 ```asm
 BattleCheckTypeMatchup:
 	ld hl, wEnemyMonType1
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, CheckTypeMatchup
 	ld hl, wBattleMonType1
@@ -962,7 +962,7 @@ Then edit [engine/battle/start_battle.asm](/engine/battle/start_battle.asm):
 ```diff
  FindFirstAliveMonAndStartBattle:
  	xor a
- 	ld [hMapAnims], a
+ 	ldh [hMapAnims], a
  	call DelayFrame
 -	ld b, 6
 -	ld hl, wPartyMon1HP
@@ -1520,7 +1520,7 @@ ScriptCall:
  	ld a, 1
  .bank_loop
  	push af
- 	ld [rSVBK], a
+ 	ldh [rSVBK], a
  	xor a
  	ld hl, WRAM1_Begin
  	ld bc, WRAM1_End - WRAM1_Begin

@@ -159,7 +159,7 @@ UseRegisteredItem:
 	jr nz, ._cantuse
 	scf
 	ld a, HMENURETURN_SCRIPT
-	ld [hMenuReturn], a
+	ldh [hMenuReturn], a
 	ret
 
 .CantUse:

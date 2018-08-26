@@ -2,7 +2,7 @@ BattleCommand_FuryCutter:
 ; furycutter
 
 	ld hl, wPlayerFuryCutterCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .go
 	ld hl, wEnemyFuryCutterCount
@@ -42,7 +42,7 @@ ResetFuryCutterCount:
 	push hl
 
 	ld hl, wPlayerFuryCutterCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .reset
 	ld hl, wEnemyFuryCutterCount

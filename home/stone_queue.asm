@@ -1,5 +1,5 @@
 HandleStoneQueue::
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	call SwitchToMapScriptsBank

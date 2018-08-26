@@ -25,18 +25,18 @@
 ColorTest:
 ; A debug menu to test monster and trainer palettes at runtime.
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr nz, .asm_818b5
-	ld a, [hSGB]
+	ldh a, [hSGB]
 	and a
 	ret z
 
 .asm_818b5
-	ld a, [hInMenu]
+	ldh a, [hInMenu]
 	push af
 	ld a, $1
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	call DisableLCD
 	call Function81948
 	call Function8197c
@@ -60,7 +60,7 @@ ColorTest:
 
 .asm_818f0
 	pop af
-	ld [hInMenu], a
+	ldh [hInMenu], a
 	ret
 
 Function818f4:
@@ -124,13 +124,13 @@ Function81928:
 
 Function81948:
 	ld a, $1
-	ld [rVBK], a
+	ldh [rVBK], a
 	ld hl, vTiles0
 	ld bc, sScratch - vTiles0
 	xor a
 	call ByteFill
 	ld a, $0
-	ld [rVBK], a
+	ldh [rVBK], a
 	ld hl, vTiles0
 	ld bc, sScratch - vTiles0
 	xor a
@@ -169,33 +169,33 @@ Function8197c:
 	ret
 
 Function819a7:
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	ret z
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, Palette_DebugBG
 	ld de, wBGPals2
 	ld bc, 16 palettes
 	call CopyBytes
 	ld a, 1 << rBGPI_AUTO_INCREMENT
-	ld [rBGPI], a
+	ldh [rBGPI], a
 	ld hl, Palette_DebugBG
 	ld c, 8 palettes
 	xor a
 .asm_819c8
-	ld [rBGPD], a
+	ldh [rBGPD], a
 	dec c
 	jr nz, .asm_819c8
 	ld a, 1 << rOBPI_AUTO_INCREMENT
-	ld [rOBPI], a
+	ldh [rOBPI], a
 	ld hl, Palette_DebugOB
 	ld c, 8 palettes
 .asm_819d6
 	ld a, [hli]
-	ld [rOBPD], a
+	ldh [rOBPD], a
 	dec c
 	jr nz, .asm_819d6
 	ld a, $94
@@ -207,7 +207,7 @@ Function819a7:
 	ld a, $29
 	ld [wc608 + 3], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Palette_DebugBG:
@@ -289,7 +289,7 @@ Jumptable_81acf:
 
 Function81adb:
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, DEBUGTEST_BLACK
@@ -331,7 +331,7 @@ Function81adb:
 	ld de, vTiles2 tile $31
 	predef GetMonBackpic
 	ld a, $31
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 2, 4
 	lb bc, 6, 6
 	predef PlaceGraphic
@@ -363,7 +363,7 @@ Function81adb:
 	callfar GetTrainerPic
 	xor a
 	ld [wTempEnemyMonSpecies], a
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	hlcoord 2, 3
 	lb bc, 7, 7
 	predef PlaceGraphic
@@ -424,11 +424,11 @@ Function81bf4:
 	ret
 
 Function81c18:
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .asm_81c2a
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
@@ -440,13 +440,13 @@ Function81c18:
 	ret
 
 Function81c33:
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	jr z, .asm_81c69
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wBGPals2
 	ld de, wc608
 	ld c, $1
@@ -458,11 +458,11 @@ Function81c33:
 	ld de, wc608 + 2
 	call Function81ca7
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ld a, $3
 	ld [wJumptableIndex], a
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 .asm_81c69
@@ -519,10 +519,10 @@ Function81cbc:
 	ret
 
 Function81cc2:
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and B_BUTTON
 	jr nz, .asm_81cdf
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and A_BUTTON
 	jr nz, .asm_81ce5
 	ld a, [wcf64]
@@ -621,10 +621,10 @@ Function81d58:
 	ld hl, wc608 + 12
 
 Function81d63:
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_RIGHT
 	jr nz, Function81d70
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_LEFT
 	jr nz, Function81d77
 	ret
@@ -915,9 +915,9 @@ Function81f1d:
 .asm_81f22
 	push bc
 	xor a
-	ld [rJOYP], a
+	ldh [rJOYP], a
 	ld a, $30
-	ld [rJOYP], a
+	ldh [rJOYP], a
 	ld b, $10
 .asm_81f2c
 	ld e, $8
@@ -930,18 +930,18 @@ Function81f1d:
 	ld a, $20
 
 .asm_81f38
-	ld [rJOYP], a
+	ldh [rJOYP], a
 	ld a, $30
-	ld [rJOYP], a
+	ldh [rJOYP], a
 	rr d
 	dec e
 	jr nz, .asm_81f30
 	dec b
 	jr nz, .asm_81f2c
 	ld a, $20
-	ld [rJOYP], a
+	ldh [rJOYP], a
 	ld a, $30
-	ld [rJOYP], a
+	ldh [rJOYP], a
 	ld de, 7000
 .asm_81f51
 	nop
@@ -1041,12 +1041,12 @@ TilesetColorTest:
 	ld [wcf64], a
 	ld [wcf65], a
 	ld [wcf66], a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call ClearSprites
 	call OverworldTextModeSwitch
 	call WaitBGMap2
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld de, DebugColorTestGFX + 1 tiles
 	ld hl, vTiles2 tile DEBUGTEST_UP_ARROW
 	lb bc, BANK(DebugColorTestGFX), 22
@@ -1056,7 +1056,7 @@ TilesetColorTest:
 	lb bc, BANK(DebugColorTestGFX), 1
 	call Request2bpp
 	ld a, HIGH(vBGMap1)
-	ld [hBGMapAddress + 1], a
+	ldh [hBGMapAddress + 1], a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	ld a, DEBUGTEST_BLACK
@@ -1082,7 +1082,7 @@ TilesetColorTest:
 	call WaitBGMap2
 	ld [wJumptableIndex], a
 	ld a, $40
-	ld [hWY], a
+	ldh [hWY], a
 	ret
 
 Function821d2:
@@ -1126,10 +1126,10 @@ Function82203:
 	ret
 
 Function8220f:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, [wcf64]
 	ld l, a
 	ld h, $0
@@ -1144,7 +1144,7 @@ Function8220f:
 	ld de, wc608
 	call Function81ea5
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ret
 
 Function82236:
@@ -1177,10 +1177,10 @@ Function82236:
 	call Function821d8
 	ld de, $24
 	call Function821d8
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wBGPals2
 	ld a, [wcf64]
 	ld bc, 1 palettes
@@ -1189,27 +1189,27 @@ Function82236:
 	ld bc, 1 palettes
 	call CopyBytes
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $2
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld c, 3
 	call DelayFrames
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
 .asm_82299
 	call ClearSprites
-	ld a, [hWY]
+	ldh a, [hWY]
 	xor $d0
-	ld [hWY], a
+	ldh [hWY], a
 	ret
 
 Function822a3:
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, BANK(wBGPals2)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld hl, wBGPals2
 	ld a, [wcf64]
 	ld bc, 1 palettes
@@ -1232,9 +1232,9 @@ Function822a3:
 	ld de, wc608 + 6
 	call Function81ca7
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	call DelayFrame
 	ret
 
@@ -1322,10 +1322,10 @@ Function8235d:
 	ld hl, wc608 + 12
 
 Function82368:
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_RIGHT
 	jr nz, .asm_82375
-	ld a, [hJoyLast]
+	ldh a, [hJoyLast]
 	and D_LEFT
 	jr nz, .asm_8237c
 	ret
