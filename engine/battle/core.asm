@@ -7868,7 +7868,6 @@ CalcExpBar:
 	ld [hld], a
 	xor a
 	ld [hl], a
-; multiply by 64
 	ld a, 64
 	ldh [hMultiplier], a
 	call Multiply

@@ -66,7 +66,7 @@ UNION ; ffb3
 
 UNION ; ffb3
 ; inputs to Multiply
-    ds 1
+	ds 1
 hMultiplicand:: ds 3 ; ffb4
 hMultiplier::   db   ; ffb7
 NEXTU ; ffb3
