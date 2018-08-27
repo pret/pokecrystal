@@ -352,7 +352,7 @@ HandleBerserkGene:
 
 .reverse
 	call .enemy
-;	jr .player
+	; fallthrough
 
 .player
 	call SetPlayerTurn
@@ -366,7 +366,7 @@ HandleBerserkGene:
 	ld de, wOTPartyMon1Item
 	ld a, [wCurOTMon]
 	ld b, a
-;	jr .go
+	; fallthrough
 
 .go
 	push de
