@@ -1368,9 +1368,9 @@ BattleCommand_Stab:
 	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 1]
-	ld b, a
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	or b
 	jr nz, .ok
 
@@ -1469,7 +1469,7 @@ CheckTypeMatchup:
 	ld b, 4
 	call Divide
 	pop bc
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [wTypeMatchup], a
 	jr .TypesLoop
 
@@ -1547,10 +1547,10 @@ BattleCommand_DamageVariation:
 	call Divide
 
 ; ...to get .85-1.00x damage.
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld hl, wCurDamage
 	ld [hli], a
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	ret
 
@@ -1832,14 +1832,14 @@ BattleCommand_CheckHit:
 	ld b, 4
 	call Divide
 	; minimum accuracy is $0001
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	or b
 	jr nz, .min_accuracy
-	ldh [hQuotient + 1], a
-	ld a, 1
 	ldh [hQuotient + 2], a
+	ld a, 1
+	ldh [hQuotient + 3], a
 
 .min_accuracy
 	; do the same thing to the target's evasion
@@ -1848,9 +1848,9 @@ BattleCommand_CheckHit:
 	jr nz, .accuracy_loop
 
 	; if the result is more than 2 bytes, max out at 100%
-	ldh a, [hQuotient + 1]
-	and a
 	ldh a, [hQuotient + 2]
+	and a
+	ldh a, [hQuotient + 3]
 	jr z, .finish_accuracy
 	ld a, $ff
 
@@ -2984,7 +2984,7 @@ BattleCommand_DamageCalc:
 	ld a, e
 	add a
 	jr nc, .level_not_overflowing
-	ld [hl], $1
+	ld [hl], 1
 .level_not_overflowing
 	inc hl
 	ld [hli], a
@@ -2993,7 +2993,7 @@ BattleCommand_DamageCalc:
 	ld a, 5
 	ld [hld], a
 	push bc
-	ld b, $4
+	ld b, 4
 	call Divide
 	pop bc
 
@@ -3012,7 +3012,7 @@ BattleCommand_DamageCalc:
 
 ; / Defense
 	ld [hl], c
-	ld b, $4
+	ld b, 4
 	call Divide
 
 ; / 50
@@ -3146,11 +3146,11 @@ BattleCommand_DamageCalc:
 	ret z
 
 ; x2
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	add a
 	ldh [hProduct + 3], a
 
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	rl a
 	ldh [hProduct + 2], a
 
@@ -3257,7 +3257,7 @@ BattleCommand_ConstantDamage:
 	ldh [hMultiplicand + 1], a
 	ld a, [hli]
 	ldh [hMultiplicand + 2], a
-	ld a, $30
+	ld a, 48
 	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hli]
@@ -3288,7 +3288,7 @@ BattleCommand_ConstantDamage:
 .skip_to_divide
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, a
 	ld hl, FlailReversalPower
 
@@ -4918,34 +4918,34 @@ CalcStats:
 	ld b, 4
 	call Divide
 
-	ldh a, [hQuotient + 1]
-	ld b, a
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	or b
 	jr nz, .check_maxed_out
 
 	ld a, 1
-	ldh [hQuotient + 2], a
+	ldh [hQuotient + 3], a
 	jr .not_maxed_out
 
 .check_maxed_out
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	cp LOW(MAX_STAT_VALUE)
 	ld a, b
 	sbc HIGH(MAX_STAT_VALUE)
 	jr c, .not_maxed_out
 
 	ld a, LOW(MAX_STAT_VALUE)
-	ldh [hQuotient + 2], a
+	ldh [hQuotient + 3], a
 	ld a, HIGH(MAX_STAT_VALUE)
-	ldh [hQuotient + 1], a
+	ldh [hQuotient + 2], a
 
 .not_maxed_out
 	pop bc
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld [bc], a
 	inc bc
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [bc], a
 	inc bc
 	pop hl

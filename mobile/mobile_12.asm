@@ -1799,7 +1799,7 @@ Function48d94:
 	sla b
 	or b
 	ld [hld], a
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld c, 10
 	call SimpleDivide
 	sla b

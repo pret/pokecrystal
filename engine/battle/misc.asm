@@ -119,14 +119,14 @@ DoWeatherModifiers:
 	ld b, 4
 	call Divide
 
-	ldh a, [hQuotient + 0]
+	ldh a, [hQuotient + 1]
 	and a
 	ld bc, -1
 	jr nz, .Update
 
-	ldh a, [hQuotient + 1]
-	ld b, a
 	ldh a, [hQuotient + 2]
+	ld b, a
+	ldh a, [hQuotient + 3]
 	ld c, a
 	or b
 	jr nz, .Update

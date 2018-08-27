@@ -62,41 +62,36 @@ ENDU ; ffb1
 hEnemyMonSpeed:: dw ; ffb1
 
 UNION ; ffb3
-; miscellaneous
-	ds 2
-hPartyMon1Speed:: dw ; ffb5
-	ds 5
-hMGStatusFlags:: db ; ffbc
+; math-related values
 
-NEXTU ; ffb3
+UNION ; ffb3
 ; inputs to Multiply
 	ds 1
 hMultiplicand:: ds 3 ; ffb4
-hMultiplier:: db ; ffb7
-
+hMultiplier::   db   ; ffb7
 NEXTU ; ffb3
 ; result of Multiply
-hProduct:: ds 4 ; ffb3
-
+hProduct::      ds 4 ; ffb3
 NEXTU ; ffb3
 ; inputs to Divide
-hDividend:: ds 4 ; ffb3
-hDivisor:: db ; ffb7
-
+hDividend::     ds 4 ; ffb3
+hDivisor::      db   ; ffb7
 NEXTU ; ffb3
 ; results of Divide
-	ds 1
-hQuotient:: ds 3 ; ffb4
-hRemainder:: db ; ffb7
+hQuotient::     ds 4 ; ffb3
+hRemainder::    db   ; ffb7
+ENDU ; ffb8
 
-NEXTU ; ffb3
-; math-related scratch space
-	ds 5
 hMathBuffer:: ds 5 ; ffb8
 
 NEXTU ; ffb3
 ; PrintNum scratch space
 hPrintNumBuffer:: ds 10 ; ffb3
+
+NEXTU ; ffb3
+; miscellaneous
+    ds 9
+hMGStatusFlags:: db ; ffbc
 ENDU ; ffbd
 
 hUsedSpriteIndex:: db ; ffbd

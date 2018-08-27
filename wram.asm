@@ -45,7 +45,7 @@ wCurNoteDuration:: db ; used in MusicE0 and LoadNote
 wCurMusicByte:: db ; c298
 wCurChannel:: db ; c299
 wVolume:: ; c29a
-; corresponds to $ff24
+; corresponds to rNR50
 ; Channel control / ON-OFF / Volume (R/W)
 ;   bit 7 - Vin->SO2 ON/OFF
 ;   bit 6-4 - SO2 output level (volume) (# 0-7)
@@ -53,12 +53,12 @@ wVolume:: ; c29a
 ;   bit 2-0 - SO1 output level (volume) (# 0-7)
 	db
 wSoundOutput:: ; c29b
-; corresponds to $ff25
+; corresponds to rNR51
 ; bit 4-7: ch1-4 so2 on/off
 ; bit 0-3: ch1-4 so1 on/off
 	db
 wSoundInput:: ; c29c
-; corresponds to $ff26
+; corresponds to rNR52
 ; bit 7: global on/off
 ; bit 0: ch1 on/off
 ; bit 1: ch2 on/off
@@ -1069,25 +1069,22 @@ wc9f9:: ds 7
 
 UNION ; ca00
 ; blank credits tile buffer
-wCreditsFaux2bpp:: ds 128
+wCreditsBlankFrame2bpp:: ds 4 * 4 tiles
+wCreditsBlankFrame2bppEnd::
 
 NEXTU ; ca00
 ; mystery gift data
 wca00:: db
 wca01:: db
 wca02:: db
-	ds 160
-ENDU ; caa3
 
-wcaa3:: ds 2
-wcaa5:: ds 16
-wcab5:: ds 10
-wcabf:: ds 10
-wcac9:: ds 63
-wcb08:: ds 6
+NEXTU ; ca00
+; link data
+	ds 191
+wcabf:: ds 79
 wcb0e:: ds 5
-wcb13:: ds 9
-wcb1c:: ds 14
+wcb13:: ds 23
+ENDU ; cb2a
 
 wBillsPC_ScrollPosition:: db
 wBillsPC_CursorPosition:: db

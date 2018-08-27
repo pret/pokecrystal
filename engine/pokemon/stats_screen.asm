@@ -636,15 +636,15 @@ StatsScreen_LoadGFX:
 	farcall CalcExpAtLevel
 	ld hl, wTempMonExp + 2
 	ld hl, wTempMonExp + 2
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub [hl]
 	dec hl
 	ld [wBuffer3], a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc [hl]
 	dec hl
 	ld [wBuffer2], a
-	ldh a, [hQuotient]
+	ldh a, [hQuotient + 1]
 	sbc [hl]
 	ld [wBuffer1], a
 	ret

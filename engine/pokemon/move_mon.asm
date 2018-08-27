@@ -1570,11 +1570,11 @@ CalcMonStatC:
 	jr nz, .not_hp
 	ld a, [wCurPartyLevel]
 	ld b, a
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	add b
 	ldh [hMultiplicand + 2], a
 	jr nc, .no_overflow_3
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	inc a
 	ldh [hMultiplicand + 1], a
 
@@ -1583,21 +1583,21 @@ CalcMonStatC:
 
 .not_hp
 	ld b, a
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	add b
 	ldh [hMultiplicand + 2], a
 	jr nc, .no_overflow_4
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	inc a
 	ldh [hMultiplicand + 1], a
 
 .no_overflow_4
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	cp HIGH(MAX_STAT_VALUE + 1) + 1
 	jr nc, .max_stat
 	cp HIGH(MAX_STAT_VALUE + 1)
 	jr c, .stat_value_okay
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	cp LOW(MAX_STAT_VALUE + 1)
 	jr c, .stat_value_okay
 

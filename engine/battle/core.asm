@@ -352,7 +352,7 @@ HandleBerserkGene:
 
 .reverse
 	call .enemy
-;	jr .player
+	; fallthrough
 
 .player
 	call SetPlayerTurn
@@ -366,7 +366,7 @@ HandleBerserkGene:
 	ld de, wOTPartyMon1Item
 	ld a, [wCurOTMon]
 	ld b, a
-;	jr .go
+	; fallthrough
 
 .go
 	push de
@@ -3715,23 +3715,23 @@ TryToRunAwayFromBattle:
 	inc a
 	ld [wNumFleeAttempts], a
 	ld a, [hli]
-	ldh [hPartyMon1Speed + 0], a
+	ldh [hMultiplicand + 1], a
 	ld a, [hl]
-	ldh [hPartyMon1Speed + 1], a
+	ldh [hMultiplicand + 2], a
 	ld a, [de]
 	inc de
 	ldh [hEnemyMonSpeed + 0], a
 	ld a, [de]
 	ldh [hEnemyMonSpeed + 1], a
 	call Call_LoadTempTileMapToTileMap
-	ld de, hPartyMon1Speed
+	ld de, hMultiplicand + 1
 	ld hl, hEnemyMonSpeed
 	ld c, 2
 	call CompareBytes
 	jr nc, .can_escape
 
 	xor a
-	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 0], a
 	ld a, 32
 	ldh [hMultiplier], a
 	call Multiply
@@ -3751,7 +3751,7 @@ TryToRunAwayFromBattle:
 	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	and a
 	jr nz, .can_escape
 	ld a, [wNumFleeAttempts]
@@ -3760,16 +3760,16 @@ TryToRunAwayFromBattle:
 	dec c
 	jr z, .cant_escape_2
 	ld b, 30
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	add b
-	ldh [hQuotient + 2], a
+	ldh [hQuotient + 3], a
 	jr c, .can_escape
 	jr .loop
 
 .cant_escape_2
 	call BattleRandom
 	ld b, a
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	cp b
 	jr nc, .can_escape
 	ld a, BATTLEPLAYERACTION_USEITEM
@@ -4787,7 +4787,7 @@ DrawEnemyHUD:
 
 .not_fainted
 	xor a
-	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 0], a
 	ld a, HP_BAR_LENGTH_PX
 	ldh [hMultiplier], a
 	call Multiply
@@ -4824,7 +4824,7 @@ DrawEnemyHUD:
 	ld a, 2
 	ld b, a
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld e, a
 	ld a, HP_BAR_LENGTH
 	ld d, a
@@ -6723,22 +6723,22 @@ ApplyStatLevelMultiplier:
 	pop hl
 
 ; Cap at 999.
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	sub LOW(MAX_STAT_VALUE)
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	sbc HIGH(MAX_STAT_VALUE)
 	jp c, .okay3
 
 	ld a, HIGH(MAX_STAT_VALUE)
-	ldh [hQuotient + 1], a
-	ld a, LOW(MAX_STAT_VALUE)
 	ldh [hQuotient + 2], a
+	ld a, LOW(MAX_STAT_VALUE)
+	ldh [hQuotient + 3], a
 
 .okay3
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld [hli], a
 	ld b, a
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	or b
 	jr nz, .okay4
@@ -7095,9 +7095,9 @@ GiveExperiencePoints:
 	ld a, [hl]
 	cp LUCKY_EGG
 	call z, BoostExp
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [wStringBuffer2 + 1], a
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	ld [wStringBuffer2], a
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
@@ -7105,9 +7105,9 @@ GiveExperiencePoints:
 	ld hl, Text_MonGainedExpPoint
 	call BattleTextBox
 	ld a, [wStringBuffer2 + 1]
-	ldh [hQuotient + 2], a
+	ldh [hQuotient + 3], a
 	ld a, [wStringBuffer2]
-	ldh [hQuotient + 1], a
+	ldh [hQuotient + 2], a
 	pop bc
 	call AnimateExpBar
 	push bc
@@ -7116,11 +7116,11 @@ GiveExperiencePoints:
 	ld hl, MON_EXP + 2
 	add hl, bc
 	ld d, [hl]
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	add d
 	ld [hld], a
 	ld d, [hl]
-	ldh a, [hQuotient + 1]
+	ldh a, [hQuotient + 2]
 	adc d
 	ld [hl], a
 	jr nc, .skip2
@@ -7148,11 +7148,11 @@ GiveExperiencePoints:
 	ld hl, MON_EXP + 2
 	add hl, bc
 	push bc
-	ldh a, [hQuotient]
-	ld b, a
 	ldh a, [hQuotient + 1]
-	ld c, a
+	ld b, a
 	ldh a, [hQuotient + 2]
+	ld c, a
+	ldh a, [hQuotient + 3]
 	ld d, a
 	ld a, [hld]
 	sub d
@@ -7371,7 +7371,7 @@ GiveExperiencePoints:
 	ldh [hDivisor], a
 	ld b, 2
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld [hli], a
 	dec c
 	jr nz, .count_loop2
@@ -7646,7 +7646,7 @@ SendOutMonText:
 	ldh [hDivisor], a
 	call Divide
 
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld hl, JumpText_GoMon
 	cp 70
 	jr nc, .skip_to_textbox
@@ -7728,7 +7728,7 @@ WithdrawMonText:
 	call Divide
 	pop bc
 	pop de
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld hl, TextJump_ThatsEnoughComeBack
 	and a
 	ret z
@@ -7868,8 +7868,7 @@ CalcExpBar:
 	ld [hld], a
 	xor a
 	ld [hl], a
-; multiply by 64
-	ld a, $40
+	ld a, 64
 	ldh [hMultiplier], a
 	call Multiply
 	pop af
@@ -7897,7 +7896,7 @@ CalcExpBar:
 	ldh [hDivisor], a
 	ld b, 4
 	call Divide
-	ldh a, [hQuotient + 2]
+	ldh a, [hQuotient + 3]
 	ld b, a
 	ld a, $40
 	sub b
