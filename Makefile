@@ -123,8 +123,6 @@ gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp g
 
 gfx/pokemon/%/front.dimensions: gfx/pokemon/%/front.png
 	tools/png_dimensions $< $@
-gfx/pokemon/%/normal.pal: gfx/pokemon/%/normal.gbcpal
-	tools/palette -p $< > $@
 gfx/pokemon/%/normal.gbcpal: gfx/pokemon/%/front.png
 	$(RGBGFX) -p $@ $<
 gfx/pokemon/%/back.2bpp: gfx/pokemon/%/back.png
@@ -145,10 +143,6 @@ gfx/new_game/shrink1.2bpp: rgbgfx += -h
 gfx/new_game/shrink2.2bpp: rgbgfx += -h
 
 gfx/trainers/%.2bpp: rgbgfx += -h
-gfx/trainers/%.pal: gfx/trainers/%.gbcpal
-	tools/palette -p $< > $@
-gfx/trainers/%.gbcpal: gfx/trainers/%.png
-	$(RGBGFX) -p $@ $<
 
 gfx/mail/dragonite.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/large_note.1bpp: tools/gfx += --remove-whitespace
