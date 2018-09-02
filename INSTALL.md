@@ -19,14 +19,12 @@ cd /mnt/c/Users/<user>/Desktop
 
 (The Windows `C:\` drive is called `/mnt/c/` in WSL. Replace *\<user>* in the example path with your username.)
 
-Then follow [the instructions for **Linux**](#linux) to build **pokecrystal**.
+Then follow [the instructions for **Linux**](#linux).
 
 If this doesn't work, try following [the regular Windows instructions](#windows) below.
 
 
 ## Windows
-
-### 1. Install the required software
 
 Download [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** for 64-bit Windows, **setup-x86.exe** for 32-bit.
 
@@ -42,9 +40,7 @@ Then download [**rgbds**](https://github.com/rednex/rgbds/releases/): the latest
 
 **Note: If you already have an older rgbds, you will need to update to 0.3.7.** Ignore this if you have never installed rgbds before. If a version newer than 0.3.7 does not work, try downloading 0.3.7.
 
-### 2. Build pokecrystal
-
-Open the **Cygwin terminal** and enter the following commands.
+Now open the **Cygwin terminal** and enter the following commands.
 
 Cygwin has its own file system that's within Windows, at **C:\cygwin64\home\\*\<user>***. If you don't want to store pokecrystal there, you'll have to change the **current working directory** every time you open Cygwin.
 
@@ -56,29 +52,10 @@ cd /cygdrive/c/Users/<user>/Desktop
 
 (The Windows `C:\` drive is called `/cygdrive/c/` in Cygwin. Replace *\<user>* in the example path with your username.)
 
-To download **pokecrystal**:
-
-```bash
-git clone https://github.com/pret/pokecrystal
-cd pokecrystal
-```
-
-To build **pokecrystal.gbc**:
-
-```bash
-make
-```
-
-To build **pokecrystal11.gbc**:
-
-```bash
-make crystal11
-```
+Now you're ready to [build **pokecrystal**](#build-pokecrystal).
 
 
 ## Mac OS X
-
-### 1. Install the required software
 
 Open **Terminal** and enter the following commands.
 
@@ -95,37 +72,14 @@ git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
 
-### 2. Build pokecrystal
-
-To download **pokecrystal**:
-
-```bash
-git clone https://github.com/pret/pokecrystal
-cd pokecrystal
-```
-
-To build **pokecrystal.gbc**:
-
-```bash
-make
-```
-
-To build **pokecrystal11.gbc**:
-
-```bash
-make crystal11
-```
+Now you're ready to [build **pokecrystal**](#build-pokecrystal).
 
 
 ## Linux
 
-### 1. Install the required software
+Open **Terminal** and enter the following commands, depending on which distro you're using.
 
-Open **Terminal** and enter the following commands.
-
-The commands to do this depend on which distro you're using.
-
-#### Debian or Ubuntu
+### Debian or Ubuntu
 
 To install the software required for **pokecrystal**:
 
@@ -141,7 +95,7 @@ git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
 
-#### OpenSUSE
+### OpenSUSE
 
 To install the software required for **pokecrystal**:
 
@@ -157,7 +111,7 @@ git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
 
-#### Arch Linux
+### Arch Linux
 
 To install the software required for **pokecrystal**:
 
@@ -173,7 +127,7 @@ git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
 
-#### Termux
+### Termux
 
 To install the software required for **pokecrystal**:
 
@@ -187,7 +141,7 @@ To install **rgbds**:
 sudo apt install rgbds
 ```
 
-#### Other distros
+### Other distros
 
 If your distro is not listed here, try to find the required software in its repositories:
 
@@ -208,9 +162,12 @@ git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
 
-### 2. Build pokecrystal
+Now you're ready to [build **pokecrystal**](#build-pokecrystal).
 
-To download **pokecrystal**:
+
+## Build pokecrystal
+
+To download the **pokecrystal** source files:
 
 ```bash
 git clone https://github.com/pret/pokecrystal
