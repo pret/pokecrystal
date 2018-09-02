@@ -99,7 +99,7 @@ pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
 		tools/lzcomp -- $< $@)
 
 
-### Pokemon pic graphics rules
+### Pokemon pic animation rules
 
 gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation_graphics -o $@ $^
@@ -109,8 +109,6 @@ gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/fr
 	tools/pokemon_animation -b $^ > $@
 gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
 	tools/pokemon_animation -f $^ > $@
-gfx/pokemon/%/back.2bpp: gfx/pokemon/%/back.png
-	$(RGBGFX) -h -o $@ $<
 
 
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
@@ -135,10 +133,12 @@ gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp g
 
 ### Misc file-specific graphics rules
 
-gfx/new_game/shrink1.2bpp: rgbgfx += -h
-gfx/new_game/shrink2.2bpp: rgbgfx += -h
+gfx/pokemon/%/back.2bpp: rgbgfx += -h
 
 gfx/trainers/%.2bpp: rgbgfx += -h
+
+gfx/new_game/shrink1.2bpp: rgbgfx += -h
+gfx/new_game/shrink2.2bpp: rgbgfx += -h
 
 gfx/mail/dragonite.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/large_note.1bpp: tools/gfx += --remove-whitespace
