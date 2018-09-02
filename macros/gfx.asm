@@ -17,3 +17,8 @@ color    EQUS "+ PAL_COLOR_SIZE *"
 
 tiles EQUS "* LEN_2BPP_TILE"
 tile  EQUS "+ LEN_2BPP_TILE *"
+
+; extracts the middle two colors from a 2bpp binary palette
+; example usage:
+; INCBIN "foo.gbcpal", middle_colors
+middle_colors EQUS "PAL_COLOR_SIZE, PAL_COLOR_SIZE * 2"

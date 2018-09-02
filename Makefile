@@ -99,6 +99,18 @@ pokecrystal11.gbc: $(crystal11_obj) pokecrystal.link
 		tools/lzcomp -- $< $@)
 
 
+### Pokemon pic animation rules
+
+gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
+	tools/pokemon_animation_graphics -o $@ $^
+gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
+	tools/pokemon_animation_graphics -t $@ $^
+gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
+	tools/pokemon_animation -b $^ > $@
+gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
+	tools/pokemon_animation -f $^ > $@
+
+
 ### Terrible hacks to match animations. Delete these rules if you don't care about matching.
 
 # Dewgong has an unused tile id in its last frame. The tile itself is missing.
@@ -119,36 +131,14 @@ gfx/pokemon/girafarig/front.animated.tilemap: gfx/pokemon/girafarig/front.2bpp g
 	tools/pokemon_animation_graphics --girafarig -t $@ $^
 
 
-### Pokemon pic graphics rules
-
-gfx/pokemon/%/front.dimensions: gfx/pokemon/%/front.png
-	tools/png_dimensions $< $@
-gfx/pokemon/%/normal.pal: gfx/pokemon/%/normal.gbcpal
-	tools/palette -p $< > $@
-gfx/pokemon/%/normal.gbcpal: gfx/pokemon/%/front.png
-	$(RGBGFX) -p $@ $<
-gfx/pokemon/%/back.2bpp: gfx/pokemon/%/back.png
-	$(RGBGFX) -h -o $@ $<
-gfx/pokemon/%/bitmask.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation -b $^ > $@
-gfx/pokemon/%/frames.asm: gfx/pokemon/%/front.animated.tilemap gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation -f $^ > $@
-gfx/pokemon/%/front.animated.2bpp: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation_graphics -o $@ $^
-gfx/pokemon/%/front.animated.tilemap: gfx/pokemon/%/front.2bpp gfx/pokemon/%/front.dimensions
-	tools/pokemon_animation_graphics -t $@ $^
-
-
 ### Misc file-specific graphics rules
+
+gfx/pokemon/%/back.2bpp: rgbgfx += -h
+
+gfx/trainers/%.2bpp: rgbgfx += -h
 
 gfx/new_game/shrink1.2bpp: rgbgfx += -h
 gfx/new_game/shrink2.2bpp: rgbgfx += -h
-
-gfx/trainers/%.2bpp: rgbgfx += -h
-gfx/trainers/%.pal: gfx/trainers/%.gbcpal
-	tools/palette -p $< > $@
-gfx/trainers/%.gbcpal: gfx/trainers/%.png
-	$(RGBGFX) -p $@ $<
 
 gfx/mail/dragonite.1bpp: tools/gfx += --remove-whitespace
 gfx/mail/large_note.1bpp: tools/gfx += --remove-whitespace
