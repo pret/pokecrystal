@@ -40,7 +40,7 @@ Click once on the text that says "**Skip**" next to each package to select the m
 
 Then download [**rgbds**](https://github.com/rednex/rgbds/releases/): the latest **win64.zip** or **win32.zip** release. Extract it and put all the `exe` and `dll` files individually in **C:\cygwin64\usr\local\bin**.
 
-**Note: If you already have an older rgbds, you will need to update to 0.3.7 or newer.** Ignore this if you have never installed rgbds before.
+**Note: If you already have an older rgbds, you will need to update to 0.3.7.** Ignore this if you have never installed rgbds before. If a version newer than 0.3.7 does not work, try downloading 0.3.7.
 
 ### 2. Build pokecrystal
 
@@ -78,9 +78,9 @@ make crystal11
 
 ## Mac OS X
 
-Open **Terminal** and enter the following commands.
-
 ### 1. Install the required software
+
+Open **Terminal** and enter the following commands.
 
 To install the **Xcode Command Line Tools**:
 
@@ -119,9 +119,9 @@ make crystal11
 
 ## Linux
 
-Open **Terminal** and enter the following commands.
-
 ### 1. Install the required software
+
+Open **Terminal** and enter the following commands.
 
 The commands to do this depend on which distro you're using.
 
