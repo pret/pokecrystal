@@ -52,7 +52,7 @@ Run `make clean` to remove all the old `o` files, then re-run `make`.
 
 You've made a mistake while writing some of the code. Re-read the modifications you've made to the file it complains about and try to compare them with other code.
 
-If you're not using the latest version of [**rgbds**](https://github.com/rednex/rgbds/releases), update this as well. Don't forget to `make clean` afterwards.
+If you're not using the latest version of [**rgbds**][rgbds], update this as well. Don't forget to `make clean` afterwards.
 
 
 ## How do I edit maps?
