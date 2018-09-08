@@ -32,7 +32,7 @@ You need to install `gcc`. If you're using Cygwin, re-run its setup, and at "Sel
 
 ### "ERROR: `UNION` already defined"
 
-Download [the latest **rgbds** release][rgbds]. Versions earlier than 0.3.3 will not work.
+Download [**rgbds 0.3.7**][rgbds]. Older versions will not work.
 
 ### "Segmentation fault" from `rgbgfx`
 
@@ -50,9 +50,9 @@ Run `make clean` to remove all the old `o` files, then re-run `make`.
 
 ### "Syntax error"
 
-You've made a mistake while writing some of the code. Re-read the modifications you've made to the file it complains about and try to compare them with other code.
+If you have not changed any of the asm, make sure you have the latest version of pokecrystal and the correct version of rgbds (see [INSTALL.md](INSTALL.md)).
 
-If you're not using the latest version of [**rgbds**](https://github.com/rednex/rgbds/releases), update this as well. Don't forget to `make clean` afterwards.
+If you added or changed any code, you've made a mistake while writing some of it. Re-read the modifications you've made to the file it complains about and try to compare them with other code.
 
 
 ## How do I edit maps?

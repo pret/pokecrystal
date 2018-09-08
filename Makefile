@@ -215,9 +215,6 @@ gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 
 ### Catch-all graphics rules
 
-%.bin: ;
-%.blk: ;
-
 %.2bpp: %.png
 	$(RGBGFX) $(rgbgfx) -o $@ $<
 	$(if $(tools/gfx),\
@@ -230,5 +227,6 @@ gfx/unknown/unknown_egg.2bpp: rgbgfx += -h
 
 %.gbcpal: %.png
 	$(RGBGFX) -p $@ $<
+
 %.dimensions: %.png
 	tools/png_dimensions $< $@
