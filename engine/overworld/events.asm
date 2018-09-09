@@ -401,7 +401,7 @@ Dummy_CheckScriptFlags3Bit5:
 	ret
 
 RunSceneScript:
-	ld a, [wCurrMapSceneScriptCount]
+	ld a, [wCurMapSceneScriptCount]
 	and a
 	jr z, .nope
 
@@ -412,7 +412,7 @@ RunSceneScript:
 
 	ld e, a
 	ld d, 0
-	ld hl, wCurrMapSceneScriptsPointer
+	ld hl, wCurMapSceneScriptsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

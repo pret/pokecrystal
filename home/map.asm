@@ -8,9 +8,9 @@ Clearwc7e8::
 	ret
 
 CheckScenes::
-; Checks wCurrMapSceneScriptPointer.  If it's empty, returns -1 in a.  Otherwise, returns the active scene ID in a.
+; Checks wCurMapSceneScriptPointer.  If it's empty, returns -1 in a.  Otherwise, returns the active scene ID in a.
 	push hl
-	ld hl, wCurrMapSceneScriptPointer
+	ld hl, wCurMapSceneScriptPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -24,24 +24,24 @@ CheckScenes::
 	ret
 
 GetCurrentMapSceneID::
-; Grabs the wram map scene script pointer for the current map and loads it into wCurrMapSceneScriptPointer.
-; If there is no scene, both bytes of wCurrMapSceneScriptPointer are wiped clean.
+; Grabs the wram map scene script pointer for the current map and loads it into wCurMapSceneScriptPointer.
+; If there is no scene, both bytes of wCurMapSceneScriptPointer are wiped clean.
 ; Copy the current map group and number into bc.  This is needed for GetMapSceneID.
 	ld a, [wMapGroup]
 	ld b, a
 	ld a, [wMapNumber]
 	ld c, a
-; Blank out wCurrMapSceneScriptPointer; this is the default scenario.
+; Blank out wCurMapSceneScriptPointer; this is the default scenario.
 	xor a
-	ld [wCurrMapSceneScriptPointer], a
-	ld [wCurrMapSceneScriptPointer + 1], a
+	ld [wCurMapSceneScriptPointer], a
+	ld [wCurMapSceneScriptPointer + 1], a
 	call GetMapSceneID
 	ret c ; The map is not in the scene script table
-; Load the scene script pointer from de into wCurrMapSceneScriptPointer
+; Load the scene script pointer from de into wCurMapSceneScriptPointer
 	ld a, e
-	ld [wCurrMapSceneScriptPointer], a
+	ld [wCurMapSceneScriptPointer], a
 	ld a, d
-	ld [wCurrMapSceneScriptPointer + 1], a
+	ld [wCurMapSceneScriptPointer + 1], a
 	xor a
 	ret
 
@@ -254,12 +254,12 @@ GetDestinationWarpNumber::
 	ld a, [wPlayerStandingMapX]
 	sub 4
 	ld d, a
-	ld a, [wCurrMapWarpCount]
+	ld a, [wCurMapWarpCount]
 	and a
 	ret z
 
 	ld c, a
-	ld hl, wCurrMapWarpsPointer
+	ld hl, wCurMapWarpsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -292,7 +292,7 @@ GetDestinationWarpNumber::
 	call .IncreaseHLTwice
 	ret nc ; never encountered
 
-	ld a, [wCurrMapWarpCount]
+	ld a, [wCurMapWarpCount]
 	inc a
 	sub c
 	ld c, a
@@ -319,7 +319,7 @@ CopyWarpData::
 
 .CopyWarpData:
 	push bc
-	ld hl, wCurrMapWarpsPointer
+	ld hl, wCurMapWarpsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -489,11 +489,11 @@ GetMapConnection::
 ReadMapSceneScripts::
 	ld a, [hli] ; scene script count
 	ld c, a
-	ld [wCurrMapSceneScriptCount], a ; current map scene script count
+	ld [wCurMapSceneScriptCount], a
 	ld a, l
-	ld [wCurrMapSceneScriptsPointer], a ; map scene script pointer
+	ld [wCurMapSceneScriptsPointer], a
 	ld a, h
-	ld [wCurrMapSceneScriptsPointer + 1], a
+	ld [wCurMapSceneScriptsPointer + 1], a
 	ld a, c
 	and a
 	ret z
@@ -505,11 +505,11 @@ ReadMapSceneScripts::
 ReadMapCallbacks::
 	ld a, [hli]
 	ld c, a
-	ld [wCurrMapCallbackCount], a
+	ld [wCurMapCallbackCount], a
 	ld a, l
-	ld [wCurrMapCallbacksPointer], a
+	ld [wCurMapCallbacksPointer], a
 	ld a, h
-	ld [wCurrMapCallbacksPointer + 1], a
+	ld [wCurMapCallbacksPointer + 1], a
 	ld a, c
 	and a
 	ret z
@@ -521,11 +521,11 @@ ReadMapCallbacks::
 ReadWarps::
 	ld a, [hli]
 	ld c, a
-	ld [wCurrMapWarpCount], a
+	ld [wCurMapWarpCount], a
 	ld a, l
-	ld [wCurrMapWarpsPointer], a
+	ld [wCurMapWarpsPointer], a
 	ld a, h
-	ld [wCurrMapWarpsPointer + 1], a
+	ld [wCurMapWarpsPointer + 1], a
 	ld a, c
 	and a
 	ret z
@@ -536,11 +536,11 @@ ReadWarps::
 ReadCoordEvents::
 	ld a, [hli]
 	ld c, a
-	ld [wCurrMapCoordEventCount], a
+	ld [wCurMapCoordEventCount], a
 	ld a, l
-	ld [wCurrMapCoordEventsPointer], a
+	ld [wCurMapCoordEventsPointer], a
 	ld a, h
-	ld [wCurrMapCoordEventsPointer + 1], a
+	ld [wCurMapCoordEventsPointer + 1], a
 
 	ld a, c
 	and a
@@ -553,11 +553,11 @@ ReadCoordEvents::
 ReadBGEvents::
 	ld a, [hli]
 	ld c, a
-	ld [wCurrMapBGEventCount], a
+	ld [wCurMapBGEventCount], a
 	ld a, l
-	ld [wCurrMapBGEventsPointer], a
+	ld [wCurMapBGEventsPointer], a
 	ld a, h
-	ld [wCurrMapBGEventsPointer + 1], a
+	ld [wCurMapBGEventsPointer + 1], a
 
 	ld a, c
 	and a
@@ -574,17 +574,17 @@ ReadObjectEvents::
 	ld hl, wMap1Object
 	ld a, [de]
 	inc de
-	ld [wCurrMapObjectEventCount], a
+	ld [wCurMapObjectEventCount], a
 	ld a, e
-	ld [wCurrMapObjectEventsPointer], a
+	ld [wCurMapObjectEventsPointer], a
 	ld a, d
-	ld [wCurrMapObjectEventsPointer + 1], a
+	ld [wCurMapObjectEventsPointer + 1], a
 
-	ld a, [wCurrMapObjectEventCount]
+	ld a, [wCurMapObjectEventCount]
 	call CopyMapObjectEvents
 
-; get NUM_OBJECTS - [wCurrMapObjectEventCount]
-	ld a, [wCurrMapObjectEventCount]
+; get NUM_OBJECTS - [wCurMapObjectEventCount]
+	ld a, [wCurMapObjectEventCount]
 	ld c, a
 	ld a, NUM_OBJECTS ; - 1
 	sub c
@@ -971,11 +971,11 @@ RunMapCallback::
 	ret
 
 .FindCallback:
-	ld a, [wCurrMapCallbackCount]
+	ld a, [wCurMapCallbackCount]
 	ld c, a
 	and a
 	ret z
-	ld hl, wCurrMapCallbacksPointer
+	ld hl, wCurMapCallbacksPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1767,7 +1767,7 @@ CheckFacingBGEvent::
 	sub 4
 	ld e, a
 ; If there are no BG events, we don't need to be here.
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	and a
 	ret z
 
@@ -1783,7 +1783,7 @@ CheckFacingBGEvent::
 
 CheckIfFacingTileCoordIsBGEvent::
 ; Checks to see if you are facing a BG event.  If so, copies it into wEngineBuffer1 and sets carry.
-	ld hl, wCurrMapBGEventsPointer
+	ld hl, wCurMapBGEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1821,7 +1821,7 @@ CheckIfFacingTileCoordIsBGEvent::
 
 CheckCurrentMapCoordEvents::
 ; If there are no coord events, we don't need to be here.
-	ld a, [wCurrMapCoordEventCount]
+	ld a, [wCurMapCoordEventCount]
 	and a
 	ret z
 ; Copy the coord event count into c.
@@ -1837,7 +1837,7 @@ CheckCurrentMapCoordEvents::
 
 .CoordEventCheck:
 ; Checks to see if you are standing on a coord event.  If yes, copies the event to wEngineBuffer1 and sets carry.
-	ld hl, wCurrMapCoordEventsPointer
+	ld hl, wCurMapCoordEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

@@ -23,7 +23,7 @@ PrintUnownWord:
 	ld bc, 12
 	ld a, " "
 	call ByteFill
-	ld a, [wDexCurrentUnownIndex]
+	ld a, [wDexCurUnownIndex]
 	ld e, a
 	ld d, 0
 	ld hl, wUnownDex

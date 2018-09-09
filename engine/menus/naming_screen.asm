@@ -672,7 +672,7 @@ NamingScreen_TryAddCharacter:
 MailComposition_TryAddCharacter:
 	ld a, [wNamingScreenMaxNameLength]
 	ld c, a
-	ld a, [wNamingScreenCurrNameLength]
+	ld a, [wNamingScreenCurNameLength]
 	cp c
 	ret nc
 
@@ -683,7 +683,7 @@ NamingScreen_LoadNextCharacter:
 	ld [hl], a
 
 NamingScreen_AdvanceCursor_CheckEndOfString:
-	ld hl, wNamingScreenCurrNameLength
+	ld hl, wNamingScreenCurNameLength
 	inc [hl]
 	call NamingScreen_GetTextCursorPosition
 	ld a, [hl]
@@ -698,11 +698,11 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 	ret
 
 ; unused
-	ld a, [wNamingScreenCurrNameLength]
+	ld a, [wNamingScreenCurNameLength]
 	and a
 	ret z
 	push hl
-	ld hl, wNamingScreenCurrNameLength
+	ld hl, wNamingScreenCurNameLength
 	dec [hl]
 	call NamingScreen_GetTextCursorPosition
 	ld c, [hl]
@@ -724,7 +724,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 INCLUDE "data/text/unused_dakutens.asm"
 
 NamingScreen_DeleteCharacter:
-	ld hl, wNamingScreenCurrNameLength
+	ld hl, wNamingScreenCurNameLength
 	ld a, [hl]
 	and a
 	ret z
@@ -744,7 +744,7 @@ NamingScreen_GetTextCursorPosition:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wNamingScreenCurrNameLength]
+	ld a, [wNamingScreenCurNameLength]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -874,7 +874,7 @@ LoadNamingScreenGFX:
 	ld [wJumptableIndex], a
 	ld [wNamingScreenLetterCase], a
 	ldh [hBGMapMode], a
-	ld [wNamingScreenCurrNameLength], a
+	ld [wNamingScreenCurNameLength], a
 	ld a, $7
 	ldh [hWX], a
 	ret
@@ -1109,7 +1109,7 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	call NamingScreen_GetLastCharacter
 	call MailComposition_TryAddLastCharacter
 	jr c, .start
-	ld hl, wNamingScreenCurrNameLength
+	ld hl, wNamingScreenCurNameLength
 	ld a, [hl]
 	cp MAIL_LINE_LENGTH
 	ret nz
@@ -1135,7 +1135,7 @@ INCBIN "gfx/icons/mail_big.2bpp"
 
 .b
 	call NamingScreen_DeleteCharacter
-	ld hl, wNamingScreenCurrNameLength
+	ld hl, wNamingScreenCurNameLength
 	ld a, [hl]
 	cp MAIL_LINE_LENGTH
 	ret nz
@@ -1350,20 +1350,20 @@ MailComposition_TryAddLastCharacter:
 	jp MailComposition_TryAddCharacter
 
 ; unused
-	ld a, [wNamingScreenCurrNameLength]
+	ld a, [wNamingScreenCurNameLength]
 	and a
 	ret z
 	cp $11
 	jr nz, .asm_121c3
 	push hl
-	ld hl, wNamingScreenCurrNameLength
+	ld hl, wNamingScreenCurNameLength
 	dec [hl]
 	dec [hl]
 	jr .asm_121c8
 
 .asm_121c3
 	push hl
-	ld hl, wNamingScreenCurrNameLength
+	ld hl, wNamingScreenCurNameLength
 	dec [hl]
 
 .asm_121c8

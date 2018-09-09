@@ -5544,7 +5544,7 @@ Function11ac51:
 	call Function11acb7
 	call Function11ad6e
 	ld a, 30 * SPRITEOAMSTRUCT_LENGTH
-	ld [wCurrSpriteOAMAddr], a
+	ld [wCurSpriteOAMAddr], a
 	farcall DoNextFrameForAllSprites
 	farcall ReloadMapPart
 	jr .loop

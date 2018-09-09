@@ -4,7 +4,7 @@ _Multiply::
 	ld b, a
 
 	xor a
-	ldh [hProduct], a
+	ldh [hMultiplicand - 1], a
 	ldh [hMathBuffer + 1], a
 	ldh [hMathBuffer + 2], a
 	ldh [hMathBuffer + 3], a
@@ -36,7 +36,7 @@ _Multiply::
 
 	ldh a, [hMathBuffer + 1]
 	ld c, a
-	ldh a, [hProduct]
+	ldh a, [hMultiplicand - 1]
 	adc c
 	ldh [hMathBuffer + 1], a
 
@@ -58,9 +58,9 @@ _Multiply::
 	rla
 	ldh [hMultiplicand + 0], a
 
-	ldh a, [hProduct]
+	ldh a, [hMultiplicand - 1]
 	rla
-	ldh [hProduct], a
+	ldh [hMultiplicand - 1], a
 
 	jr .loop
 

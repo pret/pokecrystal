@@ -10,15 +10,15 @@ CheckForHiddenItems:
 	add SCREEN_HEIGHT / 4
 	ld [wBuffer3], a
 ; Get the pointer for the first bg_event in the map...
-	ld hl, wCurrMapBGEventsPointer
+	ld hl, wCurMapBGEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 ; ... before even checking to see if there are any BG events on this map.
-	ld a, [wCurrMapBGEventCount]
+	ld a, [wCurMapBGEventCount]
 	and a
 	jr z, .nobgeventitems
-; For i = 1:wCurrMapBGEventCount...
+; For i = 1:wCurMapBGEventCount...
 .loop
 ; Store the counter in wBuffer2, and store the bg_event pointer in the stack.
 	ld [wBuffer2], a

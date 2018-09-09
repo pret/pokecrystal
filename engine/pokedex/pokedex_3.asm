@@ -43,7 +43,7 @@ DrawPokedexListWindow:
 	ld [hl], $3f
 	hlcoord 5, 16
 	ld [hl], $40
-	ld a, [wCurrentDexMode]
+	ld a, [wCurDexMode]
 	cp DEXMODE_OLD
 	jr z, .OldMode
 ; scroll bar

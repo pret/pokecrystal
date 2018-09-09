@@ -321,7 +321,7 @@ Function90199:
 	jr nz, .OutOfArea
 	; If the person can't take a call at that time, don't do the call
 	ld a, b
-	ld [wCurrentCaller], a
+	ld [wCurCaller], a
 	ld hl, PhoneContacts
 	ld bc, PHONE_TABLE_WIDTH
 	call AddNTimes
@@ -389,7 +389,7 @@ LoadCallerScript:
 	nop
 	nop
 	ld a, e
-	ld [wCurrentCaller], a
+	ld [wCurCaller], a
 	and a
 	jr nz, .actualcaller
 	ld a, BANK(WrongNumber)
@@ -463,7 +463,7 @@ RingTwice_StartCall:
 	ret
 
 Phone_CallerTextboxWithName:
-	ld a, [wCurrentCaller]
+	ld a, [wCurCaller]
 	ld b, a
 	call Function90363
 	ret
@@ -680,12 +680,12 @@ Phone_GetTrainerClassName:
 	ret
 
 GetCallerLocation:
-	ld a, [wCurrentCaller]
+	ld a, [wCurCaller]
 	call GetCallerTrainerClass
 	ld d, c
 	ld e, b
 	push de
-	ld a, [wCurrentCaller]
+	ld a, [wCurCaller]
 	ld hl, PhoneContacts + PHONE_CONTACT_MAP_GROUP
 	ld bc, PHONE_TABLE_WIDTH
 	call AddNTimes

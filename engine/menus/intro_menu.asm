@@ -67,7 +67,7 @@ NewGame:
 	call OakSpeech
 	call InitializeWorld
 	ld a, 1
-	ld [wPreviousLandmark], a
+	ld [wPrevLandmark], a
 
 	ld a, SPAWN_HOME
 	ld [wDefaultSpawnpoint], a

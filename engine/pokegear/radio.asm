@@ -1,6 +1,6 @@
 PlayRadioShow:
 ; If we're already in the radio program proper, we don't need to be here.
-	ld a, [wCurrentRadioLine]
+	ld a, [wCurRadioLine]
 	cp POKE_FLUTE_RADIO
 	jr nc, .ok
 ; If Team Rocket is not occupying the radio tower, we don't need to be here.
@@ -13,10 +13,10 @@ PlayRadioShow:
 	jr nz, .ok
 ; Team Rocket broadcasts on all stations.
 	ld a, ROCKET_RADIO
-	ld [wCurrentRadioLine], a
+	ld [wCurRadioLine], a
 .ok
-; Jump to the currently loaded station.  The index to which we need to jump is in wCurrentRadioLine.
-	ld a, [wCurrentRadioLine]
+; Jump to the currently loaded station.  The index to which we need to jump is in wCurRadioLine.
+	ld a, [wCurRadioLine]
 	ld e, a
 	ld d, 0
 	ld hl, RadioJumptable
@@ -145,7 +145,7 @@ PrintRadioLine:
 	call PrintTextBoxText
 .skip
 	ld a, RADIO_SCROLL
-	ld [wCurrentRadioLine], a
+	ld [wCurRadioLine], a
 	ld a, 100
 	ld [wRadioTextDelay], a
 	ret
@@ -175,7 +175,7 @@ RadioScroll:
 	ret
 .proceed
 	ld a, [wNextRadioLine]
-	ld [wCurrentRadioLine], a
+	ld [wCurRadioLine], a
 	ld a, [wNumRadioLinesPrinted]
 	cp 1
 	call nz, CopyBottomLineToTopLine
@@ -592,7 +592,7 @@ OaksPKMNTalk10:
 	ld hl, OPT_PokemonChannelText
 	call PrintText
 	ld a, OAKS_POKEMON_TALK_11
-	ld [wCurrentRadioLine], a
+	ld [wCurRadioLine], a
 	ld a, 100
 	ld [wRadioTextDelay], a
 	ret
@@ -654,7 +654,7 @@ OaksPKMNTalk14:
 	xor a
 	ld [wNumRadioLinesPrinted], a
 	ld a, RADIO_SCROLL
-	ld [wCurrentRadioLine], a
+	ld [wCurRadioLine], a
 	ld a, 10
 	ld [wRadioTextDelay], a
 	ret
@@ -663,7 +663,7 @@ OaksPKMNTalk14:
 	db "@"
 
 PlaceRadioString:
-	ld [wCurrentRadioLine], a
+	ld [wCurRadioLine], a
 	ld a, 100
 	ld [wRadioTextDelay], a
 	jp PlaceString
@@ -1779,7 +1779,7 @@ BuenasPassword20:
 	ld hl, wDailyFlags2
 	res DAILYFLAGS2_BUENAS_PASSWORD_F, [hl]
 	ld a, BUENAS_PASSWORD
-	ld [wCurrentRadioLine], a
+	ld [wCurRadioLine], a
 	xor a
 	ld [wNumRadioLinesPrinted], a
 	ld hl, BuenaOffTheAirText
@@ -1788,7 +1788,7 @@ BuenasPassword20:
 
 BuenasPassword21:
 	ld a, BUENAS_PASSWORD
-	ld [wCurrentRadioLine], a
+	ld [wCurRadioLine], a
 	xor a
 	ld [wNumRadioLinesPrinted], a
 	call BuenasPasswordCheckTime
@@ -1911,7 +1911,7 @@ StartRadioStation:
 	call RadioTerminator
 	call PrintText
 	ld hl, RadioChannelSongs
-	ld a, [wCurrentRadioLine]
+	ld a, [wCurRadioLine]
 	ld c, a
 	ld b, 0
 	add hl, bc
