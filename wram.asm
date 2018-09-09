@@ -155,7 +155,7 @@ wPrinterConnectionOpen:: db
 wPrinterOpcode:: db
 wPrevDexEntry:: db
 wDisableTextAcceleration:: db
-wPreviousLandmark:: db
+wPrevLandmark:: db
 wCurLandmark:: db
 wLandmarkSignTimer:: dw
 

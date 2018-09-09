@@ -34,7 +34,7 @@ ReturnFromMapSetupScript::
 	call .CheckMovingWithinLandmark
 	jr z, .dont_do_map_sign
 	ld a, [wCurLandmark]
-	ld [wPreviousLandmark], a
+	ld [wPrevLandmark], a
 
 	call .CheckSpecialMap
 	jr z, .dont_do_map_sign
@@ -49,7 +49,7 @@ ReturnFromMapSetupScript::
 
 .dont_do_map_sign
 	ld a, [wCurLandmark]
-	ld [wPreviousLandmark], a
+	ld [wPrevLandmark], a
 	ld a, $90
 	ldh [rWY], a
 	ldh [hWY], a
@@ -60,7 +60,7 @@ ReturnFromMapSetupScript::
 .CheckMovingWithinLandmark:
 	ld a, [wCurLandmark]
 	ld c, a
-	ld a, [wPreviousLandmark]
+	ld a, [wPrevLandmark]
 	cp c
 	ret z
 	cp SPECIAL_MAP
