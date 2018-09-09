@@ -174,16 +174,16 @@ BattleBGEffect_FlashInverted:
 	jp BattleBGEffect_FlashContinue
 
 .inverted
-	db %11100100 ; 3210
-	db %00011011 ; 0123
+	dc 3, 2, 1, 0
+	dc 0, 1, 2, 3
 
 BattleBGEffect_FlashWhite:
 	ld de, .white
 	jp BattleBGEffect_FlashContinue
 
 .white
-	db %11100100 ; 3210
-	db %00000000 ; 0000
+	dc 3, 2, 1, 0
+	dc 0, 0, 0, 0
 
 BattleBGEffect_FlashContinue:
 ; current timer, flash duration, number of flashes
@@ -235,9 +235,9 @@ BattleBGEffect_WhiteHues:
 	ret
 
 .Pals:
-	db %11100100
-	db %11100000
-	db %11010000
+	dc 3, 2, 1, 0
+	dc 3, 2, 0, 0
+	dc 3, 1, 0, 0
 	db -1
 
 BattleBGEffect_BlackHues:
@@ -252,9 +252,9 @@ BattleBGEffect_BlackHues:
 	ret
 
 .Pals:
-	db %11100100
-	db %11110100
-	db %11111000
+	dc 3, 2, 1, 0
+	dc 3, 3, 1, 0
+	dc 3, 3, 2, 0
 	db -1
 
 BattleBGEffect_AlternateHues:
@@ -270,14 +270,14 @@ BattleBGEffect_AlternateHues:
 	ret
 
 .Pals:
-	db %11100100
-	db %11111000
-	db %11111100
-	db %11111000
-	db %11100100
-	db %10010000
-	db %01000000
-	db %10010000
+	dc 3, 2, 1, 0
+	dc 3, 3, 2, 0
+	dc 3, 3, 3, 0
+	dc 3, 3, 2, 0
+	dc 3, 2, 1, 0
+	dc 2, 1, 0, 0
+	dc 1, 0, 0, 0
+	dc 2, 1, 0, 0
 	db -2
 
 BattleBGEffect_06:
@@ -294,13 +294,13 @@ BattleBGEffect_06:
 	ret
 
 .PalsCGB:
-	db %11100100
-	db %10010000
+	dc 3, 2, 1, 0
+	dc 2, 1, 0, 0
 	db -2
 
 .PalsSGB:
-	db %11110000
-	db %11000000
+	dc 3, 3, 0, 0
+	dc 3, 0, 0, 0
 	db -2
 
 BattleBGEffect_07:
@@ -317,13 +317,13 @@ BattleBGEffect_07:
 	ret
 
 .PalsCGB:
-	db %11100100
-	db %11011000
+	dc 3, 2, 1, 0
+	dc 3, 1, 2, 0
 	db -2
 
 .PalsSGB:
-	db %11110000
-	db %11001100
+	dc 3, 3, 0, 0
+	dc 3, 0, 3, 0
 	db -2
 
 BattleBGEffect_08:
@@ -333,9 +333,9 @@ BattleBGEffect_08:
 	ret
 
 .Pals:
-	db %00011011
-	db %01100011
-	db %10000111
+	dc 0, 1, 2, 3
+	dc 1, 2, 0, 3
+	dc 2, 0, 1, 3
 	db -2
 
 BattleBGEffect_HideMon:

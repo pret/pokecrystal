@@ -864,12 +864,12 @@ Intro_RotatePalettesLeftFrontpic:
 	ret
 
 IntroFadePalettes:
-	db %01010100
-	db %10101000
-	db %11111100
-	db %11111000
-	db %11110100
-	db %11100100
+	dc 1, 1, 1, 0
+	dc 2, 2, 2, 0
+	dc 3, 3, 3, 0
+	dc 3, 3, 2, 0
+	dc 3, 3, 1, 0
+	dc 3, 2, 1, 0
 .End
 
 Intro_WipeInFrontpic:
